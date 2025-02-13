@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31B67C02198
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Feb 2025 02:10:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E9C4C021AB
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Feb 2025 02:10:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BFB310E24D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAF4B10E9DB;
 	Thu, 13 Feb 2025 02:10:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BaaZ6GLy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SsMC725f";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8048010E9C3;
- Thu, 13 Feb 2025 02:10:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 108A410E9CB;
+ Thu, 13 Feb 2025 02:10:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739412618; x=1770948618;
+ t=1739412619; x=1770948619;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=FyA2xjSExy7eEokv2Y48+Z7E7hTvvuo6Uav4suK4SsA=;
- b=BaaZ6GLyT19tLbJp+8m49ouukZJs4d93A9l1xER7qtSDAR8yOeav8fAv
- wuIniQkIpx2nft0V1O312uzpoMHvmksdBkGEHI7GteRzTYt8LLj7p4SH/
- 4uJGlr6WunY62VrZSi0xhL+yP/fBjj/PpQ9Q+8tpbV2RDT+zvnlpXLijc
- RxDOhRff9JuqNDdj1IiRmr/3q6zaZtDHFV+RkC9MTN0DgfoYPK//iVURP
- nvWmO7OmyT6aBLlGAYl4cU+LBXQZhAYP5eUmZUBVcMYf9zuLERSkSY9+7
- 00d+jCceEP2S3JqsdDGsawSlOW4csy5mMTxr0bprS44Tj9z9ZRZ9loBw7 g==;
-X-CSE-ConnectionGUID: rdg61VIBR7KyH9DH9mzNfQ==
-X-CSE-MsgGUID: jk4um8AQTTuCEqfUGm3Edw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="65455961"
-X-IronPort-AV: E=Sophos;i="6.13,281,1732608000"; d="scan'208";a="65455961"
+ bh=pKoUloYrQMotRRRf5cjgNz1Y+vQDEeoXaRaImoe9Lwk=;
+ b=SsMC725fSQr4jhE+G9gj3O1Br56ALRAyXfFrg8MSOfK+jHK2xHlSEa3a
+ LtYkL6KobnB1RckqsKCp06DtMKqCUYNwCEd2OtjwZ7KADeL8/l2S2U6hm
+ /N/LxR7/UahXh8cdk7nSi7Mfq/jezyLgTDnneb3T/Q3kL65u5IJg4wu3m
+ HR9x9F7wBye8xTXcsMkOCzB20OD20fj5nNKdFU2GIBeXykvN8UwaMkHIa
+ vqG+e7Yg5/yaqszFgiZhi3O+MsUDVGQ6/T/A+PlwnnJKNkMNdglFMK0+F
+ 14JE36fm2+LMASsqng9OqWgqynwdonqz8T0Rp/Zp1vnVA7lTzvVn4VOvz Q==;
+X-CSE-ConnectionGUID: b7g1wnPaRdqS41q6gd8uIg==
+X-CSE-MsgGUID: +VGoZeXBSiukvwA1NDafWQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="65456021"
+X-IronPort-AV: E=Sophos;i="6.13,281,1732608000"; d="scan'208";a="65456021"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 18:10:16 -0800
-X-CSE-ConnectionGUID: bVkIt+r3QIShhAb0uovCWQ==
-X-CSE-MsgGUID: wJGahddhT5+xHhFrya2Q9Q==
+ 12 Feb 2025 18:10:17 -0800
+X-CSE-ConnectionGUID: K8iXB6HcRvCoHkQw3bdzBg==
+X-CSE-MsgGUID: kuaKtlcjT6WRZKFhR94A1A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="117945066"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="117945087"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Feb 2025 18:10:15 -0800
@@ -47,9 +47,9 @@ To: intel-xe@lists.freedesktop.org,
 Cc: himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com,
  thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
  felix.kuehling@amd.com, dakr@kernel.org
-Subject: [PATCH v5 11/32] drm/xe: Nuke VM's mapping upon close
-Date: Wed, 12 Feb 2025 18:10:51 -0800
-Message-Id: <20250213021112.1228481-12-matthew.brost@intel.com>
+Subject: [PATCH v5 18/32] drm/xe: Enable CPU address mirror uAPI
+Date: Wed, 12 Feb 2025 18:10:58 -0800
+Message-Id: <20250213021112.1228481-19-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250213021112.1228481-1-matthew.brost@intel.com>
 References: <20250213021112.1228481-1-matthew.brost@intel.com>
@@ -70,161 +70,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Clear root PT entry and invalidate entire VM's address space when
-closing the VM. Will prevent the GPU from accessing any of the VM's
-memory after closing.
+Support for CPU address mirror bindings in SRAM fully in place, enable the
+implementation.
 
-v2:
- - s/vma/vm in kernel doc (CI)
- - Don't nuke migration VM as this occur at driver unload (CI)
 v3:
- - Rebase and pull into SVM series (Thomas)
- - Wait for pending binds (Thomas)
-v5:
- - Remove xe_gt_tlb_invalidation_fence_fini in error case (Matt Auld)
- - Drop local migration bool (Thomas)
+ - s/system allocator/CPU address mirror (Thomas)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 22 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h |  2 ++
- drivers/gpu/drm/xe/xe_pt.c                  | 14 +++++++++++++
- drivers/gpu/drm/xe/xe_pt.h                  |  3 +++
- drivers/gpu/drm/xe/xe_vm.c                  | 20 +++++++++++++++++++
- 5 files changed, 61 insertions(+)
+ drivers/gpu/drm/xe/xe_vm.c | 6 ------
+ 1 file changed, 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-index 0a93831c0a02..03072e094991 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-@@ -410,6 +410,28 @@ int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
- 	return send_tlb_invalidation(&gt->uc.guc, fence, action, len);
- }
- 
-+/**
-+ * xe_gt_tlb_invalidation_vm - Issue a TLB invalidation on this GT for a VM
-+ * @gt: graphics tile
-+ * @vm: VM to invalidate
-+ *
-+ * Invalidate entire VM's address space
-+ */
-+void xe_gt_tlb_invalidation_vm(struct xe_gt *gt, struct xe_vm *vm)
-+{
-+	struct xe_gt_tlb_invalidation_fence fence;
-+	u64 range = 1ull << vm->xe->info.va_bits;
-+	int ret;
-+
-+	xe_gt_tlb_invalidation_fence_init(gt, &fence, true);
-+
-+	ret = xe_gt_tlb_invalidation_range(gt, &fence, 0, range, vm->usm.asid);
-+	if (ret < 0)
-+		return;
-+
-+	xe_gt_tlb_invalidation_fence_wait(&fence);
-+}
-+
- /**
-  * xe_gt_tlb_invalidation_vma - Issue a TLB invalidation on this GT for a VMA
-  * @gt: GT structure
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-index 672acfcdf0d7..abe9b03d543e 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-@@ -12,6 +12,7 @@
- 
- struct xe_gt;
- struct xe_guc;
-+struct xe_vm;
- struct xe_vma;
- 
- int xe_gt_tlb_invalidation_init_early(struct xe_gt *gt);
-@@ -21,6 +22,7 @@ int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt);
- int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
- 			       struct xe_gt_tlb_invalidation_fence *fence,
- 			       struct xe_vma *vma);
-+void xe_gt_tlb_invalidation_vm(struct xe_gt *gt, struct xe_vm *vm);
- int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
- 				 struct xe_gt_tlb_invalidation_fence *fence,
- 				 u64 start, u64 end, u32 asid);
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 99b97bf37c05..c5060011ad43 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -214,6 +214,20 @@ void xe_pt_destroy(struct xe_pt *pt, u32 flags, struct llist_head *deferred)
- 	xe_pt_free(pt);
- }
- 
-+/**
-+ * xe_pt_clear() - Clear a page-table.
-+ * @xe: xe device.
-+ * @pt: The page-table.
-+ *
-+ * Clears page-table by setting to zero.
-+ */
-+void xe_pt_clear(struct xe_device *xe, struct xe_pt *pt)
-+{
-+	struct iosys_map *map = &pt->bo->vmap;
-+
-+	xe_map_memset(xe, map, 0, 0, SZ_4K);
-+}
-+
- /**
-  * DOC: Pagetable building
-  *
-diff --git a/drivers/gpu/drm/xe/xe_pt.h b/drivers/gpu/drm/xe/xe_pt.h
-index 9ab386431cad..8e43912ae8e9 100644
---- a/drivers/gpu/drm/xe/xe_pt.h
-+++ b/drivers/gpu/drm/xe/xe_pt.h
-@@ -13,6 +13,7 @@ struct dma_fence;
- struct xe_bo;
- struct xe_device;
- struct xe_exec_queue;
-+struct xe_svm_range;
- struct xe_sync_entry;
- struct xe_tile;
- struct xe_vm;
-@@ -35,6 +36,8 @@ void xe_pt_populate_empty(struct xe_tile *tile, struct xe_vm *vm,
- 
- void xe_pt_destroy(struct xe_pt *pt, u32 flags, struct llist_head *deferred);
- 
-+void xe_pt_clear(struct xe_device *xe, struct xe_pt *pt);
-+
- int xe_pt_update_ops_prepare(struct xe_tile *tile, struct xe_vma_ops *vops);
- struct dma_fence *xe_pt_update_ops_run(struct xe_tile *tile,
- 				       struct xe_vma_ops *vops);
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index cbfe5fad1680..9cfb068f5845 100644
+index 06b013d1f533..6c9c3f9e307d 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1559,7 +1559,27 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- static void xe_vm_close(struct xe_vm *vm)
- {
- 	down_write(&vm->lock);
-+
- 	vm->size = 0;
-+
-+	if (!((vm->flags & XE_VM_FLAG_MIGRATION))) {
-+		struct xe_tile *tile;
-+		struct xe_gt *gt;
-+		u8 id;
-+
-+		/* Wait for pending binds */
-+		dma_resv_wait_timeout(xe_vm_resv(vm),
-+				      DMA_RESV_USAGE_BOOKKEEP,
-+				      false, MAX_SCHEDULE_TIMEOUT);
-+
-+		for_each_tile(tile, vm->xe, id)
-+			if (vm->pt_root[id])
-+				xe_pt_clear(vm->xe, vm->pt_root[id]);
-+
-+		for_each_gt(gt, vm->xe, id)
-+			xe_gt_tlb_invalidation_vm(gt, vm);
-+	}
-+
- 	up_write(&vm->lock);
- }
+@@ -3040,12 +3040,6 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
+ 		u16 pat_index = (*bind_ops)[i].pat_index;
+ 		u16 coh_mode;
  
+-		/* FIXME: Disabling CPU address mirror for now */
+-		if (XE_IOCTL_DBG(xe, is_cpu_addr_mirror)) {
+-			err = -EOPNOTSUPP;
+-			goto free_bind_ops;
+-		}
+-
+ 		if (XE_IOCTL_DBG(xe, is_cpu_addr_mirror &&
+ 				 !xe_vm_in_fault_mode(vm))) {
+ 			err = -EINVAL;
 -- 
 2.34.1
 
