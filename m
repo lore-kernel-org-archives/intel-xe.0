@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA249C021AE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D19B9C021AF
 	for <intel-xe@archiver.kernel.org>; Thu, 13 Feb 2025 19:29:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8724710EB94;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 876A410EB95;
 	Thu, 13 Feb 2025 19:29:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BhKohiob";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ns3dd/Po";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48E0410EB8B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C715010EB88
  for <intel-xe@lists.freedesktop.org>; Thu, 13 Feb 2025 19:29:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739474975; x=1771010975;
+ t=1739474976; x=1771010976;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=YY7F4cmwOXMpLDqDaz2cu4qJ6OTG3L3OYxhTio6RCks=;
- b=BhKohiobeOQR4vANY9zCk1/3KmLwZ6E5AidtxrG11X4qH9GrkqcC6wS+
- GhaoFHk/CrzUeu/eLgMM1XZZOQE8b/6pk8OY/2c2x4rnvPF8xnaZrzeeK
- 30Z71jjIEKBcvY2dK+9fjiw5GBpDcRbI8QWHV/IflRUUwI8l/IibJjB6Z
- 8opKOQyy6FwqMX7kk9B6zMsSeUfLRErQfshLdOSIx8X9GX93aBlN1vNXz
- QsK9hIa0ocbaJLHM7r8WHb9nFH21QFbqs0QgtbATdp22FCaNwr5nOxGTP
- gBL02yvCdQmA/hO6Dv6FbmuRrwKWEs12laztMQ4K1NQJpPKCOIflhtqso Q==;
-X-CSE-ConnectionGUID: ZwNhUGTOQ764zqgwz5nBOw==
-X-CSE-MsgGUID: vT9lHS1CR3ykPEdTMJjwxQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11344"; a="40127923"
-X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="40127923"
+ bh=1R8BopvsPuOzvRZOqGtuoByGgBOxSS+XbeCEumyboWU=;
+ b=ns3dd/PonjCj5oS3PeovWmz4YU83lcIwHR5fbb7Dl2kQJUkTxxKq9SKT
+ MoFgW7hZmTBNJ0lOnKIkeBHiaxnX1QVk7+oTqRj4De8UkFezjQ9NTuCTO
+ bS+Aapes+KUqGz5k8fw/Jezqc2PoCoWdDAxs9zCG0X9amnLFBMTJLtxrk
+ 5QxzMxM91ivlIuxgaslJMmQbZvCDYkWtQwhNeciq7Pq/UjyCRw4JwG/9Z
+ vYj42VmfzONonfGNI0teZD+LkEX7ItcTY3Ujh8S8sLx+7x04v/IuY0ZiO
+ 6uYBHircs6xrKWosfybxab3jUnYG0HmB47T61ftb3AMheT6hLyNa1kVRc Q==;
+X-CSE-ConnectionGUID: VjEwvV9SR3miPYehy8SHWg==
+X-CSE-MsgGUID: LP7TWaIiRCeDzI+KEFP1qg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11344"; a="40127933"
+X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="40127933"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Feb 2025 11:29:35 -0800
-X-CSE-ConnectionGUID: uNDbIgqAS2mwWJIC2dGxqQ==
-X-CSE-MsgGUID: 1ovWUlhCQ0y26To+2jm0MA==
+X-CSE-ConnectionGUID: SccIp8UXQweqjQxG/KEv2g==
+X-CSE-MsgGUID: cGNzstXgQVGl8SVKC25rcw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="150416863"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="150416890"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Feb 2025 11:29:35 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Subject: [CI 03/13] drm/xe: Fix error handling in xe_irq_install()
-Date: Thu, 13 Feb 2025 11:28:59 -0800
-Message-ID: <20250213192909.996148-3-lucas.demarchi@intel.com>
+Subject: [CI 12/13] drm/xe/pmu: Fail probe if xe_pmu_register() fails
+Date: Thu, 13 Feb 2025 11:29:08 -0800
+Message-ID: <20250213192909.996148-12-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250213192909.996148-1-lucas.demarchi@intel.com>
 References: <20250213192909.996148-1-lucas.demarchi@intel.com>
@@ -65,47 +65,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When devm_add_action_or_reset() fails, it already calls the function
-passed as parameter and that function is already free'ing the irqs.
-Drop the goto and just return.
+Now that previous callers in xe_device_probe() are handling the errors,
+that can be done for xe_pmu_register() as well.
 
-The caller, xe_device_probe(), should also do the same thing instead of
-wrongly doing `goto err` and calling the unrelated xe_display_fini()
-function.
-
-Fixes: 14d25d8d684d ("drm/xe: change old msi irq api to a new one")
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Riana Tauro <riana.tauro@intel.com>
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_irq.c | 14 +-------------
- 1 file changed, 1 insertion(+), 13 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index bf092e6391c7d..5362d3174b060 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -775,19 +775,7 @@ int xe_irq_install(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 86f3fd399f9ba..44471604142fc 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -889,7 +889,9 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		goto err_unregister_display;
  
- 	xe_irq_postinstall(xe);
+-	xe_pmu_register(&xe->pmu);
++	err = xe_pmu_register(&xe->pmu);
++	if (err)
++		goto err_unregister_display;
  
--	err = devm_add_action_or_reset(xe->drm.dev, irq_uninstall, xe);
--	if (err)
--		goto free_irq_handler;
--
--	return 0;
--
--free_irq_handler:
--	if (xe_device_has_msix(xe))
--		xe_irq_msix_free(xe);
--	else
--		xe_irq_msi_free(xe);
--
--	return err;
-+	return devm_add_action_or_reset(xe->drm.dev, irq_uninstall, xe);
- }
+ 	xe_debugfs_register(xe);
  
- static void xe_irq_msi_synchronize_irq(struct xe_device *xe)
 -- 
 2.48.1
 
