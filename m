@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEB99C0219D
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Feb 2025 13:58:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86DD3C0219D
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Feb 2025 14:14:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFB3B10EAB3;
-	Thu, 13 Feb 2025 13:58:28 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YtRLwxoJ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29DD510EAB3
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Feb 2025 13:58:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739455107; x=1770991107;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=bHZeZfKNTDogIf6Y2kInrbME7S2+Xgh/ojub8j6miqU=;
- b=YtRLwxoJmBUJmwBdrSde0B+6lOMYJyVgdLqaFmrYJR6IPXujtssezsx9
- gr1sSto1eFJjc8bGq3JOurFYYkUXyUxMdaj+L7rVFD8mAv9Q3eb1OzWHt
- E+F8kf/wL4ANYUtX8ahqn7zP9gd0wlLCXRaryK9dRpbxPxyMxbM5OldUO
- FYt940EJ9rCWUplPp/ORQEjhOc4gdTeSUvgzbdoEHwfvgN1ICcPm6/b+g
- /XTTAyDHL5Vb3jHqgBbnA5AtCTmAYHy9jZ8fY/W2sh3yWffNW258cebUv
- LEdTg6XivOyQnVSllcj9dbtHUs/F4L5hWS4+OrHTY2FgivuG971B3fIqv g==;
-X-CSE-ConnectionGUID: 59tY8kQyRLqMxpcdSgWuqw==
-X-CSE-MsgGUID: 9UncQ7NFQ1SX/ltmVqtPxQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11344"; a="40020310"
-X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="40020310"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2025 05:58:27 -0800
-X-CSE-ConnectionGUID: pIb+x+DWRsaD5bHpJKZ8cg==
-X-CSE-MsgGUID: l2gAYjgQSwOJnNjr+/4Zgw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="118081434"
-Received: from apaszkie-mobl2.apaszkie-mobl2 (HELO mwauld-desk.intel.com)
- ([10.245.245.31])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2025 05:58:26 -0800
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- stable@vger.kernel.org
-Subject: [PATCH 1/2] drm/xe/userptr: fix EFAULT handling
-Date: Thu, 13 Feb 2025 13:58:09 +0000
-Message-ID: <20250213135808.189144-3-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.48.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52D8510E3F5;
+	Thu, 13 Feb 2025 14:14:35 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F38610E3F5;
+ Thu, 13 Feb 2025 14:14:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3531026651926956155=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/fbc=3A_FBC_Dirty_r?=
+ =?utf-8?q?ect_feature_support_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 13 Feb 2025 14:14:34 -0000
+Message-ID: <173945607418.1687769.8247381480948901394@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250213132559.136815-1-vinod.govindapillai@intel.com>
+In-Reply-To: <20250213132559.136815-1-vinod.govindapillai@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,84 +36,126 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently we treat EFAULT from hmm_range_fault() as a non-fatal error
-when called from xe_vm_userptr_pin() with the idea that we want to avoid
-killing the entire vm and chucking an error, under the assumption that
-the user just did an unmap or something, and has no intention of
-actually touching that memory from the GPU.  At this point we have
-already zapped the PTEs so any access should generate a page fault, and
-if the pin fails there also it will then become fatal.
+--===============3531026651926956155==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-However it looks like it's possible for the userptr vma to still be on
-the rebind list in preempt_rebind_work_func(), if we had to retry the
-pin again due to something happening in the caller before we did the
-rebind step, but in the meantime needing to re-validate the userptr and
-this time hitting the EFAULT.
+== Series Details ==
 
-This might explain an internal user report of hitting:
+Series: drm/i915/fbc: FBC Dirty rect feature support (rev2)
+URL   : https://patchwork.freedesktop.org/series/144723/
+State : success
 
-[  191.738349] WARNING: CPU: 1 PID: 157 at drivers/gpu/drm/xe/xe_res_cursor.h:158 xe_pt_stage_bind.constprop.0+0x60a/0x6b0 [xe]
-[  191.738551] Workqueue: xe-ordered-wq preempt_rebind_work_func [xe]
-[  191.738616] RIP: 0010:xe_pt_stage_bind.constprop.0+0x60a/0x6b0 [xe]
-[  191.738690] Call Trace:
-[  191.738692]  <TASK>
-[  191.738694]  ? show_regs+0x69/0x80
-[  191.738698]  ? __warn+0x93/0x1a0
-[  191.738703]  ? xe_pt_stage_bind.constprop.0+0x60a/0x6b0 [xe]
-[  191.738759]  ? report_bug+0x18f/0x1a0
-[  191.738764]  ? handle_bug+0x63/0xa0
-[  191.738767]  ? exc_invalid_op+0x19/0x70
-[  191.738770]  ? asm_exc_invalid_op+0x1b/0x20
-[  191.738777]  ? xe_pt_stage_bind.constprop.0+0x60a/0x6b0 [xe]
-[  191.738834]  ? ret_from_fork_asm+0x1a/0x30
-[  191.738849]  bind_op_prepare+0x105/0x7b0 [xe]
-[  191.738906]  ? dma_resv_reserve_fences+0x301/0x380
-[  191.738912]  xe_pt_update_ops_prepare+0x28c/0x4b0 [xe]
-[  191.738966]  ? kmemleak_alloc+0x4b/0x80
-[  191.738973]  ops_execute+0x188/0x9d0 [xe]
-[  191.739036]  xe_vm_rebind+0x4ce/0x5a0 [xe]
-[  191.739098]  ? trace_hardirqs_on+0x4d/0x60
-[  191.739112]  preempt_rebind_work_func+0x76f/0xd00 [xe]
+== Summary ==
 
-Followed by NPD, when running some workload, since the sg was never
-actually populated but the vma is still marked for rebind when it should
-be skipped for this special EFAULT case. And from the logs it does seem
-like we hit this special EFAULT case before the explosions.
+CI Bug Log - changes from xe-2657-dbf65862427b99b51ac5279560a1f7995779480b_BAT -> xe-pw-144723v2_BAT
+====================================================
 
-Fixes: 521db22a1d70 ("drm/xe: Invalidate userptr VMA on page pin fault")
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: <stable@vger.kernel.org> # v6.10+
----
- drivers/gpu/drm/xe/xe_vm.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Summary
+-------
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index d664f2e418b2..1caee9cbeafb 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -692,6 +692,17 @@ int xe_vm_userptr_pin(struct xe_vm *vm)
- 			xe_vm_unlock(vm);
- 			if (err)
- 				return err;
-+
-+			/*
-+			 * We might have already done the pin once already, but then had to retry
-+			 * before the re-bind happended, due some other condition in the caller, but
-+			 * in the meantime the userptr got dinged by the notifier such that we need
-+			 * to revalidate here, but this time we hit the EFAULT. In such a case
-+			 * make sure we remove ourselves from the rebind list to avoid going down in
-+			 * flames.
-+			 */
-+			if (!list_empty(&uvma->vma.combined_links.rebind))
-+				list_del_init(&uvma->vma.combined_links.rebind);
- 		} else {
- 			if (err < 0)
- 				return err;
--- 
-2.48.1
+  **SUCCESS**
 
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-144723v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Warnings ####
+
+  * igt@xe_exec_basic@twice-bindexecqueue-rebind:
+    - bat-adlp-vf:        [DMESG-FAIL][1] ([Intel XE#3868]) -> [DMESG-WARN][2] ([Intel XE#3970])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2657-dbf65862427b99b51ac5279560a1f7995779480b/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144723v2/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
+
+  
+  [Intel XE#3868]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3868
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
+
+
+Build changes
+-------------
+
+  * Linux: xe-2657-dbf65862427b99b51ac5279560a1f7995779480b -> xe-pw-144723v2
+
+  IGT_8229: 8229
+  xe-2657-dbf65862427b99b51ac5279560a1f7995779480b: dbf65862427b99b51ac5279560a1f7995779480b
+  xe-pw-144723v2: 144723v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144723v2/index.html
+
+--===============3531026651926956155==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/fbc: FBC Dirty rect feature support (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144723/">https://patchwork.freedesktop.org/series/144723/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144723v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144723v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2657-dbf65862427b99b51ac5279560a1f7995779480b_BAT -&gt; xe-pw-144723v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-144723v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_exec_basic@twice-bindexecqueue-rebind:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2657-dbf65862427b99b51ac5279560a1f7995779480b/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3868">Intel XE#3868</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144723v2/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2657-dbf65862427b99b51ac5279560a1f7995779480b -&gt; xe-pw-144723v2</li>
+</ul>
+<p>IGT_8229: 8229<br />
+  xe-2657-dbf65862427b99b51ac5279560a1f7995779480b: dbf65862427b99b51ac5279560a1f7995779480b<br />
+  xe-pw-144723v2: 144723v2</p>
+
+</body>
+</html>
+
+--===============3531026651926956155==--
