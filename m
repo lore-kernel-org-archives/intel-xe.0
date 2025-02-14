@@ -4,27 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1717C021A4
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Feb 2025 11:22:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B076C021A4
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Feb 2025 11:28:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79EA310EC62;
-	Fri, 14 Feb 2025 11:22:12 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9761A10EC55;
- Fri, 14 Feb 2025 11:22:11 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3588450673901846941=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF26410E263;
+	Fri, 14 Feb 2025 11:28:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="q73TiLxj";
+	dkim-atps=neutral
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2809010EC39;
+ Fri, 14 Feb 2025 11:28:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=8xsJuc9EjpMhgVti4IsNIlAz2tp9kkTGHQLrKu6s7fs=; b=q73TiLxjfR/eQMem1lSnerZ1Mf
+ rfeCb2/Bltkxzv7jhNLgWHTO9YX7QkUVjmJwYkB+9CA6g5UJuWv4Exew7H4T6MvL3I7i9mq19YOXe
+ xDa2H58Sbf4OeP6uYmlCcCpJS+iefS7o8gEdBiSit63q+aHAHpAtTwWQIhyQnX2aMpeKW3ebBEMlq
+ ujDuSuqeS8dNRMWBMNByDswXsrmSyyDpgVZbYUp8ag8+wpq0LxdaCejeO42Gz++ZBxzRHO3F0mkiH
+ 5CzU8VD8ZJytC30deVkuJOydffpb/0kVa+uykdW3cxwvIzKKGhQilig0VoR2IwPDhi7y6XBEiMyr5
+ Ebzk6cAQ==;
+Received: from [90.241.98.187] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1titrY-000VFA-QB; Fri, 14 Feb 2025 12:28:10 +0100
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: amd-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Danilo Krummrich <dakr@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Philipp Stanner <phasta@kernel.org>
+Subject: [PATCH 0/5] DRM scheduler kunit tests
+Date: Fri, 14 Feb 2025 11:27:59 +0000
+Message-ID: <20250214112805.20008-1-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.48.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/sched=3A_Job_queue_peek?=
- =?utf-8?q?/pop_helpers_and_struct_job_re-order?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 14 Feb 2025 11:22:11 -0000
-Message-ID: <173953213160.2016192.9666311808269001435@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250214101944.19390-1-tvrtko.ursulin@igalia.com>
-In-Reply-To: <20250214101944.19390-1-tvrtko.ursulin@igalia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,186 +59,92 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3588450673901846941==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+There has repeatedly been quite a bit of apprehension when any change to the DRM
+scheduler is proposed, with two main reasons being code base is considered
+fragile, not well understood and not very well documented, and secondly the lack
+of systematic testing outside the vendor specific tests suites and/or test
+farms.
 
-== Series Details ==
+This series is an attempt to dislodge this status quo by adding some unit tests
+using the kunit framework.
 
-Series: drm/sched: Job queue peek/pop helpers and struct job re-order
-URL   : https://patchwork.freedesktop.org/series/144853/
-State : success
+General approach is that there is a mock "hardware" backend which can be
+controlled from tests, which in turn allows exercising various scheduler code
+paths.
 
-== Summary ==
+Only some simple basic tests get added in the series and hopefully it is easy to
+understand what tests are doing.
 
-CI Bug Log - changes from xe-2665-57457d93f156d8b4bdff8d138127d81b8f97d8c9_BAT -> xe-pw-144853v1_BAT
-====================================================
+An obligatory "screenshot" for reference:
 
-Summary
--------
+[14:29:37] ============ drm_sched_basic_tests (3 subtests) ============
+[14:29:38] [PASSED] drm_sched_basic_submit
+[14:29:38] ================== drm_sched_basic_test  ===================
+[14:29:38] [PASSED] A queue of jobs in a single entity
+[14:29:38] [PASSED] A chain of dependent jobs across multiple entities
+[14:29:38] [PASSED] Multiple independent job queues
+[14:29:38] [PASSED] Multiple inter-dependent job queues
+[14:29:38] ============== [PASSED] drm_sched_basic_test ===============
+[14:29:38] [PASSED] drm_sched_basic_entity_cleanup
+[14:29:38] ============== [PASSED] drm_sched_basic_tests ==============
+[14:29:38] ======== drm_sched_basic_timeout_tests (1 subtest) =========
+[14:29:40] [PASSED] drm_sched_basic_timeout
+[14:29:40] ========== [PASSED] drm_sched_basic_timeout_tests ==========
+[14:29:40] ======= drm_sched_basic_priority_tests (2 subtests) ========
+[14:29:42] [PASSED] drm_sched_priorities
+[14:29:42] [PASSED] drm_sched_change_priority
+[14:29:42] ========= [PASSED] drm_sched_basic_priority_tests ==========
+[14:29:42] ====== drm_sched_basic_modify_sched_tests (1 subtest) ======
+[14:29:43] [PASSED] drm_sched_test_modify_sched
+[14:29:43] ======= [PASSED] drm_sched_basic_modify_sched_tests ========
+[14:29:43] ============================================================
+[14:29:43] Testing complete. Ran 10 tests: passed: 10
+[14:29:43] Elapsed time: 13.330s total, 0.001s configuring, 4.005s building, 9.276s running
 
-  **SUCCESS**
+v2:
+ * Parameterize a bunch of similar tests.
+ * Improve test commentary.
+ * Rename TDR test to timeout. (Christian)
+ * Improve quality and consistency of naming. (Philipp)
 
-  No regressions found.
+RFC v2 -> series v1:
+ * Rebased for drm_sched_init changes.
+ * Fixed modular build.
+ * Added some comments.
+ * Filename renames. (Philipp)
 
-  
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Danilo Krummrich <dakr@kernel.org>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Philipp Stanner <phasta@kernel.org>
 
-Participating hosts (9 -> 8)
-------------------------------
+Tvrtko Ursulin (5):
+  drm: Move some options to separate new Kconfig.debug
+  drm/scheduler: Add scheduler unit testing infrastructure and some
+    basic tests
+  drm/scheduler: Add a simple timeout test
+  drm/scheduler: Add basic priority tests
+  drm/scheduler: Add a basic test for modifying entities scheduler list
 
-  Missing    (1): bat-adlp-vm 
+ drivers/gpu/drm/Kconfig                       | 109 +----
+ drivers/gpu/drm/Kconfig.debug                 | 115 +++++
+ drivers/gpu/drm/scheduler/.kunitconfig        |  12 +
+ drivers/gpu/drm/scheduler/Makefile            |   2 +
+ drivers/gpu/drm/scheduler/tests/Makefile      |   6 +
+ .../gpu/drm/scheduler/tests/mock_scheduler.c  | 323 +++++++++++++
+ drivers/gpu/drm/scheduler/tests/sched_tests.h | 222 +++++++++
+ drivers/gpu/drm/scheduler/tests/tests_basic.c | 424 ++++++++++++++++++
+ 8 files changed, 1109 insertions(+), 104 deletions(-)
+ create mode 100644 drivers/gpu/drm/Kconfig.debug
+ create mode 100644 drivers/gpu/drm/scheduler/.kunitconfig
+ create mode 100644 drivers/gpu/drm/scheduler/tests/Makefile
+ create mode 100644 drivers/gpu/drm/scheduler/tests/mock_scheduler.c
+ create mode 100644 drivers/gpu/drm/scheduler/tests/sched_tests.h
+ create mode 100644 drivers/gpu/drm/scheduler/tests/tests_basic.c
 
-Known issues
-------------
+-- 
+2.48.0
 
-  Here are the changes found in xe-pw-144853v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][1] ([Intel XE#2229] / [Intel XE#455]) +1 other test skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144853v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
-
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][2] ([Intel XE#2229])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144853v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_intel_bb@render@render-ymajor-256:
-    - bat-adlp-vf:        [DMESG-WARN][3] ([Intel XE#3970]) -> [PASS][4] +2 other tests pass
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2665-57457d93f156d8b4bdff8d138127d81b8f97d8c9/bat-adlp-vf/igt@xe_intel_bb@render@render-ymajor-256.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144853v1/bat-adlp-vf/igt@xe_intel_bb@render@render-ymajor-256.html
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-adlp-vf:        [SKIP][5] ([Intel XE#1192]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2665-57457d93f156d8b4bdff8d138127d81b8f97d8c9/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144853v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-
-  
-#### Warnings ####
-
-  * igt@xe_live_ktest@xe_bo:
-    - bat-adlp-vf:        [SKIP][7] ([Intel XE#1192]) -> [SKIP][8] ([Intel XE#2229] / [Intel XE#455])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2665-57457d93f156d8b4bdff8d138127d81b8f97d8c9/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144853v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-
-  
-  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
-
-
-Build changes
--------------
-
-  * IGT: IGT_8229 -> IGT_8230
-  * Linux: xe-2665-57457d93f156d8b4bdff8d138127d81b8f97d8c9 -> xe-pw-144853v1
-
-  IGT_8229: 8229
-  IGT_8230: 8230
-  xe-2665-57457d93f156d8b4bdff8d138127d81b8f97d8c9: 57457d93f156d8b4bdff8d138127d81b8f97d8c9
-  xe-pw-144853v1: 144853v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144853v1/index.html
-
---===============3588450673901846941==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/sched: Job queue peek/pop helpers and struct job re-order</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144853/">https://patchwork.freedesktop.org/series/144853/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144853v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144853v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2665-57457d93f156d8b4bdff8d138127d81b8f97d8c9_BAT -&gt; xe-pw-144853v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-144853v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144853v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144853v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@xe_intel_bb@render@render-ymajor-256:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2665-57457d93f156d8b4bdff8d138127d81b8f97d8c9/bat-adlp-vf/igt@xe_intel_bb@render@render-ymajor-256.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144853v1/bat-adlp-vf/igt@xe_intel_bb@render@render-ymajor-256.html">PASS</a> +2 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2665-57457d93f156d8b4bdff8d138127d81b8f97d8c9/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144853v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2665-57457d93f156d8b4bdff8d138127d81b8f97d8c9/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144853v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8229 -&gt; IGT_8230</li>
-<li>Linux: xe-2665-57457d93f156d8b4bdff8d138127d81b8f97d8c9 -&gt; xe-pw-144853v1</li>
-</ul>
-<p>IGT_8229: 8229<br />
-  IGT_8230: 8230<br />
-  xe-2665-57457d93f156d8b4bdff8d138127d81b8f97d8c9: 57457d93f156d8b4bdff8d138127d81b8f97d8c9<br />
-  xe-pw-144853v1: 144853v1</p>
-
-</body>
-</html>
-
---===============3588450673901846941==--
