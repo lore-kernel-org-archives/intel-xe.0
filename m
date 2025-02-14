@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 995BDC02198
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BD1EC021A4
 	for <intel-xe@archiver.kernel.org>; Fri, 14 Feb 2025 21:23:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51CD010E4A1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CBD110E37B;
 	Fri, 14 Feb 2025 21:23:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YFzcyU30";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z2HlBJfv";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1CBF10E4A1
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Feb 2025 21:23:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C7B910E08A
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Feb 2025 21:23:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1739568224; x=1771104224;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=jHPD0lJPnVIjdAPi4wn3GXTnsbBmbZMx6d3fJcNVn7s=;
- b=YFzcyU30wzIpETmgX7Fe5TfI1UuFlyVylnz7hS7lTTWs3s+cKcyYVanm
- oS7ad8DnjuiONsbaPyyI2kKszhCM5h438dywoeDF3twQZ7rXsQMKN2D/F
- 5PiAXBduAXYSz89vvp3a1nLb1AEN8Ply0dPcs/qwgI6z9nCGmSpjzoJlK
- /LrluCu0/7Yq8QqY+naoRR1O0BAVn+gBBXtWjhZvVx5tpfDEuvj3SnnRI
- w9Z3Sk9noWYZ0Q9vBp2C7OxFt1e0LCp/DlcA10ql8aZlRy7ZBk2vBq6lA
- 4qZG52h10p3t4ECNYZ9ee3aMcKf/sDFPgsbHcXITYcaqVldGDH6WPwHMY w==;
-X-CSE-ConnectionGUID: TbFxJhm0RR68oTt8q8QImg==
-X-CSE-MsgGUID: 4DNGfY5zT9eksFTnAcjzgQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="40447016"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="40447016"
+ bh=ieGcqk2uYPsPrDItxDGSVKlOwUCnD4yJsHWthfvlS+Q=;
+ b=Z2HlBJfv+mc12oq33yC54m0DzMQMVvN88kRrQwqPlVTPc5rDsQFMMpsR
+ bnEQaRqKgPGFGhp8D+A8tyE8DwByp5pTn0NHv4SeYU5FohNz/5SH9geWC
+ i3rIX+BMFV2KUb5mux2BqAss4c7z4Yjam9h2dzCHWJVN+sEDtL0E0i2BD
+ Gg/RDxqg2RUQ5CPJknBhhFaiWk3gyDqt5UvG644z6sGdpl5j7B7u7TXa5
+ jTBxQQrqdbJN5vnSXn9OhX0RrlHTQfhdUXROpfQp9sVtmilBYHhiAsv2p
+ 48IascO/CFVXbMayf3aGLq8dHFGmnT4YEnSF16G96k9JyiyVOx6fD0aV1 Q==;
+X-CSE-ConnectionGUID: OiZUT1chR4iijIwgatq66g==
+X-CSE-MsgGUID: +CL+bSlPRiSuxXs0dw1Bbg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="40447021"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="40447021"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2025 13:23:43 -0800
-X-CSE-ConnectionGUID: s19Ezt4gRJ6m7h7HkiGAdg==
-X-CSE-MsgGUID: OJBqcq9HQ8aDpu6iXJIi/w==
+ 14 Feb 2025 13:23:44 -0800
+X-CSE-ConnectionGUID: KARuxzaCRM2uRTP+K0DJQQ==
+X-CSE-MsgGUID: jIcD6/IdTg6bvs0Xda1PMg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,287,1732608000"; d="scan'208";a="113757020"
+X-IronPort-AV: E=Sophos;i="6.13,287,1732608000"; d="scan'208";a="113757035"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2025 13:23:43 -0800
+ 14 Feb 2025 13:23:44 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH 1/9] FOR-CI-ONLY: devres
-Date: Fri, 14 Feb 2025 13:23:05 -0800
-Message-ID: <20250214212313.1767562-2-lucas.demarchi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH 5/9] drm/xe/display: Drop xe_display_driver_remove()
+Date: Fri, 14 Feb 2025 13:23:09 -0800
+Message-ID: <20250214212313.1767562-6-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250214212313.1767562-1-lucas.demarchi@intel.com>
 References: <20250214212313.1767562-1-lucas.demarchi@intel.com>
@@ -66,31 +67,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-See https://lore.kernel.org/all/20250212200542.515493-1-lucas.demarchi@intel.com/
+Handle it as part of xe_display_fini(). The error handling was already
+calling it if a step after xe_display_init() failed. Just re-use the
+same xe_display_fini() for driver remove.
 
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/base/devres.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/xe/display/xe_display.c | 11 +----------
+ drivers/gpu/drm/xe/display/xe_display.h |  1 -
+ drivers/gpu/drm/xe/xe_device.c          |  8 ++------
+ 3 files changed, 3 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/base/devres.c b/drivers/base/devres.c
-index 93e7779ef21e8..b955a2f9520bf 100644
---- a/drivers/base/devres.c
-+++ b/drivers/base/devres.c
-@@ -687,6 +687,13 @@ int devres_release_group(struct device *dev, void *id)
- 		spin_unlock_irqrestore(&dev->devres_lock, flags);
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index 5ad2c99a9ae74..b7c99b8df11f9 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -170,6 +170,7 @@ static void xe_display_fini(void *arg)
+ 	intel_hpd_poll_fini(xe);
+ 	intel_hdcp_component_fini(display);
+ 	intel_audio_deinit(display);
++	intel_display_driver_remove(display);
+ }
  
- 		release_nodes(dev, &todo);
-+	} else if (list_empty(&dev->devres_head)) {
-+		/*
-+		 * dev is probably dying via devres_release_all(): groups
-+		 * have already been removed and are on the process of
-+		 * being released - don't touch and don't warn.
-+		 */
-+		spin_unlock_irqrestore(&dev->devres_lock, flags);
- 	} else {
- 		WARN_ON(1);
- 		spin_unlock_irqrestore(&dev->devres_lock, flags);
+ int xe_display_init(struct xe_device *xe)
+@@ -211,16 +212,6 @@ void xe_display_unregister(struct xe_device *xe)
+ 	intel_display_driver_unregister(display);
+ }
+ 
+-void xe_display_driver_remove(struct xe_device *xe)
+-{
+-	struct intel_display *display = &xe->display;
+-
+-	if (!xe->info.probe_display)
+-		return;
+-
+-	intel_display_driver_remove(display);
+-}
+-
+ /* IRQ-related functions */
+ 
+ void xe_display_irq_handler(struct xe_device *xe, u32 master_ctl)
+diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe/display/xe_display.h
+index 685dc74402fb8..46e14f8dee28a 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.h
++++ b/drivers/gpu/drm/xe/display/xe_display.h
+@@ -14,7 +14,6 @@ struct drm_driver;
+ 
+ bool xe_display_driver_probe_defer(struct pci_dev *pdev);
+ void xe_display_driver_set_hooks(struct drm_driver *driver);
+-void xe_display_driver_remove(struct xe_device *xe);
+ 
+ int xe_display_create(struct xe_device *xe);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 89802f98c4820..d88c0fddf0680 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -868,11 +868,11 @@ int xe_device_probe(struct xe_device *xe)
+ 
+ 	err = xe_pxp_init(xe);
+ 	if (err)
+-		goto err_remove_display;
++		return err;
+ 
+ 	err = drm_dev_register(&xe->drm, 0);
+ 	if (err)
+-		goto err_remove_display;
++		return err;
+ 
+ 	xe_display_register(xe);
+ 
+@@ -899,8 +899,6 @@ int xe_device_probe(struct xe_device *xe)
+ 
+ err_unregister_display:
+ 	xe_display_unregister(xe);
+-err_remove_display:
+-	xe_display_driver_remove(xe);
+ 
+ 	return err;
+ }
+@@ -911,8 +909,6 @@ void xe_device_remove(struct xe_device *xe)
+ 
+ 	drm_dev_unplug(&xe->drm);
+ 
+-	xe_display_driver_remove(xe);
+-
+ 	xe_heci_gsc_fini(xe);
+ }
+ 
 -- 
 2.48.1
 
