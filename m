@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B2B8C021AB
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Feb 2025 12:22:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 983B0C021A4
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Feb 2025 12:22:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 116B310EC76;
-	Fri, 14 Feb 2025 12:22:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6646610EC69;
+	Fri, 14 Feb 2025 12:22:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IikHmYWR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PuFJ57r+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C3A710EC74;
- Fri, 14 Feb 2025 12:22:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90BEE10EC6B;
+ Fri, 14 Feb 2025 12:22:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739535767; x=1771071767;
+ t=1739535771; x=1771071771;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5GLYOUg/BwXpKZ1kchS4/LGwBx5mUnO2xT46X8n7xQc=;
- b=IikHmYWRYXY8J6CFA47UpUDQvTCGYYThiA0pgd5pA4svJLAx4iAdJij6
- AEnBqMNSi3hT3uN02xJ7A/ESflIzcnSlsq9JmM40WoMT7YN8lfFyiqvQg
- Bq9MOQfY8agyRzQ3M0tQ5thDOIwvV8Fpa4inhXAuvShQyFeT6bWdfV5B6
- uK4vV2/U/PHXj3ydYhoc6+8dmPOlwCZaeSVtdt/DQXrrZ5VRTEUQpdaDH
- evpPuRyVtJkWeXMwta09UevKE1KrHJOtV2ok7uwmWhP/+r0QOI63RSD6O
- 8L3AsZt9RSE2MxbtVunm7ZS5+ak3NSDHTh+4cZxlCa0YxdMLGwAE+fTki A==;
-X-CSE-ConnectionGUID: z9n6spgySYa+s0tNMrWYGA==
-X-CSE-MsgGUID: yuHqQ1QnQMGCTGpY1r/rkg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11345"; a="51256002"
-X-IronPort-AV: E=Sophos;i="6.13,285,1732608000"; d="scan'208";a="51256002"
+ bh=ACbEnYj7s+Tfd7NANfj01BCL/euB+20e90RzXn+v6iU=;
+ b=PuFJ57r+RxEwWXXS1kHQAF2DtL3EijqVRi3ZaEtGUuPk5pMYtJsqVxCQ
+ QAQlyHvhtbwb/YfFRHNgPFuMpvhjKIzb27xgOMnAVrDsrdQ+X3E8VMN86
+ z4LJdz1rhp1IYmuqgxOeT9Y2pb8jjCJ44C6kk/MGW+g1ZohHuqYGnHk40
+ sWguCPyTkgJP0ClW3eVT59Zp42XT0MxBgT5krnaePfZvi5AdzZrejPvf8
+ HbnOMRL2GRVlvuJ30x64iFj5Qme36HIG6i11r8nSZVICMhVAxlQOHnaZw
+ Z8dBvra7g/FHt1j3bfhPnhCWoQgZ+Ugr3L52LDqIuEIb/dwVPA+jBaGba g==;
+X-CSE-ConnectionGUID: rI/7tPEQRa+mfhSm6LL/sA==
+X-CSE-MsgGUID: AN8oSvH6TKm7n1/oqdZm9A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11345"; a="51256010"
+X-IronPort-AV: E=Sophos;i="6.13,285,1732608000"; d="scan'208";a="51256010"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2025 04:22:46 -0800
-X-CSE-ConnectionGUID: NfMtG4fFSfyqnBZr4f35pA==
-X-CSE-MsgGUID: VfLH7Z5bQK28TuxuuzyyPw==
+ 14 Feb 2025 04:22:50 -0800
+X-CSE-ConnectionGUID: wleluhKhSHy/wxmOO7btyg==
+X-CSE-MsgGUID: DBYNrCCJTyCiVPLEdjpjbQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,285,1732608000"; d="scan'208";a="113309566"
+X-IronPort-AV: E=Sophos;i="6.13,285,1732608000"; d="scan'208";a="113309578"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2025 04:22:44 -0800
+ 14 Feb 2025 04:22:48 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 10/19] drm/i915/hdmi: Use VRR Timing generator for HDMI
-Date: Fri, 14 Feb 2025 17:41:20 +0530
-Message-ID: <20250214121130.1808451-11-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 12/19] drm/i915/display: Extend WA 14015406119 for PSR2
+Date: Fri, 14 Feb 2025 17:41:22 +0530
+Message-ID: <20250214121130.1808451-13-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250214121130.1808451-1-ankit.k.nautiyal@intel.com>
 References: <20250214121130.1808451-1-ankit.k.nautiyal@intel.com>
@@ -67,35 +67,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add support for using VRR Timing generator for HDMI panels.
+Wa_14015406119 is required for PSR1/2 while working with fixed refresh
+rate with VRR timing generator.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdmi.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 015110fc57a2..ac8f289960f8 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -64,6 +64,7 @@
- #include "intel_panel.h"
- #include "intel_pfit.h"
- #include "intel_snps_phy.h"
-+#include "intel_vrr.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 47d8dbf39b5c..66c5ad46bfea 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -2617,8 +2617,9 @@ static bool intel_crtc_needs_wa_14015401596(const struct intel_crtc_state *crtc_
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
  
- static void
- assert_hdmi_port_disabled(struct intel_hdmi *intel_hdmi)
-@@ -2385,6 +2386,8 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
- 		}
- 	}
+-	return intel_vrr_possible(crtc_state) && crtc_state->has_psr &&
+-		IS_DISPLAY_VER(display, 13, 14);
++	return intel_vrr_possible(crtc_state) &&
++	       (crtc_state->has_psr || crtc_state->has_sel_update) &&
++	       IS_DISPLAY_VER(display, 13, 14);
+ }
  
-+	intel_vrr_compute_config(pipe_config, conn_state);
-+
- 	intel_hdmi_compute_gcp_infoframe(encoder, pipe_config,
- 					 conn_state);
- 
+ static int intel_crtc_vblank_delay(const struct intel_crtc_state *crtc_state)
 -- 
 2.45.2
 
