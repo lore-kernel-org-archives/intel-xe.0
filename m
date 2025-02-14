@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F2C5C021A0
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Feb 2025 01:20:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 394EDC021A4
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Feb 2025 01:21:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 182B910E0C3;
-	Fri, 14 Feb 2025 01:20:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEF4710E0C3;
+	Fri, 14 Feb 2025 01:21:00 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3705F10E0C3;
- Fri, 14 Feb 2025 01:20:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A51110E0C3;
+ Fri, 14 Feb 2025 01:21:00 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/debugfs=3A_Ad?=
- =?utf-8?q?d_missing_xe=5Fpm=5Fruntime=5Fput_in_wedge=5Fmode=5Fset?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/debugfs=3A_Add_mis?=
+ =?utf-8?q?sing_xe=5Fpm=5Fruntime=5Fput_in_wedge=5Fmode=5Fset?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Shuicheng Lin" <shuicheng.lin@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 14 Feb 2025 01:20:47 -0000
-Message-ID: <173949604721.1845871.8862458346806736700@b555e5b46a47>
+Date: Fri, 14 Feb 2025 01:21:00 -0000
+Message-ID: <173949606003.1845870.13343598319728384723@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250213230322.1180621-1-shuicheng.lin@intel.com>
 In-Reply-To: <20250213230322.1180621-1-shuicheng.lin@intel.com>
@@ -48,9 +48,27 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 5a69acbd85cc drm-tip: 2025y-02m-13d-22h-54m-42s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/debugfs: Add missing xe_pm_runtime_put in wedge_mode_set
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+22f9cda3436b4fe965b5c5f31d2f2c1bcb483189
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 7b4a94235a12c4171cc5eb47472fb39372c38c40
+Author: Shuicheng Lin <shuicheng.lin@intel.com>
+Date:   Thu Feb 13 23:03:22 2025 +0000
+
+    drm/xe/debugfs: Add missing xe_pm_runtime_put in wedge_mode_set
+    
+    xe_pm_runtime_put is missed in the failure path.
+    
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch 5a69acbd85ccb74b6f1ff124806bbd9d2c9cfa1a drm-intel
+7b4a94235a12 drm/xe/debugfs: Add missing xe_pm_runtime_put in wedge_mode_set
 
 
