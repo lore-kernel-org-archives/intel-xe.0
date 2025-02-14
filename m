@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6430CC021A6
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A904C02198
 	for <intel-xe@archiver.kernel.org>; Fri, 14 Feb 2025 12:22:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FD2710E2DB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 510A010EC6B;
 	Fri, 14 Feb 2025 12:22:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CLth1mjj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cBRog3WM";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A12B610EC6E;
- Fri, 14 Feb 2025 12:22:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CB3910EC7B;
+ Fri, 14 Feb 2025 12:22:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739535769; x=1771071769;
+ t=1739535773; x=1771071773;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Wcuwb+sxLxyHXUJhcCp0Kv8Iyv90Va5cJY3h3h1Konc=;
- b=CLth1mjjDuR5NKqQ53h5f9itYh/hIqCOlHkhOTH+hnw6l00YLITPr96F
- OBTRagoxDlrAdTqpa6eslVBhxvrFEEusmTKDZfYZW+Eh8UN6gTObmJjBf
- /Td+czAZ+RTDOOXrY0VlfYZe68ej+pRidY7i81Ew1HKrn4ng0+ZVT9+P5
- Ry7TLiSCk4nrDIV+Ywmnfs9wG6hn0W1VFA9hK2Qs1eBYBQrJF+xTYllVh
- CZ935gUj4Pp6+DsNr1T3pEXUDfKz41mO9hhIsFh27BFEP1jZVVQ60f38y
- gu/JM5v/rDtUW2C0dU0sJRsMXVNO0912rz4eYK6B0idRPVE/fbuzEhbdy g==;
-X-CSE-ConnectionGUID: QHRLnigSTA2NzHJYsJuSmA==
-X-CSE-MsgGUID: CaGeLoqnSyOHkeGzbuDyaQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11345"; a="51256005"
-X-IronPort-AV: E=Sophos;i="6.13,285,1732608000"; d="scan'208";a="51256005"
+ bh=jOMQuJB8st/5yfhPysEPNJr9jWg8LBCsCUyUjZ2X/XQ=;
+ b=cBRog3WMIDSnn7kqolZ0rWo7GP+roBNtUKKdkCn9PFyrpExmdqKXKo7l
+ vTYevDv+nQxd4wyhoBxr9+m64/gcbp2SrwDxQ43fFLNE3NwviInxv6019
+ Zdef9Uk/ZcMHV8VPFP9FCtHgE5YG/YBppZbhL//J2w4XSWSGqxZD9RBs4
+ LofZuD5aYql6D3ZFLi7gOSm2qEl+CdApJayAlw0BvCLQFpyq+hl/DD3Y7
+ 0m27/grLafGooyAVdLLyzEXgxSETEviNVrP0tDJHrxgdiXtBK5RWjk8wq
+ cgq3xqC1jYyNTeeB1jnTlLKcVgTwtcl8bdckViBKM7UQKz9snYTm63wa0 g==;
+X-CSE-ConnectionGUID: WqbW3lojSuKjkUHp2QZc4Q==
+X-CSE-MsgGUID: Egjhujm+Tv2CY6twptPHcQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11345"; a="51256014"
+X-IronPort-AV: E=Sophos;i="6.13,285,1732608000"; d="scan'208";a="51256014"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2025 04:22:48 -0800
-X-CSE-ConnectionGUID: RTnZ4KygQdaWTbCnCBl3Qw==
-X-CSE-MsgGUID: jR+CR++bT/OBSe8xAkBM9Q==
+ 14 Feb 2025 04:22:52 -0800
+X-CSE-ConnectionGUID: IInA/O2tSBCKvvRDmm0ljQ==
+X-CSE-MsgGUID: /o1lgLsHQ26nAwejn9b6/g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,285,1732608000"; d="scan'208";a="113309573"
+X-IronPort-AV: E=Sophos;i="6.13,285,1732608000"; d="scan'208";a="113309584"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2025 04:22:46 -0800
+ 14 Feb 2025 04:22:50 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 11/19] drm/i915/display: Disable PSR before disabling VRR
-Date: Fri, 14 Feb 2025 17:41:21 +0530
-Message-ID: <20250214121130.1808451-12-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 13/19] drm/i915/vrr: Handle joiner with vrr
+Date: Fri, 14 Feb 2025 17:41:23 +0530
+Message-ID: <20250214121130.1808451-14-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250214121130.1808451-1-ankit.k.nautiyal@intel.com>
 References: <20250214121130.1808451-1-ankit.k.nautiyal@intel.com>
@@ -67,35 +67,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-As per bspec 49268: Disable PSR before disabling VRR.
+Do not program transcoder registers for VRR for the secondary pipe of
+the joiner. Remove check to skip VRR for joiner case.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 19 ++++++++++++-------
+ 1 file changed, 12 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 0fec343ddc0d..47d8dbf39b5c 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1313,6 +1313,8 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	enum pipe pipe = crtc->pipe;
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index a4ed102a2119..61b4ec3756e8 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -332,13 +332,6 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+ 	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+ 	int vmin, vmax;
  
-+	intel_psr_pre_plane_update(state, crtc);
-+
- 	if (intel_crtc_vrr_disabling(state, crtc)) {
- 		intel_vrr_disable(old_crtc_state);
- 		intel_crtc_update_active_timings(old_crtc_state, false);
-@@ -1323,8 +1325,6 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
- 
- 	intel_drrs_deactivate(old_crtc_state);
- 
--	intel_psr_pre_plane_update(state, crtc);
+-	/*
+-	 * FIXME all joined pipes share the same transcoder.
+-	 * Need to account for that during VRR toggle/push/etc.
+-	 */
+-	if (crtc_state->joiner_pipes)
+-		return;
 -
- 	if (hsw_ips_pre_update(state, crtc))
- 		intel_crtc_wait_for_next_vblank(crtc);
+ 	if (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE)
+ 		return;
  
+@@ -430,6 +423,9 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
+ 	struct intel_display *display = to_intel_display(crtc_state);
+ 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+ 
++	if (intel_crtc_is_joiner_secondary(crtc_state))
++		return;
++
+ 	/*
+ 	 * This bit seems to have two meanings depending on the platform:
+ 	 * TGL: generate VRR "safe window" for DSB vblank waits
+@@ -481,6 +477,9 @@ void intel_vrr_send_push(struct intel_dsb *dsb,
+ 	if (!crtc_state->vrr.enable)
+ 		return;
+ 
++	if (intel_crtc_is_joiner_secondary(crtc_state))
++		return;
++
+ 	if (dsb)
+ 		intel_dsb_nonpost_start(dsb);
+ 
+@@ -545,6 +544,9 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
+ 	if (!crtc_state->vrr.enable)
+ 		return;
+ 
++	if (intel_crtc_is_joiner_secondary(crtc_state))
++		return;
++
+ 	intel_de_write(display, TRANS_VRR_VMIN(display, cpu_transcoder),
+ 		       crtc_state->vrr.vmin - 1);
+ 	intel_de_write(display, TRANS_VRR_VMAX(display, cpu_transcoder),
+@@ -587,6 +589,9 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
+ 	if (!old_crtc_state->vrr.enable)
+ 		return;
+ 
++	if (intel_crtc_is_joiner_secondary(old_crtc_state))
++		return;
++
+ 	intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
+ 		       trans_vrr_ctl(old_crtc_state));
+ 	intel_de_wait_for_clear(display,
 -- 
 2.45.2
 
