@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A623CC021AA
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Feb 2025 14:19:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 078E6C021AD
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Feb 2025 14:19:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F7D110ECBD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C63BB10ECBE;
 	Fri, 14 Feb 2025 14:19:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hFJL36gD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WhJhIlEi";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76A3110ECAA;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1970410ECAA;
  Fri, 14 Feb 2025 14:19:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739542762; x=1771078762;
+ t=1739542761; x=1771078761;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=jI5Pkw0zFRi7N42mjRK7ZXcGKJbsesNXaSyGb9bGkGk=;
- b=hFJL36gDSWunZ1A9gnt4oqKQJ9MfJDfZqD8EB9qqmxuvxHkzoGbaGe64
- 6Hmpz2aktt9iVI/58XPZOAUYfovFT83IzXW+VvbvZdFivQn39QT+BAI+P
- 7yvViiLNp71EnV5iWEZhlHJpBr0UrRAckERmMiXE5AgaJgxFkXfS7REkz
- 9PoDfzyp8k4T6qSYeNJn7wIBTyCIOXMfjYNXeqTXvH73Wkt0UD2EV4h4S
- 7lIMPc/fqhcX0rFSLYlh3IfGXt5gCwxY8ku7lSGC60hJA7a7Fdm6flW6Y
- F6hwIPW+cdG0DXQfyGSXUwt3LixCyuBe2xTirMmtgFwsXqXMtAJg6FQUB w==;
-X-CSE-ConnectionGUID: MFX7KqjXTrm/1mcOinrHDw==
-X-CSE-MsgGUID: cAeXkEpCQGyFZWMLJ9Gs5w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11345"; a="27892516"
-X-IronPort-AV: E=Sophos;i="6.13,286,1732608000"; d="scan'208";a="27892516"
+ bh=We0xUn24IryPqdsqMhIV8t2Vl8+CEgqoM8lkN0gKjME=;
+ b=WhJhIlEiHXxu1jehnIPkr7Ua+c7g7PtWaMiLOeSGs9xrU1FSsKZKanQl
+ WHUhDuCv5WYVEXuUURdU7NzS9tH0rpiT0xrKDDeQ4/Ct0GLKrSY2PTOBH
+ 3Rg1mdFpV4xLJCy+0dEGZUaQHUVyeLwXYyHfSgJl6Qhs3D1Xub+mkW3ib
+ 1wCBmeEJT7uktG2C7hrfcfYOrwZkTU8AfcuoaWPSO+hE1rFQDLtee7aAb
+ 1R5yuIcK89rcOvKKqAY8ch/HFJBucYnHy+6aACiLvixmrDMK3kLKZd/uV
+ hq9RGBSmzEJt+CBCNcJR5MMLC4g2Mj2I+wrQp/0JJK2YTsVOlh/wU7BtL Q==;
+X-CSE-ConnectionGUID: tFRzi0uAQmCwZFzy0Hsx5w==
+X-CSE-MsgGUID: c5vowx7JQ4uruBswkcB7jg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11345"; a="27892513"
+X-IronPort-AV: E=Sophos;i="6.13,286,1732608000"; d="scan'208";a="27892513"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Feb 2025 06:19:21 -0800
-X-CSE-ConnectionGUID: PPLJKzYpTRi+FeHaZwMXhg==
-X-CSE-MsgGUID: IAmuMyz/QqqUu25vu7qviA==
+X-CSE-ConnectionGUID: o88p05+GSFmS7sey6BQtYg==
+X-CSE-MsgGUID: CyoQLpR2Seu/+REB+lWOpQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="136694383"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="136694316"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2025 06:19:17 -0800
+ 14 Feb 2025 06:19:12 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v2 10/11] drm/i915/ddi: Add a helper to enable a port
-Date: Fri, 14 Feb 2025 16:20:00 +0200
-Message-ID: <20250214142001.552916-11-imre.deak@intel.com>
+Subject: [PATCH v2 08/11] drm/i915/ddi: Move platform checks within
+ mtl_ddi_enable/disable_d2d_link()
+Date: Fri, 14 Feb 2025 16:19:58 +0200
+Message-ID: <20250214142001.552916-9-imre.deak@intel.com>
 X-Mailer: git-send-email 2.44.2
 In-Reply-To: <20250214142001.552916-1-imre.deak@intel.com>
 References: <20250214142001.552916-1-imre.deak@intel.com>
@@ -67,139 +68,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a helper to enable a port instead of open-coding it.
+The prefix of the mtl_ddi_enable_d2d() / mtl_ddi_disable_d2d_link()
+names show already what are the relevant platforms, so the corresponding
+platform check is a detail that can be hidden in the functions, do so.
 
-While at it rename intel_disable_ddi_buf() to intel_ddi_buf_disable()
-for consistency.
+While at it rename mtl_ddi_disable_d2d_link() to mtl_ddi_disable_d2d()
+for symmetry with mtl_ddi_enable_d2d().
 
-v2: (Jani)
-- s/intel_enable_ddi_buf/intel_ddi_buf_enable
-- s/intel_disable_ddi_buf/intel_ddi_buf_disable
+v2: s/mtl_ddi_disable_d2d_link/mtl_ddi_disable_d2d (Jani)
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c | 40 +++++++++++-------------
- 1 file changed, 19 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 56094a33b0c4a..5082f38b0a02e 100644
+index 22eeaabc0d2de..0cb6c95315fcd 100644
 --- a/drivers/gpu/drm/i915/display/intel_ddi.c
 +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3076,7 +3076,18 @@ mtl_ddi_disable_d2d(struct intel_encoder *encoder)
- 			port_name(port));
+@@ -2556,6 +2556,9 @@ mtl_ddi_enable_d2d(struct intel_encoder *encoder)
+ 	i915_reg_t reg;
+ 	u32 set_bits, wait_bits;
+ 
++	if (DISPLAY_VER(dev_priv) < 14)
++		return;
++
+ 	if (DISPLAY_VER(dev_priv) >= 20) {
+ 		reg = DDI_BUF_CTL(port);
+ 		set_bits = XE2LPD_DDI_BUF_D2D_LINK_ENABLE;
+@@ -3047,13 +3050,16 @@ static void intel_ddi_pre_enable(struct intel_atomic_state *state,
  }
  
--static void intel_disable_ddi_buf(struct intel_encoder *encoder,
-+static void intel_ddi_buf_enable(struct intel_encoder *encoder, u32 buf_ctl)
-+{
-+	struct intel_display *display = to_intel_display(encoder);
-+	enum port port = encoder->port;
-+
-+	intel_de_write(display, DDI_BUF_CTL(port), buf_ctl | DDI_BUF_CTL_ENABLE);
-+	intel_de_posting_read(display, DDI_BUF_CTL(port));
-+
-+	intel_wait_ddi_buf_active(encoder);
-+}
-+
-+static void intel_ddi_buf_disable(struct intel_encoder *encoder,
- 				  const struct intel_crtc_state *crtc_state)
+ static void
+-mtl_ddi_disable_d2d_link(struct intel_encoder *encoder)
++mtl_ddi_disable_d2d(struct intel_encoder *encoder)
  {
- 	struct intel_display *display = to_intel_display(encoder);
-@@ -3140,7 +3151,7 @@ static void intel_ddi_post_disable_dp(struct intel_atomic_state *state,
- 			intel_ddi_disable_transcoder_clock(old_crtc_state);
- 	}
- 
--	intel_disable_ddi_buf(encoder, old_crtc_state);
-+	intel_ddi_buf_disable(encoder, old_crtc_state);
- 
- 	intel_dp_sink_set_fec_ready(intel_dp, old_crtc_state, false);
- 
-@@ -3189,7 +3200,7 @@ static void intel_ddi_post_disable_hdmi(struct intel_atomic_state *state,
- 	if (DISPLAY_VER(dev_priv) < 12)
- 		intel_ddi_disable_transcoder_clock(old_crtc_state);
- 
--	intel_disable_ddi_buf(encoder, old_crtc_state);
-+	intel_ddi_buf_disable(encoder, old_crtc_state);
- 
- 	if (DISPLAY_VER(dev_priv) >= 12)
- 		intel_ddi_disable_transcoder_clock(old_crtc_state);
-@@ -3396,7 +3407,7 @@ static void intel_ddi_enable_hdmi(struct intel_atomic_state *state,
- 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
- 	struct drm_connector *connector = conn_state->connector;
- 	enum port port = encoder->port;
--	u32 buf_ctl;
-+	u32 buf_ctl = 0;
- 
- 	if (!intel_hdmi_handle_sink_scrambling(encoder, connector,
- 					       crtc_state->hdmi_high_tmds_clock_ratio,
-@@ -3461,8 +3472,6 @@ static void intel_ddi_enable_hdmi(struct intel_atomic_state *state,
- 	 * is filled with lane count, already set in the crtc_state.
- 	 * The same is required to be filled in PORT_BUF_CTL for C10/20 Phy.
- 	 */
--	buf_ctl = DDI_BUF_CTL_ENABLE;
--
- 	if (dig_port->lane_reversal)
- 		buf_ctl |= DDI_BUF_PORT_REVERSAL;
- 	if (dig_port->ddi_a_4_lanes)
-@@ -3488,9 +3497,7 @@ static void intel_ddi_enable_hdmi(struct intel_atomic_state *state,
- 		buf_ctl |= DDI_BUF_CTL_TC_PHY_OWNERSHIP;
- 	}
- 
--	intel_de_write(dev_priv, DDI_BUF_CTL(port), buf_ctl);
--
--	intel_wait_ddi_buf_active(encoder);
-+	intel_ddi_buf_enable(encoder, buf_ctl);
- }
- 
- static void intel_ddi_enable(struct intel_atomic_state *state,
-@@ -3714,7 +3721,6 @@ static void mtl_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
- 	struct intel_encoder *encoder = &dig_port->base;
--	enum port port = encoder->port;
- 	u32 dp_tp_ctl;
- 
- 	/*
-@@ -3748,15 +3754,11 @@ static void mtl_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
- 	mtl_port_buf_ctl_program(encoder, crtc_state);
- 
- 	/* 6.i Configure and enable DDI_CTL_DE to start sending valid data to port slice */
--	intel_dp->DP |= DDI_BUF_CTL_ENABLE;
- 	if (DISPLAY_VER(display) >= 20)
- 		intel_dp->DP |= XE2LPD_DDI_BUF_D2D_LINK_ENABLE;
- 
--	intel_de_write(display, DDI_BUF_CTL(port), intel_dp->DP);
--	intel_de_posting_read(display, DDI_BUF_CTL(port));
--
--	/* 6.j Poll for PORT_BUF_CTL Idle Status == 0, timeout after 100 us */
--	intel_wait_ddi_buf_active(encoder);
-+	intel_ddi_buf_enable(encoder, intel_dp->DP);
-+	intel_dp->DP |= DDI_BUF_CTL_ENABLE;
- }
- 
- static void intel_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
-@@ -3766,7 +3768,6 @@ static void intel_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
- 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
- 	struct intel_encoder *encoder = &dig_port->base;
  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
--	enum port port = encoder->port;
- 	u32 dp_tp_ctl;
+ 	enum port port = encoder->port;
+ 	i915_reg_t reg;
+ 	u32 clr_bits, wait_bits;
  
- 	dp_tp_ctl = intel_de_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
-@@ -3789,11 +3790,8 @@ static void intel_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
- 	    (intel_tc_port_in_dp_alt_mode(dig_port) || intel_tc_port_in_legacy_mode(dig_port)))
- 		adlp_tbt_to_dp_alt_switch_wa(encoder);
++	if (DISPLAY_VER(dev_priv) < 14)
++		return;
++
+ 	if (DISPLAY_VER(dev_priv) >= 20) {
+ 		reg = DDI_BUF_CTL(port);
+ 		clr_bits = XE2LPD_DDI_BUF_D2D_LINK_ENABLE;
+@@ -3083,7 +3089,7 @@ static void mtl_disable_ddi_buf(struct intel_encoder *encoder,
+ 	intel_wait_ddi_buf_idle(dev_priv, port);
  
-+	intel_ddi_buf_enable(encoder, intel_dp->DP);
- 	intel_dp->DP |= DDI_BUF_CTL_ENABLE;
--	intel_de_write(dev_priv, DDI_BUF_CTL(port), intel_dp->DP);
--	intel_de_posting_read(dev_priv, DDI_BUF_CTL(port));
--
--	intel_wait_ddi_buf_active(encoder);
- }
+ 	/* 3.d Disable D2D Link */
+-	mtl_ddi_disable_d2d_link(encoder);
++	mtl_ddi_disable_d2d(encoder);
  
- static void intel_ddi_set_link_train(struct intel_dp *intel_dp,
+ 	/* 3.e Disable DP_TP_CTL */
+ 	if (intel_crtc_has_dp_encoder(crtc_state)) {
+@@ -3432,8 +3438,7 @@ static void intel_ddi_enable_hdmi(struct intel_atomic_state *state,
+ 		hsw_prepare_hdmi_ddi_buffers(encoder, crtc_state);
+ 
+ 	/* e. Enable D2D Link for C10/C20 Phy */
+-	if (DISPLAY_VER(dev_priv) >= 14)
+-		mtl_ddi_enable_d2d(encoder);
++	mtl_ddi_enable_d2d(encoder);
+ 
+ 	encoder->set_signal_levels(encoder, crtc_state);
+ 
 -- 
 2.44.2
 
