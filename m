@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 217CDC021A4
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Feb 2025 22:19:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A6DAC02198
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Feb 2025 22:19:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAFA910E08B;
-	Fri, 14 Feb 2025 22:19:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7E6310E366;
+	Fri, 14 Feb 2025 22:19:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hfqwNxXP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eXYVqTOT";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C642010E08B
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Feb 2025 22:19:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C644F10E097
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Feb 2025 22:19:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739571554; x=1771107554;
+ t=1739571556; x=1771107556;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=oFS6D0a5bm2iKFw3acuXp0rsbMZ6jGl6lh+MoHH6Awc=;
- b=hfqwNxXPqZ/rF1jGx1LYMbjWd6r2tkz92hi/7mVMMsxzfBH5UvCmWym8
- nuo6dvhCEjnIQbBFOUkfsSiGTpa2k+zJEyRB2IXRqOjX7Ag5iI5B/aN2N
- 9rGF6QDkc7iipjOiTwIWjzKY/5lakjox4LYMkY3l+x/8ZHb04JAhaYeif
- i5yBewn8NqfR/pG0I9e9tH1BYlSGdB4JdMdCe0u4WLuuNvleO2kqu7pNh
- FsfKqLTN6Cyj823KIBF4eQsSUHL6Kf5U3YLU2Q38+I7bCKbSQrTPPA4Eh
- xfQyZyVepQhSkqKF+9pZYjMwua0ooUysSDjRV9ZkdWqWhj52j34iz9cqJ g==;
-X-CSE-ConnectionGUID: JPyeGnl2S6CA4WmgsLju5w==
-X-CSE-MsgGUID: l9AxNfIBRACiB86f92F9WA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11345"; a="51312595"
-X-IronPort-AV: E=Sophos;i="6.13,287,1732608000"; d="scan'208";a="51312595"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2025 14:19:14 -0800
-X-CSE-ConnectionGUID: jIwAcSIjSF2P6mR02gBHnA==
-X-CSE-MsgGUID: Oa6I7n1bQ5iNBo1Im6uatA==
+ bh=HSKzi2elBxED3XI0N67W6OCFAwaoloYg4LgIhPfhT7w=;
+ b=eXYVqTOTuI1+7g5YpzmFSu53E1f8iWtpR+k129vUFzAs/UGhqU++wrKc
+ QGjX8HALEIgnDMSsUC5GG9QZSHQkBglyOLqKXlWxIyPYnPSNCR+SfRcO2
+ MjvbBMlNo/Yw9uRHD3zu3BqMKq18Q13X/xnwHuT/cPAacPMykKFFy1HPD
+ Lcg1bLyQ885tOLNgFnXipm3UvSPFQpf3j2i/PAjdwJ7LhbFqTrAgw0Lz5
+ UpIFBj0VJNSLrw8PwUDKjde43A+Ir8aE7nEnTboVdSHFL9LW1RgYw/rjz
+ 3ny8W1FfBtaJS1tbXlGOK26z+Y8crr7CoUF2jzW2EwpQx/YWDvHWyyADj Q==;
+X-CSE-ConnectionGUID: W8W3O5OXSFOEgPzx/YjX9Q==
+X-CSE-MsgGUID: HzQRIp4dStWxAMuMVxSPpA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="51763874"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="51763874"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2025 14:19:15 -0800
+X-CSE-ConnectionGUID: hjIcYd5GTJCTjOpw8gp34w==
+X-CSE-MsgGUID: GswyAeUMSAKnrjrLcD3BVg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,287,1732608000"; d="scan'208";a="113298823"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2025 14:19:14 -0800
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="144494510"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 14 Feb 2025 14:19:15 -0800
 Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.1544.14; Fri, 14 Feb 2025 14:19:13 -0800
+ 15.1.2507.44; Fri, 14 Feb 2025 14:19:14 -0800
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Fri, 14 Feb 2025 14:19:13 -0800
+ 15.1.2507.44 via Frontend Transport; Fri, 14 Feb 2025 14:19:14 -0800
 Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.43) by
  edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Fri, 14 Feb 2025 14:19:11 -0800
+ 15.1.2507.44; Fri, 14 Feb 2025 14:19:13 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=w3Dcj6nUdZVE7lKGiVezOKTzsIYtw9/59JMOj9iPttGpVVnAyVrd6Y69kvEsYWQBe1+zllYCjh9QychnnFhyV+juP3Bf5ajj1I0sMK9jz8QRyX4wHLJbwQgdeOYRJgBgw08LkSMpBu4/oKjjf2ZtAh9RKGtBwUCaGnHTAvjv4BmEH9jgYcY10II4pqphmTUQZPPInf8bhY4hSdi/i8/J7cSmSadLwPLCMWseP4EbYIh6LgPhdPCd8wHzhk8lWt4VBngOl375mNauu4HkaHTVNf7SG2xaE+Sg/OO1PYsLuByn5GidVRfHU01ZCNcfVVqUZqy9V9EfvNkRb/gDegznjQ==
+ b=FMz03U4ZI1BFlw9O0tDXDGUNpPbNPUVyLqYe/HquNKn3e61jH7uLXzl+dDl6PPpWAuStjX/k5oZAEtUzbVm8f7qRFvSzKB5auSofB+6r4a/D1ApEn2S38JyK92wP63eyGpKjZcGacY7+32fjn3J/k0hofSTvsIiQzrMRgDtU2svTPWHwJhTKPCqG+u8wjm1DqOkn2/aH6E4xzmC5kCbwqPlyLFRFMGrvYjgpu0ZShvVT1H13N+A91UrBPuAWWLMe0H3t/ub24iQ34z55F6v8+9+0x7T6Px6MqbMOw8XJdW2OL+jcslx5tqXSkIDB9B7ZpQSoWPBWWzBm9hINMHhCqg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6H2VBFmCn79Iy3Kfx8Ytj0sZFYUL3U5sA8V+nmxkfVw=;
- b=b9tQ139Xi+JnZu9clxSpp1N7gyK38JDMrhqrzFup0us7T8pHi5JsXdEHBe/5hC9ARGxmBoYs6hDwwNxWCx1AaF/NaZ6KQVH+dXTcyXF2DYuDc2WkI+5NonaZuOhaL81C1ihp+4et2Ei2QdngeRuE+VTpDC/zlaWNvPyzc1UnYLyh042bT4ZT313RHGJZ377dSdNtDSvGfKrl9lR0u3WwgfYT56D5tGT+CqqC8ewvKyGSRgBljzwmbA4GpyxnndZj23Z6Y5SiMhCw/JTsrqGF6zjxxbtvYqCXb7KbPS0Szs2gVGXt+9aZCBHfeEIxfNBsgRH3+272me8VTiLDEvLxUw==
+ bh=zukwtNdUxQWEY5BLUr5hCzj+M7Atw4YhD2nRwXtjuMk=;
+ b=eGAFBw0JV+b61fquCM97gxO0njk1Lr/VRS+szyinzHJT/X2an+DdL/1yuGRhytDl1oEvPGwO4qhJSNhD7pKx13+7FBPfNNGeqeD0MPmTuimkb4m+OzrnS4jnLRivaMG2PL3iUg5LGM+XsIezoOt05tmFPOLUN8QJsmoQi0ZwCDfT8m1nqZoKbZZ6fUEyg6GlUxOfOHtozliWASBBt98xLGyiWs/KIvqtaC1+Ta5lVOMccjJGgh9SimdhS71UMcGQrAATVr3zYp3XhcU2X8RFiuo40qv8ib/Ubd5jkc9dwU4SZqfYvtcNdehNyCPmQJtoGnbsp+b1/zAK6O1lnWpt6A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -67,24 +67,25 @@ Received: from CH0PR11MB5444.namprd11.prod.outlook.com (2603:10b6:610:d3::13)
  by CO1PR11MB4804.namprd11.prod.outlook.com (2603:10b6:303:6f::20)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8445.16; Fri, 14 Feb
- 2025 22:19:01 +0000
+ 2025 22:19:10 +0000
 Received: from CH0PR11MB5444.namprd11.prod.outlook.com
  ([fe80::5f89:ba81:ff70:bace]) by CH0PR11MB5444.namprd11.prod.outlook.com
  ([fe80::5f89:ba81:ff70:bace%3]) with mapi id 15.20.8445.016; Fri, 14 Feb 2025
- 22:19:01 +0000
+ 22:19:10 +0000
 From: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
 To: "De Marchi, Lucas" <lucas.demarchi@intel.com>,
  "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "De Marchi, Lucas" <lucas.demarchi@intel.com>, "Cavitt, Jonathan"
- <jonathan.cavitt@intel.com>
-Subject: RE: [PATCH 4/9] drm/xe: Drop remove callback support
-Thread-Topic: [PATCH 4/9] drm/xe: Drop remove callback support
-Thread-Index: AQHbfybV7R0R8hPP5EOBymCCea3JFLNHWD/w
-Date: Fri, 14 Feb 2025 22:19:01 +0000
-Message-ID: <CH0PR11MB5444BED46E59A10227C430B6E5FE2@CH0PR11MB5444.namprd11.prod.outlook.com>
+CC: "De Marchi, Lucas" <lucas.demarchi@intel.com>, "Vivi, Rodrigo"
+ <rodrigo.vivi@intel.com>, "Nikula, Jani" <jani.nikula@intel.com>, "Cavitt,
+ Jonathan" <jonathan.cavitt@intel.com>
+Subject: RE: [PATCH 5/9] drm/xe/display: Drop xe_display_driver_remove()
+Thread-Topic: [PATCH 5/9] drm/xe/display: Drop xe_display_driver_remove()
+Thread-Index: AQHbfybQKqci1D05b0Gp/N6pDe79C7NHWKqg
+Date: Fri, 14 Feb 2025 22:19:10 +0000
+Message-ID: <CH0PR11MB5444196378A058BFAC94EDA6E5FE2@CH0PR11MB5444.namprd11.prod.outlook.com>
 References: <20250214212313.1767562-1-lucas.demarchi@intel.com>
- <20250214212313.1767562-5-lucas.demarchi@intel.com>
-In-Reply-To: <20250214212313.1767562-5-lucas.demarchi@intel.com>
+ <20250214212313.1767562-6-lucas.demarchi@intel.com>
+In-Reply-To: <20250214212313.1767562-6-lucas.demarchi@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -93,79 +94,80 @@ authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
 x-ms-traffictypediagnostic: CH0PR11MB5444:EE_|CO1PR11MB4804:EE_
-x-ms-office365-filtering-correlation-id: e23d28e2-9020-45f0-454c-08dd4d4595b1
+x-ms-office365-filtering-correlation-id: ec0e25dd-0cf4-40db-7f38-08dd4d459ad5
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
  ARA:13230040|376014|1800799024|366016|38070700018|7053199007; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?6BgBtqObvP35n+ZXcpEfSUlLnqbvyqBJLL0ZjEecgCPBEyRF0z/6Ry2nmAJD?=
- =?us-ascii?Q?HadBpWQMxQYsXx/yWC201NjZAI/eC22USoTuBzGr/Ev2OB5wEFg8TgG2Lk4E?=
- =?us-ascii?Q?CkXerGmCVvUJzRNC7GClT+dj0TzjofJJBhgfA0na24e71uJCu3tzhj/tcEVa?=
- =?us-ascii?Q?+gp4AuQTDyAl2kR9CfPtg+oAseBCM62qjQtGjTmBj5OCsHcwj1jBiPDpnoN3?=
- =?us-ascii?Q?zme2su44aWgMwOPJMIX6FfAH0Mq4w8AKXWDHtQa67HR7HvTOohTG+1xdOaFf?=
- =?us-ascii?Q?s6vze5bNo2KXkrUxOJtHd2JlrfiQfNw/WhuoiYE2o0zM0MdrXmpzEHvemKg7?=
- =?us-ascii?Q?XjRKkmWr4e/F94LpRVGUjti8a0DrA4WTFy3yuBoWtq+fnbcWnYPEd7N5OEhD?=
- =?us-ascii?Q?fzGKwKHlFVAxkq4kCshZ3rffESfyEQyBE9qWQQiHAvTV9G7kXAnVFPGpiFZE?=
- =?us-ascii?Q?e8i8nGc/mabGVBmfn8sNHTgK5jwzWDOhzWJfDjbAtB9cuznZ1ARHDg2Cq49v?=
- =?us-ascii?Q?IQk6QweIcgcZ1p9wc90bDaBwOdg921a5Y3G1ZP7jqutIvPnRuzSnAlDjGDEp?=
- =?us-ascii?Q?qcesxWgQsJLQIMetjQqLDaxDJj4bxqTkZeojdLL8/Ehyqw8sq7gcazq266N8?=
- =?us-ascii?Q?jyOnw2fhVtDFgS/n+lUmseGXkkvN++uYyqpMpKG+Wu5lJsPC01oBHd3uOYP6?=
- =?us-ascii?Q?ExiIKkY5ut/kscra1FVKod4RjoErJtNd+DcwOi3U8UF29KqfFohqp8EUXMyr?=
- =?us-ascii?Q?T1cke67Jyg60AVBLM+Oy6YlTpClu6S4zqtFFTh/fEkHxHfrL6KyqcLfhmLKm?=
- =?us-ascii?Q?LyrYt6QVxLPtikSI+r+prPWPQ8/oIcTKVO+Aiv2Hge4SPbSTgbD9gAr01xMN?=
- =?us-ascii?Q?F12E/vIp88opQpZFz8PcZc7eoKKydxqbsCic0D8dq8LYcTglPrJmFzGllBEw?=
- =?us-ascii?Q?yAF+FDiIVzDKTTL786DMR3zWXC1JYaw+i4YAetS2YwbNFWlnsxAXjTgnUvlT?=
- =?us-ascii?Q?ukPTVswI/kSxeXyxUO090HLsN1MwmicDbPDXwx+9TF72N01TXyp/lOhlMMwn?=
- =?us-ascii?Q?EMgUm0AmsX/jIkbnMT9Hc9C9rR5EpWVBg7t3mPKplgE89/SouP9AitxucXzd?=
- =?us-ascii?Q?Rm9dUMo5rKOoYHNNG1yqlXban8WTs60atYmDHpVe8jKSkq4KjVjirOWFsE04?=
- =?us-ascii?Q?6pbgBfWWYL1Idst51fZ4lKHYji3nlj9awedXv9Ops5AvGU6R/bvGPcgkiJoT?=
- =?us-ascii?Q?2ALmamVqEwIsKY9yL1YSHeToYQvpcJKj6p0lQtF1KYK6j+6gq4m2OfDLTcy8?=
- =?us-ascii?Q?6CQ4VF6Z64ZU0DshwSGkkB3SBYMxgE2cc6DldbGPSCP7PvDzbZJHQ9tvKntw?=
- =?us-ascii?Q?9Msat+73bRtcrIETVy6DVaZmMjV3S8/s4DJRwMdwKoDx3ZzrKMX+H6rf1AMa?=
- =?us-ascii?Q?w+5bBWheXzF98J2Q+PKgZzuftp0ITFh9?=
+x-microsoft-antispam-message-info: =?us-ascii?Q?n15gUfx7P3pQ/Uaup3pKKVp8cwS9vNcICaXmZOS6b+th7R7+/d7K5UF9CmE+?=
+ =?us-ascii?Q?xNoOhKqFnNBao+hHN4M7PfTCPXO7wCoh0OTIYMpT4OGCxBLAPhoWmQLuCjo+?=
+ =?us-ascii?Q?EaAY3yRwb2krkCNXcQEgc28PU/4/yLfqpaGm8jLwqFQgSdMxHACAQovJL6h7?=
+ =?us-ascii?Q?VLy5hJqLDWi1Iyunt4sZE0FYhJhTMKNOrfciCWulLWuhUS6JficsdhY7gJuI?=
+ =?us-ascii?Q?T+TgRMB4YFGJ+NWTLHMjd2GlwfOTTFDju9cKSsE4jBSwoOUHw9rsOj5IWFPE?=
+ =?us-ascii?Q?Mzjz7Mv4jlH8ndexydQmJ1dVHCmegi2ZvK8eglzavo+K5aBFjUnoMad02AWC?=
+ =?us-ascii?Q?bIYSLA9jiCvYCE5BLMk/niCK5pQL3h1bC/+sUsKEGk6mtiezmi8b0TVU09tz?=
+ =?us-ascii?Q?ID3W8zsu2DsqE3in3mEAAvj/7xEuko3f/IuNrr8XRmTueiKXzYTUzcciWZUZ?=
+ =?us-ascii?Q?0Qui0TsCnf5mhBdYytFHQcVYijVikdKgkV8dyL55XMUL8+KFmM7raQ1iu6Eo?=
+ =?us-ascii?Q?oxwDaCAny4K3H9GWakmhDmv4KPPodrUmBy9LcnUX2FwwWi8oywBofnJ8e4EE?=
+ =?us-ascii?Q?5fRdFimZAVD4jeKCAACES2iuyTsz5DHCc5LjP8mjgGtvlzPbEWmjHnJWdf6p?=
+ =?us-ascii?Q?eHHNZkP0SsrGaNi0rSfao4tQbOH6zo0+EhlYIs6f5W7GK3AcEw5FCVD/XbxM?=
+ =?us-ascii?Q?EIrBCYq/Cgm8k4uqz300ACmSayir5Ou1X5JEl7mNoLwPG6PFoZKhPNtIs8Ph?=
+ =?us-ascii?Q?oaybkz8BemBUyKcdsIdvLWcQ1NgTbiqIFHnm6b96B29raLyZ2Wlej2C4QwmV?=
+ =?us-ascii?Q?SeS53fYeTQTCkubT5cXyqLjidI7Tn5cPP1nL76rOWkzjPAY8XBMdL9h15xlp?=
+ =?us-ascii?Q?W9gq5F7zCUoUEGOyVzkNsUmeZIFArN6APmlriUT+JrCN2sqY8vYZJuPtdR3M?=
+ =?us-ascii?Q?OZpKyxtHyJIQByYGJzb6Vp2nSydW8zZUe3YggnyEhgY06tSp+WMAHIaAnNNt?=
+ =?us-ascii?Q?m2EI+JP+UawXxXVe514cExKMEARw7rsag5+xnYQiJbYQO2OF7qaknBdaYl1d?=
+ =?us-ascii?Q?AoXZnjGc3XxCFJgh/54fGQD8mYf+LvSH8Ud7JI+s3OkKjUwZ/FK4iawpZp8V?=
+ =?us-ascii?Q?yXn+DKBiRIlB4hHUYmnPv0S4XVWyxBQATbXRXlTjM1Q+bPFia4UIjn6awgA5?=
+ =?us-ascii?Q?qFRRqm77Na149FcLK2DzcpHlklORHvprTAEZERd7aaeCJW10d9WsIeSfYwhg?=
+ =?us-ascii?Q?YjAeT7TWYjB+wCbZWlocp7M6Dc/L/WlPoNnjCxiBAd4gAH+W2Guj1Q5QPuxf?=
+ =?us-ascii?Q?GgWztsw0TVy8iljX1r0uR3cJ10btN6GHRmAGqhQwzYy9s83r8rufX0fhNbhh?=
+ =?us-ascii?Q?ntzgqC0eK+ec9XkwPjPW17aB763FFKJniVunBsHRMCVhfxDw8ovIXwgDMwPe?=
+ =?us-ascii?Q?P2RT5rTXYAIMClOq+8dtME7IjhU/Ar87?=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH0PR11MB5444.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(376014)(1800799024)(366016)(38070700018)(7053199007); DIR:OUT;
  SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?sPAa0V9AIfZzUB2+H0v9jXaul4whL8YIpvHuDSsMxujSvnOFCfTnywInzxBg?=
- =?us-ascii?Q?4y/tdPMjWK2m6hSGp34vfVjTRsPYfSOIz6+QZfXy/ypkdXQnIxXChlo9f3k0?=
- =?us-ascii?Q?WTAItxhzI8LG2aTewFH2s+vq02qR4Ll+ILAVpJUgoNBxwCkTgxJDd2ZUSZCa?=
- =?us-ascii?Q?k198A2+k7XwPHT9R9i+qSZOQAYvx0ZMzdOl6uUw6Vev9TeXu6ZVQ7PnSCsy7?=
- =?us-ascii?Q?gAvhwfJGYQ3rN10jXrFqx8v7MZb+L+Q79LM/hEqZAnu5OdKYCKhJjFbnFA+k?=
- =?us-ascii?Q?HqzPhdACHp1WQq7Mjos8uHsiFSYMk9xRpmD1glk9B0iiEKKT3mpM7/NFQgsy?=
- =?us-ascii?Q?juKsfP4XRksW5BOJKMQmZZP7rm6yByhPl4JfxxPOfNz+1uoYZl5N+bpN6cOf?=
- =?us-ascii?Q?edqls+32i8d/asc5hp0ejQ5WTPKKlwrK4N0jGw0fqQ4m0QLTYUgr0P02iyeu?=
- =?us-ascii?Q?WwHeaYt01uoshRWdMvIEKMWSoN8QlKdYSSQm5pDG6qpPtVkulXsJ7XGpua82?=
- =?us-ascii?Q?lwcfurKU8kkcuvazj3IotLOCikBKnMZyzwhU+UAU1aK7Rp2LjXoj9WogbuKG?=
- =?us-ascii?Q?Z6wZ21n2fI42GwVsGApxZ5eO/0UEQeyw8kjJ2wut4FBo8kKV8viIfCpANgB3?=
- =?us-ascii?Q?IbisV8+1gSY75Y2IgZhnoieSS6JgIGJb2GJ8QHVMOSgvN83ladpKrMGrVfqt?=
- =?us-ascii?Q?DXD8yPZgTCdvFXptArFIjbgZw/ctBLBMB1y+PBzSEWO/7kRugcOV5p8rhk8U?=
- =?us-ascii?Q?PHJCvPo1ybI18QwPjqqogq3n4yrzSlLsP8yi4moOjzvTir1znVLnK4pjB6Ld?=
- =?us-ascii?Q?FzpyTYBlbK2VF/+s3d0tQUYE45XGio8/H8kMnq3tJl9qd4hSQz8YWd56ud3w?=
- =?us-ascii?Q?5BeYDIr4BWhxEL9lxamPxN/SpryBAvxw+x+1ryi8uiDzUk5lBQ3zBxT/XXOJ?=
- =?us-ascii?Q?tMrhyHwKO7+fpwj73g8eSnBu0N8cQKWZiSq580JCAtHAA4Gmduu2R1Q8c6P+?=
- =?us-ascii?Q?C4yBgWwob6ipkwfFQfypb2leceyFTsRe0cyg4E++a7k8pgkbtXTgCqbtAEbn?=
- =?us-ascii?Q?U72uWS9eDhlVVkcCPrX9XeESjOlaXE8PepDIJWWpY//Oh4JnWOddNwN0df4P?=
- =?us-ascii?Q?FdgLUSgCmP6mlvZ/bO+BQOOzPtw/wXLJVn8hHY/bG7TxZlcUXlrQxxtBxZXY?=
- =?us-ascii?Q?swYSjctppNkfVma0RkCdm8hTQulDKjcWuxGQI9AwNaPhlSAMvqCN48FqdhjV?=
- =?us-ascii?Q?6bynjqsp8cT4f3iEVnJ+qknpVZUhy+r90z46Bj68DvhYgVc7wwXjEPEF37kI?=
- =?us-ascii?Q?YzdC7Vdp/fQ00YfFrNS/5S4UxZ9W0ETwh7YwhBKAP6TMZnRnrSKzul1JEEVc?=
- =?us-ascii?Q?TgUOyvESZCorMaJ9u4EfMb9TmGAGHyLsP7UdlP5elQOlLpPT39SybKg6sDMs?=
- =?us-ascii?Q?9KX1rOWE+8zy27myPQvDfmGA5DvBDuXpNZT05ICGKmLCEgMou0rrDsVRv11E?=
- =?us-ascii?Q?qPDs0j5ulY89aKUTzTOF9Qe214OLhzZ6hYYfvgsvuIzt6aIImrv5l2PIlTNF?=
- =?us-ascii?Q?PL77osKapq2g74Vpj+TwwyQFl5nshlAG4RLwPx2p?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?22rBa7JfXWrgXgbtIV47texo0rnE6iK8T6HlsgFCRoDdFxXQZXH9vSlPBPsK?=
+ =?us-ascii?Q?DukDDGrzXzuBnFtEC84HAWDgEmP+KIQCWsotaIm+wI3ERv6G0gZpDnmeOpgf?=
+ =?us-ascii?Q?aOVqO3dgnb61WA5qgEUKCT7FEB4ydRBmcnehsMW0uuPtn8avep0hNUAyB+oX?=
+ =?us-ascii?Q?DnaoscScMVKNAo23/m+SF5uRuanNChJ281YbxGb5Uoau1/T17EJGTyxLu4oC?=
+ =?us-ascii?Q?FJkVfWM3KBhzGUCwdmrbYetK7emWx1aa5CJncTMisxSGK8QFYUT8CL/UkRNw?=
+ =?us-ascii?Q?YyYZNB+FAxN/A53HkUJbt0G6R6WDTZuV7/ScNQl3DGIXeUpJz6TfttZABmey?=
+ =?us-ascii?Q?teYqSJl1ot5DwEczF/4PzDRzsoxvmw6I3h99nyE7f/HuJXXmUzCGkz3uMX4U?=
+ =?us-ascii?Q?4Iy7NKMAmGyoDnmuVYj9EEkqsWR9MW9Qt2B0ZCtedRHYuQHuQr/VArPPWjdj?=
+ =?us-ascii?Q?QwEGPjEIl4RIWGchXAyRRarjCH2wf5skmYyYxGWIMzc2J/hNarictxLmtHQH?=
+ =?us-ascii?Q?wtpmi1fmvM8W+HMJ0R11BwsbRmfieRoTMHwc5g7z7t34UiM6S8Nytqut9R40?=
+ =?us-ascii?Q?hbNK9ZyR/6C/IlgZpnALi1c7SiMqzsjIWYhaGM+jQB5qfJ1hw3Dz6GGiWfcp?=
+ =?us-ascii?Q?1ioh1LA5aqjkWV2I595kz34QBoHOV1oXXELSDfPyCkyBdFCQiV+0Cz/P3PxI?=
+ =?us-ascii?Q?Nfb19gv4WGVj/rq7ppQwdLOeKjX2FHFHzmbsuS8DwldNdbBVEo6uJ3mmmUL8?=
+ =?us-ascii?Q?sZWf4duUZ+h+rzcfJXAk1+yBBtRu9WWE7RjJzzJ22wL8Dg6L3aMbSzvcw5JU?=
+ =?us-ascii?Q?WkiTNlhEJUZqMcIXfDhkmj90+mialMhBsQVekwqjtYQXrKlBLXEvVzFuP5wD?=
+ =?us-ascii?Q?PRUpqJdqAyJXNZNTtktrpN5RS0uxyWYX2fjjm+YVBUdCyg8tWrIVPNGvJ0vV?=
+ =?us-ascii?Q?3xZF97k5K2GftIchllBX+YUbFW1khU1G2Y4bGXJwP6JaeRUU/6bcIzUY0JT+?=
+ =?us-ascii?Q?+ti1GlS1l6aBZyyhBegiSVoIP3yiAt7VqXkZ+6eX0XtMJ/yyvo9voevPUeZR?=
+ =?us-ascii?Q?usK6ehJxjwp3ic+dl96L5fKuhhfMA5rJ2gEdkjyhwReHLyxFcEN24vxIFJaR?=
+ =?us-ascii?Q?ZW8tVOsmI1OhapWPvkanZG+2HIWqAEndiWRoqkxZGUM3urPJd5kGK5jzmJ+h?=
+ =?us-ascii?Q?fkzN8fkVfcV1BytjkW6n5qLr5PUZvBeoSvuO07kmvlNIYqzUFO5AW6bn32Uh?=
+ =?us-ascii?Q?Tq52oAnPSc9Ucu+bvuZ/bVPri2n5p7T+f/13yG9+GotrKA8f7kbxxkx7bLlj?=
+ =?us-ascii?Q?LeDAOEiCXWOCX5wDl9HTjPtIPDAkggLO9/gO6modYFz4KvuvcmJlbjwbrWFC?=
+ =?us-ascii?Q?xB8/qJyCVKVMYryfejxOImAdR430BJgYqmg6th9B1DTUgyIk10//Sn5Ke40S?=
+ =?us-ascii?Q?SEJgnscTIGe2UB7qthFNSfzzTJlE6c+54ZCqiIAdy9sov+snPDXrVIEm7A8e?=
+ =?us-ascii?Q?1+/9NP0z4Klnvxw+iawBMV+cRka8CnxnFV/YNx/42fLmweXzzLX4q5jAGmGn?=
+ =?us-ascii?Q?Ul2BMgeizTXzUQcmV8cJP8befAZ9hTKRGZ3KEtSi?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5444.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e23d28e2-9020-45f0-454c-08dd4d4595b1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Feb 2025 22:19:01.5692 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ec0e25dd-0cf4-40db-7f38-08dd4d459ad5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Feb 2025 22:19:10.1700 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Eanq6blSCDf3MhSV+rzp3uZFS+mr+qF5CAqKRO73CWDSmi3YNUQJOKDbrlzoCeUwOMdDeCZNLGpLdHtAYSVPjEZ65dOkvUuVIwADLyQn9XQ=
+X-MS-Exchange-CrossTenant-userprincipalname: xP5hwW2aOqCcKscsVP+JJcBZNm3LS2c3UKM89ynZjPoo4gQ8rUzvakxJfn9UNnASzojvE+3AwZrVp69SEag51+vvQip+qFkDF1XZbfdFxik=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4804
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -187,200 +189,111 @@ From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Lucas =
 De Marchi
 Sent: Friday, February 14, 2025 1:23 PM
 To: intel-xe@lists.freedesktop.org
-Cc: De Marchi, Lucas <lucas.demarchi@intel.com>
-Subject: [PATCH 4/9] drm/xe: Drop remove callback support
+Cc: De Marchi, Lucas <lucas.demarchi@intel.com>; Vivi, Rodrigo <rodrigo.viv=
+i@intel.com>; Nikula, Jani <jani.nikula@intel.com>
+Subject: [PATCH 5/9] drm/xe/display: Drop xe_display_driver_remove()
 >=20
-> Now that devres supports component driver cleanup during driver removal
-> cleanup, the xe custom support for removal callbacks is not needed
-> anymore. Drop it.
+> Handle it as part of xe_display_fini(). The error handling was already
+> calling it if a step after xe_display_init() failed. Just re-use the
+> same xe_display_fini() for driver remove.
 >=20
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
 > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Comments from patch 3 are relevant, but otherwise:
+Looks good to me, though we can probably remove the first
+sentence of the commit message as it makes it sound like
+we're adding the functionality into xe_display_fini, rather than
+leveraging functionality that's already there.
 Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 -Jonathan Cavitt
 
 > ---
->  drivers/gpu/drm/xe/xe_device.c       | 68 ----------------------------
->  drivers/gpu/drm/xe/xe_device.h       |  3 --
->  drivers/gpu/drm/xe/xe_device_types.h | 14 ------
->  drivers/gpu/drm/xe/xe_pci.c          |  4 +-
->  4 files changed, 1 insertion(+), 88 deletions(-)
+>  drivers/gpu/drm/xe/display/xe_display.c | 11 +----------
+>  drivers/gpu/drm/xe/display/xe_display.h |  1 -
+>  drivers/gpu/drm/xe/xe_device.c          |  8 ++------
+>  3 files changed, 3 insertions(+), 17 deletions(-)
 >=20
+> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe=
+/display/xe_display.c
+> index 5ad2c99a9ae74..b7c99b8df11f9 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display.c
+> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+> @@ -170,6 +170,7 @@ static void xe_display_fini(void *arg)
+>  	intel_hpd_poll_fini(xe);
+>  	intel_hdcp_component_fini(display);
+>  	intel_audio_deinit(display);
+> +	intel_display_driver_remove(display);
+>  }
+> =20
+>  int xe_display_init(struct xe_device *xe)
+> @@ -211,16 +212,6 @@ void xe_display_unregister(struct xe_device *xe)
+>  	intel_display_driver_unregister(display);
+>  }
+> =20
+> -void xe_display_driver_remove(struct xe_device *xe)
+> -{
+> -	struct intel_display *display =3D &xe->display;
+> -
+> -	if (!xe->info.probe_display)
+> -		return;
+> -
+> -	intel_display_driver_remove(display);
+> -}
+> -
+>  /* IRQ-related functions */
+> =20
+>  void xe_display_irq_handler(struct xe_device *xe, u32 master_ctl)
+> diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe=
+/display/xe_display.h
+> index 685dc74402fb8..46e14f8dee28a 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display.h
+> +++ b/drivers/gpu/drm/xe/display/xe_display.h
+> @@ -14,7 +14,6 @@ struct drm_driver;
+> =20
+>  bool xe_display_driver_probe_defer(struct pci_dev *pdev);
+>  void xe_display_driver_set_hooks(struct drm_driver *driver);
+> -void xe_display_driver_remove(struct xe_device *xe);
+> =20
+>  int xe_display_create(struct xe_device *xe);
+> =20
 > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_devic=
 e.c
-> index 31013491f8d7e..89802f98c4820 100644
+> index 89802f98c4820..d88c0fddf0680 100644
 > --- a/drivers/gpu/drm/xe/xe_device.c
 > +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -65,12 +65,6 @@
+> @@ -868,11 +868,11 @@ int xe_device_probe(struct xe_device *xe)
 > =20
->  #include <generated/xe_wa_oob.h>
+>  	err =3D xe_pxp_init(xe);
+>  	if (err)
+> -		goto err_remove_display;
+> +		return err;
 > =20
-> -struct xe_device_remove_action {
-> -	struct list_head node;
-> -	void (*action)(void *);
-> -	void *data;
-> -};
-> -
->  static int xe_file_open(struct drm_device *dev, struct drm_file *file)
->  {
->  	struct xe_device *xe =3D to_xe_device(dev);
-> @@ -752,9 +746,6 @@ int xe_device_probe(struct xe_device *xe)
->  	int err;
->  	u8 id;
+>  	err =3D drm_dev_register(&xe->drm, 0);
+>  	if (err)
+> -		goto err_remove_display;
+> +		return err;
 > =20
-> -	xe->probing =3D true;
-> -	INIT_LIST_HEAD(&xe->remove_action_list);
-> -
->  	xe_pat_init_early(xe);
+>  	xe_display_register(xe);
 > =20
->  	err =3D xe_sriov_init(xe);
-> @@ -904,8 +895,6 @@ int xe_device_probe(struct xe_device *xe)
-> =20
->  	xe_vsec_init(xe);
-> =20
-> -	xe->probing =3D false;
-> -
->  	return devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
+> @@ -899,8 +899,6 @@ int xe_device_probe(struct xe_device *xe)
 > =20
 >  err_unregister_display:
-> @@ -916,61 +905,6 @@ int xe_device_probe(struct xe_device *xe)
+>  	xe_display_unregister(xe);
+> -err_remove_display:
+> -	xe_display_driver_remove(xe);
+> =20
 >  	return err;
 >  }
+> @@ -911,8 +909,6 @@ void xe_device_remove(struct xe_device *xe)
 > =20
-> -/**
-> - * xe_device_call_remove_actions - Call the remove actions
-> - * @xe: xe device instance
-> - *
-> - * This is only to be used by xe_pci and xe_device to call the remove ac=
-tions
-> - * while removing the driver or handling probe failures.
-> - */
-> -void xe_device_call_remove_actions(struct xe_device *xe)
-> -{
-> -	struct xe_device_remove_action *ra, *tmp;
-> -
-> -	list_for_each_entry_safe(ra, tmp, &xe->remove_action_list, node) {
-> -		ra->action(ra->data);
-> -		list_del(&ra->node);
-> -		kfree(ra);
-> -	}
-> -
-> -	xe->probing =3D false;
-> -}
-> -
-> -/**
-> - * xe_device_add_action_or_reset - Add an action to run on driver remova=
-l
-> - * @xe: xe device instance
-> - * @action: Function that should be called on device remove
-> - * @data: Pointer to data passed to @action implementation
-> - *
-> - * This adds a custom action to the list of remove callbacks executed on=
- device
-> - * remove, before any dev or drm managed resources are removed.  This is=
- only
-> - * needed if the action leads to component_del()/component_master_del() =
-since
-> - * that is not compatible with devres cleanup.
-> - *
-> - * Returns: 0 on success or a negative error code on failure, in which c=
-ase
-> - * @action is already called.
-> - */
-> -int xe_device_add_action_or_reset(struct xe_device *xe,
-> -				  void (*action)(void *), void *data)
-> -{
-> -	struct xe_device_remove_action *ra;
-> -
-> -	drm_WARN_ON(&xe->drm, !xe->probing);
-> -
-> -	ra =3D kmalloc(sizeof(*ra), GFP_KERNEL);
-> -	if (!ra) {
-> -		action(data);
-> -		return -ENOMEM;
-> -	}
-> -
-> -	INIT_LIST_HEAD(&ra->node);
-> -	ra->action =3D action;
-> -	ra->data =3D data;
-> -	list_add(&ra->node, &xe->remove_action_list);
-> -
-> -	return 0;
-> -}
-> -
->  void xe_device_remove(struct xe_device *xe)
->  {
->  	xe_display_unregister(xe);
-> @@ -980,8 +914,6 @@ void xe_device_remove(struct xe_device *xe)
->  	xe_display_driver_remove(xe);
+>  	drm_dev_unplug(&xe->drm);
 > =20
+> -	xe_display_driver_remove(xe);
+> -
 >  	xe_heci_gsc_fini(xe);
-> -
-> -	xe_device_call_remove_actions(xe);
 >  }
 > =20
->  void xe_device_shutdown(struct xe_device *xe)
-> diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_devic=
-e.h
-> index 079dad32a6f53..0bc3bc8e68030 100644
-> --- a/drivers/gpu/drm/xe/xe_device.h
-> +++ b/drivers/gpu/drm/xe/xe_device.h
-> @@ -45,9 +45,6 @@ struct xe_device *xe_device_create(struct pci_dev *pdev=
-,
->  				   const struct pci_device_id *ent);
->  int xe_device_probe_early(struct xe_device *xe);
->  int xe_device_probe(struct xe_device *xe);
-> -int xe_device_add_action_or_reset(struct xe_device *xe,
-> -				  void (*action)(void *), void *data);
-> -void xe_device_call_remove_actions(struct xe_device *xe);
->  void xe_device_remove(struct xe_device *xe);
->  void xe_device_shutdown(struct xe_device *xe);
-> =20
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe=
-_device_types.h
-> index 4656305dd45a6..833c29fed3a37 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -428,20 +428,6 @@ struct xe_device {
->  	/** @tiles: device tiles */
->  	struct xe_tile tiles[XE_MAX_TILES_PER_DEVICE];
-> =20
-> -	/**
-> -	 * @remove_action_list: list of actions to execute on device remove.
-> -	 * Use xe_device_add_remove_action() for that. Actions can only be adde=
-d
-> -	 * during probe and are executed during the call from PCI subsystem to
-> -	 * remove the driver from the device.
-> -	 */
-> -	struct list_head remove_action_list;
-> -
-> -	/**
-> -	 * @probing: cover the section in which @remove_action_list can be used
-> -	 * to post cleaning actions
-> -	 */
-> -	bool probing;
-> -
->  	/**
->  	 * @mem_access: keep track of memory access in the device, possibly
->  	 * triggering additional actions when they occur.
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index 41ec6825b9bcc..447eacb355d7c 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -900,10 +900,8 @@ static int xe_pci_probe(struct pci_dev *pdev, const =
-struct pci_device_id *ent)
->  		return err;
-> =20
->  	err =3D xe_device_probe(xe);
-> -	if (err) {
-> -		xe_device_call_remove_actions(xe);
-> +	if (err)
->  		return err;
-> -	}
-> =20
->  	err =3D xe_pm_init(xe);
->  	if (err)
 > --=20
 > 2.48.1
 >=20
