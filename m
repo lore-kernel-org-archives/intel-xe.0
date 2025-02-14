@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05546C021A4
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Feb 2025 22:29:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09D24C02198
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Feb 2025 22:33:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C07A610E097;
-	Fri, 14 Feb 2025 22:29:05 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="joX47rqZ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 572CF10E097;
- Fri, 14 Feb 2025 22:29:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739572144; x=1771108144;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Snrj1c2YaGBu1sa5QHA378/N7gZ5Qa8o30R7crxqGlU=;
- b=joX47rqZraJhZQu9IHZ1NKJSBSqPf30AmqZzLcCYJr4AfS7VWUSYcbmK
- 0auqvOGoNBLSa1+FkPshNmXNh3cEQIjP7LI/7xd0uXVSTG2zJTItRYLf7
- hy0bkNyRB2XzZf7V/4YAirDq49Nvvgvt1D6Zd5qUJPInAWTDh5t5DMSlb
- G+yMQ0PaIF7ZA+2L6RFEuOCrRX+mVzef2JZ+sXJdXTHj0i+pcy2mz5Td2
- 9V2eOEe5HnVfU6MzubDH96ey3wcxxI2W+X4/7eJqNQx1feVacjQlERKAO
- pofg6ziZeEgUnUW09w6yRoy+0x1JMgmPcb8bC1lZDZoyp0O/4f5yv24vC g==;
-X-CSE-ConnectionGUID: Z6lA/I4nQuC6PQZ0LBFjzw==
-X-CSE-MsgGUID: MpIXCnpcTCiL/1VvqEwLOg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11345"; a="44262185"
-X-IronPort-AV: E=Sophos;i="6.13,287,1732608000"; d="scan'208";a="44262185"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2025 14:29:03 -0800
-X-CSE-ConnectionGUID: 2Urm+iPKRgGmex5ppzOPng==
-X-CSE-MsgGUID: FPLCIQIhSBG1ieUCLuRdhg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="150734594"
-Received: from vkasired-desk2.fm.intel.com ([10.105.128.132])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2025 14:29:03 -0800
-From: Vivek Kasireddy <vivek.kasireddy@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Vivek Kasireddy <vivek.kasireddy@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH] drm/i915/xe2hpd: Identify the memory type for SKUs with GDDR
- + ECC
-Date: Fri, 14 Feb 2025 13:59:44 -0800
-Message-ID: <20250214215944.187407-1-vivek.kasireddy@intel.com>
-X-Mailer: git-send-email 2.47.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id C39E910E09F;
+	Fri, 14 Feb 2025 22:33:54 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECA3A10E09F;
+ Fri, 14 Feb 2025 22:33:52 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8580127621566252404=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Cleanup_error_handling_on_p?=
+ =?utf-8?q?robe=2C_batch_2?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 14 Feb 2025 22:33:52 -0000
+Message-ID: <173957243296.2186649.10642298234495299946@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250214212313.1767562-1-lucas.demarchi@intel.com>
+In-Reply-To: <20250214212313.1767562-1-lucas.demarchi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,89 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Some SKUs of Xe2_HPD platforms (such as BMG) have GDDR memory type
-with ECC enabled. We need to identify this scenario and add a new
-case in xelpdp_get_dram_info() to handle it. In addition, the
-derating value needs to be adjusted accordingly to compensate for
-the limited bandwidth.
+--===============8580127621566252404==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Bspec: 64602
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bw.c | 5 ++++-
- drivers/gpu/drm/i915/i915_drv.h         | 1 +
- drivers/gpu/drm/i915/soc/intel_dram.c   | 4 ++++
- drivers/gpu/drm/xe/xe_device_types.h    | 1 +
- 4 files changed, 10 insertions(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 23edc81741de..b8a9651b74d3 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -244,6 +244,7 @@ static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
- 			qi->deinterleave = 4;
- 			break;
- 		case INTEL_DRAM_GDDR:
-+		case INTEL_DRAM_GDDR_ECC:
- 			qi->channel_width = 32;
- 			break;
- 		default:
-@@ -630,9 +631,11 @@ static int xe2_hpd_get_bw_info(struct drm_i915_private *i915,
- 	for (i = 0; i < qi.num_points; i++) {
- 		const struct intel_qgv_point *point = &qi.points[i];
- 		int bw = num_channels * (qi.channel_width / 8) * point->dclk;
-+		u8 derating = i915->dram_info.type == INTEL_DRAM_GDDR_ECC ?
-+				45 : sa->derating;
- 
- 		i915->display.bw.max[0].deratedbw[i] =
--			min(maxdebw, (100 - sa->derating) * bw / 100);
-+			min(maxdebw, (100 - derating) * bw / 100);
- 		i915->display.bw.max[0].peakbw[i] = bw;
- 
- 		drm_dbg_kms(&i915->drm, "QGV %d: deratedbw=%u peakbw: %u\n",
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index ffc346379cc2..54538b6f85df 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -305,6 +305,7 @@ struct drm_i915_private {
- 			INTEL_DRAM_DDR5,
- 			INTEL_DRAM_LPDDR5,
- 			INTEL_DRAM_GDDR,
-+			INTEL_DRAM_GDDR_ECC,
- 		} type;
- 		u8 num_qgv_points;
- 		u8 num_psf_gv_points;
-diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
-index 9e310f4099f4..f60eedb0e92c 100644
---- a/drivers/gpu/drm/i915/soc/intel_dram.c
-+++ b/drivers/gpu/drm/i915/soc/intel_dram.c
-@@ -687,6 +687,10 @@ static int xelpdp_get_dram_info(struct drm_i915_private *i915)
- 		drm_WARN_ON(&i915->drm, !IS_DGFX(i915));
- 		dram_info->type = INTEL_DRAM_GDDR;
- 		break;
-+	case 9:
-+		drm_WARN_ON(&i915->drm, !IS_DGFX(i915));
-+		dram_info->type = INTEL_DRAM_GDDR_ECC;
-+		break;
- 	default:
- 		MISSING_CASE(val);
- 		return -EINVAL;
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 4656305dd45a..0921e957d784 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -575,6 +575,7 @@ struct xe_device {
- 			INTEL_DRAM_DDR5,
- 			INTEL_DRAM_LPDDR5,
- 			INTEL_DRAM_GDDR,
-+			INTEL_DRAM_GDDR_ECC,
- 		} type;
- 		u8 num_qgv_points;
- 		u8 num_psf_gv_points;
--- 
-2.47.1
+Series: Cleanup error handling on probe, batch 2
+URL   : https://patchwork.freedesktop.org/series/144906/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-2668-200d035cec6632bcb33ad946aa7bfec6309d2ab6_BAT -> xe-pw-144906v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-2668-200d035cec6632bcb33ad946aa7bfec6309d2ab6 -> xe-pw-144906v1
+
+  IGT_8230: 8230
+  xe-2668-200d035cec6632bcb33ad946aa7bfec6309d2ab6: 200d035cec6632bcb33ad946aa7bfec6309d2ab6
+  xe-pw-144906v1: 144906v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144906v1/index.html
+
+--===============8580127621566252404==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Cleanup error handling on probe, batch 2</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144906/">https://patchwork.freedesktop.org/series/144906/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144906v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144906v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2668-200d035cec6632bcb33ad946aa7bfec6309d2ab6_BAT -&gt; xe-pw-144906v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2668-200d035cec6632bcb33ad946aa7bfec6309d2ab6 -&gt; xe-pw-144906v1</li>
+</ul>
+<p>IGT_8230: 8230<br />
+  xe-2668-200d035cec6632bcb33ad946aa7bfec6309d2ab6: 200d035cec6632bcb33ad946aa7bfec6309d2ab6<br />
+  xe-pw-144906v1: 144906v1</p>
+
+</body>
+</html>
+
+--===============8580127621566252404==--
