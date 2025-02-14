@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24410C02198
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Feb 2025 14:19:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFD4FC02198
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Feb 2025 14:22:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D379B10ECBF;
-	Fri, 14 Feb 2025 14:19:24 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i9NqIgnE";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 540D610ECB5;
- Fri, 14 Feb 2025 14:19:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739542761; x=1771078761;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=tST1jQX2NtRDEUx6L5N+Qm9ut6P+m8C1Pjukfdxuqtw=;
- b=i9NqIgnE6Fh/I8m39+366qQmwr8317VE2028Nm3imOYR3/yWpEnmW2U2
- zwC5BSDtPCncJyXGA7W3I7/ACspGQx79ntDmfSyYqACroU+LQKQriCDst
- WSX4dlYpgsaytrJ/canfWkNRKCv6SAFAP1sgoM6y3Az8Ey7RnbDyLjgTl
- 9stsjmPcyGW5xFnAXiVhEFP4F0arkPDM2BjWIb5//EA6F472APeXjdyLX
- Vzq6GxbSc21xEPhA9alf6Icf4kd/moiEn9uJJ3Z1M/jblAW/TVyLHXqbX
- oGQakDZooeeknQ0emXJa++qg4HAm1p29KkgEUeHgKYPrhGizp11g+UtlN w==;
-X-CSE-ConnectionGUID: HefWbE0IQm6RE3YV1MM4lw==
-X-CSE-MsgGUID: fLVSZ8F+QgWEjSxVlw03iw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11345"; a="27892515"
-X-IronPort-AV: E=Sophos;i="6.13,286,1732608000"; d="scan'208";a="27892515"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2025 06:19:21 -0800
-X-CSE-ConnectionGUID: GKVzyuPHSXyIq3kCva1HZw==
-X-CSE-MsgGUID: HfOeRbNYStOo6KuVmAZZKw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="136694380"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2025 06:19:16 -0800
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v2 09/11] drm/i915/ddi: Unify the platform specific functions
- disabling a port
-Date: Fri, 14 Feb 2025 16:19:59 +0200
-Message-ID: <20250214142001.552916-10-imre.deak@intel.com>
-X-Mailer: git-send-email 2.44.2
-In-Reply-To: <20250214142001.552916-1-imre.deak@intel.com>
-References: <20250214142001.552916-1-imre.deak@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 798B610ECC0;
+	Fri, 14 Feb 2025 14:22:49 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 243C010ECC3;
+ Fri, 14 Feb 2025 14:22:48 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
+ =?utf-8?q?Allow_display_PHYs_to_reset_power_state_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mika Kahola" <mika.kahola@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 14 Feb 2025 14:22:48 -0000
+Message-ID: <173954296813.2052287.7962740236807446585@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250214140442.560378-1-mika.kahola@intel.com>
+In-Reply-To: <20250214140442.560378-1-mika.kahola@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,90 +36,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The functions disabling a port for MTL+ and earlier platforms only
-differ by an extra step on MTL+ (to disable the D2D link) and the point
-at which the port's idle state is waited for. Combine the two functions
-accounting for the above differences, removing the duplication.
+== Series Details ==
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c | 43 ++++--------------------
- 1 file changed, 7 insertions(+), 36 deletions(-)
+Series: drm/i915/display: Allow display PHYs to reset power state (rev3)
+URL   : https://patchwork.freedesktop.org/series/144103/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 0cb6c95315fcd..56094a33b0c4a 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3076,58 +3076,29 @@ mtl_ddi_disable_d2d(struct intel_encoder *encoder)
- 			port_name(port));
- }
- 
--static void mtl_disable_ddi_buf(struct intel_encoder *encoder,
--				const struct intel_crtc_state *crtc_state)
-+static void intel_disable_ddi_buf(struct intel_encoder *encoder,
-+				  const struct intel_crtc_state *crtc_state)
- {
-+	struct intel_display *display = to_intel_display(encoder);
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
- 	enum port port = encoder->port;
- 
--	/* 3.b Clear DDI_CTL_DE Enable to 0. */
- 	intel_de_rmw(dev_priv, DDI_BUF_CTL(port), DDI_BUF_CTL_ENABLE, 0);
- 
--	/* 3.c Poll for PORT_BUF_CTL Idle Status == 1, timeout after 100us */
--	intel_wait_ddi_buf_idle(dev_priv, port);
-+	if (DISPLAY_VER(display) >= 14)
-+		intel_wait_ddi_buf_idle(dev_priv, port);
- 
--	/* 3.d Disable D2D Link */
- 	mtl_ddi_disable_d2d(encoder);
- 
--	/* 3.e Disable DP_TP_CTL */
- 	if (intel_crtc_has_dp_encoder(crtc_state)) {
- 		intel_de_rmw(dev_priv, dp_tp_ctl_reg(encoder, crtc_state),
- 			     DP_TP_CTL_ENABLE, 0);
- 	}
--}
--
--static void disable_ddi_buf(struct intel_encoder *encoder,
--			    const struct intel_crtc_state *crtc_state)
--{
--	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
--	enum port port = encoder->port;
--
--	intel_de_rmw(dev_priv, DDI_BUF_CTL(port), DDI_BUF_CTL_ENABLE, 0);
--
--	if (intel_crtc_has_dp_encoder(crtc_state))
--		intel_de_rmw(dev_priv, dp_tp_ctl_reg(encoder, crtc_state),
--			     DP_TP_CTL_ENABLE, 0);
- 
- 	intel_ddi_disable_fec(encoder, crtc_state);
- 
--	intel_wait_ddi_buf_idle(dev_priv, port);
--}
--
--static void intel_disable_ddi_buf(struct intel_encoder *encoder,
--				  const struct intel_crtc_state *crtc_state)
--{
--	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
--
--	if (DISPLAY_VER(dev_priv) >= 14) {
--		mtl_disable_ddi_buf(encoder, crtc_state);
--
--		/* 3.f Disable DP_TP_CTL FEC Enable if it is needed */
--		intel_ddi_disable_fec(encoder, crtc_state);
--	} else {
--		disable_ddi_buf(encoder, crtc_state);
--	}
-+	if (DISPLAY_VER(display) < 14)
-+		intel_wait_ddi_buf_idle(dev_priv, port);
- 
- 	intel_ddi_wait_for_fec_status(encoder, crtc_state, false);
- }
--- 
-2.44.2
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 57457d93f156 drm-tip: 2025y-02m-14d-07h-22m-04s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/display: Drop crtc_state from C10/C20 pll programming
+Applying: drm/i915/display: Allow display PHYs to reset power state
+
 
