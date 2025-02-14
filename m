@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B42D8C02198
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Feb 2025 09:32:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B451FC02198
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Feb 2025 09:33:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DC4810EC1D;
-	Fri, 14 Feb 2025 09:32:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7712610EC1D;
+	Fri, 14 Feb 2025 09:33:07 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBDDE10E48C;
- Fri, 14 Feb 2025 09:32:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 175A410E48C;
+ Fri, 14 Feb 2025 09:33:07 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915=3A_Add_drm?=
- =?utf-8?q?=5Fpanic_support_=28rev5=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915=3A_Add_drm=5Fpan?=
+ =?utf-8?q?ic_support_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jocelyn Falempe" <jfalempe@redhat.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 14 Feb 2025 09:32:49 -0000
-Message-ID: <173952556996.1981228.280068043831490189@b555e5b46a47>
+Date: Fri, 14 Feb 2025 09:33:07 -0000
+Message-ID: <173952558705.1983655.14382353793691864842@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250214092608.2555218-1-jfalempe@redhat.com>
 In-Reply-To: <20250214092608.2555218-1-jfalempe@redhat.com>
@@ -44,20 +44,54 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/i915: Add drm_panic support (rev5)
 URL   : https://patchwork.freedesktop.org/series/141937/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 57457d93f156 drm-tip: 2025y-02m-14d-07h-22m-04s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/fbdev: Add intel_fbdev_get_map()
-Applying: drm/i915/display/i9xx: Add a disable_tiling() for i9xx planes
-Applying: drm/i915/display: Add a disable_tiling() for skl planes
-Applying: drm/i915/gem: Add i915_gem_object_panic_map()
-Applying: drm/i915/display: Add drm_panic support
-Applying: drm/i915/display: Flush the front buffer in panic handler
-Applying: drm/i915/display: Add drm_panic support for Y-tiling with DPT
-Applying: drm/i915/display: Add drm_panic support for 4-tiling with DPT
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+22f9cda3436b4fe965b5c5f31d2f2c1bcb483189
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 71ba0103f89f660b2a192dc792cf7359a27b8633
+Author: Jocelyn Falempe <jfalempe@redhat.com>
+Date:   Fri Feb 14 10:21:43 2025 +0100
+
+    drm/i915/display: Add drm_panic support for 4-tiling with DPT
+    
+    On Alder Lake and later, it's not possible to disable tiling when DPT
+    is enabled.
+    So this commit implements 4-Tiling support, to still be able to draw
+    the panic screen.
+    
+    Signed-off-by: Jocelyn Falempe <jfalempe@redhat.com>
++ /mt/dim checkpatch 57457d93f156d8b4bdff8d138127d81b8f97d8c9 drm-intel
+737af70eee6c drm/i915/fbdev: Add intel_fbdev_get_map()
+c786e27c0257 drm/i915/display/i9xx: Add a disable_tiling() for i9xx planes
+681849445bdc drm/i915/display: Add a disable_tiling() for skl planes
+b73e0b5e8ad2 drm/i915/gem: Add i915_gem_object_panic_map()
+-:67: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#67: FILE: drivers/gpu/drm/i915/gem/i915_gem_pages.c:368:
++
++
+
+-:81: CHECK:SPACING: No space is necessary after a cast
+#81: FILE: drivers/gpu/drm/i915/gem/i915_gem_pages.c:382:
++		iosys_map_set_vaddr_iomem(map, (void __iomem *) ptr);
+
+total: 0 errors, 0 warnings, 2 checks, 70 lines checked
+b6e8ec50535d drm/i915/display: Add drm_panic support
+0bde1f097fff drm/i915/display: Flush the front buffer in panic handler
+cb7506cb4832 drm/i915/display: Add drm_panic support for Y-tiling with DPT
+71ba0103f89f drm/i915/display: Add drm_panic support for 4-tiling with DPT
+-:35: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
+#35: FILE: drivers/gpu/drm/i915/display/intel_atomic_plane.c:1258:
++	swizzle = (x & 3) | ((y & 3) << 2) | ((x & 0xc) << 2) | (y & 4) << 4 | ((x & 0x10) << 3) | ((y & 0x18) << 5);
+
+total: 0 errors, 1 warnings, 0 checks, 40 lines checked
 
 
