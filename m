@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05E5DC021A9
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Feb 2025 20:38:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7436C021A7
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Feb 2025 20:38:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5406C10ED46;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E13010ED45;
 	Fri, 14 Feb 2025 20:38:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bcXy+hH6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IujXM0Wd";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9CFB10E033;
- Fri, 14 Feb 2025 20:37:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD99B10E033;
+ Fri, 14 Feb 2025 20:38:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739565479; x=1771101479;
+ t=1739565480; x=1771101480;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=W4fOQASwtVxUSBCEFadqime9r1dlookPL1M+/T61cvk=;
- b=bcXy+hH6fHyWUTE/A1Mq07L9Zo0Rgg/NCEKeMeAUGoMdJWqWQrF9XN5T
- F/lJh04+vFTs9dtxhC0AqjytrP/GemVRVuFp4RX75lN6q2w5t30HjbKwI
- dNtvdkFwyl8tPDgrAmaxM6MTU2hR4tloqc1TWvTokRSnwhXptsm/V1VIr
- 2nxQUPrl0yj80/NAcQHqX7897eC7rYI2e9AmyHA5ShRDZF1R+03dvcQ/P
- GtCYUVB4ANH2b/z6OsB07hv8hOBy+BJ2WJvfKRjlJQ01Nashp0+XqVQj2
- e7Kx8DyYSOMK/tNhZOF6DrIizSbDrS1GUkNoJ8Qgj9XR8S2esbELPUSNY w==;
-X-CSE-ConnectionGUID: OOFIqy9EQBGQiGSt+CSrAg==
-X-CSE-MsgGUID: oDZtxYL8R8KtEySeesmd8w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11345"; a="39558866"
-X-IronPort-AV: E=Sophos;i="6.13,286,1732608000"; d="scan'208";a="39558866"
+ bh=4KP3WUSJF+piJ2OJ5kO8VzXNGEWgFcKQfFU0wjFN8+k=;
+ b=IujXM0WdhTz7vRl5PuXZ8hRUZkYiBnojTVPbq1R4j1ordDWSJth+N5Ts
+ Ljw99Tv+vHgnp+AYM9adsZMivHdKVSaMXMEZcQiPePde0pOvBSTSh0tqY
+ 1Suj1mMGIUURlJ6BK7I1SSQbSCjfjfb/53ZLXfeup9WRxdArdv7iFDLCp
+ vkCtUff1iiMxMIOBKa0EMDBiWPeG26RKsZMDNerZA2xcn3FSbzqs4DgfS
+ 9RLUoMCNUDRVmL+FErJVLoI7xcN7MSe40BzU6bjXgZIDeOJrkMaRyCVS0
+ ITgdrYvXnN/d+PrE8XRAF45NfuNurLv0ynNSoRkq6qUwvXcMFiJRFwGWp A==;
+X-CSE-ConnectionGUID: cs8Es7nwTye4MahojrO2SA==
+X-CSE-MsgGUID: 3OKa0dzLRyavBnEk54MMuA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11345"; a="39558869"
+X-IronPort-AV: E=Sophos;i="6.13,286,1732608000"; d="scan'208";a="39558869"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2025 12:37:59 -0800
-X-CSE-ConnectionGUID: ketLe7alTrSohSVA1SXrAg==
-X-CSE-MsgGUID: EiQWC1P9Qi6nlf9Yja4slQ==
+ 14 Feb 2025 12:38:00 -0800
+X-CSE-ConnectionGUID: WbK6vzdlQd2XKg5fUKENJw==
+X-CSE-MsgGUID: 9+oZy52OT6qRnw/N2LZHnA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="118760815"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="118760825"
 Received: from dut4066lnl.fm.intel.com ([10.105.8.61])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2025 12:37:59 -0800
+ 14 Feb 2025 12:38:00 -0800
 From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org, jonathan.cavitt@intel.com,
  saurabhg.gupta@intel.com, alex.zuo@intel.com, joonas.lahtinen@intel.com,
  lucas.demarchi@intel.com, matthew.brost@intel.com
-Subject: [PATCH 2/4] drm/xe/xe_gt_pagefault: Migrate pagefault struct to header
-Date: Fri, 14 Feb 2025 20:37:55 +0000
-Message-ID: <20250214203757.27895-3-jonathan.cavitt@intel.com>
+Subject: [PATCH 4/4] drm/xe/xe_drm_client: Add per drm client reset stats
+Date: Fri, 14 Feb 2025 20:37:57 +0000
+Message-ID: <20250214203757.27895-5-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250214203757.27895-1-jonathan.cavitt@intel.com>
 References: <20250214203757.27895-1-jonathan.cavitt@intel.com>
@@ -68,119 +68,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Migrate the pagefault struct from xe_gt_pagefault.c to the
-xe_gt_pagefault.h header file, along with the associated enum values.
-
-Additionally, add string declarations for the associated enum values, as
-well as functions that translate from the enum values to their string
-counterparts.  The string variants will be useful for debugging later.
+Add a counter to xe_drm_client that tracks the number of times the
+engine has been reset since the drm client was created.
 
 Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_pagefault.c | 27 ---------------
- drivers/gpu/drm/xe/xe_gt_pagefault.h | 51 ++++++++++++++++++++++++++++
- 2 files changed, 51 insertions(+), 27 deletions(-)
+ drivers/gpu/drm/xe/xe_drm_client.c | 2 ++
+ drivers/gpu/drm/xe/xe_drm_client.h | 2 ++
+ drivers/gpu/drm/xe/xe_guc_submit.c | 4 +++-
+ 3 files changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index 46701ca11ce0..fe18e3ec488a 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -22,33 +22,6 @@
- #include "xe_trace_bo.h"
- #include "xe_vm.h"
+diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
+index f15560d0b6ff..ecd2ce99fd19 100644
+--- a/drivers/gpu/drm/xe/xe_drm_client.c
++++ b/drivers/gpu/drm/xe/xe_drm_client.c
+@@ -492,6 +492,8 @@ static void show_blames(struct drm_printer *p, struct drm_file *file)
  
--struct pagefault {
--	u64 page_addr;
--	u32 asid;
--	u16 pdata;
--	u8 vfid;
--	u8 access_type;
--	u8 fault_type;
--	u8 fault_level;
--	u8 engine_class;
--	u8 engine_instance;
--	u8 fault_unsuccessful;
--	bool trva_fault;
--};
--
--enum access_type {
--	ACCESS_TYPE_READ = 0,
--	ACCESS_TYPE_WRITE = 1,
--	ACCESS_TYPE_ATOMIC = 2,
--	ACCESS_TYPE_RESERVED = 3,
--};
--
--enum fault_type {
--	NOT_PRESENT = 0,
--	WRITE_ACCESS_VIOLATION = 1,
--	ATOMIC_ACCESS_VIOLATION = 2,
--};
--
- struct acc {
- 	u64 va_range_base;
- 	u32 asid;
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.h b/drivers/gpu/drm/xe/xe_gt_pagefault.h
-index 839c065a5e4c..d502fdb5b68c 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.h
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.h
-@@ -11,6 +11,57 @@
- struct xe_gt;
- struct xe_guc;
+ 	client = xef->client;
  
-+struct pagefault {
-+	u64 page_addr;
-+	u32 asid;
-+	u16 pdata;
-+	u8 vfid;
-+	u8 access_type;
-+	u8 fault_type;
-+	u8 fault_level;
-+	u8 engine_class;
-+	u8 engine_instance;
-+	u8 fault_unsuccessful;
-+	bool prefetch;
-+	bool trva_fault;
-+};
-+
-+enum access_type {
-+	ACCESS_TYPE_READ = 0,
-+	ACCESS_TYPE_WRITE = 1,
-+	ACCESS_TYPE_ATOMIC = 2,
-+	ACCESS_TYPE_RESERVED = 3,
-+};
-+
-+enum fault_type {
-+	NOT_PRESENT = 0,
-+	WRITE_ACCESS_VIOLATION = 1,
-+	ATOMIC_ACCESS_VIOLATION = 2,
-+};
-+
-+static char *access_type_str[] = {
-+	"ACCESS_TYPE_READ",
-+	"ACCESS_TYPE_WRITE",
-+	"ACCESS_TYPE_ATOMIC",
-+	"ACCESS_TYPE_RESERVED",
-+};
-+
-+static char *fault_type_str[] = {
-+	"NOT_PRESENT",
-+	"WRITE_ACCESS_VIOLATION",
-+	"ATOMIC_ACCESS_VIOLATION",
-+};
-+
-+static inline char *access_type_to_str(enum access_type a)
-+{
-+	return access_type_str[a];
-+}
-+
-+static inline char *fault_type_to_str(enum fault_type f)
-+{
-+	return fault_type_str[f];
-+}
-+
- int xe_gt_pagefault_init(struct xe_gt *gt);
- void xe_gt_pagefault_reset(struct xe_gt *gt);
- int xe_guc_pagefault_handler(struct xe_guc *guc, u32 *msg, u32 len);
++	drm_printf(p, "drm-client-reset-count:%u\n",
++		   atomic_read(&client->reset_count));
+ 	drm_printf(p, "\n");
+ 	drm_printf(p, "- Exec queue ban list -\n");
+ 	spin_lock(&client->blame_lock);
+diff --git a/drivers/gpu/drm/xe/xe_drm_client.h b/drivers/gpu/drm/xe/xe_drm_client.h
+index d21fd0b90742..c35de675ccfa 100644
+--- a/drivers/gpu/drm/xe/xe_drm_client.h
++++ b/drivers/gpu/drm/xe/xe_drm_client.h
+@@ -53,6 +53,8 @@ struct xe_drm_client {
+ 	 * Protected by @blame_lock;
+ 	 */
+ 	struct list_head blame_list;
++	/** @reset_count: number of times this drm client has seen an engine reset */
++	atomic_t reset_count;
+ #endif
+ };
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index d9da5c89429e..8810abc8f04a 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1988,7 +1988,9 @@ int xe_guc_exec_queue_reset_handler(struct xe_guc *guc, u32 *msg, u32 len)
+ 		return -EPROTO;
+ 
+ 	hwe = q->hwe;
+-
++#ifdef CONFIG_PROC_FS
++	atomic_inc(&q->xef->client->reset_count);
++#endif
+ 	xe_gt_info(gt, "Engine reset: engine_class=%s, logical_mask: 0x%x, guc_id=%d",
+ 		   xe_hw_engine_class_to_str(q->class), q->logical_mask, guc_id);
+ 
 -- 
 2.43.0
 
