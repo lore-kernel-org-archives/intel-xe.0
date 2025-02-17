@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DA14C021AB
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Feb 2025 20:46:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47B0AC021A9
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Feb 2025 20:47:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EF0310E293;
-	Mon, 17 Feb 2025 20:46:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OQQGCXE6";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E700B10E28A;
- Mon, 17 Feb 2025 20:46:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739825191; x=1771361191;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=0kZtsO/45eTqtU90AW710OFRCu8o88TQqxpecky1tVs=;
- b=OQQGCXE6krzf7WwG9p0CPWc7vAac0dz5KOgkUhjcGlAOQYsODRYkINqA
- 0kTHmKa0Pi2asVeHCdxBFjGR84szbHpldtGINo7rj7p8qkdGGFCrDUuzi
- s0muz1K9eOMHUiT0f1Uh2txuCUVpLkKJef3cyGoehjNO7IW0WeofrG8rP
- TQfQIeurnr+1tT4a+DEIZ6t1uGDQ3AwtGk61eKJBW2Bt4Ay9YVeQ2ECvJ
- m0+nhW5jFtXizsehj97LoCbrHQJsTVcRyVoSi+jeldZwGcwVih4IeZuUK
- cb0z9XwGIV0ZST6SNh38GJZOq+GthQhoSsO0o7QB4bn67UtBBm5R2N4ZZ Q==;
-X-CSE-ConnectionGUID: /VbFrKs+TPiX7f/0aNoXKg==
-X-CSE-MsgGUID: 3un3U+P6SzKcYBv8ijZEfA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="51132608"
-X-IronPort-AV: E=Sophos;i="6.13,293,1732608000"; d="scan'208";a="51132608"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2025 12:46:31 -0800
-X-CSE-ConnectionGUID: MdUHKhI+Svemy23g3HWT/A==
-X-CSE-MsgGUID: QThdg6OuTMSgg9KDC9eGyg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,293,1732608000"; d="scan'208";a="114403498"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 17 Feb 2025 12:46:28 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 17 Feb 2025 22:46:27 +0200
-Date: Mon, 17 Feb 2025 22:46:27 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH v3 3/3] drm/i915/display: Convert POWER_DOMAIN_*() to
- functions
-Message-ID: <Z7OgI_Kqz6TRdcjS@intel.com>
-References: <20250217203722.87152-1-gustavo.sousa@intel.com>
- <20250217203722.87152-4-gustavo.sousa@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BC4210E293;
+	Mon, 17 Feb 2025 20:47:47 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFA8910E293;
+ Mon, 17 Feb 2025 20:47:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6317630401808900844=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250217203722.87152-4-gustavo.sousa@intel.com>
-X-Patchwork-Hint: comment
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/=7Bi915=2C_xe=7D/displa?=
+ =?utf-8?q?y=3A_Move_dsm_registration_under_intel=5Fdriver?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 17 Feb 2025 20:47:45 -0000
+Message-ID: <173982526584.3362572.12911475223956798344@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250217200133.741758-1-rodrigo.vivi@intel.com>
+In-Reply-To: <20250217200133.741758-1-rodrigo.vivi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,504 +36,182 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Feb 17, 2025 at 05:34:28PM -0300, Gustavo Sousa wrote:
-> We already have other functions to get power domain for other things
-> (i.e. intel_display_power_*_domain()). Convert POWER_DOMAIN_*() macros
-> to the same standard.
-> 
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> ---
-> 
-> Note: Maybe this patch could be squashed with the previous one.
-> 
->  drivers/gpu/drm/i915/display/i9xx_plane.c     |  2 +-
->  drivers/gpu/drm/i915/display/intel_cmtg.c     |  2 +-
->  drivers/gpu/drm/i915/display/intel_cursor.c   |  4 +-
->  drivers/gpu/drm/i915/display/intel_ddi.c      | 10 ++---
->  drivers/gpu/drm/i915/display/intel_display.c  | 39 ++++++++++++-------
->  .../gpu/drm/i915/display/intel_display_irq.c  | 18 +++++----
->  .../drm/i915/display/intel_display_power.c    | 21 ++++++++++
->  .../drm/i915/display/intel_display_power.h    | 16 ++++----
->  drivers/gpu/drm/i915/display/intel_pipe_crc.c |  2 +-
->  drivers/gpu/drm/i915/display/intel_sprite.c   |  6 +--
->  drivers/gpu/drm/i915/display/intel_vdsc.c     |  3 +-
->  .../drm/i915/display/skl_universal_plane.c    |  2 +-
->  drivers/gpu/drm/i915/display/skl_watermark.c  |  2 +-
->  13 files changed, 82 insertions(+), 45 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
-> index aef8d8b7ea85..504599a20b8f 100644
-> --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
-> +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
-> @@ -697,7 +697,7 @@ static bool i9xx_plane_get_hw_state(struct intel_plane *plane,
->  	 * but that's only the case for gen2-4 which don't have any
->  	 * display power wells.
->  	 */
-> -	power_domain = POWER_DOMAIN_PIPE(plane->pipe);
-> +	power_domain = intel_display_power_pipe_domain(display, plane->pipe);
+--===============6317630401808900844==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The naming feels a bit awkward. If we want to stick to the full
-intel_display_power_ namespace then maybe these should be
-intel_display_power_domain_foo() instead?
+== Series Details ==
 
-An alternative would be just something like intel_pipe_power_domain(),
-but obviously that doesn't have the full namespace.
+Series: drm/{i915, xe}/display: Move dsm registration under intel_driver
+URL   : https://patchwork.freedesktop.org/series/144974/
+State : success
 
->  	wakeref = intel_display_power_get_if_enabled(display, power_domain);
->  	if (!wakeref)
->  		return false;
-> diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.c b/drivers/gpu/drm/i915/display/intel_cmtg.c
-> index 07d7f4e8f60f..6b8b20e101a4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cmtg.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cmtg.c
-> @@ -92,7 +92,7 @@ static bool intel_cmtg_transcoder_is_secondary(struct intel_display *display,
->  	if (!HAS_TRANSCODER(display, trans))
->  		return false;
->  
-> -	power_domain = POWER_DOMAIN_TRANSCODER(trans);
-> +	power_domain = intel_display_power_transcoder_domain(display, trans);
->  
->  	with_intel_display_power_if_enabled(display, power_domain, wakeref)
->  		val = intel_de_read(display, TRANS_DDI_FUNC_CTL2(display, trans));
-> diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-> index f31efac89e95..85d406335b6f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cursor.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-> @@ -336,7 +336,7 @@ static bool i845_cursor_get_hw_state(struct intel_plane *plane,
->  	intel_wakeref_t wakeref;
->  	bool ret;
->  
-> -	power_domain = POWER_DOMAIN_PIPE(PIPE_A);
-> +	power_domain = intel_display_power_pipe_domain(display, PIPE_A);
->  	wakeref = intel_display_power_get_if_enabled(display, power_domain);
->  	if (!wakeref)
->  		return false;
-> @@ -746,7 +746,7 @@ static bool i9xx_cursor_get_hw_state(struct intel_plane *plane,
->  	 * but that's only the case for gen2-3 which don't have any
->  	 * display power wells.
->  	 */
-> -	power_domain = POWER_DOMAIN_PIPE(plane->pipe);
-> +	power_domain = intel_display_power_pipe_domain(display, plane->pipe);
->  	wakeref = intel_display_power_get_if_enabled(display, power_domain);
->  	if (!wakeref)
->  		return false;
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 5082f38b0a02..6fbf1583ca99 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -852,11 +852,12 @@ static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
->  
->  	for_each_pipe(dev_priv, p) {
->  		enum transcoder cpu_transcoder = (enum transcoder)p;
-> +		enum intel_display_power_domain power_domain;
->  		u32 port_mask, ddi_select, ddi_mode;
->  		intel_wakeref_t trans_wakeref;
->  
-> -		trans_wakeref = intel_display_power_get_if_enabled(display,
-> -								   POWER_DOMAIN_TRANSCODER(cpu_transcoder));
-> +		power_domain = intel_display_power_transcoder_domain(display, cpu_transcoder);
-> +		trans_wakeref = intel_display_power_get_if_enabled(display, power_domain);
->  		if (!trans_wakeref)
->  			continue;
->  
-> @@ -870,8 +871,7 @@ static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
->  
->  		tmp = intel_de_read(dev_priv,
->  				    TRANS_DDI_FUNC_CTL(dev_priv, cpu_transcoder));
-> -		intel_display_power_put(display, POWER_DOMAIN_TRANSCODER(cpu_transcoder),
-> -					trans_wakeref);
-> +		intel_display_power_put(display, power_domain, trans_wakeref);
->  
->  		if ((tmp & port_mask) != ddi_select)
->  			continue;
-> @@ -3950,7 +3950,7 @@ static void bdw_get_trans_port_sync_config(struct intel_crtc_state *crtc_state)
->  		enum intel_display_power_domain power_domain;
->  		intel_wakeref_t trans_wakeref;
->  
-> -		power_domain = POWER_DOMAIN_TRANSCODER(cpu_transcoder);
-> +		power_domain = intel_display_power_transcoder_domain(display, cpu_transcoder);
->  		trans_wakeref = intel_display_power_get_if_enabled(display,
->  								   power_domain);
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 065fdf6dbb88..1b45342bc986 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -429,7 +429,7 @@ void assert_transcoder(struct intel_display *display,
->  	if (display->platform.i830)
->  		state = true;
->  
-> -	power_domain = POWER_DOMAIN_TRANSCODER(cpu_transcoder);
-> +	power_domain = intel_display_power_transcoder_domain(display, cpu_transcoder);
->  	wakeref = intel_display_power_get_if_enabled(display, power_domain);
->  	if (wakeref) {
->  		u32 val = intel_de_read(display,
-> @@ -2013,6 +2013,7 @@ intel_aux_power_domain(struct intel_digital_port *dig_port)
->  static void get_crtc_power_domains(struct intel_crtc_state *crtc_state,
->  				   struct intel_power_domain_mask *mask)
->  {
-> +	struct intel_display *display = to_intel_display(crtc_state);
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
->  	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> @@ -2024,11 +2025,11 @@ static void get_crtc_power_domains(struct intel_crtc_state *crtc_state,
->  	if (!crtc_state->hw.active)
->  		return;
->  
-> -	set_bit(POWER_DOMAIN_PIPE(pipe), mask->bits);
-> -	set_bit(POWER_DOMAIN_TRANSCODER(cpu_transcoder), mask->bits);
-> +	set_bit(intel_display_power_pipe_domain(display, pipe), mask->bits);
-> +	set_bit(intel_display_power_transcoder_domain(display, cpu_transcoder), mask->bits);
->  	if (crtc_state->pch_pfit.enabled ||
->  	    crtc_state->pch_pfit.force_thru)
-> -		set_bit(POWER_DOMAIN_PIPE_PANEL_FITTER(pipe), mask->bits);
-> +		set_bit(intel_display_power_pipe_panel_fitter_domain(display, pipe), mask->bits);
->  
->  	drm_for_each_encoder_mask(encoder, &dev_priv->drm,
->  				  crtc_state->uapi.encoder_mask) {
-> @@ -3113,7 +3114,7 @@ static bool i9xx_get_pipe_config(struct intel_crtc *crtc,
->  	u32 tmp;
->  	bool ret;
->  
-> -	power_domain = POWER_DOMAIN_PIPE(crtc->pipe);
-> +	power_domain = intel_display_power_pipe_domain(display, crtc->pipe);
->  	wakeref = intel_display_power_get_if_enabled(display, power_domain);
->  	if (!wakeref)
->  		return false;
-> @@ -3497,7 +3498,7 @@ static bool ilk_get_pipe_config(struct intel_crtc *crtc,
->  	u32 tmp;
->  	bool ret;
->  
-> -	power_domain = POWER_DOMAIN_PIPE(crtc->pipe);
-> +	power_domain = intel_display_power_pipe_domain(display, crtc->pipe);
->  	wakeref = intel_display_power_get_if_enabled(display, power_domain);
->  	if (!wakeref)
->  		return false;
-> @@ -3590,7 +3591,7 @@ static bool transcoder_ddi_func_is_enabled(struct drm_i915_private *dev_priv,
->  	intel_wakeref_t wakeref;
->  	u32 tmp = 0;
->  
-> -	power_domain = POWER_DOMAIN_TRANSCODER(cpu_transcoder);
-> +	power_domain = intel_display_power_transcoder_domain(display, cpu_transcoder);
->  
->  	with_intel_display_power_if_enabled(display, power_domain, wakeref)
->  		tmp = intel_de_read(dev_priv,
-> @@ -3617,7 +3618,7 @@ static void enabled_uncompressed_joiner_pipes(struct intel_display *display,
->  		enum pipe pipe = crtc->pipe;
->  		intel_wakeref_t wakeref;
->  
-> -		power_domain = POWER_DOMAIN_PIPE(pipe);
-> +		power_domain = intel_display_power_pipe_domain(display, pipe);
->  		with_intel_display_power_if_enabled(display, power_domain, wakeref) {
->  			u32 tmp = intel_de_read(display, ICL_PIPE_DSS_CTL1(pipe));
->  
-> @@ -3884,7 +3885,7 @@ static u8 hsw_enabled_transcoders(struct intel_crtc *crtc)
->  		enum pipe trans_pipe;
->  		u32 tmp = 0;
->  
-> -		power_domain = POWER_DOMAIN_TRANSCODER(cpu_transcoder);
-> +		power_domain = intel_display_power_transcoder_domain(display, cpu_transcoder);
->  		with_intel_display_power_if_enabled(display, power_domain, wakeref)
->  			tmp = intel_de_read(dev_priv,
->  					    TRANS_DDI_FUNC_CTL(dev_priv, cpu_transcoder));
-> @@ -3973,6 +3974,7 @@ static bool hsw_get_transcoder_state(struct intel_crtc *crtc,
->  	struct intel_display *display = to_intel_display(crtc);
->  	struct drm_device *dev = crtc->base.dev;
->  	struct drm_i915_private *dev_priv = to_i915(dev);
-> +	enum intel_display_power_domain power_domain;
->  	unsigned long enabled_transcoders;
->  	u32 tmp;
->  
-> @@ -3989,8 +3991,9 @@ static bool hsw_get_transcoder_state(struct intel_crtc *crtc,
->  	 */
->  	pipe_config->cpu_transcoder = ffs(enabled_transcoders) - 1;
->  
-> -	if (!intel_display_power_get_in_set_if_enabled(display, power_domain_set,
-> -						       POWER_DOMAIN_TRANSCODER(pipe_config->cpu_transcoder)))
-> +	power_domain = intel_display_power_transcoder_domain(display, pipe_config->cpu_transcoder);
-> +
-> +	if (!intel_display_power_get_in_set_if_enabled(display, power_domain_set, power_domain))
->  		return false;
->  
->  	if (hsw_panel_transcoders(dev_priv) & BIT(pipe_config->cpu_transcoder)) {
-> @@ -4013,6 +4016,7 @@ static bool bxt_get_dsi_transcoder_state(struct intel_crtc *crtc,
->  {
->  	struct intel_display *display = to_intel_display(crtc);
->  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> +	enum intel_display_power_domain power_domain;
->  	enum transcoder cpu_transcoder;
->  	enum port port;
->  	u32 tmp;
-> @@ -4023,8 +4027,10 @@ static bool bxt_get_dsi_transcoder_state(struct intel_crtc *crtc,
->  		else
->  			cpu_transcoder = TRANSCODER_DSI_C;
->  
-> +		power_domain = intel_display_power_transcoder_domain(display, cpu_transcoder);
-> +
->  		if (!intel_display_power_get_in_set_if_enabled(display, power_domain_set,
-> -							       POWER_DOMAIN_TRANSCODER(cpu_transcoder)))
-> +							       power_domain))
->  			continue;
->  
->  		/*
-> @@ -4073,11 +4079,14 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
->  {
->  	struct intel_display *display = to_intel_display(crtc);
->  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> +	enum intel_display_power_domain power_domain;
->  	bool active;
->  	u32 tmp;
->  
-> +	power_domain = intel_display_power_pipe_domain(display, crtc->pipe);
-> +
->  	if (!intel_display_power_get_in_set_if_enabled(display, &crtc->hw_readout_power_domains,
-> -						       POWER_DOMAIN_PIPE(crtc->pipe)))
-> +						       power_domain))
->  		return false;
->  
->  	pipe_config->shared_dpll = NULL;
-> @@ -4128,8 +4137,10 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
->  		pipe_config->ips_linetime =
->  			REG_FIELD_GET(HSW_IPS_LINETIME_MASK, tmp);
->  
-> +	power_domain = intel_display_power_pipe_panel_fitter_domain(display, crtc->pipe);
-> +
->  	if (intel_display_power_get_in_set_if_enabled(display, &crtc->hw_readout_power_domains,
-> -						      POWER_DOMAIN_PIPE_PANEL_FITTER(crtc->pipe))) {
-> +						      power_domain)) {
->  		if (DISPLAY_VER(dev_priv) >= 9)
->  			skl_scaler_get_config(pipe_config);
->  		else
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> index 880eaed83cd5..1fd17aad3a65 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> @@ -1617,10 +1617,14 @@ void gen8_display_irq_reset(struct drm_i915_private *dev_priv)
->  	intel_de_write(display, EDP_PSR_IMR, 0xffffffff);
->  	intel_de_write(display, EDP_PSR_IIR, 0xffffffff);
->  
-> -	for_each_pipe(dev_priv, pipe)
-> -		if (intel_display_power_is_enabled(display,
-> -						   POWER_DOMAIN_PIPE(pipe)))
-> +	for_each_pipe(dev_priv, pipe) {
-> +		enum intel_display_power_domain power_domain;
-> +
-> +		power_domain = intel_display_power_pipe_domain(display, pipe);
-> +
-> +		if (intel_display_power_is_enabled(display, power_domain))
->  			intel_display_irq_regs_reset(display, GEN8_DE_PIPE_IRQ_REGS(pipe));
-> +	}
->  
->  	intel_display_irq_regs_reset(display, GEN8_DE_PORT_IRQ_REGS);
->  	intel_display_irq_regs_reset(display, GEN8_DE_MISC_IRQ_REGS);
-> @@ -1644,7 +1648,7 @@ void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
->  		for_each_cpu_transcoder_masked(dev_priv, trans, trans_mask) {
->  			enum intel_display_power_domain domain;
->  
-> -			domain = POWER_DOMAIN_TRANSCODER(trans);
-> +			domain = intel_display_power_transcoder_domain(display, trans);
->  			if (!intel_display_power_is_enabled(display, domain))
->  				continue;
->  
-> @@ -1662,7 +1666,7 @@ void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
->  
->  	for_each_pipe(dev_priv, pipe)
->  		if (intel_display_power_is_enabled(display,
-> -						   POWER_DOMAIN_PIPE(pipe)))
-> +						   intel_display_power_pipe_domain(display, pipe)))
->  			intel_display_irq_regs_reset(display, GEN8_DE_PIPE_IRQ_REGS(pipe));
->  
->  	intel_display_irq_regs_reset(display, GEN8_DE_PORT_IRQ_REGS);
-> @@ -1887,7 +1891,7 @@ void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
->  		for_each_cpu_transcoder_masked(dev_priv, trans, trans_mask) {
->  			enum intel_display_power_domain domain;
->  
-> -			domain = POWER_DOMAIN_TRANSCODER(trans);
-> +			domain = intel_display_power_transcoder_domain(display, trans);
->  			if (!intel_display_power_is_enabled(display, domain))
->  				continue;
->  
-> @@ -1902,7 +1906,7 @@ void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
->  		dev_priv->display.irq.de_irq_mask[pipe] = ~de_pipe_masked;
->  
->  		if (intel_display_power_is_enabled(display,
-> -						   POWER_DOMAIN_PIPE(pipe)))
-> +						   intel_display_power_pipe_domain(display, pipe)))
->  			intel_display_irq_regs_init(display, GEN8_DE_PIPE_IRQ_REGS(pipe),
->  						    dev_priv->display.irq.de_irq_mask[pipe],
->  						    de_pipe_enables);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> index 396930937d98..b206bef3d44c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -2476,6 +2476,27 @@ intel_port_domains_for_platform(struct intel_display *display,
->  	}
->  }
->  
-> +enum intel_display_power_domain
-> +intel_display_power_pipe_domain(struct intel_display *display, enum pipe pipe)
-> +{
-> +	return pipe - PIPE_A + POWER_DOMAIN_PIPE_A;
-> +}
-> +
-> +enum intel_display_power_domain
-> +intel_display_power_pipe_panel_fitter_domain(struct intel_display *display, enum pipe pipe)
-> +{
-> +	return pipe - PIPE_A + POWER_DOMAIN_PIPE_PANEL_FITTER_A;
-> +}
-> +
-> +enum intel_display_power_domain
-> +intel_display_power_transcoder_domain(struct intel_display *display, enum transcoder trans)
-> +{
-> +	if (trans == TRANSCODER_EDP)
-> +		return POWER_DOMAIN_TRANSCODER_EDP;
-> +
-> +	return trans - TRANSCODER_A + POWER_DOMAIN_TRANSCODER_A;
-> +}
-> +
->  static const struct intel_ddi_port_domains *
->  intel_port_domains_for_port(struct intel_display *display, enum port port)
->  {
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-> index 1b53d67f9b60..ee02bc7111c0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-> @@ -12,7 +12,9 @@
->  #include "intel_wakeref.h"
->  
->  enum aux_ch;
-> +enum pipe;
->  enum port;
-> +enum transcoder;
->  struct i915_power_well;
->  struct intel_display;
->  struct intel_encoder;
-> @@ -117,14 +119,6 @@ enum intel_display_power_domain {
->  	POWER_DOMAIN_INVALID = POWER_DOMAIN_NUM,
->  };
->  
-> -#define POWER_DOMAIN_PIPE(pipe) \
-> -	((enum intel_display_power_domain)((pipe) - PIPE_A + POWER_DOMAIN_PIPE_A))
-> -#define POWER_DOMAIN_PIPE_PANEL_FITTER(pipe) \
-> -	((enum intel_display_power_domain)((pipe) - PIPE_A + POWER_DOMAIN_PIPE_PANEL_FITTER_A))
-> -#define POWER_DOMAIN_TRANSCODER(tran) \
-> -	((tran) == TRANSCODER_EDP ? POWER_DOMAIN_TRANSCODER_EDP : \
-> -	 (enum intel_display_power_domain)((tran) - TRANSCODER_A + POWER_DOMAIN_TRANSCODER_A))
-> -
->  struct intel_power_domain_mask {
->  	DECLARE_BITMAP(bits, POWER_DOMAIN_NUM);
->  };
-> @@ -270,6 +264,12 @@ intel_display_power_put_all_in_set(struct intel_display *display,
->  
->  void intel_display_power_debug(struct intel_display *display, struct seq_file *m);
->  
-> +enum intel_display_power_domain
-> +intel_display_power_pipe_domain(struct intel_display *display, enum pipe pipe);
-> +enum intel_display_power_domain
-> +intel_display_power_pipe_panel_fitter_domain(struct intel_display *display, enum pipe pipe);
-> +enum intel_display_power_domain
-> +intel_display_power_transcoder_domain(struct intel_display *display, enum transcoder trans);
->  enum intel_display_power_domain
->  intel_display_power_ddi_lanes_domain(struct intel_display *display, enum port port);
->  enum intel_display_power_domain
-> diff --git a/drivers/gpu/drm/i915/display/intel_pipe_crc.c b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
-> index 10e26c3db946..322d4ca7cf7d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pipe_crc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
-> @@ -598,7 +598,7 @@ int intel_crtc_set_crc_source(struct drm_crtc *_crtc, const char *source_name)
->  		return -EINVAL;
->  	}
->  
-> -	power_domain = POWER_DOMAIN_PIPE(pipe);
-> +	power_domain = intel_display_power_pipe_domain(display, pipe);
->  	wakeref = intel_display_power_get_if_enabled(display, power_domain);
->  	if (!wakeref) {
->  		drm_dbg_kms(&dev_priv->drm,
-> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-> index ab5bc8a08f0f..09f1b2f959f2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> @@ -457,7 +457,7 @@ vlv_sprite_get_hw_state(struct intel_plane *plane,
->  	intel_wakeref_t wakeref;
->  	bool ret;
->  
-> -	power_domain = POWER_DOMAIN_PIPE(plane->pipe);
-> +	power_domain = intel_display_power_pipe_domain(display, plane->pipe);
->  	wakeref = intel_display_power_get_if_enabled(display, power_domain);
->  	if (!wakeref)
->  		return false;
-> @@ -881,7 +881,7 @@ ivb_sprite_get_hw_state(struct intel_plane *plane,
->  	intel_wakeref_t wakeref;
->  	bool ret;
->  
-> -	power_domain = POWER_DOMAIN_PIPE(plane->pipe);
-> +	power_domain = intel_display_power_pipe_domain(display, plane->pipe);
->  	wakeref = intel_display_power_get_if_enabled(display, power_domain);
->  	if (!wakeref)
->  		return false;
-> @@ -1216,7 +1216,7 @@ g4x_sprite_get_hw_state(struct intel_plane *plane,
->  	intel_wakeref_t wakeref;
->  	bool ret;
->  
-> -	power_domain = POWER_DOMAIN_PIPE(plane->pipe);
-> +	power_domain = intel_display_power_pipe_domain(display, plane->pipe);
->  	wakeref = intel_display_power_get_if_enabled(display, power_domain);
->  	if (!wakeref)
->  		return false;
-> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> index 6e7151346382..928fa69f65e9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> @@ -357,6 +357,7 @@ enum intel_display_power_domain
->  intel_dsc_power_domain(struct intel_crtc *crtc, enum transcoder cpu_transcoder)
->  {
->  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> +	struct intel_display *display = &i915->display;
->  	enum pipe pipe = crtc->pipe;
->  
->  	/*
-> @@ -373,7 +374,7 @@ intel_dsc_power_domain(struct intel_crtc *crtc, enum transcoder cpu_transcoder)
->  	if (DISPLAY_VER(i915) == 12 && !IS_ROCKETLAKE(i915) && pipe == PIPE_A)
->  		return POWER_DOMAIN_TRANSCODER_VDSC_PW2;
->  	else if (is_pipe_dsc(crtc, cpu_transcoder))
-> -		return POWER_DOMAIN_PIPE(pipe);
-> +		return intel_display_power_pipe_domain(display, pipe);
->  	else
->  		return POWER_DOMAIN_TRANSCODER_VDSC_PW2;
->  }
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> index 110f66dd5cf0..4fe6fb64292c 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -925,7 +925,7 @@ skl_plane_get_hw_state(struct intel_plane *plane,
->  	intel_wakeref_t wakeref;
->  	bool ret;
->  
-> -	power_domain = POWER_DOMAIN_PIPE(plane->pipe);
-> +	power_domain = intel_display_power_pipe_domain(display, plane->pipe);
->  	wakeref = intel_display_power_get_if_enabled(display, power_domain);
->  	if (!wakeref)
->  		return false;
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-> index 10a1daad28eb..58b934907005 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -843,7 +843,7 @@ static void skl_pipe_ddb_get_hw_state(struct intel_crtc *crtc,
->  	intel_wakeref_t wakeref;
->  	enum plane_id plane_id;
->  
-> -	power_domain = POWER_DOMAIN_PIPE(pipe);
-> +	power_domain = intel_display_power_pipe_domain(display, pipe);
->  	wakeref = intel_display_power_get_if_enabled(display, power_domain);
->  	if (!wakeref)
->  		return;
-> -- 
-> 2.48.1
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+CI Bug Log - changes from xe-2677-c282b8face163244076dac30e4c9ffd74dc89044_BAT -> xe-pw-144974v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-144974v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][1] ([Intel XE#2229] / [Intel XE#455]) +1 other test skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144974v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][2] ([Intel XE#2229])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144974v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_exec_basic@twice-bindexecqueue-rebind:
+    - bat-adlp-vf:        [DMESG-WARN][3] ([Intel XE#3970]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2677-c282b8face163244076dac30e4c9ffd74dc89044/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144974v1/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
+
+  * igt@xe_live_ktest@xe_migrate:
+    - bat-adlp-vf:        [SKIP][5] ([Intel XE#4322]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2677-c282b8face163244076dac30e4c9ffd74dc89044/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144974v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+
+  
+#### Warnings ####
+
+  * igt@xe_live_ktest@xe_bo:
+    - bat-adlp-vf:        [SKIP][7] ([Intel XE#4322]) -> [SKIP][8] ([Intel XE#2229] / [Intel XE#455])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2677-c282b8face163244076dac30e4c9ffd74dc89044/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144974v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+
+  
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
+  [Intel XE#4322]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+
+
+Build changes
+-------------
+
+  * Linux: xe-2677-c282b8face163244076dac30e4c9ffd74dc89044 -> xe-pw-144974v1
+
+  IGT_8235: e7e14eff66bc42329903ee579f019094cf1fdfce @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2677-c282b8face163244076dac30e4c9ffd74dc89044: c282b8face163244076dac30e4c9ffd74dc89044
+  xe-pw-144974v1: 144974v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144974v1/index.html
+
+--===============6317630401808900844==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/{i915, xe}/display: Move dsm registration under intel_driver</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144974/">https://patchwork.freedesktop.org/series/144974/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144974v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144974v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2677-c282b8face163244076dac30e4c9ffd74dc89044_BAT -&gt; xe-pw-144974v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-144974v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144974v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144974v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@xe_exec_basic@twice-bindexecqueue-rebind:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2677-c282b8face163244076dac30e4c9ffd74dc89044/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144974v1/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2677-c282b8face163244076dac30e4c9ffd74dc89044/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322">Intel XE#4322</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144974v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2677-c282b8face163244076dac30e4c9ffd74dc89044/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322">Intel XE#4322</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144974v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2677-c282b8face163244076dac30e4c9ffd74dc89044 -&gt; xe-pw-144974v1</li>
+</ul>
+<p>IGT_8235: e7e14eff66bc42329903ee579f019094cf1fdfce @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2677-c282b8face163244076dac30e4c9ffd74dc89044: c282b8face163244076dac30e4c9ffd74dc89044<br />
+  xe-pw-144974v1: 144974v1</p>
+
+</body>
+</html>
+
+--===============6317630401808900844==--
