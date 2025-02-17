@@ -4,27 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87075C021A0
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Feb 2025 09:14:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B76F4C021A0
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Feb 2025 09:19:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A25310E2D8;
-	Mon, 17 Feb 2025 09:14:04 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92C5310E262;
- Mon, 17 Feb 2025 09:14:03 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2418619563819659978=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 668D910E2D8;
+	Mon, 17 Feb 2025 09:19:17 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wih1k7/y";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96F1B10E2D8
+ for <intel-xe@lists.freedesktop.org>; Mon, 17 Feb 2025 09:19:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1739783956; x=1771319956;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=r/Gwa//y0lYyDEogMeLWJ5YpBC9J0mVmavf3W+j2hgU=;
+ b=Wih1k7/ybcIW+SZDicd32yVtzP25I329BkUxc6QpZAs3VM2BakxWelJK
+ Rs9ajBC1jsft0L6CbEpFrP1njyy65ehdlC6O0Ybt1VIDXdWcpT+9q4AJR
+ tvV9wLd03bOpROQ+ZI4ftAE2fB8SC2NMLvIS6UgaeZZKotRHe0w/ALN1l
+ rZZT19gT24PMgI/6VLNT8ElgkEInVS4FWRnmU02WjV+Cx5+cydnHEAZ2D
+ yOyH4u07bt8bfymj3c95VLwYvJKvZY2bH34RfQhdHp7ocV40FOnCi4TY3
+ Q1w/C1MJNBMdeVXPit+L5hDOsbx7ipt126Ve4XwChMTi74BfZuoX4aZq5 g==;
+X-CSE-ConnectionGUID: z8UA8dtiSpqfNTga93+XvA==
+X-CSE-MsgGUID: SfbnZiC9QPCv5VyrC3BjWQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11347"; a="62928927"
+X-IronPort-AV: E=Sophos;i="6.13,292,1732608000"; d="scan'208";a="62928927"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2025 01:19:15 -0800
+X-CSE-ConnectionGUID: X7ejjno2RTaQtvlQD1L2aA==
+X-CSE-MsgGUID: CnPUX6qNQFWlbEzKVIvWvg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="118703860"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.174])
+ ([10.245.244.174])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2025 01:19:13 -0800
+Message-ID: <43e7703d-b53d-4b68-b4d3-edcfea95e44e@intel.com>
+Date: Mon, 17 Feb 2025 09:19:11 +0000
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Introduce_drm_sharpness_pro?=
- =?utf-8?q?perty_=28rev7=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nemesa Garg" <nemesa.garg@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 17 Feb 2025 09:14:03 -0000
-Message-ID: <173978364359.3212067.16109864650201853754@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250214151132.1811682-1-nemesa.garg@intel.com>
-In-Reply-To: <20250214151132.1811682-1-nemesa.garg@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] drm/xe/userptr: fix EFAULT handling
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ stable@vger.kernel.org
+References: <20250214170527.272182-4-matthew.auld@intel.com>
+ <20250214170527.272182-5-matthew.auld@intel.com>
+ <Z6/skmsP0lw0+GUi@lstrano-desk.jf.intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <Z6/skmsP0lw0+GUi@lstrano-desk.jf.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,222 +70,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2418619563819659978==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 15/02/2025 01:23, Matthew Brost wrote:
+> On Fri, Feb 14, 2025 at 05:05:29PM +0000, Matthew Auld wrote:
+>> Currently we treat EFAULT from hmm_range_fault() as a non-fatal error
+>> when called from xe_vm_userptr_pin() with the idea that we want to avoid
+>> killing the entire vm and chucking an error, under the assumption that
+>> the user just did an unmap or something, and has no intention of
+>> actually touching that memory from the GPU.  At this point we have
+>> already zapped the PTEs so any access should generate a page fault, and
+>> if the pin fails there also it will then become fatal.
+>>
+>> However it looks like it's possible for the userptr vma to still be on
+>> the rebind list in preempt_rebind_work_func(), if we had to retry the
+>> pin again due to something happening in the caller before we did the
+>> rebind step, but in the meantime needing to re-validate the userptr and
+>> this time hitting the EFAULT.
+>>
+>> This might explain an internal user report of hitting:
+>>
+>> [  191.738349] WARNING: CPU: 1 PID: 157 at drivers/gpu/drm/xe/xe_res_cursor.h:158 xe_pt_stage_bind.constprop.0+0x60a/0x6b0 [xe]
+>> [  191.738551] Workqueue: xe-ordered-wq preempt_rebind_work_func [xe]
+>> [  191.738616] RIP: 0010:xe_pt_stage_bind.constprop.0+0x60a/0x6b0 [xe]
+>> [  191.738690] Call Trace:
+>> [  191.738692]  <TASK>
+>> [  191.738694]  ? show_regs+0x69/0x80
+>> [  191.738698]  ? __warn+0x93/0x1a0
+>> [  191.738703]  ? xe_pt_stage_bind.constprop.0+0x60a/0x6b0 [xe]
+>> [  191.738759]  ? report_bug+0x18f/0x1a0
+>> [  191.738764]  ? handle_bug+0x63/0xa0
+>> [  191.738767]  ? exc_invalid_op+0x19/0x70
+>> [  191.738770]  ? asm_exc_invalid_op+0x1b/0x20
+>> [  191.738777]  ? xe_pt_stage_bind.constprop.0+0x60a/0x6b0 [xe]
+>> [  191.738834]  ? ret_from_fork_asm+0x1a/0x30
+>> [  191.738849]  bind_op_prepare+0x105/0x7b0 [xe]
+>> [  191.738906]  ? dma_resv_reserve_fences+0x301/0x380
+>> [  191.738912]  xe_pt_update_ops_prepare+0x28c/0x4b0 [xe]
+>> [  191.738966]  ? kmemleak_alloc+0x4b/0x80
+>> [  191.738973]  ops_execute+0x188/0x9d0 [xe]
+>> [  191.739036]  xe_vm_rebind+0x4ce/0x5a0 [xe]
+>> [  191.739098]  ? trace_hardirqs_on+0x4d/0x60
+>> [  191.739112]  preempt_rebind_work_func+0x76f/0xd00 [xe]
+>>
+>> Followed by NPD, when running some workload, since the sg was never
+>> actually populated but the vma is still marked for rebind when it should
+>> be skipped for this special EFAULT case. And from the logs it does seem
+>> like we hit this special EFAULT case before the explosions.
+>>
+> 
+> It would be nice to verify if this fixes the bug report.
 
-== Series Details ==
+Yes, reporter said it fixes it. Or at least the previous version did. 
+See GSD-10562 if you are curious. Will re-phrase the commit message to 
+make that clear.
 
-Series: Introduce drm sharpness property (rev7)
-URL   : https://patchwork.freedesktop.org/series/139954/
-State : failure
+> 
+>> v2 (MattB):
+>>   - Move earlier
+>>
+>> Fixes: 521db22a1d70 ("drm/xe: Invalidate userptr VMA on page pin fault")
+>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+> 
+> Anyways, LGTM:
+> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-== Summary ==
+Thanks.
 
-CI Bug Log - changes from xe-2673-6a9d2dbb5b88b9e6bf74aa2934f5280ca4a6f934_BAT -> xe-pw-139954v7_BAT
-====================================================
+> 
+>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>> Cc: <stable@vger.kernel.org> # v6.10+
+>> ---
+>>   drivers/gpu/drm/xe/xe_vm.c | 12 ++++++++++++
+>>   1 file changed, 12 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+>> index 668b0bde7822..f36e2cc1d155 100644
+>> --- a/drivers/gpu/drm/xe/xe_vm.c
+>> +++ b/drivers/gpu/drm/xe/xe_vm.c
+>> @@ -681,6 +681,18 @@ int xe_vm_userptr_pin(struct xe_vm *vm)
+>>   		err = xe_vma_userptr_pin_pages(uvma);
+>>   		if (err == -EFAULT) {
+>>   			list_del_init(&uvma->userptr.repin_link);
+>> +			/*
+>> +			 * We might have already done the pin once already, but
+>> +			 * then had to retry before the re-bind happened, due
+>> +			 * some other condition in the caller, but in the
+>> +			 * meantime the userptr got dinged by the notifier such
+>> +			 * that we need to revalidate here, but this time we hit
+>> +			 * the EFAULT. In such a case make sure we remove
+>> +			 * ourselves from the rebind list to avoid going down in
+>> +			 * flames.
+>> +			 */
+>> +			if (!list_empty(&uvma->vma.combined_links.rebind))
+>> +				list_del_init(&uvma->vma.combined_links.rebind);
+>>   
+>>   			/* Wait for pending binds */
+>>   			xe_vm_lock(vm, false);
+>> -- 
+>> 2.48.1
+>>
 
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-139954v7_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-139954v7_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-139954v7_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-1:          [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2673-6a9d2dbb5b88b9e6bf74aa2934f5280ca4a6f934/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139954v7/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
-    - bat-dg2-oem2:       [PASS][3] -> [DMESG-WARN][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2673-6a9d2dbb5b88b9e6bf74aa2934f5280ca4a6f934/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139954v7/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html
-    - bat-bmg-2:          [PASS][5] -> [DMESG-WARN][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2673-6a9d2dbb5b88b9e6bf74aa2934f5280ca4a6f934/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139954v7/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - bat-bmg-2:          [PASS][7] -> [FAIL][8] +1 other test fail
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2673-6a9d2dbb5b88b9e6bf74aa2934f5280ca4a6f934/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139954v7/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-a-dp-3:
-    - bat-dg2-oem2:       [PASS][9] -> [FAIL][10] +63 other tests fail
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2673-6a9d2dbb5b88b9e6bf74aa2934f5280ca4a6f934/bat-dg2-oem2/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-a-dp-3.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139954v7/bat-dg2-oem2/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-a-dp-3.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-hdmi-a-3:
-    - bat-bmg-1:          [PASS][11] -> [FAIL][12] +63 other tests fail
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2673-6a9d2dbb5b88b9e6bf74aa2934f5280ca4a6f934/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-hdmi-a-3.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139954v7/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-hdmi-a-3.html
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-bmg-1:          [PASS][13] -> [SKIP][14] +2 other tests skip
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2673-6a9d2dbb5b88b9e6bf74aa2934f5280ca4a6f934/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139954v7/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html
-    - bat-dg2-oem2:       [PASS][15] -> [SKIP][16] +2 other tests skip
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2673-6a9d2dbb5b88b9e6bf74aa2934f5280ca4a6f934/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate.html
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139954v7/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-139954v7_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-lnl-2:          [SKIP][17] ([Intel XE#1192]) -> [SKIP][18] ([Intel XE#4322]) +2 other tests skip
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2673-6a9d2dbb5b88b9e6bf74aa2934f5280ca4a6f934/bat-lnl-2/igt@xe_live_ktest@xe_migrate.html
-   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139954v7/bat-lnl-2/igt@xe_live_ktest@xe_migrate.html
-
-  
-  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
-  [Intel XE#4322]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322
-
-
-Build changes
--------------
-
-  * IGT: IGT_8231 -> IGT_8232
-  * Linux: xe-2673-6a9d2dbb5b88b9e6bf74aa2934f5280ca4a6f934 -> xe-pw-139954v7
-
-  IGT_8231: 8231
-  IGT_8232: 8232
-  xe-2673-6a9d2dbb5b88b9e6bf74aa2934f5280ca4a6f934: 6a9d2dbb5b88b9e6bf74aa2934f5280ca4a6f934
-  xe-pw-139954v7: 139954v7
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139954v7/index.html
-
---===============2418619563819659978==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Introduce drm sharpness property (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139954/">https://patchwork.freedesktop.org/series/139954/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139954v7/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139954v7/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2673-6a9d2dbb5b88b9e6bf74aa2934f5280ca4a6f934_BAT -&gt; xe-pw-139954v7_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-139954v7_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-139954v7_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-139954v7_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2673-6a9d2dbb5b88b9e6bf74aa2934f5280ca4a6f934/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139954v7/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2673-6a9d2dbb5b88b9e6bf74aa2934f5280ca4a6f934/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139954v7/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2673-6a9d2dbb5b88b9e6bf74aa2934f5280ca4a6f934/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139954v7/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-connector-state:</p>
-<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2673-6a9d2dbb5b88b9e6bf74aa2934f5280ca4a6f934/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139954v7/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html">FAIL</a> +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-a-dp-3:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2673-6a9d2dbb5b88b9e6bf74aa2934f5280ca4a6f934/bat-dg2-oem2/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-a-dp-3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139954v7/bat-dg2-oem2/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-a-dp-3.html">FAIL</a> +63 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-hdmi-a-3:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2673-6a9d2dbb5b88b9e6bf74aa2934f5280ca4a6f934/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-hdmi-a-3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139954v7/bat-bmg-1/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-hdmi-a-3.html">FAIL</a> +63 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2673-6a9d2dbb5b88b9e6bf74aa2934f5280ca4a6f934/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139954v7/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html">SKIP</a> +2 other tests skip</li>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2673-6a9d2dbb5b88b9e6bf74aa2934f5280ca4a6f934/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139954v7/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate.html">SKIP</a> +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-139954v7_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_migrate:<ul>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2673-6a9d2dbb5b88b9e6bf74aa2934f5280ca4a6f934/bat-lnl-2/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139954v7/bat-lnl-2/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322">Intel XE#4322</a>) +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8231 -&gt; IGT_8232</li>
-<li>Linux: xe-2673-6a9d2dbb5b88b9e6bf74aa2934f5280ca4a6f934 -&gt; xe-pw-139954v7</li>
-</ul>
-<p>IGT_8231: 8231<br />
-  IGT_8232: 8232<br />
-  xe-2673-6a9d2dbb5b88b9e6bf74aa2934f5280ca4a6f934: 6a9d2dbb5b88b9e6bf74aa2934f5280ca4a6f934<br />
-  xe-pw-139954v7: 139954v7</p>
-
-</body>
-</html>
-
---===============2418619563819659978==--
