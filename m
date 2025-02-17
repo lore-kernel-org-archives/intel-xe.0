@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 976B6C021A9
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Feb 2025 21:02:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80340C021A9
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Feb 2025 21:10:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C40710E293;
-	Mon, 17 Feb 2025 21:02:00 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cLTa+GeL";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3CBD10E293;
- Mon, 17 Feb 2025 21:01:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739826119; x=1771362119;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=yZpy8yfO7ltBfcueolChkmOvWyXd6GDpQdWwVAi9dMw=;
- b=cLTa+GeL1VvuZMXhE/MQLIOfnhNfO/5UfQEEyawtum3dESGg7xyM9YQw
- A/Pa8jEGLnZFb4G4MDVo+j29WOL3njxNE5bMUnGinhvyWtVlOvbM+69Lc
- iQvBRd8shz1VpiTTmG+9URPbakCfimsl6Swk51qWnmH9XOmUh7Ma4xJmg
- qRmWIdGTm3R4pdat8tm77O1oHsCblHuau83Q/g8rgyQGkFidJNp7OcgnO
- NMc06oyC8OPtMhaxPqiGXoCvGh05G9ZxUyorgMv6mN3mOfmC2QT6sDIC+
- pf4+CN/b8PuQBKjeU9JOKNftBcy65oUQlsxCM8wiPw669ASWKz0Chmivw A==;
-X-CSE-ConnectionGUID: Jikghc/lScKvPFm9PAwzlQ==
-X-CSE-MsgGUID: QhzdOeTlQwm2NnEbbQJoYA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="51133413"
-X-IronPort-AV: E=Sophos;i="6.13,293,1732608000"; d="scan'208";a="51133413"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2025 13:01:59 -0800
-X-CSE-ConnectionGUID: l5oRBRWNRsKDLLepmhD9vg==
-X-CSE-MsgGUID: E09oHJOgSOKlWZTegrkBVA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,293,1732608000"; d="scan'208";a="114405660"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 17 Feb 2025 13:01:56 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 17 Feb 2025 23:01:55 +0200
-Date: Mon, 17 Feb 2025 23:01:55 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH v3 2/3] drm/i915/display: Make POWER_DOMAIN_*() always
- result in enum intel_display_power_domain
-Message-ID: <Z7Ojw7xW2OcyX1j5@intel.com>
-References: <20250217203722.87152-1-gustavo.sousa@intel.com>
- <20250217203722.87152-3-gustavo.sousa@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 474BD10E0E4;
+	Mon, 17 Feb 2025 21:10:59 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47D0810E0E4;
+ Mon, 17 Feb 2025 21:10:58 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250217203722.87152-3-gustavo.sousa@intel.com>
-X-Patchwork-Hint: comment
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_Improve_type-safety_on_POWER?=
+ =?utf-8?q?=5FDOMAIN=5F*=28=29_macros_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 17 Feb 2025 21:10:58 -0000
+Message-ID: <173982665825.3370619.4531970022690316694@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250217203722.87152-1-gustavo.sousa@intel.com>
+In-Reply-To: <20250217203722.87152-1-gustavo.sousa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,50 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Feb 17, 2025 at 05:34:27PM -0300, Gustavo Sousa wrote:
-> In the hope of contributing to type safety in our code, let's ensure
-> that the type returned by the POWER_DOMAIN_*() macros is always of type
-> enum intel_display_power_domain.
-> 
-> v2:
->   - Remove accidental +1 in definition of POWER_DOMAIN_PIPE(). (Jani)
-> 
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+== Series Details ==
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Series: Improve type-safety on POWER_DOMAIN_*() macros (rev3)
+URL   : https://patchwork.freedesktop.org/series/144727/
+State : success
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display_power.h | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-> index 4ad35bd4b040..1b53d67f9b60 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-> @@ -117,12 +117,13 @@ enum intel_display_power_domain {
->  	POWER_DOMAIN_INVALID = POWER_DOMAIN_NUM,
->  };
->  
-> -#define POWER_DOMAIN_PIPE(pipe) ((pipe) - PIPE_A + POWER_DOMAIN_PIPE_A)
-> +#define POWER_DOMAIN_PIPE(pipe) \
-> +	((enum intel_display_power_domain)((pipe) - PIPE_A + POWER_DOMAIN_PIPE_A))
->  #define POWER_DOMAIN_PIPE_PANEL_FITTER(pipe) \
-> -		((pipe) - PIPE_A + POWER_DOMAIN_PIPE_PANEL_FITTER_A)
-> +	((enum intel_display_power_domain)((pipe) - PIPE_A + POWER_DOMAIN_PIPE_PANEL_FITTER_A))
->  #define POWER_DOMAIN_TRANSCODER(tran) \
->  	((tran) == TRANSCODER_EDP ? POWER_DOMAIN_TRANSCODER_EDP : \
-> -	 (tran) - TRANSCODER_A + POWER_DOMAIN_TRANSCODER_A)
-> +	 (enum intel_display_power_domain)((tran) - TRANSCODER_A + POWER_DOMAIN_TRANSCODER_A))
->  
->  struct intel_power_domain_mask {
->  	DECLARE_BITMAP(bits, POWER_DOMAIN_NUM);
-> -- 
-> 2.48.1
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+lib/modules/6.14.0-rc3-xe+/kernel/arch/x86/events/amd/
+lib/modules/6.14.0-rc3-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
+lib/modules/6.14.0-rc3-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.14.0-rc3-xe+/kernel/arch/x86/kvm/
+lib/modules/6.14.0-rc3-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.14.0-rc3-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.14.0-rc3-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.14.0-rc3-xe+/kernel/kernel/
+lib/modules/6.14.0-rc3-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/zstd.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/xctr.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/authenc.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/sm3.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/cmac.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/essiv.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/ccm.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/wp512.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/lrw.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/842.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/md4.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/lz4.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/sm4.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/async_tx/
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.14.0-rc3-xe+/kernel/block/
+lib/modules/6.14.0-rc3-xe+/kernel/block/bfq.ko
+lib/modules/6.14.0-rc3-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.14.0-rc3-xe+/build
+lib/modules/6.14.0-rc3-xe+/modules.alias.bin
+lib/modules/6.14.0-rc3-xe+/modules.builtin
+lib/modules/6.14.0-rc3-xe+/modules.softdep
+lib/modules/6.14.0-rc3-xe+/modules.alias
+lib/modules/6.14.0-rc3-xe+/modules.order
+lib/modules/6.14.0-rc3-xe+/modules.symbols
+lib/modules/6.14.0-rc3-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1739826648:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1739826648:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
