@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37314C021AB
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Feb 2025 20:28:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC5BBC021A9
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Feb 2025 20:37:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D76CA10E5D9;
-	Mon, 17 Feb 2025 20:28:46 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77D6710E274;
- Mon, 17 Feb 2025 20:28:46 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 663FF10E274;
+	Mon, 17 Feb 2025 20:37:35 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kFwQoKLn";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFF3310E21F;
+ Mon, 17 Feb 2025 20:37:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1739824654; x=1771360654;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=gP2fDNNQg1aParneC9w0//FWBSZg+6mhpMz+D0dj0Ug=;
+ b=kFwQoKLndLDHHAn4WGe58yk2zq0nD/ZjBRHYP5limf6/A7RihM8gy1rM
+ R9gliZoaX6mItKmYWfGKCyraem43KXVursEOG9SVGV44EemLb9W1ctEf9
+ QDbxG6up9FUZwllKKXM+111g5eNuPfxmktyoXdW8Ox5vN9Adkqd/5fact
+ 4PoOD+DhXgfa36V/EGRtEe1/ArQzaqu9uOSLPOa8hqKbwinZ/XqCdU2Df
+ C8WRJEwlzkSnocuZzNn38TqeIfAv7X1BHeHt+5bTWmD8NljDkvPi/aMnt
+ DijvHL3ygUoh/vU0FmAdiDl6eWnlA26En0QgaX6qF283Cti+UVk3qlYOD g==;
+X-CSE-ConnectionGUID: AP/nhaUSQeKJdIbOM0Mj0g==
+X-CSE-MsgGUID: GdV+qTwWRjmGlYAPJT0csw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="58043187"
+X-IronPort-AV: E=Sophos;i="6.13,293,1732608000"; d="scan'208";a="58043187"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2025 12:37:34 -0800
+X-CSE-ConnectionGUID: Z8t55oPeT5mB4MBwEZr5fg==
+X-CSE-MsgGUID: qom1PahsRqGOG+CtL7liCQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,293,1732608000"; d="scan'208";a="114853218"
+Received: from msatwood-mobl.amr.corp.intel.com (HELO
+ gjsousa-mobl2.corp.amr.intel.com) ([10.125.109.149])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2025 12:37:32 -0800
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH v3 0/3] Improve type-safety on POWER_DOMAIN_*() macros
+Date: Mon, 17 Feb 2025 17:34:25 -0300
+Message-ID: <20250217203722.87152-1-gustavo.sousa@intel.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/=7Bi915=2C_xe=7D/dis?=
- =?utf-8?q?play=3A_Move_dsm_registration_under_intel=5Fdriver?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 17 Feb 2025 20:28:46 -0000
-Message-ID: <173982412648.3355843.8935948519286831710@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250217200133.741758-1-rodrigo.vivi@intel.com>
-In-Reply-To: <20250217200133.741758-1-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +65,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Fix one issue[1] reported by the kernel test robot and also take this
+opportunity to improve POWER_DOMAIN_*() macros by making them explicitly
+return the expected enum type with patch #2 and then turning them into function
+with #3.
 
-Series: drm/{i915, xe}/display: Move dsm registration under intel_driver
-URL   : https://patchwork.freedesktop.org/series/144974/
-State : success
+Patch #3 could be squashed into #2, but I'll defer that to reviewers to provide
+their input.
 
-== Summary ==
+[1] https://lore.kernel.org/oe-kbuild-all/202502120809.XfmcqkBD-lkp@intel.com/
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast c282b8face163244076dac30e4c9ffd74dc89044
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
+Gustavo Sousa (3):
+  drm/i915/display: Use explicit base values in POWER_DOMAIN_*() macros
+  drm/i915/display: Make POWER_DOMAIN_*() always result in enum
+    intel_display_power_domain
+  drm/i915/display: Convert POWER_DOMAIN_*() to functions
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+ drivers/gpu/drm/i915/display/i9xx_plane.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_cmtg.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_cursor.c   |  4 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      | 10 ++---
+ drivers/gpu/drm/i915/display/intel_display.c  | 39 ++++++++++++-------
+ .../gpu/drm/i915/display/intel_display_irq.c  | 18 +++++----
+ .../drm/i915/display/intel_display_power.c    | 21 ++++++++++
+ .../drm/i915/display/intel_display_power.h    | 15 +++----
+ drivers/gpu/drm/i915/display/intel_pipe_crc.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_sprite.c   |  6 +--
+ drivers/gpu/drm/i915/display/intel_vdsc.c     |  3 +-
+ .../drm/i915/display/skl_universal_plane.c    |  2 +-
+ drivers/gpu/drm/i915/display/skl_watermark.c  |  2 +-
+ 13 files changed, 82 insertions(+), 44 deletions(-)
 
+-- 
+2.48.1
 
