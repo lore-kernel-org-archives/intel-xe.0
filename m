@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B19DBC021A9
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 02:01:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E207DC021AA
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 02:02:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7213510E346;
-	Tue, 18 Feb 2025 02:01:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A853610E346;
+	Tue, 18 Feb 2025 02:02:05 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA59E10E346;
- Tue, 18 Feb 2025 02:01:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D5F510E346;
+ Tue, 18 Feb 2025 02:02:04 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/display=3A_Sp?=
- =?utf-8?q?in-off_xe=5Fdisplay_runtime/d3cold_sequences?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/display=3A_Spin-of?=
+ =?utf-8?q?f_xe=5Fdisplay_runtime/d3cold_sequences?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 18 Feb 2025 02:01:50 -0000
-Message-ID: <173984411069.3430567.2645230704470550590@b555e5b46a47>
+Date: Tue, 18 Feb 2025 02:02:04 -0000
+Message-ID: <173984412450.3430575.9880531224575309928@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250218010330.761340-1-rodrigo.vivi@intel.com>
 In-Reply-To: <20250218010330.761340-1-rodrigo.vivi@intel.com>
@@ -48,9 +48,31 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: bc7a84cbc968 drm-tip: 2025y-02m-17d-23h-47m-58s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/display: Spin-off xe_display runtime/d3cold sequences
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+22f9cda3436b4fe965b5c5f31d2f2c1bcb483189
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 30affc9ed040d2e73d635d64bf755b614d06c17b
+Author: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Date:   Mon Feb 17 20:03:30 2025 -0500
+
+    drm/xe/display: Spin-off xe_display runtime/d3cold sequences
+    
+    No functional change. This patch only splits the xe_display_pm
+    suspend/resume functions in the regular suspend/resume from the
+    runtime/d3cold ones.
+    
+    v2: - Rename d3cold functions (Jonathan)
+        - Rebase
+    
+    Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+    Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch bc7a84cbc968ce97e581e9e3c2d26fb0ac106482 drm-intel
+30affc9ed040 drm/xe/display: Spin-off xe_display runtime/d3cold sequences
 
 
