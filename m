@@ -4,59 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EE65C02198
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 11:27:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BF71C021AD
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 11:27:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13F8E10E2C2;
-	Tue, 18 Feb 2025 11:27:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17ADE10E2CE;
+	Tue, 18 Feb 2025 11:27:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bKZkGvos";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L4POXCKD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3192910E2C2
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7D5B10E2CE
  for <intel-xe@lists.freedesktop.org>; Tue, 18 Feb 2025 11:27:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739878035; x=1771414035;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=xUC15+GSX1AXXUvEVSlShudozFXW8lnEP5hqFCWmaZc=;
- b=bKZkGvosADLcjigs0G+BJrYb4K8bg4FNSHrlGhN3qBsXi6ec98Sx9uP1
- WkF6ikHApjBzVHE+otyXL7oJ+2NS+jPuwI6yYX2KbMOz05r8v0i9FELB9
- 7fHkakjEUxWVz0k8ch247hQeA6B/L+Stw/Uo261ljbcuxk8dcEx6q8Tws
- 6IlMq44umezjw4fGHhJjnKfNborNGJcSqhk0C0U6CC6HkHbFWJm2P0PZi
- FvyMGcDBwna1V4ejPQMv2pLSZTnpatRHwzmwi7poTRFeqtQ6oncidnlPC
- X6gvqE5xuTJJN7zrOBDUF7N7qKlQbWiii9wbYX++D99+8G/5u9WRDlb4T g==;
-X-CSE-ConnectionGUID: MY8CUcwtRleuLX86LHC3+g==
-X-CSE-MsgGUID: X4xlfH1ATr2MICqQMCRDwA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="51190466"
-X-IronPort-AV: E=Sophos;i="6.13,295,1732608000"; d="scan'208";a="51190466"
+ t=1739878036; x=1771414036;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=acv0MoqAaNG2IVM8uWohtq5W6c8+zfQoj6bYzD+UeFo=;
+ b=L4POXCKDkauN3Pe0HSc88W740FqfsrlJxbwf4rVkAtKf39/53kUplGZ+
+ 6FScA0ZEJ+eVtStIzX2B2XfGueM3RqgvWo3/Q1mKtYGUzuXgHXAKdnSx+
+ YGjmttPDSxcFaIB39odBQpSg5TCnPrFp74UUGC7Rs70ADRVgQaFcmm8ZT
+ QA7qUk7Ze3cC6yfTJyDrasuqs34cW6J+VMh7Tr+A1V57KsARcLWKSNyzP
+ b6Th5RD6ilYgFaxKH622PXpG7IdO03+TxGFHHjSkjBxklTFoW4xS1cAfL
+ QqF6B5xdgWDXV+jJ8pmcJRjEfw58+SRlliLvclCcelozXKXPohLqJifE+ Q==;
+X-CSE-ConnectionGUID: /a/ezS+hQBC+oE9Tz38QYQ==
+X-CSE-MsgGUID: qnQ/CBTUSIaaB0R2jKKsGA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="51190467"
+X-IronPort-AV: E=Sophos;i="6.13,295,1732608000"; d="scan'208";a="51190467"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Feb 2025 03:27:15 -0800
-X-CSE-ConnectionGUID: Eh2iAKLHSWCMEkPZdPff7w==
-X-CSE-MsgGUID: Jsi460aYQZqlS+ur/Yw3pA==
+X-CSE-ConnectionGUID: Ytr152/aSzu0Yiq62JRA3g==
+X-CSE-MsgGUID: JkJCbfDUTfWOvW76V4wXQg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,295,1732608000"; d="scan'208";a="115018236"
-Received: from intelmailrelay-02.habana-labs.com ([10.111.11.21])
+X-IronPort-AV: E=Sophos;i="6.13,295,1732608000"; d="scan'208";a="115018239"
+Received: from intelmailrelay-01.habana-labs.com ([10.111.11.20])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Feb 2025 03:27:14 -0800
 Received: internal info suppressed
 Received: from dhirschfeld-vm-u22.habana-labs.com (localhost [127.0.0.1])
  by dhirschfeld-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with
- ESMTPS id 51IBR5Mb262823
+ ESMTPS id 51IBR50h262828
  (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
  Tue, 18 Feb 2025 13:27:05 +0200
 Received: (from dhirschfeld@localhost)
- by dhirschfeld-vm-u22.habana-labs.com (8.15.2/8.15.2/Submit) id 51IBR5Se262822;
+ by dhirschfeld-vm-u22.habana-labs.com (8.15.2/8.15.2/Submit) id 51IBR5ag262827;
  Tue, 18 Feb 2025 13:27:05 +0200
 From: Dafna Hirschfeld <dafna.hirschfeld@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Dafna Hirschfeld <dafna.hirschfeld@intel.com>
-Subject: [PATCH v2 1/2] drm/xe: move page fault descriptors to uc types file
-Date: Tue, 18 Feb 2025 13:27:01 +0200
-Message-Id: <20250218112702.262780-1-dafna.hirschfeld@intel.com>
+Subject: [PATCH v2 2/2] drm/xe: upon page fault,
+ use generic uc fw instead of guc
+Date: Tue, 18 Feb 2025 13:27:02 +0200
+Message-Id: <20250218112702.262780-2-dafna.hirschfeld@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250218112702.262780-1-dafna.hirschfeld@intel.com>
+References: <20250218112702.262780-1-dafna.hirschfeld@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -74,268 +77,223 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Future asic will have different firmware to handle page faults.
-Meanwhile future asic will have the same pf descriptor as guc
-so we should move the descriptors to xe_uc_fw_types.c
+Change the code in xe_gt_pagefault.c to use xe_uc_fw instead of
+xe_guc and add a callback to struct xe_uc_fw to send the page
+fault replay to the fw.
 
 Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@intel.com>
 ---
-changes since v1: same patch-set but rebased correctly.
-
- drivers/gpu/drm/xe/xe_gt_pagefault.c | 14 ++---
- drivers/gpu/drm/xe/xe_guc_fwif.h     | 81 ---------------------------
- drivers/gpu/drm/xe/xe_uc_fw_types.h  | 83 ++++++++++++++++++++++++++++
- 3 files changed, 90 insertions(+), 88 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_pagefault.c | 24 ++++--------------------
+ drivers/gpu/drm/xe/xe_gt_pagefault.h |  6 +++---
+ drivers/gpu/drm/xe/xe_gt_types.h     |  2 ++
+ drivers/gpu/drm/xe/xe_guc.c          | 15 +++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_ct.c       |  8 ++++----
+ drivers/gpu/drm/xe/xe_uc_fw_types.h  |  5 +++++
+ 6 files changed, 33 insertions(+), 27 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index 46701ca11ce0..51c4bcc769d2 100644
+index 51c4bcc769d2..c1e076e14219 100644
 --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
 +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -247,7 +247,7 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
+@@ -11,13 +11,10 @@
+ #include <drm/drm_exec.h>
+ #include <drm/drm_managed.h>
+ 
+-#include "abi/guc_actions_abi.h"
+ #include "xe_bo.h"
+ #include "xe_gt.h"
+ #include "xe_gt_stats.h"
+ #include "xe_gt_tlb_invalidation.h"
+-#include "xe_guc.h"
+-#include "xe_guc_ct.h"
+ #include "xe_migrate.h"
+ #include "xe_trace_bo.h"
+ #include "xe_vm.h"
+@@ -246,18 +243,6 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
+ 	return err;
  }
  
- static int send_pagefault_reply(struct xe_guc *guc,
--				struct xe_guc_pagefault_reply *reply)
-+				struct xe_uc_pagefault_reply *reply)
+-static int send_pagefault_reply(struct xe_guc *guc,
+-				struct xe_uc_pagefault_reply *reply)
+-{
+-	u32 action[] = {
+-		XE_GUC_ACTION_PAGE_FAULT_RES_DESC,
+-		reply->dw0,
+-		reply->dw1,
+-	};
+-
+-	return xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action), 0, 0);
+-}
+-
+ static void print_pagefault(struct xe_device *xe, struct pagefault *pf)
  {
- 	u32 action[] = {
- 		XE_GUC_ACTION_PAGE_FAULT_RES_DESC,
-@@ -280,12 +280,12 @@ static void print_pagefault(struct xe_device *xe, struct pagefault *pf)
+ 	drm_dbg(&xe->drm, "\n\tASID: %d\n"
+@@ -322,9 +307,8 @@ static bool pf_queue_full(struct pf_queue *pf_queue)
+ 		PF_MSG_LEN_DW;
+ }
  
- static bool get_pagefault(struct pf_queue *pf_queue, struct pagefault *pf)
+-int xe_guc_pagefault_handler(struct xe_guc *guc, u32 *msg, u32 len)
++int xe_pagefault_handler(struct xe_gt *gt, struct xe_uc_fw *fw, u32 *msg, u32 len)
  {
--	const struct xe_guc_pagefault_desc *desc;
-+	const struct xe_uc_pagefault_desc *desc;
- 	bool ret = false;
- 
- 	spin_lock_irq(&pf_queue->lock);
- 	if (pf_queue->tail != pf_queue->head) {
--		desc = (const struct xe_guc_pagefault_desc *)
-+		desc = (const struct xe_uc_pagefault_desc *)
- 			(pf_queue->data + pf_queue->tail);
- 
- 		pf->fault_level = FIELD_GET(PFD_FAULT_LEVEL, desc->dw0);
-@@ -364,7 +364,7 @@ static void pf_queue_work_func(struct work_struct *w)
- 	struct pf_queue *pf_queue = container_of(w, struct pf_queue, worker);
- 	struct xe_gt *gt = pf_queue->gt;
+-	struct xe_gt *gt = guc_to_gt(guc);
  	struct xe_device *xe = gt_to_xe(gt);
--	struct xe_guc_pagefault_reply reply = {};
-+	struct xe_uc_pagefault_reply reply = {};
- 	struct pagefault pf = {};
- 	unsigned long threshold;
- 	int ret;
-@@ -381,7 +381,7 @@ static void pf_queue_work_func(struct work_struct *w)
+ 	struct pf_queue *pf_queue;
+ 	unsigned long flags;
+@@ -336,6 +320,7 @@ int xe_guc_pagefault_handler(struct xe_guc *guc, u32 *msg, u32 len)
  
- 		reply.dw0 = FIELD_PREP(PFR_VALID, 1) |
- 			FIELD_PREP(PFR_SUCCESS, pf.fault_unsuccessful) |
--			FIELD_PREP(PFR_REPLY, PFR_ACCESS) |
-+			FIELD_PREP(PFR_REPLY, PFR_TYPE_ACCESS) |
- 			FIELD_PREP(PFR_DESC_TYPE, FAULT_RESPONSE_DESC) |
- 			FIELD_PREP(PFR_ASID, pf.asid);
+ 	asid = FIELD_GET(PFD_ASID, msg[1]);
+ 	pf_queue = gt->usm.pf_queue + (asid % NUM_PF_QUEUE);
++	pf_queue->fw = fw;
  
-@@ -602,12 +602,12 @@ static int handle_acc(struct xe_gt *gt, struct acc *acc)
+ 	/*
+ 	 * The below logic doesn't work unless PF_QUEUE_NUM_DW % PF_MSG_LEN_DW == 0
+@@ -390,7 +375,7 @@ static void pf_queue_work_func(struct work_struct *w)
+ 			FIELD_PREP(PFR_ENG_CLASS, pf.engine_class) |
+ 			FIELD_PREP(PFR_PDATA, pf.pdata);
  
- static bool get_acc(struct acc_queue *acc_queue, struct acc *acc)
+-		send_pagefault_reply(&gt->uc.guc, &reply);
++		pf_queue->fw->send_pagefault_reply(gt, pf_queue->fw, &reply);
+ 
+ 		if (time_after(jiffies, threshold) &&
+ 		    pf_queue->tail != pf_queue->head) {
+@@ -664,9 +649,8 @@ static bool acc_queue_full(struct acc_queue *acc_queue)
+ 		ACC_MSG_LEN_DW;
+ }
+ 
+-int xe_guc_access_counter_notify_handler(struct xe_guc *guc, u32 *msg, u32 len)
++int xe_access_counter_notify_handler(struct xe_gt *gt, struct xe_uc_fw *fw, u32 *msg, u32 len)
  {
--	const struct xe_guc_acc_desc *desc;
-+	const struct xe_uc_acc_desc *desc;
- 	bool ret = false;
+-	struct xe_gt *gt = guc_to_gt(guc);
+ 	struct acc_queue *acc_queue;
+ 	u32 asid;
+ 	bool full;
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.h b/drivers/gpu/drm/xe/xe_gt_pagefault.h
+index 839c065a5e4c..0c01af3b7124 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.h
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.h
+@@ -9,11 +9,11 @@
+ #include <linux/types.h>
  
- 	spin_lock(&acc_queue->lock);
- 	if (acc_queue->tail != acc_queue->head) {
--		desc = (const struct xe_guc_acc_desc *)
-+		desc = (const struct xe_uc_acc_desc *)
- 			(acc_queue->data + acc_queue->tail);
+ struct xe_gt;
+-struct xe_guc;
++struct xe_uc_fw;
  
- 		acc->granularity = FIELD_GET(ACC_GRANULARITY, desc->dw2);
-diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
-index 057153f89b30..752759cf74de 100644
---- a/drivers/gpu/drm/xe/xe_guc_fwif.h
-+++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
-@@ -258,90 +258,9 @@ struct guc_um_init_params {
- 	struct guc_um_queue_params queue_params[GUC_UM_HW_QUEUE_MAX];
- } __packed;
+ int xe_gt_pagefault_init(struct xe_gt *gt);
+ void xe_gt_pagefault_reset(struct xe_gt *gt);
+-int xe_guc_pagefault_handler(struct xe_guc *guc, u32 *msg, u32 len);
+-int xe_guc_access_counter_notify_handler(struct xe_guc *guc, u32 *msg, u32 len);
++int xe_pagefault_handler(struct xe_gt *gt, struct xe_uc_fw *fw, u32 *msg, u32 len);
++int xe_access_counter_notify_handler(struct xe_gt *gt, struct xe_uc_fw *fw, u32 *msg, u32 len);
  
--enum xe_guc_fault_reply_type {
--	PFR_ACCESS = 0,
--	PFR_ENGINE,
--	PFR_VFID,
--	PFR_ALL,
--	PFR_INVALID
--};
--
- enum xe_guc_response_desc_type {
- 	TLB_INVALIDATION_DESC = 0,
- 	FAULT_RESPONSE_DESC
- };
+ #endif	/* _XE_GT_PAGEFAULT_ */
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index 6e66bf0e8b3f..73f7bd044828 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -249,6 +249,8 @@ struct xe_gt {
+ 		struct pf_queue {
+ 			/** @usm.pf_queue.gt: back pointer to GT */
+ 			struct xe_gt *gt;
++			/** @usm.pf_queue.fw the fw that handles the pf */
++			struct xe_uc_fw *fw;
+ 			/** @usm.pf_queue.data: data in the page fault queue */
+ 			u32 *data;
+ 			/**
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 1619c0a52db9..1ea3678f1463 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -5,6 +5,7 @@
  
--struct xe_guc_pagefault_desc {
--	u32 dw0;
--#define PFD_FAULT_LEVEL		GENMASK(2, 0)
--#define PFD_SRC_ID		GENMASK(10, 3)
--#define PFD_RSVD_0		GENMASK(17, 11)
--#define XE2_PFD_TRVA_FAULT	BIT(18)
--#define PFD_ENG_INSTANCE	GENMASK(24, 19)
--#define PFD_ENG_CLASS		GENMASK(27, 25)
--#define PFD_PDATA_LO		GENMASK(31, 28)
--
--	u32 dw1;
--#define PFD_PDATA_HI		GENMASK(11, 0)
--#define PFD_PDATA_HI_SHIFT	4
--#define PFD_ASID		GENMASK(31, 12)
--
--	u32 dw2;
--#define PFD_ACCESS_TYPE		GENMASK(1, 0)
--#define PFD_FAULT_TYPE		GENMASK(3, 2)
--#define PFD_VFID		GENMASK(9, 4)
--#define PFD_RSVD_1		GENMASK(11, 10)
--#define PFD_VIRTUAL_ADDR_LO	GENMASK(31, 12)
--#define PFD_VIRTUAL_ADDR_LO_SHIFT 12
--
--	u32 dw3;
--#define PFD_VIRTUAL_ADDR_HI	GENMASK(31, 0)
--#define PFD_VIRTUAL_ADDR_HI_SHIFT 32
--} __packed;
--
--struct xe_guc_pagefault_reply {
--	u32 dw0;
--#define PFR_VALID		BIT(0)
--#define PFR_SUCCESS		BIT(1)
--#define PFR_REPLY		GENMASK(4, 2)
--#define PFR_RSVD_0		GENMASK(9, 5)
--#define PFR_DESC_TYPE		GENMASK(11, 10)
--#define PFR_ASID		GENMASK(31, 12)
--
--	u32 dw1;
--#define PFR_VFID		GENMASK(5, 0)
--#define PFR_RSVD_1		BIT(6)
--#define PFR_ENG_INSTANCE	GENMASK(12, 7)
--#define PFR_ENG_CLASS		GENMASK(15, 13)
--#define PFR_PDATA		GENMASK(31, 16)
--
--	u32 dw2;
--#define PFR_RSVD_2		GENMASK(31, 0)
--} __packed;
--
--struct xe_guc_acc_desc {
--	u32 dw0;
--#define ACC_TYPE	BIT(0)
--#define ACC_TRIGGER	0
--#define ACC_NOTIFY	1
--#define ACC_SUBG_LO	GENMASK(31, 1)
--
--	u32 dw1;
--#define ACC_SUBG_HI	BIT(0)
--#define ACC_RSVD0	GENMASK(2, 1)
--#define ACC_ENG_INSTANCE	GENMASK(8, 3)
--#define ACC_ENG_CLASS	GENMASK(11, 9)
--#define ACC_ASID	GENMASK(31, 12)
--
--	u32 dw2;
--#define ACC_VFID	GENMASK(5, 0)
--#define ACC_RSVD1	GENMASK(7, 6)
--#define ACC_GRANULARITY	GENMASK(10, 8)
--#define ACC_RSVD2	GENMASK(16, 11)
--#define ACC_VIRTUAL_ADDR_RANGE_LO	GENMASK(31, 17)
--
--	u32 dw3;
--#define ACC_VIRTUAL_ADDR_RANGE_HI	GENMASK(31, 0)
--} __packed;
--
- #endif
+ #include "xe_guc.h"
+ 
++#include "xe_uc_fw_types.h"
+ #include <drm/drm_managed.h>
+ 
+ #include <generated/xe_wa_oob.h>
+@@ -642,6 +643,19 @@ static int vf_guc_init(struct xe_guc *guc)
+ 	return 0;
+ }
+ 
++static int send_pagefault_reply(struct xe_gt *gt, struct xe_uc_fw *fw,
++				struct xe_uc_pagefault_reply *reply)
++{
++	struct xe_guc *guc = container_of(fw, struct xe_guc, fw);
++	u32 action[] = {
++		XE_GUC_ACTION_PAGE_FAULT_RES_DESC,
++		reply->dw0,
++		reply->dw1,
++	};
++
++	return xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action), 0, 0);
++}
++
+ int xe_guc_init(struct xe_guc *guc)
+ {
+ 	struct xe_device *xe = guc_to_xe(guc);
+@@ -652,6 +666,7 @@ int xe_guc_init(struct xe_guc *guc)
+ 	ret = xe_uc_fw_init(&guc->fw);
+ 	if (ret)
+ 		goto out;
++	guc->fw.send_pagefault_reply = &send_pagefault_reply;
+ 
+ 	if (!xe_uc_fw_is_enabled(&guc->fw))
+ 		return 0;
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 72ad576fc18e..14ff5f255d45 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -1293,15 +1293,15 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 								 adj_len);
+ 		break;
+ 	case XE_GUC_ACTION_REPORT_PAGE_FAULT_REQ_DESC:
+-		ret = xe_guc_pagefault_handler(guc, payload, adj_len);
++		ret = xe_pagefault_handler(gt, &guc->fw, payload, adj_len);
+ 		break;
+ 	case XE_GUC_ACTION_TLB_INVALIDATION_DONE:
+ 		ret = xe_guc_tlb_invalidation_done_handler(guc, payload,
+ 							   adj_len);
+ 		break;
+ 	case XE_GUC_ACTION_ACCESS_COUNTER_NOTIFY:
+-		ret = xe_guc_access_counter_notify_handler(guc, payload,
+-							   adj_len);
++		ret = xe_access_counter_notify_handler(gt, &guc->fw, payload,
++						       adj_len);
+ 		break;
+ 	case XE_GUC_ACTION_GUC2PF_RELAY_FROM_VF:
+ 		ret = xe_guc_relay_process_guc2pf(&guc->relay, hxg, hxg_len);
+@@ -1494,7 +1494,7 @@ static void g2h_fast_path(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 
+ 	switch (action) {
+ 	case XE_GUC_ACTION_REPORT_PAGE_FAULT_REQ_DESC:
+-		ret = xe_guc_pagefault_handler(guc, payload, adj_len);
++		ret = xe_pagefault_handler(gt, &guc->fw, payload, adj_len);
+ 		break;
+ 	case XE_GUC_ACTION_TLB_INVALIDATION_DONE:
+ 		__g2h_release_space(ct, len);
 diff --git a/drivers/gpu/drm/xe/xe_uc_fw_types.h b/drivers/gpu/drm/xe/xe_uc_fw_types.h
-index ad3b35a0e6eb..d8714ccb3f78 100644
+index d8714ccb3f78..4d82430e3274 100644
 --- a/drivers/gpu/drm/xe/xe_uc_fw_types.h
 +++ b/drivers/gpu/drm/xe/xe_uc_fw_types.h
-@@ -81,6 +81,89 @@ enum xe_uc_fw_version_types {
- 	XE_UC_FW_VER_TYPE_COUNT
+@@ -9,6 +9,7 @@
+ #include <linux/types.h>
+ 
+ struct xe_bo;
++struct xe_gt;
+ 
+ /*
+  * +------------+---------------------------------------------------+
+@@ -228,6 +229,10 @@ struct xe_uc_fw {
+ 
+ 	/** @private_data_size: size of private data found in uC css header */
+ 	u32 private_data_size;
++
++	/** a callback to send the page fault replay to the fw */
++	int (*send_pagefault_reply)(struct xe_gt *gt, struct xe_uc_fw *xe_fw,
++				    struct xe_uc_pagefault_reply *reply);
  };
  
-+/* currently only guc uses this */
-+
-+struct xe_uc_pagefault_desc {
-+	u32 dw0;
-+#define PFD_FAULT_LEVEL		GENMASK(2, 0)
-+#define PFD_SRC_ID		GENMASK(10, 3)
-+#define PFD_RSVD_0		GENMASK(17, 11)
-+#define XE2_PFD_TRVA_FAULT	BIT(18)
-+#define PFD_ENG_INSTANCE	GENMASK(24, 19)
-+#define PFD_ENG_CLASS		GENMASK(27, 25)
-+#define PFD_PDATA_LO		GENMASK(31, 28)
-+
-+	u32 dw1;
-+#define PFD_PDATA_HI		GENMASK(11, 0)
-+#define PFD_PDATA_HI_SHIFT	4
-+#define PFD_ASID		GENMASK(31, 12)
-+
-+	u32 dw2;
-+#define PFD_ACCESS_TYPE		GENMASK(1, 0)
-+#define PFD_FAULT_TYPE		GENMASK(3, 2)
-+#define PFD_VFID		GENMASK(9, 4)
-+#define PFD_RSVD_1		GENMASK(11, 10)
-+#define PFD_VIRTUAL_ADDR_LO	GENMASK(31, 12)
-+#define PFD_VIRTUAL_ADDR_LO_SHIFT 12
-+
-+	u32 dw3;
-+#define PFD_VIRTUAL_ADDR_HI	GENMASK(31, 0)
-+#define PFD_VIRTUAL_ADDR_HI_SHIFT 32
-+} __packed;
-+
-+struct xe_uc_pagefault_reply {
-+	u32 dw0;
-+#define PFR_VALID		BIT(0)
-+#define PFR_SUCCESS		BIT(1)
-+#define PFR_REPLY		GENMASK(4, 2)
-+#define PFR_RSVD_0		GENMASK(9, 5)
-+#define PFR_DESC_TYPE		GENMASK(11, 10)
-+#define PFR_ASID		GENMASK(31, 12)
-+
-+	u32 dw1;
-+#define PFR_VFID		GENMASK(5, 0)
-+#define PFR_RSVD_1		BIT(6)
-+#define PFR_ENG_INSTANCE	GENMASK(12, 7)
-+#define PFR_ENG_CLASS		GENMASK(15, 13)
-+#define PFR_PDATA		GENMASK(31, 16)
-+
-+	u32 dw2;
-+#define PFR_RSVD_2		GENMASK(31, 0)
-+} __packed;
-+
-+struct xe_uc_acc_desc {
-+	u32 dw0;
-+#define ACC_TYPE	BIT(0)
-+#define ACC_TRIGGER	0
-+#define ACC_NOTIFY	1
-+#define ACC_SUBG_LO	GENMASK(31, 1)
-+
-+	u32 dw1;
-+#define ACC_SUBG_HI	BIT(0)
-+#define ACC_RSVD0	GENMASK(2, 1)
-+#define ACC_ENG_INSTANCE	GENMASK(8, 3)
-+#define ACC_ENG_CLASS	GENMASK(11, 9)
-+#define ACC_ASID	GENMASK(31, 12)
-+
-+	u32 dw2;
-+#define ACC_VFID	GENMASK(5, 0)
-+#define ACC_RSVD1	GENMASK(7, 6)
-+#define ACC_GRANULARITY	GENMASK(10, 8)
-+#define ACC_RSVD2	GENMASK(16, 11)
-+#define ACC_VIRTUAL_ADDR_RANGE_LO	GENMASK(31, 17)
-+
-+	u32 dw3;
-+#define ACC_VIRTUAL_ADDR_RANGE_HI	GENMASK(31, 0)
-+} __packed;
-+
-+enum xe_uc_fault_reply_type {
-+	PFR_TYPE_ACCESS = 0,
-+	PFR_TYPE_ENGINE,
-+	PFR_TYPE_VFID,
-+	PFR_TYPE_ALL,
-+	PFR_TYPE_INVALID
-+};
-+
- /**
-  * struct xe_uc_fw - XE micro controller firmware
-  */
+ #endif
 -- 
 2.34.1
 
