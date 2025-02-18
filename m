@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA7BCC02198
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 12:19:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E014CC021AD
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 12:19:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96C8D10E69C;
-	Tue, 18 Feb 2025 12:19:29 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DAED10E69C;
- Tue, 18 Feb 2025 12:19:28 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id A85B710E69F;
+	Tue, 18 Feb 2025 12:19:47 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ln1u/uzL";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3EDF10E69E;
+ Tue, 18 Feb 2025 12:19:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1739881187; x=1771417187;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=TnsZVpEVHrbN2wWfKne7gOZPilXQV0j1rjXdASJC9oo=;
+ b=Ln1u/uzLRiidQBvrCbO/7PKjWTI4EJIv3dsArAEpa3B8dFFQZruaiOBt
+ pa4GZRrtWlAiymKrhvjBwS/CCVmQkOHEjmQU1N5ux1+tpHL3PV7ZBqX6L
+ swcs/UWPXkpGs3KXp/KCnEHu2iqR+T7hh5uvOG0J+3Sv2wKFwLIGPkB/7
+ F2AX/6zdUfiYj+CLQBM6+oHJgfUl5hExfSpljyJiteGZd+dpue7ylnOMO
+ OtQ+RGM7c4UV9khq5usMqT5eeSksH+weJEsgpGfjzVutUwpCvjbFXzVqU
+ oB25Qnwl9YNxy0bllJtUaw2Cs7+1/wG1pVOnGGPyq0l8fMCYC23bwExy5 g==;
+X-CSE-ConnectionGUID: 1pFhXsWfQOCNItOELFmqJA==
+X-CSE-MsgGUID: CSyOSe64QByYOpSGCJ3ahA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="63049460"
+X-IronPort-AV: E=Sophos;i="6.13,295,1732608000"; d="scan'208";a="63049460"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2025 04:19:46 -0800
+X-CSE-ConnectionGUID: dsN8p3/9TkWI/T+L8Cp7lw==
+X-CSE-MsgGUID: VINkf+ITREiASVu2iXLQpg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="115268242"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.43])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2025 04:19:43 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, Ville Syrjala
+ <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 1/2] drm/{i915,xe}: Move intel_pch under display
+In-Reply-To: <20250218010224.761209-1-rodrigo.vivi@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250218010224.761209-1-rodrigo.vivi@intel.com>
+Date: Tue, 18 Feb 2025 14:19:38 +0200
+Message-ID: <878qq3o36t.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/i915/display=3A_Allow?=
- =?utf-8?q?_display_PHYs_to_reset_power_state_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mika Kahola" <mika.kahola@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 18 Feb 2025 12:19:28 -0000
-Message-ID: <173988116837.3554660.2834005332805189668@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250218100019.740556-1-mika.kahola@intel.com>
-In-Reply-To: <20250218100019.740556-1-mika.kahola@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,61 +67,176 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, 17 Feb 2025, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> The only usage of the "PCH" infra is to detect which South Display
+> Engine we should be using. Move it under display so we can convert
+> all its callers towards intel_display struct later.
 
-Series: drm/i915/display: Allow display PHYs to reset power state (rev5)
-URL   : https://patchwork.freedesktop.org/series/144103/
-State : success
+Yeah, PCH is becoming a blocker to finishing the conversions of many
+files from drm_i915_private to intel_display. We'll need to do something
+like this.
 
-== Summary ==
+I was eyeing the PCH checks outside of display, and frankly many of them
+are plain wrong (done to check stuff that's unrelated to PCH, but
+happens to match desired platforms), or should be in display
+(e.g. gt_record_display_regs()). But there are also legitimate checks, I
+think in clock gating.
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-22f9cda3436b4fe965b5c5f31d2f2c1bcb483189
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit ccc29d03a0ee7f948cf36b8a4a6e718269195a09
-Author: Mika Kahola <mika.kahola@intel.com>
-Date:   Tue Feb 18 12:00:19 2025 +0200
+The thing that gives me an uneasy feeling about this patch series at
+this point in time is that i915 core still depends on the PCH
+detection. This won't work for a future independent display module, so
+what's the story for that? How will that pan out?
 
-    drm/i915/display: Allow display PHYs to reset power state
-    
-    The dedicated display PHYs reset to a power state that blocks S0ix,
-    increasing idle system power. After a system reset (cold boot,
-    S3/4/5, warm reset) if a dedicated PHY is not being brought up
-    shortly, use these steps to move the PHY to the lowest power state
-    to save power.
-    
-    1. Follow the PLL Enable Sequence, using any valid frequency such
-       as DP 1.62 GHz. This brings lanes out of reset and enables the
-       PLL to allow powerdown to be moved to the Disable state.
-    2. Follow PLL Disable Sequence. This moves powerdown to the Disable
-       state and disables the PLL.
-    
-    v2: Rename WA function to more descriptive (Jani)
-        For PTL, only port A needs this wa
-        Add helpers to check presence of C10 phy and pll enabling (Imre)
-    v3: Rename wa function (Imre)
-        Check return value of C10 pll tables readout (Imre)
-        Use PLL request to check pll enabling (Imre)
-    v4: Move intel_cx0_pll_is_enabled() right after
-        intel_cx0_pll_disable() (Imre)
-        Add drm_WARN_ON() if C10 state cannot be calculated from
-        the tables (Imre)
-    v5: Add debug message on PLL enabling (Imre)
-        Add check for intel_encoder_is_dig_port() (Imre)
-    
-    Signed-off-by: Mika Kahola <mika.kahola@intel.com>
-+ /mt/dim checkpatch 4587c05996666a92af63f86ba410bae1dc940794 drm-intel
-fdeb2e0822b4 drm/i915/display: Drop crtc_state from C10/C20 pll programming
-ccc29d03a0ee drm/i915/display: Allow display PHYs to reset power state
+It would be logical and great to do PCH detection near the end of
+intel_display_device_probe().
+
+Cc: Ville
+
+BR,
+Jani.
 
 
+>
+> No functional or code change.
+>
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> ---
+>  drivers/gpu/drm/i915/Makefile                          | 2 +-
+>  drivers/gpu/drm/i915/{soc =3D> display}/intel_pch.c      | 2 +-
+>  drivers/gpu/drm/i915/{soc =3D> display}/intel_pch.h      | 2 +-
+>  drivers/gpu/drm/i915/i915_drv.h                        | 3 +--
+>  drivers/gpu/drm/xe/Makefile                            | 2 +-
+>  drivers/gpu/drm/xe/compat-i915-headers/soc/intel_pch.h | 6 ------
+>  drivers/gpu/drm/xe/xe_device_types.h                   | 2 +-
+>  7 files changed, 6 insertions(+), 13 deletions(-)
+>  rename drivers/gpu/drm/i915/{soc =3D> display}/intel_pch.c (99%)
+>  rename drivers/gpu/drm/i915/{soc =3D> display}/intel_pch.h (98%)
+>  delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/soc/intel_pch.h
+>
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index ed05b131ed3a..3bac76059ba9 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -52,7 +52,6 @@ i915-y +=3D \
+>  i915-y +=3D \
+>  	soc/intel_dram.o \
+>  	soc/intel_gmch.o \
+> -	soc/intel_pch.o \
+>  	soc/intel_rom.o
+>=20=20
+>  # core library code
+> @@ -281,6 +280,7 @@ i915-y +=3D \
+>  	display/intel_modeset_setup.o \
+>  	display/intel_modeset_verify.o \
+>  	display/intel_overlay.o \
+> +	display/intel_pch.o \
+>  	display/intel_pch_display.o \
+>  	display/intel_pch_refclk.o \
+>  	display/intel_plane_initial.o \
+> diff --git a/drivers/gpu/drm/i915/soc/intel_pch.c b/drivers/gpu/drm/i915/=
+display/intel_pch.c
+> similarity index 99%
+> rename from drivers/gpu/drm/i915/soc/intel_pch.c
+> rename to drivers/gpu/drm/i915/display/intel_pch.c
+> index 82dc7fbd1a3e..37766e40fd1c 100644
+> --- a/drivers/gpu/drm/i915/soc/intel_pch.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pch.c
+> @@ -1,6 +1,6 @@
+>  // SPDX-License-Identifier: MIT
+>  /*
+> - * Copyright 2019 Intel Corporation.
+> + * Copyright 2025 Intel Corporation.
+>   */
+>=20=20
+>  #include "i915_drv.h"
+> diff --git a/drivers/gpu/drm/i915/soc/intel_pch.h b/drivers/gpu/drm/i915/=
+display/intel_pch.h
+> similarity index 98%
+> rename from drivers/gpu/drm/i915/soc/intel_pch.h
+> rename to drivers/gpu/drm/i915/display/intel_pch.h
+> index 635aea7a5539..b9fa2b2f07bc 100644
+> --- a/drivers/gpu/drm/i915/soc/intel_pch.h
+> +++ b/drivers/gpu/drm/i915/display/intel_pch.h
+> @@ -1,6 +1,6 @@
+>  /* SPDX-License-Identifier: MIT */
+>  /*
+> - * Copyright 2019 Intel Corporation.
+> + * Copyright 2025 Intel Corporation.
+>   */
+>=20=20
+>  #ifndef __INTEL_PCH__
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
+drv.h
+> index ffc346379cc2..2a2db0a6859e 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -38,6 +38,7 @@
+>=20=20
+>  #include "display/intel_display_limits.h"
+>  #include "display/intel_display_core.h"
+> +#include "display/intel_pch.h"
+>=20=20
+>  #include "gem/i915_gem_context_types.h"
+>  #include "gem/i915_gem_shrinker.h"
+> @@ -49,8 +50,6 @@
+>  #include "gt/intel_workarounds.h"
+>  #include "gt/uc/intel_uc.h"
+>=20=20
+> -#include "soc/intel_pch.h"
+> -
+>  #include "i915_drm_client.h"
+>  #include "i915_gem.h"
+>  #include "i915_gpu_error.h"
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 5ce65ccb3c08..df30c4385403 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -192,7 +192,6 @@ xe-$(CONFIG_DRM_XE_DISPLAY) +=3D \
+>  # SOC code shared with i915
+>  xe-$(CONFIG_DRM_XE_DISPLAY) +=3D \
+>  	i915-soc/intel_dram.o \
+> -	i915-soc/intel_pch.o \
+>  	i915-soc/intel_rom.o
+>=20=20
+>  # Display code shared with i915
+> @@ -267,6 +266,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) +=3D \
+>  	i915-display/intel_panel.o \
+>  	i915-display/intel_pfit.o \
+>  	i915-display/intel_pmdemand.o \
+> +	i915-display/intel_pch.o \
+>  	i915-display/intel_pps.o \
+>  	i915-display/intel_psr.o \
+>  	i915-display/intel_qp_tables.o \
+> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_pch.h b/dri=
+vers/gpu/drm/xe/compat-i915-headers/soc/intel_pch.h
+> deleted file mode 100644
+> index 9c46556d33a4..000000000000
+> --- a/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_pch.h
+> +++ /dev/null
+> @@ -1,6 +0,0 @@
+> -/* SPDX-License-Identifier: MIT */
+> -/*
+> - * Copyright =C2=A9 2023 Intel Corporation
+> - */
+> -
+> -#include "../../../i915/soc/intel_pch.h"
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe=
+_device_types.h
+> index 4656305dd45a..2586ffc4909b 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -30,7 +30,7 @@
+>  #endif
+>=20=20
+>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+> -#include "soc/intel_pch.h"
+> +#include "intel_pch.h"
+>  #include "intel_display_core.h"
+>  #include "intel_display_device.h"
+>  #endif
+
+--=20
+Jani Nikula, Intel
