@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD6DFC02198
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 11:49:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EACCC02198
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 11:54:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 864FA10E698;
-	Tue, 18 Feb 2025 11:49:14 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD42810E697;
- Tue, 18 Feb 2025 11:49:13 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5763883248680778871=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fix_exporting_xe_?=
- =?utf-8?q?buffers_multiple_times?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jacek Lawrynowicz" <jacek.lawrynowicz@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2BE410E2BA;
+	Tue, 18 Feb 2025 11:54:56 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DV3YzIhB";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B53D910E2BA
+ for <intel-xe@lists.freedesktop.org>; Tue, 18 Feb 2025 11:54:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1739879696; x=1771415696;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=3/Kg8RjSisCdlirKzIiE1cXxfH+WYoljYqoTszxuLZI=;
+ b=DV3YzIhBdyagsjVqVA+f7mHNGTjGd4EC5XlBT96/i7l4KzJF8a9eg1r1
+ FrTOuZz3aYfZAx8DCjNB5fAOOFT15b8gUrzcw8VdqmErCAvw5cKRH7X/C
+ l20D3uKKZ5JOIJB/s6cMljL5ZJCfyoeYonRnW6omMHjtgIH4x33IN0bQk
+ S7FNpDEqA2w6R2L6PJd+6Tl8mv+03WIO7TySNIrg9hPPWUEGvzu2Kms5R
+ UO+hKmTREZppKmoavImb+3IMMIug41lCoNiLe9PHvbNx9tx6hXHIkpHAI
+ hE+KoRSzZMyts33Rc7zdKd26YW+kGKJEaZyjmzdJznKJo43rfUUaixGs+ w==;
+X-CSE-ConnectionGUID: UNdp3l2VT3qYLdTSis6GQg==
+X-CSE-MsgGUID: 865boAqKQeWXT6YMwkKr+A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="50783751"
+X-IronPort-AV: E=Sophos;i="6.13,295,1732608000"; d="scan'208";a="50783751"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2025 03:54:56 -0800
+X-CSE-ConnectionGUID: hi7e1P2UTvWyf6YLUNOEPQ==
+X-CSE-MsgGUID: AIchEbgjRcegbPYHFBwxag==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,295,1732608000"; d="scan'208";a="145226429"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.43])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2025 03:54:54 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>, Harish Chegondi
+ <harish.chegondi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 18 Feb 2025 11:49:13 -0000
-Message-ID: <173987935376.3553309.6275621448381673872@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250218100353.2137964-1-jacek.lawrynowicz@linux.intel.com>
-In-Reply-To: <20250218100353.2137964-1-jacek.lawrynowicz@linux.intel.com>
+Subject: Re: [PATCH v9 2/8] drm/xe/uapi: Introduce API for EU stall sampling
+In-Reply-To: <85zfim1ls8.wl-ashutosh.dixit@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1739193510.git.harish.chegondi@intel.com>
+ <36d701413aeb171c86d5dd2ce7272918eb4ab818.1739193510.git.harish.chegondi@intel.com>
+ <85h6512ybc.wl-ashutosh.dixit@intel.com> <Z600wXtGm8a1bfD2@intel.com>
+ <85v7te7eks.wl-ashutosh.dixit@intel.com> <Z7FEHKxuSKrdH3Ze@intel.com>
+ <85zfim1ls8.wl-ashutosh.dixit@intel.com>
+Date: Tue, 18 Feb 2025 13:54:49 +0200
+Message-ID: <87eczvo4c6.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,182 +69,45 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5763883248680778871==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Sat, 15 Feb 2025, "Dixit, Ashutosh" <ashutosh.dixit@intel.com> wrote:
+> On Sat, 15 Feb 2025 17:49:16 -0800, Harish Chegondi wrote:
+>>
+>> > > > > +struct eu_stall_open_properties {
+>> > > > > +	unsigned int sampling_rate_mult;
+>> > > > > +	unsigned int wait_num_reports;
+>> > > >
+>> > > > I already said no need to be so specific. Just use int or u32 as types for
+>> > > > these.
+>> > > Okay, will try to change these back to u8/u32 in the next version.
+>> >
+>> > Use int or u32, not u8.
+>> Any reason why I can't use u8? The maximum value of sampling_rate_mult
+>> is 7.
 
-== Series Details ==
+There is zero benefit in using a smaller type just because you think
+your value range fits the type.
 
-Series: drm/xe: Fix exporting xe buffers multiple times
-URL   : https://patchwork.freedesktop.org/series/145001/
-State : success
+Default to using an int. You need a reason to use smaller types or
+unsigned, not the other way round.
 
-== Summary ==
-
-CI Bug Log - changes from xe-2679-4cc4e3d6ea1543688d62432dbe0fa750780fb262_BAT -> xe-pw-145001v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-145001v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][1] ([Intel XE#2229] / [Intel XE#455]) +1 other test skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145001v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
-
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][2] ([Intel XE#2229])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145001v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_intel_bb@intel-bb-blit-x:
-    - bat-adlp-vf:        [DMESG-WARN][3] ([Intel XE#3970]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2679-4cc4e3d6ea1543688d62432dbe0fa750780fb262/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145001v1/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-adlp-vf:        [SKIP][5] ([Intel XE#4322]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2679-4cc4e3d6ea1543688d62432dbe0fa750780fb262/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145001v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-
-  
-#### Warnings ####
-
-  * igt@xe_live_ktest@xe_bo:
-    - bat-adlp-vf:        [SKIP][7] ([Intel XE#4322]) -> [SKIP][8] ([Intel XE#2229] / [Intel XE#455])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2679-4cc4e3d6ea1543688d62432dbe0fa750780fb262/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145001v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-
-  
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
-  [Intel XE#4322]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+For example, many hardware registers are u32. That's a good reason to
+use u32 when reading/writing registers. Sometimes reducing the memory
+footprint matters, and you may want to use a smaller type. Likely not
+the case here.
 
 
-Build changes
--------------
-
-  * Linux: xe-2679-4cc4e3d6ea1543688d62432dbe0fa750780fb262 -> xe-pw-145001v1
-
-  IGT_8236: 8236
-  xe-2679-4cc4e3d6ea1543688d62432dbe0fa750780fb262: 4cc4e3d6ea1543688d62432dbe0fa750780fb262
-  xe-pw-145001v1: 145001v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145001v1/index.html
-
---===============5763883248680778871==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+BR,
+Jani.
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+>
+> Use whatever you want. The real question to ask is why can't we use a
+> generic type like int? Whether you use u8 or int, the CPU will still fetch
+> a 64 byte cacheline. And this structure is only used at initialization, so
+> performance is not a concern.
 
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix exporting xe buffers multiple times</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145001/">https://patchwork.freedesktop.org/series/145001/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145001v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145001v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2679-4cc4e3d6ea1543688d62432dbe0fa750780fb262_BAT -&gt; xe-pw-145001v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-145001v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145001v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145001v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@xe_intel_bb@intel-bb-blit-x:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2679-4cc4e3d6ea1543688d62432dbe0fa750780fb262/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145001v1/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2679-4cc4e3d6ea1543688d62432dbe0fa750780fb262/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322">Intel XE#4322</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145001v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2679-4cc4e3d6ea1543688d62432dbe0fa750780fb262/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322">Intel XE#4322</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145001v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2679-4cc4e3d6ea1543688d62432dbe0fa750780fb262 -&gt; xe-pw-145001v1</li>
-</ul>
-<p>IGT_8236: 8236<br />
-  xe-2679-4cc4e3d6ea1543688d62432dbe0fa750780fb262: 4cc4e3d6ea1543688d62432dbe0fa750780fb262<br />
-  xe-pw-145001v1: 145001v1</p>
-
-</body>
-</html>
-
---===============5763883248680778871==--
+-- 
+Jani Nikula, Intel
