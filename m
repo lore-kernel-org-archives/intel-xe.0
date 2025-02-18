@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86785C02198
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 11:47:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD6DFC02198
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 11:49:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DF8110E697;
-	Tue, 18 Feb 2025 11:47:06 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FbuceZy8";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6E9110E3B0;
- Tue, 18 Feb 2025 11:47:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739879224; x=1771415224;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=8OPt8BvkwIgSAslswcXYvgBTly+8YgI/xqYSzoCdwJk=;
- b=FbuceZy8jjiA0XlwSjeuEqaa0gKL6LMnLlqj2ZLq0UMVkWN6SDjpb0pW
- oB3OZUIJHut9hKrR1WGHKZ8O+O9Xf/2oRW9W3/+bjPxdH29WXDo8L7fB6
- pQHCe0I0Cd55neajZux3ygVhnfFYQiCX6+lfafTblHZFcnanlmBUov7ML
- YZDfIPnXAysNC7YrYZMJdwYHvXN/kaUeoCitYKrCRlF4F06RwooglHEwM
- CKrOfuv/rtcgE6C7LyYL99n8KuTepZBCF0jmqeLdWqUUxhAME58EHaRjR
- tepc236553No0f2NPKP2wReZakwt5/9kOo3yKhvK8uDfMXaVtU01u3BG3 g==;
-X-CSE-ConnectionGUID: itV3QC85Sk249zPqOVBWqw==
-X-CSE-MsgGUID: fpH3madkQX2x5MfGyl3yew==
-X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="39804229"
-X-IronPort-AV: E=Sophos;i="6.13,295,1732608000"; d="scan'208";a="39804229"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2025 03:47:03 -0800
-X-CSE-ConnectionGUID: wuQ64HiJR1aQCbdamMxYLw==
-X-CSE-MsgGUID: 4qgyEmFjRLGcZYbuSuzqig==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="119013268"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.43])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2025 03:47:00 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: chaitanya.kumar.borah@intel.com, Arun R Murthy
- <arun.r.murthy@intel.com>, Naveen Kumar <naveen1.kumar@intel.com>
-Subject: Re: [PATCH v5 3/3] drm/i915/display: Add i915 hook for
- format_mod_supported_async
-In-Reply-To: <20250218-asyn-v5-3-7ac5ac4abd4a@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250218-asyn-v5-0-7ac5ac4abd4a@intel.com>
- <20250218-asyn-v5-3-7ac5ac4abd4a@intel.com>
-Date: Tue, 18 Feb 2025 13:46:55 +0200
-Message-ID: <87h64ro4pc.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 864FA10E698;
+	Tue, 18 Feb 2025 11:49:14 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD42810E697;
+ Tue, 18 Feb 2025 11:49:13 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5763883248680778871=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fix_exporting_xe_?=
+ =?utf-8?q?buffers_multiple_times?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jacek Lawrynowicz" <jacek.lawrynowicz@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 18 Feb 2025 11:49:13 -0000
+Message-ID: <173987935376.3553309.6275621448381673872@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250218100353.2137964-1-jacek.lawrynowicz@linux.intel.com>
+In-Reply-To: <20250218100353.2137964-1-jacek.lawrynowicz@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,108 +36,182 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 18 Feb 2025, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> Hook up the newly added plane function pointer
-> format_mod_supported_async to populate the modifiers/formats supported
-> by asynchronous flips.
->
-> v5: Correct the if condition for modifier support check (Chaitanya)
->
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-> Tested-by: Naveen Kumar <naveen1.kumar@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/skl_universal_plane.c | 56 ++++++++++++++++------
->  1 file changed, 41 insertions(+), 15 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> index cd9762947f1de227a3abbcd61b7c7b0c9848e439..e303ae6b1c6208755ea0454ba36efcff0c06cda6 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -509,6 +509,33 @@ skl_plane_max_stride(struct intel_plane *plane,
->  				modifier, rotation,
->  				max_pixels, max_bytes);
->  }
-> +static bool intel_plane_async_formats(struct intel_plane *plane, uint32_t format)
+--===============5763883248680778871==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Do not add new uint32_t etc. uses to i915. Use u32 etc. Ditto below.
+== Series Details ==
 
-> +{
-> +	switch (format) {
-> +	case DRM_FORMAT_RGB565:
-> +	case DRM_FORMAT_XRGB8888:
-> +	case DRM_FORMAT_XBGR8888:
-> +	case DRM_FORMAT_ARGB8888:
-> +	case DRM_FORMAT_ABGR8888:
-> +	case DRM_FORMAT_XRGB2101010:
-> +	case DRM_FORMAT_XBGR2101010:
-> +	case DRM_FORMAT_XRGB16161616F:
-> +	case DRM_FORMAT_XBGR16161616F:
-> +		return true;
-> +	default:
-> +		return false;
-> +	}
-> +}
-> +
-> +static bool intel_plane_format_mod_supported_async(struct drm_plane *plane,
-> +						   uint32_t format,
-> +						   uint64_t modifier)
-> +{
-> +	if (!intel_plane_can_async_flip(to_intel_plane(plane), modifier))
-> +		return false;
-> +
-> +	return intel_plane_async_formats(to_intel_plane(plane), format);
-> +}
->  
->  static bool tgl_plane_can_async_flip(u64 modifier)
->  {
-> @@ -2616,30 +2643,29 @@ static bool tgl_plane_format_mod_supported(struct drm_plane *_plane,
->  	}
->  }
->  
-> +#define INTEL_PLANE_FUNCS \
-> +	.update_plane = drm_atomic_helper_update_plane, \
-> +	.disable_plane = drm_atomic_helper_disable_plane, \
-> +	.destroy = intel_plane_destroy, \
-> +	.atomic_duplicate_state = intel_plane_duplicate_state, \
-> +	.atomic_destroy_state = intel_plane_destroy_state, \
-> +	.format_mod_supported_async = intel_plane_format_mod_supported_async
-> +
->  static const struct drm_plane_funcs skl_plane_funcs = {
-> -	.update_plane = drm_atomic_helper_update_plane,
-> -	.disable_plane = drm_atomic_helper_disable_plane,
-> -	.destroy = intel_plane_destroy,
-> -	.atomic_duplicate_state = intel_plane_duplicate_state,
-> -	.atomic_destroy_state = intel_plane_destroy_state,
-> +	INTEL_PLANE_FUNCS,
-> +
->  	.format_mod_supported = skl_plane_format_mod_supported,
->  };
->  
->  static const struct drm_plane_funcs icl_plane_funcs = {
-> -	.update_plane = drm_atomic_helper_update_plane,
-> -	.disable_plane = drm_atomic_helper_disable_plane,
-> -	.destroy = intel_plane_destroy,
-> -	.atomic_duplicate_state = intel_plane_duplicate_state,
-> -	.atomic_destroy_state = intel_plane_destroy_state,
-> +	INTEL_PLANE_FUNCS,
-> +
->  	.format_mod_supported = icl_plane_format_mod_supported,
->  };
->  
->  static const struct drm_plane_funcs tgl_plane_funcs = {
-> -	.update_plane = drm_atomic_helper_update_plane,
-> -	.disable_plane = drm_atomic_helper_disable_plane,
-> -	.destroy = intel_plane_destroy,
-> -	.atomic_duplicate_state = intel_plane_duplicate_state,
-> -	.atomic_destroy_state = intel_plane_destroy_state,
-> +	INTEL_PLANE_FUNCS,
-> +
->  	.format_mod_supported = tgl_plane_format_mod_supported,
->  };
+Series: drm/xe: Fix exporting xe buffers multiple times
+URL   : https://patchwork.freedesktop.org/series/145001/
+State : success
 
--- 
-Jani Nikula, Intel
+== Summary ==
+
+CI Bug Log - changes from xe-2679-4cc4e3d6ea1543688d62432dbe0fa750780fb262_BAT -> xe-pw-145001v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-145001v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][1] ([Intel XE#2229] / [Intel XE#455]) +1 other test skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145001v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][2] ([Intel XE#2229])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145001v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_intel_bb@intel-bb-blit-x:
+    - bat-adlp-vf:        [DMESG-WARN][3] ([Intel XE#3970]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2679-4cc4e3d6ea1543688d62432dbe0fa750780fb262/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145001v1/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html
+
+  * igt@xe_live_ktest@xe_migrate:
+    - bat-adlp-vf:        [SKIP][5] ([Intel XE#4322]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2679-4cc4e3d6ea1543688d62432dbe0fa750780fb262/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145001v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+
+  
+#### Warnings ####
+
+  * igt@xe_live_ktest@xe_bo:
+    - bat-adlp-vf:        [SKIP][7] ([Intel XE#4322]) -> [SKIP][8] ([Intel XE#2229] / [Intel XE#455])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2679-4cc4e3d6ea1543688d62432dbe0fa750780fb262/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145001v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+
+  
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
+  [Intel XE#4322]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+
+
+Build changes
+-------------
+
+  * Linux: xe-2679-4cc4e3d6ea1543688d62432dbe0fa750780fb262 -> xe-pw-145001v1
+
+  IGT_8236: 8236
+  xe-2679-4cc4e3d6ea1543688d62432dbe0fa750780fb262: 4cc4e3d6ea1543688d62432dbe0fa750780fb262
+  xe-pw-145001v1: 145001v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145001v1/index.html
+
+--===============5763883248680778871==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Fix exporting xe buffers multiple times</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145001/">https://patchwork.freedesktop.org/series/145001/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145001v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145001v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2679-4cc4e3d6ea1543688d62432dbe0fa750780fb262_BAT -&gt; xe-pw-145001v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-145001v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145001v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145001v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@xe_intel_bb@intel-bb-blit-x:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2679-4cc4e3d6ea1543688d62432dbe0fa750780fb262/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145001v1/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2679-4cc4e3d6ea1543688d62432dbe0fa750780fb262/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322">Intel XE#4322</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145001v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2679-4cc4e3d6ea1543688d62432dbe0fa750780fb262/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322">Intel XE#4322</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145001v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2679-4cc4e3d6ea1543688d62432dbe0fa750780fb262 -&gt; xe-pw-145001v1</li>
+</ul>
+<p>IGT_8236: 8236<br />
+  xe-2679-4cc4e3d6ea1543688d62432dbe0fa750780fb262: 4cc4e3d6ea1543688d62432dbe0fa750780fb262<br />
+  xe-pw-145001v1: 145001v1</p>
+
+</body>
+</html>
+
+--===============5763883248680778871==--
