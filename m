@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0002C021AD
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 14:10:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69A72C02198
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 14:11:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75D4110E3EF;
-	Tue, 18 Feb 2025 14:10:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D47910E3BF;
+	Tue, 18 Feb 2025 14:11:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="e2/2/GHu";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="pRpcnqxe";
 	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7363410E3BF
- for <intel-xe@lists.freedesktop.org>; Tue, 18 Feb 2025 14:10:52 +0000 (UTC)
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E76910E3BF
+ for <intel-xe@lists.freedesktop.org>; Tue, 18 Feb 2025 14:11:45 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id DE8205C5E80;
- Tue, 18 Feb 2025 14:10:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76415C4CEE8;
- Tue, 18 Feb 2025 14:10:50 +0000 (UTC)
+ by nyc.source.kernel.org (Postfix) with ESMTP id 5ADD4A40C65;
+ Tue, 18 Feb 2025 14:09:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68F12C4CEE2;
+ Tue, 18 Feb 2025 14:11:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1739887850;
- bh=DGbdI/rIhefSkLPzajyRCwgtQAXhVud+3Fff8tOw9GQ=;
+ s=korg; t=1739887903;
+ bh=/K+M0FzxWjpLP8ZASsmFSYGhXIy2q5oECud0hUmFuNs=;
  h=Subject:To:Cc:From:Date:From;
- b=e2/2/GHu7iXQIoNkn59Zyd0jIgT4emTvspwQQjHd/2AAR/DR8KrR1iD8MehbIU4il
- rdHDugzxYOnNLZjlWfTXhULDounZoPTqHDYa3S5Xn+EY9EU8QjHT5o8hVERSjlOfDQ
- q12335WZAJVoJCBeMWULDYNxuZ2gxLzPyPAF5F2U=
+ b=pRpcnqxeU1uKWmija9Duttbhzt2Msc7rJdVoHpczi7gU2O5+76wUfct90eENqa6aU
+ 6zrJODqqEH7yBABnbgWx5sDePA01ffOw4aEIvzvZuMmlN8zpOQ+LNE669qJX/Yxh7I
+ eCqmUhblPGzOiouk6K8aYHbiU7b655dgAwKcP0V0=
 Subject: Patch "drm/xe/tracing: Fix a potential TP_printk UAF" has been added
- to the 6.12-stable tree
+ to the 6.13-stable tree
 To: gregkh@linuxfoundation.org, gustavo.sousa@intel.com,
  intel-xe@lists.freedesktop.org, jonathan.cavitt@intel.com,
  lucas.demarchi@intel.com, matthew.d.roper@intel.com,
@@ -36,8 +36,8 @@ To: gregkh@linuxfoundation.org, gustavo.sousa@intel.com,
  thomas.hellstrom@linux.intel.com
 Cc: <stable-commits@vger.kernel.org>
 From: <gregkh@linuxfoundation.org>
-Date: Tue, 18 Feb 2025 15:10:13 +0100
-Message-ID: <2025021813-disarm-approve-e33c@gregkh>
+Date: Tue, 18 Feb 2025 15:11:14 +0100
+Message-ID: <2025021814-aghast-bronze-6829@gregkh>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -62,12 +62,12 @@ This is a note to let you know that I've just added the patch titled
 
     drm/xe/tracing: Fix a potential TP_printk UAF
 
-to the 6.12-stable tree which can be found at:
+to the 6.13-stable tree which can be found at:
     http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
 
 The filename of the patch is:
      drm-xe-tracing-fix-a-potential-tp_printk-uaf.patch
-and it can be found in the queue-6.12 subdirectory.
+and it can be found in the queue-6.13 subdirectory.
 
 If you, or anyone else, feels it should not be added to the stable tree,
 please let <stable@vger.kernel.org> know about it.
@@ -149,4 +149,4 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 Patches currently in stable-queue which might be from thomas.hellstrom@linux.intel.com are
 
-queue-6.12/drm-xe-tracing-fix-a-potential-tp_printk-uaf.patch
+queue-6.13/drm-xe-tracing-fix-a-potential-tp_printk-uaf.patch
