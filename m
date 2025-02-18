@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08959C02198
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 12:41:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEDDFC021AD
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 12:51:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9CB210E3B2;
-	Tue, 18 Feb 2025 12:41:02 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47B5B10E3B2;
- Tue, 18 Feb 2025 12:41:01 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C31D10E6AB;
+	Tue, 18 Feb 2025 12:51:29 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WkDV+ZL8";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC73710E6A8;
+ Tue, 18 Feb 2025 12:51:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1739883088; x=1771419088;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=KN9nYO6fgdscblKlIndc2pPGgYUD0x9OR5V1rPZ24mI=;
+ b=WkDV+ZL8MkImhAB58GPd0BpY41sgfVKhe1AXDpVkziftLedpN/uDVxqx
+ 4+fJRuyr7YH28Vb4wmlQlgWVN3oj7qXB2pDnctnMUJzPhRAUHhGUOKsER
+ 6bE20HGLgKyR5swz/hhjRBpdjK1PnQyKiOikxWYkUNfMGi1aMFjyUaW0Q
+ p0bv/9xDo4PMh98tGacF+Utu5f739MKvRy38O4nSOdu4KhFg06m/EjtV8
+ BaadOHkzjDniqN92u8lr3wOPAlaoAQeO2h9k41lSEVo3Om1pZFtJMxQg4
+ B1Yix0yBxpFM74adhaH7cYElf/9/F73efAuTYgqwz1EqlcOUPfihoHevY Q==;
+X-CSE-ConnectionGUID: I80ZFHK0QvWScSSIfEWnLQ==
+X-CSE-MsgGUID: Zo6jVqOGSdOHLG2+UcpY/w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="39810489"
+X-IronPort-AV: E=Sophos;i="6.13,296,1732608000"; d="scan'208";a="39810489"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2025 04:51:27 -0800
+X-CSE-ConnectionGUID: x/fCLpXARZ2mNnUcJxCPTA==
+X-CSE-MsgGUID: 8uQ057pBR3qaAuICPEi9Ng==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,296,1732608000"; d="scan'208";a="114901675"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.43])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2025 04:51:25 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: stable@vger.kernel.org
+Subject: Re: [PATCH 1/2] drm/i915/dp: Fix error handling during 128b/132b
+ link training
+In-Reply-To: <20250217223828.1166093-2-imre.deak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250217223828.1166093-1-imre.deak@intel.com>
+ <20250217223828.1166093-2-imre.deak@intel.com>
+Date: Tue, 18 Feb 2025 14:51:21 +0200
+Message-ID: <875xl7o1py.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/i915/display=3A_Allo?=
- =?utf-8?q?w_display_PHYs_to_reset_power_state_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mika Kahola" <mika.kahola@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 18 Feb 2025 12:41:01 -0000
-Message-ID: <173988246128.3561277.17679287743599893682@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250218100019.740556-1-mika.kahola@intel.com>
-In-Reply-To: <20250218100019.740556-1-mika.kahola@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +67,66 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 18 Feb 2025, Imre Deak <imre.deak@intel.com> wrote:
+> At the end of a 128b/132b link training sequence, the HW expects the
+> transcoder training pattern to be set to TPS2 and from that to normal
+> mode (disabling the training pattern). Transitioning from TPS1 directly
+> to normal mode leaves the transcoder in a stuck state, resulting in
+> page-flip timeouts later in the modeset sequence.
+>
+> Atm, in case of a failure during link training, the transcoder may be
+> still set to output the TPS1 pattern. Later the transcoder is then set
+> from TPS1 directly to normal mode in intel_dp_stop_link_train(), leading
+> to modeset failures later as described above. Fix this by setting the
+> training patter to TPS2, if the link training failed at any point.
+>
+> Cc: stable@vger.kernel.org # v5.18+
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
 
-Series: drm/i915/display: Allow display PHYs to reset power state (rev5)
-URL   : https://patchwork.freedesktop.org/series/144103/
-State : success
+No bspec link for this?
 
-== Summary ==
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 4587c05996666a92af63f86ba410bae1dc940794
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
+> ---
+>  .../gpu/drm/i915/display/intel_dp_link_training.c | 15 ++++++++++++++-
+>  1 file changed, 14 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> index 3cc06c916017d..11953b03bb6aa 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -1563,7 +1563,7 @@ intel_dp_128b132b_link_train(struct intel_dp *intel_dp,
+>  
+>  	if (wait_for(intel_dp_128b132b_intra_hop(intel_dp, crtc_state) == 0, 500)) {
+>  		lt_err(intel_dp, DP_PHY_DPRX, "128b/132b intra-hop not clear\n");
+> -		return false;
+> +		goto out;
+>  	}
+>  
+>  	if (intel_dp_128b132b_lane_eq(intel_dp, crtc_state) &&
+> @@ -1575,6 +1575,19 @@ intel_dp_128b132b_link_train(struct intel_dp *intel_dp,
+>  	       passed ? "passed" : "failed",
+>  	       crtc_state->port_clock, crtc_state->lane_count);
+>  
+> +out:
+> +	/*
+> +	 * Ensure that the training pattern does get set to TPS2 even in case
+> +	 * of a failure, as is the case at the end of a passing link training
+> +	 * and what is expected by the transcoder. Leaving TPS1 set (and
+> +	 * disabling the link train mode in DP_TP_CTL later from TPS1 directly)
+> +	 * would result in a stuck transcoder HW state and flip-done timeouts
+> +	 * later in the modeset sequence.
+> +	 */
+> +	if (!passed)
+> +		intel_dp_program_link_training_pattern(intel_dp, crtc_state,
+> +						       DP_PHY_DPRX, DP_TRAINING_PATTERN_2);
+> +
+>  	return passed;
+>  }
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+-- 
+Jani Nikula, Intel
