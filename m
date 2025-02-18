@@ -4,62 +4,169 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 961AAC02198
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 15:40:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C840C021AA
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 15:52:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E95A10E728;
-	Tue, 18 Feb 2025 15:40:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EEA610E028;
+	Tue, 18 Feb 2025 15:52:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XsKRhHrO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NphjHRZN";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08D3D10E728;
- Tue, 18 Feb 2025 15:40:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB32D10E028;
+ Tue, 18 Feb 2025 15:52:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739893235; x=1771429235;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=LYGnodBa8oXTJeG+c4RH7x/eNdJt2+rYvyaUY4oEbHM=;
- b=XsKRhHrO9SUNFGiHOmJX7/x5BScKVYVMhLJ+Q4ytQhtqoW3ihXTVBJ+7
- gPIjTTSU+45IIH40pd3Ohn4KlGyk2S2kPzusYAilpueBkPRQGc9MRGMn+
- 9us4Y9NRw9Ncru5PhzH9jkCz1fBLC6P4Kf4WhtNMURp58ucJ3awxDGRQn
- 5NoAUN00qtbsjUeoTv8TAv2/r23a5CYwkUQ1DTTYz2yvJ3f6Pbnhi++8y
- jDfYb6EY5OcP1g7N4+H6An7eMG/dLR7OIopc558so+zPZm8i68PMf1Isy
- fGa/lN0ZhVZqzF/dkXSSPcCRYobFZd/03DQyfcyDsYL1F9OqkvZO7Aucp g==;
-X-CSE-ConnectionGUID: Y401F2dUR9SRRNwfLoLO/w==
-X-CSE-MsgGUID: 2mAdUmX9TY28QBJa/TntRA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="40853948"
-X-IronPort-AV: E=Sophos;i="6.13,296,1732608000"; d="scan'208";a="40853948"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2025 07:40:34 -0800
-X-CSE-ConnectionGUID: /WimXNq/SA2jvYGQUJnfnQ==
-X-CSE-MsgGUID: nZ1s5awCSjWh2CsEV1oBcg==
+ t=1739893926; x=1771429926;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=DCkfEc4zBjYSCQiynXbG9kEeGf4aP23tNE75SahgZQM=;
+ b=NphjHRZN2R3Np2BG2My6udnoxL8NXNUjtRu3uR+Za+KXWuCsBEI7W8u4
+ gRr/aGVBZi+0StW9RJQ1AINJKHUlkGMrrcWr1VXZtylwgKeHk2jntmwRn
+ 6vxgXGmp4A8uHA+ubyQoV148ccbAGTUFqv19yNaHyn/FAF9pRiPdxci23
+ JGFND3gIMLhoxq+H/xr9oyPsNjVBJwq/kNnx4mAS3EU1J9AqKe18ZvDck
+ DRtBCoCeq6488XSE18PcVaDQV8nsQBxyCfCc1MeU0ZNoKGoMnoOOiaNDk
+ OXKcoP/DKmoVEAKkhcSwAkKlFr0wsQ0PixAzLGA3EMOJw5i0MXOpc2Lm0 w==;
+X-CSE-ConnectionGUID: SYF2aGN5R6mUxk7Vh05jgQ==
+X-CSE-MsgGUID: Z15qksakTxCHfD3y8BUblQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="44356264"
+X-IronPort-AV: E=Sophos;i="6.13,296,1732608000"; d="scan'208";a="44356264"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2025 07:52:06 -0800
+X-CSE-ConnectionGUID: +t7+5MIaTlCBlO+Rtyr6Jw==
+X-CSE-MsgGUID: Rr8Rhg8UTEyZG2bNUVbXnw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,296,1732608000"; d="scan'208";a="119528293"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO [10.245.246.7])
- ([10.245.246.7])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2025 07:40:32 -0800
-Message-ID: <cdb50c7a4e721afd6cebfbf7cacab6cd8cd524c7.camel@linux.intel.com>
-Subject: Re: [PATCH v16 2/7] drm/ttm/pool, drm/ttm/tt: Provide a helper to
- shrink pages
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
- intel-xe@lists.freedesktop.org
-Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, Matthew Brost
- <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org
-Date: Tue, 18 Feb 2025 16:40:19 +0100
-In-Reply-To: <57ec915f-f766-413e-9377-af37071f29d8@amd.com>
-References: <20250130101325.3068-1-thomas.hellstrom@linux.intel.com>
- <20250130101325.3068-3-thomas.hellstrom@linux.intel.com>
- <57ec915f-f766-413e-9377-af37071f29d8@amd.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+X-IronPort-AV: E=Sophos;i="6.13,296,1732608000"; d="scan'208";a="119410325"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2025 07:52:05 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14; Tue, 18 Feb 2025 07:52:05 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14 via Frontend Transport; Tue, 18 Feb 2025 07:52:05 -0800
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.170)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Tue, 18 Feb 2025 07:52:03 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ix7UcUXta5R1fTPX4VBQV0rsnMC7KjS2XaUe4IAlt6bZSQYo62/k/WvXIH104qGJe50nyAFroytUDgdEiAPP3551puPybE+Fcw6rO6r6UxLj0f4wPrBrL/XA7AK0le0mAWsVS6EB/P4F63MwfLRrs0tiTMNUpDt2vHzEEMJoHa5HKEhkFn8doARwoFVzYhDpn4e9yAvtvsdjB+R2qgI86cFcU6fXq+isLEqblAQDuJzGD+x3Iphzgu6mlNrZkMnHy3wzPymvzfGyA+f+R9y6aAuC87yXhWkeHGZ8wdbmCK4nJbwBA0A8Ar9Cnjz6sqb6c+nuhzs+S4Oe2Ffq7Boj5Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=T8F2p/hkkx3+KHfW7U52rhvcKJX9SSSiNpPX3MC/8B8=;
+ b=wop13DVgjJ+pDJ7V7VPqbvkQ4YX4z85yrrpkXaJJkmfxpbP8/snIsuvYE1BRpc8YJIWcp5kA9/RAYuNYEwPpNL9lrv4GVPJCyDCwRMYGzKxAQ1JAhVeMFwoSOU3FNatPedFCsdmj8OZb+OLAsuAUpgJZbZn0mXrsE8/4Dl6NP35O6YhVgWZZgXZtuIA+MXv7/+4XUrtj69R/LNY/HhGw4M641pHIrRlcB57qte7eFUVTfYFSa5cAAwIkZizFTLGMyXnPkOYAXa3TL5OR98dPQVkBLit1wu6JXosU3XhQiyxDjSSPgQ5Sawo1NmATmYmCOHJnZG8x5DB8fsocpE87JQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by CY5PR11MB6461.namprd11.prod.outlook.com (2603:10b6:930:33::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8445.18; Tue, 18 Feb
+ 2025 15:51:47 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44%3]) with mapi id 15.20.8445.017; Tue, 18 Feb 2025
+ 15:51:46 +0000
+Date: Tue, 18 Feb 2025 09:51:43 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+CC: Rodrigo Vivi <rodrigo.vivi@intel.com>, Jani Nikula
+ <jani.nikula@linux.intel.com>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 1/2] drm/{i915,xe}: Move intel_pch under display
+Message-ID: <epdolywt2ozgn4hohpiqtthyxsyzoqjti2yynf5xfphwlbgbch@icfttsdy3uwn>
+References: <20250218010224.761209-1-rodrigo.vivi@intel.com>
+ <878qq3o36t.fsf@intel.com> <Z7SdGtcVfduRSkNs@intel.com>
+ <Z7Sm7Z1pfz0hYGD2@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Z7Sm7Z1pfz0hYGD2@intel.com>
+X-ClientProxiedBy: MW2PR2101CA0036.namprd21.prod.outlook.com
+ (2603:10b6:302:1::49) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|CY5PR11MB6461:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8e7ffa04-dfc3-414f-ce0f-08dd503425f1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?B7IHU7bZQjijsFfEWYJldX2u4e6R+KTy9ZiBv7DpCmivo4Hb2uO/3X6PT0?=
+ =?iso-8859-1?Q?QrQUAlGeJQvCO8tqku0HzR0BIJwzliO7VdByj06KrQ/9qkPQiyYVze//ao?=
+ =?iso-8859-1?Q?CyDbL5Brm7ZJjBCcvUVXFk5YNWsYEXID03ICoD5AutLU/rZXlmRSd7zlgt?=
+ =?iso-8859-1?Q?ZpJnBZHcO9xRcgJJNxBJGlRhY3fo0708NGMBN6xGyjdglm0yHdmk12iv2K?=
+ =?iso-8859-1?Q?4yxe0OcpXsNwgaOlqIRnfSVxmNX1xr7xLZTfS4njJTHpiSXYGEa+Zd/bPh?=
+ =?iso-8859-1?Q?tm51+sl6R5KLvxGVyVRuvhsArteOsfp4zCylHbI6nnwY0RC6gC9dZ+uJGw?=
+ =?iso-8859-1?Q?tLt4MwHOlHGp2AjS3q8ILhzMW9o4E8L5EjoHifAH10sSfJuLNsfhGf80WZ?=
+ =?iso-8859-1?Q?YlUhWk0/U0D/mpYOVozBpxEbFC0u4J6V7Z1t8mUti0h8q0uhg127EfHL03?=
+ =?iso-8859-1?Q?oTbmmt9QpyXMARCckMZPnqgE+Z1RvUvpFnaXGkRiwdrUSgKyT55v7W3BYq?=
+ =?iso-8859-1?Q?vZf3qMmdWoDKLKcKntjspV0NPyUfoXfcJRnDG2uK+7UxS1/pD1ka29cXDN?=
+ =?iso-8859-1?Q?xdaOsFg/vQ0dwNjpk5WrvXG744Mrs295xShZ6kwHybYs7CgbAwuAp7VCIB?=
+ =?iso-8859-1?Q?C0t7LgaPfo/6rL0JpThbua0g4owbZrqLHwqCyF1/PLLJSb9ZNPWy2+e4jS?=
+ =?iso-8859-1?Q?0jHHOslThyYadGl+74nPay8MASbHln50Lgh/k9YRM/8/4fyfaZN890Mmv2?=
+ =?iso-8859-1?Q?T4G/PnAwdy7iDTasd7mABCRKh9xoXhT0bS7G7ZltqKLcGSeDSGQTO1QP8v?=
+ =?iso-8859-1?Q?DWFcJ6//Dz6AglqEi4yaymKtZiFvu9MTIkVJ4puEeVQDLwhaA6ECpsagwz?=
+ =?iso-8859-1?Q?Y5iRqFQelnPphUWOJtEqjHlLOuLJBfvtOfUta480Ys6YNAkOC9dk4lD3cw?=
+ =?iso-8859-1?Q?Sak4hg/yeATpz67hLQ38m4KmpWBNkCwg75D3oLIJV3uyvY+Ys9iD/EoRjY?=
+ =?iso-8859-1?Q?620yNDtAF0j/jsRwKR/ILl/e7dJ5me72hGM6TzV7BN+7vuKECyDUwsT7aJ?=
+ =?iso-8859-1?Q?3WOYFWbw7ElzRVsOlvpWujtss3I30hl8+JhiuRL5Jr0uSz7MWrlrae4lbz?=
+ =?iso-8859-1?Q?ER0QdHnh75jk/v3bDlr9YRasL2V2k4Auo6fJAWJDkim3k1sw9iMvyQFrlO?=
+ =?iso-8859-1?Q?BdbBcUKxqj2EMvNY6rfI03Ov+Xl3SrtD36vVffIK2+2bV5SPND0vMX5c5K?=
+ =?iso-8859-1?Q?CDRBd3J4kKCFlQ4BOivd5EMp9oa4tQklJnTUWez+FJ15vk5nFkkL4cEgqW?=
+ =?iso-8859-1?Q?/yOEiy4YR4UnhofSil8UblGlprMmY9GlAz0X0bFgOxC9hHtV/eezKU0H8k?=
+ =?iso-8859-1?Q?J4o7bVUXkmjOJ23qvpp6PY3Wlgdu4DbO47T9jycDlwMS1PSOa8EihA383+?=
+ =?iso-8859-1?Q?ujhzOyMLkAK9ElJx?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?IcKZ2C9zQZJJca7eod+r2V/w9qK5yQGJ539apJiq7I4jV7kcrbvmFF9BDA?=
+ =?iso-8859-1?Q?M3ppfdSFNLv7BLzArWOKukj1ZxkEz8ONa4IRoEfnhiguiqHYxqcvGsvCUn?=
+ =?iso-8859-1?Q?xAfr2E65TmwStrFXZ4ii9VGi6zCnYcb8BPyaP1HvvNkdzftufDhGxsnwo7?=
+ =?iso-8859-1?Q?xN8KugvtZURqI6w0alcCr/dKzNhNMmmoI7p20WeXiGWESfVGmJ/OLbeJvJ?=
+ =?iso-8859-1?Q?DxWbdTQcT0Ac2ruoUz+2fHIIkUkXBRIIEComtWWv+8oi7D1lPobyZkh0Kq?=
+ =?iso-8859-1?Q?dCLQxnDNwoBDrgBq93oycNp/W18539jMV2nIDA45akSxuY7/I504LVer2b?=
+ =?iso-8859-1?Q?TkynZhQVPjjginZDz1Lgdio9scIzCKRar4iQbI14J6zMQhntBaPAdKMuva?=
+ =?iso-8859-1?Q?CWifUwdtfBTt5VcD9wjPKONrpIrSVgyuloZJFIHCFgaqKc7IMs6NDsd62T?=
+ =?iso-8859-1?Q?leN75J51/AjapNn3+7fIKiI2/xn80LUsyIGFytkK/ujnUryzerienFXmKG?=
+ =?iso-8859-1?Q?kQyv3zh1cv55w+d8o8deLnB99m3pITeBq1joNmVJ2ZK2lLTgnlj4Di3riI?=
+ =?iso-8859-1?Q?U9wC0DufE2fmutUcJv2F6I9irj6kJKX9EaaXenhpBIqq0YoBnUyBqWCmMI?=
+ =?iso-8859-1?Q?jR+r2QWYFZufPjG/CNKiWMBx4LDQiohyzCngEMBrnnudUhElpydHadzqbM?=
+ =?iso-8859-1?Q?pRcvdnQkSx63+ioxZ0QIEWzRJzUXqgrIfeYrNIzt6JGHiZX0nrbl0Sf9z1?=
+ =?iso-8859-1?Q?snb5PqYrCSvYGHImBIA23LDAcaeHIPiPwfTHAi+OfdU37M28FRmANLGuoe?=
+ =?iso-8859-1?Q?tkhN6L5jVzQXVLF+7JOfF9SppnqzjI556pENy+k4+g9jtRjOfF8uTUdw7y?=
+ =?iso-8859-1?Q?6VnMcZYehDrusuoqkrSNKKMzKY7IciuJCPD2/Na3IZPrxnq0PXCHY0g2HO?=
+ =?iso-8859-1?Q?dwMtUAE4uOhg7+8aFupcB4XX7Pm7y9AZD4n9FmuqwMrFxiFxde4o46GNJW?=
+ =?iso-8859-1?Q?XPCrFPHOeuj4jc1ulg1FaTFdvolTQSgePqO6h/dRDTpmDRYetinUPjR14R?=
+ =?iso-8859-1?Q?j+XsOH7Hg2O9FPqu3Ux9rsjOc8aqNuKcNLk2rJtnXUdO5h4r/dRp4c0Pn8?=
+ =?iso-8859-1?Q?XI3atD6T5XpEW/qCjW5i7ndyWTyMd0IWSJXSJmIUCEKC/MmIsQc16bXTH0?=
+ =?iso-8859-1?Q?B2suJoDHAezW1ylpiALz1mW/ScTCJt+W0oBMxjAGXymvDkeQoyEHoWPplw?=
+ =?iso-8859-1?Q?IQTYreDkyNK+NmhVEV3ZiJbYP1apRycYzy4LDYCZAj20aSYBXqOiasre90?=
+ =?iso-8859-1?Q?dsOJ8qKc7WJjyQAGk95PB0uVApO6PG6/JWXFF1+Z0MtNklRKM5eM8fhUXv?=
+ =?iso-8859-1?Q?UtgWESpEnTxQEbGs2fBpHLMU+yCvurhSVacdtyccuKVAD/jYl2jVAOeDc0?=
+ =?iso-8859-1?Q?EKeLDX7XOL9jh8D1r+lwojt1W59Bk7gM02/5xmp+ZwyDZZ4BijspEWULef?=
+ =?iso-8859-1?Q?hrUTNiU9GUNeFuCOBWYxu/lQIwkUpFonRNNn3l5EfZyBaq3pPMDCcOMSjc?=
+ =?iso-8859-1?Q?RtIach2vxBz8YWVkL+SjsaxclXmo05eRM8EyE84i7HnHTVdfzsTGij9aK8?=
+ =?iso-8859-1?Q?58ZjHBJqV8bi3vcDSTUQ1G55llZ+O4IpzJ3MbLuIjb+oDtXct7zry5lw?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8e7ffa04-dfc3-414f-ce0f-08dd503425f1
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2025 15:51:46.3389 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: X40nZx1F4zjzglfBNvwSx5uH7/UjoZtbOlGiiveAMRW9Px97K/T4KZhwvbkAS/CVpEkJElV783CJFfIBOBEzglNrrhbUGkTDanx+dD4yWFA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6461
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,1192 +181,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Christian,
+On Tue, Feb 18, 2025 at 05:27:41PM +0200, Ville Syrjälä wrote:
+>On Tue, Feb 18, 2025 at 09:45:46AM -0500, Rodrigo Vivi wrote:
+>> On Tue, Feb 18, 2025 at 02:19:38PM +0200, Jani Nikula wrote:
+>> > On Mon, 17 Feb 2025, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+>> > > The only usage of the "PCH" infra is to detect which South Display
+>> > > Engine we should be using. Move it under display so we can convert
+>> > > all its callers towards intel_display struct later.
+>> >
+>> > Yeah, PCH is becoming a blocker to finishing the conversions of many
+>> > files from drm_i915_private to intel_display. We'll need to do something
+>> > like this.
+>>
+>> First of all, I'm sorry for not sending a cover letter explaining more about
+>> my thoughts here and also for not tagging this as an RFC. And thank you very
+>> much for jumping in the discussion.
+>>
+>> I started this, exactly because my consolidation of display pm now is
+>> blocked in some HPD calls. Then I checked the IRQ code and I have some
+>> ideas do organize that, but that got blocked on the PCH, then I moved
+>> towards seeing what could and should be done to PCH and these 2 patches
+>> is the initial of my conclusion.
+>>
+>> >
+>> > I was eyeing the PCH checks outside of display, and frankly many of them
+>> > are plain wrong (done to check stuff that's unrelated to PCH, but
+>> > happens to match desired platforms), or should be in display
+>> > (e.g. gt_record_display_regs()). But there are also legitimate checks, I
+>> > think in clock gating.
+>>
+>> Yes, this one in GPU hang was one of the most strange ones, but then
+>> I noticed it is inside this function that should be moved to the display
+>> side anyway.
+>>
+>> Other cases are:
+>> drivers/gpu/drm/i915/intel_clock_gating.c:
+>>
+>> This entire file should be in the display side.
+>
+>Mostly, but it still has bunch of gt workarounds in it.
+>Those all should be moved into the gt w/a framework.
+>
+>> But I got super
+>> scared now because it looks like it is not getting called from nowhere.
+>> So we might be missing many display workarounds. I will investigate
+>> this more later.
+>
+>It's hidden behind some confusing macro stuff.
 
-On Wed, 2025-02-05 at 15:02 +0100, Christian K=C3=B6nig wrote:
-> Am 30.01.25 um 11:13 schrieb Thomas Hellstr=C3=B6m:
-> > Provide a helper to shrink ttm_tt page-vectors on a per-page
-> > basis. A ttm_backup backend could then in theory get away with
-> > allocating a single temporary page for each struct ttm_tt.
-> >=20
-> > This is accomplished by splitting larger pages before trying to
-> > back them up.
-> >=20
-> > In the future we could allow ttm_backup to handle backing up
-> > large pages as well, but currently there's no benefit in
-> > doing that, since the shmem backup backend would have to
-> > split those anyway to avoid allocating too much temporary
-> > memory, and if the backend instead inserts pages into the
-> > swap-cache, those are split on reclaim by the core.
-> >=20
-> > Due to potential backup- and recover errors, allow partially
-> > swapped
-> > out struct ttm_tt's, although mark them as swapped out stopping
-> > them
-> > from being swapped out a second time. More details in the
-> > ttm_pool.c
-> > DOC section.
-> >=20
-> > v2:
-> > - A couple of cleanups and error fixes in ttm_pool_back_up_tt.
-> > - s/back_up/backup/
-> > - Add a writeback parameter to the exported interface.
-> > v8:
-> > - Use a struct for flags for readability (Matt Brost)
-> > - Address misc other review comments (Matt Brost)
-> > v9:
-> > - Update the kerneldoc for the ttm_tt::backup field.
-> > v10:
-> > - Rebase.
-> > v13:
-> > - Rebase on ttm_backup interface change. Update kerneldoc.
-> > - Rebase and adjust ttm_tt_is_swapped().
-> > v15:
-> > - Rebase on ttm_backup return value change.
-> > - Rebase on previous restructuring of ttm_pool_alloc()
-> > - Rework the ttm_pool backup interface (Christian K=C3=B6nig)
-> > - Remove cond_resched() (Christian K=C3=B6nig)
-> > - Get rid of the need to allocate an intermediate page array
-> > =C2=A0=C2=A0 when restoring a multi-order page (Christian K=C3=B6nig)
-> > - Update documentation.
-> >=20
-> > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
-> > Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
-> > Cc: Matthew Brost <matthew.brost@intel.com>
-> > Cc: <dri-devel@lists.freedesktop.org>
-> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > Reviewed-by: Matthew Brost <matthew.brost@intel.com>
->=20
-> I've tried to wrap my head around all of this like twenty times in
-> the=20
-> last three month, but was always interrupted at some point.
->=20
-> Feel free to add Acked-by: Christian Koenig
-> <christian.koenig@amd.com>.
->=20
-> Sorry,
-> Christian.
+yep. See CG_FUNCS in drivers/gpu/drm/i915/intel_clock_gating.c
 
-Thanks a lot for all reviewing and comments so far. There are two TTM
-patches left in the series that don't have an ack by you:
+The callers are the ones  calling intel_clock_gating_init(), which is
+both on display and gem sides. On the GEM side there's already and
+eternal TODO comment:
 
-https://patchwork.freedesktop.org/patch/634715/?series=3D131815&rev=3D17
-and
+	* FIXME: break up the workarounds and apply them at the right time! 
 
-https://patchwork.freedesktop.org/patch/634716/?series=3D131815&rev=3D17
-
-None of them particularly big considering the amount of doc text.
-
-It'd be great if those could have an ack as well so we could finally
-merge this series.
-
-Thanks,
-Thomas
+Lucas De Marchi
 
 
-
-
-
-
->=20
-> > ---
-> > =C2=A0 drivers/gpu/drm/ttm/ttm_pool.c | 554
-> > +++++++++++++++++++++++++++++----
-> > =C2=A0 drivers/gpu/drm/ttm/ttm_tt.c=C2=A0=C2=A0 |=C2=A0 54 ++++
-> > =C2=A0 include/drm/ttm/ttm_pool.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=
- 8 +
-> > =C2=A0 include/drm/ttm/ttm_tt.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=
-=C2=A0 67 +++-
-> > =C2=A0 4 files changed, 629 insertions(+), 54 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/ttm/ttm_pool.c
-> > b/drivers/gpu/drm/ttm/ttm_pool.c
-> > index c9eba76d5143..ffb7abf52bab 100644
-> > --- a/drivers/gpu/drm/ttm/ttm_pool.c
-> > +++ b/drivers/gpu/drm/ttm/ttm_pool.c
-> > @@ -41,6 +41,7 @@
-> > =C2=A0 #include <asm/set_memory.h>
-> > =C2=A0 #endif
-> > =C2=A0=20
-> > +#include <drm/ttm/ttm_backup.h>
-> > =C2=A0 #include <drm/ttm/ttm_pool.h>
-> > =C2=A0 #include <drm/ttm/ttm_tt.h>
-> > =C2=A0 #include <drm/ttm/ttm_bo.h>
-> > @@ -75,6 +76,35 @@ struct ttm_pool_alloc_state {
-> > =C2=A0=C2=A0	enum ttm_caching tt_caching;
-> > =C2=A0 };
-> > =C2=A0=20
-> > +/**
-> > + * struct ttm_pool_tt_restore - State representing restore from
-> > backup
-> > + * @pool: The pool used for page allocation while restoring.
-> > + * @snapshot_alloc: A snapshot of the most recent struct
-> > ttm_pool_alloc_state.
-> > + * @alloced_page: Pointer to the page most recently allocated from
-> > a pool or system.
-> > + * @first_dma: The dma address corresponding to @alloced_page if
-> > dma_mapping
-> > + * is requested.
-> > + * @alloced_pages: The number of allocated pages present in the
-> > struct ttm_tt
-> > + * page vector from this restore session.
-> > + * @restored_pages: The number of 4K pages restored for
-> > @alloced_page (which
-> > + * is typically a multi-order page).
-> > + * @page_caching: The struct ttm_tt requested caching
-> > + * @order: The order of @alloced_page.
-> > + *
-> > + * Recovery from backup might fail when we've recovered less than
-> > the
-> > + * full ttm_tt. In order not to loose any data (yet), keep
-> > information
-> > + * around that allows us to restart a failed ttm backup recovery.
-> > + */
-> > +struct ttm_pool_tt_restore {
-> > +	struct ttm_pool *pool;
-> > +	struct ttm_pool_alloc_state snapshot_alloc;
-> > +	struct page *alloced_page;
-> > +	dma_addr_t first_dma;
-> > +	pgoff_t alloced_pages;
-> > +	pgoff_t restored_pages;
-> > +	enum ttm_caching page_caching;
-> > +	unsigned int order;
-> > +};
-> > +
-> > =C2=A0 static unsigned long page_pool_size;
-> > =C2=A0=20
-> > =C2=A0 MODULE_PARM_DESC(page_pool_size, "Number of pages in the
-> > WC/UC/DMA pool");
-> > @@ -199,12 +229,11 @@ static int ttm_pool_apply_caching(struct
-> > ttm_pool_alloc_state *alloc)
-> > =C2=A0=C2=A0	return 0;
-> > =C2=A0 }
-> > =C2=A0=20
-> > -/* Map pages of 1 << order size and fill the DMA address array=C2=A0 *=
-/
-> > +/* DMA Map pages of 1 << order size and return the resulting
-> > dma_address. */
-> > =C2=A0 static int ttm_pool_map(struct ttm_pool *pool, unsigned int
-> > order,
-> > -			struct page *p, dma_addr_t **dma_addr)
-> > +			struct page *p, dma_addr_t *dma_addr)
-> > =C2=A0 {
-> > =C2=A0=C2=A0	dma_addr_t addr;
-> > -	unsigned int i;
-> > =C2=A0=20
-> > =C2=A0=C2=A0	if (pool->use_dma_alloc) {
-> > =C2=A0=C2=A0		struct ttm_pool_dma *dma =3D (void *)p->private;
-> > @@ -218,10 +247,7 @@ static int ttm_pool_map(struct ttm_pool *pool,
-> > unsigned int order,
-> > =C2=A0=C2=A0			return -EFAULT;
-> > =C2=A0=C2=A0	}
-> > =C2=A0=20
-> > -	for (i =3D 1 << order; i ; --i) {
-> > -		*(*dma_addr)++ =3D addr;
-> > -		addr +=3D PAGE_SIZE;
-> > -	}
-> > +	*dma_addr =3D addr;
-> > =C2=A0=20
-> > =C2=A0=C2=A0	return 0;
-> > =C2=A0 }
-> > @@ -371,6 +397,190 @@ static unsigned int
-> > ttm_pool_page_order(struct ttm_pool *pool, struct page *p)
-> > =C2=A0=C2=A0	return p->private;
-> > =C2=A0 }
-> > =C2=A0=20
-> > +/*
-> > + * Split larger pages so that we can free each PAGE_SIZE page as
-> > soon
-> > + * as it has been backed up, in order to avoid memory pressure
-> > during
-> > + * reclaim.
-> > + */
-> > +static void ttm_pool_split_for_swap(struct ttm_pool *pool, struct
-> > page *p)
-> > +{
-> > +	unsigned int order =3D ttm_pool_page_order(pool, p);
-> > +	pgoff_t nr;
-> > +
-> > +	if (!order)
-> > +		return;
-> > +
-> > +	split_page(p, order);
-> > +	nr =3D 1UL << order;
-> > +	while (nr--)
-> > +		(p++)->private =3D 0;
-> > +}
-> > +
-> > +/**
-> > + * DOC: Partial backup and restoration of a struct ttm_tt.
-> > + *
-> > + * Swapout using ttm_backup_backup_page() and swapin using
-> > + * ttm_backup_copy_page() may fail.
-> > + * The former most likely due to lack of swap-space or memory, the
-> > latter due
-> > + * to lack of memory or because of signal interruption during
-> > waits.
-> > + *
-> > + * Backup failure is easily handled by using a ttm_tt pages vector
-> > that holds
-> > + * both backup handles and page pointers. This has to be taken
-> > into account when
-> > + * restoring such a ttm_tt from backup, and when freeing it while
-> > backed up.
-> > + * When restoring, for simplicity, new pages are actually
-> > allocated from the
-> > + * pool and the contents of any old pages are copied in and then
-> > the old pages
-> > + * are released.
-> > + *
-> > + * For restoration failures, the struct ttm_pool_tt_restore holds
-> > sufficient state
-> > + * to be able to resume an interrupted restore, and that structure
-> > is freed once
-> > + * the restoration is complete. If the struct ttm_tt is destroyed
-> > while there
-> > + * is a valid struct ttm_pool_tt_restore attached, that is also
-> > properly taken
-> > + * care of.
-> > + */
-> > +
-> > +/* Is restore ongoing for the currently allocated page? */
-> > +static bool ttm_pool_restore_valid(const struct
-> > ttm_pool_tt_restore *restore)
-> > +{
-> > +	return restore && restore->restored_pages < (1 << restore-
-> > >order);
-> > +}
-> > +
-> > +/* DMA unmap and free a multi-order page, either to the relevant
-> > pool or to system. */
-> > +static pgoff_t ttm_pool_unmap_and_free(struct ttm_pool *pool,
-> > struct page *page,
-> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const dma_addr_t *dma_addr,
-> > enum ttm_caching caching)
-> > +{
-> > +	struct ttm_pool_type *pt =3D NULL;
-> > +	unsigned int order;
-> > +	pgoff_t nr;
-> > +
-> > +	if (pool) {
-> > +		order =3D ttm_pool_page_order(pool, page);
-> > +		nr =3D (1UL << order);
-> > +		if (dma_addr)
-> > +			ttm_pool_unmap(pool, *dma_addr, nr);
-> > +
-> > +		pt =3D ttm_pool_select_type(pool, caching, order);
-> > +	} else {
-> > +		order =3D page->private;
-> > +		nr =3D (1UL << order);
-> > +	}
-> > +
-> > +	if (pt)
-> > +		ttm_pool_type_give(pt, page);
-> > +	else
-> > +		ttm_pool_free_page(pool, caching, order, page);
-> > +
-> > +	return nr;
-> > +}
-> > +
-> > +/* Populate the page-array using the most recent allocated multi-
-> > order page. */
-> > +static void ttm_pool_allocated_page_commit(struct page *allocated,
-> > +					=C2=A0=C2=A0 dma_addr_t first_dma,
-> > +					=C2=A0=C2=A0 struct
-> > ttm_pool_alloc_state *alloc,
-> > +					=C2=A0=C2=A0 pgoff_t nr)
-> > +{
-> > +	pgoff_t i;
-> > +
-> > +	for (i =3D 0; i < nr; ++i)
-> > +		*alloc->pages++ =3D allocated++;
-> > +
-> > +	alloc->remaining_pages -=3D nr;
-> > +
-> > +	if (!alloc->dma_addr)
-> > +		return;
-> > +
-> > +	for (i =3D 0; i < nr; ++i) {
-> > +		*alloc->dma_addr++ =3D first_dma;
-> > +		first_dma +=3D PAGE_SIZE;
-> > +	}
-> > +}
-> > +
-> > +/*
-> > + * When restoring, restore backed-up content to the newly
-> > allocated page and
-> > + * if successful, populate the page-table and dma-address arrays.
-> > + */
-> > +static int ttm_pool_restore_commit(struct ttm_pool_tt_restore
-> > *restore,
-> > +				=C2=A0=C2=A0 struct ttm_backup *backup,
-> > +				=C2=A0=C2=A0 const struct ttm_operation_ctx
-> > *ctx,
-> > +				=C2=A0=C2=A0 struct ttm_pool_alloc_state
-> > *alloc)
-> > +
-> > +{
-> > +	pgoff_t i, nr =3D 1UL << restore->order;
-> > +	struct page **first_page =3D alloc->pages;
-> > +	struct page *p;
-> > +	int ret =3D 0;
-> > +
-> > +	for (i =3D restore->restored_pages; i < nr; ++i) {
-> > +		p =3D first_page[i];
-> > +		if (ttm_backup_page_ptr_is_handle(p)) {
-> > +			unsigned long handle =3D
-> > ttm_backup_page_ptr_to_handle(p);
-> > +
-> > +			if (handle =3D=3D 0) {
-> > +				restore->restored_pages++;
-> > +				continue;
-> > +			}
-> > +
-> > +			ret =3D ttm_backup_copy_page(backup,
-> > restore->alloced_page + i,
-> > +						=C2=A0=C2=A0 handle, ctx-
-> > >interruptible);
-> > +			if (ret)
-> > +				break;
-> > +
-> > +			ttm_backup_drop(backup, handle);
-> > +		} else if (p) {
-> > +			/*
-> > +			 * We could probably avoid splitting the
-> > old page
-> > +			 * using clever logic, but ATM we don't
-> > care, as
-> > +			 * we prioritize releasing memory ASAP.
-> > Note that
-> > +			 * here, the old retained page is always
-> > write-back
-> > +			 * cached.
-> > +			 */
-> > +			ttm_pool_split_for_swap(restore->pool, p);
-> > +			copy_highpage(restore->alloced_page + i,
-> > p);
-> > +			__free_pages(p, 0);
-> > +		}
-> > +
-> > +		restore->restored_pages++;
-> > +		first_page[i] =3D ttm_backup_handle_to_page_ptr(0);
-> > +	}
-> > +
-> > +	if (ret) {
-> > +		if (!restore->restored_pages) {
-> > +			dma_addr_t *dma_addr =3D alloc->dma_addr ?
-> > &restore->first_dma : NULL;
-> > +
-> > +			ttm_pool_unmap_and_free(restore->pool,
-> > restore->alloced_page,
-> > +						dma_addr, restore-
-> > >page_caching);
-> > +			restore->restored_pages =3D nr;
-> > +		}
-> > +		return ret;
-> > +	}
-> > +
-> > +	ttm_pool_allocated_page_commit(restore->alloced_page,
-> > restore->first_dma,
-> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 alloc, nr);
-> > +	if (restore->page_caching =3D=3D alloc->tt_caching ||
-> > PageHighMem(restore->alloced_page))
-> > +		alloc->caching_divide =3D alloc->pages;
-> > +	restore->snapshot_alloc =3D *alloc;
-> > +	restore->alloced_pages +=3D nr;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +/* If restoring, save information needed for
-> > ttm_pool_restore_commit(). */
-> > +static void
-> > +ttm_pool_page_allocated_restore(struct ttm_pool *pool, unsigned
-> > int order,
-> > +				struct page *p,
-> > +				enum ttm_caching page_caching,
-> > +				dma_addr_t first_dma,
-> > +				struct ttm_pool_tt_restore
-> > *restore,
-> > +				const struct ttm_pool_alloc_state
-> > *alloc)
-> > +{
-> > +	restore->pool =3D pool;
-> > +	restore->order =3D order;
-> > +	restore->restored_pages =3D 0;
-> > +	restore->page_caching =3D page_caching;
-> > +	restore->first_dma =3D first_dma;
-> > +	restore->alloced_page =3D p;
-> > +	restore->snapshot_alloc =3D *alloc;
-> > +}
-> > +
-> > =C2=A0 /*
-> > =C2=A0=C2=A0 * Called when we got a page, either from a pool or newly
-> > allocated.
-> > =C2=A0=C2=A0 * if needed, dma map the page and populate the dma address
-> > array.
-> > @@ -380,10 +590,11 @@ static unsigned int
-> > ttm_pool_page_order(struct ttm_pool *pool, struct page *p)
-> > =C2=A0=C2=A0 */
-> > =C2=A0 static int ttm_pool_page_allocated(struct ttm_pool *pool,
-> > unsigned int order,
-> > =C2=A0=C2=A0				=C2=A0=C2=A0 struct page *p, enum
-> > ttm_caching page_caching,
-> > -				=C2=A0=C2=A0 struct ttm_pool_alloc_state
-> > *alloc)
-> > +				=C2=A0=C2=A0 struct ttm_pool_alloc_state
-> > *alloc,
-> > +				=C2=A0=C2=A0 struct ttm_pool_tt_restore
-> > *restore)
-> > =C2=A0 {
-> > -	pgoff_t i, nr =3D 1UL << order;
-> > =C2=A0=C2=A0	bool caching_consistent;
-> > +	dma_addr_t first_dma;
-> > =C2=A0=C2=A0	int r =3D 0;
-> > =C2=A0=20
-> > =C2=A0=C2=A0	caching_consistent =3D (page_caching =3D=3D alloc->tt_cach=
-ing)
-> > || PageHighMem(p);
-> > @@ -395,17 +606,20 @@ static int ttm_pool_page_allocated(struct
-> > ttm_pool *pool, unsigned int order,
-> > =C2=A0=C2=A0	}
-> > =C2=A0=20
-> > =C2=A0=C2=A0	if (alloc->dma_addr) {
-> > -		r =3D ttm_pool_map(pool, order, p, &alloc-
-> > >dma_addr);
-> > +		r =3D ttm_pool_map(pool, order, p, &first_dma);
-> > =C2=A0=C2=A0		if (r)
-> > =C2=A0=C2=A0			return r;
-> > =C2=A0=C2=A0	}
-> > =C2=A0=20
-> > -	alloc->remaining_pages -=3D nr;
-> > -	for (i =3D 0; i < nr; ++i)
-> > -		*alloc->pages++ =3D p++;
-> > +	if (restore) {
-> > +		ttm_pool_page_allocated_restore(pool, order, p,
-> > page_caching,
-> > +						first_dma,
-> > restore, alloc);
-> > +	} else {
-> > +		ttm_pool_allocated_page_commit(p, first_dma,
-> > alloc, 1UL << order);
-> > =C2=A0=20
-> > -	if (caching_consistent)
-> > -		alloc->caching_divide =3D alloc->pages;
-> > +		if (caching_consistent)
-> > +			alloc->caching_divide =3D alloc->pages;
-> > +	}
-> > =C2=A0=20
-> > =C2=A0=C2=A0	return 0;
-> > =C2=A0 }
-> > @@ -428,22 +642,24 @@ static void ttm_pool_free_range(struct
-> > ttm_pool *pool, struct ttm_tt *tt,
-> > =C2=A0=C2=A0				pgoff_t start_page, pgoff_t
-> > end_page)
-> > =C2=A0 {
-> > =C2=A0=C2=A0	struct page **pages =3D &tt->pages[start_page];
-> > -	unsigned int order;
-> > +	struct ttm_backup *backup =3D tt->backup;
-> > =C2=A0=C2=A0	pgoff_t i, nr;
-> > =C2=A0=20
-> > =C2=A0=C2=A0	for (i =3D start_page; i < end_page; i +=3D nr, pages +=3D=
- nr) {
-> > -		struct ttm_pool_type *pt =3D NULL;
-> > +		struct page *p =3D *pages;
-> > =C2=A0=20
-> > -		order =3D ttm_pool_page_order(pool, *pages);
-> > -		nr =3D (1UL << order);
-> > -		if (tt->dma_address)
-> > -			ttm_pool_unmap(pool, tt->dma_address[i],
-> > nr);
-> > +		nr =3D 1;
-> > +		if (ttm_backup_page_ptr_is_handle(p)) {
-> > +			unsigned long handle =3D
-> > ttm_backup_page_ptr_to_handle(p);
-> > =C2=A0=20
-> > -		pt =3D ttm_pool_select_type(pool, caching, order);
-> > -		if (pt)
-> > -			ttm_pool_type_give(pt, *pages);
-> > -		else
-> > -			ttm_pool_free_page(pool, caching, order,
-> > *pages);
-> > +			if (handle !=3D 0)
-> > +				ttm_backup_drop(backup, handle);
-> > +		} else if (p) {
-> > +			dma_addr_t *dma_addr =3D tt->dma_address ?
-> > +				tt->dma_address + i : NULL;
-> > +
-> > +			nr =3D ttm_pool_unmap_and_free(pool, p,
-> > dma_addr, caching);
-> > +		}
-> > =C2=A0=C2=A0	}
-> > =C2=A0 }
-> > =C2=A0=20
-> > @@ -467,22 +683,11 @@ static unsigned int
-> > ttm_pool_alloc_find_order(unsigned int highest,
-> > =C2=A0=C2=A0	return min_t(unsigned int, highest, __fls(alloc-
-> > >remaining_pages));
-> > =C2=A0 }
-> > =C2=A0=20
-> > -/**
-> > - * ttm_pool_alloc - Fill a ttm_tt object
-> > - *
-> > - * @pool: ttm_pool to use
-> > - * @tt: ttm_tt object to fill
-> > - * @ctx: operation context
-> > - *
-> > - * Fill the ttm_tt object with pages and also make sure to DMA map
-> > them when
-> > - * necessary.
-> > - *
-> > - * Returns: 0 on successe, negative error code otherwise.
-> > - */
-> > -int ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
-> > -		=C2=A0=C2=A0 struct ttm_operation_ctx *ctx)
-> > +static int __ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt
-> > *tt,
-> > +			=C2=A0=C2=A0=C2=A0 const struct ttm_operation_ctx *ctx,
-> > +			=C2=A0=C2=A0=C2=A0 struct ttm_pool_alloc_state *alloc,
-> > +			=C2=A0=C2=A0=C2=A0 struct ttm_pool_tt_restore *restore)
-> > =C2=A0 {
-> > -	struct ttm_pool_alloc_state alloc;
-> > =C2=A0=C2=A0	enum ttm_caching page_caching;
-> > =C2=A0=C2=A0	gfp_t gfp_flags =3D GFP_USER;
-> > =C2=A0=C2=A0	pgoff_t caching_divide;
-> > @@ -491,10 +696,8 @@ int ttm_pool_alloc(struct ttm_pool *pool,
-> > struct ttm_tt *tt,
-> > =C2=A0=C2=A0	struct page *p;
-> > =C2=A0=C2=A0	int r;
-> > =C2=A0=20
-> > -	ttm_pool_alloc_state_init(tt, &alloc);
-> > -
-> > -	WARN_ON(!alloc.remaining_pages ||
-> > ttm_tt_is_populated(tt));
-> > -	WARN_ON(alloc.dma_addr && !pool->dev);
-> > +	WARN_ON(!alloc->remaining_pages ||
-> > ttm_tt_is_populated(tt));
-> > +	WARN_ON(alloc->dma_addr && !pool->dev);
-> > =C2=A0=20
-> > =C2=A0=C2=A0	if (tt->page_flags & TTM_TT_FLAG_ZERO_ALLOC)
-> > =C2=A0=C2=A0		gfp_flags |=3D __GFP_ZERO;
-> > @@ -509,9 +712,9 @@ int ttm_pool_alloc(struct ttm_pool *pool,
-> > struct ttm_tt *tt,
-> > =C2=A0=20
-> > =C2=A0=C2=A0	page_caching =3D tt->caching;
-> > =C2=A0=C2=A0	allow_pools =3D true;
-> > -	for (order =3D ttm_pool_alloc_find_order(MAX_PAGE_ORDER,
-> > &alloc);
-> > -	=C2=A0=C2=A0=C2=A0=C2=A0 alloc.remaining_pages;
-> > -	=C2=A0=C2=A0=C2=A0=C2=A0 order =3D ttm_pool_alloc_find_order(order, &=
-alloc)) {
-> > +	for (order =3D ttm_pool_alloc_find_order(MAX_PAGE_ORDER,
-> > alloc);
-> > +	=C2=A0=C2=A0=C2=A0=C2=A0 alloc->remaining_pages;
-> > +	=C2=A0=C2=A0=C2=A0=C2=A0 order =3D ttm_pool_alloc_find_order(order, a=
-lloc)) {
-> > =C2=A0=C2=A0		struct ttm_pool_type *pt;
-> > =C2=A0=20
-> > =C2=A0=C2=A0		/* First, try to allocate a page from a pool if
-> > one exists. */
-> > @@ -541,30 +744,120 @@ int ttm_pool_alloc(struct ttm_pool *pool,
-> > struct ttm_tt *tt,
-> > =C2=A0=C2=A0			r =3D -ENOMEM;
-> > =C2=A0=C2=A0			goto error_free_all;
-> > =C2=A0=C2=A0		}
-> > -		r =3D ttm_pool_page_allocated(pool, order, p,
-> > page_caching, &alloc);
-> > +		r =3D ttm_pool_page_allocated(pool, order, p,
-> > page_caching, alloc,
-> > +					=C2=A0=C2=A0=C2=A0 restore);
-> > =C2=A0=C2=A0		if (r)
-> > =C2=A0=C2=A0			goto error_free_page;
-> > +
-> > +		if (ttm_pool_restore_valid(restore)) {
-> > +			r =3D ttm_pool_restore_commit(restore, tt-
-> > >backup, ctx, alloc);
-> > +			if (r)
-> > +				goto error_free_all;
-> > +		}
-> > =C2=A0=C2=A0	}
-> > =C2=A0=20
-> > -	r =3D ttm_pool_apply_caching(&alloc);
-> > +	r =3D ttm_pool_apply_caching(alloc);
-> > =C2=A0=C2=A0	if (r)
-> > =C2=A0=C2=A0		goto error_free_all;
-> > =C2=A0=20
-> > +	kfree(tt->restore);
-> > +	tt->restore =3D NULL;
-> > +
-> > =C2=A0=C2=A0	return 0;
-> > =C2=A0=20
-> > =C2=A0 error_free_page:
-> > =C2=A0=C2=A0	ttm_pool_free_page(pool, page_caching, order, p);
-> > =C2=A0=20
-> > =C2=A0 error_free_all:
-> > -	caching_divide =3D alloc.caching_divide - tt->pages;
-> > +	if (tt->restore)
-> > +		return r;
-> > +
-> > +	caching_divide =3D alloc->caching_divide - tt->pages;
-> > =C2=A0=C2=A0	ttm_pool_free_range(pool, tt, tt->caching, 0,
-> > caching_divide);
-> > =C2=A0=C2=A0	ttm_pool_free_range(pool, tt, ttm_cached, caching_divide,
-> > -			=C2=A0=C2=A0=C2=A0 tt->num_pages -
-> > alloc.remaining_pages);
-> > +			=C2=A0=C2=A0=C2=A0 tt->num_pages - alloc-
-> > >remaining_pages);
-> > =C2=A0=20
-> > =C2=A0=C2=A0	return r;
-> > =C2=A0 }
-> > +
-> > +/**
-> > + * ttm_pool_alloc - Fill a ttm_tt object
-> > + *
-> > + * @pool: ttm_pool to use
-> > + * @tt: ttm_tt object to fill
-> > + * @ctx: operation context
-> > + *
-> > + * Fill the ttm_tt object with pages and also make sure to DMA map
-> > them when
-> > + * necessary.
-> > + *
-> > + * Returns: 0 on successe, negative error code otherwise.
-> > + */
-> > +int ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
-> > +		=C2=A0=C2=A0 struct ttm_operation_ctx *ctx)
-> > +{
-> > +	struct ttm_pool_alloc_state alloc;
-> > +
-> > +	if (WARN_ON(ttm_tt_is_backed_up(tt)))
-> > +		return -EINVAL;
-> > +
-> > +	ttm_pool_alloc_state_init(tt, &alloc);
-> > +
-> > +	return __ttm_pool_alloc(pool, tt, ctx, &alloc, NULL);
-> > +}
-> > =C2=A0 EXPORT_SYMBOL(ttm_pool_alloc);
-> > =C2=A0=20
-> > +/**
-> > + * ttm_pool_restore_and_alloc - Fill a ttm_tt, restoring
-> > previously backed-up
-> > + * content.
-> > + *
-> > + * @pool: ttm_pool to use
-> > + * @tt: ttm_tt object to fill
-> > + * @ctx: operation context
-> > + *
-> > + * Fill the ttm_tt object with pages and also make sure to DMA map
-> > them when
-> > + * necessary. Read in backed-up content.
-> > + *
-> > + * Returns: 0 on successe, negative error code otherwise.
-> > + */
-> > +int ttm_pool_restore_and_alloc(struct ttm_pool *pool, struct
-> > ttm_tt *tt,
-> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct ttm_operation_ctx
-> > *ctx)
-> > +{
-> > +	struct ttm_pool_alloc_state alloc;
-> > +
-> > +	if (WARN_ON(!ttm_tt_is_backed_up(tt)))
-> > +		return -EINVAL;
-> > +
-> > +	if (!tt->restore) {
-> > +		gfp_t gfp =3D GFP_KERNEL | __GFP_NOWARN;
-> > +
-> > +		ttm_pool_alloc_state_init(tt, &alloc);
-> > +		if (ctx->gfp_retry_mayfail)
-> > +			gfp |=3D __GFP_RETRY_MAYFAIL;
-> > +
-> > +		tt->restore =3D kzalloc(sizeof(*tt->restore), gfp);
-> > +		if (!tt->restore)
-> > +			return -ENOMEM;
-> > +
-> > +		tt->restore->snapshot_alloc =3D alloc;
-> > +		tt->restore->pool =3D pool;
-> > +		tt->restore->restored_pages =3D 1;
-> > +	} else {
-> > +		struct ttm_pool_tt_restore *restore =3D tt->restore;
-> > +		int ret;
-> > +
-> > +		alloc =3D restore->snapshot_alloc;
-> > +		if (ttm_pool_restore_valid(tt->restore)) {
-> > +			ret =3D ttm_pool_restore_commit(restore, tt-
-> > >backup, ctx, &alloc);
-> > +			if (ret)
-> > +				return ret;
-> > +		}
-> > +		if (!alloc.remaining_pages)
-> > +			return 0;
-> > +	}
-> > +
-> > +	return __ttm_pool_alloc(pool, tt, ctx, &alloc, tt-
-> > >restore);
-> > +}
-> > +
-> > =C2=A0 /**
-> > =C2=A0=C2=A0 * ttm_pool_free - Free the backing pages from a ttm_tt obj=
-ect
-> > =C2=A0=C2=A0 *
-> > @@ -582,6 +875,163 @@ void ttm_pool_free(struct ttm_pool *pool,
-> > struct ttm_tt *tt)
-> > =C2=A0 }
-> > =C2=A0 EXPORT_SYMBOL(ttm_pool_free);
-> > =C2=A0=20
-> > +/**
-> > + * ttm_pool_drop_backed_up() - Release content of a swapped-out
-> > struct ttm_tt
-> > + * @tt: The struct ttm_tt.
-> > + *
-> > + * Release handles with associated content or any remaining pages
-> > of
-> > + * a backed-up struct ttm_tt.
-> > + */
-> > +void ttm_pool_drop_backed_up(struct ttm_tt *tt)
-> > +{
-> > +	struct ttm_pool_tt_restore *restore;
-> > +	pgoff_t start_page =3D 0;
-> > +
-> > +	WARN_ON(!ttm_tt_is_backed_up(tt));
-> > +
-> > +	restore =3D tt->restore;
-> > +
-> > +	/*
-> > +	 * Unmap and free any uncommitted restore page.
-> > +	 * any tt page-array backup entries already read back has
-> > +	 * been cleared already
-> > +	 */
-> > +	if (ttm_pool_restore_valid(restore)) {
-> > +		dma_addr_t *dma_addr =3D tt->dma_address ? &restore-
-> > >first_dma : NULL;
-> > +
-> > +		ttm_pool_unmap_and_free(restore->pool, restore-
-> > >alloced_page,
-> > +					dma_addr, restore-
-> > >page_caching);
-> > +		restore->restored_pages =3D 1UL << restore->order;
-> > +	}
-> > +
-> > +	/*
-> > +	 * If a restore is ongoing, part of the tt pages may have
-> > a
-> > +	 * caching different than writeback.
-> > +	 */
-> > +	if (restore) {
-> > +		pgoff_t mid =3D restore-
-> > >snapshot_alloc.caching_divide - tt->pages;
-> > +
-> > +		start_page =3D restore->alloced_pages;
-> > +		WARN_ON(mid > start_page);
-> > +		/* Pages that might be dma-mapped and non-cached
-> > */
-> > +		ttm_pool_free_range(restore->pool, tt, tt-
-> > >caching,
-> > +				=C2=A0=C2=A0=C2=A0 0, mid);
-> > +		/* Pages that might be dma-mapped but cached */
-> > +		ttm_pool_free_range(restore->pool, tt, ttm_cached,
-> > +				=C2=A0=C2=A0=C2=A0 mid, restore->alloced_pages);
-> > +		kfree(restore);
-> > +		tt->restore =3D NULL;
-> > +	}
-> > +
-> > +	ttm_pool_free_range(NULL, tt, ttm_cached, start_page, tt-
-> > >num_pages);
-> > +}
-> > +
-> > +/**
-> > + * ttm_pool_backup() - Back up or purge a struct ttm_tt
-> > + * @pool: The pool used when allocating the struct ttm_tt.
-> > + * @tt: The struct ttm_tt.
-> > + * @flags: Flags to govern the backup behaviour.
-> > + *
-> > + * Back up or purge a struct ttm_tt. If @purge is true, then
-> > + * all pages will be freed directly to the system rather than to
-> > the pool
-> > + * they were allocated from, making the function behave similarly
-> > to
-> > + * ttm_pool_free(). If @purge is false the pages will be backed up
-> > instead,
-> > + * exchanged for handles.
-> > + * A subsequent call to ttm_pool_restore_and_alloc() will then
-> > read back the content and
-> > + * a subsequent call to ttm_pool_drop_backed_up() will drop it.
-> > + * If backup of a page fails for whatever reason, @ttm will still
-> > be
-> > + * partially backed up, retaining those pages for which backup
-> > fails.
-> > + * In that case, this function can be retried, possibly after
-> > freeing up
-> > + * memory resources.
-> > + *
-> > + * Return: Number of pages actually backed up or freed, or
-> > negative
-> > + * error code on error.
-> > + */
-> > +long ttm_pool_backup(struct ttm_pool *pool, struct ttm_tt *tt,
-> > +		=C2=A0=C2=A0=C2=A0=C2=A0 const struct ttm_backup_flags *flags)
-> > +{
-> > +	struct ttm_backup *backup =3D tt->backup;
-> > +	struct page *page;
-> > +	unsigned long handle;
-> > +	gfp_t alloc_gfp;
-> > +	gfp_t gfp;
-> > +	int ret =3D 0;
-> > +	pgoff_t shrunken =3D 0;
-> > +	pgoff_t i, num_pages;
-> > +
-> > +	if (WARN_ON(ttm_tt_is_backed_up(tt)))
-> > +		return -EINVAL;
-> > +
-> > +	if ((!ttm_backup_bytes_avail() && !flags->purge) ||
-> > +	=C2=A0=C2=A0=C2=A0 pool->use_dma_alloc || ttm_tt_is_backed_up(tt))
-> > +		return -EBUSY;
-> > +
-> > +#ifdef CONFIG_X86
-> > +	/* Anything returned to the system needs to be cached. */
-> > +	if (tt->caching !=3D ttm_cached)
-> > +		set_pages_array_wb(tt->pages, tt->num_pages);
-> > +#endif
-> > +
-> > +	if (tt->dma_address || flags->purge) {
-> > +		for (i =3D 0; i < tt->num_pages; i +=3D num_pages) {
-> > +			unsigned int order;
-> > +
-> > +			page =3D tt->pages[i];
-> > +			if (unlikely(!page)) {
-> > +				num_pages =3D 1;
-> > +				continue;
-> > +			}
-> > +
-> > +			order =3D ttm_pool_page_order(pool, page);
-> > +			num_pages =3D 1UL << order;
-> > +			if (tt->dma_address)
-> > +				ttm_pool_unmap(pool, tt-
-> > >dma_address[i],
-> > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 num_pages);
-> > +			if (flags->purge) {
-> > +				shrunken +=3D num_pages;
-> > +				page->private =3D 0;
-> > +				__free_pages(page, order);
-> > +				memset(tt->pages + i, 0,
-> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 num_pages * sizeof(*tt-
-> > >pages));
-> > +			}
-> > +		}
-> > +	}
-> > +
-> > +	if (flags->purge)
-> > +		return shrunken;
-> > +
-> > +	if (pool->use_dma32)
-> > +		gfp =3D GFP_DMA32;
-> > +	else
-> > +		gfp =3D GFP_HIGHUSER;
-> > +
-> > +	alloc_gfp =3D GFP_KERNEL | __GFP_HIGH | __GFP_NOWARN |
-> > __GFP_RETRY_MAYFAIL;
-> > +
-> > +	for (i =3D 0; i < tt->num_pages; ++i) {
-> > +		s64 shandle;
-> > +
-> > +		page =3D tt->pages[i];
-> > +		if (unlikely(!page))
-> > +			continue;
-> > +
-> > +		ttm_pool_split_for_swap(pool, page);
-> > +
-> > +		shandle =3D ttm_backup_backup_page(backup, page,
-> > flags->writeback, i,
-> > +						 gfp, alloc_gfp);
-> > +		if (shandle < 0) {
-> > +			/* We allow partially shrunken tts */
-> > +			ret =3D shandle;
-> > +			break;
-> > +		}
-> > +		handle =3D shandle;
-> > +		tt->pages[i] =3D
-> > ttm_backup_handle_to_page_ptr(handle);
-> > +		put_page(page);
-> > +		shrunken++;
-> > +	}
-> > +
-> > +	return shrunken ? shrunken : ret;
-> > +}
-> > +
-> > =C2=A0 /**
-> > =C2=A0=C2=A0 * ttm_pool_init - Initialize a pool
-> > =C2=A0=C2=A0 *
-> > diff --git a/drivers/gpu/drm/ttm/ttm_tt.c
-> > b/drivers/gpu/drm/ttm/ttm_tt.c
-> > index 3baf215eca23..00b7c28f2329 100644
-> > --- a/drivers/gpu/drm/ttm/ttm_tt.c
-> > +++ b/drivers/gpu/drm/ttm/ttm_tt.c
-> > @@ -40,6 +40,7 @@
-> > =C2=A0 #include <drm/drm_cache.h>
-> > =C2=A0 #include <drm/drm_device.h>
-> > =C2=A0 #include <drm/drm_util.h>
-> > +#include <drm/ttm/ttm_backup.h>
-> > =C2=A0 #include <drm/ttm/ttm_bo.h>
-> > =C2=A0 #include <drm/ttm/ttm_tt.h>
-> > =C2=A0=20
-> > @@ -158,6 +159,8 @@ static void ttm_tt_init_fields(struct ttm_tt
-> > *ttm,
-> > =C2=A0=C2=A0	ttm->swap_storage =3D NULL;
-> > =C2=A0=C2=A0	ttm->sg =3D bo->sg;
-> > =C2=A0=C2=A0	ttm->caching =3D caching;
-> > +	ttm->restore =3D NULL;
-> > +	ttm->backup =3D NULL;
-> > =C2=A0 }
-> > =C2=A0=20
-> > =C2=A0 int ttm_tt_init(struct ttm_tt *ttm, struct ttm_buffer_object *bo=
-,
-> > @@ -182,6 +185,13 @@ void ttm_tt_fini(struct ttm_tt *ttm)
-> > =C2=A0=C2=A0		fput(ttm->swap_storage);
-> > =C2=A0=C2=A0	ttm->swap_storage =3D NULL;
-> > =C2=A0=20
-> > +	if (ttm_tt_is_backed_up(ttm))
-> > +		ttm_pool_drop_backed_up(ttm);
-> > +	if (ttm->backup) {
-> > +		ttm_backup_fini(ttm->backup);
-> > +		ttm->backup =3D NULL;
-> > +	}
-> > +
-> > =C2=A0=C2=A0	if (ttm->pages)
-> > =C2=A0=C2=A0		kvfree(ttm->pages);
-> > =C2=A0=C2=A0	else
-> > @@ -253,6 +263,49 @@ int ttm_tt_swapin(struct ttm_tt *ttm)
-> > =C2=A0 }
-> > =C2=A0 EXPORT_SYMBOL_FOR_TESTS_ONLY(ttm_tt_swapin);
-> > =C2=A0=20
-> > +/**
-> > + * ttm_tt_backup() - Helper to back up a struct ttm_tt.
-> > + * @bdev: The TTM device.
-> > + * @tt: The struct ttm_tt.
-> > + * @flags: Flags that govern the backup behaviour.
-> > + *
-> > + * Update the page accounting and call ttm_pool_shrink_tt to free
-> > pages
-> > + * or back them up.
-> > + *
-> > + * Return: Number of pages freed or swapped out, or negative error
-> > code on
-> > + * error.
-> > + */
-> > +long ttm_tt_backup(struct ttm_device *bdev, struct ttm_tt *tt,
-> > +		=C2=A0=C2=A0 const struct ttm_backup_flags flags)
-> > +{
-> > +	long ret;
-> > +
-> > +	if (WARN_ON(IS_ERR_OR_NULL(tt->backup)))
-> > +		return 0;
-> > +
-> > +	ret =3D ttm_pool_backup(&bdev->pool, tt, &flags);
-> > +	if (ret > 0) {
-> > +		tt->page_flags &=3D ~TTM_TT_FLAG_PRIV_POPULATED;
-> > +		tt->page_flags |=3D TTM_TT_FLAG_BACKED_UP;
-> > +	}
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +int ttm_tt_restore(struct ttm_device *bdev, struct ttm_tt *tt,
-> > +		=C2=A0=C2=A0 const struct ttm_operation_ctx *ctx)
-> > +{
-> > +	int ret =3D ttm_pool_restore_and_alloc(&bdev->pool, tt,
-> > ctx);
-> > +
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	tt->page_flags &=3D ~TTM_TT_FLAG_BACKED_UP;
-> > +
-> > +	return 0;
-> > +}
-> > +EXPORT_SYMBOL(ttm_tt_restore);
-> > +
-> > =C2=A0 /**
-> > =C2=A0=C2=A0 * ttm_tt_swapout - swap out tt object
-> > =C2=A0=C2=A0 *
-> > @@ -348,6 +401,7 @@ int ttm_tt_populate(struct ttm_device *bdev,
-> > =C2=A0=C2=A0		goto error;
-> > =C2=A0=20
-> > =C2=A0=C2=A0	ttm->page_flags |=3D TTM_TT_FLAG_PRIV_POPULATED;
-> > +	ttm->page_flags &=3D ~TTM_TT_FLAG_BACKED_UP;
-> > =C2=A0=C2=A0	if (unlikely(ttm->page_flags & TTM_TT_FLAG_SWAPPED)) {
-> > =C2=A0=C2=A0		ret =3D ttm_tt_swapin(ttm);
-> > =C2=A0=C2=A0		if (unlikely(ret !=3D 0)) {
-> > diff --git a/include/drm/ttm/ttm_pool.h
-> > b/include/drm/ttm/ttm_pool.h
-> > index 160d954a261e..54cd34a6e4c0 100644
-> > --- a/include/drm/ttm/ttm_pool.h
-> > +++ b/include/drm/ttm/ttm_pool.h
-> > @@ -33,6 +33,7 @@
-> > =C2=A0=20
-> > =C2=A0 struct device;
-> > =C2=A0 struct seq_file;
-> > +struct ttm_backup_flags;
-> > =C2=A0 struct ttm_operation_ctx;
-> > =C2=A0 struct ttm_pool;
-> > =C2=A0 struct ttm_tt;
-> > @@ -89,6 +90,13 @@ void ttm_pool_fini(struct ttm_pool *pool);
-> > =C2=A0=20
-> > =C2=A0 int ttm_pool_debugfs(struct ttm_pool *pool, struct seq_file *m);
-> > =C2=A0=20
-> > +void ttm_pool_drop_backed_up(struct ttm_tt *tt);
-> > +
-> > +long ttm_pool_backup(struct ttm_pool *pool, struct ttm_tt *ttm,
-> > +		=C2=A0=C2=A0=C2=A0=C2=A0 const struct ttm_backup_flags *flags);
-> > +int ttm_pool_restore_and_alloc(struct ttm_pool *pool, struct
-> > ttm_tt *tt,
-> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct ttm_operation_ctx
-> > *ctx);
-> > +
-> > =C2=A0 int ttm_pool_mgr_init(unsigned long num_pages);
-> > =C2=A0 void ttm_pool_mgr_fini(void);
-> > =C2=A0=20
-> > diff --git a/include/drm/ttm/ttm_tt.h b/include/drm/ttm/ttm_tt.h
-> > index 991edafdb2dd..c736c01ac2ca 100644
-> > --- a/include/drm/ttm/ttm_tt.h
-> > +++ b/include/drm/ttm/ttm_tt.h
-> > @@ -32,11 +32,13 @@
-> > =C2=A0 #include <drm/ttm/ttm_caching.h>
-> > =C2=A0 #include <drm/ttm/ttm_kmap_iter.h>
-> > =C2=A0=20
-> > +struct ttm_backup;
-> > =C2=A0 struct ttm_device;
-> > =C2=A0 struct ttm_tt;
-> > =C2=A0 struct ttm_resource;
-> > =C2=A0 struct ttm_buffer_object;
-> > =C2=A0 struct ttm_operation_ctx;
-> > +struct ttm_pool_tt_restore;
-> > =C2=A0=20
-> > =C2=A0 /**
-> > =C2=A0=C2=A0 * struct ttm_tt - This is a structure holding the pages,
-> > caching- and aperture
-> > @@ -85,17 +87,22 @@ struct ttm_tt {
-> > =C2=A0=C2=A0	 * fault handling abuses the DMA api a bit and
-> > dma_map_attrs can't be
-> > =C2=A0=C2=A0	 * used to assure pgprot always matches.
-> > =C2=A0=C2=A0	 *
-> > +	 * TTM_TT_FLAG_BACKED_UP: TTM internal only. This is set
-> > if the
-> > +	 * struct ttm_tt has been (possibly partially) backed up.
-> > +	 *
-> > =C2=A0=C2=A0	 * TTM_TT_FLAG_PRIV_POPULATED: TTM internal only. DO NOT
-> > USE. This is
-> > =C2=A0=C2=A0	 * set by TTM after ttm_tt_populate() has successfully
-> > returned, and is
-> > =C2=A0=C2=A0	 * then unset when TTM calls ttm_tt_unpopulate().
-> > +	 *
-> > =C2=A0=C2=A0	 */
-> > =C2=A0 #define TTM_TT_FLAG_SWAPPED		BIT(0)
-> > =C2=A0 #define TTM_TT_FLAG_ZERO_ALLOC		BIT(1)
-> > =C2=A0 #define TTM_TT_FLAG_EXTERNAL		BIT(2)
-> > =C2=A0 #define TTM_TT_FLAG_EXTERNAL_MAPPABLE	BIT(3)
-> > =C2=A0 #define TTM_TT_FLAG_DECRYPTED		BIT(4)
-> > +#define TTM_TT_FLAG_BACKED_UP	=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 BIT(5)
-> > =C2=A0=20
-> > -#define TTM_TT_FLAG_PRIV_POPULATED	BIT(5)
-> > +#define TTM_TT_FLAG_PRIV_POPULATED	BIT(6)
-> > =C2=A0=C2=A0	uint32_t page_flags;
-> > =C2=A0=C2=A0	/** @num_pages: Number of pages in the page array. */
-> > =C2=A0=C2=A0	uint32_t num_pages;
-> > @@ -105,11 +112,20 @@ struct ttm_tt {
-> > =C2=A0=C2=A0	dma_addr_t *dma_address;
-> > =C2=A0=C2=A0	/** @swap_storage: Pointer to shmem struct file for swap
-> > storage. */
-> > =C2=A0=C2=A0	struct file *swap_storage;
-> > +	/**
-> > +	 * @backup: Pointer to backup struct for backed up tts.
-> > +	 * Could be unified with @swap_storage. Meanwhile, the
-> > driver's
-> > +	 * ttm_tt_create() callback is responsible for assigning
-> > +	 * this field.
-> > +	 */
-> > +	struct ttm_backup *backup;
-> > =C2=A0=C2=A0	/**
-> > =C2=A0=C2=A0	 * @caching: The current caching state of the pages, see
-> > enum
-> > =C2=A0=C2=A0	 * ttm_caching.
-> > =C2=A0=C2=A0	 */
-> > =C2=A0=C2=A0	enum ttm_caching caching;
-> > +	/** @restore: Partial restoration from backup state. TTM
-> > private */
-> > +	struct ttm_pool_tt_restore *restore;
-> > =C2=A0 };
-> > =C2=A0=20
-> > =C2=A0 /**
-> > @@ -129,9 +145,38 @@ static inline bool ttm_tt_is_populated(struct
-> > ttm_tt *tt)
-> > =C2=A0=C2=A0	return tt->page_flags & TTM_TT_FLAG_PRIV_POPULATED;
-> > =C2=A0 }
-> > =C2=A0=20
-> > +/**
-> > + * ttm_tt_is_swapped() - Whether the ttm_tt is swapped out or
-> > backed up
-> > + * @tt: The struct ttm_tt.
-> > + *
-> > + * Return: true if swapped or backed up, false otherwise.
-> > + */
-> > =C2=A0 static inline bool ttm_tt_is_swapped(const struct ttm_tt *tt)
-> > =C2=A0 {
-> > -	return tt->page_flags & TTM_TT_FLAG_SWAPPED;
-> > +	return tt->page_flags & (TTM_TT_FLAG_SWAPPED |
-> > TTM_TT_FLAG_BACKED_UP);
-> > +}
-> > +
-> > +/**
-> > + * ttm_tt_is_backed_up() - Whether the ttm_tt backed up
-> > + * @tt: The struct ttm_tt.
-> > + *
-> > + * Return: true if swapped or backed up, false otherwise.
-> > + */
-> > +static inline bool ttm_tt_is_backed_up(const struct ttm_tt *tt)
-> > +{
-> > +	return tt->page_flags & TTM_TT_FLAG_BACKED_UP;
-> > +}
-> > +
-> > +/**
-> > + * ttm_tt_clear_backed_up() - Clear the ttm_tt backed-up status
-> > + * @tt: The struct ttm_tt.
-> > + *
-> > + * Drivers can use this functionto clear the backed-up status,
-> > + * for example before destroying or re-validating a purged tt.
-> > + */
-> > +static inline void ttm_tt_clear_backed_up(struct ttm_tt *tt)
-> > +{
-> > +	tt->page_flags &=3D ~TTM_TT_FLAG_BACKED_UP;
-> > =C2=A0 }
-> > =C2=A0=20
-> > =C2=A0 /**
-> > @@ -235,6 +280,24 @@ void ttm_tt_mgr_init(unsigned long num_pages,
-> > unsigned long num_dma32_pages);
-> > =C2=A0 struct ttm_kmap_iter *ttm_kmap_iter_tt_init(struct
-> > ttm_kmap_iter_tt *iter_tt,
-> > =C2=A0=C2=A0					=C2=A0=C2=A0=C2=A0 struct ttm_tt *tt);
-> > =C2=A0 unsigned long ttm_tt_pages_limit(void);
-> > +
-> > +/**
-> > + * struct ttm_backup_flags - Flags to govern backup behaviour.
-> > + * @purge: Free pages without backing up. Bypass pools.
-> > + * @writeback: Attempt to copy contents directly to swap space,
-> > even
-> > + * if that means blocking on writes to external memory.
-> > + */
-> > +struct ttm_backup_flags {
-> > +	u32 purge : 1;
-> > +	u32 writeback : 1;
-> > +};
-> > +
-> > +long ttm_tt_backup(struct ttm_device *bdev, struct ttm_tt *tt,
-> > +		=C2=A0=C2=A0 const struct ttm_backup_flags flags);
-> > +
-> > +int ttm_tt_restore(struct ttm_device *bdev, struct ttm_tt *tt,
-> > +		=C2=A0=C2=A0 const struct ttm_operation_ctx *ctx);
-> > +
-> > =C2=A0 #if IS_ENABLED(CONFIG_AGP)
-> > =C2=A0 #include <linux/agp_backend.h>
-> > =C2=A0=20
->=20
-
+>
+>>
+>> drivers/gpu/drm/i915/i915_irq.c:
+>> This is exactly where I got blocked. All the PCH calls inside it
+>> are display related that I need to move to the display side in
+>> order to have a proper split and make the display to stop using
+>> the irq spin locks directly.
+>>
+>> drivers/gpu/drm/i915/i915_gpu_error.c:
+>> good idea on moving that entire function to display anyway.
+>
+>That seems like a random set of stuff no one actually cares about.
+>Should just nuke the whole thing, apart from DERRMR because that
+>one is actually relevant for GPU hangs. Though that one doesn't
+>exist on VLV/CHV so currently some random garbage is being read
+>into it on those platforms.
+>
+>-- 
+>Ville Syrjälä
+>Intel
