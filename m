@@ -4,86 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DD41C021AF
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 19:32:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A89CC021AD
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 19:54:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23D5F10E752;
-	Tue, 18 Feb 2025 19:32:47 +0000 (UTC)
-Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com
- [209.85.217.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C31DF10E74B;
- Tue, 18 Feb 2025 19:32:45 +0000 (UTC)
-Received: by mail-vs1-f49.google.com with SMTP id
- ada2fe7eead31-4be5b33ff91so631775137.1; 
- Tue, 18 Feb 2025 11:32:45 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1739907163; x=1740511963;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=yb7jRjd6uguB9cG41rTvHpSN+ZVtgW/KmSvyau5JmeE=;
- b=FQc8FP+6XTrTwwOksZwZkHjN1zaCoQFzrDYto+jBCCr3VeWsLbvdqpKlrHr7O4Wj6u
- g7Uvf5q7N2QJTbXrhfV5n9gzWBLz5SVj279eOzgKLidvbAwunr0hs237VMYvyx+tOWcJ
- fQJrVC5/RjxUAp1U9obGlaxZHqm1ZYtHvsBNtlW6eAlhAibY7QV3I5XBlimG7p1b5Bmy
- mrspHCC5qpuCcYfrT641hRZdjVclOpfkh7eQO/dsWFDXiAfnVzYO0+ES8TyPXrhGoE4x
- z1PYz/18Jz9QDyXPwnI+tvTArmepUfq3wRSnR+PYYvPQzkzT0TiJsDagoGfq+HIQrwD9
- oqyw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUvH6SWfIO/utpymYxvZKQ3gOp6NVrrk3q/TIT2lA0P7gnRxpC1rTDiUAszWq6NOySzj3P9o+VlH/E=@lists.freedesktop.org,
- AJvYcCVaO7Hh8mlWcb7DWHvB3MYL21LBh3w206YvJWQmdY6WSWaUS/Di47NNxj0FcME+I9QYlwMfv+IFDg==@lists.freedesktop.org,
- AJvYcCVkExXp875JTcTx9wne51a9WQSaLodxVPiSgMouPqdYrvAZMnXjchqUQx97+2yKpFMrDwY5Gwf7ylA=@lists.freedesktop.org,
- AJvYcCWh72u5gKD4Fd8vZUerygv95B4xiR4Gc+Gh9mWFKt4aR+ECvkBCCRL59lD6Pfq9TTY4Mk4NAOvMLL66@lists.freedesktop.org,
- AJvYcCXh9CRAmgIhS7j9QB7p6d8zJnHDtBrEX/Cv3wYBTcjc68LsLRIpuw+bKfolNdnK4VS/5ihdHRxOTQIwwJg=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzi2IzmYDQBNUCzR+0R+jTX34w2ufbXe5H9CK0sfYM3sDsichTo
- pcPNYfezZNnwYaCV949ExQoV2GOJ2j8NGtELFR0emogu2wIrmX60dykqSn5f
-X-Gm-Gg: ASbGncvQatqGViAs7rSlXVfaPRC2ajfC0nVLJHdQtIQsHr/zB8XJa/hu7kbPrjz6r3B
- hTlOFbiSBVI0bJ/JADAUdfly6PVOuKvnSEc2Icel+KA7l6wpxDGIgkXslv3jXtZqI1bNX6nwOIi
- 8aBOOqanr4nFWcXbeyaw7R/iX1/4SrOXrNXEdLy5r0IaLAzAnKYnIqq8ixliS+Rgc/yajNdSNTJ
- Z4Yxd+b52QmtUWjL7ltRCkXbXJNGqFMH/j2WMbUTxy8cqZo/qMnQ34jr4tzoKWiVwolH7j2mp/Q
- LciUJb7uC6FRzJmzAuqGznpJC6lNzIU8sV6lTV8OZ91VtgwoGuBTxg==
-X-Google-Smtp-Source: AGHT+IEDPxqRETVowx9o0L2xfyCCCVaPWhyN34UyZndc/5oNf/lOU19FA8O4l1otgYvu5pbGICZ4zw==
-X-Received: by 2002:a05:6102:dd1:b0:4bb:baa0:371d with SMTP id
- ada2fe7eead31-4be85cedc05mr615638137.24.1739907161561; 
- Tue, 18 Feb 2025 11:32:41 -0800 (PST)
-Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com.
- [209.85.217.54]) by smtp.gmail.com with ESMTPSA id
- ada2fe7eead31-4bd3b4fe4a6sm2140575137.14.2025.02.18.11.32.40
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 18 Feb 2025 11:32:40 -0800 (PST)
-Received: by mail-vs1-f54.google.com with SMTP id
- ada2fe7eead31-4be633cacbbso688026137.3; 
- Tue, 18 Feb 2025 11:32:40 -0800 (PST)
-X-Forwarded-Encrypted: i=1;
- AJvYcCVWMKxIe42Vp7tg1OYuchWQ900PPwh4JCdSVq6c/XIMtoA0/PHHZkCH8EZ7VzaFSlq4vVu+vdi8nHk=@lists.freedesktop.org,
- AJvYcCWCBqr2+xkX9aYwwXWMML0ZimFB0LenP4PbRt5G2PmzsPBTWY4sHlTY9J88uuOc0geC7/prPTyrvw==@lists.freedesktop.org,
- AJvYcCWJOHTvy1XmA1mnUhcqWVrxkRSxX1HRjIn5zIln08CjezVOSXKPUIuF1ZDmwy9+q55ER1Uk+flliWI=@lists.freedesktop.org,
- AJvYcCWY9T/MXqC7nSR/Fts0mmr70ctTvMcIJT7sHZRWWidc40/Vytibt3XbIKgMpWNa8CDD6tSAg1ZvlqCg@lists.freedesktop.org,
- AJvYcCXKBEjhjJKiJfpYZ7fNAJmgEWzp0kaN82TjcHvUe8Bs2zKOGQX9DqOIpjb4z79sG1EBXqdcqO5O5oZCCr8=@lists.freedesktop.org
-X-Received: by 2002:a05:6102:b10:b0:4bb:d394:46c5 with SMTP id
- ada2fe7eead31-4be85bb8970mr656557137.9.1739907160582; Tue, 18 Feb 2025
- 11:32:40 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8862310E752;
+	Tue, 18 Feb 2025 19:54:18 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U9HIlVdx";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F46710E74F
+ for <intel-xe@lists.freedesktop.org>; Tue, 18 Feb 2025 19:54:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1739908458; x=1771444458;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=eeG20BFy7q2JVDIN7Xopf2PD/LS0U8Fl7p9T265xQyA=;
+ b=U9HIlVdxkUNDKKalDrR2Ow1Zq46T+9LW8mnVqMELPNgUA7mvT46gSLQh
+ 2/77DZE31sslh/XrMa8840mEJlASOdvzSMAA6iqbYauoF7jrOEvj8W0VY
+ caEolDbRO4Bx2QUdBhp//CiMui0yufYFFy41MdVvrZ9VAxg0D1BRMRxMa
+ fxmCNXvZbvTxFcOGgH7ngUVOlnxW/0WnRKWvYBBW2uIxPm0UK+RoFxYDi
+ /o8lHGgXjAI4iNrQMHfHTaj0oRvd3XxLHKqZ9St2esElfCma+CZb++7CE
+ rAR8zJ8hPQKtklTrxo30eKN52Q64hJX3RqSGAYWBKmbsFQ2/aWOFe+c1G g==;
+X-CSE-ConnectionGUID: rbJYr8rnQxqCYTw1vFK/Bw==
+X-CSE-MsgGUID: VnaNKleJQlaPzhbRcIaomQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="44382046"
+X-IronPort-AV: E=Sophos;i="6.13,296,1732608000"; d="scan'208";a="44382046"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2025 11:54:17 -0800
+X-CSE-ConnectionGUID: ieNjEbKbQauI5S9RQwlmJg==
+X-CSE-MsgGUID: rGSYXPO6T3KdJ3ITP8sTrQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="151706343"
+Received: from hchegond-ivm1.jf.intel.com ([10.165.21.208])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2025 11:54:17 -0800
+From: Harish Chegondi <harish.chegondi@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: ashutosh.dixit@intel.com, james.ausmus@intel.com,
+ felix.j.degrood@intel.com, matthew.olson@intel.com,
+ lucas.demarchi@intel.com, Harish Chegondi <harish.chegondi@intel.com>
+Subject: [PATCH v10 0/8] Add support for EU stall sampling
+Date: Tue, 18 Feb 2025 11:53:50 -0800
+Message-ID: <cover.1739906138.git.harish.chegondi@intel.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
-References: <20250218142542.438557-1-tzimmermann@suse.de>
- <20250218142542.438557-3-tzimmermann@suse.de>
-In-Reply-To: <20250218142542.438557-3-tzimmermann@suse.de>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 18 Feb 2025 20:32:28 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdV939ibJTRSaO-oW2Jz4zbkXGRpUYrmA7e=yQfF7W-k_g@mail.gmail.com>
-X-Gm-Features: AWEUYZnARFSxvjPUxC-uDBDfMGz-IvL-HNvEMBPwKo8soOA7GylWEHj75pA7v34
-Message-ID: <CAMuHMdV939ibJTRSaO-oW2Jz4zbkXGRpUYrmA7e=yQfF7W-k_g@mail.gmail.com>
-Subject: Re: [PATCH v3 02/25] drm/dumb-buffers: Provide helper to set pitch
- and size
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com, 
- simona@ffwll.ch, dri-devel@lists.freedesktop.org, 
- linux-mediatek@lists.infradead.org, freedreno@lists.freedesktop.org, 
- linux-arm-msm@vger.kernel.org, imx@lists.linux.dev, 
- linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.org, 
- virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org, 
- linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- linux-tegra@vger.kernel.org, intel-xe@lists.freedesktop.org, 
- xen-devel@lists.xenproject.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,232 +66,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Thomas,
+The following patch series add support for EU stall sampling,
+a new hardware feature first added in PVC and is being supported
+in XE2 and later architecture GPUs. This feature would enable
+capturing of EU stall data which include the IP address of the
+instruction stalled and various stall reason counts.
 
-On Tue, 18 Feb 2025 at 15:26, Thomas Zimmermann <tzimmermann@suse.de> wrote:
-> Add drm_modes_size_dumb(), a helper to calculate the dumb-buffer
-> scanline pitch and allocation size. Implementations of struct
-> drm_driver.dumb_create can call the new helper for their size
-> computations.
->
-> There is currently quite a bit of code duplication among DRM's
-> memory managers. Each calculates scanline pitch and buffer size
-> from the given arguments, but the implementations are inconsistent
-> in how they treat alignment and format support. Later patches will
-> unify this code on top of drm_mode_size_dumb() as much as possible.
->
-> drm_mode_size_dumb() uses existing 4CC format helpers to interpret
-> the given color mode. This makes the dumb-buffer interface behave
-> similar the kernel's video= parameter. Current per-driver implementations
-> again likely have subtle differences or bugs in how they support color
-> modes.
->
-> The dumb-buffer UAPI is only specified for known color modes. These
-> values describe linear, single-plane RGB color formats or legacy index
-> formats. Other values should not be specified. But some user space
-> still does. So for unknown color modes, there are a number of known
-> exceptions for which drm_mode_size_dumb() calculates the pitch from
-> the bpp value, as before. All other values work the same but print
-> an error.
->
-> v3:
-> - document the UAPI semantics
-> - compute scanline pitch from for unknown color modes (Andy, Tomi)
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Support for this feature is being added into Mesa:
+https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/30142
 
-Thanks for your patch!
+New IGT tests for EU stall sampling are being added:
+https://patchwork.freedesktop.org/series/143030/
 
-> --- a/drivers/gpu/drm/drm_dumb_buffers.c
-> +++ b/drivers/gpu/drm/drm_dumb_buffers.c
-> +/**
-> + * drm_mode_size_dumb - Calculates the scanline and buffer sizes for dumb buffers
-> + * @dev: DRM device
-> + * @args: Parameters for the dumb buffer
-> + * @pitch_align: Scanline alignment in bytes
-> + * @size_align: Buffer-size alignment in bytes
-> + *
-> + * The helper drm_mode_size_dumb() calculates the size of the buffer
-> + * allocation and the scanline size for a dumb buffer. Callers have to
-> + * set the buffers width, height and color mode in the argument @arg.
-> + * The helper validates the correctness of the input and tests for
-> + * possible overflows. If successful, it returns the dumb buffer's
-> + * required scanline pitch and size in &args.
-> + *
-> + * The parameter @pitch_align allows the driver to specifies an
-> + * alignment for the scanline pitch, if the hardware requires any. The
-> + * calculated pitch will be a multiple of the alignment. The parameter
-> + * @size_align allows to specify an alignment for buffer sizes. The
-> + * returned size is always a multiple of PAGE_SIZE.
-> + *
-> + * Returns:
-> + * Zero on success, or a negative error code otherwise.
-> + */
-> +int drm_mode_size_dumb(struct drm_device *dev,
-> +                      struct drm_mode_create_dumb *args,
-> +                      unsigned long pitch_align,
-> +                      unsigned long size_align)
-> +{
-> +       u64 pitch = 0;
-> +       u32 fourcc;
-> +
-> +       /*
-> +        * The scanline pitch depends on the buffer width and the color
-> +        * format. The latter is specified as a color-mode constant for
-> +        * which we first have to find the corresponding color format.
-> +        *
-> +        * Different color formats can have the same color-mode constant.
-> +        * For example XRGB8888 and BGRX8888 both have a color mode of 32.
-> +        * It is possible to use different formats for dumb-buffer allocation
-> +        * and rendering as long as all involved formats share the same
-> +        * color-mode constant.
-> +        */
-> +       fourcc = drm_driver_color_mode_format(dev, args->bpp);
-> +       if (fourcc != DRM_FORMAT_INVALID) {
-> +               const struct drm_format_info *info = drm_format_info(fourcc);
-> +
-> +               if (!info)
-> +                       return -EINVAL;
-> +               pitch = drm_format_info_min_pitch(info, 0, args->width);
-> +       } else if (args->bpp) {
-> +               /*
-> +                * Some userspace throws in arbitrary values for bpp and
-> +                * relies on the kernel to figure it out. In this case we
-> +                * fall back to the old method of using bpp directly. The
-> +                * over-commitment of memory from the rounding is acceptable
-> +                * for compatibility with legacy userspace. We have a number
-> +                * of deprecated legacy values that are explicitly supported.
-> +                */
-> +               switch (args->bpp) {
-> +               default:
-> +                       drm_warn(dev, "Unknown color mode %d; guessing buffer size.\n",
+This patch series has undergone basic testing with the new IGT tests.
 
-%u
+Issues that need investigation:
+1. Blocked reads with small user buffers may be blocked even with EU
+stall data in the kernel buffer as a previous read has set pollin to
+false even when kernel buffer has data that could be read but the user
+buffer is too small to read all the data.
 
-> +                                args->bpp);
-> +                       fallthrough;
-> +               case 12:
-> +               case 15:
-> +               case 30: /* see drm_gem_afbc_get_bpp() */
-> +               case 10:
+Thank You.
 
-Perhaps keep them sorted numerically?
+v10 a. Fixed error rewinding code
+    b. Used cancel_delayed_work_sync() instead of flush_delayed_work()
+    c. Replaced per xecore lock with a lock for all the xecore buffers
+    d. Remove function description for static functions.
+    e. Use extension number while parsing chain of extensions.
+    f. Moved code around as per review feedback
+v9: a. Split the big patch in v8 into two patches
+    b. Moved all drop data handling code into one patch
+    c. Several other code improvements as mentioned in the patches
+v8: a. Used div_u64() instead of / to fix 32-bit build issue.
+    b. Changed copyright year in new files to 2025.
+    c. Renamed struct drm_xe_eu_stall_data_pvc to struct xe_eu_stall_data_pvc
+    d. Renamed struct drm_xe_eu_stall_data_xe2 to struct xe_eu_stall_data_xe2
 
-> +               case 64: /* used by Mesa */
-> +                       pitch = args->width * DIV_ROUND_UP(args->bpp, SZ_8);
-> +                       break;
-> +               }
-> +       }
-> +
-> +       if (!pitch || pitch > U32_MAX)
-> +               return -EINVAL;
-> +
-> +       args->pitch = pitch;
-> +
-> +       return drm_mode_align_dumb(args, pitch_align, size_align);
-> +}
-> +EXPORT_SYMBOL(drm_mode_size_dumb);
-> +
->  int drm_mode_create_dumb(struct drm_device *dev,
->                          struct drm_mode_create_dumb *args,
->                          struct drm_file *file_priv)
-> diff --git a/include/drm/drm_dumb_buffers.h b/include/drm/drm_dumb_buffers.h
-> new file mode 100644
-> index 000000000000..6fe36004b19d
-> --- /dev/null
-> +++ b/include/drm/drm_dumb_buffers.h
-> @@ -0,0 +1,14 @@
-> +/* SPDX-License-Identifier: MIT */
-> +
-> +#ifndef __DRM_DUMB_BUFFERS_H__
-> +#define __DRM_DUMB_BUFFERS_H__
-> +
-> +struct drm_device;
-> +struct drm_mode_create_dumb;
-> +
-> +int drm_mode_size_dumb(struct drm_device *dev,
-> +                      struct drm_mode_create_dumb *args,
-> +                      unsigned long pitch_align,
-> +                      unsigned long size_align);
-> +
-> +#endif
-> diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
-> index c082810c08a8..eea09103b1a6 100644
-> --- a/include/uapi/drm/drm_mode.h
-> +++ b/include/uapi/drm/drm_mode.h
-> @@ -1058,7 +1058,7 @@ struct drm_mode_crtc_page_flip_target {
->   * struct drm_mode_create_dumb - Create a KMS dumb buffer for scanout.
->   * @height: buffer height in pixels
->   * @width: buffer width in pixels
-> - * @bpp: bits per pixel
-> + * @bpp: color mode
->   * @flags: must be zero
->   * @handle: buffer object handle
->   * @pitch: number of bytes between two consecutive lines
-> @@ -1066,6 +1066,50 @@ struct drm_mode_crtc_page_flip_target {
->   *
->   * User-space fills @height, @width, @bpp and @flags. If the IOCTL succeeds,
->   * the kernel fills @handle, @pitch and @size.
-> + *
-> + * The value of @bpp is a color-mode number describing a specific format
-> + * or a variant thereof. The value often corresponds to the number of bits
-> + * per pixel for most modes, although there are exceptions. Each color mode
-> + * maps to a DRM format plus a number of modes with similar pixel layout.
-> + * Framebuffer layout is always linear.
-> + *
-> + * Support for all modes and formats is optional. Even if dumb-buffer
-> + * creation with a certain color mode succeeds, it is not guaranteed that
-> + * the DRM driver supports any of the related formats. Most drivers support
-> + * a color mode of 32 with a format of DRM_FORMAT_XRGB8888 on their primary
-> + * plane.
-> + *
-> + * +------------+------------------------+------------------------+
-> + * | Color mode | Framebuffer format     | Compatibles            |
-> + * +============+========================+========================+
-> + * |     32     |  * DRM_FORMAT_XRGB8888 |  * DRM_FORMAT_XBGR8888 |
-> + * |            |                        |  * DRM_FORMAT_RGBX8888 |
-> + * |            |                        |  * DRM_FORMAT_BGRX8888 |
-> + * +------------+------------------------+------------------------+
-> + * |     24     |  * DRM_FORMAT_RGB888   |  * DRM_FORMAT_BGR888   |
-> + * +------------+------------------------+------------------------+
-> + * |     16     |  * DRM_FORMAT_RGB565   |  * DRM_FORMAT_BGR565   |
-> + * +------------+------------------------+------------------------+
-> + * |     15     |  * DRM_FORMAT_XRGB1555 |  * DRM_FORMAT_XBGR1555 |
-> + * |            |                        |  * DRM_FORMAT_RGBX1555 |
-> + * |            |                        |  * DRM_FORMAT_BGRX1555 |
-> + * +------------+------------------------+------------------------+
-> + * |      8     |  * DRM_FORMAT_C8       |  * DRM_FORMAT_R8       |
+v7: a. Renamed input property DRM_XE_EU_STALL_PROP_EVENT_REPORT_COUNT
+       to DRM_XE_EU_STALL_PROP_WAIT_NUM_REPORTS to be consistent with
+       OA. Renamed the corresponding internal variables.
+    b. Fixed some commit messages based on review feedback.
+    c. Changed sampling_rates from a pointer to flexible array.
 
-+ DRM_FORMAT_D8? (and 4/2/1 below)
+v6: a. Changed the uAPI input to accept sampling rate in GPU cycles
+       instead of sampling rate multiplier.
+    b. Fix buffer wrap around over write bug (Matt Olson).
+    c. Include EU stall sampling rates information and per XeCore buffer size in the query information.
 
-And DRM_FORMAT_Y8, if/when Tomi's series introducing that is accepted...
+v5: Addressed review feedback from v4 including
+    a. Removed DRM_XE_EU_STALL_PROP_POLL_PERIOD from the uAPI (Ashutosh)
+    b. Separated the patches for Xe_HPC and Xe2 (Matt R)
+    c. Moved read() returning -EIO into a separate patch
+    d. Removed spinlocks around set_bit() and clear_bit() (Matt R)
+    e. Renamed several variables, structures and enums (Ashutosh and
+Matt R)
+    f. Addressed other review feedback.
+v4: Addressed review feedback from v3 including
+    a. Split the patch into multiple patches (Matt R)
+    b. Added a new device query to get EU stall info (Ashutosh)
+    c. Renamed all Dss to xecore (Matt R)
+    d. Removed buffer size and disable at open input properties. (Matt R)
+    e. Removed the "_SHIFT" macros (Matt R)
+    f. Allocate the EU stall buffer only on system memory.
+    g. Changed the work arounds to OOB (Matt R)
+    h. Other review feedback.
+v3: a. Removed data header and changed read() to return -EIO when data is dropped by the HW.
+    b. Added a new DRM_XE_OBSERVATION_IOCTL_INFO to query EU stall data record info
+    c. Added struct drm_xe_eu_stall_data_pvc and struct drm_xe_eu_stall_data_xe2
+       to xe_drm.h. These declarations would help user space to parse the
+       EU stall data
+    d. Addressed other review comments from v2
+v2: Rename xe perf layer as xe observation layer (Ashutosh)
 
-> + * +------------+------------------------+------------------------+
-> + * |      4     |  * DRM_FORMAT_C4       |  * DRM_FORMAT_R4       |
-> + * +------------+------------------------+------------------------+
-> + * |      2     |  * DRM_FORMAT_C2       |  * DRM_FORMAT_R2       |
-> + * +------------+------------------------+------------------------+
-> + * |      1     |  * DRM_FORMAT_C1       |  * DRM_FORMAT_R1       |
-> + * +------------+------------------------+------------------------+
-> + *
-> + * Color modes of 10, 12, 15, 30 and 64 are only supported for use by
-> + * legacy user space. Please don't use them in new code. Other modes
-> + * are not support.
-> + *
-> + * Do not attempt to allocate anything but linear framebuffer memory
-> + * with single-plane RGB data. Allocation of other framebuffer
-> + * layouts requires dedicated ioctls in the respective DRM driver.
->   */
->  struct drm_mode_create_dumb {
->         __u32 height;
+Test-with: cover.1739901972.git.harish.chegondi@intel.com
 
-Gr{oetje,eeting}s,
+Reviewed-by: Ben Olson <matthew.olson@intel.com>
+Acked-by: Felix Degrood <felix.j.degrood@intel.com>
+Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 
-                        Geert
+Harish Chegondi (8):
+  drm/xe/topology: Add a function to find the index of the last enabled
+    DSS in a mask
+  drm/xe/uapi: Introduce API for EU stall sampling
+  drm/xe/eustall: Add support to init, enable and disable EU stall
+    sampling
+  drm/xe/eustall: Add support to read() and poll() EU stall data
+  drm/xe/eustall: Add support to handle dropped EU stall data
+  drm/xe/eustall: Add EU stall sampling support for Xe2
+  drm/xe/uapi: Add a device query to get EU stall sampling information
+  drm/xe/eustall: Add workaround 22016596838 which applies to PVC.
+
+ drivers/gpu/drm/xe/Makefile                |   1 +
+ drivers/gpu/drm/xe/regs/xe_eu_stall_regs.h |  29 +
+ drivers/gpu/drm/xe/xe_eu_stall.c           | 946 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_eu_stall.h           |  20 +
+ drivers/gpu/drm/xe/xe_gt.c                 |   6 +
+ drivers/gpu/drm/xe/xe_gt_topology.h        |  13 +
+ drivers/gpu/drm/xe/xe_gt_types.h           |   3 +
+ drivers/gpu/drm/xe/xe_observation.c        |  14 +
+ drivers/gpu/drm/xe/xe_query.c              |  38 +
+ drivers/gpu/drm/xe/xe_trace.h              |  33 +
+ drivers/gpu/drm/xe/xe_wa_oob.rules         |   1 +
+ include/uapi/drm/xe_drm.h                  |  74 ++
+ 12 files changed, 1178 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/regs/xe_eu_stall_regs.h
+ create mode 100644 drivers/gpu/drm/xe/xe_eu_stall.c
+ create mode 100644 drivers/gpu/drm/xe/xe_eu_stall.h
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.48.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
