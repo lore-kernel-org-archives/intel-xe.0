@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 718C8C021AD
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 15:27:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41126C02198
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 15:28:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3742410E3EA;
-	Tue, 18 Feb 2025 15:27:48 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nTbfoKiq";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D208E10E3D1;
- Tue, 18 Feb 2025 15:27:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739892466; x=1771428466;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=27bdBTYIHqF4WT2QBIDyyj+QX8sfmDXcWuIPQVYw8Ag=;
- b=nTbfoKiqT/b9LLym1LpVeoqLSqPBWtBjiZl2HxO5o34SPhTIctT84062
- D11vdBgkR6TglplZhmEfSaRt8lmTe1wXiLETw2z4qs3cd0YT3AhsZcwEu
- 9UMSEK5t08gaSHTOpdsiTMCfPFqMFTEv/71RpiVVX7EZlbprI8C4HDYCo
- +FzGnGSzlIJs43Rro35Qi2edaMfDBYcHi0IRUlnOmOr1PLjieeAtIGVek
- EOplYxjwKtC+bfo/AKIEKI2Hxl0vFBlEKjTO3Lu9LfGqoGmPeGRDDeAsG
- qaY3R1CfU02tTT0sF+orzt12kEAKW/vDfpm6zfPD7bbJVrtHTvtQaQrKX g==;
-X-CSE-ConnectionGUID: mhR8yaUiQ1uSzxXFqP4boA==
-X-CSE-MsgGUID: MkpN9iAqSy6RtC8+sTxcIw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="51234601"
-X-IronPort-AV: E=Sophos;i="6.13,296,1732608000"; d="scan'208";a="51234601"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2025 07:27:45 -0800
-X-CSE-ConnectionGUID: Z6mrEUIuTEytQn1G0bssyQ==
-X-CSE-MsgGUID: E+06Vx7MTlW/eCRUFXXC+Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,296,1732608000"; d="scan'208";a="114619756"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 18 Feb 2025 07:27:42 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 18 Feb 2025 17:27:41 +0200
-Date: Tue, 18 Feb 2025 17:27:41 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 1/2] drm/{i915,xe}: Move intel_pch under display
-Message-ID: <Z7Sm7Z1pfz0hYGD2@intel.com>
-References: <20250218010224.761209-1-rodrigo.vivi@intel.com>
- <878qq3o36t.fsf@intel.com> <Z7SdGtcVfduRSkNs@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E804310E71A;
+	Tue, 18 Feb 2025 15:28:52 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 242E910E715;
+ Tue, 18 Feb 2025 15:28:52 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Z7SdGtcVfduRSkNs@intel.com>
-X-Patchwork-Hint: comment
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/dumb-buffers=3A_Fix_?=
+ =?utf-8?q?and_improve_buffer-size_calculation_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Thomas Zimmermann" <tzimmermann@suse.de>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 18 Feb 2025 15:28:52 -0000
+Message-ID: <173989253214.3599359.13689689332960886273@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250218142542.438557-1-tzimmermann@suse.de>
+In-Reply-To: <20250218142542.438557-1-tzimmermann@suse.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,72 +36,119 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Feb 18, 2025 at 09:45:46AM -0500, Rodrigo Vivi wrote:
-> On Tue, Feb 18, 2025 at 02:19:38PM +0200, Jani Nikula wrote:
-> > On Mon, 17 Feb 2025, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> > > The only usage of the "PCH" infra is to detect which South Display
-> > > Engine we should be using. Move it under display so we can convert
-> > > all its callers towards intel_display struct later.
-> > 
-> > Yeah, PCH is becoming a blocker to finishing the conversions of many
-> > files from drm_i915_private to intel_display. We'll need to do something
-> > like this.
-> 
-> First of all, I'm sorry for not sending a cover letter explaining more about
-> my thoughts here and also for not tagging this as an RFC. And thank you very
-> much for jumping in the discussion.
-> 
-> I started this, exactly because my consolidation of display pm now is
-> blocked in some HPD calls. Then I checked the IRQ code and I have some
-> ideas do organize that, but that got blocked on the PCH, then I moved
-> towards seeing what could and should be done to PCH and these 2 patches
-> is the initial of my conclusion.
-> 
-> > 
-> > I was eyeing the PCH checks outside of display, and frankly many of them
-> > are plain wrong (done to check stuff that's unrelated to PCH, but
-> > happens to match desired platforms), or should be in display
-> > (e.g. gt_record_display_regs()). But there are also legitimate checks, I
-> > think in clock gating.
-> 
-> Yes, this one in GPU hang was one of the most strange ones, but then
-> I noticed it is inside this function that should be moved to the display
-> side anyway.
-> 
-> Other cases are:
-> drivers/gpu/drm/i915/intel_clock_gating.c:
-> 
-> This entire file should be in the display side.
+== Series Details ==
 
-Mostly, but it still has bunch of gt workarounds in it.
-Those all should be moved into the gt w/a framework.
+Series: drm/dumb-buffers: Fix and improve buffer-size calculation (rev3)
+URL   : https://patchwork.freedesktop.org/series/143335/
+State : warning
 
-> But I got super
-> scared now because it looks like it is not getting called from nowhere.
-> So we might be missing many display workarounds. I will investigate
-> this more later.
+== Summary ==
 
-It's hidden behind some confusing macro stuff.
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast 4587c05996666a92af63f86ba410bae1dc940794
+Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/drm_drv.c:449:6: warning: context imbalance in 'drm_dev_enter' - different lock contexts for basic block
++drivers/gpu/drm/drm_drv.c: note: in included file (through include/linux/notifier.h, arch/x86/include/asm/uprobes.h, include/linux/uprobes.h, include/linux/mm_types.h, include/linux/mmzone.h, include/linux/gfp.h, ...):
++drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_ddi.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_display_types.h:1970:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1970:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1970:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1970:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1970:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1970:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1970:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1970:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1970:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1970:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1970:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1970:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1983:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1983:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_hdcp.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_pps.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_psr.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c:106:17: warning: cast truncates bits from constant value (e8d4a51000 becomes d4a51000)
++drivers/gpu/drm/i915/gt/intel_reset.c:1544:12: warning: context imbalance in '_intel_gt_reset_lock' - different lock contexts for basic block
++drivers/gpu/drm/i915/i915_active.c:1063:16: warning: context imbalance in '__i915_active_fence_set' - different lock contexts for basic block
++drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    expected struct list_head const *list
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    got struct list_head [noderef] __rcu *pos
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/i915/i915_irq.c:490:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:490:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:498:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:498:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:503:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:503:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:503:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:540:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:540:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:548:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:548:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:553:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:553:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:553:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:596:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:596:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:599:15: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:599:15: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:603:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:603:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:610:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:610:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:610:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:610:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/intel_uncore.c:1925:1: warning: context imbalance in 'fwtable_read8' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1926:1: warning: context imbalance in 'fwtable_read16' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1927:1: warning: context imbalance in 'fwtable_read32' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1928:1: warning: context imbalance in 'fwtable_read64' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1993:1: warning: context imbalance in 'gen6_write8' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1994:1: warning: context imbalance in 'gen6_write16' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1995:1: warning: context imbalance in 'gen6_write32' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:2015:1: warning: context imbalance in 'fwtable_write8' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:2016:1: warning: context imbalance in 'fwtable_write16' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:2017:1: warning: context imbalance in 'fwtable_write32' - unexpected unlock
++drivers/gpu/drm/i915/intel_wakeref.c:145:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
++drivers/gpu/drm/ttm/ttm_bo.c:1194:31: warning: symbol 'ttm_swap_ops' was not declared. Should it be static?
++drivers/gpu/drm/ttm/ttm_bo_util.c:324:38:    expected void *virtual
++drivers/gpu/drm/ttm/ttm_bo_util.c:324:38:    got void [noderef] __iomem *
++drivers/gpu/drm/ttm/ttm_bo_util.c:324:38: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/ttm/ttm_bo_util.c:327:38:    expected void *virtual
++drivers/gpu/drm/ttm/ttm_bo_util.c:327:38:    got void [noderef] __iomem *
++drivers/gpu/drm/ttm/ttm_bo_util.c:327:38: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/ttm/ttm_bo_util.c:330:38:    expected void *virtual
++drivers/gpu/drm/ttm/ttm_bo_util.c:330:38:    got void [noderef] __iomem *
++drivers/gpu/drm/ttm/ttm_bo_util.c:330:38: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/ttm/ttm_bo_util.c:436:28:    expected void volatile [noderef] __iomem *addr
++drivers/gpu/drm/ttm/ttm_bo_util.c:436:28:    got void *virtual
++drivers/gpu/drm/ttm/ttm_bo_util.c:436:28: warning: incorrect type in argument 1 (different address spaces)
++./include/linux/srcu.h:357:9: warning: context imbalance in 'drm_dev_exit' - unexpected unlock
 
-> 
-> drivers/gpu/drm/i915/i915_irq.c:
-> This is exactly where I got blocked. All the PCH calls inside it
-> are display related that I need to move to the display side in
-> order to have a proper split and make the display to stop using
-> the irq spin locks directly.
-> 
-> drivers/gpu/drm/i915/i915_gpu_error.c:
-> good idea on moving that entire function to display anyway.
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-That seems like a random set of stuff no one actually cares about.
-Should just nuke the whole thing, apart from DERRMR because that
-one is actually relevant for GPU hangs. Though that one doesn't
-exist on VLV/CHV so currently some random garbage is being read
-into it on those platforms.
 
--- 
-Ville Syrjälä
-Intel
