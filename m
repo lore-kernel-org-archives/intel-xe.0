@@ -4,168 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0734C021AA
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 03:57:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC536C02198
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 04:02:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4390F10E217;
-	Tue, 18 Feb 2025 03:57:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FE6310E1DF;
+	Tue, 18 Feb 2025 04:02:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EQNyG7Rg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nenT0x+Q";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B724210E217
- for <intel-xe@lists.freedesktop.org>; Tue, 18 Feb 2025 03:57:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6618410E1DF
+ for <intel-xe@lists.freedesktop.org>; Tue, 18 Feb 2025 04:02:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739851058; x=1771387058;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=vDqKs36EfHBZWYfRgjrJkMLLKizuE1see6z0VrXKtjQ=;
- b=EQNyG7RgEMr4BW1lprI10GgWt2RMsm1FAcwGo0p36yr8Zk3acvbZuNSf
- k7OIIfnaOM6v4PbqaIhHk7qKyNMH/38Ti3EH6JT8RKTLTtoVWE39xp3A8
- CORBo+FgUX4AGdYGD1mcGRYBp2HkTa176XJBmI23bvG1jPiddyOz6gEdi
- V5NESWvkj0E5uL79SfxxF45cmnz/rNOcRiwIQfr92OgCV8bTyh41pU6MK
- zykcvTIf69zFhbYg9CSuTtF8cWHd7cKwdA6SO3ce1KYLv+RRPc42Qp0b0
- B6j5kJjcIzjiccI/ZWe1pwtJinhunNyQhebGPf1ato8WAQr2EpcN+BxX0 w==;
-X-CSE-ConnectionGUID: RXPqYMGOQfSUZaOU24i8+g==
-X-CSE-MsgGUID: /1Z5mMQZQsiUSW07Ipz1aA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="50750116"
-X-IronPort-AV: E=Sophos;i="6.13,294,1732608000"; d="scan'208";a="50750116"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2025 19:57:37 -0800
-X-CSE-ConnectionGUID: 5hdxUU/wS52ntB+vj7V6yg==
-X-CSE-MsgGUID: XbmgL3wfR6Wn4/791L2ZcA==
+ t=1739851379; x=1771387379;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=EAGERXjj5J6JoEXwK570/NATD+TP+6di6nABO6i5D0k=;
+ b=nenT0x+Q1x9KrnxkSUWJw3w2Ibt5QGOAe24bGjynuf+ofbIzKWA9N7aB
+ Ul9bxYPiZK7AD48MLnjEFJileNwYTQ4IpNBVq2Xjc7ERP+ECWbtlaXeH6
+ 1ilwZMgwpybz4886fmdPlh/Er7np6RSHlvOl9UpQUxdh8EiRWvy9K82Zx
+ 2YSgmpiozBicgNOMNhShA4ou0li2TCEYRbDqVfwuo/kDMKTpZub8hxeNl
+ aJiu+Jxg9FZyhoehNPSLCeh4JJQoz0P5hln5DgMaiJuLZZgrTyfvJuKOE
+ bRQfrPwseq7W7P9mZKNsEp7v7yLvWe4NzRq/cy6DRJFBAe3x9tVYgInA/ g==;
+X-CSE-ConnectionGUID: IQHOgriSQtyioOr0eRtwCg==
+X-CSE-MsgGUID: q+76Q+evQ1W+g3YomeEE5w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="40558968"
+X-IronPort-AV: E=Sophos;i="6.13,294,1732608000"; d="scan'208";a="40558968"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2025 20:02:59 -0800
+X-CSE-ConnectionGUID: d+k2kDweSMWDwTQm5lAbUw==
+X-CSE-MsgGUID: xn1vmqGTThSig93GHVSEVA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,294,1732608000"; d="scan'208";a="114021114"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2025 19:57:38 -0800
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Mon, 17 Feb 2025 19:57:36 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Mon, 17 Feb 2025 19:57:36 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.49) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Mon, 17 Feb 2025 19:57:35 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bL4ePbcrrgc/tdCDNqeWLcNss1PHXxobVh+wzHXMeNECCFgHH1dJGVs9b5VHfYa8bCqgh51Jjkj6n7mLDNT6H7C4MbesjgX9qmcLGWnqrwuJ6+X+FvJwviKznAVr5ZyjfvkmYqzjBaVzwY09iuKlwumX43bkM+RaADfMR/lgsaWb6z1ZnduoECZaswsXIjiCNyTNR/gZVOerU9+CinSNXjIyBF2yO4hA8DFNjWaUtSrGuGllTBii9QS/ZaLnj5BVrc0pjOc4gm3wqp10hzFsl+BuVqi7bh4EIw+13/VSKN5iiKd/6NcbynOHe/WiRT6sL9b8drkK16LwKKVELvKnyQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oRGvHGIhllPemmQI3iO7nXm1YKIufyYzyfeUoM+bxFI=;
- b=vk0fCogbF4HncvNkro4YYLHG0fJb9qo6+vfioL139xDlMsew74tbpAQlVQULSVSE/5sL1Af804YIAJDTK87vyIKm2SpqeOC2u8zsmqFMqJmy9AYyZvXpJWjGZ46D++CofV2Tea8NYV8YHC6z5LIKlDxHxCDGgGbVHOK7Uy4272K67qoLBrL7355+pIZ243cdWMdKt+5JQ9hM7WHXKVPEbqTLn/RQrV1Sjd2GQR1nlYvz/Nt+p86m44zbFkhcALe2TGcKJxgADSo0Y6eG3NeGtCPg3d49ey5bk8/DVg+6FTPwOJhOkGeXg6DLFBt6UdA4aydUXuR72LOSeyusqGOGpg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by DS0PR11MB7682.namprd11.prod.outlook.com (2603:10b6:8:dc::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8445.19; Tue, 18 Feb
- 2025 03:57:15 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%3]) with mapi id 15.20.8445.017; Tue, 18 Feb 2025
- 03:57:09 +0000
-Date: Mon, 17 Feb 2025 19:58:11 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, <stable@vger.kernel.org>
-Subject: Re: [PATCH v2 1/3] drm/xe/userptr: restore invalidation list on error
-Message-ID: <Z7QFUy9ZyBRhPwuY@lstrano-desk.jf.intel.com>
-References: <20250214170527.272182-4-matthew.auld@intel.com>
- <Z6/ttCTrEuwNsD6w@lstrano-desk.jf.intel.com>
- <6fec16d5-cbf3-448b-9c07-85a079095f62@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <6fec16d5-cbf3-448b-9c07-85a079095f62@intel.com>
-X-ClientProxiedBy: MW4PR03CA0066.namprd03.prod.outlook.com
- (2603:10b6:303:b6::11) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DS0PR11MB7682:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5411d326-8caf-42a4-39f2-08dd4fd0510a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?8o2YgpDhdf3q67txnSYT04CamNd7+VgV15wrDoSO4BsDi/L8d3+O2t+z6R?=
- =?iso-8859-1?Q?D6M0TswdAzcPUuYPtW3IKH8KauqLrKowJ41OnJ+l7/LaJkooeHBcoP0hcH?=
- =?iso-8859-1?Q?TJdjg7sJDHsDkGHg3YV7dDtD/Gg3X2/kYwslWtehnuCtKyr7zNI94XRFjy?=
- =?iso-8859-1?Q?bUxhxuScqSAm0KueAAk0OPGBSVX1+H4bEAtEI7c8E2bXd2nGM2cYehVGow?=
- =?iso-8859-1?Q?GUHsXgnAFGNix/9uGIv5oF6hgrhWNSLewh88eNVC7u85dErYOBL1CbyQEP?=
- =?iso-8859-1?Q?cchJKoSCbl1GA5VD57NnoPjsvo6OxxYx/2TLOlE57LLIPfEarCxRHU8D4t?=
- =?iso-8859-1?Q?bPnZ+u1DjxUla/B8VkFMTj4LY++5Iv/n9ecP7ifqchbc2/Uk3PgvObi6rS?=
- =?iso-8859-1?Q?LRx2ZbfXCUaLtjZuFLlVM9Mvzqy4roz0OAyvK3ImF1Ob+7Xmz3kkG9zrzJ?=
- =?iso-8859-1?Q?rnOAEQvePwu2mGXVI1ECbDGxp/BPIQyJ8c63C6y9iBGPz5QRIxwDNRzHNd?=
- =?iso-8859-1?Q?T/5CHXx4/qwAVIDSWB1Te92ZsJjSPRVsXRUHm8HQuRh+7A5to3BZKOUpGE?=
- =?iso-8859-1?Q?gHVpxetlUgzuz7lNovlpjVNeG1CEXPHPDl2A/7cHKjC/w+cf3SM5cN+yaj?=
- =?iso-8859-1?Q?LVUyaZV61PkwJQPgNVMyQyLALBuQcEhf5Unt2yNz8Bka+73LQcCDQuukCz?=
- =?iso-8859-1?Q?bgk4bJsb2XMNjHi4nPX5FvHhhzg/nSvccjjAUILwVsjpr80TMPjKV6trLP?=
- =?iso-8859-1?Q?5xaiYwUuzGR44xNJoUPc9Gp+2b5bD/YwezQfkN+h75tH7xqG7H+bK2Jquj?=
- =?iso-8859-1?Q?bW2jSvbJl2Etyk6ystWjTUwELGajktuD1I+kjDQpFbc5sZZzdDAmvA+Dc+?=
- =?iso-8859-1?Q?dvYOYCPNtzAxWiOqtj45Y3BqSOT4+U1cg/63B/JoBnxle1bTKxchJ+kv3g?=
- =?iso-8859-1?Q?TUOMVYSuU46ATjqdmQn7Mm0ybc/MwTt8TE17rAlLEHscCf/Dr6qS7joXN5?=
- =?iso-8859-1?Q?4o+051sV1ngSQDZuA8/zSrDI+oo4AmuGc5yrilL8BexHOAS9r2/5Sg5HDc?=
- =?iso-8859-1?Q?FTexgBFls+kFybT8Sj4QfsE1LHsWDjGFqkZwndwLR0hAouZ93Eib52BOvI?=
- =?iso-8859-1?Q?hrJtPCXwMJsCb/cxOwflSyqd2tzprKXMeTGmcGIlOph/4exy/BhKEzI5Yd?=
- =?iso-8859-1?Q?lJsTjgM0n4PmipSpozRC9ehGI/oh9IFI9nEmmwi63GJr3Rh6OeYu587eCb?=
- =?iso-8859-1?Q?T6FytJp/O9EO4rMukFMgQGUljQy0IYyuM7O0I5pSdDATQoq3ZyOb2CVGSF?=
- =?iso-8859-1?Q?GdX5FrdarlKt534MULm9hcyUoXqGU1i+/+OL9DPMcN2lRL2A6Gd7aKqu8D?=
- =?iso-8859-1?Q?sBb2ATikRb0CBxJxg6zoGE90C7nzQGHkPwI5QdHg1dloY/N9ii1jvLnYm+?=
- =?iso-8859-1?Q?V3qmjTzLgVVg0yVy?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?NmeJH4jmUMETdwWjkXdWe5hDG8+Dqj7sSnvrPOJUTigUCf9ZL7RD/qHNvR?=
- =?iso-8859-1?Q?B1Q3c/UYxQpAUVQwVfzXXi1cNPnDhLvyecTau3/aqZXqxc54E435mEW58N?=
- =?iso-8859-1?Q?qpl9ooMFXdevnOMk7ynI+mtXx7kqQ6Ik4M0RdtR/8qAWi45k1A6bFCVcHE?=
- =?iso-8859-1?Q?dWnvuMkmNohYJtlsDurYT0/pO34cwQOEr/JTXxMoyt1N8g9sLWAAz3/eXe?=
- =?iso-8859-1?Q?oUJ399vZtegFlIogM+1YePt5P1NaDDjpzcUKLAWgiKBB6VF+96VuT25nOb?=
- =?iso-8859-1?Q?eT8VhHH2y+I7bWk9d6iNmIS1nyFHwj1hlIDgZXxnRXdfpQAQyuYbHzbivA?=
- =?iso-8859-1?Q?cp6NO8Z6nWm6fzNz0wz47q6ucHfpPmNnaPDtz7Rv+Fs13jJ90oneNvGTW4?=
- =?iso-8859-1?Q?CKqc+LYLS6+/5XI/kVGoD2usSQ7GIO8oiqFKFG+Z1iVoQCpAaThkU3vdud?=
- =?iso-8859-1?Q?KZvYnrP3ZKsZvkrBel5V2S4JTfzJyJeM2QIgQOy6bywXz1qK3gIN94rYjL?=
- =?iso-8859-1?Q?SW0LdTiALR1+tWbh9+H7acaO6pqsRfc+bSrnOvEtxkfr593YTEfB7ga2Wt?=
- =?iso-8859-1?Q?mZYFR7U5w+FDq5+wpqx5vkb1DkB4UQYyKmsF7IqpNKWyyoxzWAUrYCL9jv?=
- =?iso-8859-1?Q?QYoM/csrdw1nLrlUMlegubtE3xbJgXsjqxlYY1HWJBQlQ+4uW1bjewmXae?=
- =?iso-8859-1?Q?VCWG/Jdg1GZ/rg+w3dB5lL4GraQPqpX5yQfZ5MYFZKLbTWo6LiZGvgstO3?=
- =?iso-8859-1?Q?CFm0jfsCTxGjDek8E8is7/Wp/ldzlrXujSOELfHfckdHZKy75UzMkiUvoz?=
- =?iso-8859-1?Q?rx9UZoWZjUK37ZQrKautyzKpNFs6ViVXWwzfNNvFmfFHT96OVHj4F2EIxs?=
- =?iso-8859-1?Q?0Fi8MqHqv0U3vravg13WoM+yORrSeTiaDwIB6nXe1mcsvMaBdTsZkl7XvA?=
- =?iso-8859-1?Q?UbldtpDaYwtOqsdUdUpBPUK5AGe0QcwfLA9Lw76zKZhc0a9BF34BTllejQ?=
- =?iso-8859-1?Q?lkKMREyttP5B4cF7QceJ5MKGfb6w0SltGItG+cSkkWEf5DrYTNlzXwi7jd?=
- =?iso-8859-1?Q?dy3teWvzo3zpAw/9qdT+gHI3/T3bjyI077Ip9zYNcBB6HzCIts0s7zGrPi?=
- =?iso-8859-1?Q?u617H+figQ4PKejs1WX80vd2U5abNGWGy8ZPE82cDa9jWROc/gy+8saoWO?=
- =?iso-8859-1?Q?YdW2JC5a97EUD0Hbj14RYw4YS2faoSoNGoeIPoyxwziP2EbOw5VZakd8jR?=
- =?iso-8859-1?Q?pN2qwJB9f4QcPdq7Z6nwMIoWyx1lm1dK0QM5rlJ3vd+6RLX/4M5XKDat0v?=
- =?iso-8859-1?Q?9zdZlzbxfqNltjlXLtbOYuhNdtycDkyAuZHlBF/dvDsR9Sjk2MMOpEbXCP?=
- =?iso-8859-1?Q?t518vXuYsikeo9FgT0iFotrPZhMfWLy6mr/7NNBHXPfPo5cRHIGlMk5+b7?=
- =?iso-8859-1?Q?br8O5romQt2Dz3O+/06iLNdZK+uD3RqY8Sp0ltQhvZuhYz0nwYAZuC+XVR?=
- =?iso-8859-1?Q?XLAugaBi/+5mR+Uy7HroiC/tFQi0JrzGDF6djHatTRMk82fPshs1E7pc4Y?=
- =?iso-8859-1?Q?xtr+y0q21Aa7soiowbDYJw+P1V0bER9Ng0chRrNiDxlBd21odM+lImTDUw?=
- =?iso-8859-1?Q?CVqVr9cDplW5TEavbugpCEUe/8kfPvvDY+nV760jvl3o+Z47wQKwO/KA?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5411d326-8caf-42a4-39f2-08dd4fd0510a
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2025 03:57:08.9927 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wcDr8QzC1wYNYoUBaBoG9Scbd1mxYQJuvtKPV8WU9rD9axDGUXAZo2nkN+z7UUkcj7XJ24ndR3QF/bTuicfRsQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7682
-X-OriginatorOrg: intel.com
+X-IronPort-AV: E=Sophos;i="6.13,294,1732608000"; d="scan'208";a="114260314"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.142])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2025 20:02:57 -0800
+Date: Mon, 17 Feb 2025 20:02:57 -0800
+Message-ID: <85wmdn293i.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Harish Chegondi <harish.chegondi@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v9 4/8] drm/xe/eustall: Add support to read() and poll()
+ EU stall data
+In-Reply-To: <Z7PV1xrxwHeMnBnk@intel.com>
+References: <cover.1739193510.git.harish.chegondi@intel.com>	<2c6ba4545b30b3f7ff0055fd9994618fd31d12ab.1739193510.git.harish.chegondi@intel.com>	<851pw37zrk.wl-ashutosh.dixit@intel.com>	<Z672GhrHuyQaGVBd@intel.com>	<8534gg2rl9.wl-ashutosh.dixit@intel.com>	<Z6_jaiUEyoqoXz3Y@intel.com>	<851pw02bhr.wl-ashutosh.dixit@intel.com>	<Z7PV1xrxwHeMnBnk@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -180,118 +70,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Feb 17, 2025 at 09:38:26AM +0000, Matthew Auld wrote:
-> On 15/02/2025 01:28, Matthew Brost wrote:
-> > On Fri, Feb 14, 2025 at 05:05:28PM +0000, Matthew Auld wrote:
-> > > On error restore anything still on the pin_list back to the invalidation
-> > > list on error. For the actual pin, so long as the vma is tracked on
-> > > either list it should get picked up on the next pin, however it looks
-> > > possible for the vma to get nuked but still be present on this per vm
-> > > pin_list leading to corruption. An alternative might be then to instead
-> > > just remove the link when destroying the vma.
-> > > 
-> > > Fixes: ed2bdf3b264d ("drm/xe/vm: Subclass userptr vmas")
-> > > Suggested-by: Matthew Brost <matthew.brost@intel.com>
-> > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> > > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > > Cc: <stable@vger.kernel.org> # v6.8+
-> > > ---
-> > >   drivers/gpu/drm/xe/xe_vm.c | 26 +++++++++++++++++++-------
-> > >   1 file changed, 19 insertions(+), 7 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> > > index d664f2e418b2..668b0bde7822 100644
-> > > --- a/drivers/gpu/drm/xe/xe_vm.c
-> > > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > > @@ -670,12 +670,12 @@ int xe_vm_userptr_pin(struct xe_vm *vm)
-> > >   	list_for_each_entry_safe(uvma, next, &vm->userptr.invalidated,
-> > >   				 userptr.invalidate_link) {
-> > >   		list_del_init(&uvma->userptr.invalidate_link);
-> > > -		list_move_tail(&uvma->userptr.repin_link,
-> > > -			       &vm->userptr.repin_list);
-> > > +		list_add_tail(&uvma->userptr.repin_link,
-> > > +			      &vm->userptr.repin_list);
-> > 
-> > Why this change?
-> 
-> Just that with this patch the repin_link should now always be empty at this
-> point, I think. add should complain if that is not the case.
-> 
+On Mon, 17 Feb 2025 16:35:35 -0800, Harish Chegondi wrote:
+>
+> > > > > > > +	if (!(file->f_flags & O_NONBLOCK)) {
+> > > > > > > +		do {
+> > > > > > > +			ret = wait_event_interruptible(stream->poll_wq, stream->pollin);
+> > > > > > > +			if (ret)
+> > > > > > > +				return -EINTR;
+> > > > > > > +
+> > > > > > > +			mutex_lock(&gt->eu_stall->stream_lock);
+> > > > > > > +			ret = xe_eu_stall_stream_read_locked(stream, file, buf, count);
+> > > > > > > +			mutex_unlock(&gt->eu_stall->stream_lock);
+> > > > > > > +		} while (ret == -EAGAIN);
+> > > > > > > +	} else {
+> > > > > > > +		mutex_lock(&gt->eu_stall->stream_lock);
+> > > > > > > +		ret = xe_eu_stall_stream_read_locked(stream, file, buf, count);
+> > > > > > > +		mutex_unlock(&gt->eu_stall->stream_lock);
+> > > > > > > +	}
+> > > > > > > +
+> > > > > > > +	stream->pollin = false;
+> > > > > >
+> > > > > > Carry over comment from previous rev: this breaks if user buffer is smaller
+> > > > > > than available data. But this is a corner case so let's fix this after the
+> > > > > > initial merge.
+> > > > > I will check your fix in OA to better understand the problem here. If
+> > > > > the user buffer is smaller than data record size, it just returns
+> > > > > without copying any data.
+> > > >
+> > > > No, it is the issue when user buffer is larger than record_size, but still
+> > > > smaller than the size of total data available. In that case, basically we
+> > > > should let stream->pollin set to true, so that the user thread does not get
+> > > > blocked, enabling it to rapidly consume data, even with a small buffer.
+> > > >
+> > > > Otherwise the thread is getting blocked every 10 ms, even when data is
+> > > > available. And because new data keeps arriving, the user thread constantly
+> > > > falls behind and soon HW will start dropping data (because the kernel is
+> > > > blocking the user thread, it's a kernel not a user thread issue)
+> > > >
+> > > > To handle this OA does:
+> > > >
+> > > >	if (ret != -ENOSPC && ret != -EIO)
+> > > EU stall read() never returns -ENOSPC. Even if the user buffer is
+> > > smaller then the size of total data in the buffer, only the data that
+> > > can fit into the user buffer will be copied through read().
+> >
+> > OA read() also doesn't return -ENOSPC to userland. That is the expected
+> > read() behavior (return number of bytes if you are returning any data). The
+> > full code is this:
+> >
+> >         if (ret != -ENOSPC && ret != -EIO)
+> >                 stream->pollin = false;
+> >
+> >         return offset ?: (ret ?: -EAGAIN);
+> >
+> > > As long as there are atleast wait_num_reports data rows in the buffer,
+> > > stream->pollin is set to true. It sounds to me that this issue is
+> > > specific to OA code only. Is there something that I missed?
+> >
+> > No this issue is there in EU stall code. You should not block reads till
+> > the next time the polling thread runs, if we could not copy all data in the
+> > previous read (because there already is data, don't block the user thread).
+> The polling thread runs approximately once every 10ms. The question here
+> is what would be time duration between two successive reads from the
+> user space with no additional delay between them. If the duration is
+> more than 10ms, the polling thread would set pollin to true. If not,
+> the issue you have mentioned would occur.
 
-If it is always expected to be empty, then yea maybe add a xe_assert for
-this as the list management is pretty tricky. 
+If we don't block the user thread in the kernel, ideally it would call into
+the kernel continuously to read data, let's say every few us. Say a memcpy
+in userspace and then back into the kernel to read more data.
 
-> > 
-> > >   	}
-> > >   	spin_unlock(&vm->userptr.invalidated_lock);
-> > > -	/* Pin and move to temporary list */
-> > > +	/* Pin and move to bind list */
-> > >   	list_for_each_entry_safe(uvma, next, &vm->userptr.repin_list,
-> > >   				 userptr.repin_link) {
-> > >   		err = xe_vma_userptr_pin_pages(uvma);
-> > > @@ -691,10 +691,10 @@ int xe_vm_userptr_pin(struct xe_vm *vm)
-> > >   			err = xe_vm_invalidate_vma(&uvma->vma);
-> > >   			xe_vm_unlock(vm);
-> > >   			if (err)
-> > > -				return err;
-> > > +				break;
-> > >   		} else {
-> > > -			if (err < 0)
-> > > -				return err;
-> > > +			if (err)
-> > > +				break;
-> > >   			list_del_init(&uvma->userptr.repin_link);
-> > >   			list_move_tail(&uvma->vma.combined_links.rebind,
-> > > @@ -702,7 +702,19 @@ int xe_vm_userptr_pin(struct xe_vm *vm)
-> > >   		}
-> > >   	}
-> > > -	return 0;
-> > > +	if (err) {
-> > > +		down_write(&vm->userptr.notifier_lock);
-> > 
-> > Can you explain why you take the notifier lock here? I don't think this
-> > required unless I'm missing something.
-> 
-> For the invalidated list, the docs say:
-> 
-> "Removing items from the list additionally requires @lock in write mode, and
-> adding items to the list requires the @userptr.notifer_lock in write mode."
-> 
-> Not sure if the docs needs to be updated here?
-> 
+> However, I am changing the code here to this:
+>
+>         if (!eu_stall_data_buf_poll(stream))
+>                 stream->pollin = false;
+>
+> Wouldn't this fix the issue?
 
-Oh. I believe the part of comment for 'adding items to the list
-requires the @userptr.notifer_lock in write mode' really means something
-like this:
+No, this is not correct. There are two requirements:
 
-'When adding to @vm->userptr.invalidated in the notifier the
-@userptr.notifer_lock in write mode protects against concurrent VM binds
-from setting up newly invalidated pages.'
+1. Don't wake up the user thread too frequently, that is why we have the 10
+   ms timer, so ordinarily, with a large buffer, the user thread only wakes
+   up only every 10 ms.
 
-So with above and since this code path is in the VM bind path (i.e. we
-are not racing with other binds) I think the
-vm->userptr.invalidated_lock is sufficient. Maybe ask Thomas if he
-agrees here.
+2. Only when the user buffer is small, that is we have data which we could
+   not copy in the user buffer, we shouldn't block the user thread.
 
-Matt
+In the above code, you are checking for data after completing the memcpy
+into the user buffer. This would solve 2., but might break 1. Because the
+code does not take into account that we should not block the user thread
+only if the user buffer is small.
 
-> > 
-> > Matt
-> > 
-> > > +		spin_lock(&vm->userptr.invalidated_lock);
-> > > +		list_for_each_entry_safe(uvma, next, &vm->userptr.repin_list,
-> > > +					 userptr.repin_link) {
-> > > +			list_del_init(&uvma->userptr.repin_link);
-> > > +			list_move_tail(&uvma->userptr.invalidate_link,
-> > > +				       &vm->userptr.invalidated);
-> > > +		}
-> > > +		spin_unlock(&vm->userptr.invalidated_lock);
-> > > +		up_write(&vm->userptr.notifier_lock);
-> > > +	}
-> > > +	return err;
-> > >   }
-> > >   /**
-> > > -- 
-> > > 2.48.1
-> > > 
-> 
+Let's not introduce this into the existing patches, this small user buffer
+handling would need a new patch. As I said, let's do this after we merge
+what we currently have. I don't want to review this stuff now.
+
+Thanks.
+--
+Ashutosh
