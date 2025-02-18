@@ -4,61 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFD10C021AA
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 10:04:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C39B9C02198
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 10:10:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A84010E33F;
-	Tue, 18 Feb 2025 10:04:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DE1910E33F;
+	Tue, 18 Feb 2025 10:10:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RZZqVQkV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OdEXV8ar";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17D7810E2B3;
- Tue, 18 Feb 2025 10:03:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B919D10E33F;
+ Tue, 18 Feb 2025 10:10:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739873040; x=1771409040;
+ t=1739873437; x=1771409437;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=pbjfnE9HZCkMOLVmjETIUig4+GqCqmpYo/9Mb0qYsbA=;
- b=RZZqVQkV/BxAgsOshJH+AtPb/EJLarQGz4dty61Wz+fTmk+RZRnG8NBk
- MKyyOBZpgxJfHu2fny+oGiOeQxt458qjn0EzVdW/qfKtBUOwF4rg8rBcJ
- OJRRUA+OhkXeNJXlaL1TX6laHIHKP1LkyOV5t6hiuJTLuMtqiaD6d/KJJ
- EljDuDN4rSO5ebJOu547ASyswFhpAhPhGEE08VAYht46exUyL1pmClgz/
- X9Gd9uSceybO9hcZyYLNJwAVq/3xvXiYGiJPiPcFn+ubs0ykqIB2pQQpO
- O8efQd3H4hMLoKQcTkDAXW+6BF81rDOlgATXLqkm31oAMSJnZprAxuktX A==;
-X-CSE-ConnectionGUID: 2RXrxznoRCKzOdoZb5mH+A==
-X-CSE-MsgGUID: vSH1jhSIRo2nepSIx+8IuA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="43392538"
-X-IronPort-AV: E=Sophos;i="6.13,295,1732608000"; d="scan'208";a="43392538"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2025 02:04:00 -0800
-X-CSE-ConnectionGUID: lVCtNglrTji1fTt9b5jeTA==
-X-CSE-MsgGUID: MYQ9djApRZGgCYSc+/APpQ==
+ bh=NiOuNp+EzlEhn8Kw78Ed3fzCLalqBcgd5/zKstbwdW4=;
+ b=OdEXV8arMmxgIoHFFHr4p2QGwNMN60/xRCpnL1r6SkYhf1BFjqByyKQ/
+ 5NjgfTg8h3/Dox2e+wnV34IEsyKUpe6gzsz2T5eJ8lsKhl4paG6By6MOy
+ ec9p69ItFVojpoCM+N59JHZTh1EHhFVg9IqvtSEso7siomiDSgOoMMwwf
+ JwgGzTPfdgy2CZ/ReSZlN8ibVWDnIlN/vTgqMgMSFuDVvjRft07J5cZz2
+ +rAPmBfDXADcGnI5D+PGhCRfzStJb/Fc9ciQDZZ1WZJoG5b6NRfNL17/7
+ 61efISBueWLuWUiOG6Puv1X8NWTg+v49X02YH2Z8tKxEw1aErKHTNAOrC w==;
+X-CSE-ConnectionGUID: r68G/WqJSKS/tRgkq5OIsA==
+X-CSE-MsgGUID: OKqKIKEnQK+kyngv9q3qDg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="51546327"
+X-IronPort-AV: E=Sophos;i="6.13,295,1732608000"; d="scan'208";a="51546327"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2025 02:10:36 -0800
+X-CSE-ConnectionGUID: duj6rA2VQGC61w9GOVrf9Q==
+X-CSE-MsgGUID: pd+uw1zcShiZ18AK4sYR3Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,295,1732608000"; d="scan'208";a="145201549"
-Received: from jlawryno.igk.intel.com ([10.91.220.59])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2025 02:03:56 -0800
-From: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: Tomasz Rusinowicz <tomasz.rusinowicz@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, Nirmoy Das <nirmoy.das@intel.com>,
- Jani Nikula <jani.nikula@intel.com>, intel-xe@lists.freedesktop.org,
- stable@vger.kernel.org,
- Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
-Subject: [PATCH] drm/xe: Fix exporting xe buffers multiple times
-Date: Tue, 18 Feb 2025 11:03:53 +0100
-Message-ID: <20250218100353.2137964-1-jacek.lawrynowicz@linux.intel.com>
-X-Mailer: git-send-email 2.45.1
+X-IronPort-AV: E=Sophos;i="6.13,295,1732608000"; d="scan'208";a="119343785"
+Received: from unknown (HELO sorvi2.fi.intel.com) ([10.237.72.194])
+ by orviesa004.jf.intel.com with ESMTP; 18 Feb 2025 02:10:35 -0800
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: imre.deak@intel.com, jani.nikula@linux.intel.com,
+ Mika Kahola <mika.kahola@intel.com>
+Subject: [PATCH v5 0/2] drm/i915/display: Allow display PHYs to reset power
+ state
+Date: Tue, 18 Feb 2025 12:00:17 +0200
+Message-ID: <20250218100019.740556-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,62 +66,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Tomasz Rusinowicz <tomasz.rusinowicz@intel.com>
+The dedicated display PHYs reset to a power state that blocks S0ix,
+increasing idle system power. After a system reset (cold boot,
+S3/4/5, warm reset) if a dedicated PHY is not being brought up
+shortly, use these steps to move the PHY to the lowest power state
+to save power.
 
-The `struct ttm_resource->placement` contains TTM_PL_FLAG_* flags, but
-it was incorrectly tested for XE_PL_* flags.
-This caused xe_dma_buf_pin() to always fail when invoked for
-the second time. Fix this by checking the `mem_type` field instead.
+1. Follow the PLL Enable Sequence, using any valid frequency such as
+   DP 1.62 GHz. This brings lanes out of reset and enables the PLL to
+   allow powerdown to be moved to the Disable state.
+2. Follow PLL Disable Sequence. This moves powerdown to the Disable
+   state and disables the PLL.
 
-Fixes: 7764222d54b7 ("drm/xe: Disallow pinning dma-bufs in VRAM")
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Nirmoy Das <nirmoy.das@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Cc: <stable@vger.kernel.org> # v6.8+
-Signed-off-by: Tomasz Rusinowicz <tomasz.rusinowicz@intel.com>
-Signed-off-by: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_bo.h      | 2 --
- drivers/gpu/drm/xe/xe_dma_buf.c | 2 +-
- 2 files changed, 1 insertion(+), 3 deletions(-)
+Before doing this, let's refactor the pll enabling in such a way that
+the crtc_state structure is no longer needed.
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index d9386ab031404..43bf6f140d40d 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -341,7 +341,6 @@ static inline unsigned int xe_sg_segment_size(struct device *dev)
- 	return round_down(max / 2, PAGE_SIZE);
- }
- 
--#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
- /**
-  * xe_bo_is_mem_type - Whether the bo currently resides in the given
-  * TTM memory type
-@@ -356,4 +355,3 @@ static inline bool xe_bo_is_mem_type(struct xe_bo *bo, u32 mem_type)
- 	return bo->ttm.resource->mem_type == mem_type;
- }
- #endif
--#endif
-diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
-index c5b95470fa324..f67803e15a0e6 100644
---- a/drivers/gpu/drm/xe/xe_dma_buf.c
-+++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-@@ -58,7 +58,7 @@ static int xe_dma_buf_pin(struct dma_buf_attachment *attach)
- 	 * 1) Avoid pinning in a placement not accessible to some importers.
- 	 * 2) Pinning in VRAM requires PIN accounting which is a to-do.
- 	 */
--	if (xe_bo_is_pinned(bo) && bo->ttm.resource->placement != XE_PL_TT) {
-+	if (xe_bo_is_pinned(bo) && !xe_bo_is_mem_type(bo, XE_PL_TT)) {
- 		drm_dbg(&xe->drm, "Can't migrate pinned bo for dma-buf pin.\n");
- 		return -EINVAL;
- 	}
+v2: reword commit messages (Jani)
+    rename wa naming (Jani)
+    add helper functions (Imre)
+    use C10 only for the wa on PTL
+v3: Rename wa function (Imre)
+    Check return value of C10 pll tables readout (Imre)
+    Use PLL request to check pll enabling (Imre)
+v4: checpatch fixes and cleanups
+v5: Add check for intel_encoder_is_dig_port() and
+    add debug message when applying wa (Imre)
+
+Mika Kahola (2):
+  drm/i915/display: Drop crtc_state from C10/C20 pll programming
+  drm/i915/display: Allow display PHYs to reset power state
+
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 192 ++++++++++++------
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h  |   1 +
+ .../drm/i915/display/intel_display_reset.c    |   2 +
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |   3 +
+ 4 files changed, 141 insertions(+), 57 deletions(-)
+
 -- 
-2.45.1
+2.43.0
 
