@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99240C021AA
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 20:59:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF746C021AA
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 21:07:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5241D10E100;
-	Tue, 18 Feb 2025 20:59:09 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TcL4kulh";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7B0310E76A;
- Tue, 18 Feb 2025 20:59:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739912346; x=1771448346;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=PihKp0exM4BbTWy9U1TkBut6l9H3tJBY37OECd8H5Ws=;
- b=TcL4kulhA3aG9j3/Ak0pAfI8d39kdpkmgaCG8OnPbSGjT4x/acksEiYa
- oxEhRuWsewsp4VvXa70ce4xhwbEdJK9txxrU1g8iH/ryXKW658KeDPLd5
- e2dQEPS+UWCBQAhO+2ENPh2/eGPEajFUTmZVWiHwhDRlLK9nAcSI2nFRp
- y9QLzPXwxXAn77uj17BzscnE2vLapKH5V4pr65LsgINHtseVPKrmOfUaZ
- F6IpYvX4KmVF6w7WRqWgeVYTpwO/j4/sy6924P+skPqwvwckxRdVtqKSy
- m1k6dWIejxPQ4FcFJZG71zFrsMHrKx3dEhX42TOf3BBhljzkosEWYSXsJ A==;
-X-CSE-ConnectionGUID: h35DToDySZKq7bs8UOwstw==
-X-CSE-MsgGUID: pYMrhuNyQUGqsKA8I0WKgg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="28228343"
-X-IronPort-AV: E=Sophos;i="6.13,296,1732608000"; d="scan'208";a="28228343"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2025 12:59:05 -0800
-X-CSE-ConnectionGUID: 9J9GEOUzSNWZ9rkTZe9lxw==
-X-CSE-MsgGUID: oOOUnmtARoeAzo/u/aRzHg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,296,1732608000"; d="scan'208";a="114689002"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 18 Feb 2025 12:59:03 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 18 Feb 2025 22:59:02 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	Uma Shankar <uma.shankar@intel.com>
-Subject: [PATCH 4/4] drm/i915: Do state check for color management changes
-Date: Tue, 18 Feb 2025 22:58:50 +0200
-Message-ID: <20250218205850.1422-5-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.45.3
-In-Reply-To: <20250218205850.1422-1-ville.syrjala@linux.intel.com>
-References: <20250218205850.1422-1-ville.syrjala@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B09310E764;
+	Tue, 18 Feb 2025 21:07:28 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B9C610E451;
+ Tue, 18 Feb 2025 21:07:28 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe=3A_Drop_unnecessary_GT_?=
+ =?utf-8?q?lookup_in_xe=5Fexec=5Fqueue=5Fcreate=5Fioctl=28=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 18 Feb 2025 21:07:28 -0000
+Message-ID: <173991284804.3668508.17173238697964962455@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250218200511.4050060-2-matthew.d.roper@intel.com>
+In-Reply-To: <20250218200511.4050060-2-matthew.d.roper@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,41 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-In order to validate LUT programming more thoroughly let's
-do a state check for all color management updates as well.
+Series: drm/xe: Drop unnecessary GT lookup in xe_exec_queue_create_ioctl()
+URL   : https://patchwork.freedesktop.org/series/145039/
+State : success
 
-Not sure we really want this outside CI. It is rather heavy
-and color management updates could become rather common
-with all the HDR/etc. stuff happening. Maybe we should have
-an extra knob for this that we could enable in CI?
+== Summary ==
 
-v2: Skip for initial_commit to avoid FDI dotclock
-    sanity checks/etc. tripping up
+lib/modules/6.14.0-rc3-xe+/kernel/arch/x86/events/amd/
+lib/modules/6.14.0-rc3-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
+lib/modules/6.14.0-rc3-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.14.0-rc3-xe+/kernel/arch/x86/kvm/
+lib/modules/6.14.0-rc3-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.14.0-rc3-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.14.0-rc3-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.14.0-rc3-xe+/kernel/kernel/
+lib/modules/6.14.0-rc3-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/zstd.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/xctr.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/authenc.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/sm3.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/cmac.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/essiv.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/ccm.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/wp512.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/lrw.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/842.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/md4.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/lz4.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/sm4.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/async_tx/
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.14.0-rc3-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.14.0-rc3-xe+/kernel/block/
+lib/modules/6.14.0-rc3-xe+/kernel/block/bfq.ko
+lib/modules/6.14.0-rc3-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.14.0-rc3-xe+/build
+lib/modules/6.14.0-rc3-xe+/modules.alias.bin
+lib/modules/6.14.0-rc3-xe+/modules.builtin
+lib/modules/6.14.0-rc3-xe+/modules.softdep
+lib/modules/6.14.0-rc3-xe+/modules.alias
+lib/modules/6.14.0-rc3-xe+/modules.order
+lib/modules/6.14.0-rc3-xe+/modules.symbols
+lib/modules/6.14.0-rc3-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1739912837:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1739912837:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_modeset_verify.c | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_verify.c b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-index bc70e72ccc2e..f61641d27c4a 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-@@ -239,6 +239,8 @@ void intel_modeset_verify_crtc(struct intel_atomic_state *state,
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 
- 	if (!intel_crtc_needs_modeset(new_crtc_state) &&
-+	    (!intel_crtc_needs_color_update(new_crtc_state) ||
-+	     new_crtc_state->inherited) &&
- 	    !intel_crtc_needs_fastset(new_crtc_state))
- 		return;
- 
--- 
-2.45.3
 
