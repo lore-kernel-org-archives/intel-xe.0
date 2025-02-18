@@ -4,28 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F412EC021AA
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 14:56:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8ED33C02198
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 15:01:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1C4110E6DB;
-	Tue, 18 Feb 2025 14:56:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F8DE10E3D3;
+	Tue, 18 Feb 2025 15:01:04 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 719C710E3EA;
- Tue, 18 Feb 2025 14:56:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA6A510E71A;
+ Tue, 18 Feb 2025 15:01:02 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_Patch_=22drm/xe/trac?=
  =?utf-8?q?ing=3A_Fix_a_potential_TP=5Fprintk_UAF=22_has_been_added_to_the_6?=
- =?utf-8?q?=2E12-stable_tree?=
+ =?utf-8?q?=2E13-stable_tree?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: gregkh@linuxfoundation.org
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 18 Feb 2025 14:56:19 -0000
-Message-ID: <173989057945.3590341.15038092194789875720@b555e5b46a47>
+Date: Tue, 18 Feb 2025 15:01:02 -0000
+Message-ID: <173989086282.3591387.16777177818386131855@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <2025021813-disarm-approve-e33c@gregkh>
-In-Reply-To: <2025021813-disarm-approve-e33c@gregkh>
+References: <2025021814-aghast-bronze-6829@gregkh>
+In-Reply-To: <2025021814-aghast-bronze-6829@gregkh>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,8 +43,8 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Patch "drm/xe/tracing: Fix a potential TP_printk UAF" has been added to the 6.12-stable tree
-URL   : https://patchwork.freedesktop.org/series/145017/
+Series: Patch "drm/xe/tracing: Fix a potential TP_printk UAF" has been added to the 6.13-stable tree
+URL   : https://patchwork.freedesktop.org/series/145018/
 State : failure
 
 == Summary ==
