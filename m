@@ -4,57 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD74DC021AA
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 09:17:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFD10C021AA
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Feb 2025 10:04:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7DF9010E646;
-	Tue, 18 Feb 2025 09:17:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A84010E33F;
+	Tue, 18 Feb 2025 10:04:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g2tQEukZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RZZqVQkV";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D625F10E646;
- Tue, 18 Feb 2025 09:17:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17D7810E2B3;
+ Tue, 18 Feb 2025 10:03:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739870270; x=1771406270;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=6e661Nj2Xcl2iNYd9HEhy4RV7e/8JfMfX7phYG2OOn4=;
- b=g2tQEukZukoUeA0kAflQPy9b6aKJEK6nnsI5zU3h5gKre2I73u6hoy3j
- x2lXMnHavkjmrM2PiTvp1Xftlz5p3JzD94WBmpVh5cKUmPnPrXDO+220g
- k4w525f7YlU0CIdPVB4HI1PUoZlerI+ScnRkdjKV2IGNTdZONP8InVACN
- BQsDB71SStNa4o+5h0qCU7DgVqPzeFsUE5mpVa0agj25LtBJSFKjVGEBh
- SD2g3IXlRofp6mUc9mTBn43M/GDBnbUEN3deXseKYr/3mYPza8D8vdHue
- h0xeQW0zk1Z9tJzLsGZeO57hbqF5LF83UAYcaaxgJtdMF633hE9+2UvsC g==;
-X-CSE-ConnectionGUID: WRgczDnPRheuz3vXn/Lg3A==
-X-CSE-MsgGUID: GdlkJtthQzeZNwN5zVFJUQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="51198275"
-X-IronPort-AV: E=Sophos;i="6.13,295,1732608000"; d="scan'208";a="51198275"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2025 01:17:49 -0800
-X-CSE-ConnectionGUID: P20oZ3GfR2WjBfWwa4dcKA==
-X-CSE-MsgGUID: sfFaeAEzSheVI5+PB+52SA==
+ t=1739873040; x=1771409040;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=pbjfnE9HZCkMOLVmjETIUig4+GqCqmpYo/9Mb0qYsbA=;
+ b=RZZqVQkV/BxAgsOshJH+AtPb/EJLarQGz4dty61Wz+fTmk+RZRnG8NBk
+ MKyyOBZpgxJfHu2fny+oGiOeQxt458qjn0EzVdW/qfKtBUOwF4rg8rBcJ
+ OJRRUA+OhkXeNJXlaL1TX6laHIHKP1LkyOV5t6hiuJTLuMtqiaD6d/KJJ
+ EljDuDN4rSO5ebJOu547ASyswFhpAhPhGEE08VAYht46exUyL1pmClgz/
+ X9Gd9uSceybO9hcZyYLNJwAVq/3xvXiYGiJPiPcFn+ubs0ykqIB2pQQpO
+ O8efQd3H4hMLoKQcTkDAXW+6BF81rDOlgATXLqkm31oAMSJnZprAxuktX A==;
+X-CSE-ConnectionGUID: 2RXrxznoRCKzOdoZb5mH+A==
+X-CSE-MsgGUID: vSH1jhSIRo2nepSIx+8IuA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="43392538"
+X-IronPort-AV: E=Sophos;i="6.13,295,1732608000"; d="scan'208";a="43392538"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2025 02:04:00 -0800
+X-CSE-ConnectionGUID: lVCtNglrTji1fTt9b5jeTA==
+X-CSE-MsgGUID: MYQ9djApRZGgCYSc+/APpQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="151534704"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa001.jf.intel.com with ESMTP; 18 Feb 2025 01:17:47 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Tue, 18 Feb 2025 14:32:49 +0530
-Subject: [PATCH v5 3/3] drm/i915/display: Add i915 hook for
- format_mod_supported_async
+X-IronPort-AV: E=Sophos;i="6.13,295,1732608000"; d="scan'208";a="145201549"
+Received: from jlawryno.igk.intel.com ([10.91.220.59])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2025 02:03:56 -0800
+From: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: Tomasz Rusinowicz <tomasz.rusinowicz@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, Nirmoy Das <nirmoy.das@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>, intel-xe@lists.freedesktop.org,
+ stable@vger.kernel.org,
+ Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
+Subject: [PATCH] drm/xe: Fix exporting xe buffers multiple times
+Date: Tue, 18 Feb 2025 11:03:53 +0100
+Message-ID: <20250218100353.2137964-1-jacek.lawrynowicz@linux.intel.com>
+X-Mailer: git-send-email 2.45.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250218-asyn-v5-3-7ac5ac4abd4a@intel.com>
-References: <20250218-asyn-v5-0-7ac5ac4abd4a@intel.com>
-In-Reply-To: <20250218-asyn-v5-0-7ac5ac4abd4a@intel.com>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Cc: chaitanya.kumar.borah@intel.com, Arun R Murthy <arun.r.murthy@intel.com>, 
- Naveen Kumar <naveen1.kumar@intel.com>
-X-Mailer: b4 0.15-dev
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,103 +74,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hook up the newly added plane function pointer
-format_mod_supported_async to populate the modifiers/formats supported
-by asynchronous flips.
+From: Tomasz Rusinowicz <tomasz.rusinowicz@intel.com>
 
-v5: Correct the if condition for modifier support check (Chaitanya)
+The `struct ttm_resource->placement` contains TTM_PL_FLAG_* flags, but
+it was incorrectly tested for XE_PL_* flags.
+This caused xe_dma_buf_pin() to always fail when invoked for
+the second time. Fix this by checking the `mem_type` field instead.
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Tested-by: Naveen Kumar <naveen1.kumar@intel.com>
+Fixes: 7764222d54b7 ("drm/xe: Disallow pinning dma-bufs in VRAM")
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Cc: <stable@vger.kernel.org> # v6.8+
+Signed-off-by: Tomasz Rusinowicz <tomasz.rusinowicz@intel.com>
+Signed-off-by: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 56 ++++++++++++++++------
- 1 file changed, 41 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.h      | 2 --
+ drivers/gpu/drm/xe/xe_dma_buf.c | 2 +-
+ 2 files changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index cd9762947f1de227a3abbcd61b7c7b0c9848e439..e303ae6b1c6208755ea0454ba36efcff0c06cda6 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -509,6 +509,33 @@ skl_plane_max_stride(struct intel_plane *plane,
- 				modifier, rotation,
- 				max_pixels, max_bytes);
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index d9386ab031404..43bf6f140d40d 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -341,7 +341,6 @@ static inline unsigned int xe_sg_segment_size(struct device *dev)
+ 	return round_down(max / 2, PAGE_SIZE);
  }
-+static bool intel_plane_async_formats(struct intel_plane *plane, uint32_t format)
-+{
-+	switch (format) {
-+	case DRM_FORMAT_RGB565:
-+	case DRM_FORMAT_XRGB8888:
-+	case DRM_FORMAT_XBGR8888:
-+	case DRM_FORMAT_ARGB8888:
-+	case DRM_FORMAT_ABGR8888:
-+	case DRM_FORMAT_XRGB2101010:
-+	case DRM_FORMAT_XBGR2101010:
-+	case DRM_FORMAT_XRGB16161616F:
-+	case DRM_FORMAT_XBGR16161616F:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static bool intel_plane_format_mod_supported_async(struct drm_plane *plane,
-+						   uint32_t format,
-+						   uint64_t modifier)
-+{
-+	if (!intel_plane_can_async_flip(to_intel_plane(plane), modifier))
-+		return false;
-+
-+	return intel_plane_async_formats(to_intel_plane(plane), format);
-+}
  
- static bool tgl_plane_can_async_flip(u64 modifier)
- {
-@@ -2616,30 +2643,29 @@ static bool tgl_plane_format_mod_supported(struct drm_plane *_plane,
+-#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+ /**
+  * xe_bo_is_mem_type - Whether the bo currently resides in the given
+  * TTM memory type
+@@ -356,4 +355,3 @@ static inline bool xe_bo_is_mem_type(struct xe_bo *bo, u32 mem_type)
+ 	return bo->ttm.resource->mem_type == mem_type;
+ }
+ #endif
+-#endif
+diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
+index c5b95470fa324..f67803e15a0e6 100644
+--- a/drivers/gpu/drm/xe/xe_dma_buf.c
++++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+@@ -58,7 +58,7 @@ static int xe_dma_buf_pin(struct dma_buf_attachment *attach)
+ 	 * 1) Avoid pinning in a placement not accessible to some importers.
+ 	 * 2) Pinning in VRAM requires PIN accounting which is a to-do.
+ 	 */
+-	if (xe_bo_is_pinned(bo) && bo->ttm.resource->placement != XE_PL_TT) {
++	if (xe_bo_is_pinned(bo) && !xe_bo_is_mem_type(bo, XE_PL_TT)) {
+ 		drm_dbg(&xe->drm, "Can't migrate pinned bo for dma-buf pin.\n");
+ 		return -EINVAL;
  	}
- }
- 
-+#define INTEL_PLANE_FUNCS \
-+	.update_plane = drm_atomic_helper_update_plane, \
-+	.disable_plane = drm_atomic_helper_disable_plane, \
-+	.destroy = intel_plane_destroy, \
-+	.atomic_duplicate_state = intel_plane_duplicate_state, \
-+	.atomic_destroy_state = intel_plane_destroy_state, \
-+	.format_mod_supported_async = intel_plane_format_mod_supported_async
-+
- static const struct drm_plane_funcs skl_plane_funcs = {
--	.update_plane = drm_atomic_helper_update_plane,
--	.disable_plane = drm_atomic_helper_disable_plane,
--	.destroy = intel_plane_destroy,
--	.atomic_duplicate_state = intel_plane_duplicate_state,
--	.atomic_destroy_state = intel_plane_destroy_state,
-+	INTEL_PLANE_FUNCS,
-+
- 	.format_mod_supported = skl_plane_format_mod_supported,
- };
- 
- static const struct drm_plane_funcs icl_plane_funcs = {
--	.update_plane = drm_atomic_helper_update_plane,
--	.disable_plane = drm_atomic_helper_disable_plane,
--	.destroy = intel_plane_destroy,
--	.atomic_duplicate_state = intel_plane_duplicate_state,
--	.atomic_destroy_state = intel_plane_destroy_state,
-+	INTEL_PLANE_FUNCS,
-+
- 	.format_mod_supported = icl_plane_format_mod_supported,
- };
- 
- static const struct drm_plane_funcs tgl_plane_funcs = {
--	.update_plane = drm_atomic_helper_update_plane,
--	.disable_plane = drm_atomic_helper_disable_plane,
--	.destroy = intel_plane_destroy,
--	.atomic_duplicate_state = intel_plane_duplicate_state,
--	.atomic_destroy_state = intel_plane_destroy_state,
-+	INTEL_PLANE_FUNCS,
-+
- 	.format_mod_supported = tgl_plane_format_mod_supported,
- };
- 
-
 -- 
-2.25.1
+2.45.1
 
