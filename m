@@ -4,187 +4,185 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C43CC021AA
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 03:40:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F13CC021AF
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 03:59:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2099F10E1D7;
-	Wed, 19 Feb 2025 03:40:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB6AF10E1D7;
+	Wed, 19 Feb 2025 03:59:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gG0/SeJr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hITb7Xwa";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45FAE10E1B5;
- Wed, 19 Feb 2025 03:40:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA18010E140;
+ Wed, 19 Feb 2025 03:59:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739936437; x=1771472437;
+ t=1739937582; x=1771473582;
  h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=k9SUk8tvlAMCBsMQzU9JVakOKb1uwTYOGyLJ2Yf+AAU=;
- b=gG0/SeJrvPXTUhY3Zyx1Gr8z5lwGuLgMbYxWtS3oHBWW6WeN2kNBTWtZ
- mkIa/ahcUp5OnBDbt6/n09EHo/KZrfz1Ko9g/cDBl57V3VjvWBH6aeugG
- Mm2rFgf1KIw5cGlaLoiyxUxVAeVjVaKpKiiwF2gvEIpvhxWlQix9iVpn5
- cTmqiwkrlseIKDVQcWclQK/MX/wv2QIKEmkbH+PiGbKsaHEgVn1eFHHOJ
- lA11UL15olps6nakkh8ObfwFvKc0buYdAmThpCNZ8mwTigSAnzNECfFQj
- QIP+qn0h6aA5WueloQ7k6Amqzh0K0LGRxh3xPTDxa0OeHmdEo5GMUr46Y A==;
-X-CSE-ConnectionGUID: XzDKaudgQfCE8pQILLBRPg==
-X-CSE-MsgGUID: q2tq94whQuCUkWiopymHcA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="63134652"
-X-IronPort-AV: E=Sophos;i="6.13,296,1732608000"; d="scan'208";a="63134652"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2025 19:40:37 -0800
-X-CSE-ConnectionGUID: y9l+grpyRjCT/A4nCZm+tw==
-X-CSE-MsgGUID: HxY29F+oQHSiAZWHXXMbyQ==
+ in-reply-to:mime-version;
+ bh=RX1jcdoZFoKOlv0pKbTh4sSWtPdfx+hEJUB41dx5ZDk=;
+ b=hITb7Xwa1GcWPyLWQMABLUeg1FBKgZwTb/R5yMKH7JyijUAx7M7TmowH
+ LGj3W2G2nx1YpAuVjYusqGWQ61jmpdg1PszDmA332Alty8N5iMLwGYcXY
+ Sv/qObOeNefGLt93xS+2yLUhJ03hvKHd3o1zHE93jsRabuel9QTjHFKbA
+ N17ib73flzWEdIwUQg5VKzJsMbGIOp9jVjpYGTfE0TAde3Gj5NL62cYBb
+ JzhWFKrKO7SXt8R2ANUwCV9l+hHBkpUE5D7q4KtD/VfoHLL4abrTMo0yq
+ cEP1ZH8EGoYOr3UbM2LdcNLAxK5CGLDowPJvVJMgrgkBhVpJIoCpGtHlD w==;
+X-CSE-ConnectionGUID: pzYtsDJCSgSICLlRwhDZKQ==
+X-CSE-MsgGUID: TqWMJN/fRtCs7ejJ4Lvwag==
+X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="40786049"
+X-IronPort-AV: E=Sophos;i="6.13,296,1732608000"; d="scan'208,217";a="40786049"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2025 19:59:42 -0800
+X-CSE-ConnectionGUID: 3gR4BiB4SFyTbpK4A/5Ebg==
+X-CSE-MsgGUID: cwqHVy8AQ+CopNvjrU5yGg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="118724409"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2025 19:40:35 -0800
+X-IronPort-AV: E=Sophos;i="6.13,296,1732608000"; 
+ d="scan'208,217";a="115249815"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 18 Feb 2025 19:59:41 -0800
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Tue, 18 Feb 2025 19:59:40 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Tue, 18 Feb 2025 19:40:35 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.1544.14 via Frontend Transport; Tue, 18 Feb 2025 19:59:40 -0800
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.177)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Tue, 18 Feb 2025 19:40:35 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.42) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Tue, 18 Feb 2025 19:40:34 -0800
+ 15.1.2507.44; Tue, 18 Feb 2025 19:59:27 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LBSr7zKS5S3gWYvqMp+1JO2yctPhECMhiEEiN/AYmPtasF1nFR/vJ0LSEPigta/YpDyCpWdXrmUDCRX0Rpg7KV6YzKkz78fGMXtP48G3yWwCJLBJvJLHyjJ+hGVPTQ90CxTi4ZdNw3INJ42AizeQPHoup9FMuhHlj6TUisi/y/yGIgn81eOmZKW8atdixVE+u2YOu6x9aDDdCVPKOE6Rn06PW09of1/L4jwoAC+YtOVXX0mYHfyEtrCL/TspGr2tkioUPBcGavAKOumgsLXJIebcMpFG3Un+lu7ONByd9ib1tSGIi7X8MlsJ6chVCkNXPihv52IqXrQUxZ8wgMHJig==
+ b=CfitqmsM1U7QCmKd06hCuRGdsLNeGR75ow6vq8TsH8c5jZ3Q5CT7INu4Jh4c6fACuYdMWhMEZurpA5Huk4RCbw5bQKTLkF32eMH/6ezAyoOdZy5W13Qxb99DgzE2GtG4uBjXUzP6myFJv1q6xsXyE/p2iY8mK+U1VaU5Axu4QyziFVsD4kFuVz9UX4G5TwkQ3tz/pmAKefLzyYHqhroq4zuQ2fyIVP9TfIhhfsbtZJtwUTkWAIkkRfFvAg9ycS0rkMQkRpLtIxz1MfHIwMga1N4DY+Xy2WG1hvDTpJNH73v8CUs4dykMyivYBlL55UcGc+EwnuifbhgY9YFlVCNNCA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FQbqz0PEHW5IPsOQWWKw55/5oWGSZ9fs/CzPm0lqhTw=;
- b=JO4VfMjV6DQ/asatgi0/Jl1FyiyyqrvT4TJ3nDggHKESBLuAFjyi1wH4jO2Zt1D7/7zi2OYuVWtTy0/Mwns6VlrNzH7mRkjEcf/xMVHSkxWPBKaW2md8/zMG0ntpWh9p2bFLNFKyBTq8okJfggS4pel8cTV/TvuMKOeFPyVfRRULA29e+JHaqpLPuWUxwP4gFYzxWMaemkZeDe7cPwDNE9/8AHU6SaCvSGZhvaK1/cbt0V9wd7ZdefcTIEZ8tl+9f34v+jRgE33VCTUSlmqt3IsTk8O2UNjJ/CPbKaF1uzRBSsHRhFLQEs4oFOpgdXvYuQaisA75AvGWCHZaHtGqAA==
+ bh=cIkQUxSN63Nh5JR8a66LIfL5vV8/UwNmPVIPsCe9aJQ=;
+ b=Jv7A33501rp8JfBLUZaO8IyzE8L/F5DiClTCra3LO2QH7OibJC921EJhnPx9mKtxLbrDKOUTsv4n9OHztpBv5vjkx1NHbXAXWQsXSgm0imUVfTCuQQzxupzCpFlpyi6QX/k2zfnOrEZss6NzAQvxl7AT63kLGgKV+0kZlKFg+9IIF9Oz4AoqL7r3cDLT5BHnVlrAJOidJdgBCA00F2U+qduVwA6uorpnItHmGV6/ZUtX5KuWtsXHxUIjJJawvQvdLx4UwS+trn+tyofILhOXIe7DXXt/fGe54iljuWsMTNkYEDP1taIPEZIZ+vLpzsOecUsScNwD9J+bGHP+iUn8fA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MW4PR11MB7056.namprd11.prod.outlook.com (2603:10b6:303:21a::12)
- by SN7PR11MB8262.namprd11.prod.outlook.com (2603:10b6:806:26e::13)
+Received: from IA0PR11MB7307.namprd11.prod.outlook.com (2603:10b6:208:437::10)
+ by MN2PR11MB4614.namprd11.prod.outlook.com (2603:10b6:208:268::20)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.14; Wed, 19 Feb
- 2025 03:40:32 +0000
-Received: from MW4PR11MB7056.namprd11.prod.outlook.com
- ([fe80::c4d8:5a0b:cf67:99c5]) by MW4PR11MB7056.namprd11.prod.outlook.com
- ([fe80::c4d8:5a0b:cf67:99c5%4]) with mapi id 15.20.8466.013; Wed, 19 Feb 2025
- 03:40:32 +0000
-Message-ID: <a73ae99c-d5b5-4ed7-b3e3-1efd61832f75@intel.com>
-Date: Wed, 19 Feb 2025 09:10:26 +0530
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8445.17; Wed, 19 Feb
+ 2025 03:58:57 +0000
+Received: from IA0PR11MB7307.namprd11.prod.outlook.com
+ ([fe80::dafa:d38d:8ac1:e843]) by IA0PR11MB7307.namprd11.prod.outlook.com
+ ([fe80::dafa:d38d:8ac1:e843%5]) with mapi id 15.20.8466.013; Wed, 19 Feb 2025
+ 03:58:57 +0000
+Content-Type: multipart/alternative;
+ boundary="------------sLwlMNV9jw3uGb6ijG5lIbtV"
+Message-ID: <cd095fd7-3043-402a-9e21-c0c85c53f8e3@intel.com>
+Date: Wed, 19 Feb 2025 09:28:51 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 27/32] drm/xe: Add SVM VRAM migration
-To: Matthew Brost <matthew.brost@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <apopple@nvidia.com>, <airlied@gmail.com>,
- <thomas.hellstrom@linux.intel.com>, <simona.vetter@ffwll.ch>,
- <felix.kuehling@amd.com>, <dakr@kernel.org>
-References: <20250213021112.1228481-1-matthew.brost@intel.com>
- <20250213021112.1228481-28-matthew.brost@intel.com>
- <ee155ea0-e7ef-4a5e-b409-d08b62762e5c@intel.com>
- <Z7UBiYFn3oq9dhXN@lstrano-desk.jf.intel.com>
- <91cb5b9b-84cc-4651-8d28-973650eb7c69@intel.com>
- <Z7VKgVlwmVOz4wKP@lstrano-desk.jf.intel.com>
+Subject: Re: [PATCH v8 01/14] drm: Define histogram structures exposed to user
+To: Pekka Paalanen <pekka.paalanen@haloniitty.fi>
+CC: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <suraj.kandpal@intel.com>,
+ <dmitry.baryshkov@linaro.org>
+References: <20250128-dpst-v8-0-871b94d777f8@intel.com>
+ <20250128-dpst-v8-1-871b94d777f8@intel.com> <20250217120808.708b9b4d@eldfell>
+ <c423efcb-5ab8-41c2-af0a-621007c6175d@intel.com>
+ <20250218181819.11ca41ab@eldfell>
 Content-Language: en-US
-From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-In-Reply-To: <Z7VKgVlwmVOz4wKP@lstrano-desk.jf.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MAXP287CA0004.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a00:49::14) To MW4PR11MB7056.namprd11.prod.outlook.com
- (2603:10b6:303:21a::12)
+From: "Murthy, Arun R" <arun.r.murthy@intel.com>
+In-Reply-To: <20250218181819.11ca41ab@eldfell>
+X-ClientProxiedBy: MA0PR01CA0060.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:ac::14) To IA0PR11MB7307.namprd11.prod.outlook.com
+ (2603:10b6:208:437::10)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MW4PR11MB7056:EE_|SN7PR11MB8262:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8e8c92c9-d0e3-4442-5c1a-08dd5097299e
+X-MS-TrafficTypeDiagnostic: IA0PR11MB7307:EE_|MN2PR11MB4614:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9e052713-65ca-4e62-52cf-08dd5099bc38
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?cm5DT3FjVkdsL241enBhWVdKdnIrT2tXUENaTGNvZ0FTRHNsdWtoclFPVzh1?=
- =?utf-8?B?UU1WNHNVR0F1TnRXeCtiTE1Pd29IME1la2ZkenVFZ0FaTWkxRGNIVW8rdklQ?=
- =?utf-8?B?cmt4dUpvbndKWUNLbndxWk9uVzNzZGJUT2xjcjNnUWg5T1ZKZTRYQUxDSjlX?=
- =?utf-8?B?Q051S01oc2d6dVNZUGVURnNKQm1LNGFwZkxlRjZRbzN0bkhsWmZzRlAraUor?=
- =?utf-8?B?dDJrUG9McWo2MzB3RUpRR0x6eUEyNTdhNnFDT252YWJWQVUwUTk3YlNVTlVG?=
- =?utf-8?B?OStrSGRObUsyNEdDakI4NFN0TlFwZExvMStUWndPekgycGsvU2pJeXdleG8r?=
- =?utf-8?B?NGRqdFBQS29RbDhoVFQrM0gxYlRUUStpVGpPMUpObGlqeUJhTEgvTzFhWjg2?=
- =?utf-8?B?VFBIQmxMVlFQOGhMcm5Yaldjdk1JOUdoMmlPOGd6QXMrQVZkVjFoWVZTQ2Vx?=
- =?utf-8?B?ZWlPZTI2QzdIeUFzMjRCWEorc20vUVd2aVV3MGZ1ZDZYd0hLSVFpNkd0Q2FR?=
- =?utf-8?B?dUxkOFRaSUpYLzRvQXd3WnEyOFdPR04raDJrV1hqVkEreFVNTEc5M1BKcTZ0?=
- =?utf-8?B?dUFPSzlXQ3JMWXNvcFhDQTA3VkhnMGEzUGd4dzVaV0JYWFhOQ3BaYURmYklF?=
- =?utf-8?B?OEkyN3E0N3BFV3YrZkQwQ1lzUGhLQXhad1ZsUVFVVG5rSjl6ZEVxRnRFWkp5?=
- =?utf-8?B?emU0ZUFoNnlnaXZ3M0Z3V0hCOUZVSWFLVDgvdmk1eC9uc1NCSTFWTElOUUF1?=
- =?utf-8?B?WXlaclJ2RTJrcU9aYStGWkU5QnlpZndXbkNSSTJHUklNMkI1amNVK0dTYks2?=
- =?utf-8?B?N25CeXZwUTE3Sk1TZm5WNXozcGpZQXJxc3dPc1VXdjNwYW1weWdMTW9kK2dm?=
- =?utf-8?B?M2N4K0kzNldudk1GVFdBb2RWYmlrR0Q0ZG9sVERldytCdDFvbDF5M0FLU2N2?=
- =?utf-8?B?azh3MnhtT09JVHZnQVdob25Eb0VndVBCVEFONTVFTkw0RzMyTm5tMmR3eUlx?=
- =?utf-8?B?dCs0WEpTZXF3c1kvcnVHVk0rUjdwK3c5NTlIZTF3YkRJTFc0TFlrcDB4S25X?=
- =?utf-8?B?aDFBSHB4eEp4UXdHblFCK0krTFl0K1NQY2Y5Si9pcnFIVHdwczRkSWhYRGgz?=
- =?utf-8?B?cWZ6di9CVXdSMmwyNXZ0ZHUrTTlvOG1jdW9ZOUpzS04wd1hBTUVTaVJENGZK?=
- =?utf-8?B?UTlOQmdBSm02VnlTcEZTeStuYmpJYkJLYzdKVmFBd0hzNFRhUkJKTWw5ZGRw?=
- =?utf-8?B?UmdOUjcrYkU1UHdxeGlXUTFkcEtEREU3TGwzaERTWEwxczhPdTV5dmFKWlgx?=
- =?utf-8?B?RGs0NWdJazB5aWFKWkpKWXl3ckRaWjdOekR2OTArZnBoYkt0TTE3STBUdExr?=
- =?utf-8?B?RHU1V1hqZVU0VkNuYVJwVzEyMjcrMkhwcVpmS3g0eE0wSy9wY2tkYk8rWWZV?=
- =?utf-8?B?WFZDNXBBWGpNR0svdS82UmhrU0JVY2lPdDdPNWRGTURweGVRTURuY05jTHR0?=
- =?utf-8?B?NXFCN2Q2Wlk5b1J2bWN5M1BBOVArc2M3MDRrZUlkc2Q5S3dFeE1qV3lGaXpV?=
- =?utf-8?B?eXQyZkgvbmk3bktMTEo1K1RBTUJTa0Z4cTFBR21sM09uZndzMm56WUQ3NzNB?=
- =?utf-8?B?SjVwRWNlQ1B0OCtvYXd6VWVONDJzNUEzWERnVDJjamtEaGp1YjduUDEzaDI1?=
- =?utf-8?B?cWhwbERGcXBteHRvS2tRUEtWS2xLRldLSDZMU2dFQ09Ga1JkWlJkc0FXU0Ix?=
- =?utf-8?B?NjIrTjRwT09VVEd4QTltcFBWZVdObmYveWNMZ3Jnakc1Yk92N1RTYnlOL0w3?=
- =?utf-8?B?aTlldzNXSEdreTZyVUdBZz09?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016|8096899003;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?UHpmYWo0dVUvUWtKZkJFRTZtUDk2dUlOTVcrU2ZwRjRWdWJNMXUrbWVGSWxl?=
+ =?utf-8?B?V09GOU1PSmhRdjk3U3QvZUZOS1hqRFJBVkdySFUwTkRtZWRRV1hjVDZPZ2ZL?=
+ =?utf-8?B?Y2VncmN1MzVsS1JDTkxJdThXVW8xYUpndU84QlZQTXNCbDlCZE1sV3VxZHh5?=
+ =?utf-8?B?b2xUYTNaVlM3QXBSV3EzUDR6Wk5Mc2hXa01jc29JOXBtS1dZai9GeWxWNDZO?=
+ =?utf-8?B?WDNab1puTE5mZWN4TXRveU0yU0laNXBSZTk1dXVMdHFlL0kyOSt3K2xWWFNS?=
+ =?utf-8?B?ci9JdGhlSjBzOXRKVlVCN0dxZjlVNUIwOEZndy9tNUxCc1E3bjErY09rS3dR?=
+ =?utf-8?B?U2FLQkFCVDIxcEFPMCtiOGNHUzJOQXBPV2RCOXN5Z3dXbWhlcmxJTjErNGtJ?=
+ =?utf-8?B?cFFEK2VqV0cyc3U3U0l5SjI0bFZrTFBUYld5MUxPRW5DaWZDemtPa1QySVp3?=
+ =?utf-8?B?SEVEQXpSbUhma1VkdjRod0tST3FsY05rbGNDUS9VNGxkT2NHZ3VHMjNrT1JO?=
+ =?utf-8?B?NUpIMnRyeGMyUkp2NjdFTExaOW1ta1ZjRzM3SHdDbkVFV3duVGh1b3FTaDAr?=
+ =?utf-8?B?bVJWOXpnUXZrQ3F2MXRiaytOOGFFVnl6QlB3d2ZXN3ZCTVc4OVYraUFXYmFj?=
+ =?utf-8?B?aVpIc1BYSWJVUFlOWUJQMmhXczUrblNrKzBOOWZINXhtRDdNZFE2Vm5tNThs?=
+ =?utf-8?B?czBmcVdFbk92cEVUMnNZaEVSK0pnb3cxSTExc2F3TmhiaXNlaFhxSDF5dGFP?=
+ =?utf-8?B?ZksrTDZ0YUpmY1NsOTBtNGZUelVPdzFzUUlBVGxjQk1peUdVbVdEb29aeERu?=
+ =?utf-8?B?N3k1bWlwRFc3OGhJS25LV2JuRk1udmZrSlJvbjFLaDlTZk1kc2tCSnJndUUr?=
+ =?utf-8?B?NlJNL0RnemFxcnF1V2xPTXRuQlBsZ1g3K2tSRHZ5RnhCZkVJckpGelZvVzZ2?=
+ =?utf-8?B?bWJIVVFFVzdldnl6NUM1ZytGUXRwaWo1aUF0Q3lOaGlGT3JkSWFtWVI1QjVI?=
+ =?utf-8?B?dnJGcVBnbVZPTVcxaFo5Ync1ekVWWDMxQllDT2RGUGlodVJlSVJUK3lTa3Vy?=
+ =?utf-8?B?YTdmWnZHT3RyVTIvVnZNblovSEovYm9RVUxLT2psdGRRL3U5OUdoTjNPM3dh?=
+ =?utf-8?B?Ym9vVTFpWUVoenVVaW1SRTExZjJ2NHNoM3h3S3hNa1pmMjhWUWJXbHhOQ1NS?=
+ =?utf-8?B?dE5qNGwrTjI4RDlRRmFNVWtzMFFsZHZNdXo2VFduWTVuNU5pQ0w2SlhZV0sy?=
+ =?utf-8?B?L1VaRlIrcnJjczVXcmVEQU5MdXpIWGFEc3lyTFlwWmRER0M0cXNhYzFvanNz?=
+ =?utf-8?B?NkJ1ZW84K0I1UzBNTmljc2RlZ29rUWpvUk5lNnc3UmJkNEk3eWUzY091Vmlu?=
+ =?utf-8?B?MmZQSVNLZjhoRmZaQ3hLUTBsZjJSRWRDY0VkRDhzYTR0QlRaQlkyeDdIUGZt?=
+ =?utf-8?B?UDQzb1lDbHREK0dNUm1NM2FSWVFPd09LSnVLM3BIRHFzZHh2Rk9LclYzaUx6?=
+ =?utf-8?B?a2hXa2t3YkZuTU1hUm5TVExsZTdqdlBCZ1JZTHNaL25PSThYQldJNmlCOVM4?=
+ =?utf-8?B?Zjh4S3VBYmhzK1dBc3FZR2Yzc1VsY3NxYlJLT21wbGVaZHdnSzhCdnU3akZp?=
+ =?utf-8?B?WVZRckJLOXM4NVN1T01vM0JRSFovY0Q1VkFOb3JLNnFoT3hJNTcrVGdHRElI?=
+ =?utf-8?B?VWF3Y2djRVRTdUQyUHhlcEdmSVUxNWovUjN1QlFTNEhEbWxPaThIRThQVldu?=
+ =?utf-8?B?WHczd2xwb3lKUjlUT0dCdDZZUVNMZ1JQTmhXQkJ5SWNCcjNhUTlWQThjMjk0?=
+ =?utf-8?B?NS9lZ2Y5TU9sektWL3pwcERjRDZYRXpPNC9sdHJEZFM3YVR3MWVmc1l6NDNj?=
+ =?utf-8?Q?uCfn8RXpTZ850?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW4PR11MB7056.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:IA0PR11MB7307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(8096899003); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?djF2VndHY05iazdtUjk1cGN6UkVPTHQ3Y284MG1KQ29MUm9rUkJqeTZwR3FH?=
- =?utf-8?B?MXowV1V0OEd4MHVONHpETGxzRnpNTC85VkQwZFYzQll1STdWbHBZK2Y1Tm5Z?=
- =?utf-8?B?Zko1eVkwSUliaitsTkFIWjU2V20zaXkvRHdBNnJOSTI1aGpRa1B2ZTVYQXU2?=
- =?utf-8?B?VjdodGc5UXBnUlNVM1NFeURXZGxLcDB2MDUrcU5EVXlGZlFTdGFGbThPY2p1?=
- =?utf-8?B?b0dXTm0yb1V0YjB1UjVLUmp6V0dOR0RITi83bkIvUE9tS0UreEFoRWs4MEJ6?=
- =?utf-8?B?SG5ZenZoWlpWVUY1eTliQlBBSC9DZHMySlVQUUVWUlNPeEU0Mk5vREhmaDBU?=
- =?utf-8?B?cnR1Wk0wQmdabE9hZGI1bVdJRGJSd3hLZ1Q0MXUwZCs1Zkw1aHBvQWNNcXJZ?=
- =?utf-8?B?RVhmaVdkd3dqYjhTOUowY1lMREY2MUZ1RjRFYThud2M4ZGxOT0RhUE80UWdj?=
- =?utf-8?B?ZW10TXV6bG0yQWNCM0xYa0NYQklJMUUvSmpnUHNaTXhEU0xaZllVVTlJZ1Uz?=
- =?utf-8?B?RTRiSDdPazFhYjcydHRLelpKTUowVlFrb2tOMG50TWY0SEVGcjVBeDBTMU9O?=
- =?utf-8?B?QnJ1TVJQcEZ0ZStXNVArTU00T2F6VnVxTTdWdkVqSXFhWWlFcUFOSzZ2Nk9q?=
- =?utf-8?B?K1RDb1I2bUFJcEJONDlLQ0lSZStnVUVuNllmVmtKdktES25WQktra0FhQW1I?=
- =?utf-8?B?QjNuK1AvbEN4bkF3Z3FZWnk3KzdVVmd5ekRxQURVVHVVMkovaVAvd3NYRkNR?=
- =?utf-8?B?RzFSVDExRC9qQmM2VVRmVkc2K1dhZEwzYW43SWVHRXA2TzZkdFcxclpYNDlo?=
- =?utf-8?B?MkNjclFBVFdJRFp2QVNRNmttMVJYdHp4dXd0SGRqZ3N4dm9Mc2ozeHMxMzJO?=
- =?utf-8?B?MW1nWnZ4QUlUM2FoT2hhd2tOcmZXMFNranBGajFMcWt2ajUvcXFNYlhVT0w5?=
- =?utf-8?B?SFdyTXR0YTU1SnRMaHhJMUxNaGJJV1l2TVZwNmYwL1VQQ1BKMW5nR0NVbG1B?=
- =?utf-8?B?TkZjc1l1aC8wU3Y5Wng1OTVzd0J1Ry9Wa2IyVWNjanNZWGNVYVAxaHdFMm9S?=
- =?utf-8?B?bUM2MC8vL0Iza0xXYTJWRks0a2k1UDBCVnN5STI3Q3YrRmV2RkU1L1VyL1A0?=
- =?utf-8?B?RW1wQXAzbExhdGlHaE03bDJObGl0Vm9BRWthM0NLYVZka3puODlyYUk0Qk95?=
- =?utf-8?B?RVZCQmFETS9tbFI2cGhaamp2TUNzajFMUTl5cFRRYmlabG96TzJqSng5NDZD?=
- =?utf-8?B?eE9NbHBhQytBMWFBSXBSdElHTURIL0hRVE9WVzFVZHBvSy9HT05mSVBoWE5x?=
- =?utf-8?B?SWY3eFFxcWgxdTAvN1B0SXBIQ2dXcXpPN3NaenBUbWhYd3ZLMGFmNCt1Umov?=
- =?utf-8?B?eHlJeWlYMmswUko2TE9QT1ZzZVNFTy9jcjdMSzU1VXRTbGxObk9ZUEYxdjdT?=
- =?utf-8?B?QXUwUG9QdnFNREdPNGpJUllpaHZUSmZXcEdSTmlQdEIyY09sT1dackQvNDVC?=
- =?utf-8?B?VThpN0dTYW5tQ0puQzFJQjNWamU1Qk90ZzhmNXpLQks3dEJVcll6QWR0M1gv?=
- =?utf-8?B?NlpsSXU1SFZZZER3eGVWbVpBQ09McjhoWHdjelFpazRFWGljaGtQQ2J3YStG?=
- =?utf-8?B?Rkp0WWpZZE1lbjVwS1A2ZGJlZWNjTVdXaDRzbklsVmV5TVlGUXEvRXZJa1c5?=
- =?utf-8?B?eVk1ODRwQVBFYUhaZWVxUmxheWhnb0NmU3I2anlYK2F5TjdraVNLb3JHVExy?=
- =?utf-8?B?NE12SFF2c0JRSTAwdmV5OVdzM0xkVmZERWEzelF2S3dKZ1oybmc1aGZIelhI?=
- =?utf-8?B?YVEwbkFTQW53UXBUcWYwNWQxdEl5VHZ5bGZrVjltTFQ3bHNaWnNtY1pNMGVm?=
- =?utf-8?B?M1J3cC9JNUo4MUY3SVM5dG9GMVNEeHMzYnBFcE5qeXg5QktzVVdsYXJpaCsv?=
- =?utf-8?B?ZWQxbCtzc3A0YWhNaiswN3VxNkdTaFhyNGszUFgrV3hUQlV2WWxCdnpwanNR?=
- =?utf-8?B?MWRiVmxLVWtjMWU2alordWE1c2taM25wRnJ0OFUwYndjSVpoR0xDcjNmWlhZ?=
- =?utf-8?B?K0Uxb0VMbkp4NittejVFbDVodXQ3K2tJck5WMEx0MjdjZ0tZSDBGVi9PalNX?=
- =?utf-8?B?czJwQURHckRsa2pyek4weENUbU53WitNQTBic2VIb3hEVSttazFBYzE1V3FB?=
- =?utf-8?Q?GwX7imQKr+gobxiuGK4qIsk=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8e8c92c9-d0e3-4442-5c1a-08dd5097299e
-X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB7056.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c05wdmtRcmRLZ0JsLzQxdEJraVQ1R0M0T3VxVVdxMlhVSzZmbEhJM05id3Bu?=
+ =?utf-8?B?L3lTa3FVLzRuYTlBcTlnN0Zhd2NJUFlHcitIM1dPaEM2SE9mTVZ0RHZpamZ2?=
+ =?utf-8?B?ZnBXVnM2dWZHc05nUTlYTW0wMDd4bG1LSnBHMkw0cGs5MndPU1M4ZTdQR0w3?=
+ =?utf-8?B?ODkvbUE1NTcwWXVLZ0Vuc201bVNDYUVaREVvaEFaeGc3TXlMZmYzMHN3MDR3?=
+ =?utf-8?B?aFNqZUd4TW5FUE94M0FORGlvdmxvbE9QdWx1U1BtSHc5c0Zxa0lrN29pTU1u?=
+ =?utf-8?B?a0wyOUNPc3F0bE1UTXBVOUtMQS9tQWZLNmVuRTdhVHVZYWxnK0J0YkJZUjg5?=
+ =?utf-8?B?WS90K2twbmtaZ0p5TVg2bzNHSE5JS3B1VkhsWkhxL05jUlY4dVJ1TUl6RnRD?=
+ =?utf-8?B?OTYwbHptY1ZoUk4wRUpSbHhGdkFLc1U4OE5LRkdCdS84ZGt3Vjc5RURhZHlG?=
+ =?utf-8?B?YjBVc0tmMld4M3V1a1JaTldzZ0dOOW1UVVpmWkRtT1A0dEZVMlZySlJqL0xy?=
+ =?utf-8?B?cnpTRi9SbUozT0ErcWFZNzVZZTg5ZWdPTG81b09aN1dId1REa1ZTdnVxazh2?=
+ =?utf-8?B?Y1JXMjZPUExrU055K2JJU2dlS2ZKank3M0JLYnpiL2dReWtCdm1sTjZTVFc4?=
+ =?utf-8?B?ZWJOSTM1Uyt3dFRQUWZPeVlsN3hmUWVrVS8yZ21RNlFCMjRYSEkrRzlWY0Na?=
+ =?utf-8?B?b3ZiQ3ZLSkIzQ1FjamtIbzliQWlQR2tqWHFQOVo2SjRBY3lVTDdTN3VQV0J6?=
+ =?utf-8?B?QnJBejFiWTk1cXQwcXB1ZDRMZU12REU0OVFvVHJlQkFqMVI3OCtHSVlvNFE0?=
+ =?utf-8?B?TTNMRXJ3OVFCTTZGNnNYNDRrN0lRVTc5N1Zaa0owQ0oxb21scFdxYzB2dWd0?=
+ =?utf-8?B?V2N0bzBmaUl2TnQ4Y2lXc3lZNUY0c1A0SjBLbU5oamUrWll4MGd5QVdlaDhR?=
+ =?utf-8?B?YWx4eUtNRllaUmM5UmZTYVlKSkQrSTZnV3VsV0pCZzR3Z3BZZWM1NjZqYTNT?=
+ =?utf-8?B?ZlBuVDZ4UWFCQW9yZGtaTC9rYlBneEdmOE1Sd1pTMGVjYjBONUVrNHMweWdN?=
+ =?utf-8?B?SHQ0Y3ZtdXlOQWowb2pVeDU2VEZvQVFtUWpBUm90OFE1SjJPN0M5czdUSHpQ?=
+ =?utf-8?B?czlwdDQ4cnByVTNaMTgwbW1UalRiY2FwSU56WjlmSUJWQUdpN3c2OGl1MXJw?=
+ =?utf-8?B?NzBDVmdmeTh1Y0crUFVjRHV2aEcyeUFWdnR3WEx0WmFXRk8xbXZGVVdxdlA4?=
+ =?utf-8?B?eEI1cFRTOUxaRmFjUXdEODJ2c296RjBSdkFySkVDVXR5cjhFYWsxM0w0TlZ1?=
+ =?utf-8?B?RGtSeDdPNCtMOEdGb3JycVFjMFVscCtkNEV6NU1WOU01eUU1WmtkbUtUamE1?=
+ =?utf-8?B?OS9Pa3dCYlRmYWxtc1FOSGhrNGJkcXJNRHQrV1VXWGtzTlFKczRmNGp3c3NW?=
+ =?utf-8?B?RVJIQlhUalkvS0JiOXp6NTFPUis2aXlDczcreDd3eXhEZUJ0UWVBYlFpQzRi?=
+ =?utf-8?B?NmhINkZrVmJrV0VCK0djakFibUwyZGFadmdwelRJMTFlcVJvN24wNHhtSGVL?=
+ =?utf-8?B?K25WZ2JuanRudW1reDVRR3c4eGJqNDk5MEdRVFBVUVNhNTdHTENIbmk4ME12?=
+ =?utf-8?B?MllEQitYKzAwWGtNdUdVS3hhRkhmRUxDdTd5Y05xWER1Y2FPUHdQQlFibVNE?=
+ =?utf-8?B?OXNmbEN3bnUxeTZtMkpxVUptNnhFQzVEaU1WMWZsejhCZXdhbFdTWjltYnZi?=
+ =?utf-8?B?MVAwQUNmNlEwaGhER1hHYndDUFo2Z082NnZNYjF5YW9DM1dUakxXWEdSaVNH?=
+ =?utf-8?B?QUJJNGIxdy9MWnBDdUgzMy9vMVZIQXEySFRWWlk4L3VuMGk1UkFWN1MzdVox?=
+ =?utf-8?B?eXM1TExibi9kZDNIc0Y2TmEyZFMyYy9aNFBmbUdPM2tLT2RBdjVoME9PbHBn?=
+ =?utf-8?B?YWZUZThyWHNlUUFNMFM5TGV5ZjZ6bnF0NjI3eXYydzlMZlNIQnFFcGJCLy80?=
+ =?utf-8?B?RlNmZE5vTzJJeEQwY3NOK20zOElTeTRySzlzYjVhVW1rVEZ5dlhCa20xSDNJ?=
+ =?utf-8?B?Y3ZzZnVpTnlNbUVOUkNnNTJQYUVQejdSUkw5cW1UYkZCdklUTk8wV0h5R0NY?=
+ =?utf-8?Q?OZDY8Xb2gUS0yu1zfd5hD+RdH?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9e052713-65ca-4e62-52cf-08dd5099bc38
+X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7307.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2025 03:40:32.7986 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2025 03:58:57.7458 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WfntbxFzPBrCWETBM0tDuxxm7CoEzcrnIoal1zGboVUalSwskabTti++7TrBE9aVbhLHr5vq+pOLkU7tTqKZMJFx8ln/FA1d+AERIMNye10=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB8262
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2GOyYSXH6XRfveJQs/A2Id+PGrXF1peNxDITt8SjqYYwmAFcfSUHLbSI+m8g4pee0uqdMZ8WApWGOJWZ4ekAqg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4614
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -200,296 +198,719 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--------------sLwlMNV9jw3uGb6ijG5lIbtV
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
-On 19-02-2025 08:35, Matthew Brost wrote:
-> On Wed, Feb 19, 2025 at 08:29:53AM +0530, Ghimiray, Himal Prasad wrote:
->>
->>
->> On 19-02-2025 03:24, Matthew Brost wrote:
->>> On Thu, Feb 13, 2025 at 11:58:27PM +0530, Ghimiray, Himal Prasad wrote:
->>>>
->>>>
->>>> On 13-02-2025 07:41, Matthew Brost wrote:
->>>>> Migration is implemented with range granularity, with VRAM backing being
->>>>> a VM private TTM BO (i.e., shares dma-resv with VM). The lifetime of the
->>>>> TTM BO is limited to when the SVM range is in VRAM (i.e., when a VRAM
->>>>> SVM range is migrated to SRAM, the TTM BO is destroyed).
->>>>>
->>>>> The design choice for using TTM BO for VRAM backing store, as opposed to
->>>>> direct buddy allocation, is as follows:
->>>>>
->>>>> - DRM buddy allocations are not at page granularity, offering no
->>>>>      advantage over a BO.
->>>>> - Unified eviction is required (SVM VRAM and TTM BOs need to be able to
->>>>>      evict each other).
->>>>> - For exhaustive eviction [1], SVM VRAM allocations will almost certainly
->>>>>      require a dma-resv.
->>>>> - Likely allocation size is 2M which makes of size of BO (872)
->>>>>      acceptable per allocation (872 / 2M == .0004158).
->>>>>
->>>>> With this, using TTM BO for VRAM backing store seems to be an obvious
->>>>> choice as it allows leveraging of the TTM eviction code.
->>>>>
->>>>> Current migration policy is migrate any SVM range greater than or equal
->>>>> to 64k once.
->>>>>
->>>>> [1] https://patchwork.freedesktop.org/series/133643/
->>>>>
->>>>> v2:
->>>>>     - Rebase on latest GPU SVM
->>>>>     - Retry page fault on get pages returning mixed allocation
->>>>>     - Use drm_gpusvm_devmem
->>>>> v3:
->>>>>     - Use new BO flags
->>>>>     - New range structure (Thomas)
->>>>>     - Hide migration behind Kconfig
->>>>>     - Kernel doc (Thomas)
->>>>>     - Use check_pages_threshold
->>>>> v4:
->>>>>     - Don't evict partial unmaps in garbage collector (Thomas)
->>>>>     - Use %pe to print errors (Thomas)
->>>>>     - Use %p to print pointers (Thomas)
->>>>> v5:
->>>>>     - Use range size helper (Thomas)
->>>>>     - Make BO external (Thomas)
->>>>>     - Set tile to NULL for BO creation (Thomas)
->>>>>     - Drop BO mirror flag (Thomas)
->>>>>     - Hold BO dma-resv lock across migration (Auld, Thomas)
->>>>>
->>>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->>>>> ---
->>>>>     drivers/gpu/drm/xe/xe_svm.c | 111 ++++++++++++++++++++++++++++++++++--
->>>>>     drivers/gpu/drm/xe/xe_svm.h |   5 ++
->>>>>     2 files changed, 112 insertions(+), 4 deletions(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
->>>>> index 0a78a838508c..2e1e0f31c1a8 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_svm.c
->>>>> +++ b/drivers/gpu/drm/xe/xe_svm.c
->>>>> @@ -32,6 +32,11 @@ static unsigned long xe_svm_range_end(struct xe_svm_range *range)
->>>>>     	return drm_gpusvm_range_end(&range->base);
->>>>>     }
->>>>> +static unsigned long xe_svm_range_size(struct xe_svm_range *range)
->>>>> +{
->>>>> +	return drm_gpusvm_range_size(&range->base);
->>>>> +}
->>>>> +
->>>>>     static void *xe_svm_devm_owner(struct xe_device *xe)
->>>>>     {
->>>>>     	return xe;
->>>>> @@ -512,7 +517,6 @@ static int xe_svm_populate_devmem_pfn(struct drm_gpusvm_devmem *devmem_allocatio
->>>>>     	return 0;
->>>>>     }
->>>>> -__maybe_unused
->>>>>     static const struct drm_gpusvm_devmem_ops gpusvm_devmem_ops = {
->>>>>     	.devmem_release = xe_svm_devmem_release,
->>>>>     	.populate_devmem_pfn = xe_svm_populate_devmem_pfn,
->>>>> @@ -592,6 +596,71 @@ static bool xe_svm_range_is_valid(struct xe_svm_range *range,
->>>>>     	return (range->tile_present & ~range->tile_invalidated) & BIT(tile->id);
->>>>>     }
->>>>> +static struct xe_vram_region *tile_to_vr(struct xe_tile *tile)
->>>>> +{
->>>>> +	return &tile->mem.vram;
->>>>> +}
->>>>> +
->>>>> +static struct xe_bo *xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
->>>>> +				       struct xe_svm_range *range,
->>>>> +				       const struct drm_gpusvm_ctx *ctx)
->>>>> +{
->>>>> +	struct mm_struct *mm = vm->svm.gpusvm.mm;
->>>>> +	struct xe_vram_region *vr = tile_to_vr(tile);
->>>>> +	struct drm_buddy_block *block;
->>>>> +	struct list_head *blocks;
->>>>> +	struct xe_bo *bo;
->>>>> +	ktime_t end = 0;
->>>>> +	int err;
->>>>> +
->>>>> +	if (!mmget_not_zero(mm))
->>>>> +		return ERR_PTR(-EFAULT);
->>>>> +	mmap_read_lock(mm);
->>>>> +
->>>>> +retry:
->>>>> +	bo = xe_bo_create_locked(tile_to_xe(tile), NULL, NULL,
->>>>> +				 xe_svm_range_size(range),
->>>>> +				 ttm_bo_type_device,
->>>>> +				 XE_BO_FLAG_VRAM_IF_DGFX(tile));
->>>>> +	if (IS_ERR(bo)) {
->>>>> +		err = PTR_ERR(bo);
->>>>> +		if (xe_vm_validate_should_retry(NULL, err, &end))
->>>>> +			goto retry;
->>>>> +		goto unlock;
->>>>> +	}
->>>>> +
->>>>> +	drm_gpusvm_devmem_init(&bo->devmem_allocation,
->>>>> +			       vm->xe->drm.dev, mm,
->>>>> +			       &gpusvm_devmem_ops,
->>>>> +			       &tile->mem.vram.dpagemap,
->>>>> +			       xe_svm_range_size(range));
->>>>> +
->>>>> +	blocks = &to_xe_ttm_vram_mgr_resource(bo->ttm.resource)->blocks;
->>>>> +	list_for_each_entry(block, blocks, link)
->>>>> +		block->private = vr;
->>>>> +
->>>>> +	/*
->>>>> +	 * Take ref because as soon as drm_gpusvm_migrate_to_devmem succeeds the
->>>>> +	 * creation ref can be dropped upon CPU fault or unmap.
->>>>> +	 */
->>>>> +	xe_bo_get(bo);
->>>>> +
->>>>> +	err = drm_gpusvm_migrate_to_devmem(&vm->svm.gpusvm, &range->base,
->>>>> +					   &bo->devmem_allocation, ctx);
->>>>> +	xe_bo_unlock(bo);
->>>>> +	if (err) {
->>>>> +		xe_bo_put(bo);	/* Local ref */
->>>>> +		xe_bo_put(bo);	/* Creation ref */
->>>>> +		bo = ERR_PTR(err);
->>>>> +	}
->>>>> +
->>>>> +unlock:
->>>>> +	mmap_read_unlock(mm);
->>>>> +	mmput(mm);
->>>>> +
->>>>> +	return bo;
->>>>> +}
->>>>> +
->>>>>     /**
->>>>>      * xe_svm_handle_pagefault() - SVM handle page fault
->>>>>      * @vm: The VM.
->>>>> @@ -600,7 +669,8 @@ static bool xe_svm_range_is_valid(struct xe_svm_range *range,
->>>>>      * @fault_addr: The GPU fault address.
->>>>>      * @atomic: The fault atomic access bit.
->>>>>      *
->>>>> - * Create GPU bindings for a SVM page fault.
->>>>> + * Create GPU bindings for a SVM page fault. Optionally migrate to device
->>>>> + * memory.
->>>>>      *
->>>>>      * Return: 0 on success, negative error code on error.
->>>>>      */
->>>>> @@ -608,11 +678,18 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
->>>>>     			    struct xe_tile *tile, u64 fault_addr,
->>>>>     			    bool atomic)
->>>>>     {
->>>>> -	struct drm_gpusvm_ctx ctx = { .read_only = xe_vma_read_only(vma), };
->>>>> +	struct drm_gpusvm_ctx ctx = {
->>>>> +		.read_only = xe_vma_read_only(vma),
->>>>> +		.devmem_possible = IS_DGFX(vm->xe) &&
->>>>> +			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR),
->>>>> +		.check_pages_threshold = IS_DGFX(vm->xe) &&
->>>>> +			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR) ? SZ_64K : 0,
->>>>> +	};
->>>>>     	struct xe_svm_range *range;
->>>>>     	struct drm_gpusvm_range *r;
->>>>>     	struct drm_exec exec;
->>>>>     	struct dma_fence *fence;
->>>>> +	struct xe_bo *bo = NULL;
->>>>>     	ktime_t end = 0;
->>>>>     	int err;
->>>>> @@ -620,6 +697,9 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
->>>>>     	xe_assert(vm->xe, xe_vma_is_cpu_addr_mirror(vma));
->>>>>     retry:
->>>>> +	xe_bo_put(bo);
->>>>> +	bo = NULL;
->>>>> +
->>>>>     	/* Always process UNMAPs first so view SVM ranges is current */
->>>>>     	err = xe_svm_garbage_collector(vm);
->>>>>     	if (err)
->>>>> @@ -635,9 +715,31 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
->>>>>     	if (xe_svm_range_is_valid(range, tile))
->>>>>     		return 0;
->>>>> +	/* XXX: Add migration policy, for now migrate range once */
->>>>> +	if (!range->migrated && range->base.flags.migrate_devmem &&
->>>>> +	    xe_svm_range_size(range) >= SZ_64K) {
->>>>> +		range->migrated = true;
->>>>
->>>>
->>>> shouldn't this be set to true, only once xe_svm_alloc_vram is successfull ?
->>>> In case of bo alloc failure retry wont enter here.
->>>>
+On 18-02-2025 21:48, Pekka Paalanen wrote:
+> On Tue, 18 Feb 2025 11:13:39 +0530
+> "Murthy, Arun R"<arun.r.murthy@intel.com> wrote:
+>
+>> On 17-02-2025 15:38, Pekka Paalanen wrote:
+>>> Hi Arun,
 >>>
->>> No. The point of this is try to migrate once to avoid a live lock case
->>> of concurrent CPU and GPU access. Once we have migration policy, I'd
->>> suspect memory marked as prefered VRAM only try once too. If memory is
->>> marked as VRAM only we'd retry to a limit and if reached kill the app.
->>> We can work of those details when that code lands. Until then, trying
->>> once seems reasonable.
->>
->> I understand what we are trying to achieve here, and it functions well.
->> However, my only concern is member name "migrated" gives the impression that
->> it will be set to true only if the range has been successfully migrated to
->> VRAM.
->>
-> 
-> s/migrated/skip_migrate ?
-
-sounds good to me.
-
-> 
+>>> this whole series seems to be missing all the UAPI docs for the DRM
+>>> ReST files, e.g. drm-kms.rst. The UAPI header doc comments are not a
+>>> replacement for them, I would assume both are a requirement.
 >>>
->>> Matt
->>>
->>>>> +
->>>>> +		bo = xe_svm_alloc_vram(vm, tile, range, &ctx);
->>>>> +		if (IS_ERR(bo)) {
->>>>> +			drm_info(&vm->xe->drm,
->>>>> +				 "VRAM allocation failed, falling back to retrying, asid=%u, errno %pe\n",
->>>>> +				 vm->usm.asid, bo);
->>
->> This log is also misleading, we dont retry vram allocation in case of first
->> failure.
->>
-> 
-> How about...
-> 
-> "VRAM allocation failed, falling back to retrying fault,"
-
-Yup.
-
-> 
-> Matt
-> 
->>>>> +			bo = NULL;
->>>>> +			goto retry;
->>>>> +		}
->>>>> +	}
->>>>> +
->>>>>     	err = drm_gpusvm_range_get_pages(&vm->svm.gpusvm, r, &ctx);
->>>>> -	if (err == -EFAULT || err == -EPERM)	/* Corner where CPU mappings have changed */
->>>>> +	/* Corner where CPU mappings have changed */
->>>>> +	if (err == -EOPNOTSUPP || err == -EFAULT || err == -EPERM) {
->>>>> +		if (err == -EOPNOTSUPP)
->>>>> +			drm_gpusvm_range_evict(&vm->svm.gpusvm, &range->base);
->>>>> +		drm_info(&vm->xe->drm,
->>>>> +			 "Get pages failed, falling back to retrying, asid=%u, gpusvm=%p, errno %pe\n",
->>>>> +			 vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
->>>>>     		goto retry;
->>>>> +	}
->>>>>     	if (err)
->>>>>     		goto err_out;
->>>>> @@ -668,6 +770,7 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
->>>>>     	dma_fence_put(fence);
->>>>>     err_out:
->>>>> +	xe_bo_put(bo);
->>>>>     	return err;
->>>>>     }
->>>>> diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
->>>>> index 0fa525d34987..984a61651d9e 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_svm.h
->>>>> +++ b/drivers/gpu/drm/xe/xe_svm.h
->>>>> @@ -35,6 +35,11 @@ struct xe_svm_range {
->>>>>     	 * range. Protected by GPU SVM notifier lock.
->>>>>     	 */
->>>>>     	u8 tile_invalidated;
->>>>> +	/**
->>>>> +	 * @migrated: Range has been migrated to device memory, protected by
->>>>> +	 * GPU fault handler locking.
->>
->> The range is not necessarily migrated to device memory if migrated is true.
->>
->>>>> +	 */
->>>>> +	u8 migrated	:1;
->>>>>     };
->>>>>     int xe_devm_add(struct xe_tile *tile, struct xe_vram_region *vr);
+>>> Without the ReST docs it is really difficult to see how this new UAPI
+>>> should be used.
+>> Hi Pekka,
+>> I also realized later on this. Will add this in my next patchset.
+>>> On Tue, 28 Jan 2025 21:21:07 +0530
+>>> Arun R Murthy<arun.r.murthy@intel.com> wrote:
+>>>   
+>>>> Display Histogram is an array of bins and can be generated in many ways
+>>>> referred to as modes.
+>>>> Ex: HSV max(RGB), Wighted RGB etc.
 >>>>
->>
+>>>> Understanding the histogram data format(Ex: HSV max(RGB))
+>>>> Histogram is just the pixel count.
+>>>> For a maximum resolution of 10k (10240 x 4320 = 44236800)
+>>>> 25 bits should be sufficient to represent this along with a buffer of 7
+>>>> bits(future use) u32 is being considered.
+>>>> max(RGB) can be 255 i.e 0xFF 8 bit, considering the most significant 5
+>>>> bits, hence 32 bins.
+>>>> Below mentioned algorithm illustrates the histogram generation in
+>>>> hardware.
+>>>>
+>>>> hist[32] = {0};
+>>>> for (i = 0; i < resolution; i++) {
+>>>> 	bin = max(RGB[i]);
+>>>> 	bin = bin >> 3;	/* consider the most significant bits */
+>>>> 	hist[bin]++;
+>>>> }
+>>>> If the entire image is Red color then max(255,0,0) is 255 so the pixel
+>>>> count of each pixels will be placed in the last bin. Hence except
+>>>> hist[31] all other bins will have a value zero.
+>>>> Generated histogram in this case would be hist[32] = {0,0,....44236800}
+>>>>
+>>>> Description of the structures, properties defined are documented in the
+>>>> header file include/uapi/drm/drm_mode.h
+>>>>
+>>>> v8: Added doc for HDR planes, removed reserved variables (Dmitry)
+>>>>
+>>>> Signed-off-by: Arun R Murthy<arun.r.murthy@intel.com>
+>>>> ---
+>>>>    include/uapi/drm/drm_mode.h | 65 +++++++++++++++++++++++++++++++++++++++++++++
+>>>>    1 file changed, 65 insertions(+)
+>>>>
+>>>> diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
+>>>> index c082810c08a8b234ef2672ecf54fc8c05ddc2bd3..b8b7b18843ae7224263a9c61b20ac6cbf5df69e9 100644
+>>>> --- a/include/uapi/drm/drm_mode.h
+>>>> +++ b/include/uapi/drm/drm_mode.h
+>>>> @@ -1355,6 +1355,71 @@ struct drm_mode_closefb {
+>>>>    	__u32 pad;
+>>>>    };
+>>>>    
+>>>> +/**
+>>>> + * enum drm_mode_histogram
+>>>> + *
+>>>> + * @DRM_MODE_HISTOGRAM_HSV_MAX_RGB:
+>>>> + * Maximum resolution at present 10k, 10240x4320 = 44236800
+>>>> + * can be denoted in 25bits. With an additional 7 bits in buffer each bin
+>>>> + * can be a u32 value.
+>>>> + * For SDL, Maximum value of max(RGB) is 255, so max 255 bins.
+>>> I assume s/SDL/SDR/.
+>> Yes, sorry TYPO
+>>> This assumption seems false. SDR can be also 10-bit and probably even
+>>> more.
+>> Yes but in practice majority of them being 8-bit. So have considered
+>> 8-bit for illustration purpose only.
+>> The design itself should accommodate 10-bit as well.
+> Hi Arun,
+>
+> if these are just examples, then there is no need to mention SDR or
+> HDR. You can say that if "thing" is 8-bit, then there are 256 possible
+> values, and we could have 256 bins or we could have just 32 bins.
+>
+> But what is "thing"? Let's see below.
+Sure will remove these over here and add then in the ReST document.
+>>>> + * If the most significant 5 bits are considered, then bins = 2^5
+>>>> + * will be 32 bins.
+>>>> + * For HDR, maximum value of max(RGB) is 65535, so max 65535 bins.
+>>> Does this mean that the histogram is computed on the pixel values
+>>> emitted to the cable? What if the cable format is YUV?
+>> Yes, again the illustration over here is max(RGB) used for histogram
+>> generation.
+>> If YUV is used or weighted RGB is used for histogram generation then the
+>> mode will have to change and accordingly the data for that mode.
+> Do you mean that the HDMI or DisplayPort signalling mode (YUV vs. RGB?
+> sub-sampling? bit-depth?) affects which histogram modes can be used?
+No this is actually for user as to how to interpret the histogram data 
+that is being sent from the KMD. UMD reads this histogram so in order to 
+understand the format of this data he needs to know the histogram mode.
+> Currently userspace cannot know or control the signalling mode. How
+> would userspace know which histogram modes are possible?
+As part of drm_histogram_caps struct under HISTOGRAM_CAPS property KMD 
+will expose all of the supported histogram modes to the user. User will 
+then choose one among the supported modes by drm_histogram_config 
+struct(HISTOGRAM_ENABLE property)
+> You should also define at which point of the pixel pipeline the
+> histogram is recorded. Is it before, say, CRTC DEGAMMA processing? Is
+> it after signal encoding to the 6/8/10/12/14/16-bit RGB or YUV format?
+> Before or after YUV sub-sampling? Limited or full range?
+This again is the hardware design. Theoretically this histogram hardware 
+will be at the end of the hardware pipe, i.e after hardware/software 
+composition is done.
+>>>> + * For illustration consider a full RED image of 10k resolution considering all
+>>>> + * 8 bits histogram would look like hist[255] = {0,0,....44236800} with SDR
+>>>> + * plane similarly with HDR the same would look like hist[65535] =
+>>>> + * {0,0,0,....44236800}
+>>> This SDR vs. HDR is a false dichotomy. I presume the meaningful
+>>> difference is bits-per-channel, not the dynamic range.
+>>>
+>>> It would be good to have the pseudocode snippet here instead of the
+>>> commit message. The commit message should not contain any UAPI notes
+>>> that are not in the UAPI docs. OTOH, repeating UAPI docs in the commit
+>>> message is probably not very useful, as the more interesting questions
+>>> are why this exists and what it can be used for.
+>> I have the pseudocode in the cover letter of this patchset.
+> The cover letter won't end up in kernel documentation. It should be in
+> the documentation since it is a very explicit and good way to document
+> what the histogram recorder does.
+Sure will move to the ReST doc.
+>>>> + */
+>>>> +enum drm_mode_histogram {
+>>>> +	DRM_MODE_HISTOGRAM_HSV_MAX_RGB = 0x01,
+>>> What does the HSV stand for?
+>>>
+>>> When talking about pixel values, my first impression is
+>>> hue-saturation-value. But there are no hue-saturation-value
+>>> computations at all?
+>> The computation will have to be done by the user in the library.
+> Why does the UAPI token have "HSV" in its name?
+Agree, will remove that.
+> There is nothing related to hue, saturation or value here. It's just
+> max(R, G, B).
+>
+>>>> +};
+>>>> +
+>>>> +/**
+>>>> + * struct drm_histogram_caps
+>>>> + *
+>>>> + * @histogram_mode: histogram generation modes, defined in the
+>>>> + *		    enum drm_mode_histogram
+>>>> + * @bins_count: number of bins for a chosen histogram mode. For illustration
+>>>> + *		refer the above defined histogram mode.
+>>>> + */
+>>>> +struct drm_histogram_caps {
+>>>> +	__u32 histogram_mode;
+>>>> +	__u32 bins_count;
+>>>> +};
+>>> Patch 3 says:
+>>>
+>>> + * Property HISTOGRAM_CAPS is a blob pointing to the struct drm_histogram_caps
+>>> + * Description of the structure is in include/uapi/drm/drm_mode.h
+>>>
+>>> This is a read-only property, right?
+>>>
+>>> The blob contains one struct drm_histogram_caps. What if more than one
+>>> mode is supported?
+>> Multiple modes can be ORed. User will have to choose one of them
+>> depending on the algorithm that he is developing/using.
+> Oh! That did not occur to me. This needs documentation.
+Sure will add this in ReST doc.
+> Do all modes use the same bin count?
+Again this dependents on the hardware design.
+>>> If the bin count depends on the bits-per-channel of something which
+>>> depends on set video mode or other things, how does updating work?
+>>> What if userspace uses a stale count? How does userspace ensure it uses
+>>> the current count?
+>> The bin count depends on the hardware design. Hence this bin count will
+>> be share to the user via the histogram capability.
+> If the bin counts depend on hardware only, then the SDR/HDR examples
+> are misleading. They seem to imply a connection between bit depth and
+> bin count. Instead, you can just say that the bin count is dictated by
+> the hardware design.
+>
+> I wonder if that is a future-proof assumption. I could easily expect
+> that different histogram modes would use different bin counts, or
+> produce multiple histograms (one per channel), or even 3D histograms.
+> One also wouldn't want to use more bins than the signal has possible
+> values.
+Here we are not considering 3D, hence the name 1D LUT in the next patches.
+> Just pondering. It's perilous to try to make UAPI generic if there is
+> only one vendor or piece of hardware.
+I had this series in i915 and based on the comment from the community 
+moved to drm with a generic UAPI. I assume histogram is supported by AMD 
+as well.
+>>>> +
+>>>> +/**
+>>>> + * struct drm_histogram_config
+>>>> + *
+>>>> + * @hist_mode_data: address to the histogram mode specific data if any
+>>> Do I understand correctly that the KMS blob will contain a userspace
+>>> virtual memory address (a user pointer)? How does that work? What are
+>>> the lifetime requirements for that memory?
+>>>
+>>> I do not remember any precedent of this, and I suspect it's not a good
+>>> design. I believe all the data should be contained in the blobs, e.g.
+>>> how IN_FORMATS does it. I'm not sure what would be the best UAPI here
+>>> for returning histogram data to userspace, but at least all the data
+>>> sent to the kernel should be contained in the blob itself since it
+>>> seems to be quite small. Variable length is ok for blobs.
+>> This point has actually opened up discussion on the design. Sima has
+>> infact commented the same with multiple options and which among them
+>> buits best. Lets take this discussion on that thread.
+> Indeed, I don't know much about that topic.
+>
+>>>> + * @nr_hist_mode_data: number of elements pointed by the address in
+>>>> + *		       hist_mode_data
+>>>> + * @hist_mode: histogram mode(HSV max(RGB), RGB, LUMA etc)
+>>>> + * @enable: flag to enable/disable histogram
+>>>> + */
+>>>> +struct drm_histogram_config {
+>>>> +	__u64 hist_mode_data;
+>>>> +	__u32 nr_hist_mode_data;
+>>>> +	enum drm_mode_histogram hist_mode;
+>>>> +	bool enable;
+>>> Don't enum and bool have non-fixed sizes? Hence inappropriate as UABI,
+>>> if architecture, build options, or the contents of the enum change the
+>>> ABI.
+>>>   
+>>>> +};
+>>>> +
+>>>> +/**
+>>>> + * struct drm_histogram
+>>>> + *
+>>>> + * @config: histogram configuration data pointed by struct drm_histogram_config
+>>> s/pointed by/defined by/ I presume? That much is obvious from the field
+>>> type. What does it mean? Why is struct drm_histogram_config a separate
+>>> struct?
+>> This is totally a separate property for enabling histogram. When
+>> enabling histogram if there are multiple modes of histogram generation
+>> supported by the hardware which among them will be used here and the
+>> data for that mode if required(For Ex: weights for the RGB in case of
+>> weighted RGB) would have to be sent from user and this struct
+>> drm_histogram_config holds those elements.
+> Ah, I missed that there is a KMS property holding only a config.
+>
+>>>> + * @data_ptr: pointer to the array of histogram.
+>>>> + *	      Histogram is an array of bins. Data format for each bin depends
+>>>> + *	      on the histogram mode. Refer to the above histogram modes for
+>>>> + *	      more information.
+>>> Another userspace virtual address stored in a KMS blob?
+>>>   
+>>>> + * @nr_elements: number of bins in the histogram.
+>>>> + */
+>>>> +struct drm_histogram {
+>>>> +	struct drm_histogram_config config;
+>>>> +	__u64 data_ptr;
+>>>> +	__u32 nr_elements;
+>>>> +};
+>>>> +
+>>>>    #if defined(__cplusplus)
+>>>>    }
+>>>>    #endif
+>>>>   
+> Thanks,
+> pq
 
+Thanks and Regards,
+Arun R Murthy
+--------------------
+
+--------------sLwlMNV9jw3uGb6ijG5lIbtV
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 18-02-2025 21:48, Pekka Paalanen
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:20250218181819.11ca41ab@eldfell">
+      <pre wrap="" class="moz-quote-pre">On Tue, 18 Feb 2025 11:13:39 +0530
+&quot;Murthy, Arun R&quot; <a class="moz-txt-link-rfc2396E" href="mailto:arun.r.murthy@intel.com">&lt;arun.r.murthy@intel.com&gt;</a> wrote:
+
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">On 17-02-2025 15:38, Pekka Paalanen wrote:
+</pre>
+        <blockquote type="cite">
+          <pre wrap="" class="moz-quote-pre">Hi Arun,
+
+this whole series seems to be missing all the UAPI docs for the DRM
+ReST files, e.g. drm-kms.rst. The UAPI header doc comments are not a
+replacement for them, I would assume both are a requirement.
+
+Without the ReST docs it is really difficult to see how this new UAPI
+should be used.  
+</pre>
+        </blockquote>
+        <pre wrap="" class="moz-quote-pre">Hi Pekka,
+I also realized later on this. Will add this in my next patchset.
+</pre>
+        <blockquote type="cite">
+          <pre wrap="" class="moz-quote-pre">
+On Tue, 28 Jan 2025 21:21:07 +0530
+Arun R Murthy <a class="moz-txt-link-rfc2396E" href="mailto:arun.r.murthy@intel.com">&lt;arun.r.murthy@intel.com&gt;</a> wrote:
+ 
+</pre>
+          <blockquote type="cite">
+            <pre wrap="" class="moz-quote-pre">Display Histogram is an array of bins and can be generated in many ways
+referred to as modes.
+Ex: HSV max(RGB), Wighted RGB etc.
+
+Understanding the histogram data format(Ex: HSV max(RGB))
+Histogram is just the pixel count.
+For a maximum resolution of 10k (10240 x 4320 = 44236800)
+25 bits should be sufficient to represent this along with a buffer of 7
+bits(future use) u32 is being considered.
+max(RGB) can be 255 i.e 0xFF 8 bit, considering the most significant 5
+bits, hence 32 bins.
+Below mentioned algorithm illustrates the histogram generation in
+hardware.
+
+hist[32] = {0};
+for (i = 0; i &lt; resolution; i++) {
+	bin = max(RGB[i]);
+	bin = bin &gt;&gt; 3;	/* consider the most significant bits */
+	hist[bin]++;
+}
+If the entire image is Red color then max(255,0,0) is 255 so the pixel
+count of each pixels will be placed in the last bin. Hence except
+hist[31] all other bins will have a value zero.
+Generated histogram in this case would be hist[32] = {0,0,....44236800}
+
+Description of the structures, properties defined are documented in the
+header file include/uapi/drm/drm_mode.h
+
+v8: Added doc for HDR planes, removed reserved variables (Dmitry)
+
+Signed-off-by: Arun R Murthy <a class="moz-txt-link-rfc2396E" href="mailto:arun.r.murthy@intel.com">&lt;arun.r.murthy@intel.com&gt;</a>
+---
+  include/uapi/drm/drm_mode.h | 65 +++++++++++++++++++++++++++++++++++++++++++++
+  1 file changed, 65 insertions(+)
+
+diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
+index c082810c08a8b234ef2672ecf54fc8c05ddc2bd3..b8b7b18843ae7224263a9c61b20ac6cbf5df69e9 100644
+--- a/include/uapi/drm/drm_mode.h
++++ b/include/uapi/drm/drm_mode.h
+@@ -1355,6 +1355,71 @@ struct drm_mode_closefb {
+  	__u32 pad;
+  };
+  
++/**
++ * enum drm_mode_histogram
++ *
++ * @DRM_MODE_HISTOGRAM_HSV_MAX_RGB:
++ * Maximum resolution at present 10k, 10240x4320 = 44236800
++ * can be denoted in 25bits. With an additional 7 bits in buffer each bin
++ * can be a u32 value.
++ * For SDL, Maximum value of max(RGB) is 255, so max 255 bins.  
+</pre>
+          </blockquote>
+          <pre wrap="" class="moz-quote-pre">I assume s/SDL/SDR/.  
+</pre>
+        </blockquote>
+        <pre wrap="" class="moz-quote-pre">Yes, sorry TYPO
+</pre>
+        <blockquote type="cite">
+          <pre wrap="" class="moz-quote-pre">
+This assumption seems false. SDR can be also 10-bit and probably even
+more.  
+</pre>
+        </blockquote>
+        <pre wrap="" class="moz-quote-pre">Yes but in practice majority of them being 8-bit. So have considered 
+8-bit for illustration purpose only.
+The design itself should accommodate 10-bit as well.
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+Hi Arun,
+
+if these are just examples, then there is no need to mention SDR or
+HDR. You can say that if &quot;thing&quot; is 8-bit, then there are 256 possible
+values, and we could have 256 bins or we could have just 32 bins.
+
+But what is &quot;thing&quot;? Let's see below.
+</pre>
+    </blockquote>
+    Sure will remove these over here and add then in the ReST document.<br>
+    <blockquote type="cite" cite="mid:20250218181819.11ca41ab@eldfell">
+      <pre wrap="" class="moz-quote-pre">
+</pre>
+      <blockquote type="cite">
+        <blockquote type="cite">
+          <blockquote type="cite">
+            <pre wrap="" class="moz-quote-pre">+ * If the most significant 5 bits are considered, then bins = 2^5
++ * will be 32 bins.
++ * For HDR, maximum value of max(RGB) is 65535, so max 65535 bins.  
+</pre>
+          </blockquote>
+          <pre wrap="" class="moz-quote-pre">Does this mean that the histogram is computed on the pixel values
+emitted to the cable? What if the cable format is YUV?  
+</pre>
+        </blockquote>
+        <pre wrap="" class="moz-quote-pre">Yes, again the illustration over here is max(RGB) used for histogram 
+generation.
+If YUV is used or weighted RGB is used for histogram generation then the 
+mode will have to change and accordingly the data for that mode.
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+Do you mean that the HDMI or DisplayPort signalling mode (YUV vs. RGB?
+sub-sampling? bit-depth?) affects which histogram modes can be used?
+</pre>
+    </blockquote>
+    No this is actually for user as to how to interpret the histogram
+    data that is being sent from the KMD. UMD reads this histogram so in
+    order to understand the format of this data he needs to know the
+    histogram mode.<br>
+    <blockquote type="cite" cite="mid:20250218181819.11ca41ab@eldfell">
+      <pre wrap="" class="moz-quote-pre">
+Currently userspace cannot know or control the signalling mode. How
+would userspace know which histogram modes are possible?
+</pre>
+    </blockquote>
+    As part of drm_histogram_caps struct under HISTOGRAM_CAPS property
+    KMD will expose all of the supported histogram modes to the user.
+    User will then choose one among the supported modes by
+    drm_histogram_config struct(HISTOGRAM_ENABLE property)<br>
+    <blockquote type="cite" cite="mid:20250218181819.11ca41ab@eldfell">
+      <pre wrap="" class="moz-quote-pre">
+You should also define at which point of the pixel pipeline the
+histogram is recorded. Is it before, say, CRTC DEGAMMA processing? Is
+it after signal encoding to the 6/8/10/12/14/16-bit RGB or YUV format?
+Before or after YUV sub-sampling? Limited or full range?
+</pre>
+    </blockquote>
+    This again is the hardware design. Theoretically this histogram
+    hardware will be at the end of the hardware pipe, i.e after
+    hardware/software composition is done.<br>
+    <blockquote type="cite" cite="mid:20250218181819.11ca41ab@eldfell">
+      <pre wrap="" class="moz-quote-pre">
+</pre>
+      <blockquote type="cite">
+        <blockquote type="cite">
+          <blockquote type="cite">
+            <pre wrap="" class="moz-quote-pre">+ * For illustration consider a full RED image of 10k resolution considering all
++ * 8 bits histogram would look like hist[255] = {0,0,....44236800} with SDR
++ * plane similarly with HDR the same would look like hist[65535] =
++ * {0,0,0,....44236800}  
+</pre>
+          </blockquote>
+          <pre wrap="" class="moz-quote-pre">This SDR vs. HDR is a false dichotomy. I presume the meaningful
+difference is bits-per-channel, not the dynamic range.
+
+It would be good to have the pseudocode snippet here instead of the
+commit message. The commit message should not contain any UAPI notes
+that are not in the UAPI docs. OTOH, repeating UAPI docs in the commit
+message is probably not very useful, as the more interesting questions
+are why this exists and what it can be used for.  
+</pre>
+        </blockquote>
+        <pre wrap="" class="moz-quote-pre">I have the pseudocode in the cover letter of this patchset.
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+The cover letter won't end up in kernel documentation. It should be in
+the documentation since it is a very explicit and good way to document
+what the histogram recorder does.
+</pre>
+    </blockquote>
+    Sure will move to the ReST doc.<br>
+    <blockquote type="cite" cite="mid:20250218181819.11ca41ab@eldfell">
+      <pre wrap="" class="moz-quote-pre">
+</pre>
+      <blockquote type="cite">
+        <blockquote type="cite">
+          <blockquote type="cite">
+            <pre wrap="" class="moz-quote-pre">+ */
++enum drm_mode_histogram {
++	DRM_MODE_HISTOGRAM_HSV_MAX_RGB = 0x01,  
+</pre>
+          </blockquote>
+          <pre wrap="" class="moz-quote-pre">What does the HSV stand for?
+
+When talking about pixel values, my first impression is
+hue-saturation-value. But there are no hue-saturation-value
+computations at all?  
+</pre>
+        </blockquote>
+        <pre wrap="" class="moz-quote-pre">The computation will have to be done by the user in the library.
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+Why does the UAPI token have &quot;HSV&quot; in its name?
+</pre>
+    </blockquote>
+    Agree, will remove that.<br>
+    <blockquote type="cite" cite="mid:20250218181819.11ca41ab@eldfell">
+      <pre wrap="" class="moz-quote-pre">
+There is nothing related to hue, saturation or value here. It's just
+max(R, G, B).
+
+</pre>
+      <blockquote type="cite">
+        <blockquote type="cite">
+          <blockquote type="cite">
+            <pre wrap="" class="moz-quote-pre">+};
++
++/**
++ * struct drm_histogram_caps
++ *
++ * @histogram_mode: histogram generation modes, defined in the
++ *		    enum drm_mode_histogram
++ * @bins_count: number of bins for a chosen histogram mode. For illustration
++ *		refer the above defined histogram mode.
++ */
++struct drm_histogram_caps {
++	__u32 histogram_mode;
++	__u32 bins_count;
++};  
+</pre>
+          </blockquote>
+          <pre wrap="" class="moz-quote-pre">Patch 3 says:
+
++ * Property HISTOGRAM_CAPS is a blob pointing to the struct drm_histogram_caps
++ * Description of the structure is in include/uapi/drm/drm_mode.h
+
+This is a read-only property, right?
+
+The blob contains one struct drm_histogram_caps. What if more than one
+mode is supported?  
+</pre>
+        </blockquote>
+        <pre wrap="" class="moz-quote-pre">Multiple modes can be ORed. User will have to choose one of them 
+depending on the algorithm that he is developing/using.
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+Oh! That did not occur to me. This needs documentation.
+</pre>
+    </blockquote>
+    Sure will add this in ReST doc.<br>
+    <blockquote type="cite" cite="mid:20250218181819.11ca41ab@eldfell">
+      <pre wrap="" class="moz-quote-pre">
+Do all modes use the same bin count?
+</pre>
+    </blockquote>
+    Again this dependents on the hardware design.<br>
+    <blockquote type="cite" cite="mid:20250218181819.11ca41ab@eldfell">
+      <pre wrap="" class="moz-quote-pre">
+</pre>
+      <blockquote type="cite">
+        <blockquote type="cite">
+          <pre wrap="" class="moz-quote-pre">If the bin count depends on the bits-per-channel of something which
+depends on set video mode or other things, how does updating work?
+What if userspace uses a stale count? How does userspace ensure it uses
+the current count?  
+</pre>
+        </blockquote>
+        <pre wrap="" class="moz-quote-pre">The bin count depends on the hardware design. Hence this bin count will 
+be share to the user via the histogram capability.
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+If the bin counts depend on hardware only, then the SDR/HDR examples
+are misleading. They seem to imply a connection between bit depth and
+bin count. Instead, you can just say that the bin count is dictated by
+the hardware design.
+
+I wonder if that is a future-proof assumption. I could easily expect
+that different histogram modes would use different bin counts, or
+produce multiple histograms (one per channel), or even 3D histograms.
+One also wouldn't want to use more bins than the signal has possible
+values.
+</pre>
+    </blockquote>
+    Here we are not considering 3D, hence the name 1D LUT in the next
+    patches.<br>
+    <blockquote type="cite" cite="mid:20250218181819.11ca41ab@eldfell">
+      <pre wrap="" class="moz-quote-pre">
+Just pondering. It's perilous to try to make UAPI generic if there is
+only one vendor or piece of hardware.
+</pre>
+    </blockquote>
+    I had this series in i915 and based on the comment from the
+    community moved to drm with a generic UAPI. I assume histogram is
+    supported by AMD as well.<br>
+    <blockquote type="cite" cite="mid:20250218181819.11ca41ab@eldfell">
+      <pre wrap="" class="moz-quote-pre">
+</pre>
+      <blockquote type="cite">
+        <blockquote type="cite">
+          <blockquote type="cite">
+            <pre wrap="" class="moz-quote-pre">+
++/**
++ * struct drm_histogram_config
++ *
++ * @hist_mode_data: address to the histogram mode specific data if any  
+</pre>
+          </blockquote>
+          <pre wrap="" class="moz-quote-pre">Do I understand correctly that the KMS blob will contain a userspace
+virtual memory address (a user pointer)? How does that work? What are
+the lifetime requirements for that memory?
+
+I do not remember any precedent of this, and I suspect it's not a good
+design. I believe all the data should be contained in the blobs, e.g.
+how IN_FORMATS does it. I'm not sure what would be the best UAPI here
+for returning histogram data to userspace, but at least all the data
+sent to the kernel should be contained in the blob itself since it
+seems to be quite small. Variable length is ok for blobs.  
+</pre>
+        </blockquote>
+        <pre wrap="" class="moz-quote-pre">This point has actually opened up discussion on the design. Sima has 
+infact commented the same with multiple options and which among them 
+buits best. Lets take this discussion on that thread.
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+Indeed, I don't know much about that topic.
+
+</pre>
+      <blockquote type="cite">
+        <blockquote type="cite">
+          <blockquote type="cite">
+            <pre wrap="" class="moz-quote-pre">+ * @nr_hist_mode_data: number of elements pointed by the address in
++ *		       hist_mode_data
++ * @hist_mode: histogram mode(HSV max(RGB), RGB, LUMA etc)
++ * @enable: flag to enable/disable histogram
++ */
++struct drm_histogram_config {
++	__u64 hist_mode_data;
++	__u32 nr_hist_mode_data;
++	enum drm_mode_histogram hist_mode;
++	bool enable;  
+</pre>
+          </blockquote>
+          <pre wrap="" class="moz-quote-pre">Don't enum and bool have non-fixed sizes? Hence inappropriate as UABI,
+if architecture, build options, or the contents of the enum change the
+ABI.
+ 
+</pre>
+          <blockquote type="cite">
+            <pre wrap="" class="moz-quote-pre">+};
++
++/**
++ * struct drm_histogram
++ *
++ * @config: histogram configuration data pointed by struct drm_histogram_config  
+</pre>
+          </blockquote>
+          <pre wrap="" class="moz-quote-pre">s/pointed by/defined by/ I presume? That much is obvious from the field
+type. What does it mean? Why is struct drm_histogram_config a separate
+struct?  
+</pre>
+        </blockquote>
+        <pre wrap="" class="moz-quote-pre">This is totally a separate property for enabling histogram. When 
+enabling histogram if there are multiple modes of histogram generation 
+supported by the hardware which among them will be used here and the 
+data for that mode if required(For Ex: weights for the RGB in case of 
+weighted RGB) would have to be sent from user and this struct 
+drm_histogram_config holds those elements.
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+Ah, I missed that there is a KMS property holding only a config.
+
+</pre>
+      <blockquote type="cite">
+        <blockquote type="cite">
+          <blockquote type="cite">
+            <pre wrap="" class="moz-quote-pre">+ * @data_ptr: pointer to the array of histogram.
++ *	      Histogram is an array of bins. Data format for each bin depends
++ *	      on the histogram mode. Refer to the above histogram modes for
++ *	      more information.  
+</pre>
+          </blockquote>
+          <pre wrap="" class="moz-quote-pre">Another userspace virtual address stored in a KMS blob?
+ 
+</pre>
+          <blockquote type="cite">
+            <pre wrap="" class="moz-quote-pre">+ * @nr_elements: number of bins in the histogram.
++ */
++struct drm_histogram {
++	struct drm_histogram_config config;
++	__u64 data_ptr;
++	__u32 nr_elements;
++};
++
+  #if defined(__cplusplus)
+  }
+  #endif
+ 
+</pre>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+Thanks,
+pq</pre>
+    </blockquote>
+    <p>Thanks and Regards,<br>
+      Arun R Murthy<br>
+      --------------------<span style="white-space: pre-wrap">
+</span></p>
+  </body>
+</html>
+
+--------------sLwlMNV9jw3uGb6ijG5lIbtV--
