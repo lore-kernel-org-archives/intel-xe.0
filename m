@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBDA4C021B1
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 20:28:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E952C021B2
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 20:29:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E834710E89D;
-	Wed, 19 Feb 2025 20:28:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67A9510E89E;
+	Wed, 19 Feb 2025 20:28:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hpmqHXOI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FzJ+coWt";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3F8D10E365;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5330610E892;
  Wed, 19 Feb 2025 20:28:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1739996929; x=1771532929;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Gzg2r7fR3ov8t74dKxtvai5BqCJm/3d4stlGuCVvktw=;
- b=hpmqHXOIScrn1iw8OiN4EGnBZf6hzbhETHOUgqRZoAK2WG5bHdV7FEiA
- RNxwsdewfDCd51e8EpKXtJ3nCeUFaQM7qSYXunVYCl7PIAerrOrXfu5aC
- d9Jl3HiqbLkz+0/5BDjHskM+QdFc/WfWo8zvqCUHiBRFuc4ihTFp8V6R7
- qd2tE/46nZPnM6+n9PZtVRLwqFkurApiEATF13ZVO5fJ8doQd+ElFHsfs
- vKLB5Px9UJ+EUQg+qd+5jdA2TVLcxp99k+/7robJZ4F+27HlWTRtdGX2D
- 9/io4pwXg3rk6szQSaU/z6q+qC5K0bHz8wel7gDxFNTvqyork9JytwS9q A==;
-X-CSE-ConnectionGUID: XinLPSq5RNKBUsaIFO8caQ==
-X-CSE-MsgGUID: o59kVRAMRSiHj7uOWm+WBA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11350"; a="41012245"
-X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; d="scan'208";a="41012245"
+ bh=kdx43vBPxQuJgAnPefatV3H8gKQrTpuV5MOzEF/ZEe8=;
+ b=FzJ+coWt4+ippL5YWfVvA0WDCZlGiWd8ahRQkLM7PP3FLS6sDUml7uqL
+ IwVhjXIuhdoquk0dk+NnDFtCGnTAGrchgOi7QxXbwDaIPJ6BW31Ab1lGH
+ 15qe+mVeu4hlM6QAMKSb/FLbYfjXoiHGeqkuG83Ykriar3FQOQi/r2+Z5
+ 4nsQw0nJmStI4TGBaIfWjNJntFLOWx5xkpW6XytbquN1K1Ert+/F3lo+4
+ LiwndgVhdbs3687I7Fd6yKvgq7Sf75GLgvytK2nADl0jI58FnPIrlWCCB
+ XrePWDFKAPu3/9YxZL6SrzTcBnRqiwMGaaESiRcz/D6EZwHXFi0Y7y+HS g==;
+X-CSE-ConnectionGUID: VAMdxxYESFmteRt/ZCdbIg==
+X-CSE-MsgGUID: hrVIFiiSRbi1Vwbbv6g/Zw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11350"; a="41012235"
+X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; d="scan'208";a="41012235"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2025 12:28:48 -0800
-X-CSE-ConnectionGUID: 3fHIiw0rQ+2jtE+tc5CIog==
-X-CSE-MsgGUID: g262hSPxQea6U+ftvylrZw==
+ 19 Feb 2025 12:28:47 -0800
+X-CSE-ConnectionGUID: YQa4z64jQ++2IFyUtInrCw==
+X-CSE-MsgGUID: TbmbTKOLSTavpPhFyW/bpg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="119765730"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="119765720"
 Received: from dut4410lnl.fm.intel.com ([10.105.8.78])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2025 12:28:48 -0800
+ 19 Feb 2025 12:28:47 -0800
 From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
  joonas.lahtinen@linux.intel.com, tvrtko.ursulin@igalia.com,
  lucas.demarchi@intel.com, matthew.brost@intel.com,
  dri-devel@lists.freedesktop.org, simona.vetter@ffwll.ch
-Subject: [PATCH v4 4/6] drm/xe/xe_drm_client: Add per drm client reset stats
-Date: Wed, 19 Feb 2025 20:28:44 +0000
-Message-ID: <20250219202847.127425-5-jonathan.cavitt@intel.com>
+Subject: [PATCH v4 1/6] drm/xe/xe_exec_queue: Add ID param to exec queue struct
+Date: Wed, 19 Feb 2025 20:28:41 +0000
+Message-ID: <20250219202847.127425-2-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250219202847.127425-1-jonathan.cavitt@intel.com>
 References: <20250219202847.127425-1-jonathan.cavitt@intel.com>
@@ -69,43 +69,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a counter to xe_drm_client that tracks the number of times the
-engine has been reset since the drm client was created.
+Add the exec queue id to the exec queue struct.  This is useful for
+performing a reverse lookup into the xef->exec_queue xarray.
 
 Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 ---
- drivers/gpu/drm/xe/xe_drm_client.h | 2 ++
- drivers/gpu/drm/xe/xe_guc_submit.c | 4 +++-
- 2 files changed, 5 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_exec_queue.c       | 1 +
+ drivers/gpu/drm/xe/xe_exec_queue_types.h | 2 ++
+ 2 files changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_drm_client.h b/drivers/gpu/drm/xe/xe_drm_client.h
-index b3d9b279d55f..6579c4b60ae7 100644
---- a/drivers/gpu/drm/xe/xe_drm_client.h
-+++ b/drivers/gpu/drm/xe/xe_drm_client.h
-@@ -59,6 +59,8 @@ struct xe_drm_client {
- 	 * @blame_len: length of @blame_list
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 23a9f519ce1c..4a98a5d0e405 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -709,6 +709,7 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+ 	if (err)
+ 		goto kill_exec_queue;
+ 
++	q->id = id;
+ 	args->exec_queue_id = id;
+ 
+ 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+index 6eb7ff091534..088d838218e9 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+@@ -55,6 +55,8 @@ struct xe_exec_queue {
+ 	struct xe_vm *vm;
+ 	/** @class: class of this exec queue */
+ 	enum xe_engine_class class;
++	/** @id: exec queue ID as reported during create ioctl */
++	u32 id;
+ 	/**
+ 	 * @logical_mask: logical mask of where job submitted to exec queue can run
  	 */
- 	unsigned int blame_len;
-+	/** @reset_count: number of times this drm client has seen an engine reset */
-+	atomic_t reset_count;
- #endif
- };
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 92de926bd505..5d899de3dd83 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1988,7 +1988,9 @@ int xe_guc_exec_queue_reset_handler(struct xe_guc *guc, u32 *msg, u32 len)
- 		return -EPROTO;
- 
- 	hwe = q->hwe;
--
-+#ifdef CONFIG_PROC_FS
-+	atomic_inc(&q->xef->client->reset_count);
-+#endif
- 	xe_gt_info(gt, "Engine reset: engine_class=%s, logical_mask: 0x%x, guc_id=%d",
- 		   xe_hw_engine_class_to_str(q->class), q->logical_mask, guc_id);
- 
 -- 
 2.43.0
 
