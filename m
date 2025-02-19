@@ -4,96 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B819FC021B6
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Feb 2025 15:12:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3ECFBC021B9
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Feb 2025 15:13:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DCE810EA84;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 237E810EA85;
 	Fri, 21 Feb 2025 15:12:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="MCflKzMR";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="yWnx+iUT";
 	dkim-atps=neutral
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
- [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE0E810E8F7;
- Thu, 20 Feb 2025 09:18:41 +0000 (UTC)
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi
- [91.158.153.178])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0C8209FC;
- Thu, 20 Feb 2025 10:17:16 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1740043037;
- bh=rDMfEBktHvp+szTvl/bHoN4+LBUAdzQGlxLMdvMPTnc=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=MCflKzMRvgTy2hfuI5a2ljwZDJzOf2C3Hv2y/t4qNlc8VfTh+yDzr+EMyW0xhr4hg
- 5MM+vikZ8SONezzNfXItYOYZ4iMb0FQ7iYGn6DlESItj6oaF5/MPrTeCrbTRC8QAiD
- oibrIxDY2haC1/0/tPOnvT8uwPYLf2YQS7VqqbJg=
-Message-ID: <dcd59a75-7945-4a2e-99f9-3abbb3e9de14@ideasonboard.com>
-Date: Thu, 20 Feb 2025 11:18:36 +0200
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B1FA10E0BC;
+ Wed, 19 Feb 2025 07:47:44 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4YyT583prSz9t2V;
+ Wed, 19 Feb 2025 08:47:40 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1739951260; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=XSjaRE288sWV0J4vIY6moqynlNP6KRr+vMOORhpGxe0=;
+ b=yWnx+iUTMzwNr0WuU2vhe3D8UNmFX1gzwqL+yrbbrDLeQeql/LE6JQl4+xmiO99Pnhfwi4
+ 0IF6974dlPXsGdDsMwQy3NemDbIc6G7xnfQiAruWILiQHnH/MRcMtjmS+c2hOYij7qFewL
+ KZaAXwTphOxc9PUsDUNkrcNX0UNGsb8MZdQaqc7vk8aebBTPdZh7JTb2Dy7RAbFK6chpSM
+ TSxKCl47znOqtQ1VVV1RAWkBNucUp313KI1eE9YhGctSBl+AurUcCTbvz7Xc1DcWVVMe7P
+ tVa6Ps3NuhXxzmGvZUp0soL7A0aEiq26tw5qIrv14KWJT8GhXu0v0+Gm7fZqPA==
+Message-ID: <7922c25803f54f4723a6f5b55959c37126e2fadb.camel@mailbox.org>
+Subject: Re: [PATCH v5 1/6] drm/sched: Add internal job peek/pop API
+From: Philipp Stanner <phasta@mailbox.org>
+To: Matthew Brost <matthew.brost@intel.com>, Tvrtko Ursulin
+ <tvrtko.ursulin@igalia.com>
+Cc: phasta@kernel.org, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ kernel-dev@igalia.com, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>
+Date: Wed, 19 Feb 2025 08:47:36 +0100
+In-Reply-To: <Z7UG+8nWwOSyILFW@lstrano-desk.jf.intel.com>
+References: <20250214101944.19390-1-tvrtko.ursulin@igalia.com>
+ <20250214101944.19390-2-tvrtko.ursulin@igalia.com>
+ <7244eaa81cfeb6ce959c591c11a97f52f25b5a5d.camel@mailbox.org>
+ <0ecf7583-8e7a-45c7-bc4e-5935681effc3@igalia.com>
+ <Z7UG+8nWwOSyILFW@lstrano-desk.jf.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 02/25] drm/dumb-buffers: Provide helper to set pitch
- and size
-To: Thomas Zimmermann <tzimmermann@suse.de>,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com,
- simona@ffwll.ch
-Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- imx@lists.linux.dev, linux-samsung-soc@vger.kernel.org,
- nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
- spice-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
- intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-References: <20250218142542.438557-1-tzimmermann@suse.de>
- <20250218142542.438557-3-tzimmermann@suse.de>
-Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <20250218142542.438557-3-tzimmermann@suse.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MBO-RS-ID: 786d44494bb020f3cc6
+X-MBO-RS-META: i8wu47od43ju4ioiqwostiwi49b8gxsx
 X-Mailman-Approved-At: Fri, 21 Feb 2025 15:12:57 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -106,286 +67,251 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+On Tue, 2025-02-18 at 14:17 -0800, Matthew Brost wrote:
+> On Tue, Feb 18, 2025 at 06:26:15PM +0000, Tvrtko Ursulin wrote:
+> >=20
+> > On 18/02/2025 12:26, Philipp Stanner wrote:
+> > > Thx for the updated version. Overlooked it, I was out on Friday.
+> > > See
+> > > below
+> > >=20
+> > > On Fri, 2025-02-14 at 10:19 +0000, Tvrtko Ursulin wrote:
+> > > > Idea is to add helpers for peeking and popping jobs from
+> > > > entities
+> > > > with
+> > > > the goal of decoupling the hidden assumption in the code that
+> > > > queue_node
+> > > > is the first element in struct drm_sched_job.
+> > > >=20
+> > > > That assumption usually comes in the form of:
+> > > >=20
+> > > > =C2=A0=C2=A0 while ((job =3D to_drm_sched_job(spsc_queue_pop(&entit=
+y-
+> > > > > job_queue))))
+> > > >=20
+> > > > Which breaks if the queue_node is re-positioned due
+> > > > to_drm_sched_job
+> > > > being implemented with a container_of.
+> > > >=20
+> > > > This also allows us to remove duplicate definitions of
+> > > > to_drm_sched_job.
+> > > >=20
+> > > > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> > > > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > > > Cc: Danilo Krummrich <dakr@kernel.org>
+> > > > Cc: Matthew Brost <matthew.brost@intel.com>
+> > > > Cc: Philipp Stanner <phasta@kernel.org>
+> > > > ---
+> > > > =C2=A0=C2=A0drivers/gpu/drm/scheduler/sched_entity.c=C2=A0=C2=A0 | =
+11 +++---
+> > > > =C2=A0=C2=A0drivers/gpu/drm/scheduler/sched_internal.h | 46
+> > > > ++++++++++++++++++++++
+> > > > =C2=A0=C2=A0drivers/gpu/drm/scheduler/sched_main.c=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0 7 ++--
+> > > > =C2=A0=C2=A03 files changed, 54 insertions(+), 10 deletions(-)
+> > > > =C2=A0=C2=A0create mode 100644 drivers/gpu/drm/scheduler/sched_inte=
+rnal.h
+> > > >=20
+> > > > diff --git a/drivers/gpu/drm/scheduler/sched_entity.c
+> > > > b/drivers/gpu/drm/scheduler/sched_entity.c
+> > > > index 69bcf0e99d57..a171f05ad761 100644
+> > > > --- a/drivers/gpu/drm/scheduler/sched_entity.c
+> > > > +++ b/drivers/gpu/drm/scheduler/sched_entity.c
+> > > > @@ -28,11 +28,10 @@
+> > > > =C2=A0=C2=A0#include <drm/drm_print.h>
+> > > > =C2=A0=C2=A0#include <drm/gpu_scheduler.h>
+> > > > +#include "sched_internal.h"
+> > > > +
+> > > > =C2=A0=C2=A0#include "gpu_scheduler_trace.h"
+> > > > -#define to_drm_sched_job(sched_job)		\
+> > > > -		container_of((sched_job), struct
+> > > > drm_sched_job,
+> > > > queue_node)
+> > > > -
+> > > > =C2=A0=C2=A0/**
+> > > > =C2=A0=C2=A0 * drm_sched_entity_init - Init a context entity used b=
+y
+> > > > scheduler
+> > > > when
+> > > > =C2=A0=C2=A0 * submit to HW ring.
+> > > > @@ -255,7 +254,7 @@ static void drm_sched_entity_kill(struct
+> > > > drm_sched_entity *entity)
+> > > > =C2=A0=C2=A0	/* The entity is guaranteed to not be used by the
+> > > > scheduler
+> > > > */
+> > > > =C2=A0=C2=A0	prev =3D rcu_dereference_check(entity->last_scheduled,
+> > > > true);
+> > > > =C2=A0=C2=A0	dma_fence_get(prev);
+> > > > -	while ((job =3D to_drm_sched_job(spsc_queue_pop(&entity-
+> > > > > job_queue)))) {
+> > > > +	while ((job =3D drm_sched_entity_queue_pop(entity))) {
+> > > > =C2=A0=C2=A0		struct drm_sched_fence *s_fence =3D job-
+> > > > >s_fence;
+> > > > =C2=A0=C2=A0		dma_fence_get(&s_fence->finished);
+> > > > @@ -477,7 +476,7 @@ struct drm_sched_job
+> > > > *drm_sched_entity_pop_job(struct drm_sched_entity *entity)
+> > > > =C2=A0=C2=A0{
+> > > > =C2=A0=C2=A0	struct drm_sched_job *sched_job;
+> > > > -	sched_job =3D to_drm_sched_job(spsc_queue_peek(&entity-
+> > > > > job_queue));
+> > > > +	sched_job =3D drm_sched_entity_queue_peek(entity);
+> > > > =C2=A0=C2=A0	if (!sched_job)
+> > > > =C2=A0=C2=A0		return NULL;
+> > > > @@ -513,7 +512,7 @@ struct drm_sched_job
+> > > > *drm_sched_entity_pop_job(struct drm_sched_entity *entity)
+> > > > =C2=A0=C2=A0	if (drm_sched_policy =3D=3D DRM_SCHED_POLICY_FIFO) {
+> > > > =C2=A0=C2=A0		struct drm_sched_job *next;
+> > > > -		next =3D
+> > > > to_drm_sched_job(spsc_queue_peek(&entity-
+> > > > > job_queue));
+> > > > +		next =3D drm_sched_entity_queue_peek(entity);
+> > > > =C2=A0=C2=A0		if (next) {
+> > > > =C2=A0=C2=A0			struct drm_sched_rq *rq;
+> > > > diff --git a/drivers/gpu/drm/scheduler/sched_internal.h
+> > > > b/drivers/gpu/drm/scheduler/sched_internal.h
+> > > > new file mode 100644
+> > > > index 000000000000..815d384845a3
+> > > > --- /dev/null
+> > > > +++ b/drivers/gpu/drm/scheduler/sched_internal.h
+> > > > @@ -0,0 +1,46 @@
+> > > > +#ifndef _DRM_GPU_SCHEDULER_INTERNAL_H_
+> > > > +#define _DRM_GPU_SCHEDULER_INTERNAL_H_
+> > >=20
+> > > DRM maintainer tools complain about a potentially missing license
+> > > identifier:
+> > >=20
+> > > -:80: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-
+> > > License-Identifier tag in line 1
+> > > #80: FILE: drivers/gpu/drm/scheduler/sched_internal.h:1:
+> > >=20
+> > > The other scheduler files don't have one, either. Still, it might
+> > > be
+> > > good to add one for new files. So, shall we make it GPL?
+> >=20
+> > Ha, good question. And it is actually good I forgot to do this for
+> > this
+> > series (I was doing for unit tests last week, I mean adding SPDX
+> > lines)
+> > because, as sched_internal.h will take parts of gpu_scheduler.h
+> > which is not
+> > explicitly GPL, nor the other scheduler source files, apart from
+> > MODULE_LICENSE which is "GPL and additional rights", question
+> > indeed is what
+> > copyright blurb to put there. IANAL so not sure. Surely there is
+> > some
+> > established practice for cases like this one just I don't know what
+> > it is.
+> >=20
+>=20
+> I think GPL or MIT would be the preference given [1]. Also ofc IANAL.
+>=20
+> Matt
+>=20
+> [1] https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/3852
 
-On 18/02/2025 16:23, Thomas Zimmermann wrote:
-> Add drm_modes_size_dumb(), a helper to calculate the dumb-buffer
-> scanline pitch and allocation size. Implementations of struct
-> drm_driver.dumb_create can call the new helper for their size
-> computations.
-> 
-> There is currently quite a bit of code duplication among DRM's
-> memory managers. Each calculates scanline pitch and buffer size
-> from the given arguments, but the implementations are inconsistent
-> in how they treat alignment and format support. Later patches will
-> unify this code on top of drm_mode_size_dumb() as much as possible.
-> 
-> drm_mode_size_dumb() uses existing 4CC format helpers to interpret
-> the given color mode. This makes the dumb-buffer interface behave
-> similar the kernel's video= parameter. Current per-driver implementations
-> again likely have subtle differences or bugs in how they support color
-> modes.
-> 
-> The dumb-buffer UAPI is only specified for known color modes. These
-> values describe linear, single-plane RGB color formats or legacy index
-> formats. Other values should not be specified. But some user space
-> still does. So for unknown color modes, there are a number of known
-> exceptions for which drm_mode_size_dumb() calculates the pitch from
-> the bpp value, as before. All other values work the same but print
-> an error.
-> 
-> v3:
-> - document the UAPI semantics
-> - compute scanline pitch from for unknown color modes (Andy, Tomi)
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> ---
->   drivers/gpu/drm/drm_dumb_buffers.c | 116 +++++++++++++++++++++++++++++
->   include/drm/drm_dumb_buffers.h     |  14 ++++
->   include/uapi/drm/drm_mode.h        |  46 +++++++++++-
->   3 files changed, 175 insertions(+), 1 deletion(-)
->   create mode 100644 include/drm/drm_dumb_buffers.h
-> 
-> diff --git a/drivers/gpu/drm/drm_dumb_buffers.c b/drivers/gpu/drm/drm_dumb_buffers.c
-> index 9916aaf5b3f2..600ab281712b 100644
-> --- a/drivers/gpu/drm/drm_dumb_buffers.c
-> +++ b/drivers/gpu/drm/drm_dumb_buffers.c
-> @@ -25,6 +25,8 @@
->   
->   #include <drm/drm_device.h>
->   #include <drm/drm_drv.h>
-> +#include <drm/drm_dumb_buffers.h>
-> +#include <drm/drm_fourcc.h>
->   #include <drm/drm_gem.h>
->   #include <drm/drm_mode.h>
->   
-> @@ -57,6 +59,120 @@
->    * a hardware-specific ioctl to allocate suitable buffer objects.
->    */
->   
-> +static int drm_mode_align_dumb(struct drm_mode_create_dumb *args,
-> +			       unsigned long pitch_align,
-> +			       unsigned long size_align)
-> +{
-> +	u32 pitch = args->pitch;
-> +	u32 size;
-> +
-> +	if (!pitch)
-> +		return -EINVAL;
-> +
-> +	if (pitch_align)
-> +		pitch = roundup(pitch, pitch_align);
-> +
-> +	/* overflow checks for 32bit size calculations */
-> +	if (args->height > U32_MAX / pitch)
-> +		return -EINVAL;
-> +
-> +	if (!size_align)
-> +		size_align = PAGE_SIZE;
-> +	else if (!IS_ALIGNED(size_align, PAGE_SIZE))
-> +		return -EINVAL;
-> +
-> +	size = ALIGN(args->height * pitch, size_align);
-> +	if (!size)
-> +		return -EINVAL;
-> +
-> +	args->pitch = pitch;
-> +	args->size = size;
-> +
-> +	return 0;
-> +}
-> +
-> +/**
-> + * drm_mode_size_dumb - Calculates the scanline and buffer sizes for dumb buffers
-> + * @dev: DRM device
-> + * @args: Parameters for the dumb buffer
-> + * @pitch_align: Scanline alignment in bytes
-> + * @size_align: Buffer-size alignment in bytes
-> + *
-> + * The helper drm_mode_size_dumb() calculates the size of the buffer
-> + * allocation and the scanline size for a dumb buffer. Callers have to
-> + * set the buffers width, height and color mode in the argument @arg.
-> + * The helper validates the correctness of the input and tests for
-> + * possible overflows. If successful, it returns the dumb buffer's
-> + * required scanline pitch and size in &args.
-> + *
-> + * The parameter @pitch_align allows the driver to specifies an
-> + * alignment for the scanline pitch, if the hardware requires any. The
-> + * calculated pitch will be a multiple of the alignment. The parameter
-> + * @size_align allows to specify an alignment for buffer sizes. The
-> + * returned size is always a multiple of PAGE_SIZE.
-> + *
-> + * Returns:
-> + * Zero on success, or a negative error code otherwise.
-> + */
-> +int drm_mode_size_dumb(struct drm_device *dev,
-> +		       struct drm_mode_create_dumb *args,
-> +		       unsigned long pitch_align,
-> +		       unsigned long size_align)
-> +{
-> +	u64 pitch = 0;
-> +	u32 fourcc;
-> +
-> +	/*
-> +	 * The scanline pitch depends on the buffer width and the color
-> +	 * format. The latter is specified as a color-mode constant for
-> +	 * which we first have to find the corresponding color format.
-> +	 *
-> +	 * Different color formats can have the same color-mode constant.
-> +	 * For example XRGB8888 and BGRX8888 both have a color mode of 32.
-> +	 * It is possible to use different formats for dumb-buffer allocation
-> +	 * and rendering as long as all involved formats share the same
-> +	 * color-mode constant.
-> +	 */
-> +	fourcc = drm_driver_color_mode_format(dev, args->bpp);
-> +	if (fourcc != DRM_FORMAT_INVALID) {
-> +		const struct drm_format_info *info = drm_format_info(fourcc);
-> +
-> +		if (!info)
-> +			return -EINVAL;
-> +		pitch = drm_format_info_min_pitch(info, 0, args->width);
-> +	} else if (args->bpp) {
-> +		/*
-> +		 * Some userspace throws in arbitrary values for bpp and
-> +		 * relies on the kernel to figure it out. In this case we
-> +		 * fall back to the old method of using bpp directly. The
-> +		 * over-commitment of memory from the rounding is acceptable
-> +		 * for compatibility with legacy userspace. We have a number
-> +		 * of deprecated legacy values that are explicitly supported.
-> +		 */
-> +		switch (args->bpp) {
-> +		default:
-> +			drm_warn(dev, "Unknown color mode %d; guessing buffer size.\n",
-> +				 args->bpp);
-> +			fallthrough;
-> +		case 12:
-> +		case 15:
-> +		case 30: /* see drm_gem_afbc_get_bpp() */
-> +		case 10:
-> +		case 64: /* used by Mesa */
-> +			pitch = args->width * DIV_ROUND_UP(args->bpp, SZ_8);
-> +			break;
-> +		}
-> +	}
-> +
-> +	if (!pitch || pitch > U32_MAX)
-> +		return -EINVAL;
-> +
-> +	args->pitch = pitch;
-> +
-> +	return drm_mode_align_dumb(args, pitch_align, size_align);
-> +}
-> +EXPORT_SYMBOL(drm_mode_size_dumb);
-> +
->   int drm_mode_create_dumb(struct drm_device *dev,
->   			 struct drm_mode_create_dumb *args,
->   			 struct drm_file *file_priv)
-> diff --git a/include/drm/drm_dumb_buffers.h b/include/drm/drm_dumb_buffers.h
-> new file mode 100644
-> index 000000000000..6fe36004b19d
-> --- /dev/null
-> +++ b/include/drm/drm_dumb_buffers.h
-> @@ -0,0 +1,14 @@
-> +/* SPDX-License-Identifier: MIT */
-> +
-> +#ifndef __DRM_DUMB_BUFFERS_H__
-> +#define __DRM_DUMB_BUFFERS_H__
-> +
-> +struct drm_device;
-> +struct drm_mode_create_dumb;
-> +
-> +int drm_mode_size_dumb(struct drm_device *dev,
-> +		       struct drm_mode_create_dumb *args,
-> +		       unsigned long pitch_align,
-> +		       unsigned long size_align);
-> +
-> +#endif
-> diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
-> index c082810c08a8..eea09103b1a6 100644
-> --- a/include/uapi/drm/drm_mode.h
-> +++ b/include/uapi/drm/drm_mode.h
-> @@ -1058,7 +1058,7 @@ struct drm_mode_crtc_page_flip_target {
->    * struct drm_mode_create_dumb - Create a KMS dumb buffer for scanout.
->    * @height: buffer height in pixels
->    * @width: buffer width in pixels
-> - * @bpp: bits per pixel
-> + * @bpp: color mode
->    * @flags: must be zero
->    * @handle: buffer object handle
->    * @pitch: number of bytes between two consecutive lines
-> @@ -1066,6 +1066,50 @@ struct drm_mode_crtc_page_flip_target {
->    *
->    * User-space fills @height, @width, @bpp and @flags. If the IOCTL succeeds,
->    * the kernel fills @handle, @pitch and @size.
-> + *
-> + * The value of @bpp is a color-mode number describing a specific format
-> + * or a variant thereof. The value often corresponds to the number of bits
-> + * per pixel for most modes, although there are exceptions. Each color mode
-> + * maps to a DRM format plus a number of modes with similar pixel layout.
-> + * Framebuffer layout is always linear.
-> + *
-> + * Support for all modes and formats is optional. Even if dumb-buffer
-> + * creation with a certain color mode succeeds, it is not guaranteed that
-> + * the DRM driver supports any of the related formats. Most drivers support
-> + * a color mode of 32 with a format of DRM_FORMAT_XRGB8888 on their primary
-> + * plane.
-> + *
-> + * +------------+------------------------+------------------------+
-> + * | Color mode | Framebuffer format     | Compatibles            |
-> + * +============+========================+========================+
-> + * |     32     |  * DRM_FORMAT_XRGB8888 |  * DRM_FORMAT_XBGR8888 |
-> + * |            |                        |  * DRM_FORMAT_RGBX8888 |
-> + * |            |                        |  * DRM_FORMAT_BGRX8888 |
-> + * +------------+------------------------+------------------------+
-> + * |     24     |  * DRM_FORMAT_RGB888   |  * DRM_FORMAT_BGR888   |
-> + * +------------+------------------------+------------------------+
-> + * |     16     |  * DRM_FORMAT_RGB565   |  * DRM_FORMAT_BGR565   |
-> + * +------------+------------------------+------------------------+
-> + * |     15     |  * DRM_FORMAT_XRGB1555 |  * DRM_FORMAT_XBGR1555 |
-> + * |            |                        |  * DRM_FORMAT_RGBX1555 |
-> + * |            |                        |  * DRM_FORMAT_BGRX1555 |
-> + * +------------+------------------------+------------------------+
-> + * |      8     |  * DRM_FORMAT_C8       |  * DRM_FORMAT_R8       |
-> + * +------------+------------------------+------------------------+
-> + * |      4     |  * DRM_FORMAT_C4       |  * DRM_FORMAT_R4       |
-> + * +------------+------------------------+------------------------+
-> + * |      2     |  * DRM_FORMAT_C2       |  * DRM_FORMAT_R2       |
-> + * +------------+------------------------+------------------------+
-> + * |      1     |  * DRM_FORMAT_C1       |  * DRM_FORMAT_R1       |
-> + * +------------+------------------------+------------------------+
-> + *
-> + * Color modes of 10, 12, 15, 30 and 64 are only supported for use by
-> + * legacy user space. Please don't use them in new code. Other modes
-> + * are not support.
-> + *
-> + * Do not attempt to allocate anything but linear framebuffer memory
-> + * with single-plane RGB data. Allocation of other framebuffer
-> + * layouts requires dedicated ioctls in the respective DRM driver.
+Well, I briefly synced with Dave =E2=80=93 since all our scheduler files do
+contain the full MIT license header (with AMD's copyright), but no
+SPDX, we should probably go for MIT with all SPDX identifiers.
 
-According to this, every driver that supports, say, NV12, should 
-implement their own custom ioctl to do the exact same thing? And, of 
-course, every userspace app that uses, say, NV12, should then add code 
-for all these platforms to call the custom ioctls?
 
-As libdrm's modetest currently supports YUV formats with dumb buffers, 
-should we remove that code, as it's not correct and I'm sure people use 
-libdrm code as a reference?
+P.
 
-Well, I'm not serious above, but I think all my points from the earlier 
-version are still valid. I don't like this. It changes the parameters of 
-the ioctl (bpp used to be bits-per-pixel, not it's "color mode"), and 
-the behavior of the ioctl, behavior that we've had for a very long time, 
-and we have no idea how many users there are that will break (could be 
-none, of course). And the documentation changes make the current 
-behavior and uses wrong or legacy.
 
-Clearly we need something new and better for the buffer allocation, but 
-for the time being, I'd be more comfortable just keep the current 
-behavior, at least for all the drivers I use or maintain: omapdrm, 
-tidss, renesas, xlnx, tilcdc.
-
-  Tomi
+>=20
+> > Regards,
+> >=20
+> > Tvrtko
+> >=20
+> > > Rest of the series looks good.
+> > >=20
+> > > P.
+> > >=20
+> > > > +
+> > > > +/**
+> > > > + * drm_sched_entity_queue_pop - Low level helper for popping
+> > > > queued
+> > > > jobs
+> > > > + *
+> > > > + * @entity: scheduler entity
+> > > > + *
+> > > > + * Low level helper for popping queued jobs.
+> > > > + *
+> > > > + * Returns: The job dequeued or NULL.
+> > > > + */
+> > > > +static inline struct drm_sched_job *
+> > > > +drm_sched_entity_queue_pop(struct drm_sched_entity *entity)
+> > > > +{
+> > > > +	struct spsc_node *node;
+> > > > +
+> > > > +	node =3D spsc_queue_pop(&entity->job_queue);
+> > > > +	if (!node)
+> > > > +		return NULL;
+> > > > +
+> > > > +	return container_of(node, struct drm_sched_job,
+> > > > queue_node);
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_sched_entity_queue_peek - Low level helper for peeking
+> > > > at the
+> > > > job queue
+> > > > + *
+> > > > + * @entity: scheduler entity
+> > > > + *
+> > > > + * Low level helper for peeking at the job queue
+> > > > + *
+> > > > + * Returns: The job at the head of the queue or NULL.
+> > > > + */
+> > > > +static inline struct drm_sched_job *
+> > > > +drm_sched_entity_queue_peek(struct drm_sched_entity *entity)
+> > > > +{
+> > > > +	struct spsc_node *node;
+> > > > +
+> > > > +	node =3D spsc_queue_peek(&entity->job_queue);
+> > > > +	if (!node)
+> > > > +		return NULL;
+> > > > +
+> > > > +	return container_of(node, struct drm_sched_job,
+> > > > queue_node);
+> > > > +}
+> > > > +
+> > > > +#endif
+> > > > diff --git a/drivers/gpu/drm/scheduler/sched_main.c
+> > > > b/drivers/gpu/drm/scheduler/sched_main.c
+> > > > index 8c36a59afb72..c634993f1346 100644
+> > > > --- a/drivers/gpu/drm/scheduler/sched_main.c
+> > > > +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> > > > @@ -78,6 +78,8 @@
+> > > > =C2=A0=C2=A0#include <drm/gpu_scheduler.h>
+> > > > =C2=A0=C2=A0#include <drm/spsc_queue.h>
+> > > > +#include "sched_internal.h"
+> > > > +
+> > > > =C2=A0=C2=A0#define CREATE_TRACE_POINTS
+> > > > =C2=A0=C2=A0#include "gpu_scheduler_trace.h"
+> > > > @@ -87,9 +89,6 @@ static struct lockdep_map
+> > > > drm_sched_lockdep_map =3D {
+> > > > =C2=A0=C2=A0};
+> > > > =C2=A0=C2=A0#endif
+> > > > -#define to_drm_sched_job(sched_job)		\
+> > > > -		container_of((sched_job), struct
+> > > > drm_sched_job,
+> > > > queue_node)
+> > > > -
+> > > > =C2=A0=C2=A0int drm_sched_policy =3D DRM_SCHED_POLICY_FIFO;
+> > > > =C2=A0=C2=A0/**
+> > > > @@ -123,7 +122,7 @@ static bool drm_sched_can_queue(struct
+> > > > drm_gpu_scheduler *sched,
+> > > > =C2=A0=C2=A0{
+> > > > =C2=A0=C2=A0	struct drm_sched_job *s_job;
+> > > > -	s_job =3D to_drm_sched_job(spsc_queue_peek(&entity-
+> > > > > job_queue));
+> > > > +	s_job =3D drm_sched_entity_queue_peek(entity);
+> > > > =C2=A0=C2=A0	if (!s_job)
+> > > > =C2=A0=C2=A0		return false;
+> > >=20
+> >=20
 
