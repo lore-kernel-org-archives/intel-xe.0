@@ -4,60 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E67EC021AA
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 15:26:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B444C021AA
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 15:27:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43D4810E837;
-	Wed, 19 Feb 2025 15:26:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41C6D10E839;
+	Wed, 19 Feb 2025 15:27:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AXq4j3T9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qtp8arYr";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E250E10E32D;
- Wed, 19 Feb 2025 15:26:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72FBB10E103
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Feb 2025 15:27:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739978802; x=1771514802;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=CK0AZ7Lpkp/QfXcb02pW83lUn9FRAJI72YGbMp2sIIQ=;
- b=AXq4j3T94k7pJ6pSkhc2RfwAq5ddOCYvXk2Jiqf0mNMQbWzHoBlNL40f
- 8GxbBie1+uNDGHPl7WirikjA+XhiaXHHCh9NMGQ00WXiq44C9vb/w3qvR
- ZrftBVmNCj5SZSw0WTpbRmif0XlPrmiYFD0pN8ydzi4GhUKx0i4YsWum9
- 4vQBtlHGBp0Rg4cEj4Bf3U8q7VCthvTN+aywMalbrIeh3bsdH2ihIOg/9
- NPnhTe32Aw4zskT1rNYurEi+xgxNIqBmGSI0H+W09hVN2jjLK0+p8de4C
- Q8Pjd0UrYDvdo/JJlusfF12ksZkaMqql7H8R2xFM9/HHAXVgEQ+W8h27C Q==;
-X-CSE-ConnectionGUID: T4JyzvKJQq+H+FFZ8xLfSw==
-X-CSE-MsgGUID: JEV8Dn+WTaeaFysdGAoNiA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11350"; a="44490308"
-X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; d="scan'208";a="44490308"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2025 07:26:42 -0800
-X-CSE-ConnectionGUID: hc0YFeZyTfenPRKrf4pPAg==
-X-CSE-MsgGUID: yV91Q3S3TiOssDXVkhcBOQ==
+ t=1739978852; x=1771514852;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=g/AwybZ2d8FobG+i4mCkzU9J2qS4hUGeq2qgNQp52wI=;
+ b=Qtp8arYroc5ju1nGjjngUXjQpgMVr85MSi2Aql7+HO7FFCkAfsTXlErm
+ ewDJsdn7dNxPuqFez2N3OWYyEa5CeZC9n18VbZhDx/dJM1eTnv/fcQ3A+
+ U3F6853NDekloKfNAC/sQ2YeuB7NfNDYZ/sOUhvkCetjw7z8pNfWxGh+s
+ +N183nBZ0FD+1TCxJXWh1rlsbSbWHsZihVndkbimySuH1ZYcLlV57c0Xg
+ 98XetfTNuVSAErernSAO0GO97kG8AOKVONOCfIVyOfuqXa9KuTebqR0Li
+ abR/joWkitf2tav1xBC4sNccGWap2dFAOgjlVaqX9mUJ3nBDwanMbgfNy A==;
+X-CSE-ConnectionGUID: g1xA5AVwTkWV4I/sgYxZKA==
+X-CSE-MsgGUID: /Lw1J4qcR6u7NAnLd4JuVw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11350"; a="44368932"
+X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; d="scan'208";a="44368932"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2025 07:27:32 -0800
+X-CSE-ConnectionGUID: buTyeXyySsimsOodiMO/Gw==
+X-CSE-MsgGUID: nS6W9JDRReyBDKSzRpigsg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; d="scan'208";a="114941437"
-Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.160])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2025 07:26:35 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Haoxiang Li <haoxiang_li2024@163.com>, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
- simona@ffwll.ch, gustavo.sousa@intel.com
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, Haoxiang Li
- <haoxiang_li2024@163.com>, stable@vger.kernel.org
-Subject: Re: [PATCH] drm/i915/display: Add check for
- alloc_ordered_workqueue() and alloc_workqueue()
-In-Reply-To: <20250219130800.2638016-1-haoxiang_li2024@163.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250219130800.2638016-1-haoxiang_li2024@163.com>
-Date: Wed, 19 Feb 2025 17:26:28 +0200
-Message-ID: <87wmdmlzvf.fsf@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain
+X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; d="scan'208";a="119720085"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.142])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2025 07:27:30 -0800
+Date: Wed, 19 Feb 2025 07:27:24 -0800
+Message-ID: <85v7t6neeb.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Harish Chegondi <harish.chegondi@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v10 3/8] drm/xe/eustall: Add support to init,
+ enable and disable EU stall sampling
+In-Reply-To: <1448af14b3edfb3673eb6992741b7176c9edc1ee.1739906138.git.harish.chegondi@intel.com>
+References: <cover.1739906138.git.harish.chegondi@intel.com>	<1448af14b3edfb3673eb6992741b7176c9edc1ee.1739906138.git.harish.chegondi@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,44 +70,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 19 Feb 2025, Haoxiang Li <haoxiang_li2024@163.com> wrote:
-> Add check for the return value of alloc_ordered_workqueue()
-> and alloc_workqueue() to catch potential exception.
+On Tue, 18 Feb 2025 11:53:53 -0800, Harish Chegondi wrote:
 >
-> Fixes: 40053823baad ("drm/i915/display: move modeset probe/remove functions to intel_display_driver.c")
-
-Not really. That's just code movement.
-
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Haoxiang Li <haoxiang_li2024@163.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_driver.c | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> index 50ec0c3c7588..dfe5b779aefd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> @@ -245,6 +245,11 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
->  						WQ_UNBOUND, WQ_UNBOUND_MAX_ACTIVE);
->  	display->wq.cleanup = alloc_workqueue("i915_cleanup", WQ_HIGHPRI, 0);
->  
-> +	if (!display->wq.modeset || !display->wq.flip || !display->wq.cleanup) {
-> +		ret = -ENOMEM;
-> +		goto cleanup_vga_client_pw_domain_dmc;
-> +	}
+> +static void xe_eu_stall_stream_free(struct xe_eu_stall_data_stream *stream)
+> +{
+> +	struct xe_gt *gt = stream->gt;
 > +
+> +	gt->eu_stall->stream = NULL;
+> +	kfree(stream);
+> +}
+> +
+> +static void xe_eu_stall_data_buf_destroy(struct xe_eu_stall_data_stream *stream)
+> +{
+> +	xe_bo_unpin_map_no_vm(stream->bo);
+> +	kfree(stream->xecore_buf);
+> +}
+> +
+> +static int xe_eu_stall_data_buf_alloc(struct xe_eu_stall_data_stream *stream,
+> +				      u16 last_xecore)
+> +{
+> +	struct xe_tile *tile = stream->gt->tile;
+> +	struct xe_bo *bo;
+> +	u32 size;
+> +
+> +	size = stream->per_xecore_buf_size * last_xecore;
+> +
+> +	bo = xe_bo_create_pin_map_at_aligned(tile->xe, tile, NULL,
+> +					     size, ~0ull, ttm_bo_type_kernel,
+> +					     XE_BO_FLAG_SYSTEM | XE_BO_FLAG_GGTT, SZ_64);
+> +	if (IS_ERR(bo))
+> +		return PTR_ERR(bo);
+> +
+> +	XE_WARN_ON(!IS_ALIGNED(xe_bo_ggtt_addr(bo), SZ_64));
+> +	stream->bo = bo;
+> +
+> +	return 0;
+> +}
 
-Yes, we should check these, but if some of them succeed and some fail,
-we'll never destroy the workqueues whose allocation succeeded.
+/snip/
 
-BR,
-Jani.
+> +static int xe_eu_stall_stream_init(struct xe_eu_stall_data_stream *stream,
+> +				   struct eu_stall_open_properties *props)
+> +{
+> +	unsigned int max_wait_num_reports, xecore, last_xecore, num_xecores;
+> +	struct per_xecore_buf *xecore_buf;
+> +	struct xe_gt *gt = stream->gt;
+> +	xe_dss_mask_t all_xecores;
+> +	u16 group, instance;
+> +	u32 vaddr_offset;
+> +	int ret;
+> +
+> +	bitmap_or(all_xecores, gt->fuse_topo.g_dss_mask, gt->fuse_topo.c_dss_mask,
+> +		  XE_MAX_DSS_FUSE_BITS);
+> +	num_xecores = bitmap_weight(all_xecores, XE_MAX_DSS_FUSE_BITS);
+> +	last_xecore = xe_gt_topology_mask_last_dss(all_xecores) + 1;
+> +
+> +	max_wait_num_reports = num_data_rows(per_xecore_buf_size * num_xecores);
+> +	if (props->wait_num_reports == 0 || props->wait_num_reports > max_wait_num_reports) {
+> +		xe_gt_dbg(gt, "Invalid EU stall event report count %u\n",
+> +			  props->wait_num_reports);
+> +		xe_gt_dbg(gt, "Minimum event report count is 1, maximum is %u\n",
+> +			  max_wait_num_reports);
+> +		return -EINVAL;
+> +	}
+> +	stream->per_xecore_buf_size = per_xecore_buf_size;
+> +	stream->sampling_rate_mult = props->sampling_rate_mult;
+> +	stream->wait_num_reports = props->wait_num_reports;
+> +	stream->data_record_size = xe_eu_stall_data_record_size(gt_to_xe(gt));
+> +	stream->xecore_buf = kcalloc(last_xecore, sizeof(*stream->xecore_buf), GFP_KERNEL);
+> +	if (!stream->xecore_buf)
+> +		return -ENOMEM;
 
+How about moving this stream->xecore_buf allocation stuff into
+xe_eu_stall_data_buf_alloc? Just move it before stream->bo allocation in
+xe_eu_stall_data_buf_alloc.
 
->  	intel_mode_config_init(display);
->  
->  	ret = intel_cdclk_init(display);
+Because in xe_eu_stall_data_buf_destroy() we are freeing both stream->bo
+and stream->xecore_buf. So if we move this stream->xecore_buf allocation
+into xe_eu_stall_data_buf_alloc, xe_eu_stall_data_buf_alloc and
+xe_eu_stall_data_buf_destroy will be completely symmetric.
 
--- 
-Jani Nikula, Intel
+And by "data_buf" we can understand stream->bo and stream->xecore_buf taken
+together. There are other ways of doing this too but I think this is the
+simplest change.
+
+After addressing the above comment above, the rest lgtm, so this patch is
+also:
+
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
