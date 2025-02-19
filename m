@@ -4,27 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53D22C021AA
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 13:22:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6269C021B1
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 13:32:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F44B10E2F6;
-	Wed, 19 Feb 2025 13:22:19 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E75410E2F6;
- Wed, 19 Feb 2025 13:22:17 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FD9D10E807;
+	Wed, 19 Feb 2025 13:32:02 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="ljgxtu6v";
+	dkim-atps=neutral
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
+ [209.85.221.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E9D610E807
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Feb 2025 13:32:01 +0000 (UTC)
+Received: by mail-wr1-f44.google.com with SMTP id
+ ffacd0b85a97d-38f378498b0so3442612f8f.0
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Feb 2025 05:32:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1739971920; x=1740576720; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=Hhaee7knRiKVL8BNIdwLBrNmxyHdvsdM5IwNqpSg+oA=;
+ b=ljgxtu6vW8Bs46qLJ5EaYVkv6g1FCI1L4niC0xGPuXVuUGbv4/ZGT4X631uYrLY4jU
+ YPvu1RAKDLluhNPShyvfsCxx7ECCWtZY4dshIy0N0xAGBXUc/d5UeQV0HyGXJ45eWTX5
+ MxPzDPT2i/CPGYoziUu3n00EjcM/WlABhM2VM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1739971920; x=1740576720;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Hhaee7knRiKVL8BNIdwLBrNmxyHdvsdM5IwNqpSg+oA=;
+ b=BvdOGlA4qd0mnwx4+ICFfz8LrRuX3hDg20ldOCDlP20nwcflX5ALpYNSgCCN1Molm9
+ jnZnhBD+u70Sr4j5I94bvmtsM+8vLnXVIOUA0psnJIGjz6zcz1GzXViIVc+5orkrsoex
+ J32dnVM5W/rywrkl9D3BAosuUbZcMBIGM1KMmf82PbXuKe4osKyt7s2GfIAw3a2SlOs/
+ LJ4VdMFPKyyXViyuvWk35EhHc5GaVg+4xlGMmZGY3qWz0N9cx3J05xw3Of2CG5i32WGV
+ LiTgM1DH5nKo2idC0VgePtdgdcYveoUI/tfd4674XkvpTbd275WJdgtRTvE10Krk9Exa
+ +maw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXhCubFjbWS7sTtN0iDhyhEZq9k9dHS12MaRfNvX9lLeZBddu5lhqbzd1xRDbTF+8GjlFw4N/6nSw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwnHUUbQYDbdJQNdkIRdGG8l5b1L3nMqzl4wkRJsHWwF2Y5VNYH
+ MMPsd2TzPBycdJWLpGKMf4xf41SXZDmhKepQTjoOrHnRqoKD7Ay9PBktggqDyc8=
+X-Gm-Gg: ASbGncscmyqSXCJfivM+e6qZyGGRSKSqBgdbr5mqV0V/fVRyuwTAAiX5v3g0sX0AdOw
+ 3mBy411In0RSo9gMz2BCkuEzJ3ELlyq+TzZx9nlKHxbJAuvYXghTJYqSLqhf86pM/FY6a2td1Uy
+ dpiiAnhBCyyk61pVxb8H/QzY4510zP/C7aUUCCJZPBDW8d3ubGFN0xdrEHU9IqwDDAm7m2NSEz+
+ 8FAg1aAFTZedkEIB+XiJi+L9kjmRXRCscMHhEXsaz9oMgumsW+7wBsXNM4LljOfrb90CMbhZBjv
+ p4+d5fN0WhXhvlR+eMOaHRc9tO0=
+X-Google-Smtp-Source: AGHT+IFgN0FZMlzOxNyXz022ZDpIf8Iarx9k9ShQrCHyoh3SgQeJG0HUfuGX5PSKEQgj34iSRaSUCg==
+X-Received: by 2002:a05:6000:1842:b0:38f:2856:7d9a with SMTP id
+ ffacd0b85a97d-38f58782b96mr3380323f8f.3.1739971919542; 
+ Wed, 19 Feb 2025 05:31:59 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-38f258dd5acsm18120235f8f.35.2025.02.19.05.31.58
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 19 Feb 2025 05:31:59 -0800 (PST)
+Date: Wed, 19 Feb 2025 14:31:57 +0100
+From: Simona Vetter <simona.vetter@ffwll.ch>
+To: Pekka Paalanen <pekka.paalanen@haloniitty.fi>
+Cc: Arun R Murthy <arun.r.murthy@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ suraj.kandpal@intel.com, dmitry.baryshkov@linaro.org
+Subject: Re: [PATCH v8 01/14] drm: Define histogram structures exposed to user
+Message-ID: <Z7XdTfEgMlW4wrm8@phenom.ffwll.local>
+References: <20250128-dpst-v8-0-871b94d777f8@intel.com>
+ <20250128-dpst-v8-1-871b94d777f8@intel.com>
+ <20250217120808.708b9b4d@eldfell>
+ <Z7NxOVfgvvBt_sj3@phenom.ffwll.local>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBuild=3A_failure_for_drm/xe/display=3A_Fix_fbdev_GG?=
- =?utf-8?q?TT_mapping_handling=2E_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 19 Feb 2025 13:22:17 -0000
-Message-ID: <173997133762.3965178.5477777425160970917@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250219130015.192618-1-dev@lankhorst.se>
-In-Reply-To: <20250219130015.192618-1-dev@lankhorst.se>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z7NxOVfgvvBt_sj3@phenom.ffwll.local>
+X-Operating-System: Linux phenom 6.12.11-amd64 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,117 +85,175 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Feb 17, 2025 at 06:26:17PM +0100, Simona Vetter wrote:
+> On Mon, Feb 17, 2025 at 12:08:08PM +0200, Pekka Paalanen wrote:
+> > Hi Arun,
+> > 
+> > this whole series seems to be missing all the UAPI docs for the DRM
+> > ReST files, e.g. drm-kms.rst. The UAPI header doc comments are not a
+> > replacement for them, I would assume both are a requirement.
+> > 
+> > Without the ReST docs it is really difficult to see how this new UAPI
+> > should be used.
+> 
+> Seconded. But really only wanted to comment on the userspace address in
+> drm blobs.
+> 
+> > > +/**
+> > > + * struct drm_histogram_config
+> > > + *
+> > > + * @hist_mode_data: address to the histogram mode specific data if any
+> > 
+> > Do I understand correctly that the KMS blob will contain a userspace
+> > virtual memory address (a user pointer)? How does that work? What are
+> > the lifetime requirements for that memory?
+> > 
+> > I do not remember any precedent of this, and I suspect it's not a good
+> > design. I believe all the data should be contained in the blobs, e.g.
+> > how IN_FORMATS does it. I'm not sure what would be the best UAPI here
+> > for returning histogram data to userspace, but at least all the data
+> > sent to the kernel should be contained in the blob itself since it
+> > seems to be quite small. Variable length is ok for blobs.
+> 
+> So yeah this doesn't work for a few reasons:
+> 
+> - It's very restrictive what you're allowed to do during an atomic kms
+>   commit, and a userspace page fault due to copy_from/to_user is
+>   definitely not ok. Which means you need to unconditionally copy before
+>   the atomic commit in the synchronous prep phase for the user->kernel
+>   direction, and somewhere after the entire thing has finished for the
+>   other direction. So this is worse than just more blobs, because with
+>   drm blobs you can at least avoid copying if nothing has changed.
+> 
+> - Due to the above you also cannot synchronize with userspace for the
+>   kernel->userspace copy. And you can't fix that with a sync_file out
+>   fence, because the underlying dma_fence rules are what prevents you from
+>   doing userspace page faults in atomic commit, and the same rules apply
+>   for any other sync_file fence too.
+> 
+> - More fundamentally, both drm blobs and userspace virtual address spaces
+>   (as represented by struct mm_struct) are refconted objects, with
+>   entirely decoupled lifetimes. You'll have UAF issues here, and if you
+>   fix them by grabbing references you'll break the world.
+> 
+> tldr; this does not work
+> 
+> Alternative A: drm blob
+> -----------------------
+> 
+> This would work for the userspace->kernel direction, but there's some
+> downsides:
+> 
+> - You still copy, although less often than with a userspace pointer.
+> 
+> - The kernel->userspace direction doesn't work, because blob objects are
+>   immutable. We have mutable blob properties, but mutability is achieved
+>   by exchanging the entire blob object. There's two options to address
+>   that:
+> 
+>   a) Fundamentally immutable objects is really nice api designs, so I
+>      prefer to not change that. But in theory making blob objects mutable
+>      would work, and probably break the world.
+> 
+>   b) A more benign trick would be to split the blob object id allocation
+>      from creating the object itself. We could then allocate and return
+>      the blob ID of the new histogram to userspace synchronously from the
+>      atomic ioctl, while creating the object for real only in the atomic
+>      commit.
+> 
+>      As long as we preallocate any memory this doesn't break and dma_fence
+>      signalling rules. Which also means we could use the existing atomic
+>      out-fence (or a new one for histograms) to signal to userspace when
+>      the data is ready, so this is at least somewhat useful for
+>      compositors without fundamental issues.
+> 
+>      You still suffer from additional copies here.
 
-Series: drm/xe/display: Fix fbdev GGTT mapping handling. (rev4)
-URL   : https://patchwork.freedesktop.org/series/144602/
-State : failure
+Another detail I've forgotten: If you queue an atomic commit and then
+immmediately do a compositor swithc, then the new compositor would end up
+with the very confusing situation of having a blob property pointing at a
+blob which does not yet exist. And since it wont get the drm_event nor has
+a dma_fence out-fence, it also cannot reliably wait.
 
-== Summary ==
+So this would be awkward at best, and might actually be a cross-compositor
+attack vector.
 
-CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml_display_rq_dlg_calc.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_top/dml2_top_interfaces.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_top/dml2_top_soc15.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/inc/dml2_debug.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_core/dml2_core_factory.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_dpmm/dml2_dpmm_dcn4.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_dpmm/dml2_dpmm_factory.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_mcg/dml2_mcg_dcn4.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_mcg/dml2_mcg_factory.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn3.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_factory.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn4_fams2.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_standalone_libraries/lib_float_math.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/dml21_translation_helper.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/dml21_wrapper.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/dml21_utils.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce120/dce120_timing_generator.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce112/dce112_compressor.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_timing_generator.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_compressor.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_opp_regamma_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_opp_csc_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_timing_generator_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_mem_input_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_opp_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_transform_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce80/dce80_timing_generator.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce60/dce60_timing_generator.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce60/dce60_hw_sequencer.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce60/dce60_resource.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/hdcp/hdcp_msg.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/spl/dc_spl.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/spl/dc_spl_scl_filters.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/spl/dc_spl_scl_easf_filters.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/spl/dc_spl_isharp_filters.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/spl/dc_spl_filters.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/spl/spl_fixpt31_32.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/spl/spl_custom_float.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stat.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_resource.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_hw_sequencer.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_sink.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_surface.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_debug.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stream.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_link_enc_cfg.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_link_exports.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_state.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_vm_helper.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dc_helper.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dmub_srv.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dc_edid_parser.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dc_spl_translate.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/freesync/freesync.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/color/color_gamma.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/color/color_table.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/info_packet/info_packet.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/power/power_helpers.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_srv.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_srv_stat.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_reg.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn20.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn21.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn30.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn301.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn302.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn303.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn31.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn314.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn315.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn316.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn32.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn35.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn351.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn401.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp_ddc.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp_log.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp_psp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp1_execution.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp1_transition.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp2_execution.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp2_transition.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_isp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/isp_v4_1_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/isp_v4_1_1.o
-  LD [M]  drivers/gpu/drm/amd/amdgpu/amdgpu.o
-make[5]: *** [../scripts/Makefile.build:465: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:465: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:465: drivers] Error 2
-make[2]: *** [/kernel/Makefile:1989: .] Error 2
-make[1]: *** [/kernel/Makefile:251: __sub-make] Error 2
-make[1]: Leaving directory '/kernel/build64-default'
-make: *** [Makefile:251: __sub-make] Error 2
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+So yeah delayed blob object creation also don't look great, and mutable
+blob objects probably break compositors even harder and we'd need to make
+this all opt-in.
 
+We need an opt-in for all of these I think, but the more I think about it
+the more this alternative looks like the worst.
 
+> Alternative B: gem_bo
+> ---------------------
+> 
+> One alternative which naturally has mutable data would be gem_bo, maybe
+> wrapped in a drm_fb. The issue with that is that for small histograms you
+> really want cpu access both in userspace and the kernel, while most
+> display hardware wants uncached. And all the display-only kms drivers we
+> have do not have a concept of cached gem_bo, unlike many of the drm
+> drivers with render/accel support. Which means we're adding gem_bo which
+> cannot be used for display, on display-only drivers, and I'd expect this
+> will result in compositors blowing up in funny ways to no end.
+> 
+> So not a good idea either, at least not if your histograms are small and
+> the display hw doesn't dma them in/out already anyway.
+> 
+> This also means that we'll probably need 2 interfaces here, one supporting
+> gem_bo for big histograms and hw that can dma in/out of them, and a 2nd
+> one optimized for the cpu access case.
+> 
+> Alternative C: memfd
+> --------------------
+> 
+> I think a new drm property type that accepts memfd would fit the bill
+> quit well:
+> 
+> - memfd can be mmap(), so you avoid copies.
+> 
+> - their distinct from gem_bo, so no chaos in apis everywhere with imposter
+>   gem_bo that cannot ever be used for display.
+> 
+> - memfd can be sealed, so we can validate that they have the right size
+> 
+> - thanks to umdabuf there's already core mm code to properly pin them, so
+>   painful to implement this all.
+> 
+> For a driver interface I think the memfd should be pinned as long as it's
+> in a drm_crtc/plane/whatever_state structure, with a kernel vmap void *
+> pointer already set up. That way drivers can't get this wrong.
+> 
+> The uapi has a few options:
+> 
+> - Allow memfd to back drm_framebuffer. This won't result in api chaos
+>   since the compositor creates these, and these memfd should never show up
+>   in any property that would have a real fb backed by gem_bo. This still
+>   feels horrible to me personally, but it would allow to support
+>   histograms that need gem_bo in the same api. Personally I think we
+>   should just do two flavors, they're too distinct.
+> 
+> - A new memfd kms object like blob objects, which you can create and
+>   destroy and which are refcounted. Creation would also pin the memfd and
+>   check it has a sealed size (and whatever else we want sealed). This
+>   avoids pin/unpin every time you change the memfd property, but no idea
+>   whether that's a real use-case.
+> 
+> - memfd properties just get the file descriptor (like in/out fences do)
+>   and the drm atomic ioctl layer transparently pins/unpins as needed.
+> 
+> Personally I think option C is neat, A doable, B really only for hw that
+> can dma in/out of histograms and where it's big enough that doing so is a
+> functional requirement.
+
+Also for all these we'd need to make these new properties opt-in and hide
+them from compositors who cannot cope. Just defensive programming best
+practices.
+-Sima
+-- 
+Simona Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
