@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D11FEC021AA
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 16:55:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91AE5C021AA
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 16:56:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A2A010E861;
-	Wed, 19 Feb 2025 16:55:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55DE610E050;
+	Wed, 19 Feb 2025 16:56:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G+xTO80H";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IM2qe4F6";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C9FC10E85C;
- Wed, 19 Feb 2025 16:55:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9DA210E498;
+ Wed, 19 Feb 2025 16:55:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1739984154; x=1771520154;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=60nckjAvEwo8lnuh60Lk9jDkK46KiEserXo4D8hJMuY=;
- b=G+xTO80HxhJJL4A8LYkDNYvZmFBnDR8TD/U/r1X8Mb2jsgjYeDxVXBn2
- 5RYFQGqcd5A7TVEIgR3y+tvwYotMp+x+RkyhVGxy12agd99jelCK6GTCj
- 0KQj3L7gqZ5sz63Ez3FQw8pZs7C1Q5nAjLhr2oF3TnXcVuyJZZc9sADxl
- R3ngr2M2cft4MijXetoTqco6DBGGysLJbnGoQcNAv5fxdbZ5nIqDwEpmV
- gCN3sYD0eksaXTsqJ+RTXUO2E9jt3wtVAm6Kh66lbgXEYJRgHHGPjvQMI
- sUs4vocFKFcfEAkZfFEIyETO0jCIuIFttFlMKmV7tmPiCQUR1Ryspzhjp A==;
-X-CSE-ConnectionGUID: feV9CgsfQHKoPiw3Gyyuuw==
-X-CSE-MsgGUID: VQoKKJBqQVqJAhyIjpVlvQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11350"; a="40991901"
-X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; d="scan'208";a="40991901"
+ bh=kdx43vBPxQuJgAnPefatV3H8gKQrTpuV5MOzEF/ZEe8=;
+ b=IM2qe4F6cTId7FFsWy22wy7BC3WLFlLkZQgN8bGaX/jGdpWd7bOkUm38
+ DobAcDkR5ri0dWGhh3KNWWH7JDNLX72jEnT+zTS+rQ3Gx7OjMD3Qstmez
+ knEEeSHlCgHvBmWHu8EbR7k1FnqtMmihMh+q51vys1jncB29VJF1fCfFo
+ idVIACs/kVUaT9q7P8SJrv7E39KYxBx+Uwfa8hLiY1VDR1+92tH4FYuQk
+ qZf/n/6dpn017rJEM5edQjL5G7hM9HDgmsrO+mJrhChpp9jOGGRkBz8tf
+ 9UUj7vGwU0VnjNK8LnRWfWoAJYKe/mvd1KtAAidO/eRPUOKd/Rw0b4yhB g==;
+X-CSE-ConnectionGUID: FaQaB1y3SkqWFZ/xk3YTCQ==
+X-CSE-MsgGUID: 03xBdo9vRYW1W5GYAU7Jmw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11350"; a="40991874"
+X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; d="scan'208";a="40991874"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2025 08:55:50 -0800
-X-CSE-ConnectionGUID: OwDbJPClR8+xEtwnivX99A==
-X-CSE-MsgGUID: ESGAr5jVR92QRIUnHL3PfQ==
+ 19 Feb 2025 08:55:45 -0800
+X-CSE-ConnectionGUID: W0grXNWvTUyH31DILSRBog==
+X-CSE-MsgGUID: sR7AFvAPSWuBZ6grEIQ1nQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; d="scan'208";a="114966328"
+X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; d="scan'208";a="114966319"
 Received: from dut4410lnl.fm.intel.com ([10.105.8.78])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2025 08:23:41 -0800
+ 19 Feb 2025 08:23:40 -0800
 From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
  joonas.lahtinen@linux.intel.com, tvrtko.ursulin@ursulin.net,
  lucas.demarchi@intel.com, matthew.brost@intel.com,
  dri-devel@lists.freedesktop.org, simona.vetter@ffwll.ch
-Subject: [PATCH v3 5/6] drm/xe/xe_query: Pass drm file to query funcs
-Date: Wed, 19 Feb 2025 16:23:39 +0000
-Message-ID: <20250219162340.116499-6-jonathan.cavitt@intel.com>
+Subject: [PATCH v3 1/6] drm/xe/xe_exec_queue: Add ID param to exec queue struct
+Date: Wed, 19 Feb 2025 16:23:35 +0000
+Message-ID: <20250219162340.116499-2-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250219162340.116499-1-jonathan.cavitt@intel.com>
 References: <20250219162340.116499-1-jonathan.cavitt@intel.com>
@@ -69,139 +69,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Pass the drm file to the query funcs in xe_query.c.  This will be
-necessary for a future query.
+Add the exec queue id to the exec queue struct.  This is useful for
+performing a reverse lookup into the xef->exec_queue xarray.
 
 Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 ---
- drivers/gpu/drm/xe/xe_query.c | 39 ++++++++++++++++++++++++-----------
- 1 file changed, 27 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/xe/xe_exec_queue.c       | 1 +
+ drivers/gpu/drm/xe/xe_exec_queue_types.h | 2 ++
+ 2 files changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 042f87a688e7..3aad4737bfec 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -110,7 +110,8 @@ hwe_read_timestamp(struct xe_hw_engine *hwe, u64 *engine_ts, u64 *cpu_ts,
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 23a9f519ce1c..4a98a5d0e405 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -709,6 +709,7 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+ 	if (err)
+ 		goto kill_exec_queue;
  
- static int
- query_engine_cycles(struct xe_device *xe,
--		    struct drm_xe_device_query *query)
-+		    struct drm_xe_device_query *query,
-+		    struct drm_file *file)
- {
- 	struct drm_xe_query_engine_cycles __user *query_ptr;
- 	struct drm_xe_engine_class_instance *eci;
-@@ -179,7 +180,8 @@ query_engine_cycles(struct xe_device *xe,
- }
++	q->id = id;
+ 	args->exec_queue_id = id;
  
- static int query_engines(struct xe_device *xe,
--			 struct drm_xe_device_query *query)
-+			 struct drm_xe_device_query *query,
-+			 struct drm_file *file)
- {
- 	size_t size = calc_hw_engine_info_size(xe);
- 	struct drm_xe_query_engines __user *query_ptr =
-@@ -240,7 +242,8 @@ static size_t calc_mem_regions_size(struct xe_device *xe)
- }
- 
- static int query_mem_regions(struct xe_device *xe,
--			    struct drm_xe_device_query *query)
-+			     struct drm_xe_device_query *query,
-+			     struct drm_file *file)
- {
- 	size_t size = calc_mem_regions_size(xe);
- 	struct drm_xe_query_mem_regions *mem_regions;
-@@ -310,7 +313,9 @@ static int query_mem_regions(struct xe_device *xe,
- 	return ret;
- }
- 
--static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
-+static int query_config(struct xe_device *xe,
-+			struct drm_xe_device_query *query,
-+			struct drm_file *file)
- {
- 	const u32 num_params = DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY + 1;
- 	size_t size =
-@@ -351,7 +356,9 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
  	return 0;
- }
- 
--static int query_gt_list(struct xe_device *xe, struct drm_xe_device_query *query)
-+static int query_gt_list(struct xe_device *xe,
-+			 struct drm_xe_device_query *query,
-+			 struct drm_file *file)
- {
- 	struct xe_gt *gt;
- 	size_t size = sizeof(struct drm_xe_query_gt_list) +
-@@ -422,7 +429,8 @@ static int query_gt_list(struct xe_device *xe, struct drm_xe_device_query *query
- }
- 
- static int query_hwconfig(struct xe_device *xe,
--			  struct drm_xe_device_query *query)
-+			  struct drm_xe_device_query *query,
-+			  struct drm_file *file)
- {
- 	struct xe_gt *gt = xe_root_mmio_gt(xe);
- 	size_t size = xe_guc_hwconfig_size(&gt->uc.guc);
-@@ -490,7 +498,8 @@ static int copy_mask(void __user **ptr,
- }
- 
- static int query_gt_topology(struct xe_device *xe,
--			     struct drm_xe_device_query *query)
-+			     struct drm_xe_device_query *query,
-+			     struct drm_file *file)
- {
- 	void __user *query_ptr = u64_to_user_ptr(query->data);
- 	size_t size = calc_topo_query_size(xe);
-@@ -549,7 +558,9 @@ static int query_gt_topology(struct xe_device *xe,
- }
- 
- static int
--query_uc_fw_version(struct xe_device *xe, struct drm_xe_device_query *query)
-+query_uc_fw_version(struct xe_device *xe,
-+		    struct drm_xe_device_query *query,
-+		    struct drm_file *file)
- {
- 	struct drm_xe_query_uc_fw_version __user *query_ptr = u64_to_user_ptr(query->data);
- 	size_t size = sizeof(struct drm_xe_query_uc_fw_version);
-@@ -639,7 +650,8 @@ static size_t calc_oa_unit_query_size(struct xe_device *xe)
- }
- 
- static int query_oa_units(struct xe_device *xe,
--			  struct drm_xe_device_query *query)
-+			  struct drm_xe_device_query *query,
-+			  struct drm_file *file)
- {
- 	void __user *query_ptr = u64_to_user_ptr(query->data);
- 	size_t size = calc_oa_unit_query_size(xe);
-@@ -699,7 +711,9 @@ static int query_oa_units(struct xe_device *xe,
- 	return ret ? -EFAULT : 0;
- }
- 
--static int query_pxp_status(struct xe_device *xe, struct drm_xe_device_query *query)
-+static int query_pxp_status(struct xe_device *xe,
-+			    struct drm_xe_device_query *query,
-+			    struct drm_file *file)
- {
- 	struct drm_xe_query_pxp_status __user *query_ptr = u64_to_user_ptr(query->data);
- 	size_t size = sizeof(struct drm_xe_query_pxp_status);
-@@ -727,7 +741,8 @@ static int query_pxp_status(struct xe_device *xe, struct drm_xe_device_query *qu
- }
- 
- static int (* const xe_query_funcs[])(struct xe_device *xe,
--				      struct drm_xe_device_query *query) = {
-+				      struct drm_xe_device_query *query,
-+				      struct drm_file *file) = {
- 	query_engines,
- 	query_mem_regions,
- 	query_config,
-@@ -757,5 +772,5 @@ int xe_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	if (XE_IOCTL_DBG(xe, !xe_query_funcs[idx]))
- 		return -EINVAL;
- 
--	return xe_query_funcs[idx](xe, query);
-+	return xe_query_funcs[idx](xe, query, file);
- }
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+index 6eb7ff091534..088d838218e9 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+@@ -55,6 +55,8 @@ struct xe_exec_queue {
+ 	struct xe_vm *vm;
+ 	/** @class: class of this exec queue */
+ 	enum xe_engine_class class;
++	/** @id: exec queue ID as reported during create ioctl */
++	u32 id;
+ 	/**
+ 	 * @logical_mask: logical mask of where job submitted to exec queue can run
+ 	 */
 -- 
 2.43.0
 
