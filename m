@@ -4,68 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2113C021AA
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 09:29:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80EBBC021B8
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 09:32:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB8AB10E7A1;
-	Wed, 19 Feb 2025 09:29:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE03710E7BF;
+	Wed, 19 Feb 2025 09:32:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="V/7161N6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CMaLYvPz";
 	dkim-atps=neutral
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com
- [209.85.208.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AC9B10E7A1
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Feb 2025 09:29:19 +0000 (UTC)
-Received: by mail-ed1-f42.google.com with SMTP id
- 4fb4d7f45d1cf-5ded46f323fso8524590a12.1
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Feb 2025 01:29:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1739957357; x=1740562157; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=LwbbveXSj0uskeS0+SdHJlKEV7+Qy4MHNmqC+V5NYGQ=;
- b=V/7161N6kLIr8E0KSbdukmWrht6a0JG9jT5v7fmijiUh9q6esL2+F/C3PywDyyNuFB
- /gq4TShDP7JK6ABXJ4MolHHsYRFYAc2voP7zWxB4ik7gEEBZFoJVDpvCSduMv58RYekC
- 3mg/mkLRZEjIvmsQThJgsypF6mEVIZDUT7Fo/fpejJJG0XdV9VTij7t4hb3fHsRHdg65
- ji0i7HQQ3I31eH8jX9qTPpN6NNXqfLmbQjKxVsu6XFNv3hWomRpV4E+yr8alK1J7YUYJ
- cmPOJDO6qOKA9yOtcTpgAJNr4/0AXf8u8JVZ4RFlgbFCyDfMlHppvNjQ5DGIrFJpBXFm
- BXqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1739957357; x=1740562157;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=LwbbveXSj0uskeS0+SdHJlKEV7+Qy4MHNmqC+V5NYGQ=;
- b=H61Xc8uQDCclIfNMopDQ3FWYEwpdcIRC/R5tFVefgEN/32aHvqOw1UF1t3UXrKWo13
- XNi4vJJKkkcGm2gormNX6TSMBQpFfPWNEvlVkLBHx54aTVhyCTNvvr8p+mCm4s+G5Ner
- ucP5cjN5ZchjHxw+8OEJ64ZIYzd+vRq8zfbeiP0Z9DI28zlK8eoG4EuCGybj5YNuR48l
- DHNDWkL2pSSM2kH+dcYqD/iGfxufKQhEJuhM6k2n2H9ex3G+gxq90kCk5umqO3anGoAV
- sb91LiPvkQgA7z1QAHZ0mJcElfvngz3y+siSM/QVPKPsz6KLRbWzj94gge2d0ed9Yqh8
- EV+w==
-X-Gm-Message-State: AOJu0YzW1et/GzQuNgHWYdxXHA+exElxJ9vHTJA/8eKcpj+1CUNQ7q9c
- 1AkNSRiX85/E+mC4uUdzwlhdLJnAhv7Erh809fjS8ZB8BHWa8mcYEnY4wyaYSXI=
-X-Gm-Gg: ASbGncvNOAgZLYSAiFS9O2Ref4kXUGGWuI/i0xRFbVR+EDSs547qiEjN58VnSY3VBEu
- 8FuiJq4N0awIfTfziQ0dgDGkSE2rBcgLpCXw6zTBZFRSVIWfvXamUZDMVyPNlthj/38a35YdMFE
- cSBSxogKEu8rRbUW9PGuKAmhbPV7ptpHMpy/I2e+++o0kxSKB93+jp+t14i+MxthbD1rmIJ5eVF
- eHBfKPsCEbEKUvg8H1p9z0HbWvUTx4gG+1y0J+yK5kDZpv28erS2d9xUlgj/2rkKTOYOuc0d5im
- 1NNeVhoj5QZJG5RjiDd8
-X-Google-Smtp-Source: AGHT+IGRsJbRmM164WuBXw2p++JFEcVk6bJPRtmApZQVIt83SZs2ySTF5XL2KVoMIW+/XNy8n0SB0A==
-X-Received: by 2002:a17:906:f591:b0:ab7:d77b:43b2 with SMTP id
- a640c23a62f3a-abbccebaca6mr296332166b.33.1739957357531; 
- Wed, 19 Feb 2025 01:29:17 -0800 (PST)
-Received: from localhost ([196.207.164.177])
- by smtp.gmail.com with UTF8SMTPSA id
- a640c23a62f3a-abb77551c60sm821245566b.63.2025.02.19.01.29.16
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 19 Feb 2025 01:29:17 -0800 (PST)
-Date: Wed, 19 Feb 2025 12:29:13 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [bug report] drm/xe: Introduce a new DRM driver for Intel GPUs
-Message-ID: <5fd5a4b9-88ee-47f1-ac3e-32a20960c5b0@stanley.mountain>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3BC310E79B;
+ Wed, 19 Feb 2025 09:32:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1739957523; x=1771493523;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:references:in-reply-to:to:cc;
+ bh=u5bjDgqW+g6qffOrSLcIjtm75P8AAaC3vftEkokJv3s=;
+ b=CMaLYvPz0HKse0W/yyxdCt85autIvGHUmZNNtSPffTg2Jrb1GtwwSwii
+ i5v/zq+OrMWwS4fpuwI5nYYVVanYVyBNw8UwjHnKo7IDKRcyrKpgBriAh
+ dN46hTZPeIslUd+jqvMXDf77Aizgj/vurp7196gjnZXl1TzGKyYq7tsc+
+ xBHGKWjEbzfdeIabLGz6OV5qgPaHXTwuRgNJB5kpHQTAy5LmVJaE1JbmW
+ BVJ4IreLv77KU3Qyq9a7APbk4o/9mgAZR2GdVx53r2fZNvpKSwrMIh83w
+ b660TUZNePeZwniesLycRIG0wK2w01iUiPX+6JoLPMw6ZS87CnmmgC0yt w==;
+X-CSE-ConnectionGUID: vPxoT0RBTpuYKT5DeJ87sA==
+X-CSE-MsgGUID: hylR/QWwT5KWwlAXkxGLnw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="40551471"
+X-IronPort-AV: E=Sophos;i="6.13,298,1732608000"; d="scan'208";a="40551471"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2025 01:32:02 -0800
+X-CSE-ConnectionGUID: RfVp7FUUQMyDjaRE9Z9p3A==
+X-CSE-MsgGUID: DuZc18bkTganPk3qqUId5Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="137910324"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by fmviesa002.fm.intel.com with ESMTP; 19 Feb 2025 01:32:00 -0800
+From: Arun R Murthy <arun.r.murthy@intel.com>
+Date: Wed, 19 Feb 2025 14:47:23 +0530
+Subject: [PATCH v6 1/3] drm/plane: Add new plane property IN_FORMATS_ASYNC
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250219-asyn-v6-1-b959e6becb3c@intel.com>
+References: <20250219-asyn-v6-0-b959e6becb3c@intel.com>
+In-Reply-To: <20250219-asyn-v6-0-b959e6becb3c@intel.com>
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Cc: chaitanya.kumar.borah@intel.com, Arun R Murthy <arun.r.murthy@intel.com>, 
+ Naveen Kumar <naveen1.kumar@intel.com>
+X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,44 +68,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hello Matthew Brost,
+There exists a property IN_FORMATS which exposes the plane supported
+modifiers/formats to the user. In some platforms when asynchronous flip
+are used all of modifiers/formats mentioned in IN_FORMATS are not
+supported. This patch adds a new plane property IN_FORMATS_ASYNC to
+expose the async flip supported modifiers/formats so that user can use
+this information ahead and do flip with unsupported
+formats/modifiers. This will save flip failures.
+Add a new function pointer similar to format_mod_supported specifically
+for asynchronous flip.
 
-Commit dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel
-GPUs") from Mar 30, 2023 (linux-next), leads to the following Smatch
-static checker warning:
+v2: Remove async variable from drm_plane (Ville)
+v3: Add new function pointer for async (Ville)
+v5: Typo corrected in commit message & some correction in the kernel
+documentation. (Chaitanya)
 
-drivers/gpu/drm/xe/xe_guc.c:1241 xe_guc_suspend() warn: passing possitive error code '(-110),(-71),(-6),1-268435455' to 'ERR_PTR'
-drivers/gpu/drm/i915/gt/uc/intel_guc.c:698 intel_guc_suspend() warn: passing non-max range '1-268435455' to 'ERR_PTR'
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Tested-by: Naveen Kumar <naveen1.kumar@intel.com>
+---
+ drivers/gpu/drm/drm_mode_config.c |  7 +++++++
+ drivers/gpu/drm/drm_plane.c       |  8 ++++++++
+ include/drm/drm_mode_config.h     |  6 ++++++
+ include/drm/drm_plane.h           | 17 +++++++++++++++++
+ 4 files changed, 38 insertions(+)
 
-drivers/gpu/drm/xe/xe_guc.c
-    1231 int xe_guc_suspend(struct xe_guc *guc)
-    1232 {
-    1233         struct xe_gt *gt = guc_to_gt(guc);
-    1234         u32 action[] = {
-    1235                 XE_GUC_ACTION_CLIENT_SOFT_RESET,
-    1236         };
-    1237         int ret;
-    1238 
-    1239         ret = xe_guc_mmio_send(guc, action, ARRAY_SIZE(action));
+diff --git a/drivers/gpu/drm/drm_mode_config.c b/drivers/gpu/drm/drm_mode_config.c
+index 8642a2fb25a90116dab975aa0ab6b51deafb4b96..dbbef20753f834a85ae9ded748cff2b3f0e85043 100644
+--- a/drivers/gpu/drm/drm_mode_config.c
++++ b/drivers/gpu/drm/drm_mode_config.c
+@@ -388,6 +388,13 @@ static int drm_mode_create_standard_properties(struct drm_device *dev)
+ 		return -ENOMEM;
+ 	dev->mode_config.size_hints_property = prop;
+ 
++	prop = drm_property_create(dev,
++				   DRM_MODE_PROP_IMMUTABLE | DRM_MODE_PROP_BLOB,
++				   "IN_FORMATS_ASYNC", 0);
++	if (!prop)
++		return -ENOMEM;
++	dev->mode_config.async_modifiers_property = prop;
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/drm_plane.c b/drivers/gpu/drm/drm_plane.c
+index a28b22fdd7a41aca82d097d42237851da9a0a79b..fe181c1002171acc68d3054c2d178f9b9f501fe2 100644
+--- a/drivers/gpu/drm/drm_plane.c
++++ b/drivers/gpu/drm/drm_plane.c
+@@ -141,6 +141,14 @@
+  *     various bugs in this area with inconsistencies between the capability
+  *     flag and per-plane properties.
+  *
++ * IN_FORMATS_ASYNC:
++ *     Blob property which contains the set of buffer format and modifier
++ *     pairs supported by this plane for asynchronous flips. The blob is a struct
++ *     drm_format_modifier_blob. Userspace cannot change this property. This is an
++ *     optional property and if not present then user should expect a failure in
++ *     atomic ioctl when the modifier/format is not supported by that plane under
++ *     asynchronous flip.
++ *
+  * SIZE_HINTS:
+  *     Blob property which contains the set of recommended plane size
+  *     which can used for simple "cursor like" use cases (eg. no scaling).
+diff --git a/include/drm/drm_mode_config.h b/include/drm/drm_mode_config.h
+index 271765e2e9f2da62aaf0d258828ef4196e14822e..0c116d6dfd277262b1a4c0f097fce2d719f43844 100644
+--- a/include/drm/drm_mode_config.h
++++ b/include/drm/drm_mode_config.h
+@@ -936,6 +936,12 @@ struct drm_mode_config {
+ 	 */
+ 	struct drm_property *modifiers_property;
+ 
++	/**
++	 * @async_modifiers_property: Plane property to list support modifier/format
++	 * combination for asynchronous flips.
++	 */
++	struct drm_property *async_modifiers_property;
++
+ 	/**
+ 	 * @size_hints_property: Plane SIZE_HINTS property.
+ 	 */
+diff --git a/include/drm/drm_plane.h b/include/drm/drm_plane.h
+index dd718c62ac31bf16606f3ee9f025a5b171cd1e67..4393a0e9edf91ccfd78ef62b168b9313187c1a81 100644
+--- a/include/drm/drm_plane.h
++++ b/include/drm/drm_plane.h
+@@ -549,6 +549,23 @@ struct drm_plane_funcs {
+ 	 */
+ 	bool (*format_mod_supported)(struct drm_plane *plane, uint32_t format,
+ 				     uint64_t modifier);
++	/**
++	 * @format_mod_supported_async:
++	 *
++	 * This optional hook is used for the DRM to determine if for
++	 * asynchronous flip the given format/modifier combination is valid for
++	 * the plane. This allows the DRM to generate the correct format
++	 * bitmask (which formats apply to which modifier), and to validate
++	 * modifiers at atomic_check time.
++	 *
++	 * Returns:
++	 *
++	 * True if the given modifier is valid for that format on the plane.
++	 * False otherwise.
++	 */
++	bool (*format_mod_supported_async)(struct drm_plane *plane,
++					   uint32_t format, uint64_t modifier);
++
+ };
+ 
+ /**
 
-The xe_guc_mmio_send() function returns this:
+-- 
+2.25.1
 
-  1388          /* Use data from the GuC response as our return value */
-  1389          return FIELD_GET(GUC_HXG_RESPONSE_MSG_0_DATA0, header);
-
-All we know about it is that it's a positive number between 0-0xfffffff.
-
-    1240         if (ret) {
---> 1241                 xe_gt_err(gt, "GuC suspend failed: %pe\n", ERR_PTR(ret));
-                                                                            ^^^
-passing positives to ERR_PTR() is verboten.
-
-    1242                 return ret;
-    1243         }
-    1244 
-    1245         xe_guc_sanitize(guc);
-    1246         return 0;
-    1247 }
-
-regards,
-dan carpenter
