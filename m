@@ -4,29 +4,29 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40EFDC021AA
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 08:43:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1B27C021AA
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 08:56:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C78310E784;
-	Wed, 19 Feb 2025 08:43:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B72710E4AE;
+	Wed, 19 Feb 2025 08:56:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="mv57CGSk";
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="YoVwV6S3";
 	dkim-atps=neutral
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED61A10E79B
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Feb 2025 08:43:44 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A844310E4AE
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Feb 2025 08:56:04 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id CBDB9A41F93;
- Wed, 19 Feb 2025 08:41:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3EBEC4CED1;
- Wed, 19 Feb 2025 08:43:42 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id 407815C5454;
+ Wed, 19 Feb 2025 08:55:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB97FC4CED1;
+ Wed, 19 Feb 2025 08:56:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1739954623;
- bh=UljW5rxwjbcw/MJQp3wL0dO5KT9JCsBnJtgkI3c0KkU=;
+ s=korg; t=1739955363;
+ bh=Gq44AhOdQ1g2CXtPMrMEzTNCkU5IXtWvD2CYhHGH83w=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=mv57CGSkUHarsAibi5oC+OZ0evcx/XZXRrtJaXFU0zvBc21/rqkqKzkjeWzduwFFl
- 5xpqwKmz+v1JLy+2gDC+/H/gnf8XriRJEQYQSKmC5aL0m7m9InAgGOMWllk5yitmt1
- PQNo4HvpTJKNWhb/Ti/vm6wgY0wdeGoTpx+qIp5k=
+ b=YoVwV6S3Cn2du/tLiGtHfCFNEN7cLi9JgnLklAzlEF4Ovgnt8vhdyuAVnG85zToJY
+ kKhY0DIvwRDmWe7tiMkWgPBdmElVS2rLVkH2GnZrVuwzBsUnj8i0FDdWCXaap6QU75
+ BQa3aNU0xcPV/pClYswK8FTfaRsNlThstV73kmF8=
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To: stable@vger.kernel.org
 Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, patches@lists.linux.dev,
@@ -37,12 +37,12 @@ Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, patches@lists.linux.dev,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org,
  Jonathan Cavitt <jonathan.cavitt@intel.com>
-Subject: [PATCH 6.13 261/274] drm/xe/tracing: Fix a potential TP_printk UAF
-Date: Wed, 19 Feb 2025 09:28:35 +0100
-Message-ID: <20250219082619.803108290@linuxfoundation.org>
+Subject: [PATCH 6.12 213/230] drm/xe/tracing: Fix a potential TP_printk UAF
+Date: Wed, 19 Feb 2025 09:28:50 +0100
+Message-ID: <20250219082610.026162189@linuxfoundation.org>
 X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250219082609.533585153@linuxfoundation.org>
-References: <20250219082609.533585153@linuxfoundation.org>
+In-Reply-To: <20250219082601.683263930@linuxfoundation.org>
+References: <20250219082601.683263930@linuxfoundation.org>
 User-Agent: quilt/0.68
 X-stable: review
 X-Patchwork-Hint: ignore
@@ -63,7 +63,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-6.13-stable review patch.  If anyone has any objections, please let me know.
+6.12-stable review patch.  If anyone has any objections, please let me know.
 
 ------------------
 
