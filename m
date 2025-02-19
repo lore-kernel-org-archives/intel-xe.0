@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CD63C021AA
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 16:23:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80351C021B1
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 16:55:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D49BC10E4A6;
-	Wed, 19 Feb 2025 16:23:05 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB23C10E159;
- Wed, 19 Feb 2025 16:23:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3778593344331075988=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A2F210E050;
+	Wed, 19 Feb 2025 16:55:55 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BewL8Aj9";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4098010E050;
+ Wed, 19 Feb 2025 16:55:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1739984153; x=1771520153;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=9yxgusXRCdpQO/9//7pxpxTt4iTieeykrScMRHQvOc0=;
+ b=BewL8Aj9Vg3w03tWr6UJ+uLN4EisA7+eGUZuykwwJjm8jLRwySB3k5/2
+ Qsdk//O3KoIDuC+2TfL0M69sWV9AdMINVThOnYQo2oLOWoqX4aQiriDRC
+ VIqFLeixmTMhiCOgwCbkHBHVwXqV8FChArdbde0exS2VReopAYCKTEjhJ
+ xQ3z7utbIHZ77lX26+og3U5RchrBFu1alke4BRBmqV/onup/1UL2HhEF5
+ /U5ociVKP+9LDEEqK+ybtFQYOGY9VbBo9MTuUlco4vBo6jhR8MgD56rmV
+ DOscNbZ4KLXyltClqKHslHWsAwzDFSVqm29DtK0h3tYR2uYpT1i1MlqQX Q==;
+X-CSE-ConnectionGUID: jFUlnU4KSnGm1dZZVlkg0Q==
+X-CSE-MsgGUID: IRFinFpfSWanTK6qwXd14A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11350"; a="40991877"
+X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; d="scan'208";a="40991877"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2025 08:55:45 -0800
+X-CSE-ConnectionGUID: dAhqnFcOQBaLJIPE5yzgKA==
+X-CSE-MsgGUID: PX5E8m/WRCmw7q5HEbDQkw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; d="scan'208";a="114966318"
+Received: from dut4410lnl.fm.intel.com ([10.105.8.78])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2025 08:23:40 -0800
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
+ joonas.lahtinen@linux.intel.com, tvrtko.ursulin@ursulin.net,
+ lucas.demarchi@intel.com, matthew.brost@intel.com,
+ dri-devel@lists.freedesktop.org, simona.vetter@ffwll.ch
+Subject: [PATCH v3 0/6] drm/xe/xe_drm_client: Add per drm client reset stats
+Date: Wed, 19 Feb 2025 16:23:34 +0000
+Message-ID: <20250219162340.116499-1-jonathan.cavitt@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/display=3A_Fix_fbdev?=
- =?utf-8?q?_GGTT_mapping_handling=2E_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 19 Feb 2025 16:23:04 -0000
-Message-ID: <173998218475.4028506.3793305284689510224@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250219153441.625352-1-dev@lankhorst.se>
-In-Reply-To: <20250219153441.625352-1-dev@lankhorst.se>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,155 +64,62 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3778593344331075988==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Add additional information to drm client so it can report the last 50
+relevant exec queues to have been banned on it, as well as the last
+pagefault seen when said exec queues were banned. Since we cannot
+reasonably associate a pagefault to a specific exec queue, we currently
+report the last seen pagefault on the associated hw engine instead.
 
-== Series Details ==
+The last pagefault seen per exec queue is saved to the hw engine, and the
+pagefault is updated during the pagefault handling process in
+xe_gt_pagefault. The last seen pagefault is reset when the engine is
+reset because any future exec queue bans likely were not caused by said
+pagefault after the reset.
 
-Series: drm/xe/display: Fix fbdev GGTT mapping handling. (rev5)
-URL   : https://patchwork.freedesktop.org/series/144602/
-State : success
+Also add a tracker that counts the number of times the drm client has
+experienced an engine reset.
 
-== Summary ==
+Finally, add a new query to xe_query that reports these drm client reset
+stats back to the user.
 
-CI Bug Log - changes from xe-2688-2050e0325a3fa692d86d64e8d05d10b6959166d7_BAT -> xe-pw-144602v5_BAT
-====================================================
+v2: Report the per drm client reset stats as a query, rather than
+    coopting xe_drm_client_fdinfo (Joonas)
 
-Summary
--------
+v3: Report EOPNOTSUPP during the reset stats query if CONFIG_PROC_FS
+    is not set in the kernel config, as it is required to trace the
+    reset count and exec queue bans.
 
-  **SUCCESS**
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Suggested-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+CC: Tvrtko Ursulin <tvrtko.ursulin@ursulin.net>
+CC: Lucas de Marchi <lucas.demarchi@intel.com>
+CC: Matthew Brost <matthew.brost@intel.com>
+CC: Simona Vetter <simona.vetter@ffwll.ch>
 
-  No regressions found.
+Jonathan Cavitt (6):
+  drm/xe/xe_exec_queue: Add ID param to exec queue struct
+  drm/xe/xe_gt_pagefault: Migrate pagefault struct to header
+  drm/xe/xe_drm_client: Add per drm client pagefault info
+  drm/xe/xe_drm_client: Add per drm client reset stats
+  drm/xe/xe_query: Pass drm file to query funcs
+  drm/xe/xe_query: Add support for per-drm-client reset stat querying
 
-  
+ drivers/gpu/drm/xe/xe_drm_client.c       |  66 ++++++++++++++
+ drivers/gpu/drm/xe/xe_drm_client.h       |  44 +++++++++
+ drivers/gpu/drm/xe/xe_exec_queue.c       |   8 ++
+ drivers/gpu/drm/xe/xe_exec_queue_types.h |   2 +
+ drivers/gpu/drm/xe/xe_gt_pagefault.c     |  46 ++++------
+ drivers/gpu/drm/xe/xe_gt_pagefault.h     |  28 ++++++
+ drivers/gpu/drm/xe/xe_guc_submit.c       |  19 ++++
+ drivers/gpu/drm/xe/xe_hw_engine.c        |   4 +
+ drivers/gpu/drm/xe/xe_hw_engine_types.h  |   8 ++
+ drivers/gpu/drm/xe/xe_query.c            | 109 ++++++++++++++++++++---
+ include/uapi/drm/xe_drm.h                |  50 +++++++++++
+ 11 files changed, 345 insertions(+), 39 deletions(-)
 
-Participating hosts (9 -> 8)
-------------------------------
+-- 
+2.43.0
 
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-144602v5_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_pat@pat-index-xelp@render:
-    - bat-adlp-vf:        [PASS][1] -> [DMESG-WARN][2] ([Intel XE#3970]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2688-2050e0325a3fa692d86d64e8d05d10b6959166d7/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144602v5/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-bmg-1:          [DMESG-WARN][3] ([Intel XE#877]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2688-2050e0325a3fa692d86d64e8d05d10b6959166d7/bat-bmg-1/igt@kms_frontbuffer_tracking@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144602v5/bat-bmg-1/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@xe_exec_basic@twice-bindexecqueue-rebind:
-    - bat-adlp-vf:        [DMESG-FAIL][5] ([Intel XE#3868]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2688-2050e0325a3fa692d86d64e8d05d10b6959166d7/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144602v5/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
-
-  
-  [Intel XE#3868]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3868
-  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
-  [Intel XE#877]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/877
-
-
-Build changes
--------------
-
-  * Linux: xe-2688-2050e0325a3fa692d86d64e8d05d10b6959166d7 -> xe-pw-144602v5
-
-  IGT_8238: 7df82badac410a7ce2505df6064d44f0e094650c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2688-2050e0325a3fa692d86d64e8d05d10b6959166d7: 2050e0325a3fa692d86d64e8d05d10b6959166d7
-  xe-pw-144602v5: 144602v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144602v5/index.html
-
---===============3778593344331075988==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/display: Fix fbdev GGTT mapping handling. (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144602/">https://patchwork.freedesktop.org/series/144602/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144602v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144602v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2688-2050e0325a3fa692d86d64e8d05d10b6959166d7_BAT -&gt; xe-pw-144602v5_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-144602v5_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_pat@pat-index-xelp@render:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2688-2050e0325a3fa692d86d64e8d05d10b6959166d7/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144602v5/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2688-2050e0325a3fa692d86d64e8d05d10b6959166d7/bat-bmg-1/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/877">Intel XE#877</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144602v5/bat-bmg-1/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_basic@twice-bindexecqueue-rebind:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2688-2050e0325a3fa692d86d64e8d05d10b6959166d7/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3868">Intel XE#3868</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144602v5/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2688-2050e0325a3fa692d86d64e8d05d10b6959166d7 -&gt; xe-pw-144602v5</li>
-</ul>
-<p>IGT_8238: 7df82badac410a7ce2505df6064d44f0e094650c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2688-2050e0325a3fa692d86d64e8d05d10b6959166d7: 2050e0325a3fa692d86d64e8d05d10b6959166d7<br />
-  xe-pw-144602v5: 144602v5</p>
-
-</body>
-</html>
-
---===============3778593344331075988==--
