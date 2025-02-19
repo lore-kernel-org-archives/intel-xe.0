@@ -4,59 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57443C021BC
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 09:32:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1989DC021B0
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 09:32:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB30F10E7CB;
-	Wed, 19 Feb 2025 09:32:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADB4710E7D5;
+	Wed, 19 Feb 2025 09:32:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BUCOCpPQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a6+rV7mi";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F64B10E79B;
- Wed, 19 Feb 2025 09:32:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F39510E7A6;
+ Wed, 19 Feb 2025 09:32:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739957522; x=1771493522;
- h=from:subject:date:message-id:mime-version:
- content-transfer-encoding:to:cc;
- bh=02I7rTuRDa1qaS7mFW6AaYZJ8pc8N8BuFguJuowb6Ps=;
- b=BUCOCpPQpV5Po3KenHEZpsBmFRLV5sAQInYjKxbU2fHBhJxVZcMKGNOg
- q4wRKv+bus+N5Oykd2e/FaPjA+/B6+YWakt1J8JiuoRFaccmC+/XADDl2
- O2819wWQ3wmQwpFT4oTIJrvrwseEdCQBdOHQXZ0tT5CI6XOaFhcnqQvXM
- ohh3gw7h4qc4H+/6emSGW+0Hl5UQ1txnbZePx7Q31CACa/4SZ7OvXMDZK
- D70zNezs5lkzKcAllfPgsujNOMSVvtLsC/7XTuT5Tavm3kTrsedQQM58X
- WS99PuZ2/hq+Q9G12Szdja4hjEtNYukHc82ycPoSqhjuU0gvbByllFDTI w==;
-X-CSE-ConnectionGUID: yVSsIeAwTVuuY7wctCp+eQ==
-X-CSE-MsgGUID: dMcx/kpUTbSsIOozq2Bskw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="40551469"
-X-IronPort-AV: E=Sophos;i="6.13,298,1732608000"; d="scan'208";a="40551469"
+ t=1739957525; x=1771493525;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:references:in-reply-to:to:cc;
+ bh=8BdzuMlUV+mKswensd1LMdC+P9XM764thIJ9/tajpro=;
+ b=a6+rV7mirKhGHEcZJ0GM/6EQ4J/VD9qbsc8m4h9K83j7XPTYnMXtIkhX
+ Yhi3r5hdKtd/HJlUeFTdre1E0NByoHYp+Ccgz1hoRcxUkgoL/oLKPQP50
+ K9Zjt1DfeA54Y4PL0P55vhDFK63avCq+hembk6o925/76OXBKs6eNqjt5
+ nfQHNu1sWCVp7kip0xIOYBQjYMDzRUY/b8jCtkgnOp6FGCpHijnD+959B
+ gNAuZqa4dKhmiHFwozTkl7B/8fJbZ67rofColePvL8Vwtsy2NL3D3iWks
+ Z0h3Mwggf1SB7tqNIpqb5naOtabHoVW/0bMRsswTgZ3NoXme4dgjuQwF3 Q==;
+X-CSE-ConnectionGUID: zghRA94PR9SUuTLH/GeYrg==
+X-CSE-MsgGUID: 0gOqckGgR3asdn+3htEmag==
+X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="40551481"
+X-IronPort-AV: E=Sophos;i="6.13,298,1732608000"; d="scan'208";a="40551481"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2025 01:32:00 -0800
-X-CSE-ConnectionGUID: tn/YWQuIS8+uiutuV3bUyA==
-X-CSE-MsgGUID: mqnfOjUiQk+h38o+mIOZig==
+ 19 Feb 2025 01:32:05 -0800
+X-CSE-ConnectionGUID: 09Ivpo3gRCamuACloC5FvQ==
+X-CSE-MsgGUID: NW5y9mpPSXyGOavZp52+Lg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="137910319"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="137910337"
 Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmviesa002.fm.intel.com with ESMTP; 19 Feb 2025 01:31:58 -0800
+ by fmviesa002.fm.intel.com with ESMTP; 19 Feb 2025 01:32:03 -0800
 From: Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [PATCH v6 0/3] Expose modifiers/formats supported by async flips
-Date: Wed, 19 Feb 2025 14:47:22 +0530
-Message-Id: <20250219-asyn-v6-0-b959e6becb3c@intel.com>
+Date: Wed, 19 Feb 2025 14:47:24 +0530
+Subject: [PATCH v6 2/3] drm/plane: modify create_in_formats to accommodate
+ async
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAKKhtWcC/02OzQ6DIBAGX8VwLgSUH9tT36PxgIiFpGKzoKkxv
- ntR06TH2ew3mRVFC95GdCtWBHb20Y8hg7wUyDgdnhb7LjMqaSkooyXWcQm47ZVUFc0XY1B+fYP
- t/efQPJrMPYwDTg6s/o05Y6ymSlRMEC4lpVfMsIYpECDDBMktdx+SfREzDrvR+ZhGWI6uWezeM
- 6Fk9ZkwC0yx0kZow3Xbcf23b7Zt+wIGW6ML2gAAAA==
-X-Change-ID: 20250102-asyn-bf76730501cc
+Message-Id: <20250219-asyn-v6-2-b959e6becb3c@intel.com>
+References: <20250219-asyn-v6-0-b959e6becb3c@intel.com>
+In-Reply-To: <20250219-asyn-v6-0-b959e6becb3c@intel.com>
 To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
  intel-xe@lists.freedesktop.org
 Cc: chaitanya.kumar.borah@intel.com, Arun R Murthy <arun.r.murthy@intel.com>, 
- Naveen Kumar <naveen1.kumar@intel.com>, 
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+ Naveen Kumar <naveen1.kumar@intel.com>
 X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,85 +69,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-All of the formats/modifiers supported by the plane during synchronous
-flips are nor supported by asynchronous flips. The formats/modifiers
-exposed to user by IN_FORMATS exposes all formats/modifiers supported by
-plane and this list varies for async flips. If the async flip supported
-formats/modifiers are exposed to the user, user based on this list can
-take decision to proceed or not and avoid flip failures during async
-flips.
-Discussion around this can be located @
-https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/29618#note_2487123
-Userspace implementation for IN_FORMARTS_ASYNC under review @
-https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/4063
+create_in_formats creates the list of supported format/modifiers for
+synchronous flips, modify the same function so as to take the
+format_mod_supported as argument and create list of format/modifier for
+async as well.
 
-TODO: Upon merge of the patch related to async flip
-https://patchwork.freedesktop.org/patch/626849/?series=139807&rev=6
-the patch 5 in this series will have to make use of the new function
-pointer can_async_flip().
+v5: create_in_formats can return -ve value in failure case, correct the
+if condition to check the creation of blob <Chaitanya>
+Dont add the modifier for which none of the formats is not supported.
+v6: Remove the code for masking the unsupported modifiers as UMD can
+leave with it. (Naveen/Chaitanya)
 
-v3: Add new plane->funcs format_mod_supported_async (Ville)
-
-Arun R Murthy (3):
-  drm/plane: Add new plane property IN_FORMATS_ASYNC
-  drm/plane: Expose function to create format/modifier blob
-  drm/i915/display: Populate list of async supported formats/modifiers
-
- drivers/gpu/drm/drm_mode_config.c             |  7 +++
- drivers/gpu/drm/drm_plane.c                   | 50 ++++++++++++------
- .../drm/i915/display/skl_universal_plane.c    | 51 +++++++++++++++++++
- include/drm/drm_mode_config.h                 |  6 +++
- include/drm/drm_plane.h                       |  4 ++
- 5 files changed, 103 insertions(+), 15 deletions(-)
-
---
-2.25.1
-
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+Tested-by: Naveen Kumar <naveen1.kumar@intel.com>
 ---
-Arun R Murthy (5):
-      drm/plane: Add new plane property IN_FORMATS_ASYNC
-      drm/plane: Expose function to create format/modifier blob
-      drm/plane: Function to check async supported modifier/format
-      drm/i915/display: Populate list of async supported formats/modifiers
-      drm/i915/display: Add function for format_mod_supported_async
+ drivers/gpu/drm/drm_plane.c | 45 +++++++++++++++++++++++++++++++++------------
+ 1 file changed, 33 insertions(+), 12 deletions(-)
 
- drivers/gpu/drm/drm_mode_config.c                  |   7 ++
- drivers/gpu/drm/drm_plane.c                        |  72 +++++++++----
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 113 ++++++++++++++++++---
- include/drm/drm_mode_config.h                      |   6 ++
- include/drm/drm_plane.h                            |  24 +++++
- 5 files changed, 188 insertions(+), 34 deletions(-)
----
-base-commit: 08bd590935a5258ffd79355c59adffd72fb2c642
-change-id: 20250102-asyn-bf76730501cc
+diff --git a/drivers/gpu/drm/drm_plane.c b/drivers/gpu/drm/drm_plane.c
+index fe181c1002171acc68d3054c2d178f9b9f501fe2..fc26ef8a6cab346c9491495b57f88f1eb205d22c 100644
+--- a/drivers/gpu/drm/drm_plane.c
++++ b/drivers/gpu/drm/drm_plane.c
+@@ -193,9 +193,12 @@ modifiers_ptr(struct drm_format_modifier_blob *blob)
+ 	return (struct drm_format_modifier *)(((char *)blob) + blob->modifiers_offset);
+ }
+ 
+-static int create_in_format_blob(struct drm_device *dev, struct drm_plane *plane)
++static int create_in_format_blob(struct drm_device *dev, struct drm_plane *plane,
++				 bool (*format_mod_supported)
++						(struct drm_plane *plane,
++						 uint32_t format,
++						 uint64_t modifier))
+ {
+-	const struct drm_mode_config *config = &dev->mode_config;
+ 	struct drm_property_blob *blob;
+ 	struct drm_format_modifier *mod;
+ 	size_t blob_size, formats_size, modifiers_size;
+@@ -237,13 +240,17 @@ static int create_in_format_blob(struct drm_device *dev, struct drm_plane *plane
+ 	mod = modifiers_ptr(blob_data);
+ 	for (i = 0; i < plane->modifier_count; i++) {
+ 		for (j = 0; j < plane->format_count; j++) {
+-			if (!plane->funcs->format_mod_supported ||
+-			    plane->funcs->format_mod_supported(plane,
+-							       plane->format_types[j],
+-							       plane->modifiers[i])) {
++			if (!format_mod_supported || format_mod_supported
++							(plane,
++							 plane->format_types[j],
++							 plane->modifiers[i])) {
+ 				mod->formats |= 1ULL << j;
+ 			}
+ 		}
++		if (!mod->formats) {
++			blob_data->count_modifiers--;
++			continue;
++		}
+ 
+ 		mod->modifier = plane->modifiers[i];
+ 		mod->offset = 0;
+@@ -251,10 +258,7 @@ static int create_in_format_blob(struct drm_device *dev, struct drm_plane *plane
+ 		mod++;
+ 	}
+ 
+-	drm_object_attach_property(&plane->base, config->modifiers_property,
+-				   blob->base.id);
+-
+-	return 0;
++	return blob->base.id;
+ }
+ 
+ /**
+@@ -371,6 +375,7 @@ static int __drm_universal_plane_init(struct drm_device *dev,
+ 	};
+ 	unsigned int format_modifier_count = 0;
+ 	int ret;
++	int blob_id;
+ 
+ 	/* plane index is used with 32bit bitmasks */
+ 	if (WARN_ON(config->num_total_plane >= 32))
+@@ -477,8 +482,24 @@ static int __drm_universal_plane_init(struct drm_device *dev,
+ 		drm_plane_create_hotspot_properties(plane);
+ 	}
+ 
+-	if (format_modifier_count)
+-		create_in_format_blob(dev, plane);
++	if (format_modifier_count) {
++		blob_id = create_in_format_blob(dev, plane,
++						plane->funcs->format_mod_supported);
++		if (blob_id > 0)
++			drm_object_attach_property(&plane->base,
++						   config->modifiers_property,
++						   blob_id);
++	}
++
++	if (plane->funcs->format_mod_supported_async) {
++		blob_id = create_in_format_blob(dev, plane,
++						plane->funcs->format_mod_supported_async);
++		if (blob_id > 0)
++			drm_object_attach_property(&plane->base,
++						   config->async_modifiers_property,
++						   blob_id);
++	}
++
+ 
+ 	return 0;
+ }
 
-Best regards,
---
-Arun R Murthy <arun.r.murthy@intel.com>
-
----
-Changes in v6:
-- EDITME: describe what is new in this series revision.
-- EDITME: use bulletpoints and terse descriptions.
-- Link to v5: https://lore.kernel.org/r/20250218-asyn-v5-0-7ac5ac4abd4a@intel.com
-
----
-Arun R Murthy (3):
-      drm/plane: Add new plane property IN_FORMATS_ASYNC
-      drm/plane: modify create_in_formats to accommodate async
-      drm/i915/display: Add i915 hook for format_mod_supported_async
-
- drivers/gpu/drm/drm_mode_config.c                  |  7 +++
- drivers/gpu/drm/drm_plane.c                        | 53 +++++++++++++++-----
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 56 ++++++++++++++++------
- include/drm/drm_mode_config.h                      |  6 +++
- include/drm/drm_plane.h                            | 17 +++++++
- 5 files changed, 112 insertions(+), 27 deletions(-)
----
-base-commit: bc7a84cbc968ce97e581e9e3c2d26fb0ac106482
-change-id: 20250102-asyn-bf76730501cc
-
-Best regards,
 -- 
-Arun R Murthy <arun.r.murthy@intel.com>
+2.25.1
 
