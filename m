@@ -4,62 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3DE5C021AA
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 19:09:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30D37C021AA
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 19:27:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9767510E35B;
-	Wed, 19 Feb 2025 19:09:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F100E10E36E;
+	Wed, 19 Feb 2025 19:27:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d75VmJtC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gsAERBYU";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E89B410E05B;
- Wed, 19 Feb 2025 19:09:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE5BB10E36E
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Feb 2025 19:27:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739992150; x=1771528150;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=kNqcSh7BzpqpUal3hMylCom0ekgFe32NLAJkgkBadn0=;
- b=d75VmJtCDo9k+Up/UNwIVNGn14oH5G6BdtYvyDjaQPRr0lZNQqcOWU8u
- hLq3f7JjlDsAm6TUW1qvjdVIrhB7JfEoQziaBFsQseYwVOxW6j0hBjOsy
- i+taE23USxk3BaTGrWT92eu0WdMsQ7qmGYFgOYKSNAMmWb9ZR/OL1OklN
- O5OFEQFIKVTjAsy4j6RxpZ+gAtNa92PpMMdKTAJs3HIw0j87aWjOBcmZK
- X5LhlainCDhl1/IkIVfhfemzZla8vG0lp7bBFAr8dhsuMMhf932fYcq4p
- S0dooWddQtYhj3R3FymaVMUVzI9lNB67CV/Betue/a4s18N+RHYY+wt8w g==;
-X-CSE-ConnectionGUID: Yl2cAGhOQaO2iNleYvEcTg==
-X-CSE-MsgGUID: v6Rrvc7TRbSnS2VDTH1rpg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11350"; a="52154308"
-X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; d="scan'208";a="52154308"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2025 11:09:08 -0800
-X-CSE-ConnectionGUID: XGjvoGL0QU+wuF2i7K+86Q==
-X-CSE-MsgGUID: /Ft0+EDFQ4SaYlKZ9i30fw==
+ t=1739993262; x=1771529262;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=mbeFuu5O4F18oB1KGsdngyRxvxZJTSlEP9BZasROaBI=;
+ b=gsAERBYUrsIFK3Y99S2+Kb+U89bHhm6VF/yH7OftM7gjISLC6imiPf7C
+ FpoMdsDHiYMD0nfLA9+fX/OKiSkI1TKNX/NsWlhtjIdIUhgL6mHO7MryJ
+ GPFTAZeoB+iLkspOczXB6ZX2mOjNthM5Pgsz8yRgOmE1rqLmPRg5n37rE
+ R/Qggbrdm86H5Bi+GBqrGOfMHIiowUegyjBV48JsE481jIR6L8KOCU4un
+ BBukYhvk/PeorIK+lVbuABdEUv+FQHXLuNnBic73qYWg85h8pphQXQI2V
+ uOvASFpqS8aZy4vDjIkw4ByVfz9h7j6s9GjxU3ahF9gQQ3PKfFLeN7d6j w==;
+X-CSE-ConnectionGUID: rXH/3VJmSr2bYkJagM1Sxg==
+X-CSE-MsgGUID: wermjqSrSYOTL9F+UO+60w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11350"; a="40889015"
+X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; d="scan'208";a="40889015"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2025 11:27:41 -0800
+X-CSE-ConnectionGUID: f1XdWPXiT06GV1gIcWMVmQ==
+X-CSE-MsgGUID: lzGEJUALQU6gdrj3xBb8Qg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="120014613"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 19 Feb 2025 11:08:47 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 19 Feb 2025 21:08:40 +0200
-Date: Wed, 19 Feb 2025 21:08:40 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, chaitanya.kumar.borah@intel.com,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
- Naveen Kumar <naveen1.kumar@intel.com>
-Subject: Re: [PATCH v6 3/3] drm/i915/display: Add i915 hook for
- format_mod_supported_async
-Message-ID: <Z7YrTqoW2gWaguut@intel.com>
-References: <20250219-asyn-v6-0-b959e6becb3c@intel.com>
- <20250219-asyn-v6-3-b959e6becb3c@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250219-asyn-v6-3-b959e6becb3c@intel.com>
-X-Patchwork-Hint: comment
+X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; d="scan'208";a="145652906"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.142])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2025 11:27:41 -0800
+Date: Wed, 19 Feb 2025 11:27:41 -0800
+Message-ID: <85r03tohua.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Harish Chegondi <harish.chegondi@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>, <james.ausmus@intel.com>,
+ <felix.j.degrood@intel.com>, 
+ <matthew.olson@intel.com>, <lucas.demarchi@intel.com>
+Subject: Re: [PATCH v10 0/8] Add support for EU stall sampling
+In-Reply-To: <cover.1739906138.git.harish.chegondi@intel.com>
+References: <cover.1739906138.git.harish.chegondi@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,133 +71,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Feb 19, 2025 at 02:47:25PM +0530, Arun R Murthy wrote:
-> Hook up the newly added plane function pointer
-> format_mod_supported_async to populate the modifiers/formats supported
-> by asynchronous flips.
-> 
-> v5: Correct the if condition for modifier support check (Chaitanya)
-> v6: Replace uint32_t/uint64_t with u32/u64 (Jani)
-> 
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-> Reviewed-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-> Tested-by: Naveen Kumar <naveen1.kumar@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/skl_universal_plane.c | 56 ++++++++++++++++------
->  1 file changed, 41 insertions(+), 15 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> index cd9762947f1de227a3abbcd61b7c7b0c9848e439..f8baeb012f5e2423204f3f5ad7ce466666e04def 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -509,6 +509,33 @@ skl_plane_max_stride(struct intel_plane *plane,
->  				modifier, rotation,
->  				max_pixels, max_bytes);
->  }
-> +static bool intel_plane_async_formats(struct intel_plane *plane, u32 format)
-> +{
-> +	switch (format) {
-> +	case DRM_FORMAT_RGB565:
-> +	case DRM_FORMAT_XRGB8888:
-> +	case DRM_FORMAT_XBGR8888:
-> +	case DRM_FORMAT_ARGB8888:
-> +	case DRM_FORMAT_ABGR8888:
-> +	case DRM_FORMAT_XRGB2101010:
-> +	case DRM_FORMAT_XBGR2101010:
-> +	case DRM_FORMAT_XRGB16161616F:
-> +	case DRM_FORMAT_XBGR16161616F:
-> +		return true;
-> +	default:
-> +		return false;
-> +	}
-> +}
+On Tue, 18 Feb 2025 11:53:50 -0800, Harish Chegondi wrote:
+>
+> The following patch series add support for EU stall sampling,
+> a new hardware feature first added in PVC and is being supported
+> in XE2 and later architecture GPUs. This feature would enable
+> capturing of EU stall data which include the IP address of the
+> instruction stalled and various stall reason counts.
+>
+> Support for this feature is being added into Mesa:
+> https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/30142
+>
+> New IGT tests for EU stall sampling are being added:
+> https://patchwork.freedesktop.org/series/143030/
+>
+> This patch series has undergone basic testing with the new IGT tests.
+>
+> Issues that need investigation:
+> 1. Blocked reads with small user buffers may be blocked even with EU
+> stall data in the kernel buffer as a previous read has set pollin to
+> false even when kernel buffer has data that could be read but the user
+> buffer is too small to read all the data.
 
-Why? And anyway, this sort of stuff belongs in a separate patch.
+Related to the above would potentially be better locking for stream->pollin.
 
-> +
-> +static bool intel_plane_format_mod_supported_async(struct drm_plane *plane,
-> +						   u32 format,
-> +						   u64 modifier)
-> +{
-> +	if (!intel_plane_can_async_flip(to_intel_plane(plane), modifier))
-> +		return false;
-> +
-> +	return intel_plane_async_formats(to_intel_plane(plane), format);
+> v2: Rename xe perf layer as xe observation layer (Ashutosh)
 
-To preserve the current behavior we want something like:
+>
+> Test-with: cover.1739901972.git.harish.chegondi@intel.com
 
-1. move the planar format check from
-   intel_async_flip_check_hw() into
-   intel_plane_can_async_flip().
-
-2. implemnt intel_plane_format_mod_supported_async()
-   as
-{
-	if (!plane->format_mod_supported())
-		return false;
-	
-	return intel_plane_can_async_flip();
-}
-
-Also all this generic should be put into intel_atomic_plane.c.
-
->  
->  static bool tgl_plane_can_async_flip(u64 modifier)
->  {
-> @@ -2616,30 +2643,29 @@ static bool tgl_plane_format_mod_supported(struct drm_plane *_plane,
->  	}
->  }
->  
-> +#define INTEL_PLANE_FUNCS \
-> +	.update_plane = drm_atomic_helper_update_plane, \
-> +	.disable_plane = drm_atomic_helper_disable_plane, \
-> +	.destroy = intel_plane_destroy, \
-> +	.atomic_duplicate_state = intel_plane_duplicate_state, \
-> +	.atomic_destroy_state = intel_plane_destroy_state, \
-> +	.format_mod_supported_async = intel_plane_format_mod_supported_async
-
-This looks unrelated and just adds extra noise to the patch.
-Also you are failing to hook this up for pre-skl planes.
-
-> +
->  static const struct drm_plane_funcs skl_plane_funcs = {
-> -	.update_plane = drm_atomic_helper_update_plane,
-> -	.disable_plane = drm_atomic_helper_disable_plane,
-> -	.destroy = intel_plane_destroy,
-> -	.atomic_duplicate_state = intel_plane_duplicate_state,
-> -	.atomic_destroy_state = intel_plane_destroy_state,
-> +	INTEL_PLANE_FUNCS,
-> +
->  	.format_mod_supported = skl_plane_format_mod_supported,
->  };
->  
->  static const struct drm_plane_funcs icl_plane_funcs = {
-> -	.update_plane = drm_atomic_helper_update_plane,
-> -	.disable_plane = drm_atomic_helper_disable_plane,
-> -	.destroy = intel_plane_destroy,
-> -	.atomic_duplicate_state = intel_plane_duplicate_state,
-> -	.atomic_destroy_state = intel_plane_destroy_state,
-> +	INTEL_PLANE_FUNCS,
-> +
->  	.format_mod_supported = icl_plane_format_mod_supported,
->  };
->  
->  static const struct drm_plane_funcs tgl_plane_funcs = {
-> -	.update_plane = drm_atomic_helper_update_plane,
-> -	.disable_plane = drm_atomic_helper_disable_plane,
-> -	.destroy = intel_plane_destroy,
-> -	.atomic_duplicate_state = intel_plane_duplicate_state,
-> -	.atomic_destroy_state = intel_plane_destroy_state,
-> +	INTEL_PLANE_FUNCS,
-> +
->  	.format_mod_supported = tgl_plane_format_mod_supported,
->  };
->  
-> 
-> -- 
-> 2.25.1
-
--- 
-Ville Syrjälä
-Intel
+Not sure why we don't see the EU stall IGT's running in Xe.CI.Full.
