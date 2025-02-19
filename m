@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8C77C021AA
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 07:16:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDAFBC021AA
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 07:29:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B468B10E200;
-	Wed, 19 Feb 2025 07:16:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CDA489FF9;
+	Wed, 19 Feb 2025 07:29:12 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C95A10E46F;
- Wed, 19 Feb 2025 07:16:00 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7397985837867932793=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 117A389FF9;
+ Wed, 19 Feb 2025 07:29:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dsb=3A_Update_plan?=
- =?utf-8?q?e_scalers_on_DSB?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Expose_modifiers/for?=
+ =?utf-8?q?mats_supported_by_async_flips_=28rev6=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 19 Feb 2025 07:16:00 -0000
-Message-ID: <173994936004.3818942.7793869201930425980@b555e5b46a47>
+Date: Wed, 19 Feb 2025 07:29:11 -0000
+Message-ID: <173995015106.3825322.5652950795217923562@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20250218205850.1422-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20250218205850.1422-1-ville.syrjala@linux.intel.com>
+References: <20250218-asyn-v5-0-7ac5ac4abd4a@intel.com>
+In-Reply-To: <20250218-asyn-v5-0-7ac5ac4abd4a@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +40,19 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7397985837867932793==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/dsb: Update plane scalers on DSB
-URL   : https://patchwork.freedesktop.org/series/145044/
+Series: Expose modifiers/formats supported by async flips (rev6)
+URL   : https://patchwork.freedesktop.org/series/140934/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-2683-5b90e253264600ca6750777faee5e96061ce6d8e_BAT -> xe-pw-145044v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-145044v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-bmg-1:          [DMESG-WARN][1] ([Intel XE#877]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2683-5b90e253264600ca6750777faee5e96061ce6d8e/bat-bmg-1/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145044v1/bat-bmg-1/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  [Intel XE#877]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/877
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 5496d2c9c90a drm-tip: 2025y-02m-18d-23h-04m-20s UTC integration manifest
+=== git am output follows ===
+Applying: drm/plane: Add new plane property IN_FORMATS_ASYNC
+Applying: drm/plane: modify create_in_formats to accommodate async
+Applying: drm/i915/display: Add i915 hook for format_mod_supported_async
 
 
-Build changes
--------------
-
-  * Linux: xe-2683-5b90e253264600ca6750777faee5e96061ce6d8e -> xe-pw-145044v1
-
-  IGT_8236: 8236
-  xe-2683-5b90e253264600ca6750777faee5e96061ce6d8e: 5b90e253264600ca6750777faee5e96061ce6d8e
-  xe-pw-145044v1: 145044v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145044v1/index.html
-
---===============7397985837867932793==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dsb: Update plane scalers on DSB</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145044/">https://patchwork.freedesktop.org/series/145044/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145044v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145044v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2683-5b90e253264600ca6750777faee5e96061ce6d8e_BAT -&gt; xe-pw-145044v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-145044v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2683-5b90e253264600ca6750777faee5e96061ce6d8e/bat-bmg-1/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/877">Intel XE#877</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145044v1/bat-bmg-1/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2683-5b90e253264600ca6750777faee5e96061ce6d8e -&gt; xe-pw-145044v1</li>
-</ul>
-<p>IGT_8236: 8236<br />
-  xe-2683-5b90e253264600ca6750777faee5e96061ce6d8e: 5b90e253264600ca6750777faee5e96061ce6d8e<br />
-  xe-pw-145044v1: 145044v1</p>
-
-</body>
-</html>
-
---===============7397985837867932793==--
