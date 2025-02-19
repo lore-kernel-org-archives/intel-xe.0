@@ -4,76 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 369E5C021B1
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 13:46:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A314C021AA
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 13:53:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA5F210E806;
-	Wed, 19 Feb 2025 13:46:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB4F610E7FC;
+	Wed, 19 Feb 2025 13:53:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="i3ualNyq";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="jS+qh9w5";
 	dkim-atps=neutral
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
- [209.85.128.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DD5310E808
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Feb 2025 13:45:59 +0000 (UTC)
-Received: by mail-wm1-f43.google.com with SMTP id
- 5b1f17b1804b1-4399d14334aso5262575e9.0
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Feb 2025 05:45:59 -0800 (PST)
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
+ [209.85.128.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B1F910E801
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Feb 2025 13:53:16 +0000 (UTC)
+Received: by mail-wm1-f53.google.com with SMTP id
+ 5b1f17b1804b1-4398e839cd4so5491285e9.0
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Feb 2025 05:53:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1739972758; x=1740577558; darn=lists.freedesktop.org; 
+ d=ffwll.ch; s=google; t=1739973195; x=1740577995; darn=lists.freedesktop.org; 
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=DuYKGunih/1L7qghmHwZtUXwVHPv8FTzBZm71QJC0w8=;
- b=i3ualNyqmlIVVDSfy7VSk/wQceyqVhp8mjHj2NNJJrjouhUDIQNd3hCJhgwxez+Atd
- Pe1CT7WLil7ALxwrpQRzD8tUwMEad39ayS2NgatSEdYF9I3/9BmIQU8BBuyzevas/YYF
- i5cGQDylW9/mxdYHh9XMBpchLabAFht+81ZAg=
+ bh=FyEka5hJeoXHg0os4K6Y2PLLWFiuCF9r77npcdvsS+8=;
+ b=jS+qh9w5X+Ye5jNFASHtCHUYSw11p/biOBFy8EMYccejGvBuqKVr63q97cK3id4yCC
+ tIYp9PWeZCoLFqyDa7SP1vme1swO11MzT0XpXDE54g+ALoXTzod6zH1B2PXwOWzKypP6
+ 1iEbYC1+HRWNp5ooViv6Zl1nZz542OOcQfCts=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1739972758; x=1740577558;
+ d=1e100.net; s=20230601; t=1739973195; x=1740577995;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=DuYKGunih/1L7qghmHwZtUXwVHPv8FTzBZm71QJC0w8=;
- b=TrMQ+pbd9EKSzOu6LrKQ8b9dRB3LDQmvaPfAOsm1YEAYRE+t7Zsq7Bi44Tck1nxlj1
- uKLc2Ow5EAqKpmcBHKmvbjRjmiKfl3TJmkHghiZGgXrExT3bgr3NWRM5OIjg7NuTGN2m
- FKRdkb6JtG2bKi58AZcT8aDE9oFPkTae4lxYIFq66WE6xTI41Wyw6HalQAtn2YrMdY7D
- QhQHBW2gbkvKCifabW0twVYS8jN9aEVzE+HFDVXmNAkYyBZulKCMaKk58IAKQKINdsPb
- wFjtnhJFBz/+qtrgH5wCXQYY4mskFskDhwU7uqT8QcHaXgh8ETFStgIY1RycXfjZAaCm
- JivA==
+ bh=FyEka5hJeoXHg0os4K6Y2PLLWFiuCF9r77npcdvsS+8=;
+ b=uim7hhn2AuEnhF8MGUExko9XMSTmVQZSUcbCqR3PnT+LtcsU1BAUSCV4HzMMtKnX0S
+ 7pwa+Yp10NzU6CcGr2IcClJVf1ulLNel55EVQaTybLwRDCggIYcTxXIWAHZtGCw1hbYZ
+ 1JY8N/fbatgiM4wHl1XbkdfVq1SodHzpuRWT2XbfGjfCRWjELpV2YgOi4JDTbilFaBIS
+ Rp4s77f8WIKuWvxHXvTgVhlkIWA2BsYfYaPZnCIrpijk293rCHk3BKwtBudNKURfCQfh
+ gkSzJ8GhZ0sxlUS4G9lp18pYecQHuU5F9ZjPQDDjzW0cPAgCIenflPqeIqWguGa+aicu
+ Ow8w==
 X-Forwarded-Encrypted: i=1;
- AJvYcCW2IowyRDis4v8gQoJITSZWsvE1/j+2owUyOnOMuC1TZOAhDd9qEkQvVkGeFJi6gHMVDrXsi3RRQA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwtqxNwavGMK5Z/D4BaadDpkAoi8g2/P6bUdBXA3GeAGSjXnLSm
- /6+NkHTOY3Ozt4OaZqxISORlZeJlUPyrmV1w6x6x3TBoMPrK5Gbp0SFSxmHeCGI=
-X-Gm-Gg: ASbGncup9ZAseWghJA8ZOBeSjoH90FhTreC2zcFrtJpCZ2qG8/KoOchH5+U0lNZk2b/
- La46LOJ+8urwavnSYJev6CKqxhcB4npxuLV4YX/aNRcHyMjEFCqgzze+OHSCPGvceu8rYm0slsg
- ZkTvlydT4gpmvqptJr34Ib71Qw2rs8G+hmgrm4rAFUIp1kAAknkSrV56OMf+0LykFc6FIwXuZ3w
- TurhHKP8G8WGXW4XX/XNxnb/GfE3MAE0lgPxqoTpp+J6CBsW6wN/ROJ4nuSWMpuSiFjp+9bm93G
- iFEgWIHFdPf4qdSVb1YBXCVsWL8=
-X-Google-Smtp-Source: AGHT+IH4kKKjtDXYSX9scCgOQ16qrB1fFgMinnqkrYVtnqwj+dIRd3oTn+oT0szj9qoO3HIErghv6A==
-X-Received: by 2002:a05:600c:1c08:b0:439:608b:c4ad with SMTP id
- 5b1f17b1804b1-43999d75759mr34740595e9.3.1739972757953; 
- Wed, 19 Feb 2025 05:45:57 -0800 (PST)
+ AJvYcCV2vJobebIV+uVpyQsNUCDUCN0+H+YwivCH6Da2ePZWZwC1cMtQK8bhbdlEC4OCANBYN8xJ/nQx/w==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx5yO6GRvS8BQGmX1Xk3WSkyKmuWgZQ1L+rlMj+OxY41kQjLiJT
+ B8lyLxbWmGcI6MSwIH0sFWDKCHiz0vtq6Dhwa2X7hpsG8cP4MERmpcDg4Aldetw=
+X-Gm-Gg: ASbGncsxo/UP9vlpOZNcQpaxg1e/ZMDIl6TI5k9wMigNVZEFc0FNqGTy63zGGsmoG76
+ NlVY/T/9t5r5reOMbOiJUsWWdwY4pIb2kOI5P4iXVOZRn+YvvFbUWG4QImmDuliwDtgw5LLwA7U
+ UfSPu59JU297iR32jS1JDZG/0UzgNx3sDFUfihfapw12DGnpZ1TrOp/KzU1Li7JcfNeh7M76nZW
+ iCZqjhhitFMuIlFPYRg/eqR5N5JH3rWhQruMPPqTWD02naUGMIyb800lnrfWuUkRChinIURg/Q7
+ Qw+8BIRcJAxOK5nsFf6iJ/jWncY=
+X-Google-Smtp-Source: AGHT+IHhxL7NdXguAsHBVaP1UvYcb8rpQV9UAn0iPu3pZhbjhRGsonzEzPwRA956d+9JVoraHQ0pbA==
+X-Received: by 2002:a5d:47c6:0:b0:38b:d807:f3be with SMTP id
+ ffacd0b85a97d-38f57bd9182mr3175939f8f.3.1739973194736; 
+ Wed, 19 Feb 2025 05:53:14 -0800 (PST)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-439930a9966sm53808365e9.15.2025.02.19.05.45.57
+ ffacd0b85a97d-38f259d5923sm18084914f8f.74.2025.02.19.05.53.13
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 19 Feb 2025 05:45:57 -0800 (PST)
-Date: Wed, 19 Feb 2025 14:45:55 +0100
+ Wed, 19 Feb 2025 05:53:14 -0800 (PST)
+Date: Wed, 19 Feb 2025 14:53:12 +0100
 From: Simona Vetter <simona.vetter@ffwll.ch>
-To: Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- saurabhg.gupta@intel.com, alex.zuo@intel.com,
- joonas.lahtinen@intel.com, lucas.demarchi@intel.com,
- matthew.brost@intel.com
-Subject: Re: [PATCH 4/4] drm/xe/xe_drm_client: Add per drm client reset stats
-Message-ID: <Z7Xgk1YYxVfgL1jn@phenom.ffwll.local>
-References: <20250214203757.27895-1-jonathan.cavitt@intel.com>
- <20250214203757.27895-5-jonathan.cavitt@intel.com>
- <0bda0535-3c83-46ef-b40f-8b2be1ead6cc@ursulin.net>
+To: Arun R Murthy <arun.r.murthy@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, chaitanya.kumar.borah@intel.com,
+ Naveen Kumar <naveen1.kumar@intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Subject: Re: [PATCH v6 0/3] Expose modifiers/formats supported by async flips
+Message-ID: <Z7XiSGwsPntwP7bd@phenom.ffwll.local>
+References: <20250219-asyn-v6-0-b959e6becb3c@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <0bda0535-3c83-46ef-b40f-8b2be1ead6cc@ursulin.net>
+In-Reply-To: <20250219-asyn-v6-0-b959e6becb3c@intel.com>
 X-Operating-System: Linux phenom 6.12.11-amd64 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -89,75 +86,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Feb 18, 2025 at 06:45:30PM +0000, Tvrtko Ursulin wrote:
+On Wed, Feb 19, 2025 at 02:47:22PM +0530, Arun R Murthy wrote:
+> All of the formats/modifiers supported by the plane during synchronous
+> flips are nor supported by asynchronous flips. The formats/modifiers
+> exposed to user by IN_FORMATS exposes all formats/modifiers supported by
+> plane and this list varies for async flips. If the async flip supported
+> formats/modifiers are exposed to the user, user based on this list can
+> take decision to proceed or not and avoid flip failures during async
+> flips.
+> Discussion around this can be located @
+> https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/29618#note_2487123
+> Userspace implementation for IN_FORMARTS_ASYNC under review @
+> https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/4063
 > 
-> On 14/02/2025 20:37, Jonathan Cavitt wrote:
-> > Add a counter to xe_drm_client that tracks the number of times the
-> > engine has been reset since the drm client was created.
-> > 
-> > Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> > ---
-> >   drivers/gpu/drm/xe/xe_drm_client.c | 2 ++
-> >   drivers/gpu/drm/xe/xe_drm_client.h | 2 ++
-> >   drivers/gpu/drm/xe/xe_guc_submit.c | 4 +++-
-> >   3 files changed, 7 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
-> > index f15560d0b6ff..ecd2ce99fd19 100644
-> > --- a/drivers/gpu/drm/xe/xe_drm_client.c
-> > +++ b/drivers/gpu/drm/xe/xe_drm_client.c
-> > @@ -492,6 +492,8 @@ static void show_blames(struct drm_printer *p, struct drm_file *file)
-> >   	client = xef->client;
-> > +	drm_printf(p, "drm-client-reset-count:%u\n",
-> > +		   atomic_read(&client->reset_count));
+> TODO: Upon merge of the patch related to async flip
+> https://patchwork.freedesktop.org/patch/626849/?series=139807&rev=6
+> the patch 5 in this series will have to make use of the new function
+> pointer can_async_flip().
 > 
-> When drm- prefix is used keys have to be agreed in drm-usage-stats.rst.
-> Therefore I suggest exploring across different drivers and seeing if anyone
-> else would be interested. Maybe people who worked on the DRM common wedged
-> event for example.
+> v3: Add new plane->funcs format_mod_supported_async (Ville)
+> 
+> Arun R Murthy (3):
+>   drm/plane: Add new plane property IN_FORMATS_ASYNC
+>   drm/plane: Expose function to create format/modifier blob
+>   drm/i915/display: Populate list of async supported formats/modifiers
 
-+1 on standardizing wedge/reset tracking across drivers more. I guess
-ideally we could integrate this into one thing to make sure it's
-consistently reported across all drivers.
--Sima
+Somewhat orthogonal, but in a different atomic kms discussion the much
+bigger question of what are compositors supposed to figure out with
+TEST_ONLY and what are they supposed to figure out through special
+properties cropped up. Might be really good to document that, so that we
+can have some design consistency here.
+
+I think this patch series should also document why we need this and
+compositors can't figure this out on their own, ideally by linking/quoting
+the relevant discussions in the compositor enabling PR.
+
+Thanks, Sima
 
 > 
-> Or in cases when new stats are not universally useful drivers can prefix
-> with xe-. We had this discussion recently with some panthor internal memory
-> stats.
+>  drivers/gpu/drm/drm_mode_config.c             |  7 +++
+>  drivers/gpu/drm/drm_plane.c                   | 50 ++++++++++++------
+>  .../drm/i915/display/skl_universal_plane.c    | 51 +++++++++++++++++++
+>  include/drm/drm_mode_config.h                 |  6 +++
+>  include/drm/drm_plane.h                       |  4 ++
+>  5 files changed, 103 insertions(+), 15 deletions(-)
 > 
-> Regards,
+> --
+> 2.25.1
 > 
-> Tvrtko
+> ---
+> Arun R Murthy (5):
+>       drm/plane: Add new plane property IN_FORMATS_ASYNC
+>       drm/plane: Expose function to create format/modifier blob
+>       drm/plane: Function to check async supported modifier/format
+>       drm/i915/display: Populate list of async supported formats/modifiers
+>       drm/i915/display: Add function for format_mod_supported_async
 > 
-> >   	drm_printf(p, "\n");
-> >   	drm_printf(p, "- Exec queue ban list -\n");
-> >   	spin_lock(&client->blame_lock);
-> > diff --git a/drivers/gpu/drm/xe/xe_drm_client.h b/drivers/gpu/drm/xe/xe_drm_client.h
-> > index d21fd0b90742..c35de675ccfa 100644
-> > --- a/drivers/gpu/drm/xe/xe_drm_client.h
-> > +++ b/drivers/gpu/drm/xe/xe_drm_client.h
-> > @@ -53,6 +53,8 @@ struct xe_drm_client {
-> >   	 * Protected by @blame_lock;
-> >   	 */
-> >   	struct list_head blame_list;
-> > +	/** @reset_count: number of times this drm client has seen an engine reset */
-> > +	atomic_t reset_count;
-> >   #endif
-> >   };
-> > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > index d9da5c89429e..8810abc8f04a 100644
-> > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > @@ -1988,7 +1988,9 @@ int xe_guc_exec_queue_reset_handler(struct xe_guc *guc, u32 *msg, u32 len)
-> >   		return -EPROTO;
-> >   	hwe = q->hwe;
-> > -
-> > +#ifdef CONFIG_PROC_FS
-> > +	atomic_inc(&q->xef->client->reset_count);
-> > +#endif
-> >   	xe_gt_info(gt, "Engine reset: engine_class=%s, logical_mask: 0x%x, guc_id=%d",
-> >   		   xe_hw_engine_class_to_str(q->class), q->logical_mask, guc_id);
+>  drivers/gpu/drm/drm_mode_config.c                  |   7 ++
+>  drivers/gpu/drm/drm_plane.c                        |  72 +++++++++----
+>  drivers/gpu/drm/i915/display/skl_universal_plane.c | 113 ++++++++++++++++++---
+>  include/drm/drm_mode_config.h                      |   6 ++
+>  include/drm/drm_plane.h                            |  24 +++++
+>  5 files changed, 188 insertions(+), 34 deletions(-)
+> ---
+> base-commit: 08bd590935a5258ffd79355c59adffd72fb2c642
+> change-id: 20250102-asyn-bf76730501cc
+> 
+> Best regards,
+> --
+> Arun R Murthy <arun.r.murthy@intel.com>
+> 
+> ---
+> Changes in v6:
+> - EDITME: describe what is new in this series revision.
+> - EDITME: use bulletpoints and terse descriptions.
+> - Link to v5: https://lore.kernel.org/r/20250218-asyn-v5-0-7ac5ac4abd4a@intel.com
+> 
+> ---
+> Arun R Murthy (3):
+>       drm/plane: Add new plane property IN_FORMATS_ASYNC
+>       drm/plane: modify create_in_formats to accommodate async
+>       drm/i915/display: Add i915 hook for format_mod_supported_async
+> 
+>  drivers/gpu/drm/drm_mode_config.c                  |  7 +++
+>  drivers/gpu/drm/drm_plane.c                        | 53 +++++++++++++++-----
+>  drivers/gpu/drm/i915/display/skl_universal_plane.c | 56 ++++++++++++++++------
+>  include/drm/drm_mode_config.h                      |  6 +++
+>  include/drm/drm_plane.h                            | 17 +++++++
+>  5 files changed, 112 insertions(+), 27 deletions(-)
+> ---
+> base-commit: bc7a84cbc968ce97e581e9e3c2d26fb0ac106482
+> change-id: 20250102-asyn-bf76730501cc
+> 
+> Best regards,
+> -- 
+> Arun R Murthy <arun.r.murthy@intel.com>
 > 
 
 -- 
