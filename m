@@ -4,170 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9559EC021AA
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 15:01:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1D50C021AA
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 15:05:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E2F610E349;
-	Wed, 19 Feb 2025 15:01:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5E5910E330;
+	Wed, 19 Feb 2025 15:05:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bgi2XxiK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QOnWwhPc";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 651F910E349;
- Wed, 19 Feb 2025 15:01:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CD6910E14C;
+ Wed, 19 Feb 2025 15:05:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739977262; x=1771513262;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=GaDkbeymazlxuhXXOqmieB2HEgq0NnLxhPScwWzUQYI=;
- b=Bgi2XxiKF1Tb3n0TQGzbVIrZFK9NjNVk5GpmJoog10TSRK9UMrWxmyHY
- tYtcJVGeLRzcSXOBfVqdgAYS3gyOPZYMcF6s/Tvk9eZ8ABtT2B9oK4O2p
- csZUBOvJGAWbBQHB7QFINjw7uVPcaoD2AtmncVqFuVIsl9XjHNY0pI5JM
- tMy1/gi1qwj7nh1JW8f/gaar3Ek0I+qGsBXUz2J6eysx2T9XQCcw7+CDU
- LW+A65D/S1TBGrJXjBuscoCfUW6H8aYhuFAjoN0Mf6sneFuvV8Uli1Z/H
- iVCyEWKo0tDTEP344TIYnSvc5HJDXcx5XCotUmoHznRW6RHfN05D0cd3u Q==;
-X-CSE-ConnectionGUID: P/nUULHHS+6CPY+EsjGOig==
-X-CSE-MsgGUID: FlX6//IwQOCdBdNAsuPLpw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11350"; a="39904497"
-X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; d="scan'208";a="39904497"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2025 07:01:02 -0800
-X-CSE-ConnectionGUID: lIl2tEZ5Rs6UGXq1nO9WwQ==
-X-CSE-MsgGUID: kYSgTgeQRb6M1UOEr51T5g==
+ t=1739977517; x=1771513517;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=5OVwWlTY+g8rjkwPCVKaDJEeTp3MQ+mfd6uGA+nXGF8=;
+ b=QOnWwhPcfDHy0RqLJmxR2wUSwJqYYjIhJ5yU/6J++IoPdzTehooedyVU
+ lz39w0dn1ZmKeRTYzwGPJBJSse74Iigq+cgTIK6o1Xb1hoM+t0jByoDL/
+ f/4d8FVbAXjsFtt65zC8Cu0EeFHtkgWGXLYFbqn/St5Whg3vnNydkAIBR
+ Y3n2+KmZ3yisYMq30LZn4BA7fXZSZ/obkJM7TZITd4A7yPPnjZEyTgdC/
+ MnfJ3LTCy3xSfRwN6OBRvDC1iCiRLBT7e/0VfbV/YcCaOSdkV3cQmoAp8
+ 4yTF3P6za5vv5AeQ33qlF2BgtpjPs6hChW8ovVaN9W/yQ8nqsXxvPn4BR Q==;
+X-CSE-ConnectionGUID: lfrO0iDVQsm0Y6vG+vzPDA==
+X-CSE-MsgGUID: tmEbnAYxSkSbZ5rwnKkkyA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11350"; a="44365606"
+X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; d="scan'208";a="44365606"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2025 07:05:17 -0800
+X-CSE-ConnectionGUID: ilveB+pSTKO1a+3GqZxi+Q==
+X-CSE-MsgGUID: bzwO58uqQHO1xFBWuInT+g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="115643813"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2025 07:01:01 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.1544.14; Wed, 19 Feb 2025 07:01:01 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Wed, 19 Feb 2025 07:01:01 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Wed, 19 Feb 2025 07:00:58 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NMYn8qCifVGC8C+DF4DedNw7LWo/cyYc6zBXZ2KL52ses2CW2MGRWAw8JpzsCcSoOgnitLVXyJdOlp5oyye4q+uynpxXcVIo8XA6INurFHCDfbIfwXBAxUMPTdPIX/1MMoOhuj8IRVLooocaNNUOWhd+tdpuX62kJzDdw/EZsFwhiFdD0NaGUbCekei4y5oPmz5UFrX/MYKQTY5RxGz1x7hEwmbcLMScC/C3UTwTl9Gvz/sJ+hiUi545X+m61PMO5oFJmeIpjPTnUQQIzZj/0Pfu2kJjcSahErexwySOud30ArfyIvIHNa0o220/uV3EAtd2wA3jL6gXkz2rdNbanA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YMno6bFVa875yQoAWDVzyII/WcVWkICTwySoyjfABfc=;
- b=S/lyctf/6g4VsDxXjkqnACaT/0B3rQRCnOC4HgTeOT2O95/FxW3zppG1U7jpD0mYVrH+vDAGBMJO+iwKRcgibofQCUPN2j7OJTQvWVUXTmwZFTjCYavHNeh30C00p3+knbh0lMhRKyb9DS+E0CTcNl6rzsmy6CYFBRULkd2NQMTdytivACkP5tKjpHUWMcz0mWMi0els9GqUaUsbY9wNUdoklxuvWRdz0XIL4PvDqZB8znPwpx/f20N8rCIeosVipWcWxTD3DNaWgPliLMKNEKVosvxlKhjzpop5UzDXz6l835wDAwtyGQ6USUZvp2ECG5gAxNuWdRiqfjLZ//JMvg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by SJ0PR11MB5867.namprd11.prod.outlook.com (2603:10b6:a03:42a::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.24; Wed, 19 Feb
- 2025 15:00:53 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%3]) with mapi id 15.20.8466.013; Wed, 19 Feb 2025
- 15:00:53 +0000
-Date: Wed, 19 Feb 2025 09:00:49 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Haoxiang Li <haoxiang_li2024@163.com>
-CC: <thomas.hellstrom@linux.intel.com>, <rodrigo.vivi@intel.com>,
- <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
- <tzimmermann@suse.de>, <airlied@gmail.com>, <simona@ffwll.ch>,
- <himal.prasad.ghimiray@intel.com>, <badal.nilawar@intel.com>,
- <matthew.brost@intel.com>, <intel-xe@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
- <stable@vger.kernel.org>
-Subject: Re: [PATCH] drm/xe: Add check for alloc_ordered_workqueue()
-Message-ID: <4uovznb72ljcirafrpwr5ynkpsx66bc3gcn4xxhqpwooshydea@b7suaeje6agd>
-References: <20250219095659.2613487-1-haoxiang_li2024@163.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20250219095659.2613487-1-haoxiang_li2024@163.com>
-X-ClientProxiedBy: MW4PR03CA0193.namprd03.prod.outlook.com
- (2603:10b6:303:b8::18) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="115222200"
+Received: from lfiedoro-mobl.ger.corp.intel.com (HELO [10.245.246.115])
+ ([10.245.246.115])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2025 07:05:15 -0800
+Message-ID: <67bd68ecf83d49180e76b12a967c65da79d10c0b.camel@linux.intel.com>
+Subject: Re: [PATCH v5 16/32] drm/xe: Add unbind to SVM garbage collector
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com, 
+ simona.vetter@ffwll.ch, felix.kuehling@amd.com, dakr@kernel.org
+Date: Wed, 19 Feb 2025 16:05:12 +0100
+In-Reply-To: <20250213021112.1228481-17-matthew.brost@intel.com>
+References: <20250213021112.1228481-1-matthew.brost@intel.com>
+ <20250213021112.1228481-17-matthew.brost@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SJ0PR11MB5867:EE_
-X-MS-Office365-Filtering-Correlation-Id: 33f1de16-8f0c-49ee-a5ca-08dd50f634af
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|7416014|1800799024|7053199007; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?tW0HTbCrSn/TxAI0Nw+u+RYa/xkgemSsWtM6EabwOtGQ76xoke980rznkegB?=
- =?us-ascii?Q?+s/fXzJv4GpiqJr/YVZELpCgc/tarvlB7BQJxPxnNGkmWk0WXrrJKkFQuRnL?=
- =?us-ascii?Q?OV/2FxWlnvaUNm6j3ffJYhfuuW7x2KG7LJYoM2b0WUtd0KvpwQ55lc6k3/Fo?=
- =?us-ascii?Q?+IMSlaB83XFPiQVd8OzQY6BK+tCFqvbNpPMBlMlfVoFQx61jddAqihtWhwkc?=
- =?us-ascii?Q?yoJSewV9DdX2QpX+5U6jXtPItqGMyQTh5iPH9f/jOEteSBkaF2VOsMgnZxBe?=
- =?us-ascii?Q?e+OfXTD3+9zM2nUZlw9h3jnHDDZAL1KuAwMsp1taT8hCM1dt4n6apJMDWSsW?=
- =?us-ascii?Q?HvgkQgVZ9WlaH6B2iBfX729qYMZltUAUjFuk807+yNFYejEWiF+3VLBRMKhn?=
- =?us-ascii?Q?7hHUIyNseRIAHoGRL+KqaZoKtwCBySkaUk9kTudNxKY22kh/vx87IdDurYEM?=
- =?us-ascii?Q?LsV3VOqvICTZIZ0UTPm3DZWceiINtcX/Ovxx5AgL/NJb8QriSMfRHjK+VwkO?=
- =?us-ascii?Q?6/Zi6g6gr2P0ZEJKiKkeBU2Ztkm6ODmC8/mLkaau9eodW15SFqz7fHV/zikl?=
- =?us-ascii?Q?bFy25FZ/rACY055FqdchplxFqmyyx93SJrvi9mP+w2mzhPA+z4E28h+FZFci?=
- =?us-ascii?Q?/YCApKRpIdQ7iJ7ijyn5w074Ep03Tk35p9FBfifWdXz3DblDCFGgjKIsesff?=
- =?us-ascii?Q?gMnINJPTpTI/TRCTrFgj1uFy6N4od9usKEmQ1EAatSbP7PqUIAq9ff0Ytk5K?=
- =?us-ascii?Q?B2C1nT8bQKCCYFI2v/DnuwYjxvY9DBV/4m2xxvBsnE+Q1N7ncIjCYaO3lvaH?=
- =?us-ascii?Q?zbSUMmKJMjEhfsv6OcfenhSoTwzjC00KA3nwcxxGEW4CvsWAG172yN3tlFru?=
- =?us-ascii?Q?oQ9eEekoeHAiLmHgV5k955k53zaFVYg0p0ISiIrAjydTfW62qWBSH8iFBPEY?=
- =?us-ascii?Q?3sAvNcFs5/RGtmTRP8lk6+i53f7lnEMaZGCTCOWc/wii2C72UpDL67Fux97q?=
- =?us-ascii?Q?c8Ka7Jb1ThoZPHEa2MAgdqewqfckI7TnKS0PJy59nU25d+9MXIL6F+3NawWA?=
- =?us-ascii?Q?DTL91VygAqu9b0UQQBY7S+k9/dnbgW5wj7qHnGDa8JDCxtqWI3v5Ila3yvC5?=
- =?us-ascii?Q?UU+VUtXO3AGnb+xwl+FaemOvFyWJ0qBNB4n0maRdrw2F4r+K0sp9lMhlFMIl?=
- =?us-ascii?Q?d3yPHXA1hzZIXhcXfpBJR2L96kvLSrB3Wcm3Q65RtvKuDl4ofzUf6R5+JcwI?=
- =?us-ascii?Q?VtskYs8Oyb4vNWG0A7iQAbUoDicuJpjPY/M6/8Bwyzch2gH1JZ9RjRbMt1Vj?=
- =?us-ascii?Q?5TzZBJYK/tRmrS+mnGbEz4pDJBVKWSbk34jGdHmRF3GMHI5o8gjVANaPswPD?=
- =?us-ascii?Q?Bg2FmYgH/g+R3yhLpeBKLb/goGHf?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(7416014)(1800799024)(7053199007); DIR:OUT;
- SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?hRgfjs3sKZPAdF8QBDL9GyhX1A1cfjh3+205fJj/PRvGi3FHyjCxdFXJHNPC?=
- =?us-ascii?Q?5aug0pHviI6xDVVS61nObUKQ/8O0IHHhf49i+QvkrS0aNPGqoM7/S/db1oqg?=
- =?us-ascii?Q?n/g3+ZAkVpXplS4HsbakR66SYrvYh6U8gcThe8696DvpzpQLqMSpoIV248V6?=
- =?us-ascii?Q?w2XefQOxs0lNtnFEfIafYZTv11e+S2XeIB0ynd+JeRtocOxU8Renhn5PDb2k?=
- =?us-ascii?Q?Yflo0oI2aDseHJ/aeguxjqU7V9Si4vtev+U3olnuV9NbzciLKEB8dw6DPGPC?=
- =?us-ascii?Q?IzsSN3sM1WJGAuRykJJIODF1/gSIsF6e8Eeswt0PwBDDuCbPESiYQrGGoVf0?=
- =?us-ascii?Q?sSjJU/CbhJa068FhUkh0dzlkMU2bGpm8Su9ZCbqKo4x3ThK0xkWCV25IA9wT?=
- =?us-ascii?Q?ngKNtUes9u0OAWGM29hoxW7gMSeVn5lJAOt2zLfiMOf/+b2mBOHxVtQImqBr?=
- =?us-ascii?Q?99SK7D76NQ64TF18ZgclHwlKHoU1iSKignp2zUxKwnYk3nWWDnqlt7pmVCW1?=
- =?us-ascii?Q?4pRIcdLMn/2TMxBL+5T4eYnSWULOKviTIEgbixXFaL/LX7u4JU/riwaG5a6d?=
- =?us-ascii?Q?1HH3yBs9mrEzMKPzLuMf3OK21K9qV3MTHcEaQkDLgCWYIl+jDS0/IRBV3NEn?=
- =?us-ascii?Q?f6cF8/GVvAe2q4okRNXYYMi7+7F0Jrx/OxjQ++hOHDCf+0Ie/M6YL0saVZIJ?=
- =?us-ascii?Q?HS2OtoJE+Mefobu07GpzkiXY+uYVDlavBhlMrGQlZe+3OiDoiOl3yaT2glGD?=
- =?us-ascii?Q?S6O3SjYJfC9LO1EJwAgNwwVX5dRbbb3bqQp3IbwNW7y3PoKYI6AMeaTiy5BG?=
- =?us-ascii?Q?XAZT8YwsWc1V1bACfudCNcbv/O9mG5mnx8s/MG01vF1KQZACFMxHD2tQKYUk?=
- =?us-ascii?Q?D+xb5TGF55BYhTYzsrNMQ+Scjl9grNypGDJE+Xwfmp33L7drYjXTZGMPA5qu?=
- =?us-ascii?Q?b6sbtadQWJFdQPVHjiFKX0u8odR8AB8HtWESS9XTKy4COLXjqh3rqp0sQuOJ?=
- =?us-ascii?Q?otI53KmOa9TJe4V5Cu3SdmtMcGR4t0z9rTPxHGAWMdGFdneKmmLELqnn0Kzd?=
- =?us-ascii?Q?0nTgQTyCh58J61CMjwGQR7zsBRDPrFiEUalyr+1UhSolM0K4N4dfYlMfQ513?=
- =?us-ascii?Q?YtoXCQfFoVgo3/UuExji0WjvrUrPQdfhCE9g9u6+9wIBmtrLW/uDyCFA3FkB?=
- =?us-ascii?Q?CC3vLNTyalKMKwTJG7dtpIZv5d3hx1NYm7BlX+RfcLDI2bVbvaES/Ri7W3i+?=
- =?us-ascii?Q?PfS7VxV0Y4ATgOixKN4XzVszgIXk+JAsgcyFX+bHMc+POOKXVrj3J1epDgAp?=
- =?us-ascii?Q?GkkxcPGIw9GDxEcN++AoH3b3jfRefR+nSfju8fhulTDwxqsqRD1A3icHG/cc?=
- =?us-ascii?Q?fOUOGC+UYuGoXeS1RPQsjIHBwi86xrF2Ym2NiQ910zqVkzIo+s4FBO7GIsPf?=
- =?us-ascii?Q?IjhtVVnmtnD0aTHnpIWFc36l+AdTs1lGJiRsPM82CY2TwLSL0lSiFivlBAEC?=
- =?us-ascii?Q?FpMqYxYkr5f0TKnwfvTn4UIK3Q/Wg/hfnBCQFjt+9qf60S0yaZsH8oUw7y6y?=
- =?us-ascii?Q?YmlxqfRd8YhegVk0W31CAGmy5LoXpLzS04d93rpOsKIIC6VJ8/4FwpYsYmNy?=
- =?us-ascii?Q?KA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 33f1de16-8f0c-49ee-a5ca-08dd50f634af
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2025 15:00:53.5706 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7jDeLwt3hSB7VCABBIR9Zp87UPPxO0L7QrIS9QhLjo+0uiYJDeMJ2bHMgiyRzeDEh3skDpnrOWY0aoMDrN2K7h/7esHUxTfmBXTkH9Eyiek=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5867
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -182,36 +72,428 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Feb 19, 2025 at 05:56:59PM +0800, Haoxiang Li wrote:
->Add check for the return value of alloc_ordered_workqueue()
->in xe_gt_alloc() to catch potential exception.
->
->Fixes: e2d84e5b2205 ("drm/xe: Mark GT work queue with WQ_MEM_RECLAIM")
->Cc: stable@vger.kernel.org
->Signed-off-by: Haoxiang Li <haoxiang_li2024@163.com>
+On Wed, 2025-02-12 at 18:10 -0800, Matthew Brost wrote:
+> Add unbind to SVM garbage collector. To facilitate add unbind support
+> function to VM layer which unbinds a SVM range. Also teach PT layer
+> to
+> understand unbinds of SVM ranges.
+>=20
+> v3:
+> =C2=A0- s/INVALID_VMA/XE_INVALID_VMA (Thomas)
+> =C2=A0- Kernel doc (Thomas)
+> =C2=A0- New GPU SVM range structure (Thomas)
+> =C2=A0- s/DRM_GPUVA_OP_USER/DRM_GPUVA_OP_DRIVER (Thomas)
+> v4:
+> =C2=A0- Use xe_vma_op_unmap_range (Himal)
+> v5:
+> =C2=A0- s/PY/PT (Thomas)
+>=20
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+LGTM. Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 
-thanks
-Lucas De Marchi
 
->---
-> drivers/gpu/drm/xe/xe_gt.c | 2 ++
-> 1 file changed, 2 insertions(+)
->
->diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
->index 5d6fb79957b6..0f42bbcb8d42 100644
->--- a/drivers/gpu/drm/xe/xe_gt.c
->+++ b/drivers/gpu/drm/xe/xe_gt.c
->@@ -79,6 +79,8 @@ struct xe_gt *xe_gt_alloc(struct xe_tile *tile)
-> 	gt->tile = tile;
-> 	gt->ordered_wq = alloc_ordered_workqueue("gt-ordered-wq",
-> 						 WQ_MEM_RECLAIM);
->+	if (!gt->ordered_wq)
->+		return ERR_PTR(-ENOMEM);
->
-> 	err = drmm_add_action_or_reset(&gt_to_xe(gt)->drm, gt_fini, gt);
-> 	if (err)
->-- 
->2.25.1
->
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_pt.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 84=
+ ++++++++++++++++++++++++++----
+> --
+> =C2=A0drivers/gpu/drm/xe/xe_svm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 9=
+ +++-
+> =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 83
+> +++++++++++++++++++++++++++++++
+> =C2=A0drivers/gpu/drm/xe/xe_vm.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
+=A0 2 +
+> =C2=A0drivers/gpu/drm/xe/xe_vm_types.h | 10 ++++
+> =C2=A05 files changed, 171 insertions(+), 17 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> index cb63596dbfbf..f8d06c70f77d 100644
+> --- a/drivers/gpu/drm/xe/xe_pt.c
+> +++ b/drivers/gpu/drm/xe/xe_pt.c
+> @@ -957,10 +957,16 @@ static void xe_pt_cancel_bind(struct xe_vma
+> *vma,
+> =C2=A0	}
+> =C2=A0}
+> =C2=A0
+> +#define XE_INVALID_VMA	((struct xe_vma *)(0xdeaddeadull))
+> +
+> =C2=A0static void xe_pt_commit_locks_assert(struct xe_vma *vma)
+> =C2=A0{
+> -	struct xe_vm *vm =3D xe_vma_vm(vma);
+> +	struct xe_vm *vm;
+> =C2=A0
+> +	if (vma =3D=3D XE_INVALID_VMA)
+> +		return;
+> +
+> +	vm =3D xe_vma_vm(vma);
+> =C2=A0	lockdep_assert_held(&vm->lock);
+> =C2=A0
+> =C2=A0	if (!xe_vma_has_no_bo(vma))
+> @@ -986,7 +992,8 @@ static void xe_pt_commit(struct xe_vma *vma,
+> =C2=A0		for (j =3D 0; j < entries[i].qwords; j++) {
+> =C2=A0			struct xe_pt *oldpte =3D
+> entries[i].pt_entries[j].pt;
+> =C2=A0
+> -			xe_pt_destroy(oldpte, xe_vma_vm(vma)->flags,
+> deferred);
+> +			xe_pt_destroy(oldpte, (vma =3D=3D
+> XE_INVALID_VMA) ? 0 :
+> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_vma_vm(vma)->flags,
+> deferred);
+> =C2=A0		}
+> =C2=A0	}
+> =C2=A0}
+> @@ -1419,6 +1426,9 @@ static int xe_pt_svm_pre_commit(struct
+> xe_migrate_pt_update *pt_update)
+> =C2=A0	list_for_each_entry(op, &vops->list, link) {
+> =C2=A0		struct xe_svm_range *range =3D op->map_range.range;
+> =C2=A0
+> +		if (op->subop =3D=3D XE_VMA_SUBOP_UNMAP_RANGE)
+> +			continue;
+> +
+> =C2=A0		xe_assert(vm->xe, xe_vma_is_cpu_addr_mirror(op-
+> >map_range.vma));
+> =C2=A0		xe_assert(vm->xe, op->subop =3D=3D
+> XE_VMA_SUBOP_MAP_RANGE);
+> =C2=A0
+> @@ -1616,7 +1626,9 @@ static const struct xe_pt_walk_ops
+> xe_pt_stage_unbind_ops =3D {
+> =C2=A0 * xe_pt_stage_unbind() - Build page-table update structures for an
+> unbind
+> =C2=A0 * operation
+> =C2=A0 * @tile: The tile we're unbinding for.
+> + * @vm: The vm
+> =C2=A0 * @vma: The vma we're unbinding.
+> + * @range: The range we're unbinding.
+> =C2=A0 * @entries: Caller-provided storage for the update structures.
+> =C2=A0 *
+> =C2=A0 * Builds page-table update structures for an unbind operation. The
+> function
+> @@ -1626,9 +1638,14 @@ static const struct xe_pt_walk_ops
+> xe_pt_stage_unbind_ops =3D {
+> =C2=A0 *
+> =C2=A0 * Return: The number of entries used.
+> =C2=A0 */
+> -static unsigned int xe_pt_stage_unbind(struct xe_tile *tile, struct
+> xe_vma *vma,
+> +static unsigned int xe_pt_stage_unbind(struct xe_tile *tile,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_vm *vm,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_vma *vma,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_svm_range *range,
+> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_vm_pgtable_updat=
+e
+> *entries)
+> =C2=A0{
+> +	u64 start =3D range ? range->base.itree.start :
+> xe_vma_start(vma);
+> +	u64 end =3D range ? range->base.itree.last + 1 :
+> xe_vma_end(vma);
+> =C2=A0	struct xe_pt_stage_unbind_walk xe_walk =3D {
+> =C2=A0		.base =3D {
+> =C2=A0			.ops =3D &xe_pt_stage_unbind_ops,
+> @@ -1636,14 +1653,14 @@ static unsigned int xe_pt_stage_unbind(struct
+> xe_tile *tile, struct xe_vma *vma,
+> =C2=A0			.max_level =3D XE_PT_HIGHEST_LEVEL,
+> =C2=A0		},
+> =C2=A0		.tile =3D tile,
+> -		.modified_start =3D xe_vma_start(vma),
+> -		.modified_end =3D xe_vma_end(vma),
+> +		.modified_start =3D start,
+> +		.modified_end =3D end,
+> =C2=A0		.wupd.entries =3D entries,
+> =C2=A0	};
+> -	struct xe_pt *pt =3D xe_vma_vm(vma)->pt_root[tile->id];
+> +	struct xe_pt *pt =3D vm->pt_root[tile->id];
+> =C2=A0
+> -	(void)xe_pt_walk_shared(&pt->base, pt->level,
+> xe_vma_start(vma),
+> -				xe_vma_end(vma), &xe_walk.base);
+> +	(void)xe_pt_walk_shared(&pt->base, pt->level, start, end,
+> +				&xe_walk.base);
+> =C2=A0
+> =C2=A0	return xe_walk.wupd.num_used_entries;
+> =C2=A0}
+> @@ -1885,13 +1902,6 @@ static int unbind_op_prepare(struct xe_tile
+> *tile,
+> =C2=A0	=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "Preparing unbind, with range=
+ [%llx...%llx)\n",
+> =C2=A0	=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_vma_start(vma), xe_vma_end=
+(vma) - 1);
+> =C2=A0
+> -	/*
+> -	 * Wait for invalidation to complete. Can corrupt internal
+> page table
+> -	 * state if an invalidation is running while preparing an
+> unbind.
+> -	 */
+> -	if (xe_vma_is_userptr(vma) &&
+> xe_vm_in_fault_mode(xe_vma_vm(vma)))
+> -		mmu_interval_read_begin(&to_userptr_vma(vma)-
+> >userptr.notifier);
+> -
+> =C2=A0	pt_op->vma =3D vma;
+> =C2=A0	pt_op->bind =3D false;
+> =C2=A0	pt_op->rebind =3D false;
+> @@ -1900,7 +1910,8 @@ static int unbind_op_prepare(struct xe_tile
+> *tile,
+> =C2=A0	if (err)
+> =C2=A0		return err;
+> =C2=A0
+> -	pt_op->num_entries =3D xe_pt_stage_unbind(tile, vma, pt_op-
+> >entries);
+> +	pt_op->num_entries =3D xe_pt_stage_unbind(tile,
+> xe_vma_vm(vma),
+> +						vma, NULL, pt_op-
+> >entries);
+> =C2=A0
+> =C2=A0	xe_vm_dbg_print_entries(tile_to_xe(tile), pt_op->entries,
+> =C2=A0				pt_op->num_entries, false);
+> @@ -1915,6 +1926,42 @@ static int unbind_op_prepare(struct xe_tile
+> *tile,
+> =C2=A0	return 0;
+> =C2=A0}
+> =C2=A0
+> +static int unbind_range_prepare(struct xe_vm *vm,
+> +				struct xe_tile *tile,
+> +				struct xe_vm_pgtable_update_ops
+> *pt_update_ops,
+> +				struct xe_svm_range *range)
+> +{
+> +	u32 current_op =3D pt_update_ops->current_op;
+> +	struct xe_vm_pgtable_update_op *pt_op =3D &pt_update_ops-
+> >ops[current_op];
+> +
+> +	if (!(range->tile_present & BIT(tile->id)))
+> +		return 0;
+> +
+> +	vm_dbg(&vm->xe->drm,
+> +	=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "Preparing unbind, with range [%lx=
+...%lx)\n",
+> +	=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 range->base.itree.start, range->ba=
+se.itree.last);
+> +
+> +	pt_op->vma =3D XE_INVALID_VMA;
+> +	pt_op->bind =3D false;
+> +	pt_op->rebind =3D false;
+> +
+> +	pt_op->num_entries =3D xe_pt_stage_unbind(tile, vm, NULL,
+> range,
+> +						pt_op->entries);
+> +
+> +	xe_vm_dbg_print_entries(tile_to_xe(tile), pt_op->entries,
+> +				pt_op->num_entries, false);
+> +	xe_pt_update_ops_rfence_interval(pt_update_ops, range-
+> >base.itree.start,
+> +					 range->base.itree.last +
+> 1);
+> +	++pt_update_ops->current_op;
+> +	pt_update_ops->needs_svm_lock =3D true;
+> +	pt_update_ops->needs_invalidation =3D true;
+> +
+> +	xe_pt_commit_prepare_unbind(XE_INVALID_VMA, pt_op->entries,
+> +				=C2=A0=C2=A0=C2=A0 pt_op->num_entries);
+> +
+> +	return 0;
+> +}
+> +
+> =C2=A0static int op_prepare(struct xe_vm *vm,
+> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_tile *tile,
+> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_vm_pgtable_update_ops
+> *pt_update_ops,
+> @@ -1982,6 +2029,9 @@ static int op_prepare(struct xe_vm *vm,
+> =C2=A0			err =3D bind_range_prepare(vm, tile,
+> pt_update_ops,
+> =C2=A0						 op->map_range.vma,
+> =C2=A0						 op-
+> >map_range.range);
+> +		} else if (op->subop =3D=3D XE_VMA_SUBOP_UNMAP_RANGE) {
+> +			err =3D unbind_range_prepare(vm, tile,
+> pt_update_ops,
+> +						=C2=A0=C2=A0 op-
+> >unmap_range.range);
+> =C2=A0		}
+> =C2=A0		break;
+> =C2=A0	default:
+> @@ -2171,6 +2221,8 @@ static void op_commit(struct xe_vm *vm,
+> =C2=A0		if (op->subop =3D=3D XE_VMA_SUBOP_MAP_RANGE) {
+> =C2=A0			op->map_range.range->tile_present |=3D
+> BIT(tile->id);
+> =C2=A0			op->map_range.range->tile_invalidated &=3D
+> ~BIT(tile->id);
+> +		} else if (op->subop =3D=3D XE_VMA_SUBOP_UNMAP_RANGE) {
+> +			op->unmap_range.range->tile_present &=3D
+> ~BIT(tile->id);
+> =C2=A0		}
+> =C2=A0		break;
+> =C2=A0	}
+> diff --git a/drivers/gpu/drm/xe/xe_svm.c
+> b/drivers/gpu/drm/xe/xe_svm.c
+> index ed91291a24db..98130c0768ec 100644
+> --- a/drivers/gpu/drm/xe/xe_svm.c
+> +++ b/drivers/gpu/drm/xe/xe_svm.c
+> @@ -226,7 +226,14 @@ static void xe_svm_invalidate(struct drm_gpusvm
+> *gpusvm,
+> =C2=A0static int __xe_svm_garbage_collector(struct xe_vm *vm,
+> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_svm_range *range)
+> =C2=A0{
+> -	/* TODO: Do unbind */
+> +	struct dma_fence *fence;
+> +
+> +	xe_vm_lock(vm, false);
+> +	fence =3D xe_vm_range_unbind(vm, range);
+> +	xe_vm_unlock(vm);
+> +	if (IS_ERR(fence))
+> +		return PTR_ERR(fence);
+> +	dma_fence_put(fence);
+> =C2=A0
+> =C2=A0	drm_gpusvm_range_remove(&vm->svm.gpusvm, &range->base);
+> =C2=A0
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index f57fc30b969a..d482c0cafba3 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -985,6 +985,89 @@ struct dma_fence *xe_vm_range_rebind(struct
+> xe_vm *vm,
+> =C2=A0	return fence;
+> =C2=A0}
+> =C2=A0
+> +static void xe_vm_populate_range_unbind(struct xe_vma_op *op,
+> +					struct xe_svm_range *range)
+> +{
+> +	INIT_LIST_HEAD(&op->link);
+> +	op->tile_mask =3D range->tile_present;
+> +	op->base.op =3D DRM_GPUVA_OP_DRIVER;
+> +	op->subop =3D XE_VMA_SUBOP_UNMAP_RANGE;
+> +	op->unmap_range.range =3D range;
+> +}
+> +
+> +static int
+> +xe_vm_ops_add_range_unbind(struct xe_vma_ops *vops,
+> +			=C2=A0=C2=A0 struct xe_svm_range *range)
+> +{
+> +	struct xe_vma_op *op;
+> +
+> +	op =3D kzalloc(sizeof(*op), GFP_KERNEL);
+> +	if (!op)
+> +		return -ENOMEM;
+> +
+> +	xe_vm_populate_range_unbind(op, range);
+> +	list_add_tail(&op->link, &vops->list);
+> +	xe_vma_ops_incr_pt_update_ops(vops, range->tile_present);
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * xe_vm_range_unbind() - VM range unbind
+> + * @vm: The VM which the range belongs to.
+> + * @range: SVM range to rebind.
+> + *
+> + * Unbind SVM range removing the GPU page tables for the range.
+> + *
+> + * Return: dma fence for unbind to signal completion on succees,
+> ERR_PTR on
+> + * failure
+> + */
+> +struct dma_fence *xe_vm_range_unbind(struct xe_vm *vm,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_svm_range *range)
+> +{
+> +	struct dma_fence *fence =3D NULL;
+> +	struct xe_vma_ops vops;
+> +	struct xe_vma_op *op, *next_op;
+> +	struct xe_tile *tile;
+> +	u8 id;
+> +	int err;
+> +
+> +	lockdep_assert_held(&vm->lock);
+> +	xe_vm_assert_held(vm);
+> +	xe_assert(vm->xe, xe_vm_in_fault_mode(vm));
+> +
+> +	if (!range->tile_present)
+> +		return dma_fence_get_stub();
+> +
+> +	xe_vma_ops_init(&vops, vm, NULL, NULL, 0);
+> +	for_each_tile(tile, vm->xe, id) {
+> +		vops.pt_update_ops[id].wait_vm_bookkeep =3D true;
+> +		vops.pt_update_ops[tile->id].q =3D
+> +			xe_tile_migrate_exec_queue(tile);
+> +	}
+> +
+> +	err =3D xe_vm_ops_add_range_unbind(&vops, range);
+> +	if (err)
+> +		return ERR_PTR(err);
+> +
+> +	err =3D xe_vma_ops_alloc(&vops, false);
+> +	if (err) {
+> +		fence =3D ERR_PTR(err);
+> +		goto free_ops;
+> +	}
+> +
+> +	fence =3D ops_execute(vm, &vops);
+> +
+> +free_ops:
+> +	list_for_each_entry_safe(op, next_op, &vops.list, link) {
+> +		list_del(&op->link);
+> +		kfree(op);
+> +	}
+> +	xe_vma_ops_fini(&vops);
+> +
+> +	return fence;
+> +}
+> +
+> =C2=A0static void xe_vma_free(struct xe_vma *vma)
+> =C2=A0{
+> =C2=A0	if (xe_vma_is_userptr(vma))
+> diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+> index 61e7919956ec..83adde1a84bd 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.h
+> +++ b/drivers/gpu/drm/xe/xe_vm.h
+> @@ -223,6 +223,8 @@ struct dma_fence *xe_vm_range_rebind(struct xe_vm
+> *vm,
+> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_vma *vma,
+> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_svm_range *range,
+> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 u8 tile_mask);
+> +struct dma_fence *xe_vm_range_unbind(struct xe_vm *vm,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_svm_range *range);
+> =C2=A0
+> =C2=A0int xe_vm_invalidate_vma(struct xe_vma *vma);
+> =C2=A0
+> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h
+> b/drivers/gpu/drm/xe/xe_vm_types.h
+> index 8aa77aaaae6b..0b59ba948e86 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> @@ -362,6 +362,12 @@ struct xe_vma_op_map_range {
+> =C2=A0	struct xe_svm_range *range;
+> =C2=A0};
+> =C2=A0
+> +/** struct xe_vma_op_unmap_range - VMA unmap range operation */
+> +struct xe_vma_op_unmap_range {
+> +	/** @range: SVM range to unmap */
+> +	struct xe_svm_range *range;
+> +};
+> +
+> =C2=A0/** enum xe_vma_op_flags - flags for VMA operation */
+> =C2=A0enum xe_vma_op_flags {
+> =C2=A0	/** @XE_VMA_OP_COMMITTED: VMA operation committed */
+> @@ -376,6 +382,8 @@ enum xe_vma_op_flags {
+> =C2=A0enum xe_vma_subop {
+> =C2=A0	/** @XE_VMA_SUBOP_MAP_RANGE: Map range */
+> =C2=A0	XE_VMA_SUBOP_MAP_RANGE,
+> +	/** @XE_VMA_SUBOP_UNMAP_RANGE: Unmap range */
+> +	XE_VMA_SUBOP_UNMAP_RANGE,
+> =C2=A0};
+> =C2=A0
+> =C2=A0/** struct xe_vma_op - VMA operation */
+> @@ -400,6 +408,8 @@ struct xe_vma_op {
+> =C2=A0		struct xe_vma_op_prefetch prefetch;
+> =C2=A0		/** @map_range: VMA map range operation specific
+> data */
+> =C2=A0		struct xe_vma_op_map_range map_range;
+> +		/** @unmap_range: VMA unmap range operation specific
+> data */
+> +		struct xe_vma_op_unmap_range unmap_range;
+> =C2=A0	};
+> =C2=A0};
+> =C2=A0
+
