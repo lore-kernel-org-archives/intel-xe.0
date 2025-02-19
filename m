@@ -4,55 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4D1EC021AA
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 18:15:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 932EFC021B1
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Feb 2025 18:47:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B73A10E34C;
-	Wed, 19 Feb 2025 18:15:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 457B110E4AD;
+	Wed, 19 Feb 2025 18:47:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iIHqKaDJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mubhQwmh";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2EE3210E34C
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Feb 2025 18:15:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D52F10E36A
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Feb 2025 18:47:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739988954; x=1771524954;
+ t=1739990849; x=1771526849;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=PcLsH4FE/HvPNzaIc6OLyMhygsC1ytB5xVrGsWYsK0Y=;
- b=iIHqKaDJNOeSs+YPxXtYwPtg++lP0YNn9B+9Khskz8RiM8kdMfqVt5v/
- jv7cQ8ngI6yGfL77QGDPWa7yWLh257wZW1qznkZ4kRKaK7Q5RfGxsdaqr
- RQJ3+osi6CsWIkFRtIlBr2tHmD1COZJGUP51HiTJLOhMFyY1Ln0wg78FC
- zvn6jCXMya7Kfd/HJBXPwbV+p179SfOfOv5+ZH8imfxC1gK+h4QenwdvJ
- RGkainGkv41CC2L9oZEa5DAC3yz84U+fVDaqyzbLM3so//cnDSbEtRDUk
- A0oNEYa7zXnhjmDNSWTND33aO6n2NdMwjZQCNz/HDXdcG6VfU7bCj5O3q w==;
-X-CSE-ConnectionGUID: 27hXW/7bRbG9yj45IlvOnw==
-X-CSE-MsgGUID: +i2UMsvoTZC8aJZrDY/Ugg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11350"; a="58149835"
-X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; d="scan'208";a="58149835"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2025 10:15:54 -0800
-X-CSE-ConnectionGUID: Nw3IktROTuGz3Rbg+GYWuA==
-X-CSE-MsgGUID: AA6+hK7WRZ++0vAA8/tG1w==
+ bh=/J7lwu3hiqaWF9SwmBXurd+bZHjNOsMyaKhZTjdODD0=;
+ b=mubhQwmhMEf07XhK+e/yZcpqHtNmbw3UUgKKXi4IHl8QLasZdprGqTfQ
+ dvQLo9o7f1ApqTeiaIy82ugOE4AwtEWcHBVOUXSm+bE/u0MePd59QmuH/
+ NNbcWVBHOVHXuLquzSziiWHBXYFX0S/AzecWeO6cgaMBrf+ulB7zdVv0/
+ WQrRWLzawQ4aClut/2ZdF1CJekCF5a28DMEQ7ffSvFrllzc4amlMqLLkF
+ 4XJBqePuIjrH6joQOGUkfzMAk+bULuXE7APPPgKl/JCsWXyJYM3JGe6b6
+ ptvRInYzScgSa7qAevSAjmlWSZziZlftCghZdeNvfnx/0SIafa4l/cPdn g==;
+X-CSE-ConnectionGUID: Gr9+hBLKQ52NN7XXC72qrQ==
+X-CSE-MsgGUID: 4DnmBvixRu6QGpUYI/E8dA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11350"; a="28340099"
+X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; d="scan'208";a="28340099"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2025 10:47:29 -0800
+X-CSE-ConnectionGUID: mewmO5JLQ+2GsarckISh+A==
+X-CSE-MsgGUID: +Uh0dRPrRrS9jcYKe5g30w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; d="scan'208";a="114623790"
+X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; d="scan'208";a="145642143"
 Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
  ([10.165.21.142])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2025 10:15:53 -0800
-Date: Wed, 19 Feb 2025 10:15:52 -0800
-Message-ID: <85tt8pol5z.wl-ashutosh.dixit@intel.com>
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2025 10:47:22 -0800
+Date: Wed, 19 Feb 2025 10:47:19 -0800
+Message-ID: <85seo9ojpk.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Harish Chegondi <harish.chegondi@intel.com>
-Cc: <intel-xe@lists.freedesktop.org>, <james.ausmus@intel.com>,
- <felix.j.degrood@intel.com>, 
- <matthew.olson@intel.com>, <lucas.demarchi@intel.com>
-Subject: Re: [PATCH v10 4/8] drm/xe/eustall: Add support to read() and poll()
- EU stall data
-In-Reply-To: <c55e994b413f069b4ffb60cd30e749caf3bb7223.1739906138.git.harish.chegondi@intel.com>
-References: <cover.1739906138.git.harish.chegondi@intel.com>	<c55e994b413f069b4ffb60cd30e749caf3bb7223.1739906138.git.harish.chegondi@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v10 5/8] drm/xe/eustall: Add support to handle dropped EU
+ stall data
+In-Reply-To: <42c8cecda3f50374ed90fe2911e7f5a3523e157b.1739906138.git.harish.chegondi@intel.com>
+References: <cover.1739906138.git.harish.chegondi@intel.com>
+ <42c8cecda3f50374ed90fe2911e7f5a3523e157b.1739906138.git.harish.chegondi@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -72,110 +71,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 18 Feb 2025 11:53:54 -0800, Harish Chegondi wrote:
+On Tue, 18 Feb 2025 11:53:55 -0800, Harish Chegondi wrote:
 >
-> @@ -39,7 +40,9 @@ struct per_xecore_buf {
->  };
+> If the user space doesn't read the EU stall data fast enough,
+> it is possible that the EU stall data buffer can get filled,
+> and if the hardware wants to write more data, it simply drops
+> data due to unavailable buffer space. In that case, hardware
+> sets a bit in a register. If the driver detects data drop,
+> the driver read() returns -EIO error to let the user space
+> know that HW has dropped data. The -EIO error is returned
+> even if there is EU stall data in the buffer. A subsequent
+> read by the user space returns the remaining EU stall data.
 >
->  struct xe_eu_stall_data_stream {
-> +	bool pollin;
->	bool enabled;
-> +	wait_queue_head_t poll_wq;
->	size_t data_record_size;
->	size_t per_xecore_buf_size;
->	unsigned int wait_num_reports;
-> @@ -47,7 +50,11 @@ struct xe_eu_stall_data_stream {
->
->	struct xe_gt *gt;
->	struct xe_bo *bo;
-> +	/* Lock to protect xecore_buf */
-> +	struct mutex buf_lock;
+> v10: Reverted the changes back to v8:
+>      Clear the drop bits only after reading the data.
 
-Why do we need this new lock? I thought we would just be able to use
-gt->eu_stall->stream_lock? stream_lock is already taken for read(), so we
-just need to take it for eu_stall_data_buf_poll()?
+I think I am ok with this patch as is. Unless we agree to drop data in the
+driver (which I had proposed but you had rejected), I don't think we can do
+a lot more without really complicating things. So I don't want to go there
+yet.
 
-> @@ -357,16 +580,26 @@ static int xe_eu_stall_stream_init(struct xe_eu_stall_data_stream *stream,
->			  max_wait_num_reports);
->		return -EINVAL;
->	}
-> +
-> +	init_waitqueue_head(&stream->poll_wq);
-> +	INIT_DELAYED_WORK(&stream->buf_poll_work, eu_stall_data_buf_poll_work_fn);
-> +	mutex_init(&stream->buf_lock);
-> +	stream->buf_poll_wq = alloc_ordered_workqueue("xe_eu_stall", 0);
-> +	if (!stream->buf_poll_wq)
-> +		return -ENOMEM;
->	stream->per_xecore_buf_size = per_xecore_buf_size;
->	stream->sampling_rate_mult = props->sampling_rate_mult;
->	stream->wait_num_reports = props->wait_num_reports;
->	stream->data_record_size = xe_eu_stall_data_record_size(gt_to_xe(gt));
->	stream->xecore_buf = kcalloc(last_xecore, sizeof(*stream->xecore_buf), GFP_KERNEL);
-> -	if (!stream->xecore_buf)
-> +	if (!stream->xecore_buf) {
-> +		destroy_workqueue(stream->buf_poll_wq);
->		return -ENOMEM;
-> +	}
->
->	ret = xe_eu_stall_data_buf_alloc(stream, last_xecore);
->	if (ret) {
-> +		destroy_workqueue(stream->buf_poll_wq);
->		kfree(stream->xecore_buf);
+But lets first go through the coments on PATCH v10 4/8. Once we resolve the
+locking issue raised there, I will review this patch again and hopefully
+R-b it.
 
-OK, won't block on this, but error unwinding is cleaner with label's and
-goto's.
+See if you need to send a new revision of the series.
 
-Also, if stream->buf_lock is needed, mutex_destroy is also needed for error
-unwinding and also during stream close.
-
-> diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-> index d5281de04d54..1cc6bfc34ccb 100644
-> --- a/drivers/gpu/drm/xe/xe_trace.h
-> +++ b/drivers/gpu/drm/xe/xe_trace.h
-> @@ -427,6 +427,39 @@ DEFINE_EVENT(xe_pm_runtime, xe_pm_runtime_get_ioctl,
->	     TP_ARGS(xe, caller)
->  );
->
-> +TRACE_EVENT(xe_eu_stall_data_read,
-> +	    TP_PROTO(u8 slice, u8 subslice,
-> +		     u32 read_ptr, u32 write_ptr,
-> +		     u32 read_offset, u32 write_offset,
-> +		     size_t total_size),
-> +	    TP_ARGS(slice, subslice, read_ptr, write_ptr,
-> +		    read_offset, write_offset, total_size),
-> +
-> +	    TP_STRUCT__entry(__field(u8, slice)
-> +			     __field(u8, subslice)
-> +			     __field(u32, read_ptr)
-> +			     __field(u32, write_ptr)
-> +			     __field(u32, read_offset)
-> +			     __field(u32, write_offset)
-> +			     __field(size_t, total_size)
-> +			     ),
-> +
-> +	    TP_fast_assign(__entry->slice = slice;
-> +			   __entry->subslice = subslice;
-> +			   __entry->read_ptr = read_ptr;
-> +			   __entry->write_ptr = write_ptr;
-> +			   __entry->read_offset = read_offset;
-> +			   __entry->write_offset = write_offset;
-
-Keep it if we need it, but do we need both the read/write ptr's and
-offset's? Since offset's are the same as ptr's, but without the ms bit.
-
-> +			   __entry->total_size = total_size;
-> +			   ),
-> +
-> +	    TP_printk("slice:%u subslice:%u readptr:0x%x writeptr:0x%x read off:%u write off:%u size:%zu ",
-> +		      __entry->slice, __entry->subslice,
-> +		      __entry->read_ptr, __entry->write_ptr,
-> +		      __entry->read_offset, __entry->write_offset,
-> +		      __entry->total_size)
-> +);
-> +
->  #endif
->
->  /* This part must be outside protection */
-> --
-> 2.48.1
->
+Thanks.
+--
+Ashutosh
