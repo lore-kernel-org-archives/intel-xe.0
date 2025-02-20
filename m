@@ -4,170 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64E79C021B3
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Feb 2025 19:54:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBA2EC021B1
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Feb 2025 20:02:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21B2B10E9DB;
-	Thu, 20 Feb 2025 19:54:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 769D610E061;
+	Thu, 20 Feb 2025 20:02:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nSFa1rLl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q/GDCEPu";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFA2810E061;
- Thu, 20 Feb 2025 19:54:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B801A10E061
+ for <intel-xe@lists.freedesktop.org>; Thu, 20 Feb 2025 20:02:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740081296; x=1771617296;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=veexH2odReDCo3gRAdm06qJvv8zZA/KkJrpjE48rRuA=;
- b=nSFa1rLltRFXyUXFKBQ6ltQmT5SIe8oAtMtYy6O9HWwJADv71iMpyPC4
- eJikhSQ4VwpMdJfUZNsc89uZANOaQqg7q7Fcm+CiDYgL5mELzz+8TahaG
- UL5FqHOF/iHLLBDt4NEHHJeSvnz3FlieiuCdsozCK/RMqoF5Bp+JGHe2E
- NJzXxpLG3aebHoq9rdlQDNUpn+1DrA9B6DLRyAfN/FsFtIiGbrYRTG0EV
- DuVqwHFGCmtA2fiJpuVBQ/2+LbPAtOs6TJ7khcHjRij53MMZ0KR6uZbCU
- kIw8ze6r3UFnpYHrw4XGftJtOKNOeQee5/JaX8IsZminmMQwybhrrXwmw A==;
-X-CSE-ConnectionGUID: oOT7tdQmQaWqcBRAeHREtg==
-X-CSE-MsgGUID: 92xuJ8vTQ2m635U/7Rz69A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11351"; a="44528588"
-X-IronPort-AV: E=Sophos;i="6.13,302,1732608000"; d="scan'208";a="44528588"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2025 11:54:55 -0800
-X-CSE-ConnectionGUID: Hgi2xVuCR1a9+fb3p0v4vw==
-X-CSE-MsgGUID: ayZXjSVERmi0un7ocMRWRA==
+ t=1740081748; x=1771617748;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=Q2l/1tzeuAYnWTDf6riADkLBsbPzgMWw8AxwXu7fY4c=;
+ b=Q/GDCEPuLbSzlJAgdhCOt1t3hTRqprR6uIUTeWhQKtyUePIFxHLkTp0f
+ J2PTjgWvBkjkURYXQ7WJeK618XbxF59HKRkTfJii98Ep++ZjJpjR6B7Qe
+ zgl3Vj0JlnYBgXer1f2YqOPrRGfckG3avAGjwOCJeqOU/2OHtu/8ZfJvg
+ bSj4A3hqzb/QosF/ydMk2gJfeZU1xWf6eE9wMk4gMDGHivV1296xqghrj
+ QXWYjXRx1lNT2djnYx5dEq5ibUdm+M2ZIXt7XVO4MVyZKW8N/bGdOr37r
+ UbspFEh/RRmrfXKh14W/o5fhrdfNU0RdEPZuRcTLE4RVEXfxVYwbBABHU w==;
+X-CSE-ConnectionGUID: EsrGaay9RICDup4fAvkoHA==
+X-CSE-MsgGUID: SEinpkHnT9aQurdtdrX+1A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11351"; a="40803969"
+X-IronPort-AV: E=Sophos;i="6.13,302,1732608000"; d="scan'208";a="40803969"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2025 12:02:28 -0800
+X-CSE-ConnectionGUID: hcEaNiusSg+F+S+7duj4zQ==
+X-CSE-MsgGUID: z48SuomsSh6D56VP4rJFFg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="119258463"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2025 11:54:55 -0800
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Thu, 20 Feb 2025 11:54:54 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Thu, 20 Feb 2025 11:54:54 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.174)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 20 Feb 2025 11:54:52 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VR/ekH/TEFnbcLQztp9j0I63OqMmIfSR4yU58sEoqr08fzvbUE3OeT58CdU6YTkSqciv9lT/CInJQQQpQMf2E65DPBL3cg/Wz+p5bgeju2uc6cwZvo78auNPHG/W0H8HSL3XU2SMnSa51F7b1iXOOB/zjxFjY6lf9dAY9xGi8mNlaef738tmsSwnNTp0rThmwE76HHQ5ZlqhO41xLkdb7CI6C/GuXiEjffArIyBwsUD2ZUQ0UO1wbMXQiXlat6/UKl2K0hFp46xyDnvU9/WgcMHJ+HzsjGgpQrhfGY8tNgP/uJFH8eQ5KL0xZL+faLHdJUaHWdJD5zJFj8qvX8QIXg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1L/I4M9WogZKw08CHgLNFEuNEdiH77xUw50DKQbes+k=;
- b=vopQpXVuSeuDF+iZEEDJfNyIZtgQUNcKEyGDFaP3yLYOvZovAeejJC8VNQCF7i4f3kJJpxre/xq0J7GQ+3KJXRbbPMQn1U6fsVWBcsktcMuaIyewj4WWYaERmDGr/KTaMpcX5ZyNLBWVhIeiU7aMSAi4oPnEjNb0b6uz4BRJzlxDqZJXs84Upnx69L2MlqN8G5Jer6keCHAsk3lGcv1I1AbpbOxavqa5RRw+OVm2Xc/o7V1x6ItFTg6rmGY7PYxf/EF9b9YKm1BXY+ILBhxVGoP6o3UBt7NwWKrWG3AnMmivC2s9nC+iyjgqukeLDAyrN+g5/iZ+1HTEh4IlfbLxtw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by IA1PR11MB8099.namprd11.prod.outlook.com (2603:10b6:208:448::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8445.19; Thu, 20 Feb
- 2025 19:54:50 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%3]) with mapi id 15.20.8466.015; Thu, 20 Feb 2025
- 19:54:50 +0000
-Date: Thu, 20 Feb 2025 11:55:52 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-CC: Matthew Auld <matthew.auld@intel.com>, <intel-xe@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>, <himal.prasad.ghimiray@intel.com>,
- <apopple@nvidia.com>, <airlied@gmail.com>, <simona.vetter@ffwll.ch>,
- <felix.kuehling@amd.com>, <dakr@kernel.org>
-Subject: Re: [PATCH v5 27/32] drm/xe: Add SVM VRAM migration
-Message-ID: <Z7eIyFMKBeAHiPPE@lstrano-desk.jf.intel.com>
-References: <20250213021112.1228481-1-matthew.brost@intel.com>
- <20250213021112.1228481-28-matthew.brost@intel.com>
- <3de5325a-147e-4126-970c-765884a1f6da@intel.com>
- <b04945011524a4ee614cd830928ceedf9f9b6293.camel@linux.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b04945011524a4ee614cd830928ceedf9f9b6293.camel@linux.intel.com>
-X-ClientProxiedBy: MW3PR05CA0025.namprd05.prod.outlook.com
- (2603:10b6:303:2b::30) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|IA1PR11MB8099:EE_
-X-MS-Office365-Filtering-Correlation-Id: 81774c92-aabc-4027-860b-08dd51e86fba
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?X9tzZjpG5LV4IxAUhH+S2g1yZ5kuvt4uQ2/5XDMoat1vpEJOx8YzpZn8VL?=
- =?iso-8859-1?Q?h0iaSAC7CH+WcPIcprlt3SScMicLnFl2wTLAZD68jET3Evzy+ouJnAUMY2?=
- =?iso-8859-1?Q?utzNWudx7UNTACgb+74FoTBdKhAgLSfGwg6lkoauXcPYaoSA9ktUHRu/hN?=
- =?iso-8859-1?Q?yuYT1pbezhU83mS0yogQTQM0qca7xrXHjZB+mqaJVGXQulkAUGcION3hxJ?=
- =?iso-8859-1?Q?U/yAEOb8fGQ0gfDRDDbFOVVNyS/RVxSntktwuWBTYQW5UOmsn54GUN40f9?=
- =?iso-8859-1?Q?2HeFsLd1k90OyOMy1X6qJddEISUQv7ew3PiF1pziX4dOiDT8BieyyLPvRW?=
- =?iso-8859-1?Q?YTAsuoiy266aQQDlAwvflq7KcoAdOGI7BgVzOg9gFa8D6pVD7gqkmhkew1?=
- =?iso-8859-1?Q?xqBsX2bnJKe3C/p7uXSPTea+4DREMXsijbwXluFmA2GDxfVvcC8gr8A8qF?=
- =?iso-8859-1?Q?pyDk8bdPU/QL8vhZzHNw9dHyfys2KYpgtu5PYDYVK6d0dh+MyIBwzrOTa0?=
- =?iso-8859-1?Q?UScX0RevPGdBEoIYFVPXOo8O3PRtCeqPRnd7nPGIPttvcClXM3ddXf2h8F?=
- =?iso-8859-1?Q?IJLSGMsrW5udGNtlhRMc4s+ZtV3od7OX1ivdZtAwUcsmhpldlCuFP1i9Ys?=
- =?iso-8859-1?Q?24cYVdzhrkD9AG3lhfUCRGUxSB5oFb0x43Kk0nBeisF6zniYKeVOsWJVii?=
- =?iso-8859-1?Q?O9g8cF5UI3W5eJ4AIBFmBWgwGREBMiegCM/grI4lFfOgNYIyYLhMRN8O4n?=
- =?iso-8859-1?Q?2xkBW+TbtcckrgJJ5ZXdatEc8JkZYzHvHDgAIB44BZcRWA2MXD22uWajVg?=
- =?iso-8859-1?Q?hzFgFVszTo8UL8H5OhJj72g3ByjSjtC1oT1atCanp19EcHX4kvkolgKIhR?=
- =?iso-8859-1?Q?lCOMFrCyqhGY8jFsHfZXmEUpjiqTlqN2hsQEweP3Ok5dGLNXVrPLiy7vn9?=
- =?iso-8859-1?Q?2LmlP61WDOUy9bPOsCUZS3N5IR3azshvIlZWqRIc+mUtFamPD3ESJkC3DL?=
- =?iso-8859-1?Q?Sfq7nVu+vYxvzFTcroIH+RqkKWa/JT7zArJ6pM62KAakmaNwq4fm4DPpXr?=
- =?iso-8859-1?Q?M6w5IIKrraBhhM1ikXgQKesK5ZGj6VU5ug8Mq11h1OcunP6XD/OSofKK21?=
- =?iso-8859-1?Q?7nZFlm2hKVTQGdVE63mzURsx9yIxWbMbWI/mid/PLosZHiTiNwMHWFMILr?=
- =?iso-8859-1?Q?lZzn1ZovWRowTEAQhFgofR3E/7u7dHnwVLwrAm58luDo4CKaac/1rtU2u8?=
- =?iso-8859-1?Q?+DFHXGIgkS8quQYoyVnLQb3+WArE1dSPLU52Oktv3zvfHccIhyArmPgwHk?=
- =?iso-8859-1?Q?agRi6hXr1Vghm56A9tKqYQmNrN34vwvQx7gCx5hOnPatQQHz2lfqGyE+aS?=
- =?iso-8859-1?Q?jLHntHKVGWDqKfm0iN13jOzXN8/9AGpg=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?YTJCPT+/SsIcgq9WlGRpsixtoc2hjzzxELVzRq1oK+96Un5WMDYr26mAH2?=
- =?iso-8859-1?Q?KvV/rQqDJQkHxYC78iQjivGp06ykFr5vQ9AQyIXXc6nLmsL5vDK5SxwIN4?=
- =?iso-8859-1?Q?tdC1aZIx2NHb8Cs9RtQU0yHuBztJoKovvkgdgQgHdmgrYFV0KYPrky5uM/?=
- =?iso-8859-1?Q?k1+7WQIKTSmAzBEz4dBYgaEYuFXcHwKsTwyXaGT9xC0/SBQr12cOM/nZeT?=
- =?iso-8859-1?Q?Qo7lGuof/CP1XM5QqSJR4VAVYaiQfwU6NPGe/hvzDviZAAd3Trlue6eTla?=
- =?iso-8859-1?Q?fmXQMn3UybHipE+XALtiTiZ/tl6CTAQJaheuEG3Jr4Jwali+yJSbyZ4Jha?=
- =?iso-8859-1?Q?ukrjgJhMDQ0xl2LkdGrq4c283xCNOR5mLzMa+AilZhGvG0Ir0q0cQ19MFB?=
- =?iso-8859-1?Q?TGYQDRayKsLRHkQPpeyqoQEWbTWmprv5HKEN1dYRVeIZM290piGr/5JNjm?=
- =?iso-8859-1?Q?2i2KdP0UFfCVY38ZDtBdqsttIqhpWRG7pXtlyHLClzgIaj/eS5tIja+IC8?=
- =?iso-8859-1?Q?sjqHMf4xP3yJechcGfft8vEDT1GVBwTI2DkxCbwDVXDLy4i9LMosj8qLCy?=
- =?iso-8859-1?Q?UX4sHA340sqCQKUuuYiXl5YZxaisMq/ujDGd7o5u7AFnnP7KlgKUSJyCLt?=
- =?iso-8859-1?Q?1ucxI1SbnVxZdoN9+xyGA5yw1n3AAAAQx1thClDqZmPG+5/BUMfdBM7tVO?=
- =?iso-8859-1?Q?bzXOa8v0H4fXp8taUx9mMMJDps7EfWN284ax+5q/PdTwxDiVqZxSmCkBzd?=
- =?iso-8859-1?Q?PIrrQDdHcTXMQqGqu2cn2AzqK6BiAr89MLQGMEDWTRk4gOgeLBH9a9O23Q?=
- =?iso-8859-1?Q?4/zDl5+FJ/LdJlSjzK1pBQjacEcqzYqZ+UXON4ueKfSmhU54SW1Yd8oRoT?=
- =?iso-8859-1?Q?GymLFyq1V872/7wZgWcelVyySlw86abV88tShhXFo3goXYjLQfrqGyXzZU?=
- =?iso-8859-1?Q?xcISlDc/yzn2T9asZ8itn0dXIOcqKx4Rt3NwjNnx43kMA3H34fQi9kNGSE?=
- =?iso-8859-1?Q?sa9+zIhJf+jgP3VrCTEvza6ZocabsoZ8S8sKad1Bt4lUrQ+KxC9KJo7jcI?=
- =?iso-8859-1?Q?SVBaWkb5p1rHx4hhVO+R9NI9rqoRdjlBdtpQzZLTqB1c7ZIwYuCezqo32E?=
- =?iso-8859-1?Q?KWL6a3+RjSyJ9NDh/vVfgbmhwW+v+984wUHpebNydj0IH5DFwWy84fnodA?=
- =?iso-8859-1?Q?P7GWcSaxFj9Zkvn5sjiE42XUzkYCZ6zQqtYBkx9BxEz0pqnXblS9P5v2Mz?=
- =?iso-8859-1?Q?JeTVFiGT521SI3ftcNWHrY/M3Lb7QI1VAgclCUrmVVdtq02dMP7Hf1SgGA?=
- =?iso-8859-1?Q?WAPCNyCx2BBravrtnqt/YYz75/P8X+mgomRKmoybz6EAZrCfqE3SSD0g1o?=
- =?iso-8859-1?Q?ef9HLmGIgNYQUVfg796sPWCgl2Zsb446zydjsAm5fBJrka7A7OaIhfrC1z?=
- =?iso-8859-1?Q?WTZLKOCB+SXV+0bvcNAijUiybxPk2nbU/E9uMUWtA+QGg0n9YvvWiff2AE?=
- =?iso-8859-1?Q?IrYqcGnNT42F0I0RATU4RylwNpb3h303anhHeHk3KoWJYgM4l+E2V+gsiP?=
- =?iso-8859-1?Q?SQBuH6LzJZwve3P+hFyGghhEeNk9oV/GTtWJ6/BTddq4cXQZK0r39F1rI+?=
- =?iso-8859-1?Q?Nflp79iCcH0FzMQDBFX9vP49VuQjbKnj5d1WKcQIXRQ/sFfVVxIkTU3g?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 81774c92-aabc-4027-860b-08dd51e86fba
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2025 19:54:50.6911 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: E4YsM5/c/FkM6MY8s5ndurWnDi4UNm4mWWiY1DhwJmIs6Z0ytzHrAO5vRhn/+5T3wvC3Ln8WSV0cD00YLgN5AA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB8099
-X-OriginatorOrg: intel.com
+X-IronPort-AV: E=Sophos;i="6.13,302,1732608000"; d="scan'208";a="115351755"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.142])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2025 12:02:27 -0800
+Date: Thu, 20 Feb 2025 12:02:26 -0800
+Message-ID: <85msego04t.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Harish Chegondi <harish.chegondi@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v10 4/8] drm/xe/eustall: Add support to read() and poll()
+ EU stall data
+In-Reply-To: <85o6ywo0l9.wl-ashutosh.dixit@intel.com>
+References: <cover.1739906138.git.harish.chegondi@intel.com>
+ <c55e994b413f069b4ffb60cd30e749caf3bb7223.1739906138.git.harish.chegondi@intel.com>
+ <85tt8pol5z.wl-ashutosh.dixit@intel.com>
+ <Z7Y0V0ArAEaTerzj@intel.com>
+ <85pljdnlnu.wl-ashutosh.dixit@intel.com>
+ <85o6ywo0l9.wl-ashutosh.dixit@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -182,313 +75,278 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Feb 20, 2025 at 04:59:29PM +0100, Thomas Hellström wrote:
-> On Thu, 2025-02-20 at 15:53 +0000, Matthew Auld wrote:
-> > On 13/02/2025 02:11, Matthew Brost wrote:
-> > > Migration is implemented with range granularity, with VRAM backing
-> > > being
-> > > a VM private TTM BO (i.e., shares dma-resv with VM). The lifetime
-> > > of the
-> > > TTM BO is limited to when the SVM range is in VRAM (i.e., when a
-> > > VRAM
-> > > SVM range is migrated to SRAM, the TTM BO is destroyed).
-> > > 
-> > > The design choice for using TTM BO for VRAM backing store, as
-> > > opposed to
-> > > direct buddy allocation, is as follows:
-> > > 
-> > > - DRM buddy allocations are not at page granularity, offering no
-> > >    advantage over a BO.
-> > > - Unified eviction is required (SVM VRAM and TTM BOs need to be
-> > > able to
-> > >    evict each other).
-> > > - For exhaustive eviction [1], SVM VRAM allocations will almost
-> > > certainly
-> > >    require a dma-resv.
-> > > - Likely allocation size is 2M which makes of size of BO (872)
-> > >    acceptable per allocation (872 / 2M == .0004158).
-> > > 
-> > > With this, using TTM BO for VRAM backing store seems to be an
-> > > obvious
-> > > choice as it allows leveraging of the TTM eviction code.
-> > > 
-> > > Current migration policy is migrate any SVM range greater than or
-> > > equal
-> > > to 64k once.
-> > > 
-> > > [1] https://patchwork.freedesktop.org/series/133643/
-> > > 
-> > > v2:
-> > >   - Rebase on latest GPU SVM
-> > >   - Retry page fault on get pages returning mixed allocation
-> > >   - Use drm_gpusvm_devmem
-> > > v3:
-> > >   - Use new BO flags
-> > >   - New range structure (Thomas)
-> > >   - Hide migration behind Kconfig
-> > >   - Kernel doc (Thomas)
-> > >   - Use check_pages_threshold
-> > > v4:
-> > >   - Don't evict partial unmaps in garbage collector (Thomas)
-> > >   - Use %pe to print errors (Thomas)
-> > >   - Use %p to print pointers (Thomas)
-> > > v5:
-> > >   - Use range size helper (Thomas)
-> > >   - Make BO external (Thomas)
-> > >   - Set tile to NULL for BO creation (Thomas)
-> > >   - Drop BO mirror flag (Thomas)
-> > >   - Hold BO dma-resv lock across migration (Auld, Thomas)
-> > > 
-> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > ---
-> > >   drivers/gpu/drm/xe/xe_svm.c | 111
-> > > ++++++++++++++++++++++++++++++++++--
-> > >   drivers/gpu/drm/xe/xe_svm.h |   5 ++
-> > >   2 files changed, 112 insertions(+), 4 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/xe/xe_svm.c
-> > > b/drivers/gpu/drm/xe/xe_svm.c
-> > > index 0a78a838508c..2e1e0f31c1a8 100644
-> > > --- a/drivers/gpu/drm/xe/xe_svm.c
-> > > +++ b/drivers/gpu/drm/xe/xe_svm.c
-> > > @@ -32,6 +32,11 @@ static unsigned long xe_svm_range_end(struct
-> > > xe_svm_range *range)
-> > >   	return drm_gpusvm_range_end(&range->base);
-> > >   }
-> > >   
-> > > +static unsigned long xe_svm_range_size(struct xe_svm_range *range)
-> > > +{
-> > > +	return drm_gpusvm_range_size(&range->base);
-> > > +}
-> > > +
-> > >   static void *xe_svm_devm_owner(struct xe_device *xe)
-> > >   {
-> > >   	return xe;
-> > > @@ -512,7 +517,6 @@ static int xe_svm_populate_devmem_pfn(struct
-> > > drm_gpusvm_devmem *devmem_allocatio
-> > >   	return 0;
-> > >   }
-> > >   
-> > > -__maybe_unused
-> > >   static const struct drm_gpusvm_devmem_ops gpusvm_devmem_ops = {
-> > >   	.devmem_release = xe_svm_devmem_release,
-> > >   	.populate_devmem_pfn = xe_svm_populate_devmem_pfn,
-> > > @@ -592,6 +596,71 @@ static bool xe_svm_range_is_valid(struct
-> > > xe_svm_range *range,
-> > >   	return (range->tile_present & ~range->tile_invalidated) &
-> > > BIT(tile->id);
-> > >   }
-> > >   
-> > > +static struct xe_vram_region *tile_to_vr(struct xe_tile *tile)
-> > > +{
-> > > +	return &tile->mem.vram;
-> > > +}
-> > > +
-> > > +static struct xe_bo *xe_svm_alloc_vram(struct xe_vm *vm, struct
-> > > xe_tile *tile,
-> > > +				       struct xe_svm_range *range,
-> > > +				       const struct drm_gpusvm_ctx
-> > > *ctx)
-> > > +{
-> > > +	struct mm_struct *mm = vm->svm.gpusvm.mm;
-> > > +	struct xe_vram_region *vr = tile_to_vr(tile);
-> > > +	struct drm_buddy_block *block;
-> > > +	struct list_head *blocks;
-> > > +	struct xe_bo *bo;
-> > > +	ktime_t end = 0;
-> > > +	int err;
-> > > +
-> > > +	if (!mmget_not_zero(mm))
-> > > +		return ERR_PTR(-EFAULT);
-> > > +	mmap_read_lock(mm);
-> > > +
-> > > +retry:
-> > > +	bo = xe_bo_create_locked(tile_to_xe(tile), NULL, NULL,
-> > > +				 xe_svm_range_size(range),
-> > > +				 ttm_bo_type_device,
-> > > +				 XE_BO_FLAG_VRAM_IF_DGFX(tile));
-> > 
-> > Just to confirm, there is nothing scary with the vram still
-> > potentially 
-> > being used by the GPU at this point (like with an async eviction +
-> > clear 
-> > op), right? At some point we have some kind of synchronisation before
-> > the user can touch this memory?
-> 
-> Good point. I don't think there is.
-> 
+On Thu, 20 Feb 2025 11:52:34 -0800, Dixit, Ashutosh wrote:
+>
+> On Wed, 19 Feb 2025 23:02:45 -0800, Dixit, Ashutosh wrote:
+> >
+> > On Wed, 19 Feb 2025 11:43:19 -0800, Harish Chegondi wrote:
+> > >
+> >
+> > Hi Harish,
+> >
+> > > On Wed, Feb 19, 2025 at 10:15:52AM -0800, Dixit, Ashutosh wrote:
+> > > Hi Ashutosh,
+> > >
+> > > > On Tue, 18 Feb 2025 11:53:54 -0800, Harish Chegondi wrote:
+> > > > >
+> > > > > @@ -39,7 +40,9 @@ struct per_xecore_buf {
+> > > > >  };
+> > > > >
+> > > > >  struct xe_eu_stall_data_stream {
+> > > > > +	bool pollin;
+> > > > >	bool enabled;
+> > > > > +	wait_queue_head_t poll_wq;
+> > > > >	size_t data_record_size;
+> > > > >	size_t per_xecore_buf_size;
+> > > > >	unsigned int wait_num_reports;
+> > > > > @@ -47,7 +50,11 @@ struct xe_eu_stall_data_stream {
+> > > > >
+> > > > >	struct xe_gt *gt;
+> > > > >	struct xe_bo *bo;
+> > > > > +	/* Lock to protect xecore_buf */
+> > > > > +	struct mutex buf_lock;
+> > > >
+> > > > Why do we need this new lock? I thought we would just be able to use
+> > > > gt->eu_stall->stream_lock? stream_lock is already taken for read(), so we
+> > > > just need to take it for eu_stall_data_buf_poll()?
+> > >
+> > > I started off with using the gt->eu_stall->stream_lock. But I have seen
+> > > warnings in the dmesg log while testing indicating possible circular
+> > > locking dependency leading to a deadlock. Maybe I can spend more time
+> > > later to investigate further and eliminate the possible circular locking
+> > > dependency. But for now, I decided to use a new lock to eliminate the
+> > > per subslice lock. Here is the dmesg log that I saved from my testing to
+> > > investigate later.
+> > >
+> > > [17606.848776] ======================================================
+> > > [17606.848781] WARNING: possible circular locking dependency detected
+> > > [17606.848786] 6.13.0-upstream #3 Not tainted
+> > > [17606.848791] ------------------------------------------------------
+> > > [17606.848796] xe_eu_stall/21899 is trying to acquire lock:
+> > > [17606.848801] ffff88810daad948 ((wq_completion)xe_eu_stall){+.+.}-{0:0}, at: touch_wq_lockdep_map+0x21/0x80
+> > > [17606.848822]
+> > >                but task is already holding lock:
+> > > [17606.848827] ffff88810d0786a8 (&gt->eu_stall->stream_lock){+.+.}-{4:4}, at: xe_eu_stall_stream_close+0x27/0x70 [xe]
+> > > [17606.848903]
+> > >                which lock already depends on the new lock.
+> > >
+> > > [17606.848909]
+> > >                the existing dependency chain (in reverse order) is:
+> > > [17606.848915]
+> > >                -> #2 (&gt->eu_stall->stream_lock){+.+.}-{4:4}:
+> > > [17606.848915]
+> > >                -> #2 (&gt->eu_stall->stream_lock){+.+.}-{4:4}:
+> > > [17606.848925]        __mutex_lock+0xb4/0xeb0
+> > > [17606.848934]        eu_stall_data_buf_poll+0x42/0x180 [xe]
+> > > [17606.848989]        eu_stall_data_buf_poll_work_fn+0x15/0x60 [xe]
+> > > [17606.849042]        process_one_work+0x207/0x640
+> > > [17606.849051]        worker_thread+0x18c/0x330
+> > > [17606.849058]        kthread+0xeb/0x120
+> > > [17606.849065]        ret_from_fork+0x2c/0x50
+> > > [17606.849073]        ret_from_fork_asm+0x1a/0x30
+> > > [17606.849081]
+> > >                -> #1 ((work_completion)(&(&stream->buf_poll_work)->work)){+.+.}-{0:0}:
+> > > [17606.849092]        process_one_work+0x1e3/0x640
+> > > [17606.849100]        worker_thread+0x18c/0x330
+> > > [17606.849107]        kthread+0xeb/0x120
+> > > [17606.849113]        ret_from_fork+0x2c/0x50
+> > > [17606.849120]        ret_from_fork_asm+0x1a/0x30
+> > > [17606.849126]
+> > >                -> #0 ((wq_completion)xe_eu_stall){+.+.}-{0:0}:
+> > > [17606.849134]        __lock_acquire+0x167c/0x27d0
+> > > [17606.849141]        lock_acquire+0xd5/0x300
+> > > [17606.849148]        touch_wq_lockdep_map+0x36/0x80
+> > > [17606.849155]        __flush_workqueue+0x7e/0x4a0
+> > > [17606.849163]        drain_workqueue+0x92/0x130
+> > > [17606.849170]        destroy_workqueue+0x55/0x380
+> > > [17606.849177]        xe_eu_stall_data_buf_destroy+0x11/0x50 [xe]
+> > > [17606.849220]        xe_eu_stall_stream_close+0x37/0x70 [xe]
+> > > [17606.849259]        __fput+0xed/0x2b0
+> > > [17606.849264]        __x64_sys_close+0x37/0x80
+> > > [17606.849271]        do_syscall_64+0x68/0x140
+> > > [17606.849276]        entry_SYSCALL_64_after_hwframe+0x76/0x7e
+> > > [17606.849286]
+> > >                other info that might help us debug this:
+> > >
+> > > [17606.849294] Chain exists of:
+> > >                  (wq_completion)xe_eu_stall --> (work_completion)(&(&stream->buf_poll_work)->work) --> &gt->eu_stall->stream_lock
+> > >
+> > > [17606.849312]  Possible unsafe locking scenario:
+> > >
+> > > [17606.849318]        CPU0                    CPU1
+> > > [17606.849323]        ----                    ----
+> > > [17606.849328]   lock(&gt->eu_stall->stream_lock);
+> > > [17606.849334]                                lock((work_completion)(&(&stream->buf_poll_work)->work));
+> > > [17606.849344]                                lock(&gt->eu_stall->stream_lock);
+> > > [17606.849352]   lock((wq_completion)xe_eu_stall);
+> > > [17606.849359]
+> > >                 *** DEADLOCK ***
+> > >
+> > > [17606.849365] 1 lock held by xe_eu_stall/21899:
+> > > [17606.849371]  #0: ffff88810d0786a8 (&gt->eu_stall->stream_lock){+.+.}-{4:4}, at: xe_eu_stall_stream_close+0x27/0x70 [xe]
+> > > [17606.849430]
+> > >                stack backtrace:
+> > > [17606.849435] CPU: 3 UID: 0 PID: 21899 Comm: xe_eu_stall Not tainted 6.13.0-upstream #3
+> > > [17606.849445] Hardware name: Intel Corporation Lunar Lake Client Platform/LNL-M LP5 RVP1, BIOS LNLMFWI1.R00.3220.D89.2407012051 07/01/2024
+> > > [17606.849457] Call Trace:
+> > > [17606.849461]  <TASK>
+> > > [17606.849465]  dump_stack_lvl+0x82/0xd0
+> > > [17606.849473]  print_circular_bug+0x2d2/0x410
+> > > [17606.849473]  print_circular_bug+0x2d2/0x410
+> > > [17606.849482]  check_noncircular+0x15d/0x180
+> > > [17606.849492]  __lock_acquire+0x167c/0x27d0
+> > > [17606.849500]  lock_acquire+0xd5/0x300
+> > > [17606.849507]  ? touch_wq_lockdep_map+0x21/0x80
+> > > [17606.849515]  ? lockdep_init_map_type+0x4b/0x260
+> > > [17606.849522]  ? touch_wq_lockdep_map+0x21/0x80
+> > > [17606.849529]  touch_wq_lockdep_map+0x36/0x80
+> > > [17606.849536]  ? touch_wq_lockdep_map+0x21/0x80
+> > > [17606.849544]  __flush_workqueue+0x7e/0x4a0
+> > > [17606.849551]  ? find_held_lock+0x2b/0x80
+> > > [17606.849561]  drain_workqueue+0x92/0x130
+> > > [17606.849569]  destroy_workqueue+0x55/0x380
+> > > [17606.849577]  xe_eu_stall_data_buf_destroy+0x11/0x50 [xe]
+> > > [17606.849627]  xe_eu_stall_stream_close+0x37/0x70 [xe]
+> > > [17606.849678]  __fput+0xed/0x2b0
+> > > [17606.849683]  __x64_sys_close+0x37/0x80
+> > > [17606.849691]  do_syscall_64+0x68/0x140
+> > > [17606.849698]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+> > > [17606.849706] RIP: 0033:0x7fdc81b14f67
+> > > [17606.849712] Code: ff e8 0d 16 02 00 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 00 f3 0f 1e fa 64 8b 04 25 18 00 00 00 85 c0 75 10 b8 03 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 41 c3 48 83 ec 18 89 7c 24 0c e8 73 ba f7 ff
+> > > [17606.849728] RSP: 002b:00007fffd2bd7e58 EFLAGS: 00000246 ORIG_RAX: 0000000000000003
+> > > [17606.849738] RAX: ffffffffffffffda RBX: 0000559f7fa08100 RCX: 00007fdc81b14f67
+> > > [17606.849746] RDX: 0000000000000000 RSI: 0000000000006901 RDI: 0000000000000004
+> > > [17606.849754] RBP: 00007fdc7d40bc90 R08: 0000000000000000 R09: 000000007fffffff
+> > > [17606.849762] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+> > > [17606.849770] R13: 0000000000000000 R14: 0000000000000001 R15: 0000000000000000
+> > > [17606.849783]  </TASK>
+> >
+> > Could you try out this change in your patch (also just use
+> > gt->eu_stall->stream_lock, not stream->buf_lock) and see if it resolves
+> > this issue:
+> >
+> >	@@ -573,7 +573,6 @@ static void xe_eu_stall_stream_free(struct xe_eu_stall_data_stream *stream)
+> >
+> >	 static void xe_eu_stall_data_buf_destroy(struct xe_eu_stall_data_stream *stream)
+> >	 {
+> >	-       destroy_workqueue(stream->buf_poll_wq);
+> >		xe_bo_unpin_map_no_vm(stream->bo);
+> >		kfree(stream->xecore_buf);
+> >	 }
+> >	@@ -829,6 +828,8 @@ static int xe_eu_stall_stream_close(struct inode *inode, struct file *file)
+> >		xe_eu_stall_stream_free(stream);
+> >		mutex_unlock(&gt->eu_stall->stream_lock);
+> >
+> >	+       destroy_workqueue(stream->buf_poll_wq);
+> >	+
+> >		return 0;
+> >	 }
+> >
+> > Basically move destroy_workqueue outside gt->eu_stall->stream_lock.
+> >
+> > I will look more into this. But from the above trace it looks like the
+> > issue of lock order between two locks in different code paths. The two
+> > locks are stream_lock and something let's call wq_lock (associated with the
+> > workqueue or the work item).
+> >
+> > So this is what we see about the order of these two locks in these
+> > instances in the code (assuming we are only using stream_lock):
+> >
+> > 1. eu_stall_data_buf_poll_work_fn: wq_lock is taken first followed by
+> >    stream_lock inside eu_stall_data_buf_poll.
+> >
+> > 2. xe_eu_stall_disable_locked: stream_lock is taken first followed by
+> >    wq_lock when we do cancel_delayed_work_sync (if at all)
+> >
+> > 3. xe_eu_stall_stream_close: stream_lock is taken first followed by wq_lock
+> >    when we do destroy_workqueue.
+> >
+> > So looks like lockdep is complaining about the lock order reversal between
+> > 1. and 3. above. I am not sure if the order reversal between 1. and 2. is a
+> > problem or not (if lockdep complains about this or not). If it is, we could
+> > try moving cancel_delayed_work_sync also outside stream_lock. But we
+> > haven't seen a trace for the second case yet.
+> >
+> > So anyway, the first thing to try is the patch above and see if it fixes
+> > this issue.
+> >
+> > Another idea would be to move buf_poll_wq into gt->eu_stall (rather than
+> > the stream), so it does not have to be destroyed when the stream fd is
+> > closed.
+>
+> So I decided to do a quick POC to see if my suggestion above to get rid of
+> the circular locking dependency worked. And basically it does, with the
+> patch below (we have to ensure stream doesn't get freed and I haven't
+> deleted buf_lock), but you will get the idea. I reproduced the issue with
+> your kernel patches and IGT and made sure the patch below fixes it. So
+> buf_lock is not needed.
+>
+> So with the patch below the circular locking dependency is gone. So let's
+> go with something like this, if you agree:
+>
+> diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
+> index b94585bdf91c6..a3fc424b36665 100644
+> --- a/drivers/gpu/drm/xe/xe_eu_stall.c
+> +++ b/drivers/gpu/drm/xe/xe_eu_stall.c
+> @@ -365,7 +365,7 @@ static bool eu_stall_data_buf_poll(struct xe_eu_stall_data_stream *stream)
+>	u16 group, instance;
+>	unsigned int xecore;
+>
+> -	mutex_lock(&stream->buf_lock);
+> +	mutex_lock(&gt->eu_stall->stream_lock);
+>	for_each_dss_steering(xecore, gt, group, instance) {
+>		xecore_buf = &stream->xecore_buf[xecore];
+>		read_ptr = xecore_buf->read;
+> @@ -383,7 +383,7 @@ static bool eu_stall_data_buf_poll(struct xe_eu_stall_data_stream *stream)
+>			set_bit(xecore, stream->data_drop.mask);
+>		xecore_buf->write = write_ptr;
+>	}
+> -	mutex_unlock(&stream->buf_lock);
+> +	mutex_unlock(&gt->eu_stall->stream_lock);
+>
+>	return min_data_present;
+>  }
+> @@ -503,14 +503,12 @@ static ssize_t xe_eu_stall_stream_read_locked(struct xe_eu_stall_data_stream *st
+>		stream->data_drop.reported_to_user = false;
+>	}
+>
+> -	mutex_lock(&stream->buf_lock);
+>	for_each_dss_steering(xecore, gt, group, instance) {
+>		ret = xe_eu_stall_data_buf_read(stream, buf, count, &total_size,
+>						gt, group, instance, xecore);
+>		if (ret || count == total_size)
+>			break;
+>	}
+> -	mutex_unlock(&stream->buf_lock);
+>	return total_size ?: (ret ?: -EAGAIN);
+>  }
+>
+> @@ -573,7 +571,6 @@ static void xe_eu_stall_stream_free(struct xe_eu_stall_data_stream *stream)
+>
+>  static void xe_eu_stall_data_buf_destroy(struct xe_eu_stall_data_stream *stream)
+>  {
+> -	destroy_workqueue(stream->buf_poll_wq);
+>	xe_bo_unpin_map_no_vm(stream->bo);
+>	kfree(stream->xecore_buf);
+>  }
+> @@ -826,9 +823,12 @@ static int xe_eu_stall_stream_close(struct inode *inode, struct file *file)
+>	mutex_lock(&gt->eu_stall->stream_lock);
+>	xe_eu_stall_disable_locked(stream);
+>	xe_eu_stall_data_buf_destroy(stream);
+> -	xe_eu_stall_stream_free(stream);
+> +	gt->eu_stall->stream = NULL;
+>	mutex_unlock(&gt->eu_stall->stream_lock);
+>
+> +	destroy_workqueue(stream->buf_poll_wq);
+> +	kfree(stream);
+> +
+>	return 0;
+>  }
 
-Agree - there shouldn't be anything scary happening here. The new VRAM
-is allocated from buddy which doesn't have dma-resv attached to it (and
-thus no outstanding fences) and creating a new dma-resv object. A clear
-is issued and then we do an immediate copy but those operations are
-serialized on the same queue.
+Maybe, as suggested above, move buf_poll_wq into gt->eu_stall (rather than
+the stream), so it does not have to be destroyed when the stream fd is
+closed. That way we can just call xe_eu_stall_stream_free() from
+xe_eu_stall_stream_close().
 
-Matt
-
-> > 
-> > > +	if (IS_ERR(bo)) {
-> > > +		err = PTR_ERR(bo);
-> > > +		if (xe_vm_validate_should_retry(NULL, err, &end))
-> > > +			goto retry;
-> > > +		goto unlock;
-> > > +	}
-> > > +
-> > > +	drm_gpusvm_devmem_init(&bo->devmem_allocation,
-> > > +			       vm->xe->drm.dev, mm,
-> > > +			       &gpusvm_devmem_ops,
-> > > +			       &tile->mem.vram.dpagemap,
-> > > +			       xe_svm_range_size(range));
-> > > +
-> > > +	blocks = &to_xe_ttm_vram_mgr_resource(bo->ttm.resource)-
-> > > >blocks;
-> > > +	list_for_each_entry(block, blocks, link)
-> > > +		block->private = vr;
-> > > +
-> > > +	/*
-> > > +	 * Take ref because as soon as
-> > > drm_gpusvm_migrate_to_devmem succeeds the
-> > > +	 * creation ref can be dropped upon CPU fault or unmap.
-> > > +	 */
-> > > +	xe_bo_get(bo);
-> > > +
-> > > +	err = drm_gpusvm_migrate_to_devmem(&vm->svm.gpusvm,
-> > > &range->base,
-> > > +					   &bo->devmem_allocation,
-> > > ctx);
-> > > +	xe_bo_unlock(bo);
-> > > +	if (err) {
-> > > +		xe_bo_put(bo);	/* Local ref */
-> > > +		xe_bo_put(bo);	/* Creation ref */
-> > > +		bo = ERR_PTR(err);
-> > > +	}
-> > > +
-> > > +unlock:
-> > > +	mmap_read_unlock(mm);
-> > > +	mmput(mm);
-> > > +
-> > > +	return bo;
-> > > +}
-> > > +
-> > >   /**
-> > >    * xe_svm_handle_pagefault() - SVM handle page fault
-> > >    * @vm: The VM.
-> > > @@ -600,7 +669,8 @@ static bool xe_svm_range_is_valid(struct
-> > > xe_svm_range *range,
-> > >    * @fault_addr: The GPU fault address.
-> > >    * @atomic: The fault atomic access bit.
-> > >    *
-> > > - * Create GPU bindings for a SVM page fault.
-> > > + * Create GPU bindings for a SVM page fault. Optionally migrate to
-> > > device
-> > > + * memory.
-> > >    *
-> > >    * Return: 0 on success, negative error code on error.
-> > >    */
-> > > @@ -608,11 +678,18 @@ int xe_svm_handle_pagefault(struct xe_vm *vm,
-> > > struct xe_vma *vma,
-> > >   			    struct xe_tile *tile, u64 fault_addr,
-> > >   			    bool atomic)
-> > >   {
-> > > -	struct drm_gpusvm_ctx ctx = { .read_only =
-> > > xe_vma_read_only(vma), };
-> > > +	struct drm_gpusvm_ctx ctx = {
-> > > +		.read_only = xe_vma_read_only(vma),
-> > > +		.devmem_possible = IS_DGFX(vm->xe) &&
-> > > +			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR),
-> > > +		.check_pages_threshold = IS_DGFX(vm->xe) &&
-> > > +			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR) ?
-> > > SZ_64K : 0,
-> > > +	};
-> > >   	struct xe_svm_range *range;
-> > >   	struct drm_gpusvm_range *r;
-> > >   	struct drm_exec exec;
-> > >   	struct dma_fence *fence;
-> > > +	struct xe_bo *bo = NULL;
-> > >   	ktime_t end = 0;
-> > >   	int err;
-> > >   
-> > > @@ -620,6 +697,9 @@ int xe_svm_handle_pagefault(struct xe_vm *vm,
-> > > struct xe_vma *vma,
-> > >   	xe_assert(vm->xe, xe_vma_is_cpu_addr_mirror(vma));
-> > >   
-> > >   retry:
-> > > +	xe_bo_put(bo);
-> > > +	bo = NULL;
-> > > +
-> > >   	/* Always process UNMAPs first so view SVM ranges is
-> > > current */
-> > >   	err = xe_svm_garbage_collector(vm);
-> > >   	if (err)
-> > > @@ -635,9 +715,31 @@ int xe_svm_handle_pagefault(struct xe_vm *vm,
-> > > struct xe_vma *vma,
-> > >   	if (xe_svm_range_is_valid(range, tile))
-> > >   		return 0;
-> > >   
-> > > +	/* XXX: Add migration policy, for now migrate range once
-> > > */
-> > > +	if (!range->migrated && range->base.flags.migrate_devmem
-> > > &&
-> > > +	    xe_svm_range_size(range) >= SZ_64K) {
-> > > +		range->migrated = true;
-> > > +
-> > > +		bo = xe_svm_alloc_vram(vm, tile, range, &ctx);
-> > > +		if (IS_ERR(bo)) {
-> > > +			drm_info(&vm->xe->drm,
-> > > +				 "VRAM allocation failed, falling
-> > > back to retrying, asid=%u, errno %pe\n",
-> > > +				 vm->usm.asid, bo);
-> > > +			bo = NULL;
-> > > +			goto retry;
-> > > +		}
-> > > +	}
-> > > +
-> > >   	err = drm_gpusvm_range_get_pages(&vm->svm.gpusvm, r,
-> > > &ctx);
-> > > -	if (err == -EFAULT || err == -EPERM)	/* Corner where
-> > > CPU mappings have changed */
-> > > +	/* Corner where CPU mappings have changed */
-> > > +	if (err == -EOPNOTSUPP || err == -EFAULT || err == -EPERM)
-> > > {
-> > > +		if (err == -EOPNOTSUPP)
-> > > +			drm_gpusvm_range_evict(&vm->svm.gpusvm,
-> > > &range->base);
-> > > +		drm_info(&vm->xe->drm,
-> > > +			 "Get pages failed, falling back to
-> > > retrying, asid=%u, gpusvm=%p, errno %pe\n",
-> > > +			 vm->usm.asid, &vm->svm.gpusvm,
-> > > ERR_PTR(err));
-> > >   		goto retry;
-> > > +	}
-> > >   	if (err)
-> > >   		goto err_out;
-> > >   
-> > > @@ -668,6 +770,7 @@ int xe_svm_handle_pagefault(struct xe_vm *vm,
-> > > struct xe_vma *vma,
-> > >   	dma_fence_put(fence);
-> > >   
-> > >   err_out:
-> > > +	xe_bo_put(bo);
-> > >   
-> > >   	return err;
-> > >   }
-> > > diff --git a/drivers/gpu/drm/xe/xe_svm.h
-> > > b/drivers/gpu/drm/xe/xe_svm.h
-> > > index 0fa525d34987..984a61651d9e 100644
-> > > --- a/drivers/gpu/drm/xe/xe_svm.h
-> > > +++ b/drivers/gpu/drm/xe/xe_svm.h
-> > > @@ -35,6 +35,11 @@ struct xe_svm_range {
-> > >   	 * range. Protected by GPU SVM notifier lock.
-> > >   	 */
-> > >   	u8 tile_invalidated;
-> > > +	/**
-> > > +	 * @migrated: Range has been migrated to device memory,
-> > > protected by
-> > > +	 * GPU fault handler locking.
-> > > +	 */
-> > > +	u8 migrated	:1;
-> > >   };
-> > >   
-> > >   int xe_devm_add(struct xe_tile *tile, struct xe_vram_region *vr);
-> > 
-> 
+And we'll alloc the workqueue in xe_eu_stall_init() and destroy it in
+xe_eu_stall_fini(). This will minimize the changes.
