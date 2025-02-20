@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74AFBC021B1
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Feb 2025 20:38:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20FF3C021B7
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Feb 2025 20:38:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C83FE10E9EB;
-	Thu, 20 Feb 2025 20:38:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12A7810E9EE;
+	Thu, 20 Feb 2025 20:38:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BNR2qIwI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SQDLcf76";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 844D110E9DB;
- Thu, 20 Feb 2025 20:38:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB42410E9DF;
+ Thu, 20 Feb 2025 20:38:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740083915; x=1771619915;
+ t=1740083916; x=1771619916;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=u2AbzGaI4Ls00Mz3zF+gpAWIquuEq3mLtyJZINYvlBU=;
- b=BNR2qIwIqmAfME63jWrC8WrzGTkLMJ1VuWkDEL+R7rNIEgmV2j89K9dj
- d4N1GzBfWZThd638md7SoYlMNSoqTZo8ULWIn+vgPbx5aN0p4253c71Ci
- y/iVCVO7L/Ks273/ADNTYW1dLxZvVuclV9lNTv2Ojjn3bwzTuGc0ql0QM
- JtQNgVNJrBvQNZ+RhBzTPgCuJndMK0s9ahZWXDv6auD1IvLD/L3R+4/LQ
- 5LbJ1Yfzm3FvxBtA2+AVI5GGshRAWOEiAvmoU6d0+Yh28DIWGK5WgnUuv
- mmLZ8TNq+ZB14LfNCFZlTJ3r9h30M1aoJYPl3WaZ88ivcM9buhbWHV5Fs g==;
-X-CSE-ConnectionGUID: +7VRF9rTQBmW0oNT6jbkLA==
-X-CSE-MsgGUID: dE+cGOH8T7apECVAtRTvxQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="41097932"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="41097932"
+ bh=60nckjAvEwo8lnuh60Lk9jDkK46KiEserXo4D8hJMuY=;
+ b=SQDLcf76f5P5f0JGG8O+enOsHN1NTqZgMeNxAsV0GlrxO3XlHOg8WUHY
+ yJEhIDcUkRsmbNedGUDxCFBzxgaUCp6ttX+exape53jtED8xIZG50T7aG
+ XKQNs2tKaSJyzdZQO5RcwMVxUTlAwW1KB/8jEIQSaQzhg2fF0EcDb30i1
+ 7XZKhWM7ZcxUAavk4tSwCJ24FXdFK/mpuD6iMPmVJ4plxWYxKnV3rS6k9
+ 7KTsZIJ2OhKw9iS9j6JlPl/CiQ7NiNSUvv4nXOE0AA6Tzv91XqAMWXZds
+ ZQ97VO8z76wXYZNb0FyyV5DdQOm9IyBmRsBjWnUuKDrMfPK2vHuMTJ0cv Q==;
+X-CSE-ConnectionGUID: /HUJagLCRxOrIbJHeDERHw==
+X-CSE-MsgGUID: i7pp+DPUS5CmNKhd8NFDLA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="41097941"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="41097941"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2025 12:38:35 -0800
-X-CSE-ConnectionGUID: hy5YU3vcR96NdNRgq0Ve6Q==
-X-CSE-MsgGUID: 4YD1XWy9QEm+P+gkIC3mpg==
+ 20 Feb 2025 12:38:36 -0800
+X-CSE-ConnectionGUID: nPPNdJlnSBudZVPUFX2u1w==
+X-CSE-MsgGUID: oAfG8eX+RJOW466+NyeZkw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,302,1732608000"; d="scan'208";a="115100556"
+X-IronPort-AV: E=Sophos;i="6.13,302,1732608000"; d="scan'208";a="115100572"
 Received: from dut4086lnl.fm.intel.com ([10.105.10.90])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2025 12:38:34 -0800
+ 20 Feb 2025 12:38:35 -0800
 From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
  joonas.lahtinen@linux.intel.com, tvrtko.ursulin@igalia.com,
  lucas.demarchi@intel.com, matthew.brost@intel.com,
  dri-devel@lists.freedesktop.org, simona.vetter@ffwll.ch
-Subject: [PATCH v4 2/6] drm/xe/xe_gt_pagefault: Migrate pagefault struct to
- header
-Date: Thu, 20 Feb 2025 20:38:28 +0000
-Message-ID: <20250220203832.130430-3-jonathan.cavitt@intel.com>
+Subject: [PATCH v4 5/6] drm/xe/xe_query: Pass drm file to query funcs
+Date: Thu, 20 Feb 2025 20:38:31 +0000
+Message-ID: <20250220203832.130430-6-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250220203832.130430-1-jonathan.cavitt@intel.com>
 References: <20250220203832.130430-1-jonathan.cavitt@intel.com>
@@ -70,92 +69,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Migrate the pagefault struct from xe_gt_pagefault.c to the
-xe_gt_pagefault.h header file, along with the associated enum values.
+Pass the drm file to the query funcs in xe_query.c.  This will be
+necessary for a future query.
 
 Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_pagefault.c | 27 ---------------------------
- drivers/gpu/drm/xe/xe_gt_pagefault.h | 28 ++++++++++++++++++++++++++++
- 2 files changed, 28 insertions(+), 27 deletions(-)
+ drivers/gpu/drm/xe/xe_query.c | 39 ++++++++++++++++++++++++-----------
+ 1 file changed, 27 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index 46701ca11ce0..fe18e3ec488a 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -22,33 +22,6 @@
- #include "xe_trace_bo.h"
- #include "xe_vm.h"
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index 042f87a688e7..3aad4737bfec 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -110,7 +110,8 @@ hwe_read_timestamp(struct xe_hw_engine *hwe, u64 *engine_ts, u64 *cpu_ts,
  
--struct pagefault {
--	u64 page_addr;
--	u32 asid;
--	u16 pdata;
--	u8 vfid;
--	u8 access_type;
--	u8 fault_type;
--	u8 fault_level;
--	u8 engine_class;
--	u8 engine_instance;
--	u8 fault_unsuccessful;
--	bool trva_fault;
--};
--
--enum access_type {
--	ACCESS_TYPE_READ = 0,
--	ACCESS_TYPE_WRITE = 1,
--	ACCESS_TYPE_ATOMIC = 2,
--	ACCESS_TYPE_RESERVED = 3,
--};
--
--enum fault_type {
--	NOT_PRESENT = 0,
--	WRITE_ACCESS_VIOLATION = 1,
--	ATOMIC_ACCESS_VIOLATION = 2,
--};
--
- struct acc {
- 	u64 va_range_base;
- 	u32 asid;
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.h b/drivers/gpu/drm/xe/xe_gt_pagefault.h
-index 839c065a5e4c..e9911da5c8a7 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.h
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.h
-@@ -11,6 +11,34 @@
- struct xe_gt;
- struct xe_guc;
+ static int
+ query_engine_cycles(struct xe_device *xe,
+-		    struct drm_xe_device_query *query)
++		    struct drm_xe_device_query *query,
++		    struct drm_file *file)
+ {
+ 	struct drm_xe_query_engine_cycles __user *query_ptr;
+ 	struct drm_xe_engine_class_instance *eci;
+@@ -179,7 +180,8 @@ query_engine_cycles(struct xe_device *xe,
+ }
  
-+struct pagefault {
-+	u64 page_addr;
-+	u32 asid;
-+	u16 pdata;
-+	u8 vfid;
-+	u8 access_type;
-+	u8 fault_type;
-+	u8 fault_level;
-+	u8 engine_class;
-+	u8 engine_instance;
-+	u8 fault_unsuccessful;
-+	bool prefetch;
-+	bool trva_fault;
-+};
-+
-+enum access_type {
-+	ACCESS_TYPE_READ = 0,
-+	ACCESS_TYPE_WRITE = 1,
-+	ACCESS_TYPE_ATOMIC = 2,
-+	ACCESS_TYPE_RESERVED = 3,
-+};
-+
-+enum fault_type {
-+	NOT_PRESENT = 0,
-+	WRITE_ACCESS_VIOLATION = 1,
-+	ATOMIC_ACCESS_VIOLATION = 2,
-+};
-+
- int xe_gt_pagefault_init(struct xe_gt *gt);
- void xe_gt_pagefault_reset(struct xe_gt *gt);
- int xe_guc_pagefault_handler(struct xe_guc *guc, u32 *msg, u32 len);
+ static int query_engines(struct xe_device *xe,
+-			 struct drm_xe_device_query *query)
++			 struct drm_xe_device_query *query,
++			 struct drm_file *file)
+ {
+ 	size_t size = calc_hw_engine_info_size(xe);
+ 	struct drm_xe_query_engines __user *query_ptr =
+@@ -240,7 +242,8 @@ static size_t calc_mem_regions_size(struct xe_device *xe)
+ }
+ 
+ static int query_mem_regions(struct xe_device *xe,
+-			    struct drm_xe_device_query *query)
++			     struct drm_xe_device_query *query,
++			     struct drm_file *file)
+ {
+ 	size_t size = calc_mem_regions_size(xe);
+ 	struct drm_xe_query_mem_regions *mem_regions;
+@@ -310,7 +313,9 @@ static int query_mem_regions(struct xe_device *xe,
+ 	return ret;
+ }
+ 
+-static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
++static int query_config(struct xe_device *xe,
++			struct drm_xe_device_query *query,
++			struct drm_file *file)
+ {
+ 	const u32 num_params = DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY + 1;
+ 	size_t size =
+@@ -351,7 +356,9 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
+ 	return 0;
+ }
+ 
+-static int query_gt_list(struct xe_device *xe, struct drm_xe_device_query *query)
++static int query_gt_list(struct xe_device *xe,
++			 struct drm_xe_device_query *query,
++			 struct drm_file *file)
+ {
+ 	struct xe_gt *gt;
+ 	size_t size = sizeof(struct drm_xe_query_gt_list) +
+@@ -422,7 +429,8 @@ static int query_gt_list(struct xe_device *xe, struct drm_xe_device_query *query
+ }
+ 
+ static int query_hwconfig(struct xe_device *xe,
+-			  struct drm_xe_device_query *query)
++			  struct drm_xe_device_query *query,
++			  struct drm_file *file)
+ {
+ 	struct xe_gt *gt = xe_root_mmio_gt(xe);
+ 	size_t size = xe_guc_hwconfig_size(&gt->uc.guc);
+@@ -490,7 +498,8 @@ static int copy_mask(void __user **ptr,
+ }
+ 
+ static int query_gt_topology(struct xe_device *xe,
+-			     struct drm_xe_device_query *query)
++			     struct drm_xe_device_query *query,
++			     struct drm_file *file)
+ {
+ 	void __user *query_ptr = u64_to_user_ptr(query->data);
+ 	size_t size = calc_topo_query_size(xe);
+@@ -549,7 +558,9 @@ static int query_gt_topology(struct xe_device *xe,
+ }
+ 
+ static int
+-query_uc_fw_version(struct xe_device *xe, struct drm_xe_device_query *query)
++query_uc_fw_version(struct xe_device *xe,
++		    struct drm_xe_device_query *query,
++		    struct drm_file *file)
+ {
+ 	struct drm_xe_query_uc_fw_version __user *query_ptr = u64_to_user_ptr(query->data);
+ 	size_t size = sizeof(struct drm_xe_query_uc_fw_version);
+@@ -639,7 +650,8 @@ static size_t calc_oa_unit_query_size(struct xe_device *xe)
+ }
+ 
+ static int query_oa_units(struct xe_device *xe,
+-			  struct drm_xe_device_query *query)
++			  struct drm_xe_device_query *query,
++			  struct drm_file *file)
+ {
+ 	void __user *query_ptr = u64_to_user_ptr(query->data);
+ 	size_t size = calc_oa_unit_query_size(xe);
+@@ -699,7 +711,9 @@ static int query_oa_units(struct xe_device *xe,
+ 	return ret ? -EFAULT : 0;
+ }
+ 
+-static int query_pxp_status(struct xe_device *xe, struct drm_xe_device_query *query)
++static int query_pxp_status(struct xe_device *xe,
++			    struct drm_xe_device_query *query,
++			    struct drm_file *file)
+ {
+ 	struct drm_xe_query_pxp_status __user *query_ptr = u64_to_user_ptr(query->data);
+ 	size_t size = sizeof(struct drm_xe_query_pxp_status);
+@@ -727,7 +741,8 @@ static int query_pxp_status(struct xe_device *xe, struct drm_xe_device_query *qu
+ }
+ 
+ static int (* const xe_query_funcs[])(struct xe_device *xe,
+-				      struct drm_xe_device_query *query) = {
++				      struct drm_xe_device_query *query,
++				      struct drm_file *file) = {
+ 	query_engines,
+ 	query_mem_regions,
+ 	query_config,
+@@ -757,5 +772,5 @@ int xe_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	if (XE_IOCTL_DBG(xe, !xe_query_funcs[idx]))
+ 		return -EINVAL;
+ 
+-	return xe_query_funcs[idx](xe, query);
++	return xe_query_funcs[idx](xe, query, file);
+ }
 -- 
 2.43.0
 
