@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 688B9C021B0
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Feb 2025 06:25:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A12D2C021B0
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Feb 2025 06:26:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA67810E8D4;
-	Thu, 20 Feb 2025 06:25:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BD0510E8D5;
+	Thu, 20 Feb 2025 06:26:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CYevz6KC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="McLK7XOW";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFD6A10E8D4
- for <intel-xe@lists.freedesktop.org>; Thu, 20 Feb 2025 06:25:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65EC410E8D5
+ for <intel-xe@lists.freedesktop.org>; Thu, 20 Feb 2025 06:25:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740032756; x=1771568756;
+ t=1740032760; x=1771568760;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=L7HVFdixZfpa1W4KQAfruLaq7n3EL6kAvbcv5Mdd0Bc=;
- b=CYevz6KCfawXk1E8NLOs8BLRRR17+zadye9GSRpsTSPwLawugvyeDofK
- YWcX69I/M+EykVnOvzY5XmeM3c4dnQxv3LAZiFzORdnGzaPmtN+4CiggB
- EHoD6btOcE5C2H8WLmZ5+Jg7OOdULbNqUbj8rRyNgdbJ6xPN0+Suc/rs7
- Aw0cb1agMINTs1ZJbaaFtUKQTn2aCijRNoGYRY8vVGMOTCiGhPPGLHove
- QqH1eBa+rmYstZ0SMcKbhCXNIM8Q4OsURGgR/HQijX+uEqouFn4rK6cHc
- Ecm/U/6hbGu1qRFBclIpJAW8k59ThVol8o1/OoJdcTE7e+/h86PrKNZ0j w==;
-X-CSE-ConnectionGUID: 0wV/Z8BOSG+hpWnu2meNWg==
-X-CSE-MsgGUID: hF6+09X2S12tvlgtkB634A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11350"; a="40665053"
-X-IronPort-AV: E=Sophos;i="6.13,300,1732608000"; d="scan'208";a="40665053"
+ bh=MTKa2CMUBob6a/lexSDY2HkgOZTu1X87FbYE/IFyQsE=;
+ b=McLK7XOWtnymG4qrXMY+pFp95ckL3xtHCMa3/0N4A1OPYeW+dMlt4lm6
+ vKBMRDPe9dyfya6BnZFe7sZDiSVsMjNAncEY5wijWc2UltkLYWWnINpZ4
+ 5saMsrRQWBWtAbciqs5Kq80HMeUA876L2O7JW+eh4ecQF77x3MuzGP/tr
+ U4U0lpMqVo5YDnU3w6AaR1Mk/WDJWCB5jnRt/5XacHvMHmgXIV7P5Wpg+
+ jqCApJUaImkxSNX4+z2TReLBZJWvLyoF1Sagr/nMubgZW52MS3xSgZGml
+ 4UqhPKayz5fRHehNMahwc5pSab5yEVPkZwAUtREFhhdEwdCdU0PkEL3MV A==;
+X-CSE-ConnectionGUID: oaEKI1xOSG6J4XtqgSGbmw==
+X-CSE-MsgGUID: rzk8/8E6Q+yqu52CevvaQg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11350"; a="40665062"
+X-IronPort-AV: E=Sophos;i="6.13,300,1732608000"; d="scan'208";a="40665062"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2025 22:25:56 -0800
-X-CSE-ConnectionGUID: ZMwcaPq6TIGph/6JQYQjow==
-X-CSE-MsgGUID: 03FVdLTDQGKKjCC7fAZT7Q==
+ 19 Feb 2025 22:25:59 -0800
+X-CSE-ConnectionGUID: 6zQ9bXGzThSQ8PjhnyHPIw==
+X-CSE-MsgGUID: cOZfNmF2T8Kat/gKITy9kg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,300,1732608000"; d="scan'208";a="114781944"
+X-IronPort-AV: E=Sophos;i="6.13,300,1732608000"; d="scan'208";a="114781971"
 Received: from labhost1.iind.intel.com ([10.190.230.69])
- by fmviesa006.fm.intel.com with ESMTP; 19 Feb 2025 22:25:54 -0800
+ by fmviesa006.fm.intel.com with ESMTP; 19 Feb 2025 22:25:57 -0800
 From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Wajdeczko?= <michal.wajdeczko@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
  =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Subject: [PATCH 1/2] drm/xe/pf: Create a link between PF and VF devices
-Date: Thu, 20 Feb 2025 12:11:18 +0530
-Message-Id: <20250220064119.26623-2-satyanarayana.k.v.p@intel.com>
+Subject: [PATCH 2/2] drm/xe/vf: Retry sending MMIO request to GUC on timeout
+ error
+Date: Thu, 20 Feb 2025 12:11:19 +0530
+Message-Id: <20250220064119.26623-3-satyanarayana.k.v.p@intel.com>
 X-Mailer: git-send-email 2.35.3
 In-Reply-To: <20250220064119.26623-1-satyanarayana.k.v.p@intel.com>
 References: <20250220064119.26623-1-satyanarayana.k.v.p@intel.com>
@@ -69,78 +70,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When both PF and VF devices are enabled on the host, they
-resume simultaneously during system resume.
+Add support to allow retrying the sending of MMIO requests
+from the VF to the GUC in the event of an error. During the
+suspend/resume process, VFs begin resuming only after the PF has
+resumed. Although the PF resumes, the GUC reset and provisioning
+occur later in a separate worker process.
 
-However, the PF must finish provisioning the VF before any
-VFs can successfully resume.
-
-Establish a parent-child device link between the PF and VF
-devices to ensure the correct order of resumption.
+When there are a large number of VFs, some may attempt to resume
+before the PF has completed its provisioning. Therefore, if a
+MMIO request from a VF fails during this period, we will retry
+sending the request up to GUC_RESET_VF_STATE_RETRY_MAX times,
+which is set to a maximum of 10 attempts.
 
 Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 Cc: Michał Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Michał Winiarski <michal.winiarski@intel.com>
 Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pci_sriov.c | 37 +++++++++++++++++++++++++++++++
- 1 file changed, 37 insertions(+)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.c b/drivers/gpu/drm/xe/xe_pci_sriov.c
-index aaceee748287..429e1c7909a1 100644
---- a/drivers/gpu/drm/xe/xe_pci_sriov.c
-+++ b/drivers/gpu/drm/xe/xe_pci_sriov.c
-@@ -62,6 +62,41 @@ static void pf_reset_vfs(struct xe_device *xe, unsigned int num_vfs)
- 			xe_gt_sriov_pf_control_trigger_flr(gt, n);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index 4831549da319..a439261bf4d7 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -47,12 +47,19 @@ static int guc_action_vf_reset(struct xe_guc *guc)
+ 	return ret > 0 ? -EPROTO : ret;
  }
  
-+static void pf_link_vfs(struct xe_device *xe, int num_vfs)
-+{
-+	struct pci_dev *pdev_pf = to_pci_dev(xe->drm.dev);
-+	int domain = pci_domain_nr(pdev_pf->bus);
-+	unsigned int bus = pdev_pf->bus->number;
-+	struct device_link *link;
-+	struct pci_dev *pdev_vf;
-+	unsigned int n;
-+
-+	for (n = 1; n <= num_vfs; n++) {
-+		pdev_vf = pci_get_domain_bus_and_slot(domain, bus,
-+						      pci_iov_virtfn_devfn(pdev_pf, n - 1));
-+
-+		if (!pdev_vf) {
-+			xe_sriov_notice(xe, "Can't link PF and VF%d due to missing pci dev..\n", n);
-+			continue;
-+		}
-+
-+		/*
-+		 * When both PF and VF devices are enabled on the host, during system
-+		 * resume they are resuming in parallel.
-+		 *
-+		 * But PF has to complete the provision of VF first to allow any VFs to
-+		 * successfully resume.
-+		 *
-+		 * Create a parent-child device link between PF and VF devices that will
-+		 * enforce correct resume order.
-+		 */
-+		link = device_link_add(&pdev_vf->dev, &pdev_pf->dev,
-+				       DL_FLAG_AUTOREMOVE_CONSUMER);
-+		if (!link)
-+			xe_sriov_notice(xe, "Failed linking PF and VF%u\n", n);
-+	}
-+}
-+
- static int pf_enable_vfs(struct xe_device *xe, int num_vfs)
++#define GUC_RESET_VF_STATE_RETRY_MAX	10
+ static int vf_reset_guc_state(struct xe_gt *gt)
  {
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-@@ -92,6 +127,8 @@ static int pf_enable_vfs(struct xe_device *xe, int num_vfs)
- 	if (err < 0)
- 		goto failed;
++	unsigned int retry = GUC_RESET_VF_STATE_RETRY_MAX;
+ 	struct xe_guc *guc = &gt->uc.guc;
+ 	int err;
  
-+	pf_link_vfs(xe, num_vfs);
+-	err = guc_action_vf_reset(guc);
++	do {
++		err = guc_action_vf_reset(guc);
++		if (!err || err != -ETIMEDOUT)
++			break;
++	} while (--retry);
 +
- 	xe_sriov_info(xe, "Enabled %u of %u VF%s\n",
- 		      num_vfs, total_vfs, str_plural(total_vfs));
- 	return num_vfs;
+ 	if (unlikely(err))
+ 		xe_gt_sriov_err(gt, "Failed to reset GuC state (%pe)\n", ERR_PTR(err));
+ 	return err;
 -- 
 2.35.3
 
