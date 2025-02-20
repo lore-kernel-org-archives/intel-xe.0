@@ -4,30 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47709C021B3
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Feb 2025 17:17:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2FE5C021B1
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Feb 2025 17:26:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2F8D10E4D5;
-	Thu, 20 Feb 2025 17:17:05 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AC9A10E4D5;
- Thu, 20 Feb 2025 17:17:04 +0000 (UTC)
-Message-ID: <4c94aaf7-43da-4c10-b396-2d69445174dc@lankhorst.se>
-Date: Thu, 20 Feb 2025 18:17:01 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8253710E9C2;
+	Thu, 20 Feb 2025 17:26:01 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GJ+UdxYu";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6075610E9C4
+ for <intel-xe@lists.freedesktop.org>; Thu, 20 Feb 2025 17:26:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1740072360; x=1771608360;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=G8eXwPWqHM1y3t7srx9/NQuRc5X5STBaD+gsWaU38Go=;
+ b=GJ+UdxYuUMjTkwGsrzQbPvoDnuFjPuWOFp0oaBCycIYlsTIa27/MDRI2
+ WTG5ZUA3EYmwzkJGOLSHbTCUExFVP0T/wK5aip9untNFzuNnJlACcjfCm
+ 7A5YJH6eg8ca8WGvti10jAVD/GXyAqnHaDjp/7QS3MjAgHt2VDeenZqNW
+ hYTx2vu3iK7PtBRSkCeq7GlOA48gQSCETEEw2mtXpNQQqy5K8S+bOk9pB
+ 3d1ZoOGpgE6IhOMZYNb7abP2DyyhMmnJUIN3ShKszGjs+P/HH/PAGe1gZ
+ jM3y+fGdY/yXH6gak/SQFZUeMjgtfeHiJaY2M4HHy1YFon1V/ewJgXA+1 Q==;
+X-CSE-ConnectionGUID: acw6gLsuSJmE8oRC6J/zjg==
+X-CSE-MsgGUID: R+PI6qvhQH+6r1LJPAiLsw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11351"; a="40788074"
+X-IronPort-AV: E=Sophos;i="6.13,302,1732608000"; d="scan'208";a="40788074"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2025 09:25:59 -0800
+X-CSE-ConnectionGUID: 2FbCCVAbSI6qzvqslOvqLQ==
+X-CSE-MsgGUID: UDfukKAdR2OswILGvTeUlg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,302,1732608000"; d="scan'208";a="115634860"
+Received: from lstrano-mobl6.amr.corp.intel.com (HELO
+ gjsousa-mobl2.corp.amr.intel.com) ([10.125.110.92])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2025 09:25:59 -0800
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH 1/4] drm/xe: Set IP names in functions handling IP version
+Date: Thu, 20 Feb 2025 14:25:08 -0300
+Message-ID: <20250220172532.66613-2-gustavo.sousa@intel.com>
+X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250220172532.66613-1-gustavo.sousa@intel.com>
+References: <20250220172532.66613-1-gustavo.sousa@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3.1] drm/xe/display: Fix fbdev GGTT mapping handling.
-To: Matthew Auld <matthew.auld@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Matthew Brost <matthew.brost@intel.com>
-References: <20250219153441.625352-1-dev@lankhorst.se>
- <dftpyfotba6vxp6pkiircxpm7ok7sowzx6x2fu52hdjug4rzfe@uc7e47olt7uv>
- <9b9afafc-74cf-4899-a655-4765c9fb8f9a@intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <9b9afafc-74cf-4899-a655-4765c9fb8f9a@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -43,79 +66,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
+In an upcoming change, we will handle setting graphics_name and
+media_name differently for GMDID-based IPs. As such, let's make both
+handle_pre_gmdid() and handle_gmdid() functions responsible for
+initializing those fields. While now we have both doing essentially the
+same thing with respect to those fields, handle_pre_gmdid() will diverge
+soon.
 
-On 2025-02-20 16:43, Matthew Auld wrote:
-> On 20/02/2025 14:22, Lucas De Marchi wrote:
->> On Wed, Feb 19, 2025 at 04:34:40PM +0100, Maarten Lankhorst wrote:
->>> The fbdev vma is a normal unrotated VMA, so add ane explicit check
->>> before re-using.
->>>
->>> When re-using, we have to restore the GGTT mapping on resume, so add
->>> some code to do that too.
->>>
->>> Fixes: 67a98f7e27ba ("drm/xe/display: Re-use display vmas when 
->>> possible")
->>> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
->>> ---
->>> drivers/gpu/drm/xe/display/xe_display.c |  6 +++++-
->>> drivers/gpu/drm/xe/display/xe_fb_pin.c  | 24 +++++++++++++++++++++++-
->>> drivers/gpu/drm/xe/display/xe_fb_pin.h  | 13 +++++++++++++
->>> 3 files changed, 41 insertions(+), 2 deletions(-)
->>> create mode 100644 drivers/gpu/drm/xe/display/xe_fb_pin.h
->>>
->>> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/ 
->>> drm/xe/display/xe_display.c
->>> index 02a413a073824..999f25a562c19 100644
->>> --- a/drivers/gpu/drm/xe/display/xe_display.c
->>> +++ b/drivers/gpu/drm/xe/display/xe_display.c
->>> @@ -30,6 +30,7 @@
->>> #include "intel_hotplug.h"
->>> #include "intel_opregion.h"
->>> #include "skl_watermark.h"
->>> +#include "xe_fb_pin.h"
->>> #include "xe_module.h"
->>>
->>> /* Xe device functions */
->>> @@ -492,8 +493,11 @@ void xe_display_pm_resume(struct xe_device *xe)
->>>         intel_display_driver_enable_user_access(display);
->>>     }
->>>
->>> -    if (has_display(xe))
->>> +    if (has_display(xe)) {
->>> +        xe_fb_pin_resume(xe);
->>
->> this looks odd. I remember when we had issues with LNL about pages
->> coming with garbage after a resume we talked about marking them as
->> "needed" on suspend so they'd be saved by mm. The ggtt afair was one of
->> them. Or did we go with a different approach and I'm misremembering?
-> 
-> Hmm, I thought for display fbs we don't use the same pin tracking so it 
-> is rather skipped by the GGTT save/restore logic. But I thought 
-> previously the display stuff ensured all fb are unpinned by the time we 
-> do the suspend, so on resume we would just re-program the GGTT for fb 
-> when re-pinning it (handled by display code). But I guess issue now 
-> comes with re-using the vma and its GGTT mapping, since it will now also 
-> skip re-programming the GGTT on re-pin? But wouldn't we have this same 
-> issue for all fb, and not just this fbdev stuff or does reuse_vma() 
-> somehow handle this?
+Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pci.c | 15 ++++++++++-----
+ 1 file changed, 10 insertions(+), 5 deletions(-)
 
-Correct. Display has its own GGTT tracking.
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 70b697fde5b9..feea897f130d 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -564,9 +564,14 @@ static void handle_pre_gmdid(struct xe_device *xe,
+ 			     const struct xe_media_desc *media)
+ {
+ 	xe->info.graphics_verx100 = graphics->ver * 100 + graphics->rel;
++	xe->info.graphics_name = graphics->name;
+ 
+-	if (media)
++	if (media) {
+ 		xe->info.media_verx100 = media->ver * 100 + media->rel;
++		xe->info.media_name = media->name;
++	} else {
++		xe->info.media_name = "none";
++	}
+ 
+ }
+ 
+@@ -588,6 +593,7 @@ static void handle_gmdid(struct xe_device *xe,
+ 		if (ver == graphics_ip_map[i].ver) {
+ 			xe->info.graphics_verx100 = ver;
+ 			*graphics = graphics_ip_map[i].ip;
++			xe->info.graphics_name = (*graphics)->name;
+ 
+ 			break;
+ 		}
+@@ -598,8 +604,9 @@ static void handle_gmdid(struct xe_device *xe,
+ 			ver / 100, ver % 100);
+ 	}
+ 
+-	read_gmdid(xe, GMDID_MEDIA, &ver, media_revid);
++	xe->info.media_name = "none";
+ 
++	read_gmdid(xe, GMDID_MEDIA, &ver, media_revid);
+ 	/* Media may legitimately be fused off / not present */
+ 	if (ver == 0)
+ 		return;
+@@ -608,6 +615,7 @@ static void handle_gmdid(struct xe_device *xe,
+ 		if (ver == media_ip_map[i].ver) {
+ 			xe->info.media_verx100 = ver;
+ 			*media = media_ip_map[i].ip;
++			xe->info.media_name = (*media)->name;
+ 
+ 			break;
+ 		}
+@@ -698,9 +706,6 @@ static int xe_info_init(struct xe_device *xe,
+ 	if (!graphics_desc)
+ 		return -ENODEV;
+ 
+-	xe->info.graphics_name = graphics_desc->name;
+-	xe->info.media_name = media_desc ? media_desc->name : "none";
+-
+ 	xe->info.vram_flags = graphics_desc->vram_flags;
+ 	xe->info.va_bits = graphics_desc->va_bits;
+ 	xe->info.vm_max_level = graphics_desc->vm_max_level;
+-- 
+2.48.1
 
-In general, all FB's are unpinned during suspend, and suspend will 
-destroy the VMA. A new VMA and re-pinning will be done after resume, so 
-this is not a problem in general.
-
-The special case is unfortunately FBDEV vma pin, which we started 
-re-using in the patch series. That one should be preserved across 
-suspend/resume, otherwise we get pipe fault errors after a cycle because 
-the GGTT is wiped.
-
-The bug was there before, but never hit because we never used the 
-initial GGTT mapping, it was only there to keep fbdev pinned.
-
-I'm honestly wondering how much it's needed, but not doing so likely 
-breaks i915. Perhaps we could make a dummy noop instead.
-
-Cheers,
-~Maarten
