@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA4DFC021B1
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Feb 2025 18:02:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0596FC021B1
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Feb 2025 18:02:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80DC710E0E7;
-	Thu, 20 Feb 2025 18:02:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF33510E0E7;
+	Thu, 20 Feb 2025 18:02:25 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E913310E172;
- Thu, 20 Feb 2025 18:02:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBD9A10E0E7;
+ Thu, 20 Feb 2025 18:02:24 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Unify_IP_d?=
- =?utf-8?q?escriptors?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Unify_IP_descri?=
+ =?utf-8?q?ptors?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Gustavo Sousa" <gustavo.sousa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 20 Feb 2025 18:02:09 -0000
-Message-ID: <174007452994.248199.15710633825538455134@b555e5b46a47>
+Date: Thu, 20 Feb 2025 18:02:24 -0000
+Message-ID: <174007454489.248180.4676995878573608069@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250220172532.66613-1-gustavo.sousa@intel.com>
 In-Reply-To: <20250220172532.66613-1-gustavo.sousa@intel.com>
@@ -48,12 +48,41 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 8554d5b7b4fd drm-tip: 2025y-02m-20d-14h-17m-17s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Set IP names in functions handling IP version
-Applying: drm/xe: Disambiguate GMDID-based IP names
-Applying: drm/xe: Rename gmdid_map to xe_ip
-Applying: drm/xe: Convert pre-GMDID IPs to struct xe_ip
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+22f9cda3436b4fe965b5c5f31d2f2c1bcb483189
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4e4ae14af93cde00975b20b62aa8070374645020
+Author: Gustavo Sousa <gustavo.sousa@intel.com>
+Date:   Thu Feb 20 14:25:11 2025 -0300
+
+    drm/xe: Convert pre-GMDID IPs to struct xe_ip
+    
+    We have now a struct xe_ip to fully describe an IP, but we are only
+    using that for GMDID-based IPs.
+    
+    For pre-GMDID IPs, we still describe release info (version and name) via
+    feature descriptors (struct xe_{graphics,media}_desc). Let's convert
+    those to use struct xe_ip.
+    
+    With this, we have a uniform way of describing IPs in the xe driver
+    instead of having different approaches based on whether the IPs use
+    GMDIDs or not.
+    
+    A nice side-effect of this change is that now we have an easy way to
+    lookup, in the source code, mappings between versions, names and
+    features for all supported IPs.
+    
+    Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
++ /mt/dim checkpatch 8554d5b7b4fded481a85ab11d75eeb97443450e2 drm-intel
+407af942161c drm/xe: Set IP names in functions handling IP version
+694e6fedf847 drm/xe: Disambiguate GMDID-based IP names
+17e2e94bea9f drm/xe: Rename gmdid_map to xe_ip
+4e4ae14af93c drm/xe: Convert pre-GMDID IPs to struct xe_ip
 
 
