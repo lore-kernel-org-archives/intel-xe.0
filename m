@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6144C021B2
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Feb 2025 10:47:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF1BFC021B1
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Feb 2025 10:47:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AFC110E930;
-	Thu, 20 Feb 2025 10:47:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 958F910E93E;
+	Thu, 20 Feb 2025 10:47:56 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E74E10E930;
- Thu, 20 Feb 2025 10:47:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C096710E93E;
+ Thu, 20 Feb 2025 10:47:55 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/fbc=3A_FBC_?=
- =?utf-8?q?Dirty_rect_feature_support_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/fbc=3A_FBC_Dirty?=
+ =?utf-8?q?_rect_feature_support_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 20 Feb 2025 10:47:31 -0000
-Message-ID: <174004845125.166652.16404810159795742705@b555e5b46a47>
+Date: Thu, 20 Feb 2025 10:47:55 -0000
+Message-ID: <174004847578.167678.6846886554611948066@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250220104144.207526-1-vinod.govindapillai@intel.com>
 In-Reply-To: <20250220104144.207526-1-vinod.govindapillai@intel.com>
@@ -44,20 +44,48 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/i915/fbc: FBC Dirty rect feature support (rev3)
 URL   : https://patchwork.freedesktop.org/series/144723/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 1d579c3706d3 drm-tip: 2025y-02m-20d-07h-59m-30s UTC integration manifest
-=== git am output follows ===
-Applying: drm/damage-helper: add const qualifier in drm_atomic_helper_damage_merged()
-Applying: drm/i915/display: update and store the plane damage clips
-Applying: drm/i915/fbc: add register definitions for fbc dirty rect support
-Applying: drm/i915/fbc: introduce HAS_FBC_DIRTY_RECT() for FBC dirty rect support
-Applying: drm/i915/fbc: avoid calling fbc activate if fbc is active
-Applying: drm/i915/fbc: dirty rect support for FBC
-Applying: drm/i915/fbc: disable FBC if PSR2 selective fetch is enabled
-Applying: drm/i915/fbc: handle dirty rect coords for the first frame
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+22f9cda3436b4fe965b5c5f31d2f2c1bcb483189
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit adbe800b247d5d0e05c2c3154c35445e671ff521
+Author: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Date:   Thu Feb 20 12:41:44 2025 +0200
+
+    drm/i915/fbc: handle dirty rect coords for the first frame
+    
+    During enabling FBC, for the very first frame, the prepare dirty
+    rect routine wouldnt have executed as at that time the plane
+    reference in the fbc_state would be NULL. So this could make
+    driver program some invalid entries as the damage area. Though
+    fbc hw ignores the dirty rect values programmed for the first
+    frame after enabling FBC, driver must ensure that valid dirty
+    rect coords are programmed. So ensure that for the first frame
+    correct dirty rect coords are updated to the HW.
+    
+    Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
++ /mt/dim checkpatch 1d579c3706d3698c87fddca8cf001e46e22efe0c drm-intel
+1dce36f36e22 drm/damage-helper: add const qualifier in drm_atomic_helper_damage_merged()
+a5a5f3a9e4fc drm/i915/display: update and store the plane damage clips
+7066d374ab3b drm/i915/fbc: add register definitions for fbc dirty rect support
+-:30: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#30: FILE: drivers/gpu/drm/i915/display/intel_fbc_regs.h:107:
++#define   FBC_DIRTY_RECT_START_LINE(val)	REG_FIELD_PREP(FBC_DIRTY_RECT_START_LINE_MASK, (val))
+
+total: 0 errors, 1 warnings, 0 checks, 15 lines checked
+8bad07c80719 drm/i915/fbc: introduce HAS_FBC_DIRTY_RECT() for FBC dirty rect support
+8bbbbeeccbe1 drm/i915/fbc: avoid calling fbc activate if fbc is active
+c3dde92e186c drm/i915/fbc: dirty rect support for FBC
+1e26c340a06d drm/i915/fbc: disable FBC if PSR2 selective fetch is enabled
+adbe800b247d drm/i915/fbc: handle dirty rect coords for the first frame
 
 
