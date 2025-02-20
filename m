@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AFAFC021B1
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Feb 2025 17:09:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE032C021B1
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Feb 2025 17:10:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C43810E9BF;
-	Thu, 20 Feb 2025 17:09:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D19710E9BF;
+	Thu, 20 Feb 2025 17:10:04 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C57F10E9BF;
- Thu, 20 Feb 2025 17:09:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EA2810E9C7;
+ Thu, 20 Feb 2025 17:10:03 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/pmu=3A_Add_GT?=
- =?utf-8?q?_frequency_events_=28rev4=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/pmu=3A_Add_GT_freq?=
+ =?utf-8?q?uency_events_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 20 Feb 2025 17:09:45 -0000
-Message-ID: <174007138504.235526.15752654109869791936@b555e5b46a47>
+Date: Thu, 20 Feb 2025 17:10:03 -0000
+Message-ID: <174007140351.235526.12558142854435976244@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250213000220.3510885-1-vinay.belgaumkar@intel.com>
 In-Reply-To: <20250213000220.3510885-1-vinay.belgaumkar@intel.com>
@@ -44,13 +44,114 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/pmu: Add GT frequency events (rev4)
 URL   : https://patchwork.freedesktop.org/series/144164/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 8554d5b7b4fd drm-tip: 2025y-02m-20d-14h-17m-17s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/pmu: Add GT frequency events
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+22f9cda3436b4fe965b5c5f31d2f2c1bcb483189
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d50dfdecee9b15cc9550700f105a06f130a8950f
+Author: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Date:   Wed Feb 12 16:02:20 2025 -0800
+
+    drm/xe/pmu: Add GT frequency events
+    
+    Define PMU events for GT frequency (actual and requested). This is
+    a port from the i915 driver implementation, where an internal timer
+    is used to aggregate GT frequencies over certain fixed interval.
+    Following PMU events are being added-
+    
+      xe_0000_00_02.0/gt-actual-frequency/              [Kernel PMU event]
+      xe_0000_00_02.0/gt-requested-frequency/           [Kernel PMU event]
+    
+    Standard perf commands can be used to monitor GT frequency-
+      $ perf stat -e xe_0000_00_02.0/gt-requested-frequency,gt=0/ -I1000
+    
+         1.001175175                700 M    xe/gt-requested-frequency,gt=0/
+         2.005891881                703 M    xe/gt-requested-frequency,gt=0/
+         3.007318169                700 M    xe/gt-requested-frequency,gt=0/
+    
+    Actual frequencies will be reported as 0 when GT is in C6.
+    
+    v2: Use locks while storing/reading samples, keep track of multiple
+    clients (Lucas) and other general cleanup.
+    
+    Cc: Riana Tauro <riana.tauro@intel.com>
+    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
++ /mt/dim checkpatch 8554d5b7b4fded481a85ab11d75eeb97443450e2 drm-intel
+d50dfdecee9b drm/xe/pmu: Add GT frequency events
+-:122: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#122: FILE: drivers/gpu/drm/xe/xe_pmu.c:148:
++		    uint32_t val, uint32_t period)
+
+-:204: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#204: FILE: drivers/gpu/drm/xe/xe_pmu.c:244:
++	uint32_t act_freq, cur_freq;
+
+-:208: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#208: FILE: drivers/gpu/drm/xe/xe_pmu.c:248:
++	if (gt_pmu_event_active(pmu, XE_PMU_EVENT_GT_ACTUAL_FREQUENCY, gt->info.id)) {
++
+
+-:212: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#212: FILE: drivers/gpu/drm/xe/xe_pmu.c:252:
++		xe_store_pmu_sample(pmu, gt->info.id, XE_PMU_EVENT_GT_ACTUAL_FREQUENCY,
++				 act_freq, period_ns / NSEC_PER_USEC);
+
+-:219: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#219: FILE: drivers/gpu/drm/xe/xe_pmu.c:259:
++			xe_store_pmu_sample(pmu, gt->info.id, XE_PMU_EVENT_GT_REQUESTED_FREQUENCY,
++					 cur_freq, period_ns / NSEC_PER_USEC);
+
+-:254: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#254: FILE: drivers/gpu/drm/xe/xe_pmu.c:294:
++	uint32_t id = config_to_event_id(event->attr.config);
+
+-:288: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#288: FILE: drivers/gpu/drm/xe/xe_pmu.c:332:
++	uint32_t id = config_to_event_id(event->attr.config);
+
+-:289: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#289: FILE: drivers/gpu/drm/xe/xe_pmu.c:333:
++	uint32_t gt_id = config_to_gt_id(event->attr.config);
+
+-:306: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#306: FILE: drivers/gpu/drm/xe/xe_pmu.c:349:
++	uint32_t id = config_to_event_id(event->attr.config);
+
+-:326: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#326: FILE: drivers/gpu/drm/xe/xe_pmu.c:367:
++	uint32_t id = config_to_event_id(event->attr.config);
+
+-:340: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#340: FILE: drivers/gpu/drm/xe/xe_pmu.c:448:
++XE_EVENT_ATTR_SIMPLE(gt-actual-frequency, gt_actual_frequency,
+                        ^
+
+-:340: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#340: FILE: drivers/gpu/drm/xe/xe_pmu.c:448:
++XE_EVENT_ATTR_SIMPLE(gt-actual-frequency, gt_actual_frequency,
+                               ^
+
+-:342: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#342: FILE: drivers/gpu/drm/xe/xe_pmu.c:450:
++XE_EVENT_ATTR_SIMPLE(gt-requested-frequency, gt_requested_frequency,
+                        ^
+
+-:342: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#342: FILE: drivers/gpu/drm/xe/xe_pmu.c:450:
++XE_EVENT_ATTR_SIMPLE(gt-requested-frequency, gt_requested_frequency,
+                                  ^
+
+total: 0 errors, 0 warnings, 14 checks, 380 lines checked
 
 
