@@ -4,58 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E79DC021B1
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Feb 2025 16:07:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 942A6C021B1
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Feb 2025 16:10:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 578F810E1C7;
-	Thu, 20 Feb 2025 16:07:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45B2710E174;
+	Thu, 20 Feb 2025 16:10:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="amMmghih";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b="EduweB5K";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D42710E19D;
- Thu, 20 Feb 2025 16:07:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740067657; x=1771603657;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=KXd6HmaYWSKCdFUWjFo6dbjbrQlIxzPrhqN2Q+aeBeg=;
- b=amMmghihAq5onKg3B87q7bYUFs31/A/oAfVDZdoPOmKSOqdiUJYhQLyk
- tI3eXEKTVFmpahgzbOZdvUorJBo8VjDdqWwd5H5T6JWxJcismRS2orlW0
- OK86hrbWV7xDVGhj6WOe9iLIceFDddvkNLEP9flfWI730fJz3QqjODuck
- 6TlzKwyd3XBWahk7C8v8czHBLxrp3pEW/q6/cJ9bKBjOfrPr3XOew0MQg
- 1cvq7j5+NJC54FyjmW0PqQ3/iyYnSS5lztOeKWErRVbpDYhMtxjKNTENm
- 4g1tQNEJXcF6vh+xU2JOsDw6eEdCs2Oy+afAjKL0cyVFYJvbn8ZA4DUpY Q==;
-X-CSE-ConnectionGUID: xPwDtDpXQEi9VvShGRePtg==
-X-CSE-MsgGUID: xea0uw4ZR/6Lk0+Z3UCNAg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11351"; a="40041573"
-X-IronPort-AV: E=Sophos;i="6.13,302,1732608000"; d="scan'208";a="40041573"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2025 08:07:37 -0800
-X-CSE-ConnectionGUID: P9rw0PJMQPOjnB73mf/YRg==
-X-CSE-MsgGUID: yoaCzzJdTf6r8NYE7bT8Mg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="152268814"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2025 08:07:36 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: linux-perf-users@vger.kernel.org, x86@kernel.org,
- linux-kernel@vger.kernel.org
-Cc: dave.hansen@linux.intel.com, Zhang Rui <rui.zhang@intel.com>,
- Kan Liang <kan.liang@linux.intel.com>,
- Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Ulisses Furquim <ulisses.furquim@intel.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Subject: [PATCH] perf/x86/rapl: Fix PP1 event for Intel Meteor/Lunar Lake
-Date: Thu, 20 Feb 2025 07:36:30 -0800
-Message-ID: <20250220153857.2593704-6-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.48.1
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4091610E174;
+ Thu, 20 Feb 2025 16:10:32 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1740067826; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=fK0hgpnSc7wHdnScZwsvHvmbOkyWb03c01zpIeu3IanN4S/24IADwzwMmHCxMzZh69e0QFLKw+VJlDSQ5aln/0YB2RDSXVsVBcOmmHiTso9hMIalmUv2v2fkpsh2ReLVgNiLiHMfkoe1PZI015y2wn/sO3WfP5mg6mjLzsr/2s8=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1740067826;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=ZELLhyNrX/AMU/X/XLHluCd0loXd+7aqRfqJaYVGOoE=; 
+ b=ViwEYwSYLaplLiRRebA+EavTbgXaGFDif39tG9l0dYzvRf0ts/sv5Zr3fKIj0Tpa2mXGglvmOEcv8ZzesWzbD/NQRcb1JjyqPZqc3wMYU5+EunyG9GZcm9+M2YI1x2DBHIaTHIgSZWttgVwQS7+aK1fAp99vFS8yjuL3nyBC814=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=dmitry.osipenko@collabora.com;
+ dmarc=pass header.from=<dmitry.osipenko@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1740067826; 
+ s=zohomail; d=collabora.com; i=dmitry.osipenko@collabora.com; 
+ h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+ bh=ZELLhyNrX/AMU/X/XLHluCd0loXd+7aqRfqJaYVGOoE=;
+ b=EduweB5KBkR0ccyYBTaR71kHlB+Cm2C1+uOYpnAGhP8fsVCU4dd1oLWvb0mZNeiJ
+ 5LPdG3Z1MweoTCjWRid30oQ6iHV9OeNchE42cx4IMeeJ1b4OBPQ5wC3b9rSZ5Fztbc0
+ 7ra/K4+6kLD4/HJUfSiWtBOZSIxhWfXx8uvFMDg0=
+Received: by mx.zohomail.com with SMTPS id 1740067825336681.7729656180264;
+ Thu, 20 Feb 2025 08:10:25 -0800 (PST)
+Message-ID: <d2bd8baf-e1f7-4e8a-9e33-259051d6f97a@collabora.com>
+Date: Thu, 20 Feb 2025 19:10:18 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 21/25] drm/virtio: Compute dumb-buffer sizes with
+ drm_mode_size_dumb()
+Content-Language: en-US
+To: Thomas Zimmermann <tzimmermann@suse.de>,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com,
+ simona@ffwll.ch
+Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ imx@lists.linux.dev, linux-samsung-soc@vger.kernel.org,
+ nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
+ spice-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
+ David Airlie <airlied@redhat.com>, Gerd Hoffmann <kraxel@redhat.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu <olvaffe@gmail.com>
+References: <20250109150310.219442-1-tzimmermann@suse.de>
+ <20250109150310.219442-22-tzimmermann@suse.de>
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <20250109150310.219442-22-tzimmermann@suse.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,95 +77,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On some boots the read of MSR_PP1_ENERGY_STATUS msr returns 0, causing
-perf_msr_probe() to make the power/events/energy-gpu event non-visible.
-When that happens, the msr always read 0 until the graphics module (i915
-for Meteor Lake, xe for Lunar Lake) is loaded. Then it starts returning
-something different and re-loading the rapl module "fixes" it.
+On 1/9/25 17:57, Thomas Zimmermann wrote:
+> Call drm_mode_size_dumb() to compute dumb-buffer scanline pitch and
+> buffer size. Align the pitch to a multiple of 4.
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: David Airlie <airlied@redhat.com>
+> Cc: Gerd Hoffmann <kraxel@redhat.com>
+> Cc: Gurchetan Singh <gurchetansingh@chromium.org>
+> Cc: Chia-I Wu <olvaffe@gmail.com>
+> ---
+>  drivers/gpu/drm/virtio/virtgpu_gem.c | 11 +++++------
+>  1 file changed, 5 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/virtio/virtgpu_gem.c b/drivers/gpu/drm/virtio/virtgpu_gem.c
+> index 5aab588fc400..22cf1cd2fdfd 100644
+> --- a/drivers/gpu/drm/virtio/virtgpu_gem.c
+> +++ b/drivers/gpu/drm/virtio/virtgpu_gem.c
+> @@ -23,6 +23,7 @@
+>   * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+>   */
+>  
+> +#include <drm/drm_dumb_buffers.h>
+>  #include <drm/drm_file.h>
+>  #include <drm/drm_fourcc.h>
+>  
+> @@ -66,15 +67,14 @@ int virtio_gpu_mode_dumb_create(struct drm_file *file_priv,
+>  	struct virtio_gpu_object_params params = { 0 };
+>  	struct virtio_gpu_device *vgdev = dev->dev_private;
+>  	int ret;
+> -	uint32_t pitch;
+> +
+> +	ret = drm_mode_size_dumb(dev, args, SZ_4, 0);
 
-This is tested on the following platforms with the fail rates before
-this patch:
+Nit: I'd keep using PAGE_SIZE instead of 0 for more clarity, but that's
+an optional wish.
 
-	Alder Lake S	0/20
-	Arrow Lake H	0/20
-	Lunar Lake M	8/20
-	Meteor Lake U	6/20
-	Raptor Lake P	4/20
-	Raptor Lake S	0/20
+> +	if (ret)
+> +		return ret;
+>  
+>  	if (args->bpp != 32)
+>  		return -EINVAL;
+>  
+> -	pitch = args->width * 4;
+> -	args->size = pitch * args->height;
+> -	args->size = ALIGN(args->size, PAGE_SIZE);
+> -
+>  	params.format = virtio_gpu_translate_format(DRM_FORMAT_HOST_XRGB8888);
+>  	params.width = args->width;
+>  	params.height = args->height;
+> @@ -92,7 +92,6 @@ int virtio_gpu_mode_dumb_create(struct drm_file *file_priv,
+>  	if (ret)
+>  		goto fail;
+>  
+> -	args->pitch = pitch;
+>  	return ret;
+>  
+>  fail:
 
-For those platforms failing, use a separate msr list with .no_check
-set so it doesn't check the runtime value to create the event - it will
-just return 0 until the i915/xe module initializes the GPU.
+Reviewed-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
 
-The issue https://github.com/ulissesf/qmassa/issues/4 is workarounded by
-reading the MSR directly since it works after xe is loaded, but the
-issue with not having the perf event is still there.
-
-Closes: https://github.com/ulissesf/qmassa/issues/4
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4241
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com
----
-
-Maybe a clearer alternative is to just move all the platforms after
-RAPTORLAKE with a gpu to use the new msr list.
-
- arch/x86/events/rapl.c | 26 ++++++++++++++++++++++----
- 1 file changed, 22 insertions(+), 4 deletions(-)
-
-diff --git a/arch/x86/events/rapl.c b/arch/x86/events/rapl.c
-index 4952faf03e82d..18e324b8fa82c 100644
---- a/arch/x86/events/rapl.c
-+++ b/arch/x86/events/rapl.c
-@@ -588,6 +588,14 @@ static struct perf_msr intel_rapl_spr_msrs[] = {
- 	[PERF_RAPL_PSYS] = { MSR_PLATFORM_ENERGY_STATUS, &rapl_events_psys_group,  test_msr, true, RAPL_MSR_MASK },
- };
- 
-+static struct perf_msr intel_rapl_mtl_msrs[] = {
-+	[PERF_RAPL_PP0]  = { MSR_PP0_ENERGY_STATUS,      &rapl_events_cores_group, test_msr, false, RAPL_MSR_MASK },
-+	[PERF_RAPL_PKG]  = { MSR_PKG_ENERGY_STATUS,      &rapl_events_pkg_group,   test_msr, false, RAPL_MSR_MASK },
-+	[PERF_RAPL_RAM]  = { MSR_DRAM_ENERGY_STATUS,     &rapl_events_ram_group,   test_msr, false, RAPL_MSR_MASK },
-+	[PERF_RAPL_PP1]  = { MSR_PP1_ENERGY_STATUS,      &rapl_events_gpu_group,   test_msr, true,  RAPL_MSR_MASK },
-+	[PERF_RAPL_PSYS] = { MSR_PLATFORM_ENERGY_STATUS, &rapl_events_psys_group,  test_msr, false, RAPL_MSR_MASK },
-+};
-+
- /*
-  * Force to PERF_RAPL_PKG_EVENTS_MAX size due to:
-  * - perf_msr_probe(PERF_RAPL_PKG_EVENTS_MAX)
-@@ -826,6 +834,16 @@ static struct rapl_model model_spr = {
- 	.rapl_pkg_msrs	= intel_rapl_spr_msrs,
- };
- 
-+static struct rapl_model model_rpl = {
-+	.pkg_events	= BIT(PERF_RAPL_PP0) |
-+			  BIT(PERF_RAPL_PKG) |
-+			  BIT(PERF_RAPL_RAM) |
-+			  BIT(PERF_RAPL_PP1) |
-+			  BIT(PERF_RAPL_PSYS),
-+	.msr_power_unit = MSR_RAPL_POWER_UNIT,
-+	.rapl_pkg_msrs  = intel_rapl_mtl_msrs,
-+};
-+
- static struct rapl_model model_amd_hygon = {
- 	.pkg_events	= BIT(PERF_RAPL_PKG),
- 	.core_events	= BIT(PERF_RAPL_CORE),
-@@ -873,13 +891,13 @@ static const struct x86_cpu_id rapl_model_match[] __initconst = {
- 	X86_MATCH_VFM(INTEL_SAPPHIRERAPIDS_X,	&model_spr),
- 	X86_MATCH_VFM(INTEL_EMERALDRAPIDS_X,	&model_spr),
- 	X86_MATCH_VFM(INTEL_RAPTORLAKE,		&model_skl),
--	X86_MATCH_VFM(INTEL_RAPTORLAKE_P,	&model_skl),
-+	X86_MATCH_VFM(INTEL_RAPTORLAKE_P,	&model_rpl),
- 	X86_MATCH_VFM(INTEL_RAPTORLAKE_S,	&model_skl),
--	X86_MATCH_VFM(INTEL_METEORLAKE,		&model_skl),
--	X86_MATCH_VFM(INTEL_METEORLAKE_L,	&model_skl),
-+	X86_MATCH_VFM(INTEL_METEORLAKE,		&model_rpl),
-+	X86_MATCH_VFM(INTEL_METEORLAKE_L,	&model_rpl),
- 	X86_MATCH_VFM(INTEL_ARROWLAKE_H,	&model_skl),
- 	X86_MATCH_VFM(INTEL_ARROWLAKE,		&model_skl),
--	X86_MATCH_VFM(INTEL_LUNARLAKE_M,	&model_skl),
-+	X86_MATCH_VFM(INTEL_LUNARLAKE_M,	&model_rpl),
- 	{},
- };
- MODULE_DEVICE_TABLE(x86cpu, rapl_model_match);
 -- 
-2.48.1
+Best regards,
+Dmitry
 
