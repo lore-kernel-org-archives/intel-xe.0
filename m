@@ -4,62 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5801C021B1
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Feb 2025 18:42:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02CADC021B2
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Feb 2025 18:53:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EFCD10E9C9;
-	Thu, 20 Feb 2025 18:42:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FE6F10E9D1;
+	Thu, 20 Feb 2025 18:53:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wz54I09M";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ae1+uZyK";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32A8E10E9C9
- for <intel-xe@lists.freedesktop.org>; Thu, 20 Feb 2025 18:42:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65DC010E9CF;
+ Thu, 20 Feb 2025 18:53:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740076926; x=1771612926;
+ t=1740077639; x=1771613639;
  h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=3YisdQwQJprw2hCnV30sjk/RQSt7ClabDxJS7pbTBho=;
- b=Wz54I09Mtmsf/9vcdwhQoRq80745LDhnnMvxWW7pKzzvgv4+xH1oFXcN
- HVC7wx3MHai13ZKVncI0Lubpl+yFFLoX7KlWma4YY0XeB6y4wubZTQuvM
- 5d65emZioEBfKha+jAybiDHBVHAdTQwhe3dGku1KY1h8d7b9ZApOez3p3
- N5A3zPlwg+sPWfTjRec4oxm1tzZdBwA3lhnraHjvofhVDQjWyjeaVdkZr
- N6r6W3Hreatkw8luhmg3XF5kSSHXT0Ss+9q2CE0KGIfdisXIJqQ09Jg8F
- PcGGQ5ZU/9XXLXi5UdBpYTW2xYAXOOpx8AsvqbvZbqNpLDAAVsjMUmUvu g==;
-X-CSE-ConnectionGUID: X6O9Alr2TZuUorxaGJiz0Q==
-X-CSE-MsgGUID: cwd0uMZPTsyijr9DwkmZ3w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11351"; a="44656359"
-X-IronPort-AV: E=Sophos;i="6.13,302,1732608000"; d="scan'208";a="44656359"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2025 10:42:06 -0800
-X-CSE-ConnectionGUID: kZxL+sgMTuSOndsk77S/DQ==
-X-CSE-MsgGUID: VNKRzSaPRv+pJ18aoD4Y+g==
+ from:in-reply-to;
+ bh=oQx9QhpZY+AGcsW9qTdURoOLa8KdhLWdTPUOCCaws9Q=;
+ b=Ae1+uZyKKf559ojPvCSSh1RomJ420XiuDdce7KrAjHtH+KNW1vgazQ6l
+ fkiKftYJ+g0j0BCeWXwQd/sSsjW1c704xTtFt0b7GJVji8RMAEcanaYv7
+ o5TIQSHScisJ+qqCuYjp20SRVagmI4FwvhBwRQmX0+bE4tQtdOgvNVbWF
+ X4iIORLSmZjHauSmK7Ga9s/mQHDD7CoGYUmtkzJvtKxum3YE/uTbdlt7U
+ lQ7a2Scc0qqZgg5OKtjMZElvPT7kgDY+Gi4BU777QsPsv//xIPjIfkliH
+ n4Ay0NSHHGuVEFi19OKo4mu2Bw1gTA3P0ZLLb3KfbbqCk5YFWy8hrGTB2 g==;
+X-CSE-ConnectionGUID: 4V7fiTIVTV+2i/2iuYSoAg==
+X-CSE-MsgGUID: dvRvQ4q7Tmyun6HV4V1pWA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11351"; a="40886230"
+X-IronPort-AV: E=Sophos;i="6.13,302,1732608000"; d="scan'208";a="40886230"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2025 10:53:58 -0800
+X-CSE-ConnectionGUID: tOtVFR+ISsOKunc7l+Qh+w==
+X-CSE-MsgGUID: XrSqqQHuRQWv0eUVIw5XhA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,302,1732608000"; d="scan'208";a="120106234"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa004.jf.intel.com with ESMTP; 20 Feb 2025 10:42:04 -0800
-Received: from [10.245.96.217] (unknown [10.245.96.217])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id EE70834310;
- Thu, 20 Feb 2025 18:42:02 +0000 (GMT)
-Message-ID: <4ba44d2b-96fe-4cfe-a679-e3f6c9a23d24@intel.com>
-Date: Thu, 20 Feb 2025 19:42:01 +0100
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="120366371"
+Received: from puneetse-mobl.amr.corp.intel.com (HELO [10.125.110.82])
+ ([10.125.110.82])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2025 10:53:58 -0800
+Content-Type: multipart/mixed; boundary="------------0kQnuKsAPFQNhFMA095Sb1SP"
+Message-ID: <a68fd15d-8c76-4410-a3ee-3912dc134fe4@intel.com>
+Date: Thu, 20 Feb 2025 10:53:59 -0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/guc: Check response data of CLIENT_SOFT_RESET
- action
-To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Cc: Dan Carpenter <dan.carpenter@linaro.org>,
- "Brost, Matthew" <matthew.brost@intel.com>
-References: <20250219192710.281-1-michal.wajdeczko@intel.com>
- <CH0PR11MB5444B00440112FF389883EE1E5C52@CH0PR11MB5444.namprd11.prod.outlook.com>
+Subject: Re: [PATCH] perf/x86/rapl: Fix PP1 event for Intel Meteor/Lunar Lake
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: linux-perf-users@vger.kernel.org, x86@kernel.org,
+ linux-kernel@vger.kernel.org, dave.hansen@linux.intel.com,
+ Zhang Rui <rui.zhang@intel.com>, Kan Liang <kan.liang@linux.intel.com>,
+ Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>,
+ Ulisses Furquim <ulisses.furquim@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+References: <20250220153857.2593704-6-lucas.demarchi@intel.com>
+ <d25ef356-3614-4e69-8cc1-d74dbbd2585f@intel.com>
+ <nf6gbtgn7lu4pvewuhrwca2efaxrkdhxazw3oktaixn5q5yg5r@7y74irve5udw>
+From: Dave Hansen <dave.hansen@intel.com>
 Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <CH0PR11MB5444B00440112FF389883EE1E5C52@CH0PR11MB5444.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Autocrypt: addr=dave.hansen@intel.com; keydata=
+ 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
+In-Reply-To: <nf6gbtgn7lu4pvewuhrwca2efaxrkdhxazw3oktaixn5q5yg5r@7y74irve5udw>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,123 +118,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+This is a multi-part message in MIME format.
+--------------0kQnuKsAPFQNhFMA095Sb1SP
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-On 19.02.2025 23:10, Cavitt, Jonathan wrote:
-> -----Original Message-----
-> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Michal Wajdeczko
-> Sent: Wednesday, February 19, 2025 11:27 AM
-> To: intel-xe@lists.freedesktop.org
-> Cc: Wajdeczko, Michal <Michal.Wajdeczko@intel.com>; Dan Carpenter <dan.carpenter@linaro.org>; Brost, Matthew <matthew.brost@intel.com>
-> Subject: [PATCH] drm/xe/guc: Check response data of CLIENT_SOFT_RESET action
+On 2/20/25 10:27, Lucas De Marchi wrote:
+> On Thu, Feb 20, 2025 at 08:28:01AM -0800, Dave Hansen wrote:
+>> On 2/20/25 07:36, Lucas De Marchi wrote:
+>>> On some boots the read of MSR_PP1_ENERGY_STATUS msr returns 0, causing
+>>> perf_msr_probe() to make the power/events/energy-gpu event non-visible.
+>>> When that happens, the msr always read 0 until the graphics module (i915
+>>> for Meteor Lake, xe for Lunar Lake) is loaded. Then it starts returning
+>>> something different and re-loading the rapl module "fixes" it.
 >>
->> Treat unexpected non-zero response data from GuC as -EPROTO error.
->> This will also prevent passing positive value to ERR_PTR().
->>
->> Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
->> Closes: https://lore.kernel.org/intel-xe/5fd5a4b9-88ee-47f1-ac3e-32a20960c5b0@stanley.mountain/
->> Fixes: 12f95f9900c0 ("drm/xe/guc: Prefer GT oriented logs for GuC messages")
->> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> Cc: Dan Carpenter <dan.carpenter@linaro.org>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->> ---
->>  drivers/gpu/drm/xe/xe_guc.c | 2 ++
->>  1 file changed, 2 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
->> index 1619c0a52db9..bb03db361512 100644
->> --- a/drivers/gpu/drm/xe/xe_guc.c
->> +++ b/drivers/gpu/drm/xe/xe_guc.c
->> @@ -1238,6 +1238,8 @@ int xe_guc_suspend(struct xe_guc *guc)
->>  
->>  	ret = xe_guc_mmio_send(guc, action, ARRAY_SIZE(action));
->>  	if (ret) {
->> +		if (ret > 0)
->> +			ret = -EPROTO;
+>> What's the root cause here? Did the kernel do something funky? Or is
+>> this a hardware bug?
 > 
-> I don't see anything wrong with this current implementation, though it's perhaps
-> a bit unnecessary to nest this if statement in the "if (ret)" check.
-
-the idea for nested 'if' was to avoid extra check on normal flow, since
-it will be very unlikely that return value will non-zero.
-
-with your approach below we will be always doing comparison twice
-
-but yeah, this is not on critical path, so who cares...
-
-> Maybe:
-> """
-> 	ret = xe_guc_mmio_send(guc, action, ARRAY_SIZE(action));
-> 	if (ret > 0)
-> 		ret = -EPROTO;
-> 	if (ret) {
-> 	...
-> """
-> Or, if you don't mind ternary operations:
-> """
-> 	ret = xe_guc_mmio_send(guc, action, ARRAY_SIZE(action));
-> 	ret = ret > 0 ? -EPROTO : ret;
-> 	if (ret) {
-> 	...
-> """
-
-actually above pattern would be useful if move out the sending of
-SOFT_RESET to separate helper that handles unexpected replies in place
-and always returns only 0 or -ve error code:
-
-int guc_send_soft_reset(guc)
-{
-	u32 action[] = {..}
-	int ret;
-
-	ret = xe_guc_mmio_send(guc, action, ARRAY_SIZE(action));
- 	return = ret > 0 ? -EPROTO : ret;
-}
-
-and this is what I'm usually doing, see guc_action_vf_control_cmd()
-
+> From what I can see, the kernel is reading the value and deciding that "if
+> it's 0, it doesn't really have that", which is not really true. For
+> these platforms sometimes it keeps returning 0 until the gpu is
+> later powered on, which only happens when xe / i915 probes.
 > 
-> Alternatively, given we do something similar everywhere we call
-> xe_guc_mmio_send (except for in xe_guc_hwconfig.c), we might
-> want to consider modifying the function to perform this -EPROTO
-> step automatically:
-> """
-> int xe_guc_mmio_send(struct xe_guc *guc, const u32 *request, u32 len)
-> {
->         int ret = xe_guc_mmio_send_recv(guc, request, len, NULL);
->         return ret > 0 ? -EPROTO : ret;
-> }
+> But what I don't really understand is why the behavior changes from one
+> boot to another. I'm assuming it depends on some funky firmware
+> behavior.
 
-no, as xe_guc_mmio_send() shall remain as generic purpose function since
-GuC ABI does not prevent actions to return data just in DATA0 field.
+Could we root cause this a _bit_ better, please?
 
-and IIRC the XE_GUC_ACTION_ALLOCATE_DOORBELL, which is unused in xe yet,
- is one example of such action.
+Right now, it seems like you noted some weird behavior on one out of the
+22 "model_skl" CPUs. You then tested on at least 4 of those CPUs and
+found similar behavior. So, you copied, verbatim, the
+intel_rapl_skl_msrs and model_skl structures. Then, flipped the
+perf_msr->no_check bit for one of the 5 MSRs. There's no note on why the
+one bit got flipped or that it's a presumed CPU issue.
 
-> ...
-> +++ b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
-> static int send_get_hwconfig(struct xe_guc *guc, u64 ggtt_addr, u32 size)
-> {
->         u32 action[] = {
->                 XE_GUC_ACTION_GET_HWCONFIG,
->                 lower_32_bits(ggtt_addr),
->                 upper_32_bits(ggtt_addr),
->                 size,
->         };
->         
->         return xe_guc_mmio_send_recv(guc, action, ARRAY_SIZE(action), NULL);
-> }
-> """
-> These aren't necessary changes, by the way.  They're perhaps nice-to-haves,
-> but I won't block on it:
-> Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> -Jonathan Cavitt
-> 
->>  		xe_gt_err(gt, "GuC suspend failed: %pe\n", ERR_PTR(ret));
->>  		return ret;
->>  	}
->> -- 
->> 2.47.1
->>
->>
+To continue the trajectory that this patch sets us on, each CPU model
+that comes out needs to be tested. When a new CPU shows up, which one is
+it? "model_skl" with the (presumed) CPU bug fixed or "model_rpl"
+without? How would someone even know how to test it? It's certainly not
+documented in the code.
 
+I don't think that's a sustainable trajectory.
+
+We need to figure out whether the kernel is buggy or the hardware is buggy.
+
+If the hardware is buggy, we need to go ask the hardware guys to publish
+an erratum about the bug so there are *bounds* on where the issue shows
+up. Basically make the hardware guys document the nasty behavior instead
+of having us test every CPU.
+
+Or, if we simply can't trust MSR_PP1_ENERGY_STATUS, let's just do the
+attached patch. What's the downside on a non-buggy CPU of doing this?
+--------------0kQnuKsAPFQNhFMA095Sb1SP
+Content-Type: text/x-patch; charset=UTF-8; name="rapl.patch"
+Content-Disposition: attachment; filename="rapl.patch"
+Content-Transfer-Encoding: base64
+
+ZGlmZiAtLWdpdCBhL2FyY2gveDg2L2V2ZW50cy9yYXBsLmMgYi9hcmNoL3g4Ni9ldmVudHMv
+cmFwbC5jCmluZGV4IGQzYmIzODY1YzFiMWYuLjViZjdjNjg2OTZmMzMgMTAwNjQ0Ci0tLSBh
+L2FyY2gveDg2L2V2ZW50cy9yYXBsLmMKKysrIGIvYXJjaC94ODYvZXZlbnRzL3JhcGwuYwpA
+QCAtNTgwLDcgKzU4MCw3IEBAIHN0YXRpYyBzdHJ1Y3QgcGVyZl9tc3IgaW50ZWxfcmFwbF9t
+c3JzW10gPSB7CiAJW1BFUkZfUkFQTF9QUDBdICA9IHsgTVNSX1BQMF9FTkVSR1lfU1RBVFVT
+LCAgICAgICZyYXBsX2V2ZW50c19jb3Jlc19ncm91cCwgdGVzdF9tc3IsIGZhbHNlLCBSQVBM
+X01TUl9NQVNLIH0sCiAJW1BFUkZfUkFQTF9QS0ddICA9IHsgTVNSX1BLR19FTkVSR1lfU1RB
+VFVTLCAgICAgICZyYXBsX2V2ZW50c19wa2dfZ3JvdXAsICAgdGVzdF9tc3IsIGZhbHNlLCBS
+QVBMX01TUl9NQVNLIH0sCiAJW1BFUkZfUkFQTF9SQU1dICA9IHsgTVNSX0RSQU1fRU5FUkdZ
+X1NUQVRVUywgICAgICZyYXBsX2V2ZW50c19yYW1fZ3JvdXAsICAgdGVzdF9tc3IsIGZhbHNl
+LCBSQVBMX01TUl9NQVNLIH0sCi0JW1BFUkZfUkFQTF9QUDFdICA9IHsgTVNSX1BQMV9FTkVS
+R1lfU1RBVFVTLCAgICAgICZyYXBsX2V2ZW50c19ncHVfZ3JvdXAsICAgdGVzdF9tc3IsIGZh
+bHNlLCBSQVBMX01TUl9NQVNLIH0sCisJW1BFUkZfUkFQTF9QUDFdICA9IHsgTVNSX1BQMV9F
+TkVSR1lfU1RBVFVTLCAgICAgICZyYXBsX2V2ZW50c19ncHVfZ3JvdXAsICAgdGVzdF9tc3Is
+IHRydWUsICBSQVBMX01TUl9NQVNLIH0sCiAJW1BFUkZfUkFQTF9QU1lTXSA9IHsgTVNSX1BM
+QVRGT1JNX0VORVJHWV9TVEFUVVMsICZyYXBsX2V2ZW50c19wc3lzX2dyb3VwLCAgdGVzdF9t
+c3IsIGZhbHNlLCBSQVBMX01TUl9NQVNLIH0sCiB9OwogCg==
+
+--------------0kQnuKsAPFQNhFMA095Sb1SP--
