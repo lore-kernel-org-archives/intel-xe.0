@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F9DAC021B1
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Feb 2025 17:05:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AFAFC021B1
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Feb 2025 17:09:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B90010E9BF;
-	Thu, 20 Feb 2025 17:05:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C43810E9BF;
+	Thu, 20 Feb 2025 17:09:46 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EA2110E9BF;
- Thu, 20 Feb 2025 17:05:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5315227751819620348=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C57F10E9BF;
+ Thu, 20 Feb 2025 17:09:45 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_perf/x86/rapl=3A_Fix_PP1_ev?=
- =?utf-8?q?ent_for_Intel_Meteor/Lunar_Lake?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/pmu=3A_Add_GT?=
+ =?utf-8?q?_frequency_events_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 20 Feb 2025 17:05:04 -0000
-Message-ID: <174007110464.235526.17465950371977095358@b555e5b46a47>
+Date: Thu, 20 Feb 2025 17:09:45 -0000
+Message-ID: <174007138504.235526.15752654109869791936@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20250220153857.2593704-6-lucas.demarchi@intel.com>
-In-Reply-To: <20250220153857.2593704-6-lucas.demarchi@intel.com>
+References: <20250213000220.3510885-1-vinay.belgaumkar@intel.com>
+In-Reply-To: <20250213000220.3510885-1-vinay.belgaumkar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,182 +40,17 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5315227751819620348==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: perf/x86/rapl: Fix PP1 event for Intel Meteor/Lunar Lake
-URL   : https://patchwork.freedesktop.org/series/145183/
+Series: drm/xe/pmu: Add GT frequency events (rev4)
+URL   : https://patchwork.freedesktop.org/series/144164/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-2695-8554d5b7b4fded481a85ab11d75eeb97443450e2_BAT -> xe-pw-145183v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-145183v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][1] ([Intel XE#2229] / [Intel XE#455]) +1 other test skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145183v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
-
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][2] ([Intel XE#2229])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145183v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_exec_balancer@twice-virtual-userptr-rebind:
-    - bat-adlp-vf:        [DMESG-WARN][3] ([Intel XE#3970]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2695-8554d5b7b4fded481a85ab11d75eeb97443450e2/bat-adlp-vf/igt@xe_exec_balancer@twice-virtual-userptr-rebind.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145183v1/bat-adlp-vf/igt@xe_exec_balancer@twice-virtual-userptr-rebind.html
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-adlp-vf:        [SKIP][5] ([Intel XE#4322]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2695-8554d5b7b4fded481a85ab11d75eeb97443450e2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145183v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-
-  
-#### Warnings ####
-
-  * igt@xe_live_ktest@xe_bo:
-    - bat-adlp-vf:        [SKIP][7] ([Intel XE#4322]) -> [SKIP][8] ([Intel XE#2229] / [Intel XE#455])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2695-8554d5b7b4fded481a85ab11d75eeb97443450e2/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145183v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-
-  
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
-  [Intel XE#4322]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 8554d5b7b4fd drm-tip: 2025y-02m-20d-14h-17m-17s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/pmu: Add GT frequency events
 
 
-Build changes
--------------
-
-  * IGT: IGT_8243 -> IGT_8244
-  * Linux: xe-2695-8554d5b7b4fded481a85ab11d75eeb97443450e2 -> xe-pw-145183v1
-
-  IGT_8243: 8243
-  IGT_8244: 9db9c35186dc599dfa8bc2cee66301d5389dd217 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2695-8554d5b7b4fded481a85ab11d75eeb97443450e2: 8554d5b7b4fded481a85ab11d75eeb97443450e2
-  xe-pw-145183v1: 145183v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145183v1/index.html
-
---===============5315227751819620348==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>perf/x86/rapl: Fix PP1 event for Intel Meteor/Lunar Lake</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145183/">https://patchwork.freedesktop.org/series/145183/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145183v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145183v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2695-8554d5b7b4fded481a85ab11d75eeb97443450e2_BAT -&gt; xe-pw-145183v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-145183v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145183v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145183v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@xe_exec_balancer@twice-virtual-userptr-rebind:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2695-8554d5b7b4fded481a85ab11d75eeb97443450e2/bat-adlp-vf/igt@xe_exec_balancer@twice-virtual-userptr-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145183v1/bat-adlp-vf/igt@xe_exec_balancer@twice-virtual-userptr-rebind.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2695-8554d5b7b4fded481a85ab11d75eeb97443450e2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322">Intel XE#4322</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145183v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2695-8554d5b7b4fded481a85ab11d75eeb97443450e2/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322">Intel XE#4322</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145183v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8243 -&gt; IGT_8244</li>
-<li>Linux: xe-2695-8554d5b7b4fded481a85ab11d75eeb97443450e2 -&gt; xe-pw-145183v1</li>
-</ul>
-<p>IGT_8243: 8243<br />
-  IGT_8244: 9db9c35186dc599dfa8bc2cee66301d5389dd217 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2695-8554d5b7b4fded481a85ab11d75eeb97443450e2: 8554d5b7b4fded481a85ab11d75eeb97443450e2<br />
-  xe-pw-145183v1: 145183v1</p>
-
-</body>
-</html>
-
---===============5315227751819620348==--
