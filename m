@@ -4,60 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DC2EC021B3
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Feb 2025 15:43:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB028C021B2
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Feb 2025 15:51:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 065BC10E9A6;
-	Thu, 20 Feb 2025 15:43:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D83810E1E8;
+	Thu, 20 Feb 2025 15:51:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AYLYqytz";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=haloniitty.fi header.i=@haloniitty.fi header.b="MG9s4xAi";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 845A310E9A1;
- Thu, 20 Feb 2025 15:43:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740066218; x=1771602218;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=mY0Qc6I7ZKoaUW24nQi5C4bzbeCysmQj/n42XUV/nZM=;
- b=AYLYqytzt7TTamNktLvSFOCQvDTCDIFt8s1l47CzzE3f8C56hP+Viu0/
- iDQTL8xBcvhjKMlKzm3SkZSCU2I0qI6zWDrZ7t4hFG9uRko0CzZz8ch2S
- JZ6GIUjm4uX1L36ielP3otoWfV4fF0rESqPcY2xbhlph3Pt4JQcjZTCGu
- Nofpu7pfLUYsRBY/xOh61keDu7QOgIsWJSmK9r6F4cwwgbk96xYc5YaOI
- 759RMIP+r5iFagnz/JNZeI2kqo2mD+3DKFAfVSKN9kIL+dberpkIlNMaR
- 9tZY3t1EtzHWJB/76i3cRySU+fD2JOnjmtLe7O5zGvy/t8K/IQdSFr+jV w==;
-X-CSE-ConnectionGUID: WSehU7SwQQmdVGJ+dUol0g==
-X-CSE-MsgGUID: qQokTo19TS29xhgZaTjQLw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11351"; a="40775797"
-X-IronPort-AV: E=Sophos;i="6.13,302,1732608000"; d="scan'208";a="40775797"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2025 07:43:37 -0800
-X-CSE-ConnectionGUID: 2YHANkaVS9CuMZWSayKJCA==
-X-CSE-MsgGUID: V/H1nWt1TNmovv+01lEH9Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,302,1732608000"; d="scan'208";a="114912154"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO [10.245.244.161])
- ([10.245.244.161])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2025 07:43:36 -0800
-Message-ID: <9b9afafc-74cf-4899-a655-4765c9fb8f9a@intel.com>
-Date: Thu, 20 Feb 2025 15:43:33 +0000
+Received: from whm50.louhi.net (whm50.louhi.net [77.240.19.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38A4410E191;
+ Thu, 20 Feb 2025 15:50:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=haloniitty.fi; s=default; h=Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=7sjjd4KuVh7sQswGRTVV8u5TUIDseOf5972SJMocmes=; b=MG9s4xAiDNsCNTakyTIBQ7wL8O
+ fci6bqOnmm+Oeo2omLVzYuzrBhMqWsgyqFH753mu6HuoGCr6KR3eKLaigywQIM3i8uw35J73ddwH9
+ BR7Qti//kn4i35hGWpFHkXFLfvfyhe+H3/5xvGdPz1q8Ljclcaum81l8s/i/wuvO9yKfxTY5D7S+1
+ 3fG/x7ZOS40NcvOkVKrMLx5a2Xh/9kC/mduVsZgUODwvA6+TdxgIMxwMGPKyVOr0irqUJ7RUswqn6
+ cwLaUP+2V5wq+OuyIK2Vx/p09dVvhOhfE3s2By7MC0CNskJy0yd17Zbd6njDkof5WzZB9/PcfFp9n
+ MeNmlldQ==;
+Received: from [194.136.85.206] (port=52826 helo=eldfell)
+ by whm50.louhi.net with esmtpsa (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.96.2)
+ (envelope-from <pekka.paalanen@haloniitty.fi>) id 1tl8pD-0003Iy-28;
+ Thu, 20 Feb 2025 17:50:55 +0200
+Date: Thu, 20 Feb 2025 17:50:47 +0200
+From: Pekka Paalanen <pekka.paalanen@haloniitty.fi>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <suraj.kandpal@intel.com>,
+ <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v8 01/14] drm: Define histogram structures exposed to user
+Message-ID: <20250220175047.412ee8d4@eldfell>
+In-Reply-To: <cd095fd7-3043-402a-9e21-c0c85c53f8e3@intel.com>
+References: <20250128-dpst-v8-0-871b94d777f8@intel.com>
+ <20250128-dpst-v8-1-871b94d777f8@intel.com>
+ <20250217120808.708b9b4d@eldfell>
+ <c423efcb-5ab8-41c2-af0a-621007c6175d@intel.com>
+ <20250218181819.11ca41ab@eldfell>
+ <cd095fd7-3043-402a-9e21-c0c85c53f8e3@intel.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3.1] drm/xe/display: Fix fbdev GGTT mapping handling.
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- Maarten Lankhorst <dev@lankhorst.se>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Matthew Brost <matthew.brost@intel.com>
-References: <20250219153441.625352-1-dev@lankhorst.se>
- <dftpyfotba6vxp6pkiircxpm7ok7sowzx6x2fu52hdjug4rzfe@uc7e47olt7uv>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <dftpyfotba6vxp6pkiircxpm7ok7sowzx6x2fu52hdjug4rzfe@uc7e47olt7uv>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; boundary="Sig_/FHtMHN9K_t5TFIWRa/qNN2j";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - whm50.louhi.net
+X-AntiAbuse: Original Domain - lists.freedesktop.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - haloniitty.fi
+X-Get-Message-Sender-Via: whm50.louhi.net: authenticated_id:
+ pekka.paalanen@haloniitty.fi
+X-Authenticated-Sender: whm50.louhi.net: pekka.paalanen@haloniitty.fi
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,149 +77,182 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 20/02/2025 14:22, Lucas De Marchi wrote:
-> On Wed, Feb 19, 2025 at 04:34:40PM +0100, Maarten Lankhorst wrote:
->> The fbdev vma is a normal unrotated VMA, so add ane explicit check
->> before re-using.
->>
->> When re-using, we have to restore the GGTT mapping on resume, so add
->> some code to do that too.
->>
->> Fixes: 67a98f7e27ba ("drm/xe/display: Re-use display vmas when possible")
->> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
->> ---
->> drivers/gpu/drm/xe/display/xe_display.c |  6 +++++-
->> drivers/gpu/drm/xe/display/xe_fb_pin.c  | 24 +++++++++++++++++++++++-
->> drivers/gpu/drm/xe/display/xe_fb_pin.h  | 13 +++++++++++++
->> 3 files changed, 41 insertions(+), 2 deletions(-)
->> create mode 100644 drivers/gpu/drm/xe/display/xe_fb_pin.h
->>
->> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/ 
->> drm/xe/display/xe_display.c
->> index 02a413a073824..999f25a562c19 100644
->> --- a/drivers/gpu/drm/xe/display/xe_display.c
->> +++ b/drivers/gpu/drm/xe/display/xe_display.c
->> @@ -30,6 +30,7 @@
->> #include "intel_hotplug.h"
->> #include "intel_opregion.h"
->> #include "skl_watermark.h"
->> +#include "xe_fb_pin.h"
->> #include "xe_module.h"
->>
->> /* Xe device functions */
->> @@ -492,8 +493,11 @@ void xe_display_pm_resume(struct xe_device *xe)
->>         intel_display_driver_enable_user_access(display);
->>     }
->>
->> -    if (has_display(xe))
->> +    if (has_display(xe)) {
->> +        xe_fb_pin_resume(xe);
-> 
-> this looks odd. I remember when we had issues with LNL about pages
-> coming with garbage after a resume we talked about marking them as
-> "needed" on suspend so they'd be saved by mm. The ggtt afair was one of
-> them. Or did we go with a different approach and I'm misremembering?
+--Sig_/FHtMHN9K_t5TFIWRa/qNN2j
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Hmm, I thought for display fbs we don't use the same pin tracking so it 
-is rather skipped by the GGTT save/restore logic. But I thought 
-previously the display stuff ensured all fb are unpinned by the time we 
-do the suspend, so on resume we would just re-program the GGTT for fb 
-when re-pinning it (handled by display code). But I guess issue now 
-comes with re-using the vma and its GGTT mapping, since it will now also 
-skip re-programming the GGTT on re-pin? But wouldn't we have this same 
-issue for all fb, and not just this fbdev stuff or does reuse_vma() 
-somehow handle this?
+On Wed, 19 Feb 2025 09:28:51 +0530
+"Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
 
-> 
-> +Matthew Brost / +Matthew Auld
-> I think this was about commit dd886a63d6e2 ("drm/xe: Restore system
-> memory GGTT mappings")
-> 
-> Lucas De Marchi
-> 
->> +
->>         intel_hpd_poll_disable(xe);
->> +    }
->>
->>     intel_opregion_resume(display);
->>
->> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/ 
->> xe/display/xe_fb_pin.c
->> index 11a6b996d739b..dee1f6531c849 100644
->> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
->> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
->> @@ -12,6 +12,7 @@
->> #include "intel_fbdev.h"
->> #include "xe_bo.h"
->> #include "xe_device.h"
->> +#include "xe_fb_pin.h"
->> #include "xe_ggtt.h"
->> #include "xe_pm.h"
->>
->> @@ -398,7 +399,8 @@ static bool reuse_vma(struct intel_plane_state 
->> *new_plane_state,
->>         goto found;
->>     }
->>
->> -    if (fb == intel_fbdev_framebuffer(xe->display.fbdev.fbdev)) {
->> +    if (fb == intel_fbdev_framebuffer(xe->display.fbdev.fbdev) &&
->> +        new_plane_state->view.gtt.type == I915_GTT_VIEW_NORMAL) {
->>         vma = intel_fbdev_vma_pointer(xe->display.fbdev.fbdev);
->>         if (vma)
->>             goto found;
->> @@ -444,6 +446,26 @@ void intel_plane_unpin_fb(struct 
->> intel_plane_state *old_plane_state)
->>     old_plane_state->ggtt_vma = NULL;
->> }
->>
->> +void xe_fb_pin_resume(struct xe_device *xe)
->> +{
->> +    struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
->> +    struct i915_vma *vma = intel_fbdev_vma_pointer(xe- 
->> >display.fbdev.fbdev);
->> +    struct xe_bo *bo;
->> +
->> +    if (!vma)
->> +        return;
->> +
->> +    bo = vma->bo;
->> +
->> +    mutex_lock(&ggtt->lock);
->> +    for (u32 x = 0; x < bo->ttm.base.size; x += XE_PAGE_SIZE) {
->> +        u64 pte = ggtt->pt_ops->pte_encode_bo(bo, x, xe- 
->> >pat.idx[XE_CACHE_NONE]);
->> +
->> +        ggtt->pt_ops->ggtt_set_pte(ggtt, vma->node->base.start + x, 
->> pte);
->> +    }
->> +    mutex_unlock(&ggtt->lock);
->> +}
->> +
->> /*
->>  * For Xe introduce dummy intel_dpt_create which just return NULL,
->>  * intel_dpt_destroy which does nothing, and fake intel_dpt_ofsset 
->> returning 0;
->> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.h b/drivers/gpu/drm/ 
->> xe/display/xe_fb_pin.h
->> new file mode 100644
->> index 0000000000000..39d48ff637002
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.h
->> @@ -0,0 +1,13 @@
->> +/* SPDX-License-Identifier: MIT */
->> +/*
->> + * Copyright © 2025 Intel Corporation
->> + */
->> +
->> +#ifndef _XE_FB_PIN_H_
->> +#define _XE_FB_PIN_H_
->> +
->> +struct xe_device;
->> +
->> +void xe_fb_pin_resume(struct xe_device *xe);
->> +
->> +#endif /* _XE_FB_PIN_H_ */
->> -- 
->> 2.47.1
->>
+> On 18-02-2025 21:48, Pekka Paalanen wrote:
+> > On Tue, 18 Feb 2025 11:13:39 +0530
+> > "Murthy, Arun R"<arun.r.murthy@intel.com> wrote:
+> > =20
+> >> On 17-02-2025 15:38, Pekka Paalanen wrote: =20
+> >>> Hi Arun,
+> >>>
+> >>> this whole series seems to be missing all the UAPI docs for the DRM
+> >>> ReST files, e.g. drm-kms.rst. The UAPI header doc comments are not a
+> >>> replacement for them, I would assume both are a requirement.
+> >>>
+> >>> Without the ReST docs it is really difficult to see how this new UAPI
+> >>> should be used. =20
+> >> Hi Pekka,
+> >> I also realized later on this. Will add this in my next patchset. =20
+> >>> On Tue, 28 Jan 2025 21:21:07 +0530
+> >>> Arun R Murthy<arun.r.murthy@intel.com> wrote:
+> >>>    =20
+> >>>> Display Histogram is an array of bins and can be generated in many w=
+ays
+> >>>> referred to as modes.
+> >>>> Ex: HSV max(RGB), Wighted RGB etc.
+> >>>>
+> >>>> Understanding the histogram data format(Ex: HSV max(RGB))
+> >>>> Histogram is just the pixel count.
+> >>>> For a maximum resolution of 10k (10240 x 4320 =3D 44236800)
+> >>>> 25 bits should be sufficient to represent this along with a buffer o=
+f 7
+> >>>> bits(future use) u32 is being considered.
+> >>>> max(RGB) can be 255 i.e 0xFF 8 bit, considering the most significant=
+ 5
+> >>>> bits, hence 32 bins.
+> >>>> Below mentioned algorithm illustrates the histogram generation in
+> >>>> hardware.
+> >>>>
+> >>>> hist[32] =3D {0};
+> >>>> for (i =3D 0; i < resolution; i++) {
+> >>>> 	bin =3D max(RGB[i]);
+> >>>> 	bin =3D bin >> 3;	/* consider the most significant bits */
+> >>>> 	hist[bin]++;
+> >>>> }
+> >>>> If the entire image is Red color then max(255,0,0) is 255 so the pix=
+el
+> >>>> count of each pixels will be placed in the last bin. Hence except
+> >>>> hist[31] all other bins will have a value zero.
+> >>>> Generated histogram in this case would be hist[32] =3D {0,0,....4423=
+6800}
+> >>>>
+> >>>> Description of the structures, properties defined are documented in =
+the
+> >>>> header file include/uapi/drm/drm_mode.h
+> >>>>
+> >>>> v8: Added doc for HDR planes, removed reserved variables (Dmitry)
+> >>>>
+> >>>> Signed-off-by: Arun R Murthy<arun.r.murthy@intel.com>
+> >>>> ---
+> >>>>    include/uapi/drm/drm_mode.h | 65 ++++++++++++++++++++++++++++++++=
++++++++++++++
+> >>>>    1 file changed, 65 insertions(+)
+> >>>>
+> >>>> diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode=
+.h
+> >>>> index c082810c08a8b234ef2672ecf54fc8c05ddc2bd3..b8b7b18843ae7224263a=
+9c61b20ac6cbf5df69e9 100644
+> >>>> --- a/include/uapi/drm/drm_mode.h
+> >>>> +++ b/include/uapi/drm/drm_mode.h
+> >>>> @@ -1355,6 +1355,71 @@ struct drm_mode_closefb {
+> >>>>    	__u32 pad;
+> >>>>    };
+> >>>>   =20
+> >>>> +/**
+> >>>> + * enum drm_mode_histogram
+> >>>> + *
+> >>>> + * @DRM_MODE_HISTOGRAM_HSV_MAX_RGB:
+> >>>> + * Maximum resolution at present 10k, 10240x4320 =3D 44236800
+> >>>> + * can be denoted in 25bits. With an additional 7 bits in buffer ea=
+ch bin
+> >>>> + * can be a u32 value.
+> >>>> + * For SDL, Maximum value of max(RGB) is 255, so max 255 bins. =20
+> >>> I assume s/SDL/SDR/. =20
+> >> Yes, sorry TYPO =20
+> >>> This assumption seems false. SDR can be also 10-bit and probably even
+> >>> more. =20
+> >> Yes but in practice majority of them being 8-bit. So have considered
+> >> 8-bit for illustration purpose only.
+> >> The design itself should accommodate 10-bit as well. =20
+> > Hi Arun,
+> >
+> > if these are just examples, then there is no need to mention SDR or
+> > HDR. You can say that if "thing" is 8-bit, then there are 256 possible
+> > values, and we could have 256 bins or we could have just 32 bins.
+> >
+> > But what is "thing"? Let's see below. =20
+> Sure will remove these over here and add then in the ReST document.
+> >>>> + * If the most significant 5 bits are considered, then bins =3D 2^5
+> >>>> + * will be 32 bins.
+> >>>> + * For HDR, maximum value of max(RGB) is 65535, so max 65535 bins. =
+=20
+> >>> Does this mean that the histogram is computed on the pixel values
+> >>> emitted to the cable? What if the cable format is YUV? =20
+> >> Yes, again the illustration over here is max(RGB) used for histogram
+> >> generation.
+> >> If YUV is used or weighted RGB is used for histogram generation then t=
+he
+> >> mode will have to change and accordingly the data for that mode. =20
+> > Do you mean that the HDMI or DisplayPort signalling mode (YUV vs. RGB?
+> > sub-sampling? bit-depth?) affects which histogram modes can be used? =20
+> No this is actually for user as to how to interpret the histogram data=20
+> that is being sent from the KMD. UMD reads this histogram so in order to=
+=20
+> understand the format of this data he needs to know the histogram mode.
+> > Currently userspace cannot know or control the signalling mode. How
+> > would userspace know which histogram modes are possible? =20
+> As part of drm_histogram_caps struct under HISTOGRAM_CAPS property KMD=20
+> will expose all of the supported histogram modes to the user. User will=20
+> then choose one among the supported modes by drm_histogram_config=20
+> struct(HISTOGRAM_ENABLE property)
+> > You should also define at which point of the pixel pipeline the
+> > histogram is recorded. Is it before, say, CRTC DEGAMMA processing? Is
+> > it after signal encoding to the 6/8/10/12/14/16-bit RGB or YUV format?
+> > Before or after YUV sub-sampling? Limited or full range? =20
+> This again is the hardware design. Theoretically this histogram hardware=
+=20
+> will be at the end of the hardware pipe, i.e after hardware/software=20
+> composition is done.
 
+Hi Arun,
+
+sure, it may be by hardware design, but the UAPI must specify or
+communicate exactly what it is. This seems to be the recurring theme in
+all the remaining comments, so I trimmed them away.
+
+A generic UAPI is mandatory, because that's KMS policy AFAIU. A generic
+UAPI cannot key anything off of the hardware revision. Instead,
+everything must be specified and communicated explicitly. It's good if
+AMD has similar functionality, someone from their team could take a
+look so you can come up with an UAPI that works for both.
+
+Dmitry Baryshkov tried to ask for the same thing. Assuming I know
+nothing about the hardware, and the only documentation I have is the
+KMS UAPI documentation (userland side, not kernel internals), I should
+be able to write a program from scratch that correctly records and
+analyses the histogram on every piece of hardware where the kernel
+driver exposes it. That means explaining exactly what the driver and the
+hardware will do when I poke that UAPI.
+
+
+Thanks,
+pq
+
+--Sig_/FHtMHN9K_t5TFIWRa/qNN2j
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAme3T1cACgkQI1/ltBGq
+qqc76g//SLDgRAgDtK0SBEzCcwd4IS8/VqktMCoaohEIthfdt6wSgdoSYI/R2aTr
+0AFkqReFhpsodIgyvpjGNFXWOLFKRJp8VV0sy67nPmTr/z9EnnXbQ7wwFKBBS9Rf
++YNm1eqF0Kaw8h/T+mEPyBRMMGcDTsUhodhY0EtUqSROIccxeFSv3DHkDv7aW9ne
+yamWmSW5pMbHuxE7ZsgOsl5CyHmoaCVGle7rs1fOWThtqmt7djKwxHCsHMujwxTC
+49+WDDAl6tvmfEPWYbpZOWdVstoy22P7siSElk/aSbiUKUBgmYAxvmLQNOcQse5h
+gAdJZ3keaWn2PGv6ejmgt5kX8Aw6JYSO4mSV1pWo4UeZeFQXhBihzKSqo8ALpyIF
+55YIeu/JnljIZiSrQu9AkYZHB0wEU5FJ1EpFhW5+6KFHlXVbVR4cs4QASW+2D1dx
+oC3MZPUjcIrzcEygWZMq1NFi5bV6HIYPddjROWzyJnq1a1jiZyPEVGWonnsieHwR
+rvmT1u6UyWzb35bO4mgjdQEEbkCqoTBEjLt08MgV/WfswMlrG6mfevjOJQpx3cSr
+eHZ98Di/y3WpM2jBw0AG5YDIU21H45/vF+av/jdZDqD0sNseavVAZcqdx+dvI2ug
+MK1w7CDabhx9LPJDYMF+OJTskQptqshfwL8VyoTBuVyv05gw6xs=
+=LMv+
+-----END PGP SIGNATURE-----
+
+--Sig_/FHtMHN9K_t5TFIWRa/qNN2j--
