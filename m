@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99846C021B1
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Feb 2025 10:34:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4170C021B2
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Feb 2025 10:42:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6599C10E919;
-	Thu, 20 Feb 2025 10:34:11 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9675810E919;
- Thu, 20 Feb 2025 10:34:10 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0779590613592066375=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8183B10E91F;
+	Thu, 20 Feb 2025 10:42:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GrH4cl+o";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD34410E91F;
+ Thu, 20 Feb 2025 10:42:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1740048145; x=1771584145;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=biMKGB8Q3XhOzeDLaRUtxW6uxjpXXVziTWF2gU/tjz8=;
+ b=GrH4cl+osPhE/qy7d3nowm1B4ly0yjHnEVfnslRIkqfSdv7eQFxxj3yy
+ 3RTV5LsgR97HBbXI4GzqbbfYe/Y9k0H4o8oJwiD+FNq56fh9gFibfJJNl
+ U1fw+ykwl9zp0f/xvtVZUDDG3MrO6BjZx7scGfFPUi6onOdP5cnqZLoef
+ 0RJ2pN+/AHukn3RfSSPPrQm8Kf1JXDrSRodnpiM/wfSe7N31kTUu+5CsS
+ NmpIafkiV/cNihMCRV0kzdXSAh/36kald3K0eeEG+V/pal6mSHMUZq7HA
+ fr2na2uB4sEKoohe9NjdWcCokjLcY+3lQTPTepxIHsP413hfKLeyHvVkc A==;
+X-CSE-ConnectionGUID: tO0L7hCKRX6OG0FKygNnmg==
+X-CSE-MsgGUID: 2M95vMkVTQOjtmL00Ox5hw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11350"; a="51804867"
+X-IronPort-AV: E=Sophos;i="6.13,301,1732608000"; d="scan'208";a="51804867"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2025 02:42:25 -0800
+X-CSE-ConnectionGUID: EcF4jmMsQa6RYugytuMj2Q==
+X-CSE-MsgGUID: PzpXFFeGRCSg9qGPdU09yw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,301,1732608000"; d="scan'208";a="119941902"
+Received: from slindbla-desk.ger.corp.intel.com (HELO
+ vgovind2-mobl3.intel.com) ([10.245.246.224])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2025 02:42:21 -0800
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, vinod.govindapillai@intel.com,
+ ville.syrjala@linux.intel.com, santhosh.reddy.guddati@intel.com,
+ jani.saarinen@intel.com
+Subject: [PATCH v9 0/8] drm/i915/fbc: FBC Dirty rect feature support
+Date: Thu, 20 Feb 2025 12:41:36 +0200
+Message-ID: <20250220104144.207526-1-vinod.govindapillai@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_and_refactor_?=
- =?utf-8?q?workarounds_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Aradhya Bhatia" <aradhya.bhatia@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 20 Feb 2025 10:34:10 -0000
-Message-ID: <174004765060.166599.13056321843688988850@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250220094645.358647-1-aradhya.bhatia@intel.com>
-In-Reply-To: <20250220094645.358647-1-aradhya.bhatia@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,141 +67,68 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0779590613592066375==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Dirty rect support for FBC in xe3 onwards based on the comments after the
+initial RFC series.
 
-== Series Details ==
+v2: Dirty rect related compute and storage moved to fbc state (Ville)
 
-Series: drm/xe: Add and refactor workarounds (rev4)
-URL   : https://patchwork.freedesktop.org/series/143594/
-State : success
+V3: Dont call fbc activate if FBC is already active
 
-== Summary ==
+v4: Dirty rect compute and programming moved within DSB scope
+    New changes are added as separate patches to make it easy for review
+    But could be squashed if the reviews as ok.
 
-CI Bug Log - changes from xe-2693-1d579c3706d3698c87fddca8cf001e46e22efe0c_BAT -> xe-pw-143594v4_BAT
-====================================================
+v5: add HAS_FBC_DIRTY_RECT()
+    FBC Damage area updates in 3 steps. 
+    1. As part of plane_atomic_check() get, adjust coordinates and store
+       the merged damage area in plane_state
+    2. Atomic_commit, update merged damage are to fbc_state and prepare the
+       damage area satifying all conditions
+    3  update the FBC dirty rect registers as part of DSB commit.
 
-Summary
--------
+v6: Use dmage_merged helper earlier to handle bigjoiner cases (Ville)
+    Place the damage_merged handling code under HAS_FBC_DIRTY_RECT()
+    Added a variable to check if the damage_merged received from
+    the helper is valid. And if it is not valid, the FBC dirty rect
+    is updated with full plane reqion.
 
-  **SUCCESS**
+v7: Reordering of the patches
+    Updates to storage of damage to plane state as per comments from Ville
+    Updates to dirty rect handling in FBC as per comments from Ville
 
-  No regressions found.
+v8: Patch subject and description updates
+    Address to comments from Ville
 
-  
+v9: handle the first frame case. Once ack-ed could be squased in to the
+    fbc dirty rect patch
 
-Participating hosts (9 -> 8)
-------------------------------
+Vinod Govindapillai (8):
+  drm/damage-helper: add const qualifier in
+    drm_atomic_helper_damage_merged()
+  drm/i915/display: update and store the plane damage clips
+  drm/i915/fbc: add register definitions for fbc dirty rect support
+  drm/i915/fbc: introduce HAS_FBC_DIRTY_RECT() for FBC dirty rect
+    support
+  drm/i915/fbc: avoid calling fbc activate if fbc is active
+  drm/i915/fbc: dirty rect support for FBC
+  drm/i915/fbc: disable FBC if PSR2 selective fetch is enabled
+  drm/i915/fbc: handle dirty rect coords for the first frame
 
-  Missing    (1): bat-adlp-vm 
+ drivers/gpu/drm/drm_damage_helper.c           |   2 +-
+ .../gpu/drm/i915/display/intel_atomic_plane.c |  32 ++++
+ drivers/gpu/drm/i915/display/intel_display.c  |   3 +
+ .../drm/i915/display/intel_display_device.h   |   1 +
+ .../drm/i915/display/intel_display_types.h    |   2 +
+ drivers/gpu/drm/i915/display/intel_fbc.c      | 157 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_fbc.h      |   5 +
+ drivers/gpu/drm/i915/display/intel_fbc_regs.h |   9 +
+ .../drm/i915/display/skl_universal_plane.c    |  46 ++++-
+ include/drm/drm_damage_helper.h               |   2 +-
+ 10 files changed, 254 insertions(+), 5 deletions(-)
 
-Known issues
-------------
+-- 
+2.43.0
 
-  Here are the changes found in xe-pw-143594v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_exec_basic@twice-bindexecqueue-rebind:
-    - bat-adlp-vf:        [PASS][1] -> [DMESG-FAIL][2] ([Intel XE#3868] / [Intel XE#3970])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2693-1d579c3706d3698c87fddca8cf001e46e22efe0c/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143594v4/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_pat@pat-index-xelp@render:
-    - bat-adlp-vf:        [DMESG-WARN][3] ([Intel XE#3970]) -> [PASS][4] +2 other tests pass
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2693-1d579c3706d3698c87fddca8cf001e46e22efe0c/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143594v4/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
-
-  
-  [Intel XE#3868]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3868
-  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
-
-
-Build changes
--------------
-
-  * Linux: xe-2693-1d579c3706d3698c87fddca8cf001e46e22efe0c -> xe-pw-143594v4
-
-  IGT_8242: 71a996406ffd67de1201f2a3e3553748dbb20ede @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2693-1d579c3706d3698c87fddca8cf001e46e22efe0c: 1d579c3706d3698c87fddca8cf001e46e22efe0c
-  xe-pw-143594v4: 143594v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143594v4/index.html
-
---===============0779590613592066375==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Add and refactor workarounds (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/143594/">https://patchwork.freedesktop.org/series/143594/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143594v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143594v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2693-1d579c3706d3698c87fddca8cf001e46e22efe0c_BAT -&gt; xe-pw-143594v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-143594v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_exec_basic@twice-bindexecqueue-rebind:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2693-1d579c3706d3698c87fddca8cf001e46e22efe0c/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143594v4/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3868">Intel XE#3868</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_pat@pat-index-xelp@render:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2693-1d579c3706d3698c87fddca8cf001e46e22efe0c/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143594v4/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">PASS</a> +2 other tests pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2693-1d579c3706d3698c87fddca8cf001e46e22efe0c -&gt; xe-pw-143594v4</li>
-</ul>
-<p>IGT_8242: 71a996406ffd67de1201f2a3e3553748dbb20ede @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2693-1d579c3706d3698c87fddca8cf001e46e22efe0c: 1d579c3706d3698c87fddca8cf001e46e22efe0c<br />
-  xe-pw-143594v4: 143594v4</p>
-
-</body>
-</html>
-
---===============0779590613592066375==--
