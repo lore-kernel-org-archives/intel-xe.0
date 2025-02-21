@@ -4,57 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6E47C021AA
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Feb 2025 13:17:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7B91C021AA
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Feb 2025 13:17:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6ACE210E822;
-	Fri, 21 Feb 2025 13:17:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A333710E49A;
+	Fri, 21 Feb 2025 13:17:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C18Eg9PP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ljKixekd";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E859F10E822;
- Fri, 21 Feb 2025 13:17:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9BB510E49A
+ for <intel-xe@lists.freedesktop.org>; Fri, 21 Feb 2025 13:17:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740143840; x=1771679840;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=TQ6Vb8yi646f2MnJcqx5GEwSdYNGUi6A6kDdSWCkSBY=;
- b=C18Eg9PPghhQ084ITgCei0KpJskMJs8QVAzxAFWCRJG9UA+EP+3Y7CcG
- sACVQpZ73LtCFMTbOzjiACU3wLLkX4coeUXm0KFdKc9c8QjS5dp4eF8Sk
- P67rdTMl3n68ScXxbQALeibmpjYhCyi+wz+wDHb6kN3A4emJngeiB3ntB
- SePSec1dqUa3Jx8PVnvwIiYOM5oQzDPzWjsmqmLSmUwUpCq4UqSEJIOOd
- mr0ug+65yJWTRhPpZ/h2a32zQQ2Ee4IJ/0b2FdTW1CwPx9+1fCWzwiZVu
- PgQhnKo2k/mvrQaO8JH/AKELi5Okl3zMIQ15WrZI4s7Neg1mP6+4YoEop Q==;
-X-CSE-ConnectionGUID: pH54+7+5QXGNyqzbFVhMbQ==
-X-CSE-MsgGUID: 86RdqLKgQmC/EBtXMvExOA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11351"; a="40976700"
-X-IronPort-AV: E=Sophos;i="6.13,304,1732608000"; d="scan'208";a="40976700"
+ t=1740143867; x=1771679867;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=xnUqeIWCrmg8DU9rq/e1dKU0Pq5M/RjNk7iPdkVfGYU=;
+ b=ljKixekdILn+pqWrpjyAHZyTqFbvjjPtK1+zwBZC6Sw3X3gfPopLVCWp
+ 3+xrKoJu5LXA2eaToSOWgbe7IyL9W12FIWoJnK1Sn/IEe9/MzcsFI+vDi
+ Gy3skFRMlTbQL/l5nkNkhWkXa8t5bCa9MxeEMcXTdZeZ+PT162vZOuvTq
+ OneF9nzsOGSihb4/MpRz2MmBhgWAEyhk/q6Fdti0UVinBnUmgJyQSWAUh
+ KNLQUjQ+s9PjKxzHoTh/KBM3OArWDfEOIuOSC08VWQo12lO2EJFgGiJQn
+ SYQ/zh+9qzrRD7+Wx5D0EiQsFX2UgdB7j6asA1/+2lhm2xRcFJvcaI9ku g==;
+X-CSE-ConnectionGUID: 7TYO+JWyT6aY2RecWIzf2w==
+X-CSE-MsgGUID: ib9TOfYsRN6pwqqJE/Msdg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11351"; a="40976770"
+X-IronPort-AV: E=Sophos;i="6.13,304,1732608000"; d="scan'208";a="40976770"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2025 05:17:19 -0800
-X-CSE-ConnectionGUID: ZQ+4JTGeRhSRCOOcb49A2A==
-X-CSE-MsgGUID: 3igzqQhjSku2SfxXvnn1Ag==
+ 21 Feb 2025 05:17:46 -0800
+X-CSE-ConnectionGUID: 6STKgVxbR8y/dPo+6jbmHw==
+X-CSE-MsgGUID: csJD0VCMSounkNUFM75AcA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,304,1732608000"; d="scan'208";a="146229318"
-Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.211.136.201])
- by orviesa002-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2025 05:17:18 -0800
-Date: Fri, 21 Feb 2025 14:17:03 +0100
-From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: igt-dev@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH i-g-t] lib/xe: Make running under Valgrind quiet
-Message-ID: <20250221131703.nikwwxfgfrvkopct@kamilkon-desk.igk.intel.com>
-Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- igt-dev@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-References: <20250204173933.95751-1-tvrtko.ursulin@igalia.com>
+X-IronPort-AV: E=Sophos;i="6.13,304,1732608000"; d="scan'208";a="146229392"
+Received: from sosterlu-desk.ger.corp.intel.com (HELO [10.245.245.44])
+ ([10.245.245.44])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2025 05:17:45 -0800
+Message-ID: <f2c9136f-ecb4-4b60-92f5-6938ec242c2e@intel.com>
+Date: Fri, 21 Feb 2025 13:17:43 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250204173933.95751-1-tvrtko.ursulin@igalia.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] drm/xe/userptr: restore invalidation list on error
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, stable@vger.kernel.org
+References: <20250214170527.272182-4-matthew.auld@intel.com>
+ <Z6/ttCTrEuwNsD6w@lstrano-desk.jf.intel.com>
+ <6fec16d5-cbf3-448b-9c07-85a079095f62@intel.com>
+ <Z7QFUy9ZyBRhPwuY@lstrano-desk.jf.intel.com>
+ <Z7fAIjU/3wW8eMQL@lstrano-desk.jf.intel.com>
+ <cfbcea7a-bcba-4e7a-9b63-398a48da789d@intel.com>
+ <a6ac4585efaabc710c377b786d042177e0df48ad.camel@linux.intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <a6ac4585efaabc710c377b786d042177e0df48ad.camel@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,118 +76,223 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Tvrtko,
-On 2025-02-04 at 17:39:33 +0000, Tvrtko Ursulin wrote:
-> Let Valgrind know which memory is initialised by ioctls so running tests
-> under it becomes less noisy.
+On 21/02/2025 11:20, Thomas Hellström wrote:
+> On Fri, 2025-02-21 at 11:11 +0000, Matthew Auld wrote:
+>> On 20/02/2025 23:52, Matthew Brost wrote:
+>>> On Mon, Feb 17, 2025 at 07:58:11PM -0800, Matthew Brost wrote:
+>>>> On Mon, Feb 17, 2025 at 09:38:26AM +0000, Matthew Auld wrote:
+>>>>> On 15/02/2025 01:28, Matthew Brost wrote:
+>>>>>> On Fri, Feb 14, 2025 at 05:05:28PM +0000, Matthew Auld wrote:
+>>>>>>> On error restore anything still on the pin_list back to the
+>>>>>>> invalidation
+>>>>>>> list on error. For the actual pin, so long as the vma is
+>>>>>>> tracked on
+>>>>>>> either list it should get picked up on the next pin,
+>>>>>>> however it looks
+>>>>>>> possible for the vma to get nuked but still be present on
+>>>>>>> this per vm
+>>>>>>> pin_list leading to corruption. An alternative might be
+>>>>>>> then to instead
+>>>>>>> just remove the link when destroying the vma.
+>>>>>>>
+>>>>>>> Fixes: ed2bdf3b264d ("drm/xe/vm: Subclass userptr vmas")
+>>>>>>> Suggested-by: Matthew Brost <matthew.brost@intel.com>
+>>>>>>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>>>>>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>>>>>>> Cc: <stable@vger.kernel.org> # v6.8+
+>>>>>>> ---
+>>>>>>>     drivers/gpu/drm/xe/xe_vm.c | 26 +++++++++++++++++++-----
+>>>>>>> --
+>>>>>>>     1 file changed, 19 insertions(+), 7 deletions(-)
+>>>>>>>
+>>>>>>> diff --git a/drivers/gpu/drm/xe/xe_vm.c
+>>>>>>> b/drivers/gpu/drm/xe/xe_vm.c
+>>>>>>> index d664f2e418b2..668b0bde7822 100644
+>>>>>>> --- a/drivers/gpu/drm/xe/xe_vm.c
+>>>>>>> +++ b/drivers/gpu/drm/xe/xe_vm.c
+>>>>>>> @@ -670,12 +670,12 @@ int xe_vm_userptr_pin(struct xe_vm
+>>>>>>> *vm)
+>>>>>>>     	list_for_each_entry_safe(uvma, next, &vm-
+>>>>>>>> userptr.invalidated,
+>>>>>>>     				 userptr.invalidate_link)
+>>>>>>> {
+>>>>>>>     		list_del_init(&uvma-
+>>>>>>>> userptr.invalidate_link);
+>>>>>>> -		list_move_tail(&uvma->userptr.repin_link,
+>>>>>>> -			       &vm->userptr.repin_list);
+>>>>>>> +		list_add_tail(&uvma->userptr.repin_link,
+>>>>>>> +			      &vm->userptr.repin_list);
+>>>>>>
+>>>>>> Why this change?
+>>>>>
+>>>>> Just that with this patch the repin_link should now always be
+>>>>> empty at this
+>>>>> point, I think. add should complain if that is not the case.
+>>>>>
+>>>>
+>>>> If it is always expected to be empty, then yea maybe add a
+>>>> xe_assert for
+>>>> this as the list management is pretty tricky.
+>>>>
+>>>>>>
+>>>>>>>     	}
+>>>>>>>     	spin_unlock(&vm->userptr.invalidated_lock);
+>>>>>>> -	/* Pin and move to temporary list */
+>>>>>>> +	/* Pin and move to bind list */
+>>>>>>>     	list_for_each_entry_safe(uvma, next, &vm-
+>>>>>>>> userptr.repin_list,
+>>>>>>>     				 userptr.repin_link) {
+>>>>>>>     		err = xe_vma_userptr_pin_pages(uvma);
+>>>>>>> @@ -691,10 +691,10 @@ int xe_vm_userptr_pin(struct xe_vm
+>>>>>>> *vm)
+>>>>>>>     			err = xe_vm_invalidate_vma(&uvma-
+>>>>>>>> vma);
+>>>>>>>     			xe_vm_unlock(vm);
+>>>>>>>     			if (err)
+>>>>>>> -				return err;
+>>>>>>> +				break;
+>>>>>>>     		} else {
+>>>>>>> -			if (err < 0)
+>>>>>>> -				return err;
+>>>>>>> +			if (err)
+>>>>>>> +				break;
+>>>>>>>     			list_del_init(&uvma-
+>>>>>>>> userptr.repin_link);
+>>>>>>>     			list_move_tail(&uvma-
+>>>>>>>> vma.combined_links.rebind,
+>>>>>>> @@ -702,7 +702,19 @@ int xe_vm_userptr_pin(struct xe_vm
+>>>>>>> *vm)
+>>>>>>>     		}
+>>>>>>>     	}
+>>>>>>> -	return 0;
+>>>>>>> +	if (err) {
+>>>>>>> +		down_write(&vm->userptr.notifier_lock);
+>>>>>>
+>>>>>> Can you explain why you take the notifier lock here? I don't
+>>>>>> think this
+>>>>>> required unless I'm missing something.
+>>>>>
+>>>>> For the invalidated list, the docs say:
+>>>>>
+>>>>> "Removing items from the list additionally requires @lock in
+>>>>> write mode, and
+>>>>> adding items to the list requires the @userptr.notifer_lock in
+>>>>> write mode."
+>>>>>
+>>>>> Not sure if the docs needs to be updated here?
+>>>>>
+>>>>
+>>>> Oh. I believe the part of comment for 'adding items to the list
+>>>> requires the @userptr.notifer_lock in write mode' really means
+>>>> something
+>>>> like this:
+>>>>
+>>>> 'When adding to @vm->userptr.invalidated in the notifier the
+>>>> @userptr.notifer_lock in write mode protects against concurrent
+>>>> VM binds
+>>>> from setting up newly invalidated pages.'
+>>>>
+>>>> So with above and since this code path is in the VM bind path
+>>>> (i.e. we
+>>>> are not racing with other binds) I think the
+>>>> vm->userptr.invalidated_lock is sufficient. Maybe ask Thomas if
+>>>> he
+>>>> agrees here.
+>>>>
+>>>
+>>> After some discussion with Thomas, removing notifier lock here is
+>>> safe.
+>>
+>> Thanks for confirming.
 > 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> ---
->  lib/igt_syncobj.c |  4 +---
->  lib/xe/xe_query.c | 21 +++++++++++++++++++++
-
-Please split this into two separate patches, you can add
-then my r-b to both.
-
-With this
-Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-
->  2 files changed, 22 insertions(+), 3 deletions(-)
+> So basically that was to protect exec when it takes the notifier lock
+> in read mode, and checks that there are no invalidated userptr, that
+> needs to stay true as lock as the notifier lock is held.
 > 
-> diff --git a/lib/igt_syncobj.c b/lib/igt_syncobj.c
-> index a53393bd7245..4a62890b4bbf 100644
-> --- a/lib/igt_syncobj.c
-> +++ b/lib/igt_syncobj.c
-> @@ -197,14 +197,12 @@ int
->  syncobj_wait_err(int fd, uint32_t *handles, uint32_t count,
->  		 uint64_t abs_timeout_nsec, uint32_t flags)
->  {
-> -	struct drm_syncobj_wait wait;
-> +	struct drm_syncobj_wait wait = { };
->  
->  	wait.handles = to_user_pointer(handles);
->  	wait.timeout_nsec = abs_timeout_nsec;
->  	wait.count_handles = count;
->  	wait.flags = flags;
-> -	wait.first_signaled = 0;
-> -	wait.pad = 0;
->  
->  	return __syncobj_wait(fd, &wait);
->  }
-> diff --git a/lib/xe/xe_query.c b/lib/xe/xe_query.c
-> index ec2b127b7e87..0d2e4805c8ee 100644
-> --- a/lib/xe/xe_query.c
-> +++ b/lib/xe/xe_query.c
-> @@ -9,6 +9,15 @@
->  #include <stdlib.h>
->  #include <pthread.h>
->  
-> +#ifdef HAVE_VALGRIND
-> +#include <valgrind/valgrind.h>
-> +#include <valgrind/memcheck.h>
-> +
-> +#define VG(x) x
-> +#else
-> +#define VG(x) do {} while (0)
-> +#endif
-> +
->  #include "drmtest.h"
->  #include "ioctl_wrappers.h"
->  #include "igt_map.h"
-> @@ -34,6 +43,8 @@ static struct drm_xe_query_config *xe_query_config_new(int fd)
->  	query.data = to_user_pointer(config);
->  	igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_XE_DEVICE_QUERY, &query), 0);
->  
-> +	VG(VALGRIND_MAKE_MEM_DEFINED(config, query.size));
-> +
->  	igt_assert(config->num_params > 0);
->  
->  	return config;
-> @@ -62,6 +73,8 @@ static uint32_t *xe_query_hwconfig_new(int fd, uint32_t *hwconfig_size)
->  	/* Perform the query to get the actual data */
->  	igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_XE_DEVICE_QUERY, &query), 0);
->  
-> +	VG(VALGRIND_MAKE_MEM_DEFINED(hwconfig, query.size));
-> +
->  	*hwconfig_size = query.size;
->  	return hwconfig;
->  }
-> @@ -84,6 +97,8 @@ static struct drm_xe_query_gt_list *xe_query_gt_list_new(int fd)
->  	query.data = to_user_pointer(gt_list);
->  	igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_XE_DEVICE_QUERY, &query), 0);
->  
-> +	VG(VALGRIND_MAKE_MEM_DEFINED(gt_list, query.size));
-> +
->  	return gt_list;
->  }
->  
-> @@ -117,6 +132,8 @@ static struct drm_xe_query_engines *xe_query_engines(int fd)
->  	query.data = to_user_pointer(engines);
->  	igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_XE_DEVICE_QUERY, &query), 0);
->  
-> +	VG(VALGRIND_MAKE_MEM_DEFINED(engines, query.size));
-> +
->  	return engines;
->  }
->  
-> @@ -138,6 +155,8 @@ static struct drm_xe_query_mem_regions *xe_query_mem_regions_new(int fd)
->  	query.data = to_user_pointer(mem_regions);
->  	igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_XE_DEVICE_QUERY, &query), 0);
->  
-> +	VG(VALGRIND_MAKE_MEM_DEFINED(mem_regions, query.size));
-> +
->  	return mem_regions;
->  }
->  
-> @@ -161,6 +180,8 @@ static struct drm_xe_query_oa_units *xe_query_oa_units_new(int fd)
->  	query.data = to_user_pointer(oa_units);
->  	igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_XE_DEVICE_QUERY, &query), 0);
->  
-> +	VG(VALGRIND_MAKE_MEM_DEFINED(oa_units, query.size));
-> +
->  	return oa_units;
->  }
->  
-> -- 
-> 2.48.0
+> But as MBrost pointed out, the vm lock is also held, so I think the
+> kerneldoc should be updated so that the requirement is that either the
+> notifier lock is held in write mode, or the vm lock in write mode.
 > 
+> As a general comment these locking protection docs are there to
+> simplify reading and writing of the code so that when new code is
+> written and reviewed, we should just keep to the rules to avoid
+> auditing all locations in the driver where the protected data-structure
+> is touched. If we want to update those docs I think a complete such
+> audit needs to be done and all use-cases are understood.
+
+For this patch is the preference to go with the slightly overzealous 
+locking for now? Circling back around later, fixing the doc when adding 
+the new helper, and at the same time also audit all callers?
+
+> 
+> /Thomas
+> 
+> 
+>>
+>>>
+>>> However, for adding is either userptr.notifer_lock || vm->lock to
+>>> also
+>>> avoid races between binds, execs, and rebind worker.
+>>>
+>>> I'd like update the documentation and add a helper like this:
+>>>
+>>> void xe_vma_userptr_add_invalidated(struct xe_userptr_vma *uvma)
+>>> {
+>>>          struct xe_vm *vm = xe_vma_vm(&uvma->vma);
+>>>
+>>>          lockdep_assert(lock_is_held_type(&vm->lock.dep_map, 1) ||
+>>>                         lock_is_held_type(&vm-
+>>>> userptr.notifier_lock.dep_map, 1));
+>>>
+>>>          spin_lock(&vm->userptr.invalidated_lock);
+>>>          list_move_tail(&uvma->userptr.invalidate_link,
+>>>                         &vm->userptr.invalidated);
+>>>          spin_unlock(&vm->userptr.invalidated_lock);
+>>> }
+>>
+>> Sounds good.
+>>
+>>>
+>>> However, let's delay the helper until this series and recently post
+>>> series of mine [1] merge as both are fixes series and hoping for a
+>>> clean
+>>> backport.
+>>
+>> Makes sense.
+>>
+>>>
+>>> Matt
+>>>
+>>> [1] https://patchwork.freedesktop.org/series/145198/
+>>>
+>>>> Matt
+>>>>
+>>>>>>
+>>>>>> Matt
+>>>>>>
+>>>>>>> +		spin_lock(&vm->userptr.invalidated_lock);
+>>>>>>> +		list_for_each_entry_safe(uvma, next, &vm-
+>>>>>>>> userptr.repin_list,
+>>>>>>> +					
+>>>>>>> userptr.repin_link) {
+>>>>>>> +			list_del_init(&uvma-
+>>>>>>>> userptr.repin_link);
+>>>>>>> +			list_move_tail(&uvma-
+>>>>>>>> userptr.invalidate_link,
+>>>>>>> +				       &vm-
+>>>>>>>> userptr.invalidated);
+>>>>>>> +		}
+>>>>>>> +		spin_unlock(&vm-
+>>>>>>>> userptr.invalidated_lock);
+>>>>>>> +		up_write(&vm->userptr.notifier_lock);
+>>>>>>> +	}
+>>>>>>> +	return err;
+>>>>>>>     }
+>>>>>>>     /**
+>>>>>>> -- 
+>>>>>>> 2.48.1
+>>>>>>>
+>>>>>
+>>
+> 
+
