@@ -4,55 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AC95C021B8
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Feb 2025 15:13:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C162C021B7
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Feb 2025 15:12:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F6BD10EA7E;
-	Fri, 21 Feb 2025 15:12:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28D6E10EA86;
+	Fri, 21 Feb 2025 15:12:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="xjZeF2+k";
+	dkim=pass (1024-bit key; unprotected) header.d=163.com header.i=@163.com header.b="SdXS1/bA";
 	dkim-atps=neutral
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11FA210E6A0;
- Tue, 18 Feb 2025 12:27:02 +0000 (UTC)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org
- [IPv6:2001:67c:2050:b231:465::1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4YxzKt14xrz9tDX;
- Tue, 18 Feb 2025 13:26:58 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1739881618; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=9WVJFUiwOjHC2mFPnAQ3Pka1UDkdEU8IQDklEeCtIa4=;
- b=xjZeF2+kJ3EMscONcfWL3l8od/U0FC2oXyXbOtrd224KfiIa2y9FnZNDd2QzmlUfe1Fl24
- DkNQKwqrPE23ZxLHLEe87FrI7NvbjgPrHdHaa/dFzNx4T5q9QHfHmGNt/L2sWdHzo7tsPF
- 44WPtt7Djs5d21VgsIu1koTa+7UXAcK2viI/qaFM+MzE0HHdh+ZPhSWBYqDm7SvbVZe4o/
- 4D0a/0MV0qv9oIhhL33rIAhQv53t/gu5hvFFHWZYROnVFFbAw5O0GoTUmsGVqA784kzJfV
- oGVmiU9deWGvgtJ7bK9rEgofixRgz/fRh16dGGLJmfvglCOFx/bAmmug4IcMeg==
-Message-ID: <7244eaa81cfeb6ce959c591c11a97f52f25b5a5d.camel@mailbox.org>
-Subject: Re: [PATCH v5 1/6] drm/sched: Add internal job peek/pop API
-From: Philipp Stanner <phasta@mailbox.org>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- amd-gfx@lists.freedesktop.org,  dri-devel@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com, Christian
- =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Danilo Krummrich
- <dakr@kernel.org>, Matthew Brost <matthew.brost@intel.com>, Philipp Stanner
- <phasta@kernel.org>
-Date: Tue, 18 Feb 2025 13:26:54 +0100
-In-Reply-To: <20250214101944.19390-2-tvrtko.ursulin@igalia.com>
-References: <20250214101944.19390-1-tvrtko.ursulin@igalia.com>
- <20250214101944.19390-2-tvrtko.ursulin@igalia.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-Greylist: delayed 146475 seconds by postgrey-1.36 at gabe;
+ Fri, 21 Feb 2025 02:39:04 UTC
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7FEBD10E1F4;
+ Fri, 21 Feb 2025 02:39:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+ s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=/f7AI
+ zZ1TrU8hxNz23pogo7bbfU7wlUsam29chQ5ZDA=; b=SdXS1/bA0fqGHJD2/ax5A
+ I9wuwLqoZ+6XARK2wL/z9D1w0wgrDe5foMkWL91nsCAsJ3zhsd+RLtQDKYuyqJea
+ nP1D0NAPKwSdGZTtpibi73kdVU95fYLpFIjUNzopGapU4O/aRQUaLtys9HYYV202
+ J7rAfW/b6EEtucxhnSPqqs=
+Received: from icess-ProLiant-DL380-Gen10.. (unknown [])
+ by gzsmtp1 (Coremail) with SMTP id PCgvCgDHnpc457dn82KsEg--.4363S4;
+ Fri, 21 Feb 2025 10:38:49 +0800 (CST)
+From: Haoxiang Li <haoxiang_li2024@163.com>
+To: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ simona@ffwll.ch, gustavo.sousa@intel.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Haoxiang Li <haoxiang_li2024@163.com>, stable@vger.kernel.org
+Subject: [PATCH v2] drm/i915/display: Add check for alloc_ordered_workqueue()
+ and alloc_workqueue()
+Date: Fri, 21 Feb 2025 10:38:46 +0800
+Message-Id: <20250221023846.2727311-1-haoxiang_li2024@163.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-MBO-RS-META: ebpyffw8jygif4noab3je53esttibaju
-X-MBO-RS-ID: 66b06c72a939d8da549
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: PCgvCgDHnpc457dn82KsEg--.4363S4
+X-Coremail-Antispam: 1Uf129KBjvJXoWxAF4xGw1xAF18WrykKryfZwb_yoW5Ar17pa
+ 1fXFyUAFW5XFs2kay7Xa18uFyxW3409w15GF1fC3Wqq3WUAw4qg3W09F1UXryDGF1xXF1f
+ AFWqyF429r1qkF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0piPCztUUUUU=
+X-Originating-IP: [183.174.60.14]
+X-CM-SenderInfo: xkdr5xpdqjszblsqjki6rwjhhfrp/1tbiqBf5bme23pywzwADsH
 X-Mailman-Approved-At: Fri, 21 Feb 2025 15:12:57 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,204 +59,94 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thx for the updated version. Overlooked it, I was out on Friday. See
-below
+Add check for the return value of alloc_ordered_workqueue()
+and alloc_workqueue(). Furthermore, if some allocations fail,
+cleanup works are added to avoid potential memory leak problem.
 
-On Fri, 2025-02-14 at 10:19 +0000, Tvrtko Ursulin wrote:
-> Idea is to add helpers for peeking and popping jobs from entities
-> with
-> the goal of decoupling the hidden assumption in the code that
-> queue_node
-> is the first element in struct drm_sched_job.
->=20
-> That assumption usually comes in the form of:
->=20
-> =C2=A0 while ((job =3D to_drm_sched_job(spsc_queue_pop(&entity-
-> >job_queue))))
->=20
-> Which breaks if the queue_node is re-positioned due to_drm_sched_job
-> being implemented with a container_of.
->=20
-> This also allows us to remove duplicate definitions of
-> to_drm_sched_job.
->=20
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
-> Cc: Danilo Krummrich <dakr@kernel.org>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Philipp Stanner <phasta@kernel.org>
-> ---
-> =C2=A0drivers/gpu/drm/scheduler/sched_entity.c=C2=A0=C2=A0 | 11 +++---
-> =C2=A0drivers/gpu/drm/scheduler/sched_internal.h | 46
-> ++++++++++++++++++++++
-> =C2=A0drivers/gpu/drm/scheduler/sched_main.c=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
-=A0 7 ++--
-> =C2=A03 files changed, 54 insertions(+), 10 deletions(-)
-> =C2=A0create mode 100644 drivers/gpu/drm/scheduler/sched_internal.h
->=20
-> diff --git a/drivers/gpu/drm/scheduler/sched_entity.c
-> b/drivers/gpu/drm/scheduler/sched_entity.c
-> index 69bcf0e99d57..a171f05ad761 100644
-> --- a/drivers/gpu/drm/scheduler/sched_entity.c
-> +++ b/drivers/gpu/drm/scheduler/sched_entity.c
-> @@ -28,11 +28,10 @@
-> =C2=A0#include <drm/drm_print.h>
-> =C2=A0#include <drm/gpu_scheduler.h>
-> =C2=A0
-> +#include "sched_internal.h"
-> +
-> =C2=A0#include "gpu_scheduler_trace.h"
-> =C2=A0
-> -#define to_drm_sched_job(sched_job)		\
-> -		container_of((sched_job), struct drm_sched_job,
-> queue_node)
-> -
-> =C2=A0/**
-> =C2=A0 * drm_sched_entity_init - Init a context entity used by scheduler
-> when
-> =C2=A0 * submit to HW ring.
-> @@ -255,7 +254,7 @@ static void drm_sched_entity_kill(struct
-> drm_sched_entity *entity)
-> =C2=A0	/* The entity is guaranteed to not be used by the scheduler
-> */
-> =C2=A0	prev =3D rcu_dereference_check(entity->last_scheduled, true);
-> =C2=A0	dma_fence_get(prev);
-> -	while ((job =3D to_drm_sched_job(spsc_queue_pop(&entity-
-> >job_queue)))) {
-> +	while ((job =3D drm_sched_entity_queue_pop(entity))) {
-> =C2=A0		struct drm_sched_fence *s_fence =3D job->s_fence;
-> =C2=A0
-> =C2=A0		dma_fence_get(&s_fence->finished);
-> @@ -477,7 +476,7 @@ struct drm_sched_job
-> *drm_sched_entity_pop_job(struct drm_sched_entity *entity)
-> =C2=A0{
-> =C2=A0	struct drm_sched_job *sched_job;
-> =C2=A0
-> -	sched_job =3D to_drm_sched_job(spsc_queue_peek(&entity-
-> >job_queue));
-> +	sched_job =3D drm_sched_entity_queue_peek(entity);
-> =C2=A0	if (!sched_job)
-> =C2=A0		return NULL;
-> =C2=A0
-> @@ -513,7 +512,7 @@ struct drm_sched_job
-> *drm_sched_entity_pop_job(struct drm_sched_entity *entity)
-> =C2=A0	if (drm_sched_policy =3D=3D DRM_SCHED_POLICY_FIFO) {
-> =C2=A0		struct drm_sched_job *next;
-> =C2=A0
-> -		next =3D to_drm_sched_job(spsc_queue_peek(&entity-
-> >job_queue));
-> +		next =3D drm_sched_entity_queue_peek(entity);
-> =C2=A0		if (next) {
-> =C2=A0			struct drm_sched_rq *rq;
-> =C2=A0
-> diff --git a/drivers/gpu/drm/scheduler/sched_internal.h
-> b/drivers/gpu/drm/scheduler/sched_internal.h
-> new file mode 100644
-> index 000000000000..815d384845a3
-> --- /dev/null
-> +++ b/drivers/gpu/drm/scheduler/sched_internal.h
-> @@ -0,0 +1,46 @@
-> +#ifndef _DRM_GPU_SCHEDULER_INTERNAL_H_
-> +#define _DRM_GPU_SCHEDULER_INTERNAL_H_
+Fixes: 40053823baad ("drm/i915/display: move modeset probe/remove functions to intel_display_driver.c")
+Cc: stable@vger.kernel.org
+Signed-off-by: Haoxiang Li <haoxiang_li2024@163.com>
+---
+Changes in v2:
+- Split the compound conditional statement into separate
+  conditional statements to facilitate cleanup works.
+- Add cleanup works to destory work queues if allocations fail,
+  and modify the later goto destination to do the full excercise. 
+- modify the patch description. Thanks, Jani!
+---
+ .../drm/i915/display/intel_display_driver.c   | 29 +++++++++++++++----
+ 1 file changed, 24 insertions(+), 5 deletions(-)
 
-DRM maintainer tools complain about a potentially missing license
-identifier:
-
--:80: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifie=
-r tag in line 1
-#80: FILE: drivers/gpu/drm/scheduler/sched_internal.h:1:
-
-The other scheduler files don't have one, either. Still, it might be
-good to add one for new files. So, shall we make it GPL?
-
-Rest of the series looks good.
-
-P.
-
-> +
-> +/**
-> + * drm_sched_entity_queue_pop - Low level helper for popping queued
-> jobs
-> + *
-> + * @entity: scheduler entity
-> + *
-> + * Low level helper for popping queued jobs.
-> + *
-> + * Returns: The job dequeued or NULL.
-> + */
-> +static inline struct drm_sched_job *
-> +drm_sched_entity_queue_pop(struct drm_sched_entity *entity)
-> +{
-> +	struct spsc_node *node;
-> +
-> +	node =3D spsc_queue_pop(&entity->job_queue);
-> +	if (!node)
-> +		return NULL;
-> +
-> +	return container_of(node, struct drm_sched_job, queue_node);
-> +}
-> +
-> +/**
-> + * drm_sched_entity_queue_peek - Low level helper for peeking at the
-> job queue
-> + *
-> + * @entity: scheduler entity
-> + *
-> + * Low level helper for peeking at the job queue
-> + *
-> + * Returns: The job at the head of the queue or NULL.
-> + */
-> +static inline struct drm_sched_job *
-> +drm_sched_entity_queue_peek(struct drm_sched_entity *entity)
-> +{
-> +	struct spsc_node *node;
-> +
-> +	node =3D spsc_queue_peek(&entity->job_queue);
-> +	if (!node)
-> +		return NULL;
-> +
-> +	return container_of(node, struct drm_sched_job, queue_node);
-> +}
-> +
-> +#endif
-> diff --git a/drivers/gpu/drm/scheduler/sched_main.c
-> b/drivers/gpu/drm/scheduler/sched_main.c
-> index 8c36a59afb72..c634993f1346 100644
-> --- a/drivers/gpu/drm/scheduler/sched_main.c
-> +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> @@ -78,6 +78,8 @@
-> =C2=A0#include <drm/gpu_scheduler.h>
-> =C2=A0#include <drm/spsc_queue.h>
-> =C2=A0
-> +#include "sched_internal.h"
-> +
-> =C2=A0#define CREATE_TRACE_POINTS
-> =C2=A0#include "gpu_scheduler_trace.h"
-> =C2=A0
-> @@ -87,9 +89,6 @@ static struct lockdep_map drm_sched_lockdep_map =3D {
-> =C2=A0};
-> =C2=A0#endif
-> =C2=A0
-> -#define to_drm_sched_job(sched_job)		\
-> -		container_of((sched_job), struct drm_sched_job,
-> queue_node)
-> -
-> =C2=A0int drm_sched_policy =3D DRM_SCHED_POLICY_FIFO;
-> =C2=A0
-> =C2=A0/**
-> @@ -123,7 +122,7 @@ static bool drm_sched_can_queue(struct
-> drm_gpu_scheduler *sched,
-> =C2=A0{
-> =C2=A0	struct drm_sched_job *s_job;
-> =C2=A0
-> -	s_job =3D to_drm_sched_job(spsc_queue_peek(&entity-
-> >job_queue));
-> +	s_job =3D drm_sched_entity_queue_peek(entity);
-> =C2=A0	if (!s_job)
-> =C2=A0		return false;
-> =C2=A0
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index 50ec0c3c7588..0b9971a5626b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -241,31 +241,44 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
+ 	intel_dmc_init(display);
+ 
+ 	display->wq.modeset = alloc_ordered_workqueue("i915_modeset", 0);
++	if (!display->wq.modeset) {
++		ret = -ENOMEM;
++		goto cleanup_vga_client_pw_domain_dmc;
++	}
++
+ 	display->wq.flip = alloc_workqueue("i915_flip", WQ_HIGHPRI |
+ 						WQ_UNBOUND, WQ_UNBOUND_MAX_ACTIVE);
++	if (!display->wq.flip) {
++		ret = -ENOMEM;
++		goto cleanup_wq_modeset;
++	}
+ 	display->wq.cleanup = alloc_workqueue("i915_cleanup", WQ_HIGHPRI, 0);
++	if (!display->wq.cleanup) {
++		ret = -ENOMEM;
++		goto cleanup_wq_flip;
++	}
+ 
+ 	intel_mode_config_init(display);
+ 
+ 	ret = intel_cdclk_init(display);
+ 	if (ret)
+-		goto cleanup_vga_client_pw_domain_dmc;
++		goto cleanup_wq_cleanup;
+ 
+ 	ret = intel_color_init(display);
+ 	if (ret)
+-		goto cleanup_vga_client_pw_domain_dmc;
++		goto cleanup_wq_cleanup;
+ 
+ 	ret = intel_dbuf_init(i915);
+ 	if (ret)
+-		goto cleanup_vga_client_pw_domain_dmc;
++		goto cleanup_wq_cleanup;
+ 
+ 	ret = intel_bw_init(i915);
+ 	if (ret)
+-		goto cleanup_vga_client_pw_domain_dmc;
++		goto cleanup_wq_cleanup;
+ 
+ 	ret = intel_pmdemand_init(display);
+ 	if (ret)
+-		goto cleanup_vga_client_pw_domain_dmc;
++		goto cleanup_wq_cleanup;
+ 
+ 	intel_init_quirks(display);
+ 
+@@ -273,6 +286,12 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
+ 
+ 	return 0;
+ 
++cleanup_wq_cleanup:
++	destroy_workqueue(display->wq.cleanup);
++cleanup_wq_flip:
++	destroy_workqueue(display->wq.flip);
++cleanup_wq_modeset:
++	destroy_workqueue(display->wq.modeset);
+ cleanup_vga_client_pw_domain_dmc:
+ 	intel_dmc_fini(display);
+ 	intel_power_domains_driver_remove(display);
+-- 
+2.25.1
 
