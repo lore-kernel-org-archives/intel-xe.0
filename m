@@ -4,26 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DE93C021B2
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Feb 2025 00:31:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 956AEC021B3
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Feb 2025 00:38:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 007BE10E02B;
-	Fri, 21 Feb 2025 00:31:49 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C9A710E02B;
- Fri, 21 Feb 2025 00:31:47 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7497977032564456530=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6207D10E02B;
+	Fri, 21 Feb 2025 00:38:58 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ImjvfJGT";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10A2C89209;
+ Fri, 21 Feb 2025 00:38:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1740098337; x=1771634337;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=OmyGzQ+TBF/pUwD3zl/09vNmJn9SjvCcr3Tm//raov4=;
+ b=ImjvfJGTgqauEdz1O689TchadGM6YsxPnoroq2kudcu9aNey8gRI01kC
+ TaR7jHFMpyud29CYAkMHAQtzpLEfvO6GfJolaRYMwKnmtD4eWTDQVslGv
+ sFmJTehYRAuzc3cCcrN4DKEkfJ9M0ae3y64Ye9CheK1nPweTulGW+fA3U
+ TPSlxl4VyUZgEylkMll8kav3y6AiouSxsQmXSEvlIaKkmHNKYHJ7o0XSA
+ liOllRyH6H9rmTHzDmanXmWP8RmvbdQ4KRyuG0GMrsZNOgNx/1fKVO0nD
+ 1BFPBNnYAwBiVT4e29bAmlffAQ4zRYUn3bZ4pu2AZfeo07xKNWFpX5aZJ Q==;
+X-CSE-ConnectionGUID: RI46f4MgTvyqdOGUdw6AEQ==
+X-CSE-MsgGUID: 2JJDa7RQRbajJW/BqpaX8Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11351"; a="44688686"
+X-IronPort-AV: E=Sophos;i="6.13,303,1732608000"; d="scan'208";a="44688686"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2025 16:38:57 -0800
+X-CSE-ConnectionGUID: NicTPUZDS6yHPxX1SgwLDg==
+X-CSE-MsgGUID: aQpK0WkoS42WdxmSBp1qRQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="120446832"
+Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2025 16:38:55 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com
+Subject: [PATCH 0/4] Stop accessing display TIMESTAMP_OVERRIDE in GT code
+Date: Thu, 20 Feb 2025 16:38:44 -0800
+Message-ID: <20250221003843.443559-6-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Userptr_fixes?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 21 Feb 2025 00:31:47 -0000
-Message-ID: <174009790742.329184.991513210873246706@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250220234557.2613010-1-matthew.brost@intel.com>
-In-Reply-To: <20250220234557.2613010-1-matthew.brost@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,182 +62,52 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7497977032564456530==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+When determining the GT command streamer frequency, there are two
+approaches used by i915 and Xe:
 
-== Series Details ==
+ - Derive the CS frequency from the crystal clock frequency register (or
+   a per-platform hardcoded value).  This is supposed to be the method
+   usually used (and the only method supported at all for Xe2 and later
+   hardware).
 
-Series: Userptr fixes
-URL   : https://patchwork.freedesktop.org/series/145198/
-State : success
+ - Set the CS frequency to exactly the display refclk frequency.  This
+   is supposedly a rare case, and is used only when a setting in
+   CTC_MODE[0] indicates we should use this approach.
 
-== Summary ==
+There's little/no documentation in the hardware specs about these
+approaches (i.e., the display refclk approach is simply referred to as
+"Broadwell Divide Logic" with no further explanation).  It seems most of
+the logic here was originally inherited from the Windows driver a long
+time ago and we've just been carrying it forward ever since.
 
-CI Bug Log - changes from xe-2696-2c2b141845ce906e187d4aa4fee06bcd9d517415_BAT -> xe-pw-145198v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-145198v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][1] ([Intel XE#2229] / [Intel XE#455]) +1 other test skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145198v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
-
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][2] ([Intel XE#2229])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145198v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-adlp-vf:        [SKIP][3] ([Intel XE#4322]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2696-2c2b141845ce906e187d4aa4fee06bcd9d517415/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145198v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-
-  * igt@xe_vm@bind-execqueues-independent:
-    - bat-adlp-vf:        [DMESG-WARN][5] ([Intel XE#3970]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2696-2c2b141845ce906e187d4aa4fee06bcd9d517415/bat-adlp-vf/igt@xe_vm@bind-execqueues-independent.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145198v1/bat-adlp-vf/igt@xe_vm@bind-execqueues-independent.html
-
-  
-#### Warnings ####
-
-  * igt@xe_live_ktest@xe_bo:
-    - bat-adlp-vf:        [SKIP][7] ([Intel XE#4322]) -> [SKIP][8] ([Intel XE#2229] / [Intel XE#455])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2696-2c2b141845ce906e187d4aa4fee06bcd9d517415/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145198v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-
-  
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
-  [Intel XE#4322]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+Currently the second approach (use of display reference clock) is
+accomplished by reading a display debug register (TIMESTAMP_OVERRIDE).
+Given that the display code already has more straightforward logic for
+determining display reference clock (either from strap registers, or
+from a per-platform constant in cases where there's only one possible
+value), it makes sense to just call the display code to get the
+frequency rather than doing direct access to the display hardware inside
+the GT driver.
 
 
-Build changes
--------------
+Matt Roper (4):
+  drm/i915/display: Make refclk fetching logic reusable
+  drm/i915/gt: Replace TIMESTAMP_OVERRIDE readout
+  drm/xe: Drop usage of TIMESTAMP_OVERRIDE
+  drm/xe/sriov: Drop TIMESTAMP_OVERRIDE from Xe2 runtime regs
 
-  * Linux: xe-2696-2c2b141845ce906e187d4aa4fee06bcd9d517415 -> xe-pw-145198v1
+ drivers/gpu/drm/i915/display/intel_cdclk.c    | 44 ++++++++++++-------
+ drivers/gpu/drm/i915/display/intel_cdclk.h    |  1 +
+ .../gpu/drm/i915/gt/intel_gt_clock_utils.c    | 31 ++++---------
+ drivers/gpu/drm/xe/display/xe_display.c       |  6 +++
+ drivers/gpu/drm/xe/display/xe_display.h       |  4 ++
+ drivers/gpu/drm/xe/xe_gt_clock.c              | 28 ++++--------
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c   |  1 -
+ 7 files changed, 56 insertions(+), 59 deletions(-)
 
-  IGT_8245: 822e95b2560133bc21aa3065f70d7148f23f87cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2696-2c2b141845ce906e187d4aa4fee06bcd9d517415: 2c2b141845ce906e187d4aa4fee06bcd9d517415
-  xe-pw-145198v1: 145198v1
+-- 
+2.48.1
 
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145198v1/index.html
-
---===============7497977032564456530==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Userptr fixes</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145198/">https://patchwork.freedesktop.org/series/145198/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145198v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145198v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2696-2c2b141845ce906e187d4aa4fee06bcd9d517415_BAT -&gt; xe-pw-145198v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-145198v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145198v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145198v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@xe_live_ktest@xe_migrate:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2696-2c2b141845ce906e187d4aa4fee06bcd9d517415/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322">Intel XE#4322</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145198v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_vm@bind-execqueues-independent:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2696-2c2b141845ce906e187d4aa4fee06bcd9d517415/bat-adlp-vf/igt@xe_vm@bind-execqueues-independent.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145198v1/bat-adlp-vf/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2696-2c2b141845ce906e187d4aa4fee06bcd9d517415/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322">Intel XE#4322</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145198v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2696-2c2b141845ce906e187d4aa4fee06bcd9d517415 -&gt; xe-pw-145198v1</li>
-</ul>
-<p>IGT_8245: 822e95b2560133bc21aa3065f70d7148f23f87cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2696-2c2b141845ce906e187d4aa4fee06bcd9d517415: 2c2b141845ce906e187d4aa4fee06bcd9d517415<br />
-  xe-pw-145198v1: 145198v1</p>
-
-</body>
-</html>
-
---===============7497977032564456530==--
