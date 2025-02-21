@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10E59C021AA
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Feb 2025 12:12:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50E7BC021AA
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Feb 2025 12:12:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDB5910EA65;
-	Fri, 21 Feb 2025 12:12:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E3AD10EA65;
+	Fri, 21 Feb 2025 12:12:34 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4C7810EA63;
- Fri, 21 Feb 2025 12:12:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5152D10EA63;
+ Fri, 21 Feb 2025 12:12:33 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/sched=3A_Job_que?=
- =?utf-8?q?ue_peek/pop_helpers_and_struct_job_re-order_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/sched=3A_Job_queue_pe?=
+ =?utf-8?q?ek/pop_helpers_and_struct_job_re-order_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 21 Feb 2025 12:12:15 -0000
-Message-ID: <174013993586.461006.6335195900340778907@b555e5b46a47>
+Date: Fri, 21 Feb 2025 12:12:33 -0000
+Message-ID: <174013995332.461006.6438796377746610873@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250221105038.79665-1-tvrtko.ursulin@igalia.com>
 In-Reply-To: <20250221105038.79665-1-tvrtko.ursulin@igalia.com>
@@ -44,18 +44,50 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/sched: Job queue peek/pop helpers and struct job re-order (rev2)
 URL   : https://patchwork.freedesktop.org/series/144853/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: a22ac320a083 drm-tip: 2025y-02m-21d-09h-57m-32s UTC integration manifest
-=== git am output follows ===
-Applying: drm/sched: Add internal job peek/pop API
-Applying: drm/amdgpu: Pop jobs from the queue more robustly
-Applying: drm/sched: Remove a hole from struct drm_sched_job
-Applying: drm/sched: Move drm_sched_entity_is_ready to internal header
-Applying: drm/sched: Move internal prototypes to internal header
-Applying: drm/sched: Group exported prototypes by object type
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+22f9cda3436b4fe965b5c5f31d2f2c1bcb483189
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d78ac561fe44b5a0a8ae1bebbc9a450ea60d6219
+Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Date:   Fri Feb 21 10:50:38 2025 +0000
+
+    drm/sched: Group exported prototypes by object type
+    
+    Do a bit of house keeping in gpu_scheduler.h by grouping the API by type
+    of object it operates on.
+    
+    Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+    Cc: Christian König <christian.koenig@amd.com>
+    Cc: Danilo Krummrich <dakr@kernel.org>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Philipp Stanner <phasta@kernel.org>
++ /mt/dim checkpatch a22ac320a08377d760e73fa530c27782f0b68b6d drm-intel
+bfd172ae0ae7 drm/sched: Add internal job peek/pop API
+-:73: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#73: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 109 lines checked
+0d14807276e0 drm/amdgpu: Pop jobs from the queue more robustly
+944b0ca38fdc drm/sched: Remove a hole from struct drm_sched_job
+e96bbf919101 drm/sched: Move drm_sched_entity_is_ready to internal header
+23fcc803df6b drm/sched: Move internal prototypes to internal header
+-:40: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#40: FILE: drivers/gpu/drm/scheduler/sched_internal.h:6:
+ 
++
+
+total: 0 errors, 0 warnings, 1 checks, 100 lines checked
+d78ac561fe44 drm/sched: Group exported prototypes by object type
 
 
