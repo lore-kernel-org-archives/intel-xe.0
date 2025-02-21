@@ -4,55 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7907BC021B5
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Feb 2025 10:38:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E61F0C021B3
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Feb 2025 10:50:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 477F410E289;
-	Fri, 21 Feb 2025 10:38:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6754110E2D0;
+	Fri, 21 Feb 2025 10:50:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TuWDeuV0";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="m02nljyK";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1873F10E275
- for <intel-xe@lists.freedesktop.org>; Fri, 21 Feb 2025 10:38:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740134299; x=1771670299;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=856BLgJsMw3cLg3ru7o//fX1PQE3OAdq6FDr9Ecte28=;
- b=TuWDeuV0V7diKyGAwrs7VHhjJLvBVLjZVb1eIRjPKgK32ZEbujI29v96
- uwChdlHjkbeGdXnZEY+b2CfqdztC9pQymTsCxmLPnHvQ0SglwLfRs0Dmm
- rGl96c+fPecp8JF8LMmaBgcbBrIq/e9wpXmaQ6JxWy/ow3f64wUCOP/8v
- R1DaLTU2qdqtaTxuZZmfjylxOTBhx5f8D17mP2y87fVPIA9lvTIgLSOu1
- rfLBMde2moTpx+vDruNdpZTzaibQyLvsdaS+Gf5ZM9+usa0bz3urkw2n8
- pvIlf23vur+HTdCetiocPsSzJatLa1yD4Q9KCL6+icjn3vGcUgePMGiWT w==;
-X-CSE-ConnectionGUID: 3wpbnYfWSh6qalZErhQ0bA==
-X-CSE-MsgGUID: cWc+W/21TgKSai0xsm2Gdg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11351"; a="40178201"
-X-IronPort-AV: E=Sophos;i="6.13,304,1732608000"; d="scan'208";a="40178201"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2025 02:38:19 -0800
-X-CSE-ConnectionGUID: MiTxdzMLQw2psKzB3XVC1w==
-X-CSE-MsgGUID: c42sg917QEmAZJ6XUwj7VA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,304,1732608000"; d="scan'208";a="120442384"
-Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2025 02:38:17 -0800
-From: Riana Tauro <riana.tauro@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: riana.tauro@intel.com, anshuman.gupta@intel.com,
- umesh.nerlige.ramappa@intel.com, lucas.demarchi@intel.com
-Subject: [PATCH v8 3/5] drm/xe/guc: Expose engine activity only for supported
- GuC version
-Date: Fri, 21 Feb 2025 16:29:05 +0530
-Message-ID: <20250221105908.1966738-4-riana.tauro@intel.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20250221105908.1966738-1-riana.tauro@intel.com>
-References: <20250221105908.1966738-1-riana.tauro@intel.com>
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C55F10E283;
+ Fri, 21 Feb 2025 10:50:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=Y5sn7H0j02hVNKAJKCv56CaA6r+YcXGnefV0a6qFRls=; b=m02nljyKixgVOWv//v2WHBi25P
+ vTRKIUbJtUCLwb8AcG2+2FFk8nEQgSSqJENhH6UtCOp2N4uKYY6fXRzs0lEqs/So2zVjVAX5xrLIH
+ xFz9BAXKm0xpyKNlqrIhRrPMK5FffFAPejUaFTI8/vfdphcyr7BREcNa8cx2rdW+/S0MRell0ReWg
+ i3VHZo55ctIBcjRYb4NOZcch+9auKbOTAew+DntPt+qJlk6Ih/GuIpclh2HP+q5kV1Sy4cmvOD7l3
+ xDSHDyw78U3m25JUhEaVx1iUor37wnX16H+UdOF1P569WqkSauUrqaaMYBjWBp3NPtcDSfucr8zfO
+ +n44q0Tg==;
+Received: from [90.241.98.187] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1tlQc9-00G3SM-M2; Fri, 21 Feb 2025 11:50:43 +0100
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: amd-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Danilo Krummrich <dakr@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Philipp Stanner <phasta@kernel.org>,
+ "Zhang, Hawking" <Hawking.Zhang@amd.com>
+Subject: [PATCH v6 2/6] drm/amdgpu: Pop jobs from the queue more robustly
+Date: Fri, 21 Feb 2025 10:50:34 +0000
+Message-ID: <20250221105038.79665-3-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.48.0
+In-Reply-To: <20250221105038.79665-1-tvrtko.ursulin@igalia.com>
+References: <20250221105038.79665-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,150 +65,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Engine activity is supported only on GuC submission version >= 1.14.1
-Allow enabling/reading engine activity only on supported
-GuC versions. Warn once if not supported.
+Replace a copy of DRM scheduler's to_drm_sched_job with a copy of a newly
+added drm_sched_entity_queue_pop.
 
-v2: use guc interface version (John)
-v3: use debug log (Umesh)
-v4: use variable for supported and use gt logs
-    use a friendlier log message (Michal)
-v5: fix kernel-doc
-    do not continue in init if not supported (Michal)
-v6: remove hardcoding values (Michal)
+This allows breaking the hidden dependency that queue_node has to be the
+first element in struct drm_sched_job.
 
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+A comment is also added with a reference to the mailing list discussion
+explaining the copied helper will be removed when the whole broken
+amdgpu_job_stop_all_jobs_on_sched is removed.
+
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Danilo Krummrich <dakr@kernel.org>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Philipp Stanner <phasta@kernel.org>
+Cc: "Zhang, Hawking" <Hawking.Zhang@amd.com>
+Reviewed-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/xe/xe_guc_engine_activity.c   | 51 ++++++++++++++++++-
- drivers/gpu/drm/xe/xe_guc_engine_activity.h   |  1 +
- .../gpu/drm/xe/xe_guc_engine_activity_types.h |  3 ++
- 3 files changed, 53 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c | 22 +++++++++++++++++++---
+ 1 file changed, 19 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity.c b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-index a424527eddb6..2a457dcf31d5 100644
---- a/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-+++ b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-@@ -95,6 +95,29 @@ static void free_engine_activity_buffers(struct engine_activity_buffer *buffer)
- 	xe_bo_unpin_map_no_vm(buffer->activity_bo);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+index 100f04475943..1899c601c95c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+@@ -411,8 +411,24 @@ static struct dma_fence *amdgpu_job_run(struct drm_sched_job *sched_job)
+ 	return fence;
  }
  
-+static bool is_engine_activity_supported(struct xe_guc *guc)
-+{
-+	struct xe_uc_fw_version *version = &guc->fw.versions.found[XE_UC_FW_VER_COMPATIBILITY];
-+	struct xe_uc_fw_version required = { 1, 14, 1 };
-+	struct xe_gt *gt = guc_to_gt(guc);
-+
-+	if (IS_SRIOV_VF(gt_to_xe(gt))) {
-+		xe_gt_info(gt, "engine activity stats not supported on VFs\n");
-+		return false;
-+	}
-+
-+	/* engine activity stats is supported from GuC interface version (1.14.1) */
-+	if (GUC_SUBMIT_VER(guc) < MAKE_GUC_VER_STRUCT(required)) {
-+		xe_gt_info(gt,
-+			   "engine activity stats unsupported in GuC interface v%u.%u.%u, need v%u.%u.%u or higher\n",
-+			   version->major, version->minor, version->patch, required.major,
-+			   required.minor, required.patch);
-+		return false;
-+	}
-+
-+	return true;
-+}
-+
- static struct engine_activity *hw_engine_to_engine_activity(struct xe_hw_engine *hwe)
- {
- 	struct xe_guc *guc = &hwe->gt->uc.guc;
-@@ -251,6 +274,9 @@ static u32 gpm_timestamp_shift(struct xe_gt *gt)
-  */
- u64 xe_guc_engine_activity_active_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
- {
-+	if (!xe_guc_engine_activity_supported(guc))
-+		return 0;
-+
- 	return get_engine_active_ticks(guc, hwe);
- }
- 
-@@ -263,9 +289,27 @@ u64 xe_guc_engine_activity_active_ticks(struct xe_guc *guc, struct xe_hw_engine
-  */
- u64 xe_guc_engine_activity_total_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
- {
-+	if (!xe_guc_engine_activity_supported(guc))
-+		return 0;
-+
- 	return get_engine_total_ticks(guc, hwe);
- }
- 
-+/**
-+ * xe_guc_engine_activity_supported - Check support for engine activity stats
-+ * @guc: The GuC object
+-#define to_drm_sched_job(sched_job)		\
+-		container_of((sched_job), struct drm_sched_job, queue_node)
++/*
++ * This is a duplicate function from DRM scheduler sched_internal.h.
++ * Plan is to remove it when amdgpu_job_stop_all_jobs_on_sched is removed, due
++ * latter being incorrect and racy.
 + *
-+ * Engine activity stats is supported from GuC interface version (1.14.1)
-+ *
-+ * Return: true if engine activity stats supported, false otherwise
++ * See https://lore.kernel.org/amd-gfx/44edde63-7181-44fb-a4f7-94e50514f539@amd.com/
 + */
-+bool xe_guc_engine_activity_supported(struct xe_guc *guc)
++static struct drm_sched_job *
++drm_sched_entity_queue_pop(struct drm_sched_entity *entity)
 +{
-+	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
++	struct spsc_node *node;
 +
-+	return engine_activity->supported;
++	node = spsc_queue_pop(&entity->job_queue);
++	if (!node)
++		return NULL;
++
++	return container_of(node, struct drm_sched_job, queue_node);
 +}
-+
- /**
-  * xe_guc_engine_activity_enable_stats - Enable engine activity stats
-  * @guc: The GuC object
-@@ -276,6 +320,9 @@ void xe_guc_engine_activity_enable_stats(struct xe_guc *guc)
+ 
+ void amdgpu_job_stop_all_jobs_on_sched(struct drm_gpu_scheduler *sched)
  {
- 	int ret;
+@@ -425,7 +441,7 @@ void amdgpu_job_stop_all_jobs_on_sched(struct drm_gpu_scheduler *sched)
+ 		struct drm_sched_rq *rq = sched->sched_rq[i];
+ 		spin_lock(&rq->lock);
+ 		list_for_each_entry(s_entity, &rq->entities, list) {
+-			while ((s_job = to_drm_sched_job(spsc_queue_pop(&s_entity->job_queue)))) {
++			while ((s_job = drm_sched_entity_queue_pop(s_entity))) {
+ 				struct drm_sched_fence *s_fence = s_job->s_fence;
  
-+	if (!xe_guc_engine_activity_supported(guc))
-+		return;
-+
- 	ret = enable_engine_activity_stats(guc);
- 	if (ret)
- 		xe_gt_err(guc_to_gt(guc), "failed to enable activity stats%d\n", ret);
-@@ -301,10 +348,10 @@ int xe_guc_engine_activity_init(struct xe_guc *guc)
- {
- 	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
- 	struct xe_gt *gt = guc_to_gt(guc);
--	struct xe_device *xe = gt_to_xe(gt);
- 	int ret;
- 
--	if (IS_SRIOV_VF(xe))
-+	engine_activity->supported = is_engine_activity_supported(guc);
-+	if (!engine_activity->supported)
- 		return 0;
- 
- 	ret = allocate_engine_activity_group(guc);
-diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity.h b/drivers/gpu/drm/xe/xe_guc_engine_activity.h
-index e92d2456698d..a042d4cb404c 100644
---- a/drivers/gpu/drm/xe/xe_guc_engine_activity.h
-+++ b/drivers/gpu/drm/xe/xe_guc_engine_activity.h
-@@ -12,6 +12,7 @@ struct xe_hw_engine;
- struct xe_guc;
- 
- int xe_guc_engine_activity_init(struct xe_guc *guc);
-+bool xe_guc_engine_activity_supported(struct xe_guc *guc);
- void xe_guc_engine_activity_enable_stats(struct xe_guc *guc);
- u64 xe_guc_engine_activity_active_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe);
- u64 xe_guc_engine_activity_total_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe);
-diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h b/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h
-index a2ab327d3eec..5cdd034b6b70 100644
---- a/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h
-@@ -79,6 +79,9 @@ struct xe_guc_engine_activity {
- 	/** @num_activity_group: number of activity groups */
- 	u32 num_activity_group;
- 
-+	/** @supported: indicates support for engine activity stats */
-+	bool supported;
-+
- 	/** @eag: holds the device level engine activity data */
- 	struct engine_activity_group *eag;
- 
+ 				dma_fence_signal(&s_fence->scheduled);
 -- 
-2.47.1
+2.48.0
 
