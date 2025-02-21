@@ -4,34 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98F29C021B5
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Feb 2025 10:50:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFAD4C021AA
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Feb 2025 10:50:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65A7F10E28D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B88C710EA4B;
 	Fri, 21 Feb 2025 10:50:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="N1OneQaa";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="pxoxVBCV";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1947710E28D;
- Fri, 21 Feb 2025 10:50:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D87510E24A;
+ Fri, 21 Feb 2025 10:50:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Wth6RLPrR49KejScMxkeEnirGpMWgHF4Gi2HS+qt7GY=; b=N1OneQaaid4bogRDeBeJMfvrY4
- v6RcWDQzCgzkqlwYjSgYSuvHIXA8g8V5s18fzk8WLnYE4+HrCjcW2OEjepLBzcKOxh+JnfHmwQVmZ
- WkDs/pyjkGGJlBKm3olNv0wehrDwQrWDG5jkrQT8nGBzGfmXiy6Y2FQ02M1/gYRUW/64LzGgO1yNJ
- 1b+Nt5BHuwxKNRP7a/5RJTB2ql8QY62NCVg/BlcKWUHRwSKNkLXCbwDfRDtWWDz8V6iXM4JuVcu5I
- S9suWKp2qZBsE2OEkAlNLwor6y7M2ZPsSFB8p2oPg34vT7RLD03IxWaG/kzQxddfetOv03kZw/xc5
- 0iEIlULQ==;
+ bh=kEQ28sdBzLgsDKUH8AhRUDPdFZQcLwSAMN859Zgt+Oo=; b=pxoxVBCVd4H2lsmalaAQfRjoY6
+ Y3HoG5+PXVWdGKhi4GA5jK4vnFgVQhtn6XlmxQHJRAjpKAin3uK6ZdfrUwCyFHj6pKDJGBjT/kKYY
+ cTxnHynLkhNUGlSRdmvQshKMtt7qKDBr0ImfnohAHkRvI1oJHRvLMhxvx0okMZ/vZS/Gh56JHRYNA
+ Wf8PqgcxI/uWIemUHKJqhumGgYnxxNgWXx0E3IZ1VAWe4cdh8ZVtCpinNySdEuRprtU8O9QzXTHPi
+ P28E96dsajVeSFuSgucYcGdoLbBOyEBUx1RMn2cclPb5CCCJ5PyRFjeYNdGcGR/SBJ3dxqXDE+TM9
+ 3y/m22zA==;
 Received: from [90.241.98.187] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tlQcA-00G3SR-E4; Fri, 21 Feb 2025 11:50:44 +0100
+ id 1tlQc8-00G3SE-8B; Fri, 21 Feb 2025 11:50:42 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
@@ -41,12 +41,11 @@ Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com,
  Danilo Krummrich <dakr@kernel.org>,
  Matthew Brost <matthew.brost@intel.com>,
  Philipp Stanner <phasta@kernel.org>
-Subject: [PATCH v6 3/6] drm/sched: Remove a hole from struct drm_sched_job
-Date: Fri, 21 Feb 2025 10:50:35 +0000
-Message-ID: <20250221105038.79665-4-tvrtko.ursulin@igalia.com>
+Subject: [PATCH v6 0/6] drm/sched: Job queue peek/pop helpers and struct job
+ re-order
+Date: Fri, 21 Feb 2025 10:50:32 +0000
+Message-ID: <20250221105038.79665-1-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250221105038.79665-1-tvrtko.ursulin@igalia.com>
-References: <20250221105038.79665-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -64,105 +63,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We can re-order some struct members and take u32 credits outside of the
-pointer sandwich and also for the last_dependency member we can get away
-with an unsigned int since for dependency we use xa_limit_32b.
+Lets add some helpers for peeking and popping from the job queue which allows us
+to re-order the fields in struct drm_sched_job and remove one hole.
 
-Pahole report before:
-        /* size: 160, cachelines: 3, members: 14 */
-        /* sum members: 156, holes: 1, sum holes: 4 */
-        /* last cacheline: 32 bytes */
+As in the process we have added a header file for scheduler internal prototypes,
+lets also use it more and cleanup the "exported" header a bit.
 
-And after:
-        /* size: 152, cachelines: 3, members: 14 */
-        /* last cacheline: 24 bytes */
+v2:
+ * Add header file for internal scheduler API.
+ * Add helper for peeking too. (Danilo)
+ * Add (temporary?) drm_sched_cancel_all_jobs() helper to replace amdgpu
+   amdgpu_job_stop_all_jobs_on_sched().
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+v3:
+ * Settle for a copy of __drm_sched_entity_queue_pop in amdgpu for now.
+
+v4:
+ * Expand the series with some more header file cleanup.
+
+v5:
+ * Rebase for drm_sched_init changes.
+ * Tweak kerneldoc format.
+
+v6:
+ * Added SPDX to the new header file.
+
 Cc: Christian König <christian.koenig@amd.com>
 Cc: Danilo Krummrich <dakr@kernel.org>
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Philipp Stanner <phasta@kernel.org>
-Acked-by: Danilo Krummrich <dakr@kernel.org>
-Acked-by: Christian König <christian.koenig@amd.com>
----
- include/drm/gpu_scheduler.h | 38 +++++++++++++++++++------------------
- 1 file changed, 20 insertions(+), 18 deletions(-)
 
-diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-index 6bf458dbce84..1c1138308e66 100644
---- a/include/drm/gpu_scheduler.h
-+++ b/include/drm/gpu_scheduler.h
-@@ -338,8 +338,14 @@ struct drm_sched_fence *to_drm_sched_fence(struct dma_fence *f);
-  * to schedule the job.
-  */
- struct drm_sched_job {
--	struct spsc_node		queue_node;
--	struct list_head		list;
-+	u64				id;
-+
-+	/**
-+	 * @submit_ts:
-+	 *
-+	 * When the job was pushed into the entity queue.
-+	 */
-+	ktime_t                         submit_ts;
- 
- 	/**
- 	 * @sched:
-@@ -349,24 +355,30 @@ struct drm_sched_job {
- 	 * has finished.
- 	 */
- 	struct drm_gpu_scheduler	*sched;
-+
- 	struct drm_sched_fence		*s_fence;
-+	struct drm_sched_entity         *entity;
- 
-+	enum drm_sched_priority		s_priority;
- 	u32				credits;
-+	/** @last_dependency: tracks @dependencies as they signal */
-+	unsigned int			last_dependency;
-+	atomic_t			karma;
-+
-+	struct spsc_node		queue_node;
-+	struct list_head		list;
- 
- 	/*
- 	 * work is used only after finish_cb has been used and will not be
- 	 * accessed anymore.
- 	 */
- 	union {
--		struct dma_fence_cb		finish_cb;
--		struct work_struct		work;
-+		struct dma_fence_cb	finish_cb;
-+		struct work_struct	work;
- 	};
- 
--	uint64_t			id;
--	atomic_t			karma;
--	enum drm_sched_priority		s_priority;
--	struct drm_sched_entity         *entity;
- 	struct dma_fence_cb		cb;
-+
- 	/**
- 	 * @dependencies:
- 	 *
-@@ -375,16 +387,6 @@ struct drm_sched_job {
- 	 * drm_sched_job_add_implicit_dependencies().
- 	 */
- 	struct xarray			dependencies;
--
--	/** @last_dependency: tracks @dependencies as they signal */
--	unsigned long			last_dependency;
--
--	/**
--	 * @submit_ts:
--	 *
--	 * When the job was pushed into the entity queue.
--	 */
--	ktime_t                         submit_ts;
- };
- 
- static inline bool drm_sched_invalidate_job(struct drm_sched_job *s_job,
+Tvrtko Ursulin (6):
+  drm/sched: Add internal job peek/pop API
+  drm/amdgpu: Pop jobs from the queue more robustly
+  drm/sched: Remove a hole from struct drm_sched_job
+  drm/sched: Move drm_sched_entity_is_ready to internal header
+  drm/sched: Move internal prototypes to internal header
+  drm/sched: Group exported prototypes by object type
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c    |  22 +++-
+ drivers/gpu/drm/scheduler/sched_entity.c   |  23 +---
+ drivers/gpu/drm/scheduler/sched_fence.c    |   2 +
+ drivers/gpu/drm/scheduler/sched_internal.h |  91 +++++++++++++++
+ drivers/gpu/drm/scheduler/sched_main.c     |   7 +-
+ include/drm/gpu_scheduler.h                | 122 +++++++++------------
+ 6 files changed, 171 insertions(+), 96 deletions(-)
+ create mode 100644 drivers/gpu/drm/scheduler/sched_internal.h
+
 -- 
 2.48.0
 
