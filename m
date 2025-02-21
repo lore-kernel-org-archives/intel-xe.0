@@ -4,53 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFBC9C021B6
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CCB4C021B3
 	for <intel-xe@archiver.kernel.org>; Fri, 21 Feb 2025 18:52:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6836210EB28;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4687710EB25;
 	Fri, 21 Feb 2025 18:52:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mT6lkSEt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="baMnB8SF";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3876C10EB26
- for <intel-xe@lists.freedesktop.org>; Fri, 21 Feb 2025 18:52:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9153210EB25
+ for <intel-xe@lists.freedesktop.org>; Fri, 21 Feb 2025 18:52:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740163957; x=1771699957;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=XpcYySPiLSAlLLSSbQVYyjgpSmnHxr1aWVfpO4uskAo=;
- b=mT6lkSEtkKd7AHKz17eFjVUKSI1QP3iutE/x1I4SxrcUGpOj+QwW+oat
- Cc9BovDV4VP2iytcW7DwukImOa6Yg1YX1qBDr0UQYWXUO++ZuMTG41qTs
- ZlMTQ7vW2wqn7KKtpp2g7CxuvEt+PCXUNUo3hxnXUXbKIe6egGAeHHVoF
- I8789nSFe+TiozVhAH+rgXQmFlxyOPOsagHwAEFOuTt6ca6RzAwREkSNg
- XdS4agJXVII2ZjwF3rcN9URRTRDLLGqPRTd4ER/re77d3LroUlrwzXYCi
- sCztSglS0nlL+oNSopwR3RJFhA7GJCwIb3s42tkQuo0VuFsENf4TbctXW A==;
-X-CSE-ConnectionGUID: fZBkElr+SlOEitu38r3Q8w==
-X-CSE-MsgGUID: MTGqbaY/RUCLe1NJnGbxOw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11352"; a="58403679"
-X-IronPort-AV: E=Sophos;i="6.13,305,1732608000"; d="scan'208";a="58403679"
+ t=1740163956; x=1771699956;
+ h=from:subject:date:message-id:mime-version:
+ content-transfer-encoding:to:cc;
+ bh=RzjltMmFO43lbM397OPaVU70yx0SS2oByZL/ND5TeD0=;
+ b=baMnB8SFuCI5gSz+jIO/PBzjmXmaUnZFo6tzcKxKiyZn1UEfAqq2ATLK
+ UGonn4lS/d/pvtbGqA1i9w2fYNF73gvFtB69rjlLw136g7lrY+Dbh/Sdp
+ HEvaucScLka6v6PjTyCwy5Co3Y9NrS9KTKz1oNb9FRpFM/mJ329PvrIRo
+ lh69jtKw7IY0K3oBdc3y4sZOxmq8E+9oixgB9zBb98qJWSoDbiprtr4C+
+ zFKdI6ScrcoN2ZZSxPqjqwQAgxppIuYjyx36e4s7vacJCUcRNxiepq1aR
+ ONGxZ5XYQHT40V0SCtcgMzQMnKoC38ck733PSqEzoI/Rss7P/9FfuPzZo Q==;
+X-CSE-ConnectionGUID: dM45JRW1QOeu1VR2lu/Yyw==
+X-CSE-MsgGUID: LkqoJ43xQkmM5J33BqUYxQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11352"; a="58403677"
+X-IronPort-AV: E=Sophos;i="6.13,305,1732608000"; d="scan'208";a="58403677"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2025 10:52:37 -0800
-X-CSE-ConnectionGUID: Q9FMBmw5T0KamOFi4rpBZg==
-X-CSE-MsgGUID: YbTiKOi1QZqTzGNEbalsRA==
+ 21 Feb 2025 10:52:36 -0800
+X-CSE-ConnectionGUID: r6cmoZTeS12svGGQlugdDQ==
+X-CSE-MsgGUID: pI3a+R1WSxOOSaHcnvgVfQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,305,1732608000"; d="scan'208";a="120071315"
+X-IronPort-AV: E=Sophos;i="6.13,305,1732608000"; d="scan'208";a="120071311"
 Received: from mgoodin-mobl2.amr.corp.intel.com (HELO
  gjsousa-mobl2.corp.amr.intel.com) ([10.125.110.181])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2025 10:52:36 -0800
+ 21 Feb 2025 10:52:34 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Fri, 21 Feb 2025 15:51:40 -0300
-Subject: [PATCH v2 1/7] drm/xe: Set IP names in functions handling IP version
+Subject: [PATCH v2 0/7] drm/xe: Unify IP descriptors
+Date: Fri, 21 Feb 2025 15:51:39 -0300
+Message-Id: <20250221-xe-unify-ip-descriptors-v2-0-5bc0c6d0c13f@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250221-xe-unify-ip-descriptors-v2-1-5bc0c6d0c13f@intel.com>
-References: <20250221-xe-unify-ip-descriptors-v2-0-5bc0c6d0c13f@intel.com>
-In-Reply-To: <20250221-xe-unify-ip-descriptors-v2-0-5bc0c6d0c13f@intel.com>
+X-B4-Tracking: v=1; b=H4sIADvLuGcC/03MQQ6DIBBA0asY1h0Do9Kkq96j6YLCoJNUMIDGx
+ nj3kq66fIv/D5EpMWVxaw6RaOPMMVTgpRF2MmEkYFctUOIgERXsBGtg/wFewFG2iZcSUwbd97Z
+ zzniJL1HrJZHn/Xd+PKt9ijOUKZH5/0l1xaHDVmutOlAwrrmYLbY5rtncORR6tzbO4jy/WEzyH
+ aoAAAA=
+X-Change-ID: 20250221-xe-unify-ip-descriptors-644c3ddaf02b
 To: intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>, 
  Gustavo Sousa <gustavo.sousa@intel.com>
@@ -69,77 +72,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In an upcoming change, we will handle setting graphics_name and
-media_name differently for GMDID-based IPs. As such, let's make both
-handle_pre_gmdid() and handle_gmdid() functions responsible for
-initializing those fields. While now we have both doing essentially the
-same thing with respect to those fields, handle_pre_gmdid() will diverge
-soon.
+The Xe driver has support, official or not, for both pre-GMDID and
+GMDID-based IPs. For each type, we have been using a different approach
+for describing instances:
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+- For pre-GMDID ones, we fully describe the IP via struct
+  xe_{graphics,media}_desc.
+
+- For GMDID-based ones, we have IP info separated in different data
+  structures: instances of xe_{graphics,media}_desc are used to describe
+  IP names and features; while instances of gmdid_map effectively fully
+  describe the IPs, by mapping IP versions to descriptors.
+
+In this series I propose that we use a unified approach to describe IPs:
+
+- struct xe_{graphics,media}_desc purpose becomes to only describe
+  features of the IP and can be reused across releases if possible (the
+  latter is already done with the current approach);
+
+- struct gmdid_map is turned into struct xe_ip, to fully describe an IP;
+
+- the field "name" is moved from xe_{graphics,media}_desc to xe_ip,
+  making the former specifically about the features while xe_ip
+  incorporates features and release info.
+
+v2:
+  - Store pointers to struct xe_ip instead xe_{graphics,media}_desc in
+    struct xe_device_desc.
+  - Re-use feature descriptors ("drm/xe: Re-use feature descriptors for
+    pre-GMDID IPs").
+  - Simplify setting name and version ("drm/xe: Simplify setting release
+    info in xe->info").
+
 ---
- drivers/gpu/drm/xe/xe_pci.c | 15 ++++++++++-----
- 1 file changed, 10 insertions(+), 5 deletions(-)
+Gustavo Sousa (7):
+      drm/xe: Set IP names in functions handling IP version
+      drm/xe: Disambiguate GMDID-based IP names
+      drm/xe: Rename gmdid_map to xe_ip
+      drm/xe: Define xe_ip instances before xe_device_desc
+      drm/xe: Convert pre-GMDID IPs to struct xe_ip
+      drm/xe: Re-use feature descriptors for pre-GMDID IPs
+      drm/xe: Simplify setting release info in xe->info
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 70b697fde5b96c117056abcc148e64bbadd0696b..feea897f130d9bbf2d880a0b419764b96c0bc4ad 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -564,9 +564,14 @@ static void handle_pre_gmdid(struct xe_device *xe,
- 			     const struct xe_media_desc *media)
- {
- 	xe->info.graphics_verx100 = graphics->ver * 100 + graphics->rel;
-+	xe->info.graphics_name = graphics->name;
- 
--	if (media)
-+	if (media) {
- 		xe->info.media_verx100 = media->ver * 100 + media->rel;
-+		xe->info.media_name = media->name;
-+	} else {
-+		xe->info.media_name = "none";
-+	}
- 
- }
- 
-@@ -588,6 +593,7 @@ static void handle_gmdid(struct xe_device *xe,
- 		if (ver == graphics_ip_map[i].ver) {
- 			xe->info.graphics_verx100 = ver;
- 			*graphics = graphics_ip_map[i].ip;
-+			xe->info.graphics_name = (*graphics)->name;
- 
- 			break;
- 		}
-@@ -598,8 +604,9 @@ static void handle_gmdid(struct xe_device *xe,
- 			ver / 100, ver % 100);
- 	}
- 
--	read_gmdid(xe, GMDID_MEDIA, &ver, media_revid);
-+	xe->info.media_name = "none";
- 
-+	read_gmdid(xe, GMDID_MEDIA, &ver, media_revid);
- 	/* Media may legitimately be fused off / not present */
- 	if (ver == 0)
- 		return;
-@@ -608,6 +615,7 @@ static void handle_gmdid(struct xe_device *xe,
- 		if (ver == media_ip_map[i].ver) {
- 			xe->info.media_verx100 = ver;
- 			*media = media_ip_map[i].ip;
-+			xe->info.media_name = (*media)->name;
- 
- 			break;
- 		}
-@@ -698,9 +706,6 @@ static int xe_info_init(struct xe_device *xe,
- 	if (!graphics_desc)
- 		return -ENODEV;
- 
--	xe->info.graphics_name = graphics_desc->name;
--	xe->info.media_name = media_desc ? media_desc->name : "none";
--
- 	xe->info.vram_flags = graphics_desc->vram_flags;
- 	xe->info.va_bits = graphics_desc->va_bits;
- 	xe->info.vm_max_level = graphics_desc->vm_max_level;
+ drivers/gpu/drm/xe/tests/xe_pci.c |  26 ++---
+ drivers/gpu/drm/xe/xe_pci.c       | 217 ++++++++++++++++----------------------
+ drivers/gpu/drm/xe/xe_pci_types.h |  15 +--
+ 3 files changed, 105 insertions(+), 153 deletions(-)
+---
+base-commit: 2c2b141845ce906e187d4aa4fee06bcd9d517415
+change-id: 20250221-xe-unify-ip-descriptors-644c3ddaf02b
 
+Best regards,
 -- 
-2.48.1
+Gustavo Sousa <gustavo.sousa@intel.com>
 
