@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C439C021B5
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Feb 2025 19:01:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AAB3C021B5
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Feb 2025 19:01:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3409010E2FB;
-	Fri, 21 Feb 2025 19:01:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3636510EB25;
+	Fri, 21 Feb 2025 19:01:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vv8AdEk3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="krXefUQ+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BB9910E2EF
- for <intel-xe@lists.freedesktop.org>; Fri, 21 Feb 2025 19:01:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70B7C10E1E6
+ for <intel-xe@lists.freedesktop.org>; Fri, 21 Feb 2025 19:01:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740164464; x=1771700464;
+ t=1740164460; x=1771700460;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=jmHTpb3L3bu+A97wmTOIxBOgH9+GUzhn7ERsRxFsuUE=;
- b=Vv8AdEk3b0CHSYyc/ngpeqXRlRpTtwZd5O5VewyLCb7+40iH0YkEkZQ7
- Nli5vIpZX8tKLN11xkZgiPEO40+isNV4R4tLM52S5NSpgqbIYtqUJr0+6
- 6HU50yDuZmlmB8vPqDnd9BbnU5cLDCAiUov+OT+C0QvAVS9Pxthyg1tmv
- wJ2QxOz1KwY9MyaHopRwvsssL8DChQrpT25iJGGkpuRvc6aj5GRS8NtYV
- hRetcb0NZMxRx36773X4YGU4oW1KCNTY04a+gfS1DCUDxSidEe3d9WOfL
- mofJOoVQ2DmWOOOJFuUQaiU2abFHs7FsDjwnFPtoL3YYG1spy73zF0OII A==;
-X-CSE-ConnectionGUID: HLFtTg0vTw++Uwb7zkKjGA==
-X-CSE-MsgGUID: rav8BLwWTB2G6p+R5EGFNg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11352"; a="41257648"
-X-IronPort-AV: E=Sophos;i="6.13,305,1732608000"; d="scan'208";a="41257648"
+ bh=a+NjC9oZfCL8mBtSfJPcIY+sl1Rbo/7tv91e8L+KLLU=;
+ b=krXefUQ+BL2eWaZTCYZtQfh4UD6z57KmlvnHK6jEqXwSTQDe68LZhBgV
+ Uqz4IEiSMXmTv1JaJRrH7EreiDimZh+pQswhcndIKDB5AKUhekda+1WLW
+ lAtqf+uQYd+4xMzph5Uk1NZNpLAS4jJbS7DeRnMW53GigiZvp3Qf5mODD
+ qEYKhQLkWCcmuLPABxlXIiIQIqfsN5lvwlE8IoZUEmq1yH0QN9R+UgGcZ
+ uIPai0I32MR7+JNx7E84BwU0g1LwrL0yfSfwQtyojMIHE74JQVbpznYYT
+ rWGAkg4EE6uBZ7Awgrkazdx+AMQy792jB1CsOoXYkbQ+m+Uqz+RZCE0+f Q==;
+X-CSE-ConnectionGUID: s67o92y8QF61Fm57LAP2YQ==
+X-CSE-MsgGUID: zsOdjrEVR1yJ53UDRNgZGA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11352"; a="41257644"
+X-IronPort-AV: E=Sophos;i="6.13,305,1732608000"; d="scan'208";a="41257644"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2025 11:01:04 -0800
-X-CSE-ConnectionGUID: 99WhQtVrS7SmMvjW0pOx/A==
-X-CSE-MsgGUID: Sn1jyK1zTnaZPQ32I7Ojfw==
+ 21 Feb 2025 11:01:00 -0800
+X-CSE-ConnectionGUID: /AhVqDoSQuKNP4pI0eij6w==
+X-CSE-MsgGUID: dvWk7Rt+Rlamly3a+9rh7Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,305,1732608000"; d="scan'208";a="120549689"
+X-IronPort-AV: E=Sophos;i="6.13,305,1732608000"; d="scan'208";a="120549678"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.96.217])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2025 11:01:02 -0800
+ 21 Feb 2025 11:00:59 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH 3/4] drm/xe/kunit: Update RTP tests with SR-IOV rules
-Date: Fri, 21 Feb 2025 20:00:37 +0100
-Message-Id: <20250221190038.1734-4-michal.wajdeczko@intel.com>
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
+Subject: [PATCH 1/4] drm/xe/rtp: Prepare RTP to define SR-IOV specific rules
+Date: Fri, 21 Feb 2025 20:00:35 +0100
+Message-Id: <20250221190038.1734-2-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20250221190038.1734-1-michal.wajdeczko@intel.com>
 References: <20250221190038.1734-1-michal.wajdeczko@intel.com>
@@ -67,164 +68,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add more test cases that verifies use of RTP SRIOV() rules in
-driver running as native, PF and VF mode.
+All currently defined workaround actions are dedicated for the
+driver running in a privileged mode (native or SR-IOV PF) and
+those actions should not be used when running in SR-IOV VF mode.
+
+While we can easily skip any attempt to apply tile, engine or
+LRC workarounds by doing early exit, it's not so easy with OOB
+workarounds, as on exception basis, there could be some actions
+expected to be done also by the VF driver.
+
+Since we process OOB rules also in the SR-IOV VF mode, we had to
+explicitly decline the ones that were not applicable for VF, by
+using FUNC(xe_rtp_match_not_sriov_vf), however that may not
+scale well, since most future workarounds will likely not be
+needed in VF mode.
+
+Instead of forcing us to append more and more FUNC(not_sriov_vf)
+to potentially every new OOB workaround, change the RTP logic
+and assume that RTP rules are not applicable to VFs by default,
+unless there will be added a special SRIOV(VF_READY) rule.
+
+For completeness define also SRIOV(ONLY) to require PF or VF mode,
+SRIOV(PF_ONLY) to require PF mode and SRIOV(VF_ONLY) for VF mode.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_rtp_test.c | 112 ++++++++++++++++++++++++-
- 1 file changed, 111 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_rtp.c       | 20 +++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_rtp.h       |  8 ++++++++
+ drivers/gpu/drm/xe/xe_rtp_types.h |  4 ++++
+ 3 files changed, 31 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_test.c b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-index 36a3b5420fef..b21474df933e 100644
---- a/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-@@ -45,6 +45,8 @@ struct rtp_to_sr_test_case {
- struct rtp_test_case {
- 	const char *name;
- 	unsigned long expected_active;
-+	unsigned long expected_active_pf;
-+	unsigned long expected_active_vf;
- 	const struct xe_rtp_entry *entries;
- };
- 
-@@ -469,6 +471,89 @@ static const struct rtp_test_case rtp_cases[] = {
- 	},
- };
- 
-+static const struct rtp_test_case sriov_cases[] = {
-+	{
-+		.name = "non_vf",
-+		.expected_active = BIT(0) | BIT(1),
-+		.expected_active_pf = BIT(0) | BIT(1),
-+		.expected_active_vf = 0,
-+		.entries = (const struct xe_rtp_entry[]) {
-+			{ XE_RTP_NAME("and"),
-+			  XE_RTP_RULES(FUNC(match_yes)),
-+			},
-+			{ XE_RTP_NAME("or"),
-+			  XE_RTP_RULES(FUNC(match_no), OR,
-+				       FUNC(match_yes)),
-+			},
-+			{}
-+		},
-+	},
-+	{
-+		.name = "vf_ready",
-+		.expected_active = BIT(0) | BIT(1),
-+		.expected_active_pf = BIT(0) | BIT(1),
-+		.expected_active_vf = BIT(0) | BIT(1),
-+		.entries = (const struct xe_rtp_entry[]) {
-+			{ XE_RTP_NAME("and"),
-+			  XE_RTP_RULES(FUNC(match_yes), SRIOV(VF_READY)),
-+			},
-+			{ XE_RTP_NAME("or"),
-+			  XE_RTP_RULES(FUNC(match_no), OR,
-+				       FUNC(match_yes), SRIOV(VF_READY)),
-+			},
-+			{}
-+		},
-+	},
-+	{
-+		.name = "vf_only",
-+		.expected_active = 0,
-+		.expected_active_pf = 0,
-+		.expected_active_vf = BIT(0) | BIT(1),
-+		.entries = (const struct xe_rtp_entry[]) {
-+			{ XE_RTP_NAME("and"),
-+			  XE_RTP_RULES(FUNC(match_yes), SRIOV(VF_ONLY)),
-+			},
-+			{ XE_RTP_NAME("or"),
-+			  XE_RTP_RULES(FUNC(match_no), OR,
-+				       FUNC(match_yes), SRIOV(VF_ONLY)),
-+			},
-+			{}
-+		},
-+	},
-+	{
-+		.name = "pf_only",
-+		.expected_active = 0,
-+		.expected_active_pf = BIT(0) | BIT(1),
-+		.expected_active_vf = 0,
-+		.entries = (const struct xe_rtp_entry[]) {
-+			{ XE_RTP_NAME("and"),
-+			  XE_RTP_RULES(FUNC(match_yes), SRIOV(PF_ONLY)),
-+			},
-+			{ XE_RTP_NAME("or"),
-+			  XE_RTP_RULES(FUNC(match_no), OR,
-+				       FUNC(match_yes), SRIOV(PF_ONLY)),
-+			},
-+			{}
-+		},
-+	},
-+	{
-+		.name = "sriov_only",
-+		.expected_active = 0,
-+		.expected_active_pf = BIT(0) | BIT(1),
-+		.expected_active_vf = BIT(0) | BIT(1),
-+		.entries = (const struct xe_rtp_entry[]) {
-+			{ XE_RTP_NAME("and"),
-+			  XE_RTP_RULES(FUNC(match_yes), SRIOV(ONLY)),
-+			},
-+			{ XE_RTP_NAME("or"),
-+			  XE_RTP_RULES(FUNC(match_no), OR,
-+				       FUNC(match_yes), SRIOV(ONLY)),
-+			},
-+			{}
-+		},
-+	},
-+};
-+
- static void xe_rtp_process_tests(struct kunit *test)
+diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
+index 7a1c78fdfc92..b607be981590 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.c
++++ b/drivers/gpu/drm/xe/xe_rtp.c
+@@ -37,6 +37,7 @@ static bool rule_matches(const struct xe_device *xe,
  {
- 	const struct rtp_test_case *param = test->param_value;
-@@ -483,7 +568,28 @@ static void xe_rtp_process_tests(struct kunit *test)
- 	xe_rtp_process_ctx_enable_active_tracking(&ctx, &active, count_rtp_entries);
- 	xe_rtp_process(&ctx, param->entries);
+ 	const struct xe_rtp_rule *r;
+ 	unsigned int i, rcount = 0;
++	bool vf_ready = false;
+ 	bool match;
  
--	KUNIT_EXPECT_EQ(test, active, param->expected_active);
-+	if (IS_SRIOV_PF(xe))
-+		KUNIT_EXPECT_EQ(test, active, param->expected_active_pf);
-+	else if (IS_SRIOV_VF(xe))
-+		KUNIT_EXPECT_EQ(test, active, param->expected_active_vf);
-+	else
-+		KUNIT_EXPECT_EQ(test, active, param->expected_active);
-+}
-+
-+static void xe_rtp_process_tests_pf(struct kunit *test)
-+{
-+	struct xe_device *xe = test->priv;
-+
-+	xe->sriov.__mode = XE_SRIOV_MODE_PF;
-+	xe_rtp_process_tests(test);
-+}
-+
-+static void xe_rtp_process_tests_vf(struct kunit *test)
-+{
-+	struct xe_device *xe = test->priv;
-+
-+	xe->sriov.__mode = XE_SRIOV_MODE_VF;
-+	xe_rtp_process_tests(test);
+ 	for (r = rules, i = 0; i < n_rules; r = &rules[++i]) {
+@@ -110,6 +111,22 @@ static bool rule_matches(const struct xe_device *xe,
+ 		case XE_RTP_MATCH_FUNC:
+ 			match = r->match_func(gt, hwe);
+ 			break;
++		case XE_RTP_MATCH_SRIOV_VF_READY:
++			match = true;
++			vf_ready = true;
++			break;
++		case XE_RTP_MATCH_SRIOV_VF_ONLY:
++			match = IS_SRIOV_VF(xe);
++			vf_ready = match;
++			break;
++		case XE_RTP_MATCH_SRIOV_PF_ONLY:
++			match = IS_SRIOV_PF(xe);
++			vf_ready = false;
++			break;
++		case XE_RTP_MATCH_SRIOV_ONLY:
++			match = IS_SRIOV(xe);
++			vf_ready = match;
++			break;
+ 		default:
+ 			drm_warn(&xe->drm, "Invalid RTP match %u\n",
+ 				 r->match_type);
+@@ -128,6 +145,7 @@ static bool rule_matches(const struct xe_device *xe,
+ 				return false;
+ 
+ 			rcount = 0;
++			vf_ready = false;
+ 		} else {
+ 			rcount++;
+ 		}
+@@ -137,7 +155,7 @@ static bool rule_matches(const struct xe_device *xe,
+ 	if (drm_WARN_ON(&xe->drm, !rcount))
+ 		return false;
+ 
+-	return true;
++	return IS_SRIOV_VF(xe) ? vf_ready : true;
  }
  
- static void rtp_to_sr_desc(const struct rtp_to_sr_test_case *t, char *desc)
-@@ -499,6 +605,7 @@ static void rtp_desc(const struct rtp_test_case *t, char *desc)
- }
+ static void rtp_add_sr_entry(const struct xe_rtp_action *action,
+diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
+index 38b9f13bba5e..7874ea8588db 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.h
++++ b/drivers/gpu/drm/xe/xe_rtp.h
+@@ -207,6 +207,14 @@ struct xe_reg_sr;
+ #define XE_RTP_RULE_IS_DISCRETE							\
+ 	{ .match_type = XE_RTP_MATCH_DISCRETE }
  
- KUNIT_ARRAY_PARAM(rtp, rtp_cases, rtp_desc);
-+KUNIT_ARRAY_PARAM(sriov, sriov_cases, rtp_desc);
- 
- static int xe_rtp_test_init(struct kunit *test)
- {
-@@ -533,6 +640,9 @@ static void xe_rtp_test_exit(struct kunit *test)
- static struct kunit_case xe_rtp_tests[] = {
- 	KUNIT_CASE_PARAM(xe_rtp_process_to_sr_tests, rtp_to_sr_gen_params),
- 	KUNIT_CASE_PARAM(xe_rtp_process_tests, rtp_gen_params),
-+	KUNIT_CASE_PARAM(xe_rtp_process_tests, sriov_gen_params),
-+	KUNIT_CASE_PARAM(xe_rtp_process_tests_pf, sriov_gen_params),
-+	KUNIT_CASE_PARAM(xe_rtp_process_tests_vf, sriov_gen_params),
- 	{}
++/**
++ * XE_RTP_RULE_SRIOV - Create a SR-IOV rule for Virtual Functions
++ *
++ * Refer to XE_RTP_RULES() for expected usage.
++ */
++#define XE_RTP_RULE_SRIOV(TAG)							\
++	{ .match_type = XE_RTP_MATCH_SRIOV_##TAG }
++
+ /**
+  * XE_RTP_RULE_OR - Create an OR condition for rtp rules
+  *
+diff --git a/drivers/gpu/drm/xe/xe_rtp_types.h b/drivers/gpu/drm/xe/xe_rtp_types.h
+index 1b76b947c706..02c4e67906cc 100644
+--- a/drivers/gpu/drm/xe/xe_rtp_types.h
++++ b/drivers/gpu/drm/xe/xe_rtp_types.h
+@@ -53,6 +53,10 @@ enum {
+ 	XE_RTP_MATCH_ENGINE_CLASS,
+ 	XE_RTP_MATCH_NOT_ENGINE_CLASS,
+ 	XE_RTP_MATCH_FUNC,
++	XE_RTP_MATCH_SRIOV_VF_READY,
++	XE_RTP_MATCH_SRIOV_VF_ONLY,
++	XE_RTP_MATCH_SRIOV_PF_ONLY,
++	XE_RTP_MATCH_SRIOV_ONLY,
+ 	XE_RTP_MATCH_OR,
  };
  
 -- 
