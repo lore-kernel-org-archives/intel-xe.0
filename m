@@ -4,99 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0C18C021B6
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Feb 2025 15:13:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF961C021B6
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Feb 2025 15:15:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 915A210EA87;
-	Fri, 21 Feb 2025 15:13:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5C9710EA8B;
+	Fri, 21 Feb 2025 15:15:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="wF6C4CGD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VU6mbU4x";
 	dkim-atps=neutral
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
- [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5F9E10E930;
- Thu, 20 Feb 2025 10:53:08 +0000 (UTC)
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi
- [91.158.153.178])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id C69249FC;
- Thu, 20 Feb 2025 11:51:42 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1740048703;
- bh=cGmqrMQrzQNKvOYoVbXWr6Lo7FskS49XuKpEvHODBjA=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=wF6C4CGDoP+/HkpCLJaEAJQ5SUDGi9n0fFlEojmHm56G4KxPszUsR/q+aXtSRtihR
- AQoXwkJ+zXwR8f+vg71cO6pL6HL787yGlQcQZD3c6z5sRdwltXCONK8mS2/SPW2eEM
- lzKYZgKG0aXbNUjO1esnvXLsAJsX44MVKluFgT40=
-Message-ID: <596b960e-71f8-4c2c-9abe-058206df1dfb@ideasonboard.com>
-Date: Thu, 20 Feb 2025 12:53:03 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D5AF10EA8A;
+ Fri, 21 Feb 2025 15:15:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1740150943; x=1771686943;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=5uZo2snuqFobD0NTh7s0kJswMXsR9Jax/B64S3T6Yvc=;
+ b=VU6mbU4x8Q26LwG5XYilY5EqKaRnuezE0SLAWkQSO5Bh9Ur9fZIuDpdI
+ uQ4TEyXl7VjQtMTJVKaiXVwEjW9bVTX8FVPg/Pj2U/Uaw0qU9k0XO3xDk
+ CGYLy4egT1MZTnYjUXpFTvQ5Md9NaUsob+rUv24GOiSxiYZhzXvDTar9k
+ jT6M/STAoLnt4l5QqBdP4lUdzUiPApNnmvWrQgPD5igzQndKr5NzMax5r
+ SsBpqGHC2kS/f3QtZrajJitwi6WlC6gufFicKAerj48QvQ4GoRZGyMMBv
+ WdXk8thQqVvK9OV4wJFY+svl0ZNib1vUTYTqWsuLwtd3Y4BOtNMGlBQu3 A==;
+X-CSE-ConnectionGUID: XA7HYsOcRBarUtQm3NLsSA==
+X-CSE-MsgGUID: gy72OIQeRYKWKBUhUsRuHA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11352"; a="40892417"
+X-IronPort-AV: E=Sophos;i="6.13,305,1732608000"; d="scan'208";a="40892417"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2025 07:15:42 -0800
+X-CSE-ConnectionGUID: LotcIppZTiuUKIBik6ZP4A==
+X-CSE-MsgGUID: hY/P4O1QQBCu9EjMnxuyEw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,305,1732608000"; d="scan'208";a="146247313"
+Received: from sosterlu-desk.ger.corp.intel.com (HELO [10.245.245.44])
+ ([10.245.245.44])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2025 07:15:40 -0800
+Message-ID: <e8753d24-a0bd-4f53-bf56-d72475cb73ee@intel.com>
+Date: Fri, 21 Feb 2025 15:15:38 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 02/25] drm/dumb-buffers: Provide helper to set pitch
- and size
-To: Thomas Zimmermann <tzimmermann@suse.de>,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com,
- simona@ffwll.ch
-Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- imx@lists.linux.dev, linux-samsung-soc@vger.kernel.org,
- nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
- spice-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
- intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-References: <20250218142542.438557-1-tzimmermann@suse.de>
- <20250218142542.438557-3-tzimmermann@suse.de>
- <dcd59a75-7945-4a2e-99f9-3abbb3e9de14@ideasonboard.com>
- <355ed315-61fa-4a9d-b72b-8d5bc7b5a16c@suse.de>
-Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <355ed315-61fa-4a9d-b72b-8d5bc7b5a16c@suse.de>
+Subject: Re: [PATCH v5 27/32] drm/xe: Add SVM VRAM migration
+To: Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com,
+ simona.vetter@ffwll.ch, felix.kuehling@amd.com, dakr@kernel.org
+References: <20250213021112.1228481-1-matthew.brost@intel.com>
+ <20250213021112.1228481-28-matthew.brost@intel.com>
+ <3de5325a-147e-4126-970c-765884a1f6da@intel.com>
+ <b04945011524a4ee614cd830928ceedf9f9b6293.camel@linux.intel.com>
+ <Z7eIyFMKBeAHiPPE@lstrano-desk.jf.intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <Z7eIyFMKBeAHiPPE@lstrano-desk.jf.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Fri, 21 Feb 2025 15:12:57 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,70 +76,320 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
-
-On 20/02/2025 12:05, Thomas Zimmermann wrote:
-> Hi
-> 
-> Am 20.02.25 um 10:18 schrieb Tomi Valkeinen:
-> [...]
->>> + * Color modes of 10, 12, 15, 30 and 64 are only supported for use by
->>> + * legacy user space. Please don't use them in new code. Other modes
->>> + * are not support.
->>> + *
->>> + * Do not attempt to allocate anything but linear framebuffer memory
->>> + * with single-plane RGB data. Allocation of other framebuffer
->>> + * layouts requires dedicated ioctls in the respective DRM driver.
+On 20/02/2025 19:55, Matthew Brost wrote:
+> On Thu, Feb 20, 2025 at 04:59:29PM +0100, Thomas Hellström wrote:
+>> On Thu, 2025-02-20 at 15:53 +0000, Matthew Auld wrote:
+>>> On 13/02/2025 02:11, Matthew Brost wrote:
+>>>> Migration is implemented with range granularity, with VRAM backing
+>>>> being
+>>>> a VM private TTM BO (i.e., shares dma-resv with VM). The lifetime
+>>>> of the
+>>>> TTM BO is limited to when the SVM range is in VRAM (i.e., when a
+>>>> VRAM
+>>>> SVM range is migrated to SRAM, the TTM BO is destroyed).
+>>>>
+>>>> The design choice for using TTM BO for VRAM backing store, as
+>>>> opposed to
+>>>> direct buddy allocation, is as follows:
+>>>>
+>>>> - DRM buddy allocations are not at page granularity, offering no
+>>>>     advantage over a BO.
+>>>> - Unified eviction is required (SVM VRAM and TTM BOs need to be
+>>>> able to
+>>>>     evict each other).
+>>>> - For exhaustive eviction [1], SVM VRAM allocations will almost
+>>>> certainly
+>>>>     require a dma-resv.
+>>>> - Likely allocation size is 2M which makes of size of BO (872)
+>>>>     acceptable per allocation (872 / 2M == .0004158).
+>>>>
+>>>> With this, using TTM BO for VRAM backing store seems to be an
+>>>> obvious
+>>>> choice as it allows leveraging of the TTM eviction code.
+>>>>
+>>>> Current migration policy is migrate any SVM range greater than or
+>>>> equal
+>>>> to 64k once.
+>>>>
+>>>> [1] https://patchwork.freedesktop.org/series/133643/
+>>>>
+>>>> v2:
+>>>>    - Rebase on latest GPU SVM
+>>>>    - Retry page fault on get pages returning mixed allocation
+>>>>    - Use drm_gpusvm_devmem
+>>>> v3:
+>>>>    - Use new BO flags
+>>>>    - New range structure (Thomas)
+>>>>    - Hide migration behind Kconfig
+>>>>    - Kernel doc (Thomas)
+>>>>    - Use check_pages_threshold
+>>>> v4:
+>>>>    - Don't evict partial unmaps in garbage collector (Thomas)
+>>>>    - Use %pe to print errors (Thomas)
+>>>>    - Use %p to print pointers (Thomas)
+>>>> v5:
+>>>>    - Use range size helper (Thomas)
+>>>>    - Make BO external (Thomas)
+>>>>    - Set tile to NULL for BO creation (Thomas)
+>>>>    - Drop BO mirror flag (Thomas)
+>>>>    - Hold BO dma-resv lock across migration (Auld, Thomas)
+>>>>
+>>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>>>> ---
+>>>>    drivers/gpu/drm/xe/xe_svm.c | 111
+>>>> ++++++++++++++++++++++++++++++++++--
+>>>>    drivers/gpu/drm/xe/xe_svm.h |   5 ++
+>>>>    2 files changed, 112 insertions(+), 4 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/xe/xe_svm.c
+>>>> b/drivers/gpu/drm/xe/xe_svm.c
+>>>> index 0a78a838508c..2e1e0f31c1a8 100644
+>>>> --- a/drivers/gpu/drm/xe/xe_svm.c
+>>>> +++ b/drivers/gpu/drm/xe/xe_svm.c
+>>>> @@ -32,6 +32,11 @@ static unsigned long xe_svm_range_end(struct
+>>>> xe_svm_range *range)
+>>>>    	return drm_gpusvm_range_end(&range->base);
+>>>>    }
+>>>>    
+>>>> +static unsigned long xe_svm_range_size(struct xe_svm_range *range)
+>>>> +{
+>>>> +	return drm_gpusvm_range_size(&range->base);
+>>>> +}
+>>>> +
+>>>>    static void *xe_svm_devm_owner(struct xe_device *xe)
+>>>>    {
+>>>>    	return xe;
+>>>> @@ -512,7 +517,6 @@ static int xe_svm_populate_devmem_pfn(struct
+>>>> drm_gpusvm_devmem *devmem_allocatio
+>>>>    	return 0;
+>>>>    }
+>>>>    
+>>>> -__maybe_unused
+>>>>    static const struct drm_gpusvm_devmem_ops gpusvm_devmem_ops = {
+>>>>    	.devmem_release = xe_svm_devmem_release,
+>>>>    	.populate_devmem_pfn = xe_svm_populate_devmem_pfn,
+>>>> @@ -592,6 +596,71 @@ static bool xe_svm_range_is_valid(struct
+>>>> xe_svm_range *range,
+>>>>    	return (range->tile_present & ~range->tile_invalidated) &
+>>>> BIT(tile->id);
+>>>>    }
+>>>>    
+>>>> +static struct xe_vram_region *tile_to_vr(struct xe_tile *tile)
+>>>> +{
+>>>> +	return &tile->mem.vram;
+>>>> +}
+>>>> +
+>>>> +static struct xe_bo *xe_svm_alloc_vram(struct xe_vm *vm, struct
+>>>> xe_tile *tile,
+>>>> +				       struct xe_svm_range *range,
+>>>> +				       const struct drm_gpusvm_ctx
+>>>> *ctx)
+>>>> +{
+>>>> +	struct mm_struct *mm = vm->svm.gpusvm.mm;
+>>>> +	struct xe_vram_region *vr = tile_to_vr(tile);
+>>>> +	struct drm_buddy_block *block;
+>>>> +	struct list_head *blocks;
+>>>> +	struct xe_bo *bo;
+>>>> +	ktime_t end = 0;
+>>>> +	int err;
+>>>> +
+>>>> +	if (!mmget_not_zero(mm))
+>>>> +		return ERR_PTR(-EFAULT);
+>>>> +	mmap_read_lock(mm);
+>>>> +
+>>>> +retry:
+>>>> +	bo = xe_bo_create_locked(tile_to_xe(tile), NULL, NULL,
+>>>> +				 xe_svm_range_size(range),
+>>>> +				 ttm_bo_type_device,
+>>>> +				 XE_BO_FLAG_VRAM_IF_DGFX(tile));
+>>>
+>>> Just to confirm, there is nothing scary with the vram still
+>>> potentially
+>>> being used by the GPU at this point (like with an async eviction +
+>>> clear
+>>> op), right? At some point we have some kind of synchronisation before
+>>> the user can touch this memory?
 >>
->> According to this, every driver that supports, say, NV12, should 
->> implement their own custom ioctl to do the exact same thing? And, of 
->> course, every userspace app that uses, say, NV12, should then add code 
->> for all these platforms to call the custom ioctls?
-> 
-> Yes, that's exactly the current status.
-> 
-> There has been discussion about a new dumb-create ioctl that takes a DRM 
-> format as parameter. I'm all for it, but it's out of the scope for this 
-> series.
-> 
+>> Good point. I don't think there is.
 >>
->> As libdrm's modetest currently supports YUV formats with dumb buffers, 
->> should we remove that code, as it's not correct and I'm sure people 
->> use libdrm code as a reference?
 > 
-> Of course not.
+> Agree - there shouldn't be anything scary happening here. The new VRAM
+> is allocated from buddy which doesn't have dma-resv attached to it (and
+> thus no outstanding fences) and creating a new dma-resv object. A clear
+> is issued and then we do an immediate copy but those operations are
+> serialized on the same queue.
+
+So there is basically always a copy operation after this? Is is not 
+possible to have completely empty entries on the CPU side such that 
+there is nothing to actually copy?
+
 > 
+> Matt
+> 
+>>>
+>>>> +	if (IS_ERR(bo)) {
+>>>> +		err = PTR_ERR(bo);
+>>>> +		if (xe_vm_validate_should_retry(NULL, err, &end))
+>>>> +			goto retry;
+>>>> +		goto unlock;
+>>>> +	}
+>>>> +
+>>>> +	drm_gpusvm_devmem_init(&bo->devmem_allocation,
+>>>> +			       vm->xe->drm.dev, mm,
+>>>> +			       &gpusvm_devmem_ops,
+>>>> +			       &tile->mem.vram.dpagemap,
+>>>> +			       xe_svm_range_size(range));
+>>>> +
+>>>> +	blocks = &to_xe_ttm_vram_mgr_resource(bo->ttm.resource)-
+>>>>> blocks;
+>>>> +	list_for_each_entry(block, blocks, link)
+>>>> +		block->private = vr;
+>>>> +
+>>>> +	/*
+>>>> +	 * Take ref because as soon as
+>>>> drm_gpusvm_migrate_to_devmem succeeds the
+>>>> +	 * creation ref can be dropped upon CPU fault or unmap.
+>>>> +	 */
+>>>> +	xe_bo_get(bo);
+>>>> +
+>>>> +	err = drm_gpusvm_migrate_to_devmem(&vm->svm.gpusvm,
+>>>> &range->base,
+>>>> +					   &bo->devmem_allocation,
+>>>> ctx);
+>>>> +	xe_bo_unlock(bo);
+>>>> +	if (err) {
+>>>> +		xe_bo_put(bo);	/* Local ref */
+>>>> +		xe_bo_put(bo);	/* Creation ref */
+>>>> +		bo = ERR_PTR(err);
+>>>> +	}
+>>>> +
+>>>> +unlock:
+>>>> +	mmap_read_unlock(mm);
+>>>> +	mmput(mm);
+>>>> +
+>>>> +	return bo;
+>>>> +}
+>>>> +
+>>>>    /**
+>>>>     * xe_svm_handle_pagefault() - SVM handle page fault
+>>>>     * @vm: The VM.
+>>>> @@ -600,7 +669,8 @@ static bool xe_svm_range_is_valid(struct
+>>>> xe_svm_range *range,
+>>>>     * @fault_addr: The GPU fault address.
+>>>>     * @atomic: The fault atomic access bit.
+>>>>     *
+>>>> - * Create GPU bindings for a SVM page fault.
+>>>> + * Create GPU bindings for a SVM page fault. Optionally migrate to
+>>>> device
+>>>> + * memory.
+>>>>     *
+>>>>     * Return: 0 on success, negative error code on error.
+>>>>     */
+>>>> @@ -608,11 +678,18 @@ int xe_svm_handle_pagefault(struct xe_vm *vm,
+>>>> struct xe_vma *vma,
+>>>>    			    struct xe_tile *tile, u64 fault_addr,
+>>>>    			    bool atomic)
+>>>>    {
+>>>> -	struct drm_gpusvm_ctx ctx = { .read_only =
+>>>> xe_vma_read_only(vma), };
+>>>> +	struct drm_gpusvm_ctx ctx = {
+>>>> +		.read_only = xe_vma_read_only(vma),
+>>>> +		.devmem_possible = IS_DGFX(vm->xe) &&
+>>>> +			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR),
+>>>> +		.check_pages_threshold = IS_DGFX(vm->xe) &&
+>>>> +			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR) ?
+>>>> SZ_64K : 0,
+>>>> +	};
+>>>>    	struct xe_svm_range *range;
+>>>>    	struct drm_gpusvm_range *r;
+>>>>    	struct drm_exec exec;
+>>>>    	struct dma_fence *fence;
+>>>> +	struct xe_bo *bo = NULL;
+>>>>    	ktime_t end = 0;
+>>>>    	int err;
+>>>>    
+>>>> @@ -620,6 +697,9 @@ int xe_svm_handle_pagefault(struct xe_vm *vm,
+>>>> struct xe_vma *vma,
+>>>>    	xe_assert(vm->xe, xe_vma_is_cpu_addr_mirror(vma));
+>>>>    
+>>>>    retry:
+>>>> +	xe_bo_put(bo);
+>>>> +	bo = NULL;
+>>>> +
+>>>>    	/* Always process UNMAPs first so view SVM ranges is
+>>>> current */
+>>>>    	err = xe_svm_garbage_collector(vm);
+>>>>    	if (err)
+>>>> @@ -635,9 +715,31 @@ int xe_svm_handle_pagefault(struct xe_vm *vm,
+>>>> struct xe_vma *vma,
+>>>>    	if (xe_svm_range_is_valid(range, tile))
+>>>>    		return 0;
+>>>>    
+>>>> +	/* XXX: Add migration policy, for now migrate range once
+>>>> */
+>>>> +	if (!range->migrated && range->base.flags.migrate_devmem
+>>>> &&
+>>>> +	    xe_svm_range_size(range) >= SZ_64K) {
+>>>> +		range->migrated = true;
+>>>> +
+>>>> +		bo = xe_svm_alloc_vram(vm, tile, range, &ctx);
+>>>> +		if (IS_ERR(bo)) {
+>>>> +			drm_info(&vm->xe->drm,
+>>>> +				 "VRAM allocation failed, falling
+>>>> back to retrying, asid=%u, errno %pe\n",
+>>>> +				 vm->usm.asid, bo);
+>>>> +			bo = NULL;
+>>>> +			goto retry;
+>>>> +		}
+>>>> +	}
+>>>> +
+>>>>    	err = drm_gpusvm_range_get_pages(&vm->svm.gpusvm, r,
+>>>> &ctx);
+>>>> -	if (err == -EFAULT || err == -EPERM)	/* Corner where
+>>>> CPU mappings have changed */
+>>>> +	/* Corner where CPU mappings have changed */
+>>>> +	if (err == -EOPNOTSUPP || err == -EFAULT || err == -EPERM)
+>>>> {
+>>>> +		if (err == -EOPNOTSUPP)
+>>>> +			drm_gpusvm_range_evict(&vm->svm.gpusvm,
+>>>> &range->base);
+>>>> +		drm_info(&vm->xe->drm,
+>>>> +			 "Get pages failed, falling back to
+>>>> retrying, asid=%u, gpusvm=%p, errno %pe\n",
+>>>> +			 vm->usm.asid, &vm->svm.gpusvm,
+>>>> ERR_PTR(err));
+>>>>    		goto retry;
+>>>> +	}
+>>>>    	if (err)
+>>>>    		goto err_out;
+>>>>    
+>>>> @@ -668,6 +770,7 @@ int xe_svm_handle_pagefault(struct xe_vm *vm,
+>>>> struct xe_vma *vma,
+>>>>    	dma_fence_put(fence);
+>>>>    
+>>>>    err_out:
+>>>> +	xe_bo_put(bo);
+>>>>    
+>>>>    	return err;
+>>>>    }
+>>>> diff --git a/drivers/gpu/drm/xe/xe_svm.h
+>>>> b/drivers/gpu/drm/xe/xe_svm.h
+>>>> index 0fa525d34987..984a61651d9e 100644
+>>>> --- a/drivers/gpu/drm/xe/xe_svm.h
+>>>> +++ b/drivers/gpu/drm/xe/xe_svm.h
+>>>> @@ -35,6 +35,11 @@ struct xe_svm_range {
+>>>>    	 * range. Protected by GPU SVM notifier lock.
+>>>>    	 */
+>>>>    	u8 tile_invalidated;
+>>>> +	/**
+>>>> +	 * @migrated: Range has been migrated to device memory,
+>>>> protected by
+>>>> +	 * GPU fault handler locking.
+>>>> +	 */
+>>>> +	u8 migrated	:1;
+>>>>    };
+>>>>    
+>>>>    int xe_devm_add(struct xe_tile *tile, struct xe_vram_region *vr);
+>>>
 >>
->> Well, I'm not serious above, but I think all my points from the 
->> earlier version are still valid. I don't like this. It changes the 
->> parameters of the ioctl (bpp used to be bits-per-pixel, not it's 
->> "color mode"), and the behavior of the ioctl, behavior that we've had 
->> for a very long time, and we have no idea how many users there are 
->> that will break (could be none, of course). And the documentation 
->> changes make the current behavior and uses wrong or legacy.
-> 
-> Before I go into details about this statement, what use case exactly are 
-> you referring to when you say that behavior changes?
-
-For every dumb_buffer allocation with bpp that is not divisible by 8, 
-the result is different, i.e. instead of DIV_ROUND_UP(width * bpp, 8), 
-we now have width * DIV_ROUND_UP(bpp, 8). This, of course, depends on 
-the driver implementation. Some already do the latter.
-
-This change also first calls the drm_driver_color_mode_format(), which 
-could change the behavior even more, but afaics at the moment does not. 
-Although, maybe some platform does width * DIV_ROUND_UP(bpp, 8) even for 
-bpp < 8, and then this series changes it for 1, 2 and 4 bpps (but not 
-for 3, 5, 6, 7, if I'm not mistaken).
-
-However, as the bpp is getting rounded up, this probably won't break any 
-user. But it _is_ a change in the behavior of a uapi, and every time we 
-change a uapi that's been out there for a long time, I'm getting 
-slightly uncomfortable.
-
-So, as a summary, I have a feeling that nothing will break, but I can't 
-say for sure. And as I'm having trouble seeing the benefit of this 
-change for the user, I get even more uncomfortable.
-
-  Tomi
 
