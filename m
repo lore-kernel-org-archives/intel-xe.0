@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12AE6C021AA
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Feb 2025 03:41:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B19CC021B4
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Feb 2025 03:59:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6B6110E207;
-	Fri, 21 Feb 2025 03:41:28 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF0C010E207;
- Fri, 21 Feb 2025 03:41:27 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3485010E20C;
+	Fri, 21 Feb 2025 03:59:35 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NKwpvZLr";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3777810E202;
+ Fri, 21 Feb 2025 03:59:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1740110373; x=1771646373;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=msE/ExPWDO5Nhu5Sxp2liKGLyITMm7k39SsdFxHywC4=;
+ b=NKwpvZLrg3iHhOSksRwITuODBIPSGmLjtsKBwm1ENzX4pRYdMZsNGQKg
+ B441Z7mJucOsSU19ioJbSh+Jk1iKHoqFnlOAbLR1aw+BStFP+zHQNl3rq
+ P1hLgUxvecBFLPTvTxdgPLr2/qyF9WOnnJGc5gKZlvQaqSZOryNXUOQXP
+ /ATrgxORgnSFAOhF/XrPCI/XvL5IWB9dVOd2vd5JQUxXpbawBGRUMwXdO
+ ZPaU8uuRLipxvxKNLAV47PPBaorKu53oK904gPZbvUx7Vnsr6OePJSMYy
+ 86ALRy49YmoH20tnSwouw7SBdFf4gM9I3NRLpOUNFgJEWk8JNuICMLLa4 w==;
+X-CSE-ConnectionGUID: +DkrQLcMRXWevhZIz9+3cg==
+X-CSE-MsgGUID: +T1eLY+9QtWyOXgL2x+NPQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11351"; a="51560304"
+X-IronPort-AV: E=Sophos;i="6.13,303,1732608000"; d="scan'208";a="51560304"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2025 19:59:32 -0800
+X-CSE-ConnectionGUID: vKKwCw4oR8K7A61amYvx5Q==
+X-CSE-MsgGUID: m61yi9IkQGmu/roCfUkTow==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="115099627"
+Received: from gyu3-linux.itwn.intel.com (HELO gyu3-linux.itwn.corp.intel.com)
+ ([10.225.64.210])
+ by orviesa010.jf.intel.com with ESMTP; 20 Feb 2025 19:59:30 -0800
+From: gareth.yu@intel.com
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org,
+	shawn.c.lee.intel.om@freedesktop.org, william.tseng@intel.com,
+	ankit.k.nautiyal@intel.com, Gareth Yu <gareth.yu@intel.com>,
+	Suraj Kandpal <suraj.kandpal@intel.com>,
+	Juha-Pekka Heikkil <juha-pekka.heikkila@intel.com>
+Subject: [PATCH] drm/i915/vdsc: Correct the conditions of DSC1.1 and DSC 1.2
+ for rc params calculation
+Date: Fri, 21 Feb 2025 12:14:01 +0800
+Message-Id: <20250221041401.2219258-1-gareth.yu@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/guc=3A_Track_FAST?=
- =?utf-8?q?=5FREQ_H2Gs_to_report_where_errors_came_from?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: john.c.harrison@intel.com
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 21 Feb 2025 03:41:27 -0000
-Message-ID: <174010928797.351621.11185804579173925967@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250221031444.3820965-1-John.C.Harrison@Intel.com>
-In-Reply-To: <20250221031444.3820965-1-John.C.Harrison@Intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +66,36 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Gareth Yu <gareth.yu@intel.com>
 
-Series: drm/xe/guc: Track FAST_REQ H2Gs to report where errors came from
-URL   : https://patchwork.freedesktop.org/series/145205/
-State : success
+The condition change is because Gen 14 begins to support DSC 1.2
+and need to check if the sink supports DSC1.2
 
-== Summary ==
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13719
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 773b5639a9ff0a33feccb29de7f2d852c6d7f221
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: Juha-Pekka Heikkil <juha-pekka.heikkila@intel.com>
+Signed-off-by: Gareth Yu <gareth.yu@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_vdsc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+index b355c479eda3..555180e40b72 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+@@ -320,7 +320,7 @@ int intel_dsc_compute_params(struct intel_crtc_state *pipe_config)
+ 	 * upto uncompressed bpp-1, hence add calculations for all the rc
+ 	 * parameters
+ 	 */
+-	if (DISPLAY_VER(dev_priv) >= 13) {
++	if ((DISPLAY_VER(dev_priv) >= 14) && (vdsc_cfg->dsc_version_minor >= 2)) {
+ 		calculate_rc_params(vdsc_cfg);
+ 	} else {
+ 		if ((compressed_bpp == 8 ||
+-- 
+2.34.1
 
