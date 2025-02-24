@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5898C021BB
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 18:39:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A188EC021A4
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 18:45:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5735510E05F;
-	Mon, 24 Feb 2025 18:39:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66E4E10E0C8;
+	Mon, 24 Feb 2025 18:45:08 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F7E310E05F;
- Mon, 24 Feb 2025 18:39:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2248180073150727820=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E5C810E0C8;
+ Mon, 24 Feb 2025 18:45:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Use_VRR_timing_generator_fo?=
- =?utf-8?q?r_fixed_refresh_rate_modes_=28rev5=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_LOBF_enablement_fix_?=
+ =?utf-8?q?=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+To: "Animesh Manna" <animesh.manna@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 24 Feb 2025 18:39:24 -0000
-Message-ID: <174042236451.1685715.232184968053825344@b555e5b46a47>
+Date: Mon, 24 Feb 2025 18:45:07 -0000
+Message-ID: <174042270723.1687153.13851773615530841535@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
+References: <20250224080847.326350-1-animesh.manna@intel.com>
+In-Reply-To: <20250224080847.326350-1-animesh.manna@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,24 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2248180073150727820==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Use VRR timing generator for fixed refresh rate modes (rev5)
-URL   : https://patchwork.freedesktop.org/series/141152/
+Series: LOBF enablement fix (rev3)
+URL   : https://patchwork.freedesktop.org/series/142278/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-2702-a5a9504217e25c850ff9e82d38c1093dbdbf20f9_BAT -> xe-pw-141152v5_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: a5a9504217e2 drm-tip: 2025y-02m-24d-16h-04m-10s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/lobf: Add lobf enablement in post plane update
+Applying: drm/i915/lobf: Disintegrate alpm_disable from psr_disable
+Applying: drm/i915/lobf: Add fixed refresh rate check in compute_config()
+Applying: drm/i915/lobf: Update lobf if any change in dependent parameters
+Applying: drm/i915/lobf: Add debug interface for lobf
+Applying: drm/i915/lobf: Check for sink error and disable LOBF
+Applying: drm/i915/lobf: Add mutex for alpm update
+Applying: drm/i915/lobf: Add debug print for LOBF
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-2702-a5a9504217e25c850ff9e82d38c1093dbdbf20f9 -> xe-pw-141152v5
-
-  IGT_8246: 2670886863d5821273146d7f94cdd3c8e3a4fe0b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2702-a5a9504217e25c850ff9e82d38c1093dbdbf20f9: a5a9504217e25c850ff9e82d38c1093dbdbf20f9
-  xe-pw-141152v5: 141152v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141152v5/index.html
-
---===============2248180073150727820==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Use VRR timing generator for fixed refresh rate modes (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141152/">https://patchwork.freedesktop.org/series/141152/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141152v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-141152v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2702-a5a9504217e25c850ff9e82d38c1093dbdbf20f9_BAT -&gt; xe-pw-141152v5_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2702-a5a9504217e25c850ff9e82d38c1093dbdbf20f9 -&gt; xe-pw-141152v5</li>
-</ul>
-<p>IGT_8246: 2670886863d5821273146d7f94cdd3c8e3a4fe0b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2702-a5a9504217e25c850ff9e82d38c1093dbdbf20f9: a5a9504217e25c850ff9e82d38c1093dbdbf20f9<br />
-  xe-pw-141152v5: 141152v5</p>
-
-</body>
-</html>
-
---===============2248180073150727820==--
