@@ -4,55 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE32CC021A6
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE9DEC19778
 	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 13:43:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0068910E4E6;
-	Mon, 24 Feb 2025 13:42:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3506310E4EC;
+	Mon, 24 Feb 2025 13:42:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UIkHbDBJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WjWodTSe";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFEC110E13C;
- Mon, 24 Feb 2025 06:29:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C92F10E210;
+ Mon, 24 Feb 2025 10:45:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740378579; x=1771914579;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=P2pSZFE3Y0MDvNGbEOkRn8lChwoq0sYDsLU9/od5+MY=;
- b=UIkHbDBJeVSGjWcHBhSGgiFu0+KZzds4lETbtyAlaT267b+WXLBT9/tQ
- 364e0q78xl8lqq2+1x6PznHHbG+vM1RlXrsWH2ZB++1f3ZWAC8Eriz49F
- dqTMoFWgEJxVa8F2wAzSq/7V+kyxYtiAYKLpJL0R76zC6H+yA1kYrerFS
- M3rrbNT0g3UGubKLkz5nOJSMTM5e9cqHjv5auJD+SvlaYU+n4BA1WyMT5
- mZBpU499I5Dto7+BhKeR0t8uHATUu5tc7MeN8LyxKTnHhAd5DoIv5LaS/
- L9oHNzxIptyIvmh+1GM3aW4WyRCK8lURkkfxv4CUOH6/ZlfjjyeIhUUJc g==;
-X-CSE-ConnectionGUID: 375kAjdSQ4WV25E4bEdNUQ==
-X-CSE-MsgGUID: IMRQS2a4TsK13sHMj1s5Mw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="28719651"
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="28719651"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 22:29:39 -0800
-X-CSE-ConnectionGUID: /PKR0aOYTfqjsOoR1+ilwA==
-X-CSE-MsgGUID: SKHAKcnCTWORUH6o3BLxgg==
+ t=1740393906; x=1771929906;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=TC5JKuSwTOwKpgp1iZoA9OkT3PUONHk+kHFW8kXUrhw=;
+ b=WjWodTSeNkMhwhagFYIRkkmbo++rT/3shbjnSJpmE/NT4rz/GpJcsnFh
+ xvZYCUtMfNV15A3Y7D8Z3fTM0/Pcm/cUQKwcIDwKT8gDrfWzh4nXT0wBl
+ 8fx/bO8jrTLcCHJQwPHTGV0V3daHtkEimxPWHOdNWxs7FkH0eXPe2ht45
+ +MRgRDqKlccqk3syB0OSkNj+CJZjXomqT7UAOIsHMaN8klSkm5ZcX6Rbw
+ nPuHJhrCz5HZ/+DMZuvAZfezHvae56AJdE55SRO0K3frA3mQDxTTIUJ7t
+ LO8dwVxw3/T5Gdn9Eki6LD4POJyjc/BK5+G0pBtJlWnBBiSnZdfX25xZh A==;
+X-CSE-ConnectionGUID: yuj6si0uToyFBj0ZFSO10Q==
+X-CSE-MsgGUID: sgmA37BlQOuRvewg/B/XhQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="63611881"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="63611881"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2025 02:45:06 -0800
+X-CSE-ConnectionGUID: 67vSYBaSS9W/wFQV3uUYOQ==
+X-CSE-MsgGUID: 9lHnM6ecRfSF/1PN7qWsaQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="120076498"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 22:29:39 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
- ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 05/20] drm/i915/vrr: Track vrr.enable only for variable timing
-Date: Mon, 24 Feb 2025 11:47:02 +0530
-Message-ID: <20250224061717.1095226-6-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
-References: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="115815470"
+Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.133])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2025 02:45:02 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Animesh Manna <animesh.manna@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: jouni.hogander@intel.com, jeevan.b@intel.com, Animesh Manna
+ <animesh.manna@intel.com>
+Subject: Re: [PATCH v4 2/8] drm/i915/lobf: Disintegrate alpm_disable from
+ psr_disable
+In-Reply-To: <20250224080847.326350-3-animesh.manna@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250224080847.326350-1-animesh.manna@intel.com>
+ <20250224080847.326350-3-animesh.manna@intel.com>
+Date: Mon, 24 Feb 2025 12:45:00 +0200
+Message-ID: <87wmdf7har.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,65 +71,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Since CMRR is now disabled, use the flag vrr.enable to tracks if vrr timing
-generator is used with variable timings.
+On Mon, 24 Feb 2025, Animesh Manna <animesh.manna@intel.com> wrote:
+> Currently clearing of alpm registers is done through psr_disable()
+> which is always not correct, without psr also alpm can exist. So
+> dis-integrate alpm_disable() from psr_disable().
+>
+> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_alpm.c     | 21 +++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_alpm.h     |  1 +
+>  drivers/gpu/drm/i915/display/intel_ddi.c      |  2 ++
+>  .../drm/i915/display/intel_display_types.h    |  1 +
+>  drivers/gpu/drm/i915/display/intel_psr.c      | 11 ----------
+>  5 files changed, 25 insertions(+), 11 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
+> index a53ed83f6b22..d94c96ba46b1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_alpm.c
+> +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+> @@ -365,6 +365,7 @@ void intel_alpm_configure(struct intel_dp *intel_dp,
+>  			  const struct intel_crtc_state *crtc_state)
+>  {
+>  	lnl_alpm_configure(intel_dp, crtc_state);
+> +	intel_dp->alpm_parameters.transcoder = crtc_state->cpu_transcoder;
 
-Avoid setting vrr.enable for CMRR and adjust readout to not set vrr.enable
-when vmax == vmin == flipline (fixed refresh rate timing).
+Why do we need to store this?
 
-v2: Use intel_vrr_vmin_flipline() to account for adjustments required
-for icl/tgl. (Ville)
+>  }
+>  
+>  void intel_alpm_post_plane_update(struct intel_atomic_state *state,
+> @@ -440,3 +441,23 @@ void intel_alpm_lobf_debugfs_add(struct intel_connector *connector)
+>  	debugfs_create_file("i915_edp_lobf_info", 0444, root,
+>  			    connector, &i915_edp_lobf_info_fops);
+>  }
+> +
+> +void intel_alpm_disable(struct intel_dp *intel_dp)
+> +{
+> +	struct intel_display *display = to_intel_display(intel_dp);
+> +	enum transcoder cpu_transcoder = intel_dp->alpm_parameters.transcoder;
+> +
+> +	if (DISPLAY_VER(display) < 20)
+> +		return;
+> +
+> +	if (!(intel_de_read(display, ALPM_CTL(display, cpu_transcoder)) & ALPM_CTL_ALPM_ENABLE))
+> +		return;
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vrr.c | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+Why are we checking the hardware state here? We should know what state
+the hardware is in, right?
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 0ee7fb0362ce..4d7f29be55b8 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -226,7 +226,6 @@ cmrr_get_vtotal(struct intel_crtc_state *crtc_state, bool video_mode_required)
- static
- void intel_vrr_compute_cmrr_timings(struct intel_crtc_state *crtc_state)
- {
--	crtc_state->vrr.enable = true;
- 	crtc_state->cmrr.enable = true;
- 	/*
- 	 * TODO: Compute precise target refresh rate to determine
-@@ -528,6 +527,14 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
- 	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder), 0);
- }
- 
-+static
-+bool intel_vrr_is_fixed_rr(const struct intel_crtc_state *crtc_state)
-+{
-+	return crtc_state->vrr.flipline &&
-+	       crtc_state->vrr.flipline == crtc_state->vrr.vmax &&
-+	       crtc_state->vrr.flipline == intel_vrr_vmin_flipline(crtc_state);
-+}
-+
- void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
-@@ -537,7 +544,6 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
- 	trans_vrr_ctl = intel_de_read(display,
- 				      TRANS_VRR_CTL(display, cpu_transcoder));
- 
--	crtc_state->vrr.enable = trans_vrr_ctl & VRR_CTL_VRR_ENABLE;
- 	if (HAS_CMRR(display))
- 		crtc_state->cmrr.enable = (trans_vrr_ctl & VRR_CTL_CMRR_ENABLE);
- 
-@@ -577,6 +583,9 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
- 		}
- 	}
- 
-+	crtc_state->vrr.enable = trans_vrr_ctl & VRR_CTL_VRR_ENABLE &&
-+				 !intel_vrr_is_fixed_rr(crtc_state);
-+
- 	if (crtc_state->vrr.enable)
- 		crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
- }
+> +
+> +	intel_de_rmw(display, ALPM_CTL(display, cpu_transcoder),
+> +		     ALPM_CTL_ALPM_ENABLE | ALPM_CTL_LOBF_ENABLE |
+> +		     ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
+> +
+> +	intel_de_rmw(display,
+> +		     PORT_ALPM_CTL(cpu_transcoder),
+> +		     PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
+> index 2f862b0476a8..91f51fb24f98 100644
+> --- a/drivers/gpu/drm/i915/display/intel_alpm.h
+> +++ b/drivers/gpu/drm/i915/display/intel_alpm.h
+> @@ -28,4 +28,5 @@ void intel_alpm_post_plane_update(struct intel_atomic_state *state,
+>  void intel_alpm_lobf_debugfs_add(struct intel_connector *connector);
+>  bool intel_alpm_aux_wake_supported(struct intel_dp *intel_dp);
+>  bool intel_alpm_aux_less_wake_supported(struct intel_dp *intel_dp);
+> +void intel_alpm_disable(struct intel_dp *intel_dp);
+>  #endif
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index 7937f4de66cb..26aa32d4d50e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -35,6 +35,7 @@
+>  #include "i915_drv.h"
+>  #include "i915_reg.h"
+>  #include "icl_dsi.h"
+> +#include "intel_alpm.h"
+>  #include "intel_audio.h"
+>  #include "intel_audio_regs.h"
+>  #include "intel_backlight.h"
+> @@ -3570,6 +3571,7 @@ static void intel_ddi_disable_dp(struct intel_atomic_state *state,
+>  	intel_dp->link_trained = false;
+>  
+>  	intel_psr_disable(intel_dp, old_crtc_state);
+> +	intel_alpm_disable(intel_dp);
+
+We have old crtc state here, why do we save the transcoder to intel_dp
+and use that?
+
+>  	intel_edp_backlight_off(old_conn_state);
+>  	/* Disable the decompression in DP Sink */
+>  	intel_dp_sink_disable_decompression(state,
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 4440521e3e9e..b78721c451b8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1801,6 +1801,7 @@ struct intel_dp {
+>  	struct {
+>  		u8 io_wake_lines;
+>  		u8 fast_wake_lines;
+> +		enum transcoder transcoder;
+>  
+>  		/* LNL and beyond */
+>  		u8 check_entry_lines;
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> index c1dd9c739fd4..1d202f2eb356 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -2141,17 +2141,6 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
+>  	if (intel_dp_is_edp(intel_dp))
+>  		intel_snps_phy_update_psr_power_state(&dp_to_dig_port(intel_dp)->base, false);
+>  
+> -	/* Panel Replay on eDP is always using ALPM aux less. */
+> -	if (intel_dp->psr.panel_replay_enabled && intel_dp_is_edp(intel_dp)) {
+> -		intel_de_rmw(display, ALPM_CTL(display, cpu_transcoder),
+> -			     ALPM_CTL_ALPM_ENABLE |
+> -			     ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
+> -
+> -		intel_de_rmw(display,
+> -			     PORT_ALPM_CTL(cpu_transcoder),
+> -			     PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
+> -	}
+> -
+>  	/* Disable PSR on Sink */
+>  	if (!intel_dp->psr.panel_replay_enabled) {
+>  		drm_dp_dpcd_writeb(&intel_dp->aux, DP_PSR_EN_CFG, 0);
+
 -- 
-2.45.2
-
+Jani Nikula, Intel
