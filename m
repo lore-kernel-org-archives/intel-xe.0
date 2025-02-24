@@ -4,55 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40C62C021B5
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 06:30:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 725B3C021B3
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 06:32:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBCC010E14D;
-	Mon, 24 Feb 2025 06:30:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38ED710E14D;
+	Mon, 24 Feb 2025 06:32:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MIUItSTa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I6S0l531";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EC1410E14D;
- Mon, 24 Feb 2025 06:30:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8550210E14D
+ for <intel-xe@lists.freedesktop.org>; Mon, 24 Feb 2025 06:32:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740378602; x=1771914602;
+ t=1740378733; x=1771914733;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=t8Do6t8HwG1kXcNYpV8b29EEl7wCv9NwbqfU21MgrFM=;
- b=MIUItSTaz+/+mLeQm0vnx+nSkBoG4ZS1xr4L98Xwo4ZfvjCdbnSfNKNY
- Jb5e32NxmwbGLG7YqZLIONWsrt5UnNhbPzCLDtYb24B73tfDKuNvPlGhr
- XZVcSLE/B1wmhSXNMCPfvHdK4ydcREmTYR8vjavf1TilzvJBDGqTDl0Lx
- zLW6AoQrmar6seHhYD/FakunVArSPu11LZ6Wy1hM8ke2y6ax4cWcqYyfF
- EAZy6X6vZIH1pPfn8a/AJu8DHocHrgt+HJPCTTiYbk07Xp5/RoIfVXR8R
- eKBbAgwGZlM/M3xb4qC8g+lo4FlNBACKKxJurNVIfH/bFP+BkkiYMS2x4 g==;
-X-CSE-ConnectionGUID: SuHv1M0KRSSBE1cOmOWA0g==
-X-CSE-MsgGUID: HC4wUxWnQtStmH2wYRqBjQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="28719691"
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="28719691"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 22:30:02 -0800
-X-CSE-ConnectionGUID: dSkGl/TCSsSw7EHkCcRG7A==
-X-CSE-MsgGUID: 6lSaYwc3SpWBUcu1P6Pqqg==
+ bh=TC890aBRDpC4hulHG6Qw/LanWuSsMnWDYwRmIg1hZKg=;
+ b=I6S0l531Xvh0bCkBN/Zmf/imTv+oO83n3Q98Qwd5JTQCgOiVfTW9lHgf
+ ntJ3ZIxorJ+hBrBBZO9GZroGxoLylfKy/oYbSOierY6M8Ar75+GPCBatY
+ S/iV30WkHWQ9d/v5hoTeGT2rbLF6LR5OF+44S/hTVdp8a2UiL9x8dwlDZ
+ fp1O6WU5SrAAHrfTmWDaDEIKNiA66IX8t3DnW2/mXR4pgjKNbRdnrF0XY
+ FVx1AT6uBnktRhRrZnbYjTm0WuI5N7Uf4Uk4N8QfrS/jJ6zP1JJjHRTW2
+ pMOZiq9JPw6goB/z1cIh8JN8iChLv8GMFCf1rN/pBJf0F1fdiXpvwNnlg A==;
+X-CSE-ConnectionGUID: Jw/z/LN/RCucdm9VkcL0TQ==
+X-CSE-MsgGUID: rTjJvU2aTmWmCPmZ0+0EIA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="40995128"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="40995128"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2025 22:32:13 -0800
+X-CSE-ConnectionGUID: R/VQBsNDTLOKrtt8Onsz2A==
+X-CSE-MsgGUID: G7Ts53EFQP6IlSuWfwE23A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="120076584"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 22:30:00 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
- ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 14/20] drm/i915/vrr: Refactor condition for computing vmax and
- LRR
-Date: Mon, 24 Feb 2025 11:47:11 +0530
-Message-ID: <20250224061717.1095226-15-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
-References: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="121058950"
+Received: from labhost1.iind.intel.com ([10.190.230.69])
+ by fmviesa004.fm.intel.com with ESMTP; 23 Feb 2025 22:32:12 -0800
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Wajdeczko?= <michal.wajdeczko@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+Subject: [PATCH v4 2/2] drm/xe/vf: Retry sending MMIO request to GUC on
+ timeout error
+Date: Mon, 24 Feb 2025 12:17:45 +0530
+Message-Id: <20250224064745.1778-3-satyanarayana.k.v.p@intel.com>
+X-Mailer: git-send-email 2.35.3
+In-Reply-To: <20250224064745.1778-1-satyanarayana.k.v.p@intel.com>
+References: <20250224064745.1778-1-satyanarayana.k.v.p@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,52 +70,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-LRR and Vmax can be computed only if VRR is supported and vrr.in_range
-is set. Currently we proceed with vrr timings only for VRR supporting
-panels and return otherwise. For using VRR TG with fix timings, need to
-continue even for panels that do not support VRR.
+Add support to allow retrying the sending of MMIO requests
+from the VF to the GUC in the event of an error. During the
+suspend/resume process, VFs begin resuming only after the PF has
+resumed. Although the PF resumes, the GUC reset and provisioning
+occur later in a separate worker process.
 
-To achieve this, refactor the condition for computing vmax and
-update_lrr so that we can continue for fixed timings for panels that do
-not support VRR.
+When there are a large number of VFs, some may attempt to resume
+before the PF has completed its provisioning. Therefore, if a
+MMIO request from a VF fails during this period, we will retry
+sending the request up to GUC_RESET_VF_STATE_RETRY_MAX times,
+which is set to a maximum of 10 attempts.
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Cc: Michał Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Michał Winiarski <michal.winiarski@intel.com>
+Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Reviewed-by: Piotr Piorkowski <piotr.piorkowski@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vrr.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 30fcd1e66a12..024c3014670a 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -343,21 +343,21 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
- 	struct intel_dp *intel_dp = intel_attached_dp(connector);
- 	bool is_edp = intel_dp_is_edp(intel_dp);
- 	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
--	int vmin, vmax;
-+	int vmin = 0, vmax = 0;
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index 4831549da319..a439261bf4d7 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -47,12 +47,19 @@ static int guc_action_vf_reset(struct xe_guc *guc)
+ 	return ret > 0 ? -EPROTO : ret;
+ }
  
- 	if (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE)
- 		return;
++#define GUC_RESET_VF_STATE_RETRY_MAX	10
+ static int vf_reset_guc_state(struct xe_gt *gt)
+ {
++	unsigned int retry = GUC_RESET_VF_STATE_RETRY_MAX;
+ 	struct xe_guc *guc = &gt->uc.guc;
+ 	int err;
  
- 	crtc_state->vrr.in_range =
- 		intel_vrr_is_in_range(connector, drm_mode_vrefresh(adjusted_mode));
--	if (!crtc_state->vrr.in_range)
--		return;
- 
--	if (HAS_LRR(display))
--		crtc_state->update_lrr = true;
-+	if (crtc_state->vrr.in_range) {
-+		if (HAS_LRR(display))
-+			crtc_state->update_lrr = true;
-+		vmax = intel_vrr_compute_vmax(connector, adjusted_mode);
-+	}
- 
- 	vmin = intel_vrr_compute_vmin(crtc_state);
--	vmax = intel_vrr_compute_vmax(connector, adjusted_mode);
- 
- 	if (vmin >= vmax)
- 		return;
+-	err = guc_action_vf_reset(guc);
++	do {
++		err = guc_action_vf_reset(guc);
++		if (!err || err != -ETIMEDOUT)
++			break;
++	} while (--retry);
++
+ 	if (unlikely(err))
+ 		xe_gt_sriov_err(gt, "Failed to reset GuC state (%pe)\n", ERR_PTR(err));
+ 	return err;
 -- 
-2.45.2
+2.35.3
 
