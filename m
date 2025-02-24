@@ -4,57 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D2B0C021BB
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 15:59:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0ECCC021BB
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 15:59:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18C4010E448;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78DB888E26;
 	Mon, 24 Feb 2025 15:59:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Vhy8n0Pg";
-	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 543C710E139;
- Mon, 24 Feb 2025 06:23:46 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 5C24D5C3F39;
- Mon, 24 Feb 2025 06:23:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51CC4C4CED6;
- Mon, 24 Feb 2025 06:23:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1740378225;
- bh=cuyUHzmNRrlRengPj2KWGGE7uP665a9dsZbLx/j8reQ=;
- h=From:Date:Subject:To:Cc:From;
- b=Vhy8n0PgndAb1R2oxQLvdFy/gSk/u/G05X+Ht7jPi9KZLU1q2VKDhaPF6YRHW1cvs
- 8FFdyRk58kF36XiE0PSpIabDL0/NuYmFz4PClvpqmlNj9OPZ7mi0MeJ+VnRlbh7wL2
- jrWLr8+fwSlfnzVipwbxgEBd9cDz6dJHDUlfwgTUcaXqyeWT8BXlFLH2pg9o5SnSo5
- uw5zBGLrXOD9mhCiacoOXOOaCiYxHwlhDdbvEyfhUYlW30M0ATRFXJE12TshRm/tvz
- aaT0gxAWtQAqHdWokPmdL2x7g4XtxbeSXJ9SBHUC0sb+RrvcxjQgr7fBH9nwufTajV
- mq9PpSUHj44EA==
-From: da.gomez@kernel.org
-Date: Mon, 24 Feb 2025 07:23:13 +0100
-Subject: [PATCH RESEND v3] drm/xe: xe_gen_wa_oob: replace
- program_invocation_short_name
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABF1E10E13B;
+ Mon, 24 Feb 2025 09:24:37 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4Z1b0f2mGpz9t7b;
+ Mon, 24 Feb 2025 10:24:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1740389074; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=v+wd6PCEHlLx+eHYqGrwFyvoAFA7r97pOl/4RtvgfrU=;
+ b=m/GsV69SJ013QcS9h3uDFy8n3n3ZzybbgVHEjPSX7O0kVHBoNVM4cQPp9FvqFeNbOu6fKI
+ CPF8MH73GZbZX1FOK5nuOe2D5hRkLUGQRihNcw8Nh+eV4Vr8KEk5v7vv4bIkLB3UA0S+eZ
+ 6cJwxdmYba9m7vtYGrSTKIxH5yCFiU+3/XEwm6jculmXOzglnVkkyB01EMZ7Emw1CXX7v+
+ 1pm1+qldo94lsFb8d44GYo9vI/imtP/e2Qza8kabQ9YP9IxhjKAAvvLUBaH9epsYLFfnMv
+ mBuHL0HGZpMLs5E53++1kVPuLhRR9MqdG+p6icSIzvzUP4SUwRzhWU3r2dThNw==
+Message-ID: <639b986bd819a9ba50183b89f4687dc38450ee83.camel@mailbox.org>
+Subject: Re: [PATCH v6 0/6] drm/sched: Job queue peek/pop helpers and struct
+ job re-order
+From: Philipp Stanner <phasta@mailbox.org>
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ amd-gfx@lists.freedesktop.org,  dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com, Christian
+ =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Danilo Krummrich
+ <dakr@kernel.org>, Matthew Brost <matthew.brost@intel.com>, Philipp Stanner
+ <phasta@kernel.org>
+Date: Mon, 24 Feb 2025 10:24:30 +0100
+In-Reply-To: <20250221105038.79665-1-tvrtko.ursulin@igalia.com>
+References: <20250221105038.79665-1-tvrtko.ursulin@igalia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250224-macos-build-support-xe-v3-1-d2c9ed3a27cc@samsung.com>
-X-B4-Tracking: v=1; b=H4sIAFAQvGcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHUUlJIzE
- vPSU3UzU4B8JSMDI1MDIyMT3dzE5Pxi3aTSzJwU3eLSgoL8ohLdilTdNAND82QLE0ND4yQzJaD
- mgqLUtMwKsMHRSkGuwa5+LkqxtbUAW9q+nXAAAAA=
-X-Change-ID: 20250224-macos-build-support-xe-f017c84113b6
-To: Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Nathan Chancellor <nathan@kernel.org>, 
- Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
- Bill Wendling <morbo@google.com>, Masahiro Yamada <masahiroy@kernel.org>, 
- Justin Stitt <justinstitt@google.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, llvm@lists.linux.dev, 
- Klaus Jensen <k.jensen@samsung.com>, Tamir Duberstein <tamird@gmail.com>, 
- Theodore Ts'o <tytso@mit.edu>, gost.dev@samsung.com, 
- Barry Song <baohua@kernel.org>, Daniel Gomez <da.gomez@samsung.com>
-X-Mailer: b4 0.14.2
+X-MBO-RS-META: x5cog6dmnzkfden71u9febn8676s8jwb
+X-MBO-RS-ID: 066b92eec6641381c60
 X-Mailman-Approved-At: Mon, 24 Feb 2025 15:59:20 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,109 +61,71 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Daniel Gomez <da.gomez@samsung.com>
+On Fri, 2025-02-21 at 10:50 +0000, Tvrtko Ursulin wrote:
+> Lets add some helpers for peeking and popping from the job queue
+> which allows us
+> to re-order the fields in struct drm_sched_job and remove one hole.
+>=20
+> As in the process we have added a header file for scheduler internal
+> prototypes,
+> lets also use it more and cleanup the "exported" header a bit.
+>=20
+> v2:
+> =C2=A0* Add header file for internal scheduler API.
+> =C2=A0* Add helper for peeking too. (Danilo)
+> =C2=A0* Add (temporary?) drm_sched_cancel_all_jobs() helper to replace
+> amdgpu
+> =C2=A0=C2=A0 amdgpu_job_stop_all_jobs_on_sched().
+>=20
+> v3:
+> =C2=A0* Settle for a copy of __drm_sched_entity_queue_pop in amdgpu for
+> now.
+>=20
+> v4:
+> =C2=A0* Expand the series with some more header file cleanup.
+>=20
+> v5:
+> =C2=A0* Rebase for drm_sched_init changes.
+> =C2=A0* Tweak kerneldoc format.
+>=20
+> v6:
+> =C2=A0* Added SPDX to the new header file.
+>=20
+> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Cc: Danilo Krummrich <dakr@kernel.org>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Philipp Stanner <phasta@kernel.org>
+>=20
+> Tvrtko Ursulin (6):
+> =C2=A0 drm/sched: Add internal job peek/pop API
+> =C2=A0 drm/amdgpu: Pop jobs from the queue more robustly
+> =C2=A0 drm/sched: Remove a hole from struct drm_sched_job
+> =C2=A0 drm/sched: Move drm_sched_entity_is_ready to internal header
+> =C2=A0 drm/sched: Move internal prototypes to internal header
+> =C2=A0 drm/sched: Group exported prototypes by object type
+>=20
+> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_job.c=C2=A0=C2=A0=C2=A0 |=C2=A0 2=
+2 +++-
+> =C2=A0drivers/gpu/drm/scheduler/sched_entity.c=C2=A0=C2=A0 |=C2=A0 23 +--=
+-
+> =C2=A0drivers/gpu/drm/scheduler/sched_fence.c=C2=A0=C2=A0=C2=A0 |=C2=A0=
+=C2=A0 2 +
+> =C2=A0drivers/gpu/drm/scheduler/sched_internal.h |=C2=A0 91 +++++++++++++=
+++
+> =C2=A0drivers/gpu/drm/scheduler/sched_main.c=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
+=A0=C2=A0 7 +-
+> =C2=A0include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 122 +++++++++--------=
+--
+> --
+> =C2=A06 files changed, 171 insertions(+), 96 deletions(-)
+> =C2=A0create mode 100644 drivers/gpu/drm/scheduler/sched_internal.h
+>=20
 
-program_invocation_short_name() may not be available in other systems.
-Instead, replace it with the argv[0] to pass the executable name.
+Applied to drm-misc-next.
 
-Fixes build error when program_invocation_short_name is not available:
-
-drivers/gpu/drm/xe/xe_gen_wa_oob.c:34:3: error: use of
-undeclared identifier 'program_invocation_short_name'    34 |
-program_invocation_short_name);       |                 ^ 1 error
-generated.
-
-Suggested-by: Masahiro Yamada <masahiroy@kernel.org>
-Signed-off-by: Daniel Gomez <da.gomez@samsung.com>
----
-This last patch allows for building the Linux kernel allyesconfig target
-for arm64 in macOS hosts with Clang/LLVM.
-
-Summary of previous feedback and work:
-
-Other Makefile targets, such as defconfig, can already be built
-successfully if the necessary headers are provided and the Linux kernel
-build system is configured appropriately. To facilitate this process,
-the Bee Headers [1] project was created not only to serve as reference
-but also to document [2] the process and supply the missing headers.
-
-To get started:
-
-1. Setup:
-	diskutil apfs addVolume /dev/disk<N> "Case-sensitive APFS" linux
-
-	brew install coreutils findutils gnu-sed gnu-tar grep llvm make \
-	pkg-config
-	brew tap bee-headers/bee-headers
-	brew install bee-headers/bee-headers/bee-headers
-
-2. Build:
-	source bee-init
-	
-	make LLVM=1 defconfig
-	make LLVM=1 -j$(nproc)
-
-[1] Project: https://github.com/bee-headers
-[2] Documentation:
-https://github.com/bee-headers/homebrew-bee-headers/blob/main/README.md
-
-The changelog below has been refined to focus only on feedback related
-to the xe driver. Version 3 was submitted some time ago, and although
-some errors occurred in CI, they appear to be unrelated to the changes.
----
-Changes in v3 (RESEND):
-- Update cover letter and To/Cc list.
-- Rebase patch onto next-20250221.
-- Link to v3: https://lore.kernel.org/all/20240925-macos-build-support-v3-1-233dda880e60@samsung.com/
-Changes in v3:
-- Update drm/xe patch to replace program_invocation_short_name with
-argv[0] instead of using getprogname + ifdef as suggested by Masahiro.
-- Link to v2: https://lore.kernel.org/r/20240906-macos-build-support-v2-0-06beff418848@samsung.com
-
-Changes in v2:
-- Adapt xe_gen_wa_oob to solve getprogname()/
-program_invocation_short_name in runtime. as suggested by Lucas De
-Marchi.
-- Link to v1: https://lore.kernel.org/r/20240807-macos-build-support-v1-0-4cd1ded85694@samsung.com
----
- drivers/gpu/drm/xe/xe_gen_wa_oob.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_gen_wa_oob.c b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
-index 904cf47925aa1d5bc37983af83232d5e4697c49e..ed9183599e31cc9d76da3f22c9fb3884384a49bc 100644
---- a/drivers/gpu/drm/xe/xe_gen_wa_oob.c
-+++ b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
-@@ -28,10 +28,10 @@
- 	"\n" \
- 	"#endif\n"
- 
--static void print_usage(FILE *f)
-+static void print_usage(FILE *f, const char *progname)
- {
- 	fprintf(f, "usage: %s <input-rule-file> <generated-c-source-file> <generated-c-header-file>\n",
--		program_invocation_short_name);
-+		progname);
- }
- 
- static void print_parse_error(const char *err_msg, const char *line,
-@@ -144,7 +144,7 @@ int main(int argc, const char *argv[])
- 
- 	if (argc < 3) {
- 		fprintf(stderr, "ERROR: wrong arguments\n");
--		print_usage(stderr);
-+		print_usage(stderr, argv[0]);
- 		return 1;
- 	}
- 
-
----
-base-commit: d4b0fd87ff0d4338b259dc79b2b3c6f7e70e8afa
-change-id: 20250224-macos-build-support-xe-f017c84113b6
-
-Best regards,
--- 
-Daniel Gomez <da.gomez@samsung.com>
-
+Thanks, Tvrtko
