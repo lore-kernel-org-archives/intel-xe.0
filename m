@@ -4,55 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDABCC021BD
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C535FC021BE
 	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 13:43:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A181910E463;
-	Mon, 24 Feb 2025 13:42:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A343E10E3CB;
+	Mon, 24 Feb 2025 13:41:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IFRYuvcB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QKKV7gux";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4B8C10E13C;
- Mon, 24 Feb 2025 06:29:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F0A710E195;
+ Mon, 24 Feb 2025 09:07:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740378578; x=1771914578;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=OR1fNJ/2FSPDfyrpx8uFRA4Gb6MpClNXZ7TRI3F/hJI=;
- b=IFRYuvcBNioCmc5g7Jawpgtp4tNqBcRTU+E1ixPlc0oaX/iy1AT8QBgZ
- HXzMqZCGYZUZR6RW4Vp8Md0rh8bkQNR/yW5eRQ0kY6tGBzJ9v60hBlaLq
- W+85P7Qxd2bukYpCw6cBf1NzL/7kxv7MsfHmqtkGfUkgXGi19QKBxoD+d
- HqI/uYu0LeyQgkACAoKScnnrF1cHfaIW2uBD5Wc9X0WPat2nbSJrqEdGC
- z5bUrZJg4zmGYgg5ycICsy8O86iOPkpBmBkbGiz9xpfm9Lp5/VSJ0Fvqe
- J4w8eCJ0LbRvYXmx5FQ3BkUzgyx0sSNhbQrkfc8obpGcDmv5QqlIbUe5I A==;
-X-CSE-ConnectionGUID: Nt11tU4WQXmqYr51qs+tFw==
-X-CSE-MsgGUID: 2sTb9M5gSMWsoWwA5PisNQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="28719649"
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="28719649"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 22:29:37 -0800
-X-CSE-ConnectionGUID: jyE+K+x6TeCQPiG8M3r72A==
-X-CSE-MsgGUID: 1CqiRt7jSeyX+EVp68QALw==
+ t=1740388024; x=1771924024;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=t9ScBW2yGd9SWCJah/1Rmr+E/xvk0XmecLVjTv/K/qE=;
+ b=QKKV7guxd0dnByqMCDU9jDKQbn1SImQ+4ZmSpRy2h6Icgoh7L+LL6A6H
+ tWpYVOVzWWQaJsMgrPRfRVaXCldvOk/hnP25rnNt1L9Dd6umRgR+rGRKY
+ wlLMhT2RNrAOyaJh3A5gVuoier+uVz+lk+sN34O/8SOJn2vVu+miu7l2z
+ Wjh+u7dicxepwpPTTJVBAJ0BLAmvXk4wqwXzZUc9gYIMN2Vy5Gm2ESYrB
+ s+VUhLIUaFSWIs87RjFazUfZs4SiU3kuh1jPDIpRcv0Emb8bfj6xnEeBR
+ /Z6EB+4xFSuVFeplyZE0yrHTBZnVrySdK1z5h1+QMJOG0q9wD1FvfptDR g==;
+X-CSE-ConnectionGUID: mMxj7o/6RIW0+z1DgmXSeg==
+X-CSE-MsgGUID: YYTh02VZT2KHpJljSAPKOg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="63602423"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="63602423"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2025 01:07:04 -0800
+X-CSE-ConnectionGUID: 3Vz9sllbQgiaBgyPhfb/Bw==
+X-CSE-MsgGUID: ApkaIjXVTSqCaPH0MLeNaQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="120076483"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 22:29:37 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
- ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 04/20] drm/i915/vrr: Disable CMRR
-Date: Mon, 24 Feb 2025 11:47:01 +0530
-Message-ID: <20250224061717.1095226-5-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
-References: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="115979779"
+Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.133])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2025 01:07:00 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: gareth.yu@intel.com, intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, shawn.c.lee.intel.om@freedesktop.org,
+ william.tseng@intel.com, ankit.k.nautiyal@intel.com, Gareth Yu
+ <gareth.yu@intel.com>, Suraj Kandpal <suraj.kandpal@intel.com>, Juha-Pekka
+ Heikkil <juha-pekka.heikkila@intel.com>
+Subject: Re: [PATCH] drm/i915/vdsc: Correct the conditions of DSC1.1 and DSC
+ 1.2 for rc params calculation
+In-Reply-To: <20250221041401.2219258-1-gareth.yu@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250221041401.2219258-1-gareth.yu@intel.com>
+Date: Mon, 24 Feb 2025 11:06:57 +0200
+Message-ID: <87ldtv90em.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,31 +71,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Switching between variable and fixed timings is possible as for that we
-just need to flip between VRR timings. However for CMRR along with the
-timings, few other bits also need to be changed on the fly, which might
-cause issues. So disable CMRR for now, till we have variable and fixed
-timings sorted out.
+On Fri, 21 Feb 2025, gareth.yu@intel.com wrote:
+> From: Gareth Yu <gareth.yu@intel.com>
+>
+> The condition change is because Gen 14 begins to support DSC 1.2
+> and need to check if the sink supports DSC1.2
+>
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13719
+>
+> Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+> Cc: Juha-Pekka Heikkil <juha-pekka.heikkila@intel.com>
+> Signed-off-by: Gareth Yu <gareth.yu@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_vdsc.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> index b355c479eda3..555180e40b72 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> @@ -320,7 +320,7 @@ int intel_dsc_compute_params(struct intel_crtc_state *pipe_config)
+>  	 * upto uncompressed bpp-1, hence add calculations for all the rc
+>  	 * parameters
+>  	 */
+> -	if (DISPLAY_VER(dev_priv) >= 13) {
+> +	if ((DISPLAY_VER(dev_priv) >= 14) && (vdsc_cfg->dsc_version_minor >= 2)) {
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vrr.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Please do not add unnecessary parenthesis. They're a distraction.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 008a9c3e152d..0ee7fb0362ce 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -182,7 +182,8 @@ is_cmrr_frac_required(struct intel_crtc_state *crtc_state)
- 	int calculated_refresh_k, actual_refresh_k, pixel_clock_per_line;
- 	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
- 
--	if (!HAS_CMRR(display))
-+	/* Avoid CMRR for now till we have VRR with fixed timings working */
-+	if (!HAS_CMRR(display) || true)
- 		return false;
- 
- 	actual_refresh_k =
+BR,
+Jani.
+
+>  		calculate_rc_params(vdsc_cfg);
+>  	} else {
+>  		if ((compressed_bpp == 8 ||
+
 -- 
-2.45.2
-
+Jani Nikula, Intel
