@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEB64C021A4
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 13:44:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A779AC19776
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 13:44:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 411F310E56D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7DDE10E520;
 	Mon, 24 Feb 2025 13:42:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OlsCxdvz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bsER6BgB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C585410E120
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Feb 2025 10:12:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80BAC10E16F;
+ Mon, 24 Feb 2025 08:31:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740391953; x=1771927953;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=mh/fSHXilYrNH7Fl8V20WrjNKI7+s73KBJMAqscwRWQ=;
- b=OlsCxdvzN6spfWHHGSAvROt3epjfDxbKI++2motz0PgfXGxjzHaF25HW
- JfvXpDuDBKtqI5U8xP2Rax6pxiCmJ6VXCL1xkm2aUjTIO2mdtG4YnGQA1
- LPtaYm6pcsRcNgQKJvgOBZNCnXugJOUbbwRMoTrJYTccBJW8o3rCTcIUx
- 5WbuG1jLZ/BrhxJecr/8ieAHlTiSlvslGR4z8YWq7OaZlIsLcB/TaOAgV
- GLRWi5g/x5NTh0qV5OBb7q8UskcBA2EfsdCgJ8811+GcFYiQLKrCA6WQI
- jsTxi49FMim/hpzQK0nMLlSWkQNXYaTY1e/nje/uAym0ofMzWcETYAEk3 A==;
-X-CSE-ConnectionGUID: GN/n8UG/QA2mhU+Yx6FekQ==
-X-CSE-MsgGUID: SXEwxciQQm+VxDsirk2z1Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="41258588"
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="41258588"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ t=1740385864; x=1771921864;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=elte8tu8H+pnwhB4iHya55quWjD3aVcoWGZoci5ile8=;
+ b=bsER6BgBh8pVLq462TdEEqgA08U/IFRDBzHXI4pQsjijpBbTzIEtrymi
+ XldPA4LKxzFBJ7AIC85ekZFfYjyFRHFHlVfp/QybNXnaBCffkHGKxd+72
+ GGeDiGiSYunQTid3R8gzBo7DkuCd/D4tZ6JJAchVIZE5yVYKAlDG4nZFr
+ TMPtYU3Hz5JcOVaUIFp0jpjDoSYUqkZky/nxd7FSrETJg5L3N2DU9wCfj
+ zIlzs/DmeoaFWS1eFROYs3TXKkFGFzwNTeuYaI1GoK9A5dsQUH6Oxcyrg
+ PbTCcygMHLTCdx3yXHJGjV3x67W6V3V0EWnGWvgIpzCKRErbtPzmb/JKW Q==;
+X-CSE-ConnectionGUID: vo3KpufpTi6awo4kmn244Q==
+X-CSE-MsgGUID: fjsXGEmgSIG+k6KSHZRA6Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="41250281"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="41250281"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2025 02:12:33 -0800
-X-CSE-ConnectionGUID: gijl7rQrRkG/OpONTkb+eA==
-X-CSE-MsgGUID: OrfrSz4eRemrhQCag2zOlg==
+ 24 Feb 2025 00:31:04 -0800
+X-CSE-ConnectionGUID: 16MWtfkfQX2CBdeRsceGEg==
+X-CSE-MsgGUID: XVFxfl35R5yyGhJzpcK+Fg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="115860885"
-Received: from labhost1.iind.intel.com ([10.190.230.69])
- by orviesa010.jf.intel.com with ESMTP; 24 Feb 2025 02:12:31 -0800
-From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Wajdeczko?= <michal.wajdeczko@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Subject: [PATCH v5 0/2] Fix VFs resume errors
-Date: Mon, 24 Feb 2025 15:58:05 +0530
-Message-Id: <20250224102807.11065-1-satyanarayana.k.v.p@intel.com>
-X-Mailer: git-send-email 2.35.3
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="116630777"
+Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
+ by fmviesa009.fm.intel.com with ESMTP; 24 Feb 2025 00:31:01 -0800
+From: Animesh Manna <animesh.manna@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jouni.hogander@intel.com, jani.nikula@intel.com, jeevan.b@intel.com,
+ Animesh Manna <animesh.manna@intel.com>
+Subject: [PATCH v4 5/8] drm/i915/lobf: Add debug interface for lobf
+Date: Mon, 24 Feb 2025 13:38:44 +0530
+Message-Id: <20250224080847.326350-6-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.29.0
+In-Reply-To: <20250224080847.326350-1-animesh.manna@intel.com>
+References: <20250224080847.326350-1-animesh.manna@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,27 +67,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Establish a connection between the PF and VF to ensure that VFs only
-resume after the PF has resumed. Although the PF resumes, the VF reset
-and provisioning occur in a separate worker process. VFs begin resuming
-once the PF has completed its resumption.
+Add an interface in debugfs which will help in debugging LOBF
+feature.
 
-However, some VFs might attempt to resume before the provisioning is
-fully completed. In such cases, if a VF resume fails due to an MMIO
-request, retry the operation up to GUC_RESET_VF_STATE_RETRY_MAX times.
+v1: Initial version.
+v2:
+- Remove FORCE_EN flag. [Jouni]
+- Change prefix from I915 to INTEL. [Jani]
+- Use u8 instead of bool for lobf-debug flag. [Jani]
 
-Satyanarayana K V P (2):
-  drm/xe/pf: Create a link between PF and VF devices
-  drm/xe/vf: Retry sending MMIO request to GUC on timeout error
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_alpm.c     | 51 +++++++++++++++++++
+ .../drm/i915/display/intel_display_types.h    |  5 ++
+ 2 files changed, 56 insertions(+)
 
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c |  9 ++++-
- drivers/gpu/drm/xe/xe_pci_sriov.c   | 51 +++++++++++++++++++++++++++++
- 2 files changed, 59 insertions(+), 1 deletion(-)
-
-Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: Michał Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Michał Winiarski <michal.winiarski@intel.com>
-Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
+diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
+index 83719ee1721c..5c70677ac3c0 100644
+--- a/drivers/gpu/drm/i915/display/intel_alpm.c
++++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+@@ -276,6 +276,9 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
+ 	int waketime_in_lines, first_sdp_position;
+ 	int context_latency, guardband;
+ 
++	if (intel_dp->alpm_parameters.lobf_debug & INTEL_LOBF_DEBUG_DISABLE)
++		return;
++
+ 	if (!intel_dp_is_edp(intel_dp))
+ 		return;
+ 
+@@ -449,6 +452,51 @@ static int i915_edp_lobf_info_show(struct seq_file *m, void *data)
+ 
+ DEFINE_SHOW_ATTRIBUTE(i915_edp_lobf_info);
+ 
++static int
++i915_edp_lobf_debug_get(void *data, u64 *val)
++{
++	struct intel_display *display = data;
++	struct intel_encoder *encoder;
++	int ret = -ENODEV;
++
++	for_each_intel_dp(display->drm, encoder) {
++		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++
++		if (!intel_dp_is_edp(intel_dp))
++			return ret;
++
++		// TODO: split to each edp transcoder.
++		*val = READ_ONCE(intel_dp->alpm_parameters.lobf_debug);
++		ret = 0;
++	}
++
++	return ret;
++}
++
++static int
++i915_edp_lobf_debug_set(void *data, u64 val)
++{
++	struct intel_display *display = data;
++	struct intel_encoder *encoder;
++	int ret = -ENODEV;
++
++	for_each_intel_dp(display->drm, encoder) {
++		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++
++		if (!intel_dp_is_edp(intel_dp))
++			return ret;
++
++		// TODO: split to each edp transcoder.
++		intel_dp->alpm_parameters.lobf_debug = val;
++	}
++
++	return ret;
++}
++
++DEFINE_SIMPLE_ATTRIBUTE(i915_edp_lobf_debug_fops,
++			i915_edp_lobf_debug_get, i915_edp_lobf_debug_set,
++			"%llu\n");
++
+ void intel_alpm_lobf_debugfs_add(struct intel_connector *connector)
+ {
+ 	struct intel_display *display = to_intel_display(connector);
+@@ -458,6 +506,9 @@ void intel_alpm_lobf_debugfs_add(struct intel_connector *connector)
+ 	    connector->base.connector_type != DRM_MODE_CONNECTOR_eDP)
+ 		return;
+ 
++	debugfs_create_file("i915_edp_lobf_debug", 0644, root,
++			    connector, &i915_edp_lobf_debug_fops);
++
+ 	debugfs_create_file("i915_edp_lobf_info", 0444, root,
+ 			    connector, &i915_edp_lobf_info_fops);
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index b78721c451b8..b6ec9a8fadd9 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1808,6 +1808,11 @@ struct intel_dp {
+ 		u8 aux_less_wake_lines;
+ 		u8 silence_period_sym_clocks;
+ 		u8 lfps_half_cycle_num_of_syms;
++
++#define INTEL_LOBF_DEBUG_MODE_MASK		0x0f
++#define INTEL_LOBF_DEBUG_DEFAULT		0x00
++#define INTEL_LOBF_DEBUG_DISABLE		0x01
++		u8 lobf_debug;
+ 	} alpm_parameters;
+ 
+ 	u8 alpm_dpcd;
 -- 
-2.35.3
+2.29.0
 
