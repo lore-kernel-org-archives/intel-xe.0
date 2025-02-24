@@ -4,53 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A779AC19776
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 13:44:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FBF6C19F2F
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 13:44:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7DDE10E520;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBF6310E3E8;
 	Mon, 24 Feb 2025 13:42:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bsER6BgB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U/hix/Tu";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80BAC10E16F;
- Mon, 24 Feb 2025 08:31:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB25310E162;
+ Mon, 24 Feb 2025 09:31:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740385864; x=1771921864;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=elte8tu8H+pnwhB4iHya55quWjD3aVcoWGZoci5ile8=;
- b=bsER6BgBh8pVLq462TdEEqgA08U/IFRDBzHXI4pQsjijpBbTzIEtrymi
- XldPA4LKxzFBJ7AIC85ekZFfYjyFRHFHlVfp/QybNXnaBCffkHGKxd+72
- GGeDiGiSYunQTid3R8gzBo7DkuCd/D4tZ6JJAchVIZE5yVYKAlDG4nZFr
- TMPtYU3Hz5JcOVaUIFp0jpjDoSYUqkZky/nxd7FSrETJg5L3N2DU9wCfj
- zIlzs/DmeoaFWS1eFROYs3TXKkFGFzwNTeuYaI1GoK9A5dsQUH6Oxcyrg
- PbTCcygMHLTCdx3yXHJGjV3x67W6V3V0EWnGWvgIpzCKRErbtPzmb/JKW Q==;
-X-CSE-ConnectionGUID: vo3KpufpTi6awo4kmn244Q==
-X-CSE-MsgGUID: fjsXGEmgSIG+k6KSHZRA6Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="41250281"
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="41250281"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2025 00:31:04 -0800
-X-CSE-ConnectionGUID: 16MWtfkfQX2CBdeRsceGEg==
-X-CSE-MsgGUID: XVFxfl35R5yyGhJzpcK+Fg==
+ t=1740389503; x=1771925503;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=bfItUmQsB/7SrMr3C2eek7mPEaO9V90oXjAzGfWy8ro=;
+ b=U/hix/TuYB2ESB1hnubFZG5r+9LCeR5issTNzwXMwaCf6PsaEiodmVBi
+ B1DHiSyIdLLHQeFQgjWVH5ymlSrv20y+8MdxsacJt20OwCnMfeHFOmDJk
+ Ey66Wd1aPUyG8MgBJi4o/2EsBJ10aSRE02rAL1TKoimd7cATIDqJzpd3k
+ wqTzmBbR2d9EOo3NlPTipOuhYWnuHQpT/ntXhKqZKAAeJOecnFvrPtJLm
+ HoaSkCeHgI/s9FkW5vJTZS1STzdKXs0ruW85G9Zm8zzW5qxRF8M2sgFw+
+ GCleva53X0xON4s6SUz9NMP9IgawPK+vuLm7ZGL0divbdaOMyNJnQqX8s A==;
+X-CSE-ConnectionGUID: AUmf7WkQShWXiFjV805A0w==
+X-CSE-MsgGUID: 1vzxUyENSeyww5ffbNY/aA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="40373928"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="40373928"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2025 01:31:42 -0800
+X-CSE-ConnectionGUID: 2lv553+IQ5OMDgE5E4UMFw==
+X-CSE-MsgGUID: vcxsiu44ToimB+tBfy/q2A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="116630777"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by fmviesa009.fm.intel.com with ESMTP; 24 Feb 2025 00:31:01 -0800
-From: Animesh Manna <animesh.manna@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="115737655"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2025 01:31:41 -0800
+From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: jouni.hogander@intel.com, jani.nikula@intel.com, jeevan.b@intel.com,
- Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v4 5/8] drm/i915/lobf: Add debug interface for lobf
-Date: Mon, 24 Feb 2025 13:38:44 +0530
-Message-Id: <20250224080847.326350-6-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20250224080847.326350-1-animesh.manna@intel.com>
-References: <20250224080847.326350-1-animesh.manna@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH] drm/i915/dp_mst: Fix encoder HW state readout for UHBR MST
+Date: Mon, 24 Feb 2025 11:32:42 +0200
+Message-ID: <20250224093242.1859583-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.44.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,113 +65,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add an interface in debugfs which will help in debugging LOBF
-feature.
+The encoder HW/SW state verification should use a SW state which stays
+unchanged while the encoder/output is active. The intel_dp::is_mst flag
+used during state computation to choose between the DP SST/MST modes can
+change while the output is active, if the sink gets disconnected or the
+MST topology is removed for another reason. A subsequent state
+verification using intel_dp::is_mst leads then to a mismatch if the
+output is disabled/re-enabled without recomputing its state.
 
-v1: Initial version.
-v2:
-- Remove FORCE_EN flag. [Jouni]
-- Change prefix from I915 to INTEL. [Jani]
-- Use u8 instead of bool for lobf-debug flag. [Jani]
+Use the encoder's active MST link count instead, which will be always
+non-zero for an active MST output and will be zero for SST.
 
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+Fixes: 35d2e4b75649 ("drm/i915/ddi: start distinguishing 128b/132b SST and MST at state readout")
+Fixes: 40d489fac0e8 ("drm/i915/ddi: handle 128b/132b SST in intel_ddi_read_func_ctl()")
+Cc: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_alpm.c     | 51 +++++++++++++++++++
- .../drm/i915/display/intel_display_types.h    |  5 ++
- 2 files changed, 56 insertions(+)
+ drivers/gpu/drm/i915/display/intel_ddi.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index 83719ee1721c..5c70677ac3c0 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -276,6 +276,9 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
- 	int waketime_in_lines, first_sdp_position;
- 	int context_latency, guardband;
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 7937f4de66cb4..8c8b53414da67 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -890,7 +890,7 @@ static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
+ 			    encoder->base.base.id, encoder->base.name);
  
-+	if (intel_dp->alpm_parameters.lobf_debug & INTEL_LOBF_DEBUG_DISABLE)
-+		return;
-+
- 	if (!intel_dp_is_edp(intel_dp))
- 		return;
+ 	if (!mst_pipe_mask && dp128b132b_pipe_mask) {
+-		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++		struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
  
-@@ -449,6 +452,51 @@ static int i915_edp_lobf_info_show(struct seq_file *m, void *data)
+ 		/*
+ 		 * If we don't have 8b/10b MST, but have more than one
+@@ -902,7 +902,8 @@ static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
+ 		 * we don't expect MST to have been enabled at that point, and
+ 		 * can assume it's SST.
+ 		 */
+-		if (hweight8(dp128b132b_pipe_mask) > 1 || intel_dp->is_mst)
++		if (hweight8(dp128b132b_pipe_mask) > 1 ||
++		    intel_dp_mst_encoder_active_links(dig_port))
+ 			mst_pipe_mask = dp128b132b_pipe_mask;
+ 	}
  
- DEFINE_SHOW_ATTRIBUTE(i915_edp_lobf_info);
+@@ -4131,13 +4132,13 @@ static void intel_ddi_read_func_ctl(struct intel_encoder *encoder,
+ 	} else if (ddi_mode == TRANS_DDI_MODE_SELECT_DP_MST) {
+ 		intel_ddi_read_func_ctl_dp_mst(encoder, pipe_config, ddi_func_ctl);
+ 	} else if (ddi_mode == TRANS_DDI_MODE_SELECT_FDI_OR_128B132B && HAS_DP20(display)) {
+-		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++		struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
  
-+static int
-+i915_edp_lobf_debug_get(void *data, u64 *val)
-+{
-+	struct intel_display *display = data;
-+	struct intel_encoder *encoder;
-+	int ret = -ENODEV;
-+
-+	for_each_intel_dp(display->drm, encoder) {
-+		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-+
-+		if (!intel_dp_is_edp(intel_dp))
-+			return ret;
-+
-+		// TODO: split to each edp transcoder.
-+		*val = READ_ONCE(intel_dp->alpm_parameters.lobf_debug);
-+		ret = 0;
-+	}
-+
-+	return ret;
-+}
-+
-+static int
-+i915_edp_lobf_debug_set(void *data, u64 val)
-+{
-+	struct intel_display *display = data;
-+	struct intel_encoder *encoder;
-+	int ret = -ENODEV;
-+
-+	for_each_intel_dp(display->drm, encoder) {
-+		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-+
-+		if (!intel_dp_is_edp(intel_dp))
-+			return ret;
-+
-+		// TODO: split to each edp transcoder.
-+		intel_dp->alpm_parameters.lobf_debug = val;
-+	}
-+
-+	return ret;
-+}
-+
-+DEFINE_SIMPLE_ATTRIBUTE(i915_edp_lobf_debug_fops,
-+			i915_edp_lobf_debug_get, i915_edp_lobf_debug_set,
-+			"%llu\n");
-+
- void intel_alpm_lobf_debugfs_add(struct intel_connector *connector)
- {
- 	struct intel_display *display = to_intel_display(connector);
-@@ -458,6 +506,9 @@ void intel_alpm_lobf_debugfs_add(struct intel_connector *connector)
- 	    connector->base.connector_type != DRM_MODE_CONNECTOR_eDP)
- 		return;
- 
-+	debugfs_create_file("i915_edp_lobf_debug", 0644, root,
-+			    connector, &i915_edp_lobf_debug_fops);
-+
- 	debugfs_create_file("i915_edp_lobf_info", 0444, root,
- 			    connector, &i915_edp_lobf_info_fops);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index b78721c451b8..b6ec9a8fadd9 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1808,6 +1808,11 @@ struct intel_dp {
- 		u8 aux_less_wake_lines;
- 		u8 silence_period_sym_clocks;
- 		u8 lfps_half_cycle_num_of_syms;
-+
-+#define INTEL_LOBF_DEBUG_MODE_MASK		0x0f
-+#define INTEL_LOBF_DEBUG_DEFAULT		0x00
-+#define INTEL_LOBF_DEBUG_DISABLE		0x01
-+		u8 lobf_debug;
- 	} alpm_parameters;
- 
- 	u8 alpm_dpcd;
+ 		/*
+ 		 * If this is true, we know we're being called from mst stream
+ 		 * encoder's ->get_config().
+ 		 */
+-		if (intel_dp->is_mst)
++		if (intel_dp_mst_encoder_active_links(dig_port))
+ 			intel_ddi_read_func_ctl_dp_mst(encoder, pipe_config, ddi_func_ctl);
+ 		else
+ 			intel_ddi_read_func_ctl_dp_sst(encoder, pipe_config, ddi_func_ctl);
 -- 
-2.29.0
+2.44.2
 
