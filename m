@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B79BC021BB
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 17:00:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96871C021A4
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 17:00:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E408210E486;
-	Mon, 24 Feb 2025 17:00:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6243510E499;
+	Mon, 24 Feb 2025 17:00:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZlAvgkmp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jI0LbRBW";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0CF510E487
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 941CA10E486
  for <intel-xe@lists.freedesktop.org>; Mon, 24 Feb 2025 17:00:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1740416408; x=1771952408;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Z4jsTqolvVsKJeteN9mqF8/SRXNvTXwkjTs3in/R0M8=;
- b=ZlAvgkmpC5ZMX4y7HcmRADWYy/fucGlkH3vYBrNkxq2aS0VF+k9MJFN2
- ixPWVzwU2f+vrq+GLfY24S42pCCeAJFRlyzzVXINtX/J77OWtZVbgj9SY
- LGOS7Mgl2Gf/xpjb29xiTCICQ2dcAuQbavBBZ+DOtWW5ZALY5GjgTgjY4
- 9xtDWOhKvpoJKfTgK+A/F4WzvCIHzHOZpRpZkpVmta4mlp5KxSq9zAGAT
- 5D9WIWVfPYyaMupgl7iEm2EUighz+Dg1GICRBAYa4O+M1Rgux+s/iuNKY
- qT4AqSxJa9jeX2YBERW0E8dL2mFtxbo0c2N3xa+7IOOrO/eeeL6nV51Z4 Q==;
-X-CSE-ConnectionGUID: KDl1BYnuT1eiVi1qSQG2uw==
-X-CSE-MsgGUID: PfrQhMPuQlOX95D7vCtdZA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="44961300"
-X-IronPort-AV: E=Sophos;i="6.13,312,1732608000"; d="scan'208";a="44961300"
+ bh=CSNee9tZ47DEDf2M9tv2zfTVIqdx0jSrMNvjQAfpCxU=;
+ b=jI0LbRBWxYcyGjhOv+B9r6cq6Y6iO5lmmZUvesrmfla7iBiwbGYTF+YX
+ KW1kRKyLLdsBYz+O+oPUYfcdBlcRzr8ToIbqLggX8DHa9WDOKMAwaXjAc
+ OQS4u7irm5hfErzGPj6RVOl2YUhDOOqX/2U+ts1vGg60P2NeHkuEF0qQr
+ g99TJEhkfN6WxnaDh+oj4B1Jm/TjdWn41o6Hocjbfuy18RphckT3TygUE
+ 0stZq5xcRGMaqhGGa7ItuwEooEV7g7yk1Swp1yv4LPpmGYRj9FIuB/u3V
+ Z1SUqS2kBYaSZzq744xA/cWuOT4fKc3ilSJ1/W/m0e3WbkLlRzmzQ/7SV A==;
+X-CSE-ConnectionGUID: rTXjtXJJQsueWXVqhYfyTA==
+X-CSE-MsgGUID: 65ngU0DxTAWroShTMUhTSg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="44961297"
+X-IronPort-AV: E=Sophos;i="6.13,312,1732608000"; d="scan'208";a="44961297"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Feb 2025 09:00:08 -0800
-X-CSE-ConnectionGUID: /fKeA+3FRzOvVtLoya9CpQ==
-X-CSE-MsgGUID: vaDfZbNgRiib38tbRMTYgQ==
+X-CSE-ConnectionGUID: JVzA8wWNQYGtsxkCmweJ6A==
+X-CSE-MsgGUID: 0PEcmTPPTziSBBxcZUbu+A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,312,1732608000"; d="scan'208";a="116741790"
+X-IronPort-AV: E=Sophos;i="6.13,312,1732608000"; d="scan'208";a="116741785"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Feb 2025 09:00:07 -0800
@@ -45,9 +45,9 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: thomas.hellstrom@linux.intel.com,
 	matthew.auld@intel.com
-Subject: [PATCH v4 2/2] drm/xe: Add staging tree for VM binds
-Date: Mon, 24 Feb 2025 09:01:09 -0800
-Message-Id: <20250224170109.3078314-3-matthew.brost@intel.com>
+Subject: [PATCH v4 1/2] drm/xe: Userptr invalidation race with binds fixes
+Date: Mon, 24 Feb 2025 09:01:08 -0800
+Message-Id: <20250224170109.3078314-2-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250224170109.3078314-1-matthew.brost@intel.com>
 References: <20250224170109.3078314-1-matthew.brost@intel.com>
@@ -68,274 +68,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Concurrent VM bind staging and zapping of PTEs from a userptr notifier
-do not work because the view of PTEs is not stable. VM binds cannot
-acquire the notifier lock during staging, as memory allocations are
-required. To resolve this race condition, use a staging tree for VM
-binds that is committed only under the userptr notifier lock during the
-final step of the bind. This ensures a consistent view of the PTEs in
-the userptr notifier.
+Always wait on dma-resv bookkeep slots if userptr invalidation has raced
+with a bind ensuring PTEs temporally setup to invalidated pages are
+never accessed.
 
-A follow up may only use staging for VM in fault mode as this is the
-only mode in which the above race exists.
+Fixup initial bind handling always add VMAs to invalidation list and
+wait dma-resv bookkeep slots.
 
+Always hold notifier across TLB invalidation in notifier to prevent a
+UAF if an unbind races.
+
+Including all of the above changes for Fixes patch in hopes of an easier
+backport which fix a single patch.
+
+v2:
+ - Wait dma-resv bookkeep before issuing PTE zap (Thomas)
+ - Support scratch page on invalidation (Thomas)
 v3:
- - Drop zap PTE change (Thomas)
- - s/xe_pt_entry/xe_pt_entry_staging (Thomas)
+ - Drop clear of PTEs (Thomas)
+v4:
+ - Remove double dma-resv wait
 
-Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: <stable@vger.kernel.org>
 Fixes: e8babb280b5e ("drm/xe: Convert multiple bind ops into single job")
-Fixes: a708f6501c69 ("drm/xe: Update PT layer with better error handling")
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pt.c      | 58 +++++++++++++++++++++++----------
- drivers/gpu/drm/xe/xe_pt_walk.c |  3 +-
- drivers/gpu/drm/xe/xe_pt_walk.h |  4 +++
- 3 files changed, 46 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/xe/xe_pt.c | 21 ++++++++++++---------
+ drivers/gpu/drm/xe/xe_vm.c |  4 ++--
+ 2 files changed, 14 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index ffd23c3564c5..df4da8563cf0 100644
+index 1ddcc7e79a93..ffd23c3564c5 100644
 --- a/drivers/gpu/drm/xe/xe_pt.c
 +++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -28,6 +28,8 @@ struct xe_pt_dir {
- 	struct xe_pt pt;
- 	/** @children: Array of page-table child nodes */
- 	struct xe_ptw *children[XE_PDES];
-+	/** @staging: Array of page-table staging nodes */
-+	struct xe_ptw *staging[XE_PDES];
- };
+@@ -1215,9 +1215,6 @@ static int vma_check_userptr(struct xe_vm *vm, struct xe_vma *vma,
+ 	uvma = to_userptr_vma(vma);
+ 	notifier_seq = uvma->userptr.notifier_seq;
  
- #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_VM)
-@@ -48,9 +50,10 @@ static struct xe_pt_dir *as_xe_pt_dir(struct xe_pt *pt)
- 	return container_of(pt, struct xe_pt_dir, pt);
- }
- 
--static struct xe_pt *xe_pt_entry(struct xe_pt_dir *pt_dir, unsigned int index)
-+static struct xe_pt *
-+xe_pt_entry_staging(struct xe_pt_dir *pt_dir, unsigned int index)
- {
--	return container_of(pt_dir->children[index], struct xe_pt, base);
-+	return container_of(pt_dir->staging[index], struct xe_pt, base);
- }
- 
- static u64 __xe_pt_empty_pte(struct xe_tile *tile, struct xe_vm *vm,
-@@ -125,6 +128,7 @@ struct xe_pt *xe_pt_create(struct xe_vm *vm, struct xe_tile *tile,
- 	}
- 	pt->bo = bo;
- 	pt->base.children = level ? as_xe_pt_dir(pt)->children : NULL;
-+	pt->base.staging = level ? as_xe_pt_dir(pt)->staging : NULL;
- 
- 	if (vm->xef)
- 		xe_drm_client_add_bo(vm->xef->client, pt->bo);
-@@ -206,8 +210,8 @@ void xe_pt_destroy(struct xe_pt *pt, u32 flags, struct llist_head *deferred)
- 		struct xe_pt_dir *pt_dir = as_xe_pt_dir(pt);
- 
- 		for (i = 0; i < XE_PDES; i++) {
--			if (xe_pt_entry(pt_dir, i))
--				xe_pt_destroy(xe_pt_entry(pt_dir, i), flags,
-+			if (xe_pt_entry_staging(pt_dir, i))
-+				xe_pt_destroy(xe_pt_entry_staging(pt_dir, i), flags,
- 					      deferred);
- 		}
- 	}
-@@ -376,8 +380,10 @@ xe_pt_insert_entry(struct xe_pt_stage_bind_walk *xe_walk, struct xe_pt *parent,
- 		/* Continue building a non-connected subtree. */
- 		struct iosys_map *map = &parent->bo->vmap;
- 
--		if (unlikely(xe_child))
-+		if (unlikely(xe_child)) {
- 			parent->base.children[offset] = &xe_child->base;
-+			parent->base.staging[offset] = &xe_child->base;
-+		}
- 
- 		xe_pt_write(xe_walk->vm->xe, map, offset, pte);
- 		parent->num_live++;
-@@ -614,6 +620,7 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
- 			.ops = &xe_pt_stage_bind_ops,
- 			.shifts = xe_normal_pt_shifts,
- 			.max_level = XE_PT_HIGHEST_LEVEL,
-+			.staging = true,
- 		},
- 		.vm = xe_vma_vm(vma),
- 		.tile = tile,
-@@ -873,7 +880,7 @@ static void xe_pt_cancel_bind(struct xe_vma *vma,
- 	}
- }
- 
--static void xe_pt_commit_locks_assert(struct xe_vma *vma)
-+static void xe_pt_commit_prepare_locks_assert(struct xe_vma *vma)
- {
- 	struct xe_vm *vm = xe_vma_vm(vma);
- 
-@@ -885,6 +892,16 @@ static void xe_pt_commit_locks_assert(struct xe_vma *vma)
- 	xe_vm_assert_held(vm);
- }
- 
-+static void xe_pt_commit_locks_assert(struct xe_vma *vma)
-+{
-+	struct xe_vm *vm = xe_vma_vm(vma);
+-	if (uvma->userptr.initial_bind && !xe_vm_in_fault_mode(vm))
+-		return 0;
+-
+ 	if (!mmu_interval_read_retry(&uvma->userptr.notifier,
+ 				     notifier_seq) &&
+ 	    !xe_pt_userptr_inject_eagain(uvma))
+@@ -1226,6 +1223,8 @@ static int vma_check_userptr(struct xe_vm *vm, struct xe_vma *vma,
+ 	if (xe_vm_in_fault_mode(vm)) {
+ 		return -EAGAIN;
+ 	} else {
++		long err;
 +
-+	xe_pt_commit_prepare_locks_assert(vma);
+ 		spin_lock(&vm->userptr.invalidated_lock);
+ 		list_move_tail(&uvma->userptr.invalidate_link,
+ 			       &vm->userptr.invalidated);
+@@ -1234,19 +1233,23 @@ static int vma_check_userptr(struct xe_vm *vm, struct xe_vma *vma,
+ 		if (xe_vm_in_preempt_fence_mode(vm)) {
+ 			struct dma_resv_iter cursor;
+ 			struct dma_fence *fence;
+-			long err;
+ 
+ 			dma_resv_iter_begin(&cursor, xe_vm_resv(vm),
+ 					    DMA_RESV_USAGE_BOOKKEEP);
+ 			dma_resv_for_each_fence_unlocked(&cursor, fence)
+ 				dma_fence_enable_sw_signaling(fence);
+ 			dma_resv_iter_end(&cursor);
+-
+-			err = dma_resv_wait_timeout(xe_vm_resv(vm),
+-						    DMA_RESV_USAGE_BOOKKEEP,
+-						    false, MAX_SCHEDULE_TIMEOUT);
+-			XE_WARN_ON(err <= 0);
+ 		}
 +
-+	if (xe_vma_is_userptr(vma))
-+		lockdep_assert_held_read(&vm->userptr.notifier_lock);
-+}
++		/*
++		 * We are temporally installing PTEs pointing to invalidated
++		 * pages, ensure VM is idle to avoid data corruption. PTEs fixed
++		 * up upon next exec or in rebind worker.
++		 */
++		err = dma_resv_wait_timeout(xe_vm_resv(vm),
++					    DMA_RESV_USAGE_BOOKKEEP,
++					    false, MAX_SCHEDULE_TIMEOUT);
++		XE_WARN_ON(err <= 0);
+ 	}
+ 
+ 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 996000f2424e..9b2acb069a77 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -623,8 +623,6 @@ static bool vma_userptr_invalidate(struct mmu_interval_notifier *mni,
+ 		spin_unlock(&vm->userptr.invalidated_lock);
+ 	}
+ 
+-	up_write(&vm->userptr.notifier_lock);
+-
+ 	/*
+ 	 * Preempt fences turn into schedule disables, pipeline these.
+ 	 * Note that even in fault mode, we need to wait for binds and
+@@ -647,6 +645,8 @@ static bool vma_userptr_invalidate(struct mmu_interval_notifier *mni,
+ 		XE_WARN_ON(err);
+ 	}
+ 
++	up_write(&vm->userptr.notifier_lock);
 +
- static void xe_pt_commit(struct xe_vma *vma,
- 			 struct xe_vm_pgtable_update *entries,
- 			 u32 num_entries, struct llist_head *deferred)
-@@ -895,13 +912,17 @@ static void xe_pt_commit(struct xe_vma *vma,
+ 	trace_xe_vma_userptr_invalidate_complete(vma);
  
- 	for (i = 0; i < num_entries; i++) {
- 		struct xe_pt *pt = entries[i].pt;
-+		struct xe_pt_dir *pt_dir;
- 
- 		if (!pt->level)
- 			continue;
- 
-+		pt_dir = as_xe_pt_dir(pt);
- 		for (j = 0; j < entries[i].qwords; j++) {
- 			struct xe_pt *oldpte = entries[i].pt_entries[j].pt;
-+			int j_ = j + entries[i].ofs;
- 
-+			pt_dir->children[j_] = pt_dir->staging[j_];
- 			xe_pt_destroy(oldpte, xe_vma_vm(vma)->flags, deferred);
- 		}
- 	}
-@@ -913,7 +934,7 @@ static void xe_pt_abort_bind(struct xe_vma *vma,
- {
- 	int i, j;
- 
--	xe_pt_commit_locks_assert(vma);
-+	xe_pt_commit_prepare_locks_assert(vma);
- 
- 	for (i = num_entries - 1; i >= 0; --i) {
- 		struct xe_pt *pt = entries[i].pt;
-@@ -928,10 +949,10 @@ static void xe_pt_abort_bind(struct xe_vma *vma,
- 		pt_dir = as_xe_pt_dir(pt);
- 		for (j = 0; j < entries[i].qwords; j++) {
- 			u32 j_ = j + entries[i].ofs;
--			struct xe_pt *newpte = xe_pt_entry(pt_dir, j_);
-+			struct xe_pt *newpte = xe_pt_entry_staging(pt_dir, j_);
- 			struct xe_pt *oldpte = entries[i].pt_entries[j].pt;
- 
--			pt_dir->children[j_] = oldpte ? &oldpte->base : 0;
-+			pt_dir->staging[j_] = oldpte ? &oldpte->base : 0;
- 			xe_pt_destroy(newpte, xe_vma_vm(vma)->flags, NULL);
- 		}
- 	}
-@@ -943,7 +964,7 @@ static void xe_pt_commit_prepare_bind(struct xe_vma *vma,
- {
- 	u32 i, j;
- 
--	xe_pt_commit_locks_assert(vma);
-+	xe_pt_commit_prepare_locks_assert(vma);
- 
- 	for (i = 0; i < num_entries; i++) {
- 		struct xe_pt *pt = entries[i].pt;
-@@ -961,10 +982,10 @@ static void xe_pt_commit_prepare_bind(struct xe_vma *vma,
- 			struct xe_pt *newpte = entries[i].pt_entries[j].pt;
- 			struct xe_pt *oldpte = NULL;
- 
--			if (xe_pt_entry(pt_dir, j_))
--				oldpte = xe_pt_entry(pt_dir, j_);
-+			if (xe_pt_entry_staging(pt_dir, j_))
-+				oldpte = xe_pt_entry_staging(pt_dir, j_);
- 
--			pt_dir->children[j_] = &newpte->base;
-+			pt_dir->staging[j_] = &newpte->base;
- 			entries[i].pt_entries[j].pt = oldpte;
- 		}
- 	}
-@@ -1517,6 +1538,7 @@ static unsigned int xe_pt_stage_unbind(struct xe_tile *tile, struct xe_vma *vma,
- 			.ops = &xe_pt_stage_unbind_ops,
- 			.shifts = xe_normal_pt_shifts,
- 			.max_level = XE_PT_HIGHEST_LEVEL,
-+			.staging = true,
- 		},
- 		.tile = tile,
- 		.modified_start = xe_vma_start(vma),
-@@ -1558,7 +1580,7 @@ static void xe_pt_abort_unbind(struct xe_vma *vma,
- {
- 	int i, j;
- 
--	xe_pt_commit_locks_assert(vma);
-+	xe_pt_commit_prepare_locks_assert(vma);
- 
- 	for (i = num_entries - 1; i >= 0; --i) {
- 		struct xe_vm_pgtable_update *entry = &entries[i];
-@@ -1571,7 +1593,7 @@ static void xe_pt_abort_unbind(struct xe_vma *vma,
- 			continue;
- 
- 		for (j = entry->ofs; j < entry->ofs + entry->qwords; j++)
--			pt_dir->children[j] =
-+			pt_dir->staging[j] =
- 				entries[i].pt_entries[j - entry->ofs].pt ?
- 				&entries[i].pt_entries[j - entry->ofs].pt->base : NULL;
- 	}
-@@ -1584,7 +1606,7 @@ xe_pt_commit_prepare_unbind(struct xe_vma *vma,
- {
- 	int i, j;
- 
--	xe_pt_commit_locks_assert(vma);
-+	xe_pt_commit_prepare_locks_assert(vma);
- 
- 	for (i = 0; i < num_entries; ++i) {
- 		struct xe_vm_pgtable_update *entry = &entries[i];
-@@ -1598,8 +1620,8 @@ xe_pt_commit_prepare_unbind(struct xe_vma *vma,
- 		pt_dir = as_xe_pt_dir(pt);
- 		for (j = entry->ofs; j < entry->ofs + entry->qwords; j++) {
- 			entry->pt_entries[j - entry->ofs].pt =
--				xe_pt_entry(pt_dir, j);
--			pt_dir->children[j] = NULL;
-+				xe_pt_entry_staging(pt_dir, j);
-+			pt_dir->staging[j] = NULL;
- 		}
- 	}
- }
-diff --git a/drivers/gpu/drm/xe/xe_pt_walk.c b/drivers/gpu/drm/xe/xe_pt_walk.c
-index b8b3d2aea492..be602a763ff3 100644
---- a/drivers/gpu/drm/xe/xe_pt_walk.c
-+++ b/drivers/gpu/drm/xe/xe_pt_walk.c
-@@ -74,7 +74,8 @@ int xe_pt_walk_range(struct xe_ptw *parent, unsigned int level,
- 		     u64 addr, u64 end, struct xe_pt_walk *walk)
- {
- 	pgoff_t offset = xe_pt_offset(addr, level, walk);
--	struct xe_ptw **entries = parent->children ? parent->children : NULL;
-+	struct xe_ptw **entries = walk->staging ? (parent->staging ?: NULL) :
-+		(parent->children ?: NULL);
- 	const struct xe_pt_walk_ops *ops = walk->ops;
- 	enum page_walk_action action;
- 	struct xe_ptw *child;
-diff --git a/drivers/gpu/drm/xe/xe_pt_walk.h b/drivers/gpu/drm/xe/xe_pt_walk.h
-index 5ecc4d2f0f65..5c02c244f7de 100644
---- a/drivers/gpu/drm/xe/xe_pt_walk.h
-+++ b/drivers/gpu/drm/xe/xe_pt_walk.h
-@@ -11,12 +11,14 @@
- /**
-  * struct xe_ptw - base class for driver pagetable subclassing.
-  * @children: Pointer to an array of children if any.
-+ * @staging: Pointer to an array of staging if any.
-  *
-  * Drivers could subclass this, and if it's a page-directory, typically
-  * embed an array of xe_ptw pointers.
-  */
- struct xe_ptw {
- 	struct xe_ptw **children;
-+	struct xe_ptw **staging;
- };
- 
- /**
-@@ -41,6 +43,8 @@ struct xe_pt_walk {
- 	 * as shared pagetables.
- 	 */
- 	bool shared_pt_mode;
-+	/** @staging: Walk staging PT structure */
-+	bool staging;
- };
- 
- /**
+ 	return true;
 -- 
 2.34.1
 
