@@ -4,56 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B017C021BC
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 13:44:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05132C021B5
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 13:44:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4782A10E52A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9660A10E562;
 	Mon, 24 Feb 2025 13:42:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jRRly6Ad";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Brk7gn4R";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2F1A10E10B
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Feb 2025 03:23:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D52510E07A
+ for <intel-xe@lists.freedesktop.org>; Mon, 24 Feb 2025 07:46:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740367417; x=1771903417;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=VbTHjmX8LpnroydqECvxaK884cE7+mT0AV8hTfDycm4=;
- b=jRRly6AdmVWN0iZ+r+40Kar5hRuDolVIKrGuhcc2vPu8Hbfmv1acmyya
- fybSo/isnSRfzK9Z8ll+Dn3dBHIpb+0qNvljJFsAmuiTAtXBRcP3V45in
- nN/pzX4dCbuo3QOVUOP7yoq5S61nyO8w2GTA6oIIdlnbVU5dqKKEBayX/
- ksIJkNuU1mwaXWROz4IICYaTIG3oN14cg51vKnrkWYp/SIY+wLCPUEUWO
- GhZeDWVuCmPTCIcfM7SnPzny20JWgBYBN0EblFZ/MpSBRkr96ON7HqPhj
- kqiyzQrgvX4p43jJZxT9qi4yUvCf3Odwp+fNAxXJpQOUksRZFdnI4zDYf Q==;
-X-CSE-ConnectionGUID: p/JQL0TESsuHMu0VJtw0aA==
-X-CSE-MsgGUID: YAY7LwcTR2aUcvNrUHdWcw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="41126881"
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="41126881"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 19:23:36 -0800
-X-CSE-ConnectionGUID: xGXl2zmtRMWTQyIDZPSmow==
-X-CSE-MsgGUID: ZQ2iof0dTau7RMAbcJOWqw==
+ t=1740383193; x=1771919193;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=M2yScV3GG4ONwzjQjVGsusfcFblsbBT/tChANAkzI94=;
+ b=Brk7gn4RF9GwZ/10ZnSLRU8pqjN6MhT5IPiTLGqDCtz3QED20YSq+ZzC
+ u4lLligP9ywB+1kC5jl3O3wkeIv60XMOKfMGFO4QnEYYhvwNyjPGI2vxv
+ Ta0QYG2HbXm360jIIJlA9R54tufiDxttXHkFR3HQTz4QkkN/P+CXKHwIN
+ q4pAZiR5QBAVXkN5dNIwF2l1YU9fVneBL6N6N11mp/5YnpuiHYfXeLdmD
+ wvX617tShj6ET4gpiKPAqt8yCUPVxT/yM/mPLDUAzVy7A2TFlwehsmXl3
+ MuMc/ornO9xAw070GJxYu+G4W4SOgiu+nD7XWcdcj8ZYogW7ktaCQ0djw w==;
+X-CSE-ConnectionGUID: sL8kBlsqT56TH13c5EytHw==
+X-CSE-MsgGUID: i4/bqIV1SCCdU5kmeSNrbA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="40314723"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="40314723"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2025 23:46:32 -0800
+X-CSE-ConnectionGUID: 9q9RgEaOThK5aF5oS22Tcg==
+X-CSE-MsgGUID: d85W1EnmRoubd2G5lBAIHQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="115907821"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 19:23:37 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: thomas.hellstrom@linux.intel.com,
-	matthew.auld@intel.com
-Subject: [PATCH v2 2/3] drm/xe: Userptr invalidation race with binds fixes
-Date: Sun, 23 Feb 2025 19:24:37 -0800
-Message-Id: <20250224032438.3025464-3-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250224032438.3025464-1-matthew.brost@intel.com>
-References: <20250224032438.3025464-1-matthew.brost@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="120899415"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2025 23:46:26 -0800
+Date: Mon, 24 Feb 2025 09:46:20 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: "Poosa, Karthik" <karthik.poosa@intel.com>
+Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
+ matthew.d.roper@intel.com, andi.shyti@linux.intel.com,
+ intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ riana.tauro@intel.com, badal.nilawar@intel.com
+Subject: Re: [PATCH v1] drm/xe/hwmon: expose fan speed
+Message-ID: <Z7wjzKB1yF9AV5PA@black.fi.intel.com>
+References: <20250210100515.2205584-1-raag.jadav@intel.com>
+ <bbda9792-7126-4961-8767-b435780f0cff@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <bbda9792-7126-4961-8767-b435780f0cff@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,351 +70,191 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Squash bind operation after userptr invalidation into a clearing of
-PTEs. Will prevent valid GPU page tables from pointing to stale CPU
-pages.
+On Fri, Feb 21, 2025 at 08:32:01PM +0530, Poosa, Karthik wrote:
+> On 10-02-2025 15:35, Raag Jadav wrote:
+> > Add hwmon support for fan1_input, fan2_input and fan3_input attributes,
+> > which will expose fan speed of respective channels in RPM when supported
+> > by hardware. With this in place we can monitor fan speed using lm-sensors
+> > tool.
+> > 
+> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> > ---
+> >   .../ABI/testing/sysfs-driver-intel-xe-hwmon   |  24 ++++
+> >   drivers/gpu/drm/xe/regs/xe_pcode_regs.h       |   3 +
+> >   drivers/gpu/drm/xe/xe_hwmon.c                 | 124 +++++++++++++++++-
+> >   drivers/gpu/drm/xe/xe_pcode_api.h             |   3 +
+> >   4 files changed, 153 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+> > index 9bce281314df..adbb9bce15a5 100644
+> > --- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+> > +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+> > @@ -124,3 +124,27 @@ Contact:	intel-xe@lists.freedesktop.org
+> >   Description:	RO. VRAM temperature in millidegree Celsius.
+> >   		Only supported for particular Intel Xe graphics platforms.
+> > +
+> > +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/fan1_input
+> > +Date:		March 2025
+> > +KernelVersion:	6.14
+> > +Contact:	intel-xe@lists.freedesktop.org
+> > +Description:	RO. Fan 1 speed in RPM.
+> > +
+> > +		Only supported for particular Intel Xe graphics platforms.
+> > +
+> > +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/fan2_input
+> > +Date:		March 2025
+> > +KernelVersion:	6.14
+> > +Contact:	intel-xe@lists.freedesktop.org
+> > +Description:	RO. Fan 2 speed in RPM.
+> > +
+> > +		Only supported for particular Intel Xe graphics platforms.
+> > +
+> > +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/fan3_input
+> > +Date:		March 2025
+> > +KernelVersion:	6.14
+> > +Contact:	intel-xe@lists.freedesktop.org
+> > +Description:	RO. Fan 3 speed in RPM.
+> > +
+> > +		Only supported for particular Intel Xe graphics platforms.
+> > diff --git a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+> > index 8846eb9ce2a4..c7d5d782e3f9 100644
+> > --- a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+> > +++ b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+> > @@ -21,6 +21,9 @@
+> >   #define BMG_PACKAGE_POWER_SKU			XE_REG(0x138098)
+> >   #define BMG_PACKAGE_POWER_SKU_UNIT		XE_REG(0x1380dc)
+> >   #define BMG_PACKAGE_ENERGY_STATUS		XE_REG(0x138120)
+> > +#define BMG_FAN_1_SPEED				XE_REG(0x138140)
+> > +#define BMG_FAN_2_SPEED				XE_REG(0x138170)
+> > +#define BMG_FAN_3_SPEED				XE_REG(0x1381a0)
+> 
+> Can you rename macros without having platform names, as this register is
+> available for both DG2 and BMG, like FAN_1_SPEED.
 
-Fixup initial bind handling always add VMAs to invalidation list and
-clear PTEs.
+Are you sure if we want to break the convention here?
 
-Remove unused rebind variable in xe_pt.
+> >   #define BMG_VRAM_TEMPERATURE			XE_REG(0x1382c0)
+> >   #define BMG_PACKAGE_TEMPERATURE			XE_REG(0x138434)
+> >   #define BMG_PACKAGE_RAPL_LIMIT			XE_REG(0x138440)
+> > diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+> > index 7f327e334212..f1f95655d9fb 100644
+> > --- a/drivers/gpu/drm/xe/xe_hwmon.c
+> > +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+> > @@ -5,6 +5,7 @@
+> >   #include <linux/hwmon-sysfs.h>
+> >   #include <linux/hwmon.h>
+> > +#include <linux/jiffies.h>
+> >   #include <linux/types.h>
+> >   #include <linux/units.h>
+> > @@ -27,6 +28,7 @@ enum xe_hwmon_reg {
+> >   	REG_PKG_POWER_SKU_UNIT,
+> >   	REG_GT_PERF_STATUS,
+> >   	REG_PKG_ENERGY_STATUS,
+> > +	REG_FAN_SPEED,
+> >   };
+> >   enum xe_hwmon_reg_operation {
+> > @@ -42,6 +44,13 @@ enum xe_hwmon_channel {
+> >   	CHANNEL_MAX,
+> >   };
+> > +enum xe_fan_channel {
+> > +	FAN_1,
+> > +	FAN_2,
+> > +	FAN_3,
+> > +	FAN_MAX,
+> > +};
+> > +
+> >   /*
+> >    * SF_* - scale factors for particular quantities according to hwmon spec.
+> >    */
+> > @@ -61,6 +70,16 @@ struct xe_hwmon_energy_info {
+> >   	long accum_energy;
+> >   };
+> > +/**
+> > + * struct xe_hwmon_fan_info - to cache previous fan reading
+> > + */
+> > +struct xe_hwmon_fan_info {
+> > +	/** @reg_val_prev: previous fan reg val */
+> > +	u32 reg_val_prev;
+> > +	/** @time_prev: previous timestamp */
+> > +	u64 time_prev;
+> > +};
+> > +
+> >   /**
+> >    * struct xe_hwmon - xe hwmon data structure
+> >    */
+> > @@ -79,6 +98,8 @@ struct xe_hwmon {
+> >   	int scl_shift_time;
+> >   	/** @ei: Energy info for energyN_input */
+> >   	struct xe_hwmon_energy_info ei[CHANNEL_MAX];
+> > +	/** @fi: Fan info for fanN_input */
+> > +	struct xe_hwmon_fan_info fi[FAN_MAX];
+> >   };
+> >   static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon_reg,
+> > @@ -144,6 +165,16 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg
+> >   			return PCU_CR_PACKAGE_ENERGY_STATUS;
+> >   		}
+> >   		break;
+> > +	case REG_FAN_SPEED:
+> > +		if (xe->info.platform == XE_BATTLEMAGE || xe->info.platform == XE_DG2) {
+> > +			if (channel == FAN_1)
+> > +				return BMG_FAN_1_SPEED;
+> > +			else if (channel == FAN_2)
+> > +				return BMG_FAN_2_SPEED;
+> > +			else if (channel == FAN_3)
+> > +				return BMG_FAN_3_SPEED;
+> > +		}
+> > +		break;
+> >   	default:
+> >   		drm_warn(&xe->drm, "Unknown xe hwmon reg id: %d\n", hwmon_reg);
+> >   		break;
+> > @@ -454,6 +485,7 @@ static const struct hwmon_channel_info * const hwmon_info[] = {
+> >   	HWMON_CHANNEL_INFO(curr, HWMON_C_LABEL, HWMON_C_CRIT | HWMON_C_LABEL),
+> >   	HWMON_CHANNEL_INFO(in, HWMON_I_INPUT | HWMON_I_LABEL, HWMON_I_INPUT | HWMON_I_LABEL),
+> >   	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT | HWMON_E_LABEL, HWMON_E_INPUT | HWMON_E_LABEL),
+> > +	HWMON_CHANNEL_INFO(fan, HWMON_F_INPUT, HWMON_F_INPUT, HWMON_F_INPUT),
+> >   	NULL
+> >   };
+> > @@ -480,6 +512,14 @@ static int xe_hwmon_pcode_write_i1(const struct xe_hwmon *hwmon, u32 uval)
+> >   			      (uval & POWER_SETUP_I1_DATA_MASK));
+> >   }
+> > +static int xe_hwmon_pcode_read_num_fans(const struct xe_hwmon *hwmon, u32 *uval)
+> > +{
+> > +	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
+> > +
+> > +	return xe_pcode_read(root_tile, PCODE_MBOX(FAN_SPEED_CONTROL,
+> > +			     FSC_READ_NUM_FANS, 0), uval, NULL);
+> > +}
+> > +
+> >   static int xe_hwmon_power_curr_crit_read(struct xe_hwmon *hwmon, int channel,
+> >   					 long *value, u32 scale_factor)
+> >   {
+> > @@ -705,6 +745,77 @@ xe_hwmon_energy_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
+> >   	}
+> >   }
+> > +static umode_t
+> > +xe_hwmon_fan_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+> > +{
+> > +	struct xe_device *xe = hwmon->xe;
+> > +	u32 uval;
+> > +
+> > +	switch (attr) {
+> > +	case hwmon_fan_input:
+> > +		if (xe_hwmon_pcode_read_num_fans(hwmon, &uval))
+> > +			return 0;
+> > +
+> > +		/* Platforms that don't return correct value */
+> This can be rephrased to - "Platforms that don't support fan pcode mailbox
+> cmds"
 
-Always hold notifier across TLB invalidation in notifier to prevent a
-UAF if an unbind races.
+We wouldn't be at this point if it was not supported.
 
-Including all of the above changes for Fixes patch in hopes of an easier
-backport which fix a single patch.
+> > +		if (xe->info.platform == XE_DG2)
+> > +			uval = 2;
+> > +
+> > +		return channel < uval ? 0444 : 0;
+> > +	default:
+> > +		return 0;
+> > +	}
+> > +}
 
-v2:
- - Wait dma-resv bookkeep before issuing PTE zap (Thomas)
- - Support scratch page on invalidation (Thomas)
-
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: <stable@vger.kernel.org>
-Fixes: e8babb280b5e ("drm/xe: Convert multiple bind ops into single job")
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_pt.c       | 146 +++++++++++++++++++++++--------
- drivers/gpu/drm/xe/xe_pt_types.h |   3 +-
- drivers/gpu/drm/xe/xe_vm.c       |   4 +-
- 3 files changed, 115 insertions(+), 38 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 1ddcc7e79a93..add521b5c6ae 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -351,7 +351,8 @@ xe_pt_new_shared(struct xe_walk_update *wupd, struct xe_pt *parent,
-  */
- static int
- xe_pt_insert_entry(struct xe_pt_stage_bind_walk *xe_walk, struct xe_pt *parent,
--		   pgoff_t offset, struct xe_pt *xe_child, u64 pte)
-+		   pgoff_t offset, struct xe_pt *xe_child, u64 pte,
-+		   unsigned int level)
- {
- 	struct xe_pt_update *upd = &xe_walk->wupd.updates[parent->level];
- 	struct xe_pt_update *child_upd = xe_child ?
-@@ -389,6 +390,9 @@ xe_pt_insert_entry(struct xe_pt_stage_bind_walk *xe_walk, struct xe_pt *parent,
- 		idx = offset - entry->ofs;
- 		entry->pt_entries[idx].pt = xe_child;
- 		entry->pt_entries[idx].pte = pte;
-+		entry->pt_entries[idx].level = level;
-+		if (likely(!xe_child))
-+			entry->pt_entries[idx].level |= XE_PT_IS_LEAF;
- 		entry->qwords++;
- 	}
- 
-@@ -515,7 +519,8 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
- 			}
- 		}
- 
--		ret = xe_pt_insert_entry(xe_walk, xe_parent, offset, NULL, pte);
-+		ret = xe_pt_insert_entry(xe_walk, xe_parent, offset, NULL, pte,
-+					 level);
- 		if (unlikely(ret))
- 			return ret;
- 
-@@ -571,7 +576,7 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
- 
- 		pte = vm->pt_ops->pde_encode_bo(xe_child->bo, 0, pat_index) | flags;
- 		ret = xe_pt_insert_entry(xe_walk, xe_parent, offset, xe_child,
--					 pte);
-+					 pte, level);
- 	}
- 
- 	*action = ACTION_SUBTREE;
-@@ -752,6 +757,10 @@ struct xe_pt_zap_ptes_walk {
- 	/* Input parameters for the walk */
- 	/** @tile: The tile we're building for */
- 	struct xe_tile *tile;
-+	/** @vm: VM we're building for */
-+	struct xe_vm *vm;
-+	/** @scratch: write entries with scratch */
-+	bool scratch;
- 
- 	/* Output */
- 	/** @needs_invalidate: Whether we need to invalidate TLB*/
-@@ -779,9 +788,18 @@ static int xe_pt_zap_ptes_entry(struct xe_ptw *parent, pgoff_t offset,
- 	 */
- 	if (xe_pt_nonshared_offsets(addr, next, --level, walk, action, &offset,
- 				    &end_offset)) {
--		xe_map_memset(tile_to_xe(xe_walk->tile), &xe_child->bo->vmap,
--			      offset * sizeof(u64), 0,
--			      (end_offset - offset) * sizeof(u64));
-+		if (unlikely(xe_walk->scratch)) {
-+			u64 pte = __xe_pt_empty_pte(xe_walk->tile, xe_walk->vm,
-+						    level);
-+
-+			for (; offset < end_offset; ++offset)
-+				xe_pt_write(tile_to_xe(xe_walk->tile),
-+					    &xe_child->bo->vmap, offset, pte);
-+		} else {
-+			xe_map_memset(tile_to_xe(xe_walk->tile), &xe_child->bo->vmap,
-+				      offset * sizeof(u64), 0,
-+				      (end_offset - offset) * sizeof(u64));
-+		}
- 		xe_walk->needs_invalidate = true;
- 	}
- 
-@@ -792,6 +810,31 @@ static const struct xe_pt_walk_ops xe_pt_zap_ptes_ops = {
- 	.pt_entry = xe_pt_zap_ptes_entry,
- };
- 
-+struct xe_pt_zap_ptes_flags {
-+	bool scratch:1;
-+};
-+
-+static bool __xe_pt_zap_ptes(struct xe_tile *tile, struct xe_vma *vma,
-+			     struct xe_pt_zap_ptes_flags flags)
-+{
-+	struct xe_pt_zap_ptes_walk xe_walk = {
-+		.base = {
-+			.ops = &xe_pt_zap_ptes_ops,
-+			.shifts = xe_normal_pt_shifts,
-+			.max_level = XE_PT_HIGHEST_LEVEL,
-+		},
-+		.tile = tile,
-+		.vm = xe_vma_vm(vma),
-+		.scratch = flags.scratch,
-+	};
-+	struct xe_pt *pt = xe_vma_vm(vma)->pt_root[tile->id];
-+
-+	(void)xe_pt_walk_shared(&pt->base, pt->level, xe_vma_start(vma),
-+				xe_vma_end(vma), &xe_walk.base);
-+
-+	return xe_walk.needs_invalidate;
-+}
-+
- /**
-  * xe_pt_zap_ptes() - Zap (zero) gpu ptes of an address range
-  * @tile: The tile we're zapping for.
-@@ -810,24 +853,13 @@ static const struct xe_pt_walk_ops xe_pt_zap_ptes_ops = {
-  */
- bool xe_pt_zap_ptes(struct xe_tile *tile, struct xe_vma *vma)
- {
--	struct xe_pt_zap_ptes_walk xe_walk = {
--		.base = {
--			.ops = &xe_pt_zap_ptes_ops,
--			.shifts = xe_normal_pt_shifts,
--			.max_level = XE_PT_HIGHEST_LEVEL,
--		},
--		.tile = tile,
--	};
--	struct xe_pt *pt = xe_vma_vm(vma)->pt_root[tile->id];
-+	struct xe_pt_zap_ptes_flags flags = {};
- 	u8 pt_mask = (vma->tile_present & ~vma->tile_invalidated);
- 
- 	if (!(pt_mask & BIT(tile->id)))
- 		return false;
- 
--	(void)xe_pt_walk_shared(&pt->base, pt->level, xe_vma_start(vma),
--				xe_vma_end(vma), &xe_walk.base);
--
--	return xe_walk.needs_invalidate;
-+	return __xe_pt_zap_ptes(tile, vma, flags);
- }
- 
- static void
-@@ -1201,7 +1233,46 @@ static bool xe_pt_userptr_inject_eagain(struct xe_userptr_vma *uvma)
- 
- #endif
- 
--static int vma_check_userptr(struct xe_vm *vm, struct xe_vma *vma,
-+static void
-+vma_convert_to_invalidation(struct xe_tile *tile, struct xe_vma *vma,
-+			    struct xe_vm_pgtable_update_ops *pt_update)
-+{
-+	struct xe_pt_zap_ptes_flags flags = { .scratch = true, };
-+	int i, j, k;
-+
-+	/*
-+	 * Need to update this function to bypass scratch setup if in fault mode
-+	 */
-+	xe_assert(xe_vma_vm(vma)->xe, !xe_vm_in_fault_mode(xe_vma_vm(vma)));
-+
-+	for (i = 0; i < pt_update->current_op; ++i) {
-+		struct xe_vm_pgtable_update_op *op = &pt_update->ops[i];
-+
-+		if (vma != op->vma || (!op->bind && !op->rebind))
-+			continue;
-+
-+		for (j = 0; j < op->num_entries; ++j) {
-+			for (k = 0; k < op->entries[j].qwords; ++k) {
-+				struct xe_pt_entry *entry =
-+					&op->entries[j].pt_entries[k];
-+				unsigned int level = entry->level;
-+
-+				if (!(level & XE_PT_IS_LEAF))
-+					continue;
-+
-+				level &= ~XE_PT_IS_LEAF;
-+				entry->pte = __xe_pt_empty_pte(tile,
-+							       xe_vma_vm(vma),
-+							       level);
-+			}
-+		}
-+	}
-+
-+	__xe_pt_zap_ptes(tile, vma, flags);
-+}
-+
-+static int vma_check_userptr(struct xe_tile *tile, struct xe_vm *vm,
-+			     struct xe_vma *vma,
- 			     struct xe_vm_pgtable_update_ops *pt_update)
- {
- 	struct xe_userptr_vma *uvma;
-@@ -1215,9 +1286,6 @@ static int vma_check_userptr(struct xe_vm *vm, struct xe_vma *vma,
- 	uvma = to_userptr_vma(vma);
- 	notifier_seq = uvma->userptr.notifier_seq;
- 
--	if (uvma->userptr.initial_bind && !xe_vm_in_fault_mode(vm))
--		return 0;
--
- 	if (!mmu_interval_read_retry(&uvma->userptr.notifier,
- 				     notifier_seq) &&
- 	    !xe_pt_userptr_inject_eagain(uvma))
-@@ -1226,6 +1294,8 @@ static int vma_check_userptr(struct xe_vm *vm, struct xe_vma *vma,
- 	if (xe_vm_in_fault_mode(vm)) {
- 		return -EAGAIN;
- 	} else {
-+		long err;
-+
- 		spin_lock(&vm->userptr.invalidated_lock);
- 		list_move_tail(&uvma->userptr.invalidate_link,
- 			       &vm->userptr.invalidated);
-@@ -1234,25 +1304,27 @@ static int vma_check_userptr(struct xe_vm *vm, struct xe_vma *vma,
- 		if (xe_vm_in_preempt_fence_mode(vm)) {
- 			struct dma_resv_iter cursor;
- 			struct dma_fence *fence;
--			long err;
- 
- 			dma_resv_iter_begin(&cursor, xe_vm_resv(vm),
- 					    DMA_RESV_USAGE_BOOKKEEP);
- 			dma_resv_for_each_fence_unlocked(&cursor, fence)
- 				dma_fence_enable_sw_signaling(fence);
- 			dma_resv_iter_end(&cursor);
--
--			err = dma_resv_wait_timeout(xe_vm_resv(vm),
--						    DMA_RESV_USAGE_BOOKKEEP,
--						    false, MAX_SCHEDULE_TIMEOUT);
--			XE_WARN_ON(err <= 0);
- 		}
-+
-+		err = dma_resv_wait_timeout(xe_vm_resv(vm),
-+					    DMA_RESV_USAGE_BOOKKEEP,
-+					    false, MAX_SCHEDULE_TIMEOUT);
-+		XE_WARN_ON(err <= 0);
-+
-+		vma_convert_to_invalidation(tile, vma, pt_update);
- 	}
- 
- 	return 0;
- }
- 
--static int op_check_userptr(struct xe_vm *vm, struct xe_vma_op *op,
-+static int op_check_userptr(struct xe_tile *tile, struct xe_vm *vm,
-+			    struct xe_vma_op *op,
- 			    struct xe_vm_pgtable_update_ops *pt_update)
- {
- 	int err = 0;
-@@ -1264,18 +1336,21 @@ static int op_check_userptr(struct xe_vm *vm, struct xe_vma_op *op,
- 		if (!op->map.immediate && xe_vm_in_fault_mode(vm))
- 			break;
- 
--		err = vma_check_userptr(vm, op->map.vma, pt_update);
-+		err = vma_check_userptr(tile, vm, op->map.vma, pt_update);
- 		break;
- 	case DRM_GPUVA_OP_REMAP:
- 		if (op->remap.prev)
--			err = vma_check_userptr(vm, op->remap.prev, pt_update);
-+			err = vma_check_userptr(tile, vm, op->remap.prev,
-+						pt_update);
- 		if (!err && op->remap.next)
--			err = vma_check_userptr(vm, op->remap.next, pt_update);
-+			err = vma_check_userptr(tile, vm, op->remap.next,
-+						pt_update);
- 		break;
- 	case DRM_GPUVA_OP_UNMAP:
- 		break;
- 	case DRM_GPUVA_OP_PREFETCH:
--		err = vma_check_userptr(vm, gpuva_to_vma(op->base.prefetch.va),
-+		err = vma_check_userptr(tile, vm,
-+					gpuva_to_vma(op->base.prefetch.va),
- 					pt_update);
- 		break;
- 	default:
-@@ -1301,7 +1376,8 @@ static int xe_pt_userptr_pre_commit(struct xe_migrate_pt_update *pt_update)
- 	down_read(&vm->userptr.notifier_lock);
- 
- 	list_for_each_entry(op, &vops->list, link) {
--		err = op_check_userptr(vm, op, pt_update_ops);
-+		err = op_check_userptr(&vm->xe->tiles[pt_update->tile_id],
-+				       vm, op, pt_update_ops);
- 		if (err) {
- 			up_read(&vm->userptr.notifier_lock);
- 			break;
-diff --git a/drivers/gpu/drm/xe/xe_pt_types.h b/drivers/gpu/drm/xe/xe_pt_types.h
-index 384cc04de719..6f99ff2b8fce 100644
---- a/drivers/gpu/drm/xe/xe_pt_types.h
-+++ b/drivers/gpu/drm/xe/xe_pt_types.h
-@@ -29,7 +29,6 @@ struct xe_pt {
- 	struct xe_bo *bo;
- 	unsigned int level;
- 	unsigned int num_live;
--	bool rebind;
- 	bool is_compact;
- #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_VM)
- 	/** addr: Virtual address start address of the PT. */
-@@ -52,6 +51,8 @@ struct xe_pt_ops {
- struct xe_pt_entry {
- 	struct xe_pt *pt;
- 	u64 pte;
-+#define XE_PT_IS_LEAF	BIT(31)
-+	unsigned int level;
- };
- 
- struct xe_vm_pgtable_update {
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index ea2e287e6526..f90e5c92010c 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -623,8 +623,6 @@ static bool vma_userptr_invalidate(struct mmu_interval_notifier *mni,
- 		spin_unlock(&vm->userptr.invalidated_lock);
- 	}
- 
--	up_write(&vm->userptr.notifier_lock);
--
- 	/*
- 	 * Preempt fences turn into schedule disables, pipeline these.
- 	 * Note that even in fault mode, we need to wait for binds and
-@@ -647,6 +645,8 @@ static bool vma_userptr_invalidate(struct mmu_interval_notifier *mni,
- 		XE_WARN_ON(err);
- 	}
- 
-+	up_write(&vm->userptr.notifier_lock);
-+
- 	trace_xe_vma_userptr_invalidate_complete(vma);
- 
- 	return true;
--- 
-2.34.1
-
+Raag
