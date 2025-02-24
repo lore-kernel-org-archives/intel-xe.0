@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FFF1C021A4
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 13:44:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C004DC021B5
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 13:44:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67ED610E519;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E0B710E4FB;
 	Mon, 24 Feb 2025 13:42:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gT6nAHbD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FU+k0uaB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5647610E13C;
- Mon, 24 Feb 2025 06:30:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0946410E14D
+ for <intel-xe@lists.freedesktop.org>; Mon, 24 Feb 2025 06:32:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740378613; x=1771914613;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=P9YDMCeBJ9g9JBR7ynrcBr3Jn4rsSSmSGJPm8tnaf2c=;
- b=gT6nAHbDMB5ajsnBs7ymyi0983P6/SvmG/NyxNsFQYQNiKGnQXKAUvHP
- vcJa3Ux9sATxOu/jGUlut4HEbA2OZehvaHwszefxgXLoxMr4FsbKzu0xH
- vLMe5xWBG4T/d1eW4klOUsoWty4odVCbIGMDHyLs3XmReIcAViUCC6xQ6
- wXXGyhCuJlrykSYy70gTPDie90KuzVV5s8QzY5JDtCpxDuaqExn3Aywwl
- G59bYAqf/g8jgq1vNx6ELJeWJV+h0AJy+DLLQkEy4otL2ptueM2n0tp56
- tDYgsijThhPT4S7hctmE4Zm5+cU3KcZWBExXGyoNaj0u8UoLObch3tMT2 w==;
-X-CSE-ConnectionGUID: Wv1czL+mSG+OZEnB3CSRBQ==
-X-CSE-MsgGUID: tUtgd+moRLSfuLo3Vqy2Ww==
-X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="28719721"
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="28719721"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 22:30:13 -0800
-X-CSE-ConnectionGUID: gbjQdbqBTY+/M1Pmwcuxcw==
-X-CSE-MsgGUID: EnXAEwxjTUCnRE50Y5n39w==
+ t=1740378730; x=1771914730;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ZCnMLxjIJppXTi//6rKDcHDyRTxHdRFoWMMeEngfVv4=;
+ b=FU+k0uaBynuy8FxlxNKdi2CaA0lMa0gsJJx2D82uCLo4+GNBHYZxZcr+
+ txSEcvqU+XxSNc1JGQ7MEvfYLCHrvrJix43FFT+t3YaCmH91I03eGTlbm
+ ncLTXKJwhSHr5J0F/9xwddTK/nQdd64i62Rp3likZffm1poilHPArcEZR
+ 8/7sS0L9q2C8nuW8e2BGyJGkg+AX35VWF74y4SEvVGVHOARRRwjLTsPBH
+ rWG+qiw41KpxUnG2kJlqXE1yZAIQ3IECxhXRnM9yXAk/My6zagf7C18/E
+ JKK7MoVNEUCyMaOLUC+ViC2oDdPcZyocCGMx/YyRcygTfmwBEcsjvafP2 g==;
+X-CSE-ConnectionGUID: gYOFBBb0QVO5o3j/yIAj2Q==
+X-CSE-MsgGUID: XqitjIvKSuaxqA2tALRnMQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="40995122"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="40995122"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2025 22:32:09 -0800
+X-CSE-ConnectionGUID: MAzKaJixQ4SOjseyc1h0YA==
+X-CSE-MsgGUID: W/5EimkoRBGmosP4RCu+Pw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="120076643"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 22:30:13 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
- ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 20/20] drm/i915/display: Add fixed_rr to crtc_state dump
-Date: Mon, 24 Feb 2025 11:47:17 +0530
-Message-ID: <20250224061717.1095226-21-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
-References: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="121058940"
+Received: from labhost1.iind.intel.com ([10.190.230.69])
+ by fmviesa004.fm.intel.com with ESMTP; 23 Feb 2025 22:32:08 -0800
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Wajdeczko?= <michal.wajdeczko@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+Subject: [PATCH v4 0/2] Fix VFs resume errors
+Date: Mon, 24 Feb 2025 12:17:43 +0530
+Message-Id: <20250224064745.1778-1-satyanarayana.k.v.p@intel.com>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,53 +67,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add fixed refresh rate mode in crtc_state dump.
+Establish a connection between the PF and VF to ensure that VFs only
+resume after the PF has resumed. Although the PF resumes, the VF reset
+and provisioning occur in a separate worker process. VFs begin resuming
+once the PF has completed its resumption.
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 3 ++-
- drivers/gpu/drm/i915/display/intel_vrr.c             | 1 -
- drivers/gpu/drm/i915/display/intel_vrr.h             | 1 +
- 3 files changed, 3 insertions(+), 2 deletions(-)
+However, some VFs might attempt to resume before the provisioning is
+fully completed. In such cases, if a VF resume fails due to an MMIO
+request, retry the operation up to GUC_RESET_VF_STATE_RETRY_MAX times.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index 599ddce96371..f204a5830c29 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -294,8 +294,9 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 		   pipe_config->hw.adjusted_mode.crtc_vdisplay,
- 		   pipe_config->framestart_delay, pipe_config->msa_timing_delay);
- 
--	drm_printf(&p, "vrr: %s, vmin: %d, vmax: %d, flipline: %d, pipeline full: %d, guardband: %d vsync start: %d, vsync end: %d\n",
-+	drm_printf(&p, "vrr: %s, fixed_rr: %s, vmin: %d, vmax: %d, flipline: %d, pipeline full: %d, guardband: %d vsync start: %d, vsync end: %d\n",
- 		   str_yes_no(pipe_config->vrr.enable),
-+		   str_yes_no(intel_vrr_is_fixed_rr(pipe_config)),
- 		   pipe_config->vrr.vmin, pipe_config->vrr.vmax, pipe_config->vrr.flipline,
- 		   pipe_config->vrr.pipeline_full, pipe_config->vrr.guardband,
- 		   pipe_config->vrr.vsync_start, pipe_config->vrr.vsync_end);
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index b16d277e78c5..ce74bac244fd 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -628,7 +628,6 @@ void intel_vrr_transcoder_disable(const struct intel_crtc_state *crtc_state)
- 	intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder), 0);
- }
- 
--static
- bool intel_vrr_is_fixed_rr(const struct intel_crtc_state *crtc_state)
- {
- 	return crtc_state->vrr.flipline &&
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
-index 750a380da9e3..6cc7e6902b08 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.h
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.h
-@@ -40,5 +40,6 @@ void intel_vrr_update_guardband(const struct intel_crtc_state *crtc_state, bool
- void intel_vrr_set_fixed_rr_timings(const struct intel_crtc_state *crtc_state);
- void intel_vrr_transcoder_enable(const struct intel_crtc_state *crtc_state);
- void intel_vrr_transcoder_disable(const struct intel_crtc_state *crtc_state);
-+bool intel_vrr_is_fixed_rr(const struct intel_crtc_state *crtc_state);
- 
- #endif /* __INTEL_VRR_H__ */
+Satyanarayana K V P (2):
+  drm/xe/pf: Create a link between PF and VF devices
+  drm/xe/vf: Retry sending MMIO request to GUC on timeout error
+
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c |  9 +++++-
+ drivers/gpu/drm/xe/xe_pci_sriov.c   | 49 +++++++++++++++++++++++++++++
+ 2 files changed, 57 insertions(+), 1 deletion(-)
+
+Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Cc: Michał Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Michał Winiarski <michal.winiarski@intel.com>
+Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
 -- 
-2.45.2
+2.35.3
 
