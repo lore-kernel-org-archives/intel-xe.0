@@ -4,58 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05132C021B5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3712C021BF
 	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 13:44:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9660A10E562;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A485F10E564;
 	Mon, 24 Feb 2025 13:42:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Brk7gn4R";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ss0JQWkb";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D52510E07A
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Feb 2025 07:46:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8AB010E120
+ for <intel-xe@lists.freedesktop.org>; Mon, 24 Feb 2025 10:12:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740383193; x=1771919193;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=M2yScV3GG4ONwzjQjVGsusfcFblsbBT/tChANAkzI94=;
- b=Brk7gn4RF9GwZ/10ZnSLRU8pqjN6MhT5IPiTLGqDCtz3QED20YSq+ZzC
- u4lLligP9ywB+1kC5jl3O3wkeIv60XMOKfMGFO4QnEYYhvwNyjPGI2vxv
- Ta0QYG2HbXm360jIIJlA9R54tufiDxttXHkFR3HQTz4QkkN/P+CXKHwIN
- q4pAZiR5QBAVXkN5dNIwF2l1YU9fVneBL6N6N11mp/5YnpuiHYfXeLdmD
- wvX617tShj6ET4gpiKPAqt8yCUPVxT/yM/mPLDUAzVy7A2TFlwehsmXl3
- MuMc/ornO9xAw070GJxYu+G4W4SOgiu+nD7XWcdcj8ZYogW7ktaCQ0djw w==;
-X-CSE-ConnectionGUID: sL8kBlsqT56TH13c5EytHw==
-X-CSE-MsgGUID: i4/bqIV1SCCdU5kmeSNrbA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="40314723"
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="40314723"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 23:46:32 -0800
-X-CSE-ConnectionGUID: 9q9RgEaOThK5aF5oS22Tcg==
-X-CSE-MsgGUID: d85W1EnmRoubd2G5lBAIHQ==
+ t=1740391955; x=1771927955;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=ngVrOMmzTdzyY/Wdlmwm5ldpY7QISYc5inKMUG6yaR4=;
+ b=Ss0JQWkbv7KvsyagFrgU18hotALj0KkgVEAilAdVTqXokuY4cPyoDHF0
+ q9Uwu+fsvdCxdV5VW+evN8/Z31PoN8O1LVIRkDhCb2B/A2rMfDehJVfBN
+ DP9HNU8yg96JvxOdytJ1yTFLIowKOFnC6ueXwDCeemtFxcrTdp/ffdJkU
+ 4TO+Zk6LkIyLw93vTb0D+dkrDJ6CHa0bRZq6wi5WY6uDMgUYvGqvaI5kX
+ sOBL7ZCRshtjABVzBhr/L1UkAvJKfMICc1gZ9eH56ZaTP8/VibJQXQZoM
+ P3oTc8USFQAL66iELlljGOY5w+VOTyNvgNQH/s6FTlgarLCutm4WnLVEl Q==;
+X-CSE-ConnectionGUID: tO8IHM4rSAmGQoiSnm7hEQ==
+X-CSE-MsgGUID: /8pWfwbLSsO+iWXqzFNMrQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="41258590"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="41258590"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2025 02:12:35 -0800
+X-CSE-ConnectionGUID: 4DEETn83RsCioYVbqJd8iA==
+X-CSE-MsgGUID: /ZFzZ/uQRF+7AOIHndIYlQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="120899415"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 23:46:26 -0800
-Date: Mon, 24 Feb 2025 09:46:20 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: "Poosa, Karthik" <karthik.poosa@intel.com>
-Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
- matthew.d.roper@intel.com, andi.shyti@linux.intel.com,
- intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- riana.tauro@intel.com, badal.nilawar@intel.com
-Subject: Re: [PATCH v1] drm/xe/hwmon: expose fan speed
-Message-ID: <Z7wjzKB1yF9AV5PA@black.fi.intel.com>
-References: <20250210100515.2205584-1-raag.jadav@intel.com>
- <bbda9792-7126-4961-8767-b435780f0cff@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="115860895"
+Received: from labhost1.iind.intel.com ([10.190.230.69])
+ by orviesa010.jf.intel.com with ESMTP; 24 Feb 2025 02:12:33 -0800
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Wajdeczko?= <michal.wajdeczko@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+Subject: [PATCH v5 1/2] drm/xe/pf: Create a link between PF and VF devices
+Date: Mon, 24 Feb 2025 15:58:06 +0530
+Message-Id: <20250224102807.11065-2-satyanarayana.k.v.p@intel.com>
+X-Mailer: git-send-email 2.35.3
+In-Reply-To: <20250224102807.11065-1-satyanarayana.k.v.p@intel.com>
+References: <20250224102807.11065-1-satyanarayana.k.v.p@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bbda9792-7126-4961-8767-b435780f0cff@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,191 +69,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Feb 21, 2025 at 08:32:01PM +0530, Poosa, Karthik wrote:
-> On 10-02-2025 15:35, Raag Jadav wrote:
-> > Add hwmon support for fan1_input, fan2_input and fan3_input attributes,
-> > which will expose fan speed of respective channels in RPM when supported
-> > by hardware. With this in place we can monitor fan speed using lm-sensors
-> > tool.
-> > 
-> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > ---
-> >   .../ABI/testing/sysfs-driver-intel-xe-hwmon   |  24 ++++
-> >   drivers/gpu/drm/xe/regs/xe_pcode_regs.h       |   3 +
-> >   drivers/gpu/drm/xe/xe_hwmon.c                 | 124 +++++++++++++++++-
-> >   drivers/gpu/drm/xe/xe_pcode_api.h             |   3 +
-> >   4 files changed, 153 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> > index 9bce281314df..adbb9bce15a5 100644
-> > --- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> > +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> > @@ -124,3 +124,27 @@ Contact:	intel-xe@lists.freedesktop.org
-> >   Description:	RO. VRAM temperature in millidegree Celsius.
-> >   		Only supported for particular Intel Xe graphics platforms.
-> > +
-> > +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/fan1_input
-> > +Date:		March 2025
-> > +KernelVersion:	6.14
-> > +Contact:	intel-xe@lists.freedesktop.org
-> > +Description:	RO. Fan 1 speed in RPM.
-> > +
-> > +		Only supported for particular Intel Xe graphics platforms.
-> > +
-> > +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/fan2_input
-> > +Date:		March 2025
-> > +KernelVersion:	6.14
-> > +Contact:	intel-xe@lists.freedesktop.org
-> > +Description:	RO. Fan 2 speed in RPM.
-> > +
-> > +		Only supported for particular Intel Xe graphics platforms.
-> > +
-> > +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/fan3_input
-> > +Date:		March 2025
-> > +KernelVersion:	6.14
-> > +Contact:	intel-xe@lists.freedesktop.org
-> > +Description:	RO. Fan 3 speed in RPM.
-> > +
-> > +		Only supported for particular Intel Xe graphics platforms.
-> > diff --git a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-> > index 8846eb9ce2a4..c7d5d782e3f9 100644
-> > --- a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-> > +++ b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-> > @@ -21,6 +21,9 @@
-> >   #define BMG_PACKAGE_POWER_SKU			XE_REG(0x138098)
-> >   #define BMG_PACKAGE_POWER_SKU_UNIT		XE_REG(0x1380dc)
-> >   #define BMG_PACKAGE_ENERGY_STATUS		XE_REG(0x138120)
-> > +#define BMG_FAN_1_SPEED				XE_REG(0x138140)
-> > +#define BMG_FAN_2_SPEED				XE_REG(0x138170)
-> > +#define BMG_FAN_3_SPEED				XE_REG(0x1381a0)
-> 
-> Can you rename macros without having platform names, as this register is
-> available for both DG2 and BMG, like FAN_1_SPEED.
+When both PF and VF devices are enabled on the host, they
+resume simultaneously during system resume.
 
-Are you sure if we want to break the convention here?
+However, the PF must finish provisioning the VF before any
+VFs can successfully resume.
 
-> >   #define BMG_VRAM_TEMPERATURE			XE_REG(0x1382c0)
-> >   #define BMG_PACKAGE_TEMPERATURE			XE_REG(0x138434)
-> >   #define BMG_PACKAGE_RAPL_LIMIT			XE_REG(0x138440)
-> > diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> > index 7f327e334212..f1f95655d9fb 100644
-> > --- a/drivers/gpu/drm/xe/xe_hwmon.c
-> > +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> > @@ -5,6 +5,7 @@
-> >   #include <linux/hwmon-sysfs.h>
-> >   #include <linux/hwmon.h>
-> > +#include <linux/jiffies.h>
-> >   #include <linux/types.h>
-> >   #include <linux/units.h>
-> > @@ -27,6 +28,7 @@ enum xe_hwmon_reg {
-> >   	REG_PKG_POWER_SKU_UNIT,
-> >   	REG_GT_PERF_STATUS,
-> >   	REG_PKG_ENERGY_STATUS,
-> > +	REG_FAN_SPEED,
-> >   };
-> >   enum xe_hwmon_reg_operation {
-> > @@ -42,6 +44,13 @@ enum xe_hwmon_channel {
-> >   	CHANNEL_MAX,
-> >   };
-> > +enum xe_fan_channel {
-> > +	FAN_1,
-> > +	FAN_2,
-> > +	FAN_3,
-> > +	FAN_MAX,
-> > +};
-> > +
-> >   /*
-> >    * SF_* - scale factors for particular quantities according to hwmon spec.
-> >    */
-> > @@ -61,6 +70,16 @@ struct xe_hwmon_energy_info {
-> >   	long accum_energy;
-> >   };
-> > +/**
-> > + * struct xe_hwmon_fan_info - to cache previous fan reading
-> > + */
-> > +struct xe_hwmon_fan_info {
-> > +	/** @reg_val_prev: previous fan reg val */
-> > +	u32 reg_val_prev;
-> > +	/** @time_prev: previous timestamp */
-> > +	u64 time_prev;
-> > +};
-> > +
-> >   /**
-> >    * struct xe_hwmon - xe hwmon data structure
-> >    */
-> > @@ -79,6 +98,8 @@ struct xe_hwmon {
-> >   	int scl_shift_time;
-> >   	/** @ei: Energy info for energyN_input */
-> >   	struct xe_hwmon_energy_info ei[CHANNEL_MAX];
-> > +	/** @fi: Fan info for fanN_input */
-> > +	struct xe_hwmon_fan_info fi[FAN_MAX];
-> >   };
-> >   static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon_reg,
-> > @@ -144,6 +165,16 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg
-> >   			return PCU_CR_PACKAGE_ENERGY_STATUS;
-> >   		}
-> >   		break;
-> > +	case REG_FAN_SPEED:
-> > +		if (xe->info.platform == XE_BATTLEMAGE || xe->info.platform == XE_DG2) {
-> > +			if (channel == FAN_1)
-> > +				return BMG_FAN_1_SPEED;
-> > +			else if (channel == FAN_2)
-> > +				return BMG_FAN_2_SPEED;
-> > +			else if (channel == FAN_3)
-> > +				return BMG_FAN_3_SPEED;
-> > +		}
-> > +		break;
-> >   	default:
-> >   		drm_warn(&xe->drm, "Unknown xe hwmon reg id: %d\n", hwmon_reg);
-> >   		break;
-> > @@ -454,6 +485,7 @@ static const struct hwmon_channel_info * const hwmon_info[] = {
-> >   	HWMON_CHANNEL_INFO(curr, HWMON_C_LABEL, HWMON_C_CRIT | HWMON_C_LABEL),
-> >   	HWMON_CHANNEL_INFO(in, HWMON_I_INPUT | HWMON_I_LABEL, HWMON_I_INPUT | HWMON_I_LABEL),
-> >   	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT | HWMON_E_LABEL, HWMON_E_INPUT | HWMON_E_LABEL),
-> > +	HWMON_CHANNEL_INFO(fan, HWMON_F_INPUT, HWMON_F_INPUT, HWMON_F_INPUT),
-> >   	NULL
-> >   };
-> > @@ -480,6 +512,14 @@ static int xe_hwmon_pcode_write_i1(const struct xe_hwmon *hwmon, u32 uval)
-> >   			      (uval & POWER_SETUP_I1_DATA_MASK));
-> >   }
-> > +static int xe_hwmon_pcode_read_num_fans(const struct xe_hwmon *hwmon, u32 *uval)
-> > +{
-> > +	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
-> > +
-> > +	return xe_pcode_read(root_tile, PCODE_MBOX(FAN_SPEED_CONTROL,
-> > +			     FSC_READ_NUM_FANS, 0), uval, NULL);
-> > +}
-> > +
-> >   static int xe_hwmon_power_curr_crit_read(struct xe_hwmon *hwmon, int channel,
-> >   					 long *value, u32 scale_factor)
-> >   {
-> > @@ -705,6 +745,77 @@ xe_hwmon_energy_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
-> >   	}
-> >   }
-> > +static umode_t
-> > +xe_hwmon_fan_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
-> > +{
-> > +	struct xe_device *xe = hwmon->xe;
-> > +	u32 uval;
-> > +
-> > +	switch (attr) {
-> > +	case hwmon_fan_input:
-> > +		if (xe_hwmon_pcode_read_num_fans(hwmon, &uval))
-> > +			return 0;
-> > +
-> > +		/* Platforms that don't return correct value */
-> This can be rephrased to - "Platforms that don't support fan pcode mailbox
-> cmds"
+Establish a parent-child device link between the PF and VF
+devices to ensure the correct order of resumption.
 
-We wouldn't be at this point if it was not supported.
+V4 -> V5:
+- Added missing break in the error condition.
+V3 -> V4:
+- Made xe_pci_pf_get_vf_dev() as a static function and updated
+  input parameter types.
+- Updated xe_sriov_warn() to xe_sriov_abort() when VF device
+  cannot be found.
+V2 -> V3:
+- Added function documentation for xe_pci_pf_get_vf_dev().
+- Added assertion if not called from PF.
+V1 -> V2:
+- Added a helper function to get VF pci_dev.
+- Updated xe_sriov_notice() to xe_sriov_warn() if vf pci_dev
+  is not found.
 
-> > +		if (xe->info.platform == XE_DG2)
-> > +			uval = 2;
-> > +
-> > +		return channel < uval ? 0444 : 0;
-> > +	default:
-> > +		return 0;
-> > +	}
-> > +}
+Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Cc: Michał Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Michał Winiarski <michal.winiarski@intel.com>
+Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Reviewed-by: Piotr Piorkowski <piotr.piorkowski@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pci_sriov.c | 51 +++++++++++++++++++++++++++++++
+ 1 file changed, 51 insertions(+)
 
-Raag
+diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.c b/drivers/gpu/drm/xe/xe_pci_sriov.c
+index aaceee748287..09ee8a06fe2e 100644
+--- a/drivers/gpu/drm/xe/xe_pci_sriov.c
++++ b/drivers/gpu/drm/xe/xe_pci_sriov.c
+@@ -62,6 +62,55 @@ static void pf_reset_vfs(struct xe_device *xe, unsigned int num_vfs)
+ 			xe_gt_sriov_pf_control_trigger_flr(gt, n);
+ }
+ 
++static struct pci_dev *xe_pci_pf_get_vf_dev(struct xe_device *xe, unsigned int vf_id)
++{
++	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
++
++	xe_assert(xe, IS_SRIOV_PF(xe));
++
++	/* caller must use pci_dev_put() */
++	return pci_get_domain_bus_and_slot(pci_domain_nr(pdev->bus),
++			pdev->bus->number,
++			pci_iov_virtfn_devfn(pdev, vf_id));
++}
++
++static void pf_link_vfs(struct xe_device *xe, int num_vfs)
++{
++	struct pci_dev *pdev_pf = to_pci_dev(xe->drm.dev);
++	struct device_link *link;
++	struct pci_dev *pdev_vf;
++	unsigned int n;
++
++	/*
++	 * When both PF and VF devices are enabled on the host, during system
++	 * resume they are resuming in parallel.
++	 *
++	 * But PF has to complete the provision of VF first to allow any VFs to
++	 * successfully resume.
++	 *
++	 * Create a parent-child device link between PF and VF devices that will
++	 * enforce correct resume order.
++	 */
++	for (n = 1; n <= num_vfs; n++) {
++		pdev_vf = xe_pci_pf_get_vf_dev(xe, n - 1);
++
++		/* unlikely, something weird is happening, abort */
++		if (!pdev_vf) {
++			xe_sriov_err(xe, "Cannot find VF%u device, aborting link%s creation!\n",
++				     n, str_plural(num_vfs));
++			break;
++		}
++
++		link = device_link_add(&pdev_vf->dev, &pdev_pf->dev,
++				       DL_FLAG_AUTOREMOVE_CONSUMER);
++		/* unlikely and harmless, continue with other VFs */
++		if (!link)
++			xe_sriov_notice(xe, "Failed linking VF%u\n", n);
++
++		pci_dev_put(pdev_vf);
++	}
++}
++
+ static int pf_enable_vfs(struct xe_device *xe, int num_vfs)
+ {
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+@@ -92,6 +141,8 @@ static int pf_enable_vfs(struct xe_device *xe, int num_vfs)
+ 	if (err < 0)
+ 		goto failed;
+ 
++	pf_link_vfs(xe, num_vfs);
++
+ 	xe_sriov_info(xe, "Enabled %u of %u VF%s\n",
+ 		      num_vfs, total_vfs, str_plural(total_vfs));
+ 	return num_vfs;
+-- 
+2.35.3
+
