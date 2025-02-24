@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F2C2C19777
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 13:44:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FFF1C021A4
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 13:44:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0F0610E3DC;
-	Mon, 24 Feb 2025 13:42:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67ED610E519;
+	Mon, 24 Feb 2025 13:42:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WpVUWgJI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gT6nAHbD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35F7D10E13C;
- Mon, 24 Feb 2025 06:29:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5647610E13C;
+ Mon, 24 Feb 2025 06:30:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740378593; x=1771914593;
+ t=1740378613; x=1771914613;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3YFFGKSxMFP6cKwlU7cWbJYP6Ert094aoacaVxU9IVM=;
- b=WpVUWgJIimmNGqYrv4pAXWL0yQTGNnZoTQBSSxEiA9cQu0mthkMq8xSC
- BfN9qBD3A9fbL2D6RksZwACngU1yTWSWQcFGJPRcRuysg45woY4GZkj7X
- PCV50O9vVX8FmTwu4sQpRIQyni9GCy1eAV3S5rchZL5bczJ5OymU4jW+5
- WlPkbdmzqB9kpa1OYKmlzCBltXFZqz1ks8RczOjx+Nty13tjPYGxP3jfq
- 2fSTfFvs6x08jp/gwbC56k+szov1tdZC0mhM/Pl3Rr2rzDHfCPWXRtsvw
- 2eZTY+YEvR9kkHvJzQDdNgar2z6CeHd5ZI/0DGJaVqh8nL4LGgInxVHSs g==;
-X-CSE-ConnectionGUID: Cpqy5NXFSfqR59EyOJyACw==
-X-CSE-MsgGUID: 1okiIUywQyGM5eow7CiZxA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="28719671"
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="28719671"
+ bh=P9YDMCeBJ9g9JBR7ynrcBr3Jn4rsSSmSGJPm8tnaf2c=;
+ b=gT6nAHbDMB5ajsnBs7ymyi0983P6/SvmG/NyxNsFQYQNiKGnQXKAUvHP
+ vcJa3Ux9sATxOu/jGUlut4HEbA2OZehvaHwszefxgXLoxMr4FsbKzu0xH
+ vLMe5xWBG4T/d1eW4klOUsoWty4odVCbIGMDHyLs3XmReIcAViUCC6xQ6
+ wXXGyhCuJlrykSYy70gTPDie90KuzVV5s8QzY5JDtCpxDuaqExn3Aywwl
+ G59bYAqf/g8jgq1vNx6ELJeWJV+h0AJy+DLLQkEy4otL2ptueM2n0tp56
+ tDYgsijThhPT4S7hctmE4Zm5+cU3KcZWBExXGyoNaj0u8UoLObch3tMT2 w==;
+X-CSE-ConnectionGUID: Wv1czL+mSG+OZEnB3CSRBQ==
+X-CSE-MsgGUID: tUtgd+moRLSfuLo3Vqy2Ww==
+X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="28719721"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="28719721"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 22:29:52 -0800
-X-CSE-ConnectionGUID: QcAeHLF3QtO9Jf5GfDaOzg==
-X-CSE-MsgGUID: F3hyp4HyQMyzfpJi2QIcxg==
+ 23 Feb 2025 22:30:13 -0800
+X-CSE-ConnectionGUID: gbjQdbqBTY+/M1Pmwcuxcw==
+X-CSE-MsgGUID: EnXAEwxjTUCnRE50Y5n39w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="120076549"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="120076643"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 22:29:47 -0800
+ 23 Feb 2025 22:30:13 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 09/20] drm/i915/hdmi: Use VRR Timing generator for HDMI
-Date: Mon, 24 Feb 2025 11:47:06 +0530
-Message-ID: <20250224061717.1095226-10-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 20/20] drm/i915/display: Add fixed_rr to crtc_state dump
+Date: Mon, 24 Feb 2025 11:47:17 +0530
+Message-ID: <20250224061717.1095226-21-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
 References: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
@@ -67,35 +67,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add support for using VRR Timing generator for HDMI panels.
+Add fixed refresh rate mode in crtc_state dump.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdmi.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 3 ++-
+ drivers/gpu/drm/i915/display/intel_vrr.c             | 1 -
+ drivers/gpu/drm/i915/display/intel_vrr.h             | 1 +
+ 3 files changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index ed017d9de920..28130436735f 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -64,6 +64,7 @@
- #include "intel_panel.h"
- #include "intel_pfit.h"
- #include "intel_snps_phy.h"
-+#include "intel_vrr.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+index 599ddce96371..f204a5830c29 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+@@ -294,8 +294,9 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
+ 		   pipe_config->hw.adjusted_mode.crtc_vdisplay,
+ 		   pipe_config->framestart_delay, pipe_config->msa_timing_delay);
  
- static void
- assert_hdmi_port_disabled(struct intel_hdmi *intel_hdmi)
-@@ -2384,6 +2385,8 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
- 		}
- 	}
+-	drm_printf(&p, "vrr: %s, vmin: %d, vmax: %d, flipline: %d, pipeline full: %d, guardband: %d vsync start: %d, vsync end: %d\n",
++	drm_printf(&p, "vrr: %s, fixed_rr: %s, vmin: %d, vmax: %d, flipline: %d, pipeline full: %d, guardband: %d vsync start: %d, vsync end: %d\n",
+ 		   str_yes_no(pipe_config->vrr.enable),
++		   str_yes_no(intel_vrr_is_fixed_rr(pipe_config)),
+ 		   pipe_config->vrr.vmin, pipe_config->vrr.vmax, pipe_config->vrr.flipline,
+ 		   pipe_config->vrr.pipeline_full, pipe_config->vrr.guardband,
+ 		   pipe_config->vrr.vsync_start, pipe_config->vrr.vsync_end);
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index b16d277e78c5..ce74bac244fd 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -628,7 +628,6 @@ void intel_vrr_transcoder_disable(const struct intel_crtc_state *crtc_state)
+ 	intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder), 0);
+ }
  
-+	intel_vrr_compute_config(pipe_config, conn_state);
-+
- 	intel_hdmi_compute_gcp_infoframe(encoder, pipe_config,
- 					 conn_state);
+-static
+ bool intel_vrr_is_fixed_rr(const struct intel_crtc_state *crtc_state)
+ {
+ 	return crtc_state->vrr.flipline &&
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
+index 750a380da9e3..6cc7e6902b08 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.h
++++ b/drivers/gpu/drm/i915/display/intel_vrr.h
+@@ -40,5 +40,6 @@ void intel_vrr_update_guardband(const struct intel_crtc_state *crtc_state, bool
+ void intel_vrr_set_fixed_rr_timings(const struct intel_crtc_state *crtc_state);
+ void intel_vrr_transcoder_enable(const struct intel_crtc_state *crtc_state);
+ void intel_vrr_transcoder_disable(const struct intel_crtc_state *crtc_state);
++bool intel_vrr_is_fixed_rr(const struct intel_crtc_state *crtc_state);
  
+ #endif /* __INTEL_VRR_H__ */
 -- 
 2.45.2
 
