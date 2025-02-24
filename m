@@ -4,27 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 076DAC021A4
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 19:38:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27F7FC021A4
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 19:40:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1C7310E042;
-	Mon, 24 Feb 2025 19:38:54 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE8CA10E042;
- Mon, 24 Feb 2025 19:38:53 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3966291441207781288=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id E478389196;
+	Mon, 24 Feb 2025 19:40:56 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="NldbVFHN";
+	dkim-atps=neutral
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 824A589196
+ for <intel-xe@lists.freedesktop.org>; Mon, 24 Feb 2025 19:40:55 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id D69875C3885;
+ Mon, 24 Feb 2025 19:40:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63347C4CED6;
+ Mon, 24 Feb 2025 19:40:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1740426054;
+ bh=hMex1cz3FOarspx5oeedx9An0Mnh8D7KFW8Kqj+Quzo=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:From;
+ b=NldbVFHNpZiCpcv67PptuQijfgFhox8iriFrlS0hHfHj9YRAivOHQNikaNhYRQkJ+
+ tnSzjUoddhFWNW86xDaW2HxhpqxZPrL9GRMDrlzfUitz4IEOPoPtecch/hdT5/IJbk
+ u23/zZH2uZvedKiNeIS9E+mmvVMQxdXNOhZUrufVoLI7fdTL6dunCObDBCPd2he1Gm
+ uovusqzNVB5oB6SRhjPnZ5eBkEMfXiPfh/YO9pXMF0grf1xG+tLntvIHqY3iQBI59T
+ gLMDnMmii0fzwGXxhcVRJqu+LlDeRQCqxwAHu0Wj+JrN6oYQ88Q5w/tEFmJ8Sl67nk
+ 0qUH5Tcp6lvag==
+Date: Mon, 24 Feb 2025 13:40:53 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Cc: intel-xe@lists.freedesktop.org, linux-acpi@vger.kernel.org,
+ linux-pci@vger.kernel.org, rafael@kernel.org, lenb@kernel.org,
+ bhelgaas@google.com, ilpo.jarvinen@linux.intel.com,
+ lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
+ badal.nilawar@intel.com, kam.nasim@intel.com,
+ Varun Gupta <varun.gupta@intel.com>
+Subject: Re: [RFC 1/6] PCI/ACPI: Implement PCI FW _DSM method
+Message-ID: <20250224194053.GA471229@bhelgaas>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_LOBF_enablement_fix_=28rev3?=
- =?utf-8?q?=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Animesh Manna" <animesh.manna@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 24 Feb 2025 19:38:53 -0000
-Message-ID: <174042593377.1702587.12592895371613934307@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250224080847.326350-1-animesh.manna@intel.com>
-In-Reply-To: <20250224080847.326350-1-animesh.manna@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250224164849.3746751-2-anshuman.gupta@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,133 +56,237 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3966291441207781288==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Feb 24, 2025 at 10:18:44PM +0530, Anshuman Gupta wrote:
+> Implement _DSM method 10 and _DSM Method 11 as per PCI firmware specs
+> section 4.6.10 and 4.6.11.
 
-== Series Details ==
+Please split into two patches, one for each _DSM.  Include spec
+citations, e.g., PCI Firmware r3.3, sec 4.6.10.  Section numbers are
+not guaranteed to stay consistent across spec revisions, so we need
+both the revision and section number.
 
-Series: LOBF enablement fix (rev3)
-URL   : https://patchwork.freedesktop.org/series/142278/
-State : failure
+Include some descriptive words about the DSM in each subject line,
+e.g., "D3cold Aux Power Limit", "PERST# Assertion Delay".
 
-== Summary ==
+> Current assumption is only one PCIe Endpoint driver (XeKMD for Battlemage GPU)
+> will request for Aux Power Limit under a given Root Port but
+> theoretically it is possible that other Non-Intel GPU or Non-GPU
+> PCIe Endpoint driver can also request for Aux Power Limit and request to
+> block the core power removal under same Root Port.
+> That will disrupt the Battlemage GPU VRAM Self Refresh.
 
-CI Bug Log - changes from xe-2702-a5a9504217e25c850ff9e82d38c1093dbdbf20f9_BAT -> xe-pw-142278v3_BAT
-====================================================
+I guess this is sort of an acknowledgement of the r3.3, sec 4.6.10
+spec text about system software being responsible for tracking and
+aggregating requests when there are multiple functions below the
+Downstream Port?
 
-Summary
--------
+If so, remove the Battlemage-specific language and just say something
+about the fact that this implementation doesn't do any of that
+tracking and aggregation.
 
-  **FAILURE**
+> One possible mitigation would be only allowing only first PCIe
+> Non-Bridge Endpoint Function 0 driver to call_DSM method 10.
 
-  Serious unknown changes coming with xe-pw-142278v3_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-142278v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+Wrap to fill 75 columns in commit logs.  Add blank lines between
+paragraphs.
 
-  
+> Signed-off-by: Varun Gupta <varun.gupta@intel.com>
+> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>  drivers/pci/pci-acpi.c   | 123 +++++++++++++++++++++++++++++++++++++++
+>  include/linux/pci-acpi.h |  13 +++++
+>  2 files changed, 136 insertions(+)
+> 
+> diff --git a/drivers/pci/pci-acpi.c b/drivers/pci/pci-acpi.c
+> index af370628e583..806f6d19f46c 100644
+> --- a/drivers/pci/pci-acpi.c
+> +++ b/drivers/pci/pci-acpi.c
+> @@ -1421,6 +1421,129 @@ static void pci_acpi_optimize_delay(struct pci_dev *pdev,
+>  	ACPI_FREE(obj);
+>  }
+>  
+> +/**
+> + * pci_acpi_request_d3cold_aux_power - Request D3cold auxiliary power via ACPI DSM
+> + * @dev: PCI device instance
+> + * @requested_power: Requested auxiliary power in milliwatts
+> + *
+> + * This function sends a request to the host BIOS via ACPI _DSM Function 9 to grant
+> + * the required D3Cold Auxiliary power for the specified PCI device.
+> + * It evaluates the _DSM (Device Specific Method) to request the Auxiliary power and
+> + * handles the response accordingly.
+> + *
+> + * This function shall be only called by 1st non-bridge Endpoint driver on Function 0.
+> + * For a Multi-Function Device, the driver for Function 0 is required to report an
+> + * aggregate power requirement covering all functions contained within the device.
 
-Participating hosts (9 -> 8)
-------------------------------
+Wrap to fit in 80 columns like the rest of the file.
 
-  Missing    (1): bat-adlp-vm 
+> + * Return: Returns 0 on success and errno on failure.
+> + */
+> +int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power)
+> +{
+> +	union acpi_object in_obj = {
+> +		.integer.type = ACPI_TYPE_INTEGER,
+> +		.integer.value = requested_power,
+> +	};
+> +
+> +	union acpi_object *out_obj;
+> +	acpi_handle handle;
+> +	int result, ret = -EINVAL;
+> +
+> +	if (!dev || !ACPI_HANDLE(&dev->dev))
+> +		return -EINVAL;
+> +
+> +	handle = ACPI_HANDLE(&dev->dev);
+> +
+> +	out_obj = acpi_evaluate_dsm_typed(handle,
+> +					  &pci_acpi_dsm_guid,
+> +					  4,
+> +					  DSM_PCI_D3COLD_AUX_POWER_LIMIT,
+> +					  &in_obj,
+> +					  ACPI_TYPE_INTEGER);
 
-Possible new issues
--------------------
+Wrap to fill 78-80 columns.
 
-  Here are the unknown changes that may have been introduced in xe-pw-142278v3_BAT:
+> +	if (!out_obj)
+> +		return -EINVAL;
+> +
+> +	result = out_obj->integer.value;
+> +
+> +	switch (result) {
+> +	case 0x0:
+> +		dev_dbg(&dev->dev, "D3cold Aux Power request denied.\n");
 
-### IGT changes ###
+Include requested_power here too, for debugging purposes.
 
-#### Possible regressions ####
+> +		break;
+> +	case 0x1:
+> +		dev_info(&dev->dev, "D3cold Aux Power request granted: %u mW.\n", requested_power);
+> +		ret = 0;
+> +		break;
+> +	case 0x2:
+> +		dev_info(&dev->dev, "D3cold Aux Power: Main power will not be removed.\n");
 
-  * igt@xe_module_load@load:
-    - bat-lnl-1:          [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2702-a5a9504217e25c850ff9e82d38c1093dbdbf20f9/bat-lnl-1/igt@xe_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142278v3/bat-lnl-1/igt@xe_module_load@load.html
+No periods at end of messages.
 
-  
+> +		ret = -EBUSY;
+> +		break;
+> +	default:
+> +		if (result >= 0x11 && result <= 0x1F) {
+> +			int retry_interval = result & 0xF;
+> +
+> +			dev_warn(&dev->dev,
+> +				 "D3cold Aux Power request needs retry. Interval: %d seconds.\n", retry_interval);
+> +			msleep(retry_interval * 1000);
+> +			ret = -EAGAIN;
+> +		} else {
+> +			dev_err(&dev->dev, "D3cold Aux Power: Reserved or unsupported response: 0x%x.\n", result);
+> +		}
+> +		break;
+> +	}
+> +
+> +	ACPI_FREE(out_obj);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(pci_acpi_request_d3cold_aux_power);
+> +
+> +/**
+> + * pci_acpi_add_perst_assertion_delay - Request PERST delay via ACPI DSM
+> + * @dev: PCI device instance
+> + * @delay_us: Requested delay_us
+> + *
+> + * This function sends a request to the host BIOS via ACPI _DSM to grant the required
+> + * PERST dealy for the specified PCI device. It evaluates the _DSM (Device
+> + * Specific Method) to request the PERST delay and handles the response accordingly.
 
+s/PERST/PERST#/
+s/dealy/delay/
 
-Build changes
--------------
+> + * Return: returns 0 on success and errno on failure.
+> + */
+> +int pci_acpi_add_perst_assertion_delay(struct pci_dev *dev, u32 delay_us)
+> +{
+> +	union acpi_object in_obj = {
+> +		.integer.type = ACPI_TYPE_INTEGER,
+> +		.integer.value = delay_us,
+> +	};
+> +
+> +	union acpi_object *out_obj;
+> +	acpi_handle handle;
+> +	int result, ret = -EINVAL;
+> +
+> +	if (!dev || !ACPI_HANDLE(&dev->dev))
+> +		return -EINVAL;
+> +
+> +	handle = ACPI_HANDLE(&dev->dev);
+> +
+> +	out_obj = acpi_evaluate_dsm_typed(handle, &pci_acpi_dsm_guid, 4,
+> +					  DSM_PCI_PERST_ASSERTION_DELAY, &in_obj, ACPI_TYPE_INTEGER);
 
-  * Linux: xe-2702-a5a9504217e25c850ff9e82d38c1093dbdbf20f9 -> xe-pw-142278v3
+Wrap to fit in 78-80 columns.
 
-  IGT_8246: 2670886863d5821273146d7f94cdd3c8e3a4fe0b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2702-a5a9504217e25c850ff9e82d38c1093dbdbf20f9: a5a9504217e25c850ff9e82d38c1093dbdbf20f9
-  xe-pw-142278v3: 142278v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142278v3/index.html
-
---===============3966291441207781288==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>LOBF enablement fix (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142278/">https://patchwork.freedesktop.org/series/142278/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142278v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142278v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2702-a5a9504217e25c850ff9e82d38c1093dbdbf20f9_BAT -&gt; xe-pw-142278v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-142278v3_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-142278v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-142278v3_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_module_load@load:<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2702-a5a9504217e25c850ff9e82d38c1093dbdbf20f9/bat-lnl-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142278v3/bat-lnl-1/igt@xe_module_load@load.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2702-a5a9504217e25c850ff9e82d38c1093dbdbf20f9 -&gt; xe-pw-142278v3</li>
-</ul>
-<p>IGT_8246: 2670886863d5821273146d7f94cdd3c8e3a4fe0b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2702-a5a9504217e25c850ff9e82d38c1093dbdbf20f9: a5a9504217e25c850ff9e82d38c1093dbdbf20f9<br />
-  xe-pw-142278v3: 142278v3</p>
-
-</body>
-</html>
-
---===============3966291441207781288==--
+> +	if (!out_obj)
+> +		return -EINVAL;
+> +
+> +	result = out_obj->integer.value;
+> +
+> +	if (result == delay_us) {
+> +		dev_info(&dev->dev, "PERST# Assertion Delay set to %u microseconds.\n", delay_us);
+> +		ret = 0;
+> +	} else if (result == 0) {
+> +		dev_warn(&dev->dev, "PERST# Assertion Delay request failed, no previous valid request.\n");
+> +	} else {
+> +		dev_warn(&dev->dev,
+> +			 "PERST# Assertion Delay request failed. Previous valid delay: %u microseconds.\n", result);
+> +	}
+> +
+> +	ACPI_FREE(out_obj);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(pci_acpi_add_perst_assertion_delay);
+> +
+>  static void pci_acpi_set_external_facing(struct pci_dev *dev)
+>  {
+>  	u8 val;
+> diff --git a/include/linux/pci-acpi.h b/include/linux/pci-acpi.h
+> index 078225b514d4..4b7373f91a9a 100644
+> --- a/include/linux/pci-acpi.h
+> +++ b/include/linux/pci-acpi.h
+> @@ -121,6 +121,8 @@ extern const guid_t pci_acpi_dsm_guid;
+>  #define DSM_PCI_DEVICE_NAME			0x07
+>  #define DSM_PCI_POWER_ON_RESET_DELAY		0x08
+>  #define DSM_PCI_DEVICE_READINESS_DURATIONS	0x09
+> +#define DSM_PCI_D3COLD_AUX_POWER_LIMIT		0x0A
+> +#define DSM_PCI_PERST_ASSERTION_DELAY		0x0B
+>  
+>  #ifdef CONFIG_PCIE_EDR
+>  void pci_acpi_add_edr_notifier(struct pci_dev *pdev);
+> @@ -132,10 +134,21 @@ static inline void pci_acpi_remove_edr_notifier(struct pci_dev *pdev) { }
+>  
+>  int pci_acpi_set_companion_lookup_hook(struct acpi_device *(*func)(struct pci_dev *));
+>  void pci_acpi_clear_companion_lookup_hook(void);
+> +int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power);
+> +int pci_acpi_add_perst_assertion_delay(struct pci_dev *dev, u32 delay_us);
+>  
+>  #else	/* CONFIG_ACPI */
+>  static inline void acpi_pci_add_bus(struct pci_bus *bus) { }
+>  static inline void acpi_pci_remove_bus(struct pci_bus *bus) { }
+> +int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power)
+> +{
+> +	return -EOPNOTSUPP;
+> +}
+> +
+> +int pci_acpi_add_perst_assertion_delay(struct pci_dev *dev, u32 delay_us)
+> +{
+> +	return -EOPNOTSUPP;
+> +}
+>  #endif	/* CONFIG_ACPI */
+>  
+>  #endif	/* _PCI_ACPI_H_ */
+> -- 
+> 2.34.1
+> 
