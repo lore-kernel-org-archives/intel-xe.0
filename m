@@ -4,59 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA4CCC021A4
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 10:46:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F493C021B5
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 12:12:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8122B10E210;
-	Mon, 24 Feb 2025 10:46:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3314710E37E;
+	Mon, 24 Feb 2025 12:12:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="avtOtoCL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gulBv0xF";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C2B810E210;
- Mon, 24 Feb 2025 10:46:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5764610E37A;
+ Mon, 24 Feb 2025 12:12:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740393967; x=1771929967;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=++TkqCR9RJCXJOaj4N2AgR7Lk6dae9BOUvlsqqYP+pk=;
- b=avtOtoCLdhlhmWkHtD9bMppslMhX6HozpjJYFfbzKyLczsQpbrUaL3iE
- C0a5Q36ObaOqwmIt6x/LnfasLy/agOniQIfgPA3Lc/Zzp+5dBSNX0q45r
- IhAoMJnzmpAORhFJFg/x7Q2GSZW5rm/cemkqmFnG8vrOyAbKvvIt0WHmE
- uikd2sws1Ezn4BMuylRhQBUrbuIutbuSCFn5Jtv7u9q8TnE19BZYNzEjP
- B8Ju4GALsxOe6PIkwuy8ivRCBNwoax2lOsBF9fCfEd2KPyjmrF3f1CVaj
- MlStUbUF9d2E72fBv53sDh3ZA+dYbAoDyDzGAMj4PwmaXPfuA9I/50XuK Q==;
-X-CSE-ConnectionGUID: AuhceMbYRCiax/MXH952Hw==
-X-CSE-MsgGUID: oYl9VY93RQ6H/lDNejGUZg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="58559365"
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="58559365"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2025 02:46:07 -0800
-X-CSE-ConnectionGUID: FQxYrEwtRZ6/0139b9HreQ==
-X-CSE-MsgGUID: 6x8SFCJCQwShlD9j2scwgw==
+ t=1740399178; x=1771935178;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=csl8vMggEM11TbnwsX6Duk2okTqccOuqlwfdSS2Ijyk=;
+ b=gulBv0xFMBV0d1HZcgplQ4f46Lg7hf0dZGOO2ON6OsGt/7L/MGSieYzv
+ 9lp/V6kFVgZockbZx4b8kQJCE5wrI/7i/NWziN+vtjtuNELRkTj5mgRIy
+ SEus5mAe6hiKhCIOZqXc62XKf/bU8DriP1rNxDWi07pAjqazXx2D83vBX
+ NAFOAzZNU5D8ZWOyd6XPjpIGciLZqJnHatuVRrEKv1QvTwZOQctr/CENM
+ Owe7UWl+ORBKLvP5mGjNMK1/Qf/SBNu4g+q02QpdrQOhtNo48Sw5vyJEb
+ KohCv8mFgCt23ihpcEhlzwayhiobOWcbcAG/pfAu/CWIL90nzAemArigp g==;
+X-CSE-ConnectionGUID: 4RqkHek5Q0SdBBMO44G2pg==
+X-CSE-MsgGUID: zS5CPr38Rm+6vmR1Np0bxA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="40856537"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="40856537"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2025 04:12:57 -0800
+X-CSE-ConnectionGUID: inUaYSl5SnGwh9XZkf1Fgg==
+X-CSE-MsgGUID: UWbQ3zVGRBCDByNbi83Nkw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="146875108"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.133])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2025 02:46:04 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Animesh Manna <animesh.manna@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: jouni.hogander@intel.com, jeevan.b@intel.com, Animesh Manna
- <animesh.manna@intel.com>
-Subject: Re: [PATCH v4 3/8] drm/i915/lobf: Add fixed refresh rate check in
- compute_config()
-In-Reply-To: <20250224080847.326350-4-animesh.manna@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250224080847.326350-1-animesh.manna@intel.com>
- <20250224080847.326350-4-animesh.manna@intel.com>
-Date: Mon, 24 Feb 2025 12:46:00 +0200
-Message-ID: <87tt8j7h93.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="116670692"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2025 04:12:55 -0800
+Date: Mon, 24 Feb 2025 14:13:54 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/dp_mst: Fix encoder HW state readout for UHBR MST
+Message-ID: <Z7xigvCH7IxKlQiS@ideak-desk.fi.intel.com>
+References: <20250224093242.1859583-1-imre.deak@intel.com>
+ <8734g38wcj.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8734g38wcj.fsf@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,37 +64,101 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 24 Feb 2025, Animesh Manna <animesh.manna@intel.com> wrote:
-> LOBF can be enabled with vrr fixed rate mode, so add check
-> if vmin = vmax = flipline in compute_config().
->
-> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_alpm.c | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-> index d94c96ba46b1..1438e125cde1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_alpm.c
-> +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-> @@ -288,6 +288,10 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
->  	if (crtc_state->has_psr)
->  		return;
->  
-> +	if (!(crtc_state->vrr.vmin == crtc_state->vrr.vmax &&
-> +	      crtc_state->vrr.vmin == crtc_state->vrr.flipline))
+On Mon, Feb 24, 2025 at 12:34:36PM +0200, Jani Nikula wrote:
+> On Mon, 24 Feb 2025, Imre Deak <imre.deak@intel.com> wrote:
+> > The encoder HW/SW state verification should use a SW state which stays
+> > unchanged while the encoder/output is active. The intel_dp::is_mst flag
+> > used during state computation to choose between the DP SST/MST modes can
+> > change while the output is active, if the sink gets disconnected or the
+> > MST topology is removed for another reason. A subsequent state
+> > verification using intel_dp::is_mst leads then to a mismatch if the
+> > output is disabled/re-enabled without recomputing its state.
+> >
+> > Use the encoder's active MST link count instead, which will be always
+> > non-zero for an active MST output and will be zero for SST.
+> >
+> > Fixes: 35d2e4b75649 ("drm/i915/ddi: start distinguishing 128b/132b SST and MST at state readout")
+> > Fixes: 40d489fac0e8 ("drm/i915/ddi: handle 128b/132b SST in intel_ddi_read_func_ctl()")
+> > Cc: Jani Nikula <jani.nikula@intel.com>
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> 
+> Do we have a bug for this?
 
-if vmin != vmax || vmin != flipline, right?
+I haven't found a bug filed for it.
 
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_ddi.c | 9 +++++----
+> >  1 file changed, 5 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > index 7937f4de66cb4..8c8b53414da67 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > @@ -890,7 +890,7 @@ static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
+> >  			    encoder->base.base.id, encoder->base.name);
+> >  
+> >  	if (!mst_pipe_mask && dp128b132b_pipe_mask) {
+> > -		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+> > +		struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+> >  
+> >  		/*
+> >  		 * If we don't have 8b/10b MST, but have more than one
+> > @@ -902,7 +902,8 @@ static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
+> >  		 * we don't expect MST to have been enabled at that point, and
+> >  		 * can assume it's SST.
+> >  		 */
+> > -		if (hweight8(dp128b132b_pipe_mask) > 1 || intel_dp->is_mst)
+> > +		if (hweight8(dp128b132b_pipe_mask) > 1 ||
+> > +		    intel_dp_mst_encoder_active_links(dig_port))
+> 
+> I think the reasoning here is valid, but I think we should probably do
+> something about the intel_dp_mst_encoder_active_links() naming as
+> follow-up. This is confusing. What is an "mst encoder"? The above
+> expects the primary digital port, i.e. it assumes enc_to_dig_port()
+> already did the right thing. It's all really subtle. Also wrt which
+> encoders the intel_ddi_get_encoder_pipes() gets called on.
 
-> +		return;
-> +
->  	if (!(intel_alpm_aux_wake_supported(intel_dp) ||
->  	      intel_alpm_aux_less_wake_supported(intel_dp)))
->  		return;
+Only a primary encoder object has an embedded digital port
+(intel_digital_port), so the only way to call the function is passing
+the primary digital port to it (IOW there is no fake/stream encoder
+digital port to pass to it). IMO referring to the encoder or the encoder
+type isn't necessary and the function could be renamed to
 
--- 
-Jani Nikula, Intel
+intel_dp_mst_active_streams()
+
+also clarifying that it's about streams not links?
+
+> Maybe we need s/intel_dp_mst_encoder/intel_dp_mst_primary/ for this and
+> some other functions? They're not about the "fake" mst stream encoders.
+> 
+> Anyway,
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> 
+> >  			mst_pipe_mask = dp128b132b_pipe_mask;
+> >  	}
+> >  
+> > @@ -4131,13 +4132,13 @@ static void intel_ddi_read_func_ctl(struct intel_encoder *encoder,
+> >  	} else if (ddi_mode == TRANS_DDI_MODE_SELECT_DP_MST) {
+> >  		intel_ddi_read_func_ctl_dp_mst(encoder, pipe_config, ddi_func_ctl);
+> >  	} else if (ddi_mode == TRANS_DDI_MODE_SELECT_FDI_OR_128B132B && HAS_DP20(display)) {
+> > -		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+> > +		struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+> >  
+> >  		/*
+> >  		 * If this is true, we know we're being called from mst stream
+> >  		 * encoder's ->get_config().
+> >  		 */
+> > -		if (intel_dp->is_mst)
+> > +		if (intel_dp_mst_encoder_active_links(dig_port))
+> >  			intel_ddi_read_func_ctl_dp_mst(encoder, pipe_config, ddi_func_ctl);
+> >  		else
+> >  			intel_ddi_read_func_ctl_dp_sst(encoder, pipe_config, ddi_func_ctl);
+> 
+> -- 
+> Jani Nikula, Intel
