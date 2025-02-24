@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75783C021BF
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 13:43:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08735C021A4
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 13:43:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD93810E507;
-	Mon, 24 Feb 2025 13:42:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08E1D10E440;
+	Mon, 24 Feb 2025 13:42:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ncONosh7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PVi43jNT";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71B1510E16F;
- Mon, 24 Feb 2025 08:31:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16CA410E0C5
+ for <intel-xe@lists.freedesktop.org>; Mon, 24 Feb 2025 04:04:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740385870; x=1771921870;
+ t=1740369869; x=1771905869;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2OELeSgx3/E5V8arWkurNukMkmkk+kgM4IESoUi7lQ4=;
- b=ncONosh7pGwis8p8u2bqi2UPsvDdJJy6PwtgCdkYeFPEWOp9JUM+c8hm
- PBnCzOmIOXil/wiixN8xC0Z+rsOg5kcw34jgTP6hIOmNYzXMgDAWyVWAz
- DIkaaySiusRBR4Pt9aaiRB4pOL3chHfGKlU8DEmsR/kdH+FgOmM7iWyRo
- KUvdqrfUvo66lkiExR/d6aJK2oAnDt9IZpgCdE1rinpC79VHfju20nSEx
- IPSuc8VIRd+SNwcL3/SpZKp7eqUPIicjh6sZITK/aaPcT7ofRACbdS/Za
- L/U829RKTsSqW6mqoeTgGiFW7/lzmJKZtjd9UMAhtZ/EYO9R9u/h9ouDr A==;
-X-CSE-ConnectionGUID: chGV1OzPSka+Ino7s2qUCg==
-X-CSE-MsgGUID: MNHWLgmdT3+SHzNZ87rX8g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="41250285"
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="41250285"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2025 00:31:10 -0800
-X-CSE-ConnectionGUID: fMg/0WEhScunchcJqglHFw==
-X-CSE-MsgGUID: WHF/O7xnSjGOrXIAgovk9Q==
+ bh=CbZTKoFPJ+hHuaptQZd+fb5Ic6P/8TjkA4NtW0jdxa0=;
+ b=PVi43jNTAGoDSehrD7BPnmZcuEdTrb+f4Yngmm1Bq6XEO0HkIUMVRH2p
+ mfEuaHxOWPvrko3zm1BQ311edn965z6/jnwdZTy3/oGdIxTckq5D6kOFy
+ MyG8vBy9Wm/OHNU2mOiMwDEfNrEBi3zKk2RZEOx3zf7y5REFuXHepEtLd
+ NQOW4kONSPx0Nc8Ap8qUZhFy7ir5Glom0nF9h6gj3k3wAl4rppV2QugVF
+ x148/zSHVkPkbxaS52LvZt7NeIW0hZbHI1Q3w5Lp30XObYHybCShm1dHu
+ ZLyYgJFtCL3JM1UUVcTRojrhQHjrYx1mdmLAOoc9x5ahGKr77uAGbb7OX A==;
+X-CSE-ConnectionGUID: tZ8Fxd+XQTynbGnZiwGpyw==
+X-CSE-MsgGUID: VLY9EoRPRLyh5Bj0pkC/5g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="51740515"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="51740515"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2025 20:04:29 -0800
+X-CSE-ConnectionGUID: qBq8s/96Rm2k2XQXLDL8rA==
+X-CSE-MsgGUID: 8nNVnz3ITwuDhCDWEE+WCg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="116630825"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by fmviesa009.fm.intel.com with ESMTP; 24 Feb 2025 00:31:08 -0800
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jouni.hogander@intel.com, jani.nikula@intel.com, jeevan.b@intel.com,
- Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v4 7/8] drm/i915/lobf: Add mutex for alpm update
-Date: Mon, 24 Feb 2025 13:38:46 +0530
-Message-Id: <20250224080847.326350-8-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20250224080847.326350-1-animesh.manna@intel.com>
-References: <20250224080847.326350-1-animesh.manna@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="115788475"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2025 20:04:28 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: thomas.hellstrom@linux.intel.com,
+	matthew.auld@intel.com
+Subject: [PATCH v2 1/3] drm/xe/userptr: fix EFAULT handling
+Date: Sun, 23 Feb 2025 20:05:27 -0800
+Message-Id: <20250224040529.3025963-2-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250224040529.3025963-1-matthew.brost@intel.com>
+References: <20250224040529.3025963-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,166 +68,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The ALPM_CTL can be updated from different context, so
-add mutex to sychonize the update.
+From: Matthew Auld <matthew.auld@intel.com>
 
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+Currently we treat EFAULT from hmm_range_fault() as a non-fatal error
+when called from xe_vm_userptr_pin() with the idea that we want to avoid
+killing the entire vm and chucking an error, under the assumption that
+the user just did an unmap or something, and has no intention of
+actually touching that memory from the GPU.  At this point we have
+already zapped the PTEs so any access should generate a page fault, and
+if the pin fails there also it will then become fatal.
+
+However it looks like it's possible for the userptr vma to still be on
+the rebind list in preempt_rebind_work_func(), if we had to retry the
+pin again due to something happening in the caller before we did the
+rebind step, but in the meantime needing to re-validate the userptr and
+this time hitting the EFAULT.
+
+This might explain an internal user report of hitting:
+
+[  191.738349] WARNING: CPU: 1 PID: 157 at drivers/gpu/drm/xe/xe_res_cursor.h:158 xe_pt_stage_bind.constprop.0+0x60a/0x6b0 [xe]
+[  191.738551] Workqueue: xe-ordered-wq preempt_rebind_work_func [xe]
+[  191.738616] RIP: 0010:xe_pt_stage_bind.constprop.0+0x60a/0x6b0 [xe]
+[  191.738690] Call Trace:
+[  191.738692]  <TASK>
+[  191.738694]  ? show_regs+0x69/0x80
+[  191.738698]  ? __warn+0x93/0x1a0
+[  191.738703]  ? xe_pt_stage_bind.constprop.0+0x60a/0x6b0 [xe]
+[  191.738759]  ? report_bug+0x18f/0x1a0
+[  191.738764]  ? handle_bug+0x63/0xa0
+[  191.738767]  ? exc_invalid_op+0x19/0x70
+[  191.738770]  ? asm_exc_invalid_op+0x1b/0x20
+[  191.738777]  ? xe_pt_stage_bind.constprop.0+0x60a/0x6b0 [xe]
+[  191.738834]  ? ret_from_fork_asm+0x1a/0x30
+[  191.738849]  bind_op_prepare+0x105/0x7b0 [xe]
+[  191.738906]  ? dma_resv_reserve_fences+0x301/0x380
+[  191.738912]  xe_pt_update_ops_prepare+0x28c/0x4b0 [xe]
+[  191.738966]  ? kmemleak_alloc+0x4b/0x80
+[  191.738973]  ops_execute+0x188/0x9d0 [xe]
+[  191.739036]  xe_vm_rebind+0x4ce/0x5a0 [xe]
+[  191.739098]  ? trace_hardirqs_on+0x4d/0x60
+[  191.739112]  preempt_rebind_work_func+0x76f/0xd00 [xe]
+
+Followed by NPD, when running some workload, since the sg was never
+actually populated but the vma is still marked for rebind when it should
+be skipped for this special EFAULT case. And from the logs it does seem
+like we hit this special EFAULT case before the explosions.
+
+v2 (MattB):
+ - Move earlier
+
+Fixes: 521db22a1d70 ("drm/xe: Invalidate userptr VMA on page pin fault")
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: <stable@vger.kernel.org> # v6.10+
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_alpm.c     | 19 +++++++++++++++++--
- drivers/gpu/drm/i915/display/intel_alpm.h     |  6 ++++--
- drivers/gpu/drm/i915/display/intel_ddi.c      |  2 +-
- .../drm/i915/display/intel_display_types.h    |  1 +
- drivers/gpu/drm/i915/display/intel_dp.c       |  2 +-
- 5 files changed, 24 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index 92ec03956755..5f8c1ec5e21c 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -23,7 +23,7 @@ bool intel_alpm_aux_less_wake_supported(struct intel_dp *intel_dp)
- 	return intel_dp->alpm_dpcd & DP_ALPM_AUX_LESS_CAP;
- }
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index d664f2e418b2..ea2e287e6526 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -681,6 +681,18 @@ int xe_vm_userptr_pin(struct xe_vm *vm)
+ 		err = xe_vma_userptr_pin_pages(uvma);
+ 		if (err == -EFAULT) {
+ 			list_del_init(&uvma->userptr.repin_link);
++			/*
++			 * We might have already done the pin once already, but
++			 * then had to retry before the re-bind happened, due
++			 * some other condition in the caller, but in the
++			 * meantime the userptr got dinged by the notifier such
++			 * that we need to revalidate here, but this time we hit
++			 * the EFAULT. In such a case make sure we remove
++			 * ourselves from the rebind list to avoid going down in
++			 * flames.
++			 */
++			if (!list_empty(&uvma->vma.combined_links.rebind))
++				list_del_init(&uvma->vma.combined_links.rebind);
  
--void intel_alpm_init_dpcd(struct intel_dp *intel_dp)
-+void intel_alpm_init(struct intel_dp *intel_dp)
- {
- 	u8 dpcd;
- 
-@@ -31,6 +31,7 @@ void intel_alpm_init_dpcd(struct intel_dp *intel_dp)
- 		return;
- 
- 	intel_dp->alpm_dpcd = dpcd;
-+	mutex_init(&intel_dp->alpm_parameters.lock);
- }
- 
- /*
-@@ -315,20 +316,26 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
- 		(first_sdp_position + waketime_in_lines);
- }
- 
--void intel_alpm_lobf_update(const struct intel_crtc_state *crtc_state)
-+void intel_alpm_lobf_update(const struct intel_crtc_state *crtc_state,
-+			    struct intel_encoder *encoder)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-+	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
- 	u32 alpm_ctl;
- 
- 	if (DISPLAY_VER(display) < 20)
- 		return;
- 
-+	mutex_lock(&intel_dp->alpm_parameters.lock);
-+
- 	alpm_ctl = intel_de_read(display, ALPM_CTL(display, cpu_transcoder));
- 	if (alpm_ctl & ALPM_CTL_LOBF_ENABLE && !crtc_state->has_lobf) {
- 		alpm_ctl &= ~ALPM_CTL_LOBF_ENABLE;
- 		intel_de_write(display, ALPM_CTL(display, cpu_transcoder), alpm_ctl);
- 	}
-+
-+	mutex_unlock(&intel_dp->alpm_parameters.lock);
- }
- 
- static void lnl_alpm_configure(struct intel_dp *intel_dp,
-@@ -343,6 +350,8 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
- 	    (!intel_dp->psr.sel_update_enabled && !intel_dp_is_edp(intel_dp)))
- 		return;
- 
-+	mutex_lock(&intel_dp->alpm_parameters.lock);
-+
- 	/*
- 	 * Panel Replay on eDP is always using ALPM aux less. I.e. no need to
- 	 * check panel support at this point.
-@@ -382,6 +391,8 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
- 	alpm_ctl |= ALPM_CTL_ALPM_ENTRY_CHECK(intel_dp->alpm_parameters.check_entry_lines);
- 
- 	intel_de_write(display, ALPM_CTL(display, cpu_transcoder), alpm_ctl);
-+
-+	mutex_unlock(&intel_dp->alpm_parameters.lock);
- }
- 
- void intel_alpm_configure(struct intel_dp *intel_dp,
-@@ -521,6 +532,8 @@ void intel_alpm_disable(struct intel_dp *intel_dp)
- 	if (DISPLAY_VER(display) < 20)
- 		return;
- 
-+	mutex_lock(&intel_dp->alpm_parameters.lock);
-+
- 	if (!(intel_de_read(display, ALPM_CTL(display, cpu_transcoder)) & ALPM_CTL_ALPM_ENABLE))
- 		return;
- 
-@@ -531,6 +544,8 @@ void intel_alpm_disable(struct intel_dp *intel_dp)
- 	intel_de_rmw(display,
- 		     PORT_ALPM_CTL(cpu_transcoder),
- 		     PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
-+
-+	mutex_unlock(&intel_dp->alpm_parameters.lock);
- }
- 
- bool intel_alpm_get_error(struct intel_dp *intel_dp)
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
-index 22469fd4cba5..f7834343a9bd 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.h
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.h
-@@ -14,8 +14,9 @@ struct drm_connector_state;
- struct intel_connector;
- struct intel_atomic_state;
- struct intel_crtc;
-+struct intel_encoder;
- 
--void intel_alpm_init_dpcd(struct intel_dp *intel_dp);
-+void intel_alpm_init(struct intel_dp *intel_dp);
- bool intel_alpm_compute_params(struct intel_dp *intel_dp,
- 			       const struct intel_crtc_state *crtc_state);
- void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
-@@ -23,7 +24,8 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
- 				    struct drm_connector_state *conn_state);
- void intel_alpm_configure(struct intel_dp *intel_dp,
- 			  const struct intel_crtc_state *crtc_state);
--void intel_alpm_lobf_update(const struct intel_crtc_state *crtc_state);
-+void intel_alpm_lobf_update(const struct intel_crtc_state *crtc_state,
-+			    struct intel_encoder *encoder);
- void intel_alpm_post_plane_update(struct intel_atomic_state *state,
- 				  struct intel_crtc *crtc);
- void intel_alpm_lobf_debugfs_add(struct intel_connector *connector);
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 44258ba0d951..1e66e40bed24 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3622,7 +3622,7 @@ static void intel_ddi_update_pipe_dp(struct intel_atomic_state *state,
- 	intel_ddi_set_dp_msa(crtc_state, conn_state);
- 
- 	intel_dp_set_infoframes(encoder, true, crtc_state, conn_state);
--	intel_alpm_lobf_update(crtc_state);
-+	intel_alpm_lobf_update(crtc_state, encoder);
- 
- 	intel_backlight_update(state, encoder, crtc_state, conn_state);
- 	drm_connector_update_privacy_screen(conn_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index b6ec9a8fadd9..65875404e20d 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1802,6 +1802,7 @@ struct intel_dp {
- 		u8 io_wake_lines;
- 		u8 fast_wake_lines;
- 		enum transcoder transcoder;
-+		struct mutex lock;
- 
- 		/* LNL and beyond */
- 		u8 check_entry_lines;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 24ad7680cdf2..2da1dd0cc6f4 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -6364,7 +6364,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
- 	 */
- 	intel_hpd_enable_detection(encoder);
- 
--	intel_alpm_init_dpcd(intel_dp);
-+	intel_alpm_init(intel_dp);
- 
- 	/* Cache DPCD and EDID for edp. */
- 	has_dpcd = intel_edp_init_dpcd(intel_dp, connector);
+ 			/* Wait for pending binds */
+ 			xe_vm_lock(vm, false);
 -- 
-2.29.0
+2.34.1
 
