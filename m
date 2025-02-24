@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C04A9C021B3
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 05:18:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B4AEC021B3
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 05:18:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D17910E051;
-	Mon, 24 Feb 2025 05:18:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3066010E12A;
+	Mon, 24 Feb 2025 05:18:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B5/vCbuH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b0xZBYB6";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EFE710E051
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Feb 2025 05:18:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B47A610E129
+ for <intel-xe@lists.freedesktop.org>; Mon, 24 Feb 2025 05:18:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740374290; x=1771910290;
+ t=1740374294; x=1771910294;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gtRDl4AXgMQ4C4vVmmhmGR7NzvqwhDL/Ibfe665bJmU=;
- b=B5/vCbuHtxPmIGXQG8m4WaOnT+OQNqIKR5NJo+Xxff7RQao3Ot1pwV+t
- cxhcdPYKWilhxzDK6jkDvoRBOKsAU22fpY+Jqul1MWn+Uxxz3hvkW6YaO
- dOShSNL3uwUQb6wndEZzoVszlKib748dfgtPKq+0yESah5LGfm3JL205C
- Uqw1Uyp9aihu/GfhoHNo0W/H5LXbOyDxAucCsEBCq4DWb69+wMLY3Ziyb
- tMky1eIAdA5CB6cF1GEGwdtgUWS/11UDEE1YcH91LgLaw7LHIoHN3Xokt
- zjIl1COBia8i5+7l0WLu6WjsXNFFFPfYYH9cVNkdjpx0k7gFTxjNnWjZR A==;
-X-CSE-ConnectionGUID: tGQZMdEJRVud3z5KfWkE8g==
-X-CSE-MsgGUID: uRByP3KAROqp+gw46yPyGw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="41380321"
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="41380321"
+ bh=9YHmYKhRGYFvQZGqzn2vA38CF0G++BeNt2DxmT/cnUw=;
+ b=b0xZBYB68sse/sSc4MdqA7GbKS1ORivKMcVirrlT+ttoG2SwI0Qn76lK
+ IDaf9G9mFOayjkolLDpEkfe0MrSZ9VXnHoi1+8sAcCQ1pvS8GQLfnamOJ
+ eqGOaNzaBgyqqQFZQiZY6WQb0ZPCFZUvJ9+RZ07p2qlHgwZtCuv4MxMT6
+ BZ8GKfS4JTDAj9h8NDRjh7eMxVEP7SWTgGZhvJdDl3mREUL/MAN1gyRYP
+ 6YdbWtueNjkPvUrreqcXUrp+PCuVLRy/J4KY9mQKE3NdcL22fA/M2P/MS
+ Pm8tQn2OPNAm114r9E6QI58vm9uPwAUqtSsuxvKFxgBfj5g2/l6vlGYT6 g==;
+X-CSE-ConnectionGUID: dtYQSUDUSV+vsTH/f2KtBw==
+X-CSE-MsgGUID: AETb/XitSQiulAkmfpkzuA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="41380335"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="41380335"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 21:18:10 -0800
-X-CSE-ConnectionGUID: mMf0KGJYR/OZ1lxZBXG7QQ==
-X-CSE-MsgGUID: 5bYbbY1gTsuGdgXrB7wReA==
+ 23 Feb 2025 21:18:14 -0800
+X-CSE-ConnectionGUID: GeydjQjnSPSdOkjxWT9Igg==
+X-CSE-MsgGUID: VgrZlLcSRry//5VBT/zvmw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="153150701"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="153150714"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 21:18:07 -0800
+ 23 Feb 2025 21:18:11 -0800
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com,
  umesh.nerlige.ramappa@intel.com, lucas.demarchi@intel.com
-Subject: [PATCH v9 2/5] drm/xe/trace: Add trace for engine activity
-Date: Mon, 24 Feb 2025 11:08:59 +0530
-Message-ID: <20250224053903.2253539-3-riana.tauro@intel.com>
+Subject: [PATCH v9 4/5] drm/xe/xe_pmu: Add PMU support for engine activity
+Date: Mon, 24 Feb 2025 11:09:01 +0530
+Message-ID: <20250224053903.2253539-5-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20250224053903.2253539-1-riana.tauro@intel.com>
 References: <20250224053903.2253539-1-riana.tauro@intel.com>
@@ -67,116 +67,330 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add engine activity related information to trace events for
-better debuggability
+PMU provides two counters (engine-active-ticks, engine-total-ticks)
+to calculate engine activity. When querying engine activity,
+user must group these 2 counters using the perf_event
+group mechanism to ensure both counters are sampled together.
 
-v2: add trace for engine activity (Umesh)
-v3: use hex for quanta_ratio
+To list the events
+
+	./perf list
+	  xe_0000_03_00.0/engine-active-ticks/	[Kernel PMU event]
+	  xe_0000_03_00.0/engine-total-ticks/	[Kernel PMU event]
+
+The formats to be used with the above are
+
+	engine_instance	- config:12-19
+	engine_class	- config:20-27
+	gt		- config:60-63
+
+The events can then be read using perf tool
+
+./perf stat -e xe_0000_03_00.0/engine-active-ticks,gt=0,
+			       engine_class=0,engine_instance=0/,
+	       xe_0000_03_00.0/engine-total-ticks,gt=0,
+			       engine_class=0,engine_instance=0/ -I 1000
+
+Engine activity can then be calculated as below
+engine activity % = (engine active ticks/engine total ticks) * 100
+
+v2: validate gt
+    rename total-ticks to engine-total-ticks
+    add helper to get hwe (Umesh)
+
+v3: fix checkpatch warning
+    add details to documentation (Umesh)
+    remove ascii formats from documentation (Lucas)
+
+v4: remove unnecessary warn within raw_spinlock (Lucas)
 
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_engine_activity.c |  5 +++
- drivers/gpu/drm/xe/xe_trace_guc.h           | 49 +++++++++++++++++++++
- 2 files changed, 54 insertions(+)
+ drivers/gpu/drm/xe/xe_guc.c |   5 ++
+ drivers/gpu/drm/xe/xe_pmu.c | 125 +++++++++++++++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_uc.c  |   3 +
+ 3 files changed, 124 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity.c b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-index 255e63d82a96..a424527eddb6 100644
---- a/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-+++ b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-@@ -17,6 +17,7 @@
- #include "xe_hw_engine.h"
- #include "xe_map.h"
- #include "xe_mmio.h"
-+#include "xe_trace_guc.h"
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 1619c0a52db9..bc1ff0a4e1e7 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -27,6 +27,7 @@
+ #include "xe_guc_capture.h"
+ #include "xe_guc_ct.h"
+ #include "xe_guc_db_mgr.h"
++#include "xe_guc_engine_activity.h"
+ #include "xe_guc_hwconfig.h"
+ #include "xe_guc_log.h"
+ #include "xe_guc_pc.h"
+@@ -744,6 +745,10 @@ int xe_guc_init_post_hwconfig(struct xe_guc *guc)
+ 	if (ret)
+ 		return ret;
  
- #define TOTAL_QUANTA 0x8000
++	ret = xe_guc_engine_activity_init(guc);
++	if (ret)
++		return ret;
++
+ 	ret = xe_guc_buf_cache_init(&guc->buf);
+ 	if (ret)
+ 		return ret;
+diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
+index 3910a82328ee..d2c035c1924e 100644
+--- a/drivers/gpu/drm/xe/xe_pmu.c
++++ b/drivers/gpu/drm/xe/xe_pmu.c
+@@ -8,15 +8,16 @@
  
-@@ -165,6 +166,8 @@ static u64 get_engine_active_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
- 		ea->active = lower_32_bits(gpm_ts) - cached_activity->last_update_tick;
+ #include "xe_device.h"
+ #include "xe_gt_idle.h"
++#include "xe_guc_engine_activity.h"
++#include "xe_hw_engine.h"
+ #include "xe_pm.h"
+ #include "xe_pmu.h"
+ 
+ /**
+  * DOC: Xe PMU (Performance Monitoring Unit)
+  *
+- * Expose events/counters like GT-C6 residency and GT frequency to user land via
+- * the perf interface. Events are per device. The GT can be selected with an
+- * extra config sub-field (bits 60-63).
++ * Expose events/counters like GT-C6 residency, GT frequency and per-class-engine
++ * activity to user land via the perf interface. Events are per device.
+  *
+  * All events are listed in sysfs:
+  *
+@@ -24,7 +25,18 @@
+  *     $ ls /sys/bus/event_source/devices/xe_0000_00_02.0/events/
+  *     $ ls /sys/bus/event_source/devices/xe_0000_00_02.0/format/
+  *
+- * The format directory has info regarding the configs that can be used.
++ * The following format parameters are available to read events,
++ * but only few are valid with each event:
++ *
++ *	gt[60:63]		Selects gt for the event
++ *	engine_class[20:27]	Selects engine-class for event
++ *	engine_instance[12:19]	Selects the engine-instance for the event
++ *
++ * For engine specific events (engine-*), gt, engine_class and engine_instance parameters must be
++ * set as populated by DRM_XE_DEVICE_QUERY_ENGINES.
++ *
++ * For gt specific events (gt-*) gt parameter must be passed. All other parameters will be 0.
++ *
+  * The standard perf tool can be used to grep for a certain event as well.
+  * Example:
+  *
+@@ -35,20 +47,34 @@
+  *     $ perf stat -e <event_name,gt=> -I <interval>
+  */
+ 
+-#define XE_PMU_EVENT_GT_MASK		GENMASK_ULL(63, 60)
+-#define XE_PMU_EVENT_ID_MASK		GENMASK_ULL(11, 0)
++#define XE_PMU_EVENT_GT_MASK			GENMASK_ULL(63, 60)
++#define XE_PMU_EVENT_ENGINE_CLASS_MASK		GENMASK_ULL(27, 20)
++#define XE_PMU_EVENT_ENGINE_INSTANCE_MASK	GENMASK_ULL(19, 12)
++#define XE_PMU_EVENT_ID_MASK			GENMASK_ULL(11, 0)
+ 
+ static unsigned int config_to_event_id(u64 config)
+ {
+ 	return FIELD_GET(XE_PMU_EVENT_ID_MASK, config);
+ }
+ 
++static unsigned int config_to_engine_class(u64 config)
++{
++	return FIELD_GET(XE_PMU_EVENT_ENGINE_CLASS_MASK, config);
++}
++
++static unsigned int config_to_engine_instance(u64 config)
++{
++	return FIELD_GET(XE_PMU_EVENT_ENGINE_INSTANCE_MASK, config);
++}
++
+ static unsigned int config_to_gt_id(u64 config)
+ {
+ 	return FIELD_GET(XE_PMU_EVENT_GT_MASK, config);
+ }
+ 
+-#define XE_PMU_EVENT_GT_C6_RESIDENCY	0x01
++#define XE_PMU_EVENT_GT_C6_RESIDENCY		0x01
++#define XE_PMU_EVENT_ENGINE_ACTIVE_TICKS	0x02
++#define XE_PMU_EVENT_ENGINE_TOTAL_TICKS		0x03
+ 
+ static struct xe_gt *event_to_gt(struct perf_event *event)
+ {
+@@ -58,6 +84,24 @@ static struct xe_gt *event_to_gt(struct perf_event *event)
+ 	return xe_device_get_gt(xe, gt);
+ }
+ 
++static struct xe_hw_engine *event_to_hwe(struct perf_event *event)
++{
++	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
++	struct drm_xe_engine_class_instance eci;
++	u64 config = event->attr.config;
++	struct xe_hw_engine *hwe;
++
++	eci.engine_class = config_to_engine_class(config);
++	eci.engine_instance = config_to_engine_instance(config);
++	eci.gt_id = config_to_gt_id(config);
++
++	hwe = xe_hw_engine_lookup(xe, eci);
++	if (!hwe || xe_hw_engine_is_reserved(hwe))
++		return NULL;
++
++	return hwe;
++}
++
+ static bool event_supported(struct xe_pmu *pmu, unsigned int gt,
+ 			    unsigned int id)
+ {
+@@ -68,6 +112,35 @@ static bool event_supported(struct xe_pmu *pmu, unsigned int gt,
+ 		pmu->supported_events & BIT_ULL(id);
+ }
+ 
++static bool event_param_valid(struct perf_event *event)
++{
++	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
++	unsigned int engine_class, engine_instance;
++	u64 config = event->attr.config;
++	struct xe_gt *gt;
++
++	gt = xe_device_get_gt(xe, config_to_gt_id(config));
++	if (!gt)
++		return false;
++
++	engine_class = config_to_engine_class(config);
++	engine_instance = config_to_engine_instance(config);
++
++	switch (config_to_event_id(config)) {
++	case XE_PMU_EVENT_GT_C6_RESIDENCY:
++		if (engine_class || engine_instance)
++			return false;
++		break;
++	case XE_PMU_EVENT_ENGINE_ACTIVE_TICKS:
++	case XE_PMU_EVENT_ENGINE_TOTAL_TICKS:
++		if (!event_to_hwe(event))
++			return false;
++		break;
++	}
++
++	return true;
++}
++
+ static void xe_pmu_event_destroy(struct perf_event *event)
+ {
+ 	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
+@@ -104,6 +177,9 @@ static int xe_pmu_event_init(struct perf_event *event)
+ 	if (has_branch_stack(event))
+ 		return -EOPNOTSUPP;
+ 
++	if (!event_param_valid(event))
++		return -ENOENT;
++
+ 	if (!event->parent) {
+ 		drm_dev_get(&xe->drm);
+ 		xe_pm_runtime_get(xe);
+@@ -113,6 +189,20 @@ static int xe_pmu_event_init(struct perf_event *event)
+ 	return 0;
+ }
+ 
++static u64 read_engine_events(struct xe_gt *gt, struct perf_event *event)
++{
++	struct xe_hw_engine *hwe;
++	u64 val = 0;
++
++	hwe = event_to_hwe(event);
++	if (config_to_event_id(event->attr.config) == XE_PMU_EVENT_ENGINE_ACTIVE_TICKS)
++		val = xe_guc_engine_activity_active_ticks(&gt->uc.guc, hwe);
++	else
++		val = xe_guc_engine_activity_total_ticks(&gt->uc.guc, hwe);
++
++	return val;
++}
++
+ static u64 __xe_pmu_event_read(struct perf_event *event)
+ {
+ 	struct xe_gt *gt = event_to_gt(event);
+@@ -123,6 +213,9 @@ static u64 __xe_pmu_event_read(struct perf_event *event)
+ 	switch (config_to_event_id(event->attr.config)) {
+ 	case XE_PMU_EVENT_GT_C6_RESIDENCY:
+ 		return xe_gt_idle_residency_msec(&gt->gtidle);
++	case XE_PMU_EVENT_ENGINE_ACTIVE_TICKS:
++	case XE_PMU_EVENT_ENGINE_TOTAL_TICKS:
++		return read_engine_events(gt, event);
  	}
  
-+	trace_xe_guc_engine_activity(xe, ea, hwe->name, hwe->instance);
-+
- 	return ea->total + ea->active;
+ 	return 0;
+@@ -207,11 +300,15 @@ static void xe_pmu_event_del(struct perf_event *event, int flags)
+ 	xe_pmu_event_stop(event, PERF_EF_UPDATE);
  }
  
-@@ -198,6 +201,8 @@ static u64 get_engine_total_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
- 	ea->quanta_remainder_ns = numerator % TOTAL_QUANTA;
- 	ea->quanta = cpu_ns_to_guc_tsc_tick(ea->quanta_ns, cached_metadata->guc_tsc_frequency_hz);
+-PMU_FORMAT_ATTR(gt,	"config:60-63");
+-PMU_FORMAT_ATTR(event,	"config:0-11");
++PMU_FORMAT_ATTR(gt,			"config:60-63");
++PMU_FORMAT_ATTR(engine_class,		"config:20-27");
++PMU_FORMAT_ATTR(engine_instance,	"config:12-19");
++PMU_FORMAT_ATTR(event,			"config:0-11");
  
-+	trace_xe_guc_engine_activity(xe, ea, hwe->name, hwe->instance);
+ static struct attribute *pmu_format_attrs[] = {
+ 	&format_attr_event.attr,
++	&format_attr_engine_class.attr,
++	&format_attr_engine_instance.attr,
+ 	&format_attr_gt.attr,
+ 	NULL,
+ };
+@@ -270,6 +367,8 @@ static ssize_t event_attr_show(struct device *dev,
+ 	XE_EVENT_ATTR_GROUP(v_, id_, &pmu_event_ ##v_.attr.attr)
+ 
+ XE_EVENT_ATTR_SIMPLE(gt-c6-residency, gt_c6_residency, XE_PMU_EVENT_GT_C6_RESIDENCY, "ms");
++XE_EVENT_ATTR_NOUNIT(engine-active-ticks, engine_active_ticks, XE_PMU_EVENT_ENGINE_ACTIVE_TICKS);
++XE_EVENT_ATTR_NOUNIT(engine-total-ticks, engine_total_ticks, XE_PMU_EVENT_ENGINE_TOTAL_TICKS);
+ 
+ static struct attribute *pmu_empty_event_attrs[] = {
+ 	/* Empty - all events are added as groups with .attr_update() */
+@@ -283,15 +382,23 @@ static const struct attribute_group pmu_events_attr_group = {
+ 
+ static const struct attribute_group *pmu_events_attr_update[] = {
+ 	&pmu_group_gt_c6_residency,
++	&pmu_group_engine_active_ticks,
++	&pmu_group_engine_total_ticks,
+ 	NULL,
+ };
+ 
+ static void set_supported_events(struct xe_pmu *pmu)
+ {
+ 	struct xe_device *xe = container_of(pmu, typeof(*xe), pmu);
++	struct xe_gt *gt = xe_device_get_gt(xe, 0);
+ 
+ 	if (!xe->info.skip_guc_pc)
+ 		pmu->supported_events |= BIT_ULL(XE_PMU_EVENT_GT_C6_RESIDENCY);
 +
- 	return ea->quanta;
++	if (xe_guc_engine_activity_supported(&gt->uc.guc)) {
++		pmu->supported_events |= BIT_ULL(XE_PMU_EVENT_ENGINE_ACTIVE_TICKS);
++		pmu->supported_events |= BIT_ULL(XE_PMU_EVENT_ENGINE_TOTAL_TICKS);
++	}
  }
  
-diff --git a/drivers/gpu/drm/xe/xe_trace_guc.h b/drivers/gpu/drm/xe/xe_trace_guc.h
-index 23abdd55dc62..78949db9cfce 100644
---- a/drivers/gpu/drm/xe/xe_trace_guc.h
-+++ b/drivers/gpu/drm/xe/xe_trace_guc.h
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
+index d8167e818280..c14bd2282044 100644
+--- a/drivers/gpu/drm/xe/xe_uc.c
++++ b/drivers/gpu/drm/xe/xe_uc.c
 @@ -14,6 +14,7 @@
+ #include "xe_gt_sriov_vf.h"
+ #include "xe_guc.h"
+ #include "xe_guc_pc.h"
++#include "xe_guc_engine_activity.h"
+ #include "xe_huc.h"
+ #include "xe_sriov.h"
+ #include "xe_uc_fw.h"
+@@ -210,6 +211,8 @@ int xe_uc_init_hw(struct xe_uc *uc)
+ 	if (ret)
+ 		return ret;
  
- #include "xe_device_types.h"
- #include "xe_guc_exec_queue_types.h"
-+#include "xe_guc_engine_activity_types.h"
- 
- #define __dev_name_xe(xe)	dev_name((xe)->drm.dev)
- 
-@@ -100,6 +101,54 @@ DEFINE_EVENT_PRINT(xe_guc_ctb, xe_guc_ctb_g2h,
- 
- );
- 
-+TRACE_EVENT(xe_guc_engine_activity,
-+	    TP_PROTO(struct xe_device *xe, struct engine_activity *ea, const char *name,
-+		     u16 instance),
-+	    TP_ARGS(xe, ea, name, instance),
++	xe_guc_engine_activity_enable_stats(&uc->guc);
 +
-+	    TP_STRUCT__entry(
-+			__string(dev, __dev_name_xe(xe))
-+			__string(name, name)
-+			__field(u32, global_change_num)
-+			__field(u32, guc_tsc_frequency_hz)
-+			__field(u32, lag_latency_usec)
-+			__field(u16, instance)
-+			__field(u16, change_num)
-+			__field(u16, quanta_ratio)
-+			__field(u32, last_update_tick)
-+			__field(u64, active_ticks)
-+			__field(u64, active)
-+			__field(u64, total)
-+			__field(u64, quanta)
-+			__field(u64, last_cpu_ts)
-+	    ),
-+
-+	    TP_fast_assign(
-+			__assign_str(dev);
-+			__assign_str(name);
-+			__entry->global_change_num = ea->metadata.global_change_num;
-+			__entry->guc_tsc_frequency_hz = ea->metadata.guc_tsc_frequency_hz;
-+			__entry->lag_latency_usec = ea->metadata.lag_latency_usec;
-+			__entry->instance = instance;
-+			__entry->change_num = ea->activity.change_num;
-+			__entry->quanta_ratio = ea->activity.quanta_ratio;
-+			__entry->last_update_tick = ea->activity.last_update_tick;
-+			__entry->active_ticks = ea->activity.active_ticks;
-+			__entry->active = ea->active;
-+			__entry->total = ea->total;
-+			__entry->quanta = ea->quanta;
-+			__entry->last_cpu_ts = ea->last_cpu_ts;
-+	    ),
-+
-+	    TP_printk("dev=%s engine %s:%d Active=%llu, quanta=%llu, last_cpu_ts=%llu\n"
-+		      "Activity metadata: global_change_num=%u, guc_tsc_frequency_hz=%u lag_latency_usec=%u\n"
-+		      "Activity data: change_num=%u, quanta_ratio=0x%x, last_update_tick=%u, active_ticks=%llu\n",
-+		      __get_str(dev), __get_str(name), __entry->instance,
-+		      (__entry->active +  __entry->total), __entry->quanta, __entry->last_cpu_ts,
-+		      __entry->global_change_num, __entry->guc_tsc_frequency_hz,
-+		      __entry->lag_latency_usec, __entry->change_num, __entry->quanta_ratio,
-+		      __entry->last_update_tick, __entry->active_ticks)
-+);
- #endif
- 
- /* This part must be outside protection */
+ 	/* We don't fail the driver load if HuC fails to auth, but let's warn */
+ 	ret = xe_huc_auth(&uc->huc, XE_HUC_AUTH_VIA_GUC);
+ 	xe_gt_assert(uc_to_gt(uc), !ret);
 -- 
 2.47.1
 
