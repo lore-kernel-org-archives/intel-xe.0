@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B4AEC021B3
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 05:18:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62B2EC021B5
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 05:18:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3066010E12A;
-	Mon, 24 Feb 2025 05:18:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D10A10E134;
+	Mon, 24 Feb 2025 05:18:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b0xZBYB6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gQIl4rY4";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B47A610E129
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Feb 2025 05:18:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B4D110E129
+ for <intel-xe@lists.freedesktop.org>; Mon, 24 Feb 2025 05:18:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740374294; x=1771910294;
+ t=1740374292; x=1771910292;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9YHmYKhRGYFvQZGqzn2vA38CF0G++BeNt2DxmT/cnUw=;
- b=b0xZBYB68sse/sSc4MdqA7GbKS1ORivKMcVirrlT+ttoG2SwI0Qn76lK
- IDaf9G9mFOayjkolLDpEkfe0MrSZ9VXnHoi1+8sAcCQ1pvS8GQLfnamOJ
- eqGOaNzaBgyqqQFZQiZY6WQb0ZPCFZUvJ9+RZ07p2qlHgwZtCuv4MxMT6
- BZ8GKfS4JTDAj9h8NDRjh7eMxVEP7SWTgGZhvJdDl3mREUL/MAN1gyRYP
- 6YdbWtueNjkPvUrreqcXUrp+PCuVLRy/J4KY9mQKE3NdcL22fA/M2P/MS
- Pm8tQn2OPNAm114r9E6QI58vm9uPwAUqtSsuxvKFxgBfj5g2/l6vlGYT6 g==;
-X-CSE-ConnectionGUID: dtYQSUDUSV+vsTH/f2KtBw==
-X-CSE-MsgGUID: AETb/XitSQiulAkmfpkzuA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="41380335"
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="41380335"
+ bh=856BLgJsMw3cLg3ru7o//fX1PQE3OAdq6FDr9Ecte28=;
+ b=gQIl4rY44aXN9lVJXZgPaEnaIi1ohYbmsQHWxZyztcoKZC9TKcYqtAVc
+ MIvzk+I2YXL1ZRMxnTxJ8NAe0s7UAeknmAkZCNGsk23krafARKDBBhv77
+ eKztMT2RRZqdJtlPi9QarLSjIs5F8jEON1hksfHs0FnhN3fxs22TYjDRL
+ 7S7ypqa9VyGJiIPZ3NOC7fs9axjysu6m5Q8zw8H5ckEuLzkDAxIQUf6A8
+ oDg54YIIMBjkq1zneHkBwqFPziHUWRZnVSscJDJuku87bBHgW/tcVqYuu
+ InBxS+qRWu3cqltmFsBJW3yComVOBgU9oOum5rc3xnvAPwFrh68P8XcGe Q==;
+X-CSE-ConnectionGUID: lAVEu56SSA+wNDlHT3yEww==
+X-CSE-MsgGUID: BI3R+YkpTiSeSBLImvq0Wg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="41380326"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="41380326"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 21:18:14 -0800
-X-CSE-ConnectionGUID: GeydjQjnSPSdOkjxWT9Igg==
-X-CSE-MsgGUID: VgrZlLcSRry//5VBT/zvmw==
+ 23 Feb 2025 21:18:12 -0800
+X-CSE-ConnectionGUID: 0/aFRJG/Tki5XXsVVp/vdA==
+X-CSE-MsgGUID: riSNR+zFTh+qcM0eIeTiEg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="153150714"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="153150707"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 21:18:11 -0800
+ 23 Feb 2025 21:18:09 -0800
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com,
  umesh.nerlige.ramappa@intel.com, lucas.demarchi@intel.com
-Subject: [PATCH v9 4/5] drm/xe/xe_pmu: Add PMU support for engine activity
-Date: Mon, 24 Feb 2025 11:09:01 +0530
-Message-ID: <20250224053903.2253539-5-riana.tauro@intel.com>
+Subject: [PATCH v9 3/5] drm/xe/guc: Expose engine activity only for supported
+ GuC version
+Date: Mon, 24 Feb 2025 11:09:00 +0530
+Message-ID: <20250224053903.2253539-4-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20250224053903.2253539-1-riana.tauro@intel.com>
 References: <20250224053903.2253539-1-riana.tauro@intel.com>
@@ -67,330 +68,150 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-PMU provides two counters (engine-active-ticks, engine-total-ticks)
-to calculate engine activity. When querying engine activity,
-user must group these 2 counters using the perf_event
-group mechanism to ensure both counters are sampled together.
+Engine activity is supported only on GuC submission version >= 1.14.1
+Allow enabling/reading engine activity only on supported
+GuC versions. Warn once if not supported.
 
-To list the events
+v2: use guc interface version (John)
+v3: use debug log (Umesh)
+v4: use variable for supported and use gt logs
+    use a friendlier log message (Michal)
+v5: fix kernel-doc
+    do not continue in init if not supported (Michal)
+v6: remove hardcoding values (Michal)
 
-	./perf list
-	  xe_0000_03_00.0/engine-active-ticks/	[Kernel PMU event]
-	  xe_0000_03_00.0/engine-total-ticks/	[Kernel PMU event]
-
-The formats to be used with the above are
-
-	engine_instance	- config:12-19
-	engine_class	- config:20-27
-	gt		- config:60-63
-
-The events can then be read using perf tool
-
-./perf stat -e xe_0000_03_00.0/engine-active-ticks,gt=0,
-			       engine_class=0,engine_instance=0/,
-	       xe_0000_03_00.0/engine-total-ticks,gt=0,
-			       engine_class=0,engine_instance=0/ -I 1000
-
-Engine activity can then be calculated as below
-engine activity % = (engine active ticks/engine total ticks) * 100
-
-v2: validate gt
-    rename total-ticks to engine-total-ticks
-    add helper to get hwe (Umesh)
-
-v3: fix checkpatch warning
-    add details to documentation (Umesh)
-    remove ascii formats from documentation (Lucas)
-
-v4: remove unnecessary warn within raw_spinlock (Lucas)
-
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc.c |   5 ++
- drivers/gpu/drm/xe/xe_pmu.c | 125 +++++++++++++++++++++++++++++++++---
- drivers/gpu/drm/xe/xe_uc.c  |   3 +
- 3 files changed, 124 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_engine_activity.c   | 51 ++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_guc_engine_activity.h   |  1 +
+ .../gpu/drm/xe/xe_guc_engine_activity_types.h |  3 ++
+ 3 files changed, 53 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 1619c0a52db9..bc1ff0a4e1e7 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -27,6 +27,7 @@
- #include "xe_guc_capture.h"
- #include "xe_guc_ct.h"
- #include "xe_guc_db_mgr.h"
-+#include "xe_guc_engine_activity.h"
- #include "xe_guc_hwconfig.h"
- #include "xe_guc_log.h"
- #include "xe_guc_pc.h"
-@@ -744,6 +745,10 @@ int xe_guc_init_post_hwconfig(struct xe_guc *guc)
- 	if (ret)
- 		return ret;
- 
-+	ret = xe_guc_engine_activity_init(guc);
-+	if (ret)
-+		return ret;
-+
- 	ret = xe_guc_buf_cache_init(&guc->buf);
- 	if (ret)
- 		return ret;
-diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
-index 3910a82328ee..d2c035c1924e 100644
---- a/drivers/gpu/drm/xe/xe_pmu.c
-+++ b/drivers/gpu/drm/xe/xe_pmu.c
-@@ -8,15 +8,16 @@
- 
- #include "xe_device.h"
- #include "xe_gt_idle.h"
-+#include "xe_guc_engine_activity.h"
-+#include "xe_hw_engine.h"
- #include "xe_pm.h"
- #include "xe_pmu.h"
- 
- /**
-  * DOC: Xe PMU (Performance Monitoring Unit)
-  *
-- * Expose events/counters like GT-C6 residency and GT frequency to user land via
-- * the perf interface. Events are per device. The GT can be selected with an
-- * extra config sub-field (bits 60-63).
-+ * Expose events/counters like GT-C6 residency, GT frequency and per-class-engine
-+ * activity to user land via the perf interface. Events are per device.
-  *
-  * All events are listed in sysfs:
-  *
-@@ -24,7 +25,18 @@
-  *     $ ls /sys/bus/event_source/devices/xe_0000_00_02.0/events/
-  *     $ ls /sys/bus/event_source/devices/xe_0000_00_02.0/format/
-  *
-- * The format directory has info regarding the configs that can be used.
-+ * The following format parameters are available to read events,
-+ * but only few are valid with each event:
-+ *
-+ *	gt[60:63]		Selects gt for the event
-+ *	engine_class[20:27]	Selects engine-class for event
-+ *	engine_instance[12:19]	Selects the engine-instance for the event
-+ *
-+ * For engine specific events (engine-*), gt, engine_class and engine_instance parameters must be
-+ * set as populated by DRM_XE_DEVICE_QUERY_ENGINES.
-+ *
-+ * For gt specific events (gt-*) gt parameter must be passed. All other parameters will be 0.
-+ *
-  * The standard perf tool can be used to grep for a certain event as well.
-  * Example:
-  *
-@@ -35,20 +47,34 @@
-  *     $ perf stat -e <event_name,gt=> -I <interval>
-  */
- 
--#define XE_PMU_EVENT_GT_MASK		GENMASK_ULL(63, 60)
--#define XE_PMU_EVENT_ID_MASK		GENMASK_ULL(11, 0)
-+#define XE_PMU_EVENT_GT_MASK			GENMASK_ULL(63, 60)
-+#define XE_PMU_EVENT_ENGINE_CLASS_MASK		GENMASK_ULL(27, 20)
-+#define XE_PMU_EVENT_ENGINE_INSTANCE_MASK	GENMASK_ULL(19, 12)
-+#define XE_PMU_EVENT_ID_MASK			GENMASK_ULL(11, 0)
- 
- static unsigned int config_to_event_id(u64 config)
- {
- 	return FIELD_GET(XE_PMU_EVENT_ID_MASK, config);
+diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity.c b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
+index a424527eddb6..2a457dcf31d5 100644
+--- a/drivers/gpu/drm/xe/xe_guc_engine_activity.c
++++ b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
+@@ -95,6 +95,29 @@ static void free_engine_activity_buffers(struct engine_activity_buffer *buffer)
+ 	xe_bo_unpin_map_no_vm(buffer->activity_bo);
  }
  
-+static unsigned int config_to_engine_class(u64 config)
++static bool is_engine_activity_supported(struct xe_guc *guc)
 +{
-+	return FIELD_GET(XE_PMU_EVENT_ENGINE_CLASS_MASK, config);
-+}
++	struct xe_uc_fw_version *version = &guc->fw.versions.found[XE_UC_FW_VER_COMPATIBILITY];
++	struct xe_uc_fw_version required = { 1, 14, 1 };
++	struct xe_gt *gt = guc_to_gt(guc);
 +
-+static unsigned int config_to_engine_instance(u64 config)
-+{
-+	return FIELD_GET(XE_PMU_EVENT_ENGINE_INSTANCE_MASK, config);
-+}
-+
- static unsigned int config_to_gt_id(u64 config)
- {
- 	return FIELD_GET(XE_PMU_EVENT_GT_MASK, config);
- }
- 
--#define XE_PMU_EVENT_GT_C6_RESIDENCY	0x01
-+#define XE_PMU_EVENT_GT_C6_RESIDENCY		0x01
-+#define XE_PMU_EVENT_ENGINE_ACTIVE_TICKS	0x02
-+#define XE_PMU_EVENT_ENGINE_TOTAL_TICKS		0x03
- 
- static struct xe_gt *event_to_gt(struct perf_event *event)
- {
-@@ -58,6 +84,24 @@ static struct xe_gt *event_to_gt(struct perf_event *event)
- 	return xe_device_get_gt(xe, gt);
- }
- 
-+static struct xe_hw_engine *event_to_hwe(struct perf_event *event)
-+{
-+	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
-+	struct drm_xe_engine_class_instance eci;
-+	u64 config = event->attr.config;
-+	struct xe_hw_engine *hwe;
-+
-+	eci.engine_class = config_to_engine_class(config);
-+	eci.engine_instance = config_to_engine_instance(config);
-+	eci.gt_id = config_to_gt_id(config);
-+
-+	hwe = xe_hw_engine_lookup(xe, eci);
-+	if (!hwe || xe_hw_engine_is_reserved(hwe))
-+		return NULL;
-+
-+	return hwe;
-+}
-+
- static bool event_supported(struct xe_pmu *pmu, unsigned int gt,
- 			    unsigned int id)
- {
-@@ -68,6 +112,35 @@ static bool event_supported(struct xe_pmu *pmu, unsigned int gt,
- 		pmu->supported_events & BIT_ULL(id);
- }
- 
-+static bool event_param_valid(struct perf_event *event)
-+{
-+	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
-+	unsigned int engine_class, engine_instance;
-+	u64 config = event->attr.config;
-+	struct xe_gt *gt;
-+
-+	gt = xe_device_get_gt(xe, config_to_gt_id(config));
-+	if (!gt)
++	if (IS_SRIOV_VF(gt_to_xe(gt))) {
++		xe_gt_info(gt, "engine activity stats not supported on VFs\n");
 +		return false;
++	}
 +
-+	engine_class = config_to_engine_class(config);
-+	engine_instance = config_to_engine_instance(config);
-+
-+	switch (config_to_event_id(config)) {
-+	case XE_PMU_EVENT_GT_C6_RESIDENCY:
-+		if (engine_class || engine_instance)
-+			return false;
-+		break;
-+	case XE_PMU_EVENT_ENGINE_ACTIVE_TICKS:
-+	case XE_PMU_EVENT_ENGINE_TOTAL_TICKS:
-+		if (!event_to_hwe(event))
-+			return false;
-+		break;
++	/* engine activity stats is supported from GuC interface version (1.14.1) */
++	if (GUC_SUBMIT_VER(guc) < MAKE_GUC_VER_STRUCT(required)) {
++		xe_gt_info(gt,
++			   "engine activity stats unsupported in GuC interface v%u.%u.%u, need v%u.%u.%u or higher\n",
++			   version->major, version->minor, version->patch, required.major,
++			   required.minor, required.patch);
++		return false;
 +	}
 +
 +	return true;
 +}
 +
- static void xe_pmu_event_destroy(struct perf_event *event)
+ static struct engine_activity *hw_engine_to_engine_activity(struct xe_hw_engine *hwe)
  {
- 	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
-@@ -104,6 +177,9 @@ static int xe_pmu_event_init(struct perf_event *event)
- 	if (has_branch_stack(event))
- 		return -EOPNOTSUPP;
- 
-+	if (!event_param_valid(event))
-+		return -ENOENT;
+ 	struct xe_guc *guc = &hwe->gt->uc.guc;
+@@ -251,6 +274,9 @@ static u32 gpm_timestamp_shift(struct xe_gt *gt)
+  */
+ u64 xe_guc_engine_activity_active_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
+ {
++	if (!xe_guc_engine_activity_supported(guc))
++		return 0;
 +
- 	if (!event->parent) {
- 		drm_dev_get(&xe->drm);
- 		xe_pm_runtime_get(xe);
-@@ -113,6 +189,20 @@ static int xe_pmu_event_init(struct perf_event *event)
- 	return 0;
+ 	return get_engine_active_ticks(guc, hwe);
  }
  
-+static u64 read_engine_events(struct xe_gt *gt, struct perf_event *event)
+@@ -263,9 +289,27 @@ u64 xe_guc_engine_activity_active_ticks(struct xe_guc *guc, struct xe_hw_engine
+  */
+ u64 xe_guc_engine_activity_total_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
+ {
++	if (!xe_guc_engine_activity_supported(guc))
++		return 0;
++
+ 	return get_engine_total_ticks(guc, hwe);
+ }
+ 
++/**
++ * xe_guc_engine_activity_supported - Check support for engine activity stats
++ * @guc: The GuC object
++ *
++ * Engine activity stats is supported from GuC interface version (1.14.1)
++ *
++ * Return: true if engine activity stats supported, false otherwise
++ */
++bool xe_guc_engine_activity_supported(struct xe_guc *guc)
 +{
-+	struct xe_hw_engine *hwe;
-+	u64 val = 0;
++	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
 +
-+	hwe = event_to_hwe(event);
-+	if (config_to_event_id(event->attr.config) == XE_PMU_EVENT_ENGINE_ACTIVE_TICKS)
-+		val = xe_guc_engine_activity_active_ticks(&gt->uc.guc, hwe);
-+	else
-+		val = xe_guc_engine_activity_total_ticks(&gt->uc.guc, hwe);
-+
-+	return val;
++	return engine_activity->supported;
 +}
 +
- static u64 __xe_pmu_event_read(struct perf_event *event)
- {
- 	struct xe_gt *gt = event_to_gt(event);
-@@ -123,6 +213,9 @@ static u64 __xe_pmu_event_read(struct perf_event *event)
- 	switch (config_to_event_id(event->attr.config)) {
- 	case XE_PMU_EVENT_GT_C6_RESIDENCY:
- 		return xe_gt_idle_residency_msec(&gt->gtidle);
-+	case XE_PMU_EVENT_ENGINE_ACTIVE_TICKS:
-+	case XE_PMU_EVENT_ENGINE_TOTAL_TICKS:
-+		return read_engine_events(gt, event);
- 	}
- 
- 	return 0;
-@@ -207,11 +300,15 @@ static void xe_pmu_event_del(struct perf_event *event, int flags)
- 	xe_pmu_event_stop(event, PERF_EF_UPDATE);
- }
- 
--PMU_FORMAT_ATTR(gt,	"config:60-63");
--PMU_FORMAT_ATTR(event,	"config:0-11");
-+PMU_FORMAT_ATTR(gt,			"config:60-63");
-+PMU_FORMAT_ATTR(engine_class,		"config:20-27");
-+PMU_FORMAT_ATTR(engine_instance,	"config:12-19");
-+PMU_FORMAT_ATTR(event,			"config:0-11");
- 
- static struct attribute *pmu_format_attrs[] = {
- 	&format_attr_event.attr,
-+	&format_attr_engine_class.attr,
-+	&format_attr_engine_instance.attr,
- 	&format_attr_gt.attr,
- 	NULL,
- };
-@@ -270,6 +367,8 @@ static ssize_t event_attr_show(struct device *dev,
- 	XE_EVENT_ATTR_GROUP(v_, id_, &pmu_event_ ##v_.attr.attr)
- 
- XE_EVENT_ATTR_SIMPLE(gt-c6-residency, gt_c6_residency, XE_PMU_EVENT_GT_C6_RESIDENCY, "ms");
-+XE_EVENT_ATTR_NOUNIT(engine-active-ticks, engine_active_ticks, XE_PMU_EVENT_ENGINE_ACTIVE_TICKS);
-+XE_EVENT_ATTR_NOUNIT(engine-total-ticks, engine_total_ticks, XE_PMU_EVENT_ENGINE_TOTAL_TICKS);
- 
- static struct attribute *pmu_empty_event_attrs[] = {
- 	/* Empty - all events are added as groups with .attr_update() */
-@@ -283,15 +382,23 @@ static const struct attribute_group pmu_events_attr_group = {
- 
- static const struct attribute_group *pmu_events_attr_update[] = {
- 	&pmu_group_gt_c6_residency,
-+	&pmu_group_engine_active_ticks,
-+	&pmu_group_engine_total_ticks,
- 	NULL,
- };
- 
- static void set_supported_events(struct xe_pmu *pmu)
- {
- 	struct xe_device *xe = container_of(pmu, typeof(*xe), pmu);
-+	struct xe_gt *gt = xe_device_get_gt(xe, 0);
- 
- 	if (!xe->info.skip_guc_pc)
- 		pmu->supported_events |= BIT_ULL(XE_PMU_EVENT_GT_C6_RESIDENCY);
-+
-+	if (xe_guc_engine_activity_supported(&gt->uc.guc)) {
-+		pmu->supported_events |= BIT_ULL(XE_PMU_EVENT_ENGINE_ACTIVE_TICKS);
-+		pmu->supported_events |= BIT_ULL(XE_PMU_EVENT_ENGINE_TOTAL_TICKS);
-+	}
- }
- 
  /**
-diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
-index d8167e818280..c14bd2282044 100644
---- a/drivers/gpu/drm/xe/xe_uc.c
-+++ b/drivers/gpu/drm/xe/xe_uc.c
-@@ -14,6 +14,7 @@
- #include "xe_gt_sriov_vf.h"
- #include "xe_guc.h"
- #include "xe_guc_pc.h"
-+#include "xe_guc_engine_activity.h"
- #include "xe_huc.h"
- #include "xe_sriov.h"
- #include "xe_uc_fw.h"
-@@ -210,6 +211,8 @@ int xe_uc_init_hw(struct xe_uc *uc)
- 	if (ret)
- 		return ret;
+  * xe_guc_engine_activity_enable_stats - Enable engine activity stats
+  * @guc: The GuC object
+@@ -276,6 +320,9 @@ void xe_guc_engine_activity_enable_stats(struct xe_guc *guc)
+ {
+ 	int ret;
  
-+	xe_guc_engine_activity_enable_stats(&uc->guc);
++	if (!xe_guc_engine_activity_supported(guc))
++		return;
 +
- 	/* We don't fail the driver load if HuC fails to auth, but let's warn */
- 	ret = xe_huc_auth(&uc->huc, XE_HUC_AUTH_VIA_GUC);
- 	xe_gt_assert(uc_to_gt(uc), !ret);
+ 	ret = enable_engine_activity_stats(guc);
+ 	if (ret)
+ 		xe_gt_err(guc_to_gt(guc), "failed to enable activity stats%d\n", ret);
+@@ -301,10 +348,10 @@ int xe_guc_engine_activity_init(struct xe_guc *guc)
+ {
+ 	struct xe_guc_engine_activity *engine_activity = &guc->engine_activity;
+ 	struct xe_gt *gt = guc_to_gt(guc);
+-	struct xe_device *xe = gt_to_xe(gt);
+ 	int ret;
+ 
+-	if (IS_SRIOV_VF(xe))
++	engine_activity->supported = is_engine_activity_supported(guc);
++	if (!engine_activity->supported)
+ 		return 0;
+ 
+ 	ret = allocate_engine_activity_group(guc);
+diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity.h b/drivers/gpu/drm/xe/xe_guc_engine_activity.h
+index e92d2456698d..a042d4cb404c 100644
+--- a/drivers/gpu/drm/xe/xe_guc_engine_activity.h
++++ b/drivers/gpu/drm/xe/xe_guc_engine_activity.h
+@@ -12,6 +12,7 @@ struct xe_hw_engine;
+ struct xe_guc;
+ 
+ int xe_guc_engine_activity_init(struct xe_guc *guc);
++bool xe_guc_engine_activity_supported(struct xe_guc *guc);
+ void xe_guc_engine_activity_enable_stats(struct xe_guc *guc);
+ u64 xe_guc_engine_activity_active_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe);
+ u64 xe_guc_engine_activity_total_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe);
+diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h b/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h
+index a2ab327d3eec..5cdd034b6b70 100644
+--- a/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h
+@@ -79,6 +79,9 @@ struct xe_guc_engine_activity {
+ 	/** @num_activity_group: number of activity groups */
+ 	u32 num_activity_group;
+ 
++	/** @supported: indicates support for engine activity stats */
++	bool supported;
++
+ 	/** @eag: holds the device level engine activity data */
+ 	struct engine_activity_group *eag;
+ 
 -- 
 2.47.1
 
