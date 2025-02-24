@@ -4,186 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60CC4C021A4
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 13:43:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18747C021A6
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 13:43:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCB1310E4F3;
-	Mon, 24 Feb 2025 13:42:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34AC610E4FA;
+	Mon, 24 Feb 2025 13:42:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oHtz+qbU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B0umKA7s";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DC5310E153;
- Mon, 24 Feb 2025 06:36:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05CB210E051
+ for <intel-xe@lists.freedesktop.org>; Mon, 24 Feb 2025 03:23:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740378981; x=1771914981;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=4hmvC7OtJcSKzgnQ7l5ldxmLn0a0he2roOzic5mnO2Y=;
- b=oHtz+qbUwo1Vs2Gx2urAC+cuZX9heFyVDDi+Er+LjlY2heXG6FnnhALI
- JkvEtmO1a/46ArwnUBhcv62ScY2jA18q/vVdFfz5XjFVI8UWHbnSGs2x9
- MsFq91QGEUv/iOro6iaf8Eua3Ycw62N6RUVpMlf0EKr1kWjiuXd37FYWK
- h7AIGeSX+/qI60j+7c201gutf93ONATHkcjBbki4aMe9C+BjI8KQQcHQw
- D4wK7JH0DF2Ir3gFmyXP2tef8QNt2CrSmlcjGR23b7qfXHH6XjMpbJnXz
- ihaX4lO+SXITd901ZvLiM3UsLVBCo74yzzLfsoZOpPlMK0dEbDKPuNffK w==;
-X-CSE-ConnectionGUID: RqYLNHvsT1ShkcgVUm9ufQ==
-X-CSE-MsgGUID: QsuLOpTHSQ+YxsT+heCcrQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="40308818"
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="40308818"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 22:36:21 -0800
-X-CSE-ConnectionGUID: T1tUottsS5ic9z5xjiJfgw==
-X-CSE-MsgGUID: +biTyJSWTi6XrAaKmXYDWg==
+ t=1740367417; x=1771903417;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=YDijQVIPtvWt8FE9v72+P05kGRUsSFlePK9J+Iya/e4=;
+ b=B0umKA7sma4gXPfEpOy3McDqf2RhiE3bxgp1xA6kcxCsKiQsRLlOLgxW
+ dZIIohOtIJYbFo0rp6RMIixO1QOa7QKNVR11FpfsFt5ufT5T4M5nuff+K
+ T6sJtIebxmryXZI6LGUnNeHqjQ8LiljyJSYBeYEBn3zDu6ip23d0CuoTW
+ dl3XE1AVKSkoBFESl0/ThwajNAxFFLYnW71U/I4dq1yO3CtJXviP+9Hzx
+ hRrZ+25g5Z69EMMm2/ZKsRiH7SaNoJ5sGdO+mzhf10b0IB2ZL0pkSuax4
+ A1EMx5pg8GFhupMJBkLG83+lqsZ1VD16EVBDEgtgxK9NIRdYeZ0NKBu+s A==;
+X-CSE-ConnectionGUID: T0OMj6SOR86A7hHlnwRXGQ==
+X-CSE-MsgGUID: I4GYUPcjSUG8eTNzC0o0fw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="41126882"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="41126882"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2025 19:23:36 -0800
+X-CSE-ConnectionGUID: luGgX/adSLWGsHoP7BKKvA==
+X-CSE-MsgGUID: kJQ3CFDTRme6Xkx1hs0myw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="116473213"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 22:36:21 -0800
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Sun, 23 Feb 2025 22:36:20 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Sun, 23 Feb 2025 22:36:20 -0800
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.173)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Sun, 23 Feb 2025 22:36:20 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rpPFNxRqIKntA3mXwxUfn2bYRewOwHPQEZ7RaDdf/guAwi1AxbHUJwk34IGv5e18Q/jaEnlz/3EL85H6BkGSFbK5qRPvgz5RfI5uCxcHPpUPF/FZ3nuNzynknGRaJTMGmfDjD58boB8iBunMWKF/aFwML/I35We2Q5VsC6ykUZ6Dd5PmwpYBNHTL6pwUFxMXNKo+srRW9AXwe68rscGnp5Q1Xhv/ndme92Ixy1mQ35ogBSr9swhGCMqzmaPn/9hkWSNOa1fJoEgkFvL+P6qdanZzSnxNnihH5MxEuX9tjmLubCHabVuZrLJByLD4CgP23toMvgiU/dNwI6XGxemSMw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4hmvC7OtJcSKzgnQ7l5ldxmLn0a0he2roOzic5mnO2Y=;
- b=pi4r02lC4iProGNqVggNEI0dLIwVCFpjD3bkWLHqv07PvrpHY+79F6sRtZVkZZs3EXpZ4EliKSvQrzjWz12Nl8ZyzscCBt1nOXbYMY7UvUEiqKiptx78SwJFAgsaNB6IvRTKCsfNEsA+nol5P+GQpUSoVFytDPZ/KbvAkVeLm+lprjaJ+JzXcfMj5pJm6c35okMyxmKgwzUgGQm6ITvzZVM7teWIlkgHWPoVgghAxTBiaANxioR28C6PvG4gvHG0FoW1K41JtA6PVE7zkAYaCXoKVY+8a/Fo+KjOcROgi096F8bOzpvNPn5RS08kKLZSEDDcmnp8vuxI5+aJV8jNbg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB6360.namprd11.prod.outlook.com (2603:10b6:8:bd::12) by
- SN7PR11MB6797.namprd11.prod.outlook.com (2603:10b6:806:263::6) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8466.17; Mon, 24 Feb 2025 06:36:13 +0000
-Received: from DM4PR11MB6360.namprd11.prod.outlook.com
- ([fe80::8648:3a6b:af5c:b6e6]) by DM4PR11MB6360.namprd11.prod.outlook.com
- ([fe80::8648:3a6b:af5c:b6e6%2]) with mapi id 15.20.8466.016; Mon, 24 Feb 2025
- 06:36:13 +0000
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH 3/4] drm/i915/dsb: Allow DSB based commits when scalers
- are in use
-Thread-Topic: [PATCH 3/4] drm/i915/dsb: Allow DSB based commits when scalers
- are in use
-Thread-Index: AQHbgkgJekHw5cd1tkGXyB489xgN17NWB/SQ
-Date: Mon, 24 Feb 2025 06:36:13 +0000
-Message-ID: <DM4PR11MB63606578139C5FDC311A75D5F4C02@DM4PR11MB6360.namprd11.prod.outlook.com>
-References: <20250218205850.1422-1-ville.syrjala@linux.intel.com>
- <20250218205850.1422-4-ville.syrjala@linux.intel.com>
-In-Reply-To: <20250218205850.1422-4-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB6360:EE_|SN7PR11MB6797:EE_
-x-ms-office365-filtering-correlation-id: ecc4baf8-4d91-413e-f702-08dd549d88a6
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|376014|1800799024|366016|38070700018;
-x-microsoft-antispam-message-info: =?utf-8?B?MVdoUURuallnb0NyTkQ4MWRSbkk2ZjJhL2RtdS9BM2YwcnVBSlphVldPOXIv?=
- =?utf-8?B?c3RMeDY2VHVtNEYrcStHQnRYUjQ2ejJVUGFuMVdrWVlFOWg1N0lhZUd0TnJ3?=
- =?utf-8?B?dmhJMGhTdnptRGZKZm1OVXV2OTA1OGw3L0MzcmYxY3djVFE0SGJ4R0ltU09m?=
- =?utf-8?B?blpWZWlQT25XMnRUaWJkTDExbE5kYUsybTRmdThEQTRkZW8zU3oza3M5ZDVM?=
- =?utf-8?B?TEZWanh4clUrNGJiaWNycWtWVW84ejlKRGRuUDdWdW8vd2JVVjVNV1l3b0lm?=
- =?utf-8?B?R2xHRDhra0pqV0V2SGp0VmNVYmdtYmVobWNuQ083V1NVZXZhMy8yL0tjd2dO?=
- =?utf-8?B?V0N2YU95TjlXODBUdmFUdXlQNDB6S0dkSmRRREFBTTkrTE03ZjdVcHVNSlA0?=
- =?utf-8?B?Tk5rSnhHYzNxbU5NczN2WVhoNjZTYUFzeGtlZzlKdmRkTEt0dWpNb0k0YmJJ?=
- =?utf-8?B?SlNzQitmSkFMakRSNTFMR1lKU0RVdC9rK2hPOUJVWHNtN0VReVNCQzdDOW50?=
- =?utf-8?B?MEpod1FWakhMMml1NHZBN2dNYUNYUmladjJZOUpudzh2emo5U2RISldHVlda?=
- =?utf-8?B?NHlkV3IyYnhyMzBqNjZvd2Y5ck5veTUzVGtVdzE0U3lHcklRQTgyU2NuOGtU?=
- =?utf-8?B?V3hhdTAyTVVVemw5UHJvMGNDY3plSHFUYzA0WlBpeEo5d3hWSVQxa0ZpQnpi?=
- =?utf-8?B?ejlqMit4WU1NYzNxM2tDOUEwam9qa2k0UzJscGR1Y0NZdWhYRU1XZ2NDZCtN?=
- =?utf-8?B?akZBWWJWbjBwNGl2eTlaTm9zMHlyWVpWK0xHdk9JMDF6a1VNRm83c0NaZ2RB?=
- =?utf-8?B?Yk9VRHk1YWRNQU05alZiWWM3UWNsK2txQWdmNkZvV1RTSDY2K21JMmlnQWo2?=
- =?utf-8?B?SDZRb1FGclRNL2FKT3V4TVlDZUtBSkFYYjBPblB5ZUFtZUw1VEJyWENOaGJx?=
- =?utf-8?B?U3h1b3ZPYXovYjN3Vk5sdlZ3UExYejhrODZkVnVrRUhYZ2xkWHRoSFJZc1Ay?=
- =?utf-8?B?T2VyRkxiZGxtVGJMWm9PU1AxVHI2TlpnQjNieDZBL3dmL2hBVHllL0RuTFMw?=
- =?utf-8?B?Y1NqVllST1JhOFkvV3kzQ0NLSi85VFJKcUdTZUZ4a01GbHhNb2RwbHNZeE92?=
- =?utf-8?B?bWZhMHUyaE5QRlBZYUNmbk9vbWo4bnJZV1NPL1pjNXdVQTR2TkhJaTl3YjNr?=
- =?utf-8?B?SmpYUVN6RGZzS0Y4Y214T2txOTBGdEpCOG9CTkduRlQ3akp2c1hwcEZDKzI5?=
- =?utf-8?B?dTZjNG03UGZoSFg2TFBDdDFzOWRrbVVLL3pBV3N4Nm5KcU1tSFhJeERpWnlI?=
- =?utf-8?B?eGNBRFF5Wkp6alRDR040d0RiWm5WRmIvT2tTbTVsZkZvSmpnSlFLdWJ6dFlp?=
- =?utf-8?B?NkpoWjRPOGRIWVA4VjVXUU9qeTdhaW5reUlFbHRvTXJJcGRGVTIwYUR3czhx?=
- =?utf-8?B?L2I3c0paOEFNYm5FTkpiK2hHOUVKTVdUYm82R0QzZDZRaG4wYzkzOXoyRnMr?=
- =?utf-8?B?OU15WlU5bERKeFVIa3JFcFAzNng4ZG5jZVI2M0NtV2xPT3l4Q0lPblNNdlkv?=
- =?utf-8?B?VTlPLzNyQzFDeXBvQk5YOEJpa1FYRlh6bjJ1am5RZGZwTlhseEI2SHFvZDRh?=
- =?utf-8?B?TVVHRjhsNnhvRnlMMFNVTmEvU1ZKalNVQjZoZnFTWFhIbVI0TGxGRFFFNlBN?=
- =?utf-8?B?N2VpdmtLQ0FwOTRaY1BDMkVYZnZ5Zk90Vk9ON0NFY2NsUCtGVmlxcDd6WnV3?=
- =?utf-8?B?VndLb1hZYzBPSDVzVVd2YU16eTcwR2tvZytPMC9aYi80Z1pnYjZOTzEwZFBi?=
- =?utf-8?B?TnZZdGJ1aGR4eXZPVC9zOEFwaTJuYVlqb2FKaEdjeXl0dzlwdmFJSytiSE1l?=
- =?utf-8?B?NUZJdnh6VzhCMndZMnN1ZytjeUFqbllacHFYR1I4VmpSb3VlM0d3aVhUeXJ6?=
- =?utf-8?Q?drUvBoVvEg1Po/HxZxOmz9QKmPdrJrBi?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB6360.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?V0o0N1M2Mzh2aHdQYWpYT1BMdkZ4ajhlVkhBeHlONytoUlNmWlRGMTh5eFFI?=
- =?utf-8?B?L2pCeXg4amlUR1VvY1QzMVRjK0FucEJXZW5uNmRnS3hiRTIvYnplQ2VqRGtj?=
- =?utf-8?B?TnlwajBNRUF4MVlrb2sxbG90OFF6MWp6TG95UlI1alZqZWxhSWFoK3UzN2Jv?=
- =?utf-8?B?R2RBOCtBNXdaYjV2S1dqUURTVy81eGJaQjVMZXYza2lSSUJvcHBydmYxeGlI?=
- =?utf-8?B?UEhpV21udjliMUo3UzN5eUlWRHRoMms0VURXbDV6R2RUQWxkTHVTY0lZSnJZ?=
- =?utf-8?B?c0Mxb2JWSTBZbHFQQkVhVThJMnFkUVdTSjhTeitTYmFEWDdPT1hnL3JpU3dT?=
- =?utf-8?B?dGJJWFIybEU5VDlPYmpOMDZKNVd4dHpKbXFFcHV5OENlS3pmWEV1OGRjMStF?=
- =?utf-8?B?WEtBakVPVXh0NzRrdjJIWjgwaE9XMERWaDRXaWZqVmF6Q1kvRHdXVUZPRVF0?=
- =?utf-8?B?WFkrQlVtc3pIQkJ0RFFXbUM1YUV6dWpBTXF4d2FHUSsxUnlMcW1ybERxVjJj?=
- =?utf-8?B?ME9kem5ZUTBtMnFwNjVtNXVZenFpbWhKRW80YWF3MHgycHJIcmkrd09BeEVV?=
- =?utf-8?B?b2s4by8rMUdQT050R2RRQWZnRU1ndEZiV3d0VEx4Q1lkZExkME1zd09kZzJJ?=
- =?utf-8?B?djJzZTljMGYrTzF6S3o3c0JmejdjZWREa25KNC9RenNZbGd1dGx1VzBlR2ht?=
- =?utf-8?B?VVB0cVV6NWZ3cjZGbTZrR3BtMHVUVWU5R3hueXBncHpJcFgwMDdMOVlzRlhL?=
- =?utf-8?B?eC9iUlh0Z0JKbGRxYy9mYm5icFMyOFduNFRORkRMbFloaEJ0QUhpM2Z4bGhp?=
- =?utf-8?B?QytjVFA1YTgxNzRUbG9paVpGRTNRT0tHd2wvellvLzNiS1YrMFB0UVFxUzk2?=
- =?utf-8?B?K0tIT3l2NkR5Nys0czQ3bE5rVFVQRGpKSEJoMkx0ZU5MSVhNbVZRZTBMSnU4?=
- =?utf-8?B?KytscDQxQVZpZWlITUdML053ek9pSXc2MXBCek5ON2I5RGIxQ1FsN3ljL0lo?=
- =?utf-8?B?UzN1R3p3NTA1NnMrbjJKSEZXenFka0NhTkhrUlVXemRRZ1pGdEc4L01wR083?=
- =?utf-8?B?TVFUZm9jRjVxRklXVnc4Wm1OVmlkOGFEMktZZ3BnL1VrQ1FEczBoVHNGbEw2?=
- =?utf-8?B?aFJzL1dlN2tycTlkMVl3RXEzUzg0RFZvYm1UQ3gyYmJiR0VIVExWRng5eUNK?=
- =?utf-8?B?MmY3WHhHZUtIc0ZpREMwVVZPY29XWS9CMnZSWmZvTDZET3A1SGhPdVNiSHZT?=
- =?utf-8?B?bnRKZWN0QWR6TW4xdGVwRDFiZndnSWZlREF0ajBPMnJIYmNFNDF5WE5WRUQ3?=
- =?utf-8?B?cFh3Y3BTcGd5UUxZUDBXR2hySVVHVzNTZlYxV0ltSUFOWlBNNmZ2U1RxQzl6?=
- =?utf-8?B?QVVRdTJ2MWhycmFQZ09ESjNDdjdUYlRWVXlhaUdVUG96VVh5TDVqKy9OYm5T?=
- =?utf-8?B?OU1MVCtJbUJvM2hxQmk3UGI3YkIvUDlLdUpGWGM2MnZZRUtRMnhFR0h5RjNq?=
- =?utf-8?B?OXBmTGMrd0E1UW1heG9XVU9xV2pzSVkxNjZlSnRLemRmOXBGRGNYS20rQVo3?=
- =?utf-8?B?OUVuUHJwbmRGOXhMSzZyNzhQRTVOSXRBdHo5NjZaRm9CUER3MXdsWDRCMmow?=
- =?utf-8?B?SS85TDNsZFd4L3JhN0Z4NlJ3RnZTUFFMcjljWEpQYVFzU0ZDOVd0VHY5RUk0?=
- =?utf-8?B?c2JDLzlxMUZhbkYrb2RMc01IS3NSYzdsbXBRclFoVnJpMS9NSDVUc05LRmdD?=
- =?utf-8?B?Y3NUQmlCRFdIc3JhQ3FXdDRVcUswaENwaXFwZkxib0NhalJzeXhmWjJ3M2xV?=
- =?utf-8?B?ak1qOWFTVzBMMEUweEQyd1QxVXdJRlBRS1RZTkJWS3hpUlpqZGJKN09ObWFo?=
- =?utf-8?B?bHRMbnlobWVySklmU2lNYXlIMGxiUTB6amRNOGY1b2RiaWZhb0hwVk80UVBN?=
- =?utf-8?B?N2VvYXJING1NclNmVUVxaFpUdGJjQmhwNGVGSHUrMXA0cnV2dHFuY2RXYzNM?=
- =?utf-8?B?ZjlBYzEvQklmM29lamkyTXJmTC94OHZlMVUyak5kQy9VM1FaQ20ydUlQV1Ni?=
- =?utf-8?B?SkJ4YzlodzI5L3VMRTJMS083UE5xWmlWTEQ0by9ieWg1NWNUcHR2RXhxQnQ3?=
- =?utf-8?Q?bzftN4LCmwIxqTBxHX+lmKl5X?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="115907823"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2025 19:23:37 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: thomas.hellstrom@linux.intel.com,
+	matthew.auld@intel.com
+Subject: [PATCH v2 3/3] drm/xe: Add staging tree for VM binds
+Date: Sun, 23 Feb 2025 19:24:38 -0800
+Message-Id: <20250224032438.3025464-4-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250224032438.3025464-1-matthew.brost@intel.com>
+References: <20250224032438.3025464-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6360.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ecc4baf8-4d91-413e-f702-08dd549d88a6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Feb 2025 06:36:13.5470 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: o1k5s3OKG6McEU0UFqf2LbdNq63Icn9KTxQUBrMAWOnDcBg+mdQFVZ/e6RvAsew2ujPkomN5eF5ADDtrrfAMBA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6797
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -198,61 +68,272 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRl
-bC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBWaWxsZQ0K
-PiBTeXJqYWxhDQo+IFNlbnQ6IFdlZG5lc2RheSwgRmVicnVhcnkgMTksIDIwMjUgMjoyOSBBTQ0K
-PiBUbzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBDYzogaW50ZWwteGVAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnDQo+IFN1YmplY3Q6IFtQQVRDSCAzLzRdIGRybS9pOTE1L2RzYjog
-QWxsb3cgRFNCIGJhc2VkIGNvbW1pdHMgd2hlbiBzY2FsZXJzIGFyZSBpbg0KPiB1c2UNCj4gDQo+
-IEZyb206IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+DQo+
-IA0KPiBIYXZlIERTQiBwZXJmb3JtIHBsYW5lIHNjYWxlciBwcm9ncmFtbWluZyBhcyB3ZWxsLiBD
-aGFuZ2VzIHRvIHBmaXQvcGlwZSBzY2FsZXINCj4gYXJlIG5vdCBiZWluZyBkb25lIG9uIHRoZSBk
-c2Igc2luY2UgdGhvc2UgdGFrZSB0aGUgZmFzdHNldCBwYXRoLiBIb3dldmVyIHdlIGRvDQo+IG5v
-dyBhbGxvdyBEU0IgYmFzZWQgcGxhbmUgdXBkYXRlcyB3aGVuIHRoZSBwZml0L3BpcGUgc2NhbGVy
-IGlzIGN1cnJlbnRseQ0KPiBlbmFibGVkICh0aGUgcGZpdC9waXBlIHNjYWxlciBqdXN0IHdvbid0
-IGJlIHRvdWNoZWQgYnkgdGhlIERTQikuDQo+IA0KPiBGb3J0dW5hdGVseSB0aGUgaGFyZHdhcmUg
-aXNzdWUgd2hlcmUgc29tZSBzY2FsZXIgcmVnaXN0ZXJzIGFyZSBsYXRjaGVkIGF0IGZyYW1lDQo+
-IHN0YXJ0IGFuZCBzb21lIGF0IHN0YXJ0IG9mIHZibGFuayBoYXMgYmVlbiBmaXhlZCBvbiBpY2wr
-IChJSVJDKSwgYW5kIHNpbmNlIERTQiBpcw0KPiB0Z2wrIG9ubHkgd2UgZG9uJ3QgaGF2ZSB0byBk
-byBhbnkgY2hhbmdlcyB0byB0aGUgRFNCIHZibGFuayBldmFzaW9uLg0KPiBOb3QgdGhhdCB3ZSBo
-YW5kbGUgdGhhdCBoYXJkd2FyZSBpc3N1ZSBjb3JyZWN0bHkgaW4gdGhlIENQVSB2YmxhbmsgZXZh
-c2lvbg0KPiBlaXRoZXIuLi4NCg0KTG9va3MgZ29vZCB0byBtZS4NClJldmlld2VkLWJ5OiBVbWEg
-U2hhbmthciA8dW1hLnNoYWthckBpbnRlbC5jb20+DQoNCj4gU2lnbmVkLW9mZi1ieTogVmlsbGUg
-U3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gLS0tDQo+ICBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyB8IDkgKysrKystLS0tDQo+
-ICAxIGZpbGUgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQ0KPiANCj4g
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5j
-DQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gaW5k
-ZXggODI2YjAwMWE2NmZhLi43ZmQxMmFiZGY5NjkgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+IEBAIC03MzE5LDggKzczMTksNiBAQCBz
-dGF0aWMgdm9pZCBpbnRlbF9hdG9taWNfZHNiX3ByZXBhcmUoc3RydWN0DQo+IGludGVsX2F0b21p
-Y19zdGF0ZSAqc3RhdGUsDQo+ICAJCQkJICAgICBzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YykNCj4g
-IHsNCj4gIAlzdHJ1Y3QgaW50ZWxfZGlzcGxheSAqZGlzcGxheSA9IHRvX2ludGVsX2Rpc3BsYXko
-c3RhdGUpOw0KPiAtCWNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpvbGRfY3J0Y19zdGF0
-ZSA9DQo+IC0JCWludGVsX2F0b21pY19nZXRfb2xkX2NydGNfc3RhdGUoc3RhdGUsIGNydGMpOw0K
-PiAgCXN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpuZXdfY3J0Y19zdGF0ZSA9DQo+ICAJCWludGVs
-X2F0b21pY19nZXRfbmV3X2NydGNfc3RhdGUoc3RhdGUsIGNydGMpOw0KPiANCj4gQEAgLTczMzQs
-OCArNzMzMiw2IEBAIHN0YXRpYyB2b2lkIGludGVsX2F0b21pY19kc2JfcHJlcGFyZShzdHJ1Y3QN
-Cj4gaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwNCj4gIAluZXdfY3J0Y19zdGF0ZS0+dXNlX2Rz
-YiA9DQo+ICAJCSFuZXdfY3J0Y19zdGF0ZS0+ZG9fYXN5bmNfZmxpcCAmJg0KPiAgCQkoRElTUExB
-WV9WRVIoZGlzcGxheSkgPj0gMjAgfHwgIW5ld19jcnRjX3N0YXRlLT5oYXNfcHNyKSAmJg0KPiAt
-CQkhbmV3X2NydGNfc3RhdGUtPnNjYWxlcl9zdGF0ZS5zY2FsZXJfdXNlcnMgJiYNCj4gLQkJIW9s
-ZF9jcnRjX3N0YXRlLT5zY2FsZXJfc3RhdGUuc2NhbGVyX3VzZXJzICYmDQo+ICAJCSFpbnRlbF9j
-cnRjX25lZWRzX21vZGVzZXQobmV3X2NydGNfc3RhdGUpICYmDQo+ICAJCSFpbnRlbF9jcnRjX25l
-ZWRzX2Zhc3RzZXQobmV3X2NydGNfc3RhdGUpOw0KPiANCj4gQEAgLTczNDUsNiArNzM0MSw3IEBA
-IHN0YXRpYyB2b2lkIGludGVsX2F0b21pY19kc2JfcHJlcGFyZShzdHJ1Y3QNCj4gaW50ZWxfYXRv
-bWljX3N0YXRlICpzdGF0ZSwgIHN0YXRpYyB2b2lkIGludGVsX2F0b21pY19kc2JfZmluaXNoKHN0
-cnVjdA0KPiBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLA0KPiAgCQkJCSAgICBzdHJ1Y3QgaW50
-ZWxfY3J0YyAqY3J0YykNCj4gIHsNCj4gKwlzdHJ1Y3QgaW50ZWxfZGlzcGxheSAqZGlzcGxheSA9
-IHRvX2ludGVsX2Rpc3BsYXkoc3RhdGUpOw0KPiAgCXN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpu
-ZXdfY3J0Y19zdGF0ZSA9DQo+ICAJCWludGVsX2F0b21pY19nZXRfbmV3X2NydGNfc3RhdGUoc3Rh
-dGUsIGNydGMpOw0KPiANCj4gQEAgLTczOTEsNiArNzM4OCwxMCBAQCBzdGF0aWMgdm9pZCBpbnRl
-bF9hdG9taWNfZHNiX2ZpbmlzaChzdHJ1Y3QNCj4gaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwN
-Cj4gIAkJaW50ZWxfY3J0Y19wbGFuZXNfdXBkYXRlX2FybShuZXdfY3J0Y19zdGF0ZS0+ZHNiX2Nv
-bW1pdCwNCj4gIAkJCQkJICAgICBzdGF0ZSwgY3J0Yyk7DQo+IA0KPiArCQlpZiAoRElTUExBWV9W
-RVIoZGlzcGxheSkgPj0gOSkNCj4gKwkJCXNrbF9kZXRhY2hfc2NhbGVycyhuZXdfY3J0Y19zdGF0
-ZS0+ZHNiX2NvbW1pdCwNCj4gKwkJCQkJICAgbmV3X2NydGNfc3RhdGUpOw0KPiArDQo+ICAJCWlm
-ICghbmV3X2NydGNfc3RhdGUtPmRzYl9jb2xvcl92YmxhbmspIHsNCj4gIAkJCWludGVsX2RzYl93
-YWl0X3ZibGFua3MobmV3X2NydGNfc3RhdGUtPmRzYl9jb21taXQsDQo+IDEpOw0KPiANCj4gLS0N
-Cj4gMi40NS4zDQoNCg==
+Concurrent VM bind staging and zapping of PTEs from a userptr notifier
+do not work because the view of PTEs is not stable. VM binds cannot
+acquire the notifier lock during staging, as memory allocations are
+required. To resolve this race condition, use a staging tree for VM
+binds that is committed only under the userptr notifier lock during the
+final step of the bind. This ensures a consistent view of the PTEs in
+the userptr notifier.
+
+A follow up may only use staging for VM in fault mode as this is the
+only mode in which the above race exists.
+
+Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: <stable@vger.kernel.org>
+Fixes: e8babb280b5e ("drm/xe: Convert multiple bind ops into single job")
+Fixes: a708f6501c69 ("drm/xe: Update PT layer with better error handling")
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pt.c      | 50 +++++++++++++++++++++++++--------
+ drivers/gpu/drm/xe/xe_pt_walk.c |  3 +-
+ drivers/gpu/drm/xe/xe_pt_walk.h |  4 +++
+ 3 files changed, 44 insertions(+), 13 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index add521b5c6ae..118b81cd7205 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -28,6 +28,8 @@ struct xe_pt_dir {
+ 	struct xe_pt pt;
+ 	/** @children: Array of page-table child nodes */
+ 	struct xe_ptw *children[XE_PDES];
++	/** @staging: Array of page-table staging nodes */
++	struct xe_ptw *staging[XE_PDES];
+ };
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_VM)
+@@ -50,7 +52,7 @@ static struct xe_pt_dir *as_xe_pt_dir(struct xe_pt *pt)
+ 
+ static struct xe_pt *xe_pt_entry(struct xe_pt_dir *pt_dir, unsigned int index)
+ {
+-	return container_of(pt_dir->children[index], struct xe_pt, base);
++	return container_of(pt_dir->staging[index], struct xe_pt, base);
+ }
+ 
+ static u64 __xe_pt_empty_pte(struct xe_tile *tile, struct xe_vm *vm,
+@@ -125,6 +127,7 @@ struct xe_pt *xe_pt_create(struct xe_vm *vm, struct xe_tile *tile,
+ 	}
+ 	pt->bo = bo;
+ 	pt->base.children = level ? as_xe_pt_dir(pt)->children : NULL;
++	pt->base.staging = level ? as_xe_pt_dir(pt)->staging : NULL;
+ 
+ 	if (vm->xef)
+ 		xe_drm_client_add_bo(vm->xef->client, pt->bo);
+@@ -377,8 +380,10 @@ xe_pt_insert_entry(struct xe_pt_stage_bind_walk *xe_walk, struct xe_pt *parent,
+ 		/* Continue building a non-connected subtree. */
+ 		struct iosys_map *map = &parent->bo->vmap;
+ 
+-		if (unlikely(xe_child))
++		if (unlikely(xe_child)) {
+ 			parent->base.children[offset] = &xe_child->base;
++			parent->base.staging[offset] = &xe_child->base;
++		}
+ 
+ 		xe_pt_write(xe_walk->vm->xe, map, offset, pte);
+ 		parent->num_live++;
+@@ -619,6 +624,7 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
+ 			.ops = &xe_pt_stage_bind_ops,
+ 			.shifts = xe_normal_pt_shifts,
+ 			.max_level = XE_PT_HIGHEST_LEVEL,
++			.staging = true,
+ 		},
+ 		.vm = xe_vma_vm(vma),
+ 		.tile = tile,
+@@ -812,6 +818,7 @@ static const struct xe_pt_walk_ops xe_pt_zap_ptes_ops = {
+ 
+ struct xe_pt_zap_ptes_flags {
+ 	bool scratch:1;
++	bool staging:1;
+ };
+ 
+ static bool __xe_pt_zap_ptes(struct xe_tile *tile, struct xe_vma *vma,
+@@ -822,6 +829,7 @@ static bool __xe_pt_zap_ptes(struct xe_tile *tile, struct xe_vma *vma,
+ 			.ops = &xe_pt_zap_ptes_ops,
+ 			.shifts = xe_normal_pt_shifts,
+ 			.max_level = XE_PT_HIGHEST_LEVEL,
++			.staging = flags.staging,
+ 		},
+ 		.tile = tile,
+ 		.vm = xe_vma_vm(vma),
+@@ -905,7 +913,7 @@ static void xe_pt_cancel_bind(struct xe_vma *vma,
+ 	}
+ }
+ 
+-static void xe_pt_commit_locks_assert(struct xe_vma *vma)
++static void xe_pt_commit_prepare_locks_assert(struct xe_vma *vma)
+ {
+ 	struct xe_vm *vm = xe_vma_vm(vma);
+ 
+@@ -917,6 +925,16 @@ static void xe_pt_commit_locks_assert(struct xe_vma *vma)
+ 	xe_vm_assert_held(vm);
+ }
+ 
++static void xe_pt_commit_locks_assert(struct xe_vma *vma)
++{
++	struct xe_vm *vm = xe_vma_vm(vma);
++
++	xe_pt_commit_prepare_locks_assert(vma);
++
++	if (xe_vma_is_userptr(vma))
++		lockdep_assert_held_read(&vm->userptr.notifier_lock);
++}
++
+ static void xe_pt_commit(struct xe_vma *vma,
+ 			 struct xe_vm_pgtable_update *entries,
+ 			 u32 num_entries, struct llist_head *deferred)
+@@ -927,13 +945,17 @@ static void xe_pt_commit(struct xe_vma *vma,
+ 
+ 	for (i = 0; i < num_entries; i++) {
+ 		struct xe_pt *pt = entries[i].pt;
++		struct xe_pt_dir *pt_dir;
+ 
+ 		if (!pt->level)
+ 			continue;
+ 
++		pt_dir = as_xe_pt_dir(pt);
+ 		for (j = 0; j < entries[i].qwords; j++) {
+ 			struct xe_pt *oldpte = entries[i].pt_entries[j].pt;
++			int j_ = j + entries[i].ofs;
+ 
++			pt_dir->children[j_] = pt_dir->staging[j_];
+ 			xe_pt_destroy(oldpte, xe_vma_vm(vma)->flags, deferred);
+ 		}
+ 	}
+@@ -945,7 +967,7 @@ static void xe_pt_abort_bind(struct xe_vma *vma,
+ {
+ 	int i, j;
+ 
+-	xe_pt_commit_locks_assert(vma);
++	xe_pt_commit_prepare_locks_assert(vma);
+ 
+ 	for (i = num_entries - 1; i >= 0; --i) {
+ 		struct xe_pt *pt = entries[i].pt;
+@@ -963,7 +985,7 @@ static void xe_pt_abort_bind(struct xe_vma *vma,
+ 			struct xe_pt *newpte = xe_pt_entry(pt_dir, j_);
+ 			struct xe_pt *oldpte = entries[i].pt_entries[j].pt;
+ 
+-			pt_dir->children[j_] = oldpte ? &oldpte->base : 0;
++			pt_dir->staging[j_] = oldpte ? &oldpte->base : 0;
+ 			xe_pt_destroy(newpte, xe_vma_vm(vma)->flags, NULL);
+ 		}
+ 	}
+@@ -975,7 +997,7 @@ static void xe_pt_commit_prepare_bind(struct xe_vma *vma,
+ {
+ 	u32 i, j;
+ 
+-	xe_pt_commit_locks_assert(vma);
++	xe_pt_commit_prepare_locks_assert(vma);
+ 
+ 	for (i = 0; i < num_entries; i++) {
+ 		struct xe_pt *pt = entries[i].pt;
+@@ -996,7 +1018,7 @@ static void xe_pt_commit_prepare_bind(struct xe_vma *vma,
+ 			if (xe_pt_entry(pt_dir, j_))
+ 				oldpte = xe_pt_entry(pt_dir, j_);
+ 
+-			pt_dir->children[j_] = &newpte->base;
++			pt_dir->staging[j_] = &newpte->base;
+ 			entries[i].pt_entries[j].pt = oldpte;
+ 		}
+ 	}
+@@ -1237,7 +1259,10 @@ static void
+ vma_convert_to_invalidation(struct xe_tile *tile, struct xe_vma *vma,
+ 			    struct xe_vm_pgtable_update_ops *pt_update)
+ {
+-	struct xe_pt_zap_ptes_flags flags = { .scratch = true, };
++	struct xe_pt_zap_ptes_flags flags = {
++		.scratch = true,
++		.staging = true,
++	};
+ 	int i, j, k;
+ 
+ 	/*
+@@ -1590,6 +1615,7 @@ static unsigned int xe_pt_stage_unbind(struct xe_tile *tile, struct xe_vma *vma,
+ 			.ops = &xe_pt_stage_unbind_ops,
+ 			.shifts = xe_normal_pt_shifts,
+ 			.max_level = XE_PT_HIGHEST_LEVEL,
++			.staging = true,
+ 		},
+ 		.tile = tile,
+ 		.modified_start = xe_vma_start(vma),
+@@ -1631,7 +1657,7 @@ static void xe_pt_abort_unbind(struct xe_vma *vma,
+ {
+ 	int i, j;
+ 
+-	xe_pt_commit_locks_assert(vma);
++	xe_pt_commit_prepare_locks_assert(vma);
+ 
+ 	for (i = num_entries - 1; i >= 0; --i) {
+ 		struct xe_vm_pgtable_update *entry = &entries[i];
+@@ -1644,7 +1670,7 @@ static void xe_pt_abort_unbind(struct xe_vma *vma,
+ 			continue;
+ 
+ 		for (j = entry->ofs; j < entry->ofs + entry->qwords; j++)
+-			pt_dir->children[j] =
++			pt_dir->staging[j] =
+ 				entries[i].pt_entries[j - entry->ofs].pt ?
+ 				&entries[i].pt_entries[j - entry->ofs].pt->base : NULL;
+ 	}
+@@ -1657,7 +1683,7 @@ xe_pt_commit_prepare_unbind(struct xe_vma *vma,
+ {
+ 	int i, j;
+ 
+-	xe_pt_commit_locks_assert(vma);
++	xe_pt_commit_prepare_locks_assert(vma);
+ 
+ 	for (i = 0; i < num_entries; ++i) {
+ 		struct xe_vm_pgtable_update *entry = &entries[i];
+@@ -1672,7 +1698,7 @@ xe_pt_commit_prepare_unbind(struct xe_vma *vma,
+ 		for (j = entry->ofs; j < entry->ofs + entry->qwords; j++) {
+ 			entry->pt_entries[j - entry->ofs].pt =
+ 				xe_pt_entry(pt_dir, j);
+-			pt_dir->children[j] = NULL;
++			pt_dir->staging[j] = NULL;
+ 		}
+ 	}
+ }
+diff --git a/drivers/gpu/drm/xe/xe_pt_walk.c b/drivers/gpu/drm/xe/xe_pt_walk.c
+index b8b3d2aea492..be602a763ff3 100644
+--- a/drivers/gpu/drm/xe/xe_pt_walk.c
++++ b/drivers/gpu/drm/xe/xe_pt_walk.c
+@@ -74,7 +74,8 @@ int xe_pt_walk_range(struct xe_ptw *parent, unsigned int level,
+ 		     u64 addr, u64 end, struct xe_pt_walk *walk)
+ {
+ 	pgoff_t offset = xe_pt_offset(addr, level, walk);
+-	struct xe_ptw **entries = parent->children ? parent->children : NULL;
++	struct xe_ptw **entries = walk->staging ? (parent->staging ?: NULL) :
++		(parent->children ?: NULL);
+ 	const struct xe_pt_walk_ops *ops = walk->ops;
+ 	enum page_walk_action action;
+ 	struct xe_ptw *child;
+diff --git a/drivers/gpu/drm/xe/xe_pt_walk.h b/drivers/gpu/drm/xe/xe_pt_walk.h
+index 5ecc4d2f0f65..5c02c244f7de 100644
+--- a/drivers/gpu/drm/xe/xe_pt_walk.h
++++ b/drivers/gpu/drm/xe/xe_pt_walk.h
+@@ -11,12 +11,14 @@
+ /**
+  * struct xe_ptw - base class for driver pagetable subclassing.
+  * @children: Pointer to an array of children if any.
++ * @staging: Pointer to an array of staging if any.
+  *
+  * Drivers could subclass this, and if it's a page-directory, typically
+  * embed an array of xe_ptw pointers.
+  */
+ struct xe_ptw {
+ 	struct xe_ptw **children;
++	struct xe_ptw **staging;
+ };
+ 
+ /**
+@@ -41,6 +43,8 @@ struct xe_pt_walk {
+ 	 * as shared pagetables.
+ 	 */
+ 	bool shared_pt_mode;
++	/** @staging: Walk staging PT structure */
++	bool staging;
+ };
+ 
+ /**
+-- 
+2.34.1
+
