@@ -4,59 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAFC3C021A6
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 13:44:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98EA4C021B5
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 13:44:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5794D10E522;
-	Mon, 24 Feb 2025 13:42:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 953CF10E537;
+	Mon, 24 Feb 2025 13:42:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QOmGrJqV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X19vHkzD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A268410E221;
- Mon, 24 Feb 2025 10:48:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2BAE10E13C;
+ Mon, 24 Feb 2025 06:29:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740394109; x=1771930109;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=OMX8ok9HZAHROB3BqfjWy9c4ghvUiTDGhDukSet6xHU=;
- b=QOmGrJqV1Ww5D24gi/NZHWhJ3Lh+GtRTg4aN5//xIyesnz+yr+YWydnw
- pBqBhYG8JNHcb+VHFoB3UwIQT343Lnstjxd+ygfOJmog9xGup632jOsvr
- EcqSLrpgHzRQac72feYWrsAVfvDMJj+pXh88lbzOdcQNJ/e3V0+29HMHo
- PL6dB7J0n1c6yl0mccYfh7fIkNN49dpf7mtoCMJvnNQauwpwsfctTK6c3
- qSJdm0ZNEoUmYU+DY3VxDFnNt3j1w69hdFU8Eeu5MNuS+cCz6UUwApv6x
- WciDLoxFcQHwv06biexSZBUQAZ6UgMtr2PoQu1ix8Qx1aYKLg863+0nvN g==;
-X-CSE-ConnectionGUID: KjIqb9HLQTKkWzxccnF7gw==
-X-CSE-MsgGUID: EX5MpPfZQ+a+5o0TiXY2bw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="63612291"
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="63612291"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2025 02:48:28 -0800
-X-CSE-ConnectionGUID: s8tQUJbzQEqXT1+9MrixjA==
-X-CSE-MsgGUID: RRqm6R07TNOSYr7uOJGLYQ==
+ t=1740378581; x=1771914581;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=yj/ufBg2K2s/F79FX4LfBa7uvkQvj4Hnd+y7c2VTdaQ=;
+ b=X19vHkzDlV7qM1ojiEHlXNxt7mXR3fYBg3pl/bmwSwPgZuHTVoBGujG1
+ jiQnS4H5yVgNmdjCUifRgBmgBkHd8b/MYBYSGnptzSQCpz1RmYCYcd9Ni
+ rTd7Iyb3Y2NVljLMfhW0vMbp5zu4YJNbnKR9R8Ugpcqlsy62Q5/lpaHJl
+ JBy6XvNTkq25L1CxLtnYRvgtYdJLAKLMYwtmHo7QvJva6NH5tNC1ULRay
+ y20X8w4zEhYiu2/0bxZm6qQlsNZi6o2GYN0jqMm7VtgBXdalvuZNnhD5S
+ GMX3OtUokiY7bcLjv2ZwVSU9e7PpDmSehobu1jp+io/5GdhvGrF1N33Ag g==;
+X-CSE-ConnectionGUID: uQ8t8EXTSriI19oVRSSMjw==
+X-CSE-MsgGUID: Dh+nQ5EhSCOiWJ/emLUA5w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="28719654"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="28719654"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2025 22:29:41 -0800
+X-CSE-ConnectionGUID: KyLIPM5qTle+93ke1xtgXQ==
+X-CSE-MsgGUID: bhVlszrETxeq3/zv7+bOqg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="139249107"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.133])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2025 02:48:25 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Animesh Manna <animesh.manna@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: jouni.hogander@intel.com, jeevan.b@intel.com, Animesh Manna
- <animesh.manna@intel.com>
-Subject: Re: [PATCH v4 4/8] drm/i915/lobf: Update lobf if any change in
- dependent parameters
-In-Reply-To: <20250224080847.326350-5-animesh.manna@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250224080847.326350-1-animesh.manna@intel.com>
- <20250224080847.326350-5-animesh.manna@intel.com>
-Date: Mon, 24 Feb 2025 12:48:22 +0200
-Message-ID: <87r03n7h55.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="120076502"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2025 22:29:41 -0800
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
+ ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
+Subject: [PATCH 06/20] drm/i915/vrr: Use crtc_vtotal for vmin
+Date: Mon, 24 Feb 2025 11:47:03 +0530
+Message-ID: <20250224061717.1095226-7-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
+References: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,81 +67,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 24 Feb 2025, Animesh Manna <animesh.manna@intel.com> wrote:
-> For every commit the dependent condition for LOBF is checked
-> and accordingly update has_lobf flag which will be used
-> to update the ALPM_CTL register during commit.
->
-> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_alpm.c | 16 ++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_alpm.h |  1 +
->  drivers/gpu/drm/i915/display/intel_ddi.c  |  2 ++
->  3 files changed, 19 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-> index 1438e125cde1..83719ee1721c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_alpm.c
-> +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-> @@ -312,6 +312,22 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
->  		(first_sdp_position + waketime_in_lines);
->  }
->  
-> +void intel_alpm_lobf_update(const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> +	u32 alpm_ctl;
-> +
-> +	if (DISPLAY_VER(display) < 20)
-> +		return;
-> +
-> +	alpm_ctl = intel_de_read(display, ALPM_CTL(display, cpu_transcoder));
-> +	if (alpm_ctl & ALPM_CTL_LOBF_ENABLE && !crtc_state->has_lobf) {
+To have fixed refresh rate with VRR timing generator the
+guardband/pipeline full can't be programmed on the fly. So we need to
+ensure that the values satisfy both the fixed and variable refresh
+rates.
 
-You don't need to even read the register if crtc_state->has_lobf is
-true.
+Since we compute these value based on vmin, lets set the vmin to
+crtc_vtotal for both fixed and variable timings instead of using the
+current refresh rate based approach. This way the guardband remains
+sufficient for both cases.
 
-> +		alpm_ctl &= ~ALPM_CTL_LOBF_ENABLE;
-> +		intel_de_write(display, ALPM_CTL(display, cpu_transcoder), alpm_ctl);
-> +	}
-> +}
-> +
->  static void lnl_alpm_configure(struct intel_dp *intel_dp,
->  			       const struct intel_crtc_state *crtc_state)
->  {
-> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
-> index 91f51fb24f98..c6efd25c2062 100644
-> --- a/drivers/gpu/drm/i915/display/intel_alpm.h
-> +++ b/drivers/gpu/drm/i915/display/intel_alpm.h
-> @@ -23,6 +23,7 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
->  				    struct drm_connector_state *conn_state);
->  void intel_alpm_configure(struct intel_dp *intel_dp,
->  			  const struct intel_crtc_state *crtc_state);
-> +void intel_alpm_lobf_update(const struct intel_crtc_state *crtc_state);
->  void intel_alpm_post_plane_update(struct intel_atomic_state *state,
->  				  struct intel_crtc *crtc);
->  void intel_alpm_lobf_debugfs_add(struct intel_connector *connector);
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 26aa32d4d50e..44258ba0d951 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -37,6 +37,7 @@
->  #include "icl_dsi.h"
->  #include "intel_alpm.h"
->  #include "intel_audio.h"
-> +#include "intel_alpm.h"
->  #include "intel_audio_regs.h"
->  #include "intel_backlight.h"
->  #include "intel_combo_phy.h"
-> @@ -3621,6 +3622,7 @@ static void intel_ddi_update_pipe_dp(struct intel_atomic_state *state,
->  	intel_ddi_set_dp_msa(crtc_state, conn_state);
->  
->  	intel_dp_set_infoframes(encoder, true, crtc_state, conn_state);
-> +	intel_alpm_lobf_update(crtc_state);
->  
->  	intel_backlight_update(state, encoder, crtc_state, conn_state);
->  	drm_connector_update_privacy_screen(conn_state);
+v2: Avoid using vblank delay while computing vtotal, as this comes into
+the picture later. (Ville)
 
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_vrr.c | 21 ++++++++++-----------
+ 1 file changed, 10 insertions(+), 11 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index 4d7f29be55b8..b6120ff1a87c 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -247,17 +247,16 @@ void intel_vrr_compute_vrr_timings(struct intel_crtc_state *crtc_state)
+ }
+ 
+ static
+-int intel_vrr_compute_vmin(struct intel_connector *connector,
+-			   struct drm_display_mode *adjusted_mode)
++int intel_vrr_compute_vmin(struct intel_crtc_state *crtc_state)
+ {
+-	int vmin;
+-	const struct drm_display_info *info = &connector->base.display_info;
+-
+-	vmin = DIV_ROUND_UP(adjusted_mode->crtc_clock * 1000,
+-			    adjusted_mode->crtc_htotal * info->monitor_range.max_vfreq);
+-	vmin = max_t(int, vmin, adjusted_mode->crtc_vtotal);
+-
+-	return vmin;
++	/*
++	 * To make fixed rr and vrr work seamless the guardband/pipeline full
++	 * should be set such that it satisfies both the fixed and variable
++	 * timings.
++	 * For this set the vmin as crtc_vtotal. With this we never need to
++	 * change anything to do with the guardband.
++	 */
++	return crtc_state->hw.adjusted_mode.crtc_vtotal;
+ }
+ 
+ static
+@@ -305,7 +304,7 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+ 	if (HAS_LRR(display))
+ 		crtc_state->update_lrr = true;
+ 
+-	vmin = intel_vrr_compute_vmin(connector, adjusted_mode);
++	vmin = intel_vrr_compute_vmin(crtc_state);
+ 	vmax = intel_vrr_compute_vmax(connector, adjusted_mode);
+ 
+ 	if (vmin >= vmax)
 -- 
-Jani Nikula, Intel
+2.45.2
+
