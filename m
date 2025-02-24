@@ -4,53 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FFC1C021A6
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 13:42:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDE72C021BC
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 13:42:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9F0410E412;
-	Mon, 24 Feb 2025 13:41:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67D0810E44F;
+	Mon, 24 Feb 2025 13:41:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kiEeg3F7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mqNAQTEE";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A64E710E051
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Feb 2025 03:23:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 598FC10E140;
+ Mon, 24 Feb 2025 06:29:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740367416; x=1771903416;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=1BIlE23NyOc17nFNSGaN2IiGGSAhOkoqEtliTAxSqLg=;
- b=kiEeg3F78NP9o6I9dYq29xyBZ5K8w62+/0EYxCk/aFq/rHVZBhSFQaBx
- HoUz3Kajo1fq5BBPqcEGygkBPoY6mwLhSKWsuDIu3Thr51Uz9qDG3qOVm
- wXB+KNX1SEDOKykIGMfahwVFpNuZHPxYfTsU1VzRvIHC03nsdjobNmNT+
- zuSXv2c63cI+C2Jliq6+wVVQwHTVR+8pQFeFY8RHKTE4JZfyQKXx6Ugej
- 4ZEHKHQJSLeJULZZGJRoWl0e0y8b1fMNCl32elrp720S5XAE7XhM4uT8F
- tYvBwFVix+D5ff6YHJYvjxiLFH7XzgnwOGm9FGiHswoypgW72gOraavRZ A==;
-X-CSE-ConnectionGUID: ecHe7E8zRsyI83ZnwJ9oOA==
-X-CSE-MsgGUID: L3eck7L4RWujcGscvNb84Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="41126880"
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="41126880"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 19:23:36 -0800
-X-CSE-ConnectionGUID: s7KJKnm0QGaMV+5ecp8tiA==
-X-CSE-MsgGUID: P5cJngUvQ6evBhD0URoSww==
+ t=1740378593; x=1771914593;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=tbG4fS6UB52IWIJJ4Z5oLbdFM9tXTqlgu6aJO2vyAoQ=;
+ b=mqNAQTEEzHecoNKGIBrZlacFFrE5LNF1IB0nk+SuVZh4V8Vakm0QOKfk
+ yrRhbYODDx9R46KQvupexjW2Fac9criJheZW2kaJOv6siTZnT59CPr4yc
+ EVXUiZcIKwg/VwgSYeOzHK+X0rjxTQKjfgPFjZcNS/kOcynXD2m0FMOT9
+ wucIowUOZFm3zoNuA5hY3yoZPjGrVVrurlA6cUPiATeRMGPdNNSFj6xw0
+ anEREYqigbcDbxBrboEvfh8YAvSmxCZ9CPmjFeGL12lw+FVnIW4RzLUkA
+ znqrX5O/PWj2UEAe4DF32fK2Bx3goMEqvGnBWDUWJVvIvaTYgOaV0GYMV Q==;
+X-CSE-ConnectionGUID: Dug9+HsQRtq6rZseOJkaxg==
+X-CSE-MsgGUID: tSRg1uNLRhSW3sLOaBaAEQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="28719672"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="28719672"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2025 22:29:52 -0800
+X-CSE-ConnectionGUID: esZPiuIdTk+UAXGfce29Dw==
+X-CSE-MsgGUID: g63XJDvmQa2j0EppsQ2k6Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="115907814"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 19:23:37 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: thomas.hellstrom@linux.intel.com,
-	matthew.auld@intel.com
-Subject: [PATCH v2 0/3] Userptr fixes
-Date: Sun, 23 Feb 2025 19:24:35 -0800
-Message-Id: <20250224032438.3025464-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="120076554"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2025 22:29:52 -0800
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
+ ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
+Subject: [PATCH 10/20] drm/i915/dp_mst: Use VRR Timing generator for DP MST
+Date: Mon, 24 Feb 2025 11:47:07 +0530
+Message-ID: <20250224061717.1095226-11-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
+References: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,27 +67,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Tested with below tests on BMG + CONFIG_DRM_XE_USERPTR_INVAL_INJECT
-xe_exec_basic; xe_exec_compute_mode; xe_exec_fault_mode; xe_vm; xe_exec_threads
+Configure VRR timing generator for DP MST for fixed refresh rate.
+Currently the variable timings are supported only for DP and eDP and not
+for DP MST. Call intel_vrr_compute_config for MST which will configure
+fixed refresh rate timings irrespective of whether VRR is supported or
+not.
 
-Including a patch from Matt Auld as it required for above test case to pass.
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Matt
-
-Matthew Auld (1):
-  drm/xe/userptr: fix EFAULT handling
-
-Matthew Brost (2):
-  drm/xe: Userptr invalidation race with binds fixes
-  drm/xe: Add staging tree for VM binds
-
- drivers/gpu/drm/xe/xe_pt.c       | 194 +++++++++++++++++++++++--------
- drivers/gpu/drm/xe/xe_pt_types.h |   3 +-
- drivers/gpu/drm/xe/xe_pt_walk.c  |   3 +-
- drivers/gpu/drm/xe/xe_pt_walk.h  |   4 +
- drivers/gpu/drm/xe/xe_vm.c       |  16 ++-
- 5 files changed, 170 insertions(+), 50 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index 167e4a70ab12..2c4a9ac6f61e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -51,6 +51,7 @@
+ #include "intel_link_bw.h"
+ #include "intel_psr.h"
+ #include "intel_vdsc.h"
++#include "intel_vrr.h"
+ #include "skl_scaler.h"
+ 
+ /*
+@@ -709,6 +710,8 @@ static int mst_stream_compute_config(struct intel_encoder *encoder,
+ 		pipe_config->lane_lat_optim_mask =
+ 			bxt_dpio_phy_calc_lane_lat_optim_mask(pipe_config->lane_count);
+ 
++	intel_vrr_compute_config(pipe_config, conn_state);
++
+ 	intel_dp_audio_compute_config(encoder, pipe_config, conn_state);
+ 
+ 	intel_ddi_compute_min_voltage_level(pipe_config);
 -- 
-2.34.1
+2.45.2
 
