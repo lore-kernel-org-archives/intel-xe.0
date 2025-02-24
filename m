@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDE72C021BC
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 13:42:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A234C021BD
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Feb 2025 13:42:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67D0810E44F;
-	Mon, 24 Feb 2025 13:41:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDB9A10E39F;
+	Mon, 24 Feb 2025 13:42:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mqNAQTEE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ktxvPe6a";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 598FC10E140;
- Mon, 24 Feb 2025 06:29:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF91810E16F;
+ Mon, 24 Feb 2025 08:31:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740378593; x=1771914593;
+ t=1740385874; x=1771921874;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tbG4fS6UB52IWIJJ4Z5oLbdFM9tXTqlgu6aJO2vyAoQ=;
- b=mqNAQTEEzHecoNKGIBrZlacFFrE5LNF1IB0nk+SuVZh4V8Vakm0QOKfk
- yrRhbYODDx9R46KQvupexjW2Fac9criJheZW2kaJOv6siTZnT59CPr4yc
- EVXUiZcIKwg/VwgSYeOzHK+X0rjxTQKjfgPFjZcNS/kOcynXD2m0FMOT9
- wucIowUOZFm3zoNuA5hY3yoZPjGrVVrurlA6cUPiATeRMGPdNNSFj6xw0
- anEREYqigbcDbxBrboEvfh8YAvSmxCZ9CPmjFeGL12lw+FVnIW4RzLUkA
- znqrX5O/PWj2UEAe4DF32fK2Bx3goMEqvGnBWDUWJVvIvaTYgOaV0GYMV Q==;
-X-CSE-ConnectionGUID: Dug9+HsQRtq6rZseOJkaxg==
-X-CSE-MsgGUID: tSRg1uNLRhSW3sLOaBaAEQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="28719672"
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="28719672"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 22:29:52 -0800
-X-CSE-ConnectionGUID: esZPiuIdTk+UAXGfce29Dw==
-X-CSE-MsgGUID: g63XJDvmQa2j0EppsQ2k6Q==
+ bh=UlkRCrN9IheONt4pYGPJHfBHAYUBqH9VFTpklJkAb7c=;
+ b=ktxvPe6asSDQg3JU/NVwIHWQPAUtEsIGJbOKyOc15Q2JgD502f2w/7pp
+ sbC2xLeNQvSQOAib3ALxHAB16hV91KCn3K0bKIySa6XYsOncZDTP/3ByJ
+ CxAS3jxh6244U7HFdwTCVfJnLGHwbc36sKs9r8yu+x+xuO0W0uVNZDs75
+ qewqsv+HQltX0jKgqK1GsShOryAwMVLewYvWlCJb6lcS55H+drtFk6xdi
+ AhAOrGoOqRLjLcWiGXC7wps/yaP8nVVBC5s8VO0jLNhptMdPuFp2XK7Uu
+ /r3xtokbLiu222t4Qoi0VvWC00vGVmqmCZeSKFcETBr19qfirXzhn0DIH A==;
+X-CSE-ConnectionGUID: iPv+K4gnRTiWioYamHnrlw==
+X-CSE-MsgGUID: Od/NKM/OQI6DwzD1RYHTZg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="41250289"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="41250289"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2025 00:31:14 -0800
+X-CSE-ConnectionGUID: 91NGtzrGQZ+z7wz1NcLQyw==
+X-CSE-MsgGUID: IpnHmNEDTjmXJpd0hjkGPQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="120076554"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 22:29:52 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
- ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 10/20] drm/i915/dp_mst: Use VRR Timing generator for DP MST
-Date: Mon, 24 Feb 2025 11:47:07 +0530
-Message-ID: <20250224061717.1095226-11-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
-References: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="116630834"
+Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
+ by fmviesa009.fm.intel.com with ESMTP; 24 Feb 2025 00:31:12 -0800
+From: Animesh Manna <animesh.manna@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jouni.hogander@intel.com, jani.nikula@intel.com, jeevan.b@intel.com,
+ Animesh Manna <animesh.manna@intel.com>
+Subject: [PATCH v4 8/8] drm/i915/lobf: Add debug print for LOBF
+Date: Mon, 24 Feb 2025 13:38:47 +0530
+Message-Id: <20250224080847.326350-9-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.29.0
+In-Reply-To: <20250224080847.326350-1-animesh.manna@intel.com>
+References: <20250224080847.326350-1-animesh.manna@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,38 +67,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Configure VRR timing generator for DP MST for fixed refresh rate.
-Currently the variable timings are supported only for DP and eDP and not
-for DP MST. Call intel_vrr_compute_config for MST which will configure
-fixed refresh rate timings irrespective of whether VRR is supported or
-not.
+Lobf is enabled part of ALPM configuration and if has_lobf
+is set to true respective bit for LOBF will be set. Add debug
+print while setting the bitfield of LOBF.
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/i915/display/intel_alpm.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 167e4a70ab12..2c4a9ac6f61e 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -51,6 +51,7 @@
- #include "intel_link_bw.h"
- #include "intel_psr.h"
- #include "intel_vdsc.h"
-+#include "intel_vrr.h"
- #include "skl_scaler.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
+index 5f8c1ec5e21c..cbcee0599e9d 100644
+--- a/drivers/gpu/drm/i915/display/intel_alpm.c
++++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+@@ -385,8 +385,10 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
+ 			ALPM_CTL_EXTENDED_FAST_WAKE_TIME(intel_dp->alpm_parameters.fast_wake_lines);
+ 	}
  
- /*
-@@ -709,6 +710,8 @@ static int mst_stream_compute_config(struct intel_encoder *encoder,
- 		pipe_config->lane_lat_optim_mask =
- 			bxt_dpio_phy_calc_lane_lat_optim_mask(pipe_config->lane_count);
+-	if (crtc_state->has_lobf)
++	if (crtc_state->has_lobf) {
+ 		alpm_ctl |= ALPM_CTL_LOBF_ENABLE;
++		drm_dbg_kms(display->drm, "Link off between frames (LOBF) enabled\n");
++	}
  
-+	intel_vrr_compute_config(pipe_config, conn_state);
-+
- 	intel_dp_audio_compute_config(encoder, pipe_config, conn_state);
+ 	alpm_ctl |= ALPM_CTL_ALPM_ENTRY_CHECK(intel_dp->alpm_parameters.check_entry_lines);
  
- 	intel_ddi_compute_min_voltage_level(pipe_config);
 -- 
-2.45.2
+2.29.0
 
