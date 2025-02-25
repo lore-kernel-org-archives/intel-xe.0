@@ -4,27 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0E92C021A4
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Feb 2025 00:01:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21011C021A4
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Feb 2025 00:07:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58C0E10E503;
-	Tue, 25 Feb 2025 00:01:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1C1710E504;
+	Tue, 25 Feb 2025 00:07:53 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 197A210E503;
- Tue, 25 Feb 2025 00:01:14 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6874149808203645294=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA0AD10E504;
+ Tue, 25 Feb 2025 00:07:52 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915=3A_reduce_display_?=
- =?utf-8?q?dependencies_on_core?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_VRAM_Self_Refresh?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
+To: "Anshuman Gupta" <anshuman.gupta@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 25 Feb 2025 00:01:14 -0000
-Message-ID: <174044167409.1768013.14536821157891090291@b555e5b46a47>
+Date: Tue, 25 Feb 2025 00:07:52 -0000
+Message-ID: <174044207280.1770689.18014470419525357022@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <cover.1740412806.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1740412806.git.jani.nikula@intel.com>
+References: <20250224164849.3746751-1-anshuman.gupta@intel.com>
+In-Reply-To: <20250224164849.3746751-1-anshuman.gupta@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,152 +39,22 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6874149808203645294==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915: reduce display dependencies on core
-URL   : https://patchwork.freedesktop.org/series/145340/
+Series: VRAM Self Refresh
+URL   : https://patchwork.freedesktop.org/series/145342/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-2704-9e4c3a143dd78ad9cf4c0bb4d6430b07d2fe1080_BAT -> xe-pw-145340v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-145340v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_intel_bb@intel-bb-blit-y:
-    - bat-adlp-vf:        [PASS][1] -> [DMESG-WARN][2] ([Intel XE#3970])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2704-9e4c3a143dd78ad9cf4c0bb4d6430b07d2fe1080/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-y.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145340v1/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-y.html
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-adlp-vf:        [PASS][3] -> [SKIP][4] ([Intel XE#4322]) +1 other test skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2704-9e4c3a143dd78ad9cf4c0bb4d6430b07d2fe1080/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145340v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-
-  
-#### Warnings ####
-
-  * igt@xe_live_ktest@xe_bo:
-    - bat-adlp-vf:        [SKIP][5] ([Intel XE#2229] / [Intel XE#455]) -> [SKIP][6] ([Intel XE#4322])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2704-9e4c3a143dd78ad9cf4c0bb4d6430b07d2fe1080/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145340v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-
-  
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
-  [Intel XE#4322]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 0bd853a9790b drm-tip: 2025y-02m-24d-21h-45m-35s UTC integration manifest
+=== git am output follows ===
+Applying: PCI/ACPI: Implement PCI FW _DSM method
+Applying: drm/xe/vrsr: Detect vrsr capability
+Applying: drm/xe/vrsr: Apis to init and enable VRSR feature
+Applying: drm/xe/vrsr: Refactor d3cold.allowed to a enum
+Applying: drm/xe/pm: D3Cold target state
+Applying: drm/xe/vrsr: Enable VRSR
 
 
-Build changes
--------------
-
-  * Linux: xe-2704-9e4c3a143dd78ad9cf4c0bb4d6430b07d2fe1080 -> xe-pw-145340v1
-
-  IGT_8246: 2670886863d5821273146d7f94cdd3c8e3a4fe0b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2704-9e4c3a143dd78ad9cf4c0bb4d6430b07d2fe1080: 9e4c3a143dd78ad9cf4c0bb4d6430b07d2fe1080
-  xe-pw-145340v1: 145340v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145340v1/index.html
-
---===============6874149808203645294==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: reduce display dependencies on core</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145340/">https://patchwork.freedesktop.org/series/145340/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145340v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145340v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2704-9e4c3a143dd78ad9cf4c0bb4d6430b07d2fe1080_BAT -&gt; xe-pw-145340v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-145340v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_intel_bb@intel-bb-blit-y:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2704-9e4c3a143dd78ad9cf4c0bb4d6430b07d2fe1080/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-y.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145340v1/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-y.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2704-9e4c3a143dd78ad9cf4c0bb4d6430b07d2fe1080/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145340v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322">Intel XE#4322</a>) +1 other test skip</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2704-9e4c3a143dd78ad9cf4c0bb4d6430b07d2fe1080/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145340v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322">Intel XE#4322</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2704-9e4c3a143dd78ad9cf4c0bb4d6430b07d2fe1080 -&gt; xe-pw-145340v1</li>
-</ul>
-<p>IGT_8246: 2670886863d5821273146d7f94cdd3c8e3a4fe0b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2704-9e4c3a143dd78ad9cf4c0bb4d6430b07d2fe1080: 9e4c3a143dd78ad9cf4c0bb4d6430b07d2fe1080<br />
-  xe-pw-145340v1: 145340v1</p>
-
-</body>
-</html>
-
---===============6874149808203645294==--
