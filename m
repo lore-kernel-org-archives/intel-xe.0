@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DDBEC021BC
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Feb 2025 04:42:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 475C9C1B087
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Feb 2025 04:42:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45BB210E581;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B084710E55A;
 	Tue, 25 Feb 2025 04:42:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Da8/A+Hc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="crB7cwxn";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5F4410E54B;
- Tue, 25 Feb 2025 04:42:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 018AD10E559;
+ Tue, 25 Feb 2025 04:42:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740458537; x=1771994537;
+ t=1740458536; x=1771994536;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=sEFYYZFPWSv0M5bffEY6q5bDZ5mMdHFDyeGr0UeoetI=;
- b=Da8/A+HcP7zfk6tA7tx/pS6ie0b/iWQVnnitjh9EMHdpzBkkbyCG7YHM
- rrxON9or1H/p70tMsfdbdljFopCZ99YB2/t0RZTq4+SgY+TROJ85gStOs
- +XChz+0453CqNlxVQu4Dk5mOis9ZvE9k7da4gai0cD6aeay1REsTwheYH
- bO+v5R6dOe8VdA5xFzMCKatuu4/Z0WkHzVc6d9j1Vli93xCoGRlGmrVni
- hEoWC0mQ/ppUFOhOq0hvvow9nk19Gi8btM0YAfoX6X1wros3L4HEvQTJ0
- X/hJzSBO0++mwV4QDFdMj7kFrK32SD5x6ZZM7VS6AA+wYndBZKsAttDFi g==;
-X-CSE-ConnectionGUID: q6w33kZvTliU4BY6gPubhw==
-X-CSE-MsgGUID: VtQtfkKnSRS16tKwvt4XZA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="51885098"
-X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; d="scan'208";a="51885098"
+ bh=r3BybytzLMKV454VXYdtyGZmutTPjmSn6bIAPeqzcws=;
+ b=crB7cwxnR1YWDo9rMKbeo6FpY3fLjM12M7trryKQo1MtSagJqMZuGg3u
+ kKaC8EHaEtUcI91njuXc/iMxA4OdC/bvDYqhgAb61ZUa6TOa3zvaX3YhW
+ Jw6MMAnKUDiU7s76erwjB8TFU05OUKL3IKgp/O6iKjh177xvdKpGpOIjg
+ 5jSUjSeNTIRw6vdiMxSCYTLTVXdgSKhxL5QltEUfBsU2K1ddflwXCdui5
+ FdKPwno9fU5g2tZxPE1/qtyTqTWaumUh8M+c1S41QNmjJCH7zBwuuhdEi
+ wH0Gr+nkamG6G8iC3F9/5Mf1r3zM91ZoD4NijHaDjEuFTPHitgk6s8pFF Q==;
+X-CSE-ConnectionGUID: VM9bwptbQkOw+AuqYfsa0g==
+X-CSE-MsgGUID: k87xGttXRQWp/D4hw6WKVA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="51885072"
+X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; d="scan'208";a="51885072"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Feb 2025 20:42:16 -0800
-X-CSE-ConnectionGUID: X+1qXagASz+8+U64PQTHWw==
-X-CSE-MsgGUID: jtwhWM7XTWW6DrmOvAnUkw==
+X-CSE-ConnectionGUID: f7nKW5x5RB2E/pFBeepT/g==
+X-CSE-MsgGUID: f0+8/8pMT6iezW/gmA63uQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; d="scan'208";a="116290341"
+X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; d="scan'208";a="116290329"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2025 20:42:16 -0800
+ 24 Feb 2025 20:42:15 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com,
  thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
  felix.kuehling@amd.com, dakr@kernel.org
-Subject: [PATCH v6 32/32] drm/doc: gpusvm: Add GPU SVM documentation
-Date: Mon, 24 Feb 2025 20:43:11 -0800
-Message-Id: <20250225044311.3178695-33-matthew.brost@intel.com>
+Subject: [PATCH v6 28/32] drm/xe: Basic SVM BO eviction
+Date: Mon, 24 Feb 2025 20:43:07 -0800
+Message-Id: <20250225044311.3178695-29-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250225044311.3178695-1-matthew.brost@intel.com>
 References: <20250225044311.3178695-1-matthew.brost@intel.com>
@@ -70,127 +70,158 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add documentation for agree upon GPU SVM design principles, current
-status, and future plans.
+Wire xe_bo_move to GPU SVM migration via new helper xe_svm_bo_evict.
 
+v2:
+ - Use xe_svm_bo_evict
+ - Drop bo->range
+v3:
+ - Kernel doc (Thomas)
 v4:
- - Address Thomas's feedback
+ - Add missing xe_bo.c code
 v5:
- - s/Current/Basline (Thomas)
+ - Add XE_BO_FLAG_CPU_ADDR_MIRROR flag in this patch (Thomas)
+ - Add message on eviction failure
+v6:
+ - Only compile if CONFIG_DRM_GPUSVM selected (CI, Lucas)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- Documentation/gpu/rfc/gpusvm.rst | 84 ++++++++++++++++++++++++++++++++
- Documentation/gpu/rfc/index.rst  |  4 ++
- 2 files changed, 88 insertions(+)
- create mode 100644 Documentation/gpu/rfc/gpusvm.rst
+ drivers/gpu/drm/xe/xe_bo.c  | 22 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_bo.h  |  1 +
+ drivers/gpu/drm/xe/xe_svm.c | 17 ++++++++++++++++-
+ drivers/gpu/drm/xe/xe_svm.h |  9 +++++++++
+ 4 files changed, 48 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/gpu/rfc/gpusvm.rst b/Documentation/gpu/rfc/gpusvm.rst
-new file mode 100644
-index 000000000000..063412160685
---- /dev/null
-+++ b/Documentation/gpu/rfc/gpusvm.rst
-@@ -0,0 +1,84 @@
-+===============
-+GPU SVM Section
-+===============
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 51cd22695592..0c7a7f5e5596 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -279,6 +279,8 @@ int xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
+ static void xe_evict_flags(struct ttm_buffer_object *tbo,
+ 			   struct ttm_placement *placement)
+ {
++	struct xe_bo *bo;
 +
-+Agreed upon design principles
-+=============================
-+
-+* migrate_to_ram path
-+	* Rely only on core MM concepts (migration PTEs, page references, and
-+	  page locking).
-+	* No driver specific locks other than locks for hardware interaction in
-+	  this path. These are not required and generally a bad idea to
-+	  invent driver defined locks to seal core MM races.
-+	* Partial migration is supported (i.e., a subset of pages attempting to
-+	  migrate can actually migrate, with only the faulting page guaranteed
-+	  to migrate).
-+	* Driver handles mixed migrations via retry loops rather than locking.
-+* Eviction
-+	* Only looking at physical memory data structures and locks as opposed to
-+	  looking at virtual memory data structures and locks.
-+	* No looking at mm/vma structs or relying on those being locked.
-+* GPU fault side
-+	* mmap_read only used around core MM functions which require this lock
-+	  and should strive to take mmap_read lock only in GPU SVM layer.
-+	* Big retry loop to handle all races with the mmu notifier under the gpu
-+	  pagetable locks/mmu notifier range lock/whatever we end up calling
-+          those.
-+	* Races (especially against concurrent eviction or migrate_to_ram)
-+	  should not be handled on the fault side by trying to hold locks;
-+	  rather, they should be handled using retry loops. One possible
-+	  exception is holding a BO's dma-resv lock during the initial migration
-+	  to VRAM, as this is a well-defined lock that can be taken underneath
-+	  the mmap_read lock.
-+* Physical memory to virtual backpointer
-+	* Does not work, no pointers from physical memory to virtual should
-+	  exist.
-+	* Physical memory backpointer (page->zone_device_data) should be stable
-+	  from allocation to page free.
-+* GPU pagetable locking
-+	* Notifier lock only protects range tree, pages valid state for a range
-+	  (rather than seqno due to wider notifiers), pagetable entries, and
-+	  mmu notifier seqno tracking, it is not a global lock to protect
-+          against races.
-+	* All races handled with big retry as mentioned above.
-+
-+Overview of current design
-+==========================
-+
-+Baseline design is simple as possible to get a working basline in which can be
-+built upon.
-+
-+.. kernel-doc:: drivers/gpu/drm/xe/drm_gpusvm.c
-+   :doc: Overview
-+   :doc: Locking
-+   :doc: Migrataion
-+   :doc: Partial Unmapping of Ranges
-+   :doc: Examples
-+
-+Possible future design features
-+===============================
-+
-+* Concurrent GPU faults
-+	* CPU faults are concurrent so makes sense to have concurrent GPU
-+	  faults.
-+	* Should be possible with fined grained locking in the driver GPU
-+	  fault handler.
-+	* No expected GPU SVM changes required.
-+* Ranges with mixed system and device pages
-+	* Can be added if required to drm_gpusvm_get_pages fairly easily.
-+* Multi-GPU support
-+	* Work in progress and patches expected after initially landing on GPU
-+	  SVM.
-+	* Ideally can be done with little to no changes to GPU SVM.
-+* Drop ranges in favor of radix tree
-+	* May be desirable for faster notifiers.
-+* Compound device pages
-+	* Nvidia, AMD, and Intel all have agreed expensive core MM functions in
-+	  migrate device layer are a performance bottleneck, having compound
-+	  device pages should help increase performance by reducing the number
-+	  of these expensive calls.
-+* Higher order dma mapping for migration
-+	* 4k dma mapping adversely affects migration performance on Intel
-+	  hardware, higher order (2M) dma mapping should help here.
-+* Build common userptr implementation on top of GPU SVM
-diff --git a/Documentation/gpu/rfc/index.rst b/Documentation/gpu/rfc/index.rst
-index 476719771eef..396e535377fb 100644
---- a/Documentation/gpu/rfc/index.rst
-+++ b/Documentation/gpu/rfc/index.rst
-@@ -16,6 +16,10 @@ host such documentation:
- * Once the code has landed move all the documentation to the right places in
-   the main core, helper or driver sections.
+ 	if (!xe_bo_is_xe_bo(tbo)) {
+ 		/* Don't handle scatter gather BOs */
+ 		if (tbo->type == ttm_bo_type_sg) {
+@@ -290,6 +292,12 @@ static void xe_evict_flags(struct ttm_buffer_object *tbo,
+ 		return;
+ 	}
  
-+.. toctree::
++	bo = ttm_to_xe_bo(tbo);
++	if (bo->flags & XE_BO_FLAG_CPU_ADDR_MIRROR) {
++		*placement = sys_placement;
++		return;
++	}
 +
-+    gpusvm.rst
-+
- .. toctree::
+ 	/*
+ 	 * For xe, sg bos that are evicted to system just triggers a
+ 	 * rebind of the sg list upon subsequent validation to XE_PL_TT.
+@@ -734,6 +742,20 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 		goto out;
+ 	}
  
-     i915_gem_lmem.rst
++	if (!move_lacks_source && (bo->flags & XE_BO_FLAG_CPU_ADDR_MIRROR) &&
++	    new_mem->mem_type == XE_PL_SYSTEM) {
++		ret = xe_svm_bo_evict(bo);
++		if (!ret) {
++			drm_dbg(&xe->drm, "Evict system allocator BO success\n");
++			ttm_bo_move_null(ttm_bo, new_mem);
++		} else {
++			drm_dbg(&xe->drm, "Evict system allocator BO failed=%pe\n",
++				ERR_PTR(ret));
++		}
++
++		goto out;
++	}
++
+ 	if (old_mem_type == XE_PL_SYSTEM && new_mem->mem_type == XE_PL_TT && !handle_system_ccs) {
+ 		ttm_bo_move_null(ttm_bo, new_mem);
+ 		goto out;
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 9cab686dc872..2b9c0b0778a2 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -47,6 +47,7 @@
+ 					 XE_BO_FLAG_GGTT1 | \
+ 					 XE_BO_FLAG_GGTT2 | \
+ 					 XE_BO_FLAG_GGTT3)
++#define XE_BO_FLAG_CPU_ADDR_MIRROR	BIT(22)
+ 
+ /* this one is trigger internally only */
+ #define XE_BO_FLAG_INTERNAL_TEST	BIT(30)
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index d8ff7fc708ee..e2f76692adc0 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -617,7 +617,8 @@ static int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
+ 	bo = xe_bo_create_locked(tile_to_xe(tile), NULL, NULL,
+ 				 xe_svm_range_size(range),
+ 				 ttm_bo_type_device,
+-				 XE_BO_FLAG_VRAM_IF_DGFX(tile));
++				 XE_BO_FLAG_VRAM_IF_DGFX(tile) |
++				 XE_BO_FLAG_CPU_ADDR_MIRROR);
+ 	if (IS_ERR(bo)) {
+ 		err = PTR_ERR(bo);
+ 		if (xe_vm_validate_should_retry(NULL, err, &end))
+@@ -772,6 +773,20 @@ bool xe_svm_has_mapping(struct xe_vm *vm, u64 start, u64 end)
+ 	return drm_gpusvm_has_mapping(&vm->svm.gpusvm, start, end);
+ }
+ 
++/**
++ * xe_svm_bo_evict() - SVM evict BO to system memory
++ * @bo: BO to evict
++ *
++ * SVM evict BO to system memory. GPU SVM layer ensures all device pages
++ * are evicted before returning.
++ *
++ * Return: 0 on success standard error code otherwise
++ */
++int xe_svm_bo_evict(struct xe_bo *bo)
++{
++	return drm_gpusvm_evict_to_ram(&bo->devmem_allocation);
++}
++
+ #if IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR)
+ static struct drm_pagemap_device_addr
+ xe_drm_pagemap_device_map(struct drm_pagemap *dpagemap,
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+index 5d4eeb2d34ce..855aa8e1dd38 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -11,6 +11,7 @@
+ 
+ #define XE_INTERCONNECT_VRAM DRM_INTERCONNECT_DRIVER
+ 
++struct xe_bo;
+ struct xe_vram_region;
+ struct xe_tile;
+ struct xe_vm;
+@@ -67,6 +68,8 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 			    bool atomic);
+ 
+ bool xe_svm_has_mapping(struct xe_vm *vm, u64 start, u64 end);
++
++int xe_svm_bo_evict(struct xe_bo *bo);
+ #else
+ static inline bool xe_svm_range_pages_valid(struct xe_svm_range *range)
+ {
+@@ -108,6 +111,12 @@ bool xe_svm_has_mapping(struct xe_vm *vm, u64 start, u64 end)
+ {
+ 	return false;
+ }
++
++static inline
++int xe_svm_bo_evict(struct xe_bo *bo)
++{
++	return 0;
++}
+ #endif
+ 
+ /**
 -- 
 2.34.1
 
