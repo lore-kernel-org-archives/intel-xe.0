@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08BBDC021BF
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Feb 2025 04:42:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 879E0C021BC
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Feb 2025 04:42:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECE7A10E542;
-	Tue, 25 Feb 2025 04:42:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3061010E547;
+	Tue, 25 Feb 2025 04:42:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mIetbtDM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IBGDM8Eu";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5064610E539;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C26810E533;
  Tue, 25 Feb 2025 04:42:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1740458531; x=1771994531;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MsViuX+51i/De6atBeq7IfrhyBnHjJDq61ETBvPCxNc=;
- b=mIetbtDMMReEevCvHT08eoEsWVI5wGxeD1WCeHh0ZSxwuCW/p3jpzXVu
- lL1d1GZBufdIFSMZotuVvHUspyP9BQRi9BFG5pZGiZbRkvW5GBWubfUiB
- yg7c6nsVzx2I+BdFgdgnnhglpx3HMBCb1bV3Bhk0MVGzvnxk7JBtzIIkw
- 7GLA1AsraxOikK1X2VU6FFFOkt5XKcYDpjnJyC9r2WUBb3Gmrd/vbWv7P
- 0IyvuRW2t6IRd+nT4ckcy+/ENLZo0wggue/FKIvpt2hWy55MFdrGetDh+
- 5LHbQHwbB0TedGMC9nI4KdN87jsgt8k6g3I3BPU+iQe+hvzFlF0YzcEv0 Q==;
-X-CSE-ConnectionGUID: nVJGnATLQSGy/QhPOTh8tg==
-X-CSE-MsgGUID: NLworAqtQkKps8pbh3JBqw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="51884943"
-X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; d="scan'208";a="51884943"
+ bh=Pv2DGp++HeW6ZoNDWt8axM7203GDpR650ogKhQ3qc4I=;
+ b=IBGDM8EuMK11+eItdT6GSCM1dPmdAoOHh/FOmvn6jzHxm31Se7h9rlTZ
+ Xoy0J/XO/eZWJdh1AMjCRSX7WgcgR+0uqBL5k9sknGeALn47uZ3a8ofSa
+ 0Sng3c+/IW+B+KT4/3wS02xJiT/Noic/nbv6xWmlgN8sQeqkI59GUoHgw
+ 0OHeQc9J0ib/+A4DEeJynNW44XVa7+JlUMHoCDPvNBzhV1FFnIQHpiB5a
+ b/G4jtOAhPLjRRGNaerEoOHr3vCEcgVCbxiPtY6rAzVerKX7Q0ZXd9TaF
+ mC6kYyW4lEK+/+2rpytudKE2+BbKUoKr1Xl80pm5sCeAeiR4ljoplflBj g==;
+X-CSE-ConnectionGUID: LPg2ixrjRuOZdUjlIOQZOg==
+X-CSE-MsgGUID: DXHVmh+qQbKbPETYE1yhQQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="51884928"
+X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; d="scan'208";a="51884928"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2025 20:42:11 -0800
-X-CSE-ConnectionGUID: ezqUrH8ZSbqCGI0H0uJwWA==
-X-CSE-MsgGUID: 2yprTJMzSnWNxj5VZeKwvA==
+ 24 Feb 2025 20:42:10 -0800
+X-CSE-ConnectionGUID: ieuOjagnRryN6ozIbbfnpA==
+X-CSE-MsgGUID: ql2Qqy5dQk6Tx5Yfo3OYuw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; d="scan'208";a="116290265"
+X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; d="scan'208";a="116290259"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Feb 2025 20:42:10 -0800
@@ -47,9 +47,9 @@ To: intel-xe@lists.freedesktop.org,
 Cc: himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com,
  thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
  felix.kuehling@amd.com, dakr@kernel.org
-Subject: [PATCH v6 07/32] drm/xe: Select DRM_GPUSVM Kconfig
-Date: Mon, 24 Feb 2025 20:42:46 -0800
-Message-Id: <20250225044311.3178695-8-matthew.brost@intel.com>
+Subject: [PATCH v6 05/32] drm/xe/bo: Introduce xe_bo_put_async
+Date: Mon, 24 Feb 2025 20:42:44 -0800
+Message-Id: <20250225044311.3178695-6-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250225044311.3178695-1-matthew.brost@intel.com>
 References: <20250225044311.3178695-1-matthew.brost@intel.com>
@@ -70,30 +70,135 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Xe depends on DRM_GPUSVM for SVM implementation, select it in Kconfig.
+From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-v6:
- - Don't select DRM_GPUSVM if UML (CI)
+Introduce xe_bo_put_async to put a bo where the context is such that
+the bo destructor can't run due to lockdep problems or atomic context.
+
+If the put is the final put, freeing will be done from a work item.
+
+v5:
+ - Kerenl doc for xe_bo_put_async (Thomas)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Tested-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+Reviewed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com
 ---
- drivers/gpu/drm/xe/Kconfig | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/xe/xe_bo.c           | 25 +++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_bo.h           | 19 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_device.c       |  3 +++
+ drivers/gpu/drm/xe/xe_device_types.h |  8 ++++++++
+ 4 files changed, 55 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-index 99219c16e8aa..d3a1571db497 100644
---- a/drivers/gpu/drm/xe/Kconfig
-+++ b/drivers/gpu/drm/xe/Kconfig
-@@ -39,6 +39,7 @@ config DRM_XE
- 	select DRM_TTM_HELPER
- 	select DRM_EXEC
- 	select DRM_GPUVM
-+	select DRM_GPUSVM if !UML
- 	select DRM_SCHED
- 	select MMU_NOTIFIER
- 	select WANT_DEV_COREDUMP
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 9adc63175e69..51cd22695592 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -2660,6 +2660,31 @@ void xe_bo_put_commit(struct llist_head *deferred)
+ 		drm_gem_object_free(&bo->ttm.base.refcount);
+ }
+ 
++static void xe_bo_dev_work_func(struct work_struct *work)
++{
++	struct xe_bo_dev *bo_dev = container_of(work, typeof(*bo_dev), async_free);
++
++	xe_bo_put_commit(&bo_dev->async_list);
++}
++
++/**
++ * xe_bo_dev_init() - Initialize BO dev to manage async BO freeing
++ * @bo_dev: The BO dev structure
++ */
++void xe_bo_dev_init(struct xe_bo_dev *bo_dev)
++{
++	INIT_WORK(&bo_dev->async_free, xe_bo_dev_work_func);
++}
++
++/**
++ * xe_bo_dev_fini() - Finalize BO dev managing async BO freeing
++ * @bo_dev: The BO dev structure
++ */
++void xe_bo_dev_fini(struct xe_bo_dev *bo_dev)
++{
++	flush_work(&bo_dev->async_free);
++}
++
+ void xe_bo_put(struct xe_bo *bo)
+ {
+ 	struct xe_tile *tile;
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index a25340949415..9cab686dc872 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -323,6 +323,25 @@ xe_bo_put_deferred(struct xe_bo *bo, struct llist_head *deferred)
+ 
+ void xe_bo_put_commit(struct llist_head *deferred);
+ 
++/**
++ * xe_bo_put_async() - Put BO async
++ * @bo: The bo to put.
++ *
++ * Put BO async, the final put is deferred to a worker to exit an IRQ context.
++ */
++static inline void
++xe_bo_put_async(struct xe_bo *bo)
++{
++	struct xe_bo_dev *bo_device = &xe_bo_device(bo)->bo_device;
++
++	if (xe_bo_put_deferred(bo, &bo_device->async_list))
++		schedule_work(&bo_device->async_free);
++}
++
++void xe_bo_dev_init(struct xe_bo_dev *bo_device);
++
++void xe_bo_dev_fini(struct xe_bo_dev *bo_device);
++
+ struct sg_table *xe_bo_sg(struct xe_bo *bo);
+ 
+ /*
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 64d3a26ad4a3..03094a46f26c 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -394,6 +394,8 @@ static void xe_device_destroy(struct drm_device *dev, void *dummy)
+ {
+ 	struct xe_device *xe = to_xe_device(dev);
+ 
++	xe_bo_dev_fini(&xe->bo_device);
++
+ 	if (xe->preempt_fence_wq)
+ 		destroy_workqueue(xe->preempt_fence_wq);
+ 
+@@ -431,6 +433,7 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+ 	if (WARN_ON(err))
+ 		goto err;
+ 
++	xe_bo_dev_init(&xe->bo_device);
+ 	err = drmm_add_action_or_reset(&xe->drm, xe_device_destroy, NULL);
+ 	if (err)
+ 		goto err;
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 4656305dd45a..b171050eed50 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -539,6 +539,14 @@ struct xe_device {
+ 		int mode;
+ 	} wedged;
+ 
++	/** @bo_device: Struct to control async free of BOs */
++	struct xe_bo_dev {
++		/** @async_free: Free worker */
++		struct work_struct async_free;
++		/** @async_list: List of BOs to be freed */
++		struct llist_head async_list;
++	} bo_device;
++
+ 	/** @pmu: performance monitoring unit */
+ 	struct xe_pmu pmu;
+ 
 -- 
 2.34.1
 
