@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11299C021B2
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Feb 2025 18:24:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F121CC021BB
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Feb 2025 18:24:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0B4210E78F;
-	Tue, 25 Feb 2025 18:24:04 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DD2310E78F;
- Tue, 25 Feb 2025 18:24:03 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDBA410E791;
+	Tue, 25 Feb 2025 18:24:40 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mjnidg/G";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B55A810E78F;
+ Tue, 25 Feb 2025 18:24:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1740507879; x=1772043879;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=f8HyXmbROngCIuFBEA96Ac/kHy0DjtSWRl/mFH8bgjY=;
+ b=Mjnidg/G0vH4bScc0t9ksy+Ygjjd2Lmggd9tnZMGFtd8nfPRoi3JjyTU
+ H2OUeQNGTZiHvtqcZGdzFH2iOZPGNddasIw+CcVRGoAV4g/IEQKVWjBHT
+ Epikl+Uxg2ipqXbWwnt8hYWGPAkaYCmQRCqbUrMLUKLe80LyV0NsNgVhF
+ L6XQE4RMZq2vwVV7M4mUy/l/bKqsAmYd5+lLRZbzRM1S1Xrm4KpIE7+Ul
+ GKcmKxkgOmSekaFMasiceJBkMN7FZUpkLv5JcabLxwHHSkaND3mqXf5qZ
+ Xmv809gggI7hRj6ojTY0x7IUSNXAnN/xTCmH41SRvSXhKhzPl2daPJPFl w==;
+X-CSE-ConnectionGUID: 1hLVe8bmToegxntmeXsJ1w==
+X-CSE-MsgGUID: tIKCS+YFR+idnlCxthfaBA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11356"; a="41245934"
+X-IronPort-AV: E=Sophos;i="6.13,314,1732608000"; d="scan'208,223";a="41245934"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2025 10:24:39 -0800
+X-CSE-ConnectionGUID: xIu8/fXIRjqpt+Q+iBQoSg==
+X-CSE-MsgGUID: O5KGbUA6QjSeH7jU+u1VCA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,314,1732608000"; 
+ d="scan'208,223";a="117081413"
+Received: from dut-2a59.iind.intel.com ([10.190.239.113])
+ by fmviesa009.fm.intel.com with ESMTP; 25 Feb 2025 10:24:37 -0800
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, uma.shankar@intel.com,
+ chaitanya.kumar.borah@intel.com
+Subject: [PATCH 0/2] drm/xe/display: Program double buffered LUT registers
+Date: Tue, 25 Feb 2025 23:39:03 +0530
+Message-Id: <20250225180905.1588084-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe=3A_Unify_IP_descr?=
- =?utf-8?q?iptors_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gustavo Sousa" <gustavo.sousa@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 25 Feb 2025 18:24:03 -0000
-Message-ID: <174050784318.2042575.11047887677104131356@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250221-xe-unify-ip-descriptors-v2-0-5bc0c6d0c13f@intel.com>
-In-Reply-To: <20250221-xe-unify-ip-descriptors-v2-0-5bc0c6d0c13f@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +63,33 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From PTL, LUT registers are made double buffered. This helps us
+to program them in the active region without any concern of tearing.
+This particulary helps in case of displays with high refresh rates
+where vblank periods are shorter.
 
-Series: drm/xe: Unify IP descriptors (rev3)
-URL   : https://patchwork.freedesktop.org/series/145188/
-State : success
+This series
+	- adds MMIO programming of LUT registers in active region
+	- removes wait for vblank in invocation of DSB1 to
+	  program LUT registers in DSB programming path.
 
-== Summary ==
+This is a follow-up to the RFC series [1]
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 533a24b8fa29455518aed9ac72209c834d814238
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
+[1] https://patchwork.freedesktop.org/series/142437/
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Chaitanya Kumar Borah (2):
+  drm/i915/display: Add MMIO path for double-buffered LUT registers
+  drm/i915/display: Don't wait for vblank for LUT DSB programming
 
+ drivers/gpu/drm/i915/display/intel_color.c          |  4 ++++
+ drivers/gpu/drm/i915/display/intel_crtc.c           |  4 +++-
+ drivers/gpu/drm/i915/display/intel_display.c        | 10 ++++++++--
+ drivers/gpu/drm/i915/display/intel_display_device.h |  1 +
+ 4 files changed, 16 insertions(+), 3 deletions(-)
+
+-- 
+2.25.1
 
