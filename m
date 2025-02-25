@@ -4,61 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A70DDC021B2
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Feb 2025 15:06:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A73DCC021BB
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Feb 2025 15:09:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 728B610E707;
-	Tue, 25 Feb 2025 15:06:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A02C610E72F;
+	Tue, 25 Feb 2025 15:09:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XvU7uEam";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i/3vfLkB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07F7610E707;
- Tue, 25 Feb 2025 15:06:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA24110E71B
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Feb 2025 15:09:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740495999; x=1772031999;
+ t=1740496145; x=1772032145;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=n03KhDZHU0KFIQJAbdOQWzMnNAFHVJ50fg106qXphs4=;
- b=XvU7uEam/0x0KY8eREC6valvbj0dRNRdugmJICYNAl/CccZ1DxdiigyE
- p7Mvue24tokZLA6rG0dkHfXn1cM3z1T9fVAcvaUld39xbV9/EtCdVBRv8
- EvE8fl6gWmf0AKh7PQXwFLTiFWKXoZaknaSwNV8y6RGA+65xkdrEQmraD
- 1xNsG1tTDYNTWQAPED+saVUaNttVaK+61O9uHcFEgffay+QdkulzP5c7X
- 4qrRtISERQnR0kLDxOeTWq60mnR1j0adZtAQvw6ijFuG6yDFlSUxGRW/H
- 0+qimR/MxrEReaiSqsnJgEbl1zWbgjRPjbLLCRsLuZ3UvUWE2ugl8gBuE A==;
-X-CSE-ConnectionGUID: e3h46w1pRiy1d62VoXKeLQ==
-X-CSE-MsgGUID: AI3Ii3wfTWmeW9yti89k3w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11356"; a="40489748"
-X-IronPort-AV: E=Sophos;i="6.13,314,1732608000"; d="scan'208";a="40489748"
+ bh=TgvhfsLdf5eQsEcRtPZIVY0v59gsVRm7qLNo+0faNYg=;
+ b=i/3vfLkBbAatkG3QPZ8/THkFF8auaKanuTgPaLlv8Glht6c5UCCnBNtQ
+ BpGAAstjf2usRiFnQBMzu1rd78G78oft/SqF+xhwzATuW+N/DrqrzeQxY
+ 92dsM/o10BaLBUj92R+oEcQFbyoAkY/wbuFZzlhsCjtVbOvW0H3Y4hZEa
+ kkDyukvN2hptlMEh1+ry8kYGrJz8S0MFcBq5LLLaHeVl3Z+AG4EujVVpe
+ DQkhLRJchVV76zZfykMfYsCJW2Bnko41eQdBEI2FiE3+TgdzB7HRFHKju
+ C5cuqe2AGd7BZYz1I/zBRXXmUeBVR6yxhnLyRhFyL9AIoriAMv6lrWLrV g==;
+X-CSE-ConnectionGUID: CBG+bV/NTA6T1Bfwl5EFwA==
+X-CSE-MsgGUID: 4zrdI+cgSVqRuOsEXhrJNw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11356"; a="40490190"
+X-IronPort-AV: E=Sophos;i="6.13,314,1732608000"; d="scan'208";a="40490190"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 07:06:38 -0800
-X-CSE-ConnectionGUID: uXMqubFkR3OROsQiEqJhCQ==
-X-CSE-MsgGUID: PIEvgdFsQUWtwJRQ8tJ4VA==
+ 25 Feb 2025 07:09:04 -0800
+X-CSE-ConnectionGUID: rYyUhy4QQjmMyK6hsrjKdw==
+X-CSE-MsgGUID: 2AAAbZ1ZTFW83IA46Xd1Qw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,314,1732608000"; d="scan'208";a="116901071"
-Received: from dneilan-mobl1.ger.corp.intel.com (HELO [10.245.244.112])
- ([10.245.244.112])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 07:06:36 -0800
-Message-ID: <c43d98e4-7f13-480c-82d0-3d400fdf97a4@intel.com>
-Date: Tue, 25 Feb 2025 15:06:34 +0000
+X-IronPort-AV: E=Sophos;i="6.13,314,1732608000"; d="scan'208";a="116901800"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmviesa010.fm.intel.com with ESMTP; 25 Feb 2025 07:09:02 -0800
+Received: from [10.245.80.192] (unknown [10.245.80.192])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 5192E2FC42;
+ Tue, 25 Feb 2025 15:09:01 +0000 (GMT)
+Message-ID: <03c26d55-286b-43b9-9f08-a1379d5a7bda@intel.com>
+Date: Tue, 25 Feb 2025 16:09:00 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 04/32] drm/pagemap: Add DRM pagemap
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com,
- thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
- felix.kuehling@amd.com, dakr@kernel.org
-References: <20250225044311.3178695-1-matthew.brost@intel.com>
- <20250225044311.3178695-5-matthew.brost@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20250225044311.3178695-5-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v2 4/5] drm/xe/kunit: Update RTP tests with SR-IOV rules
+To: Matt Roper <matthew.d.roper@intel.com>
+Cc: intel-xe@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+References: <20250224150700.1778-1-michal.wajdeczko@intel.com>
+ <20250224150700.1778-5-michal.wajdeczko@intel.com>
+ <20250224225528.GD4460@mdroper-desk1.amr.corp.intel.com>
+ <b415f920-0766-4a53-b97d-f5579ad3d04b@intel.com>
+ <20250225031001.GH4460@mdroper-desk1.amr.corp.intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20250225031001.GH4460@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,154 +74,219 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 25/02/2025 04:42, Matthew Brost wrote:
-> From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> 
-> Introduce drm_pagemap ops to map and unmap dma to VRAM resources. In the
-> local memory case it's a matter of merely providing an offset into the
-> device's physical address. For future p2p the map and unmap functions may
-> encode as needed.
-> 
-> Similar to how dma-buf works, let the memory provider (drm_pagemap) provide
-> the mapping functionality.
-> 
-> v3:
->   - Move to drm level include
-> v4:
->   - Fix kernel doc (G.G.)
-> v5:
->   - s/map_dma/device_map (Thomas)
->   - s/unmap_dma/device_unmap (Thomas)
-> 
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-> Reviewed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-> ---
->   include/drm/drm_pagemap.h | 105 ++++++++++++++++++++++++++++++++++++++
->   1 file changed, 105 insertions(+)
->   create mode 100644 include/drm/drm_pagemap.h
-> 
-> diff --git a/include/drm/drm_pagemap.h b/include/drm/drm_pagemap.h
-> new file mode 100644
-> index 000000000000..2634abb1e8bf
-> --- /dev/null
-> +++ b/include/drm/drm_pagemap.h
-> @@ -0,0 +1,105 @@
-> +/* SPDX-License-Identifier: MIT */
-> +#ifndef _DRM_PAGEMAP_H_
-> +#define _DRM_PAGEMAP_H_
-> +
-> +#include <linux/dma-direction.h>
-> +#include <linux/hmm.h>
-> +#include <linux/types.h>
-> +
-> +struct drm_pagemap;
-> +struct device;
-> +
-> +/**
-> + * enum drm_interconnect_protocol - Used to identify an interconnect protocol.
-> + */
 
-Getting some build failures here. I think just needs something like:
 
-  /**
-   * enum drm_interconnect_protocol - Used to identify an interconnect 
-protocol.
-+ * @DRM_INTERCONNECT_SYSTEM: DMA map is system pages.
-+ * @DRM_INTERCONNECT_PCIE_P2P: DMA map is PCIE P2P.
-+ * @DRM_INTERCONNECT_DRIVER:  DMA map is driver defined.
-   */
+On 25.02.2025 04:10, Matt Roper wrote:
+> On Tue, Feb 25, 2025 at 12:41:09AM +0100, Michal Wajdeczko wrote:
+>>
+>>
+>> On 24.02.2025 23:55, Matt Roper wrote:
+>>> On Mon, Feb 24, 2025 at 04:06:59PM +0100, Michal Wajdeczko wrote:
+>>>> Add more test cases that verifies use of RTP SRIOV() rules in
+>>>> driver running as native, PF and VF mode.
+>>>>
+>>>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>>>> ---
+>>>>  drivers/gpu/drm/xe/tests/xe_rtp_test.c | 112 ++++++++++++++++++++++++-
+>>>>  1 file changed, 111 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_test.c b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
+>>>> index 36a3b5420fef..b21474df933e 100644
+>>>> --- a/drivers/gpu/drm/xe/tests/xe_rtp_test.c
+>>>> +++ b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
+>>>> @@ -45,6 +45,8 @@ struct rtp_to_sr_test_case {
+>>>>  struct rtp_test_case {
+>>>>  	const char *name;
+>>>>  	unsigned long expected_active;
+>>>> +	unsigned long expected_active_pf;
+>>>> +	unsigned long expected_active_vf;
+>>>>  	const struct xe_rtp_entry *entries;
+>>>>  };
+>>>>  
+>>>> @@ -469,6 +471,89 @@ static const struct rtp_test_case rtp_cases[] = {
+>>>>  	},
+>>>>  };
+>>>>  
+>>>> +static const struct rtp_test_case sriov_cases[] = {
+>>>> +	{
+>>>> +		.name = "non_vf",
+>>>> +		.expected_active = BIT(0) | BIT(1),
+>>>> +		.expected_active_pf = BIT(0) | BIT(1),
+>>>> +		.expected_active_vf = 0,
+>>>> +		.entries = (const struct xe_rtp_entry[]) {
+>>>> +			{ XE_RTP_NAME("and"),
+>>>> +			  XE_RTP_RULES(FUNC(match_yes)),
+>>>> +			},
+>>>> +			{ XE_RTP_NAME("or"),
+>>>> +			  XE_RTP_RULES(FUNC(match_no), OR,
+>>>> +				       FUNC(match_yes)),
+>>>> +			},
+>>>> +			{}
+>>>> +		},
+>>>> +	},
+>>>> +	{
+>>>> +		.name = "vf_ready",
+>>>> +		.expected_active = BIT(0) | BIT(1),
+>>>> +		.expected_active_pf = BIT(0) | BIT(1),
+>>>> +		.expected_active_vf = BIT(0) | BIT(1),
+>>>> +		.entries = (const struct xe_rtp_entry[]) {
+>>>> +			{ XE_RTP_NAME("and"),
+>>>> +			  XE_RTP_RULES(FUNC(match_yes), SRIOV(VF_READY)),
+>>>> +			},
+>>>> +			{ XE_RTP_NAME("or"),
+>>>> +			  XE_RTP_RULES(FUNC(match_no), OR,
+>>>> +				       FUNC(match_yes), SRIOV(VF_READY)),
+>>>> +			},
+>>>> +			{}
+>>>> +		},
+>>>> +	},
+>>>> +	{
+>>>> +		.name = "vf_only",
+>>>> +		.expected_active = 0,
+>>>> +		.expected_active_pf = 0,
+>>>> +		.expected_active_vf = BIT(0) | BIT(1),
+>>>> +		.entries = (const struct xe_rtp_entry[]) {
+>>>> +			{ XE_RTP_NAME("and"),
+>>>> +			  XE_RTP_RULES(FUNC(match_yes), SRIOV(VF_ONLY)),
+>>>> +			},
+>>>> +			{ XE_RTP_NAME("or"),
+>>>> +			  XE_RTP_RULES(FUNC(match_no), OR,
+>>>> +				       FUNC(match_yes), SRIOV(VF_ONLY)),
+>>>> +			},
+>>>> +			{}
+>>>> +		},
+>>>> +	},
+>>>> +	{
+>>>> +		.name = "pf_only",
+>>>> +		.expected_active = 0,
+>>>> +		.expected_active_pf = BIT(0) | BIT(1),
+>>>> +		.expected_active_vf = 0,
+>>>> +		.entries = (const struct xe_rtp_entry[]) {
+>>>> +			{ XE_RTP_NAME("and"),
+>>>> +			  XE_RTP_RULES(FUNC(match_yes), SRIOV(PF_ONLY)),
+>>>> +			},
+>>>> +			{ XE_RTP_NAME("or"),
+>>>> +			  XE_RTP_RULES(FUNC(match_no), OR,
+>>>> +				       FUNC(match_yes), SRIOV(PF_ONLY)),
+>>>> +			},
+>>>> +			{}
+>>>> +		},
+>>>> +	},
+>>>> +	{
+>>>> +		.name = "sriov_only",
+>>>> +		.expected_active = 0,
+>>>> +		.expected_active_pf = BIT(0) | BIT(1),
+>>>> +		.expected_active_vf = BIT(0) | BIT(1),
+>>>> +		.entries = (const struct xe_rtp_entry[]) {
+>>>> +			{ XE_RTP_NAME("and"),
+>>>> +			  XE_RTP_RULES(FUNC(match_yes), SRIOV(ONLY)),
+>>>> +			},
+>>>> +			{ XE_RTP_NAME("or"),
+>>>> +			  XE_RTP_RULES(FUNC(match_no), OR,
+>>>> +				       FUNC(match_yes), SRIOV(ONLY)),
+>>>> +			},
+>>>> +			{}
+>>>> +		},
+>>>> +	},
+>>>> +};
+>>>> +
+>>>>  static void xe_rtp_process_tests(struct kunit *test)
+>>>>  {
+>>>>  	const struct rtp_test_case *param = test->param_value;
+>>>> @@ -483,7 +568,28 @@ static void xe_rtp_process_tests(struct kunit *test)
+>>>>  	xe_rtp_process_ctx_enable_active_tracking(&ctx, &active, count_rtp_entries);
+>>>>  	xe_rtp_process(&ctx, param->entries);
+>>>>  
+>>>> -	KUNIT_EXPECT_EQ(test, active, param->expected_active);
+>>>> +	if (IS_SRIOV_PF(xe))
+>>>
+>>> The xe here is a mock device (from drm_kunit_helper_alloc_device).
+>>> Won't these SRIOV tests require something extra in
+>>> xe_pci_fake_device_init() to ever be SRIOV-enabled?  Or am I overlooking
+>>> something?
+>>
+>> yes ;)
+>>
+>> see xe_rtp_process_tests_{pf,vf} below, where we convert mock xe to be
+>> PF or VF by explicitly altering xe->sriov.__mode
+> 
+> Oops, yeah.  Somehow I completely overlooked that part.
+> 
+> I'm not sure if we'll ever need to add more entries to xe_rtp_tests[],
+> but should we switch the mode back to native at the end of those
+> functions to prevent any subsequent tests from inheriting unexpected VF
+> behavior?
 
-> +enum drm_interconnect_protocol {
-> +	DRM_INTERCONNECT_SYSTEM,    /* DMA map is system pages. */
-> +	DRM_INTERCONNECT_PCIE_P2P,  /* DMA map is PCIE P2P */
-> +	DRM_INTERCONNECT_DRIVER,    /* DMA map is driver defined */
-> +	/* A driver can add private values beyond DRM_INTERCONNECT_DRIVER */
-> +};
-> +
-> +/**
-> + * struct drm_pagemap_device_addr - Device address representation.
-> + * @addr: The dma address or driver-defined address for driver private interconnects.
-> + * @proto: The interconnect protocol.
-> + * @order: The page order of the device mapping. (Size is PAGE_SIZE << order).
-> + * @dir: The DMA direction.
-> + *
-> + * Note: There is room for improvement here. We should be able to pack into
-> + * 64 bits.
-> + */
-> +struct drm_pagemap_device_addr {
-> +	dma_addr_t addr;
-> +	u64 proto : 54;
-> +	u64 order : 8;
-> +	u64 dir : 2;
-> +};
-> +
-> +/**
-> + * drm_pagemap_device_addr_encode() - Encode a dma address with metadata
-> + * @addr: The dma address or driver-defined address for driver private interconnects.
-> + * @proto: The interconnect protocol.
-> + * @order: The page order of the dma mapping. (Size is PAGE_SIZE << order).
-> + * @dir: The DMA direction.
-> + *
-> + * Return: A struct drm_pagemap_device_addr encoding the above information.
-> + */
-> +static inline struct drm_pagemap_device_addr
-> +drm_pagemap_device_addr_encode(dma_addr_t addr,
-> +			       enum drm_interconnect_protocol proto,
-> +			       unsigned int order,
-> +			       enum dma_data_direction dir)
-> +{
-> +	return (struct drm_pagemap_device_addr) {
-> +		.addr = addr,
-> +		.proto = proto,
-> +		.order = order,
-> +		.dir = dir,
-> +	};
-> +}
-> +
-> +/**
-> + * struct drm_pagemap_ops: Ops for a drm-pagemap.
-> + */
-> +struct drm_pagemap_ops {
-> +	/**
-> +	 * @device_map: Map for device access or provide a virtual address suitable for
-> +	 *
-> +	 * @dpagemap: The struct drm_pagemap for the page.
-> +	 * @dev: The device mapper.
-> +	 * @page: The page to map.
-> +	 * @order: The page order of the device mapping. (Size is PAGE_SIZE << order).
-> +	 * @dir: The transfer direction.
-> +	 */
-> +	struct drm_pagemap_device_addr (*device_map)(struct drm_pagemap *dpagemap,
-> +						     struct device *dev,
-> +						     struct page *page,
-> +						     unsigned int order,
-> +						     enum dma_data_direction dir);
-> +
-> +	/**
-> +	 * @device_unmap: Unmap a device address previously obtained using @device_map.
-> +	 *
-> +	 * @dpagemap: The struct drm_pagemap for the mapping.
-> +	 * @dev: The device unmapper.
-> +	 * @addr: The device address obtained when mapping.
-> +	 */
-> +	void (*device_unmap)(struct drm_pagemap *dpagemap,
-> +			     struct device *dev,
-> +			     struct drm_pagemap_device_addr addr);
-> +
-> +};
-> +
-> +/**
-> + * struct drm_pagemap: Additional information for a struct dev_pagemap
-> + * used for device p2p handshaking.
-> + * @ops: The struct drm_pagemap_ops.
-> + * @dev: The struct drevice owning the device-private memory.
-> + */
-> +struct drm_pagemap {
-> +	const struct drm_pagemap_ops *ops;
-> +	struct device *dev;
-> +};
-> +
-> +#endif
+no
+
+every test case in the rtp test suite is getting its own freshly
+allocated xe instance, see:
+
+xe_rtp_test_init(test)
+{
+...
+  xe = xe_kunit_helper_alloc_xe_device(test, dev)
+...
+  test->priv = xe
+}
+
+> 
+> 
+> Matt
+> 
+>>
+>>>
+>>>
+>>> Matt
+>>>
+>>>
+>>>> +		KUNIT_EXPECT_EQ(test, active, param->expected_active_pf);
+>>>> +	else if (IS_SRIOV_VF(xe))
+>>>> +		KUNIT_EXPECT_EQ(test, active, param->expected_active_vf);
+>>>> +	else
+>>>> +		KUNIT_EXPECT_EQ(test, active, param->expected_active);
+>>>> +}
+>>>> +
+>>>> +static void xe_rtp_process_tests_pf(struct kunit *test)
+>>>> +{
+>>>> +	struct xe_device *xe = test->priv;
+>>>> +
+>>>> +	xe->sriov.__mode = XE_SRIOV_MODE_PF;
+>>>> +	xe_rtp_process_tests(test);
+>>>> +}
+>>>> +
+>>>> +static void xe_rtp_process_tests_vf(struct kunit *test)
+>>>> +{
+>>>> +	struct xe_device *xe = test->priv;
+>>>> +
+>>>> +	xe->sriov.__mode = XE_SRIOV_MODE_VF;
+>>>> +	xe_rtp_process_tests(test);
+>>>>  }
+>>>>  
+>>>>  static void rtp_to_sr_desc(const struct rtp_to_sr_test_case *t, char *desc)
+>>>> @@ -499,6 +605,7 @@ static void rtp_desc(const struct rtp_test_case *t, char *desc)
+>>>>  }
+>>>>  
+>>>>  KUNIT_ARRAY_PARAM(rtp, rtp_cases, rtp_desc);
+>>>> +KUNIT_ARRAY_PARAM(sriov, sriov_cases, rtp_desc);
+>>>>  
+>>>>  static int xe_rtp_test_init(struct kunit *test)
+>>>>  {
+>>>> @@ -533,6 +640,9 @@ static void xe_rtp_test_exit(struct kunit *test)
+>>>>  static struct kunit_case xe_rtp_tests[] = {
+>>>>  	KUNIT_CASE_PARAM(xe_rtp_process_to_sr_tests, rtp_to_sr_gen_params),
+>>>>  	KUNIT_CASE_PARAM(xe_rtp_process_tests, rtp_gen_params),
+>>>> +	KUNIT_CASE_PARAM(xe_rtp_process_tests, sriov_gen_params),
+>>>> +	KUNIT_CASE_PARAM(xe_rtp_process_tests_pf, sriov_gen_params),
+>>>> +	KUNIT_CASE_PARAM(xe_rtp_process_tests_vf, sriov_gen_params),
+>>>>  	{}
+>>>>  };
+>>>>  
+>>>> -- 
+>>>> 2.47.1
+>>>>
+>>>
+>>
+> 
 
