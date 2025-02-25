@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25EA8C021B8
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Feb 2025 16:50:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 686EAC021B2
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Feb 2025 16:50:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA86910E766;
-	Tue, 25 Feb 2025 16:50:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 291C110E74A;
+	Tue, 25 Feb 2025 16:50:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WkW58EUD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KA9z//Th";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C82C10E76D;
- Tue, 25 Feb 2025 16:49:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 852A810E793;
+ Tue, 25 Feb 2025 16:50:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740502193; x=1772038193;
+ t=1740502203; x=1772038203;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=06jQvgX80+5+veV6jqwFObPEfcSqdjzeGG5lRnecQ1k=;
- b=WkW58EUDra+pbYD47caj6iyxjk8OrfCNtA0eW8/4sAh//cjSIl4Y08HJ
- B9FVdZF1wdKW6tN8KbQ2oxaJaHctN2RPJvM+a77lE+Fqy9EAzb8kXAWMQ
- 6w7A1bdbweTHMPlTPM/UOld/1MTmJM5OmaGxVeGigQ0PPxk7f8T1gNJMj
- CvzbwggwvZOpZZW0u8Obt+tTe3V739i/jzobsQ9FgUMHMUse3kRnHquFF
- 8KgEVZ6fTwJtRFHfDJ0A7dEqNdiwYzJ98mlOSZ4+fyIJfH1P4ecrn49CF
- bBP2p2MmpqIhSc6qBNSlnzHhquBVlkJ21qan44J5T0pMKZaF5TV92M+zw g==;
-X-CSE-ConnectionGUID: xGx+WrDERRq6OQmMep3/fQ==
-X-CSE-MsgGUID: Kqxo2uHRROmWHqhTJNeQ1g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="52741766"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="52741766"
+ bh=Jeiv7iFK/lkrt6pYgjndA7ID9xdJjfLA+bp0qrh9I4s=;
+ b=KA9z//ThDI4z/0dt3gnOTgaRZqMUrKge4qN0y8RXOHG0hbPreHvgMM2C
+ kZbWzwJx7uSFfhPcicT25w3YTxBki0POdxRfTe03zNa/My3jABfF/fv9t
+ 1FLV5iJ0GwmwVu4ddZAwr2XLXOhJ3oJS1ziRjPBmWx43+IT2UyYXogWbn
+ /+u3PXutYtp/1CP2fGSh4VYt08VCYwYVtL1YRw8FuCgSV39QBSltNMSja
+ beRIJt62ytP90QtPVPOW6XU5OCUBhoeOKAbeDEqHkognW7VsG05iIE50o
+ fTHGlpiC6Zg6geQ00pXxQPCl14+vU0bmCzMh7xEall2Hfwky8+r+sFdg2 A==;
+X-CSE-ConnectionGUID: tY8ROeFUSuiP9iclhS+6BA==
+X-CSE-MsgGUID: uoNDTAboRyKxXmtPhtz0Gw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="52741769"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="52741769"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 08:49:53 -0800
-X-CSE-ConnectionGUID: gddgE123SHK4X2qCLkiRSw==
-X-CSE-MsgGUID: blOQ45mkS6ahogw7KwWuZw==
+ 25 Feb 2025 08:50:02 -0800
+X-CSE-ConnectionGUID: Fx60KiaOQrmQYknYmlRJZA==
+X-CSE-MsgGUID: 7qBOMqUtRCG7IROcZYt1ig==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="121691812"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="121691861"
 Received: from monicael-mobl3 (HELO localhost) ([10.245.246.246])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 08:49:51 -0800
+ 25 Feb 2025 08:50:01 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 07/12] drm/i915/display: convert the M/N functions to struct
+Subject: [PATCH 09/12] drm/i915/fbc: convert intel_fbc.[ch] to struct
  intel_display
-Date: Tue, 25 Feb 2025 18:49:08 +0200
-Message-Id: <8ac3472fe8e6647c0da57013c8bef575d8324a88.1740502116.git.jani.nikula@intel.com>
+Date: Tue, 25 Feb 2025 18:49:10 +0200
+Message-Id: <4dfd7d62e99b75d26563bdf29f541ed2ffbe548e.1740502116.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1740502116.git.jani.nikula@intel.com>
 References: <cover.1740502116.git.jani.nikula@intel.com>
@@ -70,313 +70,516 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Going forward, struct intel_display is the main display device data
-pointer. Convert the functions to set/get M/N values and check for M2/N2
-support to struct intel_display.
+pointer. Convert as much as possible of intel_fbc.[ch] to struct
+intel_display. In a few places, change the variable declaration order to
+prefer having display first.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c  | 88 +++++++++----------
- drivers/gpu/drm/i915/display/intel_display.h  |  6 +-
- drivers/gpu/drm/i915/display/intel_dp.c       |  3 +-
- drivers/gpu/drm/i915/display/intel_drrs.c     |  8 +-
- .../gpu/drm/i915/display/intel_pch_display.c  | 16 ++--
- 5 files changed, 59 insertions(+), 62 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fbc.c      | 113 +++++++-----------
+ drivers/gpu/drm/i915/display/intel_fbc.h      |   6 +-
+ .../gpu/drm/i915/display/intel_frontbuffer.c  |   5 +-
+ 3 files changed, 51 insertions(+), 73 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 46fb8e088c15..49a67d629c07 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2662,45 +2662,45 @@ void intel_zero_m_n(struct intel_link_m_n *m_n)
- 	m_n->tu = 1;
- }
- 
--void intel_set_m_n(struct drm_i915_private *i915,
-+void intel_set_m_n(struct intel_display *display,
- 		   const struct intel_link_m_n *m_n,
- 		   i915_reg_t data_m_reg, i915_reg_t data_n_reg,
- 		   i915_reg_t link_m_reg, i915_reg_t link_n_reg)
- {
--	intel_de_write(i915, data_m_reg, TU_SIZE(m_n->tu) | m_n->data_m);
--	intel_de_write(i915, data_n_reg, m_n->data_n);
--	intel_de_write(i915, link_m_reg, m_n->link_m);
-+	intel_de_write(display, data_m_reg, TU_SIZE(m_n->tu) | m_n->data_m);
-+	intel_de_write(display, data_n_reg, m_n->data_n);
-+	intel_de_write(display, link_m_reg, m_n->link_m);
- 	/*
- 	 * On BDW+ writing LINK_N arms the double buffered update
- 	 * of all the M/N registers, so it must be written last.
- 	 */
--	intel_de_write(i915, link_n_reg, m_n->link_n);
-+	intel_de_write(display, link_n_reg, m_n->link_n);
- }
- 
--bool intel_cpu_transcoder_has_m2_n2(struct drm_i915_private *dev_priv,
-+bool intel_cpu_transcoder_has_m2_n2(struct intel_display *display,
- 				    enum transcoder transcoder)
- {
--	if (IS_HASWELL(dev_priv))
-+	if (display->platform.haswell)
- 		return transcoder == TRANSCODER_EDP;
- 
--	return IS_DISPLAY_VER(dev_priv, 5, 7) || IS_CHERRYVIEW(dev_priv);
-+	return IS_DISPLAY_VER(display, 5, 7) || display->platform.cherryview;
- }
- 
- void intel_cpu_transcoder_set_m1_n1(struct intel_crtc *crtc,
- 				    enum transcoder transcoder,
- 				    const struct intel_link_m_n *m_n)
- {
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 	enum pipe pipe = crtc->pipe;
- 
--	if (DISPLAY_VER(dev_priv) >= 5)
--		intel_set_m_n(dev_priv, m_n,
--			      PIPE_DATA_M1(dev_priv, transcoder),
--			      PIPE_DATA_N1(dev_priv, transcoder),
--			      PIPE_LINK_M1(dev_priv, transcoder),
--			      PIPE_LINK_N1(dev_priv, transcoder));
-+	if (DISPLAY_VER(display) >= 5)
-+		intel_set_m_n(display, m_n,
-+			      PIPE_DATA_M1(display, transcoder),
-+			      PIPE_DATA_N1(display, transcoder),
-+			      PIPE_LINK_M1(display, transcoder),
-+			      PIPE_LINK_N1(display, transcoder));
- 	else
--		intel_set_m_n(dev_priv, m_n,
-+		intel_set_m_n(display, m_n,
- 			      PIPE_DATA_M_G4X(pipe), PIPE_DATA_N_G4X(pipe),
- 			      PIPE_LINK_M_G4X(pipe), PIPE_LINK_N_G4X(pipe));
- }
-@@ -2709,16 +2709,16 @@ void intel_cpu_transcoder_set_m2_n2(struct intel_crtc *crtc,
- 				    enum transcoder transcoder,
- 				    const struct intel_link_m_n *m_n)
- {
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 
--	if (!intel_cpu_transcoder_has_m2_n2(dev_priv, transcoder))
-+	if (!intel_cpu_transcoder_has_m2_n2(display, transcoder))
- 		return;
- 
--	intel_set_m_n(dev_priv, m_n,
--		      PIPE_DATA_M2(dev_priv, transcoder),
--		      PIPE_DATA_N2(dev_priv, transcoder),
--		      PIPE_LINK_M2(dev_priv, transcoder),
--		      PIPE_LINK_N2(dev_priv, transcoder));
-+	intel_set_m_n(display, m_n,
-+		      PIPE_DATA_M2(display, transcoder),
-+		      PIPE_DATA_N2(display, transcoder),
-+		      PIPE_LINK_M2(display, transcoder),
-+		      PIPE_LINK_N2(display, transcoder));
- }
- 
- static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
-@@ -3404,33 +3404,33 @@ int ilk_get_lanes_required(int target_clock, int link_bw, int bpp)
- 	return DIV_ROUND_UP(bps, link_bw * 8);
- }
- 
--void intel_get_m_n(struct drm_i915_private *i915,
-+void intel_get_m_n(struct intel_display *display,
- 		   struct intel_link_m_n *m_n,
- 		   i915_reg_t data_m_reg, i915_reg_t data_n_reg,
- 		   i915_reg_t link_m_reg, i915_reg_t link_n_reg)
- {
--	m_n->link_m = intel_de_read(i915, link_m_reg) & DATA_LINK_M_N_MASK;
--	m_n->link_n = intel_de_read(i915, link_n_reg) & DATA_LINK_M_N_MASK;
--	m_n->data_m = intel_de_read(i915, data_m_reg) & DATA_LINK_M_N_MASK;
--	m_n->data_n = intel_de_read(i915, data_n_reg) & DATA_LINK_M_N_MASK;
--	m_n->tu = REG_FIELD_GET(TU_SIZE_MASK, intel_de_read(i915, data_m_reg)) + 1;
-+	m_n->link_m = intel_de_read(display, link_m_reg) & DATA_LINK_M_N_MASK;
-+	m_n->link_n = intel_de_read(display, link_n_reg) & DATA_LINK_M_N_MASK;
-+	m_n->data_m = intel_de_read(display, data_m_reg) & DATA_LINK_M_N_MASK;
-+	m_n->data_n = intel_de_read(display, data_n_reg) & DATA_LINK_M_N_MASK;
-+	m_n->tu = REG_FIELD_GET(TU_SIZE_MASK, intel_de_read(display, data_m_reg)) + 1;
- }
- 
- void intel_cpu_transcoder_get_m1_n1(struct intel_crtc *crtc,
- 				    enum transcoder transcoder,
- 				    struct intel_link_m_n *m_n)
- {
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 	enum pipe pipe = crtc->pipe;
- 
--	if (DISPLAY_VER(dev_priv) >= 5)
--		intel_get_m_n(dev_priv, m_n,
--			      PIPE_DATA_M1(dev_priv, transcoder),
--			      PIPE_DATA_N1(dev_priv, transcoder),
--			      PIPE_LINK_M1(dev_priv, transcoder),
--			      PIPE_LINK_N1(dev_priv, transcoder));
-+	if (DISPLAY_VER(display) >= 5)
-+		intel_get_m_n(display, m_n,
-+			      PIPE_DATA_M1(display, transcoder),
-+			      PIPE_DATA_N1(display, transcoder),
-+			      PIPE_LINK_M1(display, transcoder),
-+			      PIPE_LINK_N1(display, transcoder));
- 	else
--		intel_get_m_n(dev_priv, m_n,
-+		intel_get_m_n(display, m_n,
- 			      PIPE_DATA_M_G4X(pipe), PIPE_DATA_N_G4X(pipe),
- 			      PIPE_LINK_M_G4X(pipe), PIPE_LINK_N_G4X(pipe));
- }
-@@ -3439,16 +3439,16 @@ void intel_cpu_transcoder_get_m2_n2(struct intel_crtc *crtc,
- 				    enum transcoder transcoder,
- 				    struct intel_link_m_n *m_n)
- {
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 
--	if (!intel_cpu_transcoder_has_m2_n2(dev_priv, transcoder))
-+	if (!intel_cpu_transcoder_has_m2_n2(display, transcoder))
- 		return;
- 
--	intel_get_m_n(dev_priv, m_n,
--		      PIPE_DATA_M2(dev_priv, transcoder),
--		      PIPE_DATA_N2(dev_priv, transcoder),
--		      PIPE_LINK_M2(dev_priv, transcoder),
--		      PIPE_LINK_N2(dev_priv, transcoder));
-+	intel_get_m_n(display, m_n,
-+		      PIPE_DATA_M2(display, transcoder),
-+		      PIPE_DATA_N2(display, transcoder),
-+		      PIPE_LINK_M2(display, transcoder),
-+		      PIPE_LINK_N2(display, transcoder));
- }
- 
- static void ilk_get_pfit_config(struct intel_crtc_state *crtc_state)
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 91f01e81a8f0..f8b8610b0280 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -481,15 +481,15 @@ int ilk_get_lanes_required(int target_clock, int link_bw, int bpp);
- bool intel_fuzzy_clock_check(int clock1, int clock2);
- 
- void intel_zero_m_n(struct intel_link_m_n *m_n);
--void intel_set_m_n(struct drm_i915_private *i915,
-+void intel_set_m_n(struct intel_display *display,
- 		   const struct intel_link_m_n *m_n,
- 		   i915_reg_t data_m_reg, i915_reg_t data_n_reg,
- 		   i915_reg_t link_m_reg, i915_reg_t link_n_reg);
--void intel_get_m_n(struct drm_i915_private *i915,
-+void intel_get_m_n(struct intel_display *display,
- 		   struct intel_link_m_n *m_n,
- 		   i915_reg_t data_m_reg, i915_reg_t data_n_reg,
- 		   i915_reg_t link_m_reg, i915_reg_t link_n_reg);
--bool intel_cpu_transcoder_has_m2_n2(struct drm_i915_private *dev_priv,
-+bool intel_cpu_transcoder_has_m2_n2(struct intel_display *display,
- 				    enum transcoder transcoder);
- void intel_cpu_transcoder_set_m1_n1(struct intel_crtc *crtc,
- 				    enum transcoder cpu_transcoder,
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index bf96433d63c3..d0fa98628a73 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2943,7 +2943,6 @@ intel_dp_drrs_compute_config(struct intel_connector *connector,
- 			     int link_bpp_x16)
- {
- 	struct intel_display *display = to_intel_display(connector);
--	struct drm_i915_private *i915 = to_i915(connector->base.dev);
- 	const struct drm_display_mode *downclock_mode =
- 		intel_panel_downclock_mode(connector, &pipe_config->hw.adjusted_mode);
- 	int pixel_clock;
-@@ -2956,7 +2955,7 @@ intel_dp_drrs_compute_config(struct intel_connector *connector,
- 		pipe_config->update_m_n = true;
- 
- 	if (!can_enable_drrs(connector, pipe_config, downclock_mode)) {
--		if (intel_cpu_transcoder_has_m2_n2(i915, pipe_config->cpu_transcoder))
-+		if (intel_cpu_transcoder_has_m2_n2(display, pipe_config->cpu_transcoder))
- 			intel_zero_m_n(&pipe_config->dp_m2_n2);
- 		return;
- 	}
-diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/i915/display/intel_drrs.c
-index bf420400b505..05cd0f6e6d71 100644
---- a/drivers/gpu/drm/i915/display/intel_drrs.c
-+++ b/drivers/gpu/drm/i915/display/intel_drrs.c
-@@ -68,12 +68,10 @@ const char *intel_drrs_type_str(enum drrs_type drrs_type)
- bool intel_cpu_transcoder_has_drrs(struct intel_display *display,
- 				   enum transcoder cpu_transcoder)
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index df05904bac8a..33142427f121 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -215,11 +215,9 @@ static unsigned int intel_fbc_cfb_stride(const struct intel_plane_state *plane_s
+  */
+ static unsigned int intel_fbc_max_cfb_height(struct intel_display *display)
  {
 -	struct drm_i915_private *i915 = to_i915(display->drm);
 -
- 	if (HAS_DOUBLE_BUFFERED_M_N(display))
- 		return true;
- 
--	return intel_cpu_transcoder_has_m2_n2(i915, cpu_transcoder);
-+	return intel_cpu_transcoder_has_m2_n2(display, cpu_transcoder);
- }
- 
- static void
-@@ -110,12 +108,12 @@ bool intel_drrs_is_active(struct intel_crtc *crtc)
- static void intel_drrs_set_state(struct intel_crtc *crtc,
- 				 enum drrs_refresh_rate refresh_rate)
- {
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 
- 	if (refresh_rate == crtc->drrs.refresh_rate)
- 		return;
- 
--	if (intel_cpu_transcoder_has_m2_n2(dev_priv, crtc->drrs.cpu_transcoder))
-+	if (intel_cpu_transcoder_has_m2_n2(display, crtc->drrs.cpu_transcoder))
- 		intel_drrs_set_refresh_rate_pipeconf(crtc, refresh_rate);
+ 	if (DISPLAY_VER(display) >= 8)
+ 		return 2560;
+-	else if (DISPLAY_VER(display) >= 5 || IS_G4X(i915))
++	else if (DISPLAY_VER(display) >= 5 || display->platform.g4x)
+ 		return 2048;
  	else
- 		intel_drrs_set_refresh_rate_m_n(crtc, refresh_rate);
-diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c b/drivers/gpu/drm/i915/display/intel_pch_display.c
-index 1abe0a784570..806729ec73c8 100644
---- a/drivers/gpu/drm/i915/display/intel_pch_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
-@@ -181,10 +181,10 @@ static void ibx_sanitize_pch_ports(struct drm_i915_private *dev_priv)
- static void intel_pch_transcoder_set_m1_n1(struct intel_crtc *crtc,
- 					   const struct intel_link_m_n *m_n)
- {
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 	enum pipe pipe = crtc->pipe;
+ 		return 1536;
+@@ -269,9 +267,8 @@ static bool intel_fbc_has_fences(struct intel_display *display)
  
--	intel_set_m_n(dev_priv, m_n,
-+	intel_set_m_n(display, m_n,
- 		      PCH_TRANS_DATA_M1(pipe), PCH_TRANS_DATA_N1(pipe),
- 		      PCH_TRANS_LINK_M1(pipe), PCH_TRANS_LINK_N1(pipe));
- }
-@@ -192,10 +192,10 @@ static void intel_pch_transcoder_set_m1_n1(struct intel_crtc *crtc,
- static void intel_pch_transcoder_set_m2_n2(struct intel_crtc *crtc,
- 					   const struct intel_link_m_n *m_n)
+ static u32 i8xx_fbc_ctl(struct intel_fbc *fbc)
  {
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 	enum pipe pipe = crtc->pipe;
+-	const struct intel_fbc_state *fbc_state = &fbc->state;
+ 	struct intel_display *display = fbc->display;
+-	struct drm_i915_private *i915 = to_i915(display->drm);
++	const struct intel_fbc_state *fbc_state = &fbc->state;
+ 	unsigned int cfb_stride;
+ 	u32 fbc_ctl;
  
--	intel_set_m_n(dev_priv, m_n,
-+	intel_set_m_n(display, m_n,
- 		      PCH_TRANS_DATA_M2(pipe), PCH_TRANS_DATA_N2(pipe),
- 		      PCH_TRANS_LINK_M2(pipe), PCH_TRANS_LINK_N2(pipe));
- }
-@@ -203,10 +203,10 @@ static void intel_pch_transcoder_set_m2_n2(struct intel_crtc *crtc,
- void intel_pch_transcoder_get_m1_n1(struct intel_crtc *crtc,
- 				    struct intel_link_m_n *m_n)
+@@ -287,7 +284,7 @@ static u32 i8xx_fbc_ctl(struct intel_fbc *fbc)
+ 		FBC_CTL_INTERVAL(fbc_state->interval) |
+ 		FBC_CTL_STRIDE(cfb_stride);
+ 
+-	if (IS_I945GM(i915))
++	if (display->platform.i945gm)
+ 		fbc_ctl |= FBC_CTL_C3_IDLE; /* 945 needs special SR handling */
+ 
+ 	if (fbc_state->fence_id >= 0)
+@@ -333,8 +330,8 @@ static void i8xx_fbc_deactivate(struct intel_fbc *fbc)
+ 
+ static void i8xx_fbc_activate(struct intel_fbc *fbc)
  {
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 	enum pipe pipe = crtc->pipe;
+-	const struct intel_fbc_state *fbc_state = &fbc->state;
+ 	struct intel_display *display = fbc->display;
++	const struct intel_fbc_state *fbc_state = &fbc->state;
+ 	int i;
  
--	intel_get_m_n(dev_priv, m_n,
-+	intel_get_m_n(display, m_n,
- 		      PCH_TRANS_DATA_M1(pipe), PCH_TRANS_DATA_N1(pipe),
- 		      PCH_TRANS_LINK_M1(pipe), PCH_TRANS_LINK_N1(pipe));
- }
-@@ -214,10 +214,10 @@ void intel_pch_transcoder_get_m1_n1(struct intel_crtc *crtc,
- void intel_pch_transcoder_get_m2_n2(struct intel_crtc *crtc,
- 				    struct intel_link_m_n *m_n)
+ 	/* Clear old tags */
+@@ -365,12 +362,12 @@ static bool i8xx_fbc_is_compressing(struct intel_fbc *fbc)
+ 
+ static void i8xx_fbc_nuke(struct intel_fbc *fbc)
  {
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 	enum pipe pipe = crtc->pipe;
++	struct intel_display *display = fbc->display;
+ 	struct intel_fbc_state *fbc_state = &fbc->state;
+ 	enum i9xx_plane_id i9xx_plane = fbc_state->plane->i9xx_plane;
+-	struct drm_i915_private *dev_priv = to_i915(fbc->display->drm);
  
--	intel_get_m_n(dev_priv, m_n,
-+	intel_get_m_n(display, m_n,
- 		      PCH_TRANS_DATA_M2(pipe), PCH_TRANS_DATA_N2(pipe),
- 		      PCH_TRANS_LINK_M2(pipe), PCH_TRANS_LINK_N2(pipe));
+-	intel_de_write_fw(dev_priv, DSPADDR(dev_priv, i9xx_plane),
+-			  intel_de_read_fw(dev_priv, DSPADDR(dev_priv, i9xx_plane)));
++	intel_de_write_fw(display, DSPADDR(display, i9xx_plane),
++			  intel_de_read_fw(display, DSPADDR(display, i9xx_plane)));
  }
+ 
+ static void i8xx_fbc_program_cfb(struct intel_fbc *fbc)
+@@ -386,9 +383,9 @@ static void i8xx_fbc_program_cfb(struct intel_fbc *fbc)
+ 		    range_overflows_end_t(u64, i915_gem_stolen_area_address(i915),
+ 					  i915_gem_stolen_node_offset(&fbc->compressed_llb),
+ 					  U32_MAX));
+-	intel_de_write(i915, FBC_CFB_BASE,
++	intel_de_write(display, FBC_CFB_BASE,
+ 		       i915_gem_stolen_node_address(i915, &fbc->compressed_fb));
+-	intel_de_write(i915, FBC_LL_BASE,
++	intel_de_write(display, FBC_LL_BASE,
+ 		       i915_gem_stolen_node_address(i915, &fbc->compressed_llb));
+ }
+ 
+@@ -403,12 +400,12 @@ static const struct intel_fbc_funcs i8xx_fbc_funcs = {
+ 
+ static void i965_fbc_nuke(struct intel_fbc *fbc)
+ {
++	struct intel_display *display = fbc->display;
+ 	struct intel_fbc_state *fbc_state = &fbc->state;
+ 	enum i9xx_plane_id i9xx_plane = fbc_state->plane->i9xx_plane;
+-	struct drm_i915_private *dev_priv = to_i915(fbc->display->drm);
+ 
+-	intel_de_write_fw(dev_priv, DSPSURF(dev_priv, i9xx_plane),
+-			  intel_de_read_fw(dev_priv, DSPSURF(dev_priv, i9xx_plane)));
++	intel_de_write_fw(display, DSPSURF(display, i9xx_plane),
++			  intel_de_read_fw(display, DSPSURF(display, i9xx_plane)));
+ }
+ 
+ static const struct intel_fbc_funcs i965_fbc_funcs = {
+@@ -437,15 +434,14 @@ static u32 g4x_dpfc_ctl_limit(struct intel_fbc *fbc)
+ 
+ static u32 g4x_dpfc_ctl(struct intel_fbc *fbc)
+ {
+-	const struct intel_fbc_state *fbc_state = &fbc->state;
+ 	struct intel_display *display = fbc->display;
+-	struct drm_i915_private *i915 = to_i915(display->drm);
++	const struct intel_fbc_state *fbc_state = &fbc->state;
+ 	u32 dpfc_ctl;
+ 
+ 	dpfc_ctl = g4x_dpfc_ctl_limit(fbc) |
+ 		DPFC_CTL_PLANE_G4X(fbc_state->plane->i9xx_plane);
+ 
+-	if (IS_G4X(i915))
++	if (display->platform.g4x)
+ 		dpfc_ctl |= DPFC_CTL_SR_EN;
+ 
+ 	if (fbc_state->fence_id >= 0) {
+@@ -460,8 +456,8 @@ static u32 g4x_dpfc_ctl(struct intel_fbc *fbc)
+ 
+ static void g4x_fbc_activate(struct intel_fbc *fbc)
+ {
+-	const struct intel_fbc_state *fbc_state = &fbc->state;
+ 	struct intel_display *display = fbc->display;
++	const struct intel_fbc_state *fbc_state = &fbc->state;
+ 
+ 	intel_de_write(display, DPFC_FENCE_YOFF,
+ 		       fbc_state->fence_y_offset);
+@@ -512,8 +508,8 @@ static const struct intel_fbc_funcs g4x_fbc_funcs = {
+ 
+ static void ilk_fbc_activate(struct intel_fbc *fbc)
+ {
+-	struct intel_fbc_state *fbc_state = &fbc->state;
+ 	struct intel_display *display = fbc->display;
++	struct intel_fbc_state *fbc_state = &fbc->state;
+ 
+ 	intel_de_write(display, ILK_DPFC_FENCE_YOFF(fbc->id),
+ 		       fbc_state->fence_y_offset);
+@@ -564,8 +560,8 @@ static const struct intel_fbc_funcs ilk_fbc_funcs = {
+ 
+ static void snb_fbc_program_fence(struct intel_fbc *fbc)
+ {
+-	const struct intel_fbc_state *fbc_state = &fbc->state;
+ 	struct intel_display *display = fbc->display;
++	const struct intel_fbc_state *fbc_state = &fbc->state;
+ 	u32 ctl = 0;
+ 
+ 	if (fbc_state->fence_id >= 0)
+@@ -601,8 +597,8 @@ static const struct intel_fbc_funcs snb_fbc_funcs = {
+ 
+ static void glk_fbc_program_cfb_stride(struct intel_fbc *fbc)
+ {
+-	const struct intel_fbc_state *fbc_state = &fbc->state;
+ 	struct intel_display *display = fbc->display;
++	const struct intel_fbc_state *fbc_state = &fbc->state;
+ 	u32 val = 0;
+ 
+ 	if (fbc_state->override_cfb_stride)
+@@ -614,8 +610,8 @@ static void glk_fbc_program_cfb_stride(struct intel_fbc *fbc)
+ 
+ static void skl_fbc_program_cfb_stride(struct intel_fbc *fbc)
+ {
+-	const struct intel_fbc_state *fbc_state = &fbc->state;
+ 	struct intel_display *display = fbc->display;
++	const struct intel_fbc_state *fbc_state = &fbc->state;
+ 	u32 val = 0;
+ 
+ 	/* Display WA #0529: skl, kbl, bxt. */
+@@ -630,14 +626,13 @@ static void skl_fbc_program_cfb_stride(struct intel_fbc *fbc)
+ 
+ static u32 ivb_dpfc_ctl(struct intel_fbc *fbc)
+ {
+-	const struct intel_fbc_state *fbc_state = &fbc->state;
+ 	struct intel_display *display = fbc->display;
+-	struct drm_i915_private *i915 = to_i915(display->drm);
++	const struct intel_fbc_state *fbc_state = &fbc->state;
+ 	u32 dpfc_ctl;
+ 
+ 	dpfc_ctl = g4x_dpfc_ctl_limit(fbc);
+ 
+-	if (IS_IVYBRIDGE(i915))
++	if (display->platform.ivybridge)
+ 		dpfc_ctl |= DPFC_CTL_PLANE_IVB(fbc_state->plane->i9xx_plane);
+ 
+ 	if (DISPLAY_VER(display) >= 20)
+@@ -759,9 +754,7 @@ static void intel_fbc_deactivate(struct intel_fbc *fbc, const char *reason)
+ 
+ static u64 intel_fbc_cfb_base_max(struct intel_display *display)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+-
+-	if (DISPLAY_VER(display) >= 5 || IS_G4X(i915))
++	if (DISPLAY_VER(display) >= 5 || display->platform.g4x)
+ 		return BIT_ULL(28);
+ 	else
+ 		return BIT_ULL(32);
+@@ -776,8 +769,8 @@ static u64 intel_fbc_stolen_end(struct intel_display *display)
+ 	 * reserved range size, so it always assumes the maximum (8mb) is used.
+ 	 * If we enable FBC using a CFB on that memory range we'll get FIFO
+ 	 * underruns, even if that range is not reserved by the BIOS. */
+-	if (IS_BROADWELL(i915) ||
+-	    (DISPLAY_VER(display) == 9 && !IS_BROXTON(i915)))
++	if (display->platform.broadwell ||
++	    (DISPLAY_VER(display) == 9 && !display->platform.broxton))
+ 		end = i915_gem_stolen_area_size(i915) - 8 * 1024 * 1024;
+ 	else
+ 		end = U64_MAX;
+@@ -792,10 +785,8 @@ static int intel_fbc_min_limit(const struct intel_plane_state *plane_state)
+ 
+ static int intel_fbc_max_limit(struct intel_display *display)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+-
+ 	/* WaFbcOnly1to1Ratio:ctg */
+-	if (IS_G4X(i915))
++	if (display->platform.g4x)
+ 		return 1;
+ 
+ 	/*
+@@ -843,7 +834,7 @@ static int intel_fbc_alloc_cfb(struct intel_fbc *fbc,
+ 	drm_WARN_ON(display->drm,
+ 		    i915_gem_stolen_node_allocated(&fbc->compressed_llb));
+ 
+-	if (DISPLAY_VER(display) < 5 && !IS_G4X(i915)) {
++	if (DISPLAY_VER(display) < 5 && !display->platform.g4x) {
+ 		ret = i915_gem_stolen_insert_node(i915, &fbc->compressed_llb,
+ 						  4096, 4096);
+ 		if (ret)
+@@ -882,9 +873,8 @@ static void intel_fbc_program_cfb(struct intel_fbc *fbc)
+ static void intel_fbc_program_workarounds(struct intel_fbc *fbc)
+ {
+ 	struct intel_display *display = fbc->display;
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 
+-	if (IS_SKYLAKE(i915) || IS_BROXTON(i915)) {
++	if (display->platform.skylake || display->platform.broxton) {
+ 		/*
+ 		 * WaFbcHighMemBwCorruptionAvoidance:skl,bxt
+ 		 * Display WA #0883: skl,bxt
+@@ -893,8 +883,8 @@ static void intel_fbc_program_workarounds(struct intel_fbc *fbc)
+ 			     0, DPFC_DISABLE_DUMMY0);
+ 	}
+ 
+-	if (IS_SKYLAKE(i915) || IS_KABYLAKE(i915) ||
+-	    IS_COFFEELAKE(i915) || IS_COMETLAKE(i915)) {
++	if (display->platform.skylake || display->platform.kabylake ||
++	    display->platform.coffeelake || display->platform.cometlake) {
+ 		/*
+ 		 * WaFbcNukeOnHostModify:skl,kbl,cfl
+ 		 * Display WA #0873: skl,kbl,cfl
+@@ -909,7 +899,7 @@ static void intel_fbc_program_workarounds(struct intel_fbc *fbc)
+ 			     0, DPFC_CHICKEN_COMP_DUMMY_PIXEL);
+ 
+ 	/* Wa_22014263786:icl,jsl,tgl,dg1,rkl,adls,adlp,mtl */
+-	if (DISPLAY_VER(display) >= 11 && !IS_DG2(i915))
++	if (DISPLAY_VER(display) >= 11 && !display->platform.dg2)
+ 		intel_de_rmw(display, ILK_DPFC_CHICKEN(fbc->id),
+ 			     0, DPFC_CHICKEN_FORCE_SLB_INVALIDATION);
+ }
+@@ -986,13 +976,12 @@ static bool icl_fbc_stride_is_valid(const struct intel_plane_state *plane_state)
+ static bool stride_is_valid(const struct intel_plane_state *plane_state)
+ {
+ 	struct intel_display *display = to_intel_display(plane_state->uapi.plane->dev);
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 
+ 	if (DISPLAY_VER(display) >= 11)
+ 		return icl_fbc_stride_is_valid(plane_state);
+ 	else if (DISPLAY_VER(display) >= 9)
+ 		return skl_fbc_stride_is_valid(plane_state);
+-	else if (DISPLAY_VER(display) >= 5 || IS_G4X(i915))
++	else if (DISPLAY_VER(display) >= 5 || display->platform.g4x)
+ 		return g4x_fbc_stride_is_valid(plane_state);
+ 	else if (DISPLAY_VER(display) == 4)
+ 		return i965_fbc_stride_is_valid(plane_state);
+@@ -1023,7 +1012,6 @@ static bool i8xx_fbc_pixel_format_is_valid(const struct intel_plane_state *plane
+ static bool g4x_fbc_pixel_format_is_valid(const struct intel_plane_state *plane_state)
+ {
+ 	struct intel_display *display = to_intel_display(plane_state->uapi.plane->dev);
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	const struct drm_framebuffer *fb = plane_state->hw.fb;
+ 
+ 	switch (fb->format->format) {
+@@ -1032,7 +1020,7 @@ static bool g4x_fbc_pixel_format_is_valid(const struct intel_plane_state *plane_
+ 		return true;
+ 	case DRM_FORMAT_RGB565:
+ 		/* WaFbcOnly1to1Ratio:ctg */
+-		if (IS_G4X(i915))
++		if (display->platform.g4x)
+ 			return false;
+ 		return true;
+ 	default:
+@@ -1059,11 +1047,10 @@ static bool lnl_fbc_pixel_format_is_valid(const struct intel_plane_state *plane_
+ static bool pixel_format_is_valid(const struct intel_plane_state *plane_state)
+ {
+ 	struct intel_display *display = to_intel_display(plane_state->uapi.plane->dev);
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 
+ 	if (DISPLAY_VER(display) >= 20)
+ 		return lnl_fbc_pixel_format_is_valid(plane_state);
+-	else if (DISPLAY_VER(display) >= 5 || IS_G4X(i915))
++	else if (DISPLAY_VER(display) >= 5 || display->platform.g4x)
+ 		return g4x_fbc_pixel_format_is_valid(plane_state);
+ 	else
+ 		return i8xx_fbc_pixel_format_is_valid(plane_state);
+@@ -1094,11 +1081,10 @@ static bool skl_fbc_rotation_is_valid(const struct intel_plane_state *plane_stat
+ static bool rotation_is_valid(const struct intel_plane_state *plane_state)
+ {
+ 	struct intel_display *display = to_intel_display(plane_state->uapi.plane->dev);
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 
+ 	if (DISPLAY_VER(display) >= 9)
+ 		return skl_fbc_rotation_is_valid(plane_state);
+-	else if (DISPLAY_VER(display) >= 5 || IS_G4X(i915))
++	else if (DISPLAY_VER(display) >= 5 || display->platform.g4x)
+ 		return g4x_fbc_rotation_is_valid(plane_state);
+ 	else
+ 		return i8xx_fbc_rotation_is_valid(plane_state);
+@@ -1107,8 +1093,6 @@ static bool rotation_is_valid(const struct intel_plane_state *plane_state)
+ static void intel_fbc_max_surface_size(struct intel_display *display,
+ 				       unsigned int *w, unsigned int *h)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+-
+ 	if (DISPLAY_VER(display) >= 11) {
+ 		*w = 8192;
+ 		*h = 4096;
+@@ -1118,7 +1102,7 @@ static void intel_fbc_max_surface_size(struct intel_display *display,
+ 	} else if (DISPLAY_VER(display) >= 7) {
+ 		*w = 4096;
+ 		*h = 4096;
+-	} else if (DISPLAY_VER(display) >= 5 || IS_G4X(i915)) {
++	} else if (DISPLAY_VER(display) >= 5 || display->platform.g4x) {
+ 		*w = 4096;
+ 		*h = 2048;
+ 	} else {
+@@ -1151,15 +1135,13 @@ static bool intel_fbc_surface_size_ok(const struct intel_plane_state *plane_stat
+ static void intel_fbc_max_plane_size(struct intel_display *display,
+ 				     unsigned int *w, unsigned int *h)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+-
+ 	if (DISPLAY_VER(display) >= 10) {
+ 		*w = 5120;
+ 		*h = 4096;
+-	} else if (DISPLAY_VER(display) >= 8 || IS_HASWELL(i915)) {
++	} else if (DISPLAY_VER(display) >= 8 || display->platform.haswell) {
+ 		*w = 4096;
+ 		*h = 4096;
+-	} else if (DISPLAY_VER(display) >= 5 || IS_G4X(i915)) {
++	} else if (DISPLAY_VER(display) >= 5 || display->platform.g4x) {
+ 		*w = 4096;
+ 		*h = 2048;
+ 	} else {
+@@ -1317,7 +1299,7 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
+ 	}
+ 
+ 	/* WaFbcTurnOffFbcWhenHyperVisorIsUsed:skl,bxt */
+-	if (i915_vtd_active(i915) && (IS_SKYLAKE(i915) || IS_BROXTON(i915))) {
++	if (i915_vtd_active(i915) && (display->platform.skylake || display->platform.broxton)) {
+ 		plane_state->no_fbc_reason = "VT-d enabled";
+ 		return 0;
+ 	}
+@@ -1347,7 +1329,7 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
+ 
+ 	/* Wa_14016291713 */
+ 	if ((IS_DISPLAY_VER(display, 12, 13) ||
+-	     IS_DISPLAY_VERx100_STEP(i915, 1400, STEP_A0, STEP_C0)) &&
++	     IS_DISPLAY_VERx100_STEP(display, 1400, STEP_A0, STEP_C0)) &&
+ 	    crtc_state->has_psr && !crtc_state->has_panel_replay) {
+ 		plane_state->no_fbc_reason = "PSR1 enabled (Wa_14016291713)";
+ 		return 0;
+@@ -1410,7 +1392,7 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
+ 	}
+ 
+ 	/* WaFbcExceedCdClockThreshold:hsw,bdw */
+-	if (IS_HASWELL(i915) || IS_BROADWELL(i915)) {
++	if (display->platform.haswell || display->platform.broadwell) {
+ 		const struct intel_cdclk_state *cdclk_state;
+ 
+ 		cdclk_state = intel_atomic_get_cdclk_state(state);
+@@ -1614,14 +1596,14 @@ static void __intel_fbc_invalidate(struct intel_fbc *fbc,
+ 	mutex_unlock(&fbc->lock);
+ }
+ 
+-void intel_fbc_invalidate(struct drm_i915_private *i915,
++void intel_fbc_invalidate(struct intel_display *display,
+ 			  unsigned int frontbuffer_bits,
+ 			  enum fb_op_origin origin)
+ {
+ 	struct intel_fbc *fbc;
+ 	enum intel_fbc_id fbc_id;
+ 
+-	for_each_intel_fbc(&i915->display, fbc, fbc_id)
++	for_each_intel_fbc(display, fbc, fbc_id)
+ 		__intel_fbc_invalidate(fbc, frontbuffer_bits, origin);
+ 
+ }
+@@ -1653,14 +1635,14 @@ static void __intel_fbc_flush(struct intel_fbc *fbc,
+ 	mutex_unlock(&fbc->lock);
+ }
+ 
+-void intel_fbc_flush(struct drm_i915_private *i915,
++void intel_fbc_flush(struct intel_display *display,
+ 		     unsigned int frontbuffer_bits,
+ 		     enum fb_op_origin origin)
+ {
+ 	struct intel_fbc *fbc;
+ 	enum intel_fbc_id fbc_id;
+ 
+-	for_each_intel_fbc(&i915->display, fbc, fbc_id)
++	for_each_intel_fbc(display, fbc, fbc_id)
+ 		__intel_fbc_flush(fbc, frontbuffer_bits, origin);
+ }
+ 
+@@ -1897,15 +1879,13 @@ void intel_fbc_handle_fifo_underrun_irq(struct intel_display *display)
+  */
+ static int intel_sanitize_fbc_option(struct intel_display *display)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+-
+ 	if (display->params.enable_fbc >= 0)
+ 		return !!display->params.enable_fbc;
+ 
+ 	if (!HAS_FBC(display))
+ 		return 0;
+ 
+-	if (IS_BROADWELL(i915) || DISPLAY_VER(display) >= 9)
++	if (display->platform.broadwell || DISPLAY_VER(display) >= 9)
+ 		return 1;
+ 
+ 	return 0;
+@@ -1919,7 +1899,6 @@ void intel_fbc_add_plane(struct intel_fbc *fbc, struct intel_plane *plane)
+ static struct intel_fbc *intel_fbc_create(struct intel_display *display,
+ 					  enum intel_fbc_id fbc_id)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	struct intel_fbc *fbc;
+ 
+ 	fbc = kzalloc(sizeof(*fbc), GFP_KERNEL);
+@@ -1937,7 +1916,7 @@ static struct intel_fbc *intel_fbc_create(struct intel_display *display,
+ 		fbc->funcs = &snb_fbc_funcs;
+ 	else if (DISPLAY_VER(display) == 5)
+ 		fbc->funcs = &ilk_fbc_funcs;
+-	else if (IS_G4X(i915))
++	else if (display->platform.g4x)
+ 		fbc->funcs = &g4x_fbc_funcs;
+ 	else if (DISPLAY_VER(display) == 4)
+ 		fbc->funcs = &i965_fbc_funcs;
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.h b/drivers/gpu/drm/i915/display/intel_fbc.h
+index ceae55458e14..df20e63d6102 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.h
++++ b/drivers/gpu/drm/i915/display/intel_fbc.h
+@@ -9,11 +9,11 @@
+ #include <linux/types.h>
+ 
+ enum fb_op_origin;
+-struct drm_i915_private;
+ struct intel_atomic_state;
+ struct intel_crtc;
+ struct intel_crtc_state;
+ struct intel_display;
++struct intel_display;
+ struct intel_fbc;
+ struct intel_plane;
+ struct intel_plane_state;
+@@ -38,10 +38,10 @@ void intel_fbc_sanitize(struct intel_display *display);
+ void intel_fbc_update(struct intel_atomic_state *state,
+ 		      struct intel_crtc *crtc);
+ void intel_fbc_disable(struct intel_crtc *crtc);
+-void intel_fbc_invalidate(struct drm_i915_private *dev_priv,
++void intel_fbc_invalidate(struct intel_display *display,
+ 			  unsigned int frontbuffer_bits,
+ 			  enum fb_op_origin origin);
+-void intel_fbc_flush(struct drm_i915_private *dev_priv,
++void intel_fbc_flush(struct intel_display *display,
+ 		     unsigned int frontbuffer_bits, enum fb_op_origin origin);
+ void intel_fbc_add_plane(struct intel_fbc *fbc, struct intel_plane *plane);
+ void intel_fbc_handle_fifo_underrun_irq(struct intel_display *display);
+diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+index 89a145b3194c..f023f5a4dba6 100644
+--- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
++++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+@@ -101,7 +101,7 @@ static void frontbuffer_flush(struct drm_i915_private *i915,
+ 	intel_td_flush(display);
+ 	intel_drrs_flush(display, frontbuffer_bits);
+ 	intel_psr_flush(display, frontbuffer_bits, origin);
+-	intel_fbc_flush(i915, frontbuffer_bits, origin);
++	intel_fbc_flush(display, frontbuffer_bits, origin);
+ }
+ 
+ /**
+@@ -176,7 +176,6 @@ void __intel_fb_invalidate(struct intel_frontbuffer *front,
+ 			   unsigned int frontbuffer_bits)
+ {
+ 	struct intel_display *display = to_intel_display(front->obj->dev);
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 
+ 	if (origin == ORIGIN_CS) {
+ 		spin_lock(&display->fb_tracking.lock);
+@@ -190,7 +189,7 @@ void __intel_fb_invalidate(struct intel_frontbuffer *front,
+ 	might_sleep();
+ 	intel_psr_invalidate(display, frontbuffer_bits, origin);
+ 	intel_drrs_invalidate(display, frontbuffer_bits);
+-	intel_fbc_invalidate(i915, frontbuffer_bits, origin);
++	intel_fbc_invalidate(display, frontbuffer_bits, origin);
+ }
+ 
+ void __intel_fb_flush(struct intel_frontbuffer *front,
 -- 
 2.39.5
 
