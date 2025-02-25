@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB2DDC021BB
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Feb 2025 15:14:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BEE4C021B2
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Feb 2025 15:20:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A619210E710;
-	Tue, 25 Feb 2025 15:14:30 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QSzw6nbA";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 367E610E710;
- Tue, 25 Feb 2025 15:14:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740496470; x=1772032470;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=a6fcKRCcSMKDXJTwwhzfzELOJTwdCx1MKrczazoy5rg=;
- b=QSzw6nbAO7oAld7zzBF4Rep7kLZQhe/HqnnIsA5pc/6pGZe2Ldtd5eZQ
- 5jEsJbT6GEe6QZDUjI8CUoRCn2yioOwwDg40TlPmZdU8xKEW85kmKInVm
- Ajw8dzmjdUWb2wpKUJE9alnjnOvxI10FixTBN+3zhwDfQbjL3ynyMKbsc
- nrmxPH55cCunASVLm71ym//tP78VZ3k7juebzSGfw7jEYQvf3XBs65L1d
- bN1A7bK1CU06vUWchsJ6JAOzNqhtMyHRq6YyPQSdELyaGyktyuBxwiUmq
- X7ZMWvxOaLKGndtKi+MPXV1tbHI4rBe5xL6gfnuCOiWF9VEBZ6PJshaRM A==;
-X-CSE-ConnectionGUID: fDaPsva0T62OnXjNkjCJ/w==
-X-CSE-MsgGUID: eeL6x7PHS0eyLwUdbCmuow==
-X-IronPort-AV: E=McAfee;i="6700,10204,11356"; a="28895078"
-X-IronPort-AV: E=Sophos;i="6.13,314,1732608000"; d="scan'208";a="28895078"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 07:14:29 -0800
-X-CSE-ConnectionGUID: OBfwnLxGQyWcIS2sI1waJw==
-X-CSE-MsgGUID: Th7LyYslS9moIfJjVKgUEg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="116909801"
-Received: from dneilan-mobl1.ger.corp.intel.com (HELO [10.245.244.112])
- ([10.245.244.112])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 07:14:26 -0800
-Message-ID: <bf92727d-8d06-4fd4-9908-cfce46a8afb0@intel.com>
-Date: Tue, 25 Feb 2025 15:14:23 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 568FF10E71A;
+	Tue, 25 Feb 2025 15:20:20 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF48310E71A;
+ Tue, 25 Feb 2025 15:20:18 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6391663601945429621=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 06/32] drm/gpusvm: Add support for GPU Shared Virtual
- Memory
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com,
- thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
- felix.kuehling@amd.com, dakr@kernel.org
-References: <20250225044311.3178695-1-matthew.brost@intel.com>
- <20250225044311.3178695-7-matthew.brost@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20250225044311.3178695-7-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_VF=3A_Set_submission_versio?=
+ =?utf-8?q?n_in_xe=5Fuc=5Ffw_struct?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lukasz Laguna" <lukasz.laguna@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 25 Feb 2025 15:20:18 -0000
+Message-ID: <174049681871.2002081.4524814208774458851@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250225132337.6508-1-lukasz.laguna@intel.com>
+In-Reply-To: <20250225132337.6508-1-lukasz.laguna@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,168 +36,157 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 25/02/2025 04:42, Matthew Brost wrote:
-> This patch introduces support for GPU Shared Virtual Memory (SVM) in the
-> Direct Rendering Manager (DRM) subsystem. SVM allows for seamless
-> sharing of memory between the CPU and GPU, enhancing performance and
-> flexibility in GPU computing tasks.
-> 
-> The patch adds the necessary infrastructure for SVM, including data
-> structures and functions for managing SVM ranges and notifiers. It also
-> provides mechanisms for allocating, deallocating, and migrating memory
-> regions between system RAM and GPU VRAM.
-> 
-> This is largely inspired by GPUVM.
-> 
-> v2:
->   - Take order into account in check pages
->   - Clear range->pages in get pages error
->   - Drop setting dirty or accessed bit in get pages (Vetter)
->   - Remove mmap assert for cpu faults
->   - Drop mmap write lock abuse (Vetter, Christian)
->   - Decouple zdd from range (Vetter, Oak)
->   - Add drm_gpusvm_range_evict, make it work with coherent pages
->   - Export drm_gpusvm_evict_to_sram, only use in BO evict path (Vetter)
->   - mmget/put in drm_gpusvm_evict_to_sram
->   - Drop range->vram_alloation variable
->   - Don't return in drm_gpusvm_evict_to_sram until all pages detached
->   - Don't warn on mixing sram and device pages
->   - Update kernel doc
->   - Add coherent page support to get pages
->   - Use DMA_FROM_DEVICE rather than DMA_BIDIRECTIONAL
->   - Add struct drm_gpusvm_vram and ops (Thomas)
->   - Update the range's seqno if the range is valid (Thomas)
->   - Remove the is_unmapped check before hmm_range_fault (Thomas)
->   - Use drm_pagemap (Thomas)
->   - Drop kfree_mapping (Thomas)
->   - dma mapp pages under notifier lock (Thomas)
->   - Remove ctx.prefault
->   - Remove ctx.mmap_locked
->   - Add ctx.check_pages
->   - s/vram/devmem (Thomas)
-> v3:
->   - Fix memory leak drm_gpusvm_range_get_pages
->   - Only migrate pages with same zdd on CPU fault
->   - Loop over al VMAs in drm_gpusvm_range_evict
->   - Make GPUSVM a drm level module
->   - GPL or MIT license
->   - Update main kernel doc (Thomas)
->   - Prefer foo() vs foo for functions in kernel doc (Thomas)
->   - Prefer functions over macros (Thomas)
->   - Use unsigned long vs u64 for addresses (Thomas)
->   - Use standard interval_tree (Thomas)
->   - s/drm_gpusvm_migration_put_page/drm_gpusvm_migration_unlock_put_page (Thomas)
->   - Drop err_out label in drm_gpusvm_range_find_or_insert (Thomas)
->   - Fix kernel doc in drm_gpusvm_range_free_pages (Thomas)
->   - Newlines between functions defs in header file (Thomas)
->   - Drop shall language in driver vfunc kernel doc (Thomas)
->   - Move some static inlines from head to C file (Thomas)
->   - Don't allocate pages under page lock in drm_gpusvm_migrate_populate_ram_pfn (Thomas)
->   - Change check_pages to a threshold
-> v4:
->   - Fix NULL ptr deref in drm_gpusvm_migrate_populate_ram_pfn (Thomas, Himal)
->   - Fix check pages threshold
->   - Check for range being unmapped under notifier lock in get pages (Testing)
->   - Fix characters per line
->   - Drop WRITE_ONCE for zdd->devmem_allocation assignment (Thomas)
->   - Use completion for devmem_allocation->detached (Thomas)
->   - Make GPU SVM depend on ZONE_DEVICE (CI)
->   - Use hmm_range_fault for eviction (Thomas)
->   - Drop zdd worker (Thomas)
-> v5:
->   - Select Kconfig deps (CI)
->   - Set device to NULL in __drm_gpusvm_migrate_to_ram (Matt Auld, G.G.)
->   - Drop Thomas's SoB (Thomas)
->   - Add drm_gpusvm_range_start/end/size helpers (Thomas)
->   - Add drm_gpusvm_notifier_start/end/size helpers (Thomas)
->   - Absorb drm_pagemap name changes (Thomas)
->   - Fix driver lockdep assert (Thomas)
->   - Move driver lockdep assert to static function (Thomas)
->   - Assert mmap lock held in drm_gpusvm_migrate_to_devmem (Thomas)
->   - Do not retry forever on eviction (Thomas)
-> v6:
->   - Fix drm_gpusvm_get_devmem_page alignment (Checkpatch)
->   - Modify Kconfig (CI)
->   - Compile out lockdep asserts (CI)
-> 
-> Cc: Simona Vetter <simona.vetter@ffwll.ch>
-> Cc: Dave Airlie <airlied@redhat.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: <dri-devel@lists.freedesktop.org>
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> ---
->   drivers/gpu/drm/Kconfig      |    9 +
->   drivers/gpu/drm/Makefile     |    1 +
->   drivers/gpu/drm/drm_gpusvm.c | 2236 ++++++++++++++++++++++++++++++++++
->   include/drm/drm_gpusvm.h     |  507 ++++++++
->   4 files changed, 2753 insertions(+)
->   create mode 100644 drivers/gpu/drm/drm_gpusvm.c
->   create mode 100644 include/drm/drm_gpusvm.h
-> 
+--===============6391663601945429621==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-<snip>
+== Series Details ==
 
-> +/**
-> + * struct drm_gpusvm_notifier - Structure representing a GPU SVM notifier
-> + *
-> + * @gpusvm: Pointer to the GPU SVM structure
-> + * @notifier: MMU interval notifier
-> + * @itree: Interval tree node for the notifier (inserted in GPU SVM)
-> + * @entry: List entry to fast interval tree traversal
-> + * @root: Cached root node of the RB tree containing ranges
-> + * @range_list: List head containing of ranges in the same order they appear in
-> + *              interval tree. This is useful to keep iterating ranges while
-> + *              doing modifications to RB tree.
+Series: VF: Set submission version in xe_uc_fw struct
+URL   : https://patchwork.freedesktop.org/series/145406/
+State : success
 
-Build is failing here. I think just missing:
+== Summary ==
 
-+ * @flags: ....
+CI Bug Log - changes from xe-2709-d5debc4841e604372c74ebda0bbf54bd527c3475_BAT -> xe-pw-145406v1_BAT
+====================================================
 
-> + * @flags.removed: Flag indicating whether the MMU interval notifier has been
-> + *                 removed
-> + *
-> + * This structure represents a GPU SVM notifier.
-> + */
-> +struct drm_gpusvm_notifier {
-> +	struct drm_gpusvm *gpusvm;
-> +	struct mmu_interval_notifier notifier;
-> +	struct interval_tree_node itree;
-> +	struct list_head entry;
-> +	struct rb_root_cached root;
-> +	struct list_head range_list;
-> +	struct {
-> +		u32 removed : 1;
-> +	} flags;
-> +};
-> +
-> +/**
-> + * struct drm_gpusvm_range - Structure representing a GPU SVM range
-> + *
-> + * @gpusvm: Pointer to the GPU SVM structure
-> + * @notifier: Pointer to the GPU SVM notifier
-> + * @refcount: Reference count for the range
-> + * @itree: Interval tree node for the range (inserted in GPU SVM notifier)
-> + * @entry: List entry to fast interval tree traversal
-> + * @notifier_seq: Notifier sequence number of the range's pages
-> + * @dma_addr: Device address array
-> + * @dpagemap: The struct drm_pagemap of the device pages we're dma-mapping.
-> + *            Note this is assuming only one drm_pagemap per range is allowed.
+Summary
+-------
 
-Same here:
+  **SUCCESS**
 
-+ * @flags: ....
+  No regressions found.
 
-> + * @flags.migrate_devmem: Flag indicating whether the range can be migrated to device memory
-> + * @flags.unmapped: Flag indicating if the range has been unmapped
-> + * @flags.partial_unmap: Flag indicating if the range has been partially unmapped
-> + * @flags.has_devmem_pages: Flag indicating if the range has devmem pages
-> + * @flags.has_dma_mapping: Flag indicating if the range has a DMA mapping
-> + *
-> + * This structure represents a GPU SVM range used for tracking memory ranges
-> + * mapped in a DRM device.
-> + */
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-145406v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_exec_basic@twice-bindexecqueue-rebind:
+    - bat-adlp-vf:        [PASS][1] -> [DMESG-FAIL][2] ([Intel XE#3868] / [Intel XE#3970])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2709-d5debc4841e604372c74ebda0bbf54bd527c3475/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145406v1/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
+
+  * igt@xe_live_ktest@xe_migrate:
+    - bat-adlp-vf:        [PASS][3] -> [SKIP][4] ([Intel XE#4322]) +1 other test skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2709-d5debc4841e604372c74ebda0bbf54bd527c3475/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145406v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+
+  
+#### Warnings ####
+
+  * igt@xe_live_ktest@xe_bo:
+    - bat-adlp-vf:        [SKIP][5] ([Intel XE#2229] / [Intel XE#455]) -> [SKIP][6] ([Intel XE#4322])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2709-d5debc4841e604372c74ebda0bbf54bd527c3475/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145406v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+
+  
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#3868]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3868
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
+  [Intel XE#4322]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+
+
+Build changes
+-------------
+
+  * Linux: xe-2709-d5debc4841e604372c74ebda0bbf54bd527c3475 -> xe-pw-145406v1
+
+  IGT_8247: 8247
+  xe-2709-d5debc4841e604372c74ebda0bbf54bd527c3475: d5debc4841e604372c74ebda0bbf54bd527c3475
+  xe-pw-145406v1: 145406v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145406v1/index.html
+
+--===============6391663601945429621==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>VF: Set submission version in xe_uc_fw struct</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145406/">https://patchwork.freedesktop.org/series/145406/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145406v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145406v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2709-d5debc4841e604372c74ebda0bbf54bd527c3475_BAT -&gt; xe-pw-145406v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-145406v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_exec_basic@twice-bindexecqueue-rebind:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2709-d5debc4841e604372c74ebda0bbf54bd527c3475/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145406v1/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3868">Intel XE#3868</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2709-d5debc4841e604372c74ebda0bbf54bd527c3475/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145406v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322">Intel XE#4322</a>) +1 other test skip</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_bo:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2709-d5debc4841e604372c74ebda0bbf54bd527c3475/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145406v1/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322">Intel XE#4322</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2709-d5debc4841e604372c74ebda0bbf54bd527c3475 -&gt; xe-pw-145406v1</li>
+</ul>
+<p>IGT_8247: 8247<br />
+  xe-2709-d5debc4841e604372c74ebda0bbf54bd527c3475: d5debc4841e604372c74ebda0bbf54bd527c3475<br />
+  xe-pw-145406v1: 145406v1</p>
+
+</body>
+</html>
+
+--===============6391663601945429621==--
