@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB1FCC021B2
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Feb 2025 15:50:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 882B6C021BC
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Feb 2025 15:56:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97AB610E0FF;
-	Tue, 25 Feb 2025 15:50:48 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F8D110E0FF;
- Tue, 25 Feb 2025 15:50:48 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37E7710E731;
+	Tue, 25 Feb 2025 15:56:01 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mqQshK25";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6859B10E731;
+ Tue, 25 Feb 2025 15:55:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1740498959; x=1772034959;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=lUmgfpSHD+QRa3iLG6Ueu1mvvaKggu850lorVuo3O60=;
+ b=mqQshK25vcXw89ptyfuVB2nhvQEur3YLGdrq76ocVg0QkRFiWf344ts9
+ pm4WZiDMoV8olz74fJu84uf8sLOGeC0IPBkWFD6pmHD7FLSLTvY7Dacmz
+ tXAWXPVBHPsxg3bZnbS2pKR65gVjdlHBahuGuA/FJvJeCSKDqxtggQpCT
+ AXxpmZJQyr4AvI+LC9ZJfC54weyiaMYZj4vPGnHCWcCuXfKKXH9+2NfVq
+ Q1IhyvYbJsdlJPmujiJuczZFiOQn/z0/9KLNro0Yo65SjUSXXK6t2KBzT
+ U2ixudq64kKaPDIivncZWAAnUqg4R39pSP+Qb5trgnnFKaDZImPv43Jso A==;
+X-CSE-ConnectionGUID: f9qDXSRoRyC87EOC7DnHsw==
+X-CSE-MsgGUID: yoPjZdkmQh+OVz5YQJ62nw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11356"; a="41329467"
+X-IronPort-AV: E=Sophos;i="6.13,314,1732608000"; d="scan'208";a="41329467"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2025 07:55:59 -0800
+X-CSE-ConnectionGUID: 7ibKE6YNR9GR3h4YaZTg7w==
+X-CSE-MsgGUID: E79kmrgaSxauXGI/sVPHag==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,314,1732608000"; d="scan'208";a="121517015"
+Received: from monicael-mobl3 (HELO localhost) ([10.245.246.246])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2025 07:55:56 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 1/9] drm/dp: Add definitions for POST_LT_ADJ training
+ sequence
+In-Reply-To: <20250224172645.15763-2-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250224172645.15763-1-ville.syrjala@linux.intel.com>
+ <20250224172645.15763-2-ville.syrjala@linux.intel.com>
+Date: Tue, 25 Feb 2025 17:55:53 +0200
+Message-ID: <87ikoy588m.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe=3A_Fix_fault_mode?=
- =?utf-8?q?_invalidation_with_unbind?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 25 Feb 2025 15:50:48 -0000
-Message-ID: <174049864825.2010874.13666303490719590268@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250225134426.315876-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20250225134426.315876-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +67,57 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, 24 Feb 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Add the bit definitions needed for POST_LT_ADJ sequence.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  include/drm/display/drm_dp.h | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
+> index c413ef68f9a3..260948a8f550 100644
+> --- a/include/drm/display/drm_dp.h
+> +++ b/include/drm/display/drm_dp.h
+> @@ -115,6 +115,7 @@
+>=20=20
+>  #define DP_MAX_LANE_COUNT                   0x002
+>  # define DP_MAX_LANE_COUNT_MASK		    0x1f
+> +# define DP_POST_LT_ADJ_REQ_SUPPORTED	    (1 << 5) /* 1.3 */
+>  # define DP_TPS3_SUPPORTED		    (1 << 6) /* 1.2 */
+>  # define DP_ENHANCED_FRAME_CAP		    (1 << 7)
+>=20=20
+> @@ -571,6 +572,7 @@
+>=20=20
+>  #define DP_LANE_COUNT_SET	            0x101
+>  # define DP_LANE_COUNT_MASK		    0x0f
+> +# define DP_POST_LT_ADJ_REQ_GRANTED         (1 << 5) /* 1.3 */
+>  # define DP_LANE_COUNT_ENHANCED_FRAME_EN    (1 << 7)
+>=20=20
+>  #define DP_TRAINING_PATTERN_SET	            0x102
+> @@ -791,6 +793,7 @@
+>  #define  DP_128B132B_DPRX_EQ_INTERLANE_ALIGN_DONE       (1 << 2) /* 2.0 =
+E11 */
+>  #define  DP_128B132B_DPRX_CDS_INTERLANE_ALIGN_DONE      (1 << 3) /* 2.0 =
+E11 */
+>  #define  DP_128B132B_LT_FAILED                          (1 << 4) /* 2.0 =
+E11 */
+> +#define  DP_POST_LT_ADJ_REQ_IN_PROGRESS                 (1 << 5) /* 1.3 =
+*/
 
-Series: drm/xe: Fix fault mode invalidation with unbind
-URL   : https://patchwork.freedesktop.org/series/145409/
-State : success
+Should be bit 1. Bit 5 is reserved.
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast c7988865b658d56bcfaac76b7d72cc59435565eb
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+BR,
+Jani.
 
 
+>  #define  DP_DOWNSTREAM_PORT_STATUS_CHANGED              (1 << 6)
+>  #define  DP_LINK_STATUS_UPDATED                         (1 << 7)
+
+--=20
+Jani Nikula, Intel
