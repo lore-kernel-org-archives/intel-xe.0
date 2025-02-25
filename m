@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20399C021BE
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Feb 2025 04:42:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21347C19778
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Feb 2025 04:42:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C346910E56D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDE2B10E574;
 	Tue, 25 Feb 2025 04:42:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hseb9Yee";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PJQsu2sH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3161B10E545;
- Tue, 25 Feb 2025 04:42:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31D4010E55A;
+ Tue, 25 Feb 2025 04:42:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740458534; x=1771994534;
+ t=1740458536; x=1771994536;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=BPwQfrVh4y6GwizLFCXGJau4Hr+mxHSPE1n5oQna2oc=;
- b=Hseb9Yee92hEziDH+NaGdPc9N7NL58yJVNZwSthwYk/fWNRVII5PSlwg
- eYh3dqlUw+oIbV3nmFFWddphJbIlbk/tG3dyUlpSmizRKp7m6dhH2KjM8
- TUiXaJdoI3rRgkO++BnLztm/QcrlE0xq7unj4600v1glrU8lRqwsXnj1C
- 31WK0hLrvSyyMEL8UVtpyAIVObPGCCCfyX0eIrNr2yhfa9rOmc7CT/1wm
- WfXW2/Tz37h7Slf1FhSY+BnA1fw/fsJIXxw+tGFkOP/i46tPS5GHSyLnu
- 5Z50NHKl6hciykybyhSnMKE0sYOBWRWv/x+Tcng8RZYe19XKPtOVEWjD8 A==;
-X-CSE-ConnectionGUID: XwYH1MMiTxSCah7WgiLBbg==
-X-CSE-MsgGUID: yEbr0g8oRUqytPCvWlRwlw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="51885013"
-X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; d="scan'208";a="51885013"
+ bh=d3znmFGwAyFXNJrJ6wGh9SQtGQe5CBCBa8vC8F+N4Wg=;
+ b=PJQsu2sHUOsRtpljcD1xuTQm2+rd5KYAq6c0ZHws/KCdGMOqIYrCBh2Z
+ 5M3nIF9vqnn11qalilA82YybWQCDOhSNgVvRSImMjgsMLMjVmdtFeDCIs
+ ZSbh7f4k3JxRAQKNe/XgqSC/9wLtjMIrBOi3uoFqA0vElvDNRwWgBXmOM
+ vLsiqnnKC/FiF1v7GjrsahAA6kNj8XFJyi6TnJKW2Y4x9u87v10SekghZ
+ FCv53mvnGZZMKNLMldKxeop2hdECPdGZiVpJSw3PkQsOnXpzLbkZ4Wf2D
+ /7TMjRL/4KHJx751JpzLh3kwe35vYgXREELP7t0vSaTGgGNofD8x0v+iM Q==;
+X-CSE-ConnectionGUID: Y4jnOFKWTMu8pShPFRIlsw==
+X-CSE-MsgGUID: B1YztsMvQ8O/dsCYg7HKdQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="51885084"
+X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; d="scan'208";a="51885084"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2025 20:42:13 -0800
-X-CSE-ConnectionGUID: LJpSiuIuQdqITTPWVZOSuQ==
-X-CSE-MsgGUID: Lffkxa/VRo6CVvGz8MQieA==
+ 24 Feb 2025 20:42:16 -0800
+X-CSE-ConnectionGUID: RBNX5vxyRJ2Hb1fgXriGpg==
+X-CSE-MsgGUID: kuuYKEAWT52QIVcT5mIxXQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; d="scan'208";a="116290299"
+X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; d="scan'208";a="116290335"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2025 20:42:13 -0800
+ 24 Feb 2025 20:42:16 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com,
  thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
  felix.kuehling@amd.com, dakr@kernel.org
-Subject: [PATCH v6 18/32] drm/xe: Enable CPU address mirror uAPI
-Date: Mon, 24 Feb 2025 20:42:57 -0800
-Message-Id: <20250225044311.3178695-19-matthew.brost@intel.com>
+Subject: [PATCH v6 30/32] drm/xe: Add modparam for SVM notifier size
+Date: Mon, 24 Feb 2025 20:43:09 -0800
+Message-Id: <20250225044311.3178695-31-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250225044311.3178695-1-matthew.brost@intel.com>
 References: <20250225044311.3178695-1-matthew.brost@intel.com>
@@ -70,35 +70,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Support for CPU address mirror bindings in SRAM fully in place, enable the
-implementation.
+Useful to experiment with notifier size and how it affects performance.
 
 v3:
- - s/system allocator/CPU address mirror (Thomas)
+ - Pull missing changes including in following patch (Thomas)
+v5:
+ - Spell out power of 2 (Thomas)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 6 ------
- 1 file changed, 6 deletions(-)
+ drivers/gpu/drm/xe/xe_module.c | 4 ++++
+ drivers/gpu/drm/xe/xe_module.h | 1 +
+ drivers/gpu/drm/xe/xe_svm.c    | 4 +++-
+ 3 files changed, 8 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index a3ef76504ce8..3c1a824af42f 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3065,12 +3065,6 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
- 		u16 pat_index = (*bind_ops)[i].pat_index;
- 		u16 coh_mode;
+diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
+index 26ec9aa02648..4fe6a33da7e3 100644
+--- a/drivers/gpu/drm/xe/xe_module.c
++++ b/drivers/gpu/drm/xe/xe_module.c
+@@ -25,9 +25,13 @@ struct xe_modparam xe_modparam = {
+ 	.max_vfs = IS_ENABLED(CONFIG_DRM_XE_DEBUG) ? ~0 : 0,
+ #endif
+ 	.wedged_mode = 1,
++	.svm_notifier_size = 512,
+ 	/* the rest are 0 by default */
+ };
  
--		/* FIXME: Disabling CPU address mirror for now */
--		if (XE_IOCTL_DBG(xe, is_cpu_addr_mirror)) {
--			err = -EOPNOTSUPP;
--			goto free_bind_ops;
--		}
--
- 		if (XE_IOCTL_DBG(xe, is_cpu_addr_mirror &&
- 				 !xe_vm_in_fault_mode(vm))) {
- 			err = -EINVAL;
++module_param_named(svm_notifier_size, xe_modparam.svm_notifier_size, uint, 0600);
++MODULE_PARM_DESC(svm_notifier_size, "Set the svm notifier size(in MiB), must be power of 2");
++
+ module_param_named_unsafe(force_execlist, xe_modparam.force_execlist, bool, 0444);
+ MODULE_PARM_DESC(force_execlist, "Force Execlist submission");
+ 
+diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
+index 161a5e6f717f..5a3bfea8b7b4 100644
+--- a/drivers/gpu/drm/xe/xe_module.h
++++ b/drivers/gpu/drm/xe/xe_module.h
+@@ -22,6 +22,7 @@ struct xe_modparam {
+ 	unsigned int max_vfs;
+ #endif
+ 	int wedged_mode;
++	u32 svm_notifier_size;
+ };
+ 
+ extern struct xe_modparam xe_modparam;
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 546336a0ab2a..dec0539753bd 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -6,6 +6,7 @@
+ #include "xe_bo.h"
+ #include "xe_gt_tlb_invalidation.h"
+ #include "xe_migrate.h"
++#include "xe_module.h"
+ #include "xe_pt.h"
+ #include "xe_svm.h"
+ #include "xe_ttm_vram_mgr.h"
+@@ -607,7 +608,8 @@ int xe_svm_init(struct xe_vm *vm)
+ 
+ 	err = drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM", &vm->xe->drm,
+ 			      current->mm, xe_svm_devm_owner(vm->xe), 0,
+-			      vm->size, SZ_512M, &gpusvm_ops, fault_chunk_sizes,
++			      vm->size, xe_modparam.svm_notifier_size * SZ_1M,
++			      &gpusvm_ops, fault_chunk_sizes,
+ 			      ARRAY_SIZE(fault_chunk_sizes));
+ 	if (err)
+ 		return err;
 -- 
 2.34.1
 
