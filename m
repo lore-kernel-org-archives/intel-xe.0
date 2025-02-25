@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D42DCC021B2
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Feb 2025 15:29:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E748C021B2
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Feb 2025 15:30:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F06010E0FF;
-	Tue, 25 Feb 2025 15:29:22 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E87C010E0FF;
- Tue, 25 Feb 2025 15:29:21 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2F8110E086;
+	Tue, 25 Feb 2025 15:30:24 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ki8KE1Ts";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F3378920E;
+ Tue, 25 Feb 2025 15:30:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1740497424; x=1772033424;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=LAASou9vJY8FIhtUFB1KZoUc1BKk4AIlWrWE6hr1jMM=;
+ b=ki8KE1Tsu1nT3ksAFXZorvpQ94gvpzQMIvOQOVb3zJEnGg9BOrIyYIGe
+ jwBcz0bnXYLgnjHGyTruFa0OWVMustgEKdYz8Pjkyk8b/WkWNu8Krp7KZ
+ QsjFPDv4j4Uoh5Hf4lesVpsnUulV6U+fmRqIBJMkhrApe6qjK4URdBYvP
+ CuN/nhZHvz1EmVQ7ijtyu9PfwjHl8HPWQRcIau+kwpsXlGg/MhC7vxDFw
+ fxQz4De8ARkB1jKSqLCZ97Ah4PVKKsVpKou/nLlGjHR/ZLsWcpBZ6HOf5
+ +C1uGyKc1ZGv/c+EbfnSuDn0bF0/sk8FWRErQX85b32q1aLc36QUxwlRp A==;
+X-CSE-ConnectionGUID: QRVPHvUfTm+EIBBfsQjBFQ==
+X-CSE-MsgGUID: iVbzTSVsSSixaUGdmhbi4A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11356"; a="52707697"
+X-IronPort-AV: E=Sophos;i="6.13,314,1732608000"; d="scan'208";a="52707697"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2025 07:30:23 -0800
+X-CSE-ConnectionGUID: GCxKbRtcQBWLRX8dE3GQMA==
+X-CSE-MsgGUID: 2KQqrlSLTYqmAoo1Xju6Og==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="120528827"
+Received: from monicael-mobl3 (HELO localhost) ([10.245.246.246])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2025 07:30:19 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Syrjala, Ville" <ville.syrjala@intel.com>
+Cc: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, "Shankar, Uma"
+ <uma.shankar@intel.com>, "Kahola, Mika" <mika.kahola@intel.com>
+Subject: RE: [PATCH 05/11] drm/i915/dpll: Move away from using shared dpll
+In-Reply-To: <SN7PR11MB6750A509052EF04B959BA7C1E3C32@SN7PR11MB6750.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250225080927.157437-1-suraj.kandpal@intel.com>
+ <20250225080927.157437-6-suraj.kandpal@intel.com>
+ <8734g276o6.fsf@intel.com>
+ <SN7PR11MB67507C9052363FC4E8E34450E3C32@SN7PR11MB6750.namprd11.prod.outlook.com>
+ <SN7PR11MB6750A509052EF04B959BA7C1E3C32@SN7PR11MB6750.namprd11.prod.outlook.com>
+Date: Tue, 25 Feb 2025 17:30:16 +0200
+Message-ID: <87ldtu59fb.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Fix_fault_mode_?=
- =?utf-8?q?invalidation_with_unbind?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 25 Feb 2025 15:29:21 -0000
-Message-ID: <174049736194.2004622.10095441403033600918@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250225134426.315876-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20250225134426.315876-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,49 +71,150 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 25 Feb 2025, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
+>> -----Original Message-----
+>> From: Kandpal, Suraj
+>> Sent: Tuesday, February 25, 2025 2:25 PM
+>> To: Jani Nikula <jani.nikula@linux.intel.com>; intel-xe@lists.freedesktop.org;
+>> intel-gfx@lists.freedesktop.org
+>> Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Shankar, Uma
+>> <uma.shankar@intel.com>; Kahola, Mika <mika.kahola@intel.com>
+>> Subject: RE: [PATCH 05/11] drm/i915/dpll: Move away from using shared dpll
+>> 
+>> 
+>> 
+>> > -----Original Message-----
+>> > From: Jani Nikula <jani.nikula@linux.intel.com>
+>> > Sent: Tuesday, February 25, 2025 2:17 PM
+>> > To: Kandpal, Suraj <suraj.kandpal@intel.com>;
+>> > intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
+>> > Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Shankar, Uma
+>> > <uma.shankar@intel.com>; Kahola, Mika <mika.kahola@intel.com>;
+>> > Kandpal, Suraj <suraj.kandpal@intel.com>
+>> > Subject: Re: [PATCH 05/11] drm/i915/dpll: Move away from using shared
+>> > dpll
+>> >
+>> > On Tue, 25 Feb 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+>> > > Rename functions to move away from using shared dpll in the dpll
+>> > > framework as much as possible since dpll may not always be shared.
+>> > >
+>> > > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+>> >
+>> > ...
+>> >
+>> > > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+>> > > b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+>> > > index 6edd103eda55..ef66aca5da1d 100644
+>> > > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+>> > > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+>> > > @@ -387,24 +387,24 @@ struct intel_global_dpll {  #define SKL_DPLL2
+>> > > 2 #define SKL_DPLL3 3
+>> > >
+>> > > -/* shared dpll functions */
+>> > > +/* global dpll functions */
+>> > >  struct intel_global_dpll *
+>> > > -intel_get_shared_dpll_by_id(struct intel_display *display,
+>> > > +intel_get_global_dpll_by_id(struct intel_display *display,
+>> > >  			    enum intel_dpll_id id);
+>> > > -void assert_shared_dpll(struct intel_display *display,
+>> > > +void assert_global_dpll(struct intel_display *display,
+>> > >  			struct intel_global_dpll *pll,
+>> > >  			bool state);
+>> > > -#define assert_shared_dpll_enabled(d, p) assert_shared_dpll(d, p,
+>> > > true) -#define assert_shared_dpll_disabled(d, p)
+>> > > assert_shared_dpll(d, p, false) -int
+>> > > intel_compute_shared_dplls(struct intel_atomic_state *state,
+>> > > +#define assert_global_dpll_enabled(d, p) assert_global_dpll(d, p,
+>> > > +true) #define assert_global_dpll_disabled(d, p)
+>> > > +assert_global_dpll(d, p, false) int
+>> > > +intel_compute_global_dplls(struct intel_atomic_state *state,
+>> > >  			       struct intel_crtc *crtc,
+>> > >  			       struct intel_encoder *encoder); -int
+>> > > intel_reserve_shared_dplls(struct intel_atomic_state *state,
+>> > > +int intel_reserve_global_dplls(struct intel_atomic_state *state,
+>> > >  			       struct intel_crtc *crtc,
+>> > >  			       struct intel_encoder *encoder); -void
+>> > > intel_release_shared_dplls(struct intel_atomic_state *state,
+>> > > +void intel_release_global_dplls(struct intel_atomic_state *state,
+>> > >  				struct intel_crtc *crtc);
+>> > > -void intel_unreference_shared_dpll_crtc(const struct intel_crtc
+>> > > *crtc,
+>> > > +void intel_unreference_global_dpll_crtc(const struct intel_crtc
+>> > > +*crtc,
+>> > >  					const struct intel_global_dpll *pll,
+>> > >  					struct intel_dpll_state
+>> > *shared_dpll_state);  void
+>> > > icl_set_active_port_dpll(struct intel_crtc_state *crtc_state, @@
+>> > > -418,10 +418,10 @@ int intel_dpll_get_freq(struct intel_display
+>> > > *display,  bool intel_dpll_get_hw_state(struct intel_display *display,
+>> > >  			     struct intel_global_dpll *pll,
+>> > >  			     struct intel_dpll_hw_state *dpll_hw_state); -void
+>> > > intel_enable_shared_dpll(const struct intel_crtc_state *crtc_state);
+>> > > -void intel_disable_shared_dpll(const struct intel_crtc_state
+>> > > *crtc_state); -void intel_shared_dpll_swap_state(struct
+>> > > intel_atomic_state *state); -void intel_shared_dpll_init(struct
+>> > > intel_display *display);
+>> > > +void intel_enable_global_dpll(const struct intel_crtc_state
+>> > > +*crtc_state); void intel_disable_global_dpll(const struct
+>> > > +intel_crtc_state *crtc_state); void intel_dpll_swap_state(struct
+>> > > +intel_atomic_state *state); void intel_global_dpll_init(struct
+>> > > +intel_display *display);
+>> > >  void intel_dpll_update_ref_clks(struct intel_display *display);
+>> > > void intel_dpll_readout_hw_state(struct intel_display *display);
+>> > > void intel_dpll_sanitize_state(struct intel_display *display); @@
+>> > > -437,6
+>> > > +437,6 @@ bool intel_dpll_is_combophy(enum intel_dpll_id id);
+>> > >
+>> > >  void intel_dpll_state_verify(struct intel_atomic_state *state,
+>> > >  			     struct intel_crtc *crtc);
+>> > > -void intel_shared_dpll_verify_disabled(struct intel_atomic_state
+>> > > *state);
+>> > > +void intel_global_dpll_verify_disabled(struct intel_atomic_state
+>> > > +*state);
+>> > >
+>> > >  #endif /* _INTEL_DPLL_MGR_H_ */
+>> >
+>> > If you're renaming almost everything anyway, I'd appreciate moving
+>> > towards naming functions according to the file name, i.e. functions in
+>> > intel_foo.[ch] would be named intel_foo_*().
+>> >
+>> > The dpll mgr is notoriously bad in this regard. I'm also open to
+>> > renaming the entire file, intel_dpll_mgr.[ch] isn't all that great.
+>> >
+>> > I'm not sure if the term "global" (instead of "shared") was very well
+>> > justified in patch 3. Maybe all of these should be thought out together for the
+>> naming.
+>> >
+>> 
+>> I agree with the renaming I would have very much have to keep the naming
+>> simple something like Intel_dpll_func but that exits ! intel_dpll_mgr_funcs but
+>> intel_dpll_mgr already has some hooks defined inside It.
+>> I chose global since that way we will be able to represent both PLL using shared
+>> PHY and PLL with individual PHY.
+>> Also renaming intel_dpll_mgr.[ch] we have a intel_dpll.[ch] making it a problem
+>> What if we renamed the file to intel_global_dpll.[ch]
+>
+> Jani what do you think of this ?
 
-Series: drm/xe: Fix fault mode invalidation with unbind
-URL   : https://patchwork.freedesktop.org/series/145409/
-State : success
+I think Ville probably has opinions on this. Cc'd.
 
-== Summary ==
+BR,
+Jani.
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-22f9cda3436b4fe965b5c5f31d2f2c1bcb483189
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit d5855f236a08803a83e0c06a5c3f7d1ba81472b1
-Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Date:   Tue Feb 25 14:44:26 2025 +0100
+>
+>> 
+>> Regards,
+>> Suraj Kandpal
+>> 
+>> > BR,
+>> > Jani.
+>> >
+>> >
+>> > --
+>> > Jani Nikula, Intel
 
-    drm/xe: Fix fault mode invalidation with unbind
-    
-    Fix fault mode invalidation racing with unbind leading to the
-    PTE zapping potentially traversing an invalid page-table tree.
-    Do this by holding the notifier lock across PTE zapping. This
-    might transfer any contention waiting on the notifier seqlock
-    read side to the notifier lock read side, but that shouldn't be
-    a major problem.
-    
-    At the same time get rid of the open-coded invalidation in the bind
-    code by relying on the notifier even when the vma bind is not
-    yet committed.
-    
-    Finally let userptr invalidation injections during binding
-    unconditionally return -EAGAIN.
-    
-    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-+ /mt/dim checkpatch c7988865b658d56bcfaac76b7d72cc59435565eb drm-intel
-d5855f236a08 drm/xe: Fix fault mode invalidation with unbind
-
-
+-- 
+Jani Nikula, Intel
