@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B308C021BE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0809EC021BF
 	for <intel-xe@archiver.kernel.org>; Tue, 25 Feb 2025 09:20:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50AE110E5DF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3BF910E5E1;
 	Tue, 25 Feb 2025 09:20:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pt4mlqEq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iizO9VmF";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31BAF10E5D7
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5ECDF10E5D7
  for <intel-xe@lists.freedesktop.org>; Tue, 25 Feb 2025 09:20:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1740475233; x=1772011233;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=n2Esj9mRu9FhQtAsoo3UWRyOnOTgblO6NlGgItX8qZk=;
- b=Pt4mlqEqasxyx8GrZgkRdI5vqwFTk/c4j571ojy+n64oP9BO4s80fDX1
- xHRF9PhdVxr6Ih3sMTLghUwiG9fesus5cKvxc8p/MbPWz1WJnI01vQUzR
- FbbbaJr/G+ugyAwZVUMQpfbopZKxv4GfDddLIwsxQUuk4QfiwWCgNNOkv
- 5ZKJcfhBQhV3bdgTK3OMtb1ue0LOE/TwqgO1VS+45Yk49Ha3MKTVmT0xx
- gmOnQMdAw842G6+ISefant58C0OLNVmifl6CJCN/N7Q8z9HKt5Q2Br04q
- aHQuSqjgnHAxfmRBv3XFeRNSkndWHBYIB5f/oF//genZK6d4h7308pyjf w==;
-X-CSE-ConnectionGUID: YxBfwModTY2VaeBCJnrBpQ==
-X-CSE-MsgGUID: w3gWvk+ERHqTv+0UmEe/1g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="40507678"
-X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; d="scan'208";a="40507678"
+ bh=T1LK4ZyU79yv67KEQpd8a5iks1Epa6ajpsLQjy3A7uo=;
+ b=iizO9VmFWII3Rn4EXGraRU/J3ii81REvCGu/KnXH04P3gul0+mtM6sFE
+ mMOCl9RykChbuHz4ELujJR+VIOs+vWeMSIWw/u9mjL2LAXhb2LJwHl4zI
+ colrIJ4jGp4JlvXH1KRq1e9deFaL/Eaxly6Gybu52uUnLb0HFFab6KrFk
+ vmO70+EnN0shCuf25P9JiODrW2PS/6txaA02bRNLlDzYU6AH8249D8Bf9
+ O1zdIXCFfHspPUZiTCbwwowxpAXbbkQBW8qfV3fQbIVBYorTiOAVZKnaV
+ ILQtP1HCw/4DnEwincakVq+XDqGF1TloGXmOac+psG0DZbbnNh28RjFtB Q==;
+X-CSE-ConnectionGUID: I6Na4ZshQk+TEIzP9O4tyQ==
+X-CSE-MsgGUID: tLpKS9a4TAOIRMuY8tLVWg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="40507681"
+X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; d="scan'208";a="40507681"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Feb 2025 01:20:33 -0800
-X-CSE-ConnectionGUID: 9oZCOH2RTPG7uU6fIEJuiA==
-X-CSE-MsgGUID: 7wqR674qToii5CMp97vHkQ==
+X-CSE-ConnectionGUID: kxdeDZDASnqQJ3lokfwZBw==
+X-CSE-MsgGUID: guIgJm2MQE25UTTQkH+Ckw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="117261784"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="117261792"
 Received: from hchegond-ivm1.jf.intel.com ([10.165.21.208])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Feb 2025 01:20:32 -0800
@@ -47,9 +47,10 @@ Cc: ashutosh.dixit@intel.com, james.ausmus@intel.com,
  felix.j.degrood@intel.com, matthew.olson@intel.com,
  shubham.kumar@intel.com, joshua.santosh.ranjan@intel.com,
  lucas.demarchi@intel.com, Harish Chegondi <harish.chegondi@intel.com>
-Subject: [PATCH v11 6/8] drm/xe/eustall: Add EU stall sampling support for Xe2
-Date: Tue, 25 Feb 2025 01:20:23 -0800
-Message-ID: <440bbe7c97a45a040324124baa365bf95991a01b.1740474556.git.harish.chegondi@intel.com>
+Subject: [PATCH v11 8/8] drm/xe/eustall: Add workaround 22016596838 which
+ applies to PVC.
+Date: Tue, 25 Feb 2025 01:20:25 -0800
+Message-ID: <74204a23b4db4f741198e907997a3936999d48c6.1740474556.git.harish.chegondi@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <cover.1740474556.git.harish.chegondi@intel.com>
 References: <cover.1740474556.git.harish.chegondi@intel.com>
@@ -69,90 +70,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add EU stall sampling support for Xe2 architecture GPUs - LNL and BMG.
-EU stall data format for LNL and BMG is different from that of PVC.
+Add PVC workaround 22016596838 that disables EU DOP gating
+during EU stall sampling.
 
-v10: Update comments as per review feedback
-
-v9: Use GRAPHICS_VER() check instead of platform
-
-v8: Renamed struct drm_xe_eu_stall_data_xe2 to struct xe_eu_stall_data_xe2
-    since it is a local structure.
-
-Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/xe/xe_eu_stall.c | 35 +++++++++++++++++++++++++++++---
- 1 file changed, 32 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_eu_stall.c   | 10 ++++++++++
+ drivers/gpu/drm/xe/xe_wa_oob.rules |  1 +
+ 2 files changed, 11 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
-index d0d4151bea10..74ff4a848df6 100644
+index 306cb30ca088..e1f5c1ca746a 100644
 --- a/drivers/gpu/drm/xe/xe_eu_stall.c
 +++ b/drivers/gpu/drm/xe/xe_eu_stall.c
-@@ -99,12 +99,35 @@ struct xe_eu_stall_data_pvc {
- 	__u64 unused[6];
- } __packed;
+@@ -9,6 +9,7 @@
+ #include <linux/types.h>
  
-+/*
-+ * EU stall data format for Xe2 arch GPUs (LNL, BMG).
-+ */
-+struct xe_eu_stall_data_xe2 {
-+	__u64 ip_addr:29;	  /* Bits 0  to 28  */
-+	__u64 tdr_count:8;	  /* Bits 29 to 36  */
-+	__u64 other_count:8;	  /* Bits 37 to 44  */
-+	__u64 control_count:8;	  /* Bits 45 to 52  */
-+	__u64 pipestall_count:8;  /* Bits 53 to 60  */
-+	__u64 send_count:8;	  /* Bits 61 to 68  */
-+	__u64 dist_acc_count:8;   /* Bits 69 to 76  */
-+	__u64 sbid_count:8;	  /* Bits 77 to 84  */
-+	__u64 sync_count:8;	  /* Bits 85 to 92  */
-+	__u64 inst_fetch_count:8; /* Bits 93 to 100 */
-+	__u64 active_count:8;	  /* Bits 101 to 108 */
-+	__u64 ex_id:3;		  /* Bits 109 to 111 */
-+	__u64 end_flag:1;	  /* Bit  112 */
-+	__u64 unused_bits:15;
-+	__u64 unused[6];
-+} __packed;
+ #include <drm/drm_drv.h>
++#include <generated/xe_wa_oob.h>
+ #include <uapi/drm/xe_drm.h>
+ 
+ #include "xe_bo.h"
+@@ -22,6 +23,7 @@
+ #include "xe_observation.h"
+ #include "xe_pm.h"
+ #include "xe_trace.h"
++#include "xe_wa.h"
+ 
+ #include "regs/xe_eu_stall_regs.h"
+ #include "regs/xe_gt_regs.h"
+@@ -645,6 +647,10 @@ static int xe_eu_stall_stream_enable(struct xe_eu_stall_data_stream *stream)
+ 		return -ETIMEDOUT;
+ 	}
+ 
++	if (XE_WA(gt, 22016596838))
++		xe_gt_mcr_multicast_write(gt, ROW_CHICKEN2,
++					  _MASKED_BIT_ENABLE(DISABLE_DOP_GATING));
 +
- static size_t xe_eu_stall_data_record_size(struct xe_device *xe)
- {
- 	size_t record_size = 0;
+ 	for_each_dss_steering(xecore, gt, group, instance) {
+ 		write_ptr_reg = xe_gt_mcr_unicast_read(gt, XEHPC_EUSTALL_REPORT, group, instance);
+ 		/* Clear any drop bits set and not cleared in the previous session. */
+@@ -796,6 +802,10 @@ static int xe_eu_stall_disable_locked(struct xe_eu_stall_data_stream *stream)
  
- 	if (xe->info.platform == XE_PVC)
- 		record_size = sizeof(struct xe_eu_stall_data_pvc);
-+	else if (GRAPHICS_VER(xe) >= 20)
-+		record_size = sizeof(struct xe_eu_stall_data_xe2);
+ 	cancel_delayed_work_sync(&stream->buf_poll_work);
  
- 	xe_assert(xe, is_power_of_2(record_size));
++	if (XE_WA(gt, 22016596838))
++		xe_gt_mcr_multicast_write(gt, ROW_CHICKEN2,
++					  _MASKED_BIT_DISABLE(DISABLE_DOP_GATING));
++
+ 	xe_force_wake_put(gt_to_fw(gt), XE_FW_RENDER);
+ 	xe_pm_runtime_put(gt_to_xe(gt));
  
-@@ -345,10 +368,16 @@ static bool eu_stall_data_buf_poll(struct xe_eu_stall_data_stream *stream)
- 
- static void clear_dropped_eviction_line_bit(struct xe_gt *gt, u16 group, u16 instance)
- {
-+	struct xe_device *xe = gt_to_xe(gt);
- 	u32 write_ptr_reg;
- 
--	/* On PVC, the overflow bit has to be cleared by writing 1 to it. */
--	write_ptr_reg = _MASKED_BIT_ENABLE(XEHPC_EUSTALL_REPORT_OVERFLOW_DROP);
-+	/* On PVC, the overflow bit has to be cleared by writing 1 to it.
-+	 * On Xe2 and later GPUs, the bit has to be cleared by writing 0 to it.
-+	 */
-+	if (GRAPHICS_VER(xe) >= 20)
-+		write_ptr_reg = _MASKED_BIT_DISABLE(XEHPC_EUSTALL_REPORT_OVERFLOW_DROP);
-+	else
-+		write_ptr_reg = _MASKED_BIT_ENABLE(XEHPC_EUSTALL_REPORT_OVERFLOW_DROP);
- 
- 	xe_gt_mcr_unicast_write(gt, XEHPC_EUSTALL_REPORT, write_ptr_reg, group, instance);
- }
-@@ -788,7 +817,7 @@ static const struct file_operations fops_eu_stall = {
- 
- static inline bool has_eu_stall_sampling_support(struct xe_device *xe)
- {
--	return xe->info.platform == XE_PVC;
-+	return xe->info.platform == XE_PVC || GRAPHICS_VER(xe) >= 20;
- }
- 
- static int xe_eu_stall_stream_open_locked(struct drm_device *dev,
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 228436532282..8e2cae7f7135 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -5,6 +5,7 @@
+ 22011391025	PLATFORM(DG2)
+ 22012727170	SUBPLATFORM(DG2, G11)
+ 22012727685	SUBPLATFORM(DG2, G11)
++22016596838	PLATFORM(PVC)
+ 18020744125	PLATFORM(PVC)
+ 1509372804	PLATFORM(PVC), GRAPHICS_STEP(A0, C0)
+ 1409600907	GRAPHICS_VERSION_RANGE(1200, 1250)
 -- 
 2.48.1
 
