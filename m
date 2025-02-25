@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC3F5C19F2E
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Feb 2025 04:42:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5826C19F2F
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Feb 2025 04:42:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35C6710E579;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 581D110E582;
 	Tue, 25 Feb 2025 04:42:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HRWuvJhB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LLxGU2cN";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CF2910E546;
- Tue, 25 Feb 2025 04:42:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 981CE10E54F;
+ Tue, 25 Feb 2025 04:42:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740458535; x=1771994535;
+ t=1740458536; x=1771994536;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=l0P7EPyVXLvHe0x996+zJ/GDjeNuLfZlOlj6bx/KWoQ=;
- b=HRWuvJhBXZX8P5KaTqCQ7SJWCpuWxEUTKvHdqfBUmlCXzwMsE/xpMEIj
- mMAaHaTl8UzE92eYVjDGKCfpBhmB6tWy6KACy72/uccKEPyOZACt4plSH
- Ho2Xx/bAPZt2uagxU8BpybufuVKFS7oJI51uIuvWLdkrzSnEif2eHFRIh
- ZLrYs7kLKi385gTRuPCo0WMuKlw4PLZpc2ogws+xzi5BE8P6tv4rpXfwJ
- ltQRTIuV6Z/XH6QyXdXokyH0vhiDvO79boQtXUQ4PNf8f8b7WrVA8Q/gZ
- s5PbEL+AVGxYDwGpvl+EDiN6MAfVOoxJvyQcAZbnBpFzJLrDbJLVRLO+Z g==;
-X-CSE-ConnectionGUID: fD+QhKVxRJ6RNNMp1iRGMw==
-X-CSE-MsgGUID: cXSATw3WQCmeDtHuqGRKEQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="51885030"
-X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; d="scan'208";a="51885030"
+ bh=4kGrMVv9bLY8UuT+9kVJjMHW5bznoJGJ6HpmiSXJl6s=;
+ b=LLxGU2cNNkSTxDZ/6VTvwRzlXJuO35B4m0SDb1Axg+NhwDur7Ia5LUK9
+ pbpoKcO+DdUjxk1gzybjY8qs5hEjXVXjvn0aM0go7nyJMFqLXnA8/mh4j
+ lEBraY2aHTTBprGs5f2oY4ZHnL6ENGZmvHSvK2fdr0hLRgql+mKA8wTUZ
+ HuvZKzbo/qa1uuV5twK63ZlGrtxl8s7tXtY6yBVIWR8qc5qpiuoSqaMwr
+ MVEqzngkrkXx/6uAfXkbXoSc1rpjY23ZvAeTauQHadbW99tXWhdpI1jvN
+ P6Wb0BeawqrrIXLp+VUeB7u6PA5tIRTbjZhEsn4h2KbQywn1gl/ng2Y89 g==;
+X-CSE-ConnectionGUID: bTz5JkPlTLW7hbZBoKrxGA==
+X-CSE-MsgGUID: vSG/llwpQwicumeqpvhN5w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="51885060"
+X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; d="scan'208";a="51885060"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2025 20:42:14 -0800
-X-CSE-ConnectionGUID: jrtdoxiBTiyyD041Fe+FTg==
-X-CSE-MsgGUID: os6vwKzqRvuEksDbMGwGLg==
+ 24 Feb 2025 20:42:15 -0800
+X-CSE-ConnectionGUID: UULpg/nFRF6FpFjBo8qxdA==
+X-CSE-MsgGUID: WyCEcqHBTICWZkfHCV1v3w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; d="scan'208";a="116290308"
+X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; d="scan'208";a="116290323"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2025 20:42:14 -0800
+ 24 Feb 2025 20:42:15 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com,
  thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
  felix.kuehling@amd.com, dakr@kernel.org
-Subject: [PATCH v6 21/32] drm/xe: Add SVM device memory mirroring
-Date: Mon, 24 Feb 2025 20:43:00 -0800
-Message-Id: <20250225044311.3178695-22-matthew.brost@intel.com>
+Subject: [PATCH v6 26/32] drm/xe: Add Xe SVM devmem_release GPU SVM vfunc
+Date: Mon, 24 Feb 2025 20:43:05 -0800
+Message-Id: <20250225044311.3178695-27-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250225044311.3178695-1-matthew.brost@intel.com>
 References: <20250225044311.3178695-1-matthew.brost@intel.com>
@@ -70,202 +70,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add SVM device memory mirroring which enables device pages for
-migration. Enabled via CONFIG_XE_DEVMEM_MIRROR Kconfig. Kconfig option
-defaults to enabled. If not enabled, SVM will work sans migration and
-KMD memory footprint will be less.
+Implement with a simple BO put which releases the device memory.
 
+v2:
+ - Use new drm_gpusvm_devmem_ops
 v3:
- - Add CONFIG_XE_DEVMEM_MIRROR
+ - Better commit message (Thomas)
 v4:
- - Fix Kconfig (Himal)
- - Use %pe to print errors (Thomas)
- - Fix alignment issue (Checkpatch)
-v5:
- - s/xe_mem_region/xe_vram_region (Rebase)
-v6:
- - Only compile if CONFIG_DRM_GPUSVM selected (CI, Lucas)
- - s/drm_info/drm_dbg/
+ - Use xe_bo_put_async (Thomas)
 
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h |  8 ++++
- drivers/gpu/drm/xe/xe_svm.c          | 62 +++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_svm.h          |  9 ++++
- drivers/gpu/drm/xe/xe_tile.c         |  5 +++
- 4 files changed, 82 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_svm.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index b171050eed50..325cb453167e 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -106,6 +106,14 @@ struct xe_vram_region {
- 	resource_size_t actual_physical_size;
- 	/** @mapping: pointer to VRAM mappable space */
- 	void __iomem *mapping;
-+	/** @pagemap: Used to remap device memory as ZONE_DEVICE */
-+	struct dev_pagemap pagemap;
-+	/**
-+	 * @hpa_base: base host physical address
-+	 *
-+	 * This is generated when remap device memory as ZONE_DEVICE
-+	 */
-+	resource_size_t hpa_base;
- 	/** @ttm: VRAM TTM manager */
- 	struct xe_ttm_vram_mgr ttm;
- };
 diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 80076f4dc4b4..f5854fa6e415 100644
+index 6e6a51eac5e5..cb3567b561be 100644
 --- a/drivers/gpu/drm/xe/xe_svm.c
 +++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -29,6 +29,11 @@ static unsigned long xe_svm_range_end(struct xe_svm_range *range)
- 	return drm_gpusvm_range_end(&range->base);
- }
- 
-+static void *xe_svm_devm_owner(struct xe_device *xe)
-+{
-+	return xe;
-+}
-+
- static struct drm_gpusvm_range *
- xe_svm_range_alloc(struct drm_gpusvm *gpusvm)
- {
-@@ -313,8 +318,8 @@ int xe_svm_init(struct xe_vm *vm)
- 		  xe_svm_garbage_collector_work_func);
- 
- 	err = drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM", &vm->xe->drm,
--			      current->mm, NULL, 0, vm->size,
--			      SZ_512M, &gpusvm_ops, fault_chunk_sizes,
-+			      current->mm, xe_svm_devm_owner(vm->xe), 0,
-+			      vm->size, SZ_512M, &gpusvm_ops, fault_chunk_sizes,
- 			      ARRAY_SIZE(fault_chunk_sizes));
- 	if (err)
- 		return err;
-@@ -449,3 +454,56 @@ bool xe_svm_has_mapping(struct xe_vm *vm, u64 start, u64 end)
- {
- 	return drm_gpusvm_has_mapping(&vm->svm.gpusvm, start, end);
- }
-+
-+#if IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR)
-+/**
-+ * xe_devm_add: Remap and provide memmap backing for device memory
-+ * @tile: tile that the memory region belongs to
-+ * @vr: vram memory region to remap
-+ *
-+ * This remap device memory to host physical address space and create
-+ * struct page to back device memory
-+ *
-+ * Return: 0 on success standard error code otherwise
-+ */
-+int xe_devm_add(struct xe_tile *tile, struct xe_vram_region *vr)
-+{
-+	struct xe_device *xe = tile_to_xe(tile);
-+	struct device *dev = &to_pci_dev(xe->drm.dev)->dev;
-+	struct resource *res;
-+	void *addr;
-+	int ret;
-+
-+	res = devm_request_free_mem_region(dev, &iomem_resource,
-+					   vr->usable_size);
-+	if (IS_ERR(res)) {
-+		ret = PTR_ERR(res);
-+		return ret;
-+	}
-+
-+	vr->pagemap.type = MEMORY_DEVICE_PRIVATE;
-+	vr->pagemap.range.start = res->start;
-+	vr->pagemap.range.end = res->end;
-+	vr->pagemap.nr_range = 1;
-+	vr->pagemap.ops = drm_gpusvm_pagemap_ops_get();
-+	vr->pagemap.owner = xe_svm_devm_owner(xe);
-+	addr = devm_memremap_pages(dev, &vr->pagemap);
-+	if (IS_ERR(addr)) {
-+		devm_release_mem_region(dev, res->start, resource_size(res));
-+		ret = PTR_ERR(addr);
-+		drm_err(&xe->drm, "Failed to remap tile %d memory, errno %pe\n",
-+			tile->id, ERR_PTR(ret));
-+		return ret;
-+	}
-+	vr->hpa_base = res->start;
-+
-+	drm_dbg(&xe->drm, "Added tile %d memory [%llx-%llx] to devm, remapped to %pr\n",
-+		tile->id, vr->io_start, vr->io_start + vr->usable_size, res);
-+	return 0;
-+}
-+#else
-+int xe_devm_add(struct xe_tile *tile, struct xe_vram_region *vr)
-+{
-+	return 0;
-+}
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index 35e044e492e0..49c35e9ec183 100644
---- a/drivers/gpu/drm/xe/xe_svm.h
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -11,6 +11,7 @@
- 
- #define XE_INTERCONNECT_VRAM DRM_INTERCONNECT_DRIVER
- 
-+struct xe_vram_region;
- struct xe_tile;
- struct xe_vm;
- struct xe_vma;
-@@ -48,6 +49,8 @@ static inline bool xe_svm_range_pages_valid(struct xe_svm_range *range)
- 	return drm_gpusvm_range_pages_valid(range->base.gpusvm, &range->base);
- }
- 
-+int xe_devm_add(struct xe_tile *tile, struct xe_vram_region *vr);
-+
- int xe_svm_init(struct xe_vm *vm);
- 
- void xe_svm_fini(struct xe_vm *vm);
-@@ -65,6 +68,12 @@ static inline bool xe_svm_range_pages_valid(struct xe_svm_range *range)
- 	return false;
- }
- 
-+static inline
-+int xe_devm_add(struct xe_tile *tile, struct xe_vram_region *vr)
-+{
-+	return 0;
-+}
-+
- static inline
- int xe_svm_init(struct xe_vm *vm)
- {
-diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-index d29658ff4dd4..0771acbbf367 100644
---- a/drivers/gpu/drm/xe/xe_tile.c
-+++ b/drivers/gpu/drm/xe/xe_tile.c
-@@ -13,6 +13,7 @@
- #include "xe_migrate.h"
- #include "xe_pcode.h"
- #include "xe_sa.h"
-+#include "xe_svm.h"
- #include "xe_tile.h"
- #include "xe_tile_sysfs.h"
- #include "xe_ttm_vram_mgr.h"
-@@ -160,6 +161,7 @@ static int tile_ttm_mgr_init(struct xe_tile *tile)
+@@ -3,6 +3,7 @@
+  * Copyright © 2024 Intel Corporation
   */
- int xe_tile_init_noalloc(struct xe_tile *tile)
- {
-+	struct xe_device *xe = tile_to_xe(tile);
- 	int err;
  
- 	err = tile_ttm_mgr_init(tile);
-@@ -168,6 +170,9 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
- 
- 	xe_wa_apply_tile_workarounds(tile);
- 
-+	if (xe->info.has_usm && IS_DGFX(xe))
-+		xe_devm_add(tile, &tile->mem.vram);
-+
- 	return xe_tile_sysfs_init(tile);
++#include "xe_bo.h"
+ #include "xe_gt_tlb_invalidation.h"
+ #include "xe_migrate.h"
+ #include "xe_pt.h"
+@@ -467,6 +468,13 @@ static struct xe_bo *to_xe_bo(struct drm_gpusvm_devmem *devmem_allocation)
+ 	return container_of(devmem_allocation, struct xe_bo, devmem_allocation);
  }
  
++static void xe_svm_devmem_release(struct drm_gpusvm_devmem *devmem_allocation)
++{
++	struct xe_bo *bo = to_xe_bo(devmem_allocation);
++
++	xe_bo_put_async(bo);
++}
++
+ static u64 block_offset_to_pfn(struct xe_vram_region *vr, u64 offset)
+ {
+ 	return PHYS_PFN(offset + vr->hpa_base);
+@@ -502,6 +510,7 @@ static int xe_svm_populate_devmem_pfn(struct drm_gpusvm_devmem *devmem_allocatio
+ 
+ __maybe_unused
+ static const struct drm_gpusvm_devmem_ops gpusvm_devmem_ops = {
++	.devmem_release = xe_svm_devmem_release,
+ 	.populate_devmem_pfn = xe_svm_populate_devmem_pfn,
+ 	.copy_to_devmem = xe_svm_copy_to_devmem,
+ 	.copy_to_ram = xe_svm_copy_to_ram,
 -- 
 2.34.1
 
