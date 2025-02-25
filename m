@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87319C021BB
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Feb 2025 16:49:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65FAAC021BB
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Feb 2025 16:50:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54BE210E766;
-	Tue, 25 Feb 2025 16:49:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B6DC10E78C;
+	Tue, 25 Feb 2025 16:50:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l3ryccr2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GsGh9iUX";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61E2F10E76A;
- Tue, 25 Feb 2025 16:49:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CFD610E74A;
+ Tue, 25 Feb 2025 16:49:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740502187; x=1772038187;
+ t=1740502198; x=1772038198;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=KPVVSSg5PwDXLfBno/JpBNXa1i4sHlj6pc8JqsSUULI=;
- b=l3ryccr2jtFuVg89w0c79AqVjGeAb83S0O6H3ECxvyhmhbkq0G9sPhge
- f5JTBgLOoa14IeoiiVMTB5QEPFm4c3xHSFmAsCccAIATf0FG70e/b+tgP
- c+GmIesVSYUTNLFpQt54NUA9UfZS06xZZysXzSm/EeFg3m/t/CvyeCM0N
- OQ91Vyu+wciWKMXXst6ynj/7esKKKMDWBKHOVxrInLbl+5q0XfeCzBBRX
- 5qU4zMXlcrTbISpdzm67amdT8yOm26JjjrOajq4BC5a8sjCn0PAQ+Hh5i
- bwSYAra+GRgeRkEw0XiFOT0U2xBLgjFykEs102Uts/+uo6P1vyyKXSCIb g==;
-X-CSE-ConnectionGUID: W+dhIEyJS0KqT5XSW+EJ0Q==
-X-CSE-MsgGUID: 0jB4stg1QtaEUBpGwyK0YQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11356"; a="41454445"
-X-IronPort-AV: E=Sophos;i="6.13,314,1732608000"; d="scan'208";a="41454445"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 08:49:47 -0800
-X-CSE-ConnectionGUID: orBLlGyaS3y5gOpWQC1Zrg==
-X-CSE-MsgGUID: MABaWO7zTg6M1yM4d0rHAw==
+ bh=+9p5InrNBRZ16Vtan+RZZUmRUOd6WCi5mY0ix5+lF7o=;
+ b=GsGh9iUXZpD9usSusChvB71l7Pl/GZ7pigltK0K85lkj+7HVP09eLCTk
+ 3A1mIvoylChAigah4vbK5gCip1Pm+8rC22OYv7ktD3QIjRwqO8VfHNeSb
+ sLIoLexHK5k35xkdSFOk+HeVulPwQ8/Pt+PKzMzptSi7HA3HNuyj0+xS5
+ w3m2TU/Y2XxzymXTueOmxss8Hr19BdMJYzOT3RZYivSJzH3pT+aopWrXp
+ mbmjOFuNlBo0zzIY2OFJoiHcGPt6a9ikHAvNOf84fkfZZMuK/lXpzNhQn
+ QNRDhI/7LuoJrzlr/AnsNyaQm/I29FSRMNlI1143cZUyaCDqlQ7hdRM/Z g==;
+X-CSE-ConnectionGUID: 1RNDv0CwSeaw2XJ/JnFSgQ==
+X-CSE-MsgGUID: xVlCLaBzRq6ts4KkVINFxA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="52741767"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="52741767"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2025 08:49:57 -0800
+X-CSE-ConnectionGUID: frIvNXTQRvWpxowLTXh5Gg==
+X-CSE-MsgGUID: CKM5fsVURgWfjwphnoiZkw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="116930249"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="121691825"
 Received: from monicael-mobl3 (HELO localhost) ([10.245.246.246])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 08:49:45 -0800
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2025 08:49:55 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 06/12] drm/i915/drrs: convert intel_drrs.[ch] to struct
- intel_display
-Date: Tue, 25 Feb 2025 18:49:07 +0200
-Message-Id: <02a5189e349f91e58d3907fdf8d0d3c4c5384f4d.1740502116.git.jani.nikula@intel.com>
+Subject: [PATCH 08/12] drm/i915/dpt: convert intel_dpt.[ch] interfaces to
+ struct intel_display
+Date: Tue, 25 Feb 2025 18:49:09 +0200
+Message-Id: <df2bf715639caeb662f08b776ba81bfe3c9288b9.1740502116.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1740502116.git.jani.nikula@intel.com>
 References: <cover.1740502116.git.jani.nikula@intel.com>
@@ -70,238 +70,139 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Going forward, struct intel_display is the main display device data
-pointer. Convert as much as possible of intel_drrs.[ch] to struct
-intel_display.
+pointer. Convert the intel_dpt.[ch] interfaces to struct intel_display,
+though the file being very i915 specific, it's hard to convert the
+implementation.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c       |  4 +-
- drivers/gpu/drm/i915/display/intel_drrs.c     | 39 +++++++++----------
- drivers/gpu/drm/i915/display/intel_drrs.h     | 10 ++---
- .../gpu/drm/i915/display/intel_frontbuffer.c  |  4 +-
- 4 files changed, 28 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dpt.c | 24 ++++++++++++------------
+ drivers/gpu/drm/i915/display/intel_dpt.h |  7 +++----
+ drivers/gpu/drm/i915/i915_driver.c       |  4 ++--
+ 3 files changed, 17 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 03ca2e02ab02..bf96433d63c3 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2912,7 +2912,7 @@ static bool can_enable_drrs(struct intel_connector *connector,
- 			    const struct intel_crtc_state *pipe_config,
- 			    const struct drm_display_mode *downclock_mode)
- {
--	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-+	struct intel_display *display = to_intel_display(connector);
- 
- 	if (pipe_config->vrr.enable)
- 		return false;
-@@ -2930,7 +2930,7 @@ static bool can_enable_drrs(struct intel_connector *connector,
- 	if (pipe_config->has_pch_encoder)
- 		return false;
- 
--	if (!intel_cpu_transcoder_has_drrs(i915, pipe_config->cpu_transcoder))
-+	if (!intel_cpu_transcoder_has_drrs(display, pipe_config->cpu_transcoder))
- 		return false;
- 
- 	return downclock_mode &&
-diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/i915/display/intel_drrs.c
-index 0fec01b79b23..bf420400b505 100644
---- a/drivers/gpu/drm/i915/display/intel_drrs.c
-+++ b/drivers/gpu/drm/i915/display/intel_drrs.c
-@@ -65,10 +65,10 @@ const char *intel_drrs_type_str(enum drrs_type drrs_type)
- 	return str[drrs_type];
- }
- 
--bool intel_cpu_transcoder_has_drrs(struct drm_i915_private *i915,
-+bool intel_cpu_transcoder_has_drrs(struct intel_display *display,
- 				   enum transcoder cpu_transcoder)
- {
--	struct intel_display *display = &i915->display;
-+	struct drm_i915_private *i915 = to_i915(display->drm);
- 
- 	if (HAS_DOUBLE_BUFFERED_M_N(display))
- 		return true;
-@@ -80,16 +80,16 @@ static void
- intel_drrs_set_refresh_rate_pipeconf(struct intel_crtc *crtc,
- 				     enum drrs_refresh_rate refresh_rate)
- {
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 	enum transcoder cpu_transcoder = crtc->drrs.cpu_transcoder;
- 	u32 bit;
- 
--	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
-+	if (display->platform.valleyview || display->platform.cherryview)
- 		bit = TRANSCONF_REFRESH_RATE_ALT_VLV;
- 	else
- 		bit = TRANSCONF_REFRESH_RATE_ALT_ILK;
- 
--	intel_de_rmw(dev_priv, TRANSCONF(dev_priv, cpu_transcoder),
-+	intel_de_rmw(display, TRANSCONF(display, cpu_transcoder),
- 		     bit, refresh_rate == DRRS_REFRESH_RATE_LOW ? bit : 0);
- }
- 
-@@ -132,13 +132,13 @@ static void intel_drrs_schedule_work(struct intel_crtc *crtc)
- 
- static unsigned int intel_drrs_frontbuffer_bits(const struct intel_crtc_state *crtc_state)
- {
-+	struct intel_display *display = to_intel_display(crtc_state);
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
- 	unsigned int frontbuffer_bits;
- 
- 	frontbuffer_bits = INTEL_FRONTBUFFER_ALL_MASK(crtc->pipe);
- 
--	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc,
-+	for_each_intel_crtc_in_pipe_mask(display->drm, crtc,
- 					 crtc_state->joiner_pipes)
- 		frontbuffer_bits |= INTEL_FRONTBUFFER_ALL_MASK(crtc->pipe);
- 
-@@ -222,13 +222,13 @@ static void intel_drrs_downclock_work(struct work_struct *work)
- 	mutex_unlock(&crtc->drrs.mutex);
- }
- 
--static void intel_drrs_frontbuffer_update(struct drm_i915_private *dev_priv,
-+static void intel_drrs_frontbuffer_update(struct intel_display *display,
- 					  unsigned int all_frontbuffer_bits,
- 					  bool invalidate)
- {
- 	struct intel_crtc *crtc;
- 
--	for_each_intel_crtc(&dev_priv->drm, crtc) {
-+	for_each_intel_crtc(display->drm, crtc) {
- 		unsigned int frontbuffer_bits;
- 
- 		mutex_lock(&crtc->drrs.mutex);
-@@ -262,7 +262,7 @@ static void intel_drrs_frontbuffer_update(struct drm_i915_private *dev_priv,
+diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c b/drivers/gpu/drm/i915/display/intel_dpt.c
+index 8b1f0e92a11c..fca7294b1def 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpt.c
++++ b/drivers/gpu/drm/i915/display/intel_dpt.c
+@@ -183,7 +183,7 @@ void intel_dpt_unpin_from_ggtt(struct i915_address_space *vm)
  
  /**
-  * intel_drrs_invalidate - Disable Idleness DRRS
-- * @dev_priv: i915 device
-+ * @display: display device
-  * @frontbuffer_bits: frontbuffer plane tracking bits
+  * intel_dpt_resume - restore the memory mapping for all DPT FBs during system resume
+- * @i915: device instance
++ * @display: display device instance
   *
-  * This function gets called everytime rendering on the given planes start.
-@@ -270,15 +270,15 @@ static void intel_drrs_frontbuffer_update(struct drm_i915_private *dev_priv,
-  *
-  * Dirty frontbuffers relevant to DRRS are tracked in busy_frontbuffer_bits.
+  * Restore the memory mapping during system resume for all framebuffers which
+  * are mapped to HW via a GGTT->DPT page table. The content of these page
+@@ -193,26 +193,26 @@ void intel_dpt_unpin_from_ggtt(struct i915_address_space *vm)
+  * This function must be called after the mappings in GGTT have been restored calling
+  * i915_ggtt_resume().
   */
--void intel_drrs_invalidate(struct drm_i915_private *dev_priv,
-+void intel_drrs_invalidate(struct intel_display *display,
- 			   unsigned int frontbuffer_bits)
+-void intel_dpt_resume(struct drm_i915_private *i915)
++void intel_dpt_resume(struct intel_display *display)
  {
--	intel_drrs_frontbuffer_update(dev_priv, frontbuffer_bits, true);
-+	intel_drrs_frontbuffer_update(display, frontbuffer_bits, true);
+ 	struct drm_framebuffer *drm_fb;
+ 
+-	if (!HAS_DISPLAY(i915))
++	if (!HAS_DISPLAY(display))
+ 		return;
+ 
+-	mutex_lock(&i915->drm.mode_config.fb_lock);
+-	drm_for_each_fb(drm_fb, &i915->drm) {
++	mutex_lock(&display->drm->mode_config.fb_lock);
++	drm_for_each_fb(drm_fb, display->drm) {
+ 		struct intel_framebuffer *fb = to_intel_framebuffer(drm_fb);
+ 
+ 		if (fb->dpt_vm)
+ 			i915_ggtt_resume_vm(fb->dpt_vm, true);
+ 	}
+-	mutex_unlock(&i915->drm.mode_config.fb_lock);
++	mutex_unlock(&display->drm->mode_config.fb_lock);
  }
  
  /**
-  * intel_drrs_flush - Restart Idleness DRRS
-- * @dev_priv: i915 device
-+ * @display: display device
-  * @frontbuffer_bits: frontbuffer plane tracking bits
+  * intel_dpt_suspend - suspend the memory mapping for all DPT FBs during system suspend
+- * @i915: device instance
++ * @display: display device instance
   *
-  * This function gets called every time rendering on the given planes has
-@@ -288,10 +288,10 @@ void intel_drrs_invalidate(struct drm_i915_private *dev_priv,
-  *
-  * Dirty frontbuffers relevant to DRRS are tracked in busy_frontbuffer_bits.
+  * Suspend the memory mapping during system suspend for all framebuffers which
+  * are mapped to HW via a GGTT->DPT page table.
+@@ -220,23 +220,23 @@ void intel_dpt_resume(struct drm_i915_private *i915)
+  * This function must be called before the mappings in GGTT are suspended calling
+  * i915_ggtt_suspend().
   */
--void intel_drrs_flush(struct drm_i915_private *dev_priv,
-+void intel_drrs_flush(struct intel_display *display,
- 		      unsigned int frontbuffer_bits)
+-void intel_dpt_suspend(struct drm_i915_private *i915)
++void intel_dpt_suspend(struct intel_display *display)
  {
--	intel_drrs_frontbuffer_update(dev_priv, frontbuffer_bits, false);
-+	intel_drrs_frontbuffer_update(display, frontbuffer_bits, false);
- }
+ 	struct drm_framebuffer *drm_fb;
  
- /**
-@@ -312,7 +312,7 @@ void intel_drrs_crtc_init(struct intel_crtc *crtc)
- static int intel_drrs_debugfs_status_show(struct seq_file *m, void *unused)
- {
- 	struct intel_crtc *crtc = m->private;
--	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 	const struct intel_crtc_state *crtc_state;
- 	int ret;
+-	if (!HAS_DISPLAY(i915))
++	if (!HAS_DISPLAY(display))
+ 		return;
  
-@@ -325,7 +325,7 @@ static int intel_drrs_debugfs_status_show(struct seq_file *m, void *unused)
- 	mutex_lock(&crtc->drrs.mutex);
+-	mutex_lock(&i915->drm.mode_config.fb_lock);
++	mutex_lock(&display->drm->mode_config.fb_lock);
  
- 	seq_printf(m, "DRRS capable: %s\n",
--		   str_yes_no(intel_cpu_transcoder_has_drrs(i915,
-+		   str_yes_no(intel_cpu_transcoder_has_drrs(display,
- 							    crtc_state->cpu_transcoder)));
+-	drm_for_each_fb(drm_fb, &i915->drm) {
++	drm_for_each_fb(drm_fb, display->drm) {
+ 		struct intel_framebuffer *fb = to_intel_framebuffer(drm_fb);
  
- 	seq_printf(m, "DRRS enabled: %s\n",
-@@ -353,7 +353,7 @@ DEFINE_SHOW_ATTRIBUTE(intel_drrs_debugfs_status);
- static int intel_drrs_debugfs_ctl_set(void *data, u64 val)
- {
- 	struct intel_crtc *crtc = data;
--	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 	struct intel_crtc_state *crtc_state;
- 	struct drm_crtc_commit *commit;
- 	int ret;
-@@ -375,8 +375,7 @@ static int intel_drrs_debugfs_ctl_set(void *data, u64 val)
- 			goto out;
+ 		if (fb->dpt_vm)
+ 			i915_ggtt_suspend_vm(fb->dpt_vm, true);
  	}
  
--	drm_dbg(&i915->drm,
--		"Manually %sactivating DRRS\n", val ? "" : "de");
-+	drm_dbg_kms(display->drm, "Manually %sactivating DRRS\n", val ? "" : "de");
+-	mutex_unlock(&i915->drm.mode_config.fb_lock);
++	mutex_unlock(&display->drm->mode_config.fb_lock);
+ }
  
- 	if (val)
- 		intel_drrs_activate(crtc_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_drrs.h b/drivers/gpu/drm/i915/display/intel_drrs.h
-index 0982f95eab72..32b45a93a68f 100644
---- a/drivers/gpu/drm/i915/display/intel_drrs.h
-+++ b/drivers/gpu/drm/i915/display/intel_drrs.h
-@@ -10,21 +10,21 @@
+ struct i915_address_space *
+diff --git a/drivers/gpu/drm/i915/display/intel_dpt.h b/drivers/gpu/drm/i915/display/intel_dpt.h
+index 1f88b0ee17e7..db521401b828 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpt.h
++++ b/drivers/gpu/drm/i915/display/intel_dpt.h
+@@ -8,18 +8,17 @@
  
- enum drrs_type;
- enum transcoder;
+ #include <linux/types.h>
+ 
 -struct drm_i915_private;
- struct intel_atomic_state;
-+struct intel_connector;
- struct intel_crtc;
- struct intel_crtc_state;
--struct intel_connector;
+-
+ struct i915_address_space;
+ struct i915_vma;
 +struct intel_display;
+ struct intel_framebuffer;
  
--bool intel_cpu_transcoder_has_drrs(struct drm_i915_private *i915,
-+bool intel_cpu_transcoder_has_drrs(struct intel_display *display,
- 				   enum transcoder cpu_transcoder);
- const char *intel_drrs_type_str(enum drrs_type drrs_type);
- bool intel_drrs_is_active(struct intel_crtc *crtc);
- void intel_drrs_activate(const struct intel_crtc_state *crtc_state);
- void intel_drrs_deactivate(const struct intel_crtc_state *crtc_state);
--void intel_drrs_invalidate(struct drm_i915_private *dev_priv,
-+void intel_drrs_invalidate(struct intel_display *display,
- 			   unsigned int frontbuffer_bits);
--void intel_drrs_flush(struct drm_i915_private *dev_priv,
-+void intel_drrs_flush(struct intel_display *display,
- 		      unsigned int frontbuffer_bits);
- void intel_drrs_crtc_init(struct intel_crtc *crtc);
- void intel_drrs_crtc_debugfs_add(struct intel_crtc *crtc);
-diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-index 2fa4b0bf27c3..89a145b3194c 100644
---- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-+++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-@@ -99,7 +99,7 @@ static void frontbuffer_flush(struct drm_i915_private *i915,
+ void intel_dpt_destroy(struct i915_address_space *vm);
+ struct i915_vma *intel_dpt_pin_to_ggtt(struct i915_address_space *vm,
+ 				       unsigned int alignment);
+ void intel_dpt_unpin_from_ggtt(struct i915_address_space *vm);
+-void intel_dpt_suspend(struct drm_i915_private *i915);
+-void intel_dpt_resume(struct drm_i915_private *i915);
++void intel_dpt_suspend(struct intel_display *display);
++void intel_dpt_resume(struct intel_display *display);
+ struct i915_address_space *
+ intel_dpt_create(struct intel_framebuffer *fb);
+ u64 intel_dpt_offset(struct i915_vma *dpt_vma);
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 1dfd6269b355..613084fd0097 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -1070,7 +1070,7 @@ static int i915_drm_suspend(struct drm_device *dev)
+ 	intel_encoder_suspend_all(&dev_priv->display);
  
- 	might_sleep();
- 	intel_td_flush(display);
--	intel_drrs_flush(i915, frontbuffer_bits);
-+	intel_drrs_flush(display, frontbuffer_bits);
- 	intel_psr_flush(display, frontbuffer_bits, origin);
- 	intel_fbc_flush(i915, frontbuffer_bits, origin);
- }
-@@ -189,7 +189,7 @@ void __intel_fb_invalidate(struct intel_frontbuffer *front,
+ 	/* Must be called before GGTT is suspended. */
+-	intel_dpt_suspend(dev_priv);
++	intel_dpt_suspend(display);
+ 	i915_ggtt_suspend(to_gt(dev_priv)->ggtt);
  
- 	might_sleep();
- 	intel_psr_invalidate(display, frontbuffer_bits, origin);
--	intel_drrs_invalidate(i915, frontbuffer_bits);
-+	intel_drrs_invalidate(display, frontbuffer_bits);
- 	intel_fbc_invalidate(i915, frontbuffer_bits, origin);
- }
+ 	i9xx_display_sr_save(display);
+@@ -1187,7 +1187,7 @@ static int i915_drm_resume(struct drm_device *dev)
+ 			setup_private_pat(gt);
+ 
+ 	/* Must be called after GGTT is resumed. */
+-	intel_dpt_resume(dev_priv);
++	intel_dpt_resume(display);
+ 
+ 	intel_dmc_resume(display);
  
 -- 
 2.39.5
