@@ -4,74 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBD55C282C9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92714C282C6
 	for <intel-xe@archiver.kernel.org>; Thu, 27 Feb 2025 16:30:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB50510EB43;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24BA710EB37;
 	Thu, 27 Feb 2025 16:30:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="QJvbRy2j";
+	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="TqAOEm8j";
 	dkim-atps=neutral
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com
- [209.85.128.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12FFC10EA52
- for <intel-xe@lists.freedesktop.org>; Thu, 27 Feb 2025 07:59:49 +0000 (UTC)
-Received: by mail-yw1-f172.google.com with SMTP id
- 00721157ae682-6f6c90b51c3so6274357b3.2
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Feb 2025 23:59:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1740643188; x=1741247988; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=nSc+079+8A2UaaEbdk2s1TkABylJ9XU2/wDzELRwQHM=;
- b=QJvbRy2jwjkkZWF686xLLMmcZU1Vn3dRPa5PUue8Bn9hGH8qAucMG/EqckKbICVOP5
- 55aIapaUuvVAX0nX7cLY1+qY+8s3pvFsvJa5uW4m99dZ72olJffOWR7A6mwNX04lM6mh
- JrDwRaE4tewI4eDpDKY91GH60RRTphOFk0I48nybnM3iHaLiJiyYhXl2Z0Ak5+ZM0YPo
- Jcosbnvh87fnZN+RLyi12tXF8+0MS7IqmBlT+BvgQ0HFk0uv/1dvqnOjqoI83jV3rOC7
- sFo9uI9Mq7/TUE4kxq50yPxtShgzRRk/YM2LnJtPLKo47qKFmaiT7ut2RC6AfFgG1Tnd
- 9pXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1740643188; x=1741247988;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=nSc+079+8A2UaaEbdk2s1TkABylJ9XU2/wDzELRwQHM=;
- b=sTL5uLeghzrI28bkhmujFDBNIEHdIztJ1DjLfmKu9NtNU3qseCBWrlzX2tTS92BiTM
- Lr3MxaEeCcZ65zQ22coj1j4f9+r+aRDj1nqd6RyCp6GXvkywOOIxiYMmRdiLmxTZ91cL
- DLQfOhgvxn42yjp+PtOjLpJxvaiZeqH8C84OLoDki+/TGHtf/+IYzw8Hu1+5HVvYYgzt
- oDRuzY6oLPfu0bhK1qURZ2buGzk/QMC1DJVqtvV5oJQc+BJWNkCoDcBGavqHV74YBzen
- GSs5nXpFrHCgoQC8KSKeFtsOSlji19wLBGuPjeA4q5lI9UeV7+DxyG0nW/t2AVgUfeKv
- c8Rw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCV2tFDjVZVhDmclnQKiJFUNZoTbFTwKXl1XOUzcd4BFVmU/S6vjcisIJNqj3E8ts7dHCyeBAvqXew==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy6gJB+35EkMEn991o3TjnIgK5Ajm34TjLi8EtCz0RkyKx3MY+v
- ydl6vNpZdcBF1oEJeHAX8PYVv4PMZV/JjUpt0NK+f7HBKAYoIA/ryPp4z+K85VviFZyrGEyi73U
- 9GUl0h51Fi3st/CtNshChGcFF+duwjn7/Ww8e+w==
-X-Gm-Gg: ASbGncsbT+zm1+qvo7+OLqq2ngB1HBzxa9xChnB/y7cZnV0yKUpKLimFgQwwei6x97J
- FbpXhwIcxRIjTZCQpcMwQecAd3HtNY9fChjYTcW0R7KNWW8KYaPX06icEw4HJc9k/RSa3DO7UV/
- cOZR+4r6Ye5wBHh6DmPxxWsZ4+DGNX+6QoUNwD0NA=
-X-Google-Smtp-Source: AGHT+IHVFYt2iVWqDyXx8Mvq/HZWoT02pDpPYRP6V8QTTL/psbz+obrHE062zj/fbkSbC2Zd+7nMGXcjVAVnYQYX01o=
-X-Received: by 2002:a05:690c:62ca:b0:6f9:9e80:46bf with SMTP id
- 00721157ae682-6fd10ac8628mr101291087b3.29.1740643187897; Wed, 26 Feb 2025
- 23:59:47 -0800 (PST)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
+ [213.167.242.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE16510E699;
+ Tue, 25 Feb 2025 13:45:30 +0000 (UTC)
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi
+ [91.158.153.178])
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id B326D82E;
+ Tue, 25 Feb 2025 14:43:57 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1740491038;
+ bh=JFC+miNbc8z+8hh+i0aV4a/eWqJcZlJ5xtiAErPuktY=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=TqAOEm8jY6aGAOQ9BLN0iANHoj9EuhjvkXpBKUccldcKmyKt0NStoy2kNYhgofeYZ
+ cUbxnpnvTsSayJiVOvExLLPlDM3UqxjFgDEnVVrdk1CIPi9iMuRQtQFt1hZU3tRKsg
+ 1eg95cZ+G1uKJIo455If+sXgT6dP77C6jL2Y3A4E=
+Message-ID: <f74af5cc-bca8-45c1-9204-b362fcd6f998@ideasonboard.com>
+Date: Tue, 25 Feb 2025 15:45:21 +0200
 MIME-Version: 1.0
-References: <SJ1PR11MB612979B35DD84F5AFFB789D5B9C22@SJ1PR11MB6129.namprd11.prod.outlook.com>
-In-Reply-To: <SJ1PR11MB612979B35DD84F5AFFB789D5B9C22@SJ1PR11MB6129.namprd11.prod.outlook.com>
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Date: Thu, 27 Feb 2025 08:59:37 +0100
-X-Gm-Features: AQ5f1Joh6_ZfrOfMFX8XG1ZiJZIZZWuoVmnN5jaDFgcX94OQDJBurWds9xxECBo
-Message-ID: <CACMJSeseiRfAHQX0+vjL0DO+Xd-+RwW5rs4RkYHCfP6NKz2DLA@mail.gmail.com>
-Subject: Re: Regression on linux-next (next-20250225)
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
- "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>, "Saarinen,
- Jani" <jani.saarinen@intel.com>, 
- "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Thu, 27 Feb 2025 16:30:01 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 02/25] drm/dumb-buffers: Provide helper to set pitch
+ and size
+To: Thomas Zimmermann <tzimmermann@suse.de>,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com,
+ simona@ffwll.ch
+Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ imx@lists.linux.dev, linux-samsung-soc@vger.kernel.org,
+ nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
+ spice-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+References: <20250218142542.438557-1-tzimmermann@suse.de>
+ <20250218142542.438557-3-tzimmermann@suse.de>
+ <dcd59a75-7945-4a2e-99f9-3abbb3e9de14@ideasonboard.com>
+ <355ed315-61fa-4a9d-b72b-8d5bc7b5a16c@suse.de>
+ <596b960e-71f8-4c2c-9abe-058206df1dfb@ideasonboard.com>
+ <87ca2b81-a67a-468b-ae2b-30d02a3a64bc@suse.de>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <87ca2b81-a67a-468b-ae2b-30d02a3a64bc@suse.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Thu, 27 Feb 2025 16:30:02 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,100 +113,137 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 26 Feb 2025 at 21:29, Borah, Chaitanya Kumar
-<chaitanya.kumar.borah@intel.com> wrote:
->
-> Hello Bartosz,
->
-> Hope you are doing well. I am Chaitanya from the linux graphics team in I=
-ntel.
->
-> This mail is regarding a regression we are seeing in our CI runs[1] on li=
-nux-next repository.
->
-> Since the version next-20250225 [2], we are seeing the following regressi=
-on
->
-> `````````````````````````````````````````````````````````````````````````=
-````````
-> <4>[    8.483421] gpio gpiochip1: gpiochip_add_data_with_key: get_directi=
-on failed: -22
-> <4>[    8.483427] ------------[ cut here ]------------
-> <4>[    8.483428] WARNING: CPU: 20 PID: 444 at drivers/gpio/gpiolib.c:349=
- gpiochip_get_direction+0x63/0x90
-> <4>[    8.483430] Modules linked in: intel_ish_ipc(+) e1000e(+) spi_intel=
-(+) i2c_smbus idma64(+) mei intel_ishtp realtek(+) processor_thermal_device=
-_pci(+) processor_thermal_device processor_thermal_wt_hint video processor_=
-thermal_rfim int3403_thermal intel_pmc_core(+) processor_thermal_rapl intel=
-_rapl_common intel_vpu processor_thermal_wt_req ucsi_acpi(+) processor_ther=
-mal_power_floor drm_shmem_helper pmt_telemetry processor_thermal_mbox pmt_c=
-lass typec_ucsi int3400_thermal drm_kms_helper acpi_tad intel_hid int340x_t=
-hermal_zone thunderbolt(+) acpi_thermal_rel intel_vsec typec pinctrl_meteor=
-point(+) sparse_keymap wmi pinctrl_meteorlake acpi_pad dm_multipath msr nvm=
-e_fabrics fuse efi_pstore nfnetlink ip_tables x_tables autofs4
-> <4>[    8.483465] CPU: 20 UID: 0 PID: 444 Comm: (udev-worker) Tainted: G =
-       W          6.14.0-rc4-next-20250225-next-20250225-g0226d0ce98a4+ #1
-> <4>[    8.483467] Tainted: [W]=3DWARN
-> <4>[    8.483467] Hardware name: Intel Corporation Arrow Lake Client Plat=
-form/MTL-S UDIMM 2DPC EVCRB, BIOS MTLSFWI1.R00.4400.D85.2410100007 10/10/20=
-24
-> <4>[    8.483468] RIP: 0010:gpiochip_get_direction+0x63/0x90
-> <4>[    8.483470] Code: f8 02 5d 0f 4d c2 31 d2 31 f6 31 ff c3 cc cc cc c=
-c 48 8b 47 08 be ff ff ff ff 48 8d b8 c0 06 00 00 e8 31 2d 95 00 85 c0 75 b=
-9 <0f> 0b 48 8b 43 38 48 85 c0 75 b7 0f 0b b8 a1 ff ff ff 5b 41 5c 5d
-> <4>[    8.483472] RSP: 0018:ffffc9000206f590 EFLAGS: 00010246
-> <4>[    8.483473] RAX: 0000000000000000 RBX: ffff8881087964d0 RCX: 000000=
-0000000000
-> <4>[    8.483474] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 000000=
-0000000000
-> <4>[    8.483476] RBP: ffffc9000206f5a0 R08: 0000000000000000 R09: 000000=
-0000000000
-> <4>[    8.483477] R10: 0000000000000000 R11: 0000000000000000 R12: 000000=
-00000001a4
-> <4>[    8.483478] R13: ffffffff87f39780 R14: ffff8881087964d0 R15: 000000=
-00000001a4
-> <4>[    8.483479] FS:  00007f4df7e6f8c0(0000) GS:ffff8888dbf09000(0000) k=
-nlGS:0000000000000000
-> <4>[    8.483480] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> <4>[    8.483481] CR2: 00007f4df8003966 CR3: 0000000118522005 CR4: 000000=
-0000f70ef0
-> <4>[    8.483482] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 000000=
-0000000000
-> <4>[    8.483483] DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 000000=
-0000000400
-> <4>[    8.483484] PKRU: 55555554
-> <4>[    8.483485] Call Trace:
-> <4>[    8.483486]  <TASK>
-> <4>[    8.483487]  ? show_regs+0x6c/0x80
-> <4>[    8.483490]  ? __warn+0x93/0x1c0
-> <4>[    8.483492]  ? gpiochip_get_direction+0x63/0x90
-> `````````````````````````````````````````````````````````````````````````=
-````````
-> Detailed log can be found in [3].
->
-> After bisecting the tree, the following patch [4] seems to be the first "=
-bad"
-> commit
->
-> `````````````````````````````````````````````````````````````````````````=
-````````````````````````````````
-> commit e623c4303ed112a1fc20aec8427ba8407e2842e6
-> Author: Bartosz Golaszewski mailto:bartosz.golaszewski@linaro.org
-> Date:   Mon Feb 10 11:52:02 2025 +0100
->
->     gpiolib: sanitize the return value of gpio_chip::get_direction()
-> `````````````````````````````````````````````````````````````````````````=
-````````````````````````````````
->
-> We also verified that if we revert the patch the issue is not seen.
->
-> Could you please check why the patch causes this regression and provide a=
- fix if necessary?
->
+Hi,
 
-Hi!
+On 21/02/2025 11:19, Thomas Zimmermann wrote:
+> Hi
+> 
+> Am 20.02.25 um 11:53 schrieb Tomi Valkeinen:
+>> Hi,
+>>
+>> On 20/02/2025 12:05, Thomas Zimmermann wrote:
+>>> Hi
+>>>
+>>> Am 20.02.25 um 10:18 schrieb Tomi Valkeinen:
+>>> [...]
+>>>>> + * Color modes of 10, 12, 15, 30 and 64 are only supported for use by
+>>>>> + * legacy user space. Please don't use them in new code. Other modes
+>>>>> + * are not support.
+>>>>> + *
+>>>>> + * Do not attempt to allocate anything but linear framebuffer memory
+>>>>> + * with single-plane RGB data. Allocation of other framebuffer
+>>>>> + * layouts requires dedicated ioctls in the respective DRM driver.
+>>>>
+>>>> According to this, every driver that supports, say, NV12, should 
+>>>> implement their own custom ioctl to do the exact same thing? And, of 
+>>>> course, every userspace app that uses, say, NV12, should then add 
+>>>> code for all these platforms to call the custom ioctls?
+>>>
+>>> Yes, that's exactly the current status.
+>>>
+>>> There has been discussion about a new dumb-create ioctl that takes a 
+>>> DRM format as parameter. I'm all for it, but it's out of the scope 
+>>> for this series.
+>>>
+>>>>
+>>>> As libdrm's modetest currently supports YUV formats with dumb 
+>>>> buffers, should we remove that code, as it's not correct and I'm 
+>>>> sure people use libdrm code as a reference?
+>>>
+>>> Of course not.
+>>>
+>>>>
+>>>> Well, I'm not serious above, but I think all my points from the 
+>>>> earlier version are still valid. I don't like this. It changes the 
+>>>> parameters of the ioctl (bpp used to be bits-per-pixel, not it's 
+>>>> "color mode"), and the behavior of the ioctl, behavior that we've 
+>>>> had for a very long time, and we have no idea how many users there 
+>>>> are that will break (could be none, of course). And the 
+>>>> documentation changes make the current behavior and uses wrong or 
+>>>> legacy.
+>>>
+>>> Before I go into details about this statement, what use case exactly 
+>>> are you referring to when you say that behavior changes?
+>>
+>> For every dumb_buffer allocation with bpp that is not divisible by 8, 
+>> the result is different, i.e. instead of DIV_ROUND_UP(width * bpp, 8), 
+>> we now have width * DIV_ROUND_UP(bpp, 8). This, of course, depends on 
+>> the driver implementation. Some already do the latter.
+> 
+> The current dumb-buffer code does a stride computation at [1], which is 
+> correct for all cases; although over-allocates sometimes. It's the one 
+> you describe as "width * DIV_ROUND_UP(bpp, 8)". It's in the ioctl entry 
+> point, so it's somewhat authoritative for all driver's implementations. 
+> It's also used by several drivers.
+> 
+> The other variant, "DIV_ROUND_UP(width * bpp, 8)", is used by gem-dma, 
+> gem-shmem and others. It can give incorrect results and possibly OOBs. 
+> To give a simple example, let's allocate 15-bit XRGB1555. Bpp is 15. 
+> With a width of 1024, that would result in 1920 bytes per scanline. But 
+> because XRGB1555 has a filler bit, so the pixel is actually 16 bit and a 
+> scanline needs to be 2048 bytes. The new code fixes that. This is not 
+> just a hypothetical scenario: we do have drivers that support XRGB1555 
+> and some of them also export a preferred_depth of 15 to userspace. [2] 
+> In the nearby comment, you'll see that this value is meant for dumb 
+> buffers.
+> 
+> Rounding up the depth value in user space is possible for RGB, but not 
+> for YUV. Here different pixel planes have a different number of bits. 
+> Sometimes pixels are sharing bits. The value of bits-per-pixel becomes 
+> meaningless. That's why it's also deprecated in struct drm_format_info. 
+> The struct instead uses a more complicated per-plane calculation to 
+> compute the number of bits per plane. [3] The user-space code currently 
+> doing YUV on dumb buffers simply got lucky.
+> 
+> [1] https://elixir.bootlin.com/linux/v6.13.3/source/drivers/gpu/drm/ 
+> drm_dumb_buffers.c#L77
+> [2] https://elixir.bootlin.com/linux/v6.13.3/source/include/drm/ 
+> drm_mode_config.h#L885
+> [3] https://elixir.bootlin.com/linux/v6.13.3/source/include/drm/ 
+> drm_fourcc.h#L83
+> 
+>>
+>> This change also first calls the drm_driver_color_mode_format(), which 
+>> could change the behavior even more, but afaics at the moment does not. 
+> 
+> Because currently each driver does its own thing, it can be hard to 
+> write user space that reliably allocates on all drivers. That's why it's 
+> important that parameters are not just raw numbers, but have well- 
+> defined semantics. The raw bpp is meaningless; it's also important to 
+> know which formats are associated with each value. Otherwise, you might 
+> get a dumb buffer with a bpp of 15, but it will be displayed 
+> incorrectly. This patch series finally implements this and clearly 
+> documents the assumptions behind the interfaces. The assumptions 
+> themselves have always existed.
 
-This is fixed in my tree and should be in next tomorrow, sorry for the trou=
-ble.
+This is perhaps where the biggest gap in understanding/view is: I have 
+always thought dumb-buffer's "bpp" to mean bits-per-pixel, where, for 
+more complex formats, "pixel" is not necessarily a visible pixel but a 
+container unit of some kind. So bpp * width = stride.
 
-Bartosz
+It would not occur to me to allocate XRGB1555 dumb-buffer with 15 bpp, 
+but 16 bpp, as that's what a pixel takes. I have never seen the 
+dumb-buffer bpp connected directly to the pixel format (that's what the 
+ADDFB brings in).
+
+I may be alone with that thinking, but afaics the documentation leans a 
+bit on my interpretation (instead of considering bpp as a "color mode"), 
+although admittedly the docs also don't really say much so this may be 
+fully just my interpretation:
+
+https://man.archlinux.org/man/drm-memory.7.en
+
+https://cgit.freedesktop.org/drm/libdrm/tree/include/drm/drm_mode.h#n1055
+
+I (mostly) understand all the complexities around here, thanks to your 
+replies, and I think I'm ok with the series as it doesn't break anything 
+(need to test the v3, though).
+
+I still don't like it though =). And I would be happier with the simpler 
+"bpp" interpretation that I mentioned above, instead of it being a color 
+mode. But we can't have it both ways, and perhaps it's better to unify 
+the code and have the behavior explained explicitly as you do in this 
+series, even if the explanation only covers some RGB formats.
+
+  Tomi
+
