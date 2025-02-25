@@ -4,60 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35D40C021B2
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Feb 2025 09:15:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9937C021B8
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Feb 2025 09:20:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 095A410E5D7;
-	Tue, 25 Feb 2025 09:15:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8569710E5DB;
+	Tue, 25 Feb 2025 09:20:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Telka2Jd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S3LTKdpu";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C057310E5D7;
- Tue, 25 Feb 2025 09:15:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 789F110E5DC
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Feb 2025 09:20:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740474940; x=1772010940;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=6Ks6dJ/j9ZvGy2v26kpSzMeJzpdMNCijOD2bN8qVZdM=;
- b=Telka2JdKr0DxidGdyvRNDNYgZlWIHngUsSV0prUEI43q8ipukZ4/mUg
- gq7QTvDpm8X9Qh8IuIvAdosGGM/sj8rTcPsOMTril6epmy84Kjdc6ZkuE
- 1oZmIHdrWWImnxkKcQi9ftu7/9b/JPuGBIBNebYuPyH3KnZrj8w0Uf7/1
- eySjstl46LNMoLSP5oxzL34WeXl8qtbqXqAI/wqF17/mUcxG2IyOXT0YC
- RP7ZslzPGj9ElRpHeueAQAclvaw1oG9lngujx1B6X6uQmA17h7I2wSalh
- VjNKoWU8z9xRarfIaqxr1JE/WqnbzFmhbkIKWgcLXkc3PE76Gf+CIg+9r g==;
-X-CSE-ConnectionGUID: IOvebwAKTwmYv11utW/HsQ==
-X-CSE-MsgGUID: xevWx2IPTe20Auv6jQVSdA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="51906554"
-X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; d="scan'208";a="51906554"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 01:15:39 -0800
-X-CSE-ConnectionGUID: dJHz3U94TKGkbRpQmqw0FQ==
-X-CSE-MsgGUID: eYYG18FvQuOtX5per/U/bA==
+ t=1740475233; x=1772011233;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=vcIO6ufd/CStZunQg4ScgAWiZZTrQHIpooQT11utN8s=;
+ b=S3LTKdpu5phVSNuAC77/FTLmoyJBunt1uFvxbAJlO9zHPPrWzauXUaJU
+ 8LD6xhwspDiCySGDFwbRG7LyCvTZ2PvXiOC9u3BlCfH2wwPkliwSP8Otb
+ XJuw+lEO7rXTGYPOsE1VpIChHM/0vQvQcUX/SZMgQlVH4acux7OQ4k49Q
+ cFZhAGpNHPu7U8A9XcBVX5Sj45o37hCiTq3M7FCIuehzwCJbn7JN0OB4g
+ SVV019sF+fjPl5Evr3zcWa/uLlJDIGju8HlL0LAbk9sRATqZ0XlgXRyo5
+ +G1VCC51eX7X8m85SY1BuDglOEaoGIFpTMdgmD/rBRBmpwfzHGMZ0rFMt g==;
+X-CSE-ConnectionGUID: tcGb7jhmSlysSYYLDWFCZQ==
+X-CSE-MsgGUID: lqu09Jb3Ro6J90KuJ4J3pg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="40507671"
+X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; d="scan'208";a="40507671"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2025 01:20:32 -0800
+X-CSE-ConnectionGUID: s+b/KBp8S0eUI6sbsZLnkQ==
+X-CSE-MsgGUID: frzz1wgRQRKANKMruwQKPA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="147219400"
-Received: from monicael-mobl3 (HELO localhost) ([10.245.246.246])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 01:15:37 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Manna, Animesh" <animesh.manna@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Cc: "Hogander, Jouni" <jouni.hogander@intel.com>, "B, Jeevan"
- <jeevan.b@intel.com>
-Subject: RE: [PATCH v4 5/8] drm/i915/lobf: Add debug interface for lobf
-In-Reply-To: <PH7PR11MB5981C1F2229A4736E441FE11F9C32@PH7PR11MB5981.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250224080847.326350-1-animesh.manna@intel.com>
- <20250224080847.326350-6-animesh.manna@intel.com>
- <87jz9f7gsv.fsf@intel.com>
- <PH7PR11MB5981C1F2229A4736E441FE11F9C32@PH7PR11MB5981.namprd11.prod.outlook.com>
-Date: Tue, 25 Feb 2025 11:15:35 +0200
-Message-ID: <87wmde5qrs.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="117261769"
+Received: from hchegond-ivm1.jf.intel.com ([10.165.21.208])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2025 01:20:32 -0800
+From: Harish Chegondi <harish.chegondi@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: ashutosh.dixit@intel.com, james.ausmus@intel.com,
+ felix.j.degrood@intel.com, matthew.olson@intel.com,
+ shubham.kumar@intel.com, joshua.santosh.ranjan@intel.com,
+ lucas.demarchi@intel.com, Harish Chegondi <harish.chegondi@intel.com>
+Subject: [PATCH v11 1/8] drm/xe/topology: Add a function to find the index of
+ the last enabled DSS in a mask
+Date: Tue, 25 Feb 2025 01:20:18 -0800
+Message-ID: <1f8b422df961183cfc2c0324395827cd07fe604c.1740474556.git.harish.chegondi@intel.com>
+X-Mailer: git-send-email 2.48.1
+In-Reply-To: <cover.1740474556.git.harish.chegondi@intel.com>
+References: <cover.1740474556.git.harish.chegondi@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,185 +70,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 25 Feb 2025, "Manna, Animesh" <animesh.manna@intel.com> wrote:
->> -----Original Message-----
->> From: Nikula, Jani <jani.nikula@intel.com>
->> Sent: Monday, February 24, 2025 4:26 PM
->> To: Manna, Animesh <animesh.manna@intel.com>; intel-
->> gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
->> Cc: Hogander, Jouni <jouni.hogander@intel.com>; B, Jeevan
->> <jeevan.b@intel.com>; Manna, Animesh <animesh.manna@intel.com>
->> Subject: Re: [PATCH v4 5/8] drm/i915/lobf: Add debug interface for lobf
->>
->> On Mon, 24 Feb 2025, Animesh Manna <animesh.manna@intel.com> wrote:
->> > Add an interface in debugfs which will help in debugging LOBF feature.
->> >
->> > v1: Initial version.
->> > v2:
->> > - Remove FORCE_EN flag. [Jouni]
->> > - Change prefix from I915 to INTEL. [Jani]
->> > - Use u8 instead of bool for lobf-debug flag. [Jani]
->> >
->> > Signed-off-by: Animesh Manna <animesh.manna@intel.com>
->> > ---
->> >  drivers/gpu/drm/i915/display/intel_alpm.c     | 51 +++++++++++++++++++
->> >  .../drm/i915/display/intel_display_types.h    |  5 ++
->> >  2 files changed, 56 insertions(+)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c
->> > b/drivers/gpu/drm/i915/display/intel_alpm.c
->> > index 83719ee1721c..5c70677ac3c0 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_alpm.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
->> > @@ -276,6 +276,9 @@ void intel_alpm_lobf_compute_config(struct
->> intel_dp *intel_dp,
->> >     int waketime_in_lines, first_sdp_position;
->> >     int context_latency, guardband;
->> >
->> > +   if (intel_dp->alpm_parameters.lobf_debug &
->> INTEL_LOBF_DEBUG_DISABLE)
->> > +           return;
->> > +
->> >     if (!intel_dp_is_edp(intel_dp))
->> >             return;
->> >
->> > @@ -449,6 +452,51 @@ static int i915_edp_lobf_info_show(struct
->> > seq_file *m, void *data)
->> >
->> >  DEFINE_SHOW_ATTRIBUTE(i915_edp_lobf_info);
->> >
->> > +static int
->> > +i915_edp_lobf_debug_get(void *data, u64 *val) {
->> > +   struct intel_display *display = data;
->>
->> Where do you pass display as data? It's connector?
->
-> I should pass display, thanks for catching.
+Last enabled DSS in a DSS mask can help estimate the maximum DSSes enabled
+in the DSS mask, as the enabled DSSes can be discontiguous.
 
-It's a connector based debugfs file, so you should probably keep passing
-the connector, and just assign to connector here.
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_topology.h | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
->
->>
->> > +   struct intel_encoder *encoder;
->> > +   int ret = -ENODEV;
->> > +
->> > +   for_each_intel_dp(display->drm, encoder) {
->> > +           struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
->> > +
->> > +           if (!intel_dp_is_edp(intel_dp))
->> > +                   return ret;
->>
->> What is this supposed to do?
->
-> Other than EDP connector lobg_debug is not available, so will remove the above condition check.
-
-This debugfs file is connector based. Why are we looping all dp anyway?
-I don't understand.
-
->>
->> > +
->> > +           // TODO: split to each edp transcoder.
->>
->> What does this mean?
->
-> Currently lobf debug option only supported with one EDP, TODO added to support second EDP.
-
-Again, this debugfs file is connector based. I don't understand the TODO
-at all.
-
->
->>
->> > +           *val = READ_ONCE(intel_dp->alpm_parameters.lobf_debug);
->>
->> You read this from all intel_dp and combine into one? What?
->
-> Will return from here, will take care in next version.
->
->> > +           ret = 0;
->> > +   }
->> > +
->> > +   return ret;
->> > +}
->> > +
->> > +static int
->> > +i915_edp_lobf_debug_set(void *data, u64 val) {
->> > +   struct intel_display *display = data;
->> > +   struct intel_encoder *encoder;
->> > +   int ret = -ENODEV;
->> > +
->> > +   for_each_intel_dp(display->drm, encoder) {
->> > +           struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
->> > +
->> > +           if (!intel_dp_is_edp(intel_dp))
->> > +                   return ret;
->> > +
->> > +           // TODO: split to each edp transcoder.
->> > +           intel_dp->alpm_parameters.lobf_debug = val;
->> > +   }
->> > +
->> > +   return ret;
->>
->> So this always returns failure?
->
-> Missed to set the ret variable, will take care in next version.
-> Thanks for review.
->
-> Regards,
-> Animesh
->>
->> > +}
->> > +
->> > +DEFINE_SIMPLE_ATTRIBUTE(i915_edp_lobf_debug_fops,
->> > +                   i915_edp_lobf_debug_get,
->> i915_edp_lobf_debug_set,
->> > +                   "%llu\n");
->> > +
->> >  void intel_alpm_lobf_debugfs_add(struct intel_connector *connector)
->> > {
->> >     struct intel_display *display = to_intel_display(connector); @@
->> > -458,6 +506,9 @@ void intel_alpm_lobf_debugfs_add(struct
->> intel_connector *connector)
->> >         connector->base.connector_type !=
->> DRM_MODE_CONNECTOR_eDP)
->> >             return;
-
-You'll only have these debugfs files for eDP connectors anyway. There's
-no need for eDP checks later.
-
-BR,
-Jani.
-
-
->> >
->> > +   debugfs_create_file("i915_edp_lobf_debug", 0644, root,
->> > +                       connector, &i915_edp_lobf_debug_fops);
->> > +
->> >     debugfs_create_file("i915_edp_lobf_info", 0444, root,
->> >                         connector, &i915_edp_lobf_info_fops);  } diff --git
->> > a/drivers/gpu/drm/i915/display/intel_display_types.h
->> > b/drivers/gpu/drm/i915/display/intel_display_types.h
->> > index b78721c451b8..b6ec9a8fadd9 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->> > @@ -1808,6 +1808,11 @@ struct intel_dp {
->> >             u8 aux_less_wake_lines;
->> >             u8 silence_period_sym_clocks;
->> >             u8 lfps_half_cycle_num_of_syms;
->> > +
->> > +#define INTEL_LOBF_DEBUG_MODE_MASK         0x0f
->> > +#define INTEL_LOBF_DEBUG_DEFAULT           0x00
->> > +#define INTEL_LOBF_DEBUG_DISABLE           0x01
->> > +           u8 lobf_debug;
->>
->> Just overly complex still.
->>
->> >     } alpm_parameters;
->> >
->> >     u8 alpm_dpcd;
->>
->> --
->> Jani Nikula, Intel
-
+diff --git a/drivers/gpu/drm/xe/xe_gt_topology.h b/drivers/gpu/drm/xe/xe_gt_topology.h
+index 746b325bbf6e..a72d26ba0653 100644
+--- a/drivers/gpu/drm/xe/xe_gt_topology.h
++++ b/drivers/gpu/drm/xe/xe_gt_topology.h
+@@ -25,6 +25,19 @@ void xe_gt_topology_init(struct xe_gt *gt);
+ 
+ void xe_gt_topology_dump(struct xe_gt *gt, struct drm_printer *p);
+ 
++/**
++ * xe_gt_topology_mask_last_dss() - Returns the index of the last DSS in a mask.
++ * @mask: Input DSS mask
++ *
++ * Return: Index of the last DSS in the input DSS mask,
++ *	   XE_MAX_DSS_FUSE_BITS if DSS mask is empty.
++ */
++static inline unsigned int
++xe_gt_topology_mask_last_dss(const xe_dss_mask_t mask)
++{
++	return find_last_bit(mask, XE_MAX_DSS_FUSE_BITS);
++}
++
+ unsigned int
+ xe_dss_mask_group_ffs(const xe_dss_mask_t mask, int groupsize, int groupnum);
+ 
 -- 
-Jani Nikula, Intel
+2.48.1
+
