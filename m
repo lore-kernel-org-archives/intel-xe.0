@@ -4,165 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8357C021B8
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 18:05:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71CEAC021BC
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 18:06:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47B8F10E9A4;
-	Wed, 26 Feb 2025 18:05:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D82510E9A7;
+	Wed, 26 Feb 2025 18:06:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MwcN6t6+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ejtr0WiV";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D250610E9A4
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Feb 2025 18:05:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 554AC10E9A7;
+ Wed, 26 Feb 2025 18:06:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740593146; x=1772129146;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=OD3fgVFWCiFMTTbvokqc3v50Nd7xWGVb4mcW6Mll5/E=;
- b=MwcN6t6+GnQCRFwE2HdHNXjbPM5yiVyRI8gjmsVjoi9fkgncUMdUEh62
- c5qC3AIBEHBqr5o1+zDAn13mzibbabJAs8ConDq8qA9QRvGqnEZmKikB/
- e3nwFYUO22t8EC8dy9WrQZPmcPJK4Rp1+MVCV+knFjbg37UHLF8WHK/1y
- c3Gv90HmhbpH8Wr97UWjdnmqs9cclXSidxa0nggeMr4TCOUqkGeT5I3RW
- mVpNYfJLRNtdcbp/bDIDfPsP0Ex4XrRtSAhHkq7za0x9ptNPfyjaGkcGR
- MDqxFf4i/7ZhvBDXnG6rDNUTBoxOaLi6YO1mSNSZP4+uR0qDrYSeyJNqh w==;
-X-CSE-ConnectionGUID: 592qrRgVQRChzzBR9srspw==
-X-CSE-MsgGUID: ugF7w4QzSR+8z8Fa7r9GeQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="45109152"
-X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="45109152"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2025 10:05:43 -0800
-X-CSE-ConnectionGUID: ZDHEg2mRQaSsp+h95Fw4nQ==
-X-CSE-MsgGUID: /kJMHdluSYajJPwKyc59IA==
+ t=1740593164; x=1772129164;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=boaa1rKuGkNF7eS2wMk8VzWuW0fhOvb8sYxWDEMTkvw=;
+ b=ejtr0WiVyhnPoQpFF8JHPoiMasIr6OkD96tHeQw2Ct85381+45K96LO3
+ ZUkXIkbO0/hNZedkBVg6i4HeYAwixK2FLaG9zAramaVNweuBa8v9QI0hM
+ vNe6+bVz/c6noiw/7ImDPopD89XWPiFMZ0el/EZylikViFEJ8HQ4Gqvu5
+ /rGQ9mLTYPUvubgrRoFB30TztGfPJnXC34/2AwJ4ZPxaitB2He/qOTC76
+ KAH/TJy3CH211LF1QlBmpz8/VrGEfkLTrcmlnB+QmFRXwM9EVb7jBJ6jF
+ +GRikMhTVg4GoqoyQVURJ7VmkT+ypCDuSEiswKZK428SL8v8K8g2br+m8 Q==;
+X-CSE-ConnectionGUID: r0f4fZctTrKw4d5JLCh+Vg==
+X-CSE-MsgGUID: Vd5hapblRnW3b2NE3/L8Nw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="41653954"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="41653954"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2025 10:06:04 -0800
+X-CSE-ConnectionGUID: 5peu6zjNR4eePUvGme2ghw==
+X-CSE-MsgGUID: QqTddDsIRJy4z9CjhFwz9g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="122034402"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2025 10:05:43 -0800
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Wed, 26 Feb 2025 10:05:42 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Wed, 26 Feb 2025 10:05:42 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.173)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Wed, 26 Feb 2025 10:05:42 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Fgmh4FhBb28MD2MKBcx8pczsUC0Rlb5KfcPN3cT3UtBBzNKW6cJ8hjJvem/ytleemK0YiOhcwBELzNaw7cJ6qqj0hSplJVWsV8T4OsZE1hUZoMRrEBTLEojPicbMXN1XQ9z2zHdtaFD13p4YNbHrbjnTpFVA3TEwWjT0K7bYgBNLLXWmioPerVMFspffWqJ5L1xpKsqnVEQD1WnVSQtAGxal31QDdcrjHlINp8zMG1lt4IxetjCUb2iulUWR5fQAyaqavU9Ivv6/G1GyzTCsbT0K5ncH46XrKQ3Evjx2VpQA3XAhkYeH2MnruBu07B9Dw8SZBB4n5LH7bjAh8Df4TQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JQ+ujowpKxKGlg0H8ftdpJQhnXZJARq4akY4htwrBJg=;
- b=CCkyppc1oJueLojfKobzp804u1tuhN+JX8TIkbUdIWYDKwZml1aCsft2H3jBF3hnDSNIipgvFtdVRP7wZFTLeWUrLBtnNPdGp18SiFK85E8bWx8P9vRWAedPtofs56jSkb3xv8QgCUBmuAF6bx4pcMuROVJ6KCFXuRw/V5gb9PugCDgX703bEBbWmOqWPj6e9LpO+IH6GvwYSFUwSzByaKoMp48+AqPNm/8msvIjy8k5/LGtI5mxsfUyVA/JKA2PwKPLWGLw/hGhG3/hZIEtcVESaT+R25FEMnE0TvmUShxhGKQTEbC2YTfuev/FwYyEbaO/6/Loumi90xItbkFwyg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by DS0PR11MB7382.namprd11.prod.outlook.com (2603:10b6:8:131::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.21; Wed, 26 Feb
- 2025 18:05:41 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%3]) with mapi id 15.20.8489.018; Wed, 26 Feb 2025
- 18:05:41 +0000
-Date: Wed, 26 Feb 2025 12:05:37 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-CC: <intel-xe@lists.freedesktop.org>, <kernel-dev@igalia.com>, Matt Roper
- <matthew.d.roper@intel.com>, Gustavo =?utf-8?B?Sm9zw6k=?= de Sousa
- <gustavo.sousa@intel.com>
-Subject: Re: [PATCH 2/4] drm/xe/gen12: Add Wa_1604555607
-Message-ID: <ekcbjeapswo73vrk5o6c2rrokyu3csujwtmdkzt5l5uapwzcnm@lbsee67yzjjj>
-References: <20250226112106.28173-1-tvrtko.ursulin@igalia.com>
- <20250226112106.28173-3-tvrtko.ursulin@igalia.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20250226112106.28173-3-tvrtko.ursulin@igalia.com>
-X-ClientProxiedBy: MW4PR04CA0078.namprd04.prod.outlook.com
- (2603:10b6:303:6b::23) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="116641759"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO [10.245.245.27])
+ ([10.245.245.27])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2025 10:05:58 -0800
+Message-ID: <cc402132-2e82-41d2-8981-f1b9a795c1a1@intel.com>
+Date: Wed, 26 Feb 2025 18:05:55 +0000
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DS0PR11MB7382:EE_
-X-MS-Office365-Filtering-Correlation-Id: f88d5de7-aaa9-43c1-c83e-08dd56902e3c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|7053199007;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Wr5pkGqNTI34iLVoZ5La245FY8Xxkr6IcR9Yu9162cclEs3w7Z+L5BtobB6I?=
- =?us-ascii?Q?DQLsdONE1gIznX3Hax4SxZndrksWiDqa4QlbDtDe1WJC6XHK02V+6bUPHp6g?=
- =?us-ascii?Q?YzHQJvTTFc2urovzUzWr+sIonlEZsrhmMc2qXi8TaUU9XGqxN7Nbti3xYYaE?=
- =?us-ascii?Q?3ICcOlsQKSh33OOdOEVUHybc0412AEi6CxaEb81UH/RMuaB2IjBEUcF3E2Fg?=
- =?us-ascii?Q?j5gUv1E1QkJPxq8eaCmKxjil7xbVDQiDck6WczEir5o2/VDM/YhFLT0HnHKS?=
- =?us-ascii?Q?fi3vXrdkbK1BWVnplROuPyCpSp8mfUsy1jIaxu0WlFUYmiNxhkvMg1g9SNVu?=
- =?us-ascii?Q?uXCg6yZboa5Slc/vFiXTpNgyzogSlBOQyBpTAOY0wJVxNDIltwJ2ymDpPnsm?=
- =?us-ascii?Q?fLgTINr56hDaECIyLs53k0YV0ZQREiv2xfSWhMA0diBGGW1lXY90+T4pprPa?=
- =?us-ascii?Q?z1rvAOvZHaIEwUPffLj8a3MffQ9KhH7FHyLh1Nv6WjAV5jJbxV3HuhBh3kof?=
- =?us-ascii?Q?NmK9qXc6UbcycAt83RKxdiZeE8ktUbwjGVyEHO7qg8msp0jfRUwFLmYP0PHB?=
- =?us-ascii?Q?bzc1MHrhPcpGtVMYFOq3KnGMYFkh1gafywVPJhyg1fDYI32UT9kDt9FuuWCd?=
- =?us-ascii?Q?O93krRNRXrtLEjw2Y5Wb/dJvvsrQW/IQYqvPr3L8rbQz65n6ZkvkWOnmSa7t?=
- =?us-ascii?Q?Z8XhA/JOFUMK2GBQTl5FQqmW7bSDlmXNkt93fLyZ3gKzbnuMmqg/kHMhaVUh?=
- =?us-ascii?Q?GE4SjBo6exsD8np2JW3lNfUBjb/RK1rDgZ2/PYh0mfW5c1OI3jh2TV1LuTMS?=
- =?us-ascii?Q?P3Hb1veXdWfXi8xko4e/Ts0RJiKVGrQJLG/E03mVlo3xCbcE9ET1t+XJI3bz?=
- =?us-ascii?Q?5j5FuwQ2LDj4ApqTfH5frIsw+RTqlBrgqyrR1JfSTdlb4bQoGfBy8Q2D1770?=
- =?us-ascii?Q?BhJTgnjqhfroFz7cMk40roiLtTbhoeUbtTn+XwNMi6JDWaNC32NCpkUCvV0T?=
- =?us-ascii?Q?XTTXVO4h2JsPYwVybcoO5uwT8HOjNYLl1L41Rp8VmjBCBqEqZrXUWbPoQqvQ?=
- =?us-ascii?Q?vSLIgrGavnQAHrXd0E9YtTNwCreLRvXkcRyuosBcY0+elsIepGismkxJIekI?=
- =?us-ascii?Q?TtgstwXUd8jgAUDQ5/kDzCEZZ6ZJ1CV4bYspF1V1knHSKpq65iafE0f1iDk0?=
- =?us-ascii?Q?tFFjXZbeP3nk98K5Xx63birf6y9K3XFkAKzfRMT2yrxksMTDukYhbE+dr+XB?=
- =?us-ascii?Q?zwlACDSbmaaFDJYEyb11n2Z7eiBqsXBD89iglgUfw+uSolOXTbK3QdhExVaO?=
- =?us-ascii?Q?F9vUkmlhJbgixtu/lQsnkw1P5hTrpEnOFM9WAMfoghnmsCdqZ91md2hJMRUe?=
- =?us-ascii?Q?CEMh6ZjXY/HIeM7rcGxibWEh86Sc?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(7053199007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?lwCs7HRUOWSDtfAPAzN7RuJrWRz3wCb3wiHcddoAg/aVEXrUY+Xqn5lTzfC0?=
- =?us-ascii?Q?/hvijU1+AsazZDstvxcZVTR/mI+fu1wJCFVpELWROj33nqXvFzPpqcbW9M8B?=
- =?us-ascii?Q?z27g9ZN5dmalym1M+2tA5nb1G+VWVTmFxr2N2YJpSu57RAuJblqlQQnd7VrF?=
- =?us-ascii?Q?SItHwlZKhoiSVQ5+rlrm7Ar5Dnkkwu46BVecFMTK1Mtxp5V30ktRIrUK6u9I?=
- =?us-ascii?Q?kIWuaadUP2UImIeMomGB0s2PS4ZUoeWmWbRHLOw58omvRvdzKqpU+kTehTBC?=
- =?us-ascii?Q?jdwCD5VN243TFyqrDXESrCFuTG7ldFpJsQqwJfItl/dNYGiiyJ4Ss2EMQHCG?=
- =?us-ascii?Q?lusRwM+5jnjZlByREOZizkNWHpQtDF1rGT9aCbR8zmJgBBmjny+KGLBMfwLU?=
- =?us-ascii?Q?IXIcu9/amIconm06Uf3V9O0WcRPicdwrqnNetev0yEsARvsJQ3T12gj5p+0M?=
- =?us-ascii?Q?kyNd+MGjq7soLAzDnu+dnuUL+Im5whG9FqjhNUL9vZ430RNFjWY3T9TFRkku?=
- =?us-ascii?Q?H59cpX70ZFSQjOdoNsSriJr2y5ryEc0axpPxYAi0mnz3LbQ7pGm9egQAE9C5?=
- =?us-ascii?Q?QihapZ7DabNxqRM1+zYmueNqAucvy+LARsQQ5TxwfOHdtyQqBbgbb062yg6r?=
- =?us-ascii?Q?yEaqPUeOSaAVc8QfBTAmS5bZz9bl7DMjxqMp1RYIkVPEfJOrRNKd4WAgTxHh?=
- =?us-ascii?Q?3qcZ/ceBmRxFQgKyHFZyZVAphRfGRku0PePYxWTWBPdd8SCDIqClIyDh+tI6?=
- =?us-ascii?Q?AVWtgMZLt20rZ76fiLzwehUTEsm8dBbYOqEg10/s7oefOor2Gz0GCqHiuR4n?=
- =?us-ascii?Q?/x+6u/LVmS0LdS7blPTjjroSSkVNp9hQ/xxUPFpeO+/GmsLUxIFvBohWEmCD?=
- =?us-ascii?Q?zxx/OfEUN71hJ9VLkPKFcdCN5TODnBmyTBRfDPl0NwN6ng3RpOG9slFaHxDC?=
- =?us-ascii?Q?FbO12LcGraD37IClefFXDqNePB3y06cAIMt+Ja8/SYmJXaXqVk0YSq9DoPs7?=
- =?us-ascii?Q?oslBDEWbcjUhvpaxaZXya1yEPZe8dNQq5PlrIfcSMVZuzi8omyyxBmxGfzeb?=
- =?us-ascii?Q?0jqplvt5or/Vwgv++c8n1LgUo6MQkbR94PRMuHvZdFPBw294NeYneR6jpKxC?=
- =?us-ascii?Q?Yga3V4VArPRZ3Rti1eWUHjJL5q0Ac8PW3bnaHQMHRDcnv+ZtVqhAd29OOpQ5?=
- =?us-ascii?Q?Fur5ShdGWTUSTt2tSPJpKGglSWBj6/rKAvYegAlENWCtXhYKm+cREtlWLgNg?=
- =?us-ascii?Q?LmNIxVbEplGa5Z75Ug7ZQsymF3yLZobqeyE2RWf4qLVeYWNL1ehagHkrOVJF?=
- =?us-ascii?Q?rVoKJDBA4L+p5FYjff/XQ57nTGmATog+HYJGcyX0/akrEkJntMQ1ouWFsUXU?=
- =?us-ascii?Q?Yc8gEjQhBOsXMigPnHM1GFTFJddVhRFfOsD/Qkvkn+XY2zfrbuQhcLTPOaTu?=
- =?us-ascii?Q?TV9K0C44sFQVc4CiA5BspmkS7wAnquBo0iTmwKVsS5CprZwXQnf7QZ/a4hR+?=
- =?us-ascii?Q?P+IcQSoQ4p1fQI2sboSMph+5nGiP2uwoHll+XidpCrVakxLJNjAObjiz+vQW?=
- =?us-ascii?Q?OpHViR9cQK72yuLq9a13jMtNPWmbc6syN7Q/5uzLhOAXLfeLp0wFJU3HA0Gg?=
- =?us-ascii?Q?eg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f88d5de7-aaa9-43c1-c83e-08dd56902e3c
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2025 18:05:40.9510 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YFgxdQOoZoLbboiERX+8Cbk8r5RNIzdYyCvKbJcKfHkkpaY6ipOOtjqaxcZ/a1Q24PYUIPRBKFc5ziGuX3caT7bsVuDb6LXDTB9tORVEv8U=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7382
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] drm/xe/bo: fix alignment with non-4K kernel page sizes
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, jeffbai@aosc.io,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ =?UTF-8?Q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>,
+ Francois Dugast <francois.dugast@intel.com>,
+ Alan Previn <alan.previn.teres.alexis@intel.com>,
+ Zhanjun Dong <zhanjun.dong@intel.com>, Matt Roper
+ <matthew.d.roper@intel.com>, Mateusz Naklicki <mateusz.naklicki@intel.com>,
+ Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>,
+ =?UTF-8?Q?Zbigniew_Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Kexy Biscuit <kexybiscuit@aosc.io>,
+ Shang Yatsen <429839446@qq.com>, stable@vger.kernel.org,
+ Haien Liang <27873200@qq.com>, Shirong Liu <lsr1024@qq.com>,
+ Haofeng Wu <s2600cw2@126.com>
+References: <20250226-xe-non-4k-fix-v1-0-80f23b5ee40e@aosc.io>
+ <20250226-xe-non-4k-fix-v1-1-80f23b5ee40e@aosc.io>
+ <wcfp3i6jbsmvpokvbvs5n2yxffhrgu6jyoan3e3m6tb7wbjaq6@tbsit7ignlef>
+ <Z76WIgGvvhlbYl/j@lstrano-desk.jf.intel.com>
+ <af689d4b-204d-495b-a7e8-0f7632b43153@intel.com>
+ <Z78vTt8Ph9opzJmf@lstrano-desk.jf.intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <Z78vTt8Ph9opzJmf@lstrano-desk.jf.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -177,75 +91,261 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Feb 26, 2025 at 11:21:04AM +0000, Tvrtko Ursulin wrote:
->According to the i915 code base, apart from setting the GS timer, all
->Gen12 platforms should also set the TDS timer. Make it so.
->
->Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->References: 2b5298b0aa09 ("drm/i915/gen12: Add recommended hardware tuning value")
->Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->Cc: Matt Roper <matthew.d.roper@intel.com>
->---
->This needs checking by someone with access to the proper docs and proper
->workaround database.
+On 26/02/2025 15:12, Matthew Brost wrote:
+> On Wed, Feb 26, 2025 at 10:38:40AM +0000, Matthew Auld wrote:
+>> On 26/02/2025 04:18, Matthew Brost wrote:
+>>> On Tue, Feb 25, 2025 at 09:13:09PM -0600, Lucas De Marchi wrote:
+>>>> On Wed, Feb 26, 2025 at 10:00:18AM +0800, Mingcong Bai via B4 Relay wrote:
+>>>>> From: Mingcong Bai <jeffbai@aosc.io>
+>>>>>
+>>>>> The bo/ttm interfaces with kernel memory mapping from dedicated GPU
+>>>>> memory. It is not correct to assume that SZ_4K would suffice for page
+>>>>> alignment as there are a few hardware platforms that commonly uses non-4K
+>>>>> pages - for instance, currently, Loongson 3A5000/6000 devices (of the
+>>>>> LoongArch architecture) commonly uses 16K kernel pages.
+>>>>>
+>>>>> Per my testing Intel Xe/Arc families of GPUs works on at least
+>>>>> Loongson 3A6000 platforms so long as "Above 4G Decoding" and "Resizable
+>>>>> BAR" were enabled in the EFI firmware settings. I tested this patch series
+>>>>> on my Loongson XA61200 (3A6000) motherboard with an Intel Arc A750 GPU.
+>>>>>
+>>>>> Without this fix, the kernel will hang at a kernel BUG():
+>>>>>
+>>>>> [    7.425445] ------------[ cut here ]------------
+>>>>> [    7.430032] kernel BUG at drivers/gpu/drm/drm_gem.c:181!
+>>>>> [    7.435330] Oops - BUG[#1]:
+>>>>> [    7.438099] CPU: 0 UID: 0 PID: 102 Comm: kworker/0:4 Tainted: G            E      6.13.3-aosc-main-00336-g60829239b300-dirty #3
+>>>>> [    7.449511] Tainted: [E]=UNSIGNED_MODULE
+>>>>> [    7.453402] Hardware name: Loongson Loongson-3A6000-HV-7A2000-1w-V0.1-EVB/Loongson-3A6000-HV-7A2000-1w-EVB-V1.21, BIOS Loongson-UDK2018-V4.0.05756-prestab
+>>>>> [    7.467144] Workqueue: events work_for_cpu_fn
+>>>>> [    7.471472] pc 9000000001045fa4 ra ffff8000025331dc tp 90000001010c8000 sp 90000001010cb960
+>>>>> [    7.479770] a0 900000012a3e8000 a1 900000010028c000 a2 000000000005d000 a3 0000000000000000
+>>>>> [    7.488069] a4 0000000000000000 a5 0000000000000000 a6 0000000000000000 a7 0000000000000001
+>>>>> [    7.496367] t0 0000000000001000 t1 9000000001045000 t2 0000000000000000 t3 0000000000000000
+>>>>> [    7.504665] t4 0000000000000000 t5 0000000000000000 t6 0000000000000000 t7 0000000000000000
+>>>>> [    7.504667] t8 0000000000000000 u0 90000000029ea7d8 s9 900000012a3e9360 s0 900000010028c000
+>>>>> [    7.504668] s1 ffff800002744000 s2 0000000000000000 s3 0000000000000000 s4 0000000000000001
+>>>>> [    7.504669] s5 900000012a3e8000 s6 0000000000000001 s7 0000000000022022 s8 0000000000000000
+>>>>> [    7.537855]    ra: ffff8000025331dc ___xe_bo_create_locked+0x158/0x3b0 [xe]
+>>>>> [    7.544893]   ERA: 9000000001045fa4 drm_gem_private_object_init+0xcc/0xd0
+>>>>> [    7.551639]  CRMD: 000000b0 (PLV0 -IE -DA +PG DACF=CC DACM=CC -WE)
+>>>>> [    7.557785]  PRMD: 00000004 (PPLV0 +PIE -PWE)
+>>>>> [    7.562111]  EUEN: 00000000 (-FPE -SXE -ASXE -BTE)
+>>>>> [    7.566870]  ECFG: 00071c1d (LIE=0,2-4,10-12 VS=7)
+>>>>> [    7.571628] ESTAT: 000c0000 [BRK] (IS= ECode=12 EsubCode=0)
+>>>>> [    7.577163]  PRID: 0014d000 (Loongson-64bit, Loongson-3A6000-HV)
+>>>>> [    7.583128] Modules linked in: xe(E+) drm_gpuvm(E) drm_exec(E) drm_buddy(E) gpu_sched(E) drm_suballoc_helper(E) drm_display_helper(E) loongson(E) r8169(E) cec(E) rc_core(E) realtek(E) i2c_algo_bit(E) tpm_tis_spi(E) led_class(E) hid_generic(E) drm_ttm_helper(E) ttm(E) drm_client_lib(E) drm_kms_helper(E) sunrpc(E) la_ow_syscall(E) i2c_dev(E)
+>>>>> [    7.613049] Process kworker/0:4 (pid: 102, threadinfo=00000000bc26ebd1, task=0000000055480707)
+>>>>> [    7.621606] Stack : 0000000000000000 3030303a6963702b 000000000005d000 0000000000000000
+>>>>> [    7.629563]         0000000000000001 0000000000000000 0000000000000000 8e1bfae42b2f7877
+>>>>> [    7.637519]         000000000005d000 900000012a3e8000 900000012a3e9360 0000000000000000
+>>>>> [    7.645475]         ffffffffffffffff 0000000000000000 0000000000022022 0000000000000000
+>>>>> [    7.653431]         0000000000000001 ffff800002533660 0000000000022022 9000000000234470
+>>>>> [    7.661386]         90000001010cba28 0000000000001000 0000000000000000 000000000005c300
+>>>>> [    7.669342]         900000012a3e8000 0000000000000000 0000000000000001 900000012a3e8000
+>>>>> [    7.677298]         ffffffffffffffff 0000000000022022 900000012a3e9498 ffff800002533a14
+>>>>> [    7.685254]         0000000000022022 0000000000000000 900000000209c000 90000000010589e0
+>>>>> [    7.693209]         90000001010cbab8 ffff8000027c78c0 fffffffffffff000 900000012a3e8000
+>>>>> [    7.701165]         ...
+>>>>> [    7.703588] Call Trace:
+>>>>> [    7.703590] [<9000000001045fa4>] drm_gem_private_object_init+0xcc/0xd0
+>>>>> [    7.712496] [<ffff8000025331d8>] ___xe_bo_create_locked+0x154/0x3b0 [xe]
+>>>>> [    7.719268] [<ffff80000253365c>] __xe_bo_create_locked+0x228/0x304 [xe]
+>>>>> [    7.725951] [<ffff800002533a10>] xe_bo_create_pin_map_at_aligned+0x70/0x1b0 [xe]
+>>>>> [    7.733410] [<ffff800002533c7c>] xe_managed_bo_create_pin_map+0x34/0xcc [xe]
+>>>>> [    7.740522] [<ffff800002533d58>] xe_managed_bo_create_from_data+0x44/0xb0 [xe]
+>>>>> [    7.747807] [<ffff80000258d19c>] xe_uc_fw_init+0x3ec/0x904 [xe]
+>>>>> [    7.753814] [<ffff80000254a478>] xe_guc_init+0x30/0x3dc [xe]
+>>>>> [    7.759553] [<ffff80000258bc04>] xe_uc_init+0x20/0xf0 [xe]
+>>>>> [    7.765121] [<ffff800002542abc>] xe_gt_init_hwconfig+0x5c/0xd0 [xe]
+>>>>> [    7.771461] [<ffff800002537204>] xe_device_probe+0x240/0x588 [xe]
+>>>>> [    7.777627] [<ffff800002575448>] xe_pci_probe+0x6c0/0xa6c [xe]
+>>>>> [    7.783540] [<9000000000e9828c>] local_pci_probe+0x4c/0xb4
+>>>>> [    7.788989] [<90000000002aa578>] work_for_cpu_fn+0x20/0x40
+>>>>> [    7.794436] [<90000000002aeb50>] process_one_work+0x1a4/0x458
+>>>>> [    7.800143] [<90000000002af5a0>] worker_thread+0x304/0x3fc
+>>>>> [    7.805591] [<90000000002bacac>] kthread+0x114/0x138
+>>>>> [    7.810520] [<9000000000241f64>] ret_from_kernel_thread+0x8/0xa4
+>>>>> [    7.816489]
+>>>>> [    7.817961] Code: 4c000020  29c3e2f9  53ff93ff <002a0001> 0015002c  03400000  02ff8063  29c04077  001500f7
+>>>>> [    7.827651]
+>>>>> [    7.829140] ---[ end trace 0000000000000000 ]---
+>>>>>
+>>>>> Revise all instances of `SZ_4K' with `PAGE_SIZE' and revise the call to
+>>>>> `drm_gem_private_object_init()' in `*___xe_bo_create_locked()' (last call
+>>>>> before BUG()) to use `size_t aligned_size' calculated from `PAGE_SIZE' to
+>>>>> fix the above error.
+>>>>>
+>>>>> Cc: <stable@vger.kernel.org>
+>>>>> Fixes: 4e03b584143e ("drm/xe/uapi: Reject bo creation of unaligned size")
+>>>>> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+>>>>> Tested-by: Mingcong Bai <jeffbai@aosc.io>
+>>>>> Tested-by: Haien Liang <27873200@qq.com>
+>>>>> Tested-by: Shirong Liu <lsr1024@qq.com>
+>>>>> Tested-by: Haofeng Wu <s2600cw2@126.com>
+>>>>> Link: https://github.com/FanFansfan/loongson-linux/commit/22c55ab3931c32410a077b3ddb6dca3f28223360
+>>>>> Co-developed-by: Shang Yatsen <429839446@qq.com>
+>>>>> Signed-off-by: Shang Yatsen <429839446@qq.com>
+>>>>> Signed-off-by: Mingcong Bai <jeffbai@aosc.io>
+>>>>> ---
+>>>>> drivers/gpu/drm/xe/xe_bo.c | 8 ++++----
+>>>>> 1 file changed, 4 insertions(+), 4 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+>>>>> index 3f5391d416d469c636d951dd6f0a2b3b5ae95dab..dd03c581441f352eff51d0eafe1298fca7d9653d 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_bo.c
+>>>>> +++ b/drivers/gpu/drm/xe/xe_bo.c
+>>>>> @@ -1441,9 +1441,9 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
+>>>>> 		flags |= XE_BO_FLAG_INTERNAL_64K;
+>>>>> 		alignment = align >> PAGE_SHIFT;
+>>>>> 	} else {
+>>>
+>>> } else if (type == ttm_bo_type_device) {
+>>> 	new code /w PAGE_SIZE
+>>> } else {
+>>> 	old code /w SZ_4K (or maybe XE_PAGE_SIZE now)?
+>>> }
+>>>
+>>> See below for further explaination.
+>>>
+>>>>> -		aligned_size = ALIGN(size, SZ_4K);
+>>>>> +		aligned_size = ALIGN(size, PAGE_SIZE);
+>>>>
+>>>> in the very beginning of the driver we were set to use XE_PAGE_SIZE
+>>>> for things like this. It seems thing went side ways though.
+>>>>
+>>>> Thanks for fixing these. XE_PAGE_SIZE is always 4k, but I think we should
+>>>> uxe XE_PAGE_SIZE for clarity.  For others in Cc...  any thoughts?
+>>>>
+>>>
+>>> It looks like you have a typo here, Lucas. Could you please clarify?
+>>>
+>>> However, XE_PAGE_SIZE should always be 4k, as it refers to the GPU page
+>>> size, which is fixed.
+>>>
+>>> I think using PAGE_SIZE makes sense in some cases. See my other
+>>> comments.
+>>>
+>>>>> 		flags &= ~XE_BO_FLAG_INTERNAL_64K;
+>>>>> -		alignment = SZ_4K >> PAGE_SHIFT;
+>>>>> +		alignment = PAGE_SIZE >> PAGE_SHIFT;
+>>>>> 	}
+>>>>>
+>>>>> 	if (type == ttm_bo_type_device && aligned_size != size)
+>>>>> @@ -1457,7 +1457,7 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
+>>>>>
+>>>>> 	bo->ccs_cleared = false;
+>>>>> 	bo->tile = tile;
+>>>>> -	bo->size = size;
+>>>>> +	bo->size = aligned_size;
+>>>>
+>>>> the interface of this function is that the caller needs to pass the
+>>>> correct size, it's not really expected the function will adjust it and
+>>>> the check is there to gurantee to return the appropriate error. There
+>>>
+>>> Let me expand further on Lucas's comment. We reject user BOs that are
+>>> unaligned here in ___xe_bo_create_locked.
+>>>
+>>> 1490         if (type == ttm_bo_type_device && aligned_size != size)
+>>> 1491                 return ERR_PTR(-EINVAL);
+>>>
+>>> What we allow are kernel BOs (!= ttm_bo_type_device), which are never
+>>> mapped to the CPU or the PPGTT (user GPU mappings), to be a smaller
+>>> size. Examples of this include memory for GPU page tables, LRC state,
+>>> etc. Memory for GPU page tables is always allocated in 4k blocks, so
+>>> changing the allocation to the CPU page size of 16k or 64k would be
+>>> wasteful.
+>>>
+>>> AFAIK, kernel memory is always a VRAM allocation, so we don't have any
+>>> CPU page size requirements. If this is not true (I haven't checked), or
+>>> perhaps just to future-proof, change the snippet in my first comment to:
+>>>
+>>> } else if (type == ttm_bo_type_device || flags & XE_BO_FLAG_SYSTEM)) {
+>>> 	new code /w PAGE_SIZE
+>>> } else {
+>>> 	old code /w SZ_4K
+>>> }
+>>>
+>>> Then change BO assignment size too:
+>>>
+>>> bo->size = flags & XE_BO_FLAG_SYSTEM ? aligned_size : size;
+>>>
+>>> This should enable kernel VRAM allocations to be smaller than the CPU
+>>> page size (I think). Can you try out this suggestion and see if the Xe
+>>> boots with non-4k pages?
+>>
+>> The vram allocator chunk size is PAGE_SIZE so that would also need some
+>> attention, I think.
+>>
+> 
+> Agree. So I think __xe_ttm_vram_mgr_init should be called with
+> s/PAGE_SIZE/SZ_4K?
 
-Tuning and WA db are 2 different things. Digging through it...
+Should be fine from allocator pov. But also need to update the upper 
+layers in the VRAM manager itself, I think.
 
-Tuning:
-	Bspec 31870 only tells to program TDS (bits 23:16) to value of 4. There is no
-	**recommended tuning** saying to program other bits.
+> 
+>> But I think we also then need to deal with the assert in: https://elixir.bootlin.com/linux/v6.14-rc4/source/drivers/gpu/drm/drm_gem.c#L181.
+>>
+> 
+> Yep. I think that would need to be adjusted as well to be bypassed if we
+> are never going to CPU map the BO—specifically, CPU map it to user space
+> or if the BO is not in VRAM. For kernel VRAM mapping, this resolves to
+> an offset within an existing large PCIe BAR mapping, so allocations
+> unaligned to PAGE_SIZE should work.
 
-	That is FF_MODE2_TDS_TIMER_MASK = FF_MODE2_TDS_TIMER_128.
+Yeah, agree. I thinks it's possible.
 
-	Same bits are also recommended for DG2 in Bspec 68331 covering DG2 and
-	MTL (however in these platforms the register is  multicast).
+> 
+> Maybe export __drm_gem_private_object_init, which skips the BUG_ON, and
+> call this in Xe to avoid interfering with other drivers' expectations?
 
- From the WA db:
-	TDS is documented to be programmed in WA 1604555607,
-	to the same value as the tuning, for graphics versions 12.00 and 12.10
-	(I'd have to dig more for 12.55).
+Some other places I spotted are the VRAM manager, and stuff like 
+xe_bo_vmap() and then into TTM itself. So it might be quite widespread.
 
-	GS (bits 31:24) is documented to be programmed in WA 16011163337
-	for graphics versions 12.00 and 12.10
+> 
+> Matt
+> 
+>>>
+>>> Also others in Cc... thoughts / double check my input?
+>>>
+>>>> are other places that would need some additional fixes leading to this
+>>>> function. Example:
+>>>>
+>>>> xe_gem_create_ioctl()
+>>>> {
+>>>> 	...
+>>>> 	if (XE_IOCTL_DBG(xe, args->size & ~PAGE_MASK))
+>>>> 		return -EINVAL;
+>>>
+>>> This actually looks right, the minimum allocation size for user BOs
+>>> should be PAGE_SIZE aligned. The last patch in the series fixes the
+>>> query for this.
+>>>
+>>> Matt
+>>>
+>>>> 	...
+>>>> }
+>>>> 	
+>>>>
+>>>> Lucas De Marchi
+>>>>
+>>>>> 	bo->flags = flags;
+>>>>> 	bo->cpu_caching = cpu_caching;
+>>>>> 	bo->ttm.base.funcs = &xe_gem_object_funcs;
+>>>>> @@ -1468,7 +1468,7 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
+>>>>> #endif
+>>>>> 	INIT_LIST_HEAD(&bo->vram_userfault_link);
+>>>>>
+>>>>> -	drm_gem_private_object_init(&xe->drm, &bo->ttm.base, size);
+>>>>> +	drm_gem_private_object_init(&xe->drm, &bo->ttm.base, aligned_size);
+>>>>>
+>>>>> 	if (resv) {
+>>>>> 		ctx.allow_res_evict = !(flags & XE_BO_FLAG_NO_RESV_EVICT);
+>>>>>
+>>>>> -- 
+>>>>> 2.48.1
+>>>>>
+>>>>>
+>>
 
-
->---
-> drivers/gpu/drm/xe/xe_tuning.c | 8 +++++---
-> 1 file changed, 5 insertions(+), 3 deletions(-)
->
->diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
->index d449de0fb6ec..9e7ec36dbd47 100644
->--- a/drivers/gpu/drm/xe/xe_tuning.c
->+++ b/drivers/gpu/drm/xe/xe_tuning.c
->@@ -97,12 +97,14 @@ static const struct xe_rtp_entry_sr engine_tunings[] = {
-> };
->
-> static const struct xe_rtp_entry_sr lrc_tunings[] = {
->-	{ XE_RTP_NAME("Tuning: ganged timer, also known as 16011163337"),
->+	{ XE_RTP_NAME("Tuning: ganged timers, also known as 16011163337 and 1604555607"),
-> 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210), ENGINE_CLASS(RENDER)),
-> 	  /* read verification is ignored due to 1608008084. */
-> 	  XE_RTP_ACTIONS(FIELD_SET_NO_READ_MASK(FF_MODE2,
->-						FF_MODE2_GS_TIMER_MASK,
->-						FF_MODE2_GS_TIMER_224))
->+						FF_MODE2_GS_TIMER_MASK |
->+						FF_MODE2_TDS_TIMER_MASK,
->+						FF_MODE2_GS_TIMER_224 |
->+						FF_MODE2_TDS_TIMER_128))
-
-so... I think this should be only about TDS, also known as 1604555607.
-then in xe_wa.c, the GS programming added for 16011163337.
-
-Matt, Gustavo, can you double check that?
-
-
-thanks
-Lucas De Marchi
-
-
-> 	},
->
-> 	/* DG2 */
->-- 
->2.48.0
->
