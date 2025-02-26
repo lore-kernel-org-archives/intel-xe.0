@@ -4,60 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A7CAC19F2E
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 15:11:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2BA9C19F2E
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 15:13:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DEFE10E935;
-	Wed, 26 Feb 2025 15:11:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADB4A10E93B;
+	Wed, 26 Feb 2025 15:13:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BGMmXTAa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xc7EcUGO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BDF110E936;
- Wed, 26 Feb 2025 15:11:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35D3810E93B
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Feb 2025 15:13:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740582690; x=1772118690;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=aGb35M39aqjZGMzHMBB4A6cBWkzMVMICZCPk4vg3yPY=;
- b=BGMmXTAac33Do/rwxn1kalv66NwUNc4G1advS0fGZ2MvBQcPZGQFE8hX
- uwURny9o5vh/nYOsAkBRbNgfZGRKxXNZZe0/fNgS0fShhzolSIuJSkoBa
- QUlW+TlsXKQnE1yrcstjTVsOLreOHwYPxWztDD93qeqvmD5m5KQCa+nvL
- b2TuhJ0Uyfima8lyBquOH+94LzRqUBN/64cg6uin9o3Oe67Xp6Q0fSoHU
- 72ZwMiko3+pc6BJ23ddtEw4D3e71ridx+4SNCB1xI3P7RrMQT/wZwOnFL
- 55QmamR9Y5SzG/Gk+a779dD9FXUcDL0JcYshEmiUnfiWHihxzEFkV6sq+ Q==;
-X-CSE-ConnectionGUID: 4x7QacetTqiG5MF9+qpRIw==
-X-CSE-MsgGUID: BMc2wwVhRx60gKxiR98uDg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="41356916"
-X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="41356916"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2025 07:11:19 -0800
-X-CSE-ConnectionGUID: dxOqah4hTO62MV5v96y3XA==
-X-CSE-MsgGUID: 8TotnxWCTIm2ozwGh4nuDw==
+ t=1740582833; x=1772118833;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=0zQiYfaq4lZWlUQ2eaLvoDUHyd2/HsJTYebUYiCVgtQ=;
+ b=Xc7EcUGOtRG0uaao0fExzNq8oj5DwbuRqc8YwM7Cnndgwv8QUjkeYUYW
+ k2QmvEMkYW8Ki+iRemC4/2yz4FjnTETlHVLWTC4b4O8fIqskuKcFwrrDG
+ 9Vk8ihawhpq6HktP3Qpmahmqo19EEhUZ46Icx5NcF3gujGBbaIa1qHcjO
+ jfCuBxVkAruuL3juK67DrF3dyb02lU23pQAMlCybaLiaI/saAFpGXpzLj
+ PGj9mxh/MtMFks8kOuvG8K6YxsDu3YeTR89PsgMjQk/ggihWGyHDsjTjn
+ r+pdY78M1ZTCvw5N+pNJqrKiWTQtbUCCL5b2yFWaV3ioSyjSEFB0sC27S Q==;
+X-CSE-ConnectionGUID: ElmK/NdETnysh4JOSZWvsg==
+X-CSE-MsgGUID: oihMNzjlTy2sA9Ekofzr9w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="41686862"
+X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="41686862"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2025 07:13:53 -0800
+X-CSE-ConnectionGUID: fAWQZiw4TS2w6SYBTUHcng==
+X-CSE-MsgGUID: f6gj4s8tQ1mrNj1BWwN/5A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="121982710"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 26 Feb 2025 07:11:05 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 26 Feb 2025 17:11:03 +0200
-Date: Wed, 26 Feb 2025 17:11:03 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: Re: [PATCH 18/20] drm/i915/vrr: Use fixed timings for platforms that
- support VRR
-Message-ID: <Z78vB6J2BWXvXhPK@intel.com>
-References: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
- <20250224061717.1095226-19-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="139940490"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO [10.245.246.81])
+ ([10.245.246.81])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2025 07:13:52 -0800
+Message-ID: <a01fc6c3fb193574879f9d401accaa1385d32529.camel@linux.intel.com>
+Subject: Re: [PATCH v4 1/2] drm/xe: Userptr invalidation race with binds fixes
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, matthew.auld@intel.com
+Date: Wed, 26 Feb 2025 16:13:49 +0100
+In-Reply-To: <Z74iu8n7Xe/mz6Uh@lstrano-desk.jf.intel.com>
+References: <20250224170109.3078314-1-matthew.brost@intel.com>
+ <20250224170109.3078314-2-matthew.brost@intel.com>
+ <7c58c04c73e217e5cdcb473876b368c47b60bc6f.camel@linux.intel.com>
+ <Z74Bo0no06PmV87O@lstrano-desk.jf.intel.com>
+ <4267074055afdb298914de6658b64f89e55136c5.camel@linux.intel.com>
+ <Z74Yrv/yHUyooxHW@lstrano-desk.jf.intel.com>
+ <Z74iu8n7Xe/mz6Uh@lstrano-desk.jf.intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250224061717.1095226-19-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,117 +75,155 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Feb 24, 2025 at 11:47:15AM +0530, Ankit Nautiyal wrote:
-> For fixed refresh rate use fixed timings for all platforms that support
-> VRR. For this add checks to avoid computing and reading VRR for
-> platforms that do not support VRR.
-> For platforms that do support VRR, readback vrr timings whether or not
-> VRR_CTL_FLIP_LINE_EN is set in VRR_CTL or not.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_vrr.c | 43 ++++++++++++------------
->  1 file changed, 22 insertions(+), 21 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index 551dcc16f0d4..975fed9930c1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -344,6 +344,9 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
->  	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
->  	int vmin = 0, vmax = 0;
->  
-> +	if (!HAS_VRR(display))
-> +		return;
+On Tue, 2025-02-25 at 12:06 -0800, Matthew Brost wrote:
+> On Tue, Feb 25, 2025 at 11:23:26AM -0800, Matthew Brost wrote:
+> > On Tue, Feb 25, 2025 at 07:56:36PM +0100, Thomas Hellstr=C3=B6m wrote:
+> > > On Tue, 2025-02-25 at 09:45 -0800, Matthew Brost wrote:
+> > > > On Tue, Feb 25, 2025 at 03:30:54PM +0100, Thomas Hellstr=C3=B6m
+> > > > wrote:
+> > > > > Hi, Matt,
+> > > > >=20
+> > > > > On Mon, 2025-02-24 at 09:01 -0800, Matthew Brost wrote:
+> > > > > > Always wait on dma-resv bookkeep slots if userptr
+> > > > > > invalidation
+> > > > > > has
+> > > > > > raced
+> > > > > > with a bind ensuring PTEs temporally setup to invalidated
+> > > > > > pages
+> > > > > > are
+> > > > > > never accessed.
+> > > > > >=20
+> > > > > > Fixup initial bind handling always add VMAs to invalidation
+> > > > > > list
+> > > > > > and
+> > > > > > wait dma-resv bookkeep slots.
+> > > > > >=20
+> > > > > > Always hold notifier across TLB invalidation in notifier to
+> > > > > > prevent a
+> > > > > > UAF if an unbind races.
+> > > > > >=20
+> > > > > > Including all of the above changes for Fixes patch in hopes
+> > > > > > of an
+> > > > > > easier
+> > > > > > backport which fix a single patch.
+> > > > > >=20
+> > > > > > v2:
+> > > > > > =C2=A0- Wait dma-resv bookkeep before issuing PTE zap (Thomas)
+> > > > > > =C2=A0- Support scratch page on invalidation (Thomas)
+> > > > > > v3:
+> > > > > > =C2=A0- Drop clear of PTEs (Thomas)
+> > > > >=20
+> > > > > This was what I actually meant.
+> > > > >=20
+> > > >=20
+> > > > Ok, I presented this as option and it wasn't clear to me this
+> > > > was
+> > > > preferred.
+> > >=20
+> > > Well, I think the more special cases we can get rid of in the
+> > > code, the
+> >=20
+> > Sure, not opposed this direction.
+> >=20
+> > > better? Or at least, like in this case, split out what's common
+> > > with
+> > > the vm notifier into an xe_vm function and call that, making it
+> > > more
+> > > clear to the reader that we force an invalidation.
+> > >=20
+> > > >=20
+> > > > > https://patchwork.freedesktop.org/patch/639489/?series=3D145409&r=
+ev=3D1
+> > > > >=20
+> > > >=20
+> > > > This patch is doesn't work.
+> > > > xe_vm.munmap-style-unbind-userptr-one-partial hangs due the
+> > > > error
+> > > > injection always firing on a single user bind, so we'd have to
+> > > > fix
+> > > > the
+> > > > error injection too.
+> > >=20
+> > > I have a follow up patch that splits out a part of the notifier
+> > > like
+> > > described above and calls that for each inject, also invalidating
+> > > the
+> > > userptr's seqno, and that fixes the above problem, but then the
+> > > code
+> > > hangs in=20
+> > >=20
+> >=20
+> > Ok, that sounds good.
+> > =C2=A0
+> > > xe_exec_fault_mode --r once-userptr-prefetch
+> > >=20
+> > > but that's a different failure mode. Apparently the prefetch code
+> > > doesn't repin an invalid userptr and returns -EAGAIN forever...
+> > >=20
+> >=20
+> > I see the issue, we only call xe_vma_userptr_pin_pages in new_vma
+> > which
+> > the prefetch code bypasses. If the error inject messes with userptr
+> > seqno it makes sense this would start to show up. I suppose this
+> > needs
+> > fixing too.
+> >=20
+>=20
+> Something like this shoud do the trick:
+>=20
+> @@ -2299,8 +2299,16 @@ static int vm_bind_ioctl_ops_parse(struct
+> xe_vm *vm, struct drm_gpuva_ops *ops,
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 break;
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 }
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 case DRM_GPUVA_OP_UNMAP:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_vma_ops_inc=
+r_pt_update_ops(vops, op-
+> >tile_mask);
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 break;
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 case DRM_GPUVA_OP_PREFETCH:
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* FIXME: Need=
+ to skip some prefetch ops */
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 vma =3D gpuva_=
+to_vma(op->base.prefetch.va);
 > +
->  	if (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE)
->  		return;
->  
-> @@ -358,9 +361,6 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
->  
->  	vmin = intel_vrr_compute_vmin(crtc_state);
->  
-> -	if (vmin >= vmax)
-> -		return;
-> -
->  	crtc_state->vrr.vmin = vmin;
->  	crtc_state->vrr.vmax = vmax;
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (xe_vma_is_=
+userptr(vma)) {
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 err =3D xe_vma_is_userptr(vma);
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (err)
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 return err;
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_vma_o=
+ps_incr_pt_update_ops(vops, op-
+> >tile_mask);
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 break;
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 default:
+>=20
+> Matt
+>=20
+> > Matt=20
 
-I think your earlier pathc left vmax==0 here for the !in_range so
-this looks a bit wrong. But if you change the earlier patch like I
-suggested to set vmax=vmin then this would be fine.
+Yeah, I'll try to put something together based on this + your staging
+tree patch.
 
->  
-> @@ -373,7 +373,7 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
->  	 */
->  	crtc_state->vrr.vmin -= intel_vrr_flipline_offset(display);
->  
-> -	if (crtc_state->uapi.vrr_enabled)
-> +	if (crtc_state->uapi.vrr_enabled && vmin < vmax)
->  		intel_vrr_compute_vrr_timings(crtc_state);
->  	else if (is_cmrr_frac_required(crtc_state) && is_edp)
->  		intel_vrr_compute_cmrr_timings(crtc_state);
-> @@ -640,6 +640,9 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
->  	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
->  	u32 trans_vrr_ctl, trans_vrr_vsync;
->  
-> +	if (!HAS_VRR(display))
-> +		return;
+/Thomas
 
-I think the caller is already checking that. But I suppose we could
-move the checks into the VRR code.
-
-> +
->  	trans_vrr_ctl = intel_de_read(display,
->  				      TRANS_VRR_CTL(display, cpu_transcoder));
->  
-> @@ -663,23 +666,21 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
->  			crtc_state->vrr.pipeline_full =
->  				REG_FIELD_GET(VRR_CTL_PIPELINE_FULL_MASK, trans_vrr_ctl);
->  
-> -	if (trans_vrr_ctl & VRR_CTL_FLIP_LINE_EN) {
-> -		crtc_state->vrr.flipline = intel_de_read(display,
-> -							 TRANS_VRR_FLIPLINE(display, cpu_transcoder)) + 1;
-> -		crtc_state->vrr.vmax = intel_de_read(display,
-> -						     TRANS_VRR_VMAX(display, cpu_transcoder)) + 1;
-> -		crtc_state->vrr.vmin = intel_de_read(display,
-> -						     TRANS_VRR_VMIN(display, cpu_transcoder)) + 1;
-> -
-> -		if (HAS_AS_SDP(display)) {
-> -			trans_vrr_vsync =
-> -				intel_de_read(display,
-> -					      TRANS_VRR_VSYNC(display, cpu_transcoder));
-> -			crtc_state->vrr.vsync_start =
-> -				REG_FIELD_GET(VRR_VSYNC_START_MASK, trans_vrr_vsync);
-> -			crtc_state->vrr.vsync_end =
-> -				REG_FIELD_GET(VRR_VSYNC_END_MASK, trans_vrr_vsync);
-> -		}
-
-I think you want to keep the VRR_CTL_FLIP_LINE_EN check around the
-TRANS_VRR_FLIPLINE read at least, because we want the state checker
-to catch any misprogrammng of VRR_CTL_FLIP_LINE_EN.
-
-> +	crtc_state->vrr.flipline = intel_de_read(display,
-> +						 TRANS_VRR_FLIPLINE(display, cpu_transcoder)) + 1;
-> +	crtc_state->vrr.vmax = intel_de_read(display,
-> +					     TRANS_VRR_VMAX(display, cpu_transcoder)) + 1;
-> +	crtc_state->vrr.vmin = intel_de_read(display,
-> +					     TRANS_VRR_VMIN(display, cpu_transcoder)) + 1;
-> +
-> +	if (HAS_AS_SDP(display)) {
-> +		trans_vrr_vsync =
-> +			intel_de_read(display,
-> +				      TRANS_VRR_VSYNC(display, cpu_transcoder));
-> +		crtc_state->vrr.vsync_start =
-> +			REG_FIELD_GET(VRR_VSYNC_START_MASK, trans_vrr_vsync);
-> +		crtc_state->vrr.vsync_end =
-> +			REG_FIELD_GET(VRR_VSYNC_END_MASK, trans_vrr_vsync);
->  	}
->  
->  	crtc_state->vrr.enable = trans_vrr_ctl & VRR_CTL_VRR_ENABLE &&
-> -- 
-> 2.45.2
-
--- 
-Ville Syrjälä
-Intel
