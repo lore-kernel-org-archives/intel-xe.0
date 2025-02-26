@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17EF9C19F2E
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 15:34:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A127C18E7C
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 15:34:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBE7F10E943;
-	Wed, 26 Feb 2025 15:34:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9EF010E945;
+	Wed, 26 Feb 2025 15:34:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="at/LPoqj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gVbt8uO3";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A6B310E943
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Feb 2025 15:34:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 499A610E945
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Feb 2025 15:34:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740584078; x=1772120078;
+ t=1740584080; x=1772120080;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=GNI35ffPdLNANFCbuTvB3jq0HX/20SvIig/LQAVb0hM=;
- b=at/LPoqj1ow1oE0MWCkjiIV1cUn37aYycXeq6k/KR/GxjLySOggGRRDy
- EyTg9RpXXSFJH/Gy2aXieCO8ObNe8vx/QdIM3aHn/kGJgzw1aQ6B6PQf+
- fxK/m77vt0l42cVmT0GfIk6ifFhArZL/kn3kyCYfFerL680Rtmu/0o0ME
- zvis+T5a7CVP47LGKamc7iXekhPOQIvnodrLcUT4HsXv7hW/ri3ZnjLkI
- OE8ggz/Lh6Y94EWVcPJgZwNTs2JmDVSWgbJwDwKi493En0xU+/JMHIJg5
- O9Mz3gi9JrDKwjDDrqqJLFdTBdcBEca3SgDR9blCIu2iGnBJq4H5/n7Hv w==;
-X-CSE-ConnectionGUID: JSTuDiyPTvSZ5gi5vgjVZw==
-X-CSE-MsgGUID: Beg6SCupTW++D4KN6YUUkQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="44260325"
-X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="44260325"
+ bh=gco41jRZjapNf6dBS44su+PY+2S9PLEt7iLag+Ck0C0=;
+ b=gVbt8uO3N4fY/9Y/NQldIGC0TeZZXlOCKnJXa9ok7XFMS90auTUED5+C
+ 1KbV0O4V20j0wBhH1Amiu1V48MtNIuGE/eQs1TQK5epHiSpBbqgqdPWaK
+ Epv7GeR1pXvEySwFIPTbFzhTE6sy5ghEhksHQRL3ixLykZe9F605jazQk
+ fBAcbew+1feSzUhuN6J/ZskNa2lVgfhyS8MpU5A7vpmVmPR83CtO4vzhl
+ QNlmTSqFe4WaO0GY3Efp9Nex5WodkCbN+lzId1aBfGbdLvEtTwgU4Hwmd
+ VmFPGy1NxCyl15lc+AqP2L0db1ngYRKD46bjYX4go8c1kcwMoP+iSm74I w==;
+X-CSE-ConnectionGUID: NzAoAkcTSSyaIZhsxBGKsg==
+X-CSE-MsgGUID: pW9k1eJiQfWcftXIw1h93A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="44260331"
+X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="44260331"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2025 07:34:38 -0800
-X-CSE-ConnectionGUID: Bl0h1TMUQ7KkZ+ymOU+JUA==
-X-CSE-MsgGUID: RNpSc36zRgWbqQwhaoR+Pg==
+ 26 Feb 2025 07:34:40 -0800
+X-CSE-ConnectionGUID: YGFy4oVNSBGpmg3p2nKOJg==
+X-CSE-MsgGUID: CvZr7wz/S8e/utJ6hNMB/Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="116917923"
+X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="116917930"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO fedora..)
  ([10.245.246.81])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2025 07:34:36 -0800
+ 26 Feb 2025 07:34:38 -0800
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- stable@vger.kernel.org
-Subject: [PATCH 2/4] drm/xe/vm: Fix a misplaced #endif
-Date: Wed, 26 Feb 2025 16:33:42 +0100
-Message-ID: <20250226153344.58175-3-thomas.hellstrom@linux.intel.com>
+ Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, stable@vger.kernel.org
+Subject: [PATCH 3/4] drm/xe: Fix fault mode invalidation with unbind
+Date: Wed, 26 Feb 2025 16:33:43 +0100
+Message-ID: <20250226153344.58175-4-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250226153344.58175-1-thomas.hellstrom@linux.intel.com>
 References: <20250226153344.58175-1-thomas.hellstrom@linux.intel.com>
@@ -71,33 +70,245 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fix a (harmless) misplaced #endif leading to declarations
-appearing multiple times.
+Fix fault mode invalidation racing with unbind leading to the
+PTE zapping potentially traversing an invalid page-table tree.
+Do this by holding the notifier lock across PTE zapping. This
+might transfer any contention waiting on the notifier seqlock
+read side to the notifier lock read side, but that shouldn't be
+a major problem.
 
-Fixes: 0eb2a18a8fad ("drm/xe: Implement VM snapshot support for BO's and userptr")
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Cc: <stable@vger.kernel.org> # v6.9+
+At the same time get rid of the open-coded invalidation in the bind
+code by relying on the notifier even when the vma bind is not
+yet committed.
+
+Finally let userptr invalidation call a dedicated xe_vm function
+performing a full invalidation.
+
+Fixes: e8babb280b5e ("drm/xe: Convert multiple bind ops into single job")
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: <stable@vger.kernel.org> # v6.12+
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_pt.c       | 38 ++++------------
+ drivers/gpu/drm/xe/xe_vm.c       | 78 ++++++++++++++++++++------------
+ drivers/gpu/drm/xe/xe_vm.h       |  8 ++++
+ drivers/gpu/drm/xe/xe_vm_types.h |  4 +-
+ 4 files changed, 68 insertions(+), 60 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 1ddcc7e79a93..12a627a23eb4 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -1213,42 +1213,22 @@ static int vma_check_userptr(struct xe_vm *vm, struct xe_vma *vma,
+ 		return 0;
+ 
+ 	uvma = to_userptr_vma(vma);
+-	notifier_seq = uvma->userptr.notifier_seq;
++	if (xe_pt_userptr_inject_eagain(uvma))
++		xe_vma_userptr_force_invalidate(uvma);
+ 
+-	if (uvma->userptr.initial_bind && !xe_vm_in_fault_mode(vm))
+-		return 0;
++	notifier_seq = uvma->userptr.notifier_seq;
+ 
+ 	if (!mmu_interval_read_retry(&uvma->userptr.notifier,
+-				     notifier_seq) &&
+-	    !xe_pt_userptr_inject_eagain(uvma))
++				     notifier_seq))
+ 		return 0;
+ 
+-	if (xe_vm_in_fault_mode(vm)) {
++	if (xe_vm_in_fault_mode(vm))
+ 		return -EAGAIN;
+-	} else {
+-		spin_lock(&vm->userptr.invalidated_lock);
+-		list_move_tail(&uvma->userptr.invalidate_link,
+-			       &vm->userptr.invalidated);
+-		spin_unlock(&vm->userptr.invalidated_lock);
+-
+-		if (xe_vm_in_preempt_fence_mode(vm)) {
+-			struct dma_resv_iter cursor;
+-			struct dma_fence *fence;
+-			long err;
+-
+-			dma_resv_iter_begin(&cursor, xe_vm_resv(vm),
+-					    DMA_RESV_USAGE_BOOKKEEP);
+-			dma_resv_for_each_fence_unlocked(&cursor, fence)
+-				dma_fence_enable_sw_signaling(fence);
+-			dma_resv_iter_end(&cursor);
+-
+-			err = dma_resv_wait_timeout(xe_vm_resv(vm),
+-						    DMA_RESV_USAGE_BOOKKEEP,
+-						    false, MAX_SCHEDULE_TIMEOUT);
+-			XE_WARN_ON(err <= 0);
+-		}
+-	}
+ 
++	/*
++	 * Just continue the operation since exec or rebind worker
++	 * will take care of rebinding.
++	 */
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 4c1ca47667ad..37d773c0b729 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -580,51 +580,26 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ 	trace_xe_vm_rebind_worker_exit(vm);
+ }
+ 
+-static bool vma_userptr_invalidate(struct mmu_interval_notifier *mni,
+-				   const struct mmu_notifier_range *range,
+-				   unsigned long cur_seq)
++static void __vma_userptr_invalidate(struct xe_vm *vm, struct xe_userptr_vma *uvma)
+ {
+-	struct xe_userptr *userptr = container_of(mni, typeof(*userptr), notifier);
+-	struct xe_userptr_vma *uvma = container_of(userptr, typeof(*uvma), userptr);
++	struct xe_userptr *userptr = &uvma->userptr;
+ 	struct xe_vma *vma = &uvma->vma;
+-	struct xe_vm *vm = xe_vma_vm(vma);
+ 	struct dma_resv_iter cursor;
+ 	struct dma_fence *fence;
+ 	long err;
+ 
+-	xe_assert(vm->xe, xe_vma_is_userptr(vma));
+-	trace_xe_vma_userptr_invalidate(vma);
+-
+-	if (!mmu_notifier_range_blockable(range))
+-		return false;
+-
+-	vm_dbg(&xe_vma_vm(vma)->xe->drm,
+-	       "NOTIFIER: addr=0x%016llx, range=0x%016llx",
+-		xe_vma_start(vma), xe_vma_size(vma));
+-
+-	down_write(&vm->userptr.notifier_lock);
+-	mmu_interval_set_seq(mni, cur_seq);
+-
+-	/* No need to stop gpu access if the userptr is not yet bound. */
+-	if (!userptr->initial_bind) {
+-		up_write(&vm->userptr.notifier_lock);
+-		return true;
+-	}
+-
+ 	/*
+ 	 * Tell exec and rebind worker they need to repin and rebind this
+ 	 * userptr.
+ 	 */
+ 	if (!xe_vm_in_fault_mode(vm) &&
+-	    !(vma->gpuva.flags & XE_VMA_DESTROYED) && vma->tile_present) {
++	    !(vma->gpuva.flags & XE_VMA_DESTROYED)) {
+ 		spin_lock(&vm->userptr.invalidated_lock);
+ 		list_move_tail(&userptr->invalidate_link,
+ 			       &vm->userptr.invalidated);
+ 		spin_unlock(&vm->userptr.invalidated_lock);
+ 	}
+ 
+-	up_write(&vm->userptr.notifier_lock);
+-
+ 	/*
+ 	 * Preempt fences turn into schedule disables, pipeline these.
+ 	 * Note that even in fault mode, we need to wait for binds and
+@@ -642,11 +617,35 @@ static bool vma_userptr_invalidate(struct mmu_interval_notifier *mni,
+ 				    false, MAX_SCHEDULE_TIMEOUT);
+ 	XE_WARN_ON(err <= 0);
+ 
+-	if (xe_vm_in_fault_mode(vm)) {
++	if (xe_vm_in_fault_mode(vm) && userptr->initial_bind) {
+ 		err = xe_vm_invalidate_vma(vma);
+ 		XE_WARN_ON(err);
+ 	}
++}
++
++static bool vma_userptr_invalidate(struct mmu_interval_notifier *mni,
++				   const struct mmu_notifier_range *range,
++				   unsigned long cur_seq)
++{
++	struct xe_userptr_vma *uvma = container_of(mni, typeof(*uvma), userptr.notifier);
++	struct xe_vma *vma = &uvma->vma;
++	struct xe_vm *vm = xe_vma_vm(vma);
++
++	xe_assert(vm->xe, xe_vma_is_userptr(vma));
++	trace_xe_vma_userptr_invalidate(vma);
++
++	if (!mmu_notifier_range_blockable(range))
++		return false;
+ 
++	vm_dbg(&xe_vma_vm(vma)->xe->drm,
++	       "NOTIFIER: addr=0x%016llx, range=0x%016llx",
++		xe_vma_start(vma), xe_vma_size(vma));
++
++	down_write(&vm->userptr.notifier_lock);
++	mmu_interval_set_seq(mni, cur_seq);
++
++	__vma_userptr_invalidate(vm, uvma);
++	up_write(&vm->userptr.notifier_lock);
+ 	trace_xe_vma_userptr_invalidate_complete(vma);
+ 
+ 	return true;
+@@ -656,6 +655,27 @@ static const struct mmu_interval_notifier_ops vma_userptr_notifier_ops = {
+ 	.invalidate = vma_userptr_invalidate,
+ };
+ 
++#if IS_ENABLED(CONFIG_DRM_XE_USERPTR_INVAL_INJECT)
++/**
++ * xe_vma_userptr_force_invalidate() - force invalidate a userptr
++ * @uvma: The userptr vma to invalidate
++ *
++ * Perform a forced userptr invalidation for testing purposes.
++ */
++void xe_vma_userptr_force_invalidate(struct xe_userptr_vma *uvma)
++{
++	struct xe_vm *vm = xe_vma_vm(&uvma->vma);
++
++	lockdep_assert_held_write(&vm->lock);
++	lockdep_assert_held(&vm->userptr.notifier_lock);
++
++	if (!mmu_interval_read_retry(&uvma->userptr.notifier,
++				     uvma->userptr.notifier_seq))
++		uvma->userptr.notifier_seq -= 2;
++	__vma_userptr_invalidate(vm, uvma);
++}
++#endif
++
+ int xe_vm_userptr_pin(struct xe_vm *vm)
+ {
+ 	struct xe_userptr_vma *uvma, *next;
 diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index f66075f8a6fe..7c8e39049223 100644
+index 7c8e39049223..f5d835271350 100644
 --- a/drivers/gpu/drm/xe/xe_vm.h
 +++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -282,9 +282,9 @@ static inline void vm_dbg(const struct drm_device *dev,
- 			  const char *format, ...)
- { /* noop */ }
- #endif
--#endif
- 
- struct xe_vm_snapshot *xe_vm_snapshot_capture(struct xe_vm *vm);
+@@ -287,4 +287,12 @@ struct xe_vm_snapshot *xe_vm_snapshot_capture(struct xe_vm *vm);
  void xe_vm_snapshot_capture_delayed(struct xe_vm_snapshot *snap);
  void xe_vm_snapshot_print(struct xe_vm_snapshot *snap, struct drm_printer *p);
  void xe_vm_snapshot_free(struct xe_vm_snapshot *snap);
++
++#if IS_ENABLED(CONFIG_DRM_XE_USERPTR_INVAL_INJECT)
++void xe_vma_userptr_force_invalidate(struct xe_userptr_vma *uvma);
++#else
++static inline void xe_vma_userptr_force_invalidate(struct xe_userptr_vma *uvma)
++{
++}
 +#endif
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 52467b9b5348..1fe79bf23b6b 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -228,8 +228,8 @@ struct xe_vm {
+ 		 * up for revalidation. Protected from access with the
+ 		 * @invalidated_lock. Removing items from the list
+ 		 * additionally requires @lock in write mode, and adding
+-		 * items to the list requires the @userptr.notifer_lock in
+-		 * write mode.
++		 * items to the list requires either the @userptr.notifer_lock in
++		 * write mode, OR @lock in write mode.
+ 		 */
+ 		struct list_head invalidated;
+ 	} userptr;
 -- 
 2.48.1
 
