@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98BADC021B8
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 10:44:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B072C19776
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 10:52:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 636C110E8BF;
-	Wed, 26 Feb 2025 10:44:47 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oKg8Q6PY";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 727DD10E8BF
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Feb 2025 10:44:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740566686; x=1772102686;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=yGEKrDpE6oIbsMreLZGNCl4ps8kMh1AdjJgYUgggGgM=;
- b=oKg8Q6PYZD1kvG3rEX2paXR79f2d7AG+zR3wXtIivnDgCrYHXrEtz8ME
- NNMVvQ7hGS8HqmMUh8kk3vWd8a2fF1ZhledEwv671klA3Hf8/V6gmrmVI
- CzCuiH2zSamonjEVuPtCRaBo4bL5ClAe9yKFo09P8P7g/Vtx/LvCmjalU
- I0rloy8cPt18b5z/v6CnAmc7iAEjmSOCPIVi00WeojhvUK0+sOQ7AzoM+
- o4sXhFCK8wAgY/HS9EgvFAp0rN1L6ZYmUtX5KV8Uttuaa1wRYqGw5Ud97
- IJxxe1GG8w7CbinVFmZRBohwQbkdW/n1puNSYTv9A8r58gIBDCvBJaIhE g==;
-X-CSE-ConnectionGUID: NChzaQzjR/y1u3jWWaoXdA==
-X-CSE-MsgGUID: xzGXhx+1Swib9J7msF6LIw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11356"; a="63870790"
-X-IronPort-AV: E=Sophos;i="6.13,316,1732608000"; d="scan'208";a="63870790"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2025 02:44:45 -0800
-X-CSE-ConnectionGUID: YSm+TgCFSW22UeCQoHIY8w==
-X-CSE-MsgGUID: Ez/VdKnGSSiv/z4mddLXqg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="117160292"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO [10.245.245.27])
- ([10.245.245.27])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2025 02:44:42 -0800
-Message-ID: <8e2a9df6-16ab-4002-a136-ef33ef3368e3@intel.com>
-Date: Wed, 26 Feb 2025 10:44:37 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 568E310E245;
+	Wed, 26 Feb 2025 10:52:47 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 761D610E245;
+ Wed, 26 Feb 2025 10:52:46 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V10] drm/xe/uapi: Use hint for guc to set GT frequency
-To: Tejas Upadhyay <tejas.upadhyay@intel.com>, intel-xe@lists.freedesktop.org
-Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
- vinay.belgaumkar@intel.com
-References: <20250226095224.650351-1-tejas.upadhyay@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20250226095224.650351-1-tejas.upadhyay@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/uapi=3A_Use_h?=
+ =?utf-8?q?int_for_guc_to_set_GT_frequency_=28rev8=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 26 Feb 2025 10:52:46 -0000
+Message-ID: <174056716647.2302897.1180872299291472288@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250226095224.650351-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20250226095224.650351-1-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,302 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 26/02/2025 09:52, Tejas Upadhyay wrote:
-> Allow user to provide a low latency hint. When set, KMD sends a hint
-> to GuC which results in special handling for that process. SLPC will
-> ramp the GT frequency aggressively every time it switches to this
-> process.
-> 
-> We need to enable the use of SLPC Compute strategy during init, but
-> it will apply only to processes that set this bit during process
-> creation.
-> 
-> Improvement with this approach as below:
-> 
-> Before,
-> 
-> :~$ NEOReadDebugKeys=1 EnableDirectSubmission=0 clpeak --kernel-latency
-> Platform: Intel(R) OpenCL Graphics
->    Device: Intel(R) Graphics [0xe20b]
->      Driver version  : 24.52.0 (Linux x64)
->      Compute units   : 160
->      Clock frequency : 2850 MHz
->      Kernel launch latency : 283.16 us
-> 
-> After,
-> 
-> :~$ NEOReadDebugKeys=1 EnableDirectSubmission=0 clpeak --kernel-latency
-> Platform: Intel(R) OpenCL Graphics
->    Device: Intel(R) Graphics [0xe20b]
->      Driver version  : 24.52.0 (Linux x64)
->      Compute units   : 160
->      Clock frequency : 2850 MHz
-> 
->      Kernel launch latency : 63.38 us
-> 
-> Compute PR: https://github.com/intel/compute-runtime/pull/794
-> Mesa PR: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/33214
+== Series Details ==
 
-Is there also an IGT for this? Could maybe just be something simple like 
-is the new flag rejected or not, and are the other invalid flags values 
-rejected. And then also at the same time confirm the query works.
+Series: drm/xe/uapi: Use hint for guc to set GT frequency (rev8)
+URL   : https://patchwork.freedesktop.org/series/143793/
+State : success
 
-> 
-> V10(Lucas):
->    - Remove doc from drm-uapi.rst
-> v9(Vinay):
->    - remove extra line, align commit message
-> v8(Vinay):
->    - Add separate example for using low latency hint
-> v7(Jose):
->    - Update UMD PR
->    - applicable to all gpus
-> V6:
->    - init flags, remove redundant flags check (MAuld)
-> V5:
->    - Move uapi doc to documentation and GuC ABI specific change (Rodrigo)
->    - Modify logic to restrict exec queue flags (MAuld)
-> V4:
->    - To make it clear, dont use exec queue word (Vinay)
->    - Correct typo in description of flag (Jose/Vinay)
->    - rename set_strategy api and replace ctx with exec queue(Vinay)
->    - Start with 0th bit to indentify user flags (Jose)
-> V3:
->    - Conver user flag to kernel internal flag and use (Oak)
->    - Support query config for use to check kernel support (Jose)
->    - Dont need to take runtime pm (Vinay)
-> V2:
->    - DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT 1 planned for other hint(Szymon)
->    - Add motivation to description (Lucas)
-> 
-> Reviewed-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> ---
->   drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h |  3 +++
->   drivers/gpu/drm/xe/xe_exec_queue.c            | 10 ++++++---
->   drivers/gpu/drm/xe/xe_exec_queue_types.h      |  2 ++
->   drivers/gpu/drm/xe/xe_guc_pc.c                | 16 ++++++++++++++
->   drivers/gpu/drm/xe/xe_guc_submit.c            |  8 +++++++
->   drivers/gpu/drm/xe/xe_query.c                 |  2 ++
->   include/uapi/drm/xe_drm.h                     | 21 ++++++++++++++++++-
->   7 files changed, 58 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
-> index 85abe4f09ae2..b28c8fa061f7 100644
-> --- a/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
-> +++ b/drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
-> @@ -174,6 +174,9 @@ struct slpc_task_state_data {
->   	};
->   } __packed;
->   
-> +#define SLPC_CTX_FREQ_REQ_IS_COMPUTE		REG_BIT(28)
-> +#define SLPC_OPTIMIZED_STRATEGY_COMPUTE		REG_BIT(0)
-> +
->   struct slpc_shared_data_header {
->   	/* Total size in bytes of this shared buffer. */
->   	u32 size;
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-> index 23a9f519ce1c..7c5c003d3c40 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-> @@ -604,11 +604,12 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
->   	struct xe_tile *tile;
->   	struct xe_exec_queue *q = NULL;
->   	u32 logical_mask;
-> +	u32 flags = 0;
->   	u32 id;
->   	u32 len;
->   	int err;
->   
-> -	if (XE_IOCTL_DBG(xe, args->flags) ||
-> +	if (XE_IOCTL_DBG(xe, args->flags & ~DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT) ||
->   	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
->   		return -EINVAL;
->   
-> @@ -625,6 +626,9 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
->   	if (XE_IOCTL_DBG(xe, eci[0].gt_id >= xe->info.gt_count))
->   		return -EINVAL;
->   
-> +	if (args->flags & DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT)
-> +		flags |= EXEC_QUEUE_FLAG_LOW_LATENCY;
-> +
->   	if (eci[0].engine_class == DRM_XE_ENGINE_CLASS_VM_BIND) {
->   		if (XE_IOCTL_DBG(xe, args->width != 1) ||
->   		    XE_IOCTL_DBG(xe, args->num_placements != 1) ||
-> @@ -633,8 +637,8 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
->   
->   		for_each_tile(tile, xe, id) {
->   			struct xe_exec_queue *new;
-> -			u32 flags = EXEC_QUEUE_FLAG_VM;
->   
-> +			flags |= EXEC_QUEUE_FLAG_VM;
->   			if (id)
->   				flags |= EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD;
->   
-> @@ -680,7 +684,7 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
->   		}
->   
->   		q = xe_exec_queue_create(xe, vm, logical_mask,
-> -					 args->width, hwe, 0,
-> +					 args->width, hwe, flags,
->   					 args->extensions);
->   		up_read(&vm->lock);
->   		xe_vm_put(vm);
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> index 6eb7ff091534..cc1cffb5c87f 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> @@ -85,6 +85,8 @@ struct xe_exec_queue {
->   #define EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD	BIT(3)
->   /* kernel exec_queue only, set priority to highest level */
->   #define EXEC_QUEUE_FLAG_HIGH_PRIORITY		BIT(4)
-> +/* flag to indicate low latency hint to guc */
-> +#define EXEC_QUEUE_FLAG_LOW_LATENCY		BIT(5)
->   
->   	/**
->   	 * @flags: flags for this exec queue, should statically setup aside from ban
-> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-> index 02409eedb914..25040efa043f 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-> @@ -995,6 +995,17 @@ static int pc_init_freqs(struct xe_guc_pc *pc)
->   	return ret;
->   }
->   
-> +static int pc_action_set_strategy(struct xe_guc_pc *pc, u32 val)
-> +{
-> +	int ret = 0;
-> +
-> +	ret = pc_action_set_param(pc,
-> +				  SLPC_PARAM_STRATEGIES,
-> +				  val);
-> +
-> +	return ret;
-> +}
-> +
->   /**
->    * xe_guc_pc_start - Start GuC's Power Conservation component
->    * @pc: Xe_GuC_PC instance
-> @@ -1054,6 +1065,11 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
->   	}
->   
->   	ret = pc_action_setup_gucrc(pc, GUCRC_FIRMWARE_CONTROL);
-> +	if (ret)
-> +		goto out;
-> +
-> +	/* Enable SLPC Optimized Strategy for compute */
-> +	ret = pc_action_set_strategy(pc, SLPC_OPTIMIZED_STRATEGY_COMPUTE);
->   
->   out:
->   	xe_force_wake_put(gt_to_fw(gt), fw_ref);
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index b6a2dd742ebd..b95934055f72 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -15,6 +15,7 @@
->   #include <drm/drm_managed.h>
->   
->   #include "abi/guc_actions_abi.h"
-> +#include "abi/guc_actions_slpc_abi.h"
->   #include "abi/guc_klvs_abi.h"
->   #include "regs/xe_lrc_layout.h"
->   #include "xe_assert.h"
-> @@ -400,6 +401,7 @@ static void __guc_exec_queue_policy_add_##func(struct exec_queue_policy *policy,
->   MAKE_EXEC_QUEUE_POLICY_ADD(execution_quantum, EXECUTION_QUANTUM)
->   MAKE_EXEC_QUEUE_POLICY_ADD(preemption_timeout, PREEMPTION_TIMEOUT)
->   MAKE_EXEC_QUEUE_POLICY_ADD(priority, SCHEDULING_PRIORITY)
-> +MAKE_EXEC_QUEUE_POLICY_ADD(slpc_exec_queue_freq_req, SLPM_GT_FREQUENCY)
->   #undef MAKE_EXEC_QUEUE_POLICY_ADD
->   
->   static const int xe_exec_queue_prio_to_guc[] = {
-> @@ -414,14 +416,20 @@ static void init_policies(struct xe_guc *guc, struct xe_exec_queue *q)
->   	struct exec_queue_policy policy;
->   	enum xe_exec_queue_priority prio = q->sched_props.priority;
->   	u32 timeslice_us = q->sched_props.timeslice_us;
-> +	u32 slpc_exec_queue_freq_req = 0;
->   	u32 preempt_timeout_us = q->sched_props.preempt_timeout_us;
->   
->   	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q));
->   
-> +	if (q->flags & EXEC_QUEUE_FLAG_LOW_LATENCY)
-> +		slpc_exec_queue_freq_req |= SLPC_CTX_FREQ_REQ_IS_COMPUTE;
-> +
->   	__guc_exec_queue_policy_start_klv(&policy, q->guc->id);
->   	__guc_exec_queue_policy_add_priority(&policy, xe_exec_queue_prio_to_guc[prio]);
->   	__guc_exec_queue_policy_add_execution_quantum(&policy, timeslice_us);
->   	__guc_exec_queue_policy_add_preemption_timeout(&policy, preempt_timeout_us);
-> +	__guc_exec_queue_policy_add_slpc_exec_queue_freq_req(&policy,
-> +							     slpc_exec_queue_freq_req);
->   
->   	xe_guc_ct_send(&guc->ct, (u32 *)&policy.h2g,
->   		       __guc_exec_queue_policy_action_size(&policy), 0, 0);
-> diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-> index ebfae746f861..e802bf34c02c 100644
-> --- a/drivers/gpu/drm/xe/xe_query.c
-> +++ b/drivers/gpu/drm/xe/xe_query.c
-> @@ -339,6 +339,8 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
->   	if (xe_device_get_root_tile(xe)->mem.vram.usable_size)
->   		config->info[DRM_XE_QUERY_CONFIG_FLAGS] =
->   			DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM;
-> +	config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
-> +			DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY;
->   	config->info[DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT] =
->   		xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
->   	config->info[DRM_XE_QUERY_CONFIG_VA_BITS] = xe->info.va_bits;
-> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> index 892f54d3aa09..6e510287eaf5 100644
-> --- a/include/uapi/drm/xe_drm.h
-> +++ b/include/uapi/drm/xe_drm.h
-> @@ -393,6 +393,8 @@ struct drm_xe_query_mem_regions {
->    *
->    *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM - Flag is set if the device
->    *      has usable VRAM
-> + *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY - Flag is set if the device
-> + *      has low latency hint support
->    *  - %DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT - Minimal memory alignment
->    *    required by this device, typically SZ_4K or SZ_64K
->    *  - %DRM_XE_QUERY_CONFIG_VA_BITS - Maximum bits of a virtual address
-> @@ -409,6 +411,7 @@ struct drm_xe_query_config {
->   #define DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID	0
->   #define DRM_XE_QUERY_CONFIG_FLAGS			1
->   	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM	(1 << 0)
-> +	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY	(1 << 1)
->   #define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
->   #define DRM_XE_QUERY_CONFIG_VA_BITS			3
->   #define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
-> @@ -1204,6 +1207,21 @@ struct drm_xe_vm_bind {
->    *     };
->    *     ioctl(fd, DRM_IOCTL_XE_EXEC_QUEUE_CREATE, &exec_queue_create);
->    *
-> + *     Allow users to provide a hint to kernel for cases demanding low latency
-> + *     profile. Please note it will have impact on power consumption. User can
-> + *     indicate low latency hint with flag while creating exec queue as
-> + *     mentioned below,
-> + *
-> + *     struct drm_xe_exec_queue_create exec_queue_create = {
-> + *          .flags = DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT,
-> + *          .extensions = 0,
-> + *          .vm_id = vm,
-> + *          .num_bb_per_exec = 1,
-> + *          .num_eng_per_bb = 1,
-> + *          .instances = to_user_pointer(&instance),
-> + *     };
-> + *     ioctl(fd, DRM_IOCTL_XE_EXEC_QUEUE_CREATE, &exec_queue_create);
-> + *
->    */
->   struct drm_xe_exec_queue_create {
->   #define DRM_XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY		0
-> @@ -1222,7 +1240,8 @@ struct drm_xe_exec_queue_create {
->   	/** @vm_id: VM to use for this exec queue */
->   	__u32 vm_id;
->   
-> -	/** @flags: MBZ */
-> +#define DRM_XE_EXEC_QUEUE_LOW_LATENCY_HINT	(1 << 0)
-> +	/** @flags: flags to use for this exec queue */
->   	__u32 flags;
->   
->   	/** @exec_queue_id: Returned exec queue ID */
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: add427957df4 drm-tip: 2025y-02m-26d-07h-01m-41s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/uapi: Use hint for guc to set GT frequency
+
 
