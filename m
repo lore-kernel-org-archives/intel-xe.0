@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42710C021B8
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 18:54:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27DF0C021B8
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 19:23:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 113A810E9C2;
-	Wed, 26 Feb 2025 18:54:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E780C10E9D1;
+	Wed, 26 Feb 2025 19:23:09 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9ADF910E9C2;
- Wed, 26 Feb 2025 18:54:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E99210E9D4;
+ Wed, 26 Feb 2025 19:23:08 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_CI=3A_drm/xe=3A_SVM_squa?=
- =?utf-8?q?sh_for_CI_=28rev5=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/dp=3A_Fix_link_t?=
+ =?utf-8?q?raining_interrupted_by_HPD_pulse_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
+To: "Imre Deak" <imre.deak@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 26 Feb 2025 18:54:55 -0000
-Message-ID: <174059609563.2425117.11847316137630527708@b555e5b46a47>
+Date: Wed, 26 Feb 2025 19:23:08 -0000
+Message-ID: <174059778864.2430869.8797053148875081724@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20250226172518.3334106-1-matthew.brost@intel.com>
-In-Reply-To: <20250226172518.3334106-1-matthew.brost@intel.com>
+References: <20250226171924.2646997-1-imre.deak@intel.com>
+In-Reply-To: <20250226171924.2646997-1-imre.deak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,31 +42,19 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: CI: drm/xe: SVM squash for CI (rev5)
-URL   : https://patchwork.freedesktop.org/series/144825/
+Series: drm/dp: Fix link training interrupted by HPD pulse (rev5)
+URL   : https://patchwork.freedesktop.org/series/145353/
 State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast e52608ca18a6e57830b60b58f9ae3d6c8a193dd5
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 59b653d829a0 drm-tip: 2025y-02m-26d-19h-18m-28s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/hpd: Let an HPD pin be in the disabled state when handling missed IRQs
+Applying: drm/i915/hpd: Add support for blocking the IRQ handling on an HPD pin
+Applying: drm/i915/dp: Fix link training interrupted by a short HPD pulse
+Applying: drm/i915/dp: Queue a link check after link training is complete
+Applying: drm/i915/crt: Use intel_hpd_block/unblock() instead of intel_hpd_disable/enable()
 
 
