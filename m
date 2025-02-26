@@ -4,53 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE92AC021BB
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC49CC021B2
 	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 01:47:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9423210E82F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FCEB10E830;
 	Wed, 26 Feb 2025 01:47:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E2e+jRhO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R8fq/ABf";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0955510E82A
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Feb 2025 01:47:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C18DF10E82A
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Feb 2025 01:47:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1740534444; x=1772070444;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=3EjAxNGiG7EAMVyCUB3+QbgFGk+4ERy3SxqJ82sDPZQ=;
- b=E2e+jRhOgi995SabBBKZsC/tHReEGf8aZXJeMj2TJlpCR4A4cy8N39vx
- L18ys0GqCTmot2f+Q4c1/tLp6WUiXbmdldhpfWPhPprDUNSzvTcIyxtA5
- 4+I9jFrjYF6t/+Uj2y1L8OATJuNguT6in4VKaL4VftoJSn25ergO0iLNP
- ZoT6Iu4OeR6LKVgOuBa5BiFD3PnL+JNZ7FXHvWToVy/Z8BXtfgvvv7pHQ
- CafodF4MbBhSaRexi+WztLSIo2i/Ff8jTj1Nr2eKoLqcl+JIlaZILsRUp
- 0T1QJz79vMy/4cSzkIC/MYEM2Dqk2jAEYhBZFl2TshmNxzn4qOqIt52wM g==;
-X-CSE-ConnectionGUID: MzrArlo5QmS8hqpV/Ta84Q==
-X-CSE-MsgGUID: wgLar1W1SUipbSpfdrC9nQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11356"; a="40602933"
-X-IronPort-AV: E=Sophos;i="6.13,316,1732608000"; d="scan'208";a="40602933"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=/TS4c8Zukg5IAc1o3hH6TEjQZ4Pxjtt6h4gD530H7MI=;
+ b=R8fq/ABfANbNpnEobSkQvip6i50M6V6bbURztN1aBiGjpF7mgxOXMtlc
+ /t3pP+OcnUhMGbuVEvsKRx0tbz6Vg1QE+y6Fudqaoe2jVqP46/ZnrfGln
+ 4L6p0zV3G8j3Hsn4Q6g3rD93lUYxLMoKeSCw3xHk6ij2uajOdLnKkP60V
+ ROIkXujY+jVKOcmVMNrxRUxuwK1NRj5hhHfhjVbAk28s7VYi4bG5bmU5z
+ wDbtCUfSJj280KJ+59dz4x2XsCypfVdWUAirvMv27bvOvEBtBBAVJM0ik
+ T5xXqhyXDwjmNDXNnZFun4Oom9gQzG8wwz34zilVB40q8egxL654zDkmU w==;
+X-CSE-ConnectionGUID: a4wVIOgmR8eS6qXE/7feDg==
+X-CSE-MsgGUID: BxAD/5nbSCG+5sKThUSV8w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11356"; a="40602937"
+X-IronPort-AV: E=Sophos;i="6.13,316,1732608000"; d="scan'208";a="40602937"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 17:47:23 -0800
-X-CSE-ConnectionGUID: GiAys21ZQLGaUi/WRDJ13Q==
-X-CSE-MsgGUID: JvEbKnBcRbGZOANNxGLYcg==
+ 25 Feb 2025 17:47:24 -0800
+X-CSE-ConnectionGUID: 16z+9k63RBu9uZGpwurjlQ==
+X-CSE-MsgGUID: hOI+IBxhR6GBRs95ws0c1Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,316,1732608000"; d="scan'208";a="117050211"
+X-IronPort-AV: E=Sophos;i="6.13,316,1732608000"; d="scan'208";a="117050224"
 Received: from hchegond-ivm1.jf.intel.com ([10.165.21.208])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 17:47:22 -0800
+ 25 Feb 2025 17:47:24 -0800
 From: Harish Chegondi <harish.chegondi@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: ashutosh.dixit@intel.com, james.ausmus@intel.com,
  felix.j.degrood@intel.com, matthew.olson@intel.com,
  shubham.kumar@intel.com, joshua.santosh.ranjan@intel.com,
  lucas.demarchi@intel.com, Harish Chegondi <harish.chegondi@intel.com>
-Subject: [PATCH v12 0/8] Add support for EU stall sampling
-Date: Tue, 25 Feb 2025 17:47:04 -0800
-Message-ID: <cover.1740533885.git.harish.chegondi@intel.com>
+Subject: [PATCH v12 4/8] drm/xe/eustall: Add support to read() and poll() EU
+ stall data
+Date: Tue, 25 Feb 2025 17:47:08 -0800
+Message-ID: <369dee85a3b6bd2c08aeae89ca55e66a9a0242d2.1740533885.git.harish.chegondi@intel.com>
 X-Mailer: git-send-email 2.48.1
+In-Reply-To: <cover.1740533885.git.harish.chegondi@intel.com>
+References: <cover.1740533885.git.harish.chegondi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,118 +70,451 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The following patch series add support for EU stall sampling,
-a new hardware feature first added in PVC and is being supported
-in XE2 and later architecture GPUs. This feature would enable
-capturing of EU stall data which include the IP address of the
-instruction stalled and various stall reason counts.
+Implement the EU stall sampling APIs to read() and poll() EU stall data.
+A work function periodically polls the EU stall data buffer write pointer
+registers to look for any new data and caches the write pointer. The read
+function compares the cached read and write pointers and copies any new
+data to the user space.
 
-Support for this feature is being added into Mesa:
-https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/30142
+v11: Used gt->eu_stall->stream_lock instead of stream->buf_lock.
+     Removed read and write offsets from trace and added read size.
+     Moved workqueue from struct xe_eu_stall_data_stream to
+     struct xe_eu_stall_gt.
+v10: Used cancel_delayed_work_sync() instead of flush_delayed_work()
+     Replaced per xecore lock with a lock for all the xecore buffers
+     Code movement and optimizations as per review feedback
+v9:  New patch split from the previous patch.
+     Used *_delayed_work functions instead of hrtimer
+     Addressed the review feedback in read and poll functions
 
-New IGT tests for EU stall sampling are being added:
-https://patchwork.freedesktop.org/series/143030/
-
-This patch series has undergone basic testing with the new IGT tests.
-
-Issues that need investigation:
-1. Blocked reads with small user buffers may be blocked even with EU
-stall data in the kernel buffer as a previous read has set pollin to
-false even when kernel buffer has data that could be read but the user
-buffer is too small to read all the data.
-
-Thank You.
-
-v12 a. Move check for EU stall support to a header file
-    b. Move 'goto exit_drop;' to the next if statement
-v11 a. Lock optimization
-    b. Moved around code as per review feedback
-v10 a. Fixed error rewinding code
-    b. Used cancel_delayed_work_sync() instead of flush_delayed_work()
-    c. Replaced per xecore lock with a lock for all the xecore buffers
-    d. Remove function description for static functions.
-    e. Use extension number while parsing chain of extensions.
-    f. Moved code around as per review feedback
-v9: a. Split the big patch in v8 into two patches
-    b. Moved all drop data handling code into one patch
-    c. Several other code improvements as mentioned in the patches
-v8: a. Used div_u64() instead of / to fix 32-bit build issue.
-    b. Changed copyright year in new files to 2025.
-    c. Renamed struct drm_xe_eu_stall_data_pvc to struct xe_eu_stall_data_pvc
-    d. Renamed struct drm_xe_eu_stall_data_xe2 to struct xe_eu_stall_data_xe2
-
-v7: a. Renamed input property DRM_XE_EU_STALL_PROP_EVENT_REPORT_COUNT
-       to DRM_XE_EU_STALL_PROP_WAIT_NUM_REPORTS to be consistent with
-       OA. Renamed the corresponding internal variables.
-    b. Fixed some commit messages based on review feedback.
-    c. Changed sampling_rates from a pointer to flexible array.
-
-v6: a. Changed the uAPI input to accept sampling rate in GPU cycles
-       instead of sampling rate multiplier.
-    b. Fix buffer wrap around over write bug (Matt Olson).
-    c. Include EU stall sampling rates information and per XeCore buffer size in the query information.
-
-v5: Addressed review feedback from v4 including
-    a. Removed DRM_XE_EU_STALL_PROP_POLL_PERIOD from the uAPI (Ashutosh)
-    b. Separated the patches for Xe_HPC and Xe2 (Matt R)
-    c. Moved read() returning -EIO into a separate patch
-    d. Removed spinlocks around set_bit() and clear_bit() (Matt R)
-    e. Renamed several variables, structures and enums (Ashutosh and
-Matt R)
-    f. Addressed other review feedback.
-v4: Addressed review feedback from v3 including
-    a. Split the patch into multiple patches (Matt R)
-    b. Added a new device query to get EU stall info (Ashutosh)
-    c. Renamed all Dss to xecore (Matt R)
-    d. Removed buffer size and disable at open input properties. (Matt R)
-    e. Removed the "_SHIFT" macros (Matt R)
-    f. Allocate the EU stall buffer only on system memory.
-    g. Changed the work arounds to OOB (Matt R)
-    h. Other review feedback.
-v3: a. Removed data header and changed read() to return -EIO when data is dropped by the HW.
-    b. Added a new DRM_XE_OBSERVATION_IOCTL_INFO to query EU stall data record info
-    c. Added struct drm_xe_eu_stall_data_pvc and struct drm_xe_eu_stall_data_xe2
-       to xe_drm.h. These declarations would help user space to parse the
-       EU stall data
-    d. Addressed other review comments from v2
-v2: Rename xe perf layer as xe observation layer (Ashutosh)
-
-Test-with: cover.1739901972.git.harish.chegondi@intel.com
-
-Reviewed-by: Ben Olson <matthew.olson@intel.com>
-Acked-by: Felix Degrood <felix.j.degrood@intel.com>
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ drivers/gpu/drm/xe/xe_eu_stall.c | 267 ++++++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_trace.h    |  30 ++++
+ 2 files changed, 294 insertions(+), 3 deletions(-)
 
-Harish Chegondi (8):
-  drm/xe/topology: Add a function to find the index of the last enabled
-    DSS in a mask
-  drm/xe/uapi: Introduce API for EU stall sampling
-  drm/xe/eustall: Add support to init, enable and disable EU stall
-    sampling
-  drm/xe/eustall: Add support to read() and poll() EU stall data
-  drm/xe/eustall: Add support to handle dropped EU stall data
-  drm/xe/eustall: Add EU stall sampling support for Xe2
-  drm/xe/uapi: Add a device query to get EU stall sampling information
-  drm/xe/eustall: Add workaround 22016596838 which applies to PVC.
-
- drivers/gpu/drm/xe/Makefile                |   1 +
- drivers/gpu/drm/xe/regs/xe_eu_stall_regs.h |  29 +
- drivers/gpu/drm/xe/xe_eu_stall.c           | 960 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_eu_stall.h           |  24 +
- drivers/gpu/drm/xe/xe_gt.c                 |   5 +
- drivers/gpu/drm/xe/xe_gt_topology.h        |  13 +
- drivers/gpu/drm/xe/xe_gt_types.h           |   3 +
- drivers/gpu/drm/xe/xe_observation.c        |  14 +
- drivers/gpu/drm/xe/xe_query.c              |  43 +
- drivers/gpu/drm/xe/xe_trace.h              |  30 +
- drivers/gpu/drm/xe/xe_wa_oob.rules         |   1 +
- include/uapi/drm/xe_drm.h                  |  74 ++
- 12 files changed, 1197 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/regs/xe_eu_stall_regs.h
- create mode 100644 drivers/gpu/drm/xe/xe_eu_stall.c
- create mode 100644 drivers/gpu/drm/xe/xe_eu_stall.h
-
+diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
+index 2e7d00f8ff40..e82a6ebfe979 100644
+--- a/drivers/gpu/drm/xe/xe_eu_stall.c
++++ b/drivers/gpu/drm/xe/xe_eu_stall.c
+@@ -21,10 +21,13 @@
+ #include "xe_macros.h"
+ #include "xe_observation.h"
+ #include "xe_pm.h"
++#include "xe_trace.h"
+ 
+ #include "regs/xe_eu_stall_regs.h"
+ #include "regs/xe_gt_regs.h"
+ 
++#define POLL_PERIOD_MS	5
++
+ static size_t per_xecore_buf_size = SZ_512K;
+ 
+ struct per_xecore_buf {
+@@ -37,15 +40,18 @@ struct per_xecore_buf {
+ };
+ 
+ struct xe_eu_stall_data_stream {
++	bool pollin;
+ 	bool enabled;
+ 	int wait_num_reports;
+ 	int sampling_rate_mult;
++	wait_queue_head_t poll_wq;
+ 	size_t data_record_size;
+ 	size_t per_xecore_buf_size;
+ 
+ 	struct xe_gt *gt;
+ 	struct xe_bo *bo;
+ 	struct per_xecore_buf *xecore_buf;
++	struct delayed_work buf_poll_work;
+ };
+ 
+ struct xe_eu_stall_gt {
+@@ -53,6 +59,8 @@ struct xe_eu_stall_gt {
+ 	struct mutex stream_lock;
+ 	/* EU stall data stream */
+ 	struct xe_eu_stall_data_stream *stream;
++	/* Workqueue to schedule buffer pointers polling work */
++	struct workqueue_struct *buf_ptr_poll_wq;
+ };
+ 
+ /**
+@@ -114,6 +122,7 @@ static void xe_eu_stall_fini(void *arg)
+ {
+ 	struct xe_gt *gt = arg;
+ 
++	destroy_workqueue(gt->eu_stall->buf_ptr_poll_wq);
+ 	mutex_destroy(&gt->eu_stall->stream_lock);
+ 	kfree(gt->eu_stall);
+ }
+@@ -139,11 +148,19 @@ int xe_eu_stall_init(struct xe_gt *gt)
+ 
+ 	mutex_init(&gt->eu_stall->stream_lock);
+ 
++	gt->eu_stall->buf_ptr_poll_wq = alloc_ordered_workqueue("xe_eu_stall", 0);
++	if (!gt->eu_stall->buf_ptr_poll_wq) {
++		ret = -ENOMEM;
++		goto exit_free;
++	}
++
+ 	ret = devm_add_action_or_reset(xe->drm.dev, xe_eu_stall_fini, gt);
+ 	if (ret)
+-		goto exit_free;
++		goto exit_destroy;
+ 
+ 	return 0;
++exit_destroy:
++	destroy_workqueue(gt->eu_stall->buf_ptr_poll_wq);
+ exit_free:
+ 	mutex_destroy(&gt->eu_stall->stream_lock);
+ 	kfree(gt->eu_stall);
+@@ -248,6 +265,172 @@ static int xe_eu_stall_user_extensions(struct xe_device *xe, u64 extension,
+ 	return 0;
+ }
+ 
++/**
++ * buf_data_size - Calculate the number of bytes in a circular buffer
++ *		   given the read and write pointers and the size of
++ *		   the buffer.
++ *
++ * @buf_size: Size of the circular buffer
++ * @read_ptr: Read pointer with an additional overflow bit
++ * @write_ptr: Write pointer with an additional overflow bit
++ *
++ * Since the read and write pointers have an additional overflow bit,
++ * this function calculates the offsets from the pointers and use the
++ * offsets to calculate the data size in the buffer.
++ *
++ * Returns: number of bytes of data in the buffer
++ */
++static u32 buf_data_size(size_t buf_size, u32 read_ptr, u32 write_ptr)
++{
++	u32 read_offset, write_offset, size = 0;
++
++	if (read_ptr == write_ptr)
++		goto exit;
++
++	read_offset = read_ptr & (buf_size - 1);
++	write_offset = write_ptr & (buf_size - 1);
++
++	if (write_offset > read_offset)
++		size = write_offset - read_offset;
++	else
++		size = buf_size - read_offset + write_offset;
++exit:
++	return size;
++}
++
++/**
++ * eu_stall_data_buf_poll - Poll for EU stall data in the buffer.
++ *
++ * @stream: xe EU stall data stream instance
++ *
++ * Returns: true if the EU stall buffer contains minimum stall data as
++ *	    specified by the event report count, else false.
++ */
++static bool eu_stall_data_buf_poll(struct xe_eu_stall_data_stream *stream)
++{
++	u32 read_ptr, write_ptr_reg, write_ptr, total_data = 0;
++	u32 buf_size = stream->per_xecore_buf_size;
++	struct per_xecore_buf *xecore_buf;
++	struct xe_gt *gt = stream->gt;
++	bool min_data_present = false;
++	u16 group, instance;
++	unsigned int xecore;
++
++	mutex_lock(&gt->eu_stall->stream_lock);
++	for_each_dss_steering(xecore, gt, group, instance) {
++		xecore_buf = &stream->xecore_buf[xecore];
++		read_ptr = xecore_buf->read;
++		write_ptr_reg = xe_gt_mcr_unicast_read(gt, XEHPC_EUSTALL_REPORT,
++						       group, instance);
++		write_ptr = REG_FIELD_GET(XEHPC_EUSTALL_REPORT_WRITE_PTR_MASK, write_ptr_reg);
++		write_ptr <<= 6;
++		write_ptr &= ((buf_size << 1) - 1);
++		if (!min_data_present) {
++			total_data += buf_data_size(buf_size, read_ptr, write_ptr);
++			if (num_data_rows(total_data) >= stream->wait_num_reports)
++				min_data_present = true;
++		}
++		xecore_buf->write = write_ptr;
++	}
++	mutex_unlock(&gt->eu_stall->stream_lock);
++
++	return min_data_present;
++}
++
++static int xe_eu_stall_data_buf_read(struct xe_eu_stall_data_stream *stream,
++				     char __user *buf, size_t count,
++				     size_t *total_data_size, struct xe_gt *gt,
++				     u16 group, u16 instance, unsigned int xecore)
++{
++	size_t read_data_size, copy_size, buf_size;
++	u32 read_ptr_reg, read_ptr, write_ptr;
++	u8 *xecore_start_vaddr, *read_vaddr;
++	struct per_xecore_buf *xecore_buf;
++	u32 read_offset, write_offset;
++
++	/* Hardware increments the read and write pointers such that they can
++	 * overflow into one additional bit. For example, a 256KB size buffer
++	 * offset pointer needs 18 bits. But HW uses 19 bits for the read and
++	 * write pointers. This technique avoids wasting a slot in the buffer.
++	 * Read and write offsets are calculated from the pointers in order to
++	 * check if the write pointer has wrapped around the array.
++	 */
++	xecore_buf = &stream->xecore_buf[xecore];
++	xecore_start_vaddr = xecore_buf->vaddr;
++	read_ptr = xecore_buf->read;
++	write_ptr = xecore_buf->write;
++	buf_size = stream->per_xecore_buf_size;
++
++	read_data_size = buf_data_size(buf_size, read_ptr, write_ptr);
++	/* Read only the data that the user space buffer can accommodate */
++	read_data_size = min_t(size_t, count - *total_data_size, read_data_size);
++	if (read_data_size == 0)
++		return 0;
++
++	read_offset = read_ptr & (buf_size - 1);
++	write_offset = write_ptr & (buf_size - 1);
++	read_vaddr = xecore_start_vaddr + read_offset;
++
++	if (write_offset > read_offset) {
++		if (copy_to_user(buf + *total_data_size, read_vaddr, read_data_size))
++			return -EFAULT;
++	} else {
++		if (read_data_size >= buf_size - read_offset)
++			copy_size = buf_size - read_offset;
++		else
++			copy_size = read_data_size;
++		if (copy_to_user(buf + *total_data_size, read_vaddr, copy_size))
++			return -EFAULT;
++		if (copy_to_user(buf + *total_data_size + copy_size,
++				 xecore_start_vaddr, read_data_size - copy_size))
++			return -EFAULT;
++	}
++
++	*total_data_size += read_data_size;
++	read_ptr += read_data_size;
++
++	/* Read pointer can overflow into one additional bit */
++	read_ptr &= (buf_size << 1) - 1;
++	read_ptr_reg = REG_FIELD_PREP(XEHPC_EUSTALL_REPORT1_READ_PTR_MASK, (read_ptr >> 6));
++	read_ptr_reg = _MASKED_FIELD(XEHPC_EUSTALL_REPORT1_READ_PTR_MASK, read_ptr_reg);
++	xe_gt_mcr_unicast_write(gt, XEHPC_EUSTALL_REPORT1, read_ptr_reg, group, instance);
++	xecore_buf->read = read_ptr;
++	trace_xe_eu_stall_data_read(group, instance, read_ptr, write_ptr,
++				    read_data_size, *total_data_size);
++	return 0;
++}
++
++/**
++ * xe_eu_stall_stream_read_locked - copy EU stall counters data from the
++ *				    per xecore buffers to the userspace buffer
++ * @stream: A stream opened for EU stall count metrics
++ * @file: An xe EU stall data stream file
++ * @buf: destination buffer given by userspace
++ * @count: the number of bytes userspace wants to read
++ *
++ * Returns: Number of bytes copied or a negative error code
++ * If we've successfully copied any data then reporting that takes
++ * precedence over any internal error status, so the data isn't lost.
++ */
++static ssize_t xe_eu_stall_stream_read_locked(struct xe_eu_stall_data_stream *stream,
++					      struct file *file, char __user *buf,
++					      size_t count)
++{
++	struct xe_gt *gt = stream->gt;
++	size_t total_size = 0;
++	u16 group, instance;
++	unsigned int xecore;
++	int ret = 0;
++
++	for_each_dss_steering(xecore, gt, group, instance) {
++		ret = xe_eu_stall_data_buf_read(stream, buf, count, &total_size,
++						gt, group, instance, xecore);
++		if (ret || count == total_size)
++			break;
++	}
++	return total_size ?: (ret ?: -EAGAIN);
++}
++
+ /*
+  * Userspace must enable the EU stall stream with DRM_XE_OBSERVATION_IOCTL_ENABLE
+  * before calling read().
+@@ -255,7 +438,41 @@ static int xe_eu_stall_user_extensions(struct xe_device *xe, u64 extension,
+ static ssize_t xe_eu_stall_stream_read(struct file *file, char __user *buf,
+ 				       size_t count, loff_t *ppos)
+ {
+-	ssize_t ret = 0;
++	struct xe_eu_stall_data_stream *stream = file->private_data;
++	struct xe_gt *gt = stream->gt;
++	ssize_t ret, aligned_count;
++
++	aligned_count = ALIGN_DOWN(count, stream->data_record_size);
++	if (aligned_count == 0)
++		return -EINVAL;
++
++	if (!stream->enabled) {
++		xe_gt_dbg(gt, "EU stall data stream not enabled to read\n");
++		return -EINVAL;
++	}
++
++	if (!(file->f_flags & O_NONBLOCK)) {
++		do {
++			ret = wait_event_interruptible(stream->poll_wq, stream->pollin);
++			if (ret)
++				return -EINTR;
++
++			mutex_lock(&gt->eu_stall->stream_lock);
++			ret = xe_eu_stall_stream_read_locked(stream, file, buf, aligned_count);
++			mutex_unlock(&gt->eu_stall->stream_lock);
++		} while (ret == -EAGAIN);
++	} else {
++		mutex_lock(&gt->eu_stall->stream_lock);
++		ret = xe_eu_stall_stream_read_locked(stream, file, buf, aligned_count);
++		mutex_unlock(&gt->eu_stall->stream_lock);
++	}
++
++	/*
++	 * This may not work correctly if the user buffer is very small.
++	 * We don't want to block the next read() when there is data in the buffer
++	 * now, but couldn't be accommodated in the small user buffer.
++	 */
++	stream->pollin = false;
+ 
+ 	return ret;
+ }
+@@ -348,6 +565,21 @@ static int xe_eu_stall_stream_enable(struct xe_eu_stall_data_stream *stream)
+ 	return 0;
+ }
+ 
++static void eu_stall_data_buf_poll_work_fn(struct work_struct *work)
++{
++	struct xe_eu_stall_data_stream *stream =
++		container_of(work, typeof(*stream), buf_poll_work.work);
++	struct xe_gt *gt = stream->gt;
++
++	if (eu_stall_data_buf_poll(stream)) {
++		stream->pollin = true;
++		wake_up(&stream->poll_wq);
++	}
++	queue_delayed_work(gt->eu_stall->buf_ptr_poll_wq,
++			   &stream->buf_poll_work,
++			   msecs_to_jiffies(POLL_PERIOD_MS));
++}
++
+ static int xe_eu_stall_stream_init(struct xe_eu_stall_data_stream *stream,
+ 				   struct eu_stall_open_properties *props)
+ {
+@@ -372,6 +604,9 @@ static int xe_eu_stall_stream_init(struct xe_eu_stall_data_stream *stream,
+ 			  max_wait_num_reports);
+ 		return -EINVAL;
+ 	}
++
++	init_waitqueue_head(&stream->poll_wq);
++	INIT_DELAYED_WORK(&stream->buf_poll_work, eu_stall_data_buf_poll_work_fn);
+ 	stream->per_xecore_buf_size = per_xecore_buf_size;
+ 	stream->sampling_rate_mult = props->sampling_rate_mult;
+ 	stream->wait_num_reports = props->wait_num_reports;
+@@ -389,15 +624,35 @@ static int xe_eu_stall_stream_init(struct xe_eu_stall_data_stream *stream,
+ 	return 0;
+ }
+ 
++static __poll_t xe_eu_stall_stream_poll_locked(struct xe_eu_stall_data_stream *stream,
++					       struct file *file, poll_table *wait)
++{
++	__poll_t events = 0;
++
++	poll_wait(file, &stream->poll_wq, wait);
++
++	if (stream->pollin)
++		events |= EPOLLIN;
++
++	return events;
++}
++
+ static __poll_t xe_eu_stall_stream_poll(struct file *file, poll_table *wait)
+ {
+-	__poll_t ret = 0;
++	struct xe_eu_stall_data_stream *stream = file->private_data;
++	struct xe_gt *gt = stream->gt;
++	__poll_t ret;
++
++	mutex_lock(&gt->eu_stall->stream_lock);
++	ret = xe_eu_stall_stream_poll_locked(stream, file, wait);
++	mutex_unlock(&gt->eu_stall->stream_lock);
+ 
+ 	return ret;
+ }
+ 
+ static int xe_eu_stall_enable_locked(struct xe_eu_stall_data_stream *stream)
+ {
++	struct xe_gt *gt = stream->gt;
+ 	int ret = 0;
+ 
+ 	if (stream->enabled)
+@@ -406,6 +661,10 @@ static int xe_eu_stall_enable_locked(struct xe_eu_stall_data_stream *stream)
+ 	stream->enabled = true;
+ 
+ 	ret = xe_eu_stall_stream_enable(stream);
++
++	queue_delayed_work(gt->eu_stall->buf_ptr_poll_wq,
++			   &stream->buf_poll_work,
++			   msecs_to_jiffies(POLL_PERIOD_MS));
+ 	return ret;
+ }
+ 
+@@ -420,6 +679,8 @@ static int xe_eu_stall_disable_locked(struct xe_eu_stall_data_stream *stream)
+ 
+ 	xe_gt_mcr_multicast_write(gt, XEHPC_EUSTALL_BASE, 0);
+ 
++	cancel_delayed_work_sync(&stream->buf_poll_work);
++
+ 	xe_force_wake_put(gt_to_fw(gt), XE_FW_RENDER);
+ 	xe_pm_runtime_put(gt_to_xe(gt));
+ 
+diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+index d5281de04d54..b4a3577df70c 100644
+--- a/drivers/gpu/drm/xe/xe_trace.h
++++ b/drivers/gpu/drm/xe/xe_trace.h
+@@ -427,6 +427,36 @@ DEFINE_EVENT(xe_pm_runtime, xe_pm_runtime_get_ioctl,
+ 	     TP_ARGS(xe, caller)
+ );
+ 
++TRACE_EVENT(xe_eu_stall_data_read,
++	    TP_PROTO(u8 slice, u8 subslice,
++		     u32 read_ptr, u32 write_ptr,
++		     size_t read_size, size_t total_size),
++	    TP_ARGS(slice, subslice,
++		    read_ptr, write_ptr,
++		    read_size, total_size),
++
++	    TP_STRUCT__entry(__field(u8, slice)
++			     __field(u8, subslice)
++			     __field(u32, read_ptr)
++			     __field(u32, write_ptr)
++			     __field(size_t, read_size)
++			     __field(size_t, total_size)
++			     ),
++
++	    TP_fast_assign(__entry->slice = slice;
++			   __entry->subslice = subslice;
++			   __entry->read_ptr = read_ptr;
++			   __entry->write_ptr = write_ptr;
++			   __entry->read_size = read_size;
++			   __entry->total_size = total_size;
++			   ),
++
++	    TP_printk("slice: %u subslice: %u read ptr: 0x%x write ptr: 0x%x read size: %zu total read size: %zu",
++		      __entry->slice, __entry->subslice,
++		      __entry->read_ptr, __entry->write_ptr,
++		      __entry->read_size, __entry->total_size)
++);
++
+ #endif
+ 
+ /* This part must be outside protection */
 -- 
 2.48.1
 
