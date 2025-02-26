@@ -4,79 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 431F1C021B8
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 16:06:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96E4DC021B8
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 16:13:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1195210E955;
-	Wed, 26 Feb 2025 16:06:02 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="DmJw1n85";
-	dkim-atps=neutral
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com
- [209.85.221.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C16110E951;
- Wed, 26 Feb 2025 16:06:00 +0000 (UTC)
-Received: by mail-wr1-f48.google.com with SMTP id
- ffacd0b85a97d-38f488f3161so3909455f8f.3; 
- Wed, 26 Feb 2025 08:06:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1740585959; x=1741190759; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=sjm0Buwjwxm+WDev80/Z7KsjHHkctsu1ONm9k/3wnjM=;
- b=DmJw1n852aroNYA3ArBPcfFOrFBB86rRIxE4GHiZH9cSMc0YyH9cIRNj62iyfP/81K
- vIeq0Qvm4fZqIRxChfyDfLqaN2aSP90Y5g2BU0akZx1Qydb6gQcDd26JYTMHNCa/7lib
- PToPeiBcM89Cnm8t9CgEMPu84cMnucBm+icDXLJCJiRCQFF2K/ENwL+MuhwzKzZgHxfZ
- 5/UmdSPEcZoPvCsNWe+heIyiLWChBvF7OciUU7Y44ZVOWEVnKxoBOp+lms67iQGpFQ9Q
- Djb8z0k24KHbIgntI5rC1fmvfF5PcBtkyb/Ld2/60osUKWEoBfCJhiZ/Hzy0XmiYxjr7
- Md+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1740585959; x=1741190759;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=sjm0Buwjwxm+WDev80/Z7KsjHHkctsu1ONm9k/3wnjM=;
- b=oTaLWhFD3cRyBKL9iMIJ+gZKzxFg/s1SMHsz/3wYjtDSIClyrRAcBJDxUNXlUG3BPX
- K9AmQ1NQEQq9rARhssPxclFQefgBaepx8qVzDbUX/EZqTiRTXEiJhUAjZog1CZUi5Zos
- KS8y4GCVUmEfUy42fSdb+diUTwpJSAAzrWgK96fu7g6yOBfNPNWymrlf1rNFTo7k/b8y
- NlI7YuDwM5AVHkoCHJvW8KOZs2O+CgXfa20bqFCrkH1JqL1w4skA52gkWCTeqx6QHdYw
- Ym6G1dzeeM/bd9D4TAEVLAAkvKCmVTJ+gNUqE33+IHZNJ2+NrFe8i2h/iWR61sPrhVhv
- VKEQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUHMilVbgt5J22teu1Z+UAUi/ZVif/zU8xGzyMPW25yzK6/g5XZhx2S9vT3HqDw8DeZpaGuSlplnOo=@lists.freedesktop.org,
- AJvYcCXgMGtRVZg6GRzj/T0ZECfbHEmISlRb3Tro5XOfCEtWXaWH5enTWoOgQzqloY0f7akqu8+h/Sjccvw=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxWLGLWH5dqz66Q176zJl4cvbknGqm3yLaBNWZMJRpue+/nlMup
- AMe7C/S8H4klVpyvs9LwkI5StK604JJ+609yVvRmO2MGoY0BlBnm
-X-Gm-Gg: ASbGncsjmqAgkaX1sf3Ez651twTl+3iuLUj4p5/VranFvDzsRTPbMWOxMpd+CRcurfZ
- 7jkjSDKwjINdq4M3o9cSN0jFn8XvaNE0rfApW7s4qsYB74Mfdp4MZ7Bg2gel5ACkmUObmI1k38l
- ADBsdrho8BFrBFSISHQ0kURPbEVUevz2GdEy1qg6sDXE1NLCtR9Lbw+AOenJBJDUV7UKRWKQKE8
- ulZhtJMBSTfh2rgjPanUAR5nKUcW2OIP/UM0LMbtTs6XLvokX43MWvfmNnMJa6fW9dDnwH6jXJg
- 5Viy9UH/w5cV+hplTjz1fH4AyHo=
-X-Google-Smtp-Source: AGHT+IFVFHkpnnU9VW7aOfIZgP4iCvawfQNvVOj9zraHTLvEMvl93gNJtyixpuT6X2RHpxCfcLJtrA==
-X-Received: by 2002:a05:6000:2c7:b0:38f:21ce:aa28 with SMTP id
- ffacd0b85a97d-38f70827b21mr15686879f8f.36.1740585958499; 
- Wed, 26 Feb 2025 08:05:58 -0800 (PST)
-Received: from localhost ([194.120.133.72])
- by smtp.gmail.com with UTF8SMTPSA id
- ffacd0b85a97d-390cd8fbb5dsm5943880f8f.84.2025.02.26.08.05.58
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 Feb 2025 08:05:58 -0800 (PST)
-From: Colin Ian King <colin.i.king@gmail.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: kernel-janitors@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH][next] drm/xe: Fix uninitialized pointer def
-Date: Wed, 26 Feb 2025 16:05:24 +0000
-Message-ID: <20250226160524.566074-1-colin.i.king@gmail.com>
-X-Mailer: git-send-email 2.47.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 632B810E953;
+	Wed, 26 Feb 2025 16:13:42 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E89510E953;
+ Wed, 26 Feb 2025 16:13:40 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6499198161973921513=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/audio=3A_Extend_Wa?=
+ =?utf-8?q?=5F14020863754_to_Xe3=5FLPD?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 26 Feb 2025 16:13:40 -0000
+Message-ID: <174058642038.2383382.6995779135815625620@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250226-xe3lpd-wa-14020863754-v1-1-8096dfeb3c6d@intel.com>
+In-Reply-To: <20250226-xe3lpd-wa-14020863754-v1-1-8096dfeb3c6d@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,33 +36,140 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In the case where a set of checks on xe->info.platform don't assign
-a value to pointer def the pointer remains uninitialized and hence
-can fail the following !def check. Fix this be ensuring pointer
-def is initialized to NULL.
+--===============6499198161973921513==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Fixes: 292b1a8a5054 ("drm/xe: Stop ignoring errors from xe_heci_gsc_init()")
-Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
----
- drivers/gpu/drm/xe/xe_heci_gsc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_heci_gsc.c b/drivers/gpu/drm/xe/xe_heci_gsc.c
-index 3ea325d3db99..27d11e06a82b 100644
---- a/drivers/gpu/drm/xe/xe_heci_gsc.c
-+++ b/drivers/gpu/drm/xe/xe_heci_gsc.c
-@@ -173,7 +173,7 @@ static int heci_gsc_add_device(struct xe_device *xe, const struct heci_gsc_def *
- int xe_heci_gsc_init(struct xe_device *xe)
- {
- 	struct xe_heci_gsc *heci_gsc = &xe->heci_gsc;
--	const struct heci_gsc_def *def;
-+	const struct heci_gsc_def *def = NULL;
- 	int ret;
- 
- 	if (!xe->info.has_heci_gscfi && !xe->info.has_heci_cscfi)
--- 
-2.47.2
+Series: drm/i915/audio: Extend Wa_14020863754 to Xe3_LPD
+URL   : https://patchwork.freedesktop.org/series/145491/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d_BAT -> xe-pw-145491v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-145491v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_exec_balancer@twice-parallel-rebind:
+    - bat-adlp-vf:        [PASS][1] -> [DMESG-WARN][2] ([Intel XE#3970])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d/bat-adlp-vf/igt@xe_exec_balancer@twice-parallel-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145491v1/bat-adlp-vf/igt@xe_exec_balancer@twice-parallel-rebind.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_exec_basic@twice-userptr-rebind:
+    - bat-adlp-vf:        [DMESG-WARN][3] ([Intel XE#3970]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d/bat-adlp-vf/igt@xe_exec_basic@twice-userptr-rebind.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145491v1/bat-adlp-vf/igt@xe_exec_basic@twice-userptr-rebind.html
+
+  
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
+
+
+Build changes
+-------------
+
+  * Linux: xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d -> xe-pw-145491v1
+
+  IGT_8248: 8248
+  xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d: 5bcb67a2a4c61034f5a25c024631c5fbf351ee8d
+  xe-pw-145491v1: 145491v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145491v1/index.html
+
+--===============6499198161973921513==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/audio: Extend Wa_14020863754 to Xe3_LPD</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145491/">https://patchwork.freedesktop.org/series/145491/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145491v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145491v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d_BAT -&gt; xe-pw-145491v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-145491v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_exec_balancer@twice-parallel-rebind:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d/bat-adlp-vf/igt@xe_exec_balancer@twice-parallel-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145491v1/bat-adlp-vf/igt@xe_exec_balancer@twice-parallel-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_exec_basic@twice-userptr-rebind:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d/bat-adlp-vf/igt@xe_exec_basic@twice-userptr-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145491v1/bat-adlp-vf/igt@xe_exec_basic@twice-userptr-rebind.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d -&gt; xe-pw-145491v1</li>
+</ul>
+<p>IGT_8248: 8248<br />
+  xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d: 5bcb67a2a4c61034f5a25c024631c5fbf351ee8d<br />
+  xe-pw-145491v1: 145491v1</p>
+
+</body>
+</html>
+
+--===============6499198161973921513==--
