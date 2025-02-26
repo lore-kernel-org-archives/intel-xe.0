@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A755BC1B0D9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84BB4C021B8
 	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 17:18:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75A0410E973;
-	Wed, 26 Feb 2025 17:18:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECAAC10E972;
+	Wed, 26 Feb 2025 17:18:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g42iK0gJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lzTkzT33";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E04CB10E96C;
- Wed, 26 Feb 2025 17:18:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9742B10E96D;
+ Wed, 26 Feb 2025 17:18:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740590309; x=1772126309;
+ t=1740590310; x=1772126310;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=KH7kSTwItxcZLXJECtDqdcDrWcKwGmRzCgYdXzvQNt8=;
- b=g42iK0gJQMC1+RWDNRRmA+uBlf7WfTawxCWy9qpb4nam4evm4rUEHB/M
- Q4cmry/eJJPQCPwvVwLCx+oamvhPatAdFuP1IqUV6vWGy4tSWALUBjJw9
- NlLPJ9WD4uPlKAMpaUy/EJsal8JvKhLrbjHWa3SUrDEB62QcSEqjcwZAx
- m6jBO/jf7c1WWbO8PCQJwtDaE95JBfXDpkUrg4Jh7u0lV4LSlO6f76gBp
- rdq7oflh0fH9oRZlUlbs8jwU/lg/3uu/OH5qbKXplxC9L0LSaZff1gnuf
- gDDi0sotVYbhk1fkpdSAhTkC3Ut3qbnGZgw6B7X6uKeR3XwDHMDcmQjhp w==;
-X-CSE-ConnectionGUID: qAt9ySKkTmqCi9CkyzfnvQ==
-X-CSE-MsgGUID: aayy4spUTse1oMvVnnXblg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="40628466"
-X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="40628466"
+ bh=826KuhLGZx3v5DLdmP0iWIW8pKL1Mmz7qP5Yo5UB55c=;
+ b=lzTkzT33IO448SL9nrfHzkEF4uE1gVurWdMld0jG0x3AS/tnUGWHZESa
+ Z47CRMxeJ3WOe5fXU0JSB4xiYVShB3K1Cj1N9397ooJUbXrHn4AynmKat
+ MqZnjAnCv0Qd29iOQMLqBl0LfUeCaSK4GnX+xButwwRy2Ro0sQ4Zi91Wp
+ ZFVHQa7qw34QsonkXiCT+nnN4+ThLKQXNSIFN6+SiwGZFLUUVzEb6yszQ
+ 7BIV2IzagIyHYNXJ4ZEuunOhsQP5oQ3MqarvHtiVwWE5eWhUvR4AOpA/u
+ jPRAH1bR7uUl5q2TqURIvc4ui8NdFWQPF+pqwVrUBeIIEdZ9lmjJ3KcEf g==;
+X-CSE-ConnectionGUID: Y179guwMQyuU2CII4Ykp2g==
+X-CSE-MsgGUID: g+g8DZVcSsmn8Q6Rf/9CnA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="40628473"
+X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="40628473"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2025 09:18:24 -0800
-X-CSE-ConnectionGUID: IPYwiHpARpGAu7uF+6kpiQ==
-X-CSE-MsgGUID: gKa/yOqJR9iN7nxgINJL9A==
+ 26 Feb 2025 09:18:26 -0800
+X-CSE-ConnectionGUID: lJMZqc7mTlG/GWGuEiA7ew==
+X-CSE-MsgGUID: GgxY4ORNS12Vlo1OLSdtMQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="121371279"
+X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="121371341"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2025 09:18:23 -0800
+ 26 Feb 2025 09:18:25 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 1/5] drm/i915/hpd: Let an HPD pin be in the disabled state
- when handling missed IRQs
-Date: Wed, 26 Feb 2025 19:19:19 +0200
-Message-ID: <20250226171924.2646997-2-imre.deak@intel.com>
+Subject: [PATCH v3 3/5] drm/i915/dp: Fix link training interrupted by a short
+ HPD pulse
+Date: Wed, 26 Feb 2025 19:19:21 +0200
+Message-ID: <20250226171924.2646997-4-imre.deak@intel.com>
 X-Mailer: git-send-email 2.44.2
 In-Reply-To: <20250226171924.2646997-1-imre.deak@intel.com>
 References: <20250226171924.2646997-1-imre.deak@intel.com>
@@ -67,40 +67,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-After suspending and resuming the detection on connectors, HPD IRQs that
-arrived while the detection was suspended, are handled by scheduling the
-intel_hotplug::hotplug work for them. All HPD pins must be at this point
-in either the HPD_ENABLED (set for all pins during driver loading/system
-resuming) or HPD_MARK_DISABLED (set by IRQ storm detection) state: the
-HPD_DISABLED state for a pin can be set only from the HPD_MARK_DISABLED
-state by the hotplug work after a storm detection (enabling polling on
-the given pin/connector), however the hotplug work won't be scheduled
-while the detection is suspended.
+During Display Port link training the handling of HPD pulses should be
+prevented, as that handling can interfere with the link training:
 
-A follow-up change will add support for blocking the HPD IRQ handling
-on a given HPD pin (without disabling the IRQ generation on it), after
-which it becomes possible to see a pin in the HPD_DISABLED state when
-unblocking the IRQ handling (since the blocking could've happened for an
-already disabled pin). Adjust queue_work_for_missed_irqs() accordingly,
-so that this function can be reused for unblocking the IRQ handling.
+- Accessing DPCD registers outside the range of link training registers
+  are not allowed by the Standard (see DP Standard v2.1, 3.5.2.16.1,
+  3.6.6.1). The pulse handler reads the DPRX capability registers, which
+  are outside of the allowed range.
+- Switching of the LTTPR transparent/non-transparent mode may reset the
+  LTTPRs on the link, thus aborting any ongoing link training. The pulse
+  handler does set the LTTPR mode, thus it could unexpectedly abort the
+  ongoing link training.
+
+Block/unblock the HPD pulse handling for the duration of the link
+training to prevent the above DPCD register accesses / LTTPR mode
+change.
+
+Apart from the above scenarios, there are other ways a non-link training
+DPCD register could be accessed during link training: via the DRM AUX
+device node, or via DPCD register probing (as performed by
+drm_dp_dpcd_probe()). These will be addressed by a follow-up change.
+
+v2: Rebase on the intel_hpd_suspend/resume -> intel_hpd_block/unblock()
+    rename change.
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hotplug.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/i915/display/intel_dp_link_training.c | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
-index 00d7b1ccf1900..ab8e71c4b0f86 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug.c
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
-@@ -980,6 +980,7 @@ static void queue_work_for_missed_irqs(struct drm_i915_private *i915)
- 		case HPD_MARK_DISABLED:
- 			queue_work = true;
- 			break;
-+		case HPD_DISABLED:
- 		case HPD_ENABLED:
- 			break;
- 		default:
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+index 66fcd90f00282..ce0601a4f0e20 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+@@ -1109,6 +1109,8 @@ intel_dp_128b132b_intra_hop(struct intel_dp *intel_dp,
+ void intel_dp_stop_link_train(struct intel_dp *intel_dp,
+ 			      const struct intel_crtc_state *crtc_state)
+ {
++	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
++
+ 	intel_dp->link_trained = true;
+ 
+ 	intel_dp_disable_dpcd_training_pattern(intel_dp, DP_PHY_DPRX);
+@@ -1119,6 +1121,8 @@ void intel_dp_stop_link_train(struct intel_dp *intel_dp,
+ 	    wait_for(intel_dp_128b132b_intra_hop(intel_dp, crtc_state) == 0, 500)) {
+ 		lt_dbg(intel_dp, DP_PHY_DPRX, "128b/132b intra-hop not clearing\n");
+ 	}
++
++	intel_hpd_unblock(encoder);
+ }
+ 
+ static bool
+@@ -1601,7 +1605,11 @@ void intel_dp_start_link_train(struct intel_atomic_state *state,
+ 	 * non-transparent mode. During an earlier LTTPR detection this
+ 	 * could've been prevented by an active link.
+ 	 */
+-	int lttpr_count = intel_dp_init_lttpr_and_dprx_caps(intel_dp);
++	int lttpr_count;
++
++	intel_hpd_block(encoder);
++
++	lttpr_count = intel_dp_init_lttpr_and_dprx_caps(intel_dp);
+ 
+ 	if (lttpr_count < 0)
+ 		/* Still continue with enabling the port and link training. */
 -- 
 2.44.2
 
