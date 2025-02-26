@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D402C021BB
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 01:47:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEBEFC021B2
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 01:47:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA77410E833;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEAD210E82A;
 	Wed, 26 Feb 2025 01:47:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I5Up3Zdu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k2m9NoPL";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D71A10E82F
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Feb 2025 01:47:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14A7510E82F
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Feb 2025 01:47:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740534445; x=1772070445;
+ t=1740534446; x=1772070446;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ziByaVti5eukHK63vFNy3KKpSPa0a05ik1GxBR0WnY0=;
- b=I5Up3ZduJxifwMcJaTBUahUUWYuzm9kkmBFgIhIiZHnDFLiOr3/QOKRP
- 1/Voh3KeGhJItieE5GfDlps1RYRCLlxN10W78OY7jCf6O/NS/+IVDrDBn
- dvHwWZvgqv+4jZRT+PhWGDV0VC+VufQKdwHVwxyahGQ+FLTEp2Y3ZDQ7T
- KbNZ7mpEgLyXXCP5trmfe0YFL6nh+bTk9lFOLazQ07F+z0bE1F2HPuZ/l
- xgN4e2jah9r70Lhzow4vDAaO7RaVqRncKipvIrgx+eN7vqhHNwJr4voPN
- nIZbSXGFHWdpnafaYWRiJsYsWTcGWroPntv8XoyTJEuLKra/E5h4ZHTLA g==;
-X-CSE-ConnectionGUID: AU86ocj6QNu8mash6NfzJA==
-X-CSE-MsgGUID: RsCGwQXWTJqV8/q3PqDjyw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11356"; a="40602939"
-X-IronPort-AV: E=Sophos;i="6.13,316,1732608000"; d="scan'208";a="40602939"
+ bh=GJ2UYJDBVcxouYHUb8DF8BYHCsYY5diJqm7uWUwFl7U=;
+ b=k2m9NoPL9wc9yPtggZ5JgsVzKQAuOfpVuwfhHCKm9f7CUpGRi4PLsEf4
+ TApELRewM8pIiXehYQW6NU1d7BtOjn9vII3l0WFRmwaQYqrlexARQgm5I
+ MtIQfKbFRdi5T9OqC5QI5Mt+Dd/Uegp3Qgp92mO0zbhHd5HBpCqhccaqq
+ Dad6VmmCkMnMGrXO8/L4ZMTJ0ZaDJF5DA1xfvLf3kXsLQjE4+K+QPIwJP
+ ntVj1iFMYhVYemhz9Lh0PMixkWqdq8sJ0It0djTIlTBhwW1V0x7v3h4x1
+ ElRaUnSpBV9wrfQmrxHdKHbrKpR34JBy9bnBVd45qU3MjHfUEQAvdwgRm g==;
+X-CSE-ConnectionGUID: HQlwjfWVTiOJTuL1/82sKw==
+X-CSE-MsgGUID: ZoRIbW/bSpezWxkfeRheRg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11356"; a="40602940"
+X-IronPort-AV: E=Sophos;i="6.13,316,1732608000"; d="scan'208";a="40602940"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 17:47:25 -0800
-X-CSE-ConnectionGUID: gy/W8k4nSx65RA1Gpsp7BA==
-X-CSE-MsgGUID: sETwKJKCRi+wonQw7KVY2w==
+ 25 Feb 2025 17:47:26 -0800
+X-CSE-ConnectionGUID: M5Y1oiAXRGOavhP4q0Ukog==
+X-CSE-MsgGUID: jjRoHJqSSoq3LKnvrN/SyA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,316,1732608000"; d="scan'208";a="117050230"
+X-IronPort-AV: E=Sophos;i="6.13,316,1732608000"; d="scan'208";a="117050233"
 Received: from hchegond-ivm1.jf.intel.com ([10.165.21.208])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Feb 2025 17:47:25 -0800
@@ -47,9 +47,10 @@ Cc: ashutosh.dixit@intel.com, james.ausmus@intel.com,
  felix.j.degrood@intel.com, matthew.olson@intel.com,
  shubham.kumar@intel.com, joshua.santosh.ranjan@intel.com,
  lucas.demarchi@intel.com, Harish Chegondi <harish.chegondi@intel.com>
-Subject: [PATCH v12 6/8] drm/xe/eustall: Add EU stall sampling support for Xe2
-Date: Tue, 25 Feb 2025 17:47:10 -0800
-Message-ID: <d85093e9ab1204d14d2cc783f304a4bc8688951c.1740533885.git.harish.chegondi@intel.com>
+Subject: [PATCH v12 7/8] drm/xe/uapi: Add a device query to get EU stall
+ sampling information
+Date: Tue, 25 Feb 2025 17:47:11 -0800
+Message-ID: <67ba42796a5a99d648239c315694cd222812a49b.1740533885.git.harish.chegondi@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <cover.1740533885.git.harish.chegondi@intel.com>
 References: <cover.1740533885.git.harish.chegondi@intel.com>
@@ -69,90 +70,265 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add EU stall sampling support for Xe2 architecture GPUs - LNL and BMG.
-EU stall data format for LNL and BMG is different from that of PVC.
+User space can get the EU stall data record size, EU stall capabilities,
+EU stall sampling rates, and per XeCore buffer size with query IOCTL
+DRM_IOCTL_XE_DEVICE_QUERY with .query set to DRM_XE_DEVICE_QUERY_EU_STALL.
+A struct drm_xe_query_eu_stall will be returned to the user space along
+with an array of supported sampling rates sorted in the fastest sampling
+rate first order. sampling_rates in struct drm_xe_query_eu_stall will
+point to the array of sampling rates.
 
-v10: Update comments as per review feedback
+Any capabilities in EU stall sampling as of this patch are considered
+as base capabilities. New capability bits will be added for any new
+functionality added later.
 
-v9: Use GRAPHICS_VER() check instead of platform
-
-v8: Renamed struct drm_xe_eu_stall_data_xe2 to struct xe_eu_stall_data_xe2
-    since it is a local structure.
+v12: Rename has_eu_stall_sampling_support() to
+     xe_eu_stall_supported_on_platform() and move it to header file.
+v11: Check if EU stall sampling is supported on the platform.
+v10: Change comments and variable names as per feedback
+v9: Move reserved fields above num_sampling_rates in
+    struct drm_xe_query_eu_stall.
+v7: Change sampling_rates from a pointer to flexible array.
+v6: Include EU stall sampling rates information and
+    per XeCore buffer size in the query information.
 
 Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_eu_stall.c | 35 +++++++++++++++++++++++++++++---
- 1 file changed, 32 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_eu_stall.c | 48 +++++++++++++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_eu_stall.h |  9 ++++++
+ drivers/gpu/drm/xe/xe_query.c    | 43 ++++++++++++++++++++++++++++
+ include/uapi/drm/xe_drm.h        | 40 ++++++++++++++++++++++++--
+ 4 files changed, 131 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
-index ebda54ea8871..87f978373bd0 100644
+index 87f978373bd0..54a0d1f6a491 100644
 --- a/drivers/gpu/drm/xe/xe_eu_stall.c
 +++ b/drivers/gpu/drm/xe/xe_eu_stall.c
-@@ -99,12 +99,35 @@ struct xe_eu_stall_data_pvc {
+@@ -120,7 +120,46 @@ struct xe_eu_stall_data_xe2 {
  	__u64 unused[6];
  } __packed;
  
-+/*
-+ * EU stall data format for Xe2 arch GPUs (LNL, BMG).
-+ */
-+struct xe_eu_stall_data_xe2 {
-+	__u64 ip_addr:29;	  /* Bits 0  to 28  */
-+	__u64 tdr_count:8;	  /* Bits 29 to 36  */
-+	__u64 other_count:8;	  /* Bits 37 to 44  */
-+	__u64 control_count:8;	  /* Bits 45 to 52  */
-+	__u64 pipestall_count:8;  /* Bits 53 to 60  */
-+	__u64 send_count:8;	  /* Bits 61 to 68  */
-+	__u64 dist_acc_count:8;   /* Bits 69 to 76  */
-+	__u64 sbid_count:8;	  /* Bits 77 to 84  */
-+	__u64 sync_count:8;	  /* Bits 85 to 92  */
-+	__u64 inst_fetch_count:8; /* Bits 93 to 100 */
-+	__u64 active_count:8;	  /* Bits 101 to 108 */
-+	__u64 ex_id:3;		  /* Bits 109 to 111 */
-+	__u64 end_flag:1;	  /* Bit  112 */
-+	__u64 unused_bits:15;
-+	__u64 unused[6];
-+} __packed;
+-static size_t xe_eu_stall_data_record_size(struct xe_device *xe)
++const u64 eu_stall_sampling_rates[] = {251, 251 * 2, 251 * 3, 251 * 4, 251 * 5, 251 * 6, 251 * 7};
 +
- static size_t xe_eu_stall_data_record_size(struct xe_device *xe)
++/**
++ * xe_eu_stall_get_sampling_rates - get EU stall sampling rates information.
++ *
++ * @num_rates: Pointer to a u32 to return the number of sampling rates.
++ * @rates: double u64 pointer to point to an array of sampling rates.
++ *
++ * Stores the number of sampling rates and pointer to the array of
++ * sampling rates in the input pointers.
++ *
++ * Returns: Size of the EU stall sampling rates array.
++ */
++size_t xe_eu_stall_get_sampling_rates(u32 *num_rates, const u64 **rates)
++{
++	*num_rates = ARRAY_SIZE(eu_stall_sampling_rates);
++	*rates = eu_stall_sampling_rates;
++
++	return sizeof(eu_stall_sampling_rates);
++}
++
++/**
++ * xe_eu_stall_get_per_xecore_buf_size - get per XeCore buffer size.
++ *
++ * Returns: The per XeCore buffer size used to allocate the per GT
++ *	    EU stall data buffer.
++ */
++size_t xe_eu_stall_get_per_xecore_buf_size(void)
++{
++	return per_xecore_buf_size;
++}
++
++/**
++ * xe_eu_stall_data_record_size - get EU stall data record size.
++ *
++ * @xe: Pointer to a Xe device.
++ *
++ * Returns: EU stall data record size.
++ */
++size_t xe_eu_stall_data_record_size(struct xe_device *xe)
  {
  	size_t record_size = 0;
  
- 	if (xe->info.platform == XE_PVC)
- 		record_size = sizeof(struct xe_eu_stall_data_pvc);
-+	else if (GRAPHICS_VER(xe) >= 20)
-+		record_size = sizeof(struct xe_eu_stall_data_xe2);
+@@ -812,11 +851,6 @@ static const struct file_operations fops_eu_stall = {
+ 	.compat_ioctl   = xe_eu_stall_stream_ioctl,
+ };
  
- 	xe_assert(xe, is_power_of_2(record_size));
- 
-@@ -345,10 +368,16 @@ static bool eu_stall_data_buf_poll(struct xe_eu_stall_data_stream *stream)
- 
- static void clear_dropped_eviction_line_bit(struct xe_gt *gt, u16 group, u16 instance)
- {
-+	struct xe_device *xe = gt_to_xe(gt);
- 	u32 write_ptr_reg;
- 
--	/* On PVC, the overflow bit has to be cleared by writing 1 to it. */
--	write_ptr_reg = _MASKED_BIT_ENABLE(XEHPC_EUSTALL_REPORT_OVERFLOW_DROP);
-+	/* On PVC, the overflow bit has to be cleared by writing 1 to it.
-+	 * On Xe2 and later GPUs, the bit has to be cleared by writing 0 to it.
-+	 */
-+	if (GRAPHICS_VER(xe) >= 20)
-+		write_ptr_reg = _MASKED_BIT_DISABLE(XEHPC_EUSTALL_REPORT_OVERFLOW_DROP);
-+	else
-+		write_ptr_reg = _MASKED_BIT_ENABLE(XEHPC_EUSTALL_REPORT_OVERFLOW_DROP);
- 
- 	xe_gt_mcr_unicast_write(gt, XEHPC_EUSTALL_REPORT, write_ptr_reg, group, instance);
- }
-@@ -785,7 +814,7 @@ static const struct file_operations fops_eu_stall = {
- 
- static inline bool has_eu_stall_sampling_support(struct xe_device *xe)
- {
--	return xe->info.platform == XE_PVC;
-+	return xe->info.platform == XE_PVC || GRAPHICS_VER(xe) >= 20;
- }
- 
+-static inline bool has_eu_stall_sampling_support(struct xe_device *xe)
+-{
+-	return xe->info.platform == XE_PVC || GRAPHICS_VER(xe) >= 20;
+-}
+-
  static int xe_eu_stall_stream_open_locked(struct drm_device *dev,
+ 					  struct eu_stall_open_properties *props,
+ 					  struct drm_file *file)
+@@ -885,7 +919,7 @@ int xe_eu_stall_stream_open(struct drm_device *dev, u64 data, struct drm_file *f
+ 	struct eu_stall_open_properties props = {};
+ 	int ret;
+ 
+-	if (!has_eu_stall_sampling_support(xe)) {
++	if (!xe_eu_stall_supported_on_platform(xe)) {
+ 		drm_dbg(&xe->drm, "EU stall monitoring is not supported on this platform\n");
+ 		return -ENODEV;
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_eu_stall.h b/drivers/gpu/drm/xe/xe_eu_stall.h
+index 24e215b840c0..ed9d0f233566 100644
+--- a/drivers/gpu/drm/xe/xe_eu_stall.h
++++ b/drivers/gpu/drm/xe/xe_eu_stall.h
+@@ -8,8 +8,17 @@
+ 
+ #include "xe_gt_types.h"
+ 
++size_t xe_eu_stall_get_per_xecore_buf_size(void);
++size_t xe_eu_stall_data_record_size(struct xe_device *xe);
++size_t xe_eu_stall_get_sampling_rates(u32 *num_rates, const u64 **rates);
++
+ int xe_eu_stall_init(struct xe_gt *gt);
+ int xe_eu_stall_stream_open(struct drm_device *dev,
+ 			    u64 data,
+ 			    struct drm_file *file);
++
++static inline bool xe_eu_stall_supported_on_platform(struct xe_device *xe)
++{
++	return xe->info.platform == XE_PVC || GRAPHICS_VER(xe) >= 20;
++}
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index ebfae746f861..781dd21682e5 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -16,6 +16,7 @@
+ #include "regs/xe_gt_regs.h"
+ #include "xe_bo.h"
+ #include "xe_device.h"
++#include "xe_eu_stall.h"
+ #include "xe_exec_queue.h"
+ #include "xe_force_wake.h"
+ #include "xe_ggtt.h"
+@@ -729,6 +730,47 @@ static int query_pxp_status(struct xe_device *xe, struct drm_xe_device_query *qu
+ 	return 0;
+ }
+ 
++static int query_eu_stall(struct xe_device *xe,
++			  struct drm_xe_device_query *query)
++{
++	void __user *query_ptr = u64_to_user_ptr(query->data);
++	struct drm_xe_query_eu_stall *info;
++	size_t size, array_size;
++	const u64 *rates;
++	u32 num_rates;
++	int ret;
++
++	if (!xe_eu_stall_supported_on_platform(xe)) {
++		drm_dbg(&xe->drm, "EU stall monitoring is not supported on this platform\n");
++		return -ENODEV;
++	}
++
++	array_size = xe_eu_stall_get_sampling_rates(&num_rates, &rates);
++	size = sizeof(struct drm_xe_query_eu_stall) + array_size;
++
++	if (query->size == 0) {
++		query->size = size;
++		return 0;
++	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
++		return -EINVAL;
++	}
++
++	info = kzalloc(size, GFP_KERNEL);
++	if (!info)
++		return -ENOMEM;
++
++	info->num_sampling_rates = num_rates;
++	info->capabilities = DRM_XE_EU_STALL_CAPS_BASE;
++	info->record_size = xe_eu_stall_data_record_size(xe);
++	info->per_xecore_buf_size = xe_eu_stall_get_per_xecore_buf_size();
++	memcpy(info->sampling_rates, rates, array_size);
++
++	ret = copy_to_user(query_ptr, info, size);
++	kfree(info);
++
++	return ret ? -EFAULT : 0;
++}
++
+ static int (* const xe_query_funcs[])(struct xe_device *xe,
+ 				      struct drm_xe_device_query *query) = {
+ 	query_engines,
+@@ -741,6 +783,7 @@ static int (* const xe_query_funcs[])(struct xe_device *xe,
+ 	query_uc_fw_version,
+ 	query_oa_units,
+ 	query_pxp_status,
++	query_eu_stall,
+ };
+ 
+ int xe_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 95cb9e65540b..76a462fae05f 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -735,6 +735,7 @@ struct drm_xe_device_query {
+ #define DRM_XE_DEVICE_QUERY_UC_FW_VERSION	7
+ #define DRM_XE_DEVICE_QUERY_OA_UNITS		8
+ #define DRM_XE_DEVICE_QUERY_PXP_STATUS		9
++#define DRM_XE_DEVICE_QUERY_EU_STALL		10
+ 	/** @query: The type of data to query */
+ 	__u32 query;
+ 
+@@ -1873,8 +1874,8 @@ enum drm_xe_eu_stall_property_id {
+ 	DRM_XE_EU_STALL_PROP_GT_ID = 1,
+ 
+ 	/**
+-	 * @DRM_XE_EU_STALL_PROP_SAMPLE_RATE: Sampling rate
+-	 * in GPU cycles.
++	 * @DRM_XE_EU_STALL_PROP_SAMPLE_RATE: Sampling rate in
++	 * GPU cycles from @sampling_rates in struct @drm_xe_query_eu_stall
+ 	 */
+ 	DRM_XE_EU_STALL_PROP_SAMPLE_RATE,
+ 
+@@ -1886,6 +1887,41 @@ enum drm_xe_eu_stall_property_id {
+ 	DRM_XE_EU_STALL_PROP_WAIT_NUM_REPORTS,
+ };
+ 
++/**
++ * struct drm_xe_query_eu_stall - Information about EU stall sampling.
++ *
++ * If a query is made with a struct @drm_xe_device_query where .query
++ * is equal to @DRM_XE_DEVICE_QUERY_EU_STALL, then the reply uses
++ * struct @drm_xe_query_eu_stall in .data.
++ */
++struct drm_xe_query_eu_stall {
++	/** @extensions: Pointer to the first extension struct, if any */
++	__u64 extensions;
++
++	/** @capabilities: EU stall capabilities bit-mask */
++	__u64 capabilities;
++#define DRM_XE_EU_STALL_CAPS_BASE		(1 << 0)
++
++	/** @record_size: size of each EU stall data record */
++	__u64 record_size;
++
++	/** @per_xecore_buf_size: internal per XeCore buffer size */
++	__u64 per_xecore_buf_size;
++
++	/** @reserved: Reserved */
++	__u64 reserved[5];
++
++	/** @num_sampling_rates: Number of sampling rates in @sampling_rates array */
++	__u64 num_sampling_rates;
++
++	/**
++	 * @sampling_rates: Flexible array of sampling rates
++	 * sorted in the fastest to slowest order.
++	 * Sampling rates are specified in GPU clock cycles.
++	 */
++	__u64 sampling_rates[];
++};
++
+ #if defined(__cplusplus)
+ }
+ #endif
 -- 
 2.48.1
 
