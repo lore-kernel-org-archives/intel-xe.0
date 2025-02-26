@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8BF3C021B8
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 15:34:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17EF9C19F2E
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 15:34:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76B1210E942;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBE7F10E943;
 	Wed, 26 Feb 2025 15:34:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GsxPDrPC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="at/LPoqj";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8593A10E943
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Feb 2025 15:34:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A6B310E943
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Feb 2025 15:34:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740584076; x=1772120076;
+ t=1740584078; x=1772120078;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tCGUIxlIOT9JPp0Y76lTXNeEP1upEzziM5MiiY9NvUs=;
- b=GsxPDrPC6GM73nC9+/5q6cmIQGkG5DEZO0tfH7J5LoihYtaLIedrAYzB
- E8rroYKPfd3NXybvf4Vb6ECf7+WrrVH1qGRdqXltE9IKBp7+graJY2A4b
- +jFR1/gKx0xy6p46DUzapCGzEWpAGJ9b8djq+TbLkGlKULqusU8hSHUf8
- mGHEvIvnL98sTQFQkb7ch5DOlUU9RDRmkxHoha48QoQ73c/QFk7gf+QzA
- ZaZmHPgofiblry41mGBl29c/U2pLelpBS6s1G0lftIPb75ximVic6C+ww
- UVPONFL9B5bDfL8zwbLlLCWz1qnPHtKTnrzb8AYQvi2KiDtz/y9ThOhva g==;
-X-CSE-ConnectionGUID: 6uglR5wMQ6SbhUhDhsQl0A==
-X-CSE-MsgGUID: ctgUEHZhR/KmzKd4ZxFAtA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="44260322"
-X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="44260322"
+ bh=GNI35ffPdLNANFCbuTvB3jq0HX/20SvIig/LQAVb0hM=;
+ b=at/LPoqj1ow1oE0MWCkjiIV1cUn37aYycXeq6k/KR/GxjLySOggGRRDy
+ EyTg9RpXXSFJH/Gy2aXieCO8ObNe8vx/QdIM3aHn/kGJgzw1aQ6B6PQf+
+ fxK/m77vt0l42cVmT0GfIk6ifFhArZL/kn3kyCYfFerL680Rtmu/0o0ME
+ zvis+T5a7CVP47LGKamc7iXekhPOQIvnodrLcUT4HsXv7hW/ri3ZnjLkI
+ OE8ggz/Lh6Y94EWVcPJgZwNTs2JmDVSWgbJwDwKi493En0xU+/JMHIJg5
+ O9Mz3gi9JrDKwjDDrqqJLFdTBdcBEca3SgDR9blCIu2iGnBJq4H5/n7Hv w==;
+X-CSE-ConnectionGUID: JSTuDiyPTvSZ5gi5vgjVZw==
+X-CSE-MsgGUID: Beg6SCupTW++D4KN6YUUkQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="44260325"
+X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="44260325"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2025 07:34:36 -0800
-X-CSE-ConnectionGUID: ZJZHH9WRSUGZ4wUszV7fuA==
-X-CSE-MsgGUID: rLvXM2BtQNCybPA8jrV+zQ==
+ 26 Feb 2025 07:34:38 -0800
+X-CSE-ConnectionGUID: Bl0h1TMUQ7KkZ+ymOU+JUA==
+X-CSE-MsgGUID: RNpSc36zRgWbqQwhaoR+Pg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="116917919"
+X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="116917923"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO fedora..)
  ([10.245.246.81])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2025 07:34:34 -0800
+ 26 Feb 2025 07:34:36 -0800
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>, stable@vger.kernel.org
-Subject: [PATCH 1/4] drm/xe/vm: Validate userptr during gpu vma prefetching
-Date: Wed, 26 Feb 2025 16:33:41 +0100
-Message-ID: <20250226153344.58175-2-thomas.hellstrom@linux.intel.com>
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
+ stable@vger.kernel.org
+Subject: [PATCH 2/4] drm/xe/vm: Fix a misplaced #endif
+Date: Wed, 26 Feb 2025 16:33:42 +0100
+Message-ID: <20250226153344.58175-3-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250226153344.58175-1-thomas.hellstrom@linux.intel.com>
 References: <20250226153344.58175-1-thomas.hellstrom@linux.intel.com>
@@ -69,43 +71,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If a userptr vma subject to prefetching was already invalidated
-or invalidated during the prefetch operation, the operation would
-repeatedly return -EAGAIN which would typically cause an infinite
-loop.
+Fix a (harmless) misplaced #endif leading to declarations
+appearing multiple times.
 
-Validate the userptr to ensure this doesn't happen.
-
-Fixes: 5bd24e78829a ("drm/xe/vm: Subclass userptr vmas")
-Fixes: 617eebb9c480 ("drm/xe: Fix array of binds")
-Cc: Matthew Brost <matthew.brost@intel.com>
+Fixes: 0eb2a18a8fad ("drm/xe: Implement VM snapshot support for BO's and userptr")
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: José Roberto de Souza <jose.souza@intel.com>
 Cc: <stable@vger.kernel.org> # v6.9+
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_vm.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 996000f2424e..4c1ca47667ad 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2307,7 +2307,14 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 		}
- 		case DRM_GPUVA_OP_UNMAP:
- 		case DRM_GPUVA_OP_PREFETCH:
--			/* FIXME: Need to skip some prefetch ops */
-+			vma = gpuva_to_vma(op->base.prefetch.va);
-+
-+			if (xe_vma_is_userptr(vma)) {
-+				err = xe_vma_userptr_pin_pages(to_userptr_vma(vma));
-+				if (err)
-+					return err;
-+			}
-+
- 			xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
- 			break;
- 		default:
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index f66075f8a6fe..7c8e39049223 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -282,9 +282,9 @@ static inline void vm_dbg(const struct drm_device *dev,
+ 			  const char *format, ...)
+ { /* noop */ }
+ #endif
+-#endif
+ 
+ struct xe_vm_snapshot *xe_vm_snapshot_capture(struct xe_vm *vm);
+ void xe_vm_snapshot_capture_delayed(struct xe_vm_snapshot *snap);
+ void xe_vm_snapshot_print(struct xe_vm_snapshot *snap, struct drm_printer *p);
+ void xe_vm_snapshot_free(struct xe_vm_snapshot *snap);
++#endif
 -- 
 2.48.1
 
