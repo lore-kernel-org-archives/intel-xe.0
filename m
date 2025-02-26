@@ -4,55 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 680B9C021B8
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 17:17:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09416C19F2E
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 17:18:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F5FB10E981;
-	Wed, 26 Feb 2025 17:17:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B410810E96D;
+	Wed, 26 Feb 2025 17:18:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KOdeF5Jn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SyBo/Ffo";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E5C210E972
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Feb 2025 17:17:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A157B10E96F;
+ Wed, 26 Feb 2025 17:18:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740590245; x=1772126245;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ghtfsUmgifxQ8m71CTrjwcVWprHHS96QIEw3ZqwPMz8=;
- b=KOdeF5JnGB6H+6aZtrByz114Yi8nMQn0fvrUNpWeBuqfbb0Vey8LFxUn
- DwnvZ+sRW5WDWzKupB4qN76po/oBkAPbEDXDhr9WzXlctytdL00S/CPM2
- 4v0fX4TDNj7LsFKLXmjNAKhEdvqPvJz/4O4zZ8IQGFMyTHna/BbTu7e/u
- Bb4LuG8lV9DumFMYuj/yb4eby6kfaovjze6CKzaLoxMLDXFWT4pCfki+/
- SPy18C7E2HhlalUl1/EOpc7T8ns6vNrqvxTVZNce5SmRq7qWqMUgZXOPw
- wizBudIfFJHbxxZ4N5Bc03iHd7RdgnAB4pLrszDLMZAmoi2ltv6UQtT4I g==;
-X-CSE-ConnectionGUID: qTvUY3qnRlCP3G9dwMFRzw==
-X-CSE-MsgGUID: jz5ZWSCLT3ysqrkNXR+V+Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="41702838"
-X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="41702838"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2025 09:17:24 -0800
-X-CSE-ConnectionGUID: g6m5eA7zTmui+E9CdaxWbg==
-X-CSE-MsgGUID: XEmHGmxIQLiPQ5abkp+8Vw==
+ t=1740590310; x=1772126310;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=rYP85rnRXx60XHyQ+lN2Iq0Q6/4ZZWj09sdW6r0YdqA=;
+ b=SyBo/Ffo2qmGh22RnkdaO+H6syRatwWx+0rJugheLuavqHe7dsEl2UkC
+ x1b8krcj9xwqFte3D4FpEnXrla/bWiUzDxvEyyf2gNkslYKEQQDQebWpn
+ 2xm1NPiVPUV9iNHhPYRIvdMDhZB128KoHPyWjSL2uHqYRsnZ1qPRITH8V
+ lccXC69W5bPU9SrJG4FElxSANAwCqymmqqxic934+ikGuiWnsK4LhG+DH
+ FINVPS2wbjr057eJlJV2ac7d6fR9WSJ4Vo9etEhD0HO+91FcmE+z7idZY
+ qV5p5Lreg0iWng6bXUXUfQ+o7OypEw4ugvlaL/Z0GUHmptQ1ipqfqOUhw Q==;
+X-CSE-ConnectionGUID: nwYu5cIPRumvXzbl0SbfDw==
+X-CSE-MsgGUID: I6tclqa9Tje98lTsAnyfbg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="40628477"
+X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="40628477"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2025 09:18:28 -0800
+X-CSE-ConnectionGUID: nkoaC/7mRXGlspJMZj7C/Q==
+X-CSE-MsgGUID: U7SbiyMqRIe+YS6EX9kGew==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="121872009"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO mwauld-desk.intel.com)
- ([10.245.245.27])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2025 09:17:23 -0800
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@intel.com>,
- stable@vger.kernel.org
-Subject: [PATCH] drm/xe/userptr: properly setup pfn_flags_mask
-Date: Wed, 26 Feb 2025 17:17:08 +0000
-Message-ID: <20250226171707.280978-2-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.48.1
+X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="121371358"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2025 09:18:27 -0800
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Subject: [PATCH v3 4/5] drm/i915/dp: Queue a link check after link training is
+ complete
+Date: Wed, 26 Feb 2025 19:19:22 +0200
+Message-ID: <20250226171924.2646997-5-imre.deak@intel.com>
+X-Mailer: git-send-email 2.44.2
+In-Reply-To: <20250226171924.2646997-1-imre.deak@intel.com>
+References: <20250226171924.2646997-1-imre.deak@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,38 +67,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently we just leave it uninitialised, which at first looks harmless,
-however we also don't zero out the pfn array, and with pfn_flags_mask
-the idea is to be able set individual flags for a given range of pfn or
-completely ignore them, outside of default_flags. So here we end up with
-pfn[i] & pfn_flags_mask, and if both are uninitialised we might get back
-an unexpected flags value, like asking for read only with default_flags,
-but getting back write on top, leading to potentially bogus behaviour.
+After link training - both in case of a passing and failing LT result -
+a work is scheduled to check the link state. This check should take
+place after the link training is completed by disabling the link
+training pattern and setting intel_dp::link_trained=true. Atm, the work
+is scheduled before these steps, which may result in checking the link
+state too early (and thus not retraining the link as expected).
 
-To fix this ensure we zero the pfn_flags_mask, such that hmm only
-considers the default_flags and not also the initial pfn[i] value.
+Fix the above by scheduling the link check work after link training is
+complete.
 
-Fixes: 81e058a3e7fd ("drm/xe: Introduce helper to populate userptr")
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@intel.com>
-Cc: <stable@vger.kernel.org> # v6.10+
+Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hmm.c | 1 +
- 1 file changed, 1 insertion(+)
+ .../gpu/drm/i915/display/intel_dp_link_training.c   | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hmm.c b/drivers/gpu/drm/xe/xe_hmm.c
-index 089834467880..8c3cd65fa4b3 100644
---- a/drivers/gpu/drm/xe/xe_hmm.c
-+++ b/drivers/gpu/drm/xe/xe_hmm.c
-@@ -206,6 +206,7 @@ int xe_hmm_userptr_populate_range(struct xe_userptr_vma *uvma,
- 		goto free_pfns;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+index ce0601a4f0e20..3316a830e18d1 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+@@ -1109,6 +1109,7 @@ intel_dp_128b132b_intra_hop(struct intel_dp *intel_dp,
+ void intel_dp_stop_link_train(struct intel_dp *intel_dp,
+ 			      const struct intel_crtc_state *crtc_state)
+ {
++	struct intel_display *display = to_intel_display(intel_dp);
+ 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+ 
+ 	intel_dp->link_trained = true;
+@@ -1123,6 +1124,13 @@ void intel_dp_stop_link_train(struct intel_dp *intel_dp,
  	}
  
-+	hmm_range.pfn_flags_mask = 0;
- 	hmm_range.default_flags = flags;
- 	hmm_range.hmm_pfns = pfns;
- 	hmm_range.notifier = &userptr->notifier;
+ 	intel_hpd_unblock(encoder);
++
++	if (!display->hotplug.ignore_long_hpd &&
++	    intel_dp->link.seq_train_failures < 2) {
++		int delay_ms = intel_dp->link.seq_train_failures ? 0 : 2000;
++
++		intel_encoder_link_check_queue_work(encoder, delay_ms);
++	}
+ }
+ 
+ static bool
+@@ -1627,7 +1635,6 @@ void intel_dp_start_link_train(struct intel_atomic_state *state,
+ 		lt_dbg(intel_dp, DP_PHY_DPRX, "Forcing link training failure\n");
+ 	} else if (passed) {
+ 		intel_dp->link.seq_train_failures = 0;
+-		intel_encoder_link_check_queue_work(encoder, 2000);
+ 		return;
+ 	}
+ 
+@@ -1650,10 +1657,8 @@ void intel_dp_start_link_train(struct intel_atomic_state *state,
+ 		return;
+ 	}
+ 
+-	if (intel_dp->link.seq_train_failures < 2) {
+-		intel_encoder_link_check_queue_work(encoder, 0);
++	if (intel_dp->link.seq_train_failures < 2)
+ 		return;
+-	}
+ 
+ 	if (intel_dp_schedule_fallback_link_training(state, intel_dp, crtc_state))
+ 		return;
 -- 
-2.48.1
+2.44.2
 
