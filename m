@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40271C19F2E
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 15:14:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C8B1C021B8
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 15:26:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A1F610E945;
-	Wed, 26 Feb 2025 15:14:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RYfbuNbt";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68A5910E944;
- Wed, 26 Feb 2025 15:14:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740582859; x=1772118859;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=7Qoy/ApP1EgsUvcxyDecgF0/47WfK8veHjej2IadtK0=;
- b=RYfbuNbtCPe99Fq2tiIVO9JXhzqKfz6tQUfcXsNA1X8NANotSfbDXVTV
- ZFwUGILzZ+oSowyrCkdc7qRHrHkkylrKc81keqLrvllmm0ACduWteZBB0
- +8Fr307G5RtPYCPiQ44dDGOLdQfTiKFGK/gzDB8srXmFQL9UMuoIsmMp+
- t/BdtycRUysNlswl1WCuG5K79IV+MVpgELxFRYm7tNMQgP6HI+W9fvXL8
- KQN1baN3x4tNYvctwaucFfvC5WuDpvDSpjKA2hbgPHBY12w7ELxO6dlu0
- 7bMAt9WyfLpHETX7oPddbGJ0ginmagVh6DUtRCbQTWzvvYcfbJsRSzDZM w==;
-X-CSE-ConnectionGUID: e7+hydibQOKxsw67ePwn2g==
-X-CSE-MsgGUID: ErhP6tRLSeScfFfjc9BBig==
-X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="41357300"
-X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="41357300"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2025 07:14:19 -0800
-X-CSE-ConnectionGUID: ymePAfC4Qqa+kq/vRYKRhw==
-X-CSE-MsgGUID: Jml4geeTSVKnB9TkxZ7uEQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="121983832"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 26 Feb 2025 07:14:17 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 26 Feb 2025 17:14:15 +0200
-Date: Wed, 26 Feb 2025 17:14:15 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: Re: [PATCH 13/20] drm/i915/vrr: Handle joiner with vrr
-Message-ID: <Z78vx24DwelqHTc9@intel.com>
-References: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
- <20250224061717.1095226-14-ankit.k.nautiyal@intel.com>
- <c60121e0-fd68-4cbf-ad49-0b86046bc213@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFA7510E93B;
+	Wed, 26 Feb 2025 15:26:58 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65B3410E93B;
+ Wed, 26 Feb 2025 15:26:57 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8457849836940930720=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <c60121e0-fd68-4cbf-ad49-0b86046bc213@intel.com>
-X-Patchwork-Hint: comment
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/mst=3A_update_max_?=
+ =?utf-8?q?stream_count_to_match_number_of_pipes?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 26 Feb 2025 15:26:57 -0000
+Message-ID: <174058361741.2373635.13006254075629914442@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250226135626.1956012-1-jani.nikula@intel.com>
+In-Reply-To: <20250226135626.1956012-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,95 +36,154 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Feb 24, 2025 at 07:17:59PM +0530, Nautiyal, Ankit K wrote:
-> 
-> On 2/24/2025 11:47 AM, Ankit Nautiyal wrote:
-> > Do not program transcoder registers for VRR for the secondary pipe of
-> > the joiner. Remove check to skip VRR for joiner case.
-> 
-> Missed to drop this patch as mentioned in the last version.
-> 
-> Will work on this after the other changes are agreed upon, so this can 
-> be ignored for now.
+--===============8457849836940930720==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I think before trying to do full joiner+vrr support we should
-just allow joiner+fixed_rr (and also not allow update_lrr).
-That would avoid the problems with the live VRR reprogramming.
+== Series Details ==
 
-> 
-> 
-> Regards,
-> 
-> Ankit
-> 
-> >
-> > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/display/intel_vrr.c | 19 ++++++++++++-------
-> >   1 file changed, 12 insertions(+), 7 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> > index 45efcb57c77a..30fcd1e66a12 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> > @@ -345,13 +345,6 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
-> >   	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-> >   	int vmin, vmax;
-> >   
-> > -	/*
-> > -	 * FIXME all joined pipes share the same transcoder.
-> > -	 * Need to account for that during VRR toggle/push/etc.
-> > -	 */
-> > -	if (crtc_state->joiner_pipes)
-> > -		return;
-> > -
-> >   	if (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE)
-> >   		return;
-> >   
-> > @@ -443,6 +436,9 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
-> >   	struct intel_display *display = to_intel_display(crtc_state);
-> >   	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> >   
-> > +	if (intel_crtc_is_joiner_secondary(crtc_state))
-> > +		return;
-> > +
-> >   	/*
-> >   	 * This bit seems to have two meanings depending on the platform:
-> >   	 * TGL: generate VRR "safe window" for DSB vblank waits
-> > @@ -494,6 +490,9 @@ void intel_vrr_send_push(struct intel_dsb *dsb,
-> >   	if (!crtc_state->vrr.enable)
-> >   		return;
-> >   
-> > +	if (intel_crtc_is_joiner_secondary(crtc_state))
-> > +		return;
-> > +
-> >   	if (dsb)
-> >   		intel_dsb_nonpost_start(dsb);
-> >   
-> > @@ -558,6 +557,9 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
-> >   	if (!crtc_state->vrr.enable)
-> >   		return;
-> >   
-> > +	if (intel_crtc_is_joiner_secondary(crtc_state))
-> > +		return;
-> > +
-> >   	intel_de_write(display, TRANS_VRR_VMIN(display, cpu_transcoder),
-> >   		       crtc_state->vrr.vmin - 1);
-> >   	intel_de_write(display, TRANS_VRR_VMAX(display, cpu_transcoder),
-> > @@ -586,6 +588,9 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
-> >   	if (!old_crtc_state->vrr.enable)
-> >   		return;
-> >   
-> > +	if (intel_crtc_is_joiner_secondary(old_crtc_state))
-> > +		return;
-> > +
-> >   	intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
-> >   		       trans_vrr_ctl(old_crtc_state));
-> >   	intel_de_wait_for_clear(display,
+Series: drm/i915/mst: update max stream count to match number of pipes
+URL   : https://patchwork.freedesktop.org/series/145489/
+State : success
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+CI Bug Log - changes from xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d_BAT -> xe-pw-145489v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-145489v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_exec_basic@twice-bindexecqueue-rebind:
+    - bat-adlp-vf:        [PASS][1] -> [DMESG-FAIL][2] ([Intel XE#3868] / [Intel XE#3970])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145489v1/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
+
+  * igt@xe_pat@pat-index-xelp@render:
+    - bat-adlp-vf:        [PASS][3] -> [DMESG-WARN][4] ([Intel XE#3970]) +2 other tests dmesg-warn
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145489v1/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_exec_basic@twice-userptr-rebind:
+    - bat-adlp-vf:        [DMESG-WARN][5] ([Intel XE#3970]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d/bat-adlp-vf/igt@xe_exec_basic@twice-userptr-rebind.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145489v1/bat-adlp-vf/igt@xe_exec_basic@twice-userptr-rebind.html
+
+  
+  [Intel XE#3868]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3868
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
+
+
+Build changes
+-------------
+
+  * Linux: xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d -> xe-pw-145489v1
+
+  IGT_8248: 8248
+  xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d: 5bcb67a2a4c61034f5a25c024631c5fbf351ee8d
+  xe-pw-145489v1: 145489v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145489v1/index.html
+
+--===============8457849836940930720==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/mst: update max stream count to match number of pipes</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145489/">https://patchwork.freedesktop.org/series/145489/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145489v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145489v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d_BAT -&gt; xe-pw-145489v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-145489v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_exec_basic@twice-bindexecqueue-rebind:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145489v1/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3868">Intel XE#3868</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp@render:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145489v1/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) +2 other tests dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_exec_basic@twice-userptr-rebind:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d/bat-adlp-vf/igt@xe_exec_basic@twice-userptr-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145489v1/bat-adlp-vf/igt@xe_exec_basic@twice-userptr-rebind.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d -&gt; xe-pw-145489v1</li>
+</ul>
+<p>IGT_8248: 8248<br />
+  xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d: 5bcb67a2a4c61034f5a25c024631c5fbf351ee8d<br />
+  xe-pw-145489v1: 145489v1</p>
+
+</body>
+</html>
+
+--===============8457849836940930720==--
