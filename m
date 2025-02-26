@@ -4,75 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98473C19776
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 08:12:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45263C021B8
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 08:13:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0B8010E87C;
-	Wed, 26 Feb 2025 08:12:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C93810E87D;
+	Wed, 26 Feb 2025 08:13:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="jSMW2q6E";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="MHWcqHs6";
 	dkim-atps=neutral
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com
- [209.85.218.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28B2010E87C
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Feb 2025 08:11:57 +0000 (UTC)
-Received: by mail-ej1-f50.google.com with SMTP id
- a640c23a62f3a-abb7520028bso874755866b.3
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Feb 2025 00:11:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1740557515; x=1741162315; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
- :to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=Pok0mIvLeITMrChGwDUbCNIfuZyPgW77IlN7F5j/3WM=;
- b=jSMW2q6Ej0nttj+0rTCVkbWgIg75pN5BnaB73Qh80axGvHlKJxCHXzeFSf5OdKfAM6
- ykptEwKhuNQL/DIbA8VWVSvAoxBBEBuQmcis9i4zc2dieIj5YpIqhtzqa7lgeh7nPwJa
- 8oO2ejULfltRfFzvPlOk/CJVAvt9H7IOVxO42U/C8gSrQ5EcQLTwtPgQSZpt/nvfVeQn
- S1L6rUc0AuKKP32ht0oxOr70jxQcwCN1Wj4zeH+8iGnPwRqSefLJhndw+ioY4QI7GTzr
- C8849gkna12YQnNDRJtIWHCVZOFl3YmtReNgUN6kkUgMcXCUjSb3ZHY/85wGXdBoLvuo
- drcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1740557515; x=1741162315;
- h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
- :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=Pok0mIvLeITMrChGwDUbCNIfuZyPgW77IlN7F5j/3WM=;
- b=oBvvkiyj/lHq9lmNOwH6CMQnQO/5DnIZXe4s0EJp+4TpSX9VgluKIWR6gaPJ5G/s99
- +Kiexm7m4zR6gc7UaKNB7N5ghZIVNnLH7HGCizwIjkKLxDUC043uLERds6CvDcJosC6h
- M2SQVswM1q2V0A6hC62FS5qije0rMtzKlmIm5qwlPT+qJJJVtCdxMMkc0s7tQTu6tPhl
- /jdISQl6IGD0FOg4WtAbqlNJz3m628n3S61WZvY3QFFOU6SIOeD8RN/iALrpqE9H8VVs
- Z2ZJqOPSahBE7e0edXi8dVbHO8tVA6hNTasz6NSic/pTQcN+XtFiXYK+PnWN0fvoCYaM
- Cb8A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXZfCPiPYDnxsnuA657gvHav8ySwpKdj3PgHU8k96NS7YxvuY4eH/wkJ1G+B8/7Eny2F2rnaTMUog==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw/QmSaJPerJGy05bgLP9pdaNoeQWnGnLXlKCrOkk46oWryEDey
- 3Ar9aliYsU6mV9VkvKymLq/7U9IQV77mEPNWaLFT6ZHsvF59eLtujx0h+zRiGi8=
-X-Gm-Gg: ASbGnctN9FWL9dxdBGscHtKcoiv7l0NcUacYSrrvWuxiT76a9GrqkaUB9zvENArGY3P
- fnXO7xUIVWxSmtQjNSRn+vqwX3jbc9mPJXyD/PScJiOSigzoWyl4AfkiYmWSj6CCk0X6XOgGURf
- jG+esoh5Tx/UqGZdTYEmHYMDa9AhWnhxVYBHDVHY4ppyNEU9YzllHKtG87VOEZ7XwMAX5MGxD0z
- E2y8K5xvsU9v0eO5ELaHVrWPO9HBf74S/FhWIIOULtX/tQktPAW6+z9J3E3KLF1vAsyxyT4Ctr3
- ILb515Dw1EtsKAbQT+5iuV2fFiHPKy4=
-X-Google-Smtp-Source: AGHT+IGFjBlz6ALqfYLoGE9PxwjThSMXDCGpI9ssfGq+g0dABRHwtq/nG1O3LTVG+zq6GwCLFDOijA==
-X-Received: by 2002:a17:907:7f0c:b0:abc:269d:d534 with SMTP id
- a640c23a62f3a-abeeef34ed6mr250207266b.40.1740557515475; 
- Wed, 26 Feb 2025 00:11:55 -0800 (PST)
-Received: from localhost ([196.207.164.177])
- by smtp.gmail.com with UTF8SMTPSA id
- a640c23a62f3a-abed1da1c2dsm284791366b.77.2025.02.26.00.11.54
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 Feb 2025 00:11:54 -0800 (PST)
-Date: Wed, 26 Feb 2025 11:11:51 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev, Animesh Manna <animesh.manna@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev, jouni.hogander@intel.com,
- jani.nikula@intel.com, jeevan.b@intel.com,
- Animesh Manna <animesh.manna@intel.com>
-Subject: Re: [PATCH v4 7/8] drm/i915/lobf: Add mutex for alpm update
-Message-ID: <51d3816e-2201-4d02-a6a7-def3a4398e77@stanley.mountain>
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9004F10E87C;
+ Wed, 26 Feb 2025 08:13:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:
+ Sender:Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=btlP+/Ibje/j/a2g04gbUyuwIMhivKCpTZS695eGk34=; b=MHWcqHs6MhB/0xrpSr3iOGigaY
+ 1gEZX+Gdtt+TVTvJwU7bq1bnXbwbS0x2te1I5gmYW8KVUb7mK42Zkd4zJ5Zg3+hcEyPJFKz2OQW1U
+ bdpdI51Uh2uLXb09hvqVptQ1dR/r1OGCungSlksAfTmoCd5ujGnuZaFmmVs6z9yTmtGR6FzQ2ZGkt
+ utIaQWcifk9BT57IecwOjRsVsxZFyCOddOw/54rfsGgoYvGJIohg59f+JsWCaACnhR/1EU96gJOdI
+ T7IqyZ7WJgKyII2KiOBlPHWJSQARDIMiUxSjp3lQb91rd/tPV5Tp3NLzLYReJFkWSx/pPksCCxwPY
+ MX38r0+w==;
+Received: from [90.241.98.187] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1tnCXp-000pv2-TN; Wed, 26 Feb 2025 09:13:35 +0100
+Date: Wed, 26 Feb 2025 08:13:34 +0000
+From: Tvrtko Ursulin <tursulin@igalia.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-gt-next
+Message-ID: <Z77NLt2mR7SqxJ4u@linux>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250224080847.326350-8-animesh.manna@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,58 +66,186 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Animesh,
 
-kernel test robot noticed the following build warnings:
+Hi Dave, Sima,
 
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Here comes the main pull request for 6.15.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Animesh-Manna/drm-i915-lobf-Add-lobf-enablement-in-post-plane-update/20250224-221647
-base:   v6.14-rc4
-patch link:    https://lore.kernel.org/r/20250224080847.326350-8-animesh.manna%40intel.com
-patch subject: [PATCH v4 7/8] drm/i915/lobf: Add mutex for alpm update
-config: i386-randconfig-141-20250225 (https://download.01.org/0day-ci/archive/20250226/202502261244.aUuaLdTn-lkp@intel.com/config)
-compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
+New sysfs UAPI for configuring the GuC power profiles is probably the most
+interesting addition. Other than that, there is one performance workaround
+for Gen12 platforms and a bunch of fixes, mostly around the GuC code. PMU
+code was consolidated to use kernel facility for CPU hotplug handling which
+required a merge during the development window.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-| Closes: https://lore.kernel.org/r/202502261244.aUuaLdTn-lkp@intel.com/
+Other than those just a collection of cleanups and selftest fixes.
 
-smatch warnings:
-drivers/gpu/drm/i915/display/intel_alpm.c:548 intel_alpm_disable() warn: inconsistent returns '&intel_dp->alpm_parameters.lock'.
+Regards,
 
-vim +548 drivers/gpu/drm/i915/display/intel_alpm.c
+Tvrtko
 
-026d6557dc2749d Animesh Manna 2025-02-24  527  void intel_alpm_disable(struct intel_dp *intel_dp)
-026d6557dc2749d Animesh Manna 2025-02-24  528  {
-026d6557dc2749d Animesh Manna 2025-02-24  529  	struct intel_display *display = to_intel_display(intel_dp);
-026d6557dc2749d Animesh Manna 2025-02-24  530  	enum transcoder cpu_transcoder = intel_dp->alpm_parameters.transcoder;
-026d6557dc2749d Animesh Manna 2025-02-24  531  
-026d6557dc2749d Animesh Manna 2025-02-24  532  	if (DISPLAY_VER(display) < 20)
-026d6557dc2749d Animesh Manna 2025-02-24  533  		return;
-026d6557dc2749d Animesh Manna 2025-02-24  534  
-737b2873a48f3ab Animesh Manna 2025-02-24  535  	mutex_lock(&intel_dp->alpm_parameters.lock);
-737b2873a48f3ab Animesh Manna 2025-02-24  536  
-026d6557dc2749d Animesh Manna 2025-02-24  537  	if (!(intel_de_read(display, ALPM_CTL(display, cpu_transcoder)) & ALPM_CTL_ALPM_ENABLE))
-026d6557dc2749d Animesh Manna 2025-02-24  538  		return;
+drm-intel-gt-next-2025-02-26:
+UAPI Changes:
 
-mutex_unlock(&intel_dp->alpm_parameters.lock) before the return
+- Add sysfs for SLPC power profiles [slpc] (Vinay Belgaumkar)
 
-026d6557dc2749d Animesh Manna 2025-02-24  539  
-026d6557dc2749d Animesh Manna 2025-02-24  540  	intel_de_rmw(display, ALPM_CTL(display, cpu_transcoder),
-026d6557dc2749d Animesh Manna 2025-02-24  541  		     ALPM_CTL_ALPM_ENABLE | ALPM_CTL_LOBF_ENABLE |
-026d6557dc2749d Animesh Manna 2025-02-24  542  		     ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
-026d6557dc2749d Animesh Manna 2025-02-24  543  
-026d6557dc2749d Animesh Manna 2025-02-24  544  	intel_de_rmw(display,
-026d6557dc2749d Animesh Manna 2025-02-24  545  		     PORT_ALPM_CTL(cpu_transcoder),
-026d6557dc2749d Animesh Manna 2025-02-24  546  		     PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
-737b2873a48f3ab Animesh Manna 2025-02-24  547  
-737b2873a48f3ab Animesh Manna 2025-02-24 @548  	mutex_unlock(&intel_dp->alpm_parameters.lock);
-026d6557dc2749d Animesh Manna 2025-02-24  549  }
+Driver Changes:
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Fixes/improvements/new stuff:
 
+- Fix zero delta busyness issue [pmu] (Umesh Nerlige Ramappa)
+- Fix page cleanup on DMA remap failure (Brian Geffon)
+- Debug print LRC state entries only if the context is pinned [guc] (Daniele Ceraolo Spurio)
+- Drop custom hotplug code [pmu] (Lucas De Marchi)
+- Use spin_lock_irqsave() in interruptible context [guc] (Krzysztof Karas)
+- Add wait on depth stall done bit handling [gen12] (Juha-Pekka Heikkila)
+
+Miscellaneous:
+
+- Change throttle criteria for rps [selftest] (Raag Jadav)
+- Add debug print about hw config table size (John Harrison)
+- Include requested frequency in slow firmware load messages [uc] (John Harrison)
+- Remove i915_pmu_event_event_idx() [pmu] (Lucas De Marchi)
+- Remove unused live_context_for_engine (Dr. David Alan Gilbert)
+- Add Wa_22010465259 in its respective WA list (Ranu Maurya)
+- Correct frequency handling in RPS power measurement [selftests] (Sk Anirban)
+- Add helper function slpc_measure_power [guc/slpc] (Sk Anirban)
+- Revert "drm/i915/gt: Log reason for setting TAINT_WARN at reset" [gt] (Sebastian Brzezinka)
+- Avoid using uninitialized context [selftests] (Krzysztof Karas)
+- Use struct_size() helper in kmalloc() (luoqing)
+- Use prandom in selftest [selftests] (Markus Theil)
+- Replace kmap with its safer kmap_local_page counterpart [gt] (Andi Shyti)
+
+Merges:
+
+- Merge drm/drm-next into drm-intel-gt-next (Tvrtko Ursulin)
+The following changes since commit 2014c95afecee3e76ca4a56956a936e23283f05b:
+
+  Linux 6.14-rc1 (2025-02-02 15:39:26 -0800)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-gt-next-2025-02-26
+
+for you to fetch changes up to 7ded94bd11d47a8ddef051aef1d1a42d8191e09f:
+
+  drm/i915/gt: add wait on depth stall done bit handling (2025-02-18 12:37:04 +0100)
+
+----------------------------------------------------------------
+UAPI Changes:
+
+- Add sysfs for SLPC power profiles [slpc] (Vinay Belgaumkar)
+
+Driver Changes:
+
+Fixes/improvements/new stuff:
+
+- Fix zero delta busyness issue [pmu] (Umesh Nerlige Ramappa)
+- Fix page cleanup on DMA remap failure (Brian Geffon)
+- Debug print LRC state entries only if the context is pinned [guc] (Daniele Ceraolo Spurio)
+- Drop custom hotplug code [pmu] (Lucas De Marchi)
+- Use spin_lock_irqsave() in interruptible context [guc] (Krzysztof Karas)
+- Add wait on depth stall done bit handling [gen12] (Juha-Pekka Heikkila)
+
+Miscellaneous:
+
+- Change throttle criteria for rps [selftest] (Raag Jadav)
+- Add debug print about hw config table size (John Harrison)
+- Include requested frequency in slow firmware load messages [uc] (John Harrison)
+- Remove i915_pmu_event_event_idx() [pmu] (Lucas De Marchi)
+- Remove unused live_context_for_engine (Dr. David Alan Gilbert)
+- Add Wa_22010465259 in its respective WA list (Ranu Maurya)
+- Correct frequency handling in RPS power measurement [selftests] (Sk Anirban)
+- Add helper function slpc_measure_power [guc/slpc] (Sk Anirban)
+- Revert "drm/i915/gt: Log reason for setting TAINT_WARN at reset" [gt] (Sebastian Brzezinka)
+- Avoid using uninitialized context [selftests] (Krzysztof Karas)
+- Use struct_size() helper in kmalloc() (luoqing)
+- Use prandom in selftest [selftests] (Markus Theil)
+- Replace kmap with its safer kmap_local_page counterpart [gt] (Andi Shyti)
+
+Merges:
+
+- Merge drm/drm-next into drm-intel-gt-next (Tvrtko Ursulin)
+
+----------------------------------------------------------------
+Andi Shyti (1):
+      drm/i915/gt: Replace kmap with its safer kmap_local_page counterpart
+
+Brian Geffon (1):
+      drm/i915: Fix page cleanup on DMA remap failure
+
+Daniele Ceraolo Spurio (1):
+      drm/i915/guc: Debug print LRC state entries only if the context is pinned
+
+Dr. David Alan Gilbert (1):
+      drm/i915: Remove unused live_context_for_engine
+
+John Harrison (2):
+      drm/i915: Add debug print about hw config table size
+      drm/i915/uc: Include requested frequency in slow firmware load messages
+
+Juha-Pekka Heikkila (1):
+      drm/i915/gt: add wait on depth stall done bit handling
+
+Krzysztof Karas (2):
+      drm/i915/selftests: avoid using uninitialized context
+      drm/i915/gt: Use spin_lock_irqsave() in interruptible context
+
+Lucas De Marchi (2):
+      drm/i915/pmu: Remove i915_pmu_event_event_idx()
+      drm/i915/pmu: Drop custom hotplug code
+
+Markus Theil (1):
+      drm/i915/selftests: use prandom in selftest
+
+Raag Jadav (1):
+      drm/i915/selftest: Change throttle criteria for rps
+
+Ranu Maurya (1):
+      drm/i915: Add Wa_22010465259 in its respective WA list
+
+Sebastian Brzezinka (1):
+      Revert "drm/i915/gt: Log reason for setting TAINT_WARN at reset"
+
+Sk Anirban (2):
+      drm/i915/selftests: Correct frequency handling in RPS power measurement
+      drm/i915/guc/slpc: Add helper function slpc_measure_power
+
+Tvrtko Ursulin (1):
+      Merge drm/drm-next into drm-intel-gt-next
+
+Umesh Nerlige Ramappa (1):
+      drm/i915/pmu: Fix zero delta busyness issue
+
+Vinay Belgaumkar (1):
+      drm/i915/slpc: Add sysfs for SLPC power profiles
+
+luoqing (1):
+      selftests: i915: Use struct_size() helper in kmalloc()
+
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c          |   6 +-
+ drivers/gpu/drm/i915/gem/selftests/mock_context.c  |  38 -------
+ drivers/gpu/drm/i915/gem/selftests/mock_context.h  |   3 -
+ drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c   |   3 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c       |   4 +-
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h            |   3 +
+ drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c        |  47 ++++++++
+ drivers/gpu/drm/i915/gt/intel_reset.c              |   6 +-
+ drivers/gpu/drm/i915/gt/intel_rps.c                |   4 +
+ drivers/gpu/drm/i915/gt/intel_workarounds.c        |  19 ++--
+ drivers/gpu/drm/i915/gt/selftest_rps.c             |  13 +--
+ drivers/gpu/drm/i915/gt/selftest_slpc.c            |  17 ++-
+ drivers/gpu/drm/i915/gt/shmem_utils.c              |   8 +-
+ .../gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h  |   5 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c          |  11 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c    |   3 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c        |  65 +++++++++++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h        |   1 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h  |   3 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c  |  40 +++++--
+ drivers/gpu/drm/i915/gt/uc/intel_huc.c             |  12 ++-
+ drivers/gpu/drm/i915/i915_module.c                 |   2 -
+ drivers/gpu/drm/i915/i915_pmu.c                    | 120 +--------------------
+ drivers/gpu/drm/i915/i915_pmu.h                    |  11 --
+ drivers/gpu/drm/i915/selftests/i915_gem.c          |   7 +-
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c      |   4 +-
+ 26 files changed, 228 insertions(+), 227 deletions(-)
