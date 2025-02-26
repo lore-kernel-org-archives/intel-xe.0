@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 749DAC021B8
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 15:32:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86EFEC18E7C
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 15:32:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C95910E93B;
-	Wed, 26 Feb 2025 15:32:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52D7F10E93F;
+	Wed, 26 Feb 2025 15:32:21 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B98810E93B;
- Wed, 26 Feb 2025 15:32:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B22910E93F;
+ Wed, 26 Feb 2025 15:32:20 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/audio=3A_Ex?=
- =?utf-8?q?tend_Wa=5F14020863754_to_Xe3=5FLPD?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/i915/audio=3A_Extend_?=
+ =?utf-8?q?Wa=5F14020863754_to_Xe3=5FLPD?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Gustavo Sousa" <gustavo.sousa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 26 Feb 2025 15:32:03 -0000
-Message-ID: <174058392363.2374569.3476453614619436065@b555e5b46a47>
+Date: Wed, 26 Feb 2025 15:32:20 -0000
+Message-ID: <174058394037.2374577.10994506907023294097@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250226-xe3lpd-wa-14020863754-v1-1-8096dfeb3c6d@intel.com>
 In-Reply-To: <20250226-xe3lpd-wa-14020863754-v1-1-8096dfeb3c6d@intel.com>
@@ -48,9 +48,26 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: fb0ae5a132fa drm-tip: 2025y-02m-26d-15h-04m-28s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/audio: Extend Wa_14020863754 to Xe3_LPD
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+22f9cda3436b4fe965b5c5f31d2f2c1bcb483189
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 13659d4d2ffc02f2d61179675d421fe0c11e7f15
+Author: Gustavo Sousa <gustavo.sousa@intel.com>
+Date:   Wed Feb 26 11:08:46 2025 -0300
+
+    drm/i915/audio: Extend Wa_14020863754 to Xe3_LPD
+    
+    Workaround Wa_14020863754 also applies to Xe3_LPD. Update
+    needs_wa_14020863754() accordingly.
+    
+    Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
++ /mt/dim checkpatch fb0ae5a132fa86accd8c0fb3fbbb694f7ecdb6fc drm-intel
+13659d4d2ffc drm/i915/audio: Extend Wa_14020863754 to Xe3_LPD
 
 
