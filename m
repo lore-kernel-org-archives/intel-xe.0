@@ -4,63 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2BA9C19F2E
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 15:13:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40271C19F2E
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 15:14:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADB4A10E93B;
-	Wed, 26 Feb 2025 15:13:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A1F610E945;
+	Wed, 26 Feb 2025 15:14:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xc7EcUGO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RYfbuNbt";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35D3810E93B
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Feb 2025 15:13:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68A5910E944;
+ Wed, 26 Feb 2025 15:14:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740582833; x=1772118833;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=0zQiYfaq4lZWlUQ2eaLvoDUHyd2/HsJTYebUYiCVgtQ=;
- b=Xc7EcUGOtRG0uaao0fExzNq8oj5DwbuRqc8YwM7Cnndgwv8QUjkeYUYW
- k2QmvEMkYW8Ki+iRemC4/2yz4FjnTETlHVLWTC4b4O8fIqskuKcFwrrDG
- 9Vk8ihawhpq6HktP3Qpmahmqo19EEhUZ46Icx5NcF3gujGBbaIa1qHcjO
- jfCuBxVkAruuL3juK67DrF3dyb02lU23pQAMlCybaLiaI/saAFpGXpzLj
- PGj9mxh/MtMFks8kOuvG8K6YxsDu3YeTR89PsgMjQk/ggihWGyHDsjTjn
- r+pdY78M1ZTCvw5N+pNJqrKiWTQtbUCCL5b2yFWaV3ioSyjSEFB0sC27S Q==;
-X-CSE-ConnectionGUID: ElmK/NdETnysh4JOSZWvsg==
-X-CSE-MsgGUID: oihMNzjlTy2sA9Ekofzr9w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="41686862"
-X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="41686862"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2025 07:13:53 -0800
-X-CSE-ConnectionGUID: fAWQZiw4TS2w6SYBTUHcng==
-X-CSE-MsgGUID: f6gj4s8tQ1mrNj1BWwN/5A==
+ t=1740582859; x=1772118859;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=7Qoy/ApP1EgsUvcxyDecgF0/47WfK8veHjej2IadtK0=;
+ b=RYfbuNbtCPe99Fq2tiIVO9JXhzqKfz6tQUfcXsNA1X8NANotSfbDXVTV
+ ZFwUGILzZ+oSowyrCkdc7qRHrHkkylrKc81keqLrvllmm0ACduWteZBB0
+ +8Fr307G5RtPYCPiQ44dDGOLdQfTiKFGK/gzDB8srXmFQL9UMuoIsmMp+
+ t/BdtycRUysNlswl1WCuG5K79IV+MVpgELxFRYm7tNMQgP6HI+W9fvXL8
+ KQN1baN3x4tNYvctwaucFfvC5WuDpvDSpjKA2hbgPHBY12w7ELxO6dlu0
+ 7bMAt9WyfLpHETX7oPddbGJ0ginmagVh6DUtRCbQTWzvvYcfbJsRSzDZM w==;
+X-CSE-ConnectionGUID: e7+hydibQOKxsw67ePwn2g==
+X-CSE-MsgGUID: ErhP6tRLSeScfFfjc9BBig==
+X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="41357300"
+X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="41357300"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2025 07:14:19 -0800
+X-CSE-ConnectionGUID: ymePAfC4Qqa+kq/vRYKRhw==
+X-CSE-MsgGUID: Jml4geeTSVKnB9TkxZ7uEQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="139940490"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO [10.245.246.81])
- ([10.245.246.81])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2025 07:13:52 -0800
-Message-ID: <a01fc6c3fb193574879f9d401accaa1385d32529.camel@linux.intel.com>
-Subject: Re: [PATCH v4 1/2] drm/xe: Userptr invalidation race with binds fixes
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, matthew.auld@intel.com
-Date: Wed, 26 Feb 2025 16:13:49 +0100
-In-Reply-To: <Z74iu8n7Xe/mz6Uh@lstrano-desk.jf.intel.com>
-References: <20250224170109.3078314-1-matthew.brost@intel.com>
- <20250224170109.3078314-2-matthew.brost@intel.com>
- <7c58c04c73e217e5cdcb473876b368c47b60bc6f.camel@linux.intel.com>
- <Z74Bo0no06PmV87O@lstrano-desk.jf.intel.com>
- <4267074055afdb298914de6658b64f89e55136c5.camel@linux.intel.com>
- <Z74Yrv/yHUyooxHW@lstrano-desk.jf.intel.com>
- <Z74iu8n7Xe/mz6Uh@lstrano-desk.jf.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="121983832"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orviesa005.jf.intel.com with SMTP; 26 Feb 2025 07:14:17 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 26 Feb 2025 17:14:15 +0200
+Date: Wed, 26 Feb 2025 17:14:15 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jani.nikula@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
+Subject: Re: [PATCH 13/20] drm/i915/vrr: Handle joiner with vrr
+Message-ID: <Z78vx24DwelqHTc9@intel.com>
+References: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
+ <20250224061717.1095226-14-ankit.k.nautiyal@intel.com>
+ <c60121e0-fd68-4cbf-ad49-0b86046bc213@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <c60121e0-fd68-4cbf-ad49-0b86046bc213@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,155 +72,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2025-02-25 at 12:06 -0800, Matthew Brost wrote:
-> On Tue, Feb 25, 2025 at 11:23:26AM -0800, Matthew Brost wrote:
-> > On Tue, Feb 25, 2025 at 07:56:36PM +0100, Thomas Hellstr=C3=B6m wrote:
-> > > On Tue, 2025-02-25 at 09:45 -0800, Matthew Brost wrote:
-> > > > On Tue, Feb 25, 2025 at 03:30:54PM +0100, Thomas Hellstr=C3=B6m
-> > > > wrote:
-> > > > > Hi, Matt,
-> > > > >=20
-> > > > > On Mon, 2025-02-24 at 09:01 -0800, Matthew Brost wrote:
-> > > > > > Always wait on dma-resv bookkeep slots if userptr
-> > > > > > invalidation
-> > > > > > has
-> > > > > > raced
-> > > > > > with a bind ensuring PTEs temporally setup to invalidated
-> > > > > > pages
-> > > > > > are
-> > > > > > never accessed.
-> > > > > >=20
-> > > > > > Fixup initial bind handling always add VMAs to invalidation
-> > > > > > list
-> > > > > > and
-> > > > > > wait dma-resv bookkeep slots.
-> > > > > >=20
-> > > > > > Always hold notifier across TLB invalidation in notifier to
-> > > > > > prevent a
-> > > > > > UAF if an unbind races.
-> > > > > >=20
-> > > > > > Including all of the above changes for Fixes patch in hopes
-> > > > > > of an
-> > > > > > easier
-> > > > > > backport which fix a single patch.
-> > > > > >=20
-> > > > > > v2:
-> > > > > > =C2=A0- Wait dma-resv bookkeep before issuing PTE zap (Thomas)
-> > > > > > =C2=A0- Support scratch page on invalidation (Thomas)
-> > > > > > v3:
-> > > > > > =C2=A0- Drop clear of PTEs (Thomas)
-> > > > >=20
-> > > > > This was what I actually meant.
-> > > > >=20
-> > > >=20
-> > > > Ok, I presented this as option and it wasn't clear to me this
-> > > > was
-> > > > preferred.
-> > >=20
-> > > Well, I think the more special cases we can get rid of in the
-> > > code, the
-> >=20
-> > Sure, not opposed this direction.
-> >=20
-> > > better? Or at least, like in this case, split out what's common
-> > > with
-> > > the vm notifier into an xe_vm function and call that, making it
-> > > more
-> > > clear to the reader that we force an invalidation.
-> > >=20
-> > > >=20
-> > > > > https://patchwork.freedesktop.org/patch/639489/?series=3D145409&r=
-ev=3D1
-> > > > >=20
-> > > >=20
-> > > > This patch is doesn't work.
-> > > > xe_vm.munmap-style-unbind-userptr-one-partial hangs due the
-> > > > error
-> > > > injection always firing on a single user bind, so we'd have to
-> > > > fix
-> > > > the
-> > > > error injection too.
-> > >=20
-> > > I have a follow up patch that splits out a part of the notifier
-> > > like
-> > > described above and calls that for each inject, also invalidating
-> > > the
-> > > userptr's seqno, and that fixes the above problem, but then the
-> > > code
-> > > hangs in=20
-> > >=20
-> >=20
-> > Ok, that sounds good.
-> > =C2=A0
-> > > xe_exec_fault_mode --r once-userptr-prefetch
-> > >=20
-> > > but that's a different failure mode. Apparently the prefetch code
-> > > doesn't repin an invalid userptr and returns -EAGAIN forever...
-> > >=20
-> >=20
-> > I see the issue, we only call xe_vma_userptr_pin_pages in new_vma
-> > which
-> > the prefetch code bypasses. If the error inject messes with userptr
-> > seqno it makes sense this would start to show up. I suppose this
-> > needs
-> > fixing too.
-> >=20
->=20
-> Something like this shoud do the trick:
->=20
-> @@ -2299,8 +2299,16 @@ static int vm_bind_ioctl_ops_parse(struct
-> xe_vm *vm, struct drm_gpuva_ops *ops,
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 break;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 }
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 case DRM_GPUVA_OP_UNMAP:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_vma_ops_inc=
-r_pt_update_ops(vops, op-
-> >tile_mask);
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 break;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 case DRM_GPUVA_OP_PREFETCH:
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* FIXME: Need=
- to skip some prefetch ops */
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 vma =3D gpuva_=
-to_vma(op->base.prefetch.va);
-> +
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (xe_vma_is_=
-userptr(vma)) {
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 err =3D xe_vma_is_userptr(vma);
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (err)
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 return err;
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_vma_o=
-ps_incr_pt_update_ops(vops, op-
-> >tile_mask);
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 break;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 default:
->=20
-> Matt
->=20
-> > Matt=20
+On Mon, Feb 24, 2025 at 07:17:59PM +0530, Nautiyal, Ankit K wrote:
+> 
+> On 2/24/2025 11:47 AM, Ankit Nautiyal wrote:
+> > Do not program transcoder registers for VRR for the secondary pipe of
+> > the joiner. Remove check to skip VRR for joiner case.
+> 
+> Missed to drop this patch as mentioned in the last version.
+> 
+> Will work on this after the other changes are agreed upon, so this can 
+> be ignored for now.
 
-Yeah, I'll try to put something together based on this + your staging
-tree patch.
+I think before trying to do full joiner+vrr support we should
+just allow joiner+fixed_rr (and also not allow update_lrr).
+That would avoid the problems with the live VRR reprogramming.
 
-/Thomas
+> 
+> 
+> Regards,
+> 
+> Ankit
+> 
+> >
+> > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/display/intel_vrr.c | 19 ++++++++++++-------
+> >   1 file changed, 12 insertions(+), 7 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> > index 45efcb57c77a..30fcd1e66a12 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> > @@ -345,13 +345,6 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+> >   	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+> >   	int vmin, vmax;
+> >   
+> > -	/*
+> > -	 * FIXME all joined pipes share the same transcoder.
+> > -	 * Need to account for that during VRR toggle/push/etc.
+> > -	 */
+> > -	if (crtc_state->joiner_pipes)
+> > -		return;
+> > -
+> >   	if (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE)
+> >   		return;
+> >   
+> > @@ -443,6 +436,9 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
+> >   	struct intel_display *display = to_intel_display(crtc_state);
+> >   	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+> >   
+> > +	if (intel_crtc_is_joiner_secondary(crtc_state))
+> > +		return;
+> > +
+> >   	/*
+> >   	 * This bit seems to have two meanings depending on the platform:
+> >   	 * TGL: generate VRR "safe window" for DSB vblank waits
+> > @@ -494,6 +490,9 @@ void intel_vrr_send_push(struct intel_dsb *dsb,
+> >   	if (!crtc_state->vrr.enable)
+> >   		return;
+> >   
+> > +	if (intel_crtc_is_joiner_secondary(crtc_state))
+> > +		return;
+> > +
+> >   	if (dsb)
+> >   		intel_dsb_nonpost_start(dsb);
+> >   
+> > @@ -558,6 +557,9 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
+> >   	if (!crtc_state->vrr.enable)
+> >   		return;
+> >   
+> > +	if (intel_crtc_is_joiner_secondary(crtc_state))
+> > +		return;
+> > +
+> >   	intel_de_write(display, TRANS_VRR_VMIN(display, cpu_transcoder),
+> >   		       crtc_state->vrr.vmin - 1);
+> >   	intel_de_write(display, TRANS_VRR_VMAX(display, cpu_transcoder),
+> > @@ -586,6 +588,9 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
+> >   	if (!old_crtc_state->vrr.enable)
+> >   		return;
+> >   
+> > +	if (intel_crtc_is_joiner_secondary(old_crtc_state))
+> > +		return;
+> > +
+> >   	intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
+> >   		       trans_vrr_ctl(old_crtc_state));
+> >   	intel_de_wait_for_clear(display,
 
+-- 
+Ville Syrjälä
+Intel
