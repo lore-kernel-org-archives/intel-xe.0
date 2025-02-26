@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2703C021B8
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 14:01:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FA42C021B8
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 14:01:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8049310E82E;
-	Wed, 26 Feb 2025 14:01:06 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46E6010E822;
- Wed, 26 Feb 2025 14:01:05 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AB9310E822;
+	Wed, 26 Feb 2025 14:01:39 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l9wOyCqn";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DEE1310E822;
+ Wed, 26 Feb 2025 14:01:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1740578498; x=1772114498;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=86BMUnhpz0XsUNuM2UexkdQE1Eivz6jgeBNEz2ZvTdM=;
+ b=l9wOyCqnovIZC2HP0oZeTu1R/KmIFIic8MJVMmwCuFE0GF7f/TGoPIFO
+ S9tmEDi8hzwe4uO/tcqEKfIPFwQ405C1NP9+KH00x6TIHghVkcmC3754s
+ CqsW5JElUJDkfr/XChlN+eAm/dMVcaj6cnUCOO6UReaW6FDLMQ7D80lrT
+ dZ7mvOaZlLGssS64Q7MbDM+VdWeSHBZ+iTgvDeZYdtMrIM8XYVFKiTDRV
+ 33dXbAYY0qgvX1yJuCK/JRKHo1N0OUMwiW4xN5czg0ZbyoEx0ewULRcDb
+ iFS8tGVyqLs493ybauYistMJhpVvPFwkjAL6p52+HbNw146LlJJQ9UL4F g==;
+X-CSE-ConnectionGUID: TVJ3BqaYRxefpYZY+7KnQA==
+X-CSE-MsgGUID: x2TJy0uFQW2g/F3vKuQFhw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="52813884"
+X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="52813884"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2025 06:01:30 -0800
+X-CSE-ConnectionGUID: vWrdl9RWTCWiBeW3I8jQxA==
+X-CSE-MsgGUID: 6IqOgySYQ2yoLESakfLAug==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="121956869"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orviesa005.jf.intel.com with SMTP; 26 Feb 2025 06:01:28 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 26 Feb 2025 16:01:27 +0200
+Date: Wed, 26 Feb 2025 16:01:27 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jani.nikula@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
+Subject: Re: [PATCH 14/20] drm/i915/vrr: Refactor condition for computing
+ vmax and LRR
+Message-ID: <Z78et1xp-bBxPUye@intel.com>
+References: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
+ <20250224061717.1095226-15-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Workaround_fixes=2C_impro?=
- =?utf-8?q?vements=2C_additions_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 26 Feb 2025 14:01:05 -0000
-Message-ID: <174057846528.2350650.15429491125025654603@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250226112106.28173-1-tvrtko.ursulin@igalia.com>
-In-Reply-To: <20250226112106.28173-1-tvrtko.ursulin@igalia.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250224061717.1095226-15-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,45 +69,65 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Feb 24, 2025 at 11:47:11AM +0530, Ankit Nautiyal wrote:
+> LRR and Vmax can be computed only if VRR is supported and vrr.in_range
+> is set. Currently we proceed with vrr timings only for VRR supporting
+> panels and return otherwise. For using VRR TG with fix timings, need to
+> continue even for panels that do not support VRR.
+> 
+> To achieve this, refactor the condition for computing vmax and
+> update_lrr so that we can continue for fixed timings for panels that do
+> not support VRR.
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_vrr.c | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> index 30fcd1e66a12..024c3014670a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -343,21 +343,21 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+>  	struct intel_dp *intel_dp = intel_attached_dp(connector);
+>  	bool is_edp = intel_dp_is_edp(intel_dp);
+>  	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+> -	int vmin, vmax;
+> +	int vmin = 0, vmax = 0;
+>  
+>  	if (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE)
+>  		return;
+>  
+>  	crtc_state->vrr.in_range =
+>  		intel_vrr_is_in_range(connector, drm_mode_vrefresh(adjusted_mode));
+> -	if (!crtc_state->vrr.in_range)
+> -		return;
+>  
+> -	if (HAS_LRR(display))
+> -		crtc_state->update_lrr = true;
+> +	if (crtc_state->vrr.in_range) {
+> +		if (HAS_LRR(display))
+> +			crtc_state->update_lrr = true;
+> +		vmax = intel_vrr_compute_vmax(connector, adjusted_mode);
 
-Series: Workaround fixes, improvements, additions (rev3)
-URL   : https://patchwork.freedesktop.org/series/144112/
-State : success
+} else {
+	vmax = vmin;
+}
 
-== Summary ==
+might be a bit more clear way do this?
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-22f9cda3436b4fe965b5c5f31d2f2c1bcb483189
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit cfb7a9a3734021b639be7b3b4d87666019011903
-Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Date:   Wed Feb 26 11:21:06 2025 +0000
+>  
+>  	vmin = intel_vrr_compute_vmin(crtc_state);
+> -	vmax = intel_vrr_compute_vmax(connector, adjusted_mode);
+>  
+>  	if (vmin >= vmax)
+>  		return;
+> -- 
+> 2.45.2
 
-    drm/xe: Add performance tunings to debugfs
-    
-    Add a list of active tuning workarounds to debugfs, analogous to the
-    existing "plain" workarounds list.
-    
-    Rationale being that it seems to make sense to either have both or none.
-    
-    Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-    Cc: Matt Roper <matthew.d.roper@intel.com>
-+ /mt/dim checkpatch 4a2f1c823287a84dc0bd46c5a93545dfe49967f2 drm-intel
-129db98c8f87 drm/xe: Fix GT "for each engine" workarounds
-20b79c3311ae drm/xe/gen12: Add Wa_1604555607
-4f368268fb8e drm/xe/gen12: L3 recommended hashing mask
-cfb7a9a37340 drm/xe: Add performance tunings to debugfs
-
-
+-- 
+Ville Syrjälä
+Intel
