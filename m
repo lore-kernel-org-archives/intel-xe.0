@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13259C021B8
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 17:48:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D60AC021B8
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 17:50:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8749010E985;
-	Wed, 26 Feb 2025 17:48:34 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TBD3NfTe";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BACD510E985
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Feb 2025 17:48:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740592114; x=1772128114;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=utwP7sgrc/mPnToD/YRZ2ym51BUM5uJh8Ub8FCA++1Y=;
- b=TBD3NfTe8yPnhllrnCkPpgUS5yYG5fI8IM5TFIJuB7N2r6mPQdxb7Pxq
- fNEPHizKOB2Q6HsP+T7uUd79vyzxBTMfQmBu3hAGdLVc9e0v2JdxrzuJd
- GM3uCf4cekVK+kJu8nvvZN1g/JXgFx6ze1yKlDZc7jo33H/I47zcz0rQY
- Lnz3g+avkg9qmFN7V1SJJXu9NWeJP+NKT5jdBgAlsItyZI/JSkW/P5ncW
- teYXsLgM6ERqjSXqBdJNUiZ999QsDlxWyym7k2Rg/dZMgxuvLfYQI//7B
- QrSoGxXkIx7vKnoFXxpZVxte8PwIOT5y1mjdP10wjZ4Rrfnl5Pbxh7XCz g==;
-X-CSE-ConnectionGUID: FZlw54U2Q2KEVpaD0lwIEw==
-X-CSE-MsgGUID: RY4tgiETRpygOakb/QLY5w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="52852784"
-X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="52852784"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2025 09:48:33 -0800
-X-CSE-ConnectionGUID: tgX7Db6KRBSxEFxu8U08zg==
-X-CSE-MsgGUID: zn2jJ2oYTNC2PFNOYu3X4Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="121715666"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO mwauld-desk.intel.com)
- ([10.245.245.27])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2025 09:48:31 -0800
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@intel.com>,
- stable@vger.kernel.org
-Subject: [PATCH v2] drm/xe/userptr: properly setup pfn_flags_mask
-Date: Wed, 26 Feb 2025 17:47:49 +0000
-Message-ID: <20250226174748.294285-2-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.48.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CE9910E985;
+	Wed, 26 Feb 2025 17:50:13 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF47D10E973;
+ Wed, 26 Feb 2025 17:50:12 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4571756071996539345=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fix_uninitialized?=
+ =?utf-8?q?_pointer_def?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Colin Ian King" <colin.i.king@gmail.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 26 Feb 2025 17:50:12 -0000
+Message-ID: <174059221297.2408428.14543095987808016272@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250226160524.566074-1-colin.i.king@gmail.com>
+In-Reply-To: <20250226160524.566074-1-colin.i.king@gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,80 +36,140 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently we just leave it uninitialised, which at first looks harmless,
-however we also don't zero out the pfn array, and with pfn_flags_mask
-the idea is to be able set individual flags for a given range of pfn or
-completely ignore them, outside of default_flags. So here we end up with
-pfn[i] & pfn_flags_mask, and if both are uninitialised we might get back
-an unexpected flags value, like asking for read only with default_flags,
-but getting back write on top, leading to potentially bogus behaviour.
+--===============4571756071996539345==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-To fix this ensure we zero the pfn_flags_mask, such that hmm only
-considers the default_flags and not also the initial pfn[i] value.
+== Series Details ==
 
-v2 (Thomas):
- - Prefer proper initializer.
+Series: drm/xe: Fix uninitialized pointer def
+URL   : https://patchwork.freedesktop.org/series/145504/
+State : success
 
-Fixes: 81e058a3e7fd ("drm/xe: Introduce helper to populate userptr")
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@intel.com>
-Cc: <stable@vger.kernel.org> # v6.10+
----
- drivers/gpu/drm/xe/xe_hmm.c | 18 ++++++++++--------
- 1 file changed, 10 insertions(+), 8 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_hmm.c b/drivers/gpu/drm/xe/xe_hmm.c
-index 089834467880..2e4ae61567d8 100644
---- a/drivers/gpu/drm/xe/xe_hmm.c
-+++ b/drivers/gpu/drm/xe/xe_hmm.c
-@@ -166,13 +166,20 @@ int xe_hmm_userptr_populate_range(struct xe_userptr_vma *uvma,
- {
- 	unsigned long timeout =
- 		jiffies + msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
--	unsigned long *pfns, flags = HMM_PFN_REQ_FAULT;
-+	unsigned long *pfns;
- 	struct xe_userptr *userptr;
- 	struct xe_vma *vma = &uvma->vma;
- 	u64 userptr_start = xe_vma_userptr(vma);
- 	u64 userptr_end = userptr_start + xe_vma_size(vma);
- 	struct xe_vm *vm = xe_vma_vm(vma);
--	struct hmm_range hmm_range;
-+	struct hmm_range hmm_range = {
-+		.pfn_flags_mask = 0, /* ignore pfns */
-+		.default_flags = HMM_PFN_REQ_FAULT,
-+		.start = userptr_start,
-+		.end = userptr_end,
-+		.notifier = &uvma->userptr.notifier,
-+		.dev_private_owner = vm->xe,
-+	};
- 	bool write = !xe_vma_read_only(vma);
- 	unsigned long notifier_seq;
- 	u64 npages;
-@@ -199,19 +206,14 @@ int xe_hmm_userptr_populate_range(struct xe_userptr_vma *uvma,
- 		return -ENOMEM;
- 
- 	if (write)
--		flags |= HMM_PFN_REQ_WRITE;
-+		hmm_range.default_flags |= HMM_PFN_REQ_WRITE;
- 
- 	if (!mmget_not_zero(userptr->notifier.mm)) {
- 		ret = -EFAULT;
- 		goto free_pfns;
- 	}
- 
--	hmm_range.default_flags = flags;
- 	hmm_range.hmm_pfns = pfns;
--	hmm_range.notifier = &userptr->notifier;
--	hmm_range.start = userptr_start;
--	hmm_range.end = userptr_end;
--	hmm_range.dev_private_owner = vm->xe;
- 
- 	while (true) {
- 		hmm_range.notifier_seq = mmu_interval_read_begin(&userptr->notifier);
--- 
-2.48.1
+CI Bug Log - changes from xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d_BAT -> xe-pw-145504v1_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-145504v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_intel_bb@intel-bb-blit-y:
+    - bat-adlp-vf:        [PASS][1] -> [DMESG-WARN][2] ([Intel XE#3970])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-y.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145504v1/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-y.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_exec_basic@twice-userptr-rebind:
+    - bat-adlp-vf:        [DMESG-WARN][3] ([Intel XE#3970]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d/bat-adlp-vf/igt@xe_exec_basic@twice-userptr-rebind.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145504v1/bat-adlp-vf/igt@xe_exec_basic@twice-userptr-rebind.html
+
+  
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
+
+
+Build changes
+-------------
+
+  * Linux: xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d -> xe-pw-145504v1
+
+  IGT_8248: 8248
+  xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d: 5bcb67a2a4c61034f5a25c024631c5fbf351ee8d
+  xe-pw-145504v1: 145504v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145504v1/index.html
+
+--===============4571756071996539345==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Fix uninitialized pointer def</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145504/">https://patchwork.freedesktop.org/series/145504/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145504v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145504v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d_BAT -&gt; xe-pw-145504v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-145504v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_intel_bb@intel-bb-blit-y:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-y.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145504v1/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-y.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_exec_basic@twice-userptr-rebind:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d/bat-adlp-vf/igt@xe_exec_basic@twice-userptr-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145504v1/bat-adlp-vf/igt@xe_exec_basic@twice-userptr-rebind.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d -&gt; xe-pw-145504v1</li>
+</ul>
+<p>IGT_8248: 8248<br />
+  xe-2714-5bcb67a2a4c61034f5a25c024631c5fbf351ee8d: 5bcb67a2a4c61034f5a25c024631c5fbf351ee8d<br />
+  xe-pw-145504v1: 145504v1</p>
+
+</body>
+</html>
+
+--===============4571756071996539345==--
