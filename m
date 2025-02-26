@@ -4,27 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01E2DC021B2
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 00:40:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA4BFC021B2
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 01:13:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD08D10E1F9;
-	Wed, 26 Feb 2025 00:40:32 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A847010E1F9;
- Wed, 26 Feb 2025 00:40:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8560314056159290945=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7934210E1F9;
+	Wed, 26 Feb 2025 01:13:01 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="kKAVD3Oh";
+	dkim-atps=neutral
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32BA310E1F9;
+ Wed, 26 Feb 2025 01:12:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1740532369;
+ bh=8+YF4WFZgfiQeCGthkw8NzPmGBGE8t9U5bXWZoc+C7U=;
+ h=Date:From:To:Cc:Subject:From;
+ b=kKAVD3OhFHtQ8oFLbHcD73XfYGgflGP/aKxegtq0e76Kuf1zKXZGaS/Ua7athnf1R
+ 9pXfkgXY08K9Qu8lfgZ4j1BfiQHmW9hvW8rA/y7EVbc3a+GHdJsGf8Ve2ms0tmauwO
+ n5u5UKg6FXAdLrTZoQw5+NJXRqOZKytzLgAzeBid5eBD36Ttw2vzea18OqF53CV7Vi
+ UZAIAZbNAxZ7zrxNbickkrnqs+RX/vyRIHS+qDJZlrMERWJ7tABbFjrfZj3chmNbAm
+ YmpXqVIUQQhU8oBIWZH1WRfR5Hh2B+FOOpW0qIaus5e1mGyXGd7oeu5IepB+jPlhnY
+ 98mPA0E759ZNw==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (Client did not present a certificate)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4Z2c0J3p1Tz4wby;
+ Wed, 26 Feb 2025 12:12:48 +1100 (AEDT)
+Date: Wed, 26 Feb 2025 12:12:47 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Lucas De Marchi <lucas.demarchi@intel.com>, Thomas =?UTF-8?B?SGVsbHN0?=
+ =?UTF-8?B?csO2bQ==?= <thomas.hellstrom@linux.intel.com>, Simona Vetter
+ <simona.vetter@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, Joonas
+ Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>
+Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
+ <dri-devel@lists.freedesktop.org>, DRM XE List
+ <intel-xe@lists.freedesktop.org>, Jani Nikula <jani.nikula@intel.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
+ Mailing List <linux-next@vger.kernel.org>
+Subject: linux-next: manual merge of the drm-xe tree with the drm-intel tree
+Message-ID: <20250226121247.5d4d43ea@canb.auug.org.au>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pxp=3A_Don=27t_kill_?=
- =?utf-8?q?queues_while_holding_PXP_locks_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 26 Feb 2025 00:40:31 -0000
-Message-ID: <174053043166.2144313.5659919912518720659@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250225235328.2895877-1-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20250225235328.2895877-1-daniele.ceraolospurio@intel.com>
+Content-Type: multipart/signed; boundary="Sig_/5dYl3dOer8ymvTSJleQOLRX";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,156 +59,79 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8560314056159290945==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--Sig_/5dYl3dOer8ymvTSJleQOLRX
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-== Series Details ==
+Hi all,
 
-Series: drm/xe/pxp: Don't kill queues while holding PXP locks (rev2)
-URL   : https://patchwork.freedesktop.org/series/145134/
-State : success
+Today's linux-next merge of the drm-xe tree got a conflict in:
 
-== Summary ==
+  drivers/gpu/drm/xe/display/xe_display.c
 
-CI Bug Log - changes from xe-2711-c7988865b658d56bcfaac76b7d72cc59435565eb_BAT -> xe-pw-145134v2_BAT
-====================================================
+between commit:
 
-Summary
--------
+  1b242ceec536 ("drm/i915/audio: convert to struct intel_display")
 
-  **SUCCESS**
+from the drm-intel tree and commit:
 
-  No regressions found.
+  d41d048043c4 ("drm/xe/display: Drop xe_display_driver_remove()")
 
-  
+from the drm-xe tree.
 
-Participating hosts (9 -> 8)
-------------------------------
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
 
-  Missing    (1): bat-adlp-vm 
+--=20
+Cheers,
+Stephen Rothwell
 
-Known issues
-------------
+diff --cc drivers/gpu/drm/xe/display/xe_display.c
+index 96ba9595bf2a,279b786d64dc..000000000000
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@@ -175,13 -167,13 +167,13 @@@ static void xe_display_fini(void *arg
+  	struct xe_device *xe =3D arg;
+  	struct intel_display *display =3D &xe->display;
+ =20
+- 	if (!xe->info.probe_display)
+- 		return;
+-=20
+- 	intel_display_driver_remove_nogem(display);
++ 	intel_hpd_poll_fini(xe);
++ 	intel_hdcp_component_fini(display);
+ -	intel_audio_deinit(xe);
+++	intel_audio_deinit(display);
++ 	intel_display_driver_remove(display);
+  }
+ =20
+- int xe_display_init_noaccel(struct xe_device *xe)
++ int xe_display_init(struct xe_device *xe)
+  {
+  	struct intel_display *display =3D &xe->display;
+  	int err;
 
-  Here are the changes found in xe-pw-145134v2_BAT that come from known issues:
+--Sig_/5dYl3dOer8ymvTSJleQOLRX
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-### IGT changes ###
+-----BEGIN PGP SIGNATURE-----
 
-#### Issues hit ####
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAme+ao8ACgkQAVBC80lX
+0GyzjAgAhMsX12+KJ9Pz5WUx3MZjo03zVhsxWhEdZhiV/mKvcujnV1x4uqK2yDAj
+q2wofMf/8RRM1Q9BFQyOLR372ub2HYPQo2iilFEs3oz4Tjxi2PQh+WOQFh2z+U5P
+Lcnf77BTtBVotegeVab/S4O+sN/Fi1GyUK+bZwrVhNzOkF0FVlnnFE2vcjAFVf9N
+t2BEjYO5SW4zh6Xyumkdbwj82CBzzes7hLvM4uPaHHU9r4mT8Xlpc0qXrsXAI65f
+ybIaWNegoxKEdi8shzlGIt2n0HRq1y6nz3vGwByc05faRceq5eZDP6+m7EpX6c+X
+ik6l6dspLndWee1A22W+w+ggbjCgIg==
+=XG4Q
+-----END PGP SIGNATURE-----
 
-  * igt@xe_intel_bb@render@render-linear-256:
-    - bat-adlp-vf:        [PASS][1] -> [DMESG-WARN][2] ([Intel XE#3970]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2711-c7988865b658d56bcfaac76b7d72cc59435565eb/bat-adlp-vf/igt@xe_intel_bb@render@render-linear-256.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145134v2/bat-adlp-vf/igt@xe_intel_bb@render@render-linear-256.html
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-adlp-vf:        [PASS][3] -> [SKIP][4] ([Intel XE#4322]) +1 other test skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2711-c7988865b658d56bcfaac76b7d72cc59435565eb/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145134v2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-
-  
-#### Warnings ####
-
-  * igt@xe_live_ktest@xe_bo:
-    - bat-adlp-vf:        [SKIP][5] ([Intel XE#2229] / [Intel XE#455]) -> [SKIP][6] ([Intel XE#4322])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2711-c7988865b658d56bcfaac76b7d72cc59435565eb/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145134v2/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-
-  
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
-  [Intel XE#4322]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
-
-
-Build changes
--------------
-
-  * Linux: xe-2711-c7988865b658d56bcfaac76b7d72cc59435565eb -> xe-pw-145134v2
-
-  IGT_8247: 8247
-  xe-2711-c7988865b658d56bcfaac76b7d72cc59435565eb: c7988865b658d56bcfaac76b7d72cc59435565eb
-  xe-pw-145134v2: 145134v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145134v2/index.html
-
---===============8560314056159290945==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/pxp: Don&#x27;t kill queues while holding PXP locks (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145134/">https://patchwork.freedesktop.org/series/145134/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145134v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145134v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2711-c7988865b658d56bcfaac76b7d72cc59435565eb_BAT -&gt; xe-pw-145134v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-145134v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_intel_bb@render@render-linear-256:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2711-c7988865b658d56bcfaac76b7d72cc59435565eb/bat-adlp-vf/igt@xe_intel_bb@render@render-linear-256.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145134v2/bat-adlp-vf/igt@xe_intel_bb@render@render-linear-256.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2711-c7988865b658d56bcfaac76b7d72cc59435565eb/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145134v2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322">Intel XE#4322</a>) +1 other test skip</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2711-c7988865b658d56bcfaac76b7d72cc59435565eb/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145134v2/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322">Intel XE#4322</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2711-c7988865b658d56bcfaac76b7d72cc59435565eb -&gt; xe-pw-145134v2</li>
-</ul>
-<p>IGT_8247: 8247<br />
-  xe-2711-c7988865b658d56bcfaac76b7d72cc59435565eb: c7988865b658d56bcfaac76b7d72cc59435565eb<br />
-  xe-pw-145134v2: 145134v2</p>
-
-</body>
-</html>
-
---===============8560314056159290945==--
+--Sig_/5dYl3dOer8ymvTSJleQOLRX--
