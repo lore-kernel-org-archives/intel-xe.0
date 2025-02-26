@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B45FC19776
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 22:56:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04383C19F32
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Feb 2025 22:56:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 436DA10E9F5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 734FF10E9F7;
 	Wed, 26 Feb 2025 22:56:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OcrktRIN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XBWa/0hY";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D76610E0A0;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EF8D10E9F5;
  Wed, 26 Feb 2025 22:55:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740610559; x=1772146559;
+ t=1740610560; x=1772146560;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kdx43vBPxQuJgAnPefatV3H8gKQrTpuV5MOzEF/ZEe8=;
- b=OcrktRINKDZS7Xo53QQtgAceMaP9Q1X2R5D1TPqJaX4PAItgdw6NV58d
- ZL+ootVcmm2fMO8P7349COjxMoQapPWSd0Q2fTHleU3fMP8k50VlsEb9p
- QL/jroXjaDVfVuIqsafeOYFGvG7cVJ9yrhKNm3VDZw7xfTc+X+rg7JOHX
- a1pkW94tOspdySUFKm+PgVEh5BRuTDmo7Qt5HGjTjWnH5LCmw72pAvgkW
- m4phfpenJRHRet46cj9cV/4QD9K5AC4Cv+HjJddMrjMHwjSd1TeyZJbKh
- 97P/BnLjoPEf26M3+BDN2IJ/KIrejiryPuaoNlnVeyUJehSflSNT9RMsu A==;
-X-CSE-ConnectionGUID: 3jo/C26ITm2wdvigbpZySQ==
-X-CSE-MsgGUID: R3h0h6pMT+iDoLTx8OtFmw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="44308774"
-X-IronPort-AV: E=Sophos;i="6.13,318,1732608000"; d="scan'208";a="44308774"
+ bh=KeD4ywBgXFg15YiTbupTEasUOOGyxP/Of8BAkGD5wQg=;
+ b=XBWa/0hYHeOlEda8SRi/WvywqYYI1I5hxGherXX0JV0i7CxJgYpvDERu
+ XHkB2EZenBRIfV3zAGg64eQzuBX7nwNKdK2OoUFiq4rsnOtSQ1BpmPU36
+ OAPgl2DemCR+IbDgM3OPA/yHqivgijXeDipDJ4uyODnaGngULps5uPCm4
+ aDeZU88r2FXcVyJbUKRaan9jPmcbxhahNVSuum90Gh1hOUEPkGoqZRDQo
+ psrs4vyu9ZL4fNaJz6AdGzzDPFVci23vw/7v5qwCZ6RXzyX5trI2Cu7IW
+ eSsBiT2jItBdnIhy5KgX0drIEo3Z79/C1LOkXctnW8Gq1iuQROw7i8R9d w==;
+X-CSE-ConnectionGUID: AMffhRBNSeOqrc/dNHdT1A==
+X-CSE-MsgGUID: Cy02iurtRG+/iQlloamQ4Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="44308776"
+X-IronPort-AV: E=Sophos;i="6.13,318,1732608000"; d="scan'208";a="44308776"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  26 Feb 2025 14:55:58 -0800
-X-CSE-ConnectionGUID: /MHf7KCRQmW8kBBfRDB3Aw==
-X-CSE-MsgGUID: HFXa9Di7Sb2w4CJZkSPSpA==
+X-CSE-ConnectionGUID: chmSQ8aDS3+ZAfk8GSLsHQ==
+X-CSE-MsgGUID: tafIwxQcTYKdjgPgFmUVfQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,318,1732608000"; d="scan'208";a="117326770"
+X-IronPort-AV: E=Sophos;i="6.13,318,1732608000"; d="scan'208";a="117326776"
 Received: from dut4025lnl.fm.intel.com ([10.105.10.92])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  26 Feb 2025 14:55:58 -0800
@@ -46,9 +46,9 @@ To: intel-xe@lists.freedesktop.org
 Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
  joonas.lahtinen@linux.intel.com, matthew.brost@intel.com,
  jianxun.zhang@intel.com, dri-devel@lists.freedesktop.org
-Subject: [PATCH 2/6] drm/xe/xe_exec_queue: Add ID param to exec queue struct
-Date: Wed, 26 Feb 2025 22:55:52 +0000
-Message-ID: <20250226225557.133076-3-jonathan.cavitt@intel.com>
+Subject: [PATCH 4/6] drm/xe/xe_vm: Add per VM pagefault info
+Date: Wed, 26 Feb 2025 22:55:54 +0000
+Message-ID: <20250226225557.133076-5-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250226225557.133076-1-jonathan.cavitt@intel.com>
 References: <20250226225557.133076-1-jonathan.cavitt@intel.com>
@@ -68,40 +68,266 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add the exec queue id to the exec queue struct.  This is useful for
-performing a reverse lookup into the xef->exec_queue xarray.
+Add additional information to vm so it can report up to the last 50
+relevant exec queues to have been banned on it, as well as the last
+pagefault seen when said exec queues were banned.  Since we cannot
+reasonably associate a pagefault to a specific exec queue, we
+currently report the last seen pagefault on the associated vm instead.
+
+The last pagefault seen per exec queue is saved to the vm, and the
+pagefault is updated during the pagefault handling process in
+xe_gt_pagefault.  The last seen pagefault is reset once it has been
+associated to the next banned exec queue.
 
 Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c       | 1 +
- drivers/gpu/drm/xe/xe_exec_queue_types.h | 2 ++
- 2 files changed, 3 insertions(+)
+ drivers/gpu/drm/xe/xe_exec_queue.c   |  6 +++
+ drivers/gpu/drm/xe/xe_gt_pagefault.c | 16 +++++++
+ drivers/gpu/drm/xe/xe_guc_submit.c   |  2 +
+ drivers/gpu/drm/xe/xe_vm.c           | 69 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vm.h           |  6 +++
+ drivers/gpu/drm/xe/xe_vm_types.h     | 31 +++++++++++++
+ 6 files changed, 130 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 23a9f519ce1c..4a98a5d0e405 100644
+index 4a98a5d0e405..e0764f3dfd76 100644
 --- a/drivers/gpu/drm/xe/xe_exec_queue.c
 +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -709,6 +709,7 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
- 	if (err)
- 		goto kill_exec_queue;
- 
-+	q->id = id;
+@@ -712,6 +712,12 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+ 	q->id = id;
  	args->exec_queue_id = id;
  
++	/**
++	 * If an exec queue in the ban list shares the same exec queue
++	 * ID, remove it from the ban list to avoid confusion.
++	 */
++	xe_vm_remove_ban_entry(q->vm, q);
++
  	return 0;
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index 6eb7ff091534..088d838218e9 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -55,6 +55,8 @@ struct xe_exec_queue {
- 	struct xe_vm *vm;
- 	/** @class: class of this exec queue */
- 	enum xe_engine_class class;
-+	/** @id: exec queue ID as reported during create ioctl */
-+	u32 id;
+ 
+ kill_exec_queue:
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index 76d7feecf98e..899b687de3e7 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -307,6 +307,21 @@ int xe_guc_pagefault_handler(struct xe_guc *guc, u32 *msg, u32 len)
+ 	return full ? -ENOSPC : 0;
+ }
+ 
++static void save_pagefault_to_vm(struct xe_device *xe, struct xe_pagefault *pf)
++{
++	struct xe_vm *vm;
++
++	vm = asid_to_vm(xe, pf->asid);
++	if (IS_ERR(vm))
++		return;
++
++	spin_lock(&vm->pf.lock);
++	if (!vm->pf.info)
++		vm->pf.info = kzalloc(sizeof(*pf), GFP_KERNEL);
++	memcpy(vm->pf.info, pf, sizeof(*pf));
++	spin_unlock(&vm->pf.lock);
++}
++
+ #define USM_QUEUE_MAX_RUNTIME_MS	20
+ 
+ static void pf_queue_work_func(struct work_struct *w)
+@@ -325,6 +340,7 @@ static void pf_queue_work_func(struct work_struct *w)
+ 		ret = handle_pagefault(gt, &pf);
+ 		if (unlikely(ret)) {
+ 			print_pagefault(xe, &pf);
++			save_pagefault_to_vm(xe, &pf);
+ 			pf.fault_unsuccessful = 1;
+ 			drm_dbg(&xe->drm, "Fault response: Unsuccessful %d\n", ret);
+ 		}
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index b6a2dd742ebd..f0bfc9d109cb 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -2066,6 +2066,8 @@ int xe_guc_exec_queue_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
+ 	if (!exec_queue_banned(q) && !exec_queue_check_timeout(q))
+ 		xe_guc_exec_queue_trigger_cleanup(q);
+ 
++	xe_vm_add_ban_entry(q->vm, q);
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 996000f2424e..3e88652670e6 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -746,6 +746,62 @@ int xe_vm_userptr_check_repin(struct xe_vm *vm)
+ 		list_empty_careful(&vm->userptr.invalidated)) ? 0 : -EAGAIN;
+ }
+ 
++static void free_ban_entry(struct xe_exec_queue_ban_entry *b)
++{
++	list_del(&b->list);
++	kfree(b->pf);
++	kfree(b);
++}
++
++void xe_vm_add_ban_entry(struct xe_vm *vm, struct xe_exec_queue *q)
++{
++	struct xe_exec_queue_ban_entry *b = NULL;
++	struct xe_file *xef = q->xef;
++
++	b = kzalloc(sizeof(*b), GFP_KERNEL);
++	xe_assert(xef->xe, b);
++
++	spin_lock(&vm->bans.lock);
++	list_add_tail(&b->list, &vm->bans.list);
++	vm->bans.len++;
++	/**
++	 * Limit the number of bans in the bans list to prevent memory overuse.
++	 */
++	if (vm->bans.len > MAX_BANS) {
++		struct xe_exec_queue_ban_entry *rem =
++			list_first_entry(&vm->bans.list, struct xe_exec_queue_ban_entry, list);
++
++		free_ban_entry(rem);
++		vm->bans.len--;
++	}
++	spin_unlock(&vm->bans.lock);
++
++	/**
++	 * Associate the current pagefault saved to the VM to the ban entry, and clear
++	 * the VM pagefault cache.  This is still valid if vm->pf.info is NULL.
++	 */
++	spin_lock(&vm->pf.lock);
++	b->pf = vm->pf.info;
++	vm->pf.info = NULL;
++	spin_unlock(&vm->pf.lock);
++
++	/** Save blame data to list element */
++	b->exec_queue_id = q->id;
++}
++
++void xe_vm_remove_ban_entry(struct xe_vm *vm, struct xe_exec_queue *q)
++{
++	struct xe_exec_queue_ban_entry *b, *tmp;
++
++	spin_lock(&vm->bans.lock);
++	list_for_each_entry_safe(b, tmp, &vm->bans.list, list)
++		if (b->exec_queue_id == q->id) {
++			free_ban_entry(b);
++			vm->bans.len--;
++		}
++	spin_unlock(&vm->bans.lock);
++}
++
+ static int xe_vma_ops_alloc(struct xe_vma_ops *vops, bool array_of_binds)
+ {
+ 	int i;
+@@ -1448,6 +1504,10 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 	init_rwsem(&vm->userptr.notifier_lock);
+ 	spin_lock_init(&vm->userptr.invalidated_lock);
+ 
++	INIT_LIST_HEAD(&vm->bans.list);
++	spin_lock_init(&vm->bans.lock);
++	spin_lock_init(&vm->pf.lock);
++
+ 	ttm_lru_bulk_move_init(&vm->lru_bulk_move);
+ 
+ 	INIT_WORK(&vm->destroy_work, vm_destroy_work_func);
+@@ -1672,6 +1732,15 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 	}
+ 	up_write(&xe->usm.lock);
+ 
++	if (vm->bans.len) {
++		struct xe_exec_queue_ban_entry *b, *tmp;
++
++		spin_lock(&vm->bans.lock);
++		list_for_each_entry_safe(b, tmp, &vm->bans.list, list)
++			free_ban_entry(b);
++		spin_unlock(&vm->bans.lock);
++	}
++
+ 	for_each_tile(tile, xe, id)
+ 		xe_range_fence_tree_fini(&vm->rftree[id]);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index fb3f15ee89ec..78dbc5d57cd3 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -12,6 +12,8 @@
+ #include "xe_map.h"
+ #include "xe_vm_types.h"
+ 
++#define MAX_BANS 50
++
+ struct drm_device;
+ struct drm_printer;
+ struct drm_file;
+@@ -244,6 +246,10 @@ int xe_vma_userptr_pin_pages(struct xe_userptr_vma *uvma);
+ 
+ int xe_vma_userptr_check_repin(struct xe_userptr_vma *uvma);
+ 
++void xe_vm_add_ban_entry(struct xe_vm *vm, struct xe_exec_queue *q);
++
++void xe_vm_remove_ban_entry(struct xe_vm *vm, struct xe_exec_queue *q);
++
+ bool xe_vm_validate_should_retry(struct drm_exec *exec, int err, ktime_t *end);
+ 
+ int xe_vm_lock_vma(struct drm_exec *exec, struct xe_vma *vma);
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 52467b9b5348..e7e2d682b1b6 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -18,6 +18,7 @@
+ #include "xe_range_fence.h"
+ 
+ struct xe_bo;
++struct xe_pagefault;
+ struct xe_sync_entry;
+ struct xe_user_fence;
+ struct xe_vm;
+@@ -135,6 +136,15 @@ struct xe_userptr_vma {
+ 
+ struct xe_device;
+ 
++struct xe_exec_queue_ban_entry {
++	/** @exec_queue_id: ID number of banned exec queue */
++	u32 exec_queue_id;
++	/** @pf: pagefault on engine of banned exec queue, if any at time */
++	struct xe_pagefault *pf;
++	/** @list: link into @xe_vm.bans.list */
++	struct list_head list;
++};
++
+ struct xe_vm {
+ 	/** @gpuvm: base GPUVM used to track VMAs */
+ 	struct drm_gpuvm gpuvm;
+@@ -274,6 +284,27 @@ struct xe_vm {
+ 		bool capture_once;
+ 	} error_capture;
+ 
++	/**
++	 * @ban_list: List of relevant banned exec queues associated with this
++	 * vm, as well as any pagefaults at time of ban.
++	 */
++	struct {
++		/** @lock: lock protecting @bans.list */
++		spinlock_t lock;
++		/** @list: list of xe_exec_queue_ban_entry entries */
++		struct list_head list;
++		/** @len: length of @bans.list */
++		unsigned int len;
++	} bans;
++
++	/** @pf: the last pagefault seen on this VM */
++	struct {
++		/** @pf.info: info containing last seen pagefault details */
++		struct xe_pagefault *info;
++		/** @pf.lock: lock protecting @pf.info */
++		spinlock_t lock;
++	} pf;
++
  	/**
- 	 * @logical_mask: logical mask of where job submitted to exec queue can run
- 	 */
+ 	 * @tlb_flush_seqno: Required TLB flush seqno for the next exec.
+ 	 * protected by the vm resv.
 -- 
 2.43.0
 
