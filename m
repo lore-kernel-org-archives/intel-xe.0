@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 156BDC19776
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Feb 2025 02:46:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B26DC021B8
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Feb 2025 02:46:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D53AA10EA10;
-	Thu, 27 Feb 2025 02:46:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25F9410EA16;
+	Thu, 27 Feb 2025 02:46:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H/FDMkFW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nslj7Zhz";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AAB010E1C5
- for <intel-xe@lists.freedesktop.org>; Thu, 27 Feb 2025 02:46:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9EE010E1C5
+ for <intel-xe@lists.freedesktop.org>; Thu, 27 Feb 2025 02:46:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1740624390; x=1772160390;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=vogfv8nfro99izHpQRUhtRscm6XlcRqyJySCbQM06To=;
- b=H/FDMkFWcIBklpnq4702y7eaPUx9BnPdzySLKOeQQs0Jl4rha2O5kb35
- oEBIrk+ziA5ta7O0WU/sNqgXtapk36R9rsvIS4NnURtQYiyitncBihvgn
- 5NQCJPguaAh+J8oIvMDs5y0w7BUm7lO0oHM3uPuaz8FGJBBc5buwWTPAn
- Eo3ui8nUGIEjoxtrHw7oRpxIslHIcpUfMJdj+PrR7MYoiYDjVIVpudsGd
- U+8JkhD0VA8YlVSmZ7CkwZzDsS+LH4ytmsFVGydj6T+AJvDs5sNjSnxJS
- dOAop4IBeadDBVEL5M+mzHPqzfQGEoL4a6z4zE9uYAz6AaJ4iNfz6+PEE w==;
-X-CSE-ConnectionGUID: 0/XwhhdfSyqm9q+/apKKaQ==
-X-CSE-MsgGUID: peTpxrvCRG+gMYz+fbknJQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="41382583"
-X-IronPort-AV: E=Sophos;i="6.13,319,1732608000"; d="scan'208";a="41382583"
+ bh=y1ntYrvCVzoSMlPCq1tMwyJPBLIGNFuMVpTBH8HT8Ws=;
+ b=nslj7ZhzOkX0Y18V5/ew/YgizfGe2KE9HpGaL3hp7nH55a3HubNEFZx+
+ 9g3UN0WYhc/4sVCe4DEO4OamU7n+p3bd/Mrz0XuptoxFnH6hX7Z2CHElQ
+ DYCnJddMYoUHsiSi5W3DbZbsdviiMsI7sK93uuFY1Owpvj5i7jhykQeKn
+ Pqanly2/WiUYkXtFuW2dNm8/BhMfHNVEKnuYT9G/SsB3QNILrSO0XzO4L
+ uu/5O5dhzG3xIg6h8tZD7l5YSbaAN1VV7OJiHBhvd02gGzJRQshTSQG1y
+ V6pJ8Wjo0z38OyyuQyT940895x2/Uf0CxY/sG3LfZuOBuGziKpcSLinDr Q==;
+X-CSE-ConnectionGUID: N8S8bxTeSc2YHVJuP7XXwg==
+X-CSE-MsgGUID: Ok1knpwZQDCmoAJbRruOmw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="41382581"
+X-IronPort-AV: E=Sophos;i="6.13,319,1732608000"; d="scan'208";a="41382581"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  26 Feb 2025 18:46:29 -0800
-X-CSE-ConnectionGUID: qiwKv6DvTje82KtUkefPmA==
-X-CSE-MsgGUID: vndTp4kcTr6szDU025g4Qg==
+X-CSE-ConnectionGUID: bosciXC+RpSbMHVJHR8Imw==
+X-CSE-MsgGUID: sZNJNOXAR/CnM5HWaAX7IA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,319,1732608000"; d="scan'208";a="140122834"
+X-IronPort-AV: E=Sophos;i="6.13,319,1732608000"; d="scan'208";a="140122791"
 Received: from szeng-desk.jf.intel.com ([10.165.21.160])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  26 Feb 2025 18:46:11 -0800
@@ -45,14 +45,15 @@ From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Thomas.Hellstrom@linux.intel.com, matthew.brost@intel.com,
  jonathan.cavitt@intel.com
-Subject: [PATCH v5 3/3] drm/xe: Allow scratch page under fault mode for
- certain platform
-Date: Wed, 26 Feb 2025 22:02:05 -0500
-Message-Id: <20250227030205.793478-4-oak.zeng@intel.com>
+Subject: [PATCH v5 1/3] drm/xe: Introduced needs_scratch bit in device
+ descriptor
+Date: Wed, 26 Feb 2025 22:02:03 -0500
+Message-Id: <20250227030205.793478-2-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20250227030205.793478-1-oak.zeng@intel.com>
 References: <20250227030205.793478-1-oak.zeng@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,74 +69,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Normally scratch page is not allowed when a vm is operate under page
-fault mode, i.e., in the existing codes, DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE
-and DRM_XE_VM_CREATE_FLAG_FAULT_MODE are mutual exclusive. The reason
-is fault mode relies on recoverable page to work, while scratch page
-can mute recoverable page fault.
+On some platform, scratch page is needed for out of bound prefetch
+to work. Introduce a bit in device descriptor to specify whether
+this device needs scratch page to work.
 
-On xe2 and xe3, out of bound prefetch can cause page fault and further
-system hang because xekmd can't resolve such page fault. SYCL and OCL
-language runtime requires out of bound prefetch to be silently dropped
-without causing any functional problem, thus the existing behavior
-doesn't meet language runtime requirement.
-
-At the same time, HW prefetching can cause page fault interrupt. Due to
-page fault interrupt overhead (i.e., need Guc and KMD involved to fix
-the page fault), HW prefetching can be slowed by many orders of magnitude.
-
-Fix those problems by allowing scratch page under fault mode for xe2 and
-xe3. With scratch page in place, HW prefetching could always hit scratch
-page instead of causing interrupt.
-
-A side effect is, scratch page could hide application program error.
-Application out of bound accesses are hided by scratch page mapping,
-instead of get reported to user.
-
-v2: Refine commit message (Thomas)
-
-v3: Move the scratch page flag check to after scratch page wa (Thomas)
-
-v4: drop NEEDS_SCRATCH macro (matt)
-    Add a comment to DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE
+v2: introduce a needs_scratch bit in device info (Thomas, Jonathan)
+v3: drop NEEDS_SCRATCH macro (Matt)
 
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 3 ++-
- include/uapi/drm/xe_drm.h  | 6 +++++-
- 2 files changed, 7 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_device_types.h | 2 ++
+ drivers/gpu/drm/xe/xe_pci.c          | 5 +++++
+ 2 files changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 6f50394dd877..3148899298c3 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1791,7 +1791,8 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
- 		return -EINVAL;
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 833c29fed3a3..94cc93314972 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -318,6 +318,8 @@ struct xe_device {
+ 		u8 has_usm:1;
+ 		/** @info.is_dgfx: is discrete device */
+ 		u8 is_dgfx:1;
++		/** @info.needs_scratch: needs scratch page for oob prefetch to work */
++		u8 needs_scratch:1;
+ 		/**
+ 		 * @info.probe_display: Probe display hardware.  If set to
+ 		 * false, the driver will behave as if there is no display
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 6b5fa067b39b..3e3b1cea9bce 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -67,6 +67,7 @@ struct xe_device_desc {
+ 	u8 has_llc:1;
+ 	u8 has_pxp:1;
+ 	u8 has_sriov:1;
++	u8 needs_scratch:1;
+ 	u8 skip_guc_pc:1;
+ 	u8 skip_mtcfg:1;
+ 	u8 skip_pcode:1;
+@@ -353,6 +354,7 @@ static const struct xe_device_desc lnl_desc = {
+ 	.dma_mask_size = 46,
+ 	.has_display = true,
+ 	.has_pxp = true,
++	.needs_scratch = true,
+ };
  
- 	if (XE_IOCTL_DBG(xe, args->flags & DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE &&
--			 args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE))
-+			 args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE &&
-+			 !xe->info.needs_scratch))
- 		return -EINVAL;
+ static const struct xe_device_desc bmg_desc = {
+@@ -361,6 +363,7 @@ static const struct xe_device_desc bmg_desc = {
+ 	.dma_mask_size = 46,
+ 	.has_display = true,
+ 	.has_heci_cscfi = 1,
++	.needs_scratch = true,
+ };
  
- 	if (XE_IOCTL_DBG(xe, !(args->flags & DRM_XE_VM_CREATE_FLAG_LR_MODE) &&
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 892f54d3aa09..5ec03b44b60e 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -910,7 +910,11 @@ struct drm_xe_gem_mmap_offset {
-  * struct drm_xe_vm_create - Input of &DRM_IOCTL_XE_VM_CREATE
-  *
-  * The @flags can be:
-- *  - %DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE
-+ *  - %DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE - Map the whole virtual address
-+ *    space of the VM to scratch page. A vm_bind would overwrite the scratch
-+ *    page mapping. This flag is mutually exclusive with the
-+ *    %DRM_XE_VM_CREATE_FLAG_FAULT_MODE flag, with an exception of on x2 and
-+ *    xe3 platform.
-  *  - %DRM_XE_VM_CREATE_FLAG_LR_MODE - An LR, or Long Running VM accepts
-  *    exec submissions to its exec_queues that don't have an upper time
-  *    limit on the job execution time. But exec submissions to these
+ static const struct xe_device_desc ptl_desc = {
+@@ -369,6 +372,7 @@ static const struct xe_device_desc ptl_desc = {
+ 	.has_display = true,
+ 	.has_sriov = true,
+ 	.require_force_probe = true,
++	.needs_scratch = true,
+ };
+ 
+ #undef PLATFORM
+@@ -644,6 +648,7 @@ static int xe_info_init_early(struct xe_device *xe,
+ 	xe->info.skip_guc_pc = desc->skip_guc_pc;
+ 	xe->info.skip_mtcfg = desc->skip_mtcfg;
+ 	xe->info.skip_pcode = desc->skip_pcode;
++	xe->info.needs_scratch = desc->needs_scratch;
+ 
+ 	xe->info.probe_display = IS_ENABLED(CONFIG_DRM_XE_DISPLAY) &&
+ 				 xe_modparam.probe_display &&
 -- 
 2.26.3
 
