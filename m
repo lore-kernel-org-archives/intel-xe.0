@@ -4,59 +4,167 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CED6CC021BE
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Feb 2025 05:15:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4E49C021BE
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Feb 2025 05:27:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94F3310EA31;
-	Thu, 27 Feb 2025 05:15:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89C9B10EA42;
+	Thu, 27 Feb 2025 05:27:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UeCv6w/U";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZbNVLAQ6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6065510EA31;
- Thu, 27 Feb 2025 05:15:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6479210EA42
+ for <intel-xe@lists.freedesktop.org>; Thu, 27 Feb 2025 05:27:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740633318; x=1772169318;
+ t=1740634060; x=1772170060;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Uwmrl+1S0SHW5qTEFMHOYvQXcCHiR8luylF2Z/RlQqI=;
- b=UeCv6w/U5p63QbRNQA+q1jaeKv1/s62VQFRBQiJeLj0hj080+Styx2Zz
- TUhjaAJyqPfO6poWdTQtnmzeBzXlwwO1dKlMrwxgbiLK+3iB5Uc9yAqxq
- KrD8VfW0YNayNhoGurIPygHES9wROTc3CevPqYudaiVqxjTBgYQ4m/ALL
- iMt/+mi9E12woN7LapgbfKnFUzdN1AlGZPWPUPhFKpf67hofHSPi4OQS5
- Klwrd3e6h7oFHEdwJphxniXcAlgfnSf1SIbxoXf9kIhI0MByf6lNmHNVC
- NTgOWyoxtvJutuDIKo2y493Ekm5t5QZZwzVbPTs8Ya7dfjASbJ5dQaJOx Q==;
-X-CSE-ConnectionGUID: RtSarrS4SQuU0xgrelzXIw==
-X-CSE-MsgGUID: kUqQvjoUSP+vPkgeGcM2PA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="41707758"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="41707758"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2025 21:15:18 -0800
-X-CSE-ConnectionGUID: OTpZKtnmQMmmRZ6REjSwuw==
-X-CSE-MsgGUID: pZY1eDfFQ7ylcf7NTa8SCA==
+ in-reply-to:mime-version;
+ bh=ja1UK8unt6AVCwNXB+7Qra/U8h3jNNfUfrVTBS7ctkU=;
+ b=ZbNVLAQ6aKmvwNZXI0RZHxovpAiNTznxWoqv1m9R4/MQJh3I4byqG9o3
+ 5/qqvs1tR94IJaNz11dI/esNooanAj1tSjeyxauzqAREgkuIceh4UGE83
+ HGkay3tYtPInWL8zhHn1NOiqoHqNlbmfdek7WhvvNNqdrUvLf/FCuPF6L
+ TWl2Q2nFow8Zt5c1S6EFvVyhYQET7dOGR9/k3F9Vgf4niN53JDI0sexPc
+ DW9svQNrvhVAaeFjeHOY35XKxYv2RVZwYHXQDu2Epo1SHb9Ze3b2odJq2
+ T8D7xjZUcZX9jwWIAObSdxXlMVeMjF/LA2QHAjyc/aTo9CkykH3kGwYc8 A==;
+X-CSE-ConnectionGUID: vgZEiCE1SaeGZWoSlhznBg==
+X-CSE-MsgGUID: wI5I3hq8QHil76ltgxRj0A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="52906501"
+X-IronPort-AV: E=Sophos;i="6.13,319,1732608000"; d="scan'208";a="52906501"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2025 21:27:40 -0800
+X-CSE-ConnectionGUID: GFb27J56SG6YV5yUx242wQ==
+X-CSE-MsgGUID: 8rlsL/MqQxaKfbkPfXO0hw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="147838913"
-Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
- by fmviesa001.fm.intel.com with ESMTP; 26 Feb 2025 21:15:15 -0800
-Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1tnWEo-000Csg-1O;
- Thu, 27 Feb 2025 05:15:11 +0000
-Date: Thu, 27 Feb 2025 13:14:59 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jonathan Cavitt <jonathan.cavitt@intel.com>, intel-xe@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, saurabhg.gupta@intel.com,
- alex.zuo@intel.com, jonathan.cavitt@intel.com,
- joonas.lahtinen@linux.intel.com, matthew.brost@intel.com,
- jianxun.zhang@intel.com, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 6/6] drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
-Message-ID: <202502271226.qHKoHhA5-lkp@intel.com>
-References: <20250226225557.133076-7-jonathan.cavitt@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+X-IronPort-AV: E=Sophos;i="6.13,319,1732608000"; d="scan'208";a="116947131"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2025 21:27:41 -0800
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14; Wed, 26 Feb 2025 21:27:39 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14 via Frontend Transport; Wed, 26 Feb 2025 21:27:39 -0800
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.49) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Wed, 26 Feb 2025 21:27:38 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=hQ6p36El6NmoRqNK3YEBn5tBM2wPV/Hj0VMK4Rq0G3/MI9aaeu5RM3hEzC9CZaP5f16FQ9eD8ZwNh5rxDu/iTPsEaL1D97D0dMjeGOD45/A/QfM3RzfifY5ZY3kqdQaRqRiV2BdasmbjznuOyS4cKT8rIhIvEP1VwbgBpIqErbiuPYaRFmeTuEP9rZGIsNoVvs9kGEYaFimJ9f5LVzjyogWWze1pwa8OSWSBGE2pX8F3+Ci5mLzbfHKxgNuLGQBu219+Dir7vJbT0t0O3AgCclBd2BYcGQ9xBQA0wD9ieYnDeRw+r5mAxM3GwM1ggT3LV8yAZxe2XdDpllAnPrlmMg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aFubd7Q9aoTLanbZE1PsRsRd1E/BU8+1pLA3wEJTZ94=;
+ b=uRrMED5xf2gvfS6aDaTPBp0RLW0KqVewQg/fPESv9MM7v7O9Sactw4gb6bCTEudIDM1Wuq1k2lNDA7Srax2n8WusP25xBMhnFr6nk0/LABDx0Lz/Yvk5uId6oF9Vd16Wlc58+YgAaOA3EdBQbaBqKbOhvlPLxtvjRBi/y5+Nq2XiNRS+wmF/6S1Y81S11I3GqmnU3G1P9almi5dG1GATuV65d2VtU+IWlthmtjKY0zV3YrNZq4mKnZR5mKPIAJ/A4HrHb1/TJBRfBnPpcqXL1rUGze76hCWdULpdogak04pIBxcUS295epIdGC4VOtx+y7ryI4q21huniP1umyb8sw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by PH7PR11MB6772.namprd11.prod.outlook.com (2603:10b6:510:1b6::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.19; Thu, 27 Feb
+ 2025 05:27:30 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44%3]) with mapi id 15.20.8489.018; Thu, 27 Feb 2025
+ 05:27:30 +0000
+Date: Wed, 26 Feb 2025 23:27:25 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Pavel Machek <pavel@ucw.cz>, Len Brown <len.brown@intel.com>,
+ <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: =?utf-8?B?4pyXIFhlLkNJLkZ1bGw=?= =?utf-8?Q?=3A?= failure for
+ drm/xe: Eliminate usage of TIMESTAMP_OVERRIDE
+Message-ID: <utg4zpjvkeftrmoxoxlc2bpxkijsolte4xlxb5ikoz5347el3s@chxnpglfhmme>
+References: <20250225224908.1671554-2-matthew.d.roper@intel.com>
+ <174053697318.2172308.7135936144805731888@b555e5b46a47>
+ <20250226214631.GE5109@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20250226225557.133076-7-jonathan.cavitt@intel.com>
+In-Reply-To: <20250226214631.GE5109@mdroper-desk1.amr.corp.intel.com>
+X-ClientProxiedBy: MW4PR04CA0037.namprd04.prod.outlook.com
+ (2603:10b6:303:6a::12) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|PH7PR11MB6772:EE_
+X-MS-Office365-Filtering-Correlation-Id: e1b2f6af-4747-46cb-be6d-08dd56ef6e69
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|27256017;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?+7mF4ysgYZDQa5Kl9uqeTHxCCkWvum30xnNX0/0aKr/GQ8Hc30UGMPOPuLl9?=
+ =?us-ascii?Q?EePqc5+kwiI41/BTgJckTBnhFXBSrqHmd+kxQJZmD+maP/d0QXARl6CnxMu5?=
+ =?us-ascii?Q?0tU/ChgbSRCQPZZDBTqfjHgc1f9RGr/97OaaFumHT3Sm5RrBGUsYEtCCsowD?=
+ =?us-ascii?Q?IPnPoWQkMSF4znoXrgHkm6CzDg6FLqKE1apSUMIfwv4FH3jWVB2qyV++xKf/?=
+ =?us-ascii?Q?fiU10i+scD6FpbWTObryGUYbYuQlumjTg1OB4KHuXoo/8g6WiXt3Nm2fKnIu?=
+ =?us-ascii?Q?w9aJzsHNCfzTPq7DlxnmPLzqLg1N9pII03k7xoybFrEdCX713AJ457Xgu/Yh?=
+ =?us-ascii?Q?TYMLSq23K0zL2yRBpRT+jIjK8DChgJY80991DKl0ndpVvJ4Ko+Revs8v0YuD?=
+ =?us-ascii?Q?I8HixL1FatAPNm8DqQ364t8eq40yvW2HA11XgIOUogi3X55V8fCZLAZ8+cv0?=
+ =?us-ascii?Q?7k9kQ4kKEqn8DHTyb2vajCuv2OYmUl/TpjiFHeYjkcJD7OcFJrGtzUk/K938?=
+ =?us-ascii?Q?AtnMdw7vdt7r64Pv6A8eloWeie2ZULHAuu4OimjWV90FKcxNFKiNPFfSomZE?=
+ =?us-ascii?Q?sqS9QtdQBTQMWqqgikOtc1ygdpHqfDFM4Pe7ymrFfvv0SRUDa4LqEvizFJgm?=
+ =?us-ascii?Q?ggp+Sh9etzTR8EzkrCN+fAuprY1IV88n2bsOe343R00gK7tw8yx+CMgoOvTL?=
+ =?us-ascii?Q?6PIgYdU1ZY0aDk4GPtBdj0VBBDddGeIRL/pKx27iqbkeOdtBqRtSF682FX+6?=
+ =?us-ascii?Q?DCNCTXujlyvrMb+ny0NNCO1sNlQCRKF4Mm52GFdDF/Ayx1POvmCPd4yyI6fh?=
+ =?us-ascii?Q?OJBhVl0cwpjZCxHkP8eQczVdM6yGH8x0127dzLp3zPim6rNUrhBxBKqWO7J9?=
+ =?us-ascii?Q?7B1Wjcf68zNO8JX3aXYm5VBWQs6kcE8Hi15Q1ErObuU07zC+cJBDHORShyDF?=
+ =?us-ascii?Q?U1pF6Jo7FMYqR5nf9dALW567dmhNO0V40i4EGgp6fQI89wAC14de0ubFgKAZ?=
+ =?us-ascii?Q?ErRC2DV1L8n5zaqliEpIcjCxWqO9VKN76K8uHjhpLdufFvCgK1sbMhpiI/G/?=
+ =?us-ascii?Q?dT69jrsmuBfJwcelM2xlYovWXlhKIHTWPDoRorEoBbIRZ5a7AjbcdOWPQm8H?=
+ =?us-ascii?Q?ujZDAzx5/buVubcNZMCf+hUoLguGofZxeKuPePqtT3YCkoHAemoXhJkZM4Qj?=
+ =?us-ascii?Q?gRjL6QsUwclxQ49owTU2t/3Ww23Kj6PbP12GC+C93uSTOq2rG+iBzZyEbU7C?=
+ =?us-ascii?Q?pJZm4q3CsJTc/pinTJpB1P+ZN1leC7HfRkO0TJxVRYi9ndf9CTr0G1zQP8UP?=
+ =?us-ascii?Q?JhIjiKbk24oCQIbJtuPk7Wfq/82+t+tbgKyrPlkHmWnICl3HjZ+fHuqmIDpb?=
+ =?us-ascii?Q?dyv8yNa8Ra6TETBDQQO6quhhnjNYP0J7rVsY4Q74P+h2G7g2lg=3D=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(27256017); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?XjNR0hAmYlw9QYN417nU0plD8Akspx13mWQkGiOZlIfuaZOOWy9K4Q1DP18m?=
+ =?us-ascii?Q?yGPKUBoVWbNbdq1fu29XY3RJt0kMJANk1nPVo5aCYv0egcv5yfPVf4Rh1IJ9?=
+ =?us-ascii?Q?vzEcZJmn1JeoNIEQYxu+IpNdOvFP4x0GTW8FpeNVQtP6T/PA/5qp52PNMoUq?=
+ =?us-ascii?Q?6mPq+7miTdeR9BsV6JGpy1Exx9/9aNV7dTpd1oLBKVKS3H7mzd6htPmqcSN6?=
+ =?us-ascii?Q?nIU//TBlQmUiJd79rxJDiuBPq+KqoW6z1JB8vtG4mfG2PtW8uOjwvXgI2jmp?=
+ =?us-ascii?Q?y7t6vZVdPXUKexgZO8fyi1C6DgKMaFL7NdepWprfocNN0lgKO0ac5rLelJd7?=
+ =?us-ascii?Q?3ozQx21meaz4sfc0aSw7E/QW0LnydbgGj2Ytkq5+KBfy7WTbh36Yv2YHJW2m?=
+ =?us-ascii?Q?+FTAEnfcTlaKQ0UAa+J6E+T+7AgMzYLvSQMHZ3F+F2IQNE1gZW1/6hoXKxiz?=
+ =?us-ascii?Q?25pL5FzmtNb9/nNrOCgIQB73+W3p5hjmWmUOrmHzL5ZSsZKtdWbnOmqfn2dD?=
+ =?us-ascii?Q?UyxsichoZtc67lL657m3x0OzzURqGxZFWqp0bAMstbq8XLyKX2Nj96EPi8xO?=
+ =?us-ascii?Q?xkEhGrU8ndYYgEJy5GVmS6Fi7xzP1R4iPubF/MJ8AfQ4iQWs64UxafD9zG8u?=
+ =?us-ascii?Q?OEaOZTp/ZDuWB6XO4e63XVpTELb3b0VgCtDVFGXU2iDHC2iOpthEf7UUUhK4?=
+ =?us-ascii?Q?2hNVnD20xjVG4jz4YZ/jRnLWzfrBAylVmwyF47F+kf6vLFYgLxMlqrlZF1kT?=
+ =?us-ascii?Q?DCjdciuC8HralIiR572v11WBiaEjtfLnxcgcsPWfl870DUCKXBxH3W2+gV4U?=
+ =?us-ascii?Q?Pn21CaFBwY0lkk3SCHbf5BZ/9yzk36leBppoaJAyu/9vX6C1avVtp7XIO1jw?=
+ =?us-ascii?Q?1xz440jPD4UXLYraeZg47aAsJxQgYCoKHBql7lsIWLOehW4eKImr6ejlzQA5?=
+ =?us-ascii?Q?kBqZSN83MRrKpsmKJFvRoGujZBRDA7grcAPusN7SaNtT6DkOLz4DSoq+mJYF?=
+ =?us-ascii?Q?u+/pxyfUgYGqjjjur1sKK1NzwDSiayZrZnxCm2sGxtDRYGpxOiF4QuYyjobQ?=
+ =?us-ascii?Q?hElre9RtQN4jkLeBAa2lUGYchQ0I67VsGwUa/azysh9p66Kj+Mg9c3XiRoPc?=
+ =?us-ascii?Q?jxD6t87Rcr0qapHyN+RT6ySOwKWSsUXroRW7v25k/8U/kzfIZKAO3fF/F2oe?=
+ =?us-ascii?Q?TCQYpQsfqFJMfcs1OMsX2WJyBoc9MZeTwQl/1GJQxPPCocRbqIzHMYDzidIL?=
+ =?us-ascii?Q?3793XSZSbXSBwDGWDHp5lAUysEmRtLakx10hmoU6U/h8QCkLtlWe5ClqRBW/?=
+ =?us-ascii?Q?a9lRtn9nXKT/aGUzbcNnT77UPjSko+MXrtV0Cp1Q24XuKg909HXGeFzgdLux?=
+ =?us-ascii?Q?53f3JfH7qtZT4ioJa1ZlCDe+6Fue7JQe6SfjknlI9xXITEsdlHl5m9aBqcYL?=
+ =?us-ascii?Q?l+lbn0Gz4RupA3oeI21JbB3SbZLt9jQTQnuiy5LiSmrAb7YR9Kx1jpsNAZqC?=
+ =?us-ascii?Q?9uKF6NkfjlmbrFe4WY5fDqwSzq0+QpYRApM1GP1AX5RTQuKAKBFH7F6h7AAp?=
+ =?us-ascii?Q?7egJNbIKRIfyyT9WnGiSKHBJRNhQFPUQy2QsZJ2nJoLBlREcRAILqCSxIcje?=
+ =?us-ascii?Q?WA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e1b2f6af-4747-46cb-be6d-08dd56ef6e69
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2025 05:27:30.7866 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tH5WXp9nx5dyGGP89P/553WkSOFhKVD/IwUV/j/Gk7+X98XAq+4LsG5RXHP7i57vHqDmnkhoxa32KgV2Jt2y1EvDcgmY9chBSbqHnvd/t/M=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6772
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,62 +179,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Jonathan,
++Cc some people for kernel/power/process.c
 
-kernel test robot noticed the following build errors:
+On Wed, Feb 26, 2025 at 01:46:31PM -0800, Matt Roper wrote:
+>> #### Warnings ####
+>>
+>>   * igt@kms_ccs@crc-primary-suspend-4-tiled-dg2-rc-ccs:
+>>     - shard-dg2-set2:     [DMESG-WARN][2] ([Intel XE#4330]) -> [DMESG-WARN][3] +1 other test dmesg-warn
+>>    [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2711-c7988865b658d56bcfaac76b7d72cc59435565eb/shard-dg2-432/igt@kms_ccs@crc-primary-suspend-4-tiled-dg2-rc-ccs.html
+>>    [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145437v1/shard-dg2-435/igt@kms_ccs@crc-primary-suspend-4-tiled-dg2-rc-ccs.html
+>
+><4> [319.697183] done.
+>
+>This seems to be something that happens sporadically when general driver
+>debug messages sneak in between these two calls in
+>kernel/power/process.c during system resume:
+>
+>        pr_info("Restarting tasks ... ");
+>        ...
+>        pr_cont("done.\n");
+>
+>Since those two prints were supposed to be on the same line, the
+>continuation seems to be coming out with "warn" level (at least at the
+>point CI reads it from syslog).
 
-[auto build test ERROR on drm-xe/drm-xe-next]
-[also build test ERROR on next-20250226]
-[cannot apply to linus/master v6.14-rc4]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+that pr_cont() seems wrong to me. pr_cont() is adding a 'c' flag to mark
+continuation in kmsg. That doesn't really work except on early boot.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jonathan-Cavitt/drm-xe-xe_gt_pagefault-Migrate-lookup_vma-to-xe_vm-h/20250227-070008
-base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-patch link:    https://lore.kernel.org/r/20250226225557.133076-7-jonathan.cavitt%40intel.com
-patch subject: [PATCH 6/6] drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
-config: i386-buildonly-randconfig-002-20250227 (https://download.01.org/0day-ci/archive/20250227/202502271226.qHKoHhA5-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-12) 11.3.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250227/202502271226.qHKoHhA5-lkp@intel.com/reproduce)
+https://www.kernel.org/doc/Documentation/ABI/testing/dev-kmsg
+		The flags field carries '-' by default. A 'c' indicates a
+		fragment of a line. Note, that these hints about continuation
+		lines are not necessarily correct, and the stream could be
+		interleaved with unrelated messages, but merging the lines in
+		the output usually produces better human readable results. A
+		similar logic is used internally when messages are printed to
+		the console, /proc/kmsg or the syslog() syscall.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202502271226.qHKoHhA5-lkp@intel.com/
+And:
+	https://lore.kernel.org/lkml/CA+55aFwmwdY_mMqdEyFPpRhCKRyeqj=+aCqe5nN108v8ELFvPw@mail.gmail.com/
 
-All errors (new ones prefixed by >>):
+I don't thiink it should be used in thaw_processes(). Maybe it'd be
+better to define a pr_fmt and convert those to non-continuation prints?
 
-   drivers/gpu/drm/xe/xe_vm.c: In function 'xe_pagefault_access_type_to_address_type':
->> drivers/gpu/drm/xe/xe_vm.c:3288:9: error: 'vma' undeclared (first use in this function); did you mean 'vm'?
-    3288 |         vma = lookup_vma(vm, pf->page_addr);
-         |         ^~~
-         |         vm
-   drivers/gpu/drm/xe/xe_vm.c:3288:9: note: each undeclared identifier is reported only once for each function it appears in
->> drivers/gpu/drm/xe/xe_vm.c:3288:15: error: implicit declaration of function 'lookup_vma' [-Werror=implicit-function-declaration]
-    3288 |         vma = lookup_vma(vm, pf->page_addr);
-         |               ^~~~~~~~~~
-   cc1: some warnings being treated as errors
-
-
-vim +3288 drivers/gpu/drm/xe/xe_vm.c
-
-  3281	
-  3282	static enum drm_xe_fault_address_type
-  3283	xe_pagefault_access_type_to_address_type(struct xe_vm *vm, struct xe_pagefault *pf)
-  3284	{
-  3285		if (!pf)
-  3286			return 0;
-  3287	
-> 3288		vma = lookup_vma(vm, pf->page_addr);
-  3289		if (!vma)
-  3290			return DRM_XE_FAULT_ADDRESS_TYPE_NONE_EXT;
-  3291		if (xe_vma_read_only(vma) && pf->access_type != XE_PAGEFAULT_ACCESS_TYPE_READ)
-  3292			return DRM_XE_FAULT_ADDRESS_TYPE_WRITE_INVALID_EXT;
-  3293		return 0;
-  3294	}
-  3295	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Lucas De Marchi
