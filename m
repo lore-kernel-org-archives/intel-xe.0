@@ -4,61 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5665FC021BE
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Feb 2025 10:47:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EEF2C1B087
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Feb 2025 10:49:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2219610EA89;
-	Thu, 27 Feb 2025 10:47:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F6D210EA8D;
+	Thu, 27 Feb 2025 10:49:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mGjukulC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eUUo0xCZ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 282B510EA89;
- Thu, 27 Feb 2025 10:47:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 665A610EA8B;
+ Thu, 27 Feb 2025 10:49:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740653259; x=1772189259;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=faKqbIo9ohlJImOLrrHIkwjNGaccf93VmOWvmUtLnEg=;
- b=mGjukulC12kfBa9ndhjDjW010/RoXnaVQEOm5pppIOocBuWlnJowZXse
- Y314WbFj+iemWaVmuIeON0Um44fXxhjHS4DzjEjKd8KZRZH++U+TtfeKW
- J5l85X+KoXOVBxTKm/yUsbrGY0RcgeQa4SD3vSVRFp4oCrccLZZvBjmIo
- w8ChHiRfk0u7woUnr/m1/c5Ylz7+Lm3sFAGNKAUzWM2p98jut4GhuAn3x
- vYsmQxQ/CcG4wLvoIcZ2kOd72WcJ2KhM5c+iwhxgGySH7yky8S+qiihM1
- xuBzNdFN81QUpzpgShkq8lIUca0Ys+913T8OYK3unAVX4XEqGQRuVXKEW w==;
-X-CSE-ConnectionGUID: CAnIjP8AS/u/rmpQmVf3vw==
-X-CSE-MsgGUID: wHL1CyuISdigi+orK4qNvw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="41663452"
-X-IronPort-AV: E=Sophos;i="6.13,319,1732608000"; d="scan'208";a="41663452"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2025 02:47:39 -0800
-X-CSE-ConnectionGUID: bDl6Q4biRAisW1awg+BeNw==
-X-CSE-MsgGUID: 9yUe7WxTQ2u7KZi8apzAAQ==
+ t=1740653389; x=1772189389;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4z5ByfQ2FEoMcZZ3z2rO9l8JTJsDFsrGIOPlfG5u2hU=;
+ b=eUUo0xCZt48gO5nhJp8E8uN/VlrfDQciBzhslG16Ar9Ij+XOVaa+tn9O
+ I4WVlWpGXbZbtCl7yTciJryad3hCNt5PrzH9ztFs/y3tqegtJh9ZW6vaH
+ wsRyZ4x15tJM2+88C4/Cqpze4ld+HpIPv7uY2qw9MEeAoJidtmkYI47cY
+ fP/1rqbZ0np9jhN5YL/7+LTOO4xd1CwDFm0ObbwRoqpePd7ci2OBJF8sn
+ +JD+UwJkoiMZsQ3wAIpjWWHrZa9OjOFNXZfXEQzGdQ1Ms+652Jwbc+lhj
+ WJtfIMXqgdrmNshSX/JKdlzo5+vh9OhhHULbAH9Po/i9YQAmC0OXhGgLZ g==;
+X-CSE-ConnectionGUID: kTjGXA82RDKB3RALHj/OeA==
+X-CSE-MsgGUID: 5N1pZA6eQiui1hzVU+zmcw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="44361818"
+X-IronPort-AV: E=Sophos;i="6.13,319,1732608000"; d="scan'208";a="44361818"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2025 02:49:49 -0800
+X-CSE-ConnectionGUID: EARKrY+lQaaPIy+W4mIXrQ==
+X-CSE-MsgGUID: XkR2yeLpRNammC+NpyFAUw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,319,1732608000"; d="scan'208";a="116783370"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.181])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2025 02:47:33 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Su Hui <suhui@nfschina.com>, lucas.demarchi@intel.com,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch
-Cc: Su Hui <suhui@nfschina.com>, ilpo.jarvinen@linux.intel.com,
- andriy.shevchenko@linux.intel.com, michael.j.ruhl@intel.com,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
-Subject: Re: [PATCH] drm/xe: Select INTEL_VSEC to fix build dependency
-In-Reply-To: <20250227073205.1248282-1-suhui@nfschina.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250227073205.1248282-1-suhui@nfschina.com>
-Date: Thu, 27 Feb 2025 12:47:28 +0200
-Message-ID: <87senz3br3.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,319,1732608000"; d="scan'208";a="121593071"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by fmviesa005.fm.intel.com with ESMTP; 27 Feb 2025 02:49:47 -0800
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, uma.shankar@intel.com, william.tseng@intel.com,
+ jani.nikula@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH] drm/i915/vdsc: Use the DSC config tables for DSI panels
+Date: Thu, 27 Feb 2025 16:19:43 +0530
+Message-Id: <20250227104943.265458-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,58 +65,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 27 Feb 2025, Su Hui <suhui@nfschina.com> wrote:
-> When build randconfig, there is an error:
-> ld: drivers/gpu/drm/xe/xe_vsec.o: in function `xe_vsec_init':
-> xe_vsec.c:(.text+0x182): undefined reference to `intel_vsec_register'
->
-> When CONFIG_DRM_XE=y and CONFIG_INTEL_VSEC=m is set, ld couldn't find
-> 'intel_vsec_register'. Select INTEL_VSEC to fix this error.
+Some DSI panel vendors end up hardcoding PPS params because of which
+it does not listen to the params sent from the source. We use the
+default config tables for DSI panels when using DSC 1.1 rather than
+calculate our own rc parameters.
 
-Documentation/kbuild/kconfig-language.rst:
+--v2
+-Use intel_crtc_has_type [Jani]
 
-  Note:
-	select should be used with care. select will force
-	a symbol to a value without visiting the dependencies.
-	By abusing select you are able to select a symbol FOO even
-	if FOO depends on BAR that is not set.
-	In general use select only for non-visible symbols
-	(no prompts anywhere) and for symbols with no dependencies.
-	That will limit the usefulness but on the other hand avoid
-	the illegal configurations all over.
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13719
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_vdsc.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-This should likely be either
-
-	depends on INTEL_VSEC || INTEL_VSEC=n
-
-or
-
-	depends on INTEL_VSEC
-
-
-BR,
-Jani.
-
-
-
->
-> Fixes: 0c45e76fcc62 ("drm/xe/vsec: Support BMG devices")
-> Signed-off-by: Su Hui <suhui@nfschina.com>
-> ---
->  drivers/gpu/drm/xe/Kconfig | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-> index b51a2bde73e2..7a60d96d2dd6 100644
-> --- a/drivers/gpu/drm/xe/Kconfig
-> +++ b/drivers/gpu/drm/xe/Kconfig
-> @@ -44,6 +44,7 @@ config DRM_XE
->  	select WANT_DEV_COREDUMP
->  	select AUXILIARY_BUS
->  	select HMM_MIRROR
-> +	select INTEL_VSEC
->  	help
->  	  Experimental driver for Intel Xe series GPUs
-
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+index 6e7151346382..affe9913f1ee 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+@@ -320,7 +320,9 @@ int intel_dsc_compute_params(struct intel_crtc_state *pipe_config)
+ 	 * upto uncompressed bpp-1, hence add calculations for all the rc
+ 	 * parameters
+ 	 */
+-	if (DISPLAY_VER(dev_priv) >= 13) {
++	if (DISPLAY_VER(dev_priv) >= 13 &&
++	    (vdsc_cfg->dsc_version_minor != 1 ||
++	     intel_crtc_has_type(pipe_config, INTEL_OUTPUT_DSI))) {
+ 		calculate_rc_params(vdsc_cfg);
+ 	} else {
+ 		if ((compressed_bpp == 8 ||
 -- 
-Jani Nikula, Intel
+2.34.1
+
