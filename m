@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D30BC197BF
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Feb 2025 20:10:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 575C4C197BF
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Feb 2025 20:10:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E222F10EB7E;
-	Thu, 27 Feb 2025 20:10:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2554010EB7E;
+	Thu, 27 Feb 2025 20:10:35 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF6F610EB7E;
- Thu, 27 Feb 2025 20:10:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F018D10EB7E;
+ Thu, 27 Feb 2025 20:10:33 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/xe3lpd=3A_M?=
- =?utf-8?q?ap_POWER=5FDOMAIN=5FAUDIO=5FPLAYBACK_to_DC=5Foff?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/i915/xe3lpd=3A_Map_PO?=
+ =?utf-8?q?WER=5FDOMAIN=5FAUDIO=5FPLAYBACK_to_DC=5Foff?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Gustavo Sousa" <gustavo.sousa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 27 Feb 2025 20:10:15 -0000
-Message-ID: <174068701571.2845176.12649097210302097402@b555e5b46a47>
+Date: Thu, 27 Feb 2025 20:10:33 -0000
+Message-ID: <174068703397.2845837.11715527847672785139@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250227-xe3lpd-power-domain-audio-playback-v1-1-5765f21da977@intel.com>
 In-Reply-To: <20250227-xe3lpd-power-domain-audio-playback-v1-1-5765f21da977@intel.com>
@@ -48,9 +48,54 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 6badede10d92 drm-tip: 2025y-02m-27d-19h-28m-11s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/xe3lpd: Map POWER_DOMAIN_AUDIO_PLAYBACK to DC_off
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+22f9cda3436b4fe965b5c5f31d2f2c1bcb483189
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ae751764c8f1b7ad89c4b3097e4545de450a3db8
+Author: Gustavo Sousa <gustavo.sousa@intel.com>
+Date:   Thu Feb 27 16:14:25 2025 -0300
+
+    drm/i915/xe3lpd: Map POWER_DOMAIN_AUDIO_PLAYBACK to DC_off
+    
+    In Xe3_LPD, display audio has the core audio logic located in PG0 and
+    per-transcoder logic in the same power well that provides power for the
+    transcoder [1].
+    
+    For stuff like audio device enumeration, we need to ensure that PG0 is
+    turned on. For playback, we additionally need the transcoder's power
+    well to be enabled.
+    
+    That essentially means that, for audio playback, there isn't a special
+    power well that needs to be enabled, because modeset sequences will
+    ensure that the required power wells are enabled.
+    
+    That said, there might be cases where PG0 could be disabled due to
+    display entering DC6 while the audio driver tries to interact with the
+    graphics driver for stuff like audio device enumeration.
+    
+    We recently hit that kind of scenario, where "aplay -l" was being used
+    to enumerate audio devices on a PTL machine with PSR enabled and no
+    external displays attached.
+    
+    Since intel_audio_component_get_power() uses
+    POWER_DOMAIN_AUDIO_PLAYBACK, make sure to map that power domain to
+    DC_off power well, so that we disable dynamic DC states (which includes
+    DC6) while the audio driver needs display audio power.
+    
+    [1] The core-audio vs per-transcoder logic split is not really new in
+        Xe3_LPD. This is also true for previous display generations. We need
+        to figure out the correct version where this split happened so that
+        we can apply fixes in the current power domain mapping.
+    
+    Bspec: 72519
+    Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
++ /mt/dim checkpatch 6badede10d92c242241bd7bf59a5488b5eba5aa7 drm-intel
+ae751764c8f1 drm/i915/xe3lpd: Map POWER_DOMAIN_AUDIO_PLAYBACK to DC_off
 
 
