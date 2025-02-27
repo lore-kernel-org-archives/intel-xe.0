@@ -4,84 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73E39C19F2E
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Feb 2025 16:30:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A51AC19F2E
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Feb 2025 16:34:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74BA410EB3F;
-	Thu, 27 Feb 2025 16:30:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Ld3wTpDH";
-	dkim-atps=neutral
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com
- [209.85.208.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6BF310EADE;
- Thu, 27 Feb 2025 13:40:00 +0000 (UTC)
-Received: by mail-lj1-f169.google.com with SMTP id
- 38308e7fff4ca-30b8cbbac91so961611fa.1; 
- Thu, 27 Feb 2025 05:40:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1740663598; x=1741268398; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=X0QqIj+Xj2KKd5yOn9wT3FKv7ilH/QlR+xG09MXlqr0=;
- b=Ld3wTpDHM4GT4VyPEzoEECli3JpCifiJ2iMYJQ8/vbvAMr7t+088atf8tGC9TuIxdq
- ti36blqijPBURLg2LXv+HztT/AxJ6fAeGau9RvvzUeyz8ueoNCz1H1KWj+xxPtp56gV3
- qURabzbpw8CIT1Z4FyHsM7XRoiHFqoxt83m5j4rtXJNzqYU8CdGxjSaf26CrLbOejQxF
- v56oaGKZxk1D4yCvipn4TaAx0/DswBqM6IU8Vd44Pgd7LIfh6vXDIWGV9rDZ3LIeztH4
- EU8jRUO4zSdp7R2dKYvxU5UaA5+6ZVG9eYfbzY9tK+9RzkzVC38jWE90wx38iX4EfaMo
- QXNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1740663598; x=1741268398;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=X0QqIj+Xj2KKd5yOn9wT3FKv7ilH/QlR+xG09MXlqr0=;
- b=HjKfN4fu4RXLPpIDRTxLjsSw/flOo8kRCSb8Ug0AGb/DkJiD7icCQASje8njAPlU9t
- 5lkv8MyXFjiAxbzbviGX3XN/LL0vmZd8gxv42aThNTLmgAE89Kk1iI7KQJGZRQ0cvtjU
- YQUHOUmoz9X8hQ4t7UKDHgX4HWjFewccYEToGodIFPOB6Z0nOr8+F6aW5grb6jTa2eTH
- 84yGsBALR77ratXLhj+MjscA5EQXMim1X6HUOczIlrCk/V3ppqGjwWMsHwi2YtVhGipI
- 8vNTPXVY5B7a+/JbevJjOxA7k3EBaQagTWPZ60RI4MDWG5mi3Xbi68t9QN+lWxjITJPu
- MY8g==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWbUL4rVkmgv2aGX0mvGWXGeito0q6ty2cgsBt/57nDfF1rka6InKnqPAm7mymdI5ovvAes9m4wJ8E=@lists.freedesktop.org,
- AJvYcCXiSTJDju24t4Kc2iDZM20Oo4YD4tpNHFMJdSLmCRr56YSm3GdPQLcMTpzu+jh6/kA36CWZP4FAmbQ=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxOJYRfjdLUpEZNwYlHSTf5dsiX7RQitO0Ny67N5d+4fZANhgD9
- T1xTYaYt8z10h2Ub2IyZuiUFkqCphvK+dj+frjWpytAdTbQNLvjlibLLXMXMZ89rEbKDKz+m6QF
- 37C153a7gP0pTr5yT2oyl2dPH6Ag=
-X-Gm-Gg: ASbGncvWIIaPzL02oeDy9WmJo1CTvKyGeY6MSYwA4JgvJs7wByVUvhoFVW74yr6/v4r
- K+j1vxqLtRy2qXZxsX6UoGBAvqU0ZzTq90Lq1k3AXc3IfgY04BFq69otJmuG5tfczygH/84h9c4
- sYEcjNI+q4u1vwsHSzMgK+DWjQtgedwXWOT7y4gG7P
-X-Google-Smtp-Source: AGHT+IFv8UCQLBFW+HmySTIopoV3gqxaBg5wvtyqxsA9/SWPF9AXdxTyZjDvJBXPJMy/X/nEAbqTXjvKUANVm2PlmXw=
-X-Received: by 2002:a05:651c:50e:b0:308:e54d:61aa with SMTP id
- 38308e7fff4ca-30b8464a2bamr20649531fa.2.1740663598018; Thu, 27 Feb 2025
- 05:39:58 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4723510E305;
+	Thu, 27 Feb 2025 16:34:07 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D11F10E305;
+ Thu, 27 Feb 2025 16:34:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20250224-macos-build-support-xe-v3-1-d2c9ed3a27cc@samsung.com>
- <be5abg6u6wm62nhak7xrhtlkqxcekael6ztnkatwqxcil44x5y@p6yrbfingm4e>
-In-Reply-To: <be5abg6u6wm62nhak7xrhtlkqxcekael6ztnkatwqxcil44x5y@p6yrbfingm4e>
-From: Tamir Duberstein <tamird@gmail.com>
-Date: Thu, 27 Feb 2025 08:39:21 -0500
-X-Gm-Features: AQ5f1JrvujnQrNdPwimNUvnOfF-Py3f8kwIyufq_KgAHEzKnySZFBMMWJGb3ArY
-Message-ID: <CAJ-ks9=gaxW2191c+K0E0MgjsQWLYoKxJZLxGb6RMbPRVHc4tQ@mail.gmail.com>
-Subject: Re: [PATCH RESEND v3] drm/xe: xe_gen_wa_oob: replace
- program_invocation_short_name
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: da.gomez@kernel.org, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Nathan Chancellor <nathan@kernel.org>, 
- Nick Desaulniers <nick.desaulniers+lkml@gmail.com>,
- Bill Wendling <morbo@google.com>, 
- Masahiro Yamada <masahiroy@kernel.org>, Justin Stitt <justinstitt@google.com>, 
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, llvm@lists.linux.dev, 
- Klaus Jensen <k.jensen@samsung.com>, "Theodore Ts'o" <tytso@mit.edu>,
- gost.dev@samsung.com, 
- Barry Song <baohua@kernel.org>, Daniel Gomez <da.gomez@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Thu, 27 Feb 2025 16:30:02 +0000
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/display=3A_Program_doub?=
+ =?utf-8?q?le_buffered_LUT_registers_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 27 Feb 2025 16:34:06 -0000
+Message-ID: <174067404624.2763615.4659418335935163026@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250225180905.1588084-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20250225180905.1588084-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,36 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Lucas, chiming in here since I also care about building on macOS.
+== Series Details ==
 
-On Mon, Feb 24, 2025 at 10:05=E2=80=AFAM Lucas De Marchi
-<lucas.demarchi@intel.com> wrote:
->
-> Is this the approach taken for other similar issues you had? Note that
-> argv[0] and program_invocation_short_name are not the same thing. For
-> this particular binary I don't really care and if it's the approach
-> taken in other places, I'm ok using it.
+Series: drm/xe/display: Program double buffered LUT registers (rev4)
+URL   : https://patchwork.freedesktop.org/series/142436/
+State : success
 
-Believe it or not, this is the only place that
-program_invocation_short_name has ever been used in the kernel. There
-have been numerous instances of:
+== Summary ==
 
-#define _GNU_SOURCE /* for program_invocation_short_name */
+lib/modules/6.14.0-rc4-xe+/kernel/arch/x86/events/amd/
+lib/modules/6.14.0-rc4-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
+lib/modules/6.14.0-rc4-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.14.0-rc4-xe+/kernel/arch/x86/kvm/
+lib/modules/6.14.0-rc4-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.14.0-rc4-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.14.0-rc4-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.14.0-rc4-xe+/kernel/kernel/
+lib/modules/6.14.0-rc4-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/zstd.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/xctr.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/authenc.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/sm3.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/cmac.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/essiv.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/ccm.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/wp512.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/lrw.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/842.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/md4.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/lz4.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/sm4.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/async_tx/
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.14.0-rc4-xe+/kernel/block/
+lib/modules/6.14.0-rc4-xe+/kernel/block/bfq.ko
+lib/modules/6.14.0-rc4-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.14.0-rc4-xe+/build
+lib/modules/6.14.0-rc4-xe+/modules.alias.bin
+lib/modules/6.14.0-rc4-xe+/modules.builtin
+lib/modules/6.14.0-rc4-xe+/modules.softdep
+lib/modules/6.14.0-rc4-xe+/modules.alias
+lib/modules/6.14.0-rc4-xe+/modules.order
+lib/modules/6.14.0-rc4-xe+/modules.symbols
+lib/modules/6.14.0-rc4-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1740674035:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1740674035:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-but never any actual callers (that I could find in the git history)
-other than this one.
 
-> I was expecting you'd take the acks and merge it all through a single
-> tree since you received push back on the need to build the kernel in
-> macOS.  Is this the only thing missing and you'd want it to go through
-> drm?
-
-I believe the other patches have been applied or dropped. When I last
-tested building allmodconfig this was the only issue I ran into (macOS
-arm64), so I asked Daniel for this resend.
-
-Cheers.
-Tamir
