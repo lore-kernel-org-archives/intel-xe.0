@@ -4,168 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA482C197BF
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Feb 2025 18:38:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D31B8C19F32
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Feb 2025 18:47:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4897910EB57;
-	Thu, 27 Feb 2025 18:38:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 989BA10E00B;
+	Thu, 27 Feb 2025 18:47:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mst+qHcw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MUXrLKyR";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC48E10EB57
- for <intel-xe@lists.freedesktop.org>; Thu, 27 Feb 2025 18:38:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CC4310E00B;
+ Thu, 27 Feb 2025 18:47:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740681506; x=1772217506;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=PAS9qDFVDK8X46/c6UoOkNmXxUjDm8Dt85ab0uuGz7w=;
- b=Mst+qHcw2FqSItjpS8N+zRG/Zkhxt54SYquSjI1XO2GlZN83h6ju0goD
- rSJmZ136Ts7REyo5GfhwCmQpQOMIu8klDSGIclHuxtFBgqIKX5vsiXEFr
- 8V2GJvGw/4xxVzLdCWY9tH8qxoRtHkV+MI0mK0BoEurKqBY5nlqJvtQnm
- l33F+lZPnvg9WXXZ4BMA3d4EGFtnQM2lgc63vbyYpUimP8aEzaQGCM7zz
- RD0LV5/kydKKS+vxrZosQoiY3GMPxhbL694AZO40NmBbmwDQ7DHqK4LAF
- TTYTqK3NHpW0Xd4f4qSLCp3/8NOBXf8ilBn4Kj3G9u1tdVRSXy8gpajrX A==;
-X-CSE-ConnectionGUID: Wcjv0SX9QaCry7XgjaX65w==
-X-CSE-MsgGUID: hUuRRe7vRo+ZEd7uG3fUew==
-X-IronPort-AV: E=McAfee;i="6700,10204,11358"; a="40832741"
-X-IronPort-AV: E=Sophos;i="6.13,320,1732608000"; d="scan'208";a="40832741"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2025 10:38:25 -0800
-X-CSE-ConnectionGUID: Jb1b/YkVQRCI3r2F8Yh3hA==
-X-CSE-MsgGUID: Z6ltllFuTO2n1dfVP02xVQ==
+ t=1740682079; x=1772218079;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=U7p7HzyxxOtBTHSHy10PWby0XlC4/djbOb7y1AS6qS0=;
+ b=MUXrLKyRCZj4e7o1cbCQ2p8o/cpxdzk69DdhPPB/FG9KstRKtXLkHHjW
+ LaokeAvhtiUqWhw/+EoK34Oj/bdO3i9aZQziWUJ6AQWdlKLu0+tK97GRg
+ Suw1VVzCub9mvRBSnUOJInP/XAYUSSMK+CqjnzuyBqSjs5SSw1x5HuCKp
+ 0tlGruotkGnHS7Zk74kPepN9/G69kaMkjodzRQs0db51E8vHNddybJb5T
+ P+WJK/fgtRoRIARSF61H90gxsQFF+JODqO647qAvP5wxWZghOTiEf3spm
+ sgRmLK4b+lj4fPzzN0FRT+ot1MKcw77YqOoWCVRG1a+G6nsAWCGZbvS7j g==;
+X-CSE-ConnectionGUID: LLNL9j0tSxmm1oNegj3amA==
+X-CSE-MsgGUID: 4dZQ5Uv5Rx+DHUAm/U2eZw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="53001282"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="53001282"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2025 10:47:58 -0800
+X-CSE-ConnectionGUID: br9T8xMfRs6npboZvIJevw==
+X-CSE-MsgGUID: Dd2fNQKOQMGG1/w0uoAsPw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,320,1732608000"; d="scan'208";a="117126779"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2025 10:38:25 -0800
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Thu, 27 Feb 2025 10:38:24 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Thu, 27 Feb 2025 10:38:24 -0800
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.174)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 27 Feb 2025 10:38:24 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Gzxy2jghUl9Pue2nh7Tr8v0K96XjHhsQnHeKejuG4DaMd7QqVFghyshK3MDX5zVSTPOSW8ruBw/QaEOSs+r/pSBekq/eNmq4dmAqIlGDfx70qWCdZfhvAOfwkE0D3yweWldJ4UBh3mKQrVyy8NkFdycWt20/MCucK5KkaBux81aGStwX0f2yaOtY/ThvrzMmU28TtsDUxkza1iK9xaTdC5i9e9Y1MUCovcHnWTuU3F8lxfpjBK3F2snOWIoabSYOUBWda5Xs49QhkOrXcPT3qlf4DL8a9z9ZWSi0Txk49VAvCB64+/PhLkhioQVo9e/oxB7qr/i2RBp0XB4QMu5GjA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=V4CEAsQJmXVdJMX1cLsg5gTQ1uWy5KleRGwZ1jK9Kqk=;
- b=FqevJQ1vJ8WsUkczMAAXhIWT3cm/BeInNjGY0AjXRX23Fa0py+wfvjkGT+GIJ3ZAt/+qO0hShNNd3u7ho4sHEDI6c90o/vOv2VMW2DxyDIZ5RJtjm/liO2cloRoKu2bKqo5y0vbudzBa3y/VglKJRMmmEMQxgAYo4EJeokZ8XM98O5BoeXCPMW6yEjGCjQHYdJYcDBQ9ogro7066+HN9dBHlMkPoOA4pP9im1rY25rOp+New/kpR23BS1rbCfku/Nv6FbYH3OHGQQGmJYerx+rRnt4eoN6A1zIJz4lsDMIKHOuHam9cUw8Ofww0aEuPyBbvr0+VyEkf+1hAxNhijUw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by CYYPR11MB8360.namprd11.prod.outlook.com (2603:10b6:930:c3::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.20; Thu, 27 Feb
- 2025 18:38:21 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%3]) with mapi id 15.20.8489.018; Thu, 27 Feb 2025
- 18:38:21 +0000
-Date: Thu, 27 Feb 2025 12:38:18 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-CC: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- <intel-xe@lists.freedesktop.org>, <kernel-dev@igalia.com>
-Subject: Re: [PATCH 1/4] drm/xe: Fix GT "for each engine" workarounds
-Message-ID: <6lbuqhssdm6y3vptiwoyhxapzs6oek2nueph6nuqtr5mpqglmk@6pb6cgmjfkmc>
-References: <20250226112106.28173-1-tvrtko.ursulin@igalia.com>
- <20250226112106.28173-2-tvrtko.ursulin@igalia.com>
- <sok4xz6pvdkm2ru63xy2lqv2vj2ogcemvpaygqz364nqqlxxgw@6gqxlzjilaij>
- <20250226215944.GF5109@mdroper-desk1.amr.corp.intel.com>
- <j2cqfbthxacfqelnons5m7ltaaqkdqdrzkbuhvx6wpdexpvpt6@hmlr7ey7otv6>
- <20250227173501.GP4460@mdroper-desk1.amr.corp.intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20250227173501.GP4460@mdroper-desk1.amr.corp.intel.com>
-X-ClientProxiedBy: MW4PR03CA0174.namprd03.prod.outlook.com
- (2603:10b6:303:8d::29) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+X-IronPort-AV: E=Sophos;i="6.13,320,1732608000"; d="scan'208";a="122055788"
+Received: from monicael-mobl3 (HELO localhost) ([10.245.246.236])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2025 10:47:56 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/i915/vdsc: intel_display conversions
+In-Reply-To: <SN7PR11MB6750ADE79EE5378C1745D6FBE3CD2@SN7PR11MB6750.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250227112240.278827-1-suraj.kandpal@intel.com>
+ <87o6yn37lk.fsf@intel.com>
+ <SN7PR11MB6750ADE79EE5378C1745D6FBE3CD2@SN7PR11MB6750.namprd11.prod.outlook.com>
+Date: Thu, 27 Feb 2025 20:47:51 +0200
+Message-ID: <87ikov2pig.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|CYYPR11MB8360:EE_
-X-MS-Office365-Filtering-Correlation-Id: 54158ee9-df5d-4e06-16fc-08dd575de924
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024|7053199007;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?ttukTRx/Puh2+F5XqoIvOzID4p6/MJ+4Z/vOSsJHoMtALca/c5+PNPgI152G?=
- =?us-ascii?Q?4rIZuqVkZGcWqP9dIbIkaSMRHn3nGS9Pm26Qvm57WrzLWuSdSxa875BKWowh?=
- =?us-ascii?Q?NAR2baJlaM3HI/6bWwor8FRL/11y6++BJ2/Qyd0MwQ/CDTUbnpd8wmWyAJQQ?=
- =?us-ascii?Q?pQYt/l1QZvqH05ZQtRBGTgd4LutiENPfcSCLQKIFZlrvWDTkXvRb0AqxTtBl?=
- =?us-ascii?Q?AoTvm3hX/ebqph35XeOsdp7F6RAHWr7k+2QRESR+DPT4VMNdedGs+VWGTW0q?=
- =?us-ascii?Q?Tq0eY01otWdIhbHTAr02cpgbIUxrMxluvLc8QqfF75LZj0sRrvgSDiqJemn6?=
- =?us-ascii?Q?zDtvonySErYB7hS5PVMcm5EvrdEM4iFWmPkiF2V4PpJ9myUnFTY3w0vMJrLx?=
- =?us-ascii?Q?pDsSqcmOIoPP6Puochb008ReNzU1B9e9F2+FmHGO+CEjT02Tk4IVeN0+u8CA?=
- =?us-ascii?Q?kunY0TWB7t2QVog2GqR3dWL6Dbi/Q5XnaB6yCTdjcDZgVuphB0QCsV7sM4eb?=
- =?us-ascii?Q?xw04JNvm3ZmFMbd3nwPU6pVV8ZZcyrrdJPrZeRrNpn6w6usUdqGbKmsLbh/R?=
- =?us-ascii?Q?G/6NiYGI39rGJW3o0jDFaiUaqCKDhJr/+7l2WMK4OqEFEkJ5WBp25J8DiZyb?=
- =?us-ascii?Q?OoDUNIAZ8uti5yn/ThBX22jjAxnO2kR2ChFxI3I7im673I/j7xJD7JdC5VGW?=
- =?us-ascii?Q?Re2c5mcxPrbTk76fbpyvh08sYCtiH4I4kmR4kXzf7V133yFaHrSd+EB8eGQm?=
- =?us-ascii?Q?GObi12eJt5z3VJkVOq1nUcmcLhcxiwpuViBpQI8Rohde/y2240pTV8y/1CLu?=
- =?us-ascii?Q?aXOWuWB3UhhxL+Ks6XUFKXU1osbpE7gbm2ck7CX/v3keKoEKyo7n2p+QjL3/?=
- =?us-ascii?Q?PGicxCqYYweQSHPiJSKVBPNox6i5ngtvFrJoyGYW4lbpe1s6z9nj+cvY0GDx?=
- =?us-ascii?Q?uwJfkyOKkAK1E+PZ87tmyN2f2m7gYY1ny7s6htxvfvci9WnhoWroTxW2Y8vX?=
- =?us-ascii?Q?MHbRtyANoO54HDlte6LqZ8M2yEpqTTTXcl6abVSfTnjR+M5wvFap8YoqcTg8?=
- =?us-ascii?Q?Ro+g/LlUGrrrvVIGHR0++6EmdoBn7Vqh2DWBvVjF6lwYOLtSGVn3RacmXyXs?=
- =?us-ascii?Q?PDZOUkCcuL0NK0S+0q2X4KJ8ViBbScGuz7Odl6G7pAxqtTRS6ExJ10FsVubO?=
- =?us-ascii?Q?HCzdpmP9hTDTaxuKRihaZ8gKnMnfI2FqZO92h1VTBSZ/vkuS96GMzsVDBxya?=
- =?us-ascii?Q?VzD7ZkNOjD1VUbyAJsZFEXEfFM6CwZdwhEO0lCvJUyFW90PcC3PilhioW/bo?=
- =?us-ascii?Q?J8xT08SdUmaThg7yzUcbgEOKecidqSPkolcmJxWg5iKB7yDAxlJTXWm5dRxj?=
- =?us-ascii?Q?/qUVc4iqdpiw9Bgy//PVB593VyHw?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(7053199007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?IjgtLFMo4ugvL8PveuidBxcn9Rw0M2HKwUASe8EDaoMgQiYa7xOioqZqCghc?=
- =?us-ascii?Q?llteIaxZ7kqHgMj2rc54fpLbVvrX3/5f9JkLDtMyy7rC3bEc/j06kvwatzsk?=
- =?us-ascii?Q?XKgqDyT7CeJ4vUqn8HZu/KR7RH6VEXqkrNd4uOi1Ir6eZMZrr3oMn8IcyTRB?=
- =?us-ascii?Q?l/6/nz8GXOnQw8oLkUPjjw+ayfEiyEVPJj6iJrPACFtOawznfjcrhFCY8AXu?=
- =?us-ascii?Q?fxxC5N/nNTE7DSg9SG7QOSvkOxW9pFSKoSoJiVxTVNJbDmQVV730u3shdRTs?=
- =?us-ascii?Q?ZQecKbyA2mdN3bCWPtFAyNZ9BiLdkut8QLkosYkd0KGNh2zNS93MpYWlMZiq?=
- =?us-ascii?Q?k561F+O+pnmJg8ayp8T2/UUyGdlZOCwRuFSYKMz4m5oJ46eJsYpYSlSRVAdY?=
- =?us-ascii?Q?jLb39pI5HSCjJZFpRfA23+tkPhV6gKIUs2dSrvxICpOvgEJt6kkCQd3u02oq?=
- =?us-ascii?Q?ZCGbG309LRm1514nGdIiuSJVof2JEC0CoZWibUxl/Qu32g9wJFcb/1psDpLN?=
- =?us-ascii?Q?AV4Q2ExLQvHEnExwffh/mnxIiKehs9IrbKL9N92Kt+0KzQboaS3UzK2ntP5q?=
- =?us-ascii?Q?1ttUkMb3wzLpzCgLupJPwQExfCgMNoWpj4Olq2R2NAfWPfz0qVoPv/3rn8Cc?=
- =?us-ascii?Q?Z6x+eF3wWDOEjgSmJJLZGlNI4+DwCYRIhhPvxLgobRIpLpVVo2btqlHd2XLq?=
- =?us-ascii?Q?fwTQtFgabG1Y8+R3qRpJQv67Q3pyRj5yTbqeD5bfBqyImhZGVEFsyMwYpQwa?=
- =?us-ascii?Q?o3zPJ3SHMyGXyGSAC9H5ZBXGc8SK7Ai2FHFEBLMFISexWgSeBeZkgXTPe20a?=
- =?us-ascii?Q?fqOwJ4NmlO65oN0K9fjmiSdiSFfpEBqPi1OnnY3zgiQFWoDgTdlaCnCC/GZP?=
- =?us-ascii?Q?uTiEOjcDyKvbBd8jbQCu2GiTblrH6aACyxZXOgxNv8djL5k6udEfYDATNp/w?=
- =?us-ascii?Q?n5UOvCd3B3uKGdl0+QBklYED4c+D6qMm6Sx8kXt913p3SoikpnbwJLFID7oh?=
- =?us-ascii?Q?t/AHRxqc/pWIajZdAmEPsguhK+TyBZ+ZH7f3wivINDUZuQQ3/EjrqLflEOnO?=
- =?us-ascii?Q?XEcTaTNApaKHv/bcEbGwQ/e8kvImG13w6mFcr0YtI+pJtd6IYSAOI35M1Irt?=
- =?us-ascii?Q?jN3W9iJrcwwE2+7hpMPIY62GQBRaeotpRXCQQlemQ02EASUMe3FoKaARvmM4?=
- =?us-ascii?Q?3vaNxTGwMJqGK6WVkCwVZQ0fRD2H3P89/aQb9RZy4l0ma9zEahSeBU520w8j?=
- =?us-ascii?Q?orNBOsvKYS5dSOG3+wrw/t46Hv40WcA7tcvDiatQ7gliSAszKwKdrW+c3KDc?=
- =?us-ascii?Q?d9oMqF7ALkyx9SPhIKHZ3KXs5jE45E45xKbyK9fqPhfoT1Eahsj22Rw+nFx2?=
- =?us-ascii?Q?nHueBB0kmZ1/GLKa71SleuXeQ825t2GW5BlyvkIYmYFIwiTSSq9Nu1l1NP7A?=
- =?us-ascii?Q?+7aW7iTI0Ti2hgMYs7K0F+lJiJfB9Nzkls6ZcX96mhqTNUejmBWQYhEczvL0?=
- =?us-ascii?Q?q5qWmq1ViTvk2NURulbClQ+Z51T+QRha3o3MWqxhHoNCnKn2omS1sJf0kYcb?=
- =?us-ascii?Q?CKaXi7PwRP6etRQ+6i52SGKBMl9zCXQi+PouIzSi7dgePtqGf5k3l7rSV3Gr?=
- =?us-ascii?Q?tQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 54158ee9-df5d-4e06-16fc-08dd575de924
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2025 18:38:21.3940 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Mqgtvo9EQ6DZ2tgrZkhsHBuC3ssYGo3a3YoXDWdoofz55BBcFucyzzbnFBwk3rdJ2AgTCxqMiS/Oixq+83cKKXeVoeTnAZg7Fnmq7sB5KHw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR11MB8360
-X-OriginatorOrg: intel.com
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -180,137 +68,623 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Feb 27, 2025 at 09:35:01AM -0800, Matt Roper wrote:
->On Wed, Feb 26, 2025 at 10:47:52PM -0600, Lucas De Marchi wrote:
->> On Wed, Feb 26, 2025 at 01:59:44PM -0800, Matt Roper wrote:
->> > On Wed, Feb 26, 2025 at 11:20:16AM -0600, Lucas De Marchi wrote:
->> > > On Wed, Feb 26, 2025 at 11:21:03AM +0000, Tvrtko Ursulin wrote:
->> > > > Any rules using engine matching are currently broken due RTP processing
->> > > > happening too in early init, before the list of hardware engines has been
->> > > > initialised.
->> > > >
->> > > > Fix this by moving workaround processing to later in the driver probe
->> > > > sequence, to just before the processed list is used for the first time.
->> > > >
->> > > > Looking at the debugfs gt0/workarounds on ADL-P we notice 14011060649
->> > > > should be present while we see, before:
->> > > >
->> > > > GT Workarounds
->> > > >     14011059788
->> > > >     14015795083
->> > > >
->> > > > And with the patch:
->> > > >
->> > > > GT Workarounds
->> > > >     14011060649
->> > > >     14011059788
->> > > >     14015795083
->> > > >
->> > > > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->> > > > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->> > > > Cc: Matt Roper <matthew.d.roper@intel.com>
->> > >
->> > > Cc: <stable@vger.kernel.org> # v6.11+
->> > > Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> > >
->> > > The version in Cc stable is because it's what matters for officially
->> > > supported HW by xe.
->> > >
->> > > We've been using the reset domain to decide if a WA is an engine vs gt
->> > > workaround. Although I'm thinking if it wouldn't be better to simply
->> > > drop the FOREACH_ENGINE processing and move those workarounds to be
->> > > engine workarounds. Matt, any thoughts?
->> >
->> > That's a common mistake we've made in the past --- it doesn't work.  If
->> > you try to put a bunch of these registers onto the GuC's save/restore
->> > list as happens with engine workarounds, the GuC will throw an assertion
->> > and fail to load because it considers them to be outside the very narrow
->> > set of register ranges it's allowed to work with.
+On Thu, 27 Feb 2025, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
+>> -----Original Message-----
+>> From: Nikula, Jani <jani.nikula@intel.com>
+>> Sent: Thursday, February 27, 2025 5:47 PM
+>> To: Kandpal, Suraj <suraj.kandpal@intel.com>; intel-xe@lists.freedesktop.org;
+>> intel-gfx@lists.freedesktop.org
+>> Cc: Kandpal, Suraj <suraj.kandpal@intel.com>
+>> Subject: Re: [PATCH] drm/i915/vdsc: intel_display conversions
 >>
->> but that's a GuC issue that we would try to fix? at least for new
->> platforms. if the register is in the mmio space for
->> that engine, why would GuC do that?
+>> On Thu, 27 Feb 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+>> > intel_display conversions for vdsc in an effort to move away from
+>> > drm_i915_private.
+>> > While at it use display->platform.xx.
+>>
+>> Please update with
+>>
+>> -#include "i915_drv.h"
+>> +#include "i915_utils.h"
+>>
+>> and you get
+>>
+>> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 >
->No, that's intentional behavior.  Just because something is inside a
->register's MMIO space doesn't mean the GuC should be re-programming it
->on resets.  The proper behavior for re-applying workarounds really comes
->down to the register's reset behavior (whether it's wiped by resets or
->not) and that's based on the sub-unit of hardware it lives inside, not
->where it falls in the MMIO space.  If the KMD asks the GuC to reprogram
->something that it shouldn't be, that's considered a KMD bug and the
->GuC's assertion is there to catch that.  It's a safety net to make sure
->the GuC isn't accidentally touching parts of hardware it has no need to.
->I might be misremembering, but I seem to recall that there may even be
->some hardware enforcement to prevent the GuC microcontroller from
->touching such register ranges on certain platforms.
+> Thanks for the reviews pushed to drm-intel-next with the above
+> mentioned changes
 
-I have to disagree here. It's absolutely necessary that it be *at least*
-at the reset domain level. You can't add something to be programmed on
-gt reset if the register is reset together with the engine. However the
-opposite is not true. For me it make makes total sense to add some
-registers there even if the current hardware happens to preserve them
-across engine resets.
+I didn't really mean you should make the changes while applying.
 
-Lucas De Marchi
+BR,
+Jani.
+
+
 
 >
->
->Matt
+> Regards,
+> Suraj Kandpal
 >
 >>
->> Lucas De Marchi
+>>
+>> BR,
+>> Jani.
+>>
+>>
 >>
 >> >
->> > So no, unfortunately these do need to remain "GT" workarounds, even
->> > though they need to be applied to registers that have per-engine
->> > instances.  :-(
+>> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+>> > ---
+>> >  drivers/gpu/drm/i915/display/intel_vdsc.c | 180
+>> > +++++++++++-----------
+>> >  1 file changed, 87 insertions(+), 93 deletions(-)
 >> >
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c
+>> > b/drivers/gpu/drm/i915/display/intel_vdsc.c
+>> > index 6e7151346382..35d558ca98db 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+>> > @@ -22,14 +22,13 @@
 >> >
->> > Matt
+>> >  bool intel_dsc_source_support(const struct intel_crtc_state
+>> > *crtc_state)  {
+>> > -   const struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>> > -   struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+>> > +   struct intel_display *display = to_intel_display(crtc_state);
+>> >     enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
 >> >
->> > >
->> > > thanks
->> > > Lucas De Marchi
->> > >
->> > > > ---
->> > > > drivers/gpu/drm/xe/xe_gt.c | 4 ++--
->> > > > 1 file changed, 2 insertions(+), 2 deletions(-)
->> > > >
->> > > > diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
->> > > > index 650a0ee56e97..d59c03bc05b7 100644
->> > > > --- a/drivers/gpu/drm/xe/xe_gt.c
->> > > > +++ b/drivers/gpu/drm/xe/xe_gt.c
->> > > > @@ -361,9 +361,7 @@ int xe_gt_init_early(struct xe_gt *gt)
->> > > > 	if (err)
->> > > > 		return err;
->> > > >
->> > > > -	xe_wa_process_gt(gt);
->> > > > 	xe_wa_process_oob(gt);
->> > > > -	xe_tuning_process_gt(gt);
->> > > >
->> > > > 	xe_force_wake_init_gt(gt, gt_to_fw(gt));
->> > > > 	spin_lock_init(&gt->global_invl_lock);
->> > > > @@ -450,6 +448,8 @@ static int all_fw_domain_init(struct xe_gt *gt)
->> > > > 	}
->> > > >
->> > > > 	xe_gt_mcr_set_implicit_defaults(gt);
->> > > > +	xe_wa_process_gt(gt);
->> > > > +	xe_tuning_process_gt(gt);
->> > > > 	xe_reg_sr_apply_mmio(&gt->reg_sr, gt);
->> > > >
->> > > > 	err = xe_gt_clock_init(gt);
->> > > > --
->> > > > 2.48.0
->> > > >
+>> > -   if (!HAS_DSC(i915))
+>> > +   if (!HAS_DSC(display))
+>> >             return false;
 >> >
->> > --
->> > Matt Roper
->> > Graphics Software Engineer
->> > Linux GPU Platform Enablement
->> > Intel Corporation
->
->-- 
->Matt Roper
->Graphics Software Engineer
->Linux GPU Platform Enablement
->Intel Corporation
+>> > -   if (DISPLAY_VER(i915) == 11 && cpu_transcoder == TRANSCODER_A)
+>> > +   if (DISPLAY_VER(display) == 11 && cpu_transcoder == TRANSCODER_A)
+>> >             return false;
+>> >
+>> >     return true;
+>> > @@ -37,9 +36,9 @@ bool intel_dsc_source_support(const struct
+>> > intel_crtc_state *crtc_state)
+>> >
+>> >  static bool is_pipe_dsc(struct intel_crtc *crtc, enum transcoder
+>> > cpu_transcoder)  {
+>> > -   struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+>> > +   struct intel_display *display = to_intel_display(crtc);
+>> >
+>> > -   if (DISPLAY_VER(i915) >= 12)
+>> > +   if (DISPLAY_VER(display) >= 12)
+>> >             return true;
+>> >
+>> >     if (cpu_transcoder == TRANSCODER_EDP || @@ -48,7 +47,7 @@ static
+>> > bool is_pipe_dsc(struct intel_crtc *crtc, enum transcoder cpu_transcoder)
+>> >             return false;
+>> >
+>> >     /* There's no pipe A DSC engine on ICL */
+>> > -   drm_WARN_ON(&i915->drm, crtc->pipe == PIPE_A);
+>> > +   drm_WARN_ON(display->drm, crtc->pipe == PIPE_A);
+>> >
+>> >     return true;
+>> >  }
+>> > @@ -262,8 +261,7 @@ static int intel_dsc_slice_dimensions_valid(struct
+>> > intel_crtc_state *pipe_config
+>> >
+>> >  int intel_dsc_compute_params(struct intel_crtc_state *pipe_config)  {
+>> > -   struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
+>> > -   struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+>> > +   struct intel_display *display = to_intel_display(pipe_config);
+>> >     struct drm_dsc_config *vdsc_cfg = &pipe_config->dsc.config;
+>> >     u16 compressed_bpp = fxp_q4_to_int(pipe_config-
+>> >dsc.compressed_bpp_x16);
+>> >     int err;
+>> > @@ -276,7 +274,7 @@ int intel_dsc_compute_params(struct intel_crtc_state
+>> *pipe_config)
+>> >     err = intel_dsc_slice_dimensions_valid(pipe_config, vdsc_cfg);
+>> >
+>> >     if (err) {
+>> > -           drm_dbg_kms(&dev_priv->drm, "Slice dimension
+>> requirements not met\n");
+>> > +           drm_dbg_kms(display->drm, "Slice dimension requirements
+>> not
+>> > +met\n");
+>> >             return err;
+>> >     }
+>> >
+>> > @@ -287,7 +285,7 @@ int intel_dsc_compute_params(struct intel_crtc_state
+>> *pipe_config)
+>> >     vdsc_cfg->convert_rgb = pipe_config->output_format !=
+>> INTEL_OUTPUT_FORMAT_YCBCR420 &&
+>> >                             pipe_config->output_format !=
+>> INTEL_OUTPUT_FORMAT_YCBCR444;
+>> >
+>> > -   if (DISPLAY_VER(dev_priv) >= 14 &&
+>> > +   if (DISPLAY_VER(display) >= 14 &&
+>> >         pipe_config->output_format ==
+>> INTEL_OUTPUT_FORMAT_YCBCR420)
+>> >             vdsc_cfg->native_420 = true;
+>> >     /* We do not support YcBCr422 as of now */ @@ -308,7 +306,7 @@ int
+>> > intel_dsc_compute_params(struct intel_crtc_state *pipe_config)
+>> >     vdsc_cfg->bits_per_component = pipe_config->pipe_bpp / 3;
+>> >
+>> >     if (vdsc_cfg->bits_per_component < 8) {
+>> > -           drm_dbg_kms(&dev_priv->drm, "DSC bpc requirements not
+>> met bpc: %d\n",
+>> > +           drm_dbg_kms(display->drm, "DSC bpc requirements not met
+>> bpc: %d\n",
+>> >                         vdsc_cfg->bits_per_component);
+>> >             return -EINVAL;
+>> >     }
+>> > @@ -320,7 +318,7 @@ int intel_dsc_compute_params(struct intel_crtc_state
+>> *pipe_config)
+>> >      * upto uncompressed bpp-1, hence add calculations for all the rc
+>> >      * parameters
+>> >      */
+>> > -   if (DISPLAY_VER(dev_priv) >= 13) {
+>> > +   if (DISPLAY_VER(display) >= 13) {
+>> >             calculate_rc_params(vdsc_cfg);
+>> >     } else {
+>> >             if ((compressed_bpp == 8 ||
+>> > @@ -356,7 +354,7 @@ int intel_dsc_compute_params(struct
+>> > intel_crtc_state *pipe_config)  enum intel_display_power_domain
+>> > intel_dsc_power_domain(struct intel_crtc *crtc, enum transcoder
+>> > cpu_transcoder)  {
+>> > -   struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+>> > +   struct intel_display *display = to_intel_display(crtc);
+>> >     enum pipe pipe = crtc->pipe;
+>> >
+>> >     /*
+>> > @@ -370,7 +368,8 @@ intel_dsc_power_domain(struct intel_crtc *crtc,
+>> enum transcoder cpu_transcoder)
+>> >      * the pipe in use. Hence another reference on the pipe power domain
+>> >      * will suffice. (Except no VDSC/joining on ICL pipe A.)
+>> >      */
+>> > -   if (DISPLAY_VER(i915) == 12 && !IS_ROCKETLAKE(i915) && pipe ==
+>> PIPE_A)
+>> > +   if (DISPLAY_VER(display) == 12 && !display->platform.rocketlake &&
+>> > +       pipe == PIPE_A)
+>> >             return POWER_DOMAIN_TRANSCODER_VDSC_PW2;
+>> >     else if (is_pipe_dsc(crtc, cpu_transcoder))
+>> >             return POWER_DOMAIN_PIPE(pipe);
+>> > @@ -416,26 +415,25 @@ static void intel_dsc_get_pps_reg(const struct
+>> > intel_crtc_state *crtc_state, int  static void intel_dsc_pps_write(const struct
+>> intel_crtc_state *crtc_state,
+>> >                             int pps, u32 pps_val)
+>> >  {
+>> > -   struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>> > -   struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+>> > +   struct intel_display *display = to_intel_display(crtc_state);
+>> >     i915_reg_t dsc_reg[3];
+>> >     int i, vdsc_per_pipe, dsc_reg_num;
+>> >
+>> >     vdsc_per_pipe = intel_dsc_get_vdsc_per_pipe(crtc_state);
+>> >     dsc_reg_num = min_t(int, ARRAY_SIZE(dsc_reg), vdsc_per_pipe);
+>> >
+>> > -   drm_WARN_ON_ONCE(&i915->drm, dsc_reg_num < vdsc_per_pipe);
+>> > +   drm_WARN_ON_ONCE(display->drm, dsc_reg_num < vdsc_per_pipe);
+>> >
+>> >     intel_dsc_get_pps_reg(crtc_state, pps, dsc_reg, dsc_reg_num);
+>> >
+>> >     for (i = 0; i < dsc_reg_num; i++)
+>> > -           intel_de_write(i915, dsc_reg[i], pps_val);
+>> > +           intel_de_write(display, dsc_reg[i], pps_val);
+>> >  }
+>> >
+>> >  static void intel_dsc_pps_configure(const struct intel_crtc_state
+>> > *crtc_state)  {
+>> > +   struct intel_display *display = to_intel_display(crtc_state);
+>> >     struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>> > -   struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+>> >     const struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
+>> >     enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+>> >     enum pipe pipe = crtc->pipe;
+>> > @@ -529,7 +527,7 @@ static void intel_dsc_pps_configure(const struct
+>> intel_crtc_state *crtc_state)
+>> >                                           vdsc_cfg->slice_height);
+>> >     intel_dsc_pps_write(crtc_state, 16, pps_val);
+>> >
+>> > -   if (DISPLAY_VER(dev_priv) >= 14) {
+>> > +   if (DISPLAY_VER(display) >= 14) {
+>> >             /* PPS 17 */
+>> >             pps_val = DSC_PPS17_SL_BPG_OFFSET(vdsc_cfg-
+>> >second_line_bpg_offset);
+>> >             intel_dsc_pps_write(crtc_state, 17, pps_val); @@ -547,44
+>> +545,44 @@
+>> > static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
+>> >                     (u32)(vdsc_cfg->rc_buf_thresh[i] <<
+>> >                           BITS_PER_BYTE * (i % 4));
+>> >     if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+>> > -           intel_de_write(dev_priv, DSCA_RC_BUF_THRESH_0,
+>> > +           intel_de_write(display, DSCA_RC_BUF_THRESH_0,
+>> >                            rc_buf_thresh_dword[0]);
+>> > -           intel_de_write(dev_priv, DSCA_RC_BUF_THRESH_0_UDW,
+>> > +           intel_de_write(display, DSCA_RC_BUF_THRESH_0_UDW,
+>> >                            rc_buf_thresh_dword[1]);
+>> > -           intel_de_write(dev_priv, DSCA_RC_BUF_THRESH_1,
+>> > +           intel_de_write(display, DSCA_RC_BUF_THRESH_1,
+>> >                            rc_buf_thresh_dword[2]);
+>> > -           intel_de_write(dev_priv, DSCA_RC_BUF_THRESH_1_UDW,
+>> > +           intel_de_write(display, DSCA_RC_BUF_THRESH_1_UDW,
+>> >                            rc_buf_thresh_dword[3]);
+>> >             if (vdsc_instances_per_pipe > 1) {
+>> > -                   intel_de_write(dev_priv, DSCC_RC_BUF_THRESH_0,
+>> > +                   intel_de_write(display, DSCC_RC_BUF_THRESH_0,
+>> >                                    rc_buf_thresh_dword[0]);
+>> > -                   intel_de_write(dev_priv,
+>> DSCC_RC_BUF_THRESH_0_UDW,
+>> > +                   intel_de_write(display,
+>> DSCC_RC_BUF_THRESH_0_UDW,
+>> >                                    rc_buf_thresh_dword[1]);
+>> > -                   intel_de_write(dev_priv, DSCC_RC_BUF_THRESH_1,
+>> > +                   intel_de_write(display, DSCC_RC_BUF_THRESH_1,
+>> >                                    rc_buf_thresh_dword[2]);
+>> > -                   intel_de_write(dev_priv,
+>> DSCC_RC_BUF_THRESH_1_UDW,
+>> > +                   intel_de_write(display,
+>> DSCC_RC_BUF_THRESH_1_UDW,
+>> >                                    rc_buf_thresh_dword[3]);
+>> >             }
+>> >     } else {
+>> > -           intel_de_write(dev_priv, ICL_DSC0_RC_BUF_THRESH_0(pipe),
+>> > +           intel_de_write(display, ICL_DSC0_RC_BUF_THRESH_0(pipe),
+>> >                            rc_buf_thresh_dword[0]);
+>> > -           intel_de_write(dev_priv,
+>> ICL_DSC0_RC_BUF_THRESH_0_UDW(pipe),
+>> > +           intel_de_write(display,
+>> ICL_DSC0_RC_BUF_THRESH_0_UDW(pipe),
+>> >                            rc_buf_thresh_dword[1]);
+>> > -           intel_de_write(dev_priv, ICL_DSC0_RC_BUF_THRESH_1(pipe),
+>> > +           intel_de_write(display, ICL_DSC0_RC_BUF_THRESH_1(pipe),
+>> >                            rc_buf_thresh_dword[2]);
+>> > -           intel_de_write(dev_priv,
+>> ICL_DSC0_RC_BUF_THRESH_1_UDW(pipe),
+>> > +           intel_de_write(display,
+>> ICL_DSC0_RC_BUF_THRESH_1_UDW(pipe),
+>> >                            rc_buf_thresh_dword[3]);
+>> >             if (vdsc_instances_per_pipe > 1) {
+>> > -                   intel_de_write(dev_priv,
+>> > +                   intel_de_write(display,
+>> >                                    ICL_DSC1_RC_BUF_THRESH_0(pipe),
+>> >                                    rc_buf_thresh_dword[0]);
+>> > -                   intel_de_write(dev_priv,
+>> > +                   intel_de_write(display,
+>> >                                    ICL_DSC1_RC_BUF_THRESH_0_UDW(pipe),
+>> >                                    rc_buf_thresh_dword[1]);
+>> > -                   intel_de_write(dev_priv,
+>> > +                   intel_de_write(display,
+>> >                                    ICL_DSC1_RC_BUF_THRESH_1(pipe),
+>> >                                    rc_buf_thresh_dword[2]);
+>> > -                   intel_de_write(dev_priv,
+>> > +                   intel_de_write(display,
+>> >                                    ICL_DSC1_RC_BUF_THRESH_1_UDW(pipe),
+>> >                                    rc_buf_thresh_dword[3]);
+>> >             }
+>> > @@ -601,88 +599,88 @@ static void intel_dsc_pps_configure(const struct
+>> intel_crtc_state *crtc_state)
+>> >                            (vdsc_cfg->rc_range_params[i].range_min_qp <<
+>> >                             RC_MIN_QP_SHIFT)) << 16 * (i % 2));
+>> >     if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+>> > -           intel_de_write(dev_priv, DSCA_RC_RANGE_PARAMETERS_0,
+>> > +           intel_de_write(display, DSCA_RC_RANGE_PARAMETERS_0,
+>> >                            rc_range_params_dword[0]);
+>> > -           intel_de_write(dev_priv,
+>> DSCA_RC_RANGE_PARAMETERS_0_UDW,
+>> > +           intel_de_write(display,
+>> DSCA_RC_RANGE_PARAMETERS_0_UDW,
+>> >                            rc_range_params_dword[1]);
+>> > -           intel_de_write(dev_priv, DSCA_RC_RANGE_PARAMETERS_1,
+>> > +           intel_de_write(display, DSCA_RC_RANGE_PARAMETERS_1,
+>> >                            rc_range_params_dword[2]);
+>> > -           intel_de_write(dev_priv,
+>> DSCA_RC_RANGE_PARAMETERS_1_UDW,
+>> > +           intel_de_write(display,
+>> DSCA_RC_RANGE_PARAMETERS_1_UDW,
+>> >                            rc_range_params_dword[3]);
+>> > -           intel_de_write(dev_priv, DSCA_RC_RANGE_PARAMETERS_2,
+>> > +           intel_de_write(display, DSCA_RC_RANGE_PARAMETERS_2,
+>> >                            rc_range_params_dword[4]);
+>> > -           intel_de_write(dev_priv,
+>> DSCA_RC_RANGE_PARAMETERS_2_UDW,
+>> > +           intel_de_write(display,
+>> DSCA_RC_RANGE_PARAMETERS_2_UDW,
+>> >                            rc_range_params_dword[5]);
+>> > -           intel_de_write(dev_priv, DSCA_RC_RANGE_PARAMETERS_3,
+>> > +           intel_de_write(display, DSCA_RC_RANGE_PARAMETERS_3,
+>> >                            rc_range_params_dword[6]);
+>> > -           intel_de_write(dev_priv,
+>> DSCA_RC_RANGE_PARAMETERS_3_UDW,
+>> > +           intel_de_write(display,
+>> DSCA_RC_RANGE_PARAMETERS_3_UDW,
+>> >                            rc_range_params_dword[7]);
+>> >             if (vdsc_instances_per_pipe > 1) {
+>> > -                   intel_de_write(dev_priv,
+>> DSCC_RC_RANGE_PARAMETERS_0,
+>> > +                   intel_de_write(display,
+>> DSCC_RC_RANGE_PARAMETERS_0,
+>> >                                    rc_range_params_dword[0]);
+>> > -                   intel_de_write(dev_priv,
+>> > +                   intel_de_write(display,
+>> >                                    DSCC_RC_RANGE_PARAMETERS_0_UDW,
+>> >                                    rc_range_params_dword[1]);
+>> > -                   intel_de_write(dev_priv,
+>> DSCC_RC_RANGE_PARAMETERS_1,
+>> > +                   intel_de_write(display,
+>> DSCC_RC_RANGE_PARAMETERS_1,
+>> >                                    rc_range_params_dword[2]);
+>> > -                   intel_de_write(dev_priv,
+>> > +                   intel_de_write(display,
+>> >                                    DSCC_RC_RANGE_PARAMETERS_1_UDW,
+>> >                                    rc_range_params_dword[3]);
+>> > -                   intel_de_write(dev_priv,
+>> DSCC_RC_RANGE_PARAMETERS_2,
+>> > +                   intel_de_write(display,
+>> DSCC_RC_RANGE_PARAMETERS_2,
+>> >                                    rc_range_params_dword[4]);
+>> > -                   intel_de_write(dev_priv,
+>> > +                   intel_de_write(display,
+>> >                                    DSCC_RC_RANGE_PARAMETERS_2_UDW,
+>> >                                    rc_range_params_dword[5]);
+>> > -                   intel_de_write(dev_priv,
+>> DSCC_RC_RANGE_PARAMETERS_3,
+>> > +                   intel_de_write(display,
+>> DSCC_RC_RANGE_PARAMETERS_3,
+>> >                                    rc_range_params_dword[6]);
+>> > -                   intel_de_write(dev_priv,
+>> > +                   intel_de_write(display,
+>> >                                    DSCC_RC_RANGE_PARAMETERS_3_UDW,
+>> >                                    rc_range_params_dword[7]);
+>> >             }
+>> >     } else {
+>> > -           intel_de_write(dev_priv,
+>> ICL_DSC0_RC_RANGE_PARAMETERS_0(pipe),
+>> > +           intel_de_write(display,
+>> ICL_DSC0_RC_RANGE_PARAMETERS_0(pipe),
+>> >                            rc_range_params_dword[0]);
+>> > -           intel_de_write(dev_priv,
+>> > +           intel_de_write(display,
+>> >
+>> ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW(pipe),
+>> >                            rc_range_params_dword[1]);
+>> > -           intel_de_write(dev_priv,
+>> ICL_DSC0_RC_RANGE_PARAMETERS_1(pipe),
+>> > +           intel_de_write(display,
+>> ICL_DSC0_RC_RANGE_PARAMETERS_1(pipe),
+>> >                            rc_range_params_dword[2]);
+>> > -           intel_de_write(dev_priv,
+>> > +           intel_de_write(display,
+>> >
+>> ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW(pipe),
+>> >                            rc_range_params_dword[3]);
+>> > -           intel_de_write(dev_priv,
+>> ICL_DSC0_RC_RANGE_PARAMETERS_2(pipe),
+>> > +           intel_de_write(display,
+>> ICL_DSC0_RC_RANGE_PARAMETERS_2(pipe),
+>> >                            rc_range_params_dword[4]);
+>> > -           intel_de_write(dev_priv,
+>> > +           intel_de_write(display,
+>> >
+>> ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW(pipe),
+>> >                            rc_range_params_dword[5]);
+>> > -           intel_de_write(dev_priv,
+>> ICL_DSC0_RC_RANGE_PARAMETERS_3(pipe),
+>> > +           intel_de_write(display,
+>> ICL_DSC0_RC_RANGE_PARAMETERS_3(pipe),
+>> >                            rc_range_params_dword[6]);
+>> > -           intel_de_write(dev_priv,
+>> > +           intel_de_write(display,
+>> >
+>> ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW(pipe),
+>> >                            rc_range_params_dword[7]);
+>> >             if (vdsc_instances_per_pipe > 1) {
+>> > -                   intel_de_write(dev_priv,
+>> > +                   intel_de_write(display,
+>> >
+>> ICL_DSC1_RC_RANGE_PARAMETERS_0(pipe),
+>> >                                    rc_range_params_dword[0]);
+>> > -                   intel_de_write(dev_priv,
+>> > +                   intel_de_write(display,
+>> >
+>> ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW(pipe),
+>> >                                    rc_range_params_dword[1]);
+>> > -                   intel_de_write(dev_priv,
+>> > +                   intel_de_write(display,
+>> >
+>> ICL_DSC1_RC_RANGE_PARAMETERS_1(pipe),
+>> >                                    rc_range_params_dword[2]);
+>> > -                   intel_de_write(dev_priv,
+>> > +                   intel_de_write(display,
+>> >
+>> ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW(pipe),
+>> >                                    rc_range_params_dword[3]);
+>> > -                   intel_de_write(dev_priv,
+>> > +                   intel_de_write(display,
+>> >
+>> ICL_DSC1_RC_RANGE_PARAMETERS_2(pipe),
+>> >                                    rc_range_params_dword[4]);
+>> > -                   intel_de_write(dev_priv,
+>> > +                   intel_de_write(display,
+>> >
+>> ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW(pipe),
+>> >                                    rc_range_params_dword[5]);
+>> > -                   intel_de_write(dev_priv,
+>> > +                   intel_de_write(display,
+>> >
+>> ICL_DSC1_RC_RANGE_PARAMETERS_3(pipe),
+>> >                                    rc_range_params_dword[6]);
+>> > -                   intel_de_write(dev_priv,
+>> > +                   intel_de_write(display,
+>> >
+>> ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW(pipe),
+>> >                                    rc_range_params_dword[7]);
+>> >             }
+>> > @@ -746,8 +744,8 @@ static i915_reg_t dss_ctl2_reg(struct intel_crtc
+>> > *crtc, enum transcoder cpu_tran
+>> >
+>> >  void intel_uncompressed_joiner_enable(const struct intel_crtc_state
+>> > *crtc_state)  {
+>> > +   struct intel_display *display = to_intel_display(crtc_state);
+>> >     struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>> > -   struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+>> >     u32 dss_ctl1_val = 0;
+>> >
+>> >     if (crtc_state->joiner_pipes && !crtc_state->dsc.compression_enable)
+>> > { @@ -756,14 +754,15 @@ void intel_uncompressed_joiner_enable(const
+>> struct intel_crtc_state *crtc_state)
+>> >             else
+>> >                     dss_ctl1_val |= UNCOMPRESSED_JOINER_PRIMARY;
+>> >
+>> > -           intel_de_write(dev_priv, dss_ctl1_reg(crtc, crtc_state-
+>> >cpu_transcoder), dss_ctl1_val);
+>> > +           intel_de_write(display, dss_ctl1_reg(crtc, crtc_state-
+>> >cpu_transcoder),
+>> > +                          dss_ctl1_val);
+>> >     }
+>> >  }
+>> >
+>> >  void intel_dsc_enable(const struct intel_crtc_state *crtc_state)  {
+>> > +   struct intel_display *display = to_intel_display(crtc_state);
+>> >     struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>> > -   struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+>> >     u32 dss_ctl1_val = 0;
+>> >     u32 dss_ctl2_val = 0;
+>> >     int vdsc_instances_per_pipe =
+>> > intel_dsc_get_vdsc_per_pipe(crtc_state);
+>> > @@ -796,28 +795,27 @@ void intel_dsc_enable(const struct intel_crtc_state
+>> *crtc_state)
+>> >             if (intel_crtc_is_bigjoiner_primary(crtc_state))
+>> >                     dss_ctl1_val |= PRIMARY_BIG_JOINER_ENABLE;
+>> >     }
+>> > -   intel_de_write(dev_priv, dss_ctl1_reg(crtc, crtc_state-
+>> >cpu_transcoder), dss_ctl1_val);
+>> > -   intel_de_write(dev_priv, dss_ctl2_reg(crtc, crtc_state-
+>> >cpu_transcoder), dss_ctl2_val);
+>> > +   intel_de_write(display, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder),
+>> dss_ctl1_val);
+>> > +   intel_de_write(display, dss_ctl2_reg(crtc,
+>> > +crtc_state->cpu_transcoder), dss_ctl2_val);
+>> >  }
+>> >
+>> >  void intel_dsc_disable(const struct intel_crtc_state *old_crtc_state)
+>> > {
+>> > +   struct intel_display *display = to_intel_display(old_crtc_state);
+>> >     struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
+>> > -   struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+>> >
+>> >     /* Disable only if either of them is enabled */
+>> >     if (old_crtc_state->dsc.compression_enable ||
+>> >         old_crtc_state->joiner_pipes) {
+>> > -           intel_de_write(dev_priv, dss_ctl1_reg(crtc, old_crtc_state-
+>> >cpu_transcoder), 0);
+>> > -           intel_de_write(dev_priv, dss_ctl2_reg(crtc, old_crtc_state-
+>> >cpu_transcoder), 0);
+>> > +           intel_de_write(display, dss_ctl1_reg(crtc, old_crtc_state-
+>> >cpu_transcoder), 0);
+>> > +           intel_de_write(display, dss_ctl2_reg(crtc,
+>> > +old_crtc_state->cpu_transcoder), 0);
+>> >     }
+>> >  }
+>> >
+>> >  static u32 intel_dsc_pps_read(struct intel_crtc_state *crtc_state, int pps,
+>> >                           bool *all_equal)
+>> >  {
+>> > -   struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>> > -   struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+>> > +   struct intel_display *display = to_intel_display(crtc_state);
+>> >     i915_reg_t dsc_reg[3];
+>> >     int i, vdsc_per_pipe, dsc_reg_num;
+>> >     u32 val;
+>> > @@ -825,16 +823,16 @@ static u32 intel_dsc_pps_read(struct
+>> intel_crtc_state *crtc_state, int pps,
+>> >     vdsc_per_pipe = intel_dsc_get_vdsc_per_pipe(crtc_state);
+>> >     dsc_reg_num = min_t(int, ARRAY_SIZE(dsc_reg), vdsc_per_pipe);
+>> >
+>> > -   drm_WARN_ON_ONCE(&i915->drm, dsc_reg_num < vdsc_per_pipe);
+>> > +   drm_WARN_ON_ONCE(display->drm, dsc_reg_num < vdsc_per_pipe);
+>> >
+>> >     intel_dsc_get_pps_reg(crtc_state, pps, dsc_reg, dsc_reg_num);
+>> >
+>> >     *all_equal = true;
+>> >
+>> > -   val = intel_de_read(i915, dsc_reg[0]);
+>> > +   val = intel_de_read(display, dsc_reg[0]);
+>> >
+>> >     for (i = 1; i < dsc_reg_num; i++) {
+>> > -           if (intel_de_read(i915, dsc_reg[i]) != val) {
+>> > +           if (intel_de_read(display, dsc_reg[i]) != val) {
+>> >                     *all_equal = false;
+>> >                     break;
+>> >             }
+>> > @@ -845,22 +843,20 @@ static u32 intel_dsc_pps_read(struct
+>> > intel_crtc_state *crtc_state, int pps,
+>> >
+>> >  static u32 intel_dsc_pps_read_and_verify(struct intel_crtc_state
+>> > *crtc_state, int pps)  {
+>> > -   struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>> > -   struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+>> > +   struct intel_display *display = to_intel_display(crtc_state);
+>> >     u32 val;
+>> >     bool all_equal;
+>> >
+>> >     val = intel_dsc_pps_read(crtc_state, pps, &all_equal);
+>> > -   drm_WARN_ON(&i915->drm, !all_equal);
+>> > +   drm_WARN_ON(display->drm, !all_equal);
+>> >
+>> >     return val;
+>> >  }
+>> >
+>> >  static void intel_dsc_get_pps_config(struct intel_crtc_state
+>> > *crtc_state)  {
+>> > +   struct intel_display *display = to_intel_display(crtc_state);
+>> >     struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
+>> > -   struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>> > -   struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+>> >     int num_vdsc_instances =
+>> intel_dsc_get_num_vdsc_instances(crtc_state);
+>> >     u32 pps_temp;
+>> >
+>> > @@ -946,7 +942,7 @@ static void intel_dsc_get_pps_config(struct
+>> > intel_crtc_state *crtc_state)
+>> >
+>> >     vdsc_cfg->slice_chunk_size =
+>> > REG_FIELD_GET(DSC_PPS16_SLICE_CHUNK_SIZE_MASK, pps_temp);
+>> >
+>> > -   if (DISPLAY_VER(i915) >= 14) {
+>> > +   if (DISPLAY_VER(display) >= 14) {
+>> >             /* PPS 17 */
+>> >             pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 17);
+>> >
+>> > @@ -964,7 +960,6 @@ void intel_dsc_get_config(struct intel_crtc_state
+>> > *crtc_state)  {
+>> >     struct intel_display *display = to_intel_display(crtc_state);
+>> >     struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>> > -   struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+>> >     enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+>> >     enum intel_display_power_domain power_domain;
+>> >     intel_wakeref_t wakeref;
+>> > @@ -979,8 +974,8 @@ void intel_dsc_get_config(struct intel_crtc_state
+>> *crtc_state)
+>> >     if (!wakeref)
+>> >             return;
+>> >
+>> > -   dss_ctl1 = intel_de_read(dev_priv, dss_ctl1_reg(crtc, cpu_transcoder));
+>> > -   dss_ctl2 = intel_de_read(dev_priv, dss_ctl2_reg(crtc, cpu_transcoder));
+>> > +   dss_ctl1 = intel_de_read(display, dss_ctl1_reg(crtc, cpu_transcoder));
+>> > +   dss_ctl2 = intel_de_read(display, dss_ctl2_reg(crtc,
+>> > +cpu_transcoder));
+>> >
+>> >     crtc_state->dsc.compression_enable = dss_ctl2 & VDSC0_ENABLE;
+>> >     if (!crtc_state->dsc.compression_enable)
+>> > @@ -1020,8 +1015,7 @@ void intel_vdsc_state_dump(struct drm_printer
+>> > *p, int indent,
+>> >
+>> >  int intel_vdsc_min_cdclk(const struct intel_crtc_state *crtc_state)
+>> > {
+>> > -   struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>> > -   struct intel_display *display = to_intel_display(crtc);
+>> > +   struct intel_display *display = to_intel_display(crtc_state);
+>> >     int num_vdsc_instances =
+>> intel_dsc_get_num_vdsc_instances(crtc_state);
+>> >     int min_cdclk;
+>>
+>> --
+>> Jani Nikula, Intel
+
+-- 
+Jani Nikula, Intel
