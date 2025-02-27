@@ -4,45 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF73FC021BE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBD9DC19F2E
 	for <intel-xe@archiver.kernel.org>; Thu, 27 Feb 2025 10:13:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97F5010EA86;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B600810EA88;
 	Thu, 27 Feb 2025 10:13:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="i47imt6/";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="iaNbXpw4";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95F6C10EA88
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9532F10EA86
  for <intel-xe@lists.freedesktop.org>; Thu, 27 Feb 2025 10:13:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+ Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=b5rjD/6rk3kLB1xTS7IjbgH0k4asvfCmUk0GKGIxGC0=; b=i47imt6/ZcxbhNbY+5TMxY+snT
- WQVTqzO1Se964bDbd5KHyYhybKhfGBH8FVyVInJRRktYlwwV2SzrVcVazuL91yigRVatbtPNI8/O2
- W/hulgTJRhXNTthbghNAyNAxRLs12YWh6ZBiQx/hUmTcCUxIVrawB91cxtHPMfQohHD10vMuO+aJU
- uUvkjBZT17vyAL+jrUJaTIYc52fAVSXvTweESP43y/hddIdM3TodaEhgrYX6zaObatCIPOLsCdd5L
- BY8Sy8/TzrtgPLccB61mD/pHgjHZoJhtAzgp8JvFM7eGTvXf2tZmtcF+Ew+izxe4RsKsmFmAhgGBc
- BH75v1cQ==;
+ bh=nuwlWNpaMGJQez15pacmAKC5WVheMImm9+l2B4D4H/8=; b=iaNbXpw4y6zoDymICm1xFj3T5z
+ P5l/xoqR9t7luifcN7+qM6UTNwHpOiDX1bWqY+wsnDFTXkhmGUqL09CCUx8BhVFrDzIxbkUFwap/8
+ FbtJIvxiMMRnGz2D3Mz8GvR1rZcjr/sD2mQ98nmW4kp0LivFas/x0WQyKUEOguL9ZndhE+tykkok9
+ +FEa/Hrm8qR/frtny2li4YfeiGcCTDRarV7L4s9QXurNEgCyWtMaWkktFbslAkAcza8NGLc11VMIc
+ 34ntU6Y9wc9Kp77oU9UbPWaEY50nuHTEwglb7p3VSOYfUuldQpdLcE9GXXGprhGcEEp6cDZaI6SRP
+ C9raR5VQ==;
 Received: from [90.241.98.187] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tnat3-001XVh-HM; Thu, 27 Feb 2025 11:13:07 +0100
+ id 1tnat2-001XVd-QR; Thu, 27 Feb 2025 11:13:06 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>, stable@vger.kernel.org
-Subject: [PATCH 1/5] drm/xe: Fix GT "for each engine" workarounds
-Date: Thu, 27 Feb 2025 10:13:00 +0000
-Message-ID: <20250227101304.46660-2-tvrtko.ursulin@igalia.com>
+ Matt Roper <matthew.d.roper@intel.com>,
+ Gustavo Sousa <gustavo.sousa@intel.com>
+Subject: [PATCH v4 0/5] Workaround fixes, improvements, additions
+Date: Thu, 27 Feb 2025 10:12:59 +0000
+Message-ID: <20250227101304.46660-1-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250227101304.46660-1-tvrtko.ursulin@igalia.com>
-References: <20250227101304.46660-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -59,59 +58,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Any rules using engine matching are currently broken due RTP processing
-happening too in early init, before the list of hardware engines has been
-initialised.
+A few things here:
 
-Fix this by moving workaround processing to later in the driver probe
-sequence, to just before the processed list is used for the first time.
+1)
+I think per engine GT workarounds are broken. None apply since engines are not
+set up yet.
 
-Looking at the debugfs gt0/workarounds on ADL-P we notice 14011060649
-should be present while we see, before:
+2)
+I did a small audit of i915 vs xe workarounds and tunings with focus on ADL-P
+and found some deltas. But without access to the internal database and even
+up to date PRMs it is required if someone double checks the two.
 
- GT Workarounds
-     14011059788
-     14015795083
+Motivation being that there is some interest to make xe work on ADL-P as good as
+possible.
 
-And with the patch:
+3)
+With the split between workarounds and tunings it feels useful to expose the
+list of latter in debugfs too.
 
- GT Workarounds
-     14011060649
-     14011059788
-     14015795083
+v2:
+ * Attempt to fix first patch.
+ * L3 hashing patch tidy.
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+v3:
+ * New approach for "drm/xe: Fix GT "for each engine" workarounds".
+ * Review comments for "drm/xe/gen12: L3 recommended hashing mask".
+
+v4:
+ * Move 16011163337 from tunings to workarounds in a separate patch.
+ * Implement 1604555607 as a separate workaround.
+ * Move "L3 recommended hashing mask" to an engine workaround.
+ * Tidy naming s/gen12/xelp/.
+
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: <stable@vger.kernel.org> # v6.11+
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/xe/xe_gt.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 650a0ee56e97..d59c03bc05b7 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -361,9 +361,7 @@ int xe_gt_init_early(struct xe_gt *gt)
- 	if (err)
- 		return err;
- 
--	xe_wa_process_gt(gt);
- 	xe_wa_process_oob(gt);
--	xe_tuning_process_gt(gt);
- 
- 	xe_force_wake_init_gt(gt, gt_to_fw(gt));
- 	spin_lock_init(&gt->global_invl_lock);
-@@ -450,6 +448,8 @@ static int all_fw_domain_init(struct xe_gt *gt)
- 	}
- 
- 	xe_gt_mcr_set_implicit_defaults(gt);
-+	xe_wa_process_gt(gt);
-+	xe_tuning_process_gt(gt);
- 	xe_reg_sr_apply_mmio(&gt->reg_sr, gt);
- 
- 	err = xe_gt_clock_init(gt);
+Tvrtko Ursulin (5):
+  drm/xe: Fix GT "for each engine" workarounds
+  drm/xe/xelp: Move Wa_16011163337 from tunings to workarounds
+  drm/xe/xelp: Add Wa_1604555607
+  drm/xe/xelp: L3 recommended hashing mask
+  drm/xe: Add performance tunings to debugfs
+
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |  5 +-
+ drivers/gpu/drm/xe/xe_gt.c           |  8 +++-
+ drivers/gpu/drm/xe/xe_gt_debugfs.c   | 11 +++++
+ drivers/gpu/drm/xe/xe_gt_types.h     | 10 ++++
+ drivers/gpu/drm/xe/xe_tuning.c       | 72 ++++++++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_tuning.h       |  3 ++
+ drivers/gpu/drm/xe/xe_wa.c           | 14 ++++++
+ 7 files changed, 112 insertions(+), 11 deletions(-)
+
 -- 
 2.48.0
 
