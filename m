@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97B37C19776
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Feb 2025 00:12:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A49ABC021B8
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Feb 2025 00:12:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A96F10E17D;
-	Thu, 27 Feb 2025 00:12:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D32310E0B1;
+	Thu, 27 Feb 2025 00:12:41 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45E1810E17D;
- Thu, 27 Feb 2025 00:12:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5145610E0B1;
+ Thu, 27 Feb 2025 00:12:40 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/xe=5Fvm=3A_Impleme?=
- =?utf-8?q?nt_xe=5Fvm=5Fget=5Fproperty=5Fioctl?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe/xe=5Fvm=3A_Implement_xe?=
+ =?utf-8?q?=5Fvm=5Fget=5Fproperty=5Fioctl?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 27 Feb 2025 00:12:05 -0000
-Message-ID: <174061512528.2508468.4070430160739165223@b555e5b46a47>
+Date: Thu, 27 Feb 2025 00:12:40 -0000
+Message-ID: <174061516032.2508462.12885520886365298197@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250226225557.133076-1-jonathan.cavitt@intel.com>
 In-Reply-To: <20250226225557.133076-1-jonathan.cavitt@intel.com>
@@ -44,56 +44,67 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
 URL   : https://patchwork.freedesktop.org/series/145529/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-22f9cda3436b4fe965b5c5f31d2f2c1bcb483189
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit ef956f5e0e0f3defc038158f3b241d55e5f9e28d
-Author: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Date:   Wed Feb 26 22:55:56 2025 +0000
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_vm.c: In function ‘xe_pagefault_access_type_to_address_type’:
+../drivers/gpu/drm/xe/xe_vm.c:3288:9: error: ‘vma’ undeclared (first use in this function); did you mean ‘vm’?
+ 3288 |         vma = lookup_vma(vm, pf->page_addr);
+      |         ^~~
+      |         vm
+../drivers/gpu/drm/xe/xe_vm.c:3288:9: note: each undeclared identifier is reported only once for each function it appears in
+../drivers/gpu/drm/xe/xe_vm.c:3288:15: error: implicit declaration of function ‘lookup_vma’ [-Werror=implicit-function-declaration]
+ 3288 |         vma = lookup_vma(vm, pf->page_addr);
+      |               ^~~~~~~~~~
+cc1: some warnings being treated as errors
+make[7]: *** [../scripts/Makefile.build:207: drivers/gpu/drm/xe/xe_vm.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:465: drivers/gpu/drm/xe] Error 2
+make[5]: *** [../scripts/Makefile.build:465: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:465: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:465: drivers] Error 2
+make[2]: *** [/kernel/Makefile:1989: .] Error 2
+make[1]: *** [/kernel/Makefile:251: __sub-make] Error 2
+make: *** [Makefile:251: __sub-make] Error 2
 
-    drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
-    
-    Add support for userspace to get various properties from a specified VM.
-    The currently supported properties are:
-    
-    - The number of engine resets the VM has observed
-    - The number of exec queue bans the VM has observed, up to the last 50
-      relevant ones, and how many of those were caused by faults.
-    
-    The latter request also includes information on the exec queue bans,
-    such as the ID of the banned exec queue, whether the ban was caused by a
-    pagefault or not, and the address and address type of the associated
-    fault (if one exists).
-    
-    Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-    Suggested-by: Matthew Brost <matthew.brost@intel.com>
-+ /mt/dim checkpatch 8541a64154cd8b9c07977dedc1d22883f43279a0 drm-intel
-35a2651335bb drm/xe/xe_gt_pagefault: Migrate lookup_vma to xe_vm.h
--:84: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#84: FILE: drivers/gpu/drm/xe/xe_vm.h:274:
-+
-+
-
-total: 0 errors, 0 warnings, 1 checks, 67 lines checked
-c27a745e0810 drm/xe/xe_exec_queue: Add ID param to exec queue struct
-9716297e102a drm/xe/xe_gt_pagefault: Migrate pagefault struct to header
-9839144569cf drm/xe/xe_vm: Add per VM pagefault info
-ce0efa900b91 drm/xe/xe_vm: Add per VM reset stats
-ef956f5e0e0f drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
--:188: WARNING:LONG_LINE: line length of 129 exceeds 100 columns
-#188: FILE: include/uapi/drm/xe_drm.h:122:
-+#define DRM_IOCTL_XE_VM_GET_PROPERTY		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM_GET_PROPERTY, struct drm_xe_vm_get_property)
-
-total: 0 errors, 1 warnings, 0 checks, 225 lines checked
+[00:12:06] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[00:12:11] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
