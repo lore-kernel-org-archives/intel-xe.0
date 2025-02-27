@@ -4,57 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54FA6C282CE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C78DC282CD
 	for <intel-xe@archiver.kernel.org>; Thu, 27 Feb 2025 19:15:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBEBA10EB7C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5466910EB7A;
 	Thu, 27 Feb 2025 19:15:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iZHq7S15";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n4NhrMnE";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23A3910EB67;
- Thu, 27 Feb 2025 19:15:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75A0F10EB67;
+ Thu, 27 Feb 2025 19:15:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740683703; x=1772219703;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ihH9wBnZzhdNjMrP46o0SW/6Cb8X5ov8UZ6nFxqDJAE=;
- b=iZHq7S15caMhe5s8QBBfg6CHQ4huw4/vgLZ7qE5jp/kj9a3rN9F48Kkg
- vFsJnGaE1ScX2/i4RDVMKjs08aUALGLb6k30hr/sAiCqSqwfHYT6+wJcH
- 4NS+AE73mlfHsz069EIuWkcAVVxhrXiaZ4elRKu5u68I9WmaYrbox7AgW
- Ha4hKfSa8cbHWwJ84FgfTPVzav1go6i7KrqWYToYDpM7Z+whPd6uw3UoH
- /JGg11bEVvLnrpFRx4u3676BKTaJaBzxxeVpUHqXZdOfJ2zPv7vsu2qQZ
- Y996oFVXDnudZzk303F6V2oWH/b6lCLgVp4NAYYuPnpkSyqXeHcvQw5vE g==;
-X-CSE-ConnectionGUID: 5N/uLpTxRD+BeQHhYuPPaQ==
-X-CSE-MsgGUID: IwoH3pylQVi2QwuOic6hWw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11358"; a="41850060"
-X-IronPort-AV: E=Sophos;i="6.13,320,1732608000"; d="scan'208";a="41850060"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2025 11:15:00 -0800
-X-CSE-ConnectionGUID: ILU3RFI6THWlW43wgBPOdw==
-X-CSE-MsgGUID: ed3BMxscRs2KUHB4S7/PfA==
+ t=1740683702; x=1772219702;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:to:cc;
+ bh=eQ/VeTCDK445aVZBCX9bVcG8UynCP9F4zaKk5ytsytY=;
+ b=n4NhrMnEPcd3xjE8T2tCF5ESdPaP+AA3hbffQFiGq3e4QaDOrQrQmHnt
+ xU53l0GCoDSRbf5avRNazAT6YWkIWfrJG5z11HjFQC+yE+5kCIyDOrWX+
+ gx08DjTQeYDAKtqyJWKRiB+z9l7MFpHr5j4lrQY4EoFGGFXVwqWK6/ram
+ a78z/n8EkQKBP83E9rfBsUc/iubq9+IiE9VGVMhkCNtRBzLtsOjKhdvy8
+ T3zBLFEEk5EjfdbiMek6zX9zt00tQ+dcBJLD09g4SdNNg+PpudkD3+s0C
+ yFVGVSmLR/RyMEkjS4dBSJv/wcvlEtvg9+EhTgVyQwws/plFeSvfVmjOY A==;
+X-CSE-ConnectionGUID: qcwnWF6kS8O0Zpu1bXYAvQ==
+X-CSE-MsgGUID: p1KJ6HpTSCS160DbfOKumQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11358"; a="45510006"
+X-IronPort-AV: E=Sophos;i="6.13,320,1732608000"; d="scan'208";a="45510006"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2025 11:15:01 -0800
+X-CSE-ConnectionGUID: esqtmx8LR2CKuqWN4YRxAw==
+X-CSE-MsgGUID: iJe64OJZSVOmnEXPiwRJTA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,320,1732608000"; d="scan'208";a="117775301"
-Received: from dut4025lnl.fm.intel.com ([10.105.8.176])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+X-IronPort-AV: E=Sophos;i="6.13,320,1732608000"; d="scan'208";a="122242134"
+Received: from dnelso2-mobl.amr.corp.intel.com (HELO
+ gjsousa-mobl2.corp.amr.intel.com) ([10.125.108.70])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Feb 2025 11:15:00 -0800
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
- joonas.lahtinen@linux.intel.com, matthew.brost@intel.com,
- jianxun.zhang@intel.com, dri-devel@lists.freedesktop.org
-Subject: [PATCH v2 7/8] drm/xe/xe_gt_pagefault: Add address_type field to
- pagefaults
-Date: Thu, 27 Feb 2025 19:14:56 +0000
-Message-ID: <20250227191457.84035-8-jonathan.cavitt@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250227191457.84035-1-jonathan.cavitt@intel.com>
-References: <20250227191457.84035-1-jonathan.cavitt@intel.com>
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+Date: Thu, 27 Feb 2025 16:14:25 -0300
+Subject: [PATCH] drm/i915/xe3lpd: Map POWER_DOMAIN_AUDIO_PLAYBACK to DC_off
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250227-xe3lpd-power-domain-audio-playback-v1-1-5765f21da977@intel.com>
+X-B4-Tracking: v=1; b=H4sIAJC5wGcC/x3NQQqDMBBA0avIrDsQR1Jsr1K6GJNRB20SEmwt4
+ t0bunyb/w8oklUK3JsDsry1aAwV7aUBN3OYBNVXAxmyhuiKu3Rr8pjiRzL6+GINyJvXiGnl78B
+ uwX4cyNr2ZlzHUEMpy6j7f/J4nucPaA6ztXQAAAA=
+X-Change-ID: 20250226-xe3lpd-power-domain-audio-playback-8fb255190c3a
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Kai Vehmanen <kai.vehmanen@linux.intel.com>, 
+ Gustavo Sousa <gustavo.sousa@intel.com>
+X-Mailer: b4 0.14.2
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,53 +71,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a new field to the xe_pagefault struct, address_type, that tracks
-the type of fault the pagefault incurred.
+In Xe3_LPD, display audio has the core audio logic located in PG0 and
+per-transcoder logic in the same power well that provides power for the
+transcoder [1].
 
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+For stuff like audio device enumeration, we need to ensure that PG0 is
+turned on. For playback, we additionally need the transcoder's power
+well to be enabled.
+
+That essentially means that, for audio playback, there isn't a special
+power well that needs to be enabled, because modeset sequences will
+ensure that the required power wells are enabled.
+
+That said, there might be cases where PG0 could be disabled due to
+display entering DC6 while the audio driver tries to interact with the
+graphics driver for stuff like audio device enumeration.
+
+We recently hit that kind of scenario, where "aplay -l" was being used
+to enumerate audio devices on a PTL machine with PSR enabled and no
+external displays attached.
+
+Since intel_audio_component_get_power() uses
+POWER_DOMAIN_AUDIO_PLAYBACK, make sure to map that power domain to
+DC_off power well, so that we disable dynamic DC states (which includes
+DC6) while the audio driver needs display audio power.
+
+[1] The core-audio vs per-transcoder logic split is not really new in
+    Xe3_LPD. This is also true for previous display generations. We need
+    to figure out the correct version where this split happened so that
+    we can apply fixes in the current power domain mapping.
+
+Bspec: 72519
+Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_pagefault.c | 3 +++
- drivers/gpu/drm/xe/xe_gt_pagefault.h | 1 +
- 2 files changed, 4 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display_power_map.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index e23b9d33afa5..aae94dc3a99f 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -204,11 +204,13 @@ static int handle_pagefault(struct xe_gt *gt, struct xe_pagefault *pf)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+index 0c8ac1af6db7e005b9bf5b33d1c2e4cebbde2524..572383a817daa749f3579647855c2a858e010716 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+@@ -1694,6 +1694,7 @@ I915_DECL_PW_DOMAINS(xe3lpd_pwdoms_dc_off,
+ 	XE3LPD_PW_C_POWER_DOMAINS,
+ 	XE3LPD_PW_D_POWER_DOMAINS,
+ 	POWER_DOMAIN_AUDIO_MMIO,
++	POWER_DOMAIN_AUDIO_PLAYBACK,
+ 	POWER_DOMAIN_INIT);
  
- 	vma = lookup_vma(vm, pf->page_addr);
- 	if (!vma) {
-+		pf->address_type = DRM_XE_FAULT_ADDRESS_TYPE_NONE_EXT;
- 		err = -EINVAL;
- 		goto unlock_vm;
- 	}
- 
- 	if (xe_vma_read_only(vma) && pf->access_type != XE_PAGEFAULT_ACCESS_TYPE_READ) {
-+		pf->address_type = DRM_XE_FAULT_ADDRESS_TYPE_WRITE_INVALID_EXT;
- 		err = -EPERM;
- 		goto unlock_vm;
- 	}
-@@ -276,6 +278,7 @@ static bool get_pagefault(struct pf_queue *pf_queue, struct xe_pagefault *pf)
- 		pf->asid = FIELD_GET(PFD_ASID, desc->dw1);
- 		pf->vfid = FIELD_GET(PFD_VFID, desc->dw2);
- 		pf->access_type = FIELD_GET(PFD_ACCESS_TYPE, desc->dw2);
-+		pf->address_type = 0;
- 		pf->fault_type = FIELD_GET(PFD_FAULT_TYPE, desc->dw2);
- 		pf->page_addr = (u64)(FIELD_GET(PFD_VIRTUAL_ADDR_HI, desc->dw3)) <<
- 			PFD_VIRTUAL_ADDR_HI_SHIFT;
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.h b/drivers/gpu/drm/xe/xe_gt_pagefault.h
-index 33616043d17a..969f7b458d3f 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.h
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.h
-@@ -17,6 +17,7 @@ struct xe_pagefault {
- 	u16 pdata;
- 	u8 vfid;
- 	u8 access_type;
-+	u8 address_type;
- 	u8 fault_type;
- 	u8 fault_level;
- 	u8 engine_class;
+ static const struct i915_power_well_desc xe3lpd_power_wells_dcoff[] = {
+
+---
+base-commit: 4a2f1c823287a84dc0bd46c5a93545dfe49967f2
+change-id: 20250226-xe3lpd-power-domain-audio-playback-8fb255190c3a
+
+Best regards,
 -- 
-2.43.0
+Gustavo Sousa <gustavo.sousa@intel.com>
 
