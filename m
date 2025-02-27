@@ -4,55 +4,170 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7FDAC1B0FF
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Feb 2025 15:53:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5644DC19F2E
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Feb 2025 16:04:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92DEC10EB28;
-	Thu, 27 Feb 2025 15:53:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14EF110EB27;
+	Thu, 27 Feb 2025 16:04:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y2lgOlAA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lvvSlkw3";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B22110E396
- for <intel-xe@lists.freedesktop.org>; Thu, 27 Feb 2025 15:53:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14B4910EB24;
+ Thu, 27 Feb 2025 16:04:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740671631; x=1772207631;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=HjQOOYUnYYqh+H4NTGnrL1HxIKg+/SkvBa6FUW7nYiY=;
- b=Y2lgOlAAYF66VcHmVPK+peiMO75P9P7cUg/Hecupita8nXBaLkoaxTZo
- 2eRr5KAI3YEDoDKcKC3JdRk4pO8LGO/2wNmiok35nuYx2F93vXc6dY6qj
- dO5Rlcgbxp19CaFZObRwf/6qmopsEBXrcaPuscOWcbHLD+uw/rop2r0+S
- mi7iqFRXCzx6EADgkLFKgJCi/+cZ/PQ62386/zUWvLdKkMwjjcYvJWe0p
- k12eN96JNirH5U2JQGNRJR8HPj5xMmgdZwdNU5b7xeRzZpftbda05KOOf
- +d8Eyzpwcrhi577GLc0cTN7aUJqhjQFxwn6fiNFb06P6dJKmpQtzafvwB Q==;
-X-CSE-ConnectionGUID: 0ohiOjB6QUa9fAhyHtJo3Q==
-X-CSE-MsgGUID: osM5PU/XS0ezxLNEr9NgAA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11358"; a="41273512"
-X-IronPort-AV: E=Sophos;i="6.13,320,1732608000"; d="scan'208";a="41273512"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2025 07:53:50 -0800
-X-CSE-ConnectionGUID: zxf0d+ARRmyrkQFrxT6SSg==
-X-CSE-MsgGUID: nEunKjEeTi+2Kn2EI3rsxw==
+ t=1740672270; x=1772208270;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=5jx+vdjEHLu2rRNHQMGU9RxJqL2IxTg3c5NR9LCipXU=;
+ b=lvvSlkw3pqvpDywDOI0y/IbDba/yhRaVELsQ6TTcVPnbB1//9d8CK28r
+ DN1/eBoZ538LE9s29o/urtA30mDOCOvqS3TODLVq8l9Ba5qQldMVY38JT
+ CmiW0rtD0uvXLbxBNZUA9X+lV9HQw5PABByf5lsPnpWWmJxOcIEwYgAMe
+ XV4DHH22atinbYQyjG1RrBsGQRQN5v4V2VdDdXSqvbD6e9hI7HDRMA5V1
+ 47hpN4PlymRHc98lPu8YPbbnlLAq+rQ85uYLnsJjofBZI19RpK99V6rt/
+ RW8pDNPn6FNjjyFuNH39BLRTlayT7YoHjasCbkzznjnC5RWmxU2+KCvtp A==;
+X-CSE-ConnectionGUID: 3CJ035b3TLqwgbGeSpXtDw==
+X-CSE-MsgGUID: 6U1T/C38TCmFElTVaVxaLw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11358"; a="41594356"
+X-IronPort-AV: E=Sophos;i="6.13,320,1732608000"; d="scan'208";a="41594356"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2025 08:04:27 -0800
+X-CSE-ConnectionGUID: N/QwLfX/RdyhX3/+3LVsyw==
+X-CSE-MsgGUID: ircMNYYLTBKe3VrTdnLp0A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="121188680"
-Received: from szeng-desk.jf.intel.com ([10.165.21.160])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2025 07:53:50 -0800
-From: Oak Zeng <oak.zeng@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Thomas.Hellstrom@linux.intel.com, matthew.brost@intel.com,
- jonathan.cavitt@intel.com
-Subject: [PATCH v6 2/3] drm/xe: Clear scratch page on vm_bind
-Date: Thu, 27 Feb 2025 11:09:51 -0500
-Message-Id: <20250227160952.807885-3-oak.zeng@intel.com>
-X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20250227160952.807885-1-oak.zeng@intel.com>
-References: <20250227160952.807885-1-oak.zeng@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,320,1732608000"; d="scan'208";a="116871740"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 27 Feb 2025 08:04:27 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Thu, 27 Feb 2025 08:04:25 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14 via Frontend Transport; Thu, 27 Feb 2025 08:04:24 -0800
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.47) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Thu, 27 Feb 2025 08:03:55 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=xPxmSsFxhnt7Hs/JVZG/7liHb6P+oqXg8ljk/Cnboy/FLS8YH3R7S6Ru11SIvhWvG59nyHXBG8ZMoQ76kw6akz37vK/PW86ygZV5bwOnwR6aml4gpVCZ0MBTIIC70z6331NgKSbZZOGwnAg+yutBDSqIXWIZyEV0Wj78kBCId1DLHEam4fA/c+LeZOrOSjDx9ycpV/h49H3YZw6LbSdr7mZ+zAs4vFqZyQBFW8+QfjEGVsISwpFCgThXUzIYlCfjSkFUX3lxafJQonCY47C5mrly5v45Wcs4oOegC2PMgLM/+Hd9TGx8kxUjzEo89Fzh+PTYVX+jH04tYQz3v4tv0A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aDFh+eiix558p/g5a14h2Fa0mbEXvZeO9Kx59LjEgIE=;
+ b=Q/LFneDU0FcH9bOULgy3w/eGURgdhwTePthNscjHGpd7EJvZx9nZV4w+khjbw3kF63d6zuspcDaWK4ErAXIPB+5NSchV+hxrEZLcOMIB+l58rw4aPRtmEkrAhV0QL3GFrPr+eCQ549zM0GYj6X3rdDuPfJL7G9S3uPDrT1Lx2+W+cz3kC6sb+QiYtJS+mwpZDJzc77tKvTHXIEYVGgLgy1DPE8Ub+2CnMSskAhWNaLctpsNGPmKL3Cj2mZ811l5/c7s5VNKfq6MUUBwIJFQXhtwVuSyE6ALhuHObIi06o2Ceufy72B9xpH7DhejyK5utxn2WILrbkF4snvaYLEiAlQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by SN7PR11MB6850.namprd11.prod.outlook.com (2603:10b6:806:2a2::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.19; Thu, 27 Feb
+ 2025 16:03:38 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44%3]) with mapi id 15.20.8489.018; Thu, 27 Feb 2025
+ 16:03:37 +0000
+Date: Thu, 27 Feb 2025 10:03:33 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Su Hui <suhui@nfschina.com>
+CC: <thomas.hellstrom@linux.intel.com>, <rodrigo.vivi@intel.com>,
+ <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+ <tzimmermann@suse.de>, <airlied@gmail.com>, <simona@ffwll.ch>,
+ <ilpo.jarvinen@linux.intel.com>, <andriy.shevchenko@linux.intel.com>,
+ <michael.j.ruhl@intel.com>, <intel-xe@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+ <kernel-janitors@vger.kernel.org>
+Subject: Re: [PATCH] drm/xe: Select INTEL_VSEC to fix build dependency
+Message-ID: <bwirms6gvkvu7guxlzmmlbxb3df6qctuqedarccqer4lsu3ehx@5n3jg2ujryxb>
+References: <20250227073205.1248282-1-suhui@nfschina.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20250227073205.1248282-1-suhui@nfschina.com>
+X-ClientProxiedBy: MW4PR03CA0278.namprd03.prod.outlook.com
+ (2603:10b6:303:b5::13) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SN7PR11MB6850:EE_
+X-MS-Office365-Filtering-Correlation-Id: a7ea4484-1731-4fa7-f0a3-08dd57484b74
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|7416014|376014|7053199007; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?JhT2c+OlqFsEKcXg0R4BAOR95yiAjxSV2wE3nrVdXfgZUJa0CU4mxs3mVn2i?=
+ =?us-ascii?Q?+7EvO2rRwrPv1rEkb1eBUIs7f36HqSUy2S27LH77rICflZ0wHZSIZ6dbFhWZ?=
+ =?us-ascii?Q?KusPNrqW7GRG+l1oqKYWnk1CLTKo2kLmMkagXaHorqtzD078eoYhzaFQwRRR?=
+ =?us-ascii?Q?bYDLhmyhQUi0IXUMch2icsQsmnrGDZJ51HfcAgc5oVv+rR4DvO/O8qKoISPI?=
+ =?us-ascii?Q?rmBPbJ0gb6trBftSQbWJ5GQlhG7iSVxrCCMYr1qPOuW6K3/MpE6ZZ+yR8LRE?=
+ =?us-ascii?Q?hynf308nb4EFaW/B4d4U82Q0l9S26a15ZATWK09MhH/dr3N5elWc1f56F3x5?=
+ =?us-ascii?Q?Me5T9AYF79XEPsjORjz+YsIkGZO8AoBQ4D0PQRYtmSRibslCjeCo/NBRVbBv?=
+ =?us-ascii?Q?C5GTJeax5u/HAT/0fN2RUXHhimckVFBwhw/Qtc3sCD/KcwmTGmhXW+nIFlAM?=
+ =?us-ascii?Q?vXv5XMXYL1RXuZJtQiKBv0BxWLDikDAnANwzTGlB7ync1xSlbzMoYgdPeMQh?=
+ =?us-ascii?Q?G5Tq4WbGdqxy+oc2K0hmwTlrcMw02o2F5VkBXfbPq5m9fuFuf2XnDUx2mxX+?=
+ =?us-ascii?Q?w+0coGMrcmWE+I60ToC11dEIcEQaTIzLCrxVfQAL/eqC4/Ll3Iif+PL9w5uF?=
+ =?us-ascii?Q?gvFm+wM7kTPbrXk22GhD/NiFXQLWS9Bo+KtQNXXnUbStPzoigCwLGKTCJnWt?=
+ =?us-ascii?Q?q58Ao8xt2EKDF6JlVBcaDVMQxbyJj8dMUUIJCyokLlLTt0yuAsxKwHfWST5P?=
+ =?us-ascii?Q?kzidxsjvEHj2m3mKbHGajh0o5ZwTE7ztIKdK60kmQUutPm3k/8qtLVHJnrl6?=
+ =?us-ascii?Q?5ohGmSrrpKV0baG9i83bVrx/fb5sIhfe8rXqJ8rh8FfSqeBP4wXRSbNU0cDs?=
+ =?us-ascii?Q?ehGYTxHlNZmKeXFD3LvSmYqIFl/9+NwL27xfc9fxSFPqBsGMefYwrK3l6YVn?=
+ =?us-ascii?Q?XxHWXMryH66SJvpLIoGLdfi7+Bi06TSRhkbCSRYiqQO9NQycsnyMLWow1vaK?=
+ =?us-ascii?Q?s4ItftIf4deKwt/1n0f6sqXsrbX5pMC+4A7jaZdz82SO/zE9uhjtMkoge/bY?=
+ =?us-ascii?Q?a2hdobUHskoODdI9FuOC1dAopgSqnlTUw2PZvecuC3nBzW9UCIwjtYaSyihY?=
+ =?us-ascii?Q?4t5KpYVS5nRlOmEUzzxvA16XTe50bmalRolIO4oZ3v8aFOsf17xY09csZhvG?=
+ =?us-ascii?Q?SPcaVTlaOrv1lxEZoV2IUO/s+rtO/U8MRIbdodgToUmVsFwfzZsxeJb7DoU5?=
+ =?us-ascii?Q?o7qU4/LpzYVh+V3mJoeuez7tCk7GBUKCbTYwtMx/RPg2JI6orR17Occo1lR2?=
+ =?us-ascii?Q?b/fGzSgDHb8HBKizLuSrUn5AQS/jXcgW7fE5aLfuq4iYf6T+VxrXPw1M4iz2?=
+ =?us-ascii?Q?8vNSYqafFkrQH/ZQL8BOwr29h+No?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(7416014)(376014)(7053199007); DIR:OUT;
+ SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?LaBUAZhi6JOFI2jQ5Nl4ECP0ht/+nMwYDBAnTmpWPzRAFzqVIVt2mi2FnV/O?=
+ =?us-ascii?Q?hDCizOnnN0mTA+cYi2W1Q2qz7wkeSA2s9ROOBhIdcos/BEEJ0ZTqo1UKmAjD?=
+ =?us-ascii?Q?hwUZa8hBQDvBdLxiw2bnW4PlYl7UxiXs5TU7lXRJEGhU+WVs0guB+mgcyYyy?=
+ =?us-ascii?Q?ZmEI39ZaqdFhhCpDl6tNv2adSYL1AFYGZqDDDWAX+xT+LgwSudLPYpggfPmk?=
+ =?us-ascii?Q?XUEpiqSHfbs5t/Yd+mFG3UFfZSzaUtvHg83O0AH+bCKtvuca2ZqnBFJ1GuPi?=
+ =?us-ascii?Q?btfO5oIkwYT/zrkeWd+rIkxu3eDuYX+NWGhzIX44c4TRf1B9ulFc74R2Hkp8?=
+ =?us-ascii?Q?GXAzs0HiegSDhC4n/ITkkPih8KQRzE2ktxzSsOFomMysVpUoM2hbCZp6LKCi?=
+ =?us-ascii?Q?4jAF/WZPf5HRpAWqUpIOFhZunK2k9OyIoEFMERjAnPirZDGm/947UsOVePDP?=
+ =?us-ascii?Q?FOT7Y3MFhFwWDzAD/BlXpI0m2mOdUZpFRNyNySh9uNCdj8v8wA/KJZ2LHfBq?=
+ =?us-ascii?Q?kIlOOtNwyaZwkjuGRDQ/RcffaDFOkZ4qmYvzldfVOoFyNDGYtLIo0M781CEk?=
+ =?us-ascii?Q?mFDxQ+KPXjhqdFNu7wDxIGWFzXjSl/w5yE+f+nPKs2bIq2SoqchVhwkQiM46?=
+ =?us-ascii?Q?MkSOR7NvLR2oWQ1RQlcUGmKu7pZ4hDCnu85Mt2Pf+P6NKrCFJhB8D0pPo3S7?=
+ =?us-ascii?Q?EFzFsba96HHfmBME6hKChp4ZQKK/8sMfxaciRjiBKqSa78fAR/SiyFKMXarm?=
+ =?us-ascii?Q?JHEH95Va3ajCPmSGtCNLWhi5XNGXmh3YYusVD4VSq9CkjZ5ntd/eBFuyuOP2?=
+ =?us-ascii?Q?nbDfycD9g3xJMkaKAFdMf58+S5hQcWFb3zg0gLwCfQI5+JdBeuDZG1SjIefN?=
+ =?us-ascii?Q?G4BeQjr9kyaovvWBCUzCTcNnWSjdYr9GrBx61M0Q9ZVEJzdFIm22CywrlXym?=
+ =?us-ascii?Q?HzWAFbjFZOHogNaybt31TBCpfkHB+ldogSaG+vABBxliSM4wMWh8+0Pta54A?=
+ =?us-ascii?Q?AcPukVrMaVUv9/7L3ZfJs5vF5DVOAp58kX3paf/Iy5W6LxeGDcZxW4tvuRTG?=
+ =?us-ascii?Q?994fMLCBbfu9Y70YzWkxB5zJZDqy0CtaDSlrTOOT3LiPfe1zLLJegmKJvcPC?=
+ =?us-ascii?Q?CZMtOUNwBetHICuVJ3Drr+yhRmBMBsLpjFvYklR5ZhVfgPkNVUaQUxCo5Wlk?=
+ =?us-ascii?Q?JZaDWqU/a7DjMgVkTa/tmqFv2i8OyLoxnWMMaHubS4QV+toVhyX7BqTXEJJi?=
+ =?us-ascii?Q?MOK1G44xUcZsb/+BRsjCseZtZKYZg+8CGHJDs+aUAIzUc47jzhELnbEHQkbQ?=
+ =?us-ascii?Q?2YsxBILtAxt3irrpkdBeSAolRLN+Jqga4ppxTzuv1/d/YjXDIcGART8AD1d1?=
+ =?us-ascii?Q?TCj13f7lNUmyL532Pr3BIf5oyLECogJMT+FkzIQzUSo0XtgDviB+mXz0yNYf?=
+ =?us-ascii?Q?L8JunZI9jg3OtT3CJhckbDxmMjiGscMNxoGwOoVP/I/7yqPPJyKsZf4KNNb+?=
+ =?us-ascii?Q?A3M9Kop62AIXmVheVFk0G+k4Jy5+ure/8LB+T/pryZnKvh38IoVvqAUZvida?=
+ =?us-ascii?Q?JWIzz5py1ATPjyrPeDIL9VjQNqOsQNquU6dJGxeRl4OVycbjHv3Wx1TZtjKw?=
+ =?us-ascii?Q?7w=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: a7ea4484-1731-4fa7-f0a3-08dd57484b74
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2025 16:03:37.5045 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hXTbbC32N1Vib4/HoeKDFUNaA81QpYwHpuMUcMiu00etBQOIjIh3bvuYeZfIPAKoIxY2jRZVSkIL+E16uyAKq/wwARt2XGC0a0X/cA/sj4U=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6850
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,378 +182,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When a vm runs under fault mode, if scratch page is enabled, we need
-to clear the scratch page mapping on vm_bind for the vm_bind address
-range. Under fault mode, we depend on recoverable page fault to
-establish mapping in page table. If scratch page is not cleared, GPU
-access of address won't cause page fault because it always hits the
-existing scratch page mapping.
+On Thu, Feb 27, 2025 at 03:32:06PM +0800, Su Hui wrote:
+>When build randconfig, there is an error:
+>ld: drivers/gpu/drm/xe/xe_vsec.o: in function `xe_vsec_init':
+>xe_vsec.c:(.text+0x182): undefined reference to `intel_vsec_register'
+>
+>When CONFIG_DRM_XE=y and CONFIG_INTEL_VSEC=m is set, ld couldn't find
+>'intel_vsec_register'. Select INTEL_VSEC to fix this error.
+>
+>Fixes: 0c45e76fcc62 ("drm/xe/vsec: Support BMG devices")
+>Signed-off-by: Su Hui <suhui@nfschina.com>
+>---
+> drivers/gpu/drm/xe/Kconfig | 1 +
+> 1 file changed, 1 insertion(+)
+>
+>diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+>index b51a2bde73e2..7a60d96d2dd6 100644
+>--- a/drivers/gpu/drm/xe/Kconfig
+>+++ b/drivers/gpu/drm/xe/Kconfig
+>@@ -44,6 +44,7 @@ config DRM_XE
+> 	select WANT_DEV_COREDUMP
+> 	select AUXILIARY_BUS
+> 	select HMM_MIRROR
+>+	select INTEL_VSEC
 
-When vm_bind with IMMEDIATE flag, there is no need of clearing as
-immediate bind can overwrite the scratch page mapping.
+intel_vsec is an x86 platform driver. I think we probably want to add a
+config that depends on INTEL_VSEC rather than selecting it like this.
+At the very least we need and `if x86` and also make sure the driver
+works without that part.
 
-So far only is xe2 and xe3 products are allowed to enable scratch page
-under fault mode. On other platform we don't allow scratch page under
-fault mode, so no need of such clearing.
+Lucas De Marchi
 
-v2: Rework vm_bind pipeline to clear scratch page mapping. This is similar
-to a map operation, with the exception that PTEs are cleared instead of
-pointing to valid physical pages. (Matt, Thomas)
 
-TLB invalidation is needed after clear scratch page mapping as larger
-scratch page mapping could be backed by physical page and cached in
-TLB. (Matt, Thomas)
-
-v3: Fix the case of clearing huge pte (Thomas)
-
-Improve commit message (Thomas)
-
-v4: TLB invalidation on all LR cases, not only the clear on bind
-cases (Thomas)
-
-v5: Misc cosmetic changes (Matt)
-    Drop pt_update_ops.invalidate_on_bind. Directly wire
-    xe_vma_op.map.invalidata_on_bind to bind_op_prepare/commit (Matt)
-
-v6: checkpatch fix (Matt)
-
-Signed-off-by: Oak Zeng <oak.zeng@intel.com>
----
- drivers/gpu/drm/xe/xe_pt.c       | 93 ++++++++++++++++++++------------
- drivers/gpu/drm/xe/xe_vm.c       | 29 ++++++++--
- drivers/gpu/drm/xe/xe_vm_types.h |  2 +
- 3 files changed, 87 insertions(+), 37 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 1ddcc7e79a93..4e16df96f3e4 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -268,6 +268,8 @@ struct xe_pt_stage_bind_walk {
- 	 * granularity.
- 	 */
- 	bool needs_64K;
-+	/* @clear_pt: clear page table entries during the bind walk */
-+	bool clear_pt;
- 	/**
- 	 * @vma: VMA being mapped
- 	 */
-@@ -415,6 +417,10 @@ static bool xe_pt_hugepte_possible(u64 addr, u64 next, unsigned int level,
- 	if (xe_vma_is_null(xe_walk->vma))
- 		return true;
- 
-+	/* if we are clearing page table, no dma addresses*/
-+	if (xe_walk->clear_pt)
-+		return true;
-+
- 	/* Is the DMA address huge PTE size aligned? */
- 	size = next - addr;
- 	dma = addr - xe_walk->va_curs_start + xe_res_dma(xe_walk->curs);
-@@ -497,21 +503,27 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
- 
- 		XE_WARN_ON(xe_walk->va_curs_start != addr);
- 
--		pte = vm->pt_ops->pte_encode_vma(is_null ? 0 :
--						 xe_res_dma(curs) + xe_walk->dma_offset,
--						 xe_walk->vma, pat_index, level);
--		pte |= xe_walk->default_pte;
-+		if (xe_walk->clear_pt) {
-+			pte = 0;
-+		} else {
-+			pte = vm->pt_ops->pte_encode_vma(is_null ? 0 :
-+							 xe_res_dma(curs) +
-+							 xe_walk->dma_offset,
-+							 xe_walk->vma,
-+							 pat_index, level);
-+			pte |= xe_walk->default_pte;
- 
--		/*
--		 * Set the XE_PTE_PS64 hint if possible, otherwise if
--		 * this device *requires* 64K PTE size for VRAM, fail.
--		 */
--		if (level == 0 && !xe_parent->is_compact) {
--			if (xe_pt_is_pte_ps64K(addr, next, xe_walk)) {
--				xe_walk->vma->gpuva.flags |= XE_VMA_PTE_64K;
--				pte |= XE_PTE_PS64;
--			} else if (XE_WARN_ON(xe_walk->needs_64K)) {
--				return -EINVAL;
-+			/*
-+			 * Set the XE_PTE_PS64 hint if possible, otherwise if
-+			 * this device *requires* 64K PTE size for VRAM, fail.
-+			 */
-+			if (level == 0 && !xe_parent->is_compact) {
-+				if (xe_pt_is_pte_ps64K(addr, next, xe_walk)) {
-+					xe_walk->vma->gpuva.flags |= XE_VMA_PTE_64K;
-+					pte |= XE_PTE_PS64;
-+				} else if (XE_WARN_ON(xe_walk->needs_64K)) {
-+					return -EINVAL;
-+				}
- 			}
- 		}
- 
-@@ -519,7 +531,7 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
- 		if (unlikely(ret))
- 			return ret;
- 
--		if (!is_null)
-+		if (!is_null && !xe_walk->clear_pt)
- 			xe_res_next(curs, next - addr);
- 		xe_walk->va_curs_start = next;
- 		xe_walk->vma->gpuva.flags |= (XE_VMA_PTE_4K << level);
-@@ -590,6 +602,7 @@ static const struct xe_pt_walk_ops xe_pt_stage_bind_ops = {
-  * @entries: Storage for the update entries used for connecting the tree to
-  * the main tree at commit time.
-  * @num_entries: On output contains the number of @entries used.
-+ * @clear_pt: Clear the page table entries.
-  *
-  * This function builds a disconnected page-table tree for a given address
-  * range. The tree is connected to the main vm tree for the gpu using
-@@ -602,7 +615,8 @@ static const struct xe_pt_walk_ops xe_pt_stage_bind_ops = {
-  */
- static int
- xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
--		 struct xe_vm_pgtable_update *entries, u32 *num_entries)
-+		 struct xe_vm_pgtable_update *entries,
-+		 u32 *num_entries, bool clear_pt)
- {
- 	struct xe_device *xe = tile_to_xe(tile);
- 	struct xe_bo *bo = xe_vma_bo(vma);
-@@ -622,10 +636,14 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
- 		.vma = vma,
- 		.wupd.entries = entries,
- 		.needs_64K = (xe_vma_vm(vma)->flags & XE_VM_FLAG_64K) && is_devmem,
-+		.clear_pt = clear_pt,
- 	};
- 	struct xe_pt *pt = xe_vma_vm(vma)->pt_root[tile->id];
- 	int ret;
- 
-+	if (clear_pt)
-+		goto walk_pt;
-+
- 	/**
- 	 * Default atomic expectations for different allocation scenarios are as follows:
- 	 *
-@@ -685,6 +703,7 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
- 		curs.size = xe_vma_size(vma);
- 	}
- 
-+walk_pt:
- 	ret = xe_pt_walk_range(&pt->base, pt->level, xe_vma_start(vma),
- 			       xe_vma_end(vma), &xe_walk.base);
- 
-@@ -981,12 +1000,14 @@ static void xe_pt_free_bind(struct xe_vm_pgtable_update *entries,
- 
- static int
- xe_pt_prepare_bind(struct xe_tile *tile, struct xe_vma *vma,
--		   struct xe_vm_pgtable_update *entries, u32 *num_entries)
-+		   struct xe_vm_pgtable_update *entries,
-+		   u32 *num_entries, bool invalidate_on_bind)
- {
- 	int err;
- 
- 	*num_entries = 0;
--	err = xe_pt_stage_bind(tile, vma, entries, num_entries);
-+	err = xe_pt_stage_bind(tile, vma, entries, num_entries,
-+			       invalidate_on_bind);
- 	if (!err)
- 		xe_tile_assert(tile, *num_entries);
- 
-@@ -1640,7 +1661,7 @@ static int vma_reserve_fences(struct xe_device *xe, struct xe_vma *vma)
- 
- static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
- 			   struct xe_vm_pgtable_update_ops *pt_update_ops,
--			   struct xe_vma *vma)
-+			   struct xe_vma *vma, bool invalidate_on_bind)
- {
- 	u32 current_op = pt_update_ops->current_op;
- 	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
-@@ -1661,7 +1682,7 @@ static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
- 		return err;
- 
- 	err = xe_pt_prepare_bind(tile, vma, pt_op->entries,
--				 &pt_op->num_entries);
-+				 &pt_op->num_entries, invalidate_on_bind);
- 	if (!err) {
- 		xe_tile_assert(tile, pt_op->num_entries <=
- 			       ARRAY_SIZE(pt_op->entries));
-@@ -1681,11 +1702,11 @@ static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
- 		 * If !rebind, and scratch enabled VMs, there is a chance the scratch
- 		 * PTE is already cached in the TLB so it needs to be invalidated.
- 		 * On !LR VMs this is done in the ring ops preceding a batch, but on
--		 * non-faulting LR, in particular on user-space batch buffer chaining,
--		 * it needs to be done here.
-+		 * LR, in particular on user-space batch buffer chaining, it needs to
-+		 * be done here.
- 		 */
- 		if ((!pt_op->rebind && xe_vm_has_scratch(vm) &&
--		     xe_vm_in_preempt_fence_mode(vm)))
-+		     xe_vm_in_lr_mode(vm)))
- 			pt_update_ops->needs_invalidation = true;
- 		else if (pt_op->rebind && !xe_vm_in_lr_mode(vm))
- 			/* We bump also if batch_invalidate_tlb is true */
-@@ -1759,10 +1780,12 @@ static int op_prepare(struct xe_vm *vm,
- 
- 	switch (op->base.op) {
- 	case DRM_GPUVA_OP_MAP:
--		if (!op->map.immediate && xe_vm_in_fault_mode(vm))
-+		if (!op->map.immediate && xe_vm_in_fault_mode(vm) &&
-+		    !op->map.invalidate_on_bind)
- 			break;
- 
--		err = bind_op_prepare(vm, tile, pt_update_ops, op->map.vma);
-+		err = bind_op_prepare(vm, tile, pt_update_ops, op->map.vma,
-+				      op->map.invalidate_on_bind);
- 		pt_update_ops->wait_vm_kernel = true;
- 		break;
- 	case DRM_GPUVA_OP_REMAP:
-@@ -1771,12 +1794,12 @@ static int op_prepare(struct xe_vm *vm,
- 
- 		if (!err && op->remap.prev) {
- 			err = bind_op_prepare(vm, tile, pt_update_ops,
--					      op->remap.prev);
-+					      op->remap.prev, false);
- 			pt_update_ops->wait_vm_bookkeep = true;
- 		}
- 		if (!err && op->remap.next) {
- 			err = bind_op_prepare(vm, tile, pt_update_ops,
--					      op->remap.next);
-+					      op->remap.next, false);
- 			pt_update_ops->wait_vm_bookkeep = true;
- 		}
- 		break;
-@@ -1786,7 +1809,8 @@ static int op_prepare(struct xe_vm *vm,
- 		break;
- 	case DRM_GPUVA_OP_PREFETCH:
- 		err = bind_op_prepare(vm, tile, pt_update_ops,
--				      gpuva_to_vma(op->base.prefetch.va));
-+				      gpuva_to_vma(op->base.prefetch.va),
-+				      false);
- 		pt_update_ops->wait_vm_kernel = true;
- 		break;
- 	default:
-@@ -1856,7 +1880,7 @@ ALLOW_ERROR_INJECTION(xe_pt_update_ops_prepare, ERRNO);
- static void bind_op_commit(struct xe_vm *vm, struct xe_tile *tile,
- 			   struct xe_vm_pgtable_update_ops *pt_update_ops,
- 			   struct xe_vma *vma, struct dma_fence *fence,
--			   struct dma_fence *fence2)
-+			   struct dma_fence *fence2, bool invalidate_on_bind)
- {
- 	if (!xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm) {
- 		dma_resv_add_fence(xe_vma_bo(vma)->ttm.base.resv, fence,
-@@ -1871,6 +1895,8 @@ static void bind_op_commit(struct xe_vm *vm, struct xe_tile *tile,
- 	}
- 	vma->tile_present |= BIT(tile->id);
- 	vma->tile_staged &= ~BIT(tile->id);
-+	if (invalidate_on_bind)
-+		vma->tile_invalidated |= BIT(tile->id);
- 	if (xe_vma_is_userptr(vma)) {
- 		lockdep_assert_held_read(&vm->userptr.notifier_lock);
- 		to_userptr_vma(vma)->userptr.initial_bind = true;
-@@ -1929,7 +1955,7 @@ static void op_commit(struct xe_vm *vm,
- 			break;
- 
- 		bind_op_commit(vm, tile, pt_update_ops, op->map.vma, fence,
--			       fence2);
-+			       fence2, op->map.invalidate_on_bind);
- 		break;
- 	case DRM_GPUVA_OP_REMAP:
- 		unbind_op_commit(vm, tile, pt_update_ops,
-@@ -1938,10 +1964,10 @@ static void op_commit(struct xe_vm *vm,
- 
- 		if (op->remap.prev)
- 			bind_op_commit(vm, tile, pt_update_ops, op->remap.prev,
--				       fence, fence2);
-+				       fence, fence2, false);
- 		if (op->remap.next)
- 			bind_op_commit(vm, tile, pt_update_ops, op->remap.next,
--				       fence, fence2);
-+				       fence, fence2, false);
- 		break;
- 	case DRM_GPUVA_OP_UNMAP:
- 		unbind_op_commit(vm, tile, pt_update_ops,
-@@ -1949,7 +1975,8 @@ static void op_commit(struct xe_vm *vm,
- 		break;
- 	case DRM_GPUVA_OP_PREFETCH:
- 		bind_op_commit(vm, tile, pt_update_ops,
--			       gpuva_to_vma(op->base.prefetch.va), fence, fence2);
-+			       gpuva_to_vma(op->base.prefetch.va), fence,
-+			       fence2, false);
- 		break;
- 	default:
- 		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 996000f2424e..6f50394dd877 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1946,6 +1946,23 @@ static void print_op(struct xe_device *xe, struct drm_gpuva_op *op)
- }
- #endif
- 
-+static bool __xe_vm_needs_clear_scratch_pages(struct xe_vm *vm, u32 bind_flags)
-+{
-+	if (!xe_vm_in_fault_mode(vm))
-+		return false;
-+
-+	if (!vm->xe->info.needs_scratch)
-+		return false;
-+
-+	if (!xe_vm_has_scratch(vm))
-+		return false;
-+
-+	if (bind_flags & DRM_XE_VM_BIND_FLAG_IMMEDIATE)
-+		return false;
-+
-+	return true;
-+}
-+
- /*
-  * Create operations list from IOCTL arguments, setup operations fields so parse
-  * and commit steps are decoupled from IOCTL arguments. This step can fail.
-@@ -2016,6 +2033,8 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
- 			op->map.is_null = flags & DRM_XE_VM_BIND_FLAG_NULL;
- 			op->map.dumpable = flags & DRM_XE_VM_BIND_FLAG_DUMPABLE;
- 			op->map.pat_index = pat_index;
-+			op->map.invalidate_on_bind =
-+				__xe_vm_needs_clear_scratch_pages(vm, flags);
- 		} else if (__op->op == DRM_GPUVA_OP_PREFETCH) {
- 			op->prefetch.region = prefetch_region;
- 		}
-@@ -2213,7 +2232,8 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 				return PTR_ERR(vma);
- 
- 			op->map.vma = vma;
--			if (op->map.immediate || !xe_vm_in_fault_mode(vm))
-+			if (op->map.immediate || !xe_vm_in_fault_mode(vm) ||
-+			    op->map.invalidate_on_bind)
- 				xe_vma_ops_incr_pt_update_ops(vops,
- 							      op->tile_mask);
- 			break;
-@@ -2441,9 +2461,10 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
- 
- 	switch (op->base.op) {
- 	case DRM_GPUVA_OP_MAP:
--		err = vma_lock_and_validate(exec, op->map.vma,
--					    !xe_vm_in_fault_mode(vm) ||
--					    op->map.immediate);
-+		if (!op->map.invalidate_on_bind)
-+			err = vma_lock_and_validate(exec, op->map.vma,
-+						    !xe_vm_in_fault_mode(vm) ||
-+						    op->map.immediate);
- 		break;
- 	case DRM_GPUVA_OP_REMAP:
- 		err = check_ufence(gpuva_to_vma(op->base.remap.unmap->va));
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 52467b9b5348..dace04f4ea5e 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -297,6 +297,8 @@ struct xe_vma_op_map {
- 	bool is_null;
- 	/** @dumpable: whether BO is dumped on GPU hang */
- 	bool dumpable;
-+	/** @invalidate: invalidate the VMA before bind */
-+	bool invalidate_on_bind;
- 	/** @pat_index: The pat index to use for this operation. */
- 	u16 pat_index;
- };
--- 
-2.26.3
-
+> 	help
+> 	  Experimental driver for Intel Xe series GPUs
+>
+>-- 
+>2.30.2
+>
