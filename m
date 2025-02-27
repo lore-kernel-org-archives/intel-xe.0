@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1205CC282C8
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF94BC282C7
 	for <intel-xe@archiver.kernel.org>; Thu, 27 Feb 2025 19:15:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C333F10EB73;
-	Thu, 27 Feb 2025 19:15:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D1E010EB75;
+	Thu, 27 Feb 2025 19:15:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kazqhaM0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AnLLDrhH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3F0510EB67;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83EA810EB6C;
  Thu, 27 Feb 2025 19:15:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1740683703; x=1772219703;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fV45i9cyJNHdNbDA5RmEG5ukVBv1uPUZvHmU5qUXQFc=;
- b=kazqhaM0MrwXVAkqA9sio44CoQ8J8HZ/xMmiEOCoPWEM+PuyX8GX6Rkb
- V0reJHKZKSXedpALoqqNM1c7Uj6xhXlZRm6kKehKBdS8jc2yqP8W18L+N
- 507ZFGEFYigSiS7skWGr7fCH2Gd1XmPb3s2QpkBMXOwoEsypphNhARtlG
- pnaiKxB0hSBRoDg4nYCcBKl2dS9MOiZt71S7WgFx4U753P1iCeGR19KRn
- mT2ojieGP8Yui2RiuYgSxS3OWHUC0ljVOmy9+2hULJhgt8Shz3kGLG1Oa
- PxzSm4U3WIGHVTGtoMXG9Hl/vEEpGDqL1JDYsBYeYG0oE8ZAlweylKXi5 g==;
-X-CSE-ConnectionGUID: rmBfl1K5RQ+flrJbhtTrBg==
-X-CSE-MsgGUID: ul7bazmxTtq22cp0bsSMJg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11358"; a="41850056"
-X-IronPort-AV: E=Sophos;i="6.13,320,1732608000"; d="scan'208";a="41850056"
+ bh=kdx43vBPxQuJgAnPefatV3H8gKQrTpuV5MOzEF/ZEe8=;
+ b=AnLLDrhHLRGwjlHRQxSty6MqfLP9hRz279d8iPpWA1jWGGNNHnpZCPfm
+ YAW56q2DKBQCaRGfXC25bu6XfC7OXlWYYqtQhPUfKAC9Ecp1Y9ai8EvyT
+ k8Li2pMux7p8TVv7S6aElmloKwXnFJxs1t81+YbfcGEzBS13A5VUkI9UW
+ t1A6cBGEk6Zwfo3ZK+3PV6j8Mc/EqwevXV+AI43ShQobsCpTm/FfNg9iD
+ Ls0RMbbse5pQzyoJhaWhNrjM2cTXrichpmN4K0Y21H3oz9Tp4xulNRWMP
+ OW2ljlB9rm1lEZsnrf5B2BTFzpqqnFPsZucrP5jAlY1jkiL/qVElzyU20 w==;
+X-CSE-ConnectionGUID: vENC0brQQpW26qGIv4mKtA==
+X-CSE-MsgGUID: TsYNegYZQQC/7MiNXS2rJw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11358"; a="41850055"
+X-IronPort-AV: E=Sophos;i="6.13,320,1732608000"; d="scan'208";a="41850055"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Feb 2025 11:15:00 -0800
-X-CSE-ConnectionGUID: NjaThH+lQ+GrNyzMZhVo7A==
-X-CSE-MsgGUID: sMyzN8DXSHiGnu1exrA17w==
+X-CSE-ConnectionGUID: AQXZ/OMTTCa2bP1kFUfvAw==
+X-CSE-MsgGUID: rP0mIqMqSWidSGn+qmFaqA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,320,1732608000"; d="scan'208";a="117775288"
+X-IronPort-AV: E=Sophos;i="6.13,320,1732608000"; d="scan'208";a="117775285"
 Received: from dut4025lnl.fm.intel.com ([10.105.8.176])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Feb 2025 11:15:00 -0800
@@ -46,10 +46,9 @@ To: intel-xe@lists.freedesktop.org
 Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
  joonas.lahtinen@linux.intel.com, matthew.brost@intel.com,
  jianxun.zhang@intel.com, dri-devel@lists.freedesktop.org
-Subject: [PATCH v2 3/8] drm/xe/xe_gt_pagefault: Migrate pagefault struct to
- header
-Date: Thu, 27 Feb 2025 19:14:52 +0000
-Message-ID: <20250227191457.84035-4-jonathan.cavitt@intel.com>
+Subject: [PATCH v2 2/8] drm/xe/xe_exec_queue: Add ID param to exec queue struct
+Date: Thu, 27 Feb 2025 19:14:51 +0000
+Message-ID: <20250227191457.84035-3-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250227191457.84035-1-jonathan.cavitt@intel.com>
 References: <20250227191457.84035-1-jonathan.cavitt@intel.com>
@@ -69,160 +68,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Migrate the pagefault struct from xe_gt_pagefault.c to the
-xe_gt_pagefault.h header file, along with the associated enum values.
-
-v2: Normalize names for common header (Matt Brost)
+Add the exec queue id to the exec queue struct.  This is useful for
+performing a reverse lookup into the xef->exec_queue xarray.
 
 Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_pagefault.c | 43 ++++++----------------------
- drivers/gpu/drm/xe/xe_gt_pagefault.h | 28 ++++++++++++++++++
- 2 files changed, 36 insertions(+), 35 deletions(-)
+ drivers/gpu/drm/xe/xe_exec_queue.c       | 1 +
+ drivers/gpu/drm/xe/xe_exec_queue_types.h | 2 ++
+ 2 files changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index f608a765fa7c..07b52d3c1a60 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -22,33 +22,6 @@
- #include "xe_trace_bo.h"
- #include "xe_vm.h"
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 23a9f519ce1c..4a98a5d0e405 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -709,6 +709,7 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+ 	if (err)
+ 		goto kill_exec_queue;
  
--struct pagefault {
--	u64 page_addr;
--	u32 asid;
--	u16 pdata;
--	u8 vfid;
--	u8 access_type;
--	u8 fault_type;
--	u8 fault_level;
--	u8 engine_class;
--	u8 engine_instance;
--	u8 fault_unsuccessful;
--	bool trva_fault;
--};
--
--enum access_type {
--	ACCESS_TYPE_READ = 0,
--	ACCESS_TYPE_WRITE = 1,
--	ACCESS_TYPE_ATOMIC = 2,
--	ACCESS_TYPE_RESERVED = 3,
--};
--
--enum fault_type {
--	NOT_PRESENT = 0,
--	WRITE_ACCESS_VIOLATION = 1,
--	ATOMIC_ACCESS_VIOLATION = 2,
--};
--
- struct acc {
- 	u64 va_range_base;
- 	u32 asid;
-@@ -60,9 +33,9 @@ struct acc {
- 	u8 engine_instance;
- };
++	q->id = id;
+ 	args->exec_queue_id = id;
  
--static bool access_is_atomic(enum access_type access_type)
-+static bool access_is_atomic(enum xe_pagefault_access_type access_type)
- {
--	return access_type == ACCESS_TYPE_ATOMIC;
-+	return access_type == XE_PAGEFAULT_ACCESS_TYPE_ATOMIC;
- }
- 
- static bool vma_is_valid(struct xe_tile *tile, struct xe_vma *vma)
-@@ -125,7 +98,7 @@ static int xe_pf_begin(struct drm_exec *exec, struct xe_vma *vma,
  	return 0;
- }
- 
--static int handle_vma_pagefault(struct xe_gt *gt, struct pagefault *pf,
-+static int handle_vma_pagefault(struct xe_gt *gt, struct xe_pagefault *pf,
- 				struct xe_vma *vma)
- {
- 	struct xe_vm *vm = xe_vma_vm(vma);
-@@ -204,7 +177,7 @@ static struct xe_vm *asid_to_vm(struct xe_device *xe, u32 asid)
- 	return vm;
- }
- 
--static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
-+static int handle_pagefault(struct xe_gt *gt, struct xe_pagefault *pf)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+index 6eb7ff091534..088d838218e9 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+@@ -55,6 +55,8 @@ struct xe_exec_queue {
  	struct xe_vm *vm;
-@@ -235,7 +208,7 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
- 		goto unlock_vm;
- 	}
- 
--	if (xe_vma_read_only(vma) && pf->access_type != ACCESS_TYPE_READ) {
-+	if (xe_vma_read_only(vma) && pf->access_type != XE_PAGEFAULT_ACCESS_TYPE_READ) {
- 		err = -EPERM;
- 		goto unlock_vm;
- 	}
-@@ -263,7 +236,7 @@ static int send_pagefault_reply(struct xe_guc *guc,
- 	return xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action), 0, 0);
- }
- 
--static void print_pagefault(struct xe_device *xe, struct pagefault *pf)
-+static void print_pagefault(struct xe_device *xe, struct xe_pagefault *pf)
- {
- 	drm_dbg(&xe->drm, "\n\tASID: %d\n"
- 		 "\tVFID: %d\n"
-@@ -283,7 +256,7 @@ static void print_pagefault(struct xe_device *xe, struct pagefault *pf)
- 
- #define PF_MSG_LEN_DW	4
- 
--static bool get_pagefault(struct pf_queue *pf_queue, struct pagefault *pf)
-+static bool get_pagefault(struct pf_queue *pf_queue, struct xe_pagefault *pf)
- {
- 	const struct xe_guc_pagefault_desc *desc;
- 	bool ret = false;
-@@ -370,7 +343,7 @@ static void pf_queue_work_func(struct work_struct *w)
- 	struct xe_gt *gt = pf_queue->gt;
- 	struct xe_device *xe = gt_to_xe(gt);
- 	struct xe_guc_pagefault_reply reply = {};
--	struct pagefault pf = {};
-+	struct xe_pagefault pf = {};
- 	unsigned long threshold;
- 	int ret;
- 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.h b/drivers/gpu/drm/xe/xe_gt_pagefault.h
-index 839c065a5e4c..33616043d17a 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.h
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.h
-@@ -11,6 +11,34 @@
- struct xe_gt;
- struct xe_guc;
- 
-+struct xe_pagefault {
-+	u64 page_addr;
-+	u32 asid;
-+	u16 pdata;
-+	u8 vfid;
-+	u8 access_type;
-+	u8 fault_type;
-+	u8 fault_level;
-+	u8 engine_class;
-+	u8 engine_instance;
-+	u8 fault_unsuccessful;
-+	bool prefetch;
-+	bool trva_fault;
-+};
-+
-+enum xe_pagefault_access_type {
-+	XE_PAGEFAULT_ACCESS_TYPE_READ = 0,
-+	XE_PAGEFAULT_ACCESS_TYPE_WRITE = 1,
-+	XE_PAGEFAULT_ACCESS_TYPE_ATOMIC = 2,
-+	XE_PAGEFAULT_ACCESS_TYPE_RESERVED = 3,
-+};
-+
-+enum xe_pagefault_type {
-+	XE_PAGEFAULT_TYPE_NOT_PRESENT = 0,
-+	XE_PAGEFAULT_TYPE_WRITE_ACCESS_VIOLATION = 1,
-+	XE_PAGEFAULT_TYPE_ATOMIC_ACCESS_VIOLATION = 2,
-+};
-+
- int xe_gt_pagefault_init(struct xe_gt *gt);
- void xe_gt_pagefault_reset(struct xe_gt *gt);
- int xe_guc_pagefault_handler(struct xe_guc *guc, u32 *msg, u32 len);
+ 	/** @class: class of this exec queue */
+ 	enum xe_engine_class class;
++	/** @id: exec queue ID as reported during create ioctl */
++	u32 id;
+ 	/**
+ 	 * @logical_mask: logical mask of where job submitted to exec queue can run
+ 	 */
 -- 
 2.43.0
 
