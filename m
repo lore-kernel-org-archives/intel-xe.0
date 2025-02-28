@@ -4,27 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33CA0C282CD
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Feb 2025 10:21:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AA9BC19776
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Feb 2025 10:22:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3C0910EC58;
-	Fri, 28 Feb 2025 10:21:46 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 740CD10EC58;
- Fri, 28 Feb 2025 10:21:46 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6252881252484166210=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 415EC10EC59;
+	Fri, 28 Feb 2025 10:22:06 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K1++hAeu";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECF6410EC59
+ for <intel-xe@lists.freedesktop.org>; Fri, 28 Feb 2025 10:22:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1740738124; x=1772274124;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=fiv0SWRJjHLoKWktP6IJc/syIkOS251ieNL5M/7fcMQ=;
+ b=K1++hAeuE25blB5+nEiBUe+SBzdYam5kh17WRMj2X/znQuLYzG48AWPz
+ fdhfsOOeaX+M8FgR1XlNOWW/F/RxUT7kijDFVVa6s9R790E2PRWENKajm
+ qHdvCuO6UqXQjYrnROB4D7GuHa2JdvS6zc2xnXlCIYnow7GkPtc+g0Vwa
+ svE3fwHo5aEFv64luqdgTm5oMQP0E/yx9XbznXk6Ig7Ke2bGcYv/YhXi8
+ 0xKsOuQm39vSDb57VTmzJrHISikfW1Qup2tk8fD+1sMUUwS8B+At0JYhF
+ TSophZTEsrze569THTetnz42G0FzprBRsol/Et5Mri4V6Y1gVC6OnfFEb A==;
+X-CSE-ConnectionGUID: WfedJ9B4S1avRBuCe2GA2w==
+X-CSE-MsgGUID: cbB5F9EcQAqBiYUA5xySiA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="53074040"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="53074040"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2025 02:22:03 -0800
+X-CSE-ConnectionGUID: AGz7OI1cRJCBYLcF91W5BQ==
+X-CSE-MsgGUID: WgEC1DZcRvGUYf4X1Bn77Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,322,1732608000"; d="scan'208";a="140532483"
+Received: from oandoniu-mobl3.ger.corp.intel.com (HELO [10.245.244.73])
+ ([10.245.244.73])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2025 02:22:03 -0800
+Message-ID: <1b66c78c-82d4-4002-9fa4-6f30e97e0268@intel.com>
+Date: Fri, 28 Feb 2025 10:21:59 +0000
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fix_userptr_races?=
- =?utf-8?q?_and_missed_validations_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 28 Feb 2025 10:21:46 -0000
-Message-ID: <174073810646.3175296.2989325930782353508@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250228073058.59510-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20250228073058.59510-1-thomas.hellstrom@linux.intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] drm/xe_migrate: Switch from drm to dev managed actions
+To: Aradhya Bhatia <aradhya.bhatia@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
+Cc: Intel XE List <intel-xe@lists.freedesktop.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas Hellstrom <thomas.hellstrom@intel.com>,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+References: <20250228065224.320811-1-aradhya.bhatia@intel.com>
+ <20250228065224.320811-2-aradhya.bhatia@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20250228065224.320811-2-aradhya.bhatia@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,160 +72,83 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6252881252484166210==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 28/02/2025 06:52, Aradhya Bhatia wrote:
+> Change the scope of the migrate subsystem to be dev managed instead of
+> drm managed.
+> 
+> The parent pci struct &device, that the xe struct &drm_device is a part
+> of, gets removed when a hot unplug is triggered, which causes the
+> underlying iommu group to get destroyed as well.
 
-== Series Details ==
+Nice find. But if that's the case then the migrate BO here is just one 
+of many where we will see this. Basically all system memory BO can 
+suffer from this AFAICT, including userspace owned. So I think we need 
+to rather solve this for all, and I don't think we can really tie the 
+lifetime of all BOs to devm, so likely need a different approach.
 
-Series: drm/xe: Fix userptr races and missed validations (rev2)
-URL   : https://patchwork.freedesktop.org/series/145498/
-State : success
+I think we might instead need to teardown all dma mappings when removing 
+the device, leaving the BO intact. It looks like there is already a 
+helper for this, so maybe something roughly like this:
 
-== Summary ==
+@@ -980,6 +980,8 @@ void xe_device_remove(struct xe_device *xe)
 
-CI Bug Log - changes from xe-2730-873b1a50bb4394e95332cfa611aa6463de6b7cb0_BAT -> xe-pw-145498v2_BAT
-====================================================
+         drm_dev_unplug(&xe->drm);
 
-Summary
--------
++       ttm_device_clear_dma_mappings(&xe->ttm);
++
+         xe_display_driver_remove(xe);
 
-  **SUCCESS**
+         xe_heci_gsc_fini(xe);
 
-  No regressions found.
+But I don't think userptr will be covered by that, just all BOs, so 
+likely need an extra step to also nuke all usersptr dma mappings somewhere.
 
-  
+> 
+> The migrate subsystem, which handles the lifetime of the page-table tree
+> (pt) BO, doesn't get a chance to keep the BO back during the hot unplug,
+> as all the references to DRM haven't been put back.
+> When all the references to DRM are indeed put back later, the migrate
+> subsystem tries to put back the pt BO. Since the underlying iommu group
+> has been already destroyed, a kernel NULL ptr dereference takes place
+> while attempting to keep back the pt BO.
+> 
+> Signed-off-by: Aradhya Bhatia <aradhya.bhatia@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_migrate.c | 6 +++---
+>   1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+> index 278bc96cf593..4e23adfa208a 100644
+> --- a/drivers/gpu/drm/xe/xe_migrate.c
+> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> @@ -97,7 +97,7 @@ struct xe_exec_queue *xe_tile_migrate_exec_queue(struct xe_tile *tile)
+>   	return tile->migrate->q;
+>   }
+>   
+> -static void xe_migrate_fini(struct drm_device *dev, void *arg)
+> +static void xe_migrate_fini(void *arg)
+>   {
+>   	struct xe_migrate *m = arg;
+>   
+> @@ -401,7 +401,7 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
+>   	struct xe_vm *vm;
+>   	int err;
+>   
+> -	m = drmm_kzalloc(&xe->drm, sizeof(*m), GFP_KERNEL);
+> +	m = devm_kzalloc(xe->drm.dev, sizeof(*m), GFP_KERNEL);
+>   	if (!m)
+>   		return ERR_PTR(-ENOMEM);
+>   
+> @@ -455,7 +455,7 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
+>   	might_lock(&m->job_mutex);
+>   	fs_reclaim_release(GFP_KERNEL);
+>   
+> -	err = drmm_add_action_or_reset(&xe->drm, xe_migrate_fini, m);
+> +	err = devm_add_action_or_reset(xe->drm.dev, xe_migrate_fini, m);
+>   	if (err)
+>   		return ERR_PTR(err);
+>   
 
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-145498v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-adlp-vf:        [PASS][1] -> [SKIP][2] ([Intel XE#4322]) +1 other test skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2730-873b1a50bb4394e95332cfa611aa6463de6b7cb0/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145498v2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-
-  * igt@xe_vm@shared-pte-page:
-    - bat-adlp-vf:        [PASS][3] -> [DMESG-WARN][4] ([Intel XE#3970])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2730-873b1a50bb4394e95332cfa611aa6463de6b7cb0/bat-adlp-vf/igt@xe_vm@shared-pte-page.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145498v2/bat-adlp-vf/igt@xe_vm@shared-pte-page.html
-
-  
-#### Warnings ####
-
-  * igt@xe_live_ktest@xe_bo:
-    - bat-adlp-vf:        [SKIP][5] ([Intel XE#2229] / [Intel XE#455]) -> [SKIP][6] ([Intel XE#4322])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2730-873b1a50bb4394e95332cfa611aa6463de6b7cb0/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145498v2/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-
-  
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
-  [Intel XE#4322]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
-
-
-Build changes
--------------
-
-  * IGT: IGT_8251 -> IGT_8252
-  * Linux: xe-2730-873b1a50bb4394e95332cfa611aa6463de6b7cb0 -> xe-pw-145498v2
-
-  IGT_8251: f0b66883398b4a07bb8fcaa3663a2140129d9a58 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8252: e266af0feec344315b07d8af186226e467d02ecf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2730-873b1a50bb4394e95332cfa611aa6463de6b7cb0: 873b1a50bb4394e95332cfa611aa6463de6b7cb0
-  xe-pw-145498v2: 145498v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145498v2/index.html
-
---===============6252881252484166210==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix userptr races and missed validations (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145498/">https://patchwork.freedesktop.org/series/145498/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145498v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145498v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2730-873b1a50bb4394e95332cfa611aa6463de6b7cb0_BAT -&gt; xe-pw-145498v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-145498v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_live_ktest@xe_migrate:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2730-873b1a50bb4394e95332cfa611aa6463de6b7cb0/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145498v2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322">Intel XE#4322</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_vm@shared-pte-page:</p>
-<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2730-873b1a50bb4394e95332cfa611aa6463de6b7cb0/bat-adlp-vf/igt@xe_vm@shared-pte-page.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145498v2/bat-adlp-vf/igt@xe_vm@shared-pte-page.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_bo:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2730-873b1a50bb4394e95332cfa611aa6463de6b7cb0/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145498v2/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4322">Intel XE#4322</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8251 -&gt; IGT_8252</li>
-<li>Linux: xe-2730-873b1a50bb4394e95332cfa611aa6463de6b7cb0 -&gt; xe-pw-145498v2</li>
-</ul>
-<p>IGT_8251: f0b66883398b4a07bb8fcaa3663a2140129d9a58 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8252: e266af0feec344315b07d8af186226e467d02ecf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2730-873b1a50bb4394e95332cfa611aa6463de6b7cb0: 873b1a50bb4394e95332cfa611aa6463de6b7cb0<br />
-  xe-pw-145498v2: 145498v2</p>
-
-</body>
-</html>
-
---===============6252881252484166210==--
