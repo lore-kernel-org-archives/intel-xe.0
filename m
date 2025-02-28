@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA38CC282C6
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Feb 2025 19:25:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6F65C282C6
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Feb 2025 19:26:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8014510ED2C;
-	Fri, 28 Feb 2025 19:25:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93E3E10E374;
+	Fri, 28 Feb 2025 19:26:06 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D51DC10E374;
- Fri, 28 Feb 2025 19:25:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3BCDD10E33E;
+ Fri, 28 Feb 2025 19:26:06 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/xe=5Fvm=3A_Im?=
- =?utf-8?q?plement_xe=5Fvm=5Fget=5Fproperty=5Fioctl_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/xe=5Fvm=3A_Impleme?=
+ =?utf-8?q?nt_xe=5Fvm=5Fget=5Fproperty=5Fioctl_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 28 Feb 2025 19:25:50 -0000
-Message-ID: <174077075086.3266058.4044112666438147162@b555e5b46a47>
+Date: Fri, 28 Feb 2025 19:26:06 -0000
+Message-ID: <174077076624.3266058.8234353490274702120@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250228182122.77475-1-jonathan.cavitt@intel.com>
 In-Reply-To: <20250228182122.77475-1-jonathan.cavitt@intel.com>
@@ -44,18 +44,44 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/xe_vm: Implement xe_vm_get_property_ioctl (rev3)
 URL   : https://patchwork.freedesktop.org/series/145529/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: ca9d01b66c70 drm-tip: 2025y-02m-28d-17h-41m-32s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/xe_gt_pagefault: Disallow writes to read-only VMAs
-Applying: drm/xe/xe_gt_pagefault: Migrate pagefault struct to header
-Applying: drm/xe/xe_vm: Add per VM pagefault info
-Applying: drm/xe/uapi: Define drm_xe_vm_get_property
-Applying: drm/xe/xe_gt_pagefault: Add address_type field to pagefaults
-Applying: drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+22f9cda3436b4fe965b5c5f31d2f2c1bcb483189
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 031060421d15760adad57388e3d9cbaab6912f10
+Author: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Date:   Fri Feb 28 18:21:22 2025 +0000
+
+    drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
+    
+    Add support for userspace to request a list of observed failed
+    pagefaults from a specified VM.
+    
+    v2:
+    - Only allow querying of failed pagefaults (Matt Brost)
+    
+    Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+    Suggested-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch ca9d01b66c70413a62a1a28fbf8709d2e8440c1c drm-intel
+12ecfca0fe4d drm/xe/xe_gt_pagefault: Disallow writes to read-only VMAs
+837bcd5a8acc drm/xe/xe_gt_pagefault: Migrate pagefault struct to header
+ba94c807a6ab drm/xe/xe_vm: Add per VM pagefault info
+cb3188c10fc1 drm/xe/uapi: Define drm_xe_vm_get_property
+-:34: WARNING:LONG_LINE: line length of 130 exceeds 100 columns
+#34: FILE: include/uapi/drm/xe_drm.h:122:
++#define DRM_IOCTL_XE_VM_GET_PROPERTY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_GET_PROPERTY, struct drm_xe_vm_get_property)
+
+total: 0 errors, 1 warnings, 0 checks, 87 lines checked
+305335446e31 drm/xe/xe_gt_pagefault: Add address_type field to pagefaults
+031060421d15 drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
 
 
