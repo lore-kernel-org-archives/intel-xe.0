@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6843CC19776
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Feb 2025 14:37:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F652C19776
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Feb 2025 14:43:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2112B10ECD6;
-	Fri, 28 Feb 2025 14:37:31 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AOwlX+tH";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC97A10ECCA;
- Fri, 28 Feb 2025 14:37:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740753450; x=1772289450;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=+mHknmHgltSfrl29/OCW6hKROWP7f+Pu/GIGwJkyBPg=;
- b=AOwlX+tHhqPbAPSCVYHPhzVbjnB6oN2l6zB9BJ6uVLKRVOuue7tsbu99
- lGIwT4fV4JsUvBtPMJdNRw851j97bvNAztI2Jp1wsy6DcLqqHZjrgH0cm
- FAyFqze5pmy9zBTESeNjFjT8JCjvx8VMlQibA5G51y1dEUIJqG6jfxNwU
- 4VESNQg2TTEk+FyT6AqHh/b4FcVx1AEdTW6utoCcXDh3/MGv+J5VadLHz
- YFxu3iTPwlwkng4T7kaQ+Z1lLNGdhiO9b315u8U/zVziejwZs6G7HQ8nq
- EIPFwTkTrrWyyLWyZoNwqkwwMNJnLt3Hl+k7QqAOP1ys7ft1KkdLuFluh A==;
-X-CSE-ConnectionGUID: kA2Xh/E8TaGp9y58/9yLpg==
-X-CSE-MsgGUID: M9gyS2o+TCeT/Go8LAxP7w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11359"; a="41569987"
-X-IronPort-AV: E=Sophos;i="6.13,322,1732608000"; d="scan'208";a="41569987"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2025 06:37:30 -0800
-X-CSE-ConnectionGUID: 6OeLPxcvSkmrTjjPdn9lPA==
-X-CSE-MsgGUID: 0bT9lpFhQrKcW1P+mJn3Rw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,322,1732608000"; d="scan'208";a="117336314"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.24])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2025 06:37:29 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 2/2] drm/i915/plane: convert intel_atomic_plane.[ch] to
- struct intel_display
-In-Reply-To: <20250228142539.3216960-2-jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250228142539.3216960-1-jani.nikula@intel.com>
- <20250228142539.3216960-2-jani.nikula@intel.com>
-Date: Fri, 28 Feb 2025 16:37:26 +0200
-Message-ID: <87wmda16ft.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5672710E008;
+	Fri, 28 Feb 2025 14:43:21 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED70510E008;
+ Fri, 28 Feb 2025 14:43:19 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3160040293164343648=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_add_som?=
+ =?utf-8?q?e_sub-structs_for_clarity?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 28 Feb 2025 14:43:19 -0000
+Message-ID: <174075379996.3250836.18342379780685724889@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <cover.1740746939.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1740746939.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,39 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 28 Feb 2025, Jani Nikula <jani.nikula@intel.com> wrote:
-> Going forward, struct intel_display is the main display device data
-> pointer. Convert intel_atomic_plane.[ch] to struct intel_display.
->
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_atomic_plane.c | 79 +++++++++----------
->  1 file changed, 39 insertions(+), 40 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> index 181ad7468d85..4f1ad57ca5ed 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> @@ -42,7 +42,6 @@
->  
->  #include "gem/i915_gem_object.h"
->  #include "i915_config.h"
-> -#include "i915_drv.h"
->  #include "i915_scheduler_types.h"
->  #include "i9xx_plane_regs.h"
->  #include "intel_atomic_plane.h"
-> @@ -57,6 +56,7 @@
->  #include "skl_universal_plane.h"
->  #include "skl_watermark.h"
->  
-> +
+--===============3160040293164343648==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Hrmh, it annoys me when other people do this, but it annoys me even more
-when I do it. *facepalm*.
+== Series Details ==
+
+Series: drm/i915/display: add some sub-structs for clarity
+URL   : https://patchwork.freedesktop.org/series/145640/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-2733-4e4a83bc30b77bb710641f0b43e6098bd04c5044_BAT -> xe-pw-145640v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
 
 
--- 
-Jani Nikula, Intel
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-2733-4e4a83bc30b77bb710641f0b43e6098bd04c5044 -> xe-pw-145640v1
+
+  IGT_8253: b747eebcc6f4b6729ae171490e52725e9fb13b89 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2733-4e4a83bc30b77bb710641f0b43e6098bd04c5044: 4e4a83bc30b77bb710641f0b43e6098bd04c5044
+  xe-pw-145640v1: 145640v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145640v1/index.html
+
+--===============3160040293164343648==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: add some sub-structs for clarity</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145640/">https://patchwork.freedesktop.org/series/145640/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145640v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145640v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2733-4e4a83bc30b77bb710641f0b43e6098bd04c5044_BAT -&gt; xe-pw-145640v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2733-4e4a83bc30b77bb710641f0b43e6098bd04c5044 -&gt; xe-pw-145640v1</li>
+</ul>
+<p>IGT_8253: b747eebcc6f4b6729ae171490e52725e9fb13b89 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2733-4e4a83bc30b77bb710641f0b43e6098bd04c5044: 4e4a83bc30b77bb710641f0b43e6098bd04c5044<br />
+  xe-pw-145640v1: 145640v1</p>
+
+</body>
+</html>
+
+--===============3160040293164343648==--
