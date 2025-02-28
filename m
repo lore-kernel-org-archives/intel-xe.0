@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19882C282C6
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Feb 2025 18:26:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 325E0C282C6
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Feb 2025 18:32:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A00C710E0D9;
-	Fri, 28 Feb 2025 18:26:33 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E23810E0D9;
- Fri, 28 Feb 2025 18:26:33 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01E8810E2A9;
+	Fri, 28 Feb 2025 18:32:24 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MT1CaicN";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 516D110E2A9
+ for <intel-xe@lists.freedesktop.org>; Fri, 28 Feb 2025 18:32:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1740767542; x=1772303542;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=ybBp67h6tWYAqgOq96pgg+UzV19BWxHLDVVsWl/BHQw=;
+ b=MT1CaicNXiHm00GJ64nkjYGX3/I1/hr1vE16ZF2KrhbPcXvyeYt/pvTd
+ BKz87Q12KHrSJBrkvT6yaMUm87oklrOZ8nAvsNBZNYfbl0jVssOXYKqXv
+ R21ocmJMQguWhLCl67ruN+Lh6AGgLVvh8ljhYAKHWFO7kGOd0mAVtZoXu
+ PNDnBEzIr2uEjvzaVut4cm3eu53/cFdunDyvNXDJW7RCaAUnkiP9BKAUB
+ gUE9DkuPC5C/c549WoHQlCCck3OwoV4Hp0wUn8rmherCpdVW2JgWqSJNx
+ ZnvqLQAvWz0FDfpOtNxCZPff1kIG2lFAej1Xb2JimAOYukAWnFgRHBrlz A==;
+X-CSE-ConnectionGUID: EGmJBLwNQYqudOxXmQ4NqQ==
+X-CSE-MsgGUID: fRYqXvTUTfWyLSM7GqGZZA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11359"; a="41730629"
+X-IronPort-AV: E=Sophos;i="6.13,323,1732608000"; d="scan'208";a="41730629"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2025 10:32:20 -0800
+X-CSE-ConnectionGUID: lZ2in0obSQiy8EHLypjlDA==
+X-CSE-MsgGUID: xmS8CFu1TQCspoQ4NmQIsg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,323,1732608000"; d="scan'208";a="148216990"
+Received: from oandoniu-mobl3.ger.corp.intel.com (HELO [10.245.244.73])
+ ([10.245.244.73])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2025 10:32:18 -0800
+Message-ID: <fb1b0714-e690-4ec8-8f57-a5cf1a72fc63@intel.com>
+Date: Fri, 28 Feb 2025 18:32:16 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/i915/vdsc=3A_Use_the?=
- =?utf-8?q?_DSC_config_tables_for_DSI_panels_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 28 Feb 2025 18:26:33 -0000
-Message-ID: <174076719311.3266045.5985343815403566977@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250228152531.403026-1-suraj.kandpal@intel.com>
-In-Reply-To: <20250228152531.403026-1-suraj.kandpal@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] drm/xe/hmm: Don't dereference struct page pointers
+ without notifier lock
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Oak Zeng <oak.zeng@intel.com>, stable@vger.kernel.org
+References: <20250228104418.44313-1-thomas.hellstrom@linux.intel.com>
+ <20250228104418.44313-3-thomas.hellstrom@linux.intel.com>
+ <b62352fd-f16a-423c-8a20-5d7697a6c4a7@intel.com>
+ <db2a5741b3e43cc3a54fa9c01e6af55677275070.camel@linux.intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <db2a5741b3e43cc3a54fa9c01e6af55677275070.camel@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +71,282 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 28/02/2025 13:08, Thomas Hellström wrote:
+> On Fri, 2025-02-28 at 12:55 +0000, Matthew Auld wrote:
+>> On 28/02/2025 10:44, Thomas Hellström wrote:
+>>> The pnfs that we obtain from hmm_range_fault() point to pages that
+>>> we don't have a reference on, and the guarantee that they are still
+>>> in the cpu page-tables is that the notifier lock must be held and
+>>> the
+>>> notifier seqno is still valid.
+>>>
+>>> So while building the sg table and marking the pages accesses /
+>>> dirty
+>>> we need to hold this lock with a validated seqno.
+>>>
+>>> However, the lock is reclaim tainted which makes
+>>> sg_alloc_table_from_pages_segment() unusable, since it internally
+>>> allocates memory.
+>>>
+>>> Instead build the sg-table manually. For the non-iommu case
+>>> this might lead to fewer coalesces, but if that's a problem it can
+>>> be fixed up later in the resource cursor code. For the iommu case,
+>>> the whole sg-table may still be coalesced to a single contigous
+>>> device va region.
+>>>
+>>> This avoids marking pages that we don't own dirty and accessed, and
+>>> it also avoid dereferencing struct pages that we don't own.
+>>>
+>>> Fixes: 81e058a3e7fd ("drm/xe: Introduce helper to populate
+>>> userptr")
+>>> Cc: Oak Zeng <oak.zeng@intel.com>
+>>> Cc: <stable@vger.kernel.org> # v6.10+
+>>> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>>> ---
+>>>    drivers/gpu/drm/xe/xe_hmm.c | 115 ++++++++++++++++++++++++++-----
+>>> -----
+>>>    1 file changed, 85 insertions(+), 30 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_hmm.c
+>>> b/drivers/gpu/drm/xe/xe_hmm.c
+>>> index c56738fa713b..d3b5551496d0 100644
+>>> --- a/drivers/gpu/drm/xe/xe_hmm.c
+>>> +++ b/drivers/gpu/drm/xe/xe_hmm.c
+>>> @@ -42,6 +42,36 @@ static void xe_mark_range_accessed(struct
+>>> hmm_range *range, bool write)
+>>>    	}
+>>>    }
+>>>    
+>>> +static int xe_alloc_sg(struct sg_table *st, struct hmm_range
+>>> *range,
+>>> +		       struct rw_semaphore *notifier_sem)
+>>> +{
+>>> +	unsigned long i, npages, hmm_pfn;
+>>> +	unsigned long num_chunks = 0;
+>>> +	int ret;
+>>> +
+>>> +	/* HMM docs says this is needed. */
+>>> +	ret = down_read_interruptible(notifier_sem);
+>>> +	if (ret)
+>>> +		return ret;
+>>> +
+>>> +	if (mmu_interval_read_retry(range->notifier, range-
+>>>> notifier_seq))
+>>> +		return -EAGAIN;
+>>> +
+>>> +	npages = xe_npages_in_range(range->start, range->end);
+>>> +	for (i = 0; i < npages;) {
+>>> +		hmm_pfn = range->hmm_pfns[i];
+>>> +		if (!(hmm_pfn & HMM_PFN_VALID)) {
+>>
+>> Is this possible? The default_flags are always REQ_FAULT, so that
+>> should
+>> ensure PFN_VALID, or the hmm_fault would have returned an error?
+>>
+>>   From the docs:
+>>
+>> "HMM_PFN_REQ_FAULT - The output must have HMM_PFN_VALID or
+>> hmm_range_fault() will fail"
+>>
+>> Should this be an assert?
+>>
+>> Also probably dumb question, but why do we need to hold the notifier
+>> lock over this loop? What is it protecting?
+> 
+> Docs for hmm_pfn_to_map_order():
+> 
+> /*
+>   * This must be called under the caller 'user_lock' after a successful
+>   * mmu_interval_read_begin(). The caller must have tested for
+> HMM_PFN_VALID
+>   * already.
+>   */
+> 
+> I'm fine with changing to an assert, and I agree that the lock is
+> pointless: We're operating on thread local data, but I also think that
+> not adhering to the doc requirements might cause problems in the
+> future. Like if the map order encoding is dropped and the order was
+> grabbed from the underlying page.
 
-Series: drm/i915/vdsc: Use the DSC config tables for DSI panels (rev5)
-URL   : https://patchwork.freedesktop.org/series/145560/
-State : success
+Makes sense. Keeping the lock indeed looks sensible.
 
-== Summary ==
+Staring some more at hmm_pfn_to_map_order(), it also says:
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast ca9d01b66c70413a62a1a28fbf8709d2e8440c1c
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
+"The caller must be careful with edge cases as the start and end VA of 
+the given page may extend past the range used with hmm_range_fault()."
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+I take that to mean it will still return a huge page order even if there 
+is say some 2M PTE, but the hmm_range is just some small sub range of 
+pfn covering part of the huge page, like say 8K, where the first 4K page 
+is exactly at the end of the 2M page. Are there some potentially nasty 
+surprises with stuff like:
 
+i += 1UL << hmm_pfn_to_map_order(hmm_pfn);
+
+Since the increment here (512) could go past even npages (2), and then 
+num_chunks is too small (1)?
+
+> 
+> /Thomas
+> 
+> 
+>>
+>>> +			up_read(notifier_sem);
+>>> +			return -EFAULT;
+>>> +		}
+>>> +		num_chunks++;
+>>> +		i += 1UL << hmm_pfn_to_map_order(hmm_pfn);
+>>> +	}
+>>> +	up_read(notifier_sem);
+>>> +
+>>> +	return sg_alloc_table(st, num_chunks, GFP_KERNEL);
+>>> +}
+>>> +
+>>>    /**
+>>>     * xe_build_sg() - build a scatter gather table for all the
+>>> physical pages/pfn
+>>>     * in a hmm_range. dma-map pages if necessary. dma-address is
+>>> save in sg table
+>>> @@ -50,6 +80,7 @@ static void xe_mark_range_accessed(struct
+>>> hmm_range *range, bool write)
+>>>     * @range: the hmm range that we build the sg table from. range-
+>>>> hmm_pfns[]
+>>>     * has the pfn numbers of pages that back up this hmm address
+>>> range.
+>>>     * @st: pointer to the sg table.
+>>> + * @notifier_sem: The xe notifier lock.
+>>>     * @write: whether we write to this range. This decides dma map
+>>> direction
+>>>     * for system pages. If write we map it bi-diretional; otherwise
+>>>     * DMA_TO_DEVICE
+>>> @@ -76,38 +107,33 @@ static void xe_mark_range_accessed(struct
+>>> hmm_range *range, bool write)
+>>>     * Returns 0 if successful; -ENOMEM if fails to allocate memory
+>>>     */
+>>>    static int xe_build_sg(struct xe_device *xe, struct hmm_range
+>>> *range,
+>>> -		       struct sg_table *st, bool write)
+>>> +		       struct sg_table *st,
+>>> +		       struct rw_semaphore *notifier_sem,
+>>> +		       bool write)
+>>>    {
+>>>    	struct device *dev = xe->drm.dev;
+>>> -	struct page **pages;
+>>> -	u64 i, npages;
+>>> -	int ret;
+>>> -
+>>> -	npages = xe_npages_in_range(range->start, range->end);
+>>> -	pages = kvmalloc_array(npages, sizeof(*pages),
+>>> GFP_KERNEL);
+>>> -	if (!pages)
+>>> -		return -ENOMEM;
+>>> -
+>>> -	for (i = 0; i < npages; i++) {
+>>> -		pages[i] = hmm_pfn_to_page(range->hmm_pfns[i]);
+>>> -		xe_assert(xe, !is_device_private_page(pages[i]));
+>>> -	}
+>>> -
+>>> -	ret = sg_alloc_table_from_pages_segment(st, pages, npages,
+>>> 0, npages << PAGE_SHIFT,
+>>> -
+>>> 						xe_sg_segment_size(dev), GFP_KERNEL);
+>>> -	if (ret)
+>>> -		goto free_pages;
+>>> -
+>>> -	ret = dma_map_sgtable(dev, st, write ? DMA_BIDIRECTIONAL :
+>>> DMA_TO_DEVICE,
+>>> -			      DMA_ATTR_SKIP_CPU_SYNC |
+>>> DMA_ATTR_NO_KERNEL_MAPPING);
+>>> -	if (ret) {
+>>> -		sg_free_table(st);
+>>> -		st = NULL;
+>>> +	unsigned long hmm_pfn, size;
+>>> +	struct scatterlist *sgl;
+>>> +	struct page *page;
+>>> +	unsigned long i, j;
+>>> +
+>>> +	lockdep_assert_held(notifier_sem);
+>>> +
+>>> +	i = 0;
+>>> +	for_each_sg(st->sgl, sgl, st->nents, j) {
+>>> +		hmm_pfn = range->hmm_pfns[i];
+>>> +		page = hmm_pfn_to_page(hmm_pfn);
+>>> +		xe_assert(xe, !is_device_private_page(page));
+>>> +		size = 1UL << hmm_pfn_to_map_order(hmm_pfn);
+>>> +		sg_set_page(sgl, page, size << PAGE_SHIFT, 0);
+>>> +		if (unlikely(j == st->nents - 1))
+>>> +			sg_mark_end(sgl);
+>>> +		i += size;
+>>>    	}
+>>> +	xe_assert(xe, i == xe_npages_in_range(range->start, range-
+>>>> end));
+>>>    
+>>> -free_pages:
+>>> -	kvfree(pages);
+>>> -	return ret;
+>>> +	return dma_map_sgtable(dev, st, write ? DMA_BIDIRECTIONAL
+>>> : DMA_TO_DEVICE,
+>>> +			       DMA_ATTR_SKIP_CPU_SYNC |
+>>> DMA_ATTR_NO_KERNEL_MAPPING);
+>>>    }
+>>>    
+>>>    /**
+>>> @@ -235,16 +261,45 @@ int xe_hmm_userptr_populate_range(struct
+>>> xe_userptr_vma *uvma,
+>>>    	if (ret)
+>>>    		goto free_pfns;
+>>>    
+>>> -	ret = xe_build_sg(vm->xe, &hmm_range, &userptr->sgt,
+>>> write);
+>>> +	if (unlikely(userptr->sg)) {
+>>> +		ret = down_write_killable(&vm-
+>>>> userptr.notifier_lock);
+>>> +		if (ret)
+>>> +			goto free_pfns;
+>>> +
+>>> +		xe_hmm_userptr_free_sg(uvma);
+>>> +		up_write(&vm->userptr.notifier_lock);
+>>> +	}
+>>> +
+>>> +	ret = xe_alloc_sg(&userptr->sgt, &hmm_range, &vm-
+>>>> userptr.notifier_lock);
+>>>    	if (ret)
+>>>    		goto free_pfns;
+>>>    
+>>> +	ret = down_read_interruptible(&vm->userptr.notifier_lock);
+>>> +	if (ret)
+>>> +		goto free_st;
+>>> +
+>>> +	if (mmu_interval_read_retry(hmm_range.notifier,
+>>> hmm_range.notifier_seq)) {
+>>> +		ret = -EAGAIN;
+>>> +		goto out_unlock;
+>>> +	}
+>>> +
+>>> +	ret = xe_build_sg(vm->xe, &hmm_range, &userptr->sgt,
+>>> +			  &vm->userptr.notifier_lock, write);
+>>> +	if (ret)
+>>> +		goto out_unlock;
+>>> +
+>>>    	xe_mark_range_accessed(&hmm_range, write);
+>>>    	userptr->sg = &userptr->sgt;
+>>>    	userptr->notifier_seq = hmm_range.notifier_seq;
+>>> +	up_read(&vm->userptr.notifier_lock);
+>>> +	kvfree(pfns);
+>>> +	return 0;
+>>>    
+>>> +out_unlock:
+>>> +	up_read(&vm->userptr.notifier_lock);
+>>> +free_st:
+>>> +	sg_free_table(&userptr->sgt);
+>>>    free_pfns:
+>>>    	kvfree(pfns);
+>>>    	return ret;
+>>>    }
+>>> -
+>>
+> 
 
