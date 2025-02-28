@@ -4,58 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECBB7C282D0
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Feb 2025 12:49:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D7D3C19776
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Feb 2025 12:55:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B670610ECA1;
-	Fri, 28 Feb 2025 12:49:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B0FF10EC8A;
+	Fri, 28 Feb 2025 12:55:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K6HiRBxp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UWiXZrDw";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8197810EC9B;
- Fri, 28 Feb 2025 12:49:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7E8F10EC8A
+ for <intel-xe@lists.freedesktop.org>; Fri, 28 Feb 2025 12:55:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740746990; x=1772282990;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=4ZJshDC9lT3w9J4ZYlngkAqE+DjS2Bh9SNlYFnTwWEY=;
- b=K6HiRBxpMMyNdp4lgZ7JMC1VeVjsszGjCv0Xhj2vZkgp1/Yr17VSsl/P
- RrBvnpBF33k4DhVOp2pgww1/aZBjDjsBpTlDr6aBC2qFKVtnhXeet+Egu
- Xh201FdkgDmDm/CPBHHm1dXHJqVHJEP0wvIjZbWz2zoh4gFygEKLs+d/2
- ZNqM63ecJLEd5IKcveTOf3kfvL7P/OrcP1goUMxEI0cqgJu9AyNiMn+6T
- 9QQgqrmWXEcVoSbQt48HA2sRBTKIKUXfeYdEAYw6VzUDd9GZKeIxe4xBH
- P2GDBiV5VnSF1VsqB7eQnZXWYmdOKHTw79zKeb1CZThgIoR6+CCuFxB1G A==;
-X-CSE-ConnectionGUID: i9iUE8oWTiufsjhPbxxPgQ==
-X-CSE-MsgGUID: UyVthBNKTDKVoG1R/ojXsQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11359"; a="67051294"
-X-IronPort-AV: E=Sophos;i="6.13,322,1732608000"; d="scan'208";a="67051294"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2025 04:49:50 -0800
-X-CSE-ConnectionGUID: 7kiI049lS9ubmgrRepsJdA==
-X-CSE-MsgGUID: 7GRycnCQRm+yI3gVY6fM4w==
+ t=1740747315; x=1772283315;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=fqWmReMCOrVPGcaLkJPLrOetIWfyFvttKdJ7/MnAQpg=;
+ b=UWiXZrDwgcw6hyancbtwTbV6hEFB2F82cFpQ4KvXDgK2U91WAMSvRk0G
+ R7PWVSsIQVOX8BAm3wTtAmieulTH0/rupvlhUgmOjcazwmyajbYi2d0gW
+ uskQP9bkIf5iLx5ywdTBu3A0xQk42ntHGHlBhtXS/hkr6bIbIUb+E24bX
+ zkOwmpLv2ukoJdVC0ejqxrJ0vvpoPOo/96e9fn10CcRgZXFpW3wXNR+9b
+ Mk8x6qZV07TOfenduxEVhZYRvxm7YNqekjOFlmDXzMWsvdBozk0fcl1HD
+ ULim2yrRDy3NPrUg2uMQwrgSzRkQEZkMBdnIL0q21pkIbvZe+oZwfmk9E g==;
+X-CSE-ConnectionGUID: F7SceRYNSR+tJg/gFYHcGw==
+X-CSE-MsgGUID: JutZlDJxTpmaeqeHypYHUg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11359"; a="29268030"
+X-IronPort-AV: E=Sophos;i="6.13,322,1732608000"; d="scan'208";a="29268030"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2025 04:55:14 -0800
+X-CSE-ConnectionGUID: obr1jXmLR1q/uzxHv6tcJQ==
+X-CSE-MsgGUID: coQoM36iQu+53OYueW2q/A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,322,1732608000"; d="scan'208";a="117512973"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.24])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2025 04:49:48 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 3/3] drm/i915/hdcp: add hdcp sub-struct to struct
- intel_digital_port
-Date: Fri, 28 Feb 2025 14:49:31 +0200
-Message-Id: <9da4be57b068acd06dec8b93977f0a70627103d4.1740746939.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1740746939.git.jani.nikula@intel.com>
-References: <cover.1740746939.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,322,1732608000"; d="scan'208";a="148133336"
+Received: from oandoniu-mobl3.ger.corp.intel.com (HELO [10.245.244.73])
+ ([10.245.244.73])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2025 04:55:13 -0800
+Message-ID: <b62352fd-f16a-423c-8a20-5d7697a6c4a7@intel.com>
+Date: Fri, 28 Feb 2025 12:55:10 +0000
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] drm/xe/hmm: Don't dereference struct page pointers
+ without notifier lock
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Oak Zeng <oak.zeng@intel.com>, stable@vger.kernel.org
+References: <20250228104418.44313-1-thomas.hellstrom@linux.intel.com>
+ <20250228104418.44313-3-thomas.hellstrom@linux.intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20250228104418.44313-3-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,473 +72,207 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move hdcp_mutex, num_hdcp_streams, hdcp_auth_status, hdcp_port_data, and
-hdcp_mst_type1_capable members of struct intel_digital_port under an
-hdcp sub-struct to group hdcp related things together.
+On 28/02/2025 10:44, Thomas Hellström wrote:
+> The pnfs that we obtain from hmm_range_fault() point to pages that
+> we don't have a reference on, and the guarantee that they are still
+> in the cpu page-tables is that the notifier lock must be held and the
+> notifier seqno is still valid.
+> 
+> So while building the sg table and marking the pages accesses / dirty
+> we need to hold this lock with a validated seqno.
+> 
+> However, the lock is reclaim tainted which makes
+> sg_alloc_table_from_pages_segment() unusable, since it internally
+> allocates memory.
+> 
+> Instead build the sg-table manually. For the non-iommu case
+> this might lead to fewer coalesces, but if that's a problem it can
+> be fixed up later in the resource cursor code. For the iommu case,
+> the whole sg-table may still be coalesced to a single contigous
+> device va region.
+> 
+> This avoids marking pages that we don't own dirty and accessed, and
+> it also avoid dereferencing struct pages that we don't own.
+> 
+> Fixes: 81e058a3e7fd ("drm/xe: Introduce helper to populate userptr")
+> Cc: Oak Zeng <oak.zeng@intel.com>
+> Cc: <stable@vger.kernel.org> # v6.10+
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_hmm.c | 115 ++++++++++++++++++++++++++----------
+>   1 file changed, 85 insertions(+), 30 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_hmm.c b/drivers/gpu/drm/xe/xe_hmm.c
+> index c56738fa713b..d3b5551496d0 100644
+> --- a/drivers/gpu/drm/xe/xe_hmm.c
+> +++ b/drivers/gpu/drm/xe/xe_hmm.c
+> @@ -42,6 +42,36 @@ static void xe_mark_range_accessed(struct hmm_range *range, bool write)
+>   	}
+>   }
+>   
+> +static int xe_alloc_sg(struct sg_table *st, struct hmm_range *range,
+> +		       struct rw_semaphore *notifier_sem)
+> +{
+> +	unsigned long i, npages, hmm_pfn;
+> +	unsigned long num_chunks = 0;
+> +	int ret;
+> +
+> +	/* HMM docs says this is needed. */
+> +	ret = down_read_interruptible(notifier_sem);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (mmu_interval_read_retry(range->notifier, range->notifier_seq))
+> +		return -EAGAIN;
+> +
+> +	npages = xe_npages_in_range(range->start, range->end);
+> +	for (i = 0; i < npages;) {
+> +		hmm_pfn = range->hmm_pfns[i];
+> +		if (!(hmm_pfn & HMM_PFN_VALID)) {
 
-Rename them mutex, num_streams, auth_status, port_data, and
-mst_type1_capable for clarity.
+Is this possible? The default_flags are always REQ_FAULT, so that should 
+ensure PFN_VALID, or the hmm_fault would have returned an error?
 
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/g4x_dp.c         |  2 +-
- drivers/gpu/drm/i915/display/g4x_hdmi.c       |  2 +-
- drivers/gpu/drm/i915/display/intel_ddi.c      |  6 +-
- .../drm/i915/display/intel_display_types.h    | 22 ++---
- drivers/gpu/drm/i915/display/intel_dp_hdcp.c  |  2 +-
- drivers/gpu/drm/i915/display/intel_hdcp.c     | 84 +++++++++----------
- 6 files changed, 60 insertions(+), 58 deletions(-)
+ From the docs:
 
-diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
-index 372c3683c193..55b9e9bfcc4d 100644
---- a/drivers/gpu/drm/i915/display/g4x_dp.c
-+++ b/drivers/gpu/drm/i915/display/g4x_dp.c
-@@ -1311,7 +1311,7 @@ bool g4x_dp_init(struct intel_display *display,
- 
- 	intel_encoder->devdata = devdata;
- 
--	mutex_init(&dig_port->hdcp_mutex);
-+	mutex_init(&dig_port->hdcp.mutex);
- 
- 	if (drm_encoder_init(display->drm, &intel_encoder->base,
- 			     &intel_dp_enc_funcs, DRM_MODE_ENCODER_TMDS,
-diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-index d9d1304dcc36..3dc2c59a3df0 100644
---- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-@@ -715,7 +715,7 @@ bool g4x_hdmi_init(struct intel_display *display,
- 
- 	intel_encoder->devdata = devdata;
- 
--	mutex_init(&dig_port->hdcp_mutex);
-+	mutex_init(&dig_port->hdcp.mutex);
- 
- 	if (drm_encoder_init(display->drm, &intel_encoder->base,
- 			     &intel_hdmi_enc_funcs, DRM_MODE_ENCODER_TMDS,
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index ca7983ef373d..20fc258a4d6d 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -4582,7 +4582,7 @@ static void intel_ddi_encoder_destroy(struct drm_encoder *encoder)
- 	intel_display_power_flush_work(display);
- 
- 	drm_encoder_cleanup(encoder);
--	kfree(dig_port->hdcp_port_data.streams);
-+	kfree(dig_port->hdcp.port_data.streams);
- 	kfree(dig_port);
- }
- 
-@@ -5187,8 +5187,8 @@ void intel_ddi_init(struct intel_display *display,
- 
- 	intel_encoder_link_check_init(encoder, intel_ddi_link_check);
- 
--	mutex_init(&dig_port->hdcp_mutex);
--	dig_port->num_hdcp_streams = 0;
-+	mutex_init(&dig_port->hdcp.mutex);
-+	dig_port->hdcp.num_streams = 0;
- 
- 	encoder->hotplug = intel_ddi_hotplug;
- 	encoder->compute_output_type = intel_ddi_compute_output_type;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index b52fca816591..053be62a5be1 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1849,16 +1849,18 @@ struct intel_digital_port {
- 
- 	struct intel_tc_port *tc;
- 
--	/* protects num_hdcp_streams reference count, hdcp_port_data and hdcp_auth_status */
--	struct mutex hdcp_mutex;
--	/* the number of pipes using HDCP signalling out of this port */
--	unsigned int num_hdcp_streams;
--	/* port HDCP auth status */
--	bool hdcp_auth_status;
--	/* HDCP port data need to pass to security f/w */
--	struct hdcp_port_data hdcp_port_data;
--	/* Whether the MST topology supports HDCP Type 1 Content */
--	bool hdcp_mst_type1_capable;
-+	struct {
-+		/* protects num_streams reference count, port_data and auth_status */
-+		struct mutex mutex;
-+		/* the number of pipes using HDCP signalling out of this port */
-+		unsigned int num_streams;
-+		/* port HDCP auth status */
-+		bool auth_status;
-+		/* HDCP port data need to pass to security f/w */
-+		struct hdcp_port_data port_data;
-+		/* Whether the MST topology supports HDCP Type 1 Content */
-+		bool mst_type1_capable;
-+	} hdcp;
- 
- 	void (*write_infoframe)(struct intel_encoder *encoder,
- 				const struct intel_crtc_state *crtc_state,
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-index 4c9481124c90..cc312596fb77 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-@@ -799,7 +799,7 @@ intel_dp_mst_hdcp2_stream_encryption(struct intel_connector *connector,
- {
- 	struct intel_display *display = to_intel_display(connector);
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
--	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
-+	struct hdcp_port_data *data = &dig_port->hdcp.port_data;
- 	struct intel_hdcp *hdcp = &connector->hdcp;
- 	enum transcoder cpu_transcoder = hdcp->stream_transcoder;
- 	enum pipe pipe = (enum pipe)cpu_transcoder;
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 46f53ade432e..1bf424a822f3 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -107,16 +107,16 @@ intel_hdcp_required_content_stream(struct intel_atomic_state *state,
- 	struct drm_connector_list_iter conn_iter;
- 	struct intel_digital_port *conn_dig_port;
- 	struct intel_connector *connector;
--	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
-+	struct hdcp_port_data *data = &dig_port->hdcp.port_data;
- 	bool enforce_type0 = false;
- 	int k;
- 
--	if (dig_port->hdcp_auth_status)
-+	if (dig_port->hdcp.auth_status)
- 		return 0;
- 
- 	data->k = 0;
- 
--	if (!dig_port->hdcp_mst_type1_capable)
-+	if (!dig_port->hdcp.mst_type1_capable)
- 		enforce_type0 = true;
- 
- 	drm_connector_list_iter_begin(display->drm, &conn_iter);
-@@ -159,7 +159,7 @@ static int intel_hdcp_prepare_streams(struct intel_atomic_state *state,
- 				      struct intel_connector *connector)
- {
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
--	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
-+	struct hdcp_port_data *data = &dig_port->hdcp.port_data;
- 	struct intel_hdcp *hdcp = &connector->hdcp;
- 
- 	if (intel_encoder_is_mst(intel_attached_encoder(connector)))
-@@ -1001,7 +1001,7 @@ static int _intel_hdcp_disable(struct intel_connector *connector)
- 		 * don't disable it until it disabled HDCP encryption for
- 		 * all connectors in MST topology.
- 		 */
--		if (dig_port->num_hdcp_streams > 0)
-+		if (dig_port->hdcp.num_streams > 0)
- 			return 0;
- 	}
- 
-@@ -1094,13 +1094,13 @@ static void intel_hdcp_update_value(struct intel_connector *connector,
- 	if (hdcp->value == value)
- 		return;
- 
--	drm_WARN_ON(display->drm, !mutex_is_locked(&dig_port->hdcp_mutex));
-+	drm_WARN_ON(display->drm, !mutex_is_locked(&dig_port->hdcp.mutex));
- 
- 	if (hdcp->value == DRM_MODE_CONTENT_PROTECTION_ENABLED) {
--		if (!drm_WARN_ON(display->drm, dig_port->num_hdcp_streams == 0))
--			dig_port->num_hdcp_streams--;
-+		if (!drm_WARN_ON(display->drm, dig_port->hdcp.num_streams == 0))
-+			dig_port->hdcp.num_streams--;
- 	} else if (value == DRM_MODE_CONTENT_PROTECTION_ENABLED) {
--		dig_port->num_hdcp_streams++;
-+		dig_port->hdcp.num_streams++;
- 	}
- 
- 	hdcp->value = value;
-@@ -1122,7 +1122,7 @@ static int intel_hdcp_check_link(struct intel_connector *connector)
- 	int ret = 0;
- 
- 	mutex_lock(&hdcp->mutex);
--	mutex_lock(&dig_port->hdcp_mutex);
-+	mutex_lock(&dig_port->hdcp.mutex);
- 
- 	cpu_transcoder = hdcp->cpu_transcoder;
- 
-@@ -1177,7 +1177,7 @@ static int intel_hdcp_check_link(struct intel_connector *connector)
- 	}
- 
- out:
--	mutex_unlock(&dig_port->hdcp_mutex);
-+	mutex_unlock(&dig_port->hdcp.mutex);
- 	mutex_unlock(&hdcp->mutex);
- 	return ret;
- }
-@@ -1219,7 +1219,7 @@ hdcp2_prepare_ake_init(struct intel_connector *connector,
- {
- 	struct intel_display *display = to_intel_display(connector);
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
--	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
-+	struct hdcp_port_data *data = &dig_port->hdcp.port_data;
- 	struct i915_hdcp_arbiter *arbiter;
- 	int ret;
- 
-@@ -1249,7 +1249,7 @@ hdcp2_verify_rx_cert_prepare_km(struct intel_connector *connector,
- {
- 	struct intel_display *display = to_intel_display(connector);
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
--	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
-+	struct hdcp_port_data *data = &dig_port->hdcp.port_data;
- 	struct i915_hdcp_arbiter *arbiter;
- 	int ret;
- 
-@@ -1277,7 +1277,7 @@ static int hdcp2_verify_hprime(struct intel_connector *connector,
- {
- 	struct intel_display *display = to_intel_display(connector);
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
--	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
-+	struct hdcp_port_data *data = &dig_port->hdcp.port_data;
- 	struct i915_hdcp_arbiter *arbiter;
- 	int ret;
- 
-@@ -1303,7 +1303,7 @@ hdcp2_store_pairing_info(struct intel_connector *connector,
- {
- 	struct intel_display *display = to_intel_display(connector);
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
--	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
-+	struct hdcp_port_data *data = &dig_port->hdcp.port_data;
- 	struct i915_hdcp_arbiter *arbiter;
- 	int ret;
- 
-@@ -1330,7 +1330,7 @@ hdcp2_prepare_lc_init(struct intel_connector *connector,
- {
- 	struct intel_display *display = to_intel_display(connector);
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
--	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
-+	struct hdcp_port_data *data = &dig_port->hdcp.port_data;
- 	struct i915_hdcp_arbiter *arbiter;
- 	int ret;
- 
-@@ -1357,7 +1357,7 @@ hdcp2_verify_lprime(struct intel_connector *connector,
- {
- 	struct intel_display *display = to_intel_display(connector);
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
--	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
-+	struct hdcp_port_data *data = &dig_port->hdcp.port_data;
- 	struct i915_hdcp_arbiter *arbiter;
- 	int ret;
- 
-@@ -1383,7 +1383,7 @@ static int hdcp2_prepare_skey(struct intel_connector *connector,
- {
- 	struct intel_display *display = to_intel_display(connector);
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
--	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
-+	struct hdcp_port_data *data = &dig_port->hdcp.port_data;
- 	struct i915_hdcp_arbiter *arbiter;
- 	int ret;
- 
-@@ -1412,7 +1412,7 @@ hdcp2_verify_rep_topology_prepare_ack(struct intel_connector *connector,
- {
- 	struct intel_display *display = to_intel_display(connector);
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
--	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
-+	struct hdcp_port_data *data = &dig_port->hdcp.port_data;
- 	struct i915_hdcp_arbiter *arbiter;
- 	int ret;
- 
-@@ -1442,7 +1442,7 @@ hdcp2_verify_mprime(struct intel_connector *connector,
- {
- 	struct intel_display *display = to_intel_display(connector);
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
--	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
-+	struct hdcp_port_data *data = &dig_port->hdcp.port_data;
- 	struct i915_hdcp_arbiter *arbiter;
- 	int ret;
- 
-@@ -1466,7 +1466,7 @@ static int hdcp2_authenticate_port(struct intel_connector *connector)
- {
- 	struct intel_display *display = to_intel_display(connector);
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
--	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
-+	struct hdcp_port_data *data = &dig_port->hdcp.port_data;
- 	struct i915_hdcp_arbiter *arbiter;
- 	int ret;
- 
-@@ -1503,7 +1503,7 @@ static int hdcp2_close_session(struct intel_connector *connector)
- 	}
- 
- 	ret = arbiter->ops->close_hdcp_session(arbiter->hdcp_dev,
--					     &dig_port->hdcp_port_data);
-+					     &dig_port->hdcp.port_data);
- 	mutex_unlock(&display->hdcp.hdcp_mutex);
- 
- 	return ret;
-@@ -1691,7 +1691,7 @@ static
- int _hdcp2_propagate_stream_management_info(struct intel_connector *connector)
- {
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
--	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
-+	struct hdcp_port_data *data = &dig_port->hdcp.port_data;
- 	struct intel_hdcp *hdcp = &connector->hdcp;
- 	union {
- 		struct hdcp2_rep_stream_manage stream_manage;
-@@ -1769,11 +1769,11 @@ int hdcp2_authenticate_repeater_topology(struct intel_connector *connector)
- 	 * MST topology is not Type 1 capable if it contains a downstream
- 	 * device that is only HDCP 1.x or Legacy HDCP 2.0/2.1 compliant.
- 	 */
--	dig_port->hdcp_mst_type1_capable =
-+	dig_port->hdcp.mst_type1_capable =
- 		!HDCP_2_2_HDCP1_DEVICE_CONNECTED(rx_info[1]) &&
- 		!HDCP_2_2_HDCP_2_0_REP_CONNECTED(rx_info[1]);
- 
--	if (!dig_port->hdcp_mst_type1_capable && hdcp->content_type) {
-+	if (!dig_port->hdcp.mst_type1_capable && hdcp->content_type) {
- 		drm_dbg_kms(display->drm,
- 			    "HDCP1.x or 2.0 Legacy Device Downstream\n");
- 		return -EINVAL;
-@@ -1869,7 +1869,7 @@ static int hdcp2_enable_stream_encryption(struct intel_connector *connector)
- {
- 	struct intel_display *display = to_intel_display(connector);
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
--	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
-+	struct hdcp_port_data *data = &dig_port->hdcp.port_data;
- 	struct intel_hdcp *hdcp = &connector->hdcp;
- 	enum transcoder cpu_transcoder = hdcp->cpu_transcoder;
- 	enum port port = dig_port->base.port;
-@@ -1900,7 +1900,7 @@ static int hdcp2_enable_stream_encryption(struct intel_connector *connector)
- 	if (hdcp2_deauthenticate_port(connector) < 0)
- 		drm_dbg_kms(display->drm, "Port deauth failed.\n");
- 
--	dig_port->hdcp_auth_status = false;
-+	dig_port->hdcp.auth_status = false;
- 	data->k = 0;
- 
- 	return ret;
-@@ -1940,7 +1940,7 @@ static int hdcp2_enable_encryption(struct intel_connector *connector)
- 						 port),
- 				    LINK_ENCRYPTION_STATUS,
- 				    HDCP_ENCRYPT_STATUS_CHANGE_TIMEOUT_MS);
--	dig_port->hdcp_auth_status = true;
-+	dig_port->hdcp.auth_status = true;
- 
- 	return ret;
- }
-@@ -2019,7 +2019,7 @@ static int hdcp2_authenticate_and_encrypt(struct intel_atomic_state *state,
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	int ret = 0, i, tries = 3;
- 
--	for (i = 0; i < tries && !dig_port->hdcp_auth_status; i++) {
-+	for (i = 0; i < tries && !dig_port->hdcp.auth_status; i++) {
- 		ret = hdcp2_authenticate_sink(connector);
- 		if (!ret) {
- 			ret = intel_hdcp_prepare_streams(state, connector);
-@@ -2052,7 +2052,7 @@ static int hdcp2_authenticate_and_encrypt(struct intel_atomic_state *state,
- 			drm_dbg_kms(display->drm, "Port deauth failed.\n");
- 	}
- 
--	if (!ret && !dig_port->hdcp_auth_status) {
-+	if (!ret && !dig_port->hdcp.auth_status) {
- 		/*
- 		 * Ensuring the required 200mSec min time interval between
- 		 * Session Key Exchange and encryption.
-@@ -2106,7 +2106,7 @@ _intel_hdcp2_disable(struct intel_connector *connector, bool hdcp2_link_recovery
- {
- 	struct intel_display *display = to_intel_display(connector);
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
--	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
-+	struct hdcp_port_data *data = &dig_port->hdcp.port_data;
- 	struct intel_hdcp *hdcp = &connector->hdcp;
- 	int ret;
- 
-@@ -2123,7 +2123,7 @@ _intel_hdcp2_disable(struct intel_connector *connector, bool hdcp2_link_recovery
- 		drm_dbg_kms(display->drm, "HDCP 2.2 transcoder: %s stream encryption disabled\n",
- 			    transcoder_name(hdcp->stream_transcoder));
- 
--		if (dig_port->num_hdcp_streams > 0 && !hdcp2_link_recovery)
-+		if (dig_port->hdcp.num_streams > 0 && !hdcp2_link_recovery)
- 			return 0;
- 	}
- 
-@@ -2133,7 +2133,7 @@ _intel_hdcp2_disable(struct intel_connector *connector, bool hdcp2_link_recovery
- 		drm_dbg_kms(display->drm, "Port deauth failed.\n");
- 
- 	connector->hdcp.hdcp2_encrypted = false;
--	dig_port->hdcp_auth_status = false;
-+	dig_port->hdcp.auth_status = false;
- 	data->k = 0;
- 
- 	return ret;
-@@ -2150,7 +2150,7 @@ static int intel_hdcp2_check_link(struct intel_connector *connector)
- 	int ret = 0;
- 
- 	mutex_lock(&hdcp->mutex);
--	mutex_lock(&dig_port->hdcp_mutex);
-+	mutex_lock(&dig_port->hdcp.mutex);
- 	cpu_transcoder = hdcp->cpu_transcoder;
- 
- 	/* hdcp2_check_link is expected only when HDCP2.2 is Enabled */
-@@ -2221,7 +2221,7 @@ static int intel_hdcp2_check_link(struct intel_connector *connector)
- 	intel_hdcp_update_value(connector,
- 				DRM_MODE_CONTENT_PROTECTION_DESIRED, true);
- out:
--	mutex_unlock(&dig_port->hdcp_mutex);
-+	mutex_unlock(&dig_port->hdcp.mutex);
- 	mutex_unlock(&hdcp->mutex);
- 	return ret;
- }
-@@ -2303,7 +2303,7 @@ static int initialize_hdcp_port_data(struct intel_connector *connector,
- 				     const struct intel_hdcp_shim *shim)
- {
- 	struct intel_display *display = to_intel_display(connector);
--	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
-+	struct hdcp_port_data *data = &dig_port->hdcp.port_data;
- 	enum port port = dig_port->base.port;
- 
- 	if (DISPLAY_VER(display) < 12)
-@@ -2414,7 +2414,7 @@ int intel_hdcp_init(struct intel_connector *connector,
- 							       hdcp->hdcp2_supported);
- 	if (ret) {
- 		hdcp->hdcp2_supported = false;
--		kfree(dig_port->hdcp_port_data.streams);
-+		kfree(dig_port->hdcp.port_data.streams);
- 		return ret;
- 	}
- 
-@@ -2451,7 +2451,7 @@ static int _intel_hdcp_enable(struct intel_atomic_state *state,
- 	}
- 
- 	mutex_lock(&hdcp->mutex);
--	mutex_lock(&dig_port->hdcp_mutex);
-+	mutex_lock(&dig_port->hdcp.mutex);
- 	drm_WARN_ON(display->drm,
- 		    hdcp->value == DRM_MODE_CONTENT_PROTECTION_ENABLED);
- 	hdcp->content_type = (u8)conn_state->hdcp_content_type;
-@@ -2465,7 +2465,7 @@ static int _intel_hdcp_enable(struct intel_atomic_state *state,
- 	}
- 
- 	if (DISPLAY_VER(display) >= 12)
--		dig_port->hdcp_port_data.hdcp_transcoder =
-+		dig_port->hdcp.port_data.hdcp_transcoder =
- 			intel_get_hdcp_transcoder(hdcp->cpu_transcoder);
- 
- 	/*
-@@ -2499,7 +2499,7 @@ static int _intel_hdcp_enable(struct intel_atomic_state *state,
- 					true);
- 	}
- 
--	mutex_unlock(&dig_port->hdcp_mutex);
-+	mutex_unlock(&dig_port->hdcp.mutex);
- 	mutex_unlock(&hdcp->mutex);
- 	return ret;
- }
-@@ -2535,7 +2535,7 @@ int intel_hdcp_disable(struct intel_connector *connector)
- 		return -ENOENT;
- 
- 	mutex_lock(&hdcp->mutex);
--	mutex_lock(&dig_port->hdcp_mutex);
-+	mutex_lock(&dig_port->hdcp.mutex);
- 
- 	if (hdcp->value == DRM_MODE_CONTENT_PROTECTION_UNDESIRED)
- 		goto out;
-@@ -2548,7 +2548,7 @@ int intel_hdcp_disable(struct intel_connector *connector)
- 		ret = _intel_hdcp_disable(connector);
- 
- out:
--	mutex_unlock(&dig_port->hdcp_mutex);
-+	mutex_unlock(&dig_port->hdcp.mutex);
- 	mutex_unlock(&hdcp->mutex);
- 	cancel_delayed_work_sync(&hdcp->check_work);
- 	return ret;
--- 
-2.39.5
+"HMM_PFN_REQ_FAULT - The output must have HMM_PFN_VALID or 
+hmm_range_fault() will fail"
+
+Should this be an assert?
+
+Also probably dumb question, but why do we need to hold the notifier 
+lock over this loop? What is it protecting?
+
+> +			up_read(notifier_sem);
+> +			return -EFAULT;
+> +		}
+> +		num_chunks++;
+> +		i += 1UL << hmm_pfn_to_map_order(hmm_pfn);
+> +	}
+> +	up_read(notifier_sem);
+> +
+> +	return sg_alloc_table(st, num_chunks, GFP_KERNEL);
+> +}
+> +
+>   /**
+>    * xe_build_sg() - build a scatter gather table for all the physical pages/pfn
+>    * in a hmm_range. dma-map pages if necessary. dma-address is save in sg table
+> @@ -50,6 +80,7 @@ static void xe_mark_range_accessed(struct hmm_range *range, bool write)
+>    * @range: the hmm range that we build the sg table from. range->hmm_pfns[]
+>    * has the pfn numbers of pages that back up this hmm address range.
+>    * @st: pointer to the sg table.
+> + * @notifier_sem: The xe notifier lock.
+>    * @write: whether we write to this range. This decides dma map direction
+>    * for system pages. If write we map it bi-diretional; otherwise
+>    * DMA_TO_DEVICE
+> @@ -76,38 +107,33 @@ static void xe_mark_range_accessed(struct hmm_range *range, bool write)
+>    * Returns 0 if successful; -ENOMEM if fails to allocate memory
+>    */
+>   static int xe_build_sg(struct xe_device *xe, struct hmm_range *range,
+> -		       struct sg_table *st, bool write)
+> +		       struct sg_table *st,
+> +		       struct rw_semaphore *notifier_sem,
+> +		       bool write)
+>   {
+>   	struct device *dev = xe->drm.dev;
+> -	struct page **pages;
+> -	u64 i, npages;
+> -	int ret;
+> -
+> -	npages = xe_npages_in_range(range->start, range->end);
+> -	pages = kvmalloc_array(npages, sizeof(*pages), GFP_KERNEL);
+> -	if (!pages)
+> -		return -ENOMEM;
+> -
+> -	for (i = 0; i < npages; i++) {
+> -		pages[i] = hmm_pfn_to_page(range->hmm_pfns[i]);
+> -		xe_assert(xe, !is_device_private_page(pages[i]));
+> -	}
+> -
+> -	ret = sg_alloc_table_from_pages_segment(st, pages, npages, 0, npages << PAGE_SHIFT,
+> -						xe_sg_segment_size(dev), GFP_KERNEL);
+> -	if (ret)
+> -		goto free_pages;
+> -
+> -	ret = dma_map_sgtable(dev, st, write ? DMA_BIDIRECTIONAL : DMA_TO_DEVICE,
+> -			      DMA_ATTR_SKIP_CPU_SYNC | DMA_ATTR_NO_KERNEL_MAPPING);
+> -	if (ret) {
+> -		sg_free_table(st);
+> -		st = NULL;
+> +	unsigned long hmm_pfn, size;
+> +	struct scatterlist *sgl;
+> +	struct page *page;
+> +	unsigned long i, j;
+> +
+> +	lockdep_assert_held(notifier_sem);
+> +
+> +	i = 0;
+> +	for_each_sg(st->sgl, sgl, st->nents, j) {
+> +		hmm_pfn = range->hmm_pfns[i];
+> +		page = hmm_pfn_to_page(hmm_pfn);
+> +		xe_assert(xe, !is_device_private_page(page));
+> +		size = 1UL << hmm_pfn_to_map_order(hmm_pfn);
+> +		sg_set_page(sgl, page, size << PAGE_SHIFT, 0);
+> +		if (unlikely(j == st->nents - 1))
+> +			sg_mark_end(sgl);
+> +		i += size;
+>   	}
+> +	xe_assert(xe, i == xe_npages_in_range(range->start, range->end));
+>   
+> -free_pages:
+> -	kvfree(pages);
+> -	return ret;
+> +	return dma_map_sgtable(dev, st, write ? DMA_BIDIRECTIONAL : DMA_TO_DEVICE,
+> +			       DMA_ATTR_SKIP_CPU_SYNC | DMA_ATTR_NO_KERNEL_MAPPING);
+>   }
+>   
+>   /**
+> @@ -235,16 +261,45 @@ int xe_hmm_userptr_populate_range(struct xe_userptr_vma *uvma,
+>   	if (ret)
+>   		goto free_pfns;
+>   
+> -	ret = xe_build_sg(vm->xe, &hmm_range, &userptr->sgt, write);
+> +	if (unlikely(userptr->sg)) {
+> +		ret = down_write_killable(&vm->userptr.notifier_lock);
+> +		if (ret)
+> +			goto free_pfns;
+> +
+> +		xe_hmm_userptr_free_sg(uvma);
+> +		up_write(&vm->userptr.notifier_lock);
+> +	}
+> +
+> +	ret = xe_alloc_sg(&userptr->sgt, &hmm_range, &vm->userptr.notifier_lock);
+>   	if (ret)
+>   		goto free_pfns;
+>   
+> +	ret = down_read_interruptible(&vm->userptr.notifier_lock);
+> +	if (ret)
+> +		goto free_st;
+> +
+> +	if (mmu_interval_read_retry(hmm_range.notifier, hmm_range.notifier_seq)) {
+> +		ret = -EAGAIN;
+> +		goto out_unlock;
+> +	}
+> +
+> +	ret = xe_build_sg(vm->xe, &hmm_range, &userptr->sgt,
+> +			  &vm->userptr.notifier_lock, write);
+> +	if (ret)
+> +		goto out_unlock;
+> +
+>   	xe_mark_range_accessed(&hmm_range, write);
+>   	userptr->sg = &userptr->sgt;
+>   	userptr->notifier_seq = hmm_range.notifier_seq;
+> +	up_read(&vm->userptr.notifier_lock);
+> +	kvfree(pfns);
+> +	return 0;
+>   
+> +out_unlock:
+> +	up_read(&vm->userptr.notifier_lock);
+> +free_st:
+> +	sg_free_table(&userptr->sgt);
+>   free_pfns:
+>   	kvfree(pfns);
+>   	return ret;
+>   }
+> -
 
