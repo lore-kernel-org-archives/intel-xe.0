@@ -4,52 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2911C282D2
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Feb 2025 18:21:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26FC1C282D5
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Feb 2025 18:21:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50DB710E102;
-	Fri, 28 Feb 2025 18:21:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38F1410E2BE;
+	Fri, 28 Feb 2025 18:21:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G7DHilP/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DufhEgtz";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DBD110E0EA;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A38CA10E0EA;
  Fri, 28 Feb 2025 18:21:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1740766891; x=1772302891;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=dahitv31if4tKW1dsResOt3QjQAmdlm1eUUPE9x1GRg=;
- b=G7DHilP/bWSj8QqqxOwDBNVOHgNgqSakC/KJOYe1wCedY7BtSTepL2ou
- IS6E8nlmrhI1BqaaYSxpSvHplL6wT/23S7s4/tCz92KCX/TCA81BC6qgR
- Mhmrv9amSD9dsdlm4af2OlOBL0HPpBrYrxz7omhr/E0hrDt+r0rQp05Qv
- ggeRAcpq3A5HHv9ziOvUNUlIMN8cwpF+YJghbWlcvom7BP3PRxeMVJCjF
- mwOXosuDtnGXPpLpRW1GPHLAgQ9OEvEoQISxu8VBIZTkxG6Fp+njzIQ9I
- njezBP/LUyqYdZOZShhADrkQL2jXihT7rZiEn2hpD7A5WOpDxe0Oa5U4+ Q==;
-X-CSE-ConnectionGUID: 83wKRSl7T4CIYFEhGlKZXA==
-X-CSE-MsgGUID: L50ya4CPTv2LmdOgdNWuww==
-X-IronPort-AV: E=McAfee;i="6700,10204,11359"; a="41729569"
-X-IronPort-AV: E=Sophos;i="6.13,323,1732608000"; d="scan'208";a="41729569"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=vzZzYIojd5dkdMAwzLd6eS4b8XbLM0jXbUyZQw790pg=;
+ b=DufhEgtzz4x+6J2y9APbIrRDe+ohFURVUxLIynJ64yMeT3Zax8r5A7/m
+ vpzG5ccIUFz9COhI+r2aKqoajDw6xrKAp8PB3Fbl5sHZGZw5rT4+gSDSQ
+ tWzCXAlraVSlAlLT7Fi21/R2gDhr4nlOgPr/TKALqyTCaWkio6S2QbNWF
+ LMvP1FnbzwRpXfigVDIEFTct304ajp/7V2B9Rp9dm0PFysuwIL029FYcU
+ nNO3pibAm+ZgDmt+n6DelXZo/5dzzE/mj3TAWL4VXVSlJEdmkQuTitBNc
+ ebd0Q7jpYvnH8Np6a1jM0OhY4hODfu8eWwoIXZk+QP54gTC5XbCHWBvJi A==;
+X-CSE-ConnectionGUID: gD5bNJ2eSTmSbvNL+nyJow==
+X-CSE-MsgGUID: afXoEjN/TLSw3M5YNnc4Sg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11359"; a="41729584"
+X-IronPort-AV: E=Sophos;i="6.13,323,1732608000"; d="scan'208";a="41729584"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2025 10:21:29 -0800
-X-CSE-ConnectionGUID: FWSP0B9KSwOg/tw6NQ2yMg==
-X-CSE-MsgGUID: ySmPhLkqSherJ7plOiDQuw==
+ 28 Feb 2025 10:21:30 -0800
+X-CSE-ConnectionGUID: tJy/c4SJTy+d9hrxEiI4HA==
+X-CSE-MsgGUID: zSDNnil7Tc+L+h66e6G8lw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,323,1732608000"; d="scan'208";a="148214509"
+X-IronPort-AV: E=Sophos;i="6.13,323,1732608000"; d="scan'208";a="148214529"
 Received: from dut4025lnl.fm.intel.com ([10.105.8.176])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2025 10:21:22 -0800
+ 28 Feb 2025 10:21:24 -0800
 From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
  joonas.lahtinen@linux.intel.com, matthew.brost@intel.com,
  jianxun.zhang@intel.com, dri-devel@lists.freedesktop.org
-Subject: [PATCH v3 0/6] drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
-Date: Fri, 28 Feb 2025 18:21:16 +0000
-Message-ID: <20250228182122.77475-1-jonathan.cavitt@intel.com>
+Subject: [PATCH v3 5/6] drm/xe/xe_gt_pagefault: Add address_type field to
+ pagefaults
+Date: Fri, 28 Feb 2025 18:21:21 +0000
+Message-ID: <20250228182122.77475-6-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250228182122.77475-1-jonathan.cavitt@intel.com>
+References: <20250228182122.77475-1-jonathan.cavitt@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,48 +69,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add additional information to each VM so they can report up to the last
-50 seen pagefaults.  Only failed pagefaults are saved this way, as
-successful pagefaults should recover and not need to be reported to
-userspace.
+Add a new field to the xe_pagefault struct, address_type, that tracks
+the type of fault the pagefault incurred.
 
-Additionally, add a new ioctl - xe_vm_get_property_ioctl - that allows the
-user to query these pagefaults
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_pagefault.c | 3 +++
+ drivers/gpu/drm/xe/xe_gt_pagefault.h | 1 +
+ 2 files changed, 4 insertions(+)
 
-v2: (Matt Brost)
-- Break full ban list request into a separate property.
-- Reformat drm_xe_vm_get_property struct.
-- Remove need for drm_xe_faults helper struct.
-- Separate data pointer and scalar return value in ioctl.
-- Get address type on pagefault report and save it to the pagefault.
-- Correctly reject writes to read-only VMAs.
-- Miscellaneous formatting fixes.
-
-v3: (Matt Brost)
-- Only allow querying of failed pagefaults
-
-Signed-off-by: Jonathan Cavitt <joanthan.cavitt@intel.com>
-Suggested-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
-CC: Zhang Jianxun <jianxun.zhang@intel.com>
-
-Jonathan Cavitt (6):
-  drm/xe/xe_gt_pagefault: Disallow writes to read-only VMAs
-  drm/xe/xe_gt_pagefault: Migrate pagefault struct to header
-  drm/xe/xe_vm: Add per VM pagefault info
-  drm/xe/uapi: Define drm_xe_vm_get_property
-  drm/xe/xe_gt_pagefault: Add address_type field to pagefaults
-  drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
-
- drivers/gpu/drm/xe/xe_device.c       |   3 +
- drivers/gpu/drm/xe/xe_gt_pagefault.c |  66 +++++++-------
- drivers/gpu/drm/xe/xe_gt_pagefault.h |  29 +++++++
- drivers/gpu/drm/xe/xe_vm.c           | 124 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vm.h           |   8 ++
- drivers/gpu/drm/xe/xe_vm_types.h     |  20 +++++
- include/uapi/drm/xe_drm.h            |  63 ++++++++++++++
- 7 files changed, 279 insertions(+), 34 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index 84907fb4295e..ecf9f76bd423 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -204,11 +204,13 @@ static int handle_pagefault(struct xe_gt *gt, struct xe_pagefault *pf)
+ 
+ 	vma = lookup_vma(vm, pf->page_addr);
+ 	if (!vma) {
++		pf->address_type = DRM_XE_FAULT_ADDRESS_TYPE_NONE_EXT;
+ 		err = -EINVAL;
+ 		goto unlock_vm;
+ 	}
+ 
+ 	if (xe_vma_read_only(vma) && pf->access_type != XE_PAGEFAULT_ACCESS_TYPE_READ) {
++		pf->address_type = DRM_XE_FAULT_ADDRESS_TYPE_WRITE_INVALID_EXT;
+ 		err = -EPERM;
+ 		goto unlock_vm;
+ 	}
+@@ -276,6 +278,7 @@ static bool get_pagefault(struct pf_queue *pf_queue, struct xe_pagefault *pf)
+ 		pf->asid = FIELD_GET(PFD_ASID, desc->dw1);
+ 		pf->vfid = FIELD_GET(PFD_VFID, desc->dw2);
+ 		pf->access_type = FIELD_GET(PFD_ACCESS_TYPE, desc->dw2);
++		pf->address_type = 0;
+ 		pf->fault_type = FIELD_GET(PFD_FAULT_TYPE, desc->dw2);
+ 		pf->page_addr = (u64)(FIELD_GET(PFD_VIRTUAL_ADDR_HI, desc->dw3)) <<
+ 			PFD_VIRTUAL_ADDR_HI_SHIFT;
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.h b/drivers/gpu/drm/xe/xe_gt_pagefault.h
+index 33616043d17a..969f7b458d3f 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.h
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.h
+@@ -17,6 +17,7 @@ struct xe_pagefault {
+ 	u16 pdata;
+ 	u8 vfid;
+ 	u8 access_type;
++	u8 address_type;
+ 	u8 fault_type;
+ 	u8 fault_level;
+ 	u8 engine_class;
 -- 
 2.43.0
 
