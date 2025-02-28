@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83D28C282C1
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Feb 2025 15:51:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE5E6C282C1
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Feb 2025 15:54:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C10510ECE0;
-	Fri, 28 Feb 2025 15:51:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MjD1nIm2";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB76310ECE0;
- Fri, 28 Feb 2025 15:51:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740757917; x=1772293917;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=wthU+7zBL85yjZIO8SJUzjbOc9YHJHU0w+v1avIxDoQ=;
- b=MjD1nIm2NYx7M/YGrUslBZCIgpD4ihB6wo7iFIlo3d+HIBVjaL0V8uUG
- UeL4a63sE4KEiK5ZHEpb2kDxQqOeVArsDmH5A9TSOagPS3WhtqloPr2g/
- 3l9mM5hVkf4kioUImwJCRlT2OC0CujZPK4JOjptu6aXOCvm8Qmxqvowo4
- cxElTkwMN8WjtxlnIjMMBdncs5ezThCqbdNuhCv/QQCyrbPHVA8rHvcLj
- rF7ZVH5mOWLaWiHPorjadnY38o9MOMb7SSQtT3KyiHwNCDMwmwoqKWT1W
- pTGhbN11WqwLIdqwDAZYEXWVkuab3bnsHYAJPeM5yCQJiIA79y2Cc2ayS w==;
-X-CSE-ConnectionGUID: nECq/mgSSrOXIytCoKohsA==
-X-CSE-MsgGUID: nwFF5k9bSo+sL4jdPo1Xdg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11359"; a="45342721"
-X-IronPort-AV: E=Sophos;i="6.13,322,1732608000"; d="scan'208";a="45342721"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2025 07:51:57 -0800
-X-CSE-ConnectionGUID: nV7hjzSrTA2Lifua2txCAw==
-X-CSE-MsgGUID: LIVFF3PTSBqHoiTQWMUiOQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="117896174"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2025 07:51:55 -0800
-Date: Fri, 28 Feb 2025 17:52:57 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 2/3] drm/i915/mst: add mst sub-struct to struct
- intel_connector
-Message-ID: <Z8Hb2aOzsFU7oPdq@ideak-desk.fi.intel.com>
-References: <cover.1740746939.git.jani.nikula@intel.com>
- <e2afaf4595ae8e3241aaca1c1bb4d6356b07e44a.1740746939.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD6D410ECE4;
+	Fri, 28 Feb 2025 15:54:46 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E626C10ECE4;
+ Fri, 28 Feb 2025 15:54:45 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e2afaf4595ae8e3241aaca1c1bb4d6356b07e44a.1740746939.git.jani.nikula@intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_series_starting_with_=5B1/2=5D?=
+ =?utf-8?q?_drm/xe/compat=3A_refactor_compat_i915=5Fdrv=2Eh?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 28 Feb 2025 15:54:45 -0000
+Message-ID: <174075808593.3254780.13073213612883647551@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250228142539.3216960-1-jani.nikula@intel.com>
+In-Reply-To: <20250228142539.3216960-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,477 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Feb 28, 2025 at 02:49:30PM +0200, Jani Nikula wrote:
-> Move port and mst_port members of struct intel_connector under an mst
-> sub-struct to group mst related things together.
-> 
-> Rename the latter dp for clarity.
-> 
-> Cc: Imre Deak <imre.deak@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+== Series Details ==
 
-Reviewed-by: Imre Deak <imre.deak@intel.com>
+Series: series starting with [1/2] drm/xe/compat: refactor compat i915_drv.h
+URL   : https://patchwork.freedesktop.org/series/145647/
+State : success
 
-> ---
->  .../gpu/drm/i915/display/intel_connector.c    |  4 +-
->  .../drm/i915/display/intel_display_debugfs.c  |  4 +-
->  .../drm/i915/display/intel_display_types.h    | 13 ++--
->  drivers/gpu/drm/i915/display/intel_dp.c       | 12 ++--
->  drivers/gpu/drm/i915/display/intel_dp_hdcp.c  |  6 +-
->  drivers/gpu/drm/i915/display/intel_dp_mst.c   | 72 +++++++++----------
->  drivers/gpu/drm/i915/display/intel_hdcp.c     |  8 +--
->  7 files changed, 60 insertions(+), 59 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_connector.c b/drivers/gpu/drm/i915/display/intel_connector.c
-> index 358965fc7f55..e42357bd9e80 100644
-> --- a/drivers/gpu/drm/i915/display/intel_connector.c
-> +++ b/drivers/gpu/drm/i915/display/intel_connector.c
-> @@ -145,8 +145,8 @@ void intel_connector_destroy(struct drm_connector *connector)
->  
->  	drm_connector_cleanup(connector);
->  
-> -	if (intel_connector->port)
-> -		drm_dp_mst_put_port_malloc(intel_connector->port);
-> +	if (intel_connector->mst.port)
-> +		drm_dp_mst_put_port_malloc(intel_connector->mst.port);
->  
->  	kfree(connector);
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> index 408f80194334..510c15a6271f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -261,7 +261,7 @@ static void intel_connector_info(struct seq_file *m,
->  	switch (connector->connector_type) {
->  	case DRM_MODE_CONNECTOR_DisplayPort:
->  	case DRM_MODE_CONNECTOR_eDP:
-> -		if (intel_connector->mst_port)
-> +		if (intel_connector->mst.dp)
->  			intel_dp_mst_info(m, intel_connector);
->  		else
->  			intel_dp_info(m, intel_connector);
-> @@ -1341,7 +1341,7 @@ void intel_connector_debugfs_add(struct intel_connector *connector)
->  	intel_dp_link_training_debugfs_add(connector);
->  
->  	if (DISPLAY_VER(display) >= 11 &&
-> -	    ((connector_type == DRM_MODE_CONNECTOR_DisplayPort && !connector->mst_port) ||
-> +	    ((connector_type == DRM_MODE_CONNECTOR_DisplayPort && !connector->mst.dp) ||
->  	     connector_type == DRM_MODE_CONNECTOR_eDP)) {
->  		debugfs_create_file("i915_dsc_fec_support", 0644, root,
->  				    connector, &i915_dsc_fec_support_fops);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 2aa8f6264708..b52fca816591 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -534,10 +534,6 @@ struct intel_connector {
->  	   state of connector->polled in case hotplug storm detection changes it */
->  	u8 polled;
->  
-> -	struct drm_dp_mst_port *port;
-> -
-> -	struct intel_dp *mst_port;
-> -
->  	int force_joined_pipes;
->  
->  	struct {
-> @@ -549,6 +545,11 @@ struct intel_connector {
->  		u8 dsc_decompression_enabled:1;
->  	} dp;
->  
-> +	struct {
-> +		struct drm_dp_mst_port *port;
-> +		struct intel_dp *dp;
-> +	} mst;
-> +
->  	/* Work struct to schedule a uevent on link train failure */
->  	struct work_struct modeset_retry_work;
->  
-> @@ -1956,8 +1957,8 @@ static inline struct intel_dp *enc_to_intel_dp(struct intel_encoder *encoder)
->  
->  static inline struct intel_dp *intel_attached_dp(struct intel_connector *connector)
->  {
-> -	if (connector->mst_port)
-> -		return connector->mst_port;
-> +	if (connector->mst.dp)
-> +		return connector->mst.dp;
->  	else
->  		return enc_to_intel_dp(intel_attached_encoder(connector));
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 5e84103c8d54..205ec315b413 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1376,7 +1376,7 @@ bool intel_dp_has_dsc(const struct intel_connector *connector)
->  	if (!HAS_DSC(display))
->  		return false;
->  
-> -	if (connector->mst_port && !HAS_DSC_MST(display))
-> +	if (connector->mst.dp && !HAS_DSC_MST(display))
->  		return false;
->  
->  	if (connector->base.connector_type == DRM_MODE_CONNECTOR_eDP &&
-> @@ -3080,7 +3080,7 @@ intel_dp_queue_modeset_retry_for_link(struct intel_atomic_state *state,
->  		if (!conn_state->base.crtc)
->  			continue;
->  
-> -		if (connector->mst_port == intel_dp)
-> +		if (connector->mst.dp == intel_dp)
->  			intel_connector_queue_modeset_retry_work(connector);
->  	}
->  }
-> @@ -3302,8 +3302,8 @@ intel_dp_sink_set_dsc_passthrough(const struct intel_connector *connector,
->  				  bool enable)
->  {
->  	struct intel_display *display = to_intel_display(connector);
-> -	struct drm_dp_aux *aux = connector->port ?
-> -				 connector->port->passthrough_aux : NULL;
-> +	struct drm_dp_aux *aux = connector->mst.port ?
-> +				 connector->mst.port->passthrough_aux : NULL;
->  
->  	if (!aux)
->  		return;
-> @@ -3330,7 +3330,7 @@ static int intel_dp_dsc_aux_ref_count(struct intel_atomic_state *state,
->  	 * On SST the decompression AUX device won't be shared, each connector
->  	 * uses for this its own AUX targeting the sink device.
->  	 */
-> -	if (!connector->mst_port)
-> +	if (!connector->mst.dp)
->  		return connector->dp.dsc_decompression_enabled ? 1 : 0;
->  
->  	for_each_oldnew_connector_in_state(&state->base, _connector_iter,
-> @@ -3338,7 +3338,7 @@ static int intel_dp_dsc_aux_ref_count(struct intel_atomic_state *state,
->  		const struct intel_connector *
->  			connector_iter = to_intel_connector(_connector_iter);
->  
-> -		if (connector_iter->mst_port != connector->mst_port)
-> +		if (connector_iter->mst.dp != connector->mst.dp)
->  			continue;
->  
->  		if (!connector_iter->dp.dsc_decompression_enabled)
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> index 00c493cc8a4b..4c9481124c90 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> @@ -705,10 +705,10 @@ int intel_dp_hdcp_get_remote_capability(struct intel_connector *connector,
->  
->  	*hdcp_capable = false;
->  	*hdcp2_capable = false;
-> -	if (!connector->mst_port)
-> +	if (!connector->mst.dp)
->  		return -EINVAL;
->  
-> -	aux = &connector->port->aux;
-> +	aux = &connector->mst.port->aux;
->  	ret =  _intel_dp_hdcp2_get_capability(aux, hdcp2_capable);
->  	if (ret)
->  		drm_dbg_kms(display->drm,
-> @@ -883,7 +883,7 @@ int intel_dp_hdcp_init(struct intel_digital_port *dig_port,
->  	if (!is_hdcp_supported(display, port))
->  		return 0;
->  
-> -	if (intel_connector->mst_port)
-> +	if (intel_connector->mst.dp)
->  		return intel_hdcp_init(intel_connector, dig_port,
->  				       &intel_dp_mst_hdcp_shim);
->  	else if (!intel_dp_is_edp(intel_dp))
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> index e96236fbe407..02f95108c637 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -356,7 +356,7 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
->  			crtc_state->dp_m_n.tu = remote_tu;
->  
->  			slots = drm_dp_atomic_find_time_slots(state, &intel_dp->mst.mgr,
-> -							      connector->port,
-> +							      connector->mst.port,
->  							      dfixed_trunc(pbn));
->  		} else {
->  			/* Same as above for remote_tu */
-> @@ -509,8 +509,8 @@ hblank_expansion_quirk_needs_dsc(const struct intel_connector *connector,
->  {
->  	const struct drm_display_mode *adjusted_mode =
->  		&crtc_state->hw.adjusted_mode;
-> -	bool is_uhbr_sink = connector->mst_port &&
-> -			    drm_dp_128b132b_supported(connector->mst_port->dpcd);
-> +	bool is_uhbr_sink = connector->mst.dp &&
-> +			    drm_dp_128b132b_supported(connector->mst.dp->dpcd);
->  	int hblank_limit = is_uhbr_sink ? 500 : 300;
->  
->  	if (!connector->dp.dsc_hblank_expansion_quirk)
-> @@ -741,7 +741,7 @@ intel_dp_mst_transcoder_mask(struct intel_atomic_state *state,
->  		const struct intel_crtc_state *crtc_state;
->  		struct intel_crtc *crtc;
->  
-> -		if (connector->mst_port != mst_port || !conn_state->base.crtc)
-> +		if (connector->mst.dp != mst_port || !conn_state->base.crtc)
->  			continue;
->  
->  		crtc = to_intel_crtc(conn_state->base.crtc);
-> @@ -769,12 +769,12 @@ static u8 get_pipes_downstream_of_mst_port(struct intel_atomic_state *state,
->  		if (!conn_state->base.crtc)
->  			continue;
->  
-> -		if (&connector->mst_port->mst.mgr != mst_mgr)
-> +		if (&connector->mst.dp->mst.mgr != mst_mgr)
->  			continue;
->  
-> -		if (connector->port != parent_port &&
-> +		if (connector->mst.port != parent_port &&
->  		    !drm_dp_mst_port_downstream_of_parent(mst_mgr,
-> -							  connector->port,
-> +							  connector->mst.port,
->  							  parent_port))
->  			continue;
->  
-> @@ -925,7 +925,7 @@ mst_connector_atomic_topology_check(struct intel_connector *connector,
->  		struct intel_crtc_state *crtc_state;
->  		struct intel_crtc *crtc;
->  
-> -		if (connector_iter->mst_port != connector->mst_port ||
-> +		if (connector_iter->mst.dp != connector->mst.dp ||
->  		    connector_iter == connector)
->  			continue;
->  
-> @@ -974,15 +974,15 @@ mst_connector_atomic_check(struct drm_connector *_connector,
->  
->  	if (intel_connector_needs_modeset(state, &connector->base)) {
->  		ret = intel_dp_tunnel_atomic_check_state(state,
-> -							 connector->mst_port,
-> +							 connector->mst.dp,
->  							 connector);
->  		if (ret)
->  			return ret;
->  	}
->  
->  	return drm_dp_atomic_release_time_slots(&state->base,
-> -						&connector->mst_port->mst.mgr,
-> -						connector->port);
-> +						&connector->mst.dp->mst.mgr,
-> +						connector->mst.port);
->  }
->  
->  static void mst_stream_disable(struct intel_atomic_state *state,
-> @@ -1027,9 +1027,9 @@ static void mst_stream_post_disable(struct intel_atomic_state *state,
->  	struct drm_dp_mst_topology_state *new_mst_state =
->  		drm_atomic_get_new_mst_topology_state(&state->base, &intel_dp->mst.mgr);
->  	const struct drm_dp_mst_atomic_payload *old_payload =
-> -		drm_atomic_get_mst_payload_state(old_mst_state, connector->port);
-> +		drm_atomic_get_mst_payload_state(old_mst_state, connector->mst.port);
->  	struct drm_dp_mst_atomic_payload *new_payload =
-> -		drm_atomic_get_mst_payload_state(new_mst_state, connector->port);
-> +		drm_atomic_get_mst_payload_state(new_mst_state, connector->mst.port);
->  	struct intel_crtc *pipe_crtc;
->  	bool last_mst_stream;
->  	int i;
-> @@ -1080,7 +1080,7 @@ static void mst_stream_post_disable(struct intel_atomic_state *state,
->  	 * Power down mst path before disabling the port, otherwise we end
->  	 * up getting interrupts from the sink upon detecting link loss.
->  	 */
-> -	drm_dp_send_power_updown_phy(&intel_dp->mst.mgr, connector->port,
-> +	drm_dp_send_power_updown_phy(&intel_dp->mst.mgr, connector->mst.port,
->  				     false);
->  
->  	/*
-> @@ -1199,7 +1199,7 @@ static void mst_stream_pre_enable(struct intel_atomic_state *state,
->  	if (first_mst_stream)
->  		intel_dp_set_power(intel_dp, DP_SET_POWER_D0);
->  
-> -	drm_dp_send_power_updown_phy(&intel_dp->mst.mgr, connector->port, true);
-> +	drm_dp_send_power_updown_phy(&intel_dp->mst.mgr, connector->mst.port, true);
->  
->  	intel_dp_sink_enable_decompression(state, connector, pipe_config);
->  
-> @@ -1213,7 +1213,7 @@ static void mst_stream_pre_enable(struct intel_atomic_state *state,
->  	intel_dp->mst.active_links++;
->  
->  	ret = drm_dp_add_payload_part1(&intel_dp->mst.mgr, mst_state,
-> -				       drm_atomic_get_mst_payload_state(mst_state, connector->port));
-> +				       drm_atomic_get_mst_payload_state(mst_state, connector->mst.port));
->  	if (ret < 0)
->  		intel_dp_queue_modeset_retry_for_link(state, primary_encoder, pipe_config);
->  
-> @@ -1339,7 +1339,7 @@ static void mst_stream_enable(struct intel_atomic_state *state,
->  
->  	ret = drm_dp_add_payload_part2(&intel_dp->mst.mgr,
->  				       drm_atomic_get_mst_payload_state(mst_state,
-> -									connector->port));
-> +									connector->mst.port));
->  	if (ret < 0)
->  		intel_dp_queue_modeset_retry_for_link(state, primary_encoder, pipe_config);
->  
-> @@ -1392,7 +1392,7 @@ static int mst_connector_get_ddc_modes(struct drm_connector *_connector)
->  {
->  	struct intel_connector *connector = to_intel_connector(_connector);
->  	struct intel_display *display = to_intel_display(connector);
-> -	struct intel_dp *intel_dp = connector->mst_port;
-> +	struct intel_dp *intel_dp = connector->mst.dp;
->  	const struct drm_edid *drm_edid;
->  	int ret;
->  
-> @@ -1402,7 +1402,7 @@ static int mst_connector_get_ddc_modes(struct drm_connector *_connector)
->  	if (!intel_display_driver_check_access(display))
->  		return drm_edid_connector_add_modes(&connector->base);
->  
-> -	drm_edid = drm_dp_mst_edid_read(&connector->base, &intel_dp->mst.mgr, connector->port);
-> +	drm_edid = drm_dp_mst_edid_read(&connector->base, &intel_dp->mst.mgr, connector->mst.port);
->  
->  	ret = intel_connector_update_modes(&connector->base, drm_edid);
->  
-> @@ -1417,13 +1417,13 @@ mst_connector_late_register(struct drm_connector *_connector)
->  	struct intel_connector *connector = to_intel_connector(_connector);
->  	int ret;
->  
-> -	ret = drm_dp_mst_connector_late_register(&connector->base, connector->port);
-> +	ret = drm_dp_mst_connector_late_register(&connector->base, connector->mst.port);
->  	if (ret < 0)
->  		return ret;
->  
->  	ret = intel_connector_register(&connector->base);
->  	if (ret < 0)
-> -		drm_dp_mst_connector_early_unregister(&connector->base, connector->port);
-> +		drm_dp_mst_connector_early_unregister(&connector->base, connector->mst.port);
->  
->  	return ret;
->  }
-> @@ -1434,7 +1434,7 @@ mst_connector_early_unregister(struct drm_connector *_connector)
->  	struct intel_connector *connector = to_intel_connector(_connector);
->  
->  	intel_connector_unregister(&connector->base);
-> -	drm_dp_mst_connector_early_unregister(&connector->base, connector->port);
-> +	drm_dp_mst_connector_early_unregister(&connector->base, connector->mst.port);
->  }
->  
->  static const struct drm_connector_funcs mst_connector_funcs = {
-> @@ -1463,9 +1463,9 @@ mst_connector_mode_valid_ctx(struct drm_connector *_connector,
->  {
->  	struct intel_connector *connector = to_intel_connector(_connector);
->  	struct intel_display *display = to_intel_display(connector);
-> -	struct intel_dp *intel_dp = connector->mst_port;
-> +	struct intel_dp *intel_dp = connector->mst.dp;
->  	struct drm_dp_mst_topology_mgr *mgr = &intel_dp->mst.mgr;
-> -	struct drm_dp_mst_port *port = connector->port;
-> +	struct drm_dp_mst_port *port = connector->mst.port;
->  	const int min_bpp = 18;
->  	int max_dotclk = display->cdclk.max_dotclk_freq;
->  	int max_rate, mode_rate, max_lanes, max_link_clock;
-> @@ -1576,7 +1576,7 @@ mst_connector_atomic_best_encoder(struct drm_connector *_connector,
->  	struct intel_connector *connector = to_intel_connector(_connector);
->  	struct drm_connector_state *connector_state =
->  		drm_atomic_get_new_connector_state(state, &connector->base);
-> -	struct intel_dp *intel_dp = connector->mst_port;
-> +	struct intel_dp *intel_dp = connector->mst.dp;
->  	struct intel_crtc *crtc = to_intel_crtc(connector_state->crtc);
->  
->  	return &intel_dp->mst.stream_encoders[crtc->pipe]->base.base;
-> @@ -1588,7 +1588,7 @@ mst_connector_detect_ctx(struct drm_connector *_connector,
->  {
->  	struct intel_connector *connector = to_intel_connector(_connector);
->  	struct intel_display *display = to_intel_display(connector);
-> -	struct intel_dp *intel_dp = connector->mst_port;
-> +	struct intel_dp *intel_dp = connector->mst.dp;
->  
->  	if (!intel_display_device_enabled(display))
->  		return connector_status_disconnected;
-> @@ -1602,7 +1602,7 @@ mst_connector_detect_ctx(struct drm_connector *_connector,
->  	intel_dp_flush_connector_commits(connector);
->  
->  	return drm_dp_mst_detect_port(&connector->base, ctx, &intel_dp->mst.mgr,
-> -				      connector->port);
-> +				      connector->mst.port);
->  }
->  
->  static const struct drm_connector_helper_funcs mst_connector_helper_funcs = {
-> @@ -1693,10 +1693,10 @@ static bool detect_dsc_hblank_expansion_quirk(const struct intel_connector *conn
->  	 * A logical port's OUI (at least for affected sinks) is all 0, so
->  	 * instead of that the parent port's OUI is used for identification.
->  	 */
-> -	if (drm_dp_mst_port_is_logical(connector->port)) {
-> -		aux = drm_dp_mst_aux_for_parent(connector->port);
-> +	if (drm_dp_mst_port_is_logical(connector->mst.port)) {
-> +		aux = drm_dp_mst_aux_for_parent(connector->mst.port);
->  		if (!aux)
-> -			aux = &connector->mst_port->aux;
-> +			aux = &connector->mst.dp->aux;
->  	}
->  
->  	if (drm_dp_read_dpcd_caps(aux, dpcd) < 0)
-> @@ -1744,8 +1744,8 @@ mst_topology_add_connector(struct drm_dp_mst_topology_mgr *mgr,
->  
->  	connector->get_hw_state = mst_connector_get_hw_state;
->  	connector->sync_state = intel_dp_connector_sync_state;
-> -	connector->mst_port = intel_dp;
-> -	connector->port = port;
-> +	connector->mst.dp = intel_dp;
-> +	connector->mst.port = port;
->  	drm_dp_mst_get_port_malloc(port);
->  
->  	ret = drm_connector_dynamic_init(display->drm, &connector->base, &mst_connector_funcs,
-> @@ -1954,11 +1954,11 @@ intel_dp_mst_add_topology_state_for_connector(struct intel_atomic_state *state,
->  {
->  	struct drm_dp_mst_topology_state *mst_state;
->  
-> -	if (!connector->mst_port)
-> +	if (!connector->mst.dp)
->  		return 0;
->  
->  	mst_state = drm_atomic_get_mst_topology_state(&state->base,
-> -						      &connector->mst_port->mst.mgr);
-> +						      &connector->mst.dp->mst.mgr);
->  	if (IS_ERR(mst_state))
->  		return PTR_ERR(mst_state);
->  
-> @@ -2056,7 +2056,7 @@ bool intel_dp_mst_crtc_needs_modeset(struct intel_atomic_state *state,
->  		const struct intel_crtc_state *old_crtc_state;
->  		struct intel_crtc *crtc_iter;
->  
-> -		if (connector->mst_port != crtc_connector->mst_port ||
-> +		if (connector->mst.dp != crtc_connector->mst.dp ||
->  		    !conn_state->crtc)
->  			continue;
->  
-> @@ -2079,7 +2079,7 @@ bool intel_dp_mst_crtc_needs_modeset(struct intel_atomic_state *state,
->  		 * case.
->  		 */
->  		if (connector->dp.dsc_decompression_aux ==
-> -		    &connector->mst_port->aux)
-> +		    &connector->mst.dp->aux)
->  			return true;
->  	}
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index 100f3fb1c1a0..46f53ade432e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -70,13 +70,13 @@ static int intel_conn_to_vcpi(struct intel_atomic_state *state,
->  	int vcpi = 0;
->  
->  	/* For HDMI this is forced to be 0x0. For DP SST also this is 0x0. */
-> -	if (!connector->port)
-> +	if (!connector->mst.port)
->  		return 0;
-> -	mgr = connector->port->mgr;
-> +	mgr = connector->mst.port->mgr;
->  
->  	drm_modeset_lock(&mgr->base.lock, state->base.acquire_ctx);
->  	mst_state = to_drm_dp_mst_topology_state(mgr->base.state);
-> -	payload = drm_atomic_get_mst_payload_state(mst_state, connector->port);
-> +	payload = drm_atomic_get_mst_payload_state(mst_state, connector->mst.port);
->  	if (drm_WARN_ON(mgr->dev, !payload))
->  		goto out;
->  
-> @@ -2775,7 +2775,7 @@ static void __intel_hdcp_info(struct seq_file *m, struct intel_connector *connec
->  void intel_hdcp_info(struct seq_file *m, struct intel_connector *connector)
->  {
->  	seq_puts(m, "\tHDCP version: ");
-> -	if (connector->mst_port) {
-> +	if (connector->mst.dp) {
->  		__intel_hdcp_info(m, connector, true);
->  		seq_puts(m, "\tMST Hub HDCP version: ");
->  	}
-> -- 
-> 2.39.5
-> 
+== Summary ==
+
+lib/modules/6.14.0-rc4-xe+/kernel/arch/x86/events/amd/
+lib/modules/6.14.0-rc4-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
+lib/modules/6.14.0-rc4-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.14.0-rc4-xe+/kernel/arch/x86/kvm/
+lib/modules/6.14.0-rc4-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.14.0-rc4-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.14.0-rc4-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.14.0-rc4-xe+/kernel/kernel/
+lib/modules/6.14.0-rc4-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/zstd.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/xctr.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/authenc.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/sm3.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/cmac.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/essiv.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/ccm.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/wp512.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/lrw.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/842.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/md4.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/lz4.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/sm4.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/async_tx/
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.14.0-rc4-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.14.0-rc4-xe+/kernel/block/
+lib/modules/6.14.0-rc4-xe+/kernel/block/bfq.ko
+lib/modules/6.14.0-rc4-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.14.0-rc4-xe+/build
+lib/modules/6.14.0-rc4-xe+/modules.alias.bin
+lib/modules/6.14.0-rc4-xe+/modules.builtin
+lib/modules/6.14.0-rc4-xe+/modules.softdep
+lib/modules/6.14.0-rc4-xe+/modules.alias
+lib/modules/6.14.0-rc4-xe+/modules.order
+lib/modules/6.14.0-rc4-xe+/modules.symbols
+lib/modules/6.14.0-rc4-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1740758074:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1740758074:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
