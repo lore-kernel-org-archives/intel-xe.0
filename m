@@ -4,54 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98622C282C6
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Feb 2025 15:15:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C582C282C1
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Feb 2025 15:25:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6366A10ECE2;
-	Fri, 28 Feb 2025 15:15:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29A9A10ECD9;
+	Fri, 28 Feb 2025 15:25:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XudaBlzJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cqWf93ol";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA3D410ECD2
- for <intel-xe@lists.freedesktop.org>; Fri, 28 Feb 2025 15:14:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65DDD10ECD9;
+ Fri, 28 Feb 2025 15:25:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740755696; x=1772291696;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=GEJl2Mo+iTYNaLueN+dolgvtcgPDS4x10vEpZLcIqs8=;
- b=XudaBlzJTXMqfHYAGd5DojCy2iI3AL1G2+9JhnrD4p6Qxc+DgP8qzoBO
- Vo2R0S3YxqvPjHuR+FLbmH5GThVLW0eiRt0b6Mf2JHhWXr4EYJJgP1FZc
- gPLIycupvQMpDj264BpzHr+9BwmpmWT6W23BDYnXUPbvFpNCn4QSs3zUe
- jjRLvo7Ma1dghWGE6mh2dI4Xv4rEGeQMSmpKwVDQ+sXsg3/OVIUa95JUW
- wl3LO0XhfH0LMZclFzAIG1JpcdEHD+NkiPlZc+k7DYX+l1n/6EXBmLpot
- kAA0p3IBDS/kE4dCA2nrphE+xPqEOwbK8miS5eQP7IXd8rtjl5THfZy7H Q==;
-X-CSE-ConnectionGUID: sZHXhGonSKSQSrwDTXxcdA==
-X-CSE-MsgGUID: vLiZMQfTTA2BrT9L0uk+AA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11359"; a="67064335"
-X-IronPort-AV: E=Sophos;i="6.13,322,1732608000"; d="scan'208";a="67064335"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2025 07:14:56 -0800
-X-CSE-ConnectionGUID: 5x+el4xtRuGIhdwJ52TuDw==
-X-CSE-MsgGUID: oMWpoRnRRIGglIWCRSbg1w==
+ t=1740756336; x=1772292336;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=YuluBeh5jttpFKaM7jWCKcGRURDEQgI1yXAUo/om04Q=;
+ b=cqWf93ol8Cf5fwhY0sU+k1eVCEGDnrPoEB3KfqRyC/AuO+tnyaXSLAb3
+ YBcEf77xQrfxJH04/vyEPOhyncTN8YxQimaSPw2P6u5lSM9Q56lIzdwGl
+ O6Hc7gP5s2fDc6nkugnqjuSc19IwvS7D1O15fePU8VVaKw8Tq5htQGPI1
+ o3+ikN4G0hnQJR2a53zHKKVfiNWNUYtta86jpK7ZyaIyvcD2ZMDvKXDGE
+ +kBESRbxqges0P8l/b+1TDdaKyxP5ZDfLpmnoAGYN2o/V8fzcpHt7Vp7M
+ Y2toNukFlSHP+J6JlBfn4aKXPY9/Dcd2lADrBAKtPwXczN7Q7xLMCr1rm Q==;
+X-CSE-ConnectionGUID: iOTxnAuaTTahBL3Pf/FS7w==
+X-CSE-MsgGUID: qSuPtC9uTGKap5Ce9XOTvQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11359"; a="41535573"
+X-IronPort-AV: E=Sophos;i="6.13,322,1732608000"; d="scan'208";a="41535573"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2025 07:25:36 -0800
+X-CSE-ConnectionGUID: Bhnp8mcISuOHRWRu06gLVA==
+X-CSE-MsgGUID: 4ZZyYhk8SBu7CctLhsBlUQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,322,1732608000"; d="scan'208";a="117113416"
-Received: from szeng-desk.jf.intel.com ([10.165.21.160])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2025 07:14:55 -0800
-From: Oak Zeng <oak.zeng@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Thomas.Hellstrom@linux.intel.com, matthew.brost@intel.com,
- jonathan.cavitt@intel.com
-Subject: [PATCH v7 3/3] drm/xe: Allow scratch page under fault mode for
- certain platform
-Date: Fri, 28 Feb 2025 10:30:58 -0500
-Message-Id: <20250228153058.1039188-4-oak.zeng@intel.com>
-X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20250228153058.1039188-1-oak.zeng@intel.com>
-References: <20250228153058.1039188-1-oak.zeng@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="122598675"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by orviesa005.jf.intel.com with ESMTP; 28 Feb 2025 07:25:34 -0800
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, uma.shankar@intel.com, william.tseng@intel.com,
+ jani.nikula@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH] drm/i915/vdsc: Use the DSC config tables for DSI panels
+Date: Fri, 28 Feb 2025 20:55:32 +0530
+Message-Id: <20250228152531.403026-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,74 +65,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Normally scratch page is not allowed when a vm is operate under page
-fault mode, i.e., in the existing codes, DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE
-and DRM_XE_VM_CREATE_FLAG_FAULT_MODE are mutual exclusive. The reason
-is fault mode relies on recoverable page to work, while scratch page
-can mute recoverable page fault.
+Some DSI panel vendors end up hardcoding PPS params because of which
+it does not listen to the params sent from the source. We use the
+default config tables for DSI panels when using DSC 1.1 rather than
+calculate our own rc parameters.
 
-On xe2 and xe3, out of bound prefetch can cause page fault and further
-system hang because xekmd can't resolve such page fault. SYCL and OCL
-language runtime requires out of bound prefetch to be silently dropped
-without causing any functional problem, thus the existing behavior
-doesn't meet language runtime requirement.
+--v2
+-Use intel_crtc_has_type [Jani]
 
-At the same time, HW prefetching can cause page fault interrupt. Due to
-page fault interrupt overhead (i.e., need Guc and KMD involved to fix
-the page fault), HW prefetching can be slowed by many orders of magnitude.
+--v4
+-Use a function to check Mipi dsi dsc 1.1 condition [Ankit]
+-Add documentation for using this condition [Ankit]
+-Rebase
 
-Fix those problems by allowing scratch page under fault mode for xe2 and
-xe3. With scratch page in place, HW prefetching could always hit scratch
-page instead of causing interrupt.
+--v5
+-Pass only the crtc_state [Jani]
+-Fixup the comment [Jani]
+-Check for dsc major version [Jani]
+-Use co-developed-by tag [Jani]
 
-A side effect is, scratch page could hide application program error.
-Application out of bound accesses are hided by scratch page mapping,
-instead of get reported to user.
-
-v2: Refine commit message (Thomas)
-
-v3: Move the scratch page flag check to after scratch page wa (Thomas)
-
-v4: drop NEEDS_SCRATCH macro (matt)
-    Add a comment to DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE
-
-Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13719
+Co-developed-by: William Tseng <william.tseng@intel.com>
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 3 ++-
- include/uapi/drm/xe_drm.h  | 6 +++++-
- 2 files changed, 7 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vdsc.c | 17 ++++++++++++++++-
+ 1 file changed, 16 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 47051735f0e1..2356f12392a2 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1791,7 +1791,8 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
- 		return -EINVAL;
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+index 3ed64c17bdff..04ba9f6b7ea2 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+@@ -259,6 +259,15 @@ static int intel_dsc_slice_dimensions_valid(struct intel_crtc_state *pipe_config
+ 	return 0;
+ }
  
- 	if (XE_IOCTL_DBG(xe, args->flags & DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE &&
--			 args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE))
-+			 args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE &&
-+			 !xe->info.needs_scratch))
- 		return -EINVAL;
- 
- 	if (XE_IOCTL_DBG(xe, !(args->flags & DRM_XE_VM_CREATE_FLAG_LR_MODE) &&
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 76a462fae05f..7471eaa669bc 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -911,7 +911,11 @@ struct drm_xe_gem_mmap_offset {
-  * struct drm_xe_vm_create - Input of &DRM_IOCTL_XE_VM_CREATE
-  *
-  * The @flags can be:
-- *  - %DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE
-+ *  - %DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE - Map the whole virtual address
-+ *    space of the VM to scratch page. A vm_bind would overwrite the scratch
-+ *    page mapping. This flag is mutually exclusive with the
-+ *    %DRM_XE_VM_CREATE_FLAG_FAULT_MODE flag, with an exception of on x2 and
-+ *    xe3 platform.
-  *  - %DRM_XE_VM_CREATE_FLAG_LR_MODE - An LR, or Long Running VM accepts
-  *    exec submissions to its exec_queues that don't have an upper time
-  *    limit on the job execution time. But exec submissions to these
++static bool is_dsi_dsc_1_1(struct intel_crtc_state *crtc_state)
++{
++	struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
++
++	return vdsc_cfg->dsc_version_major == 1 &&
++		vdsc_cfg->dsc_version_minor == 1 &&
++		intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI);
++}
++
+ int intel_dsc_compute_params(struct intel_crtc_state *pipe_config)
+ {
+ 	struct intel_display *display = to_intel_display(pipe_config);
+@@ -317,8 +326,14 @@ int intel_dsc_compute_params(struct intel_crtc_state *pipe_config)
+ 	 * From XE_LPD onwards we supports compression bpps in steps of 1
+ 	 * upto uncompressed bpp-1, hence add calculations for all the rc
+ 	 * parameters
++	 *
++	 * We also don't want to calculate all rc parameters when the panel
++	 * is MIPI DSI and it's using DSC 1.1. The reason being that some
++	 * DSI panels vendors have hardcoded PPS params in the VBT causing
++	 * the parameters sent from the source to be ignore. This causes a
++	 * noise in the display.
+ 	 */
+-	if (DISPLAY_VER(display) >= 13) {
++	if (DISPLAY_VER(display) >= 13 && !is_dsi_dsc_1_1(pipe_config)) {
+ 		calculate_rc_params(vdsc_cfg);
+ 	} else {
+ 		if ((compressed_bpp == 8 ||
 -- 
-2.26.3
+2.34.1
 
