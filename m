@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19FE4C282D4
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Feb 2025 18:21:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2DB4C282D3
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Feb 2025 18:21:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 772FA10E2A9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E89710E284;
 	Fri, 28 Feb 2025 18:21:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L9EHsZxs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A7uS1XYb";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93E8E10E0D9;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A838B10E284;
  Fri, 28 Feb 2025 18:21:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1740766891; x=1772302891;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5oruXRvzY0MEV/yYjsTCfIjJVQA3U70uEzpaMmt5BiM=;
- b=L9EHsZxsL3usjTHHougyQ3IVpL3hnyw5r0vgwFOEcxx4cYo2YfUe/VGq
- UAk0pqIQUgzBNmyouF2odD9SIP4JkTseB81sfQtLxZFT82QjLnUifQjXh
- q2+g6hU3kJzwkxVc45UTq7fgdqEFDrJQpxZJbVdPbCxDSd5iNbVdzAwux
- sG7aLPOC3M+AVJHGbfs7ssB/skrcDcrCaoQ4i8vNdfrwJIj343nBr7Ksi
- iLzmGucDswrKSxh8jn0sAa9d39LVKnWt5pwSu7gWjVj6/le3eZaDuZiSw
- BlklkIszgoNhDtj1zXU2O15tBYm5IT4TM761wVkDuO6yYJTuVDBIbf6bz Q==;
-X-CSE-ConnectionGUID: XaNzz0pqQwu4Pkb/RiQlAQ==
-X-CSE-MsgGUID: OFPy8I11TMi6zQ/CmBvBCA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11359"; a="41729585"
-X-IronPort-AV: E=Sophos;i="6.13,323,1732608000"; d="scan'208";a="41729585"
+ bh=IopxyV4DwHafXpzQHNUjaXUUvZtEzv+xE8kfCiFTYuM=;
+ b=A7uS1XYbJ+FAqvB0AJL8kZD9nlnxg0yMzFhpsMsEPj+jV6tvv+DNtLjd
+ f1qt0vLocuNj/0rmUR7ecnPzZmNN/RMjleVwQrlVabCERatOijaDabVb6
+ xAH8tQj4QHjwtfWRt+KeT9x02Bq8gZlimT5qMeMNtyeyF+teP00TdIt8Y
+ Tic0hUM84Hk69JeT3SqqqIvNpm612zas13jjSk5F6U5Vta2aLoBLdqqLu
+ Q9Ps2bur/iEmGlhs+4hI7h4ypT4fbS4Pc0CtEpW8Ztos4bJSaFKbqerg0
+ TLapBABatoS7ZrlhK2Kfj+EYpx63GFdmwqx+BMgsd5QFUVSW9SLLK1dnF w==;
+X-CSE-ConnectionGUID: 6xOWbZPJRtOYWcgbBJirkQ==
+X-CSE-MsgGUID: J0JcEbu+Rv+wFFRri9xZLg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11359"; a="41729582"
+X-IronPort-AV: E=Sophos;i="6.13,323,1732608000"; d="scan'208";a="41729582"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2025 10:21:30 -0800
-X-CSE-ConnectionGUID: g0zXwNtKTU2TsxYMi4k3QQ==
-X-CSE-MsgGUID: R/TVyfRoTcKNzb3lPObRlw==
+ 28 Feb 2025 10:21:29 -0800
+X-CSE-ConnectionGUID: vf/QcSDxQNOhjtmL6DFpOg==
+X-CSE-MsgGUID: x3ttv6oWR0e6nn5mmm0h2Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,323,1732608000"; d="scan'208";a="148214532"
+X-IronPort-AV: E=Sophos;i="6.13,323,1732608000"; d="scan'208";a="148214525"
 Received: from dut4025lnl.fm.intel.com ([10.105.8.176])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2025 10:21:24 -0800
+ 28 Feb 2025 10:21:23 -0800
 From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
  joonas.lahtinen@linux.intel.com, matthew.brost@intel.com,
  jianxun.zhang@intel.com, dri-devel@lists.freedesktop.org
-Subject: [PATCH v3 6/6] drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
-Date: Fri, 28 Feb 2025 18:21:22 +0000
-Message-ID: <20250228182122.77475-7-jonathan.cavitt@intel.com>
+Subject: [PATCH v3 4/6] drm/xe/uapi: Define drm_xe_vm_get_property
+Date: Fri, 28 Feb 2025 18:21:20 +0000
+Message-ID: <20250228182122.77475-5-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250228182122.77475-1-jonathan.cavitt@intel.com>
 References: <20250228182122.77475-1-jonathan.cavitt@intel.com>
@@ -68,137 +68,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add support for userspace to request a list of observed failed
-pagefaults from a specified VM.
-
-v2:
-- Only allow querying of failed pagefaults (Matt Brost)
+Add initial declarations for the drm_xe_vm_get_property ioctl.
 
 Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c |  3 ++
- drivers/gpu/drm/xe/xe_vm.c     | 79 ++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vm.h     |  2 +
- 3 files changed, 84 insertions(+)
+ include/uapi/drm/xe_drm.h | 63 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 63 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 9454b51f7ad8..43accae152ff 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -193,6 +193,9 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
- 	DRM_IOCTL_DEF_DRV(XE_WAIT_USER_FENCE, xe_wait_user_fence_ioctl,
- 			  DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(XE_OBSERVATION, xe_observation_ioctl, DRM_RENDER_ALLOW),
-+	DRM_IOCTL_DEF_DRV(XE_VM_GET_PROPERTY, xe_vm_get_property_ioctl,
-+			  DRM_RENDER_ALLOW),
-+
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 76a462fae05f..38f29600e127 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -81,6 +81,7 @@ extern "C" {
+  *  - &DRM_IOCTL_XE_EXEC
+  *  - &DRM_IOCTL_XE_WAIT_USER_FENCE
+  *  - &DRM_IOCTL_XE_OBSERVATION
++ *  - %DRM_IOCTL_XE_VM_GET_PROPERTY
+  */
+ 
+ /*
+@@ -102,6 +103,7 @@ extern "C" {
+ #define DRM_XE_EXEC			0x09
+ #define DRM_XE_WAIT_USER_FENCE		0x0a
+ #define DRM_XE_OBSERVATION		0x0b
++#define DRM_XE_VM_GET_PROPERTY		0x0c
+ 
+ /* Must be kept compact -- no holes */
+ 
+@@ -117,6 +119,7 @@ extern "C" {
+ #define DRM_IOCTL_XE_EXEC			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, struct drm_xe_exec)
+ #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
+ #define DRM_IOCTL_XE_OBSERVATION		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OBSERVATION, struct drm_xe_observation_param)
++#define DRM_IOCTL_XE_VM_GET_PROPERTY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_GET_PROPERTY, struct drm_xe_vm_get_property)
+ 
+ /**
+  * DOC: Xe IOCTL Extensions
+@@ -1166,6 +1169,66 @@ struct drm_xe_vm_bind {
+ 	__u64 reserved[2];
  };
  
- static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 6211b971bbbd..00d2c62ccf53 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3234,6 +3234,85 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	return err;
- }
- 
-+static u32 xe_vm_get_property_size(struct xe_vm *vm, u32 property)
-+{
-+	u32 size = 0;
++struct drm_xe_pf {
++	/** @address: Address of the fault, if relevant */
++	__u64 address;
++#define DRM_XE_FAULT_ADDRESS_TYPE_NONE_EXT		0
++#define DRM_XE_FAULT_ADDRESS_TYPE_READ_INVALID_EXT	1
++#define DRM_XE_FAULT_ADDRESS_TYPE_WRITE_INVALID_EXT	2
++	/** @address_type: , if relevant */
++	__u32 address_type;
++	/**
++	 * @address_precision: Precision of faulted address, if relevant.
++	 * Currently only SZ_4K.
++	 */
++	__u32 address_precision;
++	/** @reserved: MBZ */
++	__u64 reserved[3];
++};
 +
-+	switch (property) {
-+	case DRM_XE_VM_GET_PROPERTY_FAULTS:
-+		spin_lock(&vm->pfs.lock);
-+		size = vm->pfs.len * sizeof(struct drm_xe_pf);
-+		spin_unlock(&vm->pfs.lock);
-+		return size;
-+	default:
-+		return -EINVAL;
-+	}
-+}
++/**
++ * struct drm_xe_vm_get_property - Input of &DRM_IOCTL_XE_VM_GET_PROPERTY
++ *
++ * The user provides a VM ID and a property to query to this ioctl,
++ * and the ioctl returns the size of the return value.  Calling the
++ * ioctl again with memory reserved in @data will save the
++ * requested property data to the pointer saved at @data.
++ *
++ * In the future, some properties may simply be scalar values.  In
++ * such cases, the size field will remain zero, and the value of the
++ * scalar property will be saved to @value.
++ *
++ * The valid properties are:
++ *  - %DRM_XE_VM_GET_PROPERTY_FAULTS : List of all failed pagefaults seen by VM
++ */
++struct drm_xe_vm_get_property {
++	/** @extensions: Pointer to the first extension struct, if any */
++	__u64 extensions;
 +
-+static int fill_property_pfs(struct xe_vm *vm,
-+			     struct drm_xe_vm_get_property *args,
-+			     u32 size)
-+{
-+	struct drm_xe_pf __user *usr_ptr = u64_to_user_ptr(args->ptr);
-+	struct drm_xe_pf *fault_list;
-+	struct drm_xe_pf *fault;
-+	struct xe_vm_pf_entry *entry;
-+	int i = 0;
++	/** @vm_id: The ID of the VM to query the properties of */
++	__u32 vm_id;
 +
-+	if (copy_from_user(&fault_list, usr_ptr, size))
-+		return -EFAULT;
++#define DRM_XE_VM_GET_PROPERTY_FAULTS		0
++	/** @property: The property to get */
++	__u32 property;
 +
-+	spin_lock(&vm->pfs.lock);
-+	list_for_each_entry(entry, &vm->pfs.list, list) {
-+		struct xe_pagefault *pf = entry->pf;
++	/** @size: Size of returned property @data */
++	__u32 size;
 +
-+		fault = &fault_list[i++];
-+		fault->address = pf->page_addr;
-+		fault->address_type = pf->address_type;
-+		fault->address_precision = SZ_4K;
-+	}
-+	spin_unlock(&vm->pfs.lock);
++	/** @pad: MBZ */
++	__u32 pad;
 +
-+	if (copy_to_user(usr_ptr, &fault_list, size))
-+		return -EFAULT;
++	union {
++		/** @value: Return for scalar data values */
++		__u64 value;
++		/** @ptr: Pointer to user structs when required */
++		__u64 ptr;
++	};
 +
-+	return 0;
-+}
-+
-+int xe_vm_get_property_ioctl(struct drm_device *drm, void *data,
-+			     struct drm_file *file)
-+{
-+	struct xe_device *xe = to_xe_device(drm);
-+	struct xe_file *xef = to_xe_file(file);
-+	struct drm_xe_vm_get_property *args = data;
-+	struct xe_vm *vm;
-+	u32 size;
-+
-+	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
-+		return -EINVAL;
-+
-+	vm = xe_vm_lookup(xef, args->vm_id);
-+	if (XE_IOCTL_DBG(xe, !vm))
-+		return -ENOENT;
-+
-+	size = xe_vm_get_property_size(vm, args->property);
-+	if (size < 0) {
-+		return size;
-+	} else if (args->size != size) {
-+		if (args->size)
-+			return -EINVAL;
-+		args->size = size;
-+		return 0;
-+	}
-+
-+	switch (args->property) {
-+	case DRM_XE_VM_GET_PROPERTY_FAULTS:
-+		return fill_property_pfs(vm, args, size);
-+	default:
-+		return -EINVAL;
-+	}
-+}
++	/** @reserved: MBZ */
++	__u64 reserved[2];
++};
 +
  /**
-  * xe_vm_bind_kernel_bo - bind a kernel BO to a VM
-  * @vm: VM to bind the BO to
-diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index 4d94ab5c8ea4..bf6604465aa3 100644
---- a/drivers/gpu/drm/xe/xe_vm.h
-+++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -184,6 +184,8 @@ int xe_vm_destroy_ioctl(struct drm_device *dev, void *data,
- 			struct drm_file *file);
- int xe_vm_bind_ioctl(struct drm_device *dev, void *data,
- 		     struct drm_file *file);
-+int xe_vm_get_property_ioctl(struct drm_device *dev, void *data,
-+			     struct drm_file *file);
- 
- void xe_vm_close_and_put(struct xe_vm *vm);
- 
+  * struct drm_xe_exec_queue_create - Input of &DRM_IOCTL_XE_EXEC_QUEUE_CREATE
+  *
 -- 
 2.43.0
 
