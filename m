@@ -4,59 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E66B7C282C5
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Feb 2025 06:53:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C32EC19776
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Feb 2025 06:55:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B41D210EC0F;
-	Fri, 28 Feb 2025 06:53:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E25CF10E1DF;
+	Fri, 28 Feb 2025 06:55:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MnuY0A4v";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="epNEs1yy";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A7CC10EC0F
- for <intel-xe@lists.freedesktop.org>; Fri, 28 Feb 2025 06:52:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A988010E1DF
+ for <intel-xe@lists.freedesktop.org>; Fri, 28 Feb 2025 06:55:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740725576; x=1772261576;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=MhdgQ5NobSmGdoH/AFVxSFIuq0UamU/eYuE3LZUqKHE=;
- b=MnuY0A4vVsQ3A9T8UEZ3uOQkBt+8Y+kmTyI7gRqkvQsuI4BDcFlnLQOg
- OlmjdEtPU/gwXkt2SrnzHCOMhEiRtC6ycIQ4hXOo3wcamhj/ST/EzU9Fe
- Vc8OO15xte2N4oUQ7RNHnSVButKZjO4iPqOq3QWiZxSn7vv2EQU+wMfLT
- czsqdUVS8zxCsFUPfMEwtxPxsMfRCgVeL5wUoqL4xcBlpx8bQ73NglCPB
- RSnFCDmN6GYmqsCXN8MYS2k8cFyACh8wilNFwmPqgEDdmvri6JFMBDoPc
- ndpmHmFB1AHnJ62CAZ6uoVlBXmNg4Wf0UloGdvdePYzXi4ixaLjjw5yiG A==;
-X-CSE-ConnectionGUID: 9vI470hBRiGNH23PG6iXHg==
-X-CSE-MsgGUID: ZInn1GOrR4WQLik97wZedg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11358"; a="45562087"
-X-IronPort-AV: E=Sophos;i="6.13,321,1732608000"; d="scan'208";a="45562087"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2025 22:52:56 -0800
-X-CSE-ConnectionGUID: dIcABkQ+RliGe6bTx/O8gw==
-X-CSE-MsgGUID: mpnTihMWSSShGFMk7pKdWg==
+ t=1740725738; x=1772261738;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Yg5PAhKaxfVr1KI+2hnXrphdSG9yzzPB+f2YTfdaxjM=;
+ b=epNEs1yywDo3hQ17GdcTXJwqoyrH+d8Xa9PtoCKvB2jaB2BXLVUwiWLB
+ 32EStQ2DKuYYzgux4EOjOdBEvDB9fHvZagxREpiofSJxdPE58czC09a9P
+ iSNoWscEL1uVpoLTIpLvo6Loe/MTD5rQ4zG0jFuyUXc5wnqZ7OayX8n1t
+ D+U643j0aB4yPZ6EKGV2gIEQevJ+x7GlPQJMwvFwiFKi6KCCw3ghimgi4
+ Cn5hmFOczOzvfbJnTxwb47DB7ZsMT4Y+5/nkm58hr+T6MViFMYDpFzGE4
+ uLih1R8cNuNZ2sLfZxrA6rkUf/O4Z/cQZj8vqMl/1H2EIsOkG5voDtWpq A==;
+X-CSE-ConnectionGUID: tWA6IVujQ5OxP2PtRRp38g==
+X-CSE-MsgGUID: AjfLw+/STOmJABLpUcD9kg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11358"; a="41527898"
+X-IronPort-AV: E=Sophos;i="6.13,321,1732608000"; d="scan'208";a="41527898"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2025 22:55:36 -0800
+X-CSE-ConnectionGUID: SH3GVaGfStWnuXjLxk9Kdw==
+X-CSE-MsgGUID: cSCjkKHJRx6tqUJPtstfsw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,321,1732608000"; d="scan'208";a="117442420"
-Received: from dut2050adlp.iind.intel.com (HELO DUT2050ADLP..)
- ([10.190.239.12])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2025 22:52:53 -0800
-From: Aradhya Bhatia <aradhya.bhatia@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: Intel XE List <intel-xe@lists.freedesktop.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Aradhya Bhatia <aradhya.bhatia@intel.com>
-Subject: [PATCH 2/2] drm/xe_device: Evict all the VRAM objects during device
- remove
-Date: Fri, 28 Feb 2025 06:52:24 +0000
-Message-ID: <20250228065224.320811-3-aradhya.bhatia@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250228065224.320811-1-aradhya.bhatia@intel.com>
-References: <20250228065224.320811-1-aradhya.bhatia@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="154431892"
+Received: from unknown (HELO tejas-super-server..) ([10.190.239.37])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2025 22:55:35 -0800
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
+ vinay.belgaumkar@intel.com, Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH V10 0/1]  Add UAPI support for low latency hint
+Date: Fri, 28 Feb 2025 12:32:23 +0530
+Message-Id: <20250228070224.739295-1-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -73,50 +65,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that xe's migrate subsystem is dev managed, instead of drm managed,
-evict all the VRAM objects during the xe device remove.
+With this user can hint low latency during exec queue creation.
+KMD will forward hint to guc.
 
-The VRAM and TTM resource manager are drm managed, and so they are
-destroyed when all the references to DRM are put. When that happens, the
-VRAM and TTM resource managers evict all the BOs before their
-destruction. Since the migrate subsystem will already be finished by
-that point, the resource managers won't be able to evict the BOs
-successfully.
-Change that by preemptively evicting all the VRAM BOs during xe device
-remove.
+Test-with: 20250227122117.711646-1-tejas.upadhyay@intel.com
 
-Signed-off-by: Aradhya Bhatia <aradhya.bhatia@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Tejas Upadhyay (1):
+  drm/xe/uapi: Use hint for guc to set GT frequency
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 9454b51f7ad8..ef293552db6c 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -905,8 +905,22 @@ int xe_device_probe(struct xe_device *xe)
- 
- void xe_device_remove(struct xe_device *xe)
- {
-+	int ret;
-+	u32 mem_type;
-+
- 	xe_display_unregister(xe);
- 
-+	for (mem_type = XE_PL_VRAM0; mem_type <= XE_PL_VRAM1; ++mem_type) {
-+		struct ttm_resource_manager *man =
-+			ttm_manager_type(&xe->ttm, mem_type);
-+
-+		if (man) {
-+			ret = ttm_resource_manager_evict_all(&xe->ttm, man);
-+			if (ret)
-+				drm_err(&xe->drm, "VRAM evict failed! %d\n", ret);
-+		}
-+	}
-+
- 	drm_dev_unplug(&xe->drm);
- }
- 
+ drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h |  3 +++
+ drivers/gpu/drm/xe/xe_exec_queue.c            | 10 ++++++---
+ drivers/gpu/drm/xe/xe_exec_queue_types.h      |  2 ++
+ drivers/gpu/drm/xe/xe_guc_pc.c                | 16 ++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_submit.c            |  8 +++++++
+ drivers/gpu/drm/xe/xe_query.c                 |  2 ++
+ include/uapi/drm/xe_drm.h                     | 21 ++++++++++++++++++-
+ 7 files changed, 58 insertions(+), 4 deletions(-)
+
 -- 
-2.45.2
+2.34.1
 
