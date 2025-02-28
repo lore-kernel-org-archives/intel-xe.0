@@ -4,38 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F1E5C282CD
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Mar 2025 14:07:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98D4FC282D2
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Mar 2025 14:07:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B49310E420;
-	Mon,  3 Mar 2025 14:07:07 +0000 (UTC)
-Received: from mail.nfschina.com (unknown [42.101.60.213])
- by gabe.freedesktop.org (Postfix) with SMTP id 64C4110E274;
- Fri, 28 Feb 2025 03:33:56 +0000 (UTC)
-Received: from [172.30.20.101] (unknown [180.167.10.98])
- by mail.nfschina.com (MailData Gateway V2.8.8) with ESMTPSA id C9C7B60A7A1EB; 
- Fri, 28 Feb 2025 11:33:44 +0800 (CST)
-Message-ID: <558dba45-28e2-f8b0-f478-5b22c33c4fd6@nfschina.com>
-Date: Fri, 28 Feb 2025 11:33:44 +0800
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60C0310E1F3;
+	Mon,  3 Mar 2025 14:07:12 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="HBf2vB95";
+	dkim-atps=neutral
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CFD010E26B;
+ Fri, 28 Feb 2025 08:56:00 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id B00875C05A4;
+ Fri, 28 Feb 2025 08:53:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5087C4CED6;
+ Fri, 28 Feb 2025 08:55:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1740732959;
+ bh=y/U8R/NI0d97IbZrAfpBI+n/RgNShiZ1WGVlLVetEEY=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=HBf2vB95qVdn4uCpncA6IMNyEnCFFNT3NTU+2Vn2efqGCs3/Ob4irZV2N4F7i4zcS
+ 8LJTkm8WxrAIc0NyAeve9MU9ATmDig1dABT3IF0dYEzWCVCm0WKMFngvFyKwPQDtqc
+ oJWOJ8VYcV1p/2Kq7VZQ3TWILNnbpqARCr0REVUEimc5KYgUZWohgdPgGD+onHORxg
+ 66040lriCNKbfmY5okqm6T4RQuNo6KEYyRZgpsmdtNTT7vOV6WrQT5nXDS+oa+ij2S
+ 6Hv2pAtkn9xBAMfQQ3LnTYFl/2kM4Xz1TGujYxGdO//zPlNx99BAYjb3ZPtlXsTglM
+ mPUiCijsX8+/A==
+Date: Fri, 28 Feb 2025 09:55:57 +0100
+From: Daniel Gomez <da.gomez@kernel.org>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Tamir Duberstein <tamird@gmail.com>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Nathan Chancellor <nathan@kernel.org>,
+ Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
+ Bill Wendling <morbo@google.com>, Masahiro Yamada <masahiroy@kernel.org>, 
+ Justin Stitt <justinstitt@google.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
+ Klaus Jensen <k.jensen@samsung.com>, 
+ Theodore Ts'o <tytso@mit.edu>, gost.dev@samsung.com,
+ Barry Song <baohua@kernel.org>, Daniel Gomez <da.gomez@samsung.com>
+Subject: Re: [PATCH RESEND v3] drm/xe: xe_gen_wa_oob: replace
+ program_invocation_short_name
+Message-ID: <4ghuhfcasawko7ultvuou3dhfzvb4fm4kazdd6ld5aquwvpzyh@xg2tdw5zi37j>
+References: <20250224-macos-build-support-xe-v3-1-d2c9ed3a27cc@samsung.com>
+ <be5abg6u6wm62nhak7xrhtlkqxcekael6ztnkatwqxcil44x5y@p6yrbfingm4e>
+ <CAJ-ks9=gaxW2191c+K0E0MgjsQWLYoKxJZLxGb6RMbPRVHc4tQ@mail.gmail.com>
+ <fzigsonsdbtvo6aorgvzlh4mvbpvikbz6iwh6h5jx53e7zd7m4@munr3ea5nbme>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.1
-Subject: Re: [PATCH] drm/xe: Select INTEL_VSEC to fix build dependency
-Content-Language: en-US
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Cc: thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, simona@ffwll.ch, ilpo.jarvinen@linux.intel.com,
- andriy.shevchenko@linux.intel.com, michael.j.ruhl@intel.com,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
-X-MD-Sfrom: suhui@nfschina.com
-X-MD-SrcIP: 180.167.10.98
-From: Su Hui <suhui@nfschina.com>
-In-Reply-To: <bwirms6gvkvu7guxlzmmlbxb3df6qctuqedarccqer4lsu3ehx@5n3jg2ujryxb>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <fzigsonsdbtvo6aorgvzlh4mvbpvikbz6iwh6h5jx53e7zd7m4@munr3ea5nbme>
 X-Mailman-Approved-At: Mon, 03 Mar 2025 14:07:06 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -51,67 +73,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2025/2/28 00:03, Lucas De Marchi wrote:
-> On Thu, Feb 27, 2025 at 03:32:06PM +0800, Su Hui wrote:
->> When build randconfig, there is an error:
->> ld: drivers/gpu/drm/xe/xe_vsec.o: in function `xe_vsec_init':
->> xe_vsec.c:(.text+0x182): undefined reference to `intel_vsec_register'
->>
->> When CONFIG_DRM_XE=y and CONFIG_INTEL_VSEC=m is set, ld couldn't find
->> 'intel_vsec_register'. Select INTEL_VSEC to fix this error.
->>
->> Fixes: 0c45e76fcc62 ("drm/xe/vsec: Support BMG devices")
->> Signed-off-by: Su Hui <suhui@nfschina.com>
->> ---
->> drivers/gpu/drm/xe/Kconfig | 1 +
->> 1 file changed, 1 insertion(+)
->>
->> diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
->> index b51a2bde73e2..7a60d96d2dd6 100644
->> --- a/drivers/gpu/drm/xe/Kconfig
->> +++ b/drivers/gpu/drm/xe/Kconfig
->> @@ -44,6 +44,7 @@ config DRM_XE
->>     select WANT_DEV_COREDUMP
->>     select AUXILIARY_BUS
->>     select HMM_MIRROR
->> +    select INTEL_VSEC
->
-> intel_vsec is an x86 platform driver. I think we probably want to add a
-> config that depends on INTEL_VSEC rather than selecting it like this.
-> At the very least we need and `if x86` and also make sure the driver
-> works without that part.
->
-There is a recursive dependency between INTEL_VSEC and DRM_XE:
+On Thu, Feb 27, 2025 at 01:09:55PM +0100, Lucas De Marchi wrote:
+> On Thu, Feb 27, 2025 at 08:39:21AM -0500, Tamir Duberstein wrote:
+> > Hi Lucas, chiming in here since I also care about building on macOS.
+> > 
+> > On Mon, Feb 24, 2025 at 10:05 AM Lucas De Marchi
+> > <lucas.demarchi@intel.com> wrote:
+> > > 
+> > > Is this the approach taken for other similar issues you had? Note that
+> > > argv[0] and program_invocation_short_name are not the same thing. For
+> > > this particular binary I don't really care and if it's the approach
+> > > taken in other places, I'm ok using it.
+> > 
+> > Believe it or not, this is the only place that
+> > program_invocation_short_name has ever been used in the kernel. There
+> > have been numerous instances of:
+> > 
+> > #define _GNU_SOURCE /* for program_invocation_short_name */
+> > 
+> > but never any actual callers (that I could find in the git history)
+> > other than this one.
+> > 
+> > > I was expecting you'd take the acks and merge it all through a single
+> > > tree since you received push back on the need to build the kernel in
+> > > macOS.  Is this the only thing missing and you'd want it to go through
+> > > drm?
 
-         symbol DRM_XE depends on INTEL_VSEC
-         symbol INTEL_VSEC depends on X86_PLATFORM_DEVICES
-         symbol X86_PLATFORM_DEVICES is selected by DRM_XE
+Yes, this is the only one missing.
 
-So if using 'depends on INTEL_VSEC', we should remove 'select 
-X86_PLATFORM_DEVICES', like this one:
+> > 
+> > I believe the other patches have been applied or dropped. When I last
+> > tested building allmodconfig this was the only issue I ran into (macOS
+> > arm64), so I asked Daniel for this resend.
 
-  config DRM_XE
-         tristate "Intel Xe Graphics"
-         depends on DRM && PCI && MMU && (m || (y && KUNIT=y))
-+       depends on !X86 || INTEL_VSEC || INTEL_VSEC=n
-+       depends on !X86 || !ACPI || ACPI_WMI
-         select INTERVAL_TREE
-         # we need shmfs for the swappable backing store, and in particular
-         # the shmem_readpage() which depends upon tmpfs
-@@ -27,8 +29,6 @@ config DRM_XE
-         select BACKLIGHT_CLASS_DEVICE if ACPI
-         select INPUT if ACPI
-         select ACPI_VIDEO if X86 && ACPI
--       select X86_PLATFORM_DEVICES if X86 && ACPI
--       select ACPI_WMI if X86 && ACPI
+That is correct.
 
-The 'select X86_PLATFORM_DEVICES' is introduced by 67a9e86dc130 
-("drm/xe: select
-X86_PLATFORM_DEVICES when ACPI_WMI is selected"), so both ACPI_WMI need 
-to be changed.
+In my opinion, the support for building the Linux kernel on macOS is primarily
+supported by LLVM/Clang and the Linux kernel build system. The merged patches
+were merely minor tweaks such this one (and refactors from Masahiro), intended
+to enable users to configure the build system on these platforms. Patches
+dropped led to the creation of the bee-headers project, which allows users
+customize their build setup, which seems to be a common practice when people
+requires to tweak the build environment.
 
-Another choice is using 'select INTEL_VSEC if X86' and no need to change 
-other things.
-Any suggestion for these two choices?
+> 
+> fair enough.  Pushed to drm-xe-next since nobody ever reads the
+> usage for this helper tool and it doesn't really matter if now it's ugly.
 
+Thanks!
 
+With this, we can now build arm64 in macOS defconfig, allyesconfig and
+allmodconfig targets even with Rust support!
+
+Daniel
+
+> 
+> Lucas De Marchi
+> 
+> > 
+> > Cheers.
+> > Tamir
