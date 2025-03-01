@@ -4,167 +4,185 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E817C282C5
-	for <intel-xe@archiver.kernel.org>; Sat,  1 Mar 2025 01:19:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96670C282C5
+	for <intel-xe@archiver.kernel.org>; Sat,  1 Mar 2025 01:56:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CE3F10E076;
-	Sat,  1 Mar 2025 01:19:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 548AF10E076;
+	Sat,  1 Mar 2025 01:56:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZoxlCPme";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IKbu7wwv";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 209F410E076
- for <intel-xe@lists.freedesktop.org>; Sat,  1 Mar 2025 01:19:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4030310E076
+ for <intel-xe@lists.freedesktop.org>; Sat,  1 Mar 2025 01:55:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740791960; x=1772327960;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=vuOi3SQ3llQ7Lz3fxeAQstjsPcoyLT7saTxVYL6zg7A=;
- b=ZoxlCPmerb8FF3lBzMXhF4hcPiye0eGF8SHBBYe92+iHrHNt2ZAPW0vl
- iDka9EAP412OuytJizYDyxb9aMP74x2ESKmG9k9IaeQ9HetDc4mXhS0dB
- v8IAnpnjs0vH41vNA8ILKkdreIOnljI9PhnOlyS+CSCWnFIgZKkjdXbUj
- ZIbmpDIO00ZdH3b3/w1QBwBbmDOv70l+0YNd/lQHuqcYvU5LdKB9Wdgo9
- y28Q6MJhczUmPWu47kBVtSD+i9M2H34OE5+92cP/wvewrZheWC4r1VJwK
- 4Ip1H/RcSHxYq/JCO9R1DKM0+AUhKahHS+txvU0fkJhTVyi4n1GHvunDS Q==;
-X-CSE-ConnectionGUID: 1kQw4/7dR9yNDo9LIZTpfg==
-X-CSE-MsgGUID: 8RbzFxDXRRypdqRMemFa6A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11359"; a="45385054"
-X-IronPort-AV: E=Sophos;i="6.13,323,1732608000"; d="scan'208";a="45385054"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2025 17:19:19 -0800
-X-CSE-ConnectionGUID: wNnEXtmQQTi0A51wFOGcOQ==
-X-CSE-MsgGUID: ABUmLjKpREyQ+w+O5wEN9w==
+ t=1740794168; x=1772330168;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=VgzMvepHkLJaL6C11HmOPMicF08m5XbPnQVCxUrsIc0=;
+ b=IKbu7wwvDF6R2ztDP0xHQIDoakw5N+RUAGJZrYoDUV8jelh0GIvMx1ss
+ b1xbxxNDBK9YsyJmWDPKw4mfaCF+YITA1GKOfO9bvhLG2QhTctcWAb7T/
+ pK+HCFWbHj+S65XEF6+4vEziAJP3pY7xv6dk8T1nImpIYVLUGtt3oGnYu
+ 0EWse2g2Z7TPZvRi3SelrWwwcml6gFU8Yzb9bwDFki4nry6eAYTTW5oPW
+ odj7i1nINRP+r1HRuz0Qtv7mnslm22b+AcHErQa/uRYw7lbNFtqdB5V9Q
+ ePK00kQzABJU69dIbmA/v00oI6WZXe5w5fyzEEoO07EAHY8bUxZoS4M7y A==;
+X-CSE-ConnectionGUID: NVe1GyHORUS+Tks9d4Z9gQ==
+X-CSE-MsgGUID: Y+O6y53ZSSC4e6YkPBdAlA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11359"; a="41861909"
+X-IronPort-AV: E=Sophos;i="6.13,324,1732608000"; d="scan'208";a="41861909"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2025 17:55:56 -0800
+X-CSE-ConnectionGUID: PbCzKjHoTwWJBguflxqFTA==
+X-CSE-MsgGUID: R5NC+ZpVRjazNMqQsDbnYA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="121610360"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 28 Feb 2025 17:19:18 -0800
+X-IronPort-AV: E=Sophos;i="6.13,324,1732608000"; d="scan'208";a="117514570"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2025 17:55:55 -0800
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Fri, 28 Feb 2025 17:19:17 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Fri, 28 Feb 2025 17:19:17 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.44) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.2.1544.14; Fri, 28 Feb 2025 17:55:54 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Fri, 28 Feb 2025 17:19:17 -0800
+ 15.2.1544.14 via Frontend Transport; Fri, 28 Feb 2025 17:55:54 -0800
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.176)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Fri, 28 Feb 2025 17:55:54 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aNlC7fXtFYfIOwFA264K14aKNjiuMN9440rxhYQxZNw95SOcTrbeiLFadteJepQlIivpx27mmGxk4u0pSiLptAdivhqwy4c5eQz1zwR4p8cFx5in8WTArDLYaZSpuFtBmBrYIcL1ydV9nY1nMLWdN0cIpt8U/vRMr8YrhnHkdErPtm7USp2TCNVYq8NHUBHytwQ8Q66NVUXPwLOVGUBRLVGYZg2n2oj+NTz15PoRBmDrg81Vzjr5V/oLAane8K3DICgTz0d0SQYqf5b1nk3wJuhHm9zdjoympEXtdTBpmq1bCuVUclbGjSTqNz1Y4Ox6cFkXLSKaTMAsMGzDlMd0Lg==
+ b=y31Ah/EzqFzclkykXk9e9Wi0oJ9dNv5PypRWJDz4LeZa63k37qckpSbk6QmddDET5jFcY5k9YTqAxWUtKYd0Hhqao5OCpVKAOpTeNsieWrhILEIagD35f3I9E9NzGiYab4niFAGtN0s0lLjHurGcgbV+De0x1a0yXqMxhY6YSucA2i+f3tqSheaB0wfRBF5Ed0rvJWXfbY9x4xM7JLQsEUXN7A3nAwB+rKFiFQ8xOM5/v8ulZCqoOLHp8u2IrxF2TNkfgsrU/RXEPJL5Td50e0YNfnU2mjDpFqbJrpdgntWBrMZ4Jq/wLm52pz058nvIhUllmdFK5ip1FvA78lVaSA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Rxfo++ZZKVgV3/DEwbt820B8DlPlmkB5YjDGkCdFPuc=;
- b=Z0wex9nnxxrCGAFuzsp3biCJp+VRbATncfQdYN4xVBpp/aCyLMPf10Db/qU3nFPv0KTGVoa+7C12aBs9XVsePXULzCeOFKJ2gdzynD/7A4Bp0IUNZ1IGUUOGmPeOspcWL9uAF6tbmmO4kPHwfb5QW5FBQoPW3mB3IYwmetm/TRUf4hMJG6V1y8f+iEyd2mkWkI7rK7apdmf2sIW7b6cQVEDaVrPiXqZHmgxXrrKNnks+mh56A9WQINXKD/yNw0ycOHeLcKuRFNqMsbj/F1gXV8qn5cibMfutydc1VrWUHx1zrw5LvLl5dVTX6yGnh+TD1F73/r80QmdtfVak+43ukg==
+ bh=0KwK3Ma4e5HepPKi0tAcC2UZsM+1f0ym1ffj/++g52s=;
+ b=nJ+CTvlaXAKUDtIT/epEiuBuTp3WD8Y++gGKX/o3ngnQapkMTY4LMTL8UnshxtNAm20N1BnYVld/IidsIEPsBrNC0p1z84Pigubx/tz8jewCrNoDifBYzE+yqYybzKH+2BZK5hrdDGaHH2da2mPDxlEf3DfHkKnUqCh2HlgaiKZhIoEvxvndpxEHcT0JhX4Tf7yyrtmR2MROvL8nb8pTKL5jEFDFQ1JmAE9sYK5km2oOHAQ0zHJBWx+zE+pNwee6u7r2+3xgRerI4V8VcEU2NXf8jkpvzokTsapigmIp0NV2j7uOLnkO8yut0hKxZIUXz4jyhrzvrt8VgL2LhHihGw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by MW4PR11MB7053.namprd11.prod.outlook.com (2603:10b6:303:221::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.22; Sat, 1 Mar
- 2025 01:19:10 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%3]) with mapi id 15.20.8489.018; Sat, 1 Mar 2025
- 01:19:10 +0000
-Date: Fri, 28 Feb 2025 19:19:05 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Riana Tauro <riana.tauro@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v3] drm/xe/pmu: Add GT frequency events
-Message-ID: <sgpn7n3tvy2pumhhxzy44xxs2hx5prcyaqasmlmheemqqoco7k@cttb2dr7xosm>
-References: <20250213000220.3510885-1-vinay.belgaumkar@intel.com>
- <45qgg5bemip4eihjl6bpen5hbi7babw2itp66q3gjmej2lvs4z@gg5bp37gcweo>
- <d1a12315-878d-4186-aed9-c84662a1a81c@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"; format=flowed
-Content-Disposition: inline
+Received: from CH3PR11MB8441.namprd11.prod.outlook.com (2603:10b6:610:1bc::12)
+ by DM4PR11MB7255.namprd11.prod.outlook.com (2603:10b6:8:10d::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.23; Sat, 1 Mar
+ 2025 01:55:52 +0000
+Received: from CH3PR11MB8441.namprd11.prod.outlook.com
+ ([fe80::bc66:f083:da56:8550]) by CH3PR11MB8441.namprd11.prod.outlook.com
+ ([fe80::bc66:f083:da56:8550%4]) with mapi id 15.20.8489.021; Sat, 1 Mar 2025
+ 01:55:52 +0000
+Message-ID: <d0384c1a-f3aa-4c1d-922d-7dae3f61de69@intel.com>
+Date: Fri, 28 Feb 2025 17:55:47 -0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] drm/xe/guc: move KLV helpers to common file
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>, Michal Wajdeczko
+ <michal.wajdeczko@intel.com>, <intel-xe@lists.freedesktop.org>
+References: <20250227010530.3002093-1-daniele.ceraolospurio@intel.com>
+ <20250227010530.3002093-2-daniele.ceraolospurio@intel.com>
+ <02842531-7ce0-4518-a6c9-9530f946bb26@intel.com>
+ <03101dc5-00cc-440c-9358-c136ba6d961e@intel.com>
+ <ba0e0dab-3561-4ed7-abb7-ff424b3d8c3d@intel.com>
+ <c0e68a6d-4250-4373-b573-2490b374660c@intel.com>
+Content-Language: en-GB
+From: John Harrison <john.c.harrison@intel.com>
+In-Reply-To: <c0e68a6d-4250-4373-b573-2490b374660c@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <d1a12315-878d-4186-aed9-c84662a1a81c@intel.com>
-X-ClientProxiedBy: MW4PR04CA0041.namprd04.prod.outlook.com
- (2603:10b6:303:6a::16) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+X-ClientProxiedBy: MW4PR03CA0233.namprd03.prod.outlook.com
+ (2603:10b6:303:b9::28) To CH3PR11MB8441.namprd11.prod.outlook.com
+ (2603:10b6:610:1bc::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|MW4PR11MB7053:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2c9a97fd-92c6-4722-2c09-08dd585f11ac
+X-MS-TrafficTypeDiagnostic: CH3PR11MB8441:EE_|DM4PR11MB7255:EE_
+X-MS-Office365-Filtering-Correlation-Id: fc7acfd0-88ae-4498-e75a-08dd5864321f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?tUq4fDJXmIe8F7MmJ2i0VOv+NUIQRIJtPfXlHzlxHJgdfb3pkwjkxqWpup?=
- =?iso-8859-1?Q?xYYiMUg/E6jrDFBegAw2/gSpMUCp9zc84dh+6teNeHJyvXnTxXg/7oxIsP?=
- =?iso-8859-1?Q?cU6eEAorXxiY/mmJtpJqVFTTJzc+5EHRvRzH+Aef/oMbjHWLnZe/ZdWKcc?=
- =?iso-8859-1?Q?XPSws7kOlM/6oIePrsnnf82scyN/k/dLYYnkIPKGKGYDQrckLL00tu3zl5?=
- =?iso-8859-1?Q?Bm+R48euxQTj8g1QuRaOeUwtYAKyHiQTLdMKfHvtThTvDBYij6otvabKWQ?=
- =?iso-8859-1?Q?M+qrQiFEXwuCX4dVoki+xtXIN1aVv9GJ8J7JVpM6XOqifW6AoszMKNpk4Y?=
- =?iso-8859-1?Q?SsLzZcLF5XgvyZNJh3HjzX+V8fpJ0aJxqMp4AzaDwV3T1RGJMNMrkSeCKs?=
- =?iso-8859-1?Q?yhp9hpT8r/jmbT2PeH6h6Up+3Hv25FjaKW8DvfO00EFNztzPwaD3+2Lxye?=
- =?iso-8859-1?Q?D+hrxPMidQZtbp/s28glqGQW43/ztqn8dAy3DHbSoYc7YZjGaxusrgT4on?=
- =?iso-8859-1?Q?xw+ktTsxUh06L+85A9PvOMdA/dYNA18My8RYOpHiMJFGtggPYR65fDe3GM?=
- =?iso-8859-1?Q?3ZdwpzA2izmU3ZL0d7LorBfpayioDdOw5O7olVB+XyQLtMBsaQZHBS5Zcb?=
- =?iso-8859-1?Q?6sM3+rtlG0UNz0ISXzaTNUivwM2qwW7zWr+tdjJYSmoffhMHeWRo5d6YKL?=
- =?iso-8859-1?Q?DOaygLdVlg2/CX6JbljBMK86fvsYCz+KM3OqfaCS04P9iNC0GKa3zSg3o0?=
- =?iso-8859-1?Q?QY922UdsPob0zvXmyv2hkcOwqnLgpkMKeTweWUkHxv9vDz1jUNjmaHoGu0?=
- =?iso-8859-1?Q?PNH8E+vxPQob/8Z1TmzbhrLzfwxmAhkKj59OpJH8rLUGgIDw93GFSl1RCs?=
- =?iso-8859-1?Q?78KdiBHfCxuYUKI9NC5x5HuiOCRlRTzUi5jnXb1DeqIyVzDgDkAupVZOHj?=
- =?iso-8859-1?Q?IzryfgvtdgMDHB3/pJVWGTV1KMfpQqbXVncntvNMJVzUMrpSzs2ikz9Hxa?=
- =?iso-8859-1?Q?bpJ6JxpgTeZT+ouok8sXYe7RHTnnOs9372s6GBD6T/l2V4L9AVZJPc5S0j?=
- =?iso-8859-1?Q?YVcu36YX/V4Dw8vxObsva25O0e/vH1dru+T+4AqzufrVauiovHW2GxwHLh?=
- =?iso-8859-1?Q?RLtDkkorp1KFXK4XUf7g897raBaNicMj/7pcxnJjGSUB0DO0u4bnFOAvVi?=
- =?iso-8859-1?Q?G/D2ssF/xEcFqCGJ03vFFkwf7o/3q+30MPPnsr9HuBnjl9auSDxrTxPgJp?=
- =?iso-8859-1?Q?xab6C9BXh+erUJrWCAPLdFh2OcIXGxRXxItoZa1ObklpByP9N0Kxs2srZu?=
- =?iso-8859-1?Q?2WoiFYnd2y3qNUow4T19RptFOvogHlYd+QsKJf7qCbo1DVq9Lm+2PC+PB9?=
- =?iso-8859-1?Q?7+7rAb0L05wXCvbcumWBdqlGo8iRoctR5xgBxvSxPIwdJuZv2vddAkZjO/?=
- =?iso-8859-1?Q?IgW8P8B3iDmho5yB?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?ZFkra1RwalY2SHBNalRCSEI3TzZOQWU1azhqMXBKL0NqUjFpOURLUXhGb3My?=
+ =?utf-8?B?OGE5cmtOQWtOYm00U21uL3JISmlTMGZCbnVieGVDaVdIaTR6Vi9xL1gxWEg0?=
+ =?utf-8?B?MUtDOFhhYVZUcUlGUExFbVl3RFh3MlpraE9FQkNNejRjQzJpaGFXcmoxQ042?=
+ =?utf-8?B?Z01SNGtOeUc3ckN6YjBsWlNWam9kS2luS2ZVMDNwME9wNURseTBqOXhkQTVn?=
+ =?utf-8?B?R1JMeG1oYmdKcGl1TWdpdTlRVWRrZHBpZHd3VGJMU3pZdXQ4bmhSeGhUMXdx?=
+ =?utf-8?B?N3IvZjdVUzR1ZWs1cWNlNTZZdTJTdGcvRHZDNHJybDl4cTFGdGR4dUV6cDJ2?=
+ =?utf-8?B?SnZxVHA3c1lFMEZycHZwd3hlUDJoRmE0bVh4bXU1UW4yY1JKQllaeDB3SFk2?=
+ =?utf-8?B?WVdzY0doSzl1S2xuZlpQdzNUZDdaRDFQa1BmeVR5TW5FeVBFd3MybnhoNEdG?=
+ =?utf-8?B?L3NFUTU5OXlhVkI5bDR5UUFUL0tSWGtWTGtza2JSYTl2WWlIczNmZlJkUlk5?=
+ =?utf-8?B?bFIzbFkyM0t1bVdaQTBkNnpKR2xFUTRWR0hYM0E4Zy9nUEFJb21GbUxNaDdn?=
+ =?utf-8?B?aGVjbnFTajg4SjJ2ZVpRWENUT3B0STFrZlVoYVFXcThFaVdkcWxUYkkxR2pu?=
+ =?utf-8?B?R1JxbURyYUNjSzhucVNSYTNpcmtaT0E0amNXQWMwdStVRzRwRW9lSitCdVlJ?=
+ =?utf-8?B?UGovYjRtUXFJY2pvYzNsYUM0Wk00cDNaczNZZkVGSktrRkw3MHhVS1M1Y1h6?=
+ =?utf-8?B?ekpsUlQvdVlCWVhtMThFTXRjRHZnK21rdHl1NTAyU1NOM3Q4VzR5VlBWUVJK?=
+ =?utf-8?B?aGVqYXUvMTlsa092UDU4UFpQclBScURJN1Vqb0RpTWw1WjRNL3BxZVhVYjh4?=
+ =?utf-8?B?NDhQSlRuQ3pHWEFESW5rZUh5VHJIMHhMMFQyeHpTQ0d3ZS9HdTNzR0VOQzBr?=
+ =?utf-8?B?cGZlNFhRNE5LOExPOHFtLzk2N0JEb21KNEFyVDJVRzJxVm9XdUI2clBJTkNK?=
+ =?utf-8?B?NzNXODBnQ29kWlJEeXRpZmpBeUVMRy8rTDc1eDNocWhTVFdoVXZoM1BOZmov?=
+ =?utf-8?B?TVFVa3BXYXUvdzFucUtHY2c5aGtmZTFNeHdJNlEwNWFsSEp0MFFOcnVzVTlO?=
+ =?utf-8?B?UTJTdWhvd3cxb01NMnBzbno4NjNiTFdXNE8xc0U5RE45b29SeFNMZXVjTHJW?=
+ =?utf-8?B?ZHRVa1dFa011WkI2bXc1RUk4cWwzazMwU0xYeHBYb2lLMjYwSldSZGg0MUhZ?=
+ =?utf-8?B?UGp3VncxT2wrQTE2N1dEVWRxVzlHRkNxcEZrZzFaWDFGQ1QxY3d6RE83TnNy?=
+ =?utf-8?B?Ulo3ZWVHSWEray9qTStuekVwVkZ1V1hKQ1RYNlBRLzZmbHRwRktqWTlBelB2?=
+ =?utf-8?B?Zm5yTEZ4MzlqRDVOYk1RSVFzR1VueUk5WExnbkZtSGUzMFJDa2dnU3FCbVhK?=
+ =?utf-8?B?RUFYZzBVWHFPNmJqWE1vQ29pV0UranZ5cEV4S21zTXQzZ2VERVdwcXA0VTBU?=
+ =?utf-8?B?UWs3T1o4Tk1lcW15bDQvRHIvcjZZb2w0cGNzcW5IVEVUNkFyWU1sZC9FUkxB?=
+ =?utf-8?B?NzI5MUM1ZGZMTVZmKzlvdkFZQzYzcHZkanZZNlpXSmMvQ2J4a3JzYy9CWXNm?=
+ =?utf-8?B?SHhRQThrUkwxbXJrTGI4aGsyWnp2N2d5VDdDL01xZ3VGSFV2Y2IzazBsNXZq?=
+ =?utf-8?B?WXVIUFFVN09ydmNkdFZNYTM1TkhqS2JRYlF4TE5KY3YrWDhqeUlrbEd2cE1P?=
+ =?utf-8?B?cXFzVjdyOHQ0WnRkY040aTgwZkozbG9IdllBYTh2enlqM2pkaHVkT0U1bUhH?=
+ =?utf-8?B?MzN5bWVJMFFqd2hxZWVUTmpOajlvbWVtbnZCTklpcXpRMys5c3dqajZsL1hz?=
+ =?utf-8?Q?ImMQxW44h/DvW?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:CH3PR11MB8441.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?orW+ztiowRPOdctrR/gKFEyO5+38Ewx6a4/Vsrd3xxBd33C7rZik/sVgKo?=
- =?iso-8859-1?Q?QJbtGCcnH8CdNtJ8o2PkiFRYiLIRzM+9OUGjnrrbr8+QUwBqPLNZYIp4QG?=
- =?iso-8859-1?Q?GsO68+1DrY/VkB5vh5aOuJOCYLgjNvt0pP2jANsqhwqTcsSxzaj/oZjBJJ?=
- =?iso-8859-1?Q?wz9KY7ZM2Rd9FT/6t9qXc4lYikyeFdwseCQ2dgc0ItHTH8/eS+ps3EOJ2E?=
- =?iso-8859-1?Q?0jcjy2/f2fRUBr3VCh5eV2xEmcQ3F7UfE7nC7WM3kYMaFETKuuxUOYu08d?=
- =?iso-8859-1?Q?iUPbqLZK+uN4Ht8rxi+S6aFl18LGPV3dEYlWFDWyuVwXctUnAdQnKxx+SJ?=
- =?iso-8859-1?Q?SSM9Q+cXvGOtSP6TKy91LLVKLBrcQ9raKdSoHfL2ZDckWtOTi1psmQyOBo?=
- =?iso-8859-1?Q?GYYhxeXNhNkxmZbcUuY3z6ns/MKltQ0jKdntC7c85t5OcHpp9Y6lOTwWTy?=
- =?iso-8859-1?Q?g6KDLrexUjzdxaZB2c/odAyj0ZuwKxz8OJenR/JOGVlGURFtyUU4YirUsX?=
- =?iso-8859-1?Q?3e4kHkQSak8JUCoC0SnsNQT4E4aVYgZ+jSyo7LEyCFWyE7TolTsIygNNc7?=
- =?iso-8859-1?Q?+mcLF7Zryz6Con+YV6WFXSs+okdYN+fk8Vs428bMT1Fvdj7cOC4u+zI3KR?=
- =?iso-8859-1?Q?iF36gbNM7LtS2XwX1fso6LfWKdJ3BsRTEysZdwbFcUa5uClXicPF3BBffT?=
- =?iso-8859-1?Q?FSg2ALxkqWez+qCrIcB0m3s4xQKYU+MRfn9dUpGPflVnfi4f/OksPKIjHt?=
- =?iso-8859-1?Q?VCLDuijSJevcK3QZd+zZUznPOn04FV0EW1xYVW0bbLJpQRH1FbIiGi42nL?=
- =?iso-8859-1?Q?OWhjg/4ngxhkTm6qeRIlT8qgM3y9If6t2fp2ZUuoiyBjNvfIdFztbXqd88?=
- =?iso-8859-1?Q?bfLQRmSwUecpW0FmPdZQxvurIwyfjB0TZjzytGZJuKYM5wRcOGB5pQPv/T?=
- =?iso-8859-1?Q?/9dzLgXaT++DLU7LtQscyY0yPsYRi4XdPdjlV1iyYHgCvdd2E5oL3kOGOr?=
- =?iso-8859-1?Q?BpiZlppPE60nF4Ha5QWu6RXfGP81ElEizzvoPO54+o/OG/0+SYakuvUHCQ?=
- =?iso-8859-1?Q?WPBDBDVD/p0/+IcpROlkDJjYb4E1X/nfMDVoMLPxS2vEgrcumE/sa7Qobr?=
- =?iso-8859-1?Q?hTk5rt+15NwQjGL8FQ7fySvS++sE7xWxA2eFFA7hH57PB6rVEWivGAZj5p?=
- =?iso-8859-1?Q?q3f/PncFMagpoK61y+W04ocwNanrhfe8xapKSiPG9xhFMz5UQIyUazxtuQ?=
- =?iso-8859-1?Q?hlPU/tnHPFdIJn888cSDKZvrw7a2vSVP58HZXoTpolw8Bdgsvt64y03Mbw?=
- =?iso-8859-1?Q?tj65avtIEbf7mbQ1JPJi7u0zV6z5d1bY4lSXCwOQh/ndXmGLyergMIMKRY?=
- =?iso-8859-1?Q?D1PFl39ED5vjRoJPwOV6yqP+ZeIzQAyZsGfeluOCKX4uoJjGdmMUNGCYwd?=
- =?iso-8859-1?Q?l7GbRHK6Lmj6JpmTZOJ6KjbL3xdPwFFYGw1whNl+uzOjLTMdH3A7Rp9u7t?=
- =?iso-8859-1?Q?qOHuIuDFLJgIk9d9zLX07NM5hqwueb4Xu5QpvKecUSvE3vsntbhohudijH?=
- =?iso-8859-1?Q?0VOIqf87keOB1VA6bQ1T6q8kMT98D0gcz68TRYGZEtuwyvhT+cX5ib14Xv?=
- =?iso-8859-1?Q?WMX34HtK8fR11Dd/GaglLrqtdQpszsd8rtZ1pztrxMN7vHrdwu/iYukA?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2c9a97fd-92c6-4722-2c09-08dd585f11ac
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WmJBQ3I3V3R4NEdjK083alhFa21JT3FFTzNPeWRNaHJ4cjZiMVRyenlXQWtZ?=
+ =?utf-8?B?dUNjUmhiTHc4ZmxFV0M5NGtKZjAzd1ZFMSswK0xCV282QlVxOWs4cGhLZ2NB?=
+ =?utf-8?B?NThMcDBvMUxpWUNtcmRQTWd3NE5yd2JNN00wODJLREMzVktKNE5uTDQyUW5W?=
+ =?utf-8?B?Vk8yVHkxSUlkby9YN3BkaldTVm50Q2NGazJJcFhPZGYycXM1YVhKSnhCMCtn?=
+ =?utf-8?B?elVxaTBrQm95dStRVXZmNFdPMzBzVlBUdm9UZ1N2ZnJ1RHZZYnFiTTIxV0hT?=
+ =?utf-8?B?akxHdUtxTnlrb0x5SG9MNU1pbHpGR3BoZ05EQXFCR3BubkhRK3kxbFordTlU?=
+ =?utf-8?B?Nld0WmIwMlJONExFVDdTQTdMQytGNWIrTXQzeElyYlB1ZEs5N29MSjkxbXJx?=
+ =?utf-8?B?RG9ZOURXM0hMOU43bllGdVhBaGRmQkdINDFVbFZMdnE1bUZWcjg1djM0Z1I5?=
+ =?utf-8?B?bGlrUnFTMUJ1VjlScjFycWtOdDloejhwUStZaWFGTGlmeUM4TUV0U2VRaVpr?=
+ =?utf-8?B?bUYyTG5MZU5WWXVCWkVRWERwbnR1ZVRTeXZudTVKa3gxT29peDlCeXgxZ01B?=
+ =?utf-8?B?QUpTNGw2RUdzUzBrVDN3VDQ2WDRtMWQ5eDFNam9hNVRMb3BuM0kxejNjamd5?=
+ =?utf-8?B?WlVPQjUvVDA0cGlCVzMzeVFnRm1nZlo4UHZRU2RLdmFLOTFHOFlJS3BmZ1NN?=
+ =?utf-8?B?L0I2ZW1ITmNEUUlwUUVwOFhyTUh6SUVDdGw5R1Rrem1OdmRPYjJnbmdXczdC?=
+ =?utf-8?B?REM3ME1pOWJldkZtTUtxVGt3VVpGakFvRzRPNnRxdXkxcjAwYWd0Ri96YlYv?=
+ =?utf-8?B?d2VwQ2o4aEYyaERibExRWWc2SnBOcVJlQ2FURG9RREtmOHVqL1BTNUt6N2dl?=
+ =?utf-8?B?cXZ4SStQMU1oVFFoS1JXUGpGQ2NKMzFoZmV5QkI1VE55ZlN3dVFEUDBvYitp?=
+ =?utf-8?B?c3dLd2M2OThBTmExUXFrYU9kRmtRQ1J6em5OdEdlM1o5UEpuWGM1OTRUVkpL?=
+ =?utf-8?B?ZHZmQktGUnYzU0ZkZGRIUU52dzNpc01COGJDUVRJQUxsc3NqWFRBYzNhT0R2?=
+ =?utf-8?B?SnhhSWlRai9hdGRZbWdOZlRDMlJyWTE4SlhtaGpVSEliMFhBbk43MTJqdURF?=
+ =?utf-8?B?M2dEOVNlMmFGWTJFK213bk5Qdmx0RTlvcHJyKytqRzF1aEpvMDB3cVAwVXUv?=
+ =?utf-8?B?NzBPcTRtUEVnNXVkbUpwZmtQUGtVbWRFYVR5U29LdEU4U0VaV2ZnSWdCSGpB?=
+ =?utf-8?B?emhMd000VlFOMUVkbXVTaWM2Z1N6enF2ZXpqV29HQ2tYaHdORmY4TG5wN1N6?=
+ =?utf-8?B?V1h4STREWmJMaTZjN0FwZkxjemVkdVplODRSMy9Pd1JSbWgvL3FWVEdoc1hq?=
+ =?utf-8?B?OUtuaW85MDY5U2dhOExPR2JWaVFIKzAzY0hqYlhQZXkweWFNNkVjZnNOUy9x?=
+ =?utf-8?B?Q1RvRjBTUm9kM2JNZWtDaWgzUzBQYXkrTDBSSmRZNjJEeFViWmkvR20wVEsz?=
+ =?utf-8?B?WHJyeHd4MVdHQmZpWnNHT1Z1OG9IM2h2cytBUHlsZ1VCVUIwa2h6K1duMG93?=
+ =?utf-8?B?L25aWlkrY09YTTdmU0FtT0JDdXFqSkxxdUlUdmhlQXNTRTV4MlE1NXlYMHg3?=
+ =?utf-8?B?azY5eFd3RThPMmlySWZFOGcvT2hSKzgrYlVLSko1YmVuNkZCem9Ra0tMcmxC?=
+ =?utf-8?B?Q0ovRU5KWURpL2RuMzFlbUdIQ0tNQXdHM2NTK2lkTGNsOHhsNEYyRjFNOGx4?=
+ =?utf-8?B?NjRrVXI1RUdBVzB3UTBDN3JHRmdmclFPeEN5Q3N6SHM5MTdUUFdnNWt5UGRQ?=
+ =?utf-8?B?WmY4djBRQTZqcStTTzdLb1JFS2QzdSsyNXZZRjcvQ3hidGJwYjQ5YkMzb21y?=
+ =?utf-8?B?RTlQaWt1RWJUVHVzTDh5bi9kd3pzSW5BY1hnS0lTb0oxKzZGU0VER285c1lJ?=
+ =?utf-8?B?dzY1amVHakhxT3NHZjhEN1lCOWNiVEtLeW1HTjc1d1JQRnltcHBBUlpSbTMv?=
+ =?utf-8?B?bTQreGg0OTdmMlBhVHh2aUlMd0cwUzg2ZnFlOW1uS2w0cHBTVXc4dmhELzl1?=
+ =?utf-8?B?OUtMV2h2dWo3cTFNeWlyaDNXQXlPQm9sM1E0clhEUHR3T0prZ2lyY1NweGxR?=
+ =?utf-8?B?ZmYvdEpmWHV2NjUwZm5JQXZuYkR3eVRoY2syTG9nSkVTWFJrM1Fhb0ZBQitm?=
+ =?utf-8?B?dmc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: fc7acfd0-88ae-4498-e75a-08dd5864321f
+X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB8441.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Mar 2025 01:19:10.0522 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Mar 2025 01:55:51.9629 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yRu8CKewNe6TbIC52EK8gcvbyPsFDvTDoooqyTWdB39VEfNc5K2WjsVxuSjj59BZalKeq7Su5Mh1Mcodi1/7klPgKq2UJpOx1dncvc8SgbI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB7053
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6CFnCfaMSxcLRM8VXa3TFPRVcN3RXPQnhdZ3ZMYoEJHPgxIn21g66QgPUqyuaeoIfd6o0z2xsvUlxZXJ7Nc5CuwrpmZu6VWEXBBI12ic4jo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB7255
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -180,568 +198,429 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Feb 28, 2025 at 04:59:56PM -0800, Belgaumkar, Vinay wrote:
+On 2/28/2025 14:21, Daniele Ceraolo Spurio wrote:
+> On 2/28/2025 1:47 PM, Michal Wajdeczko wrote:
+>> On 28.02.2025 00:59, Daniele Ceraolo Spurio wrote:
+>>> On 2/27/2025 3:29 PM, Michal Wajdeczko wrote:
+>>>> On 27.02.2025 02:05, Daniele Ceraolo Spurio wrote:
+>>>>> The GuC uses the same format for all its KLVs, so having the 
+>>>>> functions
+>>>>> to set them in a common file will allow us to re-use it for different
+>>>>> types of KLVs and not just the WAs in ADS.
+>>>>> The next patch will make use of these functions for a new H2G 
+>>>>> command.
+>>>>>
+>>>>> Signed-off-by: Daniele Ceraolo Spurio 
+>>>>> <daniele.ceraolospurio@intel.com>
+>>>>> Cc: John Harrison <John.C.Harrison@Intel.com>
+>>>>> ---
+>>>>> Â Â  drivers/gpu/drm/xe/xe_guc_ads.cÂ Â Â Â Â Â Â Â  | 89 
+>>>>> ++++++-------------------
+>>>>> Â Â  drivers/gpu/drm/xe/xe_guc_klv_helpers.c | 62 +++++++++++++++++
+>>>>> Â Â  drivers/gpu/drm/xe/xe_guc_klv_helpers.h |Â  7 ++
+>>>>> Â Â  3 files changed, 89 insertions(+), 69 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/
+>>>>> xe_guc_ads.c
+>>>>> index fab259adc380..ed3304a11812 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_guc_ads.c
+>>>>> +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+>>>>> @@ -22,6 +22,7 @@
+>>>>> Â Â  #include "xe_guc.h"
+>>>>> Â Â  #include "xe_guc_capture.h"
+>>>>> Â Â  #include "xe_guc_ct.h"
+>>>>> +#include "xe_guc_klv_helpers.h"
+>>>>> Â Â  #include "xe_hw_engine.h"
+>>>>> Â Â  #include "xe_lrc.h"
+>>>>> Â Â  #include "xe_map.h"
+>>>>> @@ -283,56 +284,6 @@ static size_t calculate_golden_lrc_size(struct
+>>>>> xe_guc_ads *ads)
+>>>>> Â Â Â Â Â Â  return total_size;
+>>>>> Â Â  }
+>>>>> Â Â  -static void guc_waklv_enable_one_word(struct xe_guc_ads *ads,
+>>>>> -Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  enum xe_guc_klv_ids klv_id,
+>>>>> -Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  u32 value,
+>>>>> -Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  u32 *offset, u32 *remain)
+>>>>> -{
+>>>>> -Â Â Â  u32 size;
+>>>>> -Â Â Â  u32 klv_entry[] = {
+>>>>> -Â Â Â Â Â Â Â  /* 16:16 key/length */
+>>>>> -Â Â Â Â Â Â Â  FIELD_PREP(GUC_KLV_0_KEY, klv_id) |
+>>>>> -Â Â Â Â Â Â Â  FIELD_PREP(GUC_KLV_0_LEN, 1),
+>>>>> -Â Â Â Â Â Â Â  value,
+>>>>> -Â Â Â Â Â Â Â  /* 1 dword data */
+>>>>> -Â Â Â  };
+>>>>> -
+>>>>> -Â Â Â  size = sizeof(klv_entry);
+>>>>> -
+>>>>> -Â Â Â  if (*remain < size) {
+>>>>> -Â Â Â Â Â Â Â  drm_warn(&ads_to_xe(ads)->drm,
+>>>>> -Â Â Â Â Â Â Â Â Â Â Â Â  "w/a klv buffer too small to add klv id %d\n", klv_id);
+>>>>> -Â Â Â  } else {
+>>>>> -Â Â Â Â Â Â Â  xe_map_memcpy_to(ads_to_xe(ads), ads_to_map(ads), *offset,
+>>>>> -Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  klv_entry, size);
+>>>>> -Â Â Â Â Â Â Â  *offset += size;
+>>>>> -Â Â Â Â Â Â Â  *remain -= size;
+>>>>> -Â Â Â  }
+>>>>> -}
+>>>>> -
+>>>>> -static void guc_waklv_enable_simple(struct xe_guc_ads *ads,
+>>>>> -Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  enum xe_guc_klv_ids klv_id, u32 *offset, u32
+>>>>> *remain)
+>>>>> -{
+>>>>> -Â Â Â  u32 klv_entry[] = {
+>>>>> -Â Â Â Â Â Â Â  /* 16:16 key/length */
+>>>>> -Â Â Â Â Â Â Â  FIELD_PREP(GUC_KLV_0_KEY, klv_id) |
+>>>>> -Â Â Â Â Â Â Â  FIELD_PREP(GUC_KLV_0_LEN, 0),
+>>>>> -Â Â Â Â Â Â Â  /* 0 dwords data */
+>>>>> -Â Â Â  };
+>>>>> -Â Â Â  u32 size;
+>>>>> -
+>>>>> -Â Â Â  size = sizeof(klv_entry);
+>>>>> -
+>>>>> -Â Â Â  if (xe_gt_WARN(ads_to_gt(ads), *remain < size,
+>>>>> -Â Â Â Â Â Â Â Â Â Â Â Â Â Â  "w/a klv buffer too small to add klv id %d\n", 
+>>>>> klv_id))
+>>>>> -Â Â Â Â Â Â Â  return;
+>>>>> -
+>>>>> -Â Â Â  xe_map_memcpy_to(ads_to_xe(ads), ads_to_map(ads), *offset,
+>>>>> -Â Â Â Â Â Â Â Â Â Â Â Â  klv_entry, size);
+>>>>> -Â Â Â  *offset += size;
+>>>>> -Â Â Â  *remain -= size;
+>>>>> -}
+>>>>> -
+>>>>> Â Â  static void guc_waklv_init(struct xe_guc_ads *ads)
+>>>>> Â Â  {
+>>>>> Â Â Â Â Â Â  struct xe_gt *gt = ads_to_gt(ads);
+>>>>> @@ -343,22 +294,22 @@ static void guc_waklv_init(struct xe_guc_ads 
+>>>>> *ads)
+>>>>> Â Â Â Â Â Â  remain = guc_ads_waklv_size(ads);
+>>>>> Â Â  Â Â Â Â Â  if (XE_WA(gt, 14019882105))
+>>>>> -Â Â Â Â Â Â Â  guc_waklv_enable_simple(ads,
+>>>>> -
+>>>>> GUC_WORKAROUND_KLV_BLOCK_INTERRUPTS_WHEN_MGSR_BLOCKED,
+>>>>> -Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  &offset, &remain);
+>>>>> +Â Â Â Â Â Â Â  xe_guc_klv_enable_simple(ads_to_guc(ads), ads_to_map(ads),
+>>>>> +
+>>>>> GUC_WORKAROUND_KLV_BLOCK_INTERRUPTS_WHEN_MGSR_BLOCKED,
+>>>>> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  &offset, &remain);
+>>>>> Â Â Â Â Â Â  if (XE_WA(gt, 18024947630))
+>>>>> -Â Â Â Â Â Â Â  guc_waklv_enable_simple(ads,
+>>>>> - GUC_WORKAROUND_KLV_ID_GAM_PFQ_SHADOW_TAIL_POLLING,
+>>>>> -Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  &offset, &remain);
+>>>>> +Â Â Â Â Â Â Â  xe_guc_klv_enable_simple(ads_to_guc(ads), ads_to_map(ads),
+>>>>> + GUC_WORKAROUND_KLV_ID_GAM_PFQ_SHADOW_TAIL_POLLING,
+>>>>> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  &offset, &remain);
+>>>>> Â Â Â Â Â Â  if (XE_WA(gt, 16022287689))
+>>>>> -Â Â Â Â Â Â Â  guc_waklv_enable_simple(ads,
+>>>>> -
+>>>>> GUC_WORKAROUND_KLV_ID_DISABLE_MTP_DURING_ASYNC_COMPUTE,
+>>>>> -Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  &offset, &remain);
+>>>>> +Â Â Â Â Â Â Â  xe_guc_klv_enable_simple(ads_to_guc(ads), ads_to_map(ads),
+>>>>> +
+>>>>> GUC_WORKAROUND_KLV_ID_DISABLE_MTP_DURING_ASYNC_COMPUTE,
+>>>>> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  &offset, &remain);
+>>>>> Â Â  Â Â Â Â Â  if (XE_WA(gt, 14022866841))
+>>>>> -Â Â Â Â Â Â Â  guc_waklv_enable_simple(ads,
+>>>>> - GUC_WA_KLV_WAKE_POWER_DOMAINS_FOR_OUTBOUND_MMIO,
+>>>>> -Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  &offset, &remain);
+>>>>> +Â Â Â Â Â Â Â  xe_guc_klv_enable_simple(ads_to_guc(ads), ads_to_map(ads),
+>>>>> + GUC_WA_KLV_WAKE_POWER_DOMAINS_FOR_OUTBOUND_MMIO,
+>>>>> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  &offset, &remain);
+>>>>> Â Â  Â Â Â Â Â  /*
+>>>>> Â Â Â Â Â Â Â  * On RC6 exit, GuC will write register 0xB04 with the default
+>>>>> value provided. As of now,
+>>>>> @@ -366,15 +317,15 @@ static void guc_waklv_init(struct xe_guc_ads 
+>>>>> *ads)
+>>>>> Â Â Â Â Â Â Â  * future, so GuC depends on KMD to send it the correct value.
+>>>>> Â Â Â Â Â Â Â  */
+>>>>> Â Â Â Â Â Â  if (XE_WA(gt, 13011645652))
+>>>>> -Â Â Â Â Â Â Â  guc_waklv_enable_one_word(ads,
+>>>>> -
+>>>>> GUC_WA_KLV_NP_RD_WRITE_TO_CLEAR_RCSM_AT_CGP_LATE_RESTORE,
+>>>>> -Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  0xC40,
+>>>>> -Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  &offset, &remain);
+>>>>> +Â Â Â Â Â Â Â  xe_guc_klv_enable_one_word(ads_to_guc(ads), ads_to_map(ads),
+>>>>> +
+>>>>> GUC_WA_KLV_NP_RD_WRITE_TO_CLEAR_RCSM_AT_CGP_LATE_RESTORE,
+>>>>> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  0xC40,
+>>>>> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  &offset, &remain);
+>>>>> Â Â  Â Â Â Â Â  if (XE_WA(gt, 14022293748) || XE_WA(gt, 22019794406))
+>>>>> -Â Â Â Â Â Â Â  guc_waklv_enable_simple(ads,
+>>>>> -
+>>>>> GUC_WORKAROUND_KLV_ID_BACK_TO_BACK_RCS_ENGINE_RESET,
+>>>>> -Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  &offset, &remain);
+>>>>> +Â Â Â Â Â Â Â  xe_guc_klv_enable_simple(ads_to_guc(ads), ads_to_map(ads),
+>>>>> +
+>>>>> GUC_WORKAROUND_KLV_ID_BACK_TO_BACK_RCS_ENGINE_RESET,
+>>>>> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  &offset, &remain);
+>>>>> Â Â  Â Â Â Â Â  size = guc_ads_waklv_size(ads) - remain;
+>>>>> Â Â Â Â Â Â  if (!size)
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c b/drivers/gpu/
+>>>>> drm/xe/xe_guc_klv_helpers.c
+>>>>> index 146a6eda9e06..50eab2086ee3 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
+>>>>> +++ b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
+>>>>> @@ -7,8 +7,11 @@
+>>>>> Â Â  #include <drm/drm_print.h>
+>>>>> Â Â  Â  #include "abi/guc_klvs_abi.h"
+>>>>> +#include "xe_gt_printk.h"
+>>>>> +#include "xe_guc.h"
+>>>>> Â Â  #include "xe_guc_klv_helpers.h"
+>>>>> Â Â  #include "xe_guc_klv_thresholds_set.h"
+>>>>> +#include "xe_map.h"
+>>>>> Â Â  Â  #define make_u64(hi, lo) ((u64)((u64)(u32)(hi) << 32 | 
+>>>>> (u32)(lo)))
+>>>>> Â Â  @@ -146,3 +149,62 @@ int xe_guc_klv_count(const u32 *klvs, u32
+>>>>> num_dwords)
+>>>>> Â Â  Â Â Â Â Â  return num_dwords ? -ENODATA : num_klvs;
+>>>>> Â Â  }
+>>>>> +
+>>>>> +static void emit_klv(struct xe_guc *guc, struct iosys_map *map, u32
+>>>>> *klv_entry,
+>>>>> +Â Â Â Â Â Â Â Â Â Â Â Â  u32 size, u32 *offset, u32 *remain)
+>>>> s/klv_entry/klv
+>>>>
+>>>> s/size/num_dwords
+>>>>
+>>>> KLVs are always u32 aligned
+>>>> 'size/offset/remain' all should be in dwords
+>>> That would mean having to convert back and forth between u8 and u32:
+>>>
+>>> - allocation is in u8 aligned
+>>> - params to this function would be u32 aligned
+>> but for generic KLV functions it doesn't make sense to pass u8 sizes
+>> and we should aim to define function signatures that enforce proper 
+>> logic
+>>
+>>> - xe_map_memcpy_to below needs u8 alignment, so convert back
+>>> - the GuC expects a u8 aligned size, so need to convert remain back 
+>>> to u8
+>> that looks like a mistake done in this action definition, since all
+>> initial actions that introduced KLV concept (like UPDATE_VGT_POLICY,
+>> UPDATE_VF_CFG) were defined to operate on dwords as size
 >
->On 2/25/2025 9:47 AM, Lucas De Marchi wrote:
->>On Wed, Feb 12, 2025 at 04:02:20PM -0800, Vinay Belgaumkar wrote:
->>>Define PMU events for GT frequency (actual and requested). This is
->>>a port from the i915 driver implementation, where an internal timer
->>>is used to aggregate GT frequencies over certain fixed interval.
->>>Following PMU events are being added-
->>>
->>> xe_0000_00_02.0/gt-actual-frequency/              [Kernel PMU event]
->>> xe_0000_00_02.0/gt-requested-frequency/           [Kernel PMU event]
->>>
->>>Standard perf commands can be used to monitor GT frequency-
->>> $ perf stat -e xe_0000_00_02.0/gt-requested-frequency,gt=0/ -I1000
->>>
->>>    1.001175175                700 M xe/gt-requested-frequency,gt=0/
->>>    2.005891881                703 M xe/gt-requested-frequency,gt=0/
->>>    3.007318169                700 M xe/gt-requested-frequency,gt=0/
->>>
->>>Actual frequencies will be reported as 0 when GT is in C6.
->>>
->>>v2: Use locks while storing/reading samples, keep track of multiple
->>>clients (Lucas) and other general cleanup.
->>>
->>>Cc: Riana Tauro <riana.tauro@intel.com>
->>>Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->>>Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>>Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
->>>---
->>>drivers/gpu/drm/xe/xe_pmu.c       | 211 ++++++++++++++++++++++++++++--
->>>drivers/gpu/drm/xe/xe_pmu_types.h |  29 ++++
->>>2 files changed, 230 insertions(+), 10 deletions(-)
->>>
->>>diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
->>>index 3910a82328ee..ed76756403ea 100644
->>>--- a/drivers/gpu/drm/xe/xe_pmu.c
->>>+++ b/drivers/gpu/drm/xe/xe_pmu.c
->>>@@ -8,6 +8,8 @@
->>>
->>>#include "xe_device.h"
->>>#include "xe_gt_idle.h"
->>>+#include "xe_guc_pc.h"
->>>+#include "xe_macros.h"
->>>#include "xe_pm.h"
->>>#include "xe_pmu.h"
->>>
->>>@@ -37,6 +39,17 @@
->>>
->>>#define XE_PMU_EVENT_GT_MASK        GENMASK_ULL(63, 60)
->>>#define XE_PMU_EVENT_ID_MASK        GENMASK_ULL(11, 0)
->>>+#define XE_HRTIMER_INTERVAL_NS        5000000
->>>+
->>>+static struct xe_pmu *event_to_pmu(struct perf_event *event)
->>>+{
->>>+    return container_of(event->pmu, typeof(struct xe_pmu), base);
->>>+}
->>>+
->>>+static struct xe_device *event_to_xe(struct perf_event *event)
->>>+{
->>>+    return container_of(event->pmu, typeof(struct xe_device), 
->>>pmu.base);
->>>+}
->>
->>we shouldn't add refactors like this in the same patch you are adding a
->>new feature, it creates noise in the patch and makes it harder to see
->>what's going on. Please drop both event_to_pmu() and event_to_xe().
->ok, will add as a separate patch later.
->>
->>>
->>>static unsigned int config_to_event_id(u64 config)
->>>{
->>>@@ -49,10 +62,12 @@ static unsigned int config_to_gt_id(u64 config)
->>>}
->>>
->>>#define XE_PMU_EVENT_GT_C6_RESIDENCY    0x01
->>>+#define XE_PMU_EVENT_GT_ACTUAL_FREQUENCY    0x02
->>>+#define XE_PMU_EVENT_GT_REQUESTED_FREQUENCY    0x03
->>
->>this will need a rebase
->yes.
->>
->>>
->>>static struct xe_gt *event_to_gt(struct perf_event *event)
->>>{
->>>-    struct xe_device *xe = container_of(event->pmu, typeof(*xe), 
->>>pmu.base);
->>>+    struct xe_device *xe = event_to_xe(event);
->>>    u64 gt = config_to_gt_id(event->attr.config);
->>>
->>>    return xe_device_get_gt(xe, gt);
->>>@@ -70,7 +85,7 @@ static bool event_supported(struct xe_pmu *pmu, 
->>>unsigned int gt,
->>>
->>>static void xe_pmu_event_destroy(struct perf_event *event)
->>>{
->>>-    struct xe_device *xe = container_of(event->pmu, typeof(*xe), 
->>>pmu.base);
->>>+    struct xe_device *xe = event_to_xe(event);
->>>
->>>    drm_WARN_ON(&xe->drm, event->parent);
->>>    xe_pm_runtime_put(xe);
->>>@@ -79,7 +94,7 @@ static void xe_pmu_event_destroy(struct 
->>>perf_event *event)
->>>
->>>static int xe_pmu_event_init(struct perf_event *event)
->>>{
->>>-    struct xe_device *xe = container_of(event->pmu, typeof(*xe), 
->>>pmu.base);
->>>+    struct xe_device *xe = event_to_xe(event);
->>>    struct xe_pmu *pmu = &xe->pmu;
->>>    unsigned int id, gt;
->>>
->>>@@ -104,6 +119,8 @@ static int xe_pmu_event_init(struct perf_event 
->>>*event)
->>>    if (has_branch_stack(event))
->>>        return -EOPNOTSUPP;
->>>
->>>+    XE_WARN_ON(id >= XE_PMU_MAX_EVENT_TYPES);
->>
->>I was going to say that we don't need the other ones. But then I noticed
->>XE_PMU_MAX_EVENT_TYPES == 64, which is a lot more than we currently
->>support.
->>
->>I suggested it before, but what's the issue of keeping a linked list of
->>the events like rapl_pmu::active_list?
->ok, will add the active_list. However, still need the 
->XE_PMU_MAX_EVENT_TYPES, since I am storing the samples in an array 
->based on event_id -  u64 
->event_sample[XE_PMU_MAX_GT][XE_PMU_MAX_EVENT_TYPES].
+> This is an ADS entry and all ADS blocks are offset/size. The new H2G 
+> command (in next patch) is indeed dword aligned, but it still seems 
+> simpler to just have a single "offset / 4" that multiple conversions 
+> back and forth.
+I agree that avoiding multiple conversions is best.
 
-can't you simply walk the list updating the values in place? we are
-likely going to have 1 or very few active events:
+The data itself might be in 32-bit chunks but all the KMD operations are 
+in bytes - allocation, memcpy, etc. So adding extra conversions seems 
+unnecessary and will just make the code less readable and more error prone.
 
-a) read hw, which may involve locks/forcewake, and get the sample
-b)
-	raw_spin_lock(pmu->lock);
-		walk the list of active events, update with the new
-		sample
-	raw_spin_unlock(pmu->lock);
 
-I didn't try it though... may be missing something.
-
-Considering we now even get the forcewake for other events on event
-init... does it make sense to still do this with a hrtimer? Are we
-trying to smooth the curve out instead of reporting the instantaneous
-value?
-
-Lucas De Marchi
-
->>
->>>+
->>>    if (!event->parent) {
->>>        drm_dev_get(&xe->drm);
->>>        xe_pm_runtime_get(xe);
->>>@@ -113,16 +130,50 @@ static int xe_pmu_event_init(struct 
->>>perf_event *event)
->>>    return 0;
->>>}
->>>
->>>+static u64
->>>+xe_get_pmu_sample(struct xe_pmu *pmu, unsigned int gt_id, uint32_t id)
->>>+{
->>>+    unsigned long flags;
->>>+    u64 val;
->>>+
->>>+    raw_spin_lock_irqsave(&pmu->lock, flags);
->>>+    val = pmu->event_sample[gt_id][id];
->>>+    raw_spin_unlock_irqrestore(&pmu->lock, flags);
->>>+
->>>+    return val;
->>>+}
->>>+
->>>+static void
->>>+xe_store_pmu_sample(struct xe_pmu *pmu, uint32_t gt_id, uint32_t id,
->>>+            uint32_t val, uint32_t period)
->>>+{
->>>+    unsigned long flags;
->>>+
->>>+    raw_spin_lock_irqsave(&pmu->lock, flags);
->>>+    pmu->event_sample[gt_id][id] += mul_u32_u32(val, period);
->>>+    raw_spin_unlock_irqrestore(&pmu->lock, flags);
->>>+}
->>>+
->>>static u64 __xe_pmu_event_read(struct perf_event *event)
->>>{
->>>    struct xe_gt *gt = event_to_gt(event);
->>>+    struct xe_device *xe = event_to_xe(event);
->>
->>gt_to_xe() avoids the additional helper and you don't even need it.
->>You are intested in the pmu, not xe... so you could just have used
->>
->>    pmu = container_of(event->pmu, typeof(struct xe_pmu), base);
->>
->>... like is done in other places.
->ok.
->>
->>>+    struct xe_pmu *pmu = &xe->pmu;
->>>+    unsigned long id;
->>>
->>>    if (!gt)
->>>        return 0;
->>>
->>>-    switch (config_to_event_id(event->attr.config)) {
->>>+    id = config_to_event_id(event->attr.config);
->>>+
->>>+    switch (id) {
->>>    case XE_PMU_EVENT_GT_C6_RESIDENCY:
->>>        return xe_gt_idle_residency_msec(&gt->gtidle);
->>>+    case XE_PMU_EVENT_GT_ACTUAL_FREQUENCY:
->>>+    case XE_PMU_EVENT_GT_REQUESTED_FREQUENCY:
->>>+        return div_u64(xe_get_pmu_sample(pmu, gt->info.id,
->>>+                   id),
->>
->>keep in the line above, it doesn't help readability.
->ok.
->>
->>>+                   USEC_PER_SEC /* to MHz */);
->>
->>why is the unit nsec -> usec when storing, couldn't we just use
->>NSEC_PER_SEC here?
->Yup.
->>
->>
->>>    }
->>>
->>>    return 0;
->>>@@ -143,7 +194,7 @@ static void xe_pmu_event_update(struct 
->>>perf_event *event)
->>>
->>>static void xe_pmu_event_read(struct perf_event *event)
->>>{
->>>-    struct xe_device *xe = container_of(event->pmu, typeof(*xe), 
->>>pmu.base);
->>>+    struct xe_device *xe = event_to_xe(event);
->>>    struct xe_pmu *pmu = &xe->pmu;
->>>
->>>    if (!pmu->registered) {
->>>@@ -154,8 +205,105 @@ static void xe_pmu_event_read(struct 
->>>perf_event *event)
->>>    xe_pmu_event_update(event);
->>>}
->>>
->>>+static bool gt_pmu_event_active(struct xe_pmu *pmu, uint32_t id, 
->>>uint32_t gt_id)
->>>+{
->>>+    return pmu->active_mask[gt_id] & BIT_ULL(id);
->>>+}
->>>+
->>>+static bool pmu_needs_timer(struct xe_pmu *pmu)
->>>+{
->>>+    struct xe_device *xe = container_of(pmu, typeof(*xe), pmu);
->>>+    struct xe_gt *gt;
->>>+    int i;
->>>+
->>>+    for_each_gt(gt, xe, i)
->>>+        if (gt_pmu_event_active(pmu, 
->>>XE_PMU_EVENT_GT_ACTUAL_FREQUENCY, i) ||
->>>+            gt_pmu_event_active(pmu, 
->>>XE_PMU_EVENT_GT_REQUESTED_FREQUENCY, i))
->>>+            return true;
->>>+
->>>+    return false;
->>>+}
->>>+
->>>+static void xe_pmu_start_timer(struct xe_pmu *pmu, uint32_t gt_id)
->>>+{
->>>+    /* Timer is per device */
->>>+    if (!pmu->timer_enabled && pmu_needs_timer(pmu)) {
->>>+        pmu->timer_enabled = true;
->>>+        pmu->timer_last = ktime_get();
->>>+        hrtimer_start_range_ns(&pmu->timer,
->>>+                       ns_to_ktime(XE_HRTIMER_INTERVAL_NS), 0,
->>>+                       HRTIMER_MODE_REL_PINNED);
->>>+    }
->>>+}
->>>+
->>>+static void
->>>+xe_sample_gt_frequency(struct xe_gt *gt, uint32_t period_ns)
->>>+{
->>>+    struct xe_device *xe = gt_to_xe(gt);
->>>+    struct xe_pmu *pmu = &xe->pmu;
->>>+    uint32_t act_freq, cur_freq;
->>>+    int ret;
->>>+
->>>+    if (gt_pmu_event_active(pmu, 
->>>XE_PMU_EVENT_GT_ACTUAL_FREQUENCY, gt->info.id)) {
->>>+
->>
->>drop this line
->ok.
->>
->>>+        /* Actual freq will be 0 when GT is in C6 */
->>>+        act_freq = xe_guc_pc_get_act_freq(&gt->uc.guc.pc);
->>>+        xe_store_pmu_sample(pmu, gt->info.id, 
->>>XE_PMU_EVENT_GT_ACTUAL_FREQUENCY,
->>>+                 act_freq, period_ns / NSEC_PER_USEC);
->>>+    }
->>>+
->>>+    if (gt_pmu_event_active(pmu, 
->>>XE_PMU_EVENT_GT_REQUESTED_FREQUENCY, gt->info.id)) {
->>>+        ret = xe_guc_pc_get_cur_freq(&gt->uc.guc.pc, &cur_freq);
->>>+        if (!ret)
->>>+            xe_store_pmu_sample(pmu, gt->info.id, 
->>>XE_PMU_EVENT_GT_REQUESTED_FREQUENCY,
->>>+                     cur_freq, period_ns / NSEC_PER_USEC);
->>>+    }
->>>+}
->>>+
->>>+static enum hrtimer_restart xe_sample(struct hrtimer *hrtimer)
->>>+{
->>>+    struct xe_pmu *pmu = container_of(hrtimer, struct xe_pmu, timer);
->>>+    struct xe_device *xe = container_of(pmu, typeof(*xe), pmu);
->>>+    u64 time_diff_ns;
->>>+    struct xe_gt *gt;
->>>+    ktime_t now;
->>>+    int i;
->>>+
->>>+    if (!READ_ONCE(pmu->timer_enabled))
->>>+        return HRTIMER_NORESTART;
->>>+
->>>+    now = ktime_get();
->>>+    time_diff_ns = ktime_to_ns(ktime_sub(now, pmu->timer_last));
->>>+    pmu->timer_last = now;
->>>+
->>>+    /*
->>>+     * The passed in period includes the time needed for grabbing 
->>>the forcewake.
->>
->>I don't think this is true anymore, is it?
->>
->>xe_sample()
->>  1. calculate time_diff at the beginning of the function
->>  2. for each gt, readout freq samples, using the time_diff, may include
->>     delays on forcewake, but that is not included in the time_diff
->>  3. htimer is adjusted to timer_last + period
->yup, makes sense.
->>
->>>+     */
->>>+    for_each_gt(gt, xe, i)
->>>+        xe_sample_gt_frequency(gt, time_diff_ns);
->>>+
->>>+    hrtimer_forward(hrtimer, now, ns_to_ktime(XE_HRTIMER_INTERVAL_NS));
->>>+
->>>+    return HRTIMER_RESTART;
->>>+}
->>>+
->>>static void xe_pmu_enable(struct perf_event *event)
->>>{
->>>+    struct xe_pmu *pmu = event_to_pmu(event);
->>>+    struct xe_gt *gt = event_to_gt(event);
->>>+    uint32_t id = config_to_event_id(event->attr.config);
->>>+    unsigned long flags;
->>>+
->>>+    raw_spin_lock_irqsave(&pmu->lock, flags);
->>>+
->>>+    /* Update event mask */
->>>+    pmu->active_mask[gt->info.id] |= BIT_ULL(id);
->>>+    pmu->n_active[gt->info.id][id]++;
->>>+
->>>+    /* Start a timer, if needed, to collect samples */
->>>+    xe_pmu_start_timer(pmu, gt->info.id);
->>>+
->>>+    raw_spin_unlock_irqrestore(&pmu->lock, flags);
->>>    /*
->>>     * Store the current counter value so we can report the 
->>>correct delta
->>>     * for all listeners. Even when the event was already enabled 
->>>and has
->>>@@ -166,7 +314,7 @@ static void xe_pmu_enable(struct perf_event *event)
->>>
->>>static void xe_pmu_event_start(struct perf_event *event, int flags)
->>>{
->>>-    struct xe_device *xe = container_of(event->pmu, typeof(*xe), 
->>>pmu.base);
->>>+    struct xe_device *xe = event_to_xe(event);
->>>    struct xe_pmu *pmu = &xe->pmu;
->>>
->>>    if (!pmu->registered)
->>>@@ -176,26 +324,53 @@ static void xe_pmu_event_start(struct 
->>>perf_event *event, int flags)
->>>    event->hw.state = 0;
->>>}
->>>
->>>+static void xe_pmu_disable(struct perf_event *event)
->>>+{
->>>+    struct xe_device *xe = event_to_xe(event);
->>>+    struct xe_pmu *pmu = &xe->pmu;
->>>+    unsigned long flags;
->>>+    uint32_t id = config_to_event_id(event->attr.config);
->>>+    uint32_t gt_id = config_to_gt_id(event->attr.config);
->>>+
->>>+    raw_spin_lock_irqsave(&pmu->lock, flags);
->>>+
->>>+    if (--pmu->n_active[gt_id][id] == 0) {
->>>+        pmu->active_mask[gt_id] &= ~BIT_ULL(id);
->>>+        pmu->timer_enabled &= pmu_needs_timer(pmu);
->>>+    }
->>>+
->>>+    raw_spin_unlock_irqrestore(&pmu->lock, flags);
->>>+}
->>>+
->>>static void xe_pmu_event_stop(struct perf_event *event, int flags)
->>>{
->>>-    struct xe_device *xe = container_of(event->pmu, typeof(*xe), 
->>>pmu.base);
->>>+    struct xe_device *xe = event_to_xe(event);
->>>    struct xe_pmu *pmu = &xe->pmu;
->>>+    uint32_t id = config_to_event_id(event->attr.config);
->>>+
->>>+    XE_WARN_ON(id >= XE_PMU_MAX_EVENT_TYPES);
->>
->>if not using a linked list as suggested, please drop this. Instead block
->>the event init from succeeding.
->
->ok.
->
->Thanks,
->
->Vinay.
 >
 >>
+>>> Just using u8 everywhere seems simpler instead of converting back and
+>>> forth.
 >>>
->>>-    if (pmu->registered)
->>>+    if (pmu->registered) {
->>>        if (flags & PERF_EF_UPDATE)
->>>            xe_pmu_event_update(event);
+>>>> this will also match rest of functions in this file
+>>>>
+>>>>> +{
+>>>>> +Â Â Â  if (xe_gt_WARN(guc_to_gt(guc), *remain < size,
+>>>> do we need xe_gt_WARN in production?
+>>>> maybe xe_gt_assert will suffice?
+>>> I've kept this the same as what was in the original function. Not sure
+>>> why it was xe_gt_WARN instead of assert.
 >>>
->>>+        xe_pmu_disable(event);
->>>+    }
->>>+
->>>    event->hw.state = PERF_HES_STOPPED;
->>>}
+>>>>> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â  "klv buffer too small to add klv id 0x%04x\n",
+>>>> s/klv/KLV
+>>>>
+>>>>> + FIELD_GET(GUC_KLV_0_KEY, klv_entry[0])))
+>>>>> +Â Â Â Â Â Â Â  return;
+>>>>> +
+>>>>> +Â Â Â  xe_map_memcpy_to(guc_to_xe(guc), map, *offset, klv_entry, size);
+>>>>> +Â Â Â  *offset += size;
+>>>>> +Â Â Â  *remain -= size;
+>>>>> +}
+>>>>> +
+>>>>> +/**
+>>>>> + * xe_guc_klv_enable_simple - Emits a KLV with no data to an iosys
+>>>>> mapped buffer
+>>>>> + * @guc: the guc structure
+>>>>> + * @map: the iosys_map to write to
+>>>>> + * @klv_id: the KLV to enable
+>>>> key ? there is no Len nor Value
+>>>>
+>>>> this will follow other functions in this file
+>>> ok, will rename.
 >>>
->>>static int xe_pmu_event_add(struct perf_event *event, int flags)
->>>{
->>>-    struct xe_device *xe = container_of(event->pmu, typeof(*xe), 
->>>pmu.base);
->>>+    struct xe_device *xe = event_to_xe(event);
->>>    struct xe_pmu *pmu = &xe->pmu;
->>>+    uint32_t id = config_to_event_id(event->attr.config);
+>>>>> + * @offset: pointer to a variable holding the offset to write to
+>>>>> + * @remain: pointer to a variable holding the remaining writing
+>>>>> space available
+>>>>> + *
+>>>>> + * The function checks if there is enough space to emit a KLV with
+>>>>> no data and
+>>>>> + * if so writes it to memory. After the write, the offset and remain
+>>>>> variables
+>>>>> + * are respectively increased and decreased of the written size to
+>>>>> be ready for
+>>>>> + * the next emission.
+>>>>> + */
+>>>>> +void xe_guc_klv_enable_simple(struct xe_guc *guc, struct iosys_map
+>>>>> *map,
+>>>>> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  u16 klv_id, u32 *offset, u32 *remain)
+>>>>> +{
+>>>>> +Â Â Â  u32 klv_entry = PREP_GUC_KLV(klv_id, 0);
+>>>> Â Â Â Â Â u32 klv[] = { PREP_GUC_KLV(key, 0) };
+>>>>
+>>>> Â Â Â Â Â emit(... ARRAY_SIZE(klv)
+>>> Why? this function is specifically targeted to writing a single u32, 
+>>> why
+>>> write it as a u32[1]?
 >>>
->>>    if (!pmu->registered)
->>>        return -ENODEV;
+>>>>> +
+>>>>> +Â Â Â  emit_klv(guc, map, &klv_entry, sizeof(klv_entry), offset, 
+>>>>> remain);
+>>>>> +}
+>>>>> +
+>>>>> +/**
+>>>>> + * xe_guc_klv_enable_one_word - Emits a KLV with 1 DW data to an
+>>>>> iosys mapped buffer
+>>>>> + * @guc: the guc structure
+>>>>> + * @map: the iosys_map to write to
+>>>>> + * @klv_id: the KLV to enable
+>>>> s/klv_id/key
+>>>>
+>>>>> + * @value: the data associated with the KLV
+>>>>> + * @offset: pointer to a variable holding the offset to write to
+>>>>> + * @remain: pointer to a variable holding the remaining writing
+>>>>> space available
+>>>>> + *
+>>>>> + * The function checks if there is enough space to emit a KLV with 1
+>>>>> DW data and
+>>>>> + * if so writes it to memory. After the write, the offset and remain
+>>>>> variables
+>>>>> + * are respectively increased and decreased of the written size to
+>>>>> be ready for
+>>>>> + * the next emission.
+>>>>> + */
+>>>>> +void xe_guc_klv_enable_one_word(struct xe_guc *guc, struct iosys_map
+>>>>> *map,
+>>>>> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  u16 klv_id, u32 value, u32 *offset, u32 *remain)
+>>>>> +{
+>>>>> +Â Â Â  u32 klv_entry[] = {
+>>>>> +Â Â Â Â Â Â Â  PREP_GUC_KLV(klv_id, 1),
+>>>>> +Â Â Â Â Â Â Â  value,
+>>>>> +Â Â Â  };
+>>>>> +
+>>>>> +Â Â Â  emit_klv(guc, map, klv_entry, sizeof(klv_entry), offset, 
+>>>>> remain);
+>>>>> +}
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_guc_klv_helpers.h b/drivers/gpu/
+>>>>> drm/xe/xe_guc_klv_helpers.h
+>>>>> index c676d21c173b..231f7c4b0947 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_guc_klv_helpers.h
+>>>>> +++ b/drivers/gpu/drm/xe/xe_guc_klv_helpers.h
+>>>>> @@ -10,6 +10,8 @@
+>>>>> Â Â  #include <linux/types.h>
+>>>>> Â Â  Â  struct drm_printer;
+>>>>> +struct iosys_map;
+>>>>> +struct xe_guc;
+>>>>> Â Â  Â  const char *xe_guc_klv_key_to_string(u16 key);
+>>>>> Â Â  @@ -61,4 +63,9 @@ int xe_guc_klv_count(const u32 *klvs, u32
+>>>>> num_dwords);
+>>>>> Â Â  #define PREP_GUC_KLV_TAG(TAG) \
+>>>>> Â Â Â Â Â Â  PREP_GUC_KLV_CONST(MAKE_GUC_KLV_KEY(TAG), 
+>>>>> MAKE_GUC_KLV_LEN(TAG))
+>>>>> Â Â  +void xe_guc_klv_enable_simple(struct xe_guc *guc, struct 
+>>>>> iosys_map
+>>>>> *map,
+>>>>> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  u16 klv_id, u32 *offset, u32 *remain);
+>>>>> +void xe_guc_klv_enable_one_word(struct xe_guc *guc, struct iosys_map
+>>>>> *map,
+>>>>> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  u16 klv_id, u32 value, u32 *offset, u32 *remain);
+>>>> hmm, "enable" does not fit here, maybe:
+>>>>
+>>>> xe_guc_klv_emit_empty / no_data / no_value
+>>>> xe_guc_klv_emit_dword
+>>> emit_nodata should work.
 >>>
->>>+    XE_WARN_ON(id >= XE_PMU_MAX_EVENT_TYPES);
+>>>> and those should be inlines that use:
+>>>>
+>>>> void xe_guc_klv_emit_simple(
+>>>> Â Â Â Â Â struct xe_guc *guc,
+>>>> Â Â Â Â Â struct iosys_map *map,
+>>>> Â Â Â Â Â u16 key, u16 len, const u32 *klv,
+>>>> Â Â Â Â Â u32 *offset, u32 *remain);
+>>>>
+>>>> like:
+>>>>
+>>>> inline xe_guc_klv_emit_simple_empty(.. key ..)
+>>>> {
+>>>> Â Â Â Â Â xe_guc_klv_emit_simple(.. key, 0, NULL, ..);
+>>>> }
+>>>>
+>>>>
+>>>> inline xe_guc_klv_emit_simple_dword(.. key, value ..)
+>>>> {
+>>>> Â Â Â Â Â xe_guc_klv_emit_simple(.. key, 1, &value, ..);
+>>>> }
+>>> This seems to just make things harder. xe_guc_klv_emit_simple() would
+>>> need to handle the case where we have data differently from the case
+>>> where we don't, potentially with 2 separate memcpys (one always done 
+>>> for
+>> this isn't on the hot path so I would prefer avoid code duplication over
+>> perf optimization
+>
+> This isn't about a perf optimization, it is about keeping the code 
+> simple. The only duplication is between:
+>
+> u32 klv_entry = PREP_GUC_KLV(klv_id, 0);
+>
+> and
+>
+> u32 klv_entry[] = {
+> Â Â Â Â Â Â Â  PREP_GUC_KLV(klv_id, 1),
+> Â Â Â Â Â Â Â  value,
+> };
+>
+> Which is minimal, but it keeps the common code much simpler as it 
+> doesn't have to handle optional parameters.
+>
 >>
->>ditto.
+>>> the key and one optional for the data). I really don't see the benefit
+>>> when the current approach still makes most of the code common in
+>>> emit_klv() and only has separate arrays. Also, that wouldn't be a
+>>> "simple" emission anymore since it'd handle all the possible cases, so
+>>> the naming also wouldn't fit.
+>> but the goal is to have helper function to 'emit KLVs', so the 'simple'
+>> here means help in building and emit of the proper KLV-header based on
+>> the provided key/len params, followed by emit of value (as dwords)
+>
+> The "simple" here was in reference to the fact that there was no data, 
+> as compared against the emit_dword.
+>
 >>
->>Lucas De Marchi
+>> and while your current case is only KLV with 0 or 1 dword, nothing
+>> prevents us from implementing generic helper, and satisfying your need
+>> with trivial wrappers for 0/1 case
+>
+> I'll give it a try and see how it looks, but it really seems like 
+> we're over-engineering this by introducing an helper that can handle 
+> cases that we don't have.
+I agree with Daniele. There is no need to overcomplicate things to 
+support use cases that don't exist.
+
+And yes, the 'simple' meant no data. So calling a function 
+'simple_dword' is broken and 'simple_empty' is redundant! We could maybe 
+drop the 'enable' part if the helpers might be used for other KLV 
+purposes at some point. But it would just be 'xe_guc_klv_add_simple' and 
+'xe_guc_klv_add_one_word'. If you really thing the use of 'simple' is 
+ambiguous or confusing then maybe 'xe_guc_klv_add_empty' instead but 
+that sounds odd to me.
+
+John.
+
+>
+> Daniele
+>
 >>
->>>+
->>>    if (flags & PERF_EF_START)
->>>        xe_pmu_event_start(event, flags);
+>>> Daniele
 >>>
->>>@@ -270,6 +445,10 @@ static ssize_t event_attr_show(struct device *dev,
->>>    XE_EVENT_ATTR_GROUP(v_, id_, &pmu_event_ ##v_.attr.attr)
->>>
->>>XE_EVENT_ATTR_SIMPLE(gt-c6-residency, gt_c6_residency, 
->>>XE_PMU_EVENT_GT_C6_RESIDENCY, "ms");
->>>+XE_EVENT_ATTR_SIMPLE(gt-actual-frequency, gt_actual_frequency,
->>>+             XE_PMU_EVENT_GT_ACTUAL_FREQUENCY, "Mhz");
->>>+XE_EVENT_ATTR_SIMPLE(gt-requested-frequency, gt_requested_frequency,
->>>+             XE_PMU_EVENT_GT_REQUESTED_FREQUENCY, "Mhz");
->>>
->>>static struct attribute *pmu_empty_event_attrs[] = {
->>>    /* Empty - all events are added as groups with .attr_update() */
->>>@@ -283,6 +462,8 @@ static const struct attribute_group 
->>>pmu_events_attr_group = {
->>>
->>>static const struct attribute_group *pmu_events_attr_update[] = {
->>>    &pmu_group_gt_c6_residency,
->>>+    &pmu_group_gt_actual_frequency,
->>>+    &pmu_group_gt_requested_frequency,
->>>    NULL,
->>>};
->>>
->>>@@ -290,8 +471,11 @@ static void set_supported_events(struct 
->>>xe_pmu *pmu)
->>>{
->>>    struct xe_device *xe = container_of(pmu, typeof(*xe), pmu);
->>>
->>>-    if (!xe->info.skip_guc_pc)
->>>+    if (!xe->info.skip_guc_pc) {
->>>        pmu->supported_events |= BIT_ULL(XE_PMU_EVENT_GT_C6_RESIDENCY);
->>>+        pmu->supported_events |= 
->>>BIT_ULL(XE_PMU_EVENT_GT_ACTUAL_FREQUENCY);
->>>+        pmu->supported_events |= 
->>>BIT_ULL(XE_PMU_EVENT_GT_REQUESTED_FREQUENCY);
->>>+    }
->>>}
->>>
->>>/**
->>>@@ -306,6 +490,8 @@ static void xe_pmu_unregister(void *arg)
->>>    if (!pmu->registered)
->>>        return;
->>>
->>>+    hrtimer_cancel(&pmu->timer);
->>>+
->>>    pmu->registered = false;
->>>
->>>    perf_pmu_unregister(&pmu->base);
->>>@@ -334,6 +520,11 @@ int xe_pmu_register(struct xe_pmu *pmu)
->>>    if (IS_SRIOV_VF(xe))
->>>        return 0;
->>>
->>>+    raw_spin_lock_init(&pmu->lock);
->>>+
->>>+    hrtimer_init(&pmu->timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
->>>+    pmu->timer.function = xe_sample;
->>>+
->>>    name = kasprintf(GFP_KERNEL, "xe_%s",
->>>             dev_name(xe->drm.dev));
->>>    if (!name)
->>>diff --git a/drivers/gpu/drm/xe/xe_pmu_types.h 
->>>b/drivers/gpu/drm/xe/xe_pmu_types.h
->>>index f5ba4d56622c..cd68cba58693 100644
->>>--- a/drivers/gpu/drm/xe/xe_pmu_types.h
->>>+++ b/drivers/gpu/drm/xe/xe_pmu_types.h
->>>@@ -10,6 +10,7 @@
->>>#include <linux/spinlock_types.h>
->>>
->>>#define XE_PMU_MAX_GT 2
->>>+#define XE_PMU_MAX_EVENT_TYPES    64
->>>
->>>/**
->>> * struct xe_pmu - PMU related data per Xe device
->>>@@ -34,6 +35,34 @@ struct xe_pmu {
->>>     * @supported_events: Bitmap of supported events, indexed by 
->>>event id
->>>     */
->>>    u64 supported_events;
->>>+    /**
->>>+     * @lock: Lock protecting enable mask and sampling
->>>+     */
->>>+    raw_spinlock_t lock;
->>>+    /**
->>>+     * @active_mask: Bit representation of active events
->>>+     */
->>>+    u64 active_mask[XE_PMU_MAX_GT];
->>>+    /**
->>>+     * @n_active: Counts for the enabled events
->>>+     */
->>>+    unsigned int n_active[XE_PMU_MAX_GT][XE_PMU_MAX_EVENT_TYPES];
->>>+    /**
->>>+     * @timer: Timer for sampling GT frequency.
->>>+     */
->>>+    struct hrtimer timer;
->>>+    /**
->>>+     * @timer_last: Timestmap of the previous timer invocation.
->>>+     */
->>>+    ktime_t timer_last;
->>>+    /**
->>>+     * @timer_enabled: Should the internal sampling timer be running.
->>>+     */
->>>+    bool timer_enabled;
->>>+    /**
->>>+     * @event_sample: Store freq related counters.
->>>+     */
->>>+    u64 event_sample[XE_PMU_MAX_GT][XE_PMU_MAX_EVENT_TYPES];
->>>};
->>>
->>>#endif
->>>-- 
->>>2.38.1
->>>
+>>>>> +
+>>>>> Â Â  #endif
+>
+
