@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D185C282C6
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Mar 2025 09:48:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F28DFC282C5
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Mar 2025 09:53:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5C7C10E265;
-	Mon,  3 Mar 2025 09:48:13 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W1AbTbTr";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86D4210E265;
- Mon,  3 Mar 2025 09:48:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740995292; x=1772531292;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=tdQaaENsWJdVr6hH4KbkruhOlxCer1viA1qztXaHCRg=;
- b=W1AbTbTr1Qicb1QWYJt4lGR2ubduKq/jt0C+Gb3UGjhss4yR+Tz0IplP
- qAbLXNTQJXIAB/b9hpvrRBBaHchhuavYJREXm4jd5G2j4DCBol7nxc2Do
- CIt1pAa/2RSLMQZdHmWomBHLepIZCy9TXyZxSoQSS929VIqGK7pdW9Klg
- FogdfPhPPnNYJOcyrOfjpR6uyVw5KV44q9eId7VN53ULrl7xBcZD/klZ8
- PWj+2sodj8VvTGU75JsKOFpUUcNOMo5gfW2BZx9ehh0pEftweQzq9KP6p
- q1MoX3tPS6ExNAlKcjT+xzWWUQe5XRxFT51djp3xTocyZk7EnIUMKqPGy Q==;
-X-CSE-ConnectionGUID: Aod96dy8QlG6I+Ih23/BdA==
-X-CSE-MsgGUID: TZtfE0CLR5KeD3PITmP2rw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11361"; a="59407286"
-X-IronPort-AV: E=Sophos;i="6.13,329,1732608000"; d="scan'208";a="59407286"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2025 01:48:12 -0800
-X-CSE-ConnectionGUID: y6BZH9aAQzCpQWMTCVKgqA==
-X-CSE-MsgGUID: rc5+/UDBS6e5Gh/cJrCbeg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="123172792"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 03 Mar 2025 01:48:09 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 03 Mar 2025 11:48:08 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>
-Subject: [PATCH] drm/client: Build the tests with CONFIG_DRM_KUNIT_TEST=m
-Date: Mon,  3 Mar 2025 11:48:08 +0200
-Message-ID: <20250303094808.11860-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.45.3
+	by gabe.freedesktop.org (Postfix) with ESMTP id 261B810E3B2;
+	Mon,  3 Mar 2025 09:53:38 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 947E410E3B0;
+ Mon,  3 Mar 2025 09:53:37 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/client=3A_Build_?=
+ =?utf-8?q?the_tests_with_CONFIG=5FDRM=5FKUNIT=5FTEST=3Dm?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 03 Mar 2025 09:53:37 -0000
+Message-ID: <174099561760.81930.17138077559612492215@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250303094808.11860-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20250303094808.11860-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,32 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-Use IS_ENABLED() to check for CONFIG_DRM_KUNIT_TEST so
-that it picks up the modular case as well.
+Series: drm/client: Build the tests with CONFIG_DRM_KUNIT_TEST=m
+URL   : https://patchwork.freedesktop.org/series/145706/
+State : success
 
-Cc: Maxime Ripard <mripard@kernel.org>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/drm_client_modeset.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/drm_client_modeset.c b/drivers/gpu/drm/drm_client_modeset.c
-index aca442c25209..27471a4eef21 100644
---- a/drivers/gpu/drm/drm_client_modeset.c
-+++ b/drivers/gpu/drm/drm_client_modeset.c
-@@ -1268,6 +1268,6 @@ int drm_client_modeset_dpms(struct drm_client_dev *client, int mode)
- }
- EXPORT_SYMBOL(drm_client_modeset_dpms);
- 
--#ifdef CONFIG_DRM_KUNIT_TEST
-+#if IS_ENABLED(CONFIG_DRM_KUNIT_TEST)
- #include "tests/drm_client_modeset_test.c"
- #endif
--- 
-2.45.3
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 60b234fe25a4 drm-tip: 2025y-03m-02d-18h-33m-28s UTC integration manifest
+=== git am output follows ===
+Applying: drm/client: Build the tests with CONFIG_DRM_KUNIT_TEST=m
+
 
