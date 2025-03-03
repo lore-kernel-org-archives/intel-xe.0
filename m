@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA432C282CD
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Mar 2025 08:57:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A14FC282C5
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Mar 2025 09:05:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85F1910E39D;
-	Mon,  3 Mar 2025 08:57:55 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ml6YlBOK";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1C4610E38C;
- Mon,  3 Mar 2025 08:57:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740992275; x=1772528275;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=MU+Em60xJzS4K3d9y5yaQNSV+RDmJo0LUABoEXf1+6g=;
- b=Ml6YlBOK61azGtq1TAYWcFsaOoOm1av4BS/jMctQQFQU5jHvPWqaNiP7
- KvAgWcpEKk6JEhe7wZUxSrJpijFFX3MLL0cTaMCmJ8rZkfCB53tg9ocN+
- 3FUwWyJppd1yfhjHA9su+7C++Oe5XcSlS5SfBgXccRXWWh1sO5ToLiz9R
- 6QoZw0RrIA+YtO2GxPFMAL6ehF3BxverN0hrmxIuTgnRJ3erKnYL4QZBg
- GurVdxjuarZ7xEdYXQOHzX0CrKfZeNzpXbzQel/RUuQLgGk/fEUbubPqJ
- k8rBCtgfOn/4iZTT53fVZpU59p4PaaZqbS/MdAvQFfgIHMSmOgPxwrKV9 A==;
-X-CSE-ConnectionGUID: uo3eXy8/QMyBvvxxMJo5VQ==
-X-CSE-MsgGUID: KqRO9CSaT9ivfyTUNyjGRg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11361"; a="41770045"
-X-IronPort-AV: E=Sophos;i="6.13,329,1732608000"; d="scan'208";a="41770045"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2025 00:57:54 -0800
-X-CSE-ConnectionGUID: hwZABHXoRYWtMgEQ6Eu6OQ==
-X-CSE-MsgGUID: GCwK8uVkSKCgDDxYBJAysg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,329,1732608000"; d="scan'208";a="117949612"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by fmviesa007.fm.intel.com with ESMTP; 03 Mar 2025 00:57:52 -0800
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jouni.hogander@intel.com, jani.nikula@intel.com, jeevan.b@intel.com,
- Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v5 8/8] drm/i915/lobf: Add debug print for LOBF
-Date: Mon,  3 Mar 2025 14:05:22 +0530
-Message-Id: <20250303083522.845224-9-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20250303083522.845224-1-animesh.manna@intel.com>
-References: <20250303083522.845224-1-animesh.manna@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AE5B10E38D;
+	Mon,  3 Mar 2025 09:05:49 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1F2610E38D;
+ Mon,  3 Mar 2025 09:05:47 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_LOBF_enablement_fix_?=
+ =?utf-8?q?=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Animesh Manna" <animesh.manna@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 03 Mar 2025 09:05:47 -0000
+Message-ID: <174099274765.71151.14665189203285695430@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250303083522.845224-1-animesh.manna@intel.com>
+In-Reply-To: <20250303083522.845224-1-animesh.manna@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,34 +36,28 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Lobf is enabled part of ALPM configuration and if has_lobf
-is set to true respective bit for LOBF will be set. Add debug
-print while setting the bitfield of LOBF.
+== Series Details ==
 
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/display/intel_alpm.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Series: LOBF enablement fix (rev4)
+URL   : https://patchwork.freedesktop.org/series/142278/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index a233f86c708e..9cf67b3da0ad 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -387,8 +387,10 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
- 			ALPM_CTL_EXTENDED_FAST_WAKE_TIME(intel_dp->alpm_parameters.fast_wake_lines);
- 	}
- 
--	if (crtc_state->has_lobf)
-+	if (crtc_state->has_lobf) {
- 		alpm_ctl |= ALPM_CTL_LOBF_ENABLE;
-+		drm_dbg_kms(display->drm, "Link off between frames (LOBF) enabled\n");
-+	}
- 
- 	alpm_ctl |= ALPM_CTL_ALPM_ENTRY_CHECK(intel_dp->alpm_parameters.check_entry_lines);
- 
--- 
-2.29.0
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 60b234fe25a4 drm-tip: 2025y-03m-02d-18h-33m-28s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/lobf: Add lobf enablement in post plane update
+Applying: drm/i915/lobf: Disintegrate alpm_disable from psr_disable
+Applying: drm/i915/lobf: Add fixed refresh rate check in compute_config()
+Applying: drm/i915/lobf: Update lobf if any change in dependent parameters
+Applying: drm/i915/lobf: Add debug interface for lobf
+Applying: drm/i915/lobf: Check for sink error and disable LOBF
+Applying: drm/i915/lobf: Add mutex for alpm update
+Applying: drm/i915/lobf: Add debug print for LOBF
+
 
