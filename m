@@ -4,61 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98D4FC282D2
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Mar 2025 14:07:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CD31C282CD
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Mar 2025 15:57:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60C0310E1F3;
-	Mon,  3 Mar 2025 14:07:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A32D10E48E;
+	Mon,  3 Mar 2025 15:57:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="HBf2vB95";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dORj87lU";
 	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CFD010E26B;
- Fri, 28 Feb 2025 08:56:00 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id B00875C05A4;
- Fri, 28 Feb 2025 08:53:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5087C4CED6;
- Fri, 28 Feb 2025 08:55:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1740732959;
- bh=y/U8R/NI0d97IbZrAfpBI+n/RgNShiZ1WGVlLVetEEY=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=HBf2vB95qVdn4uCpncA6IMNyEnCFFNT3NTU+2Vn2efqGCs3/Ob4irZV2N4F7i4zcS
- 8LJTkm8WxrAIc0NyAeve9MU9ATmDig1dABT3IF0dYEzWCVCm0WKMFngvFyKwPQDtqc
- oJWOJ8VYcV1p/2Kq7VZQ3TWILNnbpqARCr0REVUEimc5KYgUZWohgdPgGD+onHORxg
- 66040lriCNKbfmY5okqm6T4RQuNo6KEYyRZgpsmdtNTT7vOV6WrQT5nXDS+oa+ij2S
- 6Hv2pAtkn9xBAMfQQ3LnTYFl/2kM4Xz1TGujYxGdO//zPlNx99BAYjb3ZPtlXsTglM
- mPUiCijsX8+/A==
-Date: Fri, 28 Feb 2025 09:55:57 +0100
-From: Daniel Gomez <da.gomez@kernel.org>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Tamir Duberstein <tamird@gmail.com>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Nathan Chancellor <nathan@kernel.org>,
- Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
- Bill Wendling <morbo@google.com>, Masahiro Yamada <masahiroy@kernel.org>, 
- Justin Stitt <justinstitt@google.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
- Klaus Jensen <k.jensen@samsung.com>, 
- Theodore Ts'o <tytso@mit.edu>, gost.dev@samsung.com,
- Barry Song <baohua@kernel.org>, Daniel Gomez <da.gomez@samsung.com>
-Subject: Re: [PATCH RESEND v3] drm/xe: xe_gen_wa_oob: replace
- program_invocation_short_name
-Message-ID: <4ghuhfcasawko7ultvuou3dhfzvb4fm4kazdd6ld5aquwvpzyh@xg2tdw5zi37j>
-References: <20250224-macos-build-support-xe-v3-1-d2c9ed3a27cc@samsung.com>
- <be5abg6u6wm62nhak7xrhtlkqxcekael6ztnkatwqxcil44x5y@p6yrbfingm4e>
- <CAJ-ks9=gaxW2191c+K0E0MgjsQWLYoKxJZLxGb6RMbPRVHc4tQ@mail.gmail.com>
- <fzigsonsdbtvo6aorgvzlh4mvbpvikbz6iwh6h5jx53e7zd7m4@munr3ea5nbme>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2CEA10E487;
+ Mon,  3 Mar 2025 15:57:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1741017472; x=1772553472;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=X/kGmlSdAf8hVWg3etAJmXC9bKDpWdSh38Iung1v08g=;
+ b=dORj87lUnPxEo46FDSTTTgaNlanoAaYF5TJRvT7E7xjh986uIQYpikdS
+ GZMRRyK8raBuMhnrD2yEZNnZId0QuIfU8UhUazmLZFSX9IIXwiob/0ev5
+ q6U30t7YwkzFQYWcrRilJtuTopWP8a0OyiiIaX8fKs/RtmpOOBNCN6Q+o
+ qUSby8vgHRyR3GxO6ozzO4pBGuu08ax8b9tVykU0HkCaTpKfgS8mH4l+Z
+ nkHNDX9fuqkTd8fgv4oaJXLMgkpkFgWAcLaCJBI2/Z8CegA5vfOb2XqY5
+ RhoEDEEYBNsT6Mn4ltYbecvOEa9BW5JZhsE9uAxpj9GIs/GJhbdkq8PHq Q==;
+X-CSE-ConnectionGUID: DEK9gAlWT+CT4bb3hAGw1g==
+X-CSE-MsgGUID: J10oiQcGQXq1W564iItvHg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11362"; a="52105390"
+X-IronPort-AV: E=Sophos;i="6.13,330,1732608000"; d="scan'208";a="52105390"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2025 07:57:48 -0800
+X-CSE-ConnectionGUID: 5U3UNDmoQ7eMcV1DiVMP8g==
+X-CSE-MsgGUID: a/KzYxh+TcmmGgBi1RBnIA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,330,1732608000"; d="scan'208";a="148880799"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2025 07:57:47 -0800
+Date: Mon, 3 Mar 2025 17:57:41 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Nikula, Jani" <jani.nikula@intel.com>,
+ "Kandpal, Suraj" <suraj.kandpal@intel.com>
+Subject: Re: [PATCH v9] drm/i915/dp: Guarantee a minimum HBlank time
+Message-ID: <Z8XRda_CyPSPqwFq@ideak-desk.fi.intel.com>
+References: <20250122-hblank-v9-1-90afda006685@intel.com>
+ <Z6U7Z5EWRYzKAUlQ@ideak-desk.fi.intel.com>
+ <IA0PR11MB7307437F3882B0B5BAE7B3F1BAC92@IA0PR11MB7307.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <fzigsonsdbtvo6aorgvzlh4mvbpvikbz6iwh6h5jx53e7zd7m4@munr3ea5nbme>
-X-Mailman-Approved-At: Mon, 03 Mar 2025 14:07:06 +0000
+In-Reply-To: <IA0PR11MB7307437F3882B0B5BAE7B3F1BAC92@IA0PR11MB7307.namprd11.prod.outlook.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,66 +68,152 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Feb 27, 2025 at 01:09:55PM +0100, Lucas De Marchi wrote:
-> On Thu, Feb 27, 2025 at 08:39:21AM -0500, Tamir Duberstein wrote:
-> > Hi Lucas, chiming in here since I also care about building on macOS.
-> > 
-> > On Mon, Feb 24, 2025 at 10:05 AM Lucas De Marchi
-> > <lucas.demarchi@intel.com> wrote:
-> > > 
-> > > Is this the approach taken for other similar issues you had? Note that
-> > > argv[0] and program_invocation_short_name are not the same thing. For
-> > > this particular binary I don't really care and if it's the approach
-> > > taken in other places, I'm ok using it.
-> > 
-> > Believe it or not, this is the only place that
-> > program_invocation_short_name has ever been used in the kernel. There
-> > have been numerous instances of:
-> > 
-> > #define _GNU_SOURCE /* for program_invocation_short_name */
-> > 
-> > but never any actual callers (that I could find in the git history)
-> > other than this one.
-> > 
-> > > I was expecting you'd take the acks and merge it all through a single
-> > > tree since you received push back on the need to build the kernel in
-> > > macOS.  Is this the only thing missing and you'd want it to go through
-> > > drm?
+On Mon, Mar 03, 2025 at 11:55:30AM +0200, Murthy, Arun R wrote:
+> [...]
+> > > +{
+> > > +   struct intel_encoder *encoder = connector->encoder;
+> > > +   struct intel_display *display = to_intel_display(encoder);
+> > > +   const struct drm_display_mode *adjusted_mode =
+> > > +                                   &crtc_state->hw.adjusted_mode;
+> > > +   int symbol_size = intel_dp_is_uhbr(crtc_state) ? 32 : 8;
+> > > +   int hblank;
+> > > +
+> > > +   if (DISPLAY_VER(display) < 20)
+> > > +           return;
+> > > +
+> > > +   /* Calculate min Hblank Link Layer Symbol Cycle Count for 8b/10b MST & 128b/132b */
+> > > +   hblank = DIV_ROUND_UP((DIV_ROUND_UP
+> > > +                          (adjusted_mode->htotal - adjusted_mode->hdisplay, 4) * bpp_x16),
+> > > +                         symbol_size);
+> >
+> > bpp_x16 is the bpp in .4 fixed point format, so the above seems to be missing a
+> > div-by-16 accordingly.
 
-Yes, this is the only one missing.
+Please also comment on the above.
 
-> > 
-> > I believe the other patches have been applied or dropped. When I last
-> > tested building allmodconfig this was the only issue I ran into (macOS
-> > arm64), so I asked Daniel for this resend.
+> > Also the above formula doesn't seem to take DSC into account. Based on the
+> > HBLNK_ML_SYM_CYC_CNT formula in DP Standard v2.1 (at 2.6.4.4.1 and
+> > 2.7.9) Bspec tells us to use (converting it to LL cycles, which is just assuming 4
+> > lanes always), I think we'd need something like:
+> >
+> > lane_count = 4;
+> > hactive = adjusted_mode->hdisplay;
+> > htotal = adjusted_mode->htotal;
+> > is_mst = true;
+> >
+> > hactive_sym_cycles = is_dsc ? drm_dp_link_dsc_symbol_cycles(lane_count, hactive, dsc_slices,
+> >                                                             bpp_x16, symbol_size, is_mst) :
+> >                             drm_dp_link_symbol_cycles(...);
+> > htotal_sym_cycles = htotal * hactive_sym_cycles / hactive;
+> > hblank_sym_cycles = htotal_sym_cycles - hactive_sym_cycles;
+> >
+> I assume this is for Htotal LL CYC CNT.
+> Min Hblank calculation is included in the VESA spec (https://groups.vesa.org/wg/DP/document/20494)
 
-That is correct.
+I meant MIN_HBLNK_LL_SYM_CYC_CNT which Bspec refers to and
+defined by the DP Standard as:
 
-In my opinion, the support for building the Linux kernel on macOS is primarily
-supported by LLVM/Clang and the Linux kernel build system. The merged patches
-were merely minor tweaks such this one (and refactors from Masahiro), intended
-to enable users to configure the build system on these platforms. Patches
-dropped led to the creation of the bee-headers project, which allows users
-customize their build setup, which seems to be a common practice when people
-requires to tweak the build environment.
+MIN_HBLNK_LL_SYM_CYC_CNT = MAX((FLOOR(HTOTAL_WIDTH * EFF_PIX_BPP / (4 * SYMBOL_SIZE)) - HACT_LL_SYM_CYC_CNT),
+                               min_sym_cycles)
+
+where min_sym_cycles is 5 for 8b/10b and 3 for 128b/132b. This is the
+same as
+
+    MAX(hblank_sym_cycles, min_sym_cycles)
+
+using hblank_sym_cycles from above.
+
+> > > +
+> > > +   crtc_state->min_hblank = hblank;
+> > > +}
+> [...]
+> > > @@ -1280,6 +1308,29 @@ static void mst_stream_enable(struct intel_atomic_state *state,
+> > >                            TRANS_DP2_VFREQ_PIXEL_CLOCK(crtc_clock_hz & 0xffffff));
+> > >     }
+> > >
+> > > +   if (DISPLAY_VER(display) >= 20) {
+> > > +           /*
+> > > +            * adjust the BlankingStart/BlankingEnd framing control from
+> > > +            * the calculated value
+> > > +            */
+> >
+> > All these adjustments should be done already during computation in
+> > intel_dp_mst_compute_min_hblank(), the only thing done here is
+> > writing pipe_config->min_hblank to the register.
+> >
+> As per the comment, the crtc_state should not hold the register
+> content, retained the calculated value in crtc_state and register
+> alignment done here.
+
+The actual value programmed to the register should be computed already
+in intel_dp_mst_compute_min_hblank(). There is no point in doing part of
+the computation in intel_dp_mst_compute_min_hblank() and part of it
+here. Moving all the computation to intel_dp_mst_compute_min_hblank()
+is also what makes sense wrt. the HW/SW state verification.
 
 > 
-> fair enough.  Pushed to drm-xe-next since nobody ever reads the
-> usage for this helper tool and it doesn't really matter if now it's ugly.
-
-Thanks!
-
-With this, we can now build arm64 in macOS defconfig, allyesconfig and
-allmodconfig targets even with Rust support!
-
-Daniel
-
+> > HW/SW state verification should be added, as Ville reminded.
+> >
+> > > +           min_hblank = pipe_config->min_hblank - 2;
+> >
+> > Probably better to avoid getting min_hblank negative already here.
+> >
+> > > +
+> > > +           /* Maximum value to be programmed is limited to 0x10 */
+> > > +           min_hblank = min(0x10, min_hblank);
+> >
+> > Bspec seems to specify a decimal 10 value.
+> >
+> Will get this clarified.
 > 
-> Lucas De Marchi
-> 
-> > 
-> > Cheers.
-> > Tamir
+> > > +           /*
+> > > +            * Minimum hblank accepted for 128b/132b would be 5 and for
+> > > +            * 8b/10b would be 3 symbol count
+
+This seems to be swapped, based on the DP Standard the minimum should
+be 3 for 128b/132b and 5 for 8b/10b.
+
+
+> > > +            */
+> >
+> > Where is the above 5 and 3 minimum symbol count defined at? I can't see
+> > anything related to that at least in Bspec.
+> >
+> This is mentioned in the HLD and https://groups.vesa.org/wg/DP/document/20494
+
+There should be a comment about this in the code. Based on the DP
+Standard, I suppose for 128b/132b the 3 symbols are BS, VB-ID, BE.
+
+> > > +           if (intel_dp_is_uhbr(pipe_config))
+> > > +                   min_hblank = max(min_hblank, 5);
+> > > +           else
+> > > +                   min_hblank = max(min_hblank, 3);
+> > > +
+> > > +           intel_de_write(display, DP_MIN_HBLANK_CTL(trans),
+> > > +                          min_hblank);
+> >
+> > What is the purpose of programming this? I can't find any explanation for it,
+> > but one reason could be to ensure that the audio SDP data can be transmitted
+> > during the Hblank period. That would mean it wouldn't need to be programmed
+> > if there is no audio being transmitted and that it could be adjusted according to
+> > the actual audio BW. Would be good to request a clarification for this from HW
+> > people.
+> >
+> https://groups.vesa.org/wg/DP/document/20494
+>
+> Address issues for resolutions with high refresh rate that have small
+> Hblank, specifically where Hblank is smaller than one MTP.
+> Simulations indicate this this will address the jitter issues that
+> currently causes BS to be immediately followed by BE which DPRX
+> devices are unable to handle.
+
+I can't see this. It would make sense to document this as well in the
+code.
+
+> Thanks and Regards,
+> Arun R Murthy
+> ---------------------
