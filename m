@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8323C282D3
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Mar 2025 17:35:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67F17C282D1
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Mar 2025 17:35:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83A4E10E4BF;
-	Mon,  3 Mar 2025 17:35:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A7A710E4C1;
+	Mon,  3 Mar 2025 17:35:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cRmdMmsT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RvCRj/da";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7563310E4BE
- for <intel-xe@lists.freedesktop.org>; Mon,  3 Mar 2025 17:35:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4B1110E4C1
+ for <intel-xe@lists.freedesktop.org>; Mon,  3 Mar 2025 17:35:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741023342; x=1772559342;
+ t=1741023343; x=1772559343;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8WM+Fqd8R+XbgrBH8xoqj/RLXXgTW+K6TuVgoao5Gb4=;
- b=cRmdMmsTWMZGeOdp12/ucbK+ggMxDkei65iYQY4EK4FbJZYxJgRsNDMG
- 1mVTqZkb6TD2xCPnnbfUWgfCXzOkfTHGMwQ3GGGQe7PdBuNLYKx3XEomq
- AHuEjsfzBOXUXhYSAirdimGrOvmSiot8zPSs0niAzTTBER81Tpes65Kq7
- 91QXrHNaWkgicPEosPyzJ0NS/DylGjwg3T3jNLIs+ieQ/khrt4p/RwOiO
- wfq6gkjsbdL1vOSnpu3un2HU7Aoglxzkcjkmda7Qn2FWSeGrsB3P8+Ens
- YyAWLkLKj6QLqseQgMwwIuqnjGvlxzHJqCWTQD8JCD0nxyJPxs0AKNmvh g==;
-X-CSE-ConnectionGUID: qO2f7byLSYu4UnwjsSmLyA==
-X-CSE-MsgGUID: TSgJkPCfS3qbWmyhgpofzQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11362"; a="41937523"
-X-IronPort-AV: E=Sophos;i="6.13,330,1732608000"; d="scan'208";a="41937523"
+ bh=uSNjzJqB3L53Bt0N0054iU4ge7DKh3ampEn8doPjp+w=;
+ b=RvCRj/daU7P+EfSLg0fnj6bSsIMWkxAdMpw9NuC1YRVtPmLlEPJNP9RF
+ kH/ZmZ7fZphqTt2+1IK66X9w2m3Rx5fdZO5eKd6onr8q3jo0XLAOtW3u7
+ Bj6nAhlRM4+0YqR9CLddTRU9o1qAwLR84C70FBvDEiSSxBPAA2+0sBAuv
+ DJyI2u8m3j9vkiuAZJ7+1UPR+cVuClNIyPpfIZNh95tpjG+zzdplI0O+f
+ 6tcpxLXOUZ8M/JYuAEZEuLV/SUkq6WFcZ9rWb+kyL8u4HKq67w2J6tEUx
+ L5KoVlSmGh1Pts1ZvebgVHrLc3eWB9dDQA3OyFsY/2AlvrSNbX/AmWIhw w==;
+X-CSE-ConnectionGUID: F/TaXdYzRJCAp/tvZ4gozA==
+X-CSE-MsgGUID: tDjyqeQFQOOyRBEuzWTUow==
+X-IronPort-AV: E=McAfee;i="6700,10204,11362"; a="41937525"
+X-IronPort-AV: E=Sophos;i="6.13,330,1732608000"; d="scan'208";a="41937525"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2025 09:35:42 -0800
-X-CSE-ConnectionGUID: tu9LIVyTQxiwOaJUHAMoxw==
-X-CSE-MsgGUID: t5NTXcGYRf2HD4tH3ui4Ew==
+ 03 Mar 2025 09:35:43 -0800
+X-CSE-ConnectionGUID: CwZfz3xuQHGuQrtapT+rbA==
+X-CSE-MsgGUID: wsPZTaFETWCeFtttet2+rg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,330,1732608000"; d="scan'208";a="118101320"
+X-IronPort-AV: E=Sophos;i="6.13,330,1732608000"; d="scan'208";a="118101330"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.99.10])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2025 09:35:40 -0800
+ 03 Mar 2025 09:35:41 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH 4/5] drm/xe/vf: Stop applying save-restore MMIOs if VF
-Date: Mon,  3 Mar 2025 18:35:21 +0100
-Message-Id: <20250303173522.1822-5-michal.wajdeczko@intel.com>
+Subject: [PATCH 5/5] drm/xe/vf: Unblock xe_rtp_process_to_sr for VFs
+Date: Mon,  3 Mar 2025 18:35:22 +0100
+Message-Id: <20250303173522.1822-6-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20250303173522.1822-1-michal.wajdeczko@intel.com>
 References: <20250303173522.1822-1-michal.wajdeczko@intel.com>
@@ -67,34 +67,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently we are blocking processing of all save-restore rules
-by the VFs inside the xe_rtp_process_to_sr() function, but we
-want to unblock that to allow processing of the LRC WA rules.
+In commit 9632dfb0def4 ("drm/xe/vf: Don't run any save-restore
+RTP actions if VF") we disabled processing of all RTP rules if
+we were running as a VFs, since many of the RTP actions were
+trying to access registers unaccessible for VFs.
 
-To avoid hitting WARNs about reading an inaccessible registers by
-the VFs, stop applying save-restore MMIOs action if VF, without
-relying that SR list will be always empty for the VF.
+This also included all of LRC WA rules, since some of them were
+implemented in a way that required RMW pattern.
+
+Now, as we can program LRC WAs without accessing such registers
+from the driver, relying on the MI_MATH instruction instead, we
+can unblock xe_rtp_process_to_sr() for VFs.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_reg_sr.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/xe/xe_rtp.c | 3 ---
+ 1 file changed, 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
-index 9475e3f74958..fc8447a838c4 100644
---- a/drivers/gpu/drm/xe/xe_reg_sr.c
-+++ b/drivers/gpu/drm/xe/xe_reg_sr.c
-@@ -173,6 +173,9 @@ void xe_reg_sr_apply_mmio(struct xe_reg_sr *sr, struct xe_gt *gt)
- 	if (xa_empty(&sr->xa))
- 		return;
+diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
+index 7a1c78fdfc92..d2ccf632d07e 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.c
++++ b/drivers/gpu/drm/xe/xe_rtp.c
+@@ -256,9 +256,6 @@ void xe_rtp_process_to_sr(struct xe_rtp_process_ctx *ctx,
  
-+	if (IS_SRIOV_VF(gt_to_xe(gt)))
-+		return;
-+
- 	xe_gt_dbg(gt, "Applying %s save-restore MMIOs\n", sr->name);
+ 	rtp_get_context(ctx, &hwe, &gt, &xe);
  
- 	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+-	if (IS_SRIOV_VF(xe))
+-		return;
+-
+ 	for (entry = entries; entry && entry->name; entry++) {
+ 		bool match = false;
+ 
 -- 
 2.47.1
 
