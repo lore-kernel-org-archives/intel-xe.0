@@ -4,66 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11117C282D1
-	for <intel-xe@archiver.kernel.org>; Sun,  2 Mar 2025 16:02:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15E7BC19F32
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Mar 2025 00:49:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BA2810E33C;
-	Sun,  2 Mar 2025 16:02:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAE0410E0BE;
+	Mon,  3 Mar 2025 00:49:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="RfwkhNjf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hLvPZRTl";
 	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8B6A10E1C2;
- Sun,  2 Mar 2025 16:02:37 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 5D5A25C5623;
- Sun,  2 Mar 2025 16:00:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8201C4CEE6;
- Sun,  2 Mar 2025 16:02:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1740931356;
- bh=IXhkIvpU+Vx0ykxl7LXdSi8cY8sm/76OdV3Goprjou0=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=RfwkhNjfgGpUqTHhP+lwbRK3eJ/b0ST9O2dzL69q2zgJ9iLeFQtoCb76of3Q7Dlri
- 5OBkeciYD6z0GC1B5rEEFPJpLYYKn+XVxnszvLfU0fVeaf013R4/2huKRNO1F8iIXg
- g9mmPruYyrZSPjEpF1qpbI0TOHS0ymWGbFWTKD4aaxHJq/YnALaJJkDwGmrJQ5IFN0
- /U+PYPe+3AHssaOnG3nz2wXvfbb0nFXXx5NufHKHDus1yrgXcBZODvkSZ7ky9ws2L8
- 67URbhOXEJtri0PvyikLEkqP79BY6s8MukZ39jIwweKhuuf2Z81HN7dJA3bTldaxgW
- y1wIdHHKSumMQ==
-Received: by mail-lf1-f48.google.com with SMTP id
- 2adb3069b0e04-5452c29bacfso3877775e87.3; 
- Sun, 02 Mar 2025 08:02:36 -0800 (PST)
-X-Forwarded-Encrypted: i=1;
- AJvYcCV6aqNm7BL+s6ztbv4kDveJUe6qw180PfthCx/O+BvlIP1bOjHXSJWpOxEfjemPkuN8nknu8p3JTz0=@lists.freedesktop.org,
- AJvYcCW61f4S+rB7Ef+vTaOOYRWGl5u+I2w5Ho9ORO5nkFuthDv7ZY4zdeyUI+8WKcGDp9mUFsVKiw7kwdE=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyeY1ArAh4YY0b8AK7T3dWQWW38Z2Ktdu2I2f9UDU04SJbGLz6W
- Tav9XeaU8UGxzihJ07BekDdUlt3CX1g2ms/+ys/+7prYF8MBBn2QiEtiyLJLo2dm09bRSD1XIWR
- 4jcsoNsrjrOI5k7AUctbIU4cNtlQ=
-X-Google-Smtp-Source: AGHT+IHYvJe+qApYS2+5LIWu4//GRS8AGGEQTac3sH+4UQmOGdeQ7T3e0VpLwivQRZr9TJkGHrfmzW/pfy8zI0xl9oE=
-X-Received: by 2002:a19:380a:0:b0:546:2f7a:38bf with SMTP id
- 2adb3069b0e04-5494c1168a3mr2821689e87.1.1740931355549; Sun, 02 Mar 2025
- 08:02:35 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15A1D10E0BE
+ for <intel-xe@lists.freedesktop.org>; Mon,  3 Mar 2025 00:49:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1740962991; x=1772498991;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=um6dZk6awyQb8/yxedGDaGDKIyt8Wuibh7FzpAY6eMI=;
+ b=hLvPZRTlYKazV4np7yeN9d2dzegOaoRl9BejxB6//aAD92JWNPl7KQ/n
+ cv6284bgVdnNc++k3Ci0xqnQG3kg2Maw8gek8VzHk9ROOtdLkNBuIwVkM
+ hDdWrDqIfIfDCGtr1zX5m8njfRTZQwLXG/Q9FsOouDgBmV0wkilBf1Tty
+ hDJhXyVqXBWfjbP1fUmIXaUTw7OJwC425twvmLT1tR/wLmniRYI0tP9N/
+ rgGetEKCEaQeXLbVxOHKpiZo+MrNEdMxEG6g7RkLWVNFs0KoHu29QB8NU
+ E1BAxrigXZnfgxZcQKdCNCgGjN9SnpN+OJmDOLDCRJK/6xkbraJAzyKYU A==;
+X-CSE-ConnectionGUID: JDXn2gUlRuuUQfuIrq3JgQ==
+X-CSE-MsgGUID: E5DvqAwCTEGhHagLTQlDjw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11361"; a="52032523"
+X-IronPort-AV: E=Sophos;i="6.13,328,1732608000"; d="scan'208";a="52032523"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2025 16:49:49 -0800
+X-CSE-ConnectionGUID: CB2v+hi2QtW1uMQ8E7GCeQ==
+X-CSE-MsgGUID: cHJVX9OMRsaapLmeT4bsmQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,328,1732608000"; d="scan'208";a="141075402"
+Received: from osgc-sh-rabbit.sh.intel.com ([10.239.81.90])
+ by fmviesa002.fm.intel.com with ESMTP; 02 Mar 2025 16:49:47 -0800
+From: Xin Wang <x.wang@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Xin Wang <x.wang@intel.com>,
+	Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH] drm/xe: remove redundant check in xe_vm_create_ioctl()
+Date: Mon,  3 Mar 2025 08:49:41 +0800
+Message-ID: <20250303004942.951699-1-x.wang@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-References: <cover.1737556766.git.jani.nikula@intel.com>
- <d8ad1c6d707f38a55987f616cb9650aef30b84e1.1737556766.git.jani.nikula@intel.com>
-In-Reply-To: <d8ad1c6d707f38a55987f616cb9650aef30b84e1.1737556766.git.jani.nikula@intel.com>
-From: Masahiro Yamada <masahiroy@kernel.org>
-Date: Mon, 3 Mar 2025 01:01:58 +0900
-X-Gmail-Original-Message-ID: <CAK7LNATHXwEkjJHP7b-ZmhzLfyyuOdsyimna-=r-sJk+DxigrA@mail.gmail.com>
-X-Gm-Features: AQ5f1JrGbKJFRYR-Y6y77nA0lEIpMz2uDwEsMvCmLCf3FGL-2Sc7WQK3aCYehM4
-Message-ID: <CAK7LNATHXwEkjJHP7b-ZmhzLfyyuOdsyimna-=r-sJk+DxigrA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] drm: ensure drm headers are self-contained and pass
- kernel-doc
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, simona.vetter@ffwll.ch, 
- Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>,
- Linus Torvalds <torvalds@linux-foundation.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,157 +64,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-+CC: Linus
+The check for args->extensions is repeated twice in xe_vm_create_ioctl().
+This commit removes the redundant check to streamline the code.
 
-On Wed, Jan 22, 2025 at 11:41=E2=80=AFPM Jani Nikula <jani.nikula@intel.com=
-> wrote:
->
-> Ensure drm headers build, are self-contained, have header guards, and
-> have no kernel-doc warnings, when CONFIG_DRM_HEADER_TEST=3Dy.
->
-> The mechanism follows similar patters used in i915, xe, and usr/include.
->
-> To cover include/drm, we need to recurse there using the top level
-> Kbuild and the new include/Kbuild files.
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Xin Wang <x.wang@intel.com>
+---
+ drivers/gpu/drm/xe/xe_vm.c | 3 ---
+ 1 file changed, 3 deletions(-)
 
-NACK.
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 996000f2424e..eb76f6854b2f 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1798,9 +1798,6 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+ 			 args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE))
+ 		return -EINVAL;
+ 
+-	if (XE_IOCTL_DBG(xe, args->extensions))
+-		return -EINVAL;
+-
+ 	if (args->flags & DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE)
+ 		flags |= XE_VM_FLAG_SCRATCH_PAGE;
+ 	if (args->flags & DRM_XE_VM_CREATE_FLAG_LR_MODE)
+-- 
+2.43.0
 
-I replied here:
-https://lore.kernel.org/all/CAK7LNARJgqADxnOXAX49XzDFD4zT=3D7i8yTB0o=3DEmNt=
-xmScq8jA@mail.gmail.com/T/#u
-
-
-I CCed Linus to avoid him accidentally pulling this.
-He disliked this misfeature.
-
-
-
-
->
-> v4: check for CONFIG_WERROR in addition to CONFIG_DRM_WERROR
->
-> v3: adapt to upstream build changes
->
-> v2: make DRM_HEADER_TEST depend on DRM
->
-> Suggested-by: Daniel Vetter <daniel@ffwll.ch>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Masahiro Yamada <masahiroy@kernel.org>
-> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  Kbuild                   |  1 +
->  drivers/gpu/drm/Kconfig  | 11 +++++++++++
->  drivers/gpu/drm/Makefile | 18 ++++++++++++++++++
->  include/Kbuild           |  1 +
->  include/drm/Makefile     | 18 ++++++++++++++++++
->  5 files changed, 49 insertions(+)
->  create mode 100644 include/Kbuild
->  create mode 100644 include/drm/Makefile
->
-> diff --git a/Kbuild b/Kbuild
-> index 464b34a08f51..f327ca86990c 100644
-> --- a/Kbuild
-> +++ b/Kbuild
-> @@ -97,3 +97,4 @@ obj-$(CONFIG_SAMPLES) +=3D samples/
->  obj-$(CONFIG_NET)      +=3D net/
->  obj-y                  +=3D virt/
->  obj-y                  +=3D $(ARCH_DRIVERS)
-> +obj-$(CONFIG_DRM_HEADER_TEST)  +=3D include/
-> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-> index fbef3f471bd0..f9b3ebf63fa9 100644
-> --- a/drivers/gpu/drm/Kconfig
-> +++ b/drivers/gpu/drm/Kconfig
-> @@ -494,6 +494,17 @@ config DRM_WERROR
->
->           If in doubt, say N.
->
-> +config DRM_HEADER_TEST
-> +       bool "Ensure DRM headers are self-contained and pass kernel-doc"
-> +       depends on DRM && EXPERT
-> +       default n
-> +       help
-> +         Ensure the DRM subsystem headers both under drivers/gpu/drm and
-> +         include/drm compile, are self-contained, have header guards, an=
-d have
-> +         no kernel-doc warnings.
-> +
-> +         If in doubt, say N.
-> +
->  endif
->
->  # Separate option because drm_panel_orientation_quirks.c is shared with =
-fbdev
-> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-> index 85af94bb907d..42901f877bf2 100644
-> --- a/drivers/gpu/drm/Makefile
-> +++ b/drivers/gpu/drm/Makefile
-> @@ -222,3 +222,21 @@ obj-y                      +=3D solomon/
->  obj-$(CONFIG_DRM_SPRD) +=3D sprd/
->  obj-$(CONFIG_DRM_LOONGSON) +=3D loongson/
->  obj-$(CONFIG_DRM_POWERVR) +=3D imagination/
-> +
-> +# Ensure drm headers are self-contained and pass kernel-doc
-> +hdrtest-files :=3D \
-> +       $(shell cd $(src) && find . -maxdepth 1 -name 'drm_*.h') \
-> +       $(shell cd $(src) && find display lib -name '*.h')
-> +
-> +always-$(CONFIG_DRM_HEADER_TEST) +=3D \
-> +       $(patsubst %.h,%.hdrtest, $(hdrtest-files))
-> +
-> +# Include the header twice to detect missing include guard.
-> +quiet_cmd_hdrtest =3D HDRTEST $(patsubst %.hdrtest,%.h,$@)
-> +      cmd_hdrtest =3D \
-> +               $(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $<=
- -include $<; \
-> +               $(srctree)/scripts/kernel-doc -none $(if $(CONFIG_WERROR)=
-$(CONFIG_DRM_WERROR),-Werror) $<; \
-> +               touch $@
-> +
-> +$(obj)/%.hdrtest: $(src)/%.h FORCE
-> +       $(call if_changed_dep,hdrtest)
-> diff --git a/include/Kbuild b/include/Kbuild
-> new file mode 100644
-> index 000000000000..5e76a599e2dd
-> --- /dev/null
-> +++ b/include/Kbuild
-> @@ -0,0 +1 @@
-> +obj-$(CONFIG_DRM_HEADER_TEST)  +=3D drm/
-> diff --git a/include/drm/Makefile b/include/drm/Makefile
-> new file mode 100644
-> index 000000000000..a7bd15d2803e
-> --- /dev/null
-> +++ b/include/drm/Makefile
-> @@ -0,0 +1,18 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +
-> +# Ensure drm headers are self-contained and pass kernel-doc
-> +hdrtest-files :=3D \
-> +       $(shell cd $(src) && find * -name '*.h' 2>/dev/null)
-> +
-> +always-$(CONFIG_DRM_HEADER_TEST) +=3D \
-> +       $(patsubst %.h,%.hdrtest, $(hdrtest-files))
-> +
-> +# Include the header twice to detect missing include guard.
-> +quiet_cmd_hdrtest =3D HDRTEST $(patsubst %.hdrtest,%.h,$@)
-> +      cmd_hdrtest =3D \
-> +               $(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $<=
- -include $<; \
-> +               $(srctree)/scripts/kernel-doc -none $(if $(CONFIG_WERROR)=
-$(CONFIG_DRM_WERROR),-Werror) $<; \
-> +               touch $@
-> +
-> +$(obj)/%.hdrtest: $(src)/%.h FORCE
-> +       $(call if_changed_dep,hdrtest)
-> --
-> 2.39.5
->
-
-
---=20
-Best Regards
-Masahiro Yamada
