@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82E77C282D0
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Mar 2025 22:00:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8119DC282D2
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Mar 2025 22:00:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BE7810E285;
-	Mon,  3 Mar 2025 22:00:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C40A10E2E8;
+	Mon,  3 Mar 2025 22:00:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ei/DfZmB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NsRFlFkd";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F404510E235;
- Mon,  3 Mar 2025 22:00:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2067C10E235;
+ Mon,  3 Mar 2025 22:00:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741039223; x=1772575223;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=E9MLl/J52nZm7gl3ev1RijbSfIuQGJ+nkwdwabMWcyY=;
- b=Ei/DfZmBcXULgMwKM+J8q1fHKDsWSAk6roAcTAXVkllB7sJfgXdCNRwK
- UExVQzxQngv6teLJOnGgyzdPrZOJm5SbxBfV0uG3TCetRjxKW8lUMjCum
- 8YiJ4NxCcnJqm2V3SpLouB1GzPr/sRRaof39bMU6nsoc87ShSxs2ZwjzY
- hbRV0/5+6TQg1JUyRyIZgr1+gs5BM4aD2h3Rqd72vt+VVYBrQlEpXYcag
- aro08d3ml5/7NRnC2MlJCU74wUISYbCOMCGr4YPmiuPTSL1/52G8HgdvY
- QKxbE9yHkJ6JQbuH/ce/9nbpM6zd+rLE1cu9qJI8ZAw6vTbe0zlQVU9oN Q==;
-X-CSE-ConnectionGUID: ibu5Ff7xRoaXI9hntbj4gg==
-X-CSE-MsgGUID: GarWIWvURaiyGnzmTUoIcQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11362"; a="41846103"
-X-IronPort-AV: E=Sophos;i="6.13,330,1732608000"; d="scan'208";a="41846103"
+ t=1741039224; x=1772575224;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=jW9HCMFaxV+0nZ+HwRtkYtQ0X4X9K64/Sw1hHLBoAeI=;
+ b=NsRFlFkdUg2HGVnQP6ANYV4NQhUwb3/5XYvWGMu9RvVZgKOLXbX7pXoS
+ masakNvBMPVHmRsejEg9DC8/Bg5MnxWV52XXJjmXzHAO9b64epEt/ia3w
+ IX7v60QEUYROP+pqghiRYxvt3c1mXLGabcXZEDG5gWNR3bG+zZKWhWvju
+ +naG1c0iz/PIOSWjqZYQcjv7wzi3q4B6lvT/1zKPWt3Z+lAIinelwrA/4
+ UAanVifh6XG2wjY1xC9w+jMeOTbYEQYikcT0TBxWLBCxnG5Yd6h56lv97
+ Qlc/GGcdpgyK1CBf8wtq5oRnzrrgBxw7nCNhPKEXsfCjsNH4sSgb5SmYS g==;
+X-CSE-ConnectionGUID: SzFZtn+KSfaZn+HsWxqdWQ==
+X-CSE-MsgGUID: z7HjVHa6RgSExvn7yMjs/g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11362"; a="41846107"
+X-IronPort-AV: E=Sophos;i="6.13,330,1732608000"; d="scan'208";a="41846107"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2025 14:00:23 -0800
-X-CSE-ConnectionGUID: TjajnIp2RDG/r4IT5sBDSg==
-X-CSE-MsgGUID: 8O4/rLD0T5mcMhC/BDPPfQ==
+ 03 Mar 2025 14:00:24 -0800
+X-CSE-ConnectionGUID: y+SzV5uGS5WNINIyiE56cQ==
+X-CSE-MsgGUID: mSorDCYUSxCiSQTxqVukFg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="118020883"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="118020900"
 Received: from dut4025lnl.fm.intel.com ([10.105.8.176])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2025 14:00:22 -0800
+ 03 Mar 2025 14:00:23 -0800
 From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
  joonas.lahtinen@linux.intel.com, matthew.brost@intel.com,
  jianxun.zhang@intel.com, dri-devel@lists.freedesktop.org
-Subject: [PATCH v4 0/6] drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
-Date: Mon,  3 Mar 2025 22:00:16 +0000
-Message-ID: <20250303220022.67200-1-jonathan.cavitt@intel.com>
+Subject: [PATCH v4 4/6] drm/xe/uapi: Define drm_xe_vm_get_property
+Date: Mon,  3 Mar 2025 22:00:20 +0000
+Message-ID: <20250303220022.67200-5-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250303220022.67200-1-jonathan.cavitt@intel.com>
+References: <20250303220022.67200-1-jonathan.cavitt@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,56 +68,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add additional information to each VM so they can report up to the last
-50 seen pagefaults.  Only failed pagefaults are saved this way, as
-successful pagefaults should recover and not need to be reported to
-userspace.
+Add initial declarations for the drm_xe_vm_get_property ioctl.
 
-Additionally, add a new ioctl - xe_vm_get_property_ioctl - that allows the
-user to query these pagefaults
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+---
+ include/uapi/drm/xe_drm.h | 67 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 67 insertions(+)
 
-v2: (Matt Brost)
-- Break full ban list request into a separate property.
-- Reformat drm_xe_vm_get_property struct.
-- Remove need for drm_xe_faults helper struct.
-- Separate data pointer and scalar return value in ioctl.
-- Get address type on pagefault report and save it to the pagefault.
-- Correctly reject writes to read-only VMAs.
-- Miscellaneous formatting fixes.
-
-v3: (Matt Brost)
-- Only allow querying of failed pagefaults
-
-v4:
-- Remove unnecessary size parameter from helper function, as it
-  is a property of the arguments. (jcavitt)
-- Remove unnecessary copy_from_user (Jainxun)
-- Set address_precision to 1 (Jainxun)
-- Report max size instead of dynamic size for memory allocation
-  purposes.  Total memory usage is reported separately.
-
-Signed-off-by: Jonathan Cavitt <joanthan.cavitt@intel.com>
-Suggested-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
-CC: Zhang Jianxun <jianxun.zhang@intel.com>
-
-Jonathan Cavitt (6):
-  drm/xe/xe_gt_pagefault: Disallow writes to read-only VMAs
-  drm/xe/xe_gt_pagefault: Migrate pagefault struct to header
-  drm/xe/xe_vm: Add per VM pagefault info
-  drm/xe/uapi: Define drm_xe_vm_get_property
-  drm/xe/xe_gt_pagefault: Add address_type field to pagefaults
-  drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
-
- drivers/gpu/drm/xe/xe_device.c       |   3 +
- drivers/gpu/drm/xe/xe_gt_pagefault.c |  66 +++++++--------
- drivers/gpu/drm/xe/xe_gt_pagefault.h |  29 +++++++
- drivers/gpu/drm/xe/xe_vm.c           | 122 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vm.h           |   8 ++
- drivers/gpu/drm/xe/xe_vm_types.h     |  20 +++++
- include/uapi/drm/xe_drm.h            |  67 +++++++++++++++
- 7 files changed, 281 insertions(+), 34 deletions(-)
-
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 76a462fae05f..53617903b5ea 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -81,6 +81,7 @@ extern "C" {
+  *  - &DRM_IOCTL_XE_EXEC
+  *  - &DRM_IOCTL_XE_WAIT_USER_FENCE
+  *  - &DRM_IOCTL_XE_OBSERVATION
++ *  - %DRM_IOCTL_XE_VM_GET_PROPERTY
+  */
+ 
+ /*
+@@ -102,6 +103,7 @@ extern "C" {
+ #define DRM_XE_EXEC			0x09
+ #define DRM_XE_WAIT_USER_FENCE		0x0a
+ #define DRM_XE_OBSERVATION		0x0b
++#define DRM_XE_VM_GET_PROPERTY		0x0c
+ 
+ /* Must be kept compact -- no holes */
+ 
+@@ -117,6 +119,7 @@ extern "C" {
+ #define DRM_IOCTL_XE_EXEC			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, struct drm_xe_exec)
+ #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
+ #define DRM_IOCTL_XE_OBSERVATION		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OBSERVATION, struct drm_xe_observation_param)
++#define DRM_IOCTL_XE_VM_GET_PROPERTY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_GET_PROPERTY, struct drm_xe_vm_get_property)
+ 
+ /**
+  * DOC: Xe IOCTL Extensions
+@@ -1166,6 +1169,70 @@ struct drm_xe_vm_bind {
+ 	__u64 reserved[2];
+ };
+ 
++struct drm_xe_pf {
++	/** @address: Address of the fault, if relevant */
++	__u64 address;
++#define DRM_XE_FAULT_ADDRESS_TYPE_NONE_EXT		0
++#define DRM_XE_FAULT_ADDRESS_TYPE_READ_INVALID_EXT	1
++#define DRM_XE_FAULT_ADDRESS_TYPE_WRITE_INVALID_EXT	2
++	/** @address_type: , if relevant */
++	__u32 address_type;
++	/**
++	 * @address_precision: Precision of faulted address, if relevant.
++	 * Currently only SZ_4K.
++	 */
++	__u32 address_precision;
++	/** @reserved: MBZ */
++	__u64 reserved[3];
++};
++
++/**
++ * struct drm_xe_vm_get_property - Input of &DRM_IOCTL_XE_VM_GET_PROPERTY
++ *
++ * The user provides a VM ID and a property to query to this ioctl,
++ * and the ioctl returns the size of the return value.  Calling the
++ * ioctl again with memory reserved in @data will save the
++ * requested property data to the pointer saved at @data.
++ *
++ * In cases where the requested allocated memory size and the size of
++ * the returned data differ, the number of returned elements will be
++ * saved to @value.
++ *
++ * In the future, some properties may simply be scalar values.  In
++ * such cases, the size field will remain zero, and the value of the
++ * scalar property will be saved to @value.
++ *
++ * The valid properties are:
++ *  - %DRM_XE_VM_GET_PROPERTY_FAULTS : List of all failed pagefaults seen by VM
++ */
++struct drm_xe_vm_get_property {
++	/** @extensions: Pointer to the first extension struct, if any */
++	__u64 extensions;
++
++	/** @vm_id: The ID of the VM to query the properties of */
++	__u32 vm_id;
++
++#define DRM_XE_VM_GET_PROPERTY_FAULTS		0
++	/** @property: The property to get */
++	__u32 property;
++
++	/** @size: Size of returned property @data */
++	__u32 size;
++
++	/** @pad: MBZ */
++	__u32 pad;
++
++	union {
++		/** @value: Return for scalar data values */
++		__u64 value;
++		/** @ptr: Pointer to user structs when required */
++		__u64 ptr;
++	};
++
++	/** @reserved: MBZ */
++	__u64 reserved[2];
++};
++
+ /**
+  * struct drm_xe_exec_queue_create - Input of &DRM_IOCTL_XE_EXEC_QUEUE_CREATE
+  *
 -- 
 2.43.0
 
