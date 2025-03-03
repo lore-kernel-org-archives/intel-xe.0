@@ -4,27 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 274E9C282C5
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Mar 2025 10:02:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AC1DC282CD
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Mar 2025 10:02:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8B3110E3B0;
-	Mon,  3 Mar 2025 10:02:32 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4337010E3B0;
- Mon,  3 Mar 2025 10:02:31 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B9EE10E2D9;
+	Mon,  3 Mar 2025 10:02:38 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UKNJPHn2";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2782910E3B5;
+ Mon,  3 Mar 2025 10:02:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1740996157; x=1772532157;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=sgSh47dVp2GlyukS6Y9orr+PkBLpVJIzgHQtBC1zWXY=;
+ b=UKNJPHn2jgVxBV4EmaXkTCICQAkbFe3NwpOrSnL/57BIkEqocVWCNn9o
+ ADd1T8iz9vq7XUaXprtqY9cl7eERLwMKyE3MTAKUadaf50VG76Vu9lZDp
+ mMUhs5FVf9TFVGYgXOWuBjk6Qem/XVHni7UetW9r7aGMKEJ6OmWGhVd7x
+ saIt7x4stq0+342JObFMwtICqtuxCaN5y7jlS9N1CMfZ689bzAXI6QMC+
+ f3bcdwVb5PbIMDDWZtqf/vqDjJZLJoJEG3O4EvIawKOBjAbxJqzIOHf+w
+ sJfOzG/V5BEosBENbu9zfhcP6Po65sO+PGvtJk08YUQN7GYOJ3YQ2jlqS w==;
+X-CSE-ConnectionGUID: ixs5DjNqQKOtHgYAhDa7Fg==
+X-CSE-MsgGUID: Aju2ZRZXSEOVgmvbQgRv7w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11361"; a="52501881"
+X-IronPort-AV: E=Sophos;i="6.13,329,1732608000"; d="scan'208";a="52501881"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2025 02:02:37 -0800
+X-CSE-ConnectionGUID: Gz0/4ADeS3aScWBalrhr1A==
+X-CSE-MsgGUID: 5qxRtmPVQEuT4fVgtKAl3Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,329,1732608000"; d="scan'208";a="123111745"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.122])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2025 02:02:33 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Masahiro Yamada <masahiroy@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, simona.vetter@ffwll.ch, Daniel Vetter
+ <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Linus Torvalds
+ <torvalds@linux-foundation.org>
+Subject: Re: [PATCH 2/2] drm: ensure drm headers are self-contained and pass
+ kernel-doc
+In-Reply-To: <CAK7LNATHXwEkjJHP7b-ZmhzLfyyuOdsyimna-=r-sJk+DxigrA@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1737556766.git.jani.nikula@intel.com>
+ <d8ad1c6d707f38a55987f616cb9650aef30b84e1.1737556766.git.jani.nikula@intel.com>
+ <CAK7LNATHXwEkjJHP7b-ZmhzLfyyuOdsyimna-=r-sJk+DxigrA@mail.gmail.com>
+Date: Mon, 03 Mar 2025 12:02:30 +0200
+Message-ID: <87r03e1lft.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBuild=3A_failure_for_drm/client=3A_Build_the_tests_?=
- =?utf-8?q?with_CONFIG=5FDRM=5FKUNIT=5FTEST=3Dm?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 03 Mar 2025 10:02:31 -0000
-Message-ID: <174099615126.85071.11536405173709166652@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250303094808.11860-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20250303094808.11860-1-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,117 +73,190 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, 03 Mar 2025, Masahiro Yamada <masahiroy@kernel.org> wrote:
+> +CC: Linus
+>
+> On Wed, Jan 22, 2025 at 11:41=E2=80=AFPM Jani Nikula <jani.nikula@intel.c=
+om> wrote:
+>>
+>> Ensure drm headers build, are self-contained, have header guards, and
+>> have no kernel-doc warnings, when CONFIG_DRM_HEADER_TEST=3Dy.
+>>
+>> The mechanism follows similar patters used in i915, xe, and usr/include.
+>>
+>> To cover include/drm, we need to recurse there using the top level
+>> Kbuild and the new include/Kbuild files.
+>
+> NACK.
+>
+> I replied here:
+> https://lore.kernel.org/all/CAK7LNARJgqADxnOXAX49XzDFD4zT=3D7i8yTB0o=3DEm=
+NtxmScq8jA@mail.gmail.com/T/#u
 
-Series: drm/client: Build the tests with CONFIG_DRM_KUNIT_TEST=m
-URL   : https://patchwork.freedesktop.org/series/145706/
-State : failure
+I really don't find it fair to completely ignore several pings over an
+extended period of time, and then show up to NAK after the patches have
+been merged.
 
-== Summary ==
+> I CCed Linus to avoid him accidentally pulling this.
+> He disliked this misfeature.
 
-LD [M]  net/ipv6/netfilter/nf_tproxy_ipv6.ko
-  LD [M]  net/ipv6/netfilter/nf_reject_ipv6.ko
-  LD [M]  net/ipv6/netfilter/nf_dup_ipv6.ko
-  LD [M]  net/ipv6/netfilter/nft_reject_ipv6.ko
-  LD [M]  net/ipv6/netfilter/nft_dup_ipv6.ko
-  LD [M]  net/ipv6/netfilter/nft_fib_ipv6.ko
-  LD [M]  net/ipv6/netfilter/ip6t_ah.ko
-  LD [M]  net/ipv6/netfilter/ip6t_eui64.ko
-  LD [M]  net/ipv6/netfilter/ip6t_frag.ko
-  LD [M]  net/ipv6/netfilter/ip6t_ipv6header.ko
-  LD [M]  net/ipv6/netfilter/ip6t_mh.ko
-  LD [M]  net/ipv6/netfilter/ip6t_hbh.ko
-  LD [M]  net/ipv6/netfilter/ip6t_rpfilter.ko
-  LD [M]  net/ipv6/netfilter/ip6t_rt.ko
-  LD [M]  net/ipv6/netfilter/ip6t_srh.ko
-  LD [M]  net/ipv6/netfilter/ip6t_NPT.ko
-  LD [M]  net/ipv6/netfilter/ip6t_REJECT.ko
-  LD [M]  net/ipv6/netfilter/ip6t_SYNPROXY.ko
-  LD [M]  net/ipv6/ah6.ko
-  LD [M]  net/ipv6/esp6.ko
-  LD [M]  net/ipv6/esp6_offload.ko
-  LD [M]  net/ipv6/ipcomp6.ko
-  LD [M]  net/ipv6/xfrm6_tunnel.ko
-  LD [M]  net/ipv6/tunnel6.ko
-  LD [M]  net/ipv6/mip6.ko
-  LD [M]  net/ipv6/ila/ila.ko
-  LD [M]  net/ipv6/ip6_vti.ko
-  LD [M]  net/ipv6/sit.ko
-  LD [M]  net/ipv6/ip6_tunnel.ko
-  LD [M]  net/ipv6/ip6_gre.ko
-  LD [M]  net/ipv6/fou6.ko
-  LD [M]  net/ipv6/ip6_udp_tunnel.ko
-  LD [M]  net/packet/af_packet_diag.ko
-  LD [M]  net/8021q/8021q.ko
-  LD [M]  net/llc/llc.ko
-  LD [M]  net/llc/llc2.ko
-  LD [M]  net/tls/tls.ko
-  LD [M]  net/key/af_key.ko
-  LD [M]  net/bridge/netfilter/nft_meta_bridge.ko
-  LD [M]  net/bridge/netfilter/nft_reject_bridge.ko
-  LD [M]  net/bridge/netfilter/nf_conntrack_bridge.ko
-  LD [M]  net/bridge/netfilter/ebtables.ko
-  LD [M]  net/bridge/netfilter/ebtable_broute.ko
-  LD [M]  net/bridge/netfilter/ebtable_filter.ko
-  LD [M]  net/bridge/netfilter/ebtable_nat.ko
-  LD [M]  net/bridge/netfilter/ebt_802_3.ko
-  LD [M]  net/bridge/netfilter/ebt_among.ko
-  LD [M]  net/bridge/netfilter/ebt_arp.ko
-  LD [M]  net/bridge/netfilter/ebt_ip.ko
-  LD [M]  net/bridge/netfilter/ebt_ip6.ko
-  LD [M]  net/bridge/netfilter/ebt_limit.ko
-  LD [M]  net/bridge/netfilter/ebt_mark_m.ko
-  LD [M]  net/bridge/netfilter/ebt_pkttype.ko
-  LD [M]  net/bridge/netfilter/ebt_stp.ko
-  LD [M]  net/bridge/netfilter/ebt_vlan.ko
-  LD [M]  net/bridge/netfilter/ebt_arpreply.ko
-  LD [M]  net/bridge/netfilter/ebt_mark.ko
-  LD [M]  net/bridge/netfilter/ebt_dnat.ko
-  LD [M]  net/bridge/netfilter/ebt_redirect.ko
-  LD [M]  net/bridge/netfilter/ebt_snat.ko
-  LD [M]  net/bridge/netfilter/ebt_log.ko
-  LD [M]  net/bridge/netfilter/ebt_nflog.ko
-  LD [M]  net/bridge/bridge.ko
-  LD [M]  net/bridge/br_netfilter.ko
-  LD [M]  net/sunrpc/sunrpc.ko
-  LD [M]  net/sunrpc/auth_gss/auth_rpcgss.ko
-  LD [M]  net/sunrpc/auth_gss/rpcsec_gss_krb5.ko
-  LD [M]  net/kcm/kcm.ko
-  LD [M]  net/l2tp/l2tp_core.ko
-  LD [M]  net/l2tp/l2tp_ip.ko
-  LD [M]  net/l2tp/l2tp_netlink.ko
-  LD [M]  net/l2tp/l2tp_eth.ko
-  LD [M]  net/l2tp/l2tp_debugfs.ko
-  LD [M]  net/l2tp/l2tp_ip6.ko
-  LD [M]  net/dccp/dccp.ko
-  LD [M]  net/dccp/dccp_ipv4.ko
-  LD [M]  net/dccp/dccp_ipv6.ko
-  LD [M]  net/dccp/dccp_diag.ko
-  LD [M]  net/sctp/sctp.ko
-  LD [M]  net/sctp/sctp_diag.ko
-  LD [M]  net/rds/rds.ko
-  LD [M]  net/rds/rds_tcp.ko
-  LD [M]  net/9p/9pnet.ko
-  LD [M]  net/9p/9pnet_fd.ko
-  LD [M]  net/9p/9pnet_xen.ko
-  LD [M]  net/9p/9pnet_virtio.ko
-  LD [M]  net/psample/psample.ko
-  LD [M]  net/vmw_vsock/vsock.ko
-  LD [M]  net/vmw_vsock/vsock_diag.ko
-  LD [M]  net/vmw_vsock/vmw_vsock_vmci_transport.ko
-  LD [M]  net/vmw_vsock/vmw_vsock_virtio_transport.ko
-  LD [M]  net/vmw_vsock/vmw_vsock_virtio_transport_common.ko
-  LD [M]  net/vmw_vsock/hv_sock.ko
-  LD [M]  net/vmw_vsock/vsock_loopback.ko
-make[1]: Leaving directory '/kernel/build64-default'
-make[1]: *** [/kernel/Makefile:251: __sub-make] Error 2
-make: *** [Makefile:251: __sub-make] Error 2
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+I believe being able to statically check the headers at build time, both
+by the developers and CI, depending on a config option, makes for a more
+pleasant development experience.
+
+We've had this in i915 and xe for a long time, and we avoid a lot of
+build breakage due to missing includes e.g. while refactoring, and we
+don't get reports about kernel-doc issues either. Because they all fail
+at build, and we catch the issues pre-merge. We skip a whole class of
+merge->dammit->fix cycles with this.
+
+All of the drm headers are clean and pass. We don't add any exception
+lists. It's not enabled by default.
+
+I can appreciate this might not be the best approach for all of
+include/linux, but for include/drm, I think it's definitely a win.
+
+And one of the underlying goals is to make for minimal headers with
+minimal includes and minimal dependencies, preferring forward
+declarations over includes, splitting functionality by header, etc. It's
+just that doing that often leads to broken headers, unless you actually
+build test them... and here we are.
 
 
+BR,
+Jani.
+
+
+>
+>
+>
+>
+>>
+>> v4: check for CONFIG_WERROR in addition to CONFIG_DRM_WERROR
+>>
+>> v3: adapt to upstream build changes
+>>
+>> v2: make DRM_HEADER_TEST depend on DRM
+>>
+>> Suggested-by: Daniel Vetter <daniel@ffwll.ch>
+>> Cc: David Airlie <airlied@gmail.com>
+>> Cc: Daniel Vetter <daniel@ffwll.ch>
+>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>> Cc: Maxime Ripard <mripard@kernel.org>
+>> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+>> Cc: Masahiro Yamada <masahiroy@kernel.org>
+>> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  Kbuild                   |  1 +
+>>  drivers/gpu/drm/Kconfig  | 11 +++++++++++
+>>  drivers/gpu/drm/Makefile | 18 ++++++++++++++++++
+>>  include/Kbuild           |  1 +
+>>  include/drm/Makefile     | 18 ++++++++++++++++++
+>>  5 files changed, 49 insertions(+)
+>>  create mode 100644 include/Kbuild
+>>  create mode 100644 include/drm/Makefile
+>>
+>> diff --git a/Kbuild b/Kbuild
+>> index 464b34a08f51..f327ca86990c 100644
+>> --- a/Kbuild
+>> +++ b/Kbuild
+>> @@ -97,3 +97,4 @@ obj-$(CONFIG_SAMPLES) +=3D samples/
+>>  obj-$(CONFIG_NET)      +=3D net/
+>>  obj-y                  +=3D virt/
+>>  obj-y                  +=3D $(ARCH_DRIVERS)
+>> +obj-$(CONFIG_DRM_HEADER_TEST)  +=3D include/
+>> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+>> index fbef3f471bd0..f9b3ebf63fa9 100644
+>> --- a/drivers/gpu/drm/Kconfig
+>> +++ b/drivers/gpu/drm/Kconfig
+>> @@ -494,6 +494,17 @@ config DRM_WERROR
+>>
+>>           If in doubt, say N.
+>>
+>> +config DRM_HEADER_TEST
+>> +       bool "Ensure DRM headers are self-contained and pass kernel-doc"
+>> +       depends on DRM && EXPERT
+>> +       default n
+>> +       help
+>> +         Ensure the DRM subsystem headers both under drivers/gpu/drm and
+>> +         include/drm compile, are self-contained, have header guards, a=
+nd have
+>> +         no kernel-doc warnings.
+>> +
+>> +         If in doubt, say N.
+>> +
+>>  endif
+>>
+>>  # Separate option because drm_panel_orientation_quirks.c is shared with=
+ fbdev
+>> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+>> index 85af94bb907d..42901f877bf2 100644
+>> --- a/drivers/gpu/drm/Makefile
+>> +++ b/drivers/gpu/drm/Makefile
+>> @@ -222,3 +222,21 @@ obj-y                      +=3D solomon/
+>>  obj-$(CONFIG_DRM_SPRD) +=3D sprd/
+>>  obj-$(CONFIG_DRM_LOONGSON) +=3D loongson/
+>>  obj-$(CONFIG_DRM_POWERVR) +=3D imagination/
+>> +
+>> +# Ensure drm headers are self-contained and pass kernel-doc
+>> +hdrtest-files :=3D \
+>> +       $(shell cd $(src) && find . -maxdepth 1 -name 'drm_*.h') \
+>> +       $(shell cd $(src) && find display lib -name '*.h')
+>> +
+>> +always-$(CONFIG_DRM_HEADER_TEST) +=3D \
+>> +       $(patsubst %.h,%.hdrtest, $(hdrtest-files))
+>> +
+>> +# Include the header twice to detect missing include guard.
+>> +quiet_cmd_hdrtest =3D HDRTEST $(patsubst %.hdrtest,%.h,$@)
+>> +      cmd_hdrtest =3D \
+>> +               $(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $=
+< -include $<; \
+>> +               $(srctree)/scripts/kernel-doc -none $(if $(CONFIG_WERROR=
+)$(CONFIG_DRM_WERROR),-Werror) $<; \
+>> +               touch $@
+>> +
+>> +$(obj)/%.hdrtest: $(src)/%.h FORCE
+>> +       $(call if_changed_dep,hdrtest)
+>> diff --git a/include/Kbuild b/include/Kbuild
+>> new file mode 100644
+>> index 000000000000..5e76a599e2dd
+>> --- /dev/null
+>> +++ b/include/Kbuild
+>> @@ -0,0 +1 @@
+>> +obj-$(CONFIG_DRM_HEADER_TEST)  +=3D drm/
+>> diff --git a/include/drm/Makefile b/include/drm/Makefile
+>> new file mode 100644
+>> index 000000000000..a7bd15d2803e
+>> --- /dev/null
+>> +++ b/include/drm/Makefile
+>> @@ -0,0 +1,18 @@
+>> +# SPDX-License-Identifier: GPL-2.0
+>> +
+>> +# Ensure drm headers are self-contained and pass kernel-doc
+>> +hdrtest-files :=3D \
+>> +       $(shell cd $(src) && find * -name '*.h' 2>/dev/null)
+>> +
+>> +always-$(CONFIG_DRM_HEADER_TEST) +=3D \
+>> +       $(patsubst %.h,%.hdrtest, $(hdrtest-files))
+>> +
+>> +# Include the header twice to detect missing include guard.
+>> +quiet_cmd_hdrtest =3D HDRTEST $(patsubst %.hdrtest,%.h,$@)
+>> +      cmd_hdrtest =3D \
+>> +               $(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $=
+< -include $<; \
+>> +               $(srctree)/scripts/kernel-doc -none $(if $(CONFIG_WERROR=
+)$(CONFIG_DRM_WERROR),-Werror) $<; \
+>> +               touch $@
+>> +
+>> +$(obj)/%.hdrtest: $(src)/%.h FORCE
+>> +       $(call if_changed_dep,hdrtest)
+>> --
+>> 2.39.5
+>>
+
+--=20
+Jani Nikula, Intel
