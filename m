@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 298BFC021B8
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Mar 2025 17:04:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A401C282D2
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Mar 2025 17:08:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAD1910E652;
-	Tue,  4 Mar 2025 17:04:37 +0000 (UTC)
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8F5510E652;
- Tue,  4 Mar 2025 17:04:36 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3116681193999943323=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9A2710E674;
+	Tue,  4 Mar 2025 17:08:58 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bXZpyEgl";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F3E410E66E;
+ Tue,  4 Mar 2025 17:08:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1741108138; x=1772644138;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7F4btVf6rwoedtAbvQIxDDlY/wgbQS2o2liOJKTpWPo=;
+ b=bXZpyEgldSta54mGKgb2A9s09+V6seFDNzL6YcFEXCCyZ9WSIIba/sxG
+ ykcYZQUY0vfGkWFDx55WX2NguJA79PKWulDwCMp/nwsSbj4N+sfikOMeI
+ ZIkdkwbdxYjwxkMbSk+7kc6OIXZS2H8pMgP6/9Ox/4+zaEBNj3f1+crUr
+ /82Yk8vNxpCizX8EgsRpfAV6VFadOiEnUk6vXPDIzm3Rt6MbBSe3+dNJr
+ BXDu6a44BA6QDTf3volkdaKfgs6C9VgLO8AE/+8CVClQbPP2xEwTBQzp1
+ LCF0gFUuq4hhNJWRctPWHjGhaIbyIkqY2jPurG0wP+fxdcrkHxWJKAJWK Q==;
+X-CSE-ConnectionGUID: 2Tf6FswwSgOSB+JP5lB6iA==
+X-CSE-MsgGUID: I6UzsvgkScyevxyAOtkNJQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="44847569"
+X-IronPort-AV: E=Sophos;i="6.14,220,1736841600"; d="scan'208";a="44847569"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2025 09:08:57 -0800
+X-CSE-ConnectionGUID: 8XfHVVNYRjqqK9/RibUQ/g==
+X-CSE-MsgGUID: N0JQmnB7R9aW9yOjBjMwTQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,220,1736841600"; d="scan'208";a="123036924"
+Received: from dut4025lnl.fm.intel.com ([10.105.8.176])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2025 09:08:57 -0800
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
+ joonas.lahtinen@linux.intel.com, matthew.brost@intel.com,
+ jianxun.zhang@intel.com, shuicheng.lin@intel.com,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH v5 0/6] drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
+Date: Tue,  4 Mar 2025 17:08:48 +0000
+Message-ID: <20250304170854.67195-1-jonathan.cavitt@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_Fix_link_tra?=
- =?utf-8?q?ining_interrupted_by_HPD_pulse?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 04 Mar 2025 17:04:36 -0000
-Message-ID: <174110787668.677839.7742436892944170072@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250304152917.3407080-1-imre.deak@intel.com>
-In-Reply-To: <20250304152917.3407080-1-imre.deak@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +64,65 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3116681193999943323==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Add additional information to each VM so they can report up to the last
+50 seen pagefaults.  Only failed pagefaults are saved this way, as
+successful pagefaults should recover and not need to be reported to
+userspace.
 
-== Series Details ==
+Additionally, add a new ioctl - xe_vm_get_property_ioctl - that allows the
+user to query these pagefaults
 
-Series: drm/i915/dp: Fix link training interrupted by HPD pulse
-URL   : https://patchwork.freedesktop.org/series/145781/
-State : success
+v2: (Matt Brost)
+- Break full ban list request into a separate property.
+- Reformat drm_xe_vm_get_property struct.
+- Remove need for drm_xe_faults helper struct.
+- Separate data pointer and scalar return value in ioctl.
+- Get address type on pagefault report and save it to the pagefault.
+- Correctly reject writes to read-only VMAs.
+- Miscellaneous formatting fixes.
 
-== Summary ==
+v3: (Matt Brost)
+- Only allow querying of failed pagefaults
 
-CI Bug Log - changes from xe-2753-96d3f9169d0354f7cb7dd92c05786522947e2e62_BAT -> xe-pw-145781v1_BAT
-====================================================
+v4:
+- Remove unnecessary size parameter from helper function, as it
+  is a property of the arguments. (jcavitt)
+- Remove unnecessary copy_from_user (Jainxun)
+- Set address_precision to 1 (Jainxun)
+- Report max size instead of dynamic size for memory allocation
+  purposes.  Total memory usage is reported separately.
 
-Summary
--------
+v5:
+- Return int from xe_vm_get_property_size (Shuicheng)
+- Fix memory leak (Shuicheng)
+- Remove unnecessary size variable (jcavitt)
 
-  **SUCCESS**
+Signed-off-by: Jonathan Cavitt <joanthan.cavitt@intel.com>
+Suggested-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
+CC: Zhang Jianxun <jianxun.zhang@intel.com>
+CC: Shuicheng Lin <shuicheng.lin@intel.com>
 
-  No regressions found.
+Jonathan Cavitt (6):
+  drm/xe/xe_gt_pagefault: Disallow writes to read-only VMAs
+  drm/xe/xe_gt_pagefault: Migrate pagefault struct to header
+  drm/xe/xe_vm: Add per VM pagefault info
+  drm/xe/uapi: Define drm_xe_vm_get_property
+  drm/xe/xe_gt_pagefault: Add address_type field to pagefaults
+  drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
 
-  
+ drivers/gpu/drm/xe/xe_device.c       |   3 +
+ drivers/gpu/drm/xe/xe_gt_pagefault.c |  66 +++++++--------
+ drivers/gpu/drm/xe/xe_gt_pagefault.h |  29 +++++++
+ drivers/gpu/drm/xe/xe_vm.c           | 120 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vm.h           |   8 ++
+ drivers/gpu/drm/xe/xe_vm_types.h     |  20 +++++
+ include/uapi/drm/xe_drm.h            |  67 +++++++++++++++
+ 7 files changed, 279 insertions(+), 34 deletions(-)
 
-Participating hosts (9 -> 8)
-------------------------------
+-- 
+2.43.0
 
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-2753-96d3f9169d0354f7cb7dd92c05786522947e2e62 -> xe-pw-145781v1
-
-  IGT_8258: ee442ca9711ab6ae1a1c0fc784d18bfaa6f9244f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2753-96d3f9169d0354f7cb7dd92c05786522947e2e62: 96d3f9169d0354f7cb7dd92c05786522947e2e62
-  xe-pw-145781v1: 145781v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145781v1/index.html
-
---===============3116681193999943323==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp: Fix link training interrupted by HPD pulse</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145781/">https://patchwork.freedesktop.org/series/145781/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145781v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145781v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2753-96d3f9169d0354f7cb7dd92c05786522947e2e62_BAT -&gt; xe-pw-145781v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2753-96d3f9169d0354f7cb7dd92c05786522947e2e62 -&gt; xe-pw-145781v1</li>
-</ul>
-<p>IGT_8258: ee442ca9711ab6ae1a1c0fc784d18bfaa6f9244f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2753-96d3f9169d0354f7cb7dd92c05786522947e2e62: 96d3f9169d0354f7cb7dd92c05786522947e2e62<br />
-  xe-pw-145781v1: 145781v1</p>
-
-</body>
-</html>
-
---===============3116681193999943323==--
