@@ -4,63 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 137BBC282D9
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Mar 2025 19:22:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12818C021B8
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Mar 2025 19:31:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7AA310E6A5;
-	Tue,  4 Mar 2025 19:22:13 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OEwLgpoM";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34F8E10E258;
- Tue,  4 Mar 2025 19:22:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741116132; x=1772652132;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=EWww6dka3LvQi0O5gZUXT8FQu5sFnMWxMNRLzJRcR7s=;
- b=OEwLgpoMFW3GoaOFTM+7IIusGAjM9EVLoI7IREQnpaOM3UCNDQdTcDhI
- dk9mIvYcWawv5NLRXssDOquCt5K9OVCWolZSAcpR42jofOtIMfTBrrOsb
- 0lts5RopSed5Q853sCLes6ISJCw1ylWd7V/8+tHyXXr7LJkR629yyr32G
- z341eaEDCWSKUNJHTTaVsUpTlKAbuTgFS8AHMK1UoegTT3o0oc4I7vzKq
- 9GFdHShPiom8Ra8VMT42aUJ5ts5R4mAnuvOjYg2ydmAWukXl4eiiEmMIo
- qgZD5c6jGRuMYJLmpXcDf5tb5+NV2ehUMVpHYarVk/pNcAGLurKPEjlF4 Q==;
-X-CSE-ConnectionGUID: rB4N9VG3TcClekAXacgy+g==
-X-CSE-MsgGUID: DNvz6YAiSGWYk6pfcV3Dwg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="67424346"
-X-IronPort-AV: E=Sophos;i="6.14,220,1736841600"; d="scan'208";a="67424346"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2025 11:22:09 -0800
-X-CSE-ConnectionGUID: 9+eGOiPxTIGpbUDmXlX+ig==
-X-CSE-MsgGUID: CbAXLgcJTLOqszXti+rVHQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,220,1736841600"; d="scan'208";a="118614705"
-Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
- by fmviesa008.fm.intel.com with ESMTP; 04 Mar 2025 11:22:05 -0800
-Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1tpXq6-000KBC-1z;
- Tue, 04 Mar 2025 19:22:02 +0000
-Date: Wed, 5 Mar 2025 03:21:04 +0800
-From: kernel test robot <lkp@intel.com>
-To: Su Hui <suhui@nfschina.com>, lucas.demarchi@intel.com,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- Su Hui <suhui@nfschina.com>, ilpo.jarvinen@linux.intel.com,
- andriy.shevchenko@linux.intel.com, michael.j.ruhl@intel.com,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
-Subject: Re: [PATCH] drm/xe: Select INTEL_VSEC to fix build dependency
-Message-ID: <202503050332.hlxQQDQk-lkp@intel.com>
-References: <20250227073205.1248282-1-suhui@nfschina.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4A9110E473;
+	Tue,  4 Mar 2025 19:30:59 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEDC510E473;
+ Tue,  4 Mar 2025 19:30:57 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250227073205.1248282-1-suhui@nfschina.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Fix_userpt?=
+ =?utf-8?q?r_races_and_missed_validations_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 04 Mar 2025 19:30:57 -0000
+Message-ID: <174111665797.709723.8291190150405018158@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250228073058.59510-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20250228073058.59510-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,44 +36,24 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Su,
+== Series Details ==
 
-kernel test robot noticed the following build errors:
+Series: drm/xe: Fix userptr races and missed validations (rev3)
+URL   : https://patchwork.freedesktop.org/series/145498/
+State : success
 
-[auto build test ERROR on drm-xe/drm-xe-next]
-[also build test ERROR on linus/master v6.14-rc5 next-20250304]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+== Summary ==
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Su-Hui/drm-xe-Select-INTEL_VSEC-to-fix-build-dependency/20250227-153437
-base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-patch link:    https://lore.kernel.org/r/20250227073205.1248282-1-suhui%40nfschina.com
-patch subject: [PATCH] drm/xe: Select INTEL_VSEC to fix build dependency
-config: powerpc-allyesconfig (https://download.01.org/0day-ci/archive/20250305/202503050332.hlxQQDQk-lkp@intel.com/config)
-compiler: clang version 16.0.6 (https://github.com/llvm/llvm-project 7cbf1a2591520c2491aa35339f227775f4d3adf6)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250305/202503050332.hlxQQDQk-lkp@intel.com/reproduce)
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: ff2d693d8872 drm-tip: 2025y-03m-04d-16h-33m-15s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/vm: Validate userptr during gpu vma prefetching
+Applying: drm/xe/vm: Fix a misplaced #endif
+Applying: drm/xe: Fix fault mode invalidation with unbind
+Applying: drm/xe: Add staging tree for VM binds
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202503050332.hlxQQDQk-lkp@intel.com/
 
-All errors (new ones prefixed by >>):
-
->> ld.lld: error: undefined symbol: intel_vsec_register
-   >>> referenced by xe_vsec.c
-   >>>               drivers/gpu/drm/xe/xe_vsec.o:(xe_vsec_init) in archive vmlinux.a
-
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for INTEL_VSEC
-   Depends on [n]: X86_PLATFORM_DEVICES [=n] && PCI [=y]
-   Selected by [y]:
-   - DRM_XE [=y] && HAS_IOMEM [=y] && DRM [=y] && PCI [=y] && MMU [=y] && (m [=m] && MODULES [=y] || KUNIT [=y]=y [=y])
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
