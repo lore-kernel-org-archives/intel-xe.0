@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75423C021B8
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Mar 2025 18:56:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BEE8C021B8
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Mar 2025 18:58:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4213110E052;
-	Tue,  4 Mar 2025 18:56:23 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SYQ1wNBV";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6DBD10E052;
- Tue,  4 Mar 2025 18:56:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741114582; x=1772650582;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=SqLoftv92ccfGcZN9OeOG3c/wfYL7/jedjTylVOlgak=;
- b=SYQ1wNBV+iAUZ/3hybuiUuYldSOC8J6gtEMAOl31w+HN+mv+4VAH+AM1
- 7kqDoNe92DizWhpXQopYxBNWsEGKPBLNjYKnfLG45VxisBuLFJczmJGR8
- w+EUqV0FVpf4tXKCFgMQGUwur0/nNFgrhKNa9a/RYjgwdLt8vRcW7OYAF
- 9Hj4cSbocN5TWRtiQBT9nWCuhiSyCZtYvMwKtjX1LH4V65ZlIDzE2m685
- xkA9CtAW0SfLpROnweSvMFeBTDvCp/B2c5kkBvKijvs1T7KaQfr+7gRcK
- FDqxzUYSVnyKjoij3QOnpsclQmfkge8UDFwP9cyH9d2x0Z3DpZ2FR8tgD Q==;
-X-CSE-ConnectionGUID: xenNSDhhQf++oEbqZDX4Mw==
-X-CSE-MsgGUID: xtAaXTjWQg6Drmz2R8AO2A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="42181594"
-X-IronPort-AV: E=Sophos;i="6.14,220,1736841600"; d="scan'208";a="42181594"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2025 10:56:21 -0800
-X-CSE-ConnectionGUID: /b46bjVHSPK4l/B5SuwxOg==
-X-CSE-MsgGUID: gdxKtmSCR/qSJHUe7U/a6w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="123661491"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 04 Mar 2025 10:56:19 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 04 Mar 2025 20:56:17 +0200
-Date: Tue, 4 Mar 2025 20:56:17 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: Re: [PATCH 18/22] drm/i915/display: Use fixed rr timings in
- intel_set_transcoder_timings_lrr()
-Message-ID: <Z8dM0XNVzXeHX_ow@intel.com>
-References: <20250304081948.3177034-1-ankit.k.nautiyal@intel.com>
- <20250304081948.3177034-19-ankit.k.nautiyal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37C8A10E695;
+	Tue,  4 Mar 2025 18:58:27 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DBD210E694;
+ Tue,  4 Mar 2025 18:58:26 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5224562468321602781=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250304081948.3177034-19-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/xe=5Fvm=3A_Implement?=
+ =?utf-8?q?_xe=5Fvm=5Fget=5Fproperty=5Fioctl_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 04 Mar 2025 18:58:26 -0000
+Message-ID: <174111470637.709723.15772100417094248955@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250304170854.67195-1-jonathan.cavitt@intel.com>
+In-Reply-To: <20250304170854.67195-1-jonathan.cavitt@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,80 +36,133 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Mar 04, 2025 at 01:49:44PM +0530, Ankit Nautiyal wrote:
-> To have Guardband/Pipeline_full reconfigured seamlessly, move the
-> guardband and pipeline_full from intel_pipe_config_compare() to fastboot
-> exception.
-> Update the intel_set_transcoder_timings_lrr() function to use
-> fixed refresh rate timings for platforms which always use
-> VRR timing generator.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 9 +++++++--
->  drivers/gpu/drm/i915/display/intel_vrr.c     | 1 -
->  drivers/gpu/drm/i915/display/intel_vrr.h     | 1 +
->  3 files changed, 8 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 3e8ceafcbbb4..c31a87d8afd3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -2768,6 +2768,9 @@ static void intel_set_transcoder_timings_lrr(const struct intel_crtc_state *crtc
->  	intel_de_write(dev_priv, TRANS_VTOTAL(dev_priv, cpu_transcoder),
->  		       VACTIVE(crtc_vdisplay - 1) |
->  		       VTOTAL(crtc_vtotal - 1));
-> +
-> +	intel_vrr_set_fixed_rr_timings(crtc_state);
-> +	intel_vrr_transcoder_enable(crtc_state);
->  }
->  
->  static void intel_set_pipe_src_size(const struct intel_crtc_state *crtc_state)
-> @@ -5418,8 +5421,10 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
->  		PIPE_CONF_CHECK_BOOL(cmrr.enable);
->  	}
->  
-> -	PIPE_CONF_CHECK_I(vrr.pipeline_full);
-> -	PIPE_CONF_CHECK_I(vrr.guardband);
-> +	if (!fastset && !allow_vblank_delay_fastset(current_config)) {
+--===============5224562468321602781==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Should be ||, but I think this would still break LRR. 
+== Series Details ==
 
-> +		PIPE_CONF_CHECK_I(vrr.pipeline_full);
-> +		PIPE_CONF_CHECK_I(vrr.guardband);
-> +	}
->  
->  #undef PIPE_CONF_CHECK_X
->  #undef PIPE_CONF_CHECK_I
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index 11f23affd13a..0dfe6220ff4a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -284,7 +284,6 @@ int intel_vrr_fixed_rr_flipline(const struct intel_crtc_state *crtc_state)
->  	return intel_vrr_fixed_rr_vtotal(crtc_state);
->  }
->  
-> -static
->  void intel_vrr_set_fixed_rr_timings(const struct intel_crtc_state *crtc_state)
->  {
->  	struct intel_display *display = to_intel_display(crtc_state);
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
-> index c81f98f83b58..0e1becd7a0c0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.h
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.h
-> @@ -38,5 +38,6 @@ int intel_vrr_vmin_vblank_start(const struct intel_crtc_state *crtc_state);
->  int intel_vrr_vblank_delay(const struct intel_crtc_state *crtc_state);
->  void intel_vrr_transcoder_enable(const struct intel_crtc_state *crtc_state);
->  void intel_vrr_transcoder_disable(const struct intel_crtc_state *crtc_state);
-> +void intel_vrr_set_fixed_rr_timings(const struct intel_crtc_state *crtc_state);
->  
->  #endif /* __INTEL_VRR_H__ */
-> -- 
-> 2.45.2
+Series: drm/xe/xe_vm: Implement xe_vm_get_property_ioctl (rev6)
+URL   : https://patchwork.freedesktop.org/series/145529/
+State : failure
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+CI Bug Log - changes from xe-2754-ff2d693d88726e29a1d87291105135c31c21fa26_BAT -> xe-pw-145529v6_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-145529v6_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-145529v6_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-145529v6_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_intel_bb@intel-bb-blit-x:
+    - bat-adlp-vf:        [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2754-ff2d693d88726e29a1d87291105135c31c21fa26/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v6/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html
+
+  
+
+
+Build changes
+-------------
+
+  * Linux: xe-2754-ff2d693d88726e29a1d87291105135c31c21fa26 -> xe-pw-145529v6
+
+  IGT_8258: ee442ca9711ab6ae1a1c0fc784d18bfaa6f9244f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2754-ff2d693d88726e29a1d87291105135c31c21fa26: ff2d693d88726e29a1d87291105135c31c21fa26
+  xe-pw-145529v6: 145529v6
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v6/index.html
+
+--===============5224562468321602781==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/xe_vm: Implement xe_vm_get_property_ioctl (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145529/">https://patchwork.freedesktop.org/series/145529/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v6/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2754-ff2d693d88726e29a1d87291105135c31c21fa26_BAT -&gt; xe-pw-145529v6_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-145529v6_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-145529v6_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-145529v6_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_intel_bb@intel-bb-blit-x:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2754-ff2d693d88726e29a1d87291105135c31c21fa26/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v6/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2754-ff2d693d88726e29a1d87291105135c31c21fa26 -&gt; xe-pw-145529v6</li>
+</ul>
+<p>IGT_8258: ee442ca9711ab6ae1a1c0fc784d18bfaa6f9244f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2754-ff2d693d88726e29a1d87291105135c31c21fa26: ff2d693d88726e29a1d87291105135c31c21fa26<br />
+  xe-pw-145529v6: 145529v6</p>
+
+</body>
+</html>
+
+--===============5224562468321602781==--
