@@ -4,60 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4014EC021B8
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Mar 2025 15:37:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 697EFC021B8
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Mar 2025 15:49:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EEB510E5EE;
-	Tue,  4 Mar 2025 15:37:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CF2010E278;
+	Tue,  4 Mar 2025 15:49:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VxsR3kes";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eRRtM28o";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C611210E5E7
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Mar 2025 15:37:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0863010E617;
+ Tue,  4 Mar 2025 15:49:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741102627; x=1772638627;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=kcFjGcu3jYUkHERQ0EX75rUx80CnaZ2mtG6fKDBmD8E=;
- b=VxsR3kesirr2V3wKVYC0XlzNsXFAIYG1z+9A3aRK8CCPMaHCqXa37f8F
- DlOT1zfsYUyAyDKyypR6XJOQvVT3MFpbg2jRi8ywNlqLcnV/kEWh/Gr5i
- Wo9LDK+7k9wMvWArdLUPLNaIJKqgm0qnVdbl11Rb5DMMES2KbN6eqpuE8
- hvlJpSCRpmTSiXjd5SJWsFpVSistvqSdse9mnuNiGehLZ5xruiPCjJu3x
- sXt68Hk7js3VI6SzwmDDc/m2AgzXSnGFaFhjfsOpEjdz+kvCj90GK1C72
- L2j4KV093U1raPtjtt8PMkK/KM/BTc2onLXjmGkB4bQD5l8G192KZexjQ g==;
-X-CSE-ConnectionGUID: IZ1CiCXARCC/mDZWmhdH0g==
-X-CSE-MsgGUID: lASsqeTiSGyNIrsJnFdITQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="53011192"
-X-IronPort-AV: E=Sophos;i="6.14,220,1736841600"; d="scan'208";a="53011192"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2025 07:37:07 -0800
-X-CSE-ConnectionGUID: jmN1r1heScmlpMqLc7rzeA==
-X-CSE-MsgGUID: 7f9cr/J4Q+Gc2IqNeQkxTg==
+ t=1741103377; x=1772639377;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=q9vFWzEqxs4hI1X3FYg8RQX0hYkLVooYK7qEjKENq5g=;
+ b=eRRtM28oEs6CZLUxe18Xk65jUhnjaVAzRTOWNPWtgvyWJ+2kw/Wq9i05
+ ZmXW64MEv1Y6wPsFs5+muRiVQKtUKXqGfkBXncKpjyX0RoSX/0mzvuwdF
+ 0+OP+/8PbeyCPwAZFnDwiexhRY4h3A7YUy0AHAX7XYbYZd3Y54fzRwCyK
+ hbe9mlgnV1Ghhm2J9hAor4fepNauNxZ8hGD5K+7IU4fNQnZQw1KMZ18xX
+ pw5JL32SXoFk3ZBbt110AbSXa7IJC6V/P+2jhianNs1KtCxqPFSWga1wH
+ TrbiB9BI5Mw+XZn98f9AcytkgQxDdxAtfbbOHfyaWVFEkpAO368w6tjla A==;
+X-CSE-ConnectionGUID: n5xtt7TaQa6LLdeI9SuLgw==
+X-CSE-MsgGUID: ZPbz/AyISSudNSgRjQDPOw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="42156983"
+X-IronPort-AV: E=Sophos;i="6.14,220,1736841600"; d="scan'208";a="42156983"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2025 07:49:36 -0800
+X-CSE-ConnectionGUID: eR+FaZOjQ6+f6CD2btOmYA==
+X-CSE-MsgGUID: gSIjADN8Qse+eL7bCwG+wQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="122534667"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO [10.245.246.227])
- ([10.245.246.227])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2025 07:37:04 -0800
-Message-ID: <55e586e48941f825cb67f408f2a608be0a01e89d.camel@linux.intel.com>
-Subject: Re: [PATCH v2 2/3] drm/xe/hmm: Don't dereference struct page
- pointers without notifier lock
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Oak Zeng <oak.zeng@intel.com>, stable@vger.kernel.org
-Date: Tue, 04 Mar 2025 16:37:02 +0100
-In-Reply-To: <1e5ef4c8-9545-4102-88d9-865cf6a4bec9@intel.com>
-References: <20250304113758.67889-1-thomas.hellstrom@linux.intel.com>
- <20250304113758.67889-3-thomas.hellstrom@linux.intel.com>
- <1e5ef4c8-9545-4102-88d9-865cf6a4bec9@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="123614657"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orviesa005.jf.intel.com with SMTP; 04 Mar 2025 07:49:34 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 04 Mar 2025 17:49:32 +0200
+Date: Tue, 4 Mar 2025 17:49:32 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Shankar, Uma" <uma.shankar@intel.com>
+Subject: Re: [PATCH 1/2] drm/i915/display: Add MMIO path for double-buffered
+ LUT registers
+Message-ID: <Z8chDMmvGGivEI4M@intel.com>
+References: <20250225180905.1588084-1-chaitanya.kumar.borah@intel.com>
+ <20250225180905.1588084-2-chaitanya.kumar.borah@intel.com>
+ <Z8HS36_mC1kNCN93@intel.com>
+ <SJ1PR11MB61292C5FE06F53D9D1E904E9B9C82@SJ1PR11MB6129.namprd11.prod.outlook.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <SJ1PR11MB61292C5FE06F53D9D1E904E9B9C82@SJ1PR11MB6129.namprd11.prod.outlook.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,268 +75,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2025-03-04 at 15:16 +0000, Matthew Auld wrote:
-> On 04/03/2025 11:37, Thomas Hellstr=C3=B6m wrote:
-> > The pnfs that we obtain from hmm_range_fault() point to pages that
-> > we don't have a reference on, and the guarantee that they are still
-> > in the cpu page-tables is that the notifier lock must be held and
-> > the
-> > notifier seqno is still valid.
-> >=20
-> > So while building the sg table and marking the pages accesses /
-> > dirty
-> > we need to hold this lock with a validated seqno.
-> >=20
-> > However, the lock is reclaim tainted which makes
-> > sg_alloc_table_from_pages_segment() unusable, since it internally
-> > allocates memory.
-> >=20
-> > Instead build the sg-table manually. For the non-iommu case
-> > this might lead to fewer coalesces, but if that's a problem it can
-> > be fixed up later in the resource cursor code. For the iommu case,
-> > the whole sg-table may still be coalesced to a single contigous
-> > device va region.
-> >=20
-> > This avoids marking pages that we don't own dirty and accessed, and
-> > it also avoid dereferencing struct pages that we don't own.
-> >=20
-> > v2:
-> > - Use assert to check whether hmm pfns are valid (Matthew Auld)
-> > - Take into account that large pages may cross range boundaries
-> > =C2=A0=C2=A0 (Matthew Auld)
-> >=20
-> > Fixes: 81e058a3e7fd ("drm/xe: Introduce helper to populate
-> > userptr")
-> > Cc: Oak Zeng <oak.zeng@intel.com>
-> > Cc: <stable@vger.kernel.org> # v6.10+
-> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > ---
-> > =C2=A0 drivers/gpu/drm/xe/xe_hmm.c | 119 ++++++++++++++++++++++++++++--=
--
-> > -----
-> > =C2=A0 1 file changed, 93 insertions(+), 26 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/xe/xe_hmm.c
-> > b/drivers/gpu/drm/xe/xe_hmm.c
-> > index c56738fa713b..93cce9e819a1 100644
-> > --- a/drivers/gpu/drm/xe/xe_hmm.c
-> > +++ b/drivers/gpu/drm/xe/xe_hmm.c
-> > @@ -42,6 +42,40 @@ static void xe_mark_range_accessed(struct
-> > hmm_range *range, bool write)
-> > =C2=A0=C2=A0	}
-> > =C2=A0 }
-> > =C2=A0=20
-> > +static int xe_alloc_sg(struct xe_device *xe, struct sg_table *st,
-> > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct hmm_range *range, struct
-> > rw_semaphore *notifier_sem)
-> > +{
-> > +	unsigned long i, npages, hmm_pfn;
-> > +	unsigned long num_chunks =3D 0;
-> > +	int ret;
-> > +
-> > +	/* HMM docs says this is needed. */
-> > +	ret =3D down_read_interruptible(notifier_sem);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	if (mmu_interval_read_retry(range->notifier, range-
-> > >notifier_seq))
->=20
-> up_read() ?
->=20
-> > +		return -EAGAIN;
-> > +
-> > +	npages =3D xe_npages_in_range(range->start, range->end);
-> > +	for (i =3D 0; i < npages;) {
-> > +		unsigned long len;
-> > +
-> > +		hmm_pfn =3D range->hmm_pfns[i];
-> > +		xe_assert(xe, hmm_pfn & HMM_PFN_VALID);
-> > +
-> > +		len =3D 1UL << hmm_pfn_to_map_order(hmm_pfn);
-> > +
-> > +		/* If order > 0 the page may extend beyond range-
-> > >start */
-> > +		len -=3D (hmm_pfn & ~HMM_PFN_FLAGS) & (len - 1);
-> > +		i +=3D len;
-> > +		num_chunks++;
-> > +	}
-> > +	up_read(notifier_sem);
-> > +
-> > +	return sg_alloc_table(st, num_chunks, GFP_KERNEL);
-> > +}
-> > +
-> > =C2=A0 /**
-> > =C2=A0=C2=A0 * xe_build_sg() - build a scatter gather table for all the
-> > physical pages/pfn
-> > =C2=A0=C2=A0 * in a hmm_range. dma-map pages if necessary. dma-address =
-is
-> > save in sg table
-> > @@ -50,6 +84,7 @@ static void xe_mark_range_accessed(struct
-> > hmm_range *range, bool write)
-> > =C2=A0=C2=A0 * @range: the hmm range that we build the sg table from. r=
-ange-
-> > >hmm_pfns[]
-> > =C2=A0=C2=A0 * has the pfn numbers of pages that back up this hmm addre=
-ss
-> > range.
-> > =C2=A0=C2=A0 * @st: pointer to the sg table.
-> > + * @notifier_sem: The xe notifier lock.
-> > =C2=A0=C2=A0 * @write: whether we write to this range. This decides dma=
- map
-> > direction
-> > =C2=A0=C2=A0 * for system pages. If write we map it bi-diretional; othe=
-rwise
-> > =C2=A0=C2=A0 * DMA_TO_DEVICE
-> > @@ -76,38 +111,41 @@ static void xe_mark_range_accessed(struct
-> > hmm_range *range, bool write)
-> > =C2=A0=C2=A0 * Returns 0 if successful; -ENOMEM if fails to allocate me=
-mory
-> > =C2=A0=C2=A0 */
-> > =C2=A0 static int xe_build_sg(struct xe_device *xe, struct hmm_range
-> > *range,
-> > -		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct sg_table *st, bool write=
-)
-> > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct sg_table *st,
-> > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct rw_semaphore *notifier_s=
-em,
-> > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bool write)
-> > =C2=A0 {
-> > +	unsigned long npages =3D xe_npages_in_range(range->start,
-> > range->end);
-> > =C2=A0=C2=A0	struct device *dev =3D xe->drm.dev;
-> > -	struct page **pages;
-> > -	u64 i, npages;
-> > -	int ret;
-> > +	struct scatterlist *sgl;
-> > +	struct page *page;
-> > +	unsigned long i, j;
-> > =C2=A0=20
-> > -	npages =3D xe_npages_in_range(range->start, range->end);
-> > -	pages =3D kvmalloc_array(npages, sizeof(*pages),
-> > GFP_KERNEL);
-> > -	if (!pages)
-> > -		return -ENOMEM;
-> > +	lockdep_assert_held(notifier_sem);
-> > =C2=A0=20
-> > -	for (i =3D 0; i < npages; i++) {
-> > -		pages[i] =3D hmm_pfn_to_page(range->hmm_pfns[i]);
-> > -		xe_assert(xe, !is_device_private_page(pages[i]));
-> > -	}
-> > +	i =3D 0;
-> > +	for_each_sg(st->sgl, sgl, st->nents, j) {
-> > +		unsigned long hmm_pfn, size;
-> > =C2=A0=20
-> > -	ret =3D sg_alloc_table_from_pages_segment(st, pages, npages,
-> > 0, npages << PAGE_SHIFT,
-> > -
-> > 						xe_sg_segment_size(dev), GFP_KERNEL);
-> > -	if (ret)
-> > -		goto free_pages;
-> > +		hmm_pfn =3D range->hmm_pfns[i];
-> > +		page =3D hmm_pfn_to_page(hmm_pfn);
-> > +		xe_assert(xe, !is_device_private_page(page));
-> > =C2=A0=20
-> > -	ret =3D dma_map_sgtable(dev, st, write ? DMA_BIDIRECTIONAL :
-> > DMA_TO_DEVICE,
-> > -			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 DMA_ATTR_SKIP_CPU_SYNC |
-> > DMA_ATTR_NO_KERNEL_MAPPING);
-> > -	if (ret) {
-> > -		sg_free_table(st);
-> > -		st =3D NULL;
-> > +		size =3D 1UL << hmm_pfn_to_map_order(hmm_pfn);
-> > +		size -=3D page_to_pfn(page) & (size - 1);
-> > +		i +=3D size;
-> > +
-> > +		if (unlikely(j =3D=3D st->nents - 1)) {
-> > +			if (i > npages)
-> > +				size -=3D (i - npages);
-> > +			sg_mark_end(sgl);
-> > +		}
-> > +		sg_set_page(sgl, page, size << PAGE_SHIFT, 0);
-> > =C2=A0=C2=A0	}
-> > +	xe_assert(xe, i =3D=3D npages);
-> > =C2=A0=20
-> > -free_pages:
-> > -	kvfree(pages);
-> > -	return ret;
-> > +	return dma_map_sgtable(dev, st, write ? DMA_BIDIRECTIONAL
-> > : DMA_TO_DEVICE,
-> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 DMA_ATTR_SKIP_CPU_SYNC |
-> > DMA_ATTR_NO_KERNEL_MAPPING);
-> > =C2=A0 }
-> > =C2=A0=20
-> > =C2=A0 /**
-> > @@ -235,16 +273,45 @@ int xe_hmm_userptr_populate_range(struct
-> > xe_userptr_vma *uvma,
-> > =C2=A0=C2=A0	if (ret)
-> > =C2=A0=C2=A0		goto free_pfns;
-> > =C2=A0=20
-> > -	ret =3D xe_build_sg(vm->xe, &hmm_range, &userptr->sgt,
-> > write);
-> > +	if (unlikely(userptr->sg)) {
->=20
-> Is it really possible to hit this? We did the unmap above also,
-> although=20
-> that was outside of the notifier lock?
+On Tue, Mar 04, 2025 at 02:43:06PM +0000, Borah, Chaitanya Kumar wrote:
+> Thank you Ville for the review.
+> 
+> > -----Original Message-----
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > Sent: Friday, February 28, 2025 8:45 PM
+> > To: Borah, Chaitanya Kumar <chaitanya.kumar.borah@intel.com>
+> > Cc: intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org; Shankar,
+> > Uma <uma.shankar@intel.com>
+> > Subject: Re: [PATCH 1/2] drm/i915/display: Add MMIO path for double-
+> > buffered LUT registers
+> > 
+> > On Tue, Feb 25, 2025 at 11:39:04PM +0530, Chaitanya Kumar Borah wrote:
+> > > >From PTL, LUT registers are made double buffered. This helps us
+> > > to program them in the active region without any concern of tearing.
+> > > This particulary helps in case of displays with high refresh rates
+> > > where vblank periods are shorter.
+> > >
+> > > This patch makes the following changes
+> > >
+> > > 	- Adds the macro HAS_DOUBLE_BUFFERED_LUT() to distinguish
+> > > 	  platforms that have double buffered LUT registers.
+> > >
+> > > 	- Program LUT values in active region through
+> > > 	  intel_pre_update_crtc()
+> > >
+> > > 	- Disable updating of LUT values during vblank.
+> > >
+> > > 	- Disable pre-loading of LUT values as they are no longer
+> > > 	  single buffered.
+> > >
+> > > Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_color.c          | 4 ++++
+> > >  drivers/gpu/drm/i915/display/intel_crtc.c           | 4 +++-
+> > >  drivers/gpu/drm/i915/display/intel_display.c        | 6 +++++-
+> > >  drivers/gpu/drm/i915/display/intel_display_device.h | 1 +
+> > >  4 files changed, 13 insertions(+), 2 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_color.c
+> > > b/drivers/gpu/drm/i915/display/intel_color.c
+> > > index cfe14162231d..c3ee34b96c15 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_color.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_color.c
+> > > @@ -2022,6 +2022,10 @@ static bool intel_can_preload_luts(struct
+> > > intel_atomic_state *state,  {
+> > >  	const struct intel_crtc_state *old_crtc_state =
+> > >  		intel_atomic_get_old_crtc_state(state, crtc);
+> > > +	struct intel_display *display = to_intel_display(crtc);
+> > > +
+> > > +	if (HAS_DOUBLE_BUFFERED_LUT(display))
+> > > +		return false;
+> > >
+> > >  	return !old_crtc_state->post_csc_lut &&
+> > >  		!old_crtc_state->pre_csc_lut;
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c
+> > > b/drivers/gpu/drm/i915/display/intel_crtc.c
+> > > index 5b2603ef2ff7..927f9acf61c4 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> > > @@ -432,10 +432,12 @@ static void intel_crtc_vblank_work(struct
+> > kthread_work *base)
+> > >  	struct intel_crtc_state *crtc_state =
+> > >  		container_of(work, typeof(*crtc_state), vblank_work);
+> > >  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> > > +	struct intel_display *display = to_intel_display(crtc_state);
+> > >
+> > >  	trace_intel_crtc_vblank_work_start(crtc);
+> > >
+> > > -	intel_color_load_luts(crtc_state);
+> > > +	if (!HAS_DOUBLE_BUFFERED_LUT(display))
+> > 
+> > Wrong place. You don't even want to schedule the vblank worker for this.
+> > 
+> 
+> Ack.
+> 
+> > > +		intel_color_load_luts(crtc_state);
+> > >
+> > >  	if (crtc_state->uapi.event) {
+> > >  		spin_lock_irq(&crtc->base.dev->event_lock);
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > > b/drivers/gpu/drm/i915/display/intel_display.c
+> > > index 065fdf6dbb88..919e236a9650 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > @@ -6879,9 +6879,13 @@ static void intel_pre_update_crtc(struct
+> > > intel_atomic_state *state,
+> > >
+> > >  	if (!modeset &&
+> > >  	    intel_crtc_needs_color_update(new_crtc_state) &&
+> > > -	    !new_crtc_state->use_dsb)
+> > > +	    !new_crtc_state->use_dsb) {
+> > >  		intel_color_commit_noarm(NULL, new_crtc_state);
+> > >
+> > > +		if (HAS_DOUBLE_BUFFERED_LUT(display))
+> > > +			intel_color_load_luts(new_crtc_state);
+> > 
+> > Explanation missing on the double buffering behaviour of the LUT.
+> > This now assumes that it's not self-arming, and therefore some other register
+> > must be the arming register. Which register is it?
+> > 
+> 
+> You are correct (took some brain workout😐). The assumption here that the LUT registers are not self-arming is wrong.
+> They are self-arming and will latch on to HW at double buffer update point. I will add this to the commit message in the next version.
+> 
+> Now to ensure atomicity, that leaves us with two possibilities.
+> 
+> 	1. Write the LUT registers during vblank evasion critical section. While I have to profile it, this might not be possible because
+> 	    of the number of registers that needs to be written.
 
-Right. That was a spill-over from the next patch where we unmap in the
-notifier. But for this patch I'll fix up the two issues mentioned and
-add your R-B.
+Looking at some numbers I grabbed at some point (on tgl/adl/dg2)
+the current (randomly chosen) 20usec vblank evasion should be
+ok for ~1500-2000 registers, even with low cdclk/memory clock.
 
-Thanks for reviewing.
-Thomas
+>  	2. Use double buffer stalling. This approach might carry the risk of stalling updates of other registers.
 
+... but I think this is probably what we want to do. I think to
+start we could enable the DB stall only for the LUT registers.
+I presume we still have those "allow DB stall" bits strewn
+about in various control registers? And I presume PTL now
+has usable DB stall control (ie. some kind of per-pipe bits
+rather than a single global bit)?
 
+Bspec also seems to say that the double buffer swap isn't
+immediate for the LUT, so we might need yet another scanline
+evasion to make this 100% safe. I think I saw something
+about ~500 cdclk cycles, and with a low cdclk of ~170 MHz
+that would come out to about 3 usecs, which to me sounds
+long enough to potentially be a problem.
 
->=20
-> Otherwise,
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
->=20
-> > +		ret =3D down_write_killable(&vm-
-> > >userptr.notifier_lock);
-> > +		if (ret)
-> > +			goto free_pfns;
-> > +
-> > +		xe_hmm_userptr_free_sg(uvma);
-> > +		up_write(&vm->userptr.notifier_lock);
-> > +	}
-> > +
-> > +	ret =3D xe_alloc_sg(vm->xe, &userptr->sgt, &hmm_range, &vm-
-> > >userptr.notifier_lock);
-> > =C2=A0=C2=A0	if (ret)
-> > =C2=A0=C2=A0		goto free_pfns;
-> > =C2=A0=20
-> > +	ret =3D down_read_interruptible(&vm->userptr.notifier_lock);
-> > +	if (ret)
-> > +		goto free_st;
-> > +
-> > +	if (mmu_interval_read_retry(hmm_range.notifier,
-> > hmm_range.notifier_seq)) {
-> > +		ret =3D -EAGAIN;
-> > +		goto out_unlock;
-> > +	}
-> > +
-> > +	ret =3D xe_build_sg(vm->xe, &hmm_range, &userptr->sgt,
-> > +			=C2=A0 &vm->userptr.notifier_lock, write);
-> > +	if (ret)
-> > +		goto out_unlock;
-> > +
-> > =C2=A0=C2=A0	xe_mark_range_accessed(&hmm_range, write);
-> > =C2=A0=C2=A0	userptr->sg =3D &userptr->sgt;
-> > =C2=A0=C2=A0	userptr->notifier_seq =3D hmm_range.notifier_seq;
-> > +	up_read(&vm->userptr.notifier_lock);
-> > +	kvfree(pfns);
-> > +	return 0;
-> > =C2=A0=20
-> > +out_unlock:
-> > +	up_read(&vm->userptr.notifier_lock);
-> > +free_st:
-> > +	sg_free_table(&userptr->sgt);
-> > =C2=A0 free_pfns:
-> > =C2=A0=C2=A0	kvfree(pfns);
-> > =C2=A0=C2=A0	return ret;
-> > =C2=A0 }
-> > -
->=20
+Also once we have the basics of DB stall enabled, we could
+start extending it to cover other hw resources to make
+the critical section even leaner.
 
+-- 
+Ville Syrjälä
+Intel
