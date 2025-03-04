@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BEE8C021B8
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Mar 2025 18:58:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 075B3C021B8
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Mar 2025 19:03:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37C8A10E695;
-	Tue,  4 Mar 2025 18:58:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5E7A10E697;
+	Tue,  4 Mar 2025 19:03:08 +0000 (UTC)
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DBD210E694;
- Tue,  4 Mar 2025 18:58:26 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5224562468321602781=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E28910E69D;
+ Tue,  4 Mar 2025 19:03:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/xe=5Fvm=3A_Implement?=
- =?utf-8?q?_xe=5Fvm=5Fget=5Fproperty=5Fioctl_=28rev6=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/xe=3A_Userptr_in?=
+ =?utf-8?q?valid_page_access_fixes_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 04 Mar 2025 18:58:26 -0000
-Message-ID: <174111470637.709723.15772100417094248955@b555e5b46a47>
+Date: Tue, 04 Mar 2025 19:03:07 -0000
+Message-ID: <174111498711.709723.5624709810862991845@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20250304170854.67195-1-jonathan.cavitt@intel.com>
-In-Reply-To: <20250304170854.67195-1-jonathan.cavitt@intel.com>
+References: <20250304173342.22009-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20250304173342.22009-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,129 +40,26 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5224562468321602781==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/xe_vm: Implement xe_vm_get_property_ioctl (rev6)
-URL   : https://patchwork.freedesktop.org/series/145529/
+Series: drm/xe: Userptr invalid page access fixes (rev3)
+URL   : https://patchwork.freedesktop.org/series/145630/
 State : failure
 
 == Summary ==
 
-CI Bug Log - changes from xe-2754-ff2d693d88726e29a1d87291105135c31c21fa26_BAT -> xe-pw-145529v6_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-145529v6_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-145529v6_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-145529v6_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_intel_bb@intel-bb-blit-x:
-    - bat-adlp-vf:        [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2754-ff2d693d88726e29a1d87291105135c31c21fa26/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v6/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html
-
-  
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: ff2d693d8872 drm-tip: 2025y-03m-04d-16h-33m-15s UTC integration manifest
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/xe/xe_vm.c:621
+error: drivers/gpu/drm/xe/xe_vm.c: patch does not apply
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Applying: drm/xe/hmm: Style- and include fixes
+Applying: drm/xe/hmm: Don't dereference struct page pointers without notifier lock
+Applying: drm/xe/userptr: Unmap userptrs in the mmu notifier
+Patch failed at 0003 drm/xe/userptr: Unmap userptrs in the mmu notifier
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
-Build changes
--------------
-
-  * Linux: xe-2754-ff2d693d88726e29a1d87291105135c31c21fa26 -> xe-pw-145529v6
-
-  IGT_8258: ee442ca9711ab6ae1a1c0fc784d18bfaa6f9244f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2754-ff2d693d88726e29a1d87291105135c31c21fa26: ff2d693d88726e29a1d87291105135c31c21fa26
-  xe-pw-145529v6: 145529v6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v6/index.html
-
---===============5224562468321602781==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/xe_vm: Implement xe_vm_get_property_ioctl (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145529/">https://patchwork.freedesktop.org/series/145529/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2754-ff2d693d88726e29a1d87291105135c31c21fa26_BAT -&gt; xe-pw-145529v6_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-145529v6_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-145529v6_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-145529v6_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_intel_bb@intel-bb-blit-x:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2754-ff2d693d88726e29a1d87291105135c31c21fa26/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v6/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2754-ff2d693d88726e29a1d87291105135c31c21fa26 -&gt; xe-pw-145529v6</li>
-</ul>
-<p>IGT_8258: ee442ca9711ab6ae1a1c0fc784d18bfaa6f9244f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2754-ff2d693d88726e29a1d87291105135c31c21fa26: ff2d693d88726e29a1d87291105135c31c21fa26<br />
-  xe-pw-145529v6: 145529v6</p>
-
-</body>
-</html>
-
---===============5224562468321602781==--
