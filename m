@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77538C021B8
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Mar 2025 11:38:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA82CC282D0
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Mar 2025 11:39:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DC8310E5A0;
-	Tue,  4 Mar 2025 11:38:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kaRdBc+o";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 380B810E5A0
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Mar 2025 11:38:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741088301; x=1772624301;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Fg8/qy8dX/GHrPWZYAKGRG/hI1WezX9LsfcuOTzKOFs=;
- b=kaRdBc+obv2Ss27nkYCdYL4m1bVhag/aPpDAx3BH+1Z1uBzhTVo16v4F
- K3DHVDqDDRHAvCoRFbPi4GGQD6+KXlhJxa8tqT7Sdh+JtX2AQVHwZmZZQ
- +8Y2Wc3OX1n99pBIcJ2YBrjDWUVo3nJ6yqHbBA9X4jwdaP59aWpzQhgsH
- J1VYaql18oZwMKj5iOeVxFVG6BD0WGKNqTSuFRZ5rtS9EKbMGEtg5sUnm
- YgVDKAXdFewpNJPEiY6uhp1ZVs4Z7HY3nRRu+z08ANxwdICVjUUmHQFIa
- 7J4tUK2fg58W4vt5055Dmh+kDDhGeCXaWF5O732Vbb58iJpFXqixoX4Nt g==;
-X-CSE-ConnectionGUID: DZm72H+8Tv+3YwKOVgpqFw==
-X-CSE-MsgGUID: PdClyRPCSHepP9idMifGhg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11362"; a="59413176"
-X-IronPort-AV: E=Sophos;i="6.13,331,1732608000"; d="scan'208";a="59413176"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2025 03:38:20 -0800
-X-CSE-ConnectionGUID: eJ5NFlbvTQWN3tJjl4JEsA==
-X-CSE-MsgGUID: V0QbvQ82QTat3657p0WA3Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,331,1732608000"; d="scan'208";a="123471671"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO fedora..)
- ([10.245.246.227])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2025 03:38:18 -0800
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oak Zeng <oak.zeng@intel.com>, stable@vger.kernel.org
-Subject: [PATCH v2 3/3] drm/xe/userptr: Unmap userptrs in the mmu notifier
-Date: Tue,  4 Mar 2025 12:37:58 +0100
-Message-ID: <20250304113758.67889-4-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250304113758.67889-1-thomas.hellstrom@linux.intel.com>
-References: <20250304113758.67889-1-thomas.hellstrom@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBC4B10E321;
+	Tue,  4 Mar 2025 11:39:50 +0000 (UTC)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E32810E321;
+ Tue,  4 Mar 2025 11:39:50 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/display=3A_conv?=
+ =?utf-8?q?ert_intel=5Fdisplay=2E=5Bch=5D_to_struct_intel=5Fdisplay?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 04 Mar 2025 11:39:50 -0000
+Message-ID: <174108839011.578900.3189222655937761091@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <cover.1741084010.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1741084010.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,166 +36,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If userptr pages are freed after a call to the xe mmu notifier,
-the device will not be blocked out from theoretically accessing
-these pages unless they are also unmapped from the iommu, and
-this violates some aspects of the iommu-imposed security.
+== Series Details ==
 
-Ensure that userptrs are unmapped in the mmu notifier to
-mitigate this. A naive attempt would try to free the sg table, but
-the sg table itself may be accessed by a concurrent bind
-operation, so settle for unly unmapping.
+Series: drm/i915/display: convert intel_display.[ch] to struct intel_display
+URL   : https://patchwork.freedesktop.org/series/145758/
+State : warning
 
-Fixes: 81e058a3e7fd ("drm/xe: Introduce helper to populate userptr")
-Cc: Oak Zeng <oak.zeng@intel.com>
-Cc: <stable@vger.kernel.org> # v6.10+
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_hmm.c      | 49 ++++++++++++++++++++++++++------
- drivers/gpu/drm/xe/xe_hmm.h      |  2 ++
- drivers/gpu/drm/xe/xe_vm.c       |  4 +++
- drivers/gpu/drm/xe/xe_vm_types.h |  4 +++
- 4 files changed, 50 insertions(+), 9 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_hmm.c b/drivers/gpu/drm/xe/xe_hmm.c
-index 93cce9e819a1..b8d94f4c1a7f 100644
---- a/drivers/gpu/drm/xe/xe_hmm.c
-+++ b/drivers/gpu/drm/xe/xe_hmm.c
-@@ -148,6 +148,43 @@ static int xe_build_sg(struct xe_device *xe, struct hmm_range *range,
- 			       DMA_ATTR_SKIP_CPU_SYNC | DMA_ATTR_NO_KERNEL_MAPPING);
- }
- 
-+static void xe_hmm_userptr_set_mapped(struct xe_userptr_vma *uvma)
-+{
-+	struct xe_userptr *userptr = &uvma->userptr;
-+	struct xe_vm *vm = xe_vma_vm(&uvma->vma);
-+
-+	lockdep_assert_held_write(&vm->lock);
-+
-+	mutex_lock(&userptr->unmap_mutex);
-+	xe_assert(vm->xe, !userptr->mapped);
-+	userptr->mapped = true;
-+	mutex_unlock(&userptr->unmap_mutex);
-+}
-+
-+void xe_hmm_userptr_unmap(struct xe_userptr_vma *uvma)
-+{
-+	struct xe_userptr *userptr = &uvma->userptr;
-+	struct xe_vma *vma = &uvma->vma;
-+	bool write = !xe_vma_read_only(vma);
-+	struct xe_vm *vm = xe_vma_vm(vma);
-+	struct xe_device *xe = vm->xe;
-+
-+	if (!lockdep_is_held_type(&vm->userptr.notifier_lock, 0) &&
-+	    !lockdep_is_held_type(&vm->lock, 0) &&
-+	    !(vma->gpuva.flags & XE_VMA_DESTROYED)) {
-+		xe_vm_assert_held(vm);
-+		lockdep_assert_held(&vm->userptr.notifier_lock);
-+		lockdep_assert_held(&vm->lock);
-+	}
-+
-+	mutex_lock(&userptr->unmap_mutex);
-+	if (userptr->sg && userptr->mapped)
-+		dma_unmap_sgtable(xe->drm.dev, userptr->sg,
-+				  write ? DMA_BIDIRECTIONAL : DMA_TO_DEVICE, 0);
-+	userptr->mapped = false;
-+	mutex_unlock(&userptr->unmap_mutex);
-+}
-+
- /**
-  * xe_hmm_userptr_free_sg() - Free the scatter gather table of userptr
-  * @uvma: the userptr vma which hold the scatter gather table
-@@ -159,16 +196,9 @@ static int xe_build_sg(struct xe_device *xe, struct hmm_range *range,
- void xe_hmm_userptr_free_sg(struct xe_userptr_vma *uvma)
- {
- 	struct xe_userptr *userptr = &uvma->userptr;
--	struct xe_vma *vma = &uvma->vma;
--	bool write = !xe_vma_read_only(vma);
--	struct xe_vm *vm = xe_vma_vm(vma);
--	struct xe_device *xe = vm->xe;
--	struct device *dev = xe->drm.dev;
--
--	xe_assert(xe, userptr->sg);
--	dma_unmap_sgtable(dev, userptr->sg,
--			  write ? DMA_BIDIRECTIONAL : DMA_TO_DEVICE, 0);
- 
-+	xe_assert(xe_vma_vm(&uvma->vma)->xe, userptr->sg);
-+	xe_hmm_userptr_unmap(uvma);
- 	sg_free_table(userptr->sg);
- 	userptr->sg = NULL;
- }
-@@ -302,6 +332,7 @@ int xe_hmm_userptr_populate_range(struct xe_userptr_vma *uvma,
- 
- 	xe_mark_range_accessed(&hmm_range, write);
- 	userptr->sg = &userptr->sgt;
-+	xe_hmm_userptr_set_mapped(uvma);
- 	userptr->notifier_seq = hmm_range.notifier_seq;
- 	up_read(&vm->userptr.notifier_lock);
- 	kvfree(pfns);
-diff --git a/drivers/gpu/drm/xe/xe_hmm.h b/drivers/gpu/drm/xe/xe_hmm.h
-index 9602cb7d976d..0ea98d8e7bbc 100644
---- a/drivers/gpu/drm/xe/xe_hmm.h
-+++ b/drivers/gpu/drm/xe/xe_hmm.h
-@@ -13,4 +13,6 @@ struct xe_userptr_vma;
- int xe_hmm_userptr_populate_range(struct xe_userptr_vma *uvma, bool is_mm_mmap_locked);
- 
- void xe_hmm_userptr_free_sg(struct xe_userptr_vma *uvma);
-+
-+void xe_hmm_userptr_unmap(struct xe_userptr_vma *uvma);
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index dd422ac95dc0..3dbd3d38008a 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -621,6 +621,8 @@ static void __vma_userptr_invalidate(struct xe_vm *vm, struct xe_userptr_vma *uv
- 		err = xe_vm_invalidate_vma(vma);
- 		XE_WARN_ON(err);
- 	}
-+
-+	xe_hmm_userptr_unmap(uvma);
- }
- 
- static bool vma_userptr_invalidate(struct mmu_interval_notifier *mni,
-@@ -1039,6 +1041,7 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 			INIT_LIST_HEAD(&userptr->invalidate_link);
- 			INIT_LIST_HEAD(&userptr->repin_link);
- 			vma->gpuva.gem.offset = bo_offset_or_userptr;
-+			mutex_init(&userptr->unmap_mutex);
- 
- 			err = mmu_interval_notifier_insert(&userptr->notifier,
- 							   current->mm,
-@@ -1080,6 +1083,7 @@ static void xe_vma_destroy_late(struct xe_vma *vma)
- 		 * them anymore
- 		 */
- 		mmu_interval_notifier_remove(&userptr->notifier);
-+		mutex_destroy(&userptr->unmap_mutex);
- 		xe_vm_put(vm);
- 	} else if (xe_vma_is_null(vma)) {
- 		xe_vm_put(vm);
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 1fe79bf23b6b..eca73c4197d4 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -59,12 +59,16 @@ struct xe_userptr {
- 	struct sg_table *sg;
- 	/** @notifier_seq: notifier sequence number */
- 	unsigned long notifier_seq;
-+	/** @unmap_mutex: Mutex protecting dma-unmapping */
-+	struct mutex unmap_mutex;
- 	/**
- 	 * @initial_bind: user pointer has been bound at least once.
- 	 * write: vm->userptr.notifier_lock in read mode and vm->resv held.
- 	 * read: vm->userptr.notifier_lock in write mode or vm->resv held.
- 	 */
- 	bool initial_bind;
-+	/** @mapped: Whether the @sgt sg-table is dma-mapped. Protected by @unmap_mutex. */
-+	bool mapped;
- #if IS_ENABLED(CONFIG_DRM_XE_USERPTR_INVAL_INJECT)
- 	u32 divisor;
- #endif
--- 
-2.48.1
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast 1cf56e26a93292ca26fbf891368b75a67e8700dc
+Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
+Fast mode used, each commit won't be checked separately.
++drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c:106:17: warning: cast truncates bits from constant value (e8d4a51000 becomes d4a51000)
+
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
