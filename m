@@ -4,59 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EE77C282D9
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Mar 2025 19:08:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 137BBC282D9
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Mar 2025 19:22:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FB3B10E052;
-	Tue,  4 Mar 2025 19:08:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7AA310E6A5;
+	Tue,  4 Mar 2025 19:22:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iL4qJX73";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OEwLgpoM";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 187AB10E693;
- Tue,  4 Mar 2025 19:08:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34F8E10E258;
+ Tue,  4 Mar 2025 19:22:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741115286; x=1772651286;
+ t=1741116132; x=1772652132;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=j9EemYefkowE3/WuIkX8KrraC18j2XrCrHRlxZ4iZxs=;
- b=iL4qJX73Q9dj4GK01GA+VJyZ1Imk+HyWZSWBSOvzTTQsfqxfgL+S0d9O
- Si0FfTxzNoqMur3kTqVzaXIwe3fQ9n72bG20I0baqoaH33qx8vcJj5nDf
- KX8McpnH9FqJaqVqoI5Mo+POb6jq1prfJPB1XcY78yjHKHcV0+pnC3S4a
- mzDNdSRbJZ9qSYvizzE095wMdfio6qPqXsFkwBTwCm3/e5whG47W0ltQf
- ts9ufn7Oi3g+CIljDFN06dKVanKbDA+mSIRgS3z3UqJDzgmmwFfjfbTyP
- KQaHUntdpYRePOIFkEz244y22zl5VGT7ZWjxMxU2uPOiiOd1ptAm0N0H0 Q==;
-X-CSE-ConnectionGUID: t/veyMbZSAC84UI5Yiq5yQ==
-X-CSE-MsgGUID: OYPZTWOKR3ON/VoAQU+k/Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="42182991"
-X-IronPort-AV: E=Sophos;i="6.14,220,1736841600"; d="scan'208";a="42182991"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2025 11:08:02 -0800
-X-CSE-ConnectionGUID: ILalWOHbRUyVdNoZ0Af7pg==
-X-CSE-MsgGUID: YuET3DBHRYSf+By4UG4t5w==
+ mime-version:in-reply-to;
+ bh=EWww6dka3LvQi0O5gZUXT8FQu5sFnMWxMNRLzJRcR7s=;
+ b=OEwLgpoMFW3GoaOFTM+7IIusGAjM9EVLoI7IREQnpaOM3UCNDQdTcDhI
+ dk9mIvYcWawv5NLRXssDOquCt5K9OVCWolZSAcpR42jofOtIMfTBrrOsb
+ 0lts5RopSed5Q853sCLes6ISJCw1ylWd7V/8+tHyXXr7LJkR629yyr32G
+ z341eaEDCWSKUNJHTTaVsUpTlKAbuTgFS8AHMK1UoegTT3o0oc4I7vzKq
+ 9GFdHShPiom8Ra8VMT42aUJ5ts5R4mAnuvOjYg2ydmAWukXl4eiiEmMIo
+ qgZD5c6jGRuMYJLmpXcDf5tb5+NV2ehUMVpHYarVk/pNcAGLurKPEjlF4 Q==;
+X-CSE-ConnectionGUID: rB4N9VG3TcClekAXacgy+g==
+X-CSE-MsgGUID: DNvz6YAiSGWYk6pfcV3Dwg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="67424346"
+X-IronPort-AV: E=Sophos;i="6.14,220,1736841600"; d="scan'208";a="67424346"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2025 11:22:09 -0800
+X-CSE-ConnectionGUID: 9+eGOiPxTIGpbUDmXlX+ig==
+X-CSE-MsgGUID: CbAXLgcJTLOqszXti+rVHQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="123662527"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 04 Mar 2025 11:07:59 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 04 Mar 2025 21:07:58 +0200
-Date: Tue, 4 Mar 2025 21:07:58 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: Re: [PATCH 19/22] drm/i915/vrr: Allow fixed_rr with pipe joiner
-Message-ID: <Z8dPjugyQ1dPoNdX@intel.com>
-References: <20250304081948.3177034-1-ankit.k.nautiyal@intel.com>
- <20250304081948.3177034-20-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.14,220,1736841600"; d="scan'208";a="118614705"
+Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
+ by fmviesa008.fm.intel.com with ESMTP; 04 Mar 2025 11:22:05 -0800
+Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1tpXq6-000KBC-1z;
+ Tue, 04 Mar 2025 19:22:02 +0000
+Date: Wed, 5 Mar 2025 03:21:04 +0800
+From: kernel test robot <lkp@intel.com>
+To: Su Hui <suhui@nfschina.com>, lucas.demarchi@intel.com,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ Su Hui <suhui@nfschina.com>, ilpo.jarvinen@linux.intel.com,
+ andriy.shevchenko@linux.intel.com, michael.j.ruhl@intel.com,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
+Subject: Re: [PATCH] drm/xe: Select INTEL_VSEC to fix build dependency
+Message-ID: <202503050332.hlxQQDQk-lkp@intel.com>
+References: <20250227073205.1248282-1-suhui@nfschina.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250304081948.3177034-20-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
+In-Reply-To: <20250227073205.1248282-1-suhui@nfschina.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,144 +75,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Mar 04, 2025 at 01:49:45PM +0530, Ankit Nautiyal wrote:
-> VRR with joiner is currently disabled as it still needs some work to
-> correctly sequence the primary and secondary transcoders. However, we can
-> still use VRR Timing generator in fixed refresh rate for joiner and since
-> it just need to program vrr timings once and does not involve changing
-> timings on the fly. We still need to skip the VRR and LRR for joiner.
-> 
-> To achieve this set vrr.in_range to 0 for joiner case, so that we do not
-> try VRR and LRR for the joiner case.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_vrr.c | 38 +++++++++++++++++++-----
->  1 file changed, 31 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index 0dfe6220ff4a..2b6d022434d2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -292,6 +292,9 @@ void intel_vrr_set_fixed_rr_timings(const struct intel_crtc_state *crtc_state)
->  	if (!intel_vrr_possible(crtc_state))
->  		return;
->  
-> +	if (intel_crtc_is_joiner_secondary(crtc_state))
-> +		return;
+Hi Su,
 
-I don't think this gets called on the secondary crtc anyway.
+kernel test robot noticed the following build errors:
 
-> +
->  	intel_de_write(display, TRANS_VRR_VMIN(display, cpu_transcoder),
->  		       intel_vrr_fixed_rr_vmin(crtc_state) - 1);
->  	intel_de_write(display, TRANS_VRR_VMAX(display, cpu_transcoder),
-> @@ -349,19 +352,23 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
->  	if (!HAS_VRR(display))
->  		return;
->  
-> -	/*
-> -	 * FIXME all joined pipes share the same transcoder.
-> -	 * Need to account for that during VRR toggle/push/etc.
-> -	 */
-> -	if (crtc_state->joiner_pipes)
-> -		return;
-> -
->  	if (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE)
->  		return;
->  
->  	crtc_state->vrr.in_range =
->  		intel_vrr_is_in_range(connector, drm_mode_vrefresh(adjusted_mode));
->  
-> +	/*
-> +	 * Allow fixed refresh rate with VRR Timing Generator.
-> +	 * For now set the vrr.in_range to 0, to allow fixed_rr but skip actual
-> +	 * VRR and LRR.
-> +	 * #TODO For actual VRR with joiner, we need to figure out how to
-> +	 * correctly sequence transcoder level stuff vs. pipe level stuff
-> +	 * in the commit.
-> +	 */
-> +	if (crtc_state->joiner_pipes)
-> +		crtc_state->vrr.in_range = 0;
-> +
->  	vmin = intel_vrr_compute_vmin(crtc_state);
->  
->  	if (crtc_state->vrr.in_range) {
-> @@ -448,6 +455,8 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
->  	struct intel_display *display = to_intel_display(crtc_state);
->  	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
->  
-> +	if (intel_crtc_is_joiner_secondary(crtc_state))
-> +		return;
+[auto build test ERROR on drm-xe/drm-xe-next]
+[also build test ERROR on linus/master v6.14-rc5 next-20250304]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Also shouldn't get called on the secondary.
+url:    https://github.com/intel-lab-lkp/linux/commits/Su-Hui/drm-xe-Select-INTEL_VSEC-to-fix-build-dependency/20250227-153437
+base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+patch link:    https://lore.kernel.org/r/20250227073205.1248282-1-suhui%40nfschina.com
+patch subject: [PATCH] drm/xe: Select INTEL_VSEC to fix build dependency
+config: powerpc-allyesconfig (https://download.01.org/0day-ci/archive/20250305/202503050332.hlxQQDQk-lkp@intel.com/config)
+compiler: clang version 16.0.6 (https://github.com/llvm/llvm-project 7cbf1a2591520c2491aa35339f227775f4d3adf6)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250305/202503050332.hlxQQDQk-lkp@intel.com/reproduce)
 
->  	/*
->  	 * This bit seems to have two meanings depending on the platform:
->  	 * TGL: generate VRR "safe window" for DSB vblank waits
-> @@ -486,6 +495,9 @@ void intel_vrr_send_push(struct intel_dsb *dsb,
->  	if (!crtc_state->vrr.enable)
->  		return;
->  
-> +	if (intel_crtc_is_joiner_secondary(crtc_state))
-> +		return;
-> +
->  	if (dsb)
->  		intel_dsb_nonpost_start(dsb);
->  
-> @@ -560,6 +572,9 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
->  	if (!crtc_state->vrr.enable)
->  		return;
->  
-> +	if (intel_crtc_is_joiner_secondary(crtc_state))
-> +		return;
-> +
->  	intel_de_write(display, TRANS_VRR_VMIN(display, cpu_transcoder),
->  		       crtc_state->vrr.vmin - 1);
->  	intel_de_write(display, TRANS_VRR_VMAX(display, cpu_transcoder),
-> @@ -590,6 +605,9 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
->  	if (!old_crtc_state->vrr.enable)
->  		return;
->  
-> +	if (intel_crtc_is_joiner_secondary(old_crtc_state))
-> +		return;
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503050332.hlxQQDQk-lkp@intel.com/
 
-All thosea three cases should be impossible on account of
-vrr.enable==false.
+All errors (new ones prefixed by >>):
 
-> +
->  	if (!intel_vrr_always_use_vrr_tg(display)) {
->  		intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
->  			       trans_vrr_ctl(old_crtc_state));
-> @@ -613,6 +631,9 @@ void intel_vrr_transcoder_enable(const struct intel_crtc_state *crtc_state)
->  	if (!intel_vrr_possible(crtc_state))
->  		return;
->  
-> +	if (intel_crtc_is_joiner_secondary(crtc_state))
-> +		return;
-> +
->  	if (!intel_vrr_always_use_vrr_tg(display)) {
->  		intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
->  			       trans_vrr_ctl(crtc_state));
-> @@ -637,6 +658,9 @@ void intel_vrr_transcoder_disable(const struct intel_crtc_state *crtc_state)
->  	if (!intel_vrr_possible(crtc_state))
->  		return;
->  
-> +	if (intel_crtc_is_joiner_secondary(crtc_state))
-> +		return;
+>> ld.lld: error: undefined symbol: intel_vsec_register
+   >>> referenced by xe_vsec.c
+   >>>               drivers/gpu/drm/xe/xe_vsec.o:(xe_vsec_init) in archive vmlinux.a
 
-And these two again shouldn't be called on the secondary crtc.
-
-So I think you should be able to drop all the
-intel_crtc_is_joiner_secondary() checks from this patch.
-
-> +
->  	if (!intel_vrr_always_use_vrr_tg(display)) {
->  		intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
->  			       trans_vrr_ctl(crtc_state));
-> -- 
-> 2.45.2
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for INTEL_VSEC
+   Depends on [n]: X86_PLATFORM_DEVICES [=n] && PCI [=y]
+   Selected by [y]:
+   - DRM_XE [=y] && HAS_IOMEM [=y] && DRM [=y] && PCI [=y] && MMU [=y] && (m [=m] && MODULES [=y] || KUNIT [=y]=y [=y])
 
 -- 
-Ville Syrjälä
-Intel
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
