@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18D06C282C6
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Mar 2025 14:21:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F8C4C282C6
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Mar 2025 14:23:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D959A10E5F0;
-	Tue,  4 Mar 2025 14:21:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDCBB10E5F0;
+	Tue,  4 Mar 2025 14:23:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="kvNCAd88";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="VUrKepe9";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D39C110E5F0
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Mar 2025 14:21:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44E0710E5F0
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Mar 2025 14:23:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
@@ -22,32 +22,32 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=s9/p0cRct13mUEiEDuvU2K1Nv5W1ClI0SO/bY6VhlS4=; b=kvNCAd88ijY0FGYtyFPaV257P3
- bfM24rYZpbHRlx+6RnzIIf2kkDynGJb6IV4AZdsN6jR+ZEgsi7ftoJn9Ie0BeJiW0UekGtg+KNxom
- DbjpJoTuHV2e5pl6YmsgCkuBVEZiIJkY8Pf9cAUh+4smkJ0ONKDQ/BHGRPFOidabjZ6ndX8BKgmUZ
- C5WQPC/e+CFa58lZJwsbjdHMOiymLy78xOSVhGWGRqqHtBssCjzCWFAbmzrUB9G7sJKooC4EMdADK
- XpXZZpiYJHyrBa/R4+I2Ph5BjcZCwuqa8QtUckZYVqkBHIZXyeyXmxexUKR/RnegPESKv8BDWgzEY
- Gd2Uz2VA==;
+ bh=EWorq7Y0Icz4z0g7fWt2kY2FFXFe3u4RMkai9laGpkE=; b=VUrKepe9/GQeeu27dBlJWcUeWb
+ DXdfXrWAFiMbvXEIboLxvKuJSrSArU1hadbYpsP0jqhXBUyJ3k/20WyVhpuTUqmlbULJObncQaduh
+ PodNeUdYS+Y6hkRkYLPezwlm519VnIgmlFX+IbLsWb00UsYqQGRDv8XpXbkWrAoNrC57ZdLE9ywxq
+ oJpYfK9cOUzpfxqKX6WHIXQTUqOx5MytuPR4xu3nR2ezO2pKqCUqlmAbMVJ+dUiWYExBqAXzaIesR
+ m3V8/WfsWEcy/Whd0cUcCSolMtNuPnP1tySAbfkvIzUiPYIgMKYDb8QQZfQTG9Y0AlqzLjW9sAKOW
+ dSQnNzlA==;
 Received: from [90.241.98.187] (helo=[192.168.0.101])
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1tpT9H-003kYD-Se; Tue, 04 Mar 2025 15:21:37 +0100
-Message-ID: <ea4e999d-aa1c-419f-ac45-e0313fe461b1@igalia.com>
-Date: Tue, 4 Mar 2025 14:21:37 +0000
+ id 1tpTAe-003kbA-J4; Tue, 04 Mar 2025 15:23:02 +0100
+Message-ID: <9b4a014f-4e7d-454f-aa3a-df3a35538314@igalia.com>
+Date: Tue, 4 Mar 2025 14:23:01 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 10/12] drm/xe: Force flush system memory AuxCCS
- framebuffers before scan out
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH 08/12] drm/xe: Flush GGTT writes after populating DPT
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@intel.com>
 Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com
 References: <20250221101736.78986-1-tvrtko.ursulin@igalia.com>
- <20250221101736.78986-11-tvrtko.ursulin@igalia.com>
- <Z8IPw4njV3JFQDm8@intel.com>
+ <20250221101736.78986-9-tvrtko.ursulin@igalia.com>
+ <Z8IOFqUyFba9YENc@intel.com>
 Content-Language: en-GB
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <Z8IPw4njV3JFQDm8@intel.com>
+In-Reply-To: <Z8IOFqUyFba9YENc@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,117 +63,106 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 28/02/2025 19:34, Rodrigo Vivi wrote:
-> On Fri, Feb 21, 2025 at 10:17:29AM +0000, Tvrtko Ursulin wrote:
->> Even though frame buffer objects are created as write-combined, in
->> practice, on top of all the ring buffer flushing, an additional clflush
->> seems to be needed before display engine can coherently scan out the
->> AuxCCS compressed data without transient artifacts.
+On 28/02/2025 19:27, Rodrigo Vivi wrote:
+> On Fri, Feb 21, 2025 at 10:17:27AM +0000, Tvrtko Ursulin wrote:
+>> When DPT is placed in stolen it is populated using ioremap_wc() via GGTT.
 >>
->> If for comparison we look at how i915 handles things (where AuxCCS works
->> fine), as it happens it has this same clflush before a frame buffer is
->> pinned for display for the first time, courtesy the dynamic tracking of
->> the buffer cache mode and setting the latter to uncached before handing
->> to display.
->>
->> Since xe considers the buffer object caching mode as static we can
->> implement the same approach by adding a flag telling us if the buffer
->> was ever pinned for display and flush on the first pin. Subsequent re-pins
->> will not repeat the clflush but so far I have not observed any glitching
->> after the first pin.
+>> I915 has established that on modern platforms a small flush and delay is
+>> required for those writes to reliably land so lets add the same logic
+>> (simplified by removing impossible platforms) to xe as well.
 >>
 >> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> 
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> on this as well...
+> 
 >> ---
->>   drivers/gpu/drm/xe/display/xe_fb_pin.c | 13 +++++++++++++
->>   drivers/gpu/drm/xe/xe_bo_types.h       | 14 +++++++++-----
->>   2 files changed, 22 insertions(+), 5 deletions(-)
+>>   drivers/gpu/drm/xe/display/xe_fb_pin.c | 45 ++++++++++++++++++++++++++
+>>   1 file changed, 45 insertions(+)
 >>
 >> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
->> index a32f3603751a..5e7813154733 100644
+>> index 6c85e03dfd79..8f559b19e8ab 100644
 >> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
 >> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
->> @@ -331,6 +331,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
->>   	struct i915_vma *vma = kzalloc(sizeof(*vma), GFP_KERNEL);
->>   	struct drm_gem_object *obj = intel_fb_bo(&fb->base);
->>   	struct xe_bo *bo = gem_to_xe_bo(obj);
->> +	bool first_pin;
->>   	int ret;
+>> @@ -10,9 +10,11 @@
+>>   #include "intel_fb.h"
+>>   #include "intel_fb_pin.h"
+>>   #include "intel_fbdev.h"
+>> +#include "regs/xe_engine_regs.h"
+>>   #include "xe_bo.h"
+>>   #include "xe_device.h"
+>>   #include "xe_ggtt.h"
+>> +#include "xe_mmio.h"
+>>   #include "xe_pm.h"
 >>   
->>   	if (!vma)
->> @@ -362,6 +363,9 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
->>   	if (ret)
->>   		goto err;
+>>   static void
+>> @@ -78,6 +80,46 @@ write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
+>>   	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
+>>   }
 >>   
->> +	first_pin = !bo->display_pin;
->> +	bo->display_pin = true;
+>> +static void gt_flush_ggtt_writes(struct xe_gt *gt)
+>> +{
+>> +	if (!gt)
+>> +		return;
 >> +
->>   	if (IS_DGFX(xe))
->>   		ret = xe_bo_migrate(bo, XE_PL_VRAM0);
->>   	else
->> @@ -382,6 +386,15 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
->>   
->>   	/* Ensure DPT writes are flushed */
->>   	xe_device_l2_flush(xe);
+>> +	xe_mmio_read32(&gt->mmio, RING_TAIL(RENDER_RING_BASE));
+>> +}
+>> +
+>> +static void ggtt_flush_writes(struct xe_ggtt *ggtt)
+>> +{
+>> +	struct xe_device *xe = tile_to_xe(ggtt->tile);
 >> +
 >> +	/*
->> +	 * Force flush frame buffer data for non-coherent display access when
->> +	 * AuxCCS formats are used.
+>> +	 * No actual flushing is required for the GTT write domain for reads
+>> +	 * from the GTT domain. Writes to it "immediately" go to main memory
+>> +	 * as far as we know, so there's no chipset flush. It also doesn't
+>> +	 * land in the GPU render cache.
+>> +	 *
+>> +	 * However, we do have to enforce the order so that all writes through
+>> +	 * the GTT land before any writes to the device, such as updates to
+>> +	 * the GATT itself.
+>> +	 *
+>> +	 * We also have to wait a bit for the writes to land from the GTT.
+>> +	 * An uncached read (i.e. mmio) seems to be ideal for the round-trip
+>> +	 * timing. This issue has only been observed when switching quickly
+>> +	 * between GTT writes and CPU reads from inside the kernel on recent hw,
+>> +	 * and it appears to only affect discrete GTT blocks (i.e. on LLC
+>> +	 * system agents we cannot reproduce this behaviour, until Cannonlake
+>> +	 * that was!).
 >> +	 */
->> +	if (first_pin && !xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo) &&
->> +	    intel_fb_is_ccs_modifier(fb->base.modifier))
->> +		drm_clflush_sg(xe_bo_sg(bo));
 >> +
->>   	return vma;
->>   
->>   err_unpin:
->> diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
->> index 60c522866500..f518becb78c9 100644
->> --- a/drivers/gpu/drm/xe/xe_bo_types.h
->> +++ b/drivers/gpu/drm/xe/xe_bo_types.h
->> @@ -67,11 +67,6 @@ struct xe_bo {
->>   	struct llist_node freed;
->>   	/** @update_index: Update index if PT BO */
->>   	int update_index;
->> -	/** @created: Whether the bo has passed initial creation */
->> -	bool created;
->> -
->> -	/** @ccs_cleared */
->> -	bool ccs_cleared;
->>   
->>   	/**
->>   	 * @cpu_caching: CPU caching mode. Currently only used for userspace
->> @@ -80,6 +75,15 @@ struct xe_bo {
->>   	 */
->>   	u16 cpu_caching;
->>   
->> +	/** @created: Whether the bo has passed initial creation */
->> +	bool created : 1;
+>> +	wmb();
 >> +
->> +	/** @ccs_cleared */
->> +	bool ccs_cleared : 1;
+>> +	if (xe_pm_runtime_get_if_active(xe)) {
+>> +		gt_flush_ggtt_writes(ggtt->tile->primary_gt);
+>> +		gt_flush_ggtt_writes(ggtt->tile->media_gt);
+>> +		xe_pm_runtime_put(xe);
+>> +	}
+>> +}
 >> +
->> +	/** @display_pin: Was it ever pinned to display */
->> +	bool display_pin : 1;
-> 
-> Is there any way that we could have this contained within display domains
-> instead of spreading display specific things to the core part?
+>>   static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+>>   			       const struct i915_gtt_view *view,
+>>   			       struct i915_vma *vma,
+>> @@ -161,6 +203,9 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+>>   					  rot_info->plane[i].dst_stride);
+>>   	}
+>>   
+>> +	if (dpt->vmap.is_iomem)
+>> +		ggtt_flush_writes(tile0->mem.ggtt);
 
-On a mechanical level could put it in struct intel_framebuffer->"was 
-this fb ever pinned before". (Assuming fb->bo is invariant for its 
-lifetime?) But would that be any better I don't have a strong opinion. 
-Perhaps partly because it is currently unknown to be why is this extra 
-CPU flush even needed on the first pin. Like which HW component is the 
-root cause.
+I think I should add && !xe_bo_is_vram to this condition. Since then 
+writes are not going via GGTT. But I wait for more comments on the patch 
+first.
 
 Regards,
 
 Tvrtko
 
-> 
 >> +
->>   	/** @vram_userfault_link: Link into @mem_access.vram_userfault.list */
->>   		struct list_head vram_userfault_link;
->>   
+>>   	vma->dpt = dpt;
+>>   	vma->node = dpt->ggtt_node[tile0->id];
+>>   	return 0;
 >> -- 
 >> 2.48.0
 >>
