@@ -4,55 +4,184 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A70D6C282E3
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Mar 2025 09:22:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54FFEC282D9
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Mar 2025 09:36:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 715F810E722;
-	Wed,  5 Mar 2025 09:22:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18AFE10E26A;
+	Wed,  5 Mar 2025 09:36:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ljbYHt30";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AoO+TGQD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9783F10E720
- for <intel-xe@lists.freedesktop.org>; Wed,  5 Mar 2025 09:22:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B85FC10E264;
+ Wed,  5 Mar 2025 09:36:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741166558; x=1772702558;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=DMMso2Mthv0BBqiqfbkPrgzN5yfPd9oaBaPraU+B3h8=;
- b=ljbYHt30VDoe6UxnxfOaSchh+6aWZzxtpUvaA5GCDSjSWE7JRPofflp1
- eVRvQnKbLzfOzO4TCsdYdS7WErEwCT9qRKnamzQA02kRjqM8PncjUVU0R
- AQNWhP5/03An3EpT+xfUpyIZwf9o1ojmMKHTOyu9rvh9Ixe0tcWvlWF3S
- PwMAB3X2UrPWqqUhAJyQ2xSATY08kdqDxMfq6JNwpkkjKsX6ysketm4mh
- 3zcvGH1f4+9M2qAO48aR4froKAQxPuUM7kHsPp+YJ/ZKir/CDhmtoTT8R
- JISNnxEfvjRdpKUMewjRGZVjwoVaOm6107eAUNHIcjPD+/DrskXBmKrgN g==;
-X-CSE-ConnectionGUID: gF1ty9hVThKf1/DKVIk5RQ==
-X-CSE-MsgGUID: 5L7lxZJdSJKr7vF9+XmP0Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="64557178"
-X-IronPort-AV: E=Sophos;i="6.14,222,1736841600"; d="scan'208";a="64557178"
+ t=1741167400; x=1772703400;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=hlZpxCNLhWuf/Vi0XLI6ZBXMtJ8lxYnPoVM6jE8uryQ=;
+ b=AoO+TGQDQ2hsKaRY+dAjB8YqQ4XzU3NTjuic+DTmP5boFD4/28saqXSJ
+ CTSeSH7JTPOfeYawQHogHCfVsDBrhP3RkdShMV0pPouktPedAiE3JJbiC
+ DhoZKiuA0mfecid+85GL6KGK6wObPj0SLedGSFGoLO+V8aX3l4UxfRAlq
+ eMXytvZMd6WjJQAJuNeWc2nFzFKWBEeDDLLWqYXQfDk1dbLccJ1wVIbJT
+ 8JCPEj8mtelZgBIW7amV7K8FRDkm5/bYVgGjrhMzKLAVv8C2tS8lcRmj1
+ a6uf5YLN1Kt/yS4SPCRtIC7T58ktk84Xt5+R3ScncdaLmsxHbCcPinsMp A==;
+X-CSE-ConnectionGUID: hWotScxLQEK0UNQXmZvW+g==
+X-CSE-MsgGUID: 1TkJNNyPQx6/vKEH7X1W6Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="42143893"
+X-IronPort-AV: E=Sophos;i="6.14,222,1736841600"; d="scan'208";a="42143893"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2025 01:22:38 -0800
-X-CSE-ConnectionGUID: M7UxgK9+Qf+2O/iJu+qiUw==
-X-CSE-MsgGUID: ppLy6VPiRji2k7M/+gvxlA==
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2025 01:36:40 -0800
+X-CSE-ConnectionGUID: kEqWdib2RTK2I8fjojBJcA==
+X-CSE-MsgGUID: Qr9YzaGLRP6o7pHv7fhFuA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,222,1736841600"; d="scan'208";a="123569527"
-Received: from carterle-desk.ger.corp.intel.com (HELO fedora..)
- ([10.245.246.45])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2025 01:22:37 -0800
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v17 6/7] drm/xe: Add a shrinker for xe bos
-Date: Wed,  5 Mar 2025 10:22:19 +0100
-Message-ID: <20250305092220.123405-7-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250305092220.123405-1-thomas.hellstrom@linux.intel.com>
-References: <20250305092220.123405-1-thomas.hellstrom@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+X-IronPort-AV: E=Sophos;i="6.14,222,1736841600"; d="scan'208";a="123571008"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2025 01:36:39 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14; Wed, 5 Mar 2025 01:36:38 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14 via Frontend Transport; Wed, 5 Mar 2025 01:36:38 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.176)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Wed, 5 Mar 2025 01:36:35 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Birvi5v+F9k/FfrqE/bnWHo0LnkJsU0B5IEGpgiFN0wyKqx9sugz2BiTj2OleEKp7fIQN+FqJ9xth5OIoB9s4PxwM1twQzVzUJQUXzcak1LDhYPikcXMSkrANqHUZbMmjClIfYRaxiPsjg3OUARs5NkO7ATzAzM6cNlX+jzhF25P3/wp2feqifFRO8rTFyrCJZUDh7y5CvaygUXYQ6QTcEFCVh4mBW4LKFOtdGv85hMF/8aNwNkAC/GWwqE1YuLrYuDQMqY1g8vrJ8ADOQi4Cn/S1hLuAlpSq3qzTpYD/C41mmiF7ir+1K3dx2B2UvwjVMWt9uMDozSVhtGdaitpHg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0Y3juIoNN4ZVWzgInrXvE8jQdtcisYZFUla0lIrGQhQ=;
+ b=yHAjCs6iy2dDnxWRYytqRIWxwA8QRI4haMO/YDmM7/GISXu/6m67u3jlBNiucDqQng3GvLCiPfJdFx/o0C+sKMdQF1cAZAelkO6TVLh+OzK+gE5msKBM5GGNFViiT8sGqP5/iFpOabNUNt7kRlgni5VsqJqDIreM1f9Ktvb8z5uKBeFTSJFDvaQR9JdxULEfX/yA9rg6JvnCCXrNxBG2GjXc1A7qcG49Px1VJXyidO+NZMzkbzX89sE2Rj0xBjSYVZza5gobL5LUNMgLIB6HcaEksAQsr56CLD1RT2xa4G/uDA5bAZT4MqtrmZZglAZUit5vCBv1TZGTA0Z1NAMCrQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by SA2PR11MB4812.namprd11.prod.outlook.com (2603:10b6:806:f8::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.17; Wed, 5 Mar
+ 2025 09:36:07 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%7]) with mapi id 15.20.8489.025; Wed, 5 Mar 2025
+ 09:36:07 +0000
+Message-ID: <58fa066e-2af4-42ac-a9d1-b55547c2d2bf@intel.com>
+Date: Wed, 5 Mar 2025 15:05:59 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 19/22] drm/i915/vrr: Allow fixed_rr with pipe joiner
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <jani.nikula@linux.intel.com>, <mitulkumar.ajitkumar.golani@intel.com>
+References: <20250304081948.3177034-1-ankit.k.nautiyal@intel.com>
+ <20250304081948.3177034-20-ankit.k.nautiyal@intel.com>
+ <Z8dPjugyQ1dPoNdX@intel.com>
+Content-Language: en-US
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <Z8dPjugyQ1dPoNdX@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA0PR01CA0018.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:80::18) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|SA2PR11MB4812:EE_
+X-MS-Office365-Filtering-Correlation-Id: c0485ba2-0a7e-4661-2346-08dd5bc92796
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?QkJzdUM2dldqTGRKZkwzTHNTS3hIalRSZUJyMlJkZWVla3MxWDVrWCtaR28z?=
+ =?utf-8?B?d0hYeGw5eGN3TVFrM2N6ZHhGYWhxSzVqWHJJVEJ0MHNnd0JadVdZR0pPcXYz?=
+ =?utf-8?B?UXRlMUs0NDA1NWZScGFTLzFmKzFQcWtDeDRlSEdJajNOL2M3Njl3WlB2Rm5z?=
+ =?utf-8?B?UWpsWHhJTG1JbWRlZmJpWG5ZMzhvTGVzby80UjdHM3BPR1c5aEk4YytvTUxI?=
+ =?utf-8?B?TG9pWUpHa0M5d1FHOU45eE5ac1lyOVhWMXlDWkxiS1Q3NDhCcWQzazJkUzRU?=
+ =?utf-8?B?aHRFVnI1c0g5djQ0dmlwaEtKcXBmNHpSc2FsSStJaW03czYwdWNEa3RTVkN0?=
+ =?utf-8?B?bC9nTDdub083clFyQ29XZkVxK2cyelNnMm9taWF6blVaNGRnd20xQmhBZDdE?=
+ =?utf-8?B?RjBzc2JGUmtwOE1oVXp1aUZCd05vS2hNdGJ0cFNUQk9MSVhEbERtSSt5dGtP?=
+ =?utf-8?B?VDk4Tk9HYzFVdHV0WkxxYVc3MTc4UXZDdHVYeEZ5L0p1Y1RHYW0ycXRVOG9l?=
+ =?utf-8?B?Q1U4bVZFS1NNaDU3dlo5cjZRRzhmZkhDc2s0TmVzVHpaTXpmQll4L2cxa2ta?=
+ =?utf-8?B?T0V3bHUyMkJoKzFFYm1LeWpZOTMwdDZMR3AwMHdKOTN1bncwK2JxamJxcExu?=
+ =?utf-8?B?ZFdlK1BnM3VpYjltYytJeHpwVjhlU0NPZEk1bzdSWW0yaEhDVmQ0MDJiZGVy?=
+ =?utf-8?B?V1FZRElHZ1B0bzhXMVlaU3BvK0tucXZCeER6N29HUDRKOUFPNDVUdUFRQUk2?=
+ =?utf-8?B?bjZuSjh4NkdJM3Q1ZVdUMkFQS3lKclh6K2U4VVV0YThYL3plSmxudGZPWnJh?=
+ =?utf-8?B?d293eDBZOTJ4RUVpelhCQVlDUlpTcDBoNjBKaFBKaExLdTFRMHE1ZW54YzVD?=
+ =?utf-8?B?ZW9iNzFnRXpQYjY1TDBBOERqRjhVYzBPdFJlOE5KL3ZSQXRUOFZqSTkvcHNn?=
+ =?utf-8?B?ZjlCZkg2Q2U1Rm9XdVdIdXhiSklHM3JUSUkzYUNxUW9vNmVSb3dGTEc5NVhu?=
+ =?utf-8?B?Vm5RMFdrZkY1Q25wVEpsaVFtazlSTHVVQUZvS3NCbnlkNnRXN3ErdzF0a2dw?=
+ =?utf-8?B?OHV1NVRyYWtsdURuSzJ2cHRWQVVnbkhycVFKUVkxVnAxOUZtMG8wWTJvRXNk?=
+ =?utf-8?B?TFVDOXhLOVZoa2ZscExTalB1eFUzL05TakFwazI4QjB1Z1E2bysraEt3QnFi?=
+ =?utf-8?B?bU10eHpIV2FVQ1Jtc2xTQXlUTHR6WVJwSW51ZXpSVkdWekVmVDVQV0lWUVBE?=
+ =?utf-8?B?czREUFBxV3VPSEl4SzFMekdvL0RjbTFwamRwUTExUVlDeWVHNlJaTWE1N0dq?=
+ =?utf-8?B?a2RTL0Q2ek4yQXlGc25KZjdnNFhKeU5JamZ4a2ZoVWVMNFNNSFgwdkQ0Wmov?=
+ =?utf-8?B?R1VJMVM0R0xnOHBnbkNqNng3UFRNN3RnaGV3cldOb2JGa1AzNTdnVmRxWFls?=
+ =?utf-8?B?LzVFVGo5VHBFUkE5SFVCN2psUzM5eUFJQkw3a1dEa2lIK1lsd045WS9IOTZ0?=
+ =?utf-8?B?S3ZEVjFJOEpaaXpxSnNJM0ZETE16OGJlakxHbXhROEtlaFNaQ3k4eXhOWVd1?=
+ =?utf-8?B?VXVRQjNJOXJZMm00WVBMVHdVQU0vcGJHSmEzUFNmTjRyTVFUQXJQNjBPRVdI?=
+ =?utf-8?B?SWhKdHdZUTJSdlNSSElMNDhwR1ZnMXc1V0UvY1hweEhiT0hJTFI5bDQ0UURk?=
+ =?utf-8?B?ZjZPdVlubW1ZMHVKeUo3SzB3Y1I1Tk5ybVJpenNNTVRyYUJnb01RM0J0Ylln?=
+ =?utf-8?B?dVMyMUI5RWh1ekk3bEpnQzQ5S0F1WERpd2FxeGsyZitodXV0MXVoZFFHU3My?=
+ =?utf-8?B?OFhnWW1MaWlOMEw0NTBLc0FwVzVORUNlUS9BT29CSkUvRkx6MTNTNXMyRGdW?=
+ =?utf-8?Q?LHXtYq9YwYxbe?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M2ZoZ2huUVRHSEZvUXpqcXBTQ3UxQnhJdkVZSy82OVNsUHN2OGlWNUU1NHJE?=
+ =?utf-8?B?RXNmakdWSjBOK0h5Y0FRQVlHaUZJb2JtR2NJMUVSb1JNTXFoZ1RsWmlXU3R6?=
+ =?utf-8?B?TGNCZ1JEOEhxcXBSSnp2ZHhHRnlhVGY5TTgvNWVCNlVtR3BYQlIyMzZEUWhI?=
+ =?utf-8?B?QkhIZWdTR0JEc1NTNlFwd0sxNWtIUkUzd3lpQUVaejRtQktEcVVGUHFScktO?=
+ =?utf-8?B?eTVyZU8xZCttaVhybWkzOE1oMi8yUXhPbVlKM2gwc29RemlxMmNlOVhjQnk1?=
+ =?utf-8?B?SW1iaDh0clZnQUtpTitXSDVuc0QxVEpPM0RpOVRmNDZCN2o2emVjb1dDTGZS?=
+ =?utf-8?B?N3V3V3EzSHQvY0w1QlI4UVhaL2xhci9ZbmxrSTAvUjF1em5OUFZOb29Hb0kx?=
+ =?utf-8?B?dUovcnU0YUJIR2tkQmdkQUUrTHFIWjduOW9FMXRkVFRJY2h6YmNuUTJ0NlJ5?=
+ =?utf-8?B?S2VhZjRVdkN3UE1FSTFaQklkM2ZQZnBSWDlwN3RubXVpazRGcHl5UTVyYnEw?=
+ =?utf-8?B?ZHNOd040M1h3Zkt5bUlLS291SjltWklKQVVBUGZ6WXhIYUN5Y0wwbmFPdVho?=
+ =?utf-8?B?OW5yNUdMTUV1NCtpa2JqenRpeklUYXZDd2prUU9Dc1J3cGMyZ0wwNDQxaExs?=
+ =?utf-8?B?QkRhYXhsWERlb2UxSklrOE9nV0gzOEd1M1h4N09KYVRDZFdoa0FodWhUMGlV?=
+ =?utf-8?B?cnVqaCszbDZIMWw0TTlZaXVUdkVSTTJtU1hqL0M5SHpDY2laRjZrcloxNC9v?=
+ =?utf-8?B?YWdKMUJacmpxbXRjUXFkVkZCZXdKRDUzT2tKY2ljUjQzSVFhNERQNUd4R1VY?=
+ =?utf-8?B?b0hnQU1nbE1sdk1LL243RFgxSWtxUEtqN2grYk4rQVZZWVFsc2FldnZTL2hF?=
+ =?utf-8?B?bFdqTTFIdmU2RVRxTVVrTG9VREwwTVg2c2RVZ0lONitBc0VWVDl4Y1hwZWhy?=
+ =?utf-8?B?NVJET0JXQlIxZVJ3aUxBU1cvRHdWYzhGUWpDanpPNHFpVE15Mi83WDJkdWxE?=
+ =?utf-8?B?ZlJ3dVM0VlRjemxwVXcyNDNGUHdSbi9Bem9xSmZvZnk2Rk5kYi9GakR2MHVm?=
+ =?utf-8?B?S1ZDRTZLdkNveTRrSGsxUVAya0hENzQ5cmJkaTYxb1Y2VkkzV1QrbHFLaXhC?=
+ =?utf-8?B?WVF1TUpHWk1YRUFBTzM0VUt0Q0EraXV0UTUxQWZuK1lnUWYrbmpyalN3YzZl?=
+ =?utf-8?B?UGdyVC9ESGE0YTFJdEMySmtDWU90bVE4TFEwZVNSMEc0ZEVKQS9lNlNra00x?=
+ =?utf-8?B?WnNWNUkvZFZURVBlUjVpU3AvdUptZzFVdkVUdmpLTG1uYW1TZlltQ2ZaNEdi?=
+ =?utf-8?B?QktZUzNRcjkzNlRHMXdiV1JlWnMxOEo5VjE1eWY5a2xFb3ZLVEU5SlRSeWdU?=
+ =?utf-8?B?LzN0QUJCNjRLNDFhSWtFeWNEUlJ1QmJ2MHhNc0VuYlJIRFFqZjN0SkR0RUFG?=
+ =?utf-8?B?U25MajZ0dnNhbHl4d2xGV1VPdGMySDlnZ085cGVtV2g1R3FnK3Y2L2tPM3hM?=
+ =?utf-8?B?M2NCckNqVHQrMHo0ZUdxV3dZbmMvbEJmNExXZnlnYlVpRzgydjlpYW0xYy9S?=
+ =?utf-8?B?bEhFZHNVRlFzZUFjcEV3UVI5UmpyVUY2eGxIaDNTRHlPR3liM1lhWlUzVFhV?=
+ =?utf-8?B?RWMzQWdBQXpBd1l0U1BIUTBwaG85eHhHbEV6T2g0aklTTUZGYTFObjBkLy9o?=
+ =?utf-8?B?RXRvV1ZEOWNoSlVSc21ZM0dkcDE0aUhOWFZmYzBtVXJtMUkrZWh4QnN1K3Vz?=
+ =?utf-8?B?bGhJOXY5TTJaQUtEc1U5dWxVbXhSRUtPOUJtdDBrSXhzZVpXbXc0RzBRdkw3?=
+ =?utf-8?B?eGFmb0lLYnhUcVY4dWY4Q2h1T1labjB3SDBIdnNwOVdRcXJRajBZMDVYcHBa?=
+ =?utf-8?B?aEJkYnBEV3ZFSTZna3NsWmxuL2QxK0h5YlI1TWJ3Y3dPZXFQRk9QTXFBU3ND?=
+ =?utf-8?B?Z0pndkV0OGZaT0x3eFJLWUJaMkV4Z01oT2VKakxLL0M2UFBiSU1ucGZoekti?=
+ =?utf-8?B?OFVhY1F0L1NTVjhDbzN3S1RnY1p4cDcxZnJleWtET1BOa28wY0FnZGxxc0Uv?=
+ =?utf-8?B?ZHBUN0pNQTBRK1IrQTBOVEwxbHJxZjQ1bWdXV1pmUE8wMlhyZkFReWVzTm9i?=
+ =?utf-8?B?MjVoYTZ5NlR4NGo3Y0xrNytENTVDaExYOWloSlpOdkhFYjJCQk5ScWdWVmVo?=
+ =?utf-8?B?R2c9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c0485ba2-0a7e-4661-2346-08dd5bc92796
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2025 09:36:07.0522 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Pw9indLTMmX61gYi+CMo75MaANCEcl2GGNesR+7uetkA9UP5YF1yss7jc6CHeQIfpEeOlOmf7pOgcTFSLmdNwLzZEAZqf26cHVKJ5QjHoYY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4812
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,844 +196,153 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Rather than relying on the TTM watermark accounting add a shrinker
-for xe_bos in TT or system memory.
 
-Leverage the newly added TTM per-page shrinking and shmem backup
-support.
+On 3/5/2025 12:37 AM, Ville Syrjälä wrote:
+> On Tue, Mar 04, 2025 at 01:49:45PM +0530, Ankit Nautiyal wrote:
+>> VRR with joiner is currently disabled as it still needs some work to
+>> correctly sequence the primary and secondary transcoders. However, we can
+>> still use VRR Timing generator in fixed refresh rate for joiner and since
+>> it just need to program vrr timings once and does not involve changing
+>> timings on the fly. We still need to skip the VRR and LRR for joiner.
+>>
+>> To achieve this set vrr.in_range to 0 for joiner case, so that we do not
+>> try VRR and LRR for the joiner case.
+>>
+>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_vrr.c | 38 +++++++++++++++++++-----
+>>   1 file changed, 31 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+>> index 0dfe6220ff4a..2b6d022434d2 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+>> @@ -292,6 +292,9 @@ void intel_vrr_set_fixed_rr_timings(const struct intel_crtc_state *crtc_state)
+>>   	if (!intel_vrr_possible(crtc_state))
+>>   		return;
+>>   
+>> +	if (intel_crtc_is_joiner_secondary(crtc_state))
+>> +		return;
+> I don't think this gets called on the secondary crtc anyway.
+>
+>> +
+>>   	intel_de_write(display, TRANS_VRR_VMIN(display, cpu_transcoder),
+>>   		       intel_vrr_fixed_rr_vmin(crtc_state) - 1);
+>>   	intel_de_write(display, TRANS_VRR_VMAX(display, cpu_transcoder),
+>> @@ -349,19 +352,23 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+>>   	if (!HAS_VRR(display))
+>>   		return;
+>>   
+>> -	/*
+>> -	 * FIXME all joined pipes share the same transcoder.
+>> -	 * Need to account for that during VRR toggle/push/etc.
+>> -	 */
+>> -	if (crtc_state->joiner_pipes)
+>> -		return;
+>> -
+>>   	if (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE)
+>>   		return;
+>>   
+>>   	crtc_state->vrr.in_range =
+>>   		intel_vrr_is_in_range(connector, drm_mode_vrefresh(adjusted_mode));
+>>   
+>> +	/*
+>> +	 * Allow fixed refresh rate with VRR Timing Generator.
+>> +	 * For now set the vrr.in_range to 0, to allow fixed_rr but skip actual
+>> +	 * VRR and LRR.
+>> +	 * #TODO For actual VRR with joiner, we need to figure out how to
+>> +	 * correctly sequence transcoder level stuff vs. pipe level stuff
+>> +	 * in the commit.
+>> +	 */
+>> +	if (crtc_state->joiner_pipes)
+>> +		crtc_state->vrr.in_range = 0;
+>> +
+>>   	vmin = intel_vrr_compute_vmin(crtc_state);
+>>   
+>>   	if (crtc_state->vrr.in_range) {
+>> @@ -448,6 +455,8 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
+>>   	struct intel_display *display = to_intel_display(crtc_state);
+>>   	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+>>   
+>> +	if (intel_crtc_is_joiner_secondary(crtc_state))
+>> +		return;
+> Also shouldn't get called on the secondary.
+>
+>>   	/*
+>>   	 * This bit seems to have two meanings depending on the platform:
+>>   	 * TGL: generate VRR "safe window" for DSB vblank waits
+>> @@ -486,6 +495,9 @@ void intel_vrr_send_push(struct intel_dsb *dsb,
+>>   	if (!crtc_state->vrr.enable)
+>>   		return;
+>>   
+>> +	if (intel_crtc_is_joiner_secondary(crtc_state))
+>> +		return;
+>> +
+>>   	if (dsb)
+>>   		intel_dsb_nonpost_start(dsb);
+>>   
+>> @@ -560,6 +572,9 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
+>>   	if (!crtc_state->vrr.enable)
+>>   		return;
+>>   
+>> +	if (intel_crtc_is_joiner_secondary(crtc_state))
+>> +		return;
+>> +
+>>   	intel_de_write(display, TRANS_VRR_VMIN(display, cpu_transcoder),
+>>   		       crtc_state->vrr.vmin - 1);
+>>   	intel_de_write(display, TRANS_VRR_VMAX(display, cpu_transcoder),
+>> @@ -590,6 +605,9 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
+>>   	if (!old_crtc_state->vrr.enable)
+>>   		return;
+>>   
+>> +	if (intel_crtc_is_joiner_secondary(old_crtc_state))
+>> +		return;
+> All thosea three cases should be impossible on account of
+> vrr.enable==false.
+>
+>> +
+>>   	if (!intel_vrr_always_use_vrr_tg(display)) {
+>>   		intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
+>>   			       trans_vrr_ctl(old_crtc_state));
+>> @@ -613,6 +631,9 @@ void intel_vrr_transcoder_enable(const struct intel_crtc_state *crtc_state)
+>>   	if (!intel_vrr_possible(crtc_state))
+>>   		return;
+>>   
+>> +	if (intel_crtc_is_joiner_secondary(crtc_state))
+>> +		return;
+>> +
+>>   	if (!intel_vrr_always_use_vrr_tg(display)) {
+>>   		intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
+>>   			       trans_vrr_ctl(crtc_state));
+>> @@ -637,6 +658,9 @@ void intel_vrr_transcoder_disable(const struct intel_crtc_state *crtc_state)
+>>   	if (!intel_vrr_possible(crtc_state))
+>>   		return;
+>>   
+>> +	if (intel_crtc_is_joiner_secondary(crtc_state))
+>> +		return;
+> And these two again shouldn't be called on the secondary crtc.
+>
+> So I think you should be able to drop all the
+> intel_crtc_is_joiner_secondary() checks from this patch.
 
-Although xe doesn't fully support WONTNEED (purgeable) bos yet,
-introduce and add shrinker support for purgeable ttm_tts.
+Got it. Will drop the secondary check in the next version.
 
-v2:
-- Cleanups bugfixes and a KUNIT shrinker test.
-- Add writeback support, and activate if kswapd.
-v3:
-- Move the try_shrink() helper to core TTM.
-- Minor cleanups.
-v4:
-- Add runtime pm for the shrinker. Shrinking may require an active
-  device for CCS metadata copying.
-v5:
-- Separately purge ghost- and zombie objects in the shrinker.
-- Fix a format specifier - type inconsistency. (Kernel test robot).
-v7:
-- s/long/s64/ (Christian König)
-- s/sofar/progress/ (Matt Brost)
-v8:
-- Rebase on Xe KUNIT update.
-- Add content verifying to the shrinker kunit test.
-- Split out TTM changes to a separate patch.
-- Get rid of multiple bool arguments for clarity (Matt Brost)
-- Avoid an error pointer dereference (Matt Brost)
-- Avoid an integer overflow (Matt Auld)
-- Address misc review comments by Matt Brost.
-v9:
-- Fix a compliation error.
-- Rebase.
-v10:
-- Update to new LRU walk interface.
-- Rework ghost-, zombie and purged object shrinking.
-- Rebase.
-v11:
-- Use additional TTM helpers.
-- Honor __GFP_FS and __GFP_IO
-- Rebase.
-v13:
-- Use ttm_tt_setup_backup().
-v14:
-- Don't set up backup on imported bos.
-v15:
-- Rebase on backup interface changes.
 
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: <dri-devel@lists.freedesktop.org>
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/Makefile          |   1 +
- drivers/gpu/drm/xe/tests/xe_bo.c     |   6 +-
- drivers/gpu/drm/xe/xe_bo.c           | 202 +++++++++++++++++++--
- drivers/gpu/drm/xe/xe_bo.h           |  36 ++++
- drivers/gpu/drm/xe/xe_device.c       |   8 +
- drivers/gpu/drm/xe/xe_device_types.h |   2 +
- drivers/gpu/drm/xe/xe_shrinker.c     | 258 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_shrinker.h     |  18 ++
- 8 files changed, 513 insertions(+), 18 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_shrinker.c
- create mode 100644 drivers/gpu/drm/xe/xe_shrinker.h
+Thanks Ville for the catching the issues, review comments and suggestions.
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 856b14fe1c4d..1d52224355f1 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -100,6 +100,7 @@ xe-y += xe_bb.o \
- 	xe_rtp.o \
- 	xe_sa.o \
- 	xe_sched_job.o \
-+	xe_shrinker.o \
- 	xe_step.o \
- 	xe_survivability_mode.o \
- 	xe_sync.o \
-diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
-index 6795d1d916e4..9fde67ca989f 100644
---- a/drivers/gpu/drm/xe/tests/xe_bo.c
-+++ b/drivers/gpu/drm/xe/tests/xe_bo.c
-@@ -514,8 +514,13 @@ static int shrink_test_run_device(struct xe_device *xe)
- 		 * other way around, they may not be subject to swapping...
- 		 */
- 		if (alloced < purgeable) {
-+			xe_ttm_tt_account_subtract(&xe_tt->ttm);
- 			xe_tt->purgeable = true;
-+			xe_ttm_tt_account_add(&xe_tt->ttm);
- 			bo->ttm.priority = 0;
-+			spin_lock(&bo->ttm.bdev->lru_lock);
-+			ttm_bo_move_to_lru_tail(&bo->ttm);
-+			spin_unlock(&bo->ttm.bdev->lru_lock);
- 		} else {
- 			int ret = shrink_test_fill_random(bo, &prng, link);
- 
-@@ -570,7 +575,6 @@ static int shrink_test_run_device(struct xe_device *xe)
- 				if (ret == -EINTR)
- 					intr = true;
- 			} while (ret == -EINTR && !signal_pending(current));
--
- 			if (!ret && !purgeable)
- 				failed = shrink_test_verify(test, bo, count, &prng, link);
- 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 25761924a8b4..c21e6bca3141 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -11,6 +11,7 @@
- #include <drm/drm_drv.h>
- #include <drm/drm_gem_ttm_helper.h>
- #include <drm/drm_managed.h>
-+#include <drm/ttm/ttm_backup.h>
- #include <drm/ttm/ttm_device.h>
- #include <drm/ttm/ttm_placement.h>
- #include <drm/ttm/ttm_tt.h>
-@@ -29,6 +30,7 @@
- #include "xe_preempt_fence.h"
- #include "xe_pxp.h"
- #include "xe_res_cursor.h"
-+#include "xe_shrinker.h"
- #include "xe_trace_bo.h"
- #include "xe_ttm_stolen_mgr.h"
- #include "xe_vm.h"
-@@ -307,9 +309,11 @@ static void xe_evict_flags(struct ttm_buffer_object *tbo,
- 	}
- }
- 
-+/* struct xe_ttm_tt - Subclassed ttm_tt for xe */
- struct xe_ttm_tt {
- 	struct ttm_tt ttm;
--	struct device *dev;
-+	/** @xe - The xe device */
-+	struct xe_device *xe;
- 	struct sg_table sgt;
- 	struct sg_table *sg;
- 	/** @purgeable: Whether the content of the pages of @ttm is purgeable. */
-@@ -322,7 +326,8 @@ static int xe_tt_map_sg(struct ttm_tt *tt)
- 	unsigned long num_pages = tt->num_pages;
- 	int ret;
- 
--	XE_WARN_ON(tt->page_flags & TTM_TT_FLAG_EXTERNAL);
-+	XE_WARN_ON((tt->page_flags & TTM_TT_FLAG_EXTERNAL) &&
-+		   !(tt->page_flags & TTM_TT_FLAG_EXTERNAL_MAPPABLE));
- 
- 	if (xe_tt->sg)
- 		return 0;
-@@ -330,13 +335,13 @@ static int xe_tt_map_sg(struct ttm_tt *tt)
- 	ret = sg_alloc_table_from_pages_segment(&xe_tt->sgt, tt->pages,
- 						num_pages, 0,
- 						(u64)num_pages << PAGE_SHIFT,
--						xe_sg_segment_size(xe_tt->dev),
-+						xe_sg_segment_size(xe_tt->xe->drm.dev),
- 						GFP_KERNEL);
- 	if (ret)
- 		return ret;
- 
- 	xe_tt->sg = &xe_tt->sgt;
--	ret = dma_map_sgtable(xe_tt->dev, xe_tt->sg, DMA_BIDIRECTIONAL,
-+	ret = dma_map_sgtable(xe_tt->xe->drm.dev, xe_tt->sg, DMA_BIDIRECTIONAL,
- 			      DMA_ATTR_SKIP_CPU_SYNC);
- 	if (ret) {
- 		sg_free_table(xe_tt->sg);
-@@ -352,7 +357,7 @@ static void xe_tt_unmap_sg(struct ttm_tt *tt)
- 	struct xe_ttm_tt *xe_tt = container_of(tt, struct xe_ttm_tt, ttm);
- 
- 	if (xe_tt->sg) {
--		dma_unmap_sgtable(xe_tt->dev, xe_tt->sg,
-+		dma_unmap_sgtable(xe_tt->xe->drm.dev, xe_tt->sg,
- 				  DMA_BIDIRECTIONAL, 0);
- 		sg_free_table(xe_tt->sg);
- 		xe_tt->sg = NULL;
-@@ -367,21 +372,47 @@ struct sg_table *xe_bo_sg(struct xe_bo *bo)
- 	return xe_tt->sg;
- }
- 
-+/*
-+ * Account ttm pages against the device shrinker's shrinkable and
-+ * purgeable counts.
-+ */
-+static void xe_ttm_tt_account_add(struct ttm_tt *tt)
-+{
-+	struct xe_ttm_tt *xe_tt = container_of(tt, struct xe_ttm_tt, ttm);
-+
-+	if (xe_tt->purgeable)
-+		xe_shrinker_mod_pages(xe_tt->xe->mem.shrinker, 0, tt->num_pages);
-+	else
-+		xe_shrinker_mod_pages(xe_tt->xe->mem.shrinker, tt->num_pages, 0);
-+}
-+
-+static void xe_ttm_tt_account_subtract(struct ttm_tt *tt)
-+{
-+	struct xe_ttm_tt *xe_tt = container_of(tt, struct xe_ttm_tt, ttm);
-+
-+	if (xe_tt->purgeable)
-+		xe_shrinker_mod_pages(xe_tt->xe->mem.shrinker, 0, -(long)tt->num_pages);
-+	else
-+		xe_shrinker_mod_pages(xe_tt->xe->mem.shrinker, -(long)tt->num_pages, 0);
-+}
-+
- static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
- 				       u32 page_flags)
- {
- 	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
- 	struct xe_device *xe = xe_bo_device(bo);
--	struct xe_ttm_tt *tt;
-+	struct xe_ttm_tt *xe_tt;
-+	struct ttm_tt *tt;
- 	unsigned long extra_pages;
- 	enum ttm_caching caching = ttm_cached;
- 	int err;
- 
--	tt = kzalloc(sizeof(*tt), GFP_KERNEL);
--	if (!tt)
-+	xe_tt = kzalloc(sizeof(*xe_tt), GFP_KERNEL);
-+	if (!xe_tt)
- 		return NULL;
- 
--	tt->dev = xe->drm.dev;
-+	tt = &xe_tt->ttm;
-+	xe_tt->xe = xe;
- 
- 	extra_pages = 0;
- 	if (xe_bo_needs_ccs_pages(bo))
-@@ -427,42 +458,66 @@ static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
- 		caching = ttm_uncached;
- 	}
- 
--	err = ttm_tt_init(&tt->ttm, &bo->ttm, page_flags, caching, extra_pages);
-+	if (ttm_bo->type != ttm_bo_type_sg)
-+		page_flags |= TTM_TT_FLAG_EXTERNAL | TTM_TT_FLAG_EXTERNAL_MAPPABLE;
-+
-+	err = ttm_tt_init(tt, &bo->ttm, page_flags, caching, extra_pages);
- 	if (err) {
--		kfree(tt);
-+		kfree(xe_tt);
- 		return NULL;
- 	}
- 
--	return &tt->ttm;
-+	if (ttm_bo->type != ttm_bo_type_sg) {
-+		err = ttm_tt_setup_backup(tt);
-+		if (err) {
-+			ttm_tt_fini(tt);
-+			kfree(xe_tt);
-+			return NULL;
-+		}
-+	}
-+
-+	return tt;
- }
- 
- static int xe_ttm_tt_populate(struct ttm_device *ttm_dev, struct ttm_tt *tt,
- 			      struct ttm_operation_ctx *ctx)
- {
-+	struct xe_ttm_tt *xe_tt = container_of(tt, struct xe_ttm_tt, ttm);
- 	int err;
- 
- 	/*
- 	 * dma-bufs are not populated with pages, and the dma-
- 	 * addresses are set up when moved to XE_PL_TT.
- 	 */
--	if (tt->page_flags & TTM_TT_FLAG_EXTERNAL)
-+	if ((tt->page_flags & TTM_TT_FLAG_EXTERNAL) &&
-+	    !(tt->page_flags & TTM_TT_FLAG_EXTERNAL_MAPPABLE))
- 		return 0;
- 
--	err = ttm_pool_alloc(&ttm_dev->pool, tt, ctx);
-+	if (ttm_tt_is_backed_up(tt) && !xe_tt->purgeable) {
-+		err = ttm_tt_restore(ttm_dev, tt, ctx);
-+	} else {
-+		ttm_tt_clear_backed_up(tt);
-+		err = ttm_pool_alloc(&ttm_dev->pool, tt, ctx);
-+	}
- 	if (err)
- 		return err;
- 
--	return err;
-+	xe_tt->purgeable = false;
-+	xe_ttm_tt_account_add(tt);
-+
-+	return 0;
- }
- 
- static void xe_ttm_tt_unpopulate(struct ttm_device *ttm_dev, struct ttm_tt *tt)
- {
--	if (tt->page_flags & TTM_TT_FLAG_EXTERNAL)
-+	if ((tt->page_flags & TTM_TT_FLAG_EXTERNAL) &&
-+	    !(tt->page_flags & TTM_TT_FLAG_EXTERNAL_MAPPABLE))
- 		return;
- 
- 	xe_tt_unmap_sg(tt);
- 
--	return ttm_pool_free(&ttm_dev->pool, tt);
-+	ttm_pool_free(&ttm_dev->pool, tt);
-+	xe_ttm_tt_account_subtract(tt);
- }
- 
- static void xe_ttm_tt_destroy(struct ttm_device *ttm_dev, struct ttm_tt *tt)
-@@ -912,6 +967,111 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 	return ret;
- }
- 
-+static long xe_bo_shrink_purge(struct ttm_operation_ctx *ctx,
-+			       struct ttm_buffer_object *bo,
-+			       unsigned long *scanned)
-+{
-+	long lret;
-+
-+	/* Fake move to system, without copying data. */
-+	if (bo->resource->mem_type != XE_PL_SYSTEM) {
-+		struct ttm_resource *new_resource;
-+
-+		lret = ttm_bo_wait_ctx(bo, ctx);
-+		if (lret)
-+			return lret;
-+
-+		lret = ttm_bo_mem_space(bo, &sys_placement, &new_resource, ctx);
-+		if (lret)
-+			return lret;
-+
-+		xe_tt_unmap_sg(bo->ttm);
-+		ttm_bo_move_null(bo, new_resource);
-+	}
-+
-+	*scanned += bo->ttm->num_pages;
-+	lret = ttm_bo_shrink(ctx, bo, (struct ttm_bo_shrink_flags)
-+			     {.purge = true,
-+			      .writeback = false,
-+			      .allow_move = false});
-+
-+	if (lret > 0)
-+		xe_ttm_tt_account_subtract(bo->ttm);
-+
-+	return lret;
-+}
-+
-+/**
-+ * xe_bo_shrink() - Try to shrink an xe bo.
-+ * @ctx: The struct ttm_operation_ctx used for shrinking.
-+ * @bo: The TTM buffer object whose pages to shrink.
-+ * @flags: Flags governing the shrink behaviour.
-+ * @scanned: Pointer to a counter of the number of pages
-+ * attempted to shrink.
-+ *
-+ * Try to shrink- or purge a bo, and if it succeeds, unmap dma.
-+ * Note that we need to be able to handle also non xe bos
-+ * (ghost bos), but only if the struct ttm_tt is embedded in
-+ * a struct xe_ttm_tt. When the function attempts to shrink
-+ * the pages of a buffer object, The value pointed to by @scanned
-+ * is updated.
-+ *
-+ * Return: The number of pages shrunken or purged, or negative error
-+ * code on failure.
-+ */
-+long xe_bo_shrink(struct ttm_operation_ctx *ctx, struct ttm_buffer_object *bo,
-+		  const struct xe_bo_shrink_flags flags,
-+		  unsigned long *scanned)
-+{
-+	struct ttm_tt *tt = bo->ttm;
-+	struct xe_ttm_tt *xe_tt = container_of(tt, struct xe_ttm_tt, ttm);
-+	struct ttm_place place = {.mem_type = bo->resource->mem_type};
-+	struct xe_bo *xe_bo = ttm_to_xe_bo(bo);
-+	struct xe_device *xe = xe_tt->xe;
-+	bool needs_rpm;
-+	long lret = 0L;
-+
-+	if (!(tt->page_flags & TTM_TT_FLAG_EXTERNAL_MAPPABLE) ||
-+	    (flags.purge && !xe_tt->purgeable))
-+		return -EBUSY;
-+
-+	if (!ttm_bo_eviction_valuable(bo, &place))
-+		return -EBUSY;
-+
-+	if (!xe_bo_is_xe_bo(bo) || !xe_bo_get_unless_zero(xe_bo))
-+		return xe_bo_shrink_purge(ctx, bo, scanned);
-+
-+	if (xe_tt->purgeable) {
-+		if (bo->resource->mem_type != XE_PL_SYSTEM)
-+			lret = xe_bo_move_notify(xe_bo, ctx);
-+		if (!lret)
-+			lret = xe_bo_shrink_purge(ctx, bo, scanned);
-+		goto out_unref;
-+	}
-+
-+	/* System CCS needs gpu copy when moving PL_TT -> PL_SYSTEM */
-+	needs_rpm = (!IS_DGFX(xe) && bo->resource->mem_type != XE_PL_SYSTEM &&
-+		     xe_bo_needs_ccs_pages(xe_bo));
-+	if (needs_rpm && !xe_pm_runtime_get_if_active(xe))
-+		goto out_unref;
-+
-+	*scanned += tt->num_pages;
-+	lret = ttm_bo_shrink(ctx, bo, (struct ttm_bo_shrink_flags)
-+			     {.purge = false,
-+			      .writeback = flags.writeback,
-+			      .allow_move = true});
-+	if (needs_rpm)
-+		xe_pm_runtime_put(xe);
-+
-+	if (lret > 0)
-+		xe_ttm_tt_account_subtract(tt);
-+
-+out_unref:
-+	xe_bo_put(xe_bo);
-+
-+	return lret;
-+}
-+
- /**
-  * xe_bo_evict_pinned() - Evict a pinned VRAM object to system memory
-  * @bo: The buffer object to move.
-@@ -1929,6 +2089,8 @@ int xe_bo_pin_external(struct xe_bo *bo)
- 	}
- 
- 	ttm_bo_pin(&bo->ttm);
-+	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
-+		xe_ttm_tt_account_subtract(bo->ttm.ttm);
- 
- 	/*
- 	 * FIXME: If we always use the reserve / unreserve functions for locking
-@@ -1988,6 +2150,8 @@ int xe_bo_pin(struct xe_bo *bo)
- 	}
- 
- 	ttm_bo_pin(&bo->ttm);
-+	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
-+		xe_ttm_tt_account_subtract(bo->ttm.ttm);
- 
- 	/*
- 	 * FIXME: If we always use the reserve / unreserve functions for locking
-@@ -2022,6 +2186,8 @@ void xe_bo_unpin_external(struct xe_bo *bo)
- 	spin_unlock(&xe->pinned.lock);
- 
- 	ttm_bo_unpin(&bo->ttm);
-+	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
-+		xe_ttm_tt_account_add(bo->ttm.ttm);
- 
- 	/*
- 	 * FIXME: If we always use the reserve / unreserve functions for locking
-@@ -2045,6 +2211,8 @@ void xe_bo_unpin(struct xe_bo *bo)
- 		spin_unlock(&xe->pinned.lock);
- 	}
- 	ttm_bo_unpin(&bo->ttm);
-+	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
-+		xe_ttm_tt_account_add(bo->ttm.ttm);
- }
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index a25340949415..2a7240c45511 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -148,6 +148,28 @@ static inline struct xe_bo *xe_bo_get(struct xe_bo *bo)
- 
- void xe_bo_put(struct xe_bo *bo);
- 
-+/*
-+ * xe_bo_get_unless_zero() - Conditionally obtain a GEM object refcount on an
-+ * xe bo
-+ * @bo: The bo for which we want to obtain a refcount.
-+ *
-+ * There is a short window between where the bo's GEM object refcount reaches
-+ * zero and where we put the final ttm_bo reference. Code in the eviction- and
-+ * shrinking path should therefore attempt to grab a gem object reference before
-+ * trying to use members outside of the base class ttm object. This function is
-+ * intended for that purpose. On successful return, this function must be paired
-+ * with an xe_bo_put().
-+ *
-+ * Return: @bo on success, NULL on failure.
-+ */
-+static inline __must_check struct xe_bo *xe_bo_get_unless_zero(struct xe_bo *bo)
-+{
-+	if (!bo || !kref_get_unless_zero(&bo->ttm.base.refcount))
-+		return NULL;
-+
-+	return bo;
-+}
-+
- static inline void __xe_bo_unset_bulk_move(struct xe_bo *bo)
- {
- 	if (bo)
-@@ -349,6 +371,20 @@ static inline unsigned int xe_sg_segment_size(struct device *dev)
- 	return round_down(max / 2, PAGE_SIZE);
- }
- 
-+/**
-+ * struct xe_bo_shrink_flags - flags governing the shrink behaviour.
-+ * @purge: Only purging allowed. Don't shrink if bo not purgeable.
-+ * @writeback: Attempt to immediately move content to swap.
-+ */
-+struct xe_bo_shrink_flags {
-+	u32 purge : 1;
-+	u32 writeback : 1;
-+};
-+
-+long xe_bo_shrink(struct ttm_operation_ctx *ctx, struct ttm_buffer_object *bo,
-+		  const struct xe_bo_shrink_flags flags,
-+		  unsigned long *scanned);
-+
- #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
- /**
-  * xe_bo_is_mem_type - Whether the bo currently resides in the given
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 9454b51f7ad8..539da525aa14 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -52,6 +52,7 @@
- #include "xe_pmu.h"
- #include "xe_pxp.h"
- #include "xe_query.h"
-+#include "xe_shrinker.h"
- #include "xe_sriov.h"
- #include "xe_tile.h"
- #include "xe_ttm_stolen_mgr.h"
-@@ -396,6 +397,9 @@ static void xe_device_destroy(struct drm_device *dev, void *dummy)
- 	if (xe->unordered_wq)
- 		destroy_workqueue(xe->unordered_wq);
- 
-+	if (!IS_ERR_OR_NULL(xe->mem.shrinker))
-+		xe_shrinker_destroy(xe->mem.shrinker);
-+
- 	if (xe->destroy_wq)
- 		destroy_workqueue(xe->destroy_wq);
- 
-@@ -428,6 +432,10 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
- 	if (err)
- 		goto err;
- 
-+	xe->mem.shrinker = xe_shrinker_create(xe);
-+	if (IS_ERR(xe->mem.shrinker))
-+		return ERR_CAST(xe->mem.shrinker);
-+
- 	xe->info.devid = pdev->device;
- 	xe->info.revid = pdev->revision;
- 	xe->info.force_execlist = xe_modparam.force_execlist;
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 833c29fed3a3..604a69c494e5 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -372,6 +372,8 @@ struct xe_device {
- 		struct xe_vram_region vram;
- 		/** @mem.sys_mgr: system TTM manager */
- 		struct ttm_resource_manager sys_mgr;
-+		/** @mem.sys_mgr: system memory shrinker. */
-+		struct xe_shrinker *shrinker;
- 	} mem;
- 
- 	/** @sriov: device level virtualization data */
-diff --git a/drivers/gpu/drm/xe/xe_shrinker.c b/drivers/gpu/drm/xe/xe_shrinker.c
-new file mode 100644
-index 000000000000..8184390f9c7b
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_shrinker.c
-@@ -0,0 +1,258 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#include <linux/shrinker.h>
-+
-+#include <drm/ttm/ttm_backup.h>
-+#include <drm/ttm/ttm_bo.h>
-+#include <drm/ttm/ttm_tt.h>
-+
-+#include "xe_bo.h"
-+#include "xe_pm.h"
-+#include "xe_shrinker.h"
-+
-+/**
-+ * struct xe_shrinker - per-device shrinker
-+ * @xe: Back pointer to the device.
-+ * @lock: Lock protecting accounting.
-+ * @shrinkable_pages: Number of pages that are currently shrinkable.
-+ * @purgeable_pages: Number of pages that are currently purgeable.
-+ * @shrink: Pointer to the mm shrinker.
-+ * @pm_worker: Worker to wake up the device if required.
-+ */
-+struct xe_shrinker {
-+	struct xe_device *xe;
-+	rwlock_t lock;
-+	long shrinkable_pages;
-+	long purgeable_pages;
-+	struct shrinker *shrink;
-+	struct work_struct pm_worker;
-+};
-+
-+static struct xe_shrinker *to_xe_shrinker(struct shrinker *shrink)
-+{
-+	return shrink->private_data;
-+}
-+
-+/**
-+ * xe_shrinker_mod_pages() - Modify shrinker page accounting
-+ * @shrinker: Pointer to the struct xe_shrinker.
-+ * @shrinkable: Shrinkable pages delta. May be negative.
-+ * @purgeable: Purgeable page delta. May be negative.
-+ *
-+ * Modifies the shrinkable and purgeable pages accounting.
-+ */
-+void
-+xe_shrinker_mod_pages(struct xe_shrinker *shrinker, long shrinkable, long purgeable)
-+{
-+	write_lock(&shrinker->lock);
-+	shrinker->shrinkable_pages += shrinkable;
-+	shrinker->purgeable_pages += purgeable;
-+	write_unlock(&shrinker->lock);
-+}
-+
-+static s64 xe_shrinker_walk(struct xe_device *xe,
-+			    struct ttm_operation_ctx *ctx,
-+			    const struct xe_bo_shrink_flags flags,
-+			    unsigned long to_scan, unsigned long *scanned)
-+{
-+	unsigned int mem_type;
-+	s64 freed = 0, lret;
-+
-+	for (mem_type = XE_PL_SYSTEM; mem_type <= XE_PL_TT; ++mem_type) {
-+		struct ttm_resource_manager *man = ttm_manager_type(&xe->ttm, mem_type);
-+		struct ttm_bo_lru_cursor curs;
-+		struct ttm_buffer_object *ttm_bo;
-+
-+		if (!man || !man->use_tt)
-+			continue;
-+
-+		ttm_bo_lru_for_each_reserved_guarded(&curs, man, ctx, ttm_bo) {
-+			if (!ttm_bo_shrink_suitable(ttm_bo, ctx))
-+				continue;
-+
-+			lret = xe_bo_shrink(ctx, ttm_bo, flags, scanned);
-+			if (lret < 0)
-+				return lret;
-+
-+			freed += lret;
-+			if (*scanned >= to_scan)
-+				break;
-+		}
-+	}
-+
-+	return freed;
-+}
-+
-+static unsigned long
-+xe_shrinker_count(struct shrinker *shrink, struct shrink_control *sc)
-+{
-+	struct xe_shrinker *shrinker = to_xe_shrinker(shrink);
-+	unsigned long num_pages;
-+	bool can_backup = !!(sc->gfp_mask & __GFP_FS);
-+
-+	num_pages = ttm_backup_bytes_avail() >> PAGE_SHIFT;
-+	read_lock(&shrinker->lock);
-+
-+	if (can_backup)
-+		num_pages = min_t(unsigned long, num_pages, shrinker->shrinkable_pages);
-+	else
-+		num_pages = 0;
-+
-+	num_pages += shrinker->purgeable_pages;
-+	read_unlock(&shrinker->lock);
-+
-+	return num_pages ? num_pages : SHRINK_EMPTY;
-+}
-+
-+/*
-+ * Check if we need runtime pm, and if so try to grab a reference if
-+ * already active. If grabbing a reference fails, queue a worker that
-+ * does it for us outside of reclaim, but don't wait for it to complete.
-+ * If bo shrinking needs an rpm reference and we don't have it (yet),
-+ * that bo will be skipped anyway.
-+ */
-+static bool xe_shrinker_runtime_pm_get(struct xe_shrinker *shrinker, bool force,
-+				       unsigned long nr_to_scan, bool can_backup)
-+{
-+	struct xe_device *xe = shrinker->xe;
-+
-+	if (IS_DGFX(xe) || !xe_device_has_flat_ccs(xe) ||
-+	    !ttm_backup_bytes_avail())
-+		return false;
-+
-+	if (!force) {
-+		read_lock(&shrinker->lock);
-+		force = (nr_to_scan > shrinker->purgeable_pages && can_backup);
-+		read_unlock(&shrinker->lock);
-+		if (!force)
-+			return false;
-+	}
-+
-+	if (!xe_pm_runtime_get_if_active(xe)) {
-+		if (xe_rpm_reclaim_safe(xe) && !ttm_bo_shrink_avoid_wait()) {
-+			xe_pm_runtime_get(xe);
-+			return true;
-+		}
-+		queue_work(xe->unordered_wq, &shrinker->pm_worker);
-+		return false;
-+	}
-+
-+	return true;
-+}
-+
-+static void xe_shrinker_runtime_pm_put(struct xe_shrinker *shrinker, bool runtime_pm)
-+{
-+	if (runtime_pm)
-+		xe_pm_runtime_put(shrinker->xe);
-+}
-+
-+static unsigned long xe_shrinker_scan(struct shrinker *shrink, struct shrink_control *sc)
-+{
-+	struct xe_shrinker *shrinker = to_xe_shrinker(shrink);
-+	struct ttm_operation_ctx ctx = {
-+		.interruptible = false,
-+		.no_wait_gpu = ttm_bo_shrink_avoid_wait(),
-+	};
-+	unsigned long nr_to_scan, nr_scanned = 0, freed = 0;
-+	struct xe_bo_shrink_flags shrink_flags = {
-+		.purge = true,
-+		/* Don't request writeback without __GFP_IO. */
-+		.writeback = !ctx.no_wait_gpu && (sc->gfp_mask & __GFP_IO),
-+	};
-+	bool runtime_pm;
-+	bool purgeable;
-+	bool can_backup = !!(sc->gfp_mask & __GFP_FS);
-+	s64 lret;
-+
-+	nr_to_scan = sc->nr_to_scan;
-+
-+	read_lock(&shrinker->lock);
-+	purgeable = !!shrinker->purgeable_pages;
-+	read_unlock(&shrinker->lock);
-+
-+	/* Might need runtime PM. Try to wake early if it looks like it. */
-+	runtime_pm = xe_shrinker_runtime_pm_get(shrinker, false, nr_to_scan, can_backup);
-+
-+	if (purgeable && nr_scanned < nr_to_scan) {
-+		lret = xe_shrinker_walk(shrinker->xe, &ctx, shrink_flags,
-+					nr_to_scan, &nr_scanned);
-+		if (lret >= 0)
-+			freed += lret;
-+	}
-+
-+	sc->nr_scanned = nr_scanned;
-+	if (nr_scanned >= nr_to_scan || !can_backup)
-+		goto out;
-+
-+	/* If we didn't wake before, try to do it now if needed. */
-+	if (!runtime_pm)
-+		runtime_pm = xe_shrinker_runtime_pm_get(shrinker, true, 0, can_backup);
-+
-+	shrink_flags.purge = false;
-+	lret = xe_shrinker_walk(shrinker->xe, &ctx, shrink_flags,
-+				nr_to_scan, &nr_scanned);
-+	if (lret >= 0)
-+		freed += lret;
-+
-+	sc->nr_scanned = nr_scanned;
-+out:
-+	xe_shrinker_runtime_pm_put(shrinker, runtime_pm);
-+	return nr_scanned ? freed : SHRINK_STOP;
-+}
-+
-+/* Wake up the device for shrinking. */
-+static void xe_shrinker_pm(struct work_struct *work)
-+{
-+	struct xe_shrinker *shrinker =
-+		container_of(work, typeof(*shrinker), pm_worker);
-+
-+	xe_pm_runtime_get(shrinker->xe);
-+	xe_pm_runtime_put(shrinker->xe);
-+}
-+
-+/**
-+ * xe_shrinker_create() - Create an xe per-device shrinker
-+ * @xe: Pointer to the xe device.
-+ *
-+ * Returns: A pointer to the created shrinker on success,
-+ * Negative error code on failure.
-+ */
-+struct xe_shrinker *xe_shrinker_create(struct xe_device *xe)
-+{
-+	struct xe_shrinker *shrinker = kzalloc(sizeof(*shrinker), GFP_KERNEL);
-+
-+	if (!shrinker)
-+		return ERR_PTR(-ENOMEM);
-+
-+	shrinker->shrink = shrinker_alloc(0, "xe system shrinker");
-+	if (!shrinker->shrink) {
-+		kfree(shrinker);
-+		return ERR_PTR(-ENOMEM);
-+	}
-+
-+	INIT_WORK(&shrinker->pm_worker, xe_shrinker_pm);
-+	shrinker->xe = xe;
-+	rwlock_init(&shrinker->lock);
-+	shrinker->shrink->count_objects = xe_shrinker_count;
-+	shrinker->shrink->scan_objects = xe_shrinker_scan;
-+	shrinker->shrink->private_data = shrinker;
-+	shrinker_register(shrinker->shrink);
-+
-+	return shrinker;
-+}
-+
-+/**
-+ * xe_shrinker_destroy() - Destroy an xe per-device shrinker
-+ * @shrinker: Pointer to the shrinker to destroy.
-+ */
-+void xe_shrinker_destroy(struct xe_shrinker *shrinker)
-+{
-+	xe_assert(shrinker->xe, !shrinker->shrinkable_pages);
-+	xe_assert(shrinker->xe, !shrinker->purgeable_pages);
-+	shrinker_free(shrinker->shrink);
-+	flush_work(&shrinker->pm_worker);
-+	kfree(shrinker);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_shrinker.h b/drivers/gpu/drm/xe/xe_shrinker.h
-new file mode 100644
-index 000000000000..28a038f4fcbf
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_shrinker.h
-@@ -0,0 +1,18 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#ifndef _XE_SHRINKER_H_
-+#define _XE_SHRINKER_H_
-+
-+struct xe_shrinker;
-+struct xe_device;
-+
-+void xe_shrinker_mod_pages(struct xe_shrinker *shrinker, long shrinkable, long purgeable);
-+
-+struct xe_shrinker *xe_shrinker_create(struct xe_device *xe);
-+
-+void xe_shrinker_destroy(struct xe_shrinker *shrinker);
-+
-+#endif
--- 
-2.48.1
+Will figure out the fix for the warn on and do the suggested changes in 
+next version.
 
+
+Regards,
+
+Ankit
+
+
+>
+>> +
+>>   	if (!intel_vrr_always_use_vrr_tg(display)) {
+>>   		intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
+>>   			       trans_vrr_ctl(crtc_state));
+>> -- 
+>> 2.45.2
