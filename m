@@ -4,58 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9230EC282EC
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Mar 2025 13:15:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2256C19F32
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Mar 2025 13:16:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FC7410E7F1;
-	Wed,  5 Mar 2025 13:15:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CA7A10E80A;
+	Wed,  5 Mar 2025 13:16:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bw+ZfXfb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bRVE3pdR";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 537C910E80B;
- Wed,  5 Mar 2025 13:15:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55C1810E822;
+ Wed,  5 Mar 2025 13:15:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741180547; x=1772716547;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=RHL/LfM4MY5BWpeRUhj7wB6LY7xRp451DsxpWJUqwmc=;
- b=Bw+ZfXfbbyooZ+iYJg6TD3XJi2Ru4sdtR/WNFJskiqKaswwA0Bf8uAI8
- P5Y6AuW+RS1/shxQorL+5KjBWe3515INJ+7tb/jJ+JHwDufpoNI7Aq+ks
- tjFFf3OgoGn9iIrBBPaJXyoz37C7gpIBZ8OjJ4oa1ZFCGKep4J25vqztZ
- UwUsJO5aGqYNpfG2RQMRRXAzh6xEbNUEED2JrHmmm+i793KM5YAX/d0k/
- XZhQe3DdoHwyylcaOvvyM1M6aPOLY8XSFso7x2cvDayGl+WrBZhrfIe6C
- lpcbsTu7e6Qmn8wHwyMF6Q5xKcYYtqGH++oPnyU0VcVbpU5+T07jbvxl3 A==;
-X-CSE-ConnectionGUID: DMBK/C3/TcaUS9F1SJi60g==
-X-CSE-MsgGUID: afgMRibVS9uHYoAx3hkI3Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="59685667"
-X-IronPort-AV: E=Sophos;i="6.14,223,1736841600"; d="scan'208";a="59685667"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2025 05:15:46 -0800
-X-CSE-ConnectionGUID: 9G7NbQvPRGiNt8X1faWNFQ==
-X-CSE-MsgGUID: /MqrLcjFTZKUdXdEVg6LLg==
+ t=1741180559; x=1772716559;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=FSA9Ozv525IV5w6+GJaUCX1AAA/L5wOmQaWsfimaaX4=;
+ b=bRVE3pdRrPUhBZzx3R3IJwBuZtr0HlF07kq+erI2ly6o1hAch/0BPwOT
+ FPFnzBVMkZQjt9+99NG3Nf9rTSh0GX9yTkz9i1+Z25cumgYnsLTze01rq
+ siuMmtKvgwz5uZJEL/vSQfbIV+ve6ZAfEcbvEP3GM7YnJ1TwP14LhVc+M
+ UmaOO1LyRmNHqvRFB+VjmHAud/+he+tbkripsStcoLSCSMgs/HP6bf4rB
+ Rzf7OL1KNxUiZXp0YoNZQrM8quymt8CNpDDmCiYHe48HQN50YCziHFSJ6
+ 09JMdA69WduG+Dgvm++L6JmEZxAMTQkp/t4fU9ax263pW8heiS1I0nSCl w==;
+X-CSE-ConnectionGUID: fnpU1dFrRjiF3aPCjSr8qQ==
+X-CSE-MsgGUID: hPtxTECjTlSOfz+hGNE5aA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="53537157"
+X-IronPort-AV: E=Sophos;i="6.14,223,1736841600"; d="scan'208";a="53537157"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2025 05:15:59 -0800
+X-CSE-ConnectionGUID: +qx5GYliTR65WIshKN7ndw==
+X-CSE-MsgGUID: CFm95MOBS+qd55cWAF9+lQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,223,1736841600"; d="scan'208";a="118701271"
-Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by orviesa006.jf.intel.com with ESMTP; 05 Mar 2025 05:15:42 -0800
-From: Uma Shankar <uma.shankar@intel.com>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, harry.wentland@amd.com,
- pekka.paalanen@haloniitty.fi, sebastian.wick@redhat.com, jadahl@redhat.com,
- mwen@igalia.com, contact@emersion.fr, naveen1.kumar@intel.com,
- dmitry.baryshkov@linaro.org, Uma Shankar <uma.shankar@intel.com>
-Subject: [v3 23/23] drm/doc/rfc: Add documentation for multi-segmented 1D LUT
-Date: Wed,  5 Mar 2025 18:56:08 +0530
-Message-ID: <20250305132608.2379253-24-uma.shankar@intel.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20250305132608.2379253-1-uma.shankar@intel.com>
-References: <20250305132608.2379253-1-uma.shankar@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="118610885"
+Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
+ by orviesa010.jf.intel.com with ESMTP; 05 Mar 2025 05:15:55 -0800
+Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1tpobI-000KzO-36;
+ Wed, 05 Mar 2025 13:15:52 +0000
+Date: Wed, 5 Mar 2025 21:15:08 +0800
+From: kernel test robot <lkp@intel.com>
+To: Su Hui <suhui@nfschina.com>, lucas.demarchi@intel.com,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch
+Cc: oe-kbuild-all@lists.linux.dev, Su Hui <suhui@nfschina.com>,
+ ilpo.jarvinen@linux.intel.com, andriy.shevchenko@linux.intel.com,
+ michael.j.ruhl@intel.com, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ kernel-janitors@vger.kernel.org
+Subject: Re: [PATCH] drm/xe: Select INTEL_VSEC to fix build dependency
+Message-ID: <202503052153.gQnXU123-lkp@intel.com>
+References: <20250227073205.1248282-1-suhui@nfschina.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250227073205.1248282-1-suhui@nfschina.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,181 +75,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add documentation to explain properties of the exposed hardware
-1D LUT blocks, its identification and computation of the LUT samples
-based on the number of samples, their distribution and precison.
+Hi Su,
 
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Signed-off-by: Uma Shankar <uma.shankar@intel.com>
----
- Documentation/gpu/rfc/color_pipeline.rst | 142 ++++++++++++++++++++++-
- 1 file changed, 141 insertions(+), 1 deletion(-)
+kernel test robot noticed the following build errors:
 
-diff --git a/Documentation/gpu/rfc/color_pipeline.rst b/Documentation/gpu/rfc/color_pipeline.rst
-index 0470c4bc1148..1fb926eba82a 100644
---- a/Documentation/gpu/rfc/color_pipeline.rst
-+++ b/Documentation/gpu/rfc/color_pipeline.rst
-@@ -279,6 +279,125 @@ pipeline might look like this::
-     ├─ "CURVE_1D_TYPE": enum {sRGB EOTF, PQ EOTF} = sRGB EOTF
-     └─ "NEXT" (immutable) = 0
- 
-+Discover capabilities of 1D LUT HW block
-+----------------------------------------
-+
-+The driver exposes a blob property(HW_CAPS) which allows user-space to
-+parse and extract the hardware capabilities of 1D LUT. These include
-+number of LUT segments, number of LUT samples per segment, start and end
-+point of respective segments and the precision of the LUT sample along
-+with the normalization factor. This is how the capability structure look like
-+
-+	struct drm_color_lut_range {
-+	       __u32 flags;
-+	       __u16 count;
-+	       __s32 start, end;
-+	       __u32 norm_factor;
-+
-+	       struct {
-+	               __u16 intp;
-+	               __u16 fracp;
-+	       } precision;
-+	};
-+
-+If a hardware has multiple segments in 1D LUT, each segment will be represented
-+by one instance of the above structure and the whole 1D LUT block will be represented
-+by an array of drm_color_lut_range.
-+
-+Here,
-+
-+flags : This indicates LUT characteristics like linearly increasing, negative
-+	reflect or any other property of the LUT.
-+
-+count : Number of samples in the respective segments.
-+
-+start, end : It indicates the starting point and ending point of the segment respectively.
-+	This represent a point in 0 to 1.0 color space curve and the value depends on
-+	the normalization factor chosen.
-+
-+norm_factor : This factor helps define a scale to represent LUT sample with the smallest step size
-+	      in case of uniform or non-uniform LUT sample distribution.
-+
-+precision: It indicates the fixed point precision of HW LUT including integer and fractional component.
-+
-+To explain the usage with some real life example
-+------------------------------------------------
-+
-+1. Conventional 1D LUT with just one segment
-+
-+		|---|---|------------------------------------|
-+		0   1   2                                   1024
-+
-+
-+	- Hardware Description: A color block with a LUT linearly interpolating and
-+				covering range from 0 to 1.0
-+					- Number of segments - 1
-+					- Number of samples in LUT 1024
-+					- Precision of LUT samples in HW 0.10
-+					- Normalization Factor - Max value to represent 1.0
-+						 in terms of smallest step size which is 1024.
-+
-+	In this case, it will be represented by the following structure.
-+
-+	struct drm_color_lut_range lut_1024[] = {
-+			.start = 0 .end = (1 << 10);
-+			.normalization_factor = 1024;
-+			.count = 1024;
-+			.precision {
-+				.int_comp = 0;
-+				.fractional_comp = 10;
-+			}
-+		}
-+
-+2. Piece Wise Linear 1D LUT2. Piece Wise Linear 1D LUT
-+
-+	        |---|---|------------------------------------|
-+		0   1   2                                   32
-+		|    \
-+                |       \
-+                |          \
-+                |             \
-+                |                \
-+		0                   \
-+                |---|---|--...-------|
-+		0   1   2            8
-+
-+	- Hardware Description: A color block with a LUT linearly interpolating and
-+				covering range from 0 to 1.0
-+					- Number of segments 2
-+					- Number of samples
-+						- segment 1 - 9 (covers range from 0 to 1/32)
-+						- segment 2 - 30 (covers range from 2/32 to 1.0)
-+					- Precision of LUT samples in HW 0.24
-+					- Normalization Factor - Max value to represent 1.0
-+						 in terms of smallest step size which is 8*32.
-+
-+		struct drm_color_lut_range lut_pwl[] = {
-+		        /* segment 1 */
-+		        {
-+				.count = 9,
-+				.start = 0, .end = 8,
-+				.norm_factor = 8*32,
-+				.precision = {
-+					.intp = 0,
-+					.fracp = 24,
-+				},
-+			},
-+		        /* segment 2 */
-+			{
-+				.count = 30,
-+				.start = 8*2, .end = 8*32,
-+				.norm_factor = 8*32,
-+				.precision = {
-+					.intp = 0,
-+					.fracp = 24,
-+				},
-+		        },
-+		}
-+
-+Note: In case HW supports overlapping LUTs expectation from uAPI is that the respective HW vendor
-+driver expose it as linearly increasing LUT and it will internally handle the programming of the
-+overlapping sections.
- 
- Color Pipeline Programming
- ==========================
-@@ -320,6 +439,27 @@ property values::
-     ├─ "CURVE_1D_TYPE" = PQ EOTF
-     └─ "BYPASS" = false
- 
-+Programming 1d LUT HW block
-+---------------------------
-+
-+In order to compute the LUT samples, userspace will parse the drm_color_lut_range structure to
-+get the LUT distribution of the underlying HW block.
-+
-+It needs to compute the normalized value of the LUT sample using the normalization factor provided
-+by the driver. The normalized value can then be scaled to the LUT precision of the HW. The computed
-+LUT samples will be packed in a blob and passed to the driver to be programmed in HW.
-+
-+The pseudo code of calculating the LUT samples for a linear LUT is described below.
-+
-+	for (i = 0; i < sample_count; i++) {
-+			                  start                         end - start
-+		normalized_value = ---------------------- + ----------------------------------------- * i
-+			            normalization_factor    (sample_count - 1) * normalization_factor
-+
-+		lut[i] = normalized_value * lut_precision /* (1 << precision.fracp) */
-+	}
-+
-+Note: The same logic can be extended for any color space transfer function implementation.
- 
- Driver Implementer's Guide
- ==========================
-@@ -375,4 +515,4 @@ for user space. In this case a new pipeline should be defined.
- References
- ==========
- 
--1. https://lore.kernel.org/dri-devel/QMers3awXvNCQlyhWdTtsPwkp5ie9bze_hD5nAccFW7a_RXlWjYB7MoUW_8CKLT2bSQwIXVi5H6VULYIxCdgvryZoAoJnC5lZgyK1QWn488=@emersion.fr/
-\ No newline at end of file
-+1. https://lore.kernel.org/dri-devel/QMers3awXvNCQlyhWdTtsPwkp5ie9bze_hD5nAccFW7a_RXlWjYB7MoUW_8CKLT2bSQwIXVi5H6VULYIxCdgvryZoAoJnC5lZgyK1QWn488=@emersion.fr/
+[auto build test ERROR on drm-xe/drm-xe-next]
+[also build test ERROR on linus/master v6.14-rc5 next-20250304]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Su-Hui/drm-xe-Select-INTEL_VSEC-to-fix-build-dependency/20250227-153437
+base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+patch link:    https://lore.kernel.org/r/20250227073205.1248282-1-suhui%40nfschina.com
+patch subject: [PATCH] drm/xe: Select INTEL_VSEC to fix build dependency
+config: loongarch-randconfig-001-20250304 (https://download.01.org/0day-ci/archive/20250305/202503052153.gQnXU123-lkp@intel.com/config)
+compiler: loongarch64-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250305/202503052153.gQnXU123-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503052153.gQnXU123-lkp@intel.com/
+
+All errors (new ones prefixed by >>, old ones prefixed by <<):
+
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fpga/tests/fpga-mgr-test.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fpga/tests/fpga-bridge-test.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fpga/tests/fpga-region-test.o
+>> ERROR: modpost: "intel_vsec_register" [drivers/gpu/drm/xe/xe.ko] undefined!
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for INTEL_VSEC
+   Depends on [n]: X86_PLATFORM_DEVICES [=n] && PCI [=y]
+   Selected by [m]:
+   - DRM_XE [=m] && HAS_IOMEM [=y] && DRM [=m] && PCI [=y] && MMU [=y] && (m [=m] && MODULES [=y] || KUNIT [=y]=y [=y])
+   WARNING: unmet direct dependencies detected for FB_IOMEM_HELPERS
+   Depends on [n]: HAS_IOMEM [=y] && FB_CORE [=n]
+   Selected by [m]:
+   - DRM_XE_DISPLAY [=y] && HAS_IOMEM [=y] && DRM [=m] && DRM_XE [=m] && DRM_XE [=m]=m [=m] && HAS_IOPORT [=y]
+
 -- 
-2.42.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
