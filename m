@@ -4,63 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2256C19F32
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Mar 2025 13:16:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CE83C19F32
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Mar 2025 13:36:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CA7A10E80A;
-	Wed,  5 Mar 2025 13:16:00 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bRVE3pdR";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55C1810E822;
- Wed,  5 Mar 2025 13:15:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741180559; x=1772716559;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=FSA9Ozv525IV5w6+GJaUCX1AAA/L5wOmQaWsfimaaX4=;
- b=bRVE3pdRrPUhBZzx3R3IJwBuZtr0HlF07kq+erI2ly6o1hAch/0BPwOT
- FPFnzBVMkZQjt9+99NG3Nf9rTSh0GX9yTkz9i1+Z25cumgYnsLTze01rq
- siuMmtKvgwz5uZJEL/vSQfbIV+ve6ZAfEcbvEP3GM7YnJ1TwP14LhVc+M
- UmaOO1LyRmNHqvRFB+VjmHAud/+he+tbkripsStcoLSCSMgs/HP6bf4rB
- Rzf7OL1KNxUiZXp0YoNZQrM8quymt8CNpDDmCiYHe48HQN50YCziHFSJ6
- 09JMdA69WduG+Dgvm++L6JmEZxAMTQkp/t4fU9ax263pW8heiS1I0nSCl w==;
-X-CSE-ConnectionGUID: fnpU1dFrRjiF3aPCjSr8qQ==
-X-CSE-MsgGUID: hPtxTECjTlSOfz+hGNE5aA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="53537157"
-X-IronPort-AV: E=Sophos;i="6.14,223,1736841600"; d="scan'208";a="53537157"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2025 05:15:59 -0800
-X-CSE-ConnectionGUID: +qx5GYliTR65WIshKN7ndw==
-X-CSE-MsgGUID: CFm95MOBS+qd55cWAF9+lQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="118610885"
-Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
- by orviesa010.jf.intel.com with ESMTP; 05 Mar 2025 05:15:55 -0800
-Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1tpobI-000KzO-36;
- Wed, 05 Mar 2025 13:15:52 +0000
-Date: Wed, 5 Mar 2025 21:15:08 +0800
-From: kernel test robot <lkp@intel.com>
-To: Su Hui <suhui@nfschina.com>, lucas.demarchi@intel.com,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch
-Cc: oe-kbuild-all@lists.linux.dev, Su Hui <suhui@nfschina.com>,
- ilpo.jarvinen@linux.intel.com, andriy.shevchenko@linux.intel.com,
- michael.j.ruhl@intel.com, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- kernel-janitors@vger.kernel.org
-Subject: Re: [PATCH] drm/xe: Select INTEL_VSEC to fix build dependency
-Message-ID: <202503052153.gQnXU123-lkp@intel.com>
-References: <20250227073205.1248282-1-suhui@nfschina.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0D5510E76F;
+	Wed,  5 Mar 2025 13:36:08 +0000 (UTC)
+Received: from db0ebb060c04 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0DAF10E2A8;
+ Wed,  5 Mar 2025 13:36:06 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6669914768493152553=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250227073205.1248282-1-suhui@nfschina.com>
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe=3A_The_xe_bo_shrinke?=
+ =?utf-8?q?r_series_for_testing?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 05 Mar 2025 13:36:06 -0000
+Message-ID: <174118176684.104792.14950894590349355930@db0ebb060c04>
+X-Patchwork-Hint: ignore
+References: <20250305101023.251956-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20250305101023.251956-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,49 +36,172 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Su,
+--===============6669914768493152553==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-kernel test robot noticed the following build errors:
+== Series Details ==
 
-[auto build test ERROR on drm-xe/drm-xe-next]
-[also build test ERROR on linus/master v6.14-rc5 next-20250304]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Series: drm/xe: The xe bo shrinker series for testing
+URL   : https://patchwork.freedesktop.org/series/145816/
+State : failure
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Su-Hui/drm-xe-Select-INTEL_VSEC-to-fix-build-dependency/20250227-153437
-base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-patch link:    https://lore.kernel.org/r/20250227073205.1248282-1-suhui%40nfschina.com
-patch subject: [PATCH] drm/xe: Select INTEL_VSEC to fix build dependency
-config: loongarch-randconfig-001-20250304 (https://download.01.org/0day-ci/archive/20250305/202503052153.gQnXU123-lkp@intel.com/config)
-compiler: loongarch64-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250305/202503052153.gQnXU123-lkp@intel.com/reproduce)
+== Summary ==
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202503052153.gQnXU123-lkp@intel.com/
+CI Bug Log - changes from xe-2756-9391bc304a5cea9a9b63bff8e2d3b38f8d44d033_BAT -> xe-pw-145816v1_BAT
+====================================================
 
-All errors (new ones prefixed by >>, old ones prefixed by <<):
+Summary
+-------
 
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fpga/tests/fpga-mgr-test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fpga/tests/fpga-bridge-test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fpga/tests/fpga-region-test.o
->> ERROR: modpost: "intel_vsec_register" [drivers/gpu/drm/xe/xe.ko] undefined!
+  **FAILURE**
 
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for INTEL_VSEC
-   Depends on [n]: X86_PLATFORM_DEVICES [=n] && PCI [=y]
-   Selected by [m]:
-   - DRM_XE [=m] && HAS_IOMEM [=y] && DRM [=m] && PCI [=y] && MMU [=y] && (m [=m] && MODULES [=y] || KUNIT [=y]=y [=y])
-   WARNING: unmet direct dependencies detected for FB_IOMEM_HELPERS
-   Depends on [n]: HAS_IOMEM [=y] && FB_CORE [=n]
-   Selected by [m]:
-   - DRM_XE_DISPLAY [=y] && HAS_IOMEM [=y] && DRM [=m] && DRM_XE [=m] && DRM_XE [=m]=m [=m] && HAS_IOPORT [=y]
+  Serious unknown changes coming with xe-pw-145816v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-145816v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+  
+
+Participating hosts (10 -> 9)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-145816v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_intel_bb@render@render-xmajor-256:
+    - bat-adlp-vf:        [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2756-9391bc304a5cea9a9b63bff8e2d3b38f8d44d033/bat-adlp-vf/igt@xe_intel_bb@render@render-xmajor-256.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145816v1/bat-adlp-vf/igt@xe_intel_bb@render@render-xmajor-256.html
+
+  * igt@xe_intel_bb@render@render-ymajor-256:
+    - bat-adlp-vf:        [PASS][3] -> [DMESG-WARN][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2756-9391bc304a5cea9a9b63bff8e2d3b38f8d44d033/bat-adlp-vf/igt@xe_intel_bb@render@render-ymajor-256.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145816v1/bat-adlp-vf/igt@xe_intel_bb@render@render-ymajor-256.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-145816v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_intel_bb@render:
+    - bat-adlp-vf:        [PASS][5] -> [ABORT][6] ([Intel XE#4491])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2756-9391bc304a5cea9a9b63bff8e2d3b38f8d44d033/bat-adlp-vf/igt@xe_intel_bb@render.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145816v1/bat-adlp-vf/igt@xe_intel_bb@render.html
+
+  
+  [Intel XE#4491]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4491
+
+
+Build changes
+-------------
+
+  * Linux: xe-2756-9391bc304a5cea9a9b63bff8e2d3b38f8d44d033 -> xe-pw-145816v1
+
+  IGT_8261: 8261
+  xe-2756-9391bc304a5cea9a9b63bff8e2d3b38f8d44d033: 9391bc304a5cea9a9b63bff8e2d3b38f8d44d033
+  xe-pw-145816v1: 145816v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145816v1/index.html
+
+--===============6669914768493152553==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: The xe bo shrinker series for testing</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145816/">https://patchwork.freedesktop.org/series/145816/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145816v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145816v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2756-9391bc304a5cea9a9b63bff8e2d3b38f8d44d033_BAT -&gt; xe-pw-145816v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-145816v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-145816v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (10 -&gt; 9)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-145816v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@xe_intel_bb@render@render-xmajor-256:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2756-9391bc304a5cea9a9b63bff8e2d3b38f8d44d033/bat-adlp-vf/igt@xe_intel_bb@render@render-xmajor-256.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145816v1/bat-adlp-vf/igt@xe_intel_bb@render@render-xmajor-256.html">ABORT</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_intel_bb@render@render-ymajor-256:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2756-9391bc304a5cea9a9b63bff8e2d3b38f8d44d033/bat-adlp-vf/igt@xe_intel_bb@render@render-ymajor-256.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145816v1/bat-adlp-vf/igt@xe_intel_bb@render@render-ymajor-256.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-145816v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_intel_bb@render:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2756-9391bc304a5cea9a9b63bff8e2d3b38f8d44d033/bat-adlp-vf/igt@xe_intel_bb@render.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145816v1/bat-adlp-vf/igt@xe_intel_bb@render.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4491">Intel XE#4491</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2756-9391bc304a5cea9a9b63bff8e2d3b38f8d44d033 -&gt; xe-pw-145816v1</li>
+</ul>
+<p>IGT_8261: 8261<br />
+  xe-2756-9391bc304a5cea9a9b63bff8e2d3b38f8d44d033: 9391bc304a5cea9a9b63bff8e2d3b38f8d44d033<br />
+  xe-pw-145816v1: 145816v1</p>
+
+</body>
+</html>
+
+--===============6669914768493152553==--
