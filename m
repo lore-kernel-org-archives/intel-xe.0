@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A83F9C35FEF
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2223CC28B22
 	for <intel-xe@archiver.kernel.org>; Thu,  6 Mar 2025 01:26:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 810D110E8A6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6831610E8A5;
 	Thu,  6 Mar 2025 01:26:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UoSGeuWd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DU87MvjY";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D3DD10E88A;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D64810E890;
  Thu,  6 Mar 2025 01:25:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1741224359; x=1772760359;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=bSwL+ByjRVhRP3kt+Wcm3zQSIt3Ltqiq+Ln8sFPkWXw=;
- b=UoSGeuWdehIqSvegJydh7AMEFG0SbBgzmkme3glhbdfvDhtg+b2xv8vo
- UDwYQ0MGlsLEDWFGI/y9ztitwJBObF9TBRL5onzfSRBvOzvMimnjVopWE
- 1V60Jj62+or6xiwFl6mW7/FfHXoE+A9qw1v1+Ernr0OdvBGoxx0uZmWw0
- bxUgGcsFGce4wUUhCVrDXjxX6dwgurvC2S2G3E6Uafk8OmvI/rXV6+PYR
- vi8VtxhSmHX6U6cpxj8xZ9TbMu5A6zR22b8pjxXw/VHXMdLFhlWrA9GrQ
- NEaaUI3+DJ0KqdG89Mhi/53gvZqBX48SqtcwKfZzTT3BaXSxbu+NgUGjE g==;
-X-CSE-ConnectionGUID: CFOpHweVQq28XNa5AIIFDA==
-X-CSE-MsgGUID: dpNxXwQdT2aI3ubF+Sl6pA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="52427420"
-X-IronPort-AV: E=Sophos;i="6.14,224,1736841600"; d="scan'208";a="52427420"
+ bh=jsBtFnaN5GTy+c6wA9aueph7kT0YUygyosB6uVeF4N4=;
+ b=DU87MvjYbSlk8Why8JmfXNuccjh0zjzwZEVR/l5YyuHDz+yYYyoFQHYO
+ UfDLUBQLAcLpGZqkNuYENh45YWwcOoDxtNBkDeLAQACXlNjTjtUJefJsI
+ DXY1gnaqWInQblKmWYm09Rh33hzgjYHMJS9ZOeu6Jmsw0vCOUDidQlioZ
+ awgAjIV5LixXEZq5bJmG2N01FnqZi62gABfLAXBu03F6DpLga5lWRXByU
+ 8OkpklJKGAyknSievxQxjCY/RqnUdb50XaTqnn+AQpi9XLu2JnIAWgzag
+ UdCCGKRw8NgEEXWRGMj4uTH3seRKCsXyCXaUUzyeamNtg5s/+T77k41+a Q==;
+X-CSE-ConnectionGUID: 5WHC8tj6Snimbd5+Pk7z9g==
+X-CSE-MsgGUID: huROIqpxR++UKbZ4JMBOxA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="52427318"
+X-IronPort-AV: E=Sophos;i="6.14,224,1736841600"; d="scan'208";a="52427318"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  05 Mar 2025 17:25:54 -0800
-X-CSE-ConnectionGUID: G+EXA7mYQZyEJ14CK89YEQ==
-X-CSE-MsgGUID: c5ExH3wzRm6huzHk66YiFQ==
+X-CSE-ConnectionGUID: 6X5gbDWwRiu0dXYp4ZKxPg==
+X-CSE-MsgGUID: iR5qEIMlS2+al+eQ0Mx9Og==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="124063308"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="124063266"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2025 17:25:54 -0800
+ 05 Mar 2025 17:25:53 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com,
  thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
  felix.kuehling@amd.com, dakr@kernel.org
-Subject: [PATCH v7 25/32] drm/xe: Add Xe SVM populate_devmem_pfn GPU SVM vfunc
-Date: Wed,  5 Mar 2025 17:26:50 -0800
-Message-Id: <20250306012657.3505757-26-matthew.brost@intel.com>
+Subject: [PATCH v7 11/32] drm/xe: Nuke VM's mapping upon close
+Date: Wed,  5 Mar 2025 17:26:36 -0800
+Message-Id: <20250306012657.3505757-12-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250306012657.3505757-1-matthew.brost@intel.com>
 References: <20250306012657.3505757-1-matthew.brost@intel.com>
@@ -70,84 +70,184 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Get device pfns from BO's buddy blocks. Used in migrate_* core MM
-functions called in GPU SVM to migrate between device and system memory.
+Clear root PT entry and invalidate entire VM's address space when
+closing the VM. Will prevent the GPU from accessing any of the VM's
+memory after closing.
 
 v2:
- - Use new drm_gpusvm_devmem_ops
+ - s/vma/vm in kernel doc (CI)
+ - Don't nuke migration VM as this occur at driver unload (CI)
 v3:
- - Better commit message (Thomas)
+ - Rebase and pull into SVM series (Thomas)
+ - Wait for pending binds (Thomas)
 v5:
- - s/xe_mem_region/xe_vram_region (Rebase)
+ - Remove xe_gt_tlb_invalidation_fence_fini in error case (Matt Auld)
+ - Drop local migration bool (Thomas)
+v7:
+ - Add drm_dev_enter/exit protecting invalidation (CI, Matt Auld)
 
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm.c | 40 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 22 ++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h |  2 ++
+ drivers/gpu/drm/xe/xe_pt.c                  | 14 +++++++++
+ drivers/gpu/drm/xe/xe_pt.h                  |  3 ++
+ drivers/gpu/drm/xe/xe_vm.c                  | 32 +++++++++++++++++++++
+ 5 files changed, 73 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 4983d4175388..6e6a51eac5e5 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -7,6 +7,7 @@
- #include "xe_migrate.h"
- #include "xe_pt.h"
- #include "xe_svm.h"
-+#include "xe_ttm_vram_mgr.h"
- #include "xe_vm.h"
- #include "xe_vm_types.h"
- 
-@@ -461,8 +462,47 @@ static int xe_svm_copy_to_ram(struct page **pages, dma_addr_t *dma_addr,
- 	return xe_svm_copy(pages, dma_addr, npages, XE_SVM_COPY_TO_SRAM);
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+index 0a93831c0a02..03072e094991 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+@@ -410,6 +410,28 @@ int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
+ 	return send_tlb_invalidation(&gt->uc.guc, fence, action, len);
  }
  
-+static struct xe_bo *to_xe_bo(struct drm_gpusvm_devmem *devmem_allocation)
++/**
++ * xe_gt_tlb_invalidation_vm - Issue a TLB invalidation on this GT for a VM
++ * @gt: graphics tile
++ * @vm: VM to invalidate
++ *
++ * Invalidate entire VM's address space
++ */
++void xe_gt_tlb_invalidation_vm(struct xe_gt *gt, struct xe_vm *vm)
 +{
-+	return container_of(devmem_allocation, struct xe_bo, devmem_allocation);
++	struct xe_gt_tlb_invalidation_fence fence;
++	u64 range = 1ull << vm->xe->info.va_bits;
++	int ret;
++
++	xe_gt_tlb_invalidation_fence_init(gt, &fence, true);
++
++	ret = xe_gt_tlb_invalidation_range(gt, &fence, 0, range, vm->usm.asid);
++	if (ret < 0)
++		return;
++
++	xe_gt_tlb_invalidation_fence_wait(&fence);
 +}
 +
-+static u64 block_offset_to_pfn(struct xe_vram_region *vr, u64 offset)
+ /**
+  * xe_gt_tlb_invalidation_vma - Issue a TLB invalidation on this GT for a VMA
+  * @gt: GT structure
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
+index 672acfcdf0d7..abe9b03d543e 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
+@@ -12,6 +12,7 @@
+ 
+ struct xe_gt;
+ struct xe_guc;
++struct xe_vm;
+ struct xe_vma;
+ 
+ int xe_gt_tlb_invalidation_init_early(struct xe_gt *gt);
+@@ -21,6 +22,7 @@ int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt);
+ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
+ 			       struct xe_gt_tlb_invalidation_fence *fence,
+ 			       struct xe_vma *vma);
++void xe_gt_tlb_invalidation_vm(struct xe_gt *gt, struct xe_vm *vm);
+ int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
+ 				 struct xe_gt_tlb_invalidation_fence *fence,
+ 				 u64 start, u64 end, u32 asid);
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 651512023829..fb7f26353b8f 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -218,6 +218,20 @@ void xe_pt_destroy(struct xe_pt *pt, u32 flags, struct llist_head *deferred)
+ 	xe_pt_free(pt);
+ }
+ 
++/**
++ * xe_pt_clear() - Clear a page-table.
++ * @xe: xe device.
++ * @pt: The page-table.
++ *
++ * Clears page-table by setting to zero.
++ */
++void xe_pt_clear(struct xe_device *xe, struct xe_pt *pt)
 +{
-+	return PHYS_PFN(offset + vr->hpa_base);
++	struct iosys_map *map = &pt->bo->vmap;
++
++	xe_map_memset(xe, map, 0, 0, SZ_4K);
 +}
 +
-+static struct drm_buddy *tile_to_buddy(struct xe_tile *tile)
-+{
-+	return &tile->mem.vram.ttm.mm;
-+}
+ /**
+  * DOC: Pagetable building
+  *
+diff --git a/drivers/gpu/drm/xe/xe_pt.h b/drivers/gpu/drm/xe/xe_pt.h
+index 9ab386431cad..8e43912ae8e9 100644
+--- a/drivers/gpu/drm/xe/xe_pt.h
++++ b/drivers/gpu/drm/xe/xe_pt.h
+@@ -13,6 +13,7 @@ struct dma_fence;
+ struct xe_bo;
+ struct xe_device;
+ struct xe_exec_queue;
++struct xe_svm_range;
+ struct xe_sync_entry;
+ struct xe_tile;
+ struct xe_vm;
+@@ -35,6 +36,8 @@ void xe_pt_populate_empty(struct xe_tile *tile, struct xe_vm *vm,
+ 
+ void xe_pt_destroy(struct xe_pt *pt, u32 flags, struct llist_head *deferred);
+ 
++void xe_pt_clear(struct xe_device *xe, struct xe_pt *pt);
 +
-+static int xe_svm_populate_devmem_pfn(struct drm_gpusvm_devmem *devmem_allocation,
-+				      unsigned long npages, unsigned long *pfn)
-+{
-+	struct xe_bo *bo = to_xe_bo(devmem_allocation);
-+	struct ttm_resource *res = bo->ttm.resource;
-+	struct list_head *blocks = &to_xe_ttm_vram_mgr_resource(res)->blocks;
-+	struct drm_buddy_block *block;
-+	int j = 0;
+ int xe_pt_update_ops_prepare(struct xe_tile *tile, struct xe_vma_ops *vops);
+ struct dma_fence *xe_pt_update_ops_run(struct xe_tile *tile,
+ 				       struct xe_vma_ops *vops);
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 178d38d447e1..f7ec680c1ae8 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -8,6 +8,7 @@
+ #include <linux/dma-fence-array.h>
+ #include <linux/nospec.h>
+ 
++#include <drm/drm_drv.h>
+ #include <drm/drm_exec.h>
+ #include <drm/drm_print.h>
+ #include <drm/ttm/ttm_tt.h>
+@@ -1614,9 +1615,40 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 
+ static void xe_vm_close(struct xe_vm *vm)
+ {
++	struct xe_device *xe = vm->xe;
++	bool bound;
++	int idx;
 +
-+	list_for_each_entry(block, blocks, link) {
-+		struct xe_vram_region *vr = block->private;
-+		struct xe_tile *tile = vr_to_tile(vr);
-+		struct drm_buddy *buddy = tile_to_buddy(tile);
-+		u64 block_pfn = block_offset_to_pfn(vr, drm_buddy_block_offset(block));
-+		int i;
++	bound = drm_dev_enter(&xe->drm, &idx);
 +
-+		for (i = 0; i < drm_buddy_block_size(buddy, block) >> PAGE_SHIFT; ++i)
-+			pfn[j++] = block_pfn + i;
+ 	down_write(&vm->lock);
++
+ 	vm->size = 0;
++
++	if (!((vm->flags & XE_VM_FLAG_MIGRATION))) {
++		struct xe_tile *tile;
++		struct xe_gt *gt;
++		u8 id;
++
++		/* Wait for pending binds */
++		dma_resv_wait_timeout(xe_vm_resv(vm),
++				      DMA_RESV_USAGE_BOOKKEEP,
++				      false, MAX_SCHEDULE_TIMEOUT);
++
++		if (bound) {
++			for_each_tile(tile, xe, id)
++				if (vm->pt_root[id])
++					xe_pt_clear(xe, vm->pt_root[id]);
++
++			for_each_gt(gt, xe, id)
++				xe_gt_tlb_invalidation_vm(gt, vm);
++		}
 +	}
 +
-+	return 0;
-+}
+ 	up_write(&vm->lock);
 +
- __maybe_unused
- static const struct drm_gpusvm_devmem_ops gpusvm_devmem_ops = {
-+	.populate_devmem_pfn = xe_svm_populate_devmem_pfn,
- 	.copy_to_devmem = xe_svm_copy_to_devmem,
- 	.copy_to_ram = xe_svm_copy_to_ram,
- };
++	if (bound)
++		drm_dev_exit(idx);
+ }
+ 
+ void xe_vm_close_and_put(struct xe_vm *vm)
 -- 
 2.34.1
 
