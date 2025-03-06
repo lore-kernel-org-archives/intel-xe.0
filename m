@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3670BC35FF1
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0297C35FF4
 	for <intel-xe@archiver.kernel.org>; Thu,  6 Mar 2025 01:26:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D62210E8C8;
-	Thu,  6 Mar 2025 01:26:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CD8710E8C9;
+	Thu,  6 Mar 2025 01:26:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BIX8GTXk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TjA1cC2K";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55B5E10E892;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91D6D10E88D;
  Thu,  6 Mar 2025 01:25:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1741224359; x=1772760359;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Y0l+sTCqmBvvOw/TtCAoV+5VGSMezfd3+pQ1qhmn1LA=;
- b=BIX8GTXkDySYoB0nMzWs4obby5mlR0/FSw6Xgx050rWVSZL9XxXcOVqc
- Oh07jOGAuooT5cNQyEp1ZY9EKvIhC/gqhndxQzHZuNSqLToh8noFiXIv3
- hb+lNJmNkIzlYYFyAyttlLKzjDi2kGFkCEp67WjaoAPLF69zZ2iQZLPsb
- NLNdBpf+W79QZXnINGIhv/aqMmEoAOi7Sj0Gitwendxi8WCcsxcbIp7p+
- K2G1+GpfS40tSgAT7z38nDZ6dNRVXPPeyIrdtIGtc5Y2IIGhwiCTJyvek
- sitHe5Ff9YVmOkcr4uWgmEeFAamR9qDiQN5keJ6z/EWpXaOTnY3MvHDMJ w==;
-X-CSE-ConnectionGUID: V1yth1fMRpumQuzICrebYQ==
-X-CSE-MsgGUID: U9ni0OfLSLOpW8SQ6vJFPQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="52427366"
-X-IronPort-AV: E=Sophos;i="6.14,224,1736841600"; d="scan'208";a="52427366"
+ bh=TKK1T86i9mhem8ynfZ4M6GIoBDPOn2I0m4gFZkl6Q4M=;
+ b=TjA1cC2KDYtGVQNMa0UoiejKpEurMKbEnhPv3Tts2ULscHdACCWvzVgs
+ iwK4dXUCG1ofCJ1iW4iq5NzZShrgwtDsV5FsqHGOYqFUdrZKyshDq37Xx
+ 5LdPcMsBEFDL/bXzHrGo8eXuplmbw88Ex6bjjuCClsSu7HPGed+i8iGFl
+ NNJr117zVtztiymqqDEuJ2kkSdquUSLDdiH/xo3Qs5LSukjdPdvIEvPbF
+ gn8imcWT2oIXk7jgVnk0l1FUKfNz4cjeOMTc/8q/rYf2RcvKkJStDEDPp
+ 7GDSwKqoSXkJSfaPr1aaOiMWMFZIeN0+rJg6zFa1sZj8PDidx+UsihTDW g==;
+X-CSE-ConnectionGUID: HeaOwilVT8mJVM94POZ6eA==
+X-CSE-MsgGUID: lz8PuDryQrmJf7JjKNakmw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="52427432"
+X-IronPort-AV: E=Sophos;i="6.14,224,1736841600"; d="scan'208";a="52427432"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  05 Mar 2025 17:25:54 -0800
-X-CSE-ConnectionGUID: XkUnWMDDSem3F4ehlOin7Q==
-X-CSE-MsgGUID: gMPpEREhQGm6PBcWmKuibg==
+X-CSE-ConnectionGUID: 4HC2gvcaSk2dq54k5jxLnA==
+X-CSE-MsgGUID: t4wZjxrcSfimsaQm2irFNg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="124063284"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="124063302"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2025 17:25:53 -0800
+ 05 Mar 2025 17:25:54 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com,
  thomas.hellstrom@linux.intel.com, simona.vetter@ffwll.ch,
  felix.kuehling@amd.com, dakr@kernel.org
-Subject: [PATCH v7 17/32] drm/xe: Do not allow CPU address mirror VMA unbind if
-Date: Wed,  5 Mar 2025 17:26:42 -0800
-Message-Id: <20250306012657.3505757-18-matthew.brost@intel.com>
+Subject: [PATCH v7 23/32] drm/xe: Add drm_pagemap ops to SVM
+Date: Wed,  5 Mar 2025 17:26:48 -0800
+Message-Id: <20250306012657.3505757-24-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250306012657.3505757-1-matthew.brost@intel.com>
 References: <20250306012657.3505757-1-matthew.brost@intel.com>
@@ -70,115 +70,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-uAPI is designed with the use case that only mapping a BO to a malloc'd
-address will unbind a CPU-address mirror VMA. Therefore, allowing a
-CPU-address mirror VMA to unbind when the GPU has bindings in the range
-being unbound does not make much sense. This behavior is not supported,
-as it simplifies the code. This decision can always be revisited if a
-use case arises.
+From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+
+Add support for mapping device pages to Xe SVM by attaching drm_pagemap
+to a memory region, which is then linked to a GPU SVM devmem allocation.
+This enables GPU SVM to derive the device page address.
 
 v3:
- - s/arrises/arises (Thomas)
- - s/system allocator/GPU address mirror (Thomas)
- - Kernel doc (Thomas)
- - Newline between function defs (Thomas)
+ - Better commit message (Thomas)
+ - New drm_pagemap.h location
 v5:
- - Kernel doc (Thomas)
-v6:
- - Only compile if CONFIG_DRM_GPUSVM selected (CI, Lucas)
+ - s/xe_mem_region/xe_vram_region (Rebase)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm.c | 15 +++++++++++++++
- drivers/gpu/drm/xe/xe_svm.h |  8 ++++++++
- drivers/gpu/drm/xe/xe_vm.c  | 16 ++++++++++++++++
- 3 files changed, 39 insertions(+)
+ drivers/gpu/drm/xe/xe_device_types.h |  6 +++
+ drivers/gpu/drm/xe/xe_svm.c          | 57 ++++++++++++++++++++++++++++
+ 2 files changed, 63 insertions(+)
 
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 447467d5dc3b..72ef0b6fc425 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -10,6 +10,7 @@
+ 
+ #include <drm/drm_device.h>
+ #include <drm/drm_file.h>
++#include <drm/drm_pagemap.h>
+ #include <drm/ttm/ttm_device.h>
+ 
+ #include "xe_devcoredump_types.h"
+@@ -108,6 +109,11 @@ struct xe_vram_region {
+ 	void __iomem *mapping;
+ 	/** @pagemap: Used to remap device memory as ZONE_DEVICE */
+ 	struct dev_pagemap pagemap;
++	/**
++	 * @dpagemap: The struct drm_pagemap of the ZONE_DEVICE memory
++	 * pages of this tile.
++	 */
++	struct drm_pagemap dpagemap;
+ 	/**
+ 	 * @hpa_base: base host physical address
+ 	 *
 diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index a9d32cd69ae9..80076f4dc4b4 100644
+index f5854fa6e415..7a6e12377f05 100644
 --- a/drivers/gpu/drm/xe/xe_svm.c
 +++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -434,3 +434,18 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 
- 	return err;
+@@ -288,6 +288,33 @@ static void xe_svm_garbage_collector_work_func(struct work_struct *w)
+ 	up_write(&vm->lock);
  }
-+
-+/**
-+ * xe_svm_has_mapping() - SVM has mappings
-+ * @vm: The VM.
-+ * @start: Start address.
-+ * @end: End address.
-+ *
-+ * Check if an address range has SVM mappings.
-+ *
-+ * Return: True if address range has a SVM mapping, False otherwise
-+ */
-+bool xe_svm_has_mapping(struct xe_vm *vm, u64 start, u64 end)
-+{
-+	return drm_gpusvm_has_mapping(&vm->svm.gpusvm, start, end);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index 87cbda5641bb..35e044e492e0 100644
---- a/drivers/gpu/drm/xe/xe_svm.h
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -57,6 +57,8 @@ void xe_svm_close(struct xe_vm *vm);
- int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 			    struct xe_tile *tile, u64 fault_addr,
- 			    bool atomic);
-+
-+bool xe_svm_has_mapping(struct xe_vm *vm, u64 start, u64 end);
- #else
- static inline bool xe_svm_range_pages_valid(struct xe_svm_range *range)
- {
-@@ -86,6 +88,12 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- {
- 	return 0;
- }
-+
-+static inline
-+bool xe_svm_has_mapping(struct xe_vm *vm, u64 start, u64 end)
-+{
-+	return false;
-+}
- #endif
  
++static struct xe_vram_region *page_to_vr(struct page *page)
++{
++	return container_of(page->pgmap, struct xe_vram_region, pagemap);
++}
++
++static struct xe_tile *vr_to_tile(struct xe_vram_region *vr)
++{
++	return container_of(vr, struct xe_tile, mem.vram);
++}
++
++static u64 xe_vram_region_page_to_dpa(struct xe_vram_region *vr,
++				     struct page *page)
++{
++	u64 dpa;
++	struct xe_tile *tile = vr_to_tile(vr);
++	u64 pfn = page_to_pfn(page);
++	u64 offset;
++
++	xe_tile_assert(tile, is_device_private_page(page));
++	xe_tile_assert(tile, (pfn << PAGE_SHIFT) >= vr->hpa_base);
++
++	offset = (pfn << PAGE_SHIFT) - vr->hpa_base;
++	dpa = vr->dpa_base + offset;
++
++	return dpa;
++}
++
+ static const struct drm_gpusvm_ops gpusvm_ops = {
+ 	.range_alloc = xe_svm_range_alloc,
+ 	.range_free = xe_svm_range_free,
+@@ -456,6 +483,32 @@ bool xe_svm_has_mapping(struct xe_vm *vm, u64 start, u64 end)
+ }
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR)
++static struct drm_pagemap_device_addr
++xe_drm_pagemap_device_map(struct drm_pagemap *dpagemap,
++			  struct device *dev,
++			  struct page *page,
++			  unsigned int order,
++			  enum dma_data_direction dir)
++{
++	struct device *pgmap_dev = dpagemap->dev;
++	enum drm_interconnect_protocol prot;
++	dma_addr_t addr;
++
++	if (pgmap_dev == dev) {
++		addr = xe_vram_region_page_to_dpa(page_to_vr(page), page);
++		prot = XE_INTERCONNECT_VRAM;
++	} else {
++		addr = DMA_MAPPING_ERROR;
++		prot = 0;
++	}
++
++	return drm_pagemap_device_addr_encode(addr, prot, order, dir);
++}
++
++static const struct drm_pagemap_ops xe_drm_pagemap_ops = {
++	.device_map = xe_drm_pagemap_device_map,
++};
++
  /**
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 5f81c81c8f43..80b57d7a3f4c 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2485,6 +2485,17 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 			struct xe_vma *old =
- 				gpuva_to_vma(op->base.remap.unmap->va);
- 			bool skip = xe_vma_is_cpu_addr_mirror(old);
-+			u64 start = xe_vma_start(old), end = xe_vma_end(old);
+  * xe_devm_add: Remap and provide memmap backing for device memory
+  * @tile: tile that the memory region belongs to
+@@ -488,6 +541,10 @@ int xe_devm_add(struct xe_tile *tile, struct xe_vram_region *vr)
+ 	vr->pagemap.ops = drm_gpusvm_pagemap_ops_get();
+ 	vr->pagemap.owner = xe_svm_devm_owner(xe);
+ 	addr = devm_memremap_pages(dev, &vr->pagemap);
 +
-+			if (op->base.remap.prev)
-+				start = op->base.remap.prev->va.addr +
-+					op->base.remap.prev->va.range;
-+			if (op->base.remap.next)
-+				end = op->base.remap.next->va.addr;
++	vr->dpagemap.dev = dev;
++	vr->dpagemap.ops = &xe_drm_pagemap_ops;
 +
-+			if (xe_vma_is_cpu_addr_mirror(old) &&
-+			    xe_svm_has_mapping(vm, start, end))
-+				return -EBUSY;
- 
- 			op->remap.start = xe_vma_start(old);
- 			op->remap.range = xe_vma_size(old);
-@@ -2566,6 +2577,11 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 		case DRM_GPUVA_OP_UNMAP:
- 			vma = gpuva_to_vma(op->base.unmap.va);
- 
-+			if (xe_vma_is_cpu_addr_mirror(vma) &&
-+			    xe_svm_has_mapping(vm, xe_vma_start(vma),
-+					       xe_vma_end(vma)))
-+				return -EBUSY;
-+
- 			if (!xe_vma_is_cpu_addr_mirror(vma))
- 				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
- 			break;
+ 	if (IS_ERR(addr)) {
+ 		devm_release_mem_region(dev, res->start, resource_size(res));
+ 		ret = PTR_ERR(addr);
 -- 
 2.34.1
 
