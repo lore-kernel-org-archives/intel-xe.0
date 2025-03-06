@@ -4,27 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFCE8C282D1
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Mar 2025 10:17:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB7ADC28B22
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Mar 2025 10:32:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1C9F10E8A7;
-	Thu,  6 Mar 2025 10:17:48 +0000 (UTC)
-Received: from 64e06c682a23 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C56E10E157;
- Thu,  6 Mar 2025 10:17:47 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1504028723589275477=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BA3610E93B;
+	Thu,  6 Mar 2025 10:32:18 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="DsTBXlKK";
+	dkim-atps=neutral
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F94E10E93A
+ for <intel-xe@lists.freedesktop.org>; Thu,  6 Mar 2025 10:32:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1741257136;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=+UOQWLNHD36avSTa9JquHqKO4u+iQSMwvjaDPAD9G44=;
+ b=DsTBXlKKSrmPg9SJk7XemqrAAZXBUhex2xVsVY9wVVOWu54vPAZSULo4hm56DyWTTRdRy9
+ SGq7VOKeF0hAkQiq+0tfJVPAaAgL12pIxFb65QCp4Zjnle3j27qAMidpHlhcRq0VDPMuuB
+ g71aIUTp04TV5iK8o3CrDysy/NPXQTA=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-88-_RZJAYt9OkugeQz2gN-iaQ-1; Thu, 06 Mar 2025 05:32:09 -0500
+X-MC-Unique: _RZJAYt9OkugeQz2gN-iaQ-1
+X-Mimecast-MFC-AGG-ID: _RZJAYt9OkugeQz2gN-iaQ_1741257128
+Received: by mail-wr1-f72.google.com with SMTP id
+ ffacd0b85a97d-3910b93cb1eso237862f8f.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 06 Mar 2025 02:32:09 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1741257128; x=1741861928;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=+UOQWLNHD36avSTa9JquHqKO4u+iQSMwvjaDPAD9G44=;
+ b=kHP0jQ/ueWRJfPdKsfRbX8wjK6Hjm/Bcrves0LDApavk9VY+YxJvKsjtcZAt5rzYpQ
+ BDqlsRseA9EA8HmfbBf2bY//t3Tp2npfScytlsPYuWw87b+VzNFXMvXh0xItGmNPezZE
+ rxOg00v9Pii/jeFueuCLQ7EEdGxfbpp/K3zFFRkBkUXTs+zsthj8DSmkr8PC3Jsi1MPr
+ ZT7auOzcgNVG5lLlucZxDcZ5EkAzzyYGiB+kPZ4dZxsocD6D9JiETK19fO54MGijc16t
+ s2Bo4z0Kdp5qIsJEDoKPmaQnhUXdI2Uyq0iZf9531W378UUSjuYTs/hZ7z3EOltKs+nv
+ lazQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWUxdgDoHybgAO4ozuhfyEb2RIeiHavwlhoT1Ye14XuC4zHWY7xHciCXLyM8uIFLAHH+InpuR5wMg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxrB0eM20Bf7/heEUz3AR9P+bJuEOR0Mi4spAuYMNpoLCR/PYoC
+ VTPdeGWnCKMmbGOLDXcEK94wlk5UECfroCOsy/ihmrA1m4eQrpees/M336TrLDOaxEhfSIs32T0
+ 17s50yjkvDC7xNpk6jZDpmD09RsCUxFBFqj0atAKV2xCd6bwtaHF3Hm+T3+6y/rr3
+X-Gm-Gg: ASbGnctn7oJ6TK1r4Tv8AgZL5/JsYGiRNNSmwA9LvntLs8fST77gEhAbIj/PEnkwiSd
+ 3bOqBj+kxwy8+9U7MVkWbgPlQZlkg5xjEu5pY7fwTlANwIEw1V1VLMkd1y7O/9t3a+6GNybOhNs
+ eQpoQY2VT7oIKjezeMJ42w7uBKftKcqV9oAuUwgELf1VDvDq32XzBP44y1Dt8FV4Qay/J4QqMur
+ LK6X0nZKgQsNI2s5KIBAKMoZPP4hTS1sTc8Dh+jC/21xbmJfcXAh5aHHFWBuhfb2iI=
+X-Received: by 2002:a5d:6489:0:b0:391:13ef:1b27 with SMTP id
+ ffacd0b85a97d-3911f7ce4b6mr6328163f8f.51.1741257128288; 
+ Thu, 06 Mar 2025 02:32:08 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IG+Tgv35AjEidAtwDd/7uDt9U9WK08/b/Hy7ngRGH/XCMkog1BQwQ1QPGrK1xSOjh46+jQw3Q==
+X-Received: by 2002:a5d:6489:0:b0:391:13ef:1b27 with SMTP id
+ ffacd0b85a97d-3911f7ce4b6mr6328134f8f.51.1741257127917; 
+ Thu, 06 Mar 2025 02:32:07 -0800 (PST)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-43bd42c5880sm45356665e9.19.2025.03.06.02.32.07
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 06 Mar 2025 02:32:07 -0800 (PST)
+Date: Thu, 6 Mar 2025 11:32:06 +0100
+From: Maxime Ripard <mripard@redhat.com>
+To: Dave Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <20250306-antelope-of-imminent-anger-bca19e@houat>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Introduce_GPU_SVM_and_Xe_SV?=
- =?utf-8?q?M_implementation_=28rev8=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 06 Mar 2025 10:17:47 -0000
-Message-ID: <174125626750.66908.15014023031543665388@64e06c682a23>
-X-Patchwork-Hint: ignore
-References: <20250306012657.3505757-1-matthew.brost@intel.com>
-In-Reply-To: <20250306012657.3505757-1-matthew.brost@intel.com>
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="367poxrw3iccmrnk"
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,133 +97,81 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1504028723589275477==
-Content-Type: text/plain; charset="utf-8"
+
+--367poxrw3iccmrnk
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: [PULL] drm-misc-fixes
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+Hi,
 
-Series: Introduce GPU SVM and Xe SVM implementation (rev8)
-URL   : https://patchwork.freedesktop.org/series/137870/
-State : failure
+Here's this week drm-misc-fixes PR.
 
-== Summary ==
+Maxime
 
-CI Bug Log - changes from xe-2764-6729782b064be5b1a67ff7ba2a0299532e19ff09_BAT -> xe-pw-137870v8_BAT
-====================================================
+drm-misc-fixes-2025-03-06:
+A Kconfig fix for nouveau, locking and timestamp fixes for imagination,
+a header guard fix for sched and a DPMS regression fix for bochs.
+The following changes since commit 3603996432997f7c88da37a97062a46cda01ac9d:
 
-Summary
--------
+  drm/fbdev-dma: Add shadow buffering for deferred I/O (2025-02-27 09:37:55 +0100)
 
-  **FAILURE**
+are available in the Git repository at:
 
-  Serious unknown changes coming with xe-pw-137870v8_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-137870v8_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-03-06
 
-  
+for you to fetch changes up to 80da96d735094ea22985ced98bc57fe3a4422921:
 
-Participating hosts (10 -> 9)
-------------------------------
+  drm/bochs: Fix DPMS regression (2025-03-06 08:54:42 +0100)
 
-  Missing    (1): bat-adlp-vm 
+----------------------------------------------------------------
+A Kconfig fix for nouveau, locking and timestamp fixes for imagination,
+a header guard fix for sched and a DPMS regression fix for bochs.
 
-Possible new issues
--------------------
+----------------------------------------------------------------
+Alessio Belle (1):
+      drm/imagination: Fix timestamps in firmware traces
 
-  Here are the unknown changes that may have been introduced in xe-pw-137870v8_BAT:
+Brendan King (3):
+      drm/imagination: avoid deadlock on fence release
+      drm/imagination: Hold drm_gem_gpuva lock for unmap
+      drm/imagination: only init job done fences once
 
-### IGT changes ###
+Dave Airlie (1):
+      drm/nouveau: select FW caching
 
-#### Possible regressions ####
+Philipp Stanner (1):
+      drm/sched: Fix preprocessor guard
 
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-adlp-vf:        [PASS][1] -> [ABORT][2] +1 other test abort
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2764-6729782b064be5b1a67ff7ba2a0299532e19ff09/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137870v8/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+Takashi Iwai (1):
+      drm/bochs: Fix DPMS regression
 
-  
+ drivers/gpu/drm/imagination/pvr_fw_meta.c       |   6 +-
+ drivers/gpu/drm/imagination/pvr_fw_trace.c      |   4 +-
+ drivers/gpu/drm/imagination/pvr_queue.c         |  18 +++-
+ drivers/gpu/drm/imagination/pvr_queue.h         |   4 +
+ drivers/gpu/drm/imagination/pvr_vm.c            | 134 +++++++++++++++++++-----
+ drivers/gpu/drm/imagination/pvr_vm.h            |   3 +
+ drivers/gpu/drm/nouveau/Kconfig                 |   1 +
+ drivers/gpu/drm/scheduler/gpu_scheduler_trace.h |   4 +-
+ drivers/gpu/drm/tiny/bochs.c                    |   5 +-
+ 9 files changed, 141 insertions(+), 38 deletions(-)
 
+--367poxrw3iccmrnk
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Build changes
--------------
+-----BEGIN PGP SIGNATURE-----
 
-  * Linux: xe-2764-6729782b064be5b1a67ff7ba2a0299532e19ff09 -> xe-pw-137870v8
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ8l5pgAKCRAnX84Zoj2+
+dvnpAX49PGgUPS/QzfI3bxYFe1E0JsdlQYzZYEURMktAULCGVDlw89fVBiyN3213
+U6nviXQBf2DLLDtOet6R6d8nWlI8tI91U7R5evYVl6i5pVqBqINXCCfhIZkgv7xX
+thHLmpOAsw==
+=ug7S
+-----END PGP SIGNATURE-----
 
-  IGT_8262: 8262
-  xe-2764-6729782b064be5b1a67ff7ba2a0299532e19ff09: 6729782b064be5b1a67ff7ba2a0299532e19ff09
-  xe-pw-137870v8: 137870v8
+--367poxrw3iccmrnk--
 
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137870v8/index.html
-
---===============1504028723589275477==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Introduce GPU SVM and Xe SVM implementation (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137870/">https://patchwork.freedesktop.org/series/137870/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137870v8/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137870v8/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2764-6729782b064be5b1a67ff7ba2a0299532e19ff09_BAT -&gt; xe-pw-137870v8_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-137870v8_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-137870v8_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-137870v8_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_migrate:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2764-6729782b064be5b1a67ff7ba2a0299532e19ff09/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-137870v8/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2764-6729782b064be5b1a67ff7ba2a0299532e19ff09 -&gt; xe-pw-137870v8</li>
-</ul>
-<p>IGT_8262: 8262<br />
-  xe-2764-6729782b064be5b1a67ff7ba2a0299532e19ff09: 6729782b064be5b1a67ff7ba2a0299532e19ff09<br />
-  xe-pw-137870v8: 137870v8</p>
-
-</body>
-</html>
-
---===============1504028723589275477==--
