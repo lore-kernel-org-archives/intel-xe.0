@@ -4,59 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01550C282D1
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Mar 2025 19:19:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BA5FC282DE
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Mar 2025 19:26:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD40910E1B9;
-	Thu,  6 Mar 2025 19:19:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6E1810EA84;
+	Thu,  6 Mar 2025 19:26:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ESH/htW0";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="O7jIgEtP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E20A10E1B9
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Mar 2025 19:19:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741288793; x=1772824793;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=1Lc+13aVqG5+aU+nAikZsW/JWxqul0wUbwVk7WRAVXE=;
- b=ESH/htW0GDDgHWtatVQ//yUqYwFhxz7Jf0pFt8ORuzOByeaIz65BiCEN
- whtOc7VCGMPGvtRYi8Vu0FPJeaVRI1bXsx8M3bYLNTUzJupaDXrX3unWD
- iUOU16cVd1J37v1UjTSVqz5Zesgvsbw5jgBLeeEavoam7kY4MzjZxBsI5
- EK4vOxUbIUAsR1mVBXPL22PNqISEOfp5fBZA1UP4AcuFkzwW1ZNmuFUgy
- OMbwnIV1QcJFidpzGTB/02XLr4m0yDn/+VKkKq4Fpou6tobpv2WhXk5Pg
- z1rxdTAlfUWDzjbyrtchUylmIBiII1805ovymUaN0N0YxQADeXKHcDfTH w==;
-X-CSE-ConnectionGUID: fxQWj0deQLGEPHq9ec0qmA==
-X-CSE-MsgGUID: CHP4/extRmm30a1tLPyN5w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="42207114"
-X-IronPort-AV: E=Sophos;i="6.14,227,1736841600"; d="scan'208";a="42207114"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 11:19:53 -0800
-X-CSE-ConnectionGUID: yMZXuNRpR62GxcA8EEoXGw==
-X-CSE-MsgGUID: QRutESbBRHiTSCCfAELpyQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="156334452"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 11:19:50 -0800
-Date: Thu, 6 Mar 2025 21:19:47 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
- anshuman.gupta@intel.com, badal.nilawar@intel.com,
- riana.tauro@intel.com, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v1] drm/xe/pcode: stop logging mailbox status as error
-Message-ID: <Z8n1Uy1hqAkYxeFE@black.fi.intel.com>
-References: <20250304061727.452100-1-raag.jadav@intel.com>
- <29d173b4-4cac-4765-a13e-8723b44f5270@linux.intel.com>
- <Z8ljepyswfhWhl05@black.fi.intel.com>
- <816f679f-e981-4ee5-9c19-31b2881b11e4@linux.intel.com>
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
+ [209.85.221.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1D7810E741;
+ Thu,  6 Mar 2025 19:26:39 +0000 (UTC)
+Received: by mail-wr1-f47.google.com with SMTP id
+ ffacd0b85a97d-3912c09be7dso687465f8f.1; 
+ Thu, 06 Mar 2025 11:26:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1741289198; x=1741893998; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=yNcfgkruRbdQ2LTcDlb82l2rtv263h9UvbuoZgmPSdM=;
+ b=O7jIgEtPM6f49RJBHj2VeG/MMXIT5hOO6xsWnPMuGQFjWnqBEMChnwNJXiPWq5f83Y
+ MhmgRb/B41HTCSKxiudoebGRxKxJqZx+q7x7fcdBi7nsofWFeneCGap66R8eP1rcw0YQ
+ Z60N05vNM8YfEPw+wGh23/Mh8gNSVwglpc1AaW0CnlFVt4Xmv4j1zlbSon3829L0q5b8
+ uLA0tMI3bHKV9eU9c9eJK4gs1N62y+1I7mkj+u4RXh8ORcchHOIDD4c2ANJmI7BhrAdx
+ olj7QhG5PG0KFCcsgD7IUV/518R3Pw7sfw4tt+4OSMzq9zx6hlKIaDkvtjh5DCS9PWbp
+ 9m6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1741289198; x=1741893998;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=yNcfgkruRbdQ2LTcDlb82l2rtv263h9UvbuoZgmPSdM=;
+ b=YNvCJe+esjqzfqeDQ+BU885qxt/POWm8T2FfPbXQl/xHOC0gwMbXpqwHBMLeg7WfH7
+ SNn2n57KGX9+R4KzGbILGhuzwm7UcQOLKtz+Zo7tNvcswIR2YSFiYl2DXJRaqD7gwc4X
+ 3J9uLiK9gqUKvne1UlIGuosQhYpN2GQ3qW/JWkT26oXrmVW7yjNOLW1pSTxoYuizAq8o
+ NskP/1ZOJQ5W253FdFD6VoH5UIro1Mg7xlm1jlXd8PB1aWZE6zEAxGC6xaFC8FIlVkrM
+ tiqn39dQ8u9YEtVzoGlke/g6tbNwEII7pnzifWjRc2PEhWylDELFF0O4drQkSIrVoYLL
+ MQ1A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUSja/KW+7HfzDxCv+Ud+i8Xe8D6vM1r2+sXE+3VEyY3eabuioiOye3PkxgqxikoLuhWo+iUlBNuzGP@lists.freedesktop.org,
+ AJvYcCW6eU9JQL3YrhDh6+iqdqCNe0Ue1L4rNmI698G7++hv69T2W9Ouiqhekn748dFrmQFqg+3B0jYra5HR/Ac=@lists.freedesktop.org,
+ AJvYcCWCjFqk/N+SSKnOxmpHYlca6Fk96vlKEgQaTgQZdowBscQhyku3t7+WM7S1lpIiC8nUUzs6Bl49xw==@lists.freedesktop.org,
+ AJvYcCWLp2W/pjpaHPkenxwoszpKux75BXDvYG5i74GClYjJYCY24/lTjneFia39GiPcgYZXWU75Q7CG+9Y=@lists.freedesktop.org,
+ AJvYcCX4/uETl+fxvb50DOzk9xKJw1K+jFrBjMAUjePQRGxSVvn1Ll4UJeM1yeOI/9XRpTjYUTue3oPbV0E=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxvUr4s56TN/IA/8l8rWNSPUq+7OUvyIWgtjAkt1y0r6AxWMkaL
+ wBoK9cGqKv++YKM1EXPS50iTO16TZXfMpOtINEBxyWgrBqolrE3B
+X-Gm-Gg: ASbGncs2xFhGx2nxacC9Da2DKlgXMv31IM5pQKcU8rYUxWBsqA8u1iMMsTcdUOI9o3m
+ rG6KYD56wdKQH6WWu6Dm0pDSDK1nzlRln+rUCAjjhXNkeCzeLC9vM5/cCSfHYLi55PSFCl+9nMS
+ TIBBTe4MzFORMZyob5N0VcjbP2N87ExcnbUKVC0yXQdmHGaYFAALcXYgfPYOhB/tcW898ODVs5J
+ /dZH1UR2x2JhQ8HsOSPrqmxFPdOF/7j8oFSptvng5UZpWUyOTItN1ItiuB9zEnxyTg/q6KsPEBZ
+ XyL9bje8cvDnOprb+WCPVheYe+t8zEB3r3EBqrVDorOZ/3ACDdVvTj0EjsdWFW5ahKIMBXMVYYH
+ l5CX95weQxBX7PHCfA5EGxmGlVa/GRKs=
+X-Google-Smtp-Source: AGHT+IGse2HrwvQit3ez+Tb+IZmcWPgul6Oz1Of3MncB8IKv5GiNEYehZwUGHa/gmdRGfttFwUyGrw==
+X-Received: by 2002:a5d:5f45:0:b0:390:eebc:6f32 with SMTP id
+ ffacd0b85a97d-39132da8fecmr291664f8f.48.1741289198054; 
+ Thu, 06 Mar 2025 11:26:38 -0800 (PST)
+Received: from orome (p200300e41f3a9f00f22f74fffe1f3a53.dip0.t-ipconnect.de.
+ [2003:e4:1f3a:9f00:f22f:74ff:fe1f:3a53])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-3912c0e1d67sm2905872f8f.74.2025.03.06.11.26.35
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 06 Mar 2025 11:26:36 -0800 (PST)
+Date: Thu, 6 Mar 2025 20:26:33 +0100
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+ airlied@gmail.com, simona@ffwll.ch, dri-devel@lists.freedesktop.org, 
+ linux-mediatek@lists.infradead.org, freedreno@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, 
+ imx@lists.linux.dev, linux-samsung-soc@vger.kernel.org,
+ nouveau@lists.freedesktop.org, 
+ virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org, 
+ linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-tegra@vger.kernel.org, 
+ intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org, 
+ Mikko Perttunen <mperttunen@nvidia.com>
+Subject: Re: [PATCH v3 20/25] drm/tegra: Compute dumb-buffer sizes with
+ drm_mode_size_dumb()
+Message-ID: <mtsi7lohn4nq75y3mdzk7eomloxvswjn4blsmruutpejhppd5i@wexuiu7yfea3>
+References: <20250218142542.438557-1-tzimmermann@suse.de>
+ <20250218142542.438557-21-tzimmermann@suse.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature"; boundary="y6cp6aqkj6w24xiu"
 Content-Disposition: inline
-In-Reply-To: <816f679f-e981-4ee5-9c19-31b2881b11e4@linux.intel.com>
+In-Reply-To: <20250218142542.438557-21-tzimmermann@suse.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,45 +104,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Mar 06, 2025 at 03:17:16PM +0530, Aravind Iddamsetty wrote:
-> On 06-03-2025 14:27, Raag Jadav wrote:
-> > On Thu, Mar 06, 2025 at 10:08:07AM +0530, Aravind Iddamsetty wrote:
-> >> Hi Raag,
-> >>
-> >> On 04-03-2025 11:47, Raag Jadav wrote:
-> >>> Since we're expecting many platform specific mailbox commands that
-> >>> might not be widely supported, stop logging them as errors. With this
-> >>> we can avoid unnecessary platform checks and use the return value of
-> >>> mailbox without enraging CI.
-> >> are you saying there are cases where we send a command that is not supported
-> >> on a particular platform?
-> > Yes. First instance on [1], which will be expanded with more commands.
-> >
-> > [1] https://lore.kernel.org/r/20250210100515.2205584-1-raag.jadav@intel.com/
-> 
-> But why should we expose the interface which is not supported on that HW.
 
-Not sure if you actually looked at the patch, but it's not exposing
-unsupported feature. It's deciding whether to expose based on mailbox
-error, which is most likely a one off thing at boot.
+--y6cp6aqkj6w24xiu
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 20/25] drm/tegra: Compute dumb-buffer sizes with
+ drm_mode_size_dumb()
+MIME-Version: 1.0
 
-Raag
+On Tue, Feb 18, 2025 at 03:23:43PM +0100, Thomas Zimmermann wrote:
+> Call drm_mode_size_dumb() to compute dumb-buffer scanline pitch and
+> buffer size. Align the pitch according to hardware requirements.
+>=20
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: Mikko Perttunen <mperttunen@nvidia.com>
+> ---
+>  drivers/gpu/drm/tegra/gem.c | 8 +++++---
+>  1 file changed, 5 insertions(+), 3 deletions(-)
 
-> >>> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> >>> ---
-> >>>  drivers/gpu/drm/xe/xe_pcode.c | 2 +-
-> >>>  1 file changed, 1 insertion(+), 1 deletion(-)
-> >>>
-> >>> diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
-> >>> index 9333ce776a6e..280f69119ff1 100644
-> >>> --- a/drivers/gpu/drm/xe/xe_pcode.c
-> >>> +++ b/drivers/gpu/drm/xe/xe_pcode.c
-> >>> @@ -46,7 +46,7 @@ static int pcode_mailbox_status(struct xe_tile *tile)
-> >>>  
-> >>>  	err = xe_mmio_read32(&tile->mmio, PCODE_MAILBOX) & PCODE_ERROR_MASK;
-> >>>  	if (err) {
-> >>> -		drm_err(&tile_to_xe(tile)->drm, "PCODE Mailbox failed: %d %s", err,
-> >>> +		drm_dbg(&tile_to_xe(tile)->drm, "PCODE Mailbox failed: %d %s", err,
-> >>>  			err_decode[err].str ?: "Unknown");
-> >>>  		return err_decode[err].errno ?: -EPROTO;
-> >>>  	}
+Acked-by: Thierry Reding <treding@nvidia.com>
+
+--y6cp6aqkj6w24xiu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmfJ9ukACgkQ3SOs138+
+s6GThw/9F553EWmmWz8ONopI5pY7Fy+Pu8kzqsU5bhKSKO2aqJ8y4PFOQAzaacO8
+2HuvhLXsP6l91B+R49oebJTWnbgcl9ThzcA4njgdKRFc7yZU/EZUEUGdwDkU6qsh
+/rkDnM+a+MzIAd3Z31B0Kvb0tUsl4e0UBueDHmjfP554dbtnMr94eIHuqLVRb1/D
+LB6ddm8DbZVoDKT9Ji2gLQpW84oFuIzRZPOV8JmPe+wE8Xf6A9sLloqJndErnvHg
+B8X2K8PzxkNNJGaZtQMUpiJ+S1oDNZnnKtzt0Wb+b9itJqUgykve29vGBDBImsb5
+8JLFlkdPFdKpFsbAvGyHv8b+F2rDVu4Oelg88WWDUSMc9Ut274u5/a2DTUOwF806
+DtCADAFUOOcIyDZKfPpeQuWDPeScN3/ANW8iQMlyPaNO5fBKlisFjiF1Bh0gS+vQ
+shkKb74wChg/4jgq1+M+I4DPdCQRe0kGIqbNZ4yK71owOjoSE6WIxxEt0UUKxPwh
+XZyf8ZF2O9TCPMigN6Qw2AGUhaC3HsAG9KbhOTSeUAsOwohFtYY+3B6Hkb8SQHEM
+i05OutqXEhtdSZgBK+HuweZtYWCBfy/BcMeD99Rkg01C+aMZcNPGVLpvGqpryNaB
+Ga0hQwFdIjbnMbXxjzyfJfs7GqNyTAJtpiqBO3uDhWH2LxJHZ7M=
+=2m1E
+-----END PGP SIGNATURE-----
+
+--y6cp6aqkj6w24xiu--
