@@ -4,62 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8405C28B22
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Mar 2025 10:42:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0F5DC282D1
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Mar 2025 10:44:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74F4010E16D;
-	Thu,  6 Mar 2025 10:42:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A33CB10E175;
+	Thu,  6 Mar 2025 10:44:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ubzj5dMY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BCmwwRbi";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EE7C10E167;
- Thu,  6 Mar 2025 10:42:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6AE910E175
+ for <intel-xe@lists.freedesktop.org>; Thu,  6 Mar 2025 10:44:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741257734; x=1772793734;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=QzubZ57zch1ALOmmNoMoKdJ9fmuCcVtZQmrFksJPFJk=;
- b=Ubzj5dMYo7j5umTAuQe2oCx0K8/qP1/OyJkpKRGk2vHVvIAX124rNkVU
- XZOcGFBpQ1+z9c37nzBUHPlxf2DSWdIj8sOnu/o6gZjJXerTuaKBI5BKe
- rFHXkY8WX7FGeXRkQ70P3Zaqcp3mxhE6iH9vQJmIIRYX7lGGzzzLjkmrH
- IzrJ7mMqUWM0o3UReRLtcZGevnMtSEp6z9qfeuNk5e6mW7UkPvILiu2wI
- gHtK6RrzMOYw091S2/Ank9whhsEzTGrH5CXHrTirR3ArnF6A3i19qn3m6
- CO7/yd/0NUPfbQ0OYk8iFSwjRFCtGuhNdqTdLDXDDBRqjVSy1u5L18U8Q Q==;
-X-CSE-ConnectionGUID: aOktshCtQW2JBa7hFBYllQ==
-X-CSE-MsgGUID: 5dSCbabtQ3KxvUV1vYWJYA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="53244801"
-X-IronPort-AV: E=Sophos;i="6.14,225,1736841600"; d="scan'208";a="53244801"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 02:42:14 -0800
-X-CSE-ConnectionGUID: cVlVafwxT2+TMhq8huE9Xw==
-X-CSE-MsgGUID: ZP/SSieUSN2y5wTvZlHaiA==
+ t=1741257867; x=1772793867;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=34ZYfdI8rPt22I7yf1ubgCBBb6CEV+yFLlEEyVjJ984=;
+ b=BCmwwRbiWsjTTuQD2jjsy0tdjvHW1CxJPeTV9Ab/kuES/0KaGdUoi2E6
+ 5v66+j2RLD7A8xhkFbV48Rot+NQieXJt5O/ZTYCMQd7evCy6cCKkK0aUj
+ vCyWzJ1YLtoStX3qAfs+WIFejuJd6TT6BjeZQ6vJDqjrcgBbM+XzhOai/
+ ya/tBE8GtfTHKlC7H6AUbZYennleZMQORmtZ/staPwGF6bxjuBtpqQsHs
+ yhU1cdOJxkFfaoDSEzNAexk3u7bA9zmfMZoSuJbQQBkTlLkzp2nwnQUh8
+ +GcsXzlteFwHE1fT3Gt+Bs7K9GyMiAmT1NvZpoMKF3O+U3TFu8qI6XhH3 w==;
+X-CSE-ConnectionGUID: FEIldqXgQZWZrlmuHLjmwA==
+X-CSE-MsgGUID: 4uv6WgghRQaNqMjlJECa3g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="42392100"
+X-IronPort-AV: E=Sophos;i="6.14,225,1736841600"; d="scan'208";a="42392100"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2025 02:44:27 -0800
+X-CSE-ConnectionGUID: 2p7HNK4lS3+VjqnUyfDvtQ==
+X-CSE-MsgGUID: caqus43hQqCpKrzHfL69SA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,225,1736841600"; d="scan'208";a="119485774"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.135])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 02:42:11 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
-Cc: "Knop, Ryszard" <ryszard.knop@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "rk@dragonic.eu" <rk@dragonic.eu>, "De Marchi, Lucas"
- <lucas.demarchi@intel.com>, "daniel@fooishbar.org" <daniel@fooishbar.org>,
- Sima Vetter <sima@ffwll.ch>
-Subject: Re: Discussion: Moving away from Patchwork for Intel i915/Xe CI
-In-Reply-To: <20250305-nonchalant-fresh-stoat-61ea0a@lemur>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <814f9bcb9c7ee22af45bd5278255af247c6664fa.camel@intel.com>
- <871pvbxt40.fsf@intel.com> <20250305-nonchalant-fresh-stoat-61ea0a@lemur>
-Date: Thu, 06 Mar 2025 12:42:07 +0200
-Message-ID: <87frjqwidc.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.14,225,1736841600"; d="scan'208";a="124083230"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2025 02:44:24 -0800
+Date: Thu, 6 Mar 2025 12:44:21 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
+ anshuman.gupta@intel.com, badal.nilawar@intel.com,
+ riana.tauro@intel.com, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v1] drm/xe/pcode: stop logging mailbox status as error
+Message-ID: <Z8l8haryZ2q2Cq0V@black.fi.intel.com>
+References: <20250304061727.452100-1-raag.jadav@intel.com>
+ <29d173b4-4cac-4765-a13e-8723b44f5270@linux.intel.com>
+ <Z8ljepyswfhWhl05@black.fi.intel.com>
+ <816f679f-e981-4ee5-9c19-31b2881b11e4@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <816f679f-e981-4ee5-9c19-31b2881b11e4@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,88 +71,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 05 Mar 2025, Konstantin Ryabitsev <konstantin@linuxfoundation.org> =
-wrote:
-> On Wed, Mar 05, 2025 at 07:52:31PM +0200, Jani Nikula wrote:
->> > - For each new series on lore.kernel.org a bridge would create a PR by
->> > taking the latest mirrored drm-tip source, then applying a new series
->> > with `b4 shazam`.
->>=20
->> There's a small catch here. Patchwork is currently more clever about
->> handling series revisions when only some of the patches in a series are
->> updated by way of replying to the individual patch. For example [1][2].
->
-> FWIW, b4 does partial rerolls already. E.g., using your own example:
+On Thu, Mar 06, 2025 at 03:17:16PM +0530, Aravind Iddamsetty wrote:
+> On 06-03-2025 14:27, Raag Jadav wrote:
+> > On Thu, Mar 06, 2025 at 10:08:07AM +0530, Aravind Iddamsetty wrote:
+> >> Hi Raag,
+> >>
+> >> On 04-03-2025 11:47, Raag Jadav wrote:
+> >>> Since we're expecting many platform specific mailbox commands that
+> >>> might not be widely supported, stop logging them as errors. With this
+> >>> we can avoid unnecessary platform checks and use the return value of
+> >>> mailbox without enraging CI.
+> >> are you saying there are cases where we send a command that is not supported
+> >> on a particular platform?
+> > Yes. First instance on [1], which will be expanded with more commands.
+> >
+> > [1] https://lore.kernel.org/r/20250210100515.2205584-1-raag.jadav@intel.com/
+> 
+> But why should we expose the interface which is not supported on that HW.
 
-Yay, I upgraded to 0.14 and so it does. Thanks!
+It allows checking unsupported functionality through return code without
+making CI angry. So it's either this or we can limit each command (current
+and future) with explicit platform checks and keep revisiting them everytime
+we add a new platform or command for the foreseeable future, whichever makes
+more sense.
 
-The point I made is moot, and I agree with Lucas that we should align
-with what b4 does.
+Raag
 
-> 	$ b4 am -o/tmp 20250305114820.3523077-2-imre.deak@intel.com
-> 	[...]
-> 	---
-> 	  =E2=9C=93 [PATCH v5->v6 1/6] drm/i915/hpd: Track HPD pins instead of p=
-orts for HPD pulse events
-> 		+ Reviewed-by: Jani Nikula <jani.nikula@intel.com> (=E2=9C=93 DKIM/inte=
-l.com)
-> 	  =E2=9C=93 [PATCH v5->v6 2/6] drm/i915/hpd: Let an HPD pin be in the di=
-sabled state when handling missed IRQs
-> 		+ Reviewed-by: Jani Nikula <jani.nikula@intel.com> (=E2=9C=93 DKIM/inte=
-l.com)
-> 	  =E2=9C=93 [PATCH     v6 3/6] drm/i915/hpd: Add support for blocking th=
-e IRQ handling on an HPD pin
-> 	  =E2=9C=93 [PATCH v5->v6 4/6] drm/i915/dp: Fix link training interrupte=
-d by a short HPD pulse
-> 		+ Reviewed-by: Jani Nikula <jani.nikula@intel.com> (=E2=9C=93 DKIM/inte=
-l.com)
-> 	  =E2=9C=93 [PATCH     v6 5/6] drm/i915/dp: Queue a link check after lin=
-k training is complete
-> 	  =E2=9C=93 [PATCH v5->v6 6/6] drm/i915/crt: Use intel_hpd_block/unblock=
-() instead of intel_hpd_disable/enable()
-> 	  ---
-> 	  =E2=9C=93 Signed: DKIM/intel.com
-
-Side note, I often pipe messages from my MUA (notmuch-emacs) to b4, as
-it nicely parses the mails and picks up the message-id from
-there. Overall it works great. However, b4 seems to err on the side of
-writing color codes to pipes, and I get this as output:
-
----
-  [32m=E2=9C=93[0m [PATCH v5->v6 1/6] drm/i915/hpd: Track HPD pins instead =
-of ports for HPD pulse events
-    + Reviewed-by: Jani Nikula <jani.nikula@intel.com> ([32m=E2=9C=93[0m DK=
-IM/intel.com)
-  [32m=E2=9C=93[0m [PATCH v5->v6 2/6] drm/i915/hpd: Let an HPD pin be in th=
-e disabled state when handling missed IRQs
-    + Reviewed-by: Jani Nikula <jani.nikula@intel.com> ([32m=E2=9C=93[0m DK=
-IM/intel.com)
-  [32m=E2=9C=93[0m [PATCH     v6 3/6] drm/i915/hpd: Add support for blockin=
-g the IRQ handling on an HPD pin
-  [32m=E2=9C=93[0m [PATCH v5->v6 4/6] drm/i915/dp: Fix link training interr=
-upted by a short HPD pulse
-    + Reviewed-by: Jani Nikula <jani.nikula@intel.com> ([32m=E2=9C=93[0m DK=
-IM/intel.com)
-  [32m=E2=9C=93[0m [PATCH     v6 5/6] drm/i915/dp: Queue a link check after=
- link training is complete
-  [32m=E2=9C=93[0m [PATCH v5->v6 6/6] drm/i915/crt: Use intel_hpd_block/unb=
-lock() instead of intel_hpd_disable/enable()
-  ---
-  [32m=E2=9C=93[0m Signed: DKIM/intel.com
----
-
-I haven't had the time to dig into b4 source on this, but it would be
-great if it could automatically detect whether sending colors is the
-right thing to do or not. Basically only emit color codes to interactive
-terminals, unless forced also for pipes.
-
-(Alternatively I could try to figure out how to enable colors on emacs
-pipe output, but that's another rabbit hole...)
-
-
-Thanks,
-Jani.
-
-
---=20
-Jani Nikula, Intel
+> >>> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> >>> ---
+> >>>  drivers/gpu/drm/xe/xe_pcode.c | 2 +-
+> >>>  1 file changed, 1 insertion(+), 1 deletion(-)
+> >>>
+> >>> diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
+> >>> index 9333ce776a6e..280f69119ff1 100644
+> >>> --- a/drivers/gpu/drm/xe/xe_pcode.c
+> >>> +++ b/drivers/gpu/drm/xe/xe_pcode.c
+> >>> @@ -46,7 +46,7 @@ static int pcode_mailbox_status(struct xe_tile *tile)
+> >>>  
+> >>>  	err = xe_mmio_read32(&tile->mmio, PCODE_MAILBOX) & PCODE_ERROR_MASK;
+> >>>  	if (err) {
+> >>> -		drm_err(&tile_to_xe(tile)->drm, "PCODE Mailbox failed: %d %s", err,
+> >>> +		drm_dbg(&tile_to_xe(tile)->drm, "PCODE Mailbox failed: %d %s", err,
+> >>>  			err_decode[err].str ?: "Unknown");
+> >>>  		return err_decode[err].errno ?: -EPROTO;
+> >>>  	}
