@@ -4,167 +4,102 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61C18C282D1
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Mar 2025 13:07:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EE1FC282EC
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Mar 2025 13:07:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 253BA10E252;
-	Thu,  6 Mar 2025 13:07:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC2EE10E70E;
+	Thu,  6 Mar 2025 13:07:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S2wb0W0w";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="G2CaK7t0";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="9VuQUlgN";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="G2CaK7t0";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="9VuQUlgN";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EB2F10E95C
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Mar 2025 13:06:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741266418; x=1772802418;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=ppTZOFH3Ha2DJqTr0XMaCNc0vyclNut4UlEJNtp3QHU=;
- b=S2wb0W0wKt87OsXIOhIxy71bwnIRMDGs4dCYvU+S8JqmKtzbl5rVBy4Q
- QEJY+QlOj4a1XuuDlCuMIQmt0h43ZtKU5W0xq13cE98qyFusDeBb0R3d6
- qNQayELmLWR8N7fu2V+ln53bC1HiNU3oYqHqoXBTQCTMbB5uFHXCKi4bv
- CpcIIGCAC2bqFycq3idW/xYxSiWNnw+5bJK6RtBFl2KNXyxvPHK5DJeFh
- Gay0vrmMUL1xy9m+6VZ0JRtoVM0dYm2W0jyAn/jSS51ws22jpm0BJUqfB
- YI5Ad2E7EYsijh/+cAvOrJDQziQ680gR87kTgxUYqgP7t6D4vsouKRspr w==;
-X-CSE-ConnectionGUID: yzdMF5XIQgeAig6U4PAkLA==
-X-CSE-MsgGUID: odwjhG3SRmivRksPEuMO8w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="41979836"
-X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; d="scan'208";a="41979836"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 05:06:58 -0800
-X-CSE-ConnectionGUID: +X4e91hiSPWYelDWLTUCfg==
-X-CSE-MsgGUID: 0/KBBWRASaKd0jhuShydHg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; d="scan'208";a="119025921"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 05:06:57 -0800
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Thu, 6 Mar 2025 05:06:56 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Thu, 6 Mar 2025 05:06:56 -0800
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.176)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 6 Mar 2025 05:06:56 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iP0ER75pw6hc5rP37gJRbaMS2t4O1+SJrvWDqFVC4Dow4VuZdsUF/a4eALQXOxewHRo3hVBa8ItjRfkndmUxSoWy8TYyEw+KDl455dFkk8DLUuyDcKiYB8Wj63dI/Sx5B1CMCbfUp0jV3j68usvOcgFOm806ssf810R8m8XnPrFKdrblyrmHTiWeMS0eD8VX66emVVeCP0IICETIpWTqELngHehlo3CXgv5hxL1TozGJ1byKjWdQB6NOiJQHBWtReVaYR4pBjivD5KoHZyToZnLpIckeY4olo64w5WTumKd55eXBu1Pgxeut7WoOeXsFKsECS5lEjZk7IsGm+yMd/Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qPn6X78SYTrKi2SoEI5hB1LRWfKk+e3WKRBa0nS211s=;
- b=dlnm7jezznlT17M2E5ETjUA0HlgLtsgy0VsQbHkD0H1EERIxQK2DAe5rkud3bkcC6GwnaSPUpsj3N5RGIyIKpmDZW65Hydfc5gviSY2LbhfuYj5Rp8zjZ9NzUtMEZwd02HakFb4TOZwBZlj/yZVmk0rsHw1PZxDIVyFLOkq5F/OBjxVMOdKGyndr33KAiPxz1M0uPTgP1NI6iksR+cfmfAIhRWO03fjzAUBguJ33Abb9jOHp8L8Ir9gattbYoquA0qDOits0cbO4YkheCuwAeud62x1VwJqoPu54q3NBRJyJV34KscxyHnJ0WLztik9mzlb/1GzOQsXPylOkl7d6PA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SJ1PR11MB6204.namprd11.prod.outlook.com (2603:10b6:a03:459::19)
- by IA1PR11MB7247.namprd11.prod.outlook.com (2603:10b6:208:42d::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.17; Thu, 6 Mar
- 2025 13:06:13 +0000
-Received: from SJ1PR11MB6204.namprd11.prod.outlook.com
- ([fe80::fd8d:bca9:3486:7762]) by SJ1PR11MB6204.namprd11.prod.outlook.com
- ([fe80::fd8d:bca9:3486:7762%4]) with mapi id 15.20.8511.017; Thu, 6 Mar 2025
- 13:06:12 +0000
-From: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
-To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Brost, Matthew" <matthew.brost@intel.com>
-Subject: RE: [PATCH] drm/xe: Release gud ids before cancelling work
-Thread-Topic: [PATCH] drm/xe: Release gud ids before cancelling work
-Thread-Index: AQHbjpYSLZ7yOfnB9kqP0iiA2hBPDrNmE6uA
-Date: Thu, 6 Mar 2025 13:06:12 +0000
-Message-ID: <SJ1PR11MB62049DAB50F1AA8ACBCC0E4781CA2@SJ1PR11MB6204.namprd11.prod.outlook.com>
-References: <20250306125459.975071-1-tejas.upadhyay@intel.com>
-In-Reply-To: <20250306125459.975071-1-tejas.upadhyay@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ1PR11MB6204:EE_|IA1PR11MB7247:EE_
-x-ms-office365-filtering-correlation-id: af9a6e6c-fa34-4151-c54e-08dd5cafaba5
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|38070700018|7053199007; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?3XXsXlLjSFKchOb0gsIg2TecwEJoaTxMCyEexqH1i+usd65YlLE3uSrCUajH?=
- =?us-ascii?Q?qp0ovtOWbTKW68P/A8ZiUpRolMJvDHvL4VWwpoUVf0HBibilSOT2Ur4GHxbZ?=
- =?us-ascii?Q?JIYHQi43bYTGccjqU4gilDZ5YxMvZTi+lgZcYqNDf00277Z6Ly/XHAsW3RmG?=
- =?us-ascii?Q?e4YUfn6mCCmO911d35olGsIJNrJc19AzeVxvKr9v2fiDNaXOEr30fwheQ1UG?=
- =?us-ascii?Q?UCV0h4NztNiWDdg+3ww55s3vt8wYJAB+gTM8JR+XHiD6x7gop+LPWivWkhto?=
- =?us-ascii?Q?0sDTKhw+hwr6cPHnTqQlkARCgKP+apyIsW9EY7lJI3htv8tXoyIZgdlHr4us?=
- =?us-ascii?Q?DevG7OnlmDpV7R06Kx2sFtL8i/KTN6nHu4OXmeAn0STGawzEaNL5sWbBGgEN?=
- =?us-ascii?Q?d4abp7o3w3BmkO/3xffjxN4kabxG2XshDX76xWN1SA+nhMa3//jEaBmeVaVm?=
- =?us-ascii?Q?ypAxqWffRrcxMdqU92Gsd+yU5DW7/Fbr5ROGbznF5kOJ9kCWlr/ax0yvjsKV?=
- =?us-ascii?Q?Xpke+zAlyETaVDCTsq7hVLSBnslZKRva9ni0BQHuKnZUohIwfhM/9R10k6y2?=
- =?us-ascii?Q?UwDDh8so/NF9HZqNvKR5gtQ4Kz/Ib9456oVlS6mioRmO9dQbwrItU9y6lwrh?=
- =?us-ascii?Q?eWFZmqMEZiuqAWQeO0EllEQuHsByz3/bbzsiG+OvgPJS8WVRn22TIWrMnjgJ?=
- =?us-ascii?Q?QKLAnu3iAauAZNNPP3DQweT/UXSJwgjNTsbBWheyC5bWf5LonvekCSH/rxOI?=
- =?us-ascii?Q?Y8YiMMaXPifw/4WN2mYPmE1Hsrb0c1YZW88WytHEY65p41w0Lb1nA0N+e54v?=
- =?us-ascii?Q?kCD3nWsCzthFg16AHp/u8zlTgxCI/M10Z7IM0fq3TkAMRNwmkLs4zS0K25mv?=
- =?us-ascii?Q?T5Ewm3yTFVglK4kFBlLykHi0fMLnO1uvkan3zo0sBGMuHydRxE/bjWcCiXRj?=
- =?us-ascii?Q?ZkOkti3LV+uSmnw7dIjWhtkcEJHO3+T290lmJfMfr5YKdCE4GCLXpUjBl02J?=
- =?us-ascii?Q?JImayn9vta/s6Dqc847icrEcCG3S03v1YGVgSG0hu/BvORXPFexAvcZHa0mo?=
- =?us-ascii?Q?L/AkuGxRrgpV9BTxw9yAvwpRj08vJR6Csq60E9gldBVeAliPxq6QgcrWh5lB?=
- =?us-ascii?Q?oL78BCyCo0gvvjkhOfhrwAVI3cguyhFdxrMnQN/5hjdnOddB44JMTgmfR66z?=
- =?us-ascii?Q?lRXV90LPNY+LTHBRrBS/xzSNlvPUyH8Q+1O5JdppYaKqbMlYBlgjzQoryqN4?=
- =?us-ascii?Q?IApb9i7oaUbc8POBY99uenBmQieA3o8/KNSrb0a9tDQBlO4AwjCaGjTVWFw0?=
- =?us-ascii?Q?STFNVp956VFpEqIRnzGAPddA8hBmmlezEUEysAhE3MzjdhgQXwAL9QWmQMqF?=
- =?us-ascii?Q?rkO45+Mo0Sb+8GI6G4md3ZPL21XXCnazG5gx75bPXgkM+kOfk19cRRX8y1R2?=
- =?us-ascii?Q?WNaL2xBGBIw4Cq0zNV0kbRTv64Y5RUt2?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ1PR11MB6204.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(38070700018)(7053199007); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?sCSx0tK9nBNVvMkIRfNemoUrdPfU/Dynr4T7LqrMKLC8/q91cMGBuYEF1W7t?=
- =?us-ascii?Q?9u+NLCNRe360tsL2ve0XoEZjMS5H8GaQ/ACzdxn7pElKF0Jvjq+0rkhKjGXO?=
- =?us-ascii?Q?k7q+pvdPwkgMpSn+ZrcJ7DJABnv5f+cxskGGi3K7xSO007KxhJnTIWNH2MCi?=
- =?us-ascii?Q?Z6KbRs18ctfUsorBuYFXfKEWe7RH4+TGdBOysmm8voPX7caedpzlN6YJ8RZ1?=
- =?us-ascii?Q?nGW9xcU5hJMvTCXbCOhgS2r64Gz/lKbcsFgG+dSzHJpINc4TqcSAHic0AwnZ?=
- =?us-ascii?Q?tvSuFd5ppcsvcKbkWxSmSoKlyOiOA86BACqKn9M75l40MOY5+ER5aAoAtLNU?=
- =?us-ascii?Q?F/6fL2TWQdCqmYBVLXu+mG5rIY46Cnv7rngGybdV1rWTsfUAtp+/IuVMb7Zn?=
- =?us-ascii?Q?n5v+e1eab0kHy7abT8nP/4iVfTgkMctlIK17kxlDDlARBxpeS7MgMKWWEKKu?=
- =?us-ascii?Q?obdViRrGX5BtufIpBjU4i7/tHd/3S/ih93fOBBG5kbnIcjjx6dm1p9YHIZfb?=
- =?us-ascii?Q?4hlSQsQ6pZSFE8qjdpDQsbH19zo1/A2nAwWmFDRAJi+NYVSLLkeKsTHpNyrk?=
- =?us-ascii?Q?JXjHcCbsRaQ4Bw8eECiLPrpoj/xk50G6w5OP2WM2bO3BcA8xec9zMa+TY581?=
- =?us-ascii?Q?gRTCKr05o9ySMmEHG4hBONVrDX+FzHd718ZXts0IGVjoswUCeXcXl3A4N9o6?=
- =?us-ascii?Q?MuzZ7I9aGK4+H0bahAfbNIB3GquyL2A57ubRvynfSokkaB26QL9m0hfv7r+Y?=
- =?us-ascii?Q?xnjt7sQkbJ6qZXbwcPjAflAVzj+gE+AuKmzrrkM9hz1p7OCcJ/ZMWpoxUE1c?=
- =?us-ascii?Q?4AMNsrYz56MUtUGHmrvBm7P96k5xsF4JPz9LaoKGNDq0oRJhPrq6E7t/xHS7?=
- =?us-ascii?Q?cKxq7Z3c4U7ECUUqo7tGdiqrIZy+a9tX13SO2ZcmuMqgjnJOqKQB0+AuphVC?=
- =?us-ascii?Q?Vr40YcaIc4+JxGa32wz+DlmcPYBZKcD4V46qvqkswztSlvprlPcWxR5Khisl?=
- =?us-ascii?Q?cGIk878qW3sb/iJA49umL8YEdna2liw7vCTpsNer+OBnw+JamLa/IYjghrwF?=
- =?us-ascii?Q?8Nsx4bxI+ymICFO8NofdDvzQcWjtC1Yo/1AuxaLHSvtnClTPEWOGfsuFgWLp?=
- =?us-ascii?Q?Ql8X+d9xe9glE44Oq16PgYjSbQPXrQdrHdR5r0IbVHy8LqeSYpp9+TfrczjM?=
- =?us-ascii?Q?9Acp/ymEygS9J7nbRdQ1DQ7t5LNF+uWIx8En1AoUZwKDSmW6513tVt6Ox6Cj?=
- =?us-ascii?Q?KulR+s1yE9i4lsLpuzu1pB5DxD1Xt3VQUTWgCBofjv7QbfesG+UlkxkWTBBM?=
- =?us-ascii?Q?dHvKaQgQpCGtpJKcizgaJFtLtlYld6PY+/vO6MPLrCsosDLshJ1+R8+ZR1e2?=
- =?us-ascii?Q?uoh1g065Lf8WYNQ9q7UtvNt5+P+3aIPbhMTUc3wOZzGqIWDr0h7gzsCdBbZb?=
- =?us-ascii?Q?6VNglTHiHdqEFlDXgl5NMElI1YX0PjvbLFBleMEHDlifNiryYC/Jo1I+CNN+?=
- =?us-ascii?Q?UAhSR1up+VQzIV06w78grDsGO4PkPL3hz5VksHrHJMYa2MYWs/ToxA9mF/y8?=
- =?us-ascii?Q?gDotNE0C+9FABPGB3gIrXqgOORMLm2cHou75Rmt8?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09AC310E83A
+ for <intel-xe@lists.freedesktop.org>; Thu,  6 Mar 2025 13:07:04 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 99F6B21197;
+ Thu,  6 Mar 2025 13:07:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1741266422; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=//bza1jLAQ9R5hXs1RulT31MB11FmOi8bVtR4lC1ToY=;
+ b=G2CaK7t0f7ZExDFV2Id7dgFeMF8DC0be/3FFRt/4u06avaj2ecGgOT1m6Uy239alWpZBV9
+ ForlNvAklH290uyXGvBcFqdQzknbMnBZ8zpbVqVbzlGbqp7VD6dTuFStqSHd9cRrS+1aZF
+ Q26AhG+lX75cjk69nJO8Wx8Rw8BSa7I=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1741266422;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=//bza1jLAQ9R5hXs1RulT31MB11FmOi8bVtR4lC1ToY=;
+ b=9VuQUlgN7EwaF1fcSl8v0e247abUsVFOoVJModgzZtutll5etDiQqqfB7KTw/diyUit7NP
+ kYfBJoUEcet+x1CA==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1741266422; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=//bza1jLAQ9R5hXs1RulT31MB11FmOi8bVtR4lC1ToY=;
+ b=G2CaK7t0f7ZExDFV2Id7dgFeMF8DC0be/3FFRt/4u06avaj2ecGgOT1m6Uy239alWpZBV9
+ ForlNvAklH290uyXGvBcFqdQzknbMnBZ8zpbVqVbzlGbqp7VD6dTuFStqSHd9cRrS+1aZF
+ Q26AhG+lX75cjk69nJO8Wx8Rw8BSa7I=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1741266422;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=//bza1jLAQ9R5hXs1RulT31MB11FmOi8bVtR4lC1ToY=;
+ b=9VuQUlgN7EwaF1fcSl8v0e247abUsVFOoVJModgzZtutll5etDiQqqfB7KTw/diyUit7NP
+ kYfBJoUEcet+x1CA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 3535D13A61;
+ Thu,  6 Mar 2025 13:07:02 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id cyunC/adyWfTXwAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 06 Mar 2025 13:07:02 +0000
+Date: Thu, 6 Mar 2025 14:07:00 +0100
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-next
+Message-ID: <20250306130700.GA485504@linux.fritz.box>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6204.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: af9a6e6c-fa34-4151-c54e-08dd5cafaba5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Mar 2025 13:06:12.5160 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Zvr1x4joqen9t4W9ElYegB8e4qW/qb/Dp0eScV3GDLJivwsJ1gS2IlYCuWFzwK6ElGfxuvYDwpUiQx2Pshf3huheBEi14IwiGD5hHVm6c6w=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7247
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-0.999]; MIME_GOOD(-0.10)[text/plain];
+ FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
+ MIME_TRACE(0.00)[0:+]; MISSING_XM_UA(0.00)[];
+ RCPT_COUNT_TWELVE(0.00)[16]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ FUZZY_BLOCKED(0.00)[rspamd.com]; FROM_EQ_ENVFROM(0.00)[];
+ FROM_HAS_DN(0.00)[];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ RCVD_TLS_ALL(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2]; TO_DN_SOME(0.00)[]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -179,54 +114,395 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Please ignore this patch. Few spelling mistakes are corrected and send new =
-one.
+Hi Dave, Sima,
 
-Tejas
+here's the PR for drm-misc-next. It includes two new drivers for Apple
+Touch Bar displays. There are new helpers for TTM's shrinker, which xe
+now uses. There are a number of changes to the rockchip driver.
 
+There are also cross-subsystem changes for drivers/base and fbdev. The
+latter is actually a change required for memory management.
 
-> -----Original Message-----
-> From: Upadhyay, Tejas <tejas.upadhyay@intel.com>
-> Sent: Thursday, March 6, 2025 6:25 PM
-> To: intel-xe@lists.freedesktop.org
-> Cc: Brost, Matthew <matthew.brost@intel.com>; Upadhyay, Tejas
-> <tejas.upadhyay@intel.com>
-> Subject: [PATCH] drm/xe: Release gud ids before cancelling work
->=20
-> A GT reset can be occuring in parallel while cancelling work in async cal=
-l  which
-> can requeue these workers.
-> To avoid that lets first release guc ids and then cancle work so they don=
-t
-> requeued.
->=20
-> Fixes: 8ae8a2e8dd21 ("drm/xe: Long running job update")
-> Fixes: 18fbd567e75f ("drm/xe: cancel pending job timer before freeing
-> scheduler")
-> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_guc_submit.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c
-> b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index b95934055f72..31bc2022bfc2 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -1254,11 +1254,11 @@ static void __guc_exec_queue_fini_async(struct
-> work_struct *w)
->  	xe_pm_runtime_get(guc_to_xe(guc));
->  	trace_xe_exec_queue_destroy(q);
->=20
-> +	release_guc_id(guc, q);
->  	if (xe_exec_queue_is_lr(q))
->  		cancel_work_sync(&ge->lr_tdr);
->  	/* Confirm no work left behind accessing device structures */
->  	cancel_delayed_work_sync(&ge->sched.base.work_tdr);
-> -	release_guc_id(guc, q);
->  	xe_sched_entity_fini(&ge->entity);
->  	xe_sched_fini(&ge->sched);
->=20
-> --
-> 2.34.1
+Best regards
+Thomas
 
+drm-misc-next-2025-03-06:
+drm-misc-next for v6.15:
+
+Cross-subsystem Changes:
+
+base:
+- component: Provide helper to query bound status
+
+fbdev:
+- fbtft: Remove access to page->index
+
+Core Changes:
+
+- Fix usage of logging macros in several places
+
+gem:
+- Add test function for imported dma-bufs and use it in core and helpers
+- Avoid struct drm_gem_object.import_attach
+
+tests:
+- Fix lockdep warnings
+
+ttm:
+- Add helpers for TTM shrinker
+
+Driver Changes:
+
+adp:
+- Add support for Apple Touch Bar displays on M1/M2
+
+amdxdna:
+- Fix interrupt handling
+
+appletbdrm:
+- Add support for Apple Touch Bar displays on x86
+
+bridge:
+- synopsys: Add HDMI audio support
+- ti-sn65dsi83: Support negative DE polarity
+
+ipu-v3:
+- Remove unused code
+
+nouveau:
+- Avoid multiple -Wflex-array-member-not-at-end warnings
+
+panthor:
+- Fix CS_STATUS_ defines
+- Improve locking
+
+rockchip:
+- analogix_dp: Add eDP support
+- lvds: Improve logging
+- vop2: Improve HDMI mode handling; Add support for RK3576
+- Fix shutdown
+- Support rk3562-mali
+
+xe:
+- Use TTM shrinker
+The following changes since commit 7cb3274341bfa5977f3c90503b632986a82705fa:
+
+  drm/panel: Add Visionox RM692E5 panel driver (2025-02-27 09:43:38 +0100)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2025-03-06
+
+for you to fetch changes up to 4423e607ff50157aaf088854b145936cbab4d560:
+
+  drm/gma500: fix inconsistent indenting warning (2025-03-06 10:29:31 +0100)
+
+----------------------------------------------------------------
+drm-misc-next for v6.15:
+
+Cross-subsystem Changes:
+
+base:
+- component: Provide helper to query bound status
+
+fbdev:
+- fbtft: Remove access to page->index
+
+Core Changes:
+
+- Fix usage of logging macros in several places
+
+gem:
+- Add test function for imported dma-bufs and use it in core and helpers
+- Avoid struct drm_gem_object.import_attach
+
+tests:
+- Fix lockdep warnings
+
+ttm:
+- Add helpers for TTM shrinker
+
+Driver Changes:
+
+adp:
+- Add support for Apple Touch Bar displays on M1/M2
+
+amdxdna:
+- Fix interrupt handling
+
+appletbdrm:
+- Add support for Apple Touch Bar displays on x86
+
+bridge:
+- synopsys: Add HDMI audio support
+- ti-sn65dsi83: Support negative DE polarity
+
+ipu-v3:
+- Remove unused code
+
+nouveau:
+- Avoid multiple -Wflex-array-member-not-at-end warnings
+
+panthor:
+- Fix CS_STATUS_ defines
+- Improve locking
+
+rockchip:
+- analogix_dp: Add eDP support
+- lvds: Improve logging
+- vop2: Improve HDMI mode handling; Add support for RK3576
+- Fix shutdown
+- Support rk3562-mali
+
+xe:
+- Use TTM shrinker
+
+----------------------------------------------------------------
+Adrián Larumbe (2):
+      drm/panthor: Replace sleep locks with spinlocks in fdinfo path
+      drm/panthor: Avoid sleep locking in the internal BO size path
+
+Alexander Stein (1):
+      drm/bridge: ti-sn65dsi83: Support negative DE polarity
+
+Andy Yan (13):
+      drm/rockchip: vop2: use devm_regmap_field_alloc for cluster-regs
+      drm/rockchip: vop2: Remove AFBC from TRANSFORM_OFFSET register macro
+      drm/rockchip: vop2: Add platform specific callback
+      drm/rockchip: vop2: Merge vop2_cluster/esmart_init function
+      drm/rockchip: vop2: Support for different layer select configuration between VPs
+      drm/rockchip: vop2: Introduce vop hardware version
+      drm/rockchip: vop2: Register the primary plane and overlay plane separately
+      drm/rockchip: vop2: Set plane possible crtcs by possible vp mask
+      drm/rockchip: vop2: Add uv swap for cluster window
+      dt-bindings: display: vop2: describe constraint SoC by SoC
+      dt-bindings: display: vop2: Add missing rockchip,grf property for rk3566/8
+      dt-bindings: display: vop2: Add rk3576 support
+      drm/rockchip: vop2: Add support for rk3576
+
+Arnd Bergmann (1):
+      drm/panel: fix Visionox RM692E5 dependencies
+
+Ashley Smith (1):
+      drm/panthor: Update CS_STATUS_ defines to correct values
+
+Charles Han (1):
+      drm/gma500: fix inconsistent indenting warning
+
+Colin Ian King (1):
+      drm/bridge: Fix spelling mistake "gettin" -> "getting"
+
+Cristian Ciocaltea (2):
+      drm/rockchip: vop2: Improve display modes handling on RK3588 HDMI1
+      drm/rockchip: vop2: Consistently use dev_err_probe()
+
+Damon Ding (2):
+      drm/rockchip: analogix_dp: Use formalized struct definition for grf field
+      drm/rockchip: analogix_dp: Expand device data to support multiple edp display
+
+Dan Carpenter (1):
+      drm/vc4: hdmi: Fix some NULL vs IS_ERR() bugs
+
+Dr. David Alan Gilbert (9):
+      drm/vboxvideo: Remove unused hgsmi_cursor_position
+      gpu: host1x: Remove unused host1x_debug_dump_syncpts
+      gpu: ipu-v3: ipu-ic: Remove unused ipu_ic_task_graphics_init
+      gpu: ipu-v3: Remove unused ipu_rot_mode_to_degrees
+      gpu: ipu-v3: Remove unused ipu_idmac_channel_busy
+      gpu: ipu-v3: Remove unused ipu_image_convert_* functions
+      gpu: ipu-v3: Remove unused ipu_vdi_unsetup
+      gpu: ipu-v3: ipu-csi: Remove unused functions
+      gpu: ipu-v3 ipu-cpmem: Remove unused functions
+
+Gustavo A. R. Silva (1):
+      drm/nouveau: Avoid multiple -Wflex-array-member-not-at-end warnings
+
+Heiko Stuebner (6):
+      drivers: base: component: add function to query the bound status
+      drm/rockchip: Fix shutdown when no drm-device is set up
+      drm/rockchip: vop2: add missing bitfield.h include
+      drm/rockchip: lvds: move pclk preparation in with clk_get
+      drm/rockchip: lvds: Hide scary error messages on probe deferral
+      drm/rockchip: lvds: lower log severity for missing pinctrl settings
+
+Jani Nikula (4):
+      drm/mipi-dsi: stop passing non struct drm_device to drm_err() and friends
+      drm/rockchip: stop passing non struct drm_device to drm_err() and friends
+      drm/sched: stop passing non struct drm_device to drm_err() and friends
+      drm/print: require struct drm_device for drm_err() and friends
+
+Jiapeng Chong (1):
+      drm: adp: Remove unnecessary print function dev_err()
+
+Kerem Karabay (2):
+      drm/format-helper: Add conversion from XRGB8888 to BGR888
+      drm/tiny: add driver for Apple Touch Bars in x86 Macs
+
+Kever Yang (1):
+      dt-bindings: gpu: Add rockchip,rk3562-mali compatible
+
+Lizhi Hou (1):
+      accel/amdxdna: Check interrupt register before mailbox_rx_worker exits
+
+Matthew Wilcox (Oracle) (1):
+      fbtft: Remove access to page->index
+
+Maxime Ripard (1):
+      drm/tests: Drop drm_kunit_helper_acquire_ctx_alloc()
+
+Nathan Chancellor (1):
+      drm/appletbdrm: Fix format specifier for size_t variables
+
+Philipp Stanner (1):
+      drm/sched: drm_sched_job_cleanup(): correct false doc
+
+Sasha Finkelstein (3):
+      dt-bindings: display: Add Apple pre-DCP display controller
+      drm: adp: Add Apple Display Pipe driver
+      MAINTAINERS: Add entries for touchbar display driver
+
+Steven Price (1):
+      drm/panthor: Clean up FW version information display
+
+Sugar Zhang (1):
+      drm/bridge: synopsys: Add audio support for dw-hdmi-qp
+
+Thomas Hellström (7):
+      drm/ttm: Provide a shmem backup implementation
+      drm/ttm/pool, drm/ttm/tt: Provide a helper to shrink pages
+      drm/ttm: Use fault-injection to test error paths
+      drm/ttm: Add a macro to perform LRU iteration
+      drm/ttm: Add helpers for shrinking
+      drm/xe: Add a shrinker for xe bos
+      drm/xe: Increase the XE_PL_TT watermark
+
+Thomas Zimmermann (10):
+      drm/gem: Test for imported GEM buffers with helper
+      drm/gem-dma: Test for imported buffers with drm_gem_is_imported()
+      drm/gem-dma: Use dma_buf from GEM object instance
+      drm/gem-shmem: Test for imported buffers with drm_gem_is_imported()
+      drm/gem-shmem: Use dma_buf from GEM object instance
+      drm/gem-framebuffer: Test for imported buffers with drm_gem_is_imported()
+      drm/gem-framebuffer: Use dma_buf from GEM object instance
+      drm/fb-dma-helper: Test for imported buffers with drm_gem_is_imported()
+      drm/mipi-dbi: Test for imported buffers with drm_gem_is_imported()
+      drm/prime: Use dma_buf from GEM object instance
+
+Thorsten Blum (1):
+      drm/gma500: Replace deprecated strncpy() with strscpy()
+
+ .../display/apple,h7-display-pipe-mipi.yaml        |   83 +
+ .../bindings/display/apple,h7-display-pipe.yaml    |   88 +
+ .../bindings/display/panel/apple,summit.yaml       |   58 +
+ .../bindings/display/rockchip/rockchip-vop2.yaml   |  111 +-
+ .../devicetree/bindings/gpu/arm,mali-bifrost.yaml  |    1 +
+ MAINTAINERS                                        |   24 +
+ drivers/accel/amdxdna/amdxdna_mailbox.c            |   17 +-
+ drivers/base/component.c                           |   14 +
+ drivers/gpu/drm/Kconfig                            |    2 +
+ drivers/gpu/drm/Makefile                           |    1 +
+ drivers/gpu/drm/adp/Kconfig                        |   17 +
+ drivers/gpu/drm/adp/Makefile                       |    5 +
+ drivers/gpu/drm/adp/adp-mipi.c                     |  276 +++
+ drivers/gpu/drm/adp/adp_drv.c                      |  612 +++++++
+ drivers/gpu/drm/bridge/sii902x.c                   |    2 +-
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c       |  489 ++++++
+ drivers/gpu/drm/bridge/ti-sn65dsi83.c              |    2 +
+ drivers/gpu/drm/drm_fb_dma_helper.c                |    2 +-
+ drivers/gpu/drm/drm_format_helper.c                |   54 +
+ drivers/gpu/drm/drm_gem.c                          |    4 +-
+ drivers/gpu/drm/drm_gem_dma_helper.c               |    4 +-
+ drivers/gpu/drm/drm_gem_framebuffer_helper.c       |   12 +-
+ drivers/gpu/drm/drm_gem_shmem_helper.c             |   30 +-
+ drivers/gpu/drm/drm_mipi_dbi.c                     |    2 +-
+ drivers/gpu/drm/drm_mipi_dsi.c                     |   12 +-
+ drivers/gpu/drm/drm_prime.c                        |    8 +-
+ drivers/gpu/drm/gma500/cdv_device.c                |    2 +-
+ drivers/gpu/drm/gma500/cdv_intel_dp.c              |    3 +-
+ drivers/gpu/drm/nouveau/include/nvif/ioctl.h       |   32 +-
+ drivers/gpu/drm/nouveau/nouveau_svm.c              |    4 +-
+ drivers/gpu/drm/nouveau/nvif/object.c              |   12 +-
+ drivers/gpu/drm/panel/Kconfig                      |    2 +
+ drivers/gpu/drm/panthor/panthor_fw.c               |    9 +-
+ drivers/gpu/drm/panthor/panthor_fw.h               |    6 +-
+ drivers/gpu/drm/panthor/panthor_heap.c             |   62 +-
+ drivers/gpu/drm/panthor/panthor_mmu.c              |    8 +-
+ drivers/gpu/drm/panthor/panthor_sched.c            |   26 +-
+ drivers/gpu/drm/rockchip/analogix_dp-rockchip.c    |  114 +-
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c        |   16 +-
+ drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c     |   16 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c        |    6 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c       | 1574 ++++-------------
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.h       |  278 ++-
+ drivers/gpu/drm/rockchip/rockchip_lvds.c           |   80 +-
+ drivers/gpu/drm/rockchip/rockchip_vop2_reg.c       | 1798 +++++++++++++++++++-
+ drivers/gpu/drm/scheduler/sched_entity.c           |    2 +-
+ drivers/gpu/drm/scheduler/sched_main.c             |   32 +-
+ drivers/gpu/drm/tests/drm_atomic_state_test.c      |   24 +-
+ drivers/gpu/drm/tests/drm_format_helper_test.c     |   81 +
+ drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c |  254 +--
+ drivers/gpu/drm/tests/drm_kunit_helpers.c          |   41 -
+ drivers/gpu/drm/tiny/Kconfig                       |   12 +
+ drivers/gpu/drm/tiny/Makefile                      |    1 +
+ drivers/gpu/drm/tiny/appletbdrm.c                  |  841 +++++++++
+ drivers/gpu/drm/ttm/Makefile                       |    2 +-
+ drivers/gpu/drm/ttm/ttm_backup.c                   |  207 +++
+ drivers/gpu/drm/ttm/ttm_bo_util.c                  |  247 ++-
+ drivers/gpu/drm/ttm/ttm_pool.c                     |  577 ++++++-
+ drivers/gpu/drm/ttm/ttm_tt.c                       |   83 +
+ drivers/gpu/drm/vboxvideo/hgsmi_base.c             |   37 -
+ drivers/gpu/drm/vboxvideo/vboxvideo_guest.h        |    2 -
+ drivers/gpu/drm/vc4/tests/vc4_test_pv_muxing.c     |   46 +-
+ drivers/gpu/drm/vc4/vc4_hdmi.c                     |   28 +-
+ drivers/gpu/drm/xe/Makefile                        |    1 +
+ drivers/gpu/drm/xe/tests/xe_bo.c                   |    6 +-
+ drivers/gpu/drm/xe/xe_bo.c                         |  202 ++-
+ drivers/gpu/drm/xe/xe_bo.h                         |   36 +
+ drivers/gpu/drm/xe/xe_device.c                     |    8 +
+ drivers/gpu/drm/xe/xe_device_types.h               |    2 +
+ drivers/gpu/drm/xe/xe_shrinker.c                   |  258 +++
+ drivers/gpu/drm/xe/xe_shrinker.h                   |   18 +
+ drivers/gpu/drm/xe/xe_ttm_sys_mgr.c                |    3 +-
+ drivers/gpu/host1x/debug.c                         |    9 -
+ drivers/gpu/host1x/debug.h                         |    1 -
+ drivers/gpu/ipu-v3/ipu-common.c                    |   38 -
+ drivers/gpu/ipu-v3/ipu-cpmem.c                     |   23 -
+ drivers/gpu/ipu-v3/ipu-csi.c                       |  108 --
+ drivers/gpu/ipu-v3/ipu-ic.c                        |   73 -
+ drivers/gpu/ipu-v3/ipu-image-convert.c             |   48 -
+ drivers/gpu/ipu-v3/ipu-prv.h                       |    2 -
+ drivers/gpu/ipu-v3/ipu-vdi.c                       |   11 -
+ drivers/staging/fbtft/fbtft-core.c                 |    4 +-
+ include/drm/drm_format_helper.h                    |    3 +
+ include/drm/drm_gem.h                              |   14 +
+ include/drm/drm_gem_shmem_helper.h                 |    2 +-
+ include/drm/drm_kunit_helpers.h                    |    2 -
+ include/drm/drm_print.h                            |   41 +-
+ include/drm/ttm/ttm_backup.h                       |   74 +
+ include/drm/ttm/ttm_bo.h                           |   93 +
+ include/drm/ttm/ttm_pool.h                         |    8 +
+ include/drm/ttm/ttm_tt.h                           |   69 +-
+ include/linux/component.h                          |    4 +-
+ include/video/imx-ipu-image-convert.h              |   32 -
+ include/video/imx-ipu-v3.h                         |   14 -
+ 94 files changed, 7439 insertions(+), 2263 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/apple,h7-display-pipe-mipi.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/apple,h7-display-pipe.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/panel/apple,summit.yaml
+ create mode 100644 drivers/gpu/drm/adp/Kconfig
+ create mode 100644 drivers/gpu/drm/adp/Makefile
+ create mode 100644 drivers/gpu/drm/adp/adp-mipi.c
+ create mode 100644 drivers/gpu/drm/adp/adp_drv.c
+ create mode 100644 drivers/gpu/drm/tiny/appletbdrm.c
+ create mode 100644 drivers/gpu/drm/ttm/ttm_backup.c
+ create mode 100644 drivers/gpu/drm/xe/xe_shrinker.c
+ create mode 100644 drivers/gpu/drm/xe/xe_shrinker.h
+ create mode 100644 include/drm/ttm/ttm_backup.h
+
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
