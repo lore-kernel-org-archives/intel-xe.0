@@ -4,174 +4,136 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34E14C282D1
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Mar 2025 05:40:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 829F3C282D1
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Mar 2025 05:45:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDE5410E84A;
-	Thu,  6 Mar 2025 05:39:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E882A10E8DB;
+	Thu,  6 Mar 2025 05:45:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lDb8x7Zh";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="fw/0dUtE";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 917D610E84A;
- Thu,  6 Mar 2025 05:39:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741239599; x=1772775599;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=Zc63o9vkqGcH/mR6UPqEaLiZDrSRvBHq805yj2HeCIw=;
- b=lDb8x7ZhmGwBGad5zqTabirAfwl5vsggZf6JtQeuFboq4xvMAVy/1RNV
- JMC/X9ISY4nuhme4OPd7USNweGHF+eEa+SXIAjxAdidllk2Pj4SCa5SYA
- 2A+1gMGIII/M2ZYP7d+MCDjBezpKbkreToi8oMXGBoogvz+oWn73cyd5J
- MdNlkCV9w7iWdgbA5kY7t5qKhs119MWfzMm7rD8wemiCgdj+lk2+E75sW
- tQ5uLNWtFkgQjKPS4buxp2ZXNEg7tp72b5BjmA7xCuVQE3ZgvdpEVHmyd
- MGxavFT2CQbUn8iDgMSLdIwaz/VC2WZFkDNsKk9ITctXuQnrOQQdSVsYj A==;
-X-CSE-ConnectionGUID: I9WhPHfFTvqQnXh8gPQRzA==
-X-CSE-MsgGUID: tipueThXSU+nTZXfj9gOhQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="64681349"
-X-IronPort-AV: E=Sophos;i="6.14,225,1736841600"; d="scan'208";a="64681349"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2025 21:39:57 -0800
-X-CSE-ConnectionGUID: H3qR8CX8S9qajTqERap5JQ==
-X-CSE-MsgGUID: J5v25WodQoi57UcFN4/UXg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,225,1736841600"; d="scan'208";a="124003330"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2025 21:39:56 -0800
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.1544.14; Wed, 5 Mar 2025 21:39:55 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Wed, 5 Mar 2025 21:39:55 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.45) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Wed, 5 Mar 2025 21:39:51 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2086.outbound.protection.outlook.com [40.107.244.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AADCC10E791;
+ Thu,  6 Mar 2025 05:45:46 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Xa8WUU8pjuXQnQnIAkCUyGeS921b+yRt2fqPSLNJ4AWBokbJRmkBsig7U6oPzHFb+8FKqBR39JmA6ruXjQwFZH5lkNDwMTK0QXhfWikU3N+R/kf52FRPR5aOY1Fvu1jmxCqPijC3uzWb4z59LbZqSe9WrJ82FdPJZPdCDJrjpcBDGCd3YR6/F9SzVZT+LGrR9j0jnU4Uxy8LZP6YfBJ5HB4EN0N1oleQajhwgXjPKSubTleEs+M4NaesFrNUmDzNZObyu6eI5jGw+4pWQ4+cqJlT2WSE6EpPqwkOrHWKWZd/x+N5qv3sdU0DlPsylbZFtMPDnituwADZNd8eI7G0GQ==
+ b=sAV5i6xcJT4Q3/jzJ/ns+vLYPn7cHQe3yTJBWnZZ6I7dFW7rRRPmvBTBMQEx1UQnLjLLRAkQfA+v2GqsB7P+Jo9X6UREGUzm9CeANQKEtg06q+b+5jlis7AwD4XVLqxJfnMFtaPFJAuz7SBd8mJNQ2v04BnAP/g9yKDIFp6yzTTA6zjWKeW8sA9STXSd70fBWfiehmNoKqMknmZZmR4gy9HXNw1A6dQKubu/byEZB9M1nPPN79UTBFI0Wln+DNhzNAh2DYGoqXmirQiPQACL3dkpqBaq1FWdRQSAWanSxs90qPSxZc91A+qi3T65NIXZxFTdxA0+8rEg4ckC0ENiGg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JbsWdLQhti+ptwto1RyHF62bk+iOKqVUOIE3k2Kw/EY=;
- b=vK/qebrzaXbBNYb64tUe+Aa5cGgS/AXd4SPgjosFCuG5LEAGGsC1ayZDfckCPOzAyQLl65RWx0btg9f7n3E/Aagyx5TCCtHxfYU+KIBqzuabfBe2Zmw7Ci3TyrwtQZjlUqDYiTfPqVPjk6yzudeRx6W+37OoAlGSKv/Ssd2QxcOfMXjXW9DSCFlcdrRk8xvcFhL/g29x55rrX0fTjoYhYZ16tSjMxY3TpYiZX4euwruksfASFDE+mFBdM4A/4r+pDOfJUSONOAfBZp0Lng5XhlOsqHLUNdkZgYYjWTazetrLXb0XR9ZwrJNxKaCxeEvw98PsB77VZnz7KKGc8IEoQA==
+ bh=ONlxXS39zLq+jIxOFRRgwHMVognv+edtAMt11wVOXFM=;
+ b=TzFZVZw7C6jim9YP4Os3B6ZCiUrKQZQSSUtRSy9MdV3hXTRRPs3GkszJaRua51/+mLYxTDHWIO4xHFLYCEppXJbo/3XDvIIRmPQ0Td+9fK1fS9gWoeFaTc8k6RnBsqUFESlnekg53+262Zz/ntS/NmyLF27R5vVcbZ2IuYOyvtcrGC3Bve0AgqVRyhSlXV5r+CGEAJOoqX6STSxz5xtdUJLCruMZPKq32perg9KAtCYDO4LhsZrRlDwuUlzS8ppeAidAd3RW47LpzMCP/tSg3CwSoCekvkoMkKCDAyUYIxKHVz44gsR8G0XikwO2I3hCO+nUzb+UyIvt/tUBFZC+Pw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from IA1PR11MB6467.namprd11.prod.outlook.com (2603:10b6:208:3a5::18)
- by MW5PR11MB5809.namprd11.prod.outlook.com (2603:10b6:303:197::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.18; Thu, 6 Mar
- 2025 05:39:06 +0000
-Received: from IA1PR11MB6467.namprd11.prod.outlook.com
- ([fe80::af0a:68bb:7bbf:5a45]) by IA1PR11MB6467.namprd11.prod.outlook.com
- ([fe80::af0a:68bb:7bbf:5a45%6]) with mapi id 15.20.8511.015; Thu, 6 Mar 2025
- 05:39:05 +0000
-From: "Garg, Nemesa" <nemesa.garg@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Nikula, Jani" <jani.nikula@intel.com>, "Vivi, Rodrigo"
- <rodrigo.vivi@intel.com>
-Subject: RE: [PATCH v2 2/2] drm/i915/plane: convert intel_atomic_plane.[ch] to
- struct intel_display
-Thread-Topic: [PATCH v2 2/2] drm/i915/plane: convert intel_atomic_plane.[ch]
- to struct intel_display
-Thread-Index: AQHbje0om4KDJ8h1GUStU9lO+OBcsrNll/Gw
-Date: Thu, 6 Mar 2025 05:39:05 +0000
-Message-ID: <IA1PR11MB6467254ED33F66A88530FC7AE3CA2@IA1PR11MB6467.namprd11.prod.outlook.com>
-References: <cover.1741192597.git.jani.nikula@intel.com>
- <d7e28ad43f67d92e54fb7e14373872b5e561038c.1741192597.git.jani.nikula@intel.com>
-In-Reply-To: <d7e28ad43f67d92e54fb7e14373872b5e561038c.1741192597.git.jani.nikula@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA1PR11MB6467:EE_|MW5PR11MB5809:EE_
-x-ms-office365-filtering-correlation-id: 189928ab-295a-4e91-820f-08dd5c713588
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|7053199007|38070700018; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?gIjiOw6mlCAnlHpnh+D75Lz9vsHx9blwR1gtr02pI1m60KXVYIHfXsezN9Ya?=
- =?us-ascii?Q?jdCwqq7FT6IF9aVPeEA614+tKeVB4GMR5xlrJxFv9Mvc+L4QgxeyYoeNDmrt?=
- =?us-ascii?Q?zC8/kIxbwqbS4fXoZudJLKaLlGA16Fe9cG6uRZPNJjPhV9AKV9JPeQTcveDK?=
- =?us-ascii?Q?Q1CvlPpGaMn+PPQDnzcy2AHn7n9EON6ojGIkvz5XPQFS+uTOGMmaOfeJj/d9?=
- =?us-ascii?Q?c9fZK9vizvzo1NDP8reUHID0DEZOFBcMwvqlDc22FCNxUjiOOqBBrsVuj/Vd?=
- =?us-ascii?Q?uEQdYP7liCIyfMN9D59guNq19JY9r5XtlDPM78T+vy6TcfFkQ0RFKyvKpFpP?=
- =?us-ascii?Q?r0hR39njWowAonFmHeSJIgVYiVvsz1m8yFTXHejDhWEONm5sKVAaHHS37yR6?=
- =?us-ascii?Q?pstF4cuzdAzEOBwW3XLENc9rufNIC29fL333ak81uBZRmDW0VJC+kZdX0965?=
- =?us-ascii?Q?HWlOgBYGc/G+ZmvK3IC6OdR5J+nX3qBBEz84fGXLGLBZ9jMKC8wvH1t/rAyj?=
- =?us-ascii?Q?ABAVIkIyM8nfoFgiJjv0EsMogG8FFmgAJBo96FmMbyx6zL0lnUXA8cic0E1g?=
- =?us-ascii?Q?jqroln0I4vGDhl+GnhWzcIQcsv9XsaLGZgeyeHVRIS3s1wYHUFD55Lxfqpce?=
- =?us-ascii?Q?WqfMnyLXAjriRC0LsVFD9cs97i3hHXpCZTE42RnSiIlDDkpiC26qphll/WDw?=
- =?us-ascii?Q?PpfOd5uHSMHOwxiMT/3gBKE4GUSLw4VhoGPFTqBuXsKqo0kYNM7gK5GSE8Bt?=
- =?us-ascii?Q?W1V9v0W7ENdV1HtcOTIZBOCcGlmOskPm8zYK48qv/C+lh2E6qyh+XplTkX4b?=
- =?us-ascii?Q?Ipq+SYU7i7+hx71+66dDQZkyafFBgb0Evxzz85/sVeKeg2p+RSoI1oJOc0js?=
- =?us-ascii?Q?RQz889PtOYRcdllRVmKRE9tPkTf6mh0OThoxJT5QXN6rn/Lvv3sXYQVGlAQr?=
- =?us-ascii?Q?2+GEE8phwgawkV6yHJCGk4KXEanZkcrcpCvbAO8lsmKi55iCgHazyaJl4IBK?=
- =?us-ascii?Q?D6cs/wqcu1SFm4W+uVDcPs6xLNeGVUVSF1FPbVB1ytiyMm3udhZR9JwjMduZ?=
- =?us-ascii?Q?OqRuv3O73SoWlGRmQUcmF1hPhjobZeRoUZRtGV907xjf1+ObCOCgzfShJYpE?=
- =?us-ascii?Q?5VNReee8mV/sb7jGIMPUm4QLcGnDwzvM8Y5WYSZ6qh/a5Sz2Bsa3omNPsnbU?=
- =?us-ascii?Q?VbfyWJdTa4LtXwm6k39T4hmnXTeyQU5qznki4SFdwKeXbOSxSou6qWnvzVPG?=
- =?us-ascii?Q?SE0eSbS8dsrSAjDihy1mCMZm9tRa01SDoJENofDctG2EHe65qKylLu0Jq7c6?=
- =?us-ascii?Q?jqWMyboKRCWsgPUYd1soEhfXDlMlZG1Lx44WewoYUAe7S687kBGMHlqNm7AH?=
- =?us-ascii?Q?WQkEqA9ZNVVUupCEipMJPt4VsDllp8y0nNX8mMEohBjdXMpxANwLGxm+U8hg?=
- =?us-ascii?Q?9/DDkcdCVoOwMIq7xbzkCE3BohPhBMC2?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA1PR11MB6467.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(7053199007)(38070700018); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?+onjHGhNFJfTOWMuNqI8ZMgDZq3WPfEC2HuKkJ6wGto20YKn/BxMjBQ/SS7d?=
- =?us-ascii?Q?xKTB8scrlH/fPUMqBjF9Q9qls8jGXsG83d/axTyFj8QNsYQHOwuYWgdNz90B?=
- =?us-ascii?Q?ts5IgLnhSPf8Kjbo9agHDu5HXjJEhnpQm7Exdxoqsktyx00Y/Up9VMxkhTKL?=
- =?us-ascii?Q?uJj3RNtV1IUtPLu6w6DRFoisXKYSngrEeM73CU2kmkWf+qQMGLAf7VaaqHpT?=
- =?us-ascii?Q?o1njee5LBahmAT1B+2nybAs/c3QlQWwFW1rd0SvQX6/j7xlDLJ6IkZb2A2dj?=
- =?us-ascii?Q?W6oYut1d9rUU7gZ1bqfO4QdCVy0kXwpcR+SBC9kxWzXB4u2VaMDeykAseGpk?=
- =?us-ascii?Q?vMcNxrf/d4CztscHhc1YXWz3lyh3iXjyjlnoWOjMNFEUSvHZ/z/cOIDhmwVs?=
- =?us-ascii?Q?aLng1QRlDyPUhv8PVyFLTRXRTCou9XDrDZAfX3AjNIE1AqnOv59eD42M8hTP?=
- =?us-ascii?Q?0gtE/IFlZgNn2PjnT91g3H/+VDtoCwdYrWEvNQ8BW9Apo42KwiCJWAaJmSEW?=
- =?us-ascii?Q?rCqTR17IJnDcHfWbp6IcS1vhWyky4XhTPrNj+TvmPKIxPJy5/1HpgP/8v2Fz?=
- =?us-ascii?Q?gVOF7tpjXUJTS9CxGIBLVgNQI8VdDGKYaLI8nxxM2dtA+CK7pix7Ql/gjeZq?=
- =?us-ascii?Q?rWYwu2ZOCHT4IUo1dzaqkz63BMOPigpoXFhyUfcyY8STZ6FnyMIgJQdaaglC?=
- =?us-ascii?Q?aasndrkGlaliNYdMGtP+JI+43EIttvrJY6x9nbiorFx6UI/946i8t7owRrP4?=
- =?us-ascii?Q?1BunXUc4S+dhjiuuBItu8+/May+Cr6bDqXmfyx174nc6FAKLRMntYi+bJDQU?=
- =?us-ascii?Q?AXVSbYLsf24bQUQ2ceE2hgGql4hq3/qwmVBnQNFjJ+fxN01ug6iFkZO4/Rgf?=
- =?us-ascii?Q?dajBYmq7i12FccYIN9aoWBh22dNsMO7p/S2/Q7uHPFZPZXaYBGtYh8RjLeP7?=
- =?us-ascii?Q?AjchF3S0Z5nHJ+161NEBczILihSUqsWmUR0fonjnf78SBtBhh8nBDr/sjdz/?=
- =?us-ascii?Q?YkLQDeAkGKS+QECAGtmTf0ueWqVbw4h+j+8JAh4RyyTGXG9eVCvzDJymdUzg?=
- =?us-ascii?Q?Fus0nnqW6W9TxudlnWkGS0AddCoWqRx4UrcU0MBNsMh6D22PJcHnD9uXp/w1?=
- =?us-ascii?Q?KPfuF4qrCp3WB3LR8uDzImSEOtXtkzlage6YSbBqw/9Lb5/qhQjQuZjbV3pQ?=
- =?us-ascii?Q?V4O5cZtnwj/pWa5XvfvuX8i0Nj0DwqxEc4qLQNzwCvexgcDQbbND3o3JcNuH?=
- =?us-ascii?Q?8FU7MuCiNFNek9Tg6poNxR8x18LbgdWPPHlgP0zEIXyYrIaQJsK5stJS+0O+?=
- =?us-ascii?Q?wTJ1mNZ7VZC74YuzxTCf8sGe7ysrVlz6dHCkypXMdZFWEnghb/fwf09Khsnn?=
- =?us-ascii?Q?LOourKnACTEMIL3rrG/7NNSvDqghP0bTCFHUpMOIeaQbHoL2AJRsUqZaRD2k?=
- =?us-ascii?Q?Aw/Tk1oSr5dK6HIzPai3/JwYavJP0XuQm+ZQ+Qm8czwpE/75LuNX5SHdVIt7?=
- =?us-ascii?Q?m6zXf4JexV4h8nmaZDgTg6FE4role3mL7BQgEzoQ33dw4J7bzPeiwalD6t3k?=
- =?us-ascii?Q?sAATWDS2XZ4BM2RWf1PXBld8eDsPyvUqe9vo+skH?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ONlxXS39zLq+jIxOFRRgwHMVognv+edtAMt11wVOXFM=;
+ b=fw/0dUtEbxa9rdoCRUX1sXMnYEKiMESFidi+6ZUELrKv6H6omKtYlz3ULRgPAnTIyxjer+1baflsqWVdOwgtQYtor6nBwVfWJcMYrfkGwFBbpL33/aF03dwvoR5LCMuuG8oH6OAB+xD1JdNRLM7cDTHqGpLV0xSizkQHFhplsORR3B98GGAz/ODaWx96zbGgmKrWWeIUXQMc2n99imdDjDbkyVTr16XJ4QedcRGN6kSrdlji1zqtGVP7Hs4O1qpim285uYWtaKuEBrSLKzRMS2bQdXqjYX1q+efruKIzmkczk9K/YtvUkCtOQ8NiPnZ/Tw8xaeogd81qVsB723T2kw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DS0PR12MB7726.namprd12.prod.outlook.com (2603:10b6:8:130::6) by
+ SN7PR12MB6840.namprd12.prod.outlook.com (2603:10b6:806:264::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.17; Thu, 6 Mar
+ 2025 05:45:37 +0000
+Received: from DS0PR12MB7726.namprd12.prod.outlook.com
+ ([fe80::953f:2f80:90c5:67fe]) by DS0PR12MB7726.namprd12.prod.outlook.com
+ ([fe80::953f:2f80:90c5:67fe%6]) with mapi id 15.20.8511.017; Thu, 6 Mar 2025
+ 05:45:37 +0000
+Date: Thu, 6 Mar 2025 16:45:31 +1100
+From: Alistair Popple <apopple@nvidia.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ himal.prasad.ghimiray@intel.com, airlied@gmail.com,
+ thomas.hellstrom@linux.intel.com, 
+ simona.vetter@ffwll.ch, felix.kuehling@amd.com, dakr@kernel.org
+Subject: Re: [PATCH v7 32/32] drm/doc: gpusvm: Add GPU SVM documentation
+Message-ID: <4vqsd4n7umeimw4gqwa6c5oeuvrpqxfxquzsaizfzuqcdfd7vs@bed32kv2hjom>
+References: <20250306012657.3505757-1-matthew.brost@intel.com>
+ <20250306012657.3505757-33-matthew.brost@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250306012657.3505757-33-matthew.brost@intel.com>
+X-ClientProxiedBy: SYBPR01CA0039.ausprd01.prod.outlook.com
+ (2603:10c6:10:4::27) To DS0PR12MB7726.namprd12.prod.outlook.com
+ (2603:10b6:8:130::6)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR12MB7726:EE_|SN7PR12MB6840:EE_
+X-MS-Office365-Filtering-Correlation-Id: 05e41578-6393-497e-d6d1-08dd5c721ea4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|7053199007;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?jyQdb3L5ge+klNr6N+xDqNBgX1rQZMXFJ6BlUUN7uF0IxBBf3ZztwEiCRq?=
+ =?iso-8859-1?Q?cSGCntI4jMuSJzdQm+90Kd+UqD8KliyjIzyI10nEGUxXDonB1VngY4jUHl?=
+ =?iso-8859-1?Q?DUGwk/YPVfeGKvx90bn6ftTduBUfifiGEo/Y3OChQXeB8M5RIS7OyE23g4?=
+ =?iso-8859-1?Q?pR8/wNTQY1tIQY/2rn6rlIa4CpZ3eF8T464iJxM13VRiK1TtZt+tfBYbaJ?=
+ =?iso-8859-1?Q?H9SLjSq/dcBQo9fuevJbx7NGVyGLbcPuXGcI90yid/zJGeztHmR2rlerBE?=
+ =?iso-8859-1?Q?uxbCryAzrIVWFj4MKLCQOh3XI46aEsN1+lHX+SkodkN0pn/ITcATu5DsiS?=
+ =?iso-8859-1?Q?0EjRopLD/tq876RlR/ArLC+fUuihDkzOjNLGS3ilELh5Ct2GDAlzxggJX7?=
+ =?iso-8859-1?Q?wABwAPJkColIBCYCtZ2zYvwMeleE1xFQ8UBe/KJQ3QhDvz6WlpCunDaK1J?=
+ =?iso-8859-1?Q?4xXEcCozsw0ovto/HpWm2I7TK8SsJm7xLZwuRRh2933HVc1hBv80TFWse5?=
+ =?iso-8859-1?Q?suik2g5o/Tp85pIPGMQWNucHYk0t1IPxOSs5qRRbpLk3LyLmg95ax0G/fI?=
+ =?iso-8859-1?Q?XDPfPArp3mhXntdi8dleQXWAXYW1p5hJvWF48HWUc8TO0xeGvWhK0zxvGD?=
+ =?iso-8859-1?Q?Z0PnLSqQ5my0xs+Savv7/tSjIElsWP4D0FzgfQp83sEc44CobJlggf8BIT?=
+ =?iso-8859-1?Q?mcbxuRB753SHkPVRQTqA/BwqRYEHZL3FyQzbJy1NNDdBnF4NV9r/xiz5Ar?=
+ =?iso-8859-1?Q?TFFj5MB7xCEhn0/vffyfUsnVX/puLknFHQTqMoAFTkTsErgd6WvMNUM5nX?=
+ =?iso-8859-1?Q?aSmgM3RyOTRsbGLpwoKS2gH2OqU3XJT/IQqtGVBz7ovPuyZ2fUAsTXV399?=
+ =?iso-8859-1?Q?qTsIWOGdvUI07A2rWOw6iTDiSL8r3J80AspKvfhG99eOGxfWBVr2R2END5?=
+ =?iso-8859-1?Q?oeKWcanc2bagmZczTZ6pZVJfEkAjCUhcSKEIx5Hz/Zl7UvZ9Z8/u1yMoC4?=
+ =?iso-8859-1?Q?oIu9vCZwiIDI8vf3hC90fXuPfHpzL71IandraEHUbjE2BqLuxsMIXgd820?=
+ =?iso-8859-1?Q?+NkZYike513lEJH6xbW152KJULt5lHZAkUkpkws74H49oIDpHF5hhjsr2A?=
+ =?iso-8859-1?Q?DXsIQIB3Sqqg+vp5IgaHbn9X0EaZhyQzgw4EMVL9Tt9abU9Mo+ufqVgXzz?=
+ =?iso-8859-1?Q?9/Jpt0WdT3kCJZytnJRxpR0ioiEmrtJSjkLvub2Vt1eNE/KY0oLh0n9wry?=
+ =?iso-8859-1?Q?U2+PT9lPR71JWgDffLOSN14nZLcNOlSvG50+ZHleZYA4wlCpVJrOHpZJqS?=
+ =?iso-8859-1?Q?xBFHUF5iYj7TgKpH/mPg2dacsgdCpotbkoQ/ywUCsq0PQktb/YIgwwLHpC?=
+ =?iso-8859-1?Q?PAwkpU9PwfY1VLQQaADX9qX99J2wG+XbgEa8uuzUKoOt+h0QS26KTO94cX?=
+ =?iso-8859-1?Q?4FQEUyvxlED2A5bp?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR12MB7726.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(7053199007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?GUuOtgEwFGgpah1IQ1KMo5G6vT3x3dGOoSVR6cTfYpytA6FNwthL6fSemd?=
+ =?iso-8859-1?Q?3WqnqiJA/TDMtyE7jzX3wuMQv6b5H35RK9vMTu4UW1EOc5i1/q2CYMZ53h?=
+ =?iso-8859-1?Q?vLCXx5XtSQ/QjuobS/DcOMoIc1m5Rpxd8dk2SYUI6SSnUNeYTMKUcDH/Zv?=
+ =?iso-8859-1?Q?w+6LRxjLUxK/5Wt6mR4xUE9tptXhNwUIclDoVBO+Gbrz7qrBBRRhKHAuZJ?=
+ =?iso-8859-1?Q?HWN1itZ+wCYSQVslRMftREynakkwM0OJFhw0WxIUWyNsOPuNi8639HuAZM?=
+ =?iso-8859-1?Q?d+I2KaSdrGwctMCNHbYqFBL/UwhLhx4bWJh2+RjJoS87EcsvCB9jWZQBMH?=
+ =?iso-8859-1?Q?ouynV2CeVVG40oS4L1li2ytD8aYlh3l+SmBb2xfYz3Gg1L5oC+E6twBBkR?=
+ =?iso-8859-1?Q?5nCSIgvEpO0TyiyhNInwjy15oFpG9WizzrfksyEW400JWQ0f1uF8aTqXn0?=
+ =?iso-8859-1?Q?rbtJw3dOT4mY2e6fOoxZdE8nv+xgr3wB8hcorWbYGXuDLntZBJGdz02Px+?=
+ =?iso-8859-1?Q?6BYhglaRkBzm24UzC+qkkgQdaGXt+MthKBqHVJGKdJx21bCBzppdDhwEt6?=
+ =?iso-8859-1?Q?7aUCcl8ZXqYd6DQB7+ufIJOD807XNJ0XdXqFdOmRJaqLMzt0eC2SJ5VPrQ?=
+ =?iso-8859-1?Q?t/m00DXZZEin2QqiwMoBbCuTmg0EW2MrEmgD4IJ61tHEe/2psrz7ivOrsb?=
+ =?iso-8859-1?Q?4tnoorfG6lJp19BrfHZaeuIPPz2SER+jxTz1Xh7+I08z8b5iU9jwk54dcR?=
+ =?iso-8859-1?Q?f00ztmuSciaL+Z1leCoCflk7qbtRPGasw4VyUvunnqFz0l5G0/Yhiveaxv?=
+ =?iso-8859-1?Q?eQcTOrNdTFmPNeyajvkwEmh5C4+kCcnGb7RY1fuT6mD7Omg2lEIdW6j31D?=
+ =?iso-8859-1?Q?XyCJ73m4uTkZzVT7x+g7nFfvzNv9kOessVOKSKkOdr8WUm2W9oROkSqZFb?=
+ =?iso-8859-1?Q?nmknICdgbjcy3jrZbjkfW2KsJUgI8QlPDmgKwku4bRxgFeS822rqW+z2ni?=
+ =?iso-8859-1?Q?c6JlcAot2GaehcLW3wzcZVX122KlV3PB2OXVg7fqCGjga1zUU8bkI7P4th?=
+ =?iso-8859-1?Q?qcP0D/GZXEIpGPWPqE5BxZgJNVb9flOvYlAamxfYj1xBHzV1O7ajyYPFAl?=
+ =?iso-8859-1?Q?1LFPuFQSbnlrJda+mOdmdJrcU+WRLh9aaUlC/YHp2fTpE8S6FqWqfbSQ9t?=
+ =?iso-8859-1?Q?1vlOQouqdLxg/yU1elIrFnLzigNy2QJyiLVhKg4Ys5ShIQYoJJM7exEOjK?=
+ =?iso-8859-1?Q?DhmtPaOPlEcxEFHPkLlU0Ig2INFeSpS3+6zLZUAmYJbBBD78Ae2NgxoNbJ?=
+ =?iso-8859-1?Q?3AvLUV8UcKY+ajly3eE//SAXGhZhNF6Bb44jxgScoZSoZeAV0lBr/C4WDk?=
+ =?iso-8859-1?Q?MnWIddknOinRU1Y2vnVbrzDyhJj55dcp+7R87BoFII27Zp3rt+3PQHMEIC?=
+ =?iso-8859-1?Q?6m98GGRvy+qnv0NzgQ7t7E7YLpFwV1EoS0Ea5SoFe3HtYyA79J/B4S8Wqm?=
+ =?iso-8859-1?Q?frFmd5AJj0PEXaOvyV7KP0wrNgYDszz3cU5T52Q2O7chQZClbQAeNlRw21?=
+ =?iso-8859-1?Q?rOZN9Y2fQioxYqOMG8n16LatAE1ulEWRM2A7LQiNkdg+v4F2xg22Y4zd0u?=
+ =?iso-8859-1?Q?emkqhxkFGUcku21vOOclgn62p135GLtE+N?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 05e41578-6393-497e-d6d1-08dd5c721ea4
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB7726.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6467.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 189928ab-295a-4e91-820f-08dd5c713588
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Mar 2025 05:39:05.5307 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: QcEVHbd3ypsuo/BRY4Y/jN6jcs1np6NcZvGOHkDEh5ai9RWyXhyV9vVqpjHeq5VVb8NF+ouWfwOUJeDwweMKjA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR11MB5809
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2025 05:45:37.0880 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Fic+FIYoH4Kr806pIV1kwbPISMfp0FuKkG4OHpcKKJBCDCnel+CrR8D3mgF7ZyO7VZhVl76QsJIfVyYlPLAMNg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB6840
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -186,389 +148,171 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Wed, Mar 05, 2025 at 05:26:57PM -0800, Matthew Brost wrote:
+> Add documentation for agree upon GPU SVM design principles, current
+> status, and future plans.
 
+One minor nit and a comment below, but feel free to add:
 
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ja=
-ni
-> Nikula
-> Sent: Wednesday, March 5, 2025 10:08 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: intel-xe@lists.freedesktop.org; Nikula, Jani <jani.nikula@intel.com>;=
- Vivi,
-> Rodrigo <rodrigo.vivi@intel.com>
-> Subject: [PATCH v2 2/2] drm/i915/plane: convert intel_atomic_plane.[ch] t=
-o
-> struct intel_display
->=20
-> Going forward, struct intel_display is the main display device data point=
-er.
-> Convert intel_atomic_plane.[ch] to struct intel_display.
->=20
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Acked-by: Alistair Popple <apopple@nvidia.com>
+
+> v4:
+>  - Address Thomas's feedback
+> v5:
+>  - s/Current/Basline (Thomas)
+> v7:
+>  - Add license (CI)
+>  - Add examples for design guideline reasoning (Alistair)
+>  - Add snippet about possible livelock with concurrent GPU and and CPU
+>    access (Alistair)
+> 
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 > ---
->  .../gpu/drm/i915/display/intel_atomic_plane.c | 78 +++++++++----------
->  1 file changed, 38 insertions(+), 40 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> index d899c37d80c6..7276179df878 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> @@ -43,7 +43,6 @@
->=20
->  #include "gem/i915_gem_object.h"
->  #include "i915_config.h"
-> -#include "i915_drv.h"
->  #include "i915_scheduler_types.h"
->  #include "i915_vma.h"
->  #include "i9xx_plane_regs.h"
-> @@ -169,10 +168,10 @@ intel_plane_destroy_state(struct drm_plane *plane,
->=20
->  bool intel_plane_needs_physical(struct intel_plane *plane)  {
-> -	struct drm_i915_private *i915 =3D to_i915(plane->base.dev);
-> +	struct intel_display *display =3D to_intel_display(plane);
->=20
->  	return plane->id =3D=3D PLANE_CURSOR &&
-> -		DISPLAY_INFO(i915)->cursor_needs_physical;
-> +		DISPLAY_INFO(display)->cursor_needs_physical;
->  }
->=20
->  bool intel_plane_can_async_flip(struct intel_plane *plane, u64 modifier)
-> @@ -277,7 +276,7 @@ int intel_plane_calc_min_cdclk(struct
-> intel_atomic_state *state,
->  			       struct intel_plane *plane,
->  			       bool *need_cdclk_calc)
->  {
-> -	struct drm_i915_private *dev_priv =3D to_i915(plane->base.dev);
-> +	struct intel_display *display =3D to_intel_display(plane);
->  	const struct intel_plane_state *plane_state =3D
->  		intel_atomic_get_new_plane_state(state, plane);
->  	struct intel_crtc *crtc =3D to_intel_crtc(plane_state->hw.crtc);
-> @@ -322,7 +321,7 @@ int intel_plane_calc_min_cdclk(struct
-> intel_atomic_state *state,
->  	    cdclk_state->min_cdclk[crtc->pipe])
->  		return 0;
->=20
-> -	drm_dbg_kms(&dev_priv->drm,
-> +	drm_dbg_kms(display->drm,
->  		    "[PLANE:%d:%s] min cdclk (%d kHz) > [CRTC:%d:%s] min
-> cdclk (%d kHz)\n",
->  		    plane->base.base.id, plane->base.name,
->  		    new_crtc_state->min_cdclk[plane->id],
-> @@ -435,7 +434,7 @@ static bool intel_plane_do_async_flip(struct
-> intel_plane *plane,
->  				      const struct intel_crtc_state
-> *old_crtc_state,
->  				      const struct intel_crtc_state
-> *new_crtc_state)  {
-> -	struct drm_i915_private *i915 =3D to_i915(plane->base.dev);
-> +	struct intel_display *display =3D to_intel_display(plane);
->=20
->  	if (!plane->async_flip)
->  		return false;
-> @@ -456,7 +455,7 @@ static bool intel_plane_do_async_flip(struct
-> intel_plane *plane,
->  	 * extend this so other scanout parameters (stride/etc) could
->  	 * be changed as well...
->  	 */
-> -	return DISPLAY_VER(i915) < 9 || old_crtc_state->uapi.async_flip;
-> +	return DISPLAY_VER(display) < 9 || old_crtc_state->uapi.async_flip;
->  }
->=20
->  static bool i9xx_must_disable_cxsr(const struct intel_crtc_state
-> *new_crtc_state, @@ -560,16 +559,16 @@ static int
-> intel_plane_atomic_calc_changes(const struct intel_crtc_state *old_cr
->  					   const struct intel_plane_state
-> *old_plane_state,
->  					   struct intel_plane_state
-> *new_plane_state)  {
-> +	struct intel_display *display =3D to_intel_display(new_crtc_state);
->  	struct intel_crtc *crtc =3D to_intel_crtc(new_crtc_state->uapi.crtc);
->  	struct intel_plane *plane =3D to_intel_plane(new_plane_state-
-> >uapi.plane);
-> -	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
->  	bool mode_changed =3D intel_crtc_needs_modeset(new_crtc_state);
->  	bool was_crtc_enabled =3D old_crtc_state->hw.active;
->  	bool is_crtc_enabled =3D new_crtc_state->hw.active;
->  	bool turn_off, turn_on, visible, was_visible;
->  	int ret;
->=20
-> -	if (DISPLAY_VER(dev_priv) >=3D 9 && plane->id !=3D PLANE_CURSOR) {
-> +	if (DISPLAY_VER(display) >=3D 9 && plane->id !=3D PLANE_CURSOR) {
->  		ret =3D skl_update_scaler_plane(new_crtc_state,
-> new_plane_state);
->  		if (ret)
->  			return ret;
-> @@ -578,7 +577,7 @@ static int intel_plane_atomic_calc_changes(const
-> struct intel_crtc_state *old_cr
->  	was_visible =3D old_plane_state->uapi.visible;
->  	visible =3D new_plane_state->uapi.visible;
->=20
-> -	if (!was_crtc_enabled && drm_WARN_ON(&dev_priv->drm,
-> was_visible))
-> +	if (!was_crtc_enabled && drm_WARN_ON(display->drm,
-> was_visible))
->  		was_visible =3D false;
->=20
->  	/*
-> @@ -602,7 +601,7 @@ static int intel_plane_atomic_calc_changes(const
-> struct intel_crtc_state *old_cr
->  	turn_off =3D was_visible && (!visible || mode_changed);
->  	turn_on =3D visible && (!was_visible || mode_changed);
->=20
-> -	drm_dbg_atomic(&dev_priv->drm,
-> +	drm_dbg_atomic(display->drm,
->  		       "[CRTC:%d:%s] with [PLANE:%d:%s] visible %i -> %i, off %i,
-> on %i, ms %i\n",
->  		       crtc->base.base.id, crtc->base.name,
->  		       plane->base.base.id, plane->base.name, @@ -612,11
-> +611,11 @@ static int intel_plane_atomic_calc_changes(const struct
-> intel_crtc_state *old_cr
->  	if (visible || was_visible)
->  		new_crtc_state->fb_bits |=3D plane->frontbuffer_bit;
->=20
-> -	if (HAS_GMCH(dev_priv) &&
-> +	if (HAS_GMCH(display) &&
->  	    i9xx_must_disable_cxsr(new_crtc_state, old_plane_state,
-> new_plane_state))
->  		new_crtc_state->disable_cxsr =3D true;
->=20
-> -	if ((IS_IRONLAKE(dev_priv) || IS_SANDYBRIDGE(dev_priv) ||
-> IS_IVYBRIDGE(dev_priv)) &&
-> +	if ((display->platform.ironlake || display->platform.sandybridge ||
-> +display->platform.ivybridge) &&
->  	    ilk_must_disable_cxsr(new_crtc_state, old_plane_state,
-> new_plane_state))
->  		new_crtc_state->disable_cxsr =3D true;
->=20
-> @@ -709,10 +708,10 @@ int intel_plane_atomic_check_with_state(const
-> struct intel_crtc_state *old_crtc_  struct intel_plane *
-> intel_crtc_get_plane(struct intel_crtc *crtc, enum plane_id plane_id)  {
-> -	struct drm_i915_private *i915 =3D to_i915(crtc->base.dev);
-> +	struct intel_display *display =3D to_intel_display(crtc);
->  	struct intel_plane *plane;
->=20
-> -	for_each_intel_plane_on_crtc(&i915->drm, crtc, plane) {
-> +	for_each_intel_plane_on_crtc(display->drm, crtc, plane) {
->  		if (plane->id =3D=3D plane_id)
->  			return plane;
->  	}
-> @@ -961,9 +960,9 @@ void intel_crtc_planes_update_arm(struct intel_dsb
-> *dsb,
->  				  struct intel_atomic_state *state,
->  				  struct intel_crtc *crtc)
->  {
-> -	struct drm_i915_private *i915 =3D to_i915(state->base.dev);
-> +	struct intel_display *display =3D to_intel_display(state);
->=20
-> -	if (DISPLAY_VER(i915) >=3D 9)
-> +	if (DISPLAY_VER(display) >=3D 9)
->  		skl_crtc_planes_update_arm(dsb, state, crtc);
->  	else
->  		i9xx_crtc_planes_update_arm(dsb, state, crtc); @@ -974,7
-> +973,7 @@ int intel_atomic_plane_check_clipping(struct intel_plane_state
-> *plane_state,
->  				      int min_scale, int max_scale,
->  				      bool can_position)
->  {
-> -	struct drm_i915_private *i915 =3D to_i915(plane_state->uapi.plane-
-> >dev);
-> +	struct intel_display *display =3D to_intel_display(plane_state);
->  	struct intel_plane *plane =3D to_intel_plane(plane_state->uapi.plane);
->  	struct drm_framebuffer *fb =3D plane_state->hw.fb;
->  	struct drm_rect *src =3D &plane_state->uapi.src; @@ -994,7 +993,7 @@
-> int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_sta=
-te,
->  	hscale =3D drm_rect_calc_hscale(src, dst, min_scale, max_scale);
->  	vscale =3D drm_rect_calc_vscale(src, dst, min_scale, max_scale);
->  	if (hscale < 0 || vscale < 0) {
-> -		drm_dbg_kms(&i915->drm,
-> +		drm_dbg_kms(display->drm,
->  			    "[PLANE:%d:%s] invalid scaling
-> "DRM_RECT_FP_FMT " -> " DRM_RECT_FMT "\n",
->  			    plane->base.base.id, plane->base.name,
->  			    DRM_RECT_FP_ARG(src), DRM_RECT_ARG(dst));
-> @@ -1011,7 +1010,7 @@ int intel_atomic_plane_check_clipping(struct
-> intel_plane_state *plane_state,
->=20
->  	if (!can_position && plane_state->uapi.visible &&
->  	    !drm_rect_equals(dst, clip)) {
-> -		drm_dbg_kms(&i915->drm,
-> +		drm_dbg_kms(display->drm,
->  			    "[PLANE:%d:%s] plane (" DRM_RECT_FMT ") must
-> cover entire CRTC (" DRM_RECT_FMT ")\n",
->  			    plane->base.base.id, plane->base.name,
->  			    DRM_RECT_ARG(dst), DRM_RECT_ARG(clip)); @@ -
-> 1026,7 +1025,7 @@ int intel_atomic_plane_check_clipping(struct
-> intel_plane_state *plane_state,
->=20
->  int intel_plane_check_src_coordinates(struct intel_plane_state *plane_st=
-ate)
-> {
-> -	struct drm_i915_private *i915 =3D to_i915(plane_state->uapi.plane-
-> >dev);
-> +	struct intel_display *display =3D to_intel_display(plane_state);
->  	struct intel_plane *plane =3D to_intel_plane(plane_state->uapi.plane);
->  	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
->  	struct drm_rect *src =3D &plane_state->uapi.src; @@ -1060,18 +1059,18
-> @@ int intel_plane_check_src_coordinates(struct intel_plane_state
-> *plane_state)
->  	if (fb->format->format =3D=3D DRM_FORMAT_RGB565 && rotated) {
->  		hsub =3D 2;
->  		vsub =3D 2;
-> -	} else if (DISPLAY_VER(i915) >=3D 20 &&
-> +	} else if (DISPLAY_VER(display) >=3D 20 &&
->  		   intel_format_info_is_yuv_semiplanar(fb->format, fb-
-> >modifier)) {
->  		/*
->  		 * This allows NV12 and P0xx formats to have odd size and/or
-> odd
-> -		 * source coordinates on DISPLAY_VER(i915) >=3D 20
-> +		 * source coordinates on DISPLAY_VER(display) >=3D 20
->  		 */
->  		hsub =3D 1;
->  		vsub =3D 1;
->=20
->  		/* Wa_16023981245 */
-> -		if ((DISPLAY_VERx100(i915) =3D=3D 2000 ||
-> -		     DISPLAY_VERx100(i915) =3D=3D 3000) &&
-> +		if ((DISPLAY_VERx100(display) =3D=3D 2000 ||
-> +		     DISPLAY_VERx100(display) =3D=3D 3000) &&
->  		     src_x % 2 !=3D 0)
->  			hsub =3D 2;
->  	} else {
-> @@ -1083,7 +1082,7 @@ int intel_plane_check_src_coordinates(struct
-> intel_plane_state *plane_state)
->  		hsub =3D vsub =3D max(hsub, vsub);
->=20
->  	if (src_x % hsub || src_w % hsub) {
-> -		drm_dbg_kms(&i915->drm,
-> +		drm_dbg_kms(display->drm,
->  			    "[PLANE:%d:%s] src x/w (%u, %u) must be a
-> multiple of %u (rotated: %s)\n",
->  			    plane->base.base.id, plane->base.name,
->  			    src_x, src_w, hsub, str_yes_no(rotated)); @@ -
-> 1091,7 +1090,7 @@ int intel_plane_check_src_coordinates(struct
-> intel_plane_state *plane_state)
->  	}
->=20
->  	if (src_y % vsub || src_h % vsub) {
-> -		drm_dbg_kms(&i915->drm,
-> +		drm_dbg_kms(display->drm,
->  			    "[PLANE:%d:%s] src y/h (%u, %u) must be a
-> multiple of %u (rotated: %s)\n",
->  			    plane->base.base.id, plane->base.name,
->  			    src_y, src_h, vsub, str_yes_no(rotated)); @@ -
-> 1336,14 +1335,13 @@ static int icl_check_nv12_planes(struct
-> intel_atomic_state *state,
->  				 struct intel_crtc *crtc)
->  {
->  	struct intel_display *display =3D to_intel_display(state);
-> -	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
->  	struct intel_crtc_state *crtc_state =3D
->  		intel_atomic_get_new_crtc_state(state, crtc);
->  	struct intel_plane_state *plane_state;
->  	struct intel_plane *plane;
->  	int i;
->=20
-> -	if (DISPLAY_VER(dev_priv) < 11)
-> +	if (DISPLAY_VER(display) < 11)
->  		return 0;
->=20
->  	/*
-> @@ -1371,7 +1369,7 @@ static int icl_check_nv12_planes(struct
-> intel_atomic_state *state,
->  		if ((crtc_state->nv12_planes & BIT(plane->id)) =3D=3D 0)
->  			continue;
->=20
-> -		for_each_intel_plane_on_crtc(&dev_priv->drm, crtc, y_plane)
-> {
-> +		for_each_intel_plane_on_crtc(display->drm, crtc, y_plane) {
->  			if (!icl_is_nv12_y_plane(display, y_plane->id))
->  				continue;
->=20
-> @@ -1386,7 +1384,7 @@ static int icl_check_nv12_planes(struct
-> intel_atomic_state *state,
->  		}
->=20
->  		if (!y_plane_state) {
-> -			drm_dbg_kms(&dev_priv->drm,
-> +			drm_dbg_kms(display->drm,
->  				    "[CRTC:%d:%s] need %d free Y planes for
-> planar YUV\n",
->  				    crtc->base.base.id, crtc->base.name,
->  				    hweight8(crtc_state->nv12_planes));
-> @@ -1403,10 +1401,10 @@ static int intel_crtc_add_planes_to_state(struct
-> intel_atomic_state *state,
->  					  struct intel_crtc *crtc,
->  					  u8 plane_ids_mask)
->  {
-> -	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> +	struct intel_display *display =3D to_intel_display(state);
->  	struct intel_plane *plane;
->=20
-> -	for_each_intel_plane_on_crtc(&dev_priv->drm, crtc, plane) {
-> +	for_each_intel_plane_on_crtc(display->drm, crtc, plane) {
->  		struct intel_plane_state *plane_state;
->=20
->  		if ((plane_ids_mask & BIT(plane->id)) =3D=3D 0) @@ -1433,12
-> +1431,12 @@ int intel_atomic_add_affected_planes(struct intel_atomic_stat=
-e
-> *state,
->  					      new_crtc_state->enabled_planes);
-> }
->=20
-> -static bool active_planes_affects_min_cdclk(struct drm_i915_private
-> *dev_priv)
-> +static bool active_planes_affects_min_cdclk(struct intel_display
-> +*display)
->  {
->  	/* See {hsw,vlv,ivb}_plane_ratio() */
-> -	return IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv) ||
-> -		IS_CHERRYVIEW(dev_priv) || IS_VALLEYVIEW(dev_priv) ||
-> -		IS_IVYBRIDGE(dev_priv);
-> +	return display->platform.broadwell || display->platform.haswell ||
-> +		display->platform.cherryview || display->platform.valleyview
-> ||
-> +		display->platform.ivybridge;
->  }
->=20
->  static u8 intel_joiner_affected_planes(struct intel_atomic_state *state,=
- @@ -
-> 1517,7 +1515,7 @@ static int intel_add_affected_planes(struct
-> intel_atomic_state *state)
->=20
->  int intel_atomic_check_planes(struct intel_atomic_state *state)  {
-> -	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> +	struct intel_display *display =3D to_intel_display(state);
->  	struct intel_crtc_state *old_crtc_state, *new_crtc_state;
->  	struct intel_plane_state __maybe_unused *plane_state;
->  	struct intel_plane *plane;
-> @@ -1531,7 +1529,7 @@ int intel_atomic_check_planes(struct
-> intel_atomic_state *state)
->  	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
->  		ret =3D intel_plane_atomic_check(state, plane);
->  		if (ret) {
-> -			drm_dbg_atomic(&dev_priv->drm,
-> +			drm_dbg_atomic(display->drm,
->  				       "[PLANE:%d:%s] atomic driver check
-> failed\n",
->  				       plane->base.base.id, plane->base.name);
->  			return ret;
-> @@ -1551,7 +1549,7 @@ int intel_atomic_check_planes(struct
-> intel_atomic_state *state)
->  		 * the planes' minimum cdclk calculation. Add such planes
->  		 * to the state before we compute the minimum cdclk.
->  		 */
-> -		if (!active_planes_affects_min_cdclk(dev_priv))
-> +		if (!active_planes_affects_min_cdclk(display))
->  			continue;
->=20
->  		old_active_planes =3D old_crtc_state->active_planes &
-> ~BIT(PLANE_CURSOR);
-> --
-LGTM,
-Reviewed-by: Nemesa Garg <nemesa.garg@intel.com>
-> 2.39.5
+>  Documentation/gpu/rfc/gpusvm.rst | 106 +++++++++++++++++++++++++++++++
+>  Documentation/gpu/rfc/index.rst  |   4 ++
+>  2 files changed, 110 insertions(+)
+>  create mode 100644 Documentation/gpu/rfc/gpusvm.rst
+> 
+> diff --git a/Documentation/gpu/rfc/gpusvm.rst b/Documentation/gpu/rfc/gpusvm.rst
+> new file mode 100644
+> index 000000000000..87d9f9506155
+> --- /dev/null
+> +++ b/Documentation/gpu/rfc/gpusvm.rst
+> @@ -0,0 +1,106 @@
+> +.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +
+> +===============
+> +GPU SVM Section
+> +===============
+> +
+> +Agreed upon design principles
+> +=============================
+> +
+> +* migrate_to_ram path
+> +	* Rely only on core MM concepts (migration PTEs, page references, and
+> +	  page locking).
+> +	* No driver specific locks other than locks for hardware interaction in
+> +	  this path. These are not required and generally a bad idea to
+> +	  invent driver defined locks to seal core MM races.
+> +	* An example of a driver-specific lock causing issues occurred before
+> +	  fixing do_swap_page to lock the faulting page. A driver-exclusive lock
+> +	  in migrate_to_ram produced a stable livelock if enough threads read
+> +	  the faulting page.
+> +	* Partial migration is supported (i.e., a subset of pages attempting to
+> +	  migrate can actually migrate, with only the faulting page guaranteed
+> +	  to migrate).
+> +	* Driver handles mixed migrations via retry loops rather than locking.
+> +* Eviction
+> +	* Eviction is defined as migrating data from the GPU back to the
+> +	  CPU without a virtual address to free up GPU memory.
+> +	* Only looking at physical memory data structures and locks as opposed to
+> +	  looking at virtual memory data structures and locks.
+> +	* No looking at mm/vma structs or relying on those being locked.
+> +	* The rationale for the above two points is that CPU virtual addresses
+> +	  can change at any moment, while the physical pages remain stable.
+> +	* GPU page table invalidation, which requires a GPU virtual address, is
+> +	  handled via the notifier that has access to the GPU virtual address.
+> +* GPU fault side
+> +	* mmap_read only used around core MM functions which require this lock
+> +	  and should strive to take mmap_read lock only in GPU SVM layer.
+> +	* Big retry loop to handle all races with the mmu notifier under the gpu
+> +	  pagetable locks/mmu notifier range lock/whatever we end up calling
+> +          those.
+> +	* Races (especially against concurrent eviction or migrate_to_ram)
+> +	  should not be handled on the fault side by trying to hold locks;
+> +	  rather, they should be handled using retry loops. One possible
+> +	  exception is holding a BO's dma-resv lock during the initial migration
+> +	  to VRAM, as this is a well-defined lock that can be taken underneath
+> +	  the mmap_read lock.
+> +	* One possible issue with the above approach is if a driver has a strict
+> +	  migration policy requiring GPU access to occur in GPU memory.
+> +	  Concurrent CPU access could cause a livelock due to endless retries.
+> +	  While no current user (Xe) of GPU SVM has such a policy, it is likely
+> +	  to be added in the future. Ideally, this should be resolved on the
+> +	  core-MM side rather than through a driver-side lock.
+> +* Physical memory to virtual backpointer
+> +	* This does not work, as no pointers from physical memory to virtual
+> +	  memory should exist. mremap() is an example of the core MM updating
+> +	  the virtual address without notifying the driver.
 
+Pretty minor nit, but this could be read as core MM won't send a mmu notifier
+when calling mremap(). That's not the case, as it will get a notifier to
+invalidate the address but won't explicitly get notified of the new address.
+
+Not worth sending an update just for that though.
+
+> +	* The physical memory backpointer (page->zone_device_data) should remain
+> +	  stable from allocation to page free. Safely updating this against a
+> +	  concurrent user would be very difficult unless the page is free.
+> +* GPU pagetable locking
+> +	* Notifier lock only protects range tree, pages valid state for a range
+> +	  (rather than seqno due to wider notifiers), pagetable entries, and
+> +	  mmu notifier seqno tracking, it is not a global lock to protect
+> +          against races.
+> +	* All races handled with big retry as mentioned above.
+> +
+> +Overview of baseline design
+> +===========================
+> +
+> +Baseline design is simple as possible to get a working basline in which can be
+> +built upon.
+> +
+> +.. kernel-doc:: drivers/gpu/drm/xe/drm_gpusvm.c
+> +   :doc: Overview
+> +   :doc: Locking
+> +   :doc: Migrataion
+> +   :doc: Partial Unmapping of Ranges
+> +   :doc: Examples
+> +
+> +Possible future design features
+> +===============================
+> +
+> +* Concurrent GPU faults
+> +	* CPU faults are concurrent so makes sense to have concurrent GPU
+> +	  faults.
+> +	* Should be possible with fined grained locking in the driver GPU
+> +	  fault handler.
+> +	* No expected GPU SVM changes required.
+> +* Ranges with mixed system and device pages
+> +	* Can be added if required to drm_gpusvm_get_pages fairly easily.
+> +* Multi-GPU support
+> +	* Work in progress and patches expected after initially landing on GPU
+> +	  SVM.
+> +	* Ideally can be done with little to no changes to GPU SVM.
+> +* Drop ranges in favor of radix tree
+> +	* May be desirable for faster notifiers.
+> +* Compound device pages
+> +	* Nvidia, AMD, and Intel all have agreed expensive core MM functions in
+> +	  migrate device layer are a performance bottleneck, having compound
+> +	  device pages should help increase performance by reducing the number
+> +	  of these expensive calls.
+
+Balbir has also just posted an initial RFC implementation of this here:
+
+https://lore.kernel.org/linux-mm/20250306044239.3874247-1-balbirs@nvidia.com/
+
+> +* Higher order dma mapping for migration
+> +	* 4k dma mapping adversely affects migration performance on Intel
+> +	  hardware, higher order (2M) dma mapping should help here.
+> +* Build common userptr implementation on top of GPU SVM
+> +* Driver side madvise implementation and migration policies
+> +* Pull in pending dma-mapping API changes from Leon / Nvidia when these land
+> diff --git a/Documentation/gpu/rfc/index.rst b/Documentation/gpu/rfc/index.rst
+> index 476719771eef..396e535377fb 100644
+> --- a/Documentation/gpu/rfc/index.rst
+> +++ b/Documentation/gpu/rfc/index.rst
+> @@ -16,6 +16,10 @@ host such documentation:
+>  * Once the code has landed move all the documentation to the right places in
+>    the main core, helper or driver sections.
+>  
+> +.. toctree::
+> +
+> +    gpusvm.rst
+> +
+>  .. toctree::
+>  
+>      i915_gem_lmem.rst
+> -- 
+> 2.34.1
+> 
