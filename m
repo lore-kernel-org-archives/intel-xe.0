@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4FB7C282D1
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Mar 2025 14:24:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92446C282D1
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Mar 2025 14:29:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7066910E9A5;
-	Thu,  6 Mar 2025 14:24:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5984310E9B3;
+	Thu,  6 Mar 2025 14:29:41 +0000 (UTC)
 Received: from 64e06c682a23 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B9A310E835;
- Thu,  6 Mar 2025 14:24:46 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0191156503124159851=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECBEB10E9B3;
+ Thu,  6 Mar 2025 14:29:39 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Release_gud_ids_b?=
- =?utf-8?q?efore_cancelling_work_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Use_VRR_timing_gener?=
+ =?utf-8?q?ator_for_fixed_refresh_rate_modes_=28rev7=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 06 Mar 2025 14:24:46 -0000
-Message-ID: <174127108662.68258.18014354813292652293@64e06c682a23>
+Date: Thu, 06 Mar 2025 14:29:39 -0000
+Message-ID: <174127137996.68260.2110658065381290674@64e06c682a23>
 X-Patchwork-Hint: ignore
-References: <20250306131211.975503-1-tejas.upadhyay@intel.com>
-In-Reply-To: <20250306131211.975503-1-tejas.upadhyay@intel.com>
+References: <20250306131100.3989503-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250306131100.3989503-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,106 +40,37 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0191156503124159851==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Release gud ids before cancelling work (rev2)
-URL   : https://patchwork.freedesktop.org/series/145907/
+Series: Use VRR timing generator for fixed refresh rate modes (rev7)
+URL   : https://patchwork.freedesktop.org/series/141152/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-2766-f2e11e8d7c76352a82d73307e16a8d8d662e05b4_BAT -> xe-pw-145907v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8262 -> IGT_8263
-  * Linux: xe-2766-f2e11e8d7c76352a82d73307e16a8d8d662e05b4 -> xe-pw-145907v2
-
-  IGT_8262: 8262
-  IGT_8263: 25f60274b3dd14d35a7f32558b489ab7a02b6223 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2766-f2e11e8d7c76352a82d73307e16a8d8d662e05b4: f2e11e8d7c76352a82d73307e16a8d8d662e05b4
-  xe-pw-145907v2: 145907v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145907v2/index.html
-
---===============0191156503124159851==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: a99aaba62a8e drm-tip: 2025y-03m-06d-14h-22m-08s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/vrr: Remove unwanted comment
+Applying: drm/i915:vrr: Separate out functions to compute vmin and vmax
+Applying: drm/i915/vrr: Make helpers for cmrr and vrr timings
+Applying: drm/i915/vrr: Disable CMRR
+Applying: drm/i915/vrr: Track vrr.enable only for variable timing
+Applying: drm/i915/vrr: Use crtc_vtotal for vmin
+Applying: drm/i915/vrr: Prepare for fixed refresh rate timings
+Applying: drm/i915/display: Enable MSA Ignore Timing PAR only when in not fixed_rr mode
+Applying: drm/i915/hdmi: Use VRR Timing generator for HDMI for fixed_rr
+Applying: drm/i915/dp_mst: Use VRR Timing generator for DP MST for fixed_rr
+Applying: drm/i915/display: Disable PSR before disabling VRR
+Applying: drm/i915/display: Move intel_psr_post_plane_update() at the later
+Applying: drm/i915/vrr: Refactor condition for computing vmax and LRR
+Applying: drm/i915/vrr: Always set vrr vmax/vmin/flipline in vrr_{enable/disable}
+Applying: drm/i915/display: Use fixed_rr timings in modeset sequence
+Applying: drm/i915/vrr: Use fixed timings for platforms that support VRR
+Applying: drm/i915/display: Move vrr.guardband/pipeline_full out of !fastset block
+Applying: drm/i915/display: Use fixed rr timings in intel_set_transcoder_timings_lrr()
+Applying: drm/i915/vrr: Allow fixed_rr with pipe joiner
+Applying: drm/i915/vrr: Always use VRR timing generator for MTL+
+Applying: drm/i915/display: Add fixed_rr to crtc_state dump
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Release gud ids before cancelling work (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145907/">https://patchwork.freedesktop.org/series/145907/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145907v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145907v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2766-f2e11e8d7c76352a82d73307e16a8d8d662e05b4_BAT -&gt; xe-pw-145907v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8262 -&gt; IGT_8263</li>
-<li>Linux: xe-2766-f2e11e8d7c76352a82d73307e16a8d8d662e05b4 -&gt; xe-pw-145907v2</li>
-</ul>
-<p>IGT_8262: 8262<br />
-  IGT_8263: 25f60274b3dd14d35a7f32558b489ab7a02b6223 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2766-f2e11e8d7c76352a82d73307e16a8d8d662e05b4: f2e11e8d7c76352a82d73307e16a8d8d662e05b4<br />
-  xe-pw-145907v2: 145907v2</p>
-
-</body>
-</html>
-
---===============0191156503124159851==--
