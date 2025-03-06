@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8BBDC282D1
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Mar 2025 13:23:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11EFAC282D1
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Mar 2025 13:38:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F0E810E99B;
-	Thu,  6 Mar 2025 13:23:50 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P4uvoz5h";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FA3810E99B;
- Thu,  6 Mar 2025 13:23:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741267429; x=1772803429;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=mK57pJrtD3MmVVdGqQAkIMiM2QjY6GnL2mqV+OQsEwc=;
- b=P4uvoz5hGD2KS1fxPEmnsrImGh/5VaWobJH6EMk4ybIwASC1JXM6VSOz
- Qiv7nifOO2xu062a8/cl04Bz2X5TDV6APQuKikOqlbtiWUx97EN/04j1u
- L4iXsCu4uV9ZZoAQnefFL1dOVXBmSlfXsqg1nXec0IfLF7MjAtMLlz3wN
- mU6E9C+M9WhXC6UiWbOP6yHOxWAOzPR5u5XByNWKV8LiR0qJLfMmowvHL
- GLP0C2o1nh0mMTAm3DuIQgZ8FGw/hVJhvHWF/qWg2+D/c9cG42WFfsJvg
- QNgIoE1jCR9uvIpbIFy+LcJ4nkeRbdjky+dlqfI9vj4ot17VKhuQR4lwk Q==;
-X-CSE-ConnectionGUID: cH3lsT6MSgSi2+YH/ya67A==
-X-CSE-MsgGUID: Dj51EnZIR8aYpX53wmFFgg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="41524698"
-X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; d="scan'208";a="41524698"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 05:23:49 -0800
-X-CSE-ConnectionGUID: ZWfUyXCwQamtOKQDLH6Zww==
-X-CSE-MsgGUID: K/+LmimoRhq7RTsMAcZVqQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; d="scan'208";a="142243219"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 05:23:47 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
- ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 21/21] drm/i915/display: Add fixed_rr to crtc_state dump
-Date: Thu,  6 Mar 2025 18:41:00 +0530
-Message-ID: <20250306131100.3989503-22-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250306131100.3989503-1-ankit.k.nautiyal@intel.com>
-References: <20250306131100.3989503-1-ankit.k.nautiyal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 332A610E998;
+	Thu,  6 Mar 2025 13:38:42 +0000 (UTC)
+Received: from 64e06c682a23 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF7A810E994;
+ Thu,  6 Mar 2025 13:38:40 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3910209611579842108=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Release_gud_ids_b?=
+ =?utf-8?q?efore_cancelling_work?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 06 Mar 2025 13:38:40 -0000
+Message-ID: <174126832090.67965.12782006878666715691@64e06c682a23>
+X-Patchwork-Hint: ignore
+References: <20250306125459.975071-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20250306125459.975071-1-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,60 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add fixed refresh rate mode in crtc_state dump.
-VRR Timing Generator is running in fixed refresh rate mode when
-vrr.enable is unset and vrr.vmin = vrr.vmax = vrr.flipline.
+--===============3910209611579842108==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: Add check for vrr.enable.
+== Series Details ==
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 3 ++-
- drivers/gpu/drm/i915/display/intel_vrr.c             | 1 -
- drivers/gpu/drm/i915/display/intel_vrr.h             | 1 +
- 3 files changed, 3 insertions(+), 2 deletions(-)
+Series: drm/xe: Release gud ids before cancelling work
+URL   : https://patchwork.freedesktop.org/series/145907/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index 599ddce96371..974598e29bff 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -294,8 +294,9 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 		   pipe_config->hw.adjusted_mode.crtc_vdisplay,
- 		   pipe_config->framestart_delay, pipe_config->msa_timing_delay);
- 
--	drm_printf(&p, "vrr: %s, vmin: %d, vmax: %d, flipline: %d, pipeline full: %d, guardband: %d vsync start: %d, vsync end: %d\n",
-+	drm_printf(&p, "vrr: %s, fixed_rr: %s, vmin: %d, vmax: %d, flipline: %d, pipeline full: %d, guardband: %d vsync start: %d, vsync end: %d\n",
- 		   str_yes_no(pipe_config->vrr.enable),
-+		   str_yes_no(intel_vrr_is_fixed_rr(pipe_config) && !pipe_config->vrr.enable),
- 		   pipe_config->vrr.vmin, pipe_config->vrr.vmax, pipe_config->vrr.flipline,
- 		   pipe_config->vrr.pipeline_full, pipe_config->vrr.guardband,
- 		   pipe_config->vrr.vsync_start, pipe_config->vrr.vsync_end);
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index a1ad9432bc28..fe589092ce53 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -661,7 +661,6 @@ void intel_vrr_transcoder_disable(const struct intel_crtc_state *crtc_state)
- 	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder), 0);
- }
- 
--static
- bool intel_vrr_is_fixed_rr(const struct intel_crtc_state *crtc_state)
- {
- 	return crtc_state->vrr.flipline &&
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
-index d857633bc02c..14a372204a54 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.h
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.h
-@@ -38,5 +38,6 @@ int intel_vrr_vblank_delay(const struct intel_crtc_state *crtc_state);
- void intel_vrr_transcoder_enable(const struct intel_crtc_state *crtc_state);
- void intel_vrr_transcoder_disable(const struct intel_crtc_state *crtc_state);
- void intel_vrr_set_fixed_rr_timings(const struct intel_crtc_state *crtc_state);
-+bool intel_vrr_is_fixed_rr(const struct intel_crtc_state *crtc_state);
- 
- #endif /* __INTEL_VRR_H__ */
--- 
-2.45.2
+== Summary ==
 
+CI Bug Log - changes from xe-2766-f2e11e8d7c76352a82d73307e16a8d8d662e05b4_BAT -> xe-pw-145907v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (10 -> 9)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-2766-f2e11e8d7c76352a82d73307e16a8d8d662e05b4 -> xe-pw-145907v1
+
+  IGT_8262: 8262
+  xe-2766-f2e11e8d7c76352a82d73307e16a8d8d662e05b4: f2e11e8d7c76352a82d73307e16a8d8d662e05b4
+  xe-pw-145907v1: 145907v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145907v1/index.html
+
+--===============3910209611579842108==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Release gud ids before cancelling work</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145907/">https://patchwork.freedesktop.org/series/145907/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145907v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145907v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2766-f2e11e8d7c76352a82d73307e16a8d8d662e05b4_BAT -&gt; xe-pw-145907v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (10 -&gt; 9)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2766-f2e11e8d7c76352a82d73307e16a8d8d662e05b4 -&gt; xe-pw-145907v1</li>
+</ul>
+<p>IGT_8262: 8262<br />
+  xe-2766-f2e11e8d7c76352a82d73307e16a8d8d662e05b4: f2e11e8d7c76352a82d73307e16a8d8d662e05b4<br />
+  xe-pw-145907v1: 145907v1</p>
+
+</body>
+</html>
+
+--===============3910209611579842108==--
