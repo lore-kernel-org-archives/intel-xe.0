@@ -4,88 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB7ADC28B22
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Mar 2025 10:32:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8405C28B22
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Mar 2025 10:42:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BA3610E93B;
-	Thu,  6 Mar 2025 10:32:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74F4010E16D;
+	Thu,  6 Mar 2025 10:42:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="DsTBXlKK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ubzj5dMY";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F94E10E93A
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Mar 2025 10:32:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1741257136;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=+UOQWLNHD36avSTa9JquHqKO4u+iQSMwvjaDPAD9G44=;
- b=DsTBXlKKSrmPg9SJk7XemqrAAZXBUhex2xVsVY9wVVOWu54vPAZSULo4hm56DyWTTRdRy9
- SGq7VOKeF0hAkQiq+0tfJVPAaAgL12pIxFb65QCp4Zjnle3j27qAMidpHlhcRq0VDPMuuB
- g71aIUTp04TV5iK8o3CrDysy/NPXQTA=
-Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
- [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-88-_RZJAYt9OkugeQz2gN-iaQ-1; Thu, 06 Mar 2025 05:32:09 -0500
-X-MC-Unique: _RZJAYt9OkugeQz2gN-iaQ-1
-X-Mimecast-MFC-AGG-ID: _RZJAYt9OkugeQz2gN-iaQ_1741257128
-Received: by mail-wr1-f72.google.com with SMTP id
- ffacd0b85a97d-3910b93cb1eso237862f8f.1
- for <intel-xe@lists.freedesktop.org>; Thu, 06 Mar 2025 02:32:09 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1741257128; x=1741861928;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=+UOQWLNHD36avSTa9JquHqKO4u+iQSMwvjaDPAD9G44=;
- b=kHP0jQ/ueWRJfPdKsfRbX8wjK6Hjm/Bcrves0LDApavk9VY+YxJvKsjtcZAt5rzYpQ
- BDqlsRseA9EA8HmfbBf2bY//t3Tp2npfScytlsPYuWw87b+VzNFXMvXh0xItGmNPezZE
- rxOg00v9Pii/jeFueuCLQ7EEdGxfbpp/K3zFFRkBkUXTs+zsthj8DSmkr8PC3Jsi1MPr
- ZT7auOzcgNVG5lLlucZxDcZ5EkAzzyYGiB+kPZ4dZxsocD6D9JiETK19fO54MGijc16t
- s2Bo4z0Kdp5qIsJEDoKPmaQnhUXdI2Uyq0iZf9531W378UUSjuYTs/hZ7z3EOltKs+nv
- lazQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWUxdgDoHybgAO4ozuhfyEb2RIeiHavwlhoT1Ye14XuC4zHWY7xHciCXLyM8uIFLAHH+InpuR5wMg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxrB0eM20Bf7/heEUz3AR9P+bJuEOR0Mi4spAuYMNpoLCR/PYoC
- VTPdeGWnCKMmbGOLDXcEK94wlk5UECfroCOsy/ihmrA1m4eQrpees/M336TrLDOaxEhfSIs32T0
- 17s50yjkvDC7xNpk6jZDpmD09RsCUxFBFqj0atAKV2xCd6bwtaHF3Hm+T3+6y/rr3
-X-Gm-Gg: ASbGnctn7oJ6TK1r4Tv8AgZL5/JsYGiRNNSmwA9LvntLs8fST77gEhAbIj/PEnkwiSd
- 3bOqBj+kxwy8+9U7MVkWbgPlQZlkg5xjEu5pY7fwTlANwIEw1V1VLMkd1y7O/9t3a+6GNybOhNs
- eQpoQY2VT7oIKjezeMJ42w7uBKftKcqV9oAuUwgELf1VDvDq32XzBP44y1Dt8FV4Qay/J4QqMur
- LK6X0nZKgQsNI2s5KIBAKMoZPP4hTS1sTc8Dh+jC/21xbmJfcXAh5aHHFWBuhfb2iI=
-X-Received: by 2002:a5d:6489:0:b0:391:13ef:1b27 with SMTP id
- ffacd0b85a97d-3911f7ce4b6mr6328163f8f.51.1741257128288; 
- Thu, 06 Mar 2025 02:32:08 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IG+Tgv35AjEidAtwDd/7uDt9U9WK08/b/Hy7ngRGH/XCMkog1BQwQ1QPGrK1xSOjh46+jQw3Q==
-X-Received: by 2002:a5d:6489:0:b0:391:13ef:1b27 with SMTP id
- ffacd0b85a97d-3911f7ce4b6mr6328134f8f.51.1741257127917; 
- Thu, 06 Mar 2025 02:32:07 -0800 (PST)
-Received: from localhost ([2a01:e0a:b25:f902::ff])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-43bd42c5880sm45356665e9.19.2025.03.06.02.32.07
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 06 Mar 2025 02:32:07 -0800 (PST)
-Date: Thu, 6 Mar 2025 11:32:06 +0100
-From: Maxime Ripard <mripard@redhat.com>
-To: Dave Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <20250306-antelope-of-imminent-anger-bca19e@houat>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EE7C10E167;
+ Thu,  6 Mar 2025 10:42:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1741257734; x=1772793734;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=QzubZ57zch1ALOmmNoMoKdJ9fmuCcVtZQmrFksJPFJk=;
+ b=Ubzj5dMYo7j5umTAuQe2oCx0K8/qP1/OyJkpKRGk2vHVvIAX124rNkVU
+ XZOcGFBpQ1+z9c37nzBUHPlxf2DSWdIj8sOnu/o6gZjJXerTuaKBI5BKe
+ rFHXkY8WX7FGeXRkQ70P3Zaqcp3mxhE6iH9vQJmIIRYX7lGGzzzLjkmrH
+ IzrJ7mMqUWM0o3UReRLtcZGevnMtSEp6z9qfeuNk5e6mW7UkPvILiu2wI
+ gHtK6RrzMOYw091S2/Ank9whhsEzTGrH5CXHrTirR3ArnF6A3i19qn3m6
+ CO7/yd/0NUPfbQ0OYk8iFSwjRFCtGuhNdqTdLDXDDBRqjVSy1u5L18U8Q Q==;
+X-CSE-ConnectionGUID: aOktshCtQW2JBa7hFBYllQ==
+X-CSE-MsgGUID: 5dSCbabtQ3KxvUV1vYWJYA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="53244801"
+X-IronPort-AV: E=Sophos;i="6.14,225,1736841600"; d="scan'208";a="53244801"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2025 02:42:14 -0800
+X-CSE-ConnectionGUID: cVlVafwxT2+TMhq8huE9Xw==
+X-CSE-MsgGUID: ZP/SSieUSN2y5wTvZlHaiA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,225,1736841600"; d="scan'208";a="119485774"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.135])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2025 02:42:11 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
+Cc: "Knop, Ryszard" <ryszard.knop@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "rk@dragonic.eu" <rk@dragonic.eu>, "De Marchi, Lucas"
+ <lucas.demarchi@intel.com>, "daniel@fooishbar.org" <daniel@fooishbar.org>,
+ Sima Vetter <sima@ffwll.ch>
+Subject: Re: Discussion: Moving away from Patchwork for Intel i915/Xe CI
+In-Reply-To: <20250305-nonchalant-fresh-stoat-61ea0a@lemur>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <814f9bcb9c7ee22af45bd5278255af247c6664fa.camel@intel.com>
+ <871pvbxt40.fsf@intel.com> <20250305-nonchalant-fresh-stoat-61ea0a@lemur>
+Date: Thu, 06 Mar 2025 12:42:07 +0200
+Message-ID: <87frjqwidc.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="367poxrw3iccmrnk"
-Content-Disposition: inline
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,78 +74,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Wed, 05 Mar 2025, Konstantin Ryabitsev <konstantin@linuxfoundation.org> =
+wrote:
+> On Wed, Mar 05, 2025 at 07:52:31PM +0200, Jani Nikula wrote:
+>> > - For each new series on lore.kernel.org a bridge would create a PR by
+>> > taking the latest mirrored drm-tip source, then applying a new series
+>> > with `b4 shazam`.
+>>=20
+>> There's a small catch here. Patchwork is currently more clever about
+>> handling series revisions when only some of the patches in a series are
+>> updated by way of replying to the individual patch. For example [1][2].
+>
+> FWIW, b4 does partial rerolls already. E.g., using your own example:
 
---367poxrw3iccmrnk
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Subject: [PULL] drm-misc-fixes
-MIME-Version: 1.0
+Yay, I upgraded to 0.14 and so it does. Thanks!
 
-Hi,
+The point I made is moot, and I agree with Lucas that we should align
+with what b4 does.
 
-Here's this week drm-misc-fixes PR.
+> 	$ b4 am -o/tmp 20250305114820.3523077-2-imre.deak@intel.com
+> 	[...]
+> 	---
+> 	  =E2=9C=93 [PATCH v5->v6 1/6] drm/i915/hpd: Track HPD pins instead of p=
+orts for HPD pulse events
+> 		+ Reviewed-by: Jani Nikula <jani.nikula@intel.com> (=E2=9C=93 DKIM/inte=
+l.com)
+> 	  =E2=9C=93 [PATCH v5->v6 2/6] drm/i915/hpd: Let an HPD pin be in the di=
+sabled state when handling missed IRQs
+> 		+ Reviewed-by: Jani Nikula <jani.nikula@intel.com> (=E2=9C=93 DKIM/inte=
+l.com)
+> 	  =E2=9C=93 [PATCH     v6 3/6] drm/i915/hpd: Add support for blocking th=
+e IRQ handling on an HPD pin
+> 	  =E2=9C=93 [PATCH v5->v6 4/6] drm/i915/dp: Fix link training interrupte=
+d by a short HPD pulse
+> 		+ Reviewed-by: Jani Nikula <jani.nikula@intel.com> (=E2=9C=93 DKIM/inte=
+l.com)
+> 	  =E2=9C=93 [PATCH     v6 5/6] drm/i915/dp: Queue a link check after lin=
+k training is complete
+> 	  =E2=9C=93 [PATCH v5->v6 6/6] drm/i915/crt: Use intel_hpd_block/unblock=
+() instead of intel_hpd_disable/enable()
+> 	  ---
+> 	  =E2=9C=93 Signed: DKIM/intel.com
 
-Maxime
+Side note, I often pipe messages from my MUA (notmuch-emacs) to b4, as
+it nicely parses the mails and picks up the message-id from
+there. Overall it works great. However, b4 seems to err on the side of
+writing color codes to pipes, and I get this as output:
 
-drm-misc-fixes-2025-03-06:
-A Kconfig fix for nouveau, locking and timestamp fixes for imagination,
-a header guard fix for sched and a DPMS regression fix for bochs.
-The following changes since commit 3603996432997f7c88da37a97062a46cda01ac9d:
+---
+  [32m=E2=9C=93[0m [PATCH v5->v6 1/6] drm/i915/hpd: Track HPD pins instead =
+of ports for HPD pulse events
+    + Reviewed-by: Jani Nikula <jani.nikula@intel.com> ([32m=E2=9C=93[0m DK=
+IM/intel.com)
+  [32m=E2=9C=93[0m [PATCH v5->v6 2/6] drm/i915/hpd: Let an HPD pin be in th=
+e disabled state when handling missed IRQs
+    + Reviewed-by: Jani Nikula <jani.nikula@intel.com> ([32m=E2=9C=93[0m DK=
+IM/intel.com)
+  [32m=E2=9C=93[0m [PATCH     v6 3/6] drm/i915/hpd: Add support for blockin=
+g the IRQ handling on an HPD pin
+  [32m=E2=9C=93[0m [PATCH v5->v6 4/6] drm/i915/dp: Fix link training interr=
+upted by a short HPD pulse
+    + Reviewed-by: Jani Nikula <jani.nikula@intel.com> ([32m=E2=9C=93[0m DK=
+IM/intel.com)
+  [32m=E2=9C=93[0m [PATCH     v6 5/6] drm/i915/dp: Queue a link check after=
+ link training is complete
+  [32m=E2=9C=93[0m [PATCH v5->v6 6/6] drm/i915/crt: Use intel_hpd_block/unb=
+lock() instead of intel_hpd_disable/enable()
+  ---
+  [32m=E2=9C=93[0m Signed: DKIM/intel.com
+---
 
-  drm/fbdev-dma: Add shadow buffering for deferred I/O (2025-02-27 09:37:55 +0100)
+I haven't had the time to dig into b4 source on this, but it would be
+great if it could automatically detect whether sending colors is the
+right thing to do or not. Basically only emit color codes to interactive
+terminals, unless forced also for pipes.
 
-are available in the Git repository at:
+(Alternatively I could try to figure out how to enable colors on emacs
+pipe output, but that's another rabbit hole...)
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-03-06
 
-for you to fetch changes up to 80da96d735094ea22985ced98bc57fe3a4422921:
+Thanks,
+Jani.
 
-  drm/bochs: Fix DPMS regression (2025-03-06 08:54:42 +0100)
 
-----------------------------------------------------------------
-A Kconfig fix for nouveau, locking and timestamp fixes for imagination,
-a header guard fix for sched and a DPMS regression fix for bochs.
-
-----------------------------------------------------------------
-Alessio Belle (1):
-      drm/imagination: Fix timestamps in firmware traces
-
-Brendan King (3):
-      drm/imagination: avoid deadlock on fence release
-      drm/imagination: Hold drm_gem_gpuva lock for unmap
-      drm/imagination: only init job done fences once
-
-Dave Airlie (1):
-      drm/nouveau: select FW caching
-
-Philipp Stanner (1):
-      drm/sched: Fix preprocessor guard
-
-Takashi Iwai (1):
-      drm/bochs: Fix DPMS regression
-
- drivers/gpu/drm/imagination/pvr_fw_meta.c       |   6 +-
- drivers/gpu/drm/imagination/pvr_fw_trace.c      |   4 +-
- drivers/gpu/drm/imagination/pvr_queue.c         |  18 +++-
- drivers/gpu/drm/imagination/pvr_queue.h         |   4 +
- drivers/gpu/drm/imagination/pvr_vm.c            | 134 +++++++++++++++++++-----
- drivers/gpu/drm/imagination/pvr_vm.h            |   3 +
- drivers/gpu/drm/nouveau/Kconfig                 |   1 +
- drivers/gpu/drm/scheduler/gpu_scheduler_trace.h |   4 +-
- drivers/gpu/drm/tiny/bochs.c                    |   5 +-
- 9 files changed, 141 insertions(+), 38 deletions(-)
-
---367poxrw3iccmrnk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ8l5pgAKCRAnX84Zoj2+
-dvnpAX49PGgUPS/QzfI3bxYFe1E0JsdlQYzZYEURMktAULCGVDlw89fVBiyN3213
-U6nviXQBf2DLLDtOet6R6d8nWlI8tI91U7R5evYVl6i5pVqBqINXCCfhIZkgv7xX
-thHLmpOAsw==
-=ug7S
------END PGP SIGNATURE-----
-
---367poxrw3iccmrnk--
-
+--=20
+Jani Nikula, Intel
