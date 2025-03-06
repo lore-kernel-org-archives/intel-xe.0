@@ -4,59 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0F5DC282D1
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Mar 2025 10:44:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C16AC282EC
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Mar 2025 10:49:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A33CB10E175;
-	Thu,  6 Mar 2025 10:44:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 354F910E16D;
+	Thu,  6 Mar 2025 10:48:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BCmwwRbi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UB/VxZkA";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6AE910E175
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Mar 2025 10:44:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C85610E153;
+ Thu,  6 Mar 2025 10:48:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741257867; x=1772793867;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=34ZYfdI8rPt22I7yf1ubgCBBb6CEV+yFLlEEyVjJ984=;
- b=BCmwwRbiWsjTTuQD2jjsy0tdjvHW1CxJPeTV9Ab/kuES/0KaGdUoi2E6
- 5v66+j2RLD7A8xhkFbV48Rot+NQieXJt5O/ZTYCMQd7evCy6cCKkK0aUj
- vCyWzJ1YLtoStX3qAfs+WIFejuJd6TT6BjeZQ6vJDqjrcgBbM+XzhOai/
- ya/tBE8GtfTHKlC7H6AUbZYennleZMQORmtZ/staPwGF6bxjuBtpqQsHs
- yhU1cdOJxkFfaoDSEzNAexk3u7bA9zmfMZoSuJbQQBkTlLkzp2nwnQUh8
- +GcsXzlteFwHE1fT3Gt+Bs7K9GyMiAmT1NvZpoMKF3O+U3TFu8qI6XhH3 w==;
-X-CSE-ConnectionGUID: FEIldqXgQZWZrlmuHLjmwA==
-X-CSE-MsgGUID: 4uv6WgghRQaNqMjlJECa3g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="42392100"
-X-IronPort-AV: E=Sophos;i="6.14,225,1736841600"; d="scan'208";a="42392100"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 02:44:27 -0800
-X-CSE-ConnectionGUID: 2p7HNK4lS3+VjqnUyfDvtQ==
-X-CSE-MsgGUID: caqus43hQqCpKrzHfL69SA==
+ t=1741258137; x=1772794137;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=pBVfHpfcmBkQqUQh/ig2FxON7UfJdREGPUuY2mX94D0=;
+ b=UB/VxZkAuISuEstGl7X61+jXKH+mIW41w6b/j1Ayg3NTWu/3MrujBGsU
+ rROuhjWl95A4H7Nvch8sDcy0V3+gNW+qmIjdX5lFKLI19zJ8r93WNRhdr
+ 7IoOmk8w7PQPbKns11BHZAdQmSrHgOhT18WIUlhW3BkDe5Is5I+aSDhZD
+ 15mGVQlMkTB5fGQxsQPyxOFBN/H5ISwYbG5zs3HEgZkz6ymoLXKEPEJep
+ oWaZGetqTVKtwRE2e2hZ++kU92jXTiXG8z5vcFk5Reg+FAdQ8GFzAmFZy
+ sqZ9DYgmIqDO3WWUMac1GM5VpjPlNCrYBRqcOOR4bVyDWhNK63jtHUMXN A==;
+X-CSE-ConnectionGUID: MP7GGQhJTUCMarlL/3syzw==
+X-CSE-MsgGUID: LhK8sgmvSkGOcSzmdNSRUw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="52896687"
+X-IronPort-AV: E=Sophos;i="6.14,225,1736841600"; d="scan'208";a="52896687"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2025 02:48:54 -0800
+X-CSE-ConnectionGUID: Uyn8MfMaTiaBaOm4GhBiqg==
+X-CSE-MsgGUID: HzvBLz2kQPe+Qx6QTN1j5w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,225,1736841600"; d="scan'208";a="124083230"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 02:44:24 -0800
-Date: Thu, 6 Mar 2025 12:44:21 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
- anshuman.gupta@intel.com, badal.nilawar@intel.com,
- riana.tauro@intel.com, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v1] drm/xe/pcode: stop logging mailbox status as error
-Message-ID: <Z8l8haryZ2q2Cq0V@black.fi.intel.com>
-References: <20250304061727.452100-1-raag.jadav@intel.com>
- <29d173b4-4cac-4765-a13e-8723b44f5270@linux.intel.com>
- <Z8ljepyswfhWhl05@black.fi.intel.com>
- <816f679f-e981-4ee5-9c19-31b2881b11e4@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.14,225,1736841600"; d="scan'208";a="119670250"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.135])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2025 02:48:52 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ryszard Knop <rk@dragonic.eu>, "Knop, Ryszard" <ryszard.knop@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: "De Marchi, Lucas" <lucas.demarchi@intel.com>, "daniel@fooishbar.org"
+ <daniel@fooishbar.org>, Sima Vetter <sima@ffwll.ch>
+Subject: Re: Discussion: Moving away from Patchwork for Intel i915/Xe CI
+In-Reply-To: <4e752e412143c8515b78146c5149126a7c5f306a.camel@dragonic.eu>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <814f9bcb9c7ee22af45bd5278255af247c6664fa.camel@intel.com>
+ <871pvbxt40.fsf@intel.com>
+ <4e752e412143c8515b78146c5149126a7c5f306a.camel@dragonic.eu>
+Date: Thu, 06 Mar 2025 12:48:48 +0200
+Message-ID: <87cyeuwi27.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <816f679f-e981-4ee5-9c19-31b2881b11e4@linux.intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,47 +72,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Mar 06, 2025 at 03:17:16PM +0530, Aravind Iddamsetty wrote:
-> On 06-03-2025 14:27, Raag Jadav wrote:
-> > On Thu, Mar 06, 2025 at 10:08:07AM +0530, Aravind Iddamsetty wrote:
-> >> Hi Raag,
-> >>
-> >> On 04-03-2025 11:47, Raag Jadav wrote:
-> >>> Since we're expecting many platform specific mailbox commands that
-> >>> might not be widely supported, stop logging them as errors. With this
-> >>> we can avoid unnecessary platform checks and use the return value of
-> >>> mailbox without enraging CI.
-> >> are you saying there are cases where we send a command that is not supported
-> >> on a particular platform?
-> > Yes. First instance on [1], which will be expanded with more commands.
-> >
-> > [1] https://lore.kernel.org/r/20250210100515.2205584-1-raag.jadav@intel.com/
-> 
-> But why should we expose the interface which is not supported on that HW.
+On Wed, 05 Mar 2025, Ryszard Knop <rk@dragonic.eu> wrote:
+> On Wed, 2025-03-05 at 19:52 +0200, Jani Nikula wrote:
+>> I think eventually we will want to consider accepting contributions via
+>> gitlab merge requests directly.
+>> 
+>> It would also be interesting if maintainers/committers could merge the
+>> contributions via gitlab UI already when CI applied the patches from the
+>> mailing list and created the merge request.
+>> 
+>> In the merge request case, they'd have to be against individual repos
+>> that feed into drm-tip, *not* merge requests against drm-tip
+>> directly. So for testing CI would have to recreate drm-tip the same way
+>> as 'dim push-branch' currently does.
+>
+> This is doable, but perf-wise is not going to be great. We would have to
+> checkout all trees pulled into drm/tip for each build as listed in the
+> latest integration-manifest, replace target tree with the MR tree, then
+> provide results from that. We'll see how this works out in practice.
+> (It should be just `dim rebuild-tip` after pointing all the branches at
+> the required commits?)
+>
+> This also means having a backup drm/tip source when fd.o is offline is
+> out; it's patched into too many places if dim gets used.
 
-It allows checking unsupported functionality through return code without
-making CI angry. So it's either this or we can limit each command (current
-and future) with explicit platform checks and keep revisiting them everytime
-we add a new platform or command for the foreseeable future, whichever makes
-more sense.
+I think the short answer is, just go ahead with what you're planning
+now, but keep the above in the back of your mind. I'm not sure we have
+definitive answers without a bunch of planning yet either.
 
-Raag
+BR,
+Jani.
 
-> >>> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> >>> ---
-> >>>  drivers/gpu/drm/xe/xe_pcode.c | 2 +-
-> >>>  1 file changed, 1 insertion(+), 1 deletion(-)
-> >>>
-> >>> diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
-> >>> index 9333ce776a6e..280f69119ff1 100644
-> >>> --- a/drivers/gpu/drm/xe/xe_pcode.c
-> >>> +++ b/drivers/gpu/drm/xe/xe_pcode.c
-> >>> @@ -46,7 +46,7 @@ static int pcode_mailbox_status(struct xe_tile *tile)
-> >>>  
-> >>>  	err = xe_mmio_read32(&tile->mmio, PCODE_MAILBOX) & PCODE_ERROR_MASK;
-> >>>  	if (err) {
-> >>> -		drm_err(&tile_to_xe(tile)->drm, "PCODE Mailbox failed: %d %s", err,
-> >>> +		drm_dbg(&tile_to_xe(tile)->drm, "PCODE Mailbox failed: %d %s", err,
-> >>>  			err_decode[err].str ?: "Unknown");
-> >>>  		return err_decode[err].errno ?: -EPROTO;
-> >>>  	}
+
+-- 
+Jani Nikula, Intel
