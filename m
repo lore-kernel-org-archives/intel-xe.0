@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46E8CC19F32
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Mar 2025 01:54:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00B74C19F32
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Mar 2025 01:54:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CB4F10E8B3;
-	Thu,  6 Mar 2025 01:54:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB11C10E8B5;
+	Thu,  6 Mar 2025 01:54:59 +0000 (UTC)
 Received: from 64e06c682a23 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B4D410E8B3;
- Thu,  6 Mar 2025 01:54:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2774410E8B3;
+ Thu,  6 Mar 2025 01:54:59 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Introduce_GPU_SVM_an?=
- =?utf-8?q?d_Xe_SVM_implementation_=28rev7=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Introduce_GPU_SVM_and_Xe_?=
+ =?utf-8?q?SVM_implementation_=28rev7=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 06 Mar 2025 01:54:12 -0000
-Message-ID: <174122605217.65013.1504864304262521462@64e06c682a23>
+Date: Thu, 06 Mar 2025 01:54:59 -0000
+Message-ID: <174122609915.65013.7322731689004355176@64e06c682a23>
 X-Patchwork-Hint: ignore
 References: <20250306012657.3505757-1-matthew.brost@intel.com>
 In-Reply-To: <20250306012657.3505757-1-matthew.brost@intel.com>
@@ -44,44 +44,238 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Introduce GPU SVM and Xe SVM implementation (rev7)
 URL   : https://patchwork.freedesktop.org/series/137870/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 3ccfd8016ad8 drm-tip: 2025y-03m-05d-21h-31m-20s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Retry BO allocation
-Applying: mm/migrate: Add migrate_device_pfns
-Applying: mm/migrate: Trylock device page in do_swap_page
-Applying: drm/pagemap: Add DRM pagemap
-Applying: drm/xe/bo: Introduce xe_bo_put_async
-Applying: drm/gpusvm: Add support for GPU Shared Virtual Memory
-Applying: drm/xe: Select DRM_GPUSVM Kconfig
-Applying: drm/xe/uapi: Add DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR
-Applying: drm/xe: Add SVM init / close / fini to faulting VMs
-Applying: drm/xe: Add dma_addr res cursor
-Applying: drm/xe: Nuke VM's mapping upon close
-Applying: drm/xe: Add SVM range invalidation and page fault
-Applying: drm/gpuvm: Add DRM_GPUVA_OP_DRIVER
-Applying: drm/xe: Add (re)bind to SVM page fault handler
-Applying: drm/xe: Add SVM garbage collector
-Applying: drm/xe: Add unbind to SVM garbage collector
-Applying: drm/xe: Do not allow CPU address mirror VMA unbind if
-Applying: drm/xe: Enable CPU address mirror uAPI
-Applying: drm/xe/uapi: Add DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR
-Applying: drm/xe: Add migrate layer functions for SVM support
-Applying: drm/xe: Add SVM device memory mirroring
-Applying: drm/xe: Add drm_gpusvm_devmem to xe_bo
-Applying: drm/xe: Add drm_pagemap ops to SVM
-Applying: drm/xe: Add GPUSVM device memory copy vfunc functions
-Applying: drm/xe: Add Xe SVM populate_devmem_pfn GPU SVM vfunc
-Applying: drm/xe: Add Xe SVM devmem_release GPU SVM vfunc
-Applying: drm/xe: Add SVM VRAM migration
-Applying: drm/xe: Basic SVM BO eviction
-Applying: drm/xe: Add SVM debug
-Applying: drm/xe: Add modparam for SVM notifier size
-Applying: drm/xe: Add always_migrate_to_vram modparam
-Applying: drm/doc: gpusvm: Add GPU SVM documentation
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+cbb4e4a079d89106c2736adc3c7de6f9dc56da07
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1098d963d8cf36f0a3ca364d5eba53009c1c7e2f
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Wed Mar 5 17:26:57 2025 -0800
+
+    drm/doc: gpusvm: Add GPU SVM documentation
+    
+    Add documentation for agree upon GPU SVM design principles, current
+    status, and future plans.
+    
+    v4:
+     - Address Thomas's feedback
+    v5:
+     - s/Current/Basline (Thomas)
+    v7:
+     - Add license (CI)
+     - Add examples for design guideline reasoning (Alistair)
+     - Add snippet about possible livelock with concurrent GPU and and CPU
+       access (Alistair)
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
++ /mt/dim checkpatch 3ccfd8016ad8283ecef0dfcf0e4f2132ade9bf4c drm-intel
+1fa68292c354 drm/xe: Retry BO allocation
+be9199f8897c mm/migrate: Add migrate_device_pfns
+a5c796236a2d mm/migrate: Trylock device page in do_swap_page
+7a6f5f3f8c2b drm/pagemap: Add DRM pagemap
+-:34: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#34: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 107 lines checked
+ca8b6f876519 drm/xe/bo: Introduce xe_bo_put_async
+58eff01bebad drm/gpusvm: Add support for GPU Shared Virtual Memory
+-:58: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#58: 
+ - s/drm_gpusvm_migration_put_page/drm_gpusvm_migration_unlock_put_page (Thomas)
+
+-:135: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#135: 
+new file mode 100644
+
+-:333: WARNING:LONG_LINE_COMMENT: line length of 103 exceeds 100 columns
+#333: FILE: drivers/gpu/drm/drm_gpusvm.c:194:
++ *		if (err == -EOPNOTSUPP || err == -EFAULT || err == -EPERM) {	// CPU mappings changed
+
+-:540: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'range__' - possible side-effects?
+#540: FILE: drivers/gpu/drm/drm_gpusvm.c:401:
++#define drm_gpusvm_for_each_range_safe(range__, next__, notifier__, start__, end__)	\
++	for ((range__) = drm_gpusvm_range_find((notifier__), (start__), (end__)),	\
++	     (next__) = __drm_gpusvm_range_next(range__);				\
++	     (range__) && (drm_gpusvm_range_start(range__) < (end__));			\
++	     (range__) = (next__), (next__) = __drm_gpusvm_range_next(range__))
+
+-:540: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'next__' - possible side-effects?
+#540: FILE: drivers/gpu/drm/drm_gpusvm.c:401:
++#define drm_gpusvm_for_each_range_safe(range__, next__, notifier__, start__, end__)	\
++	for ((range__) = drm_gpusvm_range_find((notifier__), (start__), (end__)),	\
++	     (next__) = __drm_gpusvm_range_next(range__);				\
++	     (range__) && (drm_gpusvm_range_start(range__) < (end__));			\
++	     (range__) = (next__), (next__) = __drm_gpusvm_range_next(range__))
+
+-:540: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'end__' - possible side-effects?
+#540: FILE: drivers/gpu/drm/drm_gpusvm.c:401:
++#define drm_gpusvm_for_each_range_safe(range__, next__, notifier__, start__, end__)	\
++	for ((range__) = drm_gpusvm_range_find((notifier__), (start__), (end__)),	\
++	     (next__) = __drm_gpusvm_range_next(range__);				\
++	     (range__) && (drm_gpusvm_range_start(range__) < (end__));			\
++	     (range__) = (next__), (next__) = __drm_gpusvm_range_next(range__))
+
+-:587: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'notifier__' - possible side-effects?
+#587: FILE: drivers/gpu/drm/drm_gpusvm.c:448:
++#define drm_gpusvm_for_each_notifier(notifier__, gpusvm__, start__, end__)		\
++	for ((notifier__) = notifier_iter_first(&(gpusvm__)->root, (start__), (end__) - 1);	\
++	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
++	     (notifier__) = __drm_gpusvm_notifier_next(notifier__))
+
+-:587: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'end__' - possible side-effects?
+#587: FILE: drivers/gpu/drm/drm_gpusvm.c:448:
++#define drm_gpusvm_for_each_notifier(notifier__, gpusvm__, start__, end__)		\
++	for ((notifier__) = notifier_iter_first(&(gpusvm__)->root, (start__), (end__) - 1);	\
++	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
++	     (notifier__) = __drm_gpusvm_notifier_next(notifier__))
+
+-:603: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'notifier__' - possible side-effects?
+#603: FILE: drivers/gpu/drm/drm_gpusvm.c:464:
++#define drm_gpusvm_for_each_notifier_safe(notifier__, next__, gpusvm__, start__, end__)	\
++	for ((notifier__) = notifier_iter_first(&(gpusvm__)->root, (start__), (end__) - 1),	\
++	     (next__) = __drm_gpusvm_notifier_next(notifier__);				\
++	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
++	     (notifier__) = (next__), (next__) = __drm_gpusvm_notifier_next(notifier__))
+
+-:603: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'next__' - possible side-effects?
+#603: FILE: drivers/gpu/drm/drm_gpusvm.c:464:
++#define drm_gpusvm_for_each_notifier_safe(notifier__, next__, gpusvm__, start__, end__)	\
++	for ((notifier__) = notifier_iter_first(&(gpusvm__)->root, (start__), (end__) - 1),	\
++	     (next__) = __drm_gpusvm_notifier_next(notifier__);				\
++	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
++	     (notifier__) = (next__), (next__) = __drm_gpusvm_notifier_next(notifier__))
+
+-:603: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'end__' - possible side-effects?
+#603: FILE: drivers/gpu/drm/drm_gpusvm.c:464:
++#define drm_gpusvm_for_each_notifier_safe(notifier__, next__, gpusvm__, start__, end__)	\
++	for ((notifier__) = notifier_iter_first(&(gpusvm__)->root, (start__), (end__) - 1),	\
++	     (next__) = __drm_gpusvm_notifier_next(notifier__);				\
++	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
++	     (notifier__) = (next__), (next__) = __drm_gpusvm_notifier_next(notifier__))
+
+-:2755: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'gpusvm' - possible side-effects?
+#2755: FILE: include/drm/drm_gpusvm.h:374:
++#define drm_gpusvm_driver_set_lock(gpusvm, lock) \
++	do { \
++		if (!WARN((gpusvm)->lock_dep_map, \
++			  "GPUSVM range lock should be set only once."))\
++			(gpusvm)->lock_dep_map = &(lock)->dep_map;	\
++	} while (0)
+
+-:2762: WARNING:MACRO_ARG_UNUSED: Argument 'gpusvm' is not used in function-like macro
+#2762: FILE: include/drm/drm_gpusvm.h:381:
++#define drm_gpusvm_driver_set_lock(gpusvm, lock) do {} while (0)
+
+-:2762: WARNING:MACRO_ARG_UNUSED: Argument 'lock' is not used in function-like macro
+#2762: FILE: include/drm/drm_gpusvm.h:381:
++#define drm_gpusvm_driver_set_lock(gpusvm, lock) do {} while (0)
+
+-:2884: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'range__' - possible side-effects?
+#2884: FILE: include/drm/drm_gpusvm.h:503:
++#define drm_gpusvm_for_each_range(range__, notifier__, start__, end__)	\
++	for ((range__) = (range__) ?:					\
++	     drm_gpusvm_range_find((notifier__), (start__), (end__));	\
++	     (range__) && (drm_gpusvm_range_start(range__) < (end__));	\
++	     (range__) = __drm_gpusvm_range_next(range__))
+
+-:2884: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'end__' - possible side-effects?
+#2884: FILE: include/drm/drm_gpusvm.h:503:
++#define drm_gpusvm_for_each_range(range__, notifier__, start__, end__)	\
++	for ((range__) = (range__) ?:					\
++	     drm_gpusvm_range_find((notifier__), (start__), (end__));	\
++	     (range__) && (drm_gpusvm_range_start(range__) < (end__));	\
++	     (range__) = __drm_gpusvm_range_next(range__))
+
+total: 0 errors, 5 warnings, 11 checks, 2767 lines checked
+4b5e5755027e drm/xe: Select DRM_GPUSVM Kconfig
+25131c6f036c drm/xe/uapi: Add DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR
+-:51: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#51: 
+ - s/DRM_XE_VM_BIND_FLAG_SYSTEM_ALLOCATOR/DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR (Thomas)
+
+total: 0 errors, 1 warnings, 0 checks, 558 lines checked
+059554d38083 drm/xe: Add SVM init / close / fini to faulting VMs
+-:43: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#43: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 170 lines checked
+3728d588d131 drm/xe: Add dma_addr res cursor
+815f40d7b211 drm/xe: Nuke VM's mapping upon close
+7de90025444d drm/xe: Add SVM range invalidation and page fault
+a24cffecfe35 drm/gpuvm: Add DRM_GPUVA_OP_DRIVER
+eb6c78c3666a drm/xe: Add (re)bind to SVM page fault handler
+c2255eab1c5e drm/xe: Add SVM garbage collector
+5b9f619e3299 drm/xe: Add unbind to SVM garbage collector
+9c909d14a806 drm/xe: Do not allow CPU address mirror VMA unbind if
+0b5b756f60c6 drm/xe: Enable CPU address mirror uAPI
+3c0025f5cede drm/xe/uapi: Add DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR
+e676080dcca7 drm/xe: Add migrate layer functions for SVM support
+b67217c1d708 drm/xe: Add SVM device memory mirroring
+-:40: WARNING:CONFIG_DESCRIPTION: please write a help paragraph that fully describes the config symbol
+#40: FILE: drivers/gpu/drm/xe/Kconfig:77:
++config DRM_XE_DEVMEM_MIRROR
++	bool "Enable device memory mirror"
++	depends on DRM_XE
++	select GET_FREE_REGION
++	default y
++	help
++	  Disable this option only if you want to compile out without device
++	  memory mirror. Will reduce KMD memory footprint when disabled.
++
+
+total: 0 errors, 1 warnings, 0 checks, 156 lines checked
+8166a26eaef9 drm/xe: Add drm_gpusvm_devmem to xe_bo
+a54af558a361 drm/xe: Add drm_pagemap ops to SVM
+-:66: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#66: FILE: drivers/gpu/drm/xe/xe_svm.c:302:
++static u64 xe_vram_region_page_to_dpa(struct xe_vram_region *vr,
++				     struct page *page)
+
+total: 0 errors, 0 warnings, 1 checks, 93 lines checked
+999a93bd04cb drm/xe: Add GPUSVM device memory copy vfunc functions
+e9cd160f01e5 drm/xe: Add Xe SVM populate_devmem_pfn GPU SVM vfunc
+d109b5b2d8a6 drm/xe: Add Xe SVM devmem_release GPU SVM vfunc
+36a13e93c40a drm/xe: Add SVM VRAM migration
+ee73b104f3d1 drm/xe: Basic SVM BO eviction
+e2b8e754da96 drm/xe: Add SVM debug
+-:93: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'r__' - possible side-effects?
+#93: FILE: drivers/gpu/drm/xe/xe_svm.c:52:
++#define range_debug(r__, operaton__)					\
++	vm_dbg(&range_to_vm(&(r__)->base)->xe->drm,			\
++	       "%s: asid=%u, gpusvm=%p, vram=%d,%d, seqno=%lu, " \
++	       "start=0x%014lx, end=0x%014lx, size=%lu",		\
++	       (operaton__), range_to_vm(&(r__)->base)->usm.asid,	\
++	       (r__)->base.gpusvm,					\
++	       xe_svm_range_in_vram((r__)) ? 1 : 0,			\
++	       xe_svm_range_has_vram_binding((r__)) ? 1 : 0,		\
++	       (r__)->base.notifier_seq,				\
++	       xe_svm_range_start((r__)), xe_svm_range_end((r__)),	\
++	       xe_svm_range_size((r__)))
+
+total: 0 errors, 0 warnings, 1 checks, 234 lines checked
+f68a062114ae drm/xe: Add modparam for SVM notifier size
+d8f14d7fcfec drm/xe: Add always_migrate_to_vram modparam
+1098d963d8cf drm/doc: gpusvm: Add GPU SVM documentation
+-:19: WARNING:REPEATED_WORD: Possible repeated word: 'and'
+#19: 
+ - Add snippet about possible livelock with concurrent GPU and and CPU
+
+-:26: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#26: 
+new file mode 100644
+
+total: 0 errors, 2 warnings, 0 checks, 116 lines checked
 
 
