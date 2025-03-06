@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99465C282D1
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Mar 2025 23:36:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A1BFC282D1
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Mar 2025 23:39:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5764F10E033;
-	Thu,  6 Mar 2025 23:36:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D61CE10E033;
+	Thu,  6 Mar 2025 23:39:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZHpdI//y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NEO0WXbK";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B643310E033
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Mar 2025 23:36:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8784F10E033
+ for <intel-xe@lists.freedesktop.org>; Thu,  6 Mar 2025 23:39:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741304202; x=1772840202;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=gi5jAmfgAocqyUFLVsTsA5K2lZL1okw0VnldRepv6hM=;
- b=ZHpdI//yfSjapFi6fBIgNbTJXTSPAxeCA/f30745c/cvwD+ME7WpZaZp
- RWiYNWJsRCRJ6gjiWyw6up7PR2NsurBiHaym8TFQ78Dcg3deBHn6OtOli
- ePzm1TSRJHNQ7cgpGmjEdb9w9LZ45sqXV3DycTov1MM/qqCDvpUEr9ajG
- K7RPa+dqEyV1V47mY8JPBQ3hYPtwev4zdtxAKcXBcgNVo7Rngn+NSQAbn
- JS5lV/Bw/Xaxe3XmqRZGXgA+cxeGj/QAo2WybYtcbLri5zZQVJ37cECAG
- ZwAmA+jp6G/i32qLm8JOIUVOg1caWF7sYNkxzBWMkOyLjg/fXKiQnv2DW w==;
-X-CSE-ConnectionGUID: bg5jJGA9R8q7KJrzW/wEBA==
-X-CSE-MsgGUID: hTKaO0weTKWOOHOgZCwEQQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="52981513"
-X-IronPort-AV: E=Sophos;i="6.14,227,1736841600"; d="scan'208";a="52981513"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 15:36:42 -0800
-X-CSE-ConnectionGUID: D+q8FEbWRDe0MWUyjCbymQ==
-X-CSE-MsgGUID: ZAPHsdhxSp6P57TtVsVLng==
+ t=1741304356; x=1772840356;
+ h=from:to:cc:subject:date:message-id:
+ content-transfer-encoding:mime-version;
+ bh=1OMY9kACY/TD7p1YJw3W2JCGcxno4OPcu+J9l/VDYWw=;
+ b=NEO0WXbKgJBHEhkohJaQeikjLKMLIPbZ+mSPUllWW2y5qiNeJ62yc+Io
+ XsAJBCpQ7BGfwRHUsZkcbclAxgp5TrkXJeX6Cx6QlWnUXEb4xB5g5csC+
+ VQYaGIIsRw3cu/YWP9LXa6we8N7651tx9VsejBmiByLQG0fw8yhxReED+
+ EgUQVQegWV16VmnbK1iwvWc6RUPw6rIgpN8yR37Y6dEHePvRhiNsZFk8+
+ O0W8lan9k5/yb9BtbpD5zgya7wObby63FccvR1vBUQsKhcg6a8JMSPCsQ
+ nAlxgxO7kfb7I8nChRfL/3qjGxcm4UKMhkGKG7ygxMQ09VmuS/nRebIg/ A==;
+X-CSE-ConnectionGUID: GThaOaWQRN2+4GFU2SwK4Q==
+X-CSE-MsgGUID: 9M0qj2F+SeKZWth7wk9YGQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="59747810"
+X-IronPort-AV: E=Sophos;i="6.14,227,1736841600"; d="scan'208";a="59747810"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2025 15:39:16 -0800
+X-CSE-ConnectionGUID: YO8e84JWTHKTN03BQHOZhw==
+X-CSE-MsgGUID: CfVar6H1RgK0T0UGn5V4jw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,227,1736841600"; d="scan'208";a="119169790"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 15:36:43 -0800
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="156384742"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2025 15:39:15 -0800
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14; Thu, 6 Mar 2025 15:39:14 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Thu, 6 Mar 2025 15:36:41 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.1544.14 via Frontend Transport; Thu, 6 Mar 2025 15:39:14 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Thu, 6 Mar 2025 15:36:41 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.47) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 6 Mar 2025 15:36:41 -0800
+ 15.1.2507.44; Thu, 6 Mar 2025 15:39:13 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iSTa3hkbagj+nB4xnNPISC34r8nldnnFeSgmLLPen3V+XnC74nwD260GrK/w1280I3hZTPS+k0u81towQh4sL6Tfndaoaf4HzKtj561kSULBA9WG7dF093NvoB2e5MD1zwEZ2wWxgYug057NogD6YMjvM7dbDPam9Suyx3p5OiDhzaOkcImwrQOWxHJ7u5UKLXpTbbzVrbLAo59+vzhkxuoyuDAUJ1tqS49Gt/ZceHteATCxdWa+JED6EIqo6KVViMiFHYasjLLt8H+lV3nvbJekQxbXp05pXleRwsCjpXH1rpMgHVJaHxC4QwlyXF9a80/w4+jx75hr2yg5iAT0qA==
+ b=u7eL93JK2yeoDnKaZVCMTQ+uFkJZSIkDh1dO3+5rUSt0F+SX//vzoR7FtythkUMVRDA3eGZKD38ja5KoLIwPBu8tbiYTgQM0y8Pc/FNjEwHfN+Lt8fuqvalvfEiinLNC6haODt4fjEKzCU3osT+/zuMFo9RZh5Sr8/+PLlzbDEjRcUwREHqhHbzuYvLpvxBUjL24fk2nST4Hl8vgduTV/L0cIk/G0FSKA7CX8nGVW0nvJ2HiC7ZoDawYVh5gV6CI61bPXimkYJEIAbRiCAwuXGw5KfoTKGdHJm/aUpk/xGEUBhqec5A/98BODPyxM7AVLhJ1o9H/3QwyqsZ+3uYTbw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9ZayXID1ZodMlfWCcZOkrPiVRwxdjBcQvaOEo+UxlwI=;
- b=P2e03ci/ibYG4F2OsAt0Y1yfUa0e1PJOK2zoDcw+eqGhOCP0YnBQOsS5cQzvp4Ku9HhRoh0G0skQ635n3aOdA+vaJtHjKq42gdYiwV/X3p8xWLS+anbDj5ZOgCsZlKFyOK1d9vUlZTlhHyFlsvHRCmsgchTo6IYNUyapAW5vyZNvEZntVZptcfl9uAOsXJePEDZdW2Y6jYPE1SiAKwYfCGOTiXedCmLSkvF+gG8MuoXAyjYh+bJp98dS0W63q79nI8c6vF9YYuTjXF6F1tEmrl0/pJkgp7H2fDN4YIYwHkLvBPlq3fgFBpWflK2GKAI4qc51HjWmHoGwR5uSGdxlXA==
+ bh=j5Q/lCYhLXVMfTySnF5xKsPvCpGSPb7HH2t4zB/SsvA=;
+ b=X2LMkGSyEis9ZU176irNZ5SI/GJsrl6rwUebBjP9kwjMCGxZrxls35M4zzW+m3hcxlx+K2qYzgvFmLi5jofBOvi7UQzmwbVCo3yTlPjceNZJ/WrdMCBA50OZczk4rfz+fM9Yxn6+7btIeUTDaIwHN4mB0/Oe+2vvEtjIgrbdsRWIzh1/OtEm/g67Ts8B7M2bsb9B4vFnGY4FgyB+YSk6CIKW901gvMPREmuS+Ypn0DIS3j6/esWd+EwDt0F42yCZ5Jwu1bbKWIVLbPK1WuR/anOxQaxyiGMKWIhh6uBFCPcVrNJJTWWYAS0t+qXV7hgtIqyJSFpSaKewNxUCu1hAJw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,101 +69,96 @@ Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
  by IA1PR11MB7870.namprd11.prod.outlook.com (2603:10b6:208:3f8::12)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.16; Thu, 6 Mar
- 2025 23:36:38 +0000
+ 2025 23:39:10 +0000
 Received: from CYYPR11MB8430.namprd11.prod.outlook.com
  ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
  ([fe80::76d2:8036:2c6b:7563%4]) with mapi id 15.20.8511.017; Thu, 6 Mar 2025
- 23:36:38 +0000
-Date: Thu, 6 Mar 2025 18:36:35 -0500
+ 23:39:10 +0000
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: John Harrison <john.c.harrison@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Vinay Belgaumkar
- <vinay.belgaumkar@intel.com>, Jonathan Cavitt <jonathan.cavitt@intel.com>
-Subject: Re: [PATCH 1/2] drm/xe/guc_pc: Do not stop probe or resume if GuC PC
- fails
-Message-ID: <Z8oxg8XwZjOpdKV6@intel.com>
-References: <20250214172503.502320-1-rodrigo.vivi@intel.com>
- <a11812cc-bf0e-488f-9701-317ee9807699@intel.com>
- <Z8ISULSSQYvaYIjl@intel.com>
- <f9ffb2c6-00a3-43f7-b7c3-68f8de064254@intel.com>
- <Z8Iddm4HB1O1yY0Q@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <Z8Iddm4HB1O1yY0Q@intel.com>
-X-ClientProxiedBy: MW4PR03CA0041.namprd03.prod.outlook.com
- (2603:10b6:303:8e::16) To CYYPR11MB8430.namprd11.prod.outlook.com
+To: <intel-xe@lists.freedesktop.org>
+CC: Rodrigo Vivi <rodrigo.vivi@intel.com>, Vinay Belgaumkar
+ <vinay.belgaumkar@intel.com>, Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>
+Subject: [PATCH] drm/xe/guc_pc: Retry and wait longer for GuC PC start
+Date: Thu, 6 Mar 2025 18:39:06 -0500
+Message-ID: <20250306233906.1043286-1-rodrigo.vivi@intel.com>
+X-Mailer: git-send-email 2.48.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: MW4PR04CA0082.namprd04.prod.outlook.com
+ (2603:10b6:303:6b::27) To CYYPR11MB8430.namprd11.prod.outlook.com
  (2603:10b6:930:c6::19)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|IA1PR11MB7870:EE_
-X-MS-Office365-Filtering-Correlation-Id: 43e418c0-342e-4fa4-2fac-08dd5d07bdc0
+X-MS-Office365-Filtering-Correlation-Id: 6b8f4dbd-74b7-4680-bf0a-08dd5d081828
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?iRScKYAKITi2sG3kWyPR7kPPSXeMISOHjYQ4GI5xgHb5dY4AuFylLA9bexss?=
- =?us-ascii?Q?9hwFBrs+RCGSjHb9is7wEznQtAgHZPXg25JOGihmDeVIHF+jGh7429zWxzgm?=
- =?us-ascii?Q?2aY1h758OCREODX8DviwN150PkyFZaCOKR7IyqN4ve6+JH2SHK7pOGX/S2kU?=
- =?us-ascii?Q?dJHwqy+Xp1irkOk0QO6St/s6V60iyg5CSnQzUk3p1odpcRzOxl6Z1/K3wBbO?=
- =?us-ascii?Q?tK6Sq63OHemgIp45C+1lqSSt0aPaXQXd8FI2mH2UxIEeBUguD0/gvqErtEJm?=
- =?us-ascii?Q?7poLg6+QZLUxEIBkGbbU4c2wZZVNUqfAV8yt+jdin/SSMEUtaoaKDIBmLvcR?=
- =?us-ascii?Q?vmsuD/j9f5zp0VudVBertRZulWtaIbgYGtQSpKB+tzpQln2qx1snqb3aOl1R?=
- =?us-ascii?Q?mTTEHuG3GuD+QNHNqxlv9l1kYLmYpmDLzBsnBtsL34h6nMUJrbOI1NdmxBR9?=
- =?us-ascii?Q?GtW8UK7fq+qXpzSFqp3rNtMVq3eitI3kQ3ZJVaCXA2u8PEWEMohqdU+aLWr0?=
- =?us-ascii?Q?MjPJkSHK5upv+kD1u0ZXQdaCF8tet0WTozh6mvnlD7cBsx/Jn+Jph2ZNH4uk?=
- =?us-ascii?Q?CrpxlY68bYtVTlK55BnRu2Chn0XliCGxkdZSluN4UTxQgXq0MLS1ba8X9qms?=
- =?us-ascii?Q?PBmQzPFkWuGqFAhmV396m4Mu6xFa/ZO73+IqeBTU7KoTu4rNFDraVSg9SJhD?=
- =?us-ascii?Q?k/pw60Vw7EVLrFnTwlFpmSAUsechpjT0tzRsSt9jgXIsJI4kG+Qsx0LEsmzX?=
- =?us-ascii?Q?gRtWuY4M3Hl+vBKCtwuExSvRDtYBmKidu9/Tc9tMYkYY/q+b1nIoS/bLqm79?=
- =?us-ascii?Q?2vlBWaOlysPiTYYpgKrkQxGBUZoVLBcTawJ1aWdaLZhAEFbjjmHkLmhQlJk6?=
- =?us-ascii?Q?fg6aqTe40/hBLlh42BfaIiN1zfGgm66orDu/davsOaxU60czB2C1yT6Ple0W?=
- =?us-ascii?Q?h8AkEhhJaYWNzc/FKd5Vw1DQe+/+W8p45CX7a0D6nWAM2FWdXpX3Kqrs4L+W?=
- =?us-ascii?Q?ZwOvZDCXUSfNKcwgYBa9Kc9Q6rfSmDJNsA7NBja26vJSDY2Q2QZ/uGWDL9ni?=
- =?us-ascii?Q?3UEuyyuSLqy/JcyrLkcxSJmYuSGSL+aZGDfFvyE+7h/4Qdht7cKG4x2/nliS?=
- =?us-ascii?Q?so0/GcwIG8VHibLRHDAWIbBD4MvQ/AORwaesjAO1HfQ6T10gSQzdFo7it2aY?=
- =?us-ascii?Q?mVJelQmbOGPh2bgeGB/1xx86LHfX5VKiFPBt/QoJYTY/uTIlug7qBdf95Mei?=
- =?us-ascii?Q?VWoXzo+HB4M0+f189RH/mKe3gjWR80OyXT36N1Qxwn/mufw6QCJSWtJh/fmX?=
- =?us-ascii?Q?r0Z/yOSuQqae4XIuwca8ckJensLu51fO1PRoiihNqDnJ1ocGPYx3pRvTo8RY?=
- =?us-ascii?Q?F+uVVXUgDH6B/mZbZQYNg4wd8qZI?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Ab1XdecfKxueNqRvZU1hNY53Z8Wy8PuRl6p6YSLoEz5dG8o0PT1/U9QCYhHR?=
+ =?us-ascii?Q?sB2VjkaHuQb0FLst54cwia2LyaH25kq0whserhaCaZzF883mIOb+jlCX5eCT?=
+ =?us-ascii?Q?7HUbCo8m/azwQn1fvnaQBUS9OttKZA6EaiQisGezYT4gDuUp2ahBFhOGB/3r?=
+ =?us-ascii?Q?ukfQYvKhr91BoHFvlFayz56f/IBWnw/nvw1EhwzIx/iPSdNAOxqRK7687ou2?=
+ =?us-ascii?Q?+QIeRrq3wXAYBAlFy9LUsBDLQxMZx8gbBOLRcS4wzGoiO69UAWWXLNvSWTLM?=
+ =?us-ascii?Q?CBbXNWzsZwJEfyx+dSJNa5FO66Gdr6Eczy1EJ+DMQBym2j5ukN3XR+qL9ERF?=
+ =?us-ascii?Q?xensDn7ChgNzEorwvIUCN4gOTNMwaRXCLwyjTyrRKSrq9DTVQ/HOwf3xhs9A?=
+ =?us-ascii?Q?Lk96/CxaZsxh0t9yxwRhV5yyG+LbKFCQHEZp1FD/GUhnPeREKx42Wp/oWRgB?=
+ =?us-ascii?Q?HjqCi6SVmRVgByCbVV5GSSly20rpX9U5YFEVr8QKOfr9WoFR93MoFfylT/rG?=
+ =?us-ascii?Q?qbm7oVOdcwEOLaGibDWsgSy5HODg7QFP09gTqiDHjBtPaU9Yq0GEOmNgrLr2?=
+ =?us-ascii?Q?qWZb1gQqzf4udOxu8gKTR+ZtExVwvkHgGsLwQRAh8zozVV4YNKy4mp0xNUPO?=
+ =?us-ascii?Q?JGzD0qyN785+KHW63U65lPZJXr0w8H/IGwfKQV6h+VBEEz+N7ArTw9Iz3fDR?=
+ =?us-ascii?Q?B4sM9RYz17xPaSnS4zqjBhtOt7HHCZr1CogqMgBAqhtOflgrLkV+TRkoil0z?=
+ =?us-ascii?Q?7fEl4Ou6KxVQML8c7rL2C1am29EqYqoeOlMMcaDhQ9aqZwAOc1ve5blwoROv?=
+ =?us-ascii?Q?/AlixNCUeE9YiwYAUm2PXqBIRm7Eb8RXglfTMDk4aZJqMDSFq2BUCAA7eCPv?=
+ =?us-ascii?Q?q/+rLUQAb1dkQdsWhzhQk3TY6CGaOli1IONpGCO656iqntVL4l1pRiR+jUOw?=
+ =?us-ascii?Q?l2CJN2J/dqgomKiiMvfkvbge300FoBgE/k0RBMCN1pvbfl97LX1Mks5JsxQ+?=
+ =?us-ascii?Q?QnAfVEJdJdFuoZesT6jFOp4K7Y0xTyIKFU/j7ySErRYOzBSdVIm1wfToLNop?=
+ =?us-ascii?Q?k8qqWGq83HDPQ0W61vbzlUUO3KFEHZ9tzeORC7no3A3x8xf6wAWxal1wen6b?=
+ =?us-ascii?Q?vD0JjFgJZvHsD0FArhFQitlbMX8kRoWjLv7S75eh8gaiP6/O3MLKLegyiLhf?=
+ =?us-ascii?Q?noIDK3MIQEtK5H5vViIIXxkjqgrpmFSxttGGyfUzVf9eZQWEoCk33/beRdlp?=
+ =?us-ascii?Q?2Tg2a75UniVHVIzq4DAYtWsIpKNFFu+ogeWONX1uYyrBPJcTxInKt3mTwRH1?=
+ =?us-ascii?Q?CYSniLOJpcpM4Omy1M8yVZtz8w1sOMD6cC4nxk+Wr0DRVDhYilz9A8XXoFmu?=
+ =?us-ascii?Q?LqA4Ogk0QUkTPrtT29QS4nv9srmA?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?saIocntObHTfEcZr1uVZKo9mqvJB659zYCycZfX76bzmbZopbU7MdHJq2tJb?=
- =?us-ascii?Q?iTS97V72knAZwIJqptO5Ru0Zp2f0maYfsYVDdKY57xX2w0tSUEZe0OSFFM0E?=
- =?us-ascii?Q?a4uDJajMBYemhYTcMs1haXjLbu6Kb5WX+OIAv4SBgZTpcrq48XYiWLJQx0Cl?=
- =?us-ascii?Q?cw5M5QjvZCS01IYKRxBK6XLtMCGME8pUT43Fw0zZgt+AJLYskO28YGroUCgn?=
- =?us-ascii?Q?HtRrFV6sQdEefeSZEACe5G87Ps7bVDZhVLJgESFc4nYJ8OpUaR4iQv8sJWjN?=
- =?us-ascii?Q?M/W0KZix+8ylwbl/HYzIa+bR3pprcAGq9eZCPekLrD++trPFU95hWOzk1aer?=
- =?us-ascii?Q?xj4eAPzc7gkL/xh5P3hW5sWmMXCz8dkI3oPCewYIih9X6X8EoR2aES7yHn1u?=
- =?us-ascii?Q?Oqbl31QrEDLL0b+G1Pni7MvIWXGNI2zN+5SsVDDs1+gLOkpLMNmiRxb5abi1?=
- =?us-ascii?Q?BtF44clfNMQLhEyqp21P2thTQhkzQnRRQBD4FKJoeel02aKazxeMaYckJcNF?=
- =?us-ascii?Q?Z/nt7ZEP/N+O/nAyidzwEqft2vN3fieF8sbCz1raE/F+yTtPbaffOiqKlWNF?=
- =?us-ascii?Q?FRMKqjr+BHBVvNIYMO22z+67B7VzsuKgjekyetpurJrqiE367xoxlNG8I9lU?=
- =?us-ascii?Q?krYNNIC38HAP4Usdfp3J7C3HR8aNLL9KNPUlJQT/OPZxUySg7fzv/JYvomgn?=
- =?us-ascii?Q?+lezuXmaL2OOne6VnQ5fyXBNAWeI438YIUwSPLBDA+ZsmYfUY/4/ikCUJpCS?=
- =?us-ascii?Q?DK/Q7+ORqV4UNLQ8rxRkYYMHDcflzLqtcguyjSh3lP7QsZZNFFO0RkXmaPv6?=
- =?us-ascii?Q?1HVTTgbKEmBVkRV4KJPNc0352h/u7eVyFBgc/p+rrlmljbISS9qSuvVjzTvc?=
- =?us-ascii?Q?vSZatI4/PEAyTKB8Kc6ZGVMopQj4vfOg8Hy7VLjb6wWKE3/3I3zCoulksFrX?=
- =?us-ascii?Q?OCbH7dASvOLBh3u2aXolcsIgZnSSrpUpMTJAMI5K7VZnKf8Ey9RkYGoe/6bu?=
- =?us-ascii?Q?2wwgJ+GV5URWL8ZhwLMxGRV+NGLgDZfZcHJKELxunZ4gTCukglNnKs/94H9V?=
- =?us-ascii?Q?/PRlJS68MMt9Kxozz06/ELN/L1CZnNKyMSXGFtAH9feVegvFzOYJ5OhdYqpw?=
- =?us-ascii?Q?3OR6M1RWcNnVtMaXf/bMLRnvMWYcTwWJLc/0xkmEv8c8hA7O2/UwZlSVeY3j?=
- =?us-ascii?Q?ZTen+8KtZITWvfxL8gm9QFoAxA4X4xORsr5eumEMLfQ7t32R5uVJS08sW9Cn?=
- =?us-ascii?Q?bhur2eLdzixB5CNOa7Z7SXaOjkQ7V5xNL59ItukrlidDMi5ggTnjR/rAg5AW?=
- =?us-ascii?Q?mdD10Mx1gGFNEgMZdcz0AFubQ3IYhDm3sHPUUMTxLPJqiNyjjFy6xm+Ux8xm?=
- =?us-ascii?Q?aZhzQ5ffieNhY2VkjDkiiSO3g4Y4n13GU6YqZvu3nHjV3s84OftHECwO+bjD?=
- =?us-ascii?Q?NHzBvVTjZjCop0YXNecQVN5sbGoyAy783YLZU4xykiNXBHM7yfQXGctczPgz?=
- =?us-ascii?Q?ZUwbwhVIxQ7j2lWMTyOUCiQcpD0Swg3HBz3HngEm/A+OZ/CC8YmirBBTdb83?=
- =?us-ascii?Q?kd0oN2FUAPbiGNcKb9kNyUNJeJegXZ8rDg617yswCgd6qxrZUnaLKBasHv5H?=
- =?us-ascii?Q?bg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 43e418c0-342e-4fa4-2fac-08dd5d07bdc0
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?nCITzEi7S0w+VzG//2SKVRPj9ZIPxzY5MjF2ZNNX74Ej9fC2OeilLbVsDTry?=
+ =?us-ascii?Q?8/fQJm+BcbLjOmDTi0xh+VdS4yz2mGs2OflAs9djdGgvoMoyVmu9BUfsJtZH?=
+ =?us-ascii?Q?jcF25Y9s/gsO3uNoBJvIAIufJr0VLVPhM7ZdgRLoaN1Bop60nIlfETfUnpdf?=
+ =?us-ascii?Q?g2PcpmNUKYi5LjJfHAK/NqF8jMVqkqMRrBIlp1SWWkGqu8Y/Xh8//mX2yRz1?=
+ =?us-ascii?Q?3BVjaXjMrEvdTYa2aNpAhvoKk1dE5N7hQoFF1bqz7n2b1JN40/JU6UmysiQa?=
+ =?us-ascii?Q?z3r98wSBd6pOnFA3hDRSwyPqyaVCkQ3OA+KfdxsErBiVBzLiXoBLr954XvpO?=
+ =?us-ascii?Q?//OvjbES9MpqnpcUn1liCZ6YLHyHjaIdwVdVGa3TmB5vyHRglVjmWpI3GWk4?=
+ =?us-ascii?Q?RtBiq1iyVCbLhp7qZ6cTUwa+NemgKkshRAgjPeLLds/TS35aRZBYZf8/IrdD?=
+ =?us-ascii?Q?P8UJOhyuHJ9HblW1xwOh/GQAgpu9nXJfv7Afx2J4bggWlB/eEOSRl2l7ilTy?=
+ =?us-ascii?Q?XpvmXSoobMfzGUcROVS+25PjhMZiytk28ncHLYMr7IsnqOMh8jOCuS51zzZC?=
+ =?us-ascii?Q?5HtjsB6CXhW7Y/se4iQbQXCukjgLuxCbhsqx2neXOTDPhuLboZ1WTJZ5Hyk8?=
+ =?us-ascii?Q?OIq8vBxuJDocnGcx2Sxf8RmnS5qcKtfQQ9LbdDFEmhvS9R30TNcU9pzP5DFb?=
+ =?us-ascii?Q?1z37myfXITixdvH1X+4yfjv2iNfn5LjzTLRYEFkZH8JAl31Osf7Le96FVYhA?=
+ =?us-ascii?Q?TxpyGA1dUiRyyEGWG/IGXtbqaM8AdzcW8dACuvmQMn1uUl4z0w9FMrnwMFQP?=
+ =?us-ascii?Q?Rcjtcvrb1RuMdawW1TB2IdmXne1a+VWdKcEqVgKhDjkuPlAZ4V51Oe1PGyxm?=
+ =?us-ascii?Q?JHOUDrWUlY8eB4Lz0ZZqQl/BxRO3LobmNVUzlZWOxGJPmYp3FNkRQ7DE+lku?=
+ =?us-ascii?Q?r8ZXNoZYElvGyZYb4BIKuW2vlta45MDsHR1otmq0peNLcjLLlEEnspx8Quzv?=
+ =?us-ascii?Q?qGuEebqH9MJu67GbvN3DptrULZDXVA2J6dmjm4CAcZ/qrVJ39MeeOZRBA0bu?=
+ =?us-ascii?Q?Ulcvru83rRLbspvUQlq5PAsTJDOnOM6B5Ro4EeTK1L9QR4zWS1fKgg4rRpK/?=
+ =?us-ascii?Q?dRDynNZMZAEhs01n2bebGp1YOQcdO0iqrqOiMibcsni9CYYl2qMnnzkv4rpT?=
+ =?us-ascii?Q?5g+a0VhPmzbXWVj4NK2jfRxXS9aZ0F3zHUgtP302mjU4mVhj4dBTKz8gjXCy?=
+ =?us-ascii?Q?oocMRcx6S9RyhsEnDOH7wR8ueY+HY1iuVnPx6a5nTgRFGKU770NutpJXXCg7?=
+ =?us-ascii?Q?BpTpLw48XhzPe+olnEAfpuMS+Jq7sE3IE9q5EYRnxGZlOe4uRGvHorqQpskR?=
+ =?us-ascii?Q?OaTzfbg6glrbXvAKkN/yfSjK6zFcn+u1ezpYaasYCL86NWscVa6B0YSwgCI+?=
+ =?us-ascii?Q?iRvHjFpIrDHFw+UF858KmVWLx6uQP0CEX+OEEJNIEs1viGX0g41ZolBmGUqs?=
+ =?us-ascii?Q?/aPuVk8GvDhUQF2VDUoAv2dICh9Kk7zBTq1DbbpUVDggrRDCSD5wpzCe+VDc?=
+ =?us-ascii?Q?tnLzInjX7q8pq8nT6T3C6K7H+ekFkvtrvkeRr7HL7w9GFQbul+VqAsjYEkSx?=
+ =?us-ascii?Q?3g=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6b8f4dbd-74b7-4680-bf0a-08dd5d081828
 X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2025 23:36:38.8403 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2025 23:39:10.4728 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: PHC3WjkDLr0rWQB65MXUyxr4UoNa4FUUOmkoei/a8SMi7+s7QKijhDL2urr9TmPPuxPhQAtgS/47PyaZc4Dyjg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: uxPE52QtgUXXxyPawnSEkhc5UUndWOOqlfBBAgS47JkHMItZBl3tCNwNVFy9srKDkgQvEV2D/TqWO/zOlIqXBw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7870
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -180,251 +175,172 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Feb 28, 2025 at 03:32:54PM -0500, Rodrigo Vivi wrote:
-> On Fri, Feb 28, 2025 at 12:13:24PM -0800, John Harrison wrote:
-> > On 2/28/2025 11:45, Rodrigo Vivi wrote:
-> > > On Fri, Feb 28, 2025 at 11:22:02AM -0800, John Harrison wrote:
-> > > > On 2/14/2025 09:25, Rodrigo Vivi wrote:
-> > > > > In a rare situation of thermal limit during resume, GuC can
-> > > > > be slow and run into delays like this:
-> > > > > 
-> > > > > xe 0000:00:02.0: [drm] GT1: excessive init time: 667ms! \
-> > > > >      		 [status = 0x8002F034, timeouts = 0]
-> > > > > xe 0000:00:02.0: [drm] GT1: excessive init time: \
-> > > > >      		 [freq = 100MHz (req = 800MHz), before = 100MHz, \
-> > > > >      		 perf_limit_reasons = 0x1C001000]
-> > > > > xe 0000:00:02.0: [drm] *ERROR* GT1: GuC PC Start failed
-> > > > > ------------[ cut here ]------------
-> > > > > xe 0000:00:02.0: [drm] GT1: Failed to start GuC PC: -EIO
-> > > > > 
-> > > > > If this happens, this can block entirely the GPU to be used.
-> > > > > However, GPU can still be used, although the GT frequencies might be
-> > > > > messed up.
-> > > > > 
-> > > > > Let's report the error, but not block the flow.
-> > > > > But, instead of just giving up and moving on, let's re-attempt a wait
-> > > > > with a very long second timeout.
-> > > > > 
-> > > > > v2: Keep the precision comment (Jonathan)
-> > > > >       Use a define for the regular SLPC reset timeout.
-> > > > > v3: Improve messages (Vinay)
-> > > > >       Only skip initialization if the second full-second wait failed.
-> > > > > 
-> > > > > Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-> > > > > Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com> #v2
-> > > > > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > > > ---
-> > > > >    drivers/gpu/drm/xe/xe_guc_pc.c | 46 ++++++++++++++++++++++++----------
-> > > > >    1 file changed, 33 insertions(+), 13 deletions(-)
-> > > > > 
-> > > > > diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-> > > > > index 02409eedb914..74cc13012532 100644
-> > > > > --- a/drivers/gpu/drm/xe/xe_guc_pc.c
-> > > > > +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-> > > > > @@ -20,6 +20,7 @@
-> > > > >    #include "xe_gt.h"
-> > > > >    #include "xe_gt_idle.h"
-> > > > >    #include "xe_gt_printk.h"
-> > > > > +#include "xe_gt_throttle.h"
-> > > > >    #include "xe_gt_types.h"
-> > > > >    #include "xe_guc.h"
-> > > > >    #include "xe_guc_ct.h"
-> > > > > @@ -50,6 +51,8 @@
-> > > > >    #define LNL_MERT_FREQ_CAP	800
-> > > > >    #define BMG_MERT_FREQ_CAP	2133
-> > > > > +#define SLPC_RESET_TIMEOUT_MS 5 /* rought 5ms, but no need for precision */
-> > > > > +
-> > > > >    /**
-> > > > >     * DOC: GuC Power Conservation (PC)
-> > > > >     *
-> > > > > @@ -114,9 +117,10 @@ static struct iosys_map *pc_to_maps(struct xe_guc_pc *pc)
-> > > > >    	 FIELD_PREP(HOST2GUC_PC_SLPC_REQUEST_MSG_1_EVENT_ARGC, count))
-> > > > >    static int wait_for_pc_state(struct xe_guc_pc *pc,
-> > > > > -			     enum slpc_global_state state)
-> > > > > +			     enum slpc_global_state state,
-> > > > > +			     int timeout_ms)
-> > > > >    {
-> > > > > -	int timeout_us = 5000; /* rought 5ms, but no need for precision */
-> > > > > +	int timeout_us = 1000 * timeout_ms;
-> > > > >    	int slept, wait = 10;
-> > > > >    	xe_device_assert_mem_access(pc_to_xe(pc));
-> > > > > @@ -165,7 +169,8 @@ static int pc_action_query_task_state(struct xe_guc_pc *pc)
-> > > > >    	};
-> > > > >    	int ret;
-> > > > > -	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING))
-> > > > > +	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING,
-> > > > > +			      SLPC_RESET_TIMEOUT_MS))
-> > > > >    		return -EAGAIN;
-> > > > >    	/* Blocking here to ensure the results are ready before reading them */
-> > > > > @@ -188,7 +193,8 @@ static int pc_action_set_param(struct xe_guc_pc *pc, u8 id, u32 value)
-> > > > >    	};
-> > > > >    	int ret;
-> > > > > -	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING))
-> > > > > +	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING,
-> > > > > +			      SLPC_RESET_TIMEOUT_MS))
-> > > > >    		return -EAGAIN;
-> > > > >    	ret = xe_guc_ct_send(ct, action, ARRAY_SIZE(action), 0, 0);
-> > > > > @@ -209,7 +215,8 @@ static int pc_action_unset_param(struct xe_guc_pc *pc, u8 id)
-> > > > >    	struct xe_guc_ct *ct = &pc_to_guc(pc)->ct;
-> > > > >    	int ret;
-> > > > > -	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING))
-> > > > > +	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING,
-> > > > > +			      SLPC_RESET_TIMEOUT_MS))
-> > > > >    		return -EAGAIN;
-> > > > >    	ret = xe_guc_ct_send(ct, action, ARRAY_SIZE(action), 0, 0);
-> > > > > @@ -443,6 +450,15 @@ u32 xe_guc_pc_get_act_freq(struct xe_guc_pc *pc)
-> > > > >    	return freq;
-> > > > >    }
-> > > > > +static u32 get_cur_freq(struct xe_gt *gt)
-> > > > > +{
-> > > > > +	u32 freq;
-> > > > > +
-> > > > > +	freq = xe_mmio_read32(&gt->mmio, RPNSWREQ);
-> > > > > +	freq = REG_FIELD_GET(REQ_RATIO_MASK, freq);
-> > > > > +	return decode_freq(freq);
-> > > > > +}
-> > > > > +
-> > > > >    /**
-> > > > >     * xe_guc_pc_get_cur_freq - Get Current requested frequency
-> > > > >     * @pc: The GuC PC
-> > > > > @@ -466,10 +482,7 @@ int xe_guc_pc_get_cur_freq(struct xe_guc_pc *pc, u32 *freq)
-> > > > >    		return -ETIMEDOUT;
-> > > > >    	}
-> > > > > -	*freq = xe_mmio_read32(&gt->mmio, RPNSWREQ);
-> > > > > -
-> > > > > -	*freq = REG_FIELD_GET(REQ_RATIO_MASK, *freq);
-> > > > > -	*freq = decode_freq(*freq);
-> > > > > +	*freq = get_cur_freq(gt);
-> > > > >    	xe_force_wake_put(gt_to_fw(gt), fw_ref);
-> > > > >    	return 0;
-> > > > > @@ -1033,10 +1046,17 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
-> > > > >    	if (ret)
-> > > > >    		goto out;
-> > > > > -	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING)) {
-> > > > > -		xe_gt_err(gt, "GuC PC Start failed\n");
-> > > > > -		ret = -EIO;
-> > > > > -		goto out;
-> > > > > +	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING,
-> > > > > +			      SLPC_RESET_TIMEOUT_MS)) {
-> > > > > +		xe_gt_warn(gt, "GuC PC excessive start time: [freq = %dMHz (req = %dMHz), perf_limit_reasons = 0x%08X]\n",
-> > > > > +			   xe_guc_pc_get_act_freq(pc), get_cur_freq(gt),
-> > > > > +			   xe_gt_throttle_get_limit_reasons(gt));
-> > > > > +		if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING, 1000)) {
-> > > > Shouldn't this be a define as well - SLPC_RESET_EXTENDED_TIMEOUT_MS or
-> > > > something?
-> > > good idea! will do.
+In a rare situation of thermal limit during resume, GuC can
+be slow and run into delays like this:
 
-done
+xe 0000:00:02.0: [drm] GT1: excessive init time: 667ms! \
+   		 [status = 0x8002F034, timeouts = 0]
+xe 0000:00:02.0: [drm] GT1: excessive init time: \
+   		 [freq = 100MHz (req = 800MHz), before = 100MHz, \
+   		 perf_limit_reasons = 0x1C001000]
+xe 0000:00:02.0: [drm] *ERROR* GT1: GuC PC Start failed
+------------[ cut here ]------------
+xe 0000:00:02.0: [drm] GT1: Failed to start GuC PC: -EIO
 
-> > > 
-> > > > More importantly, Is 1ms enough of an extra wait?
-> > > The new timeout argument is in ms, so it is 1 second.
-> > Doh! Yes, I saw that but then completely spaced it out again!
-> > 
-> > > 
-> > > > If the GT freq is 100MHz
-> > > > instead of 2GHz or some such then the expected max of 5ms could now be more
-> > > > like 100ms if not even longer (the slow down does not seem linear). As an
-> > > > example, the GuC load itself should be <10ms but with clamped frequencies we
-> > > > generally see over 500ms, sometimes over 1s.
-> > > hmm... over 1s possible? so, perhaps 1250 to be on the safe side?
-> > > other suggestions?
-> > I think a second should be good but I don't what is involved in the SLPC
-> > start up? The long delay loading the GuC is due to doing decryption which is
-> > a hugely CPU intensive task and the GuC is not a huge CPU! If SLPC is more
-> > about waiting for hardware to respond then maybe the slow down won't be as
-> > severe? Plus the GuC load is inherently slower in the first place - our
-> > original timeout was 200ms with expected values in the 5-15ms range. If SLPC
-> > is starting from a 5ms timeout then presumably the expected time is actually
-> > more like 1ms or less?
-> 
-> Yeap, I randomly put a big wait because I wasn't sure why/what.
-> 
-> > 
-> > You could try running with the frequency manually set to 300MHz and see how
-> > long it takes. I think that is the lowest we can explicitly request from the
-> > KMD?
-> 
-> Great idea! Although it can change a lot by platform and SKUs, but we could
-> have at least a rough idea instead of a blind big guess.
+When this happens, it will block entirely the GPU to be used.
+So, let's try and with a huge timeout in the hope it comes back.
 
-Well, it looks like when everything is normal, we shouldn't take
-longer than 300 *us* even with lower frequencies. So I could not quite
-reproduce a case like that.
+Also, let's collect some information on how long it is usually
+taking on situations like this, so perhaps the time can be tuned
+later.
 
-But well, let's try with this big hammer second wait here and warn on how
-long it takes, so we can tune it down later.
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_pc.c | 53 +++++++++++++++++++++++++---------
+ 1 file changed, 40 insertions(+), 13 deletions(-)
 
-> 
-> > 
-> > > 
-> > > > > +			xe_gt_err(gt, "GuC PC Start failed: Dynamic GT frequency control and GT sleep states are now disabled.\n");
-> > > > > +			/* Although GuC PC failed, do not block the usage of GPU */
-> > > > > +			ret = 0;
-> > > > I thought the new policy was that any subsystem failure should now be
-> > > > considered fatal and abort driver load? I recall a PXP start failure was
-> > > > recently upgrading to being fatal even though PXP is almost never used by
-> > > > any actual users. SLPC seems much more vital to the system than PXP!
-> > > Hmm... good point! I have to get back to the board then and have
-> > > this logic only for the resume?!
-> > > 
-> > > If this happens during the probe yeap, let's block because subsystems
-> > > are buggy. But the case I'm hunting here is a resume from S2idle that
-> > > is entirely hanging the platform when this happens under thermal constrains.
-> > Hmm. What platform is the problem showing up on? There are a couple of other
-> > bug reports about systems coming up in an odd state after suspend - e.g. GuC
-> > image not loading due to memory corruption. I wonder if it is not actually a
-> > thermal problem but just something confused due to uninitialised state
-> > somewhere? Plus, how can you be in thermal meltdown on a resume? If the
-> > power was lost then the device should be cold!
-> 
-> Indeed. It was a LNL case in a very specific kernel version. Issue is not
-> reproducible anymore. But with that bug I realized we were actually entirely
-> hanging the platform on resume and this is not a good approach, even though
-> the original issue was not ours.
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index 25040efa043f..ec39a8f2781f 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -6,6 +6,7 @@
+ #include "xe_guc_pc.h"
+ 
+ #include <linux/delay.h>
++#include <linux/ktime.h>
+ 
+ #include <drm/drm_managed.h>
+ #include <drm/drm_print.h>
+@@ -20,6 +21,7 @@
+ #include "xe_gt.h"
+ #include "xe_gt_idle.h"
+ #include "xe_gt_printk.h"
++#include "xe_gt_throttle.h"
+ #include "xe_gt_types.h"
+ #include "xe_guc.h"
+ #include "xe_guc_ct.h"
+@@ -50,6 +52,9 @@
+ #define LNL_MERT_FREQ_CAP	800
+ #define BMG_MERT_FREQ_CAP	2133
+ 
++#define SLPC_RESET_TIMEOUT_MS 5 /* rought 5ms, but no need for precision */
++#define SLPC_RESET_EXTENDED_TIMEOUT_MS 1000 /* To be used only at pc_start */
++
+ /**
+  * DOC: GuC Power Conservation (PC)
+  *
+@@ -114,9 +119,10 @@ static struct iosys_map *pc_to_maps(struct xe_guc_pc *pc)
+ 	 FIELD_PREP(HOST2GUC_PC_SLPC_REQUEST_MSG_1_EVENT_ARGC, count))
+ 
+ static int wait_for_pc_state(struct xe_guc_pc *pc,
+-			     enum slpc_global_state state)
++			     enum slpc_global_state state,
++			     int timeout_ms)
+ {
+-	int timeout_us = 5000; /* rought 5ms, but no need for precision */
++	int timeout_us = 1000 * timeout_ms;
+ 	int slept, wait = 10;
+ 
+ 	xe_device_assert_mem_access(pc_to_xe(pc));
+@@ -165,7 +171,8 @@ static int pc_action_query_task_state(struct xe_guc_pc *pc)
+ 	};
+ 	int ret;
+ 
+-	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING))
++	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING,
++			      SLPC_RESET_TIMEOUT_MS))
+ 		return -EAGAIN;
+ 
+ 	/* Blocking here to ensure the results are ready before reading them */
+@@ -188,7 +195,8 @@ static int pc_action_set_param(struct xe_guc_pc *pc, u8 id, u32 value)
+ 	};
+ 	int ret;
+ 
+-	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING))
++	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING,
++			      SLPC_RESET_TIMEOUT_MS))
+ 		return -EAGAIN;
+ 
+ 	ret = xe_guc_ct_send(ct, action, ARRAY_SIZE(action), 0, 0);
+@@ -209,7 +217,8 @@ static int pc_action_unset_param(struct xe_guc_pc *pc, u8 id)
+ 	struct xe_guc_ct *ct = &pc_to_guc(pc)->ct;
+ 	int ret;
+ 
+-	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING))
++	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING,
++			      SLPC_RESET_TIMEOUT_MS))
+ 		return -EAGAIN;
+ 
+ 	ret = xe_guc_ct_send(ct, action, ARRAY_SIZE(action), 0, 0);
+@@ -443,6 +452,15 @@ u32 xe_guc_pc_get_act_freq(struct xe_guc_pc *pc)
+ 	return freq;
+ }
+ 
++static u32 get_cur_freq(struct xe_gt *gt)
++{
++	u32 freq;
++
++	freq = xe_mmio_read32(&gt->mmio, RPNSWREQ);
++	freq = REG_FIELD_GET(REQ_RATIO_MASK, freq);
++	return decode_freq(freq);
++}
++
+ /**
+  * xe_guc_pc_get_cur_freq - Get Current requested frequency
+  * @pc: The GuC PC
+@@ -466,10 +484,7 @@ int xe_guc_pc_get_cur_freq(struct xe_guc_pc *pc, u32 *freq)
+ 		return -ETIMEDOUT;
+ 	}
+ 
+-	*freq = xe_mmio_read32(&gt->mmio, RPNSWREQ);
+-
+-	*freq = REG_FIELD_GET(REQ_RATIO_MASK, *freq);
+-	*freq = decode_freq(*freq);
++	*freq = get_cur_freq(gt);
+ 
+ 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+ 	return 0;
+@@ -1016,6 +1031,7 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
+ 	struct xe_gt *gt = pc_to_gt(pc);
+ 	u32 size = PAGE_ALIGN(sizeof(struct slpc_shared_data));
+ 	unsigned int fw_ref;
++	ktime_t earlier;
+ 	int ret;
+ 
+ 	xe_gt_assert(gt, xe_device_uc_enabled(xe));
+@@ -1040,14 +1056,25 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
+ 	memset(pc->bo->vmap.vaddr, 0, size);
+ 	slpc_shared_data_write(pc, header.size, size);
+ 
++	earlier = ktime_get();
+ 	ret = pc_action_reset(pc);
+ 	if (ret)
+ 		goto out;
+ 
+-	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING)) {
+-		xe_gt_err(gt, "GuC PC Start failed\n");
+-		ret = -EIO;
+-		goto out;
++	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING,
++			      SLPC_RESET_TIMEOUT_MS)) {
++		xe_gt_warn(gt, "GuC PC start taking longer than normal [freq = %dMHz (req = %dMHz), perf_limit_reasons = 0x%08X]\n",
++			   xe_guc_pc_get_act_freq(pc), get_cur_freq(gt),
++			   xe_gt_throttle_get_limit_reasons(gt));
++
++		if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING,
++				      SLPC_RESET_EXTENDED_TIMEOUT_MS)) {
++			xe_gt_err(gt, "GuC PC Start failed: Dynamic GT frequency control and GT sleep states are now disabled.\n");
++			goto out;
++		}
++
++		xe_gt_warn(gt, "GuC PC excessive start time: %lldms",
++			   ktime_ms_delta(ktime_get(), earlier));
+ 	}
+ 
+ 	ret = pc_init_freqs(pc);
+-- 
+2.48.1
 
-Okay, In the new version we are still going to block the probe. If it is
-less than the extended timeout it prints out how long it took, otherwise
-we continue with the -ETIMEDOUT return and block the probe/resume.
-
-> 
-> > 
-> > > 
-> > > Thoughts? I'm open to suggestions here.
-> > My main thought is that if the frequency is clamped (by the hardware itself)
-> > at absolute minimum then the system is not going to be very usable anyway.
-> > So is continuing to run by using huge timeouts actually beneficial? But not
-> > sure what else we can do at this point? Maybe try an FLR? But yeah, it is
-> > probably good to try harder to keep going on a resume than on first driver
-> > load.
-> 
-> Well, with the resume happening, the FLR could be a bad hammer. But well,
-> worth considering indeed. I will do some more experiments around and see
-> our options. But the hang as currently is is the worst scenario.
-
-I couldn't get anything like that to work reliably. If we are in that
-thermal bad resume condition, the flr can cause other side effects.
-Let's just wait a bit longer and log (warn) the case and move on.
-
-Sending the new version soon...
-
-Thank you!
-
-> 
-> Thanks a lot again,
-> Rodrigo.
-> 
-> > 
-> > John.
-> > 
-> > > 
-> > > Thanks a lot for raising these so far,
-> > > Rodrigo.
-> > > 
-> > > > John.
-> > > > 
-> > > > > +			goto out;
-> > > > > +		}
-> > > > >    	}
-> > > > >    	ret = pc_init_freqs(pc);
-> > 
