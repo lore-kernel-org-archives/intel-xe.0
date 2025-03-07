@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA85AC19F32
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 13:44:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1545C28B23
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 13:44:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74BF410EB5A;
-	Fri,  7 Mar 2025 13:44:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C47E10EB5C;
+	Fri,  7 Mar 2025 13:44:43 +0000 (UTC)
 Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BAE710EB5A;
- Fri,  7 Mar 2025 13:44:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 502E510EB5A;
+ Fri,  7 Mar 2025 13:44:43 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/hwmon=3A_expo?=
- =?utf-8?q?se_fan_speed_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/hwmon=3A_expose_fa?=
+ =?utf-8?q?n_speed_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Raag Jadav" <raag.jadav@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 07 Mar 2025 13:44:29 -0000
-Message-ID: <174135506943.1906.4399922206453272116@18a75f3d1eae>
+Date: Fri, 07 Mar 2025 13:44:43 -0000
+Message-ID: <174135508332.1906.13851959216125866023@18a75f3d1eae>
 X-Patchwork-Hint: ignore
 References: <20250307125112.575242-1-raag.jadav@intel.com>
 In-Reply-To: <20250307125112.575242-1-raag.jadav@intel.com>
@@ -48,9 +48,31 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 066c46f28642 drm-tip: 2025y-03m-07d-12h-35m-40s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/hwmon: expose fan speed
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+cbb4e4a079d89106c2736adc3c7de6f9dc56da07
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 0e08f44bf623d061d1d88ac856ad8e45b9e2a2c2
+Author: Raag Jadav <raag.jadav@intel.com>
+Date:   Fri Mar 7 18:21:12 2025 +0530
+
+    drm/xe/hwmon: expose fan speed
+    
+    Add hwmon support for fan1_input, fan2_input and fan3_input attributes,
+    which will expose fan speed of respective channels in RPM when supported
+    by hardware. With this in place we can monitor fan speed using lm-sensors
+    tool.
+    
+    v2: Rely on platform checks instead of mailbox error (Aravind, Rodrigo)
+    
+    Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+    Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
++ /mt/dim checkpatch 066c46f28642479869d2d1dd27cc6ae476de4abc drm-intel
+0e08f44bf623 drm/xe/hwmon: expose fan speed
 
 
