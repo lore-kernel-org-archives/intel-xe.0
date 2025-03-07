@@ -4,164 +4,164 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0DB2C282DE
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 15:57:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E879C19F32
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 16:01:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6514010E358;
-	Fri,  7 Mar 2025 15:57:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62CD610EBC1;
+	Fri,  7 Mar 2025 16:01:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="URDQlHuf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J36m85lx";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CC0410E2DB
- for <intel-xe@lists.freedesktop.org>; Fri,  7 Mar 2025 15:57:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1689610EBC1
+ for <intel-xe@lists.freedesktop.org>; Fri,  7 Mar 2025 16:01:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741363050; x=1772899050;
+ t=1741363292; x=1772899292;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=G0gRpl4KxXnYU/Ft+s1LWBlJJeiRChEazJ5h73/T+EU=;
- b=URDQlHuf9NAyCvZ8716C5COo3iShksu2m2xYi5r+42l9WoI7kzB9zifE
- HyRx3dqLj6GqUsJpfvPbENuMG8TMDhmxNH1DTHqzXKY2VP45NLLVK8uL3
- RAB939XYM4Wp9RJ+cNEW7j6Y8MwtocQxCLhW82xBMJ1mbOxN4YTY320VJ
- vupdCx97NSGfr9lT4yifqg+q0E6NicPSA3MIxMREBebleqw9uDjqHK+sS
- 4EdL9CEDpcjCXYZFhiybFc41HoapzKQl2H6E0bYb0hP2v0HTurWBX+e4C
- wk0HgmONcX0WMq8PALodEGlWVm8klhLBTZkqiDbj4DwgoXhjuM8L9ZawF Q==;
-X-CSE-ConnectionGUID: riLMNzXMTjCQxTbjceQ75g==
-X-CSE-MsgGUID: 0nCO3WuXRjCiHwCWgfE8cg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="42326569"
-X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="42326569"
+ bh=dnnTZH0sB9T1LaQ4T3EyquCP14CJy5gHofqE3pFQXfI=;
+ b=J36m85lxTlsPaDJPEYFKjQS3t4/77jc1G7hjXUZh+lda3hsiuGS/PuYg
+ kQeRpa2sC9bBTHgoDKDQ2OGrzuzfwsu9ewZZz+eskDEmeokAd8Aus+EQ4
+ 1V+zk6IZ0aKUmhm5zE/SeYEyUozCCH2w8lOuF/LFhHhvToQflR1btChSP
+ Gwk27MTfnxcI4alDgs+KynSxcJzaX37oGfwz6/1QMNK9RvLfWWMdwskGL
+ JHUsmTdg6svYX4gckDioKq9HqGPsq7U4HKiZ4XsVkIN4epuzkyccTUHAF
+ XRwwNf9KSRSUiJ2oohlQNot+8IrVwtf+G0i1EggT14lokYOssaIER85fq Q==;
+X-CSE-ConnectionGUID: chXWrEDDRuSA7zjLedGO0g==
+X-CSE-MsgGUID: dX/2wcJ+SWGO4/GGMBJTLQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="59973139"
+X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="59973139"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2025 07:57:30 -0800
-X-CSE-ConnectionGUID: o2QA1Cr4Tcys0HKzFog5KQ==
-X-CSE-MsgGUID: JQkG8UioRnm4hE8HS+9vCw==
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2025 08:01:32 -0800
+X-CSE-ConnectionGUID: fUao4UX+QNee1Lkf0BI8/A==
+X-CSE-MsgGUID: 3ZO6MCqgQPm8mFfzEFUzdQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="124389301"
+X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="124390984"
 Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
  by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2025 07:57:30 -0800
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ 07 Mar 2025 08:01:32 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.1544.14; Fri, 7 Mar 2025 07:57:29 -0800
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14; Fri, 7 Mar 2025 08:01:31 -0800
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Fri, 7 Mar 2025 07:57:29 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.46) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14 via Frontend Transport; Fri, 7 Mar 2025 08:01:31 -0800
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.48) by
  edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Fri, 7 Mar 2025 07:57:28 -0800
+ 15.1.2507.44; Fri, 7 Mar 2025 08:01:28 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kVuWoNzcshmi5+E94RKXWYLChfR3DbckSSCCn3PAfmm6MJlBoz4NxnFQGc7t14/A0ZAcaMkAquLVWAOpaufbQdWgBFAegVWhcH4CcCogsV7O7yy2QwCMQUE6q8Mb03VYJpP0jYhqdxEUvoqXHKlUWD7wqWo8b2K4tuh8NpUsw4sTjazEoaIeEjXBiwDknL8WieHoOb+LxbNuNse8u7EHJf7UaCxXKK9BjfY6dVNYPYefEJkYO/+GikxDZlpR+Wy9soEt5eILUW+HtA7MdtbD4C0aogqx8o2On1Z15IIc9CqIYU5uDxFOoAY00nTfyHQ6/Z5PCNpKIWxuaJGoGcupIQ==
+ b=CHyPJ06wzyp7y9zKDeMRM1/Rv9J36dQig8zLuEq56bNzRQGDzbnhNUa4bQBOtn8YbOpy4diGGr2jknQYRqhZJGahOUa7ue1CZCsyEvV4Ae1uX6PL6ZSNk41hQG9LW5V6DPe/hQBiet9yiBVh2wgIbaadfLFCY82lBhT8qxovBXmij3MH60bwdrhIlpabLy+cQgT8J4ifc1pN8aQk5ASjFMc2RWfquL/ZoLP5kf+2AVfPs4+v1KZE4gqMRoyXo66eIu1aFOPdteyWBSJA8ydTVIIW2PfxLRO7a8O5GFcztWIygaRyJQjwUQLQlzucrpRIbAYRJCNnwavAqTv7u5zvsQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IRKt+X3aobbdP9FGgI4K7ws8vfiIzZ+NfTYbox+UD5A=;
- b=a++BuhEz3rgRylvp8z8YVpmah9qs+wSHhVQHnfX0OB9bUH+dEOF9zWXiN1s4zubgQrGfmVX5Q3oFpAM/5gbQTB9Te9xtEnt9QY6Ie+uMLCfUHd5+KyJL0SVmhOvUJqmMvF6xiHlorh61NUPDqKGYZ4Tb7s134MtiDYT98rTkEBDy1fDrwhzKs1jrYUQWc/VMjBMWnR8x61tPZjAX9au6Tm41/xTBhbodfxOXruuecQrMLTZi24zL8ttBOoazWB+dxKbeKbRg3KEopVwoIp8qsaZFvQ1Sy6P8/WJasxeGFRDk27C+SaBnDOmMdaxwwsHoSCWryoEfPVQeVfp9up8wFg==
+ bh=nhYSYveWrux3EKoF5xIMfD9JhYfSQnFa9oQDSpRaQ40=;
+ b=Sk2N16fZgBHYBzMQNBbEesWnvlRPn6H4W5/rsSr3Hv15Oo2ebEkH0x8rZylhxM/T0jWhglfBzUZn+cZHIJDTsajoBKXHmM7B05DlIH7gJM+BK8oujNYpZeZOQthTagpKNcUon2Q3pjtR1TjqP/78AWxRkI3P2yP3hKjasZ8BjAlWTh/1fi6wEKnyazNK9ysWYT/IhsRpD59Hls5hR3eaeLEUpXDWULDnuDREMajTj0HRdFLuQZf7RmAeB65cv1uTM9e8tjhbYxXhRCb2C0NdH3OXZtnQwK39Z1nlDxjVhMET4qn1/lke+fRtuilJKdt9JmR1NcU1f5rl9ErhgZFe9A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by CH3PR11MB7370.namprd11.prod.outlook.com (2603:10b6:610:14e::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.23; Fri, 7 Mar
- 2025 15:57:12 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%3]) with mapi id 15.20.8511.017; Fri, 7 Mar 2025
- 15:57:12 +0000
-Date: Fri, 7 Mar 2025 09:57:08 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-CC: <intel-xe@lists.freedesktop.org>, kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH] drm/xe/rtp: Drop sentinels from arg to
- xe_rtp_process_to_sr()
-Message-ID: <377u65lxwxlzdxr5anzpn3ykk3bud3vyikpy3l6qnxboltoxyn@xeaiizgnyl3q>
-References: <20250306-fix-print-warning-v1-1-7bd961d2cfef@intel.com>
- <20250306-fix-print-warning-v1-1-979c3dc03c0d@intel.com>
- <6111972f-8b3d-4b3b-b27f-83241af9b5e7@igalia.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
+ by DS0PR11MB8205.namprd11.prod.outlook.com (2603:10b6:8:162::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.19; Fri, 7 Mar
+ 2025 16:00:45 +0000
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::76d2:8036:2c6b:7563%4]) with mapi id 15.20.8511.020; Fri, 7 Mar 2025
+ 16:00:45 +0000
+Date: Fri, 7 Mar 2025 11:00:41 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>, "Harrison, John C"
+ <john.c.harrison@intel.com>
+Subject: Re: [PATCH] drm/xe/guc_pc: Retry and wait longer for GuC PC start
+Message-ID: <Z8sYKUtK4FwOkvNY@intel.com>
+References: <20250306233906.1043286-1-rodrigo.vivi@intel.com>
+ <CH0PR11MB54444896702CEF7CDBAD08C8E5D52@CH0PR11MB5444.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <6111972f-8b3d-4b3b-b27f-83241af9b5e7@igalia.com>
-X-ClientProxiedBy: MW4PR03CA0293.namprd03.prod.outlook.com
- (2603:10b6:303:b5::28) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+In-Reply-To: <CH0PR11MB54444896702CEF7CDBAD08C8E5D52@CH0PR11MB5444.namprd11.prod.outlook.com>
+X-ClientProxiedBy: MW4P223CA0006.NAMP223.PROD.OUTLOOK.COM
+ (2603:10b6:303:80::11) To CYYPR11MB8430.namprd11.prod.outlook.com
+ (2603:10b6:930:c6::19)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|CH3PR11MB7370:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2470b0ee-dd28-46b8-f77e-08dd5d90b95c
+X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|DS0PR11MB8205:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2513d767-eef2-4609-59c7-08dd5d913832
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?ByogadrGVspl4evxeV/0PfbL39YMYDpJtZTxbgCOdI18gTBqq5G0kOLHT86L?=
- =?us-ascii?Q?fuNIvQ5kF8fBdc0v+err9/LzJcOiuCnZaDnNBg/UMz/WPfKdZbaPoWEgpnCX?=
- =?us-ascii?Q?8+q196flogunPlFlGfy5wDNVL1AFNnCMQjlcVDL/cFwAV6ORVRL+q0do4qqa?=
- =?us-ascii?Q?0aMkoxouhE0JJFmrkCWE6r7vkJ2vfovRR5YNuxziXv/R29KBvxQHJmLr7FPg?=
- =?us-ascii?Q?gE3Gr93M1DWHm+q+XznWn5/9IOnf0YMYwosUlQABE6Snl5zY7wS283MV6ppH?=
- =?us-ascii?Q?UIfJ4yLpJagwNVCazw53VvjT/5iZBIH9R/SVW/oROyxMtzpTYqZ0g4sreilY?=
- =?us-ascii?Q?T3VmhdO3/vmsq90qrZJSsDZI2ACskSbUkhl/MJGPUgBikKAfBGhS1OhtJQWl?=
- =?us-ascii?Q?3JjxJgq+EgebauH8zjJDON0DriM8kRfWplRSQrLEwMA7EtWqBxYAtx8EOeTJ?=
- =?us-ascii?Q?Jxyr3bN7d3dWHWEvOu7ObxE3ykLs1xiWtWz/KIJQzcnEXpUuuCQJHz28bCHH?=
- =?us-ascii?Q?VbEHRdZnvefWAZ1xa0QY2cugpytf3cZ809pyv9M+yRG/Yz3ulxtKIJ3Qi/5O?=
- =?us-ascii?Q?EX9j9qIamxBas3fVJiihE2nycStlrKq4ISb9iQGKIOJ/Y40qrIJ6K1nLghUl?=
- =?us-ascii?Q?rVGkFwivyuplOa40YmD9yBa7YNj4iiXVbFmdNOcmMcp147tcqOzhKc424Hi3?=
- =?us-ascii?Q?pxc3bCSI1ZILcPHHbAZ7jVq1qGEyOgegLU5cM63jc/kFTRlDFD8e+KPpOkYi?=
- =?us-ascii?Q?OVK2opf44PruNOo1Xi0qad+ZPZSbq5lcrQR+rmrIF3+W4lRi1mKu6MCRQO62?=
- =?us-ascii?Q?IIBjI4LMFeepcgE7a/FPtxBoO5QxlNjbXWZtdL3sQ94nOj9G9GioX2LCc8Y3?=
- =?us-ascii?Q?D98IKBDEBLZlvIhx9lRqoz0yYn2uKXiJ056O4jyeBb5FKqqZcj6+oCoPBZ4k?=
- =?us-ascii?Q?doiCGspG/9faSxAXhNyxEmfouBXd5Sl231+yk/dhiGz1jlcOovyVb9CDAWrn?=
- =?us-ascii?Q?YdBqgfIY2YiX27OBKI/yqimzY12VZkXIU0LYs6PQbN0woMIx3eu9mNFYNXZ4?=
- =?us-ascii?Q?WpqFy5RQHLa70CzE39Zye5jBEHw+Jl494JRwkmABdejX+mMP2K4y5KiWbjXo?=
- =?us-ascii?Q?QX3k+Q2pivlVi6g12GqN+zqlfWuGXSLVPTeMDHz/CTlLvNVT5uMyeq20Q3V5?=
- =?us-ascii?Q?6aa62dfkmAcPq/ut8yVvv0exfYw97G5e215KBy6pqDIm72s3H1f9G6466t1T?=
- =?us-ascii?Q?p3DHRy8zooiFpIX8HMa1BOiI4S/cIw6cWNMcvQlqkFXYOKTIvgfeGZGfGBbG?=
- =?us-ascii?Q?Dm0QQpV6cUKFlcs/x5kYopeiZisFHmhUilfihcussl0d1szpa7CMqumOxscm?=
- =?us-ascii?Q?uSPZfk3/a6mbnYk/EE4BBM9SjY/n?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7053199007;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?KKWUfeVJiVNQpi6APGau9gWWXKxuCJPQFcbcWUae0mu8MMUn5RuSac6o2qL/?=
+ =?us-ascii?Q?zTJJsMR5uzxVrYVzj+HGmYgtVc1x/QDLEz64FAWtEEuoA5Xl9yIt7KgEg3J8?=
+ =?us-ascii?Q?4pmmfCNHkxdO+/ANdZAZkfu14x2592iqAjw88U94ZRIV4WIWbSWT5Vosrp3S?=
+ =?us-ascii?Q?zvH140DEQeqVxK2koEsWiQppTurzKJHgT3mW8lta8tp9uikkIQxwnFYJIF2q?=
+ =?us-ascii?Q?BNo0UN81o/MmGCAhORHYm+Cwew80lQ1aKsl87r0vo6WtwLJk3aO3YbJl1gxv?=
+ =?us-ascii?Q?J95lIS5piaoUrPsL2JuqUaPRg+OmoWbgLbnrVjqa936l/D35ydhMsyhkFzOX?=
+ =?us-ascii?Q?+SAcgxhWtNU4txZY7eZNHKq7yz2XNq3peM+qnBC/AHk3mDNmCN8hRItYi3vH?=
+ =?us-ascii?Q?Vhnv0YfS0SUj10duGXxVbimWiqGwU/44qH1vFsEi8OEkaq+VMLrN5E/lF2Aw?=
+ =?us-ascii?Q?tEflWACyireiUkCaxNivzyvtGkGdR4F31/lZombsX7GwGEXr2H2nMT5CPahP?=
+ =?us-ascii?Q?gWqVzL5dNcHPCR9Yyf/8x09zAEyQj/+W8tPqZgujqeob92G7hA1tKmalYDsQ?=
+ =?us-ascii?Q?oHo0bzamKbkS/ya4YszEPtugyPPrz/FhDvqJgsgu//Z5bNmKKHxcER4N39nx?=
+ =?us-ascii?Q?vyay9y5XbSNgDjR+BTgY8mEV8I92c+8CIvio3NGpduHVPVCb6lDQtIern/Fq?=
+ =?us-ascii?Q?wTeJGDCGyu9g10Zb+FTjC7zw1Nb+c9MVd+EXS85IZEdwiq9rt7F8E4ieYCmB?=
+ =?us-ascii?Q?nkIKMHLHvBRIobHoVO+R5JJuF09CHMLjXjOrvjHxifME05OMfuycC5kBrN35?=
+ =?us-ascii?Q?QYSpoOCEQhls+qtEEuahx4HD+X7nv0+p/iiQA7gJjA4ezy++4oFIBEiRkwKD?=
+ =?us-ascii?Q?iOCKN06MSfTZXFid1BH0w1HbEkHG5aaKPh67Dx6eqiPgiDdwr9t0rP1wPdf9?=
+ =?us-ascii?Q?QfU6fdgXe14tmh7gTYzpV3LAAlXp+mk4UMUYSCDAYOPVmpZwnQp6My59OfDO?=
+ =?us-ascii?Q?8SnZNB5Qlluq2QBf0J4qG9KgKd8F/GvH07nCN50FpbdPEwbW2xAbHjpl8ha9?=
+ =?us-ascii?Q?rOrbzNI4oI4PB+t7rUUh8gcDCl/JWyCKQYCqbx/IhLq0lhBBvPMs6IrWD4RL?=
+ =?us-ascii?Q?kSbOWGumTvXi3hGQ68KTKkJ+dxTL9+qH4i1trJMc2FzoB73mQkKt1QkkVKFw?=
+ =?us-ascii?Q?GmOwS8bRudMrP6DZCpjeCM9DVKR2s01o2I7MmOYnj0fiiJY291bo9/vvpaUC?=
+ =?us-ascii?Q?Dh6z4l3TQBqvJLup5x2eTHzuUYNJPpSHQTLdH15qPM5rewAuKoNKy2gpAXIz?=
+ =?us-ascii?Q?Xm2XLwGwM4+rUf5BapfE+vl+z7anWkcVEJSZBWfSF9aWh+3rVEfshyOMqBeT?=
+ =?us-ascii?Q?bsv3vdHBiHv9NuY/QvxeumKmOjxi?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(7053199007); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?w2v+tWzxYIMvV83BydNL1JfcKGrDL12rM3mNFY3LUMJ2ND30d74W3MqtNtlU?=
- =?us-ascii?Q?gH2pknpVraflZbIEL/atYk5gs3NsjGqoUQI/+Q6mztgf5OPBIn+N+Faw5CO2?=
- =?us-ascii?Q?uzKjH+C/CWV3DfLhGoiWONpBXkWqH6z4vFdOZGbWpcWPTrWI+z2OXkk1FIrG?=
- =?us-ascii?Q?QOUcSsR1PLFpZARTzwkP/BmgNa7zwrNS4K1vYqsrpe0oOLgMI4JJLfZLyoCb?=
- =?us-ascii?Q?StBkaO1H1QbDpMRGCvw0zSEH5HqYEpDHxb+eSfppRpXDSV9WZCoPQJbYGP8C?=
- =?us-ascii?Q?3KrmANLTjR+MkMLE1/J2VAEVOp8cVQiRIfqDZVzE5mjE86JLB2z43Kn/w5nY?=
- =?us-ascii?Q?lm2spVgbI7JGB9opnMD3nH38hYs28AzK/V+q1CmLiRUmbb5d9cyv74/q7NpD?=
- =?us-ascii?Q?zkohALJ2Yssfcc8dVXkAUtQUgsvx1S4Lk2wFKAHRDX7csLki1vdLcJSv+dbb?=
- =?us-ascii?Q?Jr+tDTwjRogitHm+JDLtEnV6+sqkUb2qXczO64nRwB/6UE6VQOCsHXRy7PQS?=
- =?us-ascii?Q?+4u1maAm/6FdVjYyllDGDz5ch++wdehrMlPRbld1N0ASQm2j3Ss7irwxexVP?=
- =?us-ascii?Q?hEtMeBq44NfWsTdeEcUnhb9dgLKFDOb1/oOB9IVw4yFP/E7/4LjSohOfOdv5?=
- =?us-ascii?Q?vCc68Zj8DC6jaNITeamHmMO5KoJF9fhwm9T0/JgnjyNf5gKoUFvygDlsrEFF?=
- =?us-ascii?Q?gqLQnWUuDpj590C7aOfGzi7Braj5iRAQJPtR2pvOyWOLojJk6OiH6ro3zQaS?=
- =?us-ascii?Q?bYXBLXROiUNp5gw+lpPDhPYiRZi4beI1tGnGxn+RH1Y7v5PJdmGNQddcmZmR?=
- =?us-ascii?Q?U5oVVjz0KRgx8MfqHCcfeM97M9uFZtn1zLIzFYXneKvoZduVbOWj1hRgPhI+?=
- =?us-ascii?Q?+EWhXxd9XhOLQXzdmW25DfTiCmtAZ0ht8ynnIKF6KtKrcfi5JnD5BlWgULI0?=
- =?us-ascii?Q?ibF2/imoCi73X4TCwgCGy1w7GAKtzWWlfMHF7kSCCT2SLwGpCdyYf37LPHSC?=
- =?us-ascii?Q?jPssXvURZa9tMd+rpElYqdJ7gz4+sfBMzjB9bR4yK0NhqlwlyXdequVhyzph?=
- =?us-ascii?Q?a9VnG8JQzR7cXc/I26TikJvrRrHC9GakcysVNSGMxnQYmLuo/LV7sHnE63GF?=
- =?us-ascii?Q?fLl51LjorPYCrbylPqvhbjtJkVUl0FnLKN7Qd3mVQZbw7HtvsMdiiMs8xsR9?=
- =?us-ascii?Q?hZGh56AGbYTa0cwi/WlA6pZtt1Lyt9o0285TSSAC21nxgrVkEftaZUWFm9po?=
- =?us-ascii?Q?FXYF9XlabDsDxl7ATgVwiesXMFU8aPquu89IYXwS0vB28+dRMOE3rw34BpZj?=
- =?us-ascii?Q?TODL7mEaPmLxX1sWIYrJM3699z3QvAHnNwWn9bhH6P/XkKHi2BUADjx6+q6T?=
- =?us-ascii?Q?k9BvtNDx/PytC+5uN9ulcqc1IvFgnrhq58QFeHH5T8DYWFVKdi+Bsy4IS36Y?=
- =?us-ascii?Q?9eS85zVYmzEzv+RzRRf19tZtpgBYLe/xh1LpW8XVK0ou19Fq1GVANAkZ/vBg?=
- =?us-ascii?Q?ao2ECD4ADiyJt66Hje7uJCRg53dxFPoMpCjLKhRWZLrNT4ICzrp2RqaMv32c?=
- =?us-ascii?Q?Ti8R+nJin5HIW/A8h3lvwN9UCBci5zgIJMIxroDqS8n8PcvT88b/otKLsv5I?=
- =?us-ascii?Q?hA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2470b0ee-dd28-46b8-f77e-08dd5d90b95c
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+49+4R+Ph0+2aI9SULATVMq9SOoNGD4OOS/7gLiUk7k/AxD50zZHSj6vrYtR?=
+ =?us-ascii?Q?uSH6AclASSLz0zVNYf6kjUNZmTWKhZZeE2kc3jNseQXGnz0cOJv9qpP38EuK?=
+ =?us-ascii?Q?Xe+Tc6lquOp4cm8Sg/2kJgA64MvpEAflkjnOI6vM8cRXQc9RlGN5GvZ4+gy/?=
+ =?us-ascii?Q?j0CuXaBb9MIaDX8cq+XNUr4QuVBRzHqVkZsd01xvAYYaJltENUX5mdh1pOp2?=
+ =?us-ascii?Q?2YnvTtzCIkGXfpmu1Wys/vHHKiMpyfTIbycxn/fsvUholxQL4E0fhnI4aRIB?=
+ =?us-ascii?Q?6ltKSNLeA+wUVcdYJFedul/m0ZCGuZz9rC/+2dKUfJs1gLn8R2/sIJjsA+u9?=
+ =?us-ascii?Q?GrakEqk2KV458EMUmCcgbd0HywrgcjrB6PpjX3KhT+TnjGzn+uvj6tk1GP9E?=
+ =?us-ascii?Q?+kfgSEpQqxbkQ1kEhKHC1ZqE5VmKnSGqTBpQtz61KbaL/w9SIe39q26iRImu?=
+ =?us-ascii?Q?pj4Z6cqRWv0BgftyU6hJJc6XxBrHiYGhG8JperyrprsYhTMR7BGAEzR1GYZ1?=
+ =?us-ascii?Q?XnR0joLdedWTKwlY4mtrcpLAV5TK3qTgbmls7wWgw9NxdwdCmrmR8YHpUsiA?=
+ =?us-ascii?Q?qC7Ake50QpCJa+HHkiM/QFh0CZiZKxB+ywAofAS7S1wt7CZnUvoH+O9ma70Y?=
+ =?us-ascii?Q?pOmS2v92TagqZfKtbMZ0fZaJwRtaDDCWV4RohdzuxZbEFAHNScukVF9Ry8KF?=
+ =?us-ascii?Q?AC5F0p8UHBMFeUUb3gjU0pNkoujGo+rQy4Y3vpx/I/A6ZAyoNRZEdaeDBdOf?=
+ =?us-ascii?Q?/DPOW8S18pG23SJmAyq+hzXFXUeYZiD40EhyMZk+KM80cmVS+eIQ9XmSIjpM?=
+ =?us-ascii?Q?cvXkBTzESLD0h3Ij0+WvtS09jIf99U1oYvUm3ADOb3dW2ZcjcUxsiqbip19d?=
+ =?us-ascii?Q?uaNNIN+ODIgULI5cjPW5LE3FRzOhyizt3Gm+pTk5XBG38BzKBSm7jRlnAFDw?=
+ =?us-ascii?Q?NrgN+ozFKjELXewj7r5dXCmaNoLVFX324noSwHk5CgU8E0Ej9QRoTsvqyokd?=
+ =?us-ascii?Q?XK/PposaopwYh5k731lwz6OLVEEALSq4C6nYI62dKdUgJiQgmEHeAKhRgjdg?=
+ =?us-ascii?Q?jL0B2w2Jmb62zYn7D3z0NPzhbpQfz3s7dCldfmLYTCulxHEkqPvFdNlmSy0B?=
+ =?us-ascii?Q?W/O9ErHsGZx67BsRtgrHiUVEegSnTuPKWKAWazRb7iRS6Om2sMJrdr6ajTSC?=
+ =?us-ascii?Q?44DXP7M+w+SfWUuXFG9bHFGmZw48TKFN7JDyuxPYm/PadqeTAsap5FKCUDUF?=
+ =?us-ascii?Q?qbModbqAMMvOoIx/pga+aY3ftJvqWKnzTjTXpm4DSiSesQzPGketMcyepA/t?=
+ =?us-ascii?Q?Hzve0EgA74Hn7BRtiaPn45nSxccz3+OGyJXfMoMdJqvetsHqqEwzRnMWNxyv?=
+ =?us-ascii?Q?Jy04+cdMRk4Ef46gqY0dj+SjhRZ7ULFIJlqc/jKh6Rd9tQYVdDbFUAjA5OeY?=
+ =?us-ascii?Q?4AJCjIV51RcoygahL9AZpUi/Ne0kz11wmD4pezTVoUAv1nm5pLh7eQ2UVu6e?=
+ =?us-ascii?Q?WmcqFHBlNJ2ehO8CngJcIb7LlFrQPTBD3REgElPTMziAxjw35S9gJAgN8YRu?=
+ =?us-ascii?Q?8hxBRCXBUom57DquBC0aQQ7M1uUe3W9KMTBmhHd6edTXkWIe6HMo19lzDPdk?=
+ =?us-ascii?Q?0Q=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2513d767-eef2-4609-59c7-08dd5d913832
+X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Mar 2025 15:57:12.5042 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Mar 2025 16:00:45.4371 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: REpbCNkdtfJPHZuvTFF6Maf+JByqAcg2jDxZapG2x3sR9LwrmRDDC4fWYOs6vzLk7UflZLEhZ46YOcuAxmfRQn5MmDwgyrSrodTDVUtLfC0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7370
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7WWCwv2/BQeXdcyjcUI05We5lZoCXItdVSPoEhEe2Ld5372h7TxFglqPwlgNhivNVNlDG9NI1CCZb8sK1vTwUg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB8205
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -177,279 +177,249 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Mar 07, 2025 at 12:00:14PM +0000, Tvrtko Ursulin wrote:
->
->On 07/03/2025 04:00, Lucas De Marchi wrote:
->>There's a mismatch on API: while xe_rtp_process_to_sr() processes
->>entries until an entry without name, the active tracking with
->>xe_rtp_process_ctx_enable_active_tracking() needs to use the number of
->>elements. The number of elements is taken everywhere using ARRAY_SIZE(),
->>but that will have one entry too many. This leads to the following
->>warning, as reported by lkp:
->>
->>    drivers/gpu/drm/xe/xe_tuning.c: In function 'xe_tuning_dump':
->>>>include/drm/drm_print.h:228:31: warning: '%s' directive argument is null [-Wformat-overflow=]
->>      228 |         drm_printf((printer), "%.*s" fmt, (indent), "\t\t\t\t\tX", ##__VA_ARGS__)
->>          |                               ^~~~~~
->>    drivers/gpu/drm/xe/xe_tuning.c:226:17: note: in expansion of macro 'drm_printf_indent'
->>      226 |                 drm_printf_indent(p, 1, "%s\n", engine_tunings[idx].name);
->>          |                 ^~~~~~~~~~~~~~~~~
->>
->>That's because it will still process the last entry when tracking the
->>active tunings. The same issue exists in the WAs. Change
->>xe_rtp_process_to_sr() to also take the number of elements so the empty
->>entry can be removed and the warning should go away. Fixing on the
->>active-tracking side would more fragile as the it would need a `- 1`
->>everywhere and continue to use a different approach for number of
->>elements.
->
->Patch looks fine, and dropping the terminators is good. But I can't 
->say I understand the warning. How it will process the last entry if 
->entry->name is NULL? Hence bitmap will not have the bit set, hence the 
->dump cannot iterate over it. I must be missing something, I wanted to 
->say obvious, but I hope it really isn't. :))
+On Fri, Mar 07, 2025 at 03:35:39PM +0000, Cavitt, Jonathan wrote:
+> -----Original Message-----
+> From: Vivi, Rodrigo <rodrigo.vivi@intel.com> 
+> Sent: Thursday, March 6, 2025 3:39 PM
+> To: intel-xe@lists.freedesktop.org
+> Cc: Vivi, Rodrigo <rodrigo.vivi@intel.com>; Belgaumkar, Vinay <vinay.belgaumkar@intel.com>; Cavitt, Jonathan <jonathan.cavitt@intel.com>; Harrison, John C <john.c.harrison@intel.com>
+> Subject: [PATCH] drm/xe/guc_pc: Retry and wait longer for GuC PC start
+> > 
+> > In a rare situation of thermal limit during resume, GuC can
+> > be slow and run into delays like this:
+> > 
+> > xe 0000:00:02.0: [drm] GT1: excessive init time: 667ms! \
+> >    		 [status = 0x8002F034, timeouts = 0]
+> > xe 0000:00:02.0: [drm] GT1: excessive init time: \
+> >    		 [freq = 100MHz (req = 800MHz), before = 100MHz, \
+> >    		 perf_limit_reasons = 0x1C001000]
+> > xe 0000:00:02.0: [drm] *ERROR* GT1: GuC PC Start failed
+> > ------------[ cut here ]------------
+> > xe 0000:00:02.0: [drm] GT1: Failed to start GuC PC: -EIO
+> > 
+> > When this happens, it will block entirely the GPU to be used.
+> > So, let's try and with a huge timeout in the hope it comes back.
+> > 
+> > Also, let's collect some information on how long it is usually
+> > taking on situations like this, so perhaps the time can be tuned
+> > later.
+> > 
+> > Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+> > Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> > Cc: John Harrison <John.C.Harrison@Intel.com>
+> > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> 
+> s/rought/roughly for the comment next to SLPC_RESET_TIMEOUT_MS.
+> There are also two nits below, but nothing blocking.
 
-yeah... I could reproduce it only with the compiler provided by 0day,
-for microblaze arch. Even the same gcc version for x86 didn't reproduce
-it.
+will change, thank you
 
->
->Regards,
->
->Tvrtko
->
->>Aside from the warning, it's a non-issue as there would always be enough
->>bits allocated and the last entry would never be active since
->>xe_rtp_process_to_sr() stops on the sentinel.
+> Otherwise:
+> Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> 
+> > ---
+> >  drivers/gpu/drm/xe/xe_guc_pc.c | 53 +++++++++++++++++++++++++---------
+> >  1 file changed, 40 insertions(+), 13 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+> > index 25040efa043f..ec39a8f2781f 100644
+> > --- a/drivers/gpu/drm/xe/xe_guc_pc.c
+> > +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+> > @@ -6,6 +6,7 @@
+> >  #include "xe_guc_pc.h"
+> >  
+> >  #include <linux/delay.h>
+> > +#include <linux/ktime.h>
+> >  
+> >  #include <drm/drm_managed.h>
+> >  #include <drm/drm_print.h>
+> > @@ -20,6 +21,7 @@
+> >  #include "xe_gt.h"
+> >  #include "xe_gt_idle.h"
+> >  #include "xe_gt_printk.h"
+> > +#include "xe_gt_throttle.h"
+> >  #include "xe_gt_types.h"
+> >  #include "xe_guc.h"
+> >  #include "xe_guc_ct.h"
+> > @@ -50,6 +52,9 @@
+> >  #define LNL_MERT_FREQ_CAP	800
+> >  #define BMG_MERT_FREQ_CAP	2133
+> >  
+> > +#define SLPC_RESET_TIMEOUT_MS 5 /* rought 5ms, but no need for precision */
+> > +#define SLPC_RESET_EXTENDED_TIMEOUT_MS 1000 /* To be used only at pc_start */
+> > +
+> >  /**
+> >   * DOC: GuC Power Conservation (PC)
+> >   *
+> > @@ -114,9 +119,10 @@ static struct iosys_map *pc_to_maps(struct xe_guc_pc *pc)
+> >  	 FIELD_PREP(HOST2GUC_PC_SLPC_REQUEST_MSG_1_EVENT_ARGC, count))
+> >  
+> >  static int wait_for_pc_state(struct xe_guc_pc *pc,
+> > -			     enum slpc_global_state state)
+> > +			     enum slpc_global_state state,
+> > +			     int timeout_ms)
+> >  {
+> 
+> NIT:
+> If we're only planning on having two timeout times, and one of them is only
+> used once, maybe we should instead provide information about which case
+> to use, rather than providing the full timeout to the wait_for_pc_state
+> function?  I suspect that there isn't enough information in the xe_guc_pc
+> at the time to determine which case to use, so maybe we can just provide
+> a flag here to select the timeout instead.  Something like:
+> 
+> """
+> #define SLPC_EXTENDED_TIMEOUT	BIT(1)
+> ...
+> static int wait_for_pc_state(struct xe_guc_pc *pc,
+> 			     enum slpc_global_state state,
+> 			     int flags)
+> {
+> 	/**
+> 	 * Wait 5 ms in the base case, or 1 second on extended timeout.
+> 	 * No need to be precise here, though.
+> 	 */
+> 	int timeout_us = 1000;
+> 	timeout_us *= flag & SLPC_EXTENDED_TIMEOUT ?
+> 			5 : 1000;
+> ...
+> 	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING, 0))
+> ...
+> 		if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING,
+> 				SLPC_EXTENDED_TIMEOUT)) {
+> """
+> Either way works, though using flags instead might be more extensible.  On the
+> other hand, it's rather unlikely that we'll need to pass more options to this
+> function in the near to distant future, so keeping it as is would also be fine.
 
-^ this paragraph tries to explain why it's harmless, which made me not
-even add a Fixes trailer. Indeed xe_rtp_process_to_sr() will never
-process it, hence the bit will never be set. The I can see is that later
-when we are dumping, we are using for_each_bit_set(), passing as max the
-bit related to the empty entry. So maybe there's a diff in bitops for
-that arch that makes the compiler **think** the last element could be
-accessed. The alternative fix I started was to pass `ARRAY_SIZE(...) - 1`
-in the for_each_bit_set(). But that looked ugly.
+I thought about that, but the problem with that is that most of the callers
+are calling with '0', then you need to read the function definition to
+see the meaning, while in the current way it is obvious to any reader at
+first sight.  A similar problem with the bool paramenters.
 
-Note that it's a build time warning - if that really happens in runtime
-there's probably something terribly broken with that arch.
+> 
+> > -	int timeout_us = 5000; /* rought 5ms, but no need for precision */
+> > +	int timeout_us = 1000 * timeout_ms;
+> >  	int slept, wait = 10;
+> >  
+> >  	xe_device_assert_mem_access(pc_to_xe(pc));
+> > @@ -165,7 +171,8 @@ static int pc_action_query_task_state(struct xe_guc_pc *pc)
+> >  	};
+> >  	int ret;
+> >  
+> > -	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING))
+> > +	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING,
+> > +			      SLPC_RESET_TIMEOUT_MS))
+> >  		return -EAGAIN;
+> >  
+> >  	/* Blocking here to ensure the results are ready before reading them */
+> > @@ -188,7 +195,8 @@ static int pc_action_set_param(struct xe_guc_pc *pc, u8 id, u32 value)
+> >  	};
+> >  	int ret;
+> >  
+> > -	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING))
+> > +	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING,
+> > +			      SLPC_RESET_TIMEOUT_MS))
+> >  		return -EAGAIN;
+> >  
+> >  	ret = xe_guc_ct_send(ct, action, ARRAY_SIZE(action), 0, 0);
+> > @@ -209,7 +217,8 @@ static int pc_action_unset_param(struct xe_guc_pc *pc, u8 id)
+> >  	struct xe_guc_ct *ct = &pc_to_guc(pc)->ct;
+> >  	int ret;
+> >  
+> > -	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING))
+> > +	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING,
+> > +			      SLPC_RESET_TIMEOUT_MS))
+> >  		return -EAGAIN;
+> >  
+> >  	ret = xe_guc_ct_send(ct, action, ARRAY_SIZE(action), 0, 0);
+> > @@ -443,6 +452,15 @@ u32 xe_guc_pc_get_act_freq(struct xe_guc_pc *pc)
+> >  	return freq;
+> >  }
+> >  
+> > +static u32 get_cur_freq(struct xe_gt *gt)
+> > +{
+> > +	u32 freq;
+> > +
+> > +	freq = xe_mmio_read32(&gt->mmio, RPNSWREQ);
+> > +	freq = REG_FIELD_GET(REQ_RATIO_MASK, freq);
+> > +	return decode_freq(freq);
+> > +}
+> 
+> NIT:
+> Creating this helper function seems unrelated to this patch
+> and should probably be split into a separate one.  If you
+> decide to split this into a separate patch without any
+> additional changes, you can preemptively add my
+> Reviewed-by to that patch as well.
 
-Lucas De Marchi
+I also had the same feeling when I was reading this patch again
+before sending it out. But then I realized again that it is like
+this so the forcewake doesn't need to be duplicated. And the
+only second user of this function comes in this patch below, so
+if split in another patch it would be a silly patch moving just
+the 3 lines out to another function that is used once, so I kept it.
 
->>
->>Reported-by: kernel test robot <lkp@intel.com>
->>Closes: https://lore.kernel.org/oe-kbuild-all/202503021906.P2MwAvyK-lkp@intel.com/
->>Cc: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->>---
->>  drivers/gpu/drm/xe/tests/xe_rtp_test.c |  2 +-
->>  drivers/gpu/drm/xe/xe_hw_engine.c      |  6 ++----
->>  drivers/gpu/drm/xe/xe_reg_whitelist.c  |  4 ++--
->>  drivers/gpu/drm/xe/xe_rtp.c            |  6 +++++-
->>  drivers/gpu/drm/xe/xe_rtp.h            |  2 +-
->>  drivers/gpu/drm/xe/xe_tuning.c         | 12 ++++--------
->>  drivers/gpu/drm/xe/xe_wa.c             | 12 +++---------
->>  7 files changed, 18 insertions(+), 26 deletions(-)
->>
->>diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_test.c b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
->>index 36a3b5420fef6a1977a04d169d4946f75ee523c4..b0254b014fe45013aa0c5b3fbbe7a58fe8584a31 100644
->>--- a/drivers/gpu/drm/xe/tests/xe_rtp_test.c
->>+++ b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
->>@@ -320,7 +320,7 @@ static void xe_rtp_process_to_sr_tests(struct kunit *test)
->>  		count_rtp_entries++;
->>  	xe_rtp_process_ctx_enable_active_tracking(&ctx, &active, count_rtp_entries);
->>-	xe_rtp_process_to_sr(&ctx, param->entries, reg_sr);
->>+	xe_rtp_process_to_sr(&ctx, param->entries, count_rtp_entries, reg_sr);
->>  	xa_for_each(&reg_sr->xa, idx, sre) {
->>  		if (idx == param->expected_reg.addr)
->>diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
->>index fc447751fe786c0035d888047a856780a572e526..223b95de388cb8919a7d1ab52e1305be990672ad 100644
->>--- a/drivers/gpu/drm/xe/xe_hw_engine.c
->>+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
->>@@ -400,10 +400,9 @@ xe_hw_engine_setup_default_lrc_state(struct xe_hw_engine *hwe)
->>  					   PREEMPT_GPGPU_THREAD_GROUP_LEVEL)),
->>  		  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE)
->>  		},
->>-		{}
->>  	};
->>-	xe_rtp_process_to_sr(&ctx, lrc_setup, &hwe->reg_lrc);
->>+	xe_rtp_process_to_sr(&ctx, lrc_setup, ARRAY_SIZE(lrc_setup), &hwe->reg_lrc);
->>  }
->>  static void
->>@@ -459,10 +458,9 @@ hw_engine_setup_default_state(struct xe_hw_engine *hwe)
->>  		  XE_RTP_ACTIONS(SET(CSFE_CHICKEN1(0), CS_PRIORITY_MEM_READ,
->>  				     XE_RTP_ACTION_FLAG(ENGINE_BASE)))
->>  		},
->>-		{}
->>  	};
->>-	xe_rtp_process_to_sr(&ctx, engine_entries, &hwe->reg_sr);
->>+	xe_rtp_process_to_sr(&ctx, engine_entries, ARRAY_SIZE(engine_entries), &hwe->reg_sr);
->>  }
->>  static const struct engine_info *find_engine_info(enum xe_engine_class class, int instance)
->>diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
->>index edab5d4e3ba5e7708565f8bc51df50c0b4a46f39..23f6c81d99946f97413e411289116aaa10365f3f 100644
->>--- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
->>+++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
->>@@ -88,7 +88,6 @@ static const struct xe_rtp_entry_sr register_whitelist[] = {
->>  				   RING_FORCE_TO_NONPRIV_ACCESS_RD |
->>  				   RING_FORCE_TO_NONPRIV_RANGE_4))
->>  	},
->>-	{}
->>  };
->>  static void whitelist_apply_to_hwe(struct xe_hw_engine *hwe)
->>@@ -137,7 +136,8 @@ void xe_reg_whitelist_process_engine(struct xe_hw_engine *hwe)
->>  {
->>  	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
->>-	xe_rtp_process_to_sr(&ctx, register_whitelist, &hwe->reg_whitelist);
->>+	xe_rtp_process_to_sr(&ctx, register_whitelist, ARRAY_SIZE(register_whitelist),
->>+			     &hwe->reg_whitelist);
->>  	whitelist_apply_to_hwe(hwe);
->>  }
->>diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
->>index 7a1c78fdfc92ee9a7e8862c2a65ce99b1f2a5ff1..13bb62d3e615e89d1e996692732b1859561ac55e 100644
->>--- a/drivers/gpu/drm/xe/xe_rtp.c
->>+++ b/drivers/gpu/drm/xe/xe_rtp.c
->>@@ -237,6 +237,7 @@ static void rtp_mark_active(struct xe_device *xe,
->>   *                        the save-restore argument.
->>   * @ctx: The context for processing the table, with one of device, gt or hwe
->>   * @entries: Table with RTP definitions
->>+ * @n_entries: Number of entries to process, usually ARRAY_SIZE(entries)
->>   * @sr: Save-restore struct where matching rules execute the action. This can be
->>   *      viewed as the "coalesced view" of multiple the tables. The bits for each
->>   *      register set are expected not to collide with previously added entries
->>@@ -247,6 +248,7 @@ static void rtp_mark_active(struct xe_device *xe,
->>   */
->>  void xe_rtp_process_to_sr(struct xe_rtp_process_ctx *ctx,
->>  			  const struct xe_rtp_entry_sr *entries,
->>+			  size_t n_entries,
->>  			  struct xe_reg_sr *sr)
->>  {
->>  	const struct xe_rtp_entry_sr *entry;
->>@@ -259,7 +261,9 @@ void xe_rtp_process_to_sr(struct xe_rtp_process_ctx *ctx,
->>  	if (IS_SRIOV_VF(xe))
->>  		return;
->>-	for (entry = entries; entry && entry->name; entry++) {
->>+	xe_assert(xe, entries);
->>+
->>+	for (entry = entries; entry - entries < n_entries; entry++) {
->>  		bool match = false;
->>  		if (entry->flags & XE_RTP_ENTRY_FLAG_FOREACH_ENGINE) {
->>diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
->>index 38b9f13bba5e54f9c6e863bb578c00fce7a8c452..4fe736a11c42b954c2256fa21a49b0c2e39901e2 100644
->>--- a/drivers/gpu/drm/xe/xe_rtp.h
->>+++ b/drivers/gpu/drm/xe/xe_rtp.h
->>@@ -430,7 +430,7 @@ void xe_rtp_process_ctx_enable_active_tracking(struct xe_rtp_process_ctx *ctx,
->>  void xe_rtp_process_to_sr(struct xe_rtp_process_ctx *ctx,
->>  			  const struct xe_rtp_entry_sr *entries,
->>-			  struct xe_reg_sr *sr);
->>+			  size_t n_entries, struct xe_reg_sr *sr);
->>  void xe_rtp_process(struct xe_rtp_process_ctx *ctx,
->>  		    const struct xe_rtp_entry *entries);
->>diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
->>index 77bc958f5a42cd017d3c363825dfd05cd73f872e..49ddbda7cdef66da49469b687b2296cc2d00b283 100644
->>--- a/drivers/gpu/drm/xe/xe_tuning.c
->>+++ b/drivers/gpu/drm/xe/xe_tuning.c
->>@@ -85,8 +85,6 @@ static const struct xe_rtp_entry_sr gt_tunings[] = {
->>  	  XE_RTP_RULES(MEDIA_VERSION(2000)),
->>  	  XE_RTP_ACTIONS(SET(XE2LPM_SCRATCH3_LBCF, RWFLUSHALLEN))
->>  	},
->>-
->>-	{}
->>  };
->>  static const struct xe_rtp_entry_sr engine_tunings[] = {
->>@@ -100,7 +98,6 @@ static const struct xe_rtp_entry_sr engine_tunings[] = {
->>  		       ENGINE_CLASS(RENDER)),
->>  	  XE_RTP_ACTIONS(SET(SAMPLER_MODE, INDIRECT_STATE_BASE_ADDR_OVERRIDE))
->>  	},
->>-	{}
->>  };
->>  static const struct xe_rtp_entry_sr lrc_tunings[] = {
->>@@ -138,8 +135,6 @@ static const struct xe_rtp_entry_sr lrc_tunings[] = {
->>  	  XE_RTP_ACTIONS(FIELD_SET(FF_MODE, VS_HIT_MAX_VALUE_MASK,
->>  				   REG_FIELD_PREP(VS_HIT_MAX_VALUE_MASK, 0x3f)))
->>  	},
->>-
->>-	{}
->>  };
->>  /**
->>@@ -180,7 +175,7 @@ void xe_tuning_process_gt(struct xe_gt *gt)
->>  	xe_rtp_process_ctx_enable_active_tracking(&ctx,
->>  						  gt->tuning_active.gt,
->>  						  ARRAY_SIZE(gt_tunings));
->>-	xe_rtp_process_to_sr(&ctx, gt_tunings, &gt->reg_sr);
->>+	xe_rtp_process_to_sr(&ctx, gt_tunings, ARRAY_SIZE(gt_tunings), &gt->reg_sr);
->>  }
->>  EXPORT_SYMBOL_IF_KUNIT(xe_tuning_process_gt);
->>@@ -191,7 +186,8 @@ void xe_tuning_process_engine(struct xe_hw_engine *hwe)
->>  	xe_rtp_process_ctx_enable_active_tracking(&ctx,
->>  						  hwe->gt->tuning_active.engine,
->>  						  ARRAY_SIZE(engine_tunings));
->>-	xe_rtp_process_to_sr(&ctx, engine_tunings, &hwe->reg_sr);
->>+	xe_rtp_process_to_sr(&ctx, engine_tunings, ARRAY_SIZE(engine_tunings),
->>+			     &hwe->reg_sr);
->>  }
->>  EXPORT_SYMBOL_IF_KUNIT(xe_tuning_process_engine);
->>@@ -210,7 +206,7 @@ void xe_tuning_process_lrc(struct xe_hw_engine *hwe)
->>  	xe_rtp_process_ctx_enable_active_tracking(&ctx,
->>  						  hwe->gt->tuning_active.lrc,
->>  						  ARRAY_SIZE(lrc_tunings));
->>-	xe_rtp_process_to_sr(&ctx, lrc_tunings, &hwe->reg_lrc);
->>+	xe_rtp_process_to_sr(&ctx, lrc_tunings, ARRAY_SIZE(lrc_tunings), &hwe->reg_lrc);
->>  }
->>  void xe_tuning_dump(struct xe_gt *gt, struct drm_printer *p)
->>diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
->>index 55eb453f4b1fb39d4127609a28e4a5ebe9b5a051..a25afb757f7088c7f831867717b42982e9ea754c 100644
->>--- a/drivers/gpu/drm/xe/xe_wa.c
->>+++ b/drivers/gpu/drm/xe/xe_wa.c
->>@@ -279,8 +279,6 @@ static const struct xe_rtp_entry_sr gt_was[] = {
->>  	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F10(0), RAMDFTUNIT_CLKGATE_DIS)),
->>  	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE),
->>  	},
->>-
->>-	{}
->>  };
->>  static const struct xe_rtp_entry_sr engine_was[] = {
->>@@ -624,8 +622,6 @@ static const struct xe_rtp_entry_sr engine_was[] = {
->>  		       FUNC(xe_rtp_match_first_render_or_compute)),
->>  	  XE_RTP_ACTIONS(SET(TDL_TSL_CHICKEN, RES_CHK_SPR_DIS))
->>  	},
->>-
->>-	{}
->>  };
->>  static const struct xe_rtp_entry_sr lrc_was[] = {
->>@@ -825,8 +821,6 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
->>  			     DIS_PARTIAL_AUTOSTRIP |
->>  			     DIS_AUTOSTRIP))
->>  	},
->>-
->>-	{}
->>  };
->>  static __maybe_unused const struct xe_rtp_entry oob_was[] = {
->>@@ -868,7 +862,7 @@ void xe_wa_process_gt(struct xe_gt *gt)
->>  	xe_rtp_process_ctx_enable_active_tracking(&ctx, gt->wa_active.gt,
->>  						  ARRAY_SIZE(gt_was));
->>-	xe_rtp_process_to_sr(&ctx, gt_was, &gt->reg_sr);
->>+	xe_rtp_process_to_sr(&ctx, gt_was, ARRAY_SIZE(gt_was), &gt->reg_sr);
->>  }
->>  EXPORT_SYMBOL_IF_KUNIT(xe_wa_process_gt);
->>@@ -886,7 +880,7 @@ void xe_wa_process_engine(struct xe_hw_engine *hwe)
->>  	xe_rtp_process_ctx_enable_active_tracking(&ctx, hwe->gt->wa_active.engine,
->>  						  ARRAY_SIZE(engine_was));
->>-	xe_rtp_process_to_sr(&ctx, engine_was, &hwe->reg_sr);
->>+	xe_rtp_process_to_sr(&ctx, engine_was, ARRAY_SIZE(engine_was), &hwe->reg_sr);
->>  }
->>  /**
->>@@ -903,7 +897,7 @@ void xe_wa_process_lrc(struct xe_hw_engine *hwe)
->>  	xe_rtp_process_ctx_enable_active_tracking(&ctx, hwe->gt->wa_active.lrc,
->>  						  ARRAY_SIZE(lrc_was));
->>-	xe_rtp_process_to_sr(&ctx, lrc_was, &hwe->reg_lrc);
->>+	xe_rtp_process_to_sr(&ctx, lrc_was, ARRAY_SIZE(lrc_was), &hwe->reg_lrc);
->>  }
->>  /**
->>
->>---
->>base-commit: 6f2e5afc45e3ca8bf46427ae21a9c1029ea6cdb3
->>change-id: 20250306-fix-print-warning-43d20fc31309
->>
->>Best regards,
->
+Thank you so much,
+Rodrigo.
+
+> -Jonathan Cavitt
+> 
+> > +
+> >  /**
+> >   * xe_guc_pc_get_cur_freq - Get Current requested frequency
+> >   * @pc: The GuC PC
+> > @@ -466,10 +484,7 @@ int xe_guc_pc_get_cur_freq(struct xe_guc_pc *pc, u32 *freq)
+> >  		return -ETIMEDOUT;
+> >  	}
+> >  
+> > -	*freq = xe_mmio_read32(&gt->mmio, RPNSWREQ);
+> > -
+> > -	*freq = REG_FIELD_GET(REQ_RATIO_MASK, *freq);
+> > -	*freq = decode_freq(*freq);
+> > +	*freq = get_cur_freq(gt);
+> >  
+> >  	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+> >  	return 0;
+> > @@ -1016,6 +1031,7 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
+> >  	struct xe_gt *gt = pc_to_gt(pc);
+> >  	u32 size = PAGE_ALIGN(sizeof(struct slpc_shared_data));
+> >  	unsigned int fw_ref;
+> > +	ktime_t earlier;
+> >  	int ret;
+> >  
+> >  	xe_gt_assert(gt, xe_device_uc_enabled(xe));
+> > @@ -1040,14 +1056,25 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
+> >  	memset(pc->bo->vmap.vaddr, 0, size);
+> >  	slpc_shared_data_write(pc, header.size, size);
+> >  
+> > +	earlier = ktime_get();
+> >  	ret = pc_action_reset(pc);
+> >  	if (ret)
+> >  		goto out;
+> >  
+> > -	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING)) {
+> > -		xe_gt_err(gt, "GuC PC Start failed\n");
+> > -		ret = -EIO;
+> > -		goto out;
+> > +	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING,
+> > +			      SLPC_RESET_TIMEOUT_MS)) {
+> > +		xe_gt_warn(gt, "GuC PC start taking longer than normal [freq = %dMHz (req = %dMHz), perf_limit_reasons = 0x%08X]\n",
+> > +			   xe_guc_pc_get_act_freq(pc), get_cur_freq(gt),
+> > +			   xe_gt_throttle_get_limit_reasons(gt));
+> > +
+> > +		if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING,
+> > +				      SLPC_RESET_EXTENDED_TIMEOUT_MS)) {
+> > +			xe_gt_err(gt, "GuC PC Start failed: Dynamic GT frequency control and GT sleep states are now disabled.\n");
+> > +			goto out;
+> > +		}
+> > +
+> > +		xe_gt_warn(gt, "GuC PC excessive start time: %lldms",
+> > +			   ktime_ms_delta(ktime_get(), earlier));
+> >  	}
+> >  
+> >  	ret = pc_init_freqs(pc);
+> > -- 
+> > 2.48.1
+> > 
+> > 
