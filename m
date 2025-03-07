@@ -4,39 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E25CC282DE
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 14:12:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76D58C28B26
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 14:12:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E32D10EBB8;
-	Fri,  7 Mar 2025 14:12:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B8B110EBBB;
+	Fri,  7 Mar 2025 14:12:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ldKGQrHC";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="IjnrdN7s";
 	dkim-atps=neutral
 Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F21410EAC2;
- Fri,  7 Mar 2025 04:35:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59E6C10EAC0;
+ Fri,  7 Mar 2025 04:35:09 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 1E0E8A454AD;
- Fri,  7 Mar 2025 04:30:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5266C4CEE9;
- Fri,  7 Mar 2025 04:35:36 +0000 (UTC)
+ by nyc.source.kernel.org (Postfix) with ESMTP id A7B20A4545F;
+ Fri,  7 Mar 2025 04:29:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BEECC4CEE9;
+ Fri,  7 Mar 2025 04:35:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1741322143;
- bh=KL01593/zSX4Xb5hwQBCHJDAckIJ37QdEuF5jXeWgJ8=;
+ s=k20201202; t=1741322107;
+ bh=gspX4dBEXMpaPmLBXouzI8xhYC5KZPpuNksNsmhYL9E=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=ldKGQrHCCCBRKwxBBjQ7/sdDNo9UDRM9Wuk4aXL/VrX1QWc9XvIPKvuRu7T8kyCAz
- VsuiJ5Z/QO4QUG/SxMtNtVWspKFytYNeOOUuseFIIcKEjLRPpkwu52F1VYFZlqa56m
- OrYLW5UImkUOXbsCO4SoHXaXpWBZ9OzryLoqdNdE+5/ML0dQ1BAAlLBKviO/tTJaYR
- jxqjGGtrSgSehHdEfSUiUSvgH3PfvLnDO3FB5BZes2EDMGY5bNbdLJQyfuXQyGoUI8
- d6ANHFMxFlgYXjydA/YWUMQ8WjMow2EBF7RizBcdJkbLLh/+Y9cpyOs5M4b5Hd16iH
- z1UHTNk19h3Dw==
+ b=IjnrdN7s8LU2Aua8lLUfipIXbuBGRAeJEc2j3D2g9iDHY47Y0yWQClwVRgb/H2qZr
+ pWIAXS5ajGKKc7oilp5I7vqIz1LWPUfAMnCj78kk35vIjvnF7iJIKJo7rmMbgmLFEZ
+ 17G+G+uAy6hzbCdKA4uO5UbMypOSpiQjSPS9oMWAmC102dqZGpfesUgPUj0PRLACEd
+ wdWUpn30PqusT/r0ZRgSS2NfcGR6wWky3xbF0el1Mrs+GGlZOTkhqmEpnYeIeZDYqF
+ CCQoB5GKxMJry76AaWKg78tmxzHfcuNWKZ8awHtmuunwbj8HMvfcAktU6nd+7EEo17
+ iJsABBVL3lIYg==
 From: Dmitry Baryshkov <lumag@kernel.org>
-Date: Fri, 07 Mar 2025 06:34:49 +0200
-Subject: [PATCH RFC v3 7/7] drm/display: dp-tunnel: use new DCPD access helpers
+Date: Fri, 07 Mar 2025 06:34:44 +0200
+Subject: [PATCH RFC v3 2/7] drm/display: dp: change
+ drm_dp_dpcd_read_link_status() return value
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250307-drm-rework-dpcd-access-v3-7-9044a3a868ee@linaro.org>
+Message-Id: <20250307-drm-rework-dpcd-access-v3-2-9044a3a868ee@linaro.org>
 References: <20250307-drm-rework-dpcd-access-v3-0-9044a3a868ee@linaro.org>
 In-Reply-To: <20250307-drm-rework-dpcd-access-v3-0-9044a3a868ee@linaro.org>
 To: Lyude Paul <lyude@redhat.com>, 
@@ -61,16 +62,16 @@ Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  amd-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@intel.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4082;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=10575;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=AezDpTs9i2rYRC6AeDwZvqAV87zlWZZG2GdTd51PPFs=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBnyndm4YmJ13M13g50Hz9Sq+c+qDBc7tzhUsJZc
- 26viUPY20iJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZ8p3ZgAKCRCLPIo+Aiko
- 1X8sB/4888qcKk/8zGB7aMpCxYduTg4THzLpcYD8TWj2W/90FyWWaqO73ENLrgFchxmmyfbNS8a
- uDYKawkLTsjbg4Hf0lxnxHrxmcerpAVcQeOZO1haVm1oU2Uoytx/uWdHsaDk5Y8thUE6X67vXjl
- G+bTSCZk7ALEbOVQYznsizRJchJw5FrA9YoosnZARbCDWrcSLHrcWs1lgiKBFDw/FbgWSqB2jb7
- pqstTbcI6TmS3kiK0BjHUVuaVqtuwFf0lhzfJF0ECNE3rAeSFHqjo4lF8WI6n7iA1OXyZAOof+P
- mKnSCpQbwrKULU5PBolPo0HltA8pk1y+F5Gx/VcSbMJAyDI/
+ bh=5mH112/8EGrJiXQZ1eyfXM6K8dW32QmZj4g9Tl7eq2A=;
+ b=owGbwMvMwMXYbdNlx6SpcZXxtFoSQ/qp8tRE3cWm62x5PXTD3Ltqb6xtvPWqROurrkM+p0mcU
+ fSHnimdjMYsDIxcDLJiiiw+BS1TYzYlh33YMbUeZhArE8gUBi5OAZiI8yv2/8EbZ1yblbRYoGW2
+ nd1vLx+trNgjQlHFDw3WzWeXUJ2rzvjgVxTLp4Vp3y3LbfVz28VYvucf+7p92zeP/luKhUpvMk6
+ Zfz4880qJgfdbneP/XS1vL9qntv6X9zl7scVZbTxXbzq17Xc6eGd7nJ1j1sovO/mY2iZHb2W8pa
+ jxqMhkSl3v042vvi+dNqnQ7oyTRY221JGXibdkLZp3C02b46L5IGhamKOByvmU58dS+517q91FR
+ VLnG8UWm3fffD3BhDPKmMmQf8M5dvd63lNz1yTMtM4QFSiLZdm0xLHF+kU1a8vNK8kMKfLrp9o8
+ mnxfb5X9mr8Za3x5zRJC2JP1/JQvvY57UqzdVulclHkAAA==
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 X-Mailman-Approved-At: Fri, 07 Mar 2025 14:12:40 +0000
@@ -90,107 +91,253 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Switch drm_dp_tunnel.c to use new set of DPCD read / write helpers.
+drm_dp_dpcd_read_link_status() follows the "return error code or number
+of bytes read" protocol, with the code returning less bytes than
+requested in case of some errors. However most of the drivers
+interpreted that as "return error code in case of any error". Switch
+drm_dp_dpcd_read_link_status() to drm_dp_dpcd_read_data() and make it
+follow that protocol too.
 
-Reviewed-by: Lyude Paul <lyude@redhat.com>
 Acked-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/gpu/drm/display/drm_dp_tunnel.c | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/atombios_dp.c           |  8 ++++----
+ .../gpu/drm/bridge/cadence/cdns-mhdp8546-core.c    |  2 +-
+ drivers/gpu/drm/display/drm_dp_helper.c            |  7 +++----
+ drivers/gpu/drm/hisilicon/hibmc/dp/dp_link.c       |  4 ++--
+ drivers/gpu/drm/msm/dp/dp_ctrl.c                   | 24 +++++-----------------
+ drivers/gpu/drm/msm/dp/dp_link.c                   | 18 ++++++++--------
+ drivers/gpu/drm/radeon/atombios_dp.c               |  8 ++++----
+ 7 files changed, 28 insertions(+), 43 deletions(-)
 
-diff --git a/drivers/gpu/drm/display/drm_dp_tunnel.c b/drivers/gpu/drm/display/drm_dp_tunnel.c
-index 90fe07a89260e21e78f2db7f57a90602be921a11..076edf1610480275c62395334ab0536befa42f15 100644
---- a/drivers/gpu/drm/display/drm_dp_tunnel.c
-+++ b/drivers/gpu/drm/display/drm_dp_tunnel.c
-@@ -222,7 +222,7 @@ static int read_tunnel_regs(struct drm_dp_aux *aux, struct drm_dp_tunnel_regs *r
- 	while ((len = next_reg_area(&offset))) {
- 		int address = DP_TUNNELING_BASE + offset;
+diff --git a/drivers/gpu/drm/amd/amdgpu/atombios_dp.c b/drivers/gpu/drm/amd/amdgpu/atombios_dp.c
+index 521b9faab18059ed92ebb1dc9a9847e8426e7403..492813ab1b54197ba842075bc2909984c39bd5c1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/atombios_dp.c
++++ b/drivers/gpu/drm/amd/amdgpu/atombios_dp.c
+@@ -458,8 +458,8 @@ bool amdgpu_atombios_dp_needs_link_train(struct amdgpu_connector *amdgpu_connect
+ 	u8 link_status[DP_LINK_STATUS_SIZE];
+ 	struct amdgpu_connector_atom_dig *dig = amdgpu_connector->con_priv;
  
--		if (drm_dp_dpcd_read(aux, address, tunnel_reg_ptr(regs, address), len) < 0)
-+		if (drm_dp_dpcd_read_data(aux, address, tunnel_reg_ptr(regs, address), len) < 0)
- 			return -EIO;
+-	if (drm_dp_dpcd_read_link_status(&amdgpu_connector->ddc_bus->aux, link_status)
+-	    <= 0)
++	if (drm_dp_dpcd_read_link_status(&amdgpu_connector->ddc_bus->aux,
++					 link_status) < 0)
+ 		return false;
+ 	if (drm_dp_channel_eq_ok(link_status, dig->dp_lane_count))
+ 		return false;
+@@ -616,7 +616,7 @@ amdgpu_atombios_dp_link_train_cr(struct amdgpu_atombios_dp_link_train_info *dp_i
+ 		drm_dp_link_train_clock_recovery_delay(dp_info->aux, dp_info->dpcd);
  
- 		offset += len;
-@@ -913,7 +913,7 @@ static int set_bw_alloc_mode(struct drm_dp_tunnel *tunnel, bool enable)
- 	u8 mask = DP_DISPLAY_DRIVER_BW_ALLOCATION_MODE_ENABLE | DP_UNMASK_BW_ALLOCATION_IRQ;
- 	u8 val;
+ 		if (drm_dp_dpcd_read_link_status(dp_info->aux,
+-						 dp_info->link_status) <= 0) {
++						 dp_info->link_status) < 0) {
+ 			DRM_ERROR("displayport link status failed\n");
+ 			break;
+ 		}
+@@ -681,7 +681,7 @@ amdgpu_atombios_dp_link_train_ce(struct amdgpu_atombios_dp_link_train_info *dp_i
+ 		drm_dp_link_train_channel_eq_delay(dp_info->aux, dp_info->dpcd);
  
--	if (drm_dp_dpcd_readb(tunnel->aux, DP_DPTX_BW_ALLOCATION_MODE_CONTROL, &val) < 0)
-+	if (drm_dp_dpcd_read_byte(tunnel->aux, DP_DPTX_BW_ALLOCATION_MODE_CONTROL, &val) < 0)
- 		goto out_err;
- 
- 	if (enable)
-@@ -921,7 +921,7 @@ static int set_bw_alloc_mode(struct drm_dp_tunnel *tunnel, bool enable)
- 	else
- 		val &= ~mask;
- 
--	if (drm_dp_dpcd_writeb(tunnel->aux, DP_DPTX_BW_ALLOCATION_MODE_CONTROL, val) < 0)
-+	if (drm_dp_dpcd_write_byte(tunnel->aux, DP_DPTX_BW_ALLOCATION_MODE_CONTROL, val) < 0)
- 		goto out_err;
- 
- 	tunnel->bw_alloc_enabled = enable;
-@@ -1039,7 +1039,7 @@ static int clear_bw_req_state(struct drm_dp_aux *aux)
+ 		if (drm_dp_dpcd_read_link_status(dp_info->aux,
+-						 dp_info->link_status) <= 0) {
++						 dp_info->link_status) < 0) {
+ 			DRM_ERROR("displayport link status failed\n");
+ 			break;
+ 		}
+diff --git a/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c
+index 81fad14c2cd598045d989c7d51f292bafb92c144..8d5420a5b691180c4d051a450d5d3d869a558d1a 100644
+--- a/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c
++++ b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c
+@@ -2305,7 +2305,7 @@ static int cdns_mhdp_update_link_status(struct cdns_mhdp_device *mhdp)
+ 		 * If everything looks fine, just return, as we don't handle
+ 		 * DP IRQs.
+ 		 */
+-		if (ret > 0 &&
++		if (!ret &&
+ 		    drm_dp_channel_eq_ok(status, mhdp->link.num_lanes) &&
+ 		    drm_dp_clock_recovery_ok(status, mhdp->link.num_lanes))
+ 			goto out;
+diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
+index e43a8f4a252dae22eeaae1f4ca94da064303033d..410be0be233ad94702af423262a7d98e21afbfeb 100644
+--- a/drivers/gpu/drm/display/drm_dp_helper.c
++++ b/drivers/gpu/drm/display/drm_dp_helper.c
+@@ -778,14 +778,13 @@ EXPORT_SYMBOL(drm_dp_dpcd_write);
+  * @aux: DisplayPort AUX channel
+  * @status: buffer to store the link status in (must be at least 6 bytes)
+  *
+- * Returns the number of bytes transferred on success or a negative error
+- * code on failure.
++ * Returns a negative error code on failure or 0 on success.
+  */
+ int drm_dp_dpcd_read_link_status(struct drm_dp_aux *aux,
+ 				 u8 status[DP_LINK_STATUS_SIZE])
  {
- 	u8 bw_req_mask = DP_BW_REQUEST_SUCCEEDED | DP_BW_REQUEST_FAILED;
+-	return drm_dp_dpcd_read(aux, DP_LANE0_1_STATUS, status,
+-				DP_LINK_STATUS_SIZE);
++	return drm_dp_dpcd_read_data(aux, DP_LANE0_1_STATUS, status,
++				     DP_LINK_STATUS_SIZE);
+ }
+ EXPORT_SYMBOL(drm_dp_dpcd_read_link_status);
  
--	if (drm_dp_dpcd_writeb(aux, DP_TUNNELING_STATUS, bw_req_mask) < 0)
-+	if (drm_dp_dpcd_write_byte(aux, DP_TUNNELING_STATUS, bw_req_mask) < 0)
- 		return -EIO;
+diff --git a/drivers/gpu/drm/hisilicon/hibmc/dp/dp_link.c b/drivers/gpu/drm/hisilicon/hibmc/dp/dp_link.c
+index f6355c16cc0ab2e28408ab8a7246f4ca17710456..a3b78b0fd53ef854a54edf40fb333766da88f1c6 100644
+--- a/drivers/gpu/drm/hisilicon/hibmc/dp/dp_link.c
++++ b/drivers/gpu/drm/hisilicon/hibmc/dp/dp_link.c
+@@ -188,7 +188,7 @@ static int hibmc_dp_link_training_cr(struct hibmc_dp_dev *dp)
+ 		drm_dp_link_train_clock_recovery_delay(&dp->aux, dp->dpcd);
  
- 	return 0;
-@@ -1052,7 +1052,7 @@ static int bw_req_complete(struct drm_dp_aux *aux, bool *status_changed)
- 	u8 val;
- 	int err;
+ 		ret = drm_dp_dpcd_read_link_status(&dp->aux, lane_status);
+-		if (ret != DP_LINK_STATUS_SIZE) {
++		if (ret) {
+ 			drm_err(dp->dev, "Get lane status failed\n");
+ 			return ret;
+ 		}
+@@ -236,7 +236,7 @@ static int hibmc_dp_link_training_channel_eq(struct hibmc_dp_dev *dp)
+ 		drm_dp_link_train_channel_eq_delay(&dp->aux, dp->dpcd);
  
--	if (drm_dp_dpcd_readb(aux, DP_TUNNELING_STATUS, &val) < 0)
-+	if (drm_dp_dpcd_read_byte(aux, DP_TUNNELING_STATUS, &val) < 0)
- 		return -EIO;
+ 		ret = drm_dp_dpcd_read_link_status(&dp->aux, lane_status);
+-		if (ret != DP_LINK_STATUS_SIZE) {
++		if (ret) {
+ 			drm_err(dp->dev, "get lane status failed\n");
+ 			break;
+ 		}
+diff --git a/drivers/gpu/drm/msm/dp/dp_ctrl.c b/drivers/gpu/drm/msm/dp/dp_ctrl.c
+index d8633a596f8da88cc55f60de80bec8999ffb07c8..69a26bb5fabd1c3077573ad5a1183ee69cf3b8cd 100644
+--- a/drivers/gpu/drm/msm/dp/dp_ctrl.c
++++ b/drivers/gpu/drm/msm/dp/dp_ctrl.c
+@@ -1100,20 +1100,6 @@ static bool msm_dp_ctrl_train_pattern_set(struct msm_dp_ctrl_private *ctrl,
+ 	return ret == 1;
+ }
  
- 	*status_changed = val & status_change_mask;
-@@ -1095,7 +1095,7 @@ static int allocate_tunnel_bw(struct drm_dp_tunnel *tunnel, int bw)
- 	if (err)
- 		goto out;
+-static int msm_dp_ctrl_read_link_status(struct msm_dp_ctrl_private *ctrl,
+-				    u8 *link_status)
+-{
+-	int ret = 0, len;
+-
+-	len = drm_dp_dpcd_read_link_status(ctrl->aux, link_status);
+-	if (len != DP_LINK_STATUS_SIZE) {
+-		DRM_ERROR("DP link status read failed, err: %d\n", len);
+-		ret = -EINVAL;
+-	}
+-
+-	return ret;
+-}
+-
+ static int msm_dp_ctrl_link_train_1(struct msm_dp_ctrl_private *ctrl,
+ 			int *training_step)
+ {
+@@ -1140,7 +1126,7 @@ static int msm_dp_ctrl_link_train_1(struct msm_dp_ctrl_private *ctrl,
+ 	for (tries = 0; tries < maximum_retries; tries++) {
+ 		drm_dp_link_train_clock_recovery_delay(ctrl->aux, ctrl->panel->dpcd);
  
--	if (drm_dp_dpcd_writeb(tunnel->aux, DP_REQUEST_BW, request_bw) < 0) {
-+	if (drm_dp_dpcd_write_byte(tunnel->aux, DP_REQUEST_BW, request_bw) < 0) {
- 		err = -EIO;
- 		goto out;
+-		ret = msm_dp_ctrl_read_link_status(ctrl, link_status);
++		ret = drm_dp_dpcd_read_link_status(ctrl->aux, link_status);
+ 		if (ret)
+ 			return ret;
+ 
+@@ -1252,7 +1238,7 @@ static int msm_dp_ctrl_link_train_2(struct msm_dp_ctrl_private *ctrl,
+ 	for (tries = 0; tries <= maximum_retries; tries++) {
+ 		drm_dp_link_train_channel_eq_delay(ctrl->aux, ctrl->panel->dpcd);
+ 
+-		ret = msm_dp_ctrl_read_link_status(ctrl, link_status);
++		ret = drm_dp_dpcd_read_link_status(ctrl->aux, link_status);
+ 		if (ret)
+ 			return ret;
+ 
+@@ -1805,7 +1791,7 @@ static bool msm_dp_ctrl_channel_eq_ok(struct msm_dp_ctrl_private *ctrl)
+ 	u8 link_status[DP_LINK_STATUS_SIZE];
+ 	int num_lanes = ctrl->link->link_params.num_lanes;
+ 
+-	msm_dp_ctrl_read_link_status(ctrl, link_status);
++	drm_dp_dpcd_read_link_status(ctrl->aux, link_status);
+ 
+ 	return drm_dp_channel_eq_ok(link_status, num_lanes);
+ }
+@@ -1863,7 +1849,7 @@ int msm_dp_ctrl_on_link(struct msm_dp_ctrl *msm_dp_ctrl)
+ 			if (!msm_dp_catalog_link_is_connected(ctrl->catalog))
+ 				break;
+ 
+-			msm_dp_ctrl_read_link_status(ctrl, link_status);
++			drm_dp_dpcd_read_link_status(ctrl->aux, link_status);
+ 
+ 			rc = msm_dp_ctrl_link_rate_down_shift(ctrl);
+ 			if (rc < 0) { /* already in RBR = 1.6G */
+@@ -1888,7 +1874,7 @@ int msm_dp_ctrl_on_link(struct msm_dp_ctrl *msm_dp_ctrl)
+ 			if (!msm_dp_catalog_link_is_connected(ctrl->catalog))
+ 				break;
+ 
+-			msm_dp_ctrl_read_link_status(ctrl, link_status);
++			drm_dp_dpcd_read_link_status(ctrl->aux, link_status);
+ 
+ 			if (!drm_dp_clock_recovery_ok(link_status,
+ 					ctrl->link->link_params.num_lanes))
+diff --git a/drivers/gpu/drm/msm/dp/dp_link.c b/drivers/gpu/drm/msm/dp/dp_link.c
+index 1a1fbb2d7d4f2afcaace85d97b744d03017d37ce..92a9077959b3ec10c2a529db1a0e9fb3562aa5d3 100644
+--- a/drivers/gpu/drm/msm/dp/dp_link.c
++++ b/drivers/gpu/drm/msm/dp/dp_link.c
+@@ -714,21 +714,21 @@ static int msm_dp_link_parse_request(struct msm_dp_link_private *link)
+ 
+ static int msm_dp_link_parse_sink_status_field(struct msm_dp_link_private *link)
+ {
+-	int len;
++	int ret;
+ 
+ 	link->prev_sink_count = link->msm_dp_link.sink_count;
+-	len = drm_dp_read_sink_count(link->aux);
+-	if (len < 0) {
++	ret = drm_dp_read_sink_count(link->aux);
++	if (ret < 0) {
+ 		DRM_ERROR("DP parse sink count failed\n");
+-		return len;
++		return ret;
  	}
-@@ -1196,13 +1196,13 @@ static int check_and_clear_status_change(struct drm_dp_tunnel *tunnel)
- 	u8 mask = DP_BW_ALLOCATION_CAPABILITY_CHANGED | DP_ESTIMATED_BW_CHANGED;
- 	u8 val;
+-	link->msm_dp_link.sink_count = len;
++	link->msm_dp_link.sink_count = ret;
  
--	if (drm_dp_dpcd_readb(tunnel->aux, DP_TUNNELING_STATUS, &val) < 0)
-+	if (drm_dp_dpcd_read_byte(tunnel->aux, DP_TUNNELING_STATUS, &val) < 0)
- 		goto out_err;
+-	len = drm_dp_dpcd_read_link_status(link->aux,
+-		link->link_status);
+-	if (len < DP_LINK_STATUS_SIZE) {
++	ret = drm_dp_dpcd_read_link_status(link->aux,
++					   link->link_status);
++	if (ret < 0) {
+ 		DRM_ERROR("DP link status read failed\n");
+-		return len;
++		return ret;
+ 	}
  
- 	val &= mask;
+ 	return msm_dp_link_parse_request(link);
+diff --git a/drivers/gpu/drm/radeon/atombios_dp.c b/drivers/gpu/drm/radeon/atombios_dp.c
+index fa78824931cc428b1f9e23fe8f98867136ef9883..3f3c360dce4bcf2c87a6c7adbbf7a727a4f8eb4c 100644
+--- a/drivers/gpu/drm/radeon/atombios_dp.c
++++ b/drivers/gpu/drm/radeon/atombios_dp.c
+@@ -501,8 +501,8 @@ bool radeon_dp_needs_link_train(struct radeon_connector *radeon_connector)
+ 	u8 link_status[DP_LINK_STATUS_SIZE];
+ 	struct radeon_connector_atom_dig *dig = radeon_connector->con_priv;
  
- 	if (val) {
--		if (drm_dp_dpcd_writeb(tunnel->aux, DP_TUNNELING_STATUS, val) < 0)
-+		if (drm_dp_dpcd_write_byte(tunnel->aux, DP_TUNNELING_STATUS, val) < 0)
- 			goto out_err;
+-	if (drm_dp_dpcd_read_link_status(&radeon_connector->ddc_bus->aux, link_status)
+-	    <= 0)
++	if (drm_dp_dpcd_read_link_status(&radeon_connector->ddc_bus->aux,
++					 link_status) < 0)
+ 		return false;
+ 	if (drm_dp_channel_eq_ok(link_status, dig->dp_lane_count))
+ 		return false;
+@@ -678,7 +678,7 @@ static int radeon_dp_link_train_cr(struct radeon_dp_link_train_info *dp_info)
+ 		drm_dp_link_train_clock_recovery_delay(dp_info->aux, dp_info->dpcd);
  
- 		return 1;
-@@ -1215,7 +1215,7 @@ static int check_and_clear_status_change(struct drm_dp_tunnel *tunnel)
- 	 * Check for estimated BW changes explicitly to account for lost
- 	 * BW change notifications.
- 	 */
--	if (drm_dp_dpcd_readb(tunnel->aux, DP_ESTIMATED_BW, &val) < 0)
-+	if (drm_dp_dpcd_read_byte(tunnel->aux, DP_ESTIMATED_BW, &val) < 0)
- 		goto out_err;
+ 		if (drm_dp_dpcd_read_link_status(dp_info->aux,
+-						 dp_info->link_status) <= 0) {
++						 dp_info->link_status) < 0) {
+ 			DRM_ERROR("displayport link status failed\n");
+ 			break;
+ 		}
+@@ -741,7 +741,7 @@ static int radeon_dp_link_train_ce(struct radeon_dp_link_train_info *dp_info)
+ 		drm_dp_link_train_channel_eq_delay(dp_info->aux, dp_info->dpcd);
  
- 	if (val * tunnel->bw_granularity != tunnel->estimated_bw)
-@@ -1300,7 +1300,7 @@ int drm_dp_tunnel_handle_irq(struct drm_dp_tunnel_mgr *mgr, struct drm_dp_aux *a
- {
- 	u8 val;
- 
--	if (drm_dp_dpcd_readb(aux, DP_TUNNELING_STATUS, &val) < 0)
-+	if (drm_dp_dpcd_read_byte(aux, DP_TUNNELING_STATUS, &val) < 0)
- 		return -EIO;
- 
- 	if (val & (DP_BW_REQUEST_SUCCEEDED | DP_BW_REQUEST_FAILED))
+ 		if (drm_dp_dpcd_read_link_status(dp_info->aux,
+-						 dp_info->link_status) <= 0) {
++						 dp_info->link_status) < 0) {
+ 			DRM_ERROR("displayport link status failed\n");
+ 			break;
+ 		}
 
 -- 
 2.39.5
