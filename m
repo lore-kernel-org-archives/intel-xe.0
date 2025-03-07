@@ -4,56 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C278DC28B27
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 18:15:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6865AC28B27
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 18:29:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A0CF10E699;
-	Fri,  7 Mar 2025 18:15:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B05810EC1D;
+	Fri,  7 Mar 2025 18:29:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cEDuRSS5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mZjU8jkg";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E150A10E191
- for <intel-xe@lists.freedesktop.org>; Fri,  7 Mar 2025 18:15:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8806510EC1D
+ for <intel-xe@lists.freedesktop.org>; Fri,  7 Mar 2025 18:29:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741371321; x=1772907321;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=nBYIr1fvqckLlN4/ctmLv0eNOWQg8deIMpNlK3ipBgI=;
- b=cEDuRSS5pr4EGlg6wuexkTZBstHm8UWIs7AYb8bhnHbqGp7emqunI1++
- 10+n8FyOAW4VcbSxA8EH0ryHLEc4vZlYzZtIjbhK4H10uQZME7InDCRV9
- 9Yaap7zqUBf3wmLuAzY9zU6lJGdlQ4FseoFRrK0Ua9v2Dw2+N4DU3v2QK
- l6g7oul/CZuW75xC1z2ugCdVqjqGPNzctDzGNaipo4luu7Ky7uibtgnSR
- 5/zdxUPeKDthbDVjHIMeKpq/Pls01FB3Ttm+9EebCh7d4jbOU+kCN9iei
- gwRpc2cyeIgxi+Z6Ao6FMdmNhPCf/7/NZhronyFivTQ6P13mfbSYdS+sY Q==;
-X-CSE-ConnectionGUID: xA3LnWz/QZSP+NCQmMZg7w==
-X-CSE-MsgGUID: 80u1qo5YSnKAvD00gXkn+A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="53825232"
-X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="53825232"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2025 10:15:20 -0800
-X-CSE-ConnectionGUID: PWbMOsXuQKC2dZcshcnrew==
-X-CSE-MsgGUID: BTt2lrTXTNWkFKJQDPf5jw==
+ t=1741372165; x=1772908165;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=w1s72ZKbG4wbAxd64B3Fa1r4fWXC8F4f1SaDavPsfo0=;
+ b=mZjU8jkgVLGI6LZSmFpA2GvoMi4KPnhgXMRZEU3YKTrV4LKa9p8FrOU2
+ csIMs+x4Vs2rrpbMziE8Z0n3qOYcFNfekpGYjdGQxkOyIkmpId+0RNfVj
+ fU8ZuAioSGgOqBS2e256w8UZhkWaqbY1sp89mkME+RYeIrqq8jx9R0qjD
+ kkku5+Oht5EsQXzpG5CMWWTwN8ioxU5Tox/eHl7DipbPIBdD3NfJyScuf
+ GchCzXuWyg9nsq7Pudz8soYe6tddZUQswdrjTv50aOTFASnImLjNfDODK
+ 5WnYmmn2F3CAim8yuaRtKwFaw5vgJi43n2sBZ7qhAhLGPTaXuOU9RpC7K Q==;
+X-CSE-ConnectionGUID: HxqT9DNzRJOpd3r2+tvu2A==
+X-CSE-MsgGUID: xpweQ55KTBOh9vXT8NudWQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="52639832"
+X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="52639832"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2025 10:29:24 -0800
+X-CSE-ConnectionGUID: 21JpxFWKTsGfIxilc4PAHg==
+X-CSE-MsgGUID: wkRbSH+AQMiLwbX+smsmUg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="123580763"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2025 10:15:20 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-xe <intel-xe@lists.freedesktop.org>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH 0/2] drm/xe: Support different GuCs per GT
-Date: Fri,  7 Mar 2025 10:13:20 -0800
-Message-ID: <20250307-xe-per-gt-fw-v1-0-459574d76400@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="124625655"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO mwauld-desk.intel.com)
+ ([10.245.245.99])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2025 10:29:23 -0800
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>,
+ Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH v3 3/8] drm/xe: Add XE_BO_FLAG_PINNED_NORESTORE
+Date: Fri,  7 Mar 2025 18:29:00 +0000
+Message-ID: <20250307182856.304850-13-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250307182856.304850-10-matthew.auld@intel.com>
+References: <20250307182856.304850-10-matthew.auld@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Change-ID: 20250307-xe-per-gt-fw-4938dff9b339
-X-Mailer: b4 0.15-dev-c25d1
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,47 +71,164 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is an alternative approach to what John sent at
-https://lore.kernel.org/intel-xe/20250303195215.1046192-1-John.C.Harrison@Intel.com/
+From: Matthew Brost <matthew.brost@intel.com>
 
-Main thing is not making the name of the firmware magic, depending on
-part of starting with "g" or "m". So here I add the gt type in a
-pahole-friendly way and use it in the tables.
+Not all BOs need to be restored on resume / d3cold exit, add
+XE_BO_FLAG_PINNED_NO_RESTORE which skips restoring of BOs rather just
+allocates VRAM for the BO. This should slightly speedup resume / d3cold
+exit flows.
 
-Tested on BMG with the following table, just for tests:
+Marking GuC ADS, GuC CT, GuC log, GuC PC, and SA as NORESTORE.
 
-	fw_def(PANTHERLAKE,     GT_TYPE_ANY,    mmp_ver(xe,     guc,    ptl,    70, 38, 1))     \
-	fw_def(BATTLEMAGE,      GT_TYPE_MEDIA,  mmp_ver(xe,     guc,    bmg,    70, 40, 2))     \
-	fw_def(BATTLEMAGE,      GT_TYPE_ANY,    major_ver(xe,   guc,    bmg,    70, 29, 2))     \
-	...
+v2:
+ - s/WONTNEED/NORESTORE (Vivi)
+ - Rebase on newly added g2g and backup object flow
 
-And with that I get (pasting just the relevant parts:
-
-	xe 0000:03:00.0: [drm] Using GuC firmware from xe/bmg_guc_70.bin version 70.36.0
-	xe 0000:03:00.0: [drm:xe_guc_ct_enable [xe]] GT0: GuC CT communication channel enabled
-	xe 0000:03:00.0: [drm] Using GuC firmware from xe/bmg_guc_70.40.2.bin version 70.40.2
-	xe 0000:03:00.0: [drm:xe_guc_ct_enable [xe]] GT1: GuC CT communication channel enabled
-
-Something that we could also discuss is getting rid of the macro
-indirections and just type the name of the file. Once upon a time we
-needed to use different dirs, but now this only matters per for the file
-name. The only repetition would be probably on the version. But I think
-it would make it clearer what files we expect to have without the macro
-indirections.
-
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
-Lucas De Marchi (2):
-      drm/xe/uc: Remove static from loop variable
-      drm/xe/uc: Add support for different firmware files on each GT
+ drivers/gpu/drm/xe/xe_bo.c      | 6 +++++-
+ drivers/gpu/drm/xe/xe_bo.h      | 9 +++++----
+ drivers/gpu/drm/xe/xe_guc.c     | 3 ++-
+ drivers/gpu/drm/xe/xe_guc_ads.c | 3 ++-
+ drivers/gpu/drm/xe/xe_guc_ct.c  | 3 ++-
+ drivers/gpu/drm/xe/xe_guc_log.c | 3 ++-
+ drivers/gpu/drm/xe/xe_guc_pc.c  | 3 ++-
+ drivers/gpu/drm/xe/xe_sa.c      | 3 ++-
+ 8 files changed, 22 insertions(+), 11 deletions(-)
 
- drivers/gpu/drm/xe/xe_uc_fw.c | 102 ++++++++++++++++++++++++------------------
- 1 file changed, 59 insertions(+), 43 deletions(-)
----
-base-commit: 2c4fba1d065427efba4aaed5f80f4664c9f4a729
-change-id: 20250307-xe-per-gt-fw-4938dff9b339
-
-Best regards,
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 7fe70f28f7fa..f22b02700778 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1092,6 +1092,9 @@ int xe_bo_evict_pinned(struct xe_bo *bo)
+ 	if (!xe_bo_is_vram(bo))
+ 		goto out_unlock_bo;
+ 
++	if (bo->flags & XE_BO_FLAG_PINNED_NORESTORE)
++		goto out_unlock_bo;
++
+ 	backup = xe_bo_create_locked(xe, NULL, NULL, bo->size, ttm_bo_type_kernel,
+ 				     XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS |
+ 				     XE_BO_FLAG_PINNED);
+@@ -2080,7 +2083,8 @@ int xe_managed_bo_reinit_in_vram(struct xe_device *xe, struct xe_tile *tile, str
+ 	struct xe_bo *bo;
+ 	u32 dst_flags = XE_BO_FLAG_VRAM_IF_DGFX(tile) | XE_BO_FLAG_GGTT;
+ 
+-	dst_flags |= (*src)->flags & XE_BO_FLAG_GGTT_INVALIDATE;
++	dst_flags |= (*src)->flags & (XE_BO_FLAG_GGTT_INVALIDATE |
++				      XE_BO_FLAG_PINNED_NORESTORE);
+ 
+ 	xe_assert(xe, IS_DGFX(xe));
+ 	xe_assert(xe, !(*src)->vmap.is_iomem);
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index bec33eb3fa95..3937111c2adb 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -39,10 +39,11 @@
+ #define XE_BO_FLAG_NEEDS_64K		BIT(15)
+ #define XE_BO_FLAG_NEEDS_2M		BIT(16)
+ #define XE_BO_FLAG_GGTT_INVALIDATE	BIT(17)
+-#define XE_BO_FLAG_GGTT0                BIT(18)
+-#define XE_BO_FLAG_GGTT1                BIT(19)
+-#define XE_BO_FLAG_GGTT2                BIT(20)
+-#define XE_BO_FLAG_GGTT3                BIT(21)
++#define XE_BO_FLAG_PINNED_NORESTORE	BIT(18)
++#define XE_BO_FLAG_GGTT0                BIT(19)
++#define XE_BO_FLAG_GGTT1                BIT(20)
++#define XE_BO_FLAG_GGTT2                BIT(21)
++#define XE_BO_FLAG_GGTT3                BIT(22)
+ #define XE_BO_FLAG_GGTT_ALL             (XE_BO_FLAG_GGTT0 | \
+ 					 XE_BO_FLAG_GGTT1 | \
+ 					 XE_BO_FLAG_GGTT2 | \
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index bc1ff0a4e1e7..1bb2f08d6140 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -483,7 +483,8 @@ static int guc_g2g_alloc(struct xe_guc *guc)
+ 					  XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+ 					  XE_BO_FLAG_GGTT |
+ 					  XE_BO_FLAG_GGTT_ALL |
+-					  XE_BO_FLAG_GGTT_INVALIDATE);
++					  XE_BO_FLAG_GGTT_INVALIDATE |
++					  XE_BO_FLAG_PINNED_NORESTORE);
+ 	if (IS_ERR(bo))
+ 		return PTR_ERR(bo);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index e7c9e095a19f..6d08871ac5ea 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -414,7 +414,8 @@ int xe_guc_ads_init(struct xe_guc_ads *ads)
+ 	bo = xe_managed_bo_create_pin_map(xe, tile, guc_ads_size(ads) + MAX_GOLDEN_LRC_SIZE,
+ 					  XE_BO_FLAG_SYSTEM |
+ 					  XE_BO_FLAG_GGTT |
+-					  XE_BO_FLAG_GGTT_INVALIDATE);
++					  XE_BO_FLAG_GGTT_INVALIDATE |
++					  XE_BO_FLAG_PINNED_NORESTORE);
+ 	if (IS_ERR(bo))
+ 		return PTR_ERR(bo);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 72ad576fc18e..56b2c82a57d5 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -238,7 +238,8 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
+ 	bo = xe_managed_bo_create_pin_map(xe, tile, guc_ct_size(),
+ 					  XE_BO_FLAG_SYSTEM |
+ 					  XE_BO_FLAG_GGTT |
+-					  XE_BO_FLAG_GGTT_INVALIDATE);
++					  XE_BO_FLAG_GGTT_INVALIDATE |
++					  XE_BO_FLAG_PINNED_NORESTORE);
+ 	if (IS_ERR(bo))
+ 		return PTR_ERR(bo);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
+index 80514a446ba2..38039c411387 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.c
++++ b/drivers/gpu/drm/xe/xe_guc_log.c
+@@ -260,7 +260,8 @@ int xe_guc_log_init(struct xe_guc_log *log)
+ 	bo = xe_managed_bo_create_pin_map(xe, tile, guc_log_size(),
+ 					  XE_BO_FLAG_SYSTEM |
+ 					  XE_BO_FLAG_GGTT |
+-					  XE_BO_FLAG_GGTT_INVALIDATE);
++					  XE_BO_FLAG_GGTT_INVALIDATE |
++					  XE_BO_FLAG_PINNED_NORESTORE);
+ 	if (IS_ERR(bo))
+ 		return PTR_ERR(bo);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index 25040efa043f..ed491894438b 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -1142,7 +1142,8 @@ int xe_guc_pc_init(struct xe_guc_pc *pc)
+ 	bo = xe_managed_bo_create_pin_map(xe, tile, size,
+ 					  XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+ 					  XE_BO_FLAG_GGTT |
+-					  XE_BO_FLAG_GGTT_INVALIDATE);
++					  XE_BO_FLAG_GGTT_INVALIDATE |
++					  XE_BO_FLAG_PINNED_NORESTORE);
+ 	if (IS_ERR(bo))
+ 		return PTR_ERR(bo);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sa.c b/drivers/gpu/drm/xe/xe_sa.c
+index f8fe61e25518..1d43e183ca21 100644
+--- a/drivers/gpu/drm/xe/xe_sa.c
++++ b/drivers/gpu/drm/xe/xe_sa.c
+@@ -60,7 +60,8 @@ struct xe_sa_manager *__xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u3
+ 	bo = xe_managed_bo_create_pin_map(xe, tile, size,
+ 					  XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+ 					  XE_BO_FLAG_GGTT |
+-					  XE_BO_FLAG_GGTT_INVALIDATE);
++					  XE_BO_FLAG_GGTT_INVALIDATE |
++					  XE_BO_FLAG_PINNED_NORESTORE);
+ 	if (IS_ERR(bo)) {
+ 		drm_err(&xe->drm, "Failed to prepare %uKiB BO for SA manager (%pe)\n",
+ 			size / SZ_1K, bo);
 -- 
-Lucas De Marchi <lucas.demarchi@intel.com>
+2.48.1
 
