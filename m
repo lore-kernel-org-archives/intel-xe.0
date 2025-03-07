@@ -4,59 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FFA9C28B23
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 17:58:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A32A9C19F32
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 18:01:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5685A10EC1D;
-	Fri,  7 Mar 2025 17:58:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63B9D10EC23;
+	Fri,  7 Mar 2025 18:01:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="khgsKIAs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b4B8K7VX";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E79710E15D
- for <intel-xe@lists.freedesktop.org>; Fri,  7 Mar 2025 17:58:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5BAC10EC1E;
+ Fri,  7 Mar 2025 18:01:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741370309; x=1772906309;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=mnvQcb73xMRPVJ0BPD9g8e2iEOOVpuoaBFsnRkTDQMk=;
- b=khgsKIAsa5hRpv+yYVu9aprFO9AN5zzMt+eKU7toRnGlR9q+cA+ClD+H
- F07m1wTFMwybWOULb6KCFk3aNTMm34wwXku3GbHlm7gfzzB8r0kIJGX9y
- MvgQa1EqH8Pgz4KjBOthdXbsuF5q7RFWsQkScc+LTSkfcru787OF2esEs
- 0RQqmK3lzxa0WORk7uQzQGKR742BVeOU8oTG7bOR9DxZQMbj1ic1GG+50
- p070TIrljdYQMJb8pxEU7X4BHWRrThLgGmqja01H9TGLleIynbEkrKFHl
- 2kRdeZAXOXIssumMAVPpiQc+Owb/2P11URbiGAecQdgFaWY/WlGnVRD4O Q==;
-X-CSE-ConnectionGUID: yvCmUP2+Q8upW384hRcRRA==
-X-CSE-MsgGUID: YDlLGw07T+etnRbvdnCMcg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="42655478"
-X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="42655478"
+ t=1741370505; x=1772906505;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=xp5NkKIr9EtniqM+BO0svyxBnaUSDD2193H/6PxWo4c=;
+ b=b4B8K7VX0XLQ0X8hR5E+K/1HJVzVtBlKIrrYPBaxK4cavJABVY5jIauk
+ 36UmqGjEWCbZkZ0o4CjJfyr9DviGsXysAi2uGyoSw4dvn8jrx6V1djnw9
+ t58W7zz0RK2Lux9aH4HN+ra9p08ri1IB2HwdPGfnbu5OCEuRPP0e4d6WZ
+ b50f34OkvYruJ71hG4S8UktHLhU8ZBysJKlfoDDDNFDozpRZDxpl7C9nF
+ wjxr+QzG0h2v1ioiaR6YRw6yf7jY+nnrRT6haC+cyKNphzv9mxOTnRp1I
+ BQfnRDn9ZpmJNso0w2Q4Hl2giYRr3Sur9lBcbaSzO7VMabobjQ2h2MKB5 g==;
+X-CSE-ConnectionGUID: TBO08lfGRkyK3XWqb9k/gg==
+X-CSE-MsgGUID: 8YmVxOwxSXqDLjjTQpjiWA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="52637105"
+X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="52637105"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2025 09:58:27 -0800
-X-CSE-ConnectionGUID: Yyi6X2IuTWWDxBDvskBphg==
-X-CSE-MsgGUID: QnqCbC7WTqKtBFjwvFNz5Q==
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2025 10:01:43 -0800
+X-CSE-ConnectionGUID: jxZisiEYTwWBcTIwJO7Kjg==
+X-CSE-MsgGUID: GGN0NuqgROSBGTNmmTyKUQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="124620227"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2025 09:58:23 -0800
-Date: Fri, 7 Mar 2025 19:58:20 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: lucas.demarchi@intel.com, matthew.d.roper@intel.com,
- andi.shyti@linux.intel.com, intel-xe@lists.freedesktop.org,
- anshuman.gupta@intel.com, riana.tauro@intel.com,
- badal.nilawar@intel.com, karthik.poosa@intel.com,
- aravind.iddamsetty@linux.intel.com
-Subject: Re: [PATCH v2] drm/xe/hwmon: expose fan speed
-Message-ID: <Z8szvNhAaAsN0IjJ@black.fi.intel.com>
-References: <20250307125112.575242-1-raag.jadav@intel.com>
- <Z8sDoWxu0dUEpAQ-@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="124621036"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orviesa005.jf.intel.com with SMTP; 07 Mar 2025 10:01:40 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 07 Mar 2025 20:01:39 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH 00/14] drm/i915: sagv/bw cleanup
+Date: Fri,  7 Mar 2025 20:01:25 +0200
+Message-ID: <20250307180139.15744-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.45.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z8sDoWxu0dUEpAQ-@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,19 +66,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Mar 07, 2025 at 09:33:05AM -0500, Rodrigo Vivi wrote:
-> On Fri, Mar 07, 2025 at 06:21:12PM +0530, Raag Jadav wrote:
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-...
+Continue improving the code around sagv/bw vs.
+watermarks. A lot of the details get better encapsulated
+within intel_bw.c and the complicated interactions between
+different parts of the code are somewhat reduced.
 
-> > +	case REG_FAN_SPEED:
-> > +		if (xe->info.platform == XE_BATTLEMAGE || xe->info.platform == XE_DG2) {
-> 
-> we should probably have a has_fan_control flag in the platform definition struct so you
-> don't need to do platform checks here and it gets easier when we need to add new platforms.
 
-My experience with struct level flags has mostly been with high stakes
-features which require maintaining a state (usually atomic), and I'm not
-sure if fan control is worth having one of them.
+Ville Syrjälä (14):
+  drm/i915: Drop the cached per-pipe min_cdclk[] from bw state
+  drm/i915: s/intel_crtc_bw/intel_dbuf_bw/
+  drm/i915: Extract intel_dbuf_bw_changed()
+  drm/i915: Pass intel_dbuf_bw to skl_*_calc_dbuf_bw() explicitly
+  drm/i915: Avoid triggering unwanted cdclk changes due to dbuf
+    bandwidth changes
+  drm/i915: Do more bw readout
+  drm/i915: Flag even inactive crtcs as "inherited"
+  drm/i915: Drop force_check_qgv
+  drm/i915: Extract intel_bw_modeset_checks()
+  drm/i915: Extract intel_bw_check_sagv_mask()
+  drm/i915: Make intel_bw_check_sagv_mask() internal to intel_bw.c
+  drm/i915: Make intel_bw_modeset_checks() internal to
+    intel_bw_atomic_check()
+  drm/i915: Skip bw stuff if per-crtc sagv state doesn't change
+  drm/i915: Eliminate intel_compute_sagv_mask()
 
-Raag
+ drivers/gpu/drm/i915/display/intel_bw.c       | 187 ++++++++++++++----
+ drivers/gpu/drm/i915/display/intel_bw.h       |   9 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |   5 +
+ drivers/gpu/drm/i915/display/intel_display.c  |   5 +-
+ .../drm/i915/display/intel_modeset_setup.c    |  22 +--
+ drivers/gpu/drm/i915/display/skl_watermark.c  | 112 ++++-------
+ drivers/gpu/drm/i915/display/skl_watermark.h  |   1 +
+ 7 files changed, 202 insertions(+), 139 deletions(-)
+
+-- 
+2.45.3
+
