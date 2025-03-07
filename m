@@ -4,62 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6601C282DE
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 12:50:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF1D5C19F32
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 12:52:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6173910E2BC;
-	Fri,  7 Mar 2025 12:50:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3D3810E2BC;
+	Fri,  7 Mar 2025 12:52:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S5ZUqn3+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VN8jFcXs";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2519C10E2BC;
- Fri,  7 Mar 2025 12:50:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E4D910E2BC
+ for <intel-xe@lists.freedesktop.org>; Fri,  7 Mar 2025 12:52:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741351852; x=1772887852;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=THE0bv8Xcez7gTTyruw0NMWrXar3ElO29Q5TfvP9t/s=;
- b=S5ZUqn3+j0OmM3tEoArGqbv1lDwcFeMAI4ShcRCvvuUUiwgCQYSKY7KB
- OiFJ1LkOonwnkv+9TDQPNqxBUlJ0rdEzjSsIEonS6CtSRw6EvhF6rZPvw
- 9OUShl6daI7ijbk8+eN4UHQDF0NXgsfFfOp8EXzBDCX7UwMufhu5APi5E
- ZFyT5Xt5y6qrYAXtjcEcmte75ErILOAFEx8mkxjSrNoBJ1ig4NQbaA6E2
- 0NGlkLVVy4OtSqj5N4UWpgv+9HVlFPVJ3V7RR1yusGPgFXYMNYzlJrWT3
- 4qo1hBgFtB3POYqXiNlEK12ELiPM6Iu4rvrJ3E8fLTndnSn87+0pj8Q64 A==;
-X-CSE-ConnectionGUID: 2pWX/uMoQnSzWveE6yvLew==
-X-CSE-MsgGUID: PqdVx1/tQVKp5oemi+cyEQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="67771269"
-X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="67771269"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2025 04:50:49 -0800
-X-CSE-ConnectionGUID: ITB/WGFiQ7yAHE25V7zYKw==
-X-CSE-MsgGUID: QM/9rrgrRZ2Gefmd+ajkjA==
+ t=1741351928; x=1772887928;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=eVdN0Vr6G0ptMJ6CQp2Xw7kZGSuOYduIpPVIdkC955U=;
+ b=VN8jFcXs+TTW43oPDWcpQ0OiSouYuFewxwTNeLv2u6xqUPu2ToYXmlmS
+ cPkGF+jM03h87WK/6WPJiiReDH69C1f/t5flZbK63Xaiw9L4rsFEqEIye
+ YqG5zIqqPy6ze+rzHiPYqUh1Z4ajJfcHMgo7dDyGicNxzixVli78uwcF0
+ Zxocdgw+70wsqaDgqtEd5pb+SeiCmMeB3yWwTdIpzQiOx0+YWZwIC2DnI
+ ZDpEPJ+CPxPxB1YneJpOYKRrA0Ibe0LZLA7uax9eGn5yb3xSuiTQDmb2y
+ w9PU+eFLbIrGHUdPQ2BKwMt37bCkPZqBaGE+tvfah8QWEXcOUAm4yurd5 g==;
+X-CSE-ConnectionGUID: wNUcbWh+Q16nvoJazqByMQ==
+X-CSE-MsgGUID: ySFr4dEUR6mRgx7kZALsFw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="52605796"
+X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="52605796"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2025 04:52:08 -0800
+X-CSE-ConnectionGUID: NRtsaH7hTtqIchWFuCv/rg==
+X-CSE-MsgGUID: UV7Z8AYqQ3uoFJy1UqkLDw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="124541700"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 07 Mar 2025 04:50:47 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 07 Mar 2025 14:50:46 +0200
-Date: Fri, 7 Mar 2025 14:50:46 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: Re: [PATCH 15/21] drm/i915/display: Use fixed_rr timings in modeset
- sequence
-Message-ID: <Z8rrpvnqE4Lcc4hb@intel.com>
-References: <20250306131100.3989503-1-ankit.k.nautiyal@intel.com>
- <20250306131100.3989503-16-ankit.k.nautiyal@intel.com>
- <Z8nRZPU6__OTBWHe@intel.com>
- <9d1d55c7-199b-47a6-913e-d221d7cf2853@intel.com>
+X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="124409444"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by fmviesa004.fm.intel.com with ESMTP; 07 Mar 2025 04:52:03 -0800
+From: Raag Jadav <raag.jadav@intel.com>
+To: lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
+ matthew.d.roper@intel.com, andi.shyti@linux.intel.com
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ riana.tauro@intel.com, badal.nilawar@intel.com, karthik.poosa@intel.com,
+ aravind.iddamsetty@linux.intel.com, Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v2] drm/xe/hwmon: expose fan speed
+Date: Fri,  7 Mar 2025 18:21:12 +0530
+Message-Id: <20250307125112.575242-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <9d1d55c7-199b-47a6-913e-d221d7cf2853@intel.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,175 +66,306 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Mar 07, 2025 at 05:33:46PM +0530, Nautiyal, Ankit K wrote:
-> 
-> On 3/6/2025 10:16 PM, Ville Syrjälä wrote:
-> > On Thu, Mar 06, 2025 at 06:40:54PM +0530, Ankit Nautiyal wrote:
-> >> During modeset enable sequence, program the fixed timings, and turn on the
-> >> VRR Timing Generator (VRR TG) for platforms that always use VRR TG.
-> >>
-> >> For this intel_vrr_set_transcoder now always programs fixed timings.
-> >> Later if vrr timings are required, vrr_enable() will switch
-> >> to the real VRR timings.
-> >>
-> >> For platforms that will always use VRR TG, the VRR_CTL Enable bit is set
-> >> and reset in the transcoder enable/disable path.
-> >>
-> >> v2: Update intel_vrr_set_transcoder_timings for fixed_rr.
-> >> v3: Update intel_set_transcoder_timings_lrr for fixed_rr. (Ville)
-> >> v4: Have separate functions to enable/disable VRR CTL
-> >> v5:
-> >> -For platforms that do not always have VRRTG on, do write bits other
-> >> than enable bit and also use write the TRANS_VRR_PUSH register. (Ville)
-> >> -Avoid writing trans_ctl_vrr if !vrr_possible().
-> >> v6:
-> >> -Disable VRR just before intel_ddi_disable_transcoder_func(). (Ville)
-> >> -Correct the sequence of configuring PUSH and VRR Enable/Disable. (Ville)
-> >>
-> >> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> >> ---
-> >>   drivers/gpu/drm/i915/display/intel_ddi.c    |  5 ++
-> >>   drivers/gpu/drm/i915/display/intel_dp_mst.c |  4 ++
-> >>   drivers/gpu/drm/i915/display/intel_vrr.c    | 63 ++++++++++++++++-----
-> >>   drivers/gpu/drm/i915/display/intel_vrr.h    |  2 +
-> >>   4 files changed, 60 insertions(+), 14 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> >> index 676c1826f15c..6d89a87b3419 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> >> @@ -78,6 +78,7 @@
-> >>   #include "intel_tc.h"
-> >>   #include "intel_vdsc.h"
-> >>   #include "intel_vdsc_regs.h"
-> >> +#include "intel_vrr.h"
-> >>   #include "skl_scaler.h"
-> >>   #include "skl_universal_plane.h"
-> >>   
-> >> @@ -3248,6 +3249,8 @@ static void intel_ddi_post_disable_hdmi_or_sst(struct intel_atomic_state *state,
-> >>   		drm_dp_dpcd_poll_act_handled(&intel_dp->aux, 0);
-> >>   	}
-> >>   
-> >> +	intel_vrr_transcoder_disable(old_crtc_state);
-> >> +
-> >>   	intel_ddi_disable_transcoder_func(old_crtc_state);
-> >>   
-> >>   	for_each_pipe_crtc_modeset_disable(display, pipe_crtc, old_crtc_state, i) {
-> >> @@ -3521,6 +3524,8 @@ static void intel_ddi_enable(struct intel_atomic_state *state,
-> >>   
-> >>   	intel_ddi_enable_transcoder_func(encoder, crtc_state);
-> >>   
-> >> +	intel_vrr_transcoder_enable(crtc_state);
-> >> +
-> >>   	/* Enable/Disable DP2.0 SDP split config before transcoder */
-> >>   	intel_audio_sdp_split_update(crtc_state);
-> >>   
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> >> index bd47cf127b4c..d2988b9a6e7b 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> >> @@ -1065,6 +1065,8 @@ static void mst_stream_post_disable(struct intel_atomic_state *state,
-> >>   	drm_dp_remove_payload_part2(&intel_dp->mst.mgr, new_mst_state,
-> >>   				    old_payload, new_payload);
-> >>   
-> >> +	intel_vrr_transcoder_disable(old_crtc_state);
-> >> +
-> >>   	intel_ddi_disable_transcoder_func(old_crtc_state);
-> >>   
-> >>   	for_each_pipe_crtc_modeset_disable(display, pipe_crtc, old_crtc_state, i) {
-> >> @@ -1326,6 +1328,8 @@ static void mst_stream_enable(struct intel_atomic_state *state,
-> >>   
-> >>   	intel_ddi_enable_transcoder_func(encoder, pipe_config);
-> >>   
-> >> +	intel_vrr_transcoder_enable(pipe_config);
-> >> +
-> >>   	intel_ddi_clear_act_sent(encoder, pipe_config);
-> >>   
-> >>   	intel_de_rmw(display, TRANS_DDI_FUNC_CTL(display, trans), 0,
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> >> index f523a48e6186..d7580b6e4e37 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> >> @@ -460,12 +460,6 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
-> >>   		intel_de_rmw(display, CHICKEN_TRANS(display, cpu_transcoder),
-> >>   			     0, PIPE_VBLANK_WITH_DELAY);
-> >>   
-> >> -	if (!intel_vrr_possible(crtc_state)) {
-> >> -		intel_de_write(display,
-> >> -			       TRANS_VRR_CTL(display, cpu_transcoder), 0);
-> >> -		return;
-> >> -	}
-> >> -
-> >>   	if (crtc_state->cmrr.enable) {
-> >>   		intel_de_write(display, TRANS_CMRR_M_HI(display, cpu_transcoder),
-> >>   			       upper_32_bits(crtc_state->cmrr.cmrr_m));
-> >> @@ -477,14 +471,7 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
-> >>   			       lower_32_bits(crtc_state->cmrr.cmrr_n));
-> >>   	}
-> >>   
-> >> -	intel_de_write(display, TRANS_VRR_VMIN(display, cpu_transcoder),
-> >> -		       crtc_state->vrr.vmin - 1);
-> >> -	intel_de_write(display, TRANS_VRR_VMAX(display, cpu_transcoder),
-> >> -		       crtc_state->vrr.vmax - 1);
-> >> -	intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
-> >> -		       trans_vrr_ctl(crtc_state));
-> >> -	intel_de_write(display, TRANS_VRR_FLIPLINE(display, cpu_transcoder),
-> >> -		       crtc_state->vrr.flipline - 1);
-> >> +	intel_vrr_set_fixed_rr_timings(crtc_state);
-> >>   
-> >>   	if (HAS_AS_SDP(display))
-> >>   		intel_de_write(display,
-> >> @@ -618,6 +605,54 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
-> >>   	intel_vrr_set_fixed_rr_timings(old_crtc_state);
-> >>   }
-> >>   
-> >> +void intel_vrr_transcoder_enable(const struct intel_crtc_state *crtc_state)
-> >> +{
-> >> +	struct intel_display *display = to_intel_display(crtc_state);
-> >> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> >> +
-> >> +	if (!HAS_VRR(display))
-> >> +		return;
-> >> +
-> >> +	if (!intel_vrr_possible(crtc_state))
-> >> +		return;
-> >> +
-> >> +	if (!intel_vrr_always_use_vrr_tg(display)) {
-> >> +		intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
-> >> +			       trans_vrr_ctl(crtc_state));
-> >> +		return;
-> >> +	}
-> >> +
-> >> +	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder),
-> >> +		       TRANS_PUSH_EN);
-> >> +
-> >> +	intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
-> >> +		       VRR_CTL_VRR_ENABLE | trans_vrr_ctl(crtc_state));
-> >> +}
-> >> +
-> >> +void intel_vrr_transcoder_disable(const struct intel_crtc_state *crtc_state)
-> >> +{
-> >> +	struct intel_display *display = to_intel_display(crtc_state);
-> >> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> >> +
-> >> +	if (!HAS_VRR(display))
-> >> +		return;
-> >> +
-> >> +	if (!intel_vrr_possible(crtc_state))
-> >> +		return;
-> >> +
-> >> +	if (!intel_vrr_always_use_vrr_tg(display)) {
-> >> +		intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
-> >> +			       trans_vrr_ctl(crtc_state));
-> > IMO we should write 0 here too.
-> 
-> There is one problem. If we do not write trans_vrr_ctl but crtc_state 
-> has flipline, vmin, vmax all set to some value, then we get mismatch in 
-> vrr_get_config.
+Add hwmon support for fan1_input, fan2_input and fan3_input attributes,
+which will expose fan speed of respective channels in RPM when supported
+by hardware. With this in place we can monitor fan speed using lm-sensors
+tool.
 
-This is intel_vrr_transcoder_disable(). Nothing is expected to be
-configured for disabled transcoders.
+v2: Rely on platform checks instead of mailbox error (Aravind, Rodrigo)
 
+Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+---
+ .../ABI/testing/sysfs-driver-intel-xe-hwmon   |  24 ++++
+ drivers/gpu/drm/xe/regs/xe_pcode_regs.h       |   3 +
+ drivers/gpu/drm/xe/xe_hwmon.c                 | 129 +++++++++++++++++-
+ drivers/gpu/drm/xe/xe_pcode_api.h             |   3 +
+ 4 files changed, 158 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+index 9bce281314df..adbb9bce15a5 100644
+--- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
++++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+@@ -124,3 +124,27 @@ Contact:	intel-xe@lists.freedesktop.org
+ Description:	RO. VRAM temperature in millidegree Celsius.
+ 
+ 		Only supported for particular Intel Xe graphics platforms.
++
++What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/fan1_input
++Date:		March 2025
++KernelVersion:	6.14
++Contact:	intel-xe@lists.freedesktop.org
++Description:	RO. Fan 1 speed in RPM.
++
++		Only supported for particular Intel Xe graphics platforms.
++
++What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/fan2_input
++Date:		March 2025
++KernelVersion:	6.14
++Contact:	intel-xe@lists.freedesktop.org
++Description:	RO. Fan 2 speed in RPM.
++
++		Only supported for particular Intel Xe graphics platforms.
++
++What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/fan3_input
++Date:		March 2025
++KernelVersion:	6.14
++Contact:	intel-xe@lists.freedesktop.org
++Description:	RO. Fan 3 speed in RPM.
++
++		Only supported for particular Intel Xe graphics platforms.
+diff --git a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+index 8846eb9ce2a4..c7d5d782e3f9 100644
+--- a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+@@ -21,6 +21,9 @@
+ #define BMG_PACKAGE_POWER_SKU			XE_REG(0x138098)
+ #define BMG_PACKAGE_POWER_SKU_UNIT		XE_REG(0x1380dc)
+ #define BMG_PACKAGE_ENERGY_STATUS		XE_REG(0x138120)
++#define BMG_FAN_1_SPEED				XE_REG(0x138140)
++#define BMG_FAN_2_SPEED				XE_REG(0x138170)
++#define BMG_FAN_3_SPEED				XE_REG(0x1381a0)
+ #define BMG_VRAM_TEMPERATURE			XE_REG(0x1382c0)
+ #define BMG_PACKAGE_TEMPERATURE			XE_REG(0x138434)
+ #define BMG_PACKAGE_RAPL_LIMIT			XE_REG(0x138440)
+diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+index 48d80ffdf7bb..c52a2bfd770e 100644
+--- a/drivers/gpu/drm/xe/xe_hwmon.c
++++ b/drivers/gpu/drm/xe/xe_hwmon.c
+@@ -5,6 +5,7 @@
+ 
+ #include <linux/hwmon-sysfs.h>
+ #include <linux/hwmon.h>
++#include <linux/jiffies.h>
+ #include <linux/types.h>
+ #include <linux/units.h>
+ 
+@@ -27,6 +28,7 @@ enum xe_hwmon_reg {
+ 	REG_PKG_POWER_SKU_UNIT,
+ 	REG_GT_PERF_STATUS,
+ 	REG_PKG_ENERGY_STATUS,
++	REG_FAN_SPEED,
+ };
+ 
+ enum xe_hwmon_reg_operation {
+@@ -42,6 +44,13 @@ enum xe_hwmon_channel {
+ 	CHANNEL_MAX,
+ };
+ 
++enum xe_fan_channel {
++	FAN_1,
++	FAN_2,
++	FAN_3,
++	FAN_MAX,
++};
++
+ /*
+  * SF_* - scale factors for particular quantities according to hwmon spec.
+  */
+@@ -61,6 +70,16 @@ struct xe_hwmon_energy_info {
+ 	long accum_energy;
+ };
+ 
++/**
++ * struct xe_hwmon_fan_info - to cache previous fan reading
++ */
++struct xe_hwmon_fan_info {
++	/** @reg_val_prev: previous fan reg val */
++	u32 reg_val_prev;
++	/** @time_prev: previous timestamp */
++	u64 time_prev;
++};
++
+ /**
+  * struct xe_hwmon - xe hwmon data structure
+  */
+@@ -79,6 +98,8 @@ struct xe_hwmon {
+ 	int scl_shift_time;
+ 	/** @ei: Energy info for energyN_input */
+ 	struct xe_hwmon_energy_info ei[CHANNEL_MAX];
++	/** @fi: Fan info for fanN_input */
++	struct xe_hwmon_fan_info fi[FAN_MAX];
+ };
+ 
+ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon_reg,
+@@ -144,6 +165,16 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg
+ 			return PCU_CR_PACKAGE_ENERGY_STATUS;
+ 		}
+ 		break;
++	case REG_FAN_SPEED:
++		if (xe->info.platform == XE_BATTLEMAGE || xe->info.platform == XE_DG2) {
++			if (channel == FAN_1)
++				return BMG_FAN_1_SPEED;
++			else if (channel == FAN_2)
++				return BMG_FAN_2_SPEED;
++			else if (channel == FAN_3)
++				return BMG_FAN_3_SPEED;
++		}
++		break;
+ 	default:
+ 		drm_warn(&xe->drm, "Unknown xe hwmon reg id: %d\n", hwmon_reg);
+ 		break;
+@@ -454,6 +485,7 @@ static const struct hwmon_channel_info * const hwmon_info[] = {
+ 	HWMON_CHANNEL_INFO(curr, HWMON_C_LABEL, HWMON_C_CRIT | HWMON_C_LABEL),
+ 	HWMON_CHANNEL_INFO(in, HWMON_I_INPUT | HWMON_I_LABEL, HWMON_I_INPUT | HWMON_I_LABEL),
+ 	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT | HWMON_E_LABEL, HWMON_E_INPUT | HWMON_E_LABEL),
++	HWMON_CHANNEL_INFO(fan, HWMON_F_INPUT, HWMON_F_INPUT, HWMON_F_INPUT),
+ 	NULL
+ };
+ 
+@@ -480,6 +512,24 @@ static int xe_hwmon_pcode_write_i1(const struct xe_hwmon *hwmon, u32 uval)
+ 			      (uval & POWER_SETUP_I1_DATA_MASK));
+ }
+ 
++static int xe_hwmon_pcode_read_num_fans(const struct xe_hwmon *hwmon, u32 *uval)
++{
++	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
++
++	/* Platforms that don't return correct value */
++	if (hwmon->xe->info.platform == XE_DG2) {
++		*uval = 2;
++		return 0;
++	}
++
++	/* Avoid Illegal Subcommand error */
++	if (hwmon->xe->info.platform != XE_BATTLEMAGE)
++		return -ENXIO;
++
++	return xe_pcode_read(root_tile, PCODE_MBOX(FAN_SPEED_CONTROL,
++			     FSC_READ_NUM_FANS, 0), uval, NULL);
++}
++
+ static int xe_hwmon_power_curr_crit_read(struct xe_hwmon *hwmon, int channel,
+ 					 long *value, u32 scale_factor)
+ {
+@@ -705,6 +755,72 @@ xe_hwmon_energy_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
+ 	}
+ }
+ 
++static umode_t
++xe_hwmon_fan_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
++{
++	u32 uval;
++
++	switch (attr) {
++	case hwmon_fan_input:
++		if (xe_hwmon_pcode_read_num_fans(hwmon, &uval))
++			return 0;
++
++		return channel < uval ? 0444 : 0;
++	default:
++		return 0;
++	}
++}
++
++static int
++xe_hwmon_fan_input_read(struct xe_hwmon *hwmon, int channel, long *val)
++{
++	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
++	struct xe_hwmon_fan_info *fi = &hwmon->fi[channel];
++	u64 rotations, time_now, time;
++	u32 reg_val;
++	int ret = 0;
++
++	mutex_lock(&hwmon->hwmon_lock);
++
++	reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_FAN_SPEED, channel));
++	time_now = get_jiffies_64();
++
++	/*
++	 * HW register value is accumulated count of pulses from PWM fan with the scale
++	 * of 2 pulses per rotation.
++	 */
++	rotations = (reg_val - fi->reg_val_prev) / 2;
++
++	time = jiffies_delta_to_msecs(time_now - fi->time_prev);
++	if (unlikely(!time)) {
++		ret = -EAGAIN;
++		goto unlock;
++	}
++
++	/*
++	 * Calculate fan speed in RPM by time averaging two subsequent readings in minutes.
++	 * RPM = number of rotations * msecs per minute / time in msecs
++	 */
++	*val = DIV_ROUND_UP_ULL(rotations * (MSEC_PER_SEC * 60), time);
++
++	fi->reg_val_prev = reg_val;
++	fi->time_prev = time_now;
++unlock:
++	mutex_unlock(&hwmon->hwmon_lock);
++	return ret;
++}
++
++static int
++xe_hwmon_fan_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
++{
++	switch (attr) {
++	case hwmon_fan_input:
++		return xe_hwmon_fan_input_read(hwmon, channel, val);
++	default:
++		return -EOPNOTSUPP;
++	}
++}
++
+ static umode_t
+ xe_hwmon_is_visible(const void *drvdata, enum hwmon_sensor_types type,
+ 		    u32 attr, int channel)
+@@ -730,6 +846,9 @@ xe_hwmon_is_visible(const void *drvdata, enum hwmon_sensor_types type,
+ 	case hwmon_energy:
+ 		ret = xe_hwmon_energy_is_visible(hwmon, attr, channel);
+ 		break;
++	case hwmon_fan:
++		ret = xe_hwmon_fan_is_visible(hwmon, attr, channel);
++		break;
+ 	default:
+ 		ret = 0;
+ 		break;
+@@ -765,6 +884,9 @@ xe_hwmon_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
+ 	case hwmon_energy:
+ 		ret = xe_hwmon_energy_read(hwmon, attr, channel, val);
+ 		break;
++	case hwmon_fan:
++		ret = xe_hwmon_fan_read(hwmon, attr, channel, val);
++		break;
+ 	default:
+ 		ret = -EOPNOTSUPP;
+ 		break;
+@@ -842,7 +964,7 @@ static void
+ xe_hwmon_get_preregistration_info(struct xe_hwmon *hwmon)
+ {
+ 	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
+-	long energy;
++	long energy, fan_speed;
+ 	u64 val_sku_unit = 0;
+ 	int channel;
+ 	struct xe_reg pkg_power_sku_unit;
+@@ -866,6 +988,11 @@ xe_hwmon_get_preregistration_info(struct xe_hwmon *hwmon)
+ 	for (channel = 0; channel < CHANNEL_MAX; channel++)
+ 		if (xe_hwmon_is_visible(hwmon, hwmon_energy, hwmon_energy_input, channel))
+ 			xe_hwmon_energy_get(hwmon, channel, &energy);
++
++	/* Initialize 'struct xe_hwmon_fan_info' with initial fan register reading. */
++	for (channel = 0; channel < FAN_MAX; channel++)
++		if (xe_hwmon_is_visible(hwmon, hwmon_fan, hwmon_fan_input, channel))
++			xe_hwmon_fan_input_read(hwmon, channel, &fan_speed);
+ }
+ 
+ static void xe_hwmon_mutex_destroy(void *arg)
+diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
+index 2bae9afdbd35..e622ae17f08d 100644
+--- a/drivers/gpu/drm/xe/xe_pcode_api.h
++++ b/drivers/gpu/drm/xe/xe_pcode_api.h
+@@ -49,6 +49,9 @@
+ /* Domain IDs (param2) */
+ #define     PCODE_MBOX_DOMAIN_HBM		0x2
+ 
++#define   FAN_SPEED_CONTROL			0x7D
++#define     FSC_READ_NUM_FANS			0x4
++
+ #define PCODE_SCRATCH(x)		XE_REG(0x138320 + ((x) * 4))
+ /* PCODE_SCRATCH0 */
+ #define   AUXINFO_REG_OFFSET		REG_GENMASK(17, 15)
 -- 
-Ville Syrjälä
-Intel
+2.34.1
+
