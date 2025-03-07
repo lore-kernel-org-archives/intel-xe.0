@@ -4,59 +4,186 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87D34C19F32
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 12:34:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7219FC282DE
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 12:41:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D81E10E183;
-	Fri,  7 Mar 2025 12:34:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3540610E184;
+	Fri,  7 Mar 2025 12:41:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nNTflZLQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZpTaY4hX";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D43210E15B;
- Fri,  7 Mar 2025 12:34:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1ADC10E183;
+ Fri,  7 Mar 2025 12:41:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741350875; x=1772886875;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=pqrZLMGSU5GATubAQw+hsVmWYwUcADzQdf0n6nTBR3Q=;
- b=nNTflZLQOOtd4J8nfnQ2H2zU14JC7aCGp1crfZXUrzYRZd0c5VdL053A
- Pd2AqZf6ttyzD4aE5h9qjkFZokh2oTXTefQH3CkO1u5PIjJ+dQEcMpi1B
- 7ZPNtiGj61dGPtFCjDFgk5H4iBDzgxPiATU4UcWVdigddFytWN5m1eqBd
- QPEJteTsI5VACfB6Lvm1PggvoUkoScPNd6G77sRHbj5efLeooKeJ134l9
- n5ipTWtB38AuFV64bpnUvbkzDblyIJFwRqPQD5hO1avYur3rvCw6kdGZC
- tID8fBRfYjgguGM6PQe7D4NtYgEyhaMQzxbhqW3GmuvjLnYOrHvnOnmZU g==;
-X-CSE-ConnectionGUID: LEWHQ2Q7Q3CdAJpIzYdOVA==
-X-CSE-MsgGUID: fpX7MpEdQ8a1cerGUf5/4w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="67770280"
-X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="67770280"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2025 04:34:34 -0800
-X-CSE-ConnectionGUID: 7Fz2O9b6TZa34mawXMMh7A==
-X-CSE-MsgGUID: 72EtK3ezQXubADUZzTRRtQ==
+ t=1741351276; x=1772887276;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=OMHjOLhEFun8vHXZ5sQZVjl7VVnL664ayJTfVsuXMVI=;
+ b=ZpTaY4hXtq70WP/4nh9tpG8nC4/hbiFbBq6/CLIG2Xpb3Oirx8gNnQrE
+ 0FF3f8KKV5RBQPSa6SGcHcwKrDyKXpXkHfZ6bvfZrt7mnulglttyFKWb+
+ JoTjXATarOm50leqpEKYYayDx3mC9yL2gKWPMNbZjmjhQ+AV2ShNB4OT5
+ wFapNHN0YUXeC4jwod2D7mSDtT6RifSMVvrwi20JY6u/Z1CXYgL3HVe2N
+ M2oGFL97MMRc2htLs/VlpfSimGUCLelEeu2t0iFsr7GYQxqGJUeZ9T5OA
+ jGX9Sik5FHL9yehwTGka+v/X10rp4hKUNPosCaZA2eof2maUmE5zNhsyV w==;
+X-CSE-ConnectionGUID: UTIGIa0dQFSVxdr7mnsHLw==
+X-CSE-MsgGUID: lRiBBCJKQRKW44gQa2A9ng==
+X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="46323184"
+X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="46323184"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2025 04:41:15 -0800
+X-CSE-ConnectionGUID: W+gpwsZFRBCTxjMWivw/fQ==
+X-CSE-MsgGUID: uJZH0wfgQ/yj9x6X3JFBSQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="124535396"
-Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.240])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2025 04:34:31 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH v5 6/6] drm/i915/crt: Use intel_hpd_block/unblock()
- instead of intel_hpd_disable/enable()
-In-Reply-To: <20250304152917.3407080-7-imre.deak@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250304152917.3407080-1-imre.deak@intel.com>
- <20250304152917.3407080-7-imre.deak@intel.com>
-Date: Fri, 07 Mar 2025 14:34:28 +0200
-Message-ID: <871pv9hve3.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="119311731"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2025 04:41:15 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14; Fri, 7 Mar 2025 04:41:13 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14 via Frontend Transport; Fri, 7 Mar 2025 04:41:13 -0800
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.174)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Fri, 7 Mar 2025 04:41:13 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=dLIxtjxIvBixnxUEmjuxS+vqihboMR+gGlnFI+B5KyaflDo99dZcfJc1Bh5xVfYHLbq7FR8Z8KOBz9reCothq2lR3shpEm6pQk5dF+brS7yXIIrZQh5KTCo56ODVa9P7ojBjq8txxcEm45EtFccsRS4bXSu3kemu/Z84ehR3D5tVbqLNPnPCtwTRdtQTQqyeyHCWh+71WqE9ovf59dqsUKGfVBHEOFbMTxAB+j9Ftjj4Q8F3nXS0xXduxkVbW1avw6nzpROJDjetEckerHi8v7bTAIpKWt+BwhevGfmhQ0OxvPLCZl3RV0ZFXSz9+d2ENZPzJfKwQSgBskUy/7gMNQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Z/BHKftyDt2pCwMpWfi1C79MOV/CCg/mRxtLVX/BrY0=;
+ b=lVp0Hv0E8aFgZjLq3gq4wig33rhQcI/mJpmXcrM0+b1js4AjiegCpqkLoxISKlMbFuBPpW3g8+zl1mDhtIhb9xAvWcgvpJu/cD1EzlFOTj37ELlKTQwfgPn89gTMpiGvYLzdYYaAX03Pi8sVInNVKSyaPR2o5kEojlmuakJ9G5D02TS1BL4Cpb2lZokaU4Mk6Qo7bofBnjGgCQSkUhdw0PrIQEvVCxG7S/JCWQQC9+bwPi8TrCZcM1RO3F4jxCc4d40pZkG6blyAiiRQPm7Zfo9sE4PhFQe2NZAxE3LTptbwIcHRw6SvDXGneC0jZFXalUHd9x8625v6/HjA9DFJ6w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB7904.namprd11.prod.outlook.com (2603:10b6:8:f8::8) by
+ DM4PR11MB7253.namprd11.prod.outlook.com (2603:10b6:8:10f::18) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8511.19; Fri, 7 Mar 2025 12:41:06 +0000
+Received: from DS0PR11MB7904.namprd11.prod.outlook.com
+ ([fe80::f97d:d6b8:112a:7739]) by DS0PR11MB7904.namprd11.prod.outlook.com
+ ([fe80::f97d:d6b8:112a:7739%2]) with mapi id 15.20.8511.017; Fri, 7 Mar 2025
+ 12:41:06 +0000
+Message-ID: <890216ca-e30c-4573-a9ef-14ed1e39ae07@intel.com>
+Date: Fri, 7 Mar 2025 14:39:45 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/6] drm/xe/xe_vm: Add per VM pagefault info
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+CC: <saurabhg.gupta@intel.com>, <alex.zuo@intel.com>,
+ <joonas.lahtinen@linux.intel.com>, <matthew.brost@intel.com>,
+ <jianxun.zhang@intel.com>, <shuicheng.lin@intel.com>,
+ <dri-devel@lists.freedesktop.org>
+References: <20250304170854.67195-1-jonathan.cavitt@intel.com>
+ <20250304170854.67195-4-jonathan.cavitt@intel.com>
+Content-Language: en-US
+From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+In-Reply-To: <20250304170854.67195-4-jonathan.cavitt@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MI2P293CA0006.ITAP293.PROD.OUTLOOK.COM
+ (2603:10a6:290:45::18) To DS0PR11MB7904.namprd11.prod.outlook.com
+ (2603:10b6:8:f8::8)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7904:EE_|DM4PR11MB7253:EE_
+X-MS-Office365-Filtering-Correlation-Id: d4526cac-61aa-4cca-bd55-08dd5d755405
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?bjM2YmM5M3BNZHVKQUpYVms3UlZxdFhzMGplMWJaM3BnenJ4NGtpRzdxK3hl?=
+ =?utf-8?B?cnpQWHlwQjBpcVpzR0hsbzZSZ2FENnRtUEdSUXdJQzV4a0RDMGdsOEtlMWVz?=
+ =?utf-8?B?anVQV21qRGxIUms3bU9VWXRwNmxxNWNBMGlzUmM3WnQwUnM0TXlnRTh2YkM5?=
+ =?utf-8?B?SExNZys4UVRselVJYWZUaUVtU2xYNEJwL3l1SzJDaXpQaGFSdFluazV0bm5m?=
+ =?utf-8?B?TkR4YjN3YWg4b3NEL210L1VHY0lEaFNQRDJ6TzlMdCtlZitwR21GM24vZGlz?=
+ =?utf-8?B?Y0NCeWZOa0hZQTRTTHBxZGE3MzZ4aWNrY3licnBRbE1aR2lZTWJFUDNSZHNJ?=
+ =?utf-8?B?VnlFZ0w5cWxXTzVSNmpqME10VzAvdlZocDUvOGphaVJ5WXRlZDdWRXBmcW9L?=
+ =?utf-8?B?dTVLUVRIc1Fmby85NFN6T0xIYTk3dHVBd1orMmNUb3gyaHlDK2xOUUFEWXdR?=
+ =?utf-8?B?czZrdm04WGtPdi95RE8zOVhwS0xHcUIxYXNlb0tmTDhyMWtWdk1IRG9UVDhm?=
+ =?utf-8?B?eEhxWjVzL0pGa0VKK2p1bVFId2I1UjhkU0wzM2JvWW9MNk5XTTB0dmp6eFhk?=
+ =?utf-8?B?L0J4aUZYQVUyL1ZQS2svQlh3R21FQTJRbC9ubHlUUVhNZjF0QnBSYmhrM29Z?=
+ =?utf-8?B?MHdIaFlYNFFMVzFLditZUXVnV255UE5xaWJRbXpLZFVxZ2tYRWJhM3ZlQVln?=
+ =?utf-8?B?Z0tCNTdnSHh5aXY3eWcxQlIxMkRkT0piMUxBZkpZS1V6WEttRXU0NEVQbDB0?=
+ =?utf-8?B?aVQwa0lQaVZnWjFjTXpYV0h2bXZ1NUpFbzJMaXZPTnF4VTBQWTBKaFlLdWpa?=
+ =?utf-8?B?RjdVRUJOUmlnOFA2bVN3Q0J5VXRSWFlqZXVTTFZuU3dYMllEcG5EWUQzODJ3?=
+ =?utf-8?B?YWJsMzNic3lnUGY1SE8wWStvaUdNRmdEUmFkMWVQVExCM0dFM2VwaDVya1Ba?=
+ =?utf-8?B?OC9qeUpHMmNDL0p0amkxdnRmSFA2b0tkTTU1UVRHVUU5QUZIQTNWNjRmOEQy?=
+ =?utf-8?B?QVdxTjIwVHpSZ05uV0ZOU25JdVBBNUYwR2VUcTN6THV1bk5qcVU0eUVwV0Qw?=
+ =?utf-8?B?QW5aZkoxVU40d1FZVytxcWpucW1aNXV4OGN2QnBSK2FUVmNFTFUvYTY1b2RG?=
+ =?utf-8?B?TUVxSWVMbzBBbGdISUxsdE5QOFRqaGgvSExVVzhjazhJZkdreTJoYld1RGx5?=
+ =?utf-8?B?UXhIZ29SSlYrZWZhSXNxM1RHMmJKblZvdk4yWkFqUWZtWUkzQjc5dXNhZENZ?=
+ =?utf-8?B?QTBjZng2dGpmN2U0cFlGQkxxbWMyUXAwYzROSlRUYzJsTlYrQms5STZFc0I0?=
+ =?utf-8?B?aHRSRTJQeHlYaDRSbkNyOHl2QUVTSkhjelJxQzVhMFk0cXRDRmFETFZSbm4r?=
+ =?utf-8?B?dWFibG1IRUljb3pKUm1IbWZkcXg1WlJlUVJ3M2VEWEtIdExkOUl4aElqaGZB?=
+ =?utf-8?B?WHBzcGlNU0JaOWl5UUVkWis3ZUU1dGV1Q0RJMTQ0WTBEWHJZSWJHb0Y4cmEw?=
+ =?utf-8?B?Qy95VGtGOVpxOXNBcFp1UzdydS9tUXB5NS9CVDhib2VFSVJ5czhxSGlIN3FL?=
+ =?utf-8?B?ejFxT3phZFVIYW1iek5BSkhaUzdVZzk1WTdLRUlIUzBQR0dUM0tCOUVxWENO?=
+ =?utf-8?B?NUlrVHNvelFCM01mNW5lOVBucFpQa2JuSFZkaFo0OWRBd2RIUVJGeGlneE9W?=
+ =?utf-8?B?VmowWEszMUV4NkJPV2JMcU9UNUoxb20vNzJ5ZlpKYWdUaXRqYVBJcjV0MEJu?=
+ =?utf-8?B?QVZpTFNRbi9jZGRpVEEvZmQwMndkNGRINkVQSXdOU1k4d08rOHBCRmZoOE9D?=
+ =?utf-8?B?Q3lRdXEzZUVZQkJSRk1LOFFHRmZHajdVK3Y2bzdNVDNSSnIwbDZSNkl6ck9k?=
+ =?utf-8?Q?QzYZh9d8UL/bc?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7904.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cVV2YmhXemNVQzV1RTJLUzNQWEhzOG0xZ1lnTGxybnpVdTJFVzFGNWlyRXRx?=
+ =?utf-8?B?NDcwZmZuVXdRa3A0czBPSTJRT05iNUMrTVBXOFZmSW51Q3dBRWNPN2ZHRW95?=
+ =?utf-8?B?dzVaRmVFeDJNdGJkRHp1MnlNMlVPSDBVWmFZVm01eVFzankva3lta0tiVENi?=
+ =?utf-8?B?NmpneDhyd3dSOEtlZnpLbStEVVAyVWhqUk4ya1MybEhiaDJNdytQckcxWWlw?=
+ =?utf-8?B?eVRTL3UyVTdwTG0wS2dSc2VNMnVrM1FqZ3J2RFVtaUhoZnBrUDNRRklQcDhI?=
+ =?utf-8?B?M0lhQURLSkZtV25OY0RsZGVFdHF1NG40a09tQzJ1VklnWC9vTFlaQ3FoNG4v?=
+ =?utf-8?B?dGNLekc3Z252SDBRUlFPajNrZFhpZ3ZkUkNuTENjNFBrOHU3dmRXaUZrQWl5?=
+ =?utf-8?B?USt5QkpSSTVoVXJmcFFacGpydVFNRHZubkNxR2pTSy9KbWd2aTg5bC9YSjB0?=
+ =?utf-8?B?bWZBeVM2WE9WVGVnL3c4QTNhc2M2SE9jdEFRc2s4WnBPVW1ibjdReHkwakFS?=
+ =?utf-8?B?YTl4VmFpbkZWbWMyTXYwcDdRWC9zdkt0aDhtNUdlcnVXeHlMTWpoRjZSYXFk?=
+ =?utf-8?B?Ynd0TnJpMUdYMUNhMDVvVllvUW9oWE83cGxseHFtQldNK0x1MmkxTkwxQkRR?=
+ =?utf-8?B?NzZjMmdyY2gvaE1oT0hZaE9zK015QXhjdEk1NnVGNjZ3K1RsL1huZnRKaTdD?=
+ =?utf-8?B?c3BIcjlrRUw4Z3lxcFBBRUs4bG5PbmhOdmxOZjV5dUo0Y2xaeTlNYjJSREhU?=
+ =?utf-8?B?MnZ3WWdJRkVHT0UyQXg4SkRla3dKSnJiQmlJOVNVc0RndE5XcEFYbXY3YjNN?=
+ =?utf-8?B?dm82bVU5TkNFM1RINHNSMnNvWTk3OUlxRUtjanRTaTRHbVBrUVdUcVNLZlJ0?=
+ =?utf-8?B?Wk50WWs3OVhnYzE5M2R4M2trd1VHMzRpbDhJU2hJbmhrN210bmFrZHdGS00z?=
+ =?utf-8?B?N1d2dE04VlJjVTJtdTNEUnZBRGRTdllRT0laaVI5WnhjYTkweS9zb0lxeldZ?=
+ =?utf-8?B?Mml5MmNPS3BCZjA5RzcxOHhRWnc5SUJ6SUt1andDMUxnejFwWG9GUExGYUFX?=
+ =?utf-8?B?V043bnpoOU5ZMi85UXFCUmtoRDJwbFczZnIvdjJXUVJDbzlFQmtwQmZIb2N6?=
+ =?utf-8?B?SEFEckhPS0E0RUZzdzc2L2Y3a0ZpTlBLME9BMjdTRzJ4bHAvaW53RUEwcjdm?=
+ =?utf-8?B?bVBqUHpsdW5EakFQZUNBMWg0VStWRnp0SmtmZHhKa0wyNWJOWmxTZWNCUFZn?=
+ =?utf-8?B?SjIrbEQ2OFpISXB6QUFneW1TYTFTQ3AvOUVOOWdmLzRPUG1WZlhhQzAvQVoy?=
+ =?utf-8?B?ekkxY1JJL3ovZVNwQ2VyeFc2NE1rUzdOemlQQ2w5L25IUzlNc1AyN1M2V0JG?=
+ =?utf-8?B?Vnc0RDV0N0EyN3BsRjNQWjhrQ3ZseXFvcWVoRUpZQk9ML2JZNTh1NmRhNkhO?=
+ =?utf-8?B?cXZVZGNlREV0ZmlSMXZZbUFjZjUvbUw4Ykw3dElxVXRuUmtyN1ZUR0hNRTJE?=
+ =?utf-8?B?Y2RnTUNJZzJiT2gvUDRuWml4UDcrOCtRMnB0QS83VWQzT3pENTErZXU1WHFa?=
+ =?utf-8?B?SGY0d05FWjNpd2ZKZXhuSUJXbUJGdlRFTFE3czVORnN3VGVYbktwQWFxUGo1?=
+ =?utf-8?B?ZlVWQmk2eFZRRE5IdjM5QlhSN2k3TUtDcjY0eUREMkl0MDBjbVFiQ09PK25i?=
+ =?utf-8?B?R0srcXBoNnkzSE1WSXEvQVVxSS84RXZkZUN0dWRhd09Mb0hpanh2SzNuYkRB?=
+ =?utf-8?B?aklJWjlaWVVxTjVwU0ZQcitSZkl4L0FrMlNOUnRidUJHdXcvQVh6bmxxMUs2?=
+ =?utf-8?B?OWt4WW1senJmODR4azIwZ09wZlRLbmJhMTRZQmZPUWlWN3dBa290T2xMRDl2?=
+ =?utf-8?B?bG8xZGY3OGNlSVE0Rjd0TC9OaXYvZUxEQXg1L3gxbFI1QUVzYk1CVXFXY0xQ?=
+ =?utf-8?B?L092U20vNk5Cd1lpTTg1Q0JxSVR1cnZBM3A1S3BHQlE5RG8wZkNickFxZldT?=
+ =?utf-8?B?TDVJQWxEMGJkUUVBTUdkZzRXUTZmQjRoRERWdHRFU3lCKzF3NDlxc3RKUldk?=
+ =?utf-8?B?djFXR01MTEtrcWtMY2ZPNWg2TURpdDYxT0lhM21ZUkI0NkNBeCtXWm9RTTJD?=
+ =?utf-8?B?clp1ODdlbDZMTnl2Y2cwUGN6UkhYS2tYSDJFRnhFY3ZJMzJUbisxZmNEa3Mz?=
+ =?utf-8?B?THc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: d4526cac-61aa-4cca-bd55-08dd5d755405
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7904.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Mar 2025 12:41:06.2563 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9C0bM/e6jBNeONeDffiV+H40JYmxZOV3T+QPAKBqhwxh3+YOBoSChXNXJgL4JTF2Kq6VOLDEq7IEguLLhr0ZwOnd13482xxsFQ35Jb091aM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB7253
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,187 +198,201 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 04 Mar 2025, Imre Deak <imre.deak@intel.com> wrote:
-> intel_hpd_disable/enable() have the same purpose as
-> intel_hpd_block/unblock(), except that disable/enable will drop any HPD
-> IRQs which were triggered while the HPD was disabled, while
-> block/unblock will handle such IRQs after the IRQ handling is unblocked.
-> Use intel_hpd_block/unblock() for crt as well, by adding a helper to
-> explicitly clear any pending IRQs before unblocking.
->
-> v2:
-> - Handle encoders without a port assigned to them.
-> - Rebase on change in intel_hpd_suspend() documentation.
-> v3:
-> - Rebase on the suspend/resume -> block/unblock rename change.
-> - Clear the pending events only after all encoders have unblocked the
->   HPD handling.
-> - Clear the short/long port events for all encoders using the given HPD
->   pin.
-> v4:
-> - Rebase on port->hpd_pin tracking. (Ville)
->
-> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
+On 3/4/25 7:08 PM, Jonathan Cavitt wrote:
+> Add additional information to each VM so they can report up to the last
+> 50 seen pagefaults.  Only failed pagefaults are saved this way, as
+> successful pagefaults should recover and not need to be reported to
+> userspace.
+> 
+The unrecoverable pagefault scenario causes a caterr or context reset. 
+so It would be enough to store one uncoverable pagefault for providing a 
+unrecoverable pagefault details to userspace. how do you think?
+
+G.G.
+
+> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Suggested-by: Matthew Brost <matthew.brost@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_crt.c     |  7 +--
->  drivers/gpu/drm/i915/display/intel_hotplug.c | 60 +++++++++++---------
->  drivers/gpu/drm/i915/display/intel_hotplug.h |  3 +-
->  3 files changed, 35 insertions(+), 35 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i=
-915/display/intel_crt.c
-> index 76ffb3f8467c8..bca91d49cb960 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crt.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crt.c
-> @@ -532,8 +532,6 @@ static bool valleyview_crt_detect_hotplug(struct drm_=
-connector *connector)
->  {
->  	struct intel_display *display =3D to_intel_display(connector->dev);
->  	struct intel_crt *crt =3D intel_attached_crt(to_intel_connector(connect=
-or));
-> -	struct drm_i915_private *dev_priv =3D to_i915(connector->dev);
-> -	bool reenable_hpd;
->  	u32 adpa;
->  	bool ret;
->  	u32 save_adpa;
-> @@ -550,7 +548,7 @@ static bool valleyview_crt_detect_hotplug(struct drm_=
-connector *connector)
->  	 *
->  	 * Just disable HPD interrupts here to prevent this
->  	 */
-> -	reenable_hpd =3D intel_hpd_disable(dev_priv, crt->base.hpd_pin);
-> +	intel_hpd_block(&crt->base);
->=20=20
->  	save_adpa =3D adpa =3D intel_de_read(display, crt->adpa_reg);
->  	drm_dbg_kms(display->drm,
-> @@ -577,8 +575,7 @@ static bool valleyview_crt_detect_hotplug(struct drm_=
-connector *connector)
->  	drm_dbg_kms(display->drm,
->  		    "valleyview hotplug adpa=3D0x%x, result %d\n", adpa, ret);
->=20=20
-> -	if (reenable_hpd)
-> -		intel_hpd_enable(dev_priv, crt->base.hpd_pin);
-> +	intel_hpd_clear_and_unblock(&crt->base);
->=20=20
->  	return ret;
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/d=
-rm/i915/display/intel_hotplug.c
-> index cb4e320a1023d..423925fec73dc 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hotplug.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
-> @@ -993,33 +993,6 @@ void intel_hpd_cancel_work(struct drm_i915_private *=
-dev_priv)
->  		drm_dbg_kms(&dev_priv->drm, "Hotplug detection work still active\n");
->  }
->=20=20
-> -bool intel_hpd_disable(struct drm_i915_private *dev_priv, enum hpd_pin p=
-in)
-> -{
-> -	bool ret =3D false;
-> -
-> -	if (pin =3D=3D HPD_NONE)
-> -		return false;
-> -
-> -	spin_lock_irq(&dev_priv->irq_lock);
-> -	if (dev_priv->display.hotplug.stats[pin].state =3D=3D HPD_ENABLED) {
-> -		dev_priv->display.hotplug.stats[pin].state =3D HPD_DISABLED;
-> -		ret =3D true;
-> -	}
-> -	spin_unlock_irq(&dev_priv->irq_lock);
-> -
-> -	return ret;
-> -}
-> -
-> -void intel_hpd_enable(struct drm_i915_private *dev_priv, enum hpd_pin pi=
-n)
-> -{
-> -	if (pin =3D=3D HPD_NONE)
-> -		return;
-> -
-> -	spin_lock_irq(&dev_priv->irq_lock);
-> -	dev_priv->display.hotplug.stats[pin].state =3D HPD_ENABLED;
-> -	spin_unlock_irq(&dev_priv->irq_lock);
-> -}
-> -
->  static void queue_work_for_missed_irqs(struct drm_i915_private *i915)
->  {
->  	struct intel_display *display =3D to_intel_display(&i915->drm);
-> @@ -1096,7 +1069,8 @@ static bool unblock_hpd_pin(struct intel_display *d=
-isplay, enum hpd_pin pin)
->   *   drm_connector_funcs::detect()) remains allowed, for instance as par=
-t of
->   *   userspace connector probing, or DRM core's connector polling.
->   *
-> - * The call must be followed by calling intel_hpd_unblock().
-> + * The call must be followed by calling intel_hpd_unblock(), or
-> + * intel_hpd_clear_and_unblock().
->   *
->   * Note that the handling of HPD IRQs for another encoder using the same=
- HPD
->   * pin as that of @encoder will be also blocked.
-> @@ -1147,6 +1121,36 @@ void intel_hpd_unblock(struct intel_encoder *encod=
-er)
->  	spin_unlock_irq(&i915->irq_lock);
->  }
->=20=20
-> +/**
-> + * intel_hpd_clear_and_unblock - Unblock handling of new HPD IRQs on an =
-HPD pin
-> + * @encoder: Encoder to unblock the HPD handling for
-> + *
-> + * Unblock the handling of HPD IRQs on the HPD pin of @encoder, which was
-> + * previously blocked by intel_hpd_block(). Any HPD IRQ raised on the
-> + * HPD pin while it was blocked will be cleared, handling only new IRQs.
-> + */
-> +void intel_hpd_clear_and_unblock(struct intel_encoder *encoder)
+>   drivers/gpu/drm/xe/xe_gt_pagefault.c | 17 +++++++++++
+>   drivers/gpu/drm/xe/xe_vm.c           | 45 ++++++++++++++++++++++++++++
+>   drivers/gpu/drm/xe/xe_vm.h           |  6 ++++
+>   drivers/gpu/drm/xe/xe_vm_types.h     | 20 +++++++++++++
+>   4 files changed, 88 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> index 07b52d3c1a60..84907fb4295e 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> @@ -335,6 +335,22 @@ int xe_guc_pagefault_handler(struct xe_guc *guc, u32 *msg, u32 len)
+>   	return full ? -ENOSPC : 0;
+>   }
+>   
+> +static void save_pagefault_to_vm(struct xe_device *xe, struct xe_pagefault *pf)
 > +{
-> +	struct intel_display *display =3D to_intel_display(encoder);
-> +	struct drm_i915_private *i915 =3D to_i915(display->drm);
-> +	struct intel_hotplug *hotplug =3D &display->hotplug;
-> +	enum hpd_pin pin =3D encoder->hpd_pin;
+> +	struct xe_vm *vm;
+> +	struct xe_pagefault *store;
 > +
-> +	if (pin =3D=3D HPD_NONE)
+> +	vm = asid_to_vm(xe, pf->asid);
+> +	if (IS_ERR(vm))
 > +		return;
 > +
-> +	spin_lock_irq(&i915->irq_lock);
-> +
-> +	if (unblock_hpd_pin(display, pin)) {
-> +		hotplug->event_bits &=3D ~BIT(pin);
-> +		hotplug->retry_bits &=3D ~BIT(pin);
-> +		hotplug->short_hpd_pin_mask &=3D ~BIT(pin);
-> +		hotplug->long_hpd_pin_mask &=3D ~BIT(pin);
-> +	}
-> +
-> +	spin_unlock_irq(&i915->irq_lock);
+> +	spin_lock(&vm->pfs.lock);
+> +	store = kzalloc(sizeof(*pf), GFP_KERNEL);
+> +	memcpy(store, pf, sizeof(*pf));
+> +	xe_vm_add_pf_entry(vm, store);
+> +	spin_unlock(&vm->pfs.lock);
 > +}
 > +
->  void intel_hpd_enable_detection_work(struct drm_i915_private *i915)
->  {
->  	spin_lock_irq(&i915->irq_lock);
-> diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.h b/drivers/gpu/d=
-rm/i915/display/intel_hotplug.h
-> index 5f9857136f5e3..f189b871904ed 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hotplug.h
-> +++ b/drivers/gpu/drm/i915/display/intel_hotplug.h
-> @@ -26,10 +26,9 @@ void intel_hpd_init(struct drm_i915_private *dev_priv);
->  void intel_hpd_init_early(struct drm_i915_private *i915);
->  void intel_hpd_cancel_work(struct drm_i915_private *dev_priv);
->  enum hpd_pin intel_hpd_pin_default(enum port port);
-> -bool intel_hpd_disable(struct drm_i915_private *dev_priv, enum hpd_pin p=
-in);
-> -void intel_hpd_enable(struct drm_i915_private *dev_priv, enum hpd_pin pi=
-n);
->  void intel_hpd_block(struct intel_encoder *encoder);
->  void intel_hpd_unblock(struct intel_encoder *encoder);
-> +void intel_hpd_clear_and_unblock(struct intel_encoder *encoder);
->  void intel_hpd_debugfs_register(struct drm_i915_private *i915);
->=20=20
->  void intel_hpd_enable_detection_work(struct drm_i915_private *i915);
+>   #define USM_QUEUE_MAX_RUNTIME_MS	20
+>   
+>   static void pf_queue_work_func(struct work_struct *w)
+> @@ -353,6 +369,7 @@ static void pf_queue_work_func(struct work_struct *w)
+>   		ret = handle_pagefault(gt, &pf);
+>   		if (unlikely(ret)) {
+>   			print_pagefault(xe, &pf);
+> +			save_pagefault_to_vm(xe, &pf);
+>   			pf.fault_unsuccessful = 1;
+>   			drm_dbg(&xe->drm, "Fault response: Unsuccessful %d\n", ret);
+>   		}
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 996000f2424e..6211b971bbbd 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -746,6 +746,46 @@ int xe_vm_userptr_check_repin(struct xe_vm *vm)
+>   		list_empty_careful(&vm->userptr.invalidated)) ? 0 : -EAGAIN;
+>   }
+>   
+> +static void free_pf_entry(struct xe_vm *vm, struct xe_vm_pf_entry *e)
+> +{
+> +	list_del(&e->list);
+> +	kfree(e->pf);
+> +	kfree(e);
+> +	vm->pfs.len--;
+> +}
+> +
+> +void xe_vm_add_pf_entry(struct xe_vm *vm, struct xe_pagefault *pf)
+> +{
+> +	struct xe_vm_pf_entry *e = NULL;
+> +
+> +	e = kzalloc(sizeof(*e), GFP_KERNEL);
+> +	xe_assert(vm->xe, e);
+> +
+> +	spin_lock(&vm->pfs.lock);
+> +	list_add_tail(&e->list, &vm->pfs.list);
+> +	vm->pfs.len++;
+> +	/**
+> +	 * Limit the number of pfs in the pf list to prevent memory overuse.
+> +	 */
+> +	if (vm->pfs.len > MAX_PFS) {
+> +		struct xe_vm_pf_entry *rem =
+> +			list_first_entry(&vm->pfs.list, struct xe_vm_pf_entry, list);
+> +
+> +		free_pf_entry(vm, rem);
+> +	}
+> +	spin_unlock(&vm->pfs.lock);
+> +}
+> +
+> +void xe_vm_remove_pf_entries(struct xe_vm *vm)
+> +{
+> +	struct xe_vm_pf_entry *e, *tmp;
+> +
+> +	spin_lock(&vm->pfs.lock);
+> +	list_for_each_entry_safe(e, tmp, &vm->pfs.list, list)
+> +		free_pf_entry(vm, e);
+> +	spin_unlock(&vm->pfs.lock);
+> +}
+> +
+>   static int xe_vma_ops_alloc(struct xe_vma_ops *vops, bool array_of_binds)
+>   {
+>   	int i;
+> @@ -1448,6 +1488,9 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+>   	init_rwsem(&vm->userptr.notifier_lock);
+>   	spin_lock_init(&vm->userptr.invalidated_lock);
+>   
+> +	INIT_LIST_HEAD(&vm->pfs.list);
+> +	spin_lock_init(&vm->pfs.lock);
+> +
+>   	ttm_lru_bulk_move_init(&vm->lru_bulk_move);
+>   
+>   	INIT_WORK(&vm->destroy_work, vm_destroy_work_func);
+> @@ -1672,6 +1715,8 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+>   	}
+>   	up_write(&xe->usm.lock);
+>   
+> +	xe_vm_remove_pf_entries(vm);
+> +
+>   	for_each_tile(tile, xe, id)
+>   		xe_range_fence_tree_fini(&vm->rftree[id]);
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+> index f66075f8a6fe..4d94ab5c8ea4 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.h
+> +++ b/drivers/gpu/drm/xe/xe_vm.h
+> @@ -12,6 +12,8 @@
+>   #include "xe_map.h"
+>   #include "xe_vm_types.h"
+>   
+> +#define MAX_PFS 50
+> +
+>   struct drm_device;
+>   struct drm_printer;
+>   struct drm_file;
+> @@ -244,6 +246,10 @@ int xe_vma_userptr_pin_pages(struct xe_userptr_vma *uvma);
+>   
+>   int xe_vma_userptr_check_repin(struct xe_userptr_vma *uvma);
+>   
+> +void xe_vm_add_pf_entry(struct xe_vm *vm, struct xe_pagefault *pf);
+> +
+> +void xe_vm_remove_pf_entries(struct xe_vm *vm);
+> +
+>   bool xe_vm_validate_should_retry(struct drm_exec *exec, int err, ktime_t *end);
+>   
+>   int xe_vm_lock_vma(struct drm_exec *exec, struct xe_vma *vma);
+> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+> index 52467b9b5348..10b0952db56c 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> @@ -18,6 +18,7 @@
+>   #include "xe_range_fence.h"
+>   
+>   struct xe_bo;
+> +struct xe_pagefault;
+>   struct xe_sync_entry;
+>   struct xe_user_fence;
+>   struct xe_vm;
+> @@ -135,6 +136,13 @@ struct xe_userptr_vma {
+>   
+>   struct xe_device;
+>   
+> +struct xe_vm_pf_entry {
+> +	/** @pf: observed pagefault */
+> +	struct xe_pagefault *pf;
+> +	/** @list: link into @xe_vm.pfs.list */
+> +	struct list_head list;
+> +};
+> +
+>   struct xe_vm {
+>   	/** @gpuvm: base GPUVM used to track VMAs */
+>   	struct drm_gpuvm gpuvm;
+> @@ -274,6 +282,18 @@ struct xe_vm {
+>   		bool capture_once;
+>   	} error_capture;
+>   
+> +	/**
+> +	 * @pfs: List of all pagefaults associated with this VM
+> +	 */
+> +	struct {
+> +		/** @lock: lock protecting @bans.list */
+> +		spinlock_t lock;
+> +		/** @list: list of xe_exec_queue_ban_entry entries */
+> +		struct list_head list;
+> +		/** @len: length of @bans.list */
+> +		unsigned int len;
+> +	} pfs;
+> +
+>   	/**
+>   	 * @tlb_flush_seqno: Required TLB flush seqno for the next exec.
+>   	 * protected by the vm resv.
 
---=20
-Jani Nikula, Intel
