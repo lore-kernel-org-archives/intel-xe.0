@@ -4,55 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C45EC28B25
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 14:12:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F158C28B23
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 14:12:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E9AC10EB97;
-	Fri,  7 Mar 2025 14:12:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EC3510EBB6;
+	Fri,  7 Mar 2025 14:12:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=dragonic.eu header.i=@dragonic.eu header.b="Yp82Y4In";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="kbBv0Wez";
 	dkim-atps=neutral
-X-Greylist: delayed 2486 seconds by postgrey-1.36 at gabe;
- Wed, 05 Mar 2025 20:36:18 UTC
-Received: from k11.unixstorm.org (k11.unixstorm.org [91.227.122.80])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B16810E2AD;
- Wed,  5 Mar 2025 20:36:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=dragonic.eu
- ; s=x;
- h=MIME-Version:Content-Transfer-Encoding:Content-Type:References:
- In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=SIg3IAcWZN8wRN9Nh85uzigI84msQCuskZOaGsF4rys=; b=Yp82Y4InpbJ7eJGCDiM9CC16LH
- qEMrYB1HJWBMLocfwPETVl8enggeBjl8mWV1zEQL8k86G00bpqiymEuiN6v0ztOg6/o43qdwEv6Dj
- LMARyxNOiNbrZXOwQN5BIwv08QC+o4ctibEs3aAsOo7aaRIYfSd/xhBwTzBjMR+KChN0FBwBErq6Q
- s/dWjJaI5AvVx8zDys3IrBMWrJ9hm+Ey/f3IfIDUaozNDuzRoTaFM2Cm9YX67P1p4RqrZz0W0IxH9
- mz0XYM+N7TetqIbIvFI8NZDljlr1f/pa9EbUICZ6jk9+APvOzbqVhqHXGlPnQChLmZX1CVoQAzBes
- iFKM1vvg==;
-Received: from 037008241088.gdansk.vectranet.pl ([37.8.241.88]
- helo=folkvangr.lan)
- by k11.unixstorm.org with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
- (Exim 4.96.2-12-g29d01ae2a) (envelope-from <rk@dragonic.eu>)
- id 1tpupV-0002oS-2O; Wed, 05 Mar 2025 20:54:57 +0100
-Message-ID: <4e752e412143c8515b78146c5149126a7c5f306a.camel@dragonic.eu>
-Subject: Re: Discussion: Moving away from Patchwork for Intel i915/Xe CI
-From: Ryszard Knop <rk@dragonic.eu>
-To: Jani Nikula <jani.nikula@linux.intel.com>, "Knop, Ryszard"
- <ryszard.knop@intel.com>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Cc: "De Marchi, Lucas" <lucas.demarchi@intel.com>, "daniel@fooishbar.org"
- <daniel@fooishbar.org>, Sima Vetter <sima@ffwll.ch>
-Date: Wed, 05 Mar 2025 20:54:44 +0100
-In-Reply-To: <871pvbxt40.fsf@intel.com>
-References: <814f9bcb9c7ee22af45bd5278255af247c6664fa.camel@intel.com>
- <871pvbxt40.fsf@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFBF410E304;
+ Fri,  7 Mar 2025 04:35:04 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 9F7DAA45443;
+ Fri,  7 Mar 2025 04:29:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CA82C4CEE7;
+ Fri,  7 Mar 2025 04:34:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1741322100;
+ bh=eOTV044WYhocRx1vXkpraElTyG3Fqa9oEKLRf65avo8=;
+ h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+ b=kbBv0Wez8COiRkm4MKqKGM+B9CMdvf6w2xB6CCt79bTj2qE4PdtCoyOtslleQvw9J
+ Tf8bkIsng/MGnib3O741wH+yTt+1cEhUgH56C5VRvlABiMkBK+6yrkJAIiQDhFpmLY
+ tBluPkg4/TYUg83NYvvFfmyXAjnsRicuS7Rt/TpM7TtSVQrQr9XJmHBAjwpeDSdqiE
+ qEhqe3u4xPnzk8wmElvd9/kg8q1jIoRsIHM/tIxBYZjPuIdqoVPwaFOWi2n+ub4UbW
+ h84gvqs85+4Jj+YWbZ1PQ3tmHFmxo8WdFb4LCwk7wfOOTH6mvvFBd9rkyrnnyMthmC
+ xqCGfJJijZ3NQ==
+From: Dmitry Baryshkov <lumag@kernel.org>
+Date: Fri, 07 Mar 2025 06:34:43 +0200
+Subject: [PATCH RFC v3 1/7] drm/display: dp: implement new access helpers
 MIME-Version: 1.0
-X-Authenticated-Id: dragoon
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250307-drm-rework-dpcd-access-v3-1-9044a3a868ee@linaro.org>
+References: <20250307-drm-rework-dpcd-access-v3-0-9044a3a868ee@linaro.org>
+In-Reply-To: <20250307-drm-rework-dpcd-access-v3-0-9044a3a868ee@linaro.org>
+To: Lyude Paul <lyude@redhat.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+ Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Xinliang Liu <xinliang.liu@linaro.org>, Tian Tao <tiantao6@hisilicon.com>, 
+ Xinwei Kong <kong.kongxinwei@hisilicon.com>, 
+ Sumit Semwal <sumit.semwal@linaro.org>, 
+ Yongqin Liu <yongqin.liu@linaro.org>, John Stultz <jstultz@google.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@intel.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6662;
+ i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
+ bh=SmZu1bk63rEb0BXZXya3Ueg7NpPOC5KqOlIN1CXFX+4=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBnyndlpmM7SwYZ9oezAZbVfAnEvPMSol8yIr3yL
+ cjm9tXBuZSJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZ8p3ZQAKCRCLPIo+Aiko
+ 1XwuB/94oyKTlhatl5m82hLLyvzpc7YCxkMcpwIBqCye2l9AEF2N7CcaS13LLQqV72VPqizPqkV
+ Y76HuqAJ90v42eB3x/As32QFw2dcPobj+smP+OArSoN1pzgty2qvUK6wPaiRoY0px6MrzGUzLR8
+ X2pVePwcouuQpYsLN3cTjtnw6xAe2ChT4S5TiaoK+50m4z0Hf6EX8lVbGByY/l2F2zQFUOTr0Gs
+ ZI7JejT0cBOpQPeZegZqy+O7ic7mXXoLAtb0hjRHhUpVUdp4JEBruO1g4TzwaCuqX89uXmELSHV
+ 2+ptEU1JzbibIyR9bSUj04CvQ1H1SVVOef0tcYQYHNCuAx0j
+X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 X-Mailman-Approved-At: Fri, 07 Mar 2025 14:12:40 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,137 +88,172 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2025-03-05 at 19:52 +0200, Jani Nikula wrote:
-> On Wed, 05 Mar 2025, "Knop, Ryszard" <ryszard.knop@intel.com> wrote:
-> > Hey everyone,
-> >=20
-> > Patchwork has been having lots of issues recently, dropping patches,
-> > being unusably slow and generally starting to become more of a pain
-> > than help. Over on the CI side we are also not super fond of it and we
-> > don't have enough resources to maintain it properly. Lucas has
-> > suggested using public-inbox archives directly, and with some recent
-> > tools like b4/lei making common ML workflows feasible without
-> > reinventing the wheel, we are considering setting up a bridge between
-> > MLs and GitHub/GitLab to instead drive CI using more modern tools.
->=20
-> I am supportive of this change.
->=20
-> > We have not decided whether to drop Patchwork yet - this is a thread to
-> > gather people's thoughts if this sounds like a good idea.
-> >=20
-> > The workflow would look like this:
-> >=20
-> > - A drm-tip mirror would be set up on GitHub/fd.o GitLab, automatically
-> > pulling all changes from drm-tip upstream fd.o GitLab as a secondary
-> > source.
-> > - For each new series on lore.kernel.org a bridge would create a PR by
-> > taking the latest mirrored drm-tip source, then applying a new series
-> > with `b4 shazam`.
->=20
-> There's a small catch here. Patchwork is currently more clever about
-> handling series revisions when only some of the patches in a series are
-> updated by way of replying to the individual patch. For example [1][2].
->=20
-> I've been meaning to report it to upstream b4, but haven't gotten around
-> to it yet. But I wouldn't consider this a blocker.
->=20
-> [1] https://lore.kernel.org/r/20250305114820.3523077-2-imre.deak@intel.co=
-m
-> [2] https://patchwork.freedesktop.org/series/145782/
->=20
-> > - That PR would then go through the normal CI flow, with CI checks
-> > being reported on that PR, instead of sending all the reports to the
-> > mailing list.
-> > - On the mailing list, the bridge would send an ack that a series has
-> > been seen and where are its results. You would no longer receive
-> > multiple emails with KBs of logs in your email client, but everything
-> > would be available from PR checks (as status checks and links to full
-> > logs only, no trimming and "last 1000 lines only").
->=20
-> \o/
->=20
-> > - Mirrors, PRs and checks for public mailing lists would be public,
-> > much like on the current public Patchwork instance.
-> > - Logs behind links will be stored for a few months (3-6, depends on
-> > traffic and how the situation evolves). GitHub Checks themselves (check
-> > status, shortlogs and links) have a hard retention period of 400 days.
-> > - Not sure about PR retention: we need a mechanism to correctly
-> > identify merged series somehow, then to trim these from the list.
-> > Expected retention time?
->=20
-> With the velocity of the driver development, the test results go stale
-> in a matter of a week or two. I normally wouldn't merge patches older
-> than that without a fresh test round.
->=20
-> IMO a long retention isn't necessary. At most a few months? The patches
-> will still stay on the list forever.
->=20
-> > - Not sure about reporting on "CI finished": Maybe we could send one
-> > more email with a summary of checks when the entire workflow has been
-> > finished?
->=20
-> I've previously suggested one short mail as an acknowledgement with a
-> URL to the results, and another mail when testing has ended one way or
-> another. I think it would be a good starting point.
->=20
-> > On GitHub vs fd.o GitLab: I'm thinking more of GitHub here:
-> >=20
-> > - GitHub generally performs better with large repositories.
-> > - Extra fallback drm-tip source for fd.o downtime periods.
-> > - Bonus points: We can store public Intel CI tags directly in that
-> > mirror for moderate periods of time without abusing fd.o servers.
-> >=20
-> > Either option would work fine though, so opinions here would be
-> > appreciated :)
->=20
-> I think eventually we will want to consider accepting contributions via
-> gitlab merge requests directly.
->=20
-> It would also be interesting if maintainers/committers could merge the
-> contributions via gitlab UI already when CI applied the patches from the
-> mailing list and created the merge request.
->=20
-> In the merge request case, they'd have to be against individual repos
-> that feed into drm-tip, *not* merge requests against drm-tip
-> directly. So for testing CI would have to recreate drm-tip the same way
-> as 'dim push-branch' currently does.
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-This is doable, but perf-wise is not going to be great. We would have to
-checkout all trees pulled into drm/tip for each build as listed in the
-latest integration-manifest, replace target tree with the MR tree, then
-provide results from that. We'll see how this works out in practice.
-(It should be just `dim rebuild-tip` after pointing all the branches at
-the required commits?)
+Existing DPCD access functions return an error code or the number of
+bytes being read / write in case of partial access. However a lot of
+drivers either (incorrectly) ignore partial access or mishandle error
+codes. In other cases this results in a boilerplate code which compares
+returned value with the size.
 
-This also means having a backup drm/tip source when fd.o is offline is
-out; it's patched into too many places if dim gets used.
+Implement new set of DPCD access helpers, which ignore partial access,
+always return 0 or an error code.
 
-Ryszard
+Suggested-by: Jani Nikula <jani.nikula@linux.intel.com>
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ drivers/gpu/drm/display/drm_dp_helper.c |  4 ++
+ include/drm/display/drm_dp_helper.h     | 92 ++++++++++++++++++++++++++++++++-
+ 2 files changed, 94 insertions(+), 2 deletions(-)
 
-> I don't think these are hard requests at this time, and should not block
-> the forward progress, but it's maybe something you want to consider so
-> you're not inadvertently creating problems for your future self!
->=20
-> > CI itself would not run in the native forge CI either way, but rather
-> > on our Jenkins infra, as it does today. If there's ever a need to
-> > switch forges, it would require reworking the bridging/reporting bits,
-> > but not *all* the bits.
-> >=20
-> > We don't want to self-host another forge as we don't have enough people
-> > and free time to do that properly. Codeberg, etc are not an option due
-> > to the drm-tip repo size.
-> >=20
-> > And that's the initial idea. Thoughts? Do you like any of this, or does
-> > it sound like a downgrade from what we have today?
->=20
-> I think it sounds good overall. I don't like the flood of mails, and
-> they don't have complete information anyway. I'm hopeful using
-> github/gitlab would make the whole CI slightly more transparent too.
->=20
-> I wouldn't mind sunsetting fdo patchwork at all.
->=20
->=20
-> BR,
-> Jani.
->=20
+diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
+index dbce1c3f49691fc687fee2404b723c73d533f23d..e43a8f4a252dae22eeaae1f4ca94da064303033d 100644
+--- a/drivers/gpu/drm/display/drm_dp_helper.c
++++ b/drivers/gpu/drm/display/drm_dp_helper.c
+@@ -704,6 +704,8 @@ EXPORT_SYMBOL(drm_dp_dpcd_set_powered);
+  * function returns -EPROTO. Errors from the underlying AUX channel transfer
+  * function, with the exception of -EBUSY (which causes the transaction to
+  * be retried), are propagated to the caller.
++ *
++ * In most of the cases you want to use drm_dp_dpcd_read_data() instead.
+  */
+ ssize_t drm_dp_dpcd_read(struct drm_dp_aux *aux, unsigned int offset,
+ 			 void *buffer, size_t size)
+@@ -752,6 +754,8 @@ EXPORT_SYMBOL(drm_dp_dpcd_read);
+  * function returns -EPROTO. Errors from the underlying AUX channel transfer
+  * function, with the exception of -EBUSY (which causes the transaction to
+  * be retried), are propagated to the caller.
++ *
++ * In most of the cases you want to use drm_dp_dpcd_write_data() instead.
+  */
+ ssize_t drm_dp_dpcd_write(struct drm_dp_aux *aux, unsigned int offset,
+ 			  void *buffer, size_t size)
+diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
+index 5ae4241959f24e2c1fb581d7c7d770485d603099..c5be44d72c9a04474f6c795e03bf02bf08f5eaef 100644
+--- a/include/drm/display/drm_dp_helper.h
++++ b/include/drm/display/drm_dp_helper.h
+@@ -527,6 +527,64 @@ ssize_t drm_dp_dpcd_read(struct drm_dp_aux *aux, unsigned int offset,
+ ssize_t drm_dp_dpcd_write(struct drm_dp_aux *aux, unsigned int offset,
+ 			  void *buffer, size_t size);
+ 
++/**
++ * drm_dp_dpcd_read_data() - read a series of bytes from the DPCD
++ * @aux: DisplayPort AUX channel (SST or MST)
++ * @offset: address of the (first) register to read
++ * @buffer: buffer to store the register values
++ * @size: number of bytes in @buffer
++ *
++ * Returns zero (0) on success, or a negative error
++ * code on failure. -EIO is returned if the request was NAKed by the sink or
++ * if the retry count was exceeded. If not all bytes were transferred, this
++ * function returns -EPROTO. Errors from the underlying AUX channel transfer
++ * function, with the exception of -EBUSY (which causes the transaction to
++ * be retried), are propagated to the caller.
++ */
++static inline int drm_dp_dpcd_read_data(struct drm_dp_aux *aux,
++					unsigned int offset,
++					void *buffer, size_t size)
++{
++	int ret;
++
++	ret = drm_dp_dpcd_read(aux, offset, buffer, size);
++	if (ret < 0)
++		return ret;
++	if (ret < size)
++		return -EPROTO;
++
++	return 0;
++}
++
++/**
++ * drm_dp_dpcd_write_data() - write a series of bytes to the DPCD
++ * @aux: DisplayPort AUX channel (SST or MST)
++ * @offset: address of the (first) register to write
++ * @buffer: buffer containing the values to write
++ * @size: number of bytes in @buffer
++ *
++ * Returns zero (0) on success, or a negative error
++ * code on failure. -EIO is returned if the request was NAKed by the sink or
++ * if the retry count was exceeded. If not all bytes were transferred, this
++ * function returns -EPROTO. Errors from the underlying AUX channel transfer
++ * function, with the exception of -EBUSY (which causes the transaction to
++ * be retried), are propagated to the caller.
++ */
++static inline int drm_dp_dpcd_write_data(struct drm_dp_aux *aux,
++					 unsigned int offset,
++					 void *buffer, size_t size)
++{
++	int ret;
++
++	ret = drm_dp_dpcd_write(aux, offset, buffer, size);
++	if (ret < 0)
++		return ret;
++	if (ret < size)
++		return -EPROTO;
++
++	return 0;
++}
++
+ /**
+  * drm_dp_dpcd_readb() - read a single byte from the DPCD
+  * @aux: DisplayPort AUX channel
+@@ -534,7 +592,8 @@ ssize_t drm_dp_dpcd_write(struct drm_dp_aux *aux, unsigned int offset,
+  * @valuep: location where the value of the register will be stored
+  *
+  * Returns the number of bytes transferred (1) on success, or a negative
+- * error code on failure.
++ * error code on failure. In most of the cases you should be using
++ * drm_dp_dpcd_read_byte() instead
+  */
+ static inline ssize_t drm_dp_dpcd_readb(struct drm_dp_aux *aux,
+ 					unsigned int offset, u8 *valuep)
+@@ -549,7 +608,8 @@ static inline ssize_t drm_dp_dpcd_readb(struct drm_dp_aux *aux,
+  * @value: value to write to the register
+  *
+  * Returns the number of bytes transferred (1) on success, or a negative
+- * error code on failure.
++ * error code on failure. In most of the cases you should be using
++ * drm_dp_dpcd_write_byte() instead
+  */
+ static inline ssize_t drm_dp_dpcd_writeb(struct drm_dp_aux *aux,
+ 					 unsigned int offset, u8 value)
+@@ -557,6 +617,34 @@ static inline ssize_t drm_dp_dpcd_writeb(struct drm_dp_aux *aux,
+ 	return drm_dp_dpcd_write(aux, offset, &value, 1);
+ }
+ 
++/**
++ * drm_dp_dpcd_read_byte() - read a single byte from the DPCD
++ * @aux: DisplayPort AUX channel
++ * @offset: address of the register to read
++ * @valuep: location where the value of the register will be stored
++ *
++ * Returns zero (0) on success, or a negative error code on failure.
++ */
++static inline int drm_dp_dpcd_read_byte(struct drm_dp_aux *aux,
++					unsigned int offset, u8 *valuep)
++{
++	return drm_dp_dpcd_read_data(aux, offset, valuep, 1);
++}
++
++/**
++ * drm_dp_dpcd_write_byte() - write a single byte to the DPCD
++ * @aux: DisplayPort AUX channel
++ * @offset: address of the register to write
++ * @value: value to write to the register
++ *
++ * Returns zero (0) on success, or a negative error code on failure.
++ */
++static inline int drm_dp_dpcd_write_byte(struct drm_dp_aux *aux,
++					 unsigned int offset, u8 value)
++{
++	return drm_dp_dpcd_write_data(aux, offset, &value, 1);
++}
++
+ int drm_dp_read_dpcd_caps(struct drm_dp_aux *aux,
+ 			  u8 dpcd[DP_RECEIVER_CAP_SIZE]);
+ 
+
+-- 
+2.39.5
 
