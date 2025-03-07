@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 987D1C19F32
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 14:37:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80F87C19F32
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 14:42:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AB9510E059;
-	Fri,  7 Mar 2025 14:37:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2EBA10E163;
+	Fri,  7 Mar 2025 14:42:10 +0000 (UTC)
 Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFCDA10E059;
- Fri,  7 Mar 2025 14:37:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DDB410E169;
+ Fri,  7 Mar 2025 14:42:09 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Add_configfs_support_for_survi?=
- =?utf-8?q?vability_mode?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/display=3A_dp=3A?=
+ =?utf-8?q?_add_new_DPCD_access_functions?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Riana Tauro" <riana.tauro@intel.com>
+To: "Dmitry Baryshkov" <lumag@kernel.org>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 07 Mar 2025 14:37:03 -0000
-Message-ID: <174135822378.2585.10390135022770857203@18a75f3d1eae>
+Date: Fri, 07 Mar 2025 14:42:09 -0000
+Message-ID: <174135852957.2586.11830685768589001223@18a75f3d1eae>
 X-Patchwork-Hint: ignore
-References: <20250307142446.1790715-1-riana.tauro@intel.com>
-In-Reply-To: <20250307142446.1790715-1-riana.tauro@intel.com>
+References: <20250307-drm-rework-dpcd-access-v3-0-9044a3a868ee@linaro.org>
+In-Reply-To: <20250307-drm-rework-dpcd-access-v3-0-9044a3a868ee@linaro.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,60 +42,21 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Add configfs support for survivability mode
-URL   : https://patchwork.freedesktop.org/series/145999/
-State : failure
+Series: drm/display: dp: add new DPCD access functions
+URL   : https://patchwork.freedesktop.org/series/146000/
+State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-/usr/bin/ld: drivers/gpu/drm/xe/xe_configfs.o: in function `xe_configfs_init':
-xe_configfs.c:(.init.text+0x6): undefined reference to `config_group_init'
-/usr/bin/ld: xe_configfs.c:(.init.text+0x4f): undefined reference to `configfs_register_subsystem'
-/usr/bin/ld: drivers/gpu/drm/xe/xe_configfs.o: in function `xe_configfs_exit':
-xe_configfs.c:(.exit.text+0x31): undefined reference to `configfs_unregister_subsystem'
-collect2: error: ld returned 1 exit status
-make[3]: *** [../scripts/Makefile.vmlinux:77: vmlinux] Error 1
-make[2]: *** [/kernel/Makefile:1226: vmlinux] Error 2
-make[1]: *** [/kernel/Makefile:251: __sub-make] Error 2
-make: *** [Makefile:251: __sub-make] Error 2
-
-[14:36:30] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[14:36:34] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 066c46f28642 drm-tip: 2025y-03m-07d-12h-35m-40s UTC integration manifest
+=== git am output follows ===
+Applying: drm/display: dp: implement new access helpers
+Applying: drm/display: dp: change drm_dp_dpcd_read_link_status() return value
+Applying: drm/display: dp: use new DCPD access helpers
+Applying: drm/display: dp-aux-dev: use new DCPD access helpers
+Applying: drm/display: dp-cec: use new DCPD access helpers
+Applying: drm/display: dp-mst-topology: use new DCPD access helpers
+Applying: drm/display: dp-tunnel: use new DCPD access helpers
 
 
