@@ -4,168 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F12AC19F32
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 12:26:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7F0DC28B23
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 12:32:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56B7910E13F;
-	Fri,  7 Mar 2025 12:26:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D324F10E15B;
+	Fri,  7 Mar 2025 12:32:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RcxkENh2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="inHopGcY";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF3B010E13F
- for <intel-xe@lists.freedesktop.org>; Fri,  7 Mar 2025 12:26:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2719F10E154;
+ Fri,  7 Mar 2025 12:32:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741350374; x=1772886374;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=f4ol1u2glJcB0XXGzNf69qbSRaO23fcQtGKkslgHhjU=;
- b=RcxkENh2bw37a983e+7fZDoroJhp/xuRkWzs4UnXxjLFrlc1v66bcHAe
- rzjPTLkaBRZVQckrJ5MfuXw7qwDoWmhQcCpsJG9Wm9x05ANp4Rf/LIn1W
- G/wKV0nVJrC6r9iIHIstDxRJ4bvnEcmctUkSHIRH2e6TXkfOMxl2wL4W8
- KBd7XHb1sM6sn/3IR6wnsLtBgCRmTv+BKPdXh6BIyacZVVpYRgFuV3tPN
- M4iI0ulmqHbXluoVaYKCoZFMum22jntVrwBVtRZ1LKCxDSp2PVMgIbfFx
- m74x43T1QUyU1gR6NGa6Fi60QRp6zsAxY1BH87khMfVBbNXylE49gycBN w==;
-X-CSE-ConnectionGUID: yABtuNueSYSglD0sl/h78A==
-X-CSE-MsgGUID: EbQ5fQh2TwiC8o+rrWZBxQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="53038009"
-X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="53038009"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2025 04:26:14 -0800
-X-CSE-ConnectionGUID: Q0RDZG3nQmiR3nG6B7/KqQ==
-X-CSE-MsgGUID: BBbkyPLNQE+N8mLVWoQbMQ==
+ t=1741350771; x=1772886771;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=TCxi1necoPuh8Q25Yp+uLsbAo9W6La/QVrvxLM/9JpQ=;
+ b=inHopGcY24Cw53Qz6/7gEANMmLbbVS+J5RrQb+n0bE7mSU5yozjkfF6m
+ Xap9YQpbx+DA599y21Fn2TWQH8ZJR1legt+tNtK+RV0+KAwFalIqDnqp/
+ sXVGSfX3FlmZDo39Glj6TGxTA1rl7miyrJ2mp3oEzRWuUoFtP4aoG8BUx
+ mA5bk+PL64RKjECqQ0n74/bebRbKh2fyyvIeEnJW+edi38easmkpTvrRV
+ lLZDKCdZq/Giir2t8s3NymbeRqreZwaCJ45YGz6N+WWn2GT7QklM+0wCc
+ hAQFMa6l4Bi0StdwFqG0xNas6iwLjACOR95HtEdB3vXPB7VgZrTyzY02S A==;
+X-CSE-ConnectionGUID: VxJzxBjwTC2BhDyW41nm4w==
+X-CSE-MsgGUID: 1USQbDSxSRaK5HbZWsOF/w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="59954103"
+X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="59954103"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2025 04:32:46 -0800
+X-CSE-ConnectionGUID: MgJ+0SIrQ5qkNiRfFT55qQ==
+X-CSE-MsgGUID: JjaTtgqoR8ineLQwMECTtg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="142541782"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2025 04:26:14 -0800
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Fri, 7 Mar 2025 04:26:13 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Fri, 7 Mar 2025 04:26:13 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.44) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Fri, 7 Mar 2025 04:26:13 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=TvXpzfqV8t4GzGiNXvLTfUrKf73mYaE+ccTi/AKEpjUmtPO93vH6NjnSK0IKu1Rf6j9JMdJ4QAmfi5JoyfjC+L/q5TviI5Di4ICjsx8sBLfSMH1uQ8J0RsoimJGLz9eYa8IrtcSdnxfAvjsGFzB/alDju84jrtrttRmJiLnOuJQ0K9R/Dktq6SgVR0XWsti2nUg+m6oqTMWwCGySuK7E927XjSLUxvF6V2OMLBXy2zq1nHEEHT3UzVbrSBNQQzJheRoC9wpOv4909u8/JRhOz/17KfZ+PfjNaKNk+FN94DWg9n6PKkRI70lqiGxW2pQTURdwN5olcHrPgYMBc2uSLg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OHQgt7Gj3Jh/sIXXRWSTL7vLY/nCQYwvp/7fi+CEnVA=;
- b=xZMtRSf3/+CF7NsQ/qBVTjqPZKeyCcGj3eTT+59z4PGuuTwLIjfKTdckr8OuFn+9WR8rchPhaS2bPwT6yIxxH5HwOWaUkv90enVmJAHL/SpdlDHSkiWjaJQIRFShOTeHSGsHn69z/JcAJBbOYhKMKQd6tY1HQ8gflJOHe9DDO8uNYNYHV204lFlx3nIK1p71PlTrdTqzjBhHwsLU6qw/7a7xF6MA9Y9UKJeAEBMeRwTzcqQZpHtf0h7xnpjtVQCs2yvywLK/QlTkBIhkVpSlEzj5z36b+Ti5Q1/PPS1afzM8yWBV0yMlm6prN5lGS1fr1GeNDFUcVjolc76kq9MxGQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SJ1PR11MB6204.namprd11.prod.outlook.com (2603:10b6:a03:459::19)
- by SJ0PR11MB4896.namprd11.prod.outlook.com (2603:10b6:a03:2dd::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.19; Fri, 7 Mar
- 2025 12:26:11 +0000
-Received: from SJ1PR11MB6204.namprd11.prod.outlook.com
- ([fe80::fd8d:bca9:3486:7762]) by SJ1PR11MB6204.namprd11.prod.outlook.com
- ([fe80::fd8d:bca9:3486:7762%4]) with mapi id 15.20.8511.017; Fri, 7 Mar 2025
- 12:26:11 +0000
-From: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "kernel-dev@igalia.com" <kernel-dev@igalia.com>, "Roper, Matthew D"
- <matthew.d.roper@intel.com>
-Subject: RE: [PATCH 3/4] drm/xe: Pass flags directly to emit_flush_imm_ggtt
-Thread-Topic: [PATCH 3/4] drm/xe: Pass flags directly to emit_flush_imm_ggtt
-Thread-Index: AQHbj1Ic5BkBRKNLCUit3YpHWK++wLNnmXAg
-Date: Fri, 7 Mar 2025 12:26:11 +0000
-Message-ID: <SJ1PR11MB62045B08A498AB0EFA56EDCD81D52@SJ1PR11MB6204.namprd11.prod.outlook.com>
-References: <20250307111402.26577-1-tvrtko.ursulin@igalia.com>
- <20250307111402.26577-4-tvrtko.ursulin@igalia.com>
-In-Reply-To: <20250307111402.26577-4-tvrtko.ursulin@igalia.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ1PR11MB6204:EE_|SJ0PR11MB4896:EE_
-x-ms-office365-filtering-correlation-id: 088186ee-b1c8-4286-4264-08dd5d733eb1
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|376014|366016|1800799024|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?ONmGdNzOUhPCR55Pq+eFV8By3YGzKk9fbrmELPQt2Dq/SlgK5WXVXjxbGbW9?=
- =?us-ascii?Q?OPsCTLUqo7gLH0wfA2Ne8vr9cp7Yr4CTxTG2VFa9J4/Rmb65KQvu8WQb/QMW?=
- =?us-ascii?Q?3RrlKY4AZLqmjdp2+i6r4msHcun0K7+cY/ooF85m00BvvaWvG6Ke35Z5QUbT?=
- =?us-ascii?Q?+JWxBUNN0wCDAB1qoNyVXWBavHBZKY0/Dqt8VEOh2pfXi/Z0BIsTIfULyV/1?=
- =?us-ascii?Q?99B7RA1HPfUsPKXqf40cNiDUOq2/MprOOj2bqGvywqpjU9J/vvmeQpk4RE8z?=
- =?us-ascii?Q?uqeL/Um4Xfxz3Hgiw9ZKUJelQzbhtsuMNaVNf9qlhVC8swCarhR07zYqkKVn?=
- =?us-ascii?Q?VB6w2KSC/I8ZX0BUShIzcaeziqo/paeXig3mqBOmXSzrewGxccRpHJ09XZi7?=
- =?us-ascii?Q?cNb9epeZTB6vYE5Ysr1MvPzdJ7HSNB1smd2a173pQ3dmypeRrWHYOLA/f8Mx?=
- =?us-ascii?Q?8kIxWQJNGwkXbQqUV9HMfp68msht8L6RQOupPIYUG21k2Hn+TPoRxlmCifkc?=
- =?us-ascii?Q?HmIShes7uHoHgeIOnNLtIdzuurJPDFu+ziN7ON3Y4LvxXqXcq6dnUxm/lS6q?=
- =?us-ascii?Q?MJV6x+tGW+K64q+SSrCAvTLgcbcoYqM4Z1hAtIohyJAU1H0sNRmbn1aWrkKc?=
- =?us-ascii?Q?oKfzsCqKTYBdf/GiigmUNVHJ4Rp9w2LAgvwOwH5wlV1qb80nHbERsijvojEw?=
- =?us-ascii?Q?+UAJpzHeXU1oRYhxfSKmsVWqulWp9uZ4FEumfVr+IAcJjo8BPk5bteBH6Is5?=
- =?us-ascii?Q?g0Hcs/4qD2k33EWlxq1ZRTZzmnGCqMrPyor1SKgr2F5stYYD4WlDTrg/+sVv?=
- =?us-ascii?Q?c6cYKR5CdhEuQGKpB7MTzvIgeGgGY8Q405Tb/MqxmfeiBkpOa6gFPOmomwtR?=
- =?us-ascii?Q?ouwlETHlxBJ4EXVGJTZOkGzEQhagiXM4mqzs5os44MFGEIKao4oNPXqCPsYf?=
- =?us-ascii?Q?jg3gSEqomR9Z+XFEht1dNwioMN7UDTn/vQrQMeytTJ7BVZpUOYtq3U4FhVty?=
- =?us-ascii?Q?uDTZh5Qik5RdpBoZA+w9AcfRSmSqi07sJtDOSge6dVSMSBf2cS5zYDSYe2BB?=
- =?us-ascii?Q?KcZailO1JDiStB9by2ivGHW+QbQ6wTOtLJTPRV5602Gwls+g/0o4YOjjpOr9?=
- =?us-ascii?Q?b/4WskeD82otxGligd8pFIh5L2wnwYOovUNh/h3kcMIG0n8FtAAQjrqUdYtY?=
- =?us-ascii?Q?KRv6aEp5/QmYXm2fQ0B88qvkrLsKXAzOaWoyIgvJOMg78tqnpVA2GeaunVDG?=
- =?us-ascii?Q?Zr5y9DSRSrUbgrqJqBXY2M4atEhLQZy48qptRZ28shDaVqzuhDtW+AAVo4E0?=
- =?us-ascii?Q?m8wkLVoTFHWjCBXUrA3zNN5bUrRPnU42h7ECM/Xkpt+3/iPe7nT+B6bNg8Vw?=
- =?us-ascii?Q?XtlmmGFvEXCsJqzyqSYc8KG+NjMcAhFU4/hdXiZcIyzzShFkW3Y6MsNYAxbn?=
- =?us-ascii?Q?tZa87+WJaGXhBtQVCMThehRkTL3G3coN?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ1PR11MB6204.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?oJbiharYSMHLlnBrEhnFXuVloliD1oYNlmZmU1IwyrdiG+oxMTxLabbx6dsm?=
- =?us-ascii?Q?xqcjBQV+37dv/OpQVLykknVkHluNsPWyWOxnTUpUqEzI0bK1mPDqM4UDGBu4?=
- =?us-ascii?Q?sxebZOCWhH9rghN2n2qhOqb8t+Dp8ESHZoRf5gAA2mmI37r43MTkGcCtd1Q0?=
- =?us-ascii?Q?ZIfaM93jEtpkBfREGROsMj0CJvD2YayONo41DNqPzFV2L3S4nQAUrGh0tC4l?=
- =?us-ascii?Q?YUPE3ZaGi6BLXiGduWCtkRuO3uG22XfiG+w93YOAMpofZ7ce95GlugVnerIH?=
- =?us-ascii?Q?o3OCL6LDFJg8U/XF1ymXdMx2JIazRtEH/zHcOJt/LhKFVfuB6WraqiCqgNjE?=
- =?us-ascii?Q?jILHgvbqAI2LS+eoDCajwThD+Z6vZJYyzC3JWvFGTei74PZs8gDSJGYmngkE?=
- =?us-ascii?Q?InbeMGMegoHABuHKhmoXIWcSY7D/qSpi8YZSUkmesJPnwrrh/HVAlcFhf4nU?=
- =?us-ascii?Q?AjSGlQE+3mMORBtbfwmQ0plAZt6nnZ5XuD562lBCr7YttiBpDjxeTKveuxsC?=
- =?us-ascii?Q?+2kpedFwVEQxsg35Daxv2ZzK+LuWK3ni6OxqQTftX0rwSAQvzPGuDYhY5l++?=
- =?us-ascii?Q?Np5UrTyFMZzJIAHhL3ca7Ky4B4V00uQbYL/HHdfLxMBqH3rna9GItQUt41H6?=
- =?us-ascii?Q?bJF58mGoJPpFU/xzUN1bvl/HZNn5mLFu6CKNmKiDqzVLyMwRadsnBRMKrfII?=
- =?us-ascii?Q?GPmzGjz6hoCwnDnLq/jwLKqEHpfGu5fNerfrbUKPV9ulb/npKWgTaAZQCB//?=
- =?us-ascii?Q?myFyoq3pR+f+unRGbxoaGFoK6nncYUUQcvzVhWwjwqzIVzpsxtXVqksf6kh+?=
- =?us-ascii?Q?dy4KJ/EAyH9oDIwHzP0DriaTSPhwCMs9ZyQtXlSWxHmUqXadtLgvequsIS8x?=
- =?us-ascii?Q?e2eRMXeqnvmFlOykuYiSsLgumeN3Ci2KyY9dL5Jy6x105+FQP3VOoVIfQDEb?=
- =?us-ascii?Q?PrYlkfqHseNOC7iPSxwuFdQEm3Rl7bXO7ot8Vq9Fc7gIxuE7hy21pU+oS0qZ?=
- =?us-ascii?Q?j4e2vh86RL+3UxPRuimmbpVt1HFwT6pPBvOGvhIZyfTejPirxNpzcxL5sNFP?=
- =?us-ascii?Q?58/yKN1Ne5sHYfq+VGLE9OJN8/JWeL5MbFHmT5vjZclyYNsP5i6GlD6Nvbwz?=
- =?us-ascii?Q?HUypcpVWYdgwM198/DHCQYGeLnJX/oJqcizb+SJkoaXOaIr/pfUBia7/Z6/7?=
- =?us-ascii?Q?cgboXAxkU1rSDd4sq3wlPdxJjpXegYzMwVOGbLXlBJ4bDzoDQ5yOykDrgDPe?=
- =?us-ascii?Q?VvZeazRA27Ed6oG9ynGBjT9wGasy5jEMJqLLp6DULLD1cOP2o8Gx2SVHapXv?=
- =?us-ascii?Q?u/toDooQ4xQi2MH55MehHATmFxxotAD3qnE8saOEa2o+f4ngWJkIw2ju+8EH?=
- =?us-ascii?Q?ECXjjteueuh1KFKyO69qJFoYqac75udg9Jz8xX5UvCYUjUixI4uGNh+Bs+/r?=
- =?us-ascii?Q?CLgjjUz+WV/sWoy7Z2fwtG65yH7mXBgqU2To7aaKgmKHTXbwbrq8VJQ2AAiC?=
- =?us-ascii?Q?iGFmVUhi9w5tqAuMPSkJTs4YitF/MKZIdYjySoShNDO+J0q8xcMASamTWnz7?=
- =?us-ascii?Q?7WafmzlokktdChiZtW3BPd+I+YSkqF5KogxItD2/?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="120232599"
+Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.240])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2025 04:32:44 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH v6 3/6] drm/i915/hpd: Add support for blocking the IRQ
+ handling on an HPD pin
+In-Reply-To: <20250305114820.3523077-1-imre.deak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250304152917.3407080-4-imre.deak@intel.com>
+ <20250305114820.3523077-1-imre.deak@intel.com>
+Date: Fri, 07 Mar 2025 14:32:40 +0200
+Message-ID: <874j05hvh3.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6204.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 088186ee-b1c8-4286-4264-08dd5d733eb1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Mar 2025 12:26:11.0836 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: t0nCo1jKIUjjmBWf3vig4UtYwJk9xsEyNcPka48Bj3Sk7/TQ3iSPrPZYPUL++iD7H/NoIjlnFCOFKdjAyaqBtfghG/mXBT76Xu2e9Veya9o=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4896
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -180,97 +71,418 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Wed, 05 Mar 2025, Imre Deak <imre.deak@intel.com> wrote:
+> Add support for blocking the IRQ handling on the HPD pin of a given
+> encoder, handling IRQs that arrived while in the blocked state after
+> unblocking the IRQ handling. This will be used by a follow-up change,
+> which blocks/unblocks the IRQ handling around DP link training.
+>
+> This is similar to the intel_hpd_disable/enable() functionality, by also
+> handling encoders/ports with a pulse handler (i.e. also
+> blocking/unblocking the short/long pulse handling) and handling the IRQs
+> arrived in the blocked state after the handling is unblocked (vs. just
+> dropping such IRQs).
+>
+> v2:
+> - Handle encoders without a port assigned to them.
+> - Fix clearing IRQs from intel_hotplug::short_port_mask.
+> v3:
+> - Rename intel_hpd_suspend/resume() to intel_hpd_block/unblock(). (Jani)
+> - Refer to HPD pins as hpd_pin vs. hpd.
+> - Flush dig_port_work in intel_hpd_block() if any encoder using the HPD
+>   pin has a pulse handler.
+> v4:
+> - Fix hpd_pin_has_pulse(), checking the encoder's HPD pin.
+> v5:
+> - Rebase on port->hpd_pin tracking. (Ville)
+> v6: (Jani)
+> - Add hpd_pin_is_blocked() helper.
+> - Use the hpd_pin_mask term for a mask of pins instead of hpd_pins.
+> - Prevent decrementing a 0 refcount in unblock_hpd_pin().
+>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
 
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-> -----Original Message-----
-> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Tvrt=
-ko
-> Ursulin
-> Sent: Friday, March 7, 2025 4:44 PM
-> To: intel-xe@lists.freedesktop.org
-> Cc: kernel-dev@igalia.com; Tvrtko Ursulin <tvrtko.ursulin@igalia.com>; Ro=
-per,
-> Matthew D <matthew.d.roper@intel.com>
-> Subject: [PATCH 3/4] drm/xe: Pass flags directly to emit_flush_imm_ggtt
->=20
-> This is more readable than the nameless booleans and will also come handy
-> later.
->=20
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_ring_ops.c | 13 ++++++-------
->  1 file changed, 6 insertions(+), 7 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c
-> b/drivers/gpu/drm/xe/xe_ring_ops.c
-> index 3d1b4d3d788f..917fc16de866 100644
-> --- a/drivers/gpu/drm/xe/xe_ring_ops.c
-> +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-> @@ -90,11 +90,10 @@ static int emit_flush_dw(u32 *dw, int i)
->  	return i;
+>  .../gpu/drm/i915/display/intel_display_core.h |   1 +
+>  drivers/gpu/drm/i915/display/intel_hotplug.c  | 210 +++++++++++++++---
+>  drivers/gpu/drm/i915/display/intel_hotplug.h  |   2 +
+>  3 files changed, 188 insertions(+), 25 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/=
+gpu/drm/i915/display/intel_display_core.h
+> index d9952007635e0..fbe890775c2ab 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+> @@ -159,6 +159,7 @@ struct intel_hotplug {
+>  	struct {
+>  		unsigned long last_jiffies;
+>  		int count;
+> +		int blocked_count;
+>  		enum {
+>  			HPD_ENABLED =3D 0,
+>  			HPD_DISABLED =3D 1,
+> diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/d=
+rm/i915/display/intel_hotplug.c
+> index 3fb5feeefa144..94b4dcf10f58c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hotplug.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
+> @@ -349,19 +349,62 @@ static bool intel_encoder_has_hpd_pulse(struct inte=
+l_encoder *encoder)
+>  		enc_to_dig_port(encoder)->hpd_pulse !=3D NULL;
 >  }
->=20
-> -static int emit_flush_imm_ggtt(u32 addr, u32 value, bool invalidate_tlb,
-> -			       u32 *dw, int i)
-> +static int emit_flush_imm_ggtt(u32 addr, u32 value, u32 flags, u32 *dw,
-> +int i)
+>=20=20
+> +static bool hpd_pin_has_pulse(struct intel_display *display, enum hpd_pi=
+n pin)
+> +{
+> +	struct intel_encoder *encoder;
+> +
+> +	for_each_intel_encoder(display->drm, encoder) {
+> +		if (encoder->hpd_pin !=3D pin)
+> +			continue;
+> +
+> +		if (intel_encoder_has_hpd_pulse(encoder))
+> +			return true;
+> +	}
+> +
+> +	return false;
+> +}
+> +
+> +static bool hpd_pin_is_blocked(struct intel_display *display, enum hpd_p=
+in pin)
+> +{
+> +	struct drm_i915_private *i915 =3D to_i915(display->drm);
+> +
+> +	lockdep_assert_held(&i915->irq_lock);
+> +
+> +	return display->hotplug.stats[pin].blocked_count;
+> +}
+> +
+> +static u32 get_blocked_hpd_pin_mask(struct intel_display *display)
+> +{
+> +	enum hpd_pin pin;
+> +	u32 hpd_pin_mask =3D 0;
+> +
+> +	for_each_hpd_pin(pin) {
+> +		if (hpd_pin_is_blocked(display, pin))
+> +			hpd_pin_mask |=3D BIT(pin);
+> +	}
+> +
+> +	return hpd_pin_mask;
+> +}
+> +
+>  static void i915_digport_work_func(struct work_struct *work)
 >  {
->  	dw[i++] =3D MI_FLUSH_DW | MI_FLUSH_DW_OP_STOREDW |
-> MI_FLUSH_IMM_DW |
-> -		(invalidate_tlb ? MI_INVALIDATE_TLB : 0);
-> +		  flags;
->  	dw[i++] =3D addr | MI_FLUSH_DW_USE_GTT;
->  	dw[i++] =3D 0;
->  	dw[i++] =3D value;
-> @@ -254,7 +253,7 @@ static void __emit_job_gen12_simple(struct
-> xe_sched_job *job, struct xe_lrc *lrc
->  	if (job->ring_ops_flush_tlb) {
->  		dw[i++] =3D preparser_disable(true);
->  		i =3D emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
-> -					seqno, true, dw, i);
-> +					seqno, MI_INVALIDATE_TLB, dw, i);
->  		dw[i++] =3D preparser_disable(false);
->  	} else {
->  		i =3D emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
-> @@ -270,7 +269,7 @@ static void __emit_job_gen12_simple(struct
-> xe_sched_job *job, struct xe_lrc *lrc
->  						dw, i);
+> -	struct drm_i915_private *dev_priv =3D
+> -		container_of(work, struct drm_i915_private, display.hotplug.dig_port_w=
+ork);
+> +	struct intel_display *display =3D
+> +		container_of(work, struct intel_display, hotplug.dig_port_work);
+> +	struct drm_i915_private *dev_priv =3D to_i915(display->drm);
+> +	struct intel_hotplug *hotplug =3D &display->hotplug;
+>  	u32 long_hpd_pin_mask, short_hpd_pin_mask;
+>  	struct intel_encoder *encoder;
+> +	u32 blocked_hpd_pin_mask;
+>  	u32 old_bits =3D 0;
+>=20=20
+>  	spin_lock_irq(&dev_priv->irq_lock);
+> -	long_hpd_pin_mask =3D dev_priv->display.hotplug.long_hpd_pin_mask;
+> -	dev_priv->display.hotplug.long_hpd_pin_mask =3D 0;
+> -	short_hpd_pin_mask =3D dev_priv->display.hotplug.short_hpd_pin_mask;
+> -	dev_priv->display.hotplug.short_hpd_pin_mask =3D 0;
+> +
+> +	blocked_hpd_pin_mask =3D get_blocked_hpd_pin_mask(display);
+> +	long_hpd_pin_mask =3D hotplug->long_hpd_pin_mask & ~blocked_hpd_pin_mas=
+k;
+> +	hotplug->long_hpd_pin_mask &=3D ~long_hpd_pin_mask;
+> +	short_hpd_pin_mask =3D hotplug->short_hpd_pin_mask & ~blocked_hpd_pin_m=
+ask;
+> +	hotplug->short_hpd_pin_mask &=3D ~short_hpd_pin_mask;
+> +
+>  	spin_unlock_irq(&dev_priv->irq_lock);
+>=20=20
+>  	for_each_intel_encoder(&dev_priv->drm, encoder) {
+> @@ -406,14 +449,18 @@ static void i915_digport_work_func(struct work_stru=
+ct *work)
+>   */
+>  void intel_hpd_trigger_irq(struct intel_digital_port *dig_port)
+>  {
+> -	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
+> +	struct intel_display *display =3D to_intel_display(dig_port);
+> +	struct drm_i915_private *i915 =3D to_i915(display->drm);
+> +	struct intel_hotplug *hotplug =3D &display->hotplug;
+>  	struct intel_encoder *encoder =3D &dig_port->base;
+>=20=20
+>  	spin_lock_irq(&i915->irq_lock);
+> -	i915->display.hotplug.short_hpd_pin_mask |=3D BIT(encoder->hpd_pin);
+> -	spin_unlock_irq(&i915->irq_lock);
+>=20=20
+> -	queue_work(i915->display.hotplug.dp_wq, &i915->display.hotplug.dig_port=
+_work);
+> +	hotplug->short_hpd_pin_mask |=3D BIT(encoder->hpd_pin);
+> +	if (!hpd_pin_is_blocked(display, encoder->hpd_pin))
+> +		queue_work(hotplug->dp_wq, &hotplug->dig_port_work);
+> +
+> +	spin_unlock_irq(&i915->irq_lock);
+>  }
+>=20=20
+>  /*
+> @@ -421,9 +468,10 @@ void intel_hpd_trigger_irq(struct intel_digital_port=
+ *dig_port)
+>   */
+>  static void i915_hotplug_work_func(struct work_struct *work)
+>  {
+> -	struct drm_i915_private *dev_priv =3D
+> -		container_of(work, struct drm_i915_private,
+> -			     display.hotplug.hotplug_work.work);
+> +	struct intel_display *display =3D
+> +		container_of(work, struct intel_display, hotplug.hotplug_work.work);
+> +	struct drm_i915_private *dev_priv =3D to_i915(display->drm);
+> +	struct intel_hotplug *hotplug =3D &display->hotplug;
+>  	struct drm_connector_list_iter conn_iter;
+>  	struct intel_connector *connector;
+>  	u32 changed =3D 0, retry =3D 0;
+> @@ -431,16 +479,18 @@ static void i915_hotplug_work_func(struct work_stru=
+ct *work)
+>  	u32 hpd_retry_bits;
+>  	struct drm_connector *first_changed_connector =3D NULL;
+>  	int changed_connectors =3D 0;
+> +	u32 blocked_hpd_pin_mask;
+>=20=20
+>  	mutex_lock(&dev_priv->drm.mode_config.mutex);
+>  	drm_dbg_kms(&dev_priv->drm, "running encoder hotplug functions\n");
+>=20=20
+>  	spin_lock_irq(&dev_priv->irq_lock);
+>=20=20
+> -	hpd_event_bits =3D dev_priv->display.hotplug.event_bits;
+> -	dev_priv->display.hotplug.event_bits =3D 0;
+> -	hpd_retry_bits =3D dev_priv->display.hotplug.retry_bits;
+> -	dev_priv->display.hotplug.retry_bits =3D 0;
+> +	blocked_hpd_pin_mask =3D get_blocked_hpd_pin_mask(display);
+> +	hpd_event_bits =3D hotplug->event_bits & ~blocked_hpd_pin_mask;
+> +	hotplug->event_bits &=3D ~hpd_event_bits;
+> +	hpd_retry_bits =3D hotplug->retry_bits & ~blocked_hpd_pin_mask;
+> +	hotplug->retry_bits &=3D ~hpd_retry_bits;
+>=20=20
+>  	/* Enable polling for connectors which had HPD IRQ storms */
+>  	intel_hpd_irq_storm_switch_to_polling(dev_priv);
+> @@ -539,6 +589,7 @@ static void i915_hotplug_work_func(struct work_struct=
+ *work)
+>  void intel_hpd_irq_handler(struct drm_i915_private *dev_priv,
+>  			   u32 pin_mask, u32 long_mask)
+>  {
+> +	struct intel_display *display =3D to_intel_display(&dev_priv->drm);
+>  	struct intel_encoder *encoder;
+>  	bool storm_detected =3D false;
+>  	bool queue_dig =3D false, queue_hp =3D false;
+> @@ -573,7 +624,9 @@ void intel_hpd_irq_handler(struct drm_i915_private *d=
+ev_priv,
+>  			"digital hpd on [ENCODER:%d:%s] - %s\n",
+>  			encoder->base.base.id, encoder->base.name,
+>  			long_hpd ? "long" : "short");
+> -		queue_dig =3D true;
+> +
+> +		if (!hpd_pin_is_blocked(display, pin))
+> +			queue_dig =3D true;
+>=20=20
+>  		if (long_hpd) {
+>  			long_hpd_pulse_mask |=3D BIT(pin);
+> @@ -617,7 +670,9 @@ void intel_hpd_irq_handler(struct drm_i915_private *d=
+ev_priv,
+>  		} else {
+>  			dev_priv->display.hotplug.event_bits |=3D BIT(pin);
+>  			long_hpd =3D true;
+> -			queue_hp =3D true;
+> +
+> +			if (!hpd_pin_is_blocked(display, pin))
+> +				queue_hp =3D true;
+>  		}
+>=20=20
+>  		if (intel_hpd_irq_storm_detect(dev_priv, pin, long_hpd)) {
+> @@ -915,11 +970,15 @@ static bool cancel_all_detection_work(struct drm_i9=
+15_private *i915)
+>=20=20
+>  void intel_hpd_cancel_work(struct drm_i915_private *dev_priv)
+>  {
+> +	struct intel_display *display =3D to_intel_display(&dev_priv->drm);
+> +
+>  	if (!HAS_DISPLAY(dev_priv))
+>  		return;
+>=20=20
+>  	spin_lock_irq(&dev_priv->irq_lock);
+>=20=20
+> +	drm_WARN_ON(display->drm, get_blocked_hpd_pin_mask(display));
+> +
+>  	dev_priv->display.hotplug.long_hpd_pin_mask =3D 0;
+>  	dev_priv->display.hotplug.short_hpd_pin_mask =3D 0;
+>  	dev_priv->display.hotplug.event_bits =3D 0;
+> @@ -966,19 +1025,22 @@ void intel_hpd_enable(struct drm_i915_private *dev=
+_priv, enum hpd_pin pin)
+>=20=20
+>  static void queue_work_for_missed_irqs(struct drm_i915_private *i915)
+>  {
+> -	bool queue_work =3D false;
+> +	struct intel_display *display =3D to_intel_display(&i915->drm);
+> +	struct intel_hotplug *hotplug =3D &display->hotplug;
+> +	bool queue_hp_work =3D false;
+> +	u32 blocked_hpd_pin_mask;
+>  	enum hpd_pin pin;
+>=20=20
+>  	lockdep_assert_held(&i915->irq_lock);
+>=20=20
+> -	if (i915->display.hotplug.event_bits ||
+> -	    i915->display.hotplug.retry_bits)
+> -		queue_work =3D true;
+> +	blocked_hpd_pin_mask =3D get_blocked_hpd_pin_mask(display);
+> +	if ((hotplug->event_bits | hotplug->retry_bits) & ~blocked_hpd_pin_mask)
+> +		queue_hp_work =3D true;
+>=20=20
+>  	for_each_hpd_pin(pin) {
+>  		switch (i915->display.hotplug.stats[pin].state) {
+>  		case HPD_MARK_DISABLED:
+> -			queue_work =3D true;
+> +			queue_hp_work =3D true;
+>  			break;
+>  		case HPD_DISABLED:
+>  		case HPD_ENABLED:
+> @@ -988,10 +1050,108 @@ static void queue_work_for_missed_irqs(struct drm=
+_i915_private *i915)
+>  		}
 >  	}
->=20
-> -	i =3D emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, false,
-> dw, i);
-> +	i =3D emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, 0, dw, i)=
-;
->=20
->  	i =3D emit_user_interrupt(dw, i);
->=20
-> @@ -316,7 +315,7 @@ static void __emit_job_gen12_video(struct
-> xe_sched_job *job, struct xe_lrc *lrc,
->=20
->  	if (job->ring_ops_flush_tlb)
->  		i =3D emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
-> -					seqno, true, dw, i);
-> +					seqno, MI_INVALIDATE_TLB, dw, i);
->=20
->  	dw[i++] =3D preparser_disable(false);
->=20
-> @@ -333,7 +332,7 @@ static void __emit_job_gen12_video(struct
-> xe_sched_job *job, struct xe_lrc *lrc,
->  						dw, i);
->  	}
->=20
-> -	i =3D emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, false,
-> dw, i);
-> +	i =3D emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, 0, dw, i)=
-;
+>=20=20
+> -	if (queue_work)
+> +	if ((hotplug->long_hpd_pin_mask | hotplug->short_hpd_pin_mask) & ~block=
+ed_hpd_pin_mask)
+> +		queue_work(hotplug->dp_wq, &hotplug->dig_port_work);
+> +
+> +	if (queue_hp_work)
+>  		queue_delayed_detection_work(i915, &i915->display.hotplug.hotplug_work=
+, 0);
+>  }
+>=20=20
+> +static bool block_hpd_pin(struct intel_display *display, enum hpd_pin pi=
+n)
+> +{
+> +	struct drm_i915_private *i915 =3D to_i915(display->drm);
+> +	struct intel_hotplug *hotplug =3D &display->hotplug;
+> +
+> +	lockdep_assert_held(&i915->irq_lock);
+> +
+> +	hotplug->stats[pin].blocked_count++;
+> +
+> +	return hotplug->stats[pin].blocked_count =3D=3D 1;
+> +}
+> +
+> +static bool unblock_hpd_pin(struct intel_display *display, enum hpd_pin =
+pin)
+> +{
+> +	struct drm_i915_private *i915 =3D to_i915(display->drm);
+> +	struct intel_hotplug *hotplug =3D &display->hotplug;
+> +
+> +	lockdep_assert_held(&i915->irq_lock);
+> +
+> +	if (drm_WARN_ON(display->drm, hotplug->stats[pin].blocked_count =3D=3D =
+0))
+> +		return true;
+> +
+> +	hotplug->stats[pin].blocked_count--;
+> +
+> +	return hotplug->stats[pin].blocked_count =3D=3D 0;
+> +}
+> +
+> +/**
+> + * intel_hpd_block - Block handling of HPD IRQs on an HPD pin
+> + * @encoder: Encoder to block the HPD handling for
+> + *
+> + * Blocks the handling of HPD IRQs on the HPD pin of @encoder.
+> + *
+> + * On return:
+> + * - It's guaranteed that the blocked encoders' HPD pulse handler
+> + *   (via intel_digital_port::hpd_pulse()) is not running.
+> + * - The hotplug event handling (via intel_encoder::hotplug()) of an
+> + *   HPD IRQ pending at the time this function is called may be still
+> + *   running.
+> + * - Detection on the encoder's connector (via
+> + *   drm_connector_helper_funcs::detect_ctx(),
+> + *   drm_connector_funcs::detect()) remains allowed, for instance as par=
+t of
+> + *   userspace connector probing, or DRM core's connector polling.
+> + *
+> + * The call must be followed by calling intel_hpd_unblock().
+> + *
+> + * Note that the handling of HPD IRQs for another encoder using the same=
+ HPD
+> + * pin as that of @encoder will be also blocked.
+> + */
+> +void intel_hpd_block(struct intel_encoder *encoder)
+> +{
+> +	struct intel_display *display =3D to_intel_display(encoder);
+> +	struct drm_i915_private *i915 =3D to_i915(display->drm);
+> +	struct intel_hotplug *hotplug =3D &display->hotplug;
+> +	bool do_flush =3D false;
+> +
+> +	if (encoder->hpd_pin =3D=3D HPD_NONE)
+> +		return;
+> +
+> +	spin_lock_irq(&i915->irq_lock);
+> +
+> +	if (block_hpd_pin(display, encoder->hpd_pin))
+> +		do_flush =3D true;
+> +
+> +	spin_unlock_irq(&i915->irq_lock);
+> +
+> +	if (do_flush && hpd_pin_has_pulse(display, encoder->hpd_pin))
+> +		flush_work(&hotplug->dig_port_work);
+> +}
+> +
+> +/**
+> + * intel_hpd_unblock - Unblock handling of HPD IRQs on an HPD pin
+> + * @encoder: Encoder to unblock the HPD handling for
+> + *
+> + * Unblock the handling of HPD IRQs on the HPD pin of @encoder, which was
+> + * previously blocked by intel_hpd_block(). Any HPD IRQ raised on the
+> + * HPD pin while it was blocked will be handled for @encoder and for any
+> + * other encoder sharing the same HPD pin.
+> + */
+> +void intel_hpd_unblock(struct intel_encoder *encoder)
+> +{
+> +	struct intel_display *display =3D to_intel_display(encoder);
+> +	struct drm_i915_private *i915 =3D to_i915(display->drm);
+> +
+> +	if (encoder->hpd_pin =3D=3D HPD_NONE)
+> +		return;
+> +
+> +	spin_lock_irq(&i915->irq_lock);
+> +
+> +	if (unblock_hpd_pin(display, encoder->hpd_pin))
+> +		queue_work_for_missed_irqs(i915);
+> +
+> +	spin_unlock_irq(&i915->irq_lock);
+> +}
+> +
+>  void intel_hpd_enable_detection_work(struct drm_i915_private *i915)
+>  {
+>  	spin_lock_irq(&i915->irq_lock);
+> diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.h b/drivers/gpu/d=
+rm/i915/display/intel_hotplug.h
+> index d6986902b0545..5f9857136f5e3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hotplug.h
+> +++ b/drivers/gpu/drm/i915/display/intel_hotplug.h
+> @@ -28,6 +28,8 @@ void intel_hpd_cancel_work(struct drm_i915_private *dev=
+_priv);
+>  enum hpd_pin intel_hpd_pin_default(enum port port);
+>  bool intel_hpd_disable(struct drm_i915_private *dev_priv, enum hpd_pin p=
+in);
+>  void intel_hpd_enable(struct drm_i915_private *dev_priv, enum hpd_pin pi=
+n);
+> +void intel_hpd_block(struct intel_encoder *encoder);
+> +void intel_hpd_unblock(struct intel_encoder *encoder);
+>  void intel_hpd_debugfs_register(struct drm_i915_private *i915);
+>=20=20
+>  void intel_hpd_enable_detection_work(struct drm_i915_private *i915);
 
-LGTM,
-Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-
->=20
->  	i =3D emit_user_interrupt(dw, i);
->=20
-> --
-> 2.48.0
-
+--=20
+Jani Nikula, Intel
