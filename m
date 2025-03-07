@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 705DEC19F32
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 20:51:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF00CC19F32
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 20:52:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 118AE10EA6F;
-	Fri,  7 Mar 2025 20:51:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6ABBA10E192;
+	Fri,  7 Mar 2025 20:52:11 +0000 (UTC)
 Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCAFA10E192;
- Fri,  7 Mar 2025 20:51:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F73D10E192;
+ Fri,  7 Mar 2025 20:52:10 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Improve_SRIOV_VRAM_p?=
- =?utf-8?q?rovisioning_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Improve_SRIOV_VRAM_provis?=
+ =?utf-8?q?ioning_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 07 Mar 2025 20:51:25 -0000
-Message-ID: <174138068575.3691.6107006108470580147@18a75f3d1eae>
+Date: Fri, 07 Mar 2025 20:52:10 -0000
+Message-ID: <174138073005.4463.5910950734818720407@18a75f3d1eae>
 X-Patchwork-Hint: ignore
 References: <20250307182856.304850-10-matthew.auld@intel.com>
 In-Reply-To: <20250307182856.304850-10-matthew.auld@intel.com>
@@ -48,16 +48,45 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: f811577f4244 drm-tip: 2025y-03m-07d-17h-25m-46s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: use backup object for pinned save/restore
-Applying: drm/xe: split pinned save/restore into phases
-Applying: drm/xe: Add XE_BO_FLAG_PINNED_NORESTORE
-Applying: drm/xe/migrate: ignore CCS for kernel objects
-Applying: drm/xe: add XE_BO_FLAG_PINNED_LATE_RESTORE
-Applying: drm/xe: unconditionally apply PINNED for pin_map()
-Applying: drm/xe: allow non-contig VRAM kernel BO
-Applying: drm/xe/sriov: support non-contig VRAM provisioning
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+cbb4e4a079d89106c2736adc3c7de6f9dc56da07
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit efaf4cfd087495177fe825cd473264facd4bfe22
+Author: Matthew Auld <matthew.auld@intel.com>
+Date:   Fri Mar 7 18:29:05 2025 +0000
+
+    drm/xe/sriov: support non-contig VRAM provisioning
+    
+    Currently we can run into issues with provisioning VRAM region, due to
+    requiring contig VRAM BO underneath. We sometimes see that allocation
+    (multiple GB) can fail even when there is enough free space.  We don't
+    need CPU access to the buffer in the first place, so can forgo pin_map
+    and therefore also the contig requirement. Keep the same behavior with
+    save and restore during suspend/resume (which can now be done with
+    blitter).  We also need the VRAM to occupy the same pages so we don't
+    need to re-program the LMTT, so should still remain pinned (also we
+    don't want something to try evict it). With that covert over to plain
+    pinned kernel object.
+    
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
++ /mt/dim checkpatch f811577f424491a57b1e8669bde62998227d6907 drm-intel
+587234afc132 drm/xe: use backup object for pinned save/restore
+3089e8bfe654 drm/xe: split pinned save/restore into phases
+13417fcc65fe drm/xe: Add XE_BO_FLAG_PINNED_NORESTORE
+e8a82eb4f8b4 drm/xe/migrate: ignore CCS for kernel objects
+d0415311d8f4 drm/xe: add XE_BO_FLAG_PINNED_LATE_RESTORE
+3b0578b5099f drm/xe: unconditionally apply PINNED for pin_map()
+a2a6c72da0bd drm/xe: allow non-contig VRAM kernel BO
+efaf4cfd0874 drm/xe/sriov: support non-contig VRAM provisioning
 
 
