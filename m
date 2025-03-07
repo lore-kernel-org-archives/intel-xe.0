@@ -4,16 +4,16 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11234C19F32
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81F96C282DE
 	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 11:14:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCD2D10E114;
-	Fri,  7 Mar 2025 11:14:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C6BB10E116;
+	Fri,  7 Mar 2025 11:14:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="GO74ORlK";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="K4r/Wgsd";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 682BA10E994
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C57A10EA1D
  for <intel-xe@lists.freedesktop.org>; Fri,  7 Mar 2025 11:14:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
@@ -22,23 +22,23 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=evcDhlV7zPq8IyAq5G9zNu8EGnxpoiQV+h6aPvU+NSk=; b=GO74ORlKcTDCCH9nR72rQZX97p
- mNX5PEjvp9mcJF+LWHraoo6wCjtTyKwhST04WXVhcwYTeju2SLB7gRlFwJi4ZjkPUA2jV/hWAklzG
- eQdjX3NJxJFdrWRvHNQlnqmxXINjS0/Bx36A8c+tcpKsrmvm2cpIgG3H251VpR5HdHw2/HfmKvS5p
- EgMJG/JxJeHwh7Ku8L4APQ0u8RhP4FjkMD64HRy7JvCfpo/YqbhL5iytaboZc5ZIGgFIeRUhOO5tj
- QQ9HWKCdZa83us7nXUdZyiPvX7SdLOflhQKJn9071/TO7enJ0n8kS1g+PLIXP5SAp4mvbGzBOTwbj
- e+3Pcs/Q==;
+ bh=M2NF/OytZvPoHX3WWfleEfcLuBFmg/QuPv7ufj9OF5U=; b=K4r/Wgsd//PctxykalbQJekRSS
+ DmNmvzXau1PcDKPMO63wSeAzErFrlAvJrfyisjXk214r5fxgHDXlMstZ5NbJYX/bRgLV3HFCWl5iD
+ HZoaLTbBOjMgllvEPM7ON/nsJRu/+n2eOAqE5FpKPJgNlGvZjbG/7v5Y7mNQeKtg5eLJX2d7PcVvp
+ /q2MsLhjFzkaEcymcSRW0fiQ1WMQufvNH5ZoVMaXbb/EGHBeKHlvCVird0vsyasOg7jxkQR4lWnUY
+ BRPnnvnD18NEDe6wzKO2Iw0+5Xpf0nxVYI2nyHL/v4hSdlZBhqY6nmQSJc0nm1JtyhTor8rCpa8Ld
+ 2jEurOww==;
 Received: from [90.241.98.187] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tqVeS-005Ji8-Ls; Fri, 07 Mar 2025 12:14:06 +0100
+ id 1tqVeR-005Ji6-Ul; Fri, 07 Mar 2025 12:14:05 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH 2/4] drm/xe: Fix ring flush invalidation
-Date: Fri,  7 Mar 2025 11:14:00 +0000
-Message-ID: <20250307111402.26577-3-tvrtko.ursulin@igalia.com>
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH 1/4] drm/xe: Fix MOCS debugfs LNCF readout
+Date: Fri,  7 Mar 2025 11:13:59 +0000
+Message-ID: <20250307111402.26577-2-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250307111402.26577-1-tvrtko.ursulin@igalia.com>
 References: <20250307111402.26577-1-tvrtko.ursulin@igalia.com>
@@ -58,51 +58,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Emit_flush_invalidate() is incorrectly marking the write to LRC_PPHWSP as
-a GGTT write and also writing an atypical ~0 dword as the payload. Fix it.
+With only XE_FW_GT taken LNCF registers read back as all zeroes, leading
+to a wild goose chase trying to figure out why is register programming
+incorrect.
 
-While at it drop the unused flags argument.
+Fix it by grabbing XE_FORCEWAKE_ALL for affected platforms.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ring_ops.c | 15 ++++++---------
- 1 file changed, 6 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/xe_mocs.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index d2f604aa96fa..3d1b4d3d788f 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -111,16 +111,13 @@ static int emit_bb_start(u64 batch_addr, u32 ppgtt_flag, u32 *dw, int i)
- 	return i;
- }
+diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
+index 54d199b5cfb2..31dade91a089 100644
+--- a/drivers/gpu/drm/xe/xe_mocs.c
++++ b/drivers/gpu/drm/xe/xe_mocs.c
+@@ -781,7 +781,9 @@ void xe_mocs_dump(struct xe_gt *gt, struct drm_printer *p)
+ 	flags = get_mocs_settings(xe, &table);
  
--static int emit_flush_invalidate(u32 flag, u32 *dw, int i)
-+static int emit_flush_invalidate(u32 *dw, int i)
- {
--	dw[i] = MI_FLUSH_DW;
--	dw[i] |= flag;
--	dw[i++] |= MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_IMM_DW |
--		MI_FLUSH_DW_STORE_INDEX;
--
--	dw[i++] = LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR | MI_FLUSH_DW_USE_GTT;
-+	dw[i++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW |
-+		  MI_FLUSH_IMM_DW | MI_FLUSH_DW_STORE_INDEX;
-+	dw[i++] = LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR;
-+	dw[i++] = 0;
- 	dw[i++] = 0;
--	dw[i++] = ~0U;
- 
- 	return i;
- }
-@@ -413,7 +410,7 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
- 	if (!IS_SRIOV_VF(gt_to_xe(job->q->gt))) {
- 		/* XXX: Do we need this? Leaving for now. */
- 		dw[i++] = preparser_disable(true);
--		i = emit_flush_invalidate(0, dw, i);
-+		i = emit_flush_invalidate(dw, i);
- 		dw[i++] = preparser_disable(false);
- 	}
+ 	xe_pm_runtime_get_noresume(xe);
+-	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
++	fw_ref = xe_force_wake_get(gt_to_fw(gt),
++				   flags & HAS_LNCF_MOCS ?
++				   XE_FORCEWAKE_ALL : XE_FW_GT);
+ 	if (!fw_ref)
+ 		goto err_fw;
  
 -- 
 2.48.0
