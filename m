@@ -4,27 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13992C282D1
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 02:10:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA8ACC282D1
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 02:21:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDE2310EA32;
-	Fri,  7 Mar 2025 02:10:40 +0000 (UTC)
-Received: from 64e06c682a23 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A3A310EA32;
- Fri,  7 Mar 2025 02:10:39 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2338910E900;
+	Fri,  7 Mar 2025 02:21:21 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="lHoyVKUv";
+	dkim-atps=neutral
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B54610E900
+ for <intel-xe@lists.freedesktop.org>; Fri,  7 Mar 2025 02:21:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1741314073;
+ bh=zDdouoow9I6nvRsRmSJs1XQAIO7qs3JLGeFiPqXzhFs=;
+ h=Date:From:To:Cc:Subject:From;
+ b=lHoyVKUvBQwEn00jQjSu0fe/DJGaf2gwHDJXpS25Opo5FlbWO0Ls/K3SZY4MU6aCv
+ q9JNxhoOLEMgVZqaqVEiXx9yGQj28m8aDLQxhoePZ9bzMQjH49dGYk7sOZn1dH/l2M
+ Uwgw/0tBcETKMiCLO/H83g7glSFFvj5S2Y3bgICshQaZ5vpJ0atMY+SiaIRCMbNUAj
+ aDArN2KIeMA9x9bqbDu7J1bKc2oaA/gk1cya+JRkOa1stj9+xH0G4D/w1AcC8MJhJU
+ dTuGJ7YBaVD8g5dNnBhVzMLTy0EWupVhUmQuATNcbE8pJUQ8DLqAl7P4Krc5d0+k3S
+ 5Qssr6KjDgslg==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (Client did not present a certificate)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4Z89550GBTz4wd0;
+ Fri,  7 Mar 2025 13:21:12 +1100 (AEDT)
+Date: Fri, 7 Mar 2025 13:21:12 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Lucas De Marchi <lucas.demarchi@intel.com>, Thomas =?UTF-8?B?SGVsbHN0?=
+ =?UTF-8?B?csO2bQ==?= <thomas.hellstrom@linux.intel.com>, Andrew Morton
+ <akpm@linux-foundation.org>
+Cc: Alistair Popple <apopple@nvidia.com>, Balbir Singh <balbirs@nvidia.com>,
+ Matthew Brost <matthew.brost@intel.com>, DRM XE List
+ <intel-xe@lists.freedesktop.org>, Linux Kernel Mailing List
+ <linux-kernel@vger.kernel.org>, Linux Next Mailing List
+ <linux-next@vger.kernel.org>
+Subject: linux-next: build failure after merge of the drm-xe tree
+Message-ID: <20250307132112.18b6ce90@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe=3A_Apply_Wa=5F160?=
- =?utf-8?q?23105232_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 07 Mar 2025 02:10:39 -0000
-Message-ID: <174131343962.70714.15307582355385233711@64e06c682a23>
-X-Patchwork-Hint: ignore
-References: <20250306231122.3897413-1-vinay.belgaumkar@intel.com>
-In-Reply-To: <20250306231122.3897413-1-vinay.belgaumkar@intel.com>
+Content-Type: multipart/signed; boundary="Sig_/FGUZsOrf9LTYww5Fp946HPy";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +57,182 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+--Sig_/FGUZsOrf9LTYww5Fp946HPy
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Series: drm/xe: Apply Wa_16023105232 (rev2)
-URL   : https://patchwork.freedesktop.org/series/145449/
-State : success
+Hi all,
 
-== Summary ==
+After merging the drm-xe tree, today's linux-next build (x86_64
+allmodconfig) failed like this:
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 9796125d0726448924abdb8c73077c7486e3dd3d
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
+In file included from include/linux/kernel.h:22,
+                 from include/linux/cpumask.h:11,
+                 from arch/x86/include/asm/paravirt.h:21,
+                 from arch/x86/include/asm/irqflags.h:80,
+                 from include/linux/irqflags.h:18,
+                 from include/linux/spinlock.h:59,
+                 from include/linux/mmzone.h:8,
+                 from include/linux/gfp.h:7,
+                 from include/linux/mm.h:7,
+                 from include/linux/pagemap.h:8,
+                 from include/drm/ttm/ttm_tt.h:30,
+                 from drivers/gpu/drm/xe/xe_bo.h:9,
+                 from drivers/gpu/drm/xe/xe_svm.c:6:
+drivers/gpu/drm/xe/xe_svm.c: In function 'page_to_vr':
+drivers/gpu/drm/xe/xe_svm.c:344:33: error: 'struct page' has no member name=
+d 'pgmap'
+  344 |         return container_of(page->pgmap, struct xe_vram_region, pag=
+emap);
+      |                                 ^~
+include/linux/container_of.h:19:33: note: in definition of macro 'container=
+_of'
+   19 |         void *__mptr =3D (void *)(ptr);                            =
+       \
+      |                                 ^~~
+In file included from include/linux/init.h:5,
+                 from include/linux/printk.h:6,
+                 from include/asm-generic/bug.h:22,
+                 from arch/x86/include/asm/bug.h:99,
+                 from include/linux/bug.h:5,
+                 from include/linux/mmdebug.h:5,
+                 from include/linux/mm.h:6:
+drivers/gpu/drm/xe/xe_svm.c:344:33: error: 'struct page' has no member name=
+d 'pgmap'
+  344 |         return container_of(page->pgmap, struct xe_vram_region, pag=
+emap);
+      |                                 ^~
+include/linux/build_bug.h:78:56: note: in definition of macro '__static_ass=
+ert'
+   78 | #define __static_assert(expr, msg, ...) _Static_assert(expr, msg)
+      |                                                        ^~~~
+include/linux/container_of.h:20:9: note: in expansion of macro 'static_asse=
+rt'
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||  =
+     \
+      |         ^~~~~~~~~~~~~
+include/linux/container_of.h:20:23: note: in expansion of macro '__same_typ=
+e'
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||  =
+     \
+      |                       ^~~~~~~~~~~
+drivers/gpu/drm/xe/xe_svm.c:344:16: note: in expansion of macro 'container_=
+of'
+  344 |         return container_of(page->pgmap, struct xe_vram_region, pag=
+emap);
+      |                ^~~~~~~~~~~~
+drivers/gpu/drm/xe/xe_svm.c:344:33: error: 'struct page' has no member name=
+d 'pgmap'
+  344 |         return container_of(page->pgmap, struct xe_vram_region, pag=
+emap);
+      |                                 ^~
+include/linux/build_bug.h:78:56: note: in definition of macro '__static_ass=
+ert'
+   78 | #define __static_assert(expr, msg, ...) _Static_assert(expr, msg)
+      |                                                        ^~~~
+include/linux/container_of.h:20:9: note: in expansion of macro 'static_asse=
+rt'
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||  =
+     \
+      |         ^~~~~~~~~~~~~
+include/linux/container_of.h:21:23: note: in expansion of macro '__same_typ=
+e'
+   21 |                       __same_type(*(ptr), void),                   =
+     \
+      |                       ^~~~~~~~~~~
+drivers/gpu/drm/xe/xe_svm.c:344:16: note: in expansion of macro 'container_=
+of'
+  344 |         return container_of(page->pgmap, struct xe_vram_region, pag=
+emap);
+      |                ^~~~~~~~~~~~
+include/linux/compiler_types.h:483:27: error: expression in static assertio=
+n is not an integer
+  483 | #define __same_type(a, b) __builtin_types_compatible_p(typeof(a), t=
+ypeof(b))
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+include/linux/build_bug.h:78:56: note: in definition of macro '__static_ass=
+ert'
+   78 | #define __static_assert(expr, msg, ...) _Static_assert(expr, msg)
+      |                                                        ^~~~
+include/linux/container_of.h:20:9: note: in expansion of macro 'static_asse=
+rt'
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||  =
+     \
+      |         ^~~~~~~~~~~~~
+include/linux/container_of.h:20:23: note: in expansion of macro '__same_typ=
+e'
+   20 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||  =
+     \
+      |                       ^~~~~~~~~~~
+drivers/gpu/drm/xe/xe_svm.c:344:16: note: in expansion of macro 'container_=
+of'
+  344 |         return container_of(page->pgmap, struct xe_vram_region, pag=
+emap);
+      |                ^~~~~~~~~~~~
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Caused by commit
 
+  11bbe0d9aa96 ("drm/xe: Add drm_pagemap ops to SVM")
 
+interacting with commit
+
+  089b22f60a0f ("mm: allow compound zone device pages")
+
+from the mm-unstable branch of the mm tree.
+
+I have applied the following merge fix patch for today
+
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+Date: Fri, 7 Mar 2025 13:14:37 +1100
+Subject: [PATCH] fixup for "drm/xe: Add drm_pagemap ops to SVM"
+
+  089b22f60a0f ("mm: allow compound zone device pages")
+
+from the mm-unstable branch of the mm tree.
+
+Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
+---
+ drivers/gpu/drm/xe/xe_svm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 516898e99b26..3e829c87d7b4 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -341,7 +341,7 @@ static void xe_svm_garbage_collector_work_func(struct w=
+ork_struct *w)
+=20
+ static struct xe_vram_region *page_to_vr(struct page *page)
+ {
+-	return container_of(page->pgmap, struct xe_vram_region, pagemap);
++	return container_of(page_pgmap(page), struct xe_vram_region, pagemap);
+ }
+=20
+ static struct xe_tile *vr_to_tile(struct xe_vram_region *vr)
+--=20
+2.45.2
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/FGUZsOrf9LTYww5Fp946HPy
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmfKWBgACgkQAVBC80lX
+0GzDgAgAmwJ9ID661PffVUPQVaP4Hf6NpT32Da1QKSsqEQZ+3y71xxEqg52AGHOm
+UY7jksc0A4olQO4IIrdN25bdq8U3QiLmU7cjwAGRttgpzNWc86XDpSfMnUdUQ+Xq
+XjI/nlWhc6Uos1URICVL3cimh3bTizsGL05vWLEOMpqrS6tgwR+PuWiCcapRBCzw
+G5j7brcrIlryoGbeQ5H70EP4hMbr/6dDVEKgnFtqXm0tLGSZwGkBdayuZNo97teY
++D3+QyZNYc/PU3tBaeAYN8bJiNjYS+Dre9bgx4SwXsRAG1YKZIvSqdhNoE4uwdor
+Bfzi9v3DcSgx0r6GPAkKbBZdo/Abiw==
+=cFBe
+-----END PGP SIGNATURE-----
+
+--Sig_/FGUZsOrf9LTYww5Fp946HPy--
