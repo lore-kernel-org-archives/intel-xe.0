@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B65CC282D0
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8732BC19F32
 	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 04:00:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3443D10EAC0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DE6510EABF;
 	Fri,  7 Mar 2025 04:00:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O9LCy9jo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E59Sda46";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0158D10EABF
- for <intel-xe@lists.freedesktop.org>; Fri,  7 Mar 2025 04:00:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4967A10EABE
+ for <intel-xe@lists.freedesktop.org>; Fri,  7 Mar 2025 04:00:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741320024; x=1772856024;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
+ t=1741320023; x=1772856023;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
  bh=jPV7kW8VL5OeW7puB5Nt9HpTfmCejTUM3oMnn+fgmOA=;
- b=O9LCy9joil6lfvqhJ9Fk3DUgtMJW0N+Pno+hyVcKqtAUVGtCKFZjWV3o
- v2E7zq47EqZn4ycZziPjKvC/scNdM4c6ZICNqZpQIPkEfnVu2f+uvdpnR
- oCvFJDhKLqK198lnmOyk77N79zbvNQYTKZh0ytDJqDmMTn8iGKQQtihH0
- hUbNnJt8suknaSpl5k1FNzK0NiXdKWVjcB4lxHpeqevQrv3TO0J4yUPU1
- pIEiUselH3EFSC6r/6NkUy0ij65mu+GO9kEsU+nXizMnWiAb1Y1Ep7qDV
- f7omaBecl2kvhb5C5FPgZGKF1RubpfjVeH9Z7taJfmveAB9T3E5GuHF3E g==;
-X-CSE-ConnectionGUID: A/u3Hv/kRkC3dY0oR7UE4w==
-X-CSE-MsgGUID: 2xL+HRw9RTiQVFuIaOXGJw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="42392331"
-X-IronPort-AV: E=Sophos;i="6.14,228,1736841600"; d="scan'208";a="42392331"
+ b=E59Sda46AteoYg6pGj2n+HkhAm3kjburKM/+0GZ7jPpnHeE1aOC3G3dL
+ vdNrAtme1ZKCSpekATwMrlqco/4cqlig1GibAF9eltC3+V9X9Obh/Ff7J
+ MnlDdCAn2TvY5MBBSXQkiJk0wJY7VerQPklAGlfW5T5IFYq6OkEZTAGWn
+ EUjHV7UwwKlngclxf0vLiz95BS1TRyZluSmH423A7WVZuznfaNs4oMTrZ
+ qFBNq1SAKE22uKsPuj6Dfp7NjDVxCYUsVSHHD7NeENNRDmMTnoJlMggS8
+ fWR9pSrW3FRo967Vcy5F1YjxTS4ZIcqubozFKbsAqmU9mg+L/e6eZ8SP0 g==;
+X-CSE-ConnectionGUID: hWhB/amLSvqmb6AnNA65pA==
+X-CSE-MsgGUID: 2LAwUVKAQm60/BgsvUHVMg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="42392329"
+X-IronPort-AV: E=Sophos;i="6.14,228,1736841600"; d="scan'208";a="42392329"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Mar 2025 20:00:20 -0800
-X-CSE-ConnectionGUID: XeTz/ImBRwyZX0SX4GSQ7Q==
-X-CSE-MsgGUID: 7EbZc0E5Sye0ZjYyIn1AwA==
+X-CSE-ConnectionGUID: JjzHEuUpQS2MwpWc+OILcA==
+X-CSE-MsgGUID: UC3aJPahQLuQfvFRFtnzMg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,228,1736841600"; d="scan'208";a="150007800"
+X-IronPort-AV: E=Sophos;i="6.14,228,1736841600"; d="scan'208";a="150007797"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Mar 2025 20:00:21 -0800
@@ -46,12 +46,10 @@ To: <intel-xe@lists.freedesktop.org>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  kernel test robot <lkp@intel.com>,
  Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH] drm/xe/rtp: Drop sentinels from arg to xe_rtp_process_to_sr()
-Date: Thu,  6 Mar 2025 20:00:05 -0800
-Message-ID: <20250306-fix-print-warning-v1-1-979c3dc03c0d@intel.com>
+Subject: [PATCH] drm/xe/rtp: Drop sentinel from xe_rtp_process_to_sr()
+Date: Thu,  6 Mar 2025 20:00:04 -0800
+Message-ID: <20250306-fix-print-warning-v1-1-7bd961d2cfef@intel.com>
 X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250306-fix-print-warning-v1-1-7bd961d2cfef@intel.com>
-References: <20250306-fix-print-warning-v1-1-7bd961d2cfef@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 X-Change-ID: 20250306-fix-print-warning-43d20fc31309
