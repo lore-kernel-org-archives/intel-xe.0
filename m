@@ -4,47 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27384C19F32
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 11:14:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 717A5C19F32
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 11:26:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E233E10E0AD;
-	Fri,  7 Mar 2025 11:14:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 176FE10E114;
+	Fri,  7 Mar 2025 11:26:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Rx1FUt4L";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Oj9PQYCS";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2D2E10EB44
- for <intel-xe@lists.freedesktop.org>; Fri,  7 Mar 2025 11:14:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=NkJFBFgtaZRgXEv8q8mG3Hk0LcF5Ssifo6JzLI8hvPM=; b=Rx1FUt4L/FOggUojyZpHo/nLhe
- GBdTvDmxldTSmbH2Bp7yrUHV10ag0G1hpYJobSYhiJgujW8C0fdBvHPSjVy7ftrPEDuUu1YFJd6Rz
- OMlbn+picSLApjjYtiIuDnAKDxTg4Fac/Sqyd9ySlvVivxVcHjThiM01CJO603vD8g+oRoZgDP5VK
- kWA0Mcv2dCiBa1zs+nwbitxQL1nNcg0Vq9cTMGpVPrShhSUeKkq/mSaVIpZfGfD2h8msMbyMjKCxU
- hTEoyK3A2rQUpStoKddABmFrHolEdDoHhv7M7I4IsOHkqE9D7nxsKtofvLiG5swbSR3JriCSZHjxf
- Ag7uQ1qg==;
-Received: from [90.241.98.187] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tqVeU-005JiL-6f; Fri, 07 Mar 2025 12:14:08 +0100
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH 4/4] drm/xe: Use correct type width for alignment in fb
- pinning code
-Date: Fri,  7 Mar 2025 11:14:02 +0000
-Message-ID: <20250307111402.26577-5-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250307111402.26577-1-tvrtko.ursulin@igalia.com>
-References: <20250307111402.26577-1-tvrtko.ursulin@igalia.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B59A10E114
+ for <intel-xe@lists.freedesktop.org>; Fri,  7 Mar 2025 11:26:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1741346760; x=1772882760;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=3WpvT+GW4J2wks6v0DSytO1ZXVUPHUh0ouyCkpRR5zc=;
+ b=Oj9PQYCS+7nxEojdVqSNDqng7NBTvT0vqN9VA4Voa9cLfRay4x8HYcrZ
+ lxCUcF/kT7CUqmuOpI/2wf/AhDYX/f99bkCa3RFeEA3ua3tRYZFR2dFUL
+ 5vnXralFiWH3DMJdvMprKbbHr1qcYRnoL2J+wiNeuRaP2wjKtMi8G3Ybv
+ FLSUwE7xy/KlK6qIUb18ULriQYTmtzch8dfAiH9tfbaWQUw5Kbb2tPISp
+ TWBuA3kZBdE2lMwW4TadsrrYriWYzKmBWxrNE93kGMeTac5KWdXxGWGdQ
+ C2O+BUtiL09jHDvxBjmKCTsVQwzvOx90KIh0F2GTarJswpC89WJicHsIo Q==;
+X-CSE-ConnectionGUID: DWO6a+CcRWGyeppqZ28VHw==
+X-CSE-MsgGUID: goAzUv+LTLOH4nxIbO3Wlg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="46169189"
+X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="46169189"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2025 03:26:00 -0800
+X-CSE-ConnectionGUID: tNH6YjEvQt25MgD9WG6gEQ==
+X-CSE-MsgGUID: afqflv5OTnKjNxV/Es7Rfw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="119225550"
+Received: from lkp-server02.sh.intel.com (HELO a4747d147074) ([10.239.97.151])
+ by orviesa010.jf.intel.com with ESMTP; 07 Mar 2025 03:25:59 -0800
+Received: from kbuild by a4747d147074 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1tqVq0-0000N5-1t;
+ Fri, 07 Mar 2025 11:25:56 +0000
+Date: Fri, 7 Mar 2025 19:25:49 +0800
+From: kernel test robot <lkp@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: oe-kbuild-all@lists.linux.dev, intel-xe@lists.freedesktop.org,
+ Oak Zeng <oak.zeng@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Subject: [drm-xe:drm-xe-next 20/32] xe_migrate.c:undefined reference to
+ `__udivdi3'
+Message-ID: <202503072137.G8mqBGo5-lkp@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,103 +68,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Plane->min_alignment returns an unsigned int so lets use that in the whole
-relevant call chain.
+tree:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+head:   8e8d76f62329127b31c64a034b052fb9e30e92af
+commit: 9c44fd5f6e8aa1ed944f085926044fcbf797206c [20/32] drm/xe: Add migrate layer functions for SVM support
+config: powerpc-randconfig-001-20250307 (https://download.01.org/0day-ci/archive/20250307/202503072137.G8mqBGo5-lkp@intel.com/config)
+compiler: powerpc-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250307/202503072137.G8mqBGo5-lkp@intel.com/reproduce)
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503072137.G8mqBGo5-lkp@intel.com/
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index b69896baa20c..d918ae1c8061 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -82,7 +82,7 @@ write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
- static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 			       const struct i915_gtt_view *view,
- 			       struct i915_vma *vma,
--			       u64 physical_alignment)
-+			       unsigned int alignment)
- {
- 	struct xe_device *xe = to_xe_device(fb->base.dev);
- 	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
-@@ -108,7 +108,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 						      XE_BO_FLAG_VRAM0 |
- 						      XE_BO_FLAG_GGTT |
- 						      XE_BO_FLAG_PAGETABLE,
--						      physical_alignment);
-+						      alignment);
- 	else
- 		dpt = xe_bo_create_pin_map_at_aligned(xe, tile0, NULL,
- 						      dpt_size,  ~0ull,
-@@ -116,7 +116,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 						      XE_BO_FLAG_STOLEN |
- 						      XE_BO_FLAG_GGTT |
- 						      XE_BO_FLAG_PAGETABLE,
--						      physical_alignment);
-+						      alignment);
- 	if (IS_ERR(dpt))
- 		dpt = xe_bo_create_pin_map_at_aligned(xe, tile0, NULL,
- 						      dpt_size,  ~0ull,
-@@ -124,7 +124,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 						      XE_BO_FLAG_SYSTEM |
- 						      XE_BO_FLAG_GGTT |
- 						      XE_BO_FLAG_PAGETABLE,
--						      physical_alignment);
-+						      alignment);
- 	if (IS_ERR(dpt))
- 		return PTR_ERR(dpt);
- 
-@@ -194,7 +194,7 @@ write_ggtt_rotated(struct xe_bo *bo, struct xe_ggtt *ggtt, u32 *ggtt_ofs, u32 bo
- static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
- 				const struct i915_gtt_view *view,
- 				struct i915_vma *vma,
--				u64 physical_alignment)
-+				unsigned int alignment)
- {
- 	struct drm_gem_object *obj = intel_fb_bo(&fb->base);
- 	struct xe_bo *bo = gem_to_xe_bo(obj);
-@@ -277,7 +277,7 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
- 
- static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
- 					const struct i915_gtt_view *view,
--					u64 physical_alignment)
-+					unsigned int alignment)
- {
- 	struct drm_device *dev = fb->base.dev;
- 	struct xe_device *xe = to_xe_device(dev);
-@@ -327,9 +327,9 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
- 
- 	vma->bo = bo;
- 	if (intel_fb_uses_dpt(&fb->base))
--		ret = __xe_pin_fb_vma_dpt(fb, view, vma, physical_alignment);
-+		ret = __xe_pin_fb_vma_dpt(fb, view, vma, alignment);
- 	else
--		ret = __xe_pin_fb_vma_ggtt(fb, view, vma,  physical_alignment);
-+		ret = __xe_pin_fb_vma_ggtt(fb, view, vma,  alignment);
- 	if (ret)
- 		goto err_unpin;
- 
-@@ -422,7 +422,7 @@ int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
- 	struct i915_vma *vma;
- 	struct intel_framebuffer *intel_fb = to_intel_framebuffer(fb);
- 	struct intel_plane *plane = to_intel_plane(new_plane_state->uapi.plane);
--	u64 phys_alignment = plane->min_alignment(plane, fb, 0);
-+	unsigned int alignment = plane->min_alignment(plane, fb, 0);
- 
- 	if (reuse_vma(new_plane_state, old_plane_state))
- 		return 0;
-@@ -430,7 +430,7 @@ int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
- 	/* We reject creating !SCANOUT fb's, so this is weird.. */
- 	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_FLAG_SCANOUT));
- 
--	vma = __xe_pin_fb_vma(intel_fb, &new_plane_state->view.gtt, phys_alignment);
-+	vma = __xe_pin_fb_vma(intel_fb, &new_plane_state->view.gtt, alignment);
- 
- 	if (IS_ERR(vma))
- 		return PTR_ERR(vma);
+All errors (new ones prefixed by >>):
+
+   powerpc-linux-ld: drivers/gpu/drm/xe/xe_migrate.o: in function `xe_migrate_vram':
+>> xe_migrate.c:(.text+0x235c): undefined reference to `__udivdi3'
+
 -- 
-2.48.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
