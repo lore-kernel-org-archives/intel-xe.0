@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81F96C282DE
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 11:14:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C795C28B26
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 11:14:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C6BB10E116;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F344510E10D;
 	Fri,  7 Mar 2025 11:14:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="K4r/Wgsd";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="PsBKARGx";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C57A10EA1D
- for <intel-xe@lists.freedesktop.org>; Fri,  7 Mar 2025 11:14:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4587210EB54
+ for <intel-xe@lists.freedesktop.org>; Fri,  7 Mar 2025 11:14:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,23 +22,23 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=M2NF/OytZvPoHX3WWfleEfcLuBFmg/QuPv7ufj9OF5U=; b=K4r/Wgsd//PctxykalbQJekRSS
- DmNmvzXau1PcDKPMO63wSeAzErFrlAvJrfyisjXk214r5fxgHDXlMstZ5NbJYX/bRgLV3HFCWl5iD
- HZoaLTbBOjMgllvEPM7ON/nsJRu/+n2eOAqE5FpKPJgNlGvZjbG/7v5Y7mNQeKtg5eLJX2d7PcVvp
- /q2MsLhjFzkaEcymcSRW0fiQ1WMQufvNH5ZoVMaXbb/EGHBeKHlvCVird0vsyasOg7jxkQR4lWnUY
- BRPnnvnD18NEDe6wzKO2Iw0+5Xpf0nxVYI2nyHL/v4hSdlZBhqY6nmQSJc0nm1JtyhTor8rCpa8Ld
- 2jEurOww==;
+ bh=hY5ZpFW4+y6+kpoHPA6KiTc1L13wRnSNZQNXgq3zIPo=; b=PsBKARGxBNET4f9uKdW9iHgFlP
+ 9YrI9cSI8rc05NKt66eFiWH2iGCEOyrWb8tNtzt5wLE2jqdvtnDPAqKaYYV6WrG45Bxg0ELpTsBos
+ cDEWoN8+ITCXkoZbgtzy9zCwJtkmkcam9z/K3p+FqO6yTDCtNODu48ZeP90JGO+AQGs4JT7s1Xy2M
+ llpBuTH9oFuG+cdPj7FjDvcfJ4esxMFkoaD0SLBVzp9XRE8Yl0H12quqlolp+9PjHhgpKYoKbJFfj
+ 4M0yZfhfJERzi8Ru0MpHv+SEkH+tTkiYWVCqunknyMxPdQYqYFPpNOBWPAfQoro130gL3Za2Pqvzo
+ Ycypun8w==;
 Received: from [90.241.98.187] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tqVeR-005Ji6-Ul; Fri, 07 Mar 2025 12:14:05 +0100
+ id 1tqVeT-005JiE-EF; Fri, 07 Mar 2025 12:14:07 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH 1/4] drm/xe: Fix MOCS debugfs LNCF readout
-Date: Fri,  7 Mar 2025 11:13:59 +0000
-Message-ID: <20250307111402.26577-2-tvrtko.ursulin@igalia.com>
+ Matt Roper <matthew.d.roper@intel.com>
+Subject: [PATCH 3/4] drm/xe: Pass flags directly to emit_flush_imm_ggtt
+Date: Fri,  7 Mar 2025 11:14:01 +0000
+Message-ID: <20250307111402.26577-4-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250307111402.26577-1-tvrtko.ursulin@igalia.com>
 References: <20250307111402.26577-1-tvrtko.ursulin@igalia.com>
@@ -58,32 +58,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With only XE_FW_GT taken LNCF registers read back as all zeroes, leading
-to a wild goose chase trying to figure out why is register programming
-incorrect.
-
-Fix it by grabbing XE_FORCEWAKE_ALL for affected platforms.
+This is more readable than the nameless booleans and will also come handy
+later.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_mocs.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_ring_ops.c | 13 ++++++-------
+ 1 file changed, 6 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
-index 54d199b5cfb2..31dade91a089 100644
---- a/drivers/gpu/drm/xe/xe_mocs.c
-+++ b/drivers/gpu/drm/xe/xe_mocs.c
-@@ -781,7 +781,9 @@ void xe_mocs_dump(struct xe_gt *gt, struct drm_printer *p)
- 	flags = get_mocs_settings(xe, &table);
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index 3d1b4d3d788f..917fc16de866 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -90,11 +90,10 @@ static int emit_flush_dw(u32 *dw, int i)
+ 	return i;
+ }
  
- 	xe_pm_runtime_get_noresume(xe);
--	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+	fw_ref = xe_force_wake_get(gt_to_fw(gt),
-+				   flags & HAS_LNCF_MOCS ?
-+				   XE_FORCEWAKE_ALL : XE_FW_GT);
- 	if (!fw_ref)
- 		goto err_fw;
+-static int emit_flush_imm_ggtt(u32 addr, u32 value, bool invalidate_tlb,
+-			       u32 *dw, int i)
++static int emit_flush_imm_ggtt(u32 addr, u32 value, u32 flags, u32 *dw, int i)
+ {
+ 	dw[i++] = MI_FLUSH_DW | MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_IMM_DW |
+-		(invalidate_tlb ? MI_INVALIDATE_TLB : 0);
++		  flags;
+ 	dw[i++] = addr | MI_FLUSH_DW_USE_GTT;
+ 	dw[i++] = 0;
+ 	dw[i++] = value;
+@@ -254,7 +253,7 @@ static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc
+ 	if (job->ring_ops_flush_tlb) {
+ 		dw[i++] = preparser_disable(true);
+ 		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+-					seqno, true, dw, i);
++					seqno, MI_INVALIDATE_TLB, dw, i);
+ 		dw[i++] = preparser_disable(false);
+ 	} else {
+ 		i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+@@ -270,7 +269,7 @@ static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc
+ 						dw, i);
+ 	}
+ 
+-	i = emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, false, dw, i);
++	i = emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, 0, dw, i);
+ 
+ 	i = emit_user_interrupt(dw, i);
+ 
+@@ -316,7 +315,7 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
+ 
+ 	if (job->ring_ops_flush_tlb)
+ 		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+-					seqno, true, dw, i);
++					seqno, MI_INVALIDATE_TLB, dw, i);
+ 
+ 	dw[i++] = preparser_disable(false);
+ 
+@@ -333,7 +332,7 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
+ 						dw, i);
+ 	}
+ 
+-	i = emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, false, dw, i);
++	i = emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, 0, dw, i);
+ 
+ 	i = emit_user_interrupt(dw, i);
  
 -- 
 2.48.0
