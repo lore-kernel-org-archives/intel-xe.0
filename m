@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CDCFC28B23
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 14:36:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 987D1C19F32
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 14:37:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0870910E053;
-	Fri,  7 Mar 2025 14:36:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AB9510E059;
+	Fri,  7 Mar 2025 14:37:05 +0000 (UTC)
 Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BBFC10E053;
- Fri,  7 Mar 2025 14:36:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFCDA10E059;
+ Fri,  7 Mar 2025 14:37:03 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Add_configfs_support_for_?=
- =?utf-8?q?survivability_mode?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Add_configfs_support_for_survi?=
+ =?utf-8?q?vability_mode?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Riana Tauro" <riana.tauro@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 07 Mar 2025 14:36:29 -0000
-Message-ID: <174135818943.2586.7035469533826777969@18a75f3d1eae>
+Date: Fri, 07 Mar 2025 14:37:03 -0000
+Message-ID: <174135822378.2585.10390135022770857203@18a75f3d1eae>
 X-Patchwork-Hint: ignore
 References: <20250307142446.1790715-1-riana.tauro@intel.com>
 In-Reply-To: <20250307142446.1790715-1-riana.tauro@intel.com>
@@ -44,50 +44,58 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Add configfs support for survivability mode
 URL   : https://patchwork.freedesktop.org/series/145999/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-cbb4e4a079d89106c2736adc3c7de6f9dc56da07
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 48de3888a0a153a62e1851dee907b3217f00905a
-Author: Riana Tauro <riana.tauro@intel.com>
-Date:   Fri Mar 7 19:54:45 2025 +0530
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+/usr/bin/ld: drivers/gpu/drm/xe/xe_configfs.o: in function `xe_configfs_init':
+xe_configfs.c:(.init.text+0x6): undefined reference to `config_group_init'
+/usr/bin/ld: xe_configfs.c:(.init.text+0x4f): undefined reference to `configfs_register_subsystem'
+/usr/bin/ld: drivers/gpu/drm/xe/xe_configfs.o: in function `xe_configfs_exit':
+xe_configfs.c:(.exit.text+0x31): undefined reference to `configfs_unregister_subsystem'
+collect2: error: ld returned 1 exit status
+make[3]: *** [../scripts/Makefile.vmlinux:77: vmlinux] Error 1
+make[2]: *** [/kernel/Makefile:1226: vmlinux] Error 2
+make[1]: *** [/kernel/Makefile:251: __sub-make] Error 2
+make: *** [Makefile:251: __sub-make] Error 2
 
-    RFC drm/xe: Enable configfs support for survivability mode
-    
-    Register a configfs subsystem called 'xe' to userspace that allows
-    users to modify the exposed attributes. Expose survivability mode as
-    an attribute that can be modified manually. This is useful if
-    pcode fails to detect survivability mode and for validation
-    
-    To enable survivability mode for a card,
-    
-    echo "domain:bus:dev.fn" > /sys/bus/pci/drivers/xe/unbind
-    echo "domain:bus:dev.fn" > sys/kernel/config/xe/survivability_mode
-    echo "domain:bus:dev.fn" > /sys/bus/pci/drivers/xe/bind
-    
-    Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-+ /mt/dim checkpatch 066c46f28642479869d2d1dd27cc6ae476de4abc drm-intel
-1dde0ff4eddd RFC drm/xe: Add configfs to enable survivability mode
--:28: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#28: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 138 lines checked
-48de3888a0a1 RFC drm/xe: Enable configfs support for survivability mode
--:48: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->bus->number == bus'
-#48: FILE: drivers/gpu/drm/xe/xe_configfs.c:45:
-+	if ((pci_domain_nr(pdev->bus) == domain) && (pdev->bus->number == bus) &&
-+	    (PCI_SLOT(pdev->devfn) == slot) && (PCI_FUNC(pdev->devfn) == function))
-
-total: 0 errors, 0 warnings, 1 checks, 123 lines checked
+[14:36:30] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[14:36:34] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
