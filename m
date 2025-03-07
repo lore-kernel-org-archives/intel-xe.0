@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0058EC19F32
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 10:07:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04A86C19F32
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Mar 2025 10:07:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9C0B10EB25;
-	Fri,  7 Mar 2025 10:07:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0D9910EB25;
+	Fri,  7 Mar 2025 10:07:53 +0000 (UTC)
 Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2398310EB25;
- Fri,  7 Mar 2025 10:07:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82AA410EB25;
+ Fri,  7 Mar 2025 10:07:53 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/userptr=3A_Fi?=
- =?utf-8?q?x_an_incorrect_assert?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/userptr=3A_Fix_an_?=
+ =?utf-8?q?incorrect_assert?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 07 Mar 2025 10:07:27 -0000
-Message-ID: <174134204714.931.9091495730023456110@18a75f3d1eae>
+Date: Fri, 07 Mar 2025 10:07:53 -0000
+Message-ID: <174134207353.931.9009691080641016663@18a75f3d1eae>
 X-Patchwork-Hint: ignore
 References: <20250307100109.21397-1-thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20250307100109.21397-1-thomas.hellstrom@linux.intel.com>
@@ -48,9 +48,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: d3c673d6b2da drm-tip: 2025y-03m-07d-09h-25m-16s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/userptr: Fix an incorrect assert
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+cbb4e4a079d89106c2736adc3c7de6f9dc56da07
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 0cb7f10f5e4d751caa452f7dd12b0e22270095b2
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Fri Mar 7 11:01:09 2025 +0100
+
+    drm/xe/userptr: Fix an incorrect assert
+    
+    The assert incorrectly checks the total length processed which
+    can in fact be greater than the number of pages. Fix.
+    
+    Fixes: 0a98219bcc96 ("drm/xe/hmm: Don't dereference struct page pointers without notifier lock")
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
++ /mt/dim checkpatch d3c673d6b2da9b11915a2126613c30dec273df28 drm-intel
+0cb7f10f5e4d drm/xe/userptr: Fix an incorrect assert
 
 
