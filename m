@@ -4,101 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E917C282DE
-	for <intel-xe@archiver.kernel.org>; Sat,  8 Mar 2025 00:00:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A612DC282DE
+	for <intel-xe@archiver.kernel.org>; Sat,  8 Mar 2025 00:00:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A8EE10E1D6;
-	Sat,  8 Mar 2025 00:00:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="qxfqLXGn";
-	dkim-atps=neutral
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com
- [209.85.208.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18C3910E1D6
- for <intel-xe@lists.freedesktop.org>; Sat,  8 Mar 2025 00:00:31 +0000 (UTC)
-Received: by mail-lj1-f174.google.com with SMTP id
- 38308e7fff4ca-30bfc8faef9so6565111fa.1
- for <intel-xe@lists.freedesktop.org>; Fri, 07 Mar 2025 16:00:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1741392029; x=1741996829; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=AEwMiLzCyICEunJ5u9SkRaghHLUa2TZbSRFS1CMQbNs=;
- b=qxfqLXGn9y/WjSWkyNIBD4GGTZ4shSXhq6NUq99xu6C85uuURdghgpDvN6Q9VkCVWZ
- uu0v0yRM8xSCUcOWOr2/J2FL8uY7/t9+TqbJUoeGJGxnf9oREkXcIFCxgqwuL0ljWAOv
- 0awkRvip1B7xcO2qmmYth7hay0Nkdzvjwsfdfu5qh8jNaUWRhpglIKN7YhKs03T+I2N+
- rmF1pnqzr1xrErkRK6OpXPoyzD4q5o9IpWL4p1vBZOA7yU6Qd4v9aScm7dXCgKmZD6EU
- NGoXGiA864nXpPb7GiYMlv4rUsSJSdQ2fkzO+HhSHJvm2UjSBSOoPNY2J8cHkLfp3kh1
- OFfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1741392029; x=1741996829;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=AEwMiLzCyICEunJ5u9SkRaghHLUa2TZbSRFS1CMQbNs=;
- b=SaQhQbBDLEbpm5naC1oViAITvhABiAjYYN7/x6N7t3L97wXdwLCOUpNlhjU/ZLn9aL
- LMpFbsqTTgOZUmWjVAtPFQHebj+ApwnQS3TgDcNhhjIXPNH3irLobkjAzjUBLnOG7hSD
- +0D5MYu6NsOB7ZlSTvhjF0sKt3fmU8uEMCjlQ4I/vscKfzaKrxW2HR/KnKMEKWe47VfG
- lrGI3HcTwYeOxCDsIPXPuVNumfA7zmfltDrDWGqwx60a/L8KcqwknvuGBuiU4drFbOeo
- f8+FLWOuRDoj4/aDjBP8M4riBTbJqT/0V5J3Etmqf6aIVNpHFyGCU9HbGdXrgVUPudWk
- inwg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWQZmMO61q6YP7DFV3W+9tcJLWm+2GalxsTuTz1YTMzLrJNH3CwTjM5YrzDvj6aTMMWrYVQzbjLbA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxJAbEV7fq2Y8TVa5cdBw42YpBPAT54+YG7ndjuGCgG8g6VuKI2
- AYvU9vwIlg428A+ie73PuD+NiNRR+5IYn9/MquDHnphxTr0y/5L+7cYS1vHxSeo=
-X-Gm-Gg: ASbGncteccfzTZM8lYHDPSScogrkBsvR5JBlgdQA0K+zL8+1X1Pt63y1x2xoGTTvErc
- 6b/GrssUkC0fgF6MwkMY2+9G4UeRMwQdgaTYJJP5zsSbU91jyZF0/2bgC7WzZHtfRzFZ17uCdAb
- +vtf7wVK7pEB8mAa1OvYzP1QHPb2zm+Rk0UH++VNvcMOmBTS4B1ezksSjaKwX+FIjIcI+JX+coT
- unuvgT2vsCuGpeMDGReFmHvEvlXlg9/C53nXd5+zHVcmD20A9yu232Lwsb3NyUnuCKQhkuBu9IR
- Cko51ofiMtvDi6efbXQ7zP6S0h1qh3tEsSWnH/8j7rxIETs9wu8e0uCbrlxwdwlY0WHclfk1D8O
- TI2P+09z7OixesKkoqv2eH06B
-X-Google-Smtp-Source: AGHT+IHp+tbCuGTMiQOtkAJeNqJU+GLHRyHQrcNbiQ0L6CepcDGTgtUgqeherQpSU3yjAqkm/DxJgw==
-X-Received: by 2002:a2e:a78a:0:b0:30b:c3ce:ea38 with SMTP id
- 38308e7fff4ca-30bf43b45bcmr21229201fa.0.1741392028923; 
- Fri, 07 Mar 2025 16:00:28 -0800 (PST)
-Received: from eriador.lumag.spb.ru
- (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
- by smtp.gmail.com with ESMTPSA id
- 38308e7fff4ca-30be99c815fsm7131741fa.69.2025.03.07.16.00.26
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 07 Mar 2025 16:00:27 -0800 (PST)
-Date: Sat, 8 Mar 2025 02:00:25 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Lyude Paul <lyude@redhat.com>
-Cc: Dmitry Baryshkov <lumag@kernel.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Rob Clark <robdclark@gmail.com>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>,
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Xinliang Liu <xinliang.liu@linaro.org>, Tian Tao <tiantao6@hisilicon.com>, 
- Xinwei Kong <kong.kongxinwei@hisilicon.com>,
- Sumit Semwal <sumit.semwal@linaro.org>, 
- Yongqin Liu <yongqin.liu@linaro.org>, John Stultz <jstultz@google.com>, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, 
- freedreno@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH RFC v3 4/7] drm/display: dp-aux-dev: use new DCPD access
- helpers
-Message-ID: <ytsczbxfokt4yz26w5zl2rxtuagrirdpi6uyxnt4itcllrowuk@wqqcgkr7b52k>
-References: <20250307-drm-rework-dpcd-access-v3-0-9044a3a868ee@linaro.org>
- <20250307-drm-rework-dpcd-access-v3-4-9044a3a868ee@linaro.org>
- <3284acdfa43fa62e7230355b4ed2e09ab75f326a.camel@redhat.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BBB010EC54;
+	Sat,  8 Mar 2025 00:00:43 +0000 (UTC)
+Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D09EA10EBBB;
+ Sat,  8 Mar 2025 00:00:42 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3284acdfa43fa62e7230355b4ed2e09ab75f326a.camel@redhat.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915/xe3lpd=3A_Update_band?=
+ =?utf-8?q?width_parameters_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Sat, 08 Mar 2025 00:00:42 -0000
+Message-ID: <174139204284.4957.10144871936410942810@18a75f3d1eae>
+X-Patchwork-Hint: ignore
+References: <20250307-xe3lpd-bandwidth-update-v3-0-58bbe81f65bf@intel.com>
+In-Reply-To: <20250307-xe3lpd-bandwidth-update-v3-0-58bbe81f65bf@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,28 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Mar 07, 2025 at 05:53:38PM -0500, Lyude Paul wrote:
-> I thought we had agreed that drm_dp_aux_dev.c was one of the few places where
-> we wanted to keep using the old functions here?
+== Series Details ==
 
-Hmm, I thought I dropped it.
+Series: drm/i915/xe3lpd: Update bandwidth parameters (rev3)
+URL   : https://patchwork.freedesktop.org/series/144440/
+State : success
 
-> 
-> On Fri, 2025-03-07 at 06:34 +0200, Dmitry Baryshkov wrote:
-> > From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > 
-> > Switch drm_dp_aux_dev.c to use new set of DPCD read / write helpers.
-> > 
-> > Acked-by: Jani Nikula <jani.nikula@intel.com>
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  drivers/gpu/drm/display/drm_dp_aux_dev.c | 12 +++++-------
-> >  1 file changed, 5 insertions(+), 7 deletions(-)
-> > 
+== Summary ==
 
--- 
-With best wishes
-Dmitry
+lib/modules/6.14.0-rc5-xe+/kernel/arch/x86/events/amd/
+lib/modules/6.14.0-rc5-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
+lib/modules/6.14.0-rc5-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.14.0-rc5-xe+/kernel/arch/x86/kvm/
+lib/modules/6.14.0-rc5-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.14.0-rc5-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.14.0-rc5-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.14.0-rc5-xe+/kernel/kernel/
+lib/modules/6.14.0-rc5-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/zstd.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/xctr.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/authenc.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/sm3.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/cmac.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/essiv.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/ccm.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/wp512.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/lrw.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/842.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/md4.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/lz4.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/sm4.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/async_tx/
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.14.0-rc5-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.14.0-rc5-xe+/kernel/block/
+lib/modules/6.14.0-rc5-xe+/kernel/block/bfq.ko
+lib/modules/6.14.0-rc5-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.14.0-rc5-xe+/build
+lib/modules/6.14.0-rc5-xe+/modules.alias.bin
+lib/modules/6.14.0-rc5-xe+/modules.builtin
+lib/modules/6.14.0-rc5-xe+/modules.softdep
+lib/modules/6.14.0-rc5-xe+/modules.alias
+lib/modules/6.14.0-rc5-xe+/modules.order
+lib/modules/6.14.0-rc5-xe+/modules.symbols
+lib/modules/6.14.0-rc5-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1741392031:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1741392031:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
