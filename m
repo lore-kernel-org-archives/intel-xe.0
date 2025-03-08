@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E9F5C282DE
-	for <intel-xe@archiver.kernel.org>; Sat,  8 Mar 2025 00:02:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 395A5C28B31
+	for <intel-xe@archiver.kernel.org>; Sat,  8 Mar 2025 00:02:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB96510EBBB;
-	Sat,  8 Mar 2025 00:02:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F36BD10EC52;
+	Sat,  8 Mar 2025 00:02:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Di7273GE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YSs3RJTZ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21DB110EC51
- for <intel-xe@lists.freedesktop.org>; Sat,  8 Mar 2025 00:02:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3A0710E1D6
+ for <intel-xe@lists.freedesktop.org>; Sat,  8 Mar 2025 00:02:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741392139; x=1772928139;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=wK3GVZzhziijazLabdBsnWr6nEMLLB1zlDjXG/Spqm4=;
- b=Di7273GE5D/oVqnFJ5shlp/Socmvf7aTsjqpyeagP4E5GnhhMFf2vGsJ
- BvMKwEEhW4FCNlxOIoXjFUR5xVIY6pj16IkPc/t5LBy9pctE0e+TcAkpO
- SKaYDJWdIHrbHEGX2Z+lATIv50nBOsGka9U5FTkjF7sIgqNaabyjchlCz
- ZPjbghTK2XVy4CwqztL7lh4XFSNot/j5TjW2eGJfq+WMvOPx1IJ0zvnbn
- GjjN76GybcSyOgAIvD+xzkvqoldIFKbjrB0oDqpys9OXcjp1CNfz1ANuR
- H2XR8QPIpTTRVAw5+EtQQkadOj2Kq9WKL/2E5uTdvLK38qnl+6I+E8hwh A==;
-X-CSE-ConnectionGUID: dWFBkNWVRFWW83yVSPoDiA==
-X-CSE-MsgGUID: xOru/VI0SwOpXGXTSTFfvQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11366"; a="42680419"
-X-IronPort-AV: E=Sophos;i="6.14,230,1736841600"; d="scan'208";a="42680419"
+ t=1741392136; x=1772928136;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=h6dqm9LrnBVG6iljkVkYoONK7ENFvWuz/syIkY6Nbf4=;
+ b=YSs3RJTZl2iJHPH0g63pF94MozZWX8nBsmoGOn3kuHGB6qkRgmzLNBqu
+ UUyNjeUSpdqTsee5h/9XbxypvCC9g9vJVUkNnMF4zf09TOvQr+p1ua19V
+ /4LrHDbuawvW6U2Fj4iZafz51WoCKS7IuLLP88SFxO7IpnO1pl93TFuco
+ GXOzhV1Ey3pFfAih0ZUkjpgKV5CYkU1VQC6mIupp/5pAtJuyX8BVCxLqz
+ /CIwzSfpjpG/vJmD0W8YRG8gcSIeE06qy7PxT9c//amcxM8psVEZp2pgb
+ S3q4yQoXoxLoa4ecKqA92PqOVCY9ePyL+yUo0W3nUOLazAoMASEp15yZq w==;
+X-CSE-ConnectionGUID: ohu1K50pQtaOnfjkQoX+CQ==
+X-CSE-MsgGUID: bbZ9kUpgQqWYF+d2+NZJGQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11366"; a="42680416"
+X-IronPort-AV: E=Sophos;i="6.14,230,1736841600"; d="scan'208";a="42680416"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Mar 2025 16:02:16 -0800
-X-CSE-ConnectionGUID: NvkgSHnfSQis0ysv6QKXfA==
-X-CSE-MsgGUID: GioDAiD3SZm0DNeBaHBg/g==
+X-CSE-ConnectionGUID: Gqy8SgAOQYiRcAfKz7uHKA==
+X-CSE-MsgGUID: dK9lLXInQySicFBwQC49hA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,230,1736841600"; d="scan'208";a="119283091"
+X-IronPort-AV: E=Sophos;i="6.14,230,1736841600"; d="scan'208";a="119283081"
 Received: from szeng-desk.jf.intel.com ([10.165.21.160])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Mar 2025 16:02:16 -0800
@@ -45,14 +45,13 @@ From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Thomas.Hellstrom@linux.intel.com, matthew.brost@intel.com,
  jonathan.cavitt@intel.com
-Subject: [PATCH v8 3/3] drm/xe: Allow scratch page under fault mode for
- certain platform
-Date: Fri,  7 Mar 2025 19:18:29 -0500
-Message-Id: <20250308001829.1459320-4-oak.zeng@intel.com>
+Subject: [PATCH v8 0/3] Allow scratch page under fault mode for certain
+ platform
+Date: Fri,  7 Mar 2025 19:18:26 -0500
+Message-Id: <20250308001829.1459320-1-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20250308001829.1459320-1-oak.zeng@intel.com>
-References: <20250308001829.1459320-1-oak.zeng@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -92,51 +91,29 @@ A side effect is, scratch page could hide application program error.
 Application out of bound accesses are hided by scratch page mapping,
 instead of get reported to user.
 
-v2: Refine commit message (Thomas)
+igt test: https://patchwork.freedesktop.org/series/144907/, Test result on
+BMG:
 
-v3: Move the scratch page flag check to after scratch page wa (Thomas)
+root@DUT1130BMGFRD:/home/szeng/dii-tools/igt-public/build/tests# ./xe_exec_fault_mode --run-subtest scratch-fault
+IGT-Version: 1.30-gde1a3cb42 (x86_64) (Linux: 6.13.0-xe x86_64)
+Using IGT_SRANDOM=1738684805 for randomisation
+Opened device: /dev/dri/card0
+Starting subtest: scratch-fault
+Subtest scratch-fault: SUCCESS (0.080s)
 
-v4: drop NEEDS_SCRATCH macro (matt)
-    Add a comment to DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE
+Oak Zeng (3):
+  drm/xe: Introduced needs_scratch bit in device descriptor
+  drm/xe: Clear scratch page on vm_bind
+  drm/xe: Allow scratch page under fault mode for certain platform
 
-Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_vm.c | 3 ++-
- include/uapi/drm/xe_drm.h  | 6 +++++-
- 2 files changed, 7 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_device_types.h |  2 +
+ drivers/gpu/drm/xe/xe_pci.c          |  5 ++
+ drivers/gpu/drm/xe/xe_pt.c           | 92 ++++++++++++++++++----------
+ drivers/gpu/drm/xe/xe_vm.c           | 31 ++++++++--
+ drivers/gpu/drm/xe/xe_vm_types.h     |  2 +
+ include/uapi/drm/xe_drm.h            |  6 +-
+ 6 files changed, 97 insertions(+), 41 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 3e5dfce6f18a..f33ec3f1ac11 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2049,7 +2049,8 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
- 		return -EINVAL;
- 
- 	if (XE_IOCTL_DBG(xe, args->flags & DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE &&
--			 args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE))
-+			 args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE &&
-+			 !xe->info.needs_scratch))
- 		return -EINVAL;
- 
- 	if (XE_IOCTL_DBG(xe, !(args->flags & DRM_XE_VM_CREATE_FLAG_LR_MODE) &&
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 616916985e3f..9c08738c3b91 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -917,7 +917,11 @@ struct drm_xe_gem_mmap_offset {
-  * struct drm_xe_vm_create - Input of &DRM_IOCTL_XE_VM_CREATE
-  *
-  * The @flags can be:
-- *  - %DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE
-+ *  - %DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE - Map the whole virtual address
-+ *    space of the VM to scratch page. A vm_bind would overwrite the scratch
-+ *    page mapping. This flag is mutually exclusive with the
-+ *    %DRM_XE_VM_CREATE_FLAG_FAULT_MODE flag, with an exception of on x2 and
-+ *    xe3 platform.
-  *  - %DRM_XE_VM_CREATE_FLAG_LR_MODE - An LR, or Long Running VM accepts
-  *    exec submissions to its exec_queues that don't have an upper time
-  *    limit on the job execution time. But exec submissions to these
 -- 
 2.26.3
 
