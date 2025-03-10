@@ -4,62 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F400FC282EC
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 15:52:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3496C282EC
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 16:31:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA4C410E480;
-	Mon, 10 Mar 2025 15:52:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6421D10E487;
+	Mon, 10 Mar 2025 16:31:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="neYaKKCu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P7UUh35G";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9247610E480;
- Mon, 10 Mar 2025 15:52:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1CE910E487;
+ Mon, 10 Mar 2025 16:31:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741621931; x=1773157931;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=9hRtz3LYpwJ6Wy9v2dvZe3fOq9VWstYw+TA2eVsSmcM=;
- b=neYaKKCuRmhrBSPJA6HW8zi88l0YAbIsv0pLPJQhlHvqCTL5xvHqUNmS
- hrVsOnp5dOsaxw0/suVQcb755L5XkfGLh++Bsyl3fEKsYAgXaivPk3hfc
- 5kc0sngjg4lVDJjj9ASuC4UpquExbvY9L8notGPAMsTx1iiz8fGT0kBn3
- AmgBPkDMFLvyQamgHAj1LnrqmXBr/Gvday7mT++8nr5lHmSO9YRe6uVP5
- Fgi8Hnc5F31wGMwQGgI31MH8TLrY8qrPtZIZqR2Nwbd6skU7aaxMskZSO
- ci7E07nHfb95F01ol55A7/sQP4D/MDTz12LWC3/0vy4YCoVPM55qMQ3eK w==;
-X-CSE-ConnectionGUID: X7LK7xYzT9aJF/kRkm8Ayw==
-X-CSE-MsgGUID: KsGhXLURRxCHpRGZWxE5mw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="65080436"
-X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="65080436"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ t=1741624284; x=1773160284;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=JrpbNker09yLLUVPbiBkbpv89e6haPCHDSIH3ug8BZU=;
+ b=P7UUh35GgNUE75XHAkFqPjSvNF4yEnS0ulDY0ZkXOHzemVTT5nF5K+Xs
+ pDCWRlOGMIVy94umDmi25qSYdZPwnr6TPpzFRGDWL/k1yDmnXZzNv4Qcm
+ +FVr6cfPjxQZIxIG++W5T8AQTpdr8RJ+pQ5HMH+TEPSHfbgi3fqUFKikb
+ 0iLwUY1wfpS4wsEjpOqG8eDGNb6+uO+7ZJEIRVxgred3xEWgXq/GG+Oni
+ /Imz7WreC+1rGS8GXs/drh/hbHXmbGlPouA9bPiFEQ36WmujDXBtEqr1n
+ BJt6LhNX91IstEaHhAl2tUvf9ivNsGbJoMWhKq93qMATQFWaSCEHT4BFs w==;
+X-CSE-ConnectionGUID: l7xxgW1xQd2xOP7Fy4e24g==
+X-CSE-MsgGUID: 9QL+kFOCRyKOY9KABZQF4Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="65084923"
+X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="65084923"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2025 08:52:10 -0700
-X-CSE-ConnectionGUID: SAzD0fIVSd2yFvNnDOBWJg==
-X-CSE-MsgGUID: bSUMX9nXTAufsFTzermV6A==
+ 10 Mar 2025 09:31:15 -0700
+X-CSE-ConnectionGUID: IiGhUct4SV2KFkZdKZQTcg==
+X-CSE-MsgGUID: gnuUYrchTVm2eQrrLBY60Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="125259570"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 10 Mar 2025 08:52:08 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 10 Mar 2025 17:52:06 +0200
-Date: Mon, 10 Mar 2025 17:52:06 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: Re: [PATCH 17/21] drm/i915/display: Move vrr.guardband/pipeline_full
- out of !fastset block
-Message-ID: <Z88Kpk7Pcl_YCDRV@intel.com>
-References: <20250306131100.3989503-1-ankit.k.nautiyal@intel.com>
- <20250306131100.3989503-18-ankit.k.nautiyal@intel.com>
- <Z8sCIb37gtdczFtx@intel.com>
- <49d75934-ea02-45e1-a8ec-862af3aee5b1@intel.com>
+X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="120062789"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmviesa007.fm.intel.com with ESMTP; 10 Mar 2025 09:31:14 -0700
+Received: from [10.246.5.201] (mwajdecz-MOBL.ger.corp.intel.com [10.246.5.201])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id E735C34936;
+ Mon, 10 Mar 2025 16:31:12 +0000 (GMT)
+Message-ID: <888e00f8-dc32-4b6f-a6af-9be62409388a@intel.com>
+Date: Mon, 10 Mar 2025 17:31:12 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <49d75934-ea02-45e1-a8ec-862af3aee5b1@intel.com>
-X-Patchwork-Hint: comment
+User-Agent: Mozilla Thunderbird
+Subject: =?UTF-8?B?UmU6IOKclyBYZS5DSS5GdWxsOiBmYWlsdXJlIGZvciBVc2UgTUlfTUFU?=
+ =?UTF-8?Q?H_to_apply_RMW_WA_in_LRC_=28rev3=29?=
+To: intel-xe@lists.freedesktop.org, I915-ci-infra@lists.freedesktop.org
+References: <20250303173522.1822-1-michal.wajdeczko@intel.com>
+ <174146681147.6714.9590700088356022715@18a75f3d1eae>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <174146681147.6714.9590700088356022715@18a75f3d1eae>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,71 +71,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sun, Mar 09, 2025 at 10:05:48PM +0530, Nautiyal, Ankit K wrote:
-> 
-> On 3/7/2025 7:56 PM, Ville Syrjälä wrote:
-> > On Thu, Mar 06, 2025 at 06:40:56PM +0530, Ankit Nautiyal wrote:
-> >> The vrr.guardband/pipeline_full depend on the vrr.vmin. Since we have
-> >> set vrr.vmin to adjusted_mode->crtc_vtotal, this shouldn't change on the
-> >> fly. With this we can move vrr.guardband/pipeline_full out from !fastset
-> >> block.
-> >>
-> >> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> >> ---
-> >>   drivers/gpu/drm/i915/display/intel_display.c | 5 +++--
-> >>   1 file changed, 3 insertions(+), 2 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> >> index 322a05648f58..a642496e366c 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> >> @@ -5393,8 +5393,6 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
-> >>   		PIPE_CONF_CHECK_I(vrr.vmin);
-> >>   		PIPE_CONF_CHECK_I(vrr.vmax);
-> >>   		PIPE_CONF_CHECK_I(vrr.flipline);
-> >> -		PIPE_CONF_CHECK_I(vrr.pipeline_full);
-> >> -		PIPE_CONF_CHECK_I(vrr.guardband);
-> >>   		PIPE_CONF_CHECK_I(vrr.vsync_start);
-> >>   		PIPE_CONF_CHECK_I(vrr.vsync_end);
-> >>   		PIPE_CONF_CHECK_LLI(cmrr.cmrr_m);
-> >> @@ -5402,6 +5400,9 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
-> >>   		PIPE_CONF_CHECK_BOOL(cmrr.enable);
-> >>   	}
-> >>   
-> >> +	PIPE_CONF_CHECK_I(vrr.pipeline_full);
-> >> +	PIPE_CONF_CHECK_I(vrr.guardband);
-> >
-> > Assuming we can't reprogram the guardband safely live
-> > I think this would have to become
-> >
-> > if (!fastset || always_use_vrr_tg()) {
-> >          ...
-> > }
-> >
-> > which avoids breaking the LRR fastset on older platforms.
-> >
-> > Whether we can still risk the fastboot exception for the new
-> > platforms I don't know. I guess leave it out for now and
-> > ponder it further later.
-> >
-> > In the future I guess one option to resurrecting the fastsets
-> > would be to somehow use a more fixed size gurdband instead of
-> > the full vblank length, but that would need a lot of thought
-> > and work, so definitely not something we can just do right
-> > now.
-> 
-> 
-> Yes I agree.
-> 
-> Will have the guardband under the new check.
-> 
-> Do we need to let pipeline_full as it is in !fastset since 
-> always_use_vrr_tg() is anyways false for older platforms? Or we keep it 
-> along with guardband?
 
-I think we want to keep the two together. That way we can also
-easily test the always_use_vrr_tg() codepaths on older platforms.
 
--- 
-Ville Syrjälä
-Intel
+On 08.03.2025 21:46, Patchwork wrote:
+> == Series Details ==
+> 
+> Series: Use MI_MATH to apply RMW WA in LRC (rev3)
+> URL   : https://patchwork.freedesktop.org/series/145732/
+> State : failure
+> 
+> == Summary ==
+> 
+> CI Bug Log - changes from xe-2777-066c46f28642479869d2d1dd27cc6ae476de4abc_full -> xe-pw-145732v3_full
+> ====================================================
+> 
+> Summary
+> -------
+> 
+>   **FAILURE**
+> 
+>   Serious unknown changes coming with xe-pw-145732v3_full absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in xe-pw-145732v3_full, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+> 
+>   
+> 
+> Participating hosts (4 -> 4)
+> ------------------------------
+> 
+>   No changes in participating hosts
+> 
+> Possible new issues
+> -------------------
+> 
+>   Here are the unknown changes that may have been introduced in xe-pw-145732v3_full:
+> 
+> ### IGT changes ###
+> 
+> #### Possible regressions ####
+> 
+>   * igt@xe_oa@buffer-size:
+>     - shard-lnl:          [PASS][1] -> [FAIL][2]
+>    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2777-066c46f28642479869d2d1dd27cc6ae476de4abc/shard-lnl-5/igt@xe_oa@buffer-size.html
+>    [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145732v3/shard-lnl-6/igt@xe_oa@buffer-size.html
+
+Starting subtest: buffer-size
+Starting dynamic subtest: rcs-0-256K
+(xe_oa:4458) CRITICAL: Test assertion failure function
+test_non_zero_reason, file ../tests/intel/xe_oa.c:2509:
+(xe_oa:4458) CRITICAL: Failed assertion: !(oa_status &
+DRM_XE_OASTATUS_BUFFER_OVERFLOW)
+Dynamic subtest rcs-0-256K failed.
+
+hmm, based on the below, this test should be suppressed, no?
+
+> 
+>   
+> #### Suppressed ####
+> 
+>   The following results come from untrusted machines, tests, or statuses.
+>   They do not affect the overall result.
+> 
+>   * {igt@xe_oa@buffer-size@rcs-0-256k}:
+>     - shard-lnl:          [PASS][3] -> [FAIL][4]
+>    [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2777-066c46f28642479869d2d1dd27cc6ae476de4abc/shard-lnl-5/igt@xe_oa@buffer-size@rcs-0-256k.html
+>    [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145732v3/shard-lnl-6/igt@xe_oa@buffer-size@rcs-0-256k.html
+> 
+>   
