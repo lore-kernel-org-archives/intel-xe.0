@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3123C282DE
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 18:28:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F254C282DE
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 18:36:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 647C210E4BC;
-	Mon, 10 Mar 2025 18:28:35 +0000 (UTC)
-Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7EBA10E4B4;
- Mon, 10 Mar 2025 18:28:33 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6157860528838571635=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C10110E4C0;
+	Mon, 10 Mar 2025 18:36:53 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eqSdctnh";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C42910E4BF;
+ Mon, 10 Mar 2025 18:36:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1741631810; x=1773167810;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=YcryaEOUKkwCNk70FpWkVvXX9sSCuzrVkF9Vrg6IGv4=;
+ b=eqSdctnhgFEBinAIMi6741KgjRgcWOMpjXTl9JcEHAMvXhuCW/cMjw04
+ sm0mWnTYxz3Hs0YLQtgy2q5gZYyAUHcScD327MwPN4woHvruYYa/h/Spx
+ 9D4AhUHIVD7OscZVJNS8SwSHPpWugug6dNQzS5U3CVCjm433NZ9ZL2fm/
+ kYe9ho1AfuOZHCbSNlp0yadR4OsMkucPJj6RZTxT7zGy1Af8oTm5CnCOU
+ lONHhkEiCE7O275z3zerkjcr5sSDvGeyCjBYS5dngEAMvqkgL21Lzbaro
+ xC78pK7707jv+0wKw9OmbYahMqtZrwPebmD6mXWWmEmDNeXLvleOzMx2f Q==;
+X-CSE-ConnectionGUID: YwUm43TcQ4mUTS/wb5D+MA==
+X-CSE-MsgGUID: 8w1N6XsZRp6FqG1xsCsOUw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="60192475"
+X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="60192475"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2025 11:36:49 -0700
+X-CSE-ConnectionGUID: zhLYZZnjQGK7CK4j02okrQ==
+X-CSE-MsgGUID: 250mjOr2Sem7OjjyATQ5IA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="157283044"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orviesa001.jf.intel.com with ESMTP; 10 Mar 2025 11:36:46 -0700
+Received: from [10.246.5.201] (mwajdecz-MOBL.ger.corp.intel.com [10.246.5.201])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id AE9FF34978;
+ Mon, 10 Mar 2025 18:36:44 +0000 (GMT)
+Message-ID: <62ecd49c-5bae-408c-ad5c-dbe684b10dc3@intel.com>
+Date: Mon, 10 Mar 2025 19:36:43 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/xe=5Fvm=3A_Implement?=
- =?utf-8?q?_xe=5Fvm=5Fget=5Ffaults=5Fioctl_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 10 Mar 2025 18:28:33 -0000
-Message-ID: <174163131394.15536.1363461995663428346@18a75f3d1eae>
-X-Patchwork-Hint: ignore
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 3/6] drm/xe/xe_vm: Add per VM pagefault info
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>, intel-xe@lists.freedesktop.org
+Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com,
+ joonas.lahtinen@linux.intel.com, matthew.brost@intel.com,
+ jianxun.zhang@intel.com, shuicheng.lin@intel.com,
+ dri-devel@lists.freedesktop.org
 References: <20250310171834.78299-1-jonathan.cavitt@intel.com>
-In-Reply-To: <20250310171834.78299-1-jonathan.cavitt@intel.com>
+ <20250310171834.78299-4-jonathan.cavitt@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20250310171834.78299-4-jonathan.cavitt@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +71,239 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6157860528838571635==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/xe/xe_vm: Implement xe_vm_get_faults_ioctl (rev2)
-URL   : https://patchwork.freedesktop.org/series/146024/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-2788-8098d8ba50a86426b0336d895a8ff3b6e572a15c_BAT -> xe-pw-146024v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
 
 
-Changes
--------
+On 10.03.2025 18:18, Jonathan Cavitt wrote:
+> Add additional information to each VM so they can report up to the first
+> 50 seen pagefaults.  Only failed pagefaults are saved this way, as
+> successful pagefaults should recover and not need to be reported to
+> userspace.
+> 
+> v2:
+> - Free vm after use (Shuicheng)
+> - Compress pf copy logic (Shuicheng)
+> - Update fault_unsuccessful before storing (Shuicheng)
+> - Fix old struct name in comments (Shuicheng)
+> - Keep first 50 pagefaults instead of last 50 (Jianxun)
+> 
+> v3:
+> - Avoid unnecessary execution by checking MAX_PFS earlier (jcavitt)
+> - Fix double-locking error (jcavitt)
+> - Assert kmemdump is successful (Shuicheng)
+> 
+> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Suggested-by: Matthew Brost <matthew.brost@intel.com>
+> CC: Shuicheng Lin <shuicheng.lin@intel.com>
+> CC: Zhang Jianxun <jianxun.zhang@intel.com>
 
-  No changes found
+nit: s/CC/Cc
 
+> ---
+>  drivers/gpu/drm/xe/xe_gt_pagefault.c | 29 +++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_vm.c           | 32 ++++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_vm.h           |  6 ++++++
+>  drivers/gpu/drm/xe/xe_vm_types.h     | 20 +++++++++++++++++
+>  4 files changed, 87 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> index c8a9058aa09f..7661b9ad1cd0 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> @@ -343,6 +343,34 @@ int xe_guc_pagefault_handler(struct xe_guc *guc, u32 *msg, u32 len)
+>  	return full ? -ENOSPC : 0;
+>  }
+>  
+> +static void save_pagefault_to_vm(struct xe_device *xe, struct xe_pagefault *pf)
+> +{
+> +	struct xe_vm *vm;
+> +	struct xe_pagefault *store;
+> +
+> +	vm = asid_to_vm(xe, pf->asid);
+> +	if (IS_ERR(vm))
+> +		return;
+> +
+> +	spin_lock(&vm->pfs.lock);
+> +
+> +	/**
 
-Build changes
--------------
+this comment shouldn't be marked as kernel-doc
 
-  * Linux: xe-2788-8098d8ba50a86426b0336d895a8ff3b6e572a15c -> xe-pw-146024v2
+> +	 * Limit the number of pfs in the pf list to prevent memory overuse.
+> +	 */
+> +	if (vm->pfs.len < MAX_PFS) {
+> +		store = kmemdup(pf, sizeof(*pf), GFP_KERNEL);
+> +		if (store)
+> +			xe_vm_add_pf_entry(vm, store);
+> +		else
+> +			drm_warn(&vm->xe->drm,
+> +				 "Could not allocate memory for fault %i!",
+> +				 vm->pfs.len);
+> +	}
+> +
+> +	spin_unlock(&vm->pfs.lock);
+> +	xe_vm_put(vm);
+> +}
+> +
+>  #define USM_QUEUE_MAX_RUNTIME_MS	20
+>  
+>  static void pf_queue_work_func(struct work_struct *w)
+> @@ -362,6 +390,7 @@ static void pf_queue_work_func(struct work_struct *w)
+>  		if (unlikely(ret)) {
+>  			print_pagefault(xe, &pf);
+>  			pf.fault_unsuccessful = 1;
+> +			save_pagefault_to_vm(xe, &pf);
+>  			drm_dbg(&xe->drm, "Fault response: Unsuccessful %d\n", ret);
+>  		}
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 22a26aff3a6e..ff79ba8d3794 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -778,6 +778,33 @@ int xe_vm_userptr_check_repin(struct xe_vm *vm)
+>  		list_empty_careful(&vm->userptr.invalidated)) ? 0 : -EAGAIN;
+>  }
+>  
 
-  IGT_8269: 8269
-  xe-2788-8098d8ba50a86426b0336d895a8ff3b6e572a15c: 8098d8ba50a86426b0336d895a8ff3b6e572a15c
-  xe-pw-146024v2: 146024v2
+missing kernel-doc for public functions (here and 'remove_pf_entries')
 
-== Logs ==
+> +void xe_vm_add_pf_entry(struct xe_vm *vm, struct xe_pagefault *pf)
+> +{
+> +	/** vm->pfs.lock must be held before calling this function */
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146024v2/index.html
+this comment shouldn't be marked as kernel-doc
 
---===============6157860528838571635==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> +	struct xe_vm_pf_entry *e = NULL;
+> +
+> +	e = kzalloc(sizeof(*e), GFP_KERNEL);
+> +	xe_assert(vm->xe, e);
 
+asserts should not be used as a replacement of proper error handling,
+and since alloc could fail we risk a crash in the next line
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+> +	e->pf = pf;
+> +
+> +	list_add_tail(&e->list, &vm->pfs.list);
+> +	vm->pfs.len++;
+> +}
+> +
+> +void xe_vm_remove_pf_entries(struct xe_vm *vm)
+> +{
+> +	struct xe_vm_pf_entry *e, *tmp;
+> +
+> +	spin_lock(&vm->pfs.lock);
+> +	list_for_each_entry_safe(e, tmp, &vm->pfs.list, list) {
+> +		list_del(&e->list);
+> +		kfree(e->pf);
+> +		kfree(e);
+> +	}
+> +	vm->pfs.len = 0;
+> +	spin_unlock(&vm->pfs.lock);
+> +}
+> +
+>  static int xe_vma_ops_alloc(struct xe_vma_ops *vops, bool array_of_binds)
+>  {
+>  	int i;
+> @@ -1660,6 +1687,9 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+>  	init_rwsem(&vm->userptr.notifier_lock);
+>  	spin_lock_init(&vm->userptr.invalidated_lock);
+>  
+> +	INIT_LIST_HEAD(&vm->pfs.list);
+> +	spin_lock_init(&vm->pfs.lock);
+> +
+>  	ttm_lru_bulk_move_init(&vm->lru_bulk_move);
+>  
+>  	INIT_WORK(&vm->destroy_work, vm_destroy_work_func);
+> @@ -1930,6 +1960,8 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+>  	}
+>  	up_write(&xe->usm.lock);
+>  
+> +	xe_vm_remove_pf_entries(vm);
+> +
+>  	for_each_tile(tile, xe, id)
+>  		xe_range_fence_tree_fini(&vm->rftree[id]);
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+> index 0ef811fc2bde..fe068e4448a6 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.h
+> +++ b/drivers/gpu/drm/xe/xe_vm.h
+> @@ -12,6 +12,8 @@
+>  #include "xe_map.h"
+>  #include "xe_vm_types.h"
+>  
+> +#define MAX_PFS	50
 
+add kernel-doc, also likely needs to be renamed since its too generic,
+and maybe it can be defined in .c file as it looks like internal?
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/xe_vm: Implement xe_vm_get_faults_ioctl (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/146024/">https://patchwork.freedesktop.org/series/146024/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+> +
+>  struct drm_device;
+>  struct drm_printer;
+>  struct drm_file;
+> @@ -257,6 +259,10 @@ int xe_vma_userptr_pin_pages(struct xe_userptr_vma *uvma);
+>  
+>  int xe_vma_userptr_check_repin(struct xe_userptr_vma *uvma);
+>  
+> +void xe_vm_add_pf_entry(struct xe_vm *vm, struct xe_pagefault *pf);
+> +
+> +void xe_vm_remove_pf_entries(struct xe_vm *vm);
+> +
+>  bool xe_vm_validate_should_retry(struct drm_exec *exec, int err, ktime_t *end);
+>  
+>  int xe_vm_lock_vma(struct drm_exec *exec, struct xe_vma *vma);
+> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+> index 84fa41b9fa20..3a2329f54fb1 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> @@ -19,6 +19,7 @@
+>  #include "xe_range_fence.h"
+>  
+>  struct xe_bo;
+> +struct xe_pagefault;
+>  struct xe_svm_range;
+>  struct xe_sync_entry;
+>  struct xe_user_fence;
+> @@ -142,6 +143,13 @@ struct xe_userptr_vma {
+>  
+>  struct xe_device;
+>  
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146024v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146024v2/index.html</a></td></tr>
+missing kernel-doc for the xe_vm_pf_entry
 
-</table>
+> +struct xe_vm_pf_entry {
+> +	/** @pf: observed pagefault */
+> +	struct xe_pagefault *pf;
+> +	/** @list: link into @xe_vm.pfs.list */
+> +	struct list_head list;
+> +};
+> +
+>  struct xe_vm {
+>  	/** @gpuvm: base GPUVM used to track VMAs */
+>  	struct drm_gpuvm gpuvm;
+> @@ -305,6 +313,18 @@ struct xe_vm {
+>  		bool capture_once;
+>  	} error_capture;
+>  
+> +	/**
+> +	 * @pfs: List of all pagefaults associated with this VM
+> +	 */
+> +	struct {
+> +		/** @lock: lock protecting @pfs.list */
 
+this doc must include inner struct name, so it should be:
 
-    <h1>CI Bug Log - changes from xe-2788-8098d8ba50a86426b0336d895a8ff3b6e572a15c_BAT -&gt; xe-pw-146024v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2788-8098d8ba50a86426b0336d895a8ff3b6e572a15c -&gt; xe-pw-146024v2</li>
-</ul>
-<p>IGT_8269: 8269<br />
-  xe-2788-8098d8ba50a86426b0336d895a8ff3b6e572a15c: 8098d8ba50a86426b0336d895a8ff3b6e572a15c<br />
-  xe-pw-146024v2: 146024v2</p>
+	/** @pfs.lock: ....
 
-</body>
-</html>
+> +		spinlock_t lock;
+> +		/** @list: list of xe_exec_queue_ban_entry entries */
+> +		struct list_head list;
+> +		/** @len: length of @pfs.list */
+> +		unsigned int len;
+> +	} pfs;
+> +
+>  	/**
+>  	 * @tlb_flush_seqno: Required TLB flush seqno for the next exec.
+>  	 * protected by the vm resv.
 
---===============6157860528838571635==--
