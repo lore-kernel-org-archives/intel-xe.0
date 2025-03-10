@@ -4,26 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47944C282DE
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 20:07:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30086C282DE
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 20:21:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07C4310E4E6;
-	Mon, 10 Mar 2025 20:07:33 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0FB110E4E3
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Mar 2025 20:07:24 +0000 (UTC)
-From: Maarten Lankhorst <dev@lankhorst.se>
-To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH 8/8] drm/xe: Split init of xe_gt_init_hwconfig to xe_gt_init
- and *_early
-Date: Mon, 10 Mar 2025 21:06:53 +0100
-Message-ID: <20250310200653.89731-9-dev@lankhorst.se>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250310200653.89731-1-dev@lankhorst.se>
-References: <20250310200653.89731-1-dev@lankhorst.se>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEEB110E2EA;
+	Mon, 10 Mar 2025 20:21:17 +0000 (UTC)
+Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D034A10E2EA;
+ Mon, 10 Mar 2025 20:21:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915/xe3lpd=3A_Update_band?=
+ =?utf-8?q?width_parameters_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 10 Mar 2025 20:21:16 -0000
+Message-ID: <174163807684.15998.4362153057665813931@18a75f3d1eae>
+X-Patchwork-Hint: ignore
+References: <20250310-xe3lpd-bandwidth-update-v4-0-4191964b034d@intel.com>
+In-Reply-To: <20250310-xe3lpd-bandwidth-update-v4-0-4191964b034d@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,145 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that we added the separate step of initialising GUC in
-xe_gt_init_early, it should be ok to initialise the minimum during early
-init, and the rest after allocations are allowed.
+== Series Details ==
 
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
----
- drivers/gpu/drm/xe/xe_device.c |  6 ----
- drivers/gpu/drm/xe/xe_gt.c     | 60 +++++++++++++++-------------------
- drivers/gpu/drm/xe/xe_gt.h     |  1 -
- 3 files changed, 26 insertions(+), 41 deletions(-)
+Series: drm/i915/xe3lpd: Update bandwidth parameters (rev4)
+URL   : https://patchwork.freedesktop.org/series/144440/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 343f7ac67eaee..0eb6eae65a52e 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -780,12 +780,6 @@ int xe_device_probe(struct xe_device *xe)
- 			return err;
- 	}
- 
--	for_each_gt(gt, xe, id) {
--		err = xe_gt_init_hwconfig(gt);
--		if (err)
--			return err;
--	}
--
- 	err = xe_devcoredump_init(xe);
- 	if (err)
- 		return err;
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 31aee3301a76c..8a8882c909bea 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -348,6 +348,7 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
- 
- int xe_gt_init_early(struct xe_gt *gt)
- {
-+	unsigned int fw_ref;
- 	int err;
- 
- 	if (IS_SRIOV_PF(gt_to_xe(gt))) {
-@@ -382,28 +383,9 @@ int xe_gt_init_early(struct xe_gt *gt)
- 	 */
- 	xe_gt_mmio_init(gt);
- 
--	return xe_uc_init_noalloc(&gt->uc);
--}
--
--static void dump_pat_on_error(struct xe_gt *gt)
--{
--	struct drm_printer p;
--	char prefix[32];
--
--	snprintf(prefix, sizeof(prefix), "[GT%u Error]", gt->info.id);
--	p = drm_dbg_printer(&gt_to_xe(gt)->drm, DRM_UT_DRIVER, prefix);
--
--	xe_pat_dump(gt, &p);
--}
--
--/*
-- * Initialize enough GT to be able to load GuC in order to obtain hwconfig and
-- * enable CTB communication.
-- */
--int xe_gt_init_hwconfig(struct xe_gt *gt)
--{
--	unsigned int fw_ref;
--	int err;
-+	err = xe_uc_init_noalloc(&gt->uc);
-+	if (err)
-+		return err;
- 
- 	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
- 	if (!fw_ref)
-@@ -411,22 +393,20 @@ int xe_gt_init_hwconfig(struct xe_gt *gt)
- 
- 	xe_gt_mcr_init_early(gt);
- 	xe_pat_init(gt);
-+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
- 
--	err = xe_uc_init(&gt->uc);
--	if (err)
--		goto out_fw;
-+	return 0;
-+}
- 
--	err = xe_uc_init_hwconfig(&gt->uc);
--	if (err)
--		goto out_fw;
-+static void dump_pat_on_error(struct xe_gt *gt)
-+{
-+	struct drm_printer p;
-+	char prefix[32];
- 
--	xe_gt_topology_init(gt);
--	xe_gt_mcr_init(gt);
--	xe_gt_enable_host_l2_vram(gt);
-+	snprintf(prefix, sizeof(prefix), "[GT%u Error]", gt->info.id);
-+	p = drm_dbg_printer(&gt_to_xe(gt)->drm, DRM_UT_DRIVER, prefix);
- 
--out_fw:
--	xe_force_wake_put(gt_to_fw(gt), fw_ref);
--	return err;
-+	xe_pat_dump(gt, &p);
- }
- 
- static void xe_gt_fini(void *arg)
-@@ -471,6 +451,18 @@ int xe_gt_init(struct xe_gt *gt)
- 	if (!fw_ref)
- 		return -ETIMEDOUT;
- 
-+	err = xe_uc_init(&gt->uc);
-+	if (err)
-+		goto err_force_wake;
-+
-+	err = xe_uc_init_hwconfig(&gt->uc);
-+	if (err)
-+		goto err_force_wake;
-+
-+	xe_gt_topology_init(gt);
-+	xe_gt_mcr_init(gt);
-+	xe_gt_enable_host_l2_vram(gt);
-+
- 	if (!xe_gt_is_media_type(gt)) {
- 		err = xe_ggtt_init(gt_to_tile(gt)->mem.ggtt);
- 		if (err)
-diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-index 187fa6490eafc..8128ddfdd7886 100644
---- a/drivers/gpu/drm/xe/xe_gt.h
-+++ b/drivers/gpu/drm/xe/xe_gt.h
-@@ -28,7 +28,6 @@ static inline bool xe_fault_inject_gt_reset(void)
- }
- 
- struct xe_gt *xe_gt_alloc(struct xe_tile *tile);
--int xe_gt_init_hwconfig(struct xe_gt *gt);
- int xe_gt_init_early(struct xe_gt *gt);
- int xe_gt_init(struct xe_gt *gt);
- void xe_gt_mmio_init(struct xe_gt *gt);
--- 
-2.45.2
+== Summary ==
+
+lib/modules/6.14.0-rc6-xe+/kernel/arch/x86/events/amd/
+lib/modules/6.14.0-rc6-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
+lib/modules/6.14.0-rc6-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.14.0-rc6-xe+/kernel/arch/x86/kvm/
+lib/modules/6.14.0-rc6-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.14.0-rc6-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.14.0-rc6-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.14.0-rc6-xe+/kernel/kernel/
+lib/modules/6.14.0-rc6-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/zstd.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/xctr.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/authenc.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/sm3.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/cmac.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/essiv.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/ccm.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/wp512.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/lrw.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/842.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/md4.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/lz4.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/sm4.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/async_tx/
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.14.0-rc6-xe+/kernel/block/
+lib/modules/6.14.0-rc6-xe+/kernel/block/bfq.ko
+lib/modules/6.14.0-rc6-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.14.0-rc6-xe+/build
+lib/modules/6.14.0-rc6-xe+/modules.alias.bin
+lib/modules/6.14.0-rc6-xe+/modules.builtin
+lib/modules/6.14.0-rc6-xe+/modules.softdep
+lib/modules/6.14.0-rc6-xe+/modules.alias
+lib/modules/6.14.0-rc6-xe+/modules.order
+lib/modules/6.14.0-rc6-xe+/modules.symbols
+lib/modules/6.14.0-rc6-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1741638064:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1741638064:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
