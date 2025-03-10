@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4922EC28B30
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 12:19:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0F36C2BA1B
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 12:28:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10FE810E41F;
-	Mon, 10 Mar 2025 12:19:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 545FE10E41B;
+	Mon, 10 Mar 2025 12:28:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WkZ8rV+2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J55k0evo";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F2A710E423
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Mar 2025 12:19:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1C0D10E419;
+ Mon, 10 Mar 2025 12:28:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741609197; x=1773145197;
+ t=1741609702; x=1773145702;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8UHs5850D9g2+fzx/XcOA0KTdD7XbfiTBApvzuGX4AI=;
- b=WkZ8rV+2hi5piVIznEqhi2yyYkJzguvrDZlDsDIBElRQwKbTAC6Q3/2z
- gSCUYlvdfofI1C1jjdULaNzgukdKZOCNE/vkj9ZsP147C6BfSOdZUtU/R
- QxTVd5MT7Sjd4RCeaCaBVdqvdKl5V4EQd0isrwt3OXA3Gpx7Lxocgx8RJ
- s+mnaOcP7CXJtImjNfVyUMmc0KB0oGQcylSkmDBkRTWXUIn+kZsclgdn3
- l9KroSI9NlTSnyJZgeuJ93qyX82knP4FIhHlNEMu5N+jR9kReFi8VMt1O
- 2MQe9YM/bOsXVmfO7uTHGWmNbYl/oFwhHFbG1W+F/pGKJgar8Lu7GfxWP Q==;
-X-CSE-ConnectionGUID: 3L6rCxl8RTuGidr5M15fPg==
-X-CSE-MsgGUID: UQplRJBgRsmiMba1hFSdcQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11368"; a="65056455"
-X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="65056455"
+ bh=buu1amdupeffLg71up5fXbkAKjtcttX81xfBF6pNmKQ=;
+ b=J55k0evoHa+pEPTpYf8fF1dQrZc+/ZPbz/f70g+fONhjVrQvTszCwaVA
+ hzu/ZyRgTQ7rQdylMOG59cW3SbsGv0Cx9bvC77+xwqgg3NCGpRfChu6Y+
+ eguPAIpMFgFY8lxb3WEwegk+oqq2ItBMKljJ8A3hAU+7OMGwq3byX0sLI
+ aC2XWJfdbYRe0mX/fX8tByfW5xMn1EdiPKvU76kS8k1h29qFurD2ckDsQ
+ i0pQvRpymphDhXzP+WhvULQebfm+Ws63NducJ2+NC0LbjAM5ow7zdbogX
+ grdQTrLCvDlTXqs1O+edBs4f9dq6nhD3PprQWoSvA24sYQpSJXBXhRI2Y A==;
+X-CSE-ConnectionGUID: mF8D7JqBRNiDw/wcAYrHvA==
+X-CSE-MsgGUID: Eh+NdBtwThqLz52wMWajsQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="65057263"
+X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="65057263"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2025 05:19:57 -0700
-X-CSE-ConnectionGUID: f5zU0UF/TMq/98b4xU73sw==
-X-CSE-MsgGUID: YYGta1ccRJ6mGk1WMNqOaA==
+ 10 Mar 2025 05:28:16 -0700
+X-CSE-ConnectionGUID: 7fXYMF7nTTuLvauFT0d/Aw==
+X-CSE-MsgGUID: LqGUx37rQjephClC98O6DA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="143179132"
-Received: from unknown (HELO himal-Super-Server.iind.intel.com)
- ([10.190.239.34])
- by fmviesa002.fm.intel.com with ESMTP; 10 Mar 2025 05:19:56 -0700
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
- oak.zeng@intel.com, Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [RFC 12/12] drm/xe/vm: Add debug prints for SVM range prefetch
-Date: Mon, 10 Mar 2025 18:13:41 +0530
-Message-Id: <20250310124341.1819568-13-himal.prasad.ghimiray@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250310124341.1819568-1-himal.prasad.ghimiray@intel.com>
-References: <20250310124341.1819568-1-himal.prasad.ghimiray@intel.com>
+X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="143180491"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2025 05:28:14 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
+ ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
+Subject: [PATCH 01/21] drm/i915/vrr: Remove unwanted comment
+Date: Mon, 10 Mar 2025 17:45:55 +0530
+Message-ID: <20250310121615.1077079-2-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20250310121615.1077079-1-ankit.k.nautiyal@intel.com>
+References: <20250310121615.1077079-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,46 +68,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce debug logs for the prefetch operation of SVM ranges.
+The comment about fixed average vtotal is incorrect.
+Remove it.
 
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 5 -----
+ 1 file changed, 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index a1607283a5fe..b2b0824b8777 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2372,6 +2372,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
- 			xa_store(&op->prefetch_range.range, i, svm_range, GFP_KERNEL);
- 			op->prefetch_range.ranges_count++;
- 			vops->flags |= XE_VMA_OPS_HAS_SVM_PREFETCH;
-+			xe_svm_range_debug(svm_range, "PREFETCH - RANGE CREATED");
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index cac49319026d..106bfaf6649b 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -276,11 +276,6 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+ 	 */
+ 	crtc_state->vrr.vmin -= intel_vrr_flipline_offset(display);
  
- 			if (range_end > xe_svm_range_end(svm_range) &&
- 			    xe_svm_range_end(svm_range) < xe_vma_end(vma)) {
-@@ -2869,6 +2870,7 @@ static int prefetch_ranges_lock_and_prep(struct xe_vm *vm,
- 						vm->usm.asid, (u64)&vm->svm.gpusvm, err);
- 					return -ENODATA;
- 				}
-+				xe_svm_range_debug(svm_range, "PREFETCH - RANGE MIGRATED TO VRAM");
- 			}
- 
- 			err = xe_svm_range_get_pages(vm, svm_range, &ctx);
-@@ -2878,8 +2880,11 @@ static int prefetch_ranges_lock_and_prep(struct xe_vm *vm,
- 
- 				drm_err(&vm->xe->drm, "Get pages failed, asid=%u, gpusvm=0x%016llx, errno %d\n",
- 					vm->usm.asid, (u64)&vm->svm.gpusvm, err);
--				return err;
-+				err = -ENODATA;
- 			}
-+			if (err)
-+				return err;
-+			xe_svm_range_debug(svm_range, "PREFETCH - RANGE GET PAGES DONE");
- 		}
- 	}
- 	return err;
+-	/*
+-	 * When panel is VRR capable and userspace has
+-	 * not enabled adaptive sync mode then Fixed Average
+-	 * Vtotal mode should be enabled.
+-	 */
+ 	if (crtc_state->uapi.vrr_enabled) {
+ 		crtc_state->vrr.enable = true;
+ 		crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
 -- 
-2.34.1
+2.45.2
 
