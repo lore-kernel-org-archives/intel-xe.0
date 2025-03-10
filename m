@@ -4,69 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D77F8C282DE
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 10:26:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D51CC282DE
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 10:48:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C25EE10E206;
-	Mon, 10 Mar 2025 10:26:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E99C10E3F4;
+	Mon, 10 Mar 2025 10:48:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OseaivaI";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="UzzfUNn2";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94F0610E206
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Mar 2025 10:26:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741602369; x=1773138369;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=9/w1lc1+6PE7rR+GgwJaCTOB6M7vYlA7S0zHlw95JGQ=;
- b=OseaivaIUn8zL5ZV0kFX04R3vh4PqnbUgHQJojMXiYqQbOQ8bSrB2yvn
- B7rOXLH/LHOVCac/8boN0ys4sV4aQbzE2iAanIFxp0cbr0DMLKPeG999F
- JDIVpve0DONaPz8p7iuNiEqOoLqcBKeUxTiIGgw3lQEDPSpbQlPZPk0jH
- YN6QiowM3MAMOo67jN7PfO4nO6v9i/BsF10rEyMGwDBVeNdeEZXobIN+7
- GBQl7ZZjYXTpV9Ubyrqtt+bcMn+82QhNRsGsMwJ2QUoe98AnzaHblCxE8
- wqBUvOWZKEfocDKfc4S2BLpmiMyt9Rj3mgiMahIaBgdD0XyiurApR8pZP A==;
-X-CSE-ConnectionGUID: sk623NLJS8uRmuRxOlMnaQ==
-X-CSE-MsgGUID: 2ROFIVVrQbeEm7L/2BJ78g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11368"; a="53970851"
-X-IronPort-AV: E=Sophos;i="6.14,235,1736841600"; d="scan'208";a="53970851"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2025 03:26:09 -0700
-X-CSE-ConnectionGUID: 9ZcjcwzoTGOBiKVK5RHAyg==
-X-CSE-MsgGUID: ck4eeBA0RyOIgCrWi/kruQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,235,1736841600"; d="scan'208";a="120656334"
-Received: from vseethar-mobl2.gar.corp.intel.com (HELO [10.247.204.214])
- ([10.247.204.214])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2025 03:26:07 -0700
-Message-ID: <9744727e-6619-4b4f-9dcd-3b4e6dfea89f@intel.com>
-Date: Mon, 10 Mar 2025 15:56:03 +0530
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com
+ [209.85.221.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31CE310E3F4
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Mar 2025 10:48:06 +0000 (UTC)
+Received: by mail-wr1-f49.google.com with SMTP id
+ ffacd0b85a97d-3913d129c1aso1041016f8f.0
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Mar 2025 03:48:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1741603685; x=1742208485; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=E0yircpCo/QVU3P+N7sKYScgPv6naVVovFtBRlbgD6Q=;
+ b=UzzfUNn2h61lx78Lvd67li16jeAMAfcj7P91XCFhSKrhSoohUAH16TlJeIzwwv/kxb
+ r/IKR3aA2gp7NCEqJ1xXKMXp+H6VBuofxUlwuPzLS1qAAJuorUsEFW0IYxE+JUAJcXnk
+ SBeCQ7rjQbq2kT4YK+P5+UpLiKMRG5VI2wtcJkFVBsTHdvQ+Oi0Xr+dVYqh96eCQnMj8
+ hW3dr00ffcAES5SiAxA2rY7ScRlnoj1kOdjCLBqSLKneRHi8biN92jFLlyEH19p+Bbqu
+ C57Y5rqRVZOF7U204yAm/t6hW1a76aLjm3FTJO/gfBz3WFXCBU713I4C3s+0cCmSgOMe
+ n3sA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1741603685; x=1742208485;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=E0yircpCo/QVU3P+N7sKYScgPv6naVVovFtBRlbgD6Q=;
+ b=Ms+Q3MTffInEVuuIFFmdzvHVAJ/fFDezQ7pSPvt6yGzkUSSvdD++BPz9kScJ7K6cV8
+ gE38gaJJ7zNZ/6OjVL3ad4lCkLBnO6WPclnYE1Ij8Fd1frtTCqDI9X2iN7qPtwMRZiTB
+ JgRRLPtPcMCFXdblBBvTs9merz6PfVmKe8PEQ2oD7PY1bHA/tQBrlu5Pek4gwdSUY09f
+ SLhAENYH8EGJY/uprhMhuE4h4SRshbux9uCjjtJn49Xpq2gz/sh1UBkYw0yI8gmeE5yM
+ LUbCmGhYwZqsmuAMnRCtYF/umxpGqmz7cMok6P10bmtXyfuCtwPusn7xHBMzxkrr78oJ
+ X1tQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXKzhGIUd46s2CUtuzCBKbF4FQWfzaChsiQDGoKCY3xwR+rlrtfrLNjVIa0v44jNSUgIQUnVk9rSw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YydFGGRY9oDbEbuSQMHYgB0eUu0jJZcBQbEKyASHoveoVe4IQMb
+ XEgPBoqR+LOJ/htOXtA8zxYdNcCjNct2psuCBVWVBW7uGkRCo1mFvqGN0y5sKrY=
+X-Gm-Gg: ASbGncuUUKp+Eo1OuZ4GkzTpHnNu1ISmIhju+PRGl6HuyIfpoZOVvm0Cz3PWo/nCgMl
+ NOhjgmEm6XWJFV+VZhX+QRuPJR6dn81ULgcPB8RvoO/o7DvkoortUs5lSFkDRA54sAcfbl35fzG
+ nf/E3oLvONvGWnYYPu3lnET3ynf7o54BVbRd+4beiaDiOagZVNd8dnL9sdxIv9QxtsVfwtaMywu
+ kLDSNqT1SdgI93POzqpwghMJa58TGGlVgzh7D4qiZw0zgvb1sO+/g4n4Zfiqwt/hV3vRSbTES7a
+ 46XxHD3TT1lZWzPkIrHyMaW1vSbeplOSh3PGvkBD/UzCzDLKHsMidVZ3mF3y
+X-Google-Smtp-Source: AGHT+IFlBbMsdDkibGs+3E90ni36pDU1DtBtQx2GYLaxL8v3OUzQ9CG7PxwMtpFknCcyL00KBQQ92Q==
+X-Received: by 2002:a5d:47cb:0:b0:390:df83:1f22 with SMTP id
+ ffacd0b85a97d-3913af390a9mr5568803f8f.25.1741603684736; 
+ Mon, 10 Mar 2025 03:48:04 -0700 (PDT)
+Received: from localhost ([196.207.164.177])
+ by smtp.gmail.com with UTF8SMTPSA id
+ ffacd0b85a97d-3912c0e2bb7sm14676793f8f.63.2025.03.10.03.48.03
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 10 Mar 2025 03:48:04 -0700 (PDT)
+Date: Mon, 10 Mar 2025 13:48:00 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
+Subject: [PATCH next] drm/xe: Fix uninitialized variable in xe_vm_bind_ioctl()
+Message-ID: <4a74b296-8b51-4dab-a2f1-69919da1ca62@stanley.mountain>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/xe_migrate: Switch from drm to dev managed actions
-To: Matthew Auld <matthew.auld@intel.com>,
- "De Marchi, Lucas" <lucas.demarchi@intel.com>,
- "Hellstrom, Thomas" <thomas.hellstrom@intel.com>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Upadhyay, Tejas" <tejas.upadhyay@intel.com>,
- "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>,
- "Roper, Matthew D" <matthew.d.roper@intel.com>
-References: <20250228065224.320811-1-aradhya.bhatia@intel.com>
- <20250228065224.320811-2-aradhya.bhatia@intel.com>
- <1b66c78c-82d4-4002-9fa4-6f30e97e0268@intel.com>
- <3a74a434957fb52ebcc36a4d5b88e8428ac2165f.camel@intel.com>
- <1bb4be8a-8058-4066-b447-1af29cbb46c0@intel.com>
- <7238c8a392fc5fb4ce297cd85dacf8ef2b342669.camel@intel.com>
- <56e1e5b6d4d68d67cff09fca2f77cc125c29fc7f.camel@intel.com>
- <f6162a9c-704f-4581-873e-a681d317e97a@intel.com>
-Content-Language: en-US
-From: Aradhya Bhatia <aradhya.bhatia@intel.com>
-In-Reply-To: <f6162a9c-704f-4581-873e-a681d317e97a@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailer: git-send-email haha only kidding
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,262 +89,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Matthew Auld, Thomas, Lucas,
+The error handling assumes that vm_bind_ioctl_check_args() will
+initialize "bind_ops" but there are a couple early returns where that's
+not true.  Initialize "bind_ops" to NULL from the start.
 
-Thank you for reviewing the patches.
+Fixes: b43e864af0d4 ("drm/xe/uapi: Add DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR")
+Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
+---
+ drivers/gpu/drm/xe/xe_vm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 22a26aff3a6e..d85759b958d0 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -3287,7 +3287,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	struct xe_exec_queue *q = NULL;
+ 	u32 num_syncs, num_ufence = 0;
+ 	struct xe_sync_entry *syncs = NULL;
+-	struct drm_xe_vm_bind_op *bind_ops;
++	struct drm_xe_vm_bind_op *bind_ops = NULL;
+ 	struct xe_vma_ops vops;
+ 	struct dma_fence *fence;
+ 	int err;
+-- 
+2.47.2
 
-On 01-03-2025 00:08, Matthew Auld wrote:
-> On 28/02/2025 14:47, Hellstrom, Thomas wrote:
->> On Fri, 2025-02-28 at 13:57 +0100, Thomas Hellström wrote:
->>> On Fri, 2025-02-28 at 12:28 +0000, Matthew Auld wrote:
->>>> Hi,
->>>>
->>>> On 28/02/2025 11:11, Hellstrom, Thomas wrote:
->>>>> Hi, Matthew
->>>>>
->>>>> On Fri, 2025-02-28 at 10:21 +0000, Matthew Auld wrote:
->>>>>> On 28/02/2025 06:52, Aradhya Bhatia wrote:
->>>>>>> Change the scope of the migrate subsystem to be dev managed
->>>>>>> instead
->>>>>>> of
->>>>>>> drm managed.
->>>>>>>
->>>>>>> The parent pci struct &device, that the xe struct &drm_device
->>>>>>> is a
->>>>>>> part
->>>>>>> of, gets removed when a hot unplug is triggered, which causes
->>>>>>> the
->>>>>>> underlying iommu group to get destroyed as well.
->>>>>>
->>>>>> Nice find. But if that's the case then the migrate BO here is
->>>>>> just
->>>>>> one
->>>>>> of many where we will see this. Basically all system memory BO
->>>>>> can
->>>>>> suffer from this AFAICT, including userspace owned. So I think
->>>>>> we
->>>>>> need
->>>>>> to rather solve this for all, and I don't think we can really
->>>>>> tie
->>>>>> the
->>>>>> lifetime of all BOs to devm, so likely need a different
->>>>>> approach.
->>>>>>
->>>>>> I think we might instead need to teardown all dma mappings when
->>>>>> removing
->>>>>> the device, leaving the BO intact. It looks like there is
->>>>>> already
->>>>>> a
->>>>>> helper for this, so maybe something roughly like this:
->>>>>>
->>>>>> @@ -980,6 +980,8 @@ void xe_device_remove(struct xe_device *xe)
->>>>>>
->>>>>>            drm_dev_unplug(&xe->drm);
->>>>>>
->>>>>> +       ttm_device_clear_dma_mappings(&xe->ttm);
->>>>>> +
->>>>>>            xe_display_driver_remove(xe);
->>>>>>
->>>>>>            xe_heci_gsc_fini(xe);
->>>>>>
->>>>>> But I don't think userptr will be covered by that, just all
->>>>>> BOs,
->>>>>> so
->>>>>> likely need an extra step to also nuke all usersptr dma
->>>>>> mappings
->>>>>> somewhere.
->>>>>
->>>>> I have been discussing this a bit with Aradhya, and the problem
->>>>> is
->>>>> a
->>>>> bit complex.
->>>>>
->>>>> Really if the PCI device goes away, we need to move *all* bos to
->>>>> system. That should clear out any dma mappings, since we map dma
->>>>> when
->>>>> moving to TT. Also VRAM bos should be moved to system which will
->>>>> also
->>>>> handle things like SVM migration.
->>>>
->>>> My thinking is that from userspace pov, the buffers are about to be
->>>> lost
->>>> anyway, so going through the trouble of moving stuff seems like a
->>>> waste?
->>>> Once the device is unplugged all ioctls are rejected for that
->>>> instance
->>>> and we should have stopped touching the hw, so all that is left is
->>>> to
->>>> close stuff and open up a new instance. VRAM is basically just some
->>>> state tracking at this point (for this driver instance), and actual
->>>> memory footprint is small. If we move to system memory we might be
->>>> using
->>>> actual system pages for stuff that should really just be thrown
->>>> away,
->>>> and will be once the driver instance goes away AFAIK. And for stuff
->>>> that
->>>> has an actual populated ttm_tt, we just discard with something like
->>>> ttm_device_clear_dma_mappings() during remove.
->>>
->>> That's true for most current use-cases but exported things, like
->>> multidevice SVM, if you unbind a device you'd currently just want to
->>> migrate to system, and it's not fatal to the running application
->>> (subject to review ofc). And I'm not sure what the expected dma-buf
->>> semantics are, although if we free pages that the remote device has
->>> pinned and keep accessing, that sounds bad.
->>
->> Having thought a bit more about this, First, I fully agree that
->> evicting all of VRAM was probably a bad idea. We need to be selective,
->> and evict exported VRAM only. That means SVM (no action required until
->> multi-svm lands) and p2p DMA-buf, (unless there is a way to revoke a
->> dma-buf) where we at least need to send a move_notify() and wait for
->> idle. A possible way might be to hook up to xe_evict_flags() and
->> respond with a NULL placement, purging the bo for anything but SVM.
->>
->> Pinned p2p VRAM dma-buf I think needs to block the remove() callback,
->> but we don't support that ATM.
->>
->> System DMA-buf shouldn't be a problem, but we can't drop the pages
->> AFAICT.
->>
->> Imported dma-buf should have the attachment unmapped.
->>
->> I think that _evict_all() could be made to handle all these situations
->> with some minor tweaks, but that still leaves the pinned TT bos.
-> 
-> Right. I guess in the worst case we can rely on our own pin tracking to
-> nuke anything pinned that also has populated tt?
-> 
-
-I understand that entire VRAM eviction isn't the way to go, as perhaps
-it isn't the best use of resources. In its stead, a dma unmap (done via:
-ttm_device_clear_dma_mappings()) would be a more efficient option.
-
-I, however, couldn't follow the multi-SVM and p2p DMA cases, or other
-handful situations, where we may need to evict VRAM -- which is where it
-seems the _evict_all() might not be that bad an idea after all?
-
-I think the discussion went under the radar a little bit, and I could
-use some help understanding the final thoughts and next steps! =)
-
-
->>
->>>
->>>>
->>>>>
->>>>> But that doesn't really help with pinned bos. So IMO subsystems
->>>>> that
->>>>
->>>> I think ttm_device_clear_dma_mappings() also handles pinned BO,
->>>> AFAICT.
->>>
->>> Yes, you're right. I still think it's reasonable, though to
->>>
->>>>
->>>> I believe the pinned BO are tracked via bdev->unevictable, so in
->>>> theory
->>>> it will nuke the dma mapping there also and discard the pages.
->>>>
->>>>> allocate pinned bos need to be devm managed, and this is a step
->>>>> in
->>>>> that
->>>>> direction. But we probably need to deal with some fallout. For
->>>>> example
->>>>> when we take down the vram managers using drmmm_ they'd want to
->>>>> call
->>>>> evict_all() and the migrate subsystem is already down.
->>>>>
->>>>> So I think a natural place to deal with such fallouts is the
->>>>> remove()
->>>>> callback, while subsystems with pinned bos use devm_
->>>>>
->>>>> But admittedly to me it's not really clear how to *best* handle
->>>>> this
->>>>> situation. I suspect if we really stress-test device unbinding on
->>>>> a
->>>>> running app we're going to hit a lot of problems.
->>>>
->>>> Yes, there are lots of open issues here, but our testing is still
->>>> lacking :)
->>>>
->>>>>
->>>>> As for the userptrs, I just posted a series that introduces a
->>>>> per-
->>>>> userptr dedicated unmap function. We could probably put them on a
->>>>> device list or something similar that calls that function (or
->>>>> just
->>>>> general userptr invalidation) for all userptrs.
->>>>
->>>> Sounds good.
->>>>
->>>>>
->>>>> /Thomas
->>>>>
->>>>>
->>>>>
->>>>>
->>>>>
->>>>>>
->>>>>>>
->>>>>>> The migrate subsystem, which handles the lifetime of the
->>>>>>> page-
->>>>>>> table
->>>>>>> tree
->>>>>>> (pt) BO, doesn't get a chance to keep the BO back during the
->>>>>>> hot
->>>>>>> unplug,
->>>>>>> as all the references to DRM haven't been put back.
->>>>>>> When all the references to DRM are indeed put back later, the
->>>>>>> migrate
->>>>>>> subsystem tries to put back the pt BO. Since the underlying
->>>>>>> iommu
->>>>>>> group
->>>>>>> has been already destroyed, a kernel NULL ptr dereference
->>>>>>> takes
->>>>>>> place
->>>>>>> while attempting to keep back the pt BO.
->>>>>>>
->>>>>>> Signed-off-by: Aradhya Bhatia <aradhya.bhatia@intel.com>
->>>>>>> ---
->>>>>>>     drivers/gpu/drm/xe/xe_migrate.c | 6 +++---
->>>>>>>     1 file changed, 3 insertions(+), 3 deletions(-)
->>>>>>>
->>>>>>> diff --git a/drivers/gpu/drm/xe/xe_migrate.c
->>>>>>> b/drivers/gpu/drm/xe/xe_migrate.c
->>>>>>> index 278bc96cf593..4e23adfa208a 100644
->>>>>>> --- a/drivers/gpu/drm/xe/xe_migrate.c
->>>>>>> +++ b/drivers/gpu/drm/xe/xe_migrate.c
->>>>>>> @@ -97,7 +97,7 @@ struct xe_exec_queue
->>>>>>> *xe_tile_migrate_exec_queue(struct xe_tile *tile)
->>>>>>>         return tile->migrate->q;
->>>>>>>     }
->>>>>>>     -static void xe_migrate_fini(struct drm_device *dev, void
->>>>>>> *arg)
->>>>>>> +static void xe_migrate_fini(void *arg)
->>>>>>>     {
->>>>>>>         struct xe_migrate *m = arg;
->>>>>>>     @@ -401,7 +401,7 @@ struct xe_migrate *xe_migrate_init(struct
->>>>>>> xe_tile *tile)
->>>>>>>         struct xe_vm *vm;
->>>>>>>         int err;
->>>>>>>     -    m = drmm_kzalloc(&xe->drm, sizeof(*m), GFP_KERNEL);
->>>>>>> +    m = devm_kzalloc(xe->drm.dev, sizeof(*m),
->>>>>>> GFP_KERNEL);
->>>>>>>         if (!m)
->>>>>>>             return ERR_PTR(-ENOMEM);
->>>>>>>     @@ -455,7 +455,7 @@ struct xe_migrate *xe_migrate_init(struct
->>>>>>> xe_tile *tile)
->>>>>>>         might_lock(&m->job_mutex);
->>>>>>>         fs_reclaim_release(GFP_KERNEL);
->>>>>>>     -    err = drmm_add_action_or_reset(&xe->drm,
->>>>>>> xe_migrate_fini,
->>>>>>> m);
->>>>>>> +    err = devm_add_action_or_reset(xe->drm.dev,
->>>>>>> xe_migrate_fini, m);
->>>>>>>         if (err)
->>>>>>>             return ERR_PTR(err);
->>>>>>>
-
---
-Regards
-Aradhya
