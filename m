@@ -4,59 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3496C282EC
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 16:31:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99D84C282EC
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 16:37:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6421D10E487;
-	Mon, 10 Mar 2025 16:31:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06FB210E487;
+	Mon, 10 Mar 2025 16:37:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P7UUh35G";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ilJOqpRq";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1CE910E487;
- Mon, 10 Mar 2025 16:31:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D48F610E418;
+ Mon, 10 Mar 2025 16:37:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741624284; x=1773160284;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=JrpbNker09yLLUVPbiBkbpv89e6haPCHDSIH3ug8BZU=;
- b=P7UUh35GgNUE75XHAkFqPjSvNF4yEnS0ulDY0ZkXOHzemVTT5nF5K+Xs
- pDCWRlOGMIVy94umDmi25qSYdZPwnr6TPpzFRGDWL/k1yDmnXZzNv4Qcm
- +FVr6cfPjxQZIxIG++W5T8AQTpdr8RJ+pQ5HMH+TEPSHfbgi3fqUFKikb
- 0iLwUY1wfpS4wsEjpOqG8eDGNb6+uO+7ZJEIRVxgred3xEWgXq/GG+Oni
- /Imz7WreC+1rGS8GXs/drh/hbHXmbGlPouA9bPiFEQ36WmujDXBtEqr1n
- BJt6LhNX91IstEaHhAl2tUvf9ivNsGbJoMWhKq93qMATQFWaSCEHT4BFs w==;
-X-CSE-ConnectionGUID: l7xxgW1xQd2xOP7Fy4e24g==
-X-CSE-MsgGUID: 9QL+kFOCRyKOY9KABZQF4Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="65084923"
-X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="65084923"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2025 09:31:15 -0700
-X-CSE-ConnectionGUID: IiGhUct4SV2KFkZdKZQTcg==
-X-CSE-MsgGUID: gnuUYrchTVm2eQrrLBY60Q==
+ t=1741624640; x=1773160640;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=0Oif3LeK+3ZMo3wWuqn0d7iovtvCxPfLouFcjMhfJG0=;
+ b=ilJOqpRqAWXyGhCv5nExzFhR6owQQKS4A3n68CESQY7Cknqh254gFVXF
+ FBe7qZQCwmhH75N6s1tfPKLzjFCr4WX8FVQifv2nUGohbv47i+sJjgV3U
+ GdFGuNVQ1q03h3xTauwrYqVKfEJFhGzXqJmbtylYYRvO4DbLpO1Ho3CNv
+ jX4K7LO/Ujpk1IfhcmEtoTpWKJXikW7sD0w3HTwi/bN6soqAohAAUmXTd
+ mGOmdhuH7xn42WeH1+BASWtaJsd8DM0Xm7pdkpPB0jUkNgpwb9r6uRyr0
+ MCys2zmdJVtvJUHrEtquig8c+hgXbLd16htuLL8XLTNWtDhaEo47b02Bv A==;
+X-CSE-ConnectionGUID: /Tb54euWR86sMlNlbfnrUg==
+X-CSE-MsgGUID: 75fS6TV0TCaxmkPtkIsPrg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="42762549"
+X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="42762549"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2025 09:37:19 -0700
+X-CSE-ConnectionGUID: GV9jDnvuRIqRFJap3dU8kg==
+X-CSE-MsgGUID: 22I8h3MqQLeETxY3AqUZog==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="120062789"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa007.fm.intel.com with ESMTP; 10 Mar 2025 09:31:14 -0700
-Received: from [10.246.5.201] (mwajdecz-MOBL.ger.corp.intel.com [10.246.5.201])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id E735C34936;
- Mon, 10 Mar 2025 16:31:12 +0000 (GMT)
-Message-ID: <888e00f8-dc32-4b6f-a6af-9be62409388a@intel.com>
-Date: Mon, 10 Mar 2025 17:31:12 +0100
+X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="125267999"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orviesa005.jf.intel.com with SMTP; 10 Mar 2025 09:37:17 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 10 Mar 2025 18:37:15 +0200
+Date: Mon, 10 Mar 2025 18:37:15 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Matt Roper <matthew.d.roper@intel.com>
+Subject: Re: [PATCH v3 0/3] drm/i915/xe3lpd: Update bandwidth parameters
+Message-ID: <Z88VOxMunnhE_koL@intel.com>
+References: <20250307-xe3lpd-bandwidth-update-v3-0-58bbe81f65bf@intel.com>
+ <87ldtdghbo.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?B?UmU6IOKclyBYZS5DSS5GdWxsOiBmYWlsdXJlIGZvciBVc2UgTUlfTUFU?=
- =?UTF-8?Q?H_to_apply_RMW_WA_in_LRC_=28rev3=29?=
-To: intel-xe@lists.freedesktop.org, I915-ci-infra@lists.freedesktop.org
-References: <20250303173522.1822-1-michal.wajdeczko@intel.com>
- <174146681147.6714.9590700088356022715@18a75f3d1eae>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <174146681147.6714.9590700088356022715@18a75f3d1eae>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87ldtdghbo.fsf@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,73 +72,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Mon, Mar 10, 2025 at 03:12:43PM +0200, Jani Nikula wrote:
+> On Fri, 07 Mar 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> > Bandwidth parameters for Xe3_LPD have been updated with respect to
+> > previous display releases. Encode them into xe3lpd_sa_info and use that
+> > new struct.
+> >
+> > Since we are touching intel_bw.c, also take the opportunity convert it
+> > to intel_display.
+> 
+> In case you didn't notice already, this series and [1] from Ville will
+> conflict badly with each other. Please collaborate to sort out which
+> series to merge first.
 
-
-On 08.03.2025 21:46, Patchwork wrote:
-> == Series Details ==
-> 
-> Series: Use MI_MATH to apply RMW WA in LRC (rev3)
-> URL   : https://patchwork.freedesktop.org/series/145732/
-> State : failure
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from xe-2777-066c46f28642479869d2d1dd27cc6ae476de4abc_full -> xe-pw-145732v3_full
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **FAILURE**
-> 
->   Serious unknown changes coming with xe-pw-145732v3_full absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in xe-pw-145732v3_full, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
->   to document this new failure mode, which will reduce false positives in CI.
-> 
->   
-> 
-> Participating hosts (4 -> 4)
-> ------------------------------
-> 
->   No changes in participating hosts
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in xe-pw-145732v3_full:
-> 
-> ### IGT changes ###
-> 
-> #### Possible regressions ####
-> 
->   * igt@xe_oa@buffer-size:
->     - shard-lnl:          [PASS][1] -> [FAIL][2]
->    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2777-066c46f28642479869d2d1dd27cc6ae476de4abc/shard-lnl-5/igt@xe_oa@buffer-size.html
->    [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145732v3/shard-lnl-6/igt@xe_oa@buffer-size.html
-
-Starting subtest: buffer-size
-Starting dynamic subtest: rcs-0-256K
-(xe_oa:4458) CRITICAL: Test assertion failure function
-test_non_zero_reason, file ../tests/intel/xe_oa.c:2509:
-(xe_oa:4458) CRITICAL: Failed assertion: !(oa_status &
-DRM_XE_OASTATUS_BUFFER_OVERFLOW)
-Dynamic subtest rcs-0-256K failed.
-
-hmm, based on the below, this test should be suppressed, no?
+I can rebase my stuff, so no worries.
 
 > 
->   
-> #### Suppressed ####
+> Thanks,
+> Jani.
 > 
->   The following results come from untrusted machines, tests, or statuses.
->   They do not affect the overall result.
 > 
->   * {igt@xe_oa@buffer-size@rcs-0-256k}:
->     - shard-lnl:          [PASS][3] -> [FAIL][4]
->    [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2777-066c46f28642479869d2d1dd27cc6ae476de4abc/shard-lnl-5/igt@xe_oa@buffer-size@rcs-0-256k.html
->    [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145732v3/shard-lnl-6/igt@xe_oa@buffer-size@rcs-0-256k.html
+> [1] https://lore.kernel.org/r/20250307180139.15744-1-ville.syrjala@linux.intel.com
 > 
->   
+> 
+> >
+> > Changes in v2:
+> >   - Fix typo in patch #2.
+> >
+> > Changes in v3:
+> > - Squash patches #1 and #2 into a single one and modify it to convert
+> >   intel_bw.c internally to intel_display (new patch subject is
+> >   "drm/i915/display: Convert intel_bw.c internally to intel_display").
+> > - Add a new patch #2 to convert intel_bw.c externally to intel_display.
+> > - Link to v2: https://lore.kernel.org/r/20250217153550.43909-1-gustavo.sousa@intel.com
+> >
+> > ---
+> > Gustavo Sousa (3):
+> >       drm/i915/display: Convert intel_bw.c internally to intel_display
+> >       drm/i915/display: Convert intel_bw.c externally to intel_display
+> >       drm/i915/xe3lpd: Update bandwidth parameters
+> >
+> >  drivers/gpu/drm/i915/display/intel_bw.c            | 440 +++++++++++----------
+> >  drivers/gpu/drm/i915/display/intel_bw.h            |   9 +-
+> >  drivers/gpu/drm/i915/display/intel_cdclk.c         |   3 +-
+> >  .../gpu/drm/i915/display/intel_display_driver.c    |   2 +-
+> >  drivers/gpu/drm/i915/display/skl_watermark.c       |  10 +-
+> >  drivers/gpu/drm/i915/i915_driver.c                 |   2 +-
+> >  drivers/gpu/drm/xe/display/xe_display.c            |   2 +-
+> >  7 files changed, 245 insertions(+), 223 deletions(-)
+> > ---
+> > base-commit: f811577f424491a57b1e8669bde62998227d6907
+> > change-id: 20250228-xe3lpd-bandwidth-update-f011599c0c3e
+> >
+> > Best regards,
+> 
+> -- 
+> Jani Nikula, Intel
+
+-- 
+Ville Syrjälä
+Intel
