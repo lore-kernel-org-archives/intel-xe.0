@@ -4,59 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1254C282DE
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 07:14:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FF30C282DE
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 08:02:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A741410E39F;
-	Mon, 10 Mar 2025 07:14:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BCC310E1B2;
+	Mon, 10 Mar 2025 08:02:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FRG0nOfm";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="F1QjjFBg";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C403510E1AF
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Mar 2025 07:14:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741590854; x=1773126854;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=ZJCeHr/5USQasT1wsK7v0GCOC8XkvUAwy1L85ERkzrg=;
- b=FRG0nOfmDP+3vl89+w7H6yG4jP7bS8R4T2DlLQalvI7PvmFueFj4SDEO
- jvy9ryhZAX1Axv/zd0fjD43GSLX31qNtSgUPDp52Sqlofj39+D5L+K/KO
- +FYiTcfsYk50ffRmQDArWnhLqrsHNFEAIkbXqMec5aBqOreLSRo1T25iO
- HBsnsf65RcY4/5Ir0XVrUvpcMXM0bnDyLdBbF8+WCaWG6ioOgfmnsvlh3
- EMjPM62/DQdtkFmNqAF+kIFEuVYFJBB8gg6oIYE1CAfwEO55G9fS915nr
- HEcLxb1YjKuQw5AUcSz5X8sywHKeBNgojxn3SaB3P+zFgHcorXeeDS8yP Q==;
-X-CSE-ConnectionGUID: rbKRx5mYRIG4DiqJbCOkOA==
-X-CSE-MsgGUID: DWy/+qlIROSOKyFrZyEDOg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11368"; a="59979514"
-X-IronPort-AV: E=Sophos;i="6.14,235,1736841600"; d="scan'208";a="59979514"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2025 00:14:13 -0700
-X-CSE-ConnectionGUID: UhTGMke5S3GO7xCbq7b4Zg==
-X-CSE-MsgGUID: nEm1CG1uQ3qZ5UDA/0dwzA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,235,1736841600"; d="scan'208";a="157115174"
-Received: from aiddamse-mobl3.gar.corp.intel.com (HELO [10.247.254.240])
- ([10.247.254.240])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2025 00:14:12 -0700
-Message-ID: <6d82e345-aef5-4629-b7e2-4b9281d919ea@linux.intel.com>
-Date: Mon, 10 Mar 2025 12:44:08 +0530
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com
+ [209.85.128.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3BE9C10E1B2
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Mar 2025 08:02:23 +0000 (UTC)
+Received: by mail-wm1-f49.google.com with SMTP id
+ 5b1f17b1804b1-43bc4b16135so22198185e9.1
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Mar 2025 01:02:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1741593741; x=1742198541; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+ :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=i8vsoR0XtNwhNc8uqv+HeeAftIb3SZaHuCchGTf/qK4=;
+ b=F1QjjFBg2j3ZKfgJ804pjSpNIIRDIFaH7j7Rn+qFlFVD3M/v2zIBDmpW2KZZpOCWby
+ 7wDJ3oa+HXc5bY7LbaiaV+xHypP25WIKBuRkaz5ONGpwogOkoX62RuBQ7lKG3iS6BMIF
+ 8UwZNeGYj73dokCbLLcdZnCVwn4XVanVa+LqBWbXY5dcG3aMzEXy8eahYQT/6Yol3+qL
+ JDiEGBzEHSwR0Al/OM30NgwCppR6St1ynMxi/Xp1xaBl5sEoKDAh4FF4leRpLDP3LVZf
+ dXjr2OpJSSSDjHkY16YUCvl03nISi7xWGwPkzhBZ2e9U8vnPwkUJwpxFnB+6+2+70mxw
+ V8mw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1741593741; x=1742198541;
+ h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+ :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=i8vsoR0XtNwhNc8uqv+HeeAftIb3SZaHuCchGTf/qK4=;
+ b=wPK63wvet5ULTVRIasikunZttYo70SZwR+9ZFOyPT2UaENumOAI4BEGcAXmox2f/Td
+ l6sZM02fM4G7XuCjxbO3y9PmqwpVIyCwNRyKAbfyZt2T8ZLegQQupZwaBbOsudci/o63
+ svFx7UStYknVQ4/EFAQITsWdkm5TB0cl1Rwe8vLqpvJ9sCGxIQte5x7M/TvPCM/K2h8q
+ 1OsB/KoI21B01WYCJXSNTuGjx5qDpxWiVD94lm2oxpSo/SnhWpSZ2Plu/mhbZt8JIYQv
+ QSXOlh1ao8TPntTsnptWoNxQk6bAQVJ0fApApu4EkJsHX7+x1P9xWuki2ygm92dqetWQ
+ Ucug==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVfE7oURmtrYtcuNbkc2yAVbFwI8SYzFsJHs86N/OQ63vvHt6DvL9rKwG0zc1+vG/sZLi5rNPP/3g==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzMa/8y9373DUegwO0M/cgSczsTu2mQLLo6f2dXGjrfAVJ1HnyQ
+ jzWjqVbHozpJGXhctElOZIxOh6cny+5pEMviTW96vV1FU6TKnOl/v3yOqjuDsEY=
+X-Gm-Gg: ASbGnctrbd8sLWfjn+AaRXOVn36M0NeWxmP4fgpcdCYbrXx0qQ6yalaf6VdsqAcyOoQ
+ jBafIUpTS5kyOtM7Y37rCxLt0X9H7vBxN78zjow2+6XurBZ9MGSkn+LhUI9z9Rdf5w4jXt+tfSj
+ twswS7p0bWO01kzYpRSQ0HF+Vfi2UTp/nThdPfpdpLxz9+cwge75HzFkVONiYk93Nou/Sd1Fzvn
+ ipU2Q/z3I0B1a46Gn58xgnCyluLedBpIwt+MIjTnO/mR+RNL8V9z8gKHOhFuXeK+nhOhYMzKeVS
+ OnmvNnli/N0ZSyJWZEpcaZaOxpxC2fmOWK/lhtffxt2y86O5qg==
+X-Google-Smtp-Source: AGHT+IEmOTKGzx90VNTsmr7R1QpkX49RScln2y40rBh0JpkUW/vdZodH2LPxETHoGOKthxkf0ChEcg==
+X-Received: by 2002:a7b:c4d4:0:b0:43c:f513:9591 with SMTP id
+ 5b1f17b1804b1-43cf5139abdmr22749185e9.14.1741593741591; 
+ Mon, 10 Mar 2025 01:02:21 -0700 (PDT)
+Received: from localhost ([196.207.164.177])
+ by smtp.gmail.com with UTF8SMTPSA id
+ 5b1f17b1804b1-43cf7c8249bsm28163885e9.7.2025.03.10.01.02.20
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 10 Mar 2025 01:02:20 -0700 (PDT)
+Date: Mon, 10 Mar 2025 11:02:17 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev, Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev, saurabhg.gupta@intel.com,
+ alex.zuo@intel.com, jonathan.cavitt@intel.com,
+ joonas.lahtinen@linux.intel.com, matthew.brost@intel.com,
+ jianxun.zhang@intel.com, shuicheng.lin@intel.com,
+ dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v6 6/6] drm/xe/xe_vm: Implement xe_vm_get_faults_ioctl
+Message-ID: <8c122809-5aa9-4531-8967-66e03e5023b2@stanley.mountain>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] RFC drm/xe: Add configfs to enable survivability mode
-To: Riana Tauro <riana.tauro@intel.com>, intel-xe@lists.freedesktop.org
-Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
- matthew.d.roper@intel.com, lucas.demarchi@intel.com
-References: <20250307142446.1790715-1-riana.tauro@intel.com>
- <20250307142446.1790715-2-riana.tauro@intel.com>
-Content-Language: en-US
-From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-In-Reply-To: <20250307142446.1790715-2-riana.tauro@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250307224125.111430-7-jonathan.cavitt@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,201 +89,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi Jonathan,
 
-On 07-03-2025 19:54, Riana Tauro wrote:
+kernel test robot noticed the following build warnings:
 
-Hi Riana,
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-I do think we can achieve the same functionality with module param and
-we needn't reload the driver
-if we are doing unbind, Since the driver will be loaded event after
-unbind we can modify the module param
-and once we bind the device back it can check if the BDF belongs to this
-driver instance and configure the mode accordingly.
+url:    https://github.com/intel-lab-lkp/linux/commits/Jonathan-Cavitt/drm-xe-xe_gt_pagefault-Disallow-writes-to-read-only-VMAs/20250308-064247
+base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+patch link:    https://lore.kernel.org/r/20250307224125.111430-7-jonathan.cavitt%40intel.com
+patch subject: [PATCH v6 6/6] drm/xe/xe_vm: Implement xe_vm_get_faults_ioctl
+config: i386-randconfig-141-20250309 (https://download.01.org/0day-ci/archive/20250309/202503091053.Hg9hUB8c-lkp@intel.com/config)
+compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
 
-Thanks,
-Aravind.
-> Registers a configfs subsystem called 'xe' to userspace. The user can
-> use this to modify exposed attributes.
->
-> Add survivability mode attribute (config/xe/survivability_mode) to the
-> subsystem to allow the user to specify the card that should enter
-> survivability mode.
->
-> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-> ---
->  drivers/gpu/drm/xe/Makefile      |  1 +
->  drivers/gpu/drm/xe/xe_configfs.c | 95 ++++++++++++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_configfs.h | 12 ++++
->  drivers/gpu/drm/xe/xe_module.c   |  5 ++
->  drivers/gpu/drm/xe/xe_module.h   |  1 +
->  5 files changed, 114 insertions(+)
->  create mode 100644 drivers/gpu/drm/xe/xe_configfs.c
->  create mode 100644 drivers/gpu/drm/xe/xe_configfs.h
->
-> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> index 9699b08585f7..3f8c87292cee 100644
-> --- a/drivers/gpu/drm/xe/Makefile
-> +++ b/drivers/gpu/drm/xe/Makefile
-> @@ -28,6 +28,7 @@ $(obj)/generated/%_wa_oob.c $(obj)/generated/%_wa_oob.h: $(obj)/xe_gen_wa_oob \
->  xe-y += xe_bb.o \
->  	xe_bo.o \
->  	xe_bo_evict.o \
-> +	xe_configfs.o \
->  	xe_devcoredump.o \
->  	xe_device.o \
->  	xe_device_sysfs.o \
-> diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-> new file mode 100644
-> index 000000000000..8c5f248e466d
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_configfs.c
-> @@ -0,0 +1,95 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright © 2025 Intel Corporation
-> + */
-> +
-> +#include <linux/configfs.h>
-> +#include <linux/init.h>
-> +#include <linux/module.h>
-> +
-> +#include "xe_configfs.h"
-> +#include "xe_module.h"
-> +
-> +/**
-> + * DOC: Xe Configfs
-> + *
-> + * XE KMD registers a configfs subsystem called 'xe'to userspace that allows users to modify
-> + * the exposed attributes.
-> + *
-> + * Attributes:
-> + *
-> + * config/xe/survivability_mode : Write only attribute that allows user to specify the PCI address
-> + *				  of the card that has to enter survivability mode
-> + */
-> +
-> +void xe_configfs_clear_survivability_mode(void)
-> +{
-> +	kfree(xe_modparam.survivability_mode);
-> +	xe_modparam.survivability_mode = NULL;
-> +}
-> +
-> +static ssize_t survivability_mode_store(struct config_item *item, const char *page, size_t len)
-> +{
-> +	char *survivability_mode;
-> +	int ret;
-> +	unsigned int domain, bus, slot, function;
-> +
-> +	ret = sscanf(page, "%04x:%02x:%02x.%x", &domain, &bus, &slot, &function);
-> +	if (ret != 4)
-> +		return -EINVAL;
-> +
-> +	survivability_mode = kstrdup(page, GFP_KERNEL);
-> +	if (!survivability_mode)
-> +		return -ENOMEM;
-> +
-> +	xe_configfs_clear_survivability_mode();
-> +	xe_modparam.survivability_mode = survivability_mode;
-> +
-> +	return len;
-> +}
-> +
-> +CONFIGFS_ATTR_WO(, survivability_mode);
-> +
-> +static struct configfs_attribute *xe_configfs_attrs[] = {
-> +	&attr_survivability_mode,
-> +	NULL,
-> +};
-> +
-> +static const struct config_item_type xe_config_type = {
-> +	.ct_attrs	= xe_configfs_attrs,
-> +	.ct_owner	= THIS_MODULE,
-> +};
-> +
-> +static struct configfs_subsystem xe_config_subsys = {
-> +	.su_group = {
-> +		.cg_item = {
-> +			.ci_namebuf = "xe",
-> +			.ci_type = &xe_config_type,
-> +		},
-> +	},
-> +};
-> +
-> +int __init xe_configfs_init(void)
-> +{
-> +	int ret;
-> +
-> +	config_group_init(&xe_config_subsys.su_group);
-> +	mutex_init(&xe_config_subsys.su_mutex);
-> +	ret = configfs_register_subsystem(&xe_config_subsys);
-> +	if (ret) {
-> +		pr_err("Error %d while registering subsystem %s\n",
-> +		       ret, xe_config_subsys.su_group.cg_item.ci_namebuf);
-> +		mutex_destroy(&xe_config_subsys.su_mutex);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +void __exit xe_configfs_exit(void)
-> +{
-> +	xe_configfs_clear_survivability_mode();
-> +	configfs_unregister_subsystem(&xe_config_subsys);
-> +	mutex_destroy(&xe_config_subsys.su_mutex);
-> +}
-> +
-> diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
-> new file mode 100644
-> index 000000000000..491629a2ca53
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_configfs.h
-> @@ -0,0 +1,12 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2025 Intel Corporation
-> + */
-> +#ifndef _XE_CONFIGFS_H_
-> +#define _XE_CONFIGFS_H_
-> +
-> +int xe_configfs_init(void);
-> +void xe_configfs_exit(void);
-> +void xe_configfs_clear_survivability_mode(void);
-> +
-> +#endif
-> diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-> index 475acdba2b55..15b3cf22193c 100644
-> --- a/drivers/gpu/drm/xe/xe_module.c
-> +++ b/drivers/gpu/drm/xe/xe_module.c
-> @@ -11,6 +11,7 @@
->  #include <drm/drm_module.h>
->  
->  #include "xe_drv.h"
-> +#include "xe_configfs.h"
->  #include "xe_hw_fence.h"
->  #include "xe_pci.h"
->  #include "xe_pm.h"
-> @@ -91,6 +92,10 @@ static const struct init_funcs init_funcs[] = {
->  	{
->  		.init = xe_check_nomodeset,
->  	},
-> +	{
-> +		.init = xe_configfs_init,
-> +		.exit = xe_configfs_exit,
-> +	},
->  	{
->  		.init = xe_hw_fence_module_init,
->  		.exit = xe_hw_fence_module_exit,
-> diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
-> index 84339e509c80..c238dbee6bc7 100644
-> --- a/drivers/gpu/drm/xe/xe_module.h
-> +++ b/drivers/gpu/drm/xe/xe_module.h
-> @@ -24,6 +24,7 @@ struct xe_modparam {
->  #endif
->  	int wedged_mode;
->  	u32 svm_notifier_size;
-> +	char *survivability_mode;
->  };
->  
->  extern struct xe_modparam xe_modparam;
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202503091053.Hg9hUB8c-lkp@intel.com/
+
+New smatch warnings:
+drivers/gpu/drm/xe/xe_vm.c:3557 fill_faults() warn: iterator 'i' not incremented
+
+vim +/i +3557 drivers/gpu/drm/xe/xe_vm.c
+
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3552  static int fill_faults(struct xe_vm *vm,
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3553  		       struct drm_xe_vm_get_faults *args)
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3554  {
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3555  	struct xe_vm_fault __user *usr_ptr = u64_to_user_ptr(args->faults);
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3556  	struct xe_vm_pf_entry *entry;
+24e54814071dd04 Jonathan Cavitt 2025-03-07 @3557  	int ret = 0, i = 0;
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3558  
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3559  	spin_lock(&vm->pfs.lock);
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3560  	list_for_each_entry(entry, &vm->pfs.list, list) {
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3561  		struct xe_pagefault *pf = entry->pf;
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3562  
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3563  		ret = put_user(pf->page_addr, &usr_ptr->address);
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3564  		if (ret)
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3565  			break;
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3566  
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3567  		ret = put_user(pf->address_type, &usr_ptr->address_type);
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3568  		if (ret)
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3569  			break;
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3570  
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3571  		ret = put_user(1, &usr_ptr->address_precision);
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3572  		if (ret)
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3573  			break;
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3574  
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3575  		usr_ptr++;
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3576  
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3577  		if (i == args->fault_count)
+
+if (++i >= args->fault_count) ?
+
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3578  			break;
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3579  	}
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3580  	spin_unlock(&vm->pfs.lock);
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3581  
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3582  	return ret ? -EFAULT : 0;
+24e54814071dd04 Jonathan Cavitt 2025-03-07  3583  }
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
+
