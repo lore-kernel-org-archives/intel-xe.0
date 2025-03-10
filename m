@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E1F3C282DE
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 22:22:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60661C282DE
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 22:57:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2611510E322;
-	Mon, 10 Mar 2025 22:22:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DDE610E4E3;
+	Mon, 10 Mar 2025 22:57:03 +0000 (UTC)
 Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2326710E0EA;
- Mon, 10 Mar 2025 22:22:47 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4490129538425638754=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8FCB10E43B;
+ Mon, 10 Mar 2025 22:57:02 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Apply_Wa=5F160231?=
- =?utf-8?q?05232_=28rev3=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_GT_initial?=
+ =?utf-8?q?ization_rework=2E?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 10 Mar 2025 22:22:47 -0000
-Message-ID: <174164536712.16312.3573408056464175155@18a75f3d1eae>
+Date: Mon, 10 Mar 2025 22:57:02 -0000
+Message-ID: <174164742268.16215.12904863076772538044@18a75f3d1eae>
 X-Patchwork-Hint: ignore
-References: <20250310185552.352350-1-vinay.belgaumkar@intel.com>
-In-Reply-To: <20250310185552.352350-1-vinay.belgaumkar@intel.com>
+References: <20250310200653.89731-1-dev@lankhorst.se>
+In-Reply-To: <20250310200653.89731-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,170 +40,24 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4490129538425638754==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Apply Wa_16023105232 (rev3)
-URL   : https://patchwork.freedesktop.org/series/145449/
+Series: drm/xe: GT initialization rework.
+URL   : https://patchwork.freedesktop.org/series/146106/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-2789-714f93e4c086c6e07187597bd446752f5f65b544_BAT -> xe-pw-145449v3_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-145449v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_mmap@vram:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][1] ([Intel XE#1008])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145449v3/bat-adlp-vf/igt@xe_mmap@vram.html
-
-  * igt@xe_pat@pat-index-xelp@render:
-    - bat-adlp-vf:        NOTRUN -> [ABORT][2] ([Intel XE#4491]) +1 other test abort
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145449v3/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
-
-  * igt@xe_pm_residency@gt-c6-on-idle:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][3] ([Intel XE#2468])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145449v3/bat-adlp-vf/igt@xe_pm_residency@gt-c6-on-idle.html
-
-  * igt@xe_sriov_flr@flr-vf1-clear:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][4] ([Intel XE#3342])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145449v3/bat-adlp-vf/igt@xe_sriov_flr@flr-vf1-clear.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_intel_bb@intel-bb-blit-none:
-    - bat-adlp-vf:        [ABORT][5] ([Intel XE#4491]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2789-714f93e4c086c6e07187597bd446752f5f65b544/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-none.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145449v3/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-none.html
-
-  
-  [Intel XE#1008]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1008
-  [Intel XE#2468]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2468
-  [Intel XE#3342]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342
-  [Intel XE#4491]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4491
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 9afa34d65af6 drm-tip: 2025y-03m-10d-21h-48m-41s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Defer memirq init until needed
+Applying: drm/xe/sriov: Move VF bootstrap and query_config to vf_guc_init
+Applying: drm/xe: Simplify GuC early initialization
+Applying: drm/xe: Make it possible to read instance0 MCR registers after xe_gt_mcr_init_early
+Applying: drm/xe: Only dump PAT when xe_hw_engines_init_early fails
+Applying: drm/xe/gt: Inline gt_fw_domain_init
+Applying: drm/xe/gt: Inline all_fw_domain_init
+Applying: drm/xe: Split init of xe_gt_init_hwconfig to xe_gt_init and *_early
 
 
-Build changes
--------------
-
-  * Linux: xe-2789-714f93e4c086c6e07187597bd446752f5f65b544 -> xe-pw-145449v3
-
-  IGT_8269: 8269
-  xe-2789-714f93e4c086c6e07187597bd446752f5f65b544: 714f93e4c086c6e07187597bd446752f5f65b544
-  xe-pw-145449v3: 145449v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145449v3/index.html
-
---===============4490129538425638754==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Apply Wa_16023105232 (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145449/">https://patchwork.freedesktop.org/series/145449/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145449v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145449v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2789-714f93e4c086c6e07187597bd446752f5f65b544_BAT -&gt; xe-pw-145449v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-145449v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_mmap@vram:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145449v3/bat-adlp-vf/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1008">Intel XE#1008</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp@render:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145449v3/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4491">Intel XE#4491</a>) +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pm_residency@gt-c6-on-idle:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145449v3/bat-adlp-vf/igt@xe_pm_residency@gt-c6-on-idle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2468">Intel XE#2468</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_sriov_flr@flr-vf1-clear:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145449v3/bat-adlp-vf/igt@xe_sriov_flr@flr-vf1-clear.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342">Intel XE#3342</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_intel_bb@intel-bb-blit-none:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2789-714f93e4c086c6e07187597bd446752f5f65b544/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-none.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4491">Intel XE#4491</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145449v3/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-none.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2789-714f93e4c086c6e07187597bd446752f5f65b544 -&gt; xe-pw-145449v3</li>
-</ul>
-<p>IGT_8269: 8269<br />
-  xe-2789-714f93e4c086c6e07187597bd446752f5f65b544: 714f93e4c086c6e07187597bd446752f5f65b544<br />
-  xe-pw-145449v3: 145449v3</p>
-
-</body>
-</html>
-
---===============4490129538425638754==--
