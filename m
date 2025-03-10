@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5589BC28B30
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 13:12:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F79BC282DE
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 13:17:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE04610E41F;
-	Mon, 10 Mar 2025 13:12:50 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IF4CYs+a";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67B9D10E10C;
- Mon, 10 Mar 2025 13:12:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741612369; x=1773148369;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=NTHGTjRi1exVd897t8sWiUtIxuH4kifkvWoN83TppSU=;
- b=IF4CYs+aq/SE7L0xR7IV8/Z4Gwf6EI9y+Z1EJobquCs1BknWLyg/yoHU
- bnmWcCk1DNrPh7/FbREeJxad67sSD4/absuac/fLzrLvRBJ4CJZ4pXwkT
- 4n25R5JNXUvifJC091aadY7wkeZbQ8x/pVJ3Qq9rYC3zPfF35jspEYiTn
- vmclzfQz+LsC1iK7SGRcZ5WIYhHh0HCxI3lEAU0fOuXvvCJ4GDyBVoVNa
- +W5xwxsNcRx0dXOi5g8WohqjPesdUd6pwaQVa4MCnmQs7dU9rk6zSssiY
- JYYpXp+08BcIMeBQgmU7xjCZgqykKKQMeMTgNKbxSikvc0PYptmYSNI0y g==;
-X-CSE-ConnectionGUID: ZMA+FsONRc+h0e/xPNSnuQ==
-X-CSE-MsgGUID: hBqKnNVbSieFIed/4RBzUw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="67967998"
-X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="67967998"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2025 06:12:49 -0700
-X-CSE-ConnectionGUID: 38xtLZFPT1WizGQpBVIBVA==
-X-CSE-MsgGUID: VueUsPTKT8yHNlL8HDBGCw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="124996968"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.97])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2025 06:12:46 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Matt Roper <matthew.d.roper@intel.com>, Ville =?utf-8?B?U3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>, Gustavo Sousa <gustavo.sousa@intel.com>
-Subject: Re: [PATCH v3 0/3] drm/i915/xe3lpd: Update bandwidth parameters
-In-Reply-To: <20250307-xe3lpd-bandwidth-update-v3-0-58bbe81f65bf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250307-xe3lpd-bandwidth-update-v3-0-58bbe81f65bf@intel.com>
-Date: Mon, 10 Mar 2025 15:12:43 +0200
-Message-ID: <87ldtdghbo.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3746B10E460;
+	Mon, 10 Mar 2025 13:17:23 +0000 (UTC)
+Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1EB810E45D;
+ Mon, 10 Mar 2025 13:17:22 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6055067966704312016=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Prefetch_Support_for_svm_ra?=
+ =?utf-8?q?nges?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 10 Mar 2025 13:17:22 -0000
+Message-ID: <174161264278.14070.7590956521330945885@18a75f3d1eae>
+X-Patchwork-Hint: ignore
+References: <20250310124341.1819568-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20250310124341.1819568-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,58 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 07 Mar 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> Bandwidth parameters for Xe3_LPD have been updated with respect to
-> previous display releases. Encode them into xe3lpd_sa_info and use that
-> new struct.
->
-> Since we are touching intel_bw.c, also take the opportunity convert it
-> to intel_display.
+--===============6055067966704312016==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-In case you didn't notice already, this series and [1] from Ville will
-conflict badly with each other. Please collaborate to sort out which
-series to merge first.
+== Series Details ==
 
-Thanks,
-Jani.
+Series: Prefetch Support for svm ranges
+URL   : https://patchwork.freedesktop.org/series/146079/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-2786-0457c65354c6dfa0e81d9acb5e39e03b59b82d7a_BAT -> xe-pw-146079v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (10 -> 9)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
 
 
-[1] https://lore.kernel.org/r/20250307180139.15744-1-ville.syrjala@linux.intel.com
+Changes
+-------
+
+  No changes found
 
 
->
-> Changes in v2:
->   - Fix typo in patch #2.
->
-> Changes in v3:
-> - Squash patches #1 and #2 into a single one and modify it to convert
->   intel_bw.c internally to intel_display (new patch subject is
->   "drm/i915/display: Convert intel_bw.c internally to intel_display").
-> - Add a new patch #2 to convert intel_bw.c externally to intel_display.
-> - Link to v2: https://lore.kernel.org/r/20250217153550.43909-1-gustavo.sousa@intel.com
->
-> ---
-> Gustavo Sousa (3):
->       drm/i915/display: Convert intel_bw.c internally to intel_display
->       drm/i915/display: Convert intel_bw.c externally to intel_display
->       drm/i915/xe3lpd: Update bandwidth parameters
->
->  drivers/gpu/drm/i915/display/intel_bw.c            | 440 +++++++++++----------
->  drivers/gpu/drm/i915/display/intel_bw.h            |   9 +-
->  drivers/gpu/drm/i915/display/intel_cdclk.c         |   3 +-
->  .../gpu/drm/i915/display/intel_display_driver.c    |   2 +-
->  drivers/gpu/drm/i915/display/skl_watermark.c       |  10 +-
->  drivers/gpu/drm/i915/i915_driver.c                 |   2 +-
->  drivers/gpu/drm/xe/display/xe_display.c            |   2 +-
->  7 files changed, 245 insertions(+), 223 deletions(-)
-> ---
-> base-commit: f811577f424491a57b1e8669bde62998227d6907
-> change-id: 20250228-xe3lpd-bandwidth-update-f011599c0c3e
->
-> Best regards,
+Build changes
+-------------
 
--- 
-Jani Nikula, Intel
+  * IGT: IGT_8267 -> IGT_8268
+  * Linux: xe-2786-0457c65354c6dfa0e81d9acb5e39e03b59b82d7a -> xe-pw-146079v1
+
+  IGT_8267: 3ad1299396859b88c0938d93b38f42e2169cdf41 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8268: a7465d3781d7e7a2374425cf4fecd945ef1e1bf6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2786-0457c65354c6dfa0e81d9acb5e39e03b59b82d7a: 0457c65354c6dfa0e81d9acb5e39e03b59b82d7a
+  xe-pw-146079v1: 146079v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146079v1/index.html
+
+--===============6055067966704312016==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Prefetch Support for svm ranges</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/146079/">https://patchwork.freedesktop.org/series/146079/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146079v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146079v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2786-0457c65354c6dfa0e81d9acb5e39e03b59b82d7a_BAT -&gt; xe-pw-146079v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (10 -&gt; 9)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8267 -&gt; IGT_8268</li>
+<li>Linux: xe-2786-0457c65354c6dfa0e81d9acb5e39e03b59b82d7a -&gt; xe-pw-146079v1</li>
+</ul>
+<p>IGT_8267: 3ad1299396859b88c0938d93b38f42e2169cdf41 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8268: a7465d3781d7e7a2374425cf4fecd945ef1e1bf6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2786-0457c65354c6dfa0e81d9acb5e39e03b59b82d7a: 0457c65354c6dfa0e81d9acb5e39e03b59b82d7a<br />
+  xe-pw-146079v1: 146079v1</p>
+
+</body>
+</html>
+
+--===============6055067966704312016==--
