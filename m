@@ -4,60 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35D4DC35FF1
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 18:59:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78AA2C282DE
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 19:00:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A38910E4CA;
-	Mon, 10 Mar 2025 18:59:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 446AF10E4C4;
+	Mon, 10 Mar 2025 19:00:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eBoEBbaj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IrN1du1g";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B4BD10E4C6;
- Mon, 10 Mar 2025 18:59:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B55AE10E4C5
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Mar 2025 19:00:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741633146; x=1773169146;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=yBDkJzz+97ED++wLG9HjSnvWZORLU0bd5xYyUqDUEBA=;
- b=eBoEBbaj5VYoVq+PRz0snngSaHFTaG7pWwkTMTV4e6Uj27JyknNsY4sX
- 3TTI1G9qrUtOzphIfFxm7Us/ybWM48tyjy801kWg+IQwMx48ldz4CHOvt
- snWRbRyjAPCoHV5abTS2/1yW+YQL7OZvbNGGLvm5mJ7hPh3ZwJwvJFQL9
- yUk/gaj2JQjTL3FJDXHAW/g6gjW73C8sCpmvA7bmt2pkdA4A1iIbepqEa
- d5edpiz+R5vuTRYaFMou1+FibWnRvaA9+v5ahMoK+IqE3k3uS5Rplmh3K
- y3Ofb86v+QgIFbMkoMabs2dAufwc86N1fwvYwmbCD6CdwGQMtnXxqia9O g==;
-X-CSE-ConnectionGUID: bITitlySQX2jw1sXm6vK1w==
-X-CSE-MsgGUID: NUk9Ry/ASOW8SUmRb/yY/A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="42777537"
-X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="42777537"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2025 11:59:06 -0700
-X-CSE-ConnectionGUID: U4rhmORpReKMs/Z3jvCJWQ==
-X-CSE-MsgGUID: 2tPzcwxYT5qu+z7s3Rk4xw==
+ t=1741633206; x=1773169206;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=EVaC2+X8FGQUIQ92kXjnFOv9GxHgDMxPGsNxGQKfdiU=;
+ b=IrN1du1gQmv4nVqSqyBIy6DOCDWNN/nHnev0yhtQwHSSQsHILnuWoyys
+ 4WAWIAgYHtJLZoyHOlZaniCtj/hpkeHP8hOvTcWkBx9GwjayAD3WbdA62
+ 10YNN7qbrWRcIvntgkhBSXNqsECNKY4Xn39Fe4pXgyE1nEJZJyBR4gDVF
+ I5qg2zv2boRaqNts2LmdV6a1seJJJRVMKO0FPfDr7ouYLdXGu9fwY60CO
+ +LxM4rfX7QHb9yKk05fFpxrs3aft1KmAszxwvSkMRG6LmTvxmSZms8rA7
+ U9n97NX8I4enPjFJx5iz6rLM4xsGLYDVvAQqgIVFJsGksU1khK39/uYnY A==;
+X-CSE-ConnectionGUID: Zhfx8BOORGus5FXg8UrM9w==
+X-CSE-MsgGUID: YERZWJQFQR2VAyeQdn2DRg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="45437119"
+X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="45437119"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2025 12:00:03 -0700
+X-CSE-ConnectionGUID: IhtXJlmGQOm26wOo2ajhiQ==
+X-CSE-MsgGUID: hfPtzpQmTXm1Wwc+yOvoag==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="120005949"
-Received: from iherna2-mobl4.amr.corp.intel.com (HELO
- gjsousa-mobl2.corp.amr.intel.com) ([10.125.111.31])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2025 11:59:04 -0700
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Mon, 10 Mar 2025 15:57:59 -0300
-Subject: [PATCH v4 2/3] drm/i915/display: Convert intel_bw.c externally to
- intel_display
+X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="124240310"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.141])
+ by fmviesa003.fm.intel.com with ESMTP; 10 Mar 2025 12:00:01 -0700
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Subject: [PATCH v3] drm/xe: Apply Wa_16023105232
+Date: Mon, 10 Mar 2025 11:55:52 -0700
+Message-Id: <20250310185552.352350-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250310-xe3lpd-bandwidth-update-v4-2-4191964b034d@intel.com>
-References: <20250310-xe3lpd-bandwidth-update-v4-0-4191964b034d@intel.com>
-In-Reply-To: <20250310-xe3lpd-bandwidth-update-v4-0-4191964b034d@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Matt Roper <matthew.d.roper@intel.com>, 
- =?utf-8?q?Ville_Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Gustavo Sousa <gustavo.sousa@intel.com>
-X-Mailer: b4 0.14.2
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,249 +64,207 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We already have internal interface for intel_bw.c converted to use
-intel_display. Now convert the external interface as well.
+The WA requires KMD to disable DOP clock gating during a semaphore
+wait and also ensure that idle delay for every CS is lower than the
+idle wait time in the PWRCTX_MAXCNT register. Default values for these
+registers already comply with this restriction.
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+v2: Store timestamp_base in gt info and other comments (Daniele)
+v3: Skip WA check for VF
+
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c            | 25 +++++++++-------------
- drivers/gpu/drm/i915/display/intel_bw.h            |  9 ++++----
- drivers/gpu/drm/i915/display/intel_cdclk.c         |  3 +--
- .../gpu/drm/i915/display/intel_display_driver.c    |  2 +-
- drivers/gpu/drm/i915/display/skl_watermark.c       | 10 +++++----
- drivers/gpu/drm/i915/i915_driver.c                 |  2 +-
- drivers/gpu/drm/xe/display/xe_display.c            |  2 +-
- 7 files changed, 24 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h |  2 ++
+ drivers/gpu/drm/xe/xe_gt_clock.c         | 38 +++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_gt_types.h         |  2 ++
+ drivers/gpu/drm/xe/xe_hw_engine.c        | 31 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_wa_oob.rules       |  2 ++
+ 5 files changed, 71 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 633b3ad4b6b50b6ff56483eb836ee31d5dfdecbf..629b335a00e376cba619f84344459834b70316e4 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -152,17 +152,17 @@ static bool is_sagv_enabled(struct intel_display *display, u16 points_mask)
- 			      ICL_PCODE_REQ_QGV_PT_MASK);
- }
+diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+index 4f372dc2cb89..067468c62adb 100644
+--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+@@ -130,6 +130,8 @@
+ #define RING_EXECLIST_STATUS_LO(base)		XE_REG((base) + 0x234)
+ #define RING_EXECLIST_STATUS_HI(base)		XE_REG((base) + 0x234 + 4)
  
--int icl_pcode_restrict_qgv_points(struct drm_i915_private *dev_priv,
-+int icl_pcode_restrict_qgv_points(struct intel_display *display,
- 				  u32 points_mask)
++#define RING_IDLEDLY(base)			XE_REG((base) + 0x23C)
++
+ #define RING_CONTEXT_CONTROL(base)		XE_REG((base) + 0x244, XE_REG_OPTION_MASKED)
+ #define	  CTX_CTRL_PXP_ENABLE			REG_BIT(10)
+ #define	  CTX_CTRL_OAC_CONTEXT_ENABLE		REG_BIT(8)
+diff --git a/drivers/gpu/drm/xe/xe_gt_clock.c b/drivers/gpu/drm/xe/xe_gt_clock.c
+index 2a958c92d8ea..0394292e777e 100644
+--- a/drivers/gpu/drm/xe/xe_gt_clock.c
++++ b/drivers/gpu/drm/xe/xe_gt_clock.c
+@@ -16,12 +16,13 @@
+ #include "xe_macros.h"
+ #include "xe_mmio.h"
+ 
++#define f19_2_mhz	19200000
++#define f24_mhz		24000000
++#define f25_mhz		25000000
++#define f38_4_mhz	38400000
++
+ static u32 get_crystal_clock_freq(u32 rpm_config_reg)
  {
--	struct intel_display *display = &dev_priv->display;
-+	struct drm_i915_private *i915 = to_i915(display->drm);
- 	int ret;
+-	const u32 f19_2_mhz = 19200000;
+-	const u32 f24_mhz = 24000000;
+-	const u32 f25_mhz = 25000000;
+-	const u32 f38_4_mhz = 38400000;
+ 	u32 crystal_clock = REG_FIELD_GET(RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK,
+ 					  rpm_config_reg);
  
- 	if (DISPLAY_VER(display) >= 14)
- 		return 0;
- 
- 	/* bspec says to keep retrying for at least 1 ms */
--	ret = skl_pcode_request(&dev_priv->uncore, ICL_PCODE_SAGV_DE_MEM_SS_CONFIG,
-+	ret = skl_pcode_request(&i915->uncore, ICL_PCODE_SAGV_DE_MEM_SS_CONFIG,
- 				points_mask,
- 				ICL_PCODE_REP_QGV_MASK | ADLS_PCODE_REP_PSF_MASK,
- 				ICL_PCODE_REP_QGV_SAFE | ADLS_PCODE_REP_PSF_SAFE,
-@@ -748,10 +748,8 @@ static unsigned int icl_qgv_bw(struct intel_display *display,
- 	return display->bw.max[idx].deratedbw[qgv_point];
- }
- 
--void intel_bw_init_hw(struct drm_i915_private *dev_priv)
-+void intel_bw_init_hw(struct intel_display *display)
- {
--	struct intel_display *display = &dev_priv->display;
--
- 	if (!HAS_DISPLAY(display))
- 		return;
- 
-@@ -941,7 +939,6 @@ static unsigned int icl_max_bw_psf_gv_point_mask(struct intel_display *display)
- static void icl_force_disable_sagv(struct intel_display *display,
- 				   struct intel_bw_state *bw_state)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	unsigned int qgv_points = icl_max_bw_qgv_point_mask(display, 0);
- 	unsigned int psf_points = icl_max_bw_psf_gv_point_mask(display);
- 
-@@ -952,7 +949,7 @@ static void icl_force_disable_sagv(struct intel_display *display,
- 	drm_dbg_kms(display->drm, "Forcing SAGV disable: mask 0x%x\n",
- 		    bw_state->qgv_points_mask);
- 
--	icl_pcode_restrict_qgv_points(i915, bw_state->qgv_points_mask);
-+	icl_pcode_restrict_qgv_points(display, bw_state->qgv_points_mask);
- }
- 
- static int mtl_find_qgv_points(struct intel_display *display,
-@@ -1245,10 +1242,9 @@ intel_bw_dbuf_min_cdclk(struct intel_display *display,
- 	return DIV_ROUND_UP(total_max_bw, 64);
- }
- 
--int intel_bw_min_cdclk(struct drm_i915_private *i915,
-+int intel_bw_min_cdclk(struct intel_display *display,
- 		       const struct intel_bw_state *bw_state)
- {
--	struct intel_display *display = &i915->display;
- 	enum pipe pipe;
- 	int min_cdclk;
- 
-@@ -1264,7 +1260,6 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
- 			    bool *need_cdclk_calc)
- {
- 	struct intel_display *display = to_intel_display(state);
--	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
- 	struct intel_bw_state *new_bw_state = NULL;
- 	const struct intel_bw_state *old_bw_state = NULL;
- 	const struct intel_cdclk_state *cdclk_state;
-@@ -1298,8 +1293,8 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
- 			return ret;
+@@ -40,10 +41,37 @@ static u32 get_crystal_clock_freq(u32 rpm_config_reg)
  	}
+ }
  
--	old_min_cdclk = intel_bw_min_cdclk(dev_priv, old_bw_state);
--	new_min_cdclk = intel_bw_min_cdclk(dev_priv, new_bw_state);
-+	old_min_cdclk = intel_bw_min_cdclk(display, old_bw_state);
-+	new_min_cdclk = intel_bw_min_cdclk(display, new_bw_state);
++/**
++ * xe_gt_timestamp_base - Return the GT timestamp base
++ *
++ * @crystal_clock_freq: clock freq from 0xd00 register
++ * Returns: rounded down time in nsec
++ */
++static u32 xe_gt_timestamp_base(u32 crystal_clock_freq)
++{
++	const u32 ts_base_83 = 83333;
++	const u32 ts_base_52 = 52083;
++	const u32 ts_base_80 = 80000;
++
++	switch (crystal_clock_freq) {
++	case f24_mhz:
++		return DIV_ROUND_CLOSEST(ts_base_83, 1000);
++	case f19_2_mhz:
++	case f38_4_mhz:
++		return DIV_ROUND_CLOSEST(ts_base_52, 1000);
++	case f25_mhz:
++		return DIV_ROUND_CLOSEST(ts_base_80, 1000);
++	default:
++		XE_WARN_ON("NOT_POSSIBLE");
++		return 0;
++	}
++}
++
+ int xe_gt_clock_init(struct xe_gt *gt)
+ {
+ 	u32 c0 = xe_mmio_read32(&gt->mmio, RPM_CONFIG0);
+ 	u32 freq = 0;
++	u32 timestamp_base = 0;
  
  	/*
- 	 * No need to check against the cdclk state if
-@@ -1502,9 +1497,9 @@ static const struct intel_global_state_funcs intel_bw_funcs = {
- 	.atomic_destroy_state = intel_bw_destroy_state,
- };
+ 	 * CTC_MODE[0] = 1 is definitely not supported for Xe2 and later
+@@ -59,6 +87,7 @@ int xe_gt_clock_init(struct xe_gt *gt)
+ 		xe_gt_warn(gt, "CTC_MODE[0] is set; this is unexpected and undocumented\n");
  
--int intel_bw_init(struct drm_i915_private *i915)
-+int intel_bw_init(struct intel_display *display)
- {
--	struct intel_display *display = &i915->display;
-+	struct drm_i915_private *i915 = to_i915(display->drm);
- 	struct intel_bw_state *state;
+ 	freq = get_crystal_clock_freq(c0);
++	timestamp_base = xe_gt_timestamp_base(freq);
  
- 	state = kzalloc(sizeof(*state), GFP_KERNEL);
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
-index 3313e4eac4f00dc5be0a290219c488216a2ae1f8..c18126c83d2e458daaaef0cda82be46974c5d500 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.h
-+++ b/drivers/gpu/drm/i915/display/intel_bw.h
-@@ -12,7 +12,6 @@
- #include "intel_display_power.h"
- #include "intel_global_state.h"
+ 	/*
+ 	 * Now figure out how the command stream's timestamp
+@@ -68,6 +97,7 @@ int xe_gt_clock_init(struct xe_gt *gt)
+ 	freq >>= 3 - REG_FIELD_GET(RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK, c0);
  
--struct drm_i915_private;
- struct intel_atomic_state;
- struct intel_crtc;
- struct intel_crtc_state;
-@@ -72,14 +71,14 @@ intel_atomic_get_new_bw_state(struct intel_atomic_state *state);
- struct intel_bw_state *
- intel_atomic_get_bw_state(struct intel_atomic_state *state);
- 
--void intel_bw_init_hw(struct drm_i915_private *dev_priv);
--int intel_bw_init(struct drm_i915_private *dev_priv);
-+void intel_bw_init_hw(struct intel_display *display);
-+int intel_bw_init(struct intel_display *display);
- int intel_bw_atomic_check(struct intel_atomic_state *state);
--int icl_pcode_restrict_qgv_points(struct drm_i915_private *dev_priv,
-+int icl_pcode_restrict_qgv_points(struct intel_display *display,
- 				  u32 points_mask);
- int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
- 			    bool *need_cdclk_calc);
--int intel_bw_min_cdclk(struct drm_i915_private *i915,
-+int intel_bw_min_cdclk(struct intel_display *display,
- 		       const struct intel_bw_state *bw_state);
- void intel_bw_update_hw_state(struct intel_display *display);
- void intel_bw_crtc_disable_noatomic(struct intel_crtc *crtc);
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 2a8749a0213e74dbd5cf5f8c94ff5e32226c45fe..984fd9f98c9f77777f903456f5838179a774af5e 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -2808,7 +2808,6 @@ static int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_stat
- static int intel_compute_min_cdclk(struct intel_atomic_state *state)
- {
- 	struct intel_display *display = to_intel_display(state);
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	struct intel_cdclk_state *cdclk_state =
- 		intel_atomic_get_new_cdclk_state(state);
- 	const struct intel_bw_state *bw_state;
-@@ -2836,7 +2835,7 @@ static int intel_compute_min_cdclk(struct intel_atomic_state *state)
- 
- 	bw_state = intel_atomic_get_new_bw_state(state);
- 	if (bw_state) {
--		min_cdclk = intel_bw_min_cdclk(dev_priv, bw_state);
-+		min_cdclk = intel_bw_min_cdclk(display, bw_state);
- 
- 		if (cdclk_state->bw_min_cdclk != min_cdclk) {
- 			int ret;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index 31740a677dd807a5cffaad3696268e22b829b70a..5ad2f4090a2db41f984ab3dc0f64e608f0b61fb4 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -259,7 +259,7 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
- 	if (ret)
- 		goto cleanup_vga_client_pw_domain_dmc;
- 
--	ret = intel_bw_init(i915);
-+	ret = intel_bw_init(display);
- 	if (ret)
- 		goto cleanup_vga_client_pw_domain_dmc;
- 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 2d0de1c63308fc293e7f0f13ed6489b18928bf58..008919d4d3792ba1ff38c70418c48241aafe1796 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -249,7 +249,8 @@ static void skl_sagv_post_plane_update(struct intel_atomic_state *state)
- 
- static void icl_sagv_pre_plane_update(struct intel_atomic_state *state)
- {
--	struct drm_i915_private *i915 = to_i915(state->base.dev);
-+	struct intel_display *display = to_intel_display(state);
-+	struct drm_i915_private *i915 = to_i915(display->drm);
- 	const struct intel_bw_state *old_bw_state =
- 		intel_atomic_get_old_bw_state(state);
- 	const struct intel_bw_state *new_bw_state =
-@@ -276,12 +277,13 @@ static void icl_sagv_pre_plane_update(struct intel_atomic_state *state)
- 	 * time. Also masking should be done before updating the configuration
- 	 * and unmasking afterwards.
- 	 */
--	icl_pcode_restrict_qgv_points(i915, new_mask);
-+	icl_pcode_restrict_qgv_points(display, new_mask);
- }
- 
- static void icl_sagv_post_plane_update(struct intel_atomic_state *state)
- {
--	struct drm_i915_private *i915 = to_i915(state->base.dev);
-+	struct intel_display *display = to_intel_display(state);
-+	struct drm_i915_private *i915 = to_i915(display->drm);
- 	const struct intel_bw_state *old_bw_state =
- 		intel_atomic_get_old_bw_state(state);
- 	const struct intel_bw_state *new_bw_state =
-@@ -308,7 +310,7 @@ static void icl_sagv_post_plane_update(struct intel_atomic_state *state)
- 	 * time. Also masking should be done before updating the configuration
- 	 * and unmasking afterwards.
- 	 */
--	icl_pcode_restrict_qgv_points(i915, new_mask);
-+	icl_pcode_restrict_qgv_points(display, new_mask);
- }
- 
- void intel_sagv_pre_plane_update(struct intel_atomic_state *state)
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index ce3cc93ea211bb8c7805d56ae5e67b371fb5fba9..6507dcfe4bf534db83c501606efaf39079fb6b68 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -578,7 +578,7 @@ static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
- 	 */
- 	intel_dram_detect(dev_priv);
- 
--	intel_bw_init_hw(dev_priv);
-+	intel_bw_init_hw(display);
- 
+ 	gt->info.reference_clock = freq;
++	gt->info.timestamp_base = timestamp_base;
  	return 0;
+ }
  
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 0b0aca7a25afd09a9dab089249f89d33dc1c06a9..7fb6028ae73c4ecb283406e953063c62e346812a 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -147,7 +147,7 @@ int xe_display_init_early(struct xe_device *xe)
- 	 */
- 	intel_dram_detect(xe);
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index e3cfb026ac88..7def0959da35 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -121,6 +121,8 @@ struct xe_gt {
+ 		enum xe_gt_type type;
+ 		/** @info.reference_clock: clock frequency */
+ 		u32 reference_clock;
++		/** @info.timestamp_base: GT timestamp base */
++		u32 timestamp_base;
+ 		/**
+ 		 * @info.engine_mask: mask of engines present on GT. Some of
+ 		 * them may be reserved in runtime and not available for user.
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 223b95de388c..47dfc403b71d 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -8,7 +8,9 @@
+ #include <linux/nospec.h>
  
--	intel_bw_init_hw(xe);
-+	intel_bw_init_hw(display);
+ #include <drm/drm_managed.h>
++#include <drm/drm_print.h>
+ #include <uapi/drm/xe_drm.h>
++#include <generated/xe_wa_oob.h>
  
- 	intel_display_device_info_runtime_init(display);
+ #include "regs/xe_engine_regs.h"
+ #include "regs/xe_gt_regs.h"
+@@ -21,6 +23,7 @@
+ #include "xe_gsc.h"
+ #include "xe_gt.h"
+ #include "xe_gt_ccs_mode.h"
++#include "xe_gt_clock.h"
+ #include "xe_gt_printk.h"
+ #include "xe_gt_mcr.h"
+ #include "xe_gt_topology.h"
+@@ -458,6 +461,12 @@ hw_engine_setup_default_state(struct xe_hw_engine *hwe)
+ 		  XE_RTP_ACTIONS(SET(CSFE_CHICKEN1(0), CS_PRIORITY_MEM_READ,
+ 				     XE_RTP_ACTION_FLAG(ENGINE_BASE)))
+ 		},
++		{ XE_RTP_NAME("Disable DOP clk gating"),
++		  XE_RTP_RULES(MEDIA_VERSION_RANGE(1301, 3000), OR,
++			       GRAPHICS_VERSION_RANGE(2001, 3001)),
++		  XE_RTP_ACTIONS(SET(RING_PSMI_CTL(0), RC_SEMA_IDLE_MSG_DISABLE,
++				     XE_RTP_ACTION_FLAG(ENGINE_BASE)))
++		},
+ 	};
  
-
+ 	xe_rtp_process_to_sr(&ctx, engine_entries, ARRAY_SIZE(engine_entries), &hwe->reg_sr);
+@@ -564,6 +573,24 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 	xe_reg_whitelist_process_engine(hwe);
+ }
+ 
++static void check_wa_16023105232(struct xe_gt *gt, struct xe_hw_engine *hwe)
++{
++	u32 idledly, maxcnt;
++	u32 idledly_units_ns = 8 * gt->info.timestamp_base;
++	u32 maxcnt_units_ns = 640;
++
++	if (XE_WA(gt, 16023105232)) {
++		idledly = xe_mmio_read32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base));
++		maxcnt = xe_mmio_read32(&gt->mmio, RING_PWRCTX_MAXCNT(hwe->mmio_base));
++
++		if (drm_WARN_ON(&gt_to_xe(gt)->drm,
++				(idledly * idledly_units_ns) >= (maxcnt * maxcnt_units_ns))) {
++			xe_mmio_write32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base),
++					((maxcnt - 1) * maxcnt_units_ns) / idledly_units_ns);
++		}
++	}
++}
++
+ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 			  enum xe_hw_engine_id id)
+ {
+@@ -604,6 +631,10 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 	if (xe->info.has_usm && hwe->class == XE_ENGINE_CLASS_COPY)
+ 		gt->usm.reserved_bcs_instance = hwe->instance;
+ 
++	/* Ensure IDLEDLY is lower than MAXCNT */
++	if (!IS_SRIOV_VF(xe))
++		check_wa_16023105232(gt, hwe);
++
+ 	return devm_add_action_or_reset(xe->drm.dev, hw_engine_fini, hwe);
+ 
+ err_hwsp:
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index e0c5fa460487..0c738af24f7c 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -53,3 +53,5 @@ no_media_l3	MEDIA_VERSION(3000)
+ 		GRAPHICS_VERSION_RANGE(1270, 1274)
+ 1508761755	GRAPHICS_VERSION(1255)
+ 		GRAPHICS_VERSION(1260), GRAPHICS_STEP(A0, B0)
++16023105232	GRAPHICS_VERSION_RANGE(2001, 3001)
++		MEDIA_VERSION_RANGE(1301, 3000)
 -- 
-2.48.1
+2.38.1
 
