@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BDB7C28B2E
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 12:28:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3CACC2BA1B
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 12:28:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DF5010E423;
-	Mon, 10 Mar 2025 12:28:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5047C10E434;
+	Mon, 10 Mar 2025 12:28:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CK+6vRB9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BGxC65gd";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB14410E42C;
- Mon, 10 Mar 2025 12:28:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DFB110E431;
+ Mon, 10 Mar 2025 12:28:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741609706; x=1773145706;
+ t=1741609710; x=1773145710;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=twWhrfRdE/T3G4gmXvszKBn+QmKwSaG2Wqh/nLwfsbE=;
- b=CK+6vRB9MsZiVpljWWFvBPxESfYfJnz0AQTkdut7wuT9lWSKekeua3HF
- yIJ9/2bkm2R45kGO7GZKEhmMpIhfStuBsTJQlMl4O/CSCDFO13PrVsT/s
- seUPgTCcVtrjjh5BY20FcjgVsgrgkbX7dUSCyIacNjoE3Vq8iv95iHhN/
- QxL9xTzeqgLL3A5zLgjJ8MGdIqFZNlmmGu8LU0LkbT0ZIdtePtMulp4P7
- 6pX+yDyRM5p42yiVH8mGKNCOIM7sELBX3UGHLK0+9F7tA9dcn4o6EzBVp
- WHTadSPGg3ix9esApKHeItEtZMIslUEH7o9/yCoLgeCnPEWalZbIQKvst w==;
-X-CSE-ConnectionGUID: h6PH35V+SDipaad2DK+KPQ==
-X-CSE-MsgGUID: OBQ5lZOvT3+xy24m0dzliA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="65057278"
-X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="65057278"
+ bh=6dZ2OpBbtUUXXDeUeQ9msPYZevlCi12xW4A1jqA90FU=;
+ b=BGxC65gdNPryNH+q96XfuLS6LlEThFI1yc97fH0jczdfURAsDsF73KxL
+ leCV98el3gFrL8rnzcJI1rXqFXYKq2werQENOEkpajTbzGegbEF56T0d2
+ mf3hzeji6AX6EwSwHbqDuGLMiTnlPXnVStAa6VuRUD/H/CxLxUa7GuwSV
+ UsNiMCUv02NXfvdRLNCCeA8B35uIj8MwteszwRZIVwbZcHFFHq+v5+IV/
+ Vfz+zIFYXFKB0cDv/dUdhLFtAHeu0zDYzgCGhs4DV9ZxsMcuBBPv4NZqO
+ IzfmDigoBgJsrfvbOkNirvuiuQKY90MwLPVK2mLwcvSQ38WYwxW9EIfu9 A==;
+X-CSE-ConnectionGUID: lCp/ZiH7QT2yFGzbT4NJFg==
+X-CSE-MsgGUID: yAzb+ZrLQuq2oIDY0TkFjA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="65057285"
+X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="65057285"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2025 05:28:26 -0700
-X-CSE-ConnectionGUID: hDtfVeQjQduS2vGnahXYrQ==
-X-CSE-MsgGUID: c1PXFNvmQcmXWvJdZPbWeA==
+ 10 Mar 2025 05:28:29 -0700
+X-CSE-ConnectionGUID: mkBcVifbSiqESygK37N+og==
+X-CSE-MsgGUID: 9joAI6+hTwyOji3RWLfpaA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="143180515"
+X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="143180528"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2025 05:28:24 -0700
+ 10 Mar 2025 05:28:28 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 06/21] drm/i915/vrr: Use crtc_vtotal for vmin
-Date: Mon, 10 Mar 2025 17:46:00 +0530
-Message-ID: <20250310121615.1077079-7-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 08/21] drm/i915/display: Enable MSA Ignore Timing PAR only
+ when in not fixed_rr mode
+Date: Mon, 10 Mar 2025 17:46:02 +0530
+Message-ID: <20250310121615.1077079-9-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250310121615.1077079-1-ankit.k.nautiyal@intel.com>
 References: <20250310121615.1077079-1-ankit.k.nautiyal@intel.com>
@@ -68,65 +69,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To have fixed refresh rate with VRR timing generator the
-guardband/pipeline full can't be programmed on the fly. So we need to
-ensure that the values satisfy both the fixed and variable refresh
-rates.
+MSA Ignore Timing PAR enable is set in the DP sink when we enable variable
+refresh rate.
 
-Since we compute these value based on vmin, lets set the vmin to
-crtc_vtotal for both fixed and variable timings instead of using the
-current refresh rate based approach. This way the guardband remains
-sufficient for both cases.
+Currently for link training we depend on flipline to decide whether we
+want to ignore the msa timings. With fixed refresh rate we will still
+fill the flipline in all cases whether panel supports VRR or not.
 
-v2: Avoid using vblank delay while computing vtotal, as this comes into
-the picture later. (Ville)
+Change the condition for link training to ignore the msa timings if
+vrr.in_range.
+
+v2: Add more documentation and a #TODO for readout of vrr.in_range.
+(Ville)
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vrr.c | 21 ++++++++++-----------
- 1 file changed, 10 insertions(+), 11 deletions(-)
+ .../gpu/drm/i915/display/intel_dp_link_training.c | 15 ++++++++++++++-
+ 1 file changed, 14 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 7320eb97991f..e0573e28014b 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -247,17 +247,16 @@ void intel_vrr_compute_vrr_timings(struct intel_crtc_state *crtc_state)
- }
- 
- static
--int intel_vrr_compute_vmin(struct intel_connector *connector,
--			   const struct drm_display_mode *adjusted_mode)
-+int intel_vrr_compute_vmin(struct intel_crtc_state *crtc_state)
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+index 2966f5b39392..ea225496a96e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+@@ -711,8 +711,21 @@ void intel_dp_link_training_set_mode(struct intel_dp *intel_dp, int link_rate, b
+ static void intel_dp_update_downspread_ctrl(struct intel_dp *intel_dp,
+ 					    const struct intel_crtc_state *crtc_state)
  {
--	const struct drm_display_info *info = &connector->base.display_info;
--	int vmin;
--
--	vmin = DIV_ROUND_UP(adjusted_mode->crtc_clock * 1000,
--			    adjusted_mode->crtc_htotal * info->monitor_range.max_vfreq);
--	vmin = max_t(int, vmin, adjusted_mode->crtc_vtotal);
--
--	return vmin;
-+	/*
-+	 * To make fixed rr and vrr work seamless the guardband/pipeline full
-+	 * should be set such that it satisfies both the fixed and variable
-+	 * timings.
-+	 * For this set the vmin as crtc_vtotal. With this we never need to
-+	 * change anything to do with the guardband.
-+	 */
-+	return crtc_state->hw.adjusted_mode.crtc_vtotal;
++	 /*
++	  * Currently, we set the MSA ignore bit based on vrr.in_range.
++	  * We can't really read that out during driver load since we don't have
++	  * the connector information read in yet. So if we do end up doing a
++	  * modeset during initial_commit() we'll clear the MSA ignore bit.
++	  * GOP likely wouldn't have set this bit so after the initial commit,
++	  * if there are no modesets and we enable VRR mode seamlessly
++	  * (without a full modeset), the MSA ignore bit might never get set.
++	  *
++	  * #TODO: Implement readout of vrr.in_range.
++	  * We need fastset support for setting the MSA ignore bit in DPCD,
++	  * especially on the first real commit when clearing the inherited flag.
++	  */
+ 	intel_dp_link_training_set_mode(intel_dp,
+-					crtc_state->port_clock, crtc_state->vrr.flipline);
++					crtc_state->port_clock, crtc_state->vrr.in_range);
  }
  
- static
-@@ -304,7 +303,7 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
- 	if (HAS_LRR(display))
- 		crtc_state->update_lrr = true;
- 
--	vmin = intel_vrr_compute_vmin(connector, adjusted_mode);
-+	vmin = intel_vrr_compute_vmin(crtc_state);
- 	vmax = intel_vrr_compute_vmax(connector, adjusted_mode);
- 
- 	if (vmin >= vmax)
+ void intel_dp_link_training_set_bw(struct intel_dp *intel_dp,
 -- 
 2.45.2
 
