@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B208C35FF1
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 17:18:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EE46C282DE
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 17:18:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0901C10E035;
-	Mon, 10 Mar 2025 17:18:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28D4410E495;
+	Mon, 10 Mar 2025 17:18:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Eyq+Ub/g";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RlWwPvl+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A1CF10E00A;
- Mon, 10 Mar 2025 17:18:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C96C10E00A;
+ Mon, 10 Mar 2025 17:18:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741627115; x=1773163115;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=zXtZufdE01uCTsDbOdV53g6vFXpjKX7LTpCayR9+T2A=;
- b=Eyq+Ub/gErmwsg3DkubDMWlMt2EGChlmjepIPri5jrBsqHDOvluZieR4
- Z6/5nGUPuuxBV/OEG9Q3XImhBGSZUjDSR6ZeJctKjAYsQ9Dxz/z6yJjYn
- YSkTa+t9mv6gQ+9IgmXfBpfkUFTLJ3wGiFcB222XBn4E3kUWK5EoSe8oy
- W6+GosncOZXvpw7UmQqD5XUKl5QRUNsaLjXRu5o0fH1n+yHQPLa5NEwmB
- ehIx0V1SrnwQdsAN0G5RvBIillGIigqyy/vRxz+xyR7r42vrIwM0xWOfE
- rUgoliXuS+TvyExkA5E2CZ5rqErhSQz8OFTt9RAeNcTa3RhQvFMPeCVye w==;
-X-CSE-ConnectionGUID: 7e9RnM+0TJeqzGGCpvH+TQ==
-X-CSE-MsgGUID: Bm4dfHfjRCmnMva8Dpwhpw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="42669298"
-X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="42669298"
+ t=1741627116; x=1773163116;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Js3F+xcvqQ/b3H2lkKt5SK4bLmNS8gHwcvM+mikSozk=;
+ b=RlWwPvl+0/wXIunNRF+hDgtdFSNsLrg1LAc1DYZu298JMvUeu1FgHGHa
+ c1jaMmihZF4wS9baO8ojG2RqikixyzxYJ3zAkdddv3ndjc5FhAgt/4uju
+ 7Io0W+CwdvJkdoYNoO5o3aQ9Qlrb9WWC/6JE1agk9wNV5VVC3L1ci7SCH
+ 63Q+OuF4XqcowKJxeyMSFDwrDVhO48ao1zGsw8GhQ7qxyPy2cnB1+wWje
+ DfuEbJ4kkwXZhaftYsnu4kHZ3qfx88tBLpFG7/4mNrmnt3Kcl+XuFXxSu
+ NSCdu07m8nvbYwixkwDfE2ALjxTFQPpC7JnkdaZwMW7iUhmy2xMIjQtzH g==;
+X-CSE-ConnectionGUID: LkXAH32wTPaA4jxSdPVrHQ==
+X-CSE-MsgGUID: nUAqcQpzRW+qWAUUv2DlRQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="42669302"
+X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="42669302"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Mar 2025 10:18:35 -0700
-X-CSE-ConnectionGUID: NMRGoMKeRRagJ61o52Kf2g==
-X-CSE-MsgGUID: h+gOgrBcQc67FWJkLkTV0g==
+X-CSE-ConnectionGUID: N5cQE5IcT+Cm0I/57EKjcA==
+X-CSE-MsgGUID: N6C4bHqBTROEzj2bcFd5Ew==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="125097613"
+X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="125097624"
 Received: from dut4432lnl.fm.intel.com ([10.105.10.85])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Mar 2025 10:18:34 -0700
@@ -47,10 +47,12 @@ Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
  joonas.lahtinen@linux.intel.com, matthew.brost@intel.com,
  jianxun.zhang@intel.com, shuicheng.lin@intel.com,
  dri-devel@lists.freedesktop.org
-Subject: [PATCH v7 0/6] drm/xe/xe_vm: Implement xe_vm_get_faults_ioctl
-Date: Mon, 10 Mar 2025 17:18:28 +0000
-Message-ID: <20250310171834.78299-1-jonathan.cavitt@intel.com>
+Subject: [PATCH v7 4/6] drm/xe/uapi: Define drm_xe_vm_get_faults
+Date: Mon, 10 Mar 2025 17:18:32 +0000
+Message-ID: <20250310171834.78299-5-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250310171834.78299-1-jonathan.cavitt@intel.com>
+References: <20250310171834.78299-1-jonathan.cavitt@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,81 +69,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add additional information to each VM so they can report up to the last
-50 seen pagefaults.  Only failed pagefaults are saved this way, as
-successful pagefaults should recover and not need to be reported to
-userspace.
+Add initial declarations for the drm_xe_vm_get_faults ioctl.
 
-Additionally, add a new ioctl - xe_vm_get_faults_ioctl - that allows the
-user to query these pagefaults
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+---
+ include/uapi/drm/xe_drm.h | 49 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 49 insertions(+)
 
-v2: (Matt Brost)
-- Break full ban list request into a separate property.
-- Reformat drm_xe_vm_get_property struct.
-- Remove need for drm_xe_faults helper struct.
-- Separate data pointer and scalar return value in ioctl.
-- Get address type on pagefault report and save it to the pagefault.
-- Correctly reject writes to read-only VMAs.
-- Miscellaneous formatting fixes.
-
-v3: (Matt Brost)
-- Only allow querying of failed pagefaults
-
-v4:
-- Remove unnecessary size parameter from helper function, as it
-  is a property of the arguments. (jcavitt)
-- Remove unnecessary copy_from_user (Jainxun)
-- Set address_precision to 1 (Jainxun)
-- Report max size instead of dynamic size for memory allocation
-  purposes.  Total memory usage is reported separately.
-
-v5:
-- Return int from xe_vm_get_property_size (Shuicheng)
-- Fix memory leak (Shuicheng)
-- Remove unnecessary size variable (jcavitt)
-
-v6:
-- Free vm after use (Shuicheng)
-- Compress pf copy logic (Shuicheng)
-- Update fault_unsuccessful before storing (Shuicheng)
-- Fix old struct name in comments (Shuicheng)
-- Keep first 50 pagefaults instead of last 50 (Jianxun)
-- Rename ioctl to xe_vm_get_faults_ioctl (jcavitt)
-
-v7:
-- Avoid unnecessary execution by checking MAX_PFS earlier (jcavitt)
-- Fix double-locking error (jcavitt)
-- Assert kmemdump is successful (Shuicheng)
-- Repair and move fill_faults break condition (Dan Carpenter)
-- Free vm after use (jcavitt)
-- Combine assertions (jcavitt)
-- Expand size check in xe_vm_get_faults_ioctl (jcavitt)
-- Remove return mask from fill_faults, as return is already -EFAULT or 0
-  (jcavitt)
-
-Signed-off-by: Jonathan Cavitt <joanthan.cavitt@intel.com>
-Suggested-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
-CC: Zhang Jianxun <jianxun.zhang@intel.com>
-CC: Shuicheng Lin <shuicheng.lin@intel.com>
-
-Jonathan Cavitt (6):
-  drm/xe/xe_gt_pagefault: Disallow writes to read-only VMAs
-  drm/xe/xe_gt_pagefault: Migrate pagefault struct to header
-  drm/xe/xe_vm: Add per VM pagefault info
-  drm/xe/uapi: Define drm_xe_vm_get_faults
-  drm/xe/xe_gt_pagefault: Add address_type field to pagefaults
-  drm/xe/xe_vm: Implement xe_vm_get_faults_ioctl
-
- drivers/gpu/drm/xe/xe_device.c       |   3 +
- drivers/gpu/drm/xe/xe_gt_pagefault.c |  76 +++++++++--------
- drivers/gpu/drm/xe/xe_gt_pagefault.h |  29 +++++++
- drivers/gpu/drm/xe/xe_vm.c           | 119 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vm.h           |   8 ++
- drivers/gpu/drm/xe/xe_vm_types.h     |  20 +++++
- include/uapi/drm/xe_drm.h            |  49 +++++++++++
- 7 files changed, 271 insertions(+), 33 deletions(-)
-
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 616916985e3f..90c2fcdbd5c1 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -81,6 +81,7 @@ extern "C" {
+  *  - &DRM_IOCTL_XE_EXEC
+  *  - &DRM_IOCTL_XE_WAIT_USER_FENCE
+  *  - &DRM_IOCTL_XE_OBSERVATION
++ *  - %DRM_IOCTL_XE_VM_GET_FAULTS
+  */
+ 
+ /*
+@@ -102,6 +103,7 @@ extern "C" {
+ #define DRM_XE_EXEC			0x09
+ #define DRM_XE_WAIT_USER_FENCE		0x0a
+ #define DRM_XE_OBSERVATION		0x0b
++#define DRM_XE_VM_GET_FAULTS		0x0c
+ 
+ /* Must be kept compact -- no holes */
+ 
+@@ -117,6 +119,7 @@ extern "C" {
+ #define DRM_IOCTL_XE_EXEC			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, struct drm_xe_exec)
+ #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
+ #define DRM_IOCTL_XE_OBSERVATION		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OBSERVATION, struct drm_xe_observation_param)
++#define DRM_IOCTL_XE_VM_GET_FAULTS		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_GET_FAULTS, struct drm_xe_vm_get_faults)
+ 
+ /**
+  * DOC: Xe IOCTL Extensions
+@@ -1189,6 +1192,52 @@ struct drm_xe_vm_bind {
+ 	__u64 reserved[2];
+ };
+ 
++struct xe_vm_fault {
++	/** @address: Address of the fault, if relevant */
++	__u64 address;
++#define DRM_XE_FAULT_ADDRESS_TYPE_NONE_EXT		0
++#define DRM_XE_FAULT_ADDRESS_TYPE_READ_INVALID_EXT	1
++#define DRM_XE_FAULT_ADDRESS_TYPE_WRITE_INVALID_EXT	2
++	/** @address_type: , if relevant */
++	__u32 address_type;
++	/**
++	 * @address_precision: Precision of faulted address, if relevant.
++	 * Currently only SZ_4K.
++	 */
++	__u32 address_precision;
++	/** @reserved: MBZ */
++	__u64 reserved[3];
++};
++
++/**
++ * struct drm_xe_vm_get_faults - Input of &DRM_IOCTL_XE_VM_GET_FAULTS
++ *
++ * The user provides a VM ID, and the ioctl will
++ *
++ */
++struct drm_xe_vm_get_faults {
++	/** @extensions: Pointer to the first extension struct, if any */
++	__u64 extensions;
++
++	/** @vm_id: The ID of the VM to query the properties of */
++	__u32 vm_id;
++
++	/** @size: Size to allocate for @ptr */
++	__u32 size;
++
++	/** @fault_count: Number of faults to be returned */
++	__u32 fault_count;
++
++	/** @pad: MBZ */
++	__u32 pad;
++
++	/** @reserved: MBZ */
++	__u64 reserved[2];
++
++	/** @faults: Pointer to user-defined array of xe_vm_fault of flexible size */
++	__u64 faults;
++};
++
+ /**
+  * struct drm_xe_exec_queue_create - Input of &DRM_IOCTL_XE_EXEC_QUEUE_CREATE
+  *
 -- 
 2.43.0
 
