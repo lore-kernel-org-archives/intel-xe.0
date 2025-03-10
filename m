@@ -4,182 +4,183 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D783AC282DE
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 05:36:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B12F2C282DE
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 05:46:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C1FB10E0DB;
-	Mon, 10 Mar 2025 05:36:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5361710E0BF;
+	Mon, 10 Mar 2025 05:46:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b7FMxtgm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j51hjna8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6E5310E0BF
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Mar 2025 05:36:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AAB410E0BF
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Mar 2025 05:46:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741584987; x=1773120987;
+ t=1741585603; x=1773121603;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=7UHno1SQANU+Zgsw1cr69E3Fv4+VJnwakzh2mKoWeGo=;
- b=b7FMxtgmYeZzAX+B4CSmdg7tm0F+oCI8ZQnBXtaZZu23AS/QyR0uSsLH
- Qoipo+Zg9MzS0IiYqGAUu4mySULRwvm3INBsJSuyyaRu+zM3+snmDTr7m
- UgIzwjoiux/YOxr0TacfejDuhWldbQMNi2Ow3Irf9XLmoEcOzliYfbo/m
- r+baPJcdwYMLJrdq3kzgk1ars9PRTWLFR4CF1V1rhxZ9Sv+EUxcv2r/CY
- Ia2TiJTZisD6+woimiY032bvifVaFKYNTlROigtTG0x2qXCch3EGKLLyZ
- Wqviji93o7jctZ6W/GndrVqG3WlRzgAefWuq2zlAVPl2S7M0qwFaEEp2d g==;
-X-CSE-ConnectionGUID: Z4NC3NpZR5ypo/QdZnuGFw==
-X-CSE-MsgGUID: NMIDfgdKQ2+To6T3U/sPjw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11368"; a="59973484"
-X-IronPort-AV: E=Sophos;i="6.14,235,1736841600"; d="scan'208";a="59973484"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2025 22:36:26 -0700
-X-CSE-ConnectionGUID: 9XwAgXd0SoSqtuyNt1AQAw==
-X-CSE-MsgGUID: s78VEFRmQIWMTuLNmnVAnA==
+ bh=F29N1YNbcCsIvZMYKXMRD0RDzs/3lMOzLDLGsUVE6Q8=;
+ b=j51hjna8yhpHfjRC1q3kzP4y+ISwTe5Ne/BGkMOwCkBarfK8tKaQPf73
+ nDaUuOeKxaA2QLerFBvbALrUAMaRxMNg2cDdbBh4Dzji+o5OQnRFisGVR
+ F3RZ3oXsncjLYLk64Ve5JkLkHkpy37FmiR6uYhQH3S6Le9ePmeFsKiNjD
+ eGQr00/sYkH56F7cz7eIoer4DUOfN3/RkAgMklAQHoC/fY112Lxfx1V5I
+ mgrZm6zLmtmi2mQKLqyokt/KElp2+6q1BaYvQX1xEA9oPJJIeL4L64n4P
+ ryyFhZVVggKc/bXrS8anQapbMrjiVfFBWtyeTo7/q7nhfVi7Cg8a7+Jbh g==;
+X-CSE-ConnectionGUID: s2gjvOwnTmCck0WKI/AIQQ==
+X-CSE-MsgGUID: ItaUecSWT+Ckn7La0J65KA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11368"; a="42756601"
+X-IronPort-AV: E=Sophos;i="6.14,235,1736841600"; d="scan'208";a="42756601"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2025 22:46:42 -0700
+X-CSE-ConnectionGUID: LaDuEKqhSlSh6JIMPDbxQQ==
+X-CSE-MsgGUID: T1YXamt5REKQfNUNh+2IJA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,235,1736841600"; d="scan'208";a="150825228"
+X-IronPort-AV: E=Sophos;i="6.14,235,1736841600"; d="scan'208";a="124054770"
 Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 09 Mar 2025 22:36:25 -0700
+ by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 09 Mar 2025 22:46:29 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
  ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Sun, 9 Mar 2025 22:36:24 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ 15.1.2507.44; Sun, 9 Mar 2025 22:46:28 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Sun, 9 Mar 2025 22:36:24 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.175)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.2.1544.14 via Frontend Transport; Sun, 9 Mar 2025 22:46:28 -0700
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.42) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Sun, 9 Mar 2025 22:36:24 -0700
+ 15.1.2507.44; Sun, 9 Mar 2025 22:46:26 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HHhEuW6YDaq0J5JwpEMye3o8R7vnJVu6hlpieFUwLiskWuIjN08jHTepW3ayEvF3GHk19z+aUo7ebrGnTbLW+PzxD9GDkhNa4D6cdV4TktKNI0LICQdlClvkZVkH7ODUFjy5XcYeqXupKsrh4V+fOKm0Luuo9NUlKDYnnlmKnq9m5pxha8UNaF46uIYE5jBCLsDzv2i33jn/fURn/GP3jT59pHnu2NQ6mmPFUfpNU5j/7QJZbDMKVtsNb5KSUgdO47jr80hwrI6QW4wzscb3rY5fjXu2Spc3RTkyB5kGteNEx1cOKwv2eOvKPXOLoFWbPBzYbBtTkMHh2kC2T9KYWQ==
+ b=eAGQedCj8NZd9ID4JgZlQR9IwpPeCG2asNyz+Z5tIVHdA1oJcy6Qx3xmC40ipT6CzumjR2wiDnYf+ie+Umk/ieL03WUADBYX4nKkIcuSAKrIjfiHqJWVWRGQwpnYu4H336+QejJpWzVoySn49eWJL2h984is5xDUhorsc3IO+31OHEuxu2CRaqHtAWpxpQkHDP00mZp5iCKTeoKCa5PqiD0QWuv4WNUZjYb6ccnDX02hgr9ySP3gCfdhlKUUVcBh1wNWw5ActJ50PCIbJa4/MG13Epuxs1O4SOesa7lwsiTPZXzTEhsd9KlZIYENrrf+F8ACTBCkfUD7hTrJoF6u8A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DARE+9iXZmlu3fldcs4UgWSVoY60k/culVa4M8X6Cow=;
- b=J6QkIC2QidjzddjMXcKcSuzDe8tf9B7yWKtcTYqQUhaUCi72TfK0uwDVls1gludGaSeu5zch9hEklok4kpwm5kZmh/XkgUbGTOJVAYN1bZiwk9vDrOaRX9FIXdelE7js1R1rmppcArh7JUcJV8Vq5YvJxfqs/pRw60iIoyYz/57Cll/GseIiAv3+I4V0tiyDysSRMn2slsreVWKXe6W82zCZLFRNR1Mj0mhsZBMyxu+OqzbZqMVvcGcPSLL86Lj4ZjU9+iIIRcdla8ml7foYVyCcUcgSEoI33YFJjHusSVrmehzCK33VPHVP2n9v6YLdc9vfu4nuCdfCT6UQxU/12A==
+ bh=2Lc+6jLtP+AYwfxxBy/71r5QHxmpoQyP6gcKpPuZDHc=;
+ b=GPR/Dpryu5vPN4KLqEmNhpOTtk5ErGIWMKAVi5lu5vR1evC2oGHiM0ZsXdR90j6vP+deW8x89GD9oRqCGv9KGNGWwoYnitzWwnh5Ejd7kAYHS1N2Hrq/pfsBRa2FkrSbYdDSKyOlTwVRnKNfJd+z31TBMaSO70U5+LCBeLNiG8dra2ON7M+ipL+PrJWnOmLpSIuCpE08eO9S8UMpyKS0ZHggMurfrIYJqjFayZQRZFFDEWiacLjQWx4uU4m9JdxrNOWGVnVDQJlorg6gadr3IMK9N7j2rKJa4qNxEONVcz1ccHcIsFsLVZ126hE41f9/H+ROccDdFjxIlCOlqJN7Ow==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
- CY8PR11MB7873.namprd11.prod.outlook.com (2603:10b6:930:79::12) with
+ CO1PR11MB4836.namprd11.prod.outlook.com (2603:10b6:303:9d::22) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8511.26; Mon, 10 Mar 2025 05:36:17 +0000
+ 15.20.8511.26; Mon, 10 Mar 2025 05:46:24 +0000
 Received: from DS0PR11MB7958.namprd11.prod.outlook.com
  ([fe80::d3ba:63fc:10be:dfca]) by DS0PR11MB7958.namprd11.prod.outlook.com
  ([fe80::d3ba:63fc:10be:dfca%6]) with mapi id 15.20.8511.025; Mon, 10 Mar 2025
- 05:36:17 +0000
-Message-ID: <be1de046-1795-40a7-ba0d-750851061ddd@intel.com>
-Date: Mon, 10 Mar 2025 11:06:11 +0530
+ 05:46:22 +0000
+Message-ID: <698a48c6-502e-4b84-ab27-f2c2a053e71b@intel.com>
+Date: Mon, 10 Mar 2025 11:16:17 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] RFC drm/xe: Enable configfs support for survivability
- mode
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH 1/3] drm/xe: Add support for per-function engine activity
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
- <matthew.d.roper@intel.com>, <lucas.demarchi@intel.com>
-References: <20250307142446.1790715-1-riana.tauro@intel.com>
- <20250307142446.1790715-3-riana.tauro@intel.com> <Z8sKXQWCa5eJrAqG@intel.com>
+ <lucas.demarchi@intel.com>, <michal.wajdeczko@intel.com>,
+ <vinay.belgaumkar@intel.com>
+References: <20250304095743.3274062-1-riana.tauro@intel.com>
+ <20250304095743.3274062-2-riana.tauro@intel.com>
+ <Z8o23UNwOUaqarsH@orsosgc001>
 Content-Language: en-US
 From: Riana Tauro <riana.tauro@intel.com>
-In-Reply-To: <Z8sKXQWCa5eJrAqG@intel.com>
+In-Reply-To: <Z8o23UNwOUaqarsH@orsosgc001>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA0PR01CA0089.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:ae::15) To DS0PR11MB7958.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA0PR01CA0015.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:80::7) To DS0PR11MB7958.namprd11.prod.outlook.com
  (2603:10b6:8:f9::19)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|CY8PR11MB7873:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6060d40d-acba-43f7-dac1-08dd5f957a9c
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|CO1PR11MB4836:EE_
+X-MS-Office365-Filtering-Correlation-Id: 69831481-0748-4648-6a70-08dd5f96e39a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?QUdkS2UvRWpIaVlUVkJRLzFyWXlyNG10UEtsMmt1WFJEdDAvYU1nTEh5OXlZ?=
- =?utf-8?B?U0dvbkFmZW1SZTNUNC9hSmV6TFhRczUxU3ZGZllreFJBc2N2RFlNdUxJM2JV?=
- =?utf-8?B?Q0VyTHNRVjBDNkZJYlFweFYyRkJUNWwwOVU0NlY5M1YzaGxTY1hkVVorcnBX?=
- =?utf-8?B?SWdjaHpqU1lrWGF5M0dLcDhSNFVGUEp6ckxiblQ0TjkraFBOb0E0c2U5NnR1?=
- =?utf-8?B?YXFPbS9OdlZQU0YxQWFqL0JEbGRvMW05TVhkRVpaYitaUytwVTRWZkkyYko5?=
- =?utf-8?B?Nlp2a2R0OXUzcWJtVGJSdnhBQzZqTGprZS9Na01YQ0w0cXFLWmJkMW9jTTkr?=
- =?utf-8?B?SWUzZnhaT2JGNCtjUmVRYzhYTjZ5U3NmaG5Mdk9KUkpTQnVxSUlicWh2SFNW?=
- =?utf-8?B?NWYvbnZua09tTTlaRDRDcjJWUk0zV2x1QUtRWjgxem9RbzMyRXZYZjV0Q2dV?=
- =?utf-8?B?bEJJSGJ2Rm55clVBZnZYN0s4R2NpYVNKWTU0a2xNVXNpMHdMMVFIT3JVLzZI?=
- =?utf-8?B?ekRGaFVOanRPcmwwNzZ6azUxa3lXZkw4Q2wwSHNJRDc5RlRtWHFwaTNyQnJm?=
- =?utf-8?B?VXZ6b0xEMUFwTHBibURsTFZMR3AwSTFQTTZLVENheEk1bVV4UFI1czZ5YnRF?=
- =?utf-8?B?OVVXQjd1Ly92Vm1IMWxSZUY2R051Vll6aEJId0Nvdk1PUHIyblVINU52c1Va?=
- =?utf-8?B?clA3WEZ2VitsbURYckY0V0l4aEJEczV4SlphWjNGc3U1RnNmQjhkaE5DK0Rq?=
- =?utf-8?B?KzJ1SmNaVXRHUXYxV3BBNGRFVlVVeWRjdW12TXZyc3d4ZVVBZTZtUWMwY0dm?=
- =?utf-8?B?a01uRng5L1dvVzBRcDlMTFpqYktOTFptY2Y2VVQ4cjlYRGJhK0RMZGtkV3FP?=
- =?utf-8?B?OTBGRTczWk5kVGtKWlNqYnc3ZjNWN2ZvSG1sSUJudi9rUzlpMUUwUUMrU1NU?=
- =?utf-8?B?a0UzM1UrK2l2Q1hmTVpYQjhWTDh6VGFwbktBYWpKNS9XS2hEeUJmUTNpKzhL?=
- =?utf-8?B?VVJ2eFVjdENwM2IybEQ3b2h5R1FRK1dDdHJRNTRUTGVSNFIvTlk3S1VEYTBQ?=
- =?utf-8?B?NThTdnZtWG1Mdk5qKy9oTGhrWDVXbEp2Q0JoYTkzQ1BJbFA0cWY4MlJFb1BJ?=
- =?utf-8?B?MnQ4TnNwdkJMaHBidTNiYkVURDBZc2RIZjAzeXU3UDkwR3ErMmowZXFrQnE0?=
- =?utf-8?B?ZmpiaUlmekdNUFRuT2V2WEkyMmVLU2xUZXBtQjRNMFFBbTNaeXRpUHc2MzFL?=
- =?utf-8?B?NjBxQXlEaDdqdW9Yem1QVUFYN05HWWJqQ3RONjA3SWsrYitzS2ptWUVpMUU3?=
- =?utf-8?B?OFgwYkNIeXVtVjJKTHpRRWRpaCtQUTJ0Rk1tZExVR0tiTEtZN3pRL1hna0ow?=
- =?utf-8?B?WjlyTEJVSklnWUY4ZFdib3g5M25ZcDQxekZxSC9qdGIrUmdVMWpOWnU4anZ2?=
- =?utf-8?B?SEtOTWF3OFJvT2VjVk5pZHRZUEVLUEN1dUZHYkUySnphY3pVbzdCdHZQU1ly?=
- =?utf-8?B?TFJOcExyRFFCUk92ZUJtRTNkSVhJeHhqcVEvSmFHaEhOeXl3QjlMc20wUHhO?=
- =?utf-8?B?Q2pqUWJEcUZGNFMwRW1WZ2NyRmVDSmNnVXlyZ3A3VUdyTE0wd01MdUFFMUkx?=
- =?utf-8?B?NjdSSURSK0hpTzBHTkhkcVFBQWtOSnFPQU1UeGZ2V3B2TmxMRmdHMERyeEQz?=
- =?utf-8?B?TmVPbFk1SkMxd0h1YURLc2hRR1BCNGtTTVVJVS9vbytveStuc2x2NFVjQThG?=
- =?utf-8?B?UmU3bzdVeCt6T0psbTNacmExQXlJRmlWMlJYeml6SjRUVEg0cGVYaWVwMHVn?=
- =?utf-8?B?VkJHbjN0cjBTYW9pRjRIdlFHNXcxRTN5TlV3ZVpOMGk5UFZ1YTBjcFZCOVlw?=
- =?utf-8?Q?JUnxZPre+CIFI?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?NC91UUt2Wi9BMGhHcTNYY2tmSERyZSttWnBsRnhGV1FRTU40M3lValdtWHE1?=
+ =?utf-8?B?MXNHQ2xnT2l2M0FYU2lwaW1jVkZlbm9DOEJWSE1EU1RwZE5sRlA2KzIxYUtM?=
+ =?utf-8?B?L0NWaytwZE9DQkZ3bzdjVjJrdzdBY1Z1S0hzdmdyelkzK1hSb0ROOFR5MEg4?=
+ =?utf-8?B?Smx0ZmxoQ3U5bWVLRkE0QnZlTjlIUXdFdjJYajlxM1ZKVW1iM3FuUERPRW5Z?=
+ =?utf-8?B?L1ZFTXRZUUZ6ZjRJNHkzRENlcmhkNFdOa3MwMjJMRUhIT1FkbUlsVFhZRjZq?=
+ =?utf-8?B?dDMrNlVMNXI1NHhuOEFHQzlDejVxZVFNbnRyNzRqcjZHd2NOV1hzclBXMEpJ?=
+ =?utf-8?B?czFxTEZkV0dRSzZwa1l4ZlJrZ0puN2RobHg4ZXVqMVl5NWpFcnpicm0rSUpI?=
+ =?utf-8?B?TzJtZVpUblVlZ1FmaW9Gb1ArOGlmM3NuQVhGNkpaZ2RVbklwZW9UV3RBbjFj?=
+ =?utf-8?B?S0Ywb3RoUkp0U1RNTXVLdHZBdVZIWFhzWURkSjJKSkw2b2JDSTdhMlAxaTJG?=
+ =?utf-8?B?STV4bElYN0tWZGw3MnFreE8xY01mQVVjcTNxc01jRm5UV3FDYUx2YTFzZ3Z1?=
+ =?utf-8?B?TnpldWlPMW8wTGZlRCtlQlFsckFmbUdleXIwSXk3bTJwQXNYVmhJbnRPeXBq?=
+ =?utf-8?B?VWkxZTEwTk1zSkZ4ZUF5dlJKYzZnRC9jdmlhTjFtcFE0cTNNMktlNUxUWWI2?=
+ =?utf-8?B?QnVnd0tUNkJJSFBCMUw3NTZHR1A4TUdnK1o2NlQvZk40WVNmcGZsaEdlZ3VB?=
+ =?utf-8?B?QllmQUltNStYOTU0ampKZTBvU29sa2NNSVVNQWFVdFhaYWRmTkJvMmZVVUdY?=
+ =?utf-8?B?SzBiZnhXeWlIV0JiUnJSQzFQNUZ3dTRDRFNBaFB0WmVhSnVmVGRtYjErTXlU?=
+ =?utf-8?B?SXNvbFdmMnVuSW9ka2xEcnJiZG1jb1FhMHNydlIxYUptQVNsajk1aGFyQm5I?=
+ =?utf-8?B?MEZ6V0hrVEJUN0hZQThSbkhteXBZaXlXY2ZzclBxRlVSV3ZHUzVmK0E3dHg0?=
+ =?utf-8?B?bjkwN2JvWmppRktEbS9jdlh0TW1mSmtNYXJ4NGlleFNEZ3RHQmNMclpzNFE1?=
+ =?utf-8?B?NHdyOEFKTUhRL210aHJmVFk4Q0V0TlZoVjRwZkFobzg1NCtKa1ZNWUtNQ04x?=
+ =?utf-8?B?MHVZVmM0dEIyMjdWaUx1WXBlNnI0akxudzdLR3c0eCtSY3hmNjJNWDNqVENz?=
+ =?utf-8?B?WElQeWphZkhmcGlYekt4MGYyVHlrZHZRZnBiNC9MUXI2ZktFbHdJMEpQcU1s?=
+ =?utf-8?B?S0EzcGV5a2xpanpleXIzTWpRdXBzSTZEeDFTRmRZNXgyb1ZDc293UlVDU0VH?=
+ =?utf-8?B?QzB3SlB5d2lzTVhEaUxJSkJmR3VyWnNraVRFSW1NS2NzVitzRVhJQ3JqM2Ja?=
+ =?utf-8?B?WnZzQU9DRUp2Ni9Gc0RCbE1BeG1oYlNiY3Rvam1kMVpaeVhtT1UwQURPemh2?=
+ =?utf-8?B?Q2lKTjN6czJCQmYwRjVLbVdRdlZUcmQxOXV5WHFJVlRlVWRnQWRkbDVqWHVK?=
+ =?utf-8?B?SExTTEdKbFVzdlEzblR2S1drTnl0S3BKTkd2MnQ4d3BQQzU4MmVRcnN2TTUy?=
+ =?utf-8?B?bHlhYzE0OGJGVEE4c1ZqaWZrblhtRitpSkZqUTFzL3pOTkQ1di9MUmtQZ2Vy?=
+ =?utf-8?B?K2dFSTdIdUEyTCt3bDhlWURGTkttMWxrcS91d0paSDJUZUt5M2JrZTJhUFhU?=
+ =?utf-8?B?SHZRTFVQT1FvUXJpcHdPSlFBZDJYSE5udzUrcjFCQXdDMStCeXc2eG54QWp6?=
+ =?utf-8?B?UDdwcjZnMXZKWElnVmtDUCs5S2pqQjNYYXRSdUoxQlhTVnlWS0MzZUhjMHhh?=
+ =?utf-8?B?bWdONUh0WDZlWE9lQzVuWGsvamprb2ZqVDhycVBvaTR6RlNNMU5mWjVHMGNP?=
+ =?utf-8?Q?vTaPWzO/+vUMO?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WklMZGZHMHpuR3JjTnlnWnRFeHlZcjhCb3hSRm90b1RBYkFHMmovWUdFWEU5?=
- =?utf-8?B?TWRJbFR0NUlFbldldS9vSXBvdi9RWHJaQ1ZHU1gxYjZ4MzA0ZWs5ZjcxUFhi?=
- =?utf-8?B?THRITElvTU9mczA0c1NtNmsycFdOOHgvS0xCMEZiTm1OV0R0L2JnUnFrRGNk?=
- =?utf-8?B?L1BESVZxM1IrRzhHVHZkcG9tSllLaDBjZXlVUWpjaGRVd2FJUFREVkI1L0Qx?=
- =?utf-8?B?c0I0NzVHNzYyYWphSzhvazJHY2MreUszTGlCZFU1R3cyUHNzcnRrOUZTZ25B?=
- =?utf-8?B?Zk5IYkswMXp5Z2gvTlo1YWI1WkJRTkptcCtOVWVkTjludG9JNnpSUCtselZz?=
- =?utf-8?B?SVZuZ2JTTW9LaFVVeDhhVzJPY0E3cHBMeVIyRUh6SUlxcU03R2cvQVZ2VTli?=
- =?utf-8?B?L3hzL1JJZGdidnJaQkFSYzRVSExmVVJFS28yZ0N5RHAzVjh4YytPTFdWbXpC?=
- =?utf-8?B?V2J1eUxwNGZWODcvdlk2ZVlEaDM2bEsxZDBLV29VRFR4M1VqMnVRYjdUNnQ4?=
- =?utf-8?B?ZG9NNTB4L05oY0FCUnFYdmVHREhBUDFObVM2MW5NU1diZ0NOeVVmKzQ2ZzJS?=
- =?utf-8?B?WFA5RStMemF2VE1CWVRzRzFWRlRmdHdzU2lhOUo2NVFuUVpMOVYrV3djRndK?=
- =?utf-8?B?RFNsdFRIbzJmN0tQOVN6Q1EraXBiVWY5ZS9pcWVRcTFoQldpK0Y4RkJ4b2JI?=
- =?utf-8?B?cXRNZEdMZG02Z0RBUUowb0JCdHBvTWpOZDZmUFJNZ1h1Rnpla2NzRWJxY3dH?=
- =?utf-8?B?SzNHdFU0QWFtbTR2eS9xNXJnOXk4ZW1JNGFPY1RsSjA0anFTaVVUcXp5SVdZ?=
- =?utf-8?B?eUVtMGpvOFM3UE5GM0Z4b2YzNlg4YVE5K1ZoR2psM2ppQW5XUW9mQjUwT1Rk?=
- =?utf-8?B?dERoZ0dPekNGeTNxL3ZHaVJvemk4SlI0eDd0aFRBUUc4RkV6OVAxWlEwS3ll?=
- =?utf-8?B?S3VSTW9ab0taUFh2YU5ydklHdjVTVFZEQWYyb2NCQ0VsOTlsNkJLYlRya2Rt?=
- =?utf-8?B?Umw5azc3eER2cnV0ZHNTKzFDcHFzMTlzeUVyUmFaZlg2NnZNeXB2QmRZZ0NU?=
- =?utf-8?B?M0lxQVdFRzZoSDB5WW92U1kzRjFnVktrcGUrY3J3ZzdYVDFWSUhvNEx5TitX?=
- =?utf-8?B?VUN2K1lyNlJyUUZ6eXpETzlaTGUwWW1XNUJrU09JMWpDM0M2Mno2REhzYitM?=
- =?utf-8?B?NXMyb1QzYTcvWHlxOXhtWDB4eUV2c0xSQ3hrdGRsVEVPTTdKcFhOZHRrY2F0?=
- =?utf-8?B?V0U3bFc2bHJuTnVURTFiQUZSRzkyTk9ocWJUTWRkUHYvR1M3eHdyRDRQRm5G?=
- =?utf-8?B?V3Nxb3duTUtCY295UVRaR1NkUWg3aitNV2dhK3Z5OWxlK2MxaForTHY5NW5t?=
- =?utf-8?B?WWw1VkwvRTAvVHRBOHdMWDgzMEhxRFd6azIvSGhENitoSGxQbTJqdXdVY1ZZ?=
- =?utf-8?B?Y0dnZnVEb3hiT3YyRThkN2ZsUFhIRDNtMVRXTy9WTWhwT1BKOW85UVZ0UWNn?=
- =?utf-8?B?N1dqQmVqd2xLMjg0b3l4NzJKNXNnWWtlRUNwNXpKblprUW13K2RkTzJQclVN?=
- =?utf-8?B?S1lHK0ZxSHNoZW5xRWcrTUlGanRLS0YyR3BNZEpuWm8wVUJiZkw0Z2lGbkRJ?=
- =?utf-8?B?a1pGUGloRVdUUlkxc1FZOHhVODFVOENRcllheFB1MHVFK25FUTY2N3RxWXJn?=
- =?utf-8?B?Mi9ESy8rQ2hXUUo4bHFROHczbDhXMS9hU2VkbkRtNGFMeVhsOXJBYkg5TXQ2?=
- =?utf-8?B?eEhoam4weFpvQms2Rkd2T3haZ1paWkYrb2FuVVZTa3hkVG5pK2tGM1Bkdzlm?=
- =?utf-8?B?QnpHWFJWYXpxODQ2anpzU2xNNjRYS3kwN1hPUTR0MXQyeWxzc2ZweUxyYyty?=
- =?utf-8?B?RDVDSng2S2p2RzNVaUtkVmU3dzI5VzErRW05RTBrVCtHN1NJcy9LQjhuU1NE?=
- =?utf-8?B?Z0s4UTV6UFhRRUxTWlBabEZFTXpBZFlpakZEL0lIaGE4SmpPWFFKMkw5dzV6?=
- =?utf-8?B?YXhJSDZyd1lISzhJaWpSc1hMU1FHTTVCclpaaHVrRldZYXQ1NjJOck4ydTVX?=
- =?utf-8?B?dGF3K2NRWUt0L2QvMU5oL05OSWhOQmJHVmEvQ2pnRU8xWU0xVlRFaFMxdTNF?=
- =?utf-8?Q?TCySbXeOfE8toEqCYQutGwi27?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6060d40d-acba-43f7-dac1-08dd5f957a9c
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RWRmamxveVh2Ty9oV1Q1bUcwVm5ING1uSTBrbFJIWUlsVVJLOEJwMVdHK3ZE?=
+ =?utf-8?B?MFYzYkQ1Qy80bUNRNWszMEo3YU4yK25pQ2RHMjZhZmhPUDhuWmxOanVVNWtS?=
+ =?utf-8?B?ZDZzWHNiZHBSdFh0ekQvT29KNG84cEx0TlpSbGRUNmxqR3JhOGRwM2hyMVZu?=
+ =?utf-8?B?bWRrYXpHZVlmZ091R0ZXenBvdmhoWmRNeEt1ck5qcmJLU2JPRTBnUVFoclVK?=
+ =?utf-8?B?OEFsZTlqcmYvOVJUdWpsTno5YnpEYjFaRXhXVTRnQjlyckRxbjJFQmNDNjAw?=
+ =?utf-8?B?elFFQ3VXakM1c1RlSWE4QWhUQWlBU1orb25PQUdtVTk3eWZVMHBGTXdUZkt6?=
+ =?utf-8?B?Z200R3VhTTVZODc2bnRZR0RzcjUrdlJOZlhVNS9udW5wME9HNzlDSTNwdzRr?=
+ =?utf-8?B?L0U1R1VZQ1p5VUFUSGpZWFRQTzdYZnZobFNxR0tqL0o4ZWJmK1NiaHJCSitx?=
+ =?utf-8?B?ZjlhM1FLVUt0OGp1ZG5MbXJOWXpLUll6b3Bpa3NSeWo2NFRDSTdKRXdkSmZR?=
+ =?utf-8?B?eEJrTFJwWXRFWGlBK1kwSW5IWE9nUVE1bEcrUXZHa2RMRTA3TWJ0YzNUWFpG?=
+ =?utf-8?B?VlZxRjUrVmdjaVVFVHpQN3RBVUZzNHRzVk5aVW5KZzBPWWFKeXNlZTJuMVJF?=
+ =?utf-8?B?dmU2VCs2cS9YR1FyZmczYjV3dkthbUp0YmljekxFaGg1dXlKUGx0OHJ3YVY5?=
+ =?utf-8?B?NWE0emtkTzRYV2t5dDFWS2owekNMbDVTc3BSVkVFaitEUk1ySHJBZnZFSEt2?=
+ =?utf-8?B?SS9zSk5KemEvUXRsMFN6REFjVDJmSTZXMUxTOEV4QXVFYWNxRlhZQ2ZVL2hT?=
+ =?utf-8?B?ekhTb3BrdlNRQ2NHSndJakNkVGR2STkweTZ2alpPVy85V0syaGVqOTJaOFNv?=
+ =?utf-8?B?QmZZL2RqbTJwTnlnQTdjV2VTbU5ZR3hiS1ROWklMSzRBUjVMVHBML3hYMmFO?=
+ =?utf-8?B?bTVvcWQ1UVVWQ3VzeEkvVTIwSGVpcExzMUtQS1NCRzlQOVBwY1ovR2ZtTDY5?=
+ =?utf-8?B?dmJURzY5OTZlV0RKb2pMeFY3OE5jOXovc21VMkFENFp2V25KNmhIcjRBeU1r?=
+ =?utf-8?B?SFVFVDFNbmErZW9HcHJmYTJGS0VCTkExV3hNaHhtRzYzemlxVUNYS2ZxZkRE?=
+ =?utf-8?B?aURyTVlqbnVrWjNobXRMT212V200ZHRnZm54bzVGemVHRjg0Sjg1eXZBcjlE?=
+ =?utf-8?B?THBDVVZ1SEhPRW92VXhRTlNpeTRSdEVNKy9FWWEzSzcrR3BKL2xweURVZVJR?=
+ =?utf-8?B?UEx5cWVDWEQ2OEI5d3B4R1FxYVEyNDdGTE1SZWM2aVdBa1N2TVBKY1phTmxY?=
+ =?utf-8?B?aVRQNU54K08vWm00VnRkaitkWkpZOTZJVzFzWndibk9LRHlEV3hpcDFVQWZJ?=
+ =?utf-8?B?ODNubUNaTm01RWJoQVRpRGZMYU56cnUvZUNKZlNxQkNmcUovRWtpTEFTUGFH?=
+ =?utf-8?B?U2hwRnNJcVFHOUlKTThYVWdHWWVDNzRJNkk3Q2E3WnlNNlJSYWRzQnZnWmxS?=
+ =?utf-8?B?ZkpiR3pXNkVWbEp1QjNrN1pBL2J0Kzg1OHB4ZEdibDNIbHU4MFJ0OWpCSDZN?=
+ =?utf-8?B?eGdCU0l2SFQ3WVRTRFA1QmpWSHZ1TUtPcDFGdW9ZdlVBTllxczc2elhBcWVB?=
+ =?utf-8?B?WnVxUERyd29DWWpxMXg3RDA3ZVJaWEY1SGxyNklwYmhDZmVMSjErZC90Vkdz?=
+ =?utf-8?B?WGVyVlNNK3ovWmNuWUxGblhHTTl0bkx0Vm1CZTV0UDM5YVBMeDNOaU9wTEll?=
+ =?utf-8?B?THBkLzZidDJ4VnZ4azFhT2IvSnc4VVdFQk82OHZybDNKa3BweUE0UnRXNDF5?=
+ =?utf-8?B?VWhDMDBlUTNvMHRJODFnNU1vc2FsRzBTMkR2YVIzNklWS3duRlNOd0ZWbGh6?=
+ =?utf-8?B?aEgvbnFmQTB2ZFFvblhOM2I1STIrNlVQNVNFdzFobnBiWm16aGFYSThqeVUy?=
+ =?utf-8?B?TTBmazlzZzRxemxYQUZoZzMwdFEzNEp5Y1NaWXozSnpEekV4M0hwZXgwTWpY?=
+ =?utf-8?B?VStLTHNmL1FMam1nb1J0RTU3TjJMRWNmamtDY2RiY1FOUWNsSlVid2hES0Jw?=
+ =?utf-8?B?a1FVV0NQTUpNT0JjRFZqZnZ3T1V1Q3VMam5UM0t5UTFqeHlHeHJyd0FYcEZB?=
+ =?utf-8?Q?8ZPm/ozClNL5R3vJGTOzFjCSF?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 69831481-0748-4648-6a70-08dd5f96e39a
 X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2025 05:36:16.9679 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2025 05:46:22.6635 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UpxODNd+bbPH708artxkdqVPvP+hmKDH0lFsVJYxGEGq4ry48l2yasJvpwCGwt5wYPvgCMKhnL7TlB9XXVOdzw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7873
+X-MS-Exchange-CrossTenant-UserPrincipalName: h0LCkV4mXpOINDZagTlNoUWXV6EZY5hLD8KlWmLUnvE4XOGTEemdnyxkSlrddptepxz6qp+cRn8Y5R+0Pk7c8w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4836
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -195,249 +196,543 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi Umesh
 
-Hi Rodrigo
 
-On 3/7/2025 8:31 PM, Rodrigo Vivi wrote:
-> On Fri, Mar 07, 2025 at 07:54:45PM +0530, Riana Tauro wrote:
->> Register a configfs subsystem called 'xe' to userspace that allows
->> users to modify the exposed attributes. Expose survivability mode as
->> an attribute that can be modified manually. This is useful if
->> pcode fails to detect survivability mode and for validation
+On 3/7/2025 5:29 AM, Umesh Nerlige Ramappa wrote:
+> On Tue, Mar 04, 2025 at 03:27:41PM +0530, Riana Tauro wrote:
+>> Add support for function level engine activity stats.
+>> Engine activity stats are enabled when VF's are enabled
 >>
->> To enable survivability mode for a card,
+>> v2: remove unnecessary initialization
+>>    move offset to improve code readability (Umesh)
+>>    remove global for function engine activity (Lucas)
 >>
->> echo "domain:bus:dev.fn" > /sys/bus/pci/drivers/xe/unbind
->> echo "domain:bus:dev.fn" > sys/kernel/config/xe/survivability_mode
->> echo "domain:bus:dev.fn" > /sys/bus/pci/drivers/xe/bind
-> 
-> This is very great! Perhaps at some point we will still need
-> the module parameter in this specific survivability case.
-> But this configfs is more than needed and wanted for this and
-> many other cases.
-> 
+>> v3: fix commit message (Michal)
 >>
+>> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 >> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 >> ---
->>   drivers/gpu/drm/xe/xe_configfs.c           | 22 ++++++++++++++++++++++
->>   drivers/gpu/drm/xe/xe_configfs.h           |  6 +++++-
->>   drivers/gpu/drm/xe/xe_pci.c                |  8 ++++----
->>   drivers/gpu/drm/xe/xe_survivability_mode.c | 21 +++++++++++++++++++--
->>   4 files changed, 50 insertions(+), 7 deletions(-)
+>> drivers/gpu/drm/xe/abi/guc_actions_abi.h      |   1 +
+>> drivers/gpu/drm/xe/xe_guc_engine_activity.c   | 200 +++++++++++++++---
+>> drivers/gpu/drm/xe/xe_guc_engine_activity.h   |   7 +-
+>> .../gpu/drm/xe/xe_guc_engine_activity_types.h |   8 +-
+>> drivers/gpu/drm/xe/xe_pmu.c                   |   5 +-
+>> 5 files changed, 188 insertions(+), 33 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
->> index 8c5f248e466d..ce9f3757100f 100644
->> --- a/drivers/gpu/drm/xe/xe_configfs.c
->> +++ b/drivers/gpu/drm/xe/xe_configfs.c
->> @@ -6,6 +6,7 @@
->>   #include <linux/configfs.h>
->>   #include <linux/init.h>
->>   #include <linux/module.h>
->> +#include <linux/pci.h>
->>   
->>   #include "xe_configfs.h"
->>   #include "xe_module.h"
->> @@ -28,6 +29,27 @@ void xe_configfs_clear_survivability_mode(void)
->>   	xe_modparam.survivability_mode = NULL;
->>   }
->>   
->> +bool xe_configfs_survivability_mode_enabled(struct pci_dev *pdev)
->> +{
->> +	unsigned int domain, bus, slot, function;
->> +	int ret = 0;
+>> diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/ 
+>> drm/xe/abi/guc_actions_abi.h
+>> index ec516e838ee8..448afb86e05c 100644
+>> --- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+>> +++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+>> @@ -141,6 +141,7 @@ enum xe_guc_action {
+>>     XE_GUC_ACTION_CLIENT_SOFT_RESET = 0x5507,
+>>     XE_GUC_ACTION_SET_ENG_UTIL_BUFF = 0x550A,
+>>     XE_GUC_ACTION_SET_DEVICE_ENGINE_ACTIVITY_BUFFER = 0x550C,
+>> +    XE_GUC_ACTION_SET_FUNCTION_ENGINE_ACTIVITY_BUFFER = 0x550D,
+>>     XE_GUC_ACTION_NOTIFY_MEMORY_CAT_ERROR = 0x6000,
+>>     XE_GUC_ACTION_REPORT_PAGE_FAULT_REQ_DESC = 0x6002,
+>>     XE_GUC_ACTION_PAGE_FAULT_RES_DESC = 0x6003,
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity.c b/drivers/ 
+>> gpu/drm/xe/xe_guc_engine_activity.c
+>> index 2a457dcf31d5..37edc0414231 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_engine_activity.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
+>> @@ -17,36 +17,61 @@
+>> #include "xe_hw_engine.h"
+>> #include "xe_map.h"
+>> #include "xe_mmio.h"
+>> +#include "xe_sriov_pf_helpers.h"
+>> #include "xe_trace_guc.h"
+>>
+>> #define TOTAL_QUANTA 0x8000
+>>
+>> -static struct iosys_map engine_activity_map(struct xe_guc *guc, 
+>> struct xe_hw_engine *hwe)
+>> +static struct iosys_map engine_activity_map(struct xe_guc *guc, 
+>> struct xe_hw_engine *hwe,
+>> +                        unsigned int index)
+>> {
+>>     struct xe_guc_engine_activity *engine_activity = &guc- 
+>> >engine_activity;
+>> -    struct engine_activity_buffer *buffer = &engine_activity- 
+>> >device_buffer;
+>> +    struct engine_activity_buffer *buffer;
+>>     u16 guc_class = xe_engine_class_to_guc_class(hwe->class);
+>>     size_t offset;
+>>
+>> -    offset = offsetof(struct guc_engine_activity_data,
+>> +    if (engine_activity->num_functions) {
+>> +        buffer = &engine_activity->function_buffer;
+>> +        offset = sizeof(struct guc_engine_activity_data) * index;
+>> +    } else {
+>> +        buffer = &engine_activity->device_buffer;
+>> +        offset = 0;
+>> +    }
 >> +
->> +	if (!xe_modparam.survivability_mode)
->> +		goto err;
+>> +    offset += offsetof(struct guc_engine_activity_data,
+>>               engine_activity[guc_class][hwe->logical_instance]);
+>>
+>>     return IOSYS_MAP_INIT_OFFSET(&buffer->activity_bo->vmap, offset);
+>> }
+>>
+>> -static struct iosys_map engine_metadata_map(struct xe_guc *guc)
+>> +static struct iosys_map engine_metadata_map(struct xe_guc *guc,
+>> +                        unsigned int index)
+>> {
+>>     struct xe_guc_engine_activity *engine_activity = &guc- 
+>> >engine_activity;
+>> -    struct engine_activity_buffer *buffer = &engine_activity- 
+>> >device_buffer;
+>> +    struct engine_activity_buffer *buffer;
+>> +    size_t offset;
+>>
+>> -    return buffer->metadata_bo->vmap;
+>> +    if (engine_activity->num_functions) {
+>> +        buffer = &engine_activity->function_buffer;
+>> +        offset = sizeof(struct guc_engine_activity_metadata) * index;
+>> +    } else {
+>> +        buffer = &engine_activity->device_buffer;
+>> +        offset = 0;
+>> +    }
 >> +
->> +	ret = sscanf(xe_modparam.survivability_mode, "%04x:%02x:%02x.%x", &domain, &bus,
->> +		     &slot, &function);
->> +	if (ret != 4)
->> +		goto err;
+>> +    return IOSYS_MAP_INIT_OFFSET(&buffer->metadata_bo->vmap, offset);
+>> }
+>>
+>> static int allocate_engine_activity_group(struct xe_guc *guc)
+>> {
+>>     struct xe_guc_engine_activity *engine_activity = &guc- 
+>> >engine_activity;
+>>     struct xe_device *xe = guc_to_xe(guc);
+>> -    u32 num_activity_group = 1; /* Will be modified for VF */
+>> +    u32 num_activity_group;
 >> +
->> +	if ((pci_domain_nr(pdev->bus) == domain) && (pdev->bus->number == bus) &&
->> +	    (PCI_SLOT(pdev->devfn) == slot) && (PCI_FUNC(pdev->devfn) == function))
->> +		return true;
+>> +    /*
+>> +     * An additional activity group is allocated for PF
+>> +     */
+>> +    num_activity_group = IS_SRIOV_PF(xe) ? 
+>> xe_sriov_pf_get_totalvfs(xe) + 1 : 1;
+>>
+>>     engine_activity->eag  = drmm_kcalloc(&xe->drm, num_activity_group,
+>>                          sizeof(struct engine_activity_group), 
+>> GFP_KERNEL);
+>> @@ -60,10 +85,11 @@ static int allocate_engine_activity_group(struct 
+>> xe_guc *guc)
+>> }
+>>
+>> static int allocate_engine_activity_buffers(struct xe_guc *guc,
+>> -                        struct engine_activity_buffer *buffer)
+>> +                        struct engine_activity_buffer *buffer,
+>> +                        int count)
+>> {
+>> -    u32 metadata_size = sizeof(struct guc_engine_activity_metadata);
+>> -    u32 size = sizeof(struct guc_engine_activity_data);
+>> +    u32 metadata_size = sizeof(struct guc_engine_activity_metadata) * 
+>> count;
+>> +    u32 size = sizeof(struct guc_engine_activity_data) * count;
+>>     struct xe_gt *gt = guc_to_gt(guc);
+>>     struct xe_tile *tile = gt_to_tile(gt);
+>>     struct xe_bo *bo, *metadata_bo;
+>> @@ -118,10 +144,11 @@ static bool is_engine_activity_supported(struct 
+>> xe_guc *guc)
+>>     return true;
+>> }
+>>
+>> -static struct engine_activity *hw_engine_to_engine_activity(struct 
+>> xe_hw_engine *hwe)
+>> +static struct engine_activity *hw_engine_to_engine_activity(struct 
+>> xe_hw_engine *hwe,
+>> +                                unsigned int index)
+>> {
+>>     struct xe_guc *guc = &hwe->gt->uc.guc;
+>> -    struct engine_activity_group *eag = &guc->engine_activity.eag[0];
+>> +    struct engine_activity_group *eag = &guc- 
+>> >engine_activity.eag[index];
+>>     u16 guc_class = xe_engine_class_to_guc_class(hwe->class);
+>>
+>>     return &eag->engine[guc_class][hwe->logical_instance];
+>> @@ -138,9 +165,10 @@ static u64 cpu_ns_to_guc_tsc_tick(ktime_t ns, u32 
+>> freq)
+>> #define read_metadata_record(xe_, map_, field_) \
+>>     xe_map_rd_field(xe_, map_, 0, struct guc_engine_activity_metadata, 
+>> field_)
+>>
+>> -static u64 get_engine_active_ticks(struct xe_guc *guc, struct 
+>> xe_hw_engine *hwe)
+>> +static u64 get_engine_active_ticks(struct xe_guc *guc, struct 
+>> xe_hw_engine *hwe,
+>> +                   unsigned int index)
+>> {
+>> -    struct engine_activity *ea = hw_engine_to_engine_activity(hwe);
+>> +    struct engine_activity *ea = hw_engine_to_engine_activity(hwe, 
+>> index);
+>>     struct guc_engine_activity *cached_activity = &ea->activity;
+>>     struct guc_engine_activity_metadata *cached_metadata = &ea->metadata;
+>>     struct xe_guc_engine_activity *engine_activity = &guc- 
+>> >engine_activity;
+>> @@ -151,8 +179,8 @@ static u64 get_engine_active_ticks(struct xe_guc 
+>> *guc, struct xe_hw_engine *hwe)
+>>     u64 active_ticks, gpm_ts;
+>>     u16 change_num;
+>>
+>> -    activity_map = engine_activity_map(guc, hwe);
+>> -    metadata_map = engine_metadata_map(guc);
+>> +    activity_map = engine_activity_map(guc, hwe, index);
+>> +    metadata_map = engine_metadata_map(guc, index);
+>>     global_change_num = read_metadata_record(xe, &metadata_map, 
+>> global_change_num);
+>>
+>>     /* GuC has not initialized activity data yet, return 0 */
+>> @@ -194,9 +222,9 @@ static u64 get_engine_active_ticks(struct xe_guc 
+>> *guc, struct xe_hw_engine *hwe)
+>>     return ea->total + ea->active;
+>> }
+>>
+>> -static u64 get_engine_total_ticks(struct xe_guc *guc, struct 
+>> xe_hw_engine *hwe)
+>> +static u64 get_engine_total_ticks(struct xe_guc *guc, struct 
+>> xe_hw_engine *hwe, unsigned int index)
+>> {
+>> -    struct engine_activity *ea = hw_engine_to_engine_activity(hwe);
+>> +    struct engine_activity *ea = hw_engine_to_engine_activity(hwe, 
+>> index);
+>>     struct guc_engine_activity_metadata *cached_metadata = &ea->metadata;
+>>     struct guc_engine_activity *cached_activity = &ea->activity;
+>>     struct iosys_map activity_map, metadata_map;
+>> @@ -205,8 +233,8 @@ static u64 get_engine_total_ticks(struct xe_guc 
+>> *guc, struct xe_hw_engine *hwe)
+>>     u64 numerator;
+>>     u16 quanta_ratio;
+>>
+>> -    activity_map = engine_activity_map(guc, hwe);
+>> -    metadata_map = engine_metadata_map(guc);
+>> +    activity_map = engine_activity_map(guc, hwe, index);
+>> +    metadata_map = engine_metadata_map(guc, index);
+>>
+>>     if (!cached_metadata->guc_tsc_frequency_hz)
+>>         cached_metadata->guc_tsc_frequency_hz = 
+>> read_metadata_record(xe, &metadata_map,
+>> @@ -245,10 +273,35 @@ static int enable_engine_activity_stats(struct 
+>> xe_guc *guc)
+>>     return xe_guc_ct_send_block(&guc->ct, action, ARRAY_SIZE(action));
+>> }
+>>
+>> -static void engine_activity_set_cpu_ts(struct xe_guc *guc)
+>> +static int enable_function_engine_activity_stats(struct xe_guc *guc, 
+>> bool enable)
+>> {
+>>     struct xe_guc_engine_activity *engine_activity = &guc- 
+>> >engine_activity;
+>> -    struct engine_activity_group *eag = &engine_activity->eag[0];
+>> +    u32 metadata_ggtt_addr = 0, ggtt_addr = 0, num_functions = 0;
+>> +    struct engine_activity_buffer *buffer = &engine_activity- 
+>> >function_buffer;
+>> +    u32 action[6];
+>> +    int len = 0;
 >> +
->> +err:
-> 
-> if nothing else is here, please just return false everywhere instead of the goto
-sure will fix this
-> 
->> +	return false;
+>> +    if (enable) {
+>> +        metadata_ggtt_addr = xe_bo_ggtt_addr(buffer->metadata_bo);
+>> +        ggtt_addr = xe_bo_ggtt_addr(buffer->activity_bo);
+>> +        num_functions = engine_activity->num_functions;
+>> +    }
+>> +
+>> +    action[len++] = XE_GUC_ACTION_SET_FUNCTION_ENGINE_ACTIVITY_BUFFER;
+>> +    action[len++] = num_functions;
+>> +    action[len++] = metadata_ggtt_addr;
+>> +    action[len++] = 0;
+>> +    action[len++] = ggtt_addr;
+>> +    action[len++] = 0;
+>> +
+>> +    /* Blocking here to ensure the buffers are ready before reading 
+>> them */
+>> +    return xe_guc_ct_send_block(&guc->ct, action, ARRAY_SIZE(action));
 >> +}
 >> +
->>   static ssize_t survivability_mode_store(struct config_item *item, const char *page, size_t len)
->>   {
->>   	char *survivability_mode;
->> diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
->> index 491629a2ca53..b03f4c7d0f54 100644
->> --- a/drivers/gpu/drm/xe/xe_configfs.h
->> +++ b/drivers/gpu/drm/xe/xe_configfs.h
->> @@ -5,8 +5,12 @@
->>   #ifndef _XE_CONFIGFS_H_
->>   #define _XE_CONFIGFS_H_
->>   
->> +#include <linux/types.h>
+>> +static void engine_activity_set_cpu_ts(struct xe_guc *guc, unsigned 
+>> int index)
+>> +{
+>> +    struct xe_guc_engine_activity *engine_activity = &guc- 
+>> >engine_activity;
+>> +    struct engine_activity_group *eag = &engine_activity->eag[index];
+>>     int i, j;
+>>
+>>     for (i = 0; i < GUC_MAX_ENGINE_CLASSES; i++)
+>> @@ -265,34 +318,106 @@ static u32 gpm_timestamp_shift(struct xe_gt *gt)
+>>     return 3 - REG_FIELD_GET(RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK, reg);
+>> }
+>>
+>> +static bool is_function_valid(struct xe_guc *guc, unsigned int fn_id)
+>> +{
+>> +    struct xe_device *xe = guc_to_xe(guc);
+>> +    struct xe_guc_engine_activity *engine_activity = &guc- 
+>> >engine_activity;
 >> +
->> +struct pci_dev;
+>> +    if (!IS_SRIOV_PF(xe) && fn_id)
+>> +        return false;
 >> +
->>   int xe_configfs_init(void);
->>   void xe_configfs_exit(void);
->>   void xe_configfs_clear_survivability_mode(void);
->> -
->> +bool xe_configfs_survivability_mode_enabled(struct pci_dev *pdev);
->>   #endif
->> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
->> index 4d982a5a4ffd..d0f66cc08aa5 100644
->> --- a/drivers/gpu/drm/xe/xe_pci.c
->> +++ b/drivers/gpu/drm/xe/xe_pci.c
->> @@ -17,6 +17,7 @@
->>   
->>   #include "display/xe_display.h"
->>   #include "regs/xe_gt_regs.h"
->> +#include "xe_configfs.h"
->>   #include "xe_device.h"
->>   #include "xe_drv.h"
->>   #include "xe_gt.h"
->> @@ -815,10 +816,9 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->>   	 * mei. If early probe fails, check if survivability mode is flagged by
->>   	 * HW to be enabled. In that case enable it and return success.
->>   	 */
->> -	if (err) {
->> -		if (xe_survivability_mode_required(xe) &&
->> -		    xe_survivability_mode_enable(xe))
->> -			return 0;
->> +	if (xe_configfs_survivability_mode_enabled(pdev) || err) {
+>> +    if (engine_activity->num_functions && fn_id >= engine_activity- 
+>> >num_functions)
+>> +        return false;
+>> +
+>> +    return true;
+>> +}
+>> +
+>> +static int engine_activity_disable_function_stats(struct xe_guc *guc, 
+>> bool enable)
 > 
-> no strong feelings here, but:
-> 
-> I believe it is likely better to keep the current code and add
-> the 2 new lines, instead of mixing err and new condition.
-> 
-> 
-> 	if (err) {
-> 		if (xe_survivability_mode_required(xe) &&
-> 		    xe_survivability_mode_enable(xe))
-> 			return 0;
-> 	}
-> 	if (xe_configfs_survivability_mode_enabled(pdev) || err)
-> 	   		return 0;
-> 
-> 
-> or perhaps encapsulate all of that in a static function and then here
-> just:
-> 
->         if(check_for_survivability(err))
-> 		return 0;
-Will try this.
-> 
-> the function can be better to extend to the module parameter
-> to be used in boot if/when needed.
-> 
-> but, really up to you... as I said, no strong feelings...
-> 
->> +		if (xe_survivability_mode_required(xe))
->> +			return xe_survivability_mode_enable(xe);
->>   
->>   		return err;
->>   	}
->> diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
->> index d939ce70e6fa..5b60cbf8f7cb 100644
->> --- a/drivers/gpu/drm/xe/xe_survivability_mode.c
->> +++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
->> @@ -10,6 +10,7 @@
->>   #include <linux/pci.h>
->>   #include <linux/sysfs.h>
->>   
->> +#include "xe_configfs.h"
->>   #include "xe_device.h"
->>   #include "xe_gt.h"
->>   #include "xe_heci_gsc.h"
->> @@ -28,8 +29,10 @@
->>    * This is implemented by loading the driver with bare minimum (no drm card) to allow the firmware
->>    * to be flashed through mei and collect telemetry. The driver's probe flow is modified
->>    * such that it enters survivability mode when pcode initialization is incomplete and boot status
->> - * denotes a failure. The driver then  populates the survivability_mode PCI sysfs indicating
->> - * survivability mode and provides additional information required for debug
->> + * denotes a failure. Survivability mode can also be enabled manually by writing the pci address of
->> + * the card to the xe configfs attribute. This is useful in cases where pcode does not detect
->> + * failure and for validation.
-> 
-> or even for IFR (in-field-repair) use cases, where the repair or flash can be
-> performed in a single GPU card without impacting the usage of other GPUs
-> in the same node.
-> 
-> or something like that...
-Will add the IFR case
-> 
->> The driver then  populates the survivability_mode PCI sysfs
->> + * indicating survivability mo
-> de and provides additional information required for debug
->>    *
->>    * KMD exposes below admin-only readable sysfs in survivability mode
->>    *
->> @@ -42,6 +45,15 @@
->>    *			      Overflow Information   - Provides history of previous failures
->>    *			      Auxiliary Information  - Certain failures may have information in
->>    *						       addition to postcode information
->> + * Enable survivability mode through configfs
->> + *
->> + * survivability mode is exposed as an attribute under the xe configfs subsystem. User can specify
->> + * the card that needs to enter survivability mode.
->> + *
->> + * echo "domain:bus:dev.fn" > /sys/bus/pci/drivers/xe/unbind
->> + * echo "domain:bus:dev.fn" > sys/kernel/config/xe/survivability_mode
->> + * echo "domain:bus:dev.fn" > /sys/bus/pci/drivers/xe/bind
-> 
-> should we add an example in the doc so folks don't get so confused
-> with the details of the terminology?
-> 
-> Example:
-> 
-> echo "0000:03:00.0" > /sys/bus/pci/drivers/xe/unbind
-> echo "0000:03:00.0" > sys/kernel/config/xe/survivability_mode
-> echo "0000:03:00.0" > /sys/bus/pci/drivers/xe/bind
-> 
-> ?
+> enable is always false here so you can just drop the additional function 
+> parameter and just use false below instead.
 
-Sure. will add an example instead
+Sure, will fix this
 > 
+>> +{
+>> +    struct xe_guc_engine_activity *engine_activity = &guc- 
+>> >engine_activity;
+>> +    struct engine_activity_buffer *buffer = &engine_activity- 
+>> >function_buffer;
+>> +    int ret;
+>> +
+>> +    if (!engine_activity->num_functions)
+>> +        return 0;
+>> +
+>> +    ret = enable_function_engine_activity_stats(guc, enable);
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    free_engine_activity_buffers(buffer);
+>> +    engine_activity->num_functions = 0;
+>> +
+>> +    return 0;
+>> +}
+>> +
+>> +static int engine_activity_enable_function_stats(struct xe_guc *guc, 
+>> int num_vfs, bool enable)
+>> +{
+> 
+> Likewise enable is always true here.
+> 
+>> +    struct xe_guc_engine_activity *engine_activity = &guc- 
+>> >engine_activity;
+>> +    struct engine_activity_buffer *buffer = &engine_activity- 
+>> >function_buffer;
+>> +    int ret, i;
+>> +
+>> +    if (!num_vfs)
+>> +        return 0;
+>> +
+>> +    /* This includes 1 PF and num_vfs */
+>> +    engine_activity->num_functions = num_vfs + 1;
+>> +
+>> +    ret = allocate_engine_activity_buffers(guc, buffer, 
+>> engine_activity->num_functions);
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    ret = enable_function_engine_activity_stats(guc, enable);
+>> +    if (ret) {
+>> +        free_engine_activity_buffers(buffer);
+>> +        engine_activity->num_functions = 0;
+>> +        return ret;
+>> +    }
+>> +
+>> +    for (i = 0; i < engine_activity->num_functions; i++)
+>> +        engine_activity_set_cpu_ts(guc, i + 1);
+>> +
+>> +    return 0;
+>> +}
+>> +
+>> /**
+>>  * xe_guc_engine_activity_active_ticks - Get engine active ticks
+>>  * @guc: The GuC object
+>>  * @hwe: The hw_engine object
+>> + * @fn_id: function id to report on
+>>  *
+>>  * Return: accumulated ticks @hwe was active since engine activity 
+>> stats were enabled.
+>>  */
+>> -u64 xe_guc_engine_activity_active_ticks(struct xe_guc *guc, struct 
+>> xe_hw_engine *hwe)
+>> +u64 xe_guc_engine_activity_active_ticks(struct xe_guc *guc, struct 
+>> xe_hw_engine *hwe,
+>> +                    unsigned int fn_id)
+>> {
+>>     if (!xe_guc_engine_activity_supported(guc))
+>>         return 0;
+>>
+>> -    return get_engine_active_ticks(guc, hwe);
+>> +    if (!is_function_valid(guc, fn_id))
+>> +        return 0;
+>> +
+>> +    return get_engine_active_ticks(guc, hwe, fn_id);
+>> }
+>>
+>> /**
+>>  * xe_guc_engine_activity_total_ticks - Get engine total ticks
+>>  * @guc: The GuC object
+>>  * @hwe: The hw_engine object
+>> + * @fn_id: function id to report on
+>>  *
+>>  * Return: accumulated quanta of ticks allocated for the engine
+>>  */
+>> -u64 xe_guc_engine_activity_total_ticks(struct xe_guc *guc, struct 
+>> xe_hw_engine *hwe)
+>> +u64 xe_guc_engine_activity_total_ticks(struct xe_guc *guc, struct 
+>> xe_hw_engine *hwe,
+>> +                       unsigned int fn_id)
+>> {
+>>     if (!xe_guc_engine_activity_supported(guc))
+>>         return 0;
+>>
+>> -    return get_engine_total_ticks(guc, hwe);
+>> +    if (!is_function_valid(guc, fn_id))
+>> +        return 0;
+>> +
+>> +    return get_engine_total_ticks(guc, hwe, fn_id);
+>> }
+>>
+>> /**
+>> @@ -310,6 +435,25 @@ bool xe_guc_engine_activity_supported(struct 
+>> xe_guc *guc)
+>>     return engine_activity->supported;
+>> }
+>>
+>> +/**
+>> + * xe_guc_engine_activity_function_stats - Enable/Disable per- 
+>> function engine activity stats
+>> + * @guc: The GuC object
+>> + * @num_vfs: number of vfs
+>> + * @enable: true to enable, false otherwise
 >> + *
->>    */
->>   
->>   static u32 aux_history_offset(u32 reg_value)
->> @@ -133,6 +145,7 @@ static void xe_survivability_mode_fini(void *arg)
->>   	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
->>   	struct device *dev = &pdev->dev;
->>   
->> +	xe_configfs_clear_survivability_mode();
->>   	sysfs_remove_file(&dev->kobj, &dev_attr_survivability_mode.attr);
->>   }
->>   
->> @@ -190,11 +203,15 @@ bool xe_survivability_mode_required(struct xe_device *xe)
->>   {
->>   	struct xe_survivability *survivability = &xe->survivability;
->>   	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
->> +	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
->>   	u32 data;
->>   
->>   	if (!IS_DGFX(xe) || xe->info.platform < XE_BATTLEMAGE || IS_SRIOV_VF(xe))
->>   		return false;
->>   
->> +	if (xe_configfs_survivability_mode_enabled(pdev))
->> +		return true;
+>> + * Return: 0 on success, negative error code otherwise
+>> + */
+>> +int xe_guc_engine_activity_function_stats(struct xe_guc *guc, int 
+>> num_vfs, bool enable)
+>> +{
+>> +    if (!xe_guc_engine_activity_supported(guc))
+>> +        return 0;
+>> +
+>> +    if (enable)
+>> +        return engine_activity_enable_function_stats(guc, num_vfs, 
+>> enable);
+>> +
+>> +    return engine_activity_disable_function_stats(guc, enable);
+>> +}
+>> +
+>> /**
+>>  * xe_guc_engine_activity_enable_stats - Enable engine activity stats
+>>  * @guc: The GuC object
+>> @@ -327,7 +471,7 @@ void xe_guc_engine_activity_enable_stats(struct 
+>> xe_guc *guc)
+>>     if (ret)
+>>         xe_gt_err(guc_to_gt(guc), "failed to enable activity 
+>> stats%d\n", ret);
+>>     else
+>> -        engine_activity_set_cpu_ts(guc);
+>> +        engine_activity_set_cpu_ts(guc, 0);
+>> }
+>>
+>> static void engine_activity_fini(void *arg)
+>> @@ -360,7 +504,7 @@ int xe_guc_engine_activity_init(struct xe_guc *guc)
+>>         return ret;
+>>     }
+>>
+>> -    ret = allocate_engine_activity_buffers(guc, &engine_activity- 
+>> >device_buffer);
+>> +    ret = allocate_engine_activity_buffers(guc, &engine_activity- 
+>> >device_buffer, 1);
+>>     if (ret) {
+>>         xe_gt_err(gt, "failed to allocate engine activity buffers 
+>> (%pe)\n", ERR_PTR(ret));
+>>         return ret;
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity.h b/drivers/ 
+>> gpu/drm/xe/xe_guc_engine_activity.h
+>> index a042d4cb404c..b32926c2d208 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_engine_activity.h
+>> +++ b/drivers/gpu/drm/xe/xe_guc_engine_activity.h
+>> @@ -14,6 +14,9 @@ struct xe_guc;
+>> int xe_guc_engine_activity_init(struct xe_guc *guc);
+>> bool xe_guc_engine_activity_supported(struct xe_guc *guc);
+>> void xe_guc_engine_activity_enable_stats(struct xe_guc *guc);
+>> -u64 xe_guc_engine_activity_active_ticks(struct xe_guc *guc, struct 
+>> xe_hw_engine *hwe);
+>> -u64 xe_guc_engine_activity_total_ticks(struct xe_guc *guc, struct 
+>> xe_hw_engine *hwe);
+>> +int xe_guc_engine_activity_function_stats(struct xe_guc *guc, int 
+>> num_vfs, bool enable);
+>> +u64 xe_guc_engine_activity_active_ticks(struct xe_guc *guc, struct 
+>> xe_hw_engine *hwe,
+>> +                    unsigned int fn_id);
+>> +u64 xe_guc_engine_activity_total_ticks(struct xe_guc *guc, struct 
+>> xe_hw_engine *hwe,
+>> +                       unsigned int fn_id);
+>> #endif
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h b/ 
+>> drivers/gpu/drm/xe/xe_guc_engine_activity_types.h
+>> index 5cdd034b6b70..bab0ae6cae00 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_guc_engine_activity_types.h
+>> @@ -79,14 +79,20 @@ struct xe_guc_engine_activity {
+>>     /** @num_activity_group: number of activity groups */
+>>     u32 num_activity_group;
+>>
+>> +    /** @num_functions: number of functions */
+>> +    u32 num_functions;
+>> +
+>>     /** @supported: indicates support for engine activity stats */
+>>     bool supported;
+>>
+>> -    /** @eag: holds the device level engine activity data */
+>> +    /** @eag: array with entries to hold engine activity stats of 
+>> global, PF and VF's */
 > 
-> this part is not needed right? as the check outside won't be evaluated
-> or bypassed...
-If its changed to single check , i'll remove this.
+> If I understand this correctly, now eag will either hold global OR hold 
+> PF and VF. You might want to describe it here.
+> 
+> /** @eag: holds the device level engine activity data in native mode. In 
+>   * SRIOV mode, it points to an array with entries to hold engine  * 
+> activity stats of PF and VFs.
+>   */
+yeah should be or. Missed updating the doc after the code change.
+
+Thank you, will fix this.
 
 Thanks
 Riana
 > 
+> Thanks,
+> Umesh
+> 
+>>     struct engine_activity_group *eag;
+>>
+>>     /** @device_buffer: buffer object for global engine activity */
+>>     struct engine_activity_buffer device_buffer;
 >> +
->>   	data = xe_mmio_read32(mmio, PCODE_SCRATCH(0));
->>   	survivability->boot_status = REG_FIELD_GET(BOOT_STATUS, data);
->>   
+>> +    /** @function_buffer: buffer object for per-function engine 
+>> activity */
+>> +    struct engine_activity_buffer function_buffer;
+>> };
+>> #endif
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
+>> index 4f62a6e515d6..f8f6ebb7c9c6 100644
+>> --- a/drivers/gpu/drm/xe/xe_pmu.c
+>> +++ b/drivers/gpu/drm/xe/xe_pmu.c
+>> @@ -245,10 +245,11 @@ static u64 read_engine_events(struct xe_gt *gt, 
+>> struct perf_event *event)
+>>     u64 val = 0;
+>>
+>>     hwe = event_to_hwe(event);
+>> +
+>>     if (config_to_event_id(event->attr.config) == 
+>> XE_PMU_EVENT_ENGINE_ACTIVE_TICKS)
+>> -        val = xe_guc_engine_activity_active_ticks(&gt->uc.guc, hwe);
+>> +        val = xe_guc_engine_activity_active_ticks(&gt->uc.guc, hwe, 0);
+>>     else
+>> -        val = xe_guc_engine_activity_total_ticks(&gt->uc.guc, hwe);
+>> +        val = xe_guc_engine_activity_total_ticks(&gt->uc.guc, hwe, 0);
+>>
+>>     return val;
+>> }
 >> -- 
 >> 2.47.1
 >>
