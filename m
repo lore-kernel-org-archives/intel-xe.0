@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 265F7C282DE
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 12:28:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89484C28B2E
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Mar 2025 12:28:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E60AD10E436;
-	Mon, 10 Mar 2025 12:28:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43F0F10E439;
+	Mon, 10 Mar 2025 12:28:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eX6Kl1lW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="czDtpVCz";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E57C310E42A;
- Mon, 10 Mar 2025 12:28:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57A2C10E430;
+ Mon, 10 Mar 2025 12:28:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741609704; x=1773145704;
+ t=1741609715; x=1773145715;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=25AyOOFW8lx/wcVTPeUldmGb7poUa6eMHthPvWuq5aY=;
- b=eX6Kl1lWoWu1jVGJVUN8YuTZmV8LVNZehkBasxaR5W/B31WPxyFU/Tsv
- yrvr5Qw6iIabzzA0LAfGHVlY5jTmkqVFplFOq1JLRTkUMu/MNmbfL7h9M
- nPsF3Rs6bbl55V0cDkMrsaiK7UzeNIgYqpzMw6Qi2+SwBEHmhdvnD3iH4
- tJc9lu98wq7FXh5gsmrR+bxCk6tPeUqLIZJyZHBTYZKRD7sgPuYlk1QU2
- EPdSwk/fOjMSno7i2llpLCwGBBdBvUDC4A1BAytW3WREoVcD5tMrgXwOK
- OcPg2JQu1mLHLFRObnOQJyXcTaWJE38PtZAJXrFC442Vg1tnNqxL+EbeL g==;
-X-CSE-ConnectionGUID: 6zXL/j6iR2a71cgUtWmD/g==
-X-CSE-MsgGUID: Cw5DwRkOQV+x/dlH3j7wyg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="65057274"
-X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="65057274"
+ bh=dIVP8wt3LRdkorY6ZkZEN9MdlyK7ZaQW1023vxFZqY0=;
+ b=czDtpVCz+0O70nIxprMftqyDiVtnBGd4ZZTOXL43OSDb6qwmhwVv8/uf
+ 4oCkQT/jLuliJbFJJRdV0XbN72jBx67u1lk5TvSU+4ekLwm129J09dbFH
+ 808eFaCswM8gXB6UKBoNAcN25KE16R5m4vcHqlwWx21WcYlVsZfQd1TCh
+ ykI4PncaoKo/KCaF3oJTS8QkEAcNVQabxKFjUNaSyy3zMi0u5hB36dPee
+ zEpVXc6d0c3OeQx0M6yXLd65hiFkgnpClcSvub3ch+en+vsUn4ELyRxJ9
+ P6mdOdndL/QGnbCKNywK9EXuz8heflDFVyWw6MRRPzGwgRDXo1Q+aUc2R Q==;
+X-CSE-ConnectionGUID: RtR7G2lwRkuRo2Fj52c30A==
+X-CSE-MsgGUID: I+ILfiCyS2y4yjbqjMc3cA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="65057299"
+X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="65057299"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2025 05:28:24 -0700
-X-CSE-ConnectionGUID: 0nQsTyszTaqK5vtHGNkO9A==
-X-CSE-MsgGUID: Lt/k503tRoWxtoYmHPh/oA==
+ 10 Mar 2025 05:28:35 -0700
+X-CSE-ConnectionGUID: uI7Xgmi/SHCU7oMF5JmIOQ==
+X-CSE-MsgGUID: OpHClEAVQPGsUAm3YsZzmQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="143180509"
+X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="143180546"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2025 05:28:22 -0700
+ 10 Mar 2025 05:28:34 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 05/21] drm/i915/vrr: Track vrr.enable only for variable timing
-Date: Mon, 10 Mar 2025 17:45:59 +0530
-Message-ID: <20250310121615.1077079-6-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 11/21] drm/i915/display: Disable PSR before disabling VRR
+Date: Mon, 10 Mar 2025 17:46:05 +0530
+Message-ID: <20250310121615.1077079-12-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250310121615.1077079-1-ankit.k.nautiyal@intel.com>
 References: <20250310121615.1077079-1-ankit.k.nautiyal@intel.com>
@@ -68,73 +68,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Since CMRR is now disabled, use the flag vrr.enable to tracks if vrr timing
-generator is used with variable timings.
-
-Avoid setting vrr.enable for CMRR and adjust readout to not set vrr.enable
-when vmax == vmin == flipline (fixed refresh rate timing).
-
-v2: Use intel_vrr_vmin_flipline() to account for adjustments required
-for icl/tgl. (Ville)
-
-v3: Add a #TODO for handling I915_MODE_FLAG_VRR better for CMRR. (Ville)
+As per bspec 49268: Disable PSR before disabling VRR.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vrr.c | 18 ++++++++++++++++--
- 1 file changed, 16 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index a57659820f4b..7320eb97991f 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -226,7 +226,6 @@ cmrr_get_vtotal(struct intel_crtc_state *crtc_state, bool video_mode_required)
- static
- void intel_vrr_compute_cmrr_timings(struct intel_crtc_state *crtc_state)
- {
--	crtc_state->vrr.enable = true;
- 	crtc_state->cmrr.enable = true;
- 	/*
- 	 * TODO: Compute precise target refresh rate to determine
-@@ -527,6 +526,14 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
- 	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder), 0);
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 3afb85fe8536..246da49af00b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -1173,6 +1173,8 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 	enum pipe pipe = crtc->pipe;
  
-+static
-+bool intel_vrr_is_fixed_rr(const struct intel_crtc_state *crtc_state)
-+{
-+	return crtc_state->vrr.flipline &&
-+	       crtc_state->vrr.flipline == crtc_state->vrr.vmax &&
-+	       crtc_state->vrr.flipline == intel_vrr_vmin_flipline(crtc_state);
-+}
++	intel_psr_pre_plane_update(state, crtc);
 +
- void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
-@@ -536,7 +543,6 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
- 	trans_vrr_ctl = intel_de_read(display,
- 				      TRANS_VRR_CTL(display, cpu_transcoder));
+ 	if (intel_crtc_vrr_disabling(state, crtc)) {
+ 		intel_vrr_disable(old_crtc_state);
+ 		intel_crtc_update_active_timings(old_crtc_state, false);
+@@ -1183,8 +1185,6 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
  
--	crtc_state->vrr.enable = trans_vrr_ctl & VRR_CTL_VRR_ENABLE;
- 	if (HAS_CMRR(display))
- 		crtc_state->cmrr.enable = (trans_vrr_ctl & VRR_CTL_CMRR_ENABLE);
+ 	intel_drrs_deactivate(old_crtc_state);
  
-@@ -576,6 +582,14 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
- 		}
- 	}
+-	intel_psr_pre_plane_update(state, crtc);
+-
+ 	if (hsw_ips_pre_update(state, crtc))
+ 		intel_crtc_wait_for_next_vblank(crtc);
  
-+	crtc_state->vrr.enable = trans_vrr_ctl & VRR_CTL_VRR_ENABLE &&
-+				 !intel_vrr_is_fixed_rr(crtc_state);
-+
-+	/*
-+	 * #TODO: For Both VRR and CMRR the flag I915_MODE_FLAG_VRR is set for mode_flags.
-+	 * Since CMRR is currently disabled, set this flag for VRR for now.
-+	 * Need to keep this in mind while re-enabling CMRR.
-+	 */
- 	if (crtc_state->vrr.enable)
- 		crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
- }
 -- 
 2.45.2
 
