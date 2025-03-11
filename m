@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3B17C2BA1B
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Mar 2025 07:01:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0928C28B2F
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Mar 2025 07:02:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AD6D10E513;
-	Tue, 11 Mar 2025 07:01:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B422D10E513;
+	Tue, 11 Mar 2025 07:02:09 +0000 (UTC)
 Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32ECE10E12B;
- Tue, 11 Mar 2025 07:01:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6892610E12B;
+ Tue, 11 Mar 2025 07:02:08 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_PMU_support_for_func?=
- =?utf-8?q?tion_engine_activity_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_PMU_support_for_function_?=
+ =?utf-8?q?engine_activity_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Riana Tauro" <riana.tauro@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 11 Mar 2025 07:01:53 -0000
-Message-ID: <174167651320.16964.9422605792124751994@18a75f3d1eae>
+Date: Tue, 11 Mar 2025 07:02:08 -0000
+Message-ID: <174167652842.16998.2063189706515963645@18a75f3d1eae>
 X-Patchwork-Hint: ignore
 References: <20250311071759.2117211-1-riana.tauro@intel.com>
 In-Reply-To: <20250311071759.2117211-1-riana.tauro@intel.com>
@@ -48,11 +48,33 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 003c44ec0b7d drm-tip: 2025y-03m-11d-00h-58m-05s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Add support for per-function engine activity
-Applying: drm/xe/xe_pmu: Add PMU support for per-function engine activity stats
-Applying: drm/xe/pf: Enable per-function engine activity stats
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+cbb4e4a079d89106c2736adc3c7de6f9dc56da07
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 0a999fc3890567692934a83ca852246bcb15110a
+Author: Riana Tauro <riana.tauro@intel.com>
+Date:   Tue Mar 11 12:47:59 2025 +0530
+
+    drm/xe/pf: Enable per-function engine activity stats
+    
+    Enable per-function engine activity stats when VF's are enabled
+    and disable when VF's are disabled
+    
+    v2: fix commit message
+        remove reset stats from pf config (Michal)
+    
+    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+    Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
++ /mt/dim checkpatch 003c44ec0b7d86569bd13d4a810ee24176c3d034 drm-intel
+8744bb0ba341 drm/xe: Add support for per-function engine activity
+44a88b725b0d drm/xe/xe_pmu: Add PMU support for per-function engine activity stats
+0a999fc38905 drm/xe/pf: Enable per-function engine activity stats
 
 
