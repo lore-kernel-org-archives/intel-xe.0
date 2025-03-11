@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1E16C282EC
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Mar 2025 10:53:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2F90C282EC
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Mar 2025 10:53:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85CE410E55E;
-	Tue, 11 Mar 2025 10:52:55 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gCCc5cW+";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AA4110E55E
- for <intel-xe@lists.freedesktop.org>; Tue, 11 Mar 2025 10:52:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741690374; x=1773226374;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=/G1R/JGe5Rdi1zwy3NV/laDJ0uDiNBrH54Mljy+TaMY=;
- b=gCCc5cW+eOP6wOChm/W17MbrF8aHTxe1h+qO43XEXFYHyG4mEVTTrIRu
- ifzJInhi2iC5GEhcDWNZtwKz27CdN7bwKbfNHX++3Yf2vJEJ/Yu8uZ4P/
- 7ruVAY+1EGnKHin7/BMSqssLf9WDPWWB7JvNee3PCd0NjyZJkpAD2JG/Z
- NoXTblPg0st7+4Q1XyKjs2HTz05D/PIhWPr3ZYTxcIu/NFiicWObzitYa
- O1N+p6/IQujIcOxqGOJjDAfIJVOQvzWv6lnZEz1GQCQw6yTTf8vR4Z/Aq
- KR/8SzXRWDRA/bWIoqjR1LtoOeFR6FNYtnAbY1nTmXNc7+YZ8jCsxSdYx w==;
-X-CSE-ConnectionGUID: m2AMhgEYSpOHYBLRhfOj8g==
-X-CSE-MsgGUID: oYPWL55mTCSAM9TCAXKyrA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="42576726"
-X-IronPort-AV: E=Sophos;i="6.14,238,1736841600"; d="scan'208";a="42576726"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2025 03:52:53 -0700
-X-CSE-ConnectionGUID: M1/jcUQBRU+XIWiD66wJ4A==
-X-CSE-MsgGUID: ZMgMWjj4Tvuiwtd/6CLu5g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,238,1736841600"; d="scan'208";a="120783542"
-Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.5.201])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2025 03:52:52 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH v2 5/5] drm/xe/vf: Unblock xe_rtp_process_to_sr for VFs
-Date: Tue, 11 Mar 2025 11:52:21 +0100
-Message-Id: <20250311105221.1910-1-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20250303173522.1822-6-michal.wajdeczko@intel.com>
-References: <20250303173522.1822-6-michal.wajdeczko@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 680AC10E563;
+	Tue, 11 Mar 2025 10:53:30 +0000 (UTC)
+Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2696210E561;
+ Tue, 11 Mar 2025 10:53:30 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/dsi=3A_let_?=
+ =?utf-8?q?HW_maintain_the_HS-TRAIL_timing?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "William Tseng" <william.tseng@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 11 Mar 2025 10:53:30 -0000
+Message-ID: <174169041015.17941.8268415136285329686@18a75f3d1eae>
+X-Patchwork-Hint: ignore
+References: <20211110102354.5640-1-william.tseng@intel.com>
+In-Reply-To: <20211110102354.5640-1-william.tseng@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,44 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In commit 9632dfb0def4 ("drm/xe/vf: Don't run any save-restore
-RTP actions if VF") we disabled processing of all RTP rules if
-we were running as a VFs, since many of the RTP actions were
-trying to access registers unaccessible for VFs.
+== Series Details ==
 
-This also included all of LRC WA rules, since some of them were
-implemented in a way that required RMW pattern.
+Series: drm/i915/dsi: let HW maintain the HS-TRAIL timing
+URL   : https://patchwork.freedesktop.org/series/146128/
+State : success
 
-Now, as we can program LRC WAs without accessing such registers
-from the driver, relying on the MI_MATH instruction instead, we
-can unblock xe_rtp_process_to_sr() for VFs.
+== Summary ==
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
----
-v2: rebased
----
- drivers/gpu/drm/xe/xe_rtp.c | 3 ---
- 1 file changed, 3 deletions(-)
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 777e1850811f drm-tip: 2025y-03m-11d-09h-30m-13s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/dsi: let HW maintain the HS-TRAIL timing
 
-diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
-index 13bb62d3e615..29e694bb1219 100644
---- a/drivers/gpu/drm/xe/xe_rtp.c
-+++ b/drivers/gpu/drm/xe/xe_rtp.c
-@@ -258,9 +258,6 @@ void xe_rtp_process_to_sr(struct xe_rtp_process_ctx *ctx,
- 
- 	rtp_get_context(ctx, &hwe, &gt, &xe);
- 
--	if (IS_SRIOV_VF(xe))
--		return;
--
- 	xe_assert(xe, entries);
- 
- 	for (entry = entries; entry - entries < n_entries; entry++) {
--- 
-2.47.1
 
