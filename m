@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAD53C282EC
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Mar 2025 11:37:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70D6EC282EC
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Mar 2025 11:41:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75CFD10E562;
-	Tue, 11 Mar 2025 11:37:36 +0000 (UTC)
-Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3ADB10E562;
- Tue, 11 Mar 2025 11:37:34 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5644005063432302625=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35AA610E167;
+	Tue, 11 Mar 2025 11:41:16 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DZB572eb";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB3BD10E167
+ for <intel-xe@lists.freedesktop.org>; Tue, 11 Mar 2025 11:41:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1741693275; x=1773229275;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zq/aUJmxptQhg5BQZS4X3RMlz+3g7E2eC24xU+Waxo4=;
+ b=DZB572ebt/75J8WOtz0T/rtsO2F+3XaoAy9w/DvdRpmRC0sZ2NgCQTSJ
+ PeGgLJWr8J2kzQAPsmaHfdwVuXzJOwWPQWWzY4rqZZsTa4OzLh1lSn5Tn
+ GY43wjoz+CsVF7Gx33/14XcvLSjOPZ2NrpJ88M3sRbHTgRhgesKH8+iGT
+ Hu7DDh73TiO8kJJPRduPCzrQvZ5R7FW8GfrygWj1kjWMZ5/qI3cwiKjlJ
+ bU2brD42SG5d8Tj/TziVN07xsGZ/0h1NpCuYSR7tRy37wdNlw5uo4ZbUL
+ vSg0yPW1GAjc6mUlME1gHAooj+fJQ+xWk9oeDMMVFA6+6u8vAQ3/crcQ5 w==;
+X-CSE-ConnectionGUID: yFr6SklbST+7eDRbKIPSbQ==
+X-CSE-MsgGUID: FrNY314+Su+gkBWXBLgnyA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="42637131"
+X-IronPort-AV: E=Sophos;i="6.14,238,1736841600"; d="scan'208";a="42637131"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2025 04:41:14 -0700
+X-CSE-ConnectionGUID: 42iwQzlkTBKKgnjKrLx2KQ==
+X-CSE-MsgGUID: VACeyzt3QSKDd1wfusktWg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,238,1736841600"; d="scan'208";a="120015668"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.5.201])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2025 04:41:13 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH 0/2] SRIOV: Eliminate usage of CTC_MODE
+Date: Tue, 11 Mar 2025 12:40:40 +0100
+Message-Id: <20250311114042.1954-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dsi=3A_let_HW_main?=
- =?utf-8?q?tain_the_HS-TRAIL_timing?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "William Tseng" <william.tseng@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 11 Mar 2025 11:37:34 -0000
-Message-ID: <174169305471.18095.15949202110509668912@18a75f3d1eae>
-X-Patchwork-Hint: ignore
-References: <20211110102354.5640-1-william.tseng@intel.com>
-In-Reply-To: <20211110102354.5640-1-william.tseng@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +61,17 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5644005063432302625==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Michal Wajdeczko (2):
+  drm/xe/vf: Don't check CTC_MODE[0] if VF
+  drm/xe/pf: Drop CTC_MODE from VF runtime register list
 
-== Series Details ==
+ drivers/gpu/drm/xe/xe_gt_clock.c            | 15 +++++++++++----
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c |  6 ------
+ 2 files changed, 11 insertions(+), 10 deletions(-)
 
-Series: drm/i915/dsi: let HW maintain the HS-TRAIL timing
-URL   : https://patchwork.freedesktop.org/series/146128/
-State : success
+-- 
+2.47.1
 
-== Summary ==
-
-CI Bug Log - changes from xe-2794-777e1850811f9864aa8b55940634d3da19712bf7_BAT -> xe-pw-146128v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-146128v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_vm@munmap-style-unbind-userptr-one-partial:
-    - bat-adlp-vf:        [PASS][1] -> [ABORT][2] ([Intel XE#4491])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2794-777e1850811f9864aa8b55940634d3da19712bf7/bat-adlp-vf/igt@xe_vm@munmap-style-unbind-userptr-one-partial.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146128v1/bat-adlp-vf/igt@xe_vm@munmap-style-unbind-userptr-one-partial.html
-
-  
-  [Intel XE#4491]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4491
-
-
-Build changes
--------------
-
-  * Linux: xe-2794-777e1850811f9864aa8b55940634d3da19712bf7 -> xe-pw-146128v1
-
-  IGT_8270: 49751c5c11723262ec66e564c76503f74a9fa831 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2794-777e1850811f9864aa8b55940634d3da19712bf7: 777e1850811f9864aa8b55940634d3da19712bf7
-  xe-pw-146128v1: 146128v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146128v1/index.html
-
---===============5644005063432302625==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dsi: let HW maintain the HS-TRAIL timing</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/146128/">https://patchwork.freedesktop.org/series/146128/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146128v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146128v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2794-777e1850811f9864aa8b55940634d3da19712bf7_BAT -&gt; xe-pw-146128v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-146128v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_vm@munmap-style-unbind-userptr-one-partial:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2794-777e1850811f9864aa8b55940634d3da19712bf7/bat-adlp-vf/igt@xe_vm@munmap-style-unbind-userptr-one-partial.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146128v1/bat-adlp-vf/igt@xe_vm@munmap-style-unbind-userptr-one-partial.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4491">Intel XE#4491</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2794-777e1850811f9864aa8b55940634d3da19712bf7 -&gt; xe-pw-146128v1</li>
-</ul>
-<p>IGT_8270: 49751c5c11723262ec66e564c76503f74a9fa831 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2794-777e1850811f9864aa8b55940634d3da19712bf7: 777e1850811f9864aa8b55940634d3da19712bf7<br />
-  xe-pw-146128v1: 146128v1</p>
-
-</body>
-</html>
-
---===============5644005063432302625==--
