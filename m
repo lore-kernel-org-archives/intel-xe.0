@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E822C282EC
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Mar 2025 18:33:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04369C282EC
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Mar 2025 18:35:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24EF910E103;
-	Tue, 11 Mar 2025 18:33:38 +0000 (UTC)
-Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C05EE10E056;
- Tue, 11 Mar 2025 18:33:36 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2485271950216287865=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD50510E056;
+	Tue, 11 Mar 2025 18:35:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RmL56t/M";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7937A10E056
+ for <intel-xe@lists.freedesktop.org>; Tue, 11 Mar 2025 18:35:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1741718124; x=1773254124;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=HzRE8d6n7uDFQbpOfrf9feIW18mweQIgQtBt5ylX5fM=;
+ b=RmL56t/MzkvI8N1CepXuDzqK55tSUDcXx9KkOowDaT3LGqmlU3wmqeUT
+ XNmSlNkw092qKP8NQ1DUts9YX8ljTry6jJr8FBmNx67Bc7kIOPgT76fWZ
+ ZeAIWM3xG4GW+dbBIMIwNPnjOKFppDwluCaew8/CJSP++FwKG+oo2piF/
+ hlvi7LpeqPzosOzNwDT26HeZ0iKBW3GwjLI5llewDslQWDLiK28XKL8kx
+ b4m/Q+aa//leLcwF8qupzJKodRBfeU55Uv0wy2hsBrBTnpTbxOvY1eYb0
+ D4gJFVbY0/sWaZxCVhLqsHRqOFQqYdFhsuezWK1gURfu8daHJe/O8uxHs Q==;
+X-CSE-ConnectionGUID: uxZTxN13R6+U1JjCUzuoKg==
+X-CSE-MsgGUID: zDK5NTj6T6yFRzkpil+/cg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11370"; a="42983301"
+X-IronPort-AV: E=Sophos;i="6.14,239,1736841600"; d="scan'208";a="42983301"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2025 11:35:24 -0700
+X-CSE-ConnectionGUID: G9Px1oqbSZaxEhl4NBp74g==
+X-CSE-MsgGUID: rSTLf9ggTQSqJ9onzemeAA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,239,1736841600"; d="scan'208";a="121301495"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2025 11:35:23 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-xe <intel-xe@lists.freedesktop.org>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Francois Dugast <francois.dugast@intel.com>,
+ Riana Tauro <riana.tauro@intel.com>
+Subject: [PATCH v2 0/2] drm/xe: Fix survivability
+Date: Tue, 11 Mar 2025 11:34:54 -0700
+Message-ID: <20250311-fix-survivability-v2-0-729ce081155e@intel.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/dumb-buffers=3A_Fix_and?=
- =?utf-8?q?_improve_buffer-size_calculation_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Thomas Zimmermann" <tzimmermann@suse.de>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 11 Mar 2025 18:33:36 -0000
-Message-ID: <174171801678.21098.8711811657089351528@18a75f3d1eae>
-X-Patchwork-Hint: ignore
-References: <20250311155120.442633-1-tzimmermann@suse.de>
-In-Reply-To: <20250311155120.442633-1-tzimmermann@suse.de>
+Content-Type: text/plain; charset="utf-8"
+X-Change-ID: 20250310-fix-survivability-703246c0c480
+X-Mailer: b4 0.15-dev-c25d1
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +66,49 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2485271950216287865==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+It turns out commit d40f275d96e8 ("drm/xe: Move survivability entirely
+to xe_pci") did a bad job moving things to xe_pci. The fix provided by
+Riana in 20250306055407.511405-1-riana.tauro@intel.com fixes it
+partially, but injecting a failure in xe_pcode_probe_early still causes
+the kernel to give warnings/errors.
 
-== Series Details ==
+Correct the course and better split what is done in xe_pci vs xe_device.
+This time, also add a patch to test we can handle errors in
+xe_pcode_probe_early().
 
-Series: drm/dumb-buffers: Fix and improve buffer-size calculation (rev4)
-URL   : https://patchwork.freedesktop.org/series/143335/
-State : success
+Entering survivability mode was tested with an additional one line to
+change the return of xe_survivability_mode_capable(). If we want to
+inject error, we'd need to change it's return type, but there's also
+another patch series to force it via configs, so this doesn't seem very
+important right now.
 
-== Summary ==
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-CI Bug Log - changes from xe-2795-f8df428b3850ed87a1e2f3b12b6025328d8a6373_BAT -> xe-pw-143335v4_BAT
-====================================================
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+Changes in v2:
+- Cover more error injections in the second patch
+- Link to v1: https://lore.kernel.org/r/20250310-fix-survivability-v1-0-7af31432bbd0@intel.com
 
-Summary
--------
+---
+Lucas De Marchi (2):
+      drm/xe: Move survivability back to xe
+      drm/xe: Allow to inject error in early probe
 
-  **SUCCESS**
+ drivers/gpu/drm/xe/xe_device.c             | 15 ++++++++++++++-
+ drivers/gpu/drm/xe/xe_mmio.c               |  1 +
+ drivers/gpu/drm/xe/xe_pci.c                | 16 +++++++---------
+ drivers/gpu/drm/xe/xe_pcode.c              |  2 ++
+ drivers/gpu/drm/xe/xe_survivability_mode.c | 14 +++++++++-----
+ 5 files changed, 33 insertions(+), 15 deletions(-)
+---
+base-commit: f8df428b3850ed87a1e2f3b12b6025328d8a6373
+change-id: 20250310-fix-survivability-703246c0c480
 
-  No regressions found.
+Best regards,
+-- 
+Lucas De Marchi <lucas.demarchi@intel.com>
 
-  
-
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-2795-f8df428b3850ed87a1e2f3b12b6025328d8a6373 -> xe-pw-143335v4
-
-  IGT_8270: 49751c5c11723262ec66e564c76503f74a9fa831 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2795-f8df428b3850ed87a1e2f3b12b6025328d8a6373: f8df428b3850ed87a1e2f3b12b6025328d8a6373
-  xe-pw-143335v4: 143335v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143335v4/index.html
-
---===============2485271950216287865==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/dumb-buffers: Fix and improve buffer-size calculation (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/143335/">https://patchwork.freedesktop.org/series/143335/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143335v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143335v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2795-f8df428b3850ed87a1e2f3b12b6025328d8a6373_BAT -&gt; xe-pw-143335v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2795-f8df428b3850ed87a1e2f3b12b6025328d8a6373 -&gt; xe-pw-143335v4</li>
-</ul>
-<p>IGT_8270: 49751c5c11723262ec66e564c76503f74a9fa831 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2795-f8df428b3850ed87a1e2f3b12b6025328d8a6373: f8df428b3850ed87a1e2f3b12b6025328d8a6373<br />
-  xe-pw-143335v4: 143335v4</p>
-
-</body>
-</html>
-
---===============2485271950216287865==--
