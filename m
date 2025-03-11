@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C376C282EC
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Mar 2025 11:41:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 241FBC28B30
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Mar 2025 11:41:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AD7010E562;
-	Tue, 11 Mar 2025 11:41:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E12CC10E566;
+	Tue, 11 Mar 2025 11:41:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c9Kv6ZyS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KbkCVz0F";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C4C110E562
- for <intel-xe@lists.freedesktop.org>; Tue, 11 Mar 2025 11:41:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8F0710E562
+ for <intel-xe@lists.freedesktop.org>; Tue, 11 Mar 2025 11:41:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741693276; x=1773229276;
+ t=1741693278; x=1773229278;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zfNGNagf53CXXeRopQzNgR9TH+sIFgD7UcGV08wh0ZE=;
- b=c9Kv6ZySQl4q9wBxWu//+XZMZldwughMT4GCuU9O6utHXuw0QCQTtvzR
- rgsGGH1CDoH1OnXSGloqIKDu8fAys2vnK+ULqdUtey3ESyNmyLnqhHpTA
- V6AEQgtWVE3SVWk6nHl8aLY1DJWqinwXR0cDxKJMULT04BDPIVw5eESCd
- W7R+oB5sY2WKn0dqIEON+pVu5h1tWtwv6AGZwIKMVWfACXxqbtTrenS5G
- jZTfqGk4nraQNZiDCAgm3AXrmEPUMRfRpwUt8KWfuTvjIiXF83Tdu9s6l
- G05953W1wY7p7yxeGi/8T7VG8GgljfcVVYigi3shG2hvQNnELRVoXoKQt A==;
-X-CSE-ConnectionGUID: ovFJkfakS2yVj/DQOc2gdQ==
-X-CSE-MsgGUID: HLJ7y4vZRXCv7libiALRlQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="42637132"
-X-IronPort-AV: E=Sophos;i="6.14,238,1736841600"; d="scan'208";a="42637132"
+ bh=AUBw/WGuFIn9ad1vv6IEBrYES4WNx0bo1QEhDplmxFo=;
+ b=KbkCVz0F5gS3QnZ6sPEneKQC5rpBTbk/XMfKHhpr/nn6Z7AgYL8II6jE
+ 0TaAIYHTfdhLr/uorJ0xc6RoVbeqU2MQuPV635SufXnaWR34rZX29zX2w
+ Tk/RUWRV04fCEd6qk05M3VBDkQWOccA4Us2SjJg5PBx2ThZyMtSTZlVqr
+ F+jR/h0IEvjYLoYiR4kWdRACmUKvrTUgDZjXFA9qFLJkf0yNHu8EQLtS6
+ oJgJ8U7Ql+3i2h7PeihI/RdaaWVYjtsAAZiKR9mGS/g1byB14gJ8LlxpV
+ BO157N9o7j2UMZjnEAAYCDJArByT8soNrjeIshuKXGdFOrTVwXNdw7qht w==;
+X-CSE-ConnectionGUID: hzGlWQVNROaQGZten20TAA==
+X-CSE-MsgGUID: Kxg8YVsLQ8ScVB/d18M1fA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="42637133"
+X-IronPort-AV: E=Sophos;i="6.14,238,1736841600"; d="scan'208";a="42637133"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2025 04:41:16 -0700
-X-CSE-ConnectionGUID: pmEet+8RQnGDaYpwUF8hBw==
-X-CSE-MsgGUID: CJo75V8jScCrsnGVbSJ1qg==
+ 11 Mar 2025 04:41:17 -0700
+X-CSE-ConnectionGUID: 4NCCErUqTiyUgXx1Kha4dw==
+X-CSE-MsgGUID: WrugQ0otQwqGnUHE95TB6w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,238,1736841600"; d="scan'208";a="120015681"
+X-IronPort-AV: E=Sophos;i="6.14,238,1736841600"; d="scan'208";a="120015691"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.5.201])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2025 04:41:15 -0700
+ 11 Mar 2025 04:41:16 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH 1/2] drm/xe/vf: Don't check CTC_MODE[0] if VF
-Date: Tue, 11 Mar 2025 12:40:41 +0100
-Message-Id: <20250311114042.1954-2-michal.wajdeczko@intel.com>
+Subject: [PATCH 2/2] drm/xe/pf: Drop CTC_MODE from VF runtime register list
+Date: Tue, 11 Mar 2025 12:40:42 +0100
+Message-Id: <20250311114042.1954-3-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20250311114042.1954-1-michal.wajdeczko@intel.com>
 References: <20250311114042.1954-1-michal.wajdeczko@intel.com>
@@ -67,52 +67,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Starting from commit 18778b5fdd01 ("drm/xe: Eliminate usage of
-TIMESTAMP_OVERRIDE") we access the CTC_MODE register only to warn
-if it has undocumented value.  There is no point in doing that on
-the VF driver.  While here, move this check to a helper function.
+This register shouldn't be used by the VF drivers.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_clock.c | 15 +++++++++++----
- 1 file changed, 11 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c | 6 ------
+ 1 file changed, 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_clock.c b/drivers/gpu/drm/xe/xe_gt_clock.c
-index 2a958c92d8ea..fca38738e610 100644
---- a/drivers/gpu/drm/xe/xe_gt_clock.c
-+++ b/drivers/gpu/drm/xe/xe_gt_clock.c
-@@ -40,11 +40,8 @@ static u32 get_crystal_clock_freq(u32 rpm_config_reg)
- 	}
- }
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
+index 4efde5f46b43..821cfcc34e6b 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
+@@ -112,7 +112,6 @@ static const struct xe_reg tgl_runtime_regs[] = {
+ 	XELP_GT_SLICE_ENABLE,		/* _MMIO(0x9138) */
+ 	XELP_GT_GEOMETRY_DSS_ENABLE,	/* _MMIO(0x913c) */
+ 	GT_VEBOX_VDBOX_DISABLE,		/* _MMIO(0x9140) */
+-	CTC_MODE,			/* _MMIO(0xa26c) */
+ 	HUC_KERNEL_LOAD_INFO,		/* _MMIO(0xc1dc) */
+ };
  
--int xe_gt_clock_init(struct xe_gt *gt)
-+static void check_ctc_mode(struct xe_gt *gt)
- {
--	u32 c0 = xe_mmio_read32(&gt->mmio, RPM_CONFIG0);
--	u32 freq = 0;
--
- 	/*
- 	 * CTC_MODE[0] = 1 is definitely not supported for Xe2 and later
- 	 * platforms.  In theory it could be a valid setting for pre-Xe2
-@@ -57,7 +54,17 @@ int xe_gt_clock_init(struct xe_gt *gt)
- 	 */
- 	if (xe_mmio_read32(&gt->mmio, CTC_MODE) & CTC_SOURCE_DIVIDE_LOGIC)
- 		xe_gt_warn(gt, "CTC_MODE[0] is set; this is unexpected and undocumented\n");
-+}
+@@ -124,7 +123,6 @@ static const struct xe_reg ats_m_runtime_regs[] = {
+ 	XELP_GT_GEOMETRY_DSS_ENABLE,	/* _MMIO(0x913c) */
+ 	GT_VEBOX_VDBOX_DISABLE,		/* _MMIO(0x9140) */
+ 	XEHP_GT_COMPUTE_DSS_ENABLE,	/* _MMIO(0x9144) */
+-	CTC_MODE,			/* _MMIO(0xa26c) */
+ 	HUC_KERNEL_LOAD_INFO,		/* _MMIO(0xc1dc) */
+ };
  
-+int xe_gt_clock_init(struct xe_gt *gt)
-+{
-+	u32 freq;
-+	u32 c0;
-+
-+	if (!IS_SRIOV_VF(gt_to_xe(gt)))
-+		check_ctc_mode(gt);
-+
-+	c0 = xe_mmio_read32(&gt->mmio, RPM_CONFIG0);
- 	freq = get_crystal_clock_freq(c0);
+@@ -136,7 +134,6 @@ static const struct xe_reg pvc_runtime_regs[] = {
+ 	GT_VEBOX_VDBOX_DISABLE,		/* _MMIO(0x9140) */
+ 	XEHP_GT_COMPUTE_DSS_ENABLE,	/* _MMIO(0x9144) */
+ 	XEHPC_GT_COMPUTE_DSS_ENABLE_EXT,/* _MMIO(0x9148) */
+-	CTC_MODE,			/* _MMIO(0xA26C) */
+ 	HUC_KERNEL_LOAD_INFO,		/* _MMIO(0xc1dc) */
+ };
  
- 	/*
+@@ -150,7 +147,6 @@ static const struct xe_reg ver_1270_runtime_regs[] = {
+ 	GT_VEBOX_VDBOX_DISABLE,		/* _MMIO(0x9140) */
+ 	XEHP_GT_COMPUTE_DSS_ENABLE,	/* _MMIO(0x9144) */
+ 	XEHPC_GT_COMPUTE_DSS_ENABLE_EXT,/* _MMIO(0x9148) */
+-	CTC_MODE,			/* _MMIO(0xa26c) */
+ 	HUC_KERNEL_LOAD_INFO,		/* _MMIO(0xc1dc) */
+ };
+ 
+@@ -167,7 +163,6 @@ static const struct xe_reg ver_2000_runtime_regs[] = {
+ 	XE2_GT_COMPUTE_DSS_2,		/* _MMIO(0x914c) */
+ 	XE2_GT_GEOMETRY_DSS_1,		/* _MMIO(0x9150) */
+ 	XE2_GT_GEOMETRY_DSS_2,		/* _MMIO(0x9154) */
+-	CTC_MODE,			/* _MMIO(0xa26c) */
+ 	HUC_KERNEL_LOAD_INFO,		/* _MMIO(0xc1dc) */
+ };
+ 
+@@ -185,7 +180,6 @@ static const struct xe_reg ver_3000_runtime_regs[] = {
+ 	XE2_GT_COMPUTE_DSS_2,		/* _MMIO(0x914c) */
+ 	XE2_GT_GEOMETRY_DSS_1,		/* _MMIO(0x9150) */
+ 	XE2_GT_GEOMETRY_DSS_2,		/* _MMIO(0x9154) */
+-	CTC_MODE,			/* _MMIO(0xa26c) */
+ 	HUC_KERNEL_LOAD_INFO,		/* _MMIO(0xc1dc) */
+ };
+ 
 -- 
 2.47.1
 
