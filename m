@@ -4,57 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5CD5C28B2F
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Mar 2025 17:05:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9E8CC282EC
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Mar 2025 17:05:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AC1A10E29C;
-	Tue, 11 Mar 2025 17:05:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 925C810E5FF;
+	Tue, 11 Mar 2025 17:05:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aU4SWK8E";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HzxzloKY";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B97B010E242;
- Tue, 11 Mar 2025 17:05:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85B6510E5EC;
+ Tue, 11 Mar 2025 17:05:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741712753; x=1773248753;
- h=from:subject:date:message-id:mime-version:
- content-transfer-encoding:to:cc;
- bh=IsvetmUbuEXszjjUCqmLWQOAnMrEIcOr1qr23OBehJw=;
- b=aU4SWK8Eh9eLCOMlMWLVgD0msAWmRpxXOAoumkXZtNDzVm9AdXlHS/NC
- oENaz7SFiuLDVevmAlNlPUGUIcg1qWoMeQKZO8ztz5Eth7icAcv0cK8Pr
- VKugaRebyxkgxG1xsgten3ZRQW+AEjLBxBSbMv9c2fq8dN4edSdi8iue0
- 9suEOxK3jDUvDFJ1jMFqTIZdopVKBCCNwpCdVaKVSh7SCBcSbuY2MU0s+
- WbwiYPiCC97MdByrEjLB9hiU6wduYvhUbzS4wXUVWAllPJtZKosAaWltG
- ysq6EWuaaLgAMh2+m+mj1XdccgWAw+7i6uDwMv4gLJn3usd08Dra4rg4f A==;
-X-CSE-ConnectionGUID: Hqs7WOpXQ+2j4MJ7hCSr0g==
-X-CSE-MsgGUID: 5DGDppudRAK2fPfvzjIpgg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11370"; a="53405648"
-X-IronPort-AV: E=Sophos;i="6.14,239,1736841600"; d="scan'208";a="53405648"
+ t=1741712758; x=1773248758;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:references:in-reply-to:to:cc;
+ bh=4j5sUcgMGeEFB5Oelujd1JbDFjdR3oavyRdB3CoZWIs=;
+ b=HzxzloKYRivOSgEHxrFdc8JyMoBDKA1T8tkg1dl+VC5+TcvqHeeqW1dU
+ bfubcRQc89BzWzLNViWJJUM+rSSgWC+bniIhYDZH3zDVt5RR7wzVzSM1e
+ 0oMxyY6KHfe9kZjETVqXgQNZpVgodFv3raX3zksWEiq9DtrgzMTY+6nvO
+ aoLmvY2D0Yl+ZvCjP0+9Tvqju6nKi0lW4Pl5AIGpwF4LeUV22xOqmPVsE
+ UfyivINelXFavlI3Dv/sK/mL7OlLm3DrrfMCxGMhJNJuKsd2pR6fh3vQJ
+ atFhokW8i7XpEw4WCa4fVYKKvhkYTKiDxdpEM1KpkZgP33q/mmLTEvwiz w==;
+X-CSE-ConnectionGUID: sxVEayXQQ5+Zs2JSxxCHWQ==
+X-CSE-MsgGUID: P0IV7xwZTaaCNhB4mAJguA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11370"; a="53405671"
+X-IronPort-AV: E=Sophos;i="6.14,239,1736841600"; d="scan'208";a="53405671"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2025 10:05:52 -0700
-X-CSE-ConnectionGUID: YeGLyrKpSdyA57QMtSHBCQ==
-X-CSE-MsgGUID: lzk8fdROQzC+fxBqt8Ycow==
+ 11 Mar 2025 10:05:57 -0700
+X-CSE-ConnectionGUID: mJc6sPE2S8Sfbj22SD6jLQ==
+X-CSE-MsgGUID: EMFiB0aGTXOsOFVqFOVzFQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,239,1736841600"; d="scan'208";a="157581924"
+X-IronPort-AV: E=Sophos;i="6.14,239,1736841600"; d="scan'208";a="157581934"
 Received: from lstrano-mobl6.amr.corp.intel.com (HELO
  gjsousa-mobl2.corp.amr.intel.com) ([10.125.111.134])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2025 10:05:51 -0700
+ 11 Mar 2025 10:05:56 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Subject: [PATCH v5 0/3] drm/i915/xe3lpd: Update bandwidth parameters
-Date: Tue, 11 Mar 2025 14:04:49 -0300
-Message-Id: <20250311-xe3lpd-bandwidth-update-v5-0-a95a9d90ad71@intel.com>
+Date: Tue, 11 Mar 2025 14:04:52 -0300
+Subject: [PATCH v5 3/3] drm/i915/xe3lpd: Update bandwidth parameters
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIADFt0GcC/5XPTW7DIBQE4KtErIv1+EtMVr1H1QWYR4yUGAswT
- RX57sXZ1KqURZezmE8zD5IxBczkfHiQhDXkEKcW1NuBDKOZLkiDa5lw4Ao47+kdxXV21JrJfQV
- XRrrMzhSkHhhTWg8wCCStPSf04f6UPz5b9ineaBkTmp3HTkwJpaCTQoOmjF6WXEyNXY5LNu9hK
- njthnjbwDHkEtP3c2nlG/tfZJtRxW9TwOnlnSooUNVbiz3zR2X9X0fuHAavHdkcyTTTR2lBSLd
- 31nX9ARhKhAOBAQAA
-X-Change-ID: 20250228-xe3lpd-bandwidth-update-f011599c0c3e
+Message-Id: <20250311-xe3lpd-bandwidth-update-v5-3-a95a9d90ad71@intel.com>
+References: <20250311-xe3lpd-bandwidth-update-v5-0-a95a9d90ad71@intel.com>
+In-Reply-To: <20250311-xe3lpd-bandwidth-update-v5-0-a95a9d90ad71@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>, 
  =?utf-8?q?Ville_Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>, 
@@ -79,46 +75,43 @@ Bandwidth parameters for Xe3_LPD have been updated with respect to
 previous display releases. Encode them into xe3lpd_sa_info and use that
 new struct.
 
-Since we are touching intel_bw.c, also take the opportunity convert it
-to intel_display.
-
-Changes in v2:
-  - Fix typo in patch #2.
-
-Changes in v3:
-- Squash patches #1 and #2 into a single one and modify it to convert
-  intel_bw.c internally to intel_display (new patch subject is
-  "drm/i915/display: Convert intel_bw.c internally to intel_display").
-- Add a new patch #2 to convert intel_bw.c externally to intel_display.
-- Link to v2: https://lore.kernel.org/r/20250217153550.43909-1-gustavo.sousa@intel.com
-
-Changes in v4:
-- Prefer intel_uncore_read() for MCHBAR registers. (Ville)
-- Link to v3: https://lore.kernel.org/r/20250307-xe3lpd-bandwidth-update-v3-0-58bbe81f65bf@intel.com
-
-Changes in v5:
-- Do not include intel_de.h anymore. (Ville)
-- Link to v4: https://lore.kernel.org/r/20250310-xe3lpd-bandwidth-update-v4-0-4191964b034d@intel.com
-
+Bspec: 68859
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
-Gustavo Sousa (3):
-      drm/i915/display: Convert intel_bw.c internally to intel_display
-      drm/i915/display: Convert intel_bw.c externally to intel_display
-      drm/i915/xe3lpd: Update bandwidth parameters
+ drivers/gpu/drm/i915/display/intel_bw.c | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
- drivers/gpu/drm/i915/display/intel_bw.c            | 440 +++++++++++----------
- drivers/gpu/drm/i915/display/intel_bw.h            |   9 +-
- drivers/gpu/drm/i915/display/intel_cdclk.c         |   3 +-
- .../gpu/drm/i915/display/intel_display_driver.c    |   2 +-
- drivers/gpu/drm/i915/display/skl_watermark.c       |  10 +-
- drivers/gpu/drm/i915/i915_driver.c                 |   2 +-
- drivers/gpu/drm/xe/display/xe_display.c            |   2 +-
- 7 files changed, 245 insertions(+), 223 deletions(-)
----
-base-commit: f8df428b3850ed87a1e2f3b12b6025328d8a6373
-change-id: 20250228-xe3lpd-bandwidth-update-f011599c0c3e
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index bda080d9ed4cfd1804fab818ac489dbe0bfaf640..dc7612658a9da9493ad9068f28126c76d187f2ea 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -404,6 +404,13 @@ static const struct intel_sa_info xe2_hpd_sa_info = {
+ 	/* Other values not used by simplified algorithm */
+ };
+ 
++static const struct intel_sa_info xe3lpd_sa_info = {
++	.deburst = 32,
++	.deprogbwlimit = 65, /* GB/s */
++	.displayrtids = 256,
++	.derating = 10,
++};
++
+ static int icl_get_bw_info(struct intel_display *display, const struct intel_sa_info *sa)
+ {
+ 	struct drm_i915_private *i915 = to_i915(display->drm);
+@@ -752,7 +759,9 @@ void intel_bw_init_hw(struct intel_display *display)
+ 	if (!HAS_DISPLAY(display))
+ 		return;
+ 
+-	if (DISPLAY_VERx100(display) >= 1401 && display->platform.dgfx)
++	if (DISPLAY_VER(display) >= 30)
++		tgl_get_bw_info(display, &xe3lpd_sa_info);
++	else if (DISPLAY_VERx100(display) >= 1401 && display->platform.dgfx)
+ 		xe2_hpd_get_bw_info(display, &xe2_hpd_sa_info);
+ 	else if (DISPLAY_VER(display) >= 14)
+ 		tgl_get_bw_info(display, &mtl_sa_info);
 
-Best regards,
 -- 
-Gustavo Sousa <gustavo.sousa@intel.com>
+2.48.1
 
