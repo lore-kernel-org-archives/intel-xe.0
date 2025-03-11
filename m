@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B524C282EC
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Mar 2025 13:37:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 989D5C282EC
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Mar 2025 13:42:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C7FC10E1CF;
-	Tue, 11 Mar 2025 13:37:32 +0000 (UTC)
-Received: from 18a75f3d1eae (unknown [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3845D10E1CA;
- Tue, 11 Mar 2025 13:37:30 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6677332263392244869=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E4A010E1E2;
+	Tue, 11 Mar 2025 13:42:36 +0000 (UTC)
+Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE36910E200;
+ Tue, 11 Mar 2025 13:42:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Use_MI=5FMATH_to_apply_RMW_?=
- =?utf-8?q?WA_in_LRC_=28rev4=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_SRIOV=3A_Eliminate_u?=
+ =?utf-8?q?sage_of_CTC=5FMODE?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 11 Mar 2025 13:37:30 -0000
-Message-ID: <174170025021.18772.16727259110722122064@18a75f3d1eae>
+Date: Tue, 11 Mar 2025 13:42:34 -0000
+Message-ID: <174170055470.18798.13542887905730164230@18a75f3d1eae>
 X-Patchwork-Hint: ignore
-References: <20250303173522.1822-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20250303173522.1822-1-michal.wajdeczko@intel.com>
+References: <20250311114042.1954-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20250311114042.1954-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,18 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6677332263392244869==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Use MI_MATH to apply RMW WA in LRC (rev4)
-URL   : https://patchwork.freedesktop.org/series/145732/
+Series: SRIOV: Eliminate usage of CTC_MODE
+URL   : https://patchwork.freedesktop.org/series/146132/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-2794-777e1850811f9864aa8b55940634d3da19712bf7_BAT -> xe-pw-145732v4_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 777e1850811f drm-tip: 2025y-03m-11d-09h-30m-13s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/vf: Don't check CTC_MODE[0] if VF
+Applying: drm/xe/pf: Drop CTC_MODE from VF runtime register list
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-2794-777e1850811f9864aa8b55940634d3da19712bf7 -> xe-pw-145732v4
-
-  IGT_8270: 49751c5c11723262ec66e564c76503f74a9fa831 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2794-777e1850811f9864aa8b55940634d3da19712bf7: 777e1850811f9864aa8b55940634d3da19712bf7
-  xe-pw-145732v4: 145732v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145732v4/index.html
-
---===============6677332263392244869==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Use MI_MATH to apply RMW WA in LRC (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145732/">https://patchwork.freedesktop.org/series/145732/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145732v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145732v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2794-777e1850811f9864aa8b55940634d3da19712bf7_BAT -&gt; xe-pw-145732v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2794-777e1850811f9864aa8b55940634d3da19712bf7 -&gt; xe-pw-145732v4</li>
-</ul>
-<p>IGT_8270: 49751c5c11723262ec66e564c76503f74a9fa831 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2794-777e1850811f9864aa8b55940634d3da19712bf7: 777e1850811f9864aa8b55940634d3da19712bf7<br />
-  xe-pw-145732v4: 145732v4</p>
-
-</body>
-</html>
-
---===============6677332263392244869==--
