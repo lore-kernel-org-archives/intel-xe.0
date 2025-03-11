@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB8B4C28B2F
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Mar 2025 19:15:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2958C282EC
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Mar 2025 19:23:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CE9010E690;
-	Tue, 11 Mar 2025 19:15:45 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="htBfjXtx";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45F0B10E2A9;
- Tue, 11 Mar 2025 19:15:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741720545; x=1773256545;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=YcUbMgMwmoJmH/2HHSSjysZyaPvjeFksfzY9FiQU5XI=;
- b=htBfjXtx7xNC5BJv5/MvVn62g10DH1Rxd14GiZzDQQWPgicSq9FZp3Ln
- PfRaYIpDz4KS9FCZXX76BL4F05Lf/aEJt87bcCJXcII0aNwlxnqPgIpkg
- uK4dWCx/8jCr689PGMkIiOazlmDM1wS5SZt0x4zc3XodcocupM/AUcrHC
- su2ncMCwwBT6N2IPiIhpwDO8qpX2hGNN7gjNtFc4HHTSPFCYaqPOi/QzE
- utyxJBBX+5QtIIOmHEa3X34MEMuH46Z/zf4hN606iRxZH4CmhfGD8L699
- 84rw4lJkO0OEObtklHtzG+a8FDy39x6NfXpfpx3LUmfVorDu0LaplraaU A==;
-X-CSE-ConnectionGUID: Dp1rvlPEQHilsKu3jJNniQ==
-X-CSE-MsgGUID: KyVR1MScTiuNVE8ITigqzQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11370"; a="42688039"
-X-IronPort-AV: E=Sophos;i="6.14,239,1736841600"; d="scan'208";a="42688039"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2025 12:15:44 -0700
-X-CSE-ConnectionGUID: gdA1kr2GQxS+K47PFDm9xg==
-X-CSE-MsgGUID: FH0A1InOSkmlQzeLzt9Mpg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,239,1736841600"; d="scan'208";a="125611335"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 11 Mar 2025 12:15:42 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 11 Mar 2025 21:15:41 +0200
-Date: Tue, 11 Mar 2025 21:15:41 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 7/9] drm/i915/irq: convert intel_display_irq.[ch]
- interfaces to struct intel_display
-Message-ID: <Z9CL3WH695G-j1w3@intel.com>
-References: <cover.1741715981.git.jani.nikula@intel.com>
- <df68cf79674a31bb55b641e29976052d380274a4.1741715981.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74AA510E2A9;
+	Tue, 11 Mar 2025 19:23:00 +0000 (UTC)
+Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FD5510E2A9;
+ Tue, 11 Mar 2025 19:22:59 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5541243151209164564=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <df68cf79674a31bb55b641e29976052d380274a4.1741715981.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/xe3lpd=3A_Update_b?=
+ =?utf-8?q?andwidth_parameters_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 11 Mar 2025 19:22:59 -0000
+Message-ID: <174172097918.21127.12354681582986904806@18a75f3d1eae>
+X-Patchwork-Hint: ignore
+References: <20250311-xe3lpd-bandwidth-update-v5-0-a95a9d90ad71@intel.com>
+In-Reply-To: <20250311-xe3lpd-bandwidth-update-v5-0-a95a9d90ad71@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,78 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Mar 11, 2025 at 08:00:41PM +0200, Jani Nikula wrote:
-> Going forward, struct intel_display is the main display device data
-> pointer. Convert the external interfaces of intel_display_irq.[ch] to
-> struct intel_display.
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/i9xx_plane.c     |  24 ++-
->  .../drm/i915/display/intel_display_driver.c   |   2 +-
->  .../gpu/drm/i915/display/intel_display_irq.c  | 204 +++++++++---------
->  .../gpu/drm/i915/display/intel_display_irq.h  |  75 ++++---
->  .../i915/display/intel_display_power_well.c   |  12 +-
->  .../drm/i915/display/intel_fifo_underrun.c    |  27 +--
->  .../gpu/drm/i915/display/intel_hotplug_irq.c  |  22 +-
->  drivers/gpu/drm/i915/display/intel_pipe_crc.c |   3 +-
->  drivers/gpu/drm/i915/display/intel_tv.c       |   4 +-
->  .../drm/i915/display/skl_universal_plane.c    |   6 +-
->  drivers/gpu/drm/i915/gt/intel_rps.c           |   6 +-
->  drivers/gpu/drm/i915/i915_irq.c               |  98 +++++----
->  drivers/gpu/drm/xe/display/xe_display.c       |  12 +-
->  13 files changed, 263 insertions(+), 232 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
-> index 013295f66d56..5e8344fdfc28 100644
-> --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
-> +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
-> @@ -630,84 +630,92 @@ vlv_primary_async_flip(struct intel_dsb *dsb,
->  static void
->  bdw_primary_enable_flip_done(struct intel_plane *plane)
->  {
-> +	struct intel_display *display = to_intel_display(plane);
->  	struct drm_i915_private *i915 = to_i915(plane->base.dev);
->  	enum pipe pipe = plane->pipe;
->  
->  	spin_lock_irq(&i915->irq_lock);
-> -	bdw_enable_pipe_irq(i915, pipe, GEN8_PIPE_PRIMARY_FLIP_DONE);
-> +	bdw_enable_pipe_irq(display, pipe, GEN8_PIPE_PRIMARY_FLIP_DONE);
->  	spin_unlock_irq(&i915->irq_lock);
->  }
->  
->  static void
->  bdw_primary_disable_flip_done(struct intel_plane *plane)
->  {
-> +	struct intel_display *display = to_intel_display(plane);
->  	struct drm_i915_private *i915 = to_i915(plane->base.dev);
->  	enum pipe pipe = plane->pipe;
->  
->  	spin_lock_irq(&i915->irq_lock);
-> -	bdw_disable_pipe_irq(i915, pipe, GEN8_PIPE_PRIMARY_FLIP_DONE);
-> +	bdw_disable_pipe_irq(display, pipe, GEN8_PIPE_PRIMARY_FLIP_DONE);
->  	spin_unlock_irq(&i915->irq_lock);
->  }
->  
->  static void
->  ivb_primary_enable_flip_done(struct intel_plane *plane)
->  {
-> +	struct intel_display *display = to_intel_display(plane);
->  	struct drm_i915_private *i915 = to_i915(plane->base.dev);
->  
->  	spin_lock_irq(&i915->irq_lock);
-> -	ilk_enable_display_irq(i915, DE_PLANE_FLIP_DONE_IVB(plane->i9xx_plane));
-> +	ilk_enable_display_irq(display, DE_PLANE_FLIP_DONE_IVB(plane->i9xx_plane));
->  	spin_unlock_irq(&i915->irq_lock);
+--===============5541243151209164564==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I was pondering if we could just suck the lock into these
-guys. But at least the fifo underrun reporting code is using
-some of these things and there there the lock is taken
-further out. So sadly not as trivial as I was hoping.
+== Series Details ==
 
--- 
-Ville Syrjälä
-Intel
+Series: drm/i915/xe3lpd: Update bandwidth parameters (rev5)
+URL   : https://patchwork.freedesktop.org/series/144440/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-2795-f8df428b3850ed87a1e2f3b12b6025328d8a6373_BAT -> xe-pw-144440v5_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (10 -> 9)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-144440v5_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_exec_basic@twice-userptr-rebind:
+    - bat-adlp-vf:        [PASS][1] -> [ABORT][2] ([Intel XE#4491])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2795-f8df428b3850ed87a1e2f3b12b6025328d8a6373/bat-adlp-vf/igt@xe_exec_basic@twice-userptr-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144440v5/bat-adlp-vf/igt@xe_exec_basic@twice-userptr-rebind.html
+
+  
+  [Intel XE#4491]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4491
+
+
+Build changes
+-------------
+
+  * Linux: xe-2795-f8df428b3850ed87a1e2f3b12b6025328d8a6373 -> xe-pw-144440v5
+
+  IGT_8270: 49751c5c11723262ec66e564c76503f74a9fa831 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2795-f8df428b3850ed87a1e2f3b12b6025328d8a6373: f8df428b3850ed87a1e2f3b12b6025328d8a6373
+  xe-pw-144440v5: 144440v5
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144440v5/index.html
+
+--===============5541243151209164564==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/xe3lpd: Update bandwidth parameters (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144440/">https://patchwork.freedesktop.org/series/144440/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144440v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144440v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2795-f8df428b3850ed87a1e2f3b12b6025328d8a6373_BAT -&gt; xe-pw-144440v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (10 -&gt; 9)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-144440v5_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_exec_basic@twice-userptr-rebind:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2795-f8df428b3850ed87a1e2f3b12b6025328d8a6373/bat-adlp-vf/igt@xe_exec_basic@twice-userptr-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144440v5/bat-adlp-vf/igt@xe_exec_basic@twice-userptr-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4491">Intel XE#4491</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2795-f8df428b3850ed87a1e2f3b12b6025328d8a6373 -&gt; xe-pw-144440v5</li>
+</ul>
+<p>IGT_8270: 49751c5c11723262ec66e564c76503f74a9fa831 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2795-f8df428b3850ed87a1e2f3b12b6025328d8a6373: f8df428b3850ed87a1e2f3b12b6025328d8a6373<br />
+  xe-pw-144440v5: 144440v5</p>
+
+</body>
+</html>
+
+--===============5541243151209164564==--
