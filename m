@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2958C282EC
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Mar 2025 19:23:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2D2FC28B2F
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Mar 2025 19:28:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74AA510E2A9;
-	Tue, 11 Mar 2025 19:23:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86DF710E0B5;
+	Tue, 11 Mar 2025 19:28:49 +0000 (UTC)
 Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FD5510E2A9;
- Tue, 11 Mar 2025 19:22:59 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5541243151209164564=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB31410E0B5;
+ Tue, 11 Mar 2025 19:28:47 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/xe3lpd=3A_Update_b?=
- =?utf-8?q?andwidth_parameters_=28rev5=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915=3A_make_i91?=
+ =?utf-8?q?5-=3Edisplay_opaque_pointer?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 11 Mar 2025 19:22:59 -0000
-Message-ID: <174172097918.21127.12354681582986904806@18a75f3d1eae>
+Date: Tue, 11 Mar 2025 19:28:47 -0000
+Message-ID: <174172132782.21530.12459883653225290592@18a75f3d1eae>
 X-Patchwork-Hint: ignore
-References: <20250311-xe3lpd-bandwidth-update-v5-0-a95a9d90ad71@intel.com>
-In-Reply-To: <20250311-xe3lpd-bandwidth-update-v5-0-a95a9d90ad71@intel.com>
+References: <cover.1741712601.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1741712601.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +40,23 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5541243151209164564==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/xe3lpd: Update bandwidth parameters (rev5)
-URL   : https://patchwork.freedesktop.org/series/144440/
+Series: drm/i915: make i915->display opaque pointer
+URL   : https://patchwork.freedesktop.org/series/146156/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-2795-f8df428b3850ed87a1e2f3b12b6025328d8a6373_BAT -> xe-pw-144440v5_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-144440v5_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_exec_basic@twice-userptr-rebind:
-    - bat-adlp-vf:        [PASS][1] -> [ABORT][2] ([Intel XE#4491])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2795-f8df428b3850ed87a1e2f3b12b6025328d8a6373/bat-adlp-vf/igt@xe_exec_basic@twice-userptr-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144440v5/bat-adlp-vf/igt@xe_exec_basic@twice-userptr-rebind.html
-
-  
-  [Intel XE#4491]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4491
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 25eafce2a8ad drm-tip: 2025y-03m-11d-18h-52m-13s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/hdmi: remove inline to_i915()
+Applying: drm/i915/hotplug: use container_of() to get struct intel_display
+Applying: drm/i915: convert i915 and xe display members into pointers
+Applying: drm/i915: scripted conversion to i915->display pointer
+Applying: drm/i915: allocate struct intel_display dynamically
+Applying: drm/i915: stop including display/intel_display_core.h from i915_drv.h
+Applying: drm/xe: drop intel_display_core/device.h include from xe_device_types.h
 
 
-Build changes
--------------
-
-  * Linux: xe-2795-f8df428b3850ed87a1e2f3b12b6025328d8a6373 -> xe-pw-144440v5
-
-  IGT_8270: 49751c5c11723262ec66e564c76503f74a9fa831 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2795-f8df428b3850ed87a1e2f3b12b6025328d8a6373: f8df428b3850ed87a1e2f3b12b6025328d8a6373
-  xe-pw-144440v5: 144440v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144440v5/index.html
-
---===============5541243151209164564==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/xe3lpd: Update bandwidth parameters (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144440/">https://patchwork.freedesktop.org/series/144440/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144440v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144440v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2795-f8df428b3850ed87a1e2f3b12b6025328d8a6373_BAT -&gt; xe-pw-144440v5_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-144440v5_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_exec_basic@twice-userptr-rebind:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2795-f8df428b3850ed87a1e2f3b12b6025328d8a6373/bat-adlp-vf/igt@xe_exec_basic@twice-userptr-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144440v5/bat-adlp-vf/igt@xe_exec_basic@twice-userptr-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4491">Intel XE#4491</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2795-f8df428b3850ed87a1e2f3b12b6025328d8a6373 -&gt; xe-pw-144440v5</li>
-</ul>
-<p>IGT_8270: 49751c5c11723262ec66e564c76503f74a9fa831 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2795-f8df428b3850ed87a1e2f3b12b6025328d8a6373: f8df428b3850ed87a1e2f3b12b6025328d8a6373<br />
-  xe-pw-144440v5: 144440v5</p>
-
-</body>
-</html>
-
---===============5541243151209164564==--
