@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDB41C28B28
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Mar 2025 06:02:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9A74C28B2E
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Mar 2025 06:02:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8542610E09F;
-	Wed, 12 Mar 2025 06:02:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B74910E29D;
+	Wed, 12 Mar 2025 06:02:50 +0000 (UTC)
 Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EEAA10E09F;
- Wed, 12 Mar 2025 06:02:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 649CA10E29D;
+ Wed, 12 Mar 2025 06:02:49 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
- =?utf-8?q?Maintain_asciibetical_order_for_HAS=5F*_macros?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/i915/display=3A_Maint?=
+ =?utf-8?q?ain_asciibetical_order_for_HAS=5F*_macros?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 12 Mar 2025 06:02:38 -0000
-Message-ID: <174175935857.22571.3518661173612830115@18a75f3d1eae>
+Date: Wed, 12 Mar 2025 06:02:49 -0000
+Message-ID: <174175936940.22571.12698366574460109226@18a75f3d1eae>
 X-Patchwork-Hint: ignore
 References: <20250312054424.1628358-1-ankit.k.nautiyal@intel.com>
 In-Reply-To: <20250312054424.1628358-1-ankit.k.nautiyal@intel.com>
@@ -48,9 +48,25 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: aba848f9b752 drm-tip: 2025y-03m-12d-02h-58m-14s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/display: Maintain asciibetical order for HAS_* macros
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+cbb4e4a079d89106c2736adc3c7de6f9dc56da07
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 0324c940d0eece49863078d306568e0635b4af00
+Author: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Date:   Wed Mar 12 11:14:24 2025 +0530
+
+    drm/i915/display: Maintain asciibetical order for HAS_* macros
+    
+    Move HAS_* macros to maintain asciibetical order.
+    
+    Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
++ /mt/dim checkpatch aba848f9b752cf51474c0c3b1abcf0f572f774dc drm-intel
+0324c940d0ee drm/i915/display: Maintain asciibetical order for HAS_* macros
 
 
