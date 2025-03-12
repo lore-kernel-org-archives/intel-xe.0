@@ -4,52 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC53BC28B28
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Mar 2025 13:18:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F137AC28B28
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Mar 2025 13:24:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 911EC10E183;
-	Wed, 12 Mar 2025 13:18:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9410010E187;
+	Wed, 12 Mar 2025 13:24:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="HW3JSvfI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RPOMpVm7";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9640B10E183;
- Wed, 12 Mar 2025 13:18:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=U48J5D2Fapcdy5jz0mkgT9LQp0v9L/YuVx7WFUuxYgo=; b=HW3JSvfIkHWUpsyBIDjt8Kf9MX
- rn4CmcJQ8Z+nWrkjL4TYvVPigUJ38xb/vOhVZ9CQsPSIV1PXpeZLdHwcsjKgn6JWeTte1ORMnvNpg
- u+V/JxIlDQ53dUPErjZxHoJFKK/2iUPnLCDlv6WgmWqGvNmo07vkg3xXoF0GdLLzotXkiBfrGjHSD
- bkjAynxJZPvoBwMdI9w/dvcS/U0vZm0sX0ejBhdR8VfxNz4Ve1CP7hD4sHZATpY8JLBeoHWsdpHdB
- fhCxtddTAHULbcyMPw1ORcfqhMQDgMLIIWTlTxgZLokifvaJISFoRSFk54DgMQ71WEnsRNAQDkeQD
- 8bZfIQyw==;
-Received: from [90.241.98.187] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tsLyg-007d96-W9; Wed, 12 Mar 2025 14:18:36 +0100
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: intel-xe@lists.freedesktop.org,
-	igt-dev@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH i-g-t v2] tests/intel/xe_sync_file: Exercise sync file access
- post queue destruction
-Date: Wed, 12 Mar 2025 13:18:35 +0000
-Message-ID: <20250312131835.83983-1-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250312124245.83254-1-tvrtko.ursulin@igalia.com>
-References: <20250312124245.83254-1-tvrtko.ursulin@igalia.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E51C910E183;
+ Wed, 12 Mar 2025 13:24:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1741785886; x=1773321886;
+ h=from:subject:date:message-id:mime-version:
+ content-transfer-encoding:to:cc;
+ bh=t2Yd/uVk/qp/2qa1DRVB4ci381wkgsgM43ImpQMa9e4=;
+ b=RPOMpVm73/+SVzxk158xJ3WNEwHP93IWqwsTFHeTzqhckO46wql7/Dhp
+ WqGPQ8eXkGwt3F+DR8860MMmUu9Sgu1tWFLfdrs8G3gzdhNoBNaumqu4P
+ 2xHhW6z/Fo9Xk2tER9lRlYyEi3bXlykfWMCTgyNeIkBLZV9wvy6R2IlQ9
+ dyjNfCgvN2/USgAMWulUMyXNEzdiQIPN8ntjT0kmEsxj7hpAaMbq8MOaq
+ MGHlDgX4ux+alEu8Du4A5NGUBMDAnkppaj7AzwzIWxCLVjiK91ya84Hlj
+ +UmCHzR9mfbaTb/e6Q+K9F8rTtAjBY3Q7yApRIWa6HmzhrOoDVsOO4rbh Q==;
+X-CSE-ConnectionGUID: P0WpZCOCQjWYbcAUXmDclA==
+X-CSE-MsgGUID: KH5co9UvS7SXyU8yvo5cJA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11370"; a="42028452"
+X-IronPort-AV: E=Sophos;i="6.14,241,1736841600"; d="scan'208";a="42028452"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2025 06:24:45 -0700
+X-CSE-ConnectionGUID: p3JTrPh/RUK+Pzpk2HV1SQ==
+X-CSE-MsgGUID: S42WF00oQ1y/lZ/UhHb3aQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,241,1736841600"; d="scan'208";a="125821647"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by orviesa005.jf.intel.com with ESMTP; 12 Mar 2025 06:24:42 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCH v8 0/3] Expose modifiers/formats supported by async flips
+Date: Wed, 12 Mar 2025 18:39:20 +0530
+Message-Id: <20250312-asyn-v8-0-0c4cbe5a066d@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAICH0WcC/02OwQ6DIBAFf8VwLgQQxPbU/2g8IGIlqdAsaGqM/
+ 17UNOlxNvsms6JowdmIbsWKwM4uuuAz1JcCmUH7p8Wuy4w45ZIyyrGOi8dtrypV0nwxBuXXN9j
+ efQ7No8ncQxhxGsDq31gwxmqqZMkkEVVF6RUzrGHyBMg4QRqWu/PJvogJ424cXEwBlqNrlrv3T
+ OCsPhNmiSlW2khthG47of/2zbZtX4Eb+JTaAAAA
+X-Change-ID: 20250102-asyn-bf76730501cc
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Cc: chaitanya.kumar.borah@intel.com, 
+ 20250219093211.4059187-1-arun.r.murthy@intel.com, 
+ 20250311085422.2573860-1-santhosh.reddy.guddati@intel.com, 
+ Arun R Murthy <arun.r.murthy@intel.com>, 
+ Naveen Kumar <naveen1.kumar@intel.com>
+X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,208 +74,138 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A new test to roughly simulate the VK CTS suite where
-dEQP-VK.wsi.android.swapchain.render.* is hitting an use after free when a
-sync file is accessed after the xe submission queue has been destroyed.
+All of the formats/modifiers supported by the plane during synchronous
+flips are nor supported by asynchronous flips. The formats/modifiers
+exposed to user by IN_FORMATS exposes all formats/modifiers supported by
+plane and this list varies for async flips. If the async flip supported
+formats/modifiers are exposed to the user, user based on this list can
+take decision to proceed or not and avoid flip failures during async
+flips.
+Discussion around this can be located @
+https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/29618#note_2487123
+Mutter implementation for IN_FORMARTS_ASYNC under review @
+https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/4063
+Xorg/modesetting patch
+https://gitlab.freedesktop.org/xorg/xserver/-/merge_requests/1816
 
-Abbreviated KASAN report:
+TODO: Upon merge of the patch related to async flip
+https://patchwork.freedesktop.org/patch/626849/?series=139807&rev=6
+the patch 5 in this series will have to make use of the new function
+pointer can_async_flip().
 
- [IGT] xe_sync_file: starting subtest sync_file_race
- ==================================================================
- BUG: KASAN: slab-use-after-free in drm_sched_fence_get_timeline_name+0xa1/0xb0 [gpu_sched]
- Read of size 8 at addr ffff888126726020 by task xe_sync_file/2931
- ...
- Call Trace:
-  <TASK>
-  kasan_report+0xeb/0x130
-  drm_sched_fence_get_timeline_name+0xa1/0xb0 [gpu_sched]
-  sync_file_ioctl+0x3cb/0xb00
- ...
- Allocated by task 2931:
-  __kmalloc_cache_noprof+0x1c2/0x410
-  guc_exec_queue_init+0x1a8/0x1240 [xe]
-  xe_exec_queue_create+0xe72/0x13b0 [xe]
-  xe_exec_queue_create_ioctl+0x10d9/0x1770 [xe]
-  drm_ioctl_kernel+0x179/0x300
-  drm_ioctl+0x58f/0xcf0
-  xe_drm_ioctl+0xe8/0x140 [xe]
- ...
- Freed by task 1689:
-  kfree+0x106/0x3e0
-  __guc_exec_queue_fini_async+0x144/0x2d0 [xe]
-  process_one_work+0x610/0xdf0
-  worker_thread+0x7c8/0x14b0
+Test-with: 20250219093211.4059187-1-arun.r.murthy@intel.com
+Test-with: 20250311085422.2573860-1-santhosh.reddy.guddati@intel.com
 
-Without KASAN this of course turns into a plain null pointer dereference.
+v3: Add new plane->funcs format_mod_supported_async (Ville)
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Arun R Murthy (3):
+  drm/plane: Add new plane property IN_FORMATS_ASYNC
+  drm/plane: Expose function to create format/modifier blob
+  drm/i915/display: Populate list of async supported formats/modifiers
+
+ drivers/gpu/drm/drm_mode_config.c             |  7 +++
+ drivers/gpu/drm/drm_plane.c                   | 50 ++++++++++++------
+ .../drm/i915/display/skl_universal_plane.c    | 51 +++++++++++++++++++
+ include/drm/drm_mode_config.h                 |  6 +++
+ include/drm/drm_plane.h                       |  4 ++
+ 5 files changed, 103 insertions(+), 15 deletions(-)
+
+--
+2.25.1
+
 ---
- tests/intel/xe_sync_file.c | 139 +++++++++++++++++++++++++++++++++++++
- tests/meson.build          |   1 +
- 2 files changed, 140 insertions(+)
- create mode 100644 tests/intel/xe_sync_file.c
+Arun R Murthy (5):
+      drm/plane: Add new plane property IN_FORMATS_ASYNC
+      drm/plane: Expose function to create format/modifier blob
+      drm/plane: Function to check async supported modifier/format
+      drm/i915/display: Populate list of async supported formats/modifiers
+      drm/i915/display: Add function for format_mod_supported_async
 
-diff --git a/tests/intel/xe_sync_file.c b/tests/intel/xe_sync_file.c
-new file mode 100644
-index 000000000000..3b8e93315be8
---- /dev/null
-+++ b/tests/intel/xe_sync_file.c
-@@ -0,0 +1,139 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2025 Google, Inc.
-+ */
-+
-+/**
-+ * TEST: Tests for sync file functionality
-+ * Category: Core
-+ * Mega feature: General Core features
-+ * Sub-category: CMD submission
-+ * Functionality: fences
-+ */
-+
-+#include "igt.h"
-+#include "sync_file.h"
-+
-+#include "lib/igt_syncobj.h"
-+#include "lib/intel_reg.h"
-+
-+#include "xe_drm.h"
-+#include "xe/xe_ioctl.h"
-+#include "xe/xe_query.h"
-+
-+static int sync_file_get_status(int sync_file)
-+{
-+	struct sync_fence_info fence = { };
-+	struct sync_file_info info = {
-+		.num_fences = 1,
-+		.sync_fence_info = to_user_pointer(&fence),
-+	};
-+
-+	do_ioctl(sync_file, SYNC_IOC_FILE_INFO, &info);
-+	igt_assert_eq(info.num_fences, 1);
-+
-+	igt_debug("'%s'/'%s' = %d\n",
-+		  fence.driver_name, fence.obj_name, fence.status);
-+
-+	return fence.status;
-+}
-+
-+/**
-+ * SUBTEST: sync_file_race
-+ * Description: Check that we can safely query an exported sync file fd
-+ * Test category: functionality test
-+ */
-+static void test_race(int xe, struct drm_xe_engine_class_instance *eci)
-+{
-+	uint32_t vm, bo, syncobj, bind_syncobj, *batch;
-+	struct drm_xe_sync sync[2] = {
-+		{ .type = DRM_XE_SYNC_TYPE_SYNCOBJ,
-+		  .flags = DRM_XE_SYNC_FLAG_SIGNAL,
-+		},
-+		{ .type = DRM_XE_SYNC_TYPE_SYNCOBJ,
-+		  .flags = DRM_XE_SYNC_FLAG_SIGNAL,
-+		},
-+	};
-+	const uint32_t bbend = MI_BATCH_BUFFER_END;
-+	struct drm_xe_exec exec = {
-+		.address = 0x100000,
-+		.num_batch_buffer = 1,
-+		.num_syncs = 2,
-+		.syncs = to_user_pointer(sync),
-+	};
-+	int sync_fence;
-+	size_t size;
-+
-+	vm = xe_vm_create(xe, 0, 0);
-+
-+	size = xe_bb_size(xe, sizeof(bbend));
-+	bo = xe_bo_create(xe, vm, size, vram_if_possible(xe, eci->gt_id),
-+			  DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM);
-+
-+	batch = xe_bo_map(xe, bo, size);
-+	*batch = bbend;
-+
-+	exec.exec_queue_id  = xe_exec_queue_create(xe, vm, eci, 0);
-+
-+	syncobj = syncobj_create(xe, 0);
-+	bind_syncobj = syncobj_create(xe, 0);
-+
-+	sync[0].handle = bind_syncobj;
-+	xe_vm_bind_async(xe, vm, 0, bo, 0, exec.address, size, sync, 1);
-+
-+	sync[0].flags &= ~DRM_XE_SYNC_FLAG_SIGNAL;
-+	sync[0].handle = bind_syncobj;
-+	sync[1].flags |= DRM_XE_SYNC_FLAG_SIGNAL;
-+	sync[1].handle = syncobj;
-+	xe_exec(xe, &exec);
-+
-+	/* Export a sync file fence. */
-+	sync_fence = syncobj_handle_to_fd(xe, sync[1].handle,
-+					  DRM_SYNCOBJ_HANDLE_TO_FD_FLAGS_EXPORT_SYNC_FILE);
-+
-+	igt_assert(syncobj_wait(xe, &syncobj, 1, INT64_MAX, 0, NULL));
-+	igt_assert(syncobj_wait(xe, &bind_syncobj, 1, INT64_MAX, 0, NULL));
-+
-+	igt_assert_eq(sync_file_get_status(sync_fence), 1);
-+
-+	sync[0].flags |= DRM_XE_SYNC_FLAG_SIGNAL;
-+	syncobj_reset(xe, &sync[0].handle, 1);
-+	xe_vm_unbind_async(xe, vm, 0, 0, exec.address, size, sync, 1);
-+	igt_assert(syncobj_wait(xe, &sync[0].handle, 1, INT64_MAX, 0, NULL));
-+
-+	syncobj_destroy(xe, syncobj);
-+	xe_exec_queue_destroy(xe, exec.exec_queue_id);
-+
-+	munmap(batch, size);
-+	gem_close(xe, bo);
-+
-+	syncobj_destroy(xe, bind_syncobj);
-+	xe_vm_destroy(xe, vm);
-+
-+	/* Give any delayed freeing time to run. */
-+	sleep(1);
-+
-+	/* This should still work and not crash the kernel. */
-+	igt_assert_eq(sync_file_get_status(sync_fence), 1);
-+
-+	close(sync_fence);
-+}
-+
-+igt_main
-+{
-+	struct drm_xe_engine_class_instance *eci;
-+	int xe;
-+
-+	igt_fixture
-+		xe = drm_open_driver(DRIVER_XE);
-+
-+	igt_subtest("sync_file_race") {
-+		xe_for_each_engine(xe, eci) {
-+			test_race(xe, eci);
-+			break;
-+		}
-+	}
-+
-+	igt_fixture
-+		drm_close_driver(xe);
-+}
-diff --git a/tests/meson.build b/tests/meson.build
-index 2f5406523a4d..925fceb6b60f 100644
---- a/tests/meson.build
-+++ b/tests/meson.build
-@@ -323,6 +323,7 @@ intel_xe_progs = [
- 	'xe_sriov_auto_provisioning',
- 	'xe_sriov_flr',
- 	'xe_sriov_scheduling',
-+	'xe_sync_file',
- 	'xe_sysfs_defaults',
- 	'xe_sysfs_preempt_timeout',
- 	'xe_sysfs_scheduler',
+ drivers/gpu/drm/drm_mode_config.c                  |   7 ++
+ drivers/gpu/drm/drm_plane.c                        |  72 +++++++++----
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 113 ++++++++++++++++++---
+ include/drm/drm_mode_config.h                      |   6 ++
+ include/drm/drm_plane.h                            |  24 +++++
+ 5 files changed, 188 insertions(+), 34 deletions(-)
+---
+base-commit: 08bd590935a5258ffd79355c59adffd72fb2c642
+change-id: 20250102-asyn-bf76730501cc
+
+Best regards,
+--
+Arun R Murthy <arun.r.murthy@intel.com>
+
+---
+Changes in v6:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v5: https://lore.kernel.org/r/20250218-asyn-v5-0-7ac5ac4abd4a@intel.com
+
+---
+Arun R Murthy (3):
+      drm/plane: Add new plane property IN_FORMATS_ASYNC
+      drm/plane: modify create_in_formats to accommodate async
+      drm/i915/display: Add i915 hook for format_mod_supported_async
+
+ drivers/gpu/drm/drm_mode_config.c                  |  7 +++
+ drivers/gpu/drm/drm_plane.c                        | 53 +++++++++++++++-----
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 56 ++++++++++++++++------
+ include/drm/drm_mode_config.h                      |  6 +++
+ include/drm/drm_plane.h                            | 17 +++++++
+ 5 files changed, 112 insertions(+), 27 deletions(-)
+---
+base-commit: bc7a84cbc968ce97e581e9e3c2d26fb0ac106482
+change-id: 20250102-asyn-bf76730501cc
+
+Best regards,
+--
+Arun R Murthy <arun.r.murthy@intel.com>
+
+---
+Arun R Murthy (3):
+      drm/plane: Add new plane property IN_FORMATS_ASYNC
+      drm/plane: modify create_in_formats to accommodate async
+      drm/i915/display: Add i915 hook for format_mod_supported_async
+
+ drivers/gpu/drm/drm_mode_config.c                  |  7 ++++
+ drivers/gpu/drm/drm_plane.c                        | 49 ++++++++++++++++------
+ drivers/gpu/drm/i915/display/i9xx_plane.c          |  6 ++-
+ drivers/gpu/drm/i915/display/intel_atomic_plane.c  | 30 ++++++++++++-
+ drivers/gpu/drm/i915/display/intel_atomic_plane.h  |  6 ++-
+ drivers/gpu/drm/i915/display/intel_display.c       | 11 +----
+ drivers/gpu/drm/i915/display/skl_universal_plane.c |  5 ++-
+ include/drm/drm_mode_config.h                      |  6 +++
+ include/drm/drm_plane.h                            | 17 ++++++++
+ 9 files changed, 111 insertions(+), 26 deletions(-)
+---
+base-commit: be5a404c3344b7d794766f045b8f94aa93c42069
+change-id: 20250102-asyn-bf76730501cc
+
+Best regards,
+--
+Arun R Murthy <arun.r.murthy@intel.com>
+
+---
+Arun R Murthy (3):
+      drm/plane: Add new plane property IN_FORMATS_ASYNC
+      drm/plane: modify create_in_formats to accommodate async
+      drm/i915/display: Add i915 hook for format_mod_supported_async
+
+ drivers/gpu/drm/drm_mode_config.c                  |  7 +++
+ drivers/gpu/drm/drm_plane.c                        | 54 ++++++++++++++++------
+ drivers/gpu/drm/i915/display/i9xx_plane.c          |  6 ++-
+ drivers/gpu/drm/i915/display/intel_atomic_plane.c  | 31 ++++++++++++-
+ drivers/gpu/drm/i915/display/intel_atomic_plane.h  |  6 ++-
+ drivers/gpu/drm/i915/display/intel_display.c       | 14 ++----
+ drivers/gpu/drm/i915/display/skl_universal_plane.c |  5 +-
+ include/drm/drm_mode_config.h                      |  6 +++
+ include/drm/drm_plane.h                            | 17 +++++++
+ 9 files changed, 117 insertions(+), 29 deletions(-)
+---
+base-commit: aba848f9b752cf51474c0c3b1abcf0f572f774dc
+change-id: 20250102-asyn-bf76730501cc
+
+Best regards,
 -- 
-2.48.0
+Arun R Murthy <arun.r.murthy@intel.com>
 
