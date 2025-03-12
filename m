@@ -4,28 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F1A7C28B28
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Mar 2025 13:45:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 401C5C28B2F
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Mar 2025 14:07:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 650EB10E154;
-	Wed, 12 Mar 2025 13:45:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB71E10E711;
+	Wed, 12 Mar 2025 14:07:51 +0000 (UTC)
 Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4D8F10E08C;
- Wed, 12 Mar 2025 13:45:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0853110E711;
+ Wed, 12 Mar 2025 14:07:51 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_tests/intel/xe=5Fsyn?=
- =?utf-8?q?c=5Ffile=3A_Exercise_sync_file_access_post_queue_destruction_=28r?=
- =?utf-8?q?ev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Expose_modifiers/for?=
+ =?utf-8?q?mats_supported_by_async_flips_=28rev10=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 12 Mar 2025 13:45:21 -0000
-Message-ID: <174178712167.25254.12645071504949113683@18a75f3d1eae>
+Date: Wed, 12 Mar 2025 14:07:51 -0000
+Message-ID: <174178847103.25296.4656177331666557523@18a75f3d1eae>
 X-Patchwork-Hint: ignore
-References: <20250312124245.83254-1-tvrtko.ursulin@igalia.com>
-In-Reply-To: <20250312124245.83254-1-tvrtko.ursulin@igalia.com>
+References: <20250312-asyn-v8-0-0c4cbe5a066d@intel.com>
+In-Reply-To: <20250312-asyn-v8-0-0c4cbe5a066d@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,21 +42,17 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: tests/intel/xe_sync_file: Exercise sync file access post queue destruction (rev2)
-URL   : https://patchwork.freedesktop.org/series/146212/
-State : failure
+Series: Expose modifiers/formats supported by async flips (rev10)
+URL   : https://patchwork.freedesktop.org/series/140934/
+State : success
 
 == Summary ==
 
 === Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 68be9c758a86 drm-tip: 2025y-03m-12d-12h-47m-28s UTC integration manifest
+Base commit: dd638300cdc1 drm-tip: 2025y-03m-12d-14h-03m-26s UTC integration manifest
 === git am output follows ===
-error: tests/meson.build: does not exist in index
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Applying: tests/intel/xe_sync_file: Exercise sync file access post queue destruction
-Patch failed at 0001 tests/intel/xe_sync_file: Exercise sync file access post queue destruction
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Applying: drm/plane: Add new plane property IN_FORMATS_ASYNC
+Applying: drm/plane: modify create_in_formats to accommodate async
+Applying: drm/i915/display: Add i915 hook for format_mod_supported_async
 
 
