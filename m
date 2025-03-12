@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF272C28B2F
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Mar 2025 11:04:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16189C28B2F
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Mar 2025 11:25:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D3EC10E76D;
-	Wed, 12 Mar 2025 11:04:46 +0000 (UTC)
-Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4913210E76D;
- Wed, 12 Mar 2025 11:04:45 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id B04CE10E2CA;
+	Wed, 12 Mar 2025 11:25:34 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dSJ05lJQ";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BFFA10E2CA;
+ Wed, 12 Mar 2025 11:25:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1741778734; x=1773314734;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=XEZTvBu228k/6sUHF0vY93bH0zt39YiS+I4KPJz17Qc=;
+ b=dSJ05lJQ0h0/tTp/F3gegP+xgQlzBPLtMlYuuh6xl2sKkUVv7+SNzq8t
+ UJT16+mSCy9tPAmQveFirR+O68lC1YAlThGOTTy4WqRHqefZIwhJJFuPa
+ 3atHpOlNhbVyy2gp4aeJy9C9u+h97bhKAEj9cCYX/xSYf/qj4u5T7sune
+ HfjB/MxDrmc5oyj4dd4/BVYWz36H7ntEbnwj4SvY0AqtU9FCNepQaKspC
+ fy/CCjCM5XBcpm7wNOwzVZrwEM9TYjevdT2eaiJ68tyCMc7Nne8HMKSTj
+ uicxbBvl7+NUokPnVAru0ARXJouKQ26CP50ig/WmgnIUqFTmq1rIhoD1K Q==;
+X-CSE-ConnectionGUID: 8sYegypIT8+GzzTWstOWSw==
+X-CSE-MsgGUID: 7NrCZVBkS9aM1WsUtcrm5g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11370"; a="42019006"
+X-IronPort-AV: E=Sophos;i="6.14,241,1736841600"; d="scan'208";a="42019006"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2025 04:25:33 -0700
+X-CSE-ConnectionGUID: GM3m4HhYS9m+usS6jr3s6w==
+X-CSE-MsgGUID: pNkTIeZUTRyvFZ0oslm27Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,241,1736841600"; d="scan'208";a="143801241"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.23])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2025 04:25:31 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, mitulkumar.ajitkumar.golani@intel.com
+Subject: Re: [PATCH] drm/i915/display: Maintain alphabetical order for
+ HAS_AS_SDP and HAS_CMRR
+In-Reply-To: <3e96d168-77c9-4726-a127-3f105b26f6ae@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250311135925.1523852-1-ankit.k.nautiyal@intel.com>
+ <87wmcvfnin.fsf@intel.com>
+ <3e96d168-77c9-4726-a127-3f105b26f6ae@intel.com>
+Date: Wed, 12 Mar 2025 13:25:28 +0200
+Message-ID: <87jz8ufq3b.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/svm=3A_Add_stats_?=
- =?utf-8?q?for_SVM_page_faults_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Francois Dugast" <francois.dugast@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 12 Mar 2025 11:04:45 -0000
-Message-ID: <174177748529.24684.18037001250609353643@18a75f3d1eae>
-X-Patchwork-Hint: ignore
-References: <20250312092749.164232-1-francois.dugast@intel.com>
-In-Reply-To: <20250312092749.164232-1-francois.dugast@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +68,79 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, 12 Mar 2025, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com> wrote:
+> On 3/11/2025 11:38 PM, Jani Nikula wrote:
+>> On Tue, 11 Mar 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+>>> Reorder the macros HAS_AS_SDP and HAS_CMRR as per alphabetical order.
+>>>
+>>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/i915/display/intel_display_device.h | 4 ++--
+>>>   1 file changed, 2 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+>>> index 717286981687..332647c4ca81 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
+>>> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+>>> @@ -142,10 +142,12 @@ struct intel_display_platforms {
+>>>   	func(supports_tv);
+>>>   
+>>>   #define HAS_4TILE(__display)		((__display)->platform.dg2 || DISPLAY_VER(__display) >= 14)
+>>> +#define HAS_AS_SDP(__display)		(DISPLAY_VER(__display) >= 13)
+>>>   #define HAS_ASYNC_FLIPS(__display)	(DISPLAY_VER(__display) >= 5)
+>> Y comes before _ in asciibetical order.
+>
+> Thanks for pointing this out. I had a misconception that we use _ as 
+> delimiter and sort the words in alphabetical order.
 
-Series: drm/xe/svm: Add stats for SVM page faults (rev3)
-URL   : https://patchwork.freedesktop.org/series/146196/
-State : success
+Emacs M-x sort-lines is the definition for me. ;)
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 741959c7dc5aaff75ea60a3cd9d6691abbd6534c
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+BR,
+Jani.
 
 
+>
+> Will correct this as per asciibetical order.
+>
+> Also will change :
+>
+> HAS_DP_MST
+> HAS_DP20
+> HAS_DPT
+>
+> to:
+>
+> HAS_DP20
+> HAS_DPT
+> HAS_DP_MST
+>
+> Regards,
+>
+> Ankit
+>
+>>
+>> BR,
+>> Jani.
+>>
+>>>   #define HAS_BIGJOINER(__display)	(DISPLAY_VER(__display) >= 11 && HAS_DSC(__display))
+>>>   #define HAS_CDCLK_CRAWL(__display)	(DISPLAY_INFO(__display)->has_cdclk_crawl)
+>>>   #define HAS_CDCLK_SQUASH(__display)	(DISPLAY_INFO(__display)->has_cdclk_squash)
+>>> +#define HAS_CMRR(__display)		(DISPLAY_VER(__display) >= 20)
+>>>   #define HAS_CMTG(__display)		(!(__display)->platform.dg2 && DISPLAY_VER(__display) >= 13)
+>>>   #define HAS_CUR_FBC(__display)		(!HAS_GMCH(__display) && IS_DISPLAY_VER(__display, 7, 13))
+>>>   #define HAS_D12_PLANE_MINIMIZATION(__display)	((__display)->platform.rocketlake || (__display)->platform.alderlake_s)
+>>> @@ -189,8 +191,6 @@ struct intel_display_platforms {
+>>>   					  ((__display)->platform.dgfx && DISPLAY_VER(__display) == 14)) && \
+>>>   					 HAS_DSC(__display))
+>>>   #define HAS_VRR(__display)		(DISPLAY_VER(__display) >= 11)
+>>> -#define HAS_AS_SDP(__display)		(DISPLAY_VER(__display) >= 13)
+>>> -#define HAS_CMRR(__display)		(DISPLAY_VER(__display) >= 20)
+>>>   #define INTEL_NUM_PIPES(__display)	(hweight8(DISPLAY_RUNTIME_INFO(__display)->pipe_mask))
+>>>   #define I915_HAS_HOTPLUG(__display)	(DISPLAY_INFO(__display)->has_hotplug)
+>>>   #define OVERLAY_NEEDS_PHYSICAL(__display)	(DISPLAY_INFO(__display)->overlay_needs_physical)
+
+-- 
+Jani Nikula, Intel
