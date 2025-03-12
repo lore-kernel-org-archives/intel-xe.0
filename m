@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19219C28B28
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Mar 2025 21:04:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CAF1C2BA1B
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Mar 2025 21:05:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D001210E7AC;
-	Wed, 12 Mar 2025 21:04:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E60E910E343;
+	Wed, 12 Mar 2025 21:05:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lZ0F9bqD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GlPoDeB5";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CBCF10E7A9;
- Wed, 12 Mar 2025 21:04:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DCDE10E343;
+ Wed, 12 Mar 2025 21:05:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741813497; x=1773349497;
+ t=1741813512; x=1773349512;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=XyD9AP1tNEBR9EtZyXgTn9w2JTabbGJ6HBZQblevDw8=;
- b=lZ0F9bqD2+1i29x0ozg3FCRThxFERMi6B3uPgRSChFXPnq4CrDqoQ/Rk
- zujGemXse3xYMM0EtFALxg9mWG+xK+zep5caLxHRIXjCa5nPax1+3mSsk
- Hb2+3B5JcvnNALGqnfAprCWZ3kVsnF35ezuC599suLQcQEROK2kBeolxa
- F33Qr+VH8uBYAoKpiTg0BFhz+tdwy0q2Nj2X0pXRWP1528DNPXbR2c6O/
- BsT80Zoc4HZq028WJZuKT0ogyXN7dJhtBwRoV8/zFsrFtiv4Gi+rHP1iG
- 49pWFfsxNjM5fWqzACO6tiO/Xx4R0bvdDm/X8+QhNPkuftZrQIq86UtLM g==;
-X-CSE-ConnectionGUID: g7xeuJSgSbCsG8EC+AHDAw==
-X-CSE-MsgGUID: ThFgsfcaTB25eHor+C+MTg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11371"; a="46562125"
-X-IronPort-AV: E=Sophos;i="6.14,242,1736841600"; d="scan'208";a="46562125"
+ bh=7uXnTmAAle1EkRvH/BIGf7CIhljYz6dFZgjNBsl4zxo=;
+ b=GlPoDeB5BdooxCEz1UuaL2pPxrRYMdSNocpo0F2XUvnhKlbAlFULazWp
+ qqtc6/A4AAZMGbaRG/ovQZdnN/7T1tXU+7BjO2mzxqGjiXGe+0EBs3erP
+ shycRg20A2hwG79D3717Dl2htFu6CpL/XcrLtGxBaNRqVIEhcEWxLY+VG
+ tQR8ncydDmuzJzuUcCnoQuL2NWmfivYo+ojpxZiO8z7hFI5AR4T3sUxfF
+ 6fUNB+muc7uXLkn0p1x05bMsHCqPt5ZfhloHyOzrjzhR+hfBJUCcigIty
+ ql7aybu6Rg7hxlLpxgc/gN16QpHcP7I4RgAv1WOu/cQVox5kmJozN/cpq Q==;
+X-CSE-ConnectionGUID: Cu8m2YZEQkGBkqFA8vBLtw==
+X-CSE-MsgGUID: l4YeM0ROTpisiGrOUuIHfw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11371"; a="46562152"
+X-IronPort-AV: E=Sophos;i="6.14,242,1736841600"; d="scan'208";a="46562152"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2025 14:04:56 -0700
-X-CSE-ConnectionGUID: VT4MA3OIS3eh8ITamcBxhQ==
-X-CSE-MsgGUID: ssyW5HIZRNmvqgAUhyX3Dg==
+ 12 Mar 2025 14:05:03 -0700
+X-CSE-ConnectionGUID: kAcmUkEGRk+ZFP6CyHO1Aw==
+X-CSE-MsgGUID: H+BstD+1RsW58CTscQzWQg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,242,1736841600"; d="scan'208";a="120791046"
+X-IronPort-AV: E=Sophos;i="6.14,242,1736841600"; d="scan'208";a="120791075"
 Received: from klitkey1-mobl1.ger.corp.intel.com (HELO fedora..)
  ([10.245.246.73])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2025 14:04:53 -0700
+ 12 Mar 2025 14:05:00 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
@@ -52,9 +52,9 @@ Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  dakr@kernel.org, "Mrozek, Michal" <michal.mrozek@intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Subject: [RFC PATCH 02/19] drm/xe/svm: Fix a potential bo UAF
-Date: Wed, 12 Mar 2025 22:03:59 +0100
-Message-ID: <20250312210416.3120-3-thomas.hellstrom@linux.intel.com>
+Subject: [RFC PATCH 04/19] drm/pagemap: Add a populate_mm op
+Date: Wed, 12 Mar 2025 22:04:01 +0100
+Message-ID: <20250312210416.3120-5-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250312210416.3120-1-thomas.hellstrom@linux.intel.com>
 References: <20250312210416.3120-1-thomas.hellstrom@linux.intel.com>
@@ -75,39 +75,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If drm_gpusvm_migrate_to_devmem() succeeds, if a cpu access happens to the
-range the bo may be freed before xe_bo_unlock(), causing a UAF.
-
-Since the reference is transferred, use xe_svm_devmem_release() to
-release the reference on drm_gpusvm_migrate_to_devmem() failure,
-and hold a local reference to protect the UAF.
+Add an operation to populate a part of a drm_mm with device
+private memory.
 
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/drm_gpusvm.c  |  7 ++-----
+ drivers/gpu/drm/drm_pagemap.c | 32 ++++++++++++++++++++++++++++++++
+ include/drm/drm_pagemap.h     | 32 ++++++++++++++++++++++++++++++++
+ 3 files changed, 66 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index c305d4c351d7..1a8e17a0005d 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -701,11 +701,14 @@ static int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
- 	list_for_each_entry(block, blocks, link)
- 		block->private = vr;
+diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
+index 4fade7018507..d84e27283768 100644
+--- a/drivers/gpu/drm/drm_gpusvm.c
++++ b/drivers/gpu/drm/drm_gpusvm.c
+@@ -175,11 +175,8 @@
+  *		}
+  *
+  *		if (driver_migration_policy(range)) {
+- *			mmap_read_lock(mm);
+- *			devmem = driver_alloc_devmem();
+- *			err = drm_pagemap_migrate_to_devmem(devmem, gpusvm->mm, gpuva_start,
+- *                                                          gpuva_end, driver_pgmap_owner());
+- *                      mmap_read_unlock(mm);
++ *			err = drm_pagemap_populate_mm(driver_choose_drm_pagemap(),
++ *                                                    gpuva_start, gpuva_end, gpusvm->mm);
+  *			if (err)	// CPU mappings may have changed
+  *				goto retry;
+  *		}
+diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
+index c46bb4384444..27e3f90cf49a 100644
+--- a/drivers/gpu/drm/drm_pagemap.c
++++ b/drivers/gpu/drm/drm_pagemap.c
+@@ -6,6 +6,7 @@
+ #include <linux/dma-mapping.h>
+ #include <linux/migrate.h>
+ #include <linux/pagemap.h>
++#include <drm/drm_drv.h>
+ #include <drm/drm_pagemap.h>
  
-+	xe_bo_get(bo);
- 	err = drm_gpusvm_migrate_to_devmem(&vm->svm.gpusvm, &range->base,
- 					   &bo->devmem_allocation, ctx);
--	xe_bo_unlock(bo);
- 	if (err)
--		xe_bo_put(bo);	/* Creation ref */
-+		xe_svm_devmem_release(&bo->devmem_allocation);
+ /**
+@@ -782,3 +783,34 @@ struct drm_pagemap *drm_pagemap_page_to_dpagemap(struct page *page)
+ 	return zdd->devmem_allocation->dpagemap;
+ }
+ EXPORT_SYMBOL_GPL(drm_pagemap_page_to_dpagemap);
 +
-+	xe_bo_unlock(bo);
-+	xe_bo_put(bo);
++/**
++ * drm_pagemap_populate_mm() - Populate a virtual range with device memory pages
++ * @dpagemap: Pointer to the drm_pagemap managing the device memory
++ * @start: Start of the virtual range to populate.
++ * @end: End of the virtual range to populate.
++ * @mm: Pointer to the virtual address space.
++ *
++ * Attempt to populate a virtual range with device memory pages,
++ * clearing them or migrating data from the existing pages if necessary.
++ * The function is best effort only, and implementations may vary
++ * in how hard they try to satisfy the request.
++ *
++ * Return: 0 on success, negative error code on error. If the hardware
++ * device was removed / unbound the function will return -ENODEV;
++ */
++int drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
++			    unsigned long start, unsigned long end,
++			    struct mm_struct *mm)
++{
++	int err;
++
++	if (!mmget_not_zero(mm))
++		return -EFAULT;
++	mmap_read_lock(mm);
++	err = dpagemap->ops->populate_mm(dpagemap, start, end, mm);
++	mmap_read_unlock(mm);
++	mmput(mm);
++
++	return err;
++}
+diff --git a/include/drm/drm_pagemap.h b/include/drm/drm_pagemap.h
+index 32f0d7f23075..c591736e7c48 100644
+--- a/include/drm/drm_pagemap.h
++++ b/include/drm/drm_pagemap.h
+@@ -92,6 +92,34 @@ struct drm_pagemap_ops {
+ 			     struct device *dev,
+ 			     struct drm_pagemap_device_addr addr);
  
- unlock:
- 	mmap_read_unlock(mm);
++	/**
++	 * @populate_mm: Populate part of the mm with @dpagemap memory,
++	 * migrating existing data.
++	 * @dpagemap: The struct drm_pagemap managing the memory.
++	 * @start: The virtual start address in @mm
++	 * @end: The virtual end address in @mm
++	 * @mm: Pointer to a live mm. The caller must have an mmget()
++	 * reference.
++	 *
++	 * The caller will have the mm lock at least in read mode.
++	 * Note that there is no guarantee that the memory is resident
++	 * after the function returns, it's best effort only.
++	 * When the mm is not using the memory anymore,
++	 * it will be released. The struct drm_pagemap might have a
++	 * mechanism in place to reclaim the memory and the data will
++	 * then be migrated. Typically to system memory.
++	 * The implementation should hold sufficient runtime power-
++	 * references while pages are used in an address space and
++	 * should ideally guard against hardware device unbind in
++	 * a way such that device pages are migrated back to system
++	 * followed by device page removal. The implementation should
++	 * return -ENODEV after device removal.
++	 *
++	 * Return: 0 if successful. Negative error code on error.
++	 */
++	int (*populate_mm)(struct drm_pagemap *dpagemap,
++			   unsigned long start, unsigned long end,
++			   struct mm_struct *mm);
+ };
+ 
+ /**
+@@ -202,4 +230,8 @@ void drm_pagemap_devmem_init(struct drm_pagemap_devmem *devmem_allocation,
+ 			     const struct drm_pagemap_devmem_ops *ops,
+ 			     struct drm_pagemap *dpagemap, size_t size);
+ 
++int drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
++			    unsigned long start, unsigned long end,
++			    struct mm_struct *mm);
++
+ #endif
 -- 
 2.48.1
 
