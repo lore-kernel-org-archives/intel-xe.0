@@ -4,70 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E25CC2BA1B
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Mar 2025 09:14:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47EDBC28B28
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Mar 2025 09:28:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67C1210E744;
-	Wed, 12 Mar 2025 09:14:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 111D110E71B;
+	Wed, 12 Mar 2025 09:28:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ubx5NJVI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JZ/dh77I";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C514010E744;
- Wed, 12 Mar 2025 09:14:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64E8810E71B
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Mar 2025 09:28:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741770845; x=1773306845;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=dx7/YOg9MPlzfoNLAMhyKFjqJ0u98yPZNBqi1qTZamc=;
- b=Ubx5NJVIXAWPXau7gVHlhZSQH3h6isHnCDQAr1rF4J4CD+KbKKoJcK34
- n0gM1zWRuahv5JiGN5AXcov4gW1Rsh9PuBNgdDCgAMT2YL+PIKM5BR/cI
- 9LP98A6aSm2VedPVFBg6aE4dkgg4WFM3XJQhz/jI42UAwbuQPp+TS2JB+
- VZ3cnV9Bi4Lhcn1u35ORY4QkmT3SbmrSiYTsdh/xpi/WrReeRZo1pRxLg
- jxix2z4ADJ8dMpqutO77Jg6SRJxtWOpiQmQ5JeAcNaca04wa8vZ3Q+h3L
- WSY4zjW+3yT2HXcWqxY2AJmMCPfSkWEObwN0gUnwsPuLpHAOindI6zFor Q==;
-X-CSE-ConnectionGUID: BpKaLYXiQaaNjyzrk2wPUg==
-X-CSE-MsgGUID: y4J54vKLQeqZI+Ruf4hufg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11370"; a="42947926"
-X-IronPort-AV: E=Sophos;i="6.14,241,1736841600"; d="scan'208";a="42947926"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2025 02:14:05 -0700
-X-CSE-ConnectionGUID: CwolEVmeTxWSaGGdsfMEFQ==
-X-CSE-MsgGUID: SyJctsnwSoGOJcJTZZtGjQ==
+ t=1741771681; x=1773307681;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=N+/NdduE5u4+fMCqCt4L/8TpOUCBBsCsJn1rFDzC+bk=;
+ b=JZ/dh77IRNIDi+GUnLuP8nI4UeEe1Z+wUBjssjlFuhkPtv9JCdnteYaR
+ 00pkqdffc5AlDtLN1kmufbcP787Ksm+q64r4a+GsavV8yQAyaYoqSEp1j
+ fopCnYgTidZN9mzFx3bGMZSJM98oIS6dfxz1blO/HR/tnM6uiK0J4KXXO
+ 87eUtAQ6PbYMvGZtcEDYpGMyxSwanpmwyJExCl41gWNuxrCEebzTdf3pG
+ 37emNPqJzAEknsuZk6kG/eWV2I3LJC6quElImMx0wKKw0OWdtW4BBnN+8
+ 2cbtIo1m4vYtsuxsKixxq/0SVJYHBzkHKHMjOCKCjhSWA+vPiTsSKr8i4 g==;
+X-CSE-ConnectionGUID: k6JDhgiCTuOHYdKmglFySw==
+X-CSE-MsgGUID: fQYPl459Tn+cqP0XwuKHGA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11370"; a="53464519"
+X-IronPort-AV: E=Sophos;i="6.14,241,1736841600"; d="scan'208";a="53464519"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2025 02:28:01 -0700
+X-CSE-ConnectionGUID: XjZuO5exRbCPt7JkP515Gg==
+X-CSE-MsgGUID: 3JKxmaerT5OnT15JNQ5+/Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,241,1736841600"; d="scan'208";a="120526988"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2025 02:14:01 -0700
-Date: Wed, 12 Mar 2025 11:13:58 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Cc: Alex Deucher <alexdeucher@gmail.com>,
- =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@igalia.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>, siqueira@igalia.com,
- airlied@gmail.com, simona@ffwll.ch, rodrigo.vivi@intel.com,
- jani.nikula@linux.intel.com, Xaver Hugl <xaver.hugl@kde.org>
-Subject: Re: [PATCH 2/2] drm/amdgpu: Make use of drm_wedge_app_info
-Message-ID: <Z9FQVpRF8-d7OPnV@black.fi.intel.com>
-References: <20250228121353.1442591-1-andrealmeid@igalia.com>
- <20250228121353.1442591-3-andrealmeid@igalia.com>
- <Z8HO-s_otb2u44V7@black.fi.intel.com>
- <38b9cc8b-2a55-4815-a19f-f5bdf0f7687c@igalia.com>
- <Z8KjZfLYjH6ehYwy@black.fi.intel.com>
- <73602c9b-74f6-4b4a-82c6-918292b13cf7@igalia.com>
- <CADnq5_PbZUoyxyqweqa=kUNsSXanjY=5mUJrn03aY3je6rER+w@mail.gmail.com>
- <Z9BvK55_Nim54eOu@black.fi.intel.com>
- <2c99f7a8-7f72-4959-88b5-d3137575640e@amd.com>
+X-IronPort-AV: E=Sophos;i="6.14,241,1736841600"; d="scan'208";a="157771191"
+Received: from ncintean-mobl1.ger.corp.intel.com (HELO fdugast-desk.intel.com)
+ ([10.245.246.250])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2025 02:27:59 -0700
+From: Francois Dugast <francois.dugast@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Francois Dugast <francois.dugast@intel.com>
+Subject: [PATCH v3] drm/xe/svm: Add stats for SVM page faults
+Date: Wed, 12 Mar 2025 10:27:49 +0100
+Message-ID: <20250312092749.164232-1-francois.dugast@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <2c99f7a8-7f72-4959-88b5-d3137575640e@amd.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,89 +65,150 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Mar 12, 2025 at 09:25:08AM +0100, Christian König wrote:
->Am 11.03.25 um 18:13 schrieb Raag Jadav:
->> On Mon, Mar 10, 2025 at 06:03:27PM -0400, Alex Deucher wrote:
->>> On Mon, Mar 10, 2025 at 5:54 PM André Almeida <andrealmeid@igalia.com> wrote:
->>>> Em 01/03/2025 03:04, Raag Jadav escreveu:
->>>>> On Fri, Feb 28, 2025 at 06:49:43PM -0300, André Almeida wrote:
->>>>>> Hi Raag,
->>>>>>
->>>>>> On 2/28/25 11:58, Raag Jadav wrote:
->>>>>>> On Fri, Feb 28, 2025 at 09:13:53AM -0300, André Almeida wrote:
->>>>>>>> To notify userspace about which app (if any) made the device get in a
->>>>>>>> wedge state, make use of drm_wedge_app_info parameter, filling it with
->>>>>>>> the app PID and name.
->>>>>>>>
->>>>>>>> Signed-off-by: André Almeida <andrealmeid@igalia.com>
->>>>>>>> ---
->>>>>>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 19 +++++++++++++++++--
->>>>>>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_job.c    |  6 +++++-
->>>>>>>>    2 files changed, 22 insertions(+), 3 deletions(-)
->>>>>>>>
->>>>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->>>>>>>> index 00b9b87dafd8..e06adf6f34fd 100644
->>>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->>>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->>>>>>>> @@ -6123,8 +6123,23 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
->>>>>>>>            atomic_set(&adev->reset_domain->reset_res, r);
->>>>>>>> -  if (!r)
->>>>>>>> -          drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, NULL);
->>>>>>>> +  if (!r) {
->>>>>>>> +          struct drm_wedge_app_info aux, *info = NULL;
->>>>>>>> +
->>>>>>>> +          if (job) {
->>>>>>>> +                  struct amdgpu_task_info *ti;
->>>>>>>> +
->>>>>>>> +                  ti = amdgpu_vm_get_task_info_pasid(adev, job->pasid);
->>>>>>>> +                  if (ti) {
->>>>>>>> +                          aux.pid = ti->pid;
->>>>>>>> +                          aux.comm = ti->process_name;
->>>>>>>> +                          info = &aux;
->>>>>>>> +                          amdgpu_vm_put_task_info(ti);
->>>>>>>> +                  }
->>>>>>>> +          }
->>>>>>> Is this guaranteed to be guilty app and not some scheduled worker?
->>>>>> This is how amdgpu decides which app is the guilty one earlier in the code
->>>>>> as in the print:
->>>>>>
->>>>>>      ti = amdgpu_vm_get_task_info_pasid(ring->adev, job->pasid);
->>>>>>
->>>>>>      "Process information: process %s pid %d thread %s pid %d\n"
->>>>>>
->>>>>> So I think it's consistent with what the driver thinks it's the guilty
->>>>>> process.
->>>>> Sure, but with something like app_info we're kind of hinting to userspace
->>>>> that an application was _indeed_ involved with reset. Is that also guaranteed?
->>>>>
->>>>> Is it possible that an application needlessly suffers from a false positive
->>>>> scenario (reset due to other factors)?
->>>>>
->>>> I asked Alex Deucher in IRC about that and yes, there's a chance that
->>>> this is a false positive. However, for the majority of cases this is the
->>>> right app that caused the hang. This is what amdgpu is doing for GL
->>>> robustness as well and devcoredump, so it's very consistent with how
->>>> amdgpu deals with this scenario even if the mechanism is still not perfect.
->>> It's usually the guilty one, but it's not guaranteed.  For example,
->>> say you have a ROCm user queue and a gfx job submitted to a kernel
->>> queue.  The actual guilty job may be the ROCm user queue, but the
->>> driver may not detect that the ROCm queue was hung until some other
->>> event (e.g., memory pressure).  However, the timer for the gfx job may
->>> timeout before that happens on the ROCm queue so in that case the gfx
->>> job would be incorrectly considered guilty.
->> So it boils down to what are the chances of that happening and whether
->> it's significant enough to open the door for API abuse.
-> 
-> We are also working on an enforce_isolation parameter for amdgpu which only allows one application at a time to use the hardware for the cost of performance.
-> 
-> The problem is simply that when you don't allow multiple applications to use the HW at the same time you also don't get full utilization of the different HW blocks.
-> 
-> It can also be that a crash only happens because two applications do something at the same time which is not supposed to happen at the same time. Those issue are then usually fixed by firmware updates, but are really really hard to debug.
-> 
-> I don't see much potential for abuse here since you can't easily control from userspace when a lockup happens. And the AMD Linux team has made quite a bunch of requirements to the HW/FW engineers recently which should improve the situation on future HW generations.
-> 
-> So I think we should probably just document that reliability of this information is driver and hardware specific and should be taken with a grain of salt and call it a day.
+Add a new entry in stats to for svm page faults. If CONFIG_DEBUG_FS is
+enabled, the count can be viewed with per GT stat debugfs file.
 
-Sounds reasonable. The new event string will need its own chapter anyway.
+This is similar to what is already in place for vma page faults.
 
-Raag
+Example output:
+
+    cat /sys/kernel/debug/dri/0/gt0/stats
+    svm_pagefault_count: 6
+    tlb_inval_count: 78
+    vma_pagefault_count: 0
+    vma_pagefault_kb: 0
+
+v2: Fix build with CONFIG_DRM_GPUSVM disabled
+
+v3: Update argument in kernel doc
+
+Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_pagefault.c   | 2 +-
+ drivers/gpu/drm/xe/xe_gt_stats.c       | 1 +
+ drivers/gpu/drm/xe/xe_gt_stats_types.h | 1 +
+ drivers/gpu/drm/xe/xe_svm.c            | 8 ++++++--
+ drivers/gpu/drm/xe/xe_svm.h            | 7 ++++---
+ 5 files changed, 13 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index c5ad9a0a89c2..9fa11e837dd1 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -240,7 +240,7 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
+ 	atomic = access_is_atomic(pf->access_type);
+ 
+ 	if (xe_vma_is_cpu_addr_mirror(vma))
+-		err = xe_svm_handle_pagefault(vm, vma, gt_to_tile(gt),
++		err = xe_svm_handle_pagefault(vm, vma, gt,
+ 					      pf->page_addr, atomic);
+ 	else
+ 		err = handle_vma_pagefault(gt, vma, atomic);
+diff --git a/drivers/gpu/drm/xe/xe_gt_stats.c b/drivers/gpu/drm/xe/xe_gt_stats.c
+index 6155ea354432..30f942671c2b 100644
+--- a/drivers/gpu/drm/xe/xe_gt_stats.c
++++ b/drivers/gpu/drm/xe/xe_gt_stats.c
+@@ -27,6 +27,7 @@ void xe_gt_stats_incr(struct xe_gt *gt, const enum xe_gt_stats_id id, int incr)
+ }
+ 
+ static const char *const stat_description[__XE_GT_STATS_NUM_IDS] = {
++	"svm_pagefault_count",
+ 	"tlb_inval_count",
+ 	"vma_pagefault_count",
+ 	"vma_pagefault_kb",
+diff --git a/drivers/gpu/drm/xe/xe_gt_stats_types.h b/drivers/gpu/drm/xe/xe_gt_stats_types.h
+index d556771f99d6..be3244d7133c 100644
+--- a/drivers/gpu/drm/xe/xe_gt_stats_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_stats_types.h
+@@ -7,6 +7,7 @@
+ #define _XE_GT_STATS_TYPES_H_
+ 
+ enum xe_gt_stats_id {
++	XE_GT_STATS_ID_SVM_PAGEFAULT_COUNT,
+ 	XE_GT_STATS_ID_TLB_INVAL,
+ 	XE_GT_STATS_ID_VMA_PAGEFAULT_COUNT,
+ 	XE_GT_STATS_ID_VMA_PAGEFAULT_KB,
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 516898e99b26..08617a62ab07 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -4,6 +4,7 @@
+  */
+ 
+ #include "xe_bo.h"
++#include "xe_gt_stats.h"
+ #include "xe_gt_tlb_invalidation.h"
+ #include "xe_migrate.h"
+ #include "xe_module.h"
+@@ -713,7 +714,7 @@ static int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
+  * xe_svm_handle_pagefault() - SVM handle page fault
+  * @vm: The VM.
+  * @vma: The CPU address mirror VMA.
+- * @tile: The tile upon the fault occurred.
++ * @gt: The gt upon the fault occurred.
+  * @fault_addr: The GPU fault address.
+  * @atomic: The fault atomic access bit.
+  *
+@@ -723,7 +724,7 @@ static int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
+  * Return: 0 on success, negative error code on error.
+  */
+ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+-			    struct xe_tile *tile, u64 fault_addr,
++			    struct xe_gt *gt, u64 fault_addr,
+ 			    bool atomic)
+ {
+ 	struct drm_gpusvm_ctx ctx = {
+@@ -737,12 +738,15 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 	struct drm_gpusvm_range *r;
+ 	struct drm_exec exec;
+ 	struct dma_fence *fence;
++	struct xe_tile *tile = gt_to_tile(gt);
+ 	ktime_t end = 0;
+ 	int err;
+ 
+ 	lockdep_assert_held_write(&vm->lock);
+ 	xe_assert(vm->xe, xe_vma_is_cpu_addr_mirror(vma));
+ 
++	xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_PAGEFAULT_COUNT, 1);
++
+ retry:
+ 	/* Always process UNMAPs first so view SVM ranges is current */
+ 	err = xe_svm_garbage_collector(vm);
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+index e059590e5076..93442738666e 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -12,10 +12,11 @@
+ #define XE_INTERCONNECT_VRAM DRM_INTERCONNECT_DRIVER
+ 
+ struct xe_bo;
+-struct xe_vram_region;
++struct xe_gt;
+ struct xe_tile;
+ struct xe_vm;
+ struct xe_vma;
++struct xe_vram_region;
+ 
+ /** struct xe_svm_range - SVM range */
+ struct xe_svm_range {
+@@ -64,7 +65,7 @@ void xe_svm_fini(struct xe_vm *vm);
+ void xe_svm_close(struct xe_vm *vm);
+ 
+ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+-			    struct xe_tile *tile, u64 fault_addr,
++			    struct xe_gt *gt, u64 fault_addr,
+ 			    bool atomic);
+ 
+ bool xe_svm_has_mapping(struct xe_vm *vm, u64 start, u64 end);
+@@ -102,7 +103,7 @@ void xe_svm_close(struct xe_vm *vm)
+ 
+ static inline
+ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+-			    struct xe_tile *tile, u64 fault_addr,
++			    struct xe_gt *gt, u64 fault_addr,
+ 			    bool atomic)
+ {
+ 	return 0;
+-- 
+2.43.0
+
