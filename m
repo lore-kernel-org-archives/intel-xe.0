@@ -4,56 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE9B7C28B28
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Mar 2025 09:49:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99607C28B2F
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Mar 2025 09:52:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7158910E73D;
-	Wed, 12 Mar 2025 09:49:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF98910E73D;
+	Wed, 12 Mar 2025 09:52:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eMJwRAAr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="htIlOCc+";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B151710E73D
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Mar 2025 09:49:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FCDA10E73D;
+ Wed, 12 Mar 2025 09:52:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741772993; x=1773308993;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=8MGj3FCz2BI2ypuk2bNsEtxj69Ig2vL96CkYNRljeig=;
- b=eMJwRAAr4WBkQr80vgqaEjwfk9DeT8T+t/USTy6yaivOQQN9YXmBDd5T
- rGtyH54rB/3zG+l7QkzLdBhNKnBhm8heCd5+aq4j88jMiT5kfJnB66/Cs
- uxc707x6LMMxRtrRug8mmZHwMIinVGKhfkrCjeWLBZU/lqbgbvq7BUWXF
- 8zciWSDPA4DCxUI2uevZvSzLI5FsFRtcRlGLTmm12MQm/bSD14F3F6qfx
- dGv0s7IHaitCC8iqJ8AtH6phcrRnrf4X7tchtC4fxiiBcQ+bFw0dCX21y
- +PyprVZCTBhbFaLD1ths2qAXGDsw7RzCRew4BwJbEe4RX/kXLV5QnSOs6 Q==;
-X-CSE-ConnectionGUID: 6h6YJ5K/R6S8b4XHfKzW5Q==
-X-CSE-MsgGUID: GG7VMZ7zSKyt927Gn1b+dg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11370"; a="42951200"
-X-IronPort-AV: E=Sophos;i="6.14,241,1736841600"; d="scan'208";a="42951200"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2025 02:49:53 -0700
-X-CSE-ConnectionGUID: 98oKKBEcQm+PygTBNYGR2Q==
-X-CSE-MsgGUID: H6dY9onHTJSZQby93Ck6hw==
+ t=1741773159; x=1773309159;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=IEMUFVhtZ9q95rrSjAlmnpkMWysfXzaHuu5IJ05A5R4=;
+ b=htIlOCc+cpNLqe0Ev8RuCgGZ2HLL3ruWI/6a9OieB0Zd564CzFBXygcj
+ tWwkZb+mZ5r9Nh+xfey9d3ewFuHdLhUYVBhDzICnAydROh4PD+GqYh9ft
+ nTmwlA52/8n7vmK77Z6QuznqkzyTfnzLI8BU2Z5MkWXZ3LhRTvJeoBc3Q
+ N4EhXjBXmbB8nikyblY8bAQS+YcmlQuN5rJu52wQI80VE5M6gpvQ0GTae
+ DvcPGekX8FdzrNEnmUpdp5f90EtgkTo+30yAvD+ZnMXsjlRhipxoPhkHW
+ PgG2xHhPVsAS0PJ+mM/e5KKyXjsGPPQsdP0N4/gn8QbDIY7THQ5YZXQX3 w==;
+X-CSE-ConnectionGUID: iDBzJausTwODnahH7CJvQg==
+X-CSE-MsgGUID: wGDBf7jNT5yYl+R4EWg02g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11370"; a="42719132"
+X-IronPort-AV: E=Sophos;i="6.14,241,1736841600"; d="scan'208";a="42719132"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2025 02:52:38 -0700
+X-CSE-ConnectionGUID: 0FO8vmviT9q49WT1d8NH7g==
+X-CSE-MsgGUID: uU4yokowR4iLjTURcngeYw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,241,1736841600"; d="scan'208";a="125651085"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.245.75])
- ([10.245.245.75])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2025 02:49:51 -0700
-Message-ID: <c65c1209-7a1b-4a83-a299-856db2617e3d@intel.com>
-Date: Wed, 12 Mar 2025 09:49:49 +0000
+X-IronPort-AV: E=Sophos;i="6.14,241,1736841600"; d="scan'208";a="125231335"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.23])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2025 02:52:36 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 7/9] drm/i915/irq: convert intel_display_irq.[ch]
+ interfaces to struct intel_display
+In-Reply-To: <Z9CL3WH695G-j1w3@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1741715981.git.jani.nikula@intel.com>
+ <df68cf79674a31bb55b641e29976052d380274a4.1741715981.git.jani.nikula@intel.com>
+ <Z9CL3WH695G-j1w3@intel.com>
+Date: Wed, 12 Mar 2025 11:52:33 +0200
+Message-ID: <87r032fue6.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Use local fence in error path of xe_migrate_clear
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-References: <20250311182915.3606291-1-matthew.brost@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20250311182915.3606291-1-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,12 +71,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 11/03/2025 18:29, Matthew Brost wrote:
-> The intent of the error path in xe_migrate_clear is to wait on locally
-> generated fence and then return. The code is waiting on m->fence which
-> could be the local fence but this is only stable under the job mutex
-> leading to a possible UAF. Fix code to wait on local fence.
-> 
-> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+On Tue, 11 Mar 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Tue, Mar 11, 2025 at 08:00:41PM +0200, Jani Nikula wrote:
+>>  static void
+>>  ivb_primary_enable_flip_done(struct intel_plane *plane)
+>>  {
+>> +	struct intel_display *display =3D to_intel_display(plane);
+>>  	struct drm_i915_private *i915 =3D to_i915(plane->base.dev);
+>>=20=20
+>>  	spin_lock_irq(&i915->irq_lock);
+>> -	ilk_enable_display_irq(i915, DE_PLANE_FLIP_DONE_IVB(plane->i9xx_plane)=
+);
+>> +	ilk_enable_display_irq(display, DE_PLANE_FLIP_DONE_IVB(plane->i9xx_pla=
+ne));
+>>  	spin_unlock_irq(&i915->irq_lock);
+>
+> I was pondering if we could just suck the lock into these
+> guys. But at least the fifo underrun reporting code is using
+> some of these things and there there the lock is taken
+> further out. So sadly not as trivial as I was hoping.
 
+The whole i915->irq_lock (*) is a looming problem for display separation
+from i915/xe core.
+
+How do you abstract a spin lock? Is it okay to pass a spinlock_t * from
+i915 core code to display, which would then store this pointer and use
+it locally?
+
+Wrapping it in a pair of function calls certainly sucks in a lot of
+ways.
+
+
+BR,
+Jani.
+
+
+
+*) xe->irq.lock on xe, with an ugly #define irq_lock irq.lock
+
+--=20
+Jani Nikula, Intel
