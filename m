@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F126C28B28
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Mar 2025 08:20:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 229DAC28B28
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Mar 2025 08:20:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C90AD10E728;
-	Wed, 12 Mar 2025 08:20:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8DCD10E728;
+	Wed, 12 Mar 2025 08:20:51 +0000 (UTC)
 Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A97510E728;
- Wed, 12 Mar 2025 08:20:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C52710E728;
+ Wed, 12 Mar 2025 08:20:50 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/svm=3A_Add_st?=
- =?utf-8?q?ats_for_SVM_page_faults?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/svm=3A_Add_stats_f?=
+ =?utf-8?q?or_SVM_page_faults?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Francois Dugast" <francois.dugast@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 12 Mar 2025 08:20:34 -0000
-Message-ID: <174176763423.23740.17513555554021748340@18a75f3d1eae>
+Date: Wed, 12 Mar 2025 08:20:50 -0000
+Message-ID: <174176765017.23748.15789951068933499343@18a75f3d1eae>
 X-Patchwork-Hint: ignore
 References: <20250312081222.125293-1-francois.dugast@intel.com>
 In-Reply-To: <20250312081222.125293-1-francois.dugast@intel.com>
@@ -48,9 +48,36 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: f7d8381dd3ab drm-tip: 2025y-03m-12d-08h-15m-20s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/svm: Add stats for SVM page faults
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+cbb4e4a079d89106c2736adc3c7de6f9dc56da07
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 85c88c273d1d3e7b3596e50cb9d3d35b1a05ee8b
+Author: Francois Dugast <francois.dugast@intel.com>
+Date:   Wed Mar 12 09:12:22 2025 +0100
+
+    drm/xe/svm: Add stats for SVM page faults
+    
+    Add a new entry in stats to for svm page faults. If CONFIG_DEBUG_FS is
+    enabled, the count can be viewed with per GT stat debugfs file.
+    
+    This is similar to what is already in place for vma page faults.
+    
+    Example output:
+    
+        cat /sys/kernel/debug/dri/0/gt0/stats
+        svm_pagefault_count: 6
+        tlb_inval_count: 78
+        vma_pagefault_count: 0
+        vma_pagefault_kb: 0
+    
+    Signed-off-by: Francois Dugast <francois.dugast@intel.com>
++ /mt/dim checkpatch f7d8381dd3abe62c22d27ea7998f20d8b7dab7c3 drm-intel
+85c88c273d1d drm/xe/svm: Add stats for SVM page faults
 
 
