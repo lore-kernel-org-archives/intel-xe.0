@@ -4,27 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48A0FC28B28
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Mar 2025 14:29:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA2FBC28B2F
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Mar 2025 14:58:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05B1B10E06D;
-	Wed, 12 Mar 2025 14:29:46 +0000 (UTC)
-Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E320E10E06D;
- Wed, 12 Mar 2025 14:29:44 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B9AF10E70F;
+	Wed, 12 Mar 2025 14:58:29 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S4jj4FXj";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56E1A10E70F;
+ Wed, 12 Mar 2025 14:58:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1741791508; x=1773327508;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=k/cXpySpg4/sLLnNCGR/NvjcKZeRr2JPvvDBbHCBeoE=;
+ b=S4jj4FXjXIGWZQ5bV5DZpfDxUWnPp2xee0ifcfCZYwfQa6fmYij4VP01
+ m2vfrNrQutOUKkAz5YtaMWLUuoglC6jOq2Z5LMzJlm7x1PeZS+vm1A+TC
+ 0m/yDcIGgbVOnDXgwx8mqL/SrGrX38MgD2ULhCsd4E7fPERydtrRWtrKF
+ 1AcUl5AVP3x0sx4Voou7pdBnC9Jb+E2THPjt8f53cE7psu0Cz30V/5ceV
+ sWFh65LxzG8YppFHfWzNhvrGGLlB+QjHhUz86GTjdpzkLcKr0N1dfGltt
+ gjv6N3gLKNsYZxCMBBJPI06WyNNTdhvYa4bZWl7GbrFKU3FmbdVdVrB/+ w==;
+X-CSE-ConnectionGUID: sVhgdxqASIS6YGq6PgNCMQ==
+X-CSE-MsgGUID: lEXIol2rQu+Qlo2d52BzzQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11371"; a="46784883"
+X-IronPort-AV: E=Sophos;i="6.14,242,1736841600"; d="scan'208";a="46784883"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2025 07:58:27 -0700
+X-CSE-ConnectionGUID: B2W5RfmGQNOHaCXuH0ZaZg==
+X-CSE-MsgGUID: mrGlaaN6RPSprfJWA/v0UQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,242,1736841600"; d="scan'208";a="125726568"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.23])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2025 07:58:22 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Manna,
+ Animesh" <animesh.manna@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Cc: "B, Jeevan" <jeevan.b@intel.com>
+Subject: Re: [PATCH v5 5/8] drm/i915/lobf: Add debug interface for lobf
+In-Reply-To: <dc8add2f89e5680d4bac347164ac73bc78c50db2.camel@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250303083522.845224-1-animesh.manna@intel.com>
+ <20250303083522.845224-6-animesh.manna@intel.com>
+ <dc8add2f89e5680d4bac347164ac73bc78c50db2.camel@intel.com>
+Date: Wed, 12 Mar 2025 16:58:21 +0200
+Message-ID: <87r032e1o2.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_Expose_modifiers/formats?=
- =?utf-8?q?_supported_by_async_flips_=28rev10=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arun R Murthy" <arun.r.murthy@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 12 Mar 2025 14:29:44 -0000
-Message-ID: <174178978492.25421.15073895303743632559@18a75f3d1eae>
-X-Patchwork-Hint: ignore
-References: <20250312-asyn-v8-0-0c4cbe5a066d@intel.com>
-In-Reply-To: <20250312-asyn-v8-0-0c4cbe5a066d@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,115 +70,134 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, 07 Mar 2025, "Hogander, Jouni" <jouni.hogander@intel.com> wrote:
+> On Mon, 2025-03-03 at 14:05 +0530, Animesh Manna wrote:
+>> Add an interface in debugfs which will help in debugging LOBF
+>> feature.
+>>
+>> v1: Initial version.
+>> v2:
+>> - Remove FORCE_EN flag. [Jouni]
+>> - Change prefix from I915 to INTEL. [Jani]
+>> - Use u8 instead of bool for lobf-debug flag. [Jani]
+>> v3:
+>> - Use intel_connector instead of display. [Jani]
+>> - Remove edp connector check as it was already present
+>> in caller function. [Jani]
+>> - Remove loop of searching edp encoder which is directly
+>> accessible from intel_connector. [Jani]
+>>
+>> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_alpm.c     | 32
+>> +++++++++++++++++++
+>>  .../drm/i915/display/intel_display_types.h    |  5 +++
+>>  2 files changed, 37 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c
+>> b/drivers/gpu/drm/i915/display/intel_alpm.c
+>> index f4586c76a7b7..245364d031c1 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_alpm.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+>> @@ -276,6 +276,9 @@ void intel_alpm_lobf_compute_config(struct
+>> intel_dp *intel_dp,
+>>       int waketime_in_lines, first_sdp_position;
+>>       int context_latency, guardband;
+>>
+>> +     if (intel_dp->alpm_parameters.lobf_debug &
+>> INTEL_LOBF_DEBUG_DISABLE)
+>> +             return;
+>> +
+>>       if (!intel_dp_is_edp(intel_dp))
+>>               return;
+>>
+>> @@ -451,6 +454,32 @@ static int i915_edp_lobf_info_show(struct
+>> seq_file *m, void *data)
+>>
+>>  DEFINE_SHOW_ATTRIBUTE(i915_edp_lobf_info);
+>>
+>> +static int
+>> +i915_edp_lobf_debug_get(void *data, u64 *val)
+>> +{
+>> +     struct intel_connector *connector =3D data;
+>> +     struct intel_dp *intel_dp =3D enc_to_intel_dp(connector-
+>> >encoder);
+>> +
+>> +     *val =3D READ_ONCE(intel_dp->alpm_parameters.lobf_debug);
+>> +
+>> +     return 0;
+>> +}
+>> +
+>> +static int
+>> +i915_edp_lobf_debug_set(void *data, u64 val)
+>> +{
+>> +     struct intel_connector *connector =3D data;
+>> +     struct intel_dp *intel_dp =3D enc_to_intel_dp(connector-
+>> >encoder);
+>> +
+>> +     intel_dp->alpm_parameters.lobf_debug =3D val;
+>
+> I think you should do some sanity check with the value from user space.
 
-Series: Expose modifiers/formats supported by async flips (rev10)
-URL   : https://patchwork.freedesktop.org/series/140934/
-State : warning
+I don't understand why we're doing some bitmask stuff here in the first
+place, when it's actually just a true/false thing.
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast dd638300cdc171bdd070ebad302134ada2aa5945
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-+drivers/gpu/drm/drm_drv.c:450:6: warning: context imbalance in 'drm_dev_enter' - different lock contexts for basic block
-+drivers/gpu/drm/drm_drv.c: note: in included file (through include/linux/notifier.h, arch/x86/include/asm/uprobes.h, include/linux/uprobes.h, include/linux/mm_types.h, include/linux/mmzone.h, include/linux/gfp.h, ...):
-+drivers/gpu/drm/i915/display/intel_ddi.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1991:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1991:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_hdcp.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_pps.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_psr.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c:106:17: warning: cast truncates bits from constant value (e8d4a51000 becomes d4a51000)
-+drivers/gpu/drm/i915/gt/intel_reset.c:1571:12: warning: context imbalance in '_intel_gt_reset_lock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/i915_active.c:1063:16: warning: context imbalance in '__i915_active_fence_set' - different lock contexts for basic block
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    expected struct list_head const *list
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    got struct list_head [noderef] __rcu *pos
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/i915_irq.c:490:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:490:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:498:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:498:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:503:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:503:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:503:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:540:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:540:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:548:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:548:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:553:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:553:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:553:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:596:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:596:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:599:15: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:599:15: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:603:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:603:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:610:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:610:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:610:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:610:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/intel_uncore.c:1925:1: warning: context imbalance in 'fwtable_read8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1926:1: warning: context imbalance in 'fwtable_read16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1927:1: warning: context imbalance in 'fwtable_read32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1928:1: warning: context imbalance in 'fwtable_read64' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1993:1: warning: context imbalance in 'gen6_write8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1994:1: warning: context imbalance in 'gen6_write16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1995:1: warning: context imbalance in 'gen6_write32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2015:1: warning: context imbalance in 'fwtable_write8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2016:1: warning: context imbalance in 'fwtable_write16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2017:1: warning: context imbalance in 'fwtable_write32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_wakeref.c:145:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
-+drivers/gpu/drm/ttm/ttm_bo.c:1194:31: warning: symbol 'ttm_swap_ops' was not declared. Should it be static?
-+drivers/gpu/drm/ttm/ttm_bo_util.c:324:38:    expected void *virtual
-+drivers/gpu/drm/ttm/ttm_bo_util.c:324:38:    got void [noderef] __iomem *
-+drivers/gpu/drm/ttm/ttm_bo_util.c:324:38: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/ttm/ttm_bo_util.c:327:38:    expected void *virtual
-+drivers/gpu/drm/ttm/ttm_bo_util.c:327:38:    got void [noderef] __iomem *
-+drivers/gpu/drm/ttm/ttm_bo_util.c:327:38: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/ttm/ttm_bo_util.c:330:38:    expected void *virtual
-+drivers/gpu/drm/ttm/ttm_bo_util.c:330:38:    got void [noderef] __iomem *
-+drivers/gpu/drm/ttm/ttm_bo_util.c:330:38: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/ttm/ttm_bo_util.c:436:28:    expected void volatile [noderef] __iomem *addr
-+drivers/gpu/drm/ttm/ttm_bo_util.c:436:28:    got void *virtual
-+drivers/gpu/drm/ttm/ttm_bo_util.c:436:28: warning: incorrect type in argument 1 (different address spaces)
-+./include/linux/srcu.h:357:9: warning: context imbalance in 'drm_dev_exit' - unexpected unlock
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+BR,
+Jani.
 
 
+>
+>> +     return 0;
+>> +}
+>> +
+>> +DEFINE_SIMPLE_ATTRIBUTE(i915_edp_lobf_debug_fops,
+>> +                     i915_edp_lobf_debug_get,
+>> i915_edp_lobf_debug_set,
+>> +                     "%llu\n");
+>> +
+>>  void intel_alpm_lobf_debugfs_add(struct intel_connector *connector)
+>>  {
+>>       struct intel_display *display =3D to_intel_display(connector);
+>> @@ -460,6 +489,9 @@ void intel_alpm_lobf_debugfs_add(struct
+>> intel_connector *connector)
+>>           connector->base.connector_type !=3D
+>> DRM_MODE_CONNECTOR_eDP)
+>>               return;
+>>
+>> +     debugfs_create_file("i915_edp_lobf_debug", 0644, root,
+>> +                         connector, &i915_edp_lobf_debug_fops);
+>> +
+>>       debugfs_create_file("i915_edp_lobf_info", 0444, root,
+>>                           connector, &i915_edp_lobf_info_fops);
+>>  }
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
+>> b/drivers/gpu/drm/i915/display/intel_display_types.h
+>> index b78721c451b8..b6ec9a8fadd9 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+>> @@ -1808,6 +1808,11 @@ struct intel_dp {
+>>               u8 aux_less_wake_lines;
+>>               u8 silence_period_sym_clocks;
+>>               u8 lfps_half_cycle_num_of_syms;
+>> +
+>> +#define INTEL_LOBF_DEBUG_MODE_MASK           0x0f
+>
+> 0x1?
+>
+> BR,
+>
+> Jouni H=C3=B6gander
+>
+>> +#define INTEL_LOBF_DEBUG_DEFAULT             0x00
+>> +#define INTEL_LOBF_DEBUG_DISABLE             0x01
+>> +             u8 lobf_debug;
+>>       } alpm_parameters;
+>>
+>>       u8 alpm_dpcd;
+>
+
+--=20
+Jani Nikula, Intel
