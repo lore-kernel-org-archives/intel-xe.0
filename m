@@ -4,185 +4,163 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69037C282DE
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Mar 2025 21:27:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73234C282DE
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Mar 2025 21:45:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 095C710E16C;
-	Thu, 13 Mar 2025 21:27:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A01810E16C;
+	Thu, 13 Mar 2025 21:45:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GN/IXBuG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nwi2t6DB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0766810E16C
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Mar 2025 21:27:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 936E510E16C
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Mar 2025 21:45:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741901234; x=1773437234;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=mitNRAr2x1EurkkLLRSlNh+mJDfIBIEvGs2son3BfcA=;
- b=GN/IXBuGLw9LdAszzRW6EAOt1ktkzezafatf4RfhapwrVrQbG7IYXkAO
- ZxwIxgNqU7kzQ2zH15/SGvTkgeQqLK2vwZCPHsdMhMkPylKh3esBgFaQz
- B/hTi97zPjsTk1OiBjnpfpYgVQuaRlrWOAAPB2v5YRQeTbb3mht6gErBf
- hAKi80VqiwCbzAEhpNubTe0GUvbY8ZfAInXSenj40sIMaFjnIn9ZCRPAn
- qrp86u3Q7Wklb2O9BFhcBzBWSL9enwyFI/Lux9QupNb5nbpAg4Fu8FFDr
- V19jQ4nB9A0NiPcawGfpkI8Gn7A3PobKgXoIXB9YRL0YAYjFe4O2OdBEG Q==;
-X-CSE-ConnectionGUID: QfmpG7L8R5yBqsXDt8mx2A==
-X-CSE-MsgGUID: NGAUAdZXTXu8WLhZ+Z5L6g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11372"; a="42904546"
-X-IronPort-AV: E=Sophos;i="6.14,245,1736841600"; d="scan'208";a="42904546"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2025 14:27:11 -0700
-X-CSE-ConnectionGUID: r91uvZwHTQqlSXSoXiWR8Q==
-X-CSE-MsgGUID: kH6UBTzqTPW/PH/xsiYJ4g==
+ t=1741902333; x=1773438333;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=djWIk2Y7jieY0TjzQdRVoP3Uocoqh9b1NHwfs7ANvLg=;
+ b=nwi2t6DB2Lguieq21HEpUre2olpnb3+QoHVBmsKB+RQUYgbINAugFPxq
+ WlCN9XOBxLw5sKMQv0/KBUAm67BIsje7GkQDGioOb2AmjeoAvOlbnFipL
+ rwBOQVtzlX6WkLs+kHIZ/DvYugAOeQIaGVOlNzl8Cjb5TYfjRTBY+unjI
+ RUJcqhUP32+2TafFlc9pAOeBx+W2bHx3gyJPuXhIxgeP0hPsGABRzUrCG
+ SrT9wgx+pQt02B5vDonQELeZWcevMf8yhpVKI8fMq6xhh6lmSBwtNkSeQ
+ yrDYlJwlmsN7Ctgj0Cheqz+VIgNDNwfxO/2QnwUIpKgwYj/dJKwBPGS2x w==;
+X-CSE-ConnectionGUID: 4+A2jAX8QGOb8b4WiHpe2A==
+X-CSE-MsgGUID: 14CgMYklS/a5+uW1JL58aw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11372"; a="68406995"
+X-IronPort-AV: E=Sophos;i="6.14,245,1736841600"; d="scan'208";a="68406995"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2025 14:45:31 -0700
+X-CSE-ConnectionGUID: Jl8b7P6LSGeCAERcHSyndA==
+X-CSE-MsgGUID: TBbONjfYSk6HLki2lVATSQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,245,1736841600"; d="scan'208";a="121068946"
+X-IronPort-AV: E=Sophos;i="6.14,245,1736841600"; d="scan'208";a="121783512"
 Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2025 14:27:11 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2025 14:45:31 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Thu, 13 Mar 2025 14:27:10 -0700
+ 15.2.1544.14; Thu, 13 Mar 2025 14:45:30 -0700
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Thu, 13 Mar 2025 14:27:10 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.48) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.2.1544.14 via Frontend Transport; Thu, 13 Mar 2025 14:45:30 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.174)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 13 Mar 2025 14:27:08 -0700
+ 15.1.2507.44; Thu, 13 Mar 2025 14:45:29 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=G1k6SEZCha8TV3e3UhslEa4aQKbn4ZNEu2pxkMFa6kh4VIN5g8slyV9+RYN33IinfLEGfyuyQ6UcJ9uYrQSl7U49kmFm6dT+A6xip8NhjMd64Wms/kId9qJwJCrBHRBN24lMEuZHgd9pytrRrbuHRefhWfg8hWUjDuxrKWdAw+partHfISbrXU3XRs4NFQcj/4W1NIrPp0VRgwa2wph9G/SY7HxhkS2Q7tlOgSMhuUHLQrWQi4wAMf+vsfXtIsNegiGowswoPre6EZULubZzNftts83r31Lm4hA+A9cGSeo70YLmwwFRtbhP347eGe2H/o2oUvt5dru06DmuKbM5bg==
+ b=tusZRYOqDhNgMvwvMpPDehTdMWGlWR77NnaYphqaOvwJ6clydtB+Fh2pyTqjVAvGVzuBKEU1ulXl9F9T8xVHXivBrnhxXI2Ss8t9i8CecdQKu2pO0BSoc0PtwCwFIcg/PNRFYsw15aQWhxgSM5+FeIpdOsyu8e520DJzM9Qm2MdX4V7Zx1oofBG0o02ZtaAMqnQ4BbK0Osk9EorvQMFHOesK1KciTCx8fPKmiiqvN6Nzvhx+IOlfQQNAfNsS3vpEFOl++SH53ovpZSB1vr7kay9xj+wVPLRtnw5swfiDRkHQsigXbqI7rQ4ORLHsMyWdwRJOwlFitaiGShigxd4NoQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mitNRAr2x1EurkkLLRSlNh+mJDfIBIEvGs2son3BfcA=;
- b=qSHwt9y+NHMyHKXjJw3O8VibjL4Nu6gNoRmwuPULt5il8M8AeZMbFkFJjYPAspF5QK6sGOerzqhHWwb8kvnNsw+YV2D1yDneQBzGqjZ55A0WdutElgFalCdhr7vwaS0qY5nUnT3o3Dc4vVzGkeYo0udSXCYOpc9TZhuvbWV6w84+iOYSyyJM4ub6MM72NXxqgY3dCyIIbOovxiLJ9pE+lAesrxt7bi/T1qCqKJM7Goo9tnchNfd2JrA34NbzasYHmbByxr/AIZNEyBlU62xVwoeGD7PjcL9eWLbXLixfoJdJj2ks8Wi8//vuGBxlDr9BPEM2SpEyiQ12uAd/tjvgaA==
+ bh=b8NF9m42d1HSOW6QyvpOhabNiOqb26tMaml4YMi1WyM=;
+ b=b+1TlfDaI3tsN4vF2BmMC0v3m8ZfunFBviYTSWH5HDz1ax4NOPqd6W+9PUD3ARy/yC7Hs9TBDTyRbzA8EAbKQvr3DZ+GBpgQZ5Lw8kRtRky4J8Q33q7AOR9wtrjT3N72qMxZVuESjdLFfntMiHD8fXLCrexQ1erUrA/xWb+7DM0Uq/cnGTOMKbsPUDBYQDfp9A75anhpk0L2fTizC+rtq6QHeviJzcXgqSo0wuI8y7t6tqs9kEgdH1t9AhiZ9QauW9KTiHZuFoB1BfTGUIBzDexwqs8m3b7vTfcxu9E7IUM0PVJxt3v8DeT9kKE88rx1p1/BcCVrH171sUyhKhSH4A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from CH0PR11MB5444.namprd11.prod.outlook.com (2603:10b6:610:d3::13)
- by IA1PR11MB7944.namprd11.prod.outlook.com (2603:10b6:208:3d8::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.28; Thu, 13 Mar
- 2025 21:26:39 +0000
-Received: from CH0PR11MB5444.namprd11.prod.outlook.com
- ([fe80::5f89:ba81:ff70:bace]) by CH0PR11MB5444.namprd11.prod.outlook.com
- ([fe80::5f89:ba81:ff70:bace%3]) with mapi id 15.20.8511.026; Thu, 13 Mar 2025
- 21:26:39 +0000
-From: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: =?utf-8?B?UkU6IOKclyBDSS5CdWlsZDogZmFpbHVyZSBmb3IgZHJtL3hlL3hlX3ZtOiBJ?=
- =?utf-8?B?bXBsZW1lbnQgeGVfdm1fZ2V0X3Byb3BlcnR5X2lvY3RsIChyZXY4KQ==?=
-Thread-Topic: =?utf-8?B?4pyXIENJLkJ1aWxkOiBmYWlsdXJlIGZvciBkcm0veGUveGVfdm06IEltcGxl?=
- =?utf-8?B?bWVudCB4ZV92bV9nZXRfcHJvcGVydHlfaW9jdGwgKHJldjgp?=
-Thread-Index: AQHblE2VbBvv0dAKHUyJggLkcmllurNxlEEQ
-Date: Thu, 13 Mar 2025 21:26:39 +0000
-Message-ID: <CH0PR11MB5444E968AFBDF5D6F1226107E5D32@CH0PR11MB5444.namprd11.prod.outlook.com>
-References: <20250313183415.133863-1-jonathan.cavitt@intel.com>
- <174189387487.30726.11680232754624218873@18a75f3d1eae>
-In-Reply-To: <174189387487.30726.11680232754624218873@18a75f3d1eae>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CH0PR11MB5444:EE_|IA1PR11MB7944:EE_
-x-ms-office365-filtering-correlation-id: f211d76c-fdfe-4d49-e030-08dd6275bdd4
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|38070700018|7053199007; 
-x-microsoft-antispam-message-info: =?utf-8?B?ODB1SU1FT0s3RkRIWkRNTFdWN3NmTlU5WkpWT05ha0lPdTV0LzRTK1cyRlpU?=
- =?utf-8?B?cEtqN25CWUhZUEFMc3l0MnJDaS82UVIrbjV2bzc2RXlHOGNBOWF1SjBtN2xh?=
- =?utf-8?B?TFErbWFzTVVOWi9Hc0czZktwaHNNRU0zcU5JSFZOelhjYmhmOG92elEzcmxS?=
- =?utf-8?B?T1BiT1p1ZUZXZFdUamZMUGxuS1ZXdzlFakVyNmlPSFd1QVJGT01tcVVQNkR6?=
- =?utf-8?B?WnFHRHhJYzY3bFJjZWJDZ3lqNTdmRXhzZ1hPSGRIM0RUb21qbFgwV2gxQkJx?=
- =?utf-8?B?b2RoK0VydTBOVjhwcWc0MTFlZVlBZmwxazhvNEVnWGs4U0N3TFhFanp1ekJv?=
- =?utf-8?B?T094YVUzdlIva084eDlFUlRXWXVaRC8xSG0zMnZFMUVvbzFmdzE2MXRFRzFa?=
- =?utf-8?B?YUxJdzFqSkFnZlBqMFVFS3lGMUxjUzVpbWFLSUNRbEI1YjN2NWpnWUdMWTBw?=
- =?utf-8?B?RFZqa216eG1zTTI4TEVxNjc0dzhxOW9FT2dnR2Y2Z1I4L00zaXlQa3p1QURj?=
- =?utf-8?B?RkFwU1luK0Jnb0FYdm43ak9wK1piQXdmTFhLNWZQMlpwQXlCT3JlTGxSamdZ?=
- =?utf-8?B?aTZqTEVLL3kzV2JzQW8zOEhKMzhsZG0xak9iYStTdkZsd0R1MkxPNnRZWWZD?=
- =?utf-8?B?MTFjTnA0M2p4bFplb0RBa0tDczAvZkVqakZwUElST0x0cUhtZ1JqditkNzVQ?=
- =?utf-8?B?Y0RlaFNDZ1pXa0ZPdUM4dzJBR21jRWROTy9CMldEOSs5RCs0b3Y3dGtpemgz?=
- =?utf-8?B?dEdUNWIrbWVBNUJpV2d6NXJwRFl3cG9aMFgvMXY0anRRVlpEQnE1TURqWkc0?=
- =?utf-8?B?RzFvRWZyRjVDWXU2VlFQa1UwL0FDYkkyaXl4QVphVW5SRFROQ1hyS2FGL0Fz?=
- =?utf-8?B?M1RWTHNCcmtGM1M1cnJaaTBueWdHTEdvU05DSnlENUxkMnBUM1VyWGR3dU5a?=
- =?utf-8?B?VnRsamxKWllqY3dIeWx1elEyeXZTWDlQV0FoaGRNWHM0RkRJaS9mcmNIaFRl?=
- =?utf-8?B?bXp4V0hHQ3ZRdUVRMXdxUnlkV3IvZUtYR2lSeno4aFFteDZyeStiZ1R1L3py?=
- =?utf-8?B?RWgvc2lVOWhCc1ZoT1d0K0paRUc1OWJidm04MnUzR0NoaFVseFM5SndSQ0xk?=
- =?utf-8?B?aXJHZDh6SjBkVXpMdkQreTRpNk81SXdhc1VMWkhxZHdWajQzc3dnZmhOWWtC?=
- =?utf-8?B?R3RmV08xZ3hVeHlLb0R6SSs3RUhjbXZxT0dGMUZZS3F1T0taY0o2MTVlZ3Vy?=
- =?utf-8?B?VmltVU9meEx1V05VQ3R5M1UyOXVBTEJoWUp3YkxEUGgxZFJoM1VBSTV2Q0Q2?=
- =?utf-8?B?OCsrWjc1ZlhGR0FsU2pPcGVNWGxaUUdvZU5WVWJLNTVqVnpCaWw5TmZhK1Ry?=
- =?utf-8?B?blRlYjN2WGhuOHA2RmZYem9aOERMVmphKythOFNPNk1HcG8xKzlKaVZJYUh4?=
- =?utf-8?B?WFpKWG1YK3pWaXhEWlIwa1hHYTBmSU9jWS9seUdoUE12N2UxdVZkTnhnZnd6?=
- =?utf-8?B?cDRhWGJRbjFKRzRsanZRb2Q0NWlzL3hRMHQvdlZiZC9DcHp0TUxoWFdzVjJy?=
- =?utf-8?B?NjBicHFWcXBHUDZPdFJZeTlja3E1dzZaZHRkN1d1TTBvMmZQa3pXc1hyWlFI?=
- =?utf-8?B?K1FrNHh6TldPYTdkeFJrbEVETmNCbFdIOVBvSnlTNjY3cDN0TDZBL25odlZk?=
- =?utf-8?B?bmVuRlRvY3lGRVk5NnIvTE9NeFZrZWluQVpnZkxRYitRLzczYVVtbTIxVFZn?=
- =?utf-8?B?TURyS2hxVFAzM2VqeVpUeUcyYTFUOWlYaGNld0QzcjgvUXUxZjRyMWk2WDgy?=
- =?utf-8?B?OWZCV2FJQTNlYm9jeGEzNTY0bDlQbWduc3BMZTM2R0Y2ZFdqYytNVWFRbHFK?=
- =?utf-8?Q?GXAAS65lAPawR?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH0PR11MB5444.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(38070700018)(7053199007); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?L3BtWkQwMmxoMmxOMWhzUkN3M0UvNEhQejk5eFJ3bm1BVU9Dei9iVjJGRFYv?=
- =?utf-8?B?TFVwdkQ1SDBKOENJd0pzZXI4VkxnOER2Mjd4NjMreHdyUWl1S2l5NmNPUytk?=
- =?utf-8?B?Ni9UVlJtcUN6eVBXTWpDRE1PbFlsTitqeFFycWN2U1BacHBlRHkyc0pqNkdD?=
- =?utf-8?B?RmpKbVpLcWdCVGNSZldMT096QWFlMUZ1OHVxOXRSWGYrTFNBVXFKb3BnZE5v?=
- =?utf-8?B?eTZYb3lMMlRsaW15c3F3Z2hvTkhDVmVwdjRsQUtnZ0d6ZXRYRU5DMFA5QWly?=
- =?utf-8?B?aytpQkFQQ2JLWWUwZnNxMWtoTXZRWjNLY1dEV01RbGZqekczODVwdUFxQUt1?=
- =?utf-8?B?QmQzZzh6U3JJak1EQjQySkZ3QVl6dHc0Q3JHQXo3RGJSM0RFaXZHRkJiNTdM?=
- =?utf-8?B?a05YUU0xbWorbGltSGs0eVpDME1OaGt6aVNGTmpNaTdwOGtnVGtPTVVOTzJh?=
- =?utf-8?B?anVtc1pvWExHL2M1OXUveFNSTmVPQUo3ek1aQWR2dndEVCtOeXlmUDZqc09K?=
- =?utf-8?B?NkNacUtqMWVYemFxSkdaZVpYYzkrTUxnSFVMV3RtOVorak9qUXozWGh5bm91?=
- =?utf-8?B?Ti94MjE5NU1oY0lwbTNRSzFnMHpSdzhyUGdjNFZIeWYyY1U1N1J0bjRlUXJQ?=
- =?utf-8?B?SkwyZ0k1TGN6cndHWmZzT2FNazBNL1BwWkhmOEhzZU9IMVNqWFZCSm90KzBI?=
- =?utf-8?B?WlBwbW81QlNhcExWZzJ3SzFkTkdWTFRNQUxKaHErMllPZVVsN0RVUmxyZkRS?=
- =?utf-8?B?WURnb0F5bXltdHcwZG1MdjBzL2owTEZyYkh5dFdLSitGMElFR3A3WVhxRERo?=
- =?utf-8?B?R0dMUENNWHdxRytJdTZNMVFreGtVSTVqbmsrNEF3d2F0MkpqQi9MdWhRamFV?=
- =?utf-8?B?eU54RFBJN3RIZC82djVBMGVIWU9FbXBEczVkdkp4Y0o0R3dlQXpMKzF4ZkZ0?=
- =?utf-8?B?S1U5Z01PdFM3RzZLV0RjNE8wenlOTkhtckp1RDAwVGszRHlPUSt3dEtoT0dr?=
- =?utf-8?B?ZEpIb1duZUpCYkR3ejR6SjJZSXdrNWRNMkZkTlNnQlJBQTNqN2ZoUGNmOHpm?=
- =?utf-8?B?YXRCUzJXaUxLUndIS3VTdmJLYjhlTGxhL3Mrdm52RVI3S2Zvb3oyaGRSeUdQ?=
- =?utf-8?B?b1FINyt4ekUyZ3NKdnJtN2Y0WkRNZjc4eTVITmk0ZVFWMEFYc254TkhtRUR5?=
- =?utf-8?B?MDBuNVdySSs4R0duUHBIYVEvQnRtbVRJTEw0U1FHTUx1ZVNFckhlWXJ2ZzlV?=
- =?utf-8?B?ZmM3dTlPWnN2TTkyR2trdFI1Z3U0cVgvZ2hPVlVyWEFoU0M5MVlERVVGM25M?=
- =?utf-8?B?dWpPRlZWT3V3REc3K3R4ZEcwQzhiOEQweStLNmVZMWV6RHNSVTg3UFpYYTk0?=
- =?utf-8?B?NWplNkhwL0RQRzJva3EyamVwNFBxZEJreE9rZ09GWVM3eTdBVXFkN1NFZmpk?=
- =?utf-8?B?QmZkTDRtSjFIbkVjRysrcCtGdVNGcWVLa3M0cnFTVmY0b2VtYXJ6eSs1amp0?=
- =?utf-8?B?clU5YTdUaHFtVkZKY2lsSW5ISy93QVNyVG5HTUU3ZHh4NlNoVUJKUC9yRFY0?=
- =?utf-8?B?WjZxSXFlM3pqeFpDM2pMcjRlVUhLbUxNVmhDTk1OWDRuL2c0a3Btak8vRUFM?=
- =?utf-8?B?RzRWbklTT2FyWHRCV0IvVmo5UkVWQkdnMEEwZktLM3dIbHdwUDI4eGFob0h1?=
- =?utf-8?B?RlF3ekNQaXJtM281S2NWZGhnenFMZjJ3TW9vOVhpSUFGWVpnTnpWd2FRR0NF?=
- =?utf-8?B?OHYrYWVXTHdOYXU5Y0ZOMkNmWFZiZVdVc0NUNCsvUUp6QW9idHNXb05mbjd1?=
- =?utf-8?B?UHo3a0xaNGpKd09vd09DdzNEVUQ3b0lSdlZuZkZ6LytMM2JMMWVhUklVcWlK?=
- =?utf-8?B?MUl0dDBvTGVWelhXQUlnVkRuTXErNkdrWlludlRvV0oxNGRTVFVCWTF1Z2dq?=
- =?utf-8?B?bUZlMXFRU0dlbGorK2VWU1NlZEl0b1hySVNmSmFSWDFGejcwL2JkcC91RnZa?=
- =?utf-8?B?cHhtdlc4RDRaZHBheWhKOEt6dlVzV3FhMkhFRlBBMDNWM00yZnRXZ001ZU5s?=
- =?utf-8?B?cWFxRWt5QTlneWM3MzQwaWZCZHZkWTFSbGxwRFloOWJqdWFHKzkwZHI1d01y?=
- =?utf-8?B?aGNlOGo1Y2RxcEJWZDNmUW0zeVl2MHprS0hGT0FsbTM5MlRVUVAxNEZUSDF2?=
- =?utf-8?B?Ymc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by SA1PR11MB6966.namprd11.prod.outlook.com (2603:10b6:806:2bc::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.27; Thu, 13 Mar
+ 2025 21:45:13 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44%3]) with mapi id 15.20.8534.027; Thu, 13 Mar 2025
+ 21:45:13 +0000
+Date: Thu, 13 Mar 2025 16:45:09 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Riana Tauro <riana.tauro@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH v3] drm/xe/pmu: Add GT frequency events
+Message-ID: <vx26ng5q4asspsg6lktrj5ok73gbiy3bfg7icu4fybekyt4zad@5h4bsek2mukm>
+X-Patchwork-Hint: comment
+References: <20250312001408.804125-1-vinay.belgaumkar@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20250312001408.804125-1-vinay.belgaumkar@intel.com>
+X-ClientProxiedBy: MW4P223CA0016.NAMP223.PROD.OUTLOOK.COM
+ (2603:10b6:303:80::21) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SA1PR11MB6966:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5287c88b-8d5e-4ba6-111a-08dd627855d6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?o9W5Qvb+8LDqBWdNDygq3yJ2+qs5BVRQoH+sjT8Z8LOXRnDXe8yd0wvfZKvb?=
+ =?us-ascii?Q?SnNNbvGYZHW72OOxVhKt4jSryLMc5GzsfHzIYYgTfHiq0BvQ6DGAhKDVyoTD?=
+ =?us-ascii?Q?T9dFWxIl6qpF1B21ZH8uwTNESUTNUNOnMf+GZvWWs/pK74L2Fc4J9UcCoFUC?=
+ =?us-ascii?Q?obSlQWr/13bNh1Dg436evhI5Rz+c+hc/fT7ZJSiHogdhxO9x2uUV8nFJf0zs?=
+ =?us-ascii?Q?aNc8VVGljWic/kAZQw9LLAlTA+f2UlXHcmlCpEzyACOgEpS1aAvkK/1styg7?=
+ =?us-ascii?Q?EX0Boj3egf8K+FG3hNrHYYJ9WetDnjyrvPvQUDNl6EoNFHJxOa7AyFsjdpva?=
+ =?us-ascii?Q?PKvJBxkTFb3hC3PhmMfjF+m3Dd+KuqHXzwhGnZ+hn/n1xolKXXKold/P3W1n?=
+ =?us-ascii?Q?VrheF6CwTB700vt0H1RURed/olOE8b8vKKEnvyMns/Q9V5fhMu10CvDxA/Pz?=
+ =?us-ascii?Q?a2vne0R6W9O2lrNFpIwmGwSv2WKdg0pezumVUJ95iOGccJMhkBBSr3/hvhRv?=
+ =?us-ascii?Q?VHfJpags8OsyjrAO6eit48qiru8VC38uZHSFbwsrLs3blko4atkPMEKBQK93?=
+ =?us-ascii?Q?WcZ26hDdH67je619J3y7UyDPzzFyeQ/J6X+zEEBk03C+yF2eIg6FLe2NosoE?=
+ =?us-ascii?Q?h/WaJW8OHpO8Iadd4pIl1IHbQN5pok3a0d++o3mFi+WaLVAVpO7AG4/Q53AZ?=
+ =?us-ascii?Q?cQnRDBT2LDT4h/BKpi9KJnW/txHbWGd/qW5wIMm9v70eyTwHBKIw/eCTwiMv?=
+ =?us-ascii?Q?g8jb/zg75DwapeLesQsY3aKNH5Bz7HOZo0p00KgIzpyxQ9RNQ9BMss8msUL9?=
+ =?us-ascii?Q?Tzk3i3DphpZItm4Xh04/aHqyq+cRyJ/9+4Jkdg5MAA4QRCCpC96faUHM6s9Z?=
+ =?us-ascii?Q?1fF6ZdZSCPbc6ip2uJ29W/+M4rzcI8L0xOZBVlIKTbhPsA62BI37Dd+mNLQq?=
+ =?us-ascii?Q?MO6AM2s2DjISzv4Llz8nFAApBrwIrRsef6TjR81erl8zhYIGmypcBlxHl9pq?=
+ =?us-ascii?Q?3YKXOx/ooscYrftFHKKQVXSTxZxWeXn7yvZmmVCWVBG/xUrhsdPYGKzvbUmg?=
+ =?us-ascii?Q?ykXdt7FqG5kuZ0hGrdU8udEawvLojtttfZK+8yyxhm8gATHUozBB5DA+suZy?=
+ =?us-ascii?Q?vFWGmXGqCRFJqs1TZoscOTWon/vceWgPkZvXpwYFlD8HujyV9ZblV3uH0/+d?=
+ =?us-ascii?Q?BcvOJLehmOnly8ZwNK8SJCIsDgGnjI+2S06Ho8CVBsDSDEEyKHXizycGEZNO?=
+ =?us-ascii?Q?/50D//Ny4SghzslgnYwXvonEHzwRTv3a8sEpLaVDzUbeq8KL3CPjWV89swx8?=
+ =?us-ascii?Q?QNjFxvNR4qMbQvB5+n5GEuV8YL7Y7Kb1GKjJ//zwW8CVZnm7iusy2uDgaCVQ?=
+ =?us-ascii?Q?h09doiRYxNGidGBFuAfJQimIXTy8?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?RpHmlReuk0ABiJmhvEax5L+AdtretckHnPGCYG1D9T/roKvMJdsrBNmyuok7?=
+ =?us-ascii?Q?lKhONuj9nbNdwHhiEvUMXgk1/D1XmdrI6k+/XDQhaFv8MZZ89vqniKbOMgVh?=
+ =?us-ascii?Q?ehWKZ3cyXVzxCodMfedu0dk1wBOYcwHh8FFoQ2HWPRoECSkWPyEjwh+2/gmf?=
+ =?us-ascii?Q?eseqTTrNPNYFR9yMjUM0sUAQ30gmO1FXVfU2v1F9e0PT+8ZSmD762AuQVyBK?=
+ =?us-ascii?Q?+DxND9uIhUNOG3YB+WxqDO9mWCeHrV0TzgOjQel208lmEzVuW6OG9XE3zEfw?=
+ =?us-ascii?Q?2NOE3Tv7Kwp+aZomopOkM0P8ukGNVLZvLhuP1VAu57OCYVAWzfSfJ9tL40Ve?=
+ =?us-ascii?Q?YB0fq+Li5NQakO4BBaMUEoSHc+OmZvsD25dKrVk3SebvJjdjcMKqVdPAE1Aa?=
+ =?us-ascii?Q?ZsrrITGTeaaa5aszvT1MO+fGaaZFwTwWip1Hid8rdsB18Cfj/24/KFibhd9e?=
+ =?us-ascii?Q?QxJZRPud1cLzn7GaVWf3Ev2WmIrUufb7Y5wOSOfDa/Dp59asJe/I6xtIXeFz?=
+ =?us-ascii?Q?/maGlf9kdrAeOYDcEdxFJwmM52M4m2/Xg9UuX6kg5/lz5q64lKukuWWGjsWh?=
+ =?us-ascii?Q?HWT3/o9bDD4/5GID8H+3IbyRKVuNhhIb0pERTodk1SFnRhFoPF1qZN9tlD1d?=
+ =?us-ascii?Q?CgyYdP1dR/PEdihIBV7RtjGQ4RJD9jSFjFq5Hzs0ADzAcnLqr9EK4nBONOMD?=
+ =?us-ascii?Q?sDj5qbB8j2dv2EtTCOsIsvcDMOh7RIV7rX498XY7WLdsWeVxKWE6gXTXGBrx?=
+ =?us-ascii?Q?fh36Pyr2s+YRCgkuoFdOuq1KkcEBG+2FcFpZ1HNDt8F7Ra2+Vy5Zw0RzCBjq?=
+ =?us-ascii?Q?K1n5bGkgr+Wpof13ElCukMyV7ZpPatF7metu4I1p3hFHqQlsZJMaqASNeiwM?=
+ =?us-ascii?Q?qgd2aMZMXwU7l4Ov1Td6yswVaJdCFe+iNFUlPK0x51noE0BZ4AfvDgEu8/dH?=
+ =?us-ascii?Q?MaY9XlLay2BUMTKAjKAXPObi0+n4WHH3t9Zry6Y4K75g/esgSz+6rm7jynoL?=
+ =?us-ascii?Q?qQZhJ8SafymecH62y556F0RQKHYAeFsBdL4QmlJb19lpWKTgCd/Wt+xHf1vL?=
+ =?us-ascii?Q?ywzetLsoh1m2IS6BeeUoqGx6gqyPRTvjPkJjTRvamnRJjtXo4hvfQ+lLhkfj?=
+ =?us-ascii?Q?FM40NSyXg5HePOnX33H1H23/mk3WOr8ykfm7iExg0lorHJ+lAhe9mS8q7kj8?=
+ =?us-ascii?Q?jI/3G+LaYeIXk+TEyCATkRudWZZFlo4OpkNG+YOUJ+czyUtAKUSmcixfF8/T?=
+ =?us-ascii?Q?UhLPKGSFlN2YwZ7mMfL1SzhPgGXOcu7ArotePGMR2NrX3iCU8M249UjureaJ?=
+ =?us-ascii?Q?jqQMIlt1jFKUqH7BLVqM+F+GCZpcvp5Ye40Qlz1xI1Usl1rFRo2N3KB7G9MD?=
+ =?us-ascii?Q?EPucrIo+2mid9iP8ks2Gr2+hgxWFxRWsCY6vpn2MoQfStl6EaqAj1TiHtJkH?=
+ =?us-ascii?Q?br/9umNJoNoLSHJcAyZhZ6nQ1x8zusp4vaLMoYUyWVTwQQ1H9wbOs3nLaqZB?=
+ =?us-ascii?Q?ndPXV0MCbJUYJKAodF6RUN/AJt/MBPeZ60H4XNQJtxbHXPmTPuSa92Ii8FMT?=
+ =?us-ascii?Q?bSJtLUWml7Vn2220yOeZvfsNZDooXS4H9Zp4pyaeRYTgwPOZmqarSRJrsr9d?=
+ =?us-ascii?Q?Tg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5287c88b-8d5e-4ba6-111a-08dd627855d6
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5444.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f211d76c-fdfe-4d49-e030-08dd6275bdd4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Mar 2025 21:26:39.1514 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: G5XsC5DJhfdH5Vm5POMuIBXvdxUuoM+56WCxNb4YpagrjJyLiOASuRLfMRE+MJSL9idDFFZG2T7pO9QI3UjGXjMDjYXOq9OgabC0dS/v3iw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7944
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2025 21:45:13.4307 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tD2r0mkLaf1PzzLYSkE4jTBDUEMaYU8JJyslzsgMPEAipkl2qzNeglQu99qw+ms3jvLxBiZ6wMC8avwP3Ur0+5XJKid02wrg/YftvZ61VQw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6966
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -198,149 +176,482 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-LS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IFBhdGNod29yayA8cGF0Y2h3b3JrQGVt
-ZXJpbC5mcmVlZGVza3RvcC5vcmc+IA0KU2VudDogVGh1cnNkYXksIE1hcmNoIDEzLCAyMDI1IDEy
-OjI1IFBNDQpUbzogQ2F2aXR0LCBKb25hdGhhbiA8am9uYXRoYW4uY2F2aXR0QGludGVsLmNvbT4N
-CkNjOiBpbnRlbC14ZUBsaXN0cy5mcmVlZGVza3RvcC5vcmcNClN1YmplY3Q6IOKclyBDSS5CdWls
-ZDogZmFpbHVyZSBmb3IgZHJtL3hlL3hlX3ZtOiBJbXBsZW1lbnQgeGVfdm1fZ2V0X3Byb3BlcnR5
-X2lvY3RsIChyZXY4KQ0KPiANCj4gPT0gU2VyaWVzIERldGFpbHMgPT0NCj4gDQo+IFNlcmllczog
-ZHJtL3hlL3hlX3ZtOiBJbXBsZW1lbnQgeGVfdm1fZ2V0X3Byb3BlcnR5X2lvY3RsIChyZXY4KQ0K
-PiBVUkwgICA6IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvMTQ1NTI5
-Lw0KPiBTdGF0ZSA6IGZhaWx1cmUNCj4gDQo+ID09IFN1bW1hcnkgPT0NCj4gDQo+IENDIFtNXSAg
-ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvLi4vZGlzcGxheS9kYy9kbWwyL2RtbDIxL3NyYy9k
-bWwyX3RvcC9kbWwyX3RvcF9pbnRlcmZhY2VzLm8NCj4gICBDQyBbTV0gIGRyaXZlcnMvZ3B1L2Ry
-bS9hbWQvYW1kZ3B1Ly4uL2Rpc3BsYXkvZGMvZG1sMi9kbWwyMS9zcmMvZG1sMl90b3AvZG1sMl90
-b3Bfc29jMTUubw0KPiAgIENDIFtNXSAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvLi4vZGlz
-cGxheS9kYy9kbWwyL2RtbDIxL3NyYy9pbmMvZG1sMl9kZWJ1Zy5vDQo+ICAgQ0MgW01dICBkcml2
-ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5L2RjL2RtbDIvZG1sMjEvc3JjL2RtbDJf
-Y29yZS9kbWwyX2NvcmVfZGNuNC5vDQo+ICAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0vYW1kL2Ft
-ZGdwdS8uLi9kaXNwbGF5L2RjL2RtbDIvZG1sMjEvc3JjL2RtbDJfY29yZS9kbWwyX2NvcmVfZmFj
-dG9yeS5vDQo+ICAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5
-L2RjL2RtbDIvZG1sMjEvc3JjL2RtbDJfY29yZS9kbWwyX2NvcmVfZGNuNF9jYWxjcy5vDQo+ICAg
-Q0MgW01dICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5L2RjL2RtbDIvZG1s
-MjEvc3JjL2RtbDJfZHBtbS9kbWwyX2RwbW1fZGNuNC5vDQo+ICAgQ0MgW01dICBkcml2ZXJzL2dw
-dS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5L2RjL2RtbDIvZG1sMjEvc3JjL2RtbDJfZHBtbS9k
-bWwyX2RwbW1fZmFjdG9yeS5vDQo+ICAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
-dS8uLi9kaXNwbGF5L2RjL2RtbDIvZG1sMjEvc3JjL2RtbDJfbWNnL2RtbDJfbWNnX2RjbjQubw0K
-PiAgIENDIFtNXSAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvLi4vZGlzcGxheS9kYy9kbWwy
-L2RtbDIxL3NyYy9kbWwyX21jZy9kbWwyX21jZ19mYWN0b3J5Lm8NCj4gICBDQyBbTV0gIGRyaXZl
-cnMvZ3B1L2RybS9hbWQvYW1kZ3B1Ly4uL2Rpc3BsYXkvZGMvZG1sMi9kbWwyMS9zcmMvZG1sMl9w
-bW8vZG1sMl9wbW9fZGNuMy5vDQo+ICAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
-dS8uLi9kaXNwbGF5L2RjL2RtbDIvZG1sMjEvc3JjL2RtbDJfcG1vL2RtbDJfcG1vX2ZhY3Rvcnku
-bw0KPiAgIENDIFtNXSAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvLi4vZGlzcGxheS9kYy9k
-bWwyL2RtbDIxL3NyYy9kbWwyX3Btby9kbWwyX3Btb19kY240X2ZhbXMyLm8NCj4gICBDQyBbTV0g
-IGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1Ly4uL2Rpc3BsYXkvZGMvZG1sMi9kbWwyMS9zcmMv
-ZG1sMl9zdGFuZGFsb25lX2xpYnJhcmllcy9saWJfZmxvYXRfbWF0aC5vDQo+ICAgQ0MgW01dICBk
-cml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5L2RjL2RtbDIvZG1sMjEvZG1sMjFf
-dHJhbnNsYXRpb25faGVscGVyLm8NCj4gICBDQyBbTV0gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
-Z3B1Ly4uL2Rpc3BsYXkvZGMvZG1sMi9kbWwyMS9kbWwyMV93cmFwcGVyLm8NCj4gICBDQyBbTV0g
-IGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1Ly4uL2Rpc3BsYXkvZGMvZG1sMi9kbWwyMS9kbWwy
-MV91dGlscy5vDQo+ICAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNw
-bGF5L2RjL2RjZTEyMC9kY2UxMjBfdGltaW5nX2dlbmVyYXRvci5vDQo+ICAgQ0MgW01dICBkcml2
-ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5L2RjL2RjZTExMi9kY2UxMTJfY29tcHJl
-c3Nvci5vDQo+ICAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5
-L2RjL2RjZTExMC9kY2UxMTBfdGltaW5nX2dlbmVyYXRvci5vDQo+ICAgQ0MgW01dICBkcml2ZXJz
-L2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5L2RjL2RjZTExMC9kY2UxMTBfY29tcHJlc3Nv
-ci5vDQo+ICAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5L2Rj
-L2RjZTExMC9kY2UxMTBfb3BwX3JlZ2FtbWFfdi5vDQo+ICAgQ0MgW01dICBkcml2ZXJzL2dwdS9k
-cm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5L2RjL2RjZTExMC9kY2UxMTBfb3BwX2NzY192Lm8NCj4g
-ICBDQyBbTV0gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1Ly4uL2Rpc3BsYXkvZGMvZGNlMTEw
-L2RjZTExMF90aW1pbmdfZ2VuZXJhdG9yX3Yubw0KPiAgIENDIFtNXSAgZHJpdmVycy9ncHUvZHJt
-L2FtZC9hbWRncHUvLi4vZGlzcGxheS9kYy9kY2UxMTAvZGNlMTEwX21lbV9pbnB1dF92Lm8NCj4g
-ICBDQyBbTV0gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1Ly4uL2Rpc3BsYXkvZGMvZGNlMTEw
-L2RjZTExMF9vcHBfdi5vDQo+ICAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8u
-Li9kaXNwbGF5L2RjL2RjZTExMC9kY2UxMTBfdHJhbnNmb3JtX3Yubw0KPiAgIENDIFtNXSAgZHJp
-dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvLi4vZGlzcGxheS9kYy9kY2U4MC9kY2U4MF90aW1pbmdf
-Z2VuZXJhdG9yLm8NCj4gICBDQyBbTV0gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1Ly4uL2Rp
-c3BsYXkvZGMvZGNlNjAvZGNlNjBfdGltaW5nX2dlbmVyYXRvci5vDQo+ICAgQ0MgW01dICBkcml2
-ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5L2RjL2RjZTYwL2RjZTYwX2h3X3NlcXVl
-bmNlci5vDQo+ICAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5
-L2RjL2RjZTYwL2RjZTYwX3Jlc291cmNlLm8NCj4gICBDQyBbTV0gIGRyaXZlcnMvZ3B1L2RybS9h
-bWQvYW1kZ3B1Ly4uL2Rpc3BsYXkvZGMvaGRjcC9oZGNwX21zZy5vDQo+ICAgQ0MgW01dICBkcml2
-ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5L2RjL3NzcGwvZGNfc3BsLm8NCj4gICBD
-QyBbTV0gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1Ly4uL2Rpc3BsYXkvZGMvc3NwbC9kY19z
-cGxfc2NsX2ZpbHRlcnMubw0KPiAgIENDIFtNXSAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
-Li4vZGlzcGxheS9kYy9zc3BsL2RjX3NwbF9zY2xfZWFzZl9maWx0ZXJzLm8NCj4gICBDQyBbTV0g
-IGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1Ly4uL2Rpc3BsYXkvZGMvc3NwbC9kY19zcGxfaXNo
-YXJwX2ZpbHRlcnMubw0KPiAgIENDIFtNXSAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvLi4v
-ZGlzcGxheS9kYy9zc3BsL2RjX3NwbF9maWx0ZXJzLm8NCj4gICBDQyBbTV0gIGRyaXZlcnMvZ3B1
-L2RybS9hbWQvYW1kZ3B1Ly4uL2Rpc3BsYXkvZGMvc3NwbC9zcGxfZml4cHQzMV8zMi5vDQo+ICAg
-Q0MgW01dICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5L2RjL3NzcGwvc3Bs
-X2N1c3RvbV9mbG9hdC5vDQo+ICAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8u
-Li9kaXNwbGF5L2RjL2NvcmUvZGMubw0KPiAgIENDIFtNXSAgZHJpdmVycy9ncHUvZHJtL2FtZC9h
-bWRncHUvLi4vZGlzcGxheS9kYy9jb3JlL2RjX3N0YXQubw0KPiAgIENDIFtNXSAgZHJpdmVycy9n
-cHUvZHJtL2FtZC9hbWRncHUvLi4vZGlzcGxheS9kYy9jb3JlL2RjX3Jlc291cmNlLm8NCj4gICBD
-QyBbTV0gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1Ly4uL2Rpc3BsYXkvZGMvY29yZS9kY19o
-d19zZXF1ZW5jZXIubw0KPiAgIENDIFtNXSAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvLi4v
-ZGlzcGxheS9kYy9jb3JlL2RjX3Npbmsubw0KPiAgIENDIFtNXSAgZHJpdmVycy9ncHUvZHJtL2Ft
-ZC9hbWRncHUvLi4vZGlzcGxheS9kYy9jb3JlL2RjX3N1cmZhY2Uubw0KPiAgIENDIFtNXSAgZHJp
-dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvLi4vZGlzcGxheS9kYy9jb3JlL2RjX2RlYnVnLm8NCj4g
-ICBDQyBbTV0gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1Ly4uL2Rpc3BsYXkvZGMvY29yZS9k
-Y19zdHJlYW0ubw0KPiAgIENDIFtNXSAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvLi4vZGlz
-cGxheS9kYy9jb3JlL2RjX2xpbmtfZW5jX2NmZy5vDQo+ICAgQ0MgW01dICBkcml2ZXJzL2dwdS9k
-cm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5L2RjL2NvcmUvZGNfbGlua19leHBvcnRzLm8NCj4gICBD
-QyBbTV0gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1Ly4uL2Rpc3BsYXkvZGMvY29yZS9kY19z
-dGF0ZS5vDQo+ICAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5
-L2RjL2NvcmUvZGNfdm1faGVscGVyLm8NCj4gICBDQyBbTV0gIGRyaXZlcnMvZ3B1L2RybS9hbWQv
-YW1kZ3B1Ly4uL2Rpc3BsYXkvZGMvZGNfaGVscGVyLm8NCj4gICBDQyBbTV0gIGRyaXZlcnMvZ3B1
-L2RybS9hbWQvYW1kZ3B1Ly4uL2Rpc3BsYXkvZGMvZGNfZG11Yl9zcnYubw0KPiAgIENDIFtNXSAg
-ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvLi4vZGlzcGxheS9kYy9kY19lZGlkX3BhcnNlci5v
-DQo+ICAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5L2RjL2Rj
-X3NwbF90cmFuc2xhdGUubw0KPiAgIENDIFtNXSAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
-Li4vZGlzcGxheS9tb2R1bGVzL2ZyZWVzeW5jL2ZyZWVzeW5jLm8NCj4gICBDQyBbTV0gIGRyaXZl
-cnMvZ3B1L2RybS9hbWQvYW1kZ3B1Ly4uL2Rpc3BsYXkvbW9kdWxlcy9jb2xvci9jb2xvcl9nYW1t
-YS5vDQo+ICAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5L21v
-ZHVsZXMvY29sb3IvY29sb3JfdGFibGUubw0KPiAgIENDIFtNXSAgZHJpdmVycy9ncHUvZHJtL2Ft
-ZC9hbWRncHUvLi4vZGlzcGxheS9tb2R1bGVzL2luZm9fcGFja2V0L2luZm9fcGFja2V0Lm8NCj4g
-ICBDQyBbTV0gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1Ly4uL2Rpc3BsYXkvbW9kdWxlcy9w
-b3dlci9wb3dlcl9oZWxwZXJzLm8NCj4gICBDQyBbTV0gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
-Z3B1Ly4uL2Rpc3BsYXkvZG11Yi9zcmMvZG11Yl9zcnYubw0KPiAgIENDIFtNXSAgZHJpdmVycy9n
-cHUvZHJtL2FtZC9hbWRncHUvLi4vZGlzcGxheS9kbXViL3NyYy9kbXViX3Nydl9zdGF0Lm8NCj4g
-ICBDQyBbTV0gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1Ly4uL2Rpc3BsYXkvZG11Yi9zcmMv
-ZG11Yl9yZWcubw0KPiAgIENDIFtNXSAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvLi4vZGlz
-cGxheS9kbXViL3NyYy9kbXViX2RjbjIwLm8NCj4gICBDQyBbTV0gIGRyaXZlcnMvZ3B1L2RybS9h
-bWQvYW1kZ3B1Ly4uL2Rpc3BsYXkvZG11Yi9zcmMvZG11Yl9kY24yMS5vDQo+ICAgQ0MgW01dICBk
-cml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5L2RtdWIvc3JjL2RtdWJfZGNuMzAu
-bw0KPiAgIENDIFtNXSAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvLi4vZGlzcGxheS9kbXVi
-L3NyYy9kbXViX2RjbjMwMS5vDQo+ICAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
-dS8uLi9kaXNwbGF5L2RtdWIvc3JjL2RtdWJfZGNuMzAyLm8NCj4gICBDQyBbTV0gIGRyaXZlcnMv
-Z3B1L2RybS9hbWQvYW1kZ3B1Ly4uL2Rpc3BsYXkvZG11Yi9zcmMvZG11Yl9kY24zMDMubw0KPiAg
-IENDIFtNXSAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvLi4vZGlzcGxheS9kbXViL3NyYy9k
-bXViX2RjbjMxLm8NCj4gICBDQyBbTV0gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1Ly4uL2Rp
-c3BsYXkvZG11Yi9zcmMvZG11Yl9kY24zMTQubw0KPiAgIENDIFtNXSAgZHJpdmVycy9ncHUvZHJt
-L2FtZC9hbWRncHUvLi4vZGlzcGxheS9kbXViL3NyYy9kbXViX2RjbjMxNS5vDQo+ICAgQ0MgW01d
-ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5L2RtdWIvc3JjL2RtdWJfZGNu
-MzE2Lm8NCj4gICBDQyBbTV0gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1Ly4uL2Rpc3BsYXkv
-ZG11Yi9zcmMvZG11Yl9kY24zMi5vDQo+ICAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0vYW1kL2Ft
-ZGdwdS8uLi9kaXNwbGF5L2RtdWIvc3JjL2RtdWJfZGNuMzUubw0KPiAgIENDIFtNXSAgZHJpdmVy
-cy9ncHUvZHJtL2FtZC9hbWRncHUvLi4vZGlzcGxheS9kbXViL3NyYy9kbXViX2RjbjM1MS5vDQo+
-ICAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5L2RtdWIvc3Jj
-L2RtdWJfZGNuMzYubw0KPiAgIENDIFtNXSAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvLi4v
-ZGlzcGxheS9kbXViL3NyYy9kbXViX2RjbjQwMS5vDQo+ICAgQ0MgW01dICBkcml2ZXJzL2dwdS9k
-cm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5L21vZHVsZXMvaGRjcC9oZGNwX2RkYy5vDQo+ICAgQ0Mg
-W01dICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5L21vZHVsZXMvaGRjcC9o
-ZGNwX2xvZy5vDQo+ICAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNw
-bGF5L21vZHVsZXMvaGRjcC9oZGNwX3BzcC5vDQo+ICAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0v
-YW1kL2FtZGdwdS8uLi9kaXNwbGF5L21vZHVsZXMvaGRjcC9oZGNwLm8NCj4gICBDQyBbTV0gIGRy
-aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1Ly4uL2Rpc3BsYXkvbW9kdWxlcy9oZGNwL2hkY3AxX2V4
-ZWN1dGlvbi5vDQo+ICAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNw
-bGF5L21vZHVsZXMvaGRjcC9oZGNwMV90cmFuc2l0aW9uLm8NCj4gICBDQyBbTV0gIGRyaXZlcnMv
-Z3B1L2RybS9hbWQvYW1kZ3B1Ly4uL2Rpc3BsYXkvbW9kdWxlcy9oZGNwL2hkY3AyX2V4ZWN1dGlv
-bi5vDQo+ICAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5L21v
-ZHVsZXMvaGRjcC9oZGNwMl90cmFuc2l0aW9uLm8NCj4gICBDQyBbTV0gIGRyaXZlcnMvZ3B1L2Ry
-bS9hbWQvYW1kZ3B1L2FtZGdwdV9pc3Aubw0KPiAgIENDIFtNXSAgZHJpdmVycy9ncHUvZHJtL2Ft
-ZC9hbWRncHUvaXNwX3Y0XzFfMC5vDQo+ICAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0vYW1kL2Ft
-ZGdwdS9pc3BfdjRfMV8xLm8NCj4gICBMRCBbTV0gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1
-L2FtZGdwdS5vDQo+IG1ha2VbNV06ICoqKiBbLi4vc2NyaXB0cy9NYWtlZmlsZS5idWlsZDo0NjU6
-IGRyaXZlcnMvZ3B1L2RybV0gRXJyb3IgMg0KPiBtYWtlWzRdOiAqKiogWy4uL3NjcmlwdHMvTWFr
-ZWZpbGUuYnVpbGQ6NDY1OiBkcml2ZXJzL2dwdV0gRXJyb3IgMg0KPiBtYWtlWzNdOiAqKiogWy4u
-L3NjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6NDY1OiBkcml2ZXJzXSBFcnJvciAyDQo+IG1ha2VbMl06
-ICoqKiBbL2tlcm5lbC9NYWtlZmlsZToxOTk0OiAuXSBFcnJvciAyDQo+IG1ha2VbMV06ICoqKiBb
-L2tlcm5lbC9NYWtlZmlsZToyNTE6IF9fc3ViLW1ha2VdIEVycm9yIDINCj4gbWFrZVsxXTogTGVh
-dmluZyBkaXJlY3RvcnkgJy9rZXJuZWwvYnVpbGQ2NC1kZWZhdWx0Jw0KPiBtYWtlOiAqKiogW01h
-a2VmaWxlOjI1MTogX19zdWItbWFrZV0gRXJyb3IgMg0KPiArIGNsZWFudXANCj4gKysgc3RhdCAt
-YyAldTolZyAva2VybmVsDQo+ICsgY2hvd24gLVIgMTAwMzoxMDAzIC9rZXJuZWwNCg0KQXMgZmFy
-IGFzIEkgY2FuIHRlbGwsIHRoaXMgYnVpbGQgZmFpbHVyZSB3YXMgYXByb3BvcyBvZiBub3RoaW5n
-LCBzbyBJJ20gZ29pbmcgdG8gc2VuZCBhIHJlc3VibWlzc2lvbiByZXF1ZXN0DQphbmQgc2VlIGlm
-IGNvbXBpbGF0aW9uIGZhaWxzIGFnYWluLg0KLUpvbmF0aGFuIENhdml0dA0KDQo+IA0KPiANCj4g
-DQo=
+On Tue, Mar 11, 2025 at 05:14:08PM -0700, Vinay Belgaumkar wrote:
+>Define PMU events for GT frequency (actual and requested). This is
+>a port from the i915 driver implementation, where an internal timer
+>is used to aggregate GT frequencies over certain fixed interval.
+>Following PMU events are being added-
+				     ^
+why do you use "-"  instead of ":"?
+
+>
+>  xe_0000_00_02.0/gt-actual-frequency/              [Kernel PMU event]
+>  xe_0000_00_02.0/gt-requested-frequency/           [Kernel PMU event]
+>
+>Standard perf commands can be used to monitor GT frequency-
+>  $ perf stat -e xe_0000_00_02.0/gt-requested-frequency,gt=0/ -I1000
+>
+>     1.001175175                700 M    xe/gt-requested-frequency,gt=0/
+>     2.005891881                703 M    xe/gt-requested-frequency,gt=0/
+>     3.007318169                700 M    xe/gt-requested-frequency,gt=0/
+>
+>Actual frequencies will be reported as 0 when GT is in C6.
+
+
+I think we need to document somewhere, but at the very least in the
+commit message what the event count actually is. Let me see if I get
+this right:  if userspace is sampling every 1sec, and assuming the gpu
+is at 700MHz for the first 0.5sec and at 1.4 GHz, userspace should
+expect to see ~1050 as the value. Correct?  I find this frequency
+handling very different from anything else reported via perf. Other
+than i915, are there any other cases you know of?
+
+>
+>v2: Use locks while storing/reading samples, keep track of multiple
+>clients (Lucas) and other general cleanup.
+>v3: Review comments (Lucas) and use event counts instead of mask for
+>active events.
+>
+>Cc: Riana Tauro <riana.tauro@intel.com>
+>Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+>---
+> drivers/gpu/drm/xe/xe_pmu.c       | 178 ++++++++++++++++++++++++++++--
+> drivers/gpu/drm/xe/xe_pmu_types.h |  29 +++++
+> 2 files changed, 197 insertions(+), 10 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
+>index 4f62a6e515d6..d4c639369709 100644
+>--- a/drivers/gpu/drm/xe/xe_pmu.c
+>+++ b/drivers/gpu/drm/xe/xe_pmu.c
+>@@ -10,7 +10,9 @@
+> #include "xe_force_wake.h"
+> #include "xe_gt_idle.h"
+> #include "xe_guc_engine_activity.h"
+>+#include "xe_guc_pc.h"
+> #include "xe_hw_engine.h"
+>+#include "xe_macros.h"
+> #include "xe_pm.h"
+> #include "xe_pmu.h"
+>
+>@@ -52,6 +54,7 @@
+> #define XE_PMU_EVENT_ENGINE_CLASS_MASK		GENMASK_ULL(27, 20)
+> #define XE_PMU_EVENT_ENGINE_INSTANCE_MASK	GENMASK_ULL(19, 12)
+> #define XE_PMU_EVENT_ID_MASK			GENMASK_ULL(11, 0)
+>+#define XE_HRTIMER_INTERVAL_NS		5000000
+>
+> static unsigned int config_to_event_id(u64 config)
+> {
+>@@ -76,10 +79,12 @@ static unsigned int config_to_gt_id(u64 config)
+> #define XE_PMU_EVENT_GT_C6_RESIDENCY		0x01
+> #define XE_PMU_EVENT_ENGINE_ACTIVE_TICKS	0x02
+> #define XE_PMU_EVENT_ENGINE_TOTAL_TICKS		0x03
+>+#define XE_PMU_EVENT_GT_ACTUAL_FREQUENCY	0x04
+>+#define XE_PMU_EVENT_GT_REQUESTED_FREQUENCY	0x05
+>
+> static struct xe_gt *event_to_gt(struct perf_event *event)
+> {
+>-	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
+>+	struct xe_device *xe = container_of(event->pmu, typeof(struct xe_device), pmu.base);
+> 	u64 gt = config_to_gt_id(event->attr.config);
+>
+> 	return xe_device_get_gt(xe, gt);
+>@@ -179,7 +184,7 @@ static bool event_param_valid(struct perf_event *event)
+>
+> static void xe_pmu_event_destroy(struct perf_event *event)
+> {
+>-	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
+>+	struct xe_device *xe = container_of(event->pmu, typeof(struct xe_device), pmu.base);
+> 	struct xe_gt *gt;
+> 	unsigned int *fw_ref = event->pmu_private;
+>
+>@@ -197,7 +202,7 @@ static void xe_pmu_event_destroy(struct perf_event *event)
+>
+> static int xe_pmu_event_init(struct perf_event *event)
+> {
+>-	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
+>+	struct xe_device *xe = container_of(event->pmu, typeof(struct xe_device), pmu.base);
+
+3 cases above: please stop changing unrelated lines. They were fine
+the way they were.
+
+> 	struct xe_pmu *pmu = &xe->pmu;
+> 	unsigned int id, gt;
+>
+>@@ -219,6 +224,9 @@ static int xe_pmu_event_init(struct perf_event *event)
+> 	if (!event_supported(pmu, gt, id))
+> 		return -ENOENT;
+>
+>+	if (XE_WARN_ON(id >= XE_PMU_MAX_EVENT_TYPES))
+>+		return -EINVAL;
+>+
+> 	if (has_branch_stack(event))
+> 		return -EOPNOTSUPP;
+>
+>@@ -239,6 +247,30 @@ static int xe_pmu_event_init(struct perf_event *event)
+> 	return 0;
+> }
+>
+>+static u64
+>+xe_get_pmu_sample(struct xe_pmu *pmu, unsigned int gt_id, uint32_t id)
+>+{
+>+	unsigned long flags;
+>+	u64 val;
+>+
+>+	raw_spin_lock_irqsave(&pmu->lock, flags);
+>+	val = pmu->event_sample[gt_id][id];
+>+	raw_spin_unlock_irqrestore(&pmu->lock, flags);
+>+
+>+	return val;
+>+}
+>+
+>+static void
+>+xe_store_pmu_sample(struct xe_pmu *pmu, uint32_t gt_id, uint32_t id,
+>+		    uint32_t val, uint32_t period)
+>+{
+>+	unsigned long flags;
+>+
+>+	raw_spin_lock_irqsave(&pmu->lock, flags);
+>+	pmu->event_sample[gt_id][id] += mul_u32_u32(val, period);
+>+	raw_spin_unlock_irqrestore(&pmu->lock, flags);
+>+}
+>+
+> static u64 read_engine_events(struct xe_gt *gt, struct perf_event *event)
+> {
+> 	struct xe_hw_engine *hwe;
+>@@ -256,16 +288,23 @@ static u64 read_engine_events(struct xe_gt *gt, struct perf_event *event)
+> static u64 __xe_pmu_event_read(struct perf_event *event)
+> {
+> 	struct xe_gt *gt = event_to_gt(event);
+>+	struct xe_pmu *pmu = container_of(event->pmu, typeof(struct xe_pmu), base);
+
+	struct xe_pmu *pmu = container_of(event->pmu, typeof(*pmu), base);
+
+typeof(type) is odd.
+
+>+	unsigned long id;
+>
+> 	if (!gt)
+> 		return 0;
+>
+>-	switch (config_to_event_id(event->attr.config)) {
+>+	id = config_to_event_id(event->attr.config);
+>+
+>+	switch (id) {
+> 	case XE_PMU_EVENT_GT_C6_RESIDENCY:
+> 		return xe_gt_idle_residency_msec(&gt->gtidle);
+> 	case XE_PMU_EVENT_ENGINE_ACTIVE_TICKS:
+> 	case XE_PMU_EVENT_ENGINE_TOTAL_TICKS:
+> 		return read_engine_events(gt, event);
+>+	case XE_PMU_EVENT_GT_ACTUAL_FREQUENCY:
+>+	case XE_PMU_EVENT_GT_REQUESTED_FREQUENCY:
+>+		return div_u64(xe_get_pmu_sample(pmu, gt->info.id, id), NSEC_PER_SEC);
+> 	}
+>
+> 	return 0;
+>@@ -286,7 +325,7 @@ static void xe_pmu_event_update(struct perf_event *event)
+>
+> static void xe_pmu_event_read(struct perf_event *event)
+> {
+>-	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
+>+	struct xe_device *xe = container_of(event->pmu, typeof(struct xe_device), pmu.base);
+
+ditto.
+
+> 	struct xe_pmu *pmu = &xe->pmu;
+>
+> 	if (!pmu->registered) {
+>@@ -297,8 +336,89 @@ static void xe_pmu_event_read(struct perf_event *event)
+> 	xe_pmu_event_update(event);
+> }
+>
+>+static void xe_pmu_start_timer(struct xe_pmu *pmu)
+>+{
+>+	/* Timer is per device */
+>+	if (!pmu->timer_enabled) {
+>+		pmu->timer_enabled = true;
+>+		pmu->timer_last = ktime_get();
+>+		hrtimer_start_range_ns(&pmu->timer,
+>+				       ns_to_ktime(XE_HRTIMER_INTERVAL_NS), 0,
+>+				       HRTIMER_MODE_REL_PINNED);
+>+	}
+>+}
+>+
+>+static void
+>+xe_sample_gt_frequency(struct xe_pmu *pmu, uint32_t period_ns)
+>+{
+>+	struct xe_device *xe = container_of(pmu, typeof(*xe), pmu);
+>+	struct xe_gt *gt;
+>+	uint32_t act_freq, cur_freq;
+>+	int ret;
+>+	int i;
+>+
+>+	/* Sample each event type once */
+>+	for_each_gt(gt, xe, i) {
+>+		if (pmu->active_count[i][XE_PMU_EVENT_GT_ACTUAL_FREQUENCY]) {
+>+			/* Actual freq will be 0 when GT is in C6 */
+>+			act_freq = xe_guc_pc_get_act_freq(&gt->uc.guc.pc);
+>+			xe_store_pmu_sample(pmu, i, XE_PMU_EVENT_GT_ACTUAL_FREQUENCY,
+>+					    act_freq, period_ns);
+>+		}
+>+
+>+		if (pmu->active_count[i][XE_PMU_EVENT_GT_REQUESTED_FREQUENCY]) {
+>+			ret = xe_guc_pc_get_cur_freq(&gt->uc.guc.pc, &cur_freq);
+>+			if (!ret)
+>+				xe_store_pmu_sample(pmu, i, XE_PMU_EVENT_GT_REQUESTED_FREQUENCY,
+>+						    cur_freq, period_ns);
+>+		}
+>+	}
+>+}
+>+
+>+static enum hrtimer_restart xe_sample(struct hrtimer *hrtimer)
+>+{
+>+	struct xe_pmu *pmu = container_of(hrtimer, struct xe_pmu, timer);
+>+	struct xe_device *xe = container_of(pmu, typeof(*xe), pmu);
+>+	u64 time_diff_ns;
+>+	ktime_t now;
+>+
+>+	if (!READ_ONCE(pmu->timer_enabled))
+>+		return HRTIMER_NORESTART;
+>+
+>+	now = ktime_get();
+>+	time_diff_ns = ktime_to_ns(ktime_sub(now, pmu->timer_last));
+>+	pmu->timer_last = now;
+>+
+>+	xe_sample_gt_frequency(pmu, time_diff_ns);
+>+
+>+	hrtimer_forward(hrtimer, now, ns_to_ktime(XE_HRTIMER_INTERVAL_NS));
+>+
+>+	return HRTIMER_RESTART;
+>+}
+>+
+>+static bool is_gt_frequency_event(uint32_t id)
+>+{
+>+	return (id == XE_PMU_EVENT_GT_ACTUAL_FREQUENCY) ||
+>+	       (id == XE_PMU_EVENT_GT_REQUESTED_FREQUENCY);
+>+}
+>+
+> static void xe_pmu_enable(struct perf_event *event)
+> {
+>+	struct xe_gt *gt = event_to_gt(event);
+>+	struct xe_pmu *pmu = container_of(event->pmu, typeof(struct xe_pmu), base);
+>+	uint32_t id = config_to_event_id(event->attr.config);
+>+	unsigned long flags;
+>+
+>+	raw_spin_lock_irqsave(&pmu->lock, flags);
+>+
+>+	if (is_gt_frequency_event(id)) {
+>+		pmu->active_count[gt->info.id][id]++;
+>+		/* Start a timer, if needed, to collect samples */
+>+		if (pmu->n_active++ == 0)
+>+			xe_pmu_start_timer(pmu);
+
+with my suggestion to drop the timer_enabled
+this would be:
+
+xe_pmu_start_timer(pmu)
+{
+	if (pmu->n_active++ == 0) {
+		...
+	}
+}
+
+if (is_gt_frequency_event(id)) {
+	pmu->active_count[gt->info.id][id]++;
+	xe_pmu_start_timer(pmu);
+}
+
+
+>+	}
+>+
+>+	raw_spin_unlock_irqrestore(&pmu->lock, flags);
+> 	/*
+> 	 * Store the current counter value so we can report the correct delta
+> 	 * for all listeners. Even when the event was already enabled and has
+>@@ -309,7 +429,7 @@ static void xe_pmu_enable(struct perf_event *event)
+>
+> static void xe_pmu_event_start(struct perf_event *event, int flags)
+> {
+>-	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
+>+	struct xe_device *xe = container_of(event->pmu, typeof(struct xe_device), pmu.base);
+
+ditto
+
+> 	struct xe_pmu *pmu = &xe->pmu;
+>
+> 	if (!pmu->registered)
+>@@ -319,21 +439,43 @@ static void xe_pmu_event_start(struct perf_event *event, int flags)
+> 	event->hw.state = 0;
+> }
+>
+>+static void xe_pmu_disable(struct perf_event *event)
+>+{
+>+	struct xe_device *xe = container_of(event->pmu, typeof(struct xe_device), pmu.base);
+>+	struct xe_gt *gt = event_to_gt(event);
+>+	struct xe_pmu *pmu = &xe->pmu;
+>+	uint32_t id = config_to_event_id(event->attr.config);
+>+	unsigned long flags;
+>+
+>+	raw_spin_lock_irqsave(&pmu->lock, flags);
+>+
+>+	if (is_gt_frequency_event(id)) {
+>+		pmu->active_count[gt->info.id][id]--;
+>+		if (--pmu->n_active == 0)
+>+			pmu->timer_enabled = false;
+
+rather call hrtimer_cancel() here?
+
+>+	}
+>+
+>+	raw_spin_unlock_irqrestore(&pmu->lock, flags);
+>+}
+>+
+> static void xe_pmu_event_stop(struct perf_event *event, int flags)
+> {
+>-	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
+>+	struct xe_device *xe = container_of(event->pmu, typeof(struct xe_device), pmu.base);
+> 	struct xe_pmu *pmu = &xe->pmu;
+>
+>-	if (pmu->registered)
+>+	if (pmu->registered) {
+> 		if (flags & PERF_EF_UPDATE)
+> 			xe_pmu_event_update(event);
+>
+>+		xe_pmu_disable(event);
+>+	}
+>+
+> 	event->hw.state = PERF_HES_STOPPED;
+> }
+>
+> static int xe_pmu_event_add(struct perf_event *event, int flags)
+> {
+>-	struct xe_device *xe = container_of(event->pmu, typeof(*xe), pmu.base);
+>+	struct xe_device *xe = container_of(event->pmu, typeof(struct xe_device), pmu.base);
+> 	struct xe_pmu *pmu = &xe->pmu;
+>
+> 	if (!pmu->registered)
+>@@ -419,6 +561,10 @@ static ssize_t event_attr_show(struct device *dev,
+> XE_EVENT_ATTR_SIMPLE(gt-c6-residency, gt_c6_residency, XE_PMU_EVENT_GT_C6_RESIDENCY, "ms");
+> XE_EVENT_ATTR_NOUNIT(engine-active-ticks, engine_active_ticks, XE_PMU_EVENT_ENGINE_ACTIVE_TICKS);
+> XE_EVENT_ATTR_NOUNIT(engine-total-ticks, engine_total_ticks, XE_PMU_EVENT_ENGINE_TOTAL_TICKS);
+>+XE_EVENT_ATTR_SIMPLE(gt-actual-frequency, gt_actual_frequency,
+>+		     XE_PMU_EVENT_GT_ACTUAL_FREQUENCY, "Mhz");
+>+XE_EVENT_ATTR_SIMPLE(gt-requested-frequency, gt_requested_frequency,
+>+		     XE_PMU_EVENT_GT_REQUESTED_FREQUENCY, "Mhz");
+>
+> static struct attribute *pmu_empty_event_attrs[] = {
+> 	/* Empty - all events are added as groups with .attr_update() */
+>@@ -434,6 +580,8 @@ static const struct attribute_group *pmu_events_attr_update[] = {
+> 	&pmu_group_gt_c6_residency,
+> 	&pmu_group_engine_active_ticks,
+> 	&pmu_group_engine_total_ticks,
+>+	&pmu_group_gt_actual_frequency,
+>+	&pmu_group_gt_requested_frequency,
+> 	NULL,
+> };
+>
+>@@ -442,8 +590,11 @@ static void set_supported_events(struct xe_pmu *pmu)
+> 	struct xe_device *xe = container_of(pmu, typeof(*xe), pmu);
+> 	struct xe_gt *gt = xe_device_get_gt(xe, 0);
+>
+>-	if (!xe->info.skip_guc_pc)
+>+	if (!xe->info.skip_guc_pc) {
+> 		pmu->supported_events |= BIT_ULL(XE_PMU_EVENT_GT_C6_RESIDENCY);
+>+		pmu->supported_events |= BIT_ULL(XE_PMU_EVENT_GT_ACTUAL_FREQUENCY);
+>+		pmu->supported_events |= BIT_ULL(XE_PMU_EVENT_GT_REQUESTED_FREQUENCY);
+>+	}
+>
+> 	if (xe_guc_engine_activity_supported(&gt->uc.guc)) {
+> 		pmu->supported_events |= BIT_ULL(XE_PMU_EVENT_ENGINE_ACTIVE_TICKS);
+>@@ -463,6 +614,8 @@ static void xe_pmu_unregister(void *arg)
+> 	if (!pmu->registered)
+> 		return;
+>
+>+	hrtimer_cancel(&pmu->timer);
+>+
+> 	pmu->registered = false;
+>
+> 	perf_pmu_unregister(&pmu->base);
+>@@ -491,6 +644,11 @@ int xe_pmu_register(struct xe_pmu *pmu)
+> 	if (IS_SRIOV_VF(xe))
+> 		return 0;
+>
+>+	raw_spin_lock_init(&pmu->lock);
+>+
+>+	hrtimer_init(&pmu->timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+>+	pmu->timer.function = xe_sample;
+>+
+> 	name = kasprintf(GFP_KERNEL, "xe_%s",
+> 			 dev_name(xe->drm.dev));
+> 	if (!name)
+>diff --git a/drivers/gpu/drm/xe/xe_pmu_types.h b/drivers/gpu/drm/xe/xe_pmu_types.h
+>index f5ba4d56622c..59ed9d8b4ed8 100644
+>--- a/drivers/gpu/drm/xe/xe_pmu_types.h
+>+++ b/drivers/gpu/drm/xe/xe_pmu_types.h
+>@@ -10,6 +10,7 @@
+> #include <linux/spinlock_types.h>
+>
+> #define XE_PMU_MAX_GT 2
+>+#define XE_PMU_MAX_EVENT_TYPES 64
+>
+> /**
+>  * struct xe_pmu - PMU related data per Xe device
+>@@ -34,6 +35,34 @@ struct xe_pmu {
+> 	 * @supported_events: Bitmap of supported events, indexed by event id
+> 	 */
+> 	u64 supported_events;
+>+	/**
+>+	 * @lock: Lock protecting enable counts and sampling.
+>+	 */
+>+	raw_spinlock_t lock;
+
+Lock protecting hw state
+
+	
+struct {
+	struct hrtimer hrtimer;
+	ktime_t last_stamp;
+	unsigned int active;
+	unsigned long active_count[XE_PMU_MAX_GT][XE_PMU_MAX_EVENT_TYPES];
+	u64 event_sample[XE_PMU_MAX_GT][XE_PMU_MAX_EVENT_TYPES];
+} timer;
+
+ From your code above it doesn't think you need both "timer_enabled" and
+"n_active". Calling it active would be better. == 0 means "no".
+
+Also group them in a substruct like above, because  "n_active" doesn't
+give any hint this is only about the very few events that use a timer.
+
+Lucas De Marchi
+
+>+	/**
+>+	 * @n_active: Total number of active events that need timer.
+>+	 */
+>+	unsigned int n_active;
+>+	/**
+>+	 * @active_count: Counts per GT/type of event that need timer.
+>+	 */
+>+	unsigned long active_count[XE_PMU_MAX_GT][XE_PMU_MAX_EVENT_TYPES];
+>+	/**
+>+	 * @timer: Timer for sampling GT frequency.
+>+	 */
+>+	struct hrtimer timer;
+>+	/**
+>+	 * @timer_last: Timestmap of the previous timer invocation.
+>+	 */
+>+	ktime_t timer_last;
+>+	/**
+>+	 * @timer_enabled: Should the internal sampling timer be running.
+>+	 */
+>+	bool timer_enabled;
+>+	/**
+>+	 * @event_sample: Store freq related counters.
+>+	 */
+>+	u64 event_sample[XE_PMU_MAX_GT][XE_PMU_MAX_EVENT_TYPES];
+> };
+>
+> #endif
+>-- 
+>2.38.1
+>
