@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2FBBC282DE
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Mar 2025 18:36:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 602CAC35FF3
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Mar 2025 19:10:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3678010E917;
-	Thu, 13 Mar 2025 18:35:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51B1210E03C;
+	Thu, 13 Mar 2025 19:10:16 +0000 (UTC)
 Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C228F10E917;
- Thu, 13 Mar 2025 18:35:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24C0310E03C;
+ Thu, 13 Mar 2025 19:10:15 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe=3A_Apply_Wa=5F160?=
- =?utf-8?q?23105232_=28rev4=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/xe=5Fvm=3A_Im?=
+ =?utf-8?q?plement_xe=5Fvm=5Fget=5Fproperty=5Fioctl_=28rev8=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
+To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 13 Mar 2025 18:35:55 -0000
-Message-ID: <174189095578.30568.4538811531722205058@18a75f3d1eae>
+Date: Thu, 13 Mar 2025 19:10:15 -0000
+Message-ID: <174189301514.30701.16086449017493932969@18a75f3d1eae>
 X-Patchwork-Hint: ignore
-References: <20250313180440.1393089-1-vinay.belgaumkar@intel.com>
-In-Reply-To: <20250313180440.1393089-1-vinay.belgaumkar@intel.com>
+References: <20250313183415.133863-1-jonathan.cavitt@intel.com>
+In-Reply-To: <20250313183415.133863-1-jonathan.cavitt@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,31 +42,20 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe: Apply Wa_16023105232 (rev4)
-URL   : https://patchwork.freedesktop.org/series/145449/
+Series: drm/xe/xe_vm: Implement xe_vm_get_property_ioctl (rev8)
+URL   : https://patchwork.freedesktop.org/series/145529/
 State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast ebceab6567d1fa72a6a16d8a31a5f7712ecc9636
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 7e32e5705a5c drm-tip: 2025y-03m-13d-18h-35m-15s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/xe_gt_pagefault: Disallow writes to read-only VMAs
+Applying: drm/xe/xe_gt_pagefault: Move pagefault struct to header
+Applying: drm/xe/uapi: Define drm_xe_vm_get_property
+Applying: drm/xe/xe_gt_pagefault: Add address_type field to pagefaults
+Applying: drm/xe/xe_vm: Add per VM fault info
+Applying: drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
 
 
