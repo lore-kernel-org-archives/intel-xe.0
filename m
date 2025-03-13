@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6C25C282DE
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Mar 2025 22:19:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E723C282DE
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Mar 2025 00:02:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CD9510E956;
-	Thu, 13 Mar 2025 22:19:41 +0000 (UTC)
-Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32FFE10E950;
- Thu, 13 Mar 2025 22:19:41 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 673A810E957;
+	Fri, 14 Mar 2025 00:02:44 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UuN0zD5q";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9142210E957
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Mar 2025 00:02:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1741910563; x=1773446563;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=mnoan3QUc46pe7CaFezRRo/tPbbTjJsMZueFo7oep7M=;
+ b=UuN0zD5q3Kd+adcdNU93C1QWmKaUzRGJz9LnmNEkXXYrVed+Wstm2HVZ
+ nO27bB/JTnN0sMBdXVUnQg76y/GXCeoQ53tntzXXZg2pa85VP9qiF2ZT8
+ EzjKBjGnrSGN8fy+BqGBN++UZa6EhBK7hxUfGVYm9iQiHG/Nv0Ro4qg4n
+ N4QmZhuzNhXfA/TBNB3aFZjcjik3q62Ip8fW2iml0qqR15rEuNtJPe2u4
+ /+91OEPOty/FBNDdFzU9498gHZcNhQRyqv2Wf6UpJOgv6bp5u6Ooq/aw9
+ 0Q96a8p5qe/XarFqAO11ulP0vx8NZheCmS8YUqAvfqREHGO88PaSpjcop w==;
+X-CSE-ConnectionGUID: F1uT7QomRs+9FPaOlE7Rjw==
+X-CSE-MsgGUID: tztHQREsTRSqRMIqUmMrig==
+X-IronPort-AV: E=McAfee;i="6700,10204,11372"; a="54430962"
+X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="54430962"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2025 17:02:43 -0700
+X-CSE-ConnectionGUID: kVPED29IRG+sLcUAeEJAww==
+X-CSE-MsgGUID: iZyxEDRERLyYdu+Jve4HeQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="120892083"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.141])
+ by fmviesa006.fm.intel.com with ESMTP; 13 Mar 2025 17:02:43 -0700
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Subject: [PATCH v5] drm/xe: Apply Wa_16023105232
+Date: Thu, 13 Mar 2025 16:58:50 -0700
+Message-Id: <20250313235850.1583584-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBuild=3A_failure_for_drm/xe/xe=5Fvm=3A_Implement_xe?=
- =?utf-8?q?=5Fvm=5Fget=5Fproperty=5Fioctl_=28rev9=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 13 Mar 2025 22:19:41 -0000
-Message-ID: <174190438120.31132.8222879012308480739@18a75f3d1eae>
-X-Patchwork-Hint: ignore
-References: <20250313183415.133863-1-jonathan.cavitt@intel.com>
-In-Reply-To: <20250313183415.133863-1-jonathan.cavitt@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,117 +62,220 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The WA requires KMD to disable DOP clock gating during a semaphore
+wait and also ensure that idle delay for every CS is lower than the
+idle wait time in the PWRCTX_MAXCNT register. Default values for these
+registers already comply with this restriction.
 
-Series: drm/xe/xe_vm: Implement xe_vm_get_property_ioctl (rev9)
-URL   : https://patchwork.freedesktop.org/series/145529/
-State : failure
+v2: Store timestamp_base in gt info and other comments (Daniele)
+v3: Skip WA check for VF
+v4: Review comments (Matt Roper)
+v5: Cleanup the clock functions and use reg_field_get (Matt Roper)
 
-== Summary ==
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h |  4 +++
+ drivers/gpu/drm/xe/xe_gt_clock.c         | 39 ++++++++++++++++--------
+ drivers/gpu/drm/xe/xe_gt_types.h         |  2 ++
+ drivers/gpu/drm/xe/xe_hw_engine.c        | 34 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_wa.c               |  6 ++++
+ drivers/gpu/drm/xe/xe_wa_oob.rules       |  2 ++
+ 6 files changed, 75 insertions(+), 12 deletions(-)
 
-CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_top/dml2_top_interfaces.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_top/dml2_top_soc15.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/inc/dml2_debug.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_core/dml2_core_factory.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_dpmm/dml2_dpmm_dcn4.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_dpmm/dml2_dpmm_factory.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_mcg/dml2_mcg_dcn4.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_mcg/dml2_mcg_factory.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn3.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_factory.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn4_fams2.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_standalone_libraries/lib_float_math.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/dml21_translation_helper.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/dml21_wrapper.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/dml21_utils.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce120/dce120_timing_generator.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce112/dce112_compressor.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_timing_generator.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_compressor.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_opp_regamma_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_opp_csc_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_timing_generator_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_mem_input_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_opp_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_transform_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce80/dce80_timing_generator.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce60/dce60_timing_generator.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce60/dce60_hw_sequencer.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce60/dce60_resource.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/hdcp/hdcp_msg.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/sspl/dc_spl.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/sspl/dc_spl_scl_filters.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/sspl/dc_spl_scl_easf_filters.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/sspl/dc_spl_isharp_filters.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/sspl/dc_spl_filters.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/sspl/spl_fixpt31_32.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/sspl/spl_custom_float.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stat.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_resource.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_hw_sequencer.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_sink.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_surface.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_debug.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stream.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_link_enc_cfg.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_link_exports.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_state.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_vm_helper.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dc_helper.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dmub_srv.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dc_edid_parser.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dc_spl_translate.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/freesync/freesync.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/color/color_gamma.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/color/color_table.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/info_packet/info_packet.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/power/power_helpers.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_srv.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_srv_stat.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_reg.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn20.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn21.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn30.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn301.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn302.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn303.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn31.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn314.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn315.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn316.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn32.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn35.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn351.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn36.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn401.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp_ddc.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp_log.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp_psp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp1_execution.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp1_transition.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp2_execution.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp2_transition.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_isp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/isp_v4_1_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/isp_v4_1_1.o
-  LD [M]  drivers/gpu/drm/amd/amdgpu/amdgpu.o
-make[5]: *** [../scripts/Makefile.build:465: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:465: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:465: drivers] Error 2
-make[2]: *** [/kernel/Makefile:1994: .] Error 2
-make[1]: Leaving directory '/kernel/build64-default'
-make[1]: *** [/kernel/Makefile:251: __sub-make] Error 2
-make: *** [Makefile:251: __sub-make] Error 2
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+index 659cf85fa3d6..da713634d6a0 100644
+--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+@@ -130,6 +130,10 @@
+ #define RING_EXECLIST_STATUS_LO(base)		XE_REG((base) + 0x234)
+ #define RING_EXECLIST_STATUS_HI(base)		XE_REG((base) + 0x234 + 4)
+ 
++#define RING_IDLEDLY(base)			XE_REG((base) + 0x23c)
++#define   INHIBIT_SWITCH_UNTIL_PREEMPTED	REG_BIT(31)
++#define   IDLE_DELAY				REG_GENMASK(20, 0)
++
+ #define RING_CONTEXT_CONTROL(base)		XE_REG((base) + 0x244, XE_REG_OPTION_MASKED)
+ #define	  CTX_CTRL_PXP_ENABLE			REG_BIT(10)
+ #define	  CTX_CTRL_OAC_CONTEXT_ENABLE		REG_BIT(8)
+diff --git a/drivers/gpu/drm/xe/xe_gt_clock.c b/drivers/gpu/drm/xe/xe_gt_clock.c
+index fca38738e610..4f011d1573c6 100644
+--- a/drivers/gpu/drm/xe/xe_gt_clock.c
++++ b/drivers/gpu/drm/xe/xe_gt_clock.c
+@@ -16,27 +16,42 @@
+ #include "xe_macros.h"
+ #include "xe_mmio.h"
+ 
+-static u32 get_crystal_clock_freq(u32 rpm_config_reg)
++#define f19_2_mhz	19200000
++#define f24_mhz		24000000
++#define f25_mhz		25000000
++#define f38_4_mhz	38400000
++#define ts_base_83	83333
++#define ts_base_52	52083
++#define ts_base_80	80000
++
++static void read_crystal_clock(struct xe_gt *gt, u32 rpm_config_reg, u32 *freq,
++			       u32 *timestamp_base)
+ {
+-	const u32 f19_2_mhz = 19200000;
+-	const u32 f24_mhz = 24000000;
+-	const u32 f25_mhz = 25000000;
+-	const u32 f38_4_mhz = 38400000;
+ 	u32 crystal_clock = REG_FIELD_GET(RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK,
+ 					  rpm_config_reg);
+ 
+ 	switch (crystal_clock) {
+ 	case RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_24_MHZ:
+-		return f24_mhz;
++		*freq = f24_mhz;
++		*timestamp_base = ts_base_83;
++		return;
+ 	case RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_19_2_MHZ:
+-		return f19_2_mhz;
++		*freq = f19_2_mhz;
++		*timestamp_base = ts_base_52;
++		return;
+ 	case RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_38_4_MHZ:
+-		return f38_4_mhz;
++		*freq = f38_4_mhz;
++		*timestamp_base = ts_base_52;
++		return;
+ 	case RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_25_MHZ:
+-		return f25_mhz;
++		*freq = f25_mhz;
++		*timestamp_base = ts_base_80;
++		return;
+ 	default:
+-		XE_WARN_ON("NOT_POSSIBLE");
+-		return 0;
++		xe_gt_warn(gt, "Invalid crystal clock frequency: %u", crystal_clock);
++		*freq = 0;
++		*timestamp_base = 0;
++		return;
+ 	}
+ }
+ 
+@@ -65,7 +80,7 @@ int xe_gt_clock_init(struct xe_gt *gt)
+ 		check_ctc_mode(gt);
+ 
+ 	c0 = xe_mmio_read32(&gt->mmio, RPM_CONFIG0);
+-	freq = get_crystal_clock_freq(c0);
++	read_crystal_clock(gt, c0, &freq, &gt->info.timestamp_base);
+ 
+ 	/*
+ 	 * Now figure out how the command stream's timestamp
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index e3cfb026ac88..7def0959da35 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -121,6 +121,8 @@ struct xe_gt {
+ 		enum xe_gt_type type;
+ 		/** @info.reference_clock: clock frequency */
+ 		u32 reference_clock;
++		/** @info.timestamp_base: GT timestamp base */
++		u32 timestamp_base;
+ 		/**
+ 		 * @info.engine_mask: mask of engines present on GT. Some of
+ 		 * them may be reserved in runtime and not available for user.
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 223b95de388c..538ca9c53b51 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -8,7 +8,9 @@
+ #include <linux/nospec.h>
+ 
+ #include <drm/drm_managed.h>
++#include <drm/drm_print.h>
+ #include <uapi/drm/xe_drm.h>
++#include <generated/xe_wa_oob.h>
+ 
+ #include "regs/xe_engine_regs.h"
+ #include "regs/xe_gt_regs.h"
+@@ -21,6 +23,7 @@
+ #include "xe_gsc.h"
+ #include "xe_gt.h"
+ #include "xe_gt_ccs_mode.h"
++#include "xe_gt_clock.h"
+ #include "xe_gt_printk.h"
+ #include "xe_gt_mcr.h"
+ #include "xe_gt_topology.h"
+@@ -564,6 +567,33 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 	xe_reg_whitelist_process_engine(hwe);
+ }
+ 
++static void adjust_idledly(struct xe_hw_engine *hwe)
++{
++	struct xe_gt *gt = hwe->gt;
++	u32 idledly, maxcnt;
++	u32 idledly_units_ps = 8 * gt->info.timestamp_base;
++	u32 maxcnt_units_ns = 640;
++	bool inhibit_switch = 0;
++
++	if (XE_WA(gt, 16023105232)) {
++		idledly = xe_mmio_read32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base));
++		maxcnt = xe_mmio_read32(&gt->mmio, RING_PWRCTX_MAXCNT(hwe->mmio_base));
++
++		inhibit_switch = idledly & INHIBIT_SWITCH_UNTIL_PREEMPTED;
++		idledly = REG_FIELD_GET(IDLE_DELAY, idledly);
++		idledly = DIV_ROUND_CLOSEST(idledly * idledly_units_ps, 1000);
++		maxcnt = REG_FIELD_GET(IDLE_WAIT_TIME, maxcnt);
++		maxcnt *= maxcnt_units_ns;
++
++		if (xe_gt_WARN_ON(gt, (idledly >= maxcnt) || inhibit_switch)) {
++			idledly = DIV_ROUND_CLOSEST(((maxcnt - 1) * maxcnt_units_ns),
++						    idledly_units_ps);
++			idledly = DIV_ROUND_CLOSEST(idledly, 1000);
++			xe_mmio_write32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base), idledly);
++		}
++	}
++}
++
+ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 			  enum xe_hw_engine_id id)
+ {
+@@ -604,6 +634,10 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 	if (xe->info.has_usm && hwe->class == XE_ENGINE_CLASS_COPY)
+ 		gt->usm.reserved_bcs_instance = hwe->instance;
+ 
++	/* Ensure IDLEDLY is lower than MAXCNT */
++	if (XE_WA(gt, 16023105232))
++		adjust_idledly(hwe);
++
+ 	return devm_add_action_or_reset(xe->drm.dev, hw_engine_fini, hwe);
+ 
+ err_hwsp:
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index a25afb757f70..24f644c0a673 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -622,6 +622,12 @@ static const struct xe_rtp_entry_sr engine_was[] = {
+ 		       FUNC(xe_rtp_match_first_render_or_compute)),
+ 	  XE_RTP_ACTIONS(SET(TDL_TSL_CHICKEN, RES_CHK_SPR_DIS))
+ 	},
++	{ XE_RTP_NAME("16023105232"),
++	  XE_RTP_RULES(MEDIA_VERSION_RANGE(1301, 3000), OR,
++		       GRAPHICS_VERSION_RANGE(2001, 3001)),
++	  XE_RTP_ACTIONS(SET(RING_PSMI_CTL(0), RC_SEMA_IDLE_MSG_DISABLE,
++			     XE_RTP_ACTION_FLAG(ENGINE_BASE)))
++	},
+ };
+ 
+ static const struct xe_rtp_entry_sr lrc_was[] = {
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index e0c5fa460487..0c738af24f7c 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -53,3 +53,5 @@ no_media_l3	MEDIA_VERSION(3000)
+ 		GRAPHICS_VERSION_RANGE(1270, 1274)
+ 1508761755	GRAPHICS_VERSION(1255)
+ 		GRAPHICS_VERSION(1260), GRAPHICS_STEP(A0, B0)
++16023105232	GRAPHICS_VERSION_RANGE(2001, 3001)
++		MEDIA_VERSION_RANGE(1301, 3000)
+-- 
+2.38.1
 
