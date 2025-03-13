@@ -4,59 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94248C282DE
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Mar 2025 10:40:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04B21C28B2E
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Mar 2025 10:59:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 369D410E82E;
-	Thu, 13 Mar 2025 10:40:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BABD510E83F;
+	Thu, 13 Mar 2025 10:59:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WHQib0yd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iN0T1JWi";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4835410E82E;
- Thu, 13 Mar 2025 10:40:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DEF3A10E20E;
+ Thu, 13 Mar 2025 10:59:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741862431; x=1773398431;
+ t=1741863564; x=1773399564;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=xuBhfvn01b4So4XBTk4GuAxPxxnnAOrXoL279U6Br94=;
- b=WHQib0ydP/lkHf+1+4MCJNXLObMmHM4EWUM9RYGTZCanNEvSXJVDICIN
- 9tsrnVo+n5iOx5vvqiq+Pb/fU+yyQU1MeLTkHUXw4gOirVhU/+exyLjl1
- eJGbKoU9myI4RL5HG4ULlCwtCSzH7gUVd55307kc0kkqmSVzrN4qIb7GZ
- GqJl7sHrFh/y+vFnWQIt1Ip45Z09exjhyIIxQGDehShaMgcdhgRHcU86O
- wwJtCVAwyoYKvfbG3dPd1lBlOcS2piS6pyExaOnUvmeK+2E2NO9rxDz94
- ihTc2mbJzREwQSm53+0z/dYu4DYJw2qRuyvApMzeytvmp5VO+p50snTBo g==;
-X-CSE-ConnectionGUID: Qrdl+FrASUylLWfrnxU8XA==
-X-CSE-MsgGUID: GbgjzKHFRWK8KxuuAxKEgA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11371"; a="65429773"
-X-IronPort-AV: E=Sophos;i="6.14,244,1736841600"; d="scan'208";a="65429773"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2025 03:40:29 -0700
-X-CSE-ConnectionGUID: 5+ody089Sqqnke0uiMYUoQ==
-X-CSE-MsgGUID: vbOIP8Y9RvKnkKQhnb3W5A==
+ message-id:mime-version:content-transfer-encoding;
+ bh=ZpmHv5uC4dr+hhjveEJ2sWXsdbKyqlJNimcLN8wZQbQ=;
+ b=iN0T1JWiJdncpaL/0ah6iK3/lVKLpE7pHHYgiXwoYTypR7yk2sOMbXq4
+ A6vfhymW56DCVnJQbW3+2I9lyFsc2dPjl2iPSzEcTCyxVh+28NPP0tYqV
+ AK6MmcVl7nFwFHkdizYX1MplHKXZ+qgIrURVfTiDy0lPMnAIenuZFAVBY
+ OyIq6/lTYQ/YS+Y1ytR1htvIhWeRXqxftSUaKjj9DQv2kWGqt0Cpy1HoW
+ xqTW3Co103JAv0xs2U+y4XJ7vFfOjyr2LySlAK25mC+85nXWv/fIHvV0Q
+ oDMMJl9i6zGHoyUQzVe7coUMaGcskQMdWfYpEBH5PlEB2ln0JhPmfHdnH w==;
+X-CSE-ConnectionGUID: 3pbD/LrxQfm0o6uW1XO09g==
+X-CSE-MsgGUID: 8zAZMzYUSTihEZ+C87GMVg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11371"; a="30563337"
+X-IronPort-AV: E=Sophos;i="6.14,244,1736841600"; d="scan'208";a="30563337"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2025 03:59:23 -0700
+X-CSE-ConnectionGUID: 0oM4srwZQx20QMgjxi8NNw==
+X-CSE-MsgGUID: R6OOXVH9TAOYHLLoqdm3zg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,244,1736841600"; d="scan'208";a="121416415"
+X-IronPort-AV: E=Sophos;i="6.14,244,1736841600"; d="scan'208";a="120716004"
 Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.115])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2025 03:40:27 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Knop, Ryszard" <ryszard.knop@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Cc: "rk@dragonic.eu" <rk@dragonic.eu>, "De Marchi, Lucas"
- <lucas.demarchi@intel.com>, "daniel@fooishbar.org" <daniel@fooishbar.org>
-Subject: Re: Discussion: Moving away from Patchwork for Intel i915/Xe CI
-In-Reply-To: <87ecz1dybg.fsf@intel.com>
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2025 03:59:19 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Masahiro Yamada <masahiroy@kernel.org>, Maxime Ripard <mripard@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, simona.vetter@ffwll.ch, Daniel Vetter
+ <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Linus Torvalds <torvalds@linux-foundation.org>
+Subject: Re: [PATCH 2/2] drm: ensure drm headers are self-contained and pass
+ kernel-doc
+In-Reply-To: <CAK7LNATYi5HPR+J0cdS33itHUdq5Qd+543X=z+AFyHxQssSJRw@mail.gmail.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <814f9bcb9c7ee22af45bd5278255af247c6664fa.camel@intel.com>
- <87ecz1dybg.fsf@intel.com>
-Date: Thu, 13 Mar 2025 12:40:23 +0200
-Message-ID: <87bju5dxig.fsf@intel.com>
+References: <cover.1737556766.git.jani.nikula@intel.com>
+ <d8ad1c6d707f38a55987f616cb9650aef30b84e1.1737556766.git.jani.nikula@intel.com>
+ <CAK7LNATHXwEkjJHP7b-ZmhzLfyyuOdsyimna-=r-sJk+DxigrA@mail.gmail.com>
+ <87r03e1lft.fsf@intel.com>
+ <CAK7LNARYBtpwkJxbf84+bzBYn05Kk2zvdVLDZMMBg=B_zzFokg@mail.gmail.com>
+ <8734fu1arq.fsf@intel.com>
+ <CAK7LNATu9OLEANiSzY3Smo=Bm_9M75EDyvmD6HT5kaS2sxRorw@mail.gmail.com>
+ <20250305-modest-finch-of-genius-917605@houat>
+ <CAK7LNATYi5HPR+J0cdS33itHUdq5Qd+543X=z+AFyHxQssSJRw@mail.gmail.com>
+Date: Thu, 13 Mar 2025 12:59:16 +0200
+Message-ID: <8734fhdwmz.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,18 +81,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 13 Mar 2025, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> We currently add Link: tags to commits pointing at patchwork. There's
-> already been requests to switch to use Lore links instead, and I think
-> we should probably do that.
+On Sun, 09 Mar 2025, Masahiro Yamada <masahiroy@kernel.org> wrote:
+> On Wed, Mar 5, 2025 at 10:59=E2=80=AFPM Maxime Ripard <mripard@kernel.org=
+> wrote:
+>> As far as I'm concerned, I find this extremely helpful for DRM. If only
+>> to ensure that the huge amount of work that went into cleaning up our
+>> headers doesn't get lost.
+>>
+>> Nobody here claims that it should be enabled globally, just that it
+>> should be enabled for DRM. We already have plenty of exceptions like
+>> that for compiler flags, checkpatch, contribution process, etc. so I'm
+>> not sure why those would be ok, but additional checks limited to a
+>> subsystem wouldn't.
+>>
+>> Maxime
+>
+> Because we learned this feature is broken.
+> It was broken under include/linux/, so it will be broken under include/dr=
+m/ too.
 
-I created a MR to do just that.
+I don't think that's a valid conclusion.
 
-https://gitlab.freedesktop.org/drm/maintainer-tools/-/merge_requests/74
 
 BR,
 Jani.
 
 
--- 
+--=20
 Jani Nikula, Intel
