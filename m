@@ -4,60 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B79D8C282DE
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Mar 2025 09:30:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 114DFC282DE
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Mar 2025 09:46:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7040E10E811;
-	Thu, 13 Mar 2025 09:30:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B326410E818;
+	Thu, 13 Mar 2025 09:46:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a1n8oktb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DOZ7Cs0s";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4727A10E816;
- Thu, 13 Mar 2025 09:30:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B64110E818;
+ Thu, 13 Mar 2025 09:46:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741858212; x=1773394212;
- h=message-id:date:mime-version:cc:subject:to:references:
- from:in-reply-to:content-transfer-encoding;
- bh=9A9aWfK66AcpdLfD2H0fwAZBqHh3y2XzHBKKmsqHBwA=;
- b=a1n8oktbMV69jTulkYfL0gI9tJFOXJily0AGTg0eidyPM9W+LcITOdmn
- cV82Slzkeaf4KyeNRa26v63Q719j5ZTAJ5S8DflEC2T9zUz/Oh+OnGgSs
- c8lCMb2iciokkLoJIsMeL8+FAGYveLo8Z2bo2j+jk68sJRl1oFyUe3XDu
- UQGhI7rd8hmBHbRFBdCUY6uQLC+f6Cn5ojlam8pITbfCfbc5lxp68kvXP
- OrTjNx0PhjHVV5EaOzxX/jGK3RmaiVCRV1RdZ9JSHIqOPEO6DcBh4u5Y8
- E3qr6oVNfXQIpahum5mNC8eOqMixkigLjqK4It3jy7nC2amxklfI4758Z g==;
-X-CSE-ConnectionGUID: WYrNM4WzSW+N2yLAbdZgsA==
-X-CSE-MsgGUID: eUUpC37RSdqEXOS6ctUQXg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11371"; a="43165185"
-X-IronPort-AV: E=Sophos;i="6.14,244,1736841600"; d="scan'208";a="43165185"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2025 02:30:12 -0700
-X-CSE-ConnectionGUID: ThHyzZFJSJ21MNu6FnbVTw==
-X-CSE-MsgGUID: bFY35IFOQBq8cUZQfmaHZg==
+ t=1741859165; x=1773395165;
+ h=from:date:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=KnDKEsArudUs0xPOlJ+UrPFKez4u7XPSRF38hrC27AY=;
+ b=DOZ7Cs0sRaTKqYvXiRIye7u2Y0gOZ6eDl+Gb1gBrJ9JRYlJC9Mwbxn9J
+ 1cC+VjcR9/zhs2C0jiQE4urJKhDMNfw7fWRgN/MjoQ6P6el+SPVLGJWZR
+ XLxqUMpIRTdu0qOluD4iLc222mS4NG8H4G2vHGW3s1Ny1kht5qtJjCcUl
+ saRLyAGPYl0M++zTapDSKz6ULxCPSMBcmYUihJYom6IVUdx1jgAJGAumT
+ ClQUOL+Zq90+YpuESiJb8XLVBqv1GUSOqGIhN3VpWIQhTv9z4bgalOvjl
+ 0FMApkSP7hZNdpj4KNiA+9fYxi+R7Ia+dIXzqmigLAQs1nx3gyz+IzMq3 w==;
+X-CSE-ConnectionGUID: zO8S+IegSK+EzwQvwPBsCw==
+X-CSE-MsgGUID: HkXGWol3R86hsA0BGdujgQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11371"; a="42218668"
+X-IronPort-AV: E=Sophos;i="6.14,244,1736841600"; d="scan'208";a="42218668"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2025 02:46:04 -0700
+X-CSE-ConnectionGUID: OgZTVnicSw2ndjoz67HmGA==
+X-CSE-MsgGUID: h+IV8g1JRiycZ2xpDz+NkA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,244,1736841600"; d="scan'208";a="151851976"
-Received: from blu2-mobl.ccr.corp.intel.com (HELO [10.124.240.153])
- ([10.124.240.153])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2025 02:30:10 -0700
-Message-ID: <9902ee4c-6223-4550-b25c-984629618f58@linux.intel.com>
-Date: Thu, 13 Mar 2025 17:30:07 +0800
+X-IronPort-AV: E=Sophos;i="6.14,244,1736841600"; d="scan'208";a="121400702"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.195])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2025 02:45:59 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Thu, 13 Mar 2025 11:45:45 +0200 (EET)
+To: =?ISO-8859-2?Q?Micha=B3_Winiarski?= <michal.winiarski@intel.com>
+cc: linux-pci@vger.kernel.org, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>, 
+ Bjorn Helgaas <bhelgaas@google.com>, 
+ =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>, 
+ =?ISO-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Michal Wajdeczko <michal.wajdeczko@intel.com>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ =?ISO-8859-15?Q?Thomas_Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Matt Roper <matthew.d.roper@intel.com>
+Subject: Re: [PATCH v5 1/6] PCI/IOV: Restore VF resizable BAR state after reset
+In-Reply-To: <20250312225949.969716-2-michal.winiarski@intel.com>
+Message-ID: <d6e026ad-4dd4-2e03-6f8b-a10980fa0ce7@linux.intel.com>
+References: <20250312225949.969716-1-michal.winiarski@intel.com>
+ <20250312225949.969716-2-michal.winiarski@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: baolu.lu@linux.intel.com,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "iommu@lists.linux.dev" <iommu@lists.linux.dev>
-Subject: Re: Regression on drm-tip
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-References: <SJ1PR11MB612953431F94F18C954C4A9CB9D32@SJ1PR11MB6129.namprd11.prod.outlook.com>
-Content-Language: en-US
-From: Baolu Lu <baolu.lu@linux.intel.com>
-In-Reply-To: <SJ1PR11MB612953431F94F18C954C4A9CB9D32@SJ1PR11MB6129.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/mixed; boundary="8323328-1098235586-1741859145=:1742"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,41 +79,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2025/3/13 16:51, Borah, Chaitanya Kumar wrote:
-> Hello Lu,
-> 
-> Hope you are doing well. I am Chaitanya from the linux graphics team in Intel.
-> 
-> This mail is regarding a regression we are seeing in our CI runs[1] on drm-tip repository.
-> 
-> `````````````````````````````````````````````````````````````````````````````````
-> <4>[    2.856622] WARNING: possible circular locking dependency detected
-> <4>[    2.856631] 6.14.0-rc5-CI_DRM_16217-gc55ef90b69d3+ #1 Tainted: G          I
-> <4>[    2.856642] ------------------------------------------------------
-> <4>[    2.856650] swapper/0/1 is trying to acquire lock:
-> <4>[    2.856657] ffffffff8360ecc8 (iommu_probe_device_lock){+.+.}-{3:3}, at: iommu_probe_device+0x1d/0x70
-> <4>[    2.856679]
->                    but task is already holding lock:
-> <4>[    2.856686] ffff888102ab6fa8 (&device->physical_node_lock){+.+.}-{3:3}, at: intel_iommu_init+0xea1/0x1220
-> `````````````````````````````````````````````````````````````````````````````````
-> Details log can be found in [2].
-> 
-> After bisecting the tree, the following patch [3] seems to be the first "bad" commit
-> 
-> `````````````````````````````````````````````````````````````````````````````````````````````````````````
-> commit b150654f74bf0df8e6a7936d5ec51400d9ec06d8
-> Author: Lu Baolumailto:baolu.lu@linux.intel.com
-> Date:   Fri Feb 28 18:27:26 2025 +0800
-> 
->      iommu/vt-d: Fix suspicious RCU usage
-> 
-> `````````````````````````````````````````````````````````````````````````````````````````````````````````
-> 
-> We also verified that if we revert the patch the issue is not seen.
-> 
-> Could you please check why the patch causes this regression and provide a fix if necessary?
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-Sure. I will look into this issue.
+--8323328-1098235586-1741859145=:1742
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
 
-Thanks,
-baolu
+On Wed, 12 Mar 2025, Micha=C5=82 Winiarski wrote:
+
+> Similar to regular resizable BAR, VF BAR can also be resized, e.g. by
+> the system firmware or the PCI subsystem itself.
+>=20
+> Add the capability ID and restore it as a part of IOV state.
+>=20
+> See PCIe r4.0, sec 9.3.7.4.
+>=20
+> Signed-off-by: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
+> Reviewed-by: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>
+> Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> ---
+>  drivers/pci/iov.c             | 29 ++++++++++++++++++++++++++++-
+>  include/uapi/linux/pci_regs.h |  1 +
+>  2 files changed, 29 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/pci/iov.c b/drivers/pci/iov.c
+> index 121540f57d4bf..eb4d33eacacb8 100644
+> --- a/drivers/pci/iov.c
+> +++ b/drivers/pci/iov.c
+> @@ -7,6 +7,7 @@
+>   * Copyright (C) 2009 Intel Corporation, Yu Zhao <yu.zhao@intel.com>
+>   */
+> =20
+> +#include <linux/bitfield.h>
+>  #include <linux/pci.h>
+>  #include <linux/slab.h>
+>  #include <linux/export.h>
+> @@ -868,6 +869,30 @@ static void sriov_release(struct pci_dev *dev)
+>  =09dev->sriov =3D NULL;
+>  }
+> =20
+> +static void sriov_restore_vf_rebar_state(struct pci_dev *dev)
+> +{
+> +=09unsigned int pos, nbars, i;
+> +=09u32 ctrl;
+> +
+> +=09pos =3D pci_find_ext_capability(dev, PCI_EXT_CAP_ID_VF_REBAR);
+> +=09if (!pos)
+> +=09=09return;
+
+FYI, the commit f7c9bb759161 ("PCI: Cache offset of Resizable BAR=20
+capability") which is currently in pci/enumeration makes this simpler.
+
+> +=09pci_read_config_dword(dev, pos + PCI_REBAR_CTRL, &ctrl);
+> +=09nbars =3D FIELD_GET(PCI_REBAR_CTRL_NBAR_MASK, ctrl);
+> +
+> +=09for (i =3D 0; i < nbars; i++, pos +=3D 8) {
+> +=09=09int bar_idx, size;
+> +
+> +=09=09pci_read_config_dword(dev, pos + PCI_REBAR_CTRL, &ctrl);
+> +=09=09bar_idx =3D FIELD_GET(PCI_REBAR_CTRL_BAR_IDX, ctrl);
+> +=09=09size =3D pci_rebar_bytes_to_size(dev->sriov->barsz[bar_idx]);
+> +=09=09ctrl &=3D ~PCI_REBAR_CTRL_BAR_SIZE;
+> +=09=09ctrl |=3D FIELD_PREP(PCI_REBAR_CTRL_BAR_SIZE, size);
+> +=09=09pci_write_config_dword(dev, pos + PCI_REBAR_CTRL, ctrl);
+> +=09}
+> +}
+> +
+>  static void sriov_restore_state(struct pci_dev *dev)
+>  {
+>  =09int i;
+> @@ -1027,8 +1052,10 @@ resource_size_t pci_sriov_resource_alignment(struc=
+t pci_dev *dev, int resno)
+>   */
+>  void pci_restore_iov_state(struct pci_dev *dev)
+>  {
+> -=09if (dev->is_physfn)
+> +=09if (dev->is_physfn) {
+> +=09=09sriov_restore_vf_rebar_state(dev);
+>  =09=09sriov_restore_state(dev);
+> +=09}
+>  }
+> =20
+>  /**
+> diff --git a/include/uapi/linux/pci_regs.h b/include/uapi/linux/pci_regs.=
+h
+> index 3c2558b98d225..aadd483c47d6f 100644
+> --- a/include/uapi/linux/pci_regs.h
+> +++ b/include/uapi/linux/pci_regs.h
+> @@ -744,6 +744,7 @@
+>  #define PCI_EXT_CAP_ID_L1SS=090x1E=09/* L1 PM Substates */
+>  #define PCI_EXT_CAP_ID_PTM=090x1F=09/* Precision Time Measurement */
+>  #define PCI_EXT_CAP_ID_DVSEC=090x23=09/* Designated Vendor-Specific */
+> +#define PCI_EXT_CAP_ID_VF_REBAR 0x24=09/* VF Resizable BAR */
+>  #define PCI_EXT_CAP_ID_DLF=090x25=09/* Data Link Feature */
+>  #define PCI_EXT_CAP_ID_PL_16GT=090x26=09/* Physical Layer 16.0 GT/s */
+>  #define PCI_EXT_CAP_ID_NPEM=090x29=09/* Native PCIe Enclosure Management=
+ */
+>=20
+
+--=20
+ i.
+
+--8323328-1098235586-1741859145=:1742--
