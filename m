@@ -4,60 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 849CAC282DE
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Mar 2025 09:55:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8C96C282DE
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Mar 2025 09:56:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DFEC10E821;
-	Thu, 13 Mar 2025 09:55:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DC2710E821;
+	Thu, 13 Mar 2025 09:56:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="npQ+NinD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="njsaMuuh";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7175E10E821;
- Thu, 13 Mar 2025 09:55:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37D6310E821;
+ Thu, 13 Mar 2025 09:56:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741859716; x=1773395716;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=/e1H6FCs5ZV+AttVj6hi8o3EEp4iRfGhbtX/IJ2mkEA=;
- b=npQ+NinDEm/rWbJ9fOIGflieiApQSrrFN48bfdgWA3F+gXKj+Q5NOzcu
- qcEkICv715EgE05oPFIzlhaR2nFAwZy6/HzJ6Z1Ux3cNsmbMz/IZDg55d
- SKUVafCLZc/GuApMfY2nLOiGjylvnIji5v3w5HyZb51GoNXlFjox/RNj6
- MRlcIfXWtCaaLToXCXXwiTJALMwH1dTwf5vzDzyvjDPQbPkwFIje4eHng
- Cv7m6C66qcjcfpxzfiA1N/jaweKQcG1ml1XQ5f59syfaMoUL8YaUzO0MC
- +lRXoBxegC7heYtJxV2NitzYdbiQzq4W0Z7ipOVLlktKOWqTm3dPKTe12 A==;
-X-CSE-ConnectionGUID: V7VFVGuOQDKMsO34CleUwQ==
-X-CSE-MsgGUID: /0XjztykS36ePCR/TB8z1A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11371"; a="43147925"
-X-IronPort-AV: E=Sophos;i="6.14,244,1736841600"; d="scan'208";a="43147925"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2025 02:55:16 -0700
-X-CSE-ConnectionGUID: jCWi4Ee6QmCQIkW+7Lyx0g==
-X-CSE-MsgGUID: PGD36M5lTqeSUwE/Pq3IvA==
+ t=1741859778; x=1773395778;
+ h=from:date:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=7A7CXQ1D8YunDLXzWL2mbCvEvN81Zg7DaI+66KINIEU=;
+ b=njsaMuuhiMPDHxqe76yqHcLFhytWkt4uMFFfLNDjxkVB2ham6lJHzgg9
+ 0gxkNLCsBVZG7s9zxkk7L+A73Q0j9O+nIqmuCY9c/hk8iQcK75FBO2oBy
+ IeMpk/fYGVOBOKoR9+/zd3qE4VIWCFSrlbaJAiiLi9wJCNBuHNoMGLV2a
+ EaEjfRvOebD7c9Kjn78qOmYruFPBTXjxlU2KBzmBhUHhFcKS1bzMAG0N4
+ vM1uJgWNPAGyC38fcyOhKYfHdwjc3els44PNoLs1b937yHN1Ns4eZ6EJv
+ pPlIlc1rjZ5mPxjMRYrKRzV0X5qKWTU6uND4Vbz1UP6k2dJsxzz8rU9at Q==;
+X-CSE-ConnectionGUID: ajUiqqo0T66IY1ieOj+eqQ==
+X-CSE-MsgGUID: Ldfb9IgqRH+YzR3NYvTeTw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11371"; a="30557606"
+X-IronPort-AV: E=Sophos;i="6.14,244,1736841600"; d="scan'208";a="30557606"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2025 02:56:15 -0700
+X-CSE-ConnectionGUID: 7Id4GbPKR5KkNDtc+RS1dw==
+X-CSE-MsgGUID: WdRV1eWBRqCw3A/LiN2+ng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,244,1736841600"; d="scan'208";a="120869962"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.115])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2025 02:55:13 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: William Tseng <william.tseng@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: William Tseng <william.tseng@intel.com>, Ville Syrjala
- <ville.syrjala@linux.intel.com>, Vandita Kulkarni
- <vandita.kulkarni@intel.com>, Lee Shawn C <shawn.c.lee@intel.com>, Cooper
- Chiou <cooper.chiou@intel.com>
-Subject: Re: [PATCH v4] drm/i915/dsi: let HW maintain the HS-TRAIL timing
-In-Reply-To: <20250311100626.533888-1-william.tseng@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211217100903.32599-1-william.tseng@intel.com>
- <20250311100626.533888-1-william.tseng@intel.com>
-Date: Thu, 13 Mar 2025 11:55:10 +0200
-Message-ID: <87h63xdzlt.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.14,244,1736841600"; d="scan'208";a="120967102"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.195])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2025 02:56:10 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Thu, 13 Mar 2025 11:56:07 +0200 (EET)
+To: =?ISO-8859-2?Q?Micha=B3_Winiarski?= <michal.winiarski@intel.com>
+cc: linux-pci@vger.kernel.org, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>, 
+ Bjorn Helgaas <bhelgaas@google.com>, 
+ =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>, 
+ =?ISO-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Michal Wajdeczko <michal.wajdeczko@intel.com>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ =?ISO-8859-15?Q?Thomas_Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Matt Roper <matthew.d.roper@intel.com>
+Subject: Re: [PATCH v5 3/6] PCI: Allow IOV resources to be resized in
+ pci_resize_resource()
+In-Reply-To: <20250312225949.969716-4-michal.winiarski@intel.com>
+Message-ID: <a4eaa28c-a080-949d-6ae3-8eae4ca24f40@linux.intel.com>
+References: <20250312225949.969716-1-michal.winiarski@intel.com>
+ <20250312225949.969716-4-michal.winiarski@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: multipart/mixed; boundary="8323328-2011323846-1741859767=:1742"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,120 +80,211 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 11 Mar 2025, William Tseng <william.tseng@intel.com> wrote:
-> This change is to avoid over-specification of the TEOT timing
-> parameter, which is derived from software in current design.
->
-> Supposed that THS-TRAIL and THS-EXIT have the minimum values,
-> i.e., 60 and 100 in ns. If SW is overriding the HW default,
-> the TEOT value becomes 150 ns, approximately calculated by
-> the following formula.
->
->   DIV_ROUND_UP(60/50)*50 + DIV_ROUND_UP(100/50))*50/2, where 50
->   is LP Escape Clock time in ns.
->
-> The TEOT value 150 ns is larger than the maximum value,
-> around 136 ns if UI is 1.8ns, (105 ns + 12*UI, defined by MIPI
-> DPHY specification).
->
-> However, the TEOT value will meet the specification if THS-TRAIL
-> is set to the HW default, instead of software overriding.
->
-> The timing change is made for both data lane and clock lane.
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-What does the VBT contain?
+--8323328-2011323846-1741859767=:1742
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
 
-Granted, the spec only describes the relevant fields as "TClkTrail:
-Clock Trail value" and "THSTrail: HS Trail value".
+On Wed, 12 Mar 2025, Micha=C5=82 Winiarski wrote:
 
-But we might have panels and setups where we depend on VBT providing the
-values. So why do we pick and choose some VBT values for overrides and
-not others?
-
-I also don't get why we do this:
-
-	tclk_trail_ns = max(mipi_config->tclk_trail, mipi_config->ths_trail);
-
-and then use that for both. Again, would be interesting to see what VBT
-has for them.
-
-
-BR,
-Jani.
-
-
->
-> v1: initial version.
-> v2: change clock lane dphy timings.
-> v3: remove calculation of trail cnt.
-> v4: rebase.
->
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13891
-> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> Cc: Lee Shawn C <shawn.c.lee@intel.com>
-> Cc: Cooper Chiou <cooper.chiou@intel.com>
-> Signed-off-by: William Tseng <william.tseng@intel.com>
-> Acked-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> Similar to regular resizable BAR, VF BAR can also be resized.
+>=20
+> The structures are very similar, which means we can reuse most of the
+> implementation.
+>=20
+> Extend the pci_resize_resource() function to accept IOV resources.
+>=20
+> See PCIe r4.0, sec 9.3.7.4.
+>=20
+> Signed-off-by: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/icl_dsi.c | 19 +++----------------
->  1 file changed, 3 insertions(+), 16 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-> index 82bf6c654de2..6cf9c9275031 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -1846,14 +1846,13 @@ static void icl_dphy_param_init(struct intel_dsi *intel_dsi)
->  	struct intel_connector *connector = intel_dsi->attached_connector;
->  	struct mipi_config *mipi_config = connector->panel.vbt.dsi.config;
->  	u32 tlpx_ns;
-> -	u32 prepare_cnt, exit_zero_cnt, clk_zero_cnt, trail_cnt;
-> -	u32 ths_prepare_ns, tclk_trail_ns;
-> +	u32 prepare_cnt, exit_zero_cnt, clk_zero_cnt;
-> +	u32 ths_prepare_ns;
->  	u32 hs_zero_cnt;
->  	u32 tclk_pre_cnt;
->  
->  	tlpx_ns = intel_dsi_tlpx_ns(intel_dsi);
->  
-> -	tclk_trail_ns = max(mipi_config->tclk_trail, mipi_config->ths_trail);
->  	ths_prepare_ns = max(mipi_config->ths_prepare,
->  			     mipi_config->tclk_prepare);
->  
-> @@ -1880,14 +1879,6 @@ static void icl_dphy_param_init(struct intel_dsi *intel_dsi)
->  		clk_zero_cnt = ICL_CLK_ZERO_CNT_MAX;
->  	}
->  
-> -	/* trail cnt in escape clocks*/
-> -	trail_cnt = DIV_ROUND_UP(tclk_trail_ns, tlpx_ns);
-> -	if (trail_cnt > ICL_TRAIL_CNT_MAX) {
-> -		drm_dbg_kms(display->drm, "trail_cnt out of range (%d)\n",
-> -			    trail_cnt);
-> -		trail_cnt = ICL_TRAIL_CNT_MAX;
-> -	}
-> -
->  	/* tclk pre count in escape clocks */
->  	tclk_pre_cnt = DIV_ROUND_UP(mipi_config->tclk_pre, tlpx_ns);
->  	if (tclk_pre_cnt > ICL_TCLK_PRE_CNT_MAX) {
-> @@ -1920,17 +1911,13 @@ static void icl_dphy_param_init(struct intel_dsi *intel_dsi)
->  			       CLK_ZERO_OVERRIDE |
->  			       CLK_ZERO(clk_zero_cnt) |
->  			       CLK_PRE_OVERRIDE |
-> -			       CLK_PRE(tclk_pre_cnt) |
-> -			       CLK_TRAIL_OVERRIDE |
-> -			       CLK_TRAIL(trail_cnt));
-> +			       CLK_PRE(tclk_pre_cnt));
->  
->  	/* data lanes dphy timings */
->  	intel_dsi->dphy_data_lane_reg = (HS_PREPARE_OVERRIDE |
->  					 HS_PREPARE(prepare_cnt) |
->  					 HS_ZERO_OVERRIDE |
->  					 HS_ZERO(hs_zero_cnt) |
-> -					 HS_TRAIL_OVERRIDE |
-> -					 HS_TRAIL(trail_cnt) |
->  					 HS_EXIT_OVERRIDE |
->  					 HS_EXIT(exit_zero_cnt));
+>  drivers/pci/iov.c       | 21 +++++++++++++++++++++
+>  drivers/pci/pci.c       | 10 +++++++++-
+>  drivers/pci/pci.h       |  9 +++++++++
+>  drivers/pci/setup-res.c | 35 ++++++++++++++++++++++++++++++-----
+>  4 files changed, 69 insertions(+), 6 deletions(-)
+>=20
+> diff --git a/drivers/pci/iov.c b/drivers/pci/iov.c
+> index 23c741e9ede89..7cc17e898cea7 100644
+> --- a/drivers/pci/iov.c
+> +++ b/drivers/pci/iov.c
+> @@ -154,6 +154,27 @@ resource_size_t pci_iov_resource_size(struct pci_dev=
+ *dev, int resno)
+>  =09return dev->sriov->barsz[pci_resource_num_to_vf_bar(resno)];
+>  }
+> =20
+> +void pci_iov_resource_set_size(struct pci_dev *dev, int resno,
+> +=09=09=09       resource_size_t size)
+> +{
+> +=09if (!pci_resource_is_iov(resno)) {
+> +=09=09pci_warn(dev, "%s is not an IOV resource\n",
+> +=09=09=09 pci_resource_name(dev, resno));
+> +=09=09return;
+> +=09}
+> +
+> +=09dev->sriov->barsz[pci_resource_num_to_vf_bar(resno)] =3D size;
+> +}
+> +
+> +bool pci_iov_is_memory_decoding_enabled(struct pci_dev *dev)
+> +{
+> +=09u16 cmd;
+> +
+> +=09pci_read_config_word(dev, dev->sriov->pos + PCI_SRIOV_CTRL, &cmd);
+> +
+> +=09return cmd & PCI_SRIOV_CTRL_MSE;
+> +}
+> +
+>  static void pci_read_vf_config_common(struct pci_dev *virtfn)
+>  {
+>  =09struct pci_dev *physfn =3D virtfn->physfn;
+> diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
+> index 72ac91e359aaf..e6a986ad24d61 100644
+> --- a/drivers/pci/pci.c
+> +++ b/drivers/pci/pci.c
+> @@ -3731,8 +3731,16 @@ static int pci_rebar_find_pos(struct pci_dev *pdev=
+, int bar)
+>  {
+>  =09unsigned int pos, nbars, i;
+>  =09u32 ctrl;
+> +=09int cap;
+> =20
+> -=09pos =3D pci_find_ext_capability(pdev, PCI_EXT_CAP_ID_REBAR);
+> +=09if (pci_resource_is_iov(bar)) {
+> +=09=09cap =3D PCI_EXT_CAP_ID_VF_REBAR;
+> +=09=09bar =3D pci_resource_num_to_vf_bar(bar);
+> +=09} else {
+> +=09=09cap =3D PCI_EXT_CAP_ID_REBAR;
+> +=09}
 
--- 
-Jani Nikula, Intel
+Use the cached values here.
+
+> +
+> +=09pos =3D pci_find_ext_capability(pdev, cap);
+>  =09if (!pos)
+>  =09=09return -ENOTSUPP;
+> =20
+> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
+> index e3cd9b8f9b734..af41f6c24451f 100644
+> --- a/drivers/pci/pci.h
+> +++ b/drivers/pci/pci.h
+> @@ -655,6 +655,9 @@ void pci_iov_update_resource(struct pci_dev *dev, int=
+ resno);
+>  resource_size_t pci_sriov_resource_alignment(struct pci_dev *dev, int re=
+sno);
+>  void pci_restore_iov_state(struct pci_dev *dev);
+>  int pci_iov_bus_range(struct pci_bus *bus);
+> +void pci_iov_resource_set_size(struct pci_dev *dev, int resno,
+> +=09=09=09       resource_size_t size);
+> +bool pci_iov_is_memory_decoding_enabled(struct pci_dev *dev);
+>  static inline bool pci_resource_is_iov(int resno)
+>  {
+>  =09return resno >=3D PCI_IOV_RESOURCES && resno <=3D PCI_IOV_RESOURCE_EN=
+D;
+> @@ -688,6 +691,12 @@ static inline int pci_iov_bus_range(struct pci_bus *=
+bus)
+>  {
+>  =09return 0;
+>  }
+> +static inline void pci_iov_resource_set_size(struct pci_dev *dev, int re=
+sno,
+> +=09=09=09=09=09     resource_size_t size) { }
+> +static inline bool pci_iov_is_memory_decoding_enabled(struct pci_dev *de=
+v)
+> +{
+> +=09return false;
+> +}
+>  static inline bool pci_resource_is_iov(int resno)
+>  {
+>  =09return false;
+> diff --git a/drivers/pci/setup-res.c b/drivers/pci/setup-res.c
+> index c6657cdd06f67..6cce3e19f22b0 100644
+> --- a/drivers/pci/setup-res.c
+> +++ b/drivers/pci/setup-res.c
+> @@ -423,13 +423,39 @@ void pci_release_resource(struct pci_dev *dev, int =
+resno)
+>  }
+>  EXPORT_SYMBOL(pci_release_resource);
+> =20
+> +static bool pci_resize_is_memory_decoding_enabled(struct pci_dev *dev,
+> +=09=09=09=09=09=09  int resno)
+> +{
+> +=09u16 cmd;
+> +
+> +=09if (pci_resource_is_iov(resno))
+> +=09=09return pci_iov_is_memory_decoding_enabled(dev);
+> +
+> +=09pci_read_config_word(dev, PCI_COMMAND, &cmd);
+> +
+> +=09return cmd & PCI_COMMAND_MEMORY;
+> +}
+> +
+> +static void pci_resize_resource_set_size(struct pci_dev *dev, int resno,
+> +=09=09=09=09=09 int size)
+> +{
+> +=09resource_size_t res_size =3D pci_rebar_size_to_bytes(size);
+> +=09struct resource *res =3D dev->resource + resno;
+
+pci_resource_n()
+
+> +
+> +=09if (!pci_resource_is_iov(resno)) {
+> +=09=09resource_set_size(res, res_size);
+> +=09} else {
+> +=09=09resource_set_size(res, res_size * pci_sriov_get_totalvfs(dev));
+
+Should this too be done in pci_iov_resource_set_size()? Why is it being=20
+done here?
+
+> +=09=09pci_iov_resource_set_size(dev, resno, res_size);
+> +=09}
+> +}
+> +
+>  int pci_resize_resource(struct pci_dev *dev, int resno, int size)
+>  {
+>  =09struct resource *res =3D pci_resource_n(dev, resno);
+>  =09struct pci_host_bridge *host;
+>  =09int old, ret;
+>  =09u32 sizes;
+> -=09u16 cmd;
+> =20
+>  =09/* Check if we must preserve the firmware's resource assignment */
+>  =09host =3D pci_find_host_bridge(dev->bus);
+> @@ -440,8 +466,7 @@ int pci_resize_resource(struct pci_dev *dev, int resn=
+o, int size)
+>  =09if (!(res->flags & IORESOURCE_UNSET))
+>  =09=09return -EBUSY;
+> =20
+> -=09pci_read_config_word(dev, PCI_COMMAND, &cmd);
+> -=09if (cmd & PCI_COMMAND_MEMORY)
+> +=09if (pci_resize_is_memory_decoding_enabled(dev, resno))
+>  =09=09return -EBUSY;
+> =20
+>  =09sizes =3D pci_rebar_get_possible_sizes(dev, resno);
+> @@ -459,7 +484,7 @@ int pci_resize_resource(struct pci_dev *dev, int resn=
+o, int size)
+>  =09if (ret)
+>  =09=09return ret;
+> =20
+> -=09resource_set_size(res, pci_rebar_size_to_bytes(size));
+> +=09pci_resize_resource_set_size(dev, resno, size);
+> =20
+>  =09/* Check if the new config works by trying to assign everything. */
+>  =09if (dev->bus->self) {
+> @@ -471,7 +496,7 @@ int pci_resize_resource(struct pci_dev *dev, int resn=
+o, int size)
+> =20
+>  error_resize:
+>  =09pci_rebar_set_size(dev, resno, old);
+> -=09resource_set_size(res, pci_rebar_size_to_bytes(old));
+> +=09pci_resize_resource_set_size(dev, resno, old);
+>  =09return ret;
+>  }
+>  EXPORT_SYMBOL(pci_resize_resource);
+>=20
+
+--=20
+ i.
+
+--8323328-2011323846-1741859767=:1742--
