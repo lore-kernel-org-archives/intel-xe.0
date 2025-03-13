@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C7D1C282DE
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Mar 2025 18:32:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90A1EC35FF1
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Mar 2025 18:34:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D96BE10E90B;
-	Thu, 13 Mar 2025 18:32:16 +0000 (UTC)
-Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40BCC10E90B;
- Thu, 13 Mar 2025 18:32:15 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E08A10E90F;
+	Thu, 13 Mar 2025 18:34:18 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZoB3Yh+z";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BAD210E90B;
+ Thu, 13 Mar 2025 18:34:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1741890857; x=1773426857;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4MXF6WRRTlsw/VxN+eZBvsqvEi/1sWBR/uhFnMqwg8s=;
+ b=ZoB3Yh+zKT14xoJpbqcWY7kgZ4vNBl7/g5jFYdVOcDck1K0vcSN7/LS2
+ tcgfNVMKdVDj1WlHdsAD7WhcpzZ94SM1wdh84JwW4krb84xgoX+GVHXmn
+ MsaBG4oGwNu/3YQQbH3g0UzeWH6h9Lm6lxk2X0nY2VDe/7hxoMyxIiSHj
+ R1vvtJkXtgyeiPmJ5082bxqYAGB/cm2dDp7Qnr01KeekA1LTB9JiqheW9
+ BiDYx+jwEDK+o6jSiUcBqO8V9T/AtgAJjp74XrIfxSgwdDRforDVFV90P
+ 36JTy2OCbWfIh99ryUQjqklChS3xDwDqOmvJ6uSzQhUmXxhwcDLQOkWYt w==;
+X-CSE-ConnectionGUID: 1BuZeO8mSE6NiKq4gtoeMA==
+X-CSE-MsgGUID: x63PEgHYR3+660LMxmpHYQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11372"; a="65485456"
+X-IronPort-AV: E=Sophos;i="6.14,245,1736841600"; d="scan'208";a="65485456"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2025 11:34:17 -0700
+X-CSE-ConnectionGUID: /RO3OEK4Rda/SrNMg9CvXw==
+X-CSE-MsgGUID: mGge0TbSTR+4iBASMjvVqA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,245,1736841600"; d="scan'208";a="151900766"
+Received: from dut4440lnl.fm.intel.com ([10.105.10.40])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2025 11:34:16 -0700
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
+ joonas.lahtinen@linux.intel.com, matthew.brost@intel.com,
+ jianxun.zhang@intel.com, shuicheng.lin@intel.com,
+ dri-devel@lists.freedesktop.org, Michal.Wajdeczko@intel.com,
+ michal.mzorek@intel.com
+Subject: [PATCH v8 0/6] drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
+Date: Thu, 13 Mar 2025 18:34:02 +0000
+Message-ID: <20250313183415.133863-1-jonathan.cavitt@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe=3A_Apply_Wa=5F160231052?=
- =?utf-8?q?32_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 13 Mar 2025 18:32:15 -0000
-Message-ID: <174189073525.30568.17664002480617647487@18a75f3d1eae>
-X-Patchwork-Hint: ignore
-References: <20250313180440.1393089-1-vinay.belgaumkar@intel.com>
-In-Reply-To: <20250313180440.1393089-1-vinay.belgaumkar@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +65,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Add additional information to each VM so they can report up to the first
+50 seen faults.  Only pagefaults are saved this way currently, though in
+the future, all faults should be tracked by the VM for future reporting.
 
-Series: drm/xe: Apply Wa_16023105232 (rev4)
-URL   : https://patchwork.freedesktop.org/series/145449/
-State : success
+Additionally, of the pagefaults reported, only failed pagefaults are
+saved this way, as successful pagefaults should recover silently and not
+need to be reported to userspace.
 
-== Summary ==
+To allow userspace to access these faults, a new ioctl -
+xe_vm_get_property_ioct - was created.
 
-lib/modules/6.14.0-rc6-xe+/kernel/arch/x86/events/amd/
-lib/modules/6.14.0-rc6-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
-lib/modules/6.14.0-rc6-xe+/kernel/arch/x86/events/rapl.ko
-lib/modules/6.14.0-rc6-xe+/kernel/arch/x86/kvm/
-lib/modules/6.14.0-rc6-xe+/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.14.0-rc6-xe+/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.14.0-rc6-xe+/kernel/arch/x86/kvm/kvm-amd.ko
-lib/modules/6.14.0-rc6-xe+/kernel/kernel/
-lib/modules/6.14.0-rc6-xe+/kernel/kernel/kheaders.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/ecrdsa_generic.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/xcbc.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/serpent_generic.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/aria_generic.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/crypto_simd.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/adiantum.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/tcrypt.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/crypto_engine.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/zstd.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/asymmetric_keys/
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/des_generic.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/xctr.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/authenc.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/sm4_generic.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/camellia_generic.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/sm3.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/pcrypt.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/aegis128.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/af_alg.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/algif_aead.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/cmac.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/sm3_generic.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/aes_ti.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/chacha_generic.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/poly1305_generic.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/nhpoly1305.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/crc32_generic.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/essiv.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/ccm.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/wp512.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/streebog_generic.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/authencesn.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/echainiv.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/lrw.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/cryptd.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/crypto_user.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/algif_hash.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/polyval-generic.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/hctr2.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/842.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/pcbc.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/ansi_cprng.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/cast6_generic.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/twofish_common.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/twofish_generic.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/lz4hc.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/blowfish_generic.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/md4.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/chacha20poly1305.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/curve25519-generic.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/lz4.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/rmd160.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/algif_skcipher.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/cast5_generic.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/fcrypt.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/ecdsa_generic.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/sm4.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/cast_common.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/blowfish_common.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/michael_mic.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/async_tx/
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.14.0-rc6-xe+/kernel/crypto/algif_rng.ko
-lib/modules/6.14.0-rc6-xe+/kernel/block/
-lib/modules/6.14.0-rc6-xe+/kernel/block/bfq.ko
-lib/modules/6.14.0-rc6-xe+/kernel/block/kyber-iosched.ko
-lib/modules/6.14.0-rc6-xe+/build
-lib/modules/6.14.0-rc6-xe+/modules.alias.bin
-lib/modules/6.14.0-rc6-xe+/modules.builtin
-lib/modules/6.14.0-rc6-xe+/modules.softdep
-lib/modules/6.14.0-rc6-xe+/modules.alias
-lib/modules/6.14.0-rc6-xe+/modules.order
-lib/modules/6.14.0-rc6-xe+/modules.symbols
-lib/modules/6.14.0-rc6-xe+/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-+ echo -e '\e[0Ksection_end:1741890720:package_x86_64_nodebug\r\e[0K'
-[0Ksection_end:1741890720:package_x86_64_nodebug
-[0K
-+ sync
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+v2: (Matt Brost)
+- Break full ban list request into a separate property.
+- Reformat drm_xe_vm_get_property struct.
+- Remove need for drm_xe_faults helper struct.
+- Separate data pointer and scalar return value in ioctl.
+- Get address type on pagefault report and save it to the pagefault.
+- Correctly reject writes to read-only VMAs.
+- Miscellaneous formatting fixes.
 
+v3: (Matt Brost)
+- Only allow querying of failed pagefaults
+
+v4:
+- Remove unnecessary size parameter from helper function, as it
+  is a property of the arguments. (jcavitt)
+- Remove unnecessary copy_from_user (Jainxun)
+- Set address_precision to 1 (Jainxun)
+- Report max size instead of dynamic size for memory allocation
+  purposes.  Total memory usage is reported separately.
+
+v5:
+- Return int from xe_vm_get_property_size (Shuicheng)
+- Fix memory leak (Shuicheng)
+- Remove unnecessary size variable (jcavitt)
+
+v6:
+- Free vm after use (Shuicheng)
+- Compress pf copy logic (Shuicheng)
+- Update fault_unsuccessful before storing (Shuicheng)
+- Fix old struct name in comments (Shuicheng)
+- Keep first 50 pagefaults instead of last 50 (Jianxun)
+- Rename ioctl to xe_vm_get_faults_ioctl (jcavitt)
+
+v7:
+- Avoid unnecessary execution by checking MAX_PFS earlier (jcavitt)
+- Fix double-locking error (jcavitt)
+- Assert kmemdump is successful (Shuicheng)
+- Repair and move fill_faults break condition (Dan Carpenter)
+- Free vm after use (jcavitt)
+- Combine assertions (jcavitt)
+- Expand size check in xe_vm_get_faults_ioctl (jcavitt)
+- Remove return mask from fill_faults, as return is already -EFAULT or 0
+  (jcavitt)
+
+v8:
+- Revert back to using drm_xe_vm_get_property_ioctl
+- s/Migrate/Move (Michal)
+- s/xe_pagefault/xe_gt_pagefault (Michal)
+- Create new header file, xe_gt_pagefault_types.h (Michal)
+- Add and fix kernel docs (Michal)
+- Rename xe_vm.pfs to xe_vm.faults (jcavitt)
+- Store fault data and not pagefault in xe_vm faults list (jcavitt)
+- Store address, address type, and address precision per fault (jcavitt)
+- Store engine class and instance data per fault (Jianxun)
+- Properly handle kzalloc error (Michal W)
+- s/MAX_PFS/MAX_FAULTS_SAVED_PER_VM (Michal W)
+- Store fault level per fault (Micahl M)
+- Apply better copy_to_user logic (jcavitt)
+
+Signed-off-by: Jonathan Cavitt <joanthan.cavitt@intel.com>
+Suggested-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
+Cc: Zhang Jianxun <jianxun.zhang@intel.com>
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+Cc: Michal Wajdeczko <Michal.Wajdeczko@intel.com>
+Cc: Michal Mzorek <michal.mzorek@intel.com>
+
+Jonathan Cavitt (6):
+  drm/xe/xe_gt_pagefault: Disallow writes to read-only VMAs
+  drm/xe/xe_gt_pagefault: Move pagefault struct to header
+  drm/xe/uapi: Define drm_xe_vm_get_property
+  drm/xe/xe_gt_pagefault: Add address_type field to pagefaults
+  drm/xe/xe_vm: Add per VM fault info
+  drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
+
+ drivers/gpu/drm/xe/xe_device.c             |   3 +
+ drivers/gpu/drm/xe/xe_gt_pagefault.c       |  68 ++++----
+ drivers/gpu/drm/xe/xe_gt_pagefault.h       |   2 +
+ drivers/gpu/drm/xe/xe_gt_pagefault_types.h |  69 ++++++++
+ drivers/gpu/drm/xe/xe_vm.c                 | 192 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vm.h                 |  11 ++
+ drivers/gpu/drm/xe/xe_vm_types.h           |  33 ++++
+ include/uapi/drm/xe_drm.h                  |  69 ++++++++
+ 8 files changed, 414 insertions(+), 33 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_pagefault_types.h
+
+-- 
+2.43.0
 
