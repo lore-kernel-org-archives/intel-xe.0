@@ -4,52 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78DEBC28B2F
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Mar 2025 05:19:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14F16C35FF1
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Mar 2025 06:50:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 431BD10E2D3;
-	Fri, 14 Mar 2025 05:19:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 284F210E037;
+	Fri, 14 Mar 2025 06:50:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T5qr3QNV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RXZvY0RI";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54C3A10E2D3
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Mar 2025 05:19:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C67210E037;
+ Fri, 14 Mar 2025 06:50:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741929560; x=1773465560;
- h=date:from:to:cc:subject:message-id;
- bh=OEEdjS7HQIsjZIOi7mTN6b3G1DH7MTK/xujDDk9k398=;
- b=T5qr3QNVPeaF6JC1eZCr1WjNhiTW55KVBUQCoGUKwAhsZgf6WnIhnsCh
- RLS4mzMMjayeRPo6I5ROf2Ggp831Gt9iE7lUakV+fMqPcR1n/FQBbZiXn
- Iqz51pX0eD1PekRdWRqHRnEKFhN6L5VrIiDMI+ynG9vOxahwF4082NMRA
- S8vtkQ2PpzCjjkiqngh2zQD3hdzfElA9jkm+z0Q8AniUMsChTdDqrf3/+
- yxc/S+toMbLyYZNKZArIDxqB/lJXKfCmZzZVqxEuYqHcztZQRF8cCi/J0
- f8LJhDoXbNYRAi9J3b2mN+Kt3zwweon+WS5FUmLvEWOOQEM8bqYMAZogm g==;
-X-CSE-ConnectionGUID: iRT8ixEqSuyIMKB/ySk/sA==
-X-CSE-MsgGUID: lIJEX0DXSkK2y6icRz2l6A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11372"; a="60609926"
-X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="60609926"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2025 22:19:17 -0700
-X-CSE-ConnectionGUID: kbF2aVa1SveUGQo6yI/pKg==
-X-CSE-MsgGUID: PJKHOBIvT12M/skgXhTHMg==
+ t=1741935033; x=1773471033;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=OjI89Z4aKdUJdchKxZ09kmsZP3O0XHMHS58oX1fzpeg=;
+ b=RXZvY0RIrfc9gd9Kf7YVMNjyUxtODF3hI+E54PYv2DYoPpeohnsAd8RN
+ FjPxGXGUSQpF9fQ0HKEeFAkqoUFxihyn0JLXkEP4DiTkslPUAHJgGFi7X
+ lSTOJuN4BOi5vAL1G8kZC2vFk75pG6wI8xv3AUsyKapxYAnSG/9d4CAAw
+ e6qQkS2r4m/xnY/+Kz5b6x5TElZfaQdGxN6Fp63Xpt7gwhOFf85gTy86m
+ OnGxHi2q3sXFcVfBWNfQAcpXJcQYCccL0fso6gnnQdUIe8sJfWo/wh4sI
+ peNylX99xwxSc8NkrJGMC5uU1rUttkSVddVnKqvMQFtYseW7020cFMqbR Q==;
+X-CSE-ConnectionGUID: QT70u79zRdu9rqJA3Js1fw==
+X-CSE-MsgGUID: jqDqktcrTIqFeq8QTQ7YmA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11372"; a="42323903"
+X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="42323903"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2025 23:50:31 -0700
+X-CSE-ConnectionGUID: 9EgzoN6ASqGHiCNliwtxQw==
+X-CSE-MsgGUID: 4C2MzhtvSoS2Wp70D8g3Fw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="121667398"
-Received: from lkp-server02.sh.intel.com (HELO a4747d147074) ([10.239.97.151])
- by orviesa007.jf.intel.com with ESMTP; 13 Mar 2025 22:19:17 -0700
-Received: from kbuild by a4747d147074 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1tsxRx-000A8O-2A;
- Fri, 14 Mar 2025 05:19:13 +0000
-Date: Fri, 14 Mar 2025 13:18:46 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next-fixes] BUILD SUCCESS
- 7b7b07c285c304317d00ea21c2a659167d4d4d12
-Message-ID: <202503141340.aLw8R81w-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="126221946"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO jhogande-mobl1..)
+ ([10.245.244.27])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2025 23:50:29 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH] drm/i915/psr: Add PSR pause/resume reference count
+Date: Fri, 14 Mar 2025 08:50:15 +0200
+Message-ID: <20250314065015.879143-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,164 +68,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next-fixes
-branch HEAD: 7b7b07c285c304317d00ea21c2a659167d4d4d12  drm/xe: Use correct type width for alignment in fb pinning code
+We have now seen this:
 
-elapsed time: 1451m
+<4> [2120.434153] i915 0000:00:02.0: [drm] drm_WARN_ON(psr->paused)
+<4> [2120.434196] WARNING: CPU: 3 PID: 4430 at drivers/gpu/drm/i915/display/intel_psr.c:2227 intel_psr_pause+0x16e/0x180 [i915]
 
-configs tested: 145
-configs skipped: 1
+Comment for drm_WARN_ON(display->drm, psr->paused) in intel_psr_pause says:
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+"If we ever hit this, we will need to add refcount to pause/resume"
 
-tested configs:
-alpha                             allnoconfig    gcc-14.2.0
-alpha                            allyesconfig    gcc-14.2.0
-arc                              allmodconfig    gcc-13.2.0
-arc                               allnoconfig    gcc-14.2.0
-arc                              allyesconfig    gcc-13.2.0
-arc                         haps_hs_defconfig    gcc-13.2.0
-arc                   randconfig-001-20250313    gcc-13.2.0
-arc                   randconfig-002-20250313    gcc-13.2.0
-arm                              alldefconfig    gcc-14.2.0
-arm                              allmodconfig    gcc-14.2.0
-arm                               allnoconfig    gcc-14.2.0
-arm                              allyesconfig    gcc-14.2.0
-arm                       imx_v6_v7_defconfig    clang-21
-arm                          ixp4xx_defconfig    gcc-14.2.0
-arm                   randconfig-001-20250313    clang-16
-arm                   randconfig-002-20250313    clang-18
-arm                   randconfig-003-20250313    gcc-14.2.0
-arm                   randconfig-004-20250313    clang-21
-arm                           stm32_defconfig    gcc-14.2.0
-arm64                            allmodconfig    clang-18
-arm64                             allnoconfig    gcc-14.2.0
-arm64                 randconfig-001-20250313    clang-18
-arm64                 randconfig-002-20250313    clang-16
-arm64                 randconfig-003-20250313    gcc-14.2.0
-arm64                 randconfig-004-20250313    clang-21
-csky                              allnoconfig    gcc-14.2.0
-csky                  randconfig-001-20250313    gcc-14.2.0
-csky                  randconfig-002-20250313    gcc-14.2.0
-hexagon                          allmodconfig    clang-21
-hexagon                           allnoconfig    gcc-14.2.0
-hexagon                          allyesconfig    clang-18
-hexagon               randconfig-001-20250313    clang-17
-hexagon               randconfig-002-20250313    clang-21
-i386                             allmodconfig    gcc-12
-i386                              allnoconfig    gcc-12
-i386                             allyesconfig    gcc-12
-i386        buildonly-randconfig-001-20250313    gcc-12
-i386        buildonly-randconfig-001-20250314    gcc-12
-i386        buildonly-randconfig-002-20250313    gcc-12
-i386        buildonly-randconfig-002-20250314    gcc-12
-i386        buildonly-randconfig-003-20250313    clang-19
-i386        buildonly-randconfig-003-20250314    gcc-12
-i386        buildonly-randconfig-004-20250313    gcc-12
-i386        buildonly-randconfig-004-20250314    gcc-12
-i386        buildonly-randconfig-005-20250313    clang-19
-i386        buildonly-randconfig-005-20250314    gcc-12
-i386        buildonly-randconfig-006-20250313    gcc-12
-i386        buildonly-randconfig-006-20250314    gcc-12
-i386                                defconfig    clang-19
-i386                  randconfig-001-20250314    clang-19
-i386                  randconfig-002-20250314    clang-19
-i386                  randconfig-003-20250314    clang-19
-i386                  randconfig-004-20250314    clang-19
-i386                  randconfig-005-20250314    clang-19
-i386                  randconfig-006-20250314    clang-19
-i386                  randconfig-007-20250314    clang-19
-i386                  randconfig-011-20250314    gcc-11
-i386                  randconfig-012-20250314    gcc-11
-i386                  randconfig-013-20250314    gcc-11
-i386                  randconfig-014-20250314    gcc-11
-i386                  randconfig-015-20250314    gcc-11
-i386                  randconfig-016-20250314    gcc-11
-i386                  randconfig-017-20250314    gcc-11
-loongarch                        allmodconfig    gcc-14.2.0
-loongarch                         allnoconfig    gcc-14.2.0
-loongarch             randconfig-001-20250313    gcc-14.2.0
-loongarch             randconfig-002-20250313    gcc-14.2.0
-m68k                             allmodconfig    gcc-14.2.0
-m68k                              allnoconfig    gcc-14.2.0
-m68k                             allyesconfig    gcc-14.2.0
-microblaze                        allnoconfig    gcc-14.2.0
-mips                              allnoconfig    gcc-14.2.0
-mips                           ip22_defconfig    gcc-14.2.0
-mips                          rb532_defconfig    clang-17
-nios2                             allnoconfig    gcc-14.2.0
-nios2                 randconfig-001-20250313    gcc-14.2.0
-nios2                 randconfig-002-20250313    gcc-14.2.0
-openrisc                          allnoconfig    clang-15
-openrisc                          allnoconfig    gcc-14.2.0
-openrisc                         allyesconfig    gcc-14.2.0
-parisc                           allmodconfig    gcc-14.2.0
-parisc                            allnoconfig    clang-15
-parisc                            allnoconfig    gcc-14.2.0
-parisc                           allyesconfig    gcc-14.2.0
-parisc                randconfig-001-20250313    gcc-14.2.0
-parisc                randconfig-002-20250313    gcc-14.2.0
-powerpc                          allmodconfig    gcc-14.2.0
-powerpc                           allnoconfig    clang-15
-powerpc                           allnoconfig    gcc-14.2.0
-powerpc                          allyesconfig    clang-16
-powerpc               randconfig-001-20250313    clang-16
-powerpc               randconfig-002-20250313    clang-18
-powerpc               randconfig-003-20250313    gcc-14.2.0
-powerpc64             randconfig-001-20250313    gcc-14.2.0
-powerpc64             randconfig-002-20250313    gcc-14.2.0
-powerpc64             randconfig-003-20250313    gcc-14.2.0
-riscv                            allmodconfig    clang-21
-riscv                             allnoconfig    clang-15
-riscv                             allnoconfig    gcc-14.2.0
-riscv                            allyesconfig    clang-21
-riscv                 randconfig-001-20250313    clang-21
-riscv                 randconfig-002-20250313    clang-21
-s390                             allmodconfig    clang-19
-s390                              allnoconfig    clang-15
-s390                             allyesconfig    gcc-14.2.0
-s390                  randconfig-001-20250313    clang-15
-s390                  randconfig-002-20250313    clang-15
-sh                               allmodconfig    gcc-14.2.0
-sh                                allnoconfig    gcc-14.2.0
-sh                               allyesconfig    gcc-14.2.0
-sh                    randconfig-001-20250313    gcc-14.2.0
-sh                    randconfig-002-20250313    gcc-14.2.0
-sparc                            allmodconfig    gcc-14.2.0
-sparc                             allnoconfig    gcc-14.2.0
-sparc                 randconfig-001-20250313    gcc-14.2.0
-sparc                 randconfig-002-20250313    gcc-14.2.0
-sparc                       sparc64_defconfig    gcc-14.2.0
-sparc64               randconfig-001-20250313    gcc-14.2.0
-sparc64               randconfig-002-20250313    gcc-14.2.0
-um                               allmodconfig    clang-21
-um                                allnoconfig    clang-15
-um                                allnoconfig    clang-18
-um                               allyesconfig    gcc-12
-um                    randconfig-001-20250313    clang-21
-um                    randconfig-002-20250313    clang-21
-x86_64                            allnoconfig    clang-19
-x86_64                           allyesconfig    clang-19
-x86_64      buildonly-randconfig-001-20250313    clang-19
-x86_64      buildonly-randconfig-001-20250314    gcc-12
-x86_64      buildonly-randconfig-002-20250313    clang-19
-x86_64      buildonly-randconfig-002-20250314    gcc-12
-x86_64      buildonly-randconfig-003-20250313    clang-19
-x86_64      buildonly-randconfig-003-20250314    gcc-12
-x86_64      buildonly-randconfig-004-20250313    gcc-12
-x86_64      buildonly-randconfig-004-20250314    gcc-12
-x86_64      buildonly-randconfig-005-20250313    clang-19
-x86_64      buildonly-randconfig-005-20250314    gcc-12
-x86_64      buildonly-randconfig-006-20250313    gcc-12
-x86_64      buildonly-randconfig-006-20250314    gcc-12
-x86_64                              defconfig    gcc-11
-x86_64                                  kexec    clang-19
-x86_64                               rhel-9.4    clang-19
-xtensa                            allnoconfig    gcc-14.2.0
-xtensa                randconfig-001-20250313    gcc-14.2.0
-xtensa                randconfig-002-20250313    gcc-14.2.0
+This patch is implementing PSR pause/resume refcount.
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ .../drm/i915/display/intel_display_types.h    |  2 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      | 26 +++++++++----------
+ 2 files changed, 13 insertions(+), 15 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 99a6fd2900b9c..65c808bba1c6c 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1620,7 +1620,7 @@ struct intel_psr {
+ 	bool sink_support;
+ 	bool source_support;
+ 	bool enabled;
+-	bool paused;
++	int pause_counter;
+ 	enum pipe pipe;
+ 	enum transcoder transcoder;
+ 	bool active;
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 4e938bad808cc..4d4ecf7555b66 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -2024,7 +2024,7 @@ static void intel_psr_enable_locked(struct intel_dp *intel_dp,
+ 
+ 	intel_psr_enable_source(intel_dp, crtc_state);
+ 	intel_dp->psr.enabled = true;
+-	intel_dp->psr.paused = false;
++	intel_dp->psr.pause_counter = 0;
+ 
+ 	/*
+ 	 * Link_ok is sticky and set here on PSR enable. We can assume link
+@@ -2210,7 +2210,6 @@ void intel_psr_disable(struct intel_dp *intel_dp,
+  */
+ void intel_psr_pause(struct intel_dp *intel_dp)
+ {
+-	struct intel_display *display = to_intel_display(intel_dp);
+ 	struct intel_psr *psr = &intel_dp->psr;
+ 
+ 	if (!CAN_PSR(intel_dp) && !CAN_PANEL_REPLAY(intel_dp))
+@@ -2223,12 +2222,10 @@ void intel_psr_pause(struct intel_dp *intel_dp)
+ 		return;
+ 	}
+ 
+-	/* If we ever hit this, we will need to add refcount to pause/resume */
+-	drm_WARN_ON(display->drm, psr->paused);
+-
+-	intel_psr_exit(intel_dp);
+-	intel_psr_wait_exit_locked(intel_dp);
+-	psr->paused = true;
++	if (intel_dp->psr.pause_counter++ == 0) {
++		intel_psr_exit(intel_dp);
++		intel_psr_wait_exit_locked(intel_dp);
++	}
+ 
+ 	mutex_unlock(&psr->lock);
+ 
+@@ -2251,13 +2248,14 @@ void intel_psr_resume(struct intel_dp *intel_dp)
+ 
+ 	mutex_lock(&psr->lock);
+ 
+-	if (!psr->paused)
+-		goto unlock;
++	if (!psr->enabled) {
++		mutex_unlock(&psr->lock);
++		return;
++	}
+ 
+-	psr->paused = false;
+-	intel_psr_activate(intel_dp);
++	if (--intel_dp->psr.pause_counter == 0)
++		intel_psr_activate(intel_dp);
+ 
+-unlock:
+ 	mutex_unlock(&psr->lock);
+ }
+ 
+@@ -3322,7 +3320,7 @@ void intel_psr_flush(struct intel_display *display,
+ 		 * we have to ensure that the PSR is not activated until
+ 		 * intel_psr_resume() is called.
+ 		 */
+-		if (intel_dp->psr.paused)
++		if (intel_dp->psr.pause_counter)
+ 			goto unlock;
+ 
+ 		if (origin == ORIGIN_FLIP ||
+-- 
+2.43.0
+
