@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 616C7C35FF1
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Mar 2025 07:38:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAD8BC35FF6
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Mar 2025 07:38:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A6BD10E979;
-	Fri, 14 Mar 2025 07:38:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61F3C10E97B;
+	Fri, 14 Mar 2025 07:38:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fBXkpq2Z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bk68EQ36";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B0FF10E979
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Mar 2025 07:38:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D234010E97A
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Mar 2025 07:38:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741937894; x=1773473894;
+ t=1741937895; x=1773473895;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3qQ517t73hzm/PSNCfYsPbkjMmMD2z0Pm1Ls/V5fvDA=;
- b=fBXkpq2Z6/h3vSUhTQzwWd4pHnZKWSMwv9/8BldP1rcSeyZ3OlYF7BQA
- gY2G3OVfHgwwoQAgVTdmpxRyMFVl07GOQNHfEO5UX37FO/Hl2QgbsQINu
- Xwk0u247EuO7h8e0lFWDYuDqomY6RN9Zduivd3+kXyRD1UvuCL5QqlFh/
- gy6RDDf1446w67DBlLBZq8AzDLsSddOLzwVkehdG57t09GdchFPsSZ8U5
- sQmJHqAN4kRobePESr7Mbyvpxc5FtVCHgk6xCAN6c6ypbAssHDMAhWSNZ
- Eve87N8f//cPBwuYdA56op7GuFXC8zhhQV1grwww+sSriL6rtHvlynQsR Q==;
-X-CSE-ConnectionGUID: oTLDZXp4QSCFS8A6+NzsDA==
-X-CSE-MsgGUID: 5Lyc2ukgQZePUb5xc7vv3g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11372"; a="68445959"
-X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="68445959"
+ bh=A0i5ryQ1FtBWQXiFTY4yRcIodJZaPKRHq1hDS8ojr3Q=;
+ b=bk68EQ36S5spJEG7WoKpdddkG1G1JSgtF8TnPaIQd6G7Bv54ed31/C4Q
+ qXcZMz1j0s0yWZKPEJ7XMqenM82krZkr+4VRHzPL65lNJqRptfh26NiVR
+ iiP8SEZN3K5Zt4XQIUGki683i7EoOHnFYnXdW7aleEfCGScOA1LCHYJeU
+ NF5I8IXr6RFcYOgSi0JhX9PF8XmDsHVv2JWgQ7VZ0T24HalJN/7kOKs/t
+ oxBhV/vLIHBlwSrdthL+DuroM8xztWttfZTUCDw8dqsCD56zsHVcjyOfr
+ 3mFNCFVr2J9ReXPN1MBl25MUXkdBks4IEviyw8xLDP6ioZp1s7i5/z4Q+ w==;
+X-CSE-ConnectionGUID: 0PEdvW0/TzmOfZ/iiasjhQ==
+X-CSE-MsgGUID: q2v30Df4S0aB3fxWMFWruA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11372"; a="68445961"
+X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="68445961"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2025 00:38:13 -0700
-X-CSE-ConnectionGUID: tthUJ8i8TgGJubGnBMW+HQ==
-X-CSE-MsgGUID: Im0yBvmMQgacWZT+DeGB1g==
+ 14 Mar 2025 00:38:15 -0700
+X-CSE-ConnectionGUID: g7kz1p3qSs+ZIe0crtCYJg==
+X-CSE-MsgGUID: KN50ffU3TaeQkyJmbLwTgg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="152043678"
+X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="152043684"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by orviesa002.jf.intel.com with ESMTP; 14 Mar 2025 00:38:11 -0700
+ by orviesa002.jf.intel.com with ESMTP; 14 Mar 2025 00:38:13 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
  oak.zeng@intel.com, Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [RFC 01/29] drm/xe: Introduce xe_vma_op_prefetch_range struct for
- prefetch of ranges
-Date: Fri, 14 Mar 2025 13:31:58 +0530
-Message-Id: <20250314080226.2059819-2-himal.prasad.ghimiray@intel.com>
+Subject: [RFC 02/29] drm/xe: Make xe_svm_alloc_vram public
+Date: Fri, 14 Mar 2025 13:31:59 +0530
+Message-Id: <20250314080226.2059819-3-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250314080226.2059819-1-himal.prasad.ghimiray@intel.com>
 References: <20250314080226.2059819-1-himal.prasad.ghimiray@intel.com>
@@ -68,44 +67,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add xe_vma_op_prefetch_range struct for svm ranges prefetching, including
-an xarray of SVM range pointers, range count, and target memory region.
+This function will be used in prefetch too, hence make it public.
 
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm_types.h | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ drivers/gpu/drm/xe/xe_svm.c |  6 +++---
+ drivers/gpu/drm/xe/xe_svm.h | 13 +++++++++++++
+ 2 files changed, 16 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 84fa41b9fa20..93224a87ab03 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -372,6 +372,16 @@ struct xe_vma_op_unmap_range {
- 	struct xe_svm_range *range;
- };
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 516898e99b26..2d2b385b691e 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -655,9 +655,9 @@ static struct xe_vram_region *tile_to_vr(struct xe_tile *tile)
+ 	return &tile->mem.vram;
+ }
  
-+/** struct xe_vma_op_prefetch_range - VMA prefetch range operation */
-+struct xe_vma_op_prefetch_range {
-+	/** @range: xarray for SVM ranges data */
-+	struct xarray range;
-+	/** @ranges_count: number of svm ranges to map */
-+	u32 ranges_count;
-+	/** @region: memory region to prefetch to */
-+	u32 region;
-+};
+-static int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
+-			     struct xe_svm_range *range,
+-			     const struct drm_gpusvm_ctx *ctx)
++int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
++		      struct xe_svm_range *range,
++		      const struct drm_gpusvm_ctx *ctx)
+ {
+ 	struct mm_struct *mm = vm->svm.gpusvm.mm;
+ 	struct xe_vram_region *vr = tile_to_vr(tile);
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+index e059590e5076..976059545173 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -72,6 +72,10 @@ bool xe_svm_has_mapping(struct xe_vm *vm, u64 start, u64 end);
+ int xe_svm_bo_evict(struct xe_bo *bo);
+ 
+ void xe_svm_range_debug(struct xe_svm_range *range, const char *operation);
 +
- /** enum xe_vma_op_flags - flags for VMA operation */
- enum xe_vma_op_flags {
- 	/** @XE_VMA_OP_COMMITTED: VMA operation committed */
-@@ -414,6 +424,8 @@ struct xe_vma_op {
- 		struct xe_vma_op_map_range map_range;
- 		/** @unmap_range: VMA unmap range operation specific data */
- 		struct xe_vma_op_unmap_range unmap_range;
-+		/** @prefetch: VMA prefetch range operation specific data */
-+		struct xe_vma_op_prefetch_range prefetch_range;
- 	};
- };
++int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
++		      struct xe_svm_range *range,
++		      const struct drm_gpusvm_ctx *ctx);
+ #else
+ static inline bool xe_svm_range_pages_valid(struct xe_svm_range *range)
+ {
+@@ -124,6 +128,15 @@ static inline
+ void xe_svm_range_debug(struct xe_svm_range *range, const char *operation)
+ {
+ }
++
++static inline
++int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
++		      struct xe_svm_range *range,
++		      const struct drm_gpusvm_ctx *ctx)
++{
++	return 0;
++}
++
+ #endif
  
+ /**
 -- 
 2.34.1
 
