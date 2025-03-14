@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B045C35FF1
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Mar 2025 11:18:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6ED06C282EC
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Mar 2025 11:18:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DEAF10E9C9;
-	Fri, 14 Mar 2025 11:18:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 305EF10E34C;
+	Fri, 14 Mar 2025 11:18:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NMli0gCN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jNNrrMe9";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2EC410E9C9;
- Fri, 14 Mar 2025 11:18:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCEC210E9CA;
+ Fri, 14 Mar 2025 11:18:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741951134; x=1773487134;
+ t=1741951137; x=1773487137;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9aFMxFk5IjBJ5X1gEZ/yCuKsyomSIIomXhNHmuf213Y=;
- b=NMli0gCN6zFKhcMAAU1xaVrvrAyqfPA6pxFdqB6wadrrIaw/eSw0FcXG
- F15Ptqd4MuHEe/fFln/fI214UNeqVKghYTvV6CeJGZY/96ToRDjGh1GLr
- cqb0VJOP2e15J9kwshqNsx/SxgoiSSMO4IZGYn35sYJnY2iUjHNLLzzHn
- axMhAiyKDAp01sbnLSwgQqCqU5UfuHPmGXkueawFXGj9Bb/pjMaz8deU8
- wQyUsLprYFbzOWOmhGz8F3n2D23SZcD8hVxjMJHLiOoMzVHeRt9gAnkW7
- 4KGxok0kUKrlzSAZcu97EDTEQuoji1KY1aD3kKz7bd6AKn9HtwZjXeKHc A==;
-X-CSE-ConnectionGUID: j2N1liRwQGGWgsuuMY5lSQ==
-X-CSE-MsgGUID: 6Cso9938SSW3Si2JbcCRXw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11372"; a="68467015"
-X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="68467015"
+ bh=V99WV+OkzvdDvMl7o4EnvDIU/oM0BjMn0dMrS2bwNo8=;
+ b=jNNrrMe97ZKXybjLx8siIkt5bpCeLZdt3IDT5Yu4Ds/MghRfh38eu5E7
+ 0oy82ezwvtO8NqkllVKDJKeEEbMV2xIGG2g8qPomyTXwhqFUjNVrNsS0C
+ UmMxtgxX9w5bXkJTNQwhc7ibK/Bbk5KzPLV3Wc9bYhhfXxEcAUG8DqRtk
+ VA6nhHh1mjlaMkMoUjW9wswEIwTRQi0yn542c33p5MD4WsPrxS/mqdQgW
+ ZL0KqVGiSDIWTfmKpOwcb9D2rDHV6ZdqD05gcoXl0lortcwu6JjeSA3mi
+ 8tFcCXZq5iIrDLpGBRaO63c4doe6P9VySTDwwiZszH9hjylpy5KNl/aRh g==;
+X-CSE-ConnectionGUID: ZsMhYf2OTiy64jWI4tWAtQ==
+X-CSE-MsgGUID: dxa93QuXRViceW243S6Sog==
+X-IronPort-AV: E=McAfee;i="6700,10204,11372"; a="68467019"
+X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="68467019"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2025 04:18:53 -0700
-X-CSE-ConnectionGUID: WB3C6jZkQkK7c1K4EnXcUw==
-X-CSE-MsgGUID: RzlgYzOuR7+rZJrV31agbA==
+ 14 Mar 2025 04:18:57 -0700
+X-CSE-ConnectionGUID: ZQ1fJuWQQOWuIYSRhoSKVA==
+X-CSE-MsgGUID: YM4CiuR7S+CmsmJrueKWAw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="126289635"
+X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="126289646"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.244.27])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2025 04:18:52 -0700
+ 14 Mar 2025 04:18:55 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 01/11] drm/i915/psr: Store enabled non-psr pipes into
- intel_crtc_state
-Date: Fri, 14 Mar 2025 13:18:29 +0200
-Message-ID: <20250314111839.1051945-2-jouni.hogander@intel.com>
+Subject: [PATCH 03/11] drm/i915/dmc: Add PIPEDMC_BLOCK_PKGC_SW definitions
+Date: Fri, 14 Mar 2025 13:18:31 +0200
+Message-ID: <20250314111839.1051945-4-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250314111839.1051945-1-jouni.hogander@intel.com>
 References: <20250314111839.1051945-1-jouni.hogander@intel.com>
@@ -71,96 +70,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To implement workaround for underrun on idle PSR HW issue (Wa_16025596647)
-we need to know enabled. Figure out which non-PSR pipes we will have active
-and store it into intel_crtc_state->active_non_psr_pipes. This is currently
-assuming only one eDP on a time. I.e. possible secondary eDP with PSR
-capable panel is not considered.
+We need PIPEDMC_BLOCK_PKGC_SW definitions to implement workaround for
+underrun on idle PSR HW issue (Wa_16025596647). Add PIPEDMC_BLOCK_PKGC_SW
+register definitions.
 
-Bspec: 74151
+Bspec: 71265
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- .../drm/i915/display/intel_display_types.h    |  3 +++
- drivers/gpu/drm/i915/display/intel_psr.c      | 23 +++++++++++++++++++
- 2 files changed, 26 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dmc_regs.h | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 99a6fd2900b9c..3d203a2003f10 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1114,6 +1114,7 @@ struct intel_crtc_state {
- 	bool wm_level_disabled;
- 	u32 dc3co_exitline;
- 	u16 su_y_granularity;
-+	u8 active_non_psr_pipes;
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
+index 2f1e3cb1a2477..e16ea3f16ed88 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
+@@ -27,6 +27,14 @@
+ 						   _MTL_PIPEDMC_EVT_CTL_4_A, \
+ 						   _MTL_PIPEDMC_EVT_CTL_4_B)
  
- 	/*
- 	 * Frequency the dpll for the port should run at. Differs from the
-@@ -1650,6 +1651,8 @@ struct intel_psr {
- 	u8 entry_setup_frames;
- 
- 	bool link_ok;
++#define PIPEDMC_BLOCK_PKGC_SW_A	0x5f1d0
++#define PIPEDMC_BLOCK_PKGC_SW_B	0x5F5d0
++#define PIPEDMC_BLOCK_PKGC_SW(pipe)				_MMIO_PIPE(pipe, \
++									   PIPEDMC_BLOCK_PKGC_SW_A, \
++									   PIPEDMC_BLOCK_PKGC_SW_B)
++#define PIPEDMC_BLOCK_PKGC_SW_BLOCK_PKGC_ALWAYS			BIT(31)
++#define PIPEDMC_BLOCK_PKGC_SW_BLOCK_PKGC_UNTIL_NEXT_FRAMESTART	BIT(15)
 +
-+	u8 active_non_psr_pipes;
- };
+ #define _ADLP_PIPEDMC_REG_MMIO_BASE_A	0x5f000
+ #define _TGL_PIPEDMC_REG_MMIO_BASE_A	0x92000
  
- struct intel_dp {
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 4e938bad808cc..1415e1e7aaf2c 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1658,6 +1658,9 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-+	struct intel_atomic_state *state = to_intel_atomic_state(crtc_state->uapi.state);
-+	struct intel_crtc *crtc;
-+	u8 active_pipes = 0;
- 
- 	if (!psr_global_enabled(intel_dp)) {
- 		drm_dbg_kms(display->drm, "PSR disabled by flag\n");
-@@ -1711,6 +1714,24 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
- 		drm_dbg_kms(display->drm,
- 			    "PSR disabled to workaround PSR FSM hang issue\n");
- 	}
-+
-+	/* Rest is for Wa_16025596647 */
-+	if (DISPLAY_VER(display) != 20 &&
-+	    !IS_DISPLAY_VERx100_STEP(display, 3000, STEP_A0, STEP_B0))
-+		return;
-+
-+	/* Not needed by Panel Replay  */
-+	if (crtc_state->has_panel_replay)
-+		return;
-+
-+	/* We ignore possible secondary PSR/Panel Replay capable eDP */
-+	for_each_intel_crtc(display->drm, crtc)
-+		active_pipes |= crtc->active ? BIT(crtc->pipe) : 0;
-+
-+	active_pipes = intel_calc_active_pipes(state, active_pipes);
-+
-+	crtc_state->active_non_psr_pipes = active_pipes &
-+		~BIT(to_intel_crtc(crtc_state->uapi.crtc)->pipe);
- }
- 
- void intel_psr_get_config(struct intel_encoder *encoder,
-@@ -1995,6 +2016,7 @@ static void intel_psr_enable_locked(struct intel_dp *intel_dp,
- 	intel_dp->psr.psr2_sel_fetch_cff_enabled = false;
- 	intel_dp->psr.req_psr2_sdp_prior_scanline =
- 		crtc_state->req_psr2_sdp_prior_scanline;
-+	intel_dp->psr.active_non_psr_pipes = crtc_state->active_non_psr_pipes;
- 
- 	if (!psr_interrupt_error_check(intel_dp))
- 		return;
-@@ -2170,6 +2192,7 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
- 	intel_dp->psr.psr2_sel_fetch_enabled = false;
- 	intel_dp->psr.su_region_et_enabled = false;
- 	intel_dp->psr.psr2_sel_fetch_cff_enabled = false;
-+	intel_dp->psr.active_non_psr_pipes = 0;
- }
- 
- /**
 -- 
 2.43.0
 
