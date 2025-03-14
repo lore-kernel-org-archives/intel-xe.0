@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A90B2C35FF1
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 890D7C282EC
 	for <intel-xe@archiver.kernel.org>; Fri, 14 Mar 2025 07:39:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D6E110E98C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5048B10E98A;
 	Fri, 14 Mar 2025 07:39:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l5hcJ5HP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D3QAe4P5";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA66710E98C
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Mar 2025 07:38:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DEC4A10E98C
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Mar 2025 07:39:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741937939; x=1773473939;
+ t=1741937941; x=1773473941;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=KgMz+l3JjWZiKcWDUl33gOKCH4tz7RbImRCbdR0L2FQ=;
- b=l5hcJ5HP4Ar/EzvGOnPRNUCW19E5b3dzBeyV3/RkWkvujue2Ghp2d5wP
- yLdv8cfvSmZF7/rMHaeJrfVmyr6vXaZxX7HBl8dpzdVWuhntvUpYoXUjj
- aZRGPSHx7vj5ooYWIv/UjTCVhwdd1uDfD5ikW9+vt7wfX4IUmpTtg14mf
- f0GDulegEKYtzmyiyfSNS4ZF3uHWS4Js58BaYIOF0ET89Iv9N/PCpd3A7
- o0WATu2SCMRwsozQweWwBllnSUaMdPmFH53QlTpdDu86sYRcuokGHKpgE
- mOpBx9QBiOblAjzr8mSsZ2MBLgGuplorf/lGZKEU6luXF37I1A4jeW6jb Q==;
-X-CSE-ConnectionGUID: ZzWpkKbVTwiAOAXM8c8lcA==
-X-CSE-MsgGUID: satTiqUISNqPOz4XgE7gDw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11372"; a="68446113"
-X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="68446113"
+ bh=AQoCgvoxI/flcYy0CrDrzpEMThjEurAJQBWHUqupZKY=;
+ b=D3QAe4P54C4Ya+9yuiL1B7W6E+EwsboLN1DC0htt4ZEuajxen+oy8AwS
+ wWZ1OSFIU/xFkMUwIeD5+gEOPutiYNmTCfaG1Tk1nkwgTF6ZoOoD1K9Dp
+ m78CtF82vBzt/sOcpMIOZJ9nDbxcKw4Wtn/8VyCGL4NRFWn4Y8rUSuxr2
+ Omk/qw4328p2bEgYGfWOgvFk+r5zolHW/BJa1qfLrRCk4f/TypwcrZXsQ
+ 1al1a2Lv+ToWu3+g8gBplV/aNZ65NE/U8l222/RboKbRAw+ZYwzwhIga/
+ KnBr3hA1me1GHl6U5OwgLNRTxM1boFTLEYyyysQn1n/vXjifQdvB56gah g==;
+X-CSE-ConnectionGUID: pwEInD4CRkG2BAw0hTlc0Q==
+X-CSE-MsgGUID: Rr90qW+FT8SYcMGiApvTMQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11372"; a="68446118"
+X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="68446118"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2025 00:38:59 -0700
-X-CSE-ConnectionGUID: LCekmjNrTUiSk+H4GtNtlg==
-X-CSE-MsgGUID: LxTWAz8CRHCrQVqM9kYR+A==
+ 14 Mar 2025 00:39:01 -0700
+X-CSE-ConnectionGUID: SQRoB+9YTBGv4apaU0fMsQ==
+X-CSE-MsgGUID: IC7WGKbqQM+59wBcx87fQw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="152043869"
+X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="152043877"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by orviesa002.jf.intel.com with ESMTP; 14 Mar 2025 00:38:57 -0700
+ by orviesa002.jf.intel.com with ESMTP; 14 Mar 2025 00:38:59 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
  oak.zeng@intel.com, Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [RFC 23/29] drm/xe/madvise: Update migration policy based on
- preferred location
-Date: Fri, 14 Mar 2025 13:32:20 +0530
-Message-Id: <20250314080226.2059819-24-himal.prasad.ghimiray@intel.com>
+Subject: [RFC 24/29] drm/xe/svm: Support DRM_XE_SVM_ATTR_PAT memory attribute
+Date: Fri, 14 Mar 2025 13:32:21 +0530
+Message-Id: <20250314080226.2059819-25-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250314080226.2059819-1-himal.prasad.ghimiray@intel.com>
 References: <20250314080226.2059819-1-himal.prasad.ghimiray@intel.com>
@@ -68,95 +67,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When the user sets the valid devmem_fd as a preferred location, GPU fault
-will trigger migration to tile of device associated with devmem_fd.
-
-If the user sets an invalid devmem_fd the preferred location is current
-placement only.
+This attributes sets the pat_index for the svm used vma range, which is
+utilized to ascertain the coherence.
 
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm.c        | 14 ++++++++++----
- drivers/gpu/drm/xe/xe_vm.h         |  3 +++
- drivers/gpu/drm/xe/xe_vm_madvise.c | 20 +++++++++++++++++++-
- 3 files changed, 32 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_vm_madvise.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index cb876000411f..ed7f0cfbb546 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -745,6 +745,12 @@ bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vm
- 	return needs_migrate;
- }
- 
-+static const u32 region_to_mem_type[] = {
-+	XE_PL_TT,
-+	XE_PL_VRAM0,
-+	XE_PL_VRAM1,
-+};
-+
- /**
-  * xe_svm_handle_pagefault() - SVM handle page fault
-  * @vm: The VM.
-@@ -796,13 +802,13 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 
- 	range_debug(range, "PAGE FAULT");
- 
--	/* for gpu pagefault always migrate to local vram unless
--	 * preferred location provided by madvise
--	 */
--	region = 1;
-+	region = vma->attr.preferred_loc.devmem_fd;
- 
- 	if (xe_svm_range_needs_migrate_to_vram(range, vma, region)) {
- 		migrate_try_count--;
-+		region = region ? region : 1;
-+		/* Need rework for multigpu */
-+		tile = &vm->xe->tiles[region_to_mem_type[region] - XE_PL_VRAM0];
- 
- 		err = xe_svm_alloc_vram(vm, tile, range, &ctx);
- 		if (err) {
-diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index 4e45230b7205..377f62f859b7 100644
---- a/drivers/gpu/drm/xe/xe_vm.h
-+++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -220,6 +220,9 @@ int __xe_vm_userptr_needs_repin(struct xe_vm *vm);
- 
- int xe_vm_userptr_check_repin(struct xe_vm *vm);
- 
-+bool xe_vma_has_preferred_mem_loc(struct xe_vma *vma,
-+				  u32 *mem_region, u32 *devmem_fd);
-+
- int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker);
- struct dma_fence *xe_vma_rebind(struct xe_vm *vm, struct xe_vma *vma,
- 				u8 tile_mask);
 diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
-index 7e1a95106cb9..f870e8642190 100644
+index f870e8642190..f4e0545937b0 100644
 --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
 +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-@@ -61,7 +61,25 @@ static int madvise_preferred_mem_loc(struct xe_device *xe, struct xe_vm *vm,
- 				     struct xe_vma **vmas, int num_vmas,
- 				     struct drm_xe_madvise_ops ops)
+@@ -104,7 +104,14 @@ static int madvise_pat_index(struct xe_device *xe, struct xe_vm *vm,
+ 			     struct xe_vma **vmas, int num_vmas,
+ 			     struct drm_xe_madvise_ops ops)
  {
 -	/* Implementation pending */
-+	s32 devmem_fd;
-+	u32 migration_policy;
 +	int i;
 +
-+	xe_assert(vm->xe, ops.type == DRM_XE_VMA_ATTR_PREFERRED_LOC);
-+	vm_dbg(&xe->drm, "migration policy = %d, devmem_fd = %d\n",
-+	       ops.preferred_mem_loc.migration_policy,
-+	       ops.preferred_mem_loc.devmem_fd);
++	xe_assert(vm->xe, ops.type == DRM_XE_VMA_ATTR_PAT);
++	vm_dbg(&xe->drm, "attr_value = %d", ops.pat_index.val);
 +
-+	devmem_fd = (s32)ops.preferred_mem_loc.devmem_fd;
-+	devmem_fd = (devmem_fd < 0) ? 0 : devmem_fd;
-+
-+	migration_policy = ops.preferred_mem_loc.migration_policy;
-+
-+	for (i = 0; i < num_vmas; i++) {
-+		vmas[i]->attr.preferred_loc.devmem_fd = devmem_fd;
-+		vmas[i]->attr.preferred_loc.migration_policy = migration_policy;
-+	}
++	for (i = 0; i < num_vmas; i++)
++		vmas[i]->attr.pat_index = ops.pat_index.val;
 +
  	return 0;
  }
