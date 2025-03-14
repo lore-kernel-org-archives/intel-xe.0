@@ -4,61 +4,169 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 837DCC282EC
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Mar 2025 20:46:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E81C7C28B2F
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Mar 2025 21:17:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49DB210E1D3;
-	Fri, 14 Mar 2025 20:46:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20C0210E30D;
+	Fri, 14 Mar 2025 21:17:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MhLsC4lM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NLro6S2l";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE3E010E1D3
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Mar 2025 20:46:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FDD810E170;
+ Fri, 14 Mar 2025 21:17:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741985173; x=1773521173;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=3x7MxY2hvyDF2Ubv5n7sEB+pz9tzTJAY9agl01p5Xb8=;
- b=MhLsC4lMvNKPpoPWbQ3uiOoUNT7VHJ1yvb2+FhvjItTDqTNx3bRf9fjF
- DnG4ZicP+R+7JYCMjA7HKlJL79QIhaX1QcEUjUCzcAp9RahFwhSaO1uue
- +6tsaLrE5mrv5qUu/gJU+AGBiT084QhNK5YbXjTdJK1tl1hFMVoVNzwAY
- fIbCWM5uGt0FVdl9gI+JOKZKlI4rbMRubeWTudayUI2j0MB/hKV8sd/jZ
- NY6YvNS2fDf0ILTcPqj+k6uv8cYQ0/7Tc7+NQMaQLx1W9Pp0qetY1FiKp
- VKi7/vX2JYyqt5q3vPKqYtRAviwJALrBvxv1o+O5sj+UVjPw9XKCqpuFi w==;
-X-CSE-ConnectionGUID: 0N1YFJyzSBOVm81ddfvToA==
-X-CSE-MsgGUID: k3K8PoB7S7uM5ZF9ADVZfQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11373"; a="42322600"
-X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="42322600"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2025 13:46:12 -0700
-X-CSE-ConnectionGUID: YxcohDwTSJWFLl/n6xDFjw==
-X-CSE-MsgGUID: w3Yeq0yCQDKATR9/efzl6Q==
+ t=1741987066; x=1773523066;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=rEMrstmgtC+DrxZc5XgxQNkVSzSNionsH4Q31qeYoKk=;
+ b=NLro6S2lkOz+MHNmOj1xLWbq3ziNavhJtgXWDKlhxAyXorpau4utY2j/
+ 5LMbb2Fgw2Wbm9qO78UncYkhUCXRhmAFR50kNv9u0eNiUNKEw5/JgnkTF
+ IGpKpFxo7TP+ZuTVPdbG/R6mmDwd6Yj+GR9tf6xb1VhRsiDIawVFDIz8A
+ RtGYW5F4Y3pIHQlKnLsuag+MGTuYTmiJ8aMDJ8PLbNkzbCu0nm/0MSCxZ
+ XvDStClhyrmI/SqycNMZcQmZBMKB5RYVJ6EDtBKjkCBM/RAkg0uz/rD5b
+ 4keC5pQ8Cpxepqad+5cY6xEoE8A8ZzxpkV35ztTFnh/++q4IougDU8A0S A==;
+X-CSE-ConnectionGUID: 3RqrJMBKT4yZio1+Q+Z+ug==
+X-CSE-MsgGUID: GiKprFfgT5+EGmYd9sI7cQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11373"; a="43253681"
+X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="43253681"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2025 14:17:45 -0700
+X-CSE-ConnectionGUID: 9uEo9rCoQvid9f0xbdWI6A==
+X-CSE-MsgGUID: r45n+zHcRBaXHmnwSirs8Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="158529982"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa001.jf.intel.com with ESMTP; 14 Mar 2025 13:46:09 -0700
-Received: from [10.245.97.41] (unknown [10.245.97.41])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 0079134F06;
- Fri, 14 Mar 2025 20:46:07 +0000 (GMT)
-Message-ID: <667cbea4-3891-45e3-be19-f3a0cafa0ff1@intel.com>
-Date: Fri, 14 Mar 2025 21:46:07 +0100
+X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="121197702"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 14 Mar 2025 14:17:45 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Fri, 14 Mar 2025 14:17:45 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14 via Frontend Transport; Fri, 14 Mar 2025 14:17:45 -0700
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.43) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Fri, 14 Mar 2025 14:17:44 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=oP2mIPj+7858r7y2o/YJxuK58bHROwsYpuotLNV9ieL4LtB8QU+be0r7qvlBlExkmaR3smtQrYPR+vWQRzSf17V/sX7oEs1p+Chp/JiMwhhe+T+slYKCXlOm8K4ajJIROKS/eLK6T0OOSzY4jcxFbFUGD6EhuzhsvZ6pdssVYtVnxKBncwY479aOLuah1FB6to4pMVEFunXQSj3KjEDgTWTa7up38ggD1yi4t75LmR1re9T7u9wJkd5VTzWVdcfpH69TJgKeKuHZgemYSAZoficPurhclBtrEsyADzxnUKQjjyGclNPTkyGuSjOv0y7Wi4iABllWPkQkIMBsQYkjyw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PxhVRu1s38MSptYtj7QKa71nOhAaCoH4oOeldh/ZvIk=;
+ b=sCNuhzjdh56awRZLTXRKD+xveOSrOGQPFKB7Zk9GWivaOQlOrwGfMTwyg7fIN3x0ulqbZSU2xeewZymJjfqbdS78GYrC1697BwHcm/X4+FmBQcJSxMZGzN/ElTASzI91DMEjPIcxp9PbGQP7zPrmnj1N/BjzyDKppixM6yM3VeUhvExxfpJe3D3bmaq7/GHk9PcEzMM8LdAIsSW1pvEdDYYz6X8DeWyUqX4kbuzmpHJHG4Jk9rDeOsZejcfpCOjcwkFw5KdVWXRdWXDWBFHXWnX8ryuJApQMzzFqhIVbW0dFHdho/TglzmiRtmDVKxgm969ryEmEnQ+GhgOVzPlOvQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by PH0PR11MB4934.namprd11.prod.outlook.com (2603:10b6:510:30::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.27; Fri, 14 Mar
+ 2025 21:17:40 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::8dd1:f169:5266:e16e]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::8dd1:f169:5266:e16e%6]) with mapi id 15.20.8534.027; Fri, 14 Mar 2025
+ 21:17:40 +0000
+Date: Fri, 14 Mar 2025 14:17:37 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>, Ville
+ =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>, Jani Nikula
+ <jani.nikula@linux.intel.com>
+Subject: Re: [PATCH v5 1/3] drm/i915/display: Convert intel_bw.c internally
+ to intel_display
+Message-ID: <20250314211737.GC1439735@mdroper-desk1.amr.corp.intel.com>
+References: <20250311-xe3lpd-bandwidth-update-v5-0-a95a9d90ad71@intel.com>
+ <20250311-xe3lpd-bandwidth-update-v5-1-a95a9d90ad71@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250311-xe3lpd-bandwidth-update-v5-1-a95a9d90ad71@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0044.namprd05.prod.outlook.com
+ (2603:10b6:a03:33f::19) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] drm/xe/vf: Fixup CTB send buffer messages after
- migration
-To: Tomasz Lis <tomasz.lis@intel.com>, intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
- =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-References: <20250306222126.3382322-1-tomasz.lis@intel.com>
- <20250306222126.3382322-4-tomasz.lis@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20250306222126.3382322-4-tomasz.lis@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|PH0PR11MB4934:EE_
+X-MS-Office365-Filtering-Correlation-Id: df9301bf-c371-4061-f270-08dd633da6c6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?QWeXX44Bk+sUj+XpMZx8ODr3gSMLu3vR9argFdvBifWL2Juf12TCr7Zsj5?=
+ =?iso-8859-1?Q?fnEtgHM3uoBQluOzk1oWZJ2eRlVXTEEFUB6SskqQSNhpP3myP90c3/zD+Z?=
+ =?iso-8859-1?Q?CgxUWSI7kmDIim/QKKqfFGnMBFdpBEDkKBzrba6m6rrXuEe32mYBaNUr12?=
+ =?iso-8859-1?Q?IHj1ZD3yADaB3JBLNcygYw62VHofmcESNlssFZTiB0tlXMR/OvspRtFm43?=
+ =?iso-8859-1?Q?b1PLEhuTGYoEWsCqE+Dha+1KQcvCYOLXTeuClpYHPRnda1+cYJNVEL6+Ls?=
+ =?iso-8859-1?Q?axC8gC1LOpMaWK/hFE4hQAna8178MyEWFiVacDUsnDSsm3EzSf9UiqfLl0?=
+ =?iso-8859-1?Q?288r6lYnu1sT0SA87ZV+YFv4gSSKaMEHdIm3H1txNPW9KrAZxF63UQAEe2?=
+ =?iso-8859-1?Q?T+cX3+s1OM8e/pJH7MvzA46JZAq03tO8Tf2UA0dtc4bm3/C6wbCSYhwBAi?=
+ =?iso-8859-1?Q?fzWZ3DYmCQwWECmSrPdBv+XkSOgUdaZN3r+yZH9E6IbTQETjFfNpUOC25T?=
+ =?iso-8859-1?Q?aeigW5z9NM3NIy57nSmCwSG7BsC3TEeUoEfX5Kmf5MW8Oetn92mDnIJV0p?=
+ =?iso-8859-1?Q?T29mXulpEiY8MKBOXfYuemYCoTq0vVYi5KU+cL4zkBNQyee0JbkDnQ3cAw?=
+ =?iso-8859-1?Q?DBB/QUxNW2wRMMpi6yqY4s4XoFIut8QqLYAUbxvnNDpYuecy8sFe/UzzvI?=
+ =?iso-8859-1?Q?ikCzivHyu/w5czdhcagqI2+iRpIz1zBCYznRG+F+7f462k68ND7X/fRe5i?=
+ =?iso-8859-1?Q?g55jI/HYVPKO5u9EpiyGACKmijNSUkfIbOzaMewndoUR0hr8mf/ZLQNdjU?=
+ =?iso-8859-1?Q?KQSgWeB77P96KZXjrmoibY5Gx78Arfbpvx2MHUspgxDjqZ2H7N5GvhBjnz?=
+ =?iso-8859-1?Q?5mbXguTENNA3/xLjj7sK0s/jQohcymp/KpG7I6Li7TD7H7v8FFPPgT71rx?=
+ =?iso-8859-1?Q?dycZgSvy0CXexB1B8+Z4nsXNU/42i3pf3MY4puTFTuMHk7Ecq45i1xMaa4?=
+ =?iso-8859-1?Q?6tuxoOJXnn010IXP53fI+GPyfSvmK9qKAdl7JBM19TXhLjsPaKOv+wNMWt?=
+ =?iso-8859-1?Q?KtsK3vYKFLacqJZBWpbdwAv6PJ7k4humLjT7S7xhOAYs5NyKkNoBtCK/XR?=
+ =?iso-8859-1?Q?wVyZTCmNsM5m886JoMWu0IongoOOjP984uynX1enGRa+tOLCj7lqT7A9M4?=
+ =?iso-8859-1?Q?QRRcC70PUROHPP3P4Dn9HS/uNBwXU3EG8LygLvuiWBbRFgXxnwjigrQtnQ?=
+ =?iso-8859-1?Q?caLd+RqfgpikUaaLYNDyOenq6uxrZHDP4+7BFxfxZJskJxys7MxwqzvUdA?=
+ =?iso-8859-1?Q?K1EK6nN6rdYnSMu6GF9Q7lDSTP0nyWuYGihM9dCz1S/S2tcUKYuBJB5btL?=
+ =?iso-8859-1?Q?b8LIMTihLQAnpAuwcu4LIUGR4TJ4OVRlVwwDQl8ZCA7APBCiKs/QsdOfE4?=
+ =?iso-8859-1?Q?2neJnccrLz25A5O4?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?acfxxqMquZkyU2eTMwNlZqwlStjzdPj/RFNfMliOYpEW3qySCzdS0Y30ks?=
+ =?iso-8859-1?Q?9/O8wqFyKSL5wY3llqEjp69iFoJjm15+U6o2r1LknJWVpSOQJ7vfsrcDsF?=
+ =?iso-8859-1?Q?yoLTtGsH2g1p4cnjA5H6k01FRCk4NihRJtWt0CPoYfKRgi/P2D1pfEZ+Ia?=
+ =?iso-8859-1?Q?iHtIgrpVJfcM2hn3n2l2EVBOERB//dF2ClNh/qBLIZV+RC9bnBGog5XRI9?=
+ =?iso-8859-1?Q?H3aIoZygcYz6khZn3E2Dpsr17ykcWKfvx60ANewPltbGyMM/17nSQ4M4EL?=
+ =?iso-8859-1?Q?Ju6jtw6q5Ss5+PJ5tnUM9eSGY594np5mpRWeKC6eEqIkKqbOn5tUP75gll?=
+ =?iso-8859-1?Q?206Bus+LpZ8lVQ5uzZKEsNg8PBh2+qN9b2euyA+T6ub066O1gqazRk5h8l?=
+ =?iso-8859-1?Q?sQHtbMghmB7kv3jB0FZbG8vh6oVMIjAb3DEECgSos0fsYchLB1OZgcSvrw?=
+ =?iso-8859-1?Q?rEn72Y1bvQezwubrYmsXm9YN3NGhSaNs2DqGEaXvxL9nCjKr3I22tNkbR9?=
+ =?iso-8859-1?Q?AzLmxUJpbMmkc/PDG5pvpj7Xq4ZouivQPuBzSwXf9urXi1InRUwYiSD1uE?=
+ =?iso-8859-1?Q?tA9T4c7RgT4oLMySr/fmDQvQMl9lveXQqkNDSF6OmqLxKgp/PAPWuZGYP9?=
+ =?iso-8859-1?Q?HLDYH2Ktr+pAnkoRkHzkxd1q04/sFKV8D0w3kQo3gssj7Bx2knmp26gR3F?=
+ =?iso-8859-1?Q?moUjXCBB5y/oLcCYu1C4R5gk/i2rP/oL/XNEub+epMZzFcOjpGP14109PB?=
+ =?iso-8859-1?Q?oAtd6zSGNXTPkuPdIjhCToI6fbJAOdI9SLRekjxg9w76AHfCsAzMDo29Mh?=
+ =?iso-8859-1?Q?mXC6gUqYv0eX7x9IdamuCVcS5Kv0s8uzjMVXNaclKxDgQmaSBotJ/vrq0H?=
+ =?iso-8859-1?Q?Vf/sSAm6UsSR+6lvhTS9XkjyrQSJDz/mTRQQ7F7AJl+Tx2e4EiOTRC1K4w?=
+ =?iso-8859-1?Q?Gxs0LX4n1JfvLD2XAhP9TYsQ/+hKPI7QGOxEOntiimeAcdyyQxXyVQqqb3?=
+ =?iso-8859-1?Q?PJn4uRDpmUaOP+VH1hTAfy7qlWZ0lRjRiQBq4JTK/zWwy58RRNv2oLBXqe?=
+ =?iso-8859-1?Q?ZGSEJmtcFcskk9B27JVfrimWeAsdEhjgGoZ6yRrQwkfE+cFzUhsPr4Rlev?=
+ =?iso-8859-1?Q?mndAHynlXq5QoxnjfY9UDtuqily3WNSDRDmhb635JgGluXY3vbk4siWxta?=
+ =?iso-8859-1?Q?ACvjQUFkFiN2xF8Oue4NgQbkrJ1gVHGsCZ67sSHneDnwqU8yienjXrEAdy?=
+ =?iso-8859-1?Q?aDXI1Tx6anAjT8lMS25mr/x3t/yHBa6sTwpmk1ZFeDl3Fae5gfp+g65A+z?=
+ =?iso-8859-1?Q?UxmV+GUqhi08V8miPnmsnGJtDLnMgbKTbOdYDMVZ4wnX+t4KfE/v2Y959C?=
+ =?iso-8859-1?Q?inYzzX+KsteWXtaCx5Mo2YahUmAlzC0UopfGE6DF6q2uLE7d4vC+P/K8pW?=
+ =?iso-8859-1?Q?ZdHOjlc3pGGkufTufmzHL8Y3tprI6Vl2J6C0WJaRjNFPKHNyA4QQQal4p3?=
+ =?iso-8859-1?Q?9aU0dQROdfVLHHEUC/GVybpktvO+4EkLm1A+gEOa481xipsFwr69q5P6s3?=
+ =?iso-8859-1?Q?v8kiMb2I00eZiJDPZbk1Doo7d3C4jG23D6hOUxJWNpOlkxwTyD6sOQq+Ek?=
+ =?iso-8859-1?Q?IPEVgo80KrIRsq57yFLRZ7pqvLtemXR9VaCGp0CCvB0q7STzWDK96bbQ?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: df9301bf-c371-4061-f270-08dd633da6c6
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2025 21:17:40.0955 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: DPvZ0PodhotwvgO56GxERw43KupU788lqFX8ju5kkvR9I1x1bd/gjdsj46ELf/iKxk9FiKuWkCLTP9S1WZmG9xn77pxHgYlQ1kpbXwDX8K8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4934
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,367 +181,1228 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-On 06.03.2025 23:21, Tomasz Lis wrote:
-> During post-migration recovery of a VF, it is necessary to update
-> GGTT references included in messages which are going to be sent
-> to GuC. GuC will start consuming messages after VF KMD will inform
-> it about fixups being done; before that, the VF KMD is expected
-> to update any H2G messages which are already in send buffer but
-> were not consumed by GuC.
+On Tue, Mar 11, 2025 at 02:04:50PM -0300, Gustavo Sousa wrote:
+> Update intel_bw.c internally use intel_display. Conversion of the public
+> interface will come as a follow-up.
 > 
-> Only a small subset of messages allowed for VFs have GGTT references
-> in them. This patch adds the functionality to parse the CTB send
-> ring buffer and shift addresses contained within.
+> v2:
+>   - Prefer intel_uncore_read() for MCHBAR registers. (Ville)
+> v3:
+>   - Remove the unnecessary inclusion of intel_de.h after changes from
+>     v2. (Ville)
 > 
-> While fixing the CTB content, ct->lock is not taken. This means
-> the only barrier taken remains GGTT address lock - which is ok,
-> because only requests with GGTT addresses matter, but it also means
-> tail changes can happen during the CTB fixups execution (which may
-> be ignored as any new messages will not have anything to fix).
-> 
-> The GGTT address locking will be introduced in a future series.
-> 
-> v2: removed storing shift as that's now done in VMA nodes patch;
->   macros to inlines; warns to asserts; log messages fixes (Michal)
-> v3: Removed inline keywords, enums for offsets in CTB messages,
->  less error messages, if return unused then made functs void (Michal)
-> v4: Update the cached head before starting fixups
-> 
-> Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
+> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 > ---
->  drivers/gpu/drm/xe/abi/guc_actions_abi.h |   7 ++
->  drivers/gpu/drm/xe/xe_guc_ct.c           | 147 +++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_guc_ct.h           |   2 +
->  drivers/gpu/drm/xe/xe_guc_submit.c       |   4 +
->  drivers/gpu/drm/xe/xe_sriov_vf.c         |  18 +++
->  5 files changed, 178 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_bw.c | 416 +++++++++++++++++---------------
+>  1 file changed, 217 insertions(+), 199 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-> index ec516e838ee8..dde6cb5a6be9 100644
-> --- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-> +++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-> @@ -160,6 +160,13 @@ enum xe_guc_preempt_options {
->  	XE_GUC_PREEMPT_OPTION_DROP_SUBMIT_Q = 0x8,
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+> index 048be287224774110d94fe2944daa580d8dc20a6..6f805af32926d3608929655de97699747d7a5798 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> @@ -39,14 +39,15 @@ struct intel_qgv_info {
+>  	u8 deinterleave;
 >  };
 >  
-> +enum xe_guc_register_context_multi_lrc_param_offsets {
-> +	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_OFFS_WQ_DESC = 5,
-> +	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_OFFS_WQ_BASE = 7,
-> +	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_OFFS_N_CHILDREN = 10,
-> +	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_OFFS_HWLRCA = 11
-> +};
-> +
->  enum xe_guc_report_status {
->  	XE_GUC_REPORT_STATUS_UNKNOWN = 0x0,
->  	XE_GUC_REPORT_STATUS_ACKED = 0x1,
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-> index 72ad576fc18e..6f19bf9565ba 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-> @@ -84,6 +84,8 @@ struct g2h_fence {
->  	bool done;
+> -static int dg1_mchbar_read_qgv_point_info(struct drm_i915_private *dev_priv,
+> +static int dg1_mchbar_read_qgv_point_info(struct intel_display *display,
+>  					  struct intel_qgv_point *sp,
+>  					  int point)
+>  {
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
+>  	u32 dclk_ratio, dclk_reference;
+>  	u32 val;
+>  
+> -	val = intel_uncore_read(&dev_priv->uncore, SA_PERF_STATUS_0_0_0_MCHBAR_PC);
+> +	val = intel_uncore_read(&i915->uncore, SA_PERF_STATUS_0_0_0_MCHBAR_PC);
+>  	dclk_ratio = REG_FIELD_GET(DG1_QCLK_RATIO_MASK, val);
+>  	if (val & DG1_QCLK_REFERENCE)
+>  		dclk_reference = 6; /* 6 * 16.666 MHz = 100 MHz */
+> @@ -54,18 +55,18 @@ static int dg1_mchbar_read_qgv_point_info(struct drm_i915_private *dev_priv,
+>  		dclk_reference = 8; /* 8 * 16.666 MHz = 133 MHz */
+>  	sp->dclk = DIV_ROUND_UP((16667 * dclk_ratio * dclk_reference) + 500, 1000);
+>  
+> -	val = intel_uncore_read(&dev_priv->uncore, SKL_MC_BIOS_DATA_0_0_0_MCHBAR_PCU);
+> +	val = intel_uncore_read(&i915->uncore, SKL_MC_BIOS_DATA_0_0_0_MCHBAR_PCU);
+>  	if (val & DG1_GEAR_TYPE)
+>  		sp->dclk *= 2;
+>  
+>  	if (sp->dclk == 0)
+>  		return -EINVAL;
+>  
+> -	val = intel_uncore_read(&dev_priv->uncore, MCHBAR_CH0_CR_TC_PRE_0_0_0_MCHBAR);
+> +	val = intel_uncore_read(&i915->uncore, MCHBAR_CH0_CR_TC_PRE_0_0_0_MCHBAR);
+>  	sp->t_rp = REG_FIELD_GET(DG1_DRAM_T_RP_MASK, val);
+>  	sp->t_rdpre = REG_FIELD_GET(DG1_DRAM_T_RDPRE_MASK, val);
+>  
+> -	val = intel_uncore_read(&dev_priv->uncore, MCHBAR_CH0_CR_TC_PRE_0_0_0_MCHBAR_HIGH);
+> +	val = intel_uncore_read(&i915->uncore, MCHBAR_CH0_CR_TC_PRE_0_0_0_MCHBAR_HIGH);
+>  	sp->t_rcd = REG_FIELD_GET(DG1_DRAM_T_RCD_MASK, val);
+>  	sp->t_ras = REG_FIELD_GET(DG1_DRAM_T_RAS_MASK, val);
+>  
+> @@ -74,22 +75,23 @@ static int dg1_mchbar_read_qgv_point_info(struct drm_i915_private *dev_priv,
+>  	return 0;
+>  }
+>  
+> -static int icl_pcode_read_qgv_point_info(struct drm_i915_private *dev_priv,
+> +static int icl_pcode_read_qgv_point_info(struct intel_display *display,
+>  					 struct intel_qgv_point *sp,
+>  					 int point)
+>  {
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
+>  	u32 val = 0, val2 = 0;
+>  	u16 dclk;
+>  	int ret;
+>  
+> -	ret = snb_pcode_read(&dev_priv->uncore, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
+> +	ret = snb_pcode_read(&i915->uncore, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
+>  			     ICL_PCODE_MEM_SS_READ_QGV_POINT_INFO(point),
+>  			     &val, &val2);
+>  	if (ret)
+>  		return ret;
+>  
+>  	dclk = val & 0xffff;
+> -	sp->dclk = DIV_ROUND_UP((16667 * dclk) + (DISPLAY_VER(dev_priv) >= 12 ? 500 : 0),
+> +	sp->dclk = DIV_ROUND_UP((16667 * dclk) + (DISPLAY_VER(display) >= 12 ? 500 : 0),
+>  				1000);
+>  	sp->t_rp = (val & 0xff0000) >> 16;
+>  	sp->t_rcd = (val & 0xff000000) >> 24;
+> @@ -102,14 +104,15 @@ static int icl_pcode_read_qgv_point_info(struct drm_i915_private *dev_priv,
+>  	return 0;
+>  }
+>  
+> -static int adls_pcode_read_psf_gv_point_info(struct drm_i915_private *dev_priv,
+> -					    struct intel_psf_gv_point *points)
+> +static int adls_pcode_read_psf_gv_point_info(struct intel_display *display,
+> +					     struct intel_psf_gv_point *points)
+>  {
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
+>  	u32 val = 0;
+>  	int ret;
+>  	int i;
+>  
+> -	ret = snb_pcode_read(&dev_priv->uncore, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
+> +	ret = snb_pcode_read(&i915->uncore, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
+>  			     ADL_PCODE_MEM_SS_READ_PSF_GV_INFO, &val, NULL);
+>  	if (ret)
+>  		return ret;
+> @@ -122,10 +125,10 @@ static int adls_pcode_read_psf_gv_point_info(struct drm_i915_private *dev_priv,
+>  	return 0;
+>  }
+>  
+> -static u16 icl_qgv_points_mask(struct drm_i915_private *i915)
+> +static u16 icl_qgv_points_mask(struct intel_display *display)
+>  {
+> -	unsigned int num_psf_gv_points = i915->display.bw.max[0].num_psf_gv_points;
+> -	unsigned int num_qgv_points = i915->display.bw.max[0].num_qgv_points;
+> +	unsigned int num_psf_gv_points = display->bw.max[0].num_psf_gv_points;
+> +	unsigned int num_qgv_points = display->bw.max[0].num_qgv_points;
+>  	u16 qgv_points = 0, psf_points = 0;
+>  
+>  	/*
+> @@ -142,18 +145,19 @@ static u16 icl_qgv_points_mask(struct drm_i915_private *i915)
+>  	return ICL_PCODE_REQ_QGV_PT(qgv_points) | ADLS_PCODE_REQ_PSF_PT(psf_points);
+>  }
+>  
+> -static bool is_sagv_enabled(struct drm_i915_private *i915, u16 points_mask)
+> +static bool is_sagv_enabled(struct intel_display *display, u16 points_mask)
+>  {
+> -	return !is_power_of_2(~points_mask & icl_qgv_points_mask(i915) &
+> +	return !is_power_of_2(~points_mask & icl_qgv_points_mask(display) &
+>  			      ICL_PCODE_REQ_QGV_PT_MASK);
+>  }
+>  
+>  int icl_pcode_restrict_qgv_points(struct drm_i915_private *dev_priv,
+>  				  u32 points_mask)
+>  {
+> +	struct intel_display *display = &dev_priv->display;
+>  	int ret;
+>  
+> -	if (DISPLAY_VER(dev_priv) >= 14)
+> +	if (DISPLAY_VER(display) >= 14)
+>  		return 0;
+>  
+>  	/* bspec says to keep retrying for at least 1 ms */
+> @@ -164,27 +168,28 @@ int icl_pcode_restrict_qgv_points(struct drm_i915_private *dev_priv,
+>  				1);
+>  
+>  	if (ret < 0) {
+> -		drm_err(&dev_priv->drm,
+> +		drm_err(display->drm,
+>  			"Failed to disable qgv points (0x%x) points: 0x%x\n",
+>  			ret, points_mask);
+>  		return ret;
+>  	}
+>  
+> -	dev_priv->display.sagv.status = is_sagv_enabled(dev_priv, points_mask) ?
+> +	display->sagv.status = is_sagv_enabled(display, points_mask) ?
+>  		I915_SAGV_ENABLED : I915_SAGV_DISABLED;
+>  
+>  	return 0;
+>  }
+>  
+> -static int mtl_read_qgv_point_info(struct drm_i915_private *dev_priv,
+> +static int mtl_read_qgv_point_info(struct intel_display *display,
+>  				   struct intel_qgv_point *sp, int point)
+>  {
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
+>  	u32 val, val2;
+>  	u16 dclk;
+>  
+> -	val = intel_uncore_read(&dev_priv->uncore,
+> +	val = intel_uncore_read(&i915->uncore,
+
+I know it was suggested not to convert the MCHBAR registers since those
+ones aren't technically display registers, but was it intentional to
+also keep these MTL ones on intel_uncore?  These are part of the display
+IP itself.  If these were just overlooked, we might want to send a
+follow-up patch for those.
+
+
+Matt
+
+>  				MTL_MEM_SS_INFO_QGV_POINT_LOW(point));
+> -	val2 = intel_uncore_read(&dev_priv->uncore,
+> +	val2 = intel_uncore_read(&i915->uncore,
+>  				 MTL_MEM_SS_INFO_QGV_POINT_HIGH(point));
+>  	dclk = REG_FIELD_GET(MTL_DCLK_MASK, val);
+>  	sp->dclk = DIV_ROUND_CLOSEST(16667 * dclk, 1000);
+> @@ -200,29 +205,30 @@ static int mtl_read_qgv_point_info(struct drm_i915_private *dev_priv,
+>  }
+>  
+>  static int
+> -intel_read_qgv_point_info(struct drm_i915_private *dev_priv,
+> +intel_read_qgv_point_info(struct intel_display *display,
+>  			  struct intel_qgv_point *sp,
+>  			  int point)
+>  {
+> -	if (DISPLAY_VER(dev_priv) >= 14)
+> -		return mtl_read_qgv_point_info(dev_priv, sp, point);
+> -	else if (IS_DG1(dev_priv))
+> -		return dg1_mchbar_read_qgv_point_info(dev_priv, sp, point);
+> +	if (DISPLAY_VER(display) >= 14)
+> +		return mtl_read_qgv_point_info(display, sp, point);
+> +	else if (display->platform.dg1)
+> +		return dg1_mchbar_read_qgv_point_info(display, sp, point);
+>  	else
+> -		return icl_pcode_read_qgv_point_info(dev_priv, sp, point);
+> +		return icl_pcode_read_qgv_point_info(display, sp, point);
+>  }
+>  
+> -static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
+> +static int icl_get_qgv_points(struct intel_display *display,
+>  			      struct intel_qgv_info *qi,
+>  			      bool is_y_tile)
+>  {
+> -	const struct dram_info *dram_info = &dev_priv->dram_info;
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
+> +	const struct dram_info *dram_info = &i915->dram_info;
+>  	int i, ret;
+>  
+>  	qi->num_points = dram_info->num_qgv_points;
+>  	qi->num_psf_points = dram_info->num_psf_gv_points;
+>  
+> -	if (DISPLAY_VER(dev_priv) >= 14) {
+> +	if (DISPLAY_VER(display) >= 14) {
+>  		switch (dram_info->type) {
+>  		case INTEL_DRAM_DDR4:
+>  			qi->t_bl = 4;
+> @@ -250,7 +256,7 @@ static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
+>  			MISSING_CASE(dram_info->type);
+>  			return -EINVAL;
+>  		}
+> -	} else if (DISPLAY_VER(dev_priv) >= 12) {
+> +	} else if (DISPLAY_VER(display) >= 12) {
+>  		switch (dram_info->type) {
+>  		case INTEL_DRAM_DDR4:
+>  			qi->t_bl = is_y_tile ? 8 : 4;
+> @@ -265,7 +271,7 @@ static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
+>  			qi->deinterleave = is_y_tile ? 1 : 2;
+>  			break;
+>  		case INTEL_DRAM_LPDDR4:
+> -			if (IS_ROCKETLAKE(dev_priv)) {
+> +			if (display->platform.rocketlake) {
+>  				qi->t_bl = 8;
+>  				qi->max_numchannels = 4;
+>  				qi->channel_width = 32;
+> @@ -284,39 +290,39 @@ static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
+>  			qi->max_numchannels = 1;
+>  			break;
+>  		}
+> -	} else if (DISPLAY_VER(dev_priv) == 11) {
+> -		qi->t_bl = dev_priv->dram_info.type == INTEL_DRAM_DDR4 ? 4 : 8;
+> +	} else if (DISPLAY_VER(display) == 11) {
+> +		qi->t_bl = dram_info->type == INTEL_DRAM_DDR4 ? 4 : 8;
+>  		qi->max_numchannels = 1;
+>  	}
+>  
+> -	if (drm_WARN_ON(&dev_priv->drm,
+> +	if (drm_WARN_ON(display->drm,
+>  			qi->num_points > ARRAY_SIZE(qi->points)))
+>  		qi->num_points = ARRAY_SIZE(qi->points);
+>  
+>  	for (i = 0; i < qi->num_points; i++) {
+>  		struct intel_qgv_point *sp = &qi->points[i];
+>  
+> -		ret = intel_read_qgv_point_info(dev_priv, sp, i);
+> +		ret = intel_read_qgv_point_info(display, sp, i);
+>  		if (ret) {
+> -			drm_dbg_kms(&dev_priv->drm, "Could not read QGV %d info\n", i);
+> +			drm_dbg_kms(display->drm, "Could not read QGV %d info\n", i);
+>  			return ret;
+>  		}
+>  
+> -		drm_dbg_kms(&dev_priv->drm,
+> +		drm_dbg_kms(display->drm,
+>  			    "QGV %d: DCLK=%d tRP=%d tRDPRE=%d tRAS=%d tRCD=%d tRC=%d\n",
+>  			    i, sp->dclk, sp->t_rp, sp->t_rdpre, sp->t_ras,
+>  			    sp->t_rcd, sp->t_rc);
+>  	}
+>  
+>  	if (qi->num_psf_points > 0) {
+> -		ret = adls_pcode_read_psf_gv_point_info(dev_priv, qi->psf_points);
+> +		ret = adls_pcode_read_psf_gv_point_info(display, qi->psf_points);
+>  		if (ret) {
+> -			drm_err(&dev_priv->drm, "Failed to read PSF point data; PSF points will not be considered in bandwidth calculations.\n");
+> +			drm_err(display->drm, "Failed to read PSF point data; PSF points will not be considered in bandwidth calculations.\n");
+>  			qi->num_psf_points = 0;
+>  		}
+>  
+>  		for (i = 0; i < qi->num_psf_points; i++)
+> -			drm_dbg_kms(&dev_priv->drm,
+> +			drm_dbg_kms(display->drm,
+>  				    "PSF GV %d: CLK=%d \n",
+>  				    i, qi->psf_points[i].clk);
+>  	}
+> @@ -398,20 +404,21 @@ static const struct intel_sa_info xe2_hpd_sa_info = {
+>  	/* Other values not used by simplified algorithm */
 >  };
 >  
-> +#define make_u64(hi, lo) ((u64)((u64)(u32)(hi) << 32 | (u32)(lo)))
-> +
->  static void g2h_fence_init(struct g2h_fence *g2h_fence, u32 *response_buffer)
+> -static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel_sa_info *sa)
+> +static int icl_get_bw_info(struct intel_display *display, const struct intel_sa_info *sa)
 >  {
->  	g2h_fence->response_buffer = response_buffer;
-> @@ -1622,6 +1624,151 @@ static void g2h_worker_func(struct work_struct *w)
->  	receive_g2h(ct);
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
+>  	struct intel_qgv_info qi = {};
+>  	bool is_y_tile = true; /* assume y tile may be used */
+> -	int num_channels = max_t(u8, 1, dev_priv->dram_info.num_channels);
+> +	int num_channels = max_t(u8, 1, i915->dram_info.num_channels);
+>  	int ipqdepth, ipqdepthpch = 16;
+>  	int dclk_max;
+>  	int maxdebw;
+> -	int num_groups = ARRAY_SIZE(dev_priv->display.bw.max);
+> +	int num_groups = ARRAY_SIZE(display->bw.max);
+>  	int i, ret;
+>  
+> -	ret = icl_get_qgv_points(dev_priv, &qi, is_y_tile);
+> +	ret = icl_get_qgv_points(display, &qi, is_y_tile);
+>  	if (ret) {
+> -		drm_dbg_kms(&dev_priv->drm,
+> +		drm_dbg_kms(display->drm,
+>  			    "Failed to get memory subsystem information, ignoring bandwidth limits");
+>  		return ret;
+>  	}
+> @@ -422,7 +429,7 @@ static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+>  	qi.deinterleave = DIV_ROUND_UP(num_channels, is_y_tile ? 4 : 2);
+>  
+>  	for (i = 0; i < num_groups; i++) {
+> -		struct intel_bw_info *bi = &dev_priv->display.bw.max[i];
+> +		struct intel_bw_info *bi = &display->bw.max[i];
+>  		int clpchgroup;
+>  		int j;
+>  
+> @@ -449,7 +456,7 @@ static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+>  			bi->deratedbw[j] = min(maxdebw,
+>  					       bw * (100 - sa->derating) / 100);
+>  
+> -			drm_dbg_kms(&dev_priv->drm,
+> +			drm_dbg_kms(display->drm,
+>  				    "BW%d / QGV %d: num_planes=%d deratedbw=%u\n",
+>  				    i, j, bi->num_planes, bi->deratedbw[j]);
+>  		}
+> @@ -460,44 +467,45 @@ static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+>  	 * as it will fail and pointless anyway.
+>  	 */
+>  	if (qi.num_points == 1)
+> -		dev_priv->display.sagv.status = I915_SAGV_NOT_CONTROLLED;
+> +		display->sagv.status = I915_SAGV_NOT_CONTROLLED;
+>  	else
+> -		dev_priv->display.sagv.status = I915_SAGV_ENABLED;
+> +		display->sagv.status = I915_SAGV_ENABLED;
+>  
+>  	return 0;
 >  }
 >  
-> +static u32 ctb_read32(struct xe_device *xe, struct iosys_map *cmds,
-
-maybe to make this function more "ctb", pass ctb instead xe?
-
-> +			     u32 head, u32 pos)
-> +{
-> +	u32 msg[1];
-> +
-> +	xe_map_memcpy_from(xe, msg, cmds, (head + pos) * sizeof(u32),
-> +			   1 * sizeof(u32));
-> +	return msg[0];
-
-and looks almost like our deprecated xe_map_read32 ;)
-
-> +}
-> +
-> +static void ctb_fixup64(struct xe_device *xe, struct iosys_map *cmds,
-> +			       u32 head, u32 pos, s64 shift)
-> +{
-> +	u32 msg[2];
-> +	u64 offset;
-> +
-> +	xe_map_memcpy_from(xe, msg, cmds, (head + pos) * sizeof(u32),
-> +			   2 * sizeof(u32));
-> +	offset = make_u64(msg[1], msg[0]);
-> +	offset += shift;
-> +	msg[0] = lower_32_bits(offset);
-> +	msg[1] = upper_32_bits(offset);
-> +	xe_map_memcpy_to(xe, cmds, (head + pos) * sizeof(u32), msg, 2 * sizeof(u32));
-> +}
-> +
-> +/*
-> + * ct_update_addresses_in_message - Shift any GGTT addresses within
-
-nit: as this is *not* a real kernel-doc, then maybe drop function name
-and keep only description plus params?
-
-> + * a single message left within CTB from before post-migration recovery.
-> + * @ct: pointer to CT struct of the target GuC
-> + * @cmds: iomap buffer containing CT messages
-> + * @head: start of the target message within the buffer
-> + * @len: length of the target message
-> + * @size: size of the commands buffer
-> + * @shift: the address shift to be added to each GGTT reference
-> + */
-> +static void ct_update_addresses_in_message(struct xe_guc_ct *ct,
-> +					   struct iosys_map *cmds, u32 head,
-> +					   u32 len, u32 size, s64 shift)
-> +{
-> +	struct xe_device *xe = ct_to_xe(ct);
-> +	u32 action, i, n;
-> +	u32 msg[1];
-> +
-> +	xe_map_memcpy_from(xe, msg, cmds, head * sizeof(u32),
-> +			   1 * sizeof(u32));
-
-ctb_read32() didn't work here?
-
-> +	action = FIELD_GET(GUC_HXG_REQUEST_MSG_0_ACTION, msg[0]);
-> +	switch (action) {
-> +	case XE_GUC_ACTION_REGISTER_CONTEXT:
-> +	case XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC:
-> +		/* field wq_desc */
-
-as we have enums that describe field offsets, we don't need to add those
-small now redundant comments
-
-> +		ctb_fixup64(xe, cmds, head, XE_GUC_REGISTER_CONTEXT_MULTI_LRC_OFFS_WQ_DESC, shift);
-> +		/* field wq_base */
-> +		ctb_fixup64(xe, cmds, head, XE_GUC_REGISTER_CONTEXT_MULTI_LRC_OFFS_WQ_BASE, shift);
-> +		if (action == XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC) {
-> +			/* field number_children */
-> +			n = ctb_read32(xe, cmds, head, XE_GUC_REGISTER_CONTEXT_MULTI_LRC_OFFS_N_CHILDREN);
-> +			/* field hwlrca and child lrcas */
-> +			for (i = 0; i < n; i++)
-> +				ctb_fixup64(xe, cmds, head, XE_GUC_REGISTER_CONTEXT_MULTI_LRC_OFFS_HWLRCA + 2 * i, shift);
-
-did you run checkpatch.pl ? line is quite long
-
-> +		} else {
-> +			/* field hwlrca */
-> +			ctb_fixup64(xe, cmds, head, 10, shift);
-> +		}
-> +		break;
-> +	default:
-> +		break;
-> +	}
-> +}
-> +
-
-nit: no short description here ;)
-
-> +static int ct_update_addresses_in_buffer(struct xe_guc_ct *ct,
-> +					 struct guc_ctb *h2g,
-> +					 s64 shift, u32 *mhead, s32 avail)
-> +{
-> +	struct xe_device *xe = ct_to_xe(ct);
-> +	u32 head = *mhead;
-> +	u32 size = h2g->info.size;
-> +	u32 msg[1];
-> +	u32 len;
-> +
-> +	/* Read header */
-> +	xe_map_memcpy_from(xe, msg, &h2g->cmds, sizeof(u32) * head,
-> +			   sizeof(u32));
-
-ctb_read32() didn't work here?
-
-> +	len = FIELD_GET(GUC_CTB_MSG_0_NUM_DWORDS, msg[0]) + GUC_CTB_MSG_MIN_LEN;
-> +
-> +	if (unlikely(len > (u32)avail)) {
-> +		struct xe_gt *gt = ct_to_gt(ct);
-> +
-> +		xe_gt_err(gt, "H2G channel broken on read, avail=%d, len=%d, fixups skipped\n",
-> +			  avail, len);
-> +		return 0;
-
-in caller we do mark ctb as broken, why are we silent here?
-
-> +	}
-> +
-> +	head = (head + 1) % size;
-> +	ct_update_addresses_in_message(ct, &h2g->cmds, head, len - 1, size, shift);
-> +	*mhead = (head + len - 1) % size;
-> +
-> +	return avail - len;
-> +}
-> +
-> +/**
-> + * xe_guc_ct_fixup_messages_with_ggtt - Fixup any pending H2G CTB messages by updating
-> + * GGTT offsets in their payloads.
-> + * @ct: pointer to CT struct of the target GuC
-> + * @ggtt_shift: shift to be added to all GGTT addresses within the CTB
-> + */
-> +void xe_guc_ct_fixup_messages_with_ggtt(struct xe_guc_ct *ct, s64 ggtt_shift)
-> +{
-> +	struct xe_guc *guc = ct_to_guc(ct);
-> +	struct xe_gt *gt = guc_to_gt(guc);
-> +	struct guc_ctb *h2g = &ct->ctbs.h2g;
-> +	u32 head, tail, size;
-> +	s32 avail;
-> +
-> +	if (unlikely(h2g->info.broken))
-> +		return;
-> +
-> +	h2g->info.head = desc_read(ct_to_xe(ct), h2g, head);
-> +	head = h2g->info.head;
-> +	tail = READ_ONCE(h2g->info.tail);
-> +	size = h2g->info.size;
-> +
-> +	xe_gt_assert(gt, head <= size);
-
-we shouldn't trust GuC, assert is not enough
-goto corrupted; if this happens
-
-> +
-> +	if (unlikely(tail >= size))
-> +		goto corrupted;
-> +
-> +	avail = tail - head;
-> +
-> +	/* beware of buffer wrap case */
-> +	if (unlikely(avail < 0))
-> +		avail += size;
-> +	xe_gt_dbg(gt, "available %d (%u:%u:%u)\n", avail, head, tail, size);
-> +	xe_gt_assert(gt, avail >= 0);
-> +
-> +	while (avail > 0)
-> +		avail = ct_update_addresses_in_buffer(ct, h2g, ggtt_shift, &head, avail);
-
-maybe pass &avail like you did with head?
-
-> +
-> +	return;
-> +
-> +corrupted:
-> +	xe_gt_err(gt, "Corrupted H2G descriptor head=%u tail=%u size=%u\n",
-
-shouldn't we mention that "fixups can't be done" ?
-
-> +		 head, tail, size);
-> +	h2g->info.broken = true;
-
-returning an error code wouldn't really hurt ...
-
-> +}
-> +
->  static struct xe_guc_ct_snapshot *guc_ct_snapshot_alloc(struct xe_guc_ct *ct, bool atomic,
->  							bool want_ctb)
+> -static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel_sa_info *sa)
+> +static int tgl_get_bw_info(struct intel_display *display, const struct intel_sa_info *sa)
 >  {
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-> index 82c4ae458dda..5649bda82823 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.h
-> @@ -22,6 +22,8 @@ void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot, struct drm_pr
->  void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot);
->  void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool want_ctb);
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
+>  	struct intel_qgv_info qi = {};
+> -	const struct dram_info *dram_info = &dev_priv->dram_info;
+> +	const struct dram_info *dram_info = &i915->dram_info;
+>  	bool is_y_tile = true; /* assume y tile may be used */
+> -	int num_channels = max_t(u8, 1, dev_priv->dram_info.num_channels);
+> +	int num_channels = max_t(u8, 1, dram_info->num_channels);
+>  	int ipqdepth, ipqdepthpch = 16;
+>  	int dclk_max;
+>  	int maxdebw, peakbw;
+>  	int clperchgroup;
+> -	int num_groups = ARRAY_SIZE(dev_priv->display.bw.max);
+> +	int num_groups = ARRAY_SIZE(display->bw.max);
+>  	int i, ret;
 >  
-> +void xe_guc_ct_fixup_messages_with_ggtt(struct xe_guc_ct *ct, s64 ggtt_shift);
-> +
->  static inline bool xe_guc_ct_enabled(struct xe_guc_ct *ct)
->  {
->  	return ct->state == XE_GUC_CT_STATE_ENABLED;
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index b95934055f72..4442fb00d0aa 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -469,12 +469,16 @@ static void __register_mlrc_exec_queue(struct xe_guc *guc,
->  	action[len++] = info->context_idx;
->  	action[len++] = info->engine_class;
->  	action[len++] = info->engine_submit_mask;
-> +	xe_gt_assert(guc_to_gt(guc), len == XE_GUC_REGISTER_CONTEXT_MULTI_LRC_OFFS_WQ_DESC);
->  	action[len++] = info->wq_desc_lo;
->  	action[len++] = info->wq_desc_hi;
-> +	xe_gt_assert(guc_to_gt(guc), len == XE_GUC_REGISTER_CONTEXT_MULTI_LRC_OFFS_WQ_BASE);
->  	action[len++] = info->wq_base_lo;
->  	action[len++] = info->wq_base_hi;
->  	action[len++] = info->wq_size;
-> +	xe_gt_assert(guc_to_gt(guc), len == XE_GUC_REGISTER_CONTEXT_MULTI_LRC_OFFS_N_CHILDREN);
->  	action[len++] = q->width;
-> +	xe_gt_assert(guc_to_gt(guc), len == XE_GUC_REGISTER_CONTEXT_MULTI_LRC_OFFS_HWLRCA);
->  	action[len++] = info->hwlrca_lo;
->  	action[len++] = info->hwlrca_hi;
-
-nit: maybe this chunk, together with introduction of above enums, should
-be a separate patch?
-
+> -	ret = icl_get_qgv_points(dev_priv, &qi, is_y_tile);
+> +	ret = icl_get_qgv_points(display, &qi, is_y_tile);
+>  	if (ret) {
+> -		drm_dbg_kms(&dev_priv->drm,
+> +		drm_dbg_kms(display->drm,
+>  			    "Failed to get memory subsystem information, ignoring bandwidth limits");
+>  		return ret;
+>  	}
 >  
-> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-> index 4ee8fc70a744..cd759579b9b4 100644
-> --- a/drivers/gpu/drm/xe/xe_sriov_vf.c
-> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-> @@ -10,6 +10,7 @@
->  #include "xe_gt.h"
->  #include "xe_gt_sriov_printk.h"
->  #include "xe_gt_sriov_vf.h"
-> +#include "xe_guc_ct.h"
->  #include "xe_pm.h"
->  #include "xe_sriov.h"
->  #include "xe_sriov_printk.h"
-> @@ -158,6 +159,20 @@ static int vf_post_migration_requery_guc(struct xe_device *xe)
->  	return ret;
+> -	if (DISPLAY_VER(dev_priv) < 14 &&
+> +	if (DISPLAY_VER(display) < 14 &&
+>  	    (dram_info->type == INTEL_DRAM_LPDDR4 || dram_info->type == INTEL_DRAM_LPDDR5))
+>  		num_channels *= 2;
+>  
+>  	qi.deinterleave = qi.deinterleave ? : DIV_ROUND_UP(num_channels, is_y_tile ? 4 : 2);
+>  
+> -	if (num_channels < qi.max_numchannels && DISPLAY_VER(dev_priv) >= 12)
+> +	if (num_channels < qi.max_numchannels && DISPLAY_VER(display) >= 12)
+>  		qi.deinterleave = max(DIV_ROUND_UP(qi.deinterleave, 2), 1);
+>  
+> -	if (DISPLAY_VER(dev_priv) >= 12 && num_channels > qi.max_numchannels)
+> -		drm_warn(&dev_priv->drm, "Number of channels exceeds max number of channels.");
+> +	if (DISPLAY_VER(display) >= 12 && num_channels > qi.max_numchannels)
+> +		drm_warn(display->drm, "Number of channels exceeds max number of channels.");
+>  	if (qi.max_numchannels != 0)
+>  		num_channels = min_t(u8, num_channels, qi.max_numchannels);
+>  
+> @@ -514,7 +522,7 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+>  	clperchgroup = 4 * DIV_ROUND_UP(8, num_channels) * qi.deinterleave;
+>  
+>  	for (i = 0; i < num_groups; i++) {
+> -		struct intel_bw_info *bi = &dev_priv->display.bw.max[i];
+> +		struct intel_bw_info *bi = &display->bw.max[i];
+>  		struct intel_bw_info *bi_next;
+>  		int clpchgroup;
+>  		int j;
+> @@ -522,7 +530,7 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+>  		clpchgroup = (sa->deburst * qi.deinterleave / num_channels) << i;
+>  
+>  		if (i < num_groups - 1) {
+> -			bi_next = &dev_priv->display.bw.max[i + 1];
+> +			bi_next = &display->bw.max[i + 1];
+>  
+>  			if (clpchgroup < clperchgroup)
+>  				bi_next->num_planes = (ipqdepth - clpchgroup) /
+> @@ -554,7 +562,7 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+>  							  num_channels *
+>  							  qi.channel_width, 8);
+>  
+> -			drm_dbg_kms(&dev_priv->drm,
+> +			drm_dbg_kms(display->drm,
+>  				    "BW%d / QGV %d: num_planes=%d deratedbw=%u peakbw: %u\n",
+>  				    i, j, bi->num_planes, bi->deratedbw[j],
+>  				    bi->peakbw[j]);
+> @@ -565,7 +573,7 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+>  
+>  			bi->psf_bw[j] = adl_calc_psf_bw(sp->clk);
+>  
+> -			drm_dbg_kms(&dev_priv->drm,
+> +			drm_dbg_kms(display->drm,
+>  				    "BW%d / PSF GV %d: num_planes=%d bw=%u\n",
+>  				    i, j, bi->num_planes, bi->psf_bw[j]);
+>  		}
+> @@ -577,17 +585,17 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+>  	 * as it will fail and pointless anyway.
+>  	 */
+>  	if (qi.num_points == 1)
+> -		dev_priv->display.sagv.status = I915_SAGV_NOT_CONTROLLED;
+> +		display->sagv.status = I915_SAGV_NOT_CONTROLLED;
+>  	else
+> -		dev_priv->display.sagv.status = I915_SAGV_ENABLED;
+> +		display->sagv.status = I915_SAGV_ENABLED;
+>  
+>  	return 0;
 >  }
 >  
-> +static void vf_post_migration_fixup_ctb(struct xe_device *xe)
-> +{
-> +	struct xe_gt *gt;
-> +	unsigned int id;
-> +
-> +	xe_assert(xe, IS_SRIOV_VF(xe));
-> +
-> +	for_each_gt(gt, xe, id) {
-> +		struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
-
-instead of open coding just add a helper to query the ggtt_shift
-
-	s64 xe_gt_sriov_vf_ggtt_shift(gt) { }
-
-> +
-> +		xe_guc_ct_fixup_messages_with_ggtt(&gt->uc.guc.ct, config->ggtt_shift);
-> +	}
-> +}
-> +
->  /*
->   * vf_post_migration_imminent - Check if post-restore recovery is coming.
->   * @xe: the &xe_device struct instance
-> @@ -224,6 +239,9 @@ static void vf_post_migration_recovery(struct xe_device *xe)
+> -static void dg2_get_bw_info(struct drm_i915_private *i915)
+> +static void dg2_get_bw_info(struct intel_display *display)
+>  {
+> -	unsigned int deratedbw = IS_DG2_G11(i915) ? 38000 : 50000;
+> -	int num_groups = ARRAY_SIZE(i915->display.bw.max);
+> +	unsigned int deratedbw = display->platform.dg2_g11 ? 38000 : 50000;
+> +	int num_groups = ARRAY_SIZE(display->bw.max);
+>  	int i;
 >  
->  	err = vf_post_migration_fixup_ggtt_nodes(xe);
->  	/* FIXME: add the recovery steps */
-> +	if (err != ENODATA)
-> +		vf_post_migration_fixup_ctb(xe);
+>  	/*
+> @@ -598,7 +606,7 @@ static void dg2_get_bw_info(struct drm_i915_private *i915)
+>  	 * whereas DG2-G11 platforms have 38 GB/s.
+>  	 */
+>  	for (i = 0; i < num_groups; i++) {
+> -		struct intel_bw_info *bi = &i915->display.bw.max[i];
+> +		struct intel_bw_info *bi = &display->bw.max[i];
+>  
+>  		bi->num_planes = 1;
+>  		/* Need only one dummy QGV point per group */
+> @@ -606,20 +614,21 @@ static void dg2_get_bw_info(struct drm_i915_private *i915)
+>  		bi->deratedbw[0] = deratedbw;
+>  	}
+>  
+> -	i915->display.sagv.status = I915_SAGV_NOT_CONTROLLED;
+> +	display->sagv.status = I915_SAGV_NOT_CONTROLLED;
+>  }
+>  
+> -static int xe2_hpd_get_bw_info(struct drm_i915_private *i915,
+> +static int xe2_hpd_get_bw_info(struct intel_display *display,
+>  			       const struct intel_sa_info *sa)
+>  {
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
+>  	struct intel_qgv_info qi = {};
+>  	int num_channels = i915->dram_info.num_channels;
+>  	int peakbw, maxdebw;
+>  	int ret, i;
+>  
+> -	ret = icl_get_qgv_points(i915, &qi, true);
+> +	ret = icl_get_qgv_points(display, &qi, true);
+>  	if (ret) {
+> -		drm_dbg_kms(&i915->drm,
+> +		drm_dbg_kms(display->drm,
+>  			    "Failed to get memory subsystem information, ignoring bandwidth limits");
+>  		return ret;
+>  	}
+> @@ -631,33 +640,33 @@ static int xe2_hpd_get_bw_info(struct drm_i915_private *i915,
+>  		const struct intel_qgv_point *point = &qi.points[i];
+>  		int bw = num_channels * (qi.channel_width / 8) * point->dclk;
+>  
+> -		i915->display.bw.max[0].deratedbw[i] =
+> +		display->bw.max[0].deratedbw[i] =
+>  			min(maxdebw, (100 - sa->derating) * bw / 100);
+> -		i915->display.bw.max[0].peakbw[i] = bw;
+> +		display->bw.max[0].peakbw[i] = bw;
+>  
+> -		drm_dbg_kms(&i915->drm, "QGV %d: deratedbw=%u peakbw: %u\n",
+> -			    i, i915->display.bw.max[0].deratedbw[i],
+> -			    i915->display.bw.max[0].peakbw[i]);
+> +		drm_dbg_kms(display->drm, "QGV %d: deratedbw=%u peakbw: %u\n",
+> +			    i, display->bw.max[0].deratedbw[i],
+> +			    display->bw.max[0].peakbw[i]);
+>  	}
+>  
+>  	/* Bandwidth does not depend on # of planes; set all groups the same */
+> -	i915->display.bw.max[0].num_planes = 1;
+> -	i915->display.bw.max[0].num_qgv_points = qi.num_points;
+> -	for (i = 1; i < ARRAY_SIZE(i915->display.bw.max); i++)
+> -		memcpy(&i915->display.bw.max[i], &i915->display.bw.max[0],
+> -		       sizeof(i915->display.bw.max[0]));
+> +	display->bw.max[0].num_planes = 1;
+> +	display->bw.max[0].num_qgv_points = qi.num_points;
+> +	for (i = 1; i < ARRAY_SIZE(display->bw.max); i++)
+> +		memcpy(&display->bw.max[i], &display->bw.max[0],
+> +		       sizeof(display->bw.max[0]));
+>  
+>  	/*
+>  	 * Xe2_HPD should always have exactly two QGV points representing
+>  	 * battery and plugged-in operation.
+>  	 */
+> -	drm_WARN_ON(&i915->drm, qi.num_points != 2);
+> -	i915->display.sagv.status = I915_SAGV_ENABLED;
+> +	drm_WARN_ON(display->drm, qi.num_points != 2);
+> +	display->sagv.status = I915_SAGV_ENABLED;
+>  
+>  	return 0;
+>  }
+>  
+> -static unsigned int icl_max_bw_index(struct drm_i915_private *dev_priv,
+> +static unsigned int icl_max_bw_index(struct intel_display *display,
+>  				     int num_planes, int qgv_point)
+>  {
+>  	int i;
+> @@ -667,9 +676,9 @@ static unsigned int icl_max_bw_index(struct drm_i915_private *dev_priv,
+>  	 */
+>  	num_planes = max(1, num_planes);
+>  
+> -	for (i = 0; i < ARRAY_SIZE(dev_priv->display.bw.max); i++) {
+> +	for (i = 0; i < ARRAY_SIZE(display->bw.max); i++) {
+>  		const struct intel_bw_info *bi =
+> -			&dev_priv->display.bw.max[i];
+> +			&display->bw.max[i];
+>  
+>  		/*
+>  		 * Pcode will not expose all QGV points when
+> @@ -685,7 +694,7 @@ static unsigned int icl_max_bw_index(struct drm_i915_private *dev_priv,
+>  	return UINT_MAX;
+>  }
+>  
+> -static unsigned int tgl_max_bw_index(struct drm_i915_private *dev_priv,
+> +static unsigned int tgl_max_bw_index(struct intel_display *display,
+>  				     int num_planes, int qgv_point)
+>  {
+>  	int i;
+> @@ -695,9 +704,9 @@ static unsigned int tgl_max_bw_index(struct drm_i915_private *dev_priv,
+>  	 */
+>  	num_planes = max(1, num_planes);
+>  
+> -	for (i = ARRAY_SIZE(dev_priv->display.bw.max) - 1; i >= 0; i--) {
+> +	for (i = ARRAY_SIZE(display->bw.max) - 1; i >= 0; i--) {
+>  		const struct intel_bw_info *bi =
+> -			&dev_priv->display.bw.max[i];
+> +			&display->bw.max[i];
+>  
+>  		/*
+>  		 * Pcode will not expose all QGV points when
+> @@ -713,52 +722,54 @@ static unsigned int tgl_max_bw_index(struct drm_i915_private *dev_priv,
+>  	return 0;
+>  }
+>  
+> -static unsigned int adl_psf_bw(struct drm_i915_private *dev_priv,
+> +static unsigned int adl_psf_bw(struct intel_display *display,
+>  			       int psf_gv_point)
+>  {
+>  	const struct intel_bw_info *bi =
+> -			&dev_priv->display.bw.max[0];
+> +			&display->bw.max[0];
+>  
+>  	return bi->psf_bw[psf_gv_point];
+>  }
+>  
+> -static unsigned int icl_qgv_bw(struct drm_i915_private *i915,
+> +static unsigned int icl_qgv_bw(struct intel_display *display,
+>  			       int num_active_planes, int qgv_point)
+>  {
+>  	unsigned int idx;
+>  
+> -	if (DISPLAY_VER(i915) >= 12)
+> -		idx = tgl_max_bw_index(i915, num_active_planes, qgv_point);
+> +	if (DISPLAY_VER(display) >= 12)
+> +		idx = tgl_max_bw_index(display, num_active_planes, qgv_point);
+>  	else
+> -		idx = icl_max_bw_index(i915, num_active_planes, qgv_point);
+> +		idx = icl_max_bw_index(display, num_active_planes, qgv_point);
+>  
+> -	if (idx >= ARRAY_SIZE(i915->display.bw.max))
+> +	if (idx >= ARRAY_SIZE(display->bw.max))
+>  		return 0;
+>  
+> -	return i915->display.bw.max[idx].deratedbw[qgv_point];
+> +	return display->bw.max[idx].deratedbw[qgv_point];
+>  }
+>  
+>  void intel_bw_init_hw(struct drm_i915_private *dev_priv)
+>  {
+> -	if (!HAS_DISPLAY(dev_priv))
+> +	struct intel_display *display = &dev_priv->display;
 > +
+> +	if (!HAS_DISPLAY(display))
+>  		return;
+>  
+> -	if (DISPLAY_VERx100(dev_priv) >= 1401 && IS_DGFX(dev_priv))
+> -		xe2_hpd_get_bw_info(dev_priv, &xe2_hpd_sa_info);
+> -	else if (DISPLAY_VER(dev_priv) >= 14)
+> -		tgl_get_bw_info(dev_priv, &mtl_sa_info);
+> -	else if (IS_DG2(dev_priv))
+> -		dg2_get_bw_info(dev_priv);
+> -	else if (IS_ALDERLAKE_P(dev_priv))
+> -		tgl_get_bw_info(dev_priv, &adlp_sa_info);
+> -	else if (IS_ALDERLAKE_S(dev_priv))
+> -		tgl_get_bw_info(dev_priv, &adls_sa_info);
+> -	else if (IS_ROCKETLAKE(dev_priv))
+> -		tgl_get_bw_info(dev_priv, &rkl_sa_info);
+> -	else if (DISPLAY_VER(dev_priv) == 12)
+> -		tgl_get_bw_info(dev_priv, &tgl_sa_info);
+> -	else if (DISPLAY_VER(dev_priv) == 11)
+> -		icl_get_bw_info(dev_priv, &icl_sa_info);
+> +	if (DISPLAY_VERx100(display) >= 1401 && display->platform.dgfx)
+> +		xe2_hpd_get_bw_info(display, &xe2_hpd_sa_info);
+> +	else if (DISPLAY_VER(display) >= 14)
+> +		tgl_get_bw_info(display, &mtl_sa_info);
+> +	else if (display->platform.dg2)
+> +		dg2_get_bw_info(display);
+> +	else if (display->platform.alderlake_p)
+> +		tgl_get_bw_info(display, &adlp_sa_info);
+> +	else if (display->platform.alderlake_s)
+> +		tgl_get_bw_info(display, &adls_sa_info);
+> +	else if (display->platform.rocketlake)
+> +		tgl_get_bw_info(display, &rkl_sa_info);
+> +	else if (DISPLAY_VER(display) == 12)
+> +		tgl_get_bw_info(display, &tgl_sa_info);
+> +	else if (DISPLAY_VER(display) == 11)
+> +		icl_get_bw_info(display, &icl_sa_info);
+>  }
+>  
+>  static unsigned int intel_bw_crtc_num_active_planes(const struct intel_crtc_state *crtc_state)
+> @@ -772,8 +783,8 @@ static unsigned int intel_bw_crtc_num_active_planes(const struct intel_crtc_stat
+>  
+>  static unsigned int intel_bw_crtc_data_rate(const struct intel_crtc_state *crtc_state)
+>  {
+> +	struct intel_display *display = to_intel_display(crtc_state);
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> -	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+>  	unsigned int data_rate = 0;
+>  	enum plane_id plane_id;
+>  
+> @@ -787,7 +798,7 @@ static unsigned int intel_bw_crtc_data_rate(const struct intel_crtc_state *crtc_
+>  
+>  		data_rate += crtc_state->data_rate[plane_id];
+>  
+> -		if (DISPLAY_VER(i915) < 11)
+> +		if (DISPLAY_VER(display) < 11)
+>  			data_rate += crtc_state->data_rate_y[plane_id];
+>  	}
+>  
+> @@ -797,37 +808,37 @@ static unsigned int intel_bw_crtc_data_rate(const struct intel_crtc_state *crtc_
+>  /* "Maximum Pipe Read Bandwidth" */
+>  static int intel_bw_crtc_min_cdclk(const struct intel_crtc_state *crtc_state)
+>  {
+> -	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> -	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> +	struct intel_display *display = to_intel_display(crtc_state);
+>  
+> -	if (DISPLAY_VER(i915) < 12)
+> +	if (DISPLAY_VER(display) < 12)
+>  		return 0;
+>  
+>  	return DIV_ROUND_UP_ULL(mul_u32_u32(intel_bw_crtc_data_rate(crtc_state), 10), 512);
+>  }
+>  
+> -static unsigned int intel_bw_num_active_planes(struct drm_i915_private *dev_priv,
+> +static unsigned int intel_bw_num_active_planes(struct intel_display *display,
+>  					       const struct intel_bw_state *bw_state)
+>  {
+>  	unsigned int num_active_planes = 0;
+>  	enum pipe pipe;
+>  
+> -	for_each_pipe(dev_priv, pipe)
+> +	for_each_pipe(display, pipe)
+>  		num_active_planes += bw_state->num_active_planes[pipe];
+>  
+>  	return num_active_planes;
+>  }
+>  
+> -static unsigned int intel_bw_data_rate(struct drm_i915_private *dev_priv,
+> +static unsigned int intel_bw_data_rate(struct intel_display *display,
+>  				       const struct intel_bw_state *bw_state)
+>  {
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
+>  	unsigned int data_rate = 0;
+>  	enum pipe pipe;
+>  
+> -	for_each_pipe(dev_priv, pipe)
+> +	for_each_pipe(display, pipe)
+>  		data_rate += bw_state->data_rate[pipe];
+>  
+> -	if (DISPLAY_VER(dev_priv) >= 13 && i915_vtd_active(dev_priv))
+> +	if (DISPLAY_VER(display) >= 13 && i915_vtd_active(i915))
+>  		data_rate = DIV_ROUND_UP(data_rate * 105, 100);
+>  
+>  	return data_rate;
+> @@ -836,10 +847,10 @@ static unsigned int intel_bw_data_rate(struct drm_i915_private *dev_priv,
+>  struct intel_bw_state *
+>  intel_atomic_get_old_bw_state(struct intel_atomic_state *state)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> +	struct intel_display *display = to_intel_display(state);
+>  	struct intel_global_state *bw_state;
+>  
+> -	bw_state = intel_atomic_get_old_global_obj_state(state, &dev_priv->display.bw.obj);
+> +	bw_state = intel_atomic_get_old_global_obj_state(state, &display->bw.obj);
+>  
+>  	return to_intel_bw_state(bw_state);
+>  }
+> @@ -847,10 +858,10 @@ intel_atomic_get_old_bw_state(struct intel_atomic_state *state)
+>  struct intel_bw_state *
+>  intel_atomic_get_new_bw_state(struct intel_atomic_state *state)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> +	struct intel_display *display = to_intel_display(state);
+>  	struct intel_global_state *bw_state;
+>  
+> -	bw_state = intel_atomic_get_new_global_obj_state(state, &dev_priv->display.bw.obj);
+> +	bw_state = intel_atomic_get_new_global_obj_state(state, &display->bw.obj);
+>  
+>  	return to_intel_bw_state(bw_state);
+>  }
+> @@ -858,27 +869,27 @@ intel_atomic_get_new_bw_state(struct intel_atomic_state *state)
+>  struct intel_bw_state *
+>  intel_atomic_get_bw_state(struct intel_atomic_state *state)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> +	struct intel_display *display = to_intel_display(state);
+>  	struct intel_global_state *bw_state;
+>  
+> -	bw_state = intel_atomic_get_global_obj_state(state, &dev_priv->display.bw.obj);
+> +	bw_state = intel_atomic_get_global_obj_state(state, &display->bw.obj);
+>  	if (IS_ERR(bw_state))
+>  		return ERR_CAST(bw_state);
+>  
+>  	return to_intel_bw_state(bw_state);
+>  }
+>  
+> -static unsigned int icl_max_bw_qgv_point_mask(struct drm_i915_private *i915,
+> +static unsigned int icl_max_bw_qgv_point_mask(struct intel_display *display,
+>  					      int num_active_planes)
+>  {
+> -	unsigned int num_qgv_points = i915->display.bw.max[0].num_qgv_points;
+> +	unsigned int num_qgv_points = display->bw.max[0].num_qgv_points;
+>  	unsigned int max_bw_point = 0;
+>  	unsigned int max_bw = 0;
+>  	int i;
+>  
+>  	for (i = 0; i < num_qgv_points; i++) {
+>  		unsigned int max_data_rate =
+> -			icl_qgv_bw(i915, num_active_planes, i);
+> +			icl_qgv_bw(display, num_active_planes, i);
+>  
+>  		/*
+>  		 * We need to know which qgv point gives us
+> @@ -897,23 +908,23 @@ static unsigned int icl_max_bw_qgv_point_mask(struct drm_i915_private *i915,
+>  	return max_bw_point;
+>  }
+>  
+> -static u16 icl_prepare_qgv_points_mask(struct drm_i915_private *i915,
+> +static u16 icl_prepare_qgv_points_mask(struct intel_display *display,
+>  				       unsigned int qgv_points,
+>  				       unsigned int psf_points)
+>  {
+>  	return ~(ICL_PCODE_REQ_QGV_PT(qgv_points) |
+> -		 ADLS_PCODE_REQ_PSF_PT(psf_points)) & icl_qgv_points_mask(i915);
+> +		 ADLS_PCODE_REQ_PSF_PT(psf_points)) & icl_qgv_points_mask(display);
+>  }
+>  
+> -static unsigned int icl_max_bw_psf_gv_point_mask(struct drm_i915_private *i915)
+> +static unsigned int icl_max_bw_psf_gv_point_mask(struct intel_display *display)
+>  {
+> -	unsigned int num_psf_gv_points = i915->display.bw.max[0].num_psf_gv_points;
+> +	unsigned int num_psf_gv_points = display->bw.max[0].num_psf_gv_points;
+>  	unsigned int max_bw_point_mask = 0;
+>  	unsigned int max_bw = 0;
+>  	int i;
+>  
+>  	for (i = 0; i < num_psf_gv_points; i++) {
+> -		unsigned int max_data_rate = adl_psf_bw(i915, i);
+> +		unsigned int max_data_rate = adl_psf_bw(display, i);
+>  
+>  		if (max_data_rate > max_bw) {
+>  			max_bw_point_mask = BIT(i);
+> @@ -926,29 +937,31 @@ static unsigned int icl_max_bw_psf_gv_point_mask(struct drm_i915_private *i915)
+>  	return max_bw_point_mask;
+>  }
+>  
+> -static void icl_force_disable_sagv(struct drm_i915_private *i915,
+> +static void icl_force_disable_sagv(struct intel_display *display,
+>  				   struct intel_bw_state *bw_state)
+>  {
+> -	unsigned int qgv_points = icl_max_bw_qgv_point_mask(i915, 0);
+> -	unsigned int psf_points = icl_max_bw_psf_gv_point_mask(i915);
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
+> +	unsigned int qgv_points = icl_max_bw_qgv_point_mask(display, 0);
+> +	unsigned int psf_points = icl_max_bw_psf_gv_point_mask(display);
+>  
+> -	bw_state->qgv_points_mask = icl_prepare_qgv_points_mask(i915,
+> +	bw_state->qgv_points_mask = icl_prepare_qgv_points_mask(display,
+>  								qgv_points,
+>  								psf_points);
+>  
+> -	drm_dbg_kms(&i915->drm, "Forcing SAGV disable: mask 0x%x\n",
+> +	drm_dbg_kms(display->drm, "Forcing SAGV disable: mask 0x%x\n",
+>  		    bw_state->qgv_points_mask);
+>  
+>  	icl_pcode_restrict_qgv_points(i915, bw_state->qgv_points_mask);
+>  }
+>  
+> -static int mtl_find_qgv_points(struct drm_i915_private *i915,
+> +static int mtl_find_qgv_points(struct intel_display *display,
+>  			       unsigned int data_rate,
+>  			       unsigned int num_active_planes,
+>  			       struct intel_bw_state *new_bw_state)
+>  {
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
+>  	unsigned int best_rate = UINT_MAX;
+> -	unsigned int num_qgv_points = i915->display.bw.max[0].num_qgv_points;
+> +	unsigned int num_qgv_points = display->bw.max[0].num_qgv_points;
+>  	unsigned int qgv_peak_bw  = 0;
+>  	int i;
+>  	int ret;
+> @@ -964,7 +977,7 @@ static int mtl_find_qgv_points(struct drm_i915_private *i915,
+>  	 */
+>  	if (!intel_can_enable_sagv(i915, new_bw_state)) {
+>  		new_bw_state->qgv_point_peakbw = U16_MAX;
+> -		drm_dbg_kms(&i915->drm, "No SAGV, use UINT_MAX as peak bw.");
+> +		drm_dbg_kms(display->drm, "No SAGV, use UINT_MAX as peak bw.");
+>  		return 0;
+>  	}
+>  
+> @@ -974,27 +987,27 @@ static int mtl_find_qgv_points(struct drm_i915_private *i915,
+>  	 */
+>  	for (i = 0; i < num_qgv_points; i++) {
+>  		unsigned int bw_index =
+> -			tgl_max_bw_index(i915, num_active_planes, i);
+> +			tgl_max_bw_index(display, num_active_planes, i);
+>  		unsigned int max_data_rate;
+>  
+> -		if (bw_index >= ARRAY_SIZE(i915->display.bw.max))
+> +		if (bw_index >= ARRAY_SIZE(display->bw.max))
+>  			continue;
+>  
+> -		max_data_rate = i915->display.bw.max[bw_index].deratedbw[i];
+> +		max_data_rate = display->bw.max[bw_index].deratedbw[i];
+>  
+>  		if (max_data_rate < data_rate)
+>  			continue;
+>  
+>  		if (max_data_rate - data_rate < best_rate) {
+>  			best_rate = max_data_rate - data_rate;
+> -			qgv_peak_bw = i915->display.bw.max[bw_index].peakbw[i];
+> +			qgv_peak_bw = display->bw.max[bw_index].peakbw[i];
+>  		}
+>  
+> -		drm_dbg_kms(&i915->drm, "QGV point %d: max bw %d required %d qgv_peak_bw: %d\n",
+> +		drm_dbg_kms(display->drm, "QGV point %d: max bw %d required %d qgv_peak_bw: %d\n",
+>  			    i, max_data_rate, data_rate, qgv_peak_bw);
+>  	}
+>  
+> -	drm_dbg_kms(&i915->drm, "Matching peaks QGV bw: %d for required data rate: %d\n",
+> +	drm_dbg_kms(display->drm, "Matching peaks QGV bw: %d for required data rate: %d\n",
+>  		    qgv_peak_bw, data_rate);
+>  
+>  	/*
+> @@ -1002,7 +1015,7 @@ static int mtl_find_qgv_points(struct drm_i915_private *i915,
+>  	 * satisfying the required data rate is found
+>  	 */
+>  	if (qgv_peak_bw == 0) {
+> -		drm_dbg_kms(&i915->drm, "No QGV points for bw %d for display configuration(%d active planes).\n",
+> +		drm_dbg_kms(display->drm, "No QGV points for bw %d for display configuration(%d active planes).\n",
+>  			    data_rate, num_active_planes);
+>  		return -EINVAL;
+>  	}
+> @@ -1013,14 +1026,15 @@ static int mtl_find_qgv_points(struct drm_i915_private *i915,
+>  	return 0;
+>  }
+>  
+> -static int icl_find_qgv_points(struct drm_i915_private *i915,
+> +static int icl_find_qgv_points(struct intel_display *display,
+>  			       unsigned int data_rate,
+>  			       unsigned int num_active_planes,
+>  			       const struct intel_bw_state *old_bw_state,
+>  			       struct intel_bw_state *new_bw_state)
+>  {
+> -	unsigned int num_psf_gv_points = i915->display.bw.max[0].num_psf_gv_points;
+> -	unsigned int num_qgv_points = i915->display.bw.max[0].num_qgv_points;
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
+> +	unsigned int num_psf_gv_points = display->bw.max[0].num_psf_gv_points;
+> +	unsigned int num_qgv_points = display->bw.max[0].num_qgv_points;
+>  	u16 psf_points = 0;
+>  	u16 qgv_points = 0;
+>  	int i;
+> @@ -1031,22 +1045,22 @@ static int icl_find_qgv_points(struct drm_i915_private *i915,
+>  		return ret;
+>  
+>  	for (i = 0; i < num_qgv_points; i++) {
+> -		unsigned int max_data_rate = icl_qgv_bw(i915,
+> +		unsigned int max_data_rate = icl_qgv_bw(display,
+>  							num_active_planes, i);
+>  		if (max_data_rate >= data_rate)
+>  			qgv_points |= BIT(i);
+>  
+> -		drm_dbg_kms(&i915->drm, "QGV point %d: max bw %d required %d\n",
+> +		drm_dbg_kms(display->drm, "QGV point %d: max bw %d required %d\n",
+>  			    i, max_data_rate, data_rate);
+>  	}
+>  
+>  	for (i = 0; i < num_psf_gv_points; i++) {
+> -		unsigned int max_data_rate = adl_psf_bw(i915, i);
+> +		unsigned int max_data_rate = adl_psf_bw(display, i);
+>  
+>  		if (max_data_rate >= data_rate)
+>  			psf_points |= BIT(i);
+>  
+> -		drm_dbg_kms(&i915->drm, "PSF GV point %d: max bw %d"
+> +		drm_dbg_kms(display->drm, "PSF GV point %d: max bw %d"
+>  			    " required %d\n",
+>  			    i, max_data_rate, data_rate);
+>  	}
+> @@ -1057,14 +1071,14 @@ static int icl_find_qgv_points(struct drm_i915_private *i915,
+>  	 * reasons.
+>  	 */
+>  	if (qgv_points == 0) {
+> -		drm_dbg_kms(&i915->drm, "No QGV points provide sufficient memory"
+> +		drm_dbg_kms(display->drm, "No QGV points provide sufficient memory"
+>  			    " bandwidth %d for display configuration(%d active planes).\n",
+>  			    data_rate, num_active_planes);
+>  		return -EINVAL;
+>  	}
+>  
+>  	if (num_psf_gv_points > 0 && psf_points == 0) {
+> -		drm_dbg_kms(&i915->drm, "No PSF GV points provide sufficient memory"
+> +		drm_dbg_kms(display->drm, "No PSF GV points provide sufficient memory"
+>  			    " bandwidth %d for display configuration(%d active planes).\n",
+>  			    data_rate, num_active_planes);
+>  		return -EINVAL;
+> @@ -1076,8 +1090,8 @@ static int icl_find_qgv_points(struct drm_i915_private *i915,
+>  	 * cause.
+>  	 */
+>  	if (!intel_can_enable_sagv(i915, new_bw_state)) {
+> -		qgv_points = icl_max_bw_qgv_point_mask(i915, num_active_planes);
+> -		drm_dbg_kms(&i915->drm, "No SAGV, using single QGV point mask 0x%x\n",
+> +		qgv_points = icl_max_bw_qgv_point_mask(display, num_active_planes);
+> +		drm_dbg_kms(display->drm, "No SAGV, using single QGV point mask 0x%x\n",
+>  			    qgv_points);
+>  	}
+>  
+> @@ -1085,7 +1099,7 @@ static int icl_find_qgv_points(struct drm_i915_private *i915,
+>  	 * We store the ones which need to be masked as that is what PCode
+>  	 * actually accepts as a parameter.
+>  	 */
+> -	new_bw_state->qgv_points_mask = icl_prepare_qgv_points_mask(i915,
+> +	new_bw_state->qgv_points_mask = icl_prepare_qgv_points_mask(display,
+>  								    qgv_points,
+>  								    psf_points);
+>  	/*
+> @@ -1101,38 +1115,38 @@ static int icl_find_qgv_points(struct drm_i915_private *i915,
+>  	return 0;
+>  }
+>  
+> -static int intel_bw_check_qgv_points(struct drm_i915_private *i915,
+> +static int intel_bw_check_qgv_points(struct intel_display *display,
+>  				     const struct intel_bw_state *old_bw_state,
+>  				     struct intel_bw_state *new_bw_state)
+>  {
+> -	unsigned int data_rate = intel_bw_data_rate(i915, new_bw_state);
+> +	unsigned int data_rate = intel_bw_data_rate(display, new_bw_state);
+>  	unsigned int num_active_planes =
+> -			intel_bw_num_active_planes(i915, new_bw_state);
+> +			intel_bw_num_active_planes(display, new_bw_state);
+>  
+>  	data_rate = DIV_ROUND_UP(data_rate, 1000);
+>  
+> -	if (DISPLAY_VER(i915) >= 14)
+> -		return mtl_find_qgv_points(i915, data_rate, num_active_planes,
+> +	if (DISPLAY_VER(display) >= 14)
+> +		return mtl_find_qgv_points(display, data_rate, num_active_planes,
+>  					   new_bw_state);
+>  	else
+> -		return icl_find_qgv_points(i915, data_rate, num_active_planes,
+> +		return icl_find_qgv_points(display, data_rate, num_active_planes,
+>  					   old_bw_state, new_bw_state);
+>  }
+>  
+> -static bool intel_bw_state_changed(struct drm_i915_private *i915,
+> +static bool intel_bw_state_changed(struct intel_display *display,
+>  				   const struct intel_bw_state *old_bw_state,
+>  				   const struct intel_bw_state *new_bw_state)
+>  {
+>  	enum pipe pipe;
+>  
+> -	for_each_pipe(i915, pipe) {
+> +	for_each_pipe(display, pipe) {
+>  		const struct intel_dbuf_bw *old_crtc_bw =
+>  			&old_bw_state->dbuf_bw[pipe];
+>  		const struct intel_dbuf_bw *new_crtc_bw =
+>  			&new_bw_state->dbuf_bw[pipe];
+>  		enum dbuf_slice slice;
+>  
+> -		for_each_dbuf_slice(i915, slice) {
+> +		for_each_dbuf_slice(display, slice) {
+>  			if (old_crtc_bw->max_bw[slice] != new_crtc_bw->max_bw[slice] ||
+>  			    old_crtc_bw->active_planes[slice] != new_crtc_bw->active_planes[slice])
+>  				return true;
+> @@ -1151,7 +1165,8 @@ static void skl_plane_calc_dbuf_bw(struct intel_bw_state *bw_state,
+>  				   const struct skl_ddb_entry *ddb,
+>  				   unsigned int data_rate)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> +	struct intel_display *display = to_intel_display(crtc);
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
+>  	struct intel_dbuf_bw *crtc_bw = &bw_state->dbuf_bw[crtc->pipe];
+>  	unsigned int dbuf_mask = skl_ddb_dbuf_slice_mask(i915, ddb);
+>  	enum dbuf_slice slice;
+> @@ -1160,7 +1175,7 @@ static void skl_plane_calc_dbuf_bw(struct intel_bw_state *bw_state,
+>  	 * The arbiter can only really guarantee an
+>  	 * equal share of the total bw to each plane.
+>  	 */
+> -	for_each_dbuf_slice_in_mask(i915, slice, dbuf_mask) {
+> +	for_each_dbuf_slice_in_mask(display, slice, dbuf_mask) {
+>  		crtc_bw->max_bw[slice] = max(crtc_bw->max_bw[slice], data_rate);
+>  		crtc_bw->active_planes[slice] |= BIT(plane_id);
+>  	}
+> @@ -1169,8 +1184,8 @@ static void skl_plane_calc_dbuf_bw(struct intel_bw_state *bw_state,
+>  static void skl_crtc_calc_dbuf_bw(struct intel_bw_state *bw_state,
+>  				  const struct intel_crtc_state *crtc_state)
+>  {
+> +	struct intel_display *display = to_intel_display(crtc_state);
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> -	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+>  	struct intel_dbuf_bw *crtc_bw = &bw_state->dbuf_bw[crtc->pipe];
+>  	enum plane_id plane_id;
+>  
+> @@ -1191,7 +1206,7 @@ static void skl_crtc_calc_dbuf_bw(struct intel_bw_state *bw_state,
+>  				       &crtc_state->wm.skl.plane_ddb[plane_id],
+>  				       crtc_state->data_rate[plane_id]);
+>  
+> -		if (DISPLAY_VER(i915) < 11)
+> +		if (DISPLAY_VER(display) < 11)
+>  			skl_plane_calc_dbuf_bw(bw_state, crtc, plane_id,
+>  					       &crtc_state->wm.skl.plane_ddb_y[plane_id],
+>  					       crtc_state->data_rate[plane_id]);
+> @@ -1200,13 +1215,13 @@ static void skl_crtc_calc_dbuf_bw(struct intel_bw_state *bw_state,
+>  
+>  /* "Maximum Data Buffer Bandwidth" */
+>  static int
+> -intel_bw_dbuf_min_cdclk(struct drm_i915_private *i915,
+> +intel_bw_dbuf_min_cdclk(struct intel_display *display,
+>  			const struct intel_bw_state *bw_state)
+>  {
+>  	unsigned int total_max_bw = 0;
+>  	enum dbuf_slice slice;
+>  
+> -	for_each_dbuf_slice(i915, slice) {
+> +	for_each_dbuf_slice(display, slice) {
+>  		int num_active_planes = 0;
+>  		unsigned int max_bw = 0;
+>  		enum pipe pipe;
+> @@ -1215,7 +1230,7 @@ intel_bw_dbuf_min_cdclk(struct drm_i915_private *i915,
+>  		 * The arbiter can only really guarantee an
+>  		 * equal share of the total bw to each plane.
+>  		 */
+> -		for_each_pipe(i915, pipe) {
+> +		for_each_pipe(display, pipe) {
+>  			const struct intel_dbuf_bw *crtc_bw = &bw_state->dbuf_bw[pipe];
+>  
+>  			max_bw = max(crtc_bw->max_bw[slice], max_bw);
+> @@ -1232,12 +1247,13 @@ intel_bw_dbuf_min_cdclk(struct drm_i915_private *i915,
+>  int intel_bw_min_cdclk(struct drm_i915_private *i915,
+>  		       const struct intel_bw_state *bw_state)
+>  {
+> +	struct intel_display *display = &i915->display;
+>  	enum pipe pipe;
+>  	int min_cdclk;
+>  
+> -	min_cdclk = intel_bw_dbuf_min_cdclk(i915, bw_state);
+> +	min_cdclk = intel_bw_dbuf_min_cdclk(display, bw_state);
+>  
+> -	for_each_pipe(i915, pipe)
+> +	for_each_pipe(display, pipe)
+>  		min_cdclk = max(min_cdclk, bw_state->min_cdclk[pipe]);
+>  
+>  	return min_cdclk;
+> @@ -1246,6 +1262,7 @@ int intel_bw_min_cdclk(struct drm_i915_private *i915,
+>  int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
+>  			    bool *need_cdclk_calc)
+>  {
+> +	struct intel_display *display = to_intel_display(state);
+>  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+>  	struct intel_bw_state *new_bw_state = NULL;
+>  	const struct intel_bw_state *old_bw_state = NULL;
+> @@ -1255,7 +1272,7 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
+>  	struct intel_crtc *crtc;
+>  	int i;
+>  
+> -	if (DISPLAY_VER(dev_priv) < 9)
+> +	if (DISPLAY_VER(display) < 9)
+>  		return 0;
+>  
+>  	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
+> @@ -1274,7 +1291,7 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
+>  	if (!old_bw_state)
+>  		return 0;
+>  
+> -	if (intel_bw_state_changed(dev_priv, old_bw_state, new_bw_state)) {
+> +	if (intel_bw_state_changed(display, old_bw_state, new_bw_state)) {
+>  		int ret = intel_atomic_lock_global_state(&new_bw_state->base);
+>  		if (ret)
+>  			return ret;
+> @@ -1309,7 +1326,7 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
+>  	if (new_min_cdclk <= cdclk_state->bw_min_cdclk)
+>  		return 0;
+>  
+> -	drm_dbg_kms(&dev_priv->drm,
+> +	drm_dbg_kms(display->drm,
+>  		    "new bandwidth min cdclk (%d kHz) > old min cdclk (%d kHz)\n",
+>  		    new_min_cdclk, cdclk_state->bw_min_cdclk);
+>  	*need_cdclk_calc = true;
+> @@ -1319,7 +1336,7 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
+>  
+>  static int intel_bw_check_data_rate(struct intel_atomic_state *state, bool *changed)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> +	struct intel_display *display = to_intel_display(state);
+>  	const struct intel_crtc_state *new_crtc_state, *old_crtc_state;
+>  	struct intel_crtc *crtc;
+>  	int i;
+> @@ -1353,7 +1370,7 @@ static int intel_bw_check_data_rate(struct intel_atomic_state *state, bool *chan
+>  
+>  		*changed = true;
+>  
+> -		drm_dbg_kms(&i915->drm,
+> +		drm_dbg_kms(display->drm,
+>  			    "[CRTC:%d:%s] data rate %u num active planes %u\n",
+>  			    crtc->base.base.id, crtc->base.name,
+>  			    new_bw_state->data_rate[crtc->pipe],
+> @@ -1365,14 +1382,15 @@ static int intel_bw_check_data_rate(struct intel_atomic_state *state, bool *chan
+>  
+>  int intel_bw_atomic_check(struct intel_atomic_state *state)
+>  {
+> +	struct intel_display *display = to_intel_display(state);
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
+>  	bool changed = false;
+> -	struct drm_i915_private *i915 = to_i915(state->base.dev);
+>  	struct intel_bw_state *new_bw_state;
+>  	const struct intel_bw_state *old_bw_state;
+>  	int ret;
+>  
+>  	/* FIXME earlier gens need some checks too */
+> -	if (DISPLAY_VER(i915) < 11)
+> +	if (DISPLAY_VER(display) < 11)
+>  		return 0;
+>  
+>  	ret = intel_bw_check_data_rate(state, &changed);
+> @@ -1395,7 +1413,7 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
+>  	if (!changed)
+>  		return 0;
+>  
+> -	ret = intel_bw_check_qgv_points(i915, old_bw_state, new_bw_state);
+> +	ret = intel_bw_check_qgv_points(display, old_bw_state, new_bw_state);
+>  	if (ret)
+>  		return ret;
+>  
+> @@ -1407,8 +1425,8 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
+>  static void intel_bw_crtc_update(struct intel_bw_state *bw_state,
+>  				 const struct intel_crtc_state *crtc_state)
+>  {
+> +	struct intel_display *display = to_intel_display(crtc_state);
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> -	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+>  
+>  	bw_state->data_rate[crtc->pipe] =
+>  		intel_bw_crtc_data_rate(crtc_state);
+> @@ -1416,7 +1434,7 @@ static void intel_bw_crtc_update(struct intel_bw_state *bw_state,
+>  		intel_bw_crtc_num_active_planes(crtc_state);
+>  	bw_state->force_check_qgv = true;
+>  
+> -	drm_dbg_kms(&i915->drm, "pipe %c data rate %u num active planes %u\n",
+> +	drm_dbg_kms(display->drm, "pipe %c data rate %u num active planes %u\n",
+>  		    pipe_name(crtc->pipe),
+>  		    bw_state->data_rate[crtc->pipe],
+>  		    bw_state->num_active_planes[crtc->pipe]);
+> @@ -1499,8 +1517,8 @@ int intel_bw_init(struct drm_i915_private *i915)
+>  	 * Limit this only if we have SAGV. And for Display version 14 onwards
+>  	 * sagv is handled though pmdemand requests
+>  	 */
+> -	if (intel_has_sagv(i915) && IS_DISPLAY_VER(i915, 11, 13))
+> -		icl_force_disable_sagv(i915, state);
+> +	if (intel_has_sagv(i915) && IS_DISPLAY_VER(display, 11, 13))
+> +		icl_force_disable_sagv(display, state);
+>  
+>  	return 0;
+>  }
+> 
+> -- 
+> 2.48.1
+> 
 
-do we need to have for_each_gt inside every step?
-maybe the loop should be here?
-
-for_each_tile() {
-	shift = vf_reset_ggtt_shift(tile->primary_gt)
-	if (shift) {
-		vf_fixup_nodes(tile)
-		vf_fixup_ctb(tile->primary_gt)
-		if (tile->media_gt)
-			vf_fixup_ctb(tile->media_gt)
-	}
-}
-
-
->  	vf_post_migration_notify_resfix_done(xe);
->  	xe_pm_runtime_put(xe);
->  	drm_notice(&xe->drm, "migration recovery ended\n");
-
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
