@@ -4,52 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A77CC282EC
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Mar 2025 07:38:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EDD8C35FF1
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Mar 2025 07:38:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FCFE10E980;
-	Fri, 14 Mar 2025 07:38:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45CA310E982;
+	Fri, 14 Mar 2025 07:38:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hCX37xeG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V7AqAwP4";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C75910E980
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Mar 2025 07:38:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D8BF10E980
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Mar 2025 07:38:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741937917; x=1773473917;
+ t=1741937920; x=1773473920;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3EQaJC7ftMNKi2/cV7UxzLPUkarz7JAPRS7DuNUy5D8=;
- b=hCX37xeGXpl3zDjPOH2BwXJ0NLNlKHfqJLj68p8kOy9OjlXdHfRwlACZ
- uUUE7gLD/XJ1MMz5HyR7y+gRec0Nn8D8VtJg/2/Pi4L/lCbeTS0OwVtJI
- 1aPFUoygK2z6kfhUzgDoBFAAfRM2f5yDVr7c4reVaNyJ20dD44/nXAcng
- ZMk9V7tJyGU17O7Y2rkmdL7wZrXnDxYgU2ci+Dx8vfUJEKv1aVkNMEDuo
- B2BDWmEId2zJLbFpFFDYhFMzbIE4pR4KymfcgiCwJ4xGKLmR7N8ei4xe9
- XH2W4txAljj+fA0YE/+ACUfoGT1TOd025ok0HUgfhSZZML8oMRcmko2W0 w==;
-X-CSE-ConnectionGUID: 5mRVBcR0RWOcKSeJ/GJ/7g==
-X-CSE-MsgGUID: JFSrTBsFRFyjI2N4BcnxNQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11372"; a="68446023"
-X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="68446023"
+ bh=1ve8G8iIrNqUI+P8LTsiHZOIUWaWjgv9qT6D65Apkw0=;
+ b=V7AqAwP4Ts02CqhMxpJxA8KlsuYVGK2fII2AuAMpVDmYhV8wNVWy6Dm+
+ IgqcO6Ipwl4GxGH7gQnU9cpwb06Qdt8Y/W1/sYAPzCC7t3bGvxpOtAi1L
+ ukELExd4uK27x10T/NdPTRjVGq7+PHjLd50Jbj26YbfMwhWZCe3C1/5ci
+ /fjUzwkEBIfJE5UDYhjB/SDBxdhDQp7LhqjWVOoe8q3Ds2R55fsu04+x9
+ kBsTv1NQLWSrx7LIRiMej+X2cLpiJGFrH+2hAjUxRWHTep3M0Q3f0IAia
+ 0Mbn1V2qDPj0svs2js97rioGO/15uT7Wb2fKsN0qXn1JbEF9eMzPknw9E g==;
+X-CSE-ConnectionGUID: c9k9OQ6pSVmeVu4qREoVrQ==
+X-CSE-MsgGUID: VQjfoj9RRRG381lFkQYkDg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11372"; a="68446027"
+X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="68446027"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2025 00:38:37 -0700
-X-CSE-ConnectionGUID: Phk09OS6RuuctuoE6Z/big==
-X-CSE-MsgGUID: 0aUmD7VnS1aaPPSm6nAvIg==
+ 14 Mar 2025 00:38:39 -0700
+X-CSE-ConnectionGUID: hw3TThMAS6qfMcuUt8atCw==
+X-CSE-MsgGUID: F5XPqkm4SceBojXBu1y3Og==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="152043792"
+X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="152043799"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by orviesa002.jf.intel.com with ESMTP; 14 Mar 2025 00:38:35 -0700
+ by orviesa002.jf.intel.com with ESMTP; 14 Mar 2025 00:38:37 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
- oak.zeng@intel.com,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Danilo Krummrich <dakr@redhat.com>
-Subject: [RFC 13/29] drm/gpuvm: Introduce MADVISE Operations
-Date: Fri, 14 Mar 2025 13:32:10 +0530
-Message-Id: <20250314080226.2059819-14-himal.prasad.ghimiray@intel.com>
+ oak.zeng@intel.com, Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Subject: [RFC 14/29] drm/xe/uapi: Add madvise interface
+Date: Fri, 14 Mar 2025 13:32:11 +0530
+Message-Id: <20250314080226.2059819-15-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250314080226.2059819-1-himal.prasad.ghimiray@intel.com>
 References: <20250314080226.2059819-1-himal.prasad.ghimiray@intel.com>
@@ -69,258 +67,145 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce MADVISE operations that do not unmap the GPU VMA. These
-operations split VMAs if the start or end addresses fall within existing
-VMAs. The operations can create up to 2 REMAPS and 2 MAPs.
+This commit introduces a new madvise interface to support
+driver-specific ioctl operations. The madvise interface allows for more
+efficient memory management by providing hints to the driver about the
+expected memory usage and pte update policy for gpuvma.
 
-If the input range is within the existing range, it creates REMAP:UNMAP,
-REMAP:PREV, REMAP:NEXT, and MAP operations for the input range.
-  Example:
-  Input Range: 0x00007f0a54000000 to 0x00007f0a54400000
-  GPU VMA: 0x0000000000000000 to 0x0000800000000000
-  Operations Result:
-  - REMAP:UNMAP: addr=0x0000000000000000, range=0x0000800000000000
-  - REMAP:PREV: addr=0x0000000000000000, range=0x00007f0a54000000
-  - REMAP:NEXT: addr=0x00007f0a54400000, range=0x000000f5abc00000
-  - MAP: addr=0x00007f0a54000000, range=0x0000000000400000
-
-If the input range starts at the beginning of one GPU VMA and ends at
-the end of another VMA, covering multiple VMAs, the operations do nothing.
-  Example:
-  Input Range: 0x00007fc898800000 to 0x00007fc899000000
-  GPU VMAs:
-  - 0x0000000000000000 to 0x00007fc898800000
-  - 0x00007fc898800000 to 0x00007fc898a00000
-  - 0x00007fc898a00000 to 0x00007fc898c00000
-  - 0x00007fc898c00000 to 0x00007fc899000000
-  - 0x00007fc899000000 to 0x00007fc899200000
-  Operations Result: None
-
-Cc: Danilo Krummrich <dakr@redhat.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/drm_gpuvm.c | 175 +++++++++++++++++++++++++++++++++++-
- include/drm/drm_gpuvm.h     |   6 ++
- 2 files changed, 180 insertions(+), 1 deletion(-)
+ include/uapi/drm/xe_drm.h | 97 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 97 insertions(+)
 
-diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
-index f9eb56f24bef..904a26641b21 100644
---- a/drivers/gpu/drm/drm_gpuvm.c
-+++ b/drivers/gpu/drm/drm_gpuvm.c
-@@ -2230,7 +2230,7 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
- 				ret = op_remap_cb(ops, priv, NULL, &n, &u);
- 				if (ret)
- 					return ret;
--				break;
-+				return 0;
- 			}
- 		}
- 	}
-@@ -2240,6 +2240,143 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
- 			 req_obj, req_offset);
- }
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 616916985e3f..70e79fe35834 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -81,6 +81,7 @@ extern "C" {
+  *  - &DRM_IOCTL_XE_EXEC
+  *  - &DRM_IOCTL_XE_WAIT_USER_FENCE
+  *  - &DRM_IOCTL_XE_OBSERVATION
++ *  - &DRM_IOCTL_XE_MADVISE
+  */
  
-+static int
-+__drm_gpuvm_skip_split_map(struct drm_gpuvm *gpuvm,
-+			   const struct drm_gpuvm_ops *ops, void *priv,
-+			   u64 req_addr, u64 req_range,
-+			   bool skip_gem_obj_va, u64 req_offset)
-+{
-+	struct drm_gpuva *va, *next;
-+	u64 req_end = req_addr + req_range;
-+	int ret;
-+
-+	if (unlikely(!drm_gpuvm_range_valid(gpuvm, req_addr, req_range)))
-+		return -EINVAL;
-+
-+	drm_gpuvm_for_each_va_range_safe(va, next, gpuvm, req_addr, req_end) {
-+		struct drm_gem_object *obj = va->gem.obj;
-+		u64 offset = va->gem.offset;
-+		u64 addr = va->va.addr;
-+		u64 range = va->va.range;
-+		u64 end = addr + range;
-+
-+		if (addr == req_addr) {
-+			if (end == req_end)
-+				return 0;
-+
-+			if (end < req_end)
-+				continue;
-+
-+			if (end > req_end) {
-+				if (skip_gem_obj_va && !!obj)
-+					return 0;
-+
-+				struct drm_gpuva_op_map n = {
-+					.va.addr = req_end,
-+					.va.range = range - req_range,
-+					.gem.obj = obj,
-+					.gem.offset = offset + req_range,
-+				};
-+				struct drm_gpuva_op_unmap u = {
-+					.va = va,
-+					.keep = false,
-+				};
-+
-+				ret = op_remap_cb(ops, priv, NULL, &n, &u);
-+				if (ret)
-+					return ret;
-+
-+				break;
-+			}
-+		} else if (addr < req_addr) {
-+			u64 ls_range = req_addr - addr;
-+			struct drm_gpuva_op_map p = {
-+				.va.addr = addr,
-+				.va.range = ls_range,
-+				.gem.obj = obj,
-+				.gem.offset = offset,
-+			};
-+			struct drm_gpuva_op_unmap u = { .va = va, .keep = false, };
-+
-+			if (end == req_end) {
-+				if (skip_gem_obj_va && !!obj)
-+					return 0;
-+
-+				ret = op_remap_cb(ops, priv, &p, NULL, &u);
-+				if (ret)
-+					return ret;
-+				break;
-+			}
-+
-+			if (end < req_end) {
-+				if (skip_gem_obj_va && !!obj)
-+					continue;
-+
-+				ret = op_remap_cb(ops, priv, &p, NULL, &u);
-+				if (ret)
-+					return ret;
-+
-+				ret = op_map_cb(ops, priv, req_addr,
-+						min(end - req_addr, req_end - end),
-+						NULL, req_offset);
-+				if (ret)
-+					return ret;
-+				continue;
-+			}
-+
-+			if (end > req_end) {
-+				if (skip_gem_obj_va && !!obj)
-+					return 0;
-+
-+				struct drm_gpuva_op_map n = {
-+					.va.addr = req_end,
-+					.va.range = end - req_end,
-+					.gem.obj = obj,
-+					.gem.offset = offset + ls_range +
-+						      req_range,
-+				};
-+
-+				ret = op_remap_cb(ops, priv, &p, &n, &u);
-+				if (ret)
-+					return ret;
-+				break;
-+			}
-+		} else if (addr > req_addr) {
-+			if (end == req_end)
-+				return 0;
-+
-+			if (end < req_end)
-+				continue;
-+
-+			if (end > req_end) {
-+				if (skip_gem_obj_va && !!obj)
-+					return 0;
-+
-+				struct drm_gpuva_op_map n = {
-+					.va.addr = req_end,
-+					.va.range = end - req_end,
-+					.gem.obj = obj,
-+					.gem.offset = offset + req_end - addr,
-+				};
-+				struct drm_gpuva_op_unmap u = {
-+					.va = va,
-+					.keep = false,
-+				};
-+
-+				ret = op_remap_cb(ops, priv, NULL, &n, &u);
-+				if (ret)
-+					return ret;
-+				return op_map_cb(ops, priv, addr,
-+						 (req_end - addr), NULL, req_offset);
-+			}
-+		}
-+	}
-+
-+	return op_map_cb(ops, priv,
-+			 req_addr, req_range,
-+			 NULL, req_offset);
-+}
-+
- static int
- __drm_gpuvm_sm_unmap(struct drm_gpuvm *gpuvm,
- 		     const struct drm_gpuvm_ops *ops, void *priv,
-@@ -2548,6 +2685,42 @@ drm_gpuvm_sm_map_ops_create(struct drm_gpuvm *gpuvm,
- }
- EXPORT_SYMBOL_GPL(drm_gpuvm_sm_map_ops_create);
+ /*
+@@ -102,6 +103,7 @@ extern "C" {
+ #define DRM_XE_EXEC			0x09
+ #define DRM_XE_WAIT_USER_FENCE		0x0a
+ #define DRM_XE_OBSERVATION		0x0b
++#define DRM_XE_MADVISE			0x0c
  
-+struct drm_gpuva_ops *
-+drm_gpuvm_madvise_ops_create(struct drm_gpuvm *gpuvm,
-+			     u64 req_addr, u64 req_range,
-+			     bool skip_gem_obj_va, u64 req_offset)
-+{
-+	struct drm_gpuva_ops *ops;
-+	struct {
-+		struct drm_gpuvm *vm;
-+		struct drm_gpuva_ops *ops;
-+	} args;
-+	int ret;
-+
-+	ops = kzalloc(sizeof(*ops), GFP_KERNEL);
-+	if (unlikely(!ops))
-+		return ERR_PTR(-ENOMEM);
-+
-+	INIT_LIST_HEAD(&ops->list);
-+
-+	args.vm = gpuvm;
-+	args.ops = ops;
-+
-+	ret = __drm_gpuvm_skip_split_map(gpuvm, &gpuvm_list_ops, &args,
-+					 req_addr, req_range,
-+					 skip_gem_obj_va, req_offset);
-+
-+	if (ret || list_empty(&ops->list))
-+		goto err_free_ops;
-+
-+	return ops;
-+
-+err_free_ops:
-+	drm_gpuva_ops_free(gpuvm, ops);
-+	return ERR_PTR(ret);
-+}
-+EXPORT_SYMBOL_GPL(drm_gpuvm_madvise_ops_create);
-+
+ /* Must be kept compact -- no holes */
+ 
+@@ -117,6 +119,7 @@ extern "C" {
+ #define DRM_IOCTL_XE_EXEC			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, struct drm_xe_exec)
+ #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
+ #define DRM_IOCTL_XE_OBSERVATION		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OBSERVATION, struct drm_xe_observation_param)
++#define DRM_IOCTL_XE_MADVISE			DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_MADVISE, struct drm_xe_madvise)
+ 
  /**
-  * drm_gpuvm_sm_unmap_ops_create() - creates the &drm_gpuva_ops to split on
-  * unmap
-diff --git a/include/drm/drm_gpuvm.h b/include/drm/drm_gpuvm.h
-index 2a9629377633..e521ebabab9e 100644
---- a/include/drm/drm_gpuvm.h
-+++ b/include/drm/drm_gpuvm.h
-@@ -1062,6 +1062,12 @@ struct drm_gpuva_ops *
- drm_gpuvm_sm_map_ops_create(struct drm_gpuvm *gpuvm,
- 			    u64 addr, u64 range,
- 			    struct drm_gem_object *obj, u64 offset);
+  * DOC: Xe IOCTL Extensions
+@@ -1961,6 +1964,100 @@ struct drm_xe_query_eu_stall {
+ 	__u64 sampling_rates[];
+ };
+ 
++struct drm_xe_madvise_ops {
++	/** @start: start of the virtual address range */
++	__u64 start;
 +
-+struct drm_gpuva_ops *
-+drm_gpuvm_madvise_ops_create(struct drm_gpuvm *gpuvm,
-+			     u64 addr, u64 range,
-+			     bool skip_gem_obj_va, u64 offset);
++	/** @size: size of the virtual address range */
++	__u64 range;
 +
- struct drm_gpuva_ops *
- drm_gpuvm_sm_unmap_ops_create(struct drm_gpuvm *gpuvm,
- 			      u64 addr, u64 range);
++#define DRM_XE_VMA_ATTR_PREFERRED_LOC	0
++#define DRM_XE_VMA_ATTR_ATOMIC		1
++#define DRM_XE_VMA_ATTR_PAT		2
++#define DRM_XE_VMA_ATTR_PURGEABLE_STATE	3
++	/** @type: type of attribute */
++	__u32 type;
++
++	/** @pad: MBZ */
++	__u32 pad;
++
++	union {
++		struct {
++#define DRM_XE_VMA_ATOMIC_UNDEFINED	0
++#define DRM_XE_VMA_ATOMIC_DEVICE	1
++#define DRM_XE_VMA_ATOMIC_GLOBAL	2
++#define DRM_XE_VMA_ATOMIC_CPU		3
++		/** @val: value of atomic operation*/
++			__u32 val;
++
++		/** @reserved: Reserved */
++			__u32 reserved;
++		} atomic;
++
++		struct {
++#define DRM_XE_VMA_PURGEABLE_STATE_WILLNEED	0
++#define DRM_XE_VMA_PURGEABLE_STATE_DONTNEED	1
++#define DRM_XE_VMA_PURGEABLE_STATE_PURGED	2
++		/** @val: value for DRM_XE_VMA_ATTR_PURGEABLE_STATE */
++			__u32 val;
++
++		/** @reserved: Reserved */
++			__u32 reserved;
++		} purge_state_val;
++
++		struct {
++			/** @pat_index */
++			__u32 val;
++
++			/** @reserved: Reserved */
++			__u32 reserved;
++		} pat_index;
++
++		/** @preferred_mem_loc: preferred memory location */
++		struct {
++			__u32 devmem_fd;
++
++#define MIGRATE_ALL_PAGES 0
++#define MIGRATE_ONLY_SYSTEM_PAGES 1
++			__u32 migration_policy;
++		} preferred_mem_loc;
++	};
++
++	/** @reserved: Reserved */
++	__u64 reserved[2];
++};
++
++/**
++ * struct drm_xe_madvise - Input of &DRM_IOCTL_XE_MADVISE
++ *
++ * Set memory attributes to a virtual address range
++ */
++struct drm_xe_madvise {
++	/** @extensions: Pointer to the first extension struct, if any */
++	__u64 extensions;
++
++	/** @vm_id: vm_id of the virtual range */
++	__u32 vm_id;
++
++	/** @num_ops: number of madvises in ioctl */
++	__u32 num_ops;
++
++	union {
++		/** @ops: used if num_ops == 1 */
++		struct drm_xe_madvise_ops ops;
++
++		/**
++		 * @vector_of_ops: userptr to array of struct
++		 * drm_xe_vm_madvise_op if num_ops > 1
++		 */
++		__u64 vector_of_ops;
++	};
++
++	/** @reserved: Reserved */
++	__u64 reserved[2];
++
++};
++
+ #if defined(__cplusplus)
+ }
+ #endif
 -- 
 2.34.1
 
