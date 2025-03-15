@@ -4,27 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1E20C28B28
-	for <intel-xe@archiver.kernel.org>; Sat, 15 Mar 2025 09:06:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41453C35FF3
+	for <intel-xe@archiver.kernel.org>; Sat, 15 Mar 2025 12:08:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7827C10E38F;
-	Sat, 15 Mar 2025 09:06:16 +0000 (UTC)
-Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E19210E38F;
- Sat, 15 Mar 2025 09:06:15 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4153740170780795840=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0324B10E28A;
+	Sat, 15 Mar 2025 12:08:23 +0000 (UTC)
+X-Greylist: delayed 1043 seconds by postgrey-1.36 at gabe;
+ Sat, 15 Mar 2025 12:08:20 UTC
+Received: from szxga03-in.huawei.com (szxga03-in.huawei.com [45.249.212.189])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C044310E06E;
+ Sat, 15 Mar 2025 12:08:20 +0000 (UTC)
+Received: from mail.maildlp.com (unknown [172.19.88.105])
+ by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4ZFKH05shYzDssM;
+ Sat, 15 Mar 2025 19:47:40 +0800 (CST)
+Received: from dggpemf500002.china.huawei.com (unknown [7.185.36.57])
+ by mail.maildlp.com (Postfix) with ESMTPS id 3CF331401E9;
+ Sat, 15 Mar 2025 19:50:53 +0800 (CST)
+Received: from huawei.com (10.175.101.6) by dggpemf500002.china.huawei.com
+ (7.185.36.57) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Sat, 15 Mar
+ 2025 19:50:52 +0800
+From: Yue Haibing <yuehaibing@huawei.com>
+To: <jani.nikula@linux.intel.com>, <rodrigo.vivi@intel.com>,
+ <joonas.lahtinen@linux.intel.com>, <tursulin@ursulin.net>,
+ <airlied@gmail.com>, <simona@ffwll.ch>, <tzimmermann@suse.de>,
+ <dev@lankhorst.se>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+ <yuehaibing@huawei.com>
+Subject: [PATCH -next] drm/i915/display: Fix build error without
+ DRM_FBDEV_EMULATION
+Date: Sat, 15 Mar 2025 20:01:43 +0800
+Message-ID: <20250315120143.2344958-1-yuehaibing@huawei.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Fix_vrr=2Eenable_handling_a?=
- =?utf-8?q?nd_add_logging_for_fixed=5Frr?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 15 Mar 2025 09:06:15 -0000
-Message-ID: <174202957557.39174.18269703366254581627@18a75f3d1eae>
-X-Patchwork-Hint: ignore
-References: <20250315080449.2325563-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20250315080449.2325563-1-ankit.k.nautiyal@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.175.101.6]
+X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
+ dggpemf500002.china.huawei.com (7.185.36.57)
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,189 +54,42 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4153740170780795840==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+In file included from <command-line>:
+./drivers/gpu/drm/i915/display/intel_fbdev.h: In function ‘intel_fbdev_framebuffer’:
+./drivers/gpu/drm/i915/display/intel_fbdev.h:32:16: error: ‘NULL’ undeclared (first use in this function)
+   32 |         return NULL;
+      |                ^~~~
+./drivers/gpu/drm/i915/display/intel_fbdev.h:1:1: note: ‘NULL’ is defined in header ‘<stddef.h>’; did you forget to ‘#include <stddef.h>’?
+  +++ |+#include <stddef.h>
+    1 | /* SPDX-License-Identifier: MIT */
+./drivers/gpu/drm/i915/display/intel_fbdev.h:32:16: note: each undeclared identifier is reported only once for each function it appears in
+   32 |         return NULL;
+      |                ^~~~
 
-== Series Details ==
+Build fails if CONFIG_DRM_FBDEV_EMULATION is n, add missing header file.
 
-Series: Fix vrr.enable handling and add logging for fixed_rr
-URL   : https://patchwork.freedesktop.org/series/146343/
-State : success
+Fixes: 9fa154f40eb6 ("drm/{i915,xe}: Run DRM default client setup")
+Signed-off-by: Yue Haibing <yuehaibing@huawei.com>
+---
+ drivers/gpu/drm/i915/display/intel_fbdev.h | 2 ++
+ 1 file changed, 2 insertions(+)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h b/drivers/gpu/drm/i915/display/intel_fbdev.h
+index ca2c8c438f02..89bad3a2b01a 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.h
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
+@@ -6,6 +6,8 @@
+ #ifndef __INTEL_FBDEV_H__
+ #define __INTEL_FBDEV_H__
+ 
++#include <linux/types.h>
++
+ struct drm_fb_helper;
+ struct drm_fb_helper_surface_size;
+ struct drm_i915_private;
+-- 
+2.34.1
 
-CI Bug Log - changes from xe-2824-deccd667e475e826a1cdd91ab9aec4f897bd30c4_BAT -> xe-pw-146343v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-146343v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_gt_freq@freq_fixed_idle:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][1] ([Intel XE#2464]) +2 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146343v1/bat-adlp-vf/igt@xe_gt_freq@freq_fixed_idle.html
-
-  * igt@xe_mmap@vram:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][2] ([Intel XE#1008])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146343v1/bat-adlp-vf/igt@xe_mmap@vram.html
-
-  * igt@xe_pat@pat-index-xelp@render:
-    - bat-adlp-vf:        NOTRUN -> [ABORT][3] ([Intel XE#4491]) +1 other test abort
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146343v1/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
-
-  * igt@xe_pm_residency@gt-c6-on-idle:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][4] ([Intel XE#2468])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146343v1/bat-adlp-vf/igt@xe_pm_residency@gt-c6-on-idle.html
-
-  * igt@xe_sriov_flr@flr-vf1-clear:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][5] ([Intel XE#3342])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146343v1/bat-adlp-vf/igt@xe_sriov_flr@flr-vf1-clear.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_exec_basic@twice-bindexecqueue-rebind:
-    - bat-adlp-vf:        [ABORT][6] ([Intel XE#4491]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2824-deccd667e475e826a1cdd91ab9aec4f897bd30c4/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146343v1/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
-
-  
-  [Intel XE#1008]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1008
-  [Intel XE#2464]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2464
-  [Intel XE#2468]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2468
-  [Intel XE#3342]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342
-  [Intel XE#4491]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4491
-
-
-Build changes
--------------
-
-  * IGT: IGT_8274 -> IGT_8275
-  * Linux: xe-2824-deccd667e475e826a1cdd91ab9aec4f897bd30c4 -> xe-pw-146343v1
-
-  IGT_8274: 8274
-  IGT_8275: a851348546d61620c263d3292148f67620efa7d0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2824-deccd667e475e826a1cdd91ab9aec4f897bd30c4: deccd667e475e826a1cdd91ab9aec4f897bd30c4
-  xe-pw-146343v1: 146343v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146343v1/index.html
-
---===============4153740170780795840==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fix vrr.enable handling and add logging for fixed_rr</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/146343/">https://patchwork.freedesktop.org/series/146343/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146343v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146343v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2824-deccd667e475e826a1cdd91ab9aec4f897bd30c4_BAT -&gt; xe-pw-146343v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-146343v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_gt_freq@freq_fixed_idle:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146343v1/bat-adlp-vf/igt@xe_gt_freq@freq_fixed_idle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2464">Intel XE#2464</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_mmap@vram:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146343v1/bat-adlp-vf/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1008">Intel XE#1008</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp@render:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146343v1/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4491">Intel XE#4491</a>) +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pm_residency@gt-c6-on-idle:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146343v1/bat-adlp-vf/igt@xe_pm_residency@gt-c6-on-idle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2468">Intel XE#2468</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_sriov_flr@flr-vf1-clear:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146343v1/bat-adlp-vf/igt@xe_sriov_flr@flr-vf1-clear.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342">Intel XE#3342</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_exec_basic@twice-bindexecqueue-rebind:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2824-deccd667e475e826a1cdd91ab9aec4f897bd30c4/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4491">Intel XE#4491</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146343v1/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8274 -&gt; IGT_8275</li>
-<li>Linux: xe-2824-deccd667e475e826a1cdd91ab9aec4f897bd30c4 -&gt; xe-pw-146343v1</li>
-</ul>
-<p>IGT_8274: 8274<br />
-  IGT_8275: a851348546d61620c263d3292148f67620efa7d0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2824-deccd667e475e826a1cdd91ab9aec4f897bd30c4: deccd667e475e826a1cdd91ab9aec4f897bd30c4<br />
-  xe-pw-146343v1: 146343v1</p>
-
-</body>
-</html>
-
---===============4153740170780795840==--
