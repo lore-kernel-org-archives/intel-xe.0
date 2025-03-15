@@ -4,103 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80E65C28B28
-	for <intel-xe@archiver.kernel.org>; Sat, 15 Mar 2025 18:40:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFDE9C28B2F
+	for <intel-xe@archiver.kernel.org>; Sat, 15 Mar 2025 19:19:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDDCD10E055;
-	Sat, 15 Mar 2025 18:40:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4EC610E028;
+	Sat, 15 Mar 2025 19:19:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="lo/9/dJm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YuvmDDK5";
 	dkim-atps=neutral
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08E1F10E055
- for <intel-xe@lists.freedesktop.org>; Sat, 15 Mar 2025 18:40:04 +0000 (UTC)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52FHbjkP000764
- for <intel-xe@lists.freedesktop.org>; Sat, 15 Mar 2025 18:39:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=qcppdkim1; bh=UtEbq8V/NtEZkSm+R37gQ1eP
- CKnUAWKaKkHpQvaTI3k=; b=lo/9/dJmUnDmryPWfvxV2+2DSGDJqqIKmath2zzn
- wke0iQQWrBR4fJYraIW/sos3ig6csq6u7ohz2Z2X0lmLNcMAD5S9EbVIrFSiUmDy
- AVNrOC3GW++6tu0hejz7QWgnBasFgYV9BMUEfuqNLYw9Sf9WclVwttlHUVMtQfSU
- lIULCbC0Wwrl4VKUS+98kJqg6DFlRMHglpMdCiFFd1pg3u7GBx9mqhGJsGlBwV9E
- DsfcDTfyZWumyp0LuMSRi0Tln2zgA/7qAeefets/R1LlGuGOc6T6ouTlz4KwpPDP
- hRkYqaIRRCAGTxkzTwvAj6XCnMaKAzGQ4rmR8P30HLDPEQ==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
- [209.85.219.71])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45d1r113c0-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <intel-xe@lists.freedesktop.org>; Sat, 15 Mar 2025 18:39:54 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id
- 6a1803df08f44-6e1b8065ed4so71018726d6.0
- for <intel-xe@lists.freedesktop.org>; Sat, 15 Mar 2025 11:39:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1742063992; x=1742668792;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=UtEbq8V/NtEZkSm+R37gQ1ePCKnUAWKaKkHpQvaTI3k=;
- b=kQ49vS+mQ3oYBqq59kgx7jyUON2M68Rz7pDC7OiltumsTlFvhJDVcztMfAtge83rL1
- zPLEEGNhsO4SZb60q0Mnf5pge0kf7i8AlQVX3OzFCnfWr49GEJJbZq8CLJidOddkpJl9
- SmpV4FcuXJu2aywtMIGHL/mmEdeg7jcPYKIyuYf7h7a27HUQgC22bDoORoyetxSYrUEf
- VKURytQL/q6gV1Ya7TLOJUIsCd98rcIj6XTbYqnD5R610ofjieuylMcCFyee4a+sRzbY
- GPa8jApUmoQVMLXz1WIUWh9wU67ATrpGoe6HXa/zOVMNJemHAKzLiRAxJTpc88tltq/n
- KAlA==
-X-Gm-Message-State: AOJu0YzZKalJbmjxT8MuiAmWhFLPjVXeZDxktLc2CcAs46a2tGKM1Y9T
- TQKi2MVyOY8IfYiMPHDUCu6LC94pt/VM0rlXJFM6kQQXH85PEJRuKNB+E5wlZlz4yKLOLF3XTrm
- hjj3nZHc/1icOqmcb+GPGZQum2Dmup9CIhZlutipA/e39VM87Wsg7V9+IcOw4RtYp3HFbA9r7yQ
- ==
-X-Gm-Gg: ASbGncvGSaL/ivmCDiX5IXhlPo+AIkq6vtDJRdSgDh5ZZMOwbPdjkC41Dnf21SoBS8N
- 1SvCJSsjNceOhfr9Yp3yt6U9iVRQQ4+1/8TM1/wM51wcAjbUtL7J4rutiFvCZjQ4SMP+G7I4MwK
- lC9/jgfw/Tezz0nxgyXhQzhM6Mu0/LqZR+jCUVyBtsPcDo3vraZHYV2jouwYWbgqgqO/6cGItL0
- pKluTKmuqk/lbPo97oTS3d8Rgx28PljEb0KH3B+WqOKn3SDlYJL57qOgtjloirWovSGAy/xAW0z
- UaKpES3HtTlUVYMjh4GgYWncAq/IXBLDzZtoyGrAMhNeZGnesiiXs/3sWvrMeYp1vuT6JE/Veb8
- JCNM=
-X-Received: by 2002:a05:6214:f6f:b0:6e2:49d0:6897 with SMTP id
- 6a1803df08f44-6eaeaa5afd4mr96831986d6.24.1742063992604; 
- Sat, 15 Mar 2025 11:39:52 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEmIGsbXu0hrCN6MCQrzXjGmhIzpZfGVDJrb7bUoHTlS5gnwtzz03IanAnuZ8vH/a6hY2nC1w==
-X-Received: by 2002:a05:6214:f6f:b0:6e2:49d0:6897 with SMTP id
- 6a1803df08f44-6eaeaa5afd4mr96831776d6.24.1742063992237; 
- Sat, 15 Mar 2025 11:39:52 -0700 (PDT)
-Received: from eriador.lumag.spb.ru
- (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-549ba7c0a39sm874193e87.65.2025.03.15.11.39.48
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 15 Mar 2025 11:39:50 -0700 (PDT)
-Date: Sat, 15 Mar 2025 20:39:47 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Dmitry Baryshkov <lumag@kernel.org>
-Subject: Re: =?utf-8?B?4pyXIFhlLkNJLkZ1bGw6IGZhaWx1cg==?= =?utf-8?Q?e?= for
- drm/display: dp: add new DPCD access functions (rev2)
-Message-ID: <l7v3v4nhgpm3qi4f45l5jtkmgwucenxijkiju3juqmw5qdh7j4@xqcemrfzqqgp>
-References: <20250314-drm-rework-dpcd-access-v4-0-e86ef6fc6d76@oss.qualcomm.com>
- <174199457830.37653.212093362252056402@18a75f3d1eae>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <174199457830.37653.212093362252056402@18a75f3d1eae>
-X-Authority-Analysis: v=2.4 cv=LuaSymdc c=1 sm=1 tr=0 ts=67d5c97a cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=Vs1iUdzkB0EA:10 a=5KLPUuaC_9wA:10 a=e5mUnYsNAAAA:8 a=i3X5FwGiAAAA:8
- a=TWr5M0L8PQlDITfRoroA:9 a=CjuIK1q_8ugA:10
- a=1HOtulTD9v-eNWfpl4qZ:22 a=Vxmtnl_E_bksehYqCbjh:22 a=mmqRlSCDY2ywfjPLJ4af:22
-X-Proofpoint-GUID: nTqobMRI16EDeWTSM_0uTFPBAgMqUWLA
-X-Proofpoint-ORIG-GUID: nTqobMRI16EDeWTSM_0uTFPBAgMqUWLA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-15_07,2025-03-14_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 bulkscore=0
- mlxscore=0 suspectscore=0 priorityscore=1501 phishscore=0 adultscore=0
- clxscore=1015 lowpriorityscore=0 spamscore=0 mlxlogscore=999
- malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503150134
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC8B510E028
+ for <intel-xe@lists.freedesktop.org>; Sat, 15 Mar 2025 19:19:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1742066391; x=1773602391;
+ h=date:from:to:cc:subject:message-id;
+ bh=07SHj0b5lg6CD+iLoKPVfFmUVGpjuJesajbJY++YhFE=;
+ b=YuvmDDK5bE66v71ns3m8ET5dhJCTG4gdHgthW1HguTQHVH5HwpRTjlDA
+ O1lt51h9DF7JkWAo2M8RECy2HYu23XOqLdGzFMPZmEmkE+lQgH0Kt0jF/
+ WeY4Sqej8QJMa3/xB1X24T+2D5sMkUfzVw3E5vFnrItrnHoNsVKq1hfpt
+ JyJVlZ6DcHvS8TEaSiB/lSFHYbutZ/vcg4GpV9mCaPpPAA+a+mrHTyubk
+ rb1GReCcB9AZj8Ch/2gdxfG17BpG+ec1oL3mn5Wt9qKNkItU2OF2NCXxO
+ ip9H7j93lTAT637KEL5sxavSaeFNE5fffAC+1h3QV9uMa1gN16zvS+eoo g==;
+X-CSE-ConnectionGUID: hBe7yGevS+CBulJusKvl2Q==
+X-CSE-MsgGUID: 6WIV4LOoQeG9pNFHep+s3Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11374"; a="53860545"
+X-IronPort-AV: E=Sophos;i="6.14,250,1736841600"; d="scan'208";a="53860545"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2025 12:19:48 -0700
+X-CSE-ConnectionGUID: sJil5corRO2p+W2RHIizqg==
+X-CSE-MsgGUID: J5vwSjl+RiiJKO1MhQIJYQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,250,1736841600"; d="scan'208";a="121382395"
+Received: from lkp-server02.sh.intel.com (HELO a4747d147074) ([10.239.97.151])
+ by fmviesa006.fm.intel.com with ESMTP; 15 Mar 2025 12:19:46 -0700
+Received: from kbuild by a4747d147074 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1ttX2u-000Ban-1t;
+ Sat, 15 Mar 2025 19:19:44 +0000
+Date: Sun, 16 Mar 2025 03:19:10 +0800
+From: kernel test robot <lkp@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ 28f79ac609de2797cccdd5fa6c4d5ec8bcef92b4
+Message-ID: <202503160303.44Br1sKZ-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,66 +64,176 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Mar 14, 2025 at 11:22:58PM +0000, Patchwork wrote:
-> == Series Details ==
-> 
-> Series: drm/display: dp: add new DPCD access functions (rev2)
-> URL   : https://patchwork.freedesktop.org/series/146000/
-> State : failure
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from xe-2822-83417b23792d937795320a8804fd97d50c4c6233_full -> xe-pw-146000v2_full
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **FAILURE**
-> 
->   Serious unknown changes coming with xe-pw-146000v2_full absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in xe-pw-146000v2_full, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
->   to document this new failure mode, which will reduce false positives in CI.
-> 
->   
-> 
-> Participating hosts (4 -> 4)
-> ------------------------------
-> 
->   No changes in participating hosts
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in xe-pw-146000v2_full:
-> 
-> ### IGT changes ###
-> 
-> #### Possible regressions ####
-> 
->   * igt@kms_content_protection@lic-type-0@pipe-a-dp-2:
->     - shard-bmg:          NOTRUN -> [INCOMPLETE][1] +1 other test incomplete
->    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146000v2/shard-bmg-4/igt@kms_content_protection@lic-type-0@pipe-a-dp-2.html
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: 28f79ac609de2797cccdd5fa6c4d5ec8bcef92b4  drm/xe/hwmon: expose fan speed
 
-I'm really not sure about this one. Is this a result of the DPCD
-changes? (I'm especially suspicious about the previous NOTRUN status).
+elapsed time: 1452m
 
-> 
->   * igt@kms_plane_scaling@intel-max-src-size@pipe-a-dp-2:
->     - shard-dg2-set2:     NOTRUN -> [DMESG-WARN][2]
->    [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146000v2/shard-dg2-432/igt@kms_plane_scaling@intel-max-src-size@pipe-a-dp-2.html
+configs tested: 157
+configs skipped: 1
 
-vblank timeout is probably irrelevant
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-> 
->   * igt@xe_eudebug_online@set-breakpoint-sigint-debugger:
->     - shard-bmg:          NOTRUN -> [SKIP][3]
->    [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146000v2/shard-bmg-2/igt@xe_eudebug_online@set-breakpoint-sigint-debugger.html
-> 
+tested configs:
+alpha                             allnoconfig    gcc-14.2.0
+alpha                            allyesconfig    gcc-14.2.0
+arc                              allmodconfig    gcc-13.2.0
+arc                               allnoconfig    gcc-14.2.0
+arc                              allyesconfig    gcc-13.2.0
+arc                   randconfig-001-20250315    gcc-13.2.0
+arc                   randconfig-001-20250315    gcc-14.2.0
+arc                   randconfig-002-20250315    gcc-13.2.0
+arc                   randconfig-002-20250315    gcc-14.2.0
+arm                              allmodconfig    gcc-14.2.0
+arm                               allnoconfig    gcc-14.2.0
+arm                              allyesconfig    gcc-14.2.0
+arm                      footbridge_defconfig    gcc-14.2.0
+arm                           imxrt_defconfig    gcc-14.2.0
+arm                   randconfig-001-20250315    gcc-14.2.0
+arm                   randconfig-002-20250315    clang-21
+arm                   randconfig-002-20250315    gcc-14.2.0
+arm                   randconfig-003-20250315    clang-21
+arm                   randconfig-003-20250315    gcc-14.2.0
+arm                   randconfig-004-20250315    gcc-14.2.0
+arm64                            allmodconfig    clang-18
+arm64                             allnoconfig    gcc-14.2.0
+arm64                 randconfig-001-20250315    gcc-14.2.0
+arm64                 randconfig-002-20250315    gcc-14.2.0
+arm64                 randconfig-003-20250315    clang-16
+arm64                 randconfig-003-20250315    gcc-14.2.0
+arm64                 randconfig-004-20250315    gcc-14.2.0
+csky                              allnoconfig    gcc-14.2.0
+csky                                defconfig    gcc-14.2.0
+csky                  randconfig-001-20250315    gcc-14.2.0
+csky                  randconfig-002-20250315    gcc-14.2.0
+hexagon                          allmodconfig    clang-21
+hexagon                           allnoconfig    gcc-14.2.0
+hexagon                          allyesconfig    clang-18
+hexagon               randconfig-001-20250315    clang-21
+hexagon               randconfig-002-20250315    clang-17
+i386                             allmodconfig    gcc-12
+i386                              allnoconfig    gcc-12
+i386                             allyesconfig    gcc-12
+i386        buildonly-randconfig-001-20250315    gcc-12
+i386        buildonly-randconfig-002-20250315    clang-19
+i386        buildonly-randconfig-003-20250315    clang-19
+i386        buildonly-randconfig-004-20250315    clang-19
+i386        buildonly-randconfig-005-20250315    gcc-11
+i386        buildonly-randconfig-006-20250315    gcc-12
+i386                                defconfig    clang-19
+i386                  randconfig-001-20250316    gcc-12
+i386                  randconfig-002-20250316    gcc-12
+i386                  randconfig-003-20250316    gcc-12
+i386                  randconfig-004-20250316    gcc-12
+i386                  randconfig-005-20250316    gcc-12
+i386                  randconfig-006-20250316    gcc-12
+i386                  randconfig-007-20250316    gcc-12
+i386                  randconfig-011-20250315    gcc-12
+i386                  randconfig-012-20250315    gcc-12
+i386                  randconfig-013-20250315    gcc-12
+i386                  randconfig-014-20250315    gcc-12
+i386                  randconfig-015-20250315    gcc-12
+i386                  randconfig-016-20250315    gcc-12
+i386                  randconfig-017-20250315    gcc-12
+loongarch                        allmodconfig    gcc-14.2.0
+loongarch                         allnoconfig    gcc-14.2.0
+loongarch             randconfig-001-20250315    gcc-14.2.0
+loongarch             randconfig-002-20250315    gcc-14.2.0
+m68k                             allmodconfig    gcc-14.2.0
+m68k                              allnoconfig    gcc-14.2.0
+m68k                             allyesconfig    gcc-14.2.0
+m68k                         apollo_defconfig    clang-17
+m68k                        m5272c3_defconfig    clang-17
+microblaze                        allnoconfig    gcc-14.2.0
+mips                              allnoconfig    gcc-14.2.0
+mips                        maltaup_defconfig    gcc-14.2.0
+mips                          rb532_defconfig    clang-17
+nios2                             allnoconfig    gcc-14.2.0
+nios2                 randconfig-001-20250315    gcc-14.2.0
+nios2                 randconfig-002-20250315    gcc-14.2.0
+openrisc                          allnoconfig    gcc-14.2.0
+parisc                            allnoconfig    gcc-14.2.0
+parisc                generic-64bit_defconfig    clang-17
+parisc                randconfig-001-20250315    gcc-14.2.0
+parisc                randconfig-002-20250315    gcc-14.2.0
+powerpc                           allnoconfig    gcc-14.2.0
+powerpc                  mpc885_ads_defconfig    clang-17
+powerpc                    mvme5100_defconfig    gcc-14.2.0
+powerpc               randconfig-001-20250315    clang-21
+powerpc               randconfig-002-20250315    gcc-14.2.0
+powerpc               randconfig-003-20250315    clang-18
+powerpc                    sam440ep_defconfig    clang-17
+powerpc64             randconfig-001-20250315    gcc-14.2.0
+powerpc64             randconfig-002-20250315    clang-18
+powerpc64             randconfig-003-20250315    gcc-14.2.0
+riscv                             allnoconfig    gcc-14.2.0
+riscv                 randconfig-001-20250315    gcc-14.2.0
+riscv                 randconfig-001-20250316    gcc-14.2.0
+riscv                 randconfig-002-20250315    gcc-14.2.0
+riscv                 randconfig-002-20250316    gcc-14.2.0
+s390                             allmodconfig    clang-19
+s390                             allmodconfig    gcc-14.2.0
+s390                              allnoconfig    clang-15
+s390                             allyesconfig    gcc-14.2.0
+s390                  randconfig-001-20250315    clang-19
+s390                  randconfig-001-20250316    gcc-14.2.0
+s390                  randconfig-002-20250315    gcc-14.2.0
+s390                  randconfig-002-20250316    gcc-14.2.0
+sh                               allmodconfig    gcc-14.2.0
+sh                                allnoconfig    gcc-14.2.0
+sh                               allyesconfig    gcc-14.2.0
+sh                         apsh4a3a_defconfig    gcc-14.2.0
+sh                          r7785rp_defconfig    gcc-14.2.0
+sh                    randconfig-001-20250315    gcc-14.2.0
+sh                    randconfig-001-20250316    gcc-14.2.0
+sh                    randconfig-002-20250315    gcc-14.2.0
+sh                    randconfig-002-20250316    gcc-14.2.0
+sh                          sdk7786_defconfig    clang-17
+sh                             shx3_defconfig    gcc-14.2.0
+sparc                            allmodconfig    gcc-14.2.0
+sparc                             allnoconfig    gcc-14.2.0
+sparc                 randconfig-001-20250315    gcc-14.2.0
+sparc                 randconfig-001-20250316    gcc-14.2.0
+sparc                 randconfig-002-20250315    gcc-14.2.0
+sparc                 randconfig-002-20250316    gcc-14.2.0
+sparc64               randconfig-001-20250315    gcc-14.2.0
+sparc64               randconfig-001-20250316    gcc-14.2.0
+sparc64               randconfig-002-20250315    gcc-14.2.0
+sparc64               randconfig-002-20250316    gcc-14.2.0
+um                               allmodconfig    clang-21
+um                                allnoconfig    clang-18
+um                               allyesconfig    gcc-12
+um                    randconfig-001-20250315    gcc-12
+um                    randconfig-001-20250316    gcc-14.2.0
+um                    randconfig-002-20250315    clang-18
+um                    randconfig-002-20250316    gcc-14.2.0
+um                           x86_64_defconfig    clang-17
+x86_64                            allnoconfig    clang-19
+x86_64                           allyesconfig    clang-19
+x86_64      buildonly-randconfig-001-20250315    gcc-12
+x86_64      buildonly-randconfig-002-20250315    clang-19
+x86_64      buildonly-randconfig-003-20250315    clang-19
+x86_64      buildonly-randconfig-004-20250315    clang-19
+x86_64      buildonly-randconfig-005-20250315    clang-19
+x86_64      buildonly-randconfig-006-20250315    gcc-12
+x86_64                              defconfig    gcc-11
+x86_64                                  kexec    clang-19
+x86_64                randconfig-071-20250315    clang-19
+x86_64                randconfig-072-20250315    clang-19
+x86_64                randconfig-073-20250315    clang-19
+x86_64                randconfig-074-20250315    clang-19
+x86_64                randconfig-075-20250315    clang-19
+x86_64                randconfig-076-20250315    clang-19
+x86_64                randconfig-077-20250315    clang-19
+x86_64                randconfig-078-20250315    clang-19
+x86_64                               rhel-9.4    clang-19
+xtensa                            allnoconfig    gcc-14.2.0
+xtensa                randconfig-001-20250315    gcc-14.2.0
+xtensa                randconfig-001-20250316    gcc-14.2.0
+xtensa                randconfig-002-20250315    gcc-14.2.0
+xtensa                randconfig-002-20250316    gcc-14.2.0
 
--- 
-With best wishes
-Dmitry
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
