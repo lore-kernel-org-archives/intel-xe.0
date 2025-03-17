@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C96BC282EC
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Mar 2025 10:41:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 165EEC35FF3
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Mar 2025 10:41:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7DE010E130;
-	Mon, 17 Mar 2025 10:41:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF95410E273;
+	Mon, 17 Mar 2025 10:41:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hROfv9rl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SjVxgPTh";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B94D810E130
- for <intel-xe@lists.freedesktop.org>; Mon, 17 Mar 2025 10:41:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF70D10E273
+ for <intel-xe@lists.freedesktop.org>; Mon, 17 Mar 2025 10:41:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742208112; x=1773744112;
+ t=1742208114; x=1773744114;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=cxDrjCSLR0mN1ZsIskGkYEoq6eUGu+ibeK4ksERWdCk=;
- b=hROfv9rlNKIED0xS+ZxndUqpDtnGdnWOVw9lZTxyskwpNV19P+Nvc0uc
- VJMEkY/j4zs5tXgxq0m6Nrfe24ciqvwWpuQserAkrxsrO+LuwYZcjrsXa
- AJaMLwQ2690yF9fSgjzbp8bjViKW1M8Uj+89asCmGbbPQVG/+xKYUyZZL
- hCjDHJOZtOYcpFwA6QBzGhPMrug44Sianl9AcvupqTYjQgNbvVTCGgtiL
- 5uJDiw7wv3CFe2cMmC8B7oGwbTODPfYVfMTLTovBEny7L42V8LdXymdUU
- yA3n7MtVIptXo1Bi2p1L5AtYMkDXEB2XsypFynOFHZL6LMZS6i84ROUu8 w==;
-X-CSE-ConnectionGUID: jskqY/YFQa2PYylEhG6Y0Q==
-X-CSE-MsgGUID: wWkgOFbSSeKDFjqQTgH6bw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11375"; a="42470903"
-X-IronPort-AV: E=Sophos;i="6.14,253,1736841600"; d="scan'208";a="42470903"
+ bh=XyD9AP1tNEBR9EtZyXgTn9w2JTabbGJ6HBZQblevDw8=;
+ b=SjVxgPThU40l8fsPsR3kbK/Qjw+wMuUW1qCo2gyhdcLX9grqFbmPx9FJ
+ 3NEWWQxde16z6VVOnV0K3L0K+PO1y72rjrvdc2h2PyQ80Ucpp5aOBdqGD
+ rfd1Bq0B2akmhA5TGqvhgfyDvoUUKFWrtDUgvTsXyFsw0QxUsVrW6bFYX
+ 5Eg8v9h96cBXzwPZc9xgAqL3zfbCGBgvga4rjCf1TT4KisPlmuJIHL/YM
+ 3lyShPkS6E5xM0L6HiplPwzsMRmh/8QnS+wJL8WnZMW1iEtXDoK7JHaTs
+ BaGKQYPnQjHfPrn0auc2AnHAUOypfyWN7LI34YpzM+bjk6M6ZWuHBBS9u Q==;
+X-CSE-ConnectionGUID: h8vSGKEfRyCzA5Eh8QHk3Q==
+X-CSE-MsgGUID: oBL7FaiSQxm3mTly6T9HcQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11375"; a="42470914"
+X-IronPort-AV: E=Sophos;i="6.14,253,1736841600"; d="scan'208";a="42470914"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2025 03:41:52 -0700
-X-CSE-ConnectionGUID: aZmSIvgeRVKx3Wu3aax2HA==
-X-CSE-MsgGUID: 4u2zL6BJR4Gsr9eFQXy6QA==
+ 17 Mar 2025 03:41:54 -0700
+X-CSE-ConnectionGUID: M32Rw4mZSF6M7R5Mzpsv9A==
+X-CSE-MsgGUID: 2FfoMgGOTOmuInDWVTjZ6A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,253,1736841600"; d="scan'208";a="122377049"
+X-IronPort-AV: E=Sophos;i="6.14,253,1736841600"; d="scan'208";a="122377075"
 Received: from carterle-desk.ger.corp.intel.com (HELO fedora..)
  ([10.245.246.66])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2025 03:41:50 -0700
+ 17 Mar 2025 03:41:52 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  himal.prasad.ghimiray@intel.com, Matthew Brost <matthew.brost@intel.com>,
  Matthew Auld <matthew.auld@intel.com>
-Subject: [PATCH 1/5] drm/xe: Introduce CONFIG_DRM_XE_GPUSVM
-Date: Mon, 17 Mar 2025 11:41:28 +0100
-Message-ID: <20250317104132.8200-2-thomas.hellstrom@linux.intel.com>
+Subject: [PATCH 2/5] drm/xe/svm: Fix a potential bo UAF
+Date: Mon, 17 Mar 2025 11:41:29 +0100
+Message-ID: <20250317104132.8200-3-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250317104132.8200-1-thomas.hellstrom@linux.intel.com>
 References: <20250317104132.8200-1-thomas.hellstrom@linux.intel.com>
@@ -70,342 +70,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Don't rely on CONFIG_DRM_GPUSVM because other drivers may enable it
-causing us to compile in SVM support unintentionally.
+If drm_gpusvm_migrate_to_devmem() succeeds, if a cpu access happens to the
+range the bo may be freed before xe_bo_unlock(), causing a UAF.
 
-Also take the opportunity to leave more code out of compilation if
-!CONFIG_DRM_XE_GPUSVM and !CONFIG_DRM_XE_DEVMEM_MIRROR
+Since the reference is transferred, use xe_svm_devmem_release() to
+release the reference on drm_gpusvm_migrate_to_devmem() failure,
+and hold a local reference to protect the UAF.
 
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/Kconfig           | 16 ++++++-
- drivers/gpu/drm/xe/Makefile          |  2 +-
- drivers/gpu/drm/xe/xe_device_types.h |  6 ++-
- drivers/gpu/drm/xe/xe_migrate.c      |  3 ++
- drivers/gpu/drm/xe/xe_pt.c           |  6 +++
- drivers/gpu/drm/xe/xe_query.c        |  2 +-
- drivers/gpu/drm/xe/xe_svm.c          | 15 ++++++
- drivers/gpu/drm/xe/xe_svm.h          | 72 ++++++++++++++++++++--------
- drivers/gpu/drm/xe/xe_vm.c           |  2 +-
- 9 files changed, 97 insertions(+), 27 deletions(-)
+ drivers/gpu/drm/xe/xe_svm.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-index 7d7995196702..aea4240664fa 100644
---- a/drivers/gpu/drm/xe/Kconfig
-+++ b/drivers/gpu/drm/xe/Kconfig
-@@ -39,7 +39,7 @@ config DRM_XE
- 	select DRM_TTM_HELPER
- 	select DRM_EXEC
- 	select DRM_GPUVM
--	select DRM_GPUSVM if !UML && DEVICE_PRIVATE
-+	select DRM_GPUSVM if DRM_XE_GPUSVM
- 	select DRM_SCHED
- 	select MMU_NOTIFIER
- 	select WANT_DEV_COREDUMP
-@@ -74,9 +74,21 @@ config DRM_XE_DP_TUNNEL
- 
- 	  If in doubt say "Y".
- 
-+config DRM_XE_GPUSVM
-+	bool "Enable CPU to GPU address mirroring"
-+	depends on DRM_XE
-+	depends on !UML
-+	default y
-+	select DEVICE_PRIVATE
-+	help
-+	  Enable this option if you want support for CPU to GPU address
-+	  mirroring.
-+
-+	  If in doubut say "Y".
-+
- config DRM_XE_DEVMEM_MIRROR
- 	bool "Enable device memory mirror"
--	depends on DRM_XE
-+	depends on DRM_XE_GPUSVM
- 	select GET_FREE_REGION
- 	default y
- 	help
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 9699b08585f7..e4fec90bab55 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -125,7 +125,7 @@ xe-y += xe_bb.o \
- 	xe_wopcm.o
- 
- xe-$(CONFIG_HMM_MIRROR) += xe_hmm.o
--xe-$(CONFIG_DRM_GPUSVM) += xe_svm.o
-+xe-$(CONFIG_DRM_XE_GPUSVM) += xe_svm.o
- 
- # graphics hardware monitoring (HWMON) support
- xe-$(CONFIG_HWMON) += xe_hwmon.o
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 72ef0b6fc425..8aa90acc2a0a 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -107,6 +107,9 @@ struct xe_vram_region {
- 	resource_size_t actual_physical_size;
- 	/** @mapping: pointer to VRAM mappable space */
- 	void __iomem *mapping;
-+	/** @ttm: VRAM TTM manager */
-+	struct xe_ttm_vram_mgr ttm;
-+#if IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR)
- 	/** @pagemap: Used to remap device memory as ZONE_DEVICE */
- 	struct dev_pagemap pagemap;
- 	/**
-@@ -120,8 +123,7 @@ struct xe_vram_region {
- 	 * This is generated when remap device memory as ZONE_DEVICE
- 	 */
- 	resource_size_t hpa_base;
--	/** @ttm: VRAM TTM manager */
--	struct xe_ttm_vram_mgr ttm;
-+#endif
- };
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index df4282c71bf0..d364c9f458e7 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -1544,6 +1544,7 @@ void xe_migrate_wait(struct xe_migrate *m)
- 		dma_fence_wait(m->fence, false);
- }
- 
-+#if IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR)
- static u32 pte_update_cmd_size(u64 size)
- {
- 	u32 num_dword;
-@@ -1719,6 +1720,8 @@ struct dma_fence *xe_migrate_from_vram(struct xe_migrate *m,
- 			       XE_MIGRATE_COPY_TO_SRAM);
- }
- 
-+#endif
-+
- #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
- #include "tests/xe_migrate.c"
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index ffaf0d02dc7d..9e719535a3bb 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -1420,6 +1420,7 @@ static int xe_pt_userptr_pre_commit(struct xe_migrate_pt_update *pt_update)
- 	return err;
- }
- 
-+#if IS_ENABLED(CONFIG_DRM_XE_GPUSVM)
- static int xe_pt_svm_pre_commit(struct xe_migrate_pt_update *pt_update)
- {
- 	struct xe_vm *vm = pt_update->vops->vm;
-@@ -1453,6 +1454,7 @@ static int xe_pt_svm_pre_commit(struct xe_migrate_pt_update *pt_update)
- 
- 	return 0;
- }
-+#endif
- 
- struct invalidation_fence {
- 	struct xe_gt_tlb_invalidation_fence base;
-@@ -2257,11 +2259,15 @@ static const struct xe_migrate_pt_update_ops userptr_migrate_ops = {
- 	.pre_commit = xe_pt_userptr_pre_commit,
- };
- 
-+#if IS_ENABLED(CONFIG_DRM_XE_GPUSVM)
- static const struct xe_migrate_pt_update_ops svm_migrate_ops = {
- 	.populate = xe_vm_populate_pgtable,
- 	.clear = xe_migrate_clear_pgtable_callback,
- 	.pre_commit = xe_pt_svm_pre_commit,
- };
-+#else
-+static const struct xe_migrate_pt_update_ops svm_migrate_ops;
-+#endif
- 
- /**
-  * xe_pt_update_ops_run() - Run PT update operations
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 5e65830dad25..2dbf4066d86f 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -340,7 +340,7 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
- 	if (xe_device_get_root_tile(xe)->mem.vram.usable_size)
- 		config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
- 			DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM;
--	if (xe->info.has_usm && IS_ENABLED(CONFIG_DRM_GPUSVM))
-+	if (xe->info.has_usm && IS_ENABLED(CONFIG_DRM_XE_GPUSVM))
- 		config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
- 			DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR;
- 	config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
 diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 516898e99b26..c305d4c351d7 100644
+index c305d4c351d7..1a8e17a0005d 100644
 --- a/drivers/gpu/drm/xe/xe_svm.c
 +++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -339,6 +339,8 @@ static void xe_svm_garbage_collector_work_func(struct work_struct *w)
- 	up_write(&vm->lock);
- }
+@@ -701,11 +701,14 @@ static int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
+ 	list_for_each_entry(block, blocks, link)
+ 		block->private = vr;
  
-+#if IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR)
++	xe_bo_get(bo);
+ 	err = drm_gpusvm_migrate_to_devmem(&vm->svm.gpusvm, &range->base,
+ 					   &bo->devmem_allocation, ctx);
+-	xe_bo_unlock(bo);
+ 	if (err)
+-		xe_bo_put(bo);	/* Creation ref */
++		xe_svm_devmem_release(&bo->devmem_allocation);
 +
- static struct xe_vram_region *page_to_vr(struct page *page)
- {
- 	return container_of(page->pgmap, struct xe_vram_region, pagemap);
-@@ -577,6 +579,8 @@ static const struct drm_gpusvm_devmem_ops gpusvm_devmem_ops = {
- 	.copy_to_ram = xe_svm_copy_to_ram,
- };
++	xe_bo_unlock(bo);
++	xe_bo_put(bo);
  
-+#endif
-+
- static const struct drm_gpusvm_ops gpusvm_ops = {
- 	.range_alloc = xe_svm_range_alloc,
- 	.range_free = xe_svm_range_free,
-@@ -650,6 +654,7 @@ static bool xe_svm_range_is_valid(struct xe_svm_range *range,
- 	return (range->tile_present & ~range->tile_invalidated) & BIT(tile->id);
- }
- 
-+#if IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR)
- static struct xe_vram_region *tile_to_vr(struct xe_tile *tile)
- {
- 	return &tile->mem.vram;
-@@ -708,6 +713,15 @@ static int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
- 
- 	return err;
- }
-+#else
-+static int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
-+			     struct xe_svm_range *range,
-+			     const struct drm_gpusvm_ctx *ctx)
-+{
-+	return -EOPNOTSUPP;
-+}
-+#endif
-+
- 
- /**
-  * xe_svm_handle_pagefault() - SVM handle page fault
-@@ -863,6 +877,7 @@ int xe_svm_bo_evict(struct xe_bo *bo)
- }
- 
- #if IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR)
-+
- static struct drm_pagemap_device_addr
- xe_drm_pagemap_device_map(struct drm_pagemap *dpagemap,
- 			  struct device *dev,
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index e059590e5076..c32b6d46ecf1 100644
---- a/drivers/gpu/drm/xe/xe_svm.h
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -6,6 +6,8 @@
- #ifndef _XE_SVM_H_
- #define _XE_SVM_H_
- 
-+#if IS_ENABLED(CONFIG_DRM_XE_GPUSVM)
-+
- #include <drm/drm_pagemap.h>
- #include <drm/drm_gpusvm.h>
- 
-@@ -43,7 +45,6 @@ struct xe_svm_range {
- 	u8 skip_migrate	:1;
- };
- 
--#if IS_ENABLED(CONFIG_DRM_GPUSVM)
- /**
-  * xe_svm_range_pages_valid() - SVM range pages valid
-  * @range: SVM range
-@@ -72,7 +73,49 @@ bool xe_svm_has_mapping(struct xe_vm *vm, u64 start, u64 end);
- int xe_svm_bo_evict(struct xe_bo *bo);
- 
- void xe_svm_range_debug(struct xe_svm_range *range, const char *operation);
-+
-+/**
-+ * xe_svm_range_has_dma_mapping() - SVM range has DMA mapping
-+ * @range: SVM range
-+ *
-+ * Return: True if SVM range has a DMA mapping, False otherwise
-+ */
-+static inline bool xe_svm_range_has_dma_mapping(struct xe_svm_range *range)
-+{
-+	lockdep_assert_held(&range->base.gpusvm->notifier_lock);
-+	return range->base.flags.has_dma_mapping;
-+}
-+
-+#define xe_svm_assert_in_notifier(vm__) \
-+	lockdep_assert_held_write(&(vm__)->svm.gpusvm.notifier_lock)
-+
-+#define xe_svm_notifier_lock(vm__)	\
-+	drm_gpusvm_notifier_lock(&(vm__)->svm.gpusvm)
-+
-+#define xe_svm_notifier_unlock(vm__)	\
-+	drm_gpusvm_notifier_unlock(&(vm__)->svm.gpusvm)
-+
- #else
-+#include <linux/interval_tree.h>
-+
-+struct drm_pagemap_device_addr;
-+struct xe_bo;
-+struct xe_vm;
-+struct xe_vma;
-+struct xe_tile;
-+struct xe_vram_region;
-+
-+#define XE_INTERCONNECT_VRAM 1
-+
-+struct xe_svm_range {
-+	struct {
-+		struct interval_tree_node itree;
-+		const struct drm_pagemap_device_addr *dma_addr;
-+	} base;
-+	u32 tile_present;
-+	u32 tile_invalidated;
-+};
-+
- static inline bool xe_svm_range_pages_valid(struct xe_svm_range *range)
- {
- 	return false;
-@@ -124,27 +167,16 @@ static inline
- void xe_svm_range_debug(struct xe_svm_range *range, const char *operation)
- {
- }
--#endif
- 
--/**
-- * xe_svm_range_has_dma_mapping() - SVM range has DMA mapping
-- * @range: SVM range
-- *
-- * Return: True if SVM range has a DMA mapping, False otherwise
-- */
--static inline bool xe_svm_range_has_dma_mapping(struct xe_svm_range *range)
-+#define xe_svm_assert_in_notifier(...) do {} while (0)
-+#define xe_svm_range_has_dma_mapping(...) false
-+
-+static inline void xe_svm_notifier_lock(struct xe_vm *vm)
- {
--	lockdep_assert_held(&range->base.gpusvm->notifier_lock);
--	return range->base.flags.has_dma_mapping;
- }
- 
--#define xe_svm_assert_in_notifier(vm__) \
--	lockdep_assert_held_write(&(vm__)->svm.gpusvm.notifier_lock)
--
--#define xe_svm_notifier_lock(vm__)	\
--	drm_gpusvm_notifier_lock(&(vm__)->svm.gpusvm)
--
--#define xe_svm_notifier_unlock(vm__)	\
--	drm_gpusvm_notifier_unlock(&(vm__)->svm.gpusvm)
--
-+static inline void xe_svm_notifier_unlock(struct xe_vm *vm)
-+{
-+}
-+#endif
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 22a26aff3a6e..9948a123da9c 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3112,7 +3112,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
- 
- 		if (XE_IOCTL_DBG(xe, is_cpu_addr_mirror &&
- 				 (!xe_vm_in_fault_mode(vm) ||
--				 !IS_ENABLED(CONFIG_DRM_GPUSVM)))) {
-+				 !IS_ENABLED(CONFIG_DRM_XE_GPUSVM)))) {
- 			err = -EINVAL;
- 			goto free_bind_ops;
- 		}
+ unlock:
+ 	mmap_read_unlock(mm);
 -- 
 2.48.1
 
