@@ -4,50 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B81A0C282EC
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Mar 2025 15:25:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68A94C282EC
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Mar 2025 15:26:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7ECB410E429;
-	Mon, 17 Mar 2025 15:25:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EC6510E429;
+	Mon, 17 Mar 2025 15:26:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="TlwQiRNF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="adE20ts6";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A1F710E429
- for <intel-xe@lists.freedesktop.org>; Mon, 17 Mar 2025 15:25:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=f1aW78Ahfhe8ar1oBJlfIWss6eS+1u4ltd33nX9ZmVs=; b=TlwQiRNFXV+9h2/OD5tiYkZsqn
- 4pydE3q9Ers9QaYL39xK8XctKqKogcgr5Jhiv9RAl8wSuvMDnrrQOaHyPh6BUhw8xtEcry40rylMK
- opcrA0OJgig6LiUHCP2/vcJB/H9r2C4YiTI1iUNnGovQlcLABeA1oaqsO1MikuAi436zxGMZN9ODY
- S/zWGReN70Y5EuhwQ1DdMHg/yu63cGSgXp2OmhaFBdlYB2MjbPScXA4WJZMyo8PR0vXtb4ypvJiKt
- yjPgIlB2/f4xMzDFKwHwbOVpKx9cSXH4zLUcpg6OxbjVYKeFFN8PO2yGkYFviuM2gCXr87TGHrT5O
- VfqJlyow==;
-Received: from [90.241.98.187] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1tuCLM-002Hpd-K3; Mon, 17 Mar 2025 16:25:32 +0100
-Message-ID: <7f9ddeac-c8b8-4a62-b723-8eccb3f87848@igalia.com>
-Date: Mon, 17 Mar 2025 15:25:31 +0000
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6710B10E429
+ for <intel-xe@lists.freedesktop.org>; Mon, 17 Mar 2025 15:26:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1742225218; x=1773761218;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=lyBvTFsdkT885JycOd01OWmQ5lBlnH3dIZmy0lJxi4A=;
+ b=adE20ts6TKpmkQyzujVyDSZnFxa8Wo6/N2mZhYP7aa714R4Fqohr0/Xo
+ lW0vnWsuSKgkDSDKT66h0UpwiqvUJ4bWgZp/dg89nB4AgiT+tOBVeMKyE
+ /Q6iUyfYaKcMBTx3+Th6zQMWzhp2NT8vkQt22IscuiB/+rviAT1aP5Lfe
+ aAzpIfqhhU98N5iMPUMHsTreTpsBKtozVngNbuRtsrUGZdA9GZbmyCzOW
+ Ru0jnyzDAKfsZHEXbw6XKhTtqLIZiITi1jPwQzCLxCRqowXHMCO5dn59s
+ K091NX6V6ogIy+aa7XGK9jdBkKIL/y7KWceMZIF2qlUQSGnpvxGd9/JyI w==;
+X-CSE-ConnectionGUID: V8J+XM42QG2/eAlLZpGQ4A==
+X-CSE-MsgGUID: optMLYznTcWwXdlPpuimKw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11376"; a="43058873"
+X-IronPort-AV: E=Sophos;i="6.14,254,1736841600"; d="scan'208";a="43058873"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2025 08:26:58 -0700
+X-CSE-ConnectionGUID: trbA/U7GTpGkfgEDNNXaVQ==
+X-CSE-MsgGUID: IQOexWWFRhafvFphU7geMQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,254,1736841600"; d="scan'208";a="121989663"
+Received: from dut4419lnl.fm.intel.com ([10.105.10.67])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2025 08:26:57 -0700
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
+ Michal.Wajdeczko@intel.com, matthew.brost@intel.com, rodrigo.vivi@intel.com
+Subject: [PATCH] drm/xe/xe_gt_pagefault: Remove pagefault vfid
+Date: Mon, 17 Mar 2025 15:26:56 +0000
+Message-ID: <20250317152656.66069-1-jonathan.cavitt@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Flush delayed frees and retry on user object
- allocation failure
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20250314145750.34362-1-tvrtko.ursulin@igalia.com>
- <471650d18746045024220697f5858af141662711.camel@linux.intel.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <471650d18746045024220697f5858af141662711.camel@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,130 +65,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+The VFID will always be zero according to the GuC ABI, at least with
+respect to pagefault reporting.  So, stop storing and reporting it.
 
-On 17/03/2025 13:02, Thomas Hellström wrote:
-> Hi, Tvrtko,
-> 
-> On Fri, 2025-03-14 at 14:57 +0000, Tvrtko Ursulin wrote:
->> If userspace workload is operating near the limit of available memory
->> and
->> it moves from one large working set to another, in other words free
->> some
->> large buffers and immediately allocate some new ones, the TTM
->> eviction
->> attempt during new resource allocation may not be effective due the
->> combination of relying on trylock and the fact released buffer might
->> have
->> ended on the delayed release path.
->>
->>  From userspace point of view this reflects as sporadic
->> VK_ERROR_OUT_OF_DEVICE_MEMORY ie. sometimes the application will
->> work,
->> sometimes will fail, even if it does exactly the same thing on an
->> otherwise idle system.
->>
->> Good examples are two tests from the VK CTS suite:
->>
->>   - dEQP-VK.pipeline.monolithic.render_to_image.core.*
->>   - dEQP-VK.memory.allocation.random*
->>
->> To improve this we can flush the TTM delayed object free workqueue
->> and
->> retry when encountering ENOMEM, which so far looks like a significant
->> improvement in mean-time-to-failure.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_bo.c | 22 +++++++++++++++++++---
->>   1 file changed, 19 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
->> index 64f9c936eea0..53f45c766e59 100644
->> --- a/drivers/gpu/drm/xe/xe_bo.c
->> +++ b/drivers/gpu/drm/xe/xe_bo.c
->> @@ -1900,9 +1900,25 @@ struct xe_bo *xe_bo_create_user(struct
->> xe_device *xe, struct xe_tile *tile,
->>   				u16 cpu_caching,
->>   				u32 flags)
->>   {
->> -	struct xe_bo *bo = __xe_bo_create_locked(xe, tile, vm, size,
->> 0, ~0ULL,
->> -						 cpu_caching,
->> ttm_bo_type_device,
->> -						 flags |
->> XE_BO_FLAG_USER, 0);
->> +	unsigned int retry = 3;
->> +	struct xe_bo *bo;
->> +
->> +	while (retry--) {
->> +		bo = __xe_bo_create_locked(xe, tile, vm, size, 0,
->> ~0ULL,
->> +					   cpu_caching,
->> ttm_bo_type_device,
->> +					   flags | XE_BO_FLAG_USER,
->> 0);
->> +		if (!IS_ERR(bo) || PTR_ERR(bo) != -ENOMEM)
->> +			break;
->> +
->> +		/*
->> +		 * TTM eviction may sporadically fail due reliance
->> on trylock
->> +		 * and delayed ttm_bo deletion causing trylock to
->> fail. Work
->> +		 * around it by retrying after currently pending
->> delayed
->> +		 * releases have been processed.
->> +		 */
->> +		flush_workqueue(xe->ttm.wq);
->> +	}
-> 
-> We should use xe_vm_validate_should_retry() for this. (I think actually
-> I saw a patch for that floating around somewhere). IIRC the bos are
-> lockable also when in the delayed object free workqueue?
+Suggested-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+CC: Matt Brost <matthew.brost@intel.com>
+CC: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_pagefault.c | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
 
-They appear mostly lockable while delayed delete is pending, apart 
-during the window when put on the queue, and while delayed delete is 
-actually executing ttm_bo_cleanup_memtype_use() but before it managed to 
-report freeing up of space. I think the sporadic -ENOMEM is when bo 
-creation races with one of those two windows.
-
-But I see now this landed very recently:
-
-commit 1d724a2f1b2c3f0cba4975784a808482e0631adf
-Author: Matthew Brost <matthew.brost@intel.com>
-Date:   Wed Mar 5 17:26:26 2025 -0800
-
-     drm/xe: Retry BO allocation
-
-And I was testing before that commit.
-
-> So could you try with that instead? If you think that doesn't help, we
-> should perhaps consider also flushing the we ttm wq from within that
-> function instead.
-
-So I am pretty sure 1d724a2f1b2c3f0cba4975784a808482e0631adf will work 
-around the issue but will double check just in case and report back.
-
-Whether or not to put a flush inside xe_vm_validate_should_retry() feels 
-a bit moot at the moment given how weak the implementation of the former 
-is. Only if replacing the mdelay(20) with the flush would be enough for 
-all use cases. If it wouldn't then having both mdelay(20), in 
-combination with its up to 1 second retry limit, and a flush does not 
-appear to gain much. Neither in latency or robustness. Only if one would 
-entertain the idea a single flush taking more than a second in some 
-ultra pessimistic scenario.
-
-Regards,
-
-Tvrtko
-
-> 
->> +
->>   	if (!IS_ERR(bo))
->>   		xe_bo_unlock_vm_held(bo);
->>   
-> 
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index 9fa11e837dd1..debc260cd679 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -27,7 +27,6 @@ struct pagefault {
+ 	u64 page_addr;
+ 	u32 asid;
+ 	u16 pdata;
+-	u8 vfid;
+ 	u8 access_type;
+ 	u8 fault_type;
+ 	u8 fault_level;
+@@ -269,7 +268,6 @@ static int send_pagefault_reply(struct xe_guc *guc,
+ static void print_pagefault(struct xe_device *xe, struct pagefault *pf)
+ {
+ 	drm_dbg(&xe->drm, "\n\tASID: %d\n"
+-		 "\tVFID: %d\n"
+ 		 "\tPDATA: 0x%04x\n"
+ 		 "\tFaulted Address: 0x%08x%08x\n"
+ 		 "\tFaultType: %d\n"
+@@ -277,7 +275,7 @@ static void print_pagefault(struct xe_device *xe, struct pagefault *pf)
+ 		 "\tFaultLevel: %d\n"
+ 		 "\tEngineClass: %d %s\n"
+ 		 "\tEngineInstance: %d\n",
+-		 pf->asid, pf->vfid, pf->pdata, upper_32_bits(pf->page_addr),
++		 pf->asid, pf->pdata, upper_32_bits(pf->page_addr),
+ 		 lower_32_bits(pf->page_addr),
+ 		 pf->fault_type, pf->access_type, pf->fault_level,
+ 		 pf->engine_class, xe_hw_engine_class_to_str(pf->engine_class),
+@@ -304,7 +302,6 @@ static bool get_pagefault(struct pf_queue *pf_queue, struct pagefault *pf)
+ 			PFD_PDATA_HI_SHIFT;
+ 		pf->pdata |= FIELD_GET(PFD_PDATA_LO, desc->dw0);
+ 		pf->asid = FIELD_GET(PFD_ASID, desc->dw1);
+-		pf->vfid = FIELD_GET(PFD_VFID, desc->dw2);
+ 		pf->access_type = FIELD_GET(PFD_ACCESS_TYPE, desc->dw2);
+ 		pf->fault_type = FIELD_GET(PFD_FAULT_TYPE, desc->dw2);
+ 		pf->page_addr = (u64)(FIELD_GET(PFD_VIRTUAL_ADDR_HI, desc->dw3)) <<
+@@ -393,8 +390,7 @@ static void pf_queue_work_func(struct work_struct *w)
+ 			FIELD_PREP(PFR_DESC_TYPE, FAULT_RESPONSE_DESC) |
+ 			FIELD_PREP(PFR_ASID, pf.asid);
+ 
+-		reply.dw1 = FIELD_PREP(PFR_VFID, pf.vfid) |
+-			FIELD_PREP(PFR_ENG_INSTANCE, pf.engine_instance) |
++		reply.dw1 = FIELD_PREP(PFR_ENG_INSTANCE, pf.engine_instance) |
+ 			FIELD_PREP(PFR_ENG_CLASS, pf.engine_class) |
+ 			FIELD_PREP(PFR_PDATA, pf.pdata);
+ 
+-- 
+2.43.0
 
