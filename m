@@ -4,54 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BCA3C282EC
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Mar 2025 16:37:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA186C282EC
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Mar 2025 16:50:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C276710E141;
-	Mon, 17 Mar 2025 16:37:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 079DA10E1BB;
+	Mon, 17 Mar 2025 16:50:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="S68RN/lM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iRIdVV7L";
 	dkim-atps=neutral
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE7F410E0F0;
- Mon, 17 Mar 2025 16:37:50 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 5365FA488CD;
- Mon, 17 Mar 2025 16:32:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 976FBC4CEED;
- Mon, 17 Mar 2025 16:37:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1742229469;
- bh=fTI6mTD6U6HzrRMuMomzwSD7v9bc+QEXsntyHFlOg0o=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=S68RN/lMhLIYyBIMxhnUlqppbUHp/zkCipphcWRHxMrrbJFGmNOtWY2JLmjfxFemL
- RdcDiawHcUThOxQpdCNrgz+H5ovVcqFOXP2jDm2fVtXhzZiVfCIpdsBV/WIZWl4TV9
- Oeb13m43qY7bg0q9ZRglCqZR4nQ+bxKqusN4vjOCoTsyS5rjVHRKmJRezH0DVDI3sX
- yGb7YAeey3a9qDmvwG6kMJmGVIi0XDhDwhDQuqM7YyW9//+em9oT69x0jH2iHvRnF5
- k6w7eEqDR0yiqfsQzzqmYRHFzT9ENRAZ6AwETgFSOpbIzujVL850JR1PVaFb/tfLE+
- vjk50d4akC3SA==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>, Sasha Levin <sashal@kernel.org>,
- lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, simona@ffwll.ch, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.13 10/16] drm/xe/guc_pc: Retry and wait longer for
- GuC PC start
-Date: Mon, 17 Mar 2025 12:37:19 -0400
-Message-Id: <20250317163725.1892824-10-sashal@kernel.org>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250317163725.1892824-1-sashal@kernel.org>
-References: <20250317163725.1892824-1-sashal@kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B31B510E1BB
+ for <intel-xe@lists.freedesktop.org>; Mon, 17 Mar 2025 16:50:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1742230208; x=1773766208;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=t9pUwLMfpfk33OVAFa+b/MizJT7AJRH0EO85dd+3G48=;
+ b=iRIdVV7L5D7DaIzjtg5zYwrfX3hxQNbIEySXMdjaGxgCgjFQLzJTmYRe
+ WqUjGQRnbmmQGujzt61sRLCF31PAzZgjQYKF/agKvRUfNioRipEkZr2yI
+ xwhwn62ufpGY0DQzQwSfzPgjVGPzEHjWOBfAeBfWxAXLtIXFj6qd23TWX
+ VAKaHXT2otWPHmx4P0e4Q8WOce1awykqlrbgALKlD9csETl9u99Z0jubm
+ 8wzrX8hy7dhxnZKWmYdc7IlO2Dy5GF2aGUNpiv2v4rZu0TEh2ObgqfyYK
+ xXqvLE1zaWdu+WQJE+TOO8l1w2tjQxga0VTVh5pdj7yRlhIO4lDDE+2NG A==;
+X-CSE-ConnectionGUID: gk//f9ygS6yJtGn3MEDsEA==
+X-CSE-MsgGUID: PYG2yuB6Sp6pW54YyOoDkw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11376"; a="46102236"
+X-IronPort-AV: E=Sophos;i="6.14,254,1736841600"; d="scan'208";a="46102236"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2025 09:50:04 -0700
+X-CSE-ConnectionGUID: vA1uLcLdTveLB7H2neQ5/A==
+X-CSE-MsgGUID: h0+t7v3aTDSwVSInhJnelA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,254,1736841600"; d="scan'208";a="126653527"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO [10.245.245.8])
+ ([10.245.245.8])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2025 09:50:03 -0700
+Message-ID: <93fe9e47-6cbd-443c-b08f-0c5a62daafa5@intel.com>
+Date: Mon, 17 Mar 2025 16:50:00 +0000
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.13.7
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/5] drm/xe/bo: Add a bo remove callback
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: himal.prasad.ghimiray@intel.com, Matthew Brost <matthew.brost@intel.com>
+References: <20250317104132.8200-1-thomas.hellstrom@linux.intel.com>
+ <20250317104132.8200-4-thomas.hellstrom@linux.intel.com>
+ <46faf433-a7d7-480e-be87-4989c5162ea1@intel.com>
+ <1d313655ac3c7e0444ccd354166fa83d2dc6244a.camel@linux.intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <1d313655ac3c7e0444ccd354166fa83d2dc6244a.camel@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,181 +73,243 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+On 17/03/2025 16:16, Thomas Hellström wrote:
+> On Mon, 2025-03-17 at 15:58 +0000, Matthew Auld wrote:
+>> On 17/03/2025 10:41, Thomas Hellström wrote:
+>>> On device unbind, migrate exported bos, including pagemap bos to
+>>> system. This allows importers to take proper action without
+>>> disruption. In particular, SVM clients on remote devices may
+>>> continue as if nothing happened, and can chose a different
+>>> placement.
+>>>
+>>> The evict_flags() placement is chosen in such a way that bos that
+>>> aren't exported are purged.
+>>>
+>>> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>>
+>>> ---
+>>>    drivers/gpu/drm/xe/xe_bo.c     | 96
+>>> +++++++++++++++++++++++++++++++++-
+>>>    drivers/gpu/drm/xe/xe_bo.h     |  2 +
+>>>    drivers/gpu/drm/xe/xe_device.c |  2 +
+>>>    3 files changed, 99 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_bo.c
+>>> b/drivers/gpu/drm/xe/xe_bo.c
+>>> index 64f9c936eea0..c7c206041632 100644
+>>> --- a/drivers/gpu/drm/xe/xe_bo.c
+>>> +++ b/drivers/gpu/drm/xe/xe_bo.c
+>>> @@ -55,6 +55,8 @@ static struct ttm_placement sys_placement = {
+>>>    	.placement = &sys_placement_flags,
+>>>    };
+>>>    
+>>> +static struct ttm_placement purge_placement;
+>>> +
+>>>    static const struct ttm_place tt_placement_flags[] = {
+>>>    	{
+>>>    		.fpfn = 0,
+>>> @@ -281,6 +283,8 @@ int xe_bo_placement_for_flags(struct xe_device
+>>> *xe, struct xe_bo *bo,
+>>>    static void xe_evict_flags(struct ttm_buffer_object *tbo,
+>>>    			   struct ttm_placement *placement)
+>>>    {
+>>> +	struct xe_device *xe = container_of(tbo->bdev,
+>>> typeof(*xe), ttm);
+>>> +	bool device_unplugged = drm_dev_is_unplugged(&xe->drm);
+>>>    	struct xe_bo *bo;
+>>>    
+>>>    	if (!xe_bo_is_xe_bo(tbo)) {
+>>> @@ -290,7 +294,7 @@ static void xe_evict_flags(struct
+>>> ttm_buffer_object *tbo,
+>>>    			return;
+>>>    		}
+>>>    
+>>> -		*placement = sys_placement;
+>>> +		*placement = device_unplugged ? purge_placement :
+>>> sys_placement;
+>>>    		return;
+>>>    	}
+>>>    
+>>> @@ -300,6 +304,11 @@ static void xe_evict_flags(struct
+>>> ttm_buffer_object *tbo,
+>>>    		return;
+>>>    	}
+>>>    
+>>> +	if (device_unplugged && !tbo->base.dma_buf) {
+>>> +		*placement = purge_placement;
+>>> +		return;
+>>> +	}
+>>
+>>> +
+>>>    	/*
+>>>    	 * For xe, sg bos that are evicted to system just triggers
+>>> a
+>>>    	 * rebind of the sg list upon subsequent validation to
+>>> XE_PL_TT.
+>>> @@ -657,11 +666,20 @@ static int xe_bo_move_dmabuf(struct
+>>> ttm_buffer_object *ttm_bo,
+>>>    	struct xe_ttm_tt *xe_tt = container_of(ttm_bo->ttm, struct
+>>> xe_ttm_tt,
+>>>    					       ttm);
+>>>    	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
+>>> +	bool device_unplugged = drm_dev_is_unplugged(&xe->drm);
+>>>    	struct sg_table *sg;
+>>>    
+>>>    	xe_assert(xe, attach);
+>>>    	xe_assert(xe, ttm_bo->ttm);
+>>>    
+>>> +	if (device_unplugged && new_res->mem_type == XE_PL_SYSTEM
+>>> &&
+>>> +	    ttm_bo->sg) {
+>>> +		dma_resv_wait_timeout(ttm_bo->base.resv,
+>>> DMA_RESV_USAGE_BOOKKEEP,
+>>> +				      false,
+>>> MAX_SCHEDULE_TIMEOUT);
+>>> +		dma_buf_unmap_attachment(attach, ttm_bo->sg,
+>>> DMA_BIDIRECTIONAL);
+>>> +		ttm_bo->sg = NULL;
+>>> +	}
+>>
+>>> +
+>>>    	if (new_res->mem_type == XE_PL_SYSTEM)
+>>>    		goto out;
+>>>    
+>>> @@ -2945,6 +2963,82 @@ void
+>>> xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo)
+>>>    	list_del_init(&bo->vram_userfault_link);
+>>>    }
+>>>    
+>>> +static void xe_bo_dma_unmap_pinned(struct xe_device *xe)
+>>
+>> Should we prefix this with xe_device_ or something?
+>> xe_device_unmap_pinned_bo() ?
+> 
+> Hmm, yes, while it doesn't take a bo as argument, I think it should
+> reside in the bo subsystem. Let me check whether we should split this
+> up and have the loops elsewhere.
+> 
+>>
+>>> +{
+>>> +	struct list_head still_in_list;
+>>> +
+>>> +	INIT_LIST_HEAD(&still_in_list);
+>>
+>> LIST_HEAD(still_in_list);
+> 
+> Right. Will fix.
+>>
+>>
+>>> +	spin_lock(&xe->pinned.lock);
+>>> +	for (;;) {
+>>> +		struct xe_bo *bo = list_first_entry_or_null(&xe-
+>>>> pinned.kernel_bo_present,
+>>> +							
+>>> typeof(*bo), pinned_link);
+>>> +		struct ttm_buffer_object *ttm_bo;
+>>> +		struct ttm_tt *tt;
+>>> +		struct xe_ttm_tt *xe_tt;
+>>> +
+>>> +		if (!bo)
+>>> +			break;
+>>> +
+>>> +		list_move_tail(&bo->pinned_link, &still_in_list);
+>>> +		xe_bo_get(bo);
+>>> +		spin_unlock(&xe->pinned.lock);
+>>> +
+>>> +		xe_bo_lock(bo, false);
+>>> +		ttm_bo = &bo->ttm;
+>>> +		tt = ttm_bo->ttm;
+>>> +		if (tt) {
+>>> +			xe_ttm_bo_delete_mem_notify(ttm_bo);
+>>
+>> Do we actually need this?
+> 
+> It's for imported pinned dma-bufs, I don't think we have any of these
+> ATM, but might in the future I guess. OFC I can structure that a bit
+> nicer.
 
-[ Upstream commit c605acb53f449f6289f042790307d7dc9e62d03d ]
+Ah ok. But here we are looping over kernel_bo_present, do we really have 
+dma-buf stuff on that? I only see the vram list thing, did you mean that?
 
-In a rare situation of thermal limit during resume, GuC can
-be slow and run into delays like this:
+> 
+>>
+>>> +			xe_tt = container_of(tt, typeof(*xe_tt),
+>>> ttm);
+>>> +			if (xe_tt->sg) {
+>>> +				dma_unmap_sgtable(xe_tt->xe-
+>>>> drm.dev, xe_tt->sg,
+>>> +						
+>>> DMA_BIDIRECTIONAL, 0);
+>>> +				sg_free_table(xe_tt->sg);
+>>> +				xe_tt->sg = NULL;
+>>> +			}
+>>
+>> Would it make sense to also call ttm_tt_unpopulate() here, so we nuke
+>> the pages?
+> 
+> I think we arrived at not nuking the pages for exported dma-bufs. For
+> the other use-cases I guess it's hard to tell: Is there a chance that
+> whatever needed the buffer pinned can issue a stray write?
+> 
+> I still think the best approach would to ensure that those subsystems
+> used devm_ managed resources rather than drmm_-managed resources.
+> Meanwhile, I can perhaps add a comment about that?
 
-xe 0000:00:02.0: [drm] GT1: excessive init time: 667ms! \
-   		 [status = 0x8002F034, timeouts = 0]
-xe 0000:00:02.0: [drm] GT1: excessive init time: \
-   		 [freq = 100MHz (req = 800MHz), before = 100MHz, \
-   		 perf_limit_reasons = 0x1C001000]
-xe 0000:00:02.0: [drm] *ERROR* GT1: GuC PC Start failed
-------------[ cut here ]------------
-xe 0000:00:02.0: [drm] GT1: Failed to start GuC PC: -EIO
+Yeah, for dma-buf leaving the pages alone make sense. I was just getting 
+thrown off by the kernel_bo_present. I don't really mind either way.
 
-When this happens, it will block entirely the GPU to be used.
-So, let's try and with a huge timeout in the hope it comes back.
-
-Also, let's collect some information on how long it is usually
-taking on situations like this, so perhaps the time can be tuned
-later.
-
-Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20250307160307.1093391-1-rodrigo.vivi@intel.com
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-(cherry picked from commit b4b05e53b550a886b4754b87fd0dd2b304579e85)
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/gpu/drm/xe/xe_guc_pc.c | 53 +++++++++++++++++++++++++---------
- 1 file changed, 40 insertions(+), 13 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index e8b9faeaef645..467d8a2879ecb 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -6,6 +6,7 @@
- #include "xe_guc_pc.h"
- 
- #include <linux/delay.h>
-+#include <linux/ktime.h>
- 
- #include <drm/drm_managed.h>
- #include <generated/xe_wa_oob.h>
-@@ -19,6 +20,7 @@
- #include "xe_gt.h"
- #include "xe_gt_idle.h"
- #include "xe_gt_printk.h"
-+#include "xe_gt_throttle.h"
- #include "xe_gt_types.h"
- #include "xe_guc.h"
- #include "xe_guc_ct.h"
-@@ -48,6 +50,9 @@
- #define LNL_MERT_FREQ_CAP	800
- #define BMG_MERT_FREQ_CAP	2133
- 
-+#define SLPC_RESET_TIMEOUT_MS 5 /* roughly 5ms, but no need for precision */
-+#define SLPC_RESET_EXTENDED_TIMEOUT_MS 1000 /* To be used only at pc_start */
-+
- /**
-  * DOC: GuC Power Conservation (PC)
-  *
-@@ -112,9 +117,10 @@ static struct iosys_map *pc_to_maps(struct xe_guc_pc *pc)
- 	 FIELD_PREP(HOST2GUC_PC_SLPC_REQUEST_MSG_1_EVENT_ARGC, count))
- 
- static int wait_for_pc_state(struct xe_guc_pc *pc,
--			     enum slpc_global_state state)
-+			     enum slpc_global_state state,
-+			     int timeout_ms)
- {
--	int timeout_us = 5000; /* rought 5ms, but no need for precision */
-+	int timeout_us = 1000 * timeout_ms;
- 	int slept, wait = 10;
- 
- 	xe_device_assert_mem_access(pc_to_xe(pc));
-@@ -163,7 +169,8 @@ static int pc_action_query_task_state(struct xe_guc_pc *pc)
- 	};
- 	int ret;
- 
--	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING))
-+	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING,
-+			      SLPC_RESET_TIMEOUT_MS))
- 		return -EAGAIN;
- 
- 	/* Blocking here to ensure the results are ready before reading them */
-@@ -186,7 +193,8 @@ static int pc_action_set_param(struct xe_guc_pc *pc, u8 id, u32 value)
- 	};
- 	int ret;
- 
--	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING))
-+	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING,
-+			      SLPC_RESET_TIMEOUT_MS))
- 		return -EAGAIN;
- 
- 	ret = xe_guc_ct_send(ct, action, ARRAY_SIZE(action), 0, 0);
-@@ -207,7 +215,8 @@ static int pc_action_unset_param(struct xe_guc_pc *pc, u8 id)
- 	struct xe_guc_ct *ct = &pc_to_guc(pc)->ct;
- 	int ret;
- 
--	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING))
-+	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING,
-+			      SLPC_RESET_TIMEOUT_MS))
- 		return -EAGAIN;
- 
- 	ret = xe_guc_ct_send(ct, action, ARRAY_SIZE(action), 0, 0);
-@@ -404,6 +413,15 @@ u32 xe_guc_pc_get_act_freq(struct xe_guc_pc *pc)
- 	return freq;
- }
- 
-+static u32 get_cur_freq(struct xe_gt *gt)
-+{
-+	u32 freq;
-+
-+	freq = xe_mmio_read32(&gt->mmio, RPNSWREQ);
-+	freq = REG_FIELD_GET(REQ_RATIO_MASK, freq);
-+	return decode_freq(freq);
-+}
-+
- /**
-  * xe_guc_pc_get_cur_freq - Get Current requested frequency
-  * @pc: The GuC PC
-@@ -427,10 +445,7 @@ int xe_guc_pc_get_cur_freq(struct xe_guc_pc *pc, u32 *freq)
- 		return -ETIMEDOUT;
- 	}
- 
--	*freq = xe_mmio_read32(&gt->mmio, RPNSWREQ);
--
--	*freq = REG_FIELD_GET(REQ_RATIO_MASK, *freq);
--	*freq = decode_freq(*freq);
-+	*freq = get_cur_freq(gt);
- 
- 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
- 	return 0;
-@@ -965,6 +980,7 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
- 	struct xe_gt *gt = pc_to_gt(pc);
- 	u32 size = PAGE_ALIGN(sizeof(struct slpc_shared_data));
- 	unsigned int fw_ref;
-+	ktime_t earlier;
- 	int ret;
- 
- 	xe_gt_assert(gt, xe_device_uc_enabled(xe));
-@@ -989,14 +1005,25 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
- 	memset(pc->bo->vmap.vaddr, 0, size);
- 	slpc_shared_data_write(pc, header.size, size);
- 
-+	earlier = ktime_get();
- 	ret = pc_action_reset(pc);
- 	if (ret)
- 		goto out;
- 
--	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING)) {
--		xe_gt_err(gt, "GuC PC Start failed\n");
--		ret = -EIO;
--		goto out;
-+	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING,
-+			      SLPC_RESET_TIMEOUT_MS)) {
-+		xe_gt_warn(gt, "GuC PC start taking longer than normal [freq = %dMHz (req = %dMHz), perf_limit_reasons = 0x%08X]\n",
-+			   xe_guc_pc_get_act_freq(pc), get_cur_freq(gt),
-+			   xe_gt_throttle_get_limit_reasons(gt));
-+
-+		if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING,
-+				      SLPC_RESET_EXTENDED_TIMEOUT_MS)) {
-+			xe_gt_err(gt, "GuC PC Start failed: Dynamic GT frequency control and GT sleep states are now disabled.\n");
-+			goto out;
-+		}
-+
-+		xe_gt_warn(gt, "GuC PC excessive start time: %lldms",
-+			   ktime_ms_delta(ktime_get(), earlier));
- 	}
- 
- 	ret = pc_init_freqs(pc);
--- 
-2.39.5
+> 
+>>
+>>> +		}
+>>> +
+>>> +		xe_bo_unlock(bo);
+>>> +		xe_bo_put(bo);
+>>> +		spin_lock(&xe->pinned.lock);
+>>> +	}
+>>> +	list_splice_tail(&still_in_list, &xe-
+>>>> pinned.kernel_bo_present);
+>>> +	spin_unlock(&xe->pinned.lock);
+>>> +}
+>>
+>> We could potentially move this type of thing into xe_bo_evict.c?
+> 
+> Could perhaps be the best choice, actually.
+> 
+>>
+>>> +
+>>> +/**
+>>> + * xe_bo_remove() - Handle bos when the pci_device is about to be
+>>> removed
+>>> + * @xe: The xe device.
+>>> + *
+>>> + * On pci_device removal we need to drop all dma mappings and move
+>>> + * the data of exported bos out to system. This includes SVM bos
+>>> and
+>>> + * exported dma-buf bos. This is done by evicting all bos, but
+>>> + * the evict placement in xe_evict_flags() is chosen such that all
+>>> + * bos except those mentioned are purged, and thus their memory
+>>> + * is released.
+>>> + *
+>>> + * For pinned bos, we're unmapping dma.
+>>> + */
+>>> +void xe_bo_remove(struct xe_device *xe)
+>>
+>> xe_device_remove_bo() ?
+> 
+> Will look into it.
+> 
+>>
+>>> +{
+>>> +	unsigned int mem_type;
+>>> +
+>>> +	/*
+>>> +	 * Move pagemap bos and exported dma-buf to system.
+>>
+>> ..and purge everything else."
+> 
+> Will add.
+> 
+> Thanks for reviewing!
+> /Thomas
+> 
 
