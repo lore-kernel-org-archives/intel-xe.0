@@ -4,62 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5519AC35FF3
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Mar 2025 17:35:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD539C282EC
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Mar 2025 18:46:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7352010E2DB;
-	Mon, 17 Mar 2025 17:35:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D2BE10E079;
+	Mon, 17 Mar 2025 18:46:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hPTaBkve";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dxdawqsI";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD61C10E2DB
- for <intel-xe@lists.freedesktop.org>; Mon, 17 Mar 2025 17:35:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3831910E079
+ for <intel-xe@lists.freedesktop.org>; Mon, 17 Mar 2025 18:46:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742232921; x=1773768921;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Q6cXF/ylZa/q/tZcXlF31mrnMbD7xapPZFyt2T15y2U=;
- b=hPTaBkveZwDpOZPlhyhr0DGEJ9Zx+edi016HchMRWgniGbMx2U4FGe/k
- QuE8720W8rMPG4tcmIwHBKI81p2ZMz2bw8TkBQ6ZID8TOSUG4q4soDfaq
- D+VwbMRx3YClJLD0LXXMgpbmVneG3Cvms5tMrZCZFui7YGv2jKMoIwuGp
- ba/RMsLcVpc6KpeKGHuBYXoLg8xTrmUs11VRIo/0jjSUR69iBNPGW8cpA
- O1hGSbeueoHcCiFCnTE31C1+3hcl3Dz6Ui7ehG6wFMrXcgvEDl2o0lqU3
- USO2awQZBqykwxoxPpou+0Jd1v9FBZ2KR7FaNyFtNrtLdh/JD5e2UzzL0 g==;
-X-CSE-ConnectionGUID: 92vs/3OHQu6GrhQe1Kwgsw==
-X-CSE-MsgGUID: JUFJqUSLR4uRfgyqWXAokw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11376"; a="43515765"
-X-IronPort-AV: E=Sophos;i="6.14,254,1736841600"; d="scan'208";a="43515765"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2025 10:35:19 -0700
-X-CSE-ConnectionGUID: 4gIg34HjS1u0sH7dqIXeCg==
-X-CSE-MsgGUID: z6ZDyjk9TpqVWI1nw24MYw==
+ t=1742237160; x=1773773160;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=02IAsOv2BkQpUcWQgIQCjpzXBmFqlvhJQPzfBjrcY1Y=;
+ b=dxdawqsIc9JdXwUN90HN5c6Q+pNjPvxBnr8U184eyX6s0VOSu6yX6FOl
+ fTzLwjwaxGrYcudrkUNtJa7N09chDjjsfq0tPUs/0szwnoImAhrh5wo9S
+ bpfNWbleYSv9ngzsJUaloAvmlaqUaEZyATIu85dzcpxVXGAYOfzJgvzqG
+ if4QkyKQDGjpXY+xWDi158ymDeRX2aBlkOVfieigmOp3ao8Hiu8FK+uIg
+ IDgOTZYuDTxJz58j5/GSYJj6Kgl5cB6aKRlFcJGTuLVZFRpeSSQDSvXdk
+ jbdfAORmeU3Nw6fP3llUiv+RsnxPtLqldOMGBG3yvoUvCajvg55tjBNJH A==;
+X-CSE-ConnectionGUID: +xiS574LQlKZLbolflfspw==
+X-CSE-MsgGUID: 7QElSgkCSr6vDbjIa1f5JA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11376"; a="47238165"
+X-IronPort-AV: E=Sophos;i="6.14,254,1736841600"; d="scan'208";a="47238165"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2025 11:46:00 -0700
+X-CSE-ConnectionGUID: pDaL8EkMS2+cYTjFi0YJGg==
+X-CSE-MsgGUID: 3tw2RXjuTAiSyS6TuaPR/g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,254,1736841600"; d="scan'208";a="127179682"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO [10.245.245.8])
- ([10.245.245.8])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2025 10:35:17 -0700
-Message-ID: <5dd6e196-ba18-45b8-846f-de38c614284e@intel.com>
-Date: Mon, 17 Mar 2025 17:35:14 +0000
+X-IronPort-AV: E=Sophos;i="6.14,254,1736841600"; d="scan'208";a="145198223"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.141])
+ by fmviesa002.fm.intel.com with ESMTP; 17 Mar 2025 11:45:59 -0700
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Subject: [PATCH v6] drm/xe: Apply Wa_16023105232
+Date: Mon, 17 Mar 2025 11:42:03 -0700
+Message-Id: <20250317184203.2213175-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] drm/xe/bo: Add a bo remove callback
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: himal.prasad.ghimiray@intel.com, Matthew Brost <matthew.brost@intel.com>
-References: <20250317104132.8200-1-thomas.hellstrom@linux.intel.com>
- <20250317104132.8200-4-thomas.hellstrom@linux.intel.com>
- <46faf433-a7d7-480e-be87-4989c5162ea1@intel.com>
- <1d313655ac3c7e0444ccd354166fa83d2dc6244a.camel@linux.intel.com>
- <93fe9e47-6cbd-443c-b08f-0c5a62daafa5@intel.com>
- <3ccce780ff19ffc12e504fbd4a6c719f1f01804b.camel@linux.intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <3ccce780ff19ffc12e504fbd4a6c719f1f01804b.camel@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,298 +65,219 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 17/03/2025 17:07, Thomas Hellström wrote:
-> On Mon, 2025-03-17 at 16:50 +0000, Matthew Auld wrote:
->> On 17/03/2025 16:16, Thomas Hellström wrote:
->>> On Mon, 2025-03-17 at 15:58 +0000, Matthew Auld wrote:
->>>> On 17/03/2025 10:41, Thomas Hellström wrote:
->>>>> On device unbind, migrate exported bos, including pagemap bos
->>>>> to
->>>>> system. This allows importers to take proper action without
->>>>> disruption. In particular, SVM clients on remote devices may
->>>>> continue as if nothing happened, and can chose a different
->>>>> placement.
->>>>>
->>>>> The evict_flags() placement is chosen in such a way that bos
->>>>> that
->>>>> aren't exported are purged.
->>>>>
->>>>> Signed-off-by: Thomas Hellström
->>>>> <thomas.hellstrom@linux.intel.com>
->>>>
->>>>> ---
->>>>>     drivers/gpu/drm/xe/xe_bo.c     | 96
->>>>> +++++++++++++++++++++++++++++++++-
->>>>>     drivers/gpu/drm/xe/xe_bo.h     |  2 +
->>>>>     drivers/gpu/drm/xe/xe_device.c |  2 +
->>>>>     3 files changed, 99 insertions(+), 1 deletion(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/xe/xe_bo.c
->>>>> b/drivers/gpu/drm/xe/xe_bo.c
->>>>> index 64f9c936eea0..c7c206041632 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_bo.c
->>>>> +++ b/drivers/gpu/drm/xe/xe_bo.c
->>>>> @@ -55,6 +55,8 @@ static struct ttm_placement sys_placement = {
->>>>>     	.placement = &sys_placement_flags,
->>>>>     };
->>>>>     
->>>>> +static struct ttm_placement purge_placement;
->>>>> +
->>>>>     static const struct ttm_place tt_placement_flags[] = {
->>>>>     	{
->>>>>     		.fpfn = 0,
->>>>> @@ -281,6 +283,8 @@ int xe_bo_placement_for_flags(struct
->>>>> xe_device
->>>>> *xe, struct xe_bo *bo,
->>>>>     static void xe_evict_flags(struct ttm_buffer_object *tbo,
->>>>>     			   struct ttm_placement *placement)
->>>>>     {
->>>>> +	struct xe_device *xe = container_of(tbo->bdev,
->>>>> typeof(*xe), ttm);
->>>>> +	bool device_unplugged = drm_dev_is_unplugged(&xe-
->>>>>> drm);
->>>>>     	struct xe_bo *bo;
->>>>>     
->>>>>     	if (!xe_bo_is_xe_bo(tbo)) {
->>>>> @@ -290,7 +294,7 @@ static void xe_evict_flags(struct
->>>>> ttm_buffer_object *tbo,
->>>>>     			return;
->>>>>     		}
->>>>>     
->>>>> -		*placement = sys_placement;
->>>>> +		*placement = device_unplugged ?
->>>>> purge_placement :
->>>>> sys_placement;
->>>>>     		return;
->>>>>     	}
->>>>>     
->>>>> @@ -300,6 +304,11 @@ static void xe_evict_flags(struct
->>>>> ttm_buffer_object *tbo,
->>>>>     		return;
->>>>>     	}
->>>>>     
->>>>> +	if (device_unplugged && !tbo->base.dma_buf) {
->>>>> +		*placement = purge_placement;
->>>>> +		return;
->>>>> +	}
->>>>
->>>>> +
->>>>>     	/*
->>>>>     	 * For xe, sg bos that are evicted to system just
->>>>> triggers
->>>>> a
->>>>>     	 * rebind of the sg list upon subsequent validation to
->>>>> XE_PL_TT.
->>>>> @@ -657,11 +666,20 @@ static int xe_bo_move_dmabuf(struct
->>>>> ttm_buffer_object *ttm_bo,
->>>>>     	struct xe_ttm_tt *xe_tt = container_of(ttm_bo->ttm,
->>>>> struct
->>>>> xe_ttm_tt,
->>>>>     					       ttm);
->>>>>     	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
->>>>> +	bool device_unplugged = drm_dev_is_unplugged(&xe-
->>>>>> drm);
->>>>>     	struct sg_table *sg;
->>>>>     
->>>>>     	xe_assert(xe, attach);
->>>>>     	xe_assert(xe, ttm_bo->ttm);
->>>>>     
->>>>> +	if (device_unplugged && new_res->mem_type ==
->>>>> XE_PL_SYSTEM
->>>>> &&
->>>>> +	    ttm_bo->sg) {
->>>>> +		dma_resv_wait_timeout(ttm_bo->base.resv,
->>>>> DMA_RESV_USAGE_BOOKKEEP,
->>>>> +				      false,
->>>>> MAX_SCHEDULE_TIMEOUT);
->>>>> +		dma_buf_unmap_attachment(attach, ttm_bo->sg,
->>>>> DMA_BIDIRECTIONAL);
->>>>> +		ttm_bo->sg = NULL;
->>>>> +	}
->>>>
->>>>> +
->>>>>     	if (new_res->mem_type == XE_PL_SYSTEM)
->>>>>     		goto out;
->>>>>     
->>>>> @@ -2945,6 +2963,82 @@ void
->>>>> xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo)
->>>>>     	list_del_init(&bo->vram_userfault_link);
->>>>>     }
->>>>>     
->>>>> +static void xe_bo_dma_unmap_pinned(struct xe_device *xe)
->>>>
->>>> Should we prefix this with xe_device_ or something?
->>>> xe_device_unmap_pinned_bo() ?
->>>
->>> Hmm, yes, while it doesn't take a bo as argument, I think it should
->>> reside in the bo subsystem. Let me check whether we should split
->>> this
->>> up and have the loops elsewhere.
->>>
->>>>
->>>>> +{
->>>>> +	struct list_head still_in_list;
->>>>> +
->>>>> +	INIT_LIST_HEAD(&still_in_list);
->>>>
->>>> LIST_HEAD(still_in_list);
->>>
->>> Right. Will fix.
->>>>
->>>>
->>>>> +	spin_lock(&xe->pinned.lock);
->>>>> +	for (;;) {
->>>>> +		struct xe_bo *bo =
->>>>> list_first_entry_or_null(&xe-
->>>>>> pinned.kernel_bo_present,
->>>>> +							
->>>>> typeof(*bo), pinned_link);
->>>>> +		struct ttm_buffer_object *ttm_bo;
->>>>> +		struct ttm_tt *tt;
->>>>> +		struct xe_ttm_tt *xe_tt;
->>>>> +
->>>>> +		if (!bo)
->>>>> +			break;
->>>>> +
->>>>> +		list_move_tail(&bo->pinned_link,
->>>>> &still_in_list);
->>>>> +		xe_bo_get(bo);
->>>>> +		spin_unlock(&xe->pinned.lock);
->>>>> +
->>>>> +		xe_bo_lock(bo, false);
->>>>> +		ttm_bo = &bo->ttm;
->>>>> +		tt = ttm_bo->ttm;
->>>>> +		if (tt) {
->>>>> +			xe_ttm_bo_delete_mem_notify(ttm_bo);
->>>>
->>>> Do we actually need this?
->>>
->>> It's for imported pinned dma-bufs, I don't think we have any of
->>> these
->>> ATM, but might in the future I guess. OFC I can structure that a
->>> bit
->>> nicer.
->>
->> Ah ok. But here we are looping over kernel_bo_present, do we really
->> have
->> dma-buf stuff on that? I only see the vram list thing, did you mean
->> that?
-> 
-> That's actually a very good point. I should have paid closer attention
-> to what the various lists actually hold. So pinned dma-bufs don't sit
-> on any xe lists as it seems?
+The WA requires KMD to disable DOP clock gating during a semaphore
+wait and also ensure that idle delay for every CS is lower than the
+idle wait time in the PWRCTX_MAXCNT register. Default values for these
+registers already comply with this restriction.
 
-That's my understanding. Although not sure what is going on with that 
-vram list, which is curretly unused.
+v2: Store timestamp_base in gt info and other comments (Daniele)
+v3: Skip WA check for VF
+v4: Review comments (Matt Roper)
+v5: Cleanup the clock functions and use reg_field_get (Matt Roper)
+v6: Fix checkpatch issue
 
-> 
-> I guess things still work for suspend / resume since dma-bufs are not
-> supposed to be compressed?
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h |  4 +++
+ drivers/gpu/drm/xe/xe_gt_clock.c         | 39 ++++++++++++++++--------
+ drivers/gpu/drm/xe/xe_gt_types.h         |  2 ++
+ drivers/gpu/drm/xe/xe_hw_engine.c        | 34 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_wa.c               |  6 ++++
+ drivers/gpu/drm/xe/xe_wa_oob.rules       |  2 ++
+ 6 files changed, 75 insertions(+), 12 deletions(-)
 
-Right.
-
-> 
-> For this case, though, They need to be added somewhere.
-
-Yeah, looks like we are indeed missing that.
-
-> 
-> /Thomas
-> 
-> 
->>
->>>
->>>>
->>>>> +			xe_tt = container_of(tt,
->>>>> typeof(*xe_tt),
->>>>> ttm);
->>>>> +			if (xe_tt->sg) {
->>>>> +				dma_unmap_sgtable(xe_tt->xe-
->>>>>> drm.dev, xe_tt->sg,
->>>>> +						
->>>>> DMA_BIDIRECTIONAL, 0);
->>>>> +				sg_free_table(xe_tt->sg);
->>>>> +				xe_tt->sg = NULL;
->>>>> +			}
->>>>
->>>> Would it make sense to also call ttm_tt_unpopulate() here, so we
->>>> nuke
->>>> the pages?
->>>
->>> I think we arrived at not nuking the pages for exported dma-bufs.
->>> For
->>> the other use-cases I guess it's hard to tell: Is there a chance
->>> that
->>> whatever needed the buffer pinned can issue a stray write?
->>>
->>> I still think the best approach would to ensure that those
->>> subsystems
->>> used devm_ managed resources rather than drmm_-managed resources.
->>> Meanwhile, I can perhaps add a comment about that?
->>
->> Yeah, for dma-buf leaving the pages alone make sense. I was just
->> getting
->> thrown off by the kernel_bo_present. I don't really mind either way.
->>
->>>
->>>>
->>>>> +		}
->>>>> +
->>>>> +		xe_bo_unlock(bo);
->>>>> +		xe_bo_put(bo);
->>>>> +		spin_lock(&xe->pinned.lock);
->>>>> +	}
->>>>> +	list_splice_tail(&still_in_list, &xe-
->>>>>> pinned.kernel_bo_present);
->>>>> +	spin_unlock(&xe->pinned.lock);
->>>>> +}
->>>>
->>>> We could potentially move this type of thing into xe_bo_evict.c?
->>>
->>> Could perhaps be the best choice, actually.
->>>
->>>>
->>>>> +
->>>>> +/**
->>>>> + * xe_bo_remove() - Handle bos when the pci_device is about to
->>>>> be
->>>>> removed
->>>>> + * @xe: The xe device.
->>>>> + *
->>>>> + * On pci_device removal we need to drop all dma mappings and
->>>>> move
->>>>> + * the data of exported bos out to system. This includes SVM
->>>>> bos
->>>>> and
->>>>> + * exported dma-buf bos. This is done by evicting all bos, but
->>>>> + * the evict placement in xe_evict_flags() is chosen such that
->>>>> all
->>>>> + * bos except those mentioned are purged, and thus their
->>>>> memory
->>>>> + * is released.
->>>>> + *
->>>>> + * For pinned bos, we're unmapping dma.
->>>>> + */
->>>>> +void xe_bo_remove(struct xe_device *xe)
->>>>
->>>> xe_device_remove_bo() ?
->>>
->>> Will look into it.
->>>
->>>>
->>>>> +{
->>>>> +	unsigned int mem_type;
->>>>> +
->>>>> +	/*
->>>>> +	 * Move pagemap bos and exported dma-buf to system.
->>>>
->>>> ..and purge everything else."
->>>
->>> Will add.
->>>
->>> Thanks for reviewing!
->>> /Thomas
->>>
->>
-> 
+diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+index 659cf85fa3d6..da713634d6a0 100644
+--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+@@ -130,6 +130,10 @@
+ #define RING_EXECLIST_STATUS_LO(base)		XE_REG((base) + 0x234)
+ #define RING_EXECLIST_STATUS_HI(base)		XE_REG((base) + 0x234 + 4)
+ 
++#define RING_IDLEDLY(base)			XE_REG((base) + 0x23c)
++#define   INHIBIT_SWITCH_UNTIL_PREEMPTED	REG_BIT(31)
++#define   IDLE_DELAY				REG_GENMASK(20, 0)
++
+ #define RING_CONTEXT_CONTROL(base)		XE_REG((base) + 0x244, XE_REG_OPTION_MASKED)
+ #define	  CTX_CTRL_PXP_ENABLE			REG_BIT(10)
+ #define	  CTX_CTRL_OAC_CONTEXT_ENABLE		REG_BIT(8)
+diff --git a/drivers/gpu/drm/xe/xe_gt_clock.c b/drivers/gpu/drm/xe/xe_gt_clock.c
+index fca38738e610..4f011d1573c6 100644
+--- a/drivers/gpu/drm/xe/xe_gt_clock.c
++++ b/drivers/gpu/drm/xe/xe_gt_clock.c
+@@ -16,27 +16,42 @@
+ #include "xe_macros.h"
+ #include "xe_mmio.h"
+ 
+-static u32 get_crystal_clock_freq(u32 rpm_config_reg)
++#define f19_2_mhz	19200000
++#define f24_mhz		24000000
++#define f25_mhz		25000000
++#define f38_4_mhz	38400000
++#define ts_base_83	83333
++#define ts_base_52	52083
++#define ts_base_80	80000
++
++static void read_crystal_clock(struct xe_gt *gt, u32 rpm_config_reg, u32 *freq,
++			       u32 *timestamp_base)
+ {
+-	const u32 f19_2_mhz = 19200000;
+-	const u32 f24_mhz = 24000000;
+-	const u32 f25_mhz = 25000000;
+-	const u32 f38_4_mhz = 38400000;
+ 	u32 crystal_clock = REG_FIELD_GET(RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK,
+ 					  rpm_config_reg);
+ 
+ 	switch (crystal_clock) {
+ 	case RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_24_MHZ:
+-		return f24_mhz;
++		*freq = f24_mhz;
++		*timestamp_base = ts_base_83;
++		return;
+ 	case RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_19_2_MHZ:
+-		return f19_2_mhz;
++		*freq = f19_2_mhz;
++		*timestamp_base = ts_base_52;
++		return;
+ 	case RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_38_4_MHZ:
+-		return f38_4_mhz;
++		*freq = f38_4_mhz;
++		*timestamp_base = ts_base_52;
++		return;
+ 	case RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_25_MHZ:
+-		return f25_mhz;
++		*freq = f25_mhz;
++		*timestamp_base = ts_base_80;
++		return;
+ 	default:
+-		XE_WARN_ON("NOT_POSSIBLE");
+-		return 0;
++		xe_gt_warn(gt, "Invalid crystal clock frequency: %u", crystal_clock);
++		*freq = 0;
++		*timestamp_base = 0;
++		return;
+ 	}
+ }
+ 
+@@ -65,7 +80,7 @@ int xe_gt_clock_init(struct xe_gt *gt)
+ 		check_ctc_mode(gt);
+ 
+ 	c0 = xe_mmio_read32(&gt->mmio, RPM_CONFIG0);
+-	freq = get_crystal_clock_freq(c0);
++	read_crystal_clock(gt, c0, &freq, &gt->info.timestamp_base);
+ 
+ 	/*
+ 	 * Now figure out how the command stream's timestamp
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index e3cfb026ac88..7def0959da35 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -121,6 +121,8 @@ struct xe_gt {
+ 		enum xe_gt_type type;
+ 		/** @info.reference_clock: clock frequency */
+ 		u32 reference_clock;
++		/** @info.timestamp_base: GT timestamp base */
++		u32 timestamp_base;
+ 		/**
+ 		 * @info.engine_mask: mask of engines present on GT. Some of
+ 		 * them may be reserved in runtime and not available for user.
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 223b95de388c..0d6e23e6ed52 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -8,7 +8,9 @@
+ #include <linux/nospec.h>
+ 
+ #include <drm/drm_managed.h>
++#include <drm/drm_print.h>
+ #include <uapi/drm/xe_drm.h>
++#include <generated/xe_wa_oob.h>
+ 
+ #include "regs/xe_engine_regs.h"
+ #include "regs/xe_gt_regs.h"
+@@ -21,6 +23,7 @@
+ #include "xe_gsc.h"
+ #include "xe_gt.h"
+ #include "xe_gt_ccs_mode.h"
++#include "xe_gt_clock.h"
+ #include "xe_gt_printk.h"
+ #include "xe_gt_mcr.h"
+ #include "xe_gt_topology.h"
+@@ -564,6 +567,33 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 	xe_reg_whitelist_process_engine(hwe);
+ }
+ 
++static void adjust_idledly(struct xe_hw_engine *hwe)
++{
++	struct xe_gt *gt = hwe->gt;
++	u32 idledly, maxcnt;
++	u32 idledly_units_ps = 8 * gt->info.timestamp_base;
++	u32 maxcnt_units_ns = 640;
++	bool inhibit_switch = 0;
++
++	if (XE_WA(gt, 16023105232)) {
++		idledly = xe_mmio_read32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base));
++		maxcnt = xe_mmio_read32(&gt->mmio, RING_PWRCTX_MAXCNT(hwe->mmio_base));
++
++		inhibit_switch = idledly & INHIBIT_SWITCH_UNTIL_PREEMPTED;
++		idledly = REG_FIELD_GET(IDLE_DELAY, idledly);
++		idledly = DIV_ROUND_CLOSEST(idledly * idledly_units_ps, 1000);
++		maxcnt = REG_FIELD_GET(IDLE_WAIT_TIME, maxcnt);
++		maxcnt *= maxcnt_units_ns;
++
++		if (xe_gt_WARN_ON(gt, idledly >= maxcnt || inhibit_switch)) {
++			idledly = DIV_ROUND_CLOSEST(((maxcnt - 1) * maxcnt_units_ns),
++						    idledly_units_ps);
++			idledly = DIV_ROUND_CLOSEST(idledly, 1000);
++			xe_mmio_write32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base), idledly);
++		}
++	}
++}
++
+ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 			  enum xe_hw_engine_id id)
+ {
+@@ -604,6 +634,10 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 	if (xe->info.has_usm && hwe->class == XE_ENGINE_CLASS_COPY)
+ 		gt->usm.reserved_bcs_instance = hwe->instance;
+ 
++	/* Ensure IDLEDLY is lower than MAXCNT */
++	if (XE_WA(gt, 16023105232))
++		adjust_idledly(hwe);
++
+ 	return devm_add_action_or_reset(xe->drm.dev, hw_engine_fini, hwe);
+ 
+ err_hwsp:
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index a25afb757f70..24f644c0a673 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -622,6 +622,12 @@ static const struct xe_rtp_entry_sr engine_was[] = {
+ 		       FUNC(xe_rtp_match_first_render_or_compute)),
+ 	  XE_RTP_ACTIONS(SET(TDL_TSL_CHICKEN, RES_CHK_SPR_DIS))
+ 	},
++	{ XE_RTP_NAME("16023105232"),
++	  XE_RTP_RULES(MEDIA_VERSION_RANGE(1301, 3000), OR,
++		       GRAPHICS_VERSION_RANGE(2001, 3001)),
++	  XE_RTP_ACTIONS(SET(RING_PSMI_CTL(0), RC_SEMA_IDLE_MSG_DISABLE,
++			     XE_RTP_ACTION_FLAG(ENGINE_BASE)))
++	},
+ };
+ 
+ static const struct xe_rtp_entry_sr lrc_was[] = {
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index e0c5fa460487..0c738af24f7c 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -53,3 +53,5 @@ no_media_l3	MEDIA_VERSION(3000)
+ 		GRAPHICS_VERSION_RANGE(1270, 1274)
+ 1508761755	GRAPHICS_VERSION(1255)
+ 		GRAPHICS_VERSION(1260), GRAPHICS_STEP(A0, B0)
++16023105232	GRAPHICS_VERSION_RANGE(2001, 3001)
++		MEDIA_VERSION_RANGE(1301, 3000)
+-- 
+2.38.1
 
