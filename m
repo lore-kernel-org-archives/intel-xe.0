@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C52BAC282EC
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Mar 2025 15:19:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCDB8C282EC
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Mar 2025 15:23:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 884AD10E18C;
-	Mon, 17 Mar 2025 15:19:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A846B10E0F1;
+	Mon, 17 Mar 2025 15:23:45 +0000 (UTC)
 Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D426410E18C;
- Mon, 17 Mar 2025 15:19:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABDFB10E0F1;
+ Mon, 17 Mar 2025 15:23:43 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/xe=3A_xe-only_pa?=
- =?utf-8?q?tches_from_the_multi-device_GPUSVM_series?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/i915/fbc=3A_disa?=
+ =?utf-8?q?ble_FBC_if_PSR2_selective_fetch_is_enabled?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 17 Mar 2025 15:19:23 -0000
-Message-ID: <174222476386.43645.12457196299053726236@18a75f3d1eae>
+Date: Mon, 17 Mar 2025 15:23:43 -0000
+Message-ID: <174222502370.43665.16256234701694737068@18a75f3d1eae>
 X-Patchwork-Hint: ignore
-References: <20250317104132.8200-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20250317104132.8200-1-thomas.hellstrom@linux.intel.com>
+References: <20250317150835.30564-1-vinod.govindapillai@intel.com>
+In-Reply-To: <20250317150835.30564-1-vinod.govindapillai@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,8 +42,8 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe: xe-only patches from the multi-device GPUSVM series
-URL   : https://patchwork.freedesktop.org/series/146383/
+Series: drm/i915/fbc: disable FBC if PSR2 selective fetch is enabled
+URL   : https://patchwork.freedesktop.org/series/146402/
 State : failure
 
 == Summary ==
@@ -51,25 +51,11 @@ State : failure
 === Applying kernel patches on branch 'master' with base: ===
 Base commit: 695caca9345a Merge tag 'leds-fixes-6.14' of git://git.kernel.org/pub/scm/linux/kernel/git/lee/leds
 === git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/Kconfig:39
-error: drivers/gpu/drm/xe/Kconfig: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/Makefile:125
-error: drivers/gpu/drm/xe/Makefile: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_device_types.h:107
-error: drivers/gpu/drm/xe/xe_device_types.h: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_migrate.c:1544
-error: drivers/gpu/drm/xe/xe_migrate.c: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_pt.c:1420
-error: drivers/gpu/drm/xe/xe_pt.c: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_query.c:340
-error: drivers/gpu/drm/xe/xe_query.c: patch does not apply
-error: drivers/gpu/drm/xe/xe_svm.c: does not exist in index
-error: drivers/gpu/drm/xe/xe_svm.h: does not exist in index
-error: patch failed: drivers/gpu/drm/xe/xe_vm.c:3112
-error: drivers/gpu/drm/xe/xe_vm.c: patch does not apply
+error: patch failed: drivers/gpu/drm/i915/display/intel_fbc.c:1463
+error: drivers/gpu/drm/i915/display/intel_fbc.c: patch does not apply
 hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Applying: drm/xe: Introduce CONFIG_DRM_XE_GPUSVM
-Patch failed at 0001 drm/xe: Introduce CONFIG_DRM_XE_GPUSVM
+Applying: drm/i915/fbc: disable FBC if PSR2 selective fetch is enabled
+Patch failed at 0001 drm/i915/fbc: disable FBC if PSR2 selective fetch is enabled
 When you have resolved this problem, run "git am --continue".
 If you prefer to skip this patch, run "git am --skip" instead.
 To restore the original branch and stop patching, run "git am --abort".
