@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDDF4C28B30
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Mar 2025 15:08:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C52BAC282EC
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Mar 2025 15:19:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D91910E424;
-	Mon, 17 Mar 2025 15:08:53 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DDnF/LRK";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1F4110E424;
- Mon, 17 Mar 2025 15:08:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742224133; x=1773760133;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Mykh5p4ZusgmxjwudgK896dPj+Oflu1/W12JI4jPWtU=;
- b=DDnF/LRKNiBdOtSCDKiQce0yT5oU5/AII2HOmix9APi8cWOrmfZU0opO
- K+KCLDJhXoEzD6sfbNX8PKDq1TDIKeryKLfE74XcJNBUIc/wLiIjNy0hp
- 6O/8dUzFhmxKTCXUc38ruSR3nrNEZsnFPSQCxhI1vqvW/KtBHhv3XbRQR
- 8vKIbWTXo6yEJEarnAZruSXoMr8M+ZsN5hi2gfNnn6XAvBpZIG5XlKtO3
- 2PhVQGtVbuf/w6UL7kBTnpQeDokz3NBghhyG8sO1lps4sGwiNKNsx8zVh
- HlAr6me16RfWrCydehAlaIIrySXHGTEIQrEbPf9RAzkp+2BUFcaHowrFj A==;
-X-CSE-ConnectionGUID: lwoq3FQAQK69NTKEbxIC7w==
-X-CSE-MsgGUID: gHv/0qoEQq2z5wh4u85hdg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11376"; a="53530269"
-X-IronPort-AV: E=Sophos;i="6.14,254,1736841600"; d="scan'208";a="53530269"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2025 08:08:52 -0700
-X-CSE-ConnectionGUID: MWsU8WwcS76GJQtwDg3eAQ==
-X-CSE-MsgGUID: owViKGMgRci0UeTq7Qm3Ag==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,254,1736841600"; d="scan'208";a="159108607"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO
- vgovind2-mobl3.intel.com) ([10.245.246.96])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2025 08:08:49 -0700
-From: Vinod Govindapillai <vinod.govindapillai@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com, jouni.hogander@intel.com,
- ville.syrjala@intel.com, uma.shankar@intel.com, jani.saarinen@intel.com
-Subject: [PATCH v1] drm/i915/fbc: disable FBC if PSR2 selective fetch is
- enabled
-Date: Mon, 17 Mar 2025 17:08:35 +0200
-Message-ID: <20250317150835.30564-1-vinod.govindapillai@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 884AD10E18C;
+	Mon, 17 Mar 2025 15:19:24 +0000 (UTC)
+Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D426410E18C;
+ Mon, 17 Mar 2025 15:19:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/xe=3A_xe-only_pa?=
+ =?utf-8?q?tches_from_the_multi-device_GPUSVM_series?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 17 Mar 2025 15:19:23 -0000
+Message-ID: <174222476386.43645.12457196299053726236@18a75f3d1eae>
+X-Patchwork-Hint: ignore
+References: <20250317104132.8200-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20250317104132.8200-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,40 +36,42 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Disable FBC in case PSR2 selective fetch is enabled for all
-platforms from display version 12. Later on there will be
-mechanism to select between selective fetch and FBC based
-on the dirty rect percentage.
+== Series Details ==
 
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
----
- drivers/gpu/drm/i915/display/intel_fbc.c | 9 ++-------
- 1 file changed, 2 insertions(+), 7 deletions(-)
+Series: drm/xe: xe-only patches from the multi-device GPUSVM series
+URL   : https://patchwork.freedesktop.org/series/146383/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index b6978135e8ad..3c792b465727 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1463,14 +1463,9 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
- 	 * Display 12+ is not supporting FBC with PSR2.
- 	 * Recommendation is to keep this combination disabled
- 	 * Bspec: 50422 HSD: 14010260002
--	 *
--	 * In Xe3, PSR2 selective fetch and FBC dirty rect feature cannot
--	 * coexist. So if PSR2 selective fetch is supported then mark that
--	 * FBC is not supported.
--	 * TODO: Need a logic to decide between PSR2 and FBC Dirty rect
- 	 */
--	if ((IS_DISPLAY_VER(display, 12, 14) || HAS_FBC_DIRTY_RECT(display)) &&
--	    crtc_state->has_sel_update && !crtc_state->has_panel_replay) {
-+	if (DISPLAY_VER(display) >= 12 && crtc_state->has_sel_update &&
-+	    !crtc_state->has_panel_replay) {
- 		plane_state->no_fbc_reason = "PSR2 enabled";
- 		return 0;
- 	}
--- 
-2.43.0
+== Summary ==
+
+=== Applying kernel patches on branch 'master' with base: ===
+Base commit: 695caca9345a Merge tag 'leds-fixes-6.14' of git://git.kernel.org/pub/scm/linux/kernel/git/lee/leds
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/xe/Kconfig:39
+error: drivers/gpu/drm/xe/Kconfig: patch does not apply
+error: patch failed: drivers/gpu/drm/xe/Makefile:125
+error: drivers/gpu/drm/xe/Makefile: patch does not apply
+error: patch failed: drivers/gpu/drm/xe/xe_device_types.h:107
+error: drivers/gpu/drm/xe/xe_device_types.h: patch does not apply
+error: patch failed: drivers/gpu/drm/xe/xe_migrate.c:1544
+error: drivers/gpu/drm/xe/xe_migrate.c: patch does not apply
+error: patch failed: drivers/gpu/drm/xe/xe_pt.c:1420
+error: drivers/gpu/drm/xe/xe_pt.c: patch does not apply
+error: patch failed: drivers/gpu/drm/xe/xe_query.c:340
+error: drivers/gpu/drm/xe/xe_query.c: patch does not apply
+error: drivers/gpu/drm/xe/xe_svm.c: does not exist in index
+error: drivers/gpu/drm/xe/xe_svm.h: does not exist in index
+error: patch failed: drivers/gpu/drm/xe/xe_vm.c:3112
+error: drivers/gpu/drm/xe/xe_vm.c: patch does not apply
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Applying: drm/xe: Introduce CONFIG_DRM_XE_GPUSVM
+Patch failed at 0001 drm/xe: Introduce CONFIG_DRM_XE_GPUSVM
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
 
