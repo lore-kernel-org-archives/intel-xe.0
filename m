@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E796BC35FFB
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Mar 2025 08:19:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 450DAC35FF8
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Mar 2025 08:19:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51BB510E3BD;
-	Mon, 17 Mar 2025 08:19:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A36910E3BB;
+	Mon, 17 Mar 2025 08:19:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EWh2Qokq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A1I4ePQ0";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E11A310E3B6;
- Mon, 17 Mar 2025 08:19:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE39710E3BF;
+ Mon, 17 Mar 2025 08:19:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742199564; x=1773735564;
+ t=1742199567; x=1773735567;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fkACfwmBEyJI+UIeFgz8GrluPZm9Ck9wXb6VnjwZTYU=;
- b=EWh2QokqI4jZRktHoUXkunhZiZDkrsqC1EaoNEcK9dzB+Qu/XyStayGv
- 6jpzlrDzGLnx3pbndvY/Mcb/1IKAAr6EdiUgtTahhd6vIw1pleA+dL0C5
- aUEQytpXGOgvD/kxBPD4GodH6pxAUBRd5YNhZS7Wm4YlXCZGmEFXGTZLt
- eOHoE6zohYdxnqIW1W+0fRlkjB8poCbe6A7mqC7yXROdKeE6CkuVBopvd
- G1hHbwxwSDDxU0N6e0H5quVGQvQyPLgGnIvtBxkNStBzOyyeiBok1COQy
- 7PiWXZcSeNUqxvIOKFyYch5Vt1ZBt6j2Vx2YQhT8SAfz2WROVvLGlEfIw w==;
-X-CSE-ConnectionGUID: Jtb5HkpERLCovx7WCEvP1w==
-X-CSE-MsgGUID: NJcPtBOXRZ+YUvYXYN7fyg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11375"; a="54653504"
-X-IronPort-AV: E=Sophos;i="6.14,253,1736841600"; d="scan'208";a="54653504"
+ bh=idYYdiFNdHFgLVt5+uqIP+AUHkvFcNz6fXyI4njTA1s=;
+ b=A1I4ePQ0XlSdt/pN/+Qx7ZSHwiZf/p0+EfUQ9MVaniJBiXPhhxkI06ME
+ aBVwy7mHOzbkj5dJsOBAtJb0icSnHyaH0B04EkePmL493Vbr4i7slS++c
+ RuDVszlxpZO1nG0dOkxx+6sC2Wi4ywSxxityV+VcF8oi6sFWeb5gnLs8d
+ 0Zqvl9/i41Z/5u2fX2j6B8nKvZYbhdke2hdGrbsRK2xu+USz5sQZ3cSbB
+ Z2vriLzk6Z+2PVzIOEn6mGkyAzK+/fezEXHIcKSsWHQjuUGBIkAVZSY0c
+ 1joy/nY23DX8EuRq+03lATpO2HWkW92+SXFxNdBdOZXFtbj9/EYe0t6Uv Q==;
+X-CSE-ConnectionGUID: Kblj8i5pTwK8JNB19k37+g==
+X-CSE-MsgGUID: EBnq1DZ5QXe4VS78wfevRw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11375"; a="54653511"
+X-IronPort-AV: E=Sophos;i="6.14,253,1736841600"; d="scan'208";a="54653511"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2025 01:19:24 -0700
-X-CSE-ConnectionGUID: QYivlv8yQY6z8iOwiIV3Ow==
-X-CSE-MsgGUID: yAfHgoBhTS2xoiEgLkB5TA==
+ 17 Mar 2025 01:19:27 -0700
+X-CSE-ConnectionGUID: MtbsP6DFRNO3T2iZXI4KkA==
+X-CSE-MsgGUID: Rq+EJxHoQzaDZ7C1Im81+Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,253,1736841600"; d="scan'208";a="121677153"
+X-IronPort-AV: E=Sophos;i="6.14,253,1736841600"; d="scan'208";a="121677161"
 Received: from ettammin-mobl2.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.244.231])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2025 01:19:22 -0700
+ 17 Mar 2025 01:19:25 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v2 05/11] drm/i915/psr: Write PIPEDMC_BLOCK_PKGC_SW when
- enabling PSR
-Date: Mon, 17 Mar 2025 10:18:59 +0200
-Message-ID: <20250317081905.3683654-6-jouni.hogander@intel.com>
+Subject: [PATCH v2 07/11] drm/i915/psr: Add mechanism to notify PSR of DC5/6
+ enable disable
+Date: Mon, 17 Mar 2025 10:19:01 +0200
+Message-ID: <20250317081905.3683654-8-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250317081905.3683654-1-jouni.hogander@intel.com>
 References: <20250317081905.3683654-1-jouni.hogander@intel.com>
@@ -71,56 +71,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Write PIPEDMC_BLOCK_PKGC_SW when enabling PSR as described in workaround
-for underrun on idle PSR HW issue (Wa_16025596647).
+We need to apply/remove workaround for underrun on idle PSR HW issue
+(Wa_16025596647) when DC5/6 is enabled/disabled. This patch implements
+mechanism to notify PSR about DC5/6 enable/disable and applies/removes the
+workaround using this notification.
 
-Bspec: 74151
+Bspec: 74115
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+ .../gpu/drm/i915/display/intel_display_core.h |  2 +
+ drivers/gpu/drm/i915/display/intel_psr.c      | 50 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_psr.h      |  2 +
+ 3 files changed, 54 insertions(+)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+index 3673275f9061a..7ca1e7d710133 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_core.h
++++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+@@ -575,6 +575,8 @@ struct intel_display {
+ 	struct intel_vbt_data vbt;
+ 	struct intel_dmc_wl wl;
+ 	struct intel_wm wm;
++
++	struct work_struct psr_dc5_dc6_wa_work;
+ };
+ 
+ #endif /* __INTEL_DISPLAY_CORE_H__ */
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 1415e1e7aaf2c..a3946eef44f0d 100644
+index 4b62d5832cbfa..baf6a7110a555 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -37,6 +37,7 @@
- #include "intel_de.h"
- #include "intel_display_irq.h"
- #include "intel_display_types.h"
-+#include "intel_dmc_regs.h"
- #include "intel_dp.h"
- #include "intel_dp_aux.h"
- #include "intel_frontbuffer.h"
-@@ -1961,6 +1962,13 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
- 			intel_de_rmw(display, CLKGATE_DIS_MISC, 0,
- 				     CLKGATE_DIS_MISC_DMASC_GATING_DIS);
- 	}
-+
-+	/* Wa_16025596647 */
-+	if ((DISPLAY_VER(display) == 20 ||
-+	     IS_DISPLAY_VERx100_STEP(display, 3000, STEP_A0, STEP_B0)) &&
-+	    !intel_dp->psr.panel_replay_enabled)
-+		intel_de_rmw(display, PIPEDMC_BLOCK_PKGC_SW(intel_dp->psr.pipe), 0,
-+			     PIPEDMC_BLOCK_PKGC_SW_BLOCK_PKGC_ALWAYS);
+@@ -3718,6 +3718,56 @@ static void intel_psr_apply_underrun_on_idle_wa_locked(struct intel_dp *intel_dp
+ 		psr1_apply_underrun_on_idle_wa_locked(intel_dp, dc5_dc6_blocked);
  }
  
- static bool psr_interrupt_error_check(struct intel_dp *intel_dp)
-@@ -2186,6 +2194,13 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
- 					   DP_RECEIVER_ALPM_CONFIG, 0);
- 	}
- 
-+	/* Wa_16025596647 */
-+	if ((DISPLAY_VER(display) == 20 ||
-+	     IS_DISPLAY_VERx100_STEP(display, 3000, STEP_A0, STEP_B0)) &&
-+	    !intel_dp->psr.panel_replay_enabled)
-+		intel_de_rmw(display, PIPEDMC_BLOCK_PKGC_SW(intel_dp->psr.pipe),
-+			     PIPEDMC_BLOCK_PKGC_SW_BLOCK_PKGC_ALWAYS, 0);
++static void psr_dc5_dc6_wa_work(struct work_struct *work)
++{
++	struct intel_display *display = container_of(work, typeof(*display),
++						     psr_dc5_dc6_wa_work);
++	struct intel_encoder *encoder;
 +
- 	intel_dp->psr.enabled = false;
- 	intel_dp->psr.panel_replay_enabled = false;
- 	intel_dp->psr.sel_update_enabled = false;
++	for_each_intel_encoder_with_psr(display->drm, encoder) {
++		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++
++		mutex_lock(&intel_dp->psr.lock);
++
++		if (intel_dp->psr.enabled && !intel_dp->psr.panel_replay_enabled)
++			intel_psr_apply_underrun_on_idle_wa_locked(intel_dp);
++
++		mutex_unlock(&intel_dp->psr.lock);
++	}
++}
++
++/**
++ * intel_psr_notify_dc5_dc6 - Notify PSR about enable/disable dc5/dc6
++ * @display: intel atomic state
++ *
++ * This is targeted for underrun on idle PSR HW bug (Wa_16025596647) to schedule
++ * psr_dc5_dc6_wa_work used for applying/removing the workaround.
++ */
++void intel_psr_notify_dc5_dc6(struct intel_display *display)
++{
++	if (DISPLAY_VER(display) != 20 &&
++	    !IS_DISPLAY_VERx100_STEP(display, 3000, STEP_A0, STEP_B0))
++		return;
++
++	schedule_work(&display->psr_dc5_dc6_wa_work);
++}
++
++/**
++ * intel_psr_dc5_dc6_wa_init - Init work for underrun on idle PSR HW bug wa
++ * @display: intel atomic state
++ *
++ * This is targeted for underrun on idle PSR HW bug (Wa_16025596647) to init
++ * psr_dc5_dc6_wa_work used for applying the workaround.
++ */
++void intel_psr_dc5_dc6_wa_init(struct intel_display *display)
++{
++	if (DISPLAY_VER(display) != 20 &&
++	    !IS_DISPLAY_VERx100_STEP(display, 3000, STEP_A0, STEP_B0))
++		return;
++
++	INIT_WORK(&display->psr_dc5_dc6_wa_work, psr_dc5_dc6_wa_work);
++}
++
+ /**
+  * intel_psr_notify_pipe_change - Notify PSR about enable/disable of a pipe
+  * @state: intel atomic state
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
+index 273e70a50915c..bfe368239bc27 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.h
++++ b/drivers/gpu/drm/i915/display/intel_psr.h
+@@ -62,6 +62,8 @@ void intel_psr_resume(struct intel_dp *intel_dp);
+ bool intel_psr_needs_block_dc_vblank(const struct intel_crtc_state *crtc_state);
+ void intel_psr_notify_pipe_change(struct intel_atomic_state *state,
+ 				  struct intel_crtc *crtc, bool enable);
++void intel_psr_notify_dc5_dc6(struct intel_display *display);
++void intel_psr_dc5_dc6_wa_init(struct intel_display *display);
+ bool intel_psr_link_ok(struct intel_dp *intel_dp);
+ 
+ void intel_psr_lock(const struct intel_crtc_state *crtc_state);
 -- 
 2.43.0
 
