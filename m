@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C975EC282EC
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Mar 2025 16:25:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 067E5C35FF3
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Mar 2025 16:30:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8487210E2C4;
-	Mon, 17 Mar 2025 16:25:16 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="E9BRWtFy";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C978B10E2C4
- for <intel-xe@lists.freedesktop.org>; Mon, 17 Mar 2025 16:25:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:References:
- Cc:To:From:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=qaLRJLuTwAYzM6tQVqdv9LCWpCg89aiu9pF7A9AEvFI=; b=E9BRWtFyGYHmojTrjug+TMTFl6
- X7yrLM9RDKZkd8HbK4C75rX1vQOBtTUvVUpRETYhS7d+fKcXlBuEVwSjmD3zaxrTVU8GabXjJP0dM
- fA0EUaIWFjImdtjkUgOb/EYPHfSzPcs5QzbqYNqHT0y/qpO1jnBrN00UdiSWYs7ht1Rt2nAWRiZLg
- 0HPZmcufCDkTQvhQWSxN5yHrW7aYRQT0IYKmxypj3EssBszL5W1W3nbnsh7vIVyfJXGwy6OOY4yZ6
- /d9yYdxYEQ9MEQ7nNipT51ES/m0T9dTMq/GkNKgBr1sXNYE+KKnc6PoKmhbzloNEJ0C/QGLDFCpMw
- gXQ283XQ==;
-Received: from [90.241.98.187] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1tuDH5-002J77-6k; Mon, 17 Mar 2025 17:25:11 +0100
-Message-ID: <75ba3b0d-54cc-440f-9689-63a197698dcb@igalia.com>
-Date: Mon, 17 Mar 2025 16:25:10 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id C466B10E2C5;
+	Mon, 17 Mar 2025 16:30:18 +0000 (UTC)
+Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8615B10E0F0;
+ Mon, 17 Mar 2025 16:30:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Flush delayed frees and retry on user object
- allocation failure
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/xe=3A_Flush_dela?=
+ =?utf-8?q?yed_frees_and_retry_on_user_object_allocation_failure_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 17 Mar 2025 16:30:17 -0000
+Message-ID: <174222901754.43825.2268621758785908796@18a75f3d1eae>
+X-Patchwork-Hint: ignore
 References: <20250314145750.34362-1-tvrtko.ursulin@igalia.com>
- <471650d18746045024220697f5858af141662711.camel@linux.intel.com>
- <7f9ddeac-c8b8-4a62-b723-8eccb3f87848@igalia.com>
-Content-Language: en-GB
-In-Reply-To: <7f9ddeac-c8b8-4a62-b723-8eccb3f87848@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250314145750.34362-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,165 +36,27 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 17/03/2025 15:25, Tvrtko Ursulin wrote:
-> 
-> On 17/03/2025 13:02, Thomas Hellström wrote:
->> Hi, Tvrtko,
->>
->> On Fri, 2025-03-14 at 14:57 +0000, Tvrtko Ursulin wrote:
->>> If userspace workload is operating near the limit of available memory
->>> and
->>> it moves from one large working set to another, in other words free
->>> some
->>> large buffers and immediately allocate some new ones, the TTM
->>> eviction
->>> attempt during new resource allocation may not be effective due the
->>> combination of relying on trylock and the fact released buffer might
->>> have
->>> ended on the delayed release path.
->>>
->>>  From userspace point of view this reflects as sporadic
->>> VK_ERROR_OUT_OF_DEVICE_MEMORY ie. sometimes the application will
->>> work,
->>> sometimes will fail, even if it does exactly the same thing on an
->>> otherwise idle system.
->>>
->>> Good examples are two tests from the VK CTS suite:
->>>
->>>   - dEQP-VK.pipeline.monolithic.render_to_image.core.*
->>>   - dEQP-VK.memory.allocation.random*
->>>
->>> To improve this we can flush the TTM delayed object free workqueue
->>> and
->>> retry when encountering ENOMEM, which so far looks like a significant
->>> improvement in mean-time-to-failure.
->>>
->>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>> ---
->>>   drivers/gpu/drm/xe/xe_bo.c | 22 +++++++++++++++++++---
->>>   1 file changed, 19 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
->>> index 64f9c936eea0..53f45c766e59 100644
->>> --- a/drivers/gpu/drm/xe/xe_bo.c
->>> +++ b/drivers/gpu/drm/xe/xe_bo.c
->>> @@ -1900,9 +1900,25 @@ struct xe_bo *xe_bo_create_user(struct
->>> xe_device *xe, struct xe_tile *tile,
->>>                   u16 cpu_caching,
->>>                   u32 flags)
->>>   {
->>> -    struct xe_bo *bo = __xe_bo_create_locked(xe, tile, vm, size,
->>> 0, ~0ULL,
->>> -                         cpu_caching,
->>> ttm_bo_type_device,
->>> -                         flags |
->>> XE_BO_FLAG_USER, 0);
->>> +    unsigned int retry = 3;
->>> +    struct xe_bo *bo;
->>> +
->>> +    while (retry--) {
->>> +        bo = __xe_bo_create_locked(xe, tile, vm, size, 0,
->>> ~0ULL,
->>> +                       cpu_caching,
->>> ttm_bo_type_device,
->>> +                       flags | XE_BO_FLAG_USER,
->>> 0);
->>> +        if (!IS_ERR(bo) || PTR_ERR(bo) != -ENOMEM)
->>> +            break;
->>> +
->>> +        /*
->>> +         * TTM eviction may sporadically fail due reliance
->>> on trylock
->>> +         * and delayed ttm_bo deletion causing trylock to
->>> fail. Work
->>> +         * around it by retrying after currently pending
->>> delayed
->>> +         * releases have been processed.
->>> +         */
->>> +        flush_workqueue(xe->ttm.wq);
->>> +    }
->>
->> We should use xe_vm_validate_should_retry() for this. (I think actually
->> I saw a patch for that floating around somewhere). IIRC the bos are
->> lockable also when in the delayed object free workqueue?
-> 
-> They appear mostly lockable while delayed delete is pending, apart 
-> during the window when put on the queue, and while delayed delete is 
-> actually executing ttm_bo_cleanup_memtype_use() but before it managed to 
-> report freeing up of space. I think the sporadic -ENOMEM is when bo 
-> creation races with one of those two windows.
-> 
-> But I see now this landed very recently:
-> 
-> commit 1d724a2f1b2c3f0cba4975784a808482e0631adf
-> Author: Matthew Brost <matthew.brost@intel.com>
-> Date:   Wed Mar 5 17:26:26 2025 -0800
-> 
->      drm/xe: Retry BO allocation
-> 
-> And I was testing before that commit.
-> 
->> So could you try with that instead? If you think that doesn't help, we
->> should perhaps consider also flushing the we ttm wq from within that
->> function instead.
-> 
-> So I am pretty sure 1d724a2f1b2c3f0cba4975784a808482e0631adf will work 
-> around the issue but will double check just in case and report back.
+Series: drm/xe: Flush delayed frees and retry on user object allocation failure (rev2)
+URL   : https://patchwork.freedesktop.org/series/146323/
+State : failure
 
-FWIW VK CTS looks fine with only 1d724a2f1b2c3f0cba4975784a808482e0631adf.
+== Summary ==
 
-Just as a note if someone will try to repro, what I forgot to mention in 
-the commit message. It is not enough to just run the tests cases since 
-on Linux the backend currently does not query the available memory but 
-has it hardcoded (as opposed to for example on Android). To repro on 
-Linux one needs to patch the test suite with something like this 
-(depends on the amount of RAM on the test machine too):
+=== Applying kernel patches on branch 'master' with base: ===
+Base commit: 695caca9345a Merge tag 'leds-fixes-6.14' of git://git.kernel.org/pub/scm/linux/kernel/git/lee/leds
+=== git am output follows ===
+error: git diff header lacks filename information when removing 1 leading pathname component (line 2)
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Applying: drm/xe: Flush delayed frees and retry on user object allocation failure
+Patch failed at 0001 drm/xe: Flush delayed frees and retry on user object allocation failure
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
-diff --git a/framework/common/tcuPlatform.cpp 
-b/framework/common/tcuPlatform.cpp
-index 1d0f5b06e5b8..f1245b460834 100644
---- a/framework/common/tcuPlatform.cpp
-+++ b/framework/common/tcuPlatform.cpp
-@@ -57,7 +57,7 @@ const vk::Platform &Platform::getVulkanPlatform(void) 
-const
-  void Platform::getMemoryLimits(PlatformMemoryLimits &limits) const
-  {
-      // Default values. Platforms can override these values.
--    limits.totalSystemMemory                 = 256 * 1024 * 1024;
-+    limits.totalSystemMemory                 = 10UL * 256 * 1024 * 1024;
-      limits.totalDeviceLocalMemory            = 128 * 1024 * 1024;
-      limits.deviceMemoryAllocationGranularity = 64 * 1024;
-      limits.devicePageSize                    = 4096;
-
-Regards,
-
-Tvrtko
-
-> 
-> Whether or not to put a flush inside xe_vm_validate_should_retry() feels 
-> a bit moot at the moment given how weak the implementation of the former 
-> is. Only if replacing the mdelay(20) with the flush would be enough for 
-> all use cases. If it wouldn't then having both mdelay(20), in 
-> combination with its up to 1 second retry limit, and a flush does not 
-> appear to gain much. Neither in latency or robustness. Only if one would 
-> entertain the idea a single flush taking more than a second in some 
-> ultra pessimistic scenario.
-> 
-> Regards,
-> 
-> Tvrtko
-> 
->>
->>> +
->>>       if (!IS_ERR(bo))
->>>           xe_bo_unlock_vm_held(bo);
->>
-> 
 
