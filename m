@@ -4,59 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33398C28B30
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Mar 2025 13:02:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FEADC35FF3
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Mar 2025 14:27:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D888110E3FC;
-	Mon, 17 Mar 2025 13:02:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7230610E40E;
+	Mon, 17 Mar 2025 14:27:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HcxsKeA1";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="LezkOzDt";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD49010E3FC
- for <intel-xe@lists.freedesktop.org>; Mon, 17 Mar 2025 13:02:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742216552; x=1773752552;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=07ASgQ2y1FdU110f0v/QL/+YfJvvDq3yDkw9HQiR1mU=;
- b=HcxsKeA1d+yNa4MCMK85lOkRQ8ZgKlvoxHKSTRbammOMfNKtvF+FQzhg
- nhzeyikX3pFDd0FPqBcPTBAx9Njco1ehCZ4ZV01+O15vi4mBOD6Bk3xqh
- Ktgn15F7sbQz40fqJCNFNqhVY/id4l5BrU6EH5gLnL6tQkUUBhkdU1NfF
- GSlSMdbiDdOF6PzAzXpQBj2fMGKgNyJh3w3wVdAYpUzINTClMcwlDDCL7
- tlro9nqpr/8zTwvQos5BHk+K4Zozejwx0Dgrii9eolbF+MX+6+X/XMfMl
- uYgcFSbmmZSihEY7b/BgX4Rmvg0HLGmUzNv/v4+ea2bG20q7csJV7Ojfj A==;
-X-CSE-ConnectionGUID: JVWdZ+2ASjaYAUdRAhv08w==
-X-CSE-MsgGUID: CyORK9+pT8SRJcZIs2YbNg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11376"; a="43175022"
-X-IronPort-AV: E=Sophos;i="6.14,254,1736841600"; d="scan'208";a="43175022"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2025 06:02:28 -0700
-X-CSE-ConnectionGUID: x/qS31Q4RmuDUM0uEVMJ0Q==
-X-CSE-MsgGUID: 1pC0QRdCTaWP73JVd/lM5A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,254,1736841600"; d="scan'208";a="126792917"
-Received: from carterle-desk.ger.corp.intel.com (HELO [10.245.246.66])
- ([10.245.246.66])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2025 06:02:26 -0700
-Message-ID: <471650d18746045024220697f5858af141662711.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/xe: Flush delayed frees and retry on user object
- allocation failure
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Lucas De Marchi <lucas.demarchi@intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Mon, 17 Mar 2025 14:02:23 +0100
-In-Reply-To: <20250314145750.34362-1-tvrtko.ursulin@igalia.com>
-References: <20250314145750.34362-1-tvrtko.ursulin@igalia.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AAFA10E40C;
+ Mon, 17 Mar 2025 14:27:44 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 3D1CF5C53B6;
+ Mon, 17 Mar 2025 14:25:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E317C4CEE3;
+ Mon, 17 Mar 2025 14:27:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1742221659;
+ bh=S0vgTmExSs8TP4DO0y0I4mxzu5Fz3Cx3YODvfxwaHDk=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:From;
+ b=LezkOzDt2OSliT4NtauNzcjMXFHv4rE1MShFYSlPsiyVq3kgTbVIB/ReX1WGb4IXS
+ BqPMsCV1S/NKA5QH8+AwybcnNqj8mJhl2klLKBa26rA5Jy0HlD6/wyC3br0dCxMIs+
+ Fh06skPiLQaYf0BaIkdHOzy4S4boiit5dZ37xaNQ3K2f/IEbbtczv73GzsHJqSkyxB
+ Ouzj9U/jGWcQWWs3NjdxzuOfMnef9Jt7ejnKpqWxlJ+H0sC012PwqO1wnKy5WZ3Dyj
+ EMiQcvVe4nsH1K9HSlZ+cCh6WHw/K7fc9a6u8Tap1HLEuLihL3UDIrFRtJJpf5sK9F
+ zelMN2Y4Re/Jg==
+Date: Mon, 17 Mar 2025 15:27:35 +0100
+From: Danilo Krummrich <dakr@kernel.org>
+To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
+ thomas.hellstrom@linux.intel.com, oak.zeng@intel.com,
+ dri-devel@lists.freedesktop.org, bbrezillon@kernel.org
+Subject: Re: [RFC 13/29] drm/gpuvm: Introduce MADVISE Operations
+Message-ID: <Z9gxV0RZLopxf8et@pollux>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250314080226.2059819-14-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,99 +56,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Tvrtko,
+(Cc: dri-devel@lists.freedesktop.org, Boris)
 
-On Fri, 2025-03-14 at 14:57 +0000, Tvrtko Ursulin wrote:
-> If userspace workload is operating near the limit of available memory
-> and
-> it moves from one large working set to another, in other words free
-> some
-> large buffers and immediately allocate some new ones, the TTM
-> eviction
-> attempt during new resource allocation may not be effective due the
-> combination of relying on trylock and the fact released buffer might
-> have
-> ended on the delayed release path.
->=20
-> From userspace point of view this reflects as sporadic
-> VK_ERROR_OUT_OF_DEVICE_MEMORY ie. sometimes the application will
-> work,
-> sometimes will fail, even if it does exactly the same thing on an
-> otherwise idle system.
->=20
-> Good examples are two tests from the VK CTS suite:
->=20
-> =C2=A0- dEQP-VK.pipeline.monolithic.render_to_image.core.*
-> =C2=A0- dEQP-VK.memory.allocation.random*
->=20
-> To improve this we can flush the TTM delayed object free workqueue
-> and
-> retry when encountering ENOMEM, which so far looks like a significant
-> improvement in mean-time-to-failure.
->=20
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+Hi Himal,
+
+Please make sure to copy in dri-devel for such patches.
+
+On Fri, Mar 14, 2025 at 01:32:10PM +0530, Himal Prasad Ghimiray wrote:
+> Introduce MADVISE operations that do not unmap the GPU VMA. These
+> operations split VMAs if the start or end addresses fall within existing
+> VMAs. The operations can create up to 2 REMAPS and 2 MAPs.
+
+Can you please add some more motivation details for this patch? What exactly is
+it used for?
+
+> 
+> If the input range is within the existing range, it creates REMAP:UNMAP,
+> REMAP:PREV, REMAP:NEXT, and MAP operations for the input range.
+>   Example:
+>   Input Range: 0x00007f0a54000000 to 0x00007f0a54400000
+>   GPU VMA: 0x0000000000000000 to 0x0000800000000000
+>   Operations Result:
+>   - REMAP:UNMAP: addr=0x0000000000000000, range=0x0000800000000000
+>   - REMAP:PREV: addr=0x0000000000000000, range=0x00007f0a54000000
+>   - REMAP:NEXT: addr=0x00007f0a54400000, range=0x000000f5abc00000
+>   - MAP: addr=0x00007f0a54000000, range=0x0000000000400000
+
+This would be much easier to read if you'd pick some more human readable
+numbers.
+
+> 
+> If the input range starts at the beginning of one GPU VMA and ends at
+> the end of another VMA, covering multiple VMAs, the operations do nothing.
+>   Example:
+>   Input Range: 0x00007fc898800000 to 0x00007fc899000000
+>   GPU VMAs:
+>   - 0x0000000000000000 to 0x00007fc898800000
+>   - 0x00007fc898800000 to 0x00007fc898a00000
+>   - 0x00007fc898a00000 to 0x00007fc898c00000
+>   - 0x00007fc898c00000 to 0x00007fc899000000
+>   - 0x00007fc899000000 to 0x00007fc899200000
+>   Operations Result: None
+
+Same here.
+
+> 
+> Cc: Danilo Krummrich <dakr@redhat.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 > ---
-> =C2=A0drivers/gpu/drm/xe/xe_bo.c | 22 +++++++++++++++++++---
-> =C2=A01 file changed, 19 insertions(+), 3 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 64f9c936eea0..53f45c766e59 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -1900,9 +1900,25 @@ struct xe_bo *xe_bo_create_user(struct
-> xe_device *xe, struct xe_tile *tile,
-> =C2=A0				u16 cpu_caching,
-> =C2=A0				u32 flags)
-> =C2=A0{
-> -	struct xe_bo *bo =3D __xe_bo_create_locked(xe, tile, vm, size,
-> 0, ~0ULL,
-> -						 cpu_caching,
-> ttm_bo_type_device,
-> -						 flags |
-> XE_BO_FLAG_USER, 0);
-> +	unsigned int retry =3D 3;
-> +	struct xe_bo *bo;
-> +
-> +	while (retry--) {
-> +		bo =3D __xe_bo_create_locked(xe, tile, vm, size, 0,
-> ~0ULL,
-> +					=C2=A0=C2=A0 cpu_caching,
-> ttm_bo_type_device,
-> +					=C2=A0=C2=A0 flags | XE_BO_FLAG_USER,
-> 0);
-> +		if (!IS_ERR(bo) || PTR_ERR(bo) !=3D -ENOMEM)
-> +			break;
-> +
-> +		/*
-> +		 * TTM eviction may sporadically fail due reliance
-> on trylock
-> +		 * and delayed ttm_bo deletion causing trylock to
-> fail. Work
-> +		 * around it by retrying after currently pending
-> delayed
-> +		 * releases have been processed.
-> +		 */
-> +		flush_workqueue(xe->ttm.wq);
-> +	}
+>  drivers/gpu/drm/drm_gpuvm.c | 175 +++++++++++++++++++++++++++++++++++-
+>  include/drm/drm_gpuvm.h     |   6 ++
+>  2 files changed, 180 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
+> index f9eb56f24bef..904a26641b21 100644
+> --- a/drivers/gpu/drm/drm_gpuvm.c
+> +++ b/drivers/gpu/drm/drm_gpuvm.c
+> @@ -2230,7 +2230,7 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+>  				ret = op_remap_cb(ops, priv, NULL, &n, &u);
+>  				if (ret)
+>  					return ret;
+> -				break;
+> +				return 0;
+>  			}
+>  		}
+>  	}
+> @@ -2240,6 +2240,143 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+>  			 req_obj, req_offset);
+>  }
+>  
+> +static int
+> +__drm_gpuvm_skip_split_map(struct drm_gpuvm *gpuvm,
+> +			   const struct drm_gpuvm_ops *ops, void *priv,
+> +			   u64 req_addr, u64 req_range,
+> +			   bool skip_gem_obj_va, u64 req_offset)
 
-We should use xe_vm_validate_should_retry() for this. (I think actually
-I saw a patch for that floating around somewhere). IIRC the bos are
-lockable also when in the delayed object free workqueue?
+This looks like a full copy of __drm_gpuvm_sm_map(). I think you should extend
+__drm_gpuvm_sm_map() instead and add an optional flags parameter, e.g.
 
-So could you try with that instead? If you think that doesn't help, we
-should perhaps consider also flushing the we ttm wq from within that
-function instead.
+	enum drm_gpuvm_madvise_flags {
+		DRM_GPUVM_SKIP_GEM_OBJ_VA = BIT(0),
+	}
 
-Thanks,
-Thomas
+Not sure whether "SKIP_GEM_OBJ_VA" is a good name, but I haven't gone through
+this to such extend that I could propose something better.
 
+> +struct drm_gpuva_ops *
+> +drm_gpuvm_madvise_ops_create(struct drm_gpuvm *gpuvm,
+> +			     u64 req_addr, u64 req_range,
+> +			     bool skip_gem_obj_va, u64 req_offset)
 
+Same here, I don't think we need a new function for this, but just the
+corresponding flags argument to the existing one.
 
-> +
-> =C2=A0	if (!IS_ERR(bo))
-> =C2=A0		xe_bo_unlock_vm_held(bo);
-> =C2=A0
-
+Besides that, when adding new functionality, please extend the documentation of
+drm_gpuvm accordingly. It's fine you didn't do so for the RFC of course. :)
