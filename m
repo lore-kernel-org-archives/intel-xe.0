@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25950C282EC
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Mar 2025 14:35:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7995C282EC
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Mar 2025 14:50:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC1A110E178;
-	Tue, 18 Mar 2025 14:35:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AlhM6wRo";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C076A10E178
- for <intel-xe@lists.freedesktop.org>; Tue, 18 Mar 2025 14:35:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742308541; x=1773844541;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=nBIWIowGU/RsPrKallLT3te6PoJyDMTc5/DC/xEdNPA=;
- b=AlhM6wRos7REh5l7u5SAUKHdj/VpzE0o9SaSJNY9YHGJv/67DgT5hcVk
- UrOXWaEtZo5ZYMyxxo6u3tmnhX7M05V8TgQyDOmYwLns6xJzA7jLG8e6U
- 9/C+tp4pez7jS9VzXwpH993488K9eIQlKuzrDhyhdzEXzaT1HVRzv2nzQ
- pJIdIb3Hko+vTSb1Vk7/kj/bMkZWlomG/nzL1bgec+Ti2hFv3haHHvIsn
- J1bpd/138DIk9K05pwqhhAIwAIfBx09dNE5l43Bvn45FNxohk8x+5Jubt
- iRB9Nd+zF+6TeVFpwOmRecLATwa5GAm4F4uhiMl29KcgMwtyq/PRz3hfa Q==;
-X-CSE-ConnectionGUID: AIb1LAmvQw2G2t2ACmxqDg==
-X-CSE-MsgGUID: z6Hyqf0DQqa6CQraNfUDxg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11377"; a="54444969"
-X-IronPort-AV: E=Sophos;i="6.14,257,1736841600"; d="scan'208";a="54444969"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2025 07:35:40 -0700
-X-CSE-ConnectionGUID: cHp7EFrYQ82MqN45eNdKnw==
-X-CSE-MsgGUID: BJOdhpcRThWZGHa8oRMf4w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,257,1736841600"; d="scan'208";a="126946761"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa005.fm.intel.com with ESMTP; 18 Mar 2025 07:35:39 -0700
-Received: from [10.245.252.130] (unknown [10.245.252.130])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 236663432A;
- Tue, 18 Mar 2025 14:35:38 +0000 (GMT)
-Message-ID: <4928bef5-a008-4af2-80ca-d7c5bddeb671@intel.com>
-Date: Tue, 18 Mar 2025 15:35:37 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 660B210E4A5;
+	Tue, 18 Mar 2025 14:50:09 +0000 (UTC)
+Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 074B310E4A5;
+ Tue, 18 Mar 2025 14:50:08 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] drm/xe/guc: Disable lite restore for MTL
-To: Zhanjun Dong <zhanjun.dong@intel.com>, intel-xe@lists.freedesktop.org
-References: <20250318141802.2516616-1-zhanjun.dong@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20250318141802.2516616-1-zhanjun.dong@intel.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/guc=3A_Disable_lite_res?=
+ =?utf-8?q?tore_for_MTL?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Zhanjun Dong" <zhanjun.dong@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 18 Mar 2025 14:50:08 -0000
+Message-ID: <174230940802.48939.12078372073604553504@18a75f3d1eae>
+X-Patchwork-Hint: ignore
+References: <20250318141802.2516616-1-zhanjun.dong@intel.com>
+In-Reply-To: <20250318141802.2516616-1-zhanjun.dong@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,42 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
+Series: drm/xe/guc: Disable lite restore for MTL
+URL   : https://patchwork.freedesktop.org/series/146448/
+State : success
 
-On 18.03.2025 15:18, Zhanjun Dong wrote:
-> Lite restore for MTL is not POR for Xe, then disable it for MTL.
-> 
-> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_guc.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-> index bc5714a5b36b..0c2629e578d9 100644
-> --- a/drivers/gpu/drm/xe/xe_guc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc.c
-> @@ -80,7 +80,9 @@ static u32 guc_ctl_debug_flags(struct xe_guc *guc)
->  
->  static u32 guc_ctl_feature_flags(struct xe_guc *guc)
->  {
-> -	u32 flags = GUC_CTL_ENABLE_LITE_RESTORE;
-> +	u32 flags = (guc_to_xe(guc)->info.platform == XE_METEORLAKE) ?
-> +		    0 : GUC_CTL_ENABLE_LITE_RESTORE;
-> +
+== Summary ==
 
-please avoid long conditional initialization code,
-all this could be done in a simpler/unified way:
+lib/modules/6.14.0-rc6-xe+/kernel/arch/x86/events/amd/
+lib/modules/6.14.0-rc6-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
+lib/modules/6.14.0-rc6-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.14.0-rc6-xe+/kernel/arch/x86/kvm/
+lib/modules/6.14.0-rc6-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.14.0-rc6-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.14.0-rc6-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.14.0-rc6-xe+/kernel/kernel/
+lib/modules/6.14.0-rc6-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/zstd.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/xctr.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/authenc.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/sm3.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/cmac.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/essiv.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/ccm.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/wp512.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/lrw.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/842.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/md4.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/lz4.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/sm4.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/async_tx/
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.14.0-rc6-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.14.0-rc6-xe+/kernel/block/
+lib/modules/6.14.0-rc6-xe+/kernel/block/bfq.ko
+lib/modules/6.14.0-rc6-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.14.0-rc6-xe+/build
+lib/modules/6.14.0-rc6-xe+/modules.alias.bin
+lib/modules/6.14.0-rc6-xe+/modules.builtin
+lib/modules/6.14.0-rc6-xe+/modules.softdep
+lib/modules/6.14.0-rc6-xe+/modules.alias
+lib/modules/6.14.0-rc6-xe+/modules.order
+lib/modules/6.14.0-rc6-xe+/modules.symbols
+lib/modules/6.14.0-rc6-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1742309393:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1742309393:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-	struct xe_device *xe = guc_to_xe(guc);
-	u32 flags = 0;
-
-	if (xe->info.platform != XE_METEORLAKE)
-		flags |= GUC_CTL_ENABLE_LITE_RESTORE;
-
->  
->  	if (!guc_to_xe(guc)->info.skip_guc_pc)
->  		flags |= GUC_CTL_ENABLE_SLPC;
 
