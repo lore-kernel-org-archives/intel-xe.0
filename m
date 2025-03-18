@@ -4,183 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6F08C35FF3
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Mar 2025 21:35:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C80A6C282EC
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Mar 2025 22:01:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0570310E4CB;
-	Tue, 18 Mar 2025 21:35:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8773410E4CB;
+	Tue, 18 Mar 2025 22:01:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fz/Lurbf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D9iZLW8r";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20B5D10E4CB
- for <intel-xe@lists.freedesktop.org>; Tue, 18 Mar 2025 21:35:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3515810E1E3;
+ Tue, 18 Mar 2025 22:01:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742333735; x=1773869735;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=fmmJW3DIW1XnxA1nJh5YFBJ47dB9rAQPIwSDEC1TeBg=;
- b=fz/LurbfCHC8bZMlSaBZ3wjhet9uo761LmqMr9ONPJj185Vl9OzGKtss
- 8uvSYg4MXSUe/0dEbxjcEk3ynDRFA8jjiBKaE3ISOUZEM5V1DN3kC4b37
- XnjMGInJ4LN6FnbQvLhvl04RckEFPUjSdlW6R6uVjbGF5vVAJV8hNUZx+
- N5zcZ+BD5LdefwFdjTGtII0EV7oLqleIcpxxFFw0n4XC+bftKhozoOzF1
- 5Buq1tJ5TnatOm0ep+3LS+s5cHyco2RFZd68iy/5WLXhKKwN62qRcfpij
- foXbD98MQ0Q4tfcyclljnV7yhrWBd3NLBFuDim6b5M7G+RwPSdnhj0R4q g==;
-X-CSE-ConnectionGUID: bFVD+qhVRMiWB0ZBKa8GHw==
-X-CSE-MsgGUID: WOqckoh/TImhE3xozc+Tng==
-X-IronPort-AV: E=McAfee;i="6700,10204,11377"; a="42671515"
-X-IronPort-AV: E=Sophos;i="6.14,258,1736841600"; d="scan'208";a="42671515"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2025 14:35:32 -0700
-X-CSE-ConnectionGUID: R6hV5bqvQ8yrHy7cvJ3Erg==
-X-CSE-MsgGUID: 2pp4B9tmTOOgA0EAW+m/6Q==
+ t=1742335313; x=1773871313;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=PVlR4YsiXkqBpggpJCLu+fcs1ZZe2FCTZztnsANQ7KU=;
+ b=D9iZLW8r6dy1AsQLI/VgrUFmDCvzC1Zs/9/xh3mDIkULcVG0Wu1Bqzsw
+ RMmzLnXSqOOxGPO80OC1cvBXMeom3uD7YERHFH6cgh3klxVBanjz3Svt+
+ /uLY4zFM3eJxGBh0/4qPK94UQ7clEU+CTnQBQOkrhmuczGtZAj7YWIPeK
+ UMH9hQqtdnv1MMkk6Kzs6s9mdCH9eXyR6BrDV/opauUAxgSxym/zQKFsS
+ 4xuBaf4GmJl0KMg356Piy5Ofr2qo/wPrmeB+NTJPtCKSV2k8cfy9nBo0n
+ +nTUC/BfwpWF5+KA1Z3N/cVsmT/pCtUvgNO58XAKvD6sE6mfk19O48/mS Q==;
+X-CSE-ConnectionGUID: ZUyfen85QxuvKClxW06alg==
+X-CSE-MsgGUID: bacYTaQhTeCPwAipEeIrfQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11377"; a="54880493"
+X-IronPort-AV: E=Sophos;i="6.14,258,1736841600"; d="scan'208";a="54880493"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2025 15:01:52 -0700
+X-CSE-ConnectionGUID: U/9q/N6wQ5W21JEpBK1siw==
+X-CSE-MsgGUID: 9gB95h9AQ4eZX8XLRDLHlg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,258,1736841600"; d="scan'208";a="127492433"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2025 14:35:32 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Tue, 18 Mar 2025 14:35:31 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Tue, 18 Mar 2025 14:35:31 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.177)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Tue, 18 Mar 2025 14:35:31 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WyIGDq9j6zK87Syd0zs3Hl40neWqwg0q9cC4Fm53/2PE7drtFaygdncLkGuzWpfaddx0O931RM1NzByYS6b7J+nqoJ1HKESs6tr+gSEzU5zKt8DndlEehTfFvLH0IlPMk8WtApkAM2+rRHMfpOifv3f9JODXCNO/i7zsvwu0C6dhzSYykft+TrrUtsDd2qzM5Co9jtqUnZqbxiQDha+6CVm28Igi4eIY6f69Gh1KliajesPZj8kfAHwAUjQG3XwJYWVBk8mjFDIDFRvv+qAl6M4F3M3KnW2Uuv9oBWM1gFrIwEeV6vC4Jt6JUCyyMTxrDytHgoxFxk0eCthLEdaGkw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=juubEs3xRgUln8e9rcNnlwXfKIMM6z6LzWJ+HDqduaw=;
- b=S7X2ag59zT0NteItHTyRy3cosyGC/UW8sEcDbV+h+mhuibYK0urksFGU+IBq8xMjQHDz2Ld3mZLF8BYSUh3DiElPuZUtDPZHpvCl19ClXuieernP0kGobGP2qaYvdJfBLQXQtkaXLwdpi4ZEdQcnZyHUteskj+7AS2Rv9HXi43CwMtdLzw22ameAcAV2gYpXLHmxQEl90NvaESw7CdPxnkuZKzdU3pnl/wOsAID4sf9hhCh8PbRrerkXqL1zalWJlr53I0ietm/TanpRSK8xbeqvDO++nV0kKh2zrx1gCcLLuim4t76syeZD+9FCDThcIfGGpl4FdqpvvwfxwSQPlw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA1PR11MB7821.namprd11.prod.outlook.com (2603:10b6:208:3f0::22)
- by SA3PR11MB7436.namprd11.prod.outlook.com (2603:10b6:806:307::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.33; Tue, 18 Mar
- 2025 21:35:28 +0000
-Received: from IA1PR11MB7821.namprd11.prod.outlook.com
- ([fe80::2ca4:29ad:f305:6fc0]) by IA1PR11MB7821.namprd11.prod.outlook.com
- ([fe80::2ca4:29ad:f305:6fc0%6]) with mapi id 15.20.8534.031; Tue, 18 Mar 2025
- 21:35:28 +0000
-Message-ID: <88cd142c-3369-4e05-9de3-e6970d4c1ee9@intel.com>
-Date: Tue, 18 Mar 2025 14:35:25 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] drm/xe/guc: Disable lite restore for MTL
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>, Zhanjun Dong
- <zhanjun.dong@intel.com>, <intel-xe@lists.freedesktop.org>
-References: <20250318141802.2516616-1-zhanjun.dong@intel.com>
- <4928bef5-a008-4af2-80ca-d7c5bddeb671@intel.com>
-Content-Language: en-US
-From: Julia Filipchuk <julia.filipchuk@intel.com>
-Organization: Intel
-In-Reply-To: <4928bef5-a008-4af2-80ca-d7c5bddeb671@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MW4PR03CA0252.namprd03.prod.outlook.com
- (2603:10b6:303:b4::17) To IA1PR11MB7821.namprd11.prod.outlook.com
- (2603:10b6:208:3f0::22)
+X-IronPort-AV: E=Sophos;i="6.14,258,1736841600"; d="scan'208";a="122863438"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orviesa007.jf.intel.com with ESMTP; 18 Mar 2025 15:01:50 -0700
+Received: from [10.245.252.130] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.245.252.130])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 9791634F10;
+ Tue, 18 Mar 2025 22:01:47 +0000 (GMT)
+Message-ID: <4ac8d993-ecc2-4283-9e4b-1da29e0e56ac@intel.com>
+Date: Tue, 18 Mar 2025 23:01:45 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR11MB7821:EE_|SA3PR11MB7436:EE_
-X-MS-Office365-Filtering-Correlation-Id: c21275ca-bed6-40f0-d5ef-08dd6664cd63
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?N2YyVHcvbWpoVGFHaUlDa2JobjloM3puN0YzdWI2TE9jczBTN3NGeWdsWGhn?=
- =?utf-8?B?RXg0S2o5dEgySWZFckx2M1NqSjhrM2VkeUsxd25CWFBvVnduT05TODJsQmNa?=
- =?utf-8?B?ei9rQlM0UEM5dkE1c055Um1zYk9mSHM4SzFhdFFFcWFuRUVReVdCWWprWC94?=
- =?utf-8?B?S3FWZ3NTOGZuYit0SWlpdDZnRTVlRVZIb0hjSGNPS2daSmhYQUJ2ZStNclZz?=
- =?utf-8?B?dStSOVBRUUNiay9ESmJMVkkxOUlNTEQ4RHR6VVZmSHE2WnhsODlKL05MN2ww?=
- =?utf-8?B?Z2VkTUhGUW9uRVJXZmsvVlQ0UnJLSWpXMG4yc1dTNHhQTkNjRmZldWMyRFp0?=
- =?utf-8?B?VWlMTFRjUnVtOXhHUTlWVzFva0MwLy9ZODBSR3loUldsSkJQS0FZUC96SElQ?=
- =?utf-8?B?Q2tzMkJKMDk0MC92NnVCWXh6Y0Y5MXpBUFQzVkVacGhmQjgxaXVCcDB3OFhG?=
- =?utf-8?B?bnY0UXdDYUJyN3dOdElEd1BHdGZYRWpFUzZtd1FITFBEWkJwcDBINTV2cis0?=
- =?utf-8?B?M3RvNUEwUmxKUldFSDl2NEoxajk0WUlFa1dES28vbTcyZHVrajJ6M0dndyt4?=
- =?utf-8?B?Y3lSTWNYWHBvaWxwamhQdndjZnFUZlI1cmF3dFd2VUlPaHhjYis1cVNnQUJX?=
- =?utf-8?B?dzVpRWpDL2RaZGJxUlFubVNJVUJOZlNqcjdUdnhsL1FEMWQ2cWFITWdaR3Rh?=
- =?utf-8?B?V0xOeGluN0RlTnBYNGJOcHhxbVZUL0JoRGlCcE1LOXFVK1J3Q0IydE5LRitT?=
- =?utf-8?B?YjNWQVhTc2h2QWhheXBuTEs1M1Zsc2NMenpRVnJaN3Zwa0ZmdWt5UkEyL1hl?=
- =?utf-8?B?cXFxWDd4eHZsTUh3L1ZjNXdYMnAyTzJyUnpLNm5zbEtZb095RGZCSmJCUVZt?=
- =?utf-8?B?ZE04YTJDTkNIZU1IN3c3VE9veEE1SkdLWDRrYVQxWWV2SUVrcTArL2tGVEIv?=
- =?utf-8?B?NlNRcHBWbGVmOVh0YXdQbEVVTHZ6ZlBOYnh1eUdXMjFScjdUbGxlQzNDc3oz?=
- =?utf-8?B?eCtzSDZyRGdORkZIZms0bzBiRUtVdVNPS3NKelpNYjl6dmMrQk90VVZLUmRD?=
- =?utf-8?B?Ry9TNk1wUmkxQ0haaFpwa0toK2tRTzNPUWs4TFcwTzFVOGxkZmxlK2hHZ212?=
- =?utf-8?B?WnNFUHpmUzlVaGVhaXA0Y2dsZkkvZDdZRlZKWXBVanU5NTlmSFpibG5rT1dN?=
- =?utf-8?B?ajNNL0NuNjAxZ2lWNHJqZVR4OXp3c1F2NnVScDV4MldZTzhQNHl4REVLc0Rr?=
- =?utf-8?B?bmtQOHczcW55ZTR5dVhHaktPQ05IWmFjSElScWVPK3QrNi9IMHloYURIRC9V?=
- =?utf-8?B?RzB5NWYwUTJsQWVvSlZ4WEEyVnkzOWhFSGRnMFZ6eGpFaThHNW4zank5Nkpj?=
- =?utf-8?B?VjQ2SlRRUlpLY2lpa3NQemN0VWYxQTZnZnpISWp5US9ORXJjK094d29GSVNV?=
- =?utf-8?B?VndCZXFUTDN6eTdhZkJzSWhZbmVNYnF0M3h5c3dTM0YvSmRmVzhwTFF2dDhO?=
- =?utf-8?B?cFFWME5kNVBmbFpoR3RoSmJscDR4QmVYTCtRQmNwNVcrY0ltNklmd0J1VWta?=
- =?utf-8?B?Z28vNHNuWlZTeUtQZXE2dnRYQmY0dTVCWDRMalJrUXdoMFZMU3VJV0JOZnZJ?=
- =?utf-8?B?ZWdsY3EwY2ZOVG5QYVBuekNRdWtxQ1IxNDRVd21lcDkwbjIyclhld0l6bVBR?=
- =?utf-8?B?dW56c3Z6dS83ZytuSHliQ2pnUnVEVUYvUGRWZEo3R2lvZTRvdnJKVU1xdVJO?=
- =?utf-8?B?bXU1WWs1cDNoZlI0M0tRbzY3Um53VmhzcUFhZTFKc01JMUZNUTFRWllNV1BX?=
- =?utf-8?B?YmlVSjZoLzZoM3hVb3E2SGpORWFhcFlFUFBlS1ovK3ZSQ1lPUjR0V3EyZnZX?=
- =?utf-8?Q?OrxecxQfiDHGM?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA1PR11MB7821.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Z1I3VkZDUFV2RzlESHBlRHlCV2IvYTNHVFQ4Yk1yQmg2YUxTajVzeFVmVlNl?=
- =?utf-8?B?UDVEK21aaGhZSnAwSW1ka0xuMU9hMG1QZU5lUURPc3RDNmtDOFhQUHdTaG9M?=
- =?utf-8?B?bThMQURYZ096by9XR0dPMmJUMkk4L28wckVpVmJLUEUrbWpkY0RMalNMWkFF?=
- =?utf-8?B?YkkxZ1FOQXZKZTBzOVZlR3hySG5xK0M2ZG16TjRWZ0J0emVucU5vMTRhTVNG?=
- =?utf-8?B?d2oyZXBKd2ZOeTZLQlBRbDNVNE93eWtzNGt1U2tNOHFicUV0bm1VcGZWQ2dJ?=
- =?utf-8?B?Q0ZGUDloSXpYamYwOFpRWEFDcExIZXZhbHRMbUxrd3ZoeXE0Q2UxNDFVR01H?=
- =?utf-8?B?WDhJWGpSNmxTK0hzVXBKdEU3Q2M4QmduSHREUjNjSVBaOFFvVHdPK1ZmTW16?=
- =?utf-8?B?aFJJWDh4Z1pwN2w5amtYNTVqbkNrd2FIdUdPbEs4ZXFMU0ZwK3h1TkpGRVl1?=
- =?utf-8?B?QXAvbzBNMlJvUDNNZVgvcllUQnhNajIxUjJNdjR2RXBLbVVCbG1tb3R4elRK?=
- =?utf-8?B?UHd5YkpqUW1VNXN6bGdqUWFMNlFBU2VYc0FicGlrQzdkK2thSWFWcWRNK1hF?=
- =?utf-8?B?VGQ0UWczVzZWYktaalAzRHdwc1l5LzhOVi9ScWpJeklWZW5TdER4L3lHd2Jj?=
- =?utf-8?B?TGZvQmw5SWVpdTc0ZkxScEV1OTEyRTJDM3A5T0VZZVo0TUFTWC85SzBTT0oy?=
- =?utf-8?B?RXlRTnJhVzh2SXUrODRaZzJaS0RidHBaY1RDdHR4UzhJaDFySkZkS2VGekth?=
- =?utf-8?B?bU4wTlVCa2doY3JLdHErTVI0VUpnU1JrcXI2Ukl2VFlXWnBad1ZtR05wRmFv?=
- =?utf-8?B?bFhQVEtiZ1lqQ3lkNklPOEZob0V4L25JS1BndW1LVVB0MjdVWkRYS2JXYm1N?=
- =?utf-8?B?cTNMU2cxRVltZlpta2RxeENLL1h0SDRkc2hKTmZrOE55cGtmN0FLUU5rYjNx?=
- =?utf-8?B?VkU4Zjc4bVBaV0V4Vmc5OHJlUHN0YWJRUXI4K2FrUkdNS0RuWlVIZnZGSnVP?=
- =?utf-8?B?SS9CWW0wQVg5Wm1nY3hOMVZjbTFHWUREb0dqdksvYm1hVTlHNUNTUXdaKytz?=
- =?utf-8?B?MzBSQzdKMjBCaHdsTkw3clFWT3ZIZC9NcnY1MTVOZStQZ3JTZCtWSlNMZElX?=
- =?utf-8?B?cVpXckNZb2hreHFVUUZWMnRoN3ozdVRXeUNwRXJlQURUTHZGWkFFWUc4UnhS?=
- =?utf-8?B?bGpNTGMva1l3T2NOcDRYOVRHOUFDMTlRTTFwb1U3L0o5SS9IQVlBOE1wUnBQ?=
- =?utf-8?B?bm9lelpCeVh6OEJiRzVCYWh4cGg4V2F1UWE2UWpKWjBPZDlINGJnMzlqZi9Q?=
- =?utf-8?B?dytpWElrUjFTSkJjS21NaGFDTGNGUXZ2OGxMNzJHMzF4Sng3ZjFlcFlCOC8w?=
- =?utf-8?B?M1FCUDN2R2hIMWlnQmFkcVFmcGpaRzlVaWpLOVF1VGdJT25meFhsWERBU08w?=
- =?utf-8?B?eTZ1M3oreDBQRk5OU1hCakRYaERtY3ZCL1JmZmJWYitxL3lrSHUzZlRRZ2pI?=
- =?utf-8?B?MHh1Q2N1QXB1OEFsWDFZRWROMllwZ1dJRlA1RHlxRUdOampHMlpYMWRYODRn?=
- =?utf-8?B?QXJZS1RzQzBnVDRoV29BNWxCbjRINDhkTWNLakNyVGIvU0Z6UjBVRlNzaXlP?=
- =?utf-8?B?SVhJQlpPQXdnaEhKWTQ3Q21maVkxUTdETEE5MmsxaFRHNksxSlMwTXh3bzFj?=
- =?utf-8?B?TXNmTjIzOTYraUt6SndUV2g3SHovWThIOVFSOWF6bzFnZEFiUlEvc1FwYjFZ?=
- =?utf-8?B?YXVNQll1Z2M2NVZCckc5OG1hSW1OM0Fza2pRdnluS1pQWG96VFpZTmFiMXVK?=
- =?utf-8?B?OVhGNGV0Umx4WVk0cVJZcmtzZDJJZE9jdEwxQmFkZTgwU3EzTnRFQ3hORVQx?=
- =?utf-8?B?Q1IxSTNQamNFN3ZoME1sQUlXT1RQZXFLaWQ1c1pxbFhxZTQ3S0QwZXR1T1Bj?=
- =?utf-8?B?TlJOQ2paVUFLaGFydk9ET0FITnJBUE5KN1kreGZ0eEpQQWRodER1a2lDajd0?=
- =?utf-8?B?cGl3aHhhMllDbElIS3ZxMGN1VnFIVDluVTFDOHVWcnJhN0FLZkZ2OU5vWmpo?=
- =?utf-8?B?SUxSR3QwV1RZZk1vcEtxVGpvblFkVExiZW9tS0xUN3hoS1RKbVdWTFNkR2pM?=
- =?utf-8?B?ZmFLRXkwMjBnTEE2cGZ4czBtM0hsdXVNZmVTSElhOStvanppSzA4RDJ5YVky?=
- =?utf-8?B?Tnc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: c21275ca-bed6-40f0-d5ef-08dd6664cd63
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB7821.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2025 21:35:28.7601 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UYu3DO8/ddOi1fKdrO3RSW0+SiDZ0n6rmWuzrbBxe3FF+k1uUni3f62KRJSVGmdSN6YHeeH4lKQVSFTkTUsc7flca8X8rDpuBC2ORBvO7jg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB7436
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 2/6] drm/xe/xe_gt_pagefault: Move pagefault struct to
+ header
+To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: "Gupta, saurabhg" <saurabhg.gupta@intel.com>,
+ "Zuo, Alex" <alex.zuo@intel.com>,
+ "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
+ "Brost, Matthew" <matthew.brost@intel.com>,
+ "Zhang, Jianxun" <jianxun.zhang@intel.com>,
+ "Lin, Shuicheng" <shuicheng.lin@intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "Mrozek, Michal" <michal.mrozek@intel.com>,
+ "Roper, Matthew D" <matthew.d.roper@intel.com>
+References: <20250318171146.78571-1-jonathan.cavitt@intel.com>
+ <20250318171146.78571-3-jonathan.cavitt@intel.com>
+ <2fde337b-3c41-413c-ba16-fe2e4879e980@intel.com>
+ <CH0PR11MB5444C42CD2CE0F56FA1CE680E5DE2@CH0PR11MB5444.namprd11.prod.outlook.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <CH0PR11MB5444C42CD2CE0F56FA1CE680E5DE2@CH0PR11MB5444.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -195,57 +84,272 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 3/18/2025 7:35 AM, Michal Wajdeczko wrote:
-> 
-> 
-> On 18.03.2025 15:18, Zhanjun Dong wrote:
->> Lite restore for MTL is not POR for Xe, then disable it for MTL.
+
+
+On 18.03.2025 21:12, Cavitt, Jonathan wrote:
+> -----Original Message-----
+> From: Wajdeczko, Michal <Michal.Wajdeczko@intel.com> 
+> Sent: Tuesday, March 18, 2025 11:38 AM
+> To: Cavitt, Jonathan <jonathan.cavitt@intel.com>; intel-xe@lists.freedesktop.org; Roper, Matthew D <matthew.d.roper@intel.com>
+> Cc: Gupta, saurabhg <saurabhg.gupta@intel.com>; Zuo, Alex <alex.zuo@intel.com>; joonas.lahtinen@linux.intel.com; Brost, Matthew <matthew.brost@intel.com>; Zhang, Jianxun <jianxun.zhang@intel.com>; Lin, Shuicheng <shuicheng.lin@intel.com>; dri-devel@lists.freedesktop.org; Mrozek, Michal <michal.mrozek@intel.com>
+> Subject: Re: [PATCH v9 2/6] drm/xe/xe_gt_pagefault: Move pagefault struct to header
 >>
->> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
->> ---
->>  drivers/gpu/drm/xe/xe_guc.c | 4 +++-
->>  1 file changed, 3 insertions(+), 1 deletion(-)
+>> On 18.03.2025 18:11, Jonathan Cavitt wrote:
+>>> Move the pagefault struct from xe_gt_pagefault.c to the
+>>> xe_gt_pagefault_types.h header file, along with the associated enum values.
+>>>
+>>> v2:
+>>> - Normalize names for common header (Matt Brost)
+>>>
+>>> v3:
+>>> - s/Migrate/Move (Michal W)
+>>> - s/xe_pagefault/xe_gt_pagefault (Michal W)
+>>> - Create new header file, xe_gt_pagefault_types.h (Michal W)
+>>> - Add kernel docs (Michal W)
+>>>
+>>> v4:
+>>> - Fix includes usage (Michal W)
+>>> - Reference Bspec (Michal W)
+>>>
+>>> Bspec: 77412
+>>>
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
->> index bc5714a5b36b..0c2629e578d9 100644
->> --- a/drivers/gpu/drm/xe/xe_guc.c
->> +++ b/drivers/gpu/drm/xe/xe_guc.c
->> @@ -80,7 +80,9 @@ static u32 guc_ctl_debug_flags(struct xe_guc *guc)
->>  
->>  static u32 guc_ctl_feature_flags(struct xe_guc *guc)
->>  {
->> -	u32 flags = GUC_CTL_ENABLE_LITE_RESTORE;
->> +	u32 flags = (guc_to_xe(guc)->info.platform == XE_METEORLAKE) ?
->> +		    0 : GUC_CTL_ENABLE_LITE_RESTORE;
->> +
+>> keep all tags together
+>>
+>>> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+>>> Cc: Michal Wajdeczko <Michal.Wajdeczko@intel.com>
+>>> ---
+>>>  drivers/gpu/drm/xe/xe_gt_pagefault.c       | 42 +++------------
+>>>  drivers/gpu/drm/xe/xe_gt_pagefault_types.h | 61 ++++++++++++++++++++++
+>>>  2 files changed, 69 insertions(+), 34 deletions(-)
+>>>  create mode 100644 drivers/gpu/drm/xe/xe_gt_pagefault_types.h
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+>>> index 3240890aac07..37b4ab5135a8 100644
+>>> --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
+>>> +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+>>> @@ -14,6 +14,7 @@
+>>>  #include "abi/guc_actions_abi.h"
+>>>  #include "xe_bo.h"
+>>>  #include "xe_gt.h"
+>>> +#include "xe_gt_pagefault_types.h"
+>>>  #include "xe_gt_stats.h"
+>>>  #include "xe_gt_tlb_invalidation.h"
+>>>  #include "xe_guc.h"
+>>> @@ -23,33 +24,6 @@
+>>>  #include "xe_trace_bo.h"
+>>>  #include "xe_vm.h"
+>>>  
+>>> -struct pagefault {
+>>> -	u64 page_addr;
+>>> -	u32 asid;
+>>> -	u16 pdata;
+>>> -	u8 vfid;
+>>> -	u8 access_type;
+>>> -	u8 fault_type;
+>>> -	u8 fault_level;
+>>> -	u8 engine_class;
+>>> -	u8 engine_instance;
+>>> -	u8 fault_unsuccessful;
+>>> -	bool trva_fault;
+>>> -};
+>>> -
+>>> -enum access_type {
+>>> -	ACCESS_TYPE_READ = 0,
+>>> -	ACCESS_TYPE_WRITE = 1,
+>>> -	ACCESS_TYPE_ATOMIC = 2,
+>>> -	ACCESS_TYPE_RESERVED = 3,
+>>> -};
+>>> -
+>>> -enum fault_type {
+>>> -	NOT_PRESENT = 0,
+>>> -	WRITE_ACCESS_VIOLATION = 1,
+>>> -	ATOMIC_ACCESS_VIOLATION = 2,
+>>> -};
+>>> -
+>>>  struct acc {
+>>>  	u64 va_range_base;
+>>>  	u32 asid;
+>>> @@ -61,9 +35,9 @@ struct acc {
+>>>  	u8 engine_instance;
+>>>  };
+>>>  
+>>> -static bool access_is_atomic(enum access_type access_type)
+>>> +static bool access_is_atomic(enum xe_gt_pagefault_access_type access_type)
+>>>  {
+>>> -	return access_type == ACCESS_TYPE_ATOMIC;
+>>> +	return access_type == XE_GT_PAGEFAULT_ACCESS_TYPE_ATOMIC;
+>>>  }
+>>>  
+>>>  static bool vma_is_valid(struct xe_tile *tile, struct xe_vma *vma)
+>>> @@ -205,7 +179,7 @@ static struct xe_vm *asid_to_vm(struct xe_device *xe, u32 asid)
+>>>  	return vm;
+>>>  }
+>>>  
+>>> -static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
+>>> +static int handle_pagefault(struct xe_gt *gt, struct xe_gt_pagefault *pf)
+>>>  {
+>>>  	struct xe_device *xe = gt_to_xe(gt);
+>>>  	struct xe_vm *vm;
+>>> @@ -237,7 +211,7 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
+>>>  		goto unlock_vm;
+>>>  	}
+>>>  
+>>> -	if (xe_vma_read_only(vma) && pf->access_type != ACCESS_TYPE_READ) {
+>>> +	if (xe_vma_read_only(vma) && pf->access_type != XE_GT_PAGEFAULT_ACCESS_TYPE_READ) {
+>>>  		err = -EPERM;
+>>>  		goto unlock_vm;
+>>>  	}
+>>> @@ -271,7 +245,7 @@ static int send_pagefault_reply(struct xe_guc *guc,
+>>>  	return xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action), 0, 0);
+>>>  }
+>>>  
+>>> -static void print_pagefault(struct xe_device *xe, struct pagefault *pf)
+>>> +static void print_pagefault(struct xe_device *xe, struct xe_gt_pagefault *pf)
+>>>  {
+>>>  	drm_dbg(&xe->drm, "\n\tASID: %d\n"
+>>>  		 "\tVFID: %d\n"
+>>> @@ -291,7 +265,7 @@ static void print_pagefault(struct xe_device *xe, struct pagefault *pf)
+>>>  
+>>>  #define PF_MSG_LEN_DW	4
+>>>  
+>>> -static bool get_pagefault(struct pf_queue *pf_queue, struct pagefault *pf)
+>>> +static bool get_pagefault(struct pf_queue *pf_queue, struct xe_gt_pagefault *pf)
+>>>  {
+>>>  	const struct xe_guc_pagefault_desc *desc;
+>>>  	bool ret = false;
+>>> @@ -378,7 +352,7 @@ static void pf_queue_work_func(struct work_struct *w)
+>>>  	struct xe_gt *gt = pf_queue->gt;
+>>>  	struct xe_device *xe = gt_to_xe(gt);
+>>>  	struct xe_guc_pagefault_reply reply = {};
+>>> -	struct pagefault pf = {};
+>>> +	struct xe_gt_pagefault pf = {};
+>>>  	unsigned long threshold;
+>>>  	int ret;
+>>>  
+>>> diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault_types.h b/drivers/gpu/drm/xe/xe_gt_pagefault_types.h
+>>> new file mode 100644
+>>> index 000000000000..55c598c4a1bc
+>>> --- /dev/null
+>>> +++ b/drivers/gpu/drm/xe/xe_gt_pagefault_types.h
+>>> @@ -0,0 +1,61 @@
+>>> +/* SPDX-License-Identifier: MIT */
+>>> +/*
+>>> + * Copyright © 2022-2025 Intel Corporation
+>>> + */
+>>> +
+>>> +#ifndef _XE_GT_PAGEFAULT_TYPES_H_
+>>> +#define _XE_GT_PAGEFAULT_TYPES_H_
+>>> +
+>>> +#include <linux/types.h>
+>>> +
+>>> +/**
+>>> + * struct xe_gt_pagefault - Structure of pagefaults returned by the
+>>> + * pagefault handler
+>>> + */
+>>> +struct xe_gt_pagefault {
+>>> +	/** @page_addr: faulted address of this pagefault */
+>>> +	u64 page_addr;
+>>> +	/** @asid: ASID of this pagefault */
+>>> +	u32 asid;
+>>> +	/** @pdata: PDATA of this pagefault */
+>>> +	u16 pdata;
+>>> +	/** @vfid: VFID of this pagefault */
+>>> +	u8 vfid;
+>>> +	/**
+>>> +	 * @access_type: access type of this pagefault, as a value
+>>> +	 * from xe_gt_pagefault_access_type
+>>> +	 */
+>>> +	u8 access_type;
+>>> +	/**
+>>> +	 * @fault_type: fault type of this pagefault, as a value
+>>> +	 * from xe_gt_pagefault_fault_type
+>>> +	 */
+>>> +	u8 fault_type;
+>>> +	/** @fault_level: fault level of this pagefault */
+>>> +	u8 fault_level;
+>>> +	/** @engine_class: engine class this pagefault was reported on */
+>>> +	u8 engine_class;
+>>> +	/** @engine_instance: engine instance this pagefault was reported on */
+>>> +	u8 engine_instance;
+>>> +	/** @fault_unsuccessful: flag for if the pagefault recovered or not */
+>>> +	u8 fault_unsuccessful;
+>>> +	/** @prefetch: unused */
+>>> +	bool prefetch;
+>>> +	/** @trva_fault: is set if this is a TRTT fault */
+>>> +	bool trva_fault;
+>>> +};
+>>> +
+>>> +enum xe_gt_pagefault_access_type {
+>>> +	XE_GT_PAGEFAULT_ACCESS_TYPE_READ = 0,
+>>> +	XE_GT_PAGEFAULT_ACCESS_TYPE_WRITE = 1,
+>>> +	XE_GT_PAGEFAULT_ACCESS_TYPE_ATOMIC = 2,
+>>> +	XE_GT_PAGEFAULT_ACCESS_TYPE_RESERVED = 3,
+>>> +};
+>>> +
+>>> +enum xe_gt_pagefault_fault_type {
+>>> +	XE_GT_PAGEFAULT_TYPE_NOT_PRESENT = 0,
+>>> +	XE_GT_PAGEFAULT_TYPE_WRITE_ACCESS_VIOLATION = 1,
+>>> +	XE_GT_PAGEFAULT_TYPE_ATOMIC_ACCESS_VIOLATION = 2,
+>>> +};
+>>
+>> as those two enums seems to be reflecting HW definitions, IMO they
+>> should be defined separately from the SW definitions
+>>
+>> most of the HW definitions we keep in the regs/ folder, even if not
+>> being pure register definitions, see:
+>>  - xe_bars.h
+>>  - xe_lrc_layout.h
+>>  - xe_gtt_defs.h
+>>
+>> we can add page faults defs to new regs/xe_pagefault_desc.h *) file,
+>> additionally we can define there format of the page fault descriptor,
+>> and remove it from the xe_guc_fwif.h, as GuC seems to pass data in HW
+>> format anyway
 > 
-> please avoid long conditional initialization code,
-> all this could be done in a simpler/unified way:
+> For clarification, when I move these enum definitions to the regs folder,
+
+I'm not sure that "move as-is" would be ok
+
+right now most (all?) hardware definitions are using #define not the
+non-anonymous enums, also I would try to follow names used in the Bspec:
+
+#define FLT_TYPE_NOT_PRESENT_FAULT		0u
+#define FLT_TYPE_WRITE_ACCESS_VIOLATION		1u
+#define FLT_TYPE_ATOMIC_ACCESS_VIOLATION	2u
+
+#define ACC_TYPE_READ_ACCESS			0u
+...
+
+so the "Normalize names for common header" request does not apply for
+them, only name of struct xe_gt_pagefault must be aligned
+
+> I'm going to assume you want me to include the created header file as
+> an includes in the relevant .c files, 
+
+you likely need only few of these HW defs in xe_gt_pagefault.c
+
+in other places only struct definition is needed (which does not have
+any of these "enums" on board)
+
+> and not just staple it into
+> xe_gt_pagefault.h or xe_gt_pagefault_types.h.  Is this correct?
+
+the rule is:
+if you don't need any of these defs in .h, don't include them there
+
 > 
-> 	struct xe_device *xe = guc_to_xe(guc);
-> 	u32 flags = 0;
+> -Jonathan Cavitt
 > 
-> 	if (xe->info.platform != XE_METEORLAKE)
-> 		flags |= GUC_CTL_ENABLE_LITE_RESTORE;
-> 
->>  
->>  	if (!guc_to_xe(guc)->info.skip_guc_pc)
->>  		flags |= GUC_CTL_ENABLE_SLPC;
-> 
+>>
+>> or maybe @MattR has a better idea where these defs should go
+>>
+>>
+>> *) please don't be tempted to use regs/xe_pf_desc.h since we want to use
+>> "PF" term only to mean "Physical Function", not "page fault" ;)
+>>
+>>> +
+>>> +#endif
+>>
+>>
 
-Agreed with this suggestion for clarity. Since GUC_CTL_ENABLE_LITE_RESTORE is
-the default suggest just clearing it for MTL instead of an enable-if-not.
-
-	struct xe_device *xe = guc_to_xe(guc);
-	u32 flags = GUC_CTL_ENABLE_LITE_RESTORE;
-
-	if (xe->info.platform == XE_METEORLAKE)
-		flags &= ~GUC_CTL_ENABLE_LITE_RESTORE;
-
-	if (!xe->info.skip_guc_pc)
-		flags |= GUC_CTL_ENABLE_SLPC;
-
-Also, if updated the replace the additional guc_to_xe(guc) in the function.
-
-
-Reviewed-by: Julia Filipchuk <julia.filipchuk@intel.com>
