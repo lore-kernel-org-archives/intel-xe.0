@@ -4,51 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91FCFC282EC
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Mar 2025 14:18:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 263EDC282EC
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Mar 2025 14:27:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55CEF10E497;
-	Tue, 18 Mar 2025 14:18:16 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bultX6mn";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5971510E497
- for <intel-xe@lists.freedesktop.org>; Tue, 18 Mar 2025 14:18:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742307494; x=1773843494;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=9SGIG47D8ZuhU/39by3MqFTPP7n0MrvJdxHJX3UTjyM=;
- b=bultX6mnH8x06pb4kpWSX5LCtzC4lBOxzyRYZhbTSlgWZBBw2coLmki8
- ZncQoSqyi11mNHOqoKhmKExNRZSKYLdvoO0w2Cnpp0ED5D0YYzibCwfOf
- pYkwzO/P4XOU1FLxe3kSP2m3gjIoe243hfELclAzH0L7I/1LzfDZmaTPz
- ia23THXkUl7myB81CR6/lAbxn7nC4xhNQfRlH1ewceheX6hMuG67StUFC
- 6PdIalJ9nadA8RD8PuiEbjidgGZA1FYi/0iWgODHqy4qsAp8GhEbhS+pX
- HMukrA6NtL+62CKyYm5PhVAdM6gShJKi/gEjreKXVe85HVbw/QkoZwwt6 g==;
-X-CSE-ConnectionGUID: IhRgDLD+SVSqKF0jDQEiRw==
-X-CSE-MsgGUID: 2u1INBODRiiwPyRZvqROJQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11377"; a="54835995"
-X-IronPort-AV: E=Sophos;i="6.14,257,1736841600"; d="scan'208";a="54835995"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2025 07:18:04 -0700
-X-CSE-ConnectionGUID: 2yZLP+vXRniYRd93ak4WJg==
-X-CSE-MsgGUID: hBbKtJ1UScezSwmiScwM1A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,257,1736841600"; d="scan'208";a="122767752"
-Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
- by fmviesa010.fm.intel.com with ESMTP; 18 Mar 2025 07:18:04 -0700
-From: Zhanjun Dong <zhanjun.dong@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Zhanjun Dong <zhanjun.dong@intel.com>
-Subject: [PATCH v1] drm/xe/guc: Disable lite restore for MTL
-Date: Tue, 18 Mar 2025 07:18:02 -0700
-Message-Id: <20250318141802.2516616-1-zhanjun.dong@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2AFC10E49E;
+	Tue, 18 Mar 2025 14:27:53 +0000 (UTC)
+Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC17F10E49E;
+ Tue, 18 Mar 2025 14:27:52 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5871691923624628896=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Underrun_on_idle_PSR_workar?=
+ =?utf-8?q?ound_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 18 Mar 2025 14:27:52 -0000
+Message-ID: <174230807275.48840.3853801297045929400@18a75f3d1eae>
+X-Patchwork-Hint: ignore
+References: <20250317081905.3683654-1-jouni.hogander@intel.com>
+In-Reply-To: <20250317081905.3683654-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,31 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Lite restore for MTL is not POR for Xe, then disable it for MTL.
+--===============5871691923624628896==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
----
- drivers/gpu/drm/xe/xe_guc.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index bc5714a5b36b..0c2629e578d9 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -80,7 +80,9 @@ static u32 guc_ctl_debug_flags(struct xe_guc *guc)
- 
- static u32 guc_ctl_feature_flags(struct xe_guc *guc)
- {
--	u32 flags = GUC_CTL_ENABLE_LITE_RESTORE;
-+	u32 flags = (guc_to_xe(guc)->info.platform == XE_METEORLAKE) ?
-+		    0 : GUC_CTL_ENABLE_LITE_RESTORE;
-+
- 
- 	if (!guc_to_xe(guc)->info.skip_guc_pc)
- 		flags |= GUC_CTL_ENABLE_SLPC;
--- 
-2.34.1
+Series: Underrun on idle PSR workaround (rev5)
+URL   : https://patchwork.freedesktop.org/series/145987/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-2825-a958e31a81b3267201c85b6f171419586afa792c_BAT -> xe-pw-145987v5_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (10 -> 9)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-145987v5_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_pat@pat-index-xelp@render:
+    - bat-adlp-vf:        [PASS][1] -> [ABORT][2] ([Intel XE#4491]) +1 other test abort
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2825-a958e31a81b3267201c85b6f171419586afa792c/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145987v5/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+
+  
+  [Intel XE#4491]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4491
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8275 -> IGT_8276
+  * Linux: xe-2825-a958e31a81b3267201c85b6f171419586afa792c -> xe-pw-145987v5
+
+  IGT_8275: a851348546d61620c263d3292148f67620efa7d0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8276: 8276
+  xe-2825-a958e31a81b3267201c85b6f171419586afa792c: a958e31a81b3267201c85b6f171419586afa792c
+  xe-pw-145987v5: 145987v5
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145987v5/index.html
+
+--===============5871691923624628896==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Underrun on idle PSR workaround (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145987/">https://patchwork.freedesktop.org/series/145987/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145987v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145987v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2825-a958e31a81b3267201c85b6f171419586afa792c_BAT -&gt; xe-pw-145987v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (10 -&gt; 9)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-145987v5_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_pat@pat-index-xelp@render:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2825-a958e31a81b3267201c85b6f171419586afa792c/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145987v5/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4491">Intel XE#4491</a>) +1 other test abort</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8275 -&gt; IGT_8276</li>
+<li>Linux: xe-2825-a958e31a81b3267201c85b6f171419586afa792c -&gt; xe-pw-145987v5</li>
+</ul>
+<p>IGT_8275: a851348546d61620c263d3292148f67620efa7d0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8276: 8276<br />
+  xe-2825-a958e31a81b3267201c85b6f171419586afa792c: a958e31a81b3267201c85b6f171419586afa792c<br />
+  xe-pw-145987v5: 145987v5</p>
+
+</body>
+</html>
+
+--===============5871691923624628896==--
