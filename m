@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CDCFC282EC
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Mar 2025 12:38:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DED6DC282EC
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Mar 2025 13:44:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01C3710E47B;
-	Tue, 18 Mar 2025 12:38:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A653410E48F;
+	Tue, 18 Mar 2025 13:44:29 +0000 (UTC)
 Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9CB510E47B;
- Tue, 18 Mar 2025 12:38:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F74B10E48B;
+ Tue, 18 Mar 2025 13:44:29 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/i915/fbc=3A_disable_?=
- =?utf-8?q?FBC_if_PSR2_selective_fetch_is_enabled_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Underrun_on_idle_PSR?=
+ =?utf-8?q?_workaround_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 18 Mar 2025 12:38:38 -0000
-Message-ID: <174230151895.48233.10640920483173132211@18a75f3d1eae>
+Date: Tue, 18 Mar 2025 13:44:29 -0000
+Message-ID: <174230546918.48652.17162866023610304503@18a75f3d1eae>
 X-Patchwork-Hint: ignore
-References: <20250317150835.30564-1-vinod.govindapillai@intel.com>
-In-Reply-To: <20250317150835.30564-1-vinod.govindapillai@intel.com>
+References: <20250317081905.3683654-1-jouni.hogander@intel.com>
+In-Reply-To: <20250317081905.3683654-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,30 +42,25 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/fbc: disable FBC if PSR2 selective fetch is enabled (rev2)
-URL   : https://patchwork.freedesktop.org/series/146402/
+Series: Underrun on idle PSR workaround (rev5)
+URL   : https://patchwork.freedesktop.org/series/145987/
 State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://github.com/intel-lgci-fdo-gitlab-mirror/drm.maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast a958e31a81b3267201c85b6f171419586afa792c
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: a958e31a81b3 drm-tip: 2025y-03m-15d-18h-50m-02s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/display: Add new interface for getting dc_state
+Applying: drm/i915/psr: Store enabled non-psr pipes into intel_crtc_state
+Applying: drm/i915/dmc: Add PIPEDMC_EVT_CTL register definition
+Applying: drm/i915/dmc: Add PIPEDMC_BLOCK_PKGC_SW definitions
+Applying: drm/i915/psr: Write PIPEDMC_BLOCK_PKGC_SW when enabling PSR
+Applying: drm/i915/psr: Add mechanism to notify PSR of pipe enable/disable
+Applying: drm/i915/psr: Add mechanism to notify PSR of DC5/6 enable disable
+Applying: drm/i915/psr: Add interface to notify PSR of vblank enable/disable
+Applying: drm/i915/psr: Apply underrun on PSR idle workaround
+Applying: drm/i915/display: Rename intel_psr_needs_block_dc_vblank
+Applying: drm/i915/display: Rename vblank DC workaround functions and variables
 
 
