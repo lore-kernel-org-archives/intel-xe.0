@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56D71C36001
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Mar 2025 17:11:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C37BFC282EC
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Mar 2025 17:16:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F23B910E4BF;
-	Tue, 18 Mar 2025 17:11:52 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YT0Uz/St";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA76310E22D;
- Tue, 18 Mar 2025 17:11:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742317909; x=1773853909;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=hl8+lM11PRLmxBjMwYzmp398zmvgVeUwbwpOM7K9t/8=;
- b=YT0Uz/Sth19TfNMubbXKZLrCTi/OC9/U7GaD8q9I9hOe7gH5hbC+29Ce
- PyLFWJT2RCEqp9nNo2BbZ8Pk7qnnJayKg0P+IEZF34W/35jVYjLbN7Z4O
- 2nmURT6ttWgSGFAl+zklMJX6rxJUM9btv4mYZ7t6x3JlNAzwpsaWFr3J3
- MLLfbPN/WkPvEH4zwwGg3pEMDjUli0SNEX/Vev8SmKuvDXbQhBzaNgh1t
- KcYvVFOPfq8ghe8ntfrI+fPOO6LptYku53TsTSBkhcT9N1IaE8Z1b1Ply
- zhaSkYeQnflOkKkseMMFUSaVVwFGsEmR9fEhAAURfpbWTUVSi0mDlOY5U g==;
-X-CSE-ConnectionGUID: JYdgo0vDQuyRULOGztdnTA==
-X-CSE-MsgGUID: 3WkqYXHMTk2pdZeWdjcdNw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11377"; a="54854829"
-X-IronPort-AV: E=Sophos;i="6.14,257,1736841600"; d="scan'208";a="54854829"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2025 10:11:48 -0700
-X-CSE-ConnectionGUID: GvAM7P/bRoyF9eBHVYRS4w==
-X-CSE-MsgGUID: M/f6Xg9OSwOSHs8iWTZt1g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,257,1736841600"; d="scan'208";a="122805728"
-Received: from dut4419lnl.fm.intel.com ([10.105.10.214])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2025 10:11:48 -0700
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
- joonas.lahtinen@linux.intel.com, matthew.brost@intel.com,
- jianxun.zhang@intel.com, shuicheng.lin@intel.com,
- dri-devel@lists.freedesktop.org, Michal.Wajdeczko@intel.com,
- michal.mrozek@intel.com
-Subject: [PATCH v9 1/6] drm/xe/xe_gt_pagefault: Disallow writes to read-only
- VMAs
-Date: Tue, 18 Mar 2025 17:11:28 +0000
-Message-ID: <20250318171146.78571-2-jonathan.cavitt@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250318171146.78571-1-jonathan.cavitt@intel.com>
-References: <20250318171146.78571-1-jonathan.cavitt@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 858A210E4B7;
+	Tue, 18 Mar 2025 17:16:22 +0000 (UTC)
+Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FD8710E4B7;
+ Tue, 18 Mar 2025 17:16:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/xe=5Fvm=3A_Im?=
+ =?utf-8?q?plement_xe=5Fvm=5Fget=5Fproperty=5Fioctl_=28rev10=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 18 Mar 2025 17:16:21 -0000
+Message-ID: <174231818165.49861.7858751360030252181@18a75f3d1eae>
+X-Patchwork-Hint: ignore
+References: <20250318171146.78571-1-jonathan.cavitt@intel.com>
+In-Reply-To: <20250318171146.78571-1-jonathan.cavitt@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,35 +36,26 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The page fault handler should reject write/atomic access to read only
-VMAs.  Add code to handle this in handle_pagefault after the VMA lookup.
+== Series Details ==
 
-Fixes: 3d420e9fa848 ("drm/xe: Rework GPU page fault handling")
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_pagefault.c | 5 +++++
- 1 file changed, 5 insertions(+)
+Series: drm/xe/xe_vm: Implement xe_vm_get_property_ioctl (rev10)
+URL   : https://patchwork.freedesktop.org/series/145529/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index 9fa11e837dd1..3240890aac07 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -237,6 +237,11 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
- 		goto unlock_vm;
- 	}
- 
-+	if (xe_vma_read_only(vma) && pf->access_type != ACCESS_TYPE_READ) {
-+		err = -EPERM;
-+		goto unlock_vm;
-+	}
-+
- 	atomic = access_is_atomic(pf->access_type);
- 
- 	if (xe_vma_is_cpu_addr_mirror(vma))
--- 
-2.43.0
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: a958e31a81b3 drm-tip: 2025y-03m-15d-18h-50m-02s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/xe_gt_pagefault: Disallow writes to read-only VMAs
+Applying: drm/xe/xe_gt_pagefault: Move pagefault struct to header
+Applying: drm/xe/uapi: Define drm_xe_vm_get_property
+Applying: drm/xe/xe_gt_pagefault: Add address_type field to pagefaults
+Applying: drm/xe/xe_vm: Add per VM fault info
+Applying: drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
+
 
