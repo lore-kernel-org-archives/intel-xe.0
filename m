@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DED6DC282EC
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Mar 2025 13:44:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2557C35FFA
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Mar 2025 13:44:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A653410E48F;
-	Tue, 18 Mar 2025 13:44:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA87A10E48B;
+	Tue, 18 Mar 2025 13:44:48 +0000 (UTC)
 Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F74B10E48B;
- Tue, 18 Mar 2025 13:44:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83BD810E48B;
+ Tue, 18 Mar 2025 13:44:47 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Underrun_on_idle_PSR?=
- =?utf-8?q?_workaround_=28rev5=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Underrun_on_idle_PSR_work?=
+ =?utf-8?q?around_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 18 Mar 2025 13:44:29 -0000
-Message-ID: <174230546918.48652.17162866023610304503@18a75f3d1eae>
+Date: Tue, 18 Mar 2025 13:44:47 -0000
+Message-ID: <174230548753.48645.16031269890856722958@18a75f3d1eae>
 X-Patchwork-Hint: ignore
 References: <20250317081905.3683654-1-jouni.hogander@intel.com>
 In-Reply-To: <20250317081905.3683654-1-jouni.hogander@intel.com>
@@ -44,23 +44,48 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Underrun on idle PSR workaround (rev5)
 URL   : https://patchwork.freedesktop.org/series/145987/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: a958e31a81b3 drm-tip: 2025y-03m-15d-18h-50m-02s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/display: Add new interface for getting dc_state
-Applying: drm/i915/psr: Store enabled non-psr pipes into intel_crtc_state
-Applying: drm/i915/dmc: Add PIPEDMC_EVT_CTL register definition
-Applying: drm/i915/dmc: Add PIPEDMC_BLOCK_PKGC_SW definitions
-Applying: drm/i915/psr: Write PIPEDMC_BLOCK_PKGC_SW when enabling PSR
-Applying: drm/i915/psr: Add mechanism to notify PSR of pipe enable/disable
-Applying: drm/i915/psr: Add mechanism to notify PSR of DC5/6 enable disable
-Applying: drm/i915/psr: Add interface to notify PSR of vblank enable/disable
-Applying: drm/i915/psr: Apply underrun on PSR idle workaround
-Applying: drm/i915/display: Rename intel_psr_needs_block_dc_vblank
-Applying: drm/i915/display: Rename vblank DC workaround functions and variables
++ KERNEL=/kernel
++ git clone https://github.com/intel-lgci-fdo-gitlab-mirror/drm.maintainer-tools mt
+Cloning into 'mt'...
++ git -C mt rev-list -n1 origin/master
+cbb4e4a079d89106c2736adc3c7de6f9dc56da07
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 3a399cdc484a53297fe8747f041f263392efd604
+Author: Jouni Högander <jouni.hogander@intel.com>
+Date:   Mon Mar 17 10:19:05 2025 +0200
+
+    drm/i915/display: Rename vblank DC workaround functions and variables
+    
+    We have extended using vblank DC workaround mechanism for
+    Wa_16025596647. Rename related functions and variables:
+    
+    vblank_wa_num_pipes -> vblank_enable_count
+    vblank_dc_work -> vblank_notify_work
+    intel_display_vblank_dc_work -> intel_display_vblank_notify_work
+    
+    Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
++ /mt/dim checkpatch a958e31a81b3267201c85b6f171419586afa792c drm-intel
+1212257715c1 drm/i915/display: Add new interface for getting dc_state
+55edc4faa4d6 drm/i915/psr: Store enabled non-psr pipes into intel_crtc_state
+b8d66c42154f drm/i915/dmc: Add PIPEDMC_EVT_CTL register definition
+f21d3eb0719d drm/i915/dmc: Add PIPEDMC_BLOCK_PKGC_SW definitions
+-:28: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#28: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:33:
++									   PIPEDMC_BLOCK_PKGC_SW_A, \
+
+total: 0 errors, 1 warnings, 0 checks, 14 lines checked
+94b64922063c drm/i915/psr: Write PIPEDMC_BLOCK_PKGC_SW when enabling PSR
+12c23d9304c6 drm/i915/psr: Add mechanism to notify PSR of pipe enable/disable
+9c35f7495bb2 drm/i915/psr: Add mechanism to notify PSR of DC5/6 enable disable
+e6311765fb90 drm/i915/psr: Add interface to notify PSR of vblank enable/disable
+d5aedc239342 drm/i915/psr: Apply underrun on PSR idle workaround
+7824c567fa31 drm/i915/display: Rename intel_psr_needs_block_dc_vblank
+3a399cdc484a drm/i915/display: Rename vblank DC workaround functions and variables
 
 
