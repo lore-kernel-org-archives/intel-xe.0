@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8014C282EC
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Mar 2025 17:08:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC378C282EC
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Mar 2025 17:11:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89A4810E22D;
-	Tue, 18 Mar 2025 17:08:22 +0000 (UTC)
-Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70EE210E225;
- Tue, 18 Mar 2025 17:08:21 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7545883127111957456=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6216010E231;
+	Tue, 18 Mar 2025 17:11:49 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="miKEAbrk";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83FE610E225;
+ Tue, 18 Mar 2025 17:11:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1742317909; x=1773853909;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=8X4UWqZndn5AlDIuDoAMFO5dRhvysQknlfJjQdQg0iU=;
+ b=miKEAbrkKeFi3jg/d3zJnNOhhXXK+PgzSlC/lyZAm/wheWD7m10AqmDf
+ DDLW/HUXPeMZug7LrM+2Mkdgp/6tu2Ju/kBlThsYGlhOg05XIe/8y8Gqg
+ 3204SEgL4dSSF3oyoxC6am2OhECXBIvSafl4gIywjdiUGI58q0rVtQZzF
+ q2AagQ5Z4qWS5wKVJG8ZpYyxrXTPh2Mxuah49hN41hetu0r7H+FvMY/gh
+ wUAFVmz5YKABOfDEI1zUnjhLDSi/B5gFIp07nZ/OSwBb16fZCSRD00AvU
+ SWTylGCoW4OPdnGV58oLZePQaYniaZM7SucfE75Grug6jvQioedRqFy1R A==;
+X-CSE-ConnectionGUID: m43wynBnS/mIwhHz0VEXHA==
+X-CSE-MsgGUID: GG7cHqPqScCzOSbb7CPppw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11377"; a="54854827"
+X-IronPort-AV: E=Sophos;i="6.14,257,1736841600"; d="scan'208";a="54854827"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2025 10:11:47 -0700
+X-CSE-ConnectionGUID: Cj8Q3/C4RmClig+soaQVcQ==
+X-CSE-MsgGUID: a8aaYSr8SPusYVquCQFBnQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,257,1736841600"; d="scan'208";a="122805725"
+Received: from dut4419lnl.fm.intel.com ([10.105.10.214])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2025 10:11:48 -0700
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
+ joonas.lahtinen@linux.intel.com, matthew.brost@intel.com,
+ jianxun.zhang@intel.com, shuicheng.lin@intel.com,
+ dri-devel@lists.freedesktop.org, Michal.Wajdeczko@intel.com,
+ michal.mrozek@intel.com
+Subject: [PATCH v9 0/6] drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
+Date: Tue, 18 Mar 2025 17:11:27 +0000
+Message-ID: <20250318171146.78571-1-jonathan.cavitt@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_AuxCCS_handling_and_render_?=
- =?utf-8?q?compression_modifiers_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 18 Mar 2025 17:08:21 -0000
-Message-ID: <174231770145.49730.6479376615409125295@18a75f3d1eae>
-X-Patchwork-Hint: ignore
-References: <20250318162224.78846-1-tvrtko.ursulin@igalia.com>
-In-Reply-To: <20250318162224.78846-1-tvrtko.ursulin@igalia.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,169 +65,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7545883127111957456==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Add additional information to each VM so they can report up to the first
+50 seen faults.  Only pagefaults are saved this way currently, though in
+the future, all faults should be tracked by the VM for future reporting.
 
-== Series Details ==
+Additionally, of the pagefaults reported, only failed pagefaults are
+saved this way, as successful pagefaults should recover silently and not
+need to be reported to userspace.
 
-Series: AuxCCS handling and render compression modifiers (rev3)
-URL   : https://patchwork.freedesktop.org/series/144186/
-State : success
+To allow userspace to access these faults, a new ioctl -
+xe_vm_get_property_ioct - was created.
 
-== Summary ==
+v2: (Matt Brost)
+- Break full ban list request into a separate property.
+- Reformat drm_xe_vm_get_property struct.
+- Remove need for drm_xe_faults helper struct.
+- Separate data pointer and scalar return value in ioctl.
+- Get address type on pagefault report and save it to the pagefault.
+- Correctly reject writes to read-only VMAs.
+- Miscellaneous formatting fixes.
 
-CI Bug Log - changes from xe-2825-a958e31a81b3267201c85b6f171419586afa792c_BAT -> xe-pw-144186v3_BAT
-====================================================
+v3: (Matt Brost)
+- Only allow querying of failed pagefaults
 
-Summary
--------
+v4:
+- Remove unnecessary size parameter from helper function, as it
+  is a property of the arguments. (jcavitt)
+- Remove unnecessary copy_from_user (Jainxun)
+- Set address_precision to 1 (Jainxun)
+- Report max size instead of dynamic size for memory allocation
+  purposes.  Total memory usage is reported separately.
 
-  **SUCCESS**
+v5:
+- Return int from xe_vm_get_property_size (Shuicheng)
+- Fix memory leak (Shuicheng)
+- Remove unnecessary size variable (jcavitt)
 
-  No regressions found.
+v6:
+- Free vm after use (Shuicheng)
+- Compress pf copy logic (Shuicheng)
+- Update fault_unsuccessful before storing (Shuicheng)
+- Fix old struct name in comments (Shuicheng)
+- Keep first 50 pagefaults instead of last 50 (Jianxun)
+- Rename ioctl to xe_vm_get_faults_ioctl (jcavitt)
 
-  
+v7:
+- Avoid unnecessary execution by checking MAX_PFS earlier (jcavitt)
+- Fix double-locking error (jcavitt)
+- Assert kmemdump is successful (Shuicheng)
+- Repair and move fill_faults break condition (Dan Carpenter)
+- Free vm after use (jcavitt)
+- Combine assertions (jcavitt)
+- Expand size check in xe_vm_get_faults_ioctl (jcavitt)
+- Remove return mask from fill_faults, as return is already -EFAULT or 0
+  (jcavitt)
 
-Participating hosts (10 -> 9)
-------------------------------
+v8:
+- Revert back to using drm_xe_vm_get_property_ioctl
+- s/Migrate/Move (Michal)
+- s/xe_pagefault/xe_gt_pagefault (Michal)
+- Create new header file, xe_gt_pagefault_types.h (Michal)
+- Add and fix kernel docs (Michal)
+- Rename xe_vm.pfs to xe_vm.faults (jcavitt)
+- Store fault data and not pagefault in xe_vm faults list (jcavitt)
+- Store address, address type, and address precision per fault (jcavitt)
+- Store engine class and instance data per fault (Jianxun)
+- Properly handle kzalloc error (Michal W)
+- s/MAX_PFS/MAX_FAULTS_SAVED_PER_VM (Michal W)
+- Store fault level per fault (Micahl M)
+- Apply better copy_to_user logic (jcavitt)
 
-  Missing    (1): bat-adlp-vm 
+v9:
+- Fix includes usage (Michal W)
+- More kernel doc fixes (Michal W, Jianxun)
+- Better error handling (jcavitt)
 
-Known issues
-------------
+Signed-off-by: Jonathan Cavitt <joanthan.cavitt@intel.com>
+Suggested-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
+Cc: Zhang Jianxun <jianxun.zhang@intel.com>
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+Cc: Michal Wajdeczko <Michal.Wajdeczko@intel.com>
+Cc: Michal Mrozek <michal.mrozek@intel.com>
 
-  Here are the changes found in xe-pw-144186v3_BAT that come from known issues:
+Jonathan Cavitt (6):
+  drm/xe/xe_gt_pagefault: Disallow writes to read-only VMAs
+  drm/xe/xe_gt_pagefault: Move pagefault struct to header
+  drm/xe/uapi: Define drm_xe_vm_get_property
+  drm/xe/xe_gt_pagefault: Add address_type field to pagefaults
+  drm/xe/xe_vm: Add per VM fault info
+  drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
 
-### IGT changes ###
+ drivers/gpu/drm/xe/xe_device.c             |   3 +
+ drivers/gpu/drm/xe/xe_gt_pagefault.c       |  69 ++++----
+ drivers/gpu/drm/xe/xe_gt_pagefault_types.h |  63 +++++++
+ drivers/gpu/drm/xe/xe_vm.c                 | 192 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vm.h                 |  11 ++
+ drivers/gpu/drm/xe/xe_vm_types.h           |  33 ++++
+ include/uapi/drm/xe_drm.h                  |  80 +++++++++
+ 7 files changed, 418 insertions(+), 33 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_pagefault_types.h
 
-#### Issues hit ####
+-- 
+2.43.0
 
-  * igt@xe_evict@evict-beng-small-cm:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][1] ([Intel XE#261] / [Intel XE#688]) +9 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144186v3/bat-adlp-vf/igt@xe_evict@evict-beng-small-cm.html
-
-  * igt@xe_exec_fault_mode@twice-rebind:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][2] ([Intel XE#288]) +32 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144186v3/bat-adlp-vf/igt@xe_exec_fault_mode@twice-rebind.html
-
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][3] ([Intel XE#2229])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144186v3/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-adlp-vf:        [ABORT][4] ([Intel XE#4520]) -> [PASS][5] +1 other test pass
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2825-a958e31a81b3267201c85b6f171419586afa792c/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144186v3/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-
-  
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
-  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
-  [Intel XE#4520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4520
-  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
-
-
-Build changes
--------------
-
-  * IGT: IGT_8275 -> IGT_8276
-  * Linux: xe-2825-a958e31a81b3267201c85b6f171419586afa792c -> xe-pw-144186v3
-
-  IGT_8275: a851348546d61620c263d3292148f67620efa7d0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8276: 8276
-  xe-2825-a958e31a81b3267201c85b6f171419586afa792c: a958e31a81b3267201c85b6f171419586afa792c
-  xe-pw-144186v3: 144186v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144186v3/index.html
-
---===============7545883127111957456==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>AuxCCS handling and render compression modifiers (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144186/">https://patchwork.freedesktop.org/series/144186/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144186v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144186v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2825-a958e31a81b3267201c85b6f171419586afa792c_BAT -&gt; xe-pw-144186v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-144186v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_evict@evict-beng-small-cm:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144186v3/bat-adlp-vf/igt@xe_evict@evict-beng-small-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +9 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@twice-rebind:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144186v3/bat-adlp-vf/igt@xe_exec_fault_mode@twice-rebind.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144186v3/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_migrate:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2825-a958e31a81b3267201c85b6f171419586afa792c/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4520">Intel XE#4520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144186v3/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8275 -&gt; IGT_8276</li>
-<li>Linux: xe-2825-a958e31a81b3267201c85b6f171419586afa792c -&gt; xe-pw-144186v3</li>
-</ul>
-<p>IGT_8275: a851348546d61620c263d3292148f67620efa7d0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8276: 8276<br />
-  xe-2825-a958e31a81b3267201c85b6f171419586afa792c: a958e31a81b3267201c85b6f171419586afa792c<br />
-  xe-pw-144186v3: 144186v3</p>
-
-</body>
-</html>
-
---===============7545883127111957456==--
