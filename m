@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2C1BC35FFA
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Mar 2025 19:37:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC06BC35FFB
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Mar 2025 19:37:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76E1410E579;
-	Wed, 19 Mar 2025 19:37:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CF7E10E57B;
+	Wed, 19 Mar 2025 19:37:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kIiiCGmz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ae9YeevO";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF1AD10E579;
- Wed, 19 Mar 2025 19:37:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0010910E576;
+ Wed, 19 Mar 2025 19:37:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742413066; x=1773949066;
+ t=1742413063; x=1773949063;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=YobcpnOZjKmQBynzHE/G6YGd8oTazlql22M2/x/Svr0=;
- b=kIiiCGmzSai8+p1dOvIZEGFfBnGcaPeduJV5yh1TV16MhvDKGWfKkO7D
- KgrR9wiHwjhzjke2j551QBikBJqMYPCGgr7USqvcRW8pYy/B6PMh66tJ4
- CoWIBtrS95xTrGk/pTOruqJSjldc1VUTrUOJcLTRiMBixAtCBDqEK7Lkw
- XJHZ4QyPQSplDYzoL+K3drmR4wVVTNeqP55K7sqZpuyVhkYk+uVKjr1zl
- UAEpIAx5Km5Bhoe0uIjsCHC/X7crrSGjOGIztsj5typhk3+tcvtKPwRfR
- DEDDWZIVINcRIGbzJd4rEfUn2BZkUIkxC+3dM2WdPBBUZ8H5rkEwhkFEu g==;
-X-CSE-ConnectionGUID: OBaIk38jTw6c2N2hGnAMPw==
-X-CSE-MsgGUID: QildxuioThmXEUnaGWSO2w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11378"; a="31203403"
-X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; d="scan'208";a="31203403"
+ bh=UUY4aNP96g5klPO5A2zdCQVNd0cwpdDnzN6WiCcjHxs=;
+ b=ae9YeevOAq6jjh61zFMDaFN/M2kDDdm2S7EyDXvrldkviKqrwTwK8bSB
+ XpvD48UEp44yBpBvf+zMtERAYuLgHlzo8KEaeGDXCG0Am/fW/AXvo1CRh
+ d0JwJm0NUSpe25xn5ny/z5Gm1pbqzSkWMmSqx4Uv/7WwmgUbxB/CU0C9T
+ RN+ill9WOUnp3HwA1hrFBBdrx7s67jFXnpSZTdqWDSYTpSveuoiRv3jYr
+ emIrK+COCxp48e4q73FMpoh1k34XilD5ZAsv+E9AqSid/NO+4MqJP10Wx
+ exnhD87ZCNqVyQFtVIZCpRqZSxRs8pJ21xhhWK0OA25QlB077MiAHHF6L A==;
+X-CSE-ConnectionGUID: AbDD4dcgRme1Hy3pHUNb2Q==
+X-CSE-MsgGUID: 24tD4gKlTDWL8BhcF8Un+A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11378"; a="31203400"
+X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; d="scan'208";a="31203400"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2025 12:37:45 -0700
-X-CSE-ConnectionGUID: 6rpyZeC4SVekUwv0Di+g3g==
-X-CSE-MsgGUID: ym0+lkNxSi26yRXqyHAQeQ==
+ 19 Mar 2025 12:37:43 -0700
+X-CSE-ConnectionGUID: shZWjmFUSa+fGkPv8D7x+Q==
+X-CSE-MsgGUID: iytmDR5MRueHUoUlxEtZgQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; d="scan'208";a="123241762"
+X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; d="scan'208";a="123241757"
 Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by fmviesa010.fm.intel.com with ESMTP; 19 Mar 2025 12:37:43 -0700
+ by fmviesa010.fm.intel.com with ESMTP; 19 Mar 2025 12:37:41 -0700
 From: Animesh Manna <animesh.manna@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jouni.hogander@intel.com, jani.nikula@intel.com, jeevan.b@intel.com,
  Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v6 4/8] drm/i915/lobf: Update lobf if any change in dependent
- parameters
-Date: Thu, 20 Mar 2025 00:45:04 +0530
-Message-Id: <20250319191508.2751216-5-animesh.manna@intel.com>
+Subject: [PATCH v6 3/8] drm/i915/lobf: Add fixed refresh rate check in
+ compute_config()
+Date: Thu, 20 Mar 2025 00:45:03 +0530
+Message-Id: <20250319191508.2751216-4-animesh.manna@intel.com>
 X-Mailer: git-send-email 2.29.0
 In-Reply-To: <20250319191508.2751216-1-animesh.manna@intel.com>
 References: <20250319191508.2751216-1-animesh.manna@intel.com>
@@ -68,37 +68,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For every commit the dependent condition for LOBF is checked
-and accordingly update has_lobf flag which will be used
-to update the ALPM_CTL register during commit.
-
-v1: Initial version.
-v2: Avoid reading h/w register without has_lobf check. [Jani]
-v3: Update LOBF in post plane update instead of separate function. [Jouni]
+LOBF can be enabled with vrr fixed rate mode, so add check
+if vmin = vmax = flipline in compute_config().
 
 Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_alpm.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_alpm.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index c2862888466f..5df1253a6b6c 100644
+index d2f133bc5f38..c2862888466f 100644
 --- a/drivers/gpu/drm/i915/display/intel_alpm.c
 +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -378,9 +378,12 @@ void intel_alpm_post_plane_update(struct intel_atomic_state *state,
- 	struct intel_display *display = to_intel_display(state);
- 	const struct intel_crtc_state *crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
-+	const struct intel_crtc_state *old_crtc_state =
-+		intel_atomic_get_old_crtc_state(state, crtc);
- 	struct intel_encoder *encoder;
- 
--	if (!crtc_state->has_lobf && !crtc_state->has_psr)
-+	if (!crtc_state->has_lobf && !crtc_state->has_psr &&
-+	    !old_crtc_state->has_lobf)
+@@ -288,6 +288,10 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
+ 	if (crtc_state->has_psr)
  		return;
  
- 	for_each_intel_encoder_mask(display->drm, encoder,
++	if (crtc_state->vrr.vmin != crtc_state->vrr.vmax ||
++	    crtc_state->vrr.vmin != crtc_state->vrr.flipline)
++		return;
++
+ 	if (!(intel_alpm_aux_wake_supported(intel_dp) ||
+ 	      intel_alpm_aux_less_wake_supported(intel_dp)))
+ 		return;
 -- 
 2.29.0
 
