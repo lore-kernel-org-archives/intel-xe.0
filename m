@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0788C35FF1
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Mar 2025 05:46:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63D54C35FFA
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Mar 2025 10:46:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72BD810E289;
-	Wed, 19 Mar 2025 05:46:27 +0000 (UTC)
-Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0284510E066;
- Wed, 19 Mar 2025 05:46:27 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1791233382765460108=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9AA910E31C;
+	Wed, 19 Mar 2025 10:46:58 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TK1g254D";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18EDC10E302;
+ Wed, 19 Mar 2025 10:46:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1742381217; x=1773917217;
+ h=from:subject:date:message-id:mime-version:
+ content-transfer-encoding:to:cc;
+ bh=wCiTo65oWp23iekRAtBv6ll/EpI++knjf5RXTybxvDA=;
+ b=TK1g254D18E9FY96TcZJ7qZbgNySZIs/DntYPxQ1UY2NNtW4YTpSzC3r
+ Gz6md04/ow34oUzDt+ALu/ZKjyx5CgQUiobHm7/YoEH/jiXCKWBHU5PLd
+ x/bpX/dIQChcCI/NKBzlok9dLE6tsOx1rYjsesRK/8m7YUL0YmPLcbjbi
+ NU/bfX8kXQA+4QXGU8z8A/4kqt9iqVMPb+HngUsrVFugwx/FZofqiEQ41
+ h68nrNoIBd/1LsuboiQc+2YnoMMqD4PlbhHkaaPEU3l7kwyGpwSG3NWtV
+ 1u4cGMu6OiG34rBatoelkNT+G09tJ90YW3trYjbEVNI/t8/lKKfM9cnVa g==;
+X-CSE-ConnectionGUID: POqOShKAQrWOaxqDXl42Ig==
+X-CSE-MsgGUID: vbEYnjOJR26/5G1eLX64iA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11377"; a="43733948"
+X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; d="scan'208";a="43733948"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2025 03:46:56 -0700
+X-CSE-ConnectionGUID: wIvDJAVbTZ+mF2L+pI66eA==
+X-CSE-MsgGUID: vwfUh/EsQTiYqH1hMR5g1g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; d="scan'208";a="153585807"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by fmviesa001.fm.intel.com with ESMTP; 19 Mar 2025 03:46:54 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCH v9 0/3] Expose modifiers/formats supported by async flips
+Date: Wed, 19 Mar 2025 16:02:14 +0530
+Message-Id: <20250319-asyn-v9-0-629d1ece63e7@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/xe=5Fgt=5Fpagefault?=
- =?utf-8?q?=3A_Remove_pagefault_vfid?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 19 Mar 2025 05:46:26 -0000
-Message-ID: <174236318699.52508.2035053227479349973@18a75f3d1eae>
-X-Patchwork-Hint: ignore
-References: <20250317152656.66069-1-jonathan.cavitt@intel.com>
-In-Reply-To: <20250317152656.66069-1-jonathan.cavitt@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAC6d2mcC/02OQQ6CMBBFr2K6tmQKbUFX3sO4GEqRJlLMFBuJ4
+ e4W0OjyT+a9vBcLlpwN7Lh7MbLRBTf4NA77HTMd+qvlrkmb5ZArEJBzDJPndVvqsoB0MYal1zv
+ Z1j1XzfmSdktDz8eOLH5hKYSooFSFUJnUGuDABUd6+Iyy/kFjN52cH+0tM0O/GDsXxoGmtSuqx
+ bsl5KLaEqLiwEs0Co3EupH4xy8JsfpBhfh0xypBYKSprULQuvmH5nl+AxTWHyIPAQAA
+X-Change-ID: 20250102-asyn-bf76730501cc
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Cc: chaitanya.kumar.borah@intel.com, Arun R Murthy <arun.r.murthy@intel.com>, 
+ Naveen Kumar <naveen1.kumar@intel.com>
+X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,169 +68,143 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1791233382765460108==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+All of the formats/modifiers supported by the plane during synchronous
+flips are nor supported by asynchronous flips. The formats/modifiers
+exposed to user by IN_FORMATS exposes all formats/modifiers supported by
+plane and this list varies for async flips. If the async flip supported
+formats/modifiers are exposed to the user, user based on this list can
+take decision to proceed or not and avoid flip failures during async
+flips.
+Discussion around this can be located @
+https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/29618#note_2487123
+Mutter implementation for IN_FORMARTS_ASYNC under review @
+https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/4063
+Xorg/modesetting patch
+https://gitlab.freedesktop.org/xorg/xserver/-/merge_requests/1816
 
-== Series Details ==
+TODO: Upon merge of the patch related to async flip
+https://patchwork.freedesktop.org/patch/626849/?series=139807&rev=6
+the patch 5 in this series will have to make use of the new function
+pointer can_async_flip().
 
-Series: drm/xe/xe_gt_pagefault: Remove pagefault vfid
-URL   : https://patchwork.freedesktop.org/series/146404/
-State : success
+v3: Add new plane->funcs format_mod_supported_async (Ville)
 
-== Summary ==
+Arun R Murthy (3):
+  drm/plane: Add new plane property IN_FORMATS_ASYNC
+  drm/plane: Expose function to create format/modifier blob
+  drm/i915/display: Populate list of async supported formats/modifiers
 
-CI Bug Log - changes from xe-2825-a958e31a81b3267201c85b6f171419586afa792c_BAT -> xe-pw-146404v1_BAT
-====================================================
+ drivers/gpu/drm/drm_mode_config.c             |  7 +++
+ drivers/gpu/drm/drm_plane.c                   | 50 ++++++++++++------
+ .../drm/i915/display/skl_universal_plane.c    | 51 +++++++++++++++++++
+ include/drm/drm_mode_config.h                 |  6 +++
+ include/drm/drm_plane.h                       |  4 ++
+ 5 files changed, 103 insertions(+), 15 deletions(-)
 
-Summary
--------
+--
+2.25.1
 
-  **SUCCESS**
+---
+Arun R Murthy (5):
+      drm/plane: Add new plane property IN_FORMATS_ASYNC
+      drm/plane: Expose function to create format/modifier blob
+      drm/plane: Function to check async supported modifier/format
+      drm/i915/display: Populate list of async supported formats/modifiers
+      drm/i915/display: Add function for format_mod_supported_async
 
-  No regressions found.
+ drivers/gpu/drm/drm_mode_config.c                  |   7 ++
+ drivers/gpu/drm/drm_plane.c                        |  72 +++++++++----
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 113 ++++++++++++++++++---
+ include/drm/drm_mode_config.h                      |   6 ++
+ include/drm/drm_plane.h                            |  24 +++++
+ 5 files changed, 188 insertions(+), 34 deletions(-)
+---
+base-commit: 08bd590935a5258ffd79355c59adffd72fb2c642
+change-id: 20250102-asyn-bf76730501cc
 
-  
+Best regards,
+--
+Arun R Murthy <arun.r.murthy@intel.com>
 
-Participating hosts (10 -> 9)
-------------------------------
+---
+Changes in v9:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v8: https://lore.kernel.org/r/20250312-asyn-v8-0-0c4cbe5a066d@intel.com
 
-  Missing    (1): bat-adlp-vm 
+Changes in v6:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v5: https://lore.kernel.org/r/20250218-asyn-v5-0-7ac5ac4abd4a@intel.com
 
-Known issues
-------------
+---
+Arun R Murthy (3):
+      drm/plane: Add new plane property IN_FORMATS_ASYNC
+      drm/plane: modify create_in_formats to accommodate async
+      drm/i915/display: Add i915 hook for format_mod_supported_async
 
-  Here are the changes found in xe-pw-146404v1_BAT that come from known issues:
+ drivers/gpu/drm/drm_mode_config.c                  |  7 +++
+ drivers/gpu/drm/drm_plane.c                        | 53 +++++++++++++++-----
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 56 ++++++++++++++++------
+ include/drm/drm_mode_config.h                      |  6 +++
+ include/drm/drm_plane.h                            | 17 +++++++
+ 5 files changed, 112 insertions(+), 27 deletions(-)
+---
+base-commit: bc7a84cbc968ce97e581e9e3c2d26fb0ac106482
+change-id: 20250102-asyn-bf76730501cc
 
-### IGT changes ###
+Best regards,
+--
+Arun R Murthy <arun.r.murthy@intel.com>
 
-#### Issues hit ####
+---
+Arun R Murthy (3):
+      drm/plane: Add new plane property IN_FORMATS_ASYNC
+      drm/plane: modify create_in_formats to accommodate async
+      drm/i915/display: Add i915 hook for format_mod_supported_async
 
-  * igt@xe_evict@evict-beng-small-cm:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][1] ([Intel XE#261] / [Intel XE#688]) +9 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146404v1/bat-adlp-vf/igt@xe_evict@evict-beng-small-cm.html
+ drivers/gpu/drm/drm_mode_config.c                  |  7 ++++
+ drivers/gpu/drm/drm_plane.c                        | 49 ++++++++++++++++------
+ drivers/gpu/drm/i915/display/i9xx_plane.c          |  6 ++-
+ drivers/gpu/drm/i915/display/intel_atomic_plane.c  | 30 ++++++++++++-
+ drivers/gpu/drm/i915/display/intel_atomic_plane.h  |  6 ++-
+ drivers/gpu/drm/i915/display/intel_display.c       | 11 +----
+ drivers/gpu/drm/i915/display/skl_universal_plane.c |  5 ++-
+ include/drm/drm_mode_config.h                      |  6 +++
+ include/drm/drm_plane.h                            | 17 ++++++++
+ 9 files changed, 111 insertions(+), 26 deletions(-)
+---
+base-commit: be5a404c3344b7d794766f045b8f94aa93c42069
+change-id: 20250102-asyn-bf76730501cc
 
-  * igt@xe_exec_fault_mode@twice-rebind:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][2] ([Intel XE#288]) +32 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146404v1/bat-adlp-vf/igt@xe_exec_fault_mode@twice-rebind.html
+Best regards,
+--
+Arun R Murthy <arun.r.murthy@intel.com>
 
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][3] ([Intel XE#2229])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146404v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+---
+Arun R Murthy (3):
+      drm/plane: Add new plane property IN_FORMATS_ASYNC
+      drm/plane: modify create_in_formats to accommodate async
+      drm/i915/display: Add i915 hook for format_mod_supported_async
 
-  
-#### Possible fixes ####
+ drivers/gpu/drm/drm_mode_config.c                  |  7 +++
+ drivers/gpu/drm/drm_plane.c                        | 52 ++++++++++++++++------
+ drivers/gpu/drm/i915/display/i9xx_plane.c          |  6 ++-
+ drivers/gpu/drm/i915/display/intel_atomic_plane.c  | 32 ++++++++++++-
+ drivers/gpu/drm/i915/display/intel_atomic_plane.h  |  6 ++-
+ drivers/gpu/drm/i915/display/intel_display.c       | 14 ++----
+ drivers/gpu/drm/i915/display/skl_universal_plane.c |  5 ++-
+ include/drm/drm_mode_config.h                      |  6 +++
+ include/drm/drm_plane.h                            | 17 +++++++
+ 9 files changed, 117 insertions(+), 28 deletions(-)
+---
+base-commit: aba848f9b752cf51474c0c3b1abcf0f572f774dc
+change-id: 20250102-asyn-bf76730501cc
 
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-adlp-vf:        [ABORT][4] ([Intel XE#4520]) -> [PASS][5] +1 other test pass
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2825-a958e31a81b3267201c85b6f171419586afa792c/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146404v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+Best regards,
+-- 
+Arun R Murthy <arun.r.murthy@intel.com>
 
-  
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
-  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
-  [Intel XE#4520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4520
-  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
-
-
-Build changes
--------------
-
-  * IGT: IGT_8275 -> IGT_8276
-  * Linux: xe-2825-a958e31a81b3267201c85b6f171419586afa792c -> xe-pw-146404v1
-
-  IGT_8275: a851348546d61620c263d3292148f67620efa7d0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8276: 8276
-  xe-2825-a958e31a81b3267201c85b6f171419586afa792c: a958e31a81b3267201c85b6f171419586afa792c
-  xe-pw-146404v1: 146404v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146404v1/index.html
-
---===============1791233382765460108==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/xe_gt_pagefault: Remove pagefault vfid</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/146404/">https://patchwork.freedesktop.org/series/146404/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146404v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146404v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2825-a958e31a81b3267201c85b6f171419586afa792c_BAT -&gt; xe-pw-146404v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-146404v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_evict@evict-beng-small-cm:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146404v1/bat-adlp-vf/igt@xe_evict@evict-beng-small-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +9 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@twice-rebind:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146404v1/bat-adlp-vf/igt@xe_exec_fault_mode@twice-rebind.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146404v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_migrate:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2825-a958e31a81b3267201c85b6f171419586afa792c/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4520">Intel XE#4520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146404v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8275 -&gt; IGT_8276</li>
-<li>Linux: xe-2825-a958e31a81b3267201c85b6f171419586afa792c -&gt; xe-pw-146404v1</li>
-</ul>
-<p>IGT_8275: a851348546d61620c263d3292148f67620efa7d0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8276: 8276<br />
-  xe-2825-a958e31a81b3267201c85b6f171419586afa792c: a958e31a81b3267201c85b6f171419586afa792c<br />
-  xe-pw-146404v1: 146404v1</p>
-
-</body>
-</html>
-
---===============1791233382765460108==--
