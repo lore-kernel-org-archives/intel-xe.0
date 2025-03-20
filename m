@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7322FC28B30
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Mar 2025 17:32:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F278C36005
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Mar 2025 17:32:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54F4F10E672;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D77210E680;
 	Thu, 20 Mar 2025 17:32:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V15VDZvU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bsy5/+xn";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6227110E67D;
- Thu, 20 Mar 2025 17:32:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79B5710E679;
+ Thu, 20 Mar 2025 17:32:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742491942; x=1774027942;
+ t=1742491940; x=1774027940;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3AfyQZu7aRITliFUq/x4c/c6+gxI5fHTQqVWzTIzXSs=;
- b=V15VDZvU3emuWzZumQg1/IAY44LyptFv6+BUjkwt6gT22Oz5T8Cp8sz7
- lVsN/qZQ9zqlPTUOkQEMmxTrpEUdkCLY0jicUXn3qjrwQDFHBOoha5c47
- uLTAeF86vF9zjOBxY+2AZMVl8mm0XeHmEYX+h45PteLqqco1wZTEYiJht
- Lur9yfCrLpMlL31Lt3zrnsPcmzzFTyvQvPHESL66ndMmzKOh5COD5Itbm
- AJmZB5F8HodmkK90qekHpiqpVCfOUeyZJmgJZ8rJ3GpckG/nFsVnBNrIv
- xxbGTCKx+eVZ1NIfiJ/InDAePJtaP0JvJlO+tysa0KoU6kU28ZbVNDyqJ Q==;
-X-CSE-ConnectionGUID: 9jYN1hcTRxSxO4MGasLb0Q==
-X-CSE-MsgGUID: PKiCZ+WaTWWiqYiAOBqe6g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11379"; a="69095604"
-X-IronPort-AV: E=Sophos;i="6.14,262,1736841600"; d="scan'208";a="69095604"
+ bh=PGNeKuKE8DMaviNnDfmTZWxBVhAtZeLIAjsfEOhdcTg=;
+ b=Bsy5/+xntD9KJSQIpUHHSpbGhSZbIpmT/xITZGinCVL464MWnoR9yz4/
+ zIMqqcCAQftI1Fc3iIrHdJcun1N8pO0vHCifFVf39hzzsY70G2YJHvbYT
+ KEU4LbCefKRo/XIPfe2TrNL0251vWtxDrG1lAdJQo7cbvPXNKaOPLRq/o
+ hoprt2RE7jTPSn/FHjpCwBsp/tHwZQ4WxKxaUo/KwlVOCSnU4HvfswP9T
+ PBOPvNSOyJoeO9nb4yXFYaoqW1mqd6TdjZupyWlCgXc1L0kC1sxhCbKmK
+ Nqv73u7FKqyZn6STr7Sg79aLw1LyPziM8S/UfUPhzwbraI41hI1aGccHB Q==;
+X-CSE-ConnectionGUID: JlU1qu9ZRhuNv9cnVrQfBQ==
+X-CSE-MsgGUID: XurVvqTCTTG8Lu/+alOs+g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11379"; a="69095600"
+X-IronPort-AV: E=Sophos;i="6.14,262,1736841600"; d="scan'208";a="69095600"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2025 10:32:22 -0700
-X-CSE-ConnectionGUID: DdyaXXM3RGueaVp7GYmerA==
-X-CSE-MsgGUID: 0OTx/UspTeiANUK0jDJinQ==
+ 20 Mar 2025 10:32:19 -0700
+X-CSE-ConnectionGUID: Q+NVO/GrTS2gwhvd4KPHDg==
+X-CSE-MsgGUID: Ff4b9QFaT02jQPgb5T2mtQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,262,1736841600"; d="scan'208";a="123168448"
+X-IronPort-AV: E=Sophos;i="6.14,262,1736841600"; d="scan'208";a="123168432"
 Received: from oandoniu-mobl3.ger.corp.intel.com (HELO mwauld-desk.intel.com)
  ([10.245.244.226])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2025 10:32:21 -0700
+ 20 Mar 2025 10:32:18 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH 5/7] drm/gpusvm: lower get/unmap pages
-Date: Thu, 20 Mar 2025 17:30:02 +0000
-Message-ID: <20250320172956.168358-14-matthew.auld@intel.com>
+Subject: [PATCH 3/7] drm/gpusvm: mark pages as dirty
+Date: Thu, 20 Mar 2025 17:30:00 +0000
+Message-ID: <20250320172956.168358-12-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250320172956.168358-9-matthew.auld@intel.com>
 References: <20250320172956.168358-9-matthew.auld@intel.com>
@@ -70,153 +70,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Lower get/unmap pages to facilitate operating on the lowest level
-pieces, without needing a full drm_gpusvm_range structure. In the next
-patch we want to extract get/unmap/free to operate on a different range
-type.
+If the memory is going to be accessed by the device, make sure we mark
+the pages accordingly such that the kernel knows this. This aligns with
+the xe-userptr code.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/drm_gpusvm.c | 90 ++++++++++++++++++++++--------------
- 1 file changed, 55 insertions(+), 35 deletions(-)
+ drivers/gpu/drm/drm_gpusvm.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
 diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
-index f27731a51f34..2beca5a6dc0a 100644
+index 7f1cf5492bba..5b4ecd36dff1 100644
 --- a/drivers/gpu/drm/drm_gpusvm.c
 +++ b/drivers/gpu/drm/drm_gpusvm.c
-@@ -1323,38 +1323,28 @@ drm_gpusvm_range_pages_valid_unlocked(struct drm_gpusvm *gpusvm,
- 	return pages_valid;
- }
+@@ -1471,6 +1471,7 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
+ 			pages[i] = page;
+ 		} else {
+ 			dma_addr_t addr;
++			unsigned int k;
  
--/**
-- * drm_gpusvm_range_get_pages() - Get pages for a GPU SVM range
-- * @gpusvm: Pointer to the GPU SVM structure
-- * @range: Pointer to the GPU SVM range structure
-- * @ctx: GPU SVM context
-- *
-- * This function gets pages for a GPU SVM range and ensures they are mapped for
-- * DMA access.
-- *
-- * Return: 0 on success, negative error code on failure.
-- */
--int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
--			       struct drm_gpusvm_range *range,
--			       const struct drm_gpusvm_ctx *ctx)
-+static int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
-+				struct drm_gpusvm_pages *svm_pages,
-+				struct mm_struct *mm,
-+				struct mmu_interval_notifier *notifier,
-+				unsigned long *notifier_seq,
-+				unsigned long mm_start,
-+				unsigned long mm_end,
-+				const struct drm_gpusvm_ctx *ctx)
- {
--	struct drm_gpusvm_pages *svm_pages = &range->pages;
--	struct mmu_interval_notifier *notifier = &range->notifier->notifier;
- 	struct hmm_range hmm_range = {
- 		.default_flags = HMM_PFN_REQ_FAULT | (ctx->read_only ? 0 :
- 			HMM_PFN_REQ_WRITE),
- 		.notifier = notifier,
--		.start = drm_gpusvm_range_start(range),
--		.end = drm_gpusvm_range_end(range),
-+		.start = mm_start,
-+		.end = mm_end,
- 		.dev_private_owner = gpusvm->device_private_page_owner,
- 	};
--	struct mm_struct *mm = gpusvm->mm;
- 	struct drm_gpusvm_zdd *zdd;
- 	unsigned long timeout =
- 		jiffies + msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
- 	unsigned long i, j;
--	unsigned long npages = npages_in_range(drm_gpusvm_range_start(range),
--					       drm_gpusvm_range_end(range));
-+	unsigned long npages = npages_in_range(mm_start, mm_end);
- 	unsigned long num_dma_mapped;
- 	unsigned int order = 0;
- 	unsigned long *pfns;
-@@ -1518,7 +1508,7 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
- 	drm_gpusvm_notifier_unlock(gpusvm);
- 	kvfree(pfns);
- set_seqno:
--	range->notifier_seq = hmm_range.notifier_seq;
-+	*notifier_seq = hmm_range.notifier_seq;
- 
- 	return 0;
- 
-@@ -1531,8 +1521,48 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
- 		goto retry;
- 	return err;
- }
+ 			if (is_zone_device_page(page) || zdd) {
+ 				err = -EOPNOTSUPP;
+@@ -1489,6 +1490,14 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
+ 			range->dma_addr[j] = drm_pagemap_device_addr_encode
+ 				(addr, DRM_INTERCONNECT_SYSTEM, order,
+ 				 dma_dir);
 +
-+/**
-+ * drm_gpusvm_range_get_pages() - Get pages for a GPU SVM range
-+ * @gpusvm: Pointer to the GPU SVM structure
-+ * @range: Pointer to the GPU SVM range structure
-+ * @ctx: GPU SVM context
-+ *
-+ * This function gets pages for a GPU SVM range and ensures they are mapped for
-+ * DMA access.
-+ *
-+ * Return: 0 on success, negative error code on failure.
-+ */
-+int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
-+			       struct drm_gpusvm_range *range,
-+			       const struct drm_gpusvm_ctx *ctx)
-+{
-+	return drm_gpusvm_get_pages(gpusvm, &range->pages, gpusvm->mm,
-+				    &range->notifier->notifier,
-+				    &range->notifier_seq,
-+				    drm_gpusvm_range_start(range),
-+				    drm_gpusvm_range_end(range), ctx);
-+}
- EXPORT_SYMBOL_GPL(drm_gpusvm_range_get_pages);
- 
-+static void drm_gpusvm_unmap_pages(struct drm_gpusvm *gpusvm,
-+				   unsigned long mm_start, unsigned long mm_end,
-+				   struct drm_gpusvm_pages *svm_pages,
-+				   const struct drm_gpusvm_ctx *ctx)
-+{
-+	unsigned long npages = npages_in_range(mm_start, mm_end);
++			for (k = 0; k < 1u << order; k++) {
++				if (!ctx->read_only)
++					set_page_dirty_lock(page);
 +
-+	if (ctx->in_notifier)
-+		lockdep_assert_held_write(&gpusvm->notifier_lock);
-+	else
-+		drm_gpusvm_notifier_lock(gpusvm);
-+
-+	__drm_gpusvm_unmap_pages(gpusvm, svm_pages, npages);
-+
-+	if (!ctx->in_notifier)
-+		drm_gpusvm_notifier_unlock(gpusvm);
-+}
-+
- /**
-  * drm_gpusvm_range_unmap_pages() - Unmap pages associated with a GPU SVM range
-  * @gpusvm: Pointer to the GPU SVM structure
-@@ -1549,19 +1579,9 @@ void drm_gpusvm_range_unmap_pages(struct drm_gpusvm *gpusvm,
- 				  struct drm_gpusvm_range *range,
- 				  const struct drm_gpusvm_ctx *ctx)
- {
--	struct drm_gpusvm_pages *svm_pages = &range->pages;
--	unsigned long npages = npages_in_range(drm_gpusvm_range_start(range),
--					       drm_gpusvm_range_end(range));
--
--	if (ctx->in_notifier)
--		lockdep_assert_held_write(&gpusvm->notifier_lock);
--	else
--		drm_gpusvm_notifier_lock(gpusvm);
--
--	__drm_gpusvm_unmap_pages(gpusvm, svm_pages, npages);
--
--	if (!ctx->in_notifier)
--		drm_gpusvm_notifier_unlock(gpusvm);
-+	return drm_gpusvm_unmap_pages(gpusvm, drm_gpusvm_range_start(range),
-+				      drm_gpusvm_range_end(range),
-+				      &range->pages, ctx);
- }
- EXPORT_SYMBOL_GPL(drm_gpusvm_range_unmap_pages);
- 
++				mark_page_accessed(page);
++				page++;
++			}
+ 		}
+ 		i += 1 << order;
+ 		num_dma_mapped = i;
 -- 
 2.48.1
 
