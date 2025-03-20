@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60D38C28B30
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Mar 2025 15:13:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B548C36001
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Mar 2025 15:26:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25D8110E646;
-	Thu, 20 Mar 2025 15:13:21 +0000 (UTC)
-Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19E1B10E0E5;
- Thu, 20 Mar 2025 15:13:20 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id C912A10E64F;
+	Thu, 20 Mar 2025 15:26:18 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I9jfQe+3";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7232310E0E5;
+ Thu, 20 Mar 2025 15:26:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1742484377; x=1774020377;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=hl8+lM11PRLmxBjMwYzmp398zmvgVeUwbwpOM7K9t/8=;
+ b=I9jfQe+3GyIlGqT+u7pLyqh399GbUX2yuBQz2YELx1t/vSg06NvbakVd
+ uWoIcKbByuotT230zjboIjoWpAgg9oF7LGEHf93cHkbR0YtdL7zMW/XHH
+ ewhJFJ1QaLB7I1T5JxQDvhq7BEtGlhOT9XJKHYKaMdLSytlkbZQkAgAtc
+ qOj71Hrt6ZSqkfq9OiF3x+bRfPKTTkUf0nP9+0gUvDvJNwDRJPnBuSXx4
+ xdrf5w6arAZXUnLSVrWKxvocNt81PujjGCc6FfSgRgwwzqA/3CVn55Fb3
+ 0Yo4UqH8bkYuGkW+1wTiEvKU14yzQQRu2Q3uYKGql4RqkqzD7DDeXLXwa g==;
+X-CSE-ConnectionGUID: BQ0w10X3SOWfKZzGn4g7WQ==
+X-CSE-MsgGUID: Xu/7n8eqR3iwvjF11+WasQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11379"; a="43913042"
+X-IronPort-AV: E=Sophos;i="6.14,262,1736841600"; d="scan'208";a="43913042"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2025 08:26:17 -0700
+X-CSE-ConnectionGUID: pOeKlc6wQmabW7ybPFOmTQ==
+X-CSE-MsgGUID: l/DH0gXZQZa1lacJKyRwng==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,262,1736841600"; d="scan'208";a="123134260"
+Received: from dut4419lnl.fm.intel.com ([10.105.10.61])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2025 08:26:17 -0700
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
+ joonas.lahtinen@linux.intel.com, matthew.brost@intel.com,
+ jianxun.zhang@intel.com, shuicheng.lin@intel.com,
+ dri-devel@lists.freedesktop.org, Michal.Wajdeczko@intel.com,
+ michal.mrozek@intel.com
+Subject: [PATCH v10 1/5] drm/xe/xe_gt_pagefault: Disallow writes to read-only
+ VMAs
+Date: Thu, 20 Mar 2025 15:26:11 +0000
+Message-ID: <20250320152616.74587-2-jonathan.cavitt@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250320152616.74587-1-jonathan.cavitt@intel.com>
+References: <20250320152616.74587-1-jonathan.cavitt@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/i915/display=3A_conv?=
- =?utf-8?q?ersions_to_struct_intel=5Fdisplay_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 20 Mar 2025 15:13:20 -0000
-Message-ID: <174248360010.58664.3428566892806052539@18a75f3d1eae>
-X-Patchwork-Hint: ignore
-References: <cover.1742481923.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1742481923.git.jani.nikula@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,36 +68,35 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The page fault handler should reject write/atomic access to read only
+VMAs.  Add code to handle this in handle_pagefault after the VMA lookup.
 
-Series: drm/i915/display: conversions to struct intel_display (rev3)
-URL   : https://patchwork.freedesktop.org/series/144749/
-State : success
+Fixes: 3d420e9fa848 ("drm/xe: Rework GPU page fault handling")
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_pagefault.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://github.com/intel-lgci-fdo-gitlab-mirror/drm.maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast a958e31a81b3267201c85b6f171419586afa792c
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index 9fa11e837dd1..3240890aac07 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -237,6 +237,11 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
+ 		goto unlock_vm;
+ 	}
+ 
++	if (xe_vma_read_only(vma) && pf->access_type != ACCESS_TYPE_READ) {
++		err = -EPERM;
++		goto unlock_vm;
++	}
++
+ 	atomic = access_is_atomic(pf->access_type);
+ 
+ 	if (xe_vma_is_cpu_addr_mirror(vma))
+-- 
+2.43.0
 
