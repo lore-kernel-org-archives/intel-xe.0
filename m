@@ -4,87 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 179DEC28B30
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Mar 2025 08:38:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E46B3C28B30
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Mar 2025 09:23:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B54E110E5A3;
-	Thu, 20 Mar 2025 08:38:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3F6A10E38A;
+	Thu, 20 Mar 2025 09:23:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="ItUG6bBP";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=haloniitty.fi header.i=@haloniitty.fi header.b="ueEAV4VV";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD94C10E5A4
- for <intel-xe@lists.freedesktop.org>; Thu, 20 Mar 2025 08:38:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1742459912;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=eVSYC2akOgiwP6yKLJOSHan3aNOI03QHvfAehHGVWcE=;
- b=ItUG6bBPn8/WcTIZjgeLY46VM0bQqpmhMHAoK33vfKr98vhP5BjgA62bmpJk8J5Mad9Ypm
- CUcq3lkOxRi5Fy0HjkcB2I9xewunZ3EFgfGRWRY7OgHk5wurtfI7JeCYeK8+rWoNmMNmjn
- I0tPaVfGoydX17cL1+bE8XFkkt7LEYA=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-374-r3c_f5G3Mt-Hveas7NWizQ-1; Thu, 20 Mar 2025 04:38:30 -0400
-X-MC-Unique: r3c_f5G3Mt-Hveas7NWizQ-1
-X-Mimecast-MFC-AGG-ID: r3c_f5G3Mt-Hveas7NWizQ_1742459909
-Received: by mail-wm1-f69.google.com with SMTP id
- 5b1f17b1804b1-43d0a037f97so2493365e9.2
- for <intel-xe@lists.freedesktop.org>; Thu, 20 Mar 2025 01:38:29 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1742459909; x=1743064709;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=eVSYC2akOgiwP6yKLJOSHan3aNOI03QHvfAehHGVWcE=;
- b=r6wfsWO6CB6mQkOFyZf+tz1YZ8ot4Gs8IcWAA4RbCZDLDaHW8pyonSi9gvwQGHTECm
- fZyH16BPQdwKq6JBY4ope6yqHLGOP7RwhlGYPFVkNauQqeHnF2gw5rg8gOVbzmkwoOVG
- LQmP3dQWN+aRyAlDvrEXTDlrj1uNBCLSdOtfVIE1HO/9D3ffhVcijHYKVoUdvnU4Scye
- I5sILuguB1dnyEPsVBc/eb+UtLgyHoyAIk8MPL7f45TbWmnn+/RQRuU3H7Tiokq4+qG3
- mv3RiQO8Cpzhw9o+//D31uIlD6fGibrJDOCmTvZpRjaR0yYQgJMQ0U/jKaoipfBSfbqb
- tgoQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCW41eAF58L7aWDfEIJTfURj95GkC2Omk1ok6wXrzaVpmW0aj1sKuY/Imv7W3IHch3puQ1ilQQw7Bw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyD5C69/WWuW8WR+M/uED3gBsFTXSTD+ksu8v1+Mka80oy/enEf
- MSwCSYDNxyEy33iiXxSk4XJPP/4i4NzU3hV3CWi/29tQVJ6wuHoWIDJfgB8jG68OoTST8qJz1I6
- IiuikAGJtUQ6ysyTdrCrl2HIfePZbYrnnGtDfdLm1S9xB1f1JAEe/niAUwriRcLWp
-X-Gm-Gg: ASbGnctnrcE7NrGzYrVnoWNTBRD2NqVX4T6sl1rqccAcOkk6Z6aHzRGYEyuyAGbycXz
- RnkiB27BiLfahxkINYcROgUSe8cpuXGi7cZnRaT9SDPp9/95vBmLie4asCcu9tfetnYN2qUtFi/
- hKCm4EtbXnZft+Z9Uwae2jXKIEu3TzxmFVrPArnE92PhZRghiMxwCuA1a7q3UsmYyuG+NWeAr+g
- fDiKJnGKfuIXN8fEi7hu90KZwSmMqwmeWs3kER/Z871eEQfztWmRDvUPB2r2/bRTw0=
-X-Received: by 2002:a05:600c:3d88:b0:43d:db5:7b1a with SMTP id
- 5b1f17b1804b1-43d4379b544mr46799175e9.12.1742459908610; 
- Thu, 20 Mar 2025 01:38:28 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH2ABTv2JwL/AM+EzDkblJ4THEXWcPirEf3A6Ijee80hlkhSxHLu9VwR1gZbn6IcOhuJRlh2A==
-X-Received: by 2002:a05:600c:3d88:b0:43d:db5:7b1a with SMTP id
- 5b1f17b1804b1-43d4379b544mr46798935e9.12.1742459908115; 
- Thu, 20 Mar 2025 01:38:28 -0700 (PDT)
-Received: from localhost ([2a01:e0a:b25:f902::ff])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-43d46edba08sm32428835e9.18.2025.03.20.01.38.27
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 20 Mar 2025 01:38:27 -0700 (PDT)
-Date: Thu, 20 Mar 2025 09:38:27 +0100
-From: Maxime Ripard <mripard@redhat.com>
-To: Simona Vetter <simona.vetter@ffwll.ch>, David Airlie <airlied@gmail.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <20250320-valiant-outstanding-nightingale-e9acae@houat>
+Received: from whm50.louhi.net (whm50.louhi.net [77.240.19.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D46310E21F;
+ Thu, 20 Mar 2025 09:23:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=haloniitty.fi; s=default; h=Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=KN0E1CtHzZMDFASPHUIAGSz4ovHioQCvP87HdG+MCYk=; b=ueEAV4VVIDrxUOgYxofthsesUC
+ l2ob61vxkQJDXF1zT5nvHlTTL66ZNsQH6GN/ADFmLJVVVlh6pT0E6dR5+sbqLuJxhVtGcBZIb3OnM
+ NtCHo2w1LoVzO+DP5BqOgWAGrmLtBeENYpJfDWTrKeshRXYSA6uuyCNR17y42qMoQI1Wn5MJhoLZo
+ VDfa3h7iC6HiUlOCIsRmwX5wI8CxdeqjjoULqO48qW3YYeIUhNcP3GAhSjY09C6nIvf7spPMz4eU3
+ EKYn18ddrQul+wIurFmtwxfMumolSLGf3smtM+0Jkt5cZAtDCcjVjMXoSY+rJ8Vi2AhQNm5HRcGb3
+ s6WT6PKg==;
+Received: from [194.136.85.206] (port=56058 helo=eldfell)
+ by whm50.louhi.net with esmtpsa (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.98.1)
+ (envelope-from <pekka.paalanen@haloniitty.fi>)
+ id 1tvC7S-000000002s9-2d18; Thu, 20 Mar 2025 11:23:18 +0200
+Date: Thu, 20 Mar 2025 11:23:09 +0200
+From: Pekka Paalanen <pekka.paalanen@haloniitty.fi>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "Kandpal, Suraj" <suraj.kandpal@intel.com>, harry.wentland@amd.com,
+ alex.hung@amd.com
+Subject: Re: [PATCH v8 01/14] drm: Define histogram structures exposed to user
+Message-ID: <20250320112309.1d9c3e09@eldfell>
+In-Reply-To: <IA0PR11MB7307CCBB82AF958121A6B3A9BAD92@IA0PR11MB7307.namprd11.prod.outlook.com>
+References: <20250128-dpst-v8-0-871b94d777f8@intel.com>
+ <20250128-dpst-v8-1-871b94d777f8@intel.com>
+ <20250217120808.708b9b4d@eldfell>
+ <c423efcb-5ab8-41c2-af0a-621007c6175d@intel.com>
+ <20250218181819.11ca41ab@eldfell>
+ <cd095fd7-3043-402a-9e21-c0c85c53f8e3@intel.com>
+ <20250220175047.412ee8d4@eldfell>
+ <95a3e35d-2c5e-4861-b7bf-f38815a44e14@intel.com>
+ <20250303112010.469b9685@eldfell>
+ <IA0PR11MB7307CCBB82AF958121A6B3A9BAD92@IA0PR11MB7307.namprd11.prod.outlook.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="47mp7vgniqed6naw"
-Content-Disposition: inline
+Content-Type: multipart/signed; boundary="Sig_/3GKph_Dx//rGj.d.uPd=lXT";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - whm50.louhi.net
+X-AntiAbuse: Original Domain - lists.freedesktop.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - haloniitty.fi
+X-Get-Message-Sender-Via: whm50.louhi.net: authenticated_id:
+ pekka.paalanen@haloniitty.fi
+X-Authenticated-Sender: whm50.louhi.net: pekka.paalanen@haloniitty.fi
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,73 +83,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
---47mp7vgniqed6naw
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
+--Sig_/3GKph_Dx//rGj.d.uPd=lXT
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: quoted-printable
-Subject: [PULL] drm-misc-fixes
-MIME-Version: 1.0
 
-Hi,
+On Wed, 19 Mar 2025 12:08:15 +0000
+"Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
 
-Here's this week drm-misc-fixes PR.
+> > On Mon, 3 Mar 2025 13:23:42 +0530
+> > "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
+> >  =20
+> > > On 20-02-2025 21:20, Pekka Paalanen wrote: =20
+> > > > On Wed, 19 Feb 2025 09:28:51 +0530
+> > > > "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
 
-Maxime
+...
 
-The following changes since commit 12d8f318347b1d4feac48e8ac351d3786af39599:
+> > > Hi Pekka,
+> > > Sorry got getting back late on this.
+> > > I totally agree that the UAPI should not be any hardware specific and
+> > > have taken care to get rid of such if any.
+> > > Here we are just exposing the histogram data and what point is the
+> > > histogram generated is out of the scope. =20
+> >=20
+> > It's not out of scope. Understanding exactly at what point the histogra=
+m is
+> > generated in the KMS pixel pipeline is paramount to being able to use t=
+he
+> > results correctly - how it relates to the framebuffers'
+> > contents and KMS pixel pipeline configuration.
+> >  =20
+>=20
+> While working around this comment, it looks to be quite challenging to
+> address this comment and agree that this will have to be addressed and is=
+=20
+> important for the user to know at which point in the pixel pipeline confi=
+guration
+> the histogram is generated.
+> I can think of 2 options on addressing this.
+>=20
+> 1.  Have this documented in the driver. Since this can vary on each vendor
+> hardware, can have this documented in the drivers or ReST document.
+>=20
 
-  drm/dp_mst: Fix locking when skipping CSN before topology probing (2025-0=
-3-11 11:29:18 +0200)
+Hi Arun,
 
-are available in the Git repository at:
+this is not acceptable in KMS, because it requires userspace to have
+code that depends on the hardware revision or identity. When new
+hardware appears, it will not be enough to update the drivers, one will
+also need to update userspace. There currently is no userspace
+"standard KMS library" to abstract all drivers further, like there is
+libcamera and Mesa.
 
-  ssh://git@gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-=
-2025-03-20
+> 2. Maybe have a bitmapping like we have it for histogram_mode. Define=20
+> user readable macros for that.
+> Ex: CC1_DEGAMMA_HIST_CC2
+> In this case histogram is between the two color conversion hardware block
+> in the pixel pipeline.
+> This macro will have to be defined on need basis and define a u32 variable
+> for this bit manipulation.
 
-for you to fetch changes up to cb83f4b965a66d85e9a03621ef3b22c044f4a033:
+This one still has problems in that some hardware may not have all the
+non-HIST elements or not in the same order. It's a better abstraction
+than option 1, but it's still weak.
 
-  gpu: host1x: Do not assume that a NULL domain means no DMA IOMMU (2025-03=
--19 19:05:40 +0100)
+I can see one solid solution, but it won't be usable for quite some
+time I suppose:
 
-----------------------------------------------------------------
-A sched fence reference leak fix, two fence fixes for v3d, two overflow
-fixes for quaic, and a iommu handling fix for host1x.
+https://lore.kernel.org/dri-devel/20241220043410.416867-5-alex.hung@amd.com/
 
-----------------------------------------------------------------
-Dan Carpenter (1):
-      accel/qaic: Fix integer overflow in qaic_validate_req()
+The current work on the color pipelines UAPI is concentrated on the
+per-plane operations. The idea is that once those are hashed out, the
+same design is applied to CRTCs as well, deprecating all existing CRTC
+color processing properties. A histogram processing element could be
+exposed as a colorop object, and its position in a CRTC color pipeline
+represents the point where the histogram is collected.
 
-Jason Gunthorpe (1):
-      gpu: host1x: Do not assume that a NULL domain means no DMA IOMMU
+That would be the best possible UAPI design on current knowledge in my
+opinion.
 
-Jeffrey Hugo (1):
-      accel/qaic: Fix possible data corruption in BOs > 2G
+Btw. this applies also to the image enhancement processing element you
+are proposing.
 
-Ma=EDra Canal (2):
-      drm/v3d: Don't run jobs that have errors flagged in its fence
-      drm/v3d: Set job pointer to NULL when the job's fence has an error
 
-qianyi liu (1):
-      drm/sched: Fix fence reference count leak
+Thanks,
+pq
 
- drivers/accel/qaic/qaic_data.c           |  9 +++++++--
- drivers/gpu/drm/scheduler/sched_entity.c | 11 +++++++++--
- drivers/gpu/drm/v3d/v3d_sched.c          | 23 ++++++++++++++++++++---
- drivers/gpu/host1x/dev.c                 |  6 ++++++
- 4 files changed, 42 insertions(+), 7 deletions(-)
-
---47mp7vgniqed6naw
-Content-Type: application/pgp-signature; name="signature.asc"
+--Sig_/3GKph_Dx//rGj.d.uPd=lXT
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
 -----BEGIN PGP SIGNATURE-----
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ9vUAgAKCRAnX84Zoj2+
-dlATAYCtuSibllvUw0LRAksLq+2dw95GaaHpe/yqHUhj4mnrYaVwskUMuN05Z3Je
-g1M6vV8Bf1WI7AiXgRyaUghC6Ne0vSW5D7eStRbqifJMMydRqkEMPaCELL+X5Fpk
-f0edh7S3FQ==
-=2eWI
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmfb3n0ACgkQI1/ltBGq
+qqcwpxAAtATk5CekEZ5Yqh8jCQRRt6av6rARAR0oPrjtNT3ePc6bpSDMjxeFylqF
+oMNF2TCiw+v3eX6L6pp9MA71+BAJzY5NQBSi7Tc0aW6a5JneKUvQZ7OuVMtRdlLa
+BmVpsBcS7Kdi7jjkQK+gVXIn/0H8UuyGyCWC+57fT34Ad246nvOyLcWlNBRlm4NR
+bgWkzbKFXXiCv43eI9xpx5wodewOclNdZl/REHo+aHT+vKbcQc7DuuKNQe4efJ25
+vV0WkTyzuJPeqBDd8XbSx5NDqk+41WNNluPyU7nqP9W2Ap2Qh6Zh5FzrUU9K06e+
+g0D4KPMO5hxIOjxbhV4U8T4hLsm3BEdL1YO3s/a9l1Qa71spel41/gbs4z1PIasv
+JUbe0JMf8bl6rSKeQCl+xDiIhYyYg2+BQADjaYL8C87tq8yOJ3KdV1oltEgPp39c
+itHwnWg8dFlyi4hfvnn3xgJBh8paBLoHXtHyFfTOCWc1LbAvgIwiMuKksu8EQdPo
+QfA14Utiml2Y+v+eBrFVi/nhspLIV9dlOyUYLamjwSbNpsnhfRx1/n6RyAw84Q+G
+LDJAEcL58DbqBhask0UXARSqWaDJXtxuhGMNq/LSwgoW8ZfSagp/VDln/e2YToR5
+vXv0rDOIlSxrtz9wAEzC7Crhm72ImK3ORs45MTHe2BV6wYkNdvc=
+=G0D+
 -----END PGP SIGNATURE-----
 
---47mp7vgniqed6naw--
-
+--Sig_/3GKph_Dx//rGj.d.uPd=lXT--
