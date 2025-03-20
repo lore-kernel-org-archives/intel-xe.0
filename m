@@ -4,51 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DE5AC28B30
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Mar 2025 08:25:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 179DEC28B30
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Mar 2025 08:38:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6A1B10E0BF;
-	Thu, 20 Mar 2025 08:25:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B54E110E5A3;
+	Thu, 20 Mar 2025 08:38:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Z8meEYhI";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="ItUG6bBP";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A681E10E0BF
- for <intel-xe@lists.freedesktop.org>; Thu, 20 Mar 2025 08:25:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=jNPZPOgz+rPrknMqFd0hv9JEoDZ+ZotakbimcL4mXf4=; b=Z8meEYhIIULdQhfrPKewPK4rFI
- ddc9OLmdUuoUtfsIDKosgqb+uOk5J+cQtSbu3N7uWH/oCUfMdpFYlCLvCc7joV15USfV2RS2yx4Ee
- 4cT61kqhgAI+mconLgNjBKebYLpZpaY4RTM1rJUrmrMtoFIDN5YBBdQEwZSEH7nPqEqZyXbttwqcq
- xDRJG2+B/YYtQFAbB4wbhmLERxDFmegKM8t1xD48Jk+a/tomYs0NlLTf51EXGDSeBI3WdPKZmNXlV
- a6qLh6fxjYV+f2kRaTM53IrZXPOSN5tfH9yei83e1VGS8aHEYHSd+FFEo5kG+JlYyVo5M5o8fZwfY
- p8q63zmA==;
-Received: from [90.241.98.187] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1tvBD9-003e1c-0d; Thu, 20 Mar 2025 09:25:07 +0100
-Message-ID: <6be0c617-49b7-44d5-9b75-e0a21703ac9c@igalia.com>
-Date: Thu, 20 Mar 2025 08:25:06 +0000
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD94C10E5A4
+ for <intel-xe@lists.freedesktop.org>; Thu, 20 Mar 2025 08:38:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1742459912;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=eVSYC2akOgiwP6yKLJOSHan3aNOI03QHvfAehHGVWcE=;
+ b=ItUG6bBPn8/WcTIZjgeLY46VM0bQqpmhMHAoK33vfKr98vhP5BjgA62bmpJk8J5Mad9Ypm
+ CUcq3lkOxRi5Fy0HjkcB2I9xewunZ3EFgfGRWRY7OgHk5wurtfI7JeCYeK8+rWoNmMNmjn
+ I0tPaVfGoydX17cL1+bE8XFkkt7LEYA=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-374-r3c_f5G3Mt-Hveas7NWizQ-1; Thu, 20 Mar 2025 04:38:30 -0400
+X-MC-Unique: r3c_f5G3Mt-Hveas7NWizQ-1
+X-Mimecast-MFC-AGG-ID: r3c_f5G3Mt-Hveas7NWizQ_1742459909
+Received: by mail-wm1-f69.google.com with SMTP id
+ 5b1f17b1804b1-43d0a037f97so2493365e9.2
+ for <intel-xe@lists.freedesktop.org>; Thu, 20 Mar 2025 01:38:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1742459909; x=1743064709;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=eVSYC2akOgiwP6yKLJOSHan3aNOI03QHvfAehHGVWcE=;
+ b=r6wfsWO6CB6mQkOFyZf+tz1YZ8ot4Gs8IcWAA4RbCZDLDaHW8pyonSi9gvwQGHTECm
+ fZyH16BPQdwKq6JBY4ope6yqHLGOP7RwhlGYPFVkNauQqeHnF2gw5rg8gOVbzmkwoOVG
+ LQmP3dQWN+aRyAlDvrEXTDlrj1uNBCLSdOtfVIE1HO/9D3ffhVcijHYKVoUdvnU4Scye
+ I5sILuguB1dnyEPsVBc/eb+UtLgyHoyAIk8MPL7f45TbWmnn+/RQRuU3H7Tiokq4+qG3
+ mv3RiQO8Cpzhw9o+//D31uIlD6fGibrJDOCmTvZpRjaR0yYQgJMQ0U/jKaoipfBSfbqb
+ tgoQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW41eAF58L7aWDfEIJTfURj95GkC2Omk1ok6wXrzaVpmW0aj1sKuY/Imv7W3IHch3puQ1ilQQw7Bw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyD5C69/WWuW8WR+M/uED3gBsFTXSTD+ksu8v1+Mka80oy/enEf
+ MSwCSYDNxyEy33iiXxSk4XJPP/4i4NzU3hV3CWi/29tQVJ6wuHoWIDJfgB8jG68OoTST8qJz1I6
+ IiuikAGJtUQ6ysyTdrCrl2HIfePZbYrnnGtDfdLm1S9xB1f1JAEe/niAUwriRcLWp
+X-Gm-Gg: ASbGnctnrcE7NrGzYrVnoWNTBRD2NqVX4T6sl1rqccAcOkk6Z6aHzRGYEyuyAGbycXz
+ RnkiB27BiLfahxkINYcROgUSe8cpuXGi7cZnRaT9SDPp9/95vBmLie4asCcu9tfetnYN2qUtFi/
+ hKCm4EtbXnZft+Z9Uwae2jXKIEu3TzxmFVrPArnE92PhZRghiMxwCuA1a7q3UsmYyuG+NWeAr+g
+ fDiKJnGKfuIXN8fEi7hu90KZwSmMqwmeWs3kER/Z871eEQfztWmRDvUPB2r2/bRTw0=
+X-Received: by 2002:a05:600c:3d88:b0:43d:db5:7b1a with SMTP id
+ 5b1f17b1804b1-43d4379b544mr46799175e9.12.1742459908610; 
+ Thu, 20 Mar 2025 01:38:28 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH2ABTv2JwL/AM+EzDkblJ4THEXWcPirEf3A6Ijee80hlkhSxHLu9VwR1gZbn6IcOhuJRlh2A==
+X-Received: by 2002:a05:600c:3d88:b0:43d:db5:7b1a with SMTP id
+ 5b1f17b1804b1-43d4379b544mr46798935e9.12.1742459908115; 
+ Thu, 20 Mar 2025 01:38:28 -0700 (PDT)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-43d46edba08sm32428835e9.18.2025.03.20.01.38.27
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 20 Mar 2025 01:38:27 -0700 (PDT)
+Date: Thu, 20 Mar 2025 09:38:27 +0100
+From: Maxime Ripard <mripard@redhat.com>
+To: Simona Vetter <simona.vetter@ffwll.ch>, David Airlie <airlied@gmail.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <20250320-valiant-outstanding-nightingale-e9acae@houat>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/8] AuxCCS handling and render compression modifiers
-To: =?UTF-8?Q?Juha-Pekka_Heikkil=C3=A4?= <juhapekka.heikkila@gmail.com>
-Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com,
- =?UTF-8?Q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>,
- "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-References: <20250318162224.78846-1-tvrtko.ursulin@igalia.com>
- <CAJ=qYWR-OqU+RKSFic6OH-eRSzKLGDwR2GJxRjQSYv_ED=c9eA@mail.gmail.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <CAJ=qYWR-OqU+RKSFic6OH-eRSzKLGDwR2GJxRjQSYv_ED=c9eA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="47mp7vgniqed6naw"
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,85 +100,72 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
+--47mp7vgniqed6naw
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: [PULL] drm-misc-fixes
+MIME-Version: 1.0
+
 Hi,
 
-On 19/03/2025 13:41, Juha-Pekka Heikkilä wrote:
-> Hi Tvrtko,
-> 
-> I did quick run with these patches. With these changes on top of
-> today's drm-tip I got a complete system freeze on mtl and its variants
-> when do modprobe. I had kgdb enabled but I wasn't even thrown there,
-> the machine went completely unresponsive. On 3/3 tries modprobe xe
-> always completely froze the box.
+Here's this week drm-misc-fixes PR.
 
-I don't have MTL to try and neither apparently does CI, which otherwise 
-seems happy, as is my ADL-P laptop.
+Maxime
 
-Would you have time to bisect? Or maybe netconsole to see what explodes?
+The following changes since commit 12d8f318347b1d4feac48e8ac351d3786af39599:
 
-Not much comes to mind looking at the patches.. Maybe something runs to 
-early before something else is initialised. Guessing only.
+  drm/dp_mst: Fix locking when skipping CSN before topology probing (2025-0=
+3-11 11:29:18 +0200)
 
-Regards,
+are available in the Git repository at:
 
-Tvrtko
+  ssh://git@gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-=
+2025-03-20
 
-> On Tue, Mar 18, 2025 at 6:22 PM Tvrtko Ursulin
-> <tvrtko.ursulin@igalia.com> wrote:
->>
->> A series to fix and add xe support for AuxCSS framebuffers via DPT.
->>
->> Currently the auxiliary buffer data isn't mapped into the page tables at all so
->> cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
->> had to disable the support.
->>
->> On top of that there are missing flushes and invalidations both from the ring
->> buffer side and from the CPU side.
->>
->> Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
->>
->>    [PLANE:32:plane 1A]: type=PRI
->>            uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
->>            hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
->>
->> Display seems working fine - no artefacts, no DMAR/PIPE faults. CI also appears
->> to be happy with v2.
->>
->> v2:
->>   * More patches added to fix kms_flip_tiling.
->>
->> v3:
->>   * Rebased after some cleanup patches from v2 were merged.
->>   * Added people to Cc as suggested by Rodrigo.
->>   * Adjusted last patch title. (Rodrigo)
->>   * Apply GGTT flushing only to iomapped system memory buffers.
->>
->> Cc: José Roberto de Souza <jose.souza@intel.com>
->> Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
->> Cc: Michael J. Ruhl <michael.j.ruhl@intel.com>
->> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
->>
->> Tvrtko Ursulin (8):
->>    drm/xe: Add ring buffer handling for AuxCCS
->>    drm/xe: Use fb cached min alignment
->>    drm/xe: Reduce DPT table alignment as in i915
->>    drm/xe: Flush GGTT writes after populating DPT
->>    drm/xe: Handle DPT in system memory
->>    drm/xe: Force flush system memory AuxCCS framebuffers before scan out
->>    drm/xe/display: Add support for AuxCCS
->>    drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
->>
->>   .../drm/i915/display/skl_universal_plane.c    |   6 -
->>   drivers/gpu/drm/xe/display/xe_fb_pin.c        | 181 ++++++++++++++----
->>   .../gpu/drm/xe/instructions/xe_gpu_commands.h |   1 +
->>   .../gpu/drm/xe/instructions/xe_mi_commands.h  |   6 +
->>   drivers/gpu/drm/xe/regs/xe_gt_regs.h          |   1 +
->>   drivers/gpu/drm/xe/xe_bo_types.h              |  14 +-
->>   drivers/gpu/drm/xe/xe_ring_ops.c              | 173 +++++++++--------
->>   drivers/gpu/drm/xe/xe_ring_ops_types.h        |   2 +-
->>   8 files changed, 261 insertions(+), 123 deletions(-)
->>
->> --
->> 2.48.0
->>
+for you to fetch changes up to cb83f4b965a66d85e9a03621ef3b22c044f4a033:
+
+  gpu: host1x: Do not assume that a NULL domain means no DMA IOMMU (2025-03=
+-19 19:05:40 +0100)
+
+----------------------------------------------------------------
+A sched fence reference leak fix, two fence fixes for v3d, two overflow
+fixes for quaic, and a iommu handling fix for host1x.
+
+----------------------------------------------------------------
+Dan Carpenter (1):
+      accel/qaic: Fix integer overflow in qaic_validate_req()
+
+Jason Gunthorpe (1):
+      gpu: host1x: Do not assume that a NULL domain means no DMA IOMMU
+
+Jeffrey Hugo (1):
+      accel/qaic: Fix possible data corruption in BOs > 2G
+
+Ma=EDra Canal (2):
+      drm/v3d: Don't run jobs that have errors flagged in its fence
+      drm/v3d: Set job pointer to NULL when the job's fence has an error
+
+qianyi liu (1):
+      drm/sched: Fix fence reference count leak
+
+ drivers/accel/qaic/qaic_data.c           |  9 +++++++--
+ drivers/gpu/drm/scheduler/sched_entity.c | 11 +++++++++--
+ drivers/gpu/drm/v3d/v3d_sched.c          | 23 ++++++++++++++++++++---
+ drivers/gpu/host1x/dev.c                 |  6 ++++++
+ 4 files changed, 42 insertions(+), 7 deletions(-)
+
+--47mp7vgniqed6naw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ9vUAgAKCRAnX84Zoj2+
+dlATAYCtuSibllvUw0LRAksLq+2dw95GaaHpe/yqHUhj4mnrYaVwskUMuN05Z3Je
+g1M6vV8Bf1WI7AiXgRyaUghC6Ne0vSW5D7eStRbqifJMMydRqkEMPaCELL+X5Fpk
+f0edh7S3FQ==
+=2eWI
+-----END PGP SIGNATURE-----
+
+--47mp7vgniqed6naw--
 
