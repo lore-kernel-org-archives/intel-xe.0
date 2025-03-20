@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72E33C36004
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Mar 2025 21:07:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7C17C28B30
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Mar 2025 21:08:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2731410E6D3;
-	Thu, 20 Mar 2025 21:07:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6079C10E6D6;
+	Thu, 20 Mar 2025 21:08:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YlkwPTU+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HUL3WsZz";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B22B10E6D2
- for <intel-xe@lists.freedesktop.org>; Thu, 20 Mar 2025 21:07:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DAA6010E6D6
+ for <intel-xe@lists.freedesktop.org>; Thu, 20 Mar 2025 21:07:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742504875; x=1774040875;
+ t=1742504878; x=1774040878;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gWFpyeAR0s5/COraxJsPN7EaoCPLtVFaB89Y+PQOUS0=;
- b=YlkwPTU+tkvUjzLzhBHFQhIieEjbSkpxcUTNEOjHkolgwCZLujK1Ja7F
- iWx/TaUrk/dvBBm/WKO9E8zc5VUVIk162j1wYNh0xFndUWAULtAC6uKAT
- VXBWQAURiUDjtnf6PGER1DaddwRo8NMH6KG/z3/v0x4H8dYRFPF9PZgcB
- d8fcwvGlk4HvAetHNATTW5lbIWO2kR6hALYUEUXXcEypXdjHCeoo+zoUO
- V77TkargX/Cpx85u/2V9RSTTnNfLfejALViUrUJ5sTEVFTXz789ha2ixk
- cHBXq2QE8TYqwQGnZ1qtFaiOKG8hGUMQKdUVrya3FyyVRUGCwq1A0CWKy Q==;
-X-CSE-ConnectionGUID: LMxZq/ekRqu/RDU4pfLTOQ==
-X-CSE-MsgGUID: SuhR3VxNSh6NhGuO0Geylg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11379"; a="43875355"
-X-IronPort-AV: E=Sophos;i="6.14,262,1736841600"; d="scan'208";a="43875355"
+ bh=p8keWqwdLlKDOZguQSKSWn8HbI359vXpGgT00TjTFYo=;
+ b=HUL3WsZznjS2Ld3xA0RecSabyx3vKTRrHn07d9Rn6XPHQqISuPf34kl9
+ cQYggwiZUBYduYngoJe7OrpqSX0NkUmg8D2TDB5Odd8eryppupfe0S/6L
+ WXBsLSlq99aWRf77UcnVQaPLhCRkEuF0asmejbNXV/GACEjPA0xl7oyxM
+ xGa1CisF+l2Tr0MEZwlVLR0PX7ccJQqABU2LfseYkk4imgTMF8lvepCjH
+ PI3ZWWzJUuUgevKtIkC4WDFXMoTSYCvaifbJvS/3++UewXhZSq/rokeIQ
+ CKPdE30PgwVcckA7+xUJKdA5LGng3jJ9v/OOZ0b5VY2/a5Y2PNB2R9jpG Q==;
+X-CSE-ConnectionGUID: Lr+oJ97BTO+97xGGVRFfQg==
+X-CSE-MsgGUID: L053NjGNQ3aq+pm0oNKRHQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11379"; a="43875360"
+X-IronPort-AV: E=Sophos;i="6.14,262,1736841600"; d="scan'208";a="43875360"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2025 14:07:54 -0700
-X-CSE-ConnectionGUID: iPaqu6vwQdOLikjChpNlhg==
-X-CSE-MsgGUID: lM/gMzRFQcW/Cc0YBSuRuw==
+ 20 Mar 2025 14:07:58 -0700
+X-CSE-ConnectionGUID: mp2lefUsSkCAfAXPnxTUOQ==
+X-CSE-MsgGUID: QFJb/toXQ36FDE/JWWwWcA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,262,1736841600"; d="scan'208";a="128326122"
+X-IronPort-AV: E=Sophos;i="6.14,262,1736841600"; d="scan'208";a="128326153"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.113.30])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2025 14:07:52 -0700
+ 20 Mar 2025 14:07:55 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 1/3] drm/xe/guc: Refactor GuC debugfs initialization
-Date: Thu, 20 Mar 2025 22:07:36 +0100
-Message-Id: <20250320210738.1733-2-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
+Subject: [PATCH 3/3] drm/xe/vf: Don't expose privileged GT debugfs files if VF
+Date: Thu, 20 Mar 2025 22:07:38 +0100
+Message-Id: <20250320210738.1733-4-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20250320210738.1733-1-michal.wajdeczko@intel.com>
 References: <20250320210738.1733-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,153 +67,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We don't have to drmm_kmalloc() local copy of debugfs_list to
-write there our pointer to the struct xe_guc as we can extract
-pointer to the struct xe_gt from the grandparent debugfs entry,
-in similar way to what we did for GT debugfs files.
+Some of the debugfs files require access to the registers that are
+not accessible to the VFs. Don't expose those files on VF drivers.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_debugfs.c | 94 ++++++++++-------------------
- 1 file changed, 31 insertions(+), 63 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_debugfs.c | 18 +++++++++++++-----
+ 1 file changed, 13 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_debugfs.c b/drivers/gpu/drm/xe/xe_guc_debugfs.c
-index c569ff456e74..d59408ef0b9d 100644
---- a/drivers/gpu/drm/xe/xe_guc_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_guc_debugfs.c
-@@ -17,101 +17,69 @@
- #include "xe_macros.h"
- #include "xe_pm.h"
- 
--static struct xe_guc *node_to_guc(struct drm_info_node *node)
-+/*
-+ *      /sys/kernel/debug/dri/0/
-+ *      ├── gt0
-+ *      │   ├── uc
-+ *      │   │   ├── guc_info
-+ *      │   │   ├── guc_...
-+ */
-+
-+static int guc_debugfs_show(struct seq_file *m, void *data)
- {
--	return node->info_ent->data;
--}
--
--static int guc_info(struct seq_file *m, void *data)
--{
--	struct xe_guc *guc = node_to_guc(m->private);
--	struct xe_device *xe = guc_to_xe(guc);
- 	struct drm_printer p = drm_seq_file_printer(m);
-+	struct drm_info_node *node = m->private;
-+	struct dentry *parent = node->dent->d_parent;
-+	struct dentry *grandparent = parent->d_parent;
-+	struct xe_gt *gt = grandparent->d_inode->i_private;
-+	struct xe_device *xe = gt_to_xe(gt);
-+	int (*print)(struct xe_guc *, struct drm_printer *) = node->info_ent->data;
-+	int ret;
- 
- 	xe_pm_runtime_get(xe);
--	xe_guc_print_info(guc, &p);
-+	ret = print(&gt->uc.guc, &p);
- 	xe_pm_runtime_put(xe);
- 
--	return 0;
-+	return ret;
- }
- 
--static int guc_log(struct seq_file *m, void *data)
-+static int guc_log(struct xe_guc *guc, struct drm_printer *p)
- {
--	struct xe_guc *guc = node_to_guc(m->private);
--	struct xe_device *xe = guc_to_xe(guc);
--	struct drm_printer p = drm_seq_file_printer(m);
--
--	xe_pm_runtime_get(xe);
--	xe_guc_log_print(&guc->log, &p);
--	xe_pm_runtime_put(xe);
--
-+	xe_guc_log_print(&guc->log, p);
- 	return 0;
- }
- 
--static int guc_log_dmesg(struct seq_file *m, void *data)
-+static int guc_log_dmesg(struct xe_guc *guc, struct drm_printer *p)
- {
--	struct xe_guc *guc = node_to_guc(m->private);
--	struct xe_device *xe = guc_to_xe(guc);
--
--	xe_pm_runtime_get(xe);
- 	xe_guc_log_print_dmesg(&guc->log);
--	xe_pm_runtime_put(xe);
--
- 	return 0;
- }
- 
--static int guc_ctb(struct seq_file *m, void *data)
-+static int guc_ctb(struct xe_guc *guc, struct drm_printer *p)
- {
--	struct xe_guc *guc = node_to_guc(m->private);
--	struct xe_device *xe = guc_to_xe(guc);
--	struct drm_printer p = drm_seq_file_printer(m);
--
--	xe_pm_runtime_get(xe);
--	xe_guc_ct_print(&guc->ct, &p, true);
--	xe_pm_runtime_put(xe);
--
-+	xe_guc_ct_print(&guc->ct, p, true);
- 	return 0;
- }
- 
--static int guc_pc(struct seq_file *m, void *data)
-+static int guc_pc(struct xe_guc *guc, struct drm_printer *p)
- {
--	struct xe_guc *guc = node_to_guc(m->private);
--	struct xe_device *xe = guc_to_xe(guc);
--	struct drm_printer p = drm_seq_file_printer(m);
--
--	xe_pm_runtime_get(xe);
--	xe_guc_pc_print(&guc->pc, &p);
--	xe_pm_runtime_put(xe);
--
-+	xe_guc_pc_print(&guc->pc, p);
- 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+index 2d63a69cbfa3..789d463fe395 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+@@ -300,19 +300,14 @@ static int hwconfig(struct xe_gt *gt, struct drm_printer *p)
  }
  
  static const struct drm_info_list debugfs_list[] = {
--	{"guc_info", guc_info, 0},
--	{"guc_log", guc_log, 0},
--	{"guc_log_dmesg", guc_log_dmesg, 0},
--	{"guc_ctb", guc_ctb, 0},
--	{"guc_pc", guc_pc, 0},
-+	{ "guc_info", .show = guc_debugfs_show, .data = xe_guc_print_info },
-+	{ "guc_log", .show = guc_debugfs_show, .data = guc_log },
-+	{ "guc_log_dmesg", .show = guc_debugfs_show, .data = guc_log_dmesg },
-+	{ "guc_ctb", .show = guc_debugfs_show, .data = guc_ctb },
-+	{ "guc_pc", .show = guc_debugfs_show, .data = guc_pc },
+-	{"hw_engines", .show = xe_gt_debugfs_simple_show, .data = hw_engines},
+ 	{"force_reset", .show = xe_gt_debugfs_simple_show, .data = force_reset},
+ 	{"force_reset_sync", .show = xe_gt_debugfs_simple_show, .data = force_reset_sync},
+ 	{"sa_info", .show = xe_gt_debugfs_simple_show, .data = sa_info},
+ 	{"topology", .show = xe_gt_debugfs_simple_show, .data = topology},
+-	{"steering", .show = xe_gt_debugfs_simple_show, .data = steering},
+ 	{"ggtt", .show = xe_gt_debugfs_simple_show, .data = ggtt},
+-	{"powergate_info", .show = xe_gt_debugfs_simple_show, .data = powergate_info},
+ 	{"register-save-restore", .show = xe_gt_debugfs_simple_show, .data = register_save_restore},
+ 	{"workarounds", .show = xe_gt_debugfs_simple_show, .data = workarounds},
+ 	{"tunings", .show = xe_gt_debugfs_simple_show, .data = tunings},
+-	{"pat", .show = xe_gt_debugfs_simple_show, .data = pat},
+-	{"mocs", .show = xe_gt_debugfs_simple_show, .data = mocs},
+ 	{"default_lrc_rcs", .show = xe_gt_debugfs_simple_show, .data = rcs_default_lrc},
+ 	{"default_lrc_ccs", .show = xe_gt_debugfs_simple_show, .data = ccs_default_lrc},
+ 	{"default_lrc_bcs", .show = xe_gt_debugfs_simple_show, .data = bcs_default_lrc},
+@@ -322,6 +317,14 @@ static const struct drm_info_list debugfs_list[] = {
+ 	{"hwconfig", .show = xe_gt_debugfs_simple_show, .data = hwconfig},
  };
  
- void xe_guc_debugfs_register(struct xe_guc *guc, struct dentry *parent)
++static const struct drm_info_list privileged_list[] = {
++	{"hw_engines", .show = xe_gt_debugfs_simple_show, .data = hw_engines},
++	{"mocs", .show = xe_gt_debugfs_simple_show, .data = mocs},
++	{"pat", .show = xe_gt_debugfs_simple_show, .data = pat},
++	{"powergate_info", .show = xe_gt_debugfs_simple_show, .data = powergate_info},
++	{"steering", .show = xe_gt_debugfs_simple_show, .data = steering},
++};
++
+ void xe_gt_debugfs_register(struct xe_gt *gt)
  {
- 	struct drm_minor *minor = guc_to_xe(guc)->drm.primary;
--	struct drm_info_list *local;
--	int i;
- 
--#define DEBUGFS_SIZE	(ARRAY_SIZE(debugfs_list) * sizeof(struct drm_info_list))
--	local = drmm_kmalloc(&guc_to_xe(guc)->drm, DEBUGFS_SIZE, GFP_KERNEL);
--	if (!local)
--		return;
--
--	memcpy(local, debugfs_list, DEBUGFS_SIZE);
--#undef DEBUGFS_SIZE
--
--	for (i = 0; i < ARRAY_SIZE(debugfs_list); ++i)
--		local[i].data = guc;
--
--	drm_debugfs_create_files(local,
-+	drm_debugfs_create_files(debugfs_list,
+ 	struct xe_device *xe = gt_to_xe(gt);
+@@ -349,6 +352,11 @@ void xe_gt_debugfs_register(struct xe_gt *gt)
  				 ARRAY_SIZE(debugfs_list),
- 				 parent, minor);
- }
+ 				 root, minor);
+ 
++	if (!IS_SRIOV_VF(xe))
++		drm_debugfs_create_files(privileged_list,
++					 ARRAY_SIZE(privileged_list),
++					 root, minor);
++
+ 	xe_uc_debugfs_register(&gt->uc, root);
+ 
+ 	if (IS_SRIOV_PF(xe))
 -- 
 2.47.1
 
