@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00F9BC36002
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07B5AC3DA4A
 	for <intel-xe@archiver.kernel.org>; Thu, 20 Mar 2025 19:27:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CB6E10E69E;
-	Thu, 20 Mar 2025 19:27:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEB5010E688;
+	Thu, 20 Mar 2025 19:27:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mD66sszY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="llu7CzIM";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 774F010E69E
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3EBD510E69D
  for <intel-xe@lists.freedesktop.org>; Thu, 20 Mar 2025 19:27:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1742498848; x=1774034848;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=EJShI6aqfoPBKq2DLVv+lsH+BuoLzbamw0QmvR7jxFs=;
- b=mD66sszYyDHaD22SitLnWb6oRVl/ttjxj0/RreJ9mRs2qe7tloAup7Ef
- ZeQb2LRzBOoo76S4a9wlVnwTuLCjmVlxJS5OuqB/SfWymq9/2/34QWucV
- lP6P+xRW8VI3KDlMTedzydYMi5hQmwgymmWUZfBZPwwhpH5y04pcYDo1m
- glZmc3Yy8i1C59GtEMCzYBapWihc4pi5+dVl7jaRqgTBkKm/82WGCQFUR
- QXdiWri+zJZPpW1evj51FWqs52MBtbKvRn5EbuoSW/3qk5UVUwM0DiEfX
- 5HH96sysZ5rpx6f68z7KKxEP3+3YAODbT0OL4g8sj/MLyZGYBmJ0LVuDG w==;
-X-CSE-ConnectionGUID: dhD/D9LJRb+axyqBEqOzDw==
-X-CSE-MsgGUID: YpeVESfNQYqEnbc+tAP1FQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11379"; a="43678748"
-X-IronPort-AV: E=Sophos;i="6.14,262,1736841600"; d="scan'208";a="43678748"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=TJckZlszWVP4ERyfcjpChHHDwbSVSXtuMdKsgKY3xsQ=;
+ b=llu7CzIMkiQkDzLevn8Q995W9G2Swj3ZdVP2dYk6QiWr8Ohmht7h5a6S
+ hLmcaVpAjkflOKWo3HSXZAbq7VF0XcXzW7QSiokLys2tOOJypoMn1rtaU
+ blmYMRpNkwSH+Zxe1Wx3+GhJWgXbEme5yjG47AUy/9nSdLdwinV0Xx4nm
+ XE2QvI1D8MiQ/003Gjl4iLCYT2c21ejZPOCm3bALoOYPTDzK2xlDJJhci
+ f3pmt7A5UBDZ82ykQJU7FouPxYQ2x4pODQMTH07C04dyjfRL0m2QIhsox
+ fCRL/kDOQXu6chiRriuy239CrzG7VZhLBHv9qcgmzmiDYylUTxikTZIol g==;
+X-CSE-ConnectionGUID: 3xio4xk7TyGTtTUUw/quRw==
+X-CSE-MsgGUID: FZiBYBmwRf+4FuQp3ITPfQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11379"; a="43678744"
+X-IronPort-AV: E=Sophos;i="6.14,262,1736841600"; d="scan'208";a="43678744"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Mar 2025 12:27:22 -0700
-X-CSE-ConnectionGUID: GX8fDDkoQq6+pbako5nR5g==
-X-CSE-MsgGUID: 5N+qHk+OQO21N9D/8jjB6w==
+X-CSE-ConnectionGUID: v0aKeajnTjuMR7ESZ59mjw==
+X-CSE-MsgGUID: 1dOw1/HRR7+hFaPB/txJ9w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,262,1736841600"; d="scan'208";a="123156816"
+X-IronPort-AV: E=Sophos;i="6.14,262,1736841600"; d="scan'208";a="123156804"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Mar 2025 12:27:22 -0700
@@ -45,13 +45,10 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: jose.souza@intel.com,
 	carlos.santa@intel.com
-Subject: [PATCH v3 4/9] drm/xe: Add pat_index to properties line in VM
- snapshot capture
-Date: Thu, 20 Mar 2025 12:28:26 -0700
-Message-Id: <20250320192831.3842138-5-matthew.brost@intel.com>
+Subject: [PATCH v3 0/9] Add support for Mesa GPU hang replay tool
+Date: Thu, 20 Mar 2025 12:28:22 -0700
+Message-Id: <20250320192831.3842138-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250320192831.3842138-1-matthew.brost@intel.com>
-References: <20250320192831.3842138-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -69,67 +66,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add pat index to properties line in VM snapshot capture indicating
-the VMA caching properites. This is useful information for debug and
-will help build a robust GPU hang replay tool.
+Add support for the Mesa GPU hang replay tool, which exists in the i915.
 
-The current format is:
+The main changes are as follows:
 
-[<vma address>]: <permissions>|<type>|mem_region=0x%x|pat_index=%d
+- Update devcoredump to include additional information, allowing the
+  Mesa tool to extract everything it needs to replay a GPU hang. These
+  updates are designed to remain compatible with the existing Mesa
+  devcoredump parser.
+- Introduce the DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE extension, which
+  enables setting the execution queue state to the hung execution queue
+  state.
 
-Permissions has two options, either "read_only" or "read_write".
+v2:
+- Enable the flag DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE
+- Fix the page math to avoid a crash
+v3:
+- Add pat_index and cpu_caching to properties
+- A VM.uapi_flags  
 
-Type has three options, either "userptr", "null_sparse", or "bo".
+The Mesa uAPI tool development is a WIP. The tool is a prerequisite for
+merging this change.
 
-Memory region is a bit mask of where the memory is located.
+Matt
 
-Pat index corresponds to the value setup upon VM bind.
+Matthew Brost (9):
+  drm/xe: Add properties line to VM snapshot capture
+  drm/xe: Add "null_sparse" type to VM snap properties
+  drm/xe: Add mem_region to properties line in VM snapshot capture
+  drm/xe: Add pat_index to properties line in VM snapshot capture
+  drm/xe: Add cpu_caching to properties line in VM snapshot capture
+  drm/xe: Add VM.uapi_flags to VM snapshot capture
+  drm/xe/uapi: Add DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE
+  drm/xe: Add replay_offset and replay_length lines to LRC HWCTX
+    snapshot
+  drm/xe: Implement DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE
 
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_vm.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_exec_queue.c       | 32 +++++++++++++-
+ drivers/gpu/drm/xe/xe_exec_queue_types.h |  3 ++
+ drivers/gpu/drm/xe/xe_execlist.c         |  2 +-
+ drivers/gpu/drm/xe/xe_lrc.c              | 44 +++++++++++++++----
+ drivers/gpu/drm/xe/xe_lrc.h              |  4 +-
+ drivers/gpu/drm/xe/xe_lrc_types.h        |  3 ++
+ drivers/gpu/drm/xe/xe_vm.c               | 55 +++++++++++++++++++++++-
+ include/uapi/drm/xe_drm.h                |  9 +++-
+ 8 files changed, 137 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index a95d5765a258..34bec27a5f45 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3714,6 +3714,7 @@ struct xe_vm_snapshot {
- #define XE_VM_SNAP_FLAG_IS_NULL		BIT(2)
- 		unsigned long flags;
- 		int uapi_mem_region;
-+		int pat_index;
- 		struct xe_bo *bo;
- 		void *data;
- 		struct mm_struct *mm;
-@@ -3756,6 +3757,7 @@ struct xe_vm_snapshot *xe_vm_snapshot_capture(struct xe_vm *vm)
- 		snap->snap[i].len = xe_vma_size(vma);
- 		snap->snap[i].flags = xe_vma_read_only(vma) ?
- 			XE_VM_SNAP_FLAG_READ_ONLY : 0;
-+		snap->snap[i].pat_index = vma->pat_index;
- 		if (bo) {
- 			snap->snap[i].bo = xe_bo_get(bo);
- 			snap->snap[i].bo_ofs = xe_vma_bo_offset(vma);
-@@ -3857,7 +3859,7 @@ void xe_vm_snapshot_print(struct xe_vm_snapshot *snap, struct drm_printer *p)
- 	for (i = 0; i < snap->num_snaps; i++) {
- 		drm_printf(p, "[%llx].length: 0x%lx\n", snap->snap[i].ofs, snap->snap[i].len);
- 
--		drm_printf(p, "[%llx].properties: %s|%s|mem_region=0x%lx\n",
-+		drm_printf(p, "[%llx].properties: %s|%s|mem_region=0x%lx|pat_index=%d\n",
- 			   snap->snap[i].ofs,
- 			   snap->snap[i].flags & XE_VM_SNAP_FLAG_READ_ONLY ?
- 			   "read_only" : "read_write",
-@@ -3866,7 +3868,8 @@ void xe_vm_snapshot_print(struct xe_vm_snapshot *snap, struct drm_printer *p)
- 			   snap->snap[i].flags & XE_VM_SNAP_FLAG_USERPTR ?
- 			   "userptr" : "bo",
- 			   snap->snap[i].uapi_mem_region == -1 ? 0 :
--			   BIT(snap->snap[i].uapi_mem_region));
-+			   BIT(snap->snap[i].uapi_mem_region),
-+			   snap->snap[i].pat_index);
- 
- 		if (IS_ERR(snap->snap[i].data)) {
- 			drm_printf(p, "[%llx].error: %li\n", snap->snap[i].ofs,
 -- 
 2.34.1
 
