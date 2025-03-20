@@ -4,21 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4213C28B30
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Mar 2025 21:16:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 732C8C36002
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Mar 2025 21:16:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92E0210E6A2;
-	Thu, 20 Mar 2025 21:16:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 289A210E6C6;
+	Thu, 20 Mar 2025 21:16:26 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FB4A10E6C6
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B6DD10E6A2
  for <intel-xe@lists.freedesktop.org>; Thu, 20 Mar 2025 21:16:22 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH 1/2] drm/xe: Remove extra spaces in xe_vm.c
-Date: Thu, 20 Mar 2025 22:15:18 +0100
-Message-ID: <20250320211519.632432-1-dev@lankhorst.se>
+Subject: [PATCH 2/2] drm/xe: Copy cpu_caching when importing DMA-BUF.
+Date: Thu, 20 Mar 2025 22:15:19 +0100
+Message-ID: <20250320211519.632432-2-dev@lankhorst.se>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20250320211519.632432-1-dev@lankhorst.se>
+References: <20250320211519.632432-1-dev@lankhorst.se>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -35,42 +37,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+When testing xe with P2PDMA DMA-BUF import,
+VM_BIND was failing because cpu_caching was not set.
+
+Set cpu_caching if available from another xe driver,
+to allow uncached VM_BIND on imported DMA-BUF.
+
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_dma_buf.c | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 3dbd3d38008a5..fed4b97d1882d 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2980,7 +2980,7 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
- 				 XE_64K_PAGE_MASK) ||
- 		    XE_IOCTL_DBG(xe, addr & XE_64K_PAGE_MASK) ||
- 		    XE_IOCTL_DBG(xe, range & XE_64K_PAGE_MASK)) {
--			return  -EINVAL;
-+			return -EINVAL;
+diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
+index c5b95470fa324..9b1813e65e0a4 100644
+--- a/drivers/gpu/drm/xe/xe_dma_buf.c
++++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+@@ -266,12 +266,12 @@ struct drm_gem_object *xe_gem_prime_import(struct drm_device *dev,
+ 	const struct dma_buf_attach_ops *attach_ops;
+ 	struct dma_buf_attachment *attach;
+ 	struct drm_gem_object *obj;
+-	struct xe_bo *bo;
++	struct xe_bo *bo, *foreign_bo = NULL;
+ 
+-	if (dma_buf->ops == &xe_dmabuf_ops) {
++	if (dma_buf->ops == &xe_dmabuf_ops &&
++	    !XE_TEST_ONLY(test && test->force_different_devices)) {
+ 		obj = dma_buf->priv;
+-		if (obj->dev == dev &&
+-		    !XE_TEST_ONLY(test && test->force_different_devices)) {
++		if (obj->dev == dev) {
+ 			/*
+ 			 * Importing dmabuf exported from out own gem increases
+ 			 * refcount on gem itself instead of f_count of dmabuf.
+@@ -279,6 +279,8 @@ struct drm_gem_object *xe_gem_prime_import(struct drm_device *dev,
+ 			drm_gem_object_get(obj);
+ 			return obj;
  		}
++
++		foreign_bo = gem_to_xe_bo(obj);
  	}
  
-@@ -2988,7 +2988,7 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
- 	if (bo->cpu_caching) {
- 		if (XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE &&
- 				 bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB)) {
--			return  -EINVAL;
-+			return -EINVAL;
- 		}
- 	} else if (XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE)) {
- 		/*
-@@ -2997,7 +2997,7 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
- 		 * how it was mapped on the CPU. Just assume is it
- 		 * potentially cached on CPU side.
- 		 */
--		return  -EINVAL;
-+		return -EINVAL;
- 	}
+ 	/*
+@@ -310,6 +312,9 @@ struct drm_gem_object *xe_gem_prime_import(struct drm_device *dev,
  
- 	/* If a BO is protected it can only be mapped if the key is still valid */
+ 	get_dma_buf(dma_buf);
+ 	obj->import_attach = attach;
++	if (foreign_bo)
++		bo->cpu_caching = foreign_bo->cpu_caching;
++
+ 	return obj;
+ 
+ out_err:
 -- 
 2.45.2
 
