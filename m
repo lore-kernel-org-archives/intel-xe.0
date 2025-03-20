@@ -4,24 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62237C28B30
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Mar 2025 17:37:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC24FC28B30
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Mar 2025 17:38:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2218B10E675;
-	Thu, 20 Mar 2025 17:37:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EE0310E677;
+	Thu, 20 Mar 2025 17:38:36 +0000 (UTC)
 Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA83D10E675;
- Thu, 20 Mar 2025 17:37:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 464B710E677;
+ Thu, 20 Mar 2025 17:38:35 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Replace_xe=5Fhmm_with_gpu?=
- =?utf-8?q?svm?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Replace_xe=5Fhmm_with_gpusvm?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 20 Mar 2025 17:37:57 -0000
-Message-ID: <174249227796.59401.6980607798530360183@18a75f3d1eae>
+Date: Thu, 20 Mar 2025 17:38:35 -0000
+Message-ID: <174249231528.59409.9028563610558288085@18a75f3d1eae>
 X-Patchwork-Hint: ignore
 References: <20250320172956.168358-9-matthew.auld@intel.com>
 In-Reply-To: <20250320172956.168358-9-matthew.auld@intel.com>
@@ -44,51 +43,66 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Replace xe_hmm with gpusvm
 URL   : https://patchwork.freedesktop.org/series/146553/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-cbb4e4a079d89106c2736adc3c7de6f9dc56da07
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 6f2612d8c694f0ef54f51ce2f65c06d1c5e0a637
-Author: Matthew Auld <matthew.auld@intel.com>
-Date:   Thu Mar 20 17:30:04 2025 +0000
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+/usr/bin/ld: drivers/gpu/drm/xe/xe_vm.o: in function `xe_vma_destroy_late':
+xe_vm.c:(.text+0xd2d): undefined reference to `drm_gpusvm_basic_range_free_pages'
+/usr/bin/ld: xe_vm.c:(.text+0xd52): undefined reference to `drm_gpusvm_basic_range_fini'
+/usr/bin/ld: drivers/gpu/drm/xe/xe_vm.o: in function `xe_vma_userptr_pin_pages':
+xe_vm.c:(.text+0x1f4b): undefined reference to `drm_gpusvm_basic_range_get_pages'
+/usr/bin/ld: drivers/gpu/drm/xe/xe_vm.o: in function `new_vma':
+xe_vm.c:(.text+0x389e): undefined reference to `drm_gpusvm_basic_range_init'
+/usr/bin/ld: drivers/gpu/drm/xe/xe_vm.o: in function `xe_vm_close_and_put':
+xe_vm.c:(.text+0x4cc0): undefined reference to `drm_gpusvm_basic_fini'
+/usr/bin/ld: drivers/gpu/drm/xe/xe_vm.o: in function `xe_vm_create':
+xe_vm.c:(.text+0x57fe): undefined reference to `drm_gpusvm_basic_init'
+/usr/bin/ld: drivers/gpu/drm/xe/xe_vm.o: in function `vma_userptr_invalidate':
+xe_vm.c:(.text+0x941e): undefined reference to `drm_gpusvm_basic_range_unmap_pages'
+collect2: error: ld returned 1 exit status
+make[3]: *** [../scripts/Makefile.vmlinux:77: vmlinux] Error 1
+make[2]: *** [/kernel/Makefile:1231: vmlinux] Error 2
+make[1]: *** [/kernel/Makefile:251: __sub-make] Error 2
+make: *** [Makefile:251: __sub-make] Error 2
 
-    drm/xe/userptr: replace xe_hmm with gpusvm
-    
-    Goal here is cut over to gpusvm and remove xe_hmm, relying instead on
-    common code. The core facilities we need are get_pages(), unmap_pages()
-    and free_pages() for a given useptr range, plus a vm level notifier
-    lock, which is now provided by gpusvm.
-    
-    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-    Cc: Matthew Brost <matthew.brost@intel.com>
-+ /mt/dim checkpatch 1f934e6cad9aa2378895190f52f2f363e3323945 drm-intel
-936707e01055 drm/gpusvm: fix hmm_pfn_to_map_order() usage
--:15: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
-#15: 
-Reported-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-
-total: 0 errors, 1 warnings, 0 checks, 43 lines checked
-16ef137c4e3a drm/gpusvm: use more selective dma dir in get_pages()
-f56441bea99a drm/gpusvm: mark pages as dirty
-1fa4fa6a4101 drm/gpusvm: pull out drm_gpusvm_pages substructure
-89ea2f8b7e98 drm/gpusvm: lower get/unmap pages
-90ad125c0327 drm/gpusvm: support basic_range
-6f2612d8c694 drm/xe/userptr: replace xe_hmm with gpusvm
--:53: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#53: 
-deleted file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 406 lines checked
+[17:37:58] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[17:38:02] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
