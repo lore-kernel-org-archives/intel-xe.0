@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D406C28B30
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Mar 2025 17:37:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62237C28B30
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Mar 2025 17:37:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0600C10E65F;
-	Thu, 20 Mar 2025 17:37:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2218B10E675;
+	Thu, 20 Mar 2025 17:37:59 +0000 (UTC)
 Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34B6510E65F;
- Thu, 20 Mar 2025 17:37:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA83D10E675;
+ Thu, 20 Mar 2025 17:37:57 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Replace_xe=5Fhmm_wit?=
- =?utf-8?q?h_gpusvm?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Replace_xe=5Fhmm_with_gpu?=
+ =?utf-8?q?svm?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 20 Mar 2025 17:37:41 -0000
-Message-ID: <174249226121.59394.6940211651197948770@18a75f3d1eae>
+Date: Thu, 20 Mar 2025 17:37:57 -0000
+Message-ID: <174249227796.59401.6980607798530360183@18a75f3d1eae>
 X-Patchwork-Hint: ignore
 References: <20250320172956.168358-9-matthew.auld@intel.com>
 In-Reply-To: <20250320172956.168358-9-matthew.auld@intel.com>
@@ -44,19 +44,51 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Replace xe_hmm with gpusvm
 URL   : https://patchwork.freedesktop.org/series/146553/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 1f934e6cad9a drm-tip: 2025y-03m-20d-16h-26m-02s UTC integration manifest
-=== git am output follows ===
-Applying: drm/gpusvm: fix hmm_pfn_to_map_order() usage
-Applying: drm/gpusvm: use more selective dma dir in get_pages()
-Applying: drm/gpusvm: mark pages as dirty
-Applying: drm/gpusvm: pull out drm_gpusvm_pages substructure
-Applying: drm/gpusvm: lower get/unmap pages
-Applying: drm/gpusvm: support basic_range
-Applying: drm/xe/userptr: replace xe_hmm with gpusvm
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+cbb4e4a079d89106c2736adc3c7de6f9dc56da07
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 6f2612d8c694f0ef54f51ce2f65c06d1c5e0a637
+Author: Matthew Auld <matthew.auld@intel.com>
+Date:   Thu Mar 20 17:30:04 2025 +0000
+
+    drm/xe/userptr: replace xe_hmm with gpusvm
+    
+    Goal here is cut over to gpusvm and remove xe_hmm, relying instead on
+    common code. The core facilities we need are get_pages(), unmap_pages()
+    and free_pages() for a given useptr range, plus a vm level notifier
+    lock, which is now provided by gpusvm.
+    
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 1f934e6cad9aa2378895190f52f2f363e3323945 drm-intel
+936707e01055 drm/gpusvm: fix hmm_pfn_to_map_order() usage
+-:15: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#15: 
+Reported-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+
+total: 0 errors, 1 warnings, 0 checks, 43 lines checked
+16ef137c4e3a drm/gpusvm: use more selective dma dir in get_pages()
+f56441bea99a drm/gpusvm: mark pages as dirty
+1fa4fa6a4101 drm/gpusvm: pull out drm_gpusvm_pages substructure
+89ea2f8b7e98 drm/gpusvm: lower get/unmap pages
+90ad125c0327 drm/gpusvm: support basic_range
+6f2612d8c694 drm/xe/userptr: replace xe_hmm with gpusvm
+-:53: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#53: 
+deleted file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 406 lines checked
 
 
