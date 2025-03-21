@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71E50C36002
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Mar 2025 16:34:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FEBBC36000
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Mar 2025 16:34:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 366D210E17C;
-	Fri, 21 Mar 2025 16:34:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA4A910E186;
+	Fri, 21 Mar 2025 16:34:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FdufYSXp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kmY+W1lm";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F7D310E17C
- for <intel-xe@lists.freedesktop.org>; Fri, 21 Mar 2025 16:34:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C43910E186
+ for <intel-xe@lists.freedesktop.org>; Fri, 21 Mar 2025 16:34:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742574873; x=1774110873;
+ t=1742574877; x=1774110877;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=S1Ns9Mv7rC5W1RBaKQIKmuGmIM3cXPRD3uuC2K9tGUY=;
- b=FdufYSXpFoZ9MbRmNMPjrJ/+tzaXHdIuk7wjK0mX4AE7uQgAUsnY6VJa
- x6qmMBdd4JEt/iuxES/Eyttp9RGhJYxdLbSASqiUxGl4Id7YDDLr+x9zX
- Uf6VsT3xwfiqgA6pUBU1oH1FcNlUNH+bWE1HChEmRDQYh9Lp0jC1EhChi
- /SRTD1ZIDOmUf7PxjRdQ4OBhq0UcEc8SRyx/mMUvUQhr60ZqoMhqQAR2c
- to24ps0A5p5ApCL6tlC36/jPHpgPmzbRR6UaO55ThZe5Tg0HtJ9kcf4MM
- UMo72CbXbloK56bBw6akSmD1HndaipkBjmOom/PX4lLiR1I4tt6fUuYyO g==;
-X-CSE-ConnectionGUID: hR1XI2PfS62NPfJcWcv7Ig==
-X-CSE-MsgGUID: zlt+zYM1REGidZZnrVPEAA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11380"; a="43725617"
-X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="43725617"
+ bh=+S05hxm/AH2n8a0C1kiYjmEjXSAfBr9pq6li6gnGMnw=;
+ b=kmY+W1lm52XX24oMJFHzlq3owqHUv4WcY8uqN/t2OsiLXbzKThEKhT35
+ VdV0jrpEPM+txytkbBNVoF9cBDODn2CBz0Nt0f2TrPWh7HjiHA/Oo5Beu
+ wM12Gt6R1WdWnG+UKDM3HY9kvuqOcEp6C/ou8Pcb38OOzaK8dGrxyxqLK
+ A0wjgXW0mwWLAmASZvVhGC6/4Pz2We6vMVIs/QohmPhqXjdyoopGDVw7V
+ hI5fdpQpqGkKgEt7ROWwFOcsINcDH3kIkyIh9x9pncq6lh4nwTaNFwtS/
+ 3cLxvrZMOq7YwWLS86Ok247Fna8PAicicIPfQab2QciyfZUgH1o/Md70L g==;
+X-CSE-ConnectionGUID: 6kVDx8udSnmVWeWl/Y1HWg==
+X-CSE-MsgGUID: EXBHrk/4RYywqOFJ637xOw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11380"; a="43725625"
+X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="43725625"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 09:34:33 -0700
-X-CSE-ConnectionGUID: nQFov8EtRT+5EKtoUFF3HQ==
-X-CSE-MsgGUID: te6F4m9NTweplzbAqarNpg==
+ 21 Mar 2025 09:34:37 -0700
+X-CSE-ConnectionGUID: R3b6gXEZQqSQW43sJCT0UA==
+X-CSE-MsgGUID: b5sngkuhTna6gzIg4zrgOA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="128665377"
+X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="128665385"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO fedora..)
  ([10.245.246.196])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 09:34:31 -0700
+ 21 Mar 2025 09:34:35 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>, himal.prasad.ghimiray@intel.com,
+ himal.prasad.ghimiray@intel.com, Matthew Brost <matthew.brost@intel.com>,
  Matthew Auld <matthew.auld@intel.com>
-Subject: [PATCH v2 1/5] drm/xe: Introduce CONFIG_DRM_XE_GPUSVM
-Date: Fri, 21 Mar 2025 17:34:12 +0100
-Message-ID: <20250321163416.45217-2-thomas.hellstrom@linux.intel.com>
+Subject: [PATCH v2 3/5] drm/xe/bo: Add a bo remove callback
+Date: Fri, 21 Mar 2025 17:34:14 +0100
+Message-ID: <20250321163416.45217-4-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250321163416.45217-1-thomas.hellstrom@linux.intel.com>
 References: <20250321163416.45217-1-thomas.hellstrom@linux.intel.com>
@@ -70,343 +70,299 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Don't rely on CONFIG_DRM_GPUSVM because other drivers may enable it
-causing us to compile in SVM support unintentionally.
+On device unbind, migrate exported bos, including pagemap bos to
+system. This allows importers to take proper action without
+disruption. In particular, SVM clients on remote devices may
+continue as if nothing happened, and can chose a different
+placement.
 
-Also take the opportunity to leave more code out of compilation if
-!CONFIG_DRM_XE_GPUSVM and !CONFIG_DRM_XE_DEVMEM_MIRROR
+The evict_flags() placement is chosen in such a way that bos that
+aren't exported are purged.
+
+For pinned bos, we unmap DMA, but their pages are not freed yet
+since we can't be 100% sure they are not accessed.
+
+v2:
+- Address review comments. (Matthew Auld).
 
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/Kconfig           | 16 ++++++-
- drivers/gpu/drm/xe/Makefile          |  2 +-
+ drivers/gpu/drm/xe/xe_bo.c           | 54 ++++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_bo.h           |  2 +
+ drivers/gpu/drm/xe/xe_bo_evict.c     | 62 ++++++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_bo_evict.h     |  1 +
+ drivers/gpu/drm/xe/xe_device.c       |  6 ++-
  drivers/gpu/drm/xe/xe_device_types.h |  6 ++-
- drivers/gpu/drm/xe/xe_migrate.c      |  3 ++
- drivers/gpu/drm/xe/xe_pt.c           |  6 +++
- drivers/gpu/drm/xe/xe_query.c        |  2 +-
- drivers/gpu/drm/xe/xe_svm.c          | 15 ++++++
- drivers/gpu/drm/xe/xe_svm.h          | 72 ++++++++++++++++++++--------
- drivers/gpu/drm/xe/xe_vm.c           |  2 +-
- 9 files changed, 97 insertions(+), 27 deletions(-)
+ 6 files changed, 117 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-index 7d7995196702..aea4240664fa 100644
---- a/drivers/gpu/drm/xe/Kconfig
-+++ b/drivers/gpu/drm/xe/Kconfig
-@@ -39,7 +39,7 @@ config DRM_XE
- 	select DRM_TTM_HELPER
- 	select DRM_EXEC
- 	select DRM_GPUVM
--	select DRM_GPUSVM if !UML && DEVICE_PRIVATE
-+	select DRM_GPUSVM if DRM_XE_GPUSVM
- 	select DRM_SCHED
- 	select MMU_NOTIFIER
- 	select WANT_DEV_COREDUMP
-@@ -74,9 +74,21 @@ config DRM_XE_DP_TUNNEL
- 
- 	  If in doubt say "Y".
- 
-+config DRM_XE_GPUSVM
-+	bool "Enable CPU to GPU address mirroring"
-+	depends on DRM_XE
-+	depends on !UML
-+	default y
-+	select DEVICE_PRIVATE
-+	help
-+	  Enable this option if you want support for CPU to GPU address
-+	  mirroring.
-+
-+	  If in doubut say "Y".
-+
- config DRM_XE_DEVMEM_MIRROR
- 	bool "Enable device memory mirror"
--	depends on DRM_XE
-+	depends on DRM_XE_GPUSVM
- 	select GET_FREE_REGION
- 	default y
- 	help
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index cd464fe26eb8..72eaadc4cbee 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -125,7 +125,7 @@ xe-y += xe_bb.o \
- 	xe_wopcm.o
- 
- xe-$(CONFIG_HMM_MIRROR) += xe_hmm.o
--xe-$(CONFIG_DRM_GPUSVM) += xe_svm.o
-+xe-$(CONFIG_DRM_XE_GPUSVM) += xe_svm.o
- 
- # graphics hardware monitoring (HWMON) support
- xe-$(CONFIG_HWMON) += xe_hwmon.o
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 1334174388af..4472bf849f2b 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -107,6 +107,9 @@ struct xe_vram_region {
- 	resource_size_t actual_physical_size;
- 	/** @mapping: pointer to VRAM mappable space */
- 	void __iomem *mapping;
-+	/** @ttm: VRAM TTM manager */
-+	struct xe_ttm_vram_mgr ttm;
-+#if IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR)
- 	/** @pagemap: Used to remap device memory as ZONE_DEVICE */
- 	struct dev_pagemap pagemap;
- 	/**
-@@ -120,8 +123,7 @@ struct xe_vram_region {
- 	 * This is generated when remap device memory as ZONE_DEVICE
- 	 */
- 	resource_size_t hpa_base;
--	/** @ttm: VRAM TTM manager */
--	struct xe_ttm_vram_mgr ttm;
-+#endif
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 64f9c936eea0..9d043d2c30fd 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -55,6 +55,8 @@ static struct ttm_placement sys_placement = {
+ 	.placement = &sys_placement_flags,
  };
  
- /**
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index df4282c71bf0..d364c9f458e7 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -1544,6 +1544,7 @@ void xe_migrate_wait(struct xe_migrate *m)
- 		dma_fence_wait(m->fence, false);
- }
- 
-+#if IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR)
- static u32 pte_update_cmd_size(u64 size)
- {
- 	u32 num_dword;
-@@ -1719,6 +1720,8 @@ struct dma_fence *xe_migrate_from_vram(struct xe_migrate *m,
- 			       XE_MIGRATE_COPY_TO_SRAM);
- }
- 
-+#endif
++static struct ttm_placement purge_placement;
 +
- #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
- #include "tests/xe_migrate.c"
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index ffaf0d02dc7d..9e719535a3bb 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -1420,6 +1420,7 @@ static int xe_pt_userptr_pre_commit(struct xe_migrate_pt_update *pt_update)
- 	return err;
- }
- 
-+#if IS_ENABLED(CONFIG_DRM_XE_GPUSVM)
- static int xe_pt_svm_pre_commit(struct xe_migrate_pt_update *pt_update)
+ static const struct ttm_place tt_placement_flags[] = {
+ 	{
+ 		.fpfn = 0,
+@@ -281,6 +283,8 @@ int xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
+ static void xe_evict_flags(struct ttm_buffer_object *tbo,
+ 			   struct ttm_placement *placement)
  {
- 	struct xe_vm *vm = pt_update->vops->vm;
-@@ -1453,6 +1454,7 @@ static int xe_pt_svm_pre_commit(struct xe_migrate_pt_update *pt_update)
++	struct xe_device *xe = container_of(tbo->bdev, typeof(*xe), ttm);
++	bool device_unplugged = drm_dev_is_unplugged(&xe->drm);
+ 	struct xe_bo *bo;
  
- 	return 0;
- }
-+#endif
+ 	if (!xe_bo_is_xe_bo(tbo)) {
+@@ -290,7 +294,7 @@ static void xe_evict_flags(struct ttm_buffer_object *tbo,
+ 			return;
+ 		}
  
- struct invalidation_fence {
- 	struct xe_gt_tlb_invalidation_fence base;
-@@ -2257,11 +2259,15 @@ static const struct xe_migrate_pt_update_ops userptr_migrate_ops = {
- 	.pre_commit = xe_pt_userptr_pre_commit,
- };
+-		*placement = sys_placement;
++		*placement = device_unplugged ? purge_placement : sys_placement;
+ 		return;
+ 	}
  
-+#if IS_ENABLED(CONFIG_DRM_XE_GPUSVM)
- static const struct xe_migrate_pt_update_ops svm_migrate_ops = {
- 	.populate = xe_vm_populate_pgtable,
- 	.clear = xe_migrate_clear_pgtable_callback,
- 	.pre_commit = xe_pt_svm_pre_commit,
- };
-+#else
-+static const struct xe_migrate_pt_update_ops svm_migrate_ops;
-+#endif
+@@ -300,6 +304,11 @@ static void xe_evict_flags(struct ttm_buffer_object *tbo,
+ 		return;
+ 	}
  
- /**
-  * xe_pt_update_ops_run() - Run PT update operations
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 5e65830dad25..2dbf4066d86f 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -340,7 +340,7 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
- 	if (xe_device_get_root_tile(xe)->mem.vram.usable_size)
- 		config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
- 			DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM;
--	if (xe->info.has_usm && IS_ENABLED(CONFIG_DRM_GPUSVM))
-+	if (xe->info.has_usm && IS_ENABLED(CONFIG_DRM_XE_GPUSVM))
- 		config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
- 			DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR;
- 	config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 08617a62ab07..52613dd8573a 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -340,6 +340,8 @@ static void xe_svm_garbage_collector_work_func(struct work_struct *w)
- 	up_write(&vm->lock);
- }
- 
-+#if IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR)
++	if (device_unplugged && !tbo->base.dma_buf) {
++		*placement = purge_placement;
++		return;
++	}
 +
- static struct xe_vram_region *page_to_vr(struct page *page)
- {
- 	return container_of(page->pgmap, struct xe_vram_region, pagemap);
-@@ -578,6 +580,8 @@ static const struct drm_gpusvm_devmem_ops gpusvm_devmem_ops = {
- 	.copy_to_ram = xe_svm_copy_to_ram,
- };
+ 	/*
+ 	 * For xe, sg bos that are evicted to system just triggers a
+ 	 * rebind of the sg list upon subsequent validation to XE_PL_TT.
+@@ -657,11 +666,20 @@ static int xe_bo_move_dmabuf(struct ttm_buffer_object *ttm_bo,
+ 	struct xe_ttm_tt *xe_tt = container_of(ttm_bo->ttm, struct xe_ttm_tt,
+ 					       ttm);
+ 	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
++	bool device_unplugged = drm_dev_is_unplugged(&xe->drm);
+ 	struct sg_table *sg;
  
-+#endif
+ 	xe_assert(xe, attach);
+ 	xe_assert(xe, ttm_bo->ttm);
+ 
++	if (device_unplugged && new_res->mem_type == XE_PL_SYSTEM &&
++	    ttm_bo->sg) {
++		dma_resv_wait_timeout(ttm_bo->base.resv, DMA_RESV_USAGE_BOOKKEEP,
++				      false, MAX_SCHEDULE_TIMEOUT);
++		dma_buf_unmap_attachment(attach, ttm_bo->sg, DMA_BIDIRECTIONAL);
++		ttm_bo->sg = NULL;
++	}
 +
- static const struct drm_gpusvm_ops gpusvm_ops = {
- 	.range_alloc = xe_svm_range_alloc,
- 	.range_free = xe_svm_range_free,
-@@ -651,6 +655,7 @@ static bool xe_svm_range_is_valid(struct xe_svm_range *range,
- 	return (range->tile_present & ~range->tile_invalidated) & BIT(tile->id);
+ 	if (new_res->mem_type == XE_PL_SYSTEM)
+ 		goto out;
+ 
+@@ -1224,6 +1242,31 @@ int xe_bo_restore_pinned(struct xe_bo *bo)
+ 	return ret;
  }
  
-+#if IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR)
- static struct xe_vram_region *tile_to_vr(struct xe_tile *tile)
- {
- 	return &tile->mem.vram;
-@@ -709,6 +714,15 @@ static int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
- 
- 	return err;
- }
-+#else
-+static int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
-+			     struct xe_svm_range *range,
-+			     const struct drm_gpusvm_ctx *ctx)
++int xe_bo_dma_unmap_pinned(struct xe_bo *bo)
 +{
-+	return -EOPNOTSUPP;
++	struct ttm_buffer_object *ttm_bo = &bo->ttm;
++	struct ttm_tt *tt = ttm_bo->ttm;
++
++	if (tt) {
++		struct xe_ttm_tt *xe_tt = container_of(tt, typeof(*xe_tt), ttm);
++
++		if (ttm_bo->type == ttm_bo_type_sg && ttm_bo->sg) {
++			dma_buf_unmap_attachment(ttm_bo->base.import_attach,
++						 ttm_bo->sg,
++						 DMA_BIDIRECTIONAL);
++			ttm_bo->sg = NULL;
++			xe_tt->sg = NULL;
++		} else if (xe_tt->sg) {
++			dma_unmap_sgtable(xe_tt->xe->drm.dev, xe_tt->sg,
++					  DMA_BIDIRECTIONAL, 0);
++			sg_free_table(xe_tt->sg);
++			xe_tt->sg = NULL;
++		}
++	}
++
++	return 0;
 +}
-+#endif
 +
+ static unsigned long xe_ttm_io_mem_pfn(struct ttm_buffer_object *ttm_bo,
+ 				       unsigned long page_offset)
+ {
+@@ -2102,12 +2145,9 @@ int xe_bo_pin_external(struct xe_bo *bo)
+ 		if (err)
+ 			return err;
  
- /**
-  * xe_svm_handle_pagefault() - SVM handle page fault
-@@ -867,6 +881,7 @@ int xe_svm_bo_evict(struct xe_bo *bo)
+-		if (xe_bo_is_vram(bo)) {
+-			spin_lock(&xe->pinned.lock);
+-			list_add_tail(&bo->pinned_link,
+-				      &xe->pinned.external_vram);
+-			spin_unlock(&xe->pinned.lock);
+-		}
++		spin_lock(&xe->pinned.lock);
++		list_add_tail(&bo->pinned_link, &xe->pinned.external);
++		spin_unlock(&xe->pinned.lock);
+ 	}
+ 
+ 	ttm_bo_pin(&bo->ttm);
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index ec3e4446d027..05479240bf75 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -276,6 +276,8 @@ int xe_bo_evict(struct xe_bo *bo, bool force_alloc);
+ int xe_bo_evict_pinned(struct xe_bo *bo);
+ int xe_bo_restore_pinned(struct xe_bo *bo);
+ 
++int xe_bo_dma_unmap_pinned(struct xe_bo *bo);
++
+ extern const struct ttm_device_funcs xe_ttm_funcs;
+ extern const char *const xe_mem_type_to_name[];
+ 
+diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c b/drivers/gpu/drm/xe/xe_bo_evict.c
+index 1eeb3910450b..ba0260900868 100644
+--- a/drivers/gpu/drm/xe/xe_bo_evict.c
++++ b/drivers/gpu/drm/xe/xe_bo_evict.c
+@@ -93,8 +93,8 @@ int xe_bo_evict_all(struct xe_device *xe)
+ 		}
+ 	}
+ 
+-	ret = xe_bo_apply_to_pinned(xe, &xe->pinned.external_vram,
+-				    &xe->pinned.external_vram,
++	ret = xe_bo_apply_to_pinned(xe, &xe->pinned.external,
++				    &xe->pinned.external_evicted,
+ 				    xe_bo_evict_pinned);
+ 
+ 	/*
+@@ -181,8 +181,8 @@ int xe_bo_restore_user(struct xe_device *xe)
+ 		return 0;
+ 
+ 	/* Pinned user memory in VRAM should be validated on resume */
+-	ret = xe_bo_apply_to_pinned(xe, &xe->pinned.external_vram,
+-				    &xe->pinned.external_vram,
++	ret = xe_bo_apply_to_pinned(xe, &xe->pinned.external_evicted,
++				    &xe->pinned.external,
+ 				    xe_bo_restore_pinned);
+ 
+ 	/* Wait for restore to complete */
+@@ -191,3 +191,57 @@ int xe_bo_restore_user(struct xe_device *xe)
+ 
+ 	return ret;
  }
- 
- #if IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR)
 +
- static struct drm_pagemap_device_addr
- xe_drm_pagemap_device_map(struct drm_pagemap *dpagemap,
- 			  struct device *dev,
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index 93442738666e..ce7660c2e41d 100644
---- a/drivers/gpu/drm/xe/xe_svm.h
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -6,6 +6,8 @@
- #ifndef _XE_SVM_H_
- #define _XE_SVM_H_
- 
-+#if IS_ENABLED(CONFIG_DRM_XE_GPUSVM)
++static void xe_bo_pci_dev_remove_pinned(struct xe_device *xe)
++{
++	struct xe_tile *tile;
++	unsigned int id;
 +
- #include <drm/drm_pagemap.h>
- #include <drm/drm_gpusvm.h>
- 
-@@ -44,7 +46,6 @@ struct xe_svm_range {
- 	u8 skip_migrate	:1;
- };
- 
--#if IS_ENABLED(CONFIG_DRM_GPUSVM)
- /**
-  * xe_svm_range_pages_valid() - SVM range pages valid
-  * @range: SVM range
-@@ -73,7 +74,49 @@ bool xe_svm_has_mapping(struct xe_vm *vm, u64 start, u64 end);
- int xe_svm_bo_evict(struct xe_bo *bo);
- 
- void xe_svm_range_debug(struct xe_svm_range *range, const char *operation);
++	(void) xe_bo_apply_to_pinned(xe, &xe->pinned.external,
++				     &xe->pinned.external,
++				     xe_bo_dma_unmap_pinned);
++	for_each_tile(tile, xe, id)
++		xe_tile_migrate_wait(tile);
++
++	(void) xe_bo_apply_to_pinned(xe, &xe->pinned.kernel_bo_present,
++				    &xe->pinned.kernel_bo_present,
++				    xe_bo_dma_unmap_pinned);
++
++}
++
++
 +
 +/**
-+ * xe_svm_range_has_dma_mapping() - SVM range has DMA mapping
-+ * @range: SVM range
++ * xe_bo_pci_dev_remove_all() - Handle bos when the pci_device is about to be removed
++ * @xe: The xe device.
 + *
-+ * Return: True if SVM range has a DMA mapping, False otherwise
++ * On pci_device removal we need to drop all dma mappings and move
++ * the data of exported bos out to system. This includes SVM bos and
++ * exported dma-buf bos. This is done by evicting all bos, but
++ * the evict placement in xe_evict_flags() is chosen such that all
++ * bos except those mentioned are purged, and thus their memory
++ * is released.
++ *
++ * For pinned bos, we're unmapping dma.
 + */
-+static inline bool xe_svm_range_has_dma_mapping(struct xe_svm_range *range)
++void xe_bo_pci_dev_remove_all(struct xe_device *xe)
 +{
-+	lockdep_assert_held(&range->base.gpusvm->notifier_lock);
-+	return range->base.flags.has_dma_mapping;
++	unsigned int mem_type;
++
++	/*
++	 * Move pagemap bos and exported dma-buf to system, and
++	 * purge everything else.
++	 */
++	for (mem_type = XE_PL_VRAM1; mem_type >= XE_PL_TT; --mem_type) {
++		struct ttm_resource_manager *man =
++			ttm_manager_type(&xe->ttm, mem_type);
++
++		if (man) {
++			int ret = ttm_resource_manager_evict_all(&xe->ttm, man);
++
++			drm_WARN_ON(&xe->drm, ret);
++		}
++	}
++
++	xe_bo_pci_dev_remove_pinned(xe);
 +}
-+
-+#define xe_svm_assert_in_notifier(vm__) \
-+	lockdep_assert_held_write(&(vm__)->svm.gpusvm.notifier_lock)
-+
-+#define xe_svm_notifier_lock(vm__)	\
-+	drm_gpusvm_notifier_lock(&(vm__)->svm.gpusvm)
-+
-+#define xe_svm_notifier_unlock(vm__)	\
-+	drm_gpusvm_notifier_unlock(&(vm__)->svm.gpusvm)
-+
- #else
-+#include <linux/interval_tree.h>
-+
-+struct drm_pagemap_device_addr;
-+struct xe_bo;
-+struct xe_vm;
-+struct xe_vma;
-+struct xe_tile;
-+struct xe_vram_region;
-+
-+#define XE_INTERCONNECT_VRAM 1
-+
-+struct xe_svm_range {
-+	struct {
-+		struct interval_tree_node itree;
-+		const struct drm_pagemap_device_addr *dma_addr;
-+	} base;
-+	u32 tile_present;
-+	u32 tile_invalidated;
-+};
-+
- static inline bool xe_svm_range_pages_valid(struct xe_svm_range *range)
- {
- 	return false;
-@@ -125,27 +168,16 @@ static inline
- void xe_svm_range_debug(struct xe_svm_range *range, const char *operation)
- {
- }
--#endif
+diff --git a/drivers/gpu/drm/xe/xe_bo_evict.h b/drivers/gpu/drm/xe/xe_bo_evict.h
+index 746894798852..0f06140163d6 100644
+--- a/drivers/gpu/drm/xe/xe_bo_evict.h
++++ b/drivers/gpu/drm/xe/xe_bo_evict.h
+@@ -12,4 +12,5 @@ int xe_bo_evict_all(struct xe_device *xe);
+ int xe_bo_restore_kernel(struct xe_device *xe);
+ int xe_bo_restore_user(struct xe_device *xe);
  
--/**
-- * xe_svm_range_has_dma_mapping() - SVM range has DMA mapping
-- * @range: SVM range
-- *
-- * Return: True if SVM range has a DMA mapping, False otherwise
-- */
--static inline bool xe_svm_range_has_dma_mapping(struct xe_svm_range *range)
-+#define xe_svm_assert_in_notifier(...) do {} while (0)
-+#define xe_svm_range_has_dma_mapping(...) false
-+
-+static inline void xe_svm_notifier_lock(struct xe_vm *vm)
- {
--	lockdep_assert_held(&range->base.gpusvm->notifier_lock);
--	return range->base.flags.has_dma_mapping;
- }
- 
--#define xe_svm_assert_in_notifier(vm__) \
--	lockdep_assert_held_write(&(vm__)->svm.gpusvm.notifier_lock)
--
--#define xe_svm_notifier_lock(vm__)	\
--	drm_gpusvm_notifier_lock(&(vm__)->svm.gpusvm)
--
--#define xe_svm_notifier_unlock(vm__)	\
--	drm_gpusvm_notifier_unlock(&(vm__)->svm.gpusvm)
--
-+static inline void xe_svm_notifier_unlock(struct xe_vm *vm)
-+{
-+}
-+#endif
++void xe_bo_pci_dev_remove_all(struct xe_device *xe);
  #endif
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 60303998bd61..07c4992fb3d7 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3109,7 +3109,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index b2f656b2a563..739861edcd30 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -23,6 +23,7 @@
+ #include "regs/xe_gt_regs.h"
+ #include "regs/xe_regs.h"
+ #include "xe_bo.h"
++#include "xe_bo_evict.h"
+ #include "xe_debugfs.h"
+ #include "xe_devcoredump.h"
+ #include "xe_dma_buf.h"
+@@ -468,8 +469,9 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
  
- 		if (XE_IOCTL_DBG(xe, is_cpu_addr_mirror &&
- 				 (!xe_vm_in_fault_mode(vm) ||
--				 !IS_ENABLED(CONFIG_DRM_GPUSVM)))) {
-+				 !IS_ENABLED(CONFIG_DRM_XE_GPUSVM)))) {
- 			err = -EINVAL;
- 			goto free_bind_ops;
- 		}
+ 	spin_lock_init(&xe->pinned.lock);
+ 	INIT_LIST_HEAD(&xe->pinned.kernel_bo_present);
+-	INIT_LIST_HEAD(&xe->pinned.external_vram);
++	INIT_LIST_HEAD(&xe->pinned.external);
+ 	INIT_LIST_HEAD(&xe->pinned.evicted);
++	INIT_LIST_HEAD(&xe->pinned.external_evicted);
+ 
+ 	xe->preempt_fence_wq = alloc_ordered_workqueue("xe-preempt-fence-wq",
+ 						       WQ_MEM_RECLAIM);
+@@ -925,6 +927,8 @@ void xe_device_remove(struct xe_device *xe)
+ 	xe_display_unregister(xe);
+ 
+ 	drm_dev_unplug(&xe->drm);
++
++	xe_bo_pci_dev_remove_all(xe);
+ }
+ 
+ void xe_device_shutdown(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 4472bf849f2b..aa83ba414301 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -426,8 +426,10 @@ struct xe_device {
+ 		struct list_head kernel_bo_present;
+ 		/** @pinned.evicted: pinned BO that have been evicted */
+ 		struct list_head evicted;
+-		/** @pinned.external_vram: pinned external BO in vram*/
+-		struct list_head external_vram;
++		/** @pinned.external: pinned external and dma-buf. */
++		struct list_head external;
++		/** @pinned.external: evicted pinned external and dma-buf. */
++		struct list_head external_evicted;
+ 	} pinned;
+ 
+ 	/** @ufence_wq: user fence wait queue */
 -- 
 2.48.1
 
