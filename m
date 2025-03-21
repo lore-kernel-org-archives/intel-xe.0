@@ -4,60 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9073BC36002
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Mar 2025 11:37:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB99EC36000
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Mar 2025 11:38:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5553610E7B2;
-	Fri, 21 Mar 2025 11:37:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FEFB10E798;
+	Fri, 21 Mar 2025 11:38:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FJyqB89q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dYZ1qZ9Z";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9E9B10E7AF;
- Fri, 21 Mar 2025 11:37:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F68010E7AA;
+ Fri, 21 Mar 2025 11:38:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742557061; x=1774093061;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=b/APuZfxWzTvLs3f5u+4RB4Su7WMumMjSeDrutu4+jk=;
- b=FJyqB89qb6CeCT/U/WJ07rUd1JC2NBgboJHfasOYReKwSBrmqATm51pp
- eWD9UlOSQ9WqwhN3n0Vz+3w5D0yuatd6BGpYsIXmLch0Vo+E66UPwjVWV
- dEBdUwRzPMoB47qkNPOzVWViaRku1xm8EpAjlWQF7CSG2QecbG3LQH0Q6
- v6Z82/i4tMcbaNXl3n+J5hDHtGaTAR3Wv1EY8WGKmrAPCVzfO4egq2Fjy
- wQ/eaoBM0lsxvQgztk8SWemw7Z9B97w7Tm7PAgghc6VYM+dMCKBucCD+6
- CYvAbzMUhp1UKyqaCW9NXIXmH+sx2XBBxLEmFsuWp5dprEqidL34q8qe7 w==;
-X-CSE-ConnectionGUID: Ay4BABEVRfK9sXQmNs51Cg==
-X-CSE-MsgGUID: 01vrdfjqRH6xtC8HHrn91w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11379"; a="42984399"
-X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="42984399"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 04:37:40 -0700
-X-CSE-ConnectionGUID: irwPoNn2SIqrWW7RM2bw0g==
-X-CSE-MsgGUID: 9ZBDOWUJSwKJawASbW/EtA==
+ t=1742557123; x=1774093123;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=nvOq4bbLIjpeXgQGC1cD5+uhhQgSRa325FofwP4zqOs=;
+ b=dYZ1qZ9ZzE3+pEzNYVrlnqIVs0ocV4K8g04CqlAxrqtcFZe/sEVEZ4eT
+ qqMFKwlkLSJm8QS06Uz76LyZxybKitFZLECIGVBUvbbV6Qkk9U0A/yjHI
+ p7p+YPRjhBy4X3CzNbRwKXqfMIbXiZxAN8ZuBV7ah4x3IUGSTPWhSqvmj
+ RB8VdlZVOp6wXG2E3ToymPItXQ5CpOq43b/8x8xujG+z5/YTwwIp0/yPg
+ EC6X7GKDU68anbW522ZfDxvhtI1IraETEez271CRmquKEeE/K5gilNIxv
+ G4kFeL1iK6n4q7WXZZPdG8ts/m4z67V0qxVdvuFdOtOfjtzIDfM5/EEDN A==;
+X-CSE-ConnectionGUID: Rt0ifWMmQ+mFSJWuwvbjUw==
+X-CSE-MsgGUID: EAdaKyA1SDeqZGIEbGj9Jw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11379"; a="61216877"
+X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="61216877"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2025 04:38:42 -0700
+X-CSE-ConnectionGUID: 6qjPaeOxSrahejBaXrjTvg==
+X-CSE-MsgGUID: qlLDwezPSbCMo/3GUOFNrg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="123083197"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.245.56])
- ([10.245.245.56])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 04:37:39 -0700
-Message-ID: <ecdf304f-437e-4a9b-b165-37570a81b158@intel.com>
-Date: Fri, 21 Mar 2025 11:37:37 +0000
+X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="128206549"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2025 04:38:40 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@linux.intel.com,
+	uma.shankar@intel.com
+Subject: [PATCH 0/4] Implement Wa_14021768792 to bypass m_n ratio limit
+Date: Fri, 21 Mar 2025 16:56:46 +0530
+Message-ID: <20250321112650.3594298-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/7] drm/gpusvm: mark pages as dirty
-To: Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20250320172956.168358-9-matthew.auld@intel.com>
- <20250320172956.168358-12-matthew.auld@intel.com>
- <df6221a54416141166f98a6eebc495c472bacfe9.camel@linux.intel.com>
- <Z9xtgs/2etNDxStw@lstrano-desk.jf.intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <Z9xtgs/2etNDxStw@lstrano-desk.jf.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,81 +66,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 20/03/2025 19:33, Matthew Brost wrote:
-> On Thu, Mar 20, 2025 at 08:29:42PM +0100, Thomas Hellström wrote:
->> On Thu, 2025-03-20 at 17:30 +0000, Matthew Auld wrote:
->>> If the memory is going to be accessed by the device, make sure we
->>> mark
->>> the pages accordingly such that the kernel knows this. This aligns
->>> with
->>> the xe-userptr code.
->>>
->>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>> Cc: Matthew Brost <matthew.brost@intel.com>
->>> ---
->>>   drivers/gpu/drm/drm_gpusvm.c | 9 +++++++++
->>>   1 file changed, 9 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/drm_gpusvm.c
->>> b/drivers/gpu/drm/drm_gpusvm.c
->>> index 7f1cf5492bba..5b4ecd36dff1 100644
->>> --- a/drivers/gpu/drm/drm_gpusvm.c
->>> +++ b/drivers/gpu/drm/drm_gpusvm.c
->>> @@ -1471,6 +1471,7 @@ int drm_gpusvm_range_get_pages(struct
->>> drm_gpusvm *gpusvm,
->>>   			pages[i] = page;
->>>   		} else {
->>>   			dma_addr_t addr;
->>> +			unsigned int k;
->>>   
->>>   			if (is_zone_device_page(page) || zdd) {
->>>   				err = -EOPNOTSUPP;
->>> @@ -1489,6 +1490,14 @@ int drm_gpusvm_range_get_pages(struct
->>> drm_gpusvm *gpusvm,
->>>   			range->dma_addr[j] =
->>> drm_pagemap_device_addr_encode
->>>   				(addr, DRM_INTERCONNECT_SYSTEM,
->>> order,
->>>   				 dma_dir);
->>> +
->>> +			for (k = 0; k < 1u << order; k++) {
->>> +				if (!ctx->read_only)
->>> +					set_page_dirty_lock(page);
->>> +
->>> +				mark_page_accessed(page);
->>> +				page++;
->>> +			}
->>
->> Actually I think the userptr code did this unnecessarily. This is done
->> in the CPU page-fault handler, which means it's taken care of during
->> hmm_range_fault(). Now if the CPU PTE happens to be present and
->> writeable there will be no fault, but that was done when the page was
->> faulted in anyway.
->>
->> If there was a page cleaning event in between so the dirty flag was
->> dropped, then my understanding is that in addition to an invalidation
->> notifier, also the CPU PTE is zapped, so that it will be dirtied again
->> on the next write access, either by the CPU faulting the page or
->> hmm_range_fault() if there is a GPU page-fault.
->>
->> So I think we're good without this patch.
->>
-> 
-> I was going to suggest the same thing as Thomas - we are good without
-> this patch for the reasons he states.
+For Platforms that support higher link rates, there is a limitation on
+Link M /Link N ratio.
+If the CEILING( Link M / Link N ) ratio is greater than 10.0, then
+hardware cannot support the given resolution / refresh rate at the given
+configuration.
+For BMG Wa_14021768792 helps to bypass this limitation and allows it to
+support the ratio till 15.0.
 
-Ah, will drop this then. Thanks.
+This series adds the missing restrictions for earlier platforms and adds
+the Wa_14021768792 for BMG as per Bspec:49266
 
-> 
-> Matt
-> 
->> /Thomas
->>
->>
->>
->>>   		}
->>>   		i += 1 << order;
->>>   		num_dma_mapped = i;
->>
+Rev2:
+-Drop new member link_n_extended.
+-Avoid WA framework for XE
+
+Rev3:
+-Refactor to just add the extended link_n just before writing and scrub
+it just after read.
+
+Rev4:
+-Rebase
+
+Ankit Nautiyal (4):
+  Add bits for link_n_exended for DISPLAY >= 14
+  drm/i915/display: Limit m/n ratio to 10 for display > 12
+  drm/i915/display: Add bits for Wa_14021768792 for linkm/n ratio > 10
+  drm/i915/display: Implement Wa_14021768792 for BMG DP for link_m/n
+    ratio > 10
+
+ drivers/gpu/drm/i915/display/intel_display.c  | 160 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_display.h  |  12 +-
+ .../drm/i915/display/intel_display_types.h    |   2 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |  66 ++++++--
+ drivers/gpu/drm/i915/display/intel_dp.h       |   4 +
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |  35 ++--
+ drivers/gpu/drm/i915/display/intel_fdi.c      |  14 +-
+ drivers/gpu/drm/i915/i915_reg.h               |   7 +
+ 8 files changed, 255 insertions(+), 45 deletions(-)
+
+-- 
+2.45.2
 
