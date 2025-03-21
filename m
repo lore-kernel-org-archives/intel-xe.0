@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E63A7C36000
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Mar 2025 12:41:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8D02C36000
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Mar 2025 12:51:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 901C610E7BC;
-	Fri, 21 Mar 2025 12:41:09 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ec7ew6+t";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6F5410E7BC;
- Fri, 21 Mar 2025 12:41:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742560869; x=1774096869;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=Y2846tBuL2mWBVQlc560xA5UiYRZ8PX5caGQUYX3m5o=;
- b=Ec7ew6+tIevrsYQPXqDnjx+zMHZXHqiLEmkUXpqb0KvfwqCdRgUuFIkX
- lUJCiuKCbt0grkxgyzjVHCFppxvffECa2U5Oiy7CruyzEPPo9WLu8L4xu
- JSa8JjyADZiT8f6HXetnssd6Go7pYBN5IRvIaT2dos0V/kyj0JwdDNnQl
- jIwSn8FZJU9psg3sHxpjjcxta1zzxzqv4SVv9hKN/teQtr6vziQESY93x
- ocVCjjdBnXe/2wAc5ZH/A3d6NL7NMfvomMNxKBTDQRsxuo2Rmcoo+FQEb
- +LvfWvRAQEpJx06dtd6Ybja0MHxya11qMgJVWYCrAKGCFCwt7Wjj621Q6 A==;
-X-CSE-ConnectionGUID: 1aHRvC9sRsaaGAFR51pZBg==
-X-CSE-MsgGUID: gHlbvb50StWyxP9SXYmS5A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11380"; a="31416198"
-X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="31416198"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 05:41:08 -0700
-X-CSE-ConnectionGUID: xnWMy0feS82fNJIl+FCjBw==
-X-CSE-MsgGUID: OaH24dpNSFmCPYM51NjsrA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="128502379"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.201])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 05:41:05 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>, Yue Haibing
- <yuehaibing@huawei.com>, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
- simona@ffwll.ch, dev@lankhorst.se
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH -next] drm/i915/display: Fix build error without
- DRM_FBDEV_EMULATION
-In-Reply-To: <12145722-609e-41d0-b02b-059df5b6d17f@suse.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250315120143.2344958-1-yuehaibing@huawei.com>
- <12145722-609e-41d0-b02b-059df5b6d17f@suse.de>
-Date: Fri, 21 Mar 2025 14:41:02 +0200
-Message-ID: <87y0wyblpd.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D3F710E0BC;
+	Fri, 21 Mar 2025 12:51:17 +0000 (UTC)
+Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F17610E0BC;
+ Fri, 21 Mar 2025 12:51:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_Implement_Wa=5F14021768792_to_?=
+ =?utf-8?q?bypass_m=5Fn_ratio_limit_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 21 Mar 2025 12:51:16 -0000
+Message-ID: <174256147630.64511.17873026007009611972@18a75f3d1eae>
+X-Patchwork-Hint: ignore
+References: <20250321112650.3594298-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250321112650.3594298-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,59 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 17 Mar 2025, Thomas Zimmermann <tzimmermann@suse.de> wrote:
-> Am 15.03.25 um 13:01 schrieb Yue Haibing:
->> In file included from <command-line>:
->> ./drivers/gpu/drm/i915/display/intel_fbdev.h: In function =E2=80=98intel=
-_fbdev_framebuffer=E2=80=99:
->> ./drivers/gpu/drm/i915/display/intel_fbdev.h:32:16: error: =E2=80=98NULL=
-=E2=80=99 undeclared (first use in this function)
->>     32 |         return NULL;
->>        |                ^~~~
->> ./drivers/gpu/drm/i915/display/intel_fbdev.h:1:1: note: =E2=80=98NULL=E2=
-=80=99 is defined in header =E2=80=98<stddef.h>=E2=80=99; did you forget to=
- =E2=80=98#include <stddef.h>=E2=80=99?
->>    +++ |+#include <stddef.h>
->>      1 | /* SPDX-License-Identifier: MIT */
->> ./drivers/gpu/drm/i915/display/intel_fbdev.h:32:16: note: each undeclare=
-d identifier is reported only once for each function it appears in
->>     32 |         return NULL;
->>        |                ^~~~
->>
->> Build fails if CONFIG_DRM_FBDEV_EMULATION is n, add missing header file.
->>
->> Fixes: 9fa154f40eb6 ("drm/{i915,xe}: Run DRM default client setup")
->> Signed-off-by: Yue Haibing <yuehaibing@huawei.com>
->
-> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+== Series Details ==
 
-Merged to drm-intel-next, thanks for the patch and ack.
+Series: Implement Wa_14021768792 to bypass m_n ratio limit (rev4)
+URL   : https://patchwork.freedesktop.org/series/138256/
+State : success
 
-BR,
-Jani.
+== Summary ==
 
->
->> ---
->>   drivers/gpu/drm/i915/display/intel_fbdev.h | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h b/drivers/gpu/dr=
-m/i915/display/intel_fbdev.h
->> index ca2c8c438f02..89bad3a2b01a 100644
->> --- a/drivers/gpu/drm/i915/display/intel_fbdev.h
->> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
->> @@ -6,6 +6,8 @@
->>   #ifndef __INTEL_FBDEV_H__
->>   #define __INTEL_FBDEV_H__
->>=20=20=20
->> +#include <linux/types.h>
->> +
->>   struct drm_fb_helper;
->>   struct drm_fb_helper_surface_size;
->>   struct drm_i915_private;
+lib/modules/6.14.0-rc7-xe+/kernel/arch/x86/events/amd/
+lib/modules/6.14.0-rc7-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
+lib/modules/6.14.0-rc7-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.14.0-rc7-xe+/kernel/arch/x86/kvm/
+lib/modules/6.14.0-rc7-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.14.0-rc7-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.14.0-rc7-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.14.0-rc7-xe+/kernel/kernel/
+lib/modules/6.14.0-rc7-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/zstd.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/xctr.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/authenc.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/sm3.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/cmac.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/essiv.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/ccm.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/wp512.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/lrw.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/842.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/md4.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/lz4.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/sm4.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/async_tx/
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.14.0-rc7-xe+/kernel/block/
+lib/modules/6.14.0-rc7-xe+/kernel/block/bfq.ko
+lib/modules/6.14.0-rc7-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.14.0-rc7-xe+/build
+lib/modules/6.14.0-rc7-xe+/modules.alias.bin
+lib/modules/6.14.0-rc7-xe+/modules.builtin
+lib/modules/6.14.0-rc7-xe+/modules.softdep
+lib/modules/6.14.0-rc7-xe+/modules.alias
+lib/modules/6.14.0-rc7-xe+/modules.order
+lib/modules/6.14.0-rc7-xe+/modules.symbols
+lib/modules/6.14.0-rc7-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1742561464:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1742561464:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
---=20
-Jani Nikula, Intel
+
