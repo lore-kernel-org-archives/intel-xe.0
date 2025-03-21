@@ -4,54 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D345C36002
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Mar 2025 17:49:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CA85C36000
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Mar 2025 18:00:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E72F210E7FD;
-	Fri, 21 Mar 2025 17:49:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 620C810E80F;
+	Fri, 21 Mar 2025 18:00:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CV7l5fEt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ikxzVaVX";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FC0810E7FD
- for <intel-xe@lists.freedesktop.org>; Fri, 21 Mar 2025 17:49:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2628610E805;
+ Fri, 21 Mar 2025 18:00:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742579372; x=1774115372;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=18GztC3Rp7AiuWcHmws0TzgyyAJ5MrP0DwFQ7umiouM=;
- b=CV7l5fEtknNjkPzj78e8VzCCfocPIdXNrp7/aiGtyKfUGBKA8JktgtDx
- MQ88la0MSyHPFRBryI1nDqQ6iiB0E/Yp2UJEF7dIkWnt4DziA7EMZF6/9
- 4+wu+Ed3KtpWO04tvq/w00dP6JENQA0Iw1EofnTIZXX8d+pqVHjSRCegK
- +O2lo3vOWvCEZ2u/1OB16GZZQqhGTsXlrM67u8OGnNKmirSulQkhuY6Wr
- /EJEqu18aODF54/DwYKDSvERGyYF9JTh0ZLDW4U9x00SRdorrt916eL4X
- 473Oz742oupXbdxBA8ufpZpnZmUThvDTAvlARfUw6YbfFkVWH0QBw9pza A==;
-X-CSE-ConnectionGUID: xhy1052cQumoOOjQqj8GFA==
-X-CSE-MsgGUID: xDXRIizZT6mVp4Uw39tyqw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11380"; a="43018469"
-X-IronPort-AV: E=Sophos;i="6.14,265,1736841600"; d="scan'208";a="43018469"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 10:49:14 -0700
-X-CSE-ConnectionGUID: g9rKkXPSSG+BN7jLVslreg==
-X-CSE-MsgGUID: gQAXe2XfT+Kxp61WpYEBdw==
+ t=1742580033; x=1774116033;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=itiWddLL8sQhM0XEDUMsVj43Bi7N5zoHdwy6NqFzsgk=;
+ b=ikxzVaVXcZuTR/BeoChX6rlcItHdPvVU7YhTqPqG4RJRRX3Fqks3IjWO
+ LuWcSzjFYJ/9+wmhSOqRRnInW1TKz87T6p/LOjV8EbEIaXycIYKbA40X8
+ hgoX1wGBD20wvWvLQiZM8vxtYHED0vFjLye1xWSCXBMKUVLpoULEIjL2P
+ 1WK99kKh0VTR3VUmEqn2pw6F6xe96sgzLTAehWYwO00ltdLCMgDJoblIR
+ a273t+kKnpZ/G6cOtV23BGAwDmhq3Ve/cr5Ad2leQOy90zoGLLcWv0/Ja
+ YRLrQQPzqk4zhIfwbfHkkGucTR60MuaJ6y7kmbJenH1uEnJ5zWhPNn/fD w==;
+X-CSE-ConnectionGUID: Ou5jE9gRRym2GJzd7YLYfw==
+X-CSE-MsgGUID: 9B8tUGHKTpSK+6xmI8K/Ug==
+X-IronPort-AV: E=McAfee;i="6700,10204,11380"; a="44016356"
+X-IronPort-AV: E=Sophos;i="6.14,265,1736841600"; d="scan'208";a="44016356"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2025 11:00:33 -0700
+X-CSE-ConnectionGUID: ct47r/8cSOeK4ORuucNKow==
+X-CSE-MsgGUID: PuMfdrGkSba+n+kB8LHzNw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,265,1736841600"; d="scan'208";a="154466754"
-Received: from lkp-server02.sh.intel.com (HELO e98e3655d6d2) ([10.239.97.151])
- by fmviesa001.fm.intel.com with ESMTP; 21 Mar 2025 10:49:12 -0700
-Received: from kbuild by e98e3655d6d2 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1tvgUY-0001Ys-1K;
- Fri, 21 Mar 2025 17:49:10 +0000
-Date: Sat, 22 Mar 2025 01:49:01 +0800
-From: kernel test robot <lkp@intel.com>
-To: "Thomas =?utf-8?Q?Hellstr=C3=B6m"?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
- 50af7cab7520e46680cf4633bba6801443b75856
-Message-ID: <202503220154.Bek7hNsV-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-IronPort-AV: E=Sophos;i="6.14,265,1736841600"; d="scan'208";a="128687391"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orviesa005.jf.intel.com with SMTP; 21 Mar 2025 11:00:30 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 21 Mar 2025 20:00:29 +0200
+Date: Fri, 21 Mar 2025 20:00:29 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 2/3] drm/i915/dp_mst: Fix side-band message timeouts due
+ to long PPS delays
+Message-ID: <Z92pPajId5OECQR7@intel.com>
+References: <20250321145626.94101-1-imre.deak@intel.com>
+ <20250321145626.94101-3-imre.deak@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250321145626.94101-3-imre.deak@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,101 +71,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
-branch HEAD: 50af7cab7520e46680cf4633bba6801443b75856  drm/xe: Fix exporting xe buffers multiple times
+On Fri, Mar 21, 2025 at 04:56:25PM +0200, Imre Deak wrote:
+> The Panel Power Sequencer lock held on an eDP port (a) blocks a DP AUX
+> transfer on another port (b), since the PPS lock is device global, thus
+> shared by all ports. The PPS lock can be held on port (a) for a longer
+> period due to the various PPS delays (panel/backlight on/off,
+> power-cycle delays). This in turn can cause an MST down-message request
+> on port (b) time out, if the above PPS delay defers the handling of the
+> reply to the request by more than 100ms: the MST branch device sending
+> the reply (signaling this via the DP_DOWN_REP_MSG_RDY flag in the
+> DP_DEVICE_SERVICE_IRQ_VECTOR DPCD register) may cancel the reply
+> (clearing DP_DOWN_REP_MSG_RDY and the reply message buffer) after 110
+> ms, if the reply is not processed by that time.
+> 
+> Avoid MST down-message timeouts described above, by locking the PPS
+> state for AUX transfers only if this is actually required: on eDP ports,
+> where the VDD power depends on the PPS state and on all DP and eDP ports
+> on VLV/CHV, where the PPS is a pipe instance and hence a modeset on any
+> port possibly affecting the PPS state.
+> 
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_pps.c | 34 ++++++++++++++++++++++++
+>  1 file changed, 34 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+> index 3c078fd53fbfa..7d7157983f25e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pps.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
+> @@ -26,6 +26,11 @@ static void vlv_steal_power_sequencer(struct intel_display *display,
+>  static void pps_init_delays(struct intel_dp *intel_dp);
+>  static void pps_init_registers(struct intel_dp *intel_dp, bool force_disable_vdd);
+>  
+> +static bool intel_pps_is_pipe_instance(struct intel_display *display)
+> +{
+> +	return display->platform.valleyview || display->platform.cherryview;
+> +}
+> +
+>  static const char *pps_name(struct intel_dp *intel_dp)
+>  {
+>  	struct intel_display *display = to_intel_display(intel_dp);
+> @@ -955,10 +960,32 @@ void intel_pps_vdd_off(struct intel_dp *intel_dp)
+>  		intel_pps_vdd_off_unlocked(intel_dp, false);
+>  }
+>  
+> +static bool aux_needs_pps_lock(struct intel_dp *intel_dp)
+> +{
+> +	struct intel_display *display = to_intel_display(intel_dp);
+> +
+> +	/*
+> +	 * The PPS state needs to be locked for:
+> +	 * - eDP on all platforms, since AUX transfers on eDP need VDD power
+> +	 *   (either forced or via panel power) which depends on the PPS
+> +	 *   state.
+> +	 * - non-eDP on platforms where the PPS is a pipe instance (VLV/CHV),
+> +	 *   since changing the PPS state (via a parallel modeset for
+> +	 *   instance) may interfere with the AUX transfers on a non-eDP
+> +	 *   output as well.
+> +	 */
+> +	return intel_dp_is_edp(intel_dp) || intel_pps_is_pipe_instance(display);
+> +}
+> +
+>  intel_wakeref_t intel_pps_lock_for_aux(struct intel_dp *intel_dp, bool *vdd_ref)
+>  {
+>  	intel_wakeref_t wakeref;
+>  
+> +	if (!aux_needs_pps_lock(intel_dp)) {
+> +		*vdd_ref = false;
+> +		return NULL;
 
-elapsed time: 1445m
+I was pondering if we need a define for this since intel_wakeref_t
+doesn't look like a pointer, but apparently we use NULLs elsewhere
+as well for this stuff.
 
-configs tested: 82
-configs skipped: 1
+> +	}
+> +
+>  	wakeref = intel_pps_lock(intel_dp);
+>  
+>  	/*
+> @@ -976,6 +1003,13 @@ intel_wakeref_t intel_pps_lock_for_aux(struct intel_dp *intel_dp, bool *vdd_ref)
+>  
+>  void intel_pps_unlock_for_aux(struct intel_dp *intel_dp, intel_wakeref_t wakeref, bool vdd_ref)
+>  {
+> +	struct intel_display *display = to_intel_display(intel_dp);
+> +
+> +	if (!wakeref) {
+> +		drm_WARN_ON(display->drm, vdd_ref || aux_needs_pps_lock(intel_dp));
+> +		return;
+> +	}
+> +
+>  	if (vdd_ref)
+>  		intel_pps_vdd_off_unlocked(intel_dp, false);
+>  
+> -- 
+> 2.44.2
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
-
-tested configs:
-alpha                           allyesconfig    gcc-14.2.0
-arc                             allmodconfig    gcc-14.2.0
-arc                             allyesconfig    gcc-14.2.0
-arc                  randconfig-001-20250321    gcc-13.3.0
-arc                  randconfig-002-20250321    gcc-11.5.0
-arm                             allmodconfig    gcc-14.2.0
-arm                             allyesconfig    gcc-14.2.0
-arm                  randconfig-001-20250321    clang-19
-arm                  randconfig-002-20250321    gcc-9.3.0
-arm                  randconfig-003-20250321    gcc-5.5.0
-arm                  randconfig-004-20250321    clang-21
-arm64                           allmodconfig    clang-19
-arm64                randconfig-001-20250321    gcc-5.5.0
-arm64                randconfig-002-20250321    gcc-5.5.0
-arm64                randconfig-003-20250321    clang-20
-arm64                randconfig-004-20250321    clang-21
-csky                 randconfig-001-20250321    gcc-13.3.0
-csky                 randconfig-002-20250321    gcc-13.3.0
-hexagon                         allmodconfig    clang-17
-hexagon                         allyesconfig    clang-21
-hexagon              randconfig-001-20250321    clang-21
-hexagon              randconfig-002-20250321    clang-16
-i386                            allmodconfig    gcc-12
-i386                             allnoconfig    gcc-12
-i386                            allyesconfig    gcc-12
-i386       buildonly-randconfig-001-20250321    clang-20
-i386       buildonly-randconfig-002-20250321    clang-20
-i386       buildonly-randconfig-003-20250321    clang-20
-i386       buildonly-randconfig-004-20250321    clang-20
-i386       buildonly-randconfig-005-20250321    clang-20
-i386       buildonly-randconfig-006-20250321    clang-20
-i386                               defconfig    clang-20
-loongarch                       allmodconfig    gcc-14.2.0
-loongarch            randconfig-001-20250321    gcc-14.2.0
-loongarch            randconfig-002-20250321    gcc-14.2.0
-m68k                            allyesconfig    gcc-14.2.0
-nios2                randconfig-001-20250321    gcc-13.3.0
-nios2                randconfig-002-20250321    gcc-7.5.0
-openrisc                        allyesconfig    gcc-14.2.0
-parisc                          allmodconfig    gcc-14.2.0
-parisc                          allyesconfig    gcc-14.2.0
-parisc               randconfig-001-20250321    gcc-8.5.0
-parisc               randconfig-002-20250321    gcc-6.5.0
-powerpc                         allyesconfig    clang-21
-powerpc              randconfig-001-20250321    clang-21
-powerpc              randconfig-002-20250321    gcc-7.5.0
-powerpc              randconfig-003-20250321    gcc-7.5.0
-powerpc64            randconfig-001-20250321    gcc-5.5.0
-powerpc64            randconfig-002-20250321    clang-16
-powerpc64            randconfig-003-20250321    gcc-7.5.0
-riscv                           allmodconfig    clang-21
-riscv                           allyesconfig    clang-16
-riscv                randconfig-001-20250321    clang-21
-riscv                randconfig-002-20250321    clang-21
-s390                            allmodconfig    clang-18
-s390                            allyesconfig    gcc-14.2.0
-s390                 randconfig-001-20250321    clang-16
-s390                 randconfig-002-20250321    gcc-8.5.0
-sh                              allmodconfig    gcc-14.2.0
-sh                              allyesconfig    gcc-14.2.0
-sh                   randconfig-001-20250321    gcc-7.5.0
-sh                   randconfig-002-20250321    gcc-7.5.0
-sparc                           allmodconfig    gcc-14.2.0
-sparc                randconfig-001-20250321    gcc-12.4.0
-sparc                randconfig-002-20250321    gcc-6.5.0
-sparc64              randconfig-001-20250321    gcc-10.5.0
-sparc64              randconfig-002-20250321    gcc-6.5.0
-um                              allmodconfig    clang-19
-um                              allyesconfig    gcc-12
-um                   randconfig-001-20250321    gcc-12
-um                   randconfig-002-20250321    gcc-12
-x86_64                           allnoconfig    clang-20
-x86_64                          allyesconfig    clang-20
-x86_64     buildonly-randconfig-001-20250321    clang-20
-x86_64     buildonly-randconfig-002-20250321    clang-20
-x86_64     buildonly-randconfig-003-20250321    gcc-12
-x86_64     buildonly-randconfig-004-20250321    clang-20
-x86_64     buildonly-randconfig-005-20250321    clang-20
-x86_64     buildonly-randconfig-006-20250321    clang-20
-x86_64                             defconfig    gcc-11
-xtensa               randconfig-001-20250321    gcc-6.5.0
-xtensa               randconfig-002-20250321    gcc-10.5.0
-
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+-- 
+Ville Syrjälä
+Intel
