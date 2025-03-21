@@ -4,57 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F104DC35FFF
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Mar 2025 11:37:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9073BC36002
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Mar 2025 11:37:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A181510E798;
-	Fri, 21 Mar 2025 11:37:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5553610E7B2;
+	Fri, 21 Mar 2025 11:37:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aTsdIV+h";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FJyqB89q";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EFEE10E798
- for <intel-xe@lists.freedesktop.org>; Fri, 21 Mar 2025 11:37:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9E9B10E7AF;
+ Fri, 21 Mar 2025 11:37:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742557036; x=1774093036;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=3giZp3vTzmkRdx6NQpGfHjWuOWN1XflmrplcWc/eXYY=;
- b=aTsdIV+hNVa4jOvSCXGv9PJJEdBNPnzCAMlik2r7K3nKorMBv1H0DRH9
- Zhwp83iQhe/eYQSm+ou29MSPPTCJ9gYvDBuj6cTr/JpjTTtDxHJzzB/YX
- /uv++oJnVO2en8ldKrwbZabmi0EF7hO31DeXU0yVfEisv7AmGOy0VMViE
- g6JEZ/+HLe3dV4fAIy5+tItbuY0oGxLvZFHHMk15I5p879Og1EMuda/Qw
- iUaqeO6NY6SC40yN7tdFogrzhfbHHfnYTqXPJN7kmO7bOVQLbuV4Wjg14
- CQhGcFwzZGf35CKECQ/xWie1eurKnBXTK2QkXUHq/yOUij6hy+pV+g+9+ g==;
-X-CSE-ConnectionGUID: Q9NqKOTLTMuwbWHLsdaHjA==
-X-CSE-MsgGUID: 4Q4BAu1ZTBSiAlLSYjxluQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11379"; a="43064466"
-X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="43064466"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 04:37:15 -0700
-X-CSE-ConnectionGUID: ARwjTprFTDyaSuZ42WqlTg==
-X-CSE-MsgGUID: XTPoGhfSS1a7C7Tm1iWCnQ==
+ t=1742557061; x=1774093061;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=b/APuZfxWzTvLs3f5u+4RB4Su7WMumMjSeDrutu4+jk=;
+ b=FJyqB89qb6CeCT/U/WJ07rUd1JC2NBgboJHfasOYReKwSBrmqATm51pp
+ eWD9UlOSQ9WqwhN3n0Vz+3w5D0yuatd6BGpYsIXmLch0Vo+E66UPwjVWV
+ dEBdUwRzPMoB47qkNPOzVWViaRku1xm8EpAjlWQF7CSG2QecbG3LQH0Q6
+ v6Z82/i4tMcbaNXl3n+J5hDHtGaTAR3Wv1EY8WGKmrAPCVzfO4egq2Fjy
+ wQ/eaoBM0lsxvQgztk8SWemw7Z9B97w7Tm7PAgghc6VYM+dMCKBucCD+6
+ CYvAbzMUhp1UKyqaCW9NXIXmH+sx2XBBxLEmFsuWp5dprEqidL34q8qe7 w==;
+X-CSE-ConnectionGUID: Ay4BABEVRfK9sXQmNs51Cg==
+X-CSE-MsgGUID: 01vrdfjqRH6xtC8HHrn91w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11379"; a="42984399"
+X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="42984399"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2025 04:37:40 -0700
+X-CSE-ConnectionGUID: irwPoNn2SIqrWW7RM2bw0g==
+X-CSE-MsgGUID: 9ZBDOWUJSwKJawASbW/EtA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="123351628"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO [10.245.246.196])
- ([10.245.246.196])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 04:37:14 -0700
-Message-ID: <4dc419e3c79b324f0978d43b0eb23cac1b6368a5.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/xe: Simplify pinned bo iteration
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Matthew Auld <matthew.auld@intel.com>
-Date: Fri, 21 Mar 2025 12:37:11 +0100
-In-Reply-To: <20250321112959.13037-1-thomas.hellstrom@linux.intel.com>
-References: <20250321112959.13037-1-thomas.hellstrom@linux.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="123083197"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.245.56])
+ ([10.245.245.56])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2025 04:37:39 -0700
+Message-ID: <ecdf304f-437e-4a9b-b165-37570a81b158@intel.com>
+Date: Fri, 21 Mar 2025 11:37:37 +0000
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/7] drm/gpusvm: mark pages as dirty
+To: Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20250320172956.168358-9-matthew.auld@intel.com>
+ <20250320172956.168358-12-matthew.auld@intel.com>
+ <df6221a54416141166f98a6eebc495c472bacfe9.camel@linux.intel.com>
+ <Z9xtgs/2etNDxStw@lstrano-desk.jf.intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <Z9xtgs/2etNDxStw@lstrano-desk.jf.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,334 +73,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2025-03-21 at 12:29 +0100, Thomas Hellstr=C3=B6m wrote:
-> Introduce and use a helper to iterate over the various pinned bo
-> lists.
-> There are a couple of slight functional changes:
->=20
-> 1) GGTT maps are now performed with the bo locked.
-> 2) If the per-bo callback fails, keep the bo on the original list.
->=20
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> ---
-> =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
-=A0 10 +-
-> =C2=A0drivers/gpu/drm/xe/xe_bo_evict.c | 209 ++++++++++++----------------=
--
-> --
-> =C2=A02 files changed, 86 insertions(+), 133 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 64f9c936eea0..070dafdad66b 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -2102,12 +2102,10 @@ int xe_bo_pin_external(struct xe_bo *bo)
-> =C2=A0		if (err)
-> =C2=A0			return err;
-> =C2=A0
-> -		if (xe_bo_is_vram(bo)) {
-> -			spin_lock(&xe->pinned.lock);
-> -			list_add_tail(&bo->pinned_link,
-> -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &xe->pinned.external_vram);
-> -			spin_unlock(&xe->pinned.lock);
-> -		}
-> +		spin_lock(&xe->pinned.lock);
-> +		list_add_tail(&bo->pinned_link,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &xe->pinned.external_vram);
-> +		spin_unlock(&xe->pinned.lock);
-> =C2=A0	}
+On 20/03/2025 19:33, Matthew Brost wrote:
+> On Thu, Mar 20, 2025 at 08:29:42PM +0100, Thomas Hellström wrote:
+>> On Thu, 2025-03-20 at 17:30 +0000, Matthew Auld wrote:
+>>> If the memory is going to be accessed by the device, make sure we
+>>> mark
+>>> the pages accordingly such that the kernel knows this. This aligns
+>>> with
+>>> the xe-userptr code.
+>>>
+>>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>>> Cc: Matthew Brost <matthew.brost@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/drm_gpusvm.c | 9 +++++++++
+>>>   1 file changed, 9 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/drm_gpusvm.c
+>>> b/drivers/gpu/drm/drm_gpusvm.c
+>>> index 7f1cf5492bba..5b4ecd36dff1 100644
+>>> --- a/drivers/gpu/drm/drm_gpusvm.c
+>>> +++ b/drivers/gpu/drm/drm_gpusvm.c
+>>> @@ -1471,6 +1471,7 @@ int drm_gpusvm_range_get_pages(struct
+>>> drm_gpusvm *gpusvm,
+>>>   			pages[i] = page;
+>>>   		} else {
+>>>   			dma_addr_t addr;
+>>> +			unsigned int k;
+>>>   
+>>>   			if (is_zone_device_page(page) || zdd) {
+>>>   				err = -EOPNOTSUPP;
+>>> @@ -1489,6 +1490,14 @@ int drm_gpusvm_range_get_pages(struct
+>>> drm_gpusvm *gpusvm,
+>>>   			range->dma_addr[j] =
+>>> drm_pagemap_device_addr_encode
+>>>   				(addr, DRM_INTERCONNECT_SYSTEM,
+>>> order,
+>>>   				 dma_dir);
+>>> +
+>>> +			for (k = 0; k < 1u << order; k++) {
+>>> +				if (!ctx->read_only)
+>>> +					set_page_dirty_lock(page);
+>>> +
+>>> +				mark_page_accessed(page);
+>>> +				page++;
+>>> +			}
+>>
+>> Actually I think the userptr code did this unnecessarily. This is done
+>> in the CPU page-fault handler, which means it's taken care of during
+>> hmm_range_fault(). Now if the CPU PTE happens to be present and
+>> writeable there will be no fault, but that was done when the page was
+>> faulted in anyway.
+>>
+>> If there was a page cleaning event in between so the dirty flag was
+>> dropped, then my understanding is that in addition to an invalidation
+>> notifier, also the CPU PTE is zapped, so that it will be dirtied again
+>> on the next write access, either by the CPU faulting the page or
+>> hmm_range_fault() if there is a GPU page-fault.
+>>
+>> So I think we're good without this patch.
+>>
+> 
+> I was going to suggest the same thing as Thomas - we are good without
+> this patch for the reasons he states.
 
-The above belongs to a separate patch, pls ignore when reviewing.
-/Thomas
+Ah, will drop this then. Thanks.
 
-
-> =C2=A0
-> =C2=A0	ttm_bo_pin(&bo->ttm);
-> diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c
-> b/drivers/gpu/drm/xe/xe_bo_evict.c
-> index 6a40eedd9db1..1eeb3910450b 100644
-> --- a/drivers/gpu/drm/xe/xe_bo_evict.c
-> +++ b/drivers/gpu/drm/xe/xe_bo_evict.c
-> @@ -10,6 +10,44 @@
-> =C2=A0#include "xe_ggtt.h"
-> =C2=A0#include "xe_tile.h"
-> =C2=A0
-> +typedef int (*xe_pinned_fn)(struct xe_bo *bo);
-> +
-> +static int xe_bo_apply_to_pinned(struct xe_device *xe,
-> +				 struct list_head *pinned_list,
-> +				 struct list_head *new_list,
-> +				 const xe_pinned_fn pinned_fn)
-> +{
-> +	LIST_HEAD(still_in_list);
-> +	struct xe_bo *bo;
-> +	int ret =3D 0;
-> +
-> +	spin_lock(&xe->pinned.lock);
-> +	while (!ret) {
-> +		bo =3D list_first_entry_or_null(pinned_list,
-> typeof(*bo),
-> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pinned_link);
-> +		if (!bo)
-> +			break;
-> +		xe_bo_get(bo);
-> +		list_move_tail(&bo->pinned_link, &still_in_list);
-> +		spin_unlock(&xe->pinned.lock);
-> +
-> +		xe_bo_lock(bo, false);
-> +		ret =3D pinned_fn(bo);
-> +		if (ret && pinned_list !=3D new_list) {
-> +			spin_lock(&xe->pinned.lock);
-> +			list_move(&bo->pinned_link, pinned_list);
-> +			spin_unlock(&xe->pinned.lock);
-> +		}
-> +		xe_bo_unlock(bo);
-> +		xe_bo_put(bo);
-> +		spin_lock(&xe->pinned.lock);
-> +	}
-> +	list_splice_tail(&still_in_list, new_list);
-> +	spin_unlock(&xe->pinned.lock);
-> +
-> +	return ret;
-> +}
-> +
-> =C2=A0/**
-> =C2=A0 * xe_bo_evict_all - evict all BOs from VRAM
-> =C2=A0 *
-> @@ -27,9 +65,7 @@
-> =C2=A0int xe_bo_evict_all(struct xe_device *xe)
-> =C2=A0{
-> =C2=A0	struct ttm_device *bdev =3D &xe->ttm;
-> -	struct xe_bo *bo;
-> =C2=A0	struct xe_tile *tile;
-> -	struct list_head still_in_list;
-> =C2=A0	u32 mem_type;
-> =C2=A0	u8 id;
-> =C2=A0	int ret;
-> @@ -57,34 +93,9 @@ int xe_bo_evict_all(struct xe_device *xe)
-> =C2=A0		}
-> =C2=A0	}
-> =C2=A0
-> -	/* Pinned user memory in VRAM */
-> -	INIT_LIST_HEAD(&still_in_list);
-> -	spin_lock(&xe->pinned.lock);
-> -	for (;;) {
-> -		bo =3D list_first_entry_or_null(&xe-
-> >pinned.external_vram,
-> -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 typeof(*bo),
-> pinned_link);
-> -		if (!bo)
-> -			break;
-> -		xe_bo_get(bo);
-> -		list_move_tail(&bo->pinned_link, &still_in_list);
-> -		spin_unlock(&xe->pinned.lock);
-> -
-> -		xe_bo_lock(bo, false);
-> -		ret =3D xe_bo_evict_pinned(bo);
-> -		xe_bo_unlock(bo);
-> -		xe_bo_put(bo);
-> -		if (ret) {
-> -			spin_lock(&xe->pinned.lock);
-> -			list_splice_tail(&still_in_list,
-> -					 &xe->pinned.external_vram);
-> -			spin_unlock(&xe->pinned.lock);
-> -			return ret;
-> -		}
-> -
-> -		spin_lock(&xe->pinned.lock);
-> -	}
-> -	list_splice_tail(&still_in_list, &xe->pinned.external_vram);
-> -	spin_unlock(&xe->pinned.lock);
-> +	ret =3D xe_bo_apply_to_pinned(xe, &xe->pinned.external_vram,
-> +				=C2=A0=C2=A0=C2=A0 &xe->pinned.external_vram,
-> +				=C2=A0=C2=A0=C2=A0 xe_bo_evict_pinned);
-> =C2=A0
-> =C2=A0	/*
-> =C2=A0	 * Wait for all user BO to be evicted as those evictions
-> depend on the
-> @@ -93,26 +104,42 @@ int xe_bo_evict_all(struct xe_device *xe)
-> =C2=A0	for_each_tile(tile, xe, id)
-> =C2=A0		xe_tile_migrate_wait(tile);
-> =C2=A0
-> -	spin_lock(&xe->pinned.lock);
-> -	for (;;) {
-> -		bo =3D list_first_entry_or_null(&xe-
-> >pinned.kernel_bo_present,
-> -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 typeof(*bo),
-> pinned_link);
-> -		if (!bo)
-> -			break;
-> -		xe_bo_get(bo);
-> -		list_move_tail(&bo->pinned_link, &xe-
-> >pinned.evicted);
-> -		spin_unlock(&xe->pinned.lock);
-> +	if (ret)
-> +		return ret;
-> =C2=A0
-> -		xe_bo_lock(bo, false);
-> -		ret =3D xe_bo_evict_pinned(bo);
-> -		xe_bo_unlock(bo);
-> -		xe_bo_put(bo);
-> -		if (ret)
-> -			return ret;
-> +	return xe_bo_apply_to_pinned(xe, &xe-
-> >pinned.kernel_bo_present,
-> +				=C2=A0=C2=A0=C2=A0=C2=A0 &xe->pinned.evicted,
-> +				=C2=A0=C2=A0=C2=A0=C2=A0 xe_bo_evict_pinned);
-> +}
-> =C2=A0
-> -		spin_lock(&xe->pinned.lock);
-> +static int xe_bo_restore_and_map_ggtt(struct xe_bo *bo)
-> +{
-> +	struct xe_device *xe =3D xe_bo_device(bo);
-> +	int ret;
-> +
-> +	ret =3D xe_bo_restore_pinned(bo);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (bo->flags & XE_BO_FLAG_GGTT) {
-> +		struct xe_tile *tile;
-> +		u8 id;
-> +
-> +		for_each_tile(tile, xe_bo_device(bo), id) {
-> +			if (tile !=3D bo->tile && !(bo->flags &
-> XE_BO_FLAG_GGTTx(tile)))
-> +				continue;
-> +
-> +			mutex_lock(&tile->mem.ggtt->lock);
-> +			xe_ggtt_map_bo(tile->mem.ggtt, bo);
-> +			mutex_unlock(&tile->mem.ggtt->lock);
-> +		}
-> =C2=A0	}
-> -	spin_unlock(&xe->pinned.lock);
-> +
-> +	/*
-> +	 * We expect validate to trigger a move VRAM and our move
-> code
-> +	 * should setup the iosys map.
-> +	 */
-> +	xe_assert(xe, !iosys_map_is_null(&bo->vmap));
-> =C2=A0
-> =C2=A0	return 0;
-> =C2=A0}
-> @@ -130,54 +157,9 @@ int xe_bo_evict_all(struct xe_device *xe)
-> =C2=A0 */
-> =C2=A0int xe_bo_restore_kernel(struct xe_device *xe)
-> =C2=A0{
-> -	struct xe_bo *bo;
-> -	int ret;
-> -
-> -	spin_lock(&xe->pinned.lock);
-> -	for (;;) {
-> -		bo =3D list_first_entry_or_null(&xe->pinned.evicted,
-> -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 typeof(*bo),
-> pinned_link);
-> -		if (!bo)
-> -			break;
-> -		xe_bo_get(bo);
-> -		list_move_tail(&bo->pinned_link, &xe-
-> >pinned.kernel_bo_present);
-> -		spin_unlock(&xe->pinned.lock);
-> -
-> -		xe_bo_lock(bo, false);
-> -		ret =3D xe_bo_restore_pinned(bo);
-> -		xe_bo_unlock(bo);
-> -		if (ret) {
-> -			xe_bo_put(bo);
-> -			return ret;
-> -		}
-> -
-> -		if (bo->flags & XE_BO_FLAG_GGTT) {
-> -			struct xe_tile *tile;
-> -			u8 id;
-> -
-> -			for_each_tile(tile, xe, id) {
-> -				if (tile !=3D bo->tile && !(bo->flags
-> & XE_BO_FLAG_GGTTx(tile)))
-> -					continue;
-> -
-> -				mutex_lock(&tile->mem.ggtt->lock);
-> -				xe_ggtt_map_bo(tile->mem.ggtt, bo);
-> -				mutex_unlock(&tile->mem.ggtt->lock);
-> -			}
-> -		}
-> -
-> -		/*
-> -		 * We expect validate to trigger a move VRAM and our
-> move code
-> -		 * should setup the iosys map.
-> -		 */
-> -		xe_assert(xe, !iosys_map_is_null(&bo->vmap));
-> -
-> -		xe_bo_put(bo);
-> -
-> -		spin_lock(&xe->pinned.lock);
-> -	}
-> -	spin_unlock(&xe->pinned.lock);
-> -
-> -	return 0;
-> +	return xe_bo_apply_to_pinned(xe, &xe->pinned.evicted,
-> +				=C2=A0=C2=A0=C2=A0=C2=A0 &xe->pinned.kernel_bo_present,
-> +				=C2=A0=C2=A0=C2=A0=C2=A0 xe_bo_restore_and_map_ggtt);
-> =C2=A0}
-> =C2=A0
-> =C2=A0/**
-> @@ -192,47 +174,20 @@ int xe_bo_restore_kernel(struct xe_device *xe)
-> =C2=A0 */
-> =C2=A0int xe_bo_restore_user(struct xe_device *xe)
-> =C2=A0{
-> -	struct xe_bo *bo;
-> =C2=A0	struct xe_tile *tile;
-> -	struct list_head still_in_list;
-> -	u8 id;
-> -	int ret;
-> +	int ret, id;
-> =C2=A0
-> =C2=A0	if (!IS_DGFX(xe))
-> =C2=A0		return 0;
-> =C2=A0
-> =C2=A0	/* Pinned user memory in VRAM should be validated on resume
-> */
-> -	INIT_LIST_HEAD(&still_in_list);
-> -	spin_lock(&xe->pinned.lock);
-> -	for (;;) {
-> -		bo =3D list_first_entry_or_null(&xe-
-> >pinned.external_vram,
-> -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 typeof(*bo),
-> pinned_link);
-> -		if (!bo)
-> -			break;
-> -		list_move_tail(&bo->pinned_link, &still_in_list);
-> -		xe_bo_get(bo);
-> -		spin_unlock(&xe->pinned.lock);
-> -
-> -		xe_bo_lock(bo, false);
-> -		ret =3D xe_bo_restore_pinned(bo);
-> -		xe_bo_unlock(bo);
-> -		xe_bo_put(bo);
-> -		if (ret) {
-> -			spin_lock(&xe->pinned.lock);
-> -			list_splice_tail(&still_in_list,
-> -					 &xe->pinned.external_vram);
-> -			spin_unlock(&xe->pinned.lock);
-> -			return ret;
-> -		}
-> -
-> -		spin_lock(&xe->pinned.lock);
-> -	}
-> -	list_splice_tail(&still_in_list, &xe->pinned.external_vram);
-> -	spin_unlock(&xe->pinned.lock);
-> +	ret =3D xe_bo_apply_to_pinned(xe, &xe->pinned.external_vram,
-> +				=C2=A0=C2=A0=C2=A0 &xe->pinned.external_vram,
-> +				=C2=A0=C2=A0=C2=A0 xe_bo_restore_pinned);
-> =C2=A0
-> =C2=A0	/* Wait for restore to complete */
-> =C2=A0	for_each_tile(tile, xe, id)
-> =C2=A0		xe_tile_migrate_wait(tile);
-> =C2=A0
-> -	return 0;
-> +	return ret;
-> =C2=A0}
+> 
+> Matt
+> 
+>> /Thomas
+>>
+>>
+>>
+>>>   		}
+>>>   		i += 1 << order;
+>>>   		num_dma_mapped = i;
+>>
 
