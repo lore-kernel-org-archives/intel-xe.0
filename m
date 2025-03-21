@@ -4,162 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA1FBC36000
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Mar 2025 18:23:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18294C36000
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Mar 2025 18:31:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA01B10E819;
-	Fri, 21 Mar 2025 18:23:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D141710E81C;
+	Fri, 21 Mar 2025 18:31:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MJM0WqBh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c01OPO2N";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C974210E819
- for <intel-xe@lists.freedesktop.org>; Fri, 21 Mar 2025 18:23:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66D5110E81C;
+ Fri, 21 Mar 2025 18:31:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742581433; x=1774117433;
+ t=1742581886; x=1774117886;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=EwbDTjPcLgyQoC1YvphGPqK8ejQO5u0K2koQERwjjCs=;
- b=MJM0WqBhw+BVaxQrUJbMSR8lGFcVCoS7vGQPh62XEGGKURfKE6A/TMAW
- kfHRyoO+MygvBOI1lzCmZY8OgFebFDiufKZMELbiDHlInsHg03T+Mu2yT
- 8pB+O07B+2k8OLg6AUFVGvoKsf/L/aKdWGunCIY9iWV47GKf2B/IqwJlp
- +NfzfQo9Y0ADXk+SfxQeQ5pPLnCNA++caiQ3jNyxj9MlwOtuiaSxwBKP/
- tSwJGUszZRf5NJqqBy895tLt3zCV6tvrgdKQiA9bTpU7VE9q8XQnZ/g48
- y02XeWAFxPgW7KQsFlfOiuQnYpwlTYDGW5iFTAln4R55iU/8NUboY8sld w==;
-X-CSE-ConnectionGUID: Rfod0xmwSzSCIS/OCid9iA==
-X-CSE-MsgGUID: IcEO3cpnSeOROwpyKJlj/A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11380"; a="54494562"
-X-IronPort-AV: E=Sophos;i="6.14,265,1736841600"; d="scan'208";a="54494562"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 11:23:49 -0700
-X-CSE-ConnectionGUID: rAQT/63RQ6mJ7dspDXY1ng==
-X-CSE-MsgGUID: 1f8gCKuZTw2E/i6IVHHDbA==
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=JWRcxGWT8lMrY8EGZjk6P8bJ9PNe4aYTXTs+Pt4F+V4=;
+ b=c01OPO2NiXbHDmETVAD8/cVsSaZpDa+jJmrSgM2NPSru9H5Qv5U3mVSx
+ 1xL7HDxBvjq8Y6AWFA4ukbnVe5N9qyn/OIzTuHMyUpBZqkXmfiZgZIMtl
+ us68lRWWbLfHGnX8yw1AHfIp/3DzUbSYlnD1eMP8LALMjEd5AI/tWOtJs
+ 7UYAADWKRKHmQrNRUwLnEh8oNlFCrNFP3XhFMiPH0OY0vJN1TqGXyQq8L
+ Aa9SZBpjbfTkG+VOmEQq4kfKQt1V23Oce1ruj2bWmJgejmQ5QA+fAysfx
+ nxQAw1Gp+VQEsaz6IXiE4EtbICFODM/RyaNcK747udEQ+IS9vU3jUMApX A==;
+X-CSE-ConnectionGUID: iOymSYHoQu6b6rageS+Mwg==
+X-CSE-MsgGUID: xyxp1L00SrSwbnSUTgxLpw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11380"; a="55238391"
+X-IronPort-AV: E=Sophos;i="6.14,265,1736841600"; d="scan'208";a="55238391"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2025 11:31:26 -0700
+X-CSE-ConnectionGUID: kwx3NeG/Tz+roHOnVlUwNQ==
+X-CSE-MsgGUID: HTvP+EqRTM6NSd/6URqdJw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,265,1736841600"; d="scan'208";a="123646058"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 11:23:45 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Fri, 21 Mar 2025 11:23:44 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Fri, 21 Mar 2025 11:23:44 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.170)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Fri, 21 Mar 2025 11:23:44 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mhTiQrIq6z+uIuZnzBnKIW98pXxiBSd2yT7tH4SN678fBErqDUuhrn6r8IP+Zo96A7J1nl6iI5T7ZAFlf5eOGryRejMAQhkN1tLZldDt3aqgkBNIQcqZkFefTKSmPIFNypLRfR0vquZpjhzdpVlyE7K4OeiX6LJtzYsC3tnQXw2+p3yC1F+cN9AalOZ+uZG0BXWIUAqrroM4jbvTzdGQ1ek5nU8L11JDprM6ihFBHhIUy5ibPEkfw+rVMC7xnE2GmnBLamoICMx0YS+X+HziMKs6eNSO07jb+2efToX6bBVRGqRw4hDdzCgzdqq3l3e26U0yprShM7blYfcKKQrD1w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lVNXAyVqNuI+4kHNEV3elzFERHgtwGrejugs00GOIa4=;
- b=kJBRHuGkRXCu8+D1bhKm37UVBkUxN+VVvMycVKfS5dm2BVADwAO5Ibjro0LvTgJmu3i9qWE6GpHINf5iX3pcq9C66lpZODtYKJC9j6YWmxic8ajwKs59xPRi/sR0zm46WbAPJ8mm2R9JTQfmJvArozZP1rjNyF3Q5GzzodgkID+xDHuLHnOkphAAoF0VCcYp2kkXnffsBg91PiuUIJErgIlQrE7yOtqbLDg8CU7EftgkvJ0fo7uaaReoz8z8AgzAK7XaJicHYTuU6kOgSwegZU2ffaqZnTtXdIfRR9EeO4ui4khLjkMXmQ9Tv+gzkBhJ+WLW+HaPLUXVo9cTm8rSEQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
- by PH0PR11MB7563.namprd11.prod.outlook.com (2603:10b6:510:286::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.34; Fri, 21 Mar
- 2025 18:23:28 +0000
-Received: from MN0PR11MB6135.namprd11.prod.outlook.com
- ([fe80::3225:d4ad:74a:6d7a]) by MN0PR11MB6135.namprd11.prod.outlook.com
- ([fe80::3225:d4ad:74a:6d7a%7]) with mapi id 15.20.8534.036; Fri, 21 Mar 2025
- 18:23:28 +0000
-Date: Fri, 21 Mar 2025 13:23:25 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [CI 2/2] drm/xe/pm: Re-enable D3Cold by default on BMG
-Message-ID: <ke7ywxzt4agbdnhvonfewvzpwserzy5if4kwf3fofjtn3yifim@fd2dkpxoihnv>
-References: <20250308005636.1475420-1-rodrigo.vivi@intel.com>
- <20250308005636.1475420-2-rodrigo.vivi@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20250308005636.1475420-2-rodrigo.vivi@intel.com>
-X-ClientProxiedBy: MW4PR03CA0158.namprd03.prod.outlook.com
- (2603:10b6:303:8d::13) To MN0PR11MB6135.namprd11.prod.outlook.com
- (2603:10b6:208:3c9::9)
+X-IronPort-AV: E=Sophos;i="6.14,265,1736841600"; d="scan'208";a="128696247"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orviesa005.jf.intel.com with SMTP; 21 Mar 2025 11:31:23 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 21 Mar 2025 20:31:22 +0200
+Date: Fri, 21 Mar 2025 20:31:22 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jani.nikula@linux.intel.com, uma.shankar@intel.com
+Subject: Re: [PATCH 1/4] Add bits for link_n_exended for DISPLAY >= 14
+Message-ID: <Z92werPIFgvyjcr_@intel.com>
+References: <20250321112650.3594298-1-ankit.k.nautiyal@intel.com>
+ <20250321112650.3594298-2-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|PH0PR11MB7563:EE_
-X-MS-Office365-Filtering-Correlation-Id: a42ed832-11c0-45b9-1d46-08dd68a579da
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?DWTUFqeXKda0beVNVawf+UNb9r9aQO8mNl+dF72rz7n2KJuSWZZv9+s574TY?=
- =?us-ascii?Q?C1pQN1hp6rwugE9FZDE+3kvNK+Ti8Dez04OLfCB/UtUhxXQXxliqwAIbhyk1?=
- =?us-ascii?Q?D2ylSRmyTqHea7vcek7OtqNAaM1iE3e/VFUYM9rZUF88iaQ9U7KFBAY+lvY8?=
- =?us-ascii?Q?gTgpqHBZhr7s7WMSdKH3MAN4+fFjxuD7sRAP8CaGPfoZANK4DKv/oLpi2bs3?=
- =?us-ascii?Q?eGbFAehRkqhWWXNcY6SwO9diGiJFc8XbyGLXD9NqR07RIhOGgcZtmSC9tJVw?=
- =?us-ascii?Q?qFMPV+GHlw/En/8mL/3xpWy6FJd/n23ORqvx/H3hFM80nLHamyyEOA6MHKpJ?=
- =?us-ascii?Q?13hw7rtY8LUwIgWeRxxzdOVIX9ymWdXZaUI1gBq5E3IdZOihaVIIyEfx/Y0w?=
- =?us-ascii?Q?wJOwUo948I2q2/JDBZKSu/CNQaHMK2CXBWyhbKkaxdprlqORJCE7KwyRPy3Y?=
- =?us-ascii?Q?IOD+qO3nf9kbxCNylrM+eGcoGDSySRk2n9y5jfuXPDhwW+7ntdvTeRxd+w7d?=
- =?us-ascii?Q?kWHIk1sPSR8DTpwnzvsEC53OF2IqSDMROlEN+Xjz2+GJb9cxK9w/KGkKDrF1?=
- =?us-ascii?Q?Bb2VTDADw7xvREvJZdHfDIwx/XCNBSED8rb/UNZSYX+3Y0xsPIbj7J5Dh3I4?=
- =?us-ascii?Q?KBL84s/4HzXZnMP8S9N/fjKsEMZvL4W6gMDDW/RrAkaOs+6hKSEiA1yiaq9L?=
- =?us-ascii?Q?m2T5TI5jJ9qd5SIpETLTD2GxDescHlOW/Cj928paErRMx5Nn5a4QdRrCw5P8?=
- =?us-ascii?Q?Tkio856ePhvjVfWCPgdGFxWO1HRyMN17LHdzbsi4ZZge5lmg0jfBO1NXcgdb?=
- =?us-ascii?Q?/ClJrnQ63CT7Y9aVVqf5Ywcyy6zp+BIYwItpks6/mwqbPlfv6iw9EGIpTdnc?=
- =?us-ascii?Q?H1CqLpoBUBl04YoLwHpvVtzdqd5DdaPaQfPY4apWauxh05YQVyWAL2QtOnZL?=
- =?us-ascii?Q?zjyyvopRFhWGWsbTAYbjCjFSwH9F4ty9oPSBZ6AWX/bE0XdGnCh/YvEGOX2y?=
- =?us-ascii?Q?EDaS69xnbfmoowOkCc6G3lBgzeGCAKMVYG4bcwVk0XNgzZAHfgwQQ/v99HaU?=
- =?us-ascii?Q?fARcIl3rSFCCzgHtq4URqz+dHDRCyFvALeG6Y20SXacdo8QYygxmdOwWgazp?=
- =?us-ascii?Q?F4Ig96QfIuSjcN++FUDMaZrOjHt78woPtTL1O+zJpIHvTRNTeLfZSoNEBTBY?=
- =?us-ascii?Q?O5zVuCvvFWmy+j9b812O0ZrXuHYtMIpPjYET6rhHEQb3tP6cN4BW05c3b6ae?=
- =?us-ascii?Q?hNnbxyiFSrhGfNbODrn4MSmmyHBDM3UItlwn07aO0rKDUFl6EoVBhEqZUt2R?=
- =?us-ascii?Q?E7BMUU7SMbBgbbIBex566O/LoS604PWH7D5B2PiALwaLxg=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?PRQyr0wBBaYMNRM9oLiooNaD5fPVRPv5a0OFi2446vc5/mO8YBudkKFsntGp?=
- =?us-ascii?Q?7N9+oaesRHSvpXnewNN6yi4UDdh2FhZskxtfeDXsFWkr4f3Iaff8TWUOnjEF?=
- =?us-ascii?Q?eR8c8Ph8yDI2h9LQdIl0zjfIveTeHJ2rg9hBX+G9hvW/E+EBKsX8oal9evnu?=
- =?us-ascii?Q?xojYBPNN9TCkTP2226jIV9jY8x1UKJN3qtaAVQA0NB4QL72zvOV5kZii/c9b?=
- =?us-ascii?Q?1pMlF5BqA525uiHPSmyOisvd7ZgxqxDsryQTfACVcYNmKH3Nj3G/CTaQhlSH?=
- =?us-ascii?Q?lQ2B7/InFiveGnzsGKziJbXu9m3s/4kHRwHc2kpuQgSiL8M9pzTnjmktAZLf?=
- =?us-ascii?Q?gjAdEiIGKOkHqIpXw/c8v0wy/6IZTuv7Aj6H+AQt/Mtf+VvEKodBwNk1ZLIn?=
- =?us-ascii?Q?kNq8edBFL+lBH1DyfCt1He3A/YN+n/ca1TUB+C5ClMmarCooJ/diHaT45bhS?=
- =?us-ascii?Q?4A7wdZ677/wXqw4AtmaorAU2umne7+NnzAyO092FywR4+BzucQAV+wa0uNiZ?=
- =?us-ascii?Q?2EF3fOTTue91LKGEX5uBaOClPH4C0KJouZ3I5QduP5uHItRx+XKhkrDGyj1N?=
- =?us-ascii?Q?+G2mgnuMu0DsCJ6SRNmK/pfbvrwGb7vYoNt0imBOypQ0SYUmhsf/zKMMF/YU?=
- =?us-ascii?Q?MGcGqlJMbjKp0nOCwYlVowWTKKSmqFmsF709+2fCAz0DQfvnlg7M9vxRpqtA?=
- =?us-ascii?Q?UoYpn8pGXrQLLXI3MQUSNd240MWecBT+r0U5J6P9eIFq42W3YysikVmDYX0U?=
- =?us-ascii?Q?IfoAkdwdq5kXP7wFq9yFS9/d8vLUtQdbf3JM3/cNCxXGD4j43w2/cSpnIUtv?=
- =?us-ascii?Q?4xPIz3xeC2UxZVy5rl1XJGTHDo+BFgQa21EG35vzHx2ElVKFuaMooqNqqifW?=
- =?us-ascii?Q?m+e6NOhYC/aNTulueFS0tQk8TuT+7ZpQF5vROcl00Jx8xl31/D5+eM+WqBhH?=
- =?us-ascii?Q?WU8vp+aXdc0TVJbY6pPl0IwIzryQNfuJ0ivQhp9+/nRkTGV3F2t4oIgJEt6b?=
- =?us-ascii?Q?n5KRkafpdQjTcA5bwqY9Ulg56rvZTui32wu+3Vf9fUv5fGG+xCVwji11Rakp?=
- =?us-ascii?Q?eliop7UBpinFr6lbYBC0f9PVO/wwPunHHJO7UDmWqNwvPKeP4iH9JaYSY7qh?=
- =?us-ascii?Q?p293/pOW/p+xCLh43PSx6EKapQGobeN3KMFJBPp1pxJGNzY1wsP/KNOrYGrA?=
- =?us-ascii?Q?X7Yd50D79pA2uvcHPyPT89Es1nipTFSeigesShMor1yiJbfrkQmvkW6lhZCQ?=
- =?us-ascii?Q?soOlgzlmYlUIP6P+UKP5xFoEokF13d6I57v8tUTCiTwgYozUKEaaruE+drNr?=
- =?us-ascii?Q?dTg3IXU+HMRVYaEADhZhHtOQwbD0FrpwZPCoreP37JBwzGShlTtJ2cJGcpow?=
- =?us-ascii?Q?LUAAiXDCyEDkuK/q1yxoXoNaVFKOQrPPm47J2CfkG0wyNESg92Jsk6aK+Ilr?=
- =?us-ascii?Q?y+lFWtLn/F2DDWCO/yF4ckJV4zQDUIXBjgiPgswYhxO7vTTIsfsKaJRP7TpD?=
- =?us-ascii?Q?bnSynf6KV8LyXjZQfrCglHxtmY2MojLwVkAhCK5LowaP2hKap5FJQoXUIxrl?=
- =?us-ascii?Q?DxPwFi1wKYQU/jI5qY1fOxBnEFbTIaOMH/XAfyFUcaaR2Fo0L2D+PjPBWFLp?=
- =?us-ascii?Q?BA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a42ed832-11c0-45b9-1d46-08dd68a579da
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Mar 2025 18:23:28.1814 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AAx8XCnO5TItu8M1eWc686lM0Mt540kR4S1HRyTSnJ0zSLKUStCNXpytsKtMwJrU3ZgikReN2/EjZP2pisIOtT6mrYR5fG0NDawHm/mOWPM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7563
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250321112650.3594298-2-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -174,42 +71,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Mar 07, 2025 at 07:56:36PM -0500, Rodrigo Vivi wrote:
->This patch re-enables D3Cold by default on BMG.
->
->If issues on runtime_pm resume are seen and the D3cold->D0 transition
->is suspected to block the device or cause memory corruptions, D3cold
->can be disabled for confirmation with either:
->
->1. at runtime:
->   echo 0 > /sys/bus/pci/devices/<addr>/vram_d3cold_threshold
->
->2. at boot:
->   pcie_port_pm=off
->
->Upon confirmation of D3Cold related bug, please file a bug to the
->link below.
->
->Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/
->Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
->Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+On Fri, Mar 21, 2025 at 04:56:47PM +0530, Ankit Nautiyal wrote:
+> LINK_N register has bits 31:24 for extended link N value used for
+> HDMI2.1 and for an alternate mode of operation of DP TG DDA
+> (Bspec:50488).
+> 
+> Add support for these extra bits.
+> 
+> For displays with version 14 or higher, the `PIPE_LINK_N1_EXTENDED_MASK`
+> (bits 31:24) is used to handle the extended link N bits.
+> For older platforms, the `DATA_LINK_M_N_MASK` (bits 23:0) is used to
+> handle the standard link N bits. This distinction ensures clarity and
+> maintains the semantics for platforms that support the extended bits.
+> In subsequent changes the logic is updated to conditionally apply the
+> extended link N bits.
+> 
+> v2: Drop extra link_n_ext member. (Jani)
+> v3: Avoid link_n_ext in set_m_n helper. (Jani)
+> v4: Rebase, and update commit message.
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 18 ++++++++++++++++--
+>  drivers/gpu/drm/i915/i915_reg.h              |  2 ++
+>  2 files changed, 18 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 3afb85fe8536..8fb0df388571 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -2583,14 +2583,22 @@ void intel_set_m_n(struct intel_display *display,
+>  		   i915_reg_t data_m_reg, i915_reg_t data_n_reg,
+>  		   i915_reg_t link_m_reg, i915_reg_t link_n_reg)
+>  {
+> +	u32 link_n = m_n->link_n;
+> +
+>  	intel_de_write(display, data_m_reg, TU_SIZE(m_n->tu) | m_n->data_m);
+>  	intel_de_write(display, data_n_reg, m_n->data_n);
+>  	intel_de_write(display, link_m_reg, m_n->link_m);
+> +
+> +	if (DISPLAY_VER(display) >= 14)
+> +		link_n &= ~PIPE_LINK_N1_EXTENDED_MASK;
+> +	else
+> +		link_n &= DATA_LINK_M_N_MASK;
 
-weren't you supposed to apply this patch to topic/xe-for-CI? I was
-rebasing that branch to be able to tweak the firmware definitions[1] and
-noticed there's only the first patch in that branch, but not this one.
-Did you forget to push?
+There should never be anything in those bits or we've screwed up
+somewhere.
 
-$ cat src/integration-manifest  | grep xe-for-CI
-drm-xe topic/xe-for-CI 4868f2aad04f639490d35b90e1f9f73919078ffd
+The actual w/a for the M/N > 10.0 looks like a pile of annoying
+hacks in the hardware. I wonder if we could just live without it
+to avoid complicating the code?
 
-$ git log --oneline drm-xe/drm-xe-next..4868f2aad04f639490d35b90e1f9f73919078ffd
-4868f2aad04f6 (drm-xe/topic/xe-for-CI) drm/xe/pm: Temporarily disable D3Cold on BMG
-6ea369b34748e drm/xe/ptl: Define HuC FW version for PTL
-9a67bf39ece1c drm/xe/ptl: Add GuC firmware definition
-413e37a14b3b5 drm/xe/pvc: Add GuC firmware definition
-57fbbc317bba7 drm/xe: Add PVC's PCI device IDs
-d8cfdbde9e7bf drm/xe: Enable SR-IOV for ADL/ATSM
+As for the 10.0 limit, I suspect there's nothing platform specific
+about it and it's always been there. It's just not possible to hit
+it with 8b/10b encoding. The correct place to handle this would seem
+to be the link rate calculation, ie. just bump up the link rate until
+the limit is no longer an issue (or error out if we can't increase the
+link rate sufficiently).
 
-Lucas De Marchi
+> +
+>  	/*
+>  	 * On BDW+ writing LINK_N arms the double buffered update
+>  	 * of all the M/N registers, so it must be written last.
+>  	 */
+> -	intel_de_write(display, link_n_reg, m_n->link_n);
+> +	intel_de_write(display, link_n_reg, link_n);
+>  }
+>  
+>  bool intel_cpu_transcoder_has_m2_n2(struct intel_display *display,
+> @@ -3279,7 +3287,13 @@ void intel_get_m_n(struct intel_display *display,
+>  		   i915_reg_t link_m_reg, i915_reg_t link_n_reg)
+>  {
+>  	m_n->link_m = intel_de_read(display, link_m_reg) & DATA_LINK_M_N_MASK;
+> -	m_n->link_n = intel_de_read(display, link_n_reg) & DATA_LINK_M_N_MASK;
+> +	m_n->link_n = intel_de_read(display, link_n_reg);
+> +
+> +	if (DISPLAY_VER(display) >= 14)
+> +		m_n->link_n &= ~PIPE_LINK_N1_EXTENDED_MASK;
+> +	else
+> +		m_n->link_n &= DATA_LINK_M_N_MASK;
+> +
+>  	m_n->data_m = intel_de_read(display, data_m_reg) & DATA_LINK_M_N_MASK;
+>  	m_n->data_n = intel_de_read(display, data_n_reg) & DATA_LINK_M_N_MASK;
+>  	m_n->tu = REG_FIELD_GET(TU_SIZE_MASK, intel_de_read(display, data_m_reg)) + 1;
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index c5064eebe063..a2054aced4f8 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -1869,6 +1869,8 @@
+>  
+>  #define _PIPEA_LINK_N1		0x60044
+>  #define _PIPEB_LINK_N1		0x61044
+> +#define  PIPE_LINK_N1_EXTENDED_MASK	REG_GENMASK(31, 24)
+> +#define  PIPE_LINK_N1_EXTENDED(val)	REG_FIELD_PREP(PIPE_LINK_N1_EXTENDED_MASK, (val))
+>  #define PIPE_LINK_N1(dev_priv, tran) _MMIO_TRANS2(dev_priv, tran, _PIPEA_LINK_N1)
+>  
+>  #define _PIPEA_LINK_M2		0x60048
+> -- 
+> 2.45.2
 
-[1] https://lore.kernel.org/intel-xe/20250307-xe-per-gt-fw-v1-0-459574d76400@intel.com/
+-- 
+Ville Syrjälä
+Intel
