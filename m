@@ -4,60 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42A1BC36005
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Mar 2025 17:47:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D345C36002
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Mar 2025 17:49:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0632D10E1E1;
-	Fri, 21 Mar 2025 17:47:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E72F210E7FD;
+	Fri, 21 Mar 2025 17:49:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jnFymKv0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CV7l5fEt";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5ED3310E1D7;
- Fri, 21 Mar 2025 17:47:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FC0810E7FD
+ for <intel-xe@lists.freedesktop.org>; Fri, 21 Mar 2025 17:49:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742579237; x=1774115237;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=f9bmXhLH+G73cAfEWwU6i3TmZBF5c080IfV+tmr1C0Y=;
- b=jnFymKv0A+9z4RLk0qeaaitO541lMSVsLyXrr+bGdmL6Cn5GM3mdHCyY
- Jhc0heKCtenJvusRVkYG+3jOLbvOjDlCXRUWqHD5/yIkBUqFno23trMEf
- kCwauvc5iWoSSya2JZviKXWbuQo5pRZC9ZxnQf35RpVmXe1NkVfffXyFf
- CiwI1j7bkkGq0SU9W9Cl0fjfpGXoNTgikVOGs7NMZaC2LrpVYvThQeYXw
- h1XdFrSEzYa2f8oxdlkcdRn1YH7Sm8MgloBSwr/SplFVg3ZcWp9ICUmdN
- a/VusdFMoG/u7nR8vc1/DsgNC5pMPT48L73DmkkugqYAHhQ/UR4D+oLy0 w==;
-X-CSE-ConnectionGUID: +8vKgb8fSjqU/U1F7xf4fw==
-X-CSE-MsgGUID: w7J72mu5SJG8qpQXoIFRSQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11380"; a="43972301"
-X-IronPort-AV: E=Sophos;i="6.14,265,1736841600"; d="scan'208";a="43972301"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 10:47:16 -0700
-X-CSE-ConnectionGUID: A3xycH6CQ5iBoj8eNSVncw==
-X-CSE-MsgGUID: H5bBUWdsT4qCRyIChBshuQ==
+ t=1742579372; x=1774115372;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=18GztC3Rp7AiuWcHmws0TzgyyAJ5MrP0DwFQ7umiouM=;
+ b=CV7l5fEtknNjkPzj78e8VzCCfocPIdXNrp7/aiGtyKfUGBKA8JktgtDx
+ MQ88la0MSyHPFRBryI1nDqQ6iiB0E/Yp2UJEF7dIkWnt4DziA7EMZF6/9
+ 4+wu+Ed3KtpWO04tvq/w00dP6JENQA0Iw1EofnTIZXX8d+pqVHjSRCegK
+ +O2lo3vOWvCEZ2u/1OB16GZZQqhGTsXlrM67u8OGnNKmirSulQkhuY6Wr
+ /EJEqu18aODF54/DwYKDSvERGyYF9JTh0ZLDW4U9x00SRdorrt916eL4X
+ 473Oz742oupXbdxBA8ufpZpnZmUThvDTAvlARfUw6YbfFkVWH0QBw9pza A==;
+X-CSE-ConnectionGUID: xhy1052cQumoOOjQqj8GFA==
+X-CSE-MsgGUID: xDXRIizZT6mVp4Uw39tyqw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11380"; a="43018469"
+X-IronPort-AV: E=Sophos;i="6.14,265,1736841600"; d="scan'208";a="43018469"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2025 10:49:14 -0700
+X-CSE-ConnectionGUID: g9rKkXPSSG+BN7jLVslreg==
+X-CSE-MsgGUID: gQAXe2XfT+Kxp61WpYEBdw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,265,1736841600"; d="scan'208";a="128684443"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 21 Mar 2025 10:47:14 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 21 Mar 2025 19:47:12 +0200
-Date: Fri, 21 Mar 2025 19:47:12 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: Re: [PATCH 15/16] drm/i915/vrr: Always use VRR timing generator for
- PTL+
-Message-ID: <Z92mIPHsmQaWuFW5@intel.com>
-References: <20250318073540.2773890-1-ankit.k.nautiyal@intel.com>
- <20250318073540.2773890-16-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.14,265,1736841600"; d="scan'208";a="154466754"
+Received: from lkp-server02.sh.intel.com (HELO e98e3655d6d2) ([10.239.97.151])
+ by fmviesa001.fm.intel.com with ESMTP; 21 Mar 2025 10:49:12 -0700
+Received: from kbuild by e98e3655d6d2 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1tvgUY-0001Ys-1K;
+ Fri, 21 Mar 2025 17:49:10 +0000
+Date: Sat, 22 Mar 2025 01:49:01 +0800
+From: kernel test robot <lkp@intel.com>
+To: "Thomas =?utf-8?Q?Hellstr=C3=B6m"?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
+ 50af7cab7520e46680cf4633bba6801443b75856
+Message-ID: <202503220154.Bek7hNsV-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250318073540.2773890-16-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
+Content-Type: text/plain; charset=us-ascii
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,46 +66,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Mar 18, 2025 at 01:05:39PM +0530, Ankit Nautiyal wrote:
-> Currently, the VRR timing generator is used only when VRR is enabled by
-> userspace for sinks that support VRR. Starting with PTL+, gradually move
-> away from the legacy timing generator and use the VRR timing generator
-> for both variable and fixed timings.
-> 
-> Note: For platforms where we always enable the VRR timing generator,
-> the LRR fastset is not allowed to avoid live programming of vrr.guardband
-> with VRR TG enabled. This effectively breaks the LRR fastset functionality
-> for these platforms and needs to be addressed.
-> 
-> v2: Use this for PTL for now to avoid losing LRR fastset for older
-> platforms. (Ville)
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
+branch HEAD: 50af7cab7520e46680cf4633bba6801443b75856  drm/xe: Fix exporting xe buffers multiple times
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+elapsed time: 1445m
 
-> ---
->  drivers/gpu/drm/i915/display/intel_vrr.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index c1cdd1918c19..6c6bb868381c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -553,7 +553,9 @@ bool intel_vrr_always_use_vrr_tg(struct intel_display *display)
->  	if (!HAS_VRR(display))
->  		return false;
->  
-> -	/* #TODO return true for platforms supporting fixed_rr */
-> +	if (DISPLAY_VER(display) >= 30)
-> +		return true;
-> +
->  	return false;
->  }
->  
-> -- 
-> 2.45.2
+configs tested: 82
+configs skipped: 1
 
--- 
-Ville Syrjälä
-Intel
+The following configs have been built successfully.
+More configs may be tested in the coming days.
+
+tested configs:
+alpha                           allyesconfig    gcc-14.2.0
+arc                             allmodconfig    gcc-14.2.0
+arc                             allyesconfig    gcc-14.2.0
+arc                  randconfig-001-20250321    gcc-13.3.0
+arc                  randconfig-002-20250321    gcc-11.5.0
+arm                             allmodconfig    gcc-14.2.0
+arm                             allyesconfig    gcc-14.2.0
+arm                  randconfig-001-20250321    clang-19
+arm                  randconfig-002-20250321    gcc-9.3.0
+arm                  randconfig-003-20250321    gcc-5.5.0
+arm                  randconfig-004-20250321    clang-21
+arm64                           allmodconfig    clang-19
+arm64                randconfig-001-20250321    gcc-5.5.0
+arm64                randconfig-002-20250321    gcc-5.5.0
+arm64                randconfig-003-20250321    clang-20
+arm64                randconfig-004-20250321    clang-21
+csky                 randconfig-001-20250321    gcc-13.3.0
+csky                 randconfig-002-20250321    gcc-13.3.0
+hexagon                         allmodconfig    clang-17
+hexagon                         allyesconfig    clang-21
+hexagon              randconfig-001-20250321    clang-21
+hexagon              randconfig-002-20250321    clang-16
+i386                            allmodconfig    gcc-12
+i386                             allnoconfig    gcc-12
+i386                            allyesconfig    gcc-12
+i386       buildonly-randconfig-001-20250321    clang-20
+i386       buildonly-randconfig-002-20250321    clang-20
+i386       buildonly-randconfig-003-20250321    clang-20
+i386       buildonly-randconfig-004-20250321    clang-20
+i386       buildonly-randconfig-005-20250321    clang-20
+i386       buildonly-randconfig-006-20250321    clang-20
+i386                               defconfig    clang-20
+loongarch                       allmodconfig    gcc-14.2.0
+loongarch            randconfig-001-20250321    gcc-14.2.0
+loongarch            randconfig-002-20250321    gcc-14.2.0
+m68k                            allyesconfig    gcc-14.2.0
+nios2                randconfig-001-20250321    gcc-13.3.0
+nios2                randconfig-002-20250321    gcc-7.5.0
+openrisc                        allyesconfig    gcc-14.2.0
+parisc                          allmodconfig    gcc-14.2.0
+parisc                          allyesconfig    gcc-14.2.0
+parisc               randconfig-001-20250321    gcc-8.5.0
+parisc               randconfig-002-20250321    gcc-6.5.0
+powerpc                         allyesconfig    clang-21
+powerpc              randconfig-001-20250321    clang-21
+powerpc              randconfig-002-20250321    gcc-7.5.0
+powerpc              randconfig-003-20250321    gcc-7.5.0
+powerpc64            randconfig-001-20250321    gcc-5.5.0
+powerpc64            randconfig-002-20250321    clang-16
+powerpc64            randconfig-003-20250321    gcc-7.5.0
+riscv                           allmodconfig    clang-21
+riscv                           allyesconfig    clang-16
+riscv                randconfig-001-20250321    clang-21
+riscv                randconfig-002-20250321    clang-21
+s390                            allmodconfig    clang-18
+s390                            allyesconfig    gcc-14.2.0
+s390                 randconfig-001-20250321    clang-16
+s390                 randconfig-002-20250321    gcc-8.5.0
+sh                              allmodconfig    gcc-14.2.0
+sh                              allyesconfig    gcc-14.2.0
+sh                   randconfig-001-20250321    gcc-7.5.0
+sh                   randconfig-002-20250321    gcc-7.5.0
+sparc                           allmodconfig    gcc-14.2.0
+sparc                randconfig-001-20250321    gcc-12.4.0
+sparc                randconfig-002-20250321    gcc-6.5.0
+sparc64              randconfig-001-20250321    gcc-10.5.0
+sparc64              randconfig-002-20250321    gcc-6.5.0
+um                              allmodconfig    clang-19
+um                              allyesconfig    gcc-12
+um                   randconfig-001-20250321    gcc-12
+um                   randconfig-002-20250321    gcc-12
+x86_64                           allnoconfig    clang-20
+x86_64                          allyesconfig    clang-20
+x86_64     buildonly-randconfig-001-20250321    clang-20
+x86_64     buildonly-randconfig-002-20250321    clang-20
+x86_64     buildonly-randconfig-003-20250321    gcc-12
+x86_64     buildonly-randconfig-004-20250321    clang-20
+x86_64     buildonly-randconfig-005-20250321    clang-20
+x86_64     buildonly-randconfig-006-20250321    clang-20
+x86_64                             defconfig    gcc-11
+xtensa               randconfig-001-20250321    gcc-6.5.0
+xtensa               randconfig-002-20250321    gcc-10.5.0
+
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
