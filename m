@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE7C2C35FFF
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Mar 2025 11:41:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C545CC35FFF
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Mar 2025 11:42:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 951B310E798;
-	Fri, 21 Mar 2025 11:41:04 +0000 (UTC)
-Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFC9510E798;
- Fri, 21 Mar 2025 11:41:03 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2716911438267261990=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 753C910E7B2;
+	Fri, 21 Mar 2025 11:42:50 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PA9ezNIl";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01F8910E798;
+ Fri, 21 Mar 2025 11:42:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1742557369; x=1774093369;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=gc8LizJ8ahsQCZqkoZQxj6SflmIE3KtW5NgQxy2R+wk=;
+ b=PA9ezNIlqFdKY3/sHoTnOohpKFyoCm0TEFuzKm2v1r+B4zuEUdzR+mGe
+ TSv6L1WOeVO4/z5YJg+6XChtC6+U7y2MtKIctmRt7w4JhGpUpOADEhcR+
+ EpLEjHJMfFryL9GyS22nax+4OhAcOvvsJhwGHISsyqvDNdIF8Nsa37ATp
+ OhXB4Zm4JvvmQBrc5HMQZ54pOT+Xiab8G12LPZRiLm/9ukJrWAfpN0PQ7
+ IkhO2mVpOAFn0SyJBJk48DJZRiwtIwhviL2JrBuyhWcevoCt96LYUGvXp
+ 1I0o5Fvo2XVhUELy+QRtxIiyB7ruNkO84IpjEGO76/OVexoxBSOIjVUrM w==;
+X-CSE-ConnectionGUID: m6CzW0vcS+OpAy34VwOwzQ==
+X-CSE-MsgGUID: rUDfbabCQS2BIua9U98V9Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11379"; a="42984868"
+X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="42984868"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2025 04:42:49 -0700
+X-CSE-ConnectionGUID: hicb9Q74Q/i9ZDTQkftQWg==
+X-CSE-MsgGUID: 3p7xtS2pSRCaGd9mKDk50g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="123836556"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.245.56])
+ ([10.245.245.56])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2025 04:42:47 -0700
+Message-ID: <cdb53bdc-bab5-4c85-9b95-4abbd40641c4@intel.com>
+Date: Fri, 21 Mar 2025 11:42:45 +0000
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_yet_ano?=
- =?utf-8?q?ther_batch_of_struct_intel=5Fdisplay_conversions?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 21 Mar 2025 11:41:03 -0000
-Message-ID: <174255726370.64114.7200262525070742156@18a75f3d1eae>
-X-Patchwork-Hint: ignore
-References: <cover.1742554320.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1742554320.git.jani.nikula@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/7] drm/gpusvm: fix hmm_pfn_to_map_order() usage
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+References: <20250320172956.168358-9-matthew.auld@intel.com>
+ <20250320172956.168358-10-matthew.auld@intel.com>
+ <Z9x9RSvaoexRjj90@lstrano-desk.jf.intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <Z9x9RSvaoexRjj90@lstrano-desk.jf.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +69,86 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2716911438267261990==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 20/03/2025 20:40, Matthew Brost wrote:
+> On Thu, Mar 20, 2025 at 05:29:58PM +0000, Matthew Auld wrote:
+>> Handle the case where the hmm range partially covers a huge page (like
+>> 2M), otherwise we can potentially end up doing something nasty like
+>> mapping memory which potentially is outside the range, and maybe not
+>> even mapped by the mm. Fix is based on the xe userptr code, which in a
+>> future patch will directly use gpusvm, so needs alignment here.
+>>
+>> Reported-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> ---
+>>   drivers/gpu/drm/drm_gpusvm.c | 25 +++++++++++++++++++++++--
+>>   1 file changed, 23 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
+>> index 2451c816edd5..48993cef4a74 100644
+>> --- a/drivers/gpu/drm/drm_gpusvm.c
+>> +++ b/drivers/gpu/drm/drm_gpusvm.c
+>> @@ -817,6 +817,27 @@ drm_gpusvm_range_alloc(struct drm_gpusvm *gpusvm,
+>>   	return range;
+>>   }
+>>   
+>> +/*
+>> + * To allow skipping PFNs with the same flags (like when they belong to
+>> + * the same huge PTE) when looping over the pfn array, take a given a hmm_pfn,
+>> + * and return the largest order that will fit inside the PTE, but also crucially
+>> + * accounting for the original hmm range boundaries.
+>> + */
+> 
+> I'd make this proper kernel doc given all of drm_gpusvm.c has proper kernel doc.
 
-== Series Details ==
+Ok, typically we don't add kernel-doc for static declarations so didn't 
+bother. Will make this consistent. Thanks.
 
-Series: drm/i915/display: yet another batch of struct intel_display conversions
-URL   : https://patchwork.freedesktop.org/series/146583/
-State : success
+> 
+> Otherwise LGTM.
+> 
+> Matt
+> 
+>> +static unsigned int drm_gpusvm_hmm_pfn_to_order(unsigned long hmm_pfn,
+>> +						unsigned long hmm_pfn_index,
+>> +						unsigned long npages)
+>> +{
+>> +	unsigned long size;
+>> +
+>> +	size = 1UL << hmm_pfn_to_map_order(hmm_pfn);
+>> +	size -= (hmm_pfn & ~HMM_PFN_FLAGS) & (size - 1);
+>> +	hmm_pfn_index += size;
+>> +	if (hmm_pfn_index > npages)
+>> +		size -= (hmm_pfn_index - npages);
+>> +
+>> +	return fls(size) - 1;
+>> +}
+>> +
+>>   /**
+>>    * drm_gpusvm_check_pages() - Check pages
+>>    * @gpusvm: Pointer to the GPU SVM structure
+>> @@ -875,7 +896,7 @@ static bool drm_gpusvm_check_pages(struct drm_gpusvm *gpusvm,
+>>   			err = -EFAULT;
+>>   			goto err_free;
+>>   		}
+>> -		i += 0x1 << hmm_pfn_to_map_order(pfns[i]);
+>> +		i += 0x1 << drm_gpusvm_hmm_pfn_to_order(pfns[i], i, npages);
+>>   	}
+>>   
+>>   err_free:
+>> @@ -1408,7 +1429,7 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
+>>   	for (i = 0, j = 0; i < npages; ++j) {
+>>   		struct page *page = hmm_pfn_to_page(pfns[i]);
+>>   
+>> -		order = hmm_pfn_to_map_order(pfns[i]);
+>> +		order = drm_gpusvm_hmm_pfn_to_order(pfns[i], i, npages);
+>>   		if (is_device_private_page(page) ||
+>>   		    is_device_coherent_page(page)) {
+>>   			if (zdd != page->zone_device_data && i > 0) {
+>> -- 
+>> 2.48.1
+>>
 
-== Summary ==
-
-CI Bug Log - changes from xe-2832-b15a87713d14b1c2986f47a622c5a8c5458e2396_BAT -> xe-pw-146583v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-2832-b15a87713d14b1c2986f47a622c5a8c5458e2396 -> xe-pw-146583v1
-
-  IGT_8277: 8277
-  xe-2832-b15a87713d14b1c2986f47a622c5a8c5458e2396: b15a87713d14b1c2986f47a622c5a8c5458e2396
-  xe-pw-146583v1: 146583v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146583v1/index.html
-
---===============2716911438267261990==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: yet another batch of struct intel_display conversions</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/146583/">https://patchwork.freedesktop.org/series/146583/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146583v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146583v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2832-b15a87713d14b1c2986f47a622c5a8c5458e2396_BAT -&gt; xe-pw-146583v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2832-b15a87713d14b1c2986f47a622c5a8c5458e2396 -&gt; xe-pw-146583v1</li>
-</ul>
-<p>IGT_8277: 8277<br />
-  xe-2832-b15a87713d14b1c2986f47a622c5a8c5458e2396: b15a87713d14b1c2986f47a622c5a8c5458e2396<br />
-  xe-pw-146583v1: 146583v1</p>
-
-</body>
-</html>
-
---===============2716911438267261990==--
