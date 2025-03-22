@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18E4EC36007
-	for <intel-xe@archiver.kernel.org>; Sat, 22 Mar 2025 04:55:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11C41C35FFC
+	for <intel-xe@archiver.kernel.org>; Sat, 22 Mar 2025 05:00:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 427CC10E2BA;
-	Sat, 22 Mar 2025 04:55:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iB5iZUkD";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E97DA10E2A0;
- Sat, 22 Mar 2025 04:55:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742619342; x=1774155342;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=O0u1f2Ivsm2MQslx/kmB8f6FC7M6h6113eup1od2cFI=;
- b=iB5iZUkDesOAtE7TpEx1wHqIEfxHTQotjuaglMCFx4b74FjVu5XZhvHm
- NQvXuRIlqBxSzuP6Nf/hMCLZbE+Xz5S0JH5x7k2BrGWi0c77XLANN7SAz
- b2TTfOypK1qjD+RuLwT2wzEY+0k9wk9dx5xhf0s4z/CYi+LZi1g2mhThr
- inRb1hZ+cGH7YuoH7WbtYcr5omMiIVYo/tBeUpJ+5UVkUPaCDS9iVVlUe
- OtQoNo8zKlm2uv1KBti1o2S9GFhsyRWRYkzv1aXlBpAlnZc86XyS0vvVg
- Gh3ijZC7x0I2z5YCaJGVS4B8fqaOHzkrdkRNOKOhjv9Zg/PMIsECwFbJf Q==;
-X-CSE-ConnectionGUID: zjKAnTirRMeUGbGrhIlFrA==
-X-CSE-MsgGUID: PX7DjsR7TwmKKKc+UTUO2w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11380"; a="54526772"
-X-IronPort-AV: E=Sophos;i="6.14,266,1736841600"; d="scan'208";a="54526772"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 21:55:36 -0700
-X-CSE-ConnectionGUID: azs+t67dS3GrqmPm6PGU2w==
-X-CSE-MsgGUID: OMJB0JB9R9G/7X5faEe5Jw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,266,1736841600"; d="scan'208";a="124353796"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 21:55:34 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
- ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [RESEND 0/2] Fix vrr.enable handling and add logging for fixed_rr
-Date: Sat, 22 Mar 2025 10:13:43 +0530
-Message-ID: <20250322044345.3827137-1-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD22D10E2A9;
+	Sat, 22 Mar 2025 05:00:38 +0000 (UTC)
+Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9FA310E2A9;
+ Sat, 22 Mar 2025 05:00:37 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Fix_vrr=2Eenable_han?=
+ =?utf-8?q?dling_and_add_logging_for_fixed=5Frr_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Sat, 22 Mar 2025 05:00:37 -0000
+Message-ID: <174261963769.66720.609410819361946841@18a75f3d1eae>
+X-Patchwork-Hint: ignore
+References: <20250322044345.3827137-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250322044345.3827137-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,32 +36,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This series is split from the main series [1] for merging the fixes early,
-while other patches of the series are still in review:
+== Series Details ==
 
-The commit:
-a27217f9d1856 ("drm/i915/vrr: Track vrr.enable only for variable timing")
-adds a change in reading the vrr.enable, which is causing issue when GOP
-enables VRR timing generator with fixed timings.
+Series: Fix vrr.enable handling and add logging for fixed_rr (rev2)
+URL   : https://patchwork.freedesktop.org/series/146343/
+State : success
 
-Add the fixed_rr status in crtc_state_dump and remove the check for
-fixed_rr during readout.
+== Summary ==
 
-[1] Use VRR timing generator for fixed refresh rate modes
-https://patchwork.freedesktop.org/series/134383/
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: a123616cf3af drm-tip: 2025y-03m-21d-18h-52m-09s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/display: Add fixed_rr to crtc_state dump
+Applying: drm/i915/vrr: Avoid reading vrr.enable based on fixed_rr check
 
-Ankit Nautiyal (2):
-  drm/i915/display: Add fixed_rr to crtc_state dump
-  drm/i915/vrr: Avoid reading vrr.enable based on fixed_rr check
-
- drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 3 ++-
- drivers/gpu/drm/i915/display/intel_vrr.c             | 4 +---
- drivers/gpu/drm/i915/display/intel_vrr.h             | 1 +
- 3 files changed, 4 insertions(+), 4 deletions(-)
-
--- 
-2.45.2
 
