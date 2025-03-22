@@ -4,59 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E780C36008
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Mar 2025 23:37:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2F2BC3DA4A
+	for <intel-xe@archiver.kernel.org>; Sat, 22 Mar 2025 04:55:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 240D910E159;
-	Fri, 21 Mar 2025 23:37:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F63F10E2A9;
+	Sat, 22 Mar 2025 04:55:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ui/bbB5x";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HGZNGcu5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78E8D10E045;
- Fri, 21 Mar 2025 23:37:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED8A110E2A9;
+ Sat, 22 Mar 2025 04:55:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742600222; x=1774136222;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=AljkXwiVU9fSwVa3Fnc9Y61fCX8xBfpeUbntTEbOcJ8=;
- b=Ui/bbB5x9ybZYi4Odlzk3W0UCdzK33YIu8xerGSYRFgIatw6ZB6ievpx
- 8pflgZTsWvFefnZqgOmyb+UqyCJEAzIjduCCd/ZuIWLAqf22/8RuyEh2m
- R7nvI3iEEEMU4X04O7EqLTe5ZWmH/WGu4OYuMPxkMsuwBt9sXU2Kkzz5R
- bYiZCTUeWzxA8yR5NKRwBr2zzGJM/6cbDSCgE32jh5MZL2c91FnAJ4Qun
- rwMbHporms8g9Gaa2MeqdKI1gRdRPzWihmPiPImpIT6svWDOUdIRLAnF1
- 0psF9av8Qru+IdkzzOTCzLcWTmJFeb9cZFtuGTm1qYl/AJRkjrEoNHto6 Q==;
-X-CSE-ConnectionGUID: OJVFvhGQQvOQJIZz4hVLgw==
-X-CSE-MsgGUID: N2CFNrybTWKikM0jquXDIg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11380"; a="47535641"
-X-IronPort-AV: E=Sophos;i="6.14,266,1736841600"; d="scan'208";a="47535641"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 16:37:01 -0700
-X-CSE-ConnectionGUID: UNTZxxzjRmKnqWAisrMHdA==
-X-CSE-MsgGUID: /3tIRTlgRNqByn/iQK/xHw==
+ t=1742619342; x=1774155342;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=9AW5ztXyiPUa0oRPehaw+T+OWcer10JA34FEV209Akc=;
+ b=HGZNGcu590Vp4r14f+7Uj7Nf4kg5lQDtUS9RvrM4jCxZfiGDD3wjWDkN
+ uqv/IZwHYBc3wQF7gwqbilslhy0sHS7PoLJ8XPH8YxqvSgAe2xl67Cfsd
+ OmplvH0ToGt3xEkHUgl6mweWCZ80+SHloXccDvX7AoMw0YRDqzpeL9UFG
+ uojmA953u+JlmCvBcYbO97AZrMbJo9A37li6jnKZjuPLoO3mpF9tp8Q97
+ a7UU4RpSrrdl4UVnbyVDBU2Bmk1d1457MxzTwPacd2zzIDh1wIkISMaiK
+ rmeqVv07aiiM1K/9h8/LCNr6vKnl7oA5YmxKtl07DF8Pn32ryZgHsOu62 Q==;
+X-CSE-ConnectionGUID: 8609fw7qSnmCV4NBiqq59Q==
+X-CSE-MsgGUID: nGi/4pd+SR6YcdexlEm6mg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11380"; a="54526774"
+X-IronPort-AV: E=Sophos;i="6.14,266,1736841600"; d="scan'208";a="54526774"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2025 21:55:40 -0700
+X-CSE-ConnectionGUID: 4+0d7+FVTc2wZ5GUEaqZsQ==
+X-CSE-MsgGUID: Wr/ukiBZR0aNCaeVj9f52Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,266,1736841600"; d="scan'208";a="123695052"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 16:36:58 -0700
-Date: Sat, 22 Mar 2025 01:36:55 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Cc: intel-xe@lists.freedesktop.org, saurabhg.gupta@intel.com,
- alex.zuo@intel.com, joonas.lahtinen@linux.intel.com,
- matthew.brost@intel.com, jianxun.zhang@intel.com,
- shuicheng.lin@intel.com, dri-devel@lists.freedesktop.org,
- Michal.Wajdeczko@intel.com, michal.mrozek@intel.com
-Subject: Re: [PATCH v10 5/5] drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
-Message-ID: <Z934F9fz_-d1oGiC@black.fi.intel.com>
-References: <20250320152616.74587-1-jonathan.cavitt@intel.com>
- <20250320152616.74587-6-jonathan.cavitt@intel.com>
+X-IronPort-AV: E=Sophos;i="6.14,266,1736841600"; d="scan'208";a="124353802"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2025 21:55:37 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
+ ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
+Subject: [RESEND 2/2] drm/i915/vrr: Avoid reading vrr.enable based on fixed_rr
+ check
+Date: Sat, 22 Mar 2025 10:13:45 +0530
+Message-ID: <20250322044345.3827137-3-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20250322044345.3827137-1-ankit.k.nautiyal@intel.com>
+References: <20250322044345.3827137-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250320152616.74587-6-jonathan.cavitt@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,125 +69,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Mar 20, 2025 at 03:26:15PM +0000, Jonathan Cavitt wrote:
-> Add support for userspace to request a list of observed faults
-> from a specified VM.
+Currently, vrr.enable is intended only for variable refresh rate timings.
+At this point, we do not set fixed refresh rate timings, but the GOP can,
+which creates a problem during the readback of vrr.enable.
 
-...
+The GOP enables the VRR timing generator with fixed timings, while the
+driver only recognizes the VRR timing generator as enabled with
+variable timings. This discrepancy causes an issue due to the
+fixed refresh rate check during readback. Since the VRR timing generator
+is enabled and we do not support fixed timings, the readback should set
+vrr.enable so that the driver can disable the VRR timing generator.
+However, the current check does not allow this.
 
-> +static int xe_vm_get_property_size(struct xe_vm *vm, u32 property)
-> +{
-> +	int size = -EINVAL;
+Therefore, remove the fixed refresh rate check during readback.
 
-Mixing size and error codes is usually received with mixed feelings.
+Fixes: 27217f9d1856 ("drm/i915/vrr: Track vrr.enable only for variable timing")
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_vrr.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-> +
-> +	switch (property) {
-> +	case DRM_XE_VM_GET_PROPERTY_FAULTS:
-> +		spin_lock(&vm->faults.lock);
-> +		size = vm->faults.len * sizeof(struct xe_vm_fault);
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index aa65a6933ddb..6bdcdfed4b9b 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -657,8 +657,7 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
+ 		}
+ 	}
+ 
+-	crtc_state->vrr.enable = trans_vrr_ctl & VRR_CTL_VRR_ENABLE &&
+-				 !intel_vrr_is_fixed_rr(crtc_state);
++	crtc_state->vrr.enable = trans_vrr_ctl & VRR_CTL_VRR_ENABLE;
+ 
+ 	/*
+ 	 * #TODO: For Both VRR and CMRR the flag I915_MODE_FLAG_VRR is set for mode_flags.
+-- 
+2.45.2
 
-size_mul() and,
-[1] perhaps fill it up into the pointer passed by the caller here?
-
-> +		spin_unlock(&vm->faults.lock);
-> +		break;
-> +	default:
-> +		break;
-
-Do we need the default case?
-
-> +	}
-> +	return size;
-> +}
-> +
-> +static int xe_vm_get_property_verify_size(struct xe_vm *vm, u32 property,
-> +					  int expected, int actual)
-> +{
-> +	switch (property) {
-> +	case DRM_XE_VM_GET_PROPERTY_FAULTS:
-
-Unless we're expecting more cases (that we confidently know of), there's
-not much point of single case switch.
-
-> +		/*
-> +		 * Number of faults may increase between calls to
-> +		 * xe_vm_get_property_ioctl, so just report the
-> +		 * number of faults the user requests if it's less
-> +		 * than or equal to the number of faults in the VM
-> +		 * fault array.
-> +		 */
-> +		if (actual < expected)
-> +			return -EINVAL;
-> +		break;
-> +	default:
-> +		if (actual != expected)
-> +			return -EINVAL;
-> +		break;
-> +	}
-> +	return 0;
-> +}
-
-...
-
-> +static int xe_vm_get_property_fill_data(struct xe_vm *vm,
-> +					struct drm_xe_vm_get_property *args)
-> +{
-> +	switch (args->property) {
-> +	case DRM_XE_VM_GET_PROPERTY_FAULTS:
-> +		return fill_faults(vm, args);
-> +	default:
-> +		break;
-
-Same as above.
-
-> +	}
-> +	return -EINVAL;
-> +}
-> +
-> +int xe_vm_get_property_ioctl(struct drm_device *drm, void *data,
-> +			     struct drm_file *file)
-> +{
-> +	struct xe_device *xe = to_xe_device(drm);
-> +	struct xe_file *xef = to_xe_file(file);
-> +	struct drm_xe_vm_get_property *args = data;
-> +	struct xe_vm *vm;
-> +	int size, ret = 0;
-> +
-> +	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
-> +		return -EINVAL;
-> +
-> +	vm = xe_vm_lookup(xef, args->vm_id);
-> +	if (XE_IOCTL_DBG(xe, !vm))
-> +		return -ENOENT;
-> +
-> +	size = xe_vm_get_property_size(vm, args->property);
-> +
-> +	if (size < 0) {
-> +		ret = size;
-> +		goto put_vm;
-> +	} else if (!args->size && size) {
-> +		args->size = size;
-> +		goto put_vm;
-> +	}
-
-With [1] in place, this gymnastics can be dropped
-
-	ret = xe_vm_get_property_size(vm, args->property, &size);
-	if (ret)
-		goto put_vm;
-
-> +
-> +	ret = xe_vm_get_property_verify_size(vm, args->property,
-> +					     args->size, size);
-> +	if (XE_IOCTL_DBG(xe, ret))
-> +		goto put_vm;
-> +
-> +	ret = xe_vm_get_property_fill_data(vm, args);
-> +
-> +put_vm:
-> +	xe_vm_put(vm);
-> +	return ret;
-> +}
-
-Raag
