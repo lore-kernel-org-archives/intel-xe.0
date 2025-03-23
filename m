@@ -4,27 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E51AC36005
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Mar 2025 13:06:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C59C4C36005
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Mar 2025 13:23:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33FC910E202;
-	Mon, 24 Mar 2025 13:06:36 +0000 (UTC)
-Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F3DA10E202;
- Mon, 24 Mar 2025 13:06:34 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2519013056391144607=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 385558902A;
+	Mon, 24 Mar 2025 13:23:02 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=oracle.com header.i=@oracle.com header.b="aWL/Mcsn";
+	dkim-atps=neutral
+Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com
+ [205.220.165.32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0112310E1C4;
+ Sun, 23 Mar 2025 12:49:15 +0000 (UTC)
+Received: from pps.filterd (m0246627.ppops.net [127.0.0.1])
+ by mx0b-00069f02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52N6wa7x025718;
+ Sun, 23 Mar 2025 12:49:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
+ :content-transfer-encoding:date:from:message-id:mime-version
+ :subject:to; s=corp-2023-11-20; bh=y1p8efBTlVkGZuPqovRJRIEED8k9c
+ 61FVODzJx6N494=; b=aWL/McsnxrCM9uobUxcWd1nwQJUWHW9CSwuMnZnjj0X3d
+ 7JOMuVzDQTzRBPvSIMSvQPN+ly0NNddmuCtqN13fePOO+2Awk+hD42cEDfS6/O+E
+ ISyYgtjL5jzq3ERb6V4aj24yX+IagtugI7VSRodQXY6403kfh5R6kKPtCH/gdFXs
+ pEItFa4MPgqkS+btX6n88PSXCyt0d2i7o4ycTcb2o20cP+FnZZIk5fjwqigHtV0o
+ nYfQQ9QVfNdv8JTxRiVWNOudgyXT//EXgJzD0sWxiIDB2xCWV/nIr1JU2nLoAjOS
+ uld6c9CPpasWb7AP5yLWIg60cYP00qmhYXUMW5+tA==
+Received: from phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com
+ (phxpaimrmta02.appoci.oracle.com [147.154.114.232])
+ by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 45hn7dj3rm-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Sun, 23 Mar 2025 12:49:11 +0000 (GMT)
+Received: from pps.filterd
+ (phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
+ by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (8.18.1.2/8.18.1.2)
+ with ESMTP id 52NCU31q029893; Sun, 23 Mar 2025 12:49:10 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+ by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTPS id
+ 45jjbx89d1-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Sun, 23 Mar 2025 12:49:10 +0000
+Received: from phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com
+ (phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
+ by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 52NCnAqp026147;
+ Sun, 23 Mar 2025 12:49:10 GMT
+Received: from ca-dev112.us.oracle.com (ca-dev112.us.oracle.com
+ [10.129.136.47])
+ by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTP id
+ 45jjbx89cu-1; Sun, 23 Mar 2025 12:49:10 +0000
+From: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Matthew Brost <matthew.brost@intel.com>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Cc: dan.carpenter@linaro.org, kernel-janitors@vger.kernel.org,
+ error27@gmail.com, harshit.m.mogalapalli@oracle.com
+Subject: [PATCH] drm/xe/svm: fix dereferencing error pointer in
+ drm_gpusvm_range_alloc()
+Date: Sun, 23 Mar 2025 05:49:06 -0700
+Message-ID: <20250323124907.3946370-1-harshit.m.mogalapalli@oracle.com>
+X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/display=3A_dp=3A_add_ne?=
- =?utf-8?q?w_DPCD_access_functions_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dmitry Baryshkov" <lumag@kernel.org>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 24 Mar 2025 13:06:34 -0000
-Message-ID: <174282159438.71951.9900879561875429484@18a75f3d1eae>
-X-Patchwork-Hint: ignore
-References: <20250324-drm-rework-dpcd-access-v4-0-e80ff89593df@oss.qualcomm.com>
-In-Reply-To: <20250324-drm-rework-dpcd-access-v4-0-e80ff89593df@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-23_06,2025-03-21_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0
+ spamscore=0 bulkscore=0
+ suspectscore=0 mlxscore=0 mlxlogscore=999 malwarescore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2502280000
+ definitions=main-2503230093
+X-Proofpoint-GUID: cvCcg96ARbVDUoAZZm1Bw8SDjUXEjOoc
+X-Proofpoint-ORIG-GUID: cvCcg96ARbVDUoAZZm1Bw8SDjUXEjOoc
+X-Mailman-Approved-At: Mon, 24 Mar 2025 13:23:00 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,129 +89,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2519013056391144607==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+xe_svm_range_alloc() returns ERR_PTR(-ENOMEM) on failure and there is a
+dereference of "range" after that:
 
-== Series Details ==
+	-->     range->gpusvm = gpusvm;
 
-Series: drm/display: dp: add new DPCD access functions (rev3)
-URL   : https://patchwork.freedesktop.org/series/146000/
-State : success
+In xe_svm_range_alloc(), when memory allocation fails return NULL
+instead to handle this situation.
 
-== Summary ==
+Fixes: 99624bdff867 ("drm/gpusvm: Add support for GPU Shared Virtual Memory")
+Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+Closes: https://lore.kernel.org/all/adaef4dd-5866-48ca-bc22-4a1ddef20381@stanley.mountain/
+Signed-off-by: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
+---
+This is based on static analysis and only compile tested.
+---
+ drivers/gpu/drm/xe/xe_svm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-CI Bug Log - changes from xe-2839-f8c17a63ca147e008f36d1efd80206d4ce4e8ce1_BAT -> xe-pw-146000v3_BAT
-====================================================
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 52e04e7e343f..a79df8cf1f36 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -80,7 +80,7 @@ xe_svm_range_alloc(struct drm_gpusvm *gpusvm)
+ 
+ 	range = kzalloc(sizeof(*range), GFP_KERNEL);
+ 	if (!range)
+-		return ERR_PTR(-ENOMEM);
++		return NULL;
+ 
+ 	INIT_LIST_HEAD(&range->garbage_collector_link);
+ 	xe_vm_get(gpusvm_to_vm(gpusvm));
+-- 
+2.39.3
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-146000v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_intel_bb@intel-bb-blit-y:
-    - bat-adlp-vf:        [PASS][1] -> [ABORT][2] ([Intel XE#4491])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2839-f8c17a63ca147e008f36d1efd80206d4ce4e8ce1/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-y.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146000v3/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-y.html
-
-  
-  [Intel XE#4491]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4491
-
-
-Build changes
--------------
-
-  * IGT: IGT_8278 -> IGT_8279
-  * Linux: xe-2839-f8c17a63ca147e008f36d1efd80206d4ce4e8ce1 -> xe-pw-146000v3
-
-  IGT_8278: b6673db372bd8987f65948d3a97f8dcd2ef42b01 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8279: 8279
-  xe-2839-f8c17a63ca147e008f36d1efd80206d4ce4e8ce1: f8c17a63ca147e008f36d1efd80206d4ce4e8ce1
-  xe-pw-146000v3: 146000v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146000v3/index.html
-
---===============2519013056391144607==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/display: dp: add new DPCD access functions (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/146000/">https://patchwork.freedesktop.org/series/146000/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146000v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146000v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2839-f8c17a63ca147e008f36d1efd80206d4ce4e8ce1_BAT -&gt; xe-pw-146000v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-146000v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_intel_bb@intel-bb-blit-y:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2839-f8c17a63ca147e008f36d1efd80206d4ce4e8ce1/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-y.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146000v3/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-y.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4491">Intel XE#4491</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8278 -&gt; IGT_8279</li>
-<li>Linux: xe-2839-f8c17a63ca147e008f36d1efd80206d4ce4e8ce1 -&gt; xe-pw-146000v3</li>
-</ul>
-<p>IGT_8278: b6673db372bd8987f65948d3a97f8dcd2ef42b01 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8279: 8279<br />
-  xe-2839-f8c17a63ca147e008f36d1efd80206d4ce4e8ce1: f8c17a63ca147e008f36d1efd80206d4ce4e8ce1<br />
-  xe-pw-146000v3: 146000v3</p>
-
-</body>
-</html>
-
---===============2519013056391144607==--
