@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B658C36010
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Mar 2025 21:58:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84953C36002
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Mar 2025 22:02:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3823410E4E9;
-	Mon, 24 Mar 2025 21:58:00 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DUrhPzOy";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4E2810E419;
- Mon, 24 Mar 2025 21:57:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742853476; x=1774389476;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=m68HgPjw3W/SJHqteuNuVZFXXKSiABKiOSnTPAUoRMo=;
- b=DUrhPzOyQ3tUJ57thKkjXsKdLkIplcUNNhMyDISxQw3H5PgCrjR1/g0s
- iREFlvsihI97YwCWqW0FD/lEdy5w8q1PDcOSnGVjwbS+1A1n9Xegw5mv1
- BKvw9Cb5N4XdpsC08FZDdqApf/vrMq73g4SoKzk/4YqJl1orrZ87uFWox
- P4O8W0X4t9vzFJQc0gmegQ7ztwReBSLewogURH3LfRwBi3NSSbxcx1n9p
- T0Y9lXqu3/rSVciS2YY3ftNig141ailM4H1CNRoe4WkzQZ6Q78NwV/Xld
- gJagj+Vnttl/2Iej4nyj+k7KlDI/OdvHEa22lygxcxF8c9mJpDWCqHt4Y A==;
-X-CSE-ConnectionGUID: ubrpBQlkSPqQ/TdLTdw2Cw==
-X-CSE-MsgGUID: i9kSFbNLQTC+01mMKKqAkg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="54723283"
-X-IronPort-AV: E=Sophos;i="6.14,272,1736841600"; d="scan'208";a="54723283"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2025 14:57:56 -0700
-X-CSE-ConnectionGUID: 52YdVL+nTCeyHSQ03mZAzA==
-X-CSE-MsgGUID: ajjmu058RNytQNbq2C6eqA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,272,1736841600"; d="scan'208";a="129236852"
-Received: from dut4419lnl.fm.intel.com ([10.105.10.61])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2025 14:57:55 -0700
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
- joonas.lahtinen@linux.intel.com, matthew.brost@intel.com,
- jianxun.zhang@intel.com, shuicheng.lin@intel.com,
- dri-devel@lists.freedesktop.org, Michal.Wajdeczko@intel.com,
- michal.mrozek@intel.com, raag.jadav@intel.com
-Subject: [PATCH v11 4/5] drm/xe/xe_vm: Add per VM fault info
-Date: Mon, 24 Mar 2025 21:57:51 +0000
-Message-ID: <20250324215753.70768-5-jonathan.cavitt@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250324215753.70768-1-jonathan.cavitt@intel.com>
-References: <20250324215753.70768-1-jonathan.cavitt@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CBA910E4ED;
+	Mon, 24 Mar 2025 22:02:17 +0000 (UTC)
+Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0E7C10E4EA;
+ Mon, 24 Mar 2025 22:02:16 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5844123303814296455=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_avoid_plain_64-bi?=
+ =?utf-8?q?t_division?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arnd Bergmann" <arnd@kernel.org>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 24 Mar 2025 22:02:16 -0000
+Message-ID: <174285373672.75091.18438455898649149038@18a75f3d1eae>
+X-Patchwork-Hint: ignore
+References: <20250324210612.2927194-1-arnd@kernel.org>
+In-Reply-To: <20250324210612.2927194-1-arnd@kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,295 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add additional information to each VM so they can report up to the first
-50 seen faults.  Only pagefaults are saved this way currently, though in
-the future, all faults should be tracked by the VM for future reporting.
+--===============5844123303814296455==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Additionally, of the pagefaults reported, only failed pagefaults are
-saved this way, as successful pagefaults should recover silently and not
-need to be reported to userspace.
+== Series Details ==
 
-v2:
-- Free vm after use (Shuicheng)
-- Compress pf copy logic (Shuicheng)
-- Update fault_unsuccessful before storing (Shuicheng)
-- Fix old struct name in comments (Shuicheng)
-- Keep first 50 pagefaults instead of last 50 (Jianxun)
+Series: drm/xe: avoid plain 64-bit division
+URL   : https://patchwork.freedesktop.org/series/146689/
+State : success
 
-v3:
-- Avoid unnecessary execution by checking MAX_PFS earlier (jcavitt)
-- Fix double-locking error (jcavitt)
-- Assert kmemdump is successful (Shuicheng)
+== Summary ==
 
-v4:
-- Rename xe_vm.pfs to xe_vm.faults (jcavitt)
-- Store fault data and not pagefault in xe_vm faults list (jcavitt)
-- Store address, address type, and address precision per fault (jcavitt)
-- Store engine class and instance data per fault (Jianxun)
-- Add and fix kernel docs (Michal W)
-- Properly handle kzalloc error (Michal W)
-- s/MAX_PFS/MAX_FAULTS_SAVED_PER_VM (Michal W)
-- Store fault level per fault (Micahl M)
+CI Bug Log - changes from xe-2842-9be2a7099019ef52d17cbc2b3e6ba15cd638ec2c_BAT -> xe-pw-146689v1_BAT
+====================================================
 
-v5:
-- Store fault and access type instead of address type (Jianxun)
+Summary
+-------
 
-v6:
-- Store pagefaults in non-fault-mode VMs as well (Jianxun)
+  **SUCCESS**
 
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>
-Cc: Jianxun Zhang <jianxun.zhang@intel.com>
-Cc: Michal Wajdeczko <Michal.Wajdeczko@intel.com>
-Cc: Michal Mzorek <michal.mzorek@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_pagefault.c | 34 ++++++++++++++++
- drivers/gpu/drm/xe/xe_vm.c           | 60 ++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vm.h           |  9 +++++
- drivers/gpu/drm/xe/xe_vm_types.h     | 34 ++++++++++++++++
- 4 files changed, 137 insertions(+)
+  No regressions found.
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index 0cedf089a3f2..d471cbb7640d 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -345,6 +345,39 @@ int xe_guc_pagefault_handler(struct xe_guc *guc, u32 *msg, u32 len)
- 	return full ? -ENOSPC : 0;
- }
- 
-+static void save_pagefault_to_vm(struct xe_device *xe, struct xe_gt_pagefault *pf)
-+{
-+	struct xe_vm *vm;
-+
-+	/*
-+	 * Pagefault may be associated to VM that is not in fault mode.
-+	 * Perform asid_to_vm behavior, except if vm is not in fault
-+	 * mode, return the VM anyways.
-+	 */
-+	down_read(&xe->usm.lock);
-+	vm = xa_load(&xe->usm.asid_to_vm, pf->asid);
-+	if (vm)
-+		xe_vm_get(vm);
-+	else
-+		vm = ERR_PTR(-EINVAL);
-+	up_read(&xe->usm.lock);
-+
-+	if (IS_ERR(vm))
-+		return;
-+
-+	spin_lock(&vm->faults.lock);
-+
-+	/**
-+	 * Limit the number of faults in the fault list to prevent
-+	 * memory overuse.
-+	 */
-+	if (vm->faults.len < MAX_FAULTS_SAVED_PER_VM)
-+		xe_vm_add_fault_entry_pf(vm, pf);
-+
-+	spin_unlock(&vm->faults.lock);
-+	xe_vm_put(vm);
-+}
-+
- #define USM_QUEUE_MAX_RUNTIME_MS	20
- 
- static void pf_queue_work_func(struct work_struct *w)
-@@ -364,6 +397,7 @@ static void pf_queue_work_func(struct work_struct *w)
- 		if (unlikely(ret)) {
- 			print_pagefault(xe, &pf);
- 			pf.fault_unsuccessful = 1;
-+			save_pagefault_to_vm(xe, &pf);
- 			drm_dbg(&xe->drm, "Fault response: Unsuccessful %d\n", ret);
- 		}
- 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 60303998bd61..9a627ba17f55 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -28,6 +28,7 @@
- #include "xe_drm_client.h"
- #include "xe_exec_queue.h"
- #include "xe_gt_pagefault.h"
-+#include "xe_gt_pagefault_types.h"
- #include "xe_gt_tlb_invalidation.h"
- #include "xe_migrate.h"
- #include "xe_pat.h"
-@@ -778,6 +779,60 @@ int xe_vm_userptr_check_repin(struct xe_vm *vm)
- 		list_empty_careful(&vm->userptr.invalidated)) ? 0 : -EAGAIN;
- }
- 
-+/**
-+ * xe_vm_add_fault_entry_pf() - Add pagefault to vm fault list
-+ * @vm: The VM.
-+ * @pf: The pagefault.
-+ *
-+ * This function takes the data from the pagefault @pf and saves it to @vm->faults.list.
-+ *
-+ * The function exits silently if the list is full, and reports a warning if the pagefault
-+ * could not be saved to the list.
-+ */
-+void xe_vm_add_fault_entry_pf(struct xe_vm *vm, struct xe_gt_pagefault *pf)
-+{
-+	struct xe_vm_fault_entry *e = NULL;
-+
-+	spin_lock(&vm->faults.lock);
-+
-+	if (vm->faults.len >= MAX_FAULTS_SAVED_PER_VM)
-+		goto out;
-+
-+	e = kzalloc(sizeof(*e), GFP_KERNEL);
-+	if (!e) {
-+		drm_warn(&vm->xe->drm,
-+			 "Could not allocate memory for fault %i!",
-+			 vm->faults.len);
-+		goto out;
-+	}
-+
-+	e->address = pf->page_addr;
-+	e->address_precision = 1;
-+	e->access_type = pf->access_type;
-+	e->fault_type = pf->fault_type;
-+	e->fault_level = pf->fault_level;
-+	e->engine_class = pf->engine_class;
-+	e->engine_instance = pf->engine_instance;
-+
-+	list_add_tail(&e->list, &vm->faults.list);
-+	vm->faults.len++;
-+out:
-+	spin_unlock(&vm->faults.lock);
-+}
-+
-+static void xe_vm_clear_fault_entries(struct xe_vm *vm)
-+{
-+	struct xe_vm_fault_entry *e, *tmp;
-+
-+	spin_lock(&vm->faults.lock);
-+	list_for_each_entry_safe(e, tmp, &vm->faults.list, list) {
-+		list_del(&e->list);
-+		kfree(e);
-+	}
-+	vm->faults.len = 0;
-+	spin_unlock(&vm->faults.lock);
-+}
-+
- static int xe_vma_ops_alloc(struct xe_vma_ops *vops, bool array_of_binds)
- {
- 	int i;
-@@ -1660,6 +1715,9 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- 	init_rwsem(&vm->userptr.notifier_lock);
- 	spin_lock_init(&vm->userptr.invalidated_lock);
- 
-+	INIT_LIST_HEAD(&vm->faults.list);
-+	spin_lock_init(&vm->faults.lock);
-+
- 	ttm_lru_bulk_move_init(&vm->lru_bulk_move);
- 
- 	INIT_WORK(&vm->destroy_work, vm_destroy_work_func);
-@@ -1930,6 +1988,8 @@ void xe_vm_close_and_put(struct xe_vm *vm)
- 	}
- 	up_write(&xe->usm.lock);
- 
-+	xe_vm_clear_fault_entries(vm);
-+
- 	for_each_tile(tile, xe, id)
- 		xe_range_fence_tree_fini(&vm->rftree[id]);
- 
-diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index 0ef811fc2bde..9bd7e93824da 100644
---- a/drivers/gpu/drm/xe/xe_vm.h
-+++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -12,6 +12,12 @@
- #include "xe_map.h"
- #include "xe_vm_types.h"
- 
-+/**
-+ * MAX_FAULTS_SAVED_PER_VM - Maximum number of faults each vm can store before future
-+ * faults are discarded to prevent memory overuse
-+ */
-+#define MAX_FAULTS_SAVED_PER_VM	50
-+
- struct drm_device;
- struct drm_printer;
- struct drm_file;
-@@ -22,6 +28,7 @@ struct dma_fence;
- 
- struct xe_exec_queue;
- struct xe_file;
-+struct xe_gt_pagefault;
- struct xe_sync_entry;
- struct xe_svm_range;
- struct drm_exec;
-@@ -257,6 +264,8 @@ int xe_vma_userptr_pin_pages(struct xe_userptr_vma *uvma);
- 
- int xe_vma_userptr_check_repin(struct xe_userptr_vma *uvma);
- 
-+void xe_vm_add_fault_entry_pf(struct xe_vm *vm, struct xe_gt_pagefault *pf);
-+
- bool xe_vm_validate_should_retry(struct drm_exec *exec, int err, ktime_t *end);
- 
- int xe_vm_lock_vma(struct drm_exec *exec, struct xe_vma *vma);
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 84fa41b9fa20..ac1948d00df0 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -19,6 +19,7 @@
- #include "xe_range_fence.h"
- 
- struct xe_bo;
-+struct xe_pagefault;
- struct xe_svm_range;
- struct xe_sync_entry;
- struct xe_user_fence;
-@@ -142,6 +143,27 @@ struct xe_userptr_vma {
- 
- struct xe_device;
- 
-+/**
-+ * struct xe_vm_fault_entry - Elements of vm->faults.list
-+ * @list: link into @xe_vm.faults.list
-+ * @address: address of the fault
-+ * @address_type: type of address access that resulted in fault
-+ * @address_precision: precision of faulted address
-+ * @fault_level: fault level of the fault
-+ * @engine_class: class of engine fault was reported on
-+ * @engine_instance: instance of engine fault was reported on
-+ */
-+struct xe_vm_fault_entry {
-+	struct list_head list;
-+	u64 address;
-+	u32 address_precision;
-+	u8 access_type;
-+	u8 fault_type;
-+	u8 fault_level;
-+	u8 engine_class;
-+	u8 engine_instance;
-+};
-+
- struct xe_vm {
- 	/** @gpuvm: base GPUVM used to track VMAs */
- 	struct drm_gpuvm gpuvm;
-@@ -305,6 +327,18 @@ struct xe_vm {
- 		bool capture_once;
- 	} error_capture;
- 
-+	/**
-+	 * @faults: List of all faults associated with this VM
-+	 */
-+	struct {
-+		/** @faults.lock: lock protecting @faults.list */
-+		spinlock_t lock;
-+		/** @faults.list: list of xe_vm_fault_entry entries */
-+		struct list_head list;
-+		/** @faults.len: length of @faults.list */
-+		unsigned int len;
-+	} faults;
-+
- 	/**
- 	 * @tlb_flush_seqno: Required TLB flush seqno for the next exec.
- 	 * protected by the vm resv.
--- 
-2.43.0
+  
 
+Participating hosts (10 -> 9)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8280 -> IGT_8281
+  * Linux: xe-2842-9be2a7099019ef52d17cbc2b3e6ba15cd638ec2c -> xe-pw-146689v1
+
+  IGT_8280: 8280
+  IGT_8281: 18c445bea641c03b637d7ed5bc3bd120b5d83b2a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2842-9be2a7099019ef52d17cbc2b3e6ba15cd638ec2c: 9be2a7099019ef52d17cbc2b3e6ba15cd638ec2c
+  xe-pw-146689v1: 146689v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146689v1/index.html
+
+--===============5844123303814296455==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: avoid plain 64-bit division</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/146689/">https://patchwork.freedesktop.org/series/146689/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146689v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146689v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2842-9be2a7099019ef52d17cbc2b3e6ba15cd638ec2c_BAT -&gt; xe-pw-146689v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (10 -&gt; 9)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8280 -&gt; IGT_8281</li>
+<li>Linux: xe-2842-9be2a7099019ef52d17cbc2b3e6ba15cd638ec2c -&gt; xe-pw-146689v1</li>
+</ul>
+<p>IGT_8280: 8280<br />
+  IGT_8281: 18c445bea641c03b637d7ed5bc3bd120b5d83b2a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2842-9be2a7099019ef52d17cbc2b3e6ba15cd638ec2c: 9be2a7099019ef52d17cbc2b3e6ba15cd638ec2c<br />
+  xe-pw-146689v1: 146689v1</p>
+
+</body>
+</html>
+
+--===============5844123303814296455==--
