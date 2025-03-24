@@ -4,163 +4,172 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40BE8C36005
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Mar 2025 20:02:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99AB3C36002
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Mar 2025 20:10:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0096910E4CC;
-	Mon, 24 Mar 2025 20:02:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47DE510E4CC;
+	Mon, 24 Mar 2025 20:10:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ORvQgvBJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n36zUUOS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBF4310E4CC;
- Mon, 24 Mar 2025 20:02:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 497B810E11E
+ for <intel-xe@lists.freedesktop.org>; Mon, 24 Mar 2025 20:10:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742846548; x=1774382548;
+ t=1742847024; x=1774383024;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=B2UF34jIuO3gK60ptDZbLhes2eA5knx5MI+XWD97tNc=;
- b=ORvQgvBJBW3HzQklvsjJacdFrA38dsNy2r1yKAj1YiQWcZdkIn2Mqbx5
- pinBiIALWxqxI7FHa5/Ezli0g/d0z00vkWadvvuGoZkjoHUgaRmYwE2ss
- ncitvNy9Lze3gqhQ7zve8V66ZlY12dQmp7gc3jnD5SCbDkckRaKAE29RE
- p5Ki1jSiwVSGrdJprXMIerL4D/vEJudVDZ+8IpB+Wrpk9C7pboSikbDG2
- hu3T5ogNukx5VJDEHG5/jb9VMSfS9aNLOR0ieaOh4S3y/PCFHlpNePPDg
- 7Etz5+Q0QY7/Zb634GZb5y+/XcW7ObevMZ6e3BdrqDTskQ/YVwkQu1UYI A==;
-X-CSE-ConnectionGUID: 1eBPMR/ZT2GyOhbYqF8/XQ==
-X-CSE-MsgGUID: IMoN9AgJSP6OgfbFWgMOLg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="54712026"
-X-IronPort-AV: E=Sophos;i="6.14,272,1736841600"; d="scan'208";a="54712026"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2025 13:02:28 -0700
-X-CSE-ConnectionGUID: Y/UxIrETTZaAXdcKg+cBFw==
-X-CSE-MsgGUID: ChIzI9TBTyibd+puwxcHRQ==
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=KlcTPAoJqH36//vcHiSncsXJU9FVN/FP8mPTB88Y030=;
+ b=n36zUUOSWN1XJ7cuXEilbyik45KVkyYUn+Dgk4M69L0jGh1y/ouuAhn7
+ 4QpGcLnamcfVgVivGNNfqUuwzgauKJmx/a7A43uc7xhgqnGgGV/B69fca
+ tBd5PnAkpu/wrbmGKOhV8ksxSWkuww+CC7LFFGqm98QCWgons5Ppc1n0H
+ aYSf1JBmDQl2ygx6fZ3kX5o6zLWf6Ch/3cbE/TGvtXLW30uijVa/e4aru
+ lqIN/WS67vAKuDxejU/vxBvq6W1/mEQkp1tplHHTfIMfXMVKiI17uExr6
+ D+j4t2IQopbAO0xw8Ap8QXSjrP4l43s13pfKIlqeu3V2b8A/MwRVkS+ul w==;
+X-CSE-ConnectionGUID: WjgV62d4TP+zgi8pq/HTxQ==
+X-CSE-MsgGUID: YrYQz4bDTfOZNhYpbnwldA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="55450055"
+X-IronPort-AV: E=Sophos;i="6.14,272,1736841600"; d="scan'208";a="55450055"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2025 13:10:24 -0700
+X-CSE-ConnectionGUID: t+NeK3JWRo+MLy4VQy9OAQ==
+X-CSE-MsgGUID: ZgFp1avyR9GsLHBK5SQ/LQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,272,1736841600"; d="scan'208";a="155063160"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 24 Mar 2025 13:02:28 -0700
+X-IronPort-AV: E=Sophos;i="6.14,272,1736841600"; d="scan'208";a="128837707"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2025 13:10:16 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Mon, 24 Mar 2025 13:02:27 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Mon, 24 Mar 2025 13:02:27 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.171)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.2.1544.14; Mon, 24 Mar 2025 13:10:03 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Mon, 24 Mar 2025 13:02:25 -0700
+ 15.2.1544.14 via Frontend Transport; Mon, 24 Mar 2025 13:10:03 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.47) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Mon, 24 Mar 2025 13:10:03 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=zR1LgcXKWtS5HncFwxlT6Zl1LyFhSrzRwJH96UM/9nNanGbDchH/uwfQV+QiyTZB2iP4rTr13z29pp4Vbw15lmEgIZTKj8PZsyHYqYFV4aJlYR2lroA7yFRcjBlmmdg29EcHlSB3JQuKChMeD69N+9mXsVrdLCy15TGeUB7YUwM8xp6xcxLq6kDkUhnRfSxDxyx89hWWHdabi/U6Goh4316Zv/CjfGOHmYmG84a533vLAGZ2qM4Av21Cj2GtwQ8SK/t4iD0Oi9/dsE6sfAETw7DVxAkKBjw8Ayl0hZ310j2mXpsSbAGi+DzbgbXO66yrTi/g00Di8XA2SHkCCmPF2g==
+ b=bfosE823vRUK0yle370g/h2UG3rejDg6COAnCdqpV/JdivYVrua1clLn+2/retZiF3jKdChvtb41CIgB9DoK3AAeMhig48J/sD+1wSsKumWNg8efasxJqcFJl8W9YKJGX6VjcSnofE6rL/1b25b+5m0SElaSC9Izrn95oWzUvniAKC67zkKIE6mZuQrgI3h2CMOC6F50hOrmzyCvxANvMM/oOraRcKHNUWh7vVOK3GYq7wHS9YAaTJWDPBqZbSnTZ+CZAll1ZWB9jabQaTyk8ISX4skCGt6yfIWeEcX2PynGdiYDV2UwS8UaEbCbETbRPPYxnGSOLtt6gBZWF7i7fQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bbYxbLiXgJqkgAhAh8yy4uWbhSMPk4j+w1w9ZM3ycw0=;
- b=odub6p9SFf042lFnHlDglLxCFhDAegPTjeQiQSNpzogjvL5VLiVsbiViO5FE6u2UwyD+1nNX+mOQvQWVgf8CrKcompYtfIcgFbcdKsIljNDlpAdN4kBw4iUYPPV/lwu318TDPGKRBN2TOAq++QWMp1U1mNezpjHdpZJPxk8FX9gZgbEvXcMsITc42WjYh0FqauoCwXCkKwfbXiT0nsgxVocAzUZnvCjkAYx/rrDkq6L9EuLzmlougVC5EwNMT91qUENzZRTTn24Bl8mHtlaCsgq5HwlPizvox2VGth4JQ0p7TKkWOJiE2bxab/iBn3p3UjOMqzu2EgIpkAfqGa9ZGg==
+ bh=CxCyXJ3n8PglVAZv2cy+uKBx1cdwwQL7XfjFbLbN57A=;
+ b=huFAoLCHzGy25Q+fYK88z1L6ulr509H6lf2OH1LnY3el2Qb40iwDTGxSEzgwAfsn36U1TB1w0aMZ5XM2clVR0yaD8e7PMPiZKhVJiAdaiuZxSFXjm98M0uEXXTn/GEAbKqSSRqx5DEpMWSsodRpqHIX4dWAkzKDKsTWrNZfc/vQ9Bioze2R4KrPZ+8wFhLBvmcCcwgeL5k9EPIq7Iqpmq8gH3HKi3E7rGbrJCzcSg+EQa2rI8NMMwOTHi4v6p6vKmG4skSCFBGt2fI2/xVp6F7Nr0y0kSFlc1z9AWPqcLwJRKzOduZBeCyJYxUJ0QbxnAoHfCh/USAZM6wb6yUf5aw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by IA0PR11MB7212.namprd11.prod.outlook.com (2603:10b6:208:43e::6) with
- Microsoft SMTP Server (version=TLS1_2,
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
+ by IA0PR11MB7306.namprd11.prod.outlook.com (2603:10b6:208:438::18)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.42; Mon, 24 Mar
- 2025 20:02:10 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::8dd1:f169:5266:e16e]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::8dd1:f169:5266:e16e%6]) with mapi id 15.20.8534.040; Mon, 24 Mar 2025
- 20:02:09 +0000
-Date: Mon, 24 Mar 2025 13:02:07 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
+ 2025 20:10:01 +0000
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::76d2:8036:2c6b:7563%4]) with mapi id 15.20.8534.040; Mon, 24 Mar 2025
+ 20:10:01 +0000
+Date: Mon, 24 Mar 2025 16:09:57 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Lucas De Marchi <lucas.demarchi@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- "Vivek Kasireddy" <vivek.kasireddy@intel.com>, <stable@vger.kernel.org>
-Subject: Re: [PATCH v2] drm/i915/xe2hpd: Identify the memory type for SKUs
- with GDDR + ECC
-Message-ID: <20250324200207.GN3175483@mdroper-desk1.amr.corp.intel.com>
-References: <20250324-tip-v2-1-38397de319f8@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+CC: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>, "Belgaumkar, Vinay"
+ <vinay.belgaumkar@intel.com>, <intel-xe@lists.freedesktop.org>, Riana Tauro
+ <riana.tauro@intel.com>
+Subject: Re: [PATCH v3] drm/xe/pmu: Add GT frequency events
+Message-ID: <Z-G8FXgZY7WnhYTw@intel.com>
+References: <20250312001408.804125-1-vinay.belgaumkar@intel.com>
+ <vx26ng5q4asspsg6lktrj5ok73gbiy3bfg7icu4fybekyt4zad@5h4bsek2mukm>
+ <4283fcec-5ddd-4d06-9eae-8e622e9695ee@intel.com>
+ <azol66l3wmb6r6cy6kh2j5ooglx25bduwj2ybifdxtpvpej23d@jxw766ana4kv>
+ <87o6xsai7y.wl-ashutosh.dixit@intel.com>
+ <iizcoecokne5qgkpr7kp4misfdok67eo2scj5czijpo6vqitks@xs3ehyr3kcbb>
+ <87ldsu9z1s.wl-ashutosh.dixit@intel.com>
+ <bmooz4uz4lutnr3hnbcjj7dltpnlxmctd2unltcde3wxahcbap@htjihczan7ks>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <20250324-tip-v2-1-38397de319f8@intel.com>
-X-ClientProxiedBy: BY3PR03CA0009.namprd03.prod.outlook.com
- (2603:10b6:a03:39a::14) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <bmooz4uz4lutnr3hnbcjj7dltpnlxmctd2unltcde3wxahcbap@htjihczan7ks>
+X-ClientProxiedBy: MW4PR04CA0076.namprd04.prod.outlook.com
+ (2603:10b6:303:6b::21) To CYYPR11MB8430.namprd11.prod.outlook.com
+ (2603:10b6:930:c6::19)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|IA0PR11MB7212:EE_
-X-MS-Office365-Filtering-Correlation-Id: c9fc06d8-7c6f-4a39-6115-08dd6b0ec2b8
+X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|IA0PR11MB7306:EE_
+X-MS-Office365-Filtering-Correlation-Id: cb4129e9-05f8-43af-34ed-08dd6b0fdbdf
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Y/ET5sXmEdKx0k62fyf2zqcN3fFiGHSBuT7V7nUA4gROHZIrdyWcGio4F+dQ?=
- =?us-ascii?Q?tVx4di797jFoKSDorLzq2hvDygI+jsiApZxli/PO8Es/ZTQ9nv/UbYTWSkSb?=
- =?us-ascii?Q?gvDcPkyjON7/iRYhmjSuCDcyRfnZfmQ9OZb9Xc2dwQ/IeEb/IToSugXCnuVX?=
- =?us-ascii?Q?/BOKP6dmvhmbKpN5p3LXfXTkZMgg3vlYC8fRdA0LZUpCvL979EG5k3sz6CaK?=
- =?us-ascii?Q?aebTvbzPtIgrGxUupQPiJXLjFPGWRLcjlPAkEEhBjVgaw8dNBon50HC70nzD?=
- =?us-ascii?Q?E9hmKNGQTMAYe8J08ShYnsmelSwN2HNj2qTf037furpXYVBPUQITj7Tz2lnU?=
- =?us-ascii?Q?ZW70ZrTZ1P2iw0QCMXU6PPkz0j/COswIl1METhYTS8SuBRQSeZCDgbnrYbPT?=
- =?us-ascii?Q?ZypWZEhGBWkGY8PORQcww+iscOTusi3BOFsjUY4bDJky+2zSEm4oAtCYPlBQ?=
- =?us-ascii?Q?BojvTKP55/0gWXE2PUiWvXSarxhqHTU8KjMWNomEqV4igIwJUr+5E5WOO9R2?=
- =?us-ascii?Q?nIuBhVarb4t9qSTa9sk/467/rAO6EkrTLi0ZhrH/MQX6RhyinvFshPcLRK2O?=
- =?us-ascii?Q?I6X6XFydfeNlo5QGDDZ5Nm3rwneB4I1nxg9vwQBWZndND2pgakt8zJ+JHgtA?=
- =?us-ascii?Q?rMGXH28pIw+yjMZGWKAzacg9Xx+kkqpIIxJ278yevFE93iDJ26Sjvp+1NzQn?=
- =?us-ascii?Q?eh2C1x5cQ0vCLEVshyg9X/J4P/OapYYy28bA3PhAYqDRUldfrjqb4rZv8xqt?=
- =?us-ascii?Q?lCvEP/9n5G1xzGlIujXb9qyGZBSFFMb4pQBGgeI7n8Ir5A3u4YIPergLtyoi?=
- =?us-ascii?Q?wZQw7XzxdvSVSL+V4aPBfQsVbTkKpPetvmN70IWgDixLdtpJDnXDbAlWDx9f?=
- =?us-ascii?Q?6RCcZQkCDceQC2nrvkwc7GJ2jWIkFHVTU56P//Oi8i8KBAiJeZyKhNm1Y5Or?=
- =?us-ascii?Q?0Fh5TnVL8OEFNo2JjSYQ53FckQY9v00aSYyYO6VEzkSbMic84Oxuyx7p+1w4?=
- =?us-ascii?Q?yyQ1lY3ytEWcrdMrkdF4m3mrNWi3XDaHC7gxvYsqIc4bh7Cc1mtPSeN2yfO3?=
- =?us-ascii?Q?tYmqZhIpHIAeBgmuZflDp+DS/tWtPSYJkBF49yOrQW2KKOvtzlKJiaYrreox?=
- =?us-ascii?Q?VHO0ZAZYcipGY8sknZfIX4WUgqG83f9el2bdS/e+0cTt91byj5kC26m6GGH9?=
- =?us-ascii?Q?wM5pWuKu+El3vfgKzPycADxa2xHZ+R1n53qO1tELXKgUR+ETWdRwrmrKwCzs?=
- =?us-ascii?Q?7s70D4PxX7WGUwLqSNehUs1aLDrpAF6KOWbRf85TcaTNOZCcMTsSUFOia74+?=
- =?us-ascii?Q?EryGMtK4qRZrDQVPOFr0uMS8p/yzB49tKWpNiCnf4gtmCHAUJCIay6yhaK4P?=
- =?us-ascii?Q?q5vrWFfZig5h+iw3b8EPs2e8mYaC?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?z9cuUYjzypNQXMjuBpXnQ88WSbG6xNFt3BGpyyzqP0ec+1GmQBwAzIA8Po?=
+ =?iso-8859-1?Q?6ORadLJQEiphHJvSetfE2eHRa2onUzf2R8+D0mISOcuIV+16KmUDiP9YD4?=
+ =?iso-8859-1?Q?5guCSHuADxxs+BDY6Jfca/evXvTVxVReYxXDBow/6gbJLH/Dd5RdGKb4Is?=
+ =?iso-8859-1?Q?4gKpilR1f7gsZaPwErdairqjcXx69DH10LqwD5D/gYN3usazVZN9vcGJmM?=
+ =?iso-8859-1?Q?6Cz4Q2C04TQKy0rph26eQKimCp2LWuEXl5sm6FIZSPGOqPsDhIG95CKUEj?=
+ =?iso-8859-1?Q?zpFP/ZL5x73xY/LUDYB7XuBo+9y0dwXBVSwNO64mDc9+hRAS6c9Geow06d?=
+ =?iso-8859-1?Q?86TD4EkhY6+y5O1z7D10g8HTKa5PwfYotUJ69j5oIy47wQTMsNUAUqkVAG?=
+ =?iso-8859-1?Q?yxiYpcC/VpKLQ1QqTSx8ctrSC+D6VYvvct5w/Jt0LyMNfkMaLj2sAb7Ynr?=
+ =?iso-8859-1?Q?uf8p4+vbEtxYbwoUDJg0nOS5geGRXgd7xkPhVd/V3QB0NIjo3IJoHM99sP?=
+ =?iso-8859-1?Q?LJeXa75RQmsBjF4EK/rYlWBsLJtVuNYMyh+UiAC8FA6f9Lyi1uIb1yXhBW?=
+ =?iso-8859-1?Q?VFiWapF/d8zc737KhPx0bLfhsnnq3rFQG23MdAj7oD8Jx/mUeveoAqRM26?=
+ =?iso-8859-1?Q?sfrhiNhbhzLBPvWh7Zz3934yp6eaeoJvwDdqNy4Lr6MAp7QHrCU5ryFXSv?=
+ =?iso-8859-1?Q?tzvRC3RhROXld3fSQ2T6Wj2KIEjNs1/xzCmuDeFKC5vxX4MuU69WV1lyA8?=
+ =?iso-8859-1?Q?L+gJzC8CFEzXNNMVRi+bbORqMmrn8BuiNO0Erzg3pZ6USLPrs7fEqQOxme?=
+ =?iso-8859-1?Q?fzG3slPkZh64e8QDqpmo/rXSWBC51I29OBQ1VnAyCKu7b9Xq1XZp3eQt0x?=
+ =?iso-8859-1?Q?wkJ8g8/kR3ImoV1MdBDaQ7/3kYdg1MtgSexvrWClKcUpxnfnG8JLfbsyNN?=
+ =?iso-8859-1?Q?hLl3E0BHGvZcxNAGwSaX7V2kxmZv9c1LykaN0fEZK+n2bWOoCDssUxgxcU?=
+ =?iso-8859-1?Q?784qtNIJuEka7DL4msQalCY4P1gzRYfcWGET4HDsqQNESXQ5VK2WMSY3yi?=
+ =?iso-8859-1?Q?ugU6ULwkqF+3c6OQwWD+cCjxJ784Fv4I1DqEIVS8JPf3ebnGpp4S2msmbA?=
+ =?iso-8859-1?Q?3G8etPL4eOBzu9Y2xOsEowdHgOgL72F4T5dgm5vt9DmFynPGVJJxGCZIdV?=
+ =?iso-8859-1?Q?lQcLDExtC9HQWOO4zllkmI+flM57lnN5ONDXWXx7Zhel3Z2xFyepircKn0?=
+ =?iso-8859-1?Q?5R4A/EoZYY8QrjxRDUjDqUjDdrCtSrgwpu5hTNJo9GPiKr0yUbindauI0F?=
+ =?iso-8859-1?Q?beMqzG0a3/EaJmE8Urgqre/xjdgaZTRShAo8v9KM6TzzAayR0IrCM2C2sR?=
+ =?iso-8859-1?Q?wQBTAQiBFv72OaauNvbcF9//Zg9H4AJw=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?96qmSYUiFg9M9abOeRvSXIGQjhLXCab1qtg/dtsLaBWqpCJiEPdX395icdg1?=
- =?us-ascii?Q?/EGhzQbudPOZwxmG1DWv/LHaK1mtA58ztPoJ2E8D4i2QqnktpCAoYjbw4awo?=
- =?us-ascii?Q?m85fP+Bv+nG2cOS3/zG1vO4RoEESB5/eszxZ56fxEKnPsLkHHWuL7f1SgjUR?=
- =?us-ascii?Q?oq3FFmvbRNuD6RvicuC0dvXBSniR7mmJA3bqcoSDMo/+PsbJsI9RlK7xzSl1?=
- =?us-ascii?Q?mhbjrAdi47/JeoOT+V52Wmbg/IvXo2ZayVoc6JIsmRBg8EUj2wZtahXmkfGr?=
- =?us-ascii?Q?WFzT9eKvrWQsMt+pddy0p/P1JqmM3mNXx+puh9aF1UqrJvHgA+CocqZBQ9rq?=
- =?us-ascii?Q?NdsJyKEIOLHZkheUrOjGOK/QM0QZBiyx9yhyFc1MYKZzujq9Aa87RE9QAbMa?=
- =?us-ascii?Q?FD3iEHcXve38z1Wp1nbPKepU1aVrlc6rT36/+iwjHsXgSQrt0aQXJBrqrl/O?=
- =?us-ascii?Q?zV9L2edpP4Kq0YIdEbgap6KECd7NNwiePOpbMhc9R90EjAMxWryljDYwlzq/?=
- =?us-ascii?Q?l64tjGDgS+ymMPkF8hfxIRa3a1rDA+VtRqAOCCJFZ+/pDlF933c15/eg/mlr?=
- =?us-ascii?Q?0K32WBMc1YwrlBjrZbjQppDlE2yVT7ektrNhJ+7xHJEPQ/9Srhej5UJBj0eA?=
- =?us-ascii?Q?HarkqWalATp6iGUicuBWJuPr28ZCu/pBcMrd++oaU1dysNBzrVsmqpr9juql?=
- =?us-ascii?Q?IZjOcZUi+0cfytThvHfWFMIdHMtRpp3qU+D7yTyJ+qSOEz4hMb4RJaQshKXq?=
- =?us-ascii?Q?yFvb/Y6iRPJIEahMbLP1zqCDqnvLCpBDfi2LM8VP715op1Qz9wAjb03pfSp9?=
- =?us-ascii?Q?HYsNWs8IPs7fMn3bbbmbRHesgmwGuCp9SchUMjNqbsEnYknLwmjD5D54legZ?=
- =?us-ascii?Q?tuxAv68JCqlEJMJ2rLTGTuKRh/lBPX3ZRpEohwF2hJGAkat60RaeMHZGthJU?=
- =?us-ascii?Q?IV7sDtYIqZl/IqlYXn4X8JKXqHI3aQP7/sm1J/sciFQftyD+IzVRG+yyHHTP?=
- =?us-ascii?Q?yfpvuMyR0XNWJuaYZ+po8roJ3TQaiTJFHqSM43ywQ4NWlY7OlBDcXZoGpD1c?=
- =?us-ascii?Q?z5LqdSuvxVDYKq4hMRiMjGJ4arsFJjXALnBMkZmPm4I3izIQbez9xfyX+qMl?=
- =?us-ascii?Q?OZfXg7htB0M81NwMyVCANkN3nv4r6nG2WnXdt2UEF3rUh/PwEYW3CJQqnm1N?=
- =?us-ascii?Q?RyMPZ7cCECrog6mPxJSXLd2RqpVY8ytWSFyItdttX0DhkemhBQEpSgoyJCrx?=
- =?us-ascii?Q?y3/FPd8w7NnQExz1l10SS9wYcSE6wslx4uuhHbSptmM6M04KZqKaCIb2wT2P?=
- =?us-ascii?Q?C9DjaMJY103oMo0pODw+StWTS9I3o4mhL0B6f8CyUzzXu29Ltp26vzZ/8hEn?=
- =?us-ascii?Q?j7tje5bXOWjnnpRx8NbLTHxjWfmiBHb8MSG99C4bCZl9YMYyIHqkK/3+Qy8f?=
- =?us-ascii?Q?NoGVhdCRIBJP+LFjzJ8nGIvta2qRn1o+jcQXTYXm5pUuca70G9RStYySis5z?=
- =?us-ascii?Q?HbByIXOxB8FMU+sRk+BItIwkwCKnEh6DwN2CD0/MWMLKjBHdvFoGXpcCoYE5?=
- =?us-ascii?Q?vaBXo96VBCrcea/poEmiSNWxGmAPTgta+GxiTkwdcOKMTJegQJRSDv2smm3h?=
- =?us-ascii?Q?7w=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: c9fc06d8-7c6f-4a39-6115-08dd6b0ec2b8
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?iMVkycFYHAv3k3O6lPmxNcUGqlk1R4Ub87Unpm3oxhs5+gwGeU73XmfH2v?=
+ =?iso-8859-1?Q?3aVsjZdApNV22snfaIY4ZwmnSo1OOyYBKvAtY9N8QqstnlsS3WBYkNYbtU?=
+ =?iso-8859-1?Q?U3Hond398JTwpDQrenOUJOBmY/DSw116v2dU5xet54Arv+poHt8GBqGwKa?=
+ =?iso-8859-1?Q?e0ZeZzRRTJs01w8KL62ukfkYi6CBGQlS03f5y+yVZDT+Ki4X9QH+hGm5g2?=
+ =?iso-8859-1?Q?l0c7neJfWEXcJxC1jBpAGJDHCHQq92WG6coJhMRTja2wRteHYh/ESnCJxs?=
+ =?iso-8859-1?Q?c5O/PX9EOqQsY9GSp2Rh36FoNGrtaAS+56rJ/qc4RPRGM9anRZ4CS6C7nH?=
+ =?iso-8859-1?Q?rF5qnZbE9d3zK0naVizS0LM8bYIs1FQ8VEjDIRW2z/0Km0BqqBSBugmueJ?=
+ =?iso-8859-1?Q?Wdrkj6O6jwiucOzh5LXXjDI3UZNnpZ6/HUgpVYeFeAz0lkWHZ73KFEhU04?=
+ =?iso-8859-1?Q?ciAZ76FaVc+H6hazMU0ZJw9xSygUp+e039CG4ywnD/nylMqeewOQdrXQ6i?=
+ =?iso-8859-1?Q?lX1LtpVDTGRbsZL0XXUwwT04jGU/088pBcmY3D+nSrmVRJFrsCiWbdRK0l?=
+ =?iso-8859-1?Q?F33AmwS27YZ2T5MdD1OkEKTFC11JVlaq7bq3Wgkh83VTbOkC93jUAFCJqr?=
+ =?iso-8859-1?Q?y5R56t3s6AkVcI3Cqc8pchHWQmmclXL4laE6/4xB8EfXnfxnfZWHy7CMLW?=
+ =?iso-8859-1?Q?SjKmv08SY3qMKUviDIB1eHdVYhgbncFhhOgbz+nMLz/5us8wyl8UWesGel?=
+ =?iso-8859-1?Q?2lrdt7j65gmofUHxSwW4vRh6yLCJuE071+V4g9Y0AK7sriyIImoOy+z61W?=
+ =?iso-8859-1?Q?Chn0TVxsKb92l9+iBtiUMN+q/YdDQ9fYudFRWX47DiGVOUvelIetB7XVtE?=
+ =?iso-8859-1?Q?RC+ByzgXDJk+wDjQhAM6vgdZKRr0lqz53fkf8oD0L6Jet8Yd81INkM0K88?=
+ =?iso-8859-1?Q?JKxHwXDFFVSpqKMnQi/pJF1aR0zCqskxsI0iJR/n0xfAM9S5PyYK23ikiz?=
+ =?iso-8859-1?Q?hQMpLHS6xNwWOqOtvuHaacLyHOPUeZtUfxNn1XkTCslTFFUvgJbzMM8Ybl?=
+ =?iso-8859-1?Q?OxcBs9JqHhW8kxVzmgPj+FmHJMoDmQYqc9eAOfU+h5uLwOtiwl2umjuhxV?=
+ =?iso-8859-1?Q?KNo2OhFN+NvlfPTw9c2FTXq+CKE/PC6aYpXpEhpzLX9a4fCFrU8yh+v/i1?=
+ =?iso-8859-1?Q?oW7OSnX7EgvGgs1+zN5rf6TctIBrGHAL7OPXYnNqDuCKlhs/K+55J53ldb?=
+ =?iso-8859-1?Q?3yp9QZb1dT4H33QN6MRvtGXXF4chRe0XqBRd2HUGXsBuIQ/dKUk9Ukk1lI?=
+ =?iso-8859-1?Q?kGqB4aKI2I9t9NdJ3TnKFVtSXrt+xLNJYBhnMq0hpyerZ9Pba5i3/UXQNy?=
+ =?iso-8859-1?Q?ZykOMpt8QrGGS3Gr7f6/Bp2EGKT9phauIjd7kjz1ihgOd65B05WAoxxwHn?=
+ =?iso-8859-1?Q?vqhDD1IOFbzTD/qkpynSyOthj8n/MzkP7RqUVAUSjcRbbyg6HahPv2+TSh?=
+ =?iso-8859-1?Q?yKIiwlJAiA2BnYn8LGU7F9r8GsmuBuOCI4hm3/rYPbKwicvBRmk8Ff6Mbd?=
+ =?iso-8859-1?Q?e+F/2fCn6Zud/O/jhDx/trh6dY95mvxrmaokol/VUueDyuRJRpnVr1rssj?=
+ =?iso-8859-1?Q?7/X2Yj1tM8eaj2zas8vaefeladAR9keVdUXdZ4NzUyWPZy6joXOolJlA?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: cb4129e9-05f8-43af-34ed-08dd6b0fdbdf
+X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2025 20:02:09.8545 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2025 20:10:01.7521 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: K/8uB16E391f3VTqUn17ITCJ+tKfGcy4nAZTPO0oOxuUKzHP0sbac8nNf4fWk4ZyLS4LowCAxUvvf4dEGwqNI7Wi8oCTJ87d85nthEGmX30=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7212
+X-MS-Exchange-CrossTenant-UserPrincipalName: IWmtnsMAWZdxNTIuw2Mx5N83tNbarTAq4cSnGK4rx7UlSjz9mCB8jahG1fQYt1AWItEMILho/AbgXLzeAydu0g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7306
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -176,128 +185,192 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Mar 24, 2025 at 10:22:33AM -0700, Lucas De Marchi wrote:
-> From: Vivek Kasireddy <vivek.kasireddy@intel.com>
+On Mon, Mar 24, 2025 at 02:07:32PM -0500, Lucas De Marchi wrote:
+> On Mon, Mar 24, 2025 at 09:24:47AM -0700, Ashutosh Dixit wrote:
+> > On Sat, 22 Mar 2025 19:47:04 -0700, Lucas De Marchi wrote:
+> > > 
+> > > On Sat, Mar 22, 2025 at 02:06:09PM -0700, Ashutosh Dixit wrote:
+> > > > On Sat, 22 Mar 2025 05:57:12 -0700, Lucas De Marchi wrote:
+> > > >>
+> > > >> On Fri, Mar 21, 2025 at 03:45:21PM -0700, Belgaumkar, Vinay wrote:
+> > > >> >
+> > > >> > On 3/13/2025 2:45 PM, Lucas De Marchi wrote:
+> > > >> >> On Tue, Mar 11, 2025 at 05:14:08PM -0700, Vinay Belgaumkar wrote:
+> > > >> >>> Define PMU events for GT frequency (actual and requested). This is
+> > > >> >>> a port from the i915 driver implementation, where an internal timer
+> > > >> >>> is used to aggregate GT frequencies over certain fixed interval.
+> > > >> >>> Following PMU events are being added-
+> > > >> >>                      ^
+> > > >> >> why do you use "-"  instead of ":"?
+> > > >> >>
+> > > >> >>>
+> > > >> >>>  xe_0000_00_02.0/gt-actual-frequency/              [Kernel PMU event]
+> > > >> >>>  xe_0000_00_02.0/gt-requested-frequency/           [Kernel PMU event]
+> > > >> >>>
+> > > >> >>> Standard perf commands can be used to monitor GT frequency-
+> > > >> >>>  $ perf stat -e xe_0000_00_02.0/gt-requested-frequency,gt=0/ -I1000
+> > > >> >>>
+> > > >> >>>     1.001175175                700 M xe/gt-requested-frequency,gt=0/
+> > > >> >>>     2.005891881                703 M xe/gt-requested-frequency,gt=0/
+> > > >> >>>     3.007318169                700 M xe/gt-requested-frequency,gt=0/
+> > > >> >>>
+> > > >> >>> Actual frequencies will be reported as 0 when GT is in C6.
+> > > >> >>
+> > > >> >>
+> > > >> >> I think we need to document somewhere, but at the very least in the
+> > > >> >> commit message what the event count actually is. Let me see if I get
+> > > >> >> this right:  if userspace is sampling every 1sec, and assuming the gpu
+> > > >> >> is at 700MHz for the first 0.5sec and at 1.4 GHz, userspace should
+> > > >> >> expect to see ~1050 as the value. Correct?  I find this frequency
+> > > >> >> handling very different from anything else reported via perf. Other
+> > > >> >> than i915, are there any other cases you know of?
+> > > >> >
+> > > >> > Yes,  user will see a gradual ramp. One thing that could work is
+> > > >> > something along these lines:
+> > > >> >
+> > > >> > @@ -324,7 +327,10 @@ static void xe_pmu_event_update(struct perf_event
+> > > >> > *event)
+> > > >> >                 new = __xe_pmu_event_read(event);
+> > > >> >         } while (!local64_try_cmpxchg(&hwc->prev_count, &prev, new));
+> > > >> >
+> > > >> > -       local64_add(new - prev, &event->count);
+> > > >> > +       if (is_gt_frequency_event(id))
+> > > >> > +               local64_add(new, &event->count);
+> > > >> > +       else
+> > > >> > +               local64_add(new - prev, &event->count);
+> > > >> >
+> > > >> > This will give us instantaneous values and will not need the use of an
+> > > >> > internal timer.  Should be ok to do it this way?
+> > > >>
+> > > >> yes, I think it'd be preferred. It's much simpler and don't prevent us
+> > > >> from eventually adding an avg_* event if the needs arise. Which would
+> > > >> also be clearer on what that is.
+> > > >
+> > > > Instantaneous values would show 0 if the sampling instant landed when gt is
+> > > 
+> > > instantaneous values make much more sense from the perf point of view
+> > > IMO. perf is **sampling** them - other than the same thing in i915, I've
+> > > never seen an event that returns an average (not even documenting it as
+> > > such).
+> > > 
+> > > What would also make sense would be to support perf-record so the
+> > > samples are recorded in the buffer that is passed to userspace. In this
+> > > case setting up a timer to save them (since we don't have interrupt for
+> > > our pmu) would be nice.
+> > 
+> > Afaik, typically userspace calls into the kernel for PMU counters
+> > relatively infrequently, say once a second (1 Hz). However, if this low
+> > rate does not yield good freq values (say freq is showing lots of 0's), now
 > 
-> Some SKUs of Xe2_HPD platforms (such as BMG) have GDDR memory type
-> with ECC enabled. We need to identify this scenario and add a new
-> case in xelpdp_get_dram_info() to handle it. In addition, the
-> derating value needs to be adjusted accordingly to compensate for
-> the limited bandwidth.
-> 
-> Bspec: 64602
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Fixes: 3adcf970dc7e ("drm/xe/bmg: Drop force_probe requirement")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> why do you say it's not getting good value? is 0 not a good value?
+> Should the kernel be returning something else instead of doing an
+> average with "lots of zeros" and returning it?
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+well, zero is not a good value because it is not real. The register is zero
+because the GT is sleeping, but that is not the accurate thing.
 
-> ---
-> Changes in v2:
-> - Add a separate sa_info for the ecc case (Lucas)
-> - Link to v1: https://lore.kernel.org/r/20250214215944.187407-1-vivek.kasireddy@intel.com
-> ---
->  drivers/gpu/drm/i915/display/intel_bw.c | 12 ++++++++++++
->  drivers/gpu/drm/i915/i915_drv.h         |  1 +
->  drivers/gpu/drm/i915/soc/intel_dram.c   |  4 ++++
->  drivers/gpu/drm/xe/xe_device_types.h    |  1 +
->  4 files changed, 18 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-> index dc7612658a9da..bb81efec08a01 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> @@ -250,6 +250,7 @@ static int icl_get_qgv_points(struct intel_display *display,
->  			qi->deinterleave = 4;
->  			break;
->  		case INTEL_DRAM_GDDR:
-> +		case INTEL_DRAM_GDDR_ECC:
->  			qi->channel_width = 32;
->  			break;
->  		default:
-> @@ -404,6 +405,12 @@ static const struct intel_sa_info xe2_hpd_sa_info = {
->  	/* Other values not used by simplified algorithm */
->  };
->  
-> +static const struct intel_sa_info xe2_hpd_ecc_sa_info = {
-> +	.derating = 45,
-> +	.deprogbwlimit = 53,
-> +	/* Other values not used by simplified algorithm */
-> +};
-> +
->  static const struct intel_sa_info xe3lpd_sa_info = {
->  	.deburst = 32,
->  	.deprogbwlimit = 65, /* GB/s */
-> @@ -756,11 +763,16 @@ static unsigned int icl_qgv_bw(struct intel_display *display,
->  
->  void intel_bw_init_hw(struct intel_display *display)
->  {
-> +	const struct dram_info *dram_info = &to_i915(display->drm)->dram_info;
-> +
->  	if (!HAS_DISPLAY(display))
->  		return;
->  
->  	if (DISPLAY_VER(display) >= 30)
->  		tgl_get_bw_info(display, &xe3lpd_sa_info);
-> +	else if (DISPLAY_VERx100(display) >= 1401 && display->platform.dgfx &&
-> +		 dram_info->type == INTEL_DRAM_GDDR_ECC)
-> +		xe2_hpd_get_bw_info(display, &xe2_hpd_ecc_sa_info);
->  	else if (DISPLAY_VERx100(display) >= 1401 && display->platform.dgfx)
->  		xe2_hpd_get_bw_info(display, &xe2_hpd_sa_info);
->  	else if (DISPLAY_VER(display) >= 14)
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index ffc346379cc2c..54538b6f85df5 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -305,6 +305,7 @@ struct drm_i915_private {
->  			INTEL_DRAM_DDR5,
->  			INTEL_DRAM_LPDDR5,
->  			INTEL_DRAM_GDDR,
-> +			INTEL_DRAM_GDDR_ECC,
->  		} type;
->  		u8 num_qgv_points;
->  		u8 num_psf_gv_points;
-> diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
-> index 9e310f4099f42..f60eedb0e92cf 100644
-> --- a/drivers/gpu/drm/i915/soc/intel_dram.c
-> +++ b/drivers/gpu/drm/i915/soc/intel_dram.c
-> @@ -687,6 +687,10 @@ static int xelpdp_get_dram_info(struct drm_i915_private *i915)
->  		drm_WARN_ON(&i915->drm, !IS_DGFX(i915));
->  		dram_info->type = INTEL_DRAM_GDDR;
->  		break;
-> +	case 9:
-> +		drm_WARN_ON(&i915->drm, !IS_DGFX(i915));
-> +		dram_info->type = INTEL_DRAM_GDDR_ECC;
-> +		break;
->  	default:
->  		MISSING_CASE(val);
->  		return -EINVAL;
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index 1334174388afe..20239d6a2e985 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -587,6 +587,7 @@ struct xe_device {
->  			INTEL_DRAM_DDR5,
->  			INTEL_DRAM_LPDDR5,
->  			INTEL_DRAM_GDDR,
-> +			INTEL_DRAM_GDDR_ECC,
->  		} type;
->  		u8 num_qgv_points;
->  		u8 num_psf_gv_points;
-> 
-> ---
-> base-commit: 74f632d1bd3b90ed79883361ca25f1225c0aee58
-> change-id: 20250321-tip-23d2af2e3291
-> 
-> Best regards,
-> -- 
-> Lucas De Marchi <lucas.demarchi@intel.com>
-> 
+but tbh we are already taking this decision to our sysfs interface:
 
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+$ cat act_freq
+0
+
+But well, for this instantaneous it may be good... we just need to educate
+the consumers to see the zero as gpu sleeping in a chart.
+but zero is an outlier to the average of the frequencies that it will bring
+the mean to a very lower levels and the charts collected with PMU will be so
+out of shape to the point it might be useless...
+
+> 
+> > userspace will need to call into the kernel more frequently, say 10 Hz to
+> > 100 Hz, just to get good freq values (all other counters are fine at 1
+> 
+> It should be perfectly fine for an application to setup a 10Hz timer and
+> getting it multiple times if it wants to average.... I don't think it
+> needs to be at the hundreds frequency.
+> 
+> > Hz). This increased rate of calling into the kernel may be ok for 'perf
+> > record' but not sure what happens to say 'gputop'.
+> 
+> oh no, perf-record works diferently... it's not calling into the
+> kernel with that frequency. It's perf-stat that works that way.
+> 
+> For perf-record it more like kernel pushing samples in a ringbuffer, shared
+> with userspace, and then waking it. We (currently) don't support that
+> mode in our implementation:
+> 
+> static int xe_pmu_event_init(struct perf_event *event)
+> {
+> 	...
+> 	/* unsupported modes and filters */
+> 	if (event->attr.sample_period) /* no sampling */
+> 		return -EINVAL;
+> 	...
+> }
+> 
+> 
+> > 
+> > I think considerations like this went into i915 deciding to average in the
+> > kernel.
+> 
+> as you noticed, maybe there was actually a lack of thought on the matter
+> and then later it couldn't be changed anymore... ? I saw several odd
+> things in the i915 side. Exposing something with a Hz unit is one of
+> them.
+> 
+> > 
+> > Also, if we are going to expose instantaneous freq, if gt is in C6 (when
+> > userspace calls into the kernel to sample), could we save and return the
+> > freq /before/ gt went into C6 (to avoid returning 0 freq, and returning the
+> > last freq as it was when workload was running)? This might be sufficient
+> > and remove the need to sample more frequently, though not sure how
+> > complex to implement.
+> 
+> if that data would make more sense for userspace, then I think it should
+> be ok. So, let's say gt in in C6, what does make more sense for
+> gputop-like and turbostat?
+> 
+> 1) read 0 from the kernel and report 0 to the user
+> 2) read 0 from the kernel and report min_freq to the user (min_freq they
+>    can read once from from sysfs)
+> 3) read min_freq from the kernel
+> 4) read the last frequency before going into C6
+> 
+> Lucas De Marchi
+> 
+> > 
+> > > 
+> > > > in C6. Also instantaneous values are already available via sysfs.
+> > > 
+> > > with the caveat of a slower interface, but yeah... that's why I was
+> > > asking earlier: do we really need this if it's already available via
+> > > sysfs? I was told turbostat wants to consolidate all the data to be read
+> > > via perf instead of reading a bunch of files from sysfs.
+> > 
+> > OK.
+> > 
+> > > 
+> > > > Also, the way i915 calculates the average freq is itself
+> > > > controversial. i915 computes average freq when gt is awake and disregards
+> > > > those intervals when gt is in C6. There was this patch to suggest that
+> > > > average freq also take into account those intervals when gt is in C6:
+> > > >
+> > > > https://patchwork.freedesktop.org/series/109372/
+> > > >
+> > > > But it was not accepted since it would change uapi.
+> > > 
+> > > one more reason not to fall in the same trap. Let userspace decide if it
+> > > wants the average or not. If it'd need to sample too frequently, then I
+> > > think we need to look at supporting perf-record rather than doing the
+> > > average (which is actually an integration, using the rectangle method,
+> > > and then dividing by the perf_read delta time). At the very least,
+> > > rename the event to make the avg explicit.
+> > 
+> > OK, we can return instantaneous freq for now and if that doesn't work out,
+> > add an average freq later?
+> > 
+> > > 
+> > > Lucas De Marchi
+> > 
+> > Thanks.
+> > --
+> > Ashutosh
