@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3470FC36002
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Mar 2025 16:16:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B554C36002
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Mar 2025 16:18:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8E7310E3C1;
-	Mon, 24 Mar 2025 16:16:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFF0210E3EE;
+	Mon, 24 Mar 2025 16:18:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="hVykScS+";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="jz3s04hA";
 	dkim-atps=neutral
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53F0310E3C1
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Mar 2025 16:16:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18C0810E3EE
+ for <intel-xe@lists.freedesktop.org>; Mon, 24 Mar 2025 16:18:37 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 560A95C6279;
- Mon, 24 Mar 2025 16:14:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2696C4CEDD;
- Mon, 24 Mar 2025 16:16:39 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id 95F835C627A;
+ Mon, 24 Mar 2025 16:16:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20DC4C4CEDD;
+ Mon, 24 Mar 2025 16:18:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1742833000;
- bh=uzq1eVFuEmp6YosDgNzl+YfoATrzCvlbBoA9pDoGdaQ=;
+ s=korg; t=1742833116;
+ bh=IAy9Lv5kTQelocpmUH9gUSc/aWow35G8Ie2PB5hqySs=;
  h=Subject:To:Cc:From:Date:From;
- b=hVykScS+ISNxROdgeTLt2sWdQQ70OVClj2pdvmuYq3OIDjcoZTdQqZ7tsSIQobAW5
- zTK98/c9J+NDGUOjeABgUdL9eB7Q/Ad1ll+bwtyPLFLAeTF3FcZeimTV0da5LLLK+x
- G1z6e8UGh3qHO09hsVFcKSwvHNoOsgeoDLNC27Go=
+ b=jz3s04hAUbsWZ125rJ+U//6Pby3klwPPCxtUnXaD8sYPTVenubvGYBSgZRDsz3MU6
+ qcZTgR7/KAog4eupvg4I9I8+6K7Aj+2h0DW2rYPH8ypPtwbqq14/s+cYEuxCNlDWOL
+ s5i4M4KKAp51xl2tUXCA65k4tI8ABLAmeFpPemT8=
 Subject: Patch "drm/xe: Fix exporting xe buffers multiple times" has been
- added to the 6.12-stable tree
+ added to the 6.13-stable tree
 To: gregkh@linuxfoundation.org, intel-xe@lists.freedesktop.org,
  jacek.lawrynowicz@linux.intel.com, jani.nikula@intel.com,
  lucas.demarchi@intel.com, matthew.auld@intel.com, matthew.brost@intel.com,
@@ -36,8 +36,8 @@ To: gregkh@linuxfoundation.org, intel-xe@lists.freedesktop.org,
  thomas.hellstrom@linux.intel.com, tomasz.rusinowicz@intel.com
 Cc: <stable-commits@vger.kernel.org>
 From: <gregkh@linuxfoundation.org>
-Date: Mon, 24 Mar 2025 09:13:23 -0700
-Message-ID: <2025032423-ecard-geriatric-8e37@gregkh>
+Date: Mon, 24 Mar 2025 09:13:46 -0700
+Message-ID: <2025032445-amiss-distant-5798@gregkh>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -62,12 +62,12 @@ This is a note to let you know that I've just added the patch titled
 
     drm/xe: Fix exporting xe buffers multiple times
 
-to the 6.12-stable tree which can be found at:
+to the 6.13-stable tree which can be found at:
     http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
 
 The filename of the patch is:
      drm-xe-fix-exporting-xe-buffers-multiple-times.patch
-and it can be found in the queue-6.12 subdirectory.
+and it can be found in the queue-6.13 subdirectory.
 
 If you, or anyone else, feels it should not be added to the stable tree,
 please let <stable@vger.kernel.org> know about it.
@@ -117,15 +117,15 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 --- a/drivers/gpu/drm/xe/xe_bo.h
 +++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -314,7 +314,6 @@ static inline unsigned int xe_sg_segment
- 
- #define i915_gem_object_flush_if_display(obj)		((void)(obj))
+@@ -318,7 +318,6 @@ static inline unsigned int xe_sg_segment
+ 	return round_down(max / 2, PAGE_SIZE);
+ }
  
 -#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
  /**
   * xe_bo_is_mem_type - Whether the bo currently resides in the given
   * TTM memory type
-@@ -329,4 +328,3 @@ static inline bool xe_bo_is_mem_type(str
+@@ -333,4 +332,3 @@ static inline bool xe_bo_is_mem_type(str
  	return bo->ttm.resource->mem_type == mem_type;
  }
  #endif
@@ -145,4 +145,4 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 Patches currently in stable-queue which might be from tomasz.rusinowicz@intel.com are
 
-queue-6.12/drm-xe-fix-exporting-xe-buffers-multiple-times.patch
+queue-6.13/drm-xe-fix-exporting-xe-buffers-multiple-times.patch
