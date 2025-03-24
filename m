@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72052C36002
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Mar 2025 13:45:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 010D0C36002
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Mar 2025 13:48:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30E8710E45B;
-	Mon, 24 Mar 2025 13:45:14 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XfsNsNhi";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9766B10E44D;
- Mon, 24 Mar 2025 13:45:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742823909; x=1774359909;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=LfeVp6BhrDU/SuR64FwuyiHJzBAAB4XrKyRr89gLTGs=;
- b=XfsNsNhiZJPAjR4aJJKnQnS9oNteQ076CVITZ8p/E9gbtIscDj6rZ0SR
- 63fYU1qxQp3w1bpZcPWrmiKQoWG9x+TRlllkImK3I97/DlfKwrKyLer7a
- itO830xZ2LofedSCbw0aVtRvYQkqwy0tfkTZ4+xgDY8Zf5sqXL5IzJ1xn
- BK/u+aiNcaObfiIgHZyK2f+TUH3Xzgz2MO+p8I182PBD7SJVFAq/CUIFk
- VNWMrdGyZXvdLcaKJqqtSVB5AARLBJRmq1ON/66fT6LUGY3U74WbOwRF5
- DvyVKA9vX1Lx9sUuoSsV5rcX1AtZOgHNXC3SDg0nO7+uBt+AoUJ6p6ymS Q==;
-X-CSE-ConnectionGUID: 1gKybks5RLmbT6voiic+zA==
-X-CSE-MsgGUID: BMsZr2nLRlCD+/BNow610g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="43955766"
-X-IronPort-AV: E=Sophos;i="6.14,272,1736841600"; d="scan'208";a="43955766"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2025 06:45:09 -0700
-X-CSE-ConnectionGUID: 3r6m/6BgRrq8jDtXWrhAsQ==
-X-CSE-MsgGUID: kNVwQE+aQjWz0EcnHI6ySQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,272,1736841600"; d="scan'208";a="124040865"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2025 06:45:07 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
- ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 16/16] drm/i915/display: Avoid use of VTOTAL.Vtotal bits
-Date: Mon, 24 Mar 2025 19:02:48 +0530
-Message-ID: <20250324133248.4071909-17-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250324133248.4071909-1-ankit.k.nautiyal@intel.com>
-References: <20250324133248.4071909-1-ankit.k.nautiyal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEEF410E25C;
+	Mon, 24 Mar 2025 13:48:14 +0000 (UTC)
+Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3C4B10E218;
+ Mon, 24 Mar 2025 13:48:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/svm=3A_fix_dereferencin?=
+ =?utf-8?q?g_error_pointer_in_drm=5Fgpusvm=5Frange=5Falloc=28=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Harshit Mogalapalli" <harshit.m.mogalapalli@oracle.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 24 Mar 2025 13:48:13 -0000
+Message-ID: <174282409397.72761.7171860316236462268@18a75f3d1eae>
+X-Patchwork-Hint: ignore
+References: <20250323124907.3946370-1-harshit.m.mogalapalli@oracle.com>
+In-Reply-To: <20250323124907.3946370-1-harshit.m.mogalapalli@oracle.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,99 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
-bits are not required. Since the support for these bits is going to
-be deprecated in upcoming platforms, avoid writing these bits for the
-platforms that do not use legacy Timing Generator.
+== Series Details ==
 
-Since for these platforms TRAN_VMIN is always filled with crtc_vtotal,
-use TRAN_VRR_VMIN to get the vtotal for adjusted_mode.
+Series: drm/xe/svm: fix dereferencing error pointer in drm_gpusvm_range_alloc()
+URL   : https://patchwork.freedesktop.org/series/146665/
+State : success
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 29 ++++++++++++++++++--
- drivers/gpu/drm/i915/display/intel_vrr.c     |  8 ++++++
- drivers/gpu/drm/i915/display/intel_vrr.h     |  1 +
- 3 files changed, 35 insertions(+), 3 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index fa9c6793357e..ddd98037bef8 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2642,9 +2642,21 @@ static void intel_crtc_set_vtotal(struct intel_display *display,
- 				  enum transcoder cpu_transcoder,
- 				  u32 crtc_vdisplay, u32 crtc_vtotal)
- {
-+	u32 vtotal_bits;
-+
-+	/*
-+	 * For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
-+	 * bits are not required. Since the support for these bits is going to
-+	 * be deprecated in upcoming platforms, avoid writing these bits for the
-+	 * platforms that do not use legacy Timing Generator.
-+	 */
-+	if (intel_vrr_always_use_vrr_tg(display))
-+		vtotal_bits = 0;
-+	else
-+		vtotal_bits = VTOTAL(crtc_vtotal - 1);
-+
- 	intel_de_write(display, TRANS_VTOTAL(display, cpu_transcoder),
--		       VACTIVE(crtc_vdisplay - 1) |
--		       VTOTAL(crtc_vtotal - 1));
-+		       VACTIVE(crtc_vdisplay - 1) | vtotal_bits);
- }
- 
- static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
-@@ -2819,7 +2831,18 @@ static void intel_crtc_get_vtotal(struct intel_crtc_state *crtc_state)
- 	u32 tmp = intel_de_read(display, TRANS_VTOTAL(display, cpu_transcoder));
- 
- 	adjusted_mode->crtc_vdisplay = REG_FIELD_GET(VACTIVE_MASK, tmp) + 1;
--	adjusted_mode->crtc_vtotal = REG_FIELD_GET(VTOTAL_MASK, tmp) + 1;
-+
-+	/*
-+	 * For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
-+	 * bits are not filled. Since for these platforms TRAN_VMIN is always
-+	 * filled with crtc_vtotal, use TRAN_VRR_VMIN to get the vtotal for
-+	 * adjusted_mode.
-+	 */
-+	if (intel_vrr_always_use_vrr_tg(display)) {
-+		adjusted_mode->crtc_vtotal = intel_vrr_get_vtotal_vmin(crtc_state);
-+	} else {
-+		adjusted_mode->crtc_vtotal = REG_FIELD_GET(VTOTAL_MASK, tmp) + 1;
-+	}
- }
- 
- static void intel_get_transcoder_timings(struct intel_crtc *crtc,
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 414f93851059..4413c97b3135 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -734,3 +734,11 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
- 	if (crtc_state->vrr.enable)
- 		crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
- }
-+
-+int intel_vrr_get_vtotal_vmin(struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-+
-+	return intel_de_read(display, TRANS_VRR_VMIN(display, cpu_transcoder)) + 1;
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
-index 38bf9996b883..1ad17812a08b 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.h
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.h
-@@ -41,5 +41,6 @@ void intel_vrr_transcoder_enable(const struct intel_crtc_state *crtc_state);
- void intel_vrr_transcoder_disable(const struct intel_crtc_state *crtc_state);
- void intel_vrr_set_fixed_rr_timings(const struct intel_crtc_state *crtc_state);
- bool intel_vrr_always_use_vrr_tg(struct intel_display *display);
-+int intel_vrr_get_vtotal_vmin(struct intel_crtc_state *crtc_state);
- 
- #endif /* __INTEL_VRR_H__ */
--- 
-2.45.2
+lib/modules/6.14.0-rc7-xe+/kernel/arch/x86/events/amd/
+lib/modules/6.14.0-rc7-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
+lib/modules/6.14.0-rc7-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.14.0-rc7-xe+/kernel/arch/x86/kvm/
+lib/modules/6.14.0-rc7-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.14.0-rc7-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.14.0-rc7-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.14.0-rc7-xe+/kernel/kernel/
+lib/modules/6.14.0-rc7-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/zstd.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/xctr.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/authenc.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/sm3.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/cmac.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/essiv.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/ccm.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/wp512.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/lrw.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/842.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/md4.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/lz4.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/sm4.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/async_tx/
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.14.0-rc7-xe+/kernel/block/
+lib/modules/6.14.0-rc7-xe+/kernel/block/bfq.ko
+lib/modules/6.14.0-rc7-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.14.0-rc7-xe+/build
+lib/modules/6.14.0-rc7-xe+/modules.alias.bin
+lib/modules/6.14.0-rc7-xe+/modules.builtin
+lib/modules/6.14.0-rc7-xe+/modules.softdep
+lib/modules/6.14.0-rc7-xe+/modules.alias
+lib/modules/6.14.0-rc7-xe+/modules.order
+lib/modules/6.14.0-rc7-xe+/modules.symbols
+lib/modules/6.14.0-rc7-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1742824057:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1742824057:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
