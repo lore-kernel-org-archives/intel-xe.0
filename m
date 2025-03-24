@@ -4,60 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB46AC36002
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Mar 2025 16:24:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0E80C36002
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Mar 2025 16:47:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B10110E496;
-	Mon, 24 Mar 2025 16:24:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8725410E171;
+	Mon, 24 Mar 2025 16:47:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ci3P3YVR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SNd9s1Oj";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34FC010E448
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Mar 2025 16:24:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DB0C10E171;
+ Mon, 24 Mar 2025 16:47:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742833489; x=1774369489;
- h=date:message-id:from:to:cc:subject:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=gTSjh677zZb3vlkOcWr0Rd33M08JpTm7gOc5mPmIivs=;
- b=Ci3P3YVROKH+6+O/jI8CEbXc/ryQFIhonoL6ujVayQO7H7JXa/XK8u3x
- PsBJpvnw4tsXmFRT7nZOTfFXkJpdGaLU0AHbPhTkVPOYGl1RNh5a3I9kn
- EV0M/7S6tAPIPuLCyKPODjK3RC1uVzkpTd1ICOHUSaT7T42UszNOQuA9x
- 6zHUQitBTKFcjKgkPe+z/B3kYa508Rx1m7cPQ70ICMcMLNeo1qD7jtaA+
- 8yFDOKy8jH8cIHMBOTjb89bdLfv+L9wXDAiYJKAr+vOPh/gzdA9dIYK0s
- rwf4MhV1feHtzK4DS1qu7NA4Eluny/mCP6DFN0YvM9FfakC+x792FOS+e A==;
-X-CSE-ConnectionGUID: FkLoh8NJTb+cZ0t9x+18mw==
-X-CSE-MsgGUID: KAZ4L59bSwKioaEdU6XO9Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="54685427"
-X-IronPort-AV: E=Sophos;i="6.14,272,1736841600"; d="scan'208";a="54685427"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2025 09:24:48 -0700
-X-CSE-ConnectionGUID: m+DlIvWiSZy1cOVghHxvrA==
-X-CSE-MsgGUID: vxxgfedFQyyFJqa2bX1hLA==
+ t=1742834878; x=1774370878;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=X6tpuLfuJnHc+UciAKwWN7KOlAmZbY2ncUKWCsOlboo=;
+ b=SNd9s1OjkhkCmR+C8XgXIAhH1nCdt1IX4zwENhFpVIIl/+j9E3VT0rii
+ dUzF52U9Q+nT/tz/6lcE/cQlTsF/1Pu/uA/nSuxZ9bazzmSSmWHJtFxz0
+ 5WtOBgAMWWtzbsRlxcQYjDLTBq+8+trZb2NeHtdOr2lblqrqtYgKPx4eC
+ S2GAX6FUonO6uOFxo7XVaAXwoX7jzmIw+WbTVlOW/bAq5AFlLfekNimoi
+ bd9bxPGIiP2ekYpfkGkblefRVuPOEOoYkp8ABBiOUmPLjs5Bq8FR6X11K
+ Wmne3uy3HeiG0izJIBIYHsW3+SdGFndLZhTXZrTfheWw8gGMb/kgeqrRe Q==;
+X-CSE-ConnectionGUID: LNZsqCt/RbyAZvrKwrKVZA==
+X-CSE-MsgGUID: rTcqjNVpTTK3HpVpDOnFVw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="44240122"
+X-IronPort-AV: E=Sophos;i="6.14,272,1736841600"; d="scan'208";a="44240122"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2025 09:47:57 -0700
+X-CSE-ConnectionGUID: qJGsdFboTSCZiLJB5AsNYw==
+X-CSE-MsgGUID: R5wJr3oMS6iruP6PlqWvwQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,272,1736841600"; d="scan'208";a="124619862"
-Received: from romerojo-mobl1.amr.corp.intel.com (HELO adixit-MOBL3.intel.com)
- ([10.125.0.125])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2025 09:24:48 -0700
-Date: Mon, 24 Mar 2025 09:24:47 -0700
-Message-ID: <87ldsu9z1s.wl-ashutosh.dixit@intel.com>
-From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>,
- <intel-xe@lists.freedesktop.org>, 
- Riana Tauro <riana.tauro@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v3] drm/xe/pmu: Add GT frequency events
-In-Reply-To: <iizcoecokne5qgkpr7kp4misfdok67eo2scj5czijpo6vqitks@xs3ehyr3kcbb>
-References: <20250312001408.804125-1-vinay.belgaumkar@intel.com>	<vx26ng5q4asspsg6lktrj5ok73gbiy3bfg7icu4fybekyt4zad@5h4bsek2mukm>	<4283fcec-5ddd-4d06-9eae-8e622e9695ee@intel.com>	<azol66l3wmb6r6cy6kh2j5ooglx25bduwj2ybifdxtpvpej23d@jxw766ana4kv>	<87o6xsai7y.wl-ashutosh.dixit@intel.com>	<iizcoecokne5qgkpr7kp4misfdok67eo2scj5czijpo6vqitks@xs3ehyr3kcbb>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
- Emacs/29.4 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.14,272,1736841600"; d="scan'208";a="129298232"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orviesa005.jf.intel.com with SMTP; 24 Mar 2025 09:47:55 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 24 Mar 2025 18:47:53 +0200
+Date: Mon, 24 Mar 2025 18:47:53 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 00/12] drm/i915/display: yet another batch of struct
+ intel_display conversions
+Message-ID: <Z-GMuR8Okww3Bgku@intel.com>
+References: <cover.1742554320.git.jani.nikula@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <cover.1742554320.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,143 +70,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sat, 22 Mar 2025 19:47:04 -0700, Lucas De Marchi wrote:
->
-> On Sat, Mar 22, 2025 at 02:06:09PM -0700, Ashutosh Dixit wrote:
-> > On Sat, 22 Mar 2025 05:57:12 -0700, Lucas De Marchi wrote:
-> >>
-> >> On Fri, Mar 21, 2025 at 03:45:21PM -0700, Belgaumkar, Vinay wrote:
-> >> >
-> >> > On 3/13/2025 2:45 PM, Lucas De Marchi wrote:
-> >> >> On Tue, Mar 11, 2025 at 05:14:08PM -0700, Vinay Belgaumkar wrote:
-> >> >>> Define PMU events for GT frequency (actual and requested). This is
-> >> >>> a port from the i915 driver implementation, where an internal timer
-> >> >>> is used to aggregate GT frequencies over certain fixed interval.
-> >> >>> Following PMU events are being added-
-> >> >> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 ^
-> >> >> why do you use "-"=A0 instead of ":"?
-> >> >>
-> >> >>>
-> >> >>> =A0xe_0000_00_02.0/gt-actual-frequency/=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0 [Kernel PMU event]
-> >> >>> =A0xe_0000_00_02.0/gt-requested-frequency/=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0 [Kernel PMU event]
-> >> >>>
-> >> >>> Standard perf commands can be used to monitor GT frequency-
-> >> >>> =A0$ perf stat -e xe_0000_00_02.0/gt-requested-frequency,gt=3D0/ -=
-I1000
-> >> >>>
-> >> >>> =A0=A0=A0 1.001175175=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
- 700 M xe/gt-requested-frequency,gt=3D0/
-> >> >>> =A0=A0=A0 2.005891881=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
- 703 M xe/gt-requested-frequency,gt=3D0/
-> >> >>> =A0=A0=A0 3.007318169=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
- 700 M xe/gt-requested-frequency,gt=3D0/
-> >> >>>
-> >> >>> Actual frequencies will be reported as 0 when GT is in C6.
-> >> >>
-> >> >>
-> >> >> I think we need to document somewhere, but at the very least in the
-> >> >> commit message what the event count actually is. Let me see if I get
-> >> >> this right:=A0 if userspace is sampling every 1sec, and assuming th=
-e gpu
-> >> >> is at 700MHz for the first 0.5sec and at 1.4 GHz, userspace should
-> >> >> expect to see ~1050 as the value. Correct?=A0 I find this frequency
-> >> >> handling very different from anything else reported via perf. Other
-> >> >> than i915, are there any other cases you know of?
-> >> >
-> >> > Yes,=A0 user will see a gradual ramp. One thing that could work is
-> >> > something along these lines:
-> >> >
-> >> > @@ -324,7 +327,10 @@ static void xe_pmu_event_update(struct perf_eve=
-nt
-> >> > *event)
-> >> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 new =3D __xe_pmu_event=
-_read(event);
-> >> > =A0=A0=A0=A0=A0=A0=A0 } while (!local64_try_cmpxchg(&hwc->prev_count=
-, &prev, new));
-> >> >
-> >> > -=A0=A0=A0=A0=A0=A0 local64_add(new - prev, &event->count);
-> >> > +=A0=A0=A0=A0=A0=A0 if (is_gt_frequency_event(id))
-> >> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 local64_add(new, &event-=
->count);
-> >> > +=A0=A0=A0=A0=A0=A0 else
-> >> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 local64_add(new - prev, =
-&event->count);
-> >> >
-> >> > This will give us instantaneous values and will not need the use of =
-an
-> >> > internal timer.=A0 Should be ok to do it this way?
-> >>
-> >> yes, I think it'd be preferred. It's much simpler and don't prevent us
-> >> from eventually adding an avg_* event if the needs arise. Which would
-> >> also be clearer on what that is.
-> >
-> > Instantaneous values would show 0 if the sampling instant landed when g=
-t is
->
-> instantaneous values make much more sense from the perf point of view
-> IMO. perf is **sampling** them - other than the same thing in i915, I've
-> never seen an event that returns an average (not even documenting it as
-> such).
->
-> What would also make sense would be to support perf-record so the
-> samples are recorded in the buffer that is passed to userspace. In this
-> case setting up a timer to save them (since we don't have interrupt for
-> our pmu) would be nice.
+On Fri, Mar 21, 2025 at 12:52:44PM +0200, Jani Nikula wrote:
+> More conversions to struct intel_display.
+> 
+> Jani Nikula (12):
+>   drm/i915/dsi: convert vlv_dsi.[ch] to struct intel_display
+>   drm/i915/dsi: convert vlv_dsi_pll.[ch] to struct intel_display
+>   drm/i915/dsi: convert parameter printing to drm_printer
+>   drm/i915/dsi: convert intel_dsi_vbt.[ch] to struct intel_display
+>   drm/i915/dsi: convert intel_dsi_dcs_backlight.c to struct
+>     intel_display
+>   drm/i915/dvo: convert intel_dvo.[ch] to struct intel_display
+>   drm/i915/lvds: convert intel_lvds.[ch] to struct intel_display
+>   drm/i915/tc: convert intel_tc.c to struct intel_display
+>   drm/i915/atomic: convert intel_atomic.c to struct intel_display
+>   drm/i915/display: convert intel_crtc_state_dump.c to struct
+>     intel_display
+>   drm/i915/pch: convert intel_pch_display.[ch] to struct intel_display
+>   drm/i915/pch: convert intel_pch_refclk.c to struct intel_display
 
-Afaik, typically userspace calls into the kernel for PMU counters
-relatively infrequently, say once a second (1 Hz). However, if this low
-rate does not yield good freq values (say freq is showing lots of 0's), now
-userspace will need to call into the kernel more frequently, say 10 Hz to
-100 Hz, just to get good freq values (all other counters are fine at 1
-Hz). This increased rate of calling into the kernel may be ok for 'perf
-record' but not sure what happens to say 'gputop'.
+Series is
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-I think considerations like this went into i915 deciding to average in the
-kernel.
+> 
+>  drivers/gpu/drm/i915/display/intel_atomic.c   |  23 +-
+>  .../drm/i915/display/intel_crtc_state_dump.c  |  44 +--
+>  drivers/gpu/drm/i915/display/intel_display.c  |  22 +-
+>  .../drm/i915/display/intel_display_power.c    |   6 +-
+>  drivers/gpu/drm/i915/display/intel_dp.c       |   2 +-
+>  drivers/gpu/drm/i915/display/intel_dpll.c     |  13 +-
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c |   6 +-
+>  .../i915/display/intel_dsi_dcs_backlight.c    |   7 +-
+>  drivers/gpu/drm/i915/display/intel_dsi_vbt.c  | 211 +++++++-------
+>  drivers/gpu/drm/i915/display/intel_dvo.c      |  63 ++---
+>  drivers/gpu/drm/i915/display/intel_dvo.h      |   6 +-
+>  .../drm/i915/display/intel_fifo_underrun.c    |   4 +-
+>  drivers/gpu/drm/i915/display/intel_lvds.c     | 142 +++++-----
+>  drivers/gpu/drm/i915/display/intel_lvds.h     |  18 +-
+>  .../drm/i915/display/intel_modeset_setup.c    |   2 +-
+>  .../gpu/drm/i915/display/intel_pch_display.c  | 168 +++++------
+>  .../gpu/drm/i915/display/intel_pch_display.h  |  10 +-
+>  .../gpu/drm/i915/display/intel_pch_refclk.c   | 126 +++++----
+>  .../gpu/drm/i915/display/intel_pch_refclk.h   |  18 +-
+>  drivers/gpu/drm/i915/display/intel_pps.c      |   4 +-
+>  drivers/gpu/drm/i915/display/intel_tc.c       | 265 +++++++++---------
+>  drivers/gpu/drm/i915/display/vlv_dsi.c        | 160 +++++------
+>  drivers/gpu/drm/i915/display/vlv_dsi.h        |   6 +-
+>  drivers/gpu/drm/i915/display/vlv_dsi_pll.c    | 118 ++++----
+>  drivers/gpu/drm/i915/display/vlv_dsi_pll.h    |   5 +-
+>  drivers/gpu/drm/i915/i915_driver.c            |   2 +-
+>  26 files changed, 709 insertions(+), 742 deletions(-)
+> 
+> -- 
+> 2.39.5
 
-Also, if we are going to expose instantaneous freq, if gt is in C6 (when
-userspace calls into the kernel to sample), could we save and return the
-freq /before/ gt went into C6 (to avoid returning 0 freq, and returning the
-last freq as it was when workload was running)? This might be sufficient
-and remove the need to sample more frequently, though not sure how
-complex to implement.
-
->
-> > in C6. Also instantaneous values are already available via sysfs.
->
-> with the caveat of a slower interface, but yeah... that's why I was
-> asking earlier: do we really need this if it's already available via
-> sysfs? I was told turbostat wants to consolidate all the data to be read
-> via perf instead of reading a bunch of files from sysfs.
-
-OK.
-
->
-> > Also, the way i915 calculates the average freq is itself
-> > controversial. i915 computes average freq when gt is awake and disregar=
-ds
-> > those intervals when gt is in C6. There was this patch to suggest that
-> > average freq also take into account those intervals when gt is in C6:
-> >
-> > https://patchwork.freedesktop.org/series/109372/
-> >
-> > But it was not accepted since it would change uapi.
->
-> one more reason not to fall in the same trap. Let userspace decide if it
-> wants the average or not. If it'd need to sample too frequently, then I
-> think we need to look at supporting perf-record rather than doing the
-> average (which is actually an integration, using the rectangle method,
-> and then dividing by the perf_read delta time). At the very least,
-> rename the event to make the avg explicit.
-
-OK, we can return instantaneous freq for now and if that doesn't work out,
-add an average freq later?
-
->
-> Lucas De Marchi
-
-Thanks.
---
-Ashutosh
+-- 
+Ville Syrjälä
+Intel
