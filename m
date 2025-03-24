@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E7DFC3600B
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Mar 2025 23:09:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9809AC36002
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Mar 2025 23:11:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C59210E4FB;
-	Mon, 24 Mar 2025 23:09:39 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V6cuLNwD";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 061E610E4E7;
- Mon, 24 Mar 2025 23:09:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742857773; x=1774393773;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=cgto85fKuTD8MpW293iqRYh8Sld8vy1+NG6nM7iS8z4=;
- b=V6cuLNwDkAkMCseiR2JbSFlzD90jVt4wS6p3e6ZN5bsknX8HCLzQp9d6
- +aOEv3+u2Cy68r7xupV8yUhBpTgsg9KgocdE1gBLVHXCrphpoVTlWMQo+
- tOFf85Ay77TaY5pp6YvaKhzs0DikaclWou5dhYVRKDogFnz08jTPXbsPH
- XxmlfWV6VhZoWeMb2gd2xeY769KEj2Ve7FE8v54wZP+Iu6KM7JRqnlJI3
- oZPl8onUX6KtkeRq9d2G0m3SJB9AjJIKeLB30IqXG4KU1kV5nK14dQfcq
- aLbPEYM3zK/8DLbFHi6GT0hAsh5coOXRmeyplcVDkIG28iQDokG3itkju g==;
-X-CSE-ConnectionGUID: nuFQKCfnSFu7gS7yayp/tA==
-X-CSE-MsgGUID: tnQFTibWRaCm78kmiY7Ong==
-X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="44104315"
-X-IronPort-AV: E=Sophos;i="6.14,273,1736841600"; d="scan'208";a="44104315"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2025 16:09:32 -0700
-X-CSE-ConnectionGUID: PXPVBJhISn+I8Pt9wd+FRQ==
-X-CSE-MsgGUID: NrL35LeERZ6Lu5cFNgtRjA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,273,1736841600"; d="scan'208";a="124220333"
-Received: from dut4086lnl.fm.intel.com ([10.105.10.68])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2025 16:09:33 -0700
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
- joonas.lahtinen@linux.intel.com, matthew.brost@intel.com,
- jianxun.zhang@intel.com, shuicheng.lin@intel.com,
- dri-devel@lists.freedesktop.org, Michal.Wajdeczko@intel.com,
- michal.mrozek@intel.com, raag.jadav@intel.com
-Subject: [PATCH v12 2/5] drm/xe/xe_gt_pagefault: Move pagefault struct to
- header
-Date: Mon, 24 Mar 2025 23:09:25 +0000
-Message-ID: <20250324230931.63840-3-jonathan.cavitt@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250324230931.63840-1-jonathan.cavitt@intel.com>
-References: <20250324230931.63840-1-jonathan.cavitt@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57E6F10E4EA;
+	Mon, 24 Mar 2025 23:11:27 +0000 (UTC)
+Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AF7E10E4EA;
+ Mon, 24 Mar 2025 23:11:26 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/ptl=3A_Apply_Wa=5F14022?=
+ =?utf-8?q?293748=2C_Wa=5F22019794406?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Julia Filipchuk" <julia.filipchuk@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 24 Mar 2025 23:11:26 -0000
+Message-ID: <174285788663.75418.9668137645323409749@18a75f3d1eae>
+X-Patchwork-Hint: ignore
+References: <20250324223347.1433491-1-julia.filipchuk@intel.com>
+In-Reply-To: <20250324223347.1433491-1-julia.filipchuk@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,294 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move the pagefault struct from xe_gt_pagefault.c to the
-xe_gt_pagefault_types.h header file, and move the associated enum values
-into the regs folder under xe_pagefault_desc.h
+== Series Details ==
 
-Since xe_pagefault_desc.h is being initialized here, also move the
-xe_guc_pagefault_desc hardware formats to the new file.
+Series: drm/xe/ptl: Apply Wa_14022293748, Wa_22019794406
+URL   : https://patchwork.freedesktop.org/series/146695/
+State : success
 
-v2:
-- Normalize names for common header (Matt Brost)
+== Summary ==
 
-v3:
-- s/Migrate/Move (Michal W)
-- s/xe_pagefault/xe_gt_pagefault (Michal W)
-- Create new header file, xe_gt_pagefault_types.h (Michal W)
-- Add kernel docs (Michal W)
+lib/modules/6.14.0-rc7-xe+/kernel/arch/x86/events/amd/
+lib/modules/6.14.0-rc7-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
+lib/modules/6.14.0-rc7-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.14.0-rc7-xe+/kernel/arch/x86/kvm/
+lib/modules/6.14.0-rc7-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.14.0-rc7-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.14.0-rc7-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.14.0-rc7-xe+/kernel/kernel/
+lib/modules/6.14.0-rc7-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/zstd.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/xctr.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/authenc.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/sm3.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/cmac.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/essiv.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/ccm.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/wp512.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/lrw.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/842.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/md4.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/lz4.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/sm4.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/async_tx/
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.14.0-rc7-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.14.0-rc7-xe+/kernel/block/
+lib/modules/6.14.0-rc7-xe+/kernel/block/bfq.ko
+lib/modules/6.14.0-rc7-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.14.0-rc7-xe+/build
+lib/modules/6.14.0-rc7-xe+/modules.alias.bin
+lib/modules/6.14.0-rc7-xe+/modules.builtin
+lib/modules/6.14.0-rc7-xe+/modules.softdep
+lib/modules/6.14.0-rc7-xe+/modules.alias
+lib/modules/6.14.0-rc7-xe+/modules.order
+lib/modules/6.14.0-rc7-xe+/modules.symbols
+lib/modules/6.14.0-rc7-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1742857875:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1742857875:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-v4:
-- Fix includes usage (Michal W)
-- Reference Bspec (Michal W)
-
-v5:
-- Convert enums to defines in regs folder (Michal W)
-- Move xe_guc_pagefault_desc to regs folder (Michal W)
-
-Bspec: 77412
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Cc: Michal Wajdeczko <Michal.Wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_pagefault_desc.h | 50 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_pagefault.c        | 43 ++++--------------
- drivers/gpu/drm/xe/xe_gt_pagefault_types.h  | 42 +++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_fwif.h            | 28 ------------
- 4 files changed, 101 insertions(+), 62 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/regs/xe_pagefault_desc.h
- create mode 100644 drivers/gpu/drm/xe/xe_gt_pagefault_types.h
-
-diff --git a/drivers/gpu/drm/xe/regs/xe_pagefault_desc.h b/drivers/gpu/drm/xe/regs/xe_pagefault_desc.h
-new file mode 100644
-index 000000000000..cfa18cb8e8ac
---- /dev/null
-+++ b/drivers/gpu/drm/xe/regs/xe_pagefault_desc.h
-@@ -0,0 +1,50 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2025 Intel Corporation
-+ */
-+
-+#ifndef _XE_PAGEFAULT_DESC_H_
-+#define _XE_PAGEFAULT_DESC_H_
-+
-+#include <linux/bits.h>
-+#include <linux/types.h>
-+
-+struct xe_guc_pagefault_desc {
-+	u32 dw0;
-+#define PFD_FAULT_LEVEL		GENMASK(2, 0)
-+#define PFD_SRC_ID		GENMASK(10, 3)
-+#define PFD_RSVD_0		GENMASK(17, 11)
-+#define XE2_PFD_TRVA_FAULT	BIT(18)
-+#define PFD_ENG_INSTANCE	GENMASK(24, 19)
-+#define PFD_ENG_CLASS		GENMASK(27, 25)
-+#define PFD_PDATA_LO		GENMASK(31, 28)
-+
-+	u32 dw1;
-+#define PFD_PDATA_HI		GENMASK(11, 0)
-+#define PFD_PDATA_HI_SHIFT	4
-+#define PFD_ASID		GENMASK(31, 12)
-+
-+	u32 dw2;
-+#define PFD_ACCESS_TYPE		GENMASK(1, 0)
-+#define PFD_FAULT_TYPE		GENMASK(3, 2)
-+#define PFD_VFID		GENMASK(9, 4)
-+#define PFD_RSVD_1		BIT(10)
-+#define XE3P_PFD_PREFETCH	BIT(11)
-+#define PFD_VIRTUAL_ADDR_LO	GENMASK(31, 12)
-+#define PFD_VIRTUAL_ADDR_LO_SHIFT 12
-+
-+	u32 dw3;
-+#define PFD_VIRTUAL_ADDR_HI	GENMASK(31, 0)
-+#define PFD_VIRTUAL_ADDR_HI_SHIFT 32
-+} __packed;
-+
-+#define FLT_ACCESS_TYPE_READ		0u
-+#define FLT_ACCESS_TYPE_WRITE		1u
-+#define FLT_ACCESS_TYPE_ATOMIC		2u
-+#define FLT_ACCESS_TYPE_RESERVED	3u
-+
-+#define FLT_TYPE_NOT_PRESENT_FAULT		0u
-+#define FLT_TYPE_WRITE_ACCESS_VIOLATION		1u
-+#define FLT_TYPE_ATOMIC_ACCESS_VIOLATION	2u
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index 3240890aac07..0cedf089a3f2 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -12,8 +12,10 @@
- #include <drm/drm_managed.h>
- 
- #include "abi/guc_actions_abi.h"
-+#include "regs/xe_pagefault_desc.h"
- #include "xe_bo.h"
- #include "xe_gt.h"
-+#include "xe_gt_pagefault_types.h"
- #include "xe_gt_stats.h"
- #include "xe_gt_tlb_invalidation.h"
- #include "xe_guc.h"
-@@ -23,33 +25,6 @@
- #include "xe_trace_bo.h"
- #include "xe_vm.h"
- 
--struct pagefault {
--	u64 page_addr;
--	u32 asid;
--	u16 pdata;
--	u8 vfid;
--	u8 access_type;
--	u8 fault_type;
--	u8 fault_level;
--	u8 engine_class;
--	u8 engine_instance;
--	u8 fault_unsuccessful;
--	bool trva_fault;
--};
--
--enum access_type {
--	ACCESS_TYPE_READ = 0,
--	ACCESS_TYPE_WRITE = 1,
--	ACCESS_TYPE_ATOMIC = 2,
--	ACCESS_TYPE_RESERVED = 3,
--};
--
--enum fault_type {
--	NOT_PRESENT = 0,
--	WRITE_ACCESS_VIOLATION = 1,
--	ATOMIC_ACCESS_VIOLATION = 2,
--};
--
- struct acc {
- 	u64 va_range_base;
- 	u32 asid;
-@@ -61,9 +36,9 @@ struct acc {
- 	u8 engine_instance;
- };
- 
--static bool access_is_atomic(enum access_type access_type)
-+static bool access_is_atomic(u32 access_type)
- {
--	return access_type == ACCESS_TYPE_ATOMIC;
-+	return access_type == FLT_ACCESS_TYPE_ATOMIC;
- }
- 
- static bool vma_is_valid(struct xe_tile *tile, struct xe_vma *vma)
-@@ -205,7 +180,7 @@ static struct xe_vm *asid_to_vm(struct xe_device *xe, u32 asid)
- 	return vm;
- }
- 
--static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
-+static int handle_pagefault(struct xe_gt *gt, struct xe_gt_pagefault *pf)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
- 	struct xe_vm *vm;
-@@ -237,7 +212,7 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
- 		goto unlock_vm;
- 	}
- 
--	if (xe_vma_read_only(vma) && pf->access_type != ACCESS_TYPE_READ) {
-+	if (xe_vma_read_only(vma) && pf->access_type != FLT_ACCESS_TYPE_READ) {
- 		err = -EPERM;
- 		goto unlock_vm;
- 	}
-@@ -271,7 +246,7 @@ static int send_pagefault_reply(struct xe_guc *guc,
- 	return xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action), 0, 0);
- }
- 
--static void print_pagefault(struct xe_device *xe, struct pagefault *pf)
-+static void print_pagefault(struct xe_device *xe, struct xe_gt_pagefault *pf)
- {
- 	drm_dbg(&xe->drm, "\n\tASID: %d\n"
- 		 "\tVFID: %d\n"
-@@ -291,7 +266,7 @@ static void print_pagefault(struct xe_device *xe, struct pagefault *pf)
- 
- #define PF_MSG_LEN_DW	4
- 
--static bool get_pagefault(struct pf_queue *pf_queue, struct pagefault *pf)
-+static bool get_pagefault(struct pf_queue *pf_queue, struct xe_gt_pagefault *pf)
- {
- 	const struct xe_guc_pagefault_desc *desc;
- 	bool ret = false;
-@@ -378,7 +353,7 @@ static void pf_queue_work_func(struct work_struct *w)
- 	struct xe_gt *gt = pf_queue->gt;
- 	struct xe_device *xe = gt_to_xe(gt);
- 	struct xe_guc_pagefault_reply reply = {};
--	struct pagefault pf = {};
-+	struct xe_gt_pagefault pf = {};
- 	unsigned long threshold;
- 	int ret;
- 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault_types.h b/drivers/gpu/drm/xe/xe_gt_pagefault_types.h
-new file mode 100644
-index 000000000000..b7d41b558de3
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault_types.h
-@@ -0,0 +1,42 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2022-2025 Intel Corporation
-+ */
-+
-+#ifndef _XE_GT_PAGEFAULT_TYPES_H_
-+#define _XE_GT_PAGEFAULT_TYPES_H_
-+
-+#include <linux/types.h>
-+
-+/**
-+ * struct xe_gt_pagefault - Structure of pagefaults returned by the
-+ * pagefault handler
-+ */
-+struct xe_gt_pagefault {
-+	/** @page_addr: faulted address of this pagefault */
-+	u64 page_addr;
-+	/** @asid: ASID of this pagefault */
-+	u32 asid;
-+	/** @pdata: PDATA of this pagefault */
-+	u16 pdata;
-+	/** @vfid: VFID of this pagefault */
-+	u8 vfid;
-+	/** @access_type: access type of this pagefault */
-+	u8 access_type;
-+	/** @fault_type: fault type of this pagefault */
-+	u8 fault_type;
-+	/** @fault_level: fault level of this pagefault */
-+	u8 fault_level;
-+	/** @engine_class: engine class this pagefault was reported on */
-+	u8 engine_class;
-+	/** @engine_instance: engine instance this pagefault was reported on */
-+	u8 engine_instance;
-+	/** @fault_unsuccessful: flag for if the pagefault recovered or not */
-+	u8 fault_unsuccessful;
-+	/** @prefetch: unused */
-+	bool prefetch;
-+	/** @trva_fault: is set if this is a TRTT fault */
-+	bool trva_fault;
-+};
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
-index 6f57578b07cb..30ac21bb4f15 100644
---- a/drivers/gpu/drm/xe/xe_guc_fwif.h
-+++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
-@@ -290,34 +290,6 @@ enum xe_guc_response_desc_type {
- 	FAULT_RESPONSE_DESC
- };
- 
--struct xe_guc_pagefault_desc {
--	u32 dw0;
--#define PFD_FAULT_LEVEL		GENMASK(2, 0)
--#define PFD_SRC_ID		GENMASK(10, 3)
--#define PFD_RSVD_0		GENMASK(17, 11)
--#define XE2_PFD_TRVA_FAULT	BIT(18)
--#define PFD_ENG_INSTANCE	GENMASK(24, 19)
--#define PFD_ENG_CLASS		GENMASK(27, 25)
--#define PFD_PDATA_LO		GENMASK(31, 28)
--
--	u32 dw1;
--#define PFD_PDATA_HI		GENMASK(11, 0)
--#define PFD_PDATA_HI_SHIFT	4
--#define PFD_ASID		GENMASK(31, 12)
--
--	u32 dw2;
--#define PFD_ACCESS_TYPE		GENMASK(1, 0)
--#define PFD_FAULT_TYPE		GENMASK(3, 2)
--#define PFD_VFID		GENMASK(9, 4)
--#define PFD_RSVD_1		GENMASK(11, 10)
--#define PFD_VIRTUAL_ADDR_LO	GENMASK(31, 12)
--#define PFD_VIRTUAL_ADDR_LO_SHIFT 12
--
--	u32 dw3;
--#define PFD_VIRTUAL_ADDR_HI	GENMASK(31, 0)
--#define PFD_VIRTUAL_ADDR_HI_SHIFT 32
--} __packed;
--
- struct xe_guc_pagefault_reply {
- 	u32 dw0;
- #define PFR_VALID		BIT(0)
--- 
-2.43.0
 
