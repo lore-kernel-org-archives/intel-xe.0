@@ -4,141 +4,165 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAB9CC3600C
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Mar 2025 11:51:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CBFDC3600C
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Mar 2025 12:01:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6696010E330;
-	Mon, 24 Mar 2025 11:51:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC8FD10E2DA;
+	Mon, 24 Mar 2025 12:01:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="fnZsxhrJ";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OQ/wUFwa";
 	dkim-atps=neutral
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A19FC10E320
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Mar 2025 11:51:39 +0000 (UTC)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52O9POIC004885
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Mar 2025 11:51:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- Xs5rT/RGnzQe0TKC8aJ0U0f62LNypMaSbN5UiwapTF8=; b=fnZsxhrJWHOJDsOb
- BEl0L6oQxcSVq87aEnmkJEl/T74HUpNOfHcOC96nx9r9O6uqBSudqhpApYdoIp2d
- HzLNMhTTf5X4t1J3/0Nqt82p5tv4udEQvNheQrcy7KO5RPgTXYaB7dNPxQe0qPPb
- qNWTHbCSFTaIFF43fBS7YbkBZXjd9LUqhJB25886uCOARHNdEoSVNSYEIk9yq10L
- qq7cW4x++RekV0xbPlVQhst+m3CIrYli8pfwl/KPmHA8z9h2yvzz6YmP21ZktnvC
- YCCTlpX5RbrHwWVAjzkUrAexRNjWD7Xg9QnZPFLdd9xDgVzwSWG39J6BHWpSd41O
- HH2ArQ==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
- [209.85.219.71])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45hm79maa2-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Mar 2025 11:51:38 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id
- 6a1803df08f44-6e91ee078aaso76277926d6.3
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Mar 2025 04:51:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1742817097; x=1743421897;
- h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
- :mime-version:subject:date:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=Xs5rT/RGnzQe0TKC8aJ0U0f62LNypMaSbN5UiwapTF8=;
- b=u5vqF22KkLqeSOlHX2CdS4iqmFz2GwFusdRppEQA0td4GKpTBxu7Zf83KIdjlxanx0
- 6SQzgAL1L0Mvb3QhZfVeSuwsoINmajWRFDuaNLuaSAwGAkrfpyTBWkbZfWRWGPR7glpu
- mAyHd+2KoTYQHRC67SFZ8UCqHvfBRsufuPj00PUFM7RY5bSoZ/YvQiPUUQJ+56NfynZc
- QbyW0Jmsw+Z7shXakBq+RsNQvM6TrJrNnu21gWN6rUZpGDv+osnc8RXgNHnQcbp9mwD0
- bxJBgO6+f6D2+FhY/R8L2rGw95zxxN7XxJZ9dGHpLABdi3ma+Dsvmu7jBDSwk5ha7i4I
- d81w==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVsbnaj0EGBpldg/tNlwkSJNFx3iwLqtdBEjvo9UrJJK85MoAcz1xTiLEgN+Vq8x2KTUVfnU5pDCg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz+brE6kgpO+R27non1+FbVnjNn0EMXO2ZPxv4pYcbTahHfvSXg
- 0YBR9L2jHn5mGzClOPUuvVEysSSFE71kYx33ncZM/6dY+jZVcrpKKi9uQwxmEC3WbLCVjRRaxNu
- 93BHLyLcIgotTJpBXWmVr4Bf7A/sl+PJG3sskhOXbmh0w2rVkisw2Z8kYKP7Np7hSTg==
-X-Gm-Gg: ASbGncsE0svclmAVpE1iyZI3H+0jhMJ4R2BRIop8pMfWV52Mc1mQr4hlACeAwKXwdoK
- wkkYGG7TXWxm2ZXWoZMt2I7EVJ6tQw1QZ+2J429swrOm7mlAZ57+1e0bqOX4FzDoPoWOrtc6uM9
- gj+pHje3nkoPWgvN3dWH4HzfaZDbzNKTIdw/vSPYBRXFfqEU54IWuAr/2PTFX+tI5X20gVolFju
- /JLjsUf95gt3DAvbOu8GwK2K10OTxjChEXhOSYZtNFHmLkUGaTCoeRncoQ9w3VctttSs6Ir1RSZ
- pxBuoVgPYOP5K0FsJaInG0sMnmB8ozBMtdGyzvtDPLmasUFvAb6Jn5GsyFnFiqdfzFTIWfJLXFa
- xf2bqvHGIqKTLhJGutmgl2YksmPWV
-X-Received: by 2002:a05:6214:1bc6:b0:6e6:6505:ceb2 with SMTP id
- 6a1803df08f44-6eb3f34025dmr231784626d6.36.1742817097294; 
- Mon, 24 Mar 2025 04:51:37 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHBwQw92ZPyWINOzWzui1m9ITHbL+0DAXpzT7H8qy4kqRnazAtvro+a6KHCt5kCZMxuG7ILTg==
-X-Received: by 2002:a05:6214:1bc6:b0:6e6:6505:ceb2 with SMTP id
- 6a1803df08f44-6eb3f34025dmr231783666d6.36.1742817096653; 
- Mon, 24 Mar 2025 04:51:36 -0700 (PDT)
-Received: from umbar.lan
- (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
- [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-54ad64fbb51sm1142907e87.135.2025.03.24.04.51.34
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 24 Mar 2025 04:51:34 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Mon, 24 Mar 2025 13:51:23 +0200
-Subject: [PATCH RESEND RFC v4 5/6] drm/display: dp-mst-topology: use new
- DCPD access helpers
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F03A10E2D4;
+ Mon, 24 Mar 2025 12:01:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1742817684; x=1774353684;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ in-reply-to:mime-version;
+ bh=s8DzCwj2SdCg7g2ep2uT6FQLJYd9V9w6zzVrjDYdjr0=;
+ b=OQ/wUFwa5oTRGhk814ZrWayIIjJB+gqKwwHB6rvEt4rk5iYkKvwjMni6
+ DSZX13FvHRjdFUnGMoVCQ0sLyskiiFpF0rKvz/g+l2virWKp5ZXjhKy9C
+ clZAK9ZIACN3ua1dHPpRYWTRu2vv6qCaHeXl70F9SkwUHxpYRPS9yTBVm
+ mx9nu+B6oST71lh0JHj8ztkP5Au/mBNlNQY97DJqZFIFFDSWTD7RQlBWV
+ PBWB6YjlLaPbKNHU5jT3Ca/+MxtOwOtl6SYVvGSeQGzh+KvpYE7JKL+AJ
+ Ls1ZIKkGzchv4GzijZOwY+Hfd1ETpqlipV8vr84m4pebmeroKZIZRoiRx g==;
+X-CSE-ConnectionGUID: aSs9oDpnTQiosTIbCpa7OA==
+X-CSE-MsgGUID: q7QvFEZcSZC1DghPeyHw4w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11382"; a="43894862"
+X-IronPort-AV: E=Sophos;i="6.14,271,1736841600"; d="scan'208";a="43894862"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2025 05:01:24 -0700
+X-CSE-ConnectionGUID: C/jhImL6SxqH3ZnnffLdCg==
+X-CSE-MsgGUID: 7TfyWVJNQQq4tNEGrO8gTQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,271,1736841600"; d="scan'208";a="124551639"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orviesa007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 24 Mar 2025 05:01:24 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Mon, 24 Mar 2025 05:01:23 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14 via Frontend Transport; Mon, 24 Mar 2025 05:01:23 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.43) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Mon, 24 Mar 2025 05:01:22 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=KX6W8RGV3e/kUx0DI2h/idye/sQtwmEh9LHYiGbQybg6g9mxnvBaJ2rBzsEbVnmRSYbjD5fCsEnvMXoDJLzExUqEfLA3Mc2bSjIxjQQh9UMpDSm3BJSTcqbh0NBKTFe1QK2BKVHLQAEtlyDJPikUkhSHV0IF45DNmFIhGlwivvlTqNDqsivDPaImuBm6YxoI8+oPy64jFTceLZMDRU633F8jvSJ5Xeb2lSmTlWZIGKl/I5pTKU0iC1Jz7H9CkbYyLBEvolsq00UXOFqqCAQYMigy15VOwJFxKcmuXbaI9vF6pbLhl5sJ8CrHXCQZ5t4Z6ET2A55ZxAR1nzJSDgmBtw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TZyUzFI6N9lAq+c8+LK2pdFGn6HkFbCSrD3tW7QX6Ow=;
+ b=mYfVgsER8CwY+n9j5YRCJrMZUJ0Up8Xia6+wi1Az5IrIQQwjPswLDu+CIb4ryTFGXZHyZNvaIaY9nrHtZQzyHQN93nFnlzeCtKsKrULQz/apj+tbMudstByt5QTcu2UjzGeq3OX0Xu7HmjTUDZGGQW949wlzy/LLmfAnL167YuSYPvsfZZ0p/5Pt6p51siyx/lGPpOMk8SfHV0sYNds4Ml//WdI1HkgyILv6HR1tAh6KUASx2fiSa0DpRlmsDrtFtkkHWRg8sCIUyxWHnrwwSJ2XJgD2Uz2e4JNuJQBZdOS/3LH0/U74cB626leG3DaTs2aCrIXTVGOmLFmudfsYWw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
+ by DM4PR11MB6094.namprd11.prod.outlook.com (2603:10b6:8:ab::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.42; Mon, 24 Mar
+ 2025 12:01:20 +0000
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f%6]) with mapi id 15.20.8534.040; Mon, 24 Mar 2025
+ 12:01:18 +0000
+Date: Mon, 24 Mar 2025 14:01:17 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 1/3] drm/i915/pps: Add helpers to lock PPS for AUX
+ transfers
+Message-ID: <Z-FJjXyOjHEvXZz7@ideak-desk.fi.intel.com>
+References: <20250321145626.94101-1-imre.deak@intel.com>
+ <20250321145626.94101-2-imre.deak@intel.com>
+ <874izibtvx.fsf@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <874izibtvx.fsf@intel.com>
+X-ClientProxiedBy: AM6P192CA0096.EURP192.PROD.OUTLOOK.COM
+ (2603:10a6:209:8d::37) To SJ0PR11MB4845.namprd11.prod.outlook.com
+ (2603:10b6:a03:2d1::10)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250324-drm-rework-dpcd-access-v4-5-e80ff89593df@oss.qualcomm.com>
-References: <20250324-drm-rework-dpcd-access-v4-0-e80ff89593df@oss.qualcomm.com>
-In-Reply-To: <20250324-drm-rework-dpcd-access-v4-0-e80ff89593df@oss.qualcomm.com>
-To: Lyude Paul <lyude@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Xinliang Liu <xinliang.liu@linaro.org>, Tian Tao <tiantao6@hisilicon.com>,
- Xinwei Kong <kong.kongxinwei@hisilicon.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Yongqin Liu <yongqin.liu@linaro.org>, John Stultz <jstultz@google.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Jani Nikula <jani.nikula@intel.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=8924;
- i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
- bh=lOAwM26QhsV15lYFaBEeUiZtWiwv6AIfNojc3p1iTEQ=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBn4Uc4CsdT4oLgNJXuWiGeTgVWGCRmDOsfwjDJk
- MvUg+taZHyJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZ+FHOAAKCRCLPIo+Aiko
- 1eUFCACOQPm/Ap8Q6wgW6g+eGGeGORthONobvqpz7PBMULuq9yKLbbvaXrh51tL+JwtxWfroe4N
- yuPiA2x0oWuQAyAo06ZIP5BpvUm3pZowocYjyTqxFwYQ2mPcJkkf2sY7DXwORxZylZvxwuCqHdl
- tFPH+dJFVGrSeqlfkRe/W26MikHJ3B/+usY5S4oqY4FwE6hbORlWZBtuTPn+GEQGr+k5IQhNZ9y
- X5DCMwom8OmoAs6U7Ut0yZXsdCv8sPDbb4RgbgTirLxyUsvBp+SuA9Ef88pxfkluMCCRL1ORuua
- l3ifrWLnGSG/4z8TqdRadnRZfuGIimIbwmjXjWOZhmYqoTFg
-X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
-X-Proofpoint-GUID: IpfUu7yBapT6qgwpIo46mkxi8M0PSl1N
-X-Proofpoint-ORIG-GUID: IpfUu7yBapT6qgwpIo46mkxi8M0PSl1N
-X-Authority-Analysis: v=2.4 cv=IKYCChvG c=1 sm=1 tr=0 ts=67e1474a cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=Vs1iUdzkB0EA:10 a=KKAkSRfTAAAA:8 a=20KFwNOVAAAA:8 a=QyXUC8HyAAAA:8
- a=CIugonsnW1z_eXyUCzcA:9 a=QEXdDO2ut3YA:10
- a=1HOtulTD9v-eNWfpl4qZ:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-24_04,2025-03-21_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 suspectscore=0
- phishscore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0 spamscore=0
- priorityscore=1501 adultscore=0 malwarescore=0 mlxlogscore=999 mlxscore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503240086
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|DM4PR11MB6094:EE_
+X-MS-Office365-Filtering-Correlation-Id: ecdb27a6-892d-4678-2db7-08dd6acb95c2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?iVBKvP1ZDg4tSb7oEXi+LNj/nb9cuw1mCkCl67jBOKBqRozThTzrLGc/Pm86?=
+ =?us-ascii?Q?rfbFR2UQdh0CEMzJ8oCmBsQxhohXQjr+gRBPw0FoSfhrY2snBKmgpAZdI+B/?=
+ =?us-ascii?Q?OjxvSJaFp4GKZPyeFtjTyfLeMeF5zUtPVoSMo/cz+S7Pg5lhkzupwaKqCqfK?=
+ =?us-ascii?Q?pcgOfWgQHLnpi8VybrauKZkQEKl7kqXAGCAiHj/OwI/aODBeZfEfRyPl3Tss?=
+ =?us-ascii?Q?e1JghZy758IcYFD0GApkJxJjBC/ptp5CeLCmjgakonZksvSqNIiM7tT0Uf5A?=
+ =?us-ascii?Q?KqI+md6yEJTVZ0KbOQM4P5ylhI7RgtDausYriAGjcKj2hZYI32RqhsOBn5q1?=
+ =?us-ascii?Q?Io33c09tn3IVhvLkrlfReiThuZs9vx68ha2fYmilrlX5wdsJVTC1kHtoTCF6?=
+ =?us-ascii?Q?mJEagEAQkOwAcHOzEkV2QkX6+oZeLAzTpsqUO9ay+h3o+mdFYzyeIOT22eyX?=
+ =?us-ascii?Q?Zg1T0S+hCrO3Oo8C3vLukoAhbvr2DCFg1zgC1tqQ1jh0Nprrv7enlCbGj+Wp?=
+ =?us-ascii?Q?vToqtj8/AfpI0a8oOU8jBxeGfpVVuj/uuYL5EwclmAOw/eYmeXWs37egSIN6?=
+ =?us-ascii?Q?uToSlafTbWEZ0lvkgA3qaL1rt1W7VZSLe0PGY/KLZvBmh1rThfSVDIYqLANs?=
+ =?us-ascii?Q?XIFrmhNvmoke18xHcbXp8djWi7QxLkgYbFUBEavPejIoEOlZG2T2JzfNveak?=
+ =?us-ascii?Q?dWb4jFLw5KIhiv58AdFJZJBoXdRN7WrzoxnD6Zn4mPA8pZQ8ypIgQL0ApAXH?=
+ =?us-ascii?Q?AAfMS55YjHoNbGZiT3jDx1VC994ZPLbffip7CW56yWWOZk37VhGFBTWeCb3R?=
+ =?us-ascii?Q?xZSmKcFtBNoTv/UaksWsBn/6uB/RnujtTBhWNWP71UxkHr7gctHSQM1ZWths?=
+ =?us-ascii?Q?efDUd4mXHsbu71sn7ygu1i0HFJxx8iWk5881pOtNIFQ4ZCmCsik2Sy2Pgtnu?=
+ =?us-ascii?Q?pSCJiIIPDz94D5dN+ZqRjpFxB0nk30+24dmuRrcfkJOIVAJi38Esx/iGghQj?=
+ =?us-ascii?Q?7a1+Bp9FkIAxFqI3Wbzc6PW59C/KQbL+vJZvoJILF89AExAPkpm1xbz/y6+Y?=
+ =?us-ascii?Q?sdCZc+VeSLwqHcmmWDPPpeEnnAqqJfaZbhqUExDTaHWSDszihUeki9wTlZ85?=
+ =?us-ascii?Q?eDYXdAZx5YLgt1NzKOA0bD67rJQq90Ceci8JKXnsrJ6zCSrl4K1vIG6jjiGG?=
+ =?us-ascii?Q?o814aEyBx1zhmfwLLxKOi4mqKaOaUYIXl2o6G0Q45Qi1rRJy+9WEV5HNEcNI?=
+ =?us-ascii?Q?r4L5PUDjb3d2nZNlztNSyiHAmhcw5JFPblLEtiGg6G4C88IxqRgWyTzPFZgo?=
+ =?us-ascii?Q?qNe9B7BXRq6qq4Fllm8Z7O1rOpGTcaVqUNxByTzhJ/MXADvruta6q97clCD5?=
+ =?us-ascii?Q?+Ejygmr6BJGvxG3s612O4B9v9c0M?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?h4sqVOWQPn1f/Iukxbk1+FzpM6jgWWhmANoWQrbGig5YTQABBH2A6WGMxcar?=
+ =?us-ascii?Q?+t7GZAKFUvQidnWJ6/upnwRzrUECsCY5TEpMbAPzIRtKAp1b2+9jNUuKWJw2?=
+ =?us-ascii?Q?hPNqwidI5fgW5C7AdWkQwuNkWdzkbn3liAKBVspx9L7fRY9sOzNcHZbT0rOT?=
+ =?us-ascii?Q?KPw3Zt9f76nUQjFtK12yiWfkf00Lx2ph5jWhthnwHFdPSMLBjrOqRF1kwZm6?=
+ =?us-ascii?Q?lsStZBW/HBmFiyEHvHRjg1iAoj3kmPXhSv+wHFWLDYIqAfu5nl3UXPI1eALX?=
+ =?us-ascii?Q?jEEHDF8m85acXchrsXnfBNQGsjwNEbE6H1oN+80uwYLsVDKHNVLt/LBF9RQK?=
+ =?us-ascii?Q?4harbltg3WRTk2vDrMrBns9R6QUcfn9F3dIKXQ8/tg6USj6npsrIolxqsz54?=
+ =?us-ascii?Q?XuG6xDyDJW2JYKTJzwU+M4XX6hHpATvyThWhzl3emQnbNk26P2tvrJ5p63MS?=
+ =?us-ascii?Q?mbbZrIpRofUn96fCOhFniLjHum7lLO1L97Cbtmq8hAOLn8c4UguCydrz2n4C?=
+ =?us-ascii?Q?wexaViz4J8FBXzCmZVAF2pxwUaZXdsBjqPi6+hWBrNdYAXLn3G9uX3e6Nt/h?=
+ =?us-ascii?Q?vUNvmiuaAfEZPcKg86iSjpse3Ug8DRWhuhIXznrg/DMbksp6AIhhhHcffFh2?=
+ =?us-ascii?Q?QsDyKrZNi79QSaTIR9h/8I9GJ75sOzk5xTr4s1RL/NxdbzXGhvA1SqyRJTR/?=
+ =?us-ascii?Q?uI1eJgbhW3yN69sdDmoWOBzBmbQNygEXN3jAMf5zJK59LFe+gcAOzkIuoBIb?=
+ =?us-ascii?Q?12fXozbWlySskVa/Z0FtqWO3rDkDVQ1JhUAaPqbNMWEcU2ZVq7Lxd0dNTrrA?=
+ =?us-ascii?Q?v7FjENhUvBxwAuVIjtPUdv1kccc1kmHIX/x2SBwIeXTVKD1Bb247UHRIM+qt?=
+ =?us-ascii?Q?iuaSOgAdYgsEOsLWr5y0lT8sxQYmGcKqhOdSYqkh9oZJ6ZmX1QQShhbc7v2S?=
+ =?us-ascii?Q?c4rX6mDcrEoWT+dBde/5TPSI7yjoKJbpvvr9HX3dFRF8Hs3UgLAPXsamG2m7?=
+ =?us-ascii?Q?V7OZAkddZYzSB821wpL+fsOEXLtW+c9G60gMHlDjs0H/d4V1O8p+04Cukfwj?=
+ =?us-ascii?Q?sbhNLr/TQVppcrJF/zxgj1qYgkgVNaNPVjky3OkEd4q2Myn7CrqT7lYslgsb?=
+ =?us-ascii?Q?KMh/yw3XIC7beeOGxTI6s+i1ouvzewclAOH6d0v3OPZTJIbi6iannsIytukd?=
+ =?us-ascii?Q?vlCoACWuAz86X/BvC0dZogL9AVfKtEYdJDJQDHvh6zeLy6RisDl5gZK3LmEB?=
+ =?us-ascii?Q?/cs5XV8ybxJJ7Qfkf/AYY3cQZTef2k17WK0HmL5ZV/e0FHM6Ln597BUhJTjL?=
+ =?us-ascii?Q?I9VYInqTtB6HwGvcWcfDclsfaZMWN+x+b48veWUGe1fqG3tEcjEYmRs5abCd?=
+ =?us-ascii?Q?6Y4GnLX/gCs4aZVrxAaY9vBpZ7fYnSvR5rh9cewkPgiFvpyZr+NE9zwdKnYn?=
+ =?us-ascii?Q?KDpDSIGjRv0PgjrgLb+0pMSMAgEDpXF5ULNGIMbRrt0RYPiFknIHRzyu0hgH?=
+ =?us-ascii?Q?/lbukP1kbOS80X3hcGqs/2/I5140FMsm5HOsPPg4AANKjXq46QmeAMNxLIB0?=
+ =?us-ascii?Q?WpSSOpVZ9n/ZUYkVmgS/rZ5/6cisuI/kzvp0SWbm?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: ecdb27a6-892d-4678-2db7-08dd6acb95c2
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2025 12:01:18.1643 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Eil7qQCyKz0kBrS6+8bnqDp9Eu5bp3uDRbTf7PTp7VTqi2GzfUiO+ERN7Wr9Ocub5J1kL4GLmTozfeGvoJPFlA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6094
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,251 +174,213 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On Mon, Mar 24, 2025 at 12:33:22PM +0200, Jani Nikula wrote:
+> On Fri, 21 Mar 2025, Imre Deak <imre.deak@intel.com> wrote:
+> > Factor out from the DP AUX transfer function the logic to lock/unlock
+> > the Panel Power Sequencer state and enable/disable the VDD power
+> > required for the AUX transfer, adding these to helpers in intel_pps.c .
+> > This prepares for a follow-up change making these steps dependent on the
+> > platform and output type.
+> >
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp_aux.c | 16 ++----------
+> >  drivers/gpu/drm/i915/display/intel_pps.c    | 29 ++++++++++++++++++++-
+> >  drivers/gpu/drm/i915/display/intel_pps.h    |  3 ++-
+> >  3 files changed, 32 insertions(+), 16 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> > index ec27bbd70bcf0..bf5ccfa24ca0b 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> > @@ -272,15 +272,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+> >  	aux_domain = intel_aux_power_domain(dig_port);
+> >  
+> >  	aux_wakeref = intel_display_power_get(display, aux_domain);
+> > -	pps_wakeref = intel_pps_lock(intel_dp);
+> > -
+> > -	/*
+> > -	 * We will be called with VDD already enabled for dpcd/edid/oui reads.
+> > -	 * In such cases we want to leave VDD enabled and it's up to upper layers
+> > -	 * to turn it off. But for eg. i2c-dev access we need to turn it on/off
+> > -	 * ourselves.
+> > -	 */
+> > -	vdd = intel_pps_vdd_on_unlocked(intel_dp);
+> > +	pps_wakeref = intel_pps_lock_for_aux(intel_dp, &vdd);
+> >  
+> >  	/*
+> >  	 * dp aux is extremely sensitive to irq latency, hence request the
+> > @@ -289,8 +281,6 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+> >  	 */
+> >  	cpu_latency_qos_update_request(&intel_dp->pm_qos, 0);
+> >  
+> > -	intel_pps_check_power_unlocked(intel_dp);
+> > -
+> >  	/*
+> >  	 * FIXME PSR should be disabled here to prevent
+> >  	 * it using the same AUX CH simultaneously
+> > @@ -427,10 +417,8 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+> >  out:
+> >  	cpu_latency_qos_update_request(&intel_dp->pm_qos, PM_QOS_DEFAULT_VALUE);
+> >  
+> > -	if (vdd)
+> > -		intel_pps_vdd_off_unlocked(intel_dp, false);
+> > +	intel_pps_unlock_for_aux(intel_dp, pps_wakeref, vdd);
+> >  
+> > -	intel_pps_unlock(intel_dp, pps_wakeref);
+> >  	intel_display_power_put_async(display, aux_domain, aux_wakeref);
+> >  out_unlock:
+> >  	intel_digital_port_unlock(encoder);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+> > index 617ce49931726..3c078fd53fbfa 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_pps.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_pps.c
+> > @@ -571,7 +571,7 @@ static bool edp_have_panel_vdd(struct intel_dp *intel_dp)
+> >  	return intel_de_read(display, _pp_ctrl_reg(intel_dp)) & EDP_FORCE_VDD;
+> >  }
+> >  
+> > -void intel_pps_check_power_unlocked(struct intel_dp *intel_dp)
+> > +static void intel_pps_check_power_unlocked(struct intel_dp *intel_dp)
+> >  {
+> >  	struct intel_display *display = to_intel_display(intel_dp);
+> >  	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+> > @@ -955,6 +955,33 @@ void intel_pps_vdd_off(struct intel_dp *intel_dp)
+> >  		intel_pps_vdd_off_unlocked(intel_dp, false);
+> >  }
+> >  
+> > +intel_wakeref_t intel_pps_lock_for_aux(struct intel_dp *intel_dp, bool *vdd_ref)
+> > +{
+> > +	intel_wakeref_t wakeref;
+> > +
+> > +	wakeref = intel_pps_lock(intel_dp);
+> > +
+> > +	/*
+> > +	 * We will be called with VDD already enabled for dpcd/edid/oui reads.
+> > +	 * In such cases we want to leave VDD enabled and it's up to upper layers
+> > +	 * to turn it off. But for eg. i2c-dev access we need to turn it on/off
+> > +	 * ourselves.
+> > +	 */
+> > +	*vdd_ref = intel_pps_vdd_on_unlocked(intel_dp);
+> > +
+> > +	intel_pps_check_power_unlocked(intel_dp);
+> > +
+> > +	return wakeref;
+> > +}
+> > +
+> > +void intel_pps_unlock_for_aux(struct intel_dp *intel_dp, intel_wakeref_t wakeref, bool vdd_ref)
+> > +{
+> > +	if (vdd_ref)
+> > +		intel_pps_vdd_off_unlocked(intel_dp, false);
+> > +
+> > +	intel_pps_unlock(intel_dp, wakeref);
+> > +}
+> 
+> It took me a while to pinpoint what exactly I don't like about this
+> interface.
+> 
+> And I mean the whole intel_pps.h interface is already really difficult
+> to understand.
+> 
+> This flips the lock/unlock and vdd on/off logic inside out.
+> 
+> Normally you have functions for doing vdd or power or backlight, or
+> anything PPS really, and they're either unlocked (assuming the caller
+> handles PPS lock) or locked (the function itself takes the lock).
 
-Switch drm_dp_mst_topology.c to use new set of DPCD read / write helpers.
+The PPS and VDD handling steps are dependent (PPS must be locked for
+enabling VDD) and both are skipped for the same reason during AUX
+transfers. So I thought it makes sense to move these to a separate
+function and skip both based on the same platform/output type check.
 
-Reviewed-by: Lyude Paul <lyude@redhat.com>
-Acked-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- drivers/gpu/drm/display/drm_dp_mst_topology.c | 105 +++++++++++++-------------
- 1 file changed, 51 insertions(+), 54 deletions(-)
+> This one purports to be an interface for lock/unlock, but in reality it
+> also does VDD internally. And that feels really quite wrong to me.
+> 
+> ---
+> 
+> These are a single-use interface that I think make intel_pps.[ch] more
+> difficult to understand. I'd suggest checking how you'd implement this
+> logic inside intel_dp_aux_xfer() *without* changing the intel_pps.[ch]
+> interface at all.
+> 
+> Okay, took a quick stab at it, and unless I'm missing something it's
+> super easy:
 
-diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-index 3a1f1ffc7b5528b940485e7d96b1913bd85b0153..de3fc6090c906efce3dbaa8462d736ebf9094b34 100644
---- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
-+++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-@@ -2201,15 +2201,12 @@ static int drm_dp_check_mstb_guid(struct drm_dp_mst_branch *mstb, guid_t *guid)
- 						     mstb->port_parent,
- 						     DP_GUID, sizeof(buf), buf);
- 		} else {
--			ret = drm_dp_dpcd_write(mstb->mgr->aux,
--						DP_GUID, buf, sizeof(buf));
-+			ret = drm_dp_dpcd_write_data(mstb->mgr->aux,
-+						     DP_GUID, buf, sizeof(buf));
- 		}
- 	}
- 
--	if (ret < 16 && ret > 0)
--		return -EPROTO;
--
--	return ret == 16 ? 0 : ret;
-+	return ret;
- }
- 
- static void build_mst_prop_path(const struct drm_dp_mst_branch *mstb,
-@@ -2744,14 +2741,13 @@ static int drm_dp_send_sideband_msg(struct drm_dp_mst_topology_mgr *mgr,
- 	do {
- 		tosend = min3(mgr->max_dpcd_transaction_bytes, 16, total);
- 
--		ret = drm_dp_dpcd_write(mgr->aux, regbase + offset,
--					&msg[offset],
--					tosend);
--		if (ret != tosend) {
--			if (ret == -EIO && retries < 5) {
--				retries++;
--				goto retry;
--			}
-+		ret = drm_dp_dpcd_write_data(mgr->aux, regbase + offset,
-+					     &msg[offset],
-+					     tosend);
-+		if (ret == -EIO && retries < 5) {
-+			retries++;
-+			goto retry;
-+		} else if (ret < 0) {
- 			drm_dbg_kms(mgr->dev, "failed to dpcd write %d %d\n", tosend, ret);
- 
- 			return -EIO;
-@@ -3624,7 +3620,7 @@ enum drm_dp_mst_mode drm_dp_read_mst_cap(struct drm_dp_aux *aux,
- 	if (dpcd[DP_DPCD_REV] < DP_DPCD_REV_12)
- 		return DRM_DP_SST;
- 
--	if (drm_dp_dpcd_readb(aux, DP_MSTM_CAP, &mstm_cap) != 1)
-+	if (drm_dp_dpcd_read_byte(aux, DP_MSTM_CAP, &mstm_cap) < 0)
- 		return DRM_DP_SST;
- 
- 	if (mstm_cap & DP_MST_CAP)
-@@ -3679,10 +3675,10 @@ int drm_dp_mst_topology_mgr_set_mst(struct drm_dp_mst_topology_mgr *mgr, bool ms
- 		mgr->mst_primary = mstb;
- 		drm_dp_mst_topology_get_mstb(mgr->mst_primary);
- 
--		ret = drm_dp_dpcd_writeb(mgr->aux, DP_MSTM_CTRL,
--					 DP_MST_EN |
--					 DP_UP_REQ_EN |
--					 DP_UPSTREAM_IS_SRC);
-+		ret = drm_dp_dpcd_write_byte(mgr->aux, DP_MSTM_CTRL,
-+					     DP_MST_EN |
-+					     DP_UP_REQ_EN |
-+					     DP_UPSTREAM_IS_SRC);
- 		if (ret < 0)
- 			goto out_unlock;
- 
-@@ -3697,7 +3693,7 @@ int drm_dp_mst_topology_mgr_set_mst(struct drm_dp_mst_topology_mgr *mgr, bool ms
- 		mstb = mgr->mst_primary;
- 		mgr->mst_primary = NULL;
- 		/* this can fail if the device is gone */
--		drm_dp_dpcd_writeb(mgr->aux, DP_MSTM_CTRL, 0);
-+		drm_dp_dpcd_write_byte(mgr->aux, DP_MSTM_CTRL, 0);
- 		ret = 0;
- 		mgr->payload_id_table_cleared = false;
- 
-@@ -3763,8 +3759,8 @@ EXPORT_SYMBOL(drm_dp_mst_topology_queue_probe);
- void drm_dp_mst_topology_mgr_suspend(struct drm_dp_mst_topology_mgr *mgr)
- {
- 	mutex_lock(&mgr->lock);
--	drm_dp_dpcd_writeb(mgr->aux, DP_MSTM_CTRL,
--			   DP_MST_EN | DP_UPSTREAM_IS_SRC);
-+	drm_dp_dpcd_write_byte(mgr->aux, DP_MSTM_CTRL,
-+			       DP_MST_EN | DP_UPSTREAM_IS_SRC);
- 	mutex_unlock(&mgr->lock);
- 	flush_work(&mgr->up_req_work);
- 	flush_work(&mgr->work);
-@@ -3813,18 +3809,18 @@ int drm_dp_mst_topology_mgr_resume(struct drm_dp_mst_topology_mgr *mgr,
- 		goto out_fail;
- 	}
- 
--	ret = drm_dp_dpcd_writeb(mgr->aux, DP_MSTM_CTRL,
--				 DP_MST_EN |
--				 DP_UP_REQ_EN |
--				 DP_UPSTREAM_IS_SRC);
-+	ret = drm_dp_dpcd_write_byte(mgr->aux, DP_MSTM_CTRL,
-+				     DP_MST_EN |
-+				     DP_UP_REQ_EN |
-+				     DP_UPSTREAM_IS_SRC);
- 	if (ret < 0) {
- 		drm_dbg_kms(mgr->dev, "mst write failed - undocked during suspend?\n");
- 		goto out_fail;
- 	}
- 
- 	/* Some hubs forget their guids after they resume */
--	ret = drm_dp_dpcd_read(mgr->aux, DP_GUID, buf, sizeof(buf));
--	if (ret != sizeof(buf)) {
-+	ret = drm_dp_dpcd_read_data(mgr->aux, DP_GUID, buf, sizeof(buf));
-+	if (ret < 0) {
- 		drm_dbg_kms(mgr->dev, "dpcd read failed - undocked during suspend?\n");
- 		goto out_fail;
- 	}
-@@ -3883,8 +3879,8 @@ drm_dp_get_one_sb_msg(struct drm_dp_mst_topology_mgr *mgr, bool up,
- 		*mstb = NULL;
- 
- 	len = min(mgr->max_dpcd_transaction_bytes, 16);
--	ret = drm_dp_dpcd_read(mgr->aux, basereg, replyblock, len);
--	if (ret != len) {
-+	ret = drm_dp_dpcd_read_data(mgr->aux, basereg, replyblock, len);
-+	if (ret < 0) {
- 		drm_dbg_kms(mgr->dev, "failed to read DPCD down rep %d %d\n", len, ret);
- 		return false;
- 	}
-@@ -3922,9 +3918,9 @@ drm_dp_get_one_sb_msg(struct drm_dp_mst_topology_mgr *mgr, bool up,
- 	curreply = len;
- 	while (replylen > 0) {
- 		len = min3(replylen, mgr->max_dpcd_transaction_bytes, 16);
--		ret = drm_dp_dpcd_read(mgr->aux, basereg + curreply,
--				    replyblock, len);
--		if (ret != len) {
-+		ret = drm_dp_dpcd_read_data(mgr->aux, basereg + curreply,
-+					    replyblock, len);
-+		if (ret < 0) {
- 			drm_dbg_kms(mgr->dev, "failed to read a chunk (len %d, ret %d)\n",
- 				    len, ret);
- 			return false;
-@@ -4881,9 +4877,9 @@ static bool dump_dp_payload_table(struct drm_dp_mst_topology_mgr *mgr,
- 	int i;
- 
- 	for (i = 0; i < DP_PAYLOAD_TABLE_SIZE; i += 16) {
--		if (drm_dp_dpcd_read(mgr->aux,
--				     DP_PAYLOAD_TABLE_UPDATE_STATUS + i,
--				     &buf[i], 16) != 16)
-+		if (drm_dp_dpcd_read_data(mgr->aux,
-+					  DP_PAYLOAD_TABLE_UPDATE_STATUS + i,
-+					  &buf[i], 16) < 0)
- 			return false;
- 	}
- 	return true;
-@@ -4972,23 +4968,24 @@ void drm_dp_mst_dump_topology(struct seq_file *m,
- 		}
- 		seq_printf(m, "dpcd: %*ph\n", DP_RECEIVER_CAP_SIZE, buf);
- 
--		ret = drm_dp_dpcd_read(mgr->aux, DP_FAUX_CAP, buf, 2);
--		if (ret != 2) {
-+		ret = drm_dp_dpcd_read_data(mgr->aux, DP_FAUX_CAP, buf, 2);
-+		if (ret < 0) {
- 			seq_printf(m, "faux/mst read failed\n");
- 			goto out;
- 		}
- 		seq_printf(m, "faux/mst: %*ph\n", 2, buf);
- 
--		ret = drm_dp_dpcd_read(mgr->aux, DP_MSTM_CTRL, buf, 1);
--		if (ret != 1) {
-+		ret = drm_dp_dpcd_read_data(mgr->aux, DP_MSTM_CTRL, buf, 1);
-+		if (ret < 0) {
- 			seq_printf(m, "mst ctrl read failed\n");
- 			goto out;
- 		}
- 		seq_printf(m, "mst ctrl: %*ph\n", 1, buf);
- 
- 		/* dump the standard OUI branch header */
--		ret = drm_dp_dpcd_read(mgr->aux, DP_BRANCH_OUI, buf, DP_BRANCH_OUI_HEADER_SIZE);
--		if (ret != DP_BRANCH_OUI_HEADER_SIZE) {
-+		ret = drm_dp_dpcd_read_data(mgr->aux, DP_BRANCH_OUI, buf,
-+					    DP_BRANCH_OUI_HEADER_SIZE);
-+		if (ret < 0) {
- 			seq_printf(m, "branch oui read failed\n");
- 			goto out;
- 		}
-@@ -6112,14 +6109,14 @@ struct drm_dp_aux *drm_dp_mst_dsc_aux_for_port(struct drm_dp_mst_port *port)
- 
- 	/* DP-to-DP peer device */
- 	if (drm_dp_mst_is_virtual_dpcd(immediate_upstream_port)) {
--		if (drm_dp_dpcd_read(&port->aux,
--				     DP_DSC_SUPPORT, &endpoint_dsc, 1) != 1)
-+		if (drm_dp_dpcd_read_data(&port->aux,
-+					  DP_DSC_SUPPORT, &endpoint_dsc, 1) < 0)
- 			return NULL;
--		if (drm_dp_dpcd_read(&port->aux,
--				     DP_FEC_CAPABILITY, &endpoint_fec, 1) != 1)
-+		if (drm_dp_dpcd_read_data(&port->aux,
-+					  DP_FEC_CAPABILITY, &endpoint_fec, 1) < 0)
- 			return NULL;
--		if (drm_dp_dpcd_read(&immediate_upstream_port->aux,
--				     DP_DSC_SUPPORT, &upstream_dsc, 1) != 1)
-+		if (drm_dp_dpcd_read_data(&immediate_upstream_port->aux,
-+					  DP_DSC_SUPPORT, &upstream_dsc, 1) < 0)
- 			return NULL;
- 
- 		/* Enpoint decompression with DP-to-DP peer device */
-@@ -6157,8 +6154,8 @@ struct drm_dp_aux *drm_dp_mst_dsc_aux_for_port(struct drm_dp_mst_port *port)
- 	if (drm_dp_has_quirk(&desc, DP_DPCD_QUIRK_DSC_WITHOUT_VIRTUAL_DPCD)) {
- 		u8 dpcd_ext[DP_RECEIVER_CAP_SIZE];
- 
--		if (drm_dp_dpcd_read(immediate_upstream_aux,
--				     DP_DSC_SUPPORT, &upstream_dsc, 1) != 1)
-+		if (drm_dp_dpcd_read_data(immediate_upstream_aux,
-+					  DP_DSC_SUPPORT, &upstream_dsc, 1) < 0)
- 			return NULL;
- 
- 		if (!(upstream_dsc & DP_DSC_DECOMPRESSION_IS_SUPPORTED))
-@@ -6180,11 +6177,11 @@ struct drm_dp_aux *drm_dp_mst_dsc_aux_for_port(struct drm_dp_mst_port *port)
- 	 * therefore the endpoint needs to be
- 	 * both DSC and FEC capable.
- 	 */
--	if (drm_dp_dpcd_read(&port->aux,
--	   DP_DSC_SUPPORT, &endpoint_dsc, 1) != 1)
-+	if (drm_dp_dpcd_read_data(&port->aux,
-+				  DP_DSC_SUPPORT, &endpoint_dsc, 1) < 0)
- 		return NULL;
--	if (drm_dp_dpcd_read(&port->aux,
--	   DP_FEC_CAPABILITY, &endpoint_fec, 1) != 1)
-+	if (drm_dp_dpcd_read_data(&port->aux,
-+				  DP_FEC_CAPABILITY, &endpoint_fec, 1) < 0)
- 		return NULL;
- 	if ((endpoint_dsc & DP_DSC_DECOMPRESSION_IS_SUPPORTED) &&
- 	   (endpoint_fec & DP_FEC_CAPABLE))
+I still think it'd be better to have a separate function for both
+locking PPS and enabling VDD for the reason I described above, that is
+to clarify that the PPS state must be locked to enable VDD.
 
--- 
-2.39.5
+I guess the above could be done separately later in any case, so I can
+inline the fix as you suggest.
 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> index ec27bbd70bcf..a5608659df59 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> @@ -247,7 +247,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+>  	u32 aux_clock_divider;
+>  	enum intel_display_power_domain aux_domain;
+>  	intel_wakeref_t aux_wakeref;
+> -	intel_wakeref_t pps_wakeref;
+> +	intel_wakeref_t pps_wakeref = NULL;
+>  	int i, ret, recv_bytes;
+>  	int try, clock = 0;
+>  	u32 status;
+> @@ -272,7 +272,10 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+>  	aux_domain = intel_aux_power_domain(dig_port);
+>  
+>  	aux_wakeref = intel_display_power_get(display, aux_domain);
+> -	pps_wakeref = intel_pps_lock(intel_dp);
+> +
+> +	if (intel_dp_is_edp(intel_dp) ||
+> +	    (display->platform.valleyview || display->platform.cherryview))
+> +		pps_wakeref = intel_pps_lock(intel_dp);
+>  
+>  	/*
+>  	 * We will be called with VDD already enabled for dpcd/edid/oui reads.
+> @@ -430,7 +433,8 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+>  	if (vdd)
+>  		intel_pps_vdd_off_unlocked(intel_dp, false);
+>  
+> -	intel_pps_unlock(intel_dp, pps_wakeref);
+> +	if (pps_wakeref)
+> +		intel_pps_unlock(intel_dp, pps_wakeref);
+>  	intel_display_power_put_async(display, aux_domain, aux_wakeref);
+>  out_unlock:
+>  	intel_digital_port_unlock(encoder);
+> 
+> 
+> Please let's not make intel_pps.[ch] harder to understand.
+> 
+> 
+> BR,
+> Jani.
+> 
+> 
+> > +
+> >  void intel_pps_on_unlocked(struct intel_dp *intel_dp)
+> >  {
+> >  	struct intel_display *display = to_intel_display(intel_dp);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_pps.h b/drivers/gpu/drm/i915/display/intel_pps.h
+> > index c83007152f07d..4390d05892325 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_pps.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_pps.h
+> > @@ -31,10 +31,11 @@ bool intel_pps_vdd_on_unlocked(struct intel_dp *intel_dp);
+> >  void intel_pps_vdd_off_unlocked(struct intel_dp *intel_dp, bool sync);
+> >  void intel_pps_on_unlocked(struct intel_dp *intel_dp);
+> >  void intel_pps_off_unlocked(struct intel_dp *intel_dp);
+> > -void intel_pps_check_power_unlocked(struct intel_dp *intel_dp);
+> >  
+> >  void intel_pps_vdd_on(struct intel_dp *intel_dp);
+> >  void intel_pps_vdd_off(struct intel_dp *intel_dp);
+> > +intel_wakeref_t intel_pps_lock_for_aux(struct intel_dp *intel_dp, bool *vdd_ref);
+> > +void intel_pps_unlock_for_aux(struct intel_dp *intel_dp, intel_wakeref_t wakeref, bool vdd_ref);
+> >  void intel_pps_on(struct intel_dp *intel_dp);
+> >  void intel_pps_off(struct intel_dp *intel_dp);
+> >  void intel_pps_vdd_off_sync(struct intel_dp *intel_dp);
+> 
+> -- 
+> Jani Nikula, Intel
