@@ -4,52 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BBC9C36002
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Mar 2025 22:33:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 882F9C36005
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Mar 2025 22:47:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B14489207;
-	Mon, 24 Mar 2025 22:33:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9154110E170;
+	Mon, 24 Mar 2025 22:46:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JGxx51c0";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="iZhstfqn";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF7C189207
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Mar 2025 22:33:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742855633; x=1774391633;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=whKsNGDTNC6Tj79JC2jV4en/kM1OBjunRGDQviCJsYY=;
- b=JGxx51c0ZzIULocfSr3F1jcnZ1dgBWwMFCdFSCX4JakJJyyf/AKzNXGU
- 8FbdnpFvMI7o1R+lwGcxQp+lo+uX5F4iwyDg8Z3BZCVT9FxpNP51mhWVr
- JTerMvTPF6IxwApEcTemLSN4+h4XNbrDG7MrWRkVRfBYDsDEhXlNGrWrO
- R6y7XWM6NWOrnrwc5JhYUxM4e/mX/14CAep9uh88YHfvNxx7aHquv1S9E
- 8/gBnCWQvL+87d/sDz4w1bdJxL292Tdv9QpG9uwFuB8htO9WfUe0C+gRE
- c6NtKFQuy2MpkddNrg+zdzrsAZNuIGpIpQqZkgHx4SKkB9p4/Va259+p2 w==;
-X-CSE-ConnectionGUID: 0RpY9mrkQ2alLlP3bBqFeA==
-X-CSE-MsgGUID: mwOyggslQsWiaepBmNgXdg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="43240799"
-X-IronPort-AV: E=Sophos;i="6.14,273,1736841600"; d="scan'208";a="43240799"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2025 15:33:53 -0700
-X-CSE-ConnectionGUID: hnmM9LBUQ/aIXbv0BYMtLw==
-X-CSE-MsgGUID: o910CZZbT7CuDM69oKOssw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,273,1736841600"; d="scan'208";a="129372576"
-Received: from bfilipch-desk.jf.intel.com ([10.165.21.204])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2025 15:33:53 -0700
-From: Julia Filipchuk <julia.filipchuk@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Julia Filipchuk <julia.filipchuk@intel.com>
-Subject: [PATCH] drm/xe/ptl: Apply Wa_14022293748, Wa_22019794406
-Date: Mon, 24 Mar 2025 15:33:47 -0700
-Message-ID: <20250324223347.1433491-1-julia.filipchuk@intel.com>
-X-Mailer: git-send-email 2.48.1
+Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF6BA10E170;
+ Mon, 24 Mar 2025 22:46:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+ :In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
+ Sender:Reply-To:Content-ID:Content-Description;
+ bh=8ZmTbketZ54QzeXCl26c7EEbeq37wz1sgZSmUcG15uI=; b=iZhstfqnCuvnLFoT9bPcLs3/u6
+ ut/w2MtVGTo0F6T/umLB/1+ZIGMm93mM5OZeh/ttjOBtBDDftP8Jc+rguMdeKV5Xz8nJiUjMDdpvt
+ wB43MG5f/xdjYGjrdSdwRUr4QVjECpYR+bLTjiaZJ4SDU9KdfU2pmsXsI0a57ovJE1O82dHAZj6Ya
+ hdrn34MROSl/vvQEMajxxMXm4rQ07pSQgBdEvGwtWNF/vh1X8/AqYkedvof6pTCAQujVYRs4v40vz
+ 5cx1bPMBQ5VPBNNiTi+iCjK4CWFqmEa/COK4s7tMuYLvqmIMrj2kkfyFkoqPFIhQM9/eBSV7sRPU0
+ 6X6GBUcg==;
+Received: from [50.53.2.24] (helo=[192.168.254.17])
+ by desiato.infradead.org with esmtpsa (Exim 4.98 #2 (Red Hat Linux))
+ id 1twqZC-00000005Jfx-1c0u; Mon, 24 Mar 2025 22:46:47 +0000
+Message-ID: <90eb07a0-1490-40af-9858-d357b922bbb8@infradead.org>
+Date: Mon, 24 Mar 2025 15:46:42 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: linux-next: Tree for Mar 24 (drm/xe/xe_migrate)
+To: Stephen Rothwell <sfr@canb.auug.org.au>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>
+Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20250324230122.106602ef@canb.auug.org.au>
+Content-Language: en-US
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20250324230122.106602ef@canb.auug.org.au>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,28 +57,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Extend Wa_14022293748, Wa_22019794406 to PTL
 
-Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
----
- drivers/gpu/drm/xe/xe_wa_oob.rules | 2 ++
- 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index 0c738af24f7c..9b9e176992a8 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -32,8 +32,10 @@
- 		GRAPHICS_VERSION(3001)
- 14022293748	GRAPHICS_VERSION(2001)
- 		GRAPHICS_VERSION(2004)
-+		GRAPHICS_VERSION_RANGE(3000, 3001)
- 22019794406	GRAPHICS_VERSION(2001)
- 		GRAPHICS_VERSION(2004)
-+		GRAPHICS_VERSION_RANGE(3000, 3001)
- 22019338487	MEDIA_VERSION(2000)
- 		GRAPHICS_VERSION(2001)
- 		MEDIA_VERSION(3000), MEDIA_STEP(A0, B0), FUNC(xe_rtp_match_not_sriov_vf)
+On 3/24/25 5:01 AM, Stephen Rothwell wrote:
+> Hi all,
+> 
+> Changes since 20250321:
+> 
+
+on i386:
+
+linux-next-20250324/X32/drivers/gpu/drm/xe/xe_migrate.c:1561:(.text+0x3074): undefined reference to `__udivdi3'
+
+
 -- 
-2.48.1
+~Randy
 
