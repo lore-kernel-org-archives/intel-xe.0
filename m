@@ -4,45 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 882F9C36005
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Mar 2025 22:47:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44A56C36002
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Mar 2025 22:48:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9154110E170;
-	Mon, 24 Mar 2025 22:46:55 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="iZhstfqn";
-	dkim-atps=neutral
-Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF6BA10E170;
- Mon, 24 Mar 2025 22:46:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
- :In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
- Sender:Reply-To:Content-ID:Content-Description;
- bh=8ZmTbketZ54QzeXCl26c7EEbeq37wz1sgZSmUcG15uI=; b=iZhstfqnCuvnLFoT9bPcLs3/u6
- ut/w2MtVGTo0F6T/umLB/1+ZIGMm93mM5OZeh/ttjOBtBDDftP8Jc+rguMdeKV5Xz8nJiUjMDdpvt
- wB43MG5f/xdjYGjrdSdwRUr4QVjECpYR+bLTjiaZJ4SDU9KdfU2pmsXsI0a57ovJE1O82dHAZj6Ya
- hdrn34MROSl/vvQEMajxxMXm4rQ07pSQgBdEvGwtWNF/vh1X8/AqYkedvof6pTCAQujVYRs4v40vz
- 5cx1bPMBQ5VPBNNiTi+iCjK4CWFqmEa/COK4s7tMuYLvqmIMrj2kkfyFkoqPFIhQM9/eBSV7sRPU0
- 6X6GBUcg==;
-Received: from [50.53.2.24] (helo=[192.168.254.17])
- by desiato.infradead.org with esmtpsa (Exim 4.98 #2 (Red Hat Linux))
- id 1twqZC-00000005Jfx-1c0u; Mon, 24 Mar 2025 22:46:47 +0000
-Message-ID: <90eb07a0-1490-40af-9858-d357b922bbb8@infradead.org>
-Date: Mon, 24 Mar 2025 15:46:42 -0700
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05BC710E240;
+	Mon, 24 Mar 2025 22:48:52 +0000 (UTC)
+Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 300E410E170;
+ Mon, 24 Mar 2025 22:48:51 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8106403962881258510=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: linux-next: Tree for Mar 24 (drm/xe/xe_migrate)
-To: Stephen Rothwell <sfr@canb.auug.org.au>,
- Linux Next Mailing List <linux-next@vger.kernel.org>
-Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20250324230122.106602ef@canb.auug.org.au>
-Content-Language: en-US
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20250324230122.106602ef@canb.auug.org.au>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/xe=5Fvm=3A_Implement?=
+ =?utf-8?q?_xe=5Fvm=5Fget=5Fproperty=5Fioctl_=28rev12=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 24 Mar 2025 22:48:51 -0000
+Message-ID: <174285653119.75418.3429896132280178161@18a75f3d1eae>
+X-Patchwork-Hint: ignore
+References: <20250324215753.70768-1-jonathan.cavitt@intel.com>
+In-Reply-To: <20250324215753.70768-1-jonathan.cavitt@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,22 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============8106403962881258510==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/xe/xe_vm: Implement xe_vm_get_property_ioctl (rev12)
+URL   : https://patchwork.freedesktop.org/series/145529/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-2842-9be2a7099019ef52d17cbc2b3e6ba15cd638ec2c_BAT -> xe-pw-145529v12_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (10 -> 9)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
 
 
-On 3/24/25 5:01 AM, Stephen Rothwell wrote:
-> Hi all,
-> 
-> Changes since 20250321:
-> 
+Changes
+-------
 
-on i386:
-
-linux-next-20250324/X32/drivers/gpu/drm/xe/xe_migrate.c:1561:(.text+0x3074): undefined reference to `__udivdi3'
+  No changes found
 
 
--- 
-~Randy
+Build changes
+-------------
 
+  * IGT: IGT_8280 -> IGT_8281
+  * Linux: xe-2842-9be2a7099019ef52d17cbc2b3e6ba15cd638ec2c -> xe-pw-145529v12
+
+  IGT_8280: 8280
+  IGT_8281: 18c445bea641c03b637d7ed5bc3bd120b5d83b2a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2842-9be2a7099019ef52d17cbc2b3e6ba15cd638ec2c: 9be2a7099019ef52d17cbc2b3e6ba15cd638ec2c
+  xe-pw-145529v12: 145529v12
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v12/index.html
+
+--===============8106403962881258510==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/xe_vm: Implement xe_vm_get_property_ioctl (rev12)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145529/">https://patchwork.freedesktop.org/series/145529/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v12/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v12/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2842-9be2a7099019ef52d17cbc2b3e6ba15cd638ec2c_BAT -&gt; xe-pw-145529v12_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (10 -&gt; 9)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8280 -&gt; IGT_8281</li>
+<li>Linux: xe-2842-9be2a7099019ef52d17cbc2b3e6ba15cd638ec2c -&gt; xe-pw-145529v12</li>
+</ul>
+<p>IGT_8280: 8280<br />
+  IGT_8281: 18c445bea641c03b637d7ed5bc3bd120b5d83b2a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2842-9be2a7099019ef52d17cbc2b3e6ba15cd638ec2c: 9be2a7099019ef52d17cbc2b3e6ba15cd638ec2c<br />
+  xe-pw-145529v12: 145529v12</p>
+
+</body>
+</html>
+
+--===============8106403962881258510==--
