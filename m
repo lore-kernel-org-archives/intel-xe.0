@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8B51C3600B
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 11:35:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2651EC3600D
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 11:35:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D07110E55C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA75210E561;
 	Tue, 25 Mar 2025 11:35:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UYfwwLeQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OS7mj+TM";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F97910E55D;
- Tue, 25 Mar 2025 11:35:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B5F510E55C;
+ Tue, 25 Mar 2025 11:35:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742902507; x=1774438507;
+ t=1742902501; x=1774438501;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=bCkjE23Iz4RQ9FtxnvEetmA0wAzYsiSCNoWRRsrQFF8=;
- b=UYfwwLeQL1wkcuvrkZoU3dnjyQPXP8McH440BKTCcp92PAJJEtBfs83f
- JDmL9b4uIpM0sRT6eL2XVuvm44t7NflHEkctsUHIYHNoJ5PYrqk1bGSpO
- 5CpqwDD5/vMhhXdlqBArvFdP8afZ533tRIihn4Dk5dmv2QFbaK64njIqJ
- g1kby1VFQrGlzvOny5WYKml12He5ZTly24K1emBdkl0usG4mqiQ3y2mY+
- fbkaNaZ4abRjNAd52pc0w6vbdvNJ7uLkdziYoEzxhRWJvk3Prc+JRJTZ5
- vsxqGaKe8uEZcGLqSukZbm6mOumxZPN4AfIsPYR9+UNTnpRqBqLBFvQ8e Q==;
-X-CSE-ConnectionGUID: bBlI//IQT1WIiybKM9Zf+g==
-X-CSE-MsgGUID: oBrmBZdpTtG2RIj3LsdYkw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="44266944"
-X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="44266944"
+ bh=tZHQxC8ZaHKB46FaN4CY31F4VpeLO667r3/RMy7ARSc=;
+ b=OS7mj+TMPOVFY6rshPN2KPnWgr42BZC//sOFdOmp279NuCxrxqI3IO1q
+ 5bwg3/3RzvCw1MIYcYdTJRpua4Z8PFvGUqfDDtNFCONW8z68vypDTJNBw
+ cMeJ6Z+/zlh/YIC8NihANxBuH+FQREb3Ns87NfiP3PtG40TZlgXg5OCi5
+ AsgCps2LNPeb1+5L2kCXeCsVQQVcRLdL1FtkCkeVCnIwowXa9GWO80XXn
+ JM8Gzpjo3ku6aQ2QNPqWXuwnOHWT3nEjsO72OTSh+WKVOXrwEN6Kj0lLS
+ NdY9TGGKea0/LfSqPchX4IgJ69AB1pke91WLUrjiuBfaOY0HeaKahrm9X A==;
+X-CSE-ConnectionGUID: MkfHUT5TTxKOhaksK8S2KA==
+X-CSE-MsgGUID: 8k1slUTeSoe5ZgEcqJffYA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="44266934"
+X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="44266934"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 04:35:07 -0700
-X-CSE-ConnectionGUID: WO15ZMGATH6CuqsxMCnhkw==
-X-CSE-MsgGUID: X64zDXbrQAOnlI27ffVnHg==
+ 25 Mar 2025 04:35:01 -0700
+X-CSE-ConnectionGUID: /agMTQBdRYqHMelDnz6ffQ==
+X-CSE-MsgGUID: nk00pwUzRN+wDxr/9Mq7LQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="124070656"
+X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="124070621"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 04:35:05 -0700
+ 25 Mar 2025 04:34:59 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 15/16] drm/i915/display: Avoid use of VTOTAL.Vtotal bits
-Date: Tue, 25 Mar 2025 16:52:48 +0530
-Message-ID: <20250325112249.228444-16-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 12/16] drm/i915/vrr: Allow fixed_rr with pipe joiner
+Date: Tue, 25 Mar 2025 16:52:45 +0530
+Message-ID: <20250325112249.228444-13-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250325112249.228444-1-ankit.k.nautiyal@intel.com>
 References: <20250325112249.228444-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,146 +68,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
-bits are not required. Since the support for these bits is going to
-be deprecated in upcoming platforms, avoid writing these bits for the
-platforms that do not use legacy Timing Generator.
+VRR with joiner is currently disabled as it still needs some work to
+correctly sequence the primary and secondary transcoders. However, we can
+still use VRR Timing generator in fixed refresh rate for joiner and since
+it just need to program vrr timings once and does not involve changing
+timings on the fly. We still need to skip the VRR and LRR for joiner.
 
-Since for these platforms TRAN_VMIN is always filled with crtc_vtotal,
-use TRAN_VRR_VMIN to get the vtotal for adjusted_mode.
+To achieve this set vrr.in_range to 0 for joiner case, so that we do not
+try VRR and LRR for the joiner case.
 
-v2: Avoid having a helper for manipulating VTOTAL register, and instead
-just make the change where required. (Ville)
+v2: Avoid checks for secondary pipes, where not required. (Ville)
+v3: Remove a redundant check and reset vrr.in_range to false. (Ville)
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 41 ++++++++++++++++++--
- drivers/gpu/drm/i915/display/intel_vrr.c     | 15 +++++--
- 2 files changed, 50 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 18 +++++++++++-------
+ 1 file changed, 11 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index ae1dc32044fb..7e06b7e6e4e3 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2646,6 +2646,7 @@ static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_sta
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
- 	u32 crtc_vdisplay, crtc_vtotal, crtc_vblank_start, crtc_vblank_end;
-+	u32 vtotal_bits;
- 	int vsyncshift = 0;
- 
- 	drm_WARN_ON(display->drm, transcoder_is_dsi(cpu_transcoder));
-@@ -2702,9 +2703,21 @@ static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_sta
- 		       HSYNC_START(adjusted_mode->crtc_hsync_start - 1) |
- 		       HSYNC_END(adjusted_mode->crtc_hsync_end - 1));
- 
-+	/*
-+	 * For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
-+	 * bits are not required. Since the support for these bits is going to
-+	 * be deprecated in upcoming platforms, avoid writing these bits for the
-+	 * platforms that do not use legacy Timing Generator.
-+	 */
-+	if (intel_vrr_always_use_vrr_tg(display))
-+		vtotal_bits = 0;
-+	else
-+		vtotal_bits = VTOTAL(crtc_vtotal - 1);
-+
- 	intel_de_write(display, TRANS_VTOTAL(display, cpu_transcoder),
- 		       VACTIVE(crtc_vdisplay - 1) |
--		       VTOTAL(crtc_vtotal - 1));
-+		       vtotal_bits);
-+
- 	intel_de_write(display, TRANS_VBLANK(display, cpu_transcoder),
- 		       VBLANK_START(crtc_vblank_start - 1) |
- 		       VBLANK_END(crtc_vblank_end - 1));
-@@ -2729,6 +2742,7 @@ static void intel_set_transcoder_timings_lrr(const struct intel_crtc_state *crtc
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
- 	u32 crtc_vdisplay, crtc_vtotal, crtc_vblank_start, crtc_vblank_end;
-+	u32 vtotal_bits;
- 
- 	drm_WARN_ON(display->drm, transcoder_is_dsi(cpu_transcoder));
- 
-@@ -2762,13 +2776,24 @@ static void intel_set_transcoder_timings_lrr(const struct intel_crtc_state *crtc
- 	intel_de_write(display, TRANS_VBLANK(display, cpu_transcoder),
- 		       VBLANK_START(crtc_vblank_start - 1) |
- 		       VBLANK_END(crtc_vblank_end - 1));
-+	/*
-+	 * For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
-+	 * bits are not required. Since the support for these bits is going to
-+	 * be deprecated in upcoming platforms, avoid writing these bits for the
-+	 * platforms that do not use legacy Timing Generator.
-+	 */
-+	if (intel_vrr_always_use_vrr_tg(display))
-+		vtotal_bits = 0;
-+	else
-+		vtotal_bits = VTOTAL(crtc_vtotal - 1);
-+
- 	/*
- 	 * The double buffer latch point for TRANS_VTOTAL
- 	 * is the transcoder's undelayed vblank.
- 	 */
- 	intel_de_write(display, TRANS_VTOTAL(display, cpu_transcoder),
- 		       VACTIVE(crtc_vdisplay - 1) |
--		       VTOTAL(crtc_vtotal - 1));
-+		       vtotal_bits);
- 
- 	intel_vrr_set_fixed_rr_timings(crtc_state);
- 	intel_vrr_transcoder_enable(crtc_state);
-@@ -2831,7 +2856,17 @@ static void intel_get_transcoder_timings(struct intel_crtc *crtc,
- 
- 	tmp = intel_de_read(display, TRANS_VTOTAL(display, cpu_transcoder));
- 	adjusted_mode->crtc_vdisplay = REG_FIELD_GET(VACTIVE_MASK, tmp) + 1;
--	adjusted_mode->crtc_vtotal = REG_FIELD_GET(VTOTAL_MASK, tmp) + 1;
-+
-+	/*
-+	 * For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
-+	 * bits are not filled. The value for adjusted_mode->crtc_vtotal is read
-+	 * from VRR_VMIN register in intel_vrr_get_config.
-+	 * Just set this to 0 here.
-+	 */
-+	if (intel_vrr_always_use_vrr_tg(display))
-+		adjusted_mode->crtc_vtotal = 0;
-+	else
-+		adjusted_mode->crtc_vtotal = REG_FIELD_GET(VTOTAL_MASK, tmp) + 1;
- 
- 	/* FIXME TGL+ DSI transcoders have this! */
- 	if (!transcoder_is_dsi(cpu_transcoder)) {
 diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 414f93851059..cace1d7c99d5 100644
+index c57e0319d83c..dda42522f461 100644
 --- a/drivers/gpu/drm/i915/display/intel_vrr.c
 +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -674,9 +674,19 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
--	u32 trans_vrr_ctl, trans_vrr_vsync;
-+	u32 trans_vrr_ctl, trans_vrr_vsync, trans_vrr_vmin;
- 	bool vrr_enable;
+@@ -355,19 +355,23 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+ 	if (!HAS_VRR(display))
+ 		return;
+ 
+-	/*
+-	 * FIXME all joined pipes share the same transcoder.
+-	 * Need to account for that during VRR toggle/push/etc.
+-	 */
+-	if (crtc_state->joiner_pipes)
+-		return;
+-
+ 	if (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE)
+ 		return;
+ 
+ 	crtc_state->vrr.in_range =
+ 		intel_vrr_is_in_range(connector, drm_mode_vrefresh(adjusted_mode));
  
 +	/*
-+	 * For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
-+	 * bits are not filled. Since for these platforms TRAN_VMIN is always
-+	 * filled with crtc_vtotal, use TRAN_VRR_VMIN to get the vtotal for
-+	 * adjusted_mode.
++	 * Allow fixed refresh rate with VRR Timing Generator.
++	 * For now set the vrr.in_range to 0, to allow fixed_rr but skip actual
++	 * VRR and LRR.
++	 * #TODO For actual VRR with joiner, we need to figure out how to
++	 * correctly sequence transcoder level stuff vs. pipe level stuff
++	 * in the commit.
 +	 */
-+	trans_vrr_vmin = intel_de_read(display, TRANS_VRR_VMIN(display, cpu_transcoder)) + 1;
-+	if (intel_vrr_always_use_vrr_tg(display))
-+		crtc_state->hw.adjusted_mode.crtc_vtotal = trans_vrr_vmin;
++	if (crtc_state->joiner_pipes)
++		crtc_state->vrr.in_range = false;
 +
- 	trans_vrr_ctl = intel_de_read(display,
- 				      TRANS_VRR_CTL(display, cpu_transcoder));
+ 	vmin = intel_vrr_compute_vmin(crtc_state);
  
-@@ -705,8 +715,7 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
- 							 TRANS_VRR_FLIPLINE(display, cpu_transcoder)) + 1;
- 		crtc_state->vrr.vmax = intel_de_read(display,
- 						     TRANS_VRR_VMAX(display, cpu_transcoder)) + 1;
--		crtc_state->vrr.vmin = intel_de_read(display,
--						     TRANS_VRR_VMIN(display, cpu_transcoder)) + 1;
-+		crtc_state->vrr.vmin = trans_vrr_vmin;
- 
- 		if (HAS_AS_SDP(display)) {
- 			trans_vrr_vsync =
+ 	if (crtc_state->vrr.in_range) {
 -- 
 2.45.2
 
