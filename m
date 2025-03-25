@@ -4,59 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E2FBC35FFC
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 09:07:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 264EBC3600B
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 09:07:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23FB710E520;
-	Tue, 25 Mar 2025 09:07:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E351F10E527;
+	Tue, 25 Mar 2025 09:07:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MC2phOJF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EfWUmpbv";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4E6D10E520
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Mar 2025 09:07:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEBCC10E520;
+ Tue, 25 Mar 2025 09:07:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742893627; x=1774429627;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=3IzTc6lgtXyB3IsP9fK+kOYJvz6yDH0/qpUJEpLwmxw=;
- b=MC2phOJFZ+I9p6IaEmxcgeaNcwOcsNEdWqKLlHQM48Tp5W0nvhYZ3ZSx
- QYZuxd637yqJ9dDQ2TUh/KhZffYR6++GaegSmS2vQ6KzIEn51fq+L+bgt
- p62ZT+m/goER8Sg0hBmdrefHZucVk1UJ0PTqTWEgJG13NUQSpdmCcc+Pk
- LgcXruatJZ8OtPP8T5+ZXIWot/1LN0PwB9NmQ1psKBBwKnpipgk9SGqhW
- ojiVq8XDTm2lgFDhPRBP2fITSMdBha62MHsSxuPuhnQOwwTvHnhiHpKib
- R+4rjsS+fxs5T3tkrlnfj8DVOop60pYGuhnaL94CMWHoThbsTXKo5G3VK g==;
-X-CSE-ConnectionGUID: vuxZsWMfSJmYCi0lTKmNgg==
-X-CSE-MsgGUID: ne+JGectR6aQcDNkgnmkUg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="46868948"
-X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="46868948"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 02:07:06 -0700
-X-CSE-ConnectionGUID: k+7aOyLqTNujSNTbtFULVA==
-X-CSE-MsgGUID: h2UVTYvwRkqRIDR3nQy87g==
+ t=1742893665; x=1774429665;
+ h=from:to:cc:subject:date:message-id:mime-version;
+ bh=tMYT1Zmqo1e/bzJZP5RPRqAVdsFwWA2Q0zJKFDYXwi4=;
+ b=EfWUmpbvl8MPqW2zMYEJYuN4geuHDyJ8mhmTO+sXgzDtjI0Ok9YZTxJf
+ ScT/E4nI67GTZdodVjJsAY1J8VL074bhXWLJI43Jl7lSBhprD7YLtoAdI
+ GHXJI/cZhviWh7lK1goVRVQJH3PZQY+ks5FJ3vq13DtAttHlXnyElXJhX
+ O5BCINpGVQstdwkiRjqdEC+rHOv8TJn0gWoPn7b3bAAikSRvnuncIx2Cl
+ 9c2Sj1K1yFckSkC2U5oLO8X4ZDysxRcRj8P98eGXH6KpyXiCCZ2t/ocIM
+ 8bueaK1WgLEK/QtJsgurg7U/yoM+Il+mQ9rJ1NNfdmADkJ+UfPISMn0ni g==;
+X-CSE-ConnectionGUID: tKK1ONAJRmqNXG/OCIfKfA==
+X-CSE-MsgGUID: fxwUoMnBSFib8TDX9/JuZA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="47784284"
+X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="47784284"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2025 02:07:43 -0700
+X-CSE-ConnectionGUID: ufDtzgCQSz2Qrcbb84vXnA==
+X-CSE-MsgGUID: OjdVuXGoTDqiemG6wUWO2A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="124840245"
-Received: from dprybysh-mobl.ger.corp.intel.com (HELO [10.245.246.125])
- ([10.245.246.125])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 02:07:05 -0700
-Message-ID: <4edfc75d575412439efd6dcad15d875eb1c557f5.camel@linux.intel.com>
-Subject: Re: [PATCH v3 3/5] drm/xe/bo: Add a bo remove callback
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
-Cc: himal.prasad.ghimiray@intel.com, Matthew Brost <matthew.brost@intel.com>
-Date: Tue, 25 Mar 2025 10:07:01 +0100
-In-Reply-To: <8be75eef-2baf-4606-a8cc-1b392db6d918@intel.com>
-References: <20250324165500.20680-1-thomas.hellstrom@linux.intel.com>
- <20250324165500.20680-4-thomas.hellstrom@linux.intel.com>
- <8be75eef-2baf-4606-a8cc-1b392db6d918@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="155218256"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.134])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2025 02:07:38 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, Oded
+ Gabbay <ogabbay@kernel.org>, Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-next-fixes
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Date: Tue, 25 Mar 2025 11:07:34 +0200
+Message-ID: <878qota36x.fsf@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,51 +72,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2025-03-25 at 09:02 +0000, Matthew Auld wrote:
-> On 24/03/2025 16:54, Thomas Hellstr=C3=B6m wrote:
-> > On device unbind, migrate exported bos, including pagemap bos to
-> > system. This allows importers to take proper action without
-> > disruption. In particular, SVM clients on remote devices may
-> > continue as if nothing happened, and can chose a different
-> > placement.
-> >=20
-> > The evict_flags() placement is chosen in such a way that bos that
-> > aren't exported are purged.
-> >=20
-> > For pinned bos, we unmap DMA, but their pages are not freed yet
-> > since we can't be 100% sure they are not accessed.
-> >=20
-> > All pinned external bos (not just the VRAM ones) are put on the
-> > pinned.external list with this patch. But this only affects the
-> > xe_bo_pci_dev_remove_pinned() function since !VRAM bos are
-> > ignored by the suspend / resume functionality. As a follow-up we
-> > could look at removing the suspend / resume iteration over
-> > pinned external bos since we currently don't allow pinning
-> > external bos in VRAM, and other external bos don't need any
-> > special treatment at suspend / resume.
-> >=20
-> > v2:
-> > - Address review comments. (Matthew Auld).
-> > v3:
-> > - Don't introduce an external_evicted list (Matthew Auld)
-> > - Add a discussion around suspend / resume behaviour to the
-> > =C2=A0=C2=A0 commit message.
-> > - Formatting fixes.
-> >=20
-> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
->=20
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
->=20
 
-Actually, there is a CI failure on LNL indicating that the pinned
-kernel-bo dma-maps are actually needed at devm-managed release.
+Hi Dave & Sima -
 
-I'm in the process on testing this out on LNL, and if so I'll drop
-these dma-unmaps and we'd continue down the route of ensuring that
-these subsystems are indeed devm_ managed and not drmm_ managed.
+drm-intel-next-fixes-2025-03-25:
+drm/i915 fixes for v6.15 merge window:
+- Bounds check for scalers in DSC prefill latency computation
+- Fix build by adding a missing include
 
-Thanks,
-Thomas
+BR,
+Jani.
 
+The following changes since commit 5da39dce1fa3c81dc6552a16a9f748ba2980d630:
 
+  Merge tag 'drm-xe-next-fixes-2025-03-12' of https://gitlab.freedesktop.org/drm/xe/kernel into drm-next (2025-03-14 17:02:11 +1000)
 
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-fixes-2025-03-25
+
+for you to fetch changes up to af9ec6e4682c089028d763b0b77c04fa2ddae268:
+
+  drm/i915/display: Fix build error without DRM_FBDEV_EMULATION (2025-03-20 18:27:21 +0200)
+
+----------------------------------------------------------------
+drm/i915 fixes for v6.15 merge window:
+- Bounds check for scalers in DSC prefill latency computation
+- Fix build by adding a missing include
+
+----------------------------------------------------------------
+Ankit Nautiyal (1):
+      drm/i915/watermark: Check bounds for scaler_users for dsc prefill latency
+
+Yue Haibing (1):
+      drm/i915/display: Fix build error without DRM_FBDEV_EMULATION
+
+ drivers/gpu/drm/i915/display/intel_fbdev.h   | 2 ++
+ drivers/gpu/drm/i915/display/skl_watermark.c | 5 ++++-
+ 2 files changed, 6 insertions(+), 1 deletion(-)
+
+-- 
+Jani Nikula, Intel
