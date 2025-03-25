@@ -4,55 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2142DC36005
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 22:43:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19250C3600D
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 22:45:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5A9E10E2EA;
-	Tue, 25 Mar 2025 22:43:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B454910E325;
+	Tue, 25 Mar 2025 22:45:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a8TKZOj3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l5SaPVnZ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE10010E2EA
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Mar 2025 22:43:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6F3010E325
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Mar 2025 22:45:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742942600; x=1774478600;
- h=from:to:cc:subject:date:message-id:in-reply-to:
+ t=1742942708; x=1774478708;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=r58/CjQoF5LM/ncaFBY1n9pOVW0sv3qiEhj1O2987Ck=;
- b=a8TKZOj3Y3Tp4OCwrV4DlivNSt4zJNTc7Yf0uWm3CaDo/jm7CyXOkpjn
- fRG75DGEGv7fikS9MQs56CL5poQ52/2xCI6Oy6Yn9WYjy/EizO8tXLHxE
- Bdeyks7YAGdaG1X9jEJJriQO6Yr+JcBKUy5Zx3o2Ug3PSVkRDDGHHnQjL
- XaA/DbcEG2sMW/4uqjrnQWlDa1Ov02/2ciiRlsSBjhN2k4t0Qloo8enw+
- shCrOIOzGU5ebJOnzA3cfj7zT9HHTfOUgKfJQr6H1lwRcc1w149DdDzfV
- Czksw9J/BzwSpbNGl5oceRQovGk/3JP+o93LZ9shtFQtGyVS3ezL0e0g8 w==;
-X-CSE-ConnectionGUID: 2YbxwshLQI6eY2QdC6M0SA==
-X-CSE-MsgGUID: x5XHhsgUQPO9VTfvJbC9LQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11384"; a="54875976"
-X-IronPort-AV: E=Sophos;i="6.14,276,1736841600"; d="scan'208";a="54875976"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 15:43:15 -0700
-X-CSE-ConnectionGUID: b9R5fxJ6QbOI6R3Ziv8n0g==
-X-CSE-MsgGUID: m4dEbE0xS8anC8HQVDdVQw==
+ bh=b2GPyD5jHf6bMoYJLMCoLMATsXLhcoVJn82MpitlGTk=;
+ b=l5SaPVnZaDgo2r3Pw8uI1QsjgmLK3is23Y4b7/suuH1rqPQ6DWX0NJJF
+ Nrzjz8zECXBse5IbUd0qISYAJ/oqcCo37h9I4cr9o4USw3ePl6lny1RAR
+ Xo9BONQD9CQWFRGHQU3Woc49MKarLj4yunxUBQIpG9zM9+luYwAVVd3Nb
+ 3c98avvyGRvhGMAaJQzZkOjWUEPfiCww59VZITSsQcZvI/aBUQBuA/msh
+ cV2VjerE8MjF4xHn9drjDmjzobyYSm2WRQ9FkSLEvoG8dzdGe3n/vI0wr
+ VpFevsS7RGY0Q9Owud1wbM82bw7AMtNab64cTkZVFybtu0HJ6J2wF3qd0 Q==;
+X-CSE-ConnectionGUID: 6ofTb4rFQmG/38z+dCbAhA==
+X-CSE-MsgGUID: gWeQSBfrTQeGX87xAbCriQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11384"; a="55578861"
+X-IronPort-AV: E=Sophos;i="6.14,276,1736841600"; d="scan'208";a="55578861"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2025 15:45:08 -0700
+X-CSE-ConnectionGUID: uI7K+BmXQd21Z9hyd3FkTg==
+X-CSE-MsgGUID: MjyU5kA0RPib8Jb/auZeMA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,276,1736841600"; d="scan'208";a="125447055"
-Received: from bfilipch-desk.jf.intel.com ([10.165.21.204])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 15:43:15 -0700
-From: Julia Filipchuk <julia.filipchuk@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Julia Filipchuk <julia.filipchuk@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH v3] drm/xe/xe3lpg: Apply Wa_14022293748, Wa_22019794406
-Date: Tue, 25 Mar 2025 15:43:05 -0700
-Message-ID: <20250325224310.1455499-1-julia.filipchuk@intel.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250324223347.1433491-1-julia.filipchuk@intel.com>
-References: <20250324223347.1433491-1-julia.filipchuk@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-IronPort-AV: E=Sophos;i="6.14,276,1736841600"; d="scan'208";a="129713027"
+Received: from ileong-mobl1.gar.corp.intel.com (HELO adixit-MOBL3.intel.com)
+ ([10.125.91.160])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2025 15:45:08 -0700
+Date: Tue, 25 Mar 2025 15:45:06 -0700
+Message-ID: <87frj0ivbh.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>, Riana Tauro <riana.tauro@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH v4] drm/xe/pmu: Add GT frequency events
+In-Reply-To: <269b993d-2a22-4080-8609-66650a60ad62@intel.com>
+References: <20250324232402.46481-1-vinay.belgaumkar@intel.com>	<87jz8e9d3h.wl-ashutosh.dixit@intel.com>	<b46fbbd0-ee96-4f00-9f6f-a00115feb32d@intel.com>	<87jz8dhw0r.wl-ashutosh.dixit@intel.com>	<33ebfe1d-5ac5-4985-8c8d-c1996e5a6d14@intel.com>	<87h63gixq0.wl-ashutosh.dixit@intel.com>	<269b993d-2a22-4080-8609-66650a60ad62@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/29.4 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,32 +72,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Extend Wa_14022293748, Wa_22019794406 to Xe3_LPG
+On Tue, 25 Mar 2025 15:01:47 -0700, Belgaumkar, Vinay wrote:
+>
+>
+> On 3/25/2025 2:53 PM, Dixit, Ashutosh wrote:
+> > On Tue, 25 Mar 2025 13:33:43 -0700, Belgaumkar, Vinay wrote:
+> >> On 3/25/2025 10:15 AM, Dixit, Ashutosh wrote:
+> >>> On Mon, 24 Mar 2025 19:37:32 -0700, Belgaumkar, Vinay wrote:
+> >>> Hi Vinay,
+> >>>
+> >>>> On 3/24/2025 5:18 PM, Dixit, Ashutosh wrote:
+> >>>>> On Mon, 24 Mar 2025 16:24:02 -0700, Vinay Belgaumkar wrote:
+> >>>>>> @@ -266,11 +274,24 @@ static u64 __xe_pmu_event_read(struct perf_e=
+vent *event)
+> >>>>>>	case XE_PMU_EVENT_ENGINE_ACTIVE_TICKS:
+> >>>>>>	case XE_PMU_EVENT_ENGINE_TOTAL_TICKS:
+> >>>>>>		return read_engine_events(gt, event);
+> >>>>>> +	case XE_PMU_EVENT_GT_ACTUAL_FREQUENCY:
+> >>>>>> +		return xe_guc_pc_get_act_freq(&gt->uc.guc.pc);
+> >>>>>> +	case XE_PMU_EVENT_GT_REQUESTED_FREQUENCY:
+> >>>>>> +		if (!xe_guc_pc_get_cur_freq(&gt->uc.guc.pc, &cur_gt_freq))
+> >>>>> This is unconditionally taking the forcewake and waking the card up=
+ just to
+> >>>>> get the sample. Do we really want to do that?
+> >>>>>
+> >>>>> So if we don't do that, both the actual and requested freq will be =
+0 if gt
+> >>>>> is in C6.
+> >>>> For actual frequency, the register(0xc60) does not belong to any fw =
+domain -
+> >>>>
+> >>>> GEN_FW_RANGE(0xc00, 0xfff, 0),
+> >>>>
+> >>>> HW will report 0 when GT is in C6.
+> >>> Yes, no issue about act_freq, see commit 22009b6dad66. I was referrin=
+g only
+> >>> to requested freq.
+> >>>
+> >>>> The requested freq register is a
+> >>>> shadowed register (0xa008), so that will not accrue fwake either.
+> >>>>
+> >>>> static const struct i915_range mtl_shadowed_regs[] =3D {
+> >>>>   =A0=A0=A0=A0=A0=A0=A0 { .start =3D=A0=A0 0x2030, .end =3D=A0=A0 0x=
+2030 },
+> >>>>   =A0=A0=A0=A0=A0=A0=A0 { .start =3D=A0=A0 0x2510, .end =3D=A0=A0 0x=
+2550 },
+> >>>>   =A0=A0=A0=A0=A0=A0=A0 { .start =3D=A0=A0 0xA008, .end =3D=A0=A0 0x=
+A00C },
+> >>> So this still doesn't make sense because:
+> >>>
+> >>>     1. The fact is that xe_guc_pc_get_cur_freq() *is* taking forcewake
+> >>>     2. And that is in accord with the following comment in i915/intel=
+_uncore.c
+> >>>
+> >>>        * Shadowing only applies to writes; forcewake
+> >>>        * must still be acquired when reading from registers in these =
+ranges.
+> >>>
+> >>> Also see intel_rps_read_punit_req() which is called from i915 PMU
+> >>> (frequency_sample()) and uses with_intel_runtime_pm_if_in_use(), so w=
+e'd
+> >>> need to do use the equivalent in xe.
+> >> Hi Ashutosh,
+> >>
+> >>  =A0 As part of a previous decision, in the Xe PMU implementation, we =
+are
+> >> doing a runtime_get() during pmu_init for all PMU sessions. So, device=
+ is
+> >> going to be awake anyways. In this case, it does not make sense to just
+> >> read the register without a fwake.
+> >=20
+> > Even if that is ok... Let us take a completely idle device. What should=
+ the
+> > actual and requested freq's be for this case? Both should be zero, corr=
+ect?
+> > Now, what are we going to show if we are taking fwake? At least the
+> > requested freq will be non-zero? Is that ok? Or the requested freq will
+> > show zero even if we take fwake? Thanks.
+>
+> If we take fwake before reading, requested frequency will not be zero even
+> if GT is idle. HW always retains the last requested frequency in that
+> register, never zeroes it like it does for actual_freq. So, showing the
+> non-zero value is the correct thing to do instead of artifically zeroing
+> it.
 
-Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
-Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
----
-v2: Update commit message to specificly mention Graphics IP version.
-v3: Add review from v1 as only commit message has changed.
+So now, this I disagree with. For an idle device, hopefully in C6, there
+should be no reason to request a non-zero freq. So the requested freq
+should show 0. As i915 does (using gt parked and unparked states and using
+with_intel_runtime_pm_if_in_use()).
 
- drivers/gpu/drm/xe/xe_wa_oob.rules | 2 ++
- 1 file changed, 2 insertions(+)
+If we are already "doing a runtime_get() during pmu_init" (as mentioned
+above) we need to devise some other way of making this happen (maybe by
+looking at xe_force_wake_domain ref field?).
 
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index 0c738af24f7c..9b9e176992a8 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -32,8 +32,10 @@
- 		GRAPHICS_VERSION(3001)
- 14022293748	GRAPHICS_VERSION(2001)
- 		GRAPHICS_VERSION(2004)
-+		GRAPHICS_VERSION_RANGE(3000, 3001)
- 22019794406	GRAPHICS_VERSION(2001)
- 		GRAPHICS_VERSION(2004)
-+		GRAPHICS_VERSION_RANGE(3000, 3001)
- 22019338487	MEDIA_VERSION(2000)
- 		GRAPHICS_VERSION(2001)
- 		MEDIA_VERSION(3000), MEDIA_STEP(A0, B0), FUNC(xe_rtp_match_not_sriov_vf)
--- 
-2.48.1
-
+Let us wait for a second opinion on this. Thanks.
