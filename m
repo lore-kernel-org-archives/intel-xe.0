@@ -4,66 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBF09C36005
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 23:45:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83063C36005
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 23:45:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1FB510E625;
-	Tue, 25 Mar 2025 23:45:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hriGwo1L";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30F6910E624;
- Tue, 25 Mar 2025 23:45:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742946332; x=1774482332;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=8kU2xDYHOh53LDa66FD39vxacLVp1TFeXScO7Z854K0=;
- b=hriGwo1LlpXXIDkoeUluF1AW+SFEPgHIkGt0IxTGUVrfYDNqiziOMlqP
- b5rL2GzBwJVTPklBe865VsydhrwDIOaLD0aFIuaYjZaqzK5eVPgFkLUWH
- SArNPGllueZ62DoCgdZUwlDtNufP0FCNcCF5bNT3I9ivQ/DFGIiPIYrfw
- JJFxm3q4e6/0wmj4XiTgvMYVJswhScXpiH8D7d3IPOaa/4M1GWY2ntjHS
- QKaVLPll/dEaG9fQrh0JkrhzFblwmOUrIzix9ad/aUYhbdwjyPRFZpWBJ
- v7o8IpLmg59tahlV5QxFH4ZOIuZ4JywQDCttKAf2ElvBcnEkz4V1eN/OH Q==;
-X-CSE-ConnectionGUID: Q3RAfzjXQhicM6+27N1O6Q==
-X-CSE-MsgGUID: aYurWa8cRSmBsNFAgibKVQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11384"; a="31817701"
-X-IronPort-AV: E=Sophos;i="6.14,276,1736841600"; d="scan'208";a="31817701"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 16:45:32 -0700
-X-CSE-ConnectionGUID: 9aMYHpLqTRujanybAjxk7A==
-X-CSE-MsgGUID: 4i1JdzCJQViedN3p1rIVVQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,276,1736841600"; d="scan'208";a="124710728"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 16:45:29 -0700
-Date: Wed, 26 Mar 2025 01:45:26 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Gupta, saurabhg" <saurabhg.gupta@intel.com>,
- "Zuo, Alex" <alex.zuo@intel.com>,
- "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
- "Brost, Matthew" <matthew.brost@intel.com>,
- "Zhang, Jianxun" <jianxun.zhang@intel.com>,
- "Lin, Shuicheng" <shuicheng.lin@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "Wajdeczko, Michal" <Michal.Wajdeczko@intel.com>,
- "Mrozek, Michal" <michal.mrozek@intel.com>
-Subject: Re: [PATCH v12 5/5] drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
-Message-ID: <Z-NAFqRhGK4Vjfv5@black.fi.intel.com>
-References: <20250324230931.63840-1-jonathan.cavitt@intel.com>
- <20250324230931.63840-6-jonathan.cavitt@intel.com>
- <Z-JdzvwmkpK2vZj-@black.fi.intel.com>
- <CH0PR11MB5444B65CB663C9123B41F7CFE5A72@CH0PR11MB5444.namprd11.prod.outlook.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A4E610E628;
+	Tue, 25 Mar 2025 23:45:34 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F42310E627;
+ Tue, 25 Mar 2025 23:45:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CH0PR11MB5444B65CB663C9123B41F7CFE5A72@CH0PR11MB5444.namprd11.prod.outlook.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/xe=5Fvm=3A_Implem?=
+ =?utf-8?q?ent_xe=5Fvm=5Fget=5Fproperty=5Fioctl_=28rev14=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 25 Mar 2025 23:45:34 -0000
+Message-ID: <174294633406.3302.1680287050551843075@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250325222724.93226-1-jonathan.cavitt@intel.com>
+In-Reply-To: <20250325222724.93226-1-jonathan.cavitt@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,54 +36,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Mar 25, 2025 at 08:15:59PM +0530, Cavitt, Jonathan wrote:
-> From: Jadav, Raag <raag.jadav@intel.com> 
-> > On Mon, Mar 24, 2025 at 11:09:28PM +0000, Jonathan Cavitt wrote:
-> > > Add support for userspace to request a list of observed faults
-> > > from a specified VM.
-> > 
-> > ...
-> > 
-> > > v10:
-> > > - Remove unnecessary switch case logic (Raag)
-> > 
-> > This is usually "changes present in version" and not "comments received
-> > in version" but I guess this must be one of those drm things.
-> 
-> I'm fairly certain change logs are supposed to be written in the future tense.
-> Or at the very least, I think I picked up the habit in college.  Is this not correct?
+== Series Details ==
 
-I meant it belongs to v11.
+Series: drm/xe/xe_vm: Implement xe_vm_get_property_ioctl (rev14)
+URL   : https://patchwork.freedesktop.org/series/145529/
+State : success
 
-> > > +static int xe_vm_get_property_helper(struct xe_vm *vm,
-> > > +				     struct drm_xe_vm_get_property *args)
-> > > +{
-> > > +	int size;
-> > > +
-> > > +	switch (args->property) {
-> > > +	case DRM_XE_VM_GET_PROPERTY_FAULTS:
-> > > +		spin_lock(&vm->faults.lock);
-> > > +		size = size_mul(sizeof(struct xe_vm_fault), vm->faults.len);
-> > > +		spin_unlock(&vm->faults.lock);
-> > > +
-> > > +		if (args->size)
-> > > +			/*
-> > > +			 * Number of faults may increase between calls to
-> > > +			 * xe_vm_get_property_ioctl, so just report the
-> > > +			 * number of faults the user requests if it's less
-> > > +			 * than or equal to the number of faults in the VM
-> > > +			 * fault array.
-> > > +			 */
-> > > +			return args->size <= size ? fill_faults(vm, args) : -EINVAL;
-> > 
-> > You're comparing an int with u32 and I'm not sure how this plays out.
-> > The usual practice is to use size_t (even in the struct) 
-> 
-> Size is a u32 in struct drm_xe_device_query.
+== Summary ==
 
-And what about the local one?
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast afc2e1fea0a406eedbaf632e96cdb6832a45ebb7
+Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
+Fast mode used, each commit won't be checked separately.
+Okay!
 
-Raag
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
