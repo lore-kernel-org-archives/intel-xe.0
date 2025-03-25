@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 081B4C36005
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 20:36:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25358C36005
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 20:36:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B97D010E5F7;
-	Tue, 25 Mar 2025 20:36:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFD3A10E5FB;
+	Tue, 25 Mar 2025 20:36:43 +0000 (UTC)
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0CF610E5F7;
- Tue, 25 Mar 2025 20:36:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 793F410E5FB;
+ Tue, 25 Mar 2025 20:36:42 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/guc=3A_Reform?=
- =?utf-8?q?at_dead_CT_reason_string_to_be_devcoredump_compatible?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/guc=3A_Reformat_de?=
+ =?utf-8?q?ad_CT_reason_string_to_be_devcoredump_compatible?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: john.c.harrison@intel.com
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 25 Mar 2025 20:36:31 -0000
-Message-ID: <174293499165.1925.2510848659180921016@e6b6f09ec485>
+Date: Tue, 25 Mar 2025 20:36:42 -0000
+Message-ID: <174293500249.1925.8750121375201563054@e6b6f09ec485>
 X-Patchwork-Hint: ignore
 References: <20250325203111.3907426-1-John.C.Harrison@Intel.com>
 In-Reply-To: <20250325203111.3907426-1-John.C.Harrison@Intel.com>
@@ -48,9 +48,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: b70bbb26ec30 drm-tip: 2025y-03m-25d-19h-15m-20s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/guc: Reformat dead CT reason string to be devcoredump compatible
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+99e5a866b5e13f134e606a3e29d9508d97826fb3
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit be523a113112d25e639770c5ea4fe76e067d8006
+Author: John Harrison <John.C.Harrison@Intel.com>
+Date:   Tue Mar 25 13:31:11 2025 -0700
+
+    drm/xe/guc: Reformat dead CT reason string to be devcoredump compatible
+    
+    The dump on a dead CT tries to emulate the devcoredump formatting (it
+    would use devcoredump code directly but that requires more re-work to
+    happen - work in progress). So update the print of the dead CT reason
+    code to match the format of the 'reason' string that was added to the
+    actual devcoredump a little while ago.
+    
+    Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
++ /mt/dim checkpatch b70bbb26ec306486f2ece84a9876d7eefa21da26 drm-intel
+be523a113112 drm/xe/guc: Reformat dead CT reason string to be devcoredump compatible
 
 
