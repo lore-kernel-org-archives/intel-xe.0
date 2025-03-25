@@ -4,29 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93746C35FFC
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 08:10:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F173C35FFC
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 08:55:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 429F610E4FB;
-	Tue, 25 Mar 2025 08:10:58 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29A6510E4FB
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Mar 2025 08:10:57 +0000 (UTC)
-Message-ID: <e7411f27-f8f8-43f1-b36c-c44424fd693d@lankhorst.se>
-Date: Tue, 25 Mar 2025 09:10:43 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id C86ED10E1AF;
+	Tue, 25 Mar 2025 08:55:08 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB0A710E1A6;
+ Tue, 25 Mar 2025 08:55:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <dev@lankhorst.se>
-Subject: Re: [PATCH 2/2] drm/xe: Copy cpu_caching when importing DMA-BUF.
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
+ =?utf-8?q?_=5B1/2=5D_drm/xe=3A_Remove_extra_spaces_in_xe=5Fvm=2Ec_=28rev2?=
+ =?utf-8?q?=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 25 Mar 2025 08:55:07 -0000
+Message-ID: <174289290782.13.8304486756197951346@e6b6f09ec485>
+X-Patchwork-Hint: ignore
 References: <20250320211519.632432-1-dev@lankhorst.se>
- <20250320211519.632432-2-dev@lankhorst.se>
- <60417daf928897560acf961ad0e14b51e170e676.camel@linux.intel.com>
-Content-Language: en-US
-In-Reply-To: <60417daf928897560acf961ad0e14b51e170e676.camel@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250320211519.632432-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,60 +37,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
+== Series Details ==
 
-On 2025-03-21 11:23, Thomas Hellström wrote:
-> Hi, Maarten.
-> 
-> On Thu, 2025-03-20 at 22:15 +0100, Maarten Lankhorst wrote:
->> When testing xe with P2PDMA DMA-BUF import,
->> VM_BIND was failing because cpu_caching was not set.
->>
->> Set cpu_caching if available from another xe driver,
->> to allow uncached VM_BIND on imported DMA-BUF.
->>
->> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-> 
-> I don't think this is correct, we shouldn't assume anything about
-> imported dma-bufs, really. If we do we might end up in a situation
-> where code works for dma-bufs imported from one device but not from
-> another.
-> 
-> I think what we can do is to relax the COH mode check. It only really
-> matters on IGPU. On DGPU, all accesses to system memory is coherent.
-> 
-> Next step would perhaps be to assume that on p2p access, a dma-buf is
-> coherently cleared when all KERNEL dma-fences are signaled, but that
-> would require a cross-driver agreement, so in essence allow non-
-> coherent VM_BIND to device memory. This would matter only for IGPU
-> mapping a device p2p.
-> 
-> /Thomas
+Series: series starting with [1/2] drm/xe: Remove extra spaces in xe_vm.c (rev2)
+URL   : https://patchwork.freedesktop.org/series/146562/
+State : success
 
-So would something like this work instead?
+== Summary ==
 
-----8<----
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index fed4b97d1882d..fb15de880ae21 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2990,12 +2990,14 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
- 				 bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB)) {
- 			return -EINVAL;
- 		}
--	} else if (XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE)) {
-+	} else if (XE_IOCTL_DBG(xe, !IS_DGFX(xe) && coh_mode == XE_COH_NONE)) {
- 		/*
- 		 * Imported dma-buf from a different device should
- 		 * require 1way or 2way coherency since we don't know
- 		 * how it was mapped on the CPU. Just assume is it
- 		 * potentially cached on CPU side.
-+		 *
-+		 * On a discrete GPU, all access to system memory is coherent.
- 		 */
- 		return -EINVAL;
- 	}
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: c217ee2fc8a5 drm-tip: 2025y-03m-25d-08h-04m-07s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Remove extra spaces in xe_vm.c
+Applying: drm/xe: Copy cpu_caching when importing DMA-BUF.
+
 
