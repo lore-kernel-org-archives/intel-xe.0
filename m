@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B324C36008
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 20:31:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAB3CC36005
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 20:32:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F36E210E5FB;
-	Tue, 25 Mar 2025 20:31:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7111710E5FB;
+	Tue, 25 Mar 2025 20:32:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RUXHnv1v";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U50ycE9F";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C398910E5FB
- for <Intel-Xe@lists.freedesktop.org>; Tue, 25 Mar 2025 20:31:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BC2D10E5FB
+ for <Intel-Xe@lists.freedesktop.org>; Tue, 25 Mar 2025 20:32:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742934674; x=1774470674;
+ t=1742934733; x=1774470733;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=i+8mneRCpafwlfvLmCmEG1R6q7hE3pTrdvI/FZxXtX0=;
- b=RUXHnv1vcVsCJD48T5NcaFA6WlCJ7gKTwmKT67l3/ANnkFF9XIUkqN6g
- FZ507FmjJj3sfdzXbzb8xN2rioC9wCdIKqiFufeAM0gVt26dSeJmgItef
- cB4HQ4gWBC0sFMVsym5QC1SRRZ3ynISZ6UQ1cTTFbjTN+ST5sgwUoNotb
- OINGZfNGJj9AkfbOE8Fu7d1JOoIBUJcG7UsZ4TLfPWA3AzRlaCNBBJn+E
- 7SDdk93nzzYXyEpYCZPzvUgNw92b6DHbuDTP5lRD5/VIoxRK033NspLuX
- SqTwB6icx366o60k8UTfnH0MiTI9m8I/3Nc2tya9f0Bho5hG2B03JFb2n Q==;
-X-CSE-ConnectionGUID: 0ATveRLjT6Wi/YbgwcGrsA==
-X-CSE-MsgGUID: yT7Twdy7RP2KqQzEpVRF6A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11384"; a="69564353"
-X-IronPort-AV: E=Sophos;i="6.14,275,1736841600"; d="scan'208";a="69564353"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 13:31:12 -0700
-X-CSE-ConnectionGUID: L7eqCHsUTR6xaZLilMZ8Eg==
-X-CSE-MsgGUID: fpo5Rp0SRqq7eui7El3sHQ==
+ bh=y3nacGNUrD9wmi9pg5Mj5fu9miCDzBH0wnxFDjBQKtM=;
+ b=U50ycE9Fk6qstMj1/SwT8h6zfCUk+VeWd8YQbUkE2qs6JbawVkz3uNZ7
+ OWoKmbLwQQ7jpWnodXsqV9I3bxXqoYyK06e+fRXyrXsp/CFsJs8axgV6o
+ tIgYcWbsxdxNTXPPnY/abpDX9ziwGiYg8xhRvaChMd+pQRl/jP+xKZUeq
+ T4Dkd6r3rAHx8FlPybz+6MjVulUUd/ztL8gAGL0ZvSeW5l1o8xEWIJgy4
+ aN7Qho+mpTQ0vKlR0e3J1JH4+tZ6Q3/KCfoNnbRzkD1HSIEeAHHWkjeO+
+ W1LnTJWPWpHaI3TlFK1yHjBFFlMx2iKe1/iLU46ukIWjbg8oMgaNzq3ed w==;
+X-CSE-ConnectionGUID: JyJVYiNxQZqCybTrf2MCKA==
+X-CSE-MsgGUID: QTJROy9yTcqgQ9xgYzh8JA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11384"; a="55581339"
+X-IronPort-AV: E=Sophos;i="6.14,275,1736841600"; d="scan'208";a="55581339"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2025 13:32:11 -0700
+X-CSE-ConnectionGUID: nlilwXyiQwCAVKzAQEze/Q==
+X-CSE-MsgGUID: SPTwD8weRdSa5zgOMy4F/w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,275,1736841600"; d="scan'208";a="125012076"
+X-IronPort-AV: E=Sophos;i="6.14,275,1736841600"; d="scan'208";a="129618463"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by orviesa007.jf.intel.com with ESMTP; 25 Mar 2025 13:31:11 -0700
+ by fmviesa004.fm.intel.com with ESMTP; 25 Mar 2025 13:32:11 -0700
 From: John.C.Harrison@Intel.com
 To: Intel-Xe@Lists.FreeDesktop.Org
 Cc: John Harrison <John.C.Harrison@Intel.com>
-Subject: [PATCH] drm/xe/guc: Reformat dead CT reason string to be devcoredump
- compatible
-Date: Tue, 25 Mar 2025 13:31:11 -0700
-Message-ID: <20250325203111.3907426-1-John.C.Harrison@Intel.com>
+Subject: [PATCH] drm/xe/guc: Re-word message about ADS size changes
+Date: Tue, 25 Mar 2025 13:32:11 -0700
+Message-ID: <20250325203211.3907890-1-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
 Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
@@ -68,33 +67,32 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: John Harrison <John.C.Harrison@Intel.com>
 
-The dump on a dead CT tries to emulate the devcoredump formatting (it
-would use devcoredump code directly but that requires more re-work to
-happen - work in progress). So update the print of the dead CT reason
-code to match the format of the 'reason' string that was added to the
-actual devcoredump a little while ago.
+The error capture list in the ADS is initially allocated using a
+placeholder size. When the actual size is determinied later on, there
+is a debug print about the new size. However, the wording is such that
+some people see it as an unexpected thing and therefore a potential
+problem. So re-word it to be a little less concerning.
 
 Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_guc_ads.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 72ad576fc18e..686fe664c20d 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -1828,10 +1828,10 @@ static void ct_dead_print(struct xe_dead_ct *dead)
- 		return;
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index e7c9e095a19f..bee4e0cfe7b8 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -682,8 +682,8 @@ static int guc_capture_prep_lists(struct xe_guc_ads *ads)
  	}
  
--	drm_printf(&lp, "CTB is dead - reason=0x%X\n", dead->reason);
+ 	if (ads->capture_size != PAGE_ALIGN(total_size))
+-		xe_gt_dbg(gt, "ADS capture alloc size changed from %d to %d\n",
+-			  ads->capture_size, PAGE_ALIGN(total_size));
++		xe_gt_dbg(gt, "Updated ADS capture size %d (was %d)\n",
++			  PAGE_ALIGN(total_size), ads->capture_size);
+ 	return PAGE_ALIGN(total_size);
+ }
  
- 	/* Can't generate a genuine core dump at this point, so just do the good bits */
- 	drm_puts(&lp, "**** Xe Device Coredump ****\n");
-+	drm_printf(&lp, "Reason: CTB is dead - 0x%X\n", dead->reason);
- 	xe_device_snapshot_print(xe, &lp);
- 
- 	drm_printf(&lp, "**** GT #%d ****\n", gt->info.id);
 -- 
 2.49.0
 
