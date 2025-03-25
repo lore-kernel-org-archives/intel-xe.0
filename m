@@ -4,58 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AE12C35FFC
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 10:25:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45A23C35FFC
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 10:41:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E56E10E064;
-	Tue, 25 Mar 2025 10:25:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HaF5VTcA";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93DF110E064
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Mar 2025 10:25:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742898335; x=1774434335;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=JE0BSjhoVsEGjUJagTQ29pzRrWmKQx0DyQ6Jh8X6xBo=;
- b=HaF5VTcAlL5iOz+Y3NwlcjZS8UTJgPDBQ2WFn6YTUbiNbJ13qZYC4VSs
- z/16Pgg/wfmaVsZC+q0YW62XJO3c7J4+sdDgg6kO+lmwYs9MuZPM/fGyD
- aQFOt54SZdghIM+XqvVsiGW+VBOJd8ieYWSsJZ0t60GoLidFZ3ETSN1VZ
- 14Xx1mXt9tONBAxbLS1+hCMYX+UDeUywGKbbu0qSu96e3uoinCl2N0kLi
- PR6H89YMDP65YfN22N3hrmg5VP8wa3qvVOxbQ+hs12rZMwFrjrjC2J8K1
- 3WSGVYGbgaBOsOMGar53w2/dogShZ1OwA7U6s2C3TFQQknxrAWqRBes4O A==;
-X-CSE-ConnectionGUID: RqvXhlPyRBy5DB9z6Uyt4g==
-X-CSE-MsgGUID: R9yNCZetTImOqpMOzWEUXw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="61661079"
-X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="61661079"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 03:25:35 -0700
-X-CSE-ConnectionGUID: N82Pm5AgSVObUhEElrfCQg==
-X-CSE-MsgGUID: 3YzBgYMpTRSCe3URi/2Xlg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="124367148"
-Received: from savramon-mobl1 (HELO [10.245.244.111]) ([10.245.244.111])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 03:25:34 -0700
-Message-ID: <1bf95838-054f-4a9c-97fb-960be8c2562e@linux.intel.com>
-Date: Tue, 25 Mar 2025 11:25:31 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDE3410E392;
+	Tue, 25 Mar 2025 10:41:07 +0000 (UTC)
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CC9810E392
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Mar 2025 10:41:07 +0000 (UTC)
+Message-ID: <c010cb9d-cfed-46fa-a232-7ce8768f3f4d@lankhorst.se>
+Date: Tue, 25 Mar 2025 11:41:00 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 9/9] drm/xe: Implement
- DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-Cc: jose.souza@intel.com, carlos.santa@intel.com
-References: <20250320192831.3842138-1-matthew.brost@intel.com>
- <20250320192831.3842138-10-matthew.brost@intel.com>
+Subject: =?UTF-8?Q?Re=3A_=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_series_start?=
+ =?UTF-8?Q?ing_with_=5B1/2=5D_drm/xe=3A_Remove_extra_spaces_in_xe=5Fvm=2Ec_?=
+ =?UTF-8?B?KHJldjIp?=
+To: intel-xe@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+References: <20250320211519.632432-1-dev@lankhorst.se>
+ <174289544214.218.14501066439435038545@e6b6f09ec485>
 Content-Language: en-US
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20250320192831.3842138-10-matthew.brost@intel.com>
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <174289544214.218.14501066439435038545@e6b6f09ec485>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,79 +42,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Cc: Matthew Auld
 
+Hey,
 
-On 2025-03-20 20:28, Matthew Brost wrote:
-> Implement DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE which sets the exec
-> queue default state to user data passed in. The intent is for a Mesa
-> tool to use this replay GPU hangs.
-> 
-> v2:
->  - Enable the flag DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE
->  - Fix the page size math calculation to avoid a crash
-> 
-> Cc: José Roberto de Souza <jose.souza@intel.com>
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_exec_queue.c       | 32 ++++++++++++++++--
->  drivers/gpu/drm/xe/xe_exec_queue_types.h |  3 ++
->  drivers/gpu/drm/xe/xe_execlist.c         |  2 +-
->  drivers/gpu/drm/xe/xe_lrc.c              | 42 +++++++++++++++++-------
->  drivers/gpu/drm/xe/xe_lrc.h              |  3 +-
->  5 files changed, 67 insertions(+), 15 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-> index 606922d9dd73..4d8c0aae6f55 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-> @@ -47,6 +47,7 @@ static void __xe_exec_queue_free(struct xe_exec_queue *q)
->  	if (q->xef)
->  		xe_file_put(q->xef);
->  
-> +	kvfree(q->replay_state);
->  	kfree(q);
->  }
->  
-> @@ -139,7 +140,8 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q)
->  	}
->  
->  	for (i = 0; i < q->width; ++i) {
-> -		q->lrc[i] = xe_lrc_create(q->hwe, q->vm, SZ_16K, q->msix_vec, flags);
-> +		q->lrc[i] = xe_lrc_create(q->hwe, q->vm, q->replay_state,
-> +					  SZ_16K, q->msix_vec, flags);
->  		if (IS_ERR(q->lrc[i])) {
->  			err = PTR_ERR(q->lrc[i]);
->  			goto err_unlock;
-> @@ -460,6 +462,30 @@ exec_queue_set_pxp_type(struct xe_device *xe, struct xe_exec_queue *q, u64 value
->  	return xe_pxp_exec_queue_set_type(xe->pxp, q, DRM_XE_PXP_TYPE_HWDRM);
->  }
->  
-> +static int exec_queue_set_hang_replay_state(struct xe_device *xe,
-> +					    struct xe_exec_queue *q,
-> +					    u64 value)
-> +{
-> +	size_t size = xe_gt_lrc_hang_replay_size(q->gt, q->class);
-> +	u64 __user *address = u64_to_user_ptr(value);
-> +	void *ptr;
-> +	int err;
-> +
-> +	ptr = kvmalloc(size, GFP_KERNEL);
-> +	if (!ptr)
-> +		return -ENOMEM;
-> +
-> +	err = __copy_from_user(ptr, address, size);
-> +	if (XE_IOCTL_DBG(xe, err)) {
-> +		kvfree(ptr);
-> +		return -EFAULT;
-> +	}
-> +
-> +	q->replay_state = ptr;
+For peer-to-peer DMA-BUF, it can be beneficial to allow mapping memory as uncached.
+Initially I tried copying the caching on same-driver import from the original BO.
 
-Seems this can be replaced with a call to vmemdup_user ?
+Thomas suggested that since memory access from discrete is always coherent, the
+check in xe_vm.c can be simplified from XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE)
+to XE_IOCTL_DBG(xe, !ID_DGFX(xe) && coh_mode == XE_COH_NONE)
 
-With the changes to this patch, stolen mem and ack from userspace side:
+This causes below failures.
 
-Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Should I continue with the original patch, or change the testcase as well?
 
-Best regards,
+Kind Regards,
 ~Maarten
+
+
+On 2025-03-25 10:37, Patchwork wrote:
+> *Patch Details*
+> *Series:*	series starting with [1/2] drm/xe: Remove extra spaces in xe_vm.c (rev2)
+> *URL:*	https://patchwork.freedesktop.org/series/146562/ <https://patchwork.freedesktop.org/series/146562/>
+> *State:*	failure
+> *Details:*	https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146562v2/index.html <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146562v2/index.html>
+> 
+> 
+>   CI Bug Log - changes from xe-2844-9a42bdcde0f77b2c1e947e283cc3b267b1ce2056_BAT -> xe-pw-146562v2_BAT
+> 
+> 
+>     Summary
+> 
+> *FAILURE*
+> 
+> Serious unknown changes coming with xe-pw-146562v2_BAT absolutely need to be
+> verified manually.
+> 
+> If you think the reported changes have nothing to do with the changes
+> introduced in xe-pw-146562v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+> to document this new failure mode, which will reduce false positives in CI.
+> 
+> 
+>     Participating hosts (10 -> 9)
+> 
+> Missing (1): bat-adlp-vm
+> 
+> 
+>     Possible new issues
+> 
+> Here are the unknown changes that may have been introduced in xe-pw-146562v2_BAT:
+> 
+> 
+>       IGT changes
+> 
+> 
+>         Possible regressions
+> 
+>   * igt@xe_pat@prime-external-import-coh:
+>       o bat-bmg-2: PASS <https://intel-gfx-ci.01.org/tree/intel-xe/xe-2844-9a42bdcde0f77b2c1e947e283cc3b267b1ce2056/bat-bmg-2/igt@xe_pat@prime-external-import-coh.html> -> FAIL <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146562v2/bat-bmg-2/igt@xe_pat@prime-external-import-coh.html>
+>       o bat-bmg-1: PASS <https://intel-gfx-ci.01.org/tree/intel-xe/xe-2844-9a42bdcde0f77b2c1e947e283cc3b267b1ce2056/bat-bmg-1/igt@xe_pat@prime-external-import-coh.html> -> FAIL <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146562v2/bat-bmg-1/igt@xe_pat@prime-external-import-coh.html>
+>       o bat-dg2-oem2: PASS <https://intel-gfx-ci.01.org/tree/intel-xe/xe-2844-9a42bdcde0f77b2c1e947e283cc3b267b1ce2056/bat-dg2-oem2/igt@xe_pat@prime-external-import-coh.html> -> FAIL <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146562v2/bat-dg2-oem2/igt@xe_pat@prime-external-import-coh.html>
+>       o bat-atsm-2: PASS <https://intel-gfx-ci.01.org/tree/intel-xe/xe-2844-9a42bdcde0f77b2c1e947e283cc3b267b1ce2056/bat-atsm-2/igt@xe_pat@prime-external-import-coh.html> -> FAIL <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146562v2/bat-atsm-2/igt@xe_pat@prime-external-import-coh.html>
+>       o bat-pvc-2: PASS <https://intel-gfx-ci.01.org/tree/intel-xe/xe-2844-9a42bdcde0f77b2c1e947e283cc3b267b1ce2056/bat-pvc-2/igt@xe_pat@prime-external-import-coh.html> -> FAIL <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146562v2/bat-pvc-2/igt@xe_pat@prime-external-import-coh.html>
