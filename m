@@ -4,59 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B2C0C36011
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 09:02:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A51BEC3600B
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 09:03:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C385E10E521;
-	Tue, 25 Mar 2025 09:02:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 671D710E51F;
+	Tue, 25 Mar 2025 09:03:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mf3kV4RK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kXqsdoUj";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFDC310E51D
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Mar 2025 09:02:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E295510E51D;
+ Tue, 25 Mar 2025 09:03:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742893329; x=1774429329;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=7bafJxjA5I/u8EQfJ24LPF0eD2HrxMW6feJaDg6x0D0=;
- b=mf3kV4RKjJfuNCn1w3mY0Qpj7U8O91z2Ng6YbKVEQFnMECemiOZ/yDv2
- QJ1hYWQz/2Tzv3esXOR8TC3hpId8JLL5L0sJA1uDRey/ri7Aav1Tpk1bj
- gBNbK0fbIbwn6d3MS/NUoIp931gJtAdOdMRXYSkbIq7+re/8tbyWguo9I
- JM+PbZRGFgtHr9p9KjwzVJZldHT8tTcxJRwuXLxbLv3YyzTx+Pj8HJ8pE
- MZ44ybl+upXd54ntCD8p5O4jR5DLeigVD99Cm4dk+LEtPqFyBODq+RCbE
- akE+nwsCGO/z0iZ7IH47TDM4uih2XB67tcCC80wX8/ZG7GXsozrjmuyDL A==;
-X-CSE-ConnectionGUID: NOydkeqvRbGm2m5dYbNrig==
-X-CSE-MsgGUID: F0EooJfKR/yfKXPYqXeIIg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="55124821"
-X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="55124821"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 02:02:09 -0700
-X-CSE-ConnectionGUID: 4uPXbZnwTSO5l9iyb+0YrA==
-X-CSE-MsgGUID: cScgMnodTBCRltb/G7i5Pg==
+ t=1742893398; x=1774429398;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=UvzxqcOL6OUkTtr4lFFzh6hnAD3fKjSDEzEco6HYaHk=;
+ b=kXqsdoUjwEdQ2mtU6R/mXnh6fODolahLr4mcf2iwYsjPX+tpkrddPfSd
+ jUY2U8eH+4eDbXza4q5ILxaALfA1OkB4Z/cS9GOBIt84c4Z6D5lado9Nc
+ DtOQyqmEQXiSFDfFu4PReanyvLAGL/MAZkqR7za/nnV3YLqnsvistAZJ3
+ 6Sw2uh0F5jxYGh1fPoevaxx92r3x3JRRnNdZ0pZAkRTvYO8Q8/EDS6w4y
+ pqfV/Llp/oF7jp98ZIblI7JCZeLy7aa+36b78VSaa4FeJfP8aRb8742BC
+ fxR9Gc5YUZH8iNrOV3XDJ+y7WM8m8nLmsau1okHRWXJ99ntau0mVDR6Xh w==;
+X-CSE-ConnectionGUID: ROaBJmrwRs2ihnUz1R2rnQ==
+X-CSE-MsgGUID: Ji+IY+/GSVe3jjOdPEFuXg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="46868686"
+X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="46868686"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2025 02:03:17 -0700
+X-CSE-ConnectionGUID: luqqJcHrQk6tUwGnEbb1tA==
+X-CSE-MsgGUID: huEGemd5QLq1wid3od2j/w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="124773478"
-Received: from ijarvine-desk1.ger.corp.intel.com (HELO [10.245.244.125])
- ([10.245.244.125])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 02:02:07 -0700
-Message-ID: <8be75eef-2baf-4606-a8cc-1b392db6d918@intel.com>
-Date: Tue, 25 Mar 2025 09:02:05 +0000
+X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="125091586"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.134])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2025 02:03:15 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>, Matt Roper
+ <matthew.d.roper@intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Vivek
+ Kasireddy <vivek.kasireddy@intel.com>, stable@vger.kernel.org
+Subject: Re: [PATCH v2] drm/i915/xe2hpd: Identify the memory type for SKUs
+ with GDDR + ECC
+In-Reply-To: <32lakxysapix2hgoh5e7n2b6zlv544nh6vcvmg6zllzjnlikmd@7k37w7pqy4p2>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250324-tip-v2-1-38397de319f8@intel.com>
+ <20250324200207.GN3175483@mdroper-desk1.amr.corp.intel.com>
+ <32lakxysapix2hgoh5e7n2b6zlv544nh6vcvmg6zllzjnlikmd@7k37w7pqy4p2>
+Date: Tue, 25 Mar 2025 11:03:13 +0200
+Message-ID: <87bjtpa3e6.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/5] drm/xe/bo: Add a bo remove callback
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: himal.prasad.ghimiray@intel.com, Matthew Brost <matthew.brost@intel.com>
-References: <20250324165500.20680-1-thomas.hellstrom@linux.intel.com>
- <20250324165500.20680-4-thomas.hellstrom@linux.intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20250324165500.20680-4-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,37 +72,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 24/03/2025 16:54, Thomas Hellström wrote:
-> On device unbind, migrate exported bos, including pagemap bos to
-> system. This allows importers to take proper action without
-> disruption. In particular, SVM clients on remote devices may
-> continue as if nothing happened, and can chose a different
-> placement.
-> 
-> The evict_flags() placement is chosen in such a way that bos that
-> aren't exported are purged.
-> 
-> For pinned bos, we unmap DMA, but their pages are not freed yet
-> since we can't be 100% sure they are not accessed.
-> 
-> All pinned external bos (not just the VRAM ones) are put on the
-> pinned.external list with this patch. But this only affects the
-> xe_bo_pci_dev_remove_pinned() function since !VRAM bos are
-> ignored by the suspend / resume functionality. As a follow-up we
-> could look at removing the suspend / resume iteration over
-> pinned external bos since we currently don't allow pinning
-> external bos in VRAM, and other external bos don't need any
-> special treatment at suspend / resume.
-> 
-> v2:
-> - Address review comments. (Matthew Auld).
-> v3:
-> - Don't introduce an external_evicted list (Matthew Auld)
-> - Add a discussion around suspend / resume behaviour to the
->    commit message.
-> - Formatting fixes.
-> 
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+On Mon, 24 Mar 2025, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Mon, Mar 24, 2025 at 01:02:07PM -0700, Matt Roper wrote:
+>>On Mon, Mar 24, 2025 at 10:22:33AM -0700, Lucas De Marchi wrote:
+>>> From: Vivek Kasireddy <vivek.kasireddy@intel.com>
+>>>
+>>> Some SKUs of Xe2_HPD platforms (such as BMG) have GDDR memory type
+>>> with ECC enabled. We need to identify this scenario and add a new
+>>> case in xelpdp_get_dram_info() to handle it. In addition, the
+>>> derating value needs to be adjusted accordingly to compensate for
+>>> the limited bandwidth.
+>>>
+>>> Bspec: 64602
+>>> Cc: Matt Roper <matthew.d.roper@intel.com>
+>>> Fixes: 3adcf970dc7e ("drm/xe/bmg: Drop force_probe requirement")
+>>> Cc: stable@vger.kernel.org
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+FYI, this does not cherry-pick cleanly to drm-intel-next-fixes, and
+needs a backport.
 
+There are dependencies on at least
+
+4051c59e2a6a ("drm/i915/xe3lpd: Update bandwidth parameters")
+9377c00cfdb5 ("drm/i915/display: Convert intel_bw.c internally to intel_display")
+d706998b6da6 ("drm/i915/display: Convert intel_bw.c externally to intel_display")
+
+but I don't think we want to backport those.
+
+BR,
+Jani.
+
+
+
+
+>>> Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
+>>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>>
+>>Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+>
+> Thanks. Patch pushed to drm-intel-next.
+>
+> Lucas De Marchi
+
+-- 
+Jani Nikula, Intel
