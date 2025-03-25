@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9341BC3600D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0260C36008
 	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 22:27:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC8E910E608;
-	Tue, 25 Mar 2025 22:27:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 009C110E609;
+	Tue, 25 Mar 2025 22:27:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nBj7ulc8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j9fQTAGe";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 666B210E607;
- Tue, 25 Mar 2025 22:27:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D9AD10E605;
+ Tue, 25 Mar 2025 22:27:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742941646; x=1774477646;
+ t=1742941647; x=1774477647;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=c/eFbZe9L+kzlJa6CXBL8Bt/Ptkb1bUh4geX+tEJR2M=;
- b=nBj7ulc8ehhpcoipTxSpe5E7S/43efdlTCmYFd2rN22YvqI3mO/4Ueok
- XIZXGGhSqAcPS3CJlTUZT1LF/a5lYHkzYXdUyulO+qrScNVU/hzRTCjLr
- tuoXycZv2oYqXGTh9uKqk5nttE0NHw7UPTnCLHdHeRX59BJ0at+wOi5Jf
- DHlITTMmGv6sO+HihVdgD3Mm2/WWd13fXIoLZa6kbvGTVSQGBEGilmQnZ
- ncJ+sJ/SXiY0TY5/yyhcp9F2cA74BFcR+iHlcngvhIFgoGcDChb9bp8hb
- b1pcnFrvGWK6blBtgMSzv3QZ3CLoQ9bBTM2MbboAmkcP3tOFLSACl1QmQ Q==;
-X-CSE-ConnectionGUID: riL/LzHnRI2QYWkwBsDigg==
-X-CSE-MsgGUID: Jg/W9235S+yIcmdECfDSag==
-X-IronPort-AV: E=McAfee;i="6700,10204,11384"; a="44369291"
-X-IronPort-AV: E=Sophos;i="6.14,276,1736841600"; d="scan'208";a="44369291"
+ bh=p1dIHndRsAlVHjlyCmhSxpBu/UxQO4Gd2uFgdy75F0k=;
+ b=j9fQTAGeyTHU7PoCn2Trcyr7wwZcdp3p/HjwWQWcSKEMYQUGznLFQEMW
+ awt+Tj4hCp0qrJ2/MWl9d7Yk83OnfH73ElpEvhch3H/Y12OyBXiWCj9sm
+ CqezW99nOJ81sTpzeay6sM6fSO33hys28HpLg//xCMGTYlWgvZucsw/ud
+ JWEDQ3RJf+Aa4/4G8rfWpEhdXe39F1S3os7o61fX7bKAzisC82yiyv3Dz
+ T4MOQOhJ97DDbxgSdMOUuWhJpLvSQpqWBPS0bhMk+NngcUb9F3b9nwb67
+ gifwItqSS2T2Cv4nbOPUQcX0wRDYss6oyJ86/dmmd3XULxYM8rtLJZHwx w==;
+X-CSE-ConnectionGUID: HmgDBHYvQeua0RCTMzn5hA==
+X-CSE-MsgGUID: V8OlrUFDQJit3zaXrkC0ow==
+X-IronPort-AV: E=McAfee;i="6700,10204,11384"; a="44369294"
+X-IronPort-AV: E=Sophos;i="6.14,276,1736841600"; d="scan'208";a="44369294"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 15:27:26 -0700
-X-CSE-ConnectionGUID: iKDPEljhRnmYV78fPJTd2A==
-X-CSE-MsgGUID: PUH8UNtEShqC2nIUOlclMw==
+ 25 Mar 2025 15:27:27 -0700
+X-CSE-ConnectionGUID: ou6duot3SE+9+eWZNcIKGw==
+X-CSE-MsgGUID: 2z9URxx0SAmu1e0I95qfcg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,276,1736841600"; d="scan'208";a="129561843"
+X-IronPort-AV: E=Sophos;i="6.14,276,1736841600"; d="scan'208";a="129561873"
 Received: from dut4086lnl.fm.intel.com ([10.105.10.68])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 15:27:25 -0700
+ 25 Mar 2025 15:27:26 -0700
 From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
@@ -48,10 +48,9 @@ Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
  jianxun.zhang@intel.com, shuicheng.lin@intel.com,
  dri-devel@lists.freedesktop.org, Michal.Wajdeczko@intel.com,
  michal.mrozek@intel.com, raag.jadav@intel.com, john.c.harrison@intel.com
-Subject: [PATCH v13 1/6] drm/xe/xe_hw_engine: Map xe and user engine class in
- header
-Date: Tue, 25 Mar 2025 22:27:18 +0000
-Message-ID: <20250325222724.93226-2-jonathan.cavitt@intel.com>
+Subject: [PATCH v13 4/6] drm/xe/uapi: Define drm_xe_vm_get_property
+Date: Tue, 25 Mar 2025 22:27:21 +0000
+Message-ID: <20250325222724.93226-5-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250325222724.93226-1-jonathan.cavitt@intel.com>
 References: <20250325222724.93226-1-jonathan.cavitt@intel.com>
@@ -71,121 +70,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move the helper arrays xe_to_user_engine_class and
-user_to_xe_engine_class to xe_hw_engine_types.h, making them available
-to more of the xe kernel.  This is done for user_to_xe_engine_class to
-reduce duplication, and xe_to_user_engine_class can and will be used in
-more than one place in the future.
+Add initial declarations for the drm_xe_vm_get_property ioctl.
+
+v2:
+- Expand kernel docs for drm_xe_vm_get_property (Jianxun)
+
+v3:
+- Remove address type external definitions (Jianxun)
+- Add fault type to xe_drm_fault struct (Jianxun)
 
 Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Suggested-by: John Harrison <john.c.harrison@intel.com>
+Cc: Zhang Jianxun <jianxun.zhang@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine.c       | 24 ++++++++++++++++--------
- drivers/gpu/drm/xe/xe_hw_engine_types.h |  5 +++++
- drivers/gpu/drm/xe/xe_query.c           | 18 +-----------------
- 3 files changed, 22 insertions(+), 25 deletions(-)
+ include/uapi/drm/xe_drm.h | 79 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 79 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 8c05fd30b7df..c742f5953e8b 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -272,6 +272,22 @@ static const struct engine_info engine_infos[] = {
- 	},
- };
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 616916985e3f..5817f246e620 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -81,6 +81,7 @@ extern "C" {
+  *  - &DRM_IOCTL_XE_EXEC
+  *  - &DRM_IOCTL_XE_WAIT_USER_FENCE
+  *  - &DRM_IOCTL_XE_OBSERVATION
++ *  - &DRM_IOCTL_XE_VM_GET_PROPERTY
+  */
  
-+const u16 xe_to_user_engine_class[] = {
-+	[XE_ENGINE_CLASS_RENDER] = DRM_XE_ENGINE_CLASS_RENDER,
-+	[XE_ENGINE_CLASS_COPY] = DRM_XE_ENGINE_CLASS_COPY,
-+	[XE_ENGINE_CLASS_VIDEO_DECODE] = DRM_XE_ENGINE_CLASS_VIDEO_DECODE,
-+	[XE_ENGINE_CLASS_VIDEO_ENHANCE] = DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE,
-+	[XE_ENGINE_CLASS_COMPUTE] = DRM_XE_ENGINE_CLASS_COMPUTE,
-+};
-+
-+const enum xe_engine_class user_to_xe_engine_class[] = {
-+	[DRM_XE_ENGINE_CLASS_RENDER] = XE_ENGINE_CLASS_RENDER,
-+	[DRM_XE_ENGINE_CLASS_COPY] = XE_ENGINE_CLASS_COPY,
-+	[DRM_XE_ENGINE_CLASS_VIDEO_DECODE] = XE_ENGINE_CLASS_VIDEO_DECODE,
-+	[DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE] = XE_ENGINE_CLASS_VIDEO_ENHANCE,
-+	[DRM_XE_ENGINE_CLASS_COMPUTE] = XE_ENGINE_CLASS_COMPUTE,
-+};
-+
- static void hw_engine_fini(void *arg)
- {
- 	struct xe_hw_engine *hwe = arg;
-@@ -1022,14 +1038,6 @@ enum xe_force_wake_domains xe_hw_engine_to_fw_domain(struct xe_hw_engine *hwe)
- 	return engine_infos[hwe->engine_id].domain;
- }
+ /*
+@@ -102,6 +103,7 @@ extern "C" {
+ #define DRM_XE_EXEC			0x09
+ #define DRM_XE_WAIT_USER_FENCE		0x0a
+ #define DRM_XE_OBSERVATION		0x0b
++#define DRM_XE_VM_GET_PROPERTY		0x0c
  
--static const enum xe_engine_class user_to_xe_engine_class[] = {
--	[DRM_XE_ENGINE_CLASS_RENDER] = XE_ENGINE_CLASS_RENDER,
--	[DRM_XE_ENGINE_CLASS_COPY] = XE_ENGINE_CLASS_COPY,
--	[DRM_XE_ENGINE_CLASS_VIDEO_DECODE] = XE_ENGINE_CLASS_VIDEO_DECODE,
--	[DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE] = XE_ENGINE_CLASS_VIDEO_ENHANCE,
--	[DRM_XE_ENGINE_CLASS_COMPUTE] = XE_ENGINE_CLASS_COMPUTE,
--};
--
+ /* Must be kept compact -- no holes */
+ 
+@@ -117,6 +119,7 @@ extern "C" {
+ #define DRM_IOCTL_XE_EXEC			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, struct drm_xe_exec)
+ #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
+ #define DRM_IOCTL_XE_OBSERVATION		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OBSERVATION, struct drm_xe_observation_param)
++#define DRM_IOCTL_XE_VM_GET_PROPERTY	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_GET_PROPERTY, struct drm_xe_vm_get_property)
+ 
  /**
-  * xe_hw_engine_lookup() - Lookup hardware engine for class:instance
-  * @xe: xe device
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-index e4191a7a2c31..b17537a77d6c 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
-+++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-@@ -6,6 +6,8 @@
- #ifndef _XE_HW_ENGINE_TYPES_H_
- #define _XE_HW_ENGINE_TYPES_H_
- 
-+#include <uapi/drm/xe_drm.h>
-+
- #include "xe_force_wake_types.h"
- #include "xe_lrc_types.h"
- #include "xe_reg_sr_types.h"
-@@ -21,6 +23,9 @@ enum xe_engine_class {
- 	XE_ENGINE_CLASS_MAX = 6,
+  * DOC: Xe IOCTL Extensions
+@@ -1189,6 +1192,82 @@ struct drm_xe_vm_bind {
+ 	__u64 reserved[2];
  };
  
-+extern const u16 xe_to_user_engine_class[];
-+extern const enum xe_engine_class user_to_xe_engine_class[];
++/** struct xe_vm_fault - Describes faults for %DRM_XE_VM_GET_PROPERTY_FAULTS */
++struct xe_vm_fault {
++	/** @address: Address of the fault */
++	__u64 address;
++	/** @address_precision: Precision of faulted address */
++	__u32 address_precision;
++	/** @access_type: Type of address access that resulted in fault */
++	__u8 access_type;
++	/** @fault_type: Type of fault reported */
++	__u8 fault_type;
++	/** @fault_level: fault level of the fault */
++	__u8 fault_level;
++	/** @engine_class: class of engine fault was reported on */
++	__u8 engine_class;
++	/** @engine_instance: instance of engine fault was reported on */
++	__u8 engine_instance;
++	/** @pad: MBZ */
++	__u8 pad[7];
++	/** @reserved: MBZ */
++	__u64 reserved[3];
++};
 +
- enum xe_hw_engine_id {
- 	XE_HW_ENGINE_RCS0,
- #define XE_HW_ENGINE_RCS_MASK	GENMASK_ULL(XE_HW_ENGINE_RCS0, XE_HW_ENGINE_RCS0)
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 5e65830dad25..a85cecfb84d6 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -29,22 +29,6 @@
- #include "xe_ttm_vram_mgr.h"
- #include "xe_wa.h"
- 
--static const u16 xe_to_user_engine_class[] = {
--	[XE_ENGINE_CLASS_RENDER] = DRM_XE_ENGINE_CLASS_RENDER,
--	[XE_ENGINE_CLASS_COPY] = DRM_XE_ENGINE_CLASS_COPY,
--	[XE_ENGINE_CLASS_VIDEO_DECODE] = DRM_XE_ENGINE_CLASS_VIDEO_DECODE,
--	[XE_ENGINE_CLASS_VIDEO_ENHANCE] = DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE,
--	[XE_ENGINE_CLASS_COMPUTE] = DRM_XE_ENGINE_CLASS_COMPUTE,
--};
--
--static const enum xe_engine_class user_to_xe_engine_class[] = {
--	[DRM_XE_ENGINE_CLASS_RENDER] = XE_ENGINE_CLASS_RENDER,
--	[DRM_XE_ENGINE_CLASS_COPY] = XE_ENGINE_CLASS_COPY,
--	[DRM_XE_ENGINE_CLASS_VIDEO_DECODE] = XE_ENGINE_CLASS_VIDEO_DECODE,
--	[DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE] = XE_ENGINE_CLASS_VIDEO_ENHANCE,
--	[DRM_XE_ENGINE_CLASS_COMPUTE] = XE_ENGINE_CLASS_COMPUTE,
--};
--
- static size_t calc_hw_engine_info_size(struct xe_device *xe)
- {
- 	struct xe_hw_engine *hwe;
-@@ -148,7 +132,7 @@ query_engine_cycles(struct xe_device *xe,
- 	if (!gt)
- 		return -EINVAL;
- 
--	if (eci->engine_class >= ARRAY_SIZE(user_to_xe_engine_class))
-+	if (eci->engine_class >= XE_ENGINE_CLASS_MAX)
- 		return -EINVAL;
- 
- 	hwe = xe_gt_hw_engine(gt, user_to_xe_engine_class[eci->engine_class],
++/**
++ * struct drm_xe_vm_get_property - Input of &DRM_IOCTL_XE_VM_GET_PROPERTY
++ *
++ * The user provides a VM and a property to query among DRM_XE_VM_GET_PROPERTY_*,
++ * and sets the values in the vm_id and property members, respectively.  This
++ * determines both the VM to get the property of, as well as the property to
++ * report.
++ *
++ * If size is set to 0, the driver fills it with the required size for the
++ * requested property.  The user is expected here to allocate memory for the
++ * property structure and to provide a pointer to the allocated memory using the
++ * data member.  For some properties, this may be zero, in which case, the
++ * value of the property will be saved to the value member and size will remain
++ * zero on return.
++ *
++ * If size is not zero, then the IOCTL will attempt to copy the requested
++ * property into the data member.
++ *
++ * The IOCTL will return -ENOENT if the VM could not be identified from the
++ * provided VM ID, or -EINVAL if the IOCTL fails for any other reason, such as
++ * providing an invalid size for the given property or if the property data
++ * could not be copied to the memory allocated to the data member.
++ *
++ * The property member can be:
++ *  - %DRM_XE_VM_GET_PROPERTY_FAULTS
++ */
++struct drm_xe_vm_get_property {
++	/** @extensions: Pointer to the first extension struct, if any */
++	__u64 extensions;
++
++	/** @vm_id: The ID of the VM to query the properties of */
++	__u32 vm_id;
++
++#define DRM_XE_VM_GET_PROPERTY_FAULTS		0
++	/** @property: property to get */
++	__u32 property;
++
++	/** @size: Size to allocate for @data */
++	__u32 size;
++
++	/** @pad: MBZ */
++	__u32 pad;
++
++	union {
++		/** @data: Pointer to user-defined array of flexible size and type */
++		__u64 data;
++		/** @value: Return value for scalar queries */
++		__u64 value;
++	};
++
++	/** @reserved: MBZ */
++	__u64 reserved[3];
++};
++
+ /**
+  * struct drm_xe_exec_queue_create - Input of &DRM_IOCTL_XE_EXEC_QUEUE_CREATE
+  *
 -- 
 2.43.0
 
