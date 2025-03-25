@@ -4,68 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBD76C35FFC
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 07:19:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 059FAC35FFC
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 07:33:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9103110E02E;
-	Tue, 25 Mar 2025 07:19:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ioWZUlfF";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7C5A10E02E;
- Tue, 25 Mar 2025 07:19:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742887172; x=1774423172;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=fmAmuTHq8vU0T8QHc+oXeSQFjrfslVBl8fxxg0Yci0Q=;
- b=ioWZUlfFBDs2uR9POxn2rhnMD2PDvSbB+k99QKKoTW/AJZUIqIg6QHpo
- Re9k1GpDhGpVwi1/vbsobKYB5X464PHdCNaRau4MonqviGOhT1yysiRUs
- favvU+YxVjmiR420Ux3US6PpubggjCr+kVkqNwJN6jOF9iYsMTlLhaQao
- wh1qPUwnqc/O/G8JN+xIZVpwWxPw5cwbBQxqK76U6iWYyda/hDlFaddiv
- EO6bR6CqbFfQ9WOv3TpyP3PgA95e/8XUKXe3QLOZlk0/h/LVSdvbX9UXV
- zg9KvbHaTN0G2Rb5oVnWjAfg2zXHSCllZCA3bK0MYn5ImC5ExKxx0ND7B Q==;
-X-CSE-ConnectionGUID: s4Vc4ssiQga2LHL/DhoQUQ==
-X-CSE-MsgGUID: 332ktq2dSyqdPncEjSUmGw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="47993227"
-X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="47993227"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 00:19:32 -0700
-X-CSE-ConnectionGUID: AeBtrb5bT7eGmg3sPqN8jw==
-X-CSE-MsgGUID: pzp5HpOdSY6xljS5fgBE9g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="124460689"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 00:19:30 -0700
-Date: Tue, 25 Mar 2025 09:19:26 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Gupta, saurabhg" <saurabhg.gupta@intel.com>,
- "Zuo, Alex" <alex.zuo@intel.com>,
- "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
- "Brost, Matthew" <matthew.brost@intel.com>,
- "Zhang, Jianxun" <jianxun.zhang@intel.com>,
- "Lin, Shuicheng" <shuicheng.lin@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "Wajdeczko, Michal" <Michal.Wajdeczko@intel.com>,
- "Mrozek, Michal" <michal.mrozek@intel.com>
-Subject: Re: [PATCH v10 5/5] drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
-Message-ID: <Z-JY_kzjHq5fSRBg@black.fi.intel.com>
-References: <20250320152616.74587-1-jonathan.cavitt@intel.com>
- <20250320152616.74587-6-jonathan.cavitt@intel.com>
- <Z934F9fz_-d1oGiC@black.fi.intel.com>
- <CH0PR11MB5444C9D9B706616AFC314810E5A42@CH0PR11MB5444.namprd11.prod.outlook.com>
- <Z-HN3Yvci8x7JwWc@black.fi.intel.com>
- <CH0PR11MB544414B6A0B6FBD0B790CFD4E5A42@CH0PR11MB5444.namprd11.prod.outlook.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7D1D10E02E;
+	Tue, 25 Mar 2025 07:33:39 +0000 (UTC)
+Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6043110E02E;
+ Tue, 25 Mar 2025 07:33:38 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4532152125112384265=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CH0PR11MB544414B6A0B6FBD0B790CFD4E5A42@CH0PR11MB5444.namprd11.prod.outlook.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Read_pa?=
+ =?utf-8?q?nel_replay_source_status_through_PSR2_status_register?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Animesh Manna" <animesh.manna@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 25 Mar 2025 07:33:38 -0000
+Message-ID: <174288801837.76364.152970069628570388@18a75f3d1eae>
+X-Patchwork-Hint: ignore
+References: <20250324100823.3111564-1-animesh.manna@intel.com>
+In-Reply-To: <20250324100823.3111564-1-animesh.manna@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,53 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Mar 25, 2025 at 03:01:27AM +0530, Cavitt, Jonathan wrote:
-> From: Jadav, Raag <raag.jadav@intel.com> 
-> > On Mon, Mar 24, 2025 at 10:27:08PM +0530, Cavitt, Jonathan wrote:
-> > > From: Jadav, Raag <raag.jadav@intel.com> 
-> > > > On Thu, Mar 20, 2025 at 03:26:15PM +0000, Jonathan Cavitt wrote:
-> > > > > Add support for userspace to request a list of observed faults
-> > > > > from a specified VM.
-> > > > 
-> > > > ...
-> > > > 
-> > > > > +static int xe_vm_get_property_size(struct xe_vm *vm, u32 property)
-> > > > > +{
-> > > > > +	int size = -EINVAL;
-> > > > 
-> > > > Mixing size and error codes is usually received with mixed feelings.
-> > > > 
-> > > > > +
-> > > > > +	switch (property) {
-> > > > > +	case DRM_XE_VM_GET_PROPERTY_FAULTS:
-> > > > > +		spin_lock(&vm->faults.lock);
-> > > > > +		size = vm->faults.len * sizeof(struct xe_vm_fault);
-> > > > 
-> > > > size_mul() and,
-> > > > [1] perhaps fill it up into the pointer passed by the caller here?
-> > > 
-> > > "The pointer passed by the caller".  You mean the args pointer?
-> > > 
-> > > We'd still need to check that the args->size value is empty here before overwriting
-> > > it, and we'd also still need to return the size to the ioctl so we can verify it's
-> > > acceptable later in xe_vm_get_property_verify_size.
-> > > 
-> > > Unless you want to merge those two processes together into here?
-> > 
-> > The semantics are a bit fuzzy to me. Why do we have a single ioctl for
-> > two different processes? Shouldn't they be handled separately?
-> 
-> No.  Sorry.  Let me clarify.
-> "two different processes" = getting the size + verifying the size.
+--===============4532152125112384265==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yes, which seems like they should be handlded with _FAULT_NUM and
-_FAULT_DATA ioctls but I guess we're way past it now.
+== Series Details ==
 
-I'm also not much informed about the history here. Is there a real
-usecase behind exposing them? What is the user expected to do with
-this information?
+Series: drm/i915/display: Read panel replay source status through PSR2 status register
+URL   : https://patchwork.freedesktop.org/series/146656/
+State : success
 
-Raag
+== Summary ==
+
+CI Bug Log - changes from xe-2844-9a42bdcde0f77b2c1e947e283cc3b267b1ce2056_BAT -> xe-pw-146656v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (10 -> 9)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-2844-9a42bdcde0f77b2c1e947e283cc3b267b1ce2056 -> xe-pw-146656v1
+
+  IGT_8281: 18c445bea641c03b637d7ed5bc3bd120b5d83b2a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2844-9a42bdcde0f77b2c1e947e283cc3b267b1ce2056: 9a42bdcde0f77b2c1e947e283cc3b267b1ce2056
+  xe-pw-146656v1: 146656v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146656v1/index.html
+
+--===============4532152125112384265==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Read panel replay source status through PSR2 status register</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/146656/">https://patchwork.freedesktop.org/series/146656/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146656v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146656v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2844-9a42bdcde0f77b2c1e947e283cc3b267b1ce2056_BAT -&gt; xe-pw-146656v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (10 -&gt; 9)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2844-9a42bdcde0f77b2c1e947e283cc3b267b1ce2056 -&gt; xe-pw-146656v1</li>
+</ul>
+<p>IGT_8281: 18c445bea641c03b637d7ed5bc3bd120b5d83b2a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2844-9a42bdcde0f77b2c1e947e283cc3b267b1ce2056: 9a42bdcde0f77b2c1e947e283cc3b267b1ce2056<br />
+  xe-pw-146656v1: 146656v1</p>
+
+</body>
+</html>
+
+--===============4532152125112384265==--
