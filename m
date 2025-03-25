@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2651EC3600D
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 11:35:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0470AC3600E
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 11:35:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA75210E561;
-	Tue, 25 Mar 2025 11:35:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C01F510E565;
+	Tue, 25 Mar 2025 11:35:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OS7mj+TM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SxZbaQex";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B5F510E55C;
- Tue, 25 Mar 2025 11:35:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 980DB10E55C;
+ Tue, 25 Mar 2025 11:35:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742902501; x=1774438501;
+ t=1742902505; x=1774438505;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tZHQxC8ZaHKB46FaN4CY31F4VpeLO667r3/RMy7ARSc=;
- b=OS7mj+TMPOVFY6rshPN2KPnWgr42BZC//sOFdOmp279NuCxrxqI3IO1q
- 5bwg3/3RzvCw1MIYcYdTJRpua4Z8PFvGUqfDDtNFCONW8z68vypDTJNBw
- cMeJ6Z+/zlh/YIC8NihANxBuH+FQREb3Ns87NfiP3PtG40TZlgXg5OCi5
- AsgCps2LNPeb1+5L2kCXeCsVQQVcRLdL1FtkCkeVCnIwowXa9GWO80XXn
- JM8Gzpjo3ku6aQ2QNPqWXuwnOHWT3nEjsO72OTSh+WKVOXrwEN6Kj0lLS
- NdY9TGGKea0/LfSqPchX4IgJ69AB1pke91WLUrjiuBfaOY0HeaKahrm9X A==;
-X-CSE-ConnectionGUID: MkfHUT5TTxKOhaksK8S2KA==
-X-CSE-MsgGUID: 8k1slUTeSoe5ZgEcqJffYA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="44266934"
-X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="44266934"
+ bh=L/0LBo3c24Uq6hZ6DuG7+qONYxSWG2mR5yiLhqiEM5A=;
+ b=SxZbaQexZoyNnzg/iP0e2hXcK/DOMhw/yGhLn5u6LVhV3awvlCEJh8v7
+ rPx0RRoj9p5PuwpD7phYhpilIx1BaJ2nz/5MMUbE3Yu1CHUYe8hgGThdU
+ BYAY8Yv7xfeKNbrJpTB/zlathWWD6vR0LKmDasrwyD+m7+WTUHoJCJWUS
+ V24Z82M88yAEVoEpf/3IaJEmglT2rrv5P2X9/0d2xC24W+T6tVxcfBavj
+ eqwrxn0NH3YcZ/V3dtIuad4mHJly1N1dnucNFDoeAXC0a1TyRwyKylGrs
+ JuSec0xBlJhnwjwm2xncLC06XSNYkT5fQNkGG8hYSJNq7FDeD/ysyAsbq w==;
+X-CSE-ConnectionGUID: ss40h/W0T5KTtKH0EGHfvg==
+X-CSE-MsgGUID: SS/w9ascQFSpnh8wUH4ITA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="44266942"
+X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="44266942"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 04:35:01 -0700
-X-CSE-ConnectionGUID: /agMTQBdRYqHMelDnz6ffQ==
-X-CSE-MsgGUID: nk00pwUzRN+wDxr/9Mq7LQ==
+ 25 Mar 2025 04:35:05 -0700
+X-CSE-ConnectionGUID: tZjymCb9ThqU57hMF2yMuQ==
+X-CSE-MsgGUID: QAjUKTCoQ3u+fYRKvC2qQA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="124070621"
+X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="124070640"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 04:34:59 -0700
+ 25 Mar 2025 04:35:03 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 12/16] drm/i915/vrr: Allow fixed_rr with pipe joiner
-Date: Tue, 25 Mar 2025 16:52:45 +0530
-Message-ID: <20250325112249.228444-13-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 14/16] drm/i915/vrr: Set trans_vrr_ctl in
+ intel_vrr_set_transcoder_timings()
+Date: Tue, 25 Mar 2025 16:52:47 +0530
+Message-ID: <20250325112249.228444-15-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250325112249.228444-1-ankit.k.nautiyal@intel.com>
 References: <20250325112249.228444-1-ankit.k.nautiyal@intel.com>
@@ -68,59 +69,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-VRR with joiner is currently disabled as it still needs some work to
-correctly sequence the primary and secondary transcoders. However, we can
-still use VRR Timing generator in fixed refresh rate for joiner and since
-it just need to program vrr timings once and does not involve changing
-timings on the fly. We still need to skip the VRR and LRR for joiner.
+We now always set vrr.flipline, vmin, and vmax for all platforms that
+support VRR. Therefore, we should set all TRANS_VRR_CTL bits except
+VRR_ENABLE. Without this, the readback for these bits will fail because we
+only read vrr.flipline, vmin, and vmax if TRANS_VRR_CTL has the
+FLIPLINE_EN bit set.
 
-To achieve this set vrr.in_range to 0 for joiner case, so that we do not
-try VRR and LRR for the joiner case.
+For platforms that always have the VRR Timing Generator enabled,
+the FLIPLINE_EN bit is always set in TRANS_VRR_CTL during
+intel_transcoder_vrr_enable(). However, for the remaining platforms
+(that do not always have the VRR Timing Generator enabled) if a full
+modeset doesn't occur and VRR is not enabled, the bit is not set.
 
-v2: Avoid checks for secondary pipes, where not required. (Ville)
-v3: Remove a redundant check and reset vrr.in_range to false. (Ville)
+This results in a mismatch between the software state and hardware state
+because the software state expects VRR timings like flipline, vmin, and
+vmax to be set, but the readout for these doesn't happen since the
+FLIPLINE_EN bit is not set in TRANS_VRR_CTL.
+
+To avoid this mismatch, write trans_vrr_ctl in
+intel_vrr_set_transcoder_timings() even when VRR is not enabled
+for platforms that do not have the VRR Timing Generator always enabled.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vrr.c | 18 +++++++++++-------
- 1 file changed, 11 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index c57e0319d83c..dda42522f461 100644
+index 5e60da2bb0c3..414f93851059 100644
 --- a/drivers/gpu/drm/i915/display/intel_vrr.c
 +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -355,19 +355,23 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
- 	if (!HAS_VRR(display))
- 		return;
+@@ -484,6 +484,10 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
  
--	/*
--	 * FIXME all joined pipes share the same transcoder.
--	 * Need to account for that during VRR toggle/push/etc.
--	 */
--	if (crtc_state->joiner_pipes)
--		return;
--
- 	if (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE)
- 		return;
+ 	intel_vrr_set_fixed_rr_timings(crtc_state);
  
- 	crtc_state->vrr.in_range =
- 		intel_vrr_is_in_range(connector, drm_mode_vrefresh(adjusted_mode));
- 
-+	/*
-+	 * Allow fixed refresh rate with VRR Timing Generator.
-+	 * For now set the vrr.in_range to 0, to allow fixed_rr but skip actual
-+	 * VRR and LRR.
-+	 * #TODO For actual VRR with joiner, we need to figure out how to
-+	 * correctly sequence transcoder level stuff vs. pipe level stuff
-+	 * in the commit.
-+	 */
-+	if (crtc_state->joiner_pipes)
-+		crtc_state->vrr.in_range = false;
++	if (!intel_vrr_always_use_vrr_tg(display) && !crtc_state->vrr.enable)
++		intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
++			       trans_vrr_ctl(crtc_state));
 +
- 	vmin = intel_vrr_compute_vmin(crtc_state);
- 
- 	if (crtc_state->vrr.in_range) {
+ 	if (HAS_AS_SDP(display))
+ 		intel_de_write(display,
+ 			       TRANS_VRR_VSYNC(display, cpu_transcoder),
 -- 
 2.45.2
 
