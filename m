@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DD47C36005
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 11:34:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0ACD8C35FFC
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 11:34:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E28010E550;
-	Tue, 25 Mar 2025 11:34:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C29CF10E552;
+	Tue, 25 Mar 2025 11:34:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TuAJgESP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eMLD/bnI";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5439810E545;
- Tue, 25 Mar 2025 11:34:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60C3510E552;
+ Tue, 25 Mar 2025 11:34:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742902481; x=1774438481;
+ t=1742902489; x=1774438489;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=vrMDsbnXw4hAnppdNthh0LROa0wxHSVqiKX9fmtn14U=;
- b=TuAJgESPnVP40fzQKzNQKwIkpQBa37RlfCEZLYB5A3tKCOpmMsIqypMY
- swHTuK5ujpoqAl39YH1f5n4Rz6GExz3jx5IPyrvlN3eEaLy5MkgP6cRA7
- PAK6JdNTfgnHXskwAEDT/3YYu6OYoD14LBqntXtyvT5fX9pL1Ra+ocsTJ
- dlzqBVoJ1GK/oAkyTdrJnuReGhoTuofltCUMKlFrUQUkO7irv+ag2cMU5
- RK+C2bgDCdH8KLyZuF7MHpl79wVbHT6BAewY1PH7hO7p891f7g9ho9BLH
- soRVob0+SUpsGYYzXOh7ZBQQ+KTC6ujGrdFNxFyHptwWT36RPwt8bTH+b w==;
-X-CSE-ConnectionGUID: NLXg9cyxRjykH5TUORtIWQ==
-X-CSE-MsgGUID: QMwSHMhqRbCmN12dl7B8Sg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="44266902"
-X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="44266902"
+ bh=l9lhqX9X5DPP3EmmQXz4r/1BesaJTao62iK2w1hzAP8=;
+ b=eMLD/bnITpyzzQAlMTA0yahZYCyoZ+IYVPlFi5ZSkKDaKG/K1Mdf9Snr
+ M8rzOeasdpglKJuQyaDMwD6kPWsl9MVeryhNjcSClEjOfCPg2iT0ytN8T
+ P0jgU4bJlfulAw0y+CdZEV2SKnQ4t7EJ/0aCzKpHM2EpKQ0D/Q4AUniED
+ ZCwr+yoEkg7b+3TEIBhJLIRq6YLwRCjtInOVwdeFhC97SwZLy4kCN2YUM
+ rkVcPrMEDTsOeLW6l+oxDC0ZMP3XSpBniVyOMx7Gaxk5ihS+0Pv1FPrFq
+ V7Wkj3fV8IbXg92KmBXdb2H86N+7OMZrQtZjwZsp1ozRrQRLLa6u3iXf+ g==;
+X-CSE-ConnectionGUID: N5VcC8phR7qytS2bimvm5g==
+X-CSE-MsgGUID: VU+TiEEsQF+oDplDllN8og==
+X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="44266913"
+X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="44266913"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 04:34:41 -0700
-X-CSE-ConnectionGUID: v3lABHRiRIakHCq5DLc9Sg==
-X-CSE-MsgGUID: CcEwNuihTF6Yf1iLsZlUWA==
+ 25 Mar 2025 04:34:49 -0700
+X-CSE-ConnectionGUID: Y+wxtvimRqC8EA/axT5peg==
+X-CSE-MsgGUID: 7DbdEv9JSQSAcqiDu0X8aw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="124070538"
+X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="124070569"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 04:34:39 -0700
+ 25 Mar 2025 04:34:47 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 02/16] drm/i915/dp_mst: Use VRR Timing generator for DP MST
- for fixed_rr
-Date: Tue, 25 Mar 2025 16:52:35 +0530
-Message-ID: <20250325112249.228444-3-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 06/16] drm/i915/vrr: Always set vrr vmax/vmin/flipline in
+ vrr_{enable/disable}
+Date: Tue, 25 Mar 2025 16:52:39 +0530
+Message-ID: <20250325112249.228444-7-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250325112249.228444-1-ankit.k.nautiyal@intel.com>
 References: <20250325112249.228444-1-ankit.k.nautiyal@intel.com>
@@ -69,62 +69,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently the variable timings are supported only for DP and eDP and not
-for DP MST. Call intel_vrr_compute_config() for MST which will configure
-fixed refresh rate timings irrespective of whether VRR is supported or
-not. Since vrr_capable still doesn't have support for DP MST this will be
-just treated as non VRR case and vrr.vmin/vmax/flipline will be all set
-to adjusted_mode->crtc_vtotal.
-
-This will help to move away from the legacy timing generator and
-always use VRR timing generator by default.
-
-With this change, we need to exclude MST in intel_vrr_is_capable for
-now, to avoid having LRR with MST.
-
-v2: Exclude MST in intel_vrr_is_capable() for now. (Ville)
+For platforms for which vrr timing generator is always set, VRR_CTL
+enable bit does not need to toggle, so modify the vrr_{enable/disable}
+for this.
+At the moment the helper intel_vrr_always_use_vrr_tg() return false for
+all cases. This will be set later when all other bits are in place.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 3 +++
- drivers/gpu/drm/i915/display/intel_vrr.c    | 2 ++
- 2 files changed, 5 insertions(+)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 40 ++++++++++++++++--------
+ 1 file changed, 27 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 02f95108c637..bd47cf127b4c 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -52,6 +52,7 @@
- #include "intel_pfit.h"
- #include "intel_psr.h"
- #include "intel_vdsc.h"
-+#include "intel_vrr.h"
- #include "skl_scaler.h"
- 
- /*
-@@ -710,6 +711,8 @@ static int mst_stream_compute_config(struct intel_encoder *encoder,
- 		pipe_config->lane_lat_optim_mask =
- 			bxt_dpio_phy_calc_lane_lat_optim_mask(pipe_config->lane_count);
- 
-+	intel_vrr_compute_config(pipe_config, conn_state);
-+
- 	intel_dp_audio_compute_config(encoder, pipe_config, conn_state);
- 
- 	intel_ddi_compute_min_voltage_level(pipe_config);
 diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 6bdcdfed4b9b..c682c487eb25 100644
+index e68c13ae21b3..8ae279f132fd 100644
 --- a/drivers/gpu/drm/i915/display/intel_vrr.c
 +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -32,6 +32,8 @@ bool intel_vrr_is_capable(struct intel_connector *connector)
- 			return false;
- 		fallthrough;
- 	case DRM_MODE_CONNECTOR_DisplayPort:
-+		if (connector->mst.dp)
-+			return false;
- 		intel_dp = intel_attached_dp(connector);
+@@ -560,6 +560,16 @@ bool intel_vrr_is_push_sent(const struct intel_crtc_state *crtc_state)
+ 	return intel_de_read(display, TRANS_PUSH(display, cpu_transcoder)) & TRANS_PUSH_SEND;
+ }
  
- 		if (!drm_dp_sink_can_do_video_without_timing_msa(intel_dp->dpcd))
++static
++bool intel_vrr_always_use_vrr_tg(struct intel_display *display)
++{
++	if (!HAS_VRR(display))
++		return false;
++
++	/* #TODO return true for platforms supporting fixed_rr */
++	return false;
++}
++
+ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+@@ -578,13 +588,15 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
+ 	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder),
+ 		       TRANS_PUSH_EN);
+ 
+-	if (crtc_state->cmrr.enable) {
+-		intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
+-			       VRR_CTL_VRR_ENABLE | VRR_CTL_CMRR_ENABLE |
+-			       trans_vrr_ctl(crtc_state));
+-	} else {
+-		intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
+-			       VRR_CTL_VRR_ENABLE | trans_vrr_ctl(crtc_state));
++	if (!intel_vrr_always_use_vrr_tg(display)) {
++		if (crtc_state->cmrr.enable) {
++			intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
++				       VRR_CTL_VRR_ENABLE | VRR_CTL_CMRR_ENABLE |
++				       trans_vrr_ctl(crtc_state));
++		} else {
++			intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
++				       VRR_CTL_VRR_ENABLE | trans_vrr_ctl(crtc_state));
++		}
+ 	}
+ }
+ 
+@@ -596,12 +608,14 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
+ 	if (!old_crtc_state->vrr.enable)
+ 		return;
+ 
+-	intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
+-		       trans_vrr_ctl(old_crtc_state));
+-	intel_de_wait_for_clear(display,
+-				TRANS_VRR_STATUS(display, cpu_transcoder),
+-				VRR_STATUS_VRR_EN_LIVE, 1000);
+-	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder), 0);
++	if (!intel_vrr_always_use_vrr_tg(display)) {
++		intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
++			       trans_vrr_ctl(old_crtc_state));
++		intel_de_wait_for_clear(display,
++					TRANS_VRR_STATUS(display, cpu_transcoder),
++					VRR_STATUS_VRR_EN_LIVE, 1000);
++		intel_de_write(display, TRANS_PUSH(display, cpu_transcoder), 0);
++	}
+ 
+ 	intel_vrr_set_fixed_rr_timings(old_crtc_state);
+ }
 -- 
 2.45.2
 
