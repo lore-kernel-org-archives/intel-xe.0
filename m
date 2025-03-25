@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A56EC35FFC
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 09:16:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F131EC35FFC
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 09:27:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B4EE10E52B;
-	Tue, 25 Mar 2025 09:16:54 +0000 (UTC)
-Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E89110E2CD;
- Tue, 25 Mar 2025 09:16:53 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8CE210E52C;
+	Tue, 25 Mar 2025 09:27:10 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C4QeKt1z";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB20B10E52C;
+ Tue, 25 Mar 2025 09:27:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1742894829; x=1774430829;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=/5gZ5VxCL8g0RJz4ODGPdjEBgLvzUrfvsCoCS39Cy1g=;
+ b=C4QeKt1z7JxAyVOq5ec/Z7NCRiV9rnrucr4lvu0zz4XeICkhirgI3OQp
+ EZ6am1dkneRA/+y0iQq+1VqPt7OA6O5knLOqzWBIGrXGYj+Y4ti3D7Nb9
+ Moe9w1dFoPNZmsaQi4mbWKQMXsj1NGJeV+6Kvam04uibnHcV5R8BjHwD3
+ 6XjQKi2h7zu2YK+HLjGqPXh5FKiXpB77d4XzuJi/IGLvrZuXbXSwP1RKx
+ Nep4feUXmtCwO5oUoWI4PJpJXM/NiT/plwBCLqHzcSOb3ZP/eYCa8xvY7
+ QiB3a06YurQdZaPz2rKxxsQlukauJmb4l0C2i/CdLGUAcbFJgrsdL+e1I Q==;
+X-CSE-ConnectionGUID: 3PYwjuliQe6QnlFxFUDFiA==
+X-CSE-MsgGUID: wEb8eDlVTdiN61y/2/PQXg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="31734446"
+X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="31734446"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2025 02:27:08 -0700
+X-CSE-ConnectionGUID: H/1YEbWfQ2C3ddpS6no4gQ==
+X-CSE-MsgGUID: 5o5coKVnSKWUczk4ACLQ1w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="129417187"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.134])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2025 02:27:07 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH v2 0/2] drm/i915: Fix DP MST DB message timeouts due to
+ PPS delays
+In-Reply-To: <20250324180145.142884-1-imre.deak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250324180145.142884-1-imre.deak@intel.com>
+Date: Tue, 25 Mar 2025 11:27:04 +0200
+Message-ID: <8734f1a2af.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_series_starting_with_=5B?=
- =?utf-8?q?1/2=5D_drm/xe=3A_Remove_extra_spaces_in_xe=5Fvm=2Ec_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 25 Mar 2025 09:16:53 -0000
-Message-ID: <174289421364.11.9362191411315223708@e6b6f09ec485>
-X-Patchwork-Hint: ignore
-References: <20250320211519.632432-1-dev@lankhorst.se>
-In-Reply-To: <20250320211519.632432-1-dev@lankhorst.se>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +67,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, 24 Mar 2025, Imre Deak <imre.deak@intel.com> wrote:
+> This is v2 of [1], dropping the change to lock PPS and enable VDD from a
+> separate function, as requested by Jani.
 
-Series: series starting with [1/2] drm/xe: Remove extra spaces in xe_vm.c (rev2)
-URL   : https://patchwork.freedesktop.org/series/146562/
-State : success
+Thanks for doing this!
 
-== Summary ==
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast c217ee2fc8a5267fa66276423f3f27867480c98e
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
+>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> [1] https://lore.kernel.org/all/20250321145626.94101-1-imre.deak@intel.com
+>
+> Imre Deak (2):
+>   drm/i915/pps: Let calling intel_pps_vdd_{on,off}_unlocked() w/o PPS
+>     lock held
+>   drm/i915/dp_mst: Fix side-band message timeouts due to long PPS delays
+>
+>  drivers/gpu/drm/i915/display/intel_dp_aux.c | 21 ++++++++++++++++++---
+>  drivers/gpu/drm/i915/display/intel_pps.c    |  8 ++++----
+>  2 files changed, 22 insertions(+), 7 deletions(-)
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+--=20
+Jani Nikula, Intel
