@@ -4,57 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 944D4C36005
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 12:37:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AE4FC35FFC
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 12:38:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CC5410E55D;
-	Tue, 25 Mar 2025 12:37:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D5D810E264;
+	Tue, 25 Mar 2025 12:38:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cR81zF38";
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="I0yFoSWE";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E83E510E566;
- Tue, 25 Mar 2025 12:37:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742906233; x=1774442233;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=jPzHuDRbo+cUilFRIRIlafivhyKUpPKlNWI/XXMRV1Q=;
- b=cR81zF384SVgnv+oyb71Cw7+WlghFkGNKmNcnXrdJr8hjavNQ3mzv1p3
- 4efQtlRzjWVRraf2UlfaroSfyJkLIQSbnR8DU+kIFq82E+7yK8iVSD/sn
- GNLgqgrTSgMKCl8KV771fYN0Qs2Ud8wlABg9THfhvamkBlhV5OISqQ+oL
- xnR2H1NKLVH6VblZIpdRIX0wkcgMd9CfiK02xFYUqlPnnKu8pGXvVoSIU
- zba1FvBE0EsFA4gKRYMA4SesOcAh6sks4Q5pS56j5+QRJ2k1L7Fhod57X
- 6eWuDydg93+00DKLNweOvVROCm4an/DAwJw6tgClYLPjQ8gEm9JUuw44t Q==;
-X-CSE-ConnectionGUID: 0qx1gpebQuqjfTWHpJqtjQ==
-X-CSE-MsgGUID: GECmDW/SRE2ZzGdej3F5jg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11384"; a="47933266"
-X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="47933266"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 05:37:13 -0700
-X-CSE-ConnectionGUID: h612nrK4QWCzqnmzd69OPg==
-X-CSE-MsgGUID: rXLsHkQ1StC5hgs3QJ0KCw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="155274902"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.134])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 05:37:11 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 6/6] drm/i915/display: drop some unnecessary intel_de_*
- compatibility wrappers
-Date: Tue, 25 Mar 2025 14:36:38 +0200
-Message-Id: <35589d84ee7996f8972ddb3ebc1aae1b53077b19.1742906146.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1742906146.git.jani.nikula@intel.com>
-References: <cover.1742906146.git.jani.nikula@intel.com>
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 981EE10E264
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Mar 2025 12:38:50 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 8A068A493C1;
+ Tue, 25 Mar 2025 12:33:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F341EC4CEED;
+ Tue, 25 Mar 2025 12:38:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1742906329;
+ bh=tRN3yHJ/A1t+4Um0CfwWgvCIF5NNuTj3Emju3pZ4F4g=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=I0yFoSWEIdV6/xwEZw4e09lNaNZii8m8fwpmF4oDufZuyBzUG81Nu6Dp5IAFkkCse
+ ziyrfEa2v8+liMDcennpRiH/84nb3rENhNemjN+aVnabWYmNwijD+riQ3S4PomfLZw
+ pliloy+YB5DP3tzzA3S3RE1OJSCdSgrX3uOuPpuQ=
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: stable@vger.kernel.org
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, patches@lists.linux.dev,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, Nirmoy Das <nirmoy.das@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>, intel-xe@lists.freedesktop.org,
+ Tomasz Rusinowicz <tomasz.rusinowicz@intel.com>,
+ Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
+Subject: [PATCH 6.12 059/116] drm/xe: Fix exporting xe buffers multiple times
+Date: Tue, 25 Mar 2025 08:22:26 -0400
+Message-ID: <20250325122150.718996453@linuxfoundation.org>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250325122149.207086105@linuxfoundation.org>
+References: <20250325122149.207086105@linuxfoundation.org>
+User-Agent: quilt/0.68
+X-stable: review
+X-Patchwork-Hint: ignore
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,70 +65,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-intel_de_wait_for_set(), intel_de_wait_for_clear(), intel_de_read_fw(),
-and intel_de_write_fw() are only passed struct intel_display. Remove the
-unnecessary compatibility wrappers.
+6.12-stable review patch.  If anyone has any objections, please let me know.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+------------------
+
+From: Tomasz Rusinowicz <tomasz.rusinowicz@intel.com>
+
+commit 50af7cab7520e46680cf4633bba6801443b75856 upstream.
+
+The `struct ttm_resource->placement` contains TTM_PL_FLAG_* flags, but
+it was incorrectly tested for XE_PL_* flags.
+This caused xe_dma_buf_pin() to always fail when invoked for
+the second time. Fix this by checking the `mem_type` field instead.
+
+Fixes: 7764222d54b7 ("drm/xe: Disallow pinning dma-bufs in VRAM")
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Cc: <stable@vger.kernel.org> # v6.8+
+Signed-off-by: Tomasz Rusinowicz <tomasz.rusinowicz@intel.com>
+Signed-off-by: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20250218100353.2137964-1-jacek.lawrynowicz@linux.intel.com
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+(cherry picked from commit b96dabdba9b95f71ded50a1c094ee244408b2a8e)
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 ---
- drivers/gpu/drm/i915/display/intel_de.h | 16 ++++++----------
- 1 file changed, 6 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.h      |    2 --
+ drivers/gpu/drm/xe/xe_dma_buf.c |    2 +-
+ 2 files changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
-index b7399e9d11cc..655467a6ba87 100644
---- a/drivers/gpu/drm/i915/display/intel_de.h
-+++ b/drivers/gpu/drm/i915/display/intel_de.h
-@@ -181,20 +181,18 @@ intel_de_wait_custom(struct intel_display *display, i915_reg_t reg,
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -314,7 +314,6 @@ static inline unsigned int xe_sg_segment
+ 
+ #define i915_gem_object_flush_if_display(obj)		((void)(obj))
+ 
+-#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+ /**
+  * xe_bo_is_mem_type - Whether the bo currently resides in the given
+  * TTM memory type
+@@ -329,4 +328,3 @@ static inline bool xe_bo_is_mem_type(str
+ 	return bo->ttm.resource->mem_type == mem_type;
  }
- 
- static inline int
--__intel_de_wait_for_set(struct intel_display *display, i915_reg_t reg,
--			u32 mask, unsigned int timeout)
-+intel_de_wait_for_set(struct intel_display *display, i915_reg_t reg,
-+		      u32 mask, unsigned int timeout)
- {
- 	return intel_de_wait(display, reg, mask, mask, timeout);
- }
--#define intel_de_wait_for_set(p,...) __intel_de_wait_for_set(__to_intel_display(p), __VA_ARGS__)
- 
- static inline int
--__intel_de_wait_for_clear(struct intel_display *display, i915_reg_t reg,
--			  u32 mask, unsigned int timeout)
-+intel_de_wait_for_clear(struct intel_display *display, i915_reg_t reg,
-+			u32 mask, unsigned int timeout)
- {
- 	return intel_de_wait(display, reg, mask, 0, timeout);
- }
--#define intel_de_wait_for_clear(p,...) __intel_de_wait_for_clear(__to_intel_display(p), __VA_ARGS__)
- 
- /*
-  * Unlocked mmio-accessors, think carefully before using these.
-@@ -205,7 +203,7 @@ __intel_de_wait_for_clear(struct intel_display *display, i915_reg_t reg,
-  * a more localised lock guarding all access to that bank of registers.
-  */
- static inline u32
--__intel_de_read_fw(struct intel_display *display, i915_reg_t reg)
-+intel_de_read_fw(struct intel_display *display, i915_reg_t reg)
- {
- 	u32 val;
- 
-@@ -214,15 +212,13 @@ __intel_de_read_fw(struct intel_display *display, i915_reg_t reg)
- 
- 	return val;
- }
--#define intel_de_read_fw(p,...) __intel_de_read_fw(__to_intel_display(p), __VA_ARGS__)
- 
- static inline void
--__intel_de_write_fw(struct intel_display *display, i915_reg_t reg, u32 val)
-+intel_de_write_fw(struct intel_display *display, i915_reg_t reg, u32 val)
- {
- 	trace_i915_reg_rw(true, reg, val, sizeof(val), true);
- 	intel_uncore_write_fw(__to_uncore(display), reg, val);
- }
--#define intel_de_write_fw(p,...) __intel_de_write_fw(__to_intel_display(p), __VA_ARGS__)
- 
- static inline u32
- intel_de_read_notrace(struct intel_display *display, i915_reg_t reg)
--- 
-2.39.5
+ #endif
+-#endif
+--- a/drivers/gpu/drm/xe/xe_dma_buf.c
++++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+@@ -58,7 +58,7 @@ static int xe_dma_buf_pin(struct dma_buf
+ 	 * 1) Avoid pinning in a placement not accessible to some importers.
+ 	 * 2) Pinning in VRAM requires PIN accounting which is a to-do.
+ 	 */
+-	if (xe_bo_is_pinned(bo) && bo->ttm.resource->placement != XE_PL_TT) {
++	if (xe_bo_is_pinned(bo) && !xe_bo_is_mem_type(bo, XE_PL_TT)) {
+ 		drm_dbg(&xe->drm, "Can't migrate pinned bo for dma-buf pin.\n");
+ 		return -EINVAL;
+ 	}
+
 
