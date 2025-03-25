@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF697C3600B
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 13:47:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B392C35FFC
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Mar 2025 13:48:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9095B10E06E;
-	Tue, 25 Mar 2025 13:47:23 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lSXU0vhl";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFF6810E06E
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Mar 2025 13:47:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742910443; x=1774446443;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=+S2eesVkhlr5fcLeBIDHGNleFfG2C8yHN+s6AGYSk18=;
- b=lSXU0vhlw2Eqyb4fbTQfpI2bSsAFicWzu1Owc7AK02PSRASFtuZ8oofU
- 4/9qU/wn84KFTjulDbGzR/FgWXU2r0DTGu+WC79og+h6WNMCIEHo5SXfE
- pbomE0p55k1Q3kbp9PMRtPUXxEMHbxuu0Z4ITto+IN9lHIPAXZh0N4AIi
- 4uKJAdN3SCWkTyXcktuVl8NVAwwOim4IdpLA521voUX0Dr0i6CU9WdmJ9
- Js01xqYFTlPjTdCQQkVmJ/GiTMkLkOW/7fNhaySQ6Y+9LSw5kKlwSMz2v
- HgsSlcNsVMbcHLi6dbcU8bNvtHtDe6Kr+DDawx5zwH8jd9sqaWQZlqURZ g==;
-X-CSE-ConnectionGUID: 7xiNFLOdQPCzmXbBhGDGwQ==
-X-CSE-MsgGUID: ycRb5XOvS3axs+KJieCJkA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11384"; a="47941187"
-X-IronPort-AV: E=Sophos;i="6.14,275,1736841600"; d="scan'208";a="47941187"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 06:47:22 -0700
-X-CSE-ConnectionGUID: umAlLgTwQhGObEpqh5vFHQ==
-X-CSE-MsgGUID: pOO99vsEQE2Ubj5kOHoJVQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,275,1736841600"; d="scan'208";a="129492138"
-Received: from unknown (HELO aradhyab-desk.iind.intel.com) ([10.190.216.90])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 06:47:20 -0700
-From: Aradhya Bhatia <aradhya.bhatia@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: Intel XE List <intel-xe@lists.freedesktop.org>,
- Ayaz A Siddiqui <ayaz.siddiqui@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Aradhya Bhatia <aradhya.bhatia@intel.com>
-Subject: [PATCH v2] drm/xe/xe2hpg: Add Wa_16025250150
-Date: Tue, 25 Mar 2025 19:14:21 +0530
-Message-Id: <20250325134421.1489416-1-aradhya.bhatia@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0444310E39C;
+	Tue, 25 Mar 2025 13:48:02 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D131E10E39C;
+ Tue, 25 Mar 2025 13:48:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915=3A_use_display_snapsh?=
+ =?utf-8?q?ot_mechanism_for_display_irq_regs?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 25 Mar 2025 13:48:00 -0000
+Message-ID: <174291048085.1128.10446623568460576066@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250325125954.1805212-1-jani.nikula@intel.com>
+In-Reply-To: <20250325125954.1805212-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,74 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add Wa_16025250150 for the Xe2_HPG (graphics version: 20.01) platforms.
-It is a permanent workaround, and applicable on all the steppings.
+== Series Details ==
 
-Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Signed-off-by: Aradhya Bhatia <aradhya.bhatia@intel.com>
----
-Changes in v2:
-  - Define the reg as MCR (XE_REG_MCR instead of XE_REG), as suggested by
-    Tejas Upadhyay.
-  - Add R-b tag (Tejas Upadhyay).
-  - v1: https://lore.kernel.org/all/20250325064434.970748-1-aradhya.bhatia@intel.com/
+Series: drm/i915: use display snapshot mechanism for display irq regs
+URL   : https://patchwork.freedesktop.org/series/146734/
+State : success
 
----
- drivers/gpu/drm/xe/regs/xe_gt_regs.h | 12 ++++++++++++
- drivers/gpu/drm/xe/xe_wa.c           | 12 ++++++++++++
- 2 files changed, 24 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index da1f198ac107..58f4218c2569 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -392,6 +392,18 @@
- #define XEHP_L3NODEARBCFG			XE_REG_MCR(0xb0b4)
- #define   XEHP_LNESPARE				REG_BIT(19)
- 
-+#define LSN_VC_REG2				XE_REG_MCR(0xb0c8)
-+#define   LSN_LNI_WGT_MASK			REG_GENMASK(31, 28)
-+#define   LSN_LNI_WGT(value)			REG_FIELD_PREP(LSN_LNI_WGT_MASK, value)
-+#define   LSN_LNE_WGT_MASK			REG_GENMASK(27, 24)
-+#define   LSN_LNE_WGT(value)			REG_FIELD_PREP(LSN_LNE_WGT_MASK, value)
-+#define   LSN_DIM_X_WGT_MASK			REG_GENMASK(23, 20)
-+#define   LSN_DIM_X_WGT(value)			REG_FIELD_PREP(LSN_DIM_X_WGT_MASK, value)
-+#define   LSN_DIM_Y_WGT_MASK			REG_GENMASK(19, 16)
-+#define   LSN_DIM_Y_WGT(value)			REG_FIELD_PREP(LSN_DIM_Y_WGT_MASK, value)
-+#define   LSN_DIM_Z_WGT_MASK			REG_GENMASK(15, 12)
-+#define   LSN_DIM_Z_WGT(value)			REG_FIELD_PREP(LSN_DIM_Z_WGT_MASK, value)
-+
- #define L3SQCREG2				XE_REG_MCR(0xb104)
- #define   COMPMEMRD256BOVRFETCHEN		REG_BIT(20)
- 
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 24f644c0a673..6f6563cc7430 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -230,6 +230,18 @@ static const struct xe_rtp_entry_sr gt_was[] = {
- 	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE),
- 	},
- 
-+	/* Xe2_HPG */
-+
-+	{ XE_RTP_NAME("16025250150"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2001)),
-+	  XE_RTP_ACTIONS(SET(LSN_VC_REG2,
-+			     LSN_LNI_WGT(1) |
-+			     LSN_LNE_WGT(1) |
-+			     LSN_DIM_X_WGT(1) |
-+			     LSN_DIM_Y_WGT(1) |
-+			     LSN_DIM_Z_WGT(1)))
-+	},
-+
- 	/* Xe2_HPM */
- 
- 	{ XE_RTP_NAME("16021867713"),
+lib/modules/6.14.0-xe+/kernel/arch/x86/events/amd/
+lib/modules/6.14.0-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.14.0-xe+/kernel/kernel/
+lib/modules/6.14.0-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.14.0-xe+/kernel/crypto/
+lib/modules/6.14.0-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.14.0-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.14.0-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.14.0-xe+/kernel/crypto/zstd.ko
+lib/modules/6.14.0-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.14.0-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.14.0-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.14.0-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/xctr.ko
+lib/modules/6.14.0-xe+/kernel/crypto/authenc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm3.ko
+lib/modules/6.14.0-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.14.0-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.14.0-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cmac.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.14.0-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/essiv.ko
+lib/modules/6.14.0-xe+/kernel/crypto/ccm.ko
+lib/modules/6.14.0-xe+/kernel/crypto/wp512.ko
+lib/modules/6.14.0-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.14.0-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.14.0-xe+/kernel/crypto/lrw.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.14.0-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.14.0-xe+/kernel/crypto/842.ko
+lib/modules/6.14.0-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.14.0-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/md4.ko
+lib/modules/6.14.0-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.14.0-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/lz4.ko
+lib/modules/6.14.0-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.14.0-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm4.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.14.0-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.14.0-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.14.0-xe+/kernel/block/
+lib/modules/6.14.0-xe+/kernel/block/bfq.ko
+lib/modules/6.14.0-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.14.0-xe+/build
+lib/modules/6.14.0-xe+/modules.alias.bin
+lib/modules/6.14.0-xe+/modules.builtin
+lib/modules/6.14.0-xe+/modules.softdep
+lib/modules/6.14.0-xe+/modules.alias
+lib/modules/6.14.0-xe+/modules.order
+lib/modules/6.14.0-xe+/modules.symbols
+lib/modules/6.14.0-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1742910470:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1742910470:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-base-commit: 9a42bdcde0f77b2c1e947e283cc3b267b1ce2056
--- 
-2.34.1
 
