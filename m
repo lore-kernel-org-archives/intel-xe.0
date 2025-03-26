@@ -4,59 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C065C3600B
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Mar 2025 14:45:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41670C3600C
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Mar 2025 14:46:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6345E10E6E2;
-	Wed, 26 Mar 2025 14:45:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBC7710E6E2;
+	Wed, 26 Mar 2025 14:46:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aft6GFPF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AmcP9Hd+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E72610E6E2
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Mar 2025 14:45:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0336D10E6E4;
+ Wed, 26 Mar 2025 14:46:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743000355; x=1774536355;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=1ksoWPStfT+zBgAgUW2IP3DzbG/MsZnP6p/bQBQ+Zfk=;
- b=aft6GFPFqnin3R9PG7bkcse+bBNFE6cnGZ9Xi9noQsN9bsWQWkJxISri
- FeVcxwjnWU55fJE5zX/oXr6WjHK2PkktMyx4gdkcld5JQpytYaagY3FA9
- Rq8SVOWowEdJIHEFh33a6Cw684HCG+NyIA/ZQ6L9zmpkQtjQ526Xp610l
- I8UQNEXe+MMckYqhM/fJCB1CpqbRI2RIZ47Dwkb3YJO7LgywcO1CgPe49
- RxvOxoMcrArMNdjUHKuV5Xq8Mmgi/eH0vz0KT3k0GbVy9F4zTyDcZocci
- CYNpEWjOCWeZyajMr6+3kIryGXAjmq8tfS97+guxxw/dwlKuYu8IZN/Ww g==;
-X-CSE-ConnectionGUID: Ej5VjQaYRTCGveoMzAx/vA==
-X-CSE-MsgGUID: k6fwau5gQq6d+7u6prGsPg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="31898207"
-X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="31898207"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ t=1743000390; x=1774536390;
+ h=from:date:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=Cc7wktbOWDJBZ+sIqX0WmKXii8fobhHZDsEO0msqRKU=;
+ b=AmcP9Hd+FjaGYJ1uRGhpBmZ+sulEcU0uzSkItEeok5GS0NkCzuMLBu/4
+ UV7TBSK5/iqtvTbec+WVbwoEtbdc7gz9J55h5POhNN2F6AVJW98SLvz4w
+ aHD/sNYm5G0l1l6Az1+VZUfK3oz49h1FZJZpD8J7ha1jDv6f/xYN+JKp9
+ InSllFMDQQr5cbmtgqrlm6oCs8a1dLtRqwBFrx6yOwOnGe8gEgKFeN1oo
+ P5zFBGWthbvI3DoCARDB5e+6WhkNG+yAOpEm7DkLWZFLYrlSub80Vl1aP
+ FF2EkzYC3QtWjWNToAp5pP0Gd5kJZAEezjLxbngjEzR8WuSrknJgwPuyq Q==;
+X-CSE-ConnectionGUID: ulp7Ara/TEStd8wCGzlr1w==
+X-CSE-MsgGUID: +uotxQ/3RYSyaJ0HRHfuhw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="31898296"
+X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="31898296"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2025 07:45:53 -0700
-X-CSE-ConnectionGUID: WLYZI0rERqit/uBr1tpURQ==
-X-CSE-MsgGUID: nPhQC1SsQUKZqRTK+vxm4g==
+ 26 Mar 2025 07:46:29 -0700
+X-CSE-ConnectionGUID: s+ipq+BcQTq9kbQs3QqtxQ==
+X-CSE-MsgGUID: LBm8mf+MSyyjbS37H75K2w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="129836864"
-Received: from ncintean-mobl1.ger.corp.intel.com (HELO [10.245.246.202])
- ([10.245.246.202])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2025 07:45:52 -0700
-Message-ID: <494e40d642a82d87980ccf3fe20ed12381ff03ed.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/xe: Fix an out-of-bounds shift when invalidating TLB
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, stable@vger.kernel.org
-Date: Wed, 26 Mar 2025 15:45:48 +0100
-In-Reply-To: <7r2m5yyuigo5b53uayvyoclnae2t6kev3plxsnlwqy3cfmkux6@gfpjluntolqr>
-References: <20250326115117.14673-1-thomas.hellstrom@linux.intel.com>
- <7r2m5yyuigo5b53uayvyoclnae2t6kev3plxsnlwqy3cfmkux6@gfpjluntolqr>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="124759051"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.5])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2025 07:46:23 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Wed, 26 Mar 2025 16:46:19 +0200 (EET)
+To: =?ISO-8859-2?Q?Micha=B3_Winiarski?= <michal.winiarski@intel.com>
+cc: linux-pci@vger.kernel.org, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>, 
+ Bjorn Helgaas <bhelgaas@google.com>, 
+ =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>, 
+ =?ISO-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Michal Wajdeczko <michal.wajdeczko@intel.com>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ =?ISO-8859-15?Q?Thomas_Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Matt Roper <matthew.d.roper@intel.com>
+Subject: Re: [PATCH v6 2/6] PCI: Add a helper to convert between VF BAR number
+ and IOV resource
+In-Reply-To: <20250320110854.3866284-3-michal.winiarski@intel.com>
+Message-ID: <fd94c15d-7fcc-c9db-8af0-868c15bc34a3@linux.intel.com>
+References: <20250320110854.3866284-1-michal.winiarski@intel.com>
+ <20250320110854.3866284-3-michal.winiarski@intel.com>
 MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="8323328-1096444980-1743000379=:942"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,146 +80,178 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2025-03-26 at 08:34 -0500, Lucas De Marchi wrote:
-> On Wed, Mar 26, 2025 at 12:51:17PM +0100, Thomas Hellstr=C3=B6m wrote:
-> > When the size of the range invalidated is larger than
-> > U64_MAX / 2 + 1, The function roundup_pow_of_two(length) will
-> > hit an out-of-bounds shift.
-> >=20
-> > Use a full TLB invalidation for such cases.
-> >=20
-> > [=C2=A0=C2=A0 39.202421] ------------[ cut here ]------------
-> > [=C2=A0=C2=A0 39.202657] UBSAN: shift-out-of-bounds in
-> > ./include/linux/log2.h:57:13
-> > [=C2=A0=C2=A0 39.202673] shift exponent 64 is too large for 64-bit type=
- 'long
-> > unsigned int'
-> > [=C2=A0=C2=A0 39.202688] CPU: 8 UID: 0 PID: 3129 Comm: xe_exec_system_
-> > Tainted: G=C2=A0=C2=A0=C2=A0=C2=A0 U=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 6.14.0+ #10
-> > [=C2=A0=C2=A0 39.202690] Tainted: [U]=3DUSER
-> > [=C2=A0=C2=A0 39.202690] Hardware name: ASUS System Product Name/PRIME =
-B560M-
-> > A AC, BIOS 2001 02/01/2023
-> > [=C2=A0=C2=A0 39.202691] Call Trace:
-> > [=C2=A0=C2=A0 39.202692]=C2=A0 <TASK>
-> > [=C2=A0=C2=A0 39.202695]=C2=A0 dump_stack_lvl+0x6e/0xa0
-> > [=C2=A0=C2=A0 39.202699]=C2=A0 ubsan_epilogue+0x5/0x30
-> > [=C2=A0=C2=A0 39.202701]=C2=A0 __ubsan_handle_shift_out_of_bounds.cold+=
-0x61/0xe6
-> > [=C2=A0=C2=A0 39.202705]=C2=A0 xe_gt_tlb_invalidation_range.cold+0x1d/0=
-x3a [xe]
-> > [=C2=A0=C2=A0 39.202800]=C2=A0 ? find_held_lock+0x2b/0x80
-> > [=C2=A0=C2=A0 39.202803]=C2=A0 ? mark_held_locks+0x40/0x70
-> > [=C2=A0=C2=A0 39.202806]=C2=A0 xe_svm_invalidate+0x459/0x700 [xe]
-> > [=C2=A0=C2=A0 39.202897]=C2=A0 drm_gpusvm_notifier_invalidate+0x4d/0x70
-> > [drm_gpusvm]
-> > [=C2=A0=C2=A0 39.202900]=C2=A0 __mmu_notifier_release+0x1f5/0x270
-> > [=C2=A0=C2=A0 39.202905]=C2=A0 exit_mmap+0x40e/0x450
-> > [=C2=A0=C2=A0 39.202912]=C2=A0 __mmput+0x45/0x110
-> > [=C2=A0=C2=A0 39.202914]=C2=A0 exit_mm+0xc5/0x130
-> > [=C2=A0=C2=A0 39.202916]=C2=A0 do_exit+0x21c/0x500
-> > [=C2=A0=C2=A0 39.202918]=C2=A0 ? lockdep_hardirqs_on_prepare+0xdb/0x190
-> > [=C2=A0=C2=A0 39.202920]=C2=A0 do_group_exit+0x36/0xa0
-> > [=C2=A0=C2=A0 39.202922]=C2=A0 get_signal+0x8f8/0x900
-> > [=C2=A0=C2=A0 39.202926]=C2=A0 arch_do_signal_or_restart+0x35/0x100
-> > [=C2=A0=C2=A0 39.202930]=C2=A0 syscall_exit_to_user_mode+0x1fc/0x290
-> > [=C2=A0=C2=A0 39.202932]=C2=A0 do_syscall_64+0xa1/0x180
-> > [=C2=A0=C2=A0 39.202934]=C2=A0 ? do_user_addr_fault+0x59f/0x8a0
-> > [=C2=A0=C2=A0 39.202937]=C2=A0 ? lock_release+0xd2/0x2a0
-> > [=C2=A0=C2=A0 39.202939]=C2=A0 ? do_user_addr_fault+0x5a9/0x8a0
-> > [=C2=A0=C2=A0 39.202942]=C2=A0 ? trace_hardirqs_off+0x4b/0xc0
-> > [=C2=A0=C2=A0 39.202944]=C2=A0 ? clear_bhb_loop+0x25/0x80
-> > [=C2=A0=C2=A0 39.202946]=C2=A0 ? clear_bhb_loop+0x25/0x80
-> > [=C2=A0=C2=A0 39.202947]=C2=A0 ? clear_bhb_loop+0x25/0x80
-> > [=C2=A0=C2=A0 39.202950]=C2=A0 entry_SYSCALL_64_after_hwframe+0x76/0x7e
-> > [=C2=A0=C2=A0 39.202952] RIP: 0033:0x7fa945e543e1
-> > [=C2=A0=C2=A0 39.202961] Code: Unable to access opcode bytes at
-> > 0x7fa945e543b7.
-> > [=C2=A0=C2=A0 39.202962] RSP: 002b:00007ffca8fb4170 EFLAGS: 00000293
-> > [=C2=A0=C2=A0 39.202963] RAX: 000000000000003d RBX: 0000000000000000 RC=
-X:
-> > 00007fa945e543e3
-> > [=C2=A0=C2=A0 39.202964] RDX: 0000000000000000 RSI: 00007ffca8fb41ac RD=
-I:
-> > 00000000ffffffff
-> > [=C2=A0=C2=A0 39.202964] RBP: 00007ffca8fb4190 R08: 0000000000000000 R0=
-9:
-> > 00007fa945f600a0
-> > [=C2=A0=C2=A0 39.202965] R10: 0000000000000000 R11: 0000000000000293 R1=
-2:
-> > 0000000000000000
-> > [=C2=A0=C2=A0 39.202966] R13: 00007fa9460dd310 R14: 00007ffca8fb41ac R1=
-5:
-> > 0000000000000000
-> > [=C2=A0=C2=A0 39.202970]=C2=A0 </TASK>
-> > [=C2=A0=C2=A0 39.202970] ---[ end trace ]---
-> >=20
-> > Fixes: 332dd0116c82 ("drm/xe: Add range based TLB invalidations")
-> > Cc: Matthew Brost <matthew.brost@intel.com>
-> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Cc: <stable@vger.kernel.org> # v6.8+
-> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > ---
-> > drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 4 ++--
-> > 1 file changed, 2 insertions(+), 2 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-> > b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-> > index 03072e094991..79f8fe127867 100644
-> > --- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-> > +++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-> > @@ -346,6 +346,7 @@ int xe_gt_tlb_invalidation_range(struct xe_gt
-> > *gt,
-> > 	struct xe_device *xe =3D gt_to_xe(gt);
-> > #define MAX_TLB_INVALIDATION_LEN	7
-> > 	u32 action[MAX_TLB_INVALIDATION_LEN];
-> > +	u64 length =3D end - start;
-> > 	int len =3D 0;
-> >=20
-> > 	xe_gt_assert(gt, fence);
-> > @@ -358,11 +359,10 @@ int xe_gt_tlb_invalidation_range(struct xe_gt
-> > *gt,
-> >=20
-> > 	action[len++] =3D XE_GUC_ACTION_TLB_INVALIDATION;
-> > 	action[len++] =3D 0; /* seqno, replaced in
-> > send_tlb_invalidation */
-> > -	if (!xe->info.has_range_tlb_invalidation) {
-> > +	if (!xe->info.has_range_tlb_invalidation || length >
-> > (U64_MAX >> 1) + 1) {
->=20
-> maybe add a
->=20
-> #define MAX_RANGE_TLB_INVALIDATION_LEN ((U64_MAX >> 1) + 1)
->=20
-> here?
->=20
-> Anyway,
->=20
-> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-Thanks for the review.
-I noticed that roundup_pow_of_two() actually operates on unsigned long
-so I need to respin anyway to ensure this doesn't reappear should
-someone try a 32-bit kernel.
+--8323328-1096444980-1743000379=:942
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
 
-I'll add a define.
-Thanks,
-Thomas
+On Thu, 20 Mar 2025, Micha=C5=82 Winiarski wrote:
 
-
+> There are multiple places where conversions between IOV resources and
+> corresponding VF BAR numbers are done.
 >=20
-> Lucas De Marchi
+> Extract the logic to pci_resource_num_from_vf_bar() and
+> pci_resource_num_to_vf_bar() helpers.
 >=20
-> > 		action[len++] =3D
-> > MAKE_INVAL_OP(XE_GUC_TLB_INVAL_FULL);
-> > 	} else {
-> > 		u64 orig_start =3D start;
-> > -		u64 length =3D end - start;
-> > 		u64 align;
-> >=20
-> > 		if (length < SZ_4K)
-> > --=20
-> > 2.48.1
-> >=20
+> Suggested-by: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>
+> Signed-off-by: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
+> Acked-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> ---
+>  drivers/pci/iov.c       | 22 ++++++++++++----------
+>  drivers/pci/pci.h       | 19 +++++++++++++++++++
+>  drivers/pci/setup-bus.c |  3 ++-
+>  3 files changed, 33 insertions(+), 11 deletions(-)
+>=20
+> diff --git a/drivers/pci/iov.c b/drivers/pci/iov.c
+> index bf95387993cd5..985ea11339c45 100644
+> --- a/drivers/pci/iov.c
+> +++ b/drivers/pci/iov.c
+> @@ -151,7 +151,7 @@ resource_size_t pci_iov_resource_size(struct pci_dev =
+*dev, int resno)
+>  =09if (!dev->is_physfn)
+>  =09=09return 0;
+> =20
+> -=09return dev->sriov->barsz[resno - PCI_IOV_RESOURCES];
+> +=09return dev->sriov->barsz[pci_resource_num_to_vf_bar(resno)];
+>  }
+> =20
+>  static void pci_read_vf_config_common(struct pci_dev *virtfn)
+> @@ -322,12 +322,13 @@ int pci_iov_add_virtfn(struct pci_dev *dev, int id)
+>  =09virtfn->multifunction =3D 0;
+> =20
+>  =09for (i =3D 0; i < PCI_SRIOV_NUM_BARS; i++) {
+> -=09=09res =3D &dev->resource[i + PCI_IOV_RESOURCES];
+> +=09=09res =3D &dev->resource[pci_resource_num_from_vf_bar(i)];
+>  =09=09if (!res->parent)
+>  =09=09=09continue;
+>  =09=09virtfn->resource[i].name =3D pci_name(virtfn);
+>  =09=09virtfn->resource[i].flags =3D res->flags;
+> -=09=09size =3D pci_iov_resource_size(dev, i + PCI_IOV_RESOURCES);
+> +=09=09size =3D pci_iov_resource_size(dev,
+> +=09=09=09=09=09     pci_resource_num_from_vf_bar(i));
+>  =09=09resource_set_range(&virtfn->resource[i],
+>  =09=09=09=09   res->start + size * id, size);
+>  =09=09rc =3D request_resource(res, &virtfn->resource[i]);
+> @@ -624,8 +625,8 @@ static int sriov_enable(struct pci_dev *dev, int nr_v=
+irtfn)
+> =20
+>  =09nres =3D 0;
+>  =09for (i =3D 0; i < PCI_SRIOV_NUM_BARS; i++) {
+> -=09=09bars |=3D (1 << (i + PCI_IOV_RESOURCES));
+> -=09=09res =3D &dev->resource[i + PCI_IOV_RESOURCES];
+> +=09=09bars |=3D (1 << pci_resource_num_from_vf_bar(i));
+> +=09=09res =3D &dev->resource[pci_resource_num_from_vf_bar(i)];
+>  =09=09if (res->parent)
+>  =09=09=09nres++;
+>  =09}
+> @@ -791,8 +792,9 @@ static int sriov_init(struct pci_dev *dev, int pos)
+> =20
+>  =09nres =3D 0;
+>  =09for (i =3D 0; i < PCI_SRIOV_NUM_BARS; i++) {
+> -=09=09res =3D &dev->resource[i + PCI_IOV_RESOURCES];
+> -=09=09res_name =3D pci_resource_name(dev, i + PCI_IOV_RESOURCES);
+> +=09=09res =3D &dev->resource[pci_resource_num_from_vf_bar(i)];
+> +=09=09res_name =3D pci_resource_name(dev,
+> +=09=09=09=09=09     pci_resource_num_from_vf_bar(i));
 
+All these get easier to read if you add (same comment for the cases=20
+above):
+
+=09=09int idx =3D pci_resource_num_from_vf_bar(i);
+
+> =20
+>  =09=09/*
+>  =09=09 * If it is already FIXED, don't change it, something
+> @@ -851,7 +853,7 @@ static int sriov_init(struct pci_dev *dev, int pos)
+>  =09dev->is_physfn =3D 0;
+>  failed:
+>  =09for (i =3D 0; i < PCI_SRIOV_NUM_BARS; i++) {
+> -=09=09res =3D &dev->resource[i + PCI_IOV_RESOURCES];
+> +=09=09res =3D &dev->resource[pci_resource_num_from_vf_bar(i)];
+>  =09=09res->flags =3D 0;
+>  =09}
+> =20
+> @@ -913,7 +915,7 @@ static void sriov_restore_state(struct pci_dev *dev)
+>  =09pci_write_config_word(dev, iov->pos + PCI_SRIOV_CTRL, ctrl);
+> =20
+>  =09for (i =3D 0; i < PCI_SRIOV_NUM_BARS; i++)
+> -=09=09pci_update_resource(dev, i + PCI_IOV_RESOURCES);
+> +=09=09pci_update_resource(dev, pci_resource_num_from_vf_bar(i));
+> =20
+>  =09pci_write_config_dword(dev, iov->pos + PCI_SRIOV_SYS_PGSIZE, iov->pgs=
+z);
+>  =09pci_iov_set_numvfs(dev, iov->num_VFs);
+> @@ -979,7 +981,7 @@ void pci_iov_update_resource(struct pci_dev *dev, int=
+ resno)
+>  {
+>  =09struct pci_sriov *iov =3D dev->is_physfn ? dev->sriov : NULL;
+>  =09struct resource *res =3D pci_resource_n(dev, resno);
+> -=09int vf_bar =3D resno - PCI_IOV_RESOURCES;
+> +=09int vf_bar =3D pci_resource_num_to_vf_bar(resno);
+>  =09struct pci_bus_region region;
+>  =09u16 cmd;
+>  =09u32 new;
+> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
+> index adc54bb2c8b34..f44840ee3c327 100644
+> --- a/drivers/pci/pci.h
+> +++ b/drivers/pci/pci.h
+> @@ -693,6 +693,15 @@ static inline bool pci_resource_is_iov(int resno)
+>  {
+>  =09return resno >=3D PCI_IOV_RESOURCES && resno <=3D PCI_IOV_RESOURCE_EN=
+D;
+>  }
+> +static inline int pci_resource_num_from_vf_bar(int resno)
+> +{
+> +=09return resno + PCI_IOV_RESOURCES;
+> +}
+> +
+> +static inline int pci_resource_num_to_vf_bar(int resno)
+> +{
+> +=09return resno - PCI_IOV_RESOURCES;
+> +}
+>  extern const struct attribute_group sriov_pf_dev_attr_group;
+>  extern const struct attribute_group sriov_vf_dev_attr_group;
+>  #else
+> @@ -717,6 +726,16 @@ static inline bool pci_resource_is_iov(int resno)
+>  {
+>  =09return false;
+>  }
+> +static inline int pci_resource_num_from_vf_bar(int resno)
+> +{
+> +=09WARN_ON_ONCE(1);
+> +=09return -ENODEV;
+> +}
+> +static inline int pci_resource_num_to_vf_bar(int resno)
+> +{
+> +=09WARN_ON_ONCE(1);
+> +=09return -ENODEV;
+> +}
+>  #endif /* CONFIG_PCI_IOV */
+> =20
+>  #ifdef CONFIG_PCIE_TPH
+> diff --git a/drivers/pci/setup-bus.c b/drivers/pci/setup-bus.c
+> index 54d6f4fa3ce16..55e91ba1e74a2 100644
+> --- a/drivers/pci/setup-bus.c
+> +++ b/drivers/pci/setup-bus.c
+> @@ -1885,7 +1885,8 @@ static int iov_resources_unassigned(struct pci_dev =
+*dev, void *data)
+>  =09bool *unassigned =3D data;
+> =20
+>  =09for (i =3D 0; i < PCI_SRIOV_NUM_BARS; i++) {
+> -=09=09struct resource *r =3D &dev->resource[i + PCI_IOV_RESOURCES];
+> +=09=09struct resource *r =3D
+> +=09=09=09&dev->resource[pci_resource_num_from_vf_bar(i)];
+
+I'd add int idx here as well.
+
+>  =09=09struct pci_bus_region region;
+> =20
+>  =09=09/* Not assigned or rejected by kernel? */
+>=20
+
+--=20
+ i.
+
+--8323328-1096444980-1743000379=:942--
