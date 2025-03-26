@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0124C36005
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Mar 2025 00:11:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EAD5C36005
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Mar 2025 00:11:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71DA410E397;
-	Wed, 26 Mar 2025 00:11:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4747210E627;
+	Wed, 26 Mar 2025 00:11:39 +0000 (UTC)
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3926B10E397;
- Wed, 26 Mar 2025 00:11:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4095510E627;
+ Wed, 26 Mar 2025 00:11:38 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/ptl=3A_Apply_?=
- =?utf-8?q?Wa=5F14022293748=2C_Wa=5F22019794406_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/ptl=3A_Apply_Wa=5F?=
+ =?utf-8?q?14022293748=2C_Wa=5F22019794406_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Julia Filipchuk" <julia.filipchuk@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 26 Mar 2025 00:11:27 -0000
-Message-ID: <174294788723.3302.5949905817412317877@e6b6f09ec485>
+Date: Wed, 26 Mar 2025 00:11:38 -0000
+Message-ID: <174294789826.3303.2952319579582117018@e6b6f09ec485>
 X-Patchwork-Hint: ignore
 References: <20250324223347.1433491-1-julia.filipchuk@intel.com>
 In-Reply-To: <20250324223347.1433491-1-julia.filipchuk@intel.com>
@@ -48,9 +48,26 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: afc2e1fea0a4 drm-tip: 2025y-03m-25d-20h-55m-17s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/xe3lpg: Apply Wa_14022293748, Wa_22019794406
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+99e5a866b5e13f134e606a3e29d9508d97826fb3
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 839fa2cdf87fed698aec8623d89175b546de9b24
+Author: Julia Filipchuk <julia.filipchuk@intel.com>
+Date:   Tue Mar 25 15:43:05 2025 -0700
+
+    drm/xe/xe3lpg: Apply Wa_14022293748, Wa_22019794406
+    
+    Extend Wa_14022293748, Wa_22019794406 to Xe3_LPG
+    
+    Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
+    Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
++ /mt/dim checkpatch afc2e1fea0a406eedbaf632e96cdb6832a45ebb7 drm-intel
+839fa2cdf87f drm/xe/xe3lpg: Apply Wa_14022293748, Wa_22019794406
 
 
