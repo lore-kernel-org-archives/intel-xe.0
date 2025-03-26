@@ -4,67 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D07AC36008
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Mar 2025 15:29:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2654CC3600B
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Mar 2025 15:30:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 667B710E6F5;
-	Wed, 26 Mar 2025 15:29:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E66F210E6FE;
+	Wed, 26 Mar 2025 15:30:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mpnWHTgi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N232tluo";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7845010E6F5;
- Wed, 26 Mar 2025 15:29:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81ECE10E6FC;
+ Wed, 26 Mar 2025 15:30:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743002981; x=1774538981;
- h=from:date:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=1rR+/faxkHLlYltbcuI3PbbS4s/fXFMou00xu/7HeXY=;
- b=mpnWHTgiDJBA/64CQhfDNg4MSTqk9xEr/6q004lzqoV6b6T+Oc5rbKRL
- H5lUOtSxTRPjPfeiDqb7Ez0LXdfGuZajEp//ZgmuVCnrfmz/OnkwcL4Fl
- G1Wj5MtOiuKFBMiLCX1i9Y2OQB5RGL1Ny1JwWEfJhEU3hfp6zUM+daAet
- DHNM6h0HYaUImpRnALMdg2X5U4vKjPEWYfmVKbaUu/WjO7frBEAwvRDHn
- 9QgX4AoiVOR0B0hyDUDJiM0MIghrC+dCumza2E86bwnj3PpyPKWj9ImCW
- i2zfx5JYRr4UGxONZ3QLkn01EVXrYzhAOecZj4Dd4b6ZSYdojBEEBRi0a g==;
-X-CSE-ConnectionGUID: KUD/oA7nTgq1lmjJ0+ESrA==
-X-CSE-MsgGUID: iQ6D9L9rRTW9pG5+aNogbw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="48090998"
-X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="48090998"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2025 08:29:41 -0700
-X-CSE-ConnectionGUID: YzU27J2ySvuWW45LWD51FQ==
-X-CSE-MsgGUID: zcEnZjfDTm2RZuW6qMnLTw==
+ t=1743003033; x=1774539033;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=ovgR8ermFrxswkPAyaoIGQT7pjvlo43vk8MEcITTfeY=;
+ b=N232tluoTIebpqKAWC3icyUOwy1im127/xHXQk/Ca148MJOvimaGOysz
+ avaIKD9DUmXhem4e6amQvKK1Z3xC0df80v/9yWUxmXrRxwij/oM2HOsma
+ SoMM6t7dmXIagEZBPeWD2y5eL2n2tmYuAkgwEr9tOEOthLcis6CxxfvtZ
+ bLnXQs/fb1DqOhyiYzG4Ys4BbJlkWb4LC0G5aItDD4bB7yU20m0isvWC0
+ KmkVWbEy2ITnS0HFnPiAci6OPRra/GkWDhcDtOXu+LOSdCBLwxHojS/pG
+ Ox4kAt3cingfyGukB+QF3NC1dy7AQXI3D1bLzsHFvJLpkJte9Yu+tO7Qh A==;
+X-CSE-ConnectionGUID: NMYx8FTCTYOOPJXUAHD9Bg==
+X-CSE-MsgGUID: x4mHBvMKSuexXqE8gVKeRg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="31904854"
+X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="31904854"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2025 08:30:33 -0700
+X-CSE-ConnectionGUID: hSczxg9zTkmHOIQ1CGZkyQ==
+X-CSE-MsgGUID: QZnH4CcrT3eXGbZMy+rqpA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="125742493"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.5])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2025 08:29:35 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Wed, 26 Mar 2025 17:29:31 +0200 (EET)
-To: =?ISO-8859-2?Q?Micha=B3_Winiarski?= <michal.winiarski@intel.com>
-cc: linux-pci@vger.kernel.org, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>, 
- Bjorn Helgaas <bhelgaas@google.com>, 
- =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>, 
- =?ISO-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Michal Wajdeczko <michal.wajdeczko@intel.com>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?ISO-8859-15?Q?Thomas_Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Matt Roper <matthew.d.roper@intel.com>
-Subject: Re: [PATCH v6 6/6] drm/xe/pf: Set VF LMEM BAR size
-In-Reply-To: <20250320110854.3866284-7-michal.winiarski@intel.com>
-Message-ID: <bdfe5413-547a-67b0-b822-9852d3f94cc5@linux.intel.com>
-References: <20250320110854.3866284-1-michal.winiarski@intel.com>
- <20250320110854.3866284-7-michal.winiarski@intel.com>
+X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="124609499"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2025 08:30:30 -0700
+Date: Wed, 26 Mar 2025 17:30:27 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Gupta, saurabhg" <saurabhg.gupta@intel.com>,
+ "Zuo, Alex" <alex.zuo@intel.com>,
+ "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
+ "Brost, Matthew" <matthew.brost@intel.com>,
+ "Zhang, Jianxun" <jianxun.zhang@intel.com>,
+ "Lin, Shuicheng" <shuicheng.lin@intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "Wajdeczko, Michal" <Michal.Wajdeczko@intel.com>,
+ "Mrozek, Michal" <michal.mrozek@intel.com>
+Subject: Re: [PATCH v12 5/5] drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
+Message-ID: <Z-QdkywOX5ldFj09@black.fi.intel.com>
+References: <20250324230931.63840-1-jonathan.cavitt@intel.com>
+ <20250324230931.63840-6-jonathan.cavitt@intel.com>
+ <Z-JdzvwmkpK2vZj-@black.fi.intel.com>
+ <CH0PR11MB5444B65CB663C9123B41F7CFE5A72@CH0PR11MB5444.namprd11.prod.outlook.com>
+ <Z-NAFqRhGK4Vjfv5@black.fi.intel.com>
+ <CH0PR11MB54449EE925D5291EAC8D90F0E5A62@CH0PR11MB5444.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323328-1374919276-1743002971=:942"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CH0PR11MB54449EE925D5291EAC8D90F0E5A62@CH0PR11MB5444.namprd11.prod.outlook.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,103 +80,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+On Wed, Mar 26, 2025 at 07:51:15PM +0530, Cavitt, Jonathan wrote:
+> > From: Jadav, Raag <raag.jadav@intel.com> 
+> > On Tue, Mar 25, 2025 at 08:15:59PM +0530, Cavitt, Jonathan wrote:
+> > > From: Jadav, Raag <raag.jadav@intel.com> 
+> > > > On Mon, Mar 24, 2025 at 11:09:28PM +0000, Jonathan Cavitt wrote:
+> > > > > Add support for userspace to request a list of observed faults
+> > > > > from a specified VM.
+> > > > 
+> > > > ...
+> > > > 
+> > > > > v10:
+> > > > > - Remove unnecessary switch case logic (Raag)
+> > > > 
+> > > > This is usually "changes present in version" and not "comments received
+> > > > in version" but I guess this must be one of those drm things.
+> > > 
+> > > I'm fairly certain change logs are supposed to be written in the future tense.
+> > > Or at the very least, I think I picked up the habit in college.  Is this not correct?
+> > 
+> > I meant it belongs to v11.
+> 
+> Apologies for the confusion.  Not every patch is modified each revision cycle, so
+> removing unnecessary switch case logic was the 10th actual revision of the patch,
+> whereas the series as a whole had been modified 11 times at that point.
 
---8323328-1374919276-1743002971=:942
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
+Yeah, that's one of the drm things which adds on to the confusion instead
+of making things easier.
 
-On Thu, 20 Mar 2025, Micha=C5=82 Winiarski wrote:
+The usual practice (atleast in other subsystems) is to not differentiate
+between patch and series version, which is quite easier to follow.
 
-> LMEM is partitioned between multiple VFs and we expect that the more
-> VFs we have, the less LMEM is assigned to each VF.
-> This means that we can achieve full LMEM BAR access without the need to
-> attempt full VF LMEM BAR resize via pci_resize_resource().
->=20
-> Always set the largest possible BAR size that allows to fit the number
-> of enabled VFs.
->=20
-> Signed-off-by: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
-> ---
->  drivers/gpu/drm/xe/regs/xe_bars.h |  1 +
->  drivers/gpu/drm/xe/xe_pci_sriov.c | 22 ++++++++++++++++++++++
->  2 files changed, 23 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/xe/regs/xe_bars.h b/drivers/gpu/drm/xe/regs/=
-xe_bars.h
-> index ce05b6ae832f1..880140d6ccdca 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_bars.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_bars.h
-> @@ -7,5 +7,6 @@
-> =20
->  #define GTTMMADR_BAR=09=09=090 /* MMIO + GTT */
->  #define LMEM_BAR=09=09=092 /* VRAM */
-> +#define VF_LMEM_BAR=09=09=099 /* VF VRAM */
-> =20
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.c b/drivers/gpu/drm/xe/xe_pc=
-i_sriov.c
-> index aaceee748287e..57cdeb41ef1d9 100644
-> --- a/drivers/gpu/drm/xe/xe_pci_sriov.c
-> +++ b/drivers/gpu/drm/xe/xe_pci_sriov.c
-> @@ -3,6 +3,10 @@
->   * Copyright =C2=A9 2023-2024 Intel Corporation
->   */
-> =20
-> +#include <linux/bitops.h>
-> +#include <linux/pci.h>
-> +
-> +#include "regs/xe_bars.h"
->  #include "xe_assert.h"
->  #include "xe_device.h"
->  #include "xe_gt_sriov_pf_config.h"
-> @@ -62,6 +66,18 @@ static void pf_reset_vfs(struct xe_device *xe, unsigne=
-d int num_vfs)
->  =09=09=09xe_gt_sriov_pf_control_trigger_flr(gt, n);
->  }
-> =20
-> +static int resize_vf_vram_bar(struct xe_device *xe, int num_vfs)
-> +{
-> +=09struct pci_dev *pdev =3D to_pci_dev(xe->drm.dev);
-> +=09u32 sizes;
-> +
-> +=09sizes =3D pci_iov_vf_bar_get_sizes(pdev, VF_LMEM_BAR, num_vfs);
-> +=09if (!sizes)
-> +=09=09return 0;
-> +
-> +=09return pci_iov_vf_bar_set_size(pdev, VF_LMEM_BAR, __fls(sizes));
-> +}
-> +
->  static int pf_enable_vfs(struct xe_device *xe, int num_vfs)
->  {
->  =09struct pci_dev *pdev =3D to_pci_dev(xe->drm.dev);
-> @@ -88,6 +104,12 @@ static int pf_enable_vfs(struct xe_device *xe, int nu=
-m_vfs)
->  =09if (err < 0)
->  =09=09goto failed;
-> =20
-> +=09if (IS_DGFX(xe)) {
-> +=09=09err =3D resize_vf_vram_bar(xe, num_vfs);
-> +=09=09if (err)
-> +=09=09=09xe_sriov_info(xe, "Failed to set VF LMEM BAR size: %d\n", err);
+https://kernelnewbies.org/FirstKernelPatch -> "Versioning patchsets"
 
-If you intended this error to not result in failure, please mention it=20
-in the changelog so that it's recorded somewhere for those who have to=20
-look up things from the git history one day :-).
+> The change is correctly labeled as a part of revision 11 in the cover letter.
+> 
+> > 
+> > > > > +static int xe_vm_get_property_helper(struct xe_vm *vm,
+> > > > > +				     struct drm_xe_vm_get_property *args)
+> > > > > +{
+> > > > > +	int size;
+> > > > > +
+> > > > > +	switch (args->property) {
+> > > > > +	case DRM_XE_VM_GET_PROPERTY_FAULTS:
+> > > > > +		spin_lock(&vm->faults.lock);
+> > > > > +		size = size_mul(sizeof(struct xe_vm_fault), vm->faults.len);
+> > > > > +		spin_unlock(&vm->faults.lock);
+> > > > > +
+> > > > > +		if (args->size)
+> > > > > +			/*
+> > > > > +			 * Number of faults may increase between calls to
+> > > > > +			 * xe_vm_get_property_ioctl, so just report the
+> > > > > +			 * number of faults the user requests if it's less
+> > > > > +			 * than or equal to the number of faults in the VM
+> > > > > +			 * fault array.
+> > > > > +			 */
+> > > > > +			return args->size <= size ? fill_faults(vm, args) : -EINVAL;
+> > > > 
+> > > > You're comparing an int with u32 and I'm not sure how this plays out.
+> > > > The usual practice is to use size_t (even in the struct) 
+> > > 
+> > > Size is a u32 in struct drm_xe_device_query.
+> > 
+> > And what about the local one?
+> 
+> Do you mean the size variable used in xe_query functions?  Because that's
+> size_t.  Though the initial question was about the size variables in the structs,
+> AFAICT.
 
-> +=09}
-> +
->  =09err =3D pci_enable_sriov(pdev, num_vfs);
->  =09if (err < 0)
->  =09=09goto failed;
+Yeah, mixing/matching types usual leads to bugs (atleast overtime), but
+if you're trying to mimic xe_query then I think you should stick to it.
 
-Seems pretty straightforward after reading the support code on the PCI=20
-core side,
-
-Reviewed-by: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>
-
---=20
- i.
-
---8323328-1374919276-1743002971=:942--
+Raag
