@@ -4,69 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62A74C36008
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Mar 2025 15:02:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE0B2C36008
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Mar 2025 15:11:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2977A10E013;
-	Wed, 26 Mar 2025 15:02:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C14E10E6EF;
+	Wed, 26 Mar 2025 15:11:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SYe3Mhq4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Iu3V0huN";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47B6F10E013
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Mar 2025 15:02:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 832DB10E6EB;
+ Wed, 26 Mar 2025 15:11:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743001374; x=1774537374;
- h=date:message-id:from:to:cc:subject:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=FqP0kSdW6YFKiur6NOSjfnbYYvqQULa/o/ThM+PvKtY=;
- b=SYe3Mhq4u/4A7d2GxYWkclnje1JWLXGcCaALkVLBtrg/ROjW+0en85Ux
- XpD0kIAj5k1XbAoibYaWVq1ap5j0dYu6NtUPhNtNVPbAe5oYQ3IQ4GxbW
- gYlOyqRDnX9ANLgUbjpg4VW1QG/rfLNRRJEpMObm1rNsMiJncPT1ih8Ij
- CbPUktbofm/MuU5+yCjxGIGH5sN/mcQlJTbr7T3XPWTUdwMotts4qTvRr
- 5XcMnbl5ldfLn9wS341Nu4vmmGtO0e8vFg/y8iyLsVuhY6aui0v3ACObE
- JIkM8RSbFYywF8VXrSXH+90qnlSl4c7rHpRzxXy48jkPpQItSPZKL3FID w==;
-X-CSE-ConnectionGUID: xPIk3d4YTD+gnVynRR5kNg==
-X-CSE-MsgGUID: 9IhClRQ4S8a6dEtpP3b/GQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="54958430"
-X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="54958430"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2025 08:02:54 -0700
-X-CSE-ConnectionGUID: eANVxSfqT8uqOTUJfAPbKg==
-X-CSE-MsgGUID: hAWcCPRfRLyWWF3bHroApg==
+ t=1743001875; x=1774537875;
+ h=from:date:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=T2vj5fs1lJoyIJWe3E0BaCVb+RTTxO7rAjHyemXklF4=;
+ b=Iu3V0huN/+1HGOhRiDqpSnZEaooVY/iLAcLBrniDSfarMxsoNSRXOrxJ
+ L7Vbzc6Y9xeDxj6qqPQRBvR0ITcsoal00X5wnu0ryyJRwubcmF9d3pmTb
+ 8ESseFAwPVdv7jOyqNkY7FfFthQgPKj1LEMb7vzFMrxM73YE3WPWFsP2u
+ beOLSKtMIDi9cVXytY2Axa/TxnlneyHvYfTSqvgq0XTud5NsSM06Et/2r
+ qH3k/fxMU05pEHDbtIf/Lmd6PHp9bxjnC5YySt+Z92/Vb4S73w61p1pF0
+ G/94xdeg9j5lTEtbsMmthNYBQ1TV2dDURa58qF/JQPQGQsLPcfVSiolod g==;
+X-CSE-ConnectionGUID: DQ86r5/CQay63zE8FL4CZA==
+X-CSE-MsgGUID: xywCGREeTwSp3AGxHLuxhQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="47950128"
+X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="47950128"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2025 08:11:14 -0700
+X-CSE-ConnectionGUID: xuZCinpVSzu60sPZ4LJ70g==
+X-CSE-MsgGUID: ZI+qmaGRThuotURKYdK1wA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="124599905"
-Received: from bbeebe-mobl.amr.corp.intel.com (HELO adixit-MOBL3.intel.com)
- ([10.125.186.95])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2025 08:02:54 -0700
-Date: Wed, 26 Mar 2025 08:02:52 -0700
-Message-ID: <87ecyjj0mb.wl-ashutosh.dixit@intel.com>
-From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>,
- <intel-xe@lists.freedesktop.org>, Riana Tauro <riana.tauro@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v4] drm/xe/pmu: Add GT frequency events
-In-Reply-To: <l7xh5er7uzfnkto2izx2j4ftvbzv5tutolqkms3dddo6tubpwv@j37n3pkkxudn>
-References: <20250324232402.46481-1-vinay.belgaumkar@intel.com>
- <87jz8e9d3h.wl-ashutosh.dixit@intel.com>
- <b46fbbd0-ee96-4f00-9f6f-a00115feb32d@intel.com>
- <87jz8dhw0r.wl-ashutosh.dixit@intel.com>
- <33ebfe1d-5ac5-4985-8c8d-c1996e5a6d14@intel.com>
- <87h63gixq0.wl-ashutosh.dixit@intel.com>
- <269b993d-2a22-4080-8609-66650a60ad62@intel.com>
- <87frj0ivbh.wl-ashutosh.dixit@intel.com>
- <octnzulvdzokmojzeay2zywjaagity3sbsnry243ze3cwnbfx4@wxkgvlptg3el>
- <l7xh5er7uzfnkto2izx2j4ftvbzv5tutolqkms3dddo6tubpwv@j37n3pkkxudn>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
- Emacs/29.4 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="124817289"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.5])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2025 08:11:08 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Wed, 26 Mar 2025 17:11:04 +0200 (EET)
+To: =?ISO-8859-2?Q?Micha=B3_Winiarski?= <michal.winiarski@intel.com>
+cc: linux-pci@vger.kernel.org, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>, 
+ Bjorn Helgaas <bhelgaas@google.com>, 
+ =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>, 
+ =?ISO-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Michal Wajdeczko <michal.wajdeczko@intel.com>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ =?ISO-8859-15?Q?Thomas_Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Matt Roper <matthew.d.roper@intel.com>
+Subject: Re: [PATCH v6 4/6] PCI/IOV: Check that VF BAR fits within the
+ reservation
+In-Reply-To: <20250320110854.3866284-5-michal.winiarski@intel.com>
+Message-ID: <4959d675-edd8-a296-661c-6a7bd22fbc0d@linux.intel.com>
+References: <20250320110854.3866284-1-michal.winiarski@intel.com>
+ <20250320110854.3866284-5-michal.winiarski@intel.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="8323328-1797840117-1743001864=:942"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,142 +80,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 25 Mar 2025 21:14:53 -0700, Lucas De Marchi wrote:
->
-> On Tue, Mar 25, 2025 at 11:09:55PM -0500, Lucas De Marchi wrote:
-> > On Tue, Mar 25, 2025 at 03:45:06PM -0700, Ashutosh Dixit wrote:
-> >> On Tue, 25 Mar 2025 15:01:47 -0700, Belgaumkar, Vinay wrote:
-> >>>
-> >>>
-> >>> On 3/25/2025 2:53 PM, Dixit, Ashutosh wrote:
-> >>>> On Tue, 25 Mar 2025 13:33:43 -0700, Belgaumkar, Vinay wrote:
-> >>>>> On 3/25/2025 10:15 AM, Dixit, Ashutosh wrote:
-> >>>>>> On Mon, 24 Mar 2025 19:37:32 -0700, Belgaumkar, Vinay wrote:
-> >>>>>> Hi Vinay,
-> >>>>>>
-> >>>>>>> On 3/24/2025 5:18 PM, Dixit, Ashutosh wrote:
-> >>>>>>>> On Mon, 24 Mar 2025 16:24:02 -0700, Vinay Belgaumkar wrote:
-> >>>>>>>>> @@ -266,11 +274,24 @@ static u64 __xe_pmu_event_read(struct per=
-f_event *event)
-> >>>>>>>>>	case XE_PMU_EVENT_ENGINE_ACTIVE_TICKS:
-> >>>>>>>>>	case XE_PMU_EVENT_ENGINE_TOTAL_TICKS:
-> >>>>>>>>>		return read_engine_events(gt, event);
-> >>>>>>>>> +	case XE_PMU_EVENT_GT_ACTUAL_FREQUENCY:
-> >>>>>>>>> +		return xe_guc_pc_get_act_freq(&gt->uc.guc.pc);
-> >>>>>>>>> +	case XE_PMU_EVENT_GT_REQUESTED_FREQUENCY:
-> >>>>>>>>> +		if (!xe_guc_pc_get_cur_freq(&gt->uc.guc.pc, &cur_gt_freq))
-> >>>>>>>> This is unconditionally taking the forcewake and waking the card=
- up just to
-> >>>>>>>> get the sample. Do we really want to do that?
-> >>>>>>>>
-> >>>>>>>> So if we don't do that, both the actual and requested freq will =
-be 0 if gt
-> >>>>>>>> is in C6.
-> >>>>>>> For actual frequency, the register(0xc60) does not belong to any =
-fw domain -
-> >>>>>>>
-> >>>>>>> GEN_FW_RANGE(0xc00, 0xfff, 0),
-> >>>>>>>
-> >>>>>>> HW will report 0 when GT is in C6.
-> >>>>>> Yes, no issue about act_freq, see commit 22009b6dad66. I was refer=
-ring only
-> >>>>>> to requested freq.
-> >>>>>>
-> >>>>>>> The requested freq register is a
-> >>>>>>> shadowed register (0xa008), so that will not accrue fwake either.
-> >>>>>>>
-> >>>>>>> static const struct i915_range mtl_shadowed_regs[] =3D {
-> >>>>>>>   =A0=A0=A0=A0=A0=A0=A0 { .start =3D=A0=A0 0x2030, .end =3D=A0=A0=
- 0x2030 },
-> >>>>>>>   =A0=A0=A0=A0=A0=A0=A0 { .start =3D=A0=A0 0x2510, .end =3D=A0=A0=
- 0x2550 },
-> >>>>>>>   =A0=A0=A0=A0=A0=A0=A0 { .start =3D=A0=A0 0xA008, .end =3D=A0=A0=
- 0xA00C },
-> >>>>>> So this still doesn't make sense because:
-> >>>>>>
-> >>>>>>     1. The fact is that xe_guc_pc_get_cur_freq() *is* taking force=
-wake
-> >>>>>>     2. And that is in accord with the following comment in i915/in=
-tel_uncore.c
-> >>>>>>
-> >>>>>>        * Shadowing only applies to writes; forcewake
-> >>>>>>        * must still be acquired when reading from registers in the=
-se ranges.
-> >>>>>>
-> >>>>>> Also see intel_rps_read_punit_req() which is called from i915 PMU
-> >>>>>> (frequency_sample()) and uses with_intel_runtime_pm_if_in_use(), s=
-o we'd
-> >>>>>> need to do use the equivalent in xe.
-> >>>>> Hi Ashutosh,
-> >>>>>
-> >>>>>  =A0 As part of a previous decision, in the Xe PMU implementation, =
-we are
-> >>>>> doing a runtime_get() during pmu_init for all PMU sessions. So, dev=
-ice is
-> >>>>> going to be awake anyways. In this case, it does not make sense to =
-just
-> >>>>> read the register without a fwake.
-> >>>>
-> >>>> Even if that is ok... Let us take a completely idle device. What sho=
-uld the
-> >>>> actual and requested freq's be for this case? Both should be zero, c=
-orrect?
-> >>>> Now, what are we going to show if we are taking fwake? At least the
-> >>>> requested freq will be non-zero? Is that ok? Or the requested freq w=
-ill
-> >>>> show zero even if we take fwake? Thanks.
-> >>>
-> >>> If we take fwake before reading, requested frequency will not be zero=
- even
-> >>> if GT is idle. HW always retains the last requested frequency in that
-> >>> register, never zeroes it like it does for actual_freq. So, showing t=
-he
-> >>> non-zero value is the correct thing to do instead of artifically zero=
-ing
-> >>> it.
-> >>
-> >> So now, this I disagree with. For an idle device, hopefully in C6, the=
-re
-> >> should be no reason to request a non-zero freq. So the requested freq
-> >> should show 0. As i915 does (using gt parked and unparked states and u=
-sing
-> >> with_intel_runtime_pm_if_in_use()).
-> >
-> > wrt locking and interaction with runtime_pm and forcewake, the perf
-> > implementation in i915 is completely broken. You can't take a runtime_pm
-> > or forcewake when you are in an atomic context. And when you have a
-> > raw_spin_lock taken like is the case with perf, you can't even look at
-> > it (if it involves taking a spin_lock, which it does).
-> >
-> > perf is holding a raw_spin_lock at that time. The only reason why the
-> > CI isn't on fire over there is because we are papering it over with this
-> > commit in topic/core-for-CI:
-> >
-> > dc17a830ffb5 ("Revert "lockdep: Enable PROVE_RAW_LOCK_NESTING with PROV=
-E_LOCKING."")
-> >
-> >>
-> >> If we are already "doing a runtime_get() during pmu_init" (as mentioned
-> >> above) we need to devise some other way of making this happen (maybe by
-> >> looking at xe_force_wake_domain ref field?).
-> >
-> > you can't do that safely.
->
-> which reminds me... Vinay can you test this patch directly on
-> drm-xe-next? By code inspection it seems we are doing:
->
-> __xe_pmu_event_read()
->   xe_guc_pc_get_cur_freq()
->     xe_force_wake_get()
->       spin_lock_irqsave(&fw->lock, flags);
->
-> and that spin_lock can't be called at this point.
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-Hi Lucas, sorry, didn't follow why the spin_lock can't be taken at this
-point? Because we should be able to take a spin_lock in an atomic
-context. The actual waiting for the domain to wake up also seems to be
-atomic friendly. Thanks.
+--8323328-1797840117-1743001864=:942
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
 
->
-> >>
-> >> Let us wait for a second opinion on this. Thanks.
+On Thu, 20 Mar 2025, Micha=C5=82 Winiarski wrote:
+
+> When the resource representing VF MMIO BAR reservation is created, its
+> size is always large enough to accommodate the BAR of all SR-IOV Virtual
+> Functions that can potentially be created (total VFs). If for whatever
+> reason it's not possible to accommodate all VFs - the resource is not
+> assigned and no VFs can be created.
+>=20
+> The following patch will allow VF BAR size to be modified by drivers at
+
+"The following patch" sounds to be like you're referring to patch that=20
+follows this description, ie., the patch below. "An upcoming change" is=20
+alternative that doesn't suffer from the same problem.
+
+> a later point in time, which means that the check for resource
+> assignment is no longer sufficient.
+>=20
+> Add an additional check that verifies that VF BAR for all enabled VFs
+> fits within the underlying reservation resource.
+
+So this does not solve the case where the initial size was too large to=20
+fix and such VF BARs remain unassigned, right?
+
+> Signed-off-by: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
+> ---
+>  drivers/pci/iov.c | 5 +++++
+>  1 file changed, 5 insertions(+)
+>=20
+> diff --git a/drivers/pci/iov.c b/drivers/pci/iov.c
+> index cbf335725d4fb..861273ad9a580 100644
+> --- a/drivers/pci/iov.c
+> +++ b/drivers/pci/iov.c
+> @@ -646,8 +646,13 @@ static int sriov_enable(struct pci_dev *dev, int nr_=
+virtfn)
+> =20
+>  =09nres =3D 0;
+>  =09for (i =3D 0; i < PCI_SRIOV_NUM_BARS; i++) {
+> +=09=09resource_size_t vf_bar_sz =3D
+> +=09=09=09pci_iov_resource_size(dev,
+> +=09=09=09=09=09      pci_resource_num_from_vf_bar(i));
+
+Please add int idx =3D pci_resource_num_from_vf_bar(i);
+
+>  =09=09bars |=3D (1 << pci_resource_num_from_vf_bar(i));
+>  =09=09res =3D &dev->resource[pci_resource_num_from_vf_bar(i)];
+> +=09=09if (vf_bar_sz * nr_virtfn > resource_size(res))
+> +=09=09=09continue;
+
+Not directly related to this patch, I suspect this could actually try to=20
+assign an unassigned resource by doing something like this (perhaps in own=
+=20
+patch, it doesn't even need to be part of this series but can be sent=20
+later if you find the suggestion useful):
+
+=09=09/* Retry assignment if the initial size didn't fit */
+=09=09if (!res->parent && pci_assign_resource(res, idx))
+=09=09=09continue;
+
+Although I suspect reset_resource() might have been called for the=20
+resource and IIRC it breaks the resource somehow but it could have been=20
+that IOV resources can be resummoned from that state though thanks to=20
+their size not being stored into the resource itself but comes from iov=20
+structures.
+
+>  =09=09if (res->parent)
+>  =09=09=09nres++;
+>  =09}
+>=20
+
+--=20
+ i.
+
+--8323328-1797840117-1743001864=:942--
