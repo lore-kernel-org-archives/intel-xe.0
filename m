@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95F00C36008
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Mar 2025 17:23:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BCD9C36010
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Mar 2025 17:40:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FAC610E792;
-	Wed, 26 Mar 2025 17:23:38 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FsZVRkXU";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF71110E777;
- Wed, 26 Mar 2025 17:23:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743009817; x=1774545817;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=hM/8v4HaejGrdJDEBsLuAUtYdW5d+YsUoEJbJM6jlb8=;
- b=FsZVRkXUI3IH8trJLCFa2oaMnA02xRVVIJoFe4h3cgcA4snhjQMGLZQx
- 1O+Pvm9c6onmFhrsB55EaQNl2w112R8RJPNqjzm/0BRmk/AHViPRJ+b8a
- /Wx7ceLsTghYGeJZ1Gp2loYO2FosUP8H2exzvQF43/8DrSN4vWyR3doNu
- NVJMJ2tGj9mScoLnJYRuTfKmTaYPDtWKZ++VP7uRpTd7ZkoF+PES1Hrvv
- /RStb8BDvszUK5zgzBDqVNIkWsLoOnC1NfJIFWuFtDJgq2TJnDLySjhMt
- GHYpD1G3dY4tovWOMMAcIwNvsFj3PWm8zT2OsH4waenwbsEP+bsOiIkzx g==;
-X-CSE-ConnectionGUID: j6UvLgdXTfWg8e9qbJuDnQ==
-X-CSE-MsgGUID: eDQ/mOtMTp6qLR9Mj6dpUw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="44203573"
-X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="44203573"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2025 10:23:37 -0700
-X-CSE-ConnectionGUID: /5Qe5ssHQ++DLGpAar8I8Q==
-X-CSE-MsgGUID: C4DgKIZARlmmIkhBH4LyWw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="130037008"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 26 Mar 2025 10:23:33 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 26 Mar 2025 19:23:32 +0200
-Date: Wed, 26 Mar 2025 19:23:32 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, chaitanya.kumar.borah@intel.com,
- Naveen Kumar <naveen1.kumar@intel.com>
-Subject: Re: [PATCH v9 2/3] drm/plane: modify create_in_formats to
- accommodate async
-Message-ID: <Z-Q4FJXLt8r69sjK@intel.com>
-References: <20250319-asyn-v9-0-629d1ece63e7@intel.com>
- <20250319-asyn-v9-2-629d1ece63e7@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2868D10E198;
+	Wed, 26 Mar 2025 17:40:32 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A801A10E162;
+ Wed, 26 Mar 2025 17:40:31 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0671798401521524119=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250319-asyn-v9-2-629d1ece63e7@intel.com>
-X-Patchwork-Hint: comment
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_VRR_Register_Read/Write_Upd?=
+ =?utf-8?q?ates_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 26 Mar 2025 17:40:31 -0000
+Message-ID: <174301083167.5903.14486502712881680917@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250326160321.550753-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250326160321.550753-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,132 +36,213 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Mar 19, 2025 at 04:02:16PM +0530, Arun R Murthy wrote:
-> create_in_formats creates the list of supported format/modifiers for
-> synchronous flips, modify the same function so as to take the
-> format_mod_supported as argument and create list of format/modifier for
-> async as well.
-> 
-> v5: create_in_formats can return -ve value in failure case, correct the
-> if condition to check the creation of blob <Chaitanya>
-> Dont add the modifier for which none of the formats is not supported.
-> v6: Remove the code for masking the unsupported modifiers as UMD can
-> leave with it. (Naveen/Chaitanya)
-> v7: Retain the unsupported modifiers, userspace should have no
-> impact, return pointer to blob instead of blob_id(Ville)
-> 
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-> Tested-by: Naveen Kumar <naveen1.kumar@intel.com>
-> ---
->  drivers/gpu/drm/drm_plane.c | 44 +++++++++++++++++++++++++++++++-------------
->  1 file changed, 31 insertions(+), 13 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_plane.c b/drivers/gpu/drm/drm_plane.c
-> index fe181c1002171acc68d3054c2d178f9b9f501fe2..5cd3956caf414fa72432f9d23fa289ec266408ce 100644
-> --- a/drivers/gpu/drm/drm_plane.c
-> +++ b/drivers/gpu/drm/drm_plane.c
-> @@ -193,9 +193,13 @@ modifiers_ptr(struct drm_format_modifier_blob *blob)
->  	return (struct drm_format_modifier *)(((char *)blob) + blob->modifiers_offset);
->  }
->  
-> -static int create_in_format_blob(struct drm_device *dev, struct drm_plane *plane)
-> +static struct drm_property_blob *create_in_format_blob(struct drm_device *dev,
-> +						       struct drm_plane *plane,
-> +						       bool (*format_mod_supported)
-> +						       (struct drm_plane *plane,
-> +							u32 format,
-> +							u64 modifier))
+--===============0671798401521524119==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Indentation looks wonky here.
+== Series Details ==
 
-Apart from that
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Series: VRR Register Read/Write Updates (rev2)
+URL   : https://patchwork.freedesktop.org/series/146777/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-2854-14c330bc015ded4a1f1dd1f5aeb8617077aaa7e8_BAT -> xe-pw-146777v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (10 -> 9)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-146777v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_evict@evict-beng-small-cm:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][1] ([Intel XE#261] / [Intel XE#688]) +9 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146777v2/bat-adlp-vf/igt@xe_evict@evict-beng-small-cm.html
+
+  * igt@xe_exec_fault_mode@twice-rebind:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][2] ([Intel XE#288]) +32 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146777v2/bat-adlp-vf/igt@xe_exec_fault_mode@twice-rebind.html
+
+  * igt@xe_live_ktest@xe_bo:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][3] ([Intel XE#2229] / [Intel XE#455]) +2 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146777v2/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][4] ([Intel XE#2229])
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146777v2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  * igt@xe_pat@pat-index-xe2:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][5] ([Intel XE#977])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146777v2/bat-adlp-vf/igt@xe_pat@pat-index-xe2.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][6] ([Intel XE#2838] / [Intel XE#979])
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146777v2/bat-adlp-vf/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][7] ([Intel XE#979])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146777v2/bat-adlp-vf/igt@xe_pat@pat-index-xelpg.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_pat@pat-index-xelp@render:
+    - bat-adlp-vf:        [ABORT][8] ([Intel XE#3970]) -> [PASS][9] +1 other test pass
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2854-14c330bc015ded4a1f1dd1f5aeb8617077aaa7e8/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146777v2/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+
+  
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
+  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
+  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
 
 
->  {
-> -	const struct drm_mode_config *config = &dev->mode_config;
->  	struct drm_property_blob *blob;
->  	struct drm_format_modifier *mod;
->  	size_t blob_size, formats_size, modifiers_size;
-> @@ -221,7 +225,7 @@ static int create_in_format_blob(struct drm_device *dev, struct drm_plane *plane
->  
->  	blob = drm_property_create_blob(dev, blob_size, NULL);
->  	if (IS_ERR(blob))
-> -		return -1;
-> +		return PTR_ERR(blob);
->  
->  	blob_data = blob->data;
->  	blob_data->version = FORMAT_BLOB_CURRENT;
-> @@ -237,10 +241,10 @@ static int create_in_format_blob(struct drm_device *dev, struct drm_plane *plane
->  	mod = modifiers_ptr(blob_data);
->  	for (i = 0; i < plane->modifier_count; i++) {
->  		for (j = 0; j < plane->format_count; j++) {
-> -			if (!plane->funcs->format_mod_supported ||
-> -			    plane->funcs->format_mod_supported(plane,
-> -							       plane->format_types[j],
-> -							       plane->modifiers[i])) {
-> +			if (!format_mod_supported ||
-> +			    format_mod_supported(plane,
-> +						 plane->format_types[j],
-> +						 plane->modifiers[i])) {
->  				mod->formats |= 1ULL << j;
->  			}
->  		}
-> @@ -251,10 +255,7 @@ static int create_in_format_blob(struct drm_device *dev, struct drm_plane *plane
->  		mod++;
->  	}
->  
-> -	drm_object_attach_property(&plane->base, config->modifiers_property,
-> -				   blob->base.id);
-> -
-> -	return 0;
-> +	return blob;
->  }
->  
->  /**
-> @@ -366,6 +367,7 @@ static int __drm_universal_plane_init(struct drm_device *dev,
->  				      const char *name, va_list ap)
->  {
->  	struct drm_mode_config *config = &dev->mode_config;
-> +	struct drm_property_blob *blob;
->  	static const uint64_t default_modifiers[] = {
->  		DRM_FORMAT_MOD_LINEAR,
->  	};
-> @@ -477,8 +479,24 @@ static int __drm_universal_plane_init(struct drm_device *dev,
->  		drm_plane_create_hotspot_properties(plane);
->  	}
->  
-> -	if (format_modifier_count)
-> -		create_in_format_blob(dev, plane);
-> +	if (format_modifier_count) {
-> +		blob = create_in_format_blob(dev, plane,
-> +					     plane->funcs->format_mod_supported);
-> +		if (!IS_ERR(blob))
-> +			drm_object_attach_property(&plane->base,
-> +						   config->modifiers_property,
-> +						   blob->base.id);
-> +	}
-> +
-> +	if (plane->funcs->format_mod_supported_async) {
-> +		blob = create_in_format_blob(dev, plane,
-> +					     plane->funcs->format_mod_supported_async);
-> +		if (!IS_ERR(blob))
-> +			drm_object_attach_property(&plane->base,
-> +						   config->async_modifiers_property,
-> +						   blob->base.id);
-> +	}
-> +
->  
->  	return 0;
->  }
-> 
-> -- 
-> 2.25.1
+Build changes
+-------------
 
--- 
-Ville Syrjälä
-Intel
+  * IGT: IGT_8284 -> IGT_8288
+  * Linux: xe-2854-14c330bc015ded4a1f1dd1f5aeb8617077aaa7e8 -> xe-pw-146777v2
+
+  IGT_8284: 8284
+  IGT_8288: 8288
+  xe-2854-14c330bc015ded4a1f1dd1f5aeb8617077aaa7e8: 14c330bc015ded4a1f1dd1f5aeb8617077aaa7e8
+  xe-pw-146777v2: 146777v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146777v2/index.html
+
+--===============0671798401521524119==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>VRR Register Read/Write Updates (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/146777/">https://patchwork.freedesktop.org/series/146777/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146777v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146777v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2854-14c330bc015ded4a1f1dd1f5aeb8617077aaa7e8_BAT -&gt; xe-pw-146777v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (10 -&gt; 9)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-146777v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_evict@evict-beng-small-cm:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146777v2/bat-adlp-vf/igt@xe_evict@evict-beng-small-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +9 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-rebind:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146777v2/bat-adlp-vf/igt@xe_exec_fault_mode@twice-rebind.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146777v2/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146777v2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xe2:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146777v2/bat-adlp-vf/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146777v2/bat-adlp-vf/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146777v2/bat-adlp-vf/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_pat@pat-index-xelp@render:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2854-14c330bc015ded4a1f1dd1f5aeb8617077aaa7e8/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146777v2/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8284 -&gt; IGT_8288</li>
+<li>Linux: xe-2854-14c330bc015ded4a1f1dd1f5aeb8617077aaa7e8 -&gt; xe-pw-146777v2</li>
+</ul>
+<p>IGT_8284: 8284<br />
+  IGT_8288: 8288<br />
+  xe-2854-14c330bc015ded4a1f1dd1f5aeb8617077aaa7e8: 14c330bc015ded4a1f1dd1f5aeb8617077aaa7e8<br />
+  xe-pw-146777v2: 146777v2</p>
+
+</body>
+</html>
+
+--===============0671798401521524119==--
