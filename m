@@ -4,60 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A85BDC3600B
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Mar 2025 15:22:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75C24C3600B
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Mar 2025 15:23:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7512710E6F5;
-	Wed, 26 Mar 2025 15:22:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3841E10E6FA;
+	Wed, 26 Mar 2025 15:23:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cDPQidhL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RybmhwP6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00B3E10E6F5
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Mar 2025 15:22:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 481CC10E6FA;
+ Wed, 26 Mar 2025 15:23:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743002573; x=1774538573;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=k5C01u0llCcEjBVls83dgnMO1JLZESEmgUTXyJM7YiU=;
- b=cDPQidhLevVeuEpVTFEXBTnKLXVbkYEIQ2npVNJ/Z16x4FGrTByW8auh
- LMTBmiVssVNSvKVpgZqYb5QrTggT89m0YaIB28oi1AtjW0/Y8sGfSopRD
- r74KeiBFj1YWQ9Z8U/Dcnphr1oRKOWLqqPTQbi62Gar9w6NvQxsJvEuwu
- ME4zlMAOYw5YCwpuxGIHE2lCwtzT0waqGjSxqpY+/PfdQOcj51wqYsnQM
- SFU25A5Nni9KiyxHrFtcPEJCPhOMlqg4P8DMV9rbdkrvN251M+KLGVSRq
- fYEcHqQPtfpuNSfCd6xJpISqyZNgRjVA+iw2ONezjo+BesmPnrVFJHHLs A==;
-X-CSE-ConnectionGUID: 8iYhBNo1SQmOupCF9lKTgg==
-X-CSE-MsgGUID: LEJuLpjvTqGIWfIY5v673A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="55663845"
-X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="55663845"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2025 08:22:29 -0700
-X-CSE-ConnectionGUID: tb0S9BSoT7i50VJjMzaZMQ==
-X-CSE-MsgGUID: EsBp4JxbQomLfVOwlXixZg==
+ t=1743002586; x=1774538586;
+ h=from:date:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=2ZQQrfoMCkW8KTsHXP4erfvYUa6Js4OjFNugSnhgNCM=;
+ b=RybmhwP6Vv7hegRTwG7Ei1KgpQVYoluffC4gDJ7nDc2oyl+Kcug/gtdy
+ JWJplXpxW4Qo/dV+DcO8U/98rEMI6++VVPJyZ7Ci69HWD+PjQmEcmL2Bp
+ Cj4qR9eyGaAl0b27PEB+AtTNZbSF8CzIyHq+dNC8MTTPkdj7Yu7NXbYKt
+ eZneOHoNBZeltSI+ZcO4wSVPR0pmW6FNibPFBb13HryU0W4DXLTzZYVFT
+ E6kLS6Lhe1HCiBMNFp+tQtygcIoI40DrBdiQhFgyJFVXjL8lJWVRtp/32
+ p1xWi0NmJS6/M4GSnxR2i1JQcIxx5tbrebKdRD0x53kiiVwo2spzIo4LJ A==;
+X-CSE-ConnectionGUID: j7MVufjNQhWICCGZELM/Cg==
+X-CSE-MsgGUID: aK/479IlRKqQlu7TLJYaDg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="55296926"
+X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="55296926"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2025 08:23:00 -0700
+X-CSE-ConnectionGUID: Q+f2VCQiSRuWz7lMYmRRPQ==
+X-CSE-MsgGUID: s2xmdai3Rm2siOCMWMNiag==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="155808886"
-Received: from unknown (HELO aradhyab-desk.iind.intel.com) ([10.190.216.90])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2025 08:22:26 -0700
-From: Aradhya Bhatia <aradhya.bhatia@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>,
- Intel XE List <intel-xe@lists.freedesktop.org>
-Cc: Matthew Auld <matthew.auld@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@intel.com>,
- Ayaz A Siddiqui <ayaz.siddiqui@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Aradhya Bhatia <aradhya.bhatia@intel.com>
-Subject: [RESEND PATCH v2] drm/xe/migrate: Switch from drm to dev managed
- actions
-Date: Wed, 26 Mar 2025 20:49:29 +0530
-Message-Id: <20250326151929.1495972-1-aradhya.bhatia@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="155712192"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.5])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2025 08:22:55 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Wed, 26 Mar 2025 17:22:50 +0200 (EET)
+To: =?ISO-8859-2?Q?Micha=B3_Winiarski?= <michal.winiarski@intel.com>
+cc: linux-pci@vger.kernel.org, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>, 
+ Bjorn Helgaas <bhelgaas@google.com>, 
+ =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>, 
+ =?ISO-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Michal Wajdeczko <michal.wajdeczko@intel.com>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ =?ISO-8859-15?Q?Thomas_Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Matt Roper <matthew.d.roper@intel.com>
+Subject: Re: [PATCH v6 5/6] PCI: Allow drivers to control VF BAR size
+In-Reply-To: <20250320110854.3866284-6-michal.winiarski@intel.com>
+Message-ID: <7374beef-46ed-ab53-ccb5-48565526545c@linux.intel.com>
+References: <20250320110854.3866284-1-michal.winiarski@intel.com>
+ <20250320110854.3866284-6-michal.winiarski@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/mixed; boundary="8323328-2132874728-1743002570=:942"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,78 +79,183 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Change the scope of the migrate subsystem to be dev managed instead of
-drm managed.
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-The parent pci struct &device, that the xe struct &drm_device is a part
-of, gets removed when a hot unplug is triggered, which causes the
-underlying iommu group to get destroyed as well.
+--8323328-2132874728-1743002570=:942
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
 
-The migrate subsystem, which handles the lifetime of the page-table tree
-(pt) BO, doesn't get a chance to keep the BO back during the hot unplug,
-as all the references to DRM haven't been put back.
-When all the references to DRM are indeed put back later, the migrate
-subsystem tries to put back the pt BO. Since the underlying iommu group
-has been already destroyed, a kernel NULL ptr dereference takes place
-while attempting to keep back the pt BO.
+On Thu, 20 Mar 2025, Micha=C5=82 Winiarski wrote:
 
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/3914
-Suggested-by: Thomas Hellstrom <thomas.hellstrom@intel.com>
-Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Signed-off-by: Aradhya Bhatia <aradhya.bhatia@intel.com>
----
-Note:
-This is a resend of the original v2 that was sent previously. That patch, for an
-unknown reason, did not get registered with intel-xe freedesktop patchwork
-setup, despite reaching the intel-xe mailing list server.
+> Drivers could leverage the fact that the VF BAR MMIO reservation is
+> created for total number of VFs supported by the device by resizing the
+> BAR to larger size when smaller number of VFs is enabled.
+>=20
+> Add a pci_iov_vf_bar_set_size() function to control the size and a
+> pci_iov_vf_bar_get_sizes() helper to get the VF BAR sizes that will
+> allow up to num_vfs to be successfully enabled with the current
+> underlying reservation size.
+>=20
+> Signed-off-by: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
+> ---
+>  drivers/pci/iov.c   | 78 +++++++++++++++++++++++++++++++++++++++++++++
+>  include/linux/pci.h |  6 ++++
+>  2 files changed, 84 insertions(+)
+>=20
+> diff --git a/drivers/pci/iov.c b/drivers/pci/iov.c
+> index 861273ad9a580..751eef232685c 100644
+> --- a/drivers/pci/iov.c
+> +++ b/drivers/pci/iov.c
+> @@ -1291,3 +1291,81 @@ int pci_sriov_configure_simple(struct pci_dev *dev=
+, int nr_virtfn)
+>  =09return nr_virtfn;
+>  }
+>  EXPORT_SYMBOL_GPL(pci_sriov_configure_simple);
+> +
+> +/**
+> + * pci_iov_vf_bar_set_size - set a new size for a VF BAR
+> + * @dev: the PCI device
+> + * @resno: the resource number
+> + * @size: new size as defined in the spec (0=3D1MB, 31=3D128TB)
+> + *
+> + * Set the new size of a VF BAR that supports VF resizable BAR capabilit=
+y.
+> + * Unlike pci_resize_resource(), this does not cause the resource that
+> + * reserves the MMIO space (originally up to total_VFs) to be resized, w=
+hich
+> + * means that following calls to pci_enable_sriov() can fail if the reso=
+urces
+> + * no longer fit.
+> + *
+> + * Returns 0 on success, or negative on failure.
 
-original v2:
-https://lore.kernel.org/intel-xe/20250325114225.1231973-1-aradhya.bhatia@intel.com/T/#u
+Return: is the correct kernel doc style.
 
-Changes in v2:
-  - Rebase to latest drm-tip.
-  - Add tags: Closes, S-b (Thomas Hellstrom), R-b (Tejas Upadhyay).
-  - Drop patch 2/2 from the series, as memory eviction is now being
-    comprehensively handled in https://patchwork.freedesktop.org/series/146383/#rev5.
-  - v1: https://lore.kernel.org/all/20250228065224.320811-1-aradhya.bhatia@intel.com/
+> + */
+> +int pci_iov_vf_bar_set_size(struct pci_dev *dev, int resno, int size)
+> +{
+> +=09int ret;
+> +=09u32 sizes;
+> +
+> +=09if (!pci_resource_is_iov(resno))
+> +=09=09return -EINVAL;
+> +
+> +=09if (pci_iov_is_memory_decoding_enabled(dev))
+> +=09=09return -EBUSY;
+> +
+> +=09sizes =3D pci_rebar_get_possible_sizes(dev, resno);
+> +=09if (!sizes)
+> +=09=09return -ENOTSUPP;
+> +
+> +=09if (!(sizes & BIT(size)))
+> +=09=09return -EINVAL;
+> +
+> +=09ret =3D pci_rebar_set_size(dev, resno, size);
+> +=09if (ret)
+> +=09=09return ret;
+> +
+> +=09pci_iov_resource_set_size(dev, resno, pci_rebar_size_to_bytes(size));
+> +
+> +=09return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(pci_iov_vf_bar_set_size);
+> +
+> +/**
+> + * pci_iov_vf_bar_get_sizes - get VF BAR sizes allowing to create up to =
+num_vfs
+> + * @dev: the PCI device
+> + * @resno: the resource number
+> + * @num_vfs: number of VFs
+> + *
+> + * Get the sizes of a VF resizable BAR that can be accommodated within t=
+he
+> + * resource that reserves the MMIO space if num_vfs are enabled.
 
----
- drivers/gpu/drm/xe/xe_migrate.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+I'd rephrase to:
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index df4282c71bf0..6c26892b05d5 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -97,7 +97,7 @@ struct xe_exec_queue *xe_tile_migrate_exec_queue(struct xe_tile *tile)
- 	return tile->migrate->q;
- }
- 
--static void xe_migrate_fini(struct drm_device *dev, void *arg)
-+static void xe_migrate_fini(void *arg)
- {
- 	struct xe_migrate *m = arg;
- 
-@@ -401,7 +401,7 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
- 	struct xe_vm *vm;
- 	int err;
- 
--	m = drmm_kzalloc(&xe->drm, sizeof(*m), GFP_KERNEL);
-+	m = devm_kzalloc(xe->drm.dev, sizeof(*m), GFP_KERNEL);
- 	if (!m)
- 		return ERR_PTR(-ENOMEM);
- 
-@@ -455,7 +455,7 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
- 	might_lock(&m->job_mutex);
- 	fs_reclaim_release(GFP_KERNEL);
- 
--	err = drmm_add_action_or_reset(&xe->drm, xe_migrate_fini, m);
-+	err = devm_add_action_or_reset(xe->drm.dev, xe_migrate_fini, m);
- 	if (err)
- 		return ERR_PTR(err);
- 
+Get the sizes of a VF resizable BAR that can be accommodate @num_vfs=20
+within the currently assigned size of the resource @resno.
 
-base-commit: 9a42bdcde0f77b2c1e947e283cc3b267b1ce2056
--- 
-2.34.1
+> + *
+> + * Returns 0 if BAR isn't resizable, otherwise returns a bitmask in form=
+at
 
+Return:
+
+a bitmask of sizes
+
+> + * defined in the spec (bit 0=3D1MB, bit 31=3D128TB).
+> + */
+> +u32 pci_iov_vf_bar_get_sizes(struct pci_dev *dev, int resno, int num_vfs=
+)
+> +{
+> +=09resource_size_t size;
+> +=09u32 sizes;
+> +=09int i;
+> +
+> +=09sizes =3D pci_rebar_get_possible_sizes(dev, resno);
+> +=09if (!sizes)
+> +=09=09return 0;
+> +
+> +=09while (sizes > 0) {
+> +=09=09i =3D __fls(sizes);
+> +=09=09size =3D pci_rebar_size_to_bytes(i);
+> +
+> +=09=09if (size * num_vfs <=3D pci_resource_len(dev, resno))
+> +=09=09=09break;
+> +
+> +=09=09sizes &=3D ~BIT(i);
+> +=09}
+
+Couldn't this be handled without a loop:
+
+=09bar_sizes =3D (round_up(pci_resource_len(dev, resno) / num_vfs) - 1) >>
+=09=09    ilog2(SZ_1M);
+
+=09sizes &=3D bar_sizes;
+
+(Just to given an idea, I wrote this into the email so it might contain=20
+some off-by-one errors or like).
+
+> +
+> +=09return sizes;
+> +}
+> +EXPORT_SYMBOL_GPL(pci_iov_vf_bar_get_sizes);
+> diff --git a/include/linux/pci.h b/include/linux/pci.h
+> index 0e8e3fd77e967..c8708f3749757 100644
+> --- a/include/linux/pci.h
+> +++ b/include/linux/pci.h
+> @@ -2389,6 +2389,8 @@ int pci_sriov_set_totalvfs(struct pci_dev *dev, u16=
+ numvfs);
+>  int pci_sriov_get_totalvfs(struct pci_dev *dev);
+>  int pci_sriov_configure_simple(struct pci_dev *dev, int nr_virtfn);
+>  resource_size_t pci_iov_resource_size(struct pci_dev *dev, int resno);
+> +int pci_iov_vf_bar_set_size(struct pci_dev *dev, int resno, int size);
+> +u32 pci_iov_vf_bar_get_sizes(struct pci_dev *dev, int resno, int num_vfs=
+);
+>  void pci_vf_drivers_autoprobe(struct pci_dev *dev, bool probe);
+> =20
+>  /* Arch may override these (weak) */
+> @@ -2441,6 +2443,10 @@ static inline int pci_sriov_get_totalvfs(struct pc=
+i_dev *dev)
+>  #define pci_sriov_configure_simple=09NULL
+>  static inline resource_size_t pci_iov_resource_size(struct pci_dev *dev,=
+ int resno)
+>  { return 0; }
+> +static inline int pci_iov_vf_bar_set_size(struct pci_dev *dev, int resno=
+, int size)
+> +{ return -ENODEV; }
+> +static inline u32 pci_iov_vf_bar_get_sizes(struct pci_dev *dev, int resn=
+o, int num_vfs)
+> +{ return 0; }
+>  static inline void pci_vf_drivers_autoprobe(struct pci_dev *dev, bool pr=
+obe) { }
+>  #endif
+> =20
+>=20
+
+--=20
+ i.
+
+--8323328-2132874728-1743002570=:942--
