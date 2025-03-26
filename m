@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08D15C3600E
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Mar 2025 18:07:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC1C1C36010
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Mar 2025 18:19:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4A4C10E1BD;
-	Wed, 26 Mar 2025 18:07:25 +0000 (UTC)
-Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E93FC10E1BD;
- Wed, 26 Mar 2025 18:07:24 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EDC110E1E1;
+	Wed, 26 Mar 2025 18:19:34 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NHXlws3D";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 128CA10E1AA
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Mar 2025 18:19:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1743013171; x=1774549171;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rZ4g05q7wQjezCxyoY65NXu8JLNg5qoYXnQDWM4+XTM=;
+ b=NHXlws3DpqRim+zmPbSInci5t7tJx322gDgx1WilrUEn9rM1wYyB9FYU
+ uax3Y29NVgNL/sH9nWsS20dqXzO1mIklDPw1bQtlc9Mlka/qVoKnwWQCM
+ zftkFI8OSQPWIZRkVo9vIwIF/8MgGB0YDUABexr9XqnD0A0m82NLLFCty
+ rKyWzh59tCscU47f71mkvcRLJQmlC312xzy0s9g+UZg/O4l7CY7BeEFeX
+ gh0xaf3fbsSux5j5+qcwVefj8uakSRsJcsG/egH/iYcDSv1m1XiWsmE6s
+ +vcVly4Qqb6iEZiPk5x5E3Z+7mk54Prs1cHblxe7oYWg2G4IhGYo1UIqS w==;
+X-CSE-ConnectionGUID: t2MKPzogQIa/kQLrLoSKkg==
+X-CSE-MsgGUID: xjaxe+PLTZSbnlGAg2DLBA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="44213581"
+X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="44213581"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2025 11:19:31 -0700
+X-CSE-ConnectionGUID: +mQpnEBlQkulW3+/+K3M3Q==
+X-CSE-MsgGUID: XYOORWKITg+D3P3TGO1esg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="125383304"
+Received: from ettammin-desk.ger.corp.intel.com (HELO mwauld-desk.intel.com)
+ ([10.245.245.12])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2025 11:19:30 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH v4 0/7] Improve SRIOV VRAM provisioning
+Date: Wed, 26 Mar 2025 18:19:09 +0000
+Message-ID: <20250326181908.124082-9-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915=3A_sagv/bw_clea?=
- =?utf-8?q?nup_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 26 Mar 2025 18:07:24 -0000
-Message-ID: <174301244494.7112.17318836583111540357@e6b6f09ec485>
-X-Patchwork-Hint: ignore
-References: <20250326162544.3642-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20250326162544.3642-1-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,40 +62,24 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Support non-contig VRAM for pinned kernel objects. Main current usecase is
+when provisioning VRAM for SRIOV usecase (final patch). Currently we are
+artificially limited to using contig VRAM, however the allocations here are
+very large and the contig restriction can result in failing to provision
+the VF, even when there is enough free space (we just need at least 2M
+pages).
 
-Series: drm/i915: sagv/bw cleanup (rev2)
-URL   : https://patchwork.freedesktop.org/series/146013/
-State : warning
+v2:
+ - Various fixes for CI reported issues.
+v3:
+ - suspend/resume and various other fixes.
+v4:
+ - drop one bogus assert.
+ - rebase on the newly merged apply-to-pinned infra.
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 14c330bc015ded4a1f1dd1f5aeb8617077aaa7e8
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+-- 
+2.48.1
 
