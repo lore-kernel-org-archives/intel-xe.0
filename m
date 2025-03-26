@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73D9DC36008
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Mar 2025 16:26:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 080E5C36008
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Mar 2025 16:29:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A46E10E742;
-	Wed, 26 Mar 2025 16:26:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PFY9cDCR";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA44110E73E;
- Wed, 26 Mar 2025 16:26:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743006392; x=1774542392;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=gAz73g30mj3L/6kIH6ZAR1mYBvhoWSYbwZrAp5TQJnY=;
- b=PFY9cDCRh5UmUiV3RCACr9Y3VVIbZNNTDezNB/+fkf++g78biTz+zOyw
- r6yki8jH4XsQc76iEOFfsumbNVVHKMxJuVUGJThs9JYsBl2d5gS0TydBt
- oL2bDJKgsrkekC6i1inxZsAnrjEjSiw7Oi1b7L5pwTgC6i/eIa/c4BJWK
- TET5sbSzFgp4MzAre5mBs5B0IErW7gz/ogaQiDhubothjFLfJNPa2MANV
- 2WKvJPOvN9r+p44Fmh4GH4MMrqhqZ3/WsDpL8Uq+/HEE0C87RiqZ/Sjt8
- bH8IXJoi0m9quQKcJ5eI3msuPmwjK3Y4Y3CG08JdeH3ttVZ6ZB4mlKnOY Q==;
-X-CSE-ConnectionGUID: g2hM/DWlTJ6Ng26LLo750w==
-X-CSE-MsgGUID: AHOJjwtbRe2RW9gxHcksNw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="44029600"
-X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="44029600"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2025 09:26:32 -0700
-X-CSE-ConnectionGUID: ntb7x+F8QjylcRmICaTFQA==
-X-CSE-MsgGUID: tSX6gyRZQVW2mleZmvgyzA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="130016476"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 26 Mar 2025 09:26:30 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 26 Mar 2025 18:26:28 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 14/14] drm/i915: Eliminate intel_compute_sagv_mask()
-Date: Wed, 26 Mar 2025 18:25:44 +0200
-Message-ID: <20250326162544.3642-15-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.45.3
-In-Reply-To: <20250326162544.3642-1-ville.syrjala@linux.intel.com>
-References: <20250326162544.3642-1-ville.syrjala@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF11D10E73B;
+	Wed, 26 Mar 2025 16:29:36 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED04C10E73B;
+ Wed, 26 Mar 2025 16:29:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/migrate=3A_Switch_from_?=
+ =?utf-8?q?drm_to_dev_managed_actions?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Aradhya Bhatia" <aradhya.bhatia@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 26 Mar 2025 16:29:35 -0000
+Message-ID: <174300657596.5929.6903894263871208409@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250326151929.1495972-1-aradhya.bhatia@intel.com>
+In-Reply-To: <20250326151929.1495972-1-aradhya.bhatia@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,114 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-intel_compute_sagv_mask() has become pointless. Just inline
-its contents into the existing loop in skl_compute_wm().
+Series: drm/xe/migrate: Switch from drm to dev managed actions
+URL   : https://patchwork.freedesktop.org/series/146811/
+State : success
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/skl_watermark.c | 64 ++++++++------------
- 1 file changed, 24 insertions(+), 40 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 8b51f0b42785..9381aec797c9 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -458,42 +458,6 @@ bool intel_can_enable_sagv(struct drm_i915_private *i915,
- 	return bw_state->pipe_sagv_reject == 0;
- }
- 
--static int intel_compute_sagv_mask(struct intel_atomic_state *state)
--{
--	struct intel_display *display = to_intel_display(state);
--	struct drm_i915_private *i915 = to_i915(state->base.dev);
--	struct intel_crtc *crtc;
--	struct intel_crtc_state *new_crtc_state;
--	int i;
--
--	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
--		struct skl_pipe_wm *pipe_wm = &new_crtc_state->wm.skl.optimal;
--
--		/*
--		 * We store use_sagv_wm in the crtc state rather than relying on
--		 * that bw state since we have no convenient way to get at the
--		 * latter from the plane commit hooks (especially in the legacy
--		 * cursor case).
--		 *
--		 * drm_atomic_check_only() gets upset if we pull more crtcs
--		 * into the state, so we have to calculate this based on the
--		 * individual intel_crtc_can_enable_sagv() rather than
--		 * the overall intel_can_enable_sagv(). Otherwise the
--		 * crtcs not included in the commit would not switch to the
--		 * SAGV watermarks when we are about to enable SAGV, and that
--		 * would lead to underruns. This does mean extra power draw
--		 * when only a subset of the crtcs are blocking SAGV as the
--		 * other crtcs can't be allowed to use the more optimal
--		 * normal (ie. non-SAGV) watermarks.
--		 */
--		pipe_wm->use_sagv_wm = !HAS_HW_SAGV_WM(display) &&
--			DISPLAY_VER(i915) >= 12 &&
--			intel_crtc_can_enable_sagv(new_crtc_state);
--	}
--
--	return 0;
--}
--
- static u16 skl_ddb_entry_init(struct skl_ddb_entry *entry,
- 			      u16 start, u16 end)
- {
-@@ -3028,6 +2992,7 @@ intel_program_dpkgc_latency(struct intel_atomic_state *state)
- static int
- skl_compute_wm(struct intel_atomic_state *state)
- {
-+	struct intel_display *display = to_intel_display(state);
- 	struct intel_crtc *crtc;
- 	struct intel_crtc_state __maybe_unused *new_crtc_state;
- 	int ret, i;
-@@ -3042,16 +3007,35 @@ skl_compute_wm(struct intel_atomic_state *state)
- 	if (ret)
- 		return ret;
- 
--	ret = intel_compute_sagv_mask(state);
--	if (ret)
--		return ret;
--
- 	/*
- 	 * skl_compute_ddb() will have adjusted the final watermarks
- 	 * based on how much ddb is available. Now we can actually
- 	 * check if the final watermarks changed.
- 	 */
- 	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
-+		struct skl_pipe_wm *pipe_wm = &new_crtc_state->wm.skl.optimal;
-+
-+		/*
-+		 * We store use_sagv_wm in the crtc state rather than relying on
-+		 * that bw state since we have no convenient way to get at the
-+		 * latter from the plane commit hooks (especially in the legacy
-+		 * cursor case).
-+		 *
-+		 * drm_atomic_check_only() gets upset if we pull more crtcs
-+		 * into the state, so we have to calculate this based on the
-+		 * individual intel_crtc_can_enable_sagv() rather than
-+		 * the overall intel_can_enable_sagv(). Otherwise the
-+		 * crtcs not included in the commit would not switch to the
-+		 * SAGV watermarks when we are about to enable SAGV, and that
-+		 * would lead to underruns. This does mean extra power draw
-+		 * when only a subset of the crtcs are blocking SAGV as the
-+		 * other crtcs can't be allowed to use the more optimal
-+		 * normal (ie. non-SAGV) watermarks.
-+		 */
-+		pipe_wm->use_sagv_wm = !HAS_HW_SAGV_WM(display) &&
-+			DISPLAY_VER(display) >= 12 &&
-+			intel_crtc_can_enable_sagv(new_crtc_state);
-+
- 		ret = skl_wm_add_affected_planes(state, crtc);
- 		if (ret)
- 			return ret;
--- 
-2.45.3
+lib/modules/6.14.0-xe+/kernel/arch/x86/events/amd/
+lib/modules/6.14.0-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.14.0-xe+/kernel/kernel/
+lib/modules/6.14.0-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.14.0-xe+/kernel/crypto/
+lib/modules/6.14.0-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.14.0-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.14.0-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.14.0-xe+/kernel/crypto/zstd.ko
+lib/modules/6.14.0-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.14.0-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.14.0-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.14.0-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/xctr.ko
+lib/modules/6.14.0-xe+/kernel/crypto/authenc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm3.ko
+lib/modules/6.14.0-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.14.0-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.14.0-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cmac.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.14.0-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/essiv.ko
+lib/modules/6.14.0-xe+/kernel/crypto/ccm.ko
+lib/modules/6.14.0-xe+/kernel/crypto/wp512.ko
+lib/modules/6.14.0-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.14.0-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.14.0-xe+/kernel/crypto/lrw.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.14.0-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.14.0-xe+/kernel/crypto/842.ko
+lib/modules/6.14.0-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.14.0-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/md4.ko
+lib/modules/6.14.0-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.14.0-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/lz4.ko
+lib/modules/6.14.0-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.14.0-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm4.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.14.0-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.14.0-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.14.0-xe+/kernel/block/
+lib/modules/6.14.0-xe+/kernel/block/bfq.ko
+lib/modules/6.14.0-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.14.0-xe+/build
+lib/modules/6.14.0-xe+/modules.alias.bin
+lib/modules/6.14.0-xe+/modules.builtin
+lib/modules/6.14.0-xe+/modules.softdep
+lib/modules/6.14.0-xe+/modules.alias
+lib/modules/6.14.0-xe+/modules.order
+lib/modules/6.14.0-xe+/modules.symbols
+lib/modules/6.14.0-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1743006565:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1743006565:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
