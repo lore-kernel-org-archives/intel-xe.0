@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3607C28B30
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Mar 2025 04:23:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16F94C3600B
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Mar 2025 04:23:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8251A10E102;
-	Wed, 26 Mar 2025 04:23:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CED2C10E102;
+	Wed, 26 Mar 2025 04:23:16 +0000 (UTC)
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A05C10E102;
- Wed, 26 Mar 2025 04:23:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51C3610E102;
+ Wed, 26 Mar 2025 04:23:15 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_VRR_Register_Read/Wr?=
- =?utf-8?q?ite_Updates?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_VRR_Register_Read/Write_U?=
+ =?utf-8?q?pdates?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 26 Mar 2025 04:23:02 -0000
-Message-ID: <174296298242.3802.3918408351463486513@e6b6f09ec485>
+Date: Wed, 26 Mar 2025 04:23:15 -0000
+Message-ID: <174296299533.3802.10609260615356094026@e6b6f09ec485>
 X-Patchwork-Hint: ignore
 References: <20250326040538.504861-1-ankit.k.nautiyal@intel.com>
 In-Reply-To: <20250326040538.504861-1-ankit.k.nautiyal@intel.com>
@@ -48,10 +48,35 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: afc2e1fea0a4 drm-tip: 2025y-03m-25d-20h-55m-17s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/display: Introduce transcoder_has_vrr() helper
-Applying: drm/i915/display: Avoid use of VTOTAL.Vtotal bits
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+99e5a866b5e13f134e606a3e29d9508d97826fb3
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a65df8f4c9615600d417ae1f1d1f0d6bea0f0ce4
+Author: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Date:   Wed Mar 26 09:35:38 2025 +0530
+
+    drm/i915/display: Avoid use of VTOTAL.Vtotal bits
+    
+    For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
+    bits are not required. Since the support for these bits is going to
+    be deprecated in upcoming platforms, avoid writing these bits for the
+    platforms that do not use legacy Timing Generator.
+    
+    Since for these platforms TRAN_VMIN is always filled with crtc_vtotal,
+    use TRAN_VRR_VMIN to get the vtotal for adjusted_mode.
+    
+    v2: Avoid having a helper for manipulating VTOTAL register, and instead
+    just make the change where required. (Ville)
+    
+    Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
++ /mt/dim checkpatch afc2e1fea0a406eedbaf632e96cdb6832a45ebb7 drm-intel
+7e606dc8633e drm/i915/display: Introduce transcoder_has_vrr() helper
+a65df8f4c961 drm/i915/display: Avoid use of VTOTAL.Vtotal bits
 
 
