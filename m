@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEAC6C36008
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Mar 2025 22:32:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07C89C36008
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Mar 2025 22:32:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5837710E0B5;
-	Wed, 26 Mar 2025 22:32:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB59910E0B5;
+	Wed, 26 Mar 2025 22:32:57 +0000 (UTC)
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40D5110E0B5;
- Wed, 26 Mar 2025 22:32:36 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7565962514864224982=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA10C10E0B5;
+ Wed, 26 Mar 2025 22:32:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_drm/xe=3A_xe-only_patches_?=
- =?utf-8?q?from_the_multi-device_GPUSVM_series_=28rev6=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Ensure_fix?=
+ =?utf-8?q?ed=5Fslice=5Fmode_gets_set_after_ccs=5Fmode_change?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 26 Mar 2025 22:32:36 -0000
-Message-ID: <174302835625.7831.8427860029389213749@e6b6f09ec485>
+Date: Wed, 26 Mar 2025 22:32:55 -0000
+Message-ID: <174302837582.7831.1543315574957542774@e6b6f09ec485>
 X-Patchwork-Hint: ignore
-References: <20250326080551.40201-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20250326080551.40201-1-thomas.hellstrom@linux.intel.com>
+References: <20250326222720.26913-1-niranjana.vishwanathapura@intel.com>
+In-Reply-To: <20250326222720.26913-1-niranjana.vishwanathapura@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,57 +40,17 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7565962514864224982==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: xe-only patches from the multi-device GPUSVM series (rev6)
-URL   : https://patchwork.freedesktop.org/series/146383/
-State : failure
+Series: drm/xe: Ensure fixed_slice_mode gets set after ccs_mode change
+URL   : https://patchwork.freedesktop.org/series/146830/
+State : success
 
 == Summary ==
 
-ERROR: The runconfig 'xe-2854-14c330bc015ded4a1f1dd1f5aeb8617077aaa7e8_full' does not exist in the database
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146383v6/index.html
-
---===============7565962514864224982==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: c1893793c7d3 drm-tip: 2025y-03m-26d-21h-05m-04s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Ensure fixed_slice_mode gets set after ccs_mode change
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: xe-only patches from the multi-device GPUSVM series (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/146383/">https://patchwork.freedesktop.org/series/146383/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146383v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146383v6/index.html</a></td></tr>
-
-</table>
-
-
-    <p>ERROR: The runconfig 'xe-2854-14c330bc015ded4a1f1dd1f5aeb8617077aaa7e8_full' does not exist in the database</p>
-
-</body>
-</html>
-
---===============7565962514864224982==--
