@@ -4,68 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE0B2C36008
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Mar 2025 15:11:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC6E8C36008
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Mar 2025 15:17:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C14E10E6EF;
-	Wed, 26 Mar 2025 15:11:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F6AC10E00D;
+	Wed, 26 Mar 2025 15:17:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Iu3V0huN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PzTcc8Yv";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 832DB10E6EB;
- Wed, 26 Mar 2025 15:11:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88A4110E00D
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Mar 2025 15:17:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743001875; x=1774537875;
- h=from:date:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=T2vj5fs1lJoyIJWe3E0BaCVb+RTTxO7rAjHyemXklF4=;
- b=Iu3V0huN/+1HGOhRiDqpSnZEaooVY/iLAcLBrniDSfarMxsoNSRXOrxJ
- L7Vbzc6Y9xeDxj6qqPQRBvR0ITcsoal00X5wnu0ryyJRwubcmF9d3pmTb
- 8ESseFAwPVdv7jOyqNkY7FfFthQgPKj1LEMb7vzFMrxM73YE3WPWFsP2u
- beOLSKtMIDi9cVXytY2Axa/TxnlneyHvYfTSqvgq0XTud5NsSM06Et/2r
- qH3k/fxMU05pEHDbtIf/Lmd6PHp9bxjnC5YySt+Z92/Vb4S73w61p1pF0
- G/94xdeg9j5lTEtbsMmthNYBQ1TV2dDURa58qF/JQPQGQsLPcfVSiolod g==;
-X-CSE-ConnectionGUID: DQ86r5/CQay63zE8FL4CZA==
-X-CSE-MsgGUID: xywCGREeTwSp3AGxHLuxhQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="47950128"
-X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="47950128"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2025 08:11:14 -0700
-X-CSE-ConnectionGUID: xuZCinpVSzu60sPZ4LJ70g==
-X-CSE-MsgGUID: ZI+qmaGRThuotURKYdK1wA==
+ t=1743002222; x=1774538222;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=nh66HMd5TpjDSo6b8rcbkaC0lMNeryog+95DmuVjJzk=;
+ b=PzTcc8YvMeM/+NXzpfTEpq4N8/L0qTlV4h0S6n9GddKTl6wAirq7lbnX
+ +utVlM9BYa6hIyaPAGsaTsjETgeK5rMI1I5RU2om4A24L7AaTYWKkbmRr
+ p2ueO9GGL2gdKJoNGpolDmDlJ2pB4qfCsFriy26+yl0SZywZ55bUTvXs6
+ kGJHnwkpcBmXh/3kR6IDYTLWZGiPTYKCUg7MUOUzpfQBCidNMDya5bqJB
+ BTNOlMYS8XAlv4mfzWeQ1hUwQtfgsjK5I81RC2kyR2Y45tI7xgkcb/hG2
+ zoG0HEfGjXq07AKv+yULDzjJN0iGH0y69YVtxbVPlfu/1igBSlR3pPwG3 Q==;
+X-CSE-ConnectionGUID: p9yu3HyLTma5oTP6zWjRRA==
+X-CSE-MsgGUID: fYWT7cX0QOCFh9b8Dl3xfg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="61818496"
+X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="61818496"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2025 08:17:01 -0700
+X-CSE-ConnectionGUID: DdxpsL4yR7auc3zypD0tbA==
+X-CSE-MsgGUID: QnXPYXtySK2yYy1/c6edlg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="124817289"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.5])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2025 08:11:08 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Wed, 26 Mar 2025 17:11:04 +0200 (EET)
-To: =?ISO-8859-2?Q?Micha=B3_Winiarski?= <michal.winiarski@intel.com>
-cc: linux-pci@vger.kernel.org, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>, 
- Bjorn Helgaas <bhelgaas@google.com>, 
- =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>, 
- =?ISO-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Michal Wajdeczko <michal.wajdeczko@intel.com>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?ISO-8859-15?Q?Thomas_Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Matt Roper <matthew.d.roper@intel.com>
-Subject: Re: [PATCH v6 4/6] PCI/IOV: Check that VF BAR fits within the
- reservation
-In-Reply-To: <20250320110854.3866284-5-michal.winiarski@intel.com>
-Message-ID: <4959d675-edd8-a296-661c-6a7bd22fbc0d@linux.intel.com>
-References: <20250320110854.3866284-1-michal.winiarski@intel.com>
- <20250320110854.3866284-5-michal.winiarski@intel.com>
+X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="147995079"
+Received: from ncintean-mobl1.ger.corp.intel.com (HELO fedora..)
+ ([10.245.246.202])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2025 08:16:59 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, stable@vger.kernel.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH v2] drm/xe: Fix an out-of-bounds shift when invalidating TLB
+Date: Wed, 26 Mar 2025 16:16:34 +0100
+Message-ID: <20250326151634.36916-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323328-1797840117-1743001864=:942"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,83 +69,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+When the size of the range invalidated is larger than
+rounddown_pow_of_two(ULONG_MAX),
+The function macro roundup_pow_of_two(length) will hit an out-of-bounds
+shift [1].
 
---8323328-1797840117-1743001864=:942
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
+Use a full TLB invalidation for such cases.
+v2:
+- Use a define for the range size limit over which we use a full
+  TLB invalidation. (Lucas)
+- Use a better calculation of the limit.
 
-On Thu, 20 Mar 2025, Micha=C5=82 Winiarski wrote:
+[1]:
+[   39.202421] ------------[ cut here ]------------
+[   39.202657] UBSAN: shift-out-of-bounds in ./include/linux/log2.h:57:13
+[   39.202673] shift exponent 64 is too large for 64-bit type 'long unsigned int'
+[   39.202688] CPU: 8 UID: 0 PID: 3129 Comm: xe_exec_system_ Tainted: G     U             6.14.0+ #10
+[   39.202690] Tainted: [U]=USER
+[   39.202690] Hardware name: ASUS System Product Name/PRIME B560M-A AC, BIOS 2001 02/01/2023
+[   39.202691] Call Trace:
+[   39.202692]  <TASK>
+[   39.202695]  dump_stack_lvl+0x6e/0xa0
+[   39.202699]  ubsan_epilogue+0x5/0x30
+[   39.202701]  __ubsan_handle_shift_out_of_bounds.cold+0x61/0xe6
+[   39.202705]  xe_gt_tlb_invalidation_range.cold+0x1d/0x3a [xe]
+[   39.202800]  ? find_held_lock+0x2b/0x80
+[   39.202803]  ? mark_held_locks+0x40/0x70
+[   39.202806]  xe_svm_invalidate+0x459/0x700 [xe]
+[   39.202897]  drm_gpusvm_notifier_invalidate+0x4d/0x70 [drm_gpusvm]
+[   39.202900]  __mmu_notifier_release+0x1f5/0x270
+[   39.202905]  exit_mmap+0x40e/0x450
+[   39.202912]  __mmput+0x45/0x110
+[   39.202914]  exit_mm+0xc5/0x130
+[   39.202916]  do_exit+0x21c/0x500
+[   39.202918]  ? lockdep_hardirqs_on_prepare+0xdb/0x190
+[   39.202920]  do_group_exit+0x36/0xa0
+[   39.202922]  get_signal+0x8f8/0x900
+[   39.202926]  arch_do_signal_or_restart+0x35/0x100
+[   39.202930]  syscall_exit_to_user_mode+0x1fc/0x290
+[   39.202932]  do_syscall_64+0xa1/0x180
+[   39.202934]  ? do_user_addr_fault+0x59f/0x8a0
+[   39.202937]  ? lock_release+0xd2/0x2a0
+[   39.202939]  ? do_user_addr_fault+0x5a9/0x8a0
+[   39.202942]  ? trace_hardirqs_off+0x4b/0xc0
+[   39.202944]  ? clear_bhb_loop+0x25/0x80
+[   39.202946]  ? clear_bhb_loop+0x25/0x80
+[   39.202947]  ? clear_bhb_loop+0x25/0x80
+[   39.202950]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+[   39.202952] RIP: 0033:0x7fa945e543e1
+[   39.202961] Code: Unable to access opcode bytes at 0x7fa945e543b7.
+[   39.202962] RSP: 002b:00007ffca8fb4170 EFLAGS: 00000293
+[   39.202963] RAX: 000000000000003d RBX: 0000000000000000 RCX: 00007fa945e543e3
+[   39.202964] RDX: 0000000000000000 RSI: 00007ffca8fb41ac RDI: 00000000ffffffff
+[   39.202964] RBP: 00007ffca8fb4190 R08: 0000000000000000 R09: 00007fa945f600a0
+[   39.202965] R10: 0000000000000000 R11: 0000000000000293 R12: 0000000000000000
+[   39.202966] R13: 00007fa9460dd310 R14: 00007ffca8fb41ac R15: 0000000000000000
+[   39.202970]  </TASK>
+[   39.202970] ---[ end trace ]---
 
-> When the resource representing VF MMIO BAR reservation is created, its
-> size is always large enough to accommodate the BAR of all SR-IOV Virtual
-> Functions that can potentially be created (total VFs). If for whatever
-> reason it's not possible to accommodate all VFs - the resource is not
-> assigned and no VFs can be created.
->=20
-> The following patch will allow VF BAR size to be modified by drivers at
+Fixes: 332dd0116c82 ("drm/xe: Add range based TLB invalidations")
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: <stable@vger.kernel.org> # v6.8+
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com> #v1
+---
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 12 ++++++++++--
+ 1 file changed, 10 insertions(+), 2 deletions(-)
 
-"The following patch" sounds to be like you're referring to patch that=20
-follows this description, ie., the patch below. "An upcoming change" is=20
-alternative that doesn't suffer from the same problem.
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+index 03072e094991..084cbdeba8ea 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+@@ -322,6 +322,13 @@ int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt)
+ 	return 0;
+ }
+ 
++/*
++ * Ensure that roundup_pow_of_two(length) doesn't overflow.
++ * Note that roundup_pow_of_two() operates on unsigned long,
++ * not on u64.
++ */
++#define MAX_RANGE_TLB_INVALIDATION_LENGTH (rounddown_pow_of_two(ULONG_MAX))
++
+ /**
+  * xe_gt_tlb_invalidation_range - Issue a TLB invalidation on this GT for an
+  * address range
+@@ -346,6 +353,7 @@ int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
+ 	struct xe_device *xe = gt_to_xe(gt);
+ #define MAX_TLB_INVALIDATION_LEN	7
+ 	u32 action[MAX_TLB_INVALIDATION_LEN];
++	u64 length = end - start;
+ 	int len = 0;
+ 
+ 	xe_gt_assert(gt, fence);
+@@ -358,11 +366,11 @@ int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
+ 
+ 	action[len++] = XE_GUC_ACTION_TLB_INVALIDATION;
+ 	action[len++] = 0; /* seqno, replaced in send_tlb_invalidation */
+-	if (!xe->info.has_range_tlb_invalidation) {
++	if (!xe->info.has_range_tlb_invalidation ||
++	    length > MAX_RANGE_TLB_INVALIDATION_LENGTH) {
+ 		action[len++] = MAKE_INVAL_OP(XE_GUC_TLB_INVAL_FULL);
+ 	} else {
+ 		u64 orig_start = start;
+-		u64 length = end - start;
+ 		u64 align;
+ 
+ 		if (length < SZ_4K)
+-- 
+2.48.1
 
-> a later point in time, which means that the check for resource
-> assignment is no longer sufficient.
->=20
-> Add an additional check that verifies that VF BAR for all enabled VFs
-> fits within the underlying reservation resource.
-
-So this does not solve the case where the initial size was too large to=20
-fix and such VF BARs remain unassigned, right?
-
-> Signed-off-by: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
-> ---
->  drivers/pci/iov.c | 5 +++++
->  1 file changed, 5 insertions(+)
->=20
-> diff --git a/drivers/pci/iov.c b/drivers/pci/iov.c
-> index cbf335725d4fb..861273ad9a580 100644
-> --- a/drivers/pci/iov.c
-> +++ b/drivers/pci/iov.c
-> @@ -646,8 +646,13 @@ static int sriov_enable(struct pci_dev *dev, int nr_=
-virtfn)
-> =20
->  =09nres =3D 0;
->  =09for (i =3D 0; i < PCI_SRIOV_NUM_BARS; i++) {
-> +=09=09resource_size_t vf_bar_sz =3D
-> +=09=09=09pci_iov_resource_size(dev,
-> +=09=09=09=09=09      pci_resource_num_from_vf_bar(i));
-
-Please add int idx =3D pci_resource_num_from_vf_bar(i);
-
->  =09=09bars |=3D (1 << pci_resource_num_from_vf_bar(i));
->  =09=09res =3D &dev->resource[pci_resource_num_from_vf_bar(i)];
-> +=09=09if (vf_bar_sz * nr_virtfn > resource_size(res))
-> +=09=09=09continue;
-
-Not directly related to this patch, I suspect this could actually try to=20
-assign an unassigned resource by doing something like this (perhaps in own=
-=20
-patch, it doesn't even need to be part of this series but can be sent=20
-later if you find the suggestion useful):
-
-=09=09/* Retry assignment if the initial size didn't fit */
-=09=09if (!res->parent && pci_assign_resource(res, idx))
-=09=09=09continue;
-
-Although I suspect reset_resource() might have been called for the=20
-resource and IIRC it breaks the resource somehow but it could have been=20
-that IOV resources can be resummoned from that state though thanks to=20
-their size not being stored into the resource itself but comes from iov=20
-structures.
-
->  =09=09if (res->parent)
->  =09=09=09nres++;
->  =09}
->=20
-
---=20
- i.
-
---8323328-1797840117-1743001864=:942--
