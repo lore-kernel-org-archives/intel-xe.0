@@ -4,173 +4,168 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4213C28B30
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Mar 2025 04:10:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAE26C28B30
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Mar 2025 04:14:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B31610E102;
-	Wed, 26 Mar 2025 04:10:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 866FB10E2AD;
+	Wed, 26 Mar 2025 04:14:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ie3CkeI0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CnLPclpS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD49910E102
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Mar 2025 04:10:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C657910E2AD
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Mar 2025 04:14:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742962218; x=1774498218;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=mCpYBuvaYNZH2DlycKqtwaNkQkhSZrzBpH2XJzMvgNg=;
- b=Ie3CkeI0qIlb8OuTS/5Zy6G7fEt3wZXFe430vLXGld+UT2KbaKtUgvJp
- yrYtr6jq7mvqhF/sG8l86rlc0IlHVXYkuYgweZ2YtTDvAB7ILcPGIVNqG
- r+5ZuveLcbW2cF4yePV2uat3SbpGgBS9ndN0evcM51xoVBSvT3a8m/jGv
- abYc11fa9wN4WGz5k3QnKCY0CwMDn3zMPKkd2WurmDqCzzzc8T6P6aK64
- yfvXIu6jEbbk4oKXW4FumzZi6i+7e6yJJhyLBF5aBjjDr+jNhVvWYkVOy
- s530JhONYngPaeeS3SsHn9CYSAiTWBMi+Fyr8/YbhjJDTzhE4R8KtKP8G g==;
-X-CSE-ConnectionGUID: vp2QmCQNS1KeiN79Og8TWg==
-X-CSE-MsgGUID: 6qoHPIufRjCcQh1rHTxT+w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11384"; a="46971239"
-X-IronPort-AV: E=Sophos;i="6.14,276,1736841600"; d="scan'208";a="46971239"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 21:10:16 -0700
-X-CSE-ConnectionGUID: CqnWMdkmQ82E3+bDRibaWg==
-X-CSE-MsgGUID: AVGKHkBGSTyNevZrJCmehg==
+ t=1742962477; x=1774498477;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=pC7T8it8aPfZPpDeluLYrELeX0/fNp1kXfe80dDl9L4=;
+ b=CnLPclpSroqd3zCJKvTcxx1gFUeyxhJ4T38sA2IxErdtTbOb0vIYlxrw
+ YAefRNmC1kTkqfe+HVmQim6WnRe8oMyp6vdlBRZy0OlAG1SFWdDgQiXFC
+ fIWjFFQR3ZPN09wNn9z4KjY3GG10kyuk6bDQNIXYtMF/ipVnjndYeKso/
+ eyw2blr08VJsZaDwEYP25ETwfMJTUKOO+A0gYIAlXg3nA6/PJ3tSWuFNK
+ sLEk4E98ZZ/UPx/t2OhrCftyPJluO1oDPJb8BFeNbD4ecVEMG/JCH1uAE
+ 5FsENXfTXWPpDPW+ScsFl4dyqE3zyXHNd3ZLcxnfiPJrnENyW63H/nFVh Q==;
+X-CSE-ConnectionGUID: SKlhYSZzTD+X1FhTT72uSQ==
+X-CSE-MsgGUID: QwWK3oo7Sm2eXRe60Rau3w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11384"; a="55226240"
+X-IronPort-AV: E=Sophos;i="6.14,276,1736841600"; d="scan'208";a="55226240"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2025 21:14:36 -0700
+X-CSE-ConnectionGUID: RTASR1X1SMyLq8vwaPEGvg==
+X-CSE-MsgGUID: +Hs2gqYATbS/UaNt4Aa4Zg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,276,1736841600"; d="scan'208";a="124564734"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 21:10:17 -0700
+X-IronPort-AV: E=Sophos;i="6.14,276,1736841600"; d="scan'208";a="129793961"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 25 Mar 2025 21:14:36 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Tue, 25 Mar 2025 21:10:16 -0700
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Tue, 25 Mar 2025 21:14:36 -0700
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Tue, 25 Mar 2025 21:10:16 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.49) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.2.1544.14 via Frontend Transport; Tue, 25 Mar 2025 21:14:36 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.175)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Tue, 25 Mar 2025 21:10:14 -0700
+ 15.1.2507.44; Tue, 25 Mar 2025 21:14:34 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hhmbnkXJtnUTCEPSA9SY5bGJyE02S8iPWJgFvIt+rukhJTT+lY8WkUVMVmQmZT2aq1KOd5KeiPh2t/o5VfPsyVnoh32B0QTTn9QDmORuY2jYT4t608DfQQ60Rxo0y9Vmktu8tcHSesmkcEACwEVvzkmC2I8HZgi7C20AGKKSubITtwYGZwalvf9yLEf0EDiW/aNRgOBRRzsiY/xUoo9ymx6HN64bxobbn5H+4rGnS46QXzeKD0b5PSx21GPjDTBoDIUcQQfvze8zIwGyy2u5PnV5T8Cf5dM4JAv0FVjLmOpUR9rtglvW7bpeDIPcRmvvjH9MjBrDhx7NQ6EJbzRowg==
+ b=V5rEMZlrmb0wRVn+reLHEwkoi3/faAlGIYfdC3rz1KeUhLuvlmaO2rX04dUqy99zi/gB/b4VFyc4gvBdlLHlPjtmpmYR39CwJksUl3tGqtEBnehD0BF6PCVTOeFdzGiOD0uCnmEgXbQXuz8+ii8eM0pB1FlrxXDxmyX6XthvMdo/08hQoS0PkudOf0owTzehVnzEtWBAlTr5Uj13cgTrHu2Ncv4WzsNn1ClxnQykfkM8EwEV02lyn29ADDNDViGONt5xRDXZUYEqmyUJrw1ZKBVVij1L3WbcD/fjzfxdEAnz2/5x/ZgDdUNxU7Uhuq8ba3s7FsUue1qde7fDD0RNtg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aIdewM+0Nsd36YCGoQqL8VpywbV0YHuVPjvdyKXo1vc=;
- b=ZSrmDsM8Ju62WLnY18/0zQuSSdp0oNHBft/5VErDSKN6vgTZADBDlul0Cy8ZllvvvqbiHDyud07yqvt5XGGZk25XLhIKgQ+jCujB5JiKyfQTfQhDX+Kif4+KFsfzASTI0olfHRh3Ebssp4f31kQA3BkjLlgxsJoFArztPw6JS5Dr8dk+z0za/Qol/3eVoiusFOwU4ltVONw3KcTPRK/379X+ujtXyQE64eD4mhN9exfMiN+nbUSoVlRhAqhEV032BM30y1HASZ3cK94fje5c09PAoUyYM4vge0t1PNPVOcH89bVduBtZnyFTI8+S6v0Zz18Zw6fA9ts9NY5Gu0Ptjw==
+ bh=mkAgAzbJCkQ0Yfos9Uc01/F5YAj4H/FRrlAm/a8KG/c=;
+ b=aJioJ5rgkm6y4/raFtT2HRbzG8EDCfApKM0GLxpeh2XNogCTQ5ESobS1bOkf0PGiUchdy0ae3PQSsMXkbBEdapiM6OGTU7RmlWTZmH0kOQc1bl/ITgOsyRWNTtNiq2M5BCIkbY2wyKltZwHem6PXUyWYRj2WvGgIEBT6i2DQJHPfzznWuYTxd3fNHOXTtXuke8E+vhuYC8AiBpvQa2WrDRTiEC+gHFlTlzo8Wa9fXzOK4que9Q/V2jh3xP/Tg1Zt/RyWN+FQp7hl6IoJoPm+vhXalXSz28QZjOe+1ayJ+SUVqo3XvCFWTM4hrdAUxhAGL0bYeXRS8erwwQrlSn2nSg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by CY5PR11MB6486.namprd11.prod.outlook.com (2603:10b6:930:32::18)
+Received: from SJ1PR11MB6204.namprd11.prod.outlook.com (2603:10b6:a03:459::19)
+ by MN2PR11MB4517.namprd11.prod.outlook.com (2603:10b6:208:24e::22)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.44; Wed, 26 Mar
- 2025 04:09:59 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%3]) with mapi id 15.20.8534.042; Wed, 26 Mar 2025
- 04:09:58 +0000
-Date: Tue, 25 Mar 2025 23:09:55 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-CC: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>,
- <intel-xe@lists.freedesktop.org>, Riana Tauro <riana.tauro@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v4] drm/xe/pmu: Add GT frequency events
-Message-ID: <octnzulvdzokmojzeay2zywjaagity3sbsnry243ze3cwnbfx4@wxkgvlptg3el>
-References: <20250324232402.46481-1-vinay.belgaumkar@intel.com>
- <87jz8e9d3h.wl-ashutosh.dixit@intel.com>
- <b46fbbd0-ee96-4f00-9f6f-a00115feb32d@intel.com>
- <87jz8dhw0r.wl-ashutosh.dixit@intel.com>
- <33ebfe1d-5ac5-4985-8c8d-c1996e5a6d14@intel.com>
- <87h63gixq0.wl-ashutosh.dixit@intel.com>
- <269b993d-2a22-4080-8609-66650a60ad62@intel.com>
- <87frj0ivbh.wl-ashutosh.dixit@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87frj0ivbh.wl-ashutosh.dixit@intel.com>
-X-ClientProxiedBy: MW4PR03CA0024.namprd03.prod.outlook.com
- (2603:10b6:303:8f::29) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+ 2025 04:14:21 +0000
+Received: from SJ1PR11MB6204.namprd11.prod.outlook.com
+ ([fe80::fd8d:bca9:3486:7762]) by SJ1PR11MB6204.namprd11.prod.outlook.com
+ ([fe80::fd8d:bca9:3486:7762%6]) with mapi id 15.20.8534.040; Wed, 26 Mar 2025
+ 04:14:21 +0000
+From: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
+To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
+Subject: RE: [PATCH] drm/xe: sysfs_ops needs to be defined on parent directory
+Thread-Topic: [PATCH] drm/xe: sysfs_ops needs to be defined on parent directory
+Thread-Index: AQHbmMdeG+ib0QKjH0iieC2Qjdkym7OEQi6AgACVJ1A=
+Date: Wed, 26 Mar 2025 04:14:21 +0000
+Message-ID: <SJ1PR11MB6204E7681720F3D6F7FFA94181A62@SJ1PR11MB6204.namprd11.prod.outlook.com>
+References: <20250319121349.288844-1-tejas.upadhyay@intel.com>
+ <Z-MAJWTFFlbaZZcj@intel.com>
+In-Reply-To: <Z-MAJWTFFlbaZZcj@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ1PR11MB6204:EE_|MN2PR11MB4517:EE_
+x-ms-office365-filtering-correlation-id: 66c4eab6-6c47-437a-721a-08dd6c1caf49
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|7053199007|38070700018; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?owbelrsk1KVc3xJoq8jxyhADRwA35ottJUVnbbid3LqG8AhqlN5I3yPmr2nR?=
+ =?us-ascii?Q?IWbw8YkTzSt/X6FSqjN3VMu9HHGLZUjXFBJBOVP9W0c0weIHtCXX5Q8GnesN?=
+ =?us-ascii?Q?YmTo3h+VbI0QrwpWTdkj/l3DR8AiM9km24YRspCBox7Ofd+VV5xRyfOk/dNV?=
+ =?us-ascii?Q?4siYsPi2A+R0AQlBs39ovQXpKsvKBsktkBQrCFIFfxs4s0xCUk87yGIVRvn3?=
+ =?us-ascii?Q?HgsBhTmDj3j6n6RaTX7lcAF4K1dRREG9yVFDae/wZZVMuXZFPUkLO6Or8Pfi?=
+ =?us-ascii?Q?JOisconxxz3NXUVEbjyOwcTrHytarbuCqTyBiKeAo6iAQvnLeUqvO09wCSLd?=
+ =?us-ascii?Q?NQ3+GeJv4kPKj5QFLwQl3OJ8ARdwBCZHT8U54Q0yxfY8LoMRGQV+lwbIjq5q?=
+ =?us-ascii?Q?4848zvv1ZgqCVEYVbL9/gRrxtF6HNJjOfmptuoP/pSUa7g/gH2YNzOE4eteD?=
+ =?us-ascii?Q?Kjx4AIs7Rv5xJT85ua7GRl6OQuJx4sB0dAehat3GaMQbea37Swgtl2x0xCHJ?=
+ =?us-ascii?Q?jD8mdqbS7vclu6ltDKxdRR7UyOSOoJ3qinQyk9fIH2Uv87cHNN0ZDuC5F4vM?=
+ =?us-ascii?Q?O5of2+JA55xB6VKNktpPelzqnncsceR9lkMs8PGwVefs7jodx5t0GYpYl/9W?=
+ =?us-ascii?Q?UO1gpdZ380MjPWxr0uE6UoReYveBxzvQyDeGOnlpCA2JoXBQHee6j7QOC8DN?=
+ =?us-ascii?Q?cmNrsb3EMUdruPzDxwd5f0SLlWHL028/1sdt6le3Xe/lbG3C0fUm4h7oIUsW?=
+ =?us-ascii?Q?tUWaTU5SCCUdu8TFrg166NCj4GQkfCZp7A4fImtBthUSS4HjICV0ru7hcYTi?=
+ =?us-ascii?Q?TWgjw5ZS8LIrn6T/9PGBflH2VhtkdkGbCFuBQf5n/vE8dR3Uw9sJcaKBXTWv?=
+ =?us-ascii?Q?4LG4iOFG7EMkOzOSYRnZWavo1Qb6FB1nFVAJPpOa/mIehoVgFEU+UHKPvts5?=
+ =?us-ascii?Q?4Bwmfj4aosEmqmNN4MI3BeEgPu9lv23aaBwswGyPcG6LFUFfGtqzmtbQ3QEN?=
+ =?us-ascii?Q?wakOzhSZ3u8um22HE6LSP+Aqyp+NYc2XtjBuTtNyh44e5tWJTjGxQRdinASU?=
+ =?us-ascii?Q?8F1jfB/ll/dcq/VyQb7yuoSo6sZqoh1ItVizSnfH/YCHpxgjoI5YyRxwRGFy?=
+ =?us-ascii?Q?CghFgbg2T0FCUeMROGr+6bltkbJnXgBtxEs5RGeEetqJTuDBNT6vMtmI2Ah5?=
+ =?us-ascii?Q?HMkOjtLIjtc3qeWcQBxtdOBENkN0gfp9l08t6Taug8bUSNdQ1Kroy+8idkWZ?=
+ =?us-ascii?Q?ZJ9r93u8YU83t5LOwa46lheMScLUAwvaCRzSKAe8PXF3rOiz8iN9FSVmQYvx?=
+ =?us-ascii?Q?2ZLi9YMGR9OIqKdM7FkcmrCYqbjanL5Zz32gwAlUaYaNYrX7DJzBj2IJm73l?=
+ =?us-ascii?Q?jQqrpQuiTypakUpE+ywb2Sq3kEcwzw8FsO09ZlE7oQ7prL21bYI7hCD8+aCV?=
+ =?us-ascii?Q?Be1WF4iY1MyovShWTQblr8KvKNj+j8/3?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ1PR11MB6204.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(7053199007)(38070700018); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?MzxpQ/F7X+KkLwIKTPP42foJHV92rPoUU8MwmdC7wTzakVBec4HpxT1s2Kjv?=
+ =?us-ascii?Q?8kbdyZJ9ZGolfbI+qjEzLFI9kjsSCyjdF/9l7wucb9yln2lkAfaisc9NDTuX?=
+ =?us-ascii?Q?LM13rUH03H6K3hrHzp3R4frR038c5o59atFGnwdde+9UBPbDLs+7cq//WPWk?=
+ =?us-ascii?Q?GPSjnewg2d2jSSSBymDkb2UdStAFAII/F4ahFZq1X9THlmfwNI+NxPPzn7gD?=
+ =?us-ascii?Q?1YmuqAMH3BjIYBlSZQYHN6L/IuVt7aQAvX7Zzq3S/2r4UY+wiKObQfRuSAFm?=
+ =?us-ascii?Q?R40/Z8vgCpZA9oqX2cNnon5nE+M4XF95o54xOu0R3x2PHrwDgll+VkeQxoMV?=
+ =?us-ascii?Q?m2vuUTpqQDYheqlg90W1rblXzvACoU4pcgu3YkOd64nI99PsRpd4L1naxuxS?=
+ =?us-ascii?Q?XaOkDuKN4eevmVLSA4JxmP2Pz+kp3OdDNgVm0lptnvR/sbXMvC05NO5p828G?=
+ =?us-ascii?Q?zljgza0f7TeoRfZuoNGUvkKXaO+KLBVAXWyzlSytasVy75xKINbORCHQ5EPW?=
+ =?us-ascii?Q?t9cY/0ZK+XFHxz24BynPL1PCfLJMCSWTa2yyGnLblKlBqCfKN+1BVc14OMMz?=
+ =?us-ascii?Q?M48CPk2BJJdKLp9xhwSXdJ/4UXfLA0yUWG0REW5ibCtXt0K9KNcNJ4f93Lqc?=
+ =?us-ascii?Q?cV8fFt27cOfFutbklYyNyLLFDihVEBZAS0R0R9MKABT9tvX3fL0RUEw4T8vr?=
+ =?us-ascii?Q?ayOPw4AYcbisDyv+AUtmHvX9UjLSywimcQrxJQQ4D1KpfV68UFWNSNltq0gc?=
+ =?us-ascii?Q?dTpG5c8YspBQ9EWQZD0KhwLhXxem/8Lg+3020mMENUv/kpDb5jG7B4HTEwbd?=
+ =?us-ascii?Q?/wWAHev0YJ3Ke+40z2gLq70RVt1s7QLYgkO9G83Qz+A59RbAf5ACg6pPqDH6?=
+ =?us-ascii?Q?nOnhCQ+jftxT+8nqJXr8nMRrUqFysIxmnKzlaQDaR19lx7s++XJzr+s+2TuY?=
+ =?us-ascii?Q?ZhU5daQCc4O/3DbhAn/kaRujmKGcL1YDT7NbOKdBT7eQYHFkKq+SPMaFfmOk?=
+ =?us-ascii?Q?3JYJH569n+zr2OLxJtxBguXvoB9XUJA9RmGlYb8Q7iBFNwgUgmZj81pdTdAr?=
+ =?us-ascii?Q?shW7IH04kSBa6vv8o2onNQiF95JcEbPUXOramf4oIdyPYwud3dVdwGXBGlnH?=
+ =?us-ascii?Q?Lnc5zhdKpknFNfe67QdbnZts6JXvD/GwcokuHE0JTPq1+ZAVae8vYDusuY2E?=
+ =?us-ascii?Q?pYlpW8i3EmdwXZo3Hm0j+dI4RaO4otKILixP1rJDzcOOaD586mdtuZTtBSBT?=
+ =?us-ascii?Q?xs0tWuJKpxeSXnRYKchZ09PEb8Fs9hKIwIYKUPsQ9APlw8rV4bhBFXQI/gwb?=
+ =?us-ascii?Q?gJH9NFMZAFZnX8UnqJnucE9ZaySBBYfVoSeXhxCVMaGttHvdn/iQMhqvcjLZ?=
+ =?us-ascii?Q?+5LN8Mj1l6qy6540C0JXXKWU2d/Zx6M0sVlVKbKqPS+QjCWmfZCGTcBe6wqw?=
+ =?us-ascii?Q?oZXZB+DgW3d+PVqR7yPHzMSDzFJJZWA7HYwcPtde27ymXF1CznA2pqKQ3IHI?=
+ =?us-ascii?Q?R/medjSOPM/bpfhe2PezNfklBSd/gD8T2tK/QHHGoZspZwykwfc273nSwLyF?=
+ =?us-ascii?Q?/Wl6lSbhdaVlot8EdKYINZPR6yN3FzwxyhFcNLT6?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|CY5PR11MB6486:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4c2ff59b-725d-4ee5-3ba4-08dd6c1c12d0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?vu2xO8/ebWQzP2uB2gnfNVSbkV8sxFqRdMEbtWlpeg4+8EJXJFG7HO+MnS?=
- =?iso-8859-1?Q?2HXcXzPEzL55ZofxWcoxBvZD/wNPfAuUdYcrvsmBXEy4Ayk/klIw4vNilH?=
- =?iso-8859-1?Q?gmEn7IbBGQMNM7bMo4KIZZnUC6rWvN1D8pL0IFdu9exoOd166rWI0EFoyg?=
- =?iso-8859-1?Q?oErQN3+K/QTBdpRXD+j9vQ9L5ksVjsuyo8v2HxCE365xZOY2KgdBRaakZ+?=
- =?iso-8859-1?Q?4RBvKQPwMLQCPK0tZirDmt2XkibgXtorQoZNV45AVV/NaxeGL17jlqQW0a?=
- =?iso-8859-1?Q?Y8QjuIIudJ3IWOfyh5TO9hJG1UaPJk394r0Nw8e4/WZlveRnRiSjMYao6Y?=
- =?iso-8859-1?Q?i7dgzrSXmj841Tnk48ZOGKDezgraTYqPQS7DqwwxP7iuwa28VezklbA1rb?=
- =?iso-8859-1?Q?UnuFmMgoLBF83j3DqgJtNYGG0n4HbrFp/MYw0rFwgYF81I+NYu85myTsfa?=
- =?iso-8859-1?Q?DGIPlZ0g2gFhfe6CSZQNjUwWlrmp4Q0yRl5CAY6RInbdnXLKNsvNxIvp9b?=
- =?iso-8859-1?Q?cjBX/1NGZCDHaCTcR/VD5qEps0MtXqOkERVAS2R8J2bZd+BAAWhZ6Z9SlJ?=
- =?iso-8859-1?Q?ZRDiAoDlwNoRRzhlyi3z+n2TY219NUfrdgJ3oDT45NBbaiF3trNcknT99/?=
- =?iso-8859-1?Q?oF22lnqLEg+NXric3DbEkl1sXI9a81q+DCQdb5VAa5xt82rwKyS14Ufgl1?=
- =?iso-8859-1?Q?Wpuexz1+eFuGf9J+FJiNMG7vWf5A0Ow/zaH5t4Y4rTMvxe8TxEZNpEbsI/?=
- =?iso-8859-1?Q?Bcb7XitfGESqqxMLoqhAUjYmwhY6hIYzbb86W+BxQycVmiV6l/2n26sjb1?=
- =?iso-8859-1?Q?puSuli4OycwP1MphvxsoB4knhgKc5HoW/+dpNEkI7hm457nbn8ZY+cimtO?=
- =?iso-8859-1?Q?L/iJQ2TdZsEwHzHN01YwtD2QRjHJwh6D8R9C+kaVV6GLNBRxcxB5S9SVlf?=
- =?iso-8859-1?Q?pmqfBeFSihOwJf8reV6Oo44sgEZcqq0qTYnl2aBDxFp6agQ83xH4Bx3kt3?=
- =?iso-8859-1?Q?R3VRZDGyPrAhWPrJbeq1QtZvrmKjYIQFD3XOEqKItNfSX/ijXNfgQpECne?=
- =?iso-8859-1?Q?9kNPEacxQMK8JmQt5a+k1qh3xAaUJVqsVHfoYrirGXXjqKIFwQ0JsOixIO?=
- =?iso-8859-1?Q?/MnGDjJRIgnbBSQJ0E+ID2dzsQsJGtVjT3BeW7lwq9DT5urJSD/q3oSbtB?=
- =?iso-8859-1?Q?9Sct9VI+WIhzsuGJKAA73/D8mF5z8hPLiiJswV138bBozxkJ4nw12MfAtK?=
- =?iso-8859-1?Q?xWay94juPHZPimCBOdfzgWVDmpVZouNFFV5mz8DHQzROLqb0idjlxW6Cpg?=
- =?iso-8859-1?Q?9JCvBAwWk7pvp0oZ1276rhWdSS5J1Qflpx1olvKObYSQnP93wz6xdQqNLa?=
- =?iso-8859-1?Q?9DfJt/FsST0xm1xuqk536NrSp72LqvUvH40hxwbV1++cBlHlXoRSb2cQJC?=
- =?iso-8859-1?Q?A+PFWnu1hfqcrvFs?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?t+ckB8oL9tXjAAmZ5lWrf8+qv4iy3Z1emWUzAeNkXHSyOtUKGsR+62/vfL?=
- =?iso-8859-1?Q?k79tyv4loceDnA/cEBxLNoiMHKNCf5Ls4+x0tiE8zg0Pxl+7m4i1Ok++mX?=
- =?iso-8859-1?Q?zVyIh6AvHlzZPDzBTu8AxKvYRklzqPpPxAPR+55t83PQLoUPNFkMLNdRty?=
- =?iso-8859-1?Q?7TqRoPFZq4DuDdd0olPvDektGS2QSzvrp57h7wBryceImc9b8Ghg2lm8js?=
- =?iso-8859-1?Q?ovszXDJoGMmqG5OmWj+pL7KYUZvnlAM5ZMq5WwnQJeCxg2LnJFQr8YO6RZ?=
- =?iso-8859-1?Q?cm3FK2doHgRHbvF9iAsOacl6EAD8r3yaojFXwY66Wr0kgLXc9gpkq+zx9V?=
- =?iso-8859-1?Q?YAYX338CfJMr5Ef6p0mjzMBJwlLSQuDU2IwYK3vn2gGIVC8q41f+R/D5Ys?=
- =?iso-8859-1?Q?xfTkH+ikXtHDFMcaOVC28aOo7dESbCsB4ETOKYgfLUXEd2xMz8Y+Gb5Oe8?=
- =?iso-8859-1?Q?ocmxP84MZrk1JAez4AfySloCPyXkUhV7of4WwLYBU2gMUFo+59nhjIq8mN?=
- =?iso-8859-1?Q?72Oa3V+2bXHuo0lLtTrXQ0g1Rr6lQBDF8SdXlQo2RtCqi9B+Ozt3x9O4KP?=
- =?iso-8859-1?Q?4y4SCKBS93WVJSoHHjuZkPAZ8sMiAfSQFXirFLm4pyp/Y6n9ImCJ6vMf5W?=
- =?iso-8859-1?Q?9BiIbg5pxwk/qzVMXOmgj4TvscmHULi0HXcHDjMYOljb3yHgQ9ZRdLMvPu?=
- =?iso-8859-1?Q?duGXDQpdyZXLoUyiAGtPDSaZMvuV6vd1ON1y0591rcHT1qYYjYdTj25K7E?=
- =?iso-8859-1?Q?uNS1w1UYgzcw7qHS060pcxmGyNTbc3WmO7YOCZD5rDgF4o6NgJP9w31boq?=
- =?iso-8859-1?Q?3iVOB0Mwnu1tQm4/0P8ZOU6ZxSH75XwdLNHdjH0Ao+Orn8ErH4jU+xjcwz?=
- =?iso-8859-1?Q?RUVGB1LSBwA8z6qFAWmeo3BNf73q9mv++fFa0B3kO6CZim+dF/jxOEczs0?=
- =?iso-8859-1?Q?8e8p5QK4agx9RUm0TcZyufZiWrZhwzoMhErAnrvP6wMUvp3lkJvr5prDMi?=
- =?iso-8859-1?Q?WgRsdQ7Em3S/W2JKXnV2Odyex0HTLjMxivBSJcKaNpbff/xu2YAJTIvwlg?=
- =?iso-8859-1?Q?yazcA1y1aPoz00dWyHtCNVbVPxb36L54RaGp27qaVhj8aFtN+5qmLNCb9S?=
- =?iso-8859-1?Q?oVI7Is1Ay5jEea0G27t3FR7ctmCgwuuBQnFTeMFiDQAFCpjlQYf0uCmja6?=
- =?iso-8859-1?Q?qRaCJjbMNzEijGi0vqugszHOuHSiLRWzidiXjy5Qo/NBsShiryG5mLnHgI?=
- =?iso-8859-1?Q?w7x/pTnuA/7BiFquxdUzcSFFXvtOzw9AKuPz/+LL4Q1IXr1ljeJ89+hbvi?=
- =?iso-8859-1?Q?EHuXj/d8wrp1ki6g3TtcmjZWnpuOaCVLKkiQ17G/iuIt+vYftp9YgVt0YK?=
- =?iso-8859-1?Q?r/0QxZ1DeE1uOaU8xp6MO6qrM1z3OR0NPkPKmWJ/+g066LyF6/CaAONrRW?=
- =?iso-8859-1?Q?Z2ainF79JQfh1KU955pbi7iB2iiGCYQ3NTZrCMQ3GpNPSCt1JoviPVy7zB?=
- =?iso-8859-1?Q?I/2xuTke8Piyqqmt5mfukg9Qv/3Irs8FxkaboVuDAwKne0ZaVIEyy1X0nr?=
- =?iso-8859-1?Q?eYblxadAZyRmWCjKJN2wLeuiFzw0I3eH0U8yCDXTcVfy11jWRfXt6M9+Nb?=
- =?iso-8859-1?Q?66vFT+CP7G9L6YxpfSLG7FOE6186PAuPtiKESf+LIHJ7rH3NknxXI62w?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4c2ff59b-725d-4ee5-3ba4-08dd6c1c12d0
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2025 04:09:58.8784 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uJfdKsLWBl2vVm+vdS6EgAXtLamKHOTCKqSeUsgEKqYDp0Bae+lMJ033UMzg/XoJqBVLzeW3e8GD5z+oR+f1RXPzJlKZzWtHfPenLDT7XAE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6486
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6204.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 66c4eab6-6c47-437a-721a-08dd6c1caf49
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Mar 2025 04:14:21.2074 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: YViByUqApN0yaWqIIKH8ccetIp79SmEDqiZyJColRJysyi1acjgb9SUBfK2rKeA/Q/GM8dLqet8HlrlOjxQ9xAJLHfBLr545pQQPB3Y/ifU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4517
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -186,101 +181,182 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Mar 25, 2025 at 03:45:06PM -0700, Ashutosh Dixit wrote:
->On Tue, 25 Mar 2025 15:01:47 -0700, Belgaumkar, Vinay wrote:
->>
->>
->> On 3/25/2025 2:53 PM, Dixit, Ashutosh wrote:
->> > On Tue, 25 Mar 2025 13:33:43 -0700, Belgaumkar, Vinay wrote:
->> >> On 3/25/2025 10:15 AM, Dixit, Ashutosh wrote:
->> >>> On Mon, 24 Mar 2025 19:37:32 -0700, Belgaumkar, Vinay wrote:
->> >>> Hi Vinay,
->> >>>
->> >>>> On 3/24/2025 5:18 PM, Dixit, Ashutosh wrote:
->> >>>>> On Mon, 24 Mar 2025 16:24:02 -0700, Vinay Belgaumkar wrote:
->> >>>>>> @@ -266,11 +274,24 @@ static u64 __xe_pmu_event_read(struct perf_event *event)
->> >>>>>>	case XE_PMU_EVENT_ENGINE_ACTIVE_TICKS:
->> >>>>>>	case XE_PMU_EVENT_ENGINE_TOTAL_TICKS:
->> >>>>>>		return read_engine_events(gt, event);
->> >>>>>> +	case XE_PMU_EVENT_GT_ACTUAL_FREQUENCY:
->> >>>>>> +		return xe_guc_pc_get_act_freq(&gt->uc.guc.pc);
->> >>>>>> +	case XE_PMU_EVENT_GT_REQUESTED_FREQUENCY:
->> >>>>>> +		if (!xe_guc_pc_get_cur_freq(&gt->uc.guc.pc, &cur_gt_freq))
->> >>>>> This is unconditionally taking the forcewake and waking the card up just to
->> >>>>> get the sample. Do we really want to do that?
->> >>>>>
->> >>>>> So if we don't do that, both the actual and requested freq will be 0 if gt
->> >>>>> is in C6.
->> >>>> For actual frequency, the register(0xc60) does not belong to any fw domain -
->> >>>>
->> >>>> GEN_FW_RANGE(0xc00, 0xfff, 0),
->> >>>>
->> >>>> HW will report 0 when GT is in C6.
->> >>> Yes, no issue about act_freq, see commit 22009b6dad66. I was referring only
->> >>> to requested freq.
->> >>>
->> >>>> The requested freq register is a
->> >>>> shadowed register (0xa008), so that will not accrue fwake either.
->> >>>>
->> >>>> static const struct i915_range mtl_shadowed_regs[] = {
->> >>>>           { .start =   0x2030, .end =   0x2030 },
->> >>>>           { .start =   0x2510, .end =   0x2550 },
->> >>>>           { .start =   0xA008, .end =   0xA00C },
->> >>> So this still doesn't make sense because:
->> >>>
->> >>>     1. The fact is that xe_guc_pc_get_cur_freq() *is* taking forcewake
->> >>>     2. And that is in accord with the following comment in i915/intel_uncore.c
->> >>>
->> >>>        * Shadowing only applies to writes; forcewake
->> >>>        * must still be acquired when reading from registers in these ranges.
->> >>>
->> >>> Also see intel_rps_read_punit_req() which is called from i915 PMU
->> >>> (frequency_sample()) and uses with_intel_runtime_pm_if_in_use(), so we'd
->> >>> need to do use the equivalent in xe.
->> >> Hi Ashutosh,
->> >>
->> >>    As part of a previous decision, in the Xe PMU implementation, we are
->> >> doing a runtime_get() during pmu_init for all PMU sessions. So, device is
->> >> going to be awake anyways. In this case, it does not make sense to just
->> >> read the register without a fwake.
->> >
->> > Even if that is ok... Let us take a completely idle device. What should the
->> > actual and requested freq's be for this case? Both should be zero, correct?
->> > Now, what are we going to show if we are taking fwake? At least the
->> > requested freq will be non-zero? Is that ok? Or the requested freq will
->> > show zero even if we take fwake? Thanks.
->>
->> If we take fwake before reading, requested frequency will not be zero even
->> if GT is idle. HW always retains the last requested frequency in that
->> register, never zeroes it like it does for actual_freq. So, showing the
->> non-zero value is the correct thing to do instead of artifically zeroing
->> it.
->
->So now, this I disagree with. For an idle device, hopefully in C6, there
->should be no reason to request a non-zero freq. So the requested freq
->should show 0. As i915 does (using gt parked and unparked states and using
->with_intel_runtime_pm_if_in_use()).
 
-wrt locking and interaction with runtime_pm and forcewake, the perf
-implementation in i915 is completely broken. You can't take a runtime_pm
-or forcewake when you are in an atomic context. And when you have a
-raw_spin_lock taken like is the case with perf, you can't even look at
-it (if it involves taking a spin_lock, which it does).
 
-perf is holding a raw_spin_lock at that time. The only reason why the
-CI isn't on fire over there is because we are papering it over with this
-commit in topic/core-for-CI:
+> -----Original Message-----
+> From: Vivi, Rodrigo <rodrigo.vivi@intel.com>
+> Sent: Wednesday, March 26, 2025 12:43 AM
+> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>
+> Cc: intel-xe@lists.freedesktop.org; Ghimiray, Himal Prasad
+> <himal.prasad.ghimiray@intel.com>
+> Subject: Re: [PATCH] drm/xe: sysfs_ops needs to be defined on parent
+> directory
+>=20
+> On Wed, Mar 19, 2025 at 05:43:49PM +0530, Tejas Upadhyay wrote:
+> > Currently, xe_hw_engine_sysfs_kobj_type is defining sysfs_ops on wrong
+> > directory. Sysfs_ops needs to be defined on immediate parent directory
+> > to be able to called on each attribute set/get.
+>=20
+> Please bare with me, but I'm having a hard time to follow this reasoning =
+and
+> the patch, why, and everything else going on here...
+>=20
+> >
+> > Fixes: 3f0e14651ab0 ("drm/xe: Runtime PM wake on every sysfs call")
+>=20
+> Why this patch is claiming to fix this? Please note that this mentioned p=
+atch
+> just replace the default kobj_sysfs_ops per the new introduced
+> xe_hw_engine_class_sysfs_ops. They are basically identical functions.
+> The only difference is that the new one call our runtime pm wrappers arou=
+nd
+> the calls that we need.
 
-dc17a830ffb5 ("Revert "lockdep: Enable PROVE_RAW_LOCK_NESTING with PROVE_LOCKING."")
+Earlier we were not doing any common ops for all attr set/get, each attribu=
+te has individual setter/getter. With 3f0e14651ab0 ("drm/xe: Runtime PM wak=
+e on every sysfs call"), we introduced common ops on all attr set/get and w=
+hich is must to be called now. Thus I though of adding fixes. Please let me=
+ know if you guys think otherwise I will just remove, not strong objection.
+=20
+>=20
+> It never touched anything that this patch is touching below.
+>=20
+> Perhaps if we also need on the sysfs on upper directory, perhaps we need =
+to
+> also replace the default sysfs_ops on other places like in the upper dire=
+ctory?
+>=20
+> > Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c | 67
+> > +++++++++----------
+> >  1 file changed, 33 insertions(+), 34 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
+> > b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
+> > index b53e8d2accdb..25592f178482 100644
+> > --- a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
+> > +++ b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
+> > @@ -492,39 +492,6 @@ static const struct attribute * const files[] =3D =
+{
+> >  	NULL
+> >  };
+> >
+> > -static void kobj_xe_hw_engine_class_fini(void *arg) -{
+> > -	struct kobject *kobj =3D arg;
+> > -
+> > -	sysfs_remove_files(kobj, files);
+> > -	kobject_put(kobj);
+> > -}
+> > -
+> > -static struct kobj_eclass *
+> > -kobj_xe_hw_engine_class(struct xe_device *xe, struct kobject *parent,
+> > const char *name) -{
+> > -	struct kobj_eclass *keclass;
+> > -	int err =3D 0;
+> > -
+> > -	keclass =3D kzalloc(sizeof(*keclass), GFP_KERNEL);
+> > -	if (!keclass)
+> > -		return NULL;
+> > -
+> > -	kobject_init(&keclass->base, &kobj_xe_hw_engine_type);
+> > -	if (kobject_add(&keclass->base, parent, "%s", name)) {
+> > -		kobject_put(&keclass->base);
+> > -		return NULL;
+> > -	}
+> > -	keclass->xe =3D xe;
+> > -
+> > -	err =3D devm_add_action_or_reset(xe->drm.dev,
+> kobj_xe_hw_engine_class_fini,
+> > -				       &keclass->base);
+> > -	if (err)
+> > -		return NULL;
+> > -
+> > -	return keclass;
+> > -}
+> > -
+> >  static void hw_engine_class_defaults_fini(void *arg)  {
+> >  	struct kobject *kobj =3D arg;
+> > @@ -611,6 +578,38 @@ static const struct kobj_type
+> xe_hw_engine_sysfs_kobj_type =3D {
+> >  	.sysfs_ops =3D &xe_hw_engine_class_sysfs_ops,  };
+> >
+> > +static void kobj_xe_hw_engine_class_fini(void *arg) {
+> > +	struct kobject *kobj =3D arg;
+> > +
+> > +	sysfs_remove_files(kobj, files);
+> > +	kobject_put(kobj);
+> > +}
+> > +
+> > +static struct kobj_eclass *
+> > +kobj_xe_hw_engine_class(struct xe_device *xe, struct kobject *parent,
+> > +const char *name) {
+> > +	struct kobj_eclass *keclass;
+> > +	int err =3D 0;
+> > +
+> > +	keclass =3D kzalloc(sizeof(*keclass), GFP_KERNEL);
+> > +	if (!keclass)
+> > +		return NULL;
+> > +
+> > +	kobject_init(&keclass->base, &xe_hw_engine_sysfs_kobj_type);
+> > +	if (kobject_add(&keclass->base, parent, "%s", name)) {
+> > +		kobject_put(&keclass->base);
+> > +		return NULL;
+> > +	}
+> > +	keclass->xe =3D xe;
+> > +
+> > +	err =3D devm_add_action_or_reset(xe->drm.dev,
+> kobj_xe_hw_engine_class_fini,
+> > +				       &keclass->base);
+> > +	if (err)
+> > +		return NULL;
+> > +
+> > +	return keclass;
+> > +}
+>=20
+> I couldn't spot any difference from the both chunks above. So this patch =
+is
+> more moving things around than doing any change right? perhaps a differen=
+t
+> patch or a mention on the commit message itself?
 
->
->If we are already "doing a runtime_get() during pmu_init" (as mentioned
->above) we need to devise some other way of making this happen (maybe by
->looking at xe_force_wake_domain ref field?).
+The change is, immediate parent directory should be defined with attr_show/=
+store ops if we want it to be called on every attr set/get call. Currently =
+we had sysfs_ops defined on parent to parent directory which does not get c=
+alled on underlying child's attr set/get call.=20
 
-you can't do that safely.
-
-Lucas De Marchi
-
->
->Let us wait for a second opinion on this. Thanks.
+Tejas
+>=20
+> >  static void hw_engine_class_sysfs_fini(void *arg)  {
+> >  	struct kobject *kobj =3D arg;
+> > @@ -640,7 +639,7 @@ int xe_hw_engine_class_sysfs_init(struct xe_gt *gt)
+> >  	if (!kobj)
+> >  		return -ENOMEM;
+> >
+> > -	kobject_init(kobj, &xe_hw_engine_sysfs_kobj_type);
+> > +	kobject_init(kobj, &kobj_xe_hw_engine_type);
+>=20
+> now it looks like this is the only real chunk of this patch, last touched=
+ when
+> you added it:
+> 038ff941afe2 ("drm/xe: Add sysfs entries for engines under its GT")
+>=20
+> And now, after this patch, who is now using xe_hw_engine_sysfs_kobj_type?
+>=20
+> Looking further to both types, perhaps we need to kill the
+> kobj_xe_hw_engine_type itself in favor of the xe_ one?
+>=20
+> Or perhaps we need something like this:
+>=20
+>  static const struct kobj_type kobj_xe_hw_engine_type =3D {
+>         .release =3D kobj_xe_hw_engine_release,
+> -       .sysfs_ops =3D &kobj_sysfs_ops
+> +       .sysfs_ops =3D &xe_hw_engine_class_sysfs_ops,
+>  };
+>=20
+> >
+> >  	err =3D kobject_add(kobj, gt->sysfs, "engines");
+> >  	if (err)
+> > --
+> > 2.34.1
+> >
