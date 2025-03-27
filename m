@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFD4EC36010
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Mar 2025 14:57:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD525C3600B
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Mar 2025 14:58:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CE5110E8FD;
-	Thu, 27 Mar 2025 14:57:54 +0000 (UTC)
-Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B373B10E331;
- Thu, 27 Mar 2025 14:57:52 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8403110E068;
+	Thu, 27 Mar 2025 14:58:18 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b1RaulIW";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16E3210E068;
+ Thu, 27 Mar 2025 14:58:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1743087497; x=1774623497;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=FpRTlUjXyyDeErV22FlcsUV2W9Y9MIG5SBpruucK8qw=;
+ b=b1RaulIWdS9qaDkZPtSMDQFrFzSRAmx3oIpXAaD75rVCSZqVfvM8UxwC
+ k4aUqs45ok1LBTxUDi1ejJNd41Z0K1hKXT+Q6coS7+jC48d0HY4kjITv6
+ KcAJvDZ/22qoh1uVq1N0J6fEVVonEYbv2+oaAqSB7TAiqNXfoCKF7zc2v
+ 7amuY7D/Oci9D6xgcCIGhIIbvSF/u2gqL7izNNRCUoCCXKPh/ucpkEQi0
+ TB3qZfbrsiI4hUQZzcliltbaq7LNesbbxdA2i5PtOw8YXUmKUmHGYNrvt
+ w0hBZwlooZAOnFRKWX8EP7I8sJZtXe4k0Nd2ZP7z7Z7XPVDyHHHfQG2R5 g==;
+X-CSE-ConnectionGUID: l/x+NVulSvGjkY2gXEwxAQ==
+X-CSE-MsgGUID: hMULdBx/Tv2DkG1oRPbX3Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="69788013"
+X-IronPort-AV: E=Sophos;i="6.14,280,1736841600"; d="scan'208";a="69788013"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2025 07:58:16 -0700
+X-CSE-ConnectionGUID: piyfXA7uQze7gRr4T3us0g==
+X-CSE-MsgGUID: TZN8FLlPTOqUnbL0T7Rt8w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,280,1736841600"; d="scan'208";a="125381238"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2025 07:58:14 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
+ ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
+Subject: [PATCH 0/2] VRR Register Read/Write Updates
+Date: Thu, 27 Mar 2025 20:16:27 +0530
+Message-ID: <20250327144629.648306-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/xe2hpg=3A_Add_Wa?=
- =?utf-8?q?=5F16025250150_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Aradhya Bhatia" <aradhya.bhatia@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 27 Mar 2025 14:57:52 -0000
-Message-ID: <174308747273.11729.11609951039898902473@e6b6f09ec485>
-X-Patchwork-Hint: ignore
-References: <20250325134421.1489416-1-aradhya.bhatia@intel.com>
-In-Reply-To: <20250325134421.1489416-1-aradhya.bhatia@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +62,33 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Now that we have switched to VRR Timing generator from PTL onwards, we
+no longer need to program VTOTAL.Vtotal bits, which were used by Legacy
+Timing Generator.
+This patch series is a continuation from discussion of another patch for
+avoid reading/writing VTOTAL.Vtotal bits [1].
+First patch introduces a macro to exclude DSI transcoded from VRR
+programming in a consistent manner. The next patch actually modifies
+reading/writing VTOTAL register.
 
-Series: drm/xe/xe2hpg: Add Wa_16025250150 (rev2)
-URL   : https://patchwork.freedesktop.org/series/146709/
-State : success
+[1] https://patchwork.freedesktop.org/patch/644683/?series=134383&rev=17
 
-== Summary ==
+Rev2: Address comments from Ville.
+Rev3: Fix the BAT issues due to incorrect check.
+Keep the readout for vtotal intact, and just overwrite for cases where
+we dont want to read vtotal. (Ville)
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 1e750490a76bbb8bcb8ea8d5fba2a68bf0845def
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
+Ankit Nautiyal (2):
+  drm/i915/display: Introduce transcoder_has_vrr() helper
+  drm/i915/display: Avoid use of VTOTAL.Vtotal bits
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+ drivers/gpu/drm/i915/display/intel_display.c | 29 +++++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_vrr.c     | 10 +++++++
+ 2 files changed, 38 insertions(+), 1 deletion(-)
 
+-- 
+2.45.2
 
