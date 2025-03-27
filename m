@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01D7DC36008
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Mar 2025 00:31:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 941C4C36008
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Mar 2025 01:18:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E80A10E838;
-	Thu, 27 Mar 2025 00:31:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D57E10E159;
+	Thu, 27 Mar 2025 01:18:49 +0000 (UTC)
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B97A710E838;
- Thu, 27 Mar 2025 00:31:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FECC10E159;
+ Thu, 27 Mar 2025 01:18:48 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============4697480025550226910=="
+ boundary="===============0700637702603985865=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_drm/xe=3A_Fix_an_out-of-bo?=
- =?utf-8?q?unds_shift_when_invalidating_TLB?=
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_drm/i915=3A_reduce_intel?=
+ =?utf-8?q?=5Fwakeref=2Eh_dependencies?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 27 Mar 2025 00:31:15 -0000
-Message-ID: <174303547574.9084.6782669805908345302@e6b6f09ec485>
+Date: Thu, 27 Mar 2025 01:18:48 -0000
+Message-ID: <174303832819.9128.4089824404498077937@e6b6f09ec485>
 X-Patchwork-Hint: ignore
-References: <20250326115117.14673-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20250326115117.14673-1-thomas.hellstrom@linux.intel.com>
+References: <20250326115452.2090275-1-jani.nikula@intel.com>
+In-Reply-To: <20250326115452.2090275-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,15 +40,15 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4697480025550226910==
+--===============0700637702603985865==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/xe: Fix an out-of-bounds shift when invalidating TLB
-URL   : https://patchwork.freedesktop.org/series/146797/
+Series: drm/i915: reduce intel_wakeref.h dependencies
+URL   : https://patchwork.freedesktop.org/series/146798/
 State : failure
 
 == Summary ==
@@ -57,9 +57,9 @@ ERROR: The runconfig 'xe-2854-14c330bc015ded4a1f1dd1f5aeb8617077aaa7e8_full' doe
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146797v1/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146798v1/index.html
 
---===============4697480025550226910==
+--===============0700637702603985865==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -79,11 +79,11 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix an out-of-bounds shift when invalidating TLB</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/146797/">https://patchwork.freedesktop.org/series/146797/</a></td></tr>
+<tr><td><b>Series:</b></td><td>drm/i915: reduce intel_wakeref.h dependencies</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/146798/">https://patchwork.freedesktop.org/series/146798/</a></td></tr>
 <tr><td><b>State:</b></td><td>failure</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146797v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146797v1/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146798v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146798v1/index.html</a></td></tr>
 
 </table>
 
@@ -93,4 +93,4 @@ Content-Transfer-Encoding: 7bit
 </body>
 </html>
 
---===============4697480025550226910==--
+--===============0700637702603985865==--
