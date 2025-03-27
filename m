@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E37A1C3600E
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Mar 2025 06:26:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E688BC3600B
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Mar 2025 06:42:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A486810E089;
-	Thu, 27 Mar 2025 06:26:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83E8210E089;
+	Thu, 27 Mar 2025 06:42:34 +0000 (UTC)
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFB9610E089;
- Thu, 27 Mar 2025 06:26:46 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15BFD10E089;
+ Thu, 27 Mar 2025 06:42:33 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0835486133142089317=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Add_configfs_support_for_survi?=
- =?utf-8?q?vability_mode_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_VRR_Register_Read/Write_Up?=
+ =?utf-8?q?dates_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Riana Tauro" <riana.tauro@intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 27 Mar 2025 06:26:46 -0000
-Message-ID: <174305680685.10377.10924031125386208677@e6b6f09ec485>
+Date: Thu, 27 Mar 2025 06:42:33 -0000
+Message-ID: <174305775308.10424.13111446672932572766@e6b6f09ec485>
 X-Patchwork-Hint: ignore
-References: <20250327064204.459968-1-riana.tauro@intel.com>
-In-Reply-To: <20250327064204.459968-1-riana.tauro@intel.com>
+References: <20250326160321.550753-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250326160321.550753-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,70 +40,57 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============0835486133142089317==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: Add configfs support for survivability mode (rev2)
-URL   : https://patchwork.freedesktop.org/series/145999/
+Series: VRR Register Read/Write Updates (rev2)
+URL   : https://patchwork.freedesktop.org/series/146777/
 State : failure
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-/usr/bin/ld: drivers/gpu/drm/xe/xe_configfs.o: in function `configfs_find_group':
-xe_configfs.c:(.text+0x89): undefined reference to `config_group_find_item'
-/usr/bin/ld: drivers/gpu/drm/xe/xe_configfs.o: in function `xe_config_make_device_group':
-xe_configfs.c:(.text+0x28c): undefined reference to `config_group_init_type_name'
-/usr/bin/ld: drivers/gpu/drm/xe/xe_configfs.o: in function `xe_configfs_get_survivability_mode':
-xe_configfs.c:(.text+0x304): undefined reference to `config_item_put'
-/usr/bin/ld: drivers/gpu/drm/xe/xe_configfs.o: in function `xe_configfs_clear_survivability_mode':
-xe_configfs.c:(.text+0x371): undefined reference to `config_item_put'
-/usr/bin/ld: drivers/gpu/drm/xe/xe_configfs.o: in function `xe_configfs_init':
-xe_configfs.c:(.init.text+0x6): undefined reference to `config_group_init'
-/usr/bin/ld: xe_configfs.c:(.init.text+0x4a): undefined reference to `configfs_register_subsystem'
-/usr/bin/ld: drivers/gpu/drm/xe/xe_configfs.o: in function `xe_configfs_exit':
-xe_configfs.c:(.exit.text+0x10): undefined reference to `configfs_unregister_subsystem'
-collect2: error: ld returned 1 exit status
-make[3]: *** [../scripts/Makefile.vmlinux:77: vmlinux] Error 1
-make[2]: *** [/kernel/Makefile:1231: vmlinux] Error 2
-make[1]: *** [/kernel/Makefile:251: __sub-make] Error 2
-make: *** [Makefile:251: __sub-make] Error 2
+ERROR: The runconfig 'xe-2854-14c330bc015ded4a1f1dd1f5aeb8617077aaa7e8_full' does not exist in the database
 
-[06:26:13] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[06:26:17] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146777v2/index.html
+
+--===============0835486133142089317==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>VRR Register Read/Write Updates (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/146777/">https://patchwork.freedesktop.org/series/146777/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146777v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146777v2/index.html</a></td></tr>
+
+</table>
+
+
+    <p>ERROR: The runconfig 'xe-2854-14c330bc015ded4a1f1dd1f5aeb8617077aaa7e8_full' does not exist in the database</p>
+
+</body>
+</html>
+
+--===============0835486133142089317==--
