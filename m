@@ -4,58 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E076CC28B20
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 13:00:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B877C28B20
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 13:09:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5E6D10EA0C;
-	Fri, 28 Mar 2025 13:00:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6EA310EA17;
+	Fri, 28 Mar 2025 13:09:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UWAyZOKM";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="tmX5iyNe";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F9FA10EA14;
- Fri, 28 Mar 2025 13:00:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743166830; x=1774702830;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=mdyrTUda0nXNAk2owFXlzWnrSxdCzVqgAhXsKETTEzs=;
- b=UWAyZOKMS6L4u/+tkWXl3I9vZEcskayt7q5KyuNZ6+srYjJxpsz+ZkPP
- u+B1eJBf+gwutsXBEMeatpBInefgYqVIXAMzY2drnXf9LNiQnIvsK3l4k
- vsIeFnj9Y+xLUUGI8ssJV0DLpNjPwkEej9sTAXgXDVqfOq7Q5X5j0KhBy
- ueE5kiyxnc6Jka0wuFqWa6y8bUJaJ0V0IU74sxk8eETZP9Kmqvg2+9wJT
- AnLDq1pxg1DWAZtrD2sPzCZ8Rwn/9FtRp2PO6Zzjp7ktgLlCaxo/EA5y6
- Pjxv7T90JXEbDhw7TOQtNRaloNbpIL3rQ1RhmCcOvmyCJ4DuY9VcIKZlB g==;
-X-CSE-ConnectionGUID: VPYctw7fRxC2eAfs43/VZw==
-X-CSE-MsgGUID: jdUPiItaSheELNacXaH4wg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11387"; a="55186662"
-X-IronPort-AV: E=Sophos;i="6.14,283,1736841600"; d="scan'208";a="55186662"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2025 06:00:30 -0700
-X-CSE-ConnectionGUID: Zl7X9F7xSQ6TLpvp2Oha6w==
-X-CSE-MsgGUID: L/LTb/LsTVWhup8y9i67KA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,283,1736841600"; d="scan'208";a="130296134"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa003.jf.intel.com with ESMTP; 28 Mar 2025 06:00:28 -0700
-From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Fri, 28 Mar 2025 18:15:39 +0530
-Subject: [PATCH v11 5/5] drm/i915/display: Indexed 8bit format does not
- support async flip
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 473B110E049;
+ Thu, 27 Mar 2025 05:39:18 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id DB13961132;
+ Thu, 27 Mar 2025 05:39:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E07DC4CEDD;
+ Thu, 27 Mar 2025 05:39:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1743053955;
+ bh=CAunss2v2b6mB2nYeE2eMRRbDuDsBqwc8pyaowwJ2g8=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=tmX5iyNeIjc/0bENcWNqOClCK/fiaql9wWyI7m/CfBqTNbLZu2FGbLGKOS/BAibSV
+ wtal52edQ5gygPIuVnrDk0HqUqZe/0BwLm+ALq/2WNxDHcpzDbAMywPyullxwm7Kph
+ b5GGHZYXp9KOwAL8wxcJdSwZm0GOpNJIaQN6cDBGUh18V2NTdJCe6TpP53FhjAxFST
+ WsRW4dz10y/Fe9Jt97u6kLDjx9MfZNfQz8UgA0r2yNj3ymRUczNKo8cuHEFwvYjINO
+ GUHgjpv5SrEeeKI0oCVl2GQ7/lF55QgC5T5x+fVpLTlOkXEKhZlXDDx0h0LKtS91KA
+ FNquLwadWEcuQ==
+Date: Wed, 26 Mar 2025 22:39:13 -0700
+From: Josh Poimboeuf <jpoimboe@kernel.org>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: Nicolin Chen <nicolinc@nvidia.com>, 
+ Peter Zijlstra <peterz@infradead.org>, "Borah,
+ Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>, 
+ "iommu@lists.linux.dev" <iommu@lists.linux.dev>, 
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Kurmi,
+ Suresh Kumar" <suresh.kumar.kurmi@intel.com>, 
+ "Saarinen, Jani" <jani.saarinen@intel.com>
+Subject: Re: Regression on linux-next (next-20250321)
+Message-ID: <sgetbac5ljzij2v54nmjuucioe4p6bhhn7kwm3bhn7hgkxi3gv@drfutbov4q4o>
+References: <SJ1PR11MB61295789E25C2F5197EFF2F6B9A72@SJ1PR11MB6129.namprd11.prod.outlook.com>
+ <Z+Jd4GDIzCP5cBQE@nvidia.com> <Z+Ky9XsxHo/cECgr@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250328-asyn-v11-5-ecc2d33aac69@intel.com>
-References: <20250328-asyn-v11-0-ecc2d33aac69@intel.com>
-In-Reply-To: <20250328-asyn-v11-0-ecc2d33aac69@intel.com>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- chaitanya.kumar.borah@intel.com, ville.syrjala@intel.com, 
- Arun R Murthy <arun.r.murthy@intel.com>
-X-Mailer: b4 0.15-dev
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <Z+Ky9XsxHo/cECgr@nvidia.com>
+X-Mailman-Approved-At: Fri, 28 Mar 2025 13:09:34 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,29 +64,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Async flip is not supported with Indexed 8 bit format as it depends on
-LUT and can't be updated atomically.
+On Tue, Mar 25, 2025 at 10:43:17AM -0300, Jason Gunthorpe wrote:
+> On Tue, Mar 25, 2025 at 12:40:16AM -0700, Nicolin Chen wrote:
+> > 
+> > On Tue, Mar 25, 2025 at 05:39:39AM +0000, Borah, Chaitanya Kumar wrote:
+> > > Hello Nicolin,
+> > > 
+> > > Hope you are doing well. I am Chaitanya from the linux graphics team in Intel.
+> > > 
+> > > This mail is regarding a regression we are seeing in our CI runs[1] on linux-next repository.
+> > > 
+> > > Since the version next-20250321 [2], we are seeing the following regression
+> > > 
+> > > `````````````````````````````````````````````````````````````````````````````````
+> > > <4>[    0.226495] Unpatched return thunk in use. This should not happen!
+> > > <4>[    0.226502] WARNING: CPU: 0 PID: 1 at arch/x86/kernel/cpu/bugs.c:3107 __warn_thunk+0x62/0x70
+> > 
+> > Hmm....I wonder why x86 can be affected...
+> 
+> I wonder if this is realted to the objtool warning Steven reported:
+> 
+> https://lore.kernel.org/linux-next/20250321193600.2bfe03bb@canb.auug.org.au/
+> 
+> vmlinux.o: warning: objtool: iommu_dma_get_msi_page() falls through to next function __iommu_dma_unmap()
+> 
+> I have no idea what either error means or how to fix it. AFAICT there
+> is nothing special about this patch to trigger this?
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_atomic_plane.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Yeah, I'm fairly sure the boot warning is related to that objtool
+warning.  I just posted a patch for that:
 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index baa82d58900d38caf1420ce46ff6d1c003d12138..78dbbe5d1f293316dc097ce58275569eeed0b34b 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -177,7 +177,8 @@ bool intel_plane_needs_physical(struct intel_plane *plane)
- bool intel_plane_can_async_flip(struct intel_plane *plane, u32 format,
- 				u64 modifier)
- {
--	if (intel_format_info_is_yuv_semiplanar(drm_format_info(format), modifier)) {
-+	if (intel_format_info_is_yuv_semiplanar(drm_format_info(format), modifier) ||
-+	    format == DRM_FORMAT_C8) {
- 		drm_dbg_kms(plane->base.dev,
- 			    "[PLANE:%d:%s] Planar formats do not support async flips\n",
- 			    plane->base.base.id, plane->base.name);
+  https://lore.kernel.org/0c801ae017ec078cacd39f8f0898fc7780535f85.1743053325.git.jpoimboe@kernel.org
+
+But also, we need to fix objtool to handle that warning more gracefully
+so it doesn't trigger the boot failure.
 
 -- 
-2.25.1
-
+Josh
