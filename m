@@ -4,61 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF09BC28B20
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 13:39:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0847C36013
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 14:01:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C673C10EA1B;
-	Fri, 28 Mar 2025 13:39:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6350710EA2B;
+	Fri, 28 Mar 2025 14:01:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RXVsuT0p";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K+Pug9jD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79C2710EA17;
- Fri, 28 Mar 2025 13:39:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EA5F10EA2A;
+ Fri, 28 Mar 2025 14:01:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743169183; x=1774705183;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=d72R6ByOdrC+neEIx+se8x1+ce4CLQN/URTrQCPg2iY=;
- b=RXVsuT0pt7LRGi44kUnYpgxK8YHqVehe85Y+4nfF2DqYyCM812LziOS3
- DUeIIwtYLyCXv5jCXPtkf2TPOyPXksuTRhcNZGQK3ltqWkp0ccDbLuu6/
- MUMdC7ziT1oPGaGj5dXCNezf2e/MBJ8QVdGIoOuLZJ9YnXtEtSRxtvfgo
- wcesPQuhDzbIamb/8j3Zcx8kqpfCJ/qW+yx4TATl9V2+n2XKe4h3DLQ8p
- O4o0PQoS2kVwIK9YVUAcCu0aCZqzptC7wZSSWP29ogPBNYyZHefy0lbrE
- m9gQYKqH72m3YGowM/5n8WZ0volvzWdYvxtXX+VKZtdcrFOd2cG7avBky w==;
-X-CSE-ConnectionGUID: DYiliV0ZQNuUNXFq+Y3FIQ==
-X-CSE-MsgGUID: nClVRTnOTGeTmbuk9gDxOA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11387"; a="44712006"
-X-IronPort-AV: E=Sophos;i="6.14,283,1736841600"; d="scan'208";a="44712006"
+ t=1743170500; x=1774706500;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=LWWQFNNB4t1d2iFNHMCgy1hsGERa36tzE0mhV/d1EIM=;
+ b=K+Pug9jD6klKesO6MQOUg2a1c6b4l+qpn7liXdl7dHnFpjA5f1luCapf
+ fXiIwzSZj845n3gm+m928MMZtzlUk8WS6GGL/ew0pIfOO2NbzH+GT95nV
+ h7rQC44VRIs45Rb3pn81yf8S8iQN0s1LT6Zhc39MQ0smCkbs9w0HXbn3c
+ sFXwUfKy2/Cd0TlB3VnAH/g7FAvEaLXSn/9GiuvUfs5NUbP12ugsu799D
+ ecqYXOucmxGEr1OcbW33aiV4uNMK0JtF+WynJsce3ohna8GxlqfnWApwN
+ fYZQIJtebMekQX+Jy/OIqszFjc2QH2XXvHbSL4gGnfO+WvPpWLIXTjvB8 A==;
+X-CSE-ConnectionGUID: LPwU9fJsQvC0XNT5xSV81g==
+X-CSE-MsgGUID: 31TJbAzoS8mKuX7G1ogh+A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11387"; a="44713816"
+X-IronPort-AV: E=Sophos;i="6.14,283,1736841600"; d="scan'208";a="44713816"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2025 06:39:39 -0700
-X-CSE-ConnectionGUID: izncqzwVRnScJ7kj+ttBew==
-X-CSE-MsgGUID: NAe5tfhHQCqxl2IbxTz8QQ==
+ 28 Mar 2025 07:01:38 -0700
+X-CSE-ConnectionGUID: QFqSGBi7R0OZ7iPAHQjaXw==
+X-CSE-MsgGUID: dwZbNaXCT3acJWNzelAu7g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,283,1736841600"; d="scan'208";a="130659792"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 28 Mar 2025 06:37:42 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 28 Mar 2025 15:37:40 +0200
-Date: Fri, 28 Mar 2025 15:37:40 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- chaitanya.kumar.borah@intel.com, ville.syrjala@intel.com
-Subject: Re: [PATCH v11 5/5] drm/i915/display: Indexed 8bit format does not
- support async flip
-Message-ID: <Z-amJBKioYObnoQT@intel.com>
-References: <20250328-asyn-v11-0-ecc2d33aac69@intel.com>
- <20250328-asyn-v11-5-ecc2d33aac69@intel.com>
+X-IronPort-AV: E=Sophos;i="6.14,283,1736841600"; d="scan'208";a="130663414"
+Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.94])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2025 07:01:31 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 0/6] drm/i915: dpll, ddi, crc, psr etc conversions to
+ struct intel_display
+In-Reply-To: <Z-aAvijGRTTANm0_@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1742906146.git.jani.nikula@intel.com>
+ <Z-aAvijGRTTANm0_@intel.com>
+Date: Fri, 28 Mar 2025 16:01:28 +0200
+Message-ID: <87jz8945l3.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250328-asyn-v11-5-ecc2d33aac69@intel.com>
-X-Patchwork-Hint: comment
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,38 +70,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Mar 28, 2025 at 06:15:39PM +0530, Arun R Murthy wrote:
-> Async flip is not supported with Indexed 8 bit format as it depends on
-> LUT and can't be updated atomically.
-> 
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+On Fri, 28 Mar 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Tue, Mar 25, 2025 at 02:36:32PM +0200, Jani Nikula wrote:
+>> We're getting there!
+>>=20
+>> Jani Nikula (6):
+>>   drm/i915/dpll: convert intel_dpll.[ch] to struct intel_display
+>>   drm/i915/ddi: convert intel_ddi.c to struct intel_display
+>>   drm/i915/crc: convert intel_pipe_crc.c to struct intel_display
+>>   drm/i915/psr: further conversions to struct intel_display
+>>   drm/i915/wa: convert intel_display_wa.[ch] to struct intel_display
+>>   drm/i915/display: drop some unnecessary intel_de_* compatibility
+>>     wrappers
+>
+> Series is
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Seems OK to me.
+Thanks, pushed to din.
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+BR,
+Jani.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_atomic_plane.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> index baa82d58900d38caf1420ce46ff6d1c003d12138..78dbbe5d1f293316dc097ce58275569eeed0b34b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> @@ -177,7 +177,8 @@ bool intel_plane_needs_physical(struct intel_plane *plane)
->  bool intel_plane_can_async_flip(struct intel_plane *plane, u32 format,
->  				u64 modifier)
->  {
-> -	if (intel_format_info_is_yuv_semiplanar(drm_format_info(format), modifier)) {
-> +	if (intel_format_info_is_yuv_semiplanar(drm_format_info(format), modifier) ||
-> +	    format == DRM_FORMAT_C8) {
->  		drm_dbg_kms(plane->base.dev,
->  			    "[PLANE:%d:%s] Planar formats do not support async flips\n",
->  			    plane->base.base.id, plane->base.name);
-> 
-> -- 
-> 2.25.1
+>
+>>=20
+>>  drivers/gpu/drm/i915/display/intel_ddi.c      | 904 +++++++++---------
+>>  drivers/gpu/drm/i915/display/intel_de.h       |  16 +-
+>>  drivers/gpu/drm/i915/display/intel_display.c  |   4 +-
+>>  .../drm/i915/display/intel_display_driver.c   |   7 +-
+>>  .../gpu/drm/i915/display/intel_display_wa.c   |  30 +-
+>>  .../gpu/drm/i915/display/intel_display_wa.h   |  11 +-
+>>  drivers/gpu/drm/i915/display/intel_dpll.c     | 312 +++---
+>>  drivers/gpu/drm/i915/display/intel_dpll.h     |  13 +-
+>>  drivers/gpu/drm/i915/display/intel_fbc.c      |   2 +-
+>>  drivers/gpu/drm/i915/display/intel_pipe_crc.c | 137 ++-
+>>  drivers/gpu/drm/i915/display/intel_pps.c      |   5 +-
+>>  drivers/gpu/drm/i915/display/intel_psr.c      |  85 +-
+>>  drivers/gpu/drm/xe/display/xe_display_wa.c    |   6 +-
+>>  13 files changed, 729 insertions(+), 803 deletions(-)
+>>=20
+>> --=20
+>> 2.39.5
 
--- 
-Ville Syrjälä
-Intel
+--=20
+Jani Nikula, Intel
