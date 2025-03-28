@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26A5CC36010
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 10:58:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F539C28B20
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 11:21:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11DC210E0F3;
-	Fri, 28 Mar 2025 10:58:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mL3Chbil";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7A6910E0F3;
- Fri, 28 Mar 2025 10:58:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743159490; x=1774695490;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=NBKMdXHbffNW2abK9cwB0JDAAEwFJMABJxQQhGo+3yA=;
- b=mL3Chbil8HxTlMo/NZwWJe+SJq0R8IQgjnWaMIXe9Od+OQ6H262PIVvi
- ONTLud50e2P8+3UIvrCOtht63tuZG6J4YuOGolxmo4j3LJBJULhizVhn5
- igk4uYf7sDjDD8ZoAaj5TIKCd5XxyOHo2eNmPK6Xehp5WuWZyzRr+ytMC
- EgtAixw8gLjHSQetPfYU+kBYvNx5DF8XlZ5XGZIcZHQXB9SpEOvsq8yzG
- ImOSj2rozHySTMm+u1vZ34Cyy+x8rHzqEthSnHzKNkdGobVHlHrCA+WA9
- HqsjgLQrZSrgJFPVBgMPw7IkUJa9QtKp2cT2epD634PVSMrYSS0YvJBp6 Q==;
-X-CSE-ConnectionGUID: 3FfrgvWKSc6sHqZx2WVpIQ==
-X-CSE-MsgGUID: 120S8aBaSiupNMG0xaePvw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="55886157"
-X-IronPort-AV: E=Sophos;i="6.14,283,1736841600"; d="scan'208";a="55886157"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2025 03:58:09 -0700
-X-CSE-ConnectionGUID: Iek/3Mw4SHWMNeo2r+T/fw==
-X-CSE-MsgGUID: 0KXJWNuWR9aKUWsq/u/qWg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,283,1736841600"; d="scan'208";a="130625460"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 28 Mar 2025 03:58:07 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 28 Mar 2025 12:58:06 +0200
-Date: Fri, 28 Mar 2025 12:58:06 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 0/6] drm/i915: dpll, ddi, crc, psr etc conversions to
- struct intel_display
-Message-ID: <Z-aAvijGRTTANm0_@intel.com>
-References: <cover.1742906146.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05D6E10E110;
+	Fri, 28 Mar 2025 11:21:12 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 241D010E0F7;
+ Fri, 28 Mar 2025 11:21:11 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6779615717811382019=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cover.1742906146.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pf=3A_Don=27t_allow_?=
+ =?utf-8?q?LMEM_provisioning_if_LMTT_isn=27t_available_on_the_device?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 28 Mar 2025 11:21:11 -0000
+Message-ID: <174316087113.14705.16118150359640210351@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250328102357.2391877-1-piotr.piorkowski@intel.com>
+In-Reply-To: <20250328102357.2391877-1-piotr.piorkowski@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,43 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Mar 25, 2025 at 02:36:32PM +0200, Jani Nikula wrote:
-> We're getting there!
-> 
-> Jani Nikula (6):
->   drm/i915/dpll: convert intel_dpll.[ch] to struct intel_display
->   drm/i915/ddi: convert intel_ddi.c to struct intel_display
->   drm/i915/crc: convert intel_pipe_crc.c to struct intel_display
->   drm/i915/psr: further conversions to struct intel_display
->   drm/i915/wa: convert intel_display_wa.[ch] to struct intel_display
->   drm/i915/display: drop some unnecessary intel_de_* compatibility
->     wrappers
+--===============6779615717811382019==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Series is
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-> 
->  drivers/gpu/drm/i915/display/intel_ddi.c      | 904 +++++++++---------
->  drivers/gpu/drm/i915/display/intel_de.h       |  16 +-
->  drivers/gpu/drm/i915/display/intel_display.c  |   4 +-
->  .../drm/i915/display/intel_display_driver.c   |   7 +-
->  .../gpu/drm/i915/display/intel_display_wa.c   |  30 +-
->  .../gpu/drm/i915/display/intel_display_wa.h   |  11 +-
->  drivers/gpu/drm/i915/display/intel_dpll.c     | 312 +++---
->  drivers/gpu/drm/i915/display/intel_dpll.h     |  13 +-
->  drivers/gpu/drm/i915/display/intel_fbc.c      |   2 +-
->  drivers/gpu/drm/i915/display/intel_pipe_crc.c | 137 ++-
->  drivers/gpu/drm/i915/display/intel_pps.c      |   5 +-
->  drivers/gpu/drm/i915/display/intel_psr.c      |  85 +-
->  drivers/gpu/drm/xe/display/xe_display_wa.c    |   6 +-
->  13 files changed, 729 insertions(+), 803 deletions(-)
-> 
-> -- 
-> 2.39.5
+Series: drm/xe/pf: Don't allow LMEM provisioning if LMTT isn't available on the device
+URL   : https://patchwork.freedesktop.org/series/146941/
+State : success
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+CI Bug Log - changes from xe-2867-f823caa91ed490160b8e87792d3bb26ae3e87de0_BAT -> xe-pw-146941v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (10 -> 9)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-2867-f823caa91ed490160b8e87792d3bb26ae3e87de0 -> xe-pw-146941v1
+
+  IGT_8291: a1809bc9d786d9b37a22e3e5e4810c6a0c84480b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2867-f823caa91ed490160b8e87792d3bb26ae3e87de0: f823caa91ed490160b8e87792d3bb26ae3e87de0
+  xe-pw-146941v1: 146941v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146941v1/index.html
+
+--===============6779615717811382019==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/pf: Don&#x27;t allow LMEM provisioning if LMTT isn&#x27;t available on the device</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/146941/">https://patchwork.freedesktop.org/series/146941/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146941v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146941v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2867-f823caa91ed490160b8e87792d3bb26ae3e87de0_BAT -&gt; xe-pw-146941v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (10 -&gt; 9)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2867-f823caa91ed490160b8e87792d3bb26ae3e87de0 -&gt; xe-pw-146941v1</li>
+</ul>
+<p>IGT_8291: a1809bc9d786d9b37a22e3e5e4810c6a0c84480b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2867-f823caa91ed490160b8e87792d3bb26ae3e87de0: f823caa91ed490160b8e87792d3bb26ae3e87de0<br />
+  xe-pw-146941v1: 146941v1</p>
+
+</body>
+</html>
+
+--===============6779615717811382019==--
