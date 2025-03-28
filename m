@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91266C28B20
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 10:40:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51568C28B20
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 10:47:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52CF710E9D4;
-	Fri, 28 Mar 2025 10:40:34 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hVjHxeHq";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B66810E0F5;
- Fri, 28 Mar 2025 10:40:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743158433; x=1774694433;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=2ErVrw9cEWwe4CiiYrVId3nwpYWgV69DWk92imr9Ndg=;
- b=hVjHxeHqWcNqR8cSEL8+RE6SeL/WStFLIA6xSqr2/eRp50kQSMmo5EaF
- yo5Mv7Lf6WurNHv1D/1yiv0KVB7J9z9DcIchjjJ6fzH1lEX0g/nHq+E2w
- 0w73IMkK/L9H7Z7B6Sn/MRzocz2bT7MJStdUigP0szRSgi/8Xx8kXny1v
- 9RiRm1B3AQyhwpkYsEbbQ4vfhJO83RGyCliGk0SO61JMy4X3SYHxWTim+
- UrgldLAydb+QcoWe4BP5Fei2xWugrqSJcxx83UudArZB68NhX0dR++YiN
- 2XGJSSxT78HuZ95i05KxnQAesNBUXfA9Mv+h6rOBY9FpNFVJ6ORr6naQm A==;
-X-CSE-ConnectionGUID: QQdRzbwWSFqpmfONHfIRjA==
-X-CSE-MsgGUID: vZ8/SkdQRcCCwV3COpMqaQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="55884437"
-X-IronPort-AV: E=Sophos;i="6.14,283,1736841600"; d="scan'208";a="55884437"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2025 03:40:32 -0700
-X-CSE-ConnectionGUID: 7pk0WlGYSRScqQHLTkRBlA==
-X-CSE-MsgGUID: aOQDgJh/ToODbJYGtuFOaA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,283,1736841600"; d="scan'208";a="130621021"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 28 Mar 2025 03:40:29 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 28 Mar 2025 12:40:28 +0200
-Date: Fri, 28 Mar 2025 12:40:28 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- chaitanya.kumar.borah@intel.com, ville.syrjala@intel.com
-Subject: Re: [PATCH v10 3/4] drm/i915/display: Acomodate format check in
- can_async_flip()
-Message-ID: <Z-Z8nIPjHA1HWu-G@intel.com>
-References: <20250328-asyn-v10-0-8b8ad12cfc97@intel.com>
- <20250328-asyn-v10-3-8b8ad12cfc97@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06DFD10E9DC;
+	Fri, 28 Mar 2025 10:47:23 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F15910E9DC;
+ Fri, 28 Mar 2025 10:47:22 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250328-asyn-v10-3-8b8ad12cfc97@intel.com>
-X-Patchwork-Hint: comment
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/pf=3A_Don=27t_allow_LME?=
+ =?utf-8?q?M_provisioning_if_LMTT_isn=27t_available_on_the_device?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 28 Mar 2025 10:47:22 -0000
+Message-ID: <174315884231.14705.14311133586033900110@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250328102357.2391877-1-piotr.piorkowski@intel.com>
+In-Reply-To: <20250328102357.2391877-1-piotr.piorkowski@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,135 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Mar 28, 2025 at 02:59:15PM +0530, Arun R Murthy wrote:
-> The function pointer can_async_flip() checks for async supported
-> modifier, add format support check also in the same function.
-> 
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/i9xx_plane.c          |  4 ++--
->  drivers/gpu/drm/i915/display/intel_atomic_plane.c  | 11 ++++++++++-
->  drivers/gpu/drm/i915/display/intel_atomic_plane.h  |  3 ++-
->  drivers/gpu/drm/i915/display/intel_display.c       | 14 ++++----------
->  drivers/gpu/drm/i915/display/skl_universal_plane.c |  2 +-
->  5 files changed, 19 insertions(+), 15 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
-> index 5e8344fdfc28a311dc0632bb848a0e08f9e6c6d2..20c47de6d8bfd1d8ddafae02ed68370df799e22b 100644
-> --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
-> +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
-> @@ -828,7 +828,7 @@ unsigned int vlv_plane_min_alignment(struct intel_plane *plane,
->  {
->  	struct intel_display *display = to_intel_display(plane);
->  
-> -	if (intel_plane_can_async_flip(plane, fb->modifier))
-> +	if (intel_plane_can_async_flip(plane, fb->format->format, fb->modifier))
->  		return 256 * 1024;
->  
->  	/* FIXME undocumented so not sure what's actually needed */
-> @@ -852,7 +852,7 @@ static unsigned int g4x_primary_min_alignment(struct intel_plane *plane,
->  {
->  	struct intel_display *display = to_intel_display(plane);
->  
-> -	if (intel_plane_can_async_flip(plane, fb->modifier))
-> +	if (intel_plane_can_async_flip(plane, fb->format->format, fb->modifier))
->  		return 256 * 1024;
->  
->  	if (intel_scanout_needs_vtd_wa(display))
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> index 7276179df878658b7053fe6d8dc37b69f19625e3..5260b9e723af3f654cb36512fe0b5368523082e6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> @@ -174,8 +174,17 @@ bool intel_plane_needs_physical(struct intel_plane *plane)
->  		DISPLAY_INFO(display)->cursor_needs_physical;
->  }
->  
-> -bool intel_plane_can_async_flip(struct intel_plane *plane, u64 modifier)
-> +bool intel_plane_can_async_flip(struct intel_plane *plane, u32 format,
-> +				u64 modifier)
->  {
-> +	if (intel_format_info_is_yuv_semiplanar(drm_format_info(format), modifier)
-> +	    || format == DRM_FORMAT_C8) {
+== Series Details ==
 
-You're still mixing refactoring and functional changes in
-one patch. The C8 check needs to be a separate patch.
+Series: drm/xe/pf: Don't allow LMEM provisioning if LMTT isn't available on the device
+URL   : https://patchwork.freedesktop.org/series/146941/
+State : success
 
-Also the || goes to the end of the line.
+== Summary ==
 
-> +		drm_dbg_kms(plane->base.dev,
-> +			    "[PLANE:%d:%s] Planar formats do not support async flips\n",
-> +			    plane->base.base.id, plane->base.name);
-> +		return false;
-> +	}
-> +
->  	return plane->can_async_flip && plane->can_async_flip(modifier);
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-> index 6efac923dcbc757e6f68564cbef2919c920f13cb..772a12aa9c6997d77b9393f964e91f3e8747d149 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-> @@ -21,7 +21,8 @@ enum plane_id;
->  
->  struct intel_plane *
->  intel_crtc_get_plane(struct intel_crtc *crtc, enum plane_id plane_id);
-> -bool intel_plane_can_async_flip(struct intel_plane *plane, u64 modifier);
-> +bool intel_plane_can_async_flip(struct intel_plane *plane, u32 format,
-> +				u64 modifier);
->  unsigned int intel_adjusted_rate(const struct drm_rect *src,
->  				 const struct drm_rect *dst,
->  				 unsigned int rate);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index ee7812126129227971be89d3a79f944155620b03..ff349355ac95a039272f2fe174034ca06a555249 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -5998,22 +5998,16 @@ static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct in
->  		if (!plane->async_flip)
->  			continue;
->  
-> -		if (!intel_plane_can_async_flip(plane, new_plane_state->hw.fb->modifier)) {
-> +		if (!intel_plane_can_async_flip(plane, new_plane_state->hw.fb->format->format,
-> +						new_plane_state->hw.fb->modifier)) {
->  			drm_dbg_kms(display->drm,
-> -				    "[PLANE:%d:%s] Modifier 0x%llx does not support async flip\n",
-> +				    "[PLANE:%d:%s] Format %p4cc Modifier 0x%llx does not support async flip\n",
->  				    plane->base.base.id, plane->base.name,
-> +				    &new_plane_state->hw.fb->format->format,
->  				    new_plane_state->hw.fb->modifier);
->  			return -EINVAL;
->  		}
->  
-> -		if (intel_format_info_is_yuv_semiplanar(new_plane_state->hw.fb->format,
-> -							new_plane_state->hw.fb->modifier)) {
-> -			drm_dbg_kms(display->drm,
-> -				    "[PLANE:%d:%s] Planar formats do not support async flips\n",
-> -				    plane->base.base.id, plane->base.name);
-> -			return -EINVAL;
-> -		}
-> -
->  		/*
->  		 * We turn the first async flip request into a sync flip
->  		 * so that we can reconfigure the plane (eg. change modifier).
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> index 8739195aba696d13b30e1b978c8b2bb5e188119b..8f6170a5c108a000582f3415f78bad279254d8cf 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -601,7 +601,7 @@ static u32 tgl_plane_min_alignment(struct intel_plane *plane,
->  	 * Figure out what's going on here...
->  	 */
->  	if (display->platform.alderlake_p &&
-> -	    intel_plane_can_async_flip(plane, fb->modifier))
-> +	    intel_plane_can_async_flip(plane, fb->format->format, fb->modifier))
->  		return mult * 16 * 1024;
->  
->  	switch (fb->modifier) {
-> 
-> -- 
-> 2.25.1
+lib/modules/6.14.0-xe+/kernel/arch/x86/events/amd/
+lib/modules/6.14.0-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.14.0-xe+/kernel/kernel/
+lib/modules/6.14.0-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.14.0-xe+/kernel/crypto/
+lib/modules/6.14.0-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.14.0-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.14.0-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.14.0-xe+/kernel/crypto/zstd.ko
+lib/modules/6.14.0-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.14.0-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.14.0-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.14.0-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/xctr.ko
+lib/modules/6.14.0-xe+/kernel/crypto/authenc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm3.ko
+lib/modules/6.14.0-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.14.0-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.14.0-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cmac.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.14.0-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/essiv.ko
+lib/modules/6.14.0-xe+/kernel/crypto/ccm.ko
+lib/modules/6.14.0-xe+/kernel/crypto/wp512.ko
+lib/modules/6.14.0-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.14.0-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.14.0-xe+/kernel/crypto/lrw.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.14.0-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.14.0-xe+/kernel/crypto/842.ko
+lib/modules/6.14.0-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.14.0-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/md4.ko
+lib/modules/6.14.0-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.14.0-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/lz4.ko
+lib/modules/6.14.0-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.14.0-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm4.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.14.0-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.14.0-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.14.0-xe+/kernel/block/
+lib/modules/6.14.0-xe+/kernel/block/bfq.ko
+lib/modules/6.14.0-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.14.0-xe+/build
+lib/modules/6.14.0-xe+/modules.alias.bin
+lib/modules/6.14.0-xe+/modules.builtin
+lib/modules/6.14.0-xe+/modules.softdep
+lib/modules/6.14.0-xe+/modules.alias
+lib/modules/6.14.0-xe+/modules.order
+lib/modules/6.14.0-xe+/modules.symbols
+lib/modules/6.14.0-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1743158831:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1743158831:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
--- 
-Ville Syrjälä
-Intel
+
