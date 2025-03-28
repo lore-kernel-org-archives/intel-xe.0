@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25C31C36016
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 18:11:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB4B4C36010
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 18:11:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEB4810EA94;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8720D10EA77;
 	Fri, 28 Mar 2025 18:11:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NAOXn8uP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mB3z6uWs";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90FDA10EA8B;
- Fri, 28 Mar 2025 18:11:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B62FF10EA8D;
+ Fri, 28 Mar 2025 18:11:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743185463; x=1774721463;
+ t=1743185469; x=1774721469;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+GX1BQcc5S5tMR/Q6UhkyWA593nKOKlUhpjMpNCPSX8=;
- b=NAOXn8uPqdfU+kTn4gjRx95WfXXFw5Sqjrmn0Wq/1tATWBDcsDeDVfl6
- 7Gs4HQvjb1j1Xcf2oWPz3djdzovN76KOII1RcLR2THii+WrSKRhX5XbpU
- P7sEqZslGjpx5pLOT9tAShzIpX/PiXsmiiS8PQk3szkJr06YYxulF7/2e
- 0Sn9cw2zyzilokFQQc3RUnVvxA3h0PWVLKJrMnx0uVGqCe4IrNCsZqRIF
- XKjd7sDqOsgnogLP131o/2WPJGSNTi7XWx22gX+zml/3i1apAI5/a0gmO
- t/hyaHHSfGyce/fgMsqPzGtQe4k8y9FGYj6DwGxtoGhWpGXj7dN+3NVBN w==;
-X-CSE-ConnectionGUID: o9KqWfHqRHi6of8PclILqQ==
-X-CSE-MsgGUID: je8m9SAoQC28iRc/crsoiQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11387"; a="55926130"
-X-IronPort-AV: E=Sophos;i="6.14,284,1736841600"; d="scan'208";a="55926130"
+ bh=6xL9aOqQ9BEahYHn5WRWNp1VeNxnXOmcnJM8Rxaz+Xo=;
+ b=mB3z6uWsq/okluvbjYhbkqethgIhaqttnxkZ8A1EOvsJ6n1SWBwHW3+X
+ stgUxLxPVNHKAFzMAFh8jo5FE96Eoa2ZHi7UiBarooK/Lzl7K0F7TVvar
+ aIbzLli6fcQhWd0jsMtRnw8D1nQQbonr7Th8V9SD1+2zuaWPj2WqubdTE
+ 18ywJ67tRHB4ovAM6Pn+CN6igE5AgzSAEVEZUcTQdRe7sgC31RjfPa4oE
+ YkDq9+EW9ztvV83lMUk7aeFwXVQAlWHp9Tju20pDXlrwKFmvd0zHll6it
+ EuYsN+Pj2hT66viQxBf7mklRrPCdLofDy5i8E2fNVLOwdzi9V6KYgSeyH g==;
+X-CSE-ConnectionGUID: 5oUQXYg/R+6XhKJ59P03ow==
+X-CSE-MsgGUID: deDYUiEwSkSeL0ZMnRfp9A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11387"; a="55926150"
+X-IronPort-AV: E=Sophos;i="6.14,284,1736841600"; d="scan'208";a="55926150"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2025 11:11:03 -0700
-X-CSE-ConnectionGUID: aC6hIB98T/ywxJI7YLQNfw==
-X-CSE-MsgGUID: yi1g0Rc2RLuJ5KRZAiiObQ==
+ 28 Mar 2025 11:11:08 -0700
+X-CSE-ConnectionGUID: RHRWZlcGScyILM25BRqCmA==
+X-CSE-MsgGUID: IZGWoQ+xRwqi76LC1hrYcg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,284,1736841600"; d="scan'208";a="156435998"
+X-IronPort-AV: E=Sophos;i="6.14,284,1736841600"; d="scan'208";a="156436008"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO mwauld-desk.intel.com)
  ([10.245.244.28])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2025 11:11:02 -0700
+ 28 Mar 2025 11:11:07 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH v2 3/7] drm/gpusvm: pull out drm_gpusvm_pages substructure
-Date: Fri, 28 Mar 2025 18:10:32 +0000
-Message-ID: <20250328181028.288312-12-matthew.auld@intel.com>
+Cc: dri-devel@lists.freedesktop.org,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v2 6/7] drm/xe/userptr: replace xe_hmm with gpusvm
+Date: Fri, 28 Mar 2025 18:10:35 +0000
+Message-ID: <20250328181028.288312-15-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250328181028.288312-9-matthew.auld@intel.com>
 References: <20250328181028.288312-9-matthew.auld@intel.com>
@@ -69,374 +71,915 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Pull the pages stuff from the svm range into its own substructure, with
-the idea of having the main pages related routines, like get_pages(),
-unmap_pages() and free_pages() all operating on some lower level
-structures, which can then be re-used for stuff like userptr.
+Goal here is cut over to gpusvm and remove xe_hmm, relying instead on
+common code. The core facilities we need are get_pages(), unmap_pages()
+and free_pages() for a given useptr range, plus a vm level notifier
+lock, which is now provided by gpusvm.
 
 v2:
-  - Move seq into pages struct (Matt B)
+  - Reuse the same SVM vm struct we use for full SVM, that way we can
+    use the same lock (Matt B & Himal)
 
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/drm_gpusvm.c | 66 ++++++++++++++++++++----------------
- drivers/gpu/drm/xe/xe_pt.c   |  2 +-
- drivers/gpu/drm/xe/xe_svm.c  |  8 ++---
- drivers/gpu/drm/xe/xe_svm.h  |  6 ++--
- include/drm/drm_gpusvm.h     | 53 +++++++++++++++++------------
- 5 files changed, 76 insertions(+), 59 deletions(-)
+ drivers/gpu/drm/xe/Kconfig       |   3 +-
+ drivers/gpu/drm/xe/Makefile      |   1 -
+ drivers/gpu/drm/xe/xe_exec.c     |   4 +-
+ drivers/gpu/drm/xe/xe_hmm.c      | 349 -------------------------------
+ drivers/gpu/drm/xe/xe_hmm.h      |  18 --
+ drivers/gpu/drm/xe/xe_pt.c       |  22 +-
+ drivers/gpu/drm/xe/xe_vm.c       |  85 +++++---
+ drivers/gpu/drm/xe/xe_vm_types.h |  26 +--
+ 8 files changed, 73 insertions(+), 435 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/xe_hmm.c
+ delete mode 100644 drivers/gpu/drm/xe/xe_hmm.h
 
-diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
-index e0c8d450752a..c3d70403fbcc 100644
---- a/drivers/gpu/drm/drm_gpusvm.c
-+++ b/drivers/gpu/drm/drm_gpusvm.c
-@@ -811,8 +811,8 @@ drm_gpusvm_range_alloc(struct drm_gpusvm *gpusvm,
- 	range->itree.start = ALIGN_DOWN(fault_addr, chunk_size);
- 	range->itree.last = ALIGN(fault_addr + 1, chunk_size) - 1;
- 	INIT_LIST_HEAD(&range->entry);
--	range->notifier_seq = LONG_MAX;
--	range->flags.migrate_devmem = migrate_devmem ? 1 : 0;
-+	range->pages.notifier_seq = LONG_MAX;
-+	range->pages.flags.migrate_devmem = migrate_devmem ? 1 : 0;
+diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+index 9bce047901b2..1e63dde76c55 100644
+--- a/drivers/gpu/drm/xe/Kconfig
++++ b/drivers/gpu/drm/xe/Kconfig
+@@ -43,7 +43,7 @@ config DRM_XE
+ 	select MMU_NOTIFIER
+ 	select WANT_DEV_COREDUMP
+ 	select AUXILIARY_BUS
+-	select HMM_MIRROR
++	select DRM_GPUSVM
+ 	help
+ 	  Experimental driver for Intel Xe series GPUs
  
- 	return range;
- }
-@@ -1140,15 +1140,16 @@ static void __drm_gpusvm_range_unmap_pages(struct drm_gpusvm *gpusvm,
- 					   struct drm_gpusvm_range *range,
- 					   unsigned long npages)
- {
+@@ -79,7 +79,6 @@ config DRM_XE_GPUSVM
+ 	depends on !UML
+ 	depends on DEVICE_PRIVATE
+ 	default y
+-	select DRM_GPUSVM
+ 	help
+ 	  Enable this option if you want support for CPU to GPU address
+ 	  mirroring.
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 72eaadc4cbee..0d133a5ecf5f 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -124,7 +124,6 @@ xe-y += xe_bb.o \
+ 	xe_wait_user_fence.o \
+ 	xe_wopcm.o
+ 
+-xe-$(CONFIG_HMM_MIRROR) += xe_hmm.o
+ xe-$(CONFIG_DRM_XE_GPUSVM) += xe_svm.o
+ 
+ # graphics hardware monitoring (HWMON) support
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index b75adfc99fb7..c0ce681076d5 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -294,7 +294,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		if (err)
+ 			goto err_put_job;
+ 
+-		err = down_read_interruptible(&vm->userptr.notifier_lock);
++		err = down_read_interruptible(&vm->svm.gpusvm.notifier_lock);
+ 		if (err)
+ 			goto err_put_job;
+ 
+@@ -336,7 +336,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 
+ err_repin:
+ 	if (!xe_vm_in_lr_mode(vm))
+-		up_read(&vm->userptr.notifier_lock);
++		up_read(&vm->svm.gpusvm.notifier_lock);
+ err_put_job:
+ 	if (err)
+ 		xe_sched_job_put(job);
+diff --git a/drivers/gpu/drm/xe/xe_hmm.c b/drivers/gpu/drm/xe/xe_hmm.c
+deleted file mode 100644
+index c3cc0fa105e8..000000000000
+--- a/drivers/gpu/drm/xe/xe_hmm.c
++++ /dev/null
+@@ -1,349 +0,0 @@
+-// SPDX-License-Identifier: MIT
+-/*
+- * Copyright © 2024 Intel Corporation
+- */
+-
+-#include <linux/scatterlist.h>
+-#include <linux/mmu_notifier.h>
+-#include <linux/dma-mapping.h>
+-#include <linux/memremap.h>
+-#include <linux/swap.h>
+-#include <linux/hmm.h>
+-#include <linux/mm.h>
+-#include "xe_hmm.h"
+-#include "xe_vm.h"
+-#include "xe_bo.h"
+-
+-static u64 xe_npages_in_range(unsigned long start, unsigned long end)
+-{
+-	return (end - start) >> PAGE_SHIFT;
+-}
+-
+-/**
+- * xe_mark_range_accessed() - mark a range is accessed, so core mm
+- * have such information for memory eviction or write back to
+- * hard disk
+- * @range: the range to mark
+- * @write: if write to this range, we mark pages in this range
+- * as dirty
+- */
+-static void xe_mark_range_accessed(struct hmm_range *range, bool write)
+-{
+-	struct page *page;
+-	u64 i, npages;
+-
+-	npages = xe_npages_in_range(range->start, range->end);
+-	for (i = 0; i < npages; i++) {
+-		page = hmm_pfn_to_page(range->hmm_pfns[i]);
+-		if (write)
+-			set_page_dirty_lock(page);
+-
+-		mark_page_accessed(page);
+-	}
+-}
+-
+-static int xe_alloc_sg(struct xe_device *xe, struct sg_table *st,
+-		       struct hmm_range *range, struct rw_semaphore *notifier_sem)
+-{
+-	unsigned long i, npages, hmm_pfn;
+-	unsigned long num_chunks = 0;
+-	int ret;
+-
+-	/* HMM docs says this is needed. */
+-	ret = down_read_interruptible(notifier_sem);
+-	if (ret)
+-		return ret;
+-
+-	if (mmu_interval_read_retry(range->notifier, range->notifier_seq)) {
+-		up_read(notifier_sem);
+-		return -EAGAIN;
+-	}
+-
+-	npages = xe_npages_in_range(range->start, range->end);
+-	for (i = 0; i < npages;) {
+-		unsigned long len;
+-
+-		hmm_pfn = range->hmm_pfns[i];
+-		xe_assert(xe, hmm_pfn & HMM_PFN_VALID);
+-
+-		len = 1UL << hmm_pfn_to_map_order(hmm_pfn);
+-
+-		/* If order > 0 the page may extend beyond range->start */
+-		len -= (hmm_pfn & ~HMM_PFN_FLAGS) & (len - 1);
+-		i += len;
+-		num_chunks++;
+-	}
+-	up_read(notifier_sem);
+-
+-	return sg_alloc_table(st, num_chunks, GFP_KERNEL);
+-}
+-
+-/**
+- * xe_build_sg() - build a scatter gather table for all the physical pages/pfn
+- * in a hmm_range. dma-map pages if necessary. dma-address is save in sg table
+- * and will be used to program GPU page table later.
+- * @xe: the xe device who will access the dma-address in sg table
+- * @range: the hmm range that we build the sg table from. range->hmm_pfns[]
+- * has the pfn numbers of pages that back up this hmm address range.
+- * @st: pointer to the sg table.
+- * @notifier_sem: The xe notifier lock.
+- * @write: whether we write to this range. This decides dma map direction
+- * for system pages. If write we map it bi-diretional; otherwise
+- * DMA_TO_DEVICE
+- *
+- * All the contiguous pfns will be collapsed into one entry in
+- * the scatter gather table. This is for the purpose of efficiently
+- * programming GPU page table.
+- *
+- * The dma_address in the sg table will later be used by GPU to
+- * access memory. So if the memory is system memory, we need to
+- * do a dma-mapping so it can be accessed by GPU/DMA.
+- *
+- * FIXME: This function currently only support pages in system
+- * memory. If the memory is GPU local memory (of the GPU who
+- * is going to access memory), we need gpu dpa (device physical
+- * address), and there is no need of dma-mapping. This is TBD.
+- *
+- * FIXME: dma-mapping for peer gpu device to access remote gpu's
+- * memory. Add this when you support p2p
+- *
+- * This function allocates the storage of the sg table. It is
+- * caller's responsibility to free it calling sg_free_table.
+- *
+- * Returns 0 if successful; -ENOMEM if fails to allocate memory
+- */
+-static int xe_build_sg(struct xe_device *xe, struct hmm_range *range,
+-		       struct sg_table *st,
+-		       struct rw_semaphore *notifier_sem,
+-		       bool write)
+-{
+-	unsigned long npages = xe_npages_in_range(range->start, range->end);
+-	struct device *dev = xe->drm.dev;
+-	struct scatterlist *sgl;
+-	struct page *page;
 -	unsigned long i, j;
--	struct drm_pagemap *dpagemap = range->dpagemap;
-+	struct drm_gpusvm_pages *svm_pages = &range->pages;
-+	struct drm_pagemap *dpagemap = svm_pages->dpagemap;
- 	struct device *dev = gpusvm->drm->dev;
-+	unsigned long i, j;
- 
- 	lockdep_assert_held(&gpusvm->notifier_lock);
- 
--	if (range->flags.has_dma_mapping) {
-+	if (svm_pages->flags.has_dma_mapping) {
- 		for (i = 0, j = 0; i < npages; j++) {
--			struct drm_pagemap_device_addr *addr = &range->dma_addr[j];
-+			struct drm_pagemap_device_addr *addr = &svm_pages->dma_addr[j];
- 
- 			if (addr->proto == DRM_INTERCONNECT_SYSTEM)
- 				dma_unmap_page(dev,
-@@ -1160,9 +1161,9 @@ static void __drm_gpusvm_range_unmap_pages(struct drm_gpusvm *gpusvm,
- 							    dev, *addr);
- 			i += 1 << addr->order;
- 		}
--		range->flags.has_devmem_pages = false;
--		range->flags.has_dma_mapping = false;
--		range->dpagemap = NULL;
-+		svm_pages->flags.has_devmem_pages = false;
-+		svm_pages->flags.has_dma_mapping = false;
-+		svm_pages->dpagemap = NULL;
- 	}
- }
- 
-@@ -1176,11 +1177,13 @@ static void __drm_gpusvm_range_unmap_pages(struct drm_gpusvm *gpusvm,
- static void drm_gpusvm_range_free_pages(struct drm_gpusvm *gpusvm,
- 					struct drm_gpusvm_range *range)
- {
-+	struct drm_gpusvm_pages *svm_pages = &range->pages;
-+
- 	lockdep_assert_held(&gpusvm->notifier_lock);
- 
--	if (range->dma_addr) {
--		kvfree(range->dma_addr);
--		range->dma_addr = NULL;
-+	if (svm_pages->dma_addr) {
-+		kvfree(svm_pages->dma_addr);
-+		svm_pages->dma_addr = NULL;
- 	}
- }
- 
-@@ -1291,9 +1294,11 @@ EXPORT_SYMBOL_GPL(drm_gpusvm_range_put);
- bool drm_gpusvm_range_pages_valid(struct drm_gpusvm *gpusvm,
- 				  struct drm_gpusvm_range *range)
- {
-+	struct drm_gpusvm_pages *svm_pages = &range->pages;
-+
- 	lockdep_assert_held(&gpusvm->notifier_lock);
- 
--	return range->flags.has_devmem_pages || range->flags.has_dma_mapping;
-+	return svm_pages->flags.has_devmem_pages || svm_pages->flags.has_dma_mapping;
- }
- EXPORT_SYMBOL_GPL(drm_gpusvm_range_pages_valid);
- 
-@@ -1311,9 +1316,10 @@ static bool
- drm_gpusvm_range_pages_valid_unlocked(struct drm_gpusvm *gpusvm,
- 				      struct drm_gpusvm_range *range)
- {
-+	struct drm_gpusvm_pages *svm_pages = &range->pages;
- 	bool pages_valid;
- 
--	if (!range->dma_addr)
-+	if (!svm_pages->dma_addr)
- 		return false;
- 
- 	drm_gpusvm_notifier_lock(gpusvm);
-@@ -1340,6 +1346,7 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
- 			       struct drm_gpusvm_range *range,
- 			       const struct drm_gpusvm_ctx *ctx)
- {
-+	struct drm_gpusvm_pages *svm_pages = &range->pages;
- 	struct mmu_interval_notifier *notifier = &range->notifier->notifier;
- 	struct hmm_range hmm_range = {
- 		.default_flags = HMM_PFN_REQ_FAULT | (ctx->read_only ? 0 :
-@@ -1409,7 +1416,7 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
- 	 */
- 	drm_gpusvm_notifier_lock(gpusvm);
- 
--	if (range->flags.unmapped) {
-+	if (svm_pages->flags.unmapped) {
- 		drm_gpusvm_notifier_unlock(gpusvm);
- 		err = -EFAULT;
- 		goto err_free;
-@@ -1421,13 +1428,12 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
- 		goto retry;
- 	}
- 
--	if (!range->dma_addr) {
-+	if (!svm_pages->dma_addr) {
- 		/* Unlock and restart mapping to allocate memory. */
- 		drm_gpusvm_notifier_unlock(gpusvm);
--		range->dma_addr = kvmalloc_array(npages,
--						 sizeof(*range->dma_addr),
--						 GFP_KERNEL);
--		if (!range->dma_addr) {
-+		svm_pages->dma_addr =
-+			kvmalloc_array(npages, sizeof(*svm_pages->dma_addr), GFP_KERNEL);
-+		if (!svm_pages->dma_addr) {
- 			err = -ENOMEM;
- 			goto err_free;
- 		}
-@@ -1465,13 +1471,13 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
- 					goto err_unmap;
- 				}
- 			}
--			range->dma_addr[j] =
-+			svm_pages->dma_addr[j] =
- 				dpagemap->ops->device_map(dpagemap,
- 							  gpusvm->drm->dev,
- 							  page, order,
- 							  dma_dir);
- 			if (dma_mapping_error(gpusvm->drm->dev,
--					      range->dma_addr[j].addr)) {
-+					      svm_pages->dma_addr[j].addr)) {
- 				err = -EFAULT;
- 				goto err_unmap;
- 			}
-@@ -1494,7 +1500,7 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
- 				goto err_unmap;
- 			}
- 
--			range->dma_addr[j] = drm_pagemap_device_addr_encode
-+			svm_pages->dma_addr[j] = drm_pagemap_device_addr_encode
- 				(addr, DRM_INTERCONNECT_SYSTEM, order,
- 				 dma_dir);
- 		}
-@@ -1502,16 +1508,16 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
- 		num_dma_mapped = i;
- 	}
- 
--	range->flags.has_dma_mapping = true;
-+	svm_pages->flags.has_dma_mapping = true;
- 	if (zdd) {
--		range->flags.has_devmem_pages = true;
--		range->dpagemap = dpagemap;
-+		svm_pages->flags.has_devmem_pages = true;
-+		svm_pages->dpagemap = dpagemap;
- 	}
- 
- 	drm_gpusvm_notifier_unlock(gpusvm);
- 	kvfree(pfns);
- set_seqno:
--	range->notifier_seq = hmm_range.notifier_seq;
-+	svm_pages->notifier_seq = hmm_range.notifier_seq;
- 
- 	return 0;
- 
-@@ -1718,7 +1724,7 @@ int drm_gpusvm_migrate_to_devmem(struct drm_gpusvm *gpusvm,
- 
- 	mmap_assert_locked(gpusvm->mm);
- 
--	if (!range->flags.migrate_devmem)
-+	if (!range->pages.flags.migrate_devmem)
- 		return -EINVAL;
- 
- 	if (!ops->populate_devmem_pfn || !ops->copy_to_devmem ||
-@@ -2247,10 +2253,10 @@ void drm_gpusvm_range_set_unmapped(struct drm_gpusvm_range *range,
- {
- 	lockdep_assert_held_write(&range->gpusvm->notifier_lock);
- 
--	range->flags.unmapped = true;
-+	range->pages.flags.unmapped = true;
- 	if (drm_gpusvm_range_start(range) < mmu_range->start ||
- 	    drm_gpusvm_range_end(range) > mmu_range->end)
--		range->flags.partial_unmap = true;
-+		range->pages.flags.partial_unmap = true;
- }
- EXPORT_SYMBOL_GPL(drm_gpusvm_range_set_unmapped);
- 
+-
+-	lockdep_assert_held(notifier_sem);
+-
+-	i = 0;
+-	for_each_sg(st->sgl, sgl, st->nents, j) {
+-		unsigned long hmm_pfn, size;
+-
+-		hmm_pfn = range->hmm_pfns[i];
+-		page = hmm_pfn_to_page(hmm_pfn);
+-		xe_assert(xe, !is_device_private_page(page));
+-
+-		size = 1UL << hmm_pfn_to_map_order(hmm_pfn);
+-		size -= page_to_pfn(page) & (size - 1);
+-		i += size;
+-
+-		if (unlikely(j == st->nents - 1)) {
+-			xe_assert(xe, i >= npages);
+-			if (i > npages)
+-				size -= (i - npages);
+-
+-			sg_mark_end(sgl);
+-		} else {
+-			xe_assert(xe, i < npages);
+-		}
+-
+-		sg_set_page(sgl, page, size << PAGE_SHIFT, 0);
+-	}
+-
+-	return dma_map_sgtable(dev, st, write ? DMA_BIDIRECTIONAL : DMA_TO_DEVICE,
+-			       DMA_ATTR_SKIP_CPU_SYNC | DMA_ATTR_NO_KERNEL_MAPPING);
+-}
+-
+-static void xe_hmm_userptr_set_mapped(struct xe_userptr_vma *uvma)
+-{
+-	struct xe_userptr *userptr = &uvma->userptr;
+-	struct xe_vm *vm = xe_vma_vm(&uvma->vma);
+-
+-	lockdep_assert_held_write(&vm->lock);
+-	lockdep_assert_held(&vm->userptr.notifier_lock);
+-
+-	mutex_lock(&userptr->unmap_mutex);
+-	xe_assert(vm->xe, !userptr->mapped);
+-	userptr->mapped = true;
+-	mutex_unlock(&userptr->unmap_mutex);
+-}
+-
+-void xe_hmm_userptr_unmap(struct xe_userptr_vma *uvma)
+-{
+-	struct xe_userptr *userptr = &uvma->userptr;
+-	struct xe_vma *vma = &uvma->vma;
+-	bool write = !xe_vma_read_only(vma);
+-	struct xe_vm *vm = xe_vma_vm(vma);
+-	struct xe_device *xe = vm->xe;
+-
+-	if (!lockdep_is_held_type(&vm->userptr.notifier_lock, 0) &&
+-	    !lockdep_is_held_type(&vm->lock, 0) &&
+-	    !(vma->gpuva.flags & XE_VMA_DESTROYED)) {
+-		/* Don't unmap in exec critical section. */
+-		xe_vm_assert_held(vm);
+-		/* Don't unmap while mapping the sg. */
+-		lockdep_assert_held(&vm->lock);
+-	}
+-
+-	mutex_lock(&userptr->unmap_mutex);
+-	if (userptr->sg && userptr->mapped)
+-		dma_unmap_sgtable(xe->drm.dev, userptr->sg,
+-				  write ? DMA_BIDIRECTIONAL : DMA_TO_DEVICE, 0);
+-	userptr->mapped = false;
+-	mutex_unlock(&userptr->unmap_mutex);
+-}
+-
+-/**
+- * xe_hmm_userptr_free_sg() - Free the scatter gather table of userptr
+- * @uvma: the userptr vma which hold the scatter gather table
+- *
+- * With function xe_userptr_populate_range, we allocate storage of
+- * the userptr sg table. This is a helper function to free this
+- * sg table, and dma unmap the address in the table.
+- */
+-void xe_hmm_userptr_free_sg(struct xe_userptr_vma *uvma)
+-{
+-	struct xe_userptr *userptr = &uvma->userptr;
+-
+-	xe_assert(xe_vma_vm(&uvma->vma)->xe, userptr->sg);
+-	xe_hmm_userptr_unmap(uvma);
+-	sg_free_table(userptr->sg);
+-	userptr->sg = NULL;
+-}
+-
+-/**
+- * xe_hmm_userptr_populate_range() - Populate physical pages of a virtual
+- * address range
+- *
+- * @uvma: userptr vma which has information of the range to populate.
+- * @is_mm_mmap_locked: True if mmap_read_lock is already acquired by caller.
+- *
+- * This function populate the physical pages of a virtual
+- * address range. The populated physical pages is saved in
+- * userptr's sg table. It is similar to get_user_pages but call
+- * hmm_range_fault.
+- *
+- * This function also read mmu notifier sequence # (
+- * mmu_interval_read_begin), for the purpose of later
+- * comparison (through mmu_interval_read_retry).
+- *
+- * This must be called with mmap read or write lock held.
+- *
+- * This function allocates the storage of the userptr sg table.
+- * It is caller's responsibility to free it calling sg_free_table.
+- *
+- * returns: 0 for success; negative error no on failure
+- */
+-int xe_hmm_userptr_populate_range(struct xe_userptr_vma *uvma,
+-				  bool is_mm_mmap_locked)
+-{
+-	unsigned long timeout =
+-		jiffies + msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
+-	unsigned long *pfns;
+-	struct xe_userptr *userptr;
+-	struct xe_vma *vma = &uvma->vma;
+-	u64 userptr_start = xe_vma_userptr(vma);
+-	u64 userptr_end = userptr_start + xe_vma_size(vma);
+-	struct xe_vm *vm = xe_vma_vm(vma);
+-	struct hmm_range hmm_range = {
+-		.pfn_flags_mask = 0, /* ignore pfns */
+-		.default_flags = HMM_PFN_REQ_FAULT,
+-		.start = userptr_start,
+-		.end = userptr_end,
+-		.notifier = &uvma->userptr.notifier,
+-		.dev_private_owner = vm->xe,
+-	};
+-	bool write = !xe_vma_read_only(vma);
+-	unsigned long notifier_seq;
+-	u64 npages;
+-	int ret;
+-
+-	userptr = &uvma->userptr;
+-
+-	if (is_mm_mmap_locked)
+-		mmap_assert_locked(userptr->notifier.mm);
+-
+-	if (vma->gpuva.flags & XE_VMA_DESTROYED)
+-		return 0;
+-
+-	notifier_seq = mmu_interval_read_begin(&userptr->notifier);
+-	if (notifier_seq == userptr->notifier_seq)
+-		return 0;
+-
+-	if (userptr->sg)
+-		xe_hmm_userptr_free_sg(uvma);
+-
+-	npages = xe_npages_in_range(userptr_start, userptr_end);
+-	pfns = kvmalloc_array(npages, sizeof(*pfns), GFP_KERNEL);
+-	if (unlikely(!pfns))
+-		return -ENOMEM;
+-
+-	if (write)
+-		hmm_range.default_flags |= HMM_PFN_REQ_WRITE;
+-
+-	if (!mmget_not_zero(userptr->notifier.mm)) {
+-		ret = -EFAULT;
+-		goto free_pfns;
+-	}
+-
+-	hmm_range.hmm_pfns = pfns;
+-
+-	while (true) {
+-		hmm_range.notifier_seq = mmu_interval_read_begin(&userptr->notifier);
+-
+-		if (!is_mm_mmap_locked)
+-			mmap_read_lock(userptr->notifier.mm);
+-
+-		ret = hmm_range_fault(&hmm_range);
+-
+-		if (!is_mm_mmap_locked)
+-			mmap_read_unlock(userptr->notifier.mm);
+-
+-		if (ret == -EBUSY) {
+-			if (time_after(jiffies, timeout))
+-				break;
+-
+-			continue;
+-		}
+-		break;
+-	}
+-
+-	mmput(userptr->notifier.mm);
+-
+-	if (ret)
+-		goto free_pfns;
+-
+-	ret = xe_alloc_sg(vm->xe, &userptr->sgt, &hmm_range, &vm->userptr.notifier_lock);
+-	if (ret)
+-		goto free_pfns;
+-
+-	ret = down_read_interruptible(&vm->userptr.notifier_lock);
+-	if (ret)
+-		goto free_st;
+-
+-	if (mmu_interval_read_retry(hmm_range.notifier, hmm_range.notifier_seq)) {
+-		ret = -EAGAIN;
+-		goto out_unlock;
+-	}
+-
+-	ret = xe_build_sg(vm->xe, &hmm_range, &userptr->sgt,
+-			  &vm->userptr.notifier_lock, write);
+-	if (ret)
+-		goto out_unlock;
+-
+-	xe_mark_range_accessed(&hmm_range, write);
+-	userptr->sg = &userptr->sgt;
+-	xe_hmm_userptr_set_mapped(uvma);
+-	userptr->notifier_seq = hmm_range.notifier_seq;
+-	up_read(&vm->userptr.notifier_lock);
+-	kvfree(pfns);
+-	return 0;
+-
+-out_unlock:
+-	up_read(&vm->userptr.notifier_lock);
+-free_st:
+-	sg_free_table(&userptr->sgt);
+-free_pfns:
+-	kvfree(pfns);
+-	return ret;
+-}
+diff --git a/drivers/gpu/drm/xe/xe_hmm.h b/drivers/gpu/drm/xe/xe_hmm.h
+deleted file mode 100644
+index 0ea98d8e7bbc..000000000000
+--- a/drivers/gpu/drm/xe/xe_hmm.h
++++ /dev/null
+@@ -1,18 +0,0 @@
+-/* SPDX-License-Identifier: MIT
+- *
+- * Copyright © 2024 Intel Corporation
+- */
+-
+-#ifndef _XE_HMM_H_
+-#define _XE_HMM_H_
+-
+-#include <linux/types.h>
+-
+-struct xe_userptr_vma;
+-
+-int xe_hmm_userptr_populate_range(struct xe_userptr_vma *uvma, bool is_mm_mmap_locked);
+-
+-void xe_hmm_userptr_free_sg(struct xe_userptr_vma *uvma);
+-
+-void xe_hmm_userptr_unmap(struct xe_userptr_vma *uvma);
+-#endif
 diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 82ae159feed1..9ac9291baeac 100644
+index 9ac9291baeac..b097c91e2e02 100644
 --- a/drivers/gpu/drm/xe/xe_pt.c
 +++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -701,7 +701,7 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
- 			return -EAGAIN;
- 		}
- 		if (xe_svm_range_has_dma_mapping(range)) {
--			xe_res_first_dma(range->base.dma_addr, 0,
-+			xe_res_first_dma(range->base.pages.dma_addr, 0,
- 					 range->base.itree.last + 1 - range->base.itree.start,
- 					 &curs);
- 			xe_svm_range_debug(range, "BIND PREPARE - MIXED");
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index c7424c824a14..be077766fd73 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -17,7 +17,7 @@
- static bool xe_svm_range_in_vram(struct xe_svm_range *range)
- {
- 	/* Not reliable without notifier lock */
--	return range->base.flags.has_devmem_pages;
-+	return range->base.pages.flags.has_devmem_pages;
+@@ -729,8 +729,8 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
+ 
+ 	if (!xe_vma_is_null(vma) && !range) {
+ 		if (xe_vma_is_userptr(vma))
+-			xe_res_first_sg(to_userptr_vma(vma)->userptr.sg, 0,
+-					xe_vma_size(vma), &curs);
++			xe_res_first_dma(to_userptr_vma(vma)->userptr.pages.dma_addr, 0,
++					 xe_vma_size(vma), &curs);
+ 		else if (xe_bo_is_vram(bo) || xe_bo_is_stolen(bo))
+ 			xe_res_first(bo->ttm.resource, xe_vma_bo_offset(vma),
+ 				     xe_vma_size(vma), &curs);
+@@ -1000,7 +1000,7 @@ static void xe_pt_commit_locks_assert(struct xe_vma *vma)
+ 	xe_pt_commit_prepare_locks_assert(vma);
+ 
+ 	if (xe_vma_is_userptr(vma))
+-		lockdep_assert_held_read(&vm->userptr.notifier_lock);
++		lockdep_assert_held_read(&vm->svm.gpusvm.notifier_lock);
  }
  
- static bool xe_svm_range_has_vram_binding(struct xe_svm_range *range)
-@@ -59,7 +59,7 @@ static unsigned long xe_svm_range_size(struct xe_svm_range *range)
- 	       (r__)->base.gpusvm,					\
- 	       xe_svm_range_in_vram((r__)) ? 1 : 0,			\
- 	       xe_svm_range_has_vram_binding((r__)) ? 1 : 0,		\
--	       (r__)->base.notifier_seq,				\
-+	       (r__)->base.pages.notifier_seq,				\
- 	       xe_svm_range_start((r__)), xe_svm_range_end((r__)),	\
- 	       xe_svm_range_size((r__)))
+ static void xe_pt_commit(struct xe_vma *vma,
+@@ -1338,7 +1338,7 @@ static int vma_check_userptr(struct xe_vm *vm, struct xe_vma *vma,
+ 	struct xe_userptr_vma *uvma;
+ 	unsigned long notifier_seq;
  
-@@ -135,7 +135,7 @@ xe_svm_range_notifier_event_begin(struct xe_vm *vm, struct drm_gpusvm_range *r,
- 	range_debug(range, "NOTIFIER");
+-	lockdep_assert_held_read(&vm->userptr.notifier_lock);
++	lockdep_assert_held_read(&vm->svm.gpusvm.notifier_lock);
  
- 	/* Skip if already unmapped or if no binding exist */
--	if (range->base.flags.unmapped || !range->tile_present)
-+	if (range->base.pages.flags.unmapped || !range->tile_present)
+ 	if (!xe_vma_is_userptr(vma))
  		return 0;
+@@ -1347,7 +1347,7 @@ static int vma_check_userptr(struct xe_vm *vm, struct xe_vma *vma,
+ 	if (xe_pt_userptr_inject_eagain(uvma))
+ 		xe_vma_userptr_force_invalidate(uvma);
  
- 	range_debug(range, "NOTIFIER - EXECUTE");
-@@ -783,7 +783,7 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 	range_debug(range, "PAGE FAULT");
+-	notifier_seq = uvma->userptr.notifier_seq;
++	notifier_seq = uvma->userptr.pages.notifier_seq;
  
- 	/* XXX: Add migration policy, for now migrate range once */
--	if (!range->skip_migrate && range->base.flags.migrate_devmem &&
-+	if (!range->skip_migrate && range->base.pages.flags.migrate_devmem &&
- 	    xe_svm_range_size(range) >= SZ_64K) {
- 		range->skip_migrate = true;
- 
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index 3d441eb1f7ea..8bc83de87250 100644
---- a/drivers/gpu/drm/xe/xe_svm.h
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -84,7 +84,7 @@ void xe_svm_range_debug(struct xe_svm_range *range, const char *operation);
- static inline bool xe_svm_range_has_dma_mapping(struct xe_svm_range *range)
+ 	if (!mmu_interval_read_retry(&uvma->userptr.notifier,
+ 				     notifier_seq))
+@@ -1368,7 +1368,7 @@ static int op_check_userptr(struct xe_vm *vm, struct xe_vma_op *op,
  {
- 	lockdep_assert_held(&range->base.gpusvm->notifier_lock);
--	return range->base.flags.has_dma_mapping;
-+	return range->base.pages.flags.has_dma_mapping;
+ 	int err = 0;
+ 
+-	lockdep_assert_held_read(&vm->userptr.notifier_lock);
++	lockdep_assert_held_read(&vm->svm.gpusvm.notifier_lock);
+ 
+ 	switch (op->base.op) {
+ 	case DRM_GPUVA_OP_MAP:
+@@ -1409,12 +1409,12 @@ static int xe_pt_userptr_pre_commit(struct xe_migrate_pt_update *pt_update)
+ 	if (err)
+ 		return err;
+ 
+-	down_read(&vm->userptr.notifier_lock);
++	down_read(&vm->svm.gpusvm.notifier_lock);
+ 
+ 	list_for_each_entry(op, &vops->list, link) {
+ 		err = op_check_userptr(vm, op, pt_update_ops);
+ 		if (err) {
+-			up_read(&vm->userptr.notifier_lock);
++			up_read(&vm->svm.gpusvm.notifier_lock);
+ 			break;
+ 		}
+ 	}
+@@ -2137,7 +2137,7 @@ static void bind_op_commit(struct xe_vm *vm, struct xe_tile *tile,
+ 	vma->tile_present |= BIT(tile->id);
+ 	vma->tile_staged &= ~BIT(tile->id);
+ 	if (xe_vma_is_userptr(vma)) {
+-		lockdep_assert_held_read(&vm->userptr.notifier_lock);
++		lockdep_assert_held_read(&vm->svm.gpusvm.notifier_lock);
+ 		to_userptr_vma(vma)->userptr.initial_bind = true;
+ 	}
+ 
+@@ -2173,7 +2173,7 @@ static void unbind_op_commit(struct xe_vm *vm, struct xe_tile *tile,
+ 	if (!vma->tile_present) {
+ 		list_del_init(&vma->combined_links.rebind);
+ 		if (xe_vma_is_userptr(vma)) {
+-			lockdep_assert_held_read(&vm->userptr.notifier_lock);
++			lockdep_assert_held_read(&vm->svm.gpusvm.notifier_lock);
+ 
+ 			spin_lock(&vm->userptr.invalidated_lock);
+ 			list_del_init(&to_userptr_vma(vma)->userptr.invalidate_link);
+@@ -2422,7 +2422,7 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
+ 	if (pt_update_ops->needs_svm_lock)
+ 		xe_svm_notifier_unlock(vm);
+ 	if (pt_update_ops->needs_userptr_lock)
+-		up_read(&vm->userptr.notifier_lock);
++		up_read(&vm->svm.gpusvm.notifier_lock);
+ 
+ 	return fence;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 864266e38aa7..bcc707b68afc 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -40,7 +40,6 @@
+ #include "xe_sync.h"
+ #include "xe_trace_bo.h"
+ #include "xe_wa.h"
+-#include "xe_hmm.h"
+ 
+ static struct drm_gem_object *xe_vm_obj(struct xe_vm *vm)
+ {
+@@ -53,7 +52,7 @@ static struct drm_gem_object *xe_vm_obj(struct xe_vm *vm)
+  *
+  * Check if the userptr vma has been invalidated since last successful
+  * repin. The check is advisory only and can the function can be called
+- * without the vm->userptr.notifier_lock held. There is no guarantee that the
++ * without the vm->svm.gpusvm.notifier_lock held. There is no guarantee that the
+  * vma userptr will remain valid after a lockless check, so typically
+  * the call needs to be followed by a proper check under the notifier_lock.
+  *
+@@ -62,7 +61,7 @@ static struct drm_gem_object *xe_vm_obj(struct xe_vm *vm)
+ int xe_vma_userptr_check_repin(struct xe_userptr_vma *uvma)
+ {
+ 	return mmu_interval_check_retry(&uvma->userptr.notifier,
+-					uvma->userptr.notifier_seq) ?
++					uvma->userptr.pages.notifier_seq) ?
+ 		-EAGAIN : 0;
  }
  
- #define xe_svm_assert_in_notifier(vm__) \
-@@ -112,7 +112,9 @@ struct xe_vram_region;
- struct xe_svm_range {
- 	struct {
- 		struct interval_tree_node itree;
--		const struct drm_pagemap_device_addr *dma_addr;
-+		struct {
-+			struct drm_pagemap_device_addr *dma_addr;
-+		} pages;
- 	} base;
- 	u32 tile_present;
- 	u32 tile_invalidated;
-diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
-index df120b4d1f83..1b7ed4f4a8e2 100644
---- a/include/drm/drm_gpusvm.h
-+++ b/include/drm/drm_gpusvm.h
-@@ -185,6 +185,35 @@ struct drm_gpusvm_notifier {
- 	} flags;
- };
+@@ -71,11 +70,22 @@ int xe_vma_userptr_pin_pages(struct xe_userptr_vma *uvma)
+ 	struct xe_vma *vma = &uvma->vma;
+ 	struct xe_vm *vm = xe_vma_vm(vma);
+ 	struct xe_device *xe = vm->xe;
++	struct drm_gpusvm_ctx ctx = {
++		.read_only = xe_vma_read_only(vma),
++	};
  
-+/**
-+ * struct drm_gpusvm_pages - Structure representing a GPU SVM mapped pages
-+ *
-+ * @dma_addr: Device address array
-+ * @dpagemap: The struct drm_pagemap of the device pages we're dma-mapping.
-+ *            Note this is assuming only one drm_pagemap per range is allowed.
-+ * @notifier_seq: Notifier sequence number of the range's pages
-+ * @flags: Flags for range
-+ * @flags.migrate_devmem: Flag indicating whether the range can be migrated to device memory
-+ * @flags.unmapped: Flag indicating if the range has been unmapped
-+ * @flags.partial_unmap: Flag indicating if the range has been partially unmapped
-+ * @flags.has_devmem_pages: Flag indicating if the range has devmem pages
-+ * @flags.has_dma_mapping: Flag indicating if the range has a DMA mapping
-+ */
-+struct drm_gpusvm_pages {
-+	struct drm_pagemap_device_addr *dma_addr;
-+	struct drm_pagemap *dpagemap;
-+	unsigned long notifier_seq;
-+	struct {
-+		/* All flags below must be set upon creation */
-+		u16 migrate_devmem : 1;
-+		/* All flags below must be set / cleared under notifier lock */
-+		u16 unmapped : 1;
-+		u16 partial_unmap : 1;
-+		u16 has_devmem_pages : 1;
-+		u16 has_dma_mapping : 1;
-+	} flags;
-+};
+ 	lockdep_assert_held(&vm->lock);
+ 	xe_assert(xe, xe_vma_is_userptr(vma));
+ 
+-	return xe_hmm_userptr_populate_range(uvma, false);
++	if (vma->gpuva.flags & XE_VMA_DESTROYED)
++		return 0;
 +
- /**
-  * struct drm_gpusvm_range - Structure representing a GPU SVM range
-  *
-@@ -193,16 +222,7 @@ struct drm_gpusvm_notifier {
-  * @refcount: Reference count for the range
-  * @itree: Interval tree node for the range (inserted in GPU SVM notifier)
-  * @entry: List entry to fast interval tree traversal
-- * @notifier_seq: Notifier sequence number of the range's pages
-- * @dma_addr: Device address array
-- * @dpagemap: The struct drm_pagemap of the device pages we're dma-mapping.
-- *            Note this is assuming only one drm_pagemap per range is allowed.
-- * @flags: Flags for range
-- * @flags.migrate_devmem: Flag indicating whether the range can be migrated to device memory
-- * @flags.unmapped: Flag indicating if the range has been unmapped
-- * @flags.partial_unmap: Flag indicating if the range has been partially unmapped
-- * @flags.has_devmem_pages: Flag indicating if the range has devmem pages
-- * @flags.has_dma_mapping: Flag indicating if the range has a DMA mapping
-+ * @pages: The pages for this range.
-  *
-  * This structure represents a GPU SVM range used for tracking memory ranges
-  * mapped in a DRM device.
-@@ -213,18 +233,7 @@ struct drm_gpusvm_range {
- 	struct kref refcount;
- 	struct interval_tree_node itree;
- 	struct list_head entry;
--	unsigned long notifier_seq;
--	struct drm_pagemap_device_addr *dma_addr;
--	struct drm_pagemap *dpagemap;
--	struct {
--		/* All flags below must be set upon creation */
--		u16 migrate_devmem : 1;
--		/* All flags below must be set / cleared under notifier lock */
--		u16 unmapped : 1;
--		u16 partial_unmap : 1;
--		u16 has_devmem_pages : 1;
--		u16 has_dma_mapping : 1;
--	} flags;
-+	struct drm_gpusvm_pages pages;
- };
++	return drm_gpusvm_get_pages(&vm->svm.gpusvm, &uvma->userptr.pages,
++				    uvma->userptr.notifier.mm,
++				    &uvma->userptr.notifier,
++				    xe_vma_userptr(vma),
++				    xe_vma_userptr(vma) + xe_vma_size(vma),
++				    &ctx);
+ }
  
- /**
+ static bool preempt_fences_waiting(struct xe_vm *vm)
+@@ -249,7 +259,7 @@ int xe_vm_add_compute_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q)
+ 	++vm->preempt.num_exec_queues;
+ 	q->lr.pfence = pfence;
+ 
+-	down_read(&vm->userptr.notifier_lock);
++	down_read(&vm->svm.gpusvm.notifier_lock);
+ 
+ 	drm_gpuvm_resv_add_fence(&vm->gpuvm, exec, pfence,
+ 				 DMA_RESV_USAGE_BOOKKEEP, DMA_RESV_USAGE_BOOKKEEP);
+@@ -263,7 +273,7 @@ int xe_vm_add_compute_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q)
+ 	if (wait)
+ 		dma_fence_enable_sw_signaling(pfence);
+ 
+-	up_read(&vm->userptr.notifier_lock);
++	up_read(&vm->svm.gpusvm.notifier_lock);
+ 
+ out_fini:
+ 	drm_exec_fini(exec);
+@@ -305,14 +315,14 @@ void xe_vm_remove_compute_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q)
+  * @vm: The VM.
+  *
+  * This function checks for whether the VM has userptrs that need repinning,
+- * and provides a release-type barrier on the userptr.notifier_lock after
++ * and provides a release-type barrier on the svm.gpusvm.notifier_lock after
+  * checking.
+  *
+  * Return: 0 if there are no userptrs needing repinning, -EAGAIN if there are.
+  */
+ int __xe_vm_userptr_needs_repin(struct xe_vm *vm)
+ {
+-	lockdep_assert_held_read(&vm->userptr.notifier_lock);
++	lockdep_assert_held_read(&vm->svm.gpusvm.notifier_lock);
+ 
+ 	return (list_empty(&vm->userptr.repin_list) &&
+ 		list_empty(&vm->userptr.invalidated)) ? 0 : -EAGAIN;
+@@ -546,9 +556,9 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ 	(!(__tries)++ || __xe_vm_userptr_needs_repin(__vm)) : \
+ 	__xe_vm_userptr_needs_repin(__vm))
+ 
+-	down_read(&vm->userptr.notifier_lock);
++	down_read(&vm->svm.gpusvm.notifier_lock);
+ 	if (retry_required(tries, vm)) {
+-		up_read(&vm->userptr.notifier_lock);
++		up_read(&vm->svm.gpusvm.notifier_lock);
+ 		err = -EAGAIN;
+ 		goto out_unlock;
+ 	}
+@@ -562,7 +572,7 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ 	/* Point of no return. */
+ 	arm_preempt_fences(vm, &preempt_fences);
+ 	resume_and_reinstall_preempt_fences(vm, &exec);
+-	up_read(&vm->userptr.notifier_lock);
++	up_read(&vm->svm.gpusvm.notifier_lock);
+ 
+ out_unlock:
+ 	drm_exec_fini(&exec);
+@@ -589,6 +599,9 @@ static void __vma_userptr_invalidate(struct xe_vm *vm, struct xe_userptr_vma *uv
+ 	struct xe_vma *vma = &uvma->vma;
+ 	struct dma_resv_iter cursor;
+ 	struct dma_fence *fence;
++	struct drm_gpusvm_ctx ctx = {
++		.in_notifier = true,
++	};
+ 	long err;
+ 
+ 	/*
+@@ -625,7 +638,8 @@ static void __vma_userptr_invalidate(struct xe_vm *vm, struct xe_userptr_vma *uv
+ 		XE_WARN_ON(err);
+ 	}
+ 
+-	xe_hmm_userptr_unmap(uvma);
++	drm_gpusvm_unmap_pages(&vm->svm.gpusvm, &uvma->userptr.pages,
++			       xe_vma_size(vma) >> PAGE_SHIFT, &ctx);
+ }
+ 
+ static bool vma_userptr_invalidate(struct mmu_interval_notifier *mni,
+@@ -646,11 +660,11 @@ static bool vma_userptr_invalidate(struct mmu_interval_notifier *mni,
+ 	       "NOTIFIER: addr=0x%016llx, range=0x%016llx",
+ 		xe_vma_start(vma), xe_vma_size(vma));
+ 
+-	down_write(&vm->userptr.notifier_lock);
++	down_write(&vm->svm.gpusvm.notifier_lock);
+ 	mmu_interval_set_seq(mni, cur_seq);
+ 
+ 	__vma_userptr_invalidate(vm, uvma);
+-	up_write(&vm->userptr.notifier_lock);
++	up_write(&vm->svm.gpusvm.notifier_lock);
+ 	trace_xe_vma_userptr_invalidate_complete(vma);
+ 
+ 	return true;
+@@ -674,7 +688,7 @@ void xe_vma_userptr_force_invalidate(struct xe_userptr_vma *uvma)
+ 	/* Protect against concurrent userptr pinning */
+ 	lockdep_assert_held(&vm->lock);
+ 	/* Protect against concurrent notifiers */
+-	lockdep_assert_held(&vm->userptr.notifier_lock);
++	lockdep_assert_held(&vm->svm.gpusvm.notifier_lock);
+ 	/*
+ 	 * Protect against concurrent instances of this function and
+ 	 * the critical exec sections
+@@ -747,7 +761,7 @@ int xe_vm_userptr_pin(struct xe_vm *vm)
+ 	}
+ 
+ 	if (err) {
+-		down_write(&vm->userptr.notifier_lock);
++		down_write(&vm->svm.gpusvm.notifier_lock);
+ 		spin_lock(&vm->userptr.invalidated_lock);
+ 		list_for_each_entry_safe(uvma, next, &vm->userptr.repin_list,
+ 					 userptr.repin_link) {
+@@ -756,7 +770,7 @@ int xe_vm_userptr_pin(struct xe_vm *vm)
+ 				       &vm->userptr.invalidated);
+ 		}
+ 		spin_unlock(&vm->userptr.invalidated_lock);
+-		up_write(&vm->userptr.notifier_lock);
++		up_write(&vm->svm.gpusvm.notifier_lock);
+ 	}
+ 	return err;
+ }
+@@ -1222,7 +1236,6 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 			INIT_LIST_HEAD(&userptr->invalidate_link);
+ 			INIT_LIST_HEAD(&userptr->repin_link);
+ 			vma->gpuva.gem.offset = bo_offset_or_userptr;
+-			mutex_init(&userptr->unmap_mutex);
+ 
+ 			err = mmu_interval_notifier_insert(&userptr->notifier,
+ 							   current->mm,
+@@ -1233,7 +1246,7 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 				return ERR_PTR(err);
+ 			}
+ 
+-			userptr->notifier_seq = LONG_MAX;
++			userptr->pages.notifier_seq = LONG_MAX;
+ 		}
+ 
+ 		xe_vm_get(vm);
+@@ -1255,8 +1268,8 @@ static void xe_vma_destroy_late(struct xe_vma *vma)
+ 		struct xe_userptr_vma *uvma = to_userptr_vma(vma);
+ 		struct xe_userptr *userptr = &uvma->userptr;
+ 
+-		if (userptr->sg)
+-			xe_hmm_userptr_free_sg(uvma);
++		drm_gpusvm_free_pages(&vm->svm.gpusvm, &uvma->userptr.pages,
++				      xe_vma_size(vma) >> PAGE_SHIFT);
+ 
+ 		/*
+ 		 * Since userptr pages are not pinned, we can't remove
+@@ -1264,7 +1277,6 @@ static void xe_vma_destroy_late(struct xe_vma *vma)
+ 		 * them anymore
+ 		 */
+ 		mmu_interval_notifier_remove(&userptr->notifier);
+-		mutex_destroy(&userptr->unmap_mutex);
+ 		xe_vm_put(vm);
+ 	} else if (xe_vma_is_null(vma) || xe_vma_is_cpu_addr_mirror(vma)) {
+ 		xe_vm_put(vm);
+@@ -1657,7 +1669,6 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 
+ 	INIT_LIST_HEAD(&vm->userptr.repin_list);
+ 	INIT_LIST_HEAD(&vm->userptr.invalidated);
+-	init_rwsem(&vm->userptr.notifier_lock);
+ 	spin_lock_init(&vm->userptr.invalidated_lock);
+ 
+ 	ttm_lru_bulk_move_init(&vm->lru_bulk_move);
+@@ -1759,9 +1770,13 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 
+ 	if (flags & XE_VM_FLAG_FAULT_MODE) {
+ 		err = xe_svm_init(vm);
+-		if (err)
+-			goto err_close;
++	} else {
++		err = drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM (simple)",
++				      &vm->xe->drm, NULL, NULL, 0, 0, 0, NULL,
++				      NULL, 0);
+ 	}
++	if (err)
++		goto err_close;
+ 
+ 	if (number_tiles > 1)
+ 		vm->composite_fence_ctx = dma_fence_context_alloc(1);
+@@ -1867,9 +1882,9 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 		vma = gpuva_to_vma(gpuva);
+ 
+ 		if (xe_vma_has_no_bo(vma)) {
+-			down_read(&vm->userptr.notifier_lock);
++			down_read(&vm->svm.gpusvm.notifier_lock);
+ 			vma->gpuva.flags |= XE_VMA_DESTROYED;
+-			up_read(&vm->userptr.notifier_lock);
++			up_read(&vm->svm.gpusvm.notifier_lock);
+ 		}
+ 
+ 		xe_vm_remove_vma(vm, vma);
+@@ -1915,6 +1930,8 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 
+ 	if (xe_vm_in_fault_mode(vm))
+ 		xe_svm_fini(vm);
++	else
++		drm_gpusvm_fini(&vm->svm.gpusvm);
+ 
+ 	up_write(&vm->lock);
+ 
+@@ -2144,9 +2161,9 @@ static const u32 region_to_mem_type[] = {
+ static void prep_vma_destroy(struct xe_vm *vm, struct xe_vma *vma,
+ 			     bool post_commit)
+ {
+-	down_read(&vm->userptr.notifier_lock);
++	down_read(&vm->svm.gpusvm.notifier_lock);
+ 	vma->gpuva.flags |= XE_VMA_DESTROYED;
+-	up_read(&vm->userptr.notifier_lock);
++	up_read(&vm->svm.gpusvm.notifier_lock);
+ 	if (post_commit)
+ 		xe_vm_remove_vma(vm, vma);
+ }
+@@ -2625,9 +2642,9 @@ static void xe_vma_op_unwind(struct xe_vm *vm, struct xe_vma_op *op,
+ 		struct xe_vma *vma = gpuva_to_vma(op->base.unmap.va);
+ 
+ 		if (vma) {
+-			down_read(&vm->userptr.notifier_lock);
++			down_read(&vm->svm.gpusvm.notifier_lock);
+ 			vma->gpuva.flags &= ~XE_VMA_DESTROYED;
+-			up_read(&vm->userptr.notifier_lock);
++			up_read(&vm->svm.gpusvm.notifier_lock);
+ 			if (post_commit)
+ 				xe_vm_insert_vma(vm, vma);
+ 		}
+@@ -2646,9 +2663,9 @@ static void xe_vma_op_unwind(struct xe_vm *vm, struct xe_vma_op *op,
+ 			xe_vma_destroy_unlocked(op->remap.next);
+ 		}
+ 		if (vma) {
+-			down_read(&vm->userptr.notifier_lock);
++			down_read(&vm->svm.gpusvm.notifier_lock);
+ 			vma->gpuva.flags &= ~XE_VMA_DESTROYED;
+-			up_read(&vm->userptr.notifier_lock);
++			up_read(&vm->svm.gpusvm.notifier_lock);
+ 			if (post_commit)
+ 				xe_vm_insert_vma(vm, vma);
+ 		}
+@@ -3629,7 +3646,7 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
+ 		if (xe_vma_is_userptr(vma)) {
+ 			WARN_ON_ONCE(!mmu_interval_check_retry
+ 				     (&to_userptr_vma(vma)->userptr.notifier,
+-				      to_userptr_vma(vma)->userptr.notifier_seq));
++				      to_userptr_vma(vma)->userptr.pages.notifier_seq));
+ 			WARN_ON_ONCE(!dma_resv_test_signaled(xe_vm_resv(xe_vma_vm(vma)),
+ 							     DMA_RESV_USAGE_BOOKKEEP));
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 84fa41b9fa20..6f019a612686 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -52,26 +52,21 @@ struct xe_userptr {
+ 	struct list_head invalidate_link;
+ 	/** @userptr: link into VM repin list if userptr. */
+ 	struct list_head repin_link;
++	/**
++	 * @pages: gpusvm pages for this user pointer.
++	 */
++	struct drm_gpusvm_pages pages;
+ 	/**
+ 	 * @notifier: MMU notifier for user pointer (invalidation call back)
+ 	 */
+ 	struct mmu_interval_notifier notifier;
+-	/** @sgt: storage for a scatter gather table */
+-	struct sg_table sgt;
+-	/** @sg: allocated scatter gather table */
+-	struct sg_table *sg;
+-	/** @notifier_seq: notifier sequence number */
+-	unsigned long notifier_seq;
+-	/** @unmap_mutex: Mutex protecting dma-unmapping */
+-	struct mutex unmap_mutex;
++
+ 	/**
+ 	 * @initial_bind: user pointer has been bound at least once.
+-	 * write: vm->userptr.notifier_lock in read mode and vm->resv held.
+-	 * read: vm->userptr.notifier_lock in write mode or vm->resv held.
++	 * write: vm->svm.gpusvm.notifier_lock in read mode and vm->resv held.
++	 * read: vm->svm.gpusvm.notifier_lock in write mode or vm->resv held.
+ 	 */
+ 	bool initial_bind;
+-	/** @mapped: Whether the @sgt sg-table is dma-mapped. Protected by @unmap_mutex. */
+-	bool mapped;
+ #if IS_ENABLED(CONFIG_DRM_XE_USERPTR_INVAL_INJECT)
+ 	u32 divisor;
+ #endif
+@@ -109,7 +104,7 @@ struct xe_vma {
+ 	/**
+ 	 * @tile_present: GT mask of binding are present for this VMA.
+ 	 * protected by vm->lock, vm->resv and for userptrs,
+-	 * vm->userptr.notifier_lock for writing. Needs either for reading,
++	 * vm->svm.gpusvm.notifier_lock for writing. Needs either for reading,
+ 	 * but if reading is done under the vm->lock only, it needs to be held
+ 	 * in write mode.
+ 	 */
+@@ -243,11 +238,6 @@ struct xe_vm {
+ 		 * and needs repinning. Protected by @lock.
+ 		 */
+ 		struct list_head repin_list;
+-		/**
+-		 * @notifier_lock: protects notifier in write mode and
+-		 * submission in read mode.
+-		 */
+-		struct rw_semaphore notifier_lock;
+ 		/**
+ 		 * @userptr.invalidated_lock: Protects the
+ 		 * @userptr.invalidated list.
 -- 
 2.48.1
 
