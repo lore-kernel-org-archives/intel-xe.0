@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED51BC28B20
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 21:48:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A7EAC28B20
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 21:53:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE05210E1E9;
-	Fri, 28 Mar 2025 21:48:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0D6E10E1E8;
+	Fri, 28 Mar 2025 21:53:29 +0000 (UTC)
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EC0B10E1E8;
- Fri, 28 Mar 2025 21:48:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41C6910E1E8;
+ Fri, 28 Mar 2025 21:53:28 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/xe=3A_Inval?=
- =?utf-8?q?idate_L3_read-only_cachelines_for_geometry_streams_too_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/xe=5Fvm=3A_Im?=
+ =?utf-8?q?plement_xe=5Fvm=5Fget=5Fproperty=5Fioctl_=28rev16=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Kenneth Graunke" <kenneth@whitecape.org>
+To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 28 Mar 2025 21:48:37 -0000
-Message-ID: <174319851705.17146.4569536691006545529@e6b6f09ec485>
+Date: Fri, 28 Mar 2025 21:53:28 -0000
+Message-ID: <174319880826.17146.10971594604135578868@e6b6f09ec485>
 X-Patchwork-Hint: ignore
-References: <20250320101212.7624-1-kenneth@whitecape.org>
-In-Reply-To: <20250320101212.7624-1-kenneth@whitecape.org>
+References: <20250328204045.157914-1-jonathan.cavitt@intel.com>
+In-Reply-To: <20250328204045.157914-1-jonathan.cavitt@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,13 +42,20 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe: Invalidate L3 read-only cachelines for geometry streams too (rev2)
-URL   : https://patchwork.freedesktop.org/series/146522/
-State : failure
+Series: drm/xe/xe_vm: Implement xe_vm_get_property_ioctl (rev16)
+URL   : https://patchwork.freedesktop.org/series/145529/
+State : success
 
 == Summary ==
 
-Address 'kenneth@whitecape.org' is not on the allowlist!
-Exception occurred during validation, bailing out!
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: b8a000ee8dbf drm-tip: 2025y-03m-28d-19h-59m-23s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/xe_hw_engine: Map xe and user engine class in header
+Applying: drm/xe/xe_gt_pagefault: Disallow writes to read-only VMAs
+Applying: drm/xe/xe_gt_pagefault: Move pagefault struct to header
+Applying: drm/xe/uapi: Define drm_xe_vm_get_property
+Applying: drm/xe/xe_vm: Add per VM fault info
+Applying: drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
 
 
