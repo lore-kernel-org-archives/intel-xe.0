@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC2F7C28B20
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 17:55:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AE62C36013
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 18:11:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B16D410E062;
-	Fri, 28 Mar 2025 17:55:05 +0000 (UTC)
-Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FCF010E11C;
- Fri, 28 Mar 2025 17:55:05 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id F344210EA89;
+	Fri, 28 Mar 2025 18:11:02 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dPLyUcDo";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C05F110EA86;
+ Fri, 28 Mar 2025 18:11:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1743185462; x=1774721462;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=ayzN+NeFrYSCzuDyMnZ2RH3Yji7YypMe41Ui0R8eT/k=;
+ b=dPLyUcDoa2NjXn/MRWXHKlBR9vz58roOEc0TdXuMdB1h0mPdeiOSMDTE
+ RYoctUdKogPGBUeXJvJRlVcmRgiuIw8zwFxs1YLAZPZUMwZPDdo7uzIDw
+ z4/CKSTTW+iOJDUB8hexzZXgTiDFMpSjio+xO9iC65q2PtTeF3B6yYr3e
+ bdpLpxGSdt4BEcJyi0vRw+w6o0lvrl+Thj6LOur0ZuepaoRo6noLME8Dl
+ LUC+MYYyxLRLTyUPDmY7YM4EG00IRAkzdRuH7ZDIWU2+HBq0iqeKdwZt/
+ UcCwk8aj/sRV+7C4V6GEdIy9vGx72nyytc9qpBjoaVn4KVgRXao53q8TR Q==;
+X-CSE-ConnectionGUID: ngVVwsQ1SL2T/xHU5ki00w==
+X-CSE-MsgGUID: 6twS4jrkSfOc41ETDDABsg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11387"; a="55926122"
+X-IronPort-AV: E=Sophos;i="6.14,284,1736841600"; d="scan'208";a="55926122"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2025 11:11:01 -0700
+X-CSE-ConnectionGUID: 7lDW8n5GQFWiuu7cZOvtMA==
+X-CSE-MsgGUID: jSerzffaSUaYuQT3zlT0aA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,284,1736841600"; d="scan'208";a="156435995"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO mwauld-desk.intel.com)
+ ([10.245.244.28])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2025 11:11:01 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v2 2/7] drm/gpusvm: use more selective dma dir in get_pages()
+Date: Fri, 28 Mar 2025 18:10:31 +0000
+Message-ID: <20250328181028.288312-11-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250328181028.288312-9-matthew.auld@intel.com>
+References: <20250328181028.288312-9-matthew.auld@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_AuxCCS_handling_and_rend?=
- =?utf-8?q?er_compression_modifiers_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 28 Mar 2025 17:55:05 -0000
-Message-ID: <174318450505.16576.5048716357013541209@e6b6f09ec485>
-X-Patchwork-Hint: ignore
-References: <20250328163537.58942-1-tvrtko.ursulin@igalia.com>
-In-Reply-To: <20250328163537.58942-1-tvrtko.ursulin@igalia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +67,63 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+If we are only reading the memory then from the device pov the direction
+can be DMA_TO_DEVICE. This aligns with the xe-userptr code. Using the
+most restrictive data direction to represent the access is normally a
+good idea.
 
-Series: AuxCCS handling and render compression modifiers (rev4)
-URL   : https://patchwork.freedesktop.org/series/144186/
-State : success
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/drm_gpusvm.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 7109b62b75330236cc892cd2a7b5826631286e35
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
+index 07dda042624c..e0c8d450752a 100644
+--- a/drivers/gpu/drm/drm_gpusvm.c
++++ b/drivers/gpu/drm/drm_gpusvm.c
+@@ -1363,6 +1363,8 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
+ 	int err = 0;
+ 	struct dev_pagemap *pagemap;
+ 	struct drm_pagemap *dpagemap;
++	enum dma_data_direction dma_dir = ctx->read_only ? DMA_TO_DEVICE :
++							   DMA_BIDIRECTIONAL;
+ 
+ retry:
+ 	hmm_range.notifier_seq = mmu_interval_read_begin(notifier);
+@@ -1467,7 +1469,7 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
+ 				dpagemap->ops->device_map(dpagemap,
+ 							  gpusvm->drm->dev,
+ 							  page, order,
+-							  DMA_BIDIRECTIONAL);
++							  dma_dir);
+ 			if (dma_mapping_error(gpusvm->drm->dev,
+ 					      range->dma_addr[j].addr)) {
+ 				err = -EFAULT;
+@@ -1486,7 +1488,7 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
+ 			addr = dma_map_page(gpusvm->drm->dev,
+ 					    page, 0,
+ 					    PAGE_SIZE << order,
+-					    DMA_BIDIRECTIONAL);
++					    dma_dir);
+ 			if (dma_mapping_error(gpusvm->drm->dev, addr)) {
+ 				err = -EFAULT;
+ 				goto err_unmap;
+@@ -1494,7 +1496,7 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
+ 
+ 			range->dma_addr[j] = drm_pagemap_device_addr_encode
+ 				(addr, DRM_INTERCONNECT_SYSTEM, order,
+-				 DMA_BIDIRECTIONAL);
++				 dma_dir);
+ 		}
+ 		i += 1 << order;
+ 		num_dma_mapped = i;
+-- 
+2.48.1
 
