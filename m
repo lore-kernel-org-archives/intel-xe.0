@@ -4,46 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2FC1C36016
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 16:35:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41006C36017
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 16:35:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94B8210EA74;
-	Fri, 28 Mar 2025 16:35:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 015A110EA79;
+	Fri, 28 Mar 2025 16:35:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="AdEbx7Sz";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="SLVqDBo6";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AEA9B10EA50
- for <intel-xe@lists.freedesktop.org>; Fri, 28 Mar 2025 16:35:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4612310EA50
+ for <intel-xe@lists.freedesktop.org>; Fri, 28 Mar 2025 16:35:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=qoco1eNjQcOnk4jaE8K2jdw4Zyi+EvxG+x5FGoW+R3A=; b=AdEbx7SzmbAb7/j345fPyXzmN4
- Vv4Q7ldvLB/x58b5aW+b/VdX3BVDPbL6Avdm8y0tWFD66I/RP+T5UKi7RH6ivgB520sdYW/nSasds
- REuidERC/hRWtbl7h98gisA/7Z1KiFAG3kCqQM8sF9Ys7nhzIzPiOjkbedrnZDvQL3rrrIK70jTuM
- W9PZPin2/SFSDcXTZumN6rYU26/S0px8lYsG9THBEgM6Ki4S+WQBhcTbzLi0s6uf5RTqoSjR/C94H
- zQxIx6KJIoEJ1k7NW4zY9D9ba0RI+Z/t0YGjRe0RDeKFl7AsKbwoG3eQ4qjku0AyLhjuSJcnzTdua
- N8w+nOag==;
+ bh=84hAp15U2L2m5U1FxfzK9ldfV4WZIjA1o+1nImYzToQ=; b=SLVqDBo6AN/IseN6KNDlWo3AQX
+ 4lnVNKjRHRjGoCQpFg6btztmtW/L9P42ow6MXbbwXEGDrNAU/yLr29+nLkxTRwd1EqwAWWoW07Qth
+ a4nuEiiJPSsqjCtefENyE8Z/tQ+JtAgIkCvQ4s2W6KGe4TTrhxVVgDDmfjOP15VyH8l0THgAXLOV7
+ S19U5zb8x6xozZYxh5J10hrs/iBJ8LplEodXBlpXXhj9PBNjxx3h8EAIie7Jd9TEEx07MlElDjT93
+ N9MlOOzqZ4/QG8dTrZ65F7G+qjZLn11os7WFOXpzU4LCfSnxnbUn7DERxuJxTD9Koj6FF0h7S8gW6
+ qzkJNnTw==;
 Received: from [90.241.98.187] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tyCgK-0081xs-0t; Fri, 28 Mar 2025 17:35:44 +0100
+ id 1tyCgI-0081xi-IQ; Fri, 28 Mar 2025 17:35:42 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Subject: [PATCH v4 5/9] drm/xe: Flush GGTT writes after populating DPT
-Date: Fri, 28 Mar 2025 16:35:32 +0000
-Message-ID: <20250328163537.58942-6-tvrtko.ursulin@igalia.com>
+ Maarten Lankhort <maarten.lankhorst@linux.intel.com>
+Subject: [PATCH v4 3/9] drm/xe: Use fb cached min alignment
+Date: Fri, 28 Mar 2025 16:35:30 +0000
+Message-ID: <20250328163537.58942-4-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250328163537.58942-1-tvrtko.ursulin@igalia.com>
 References: <20250328163537.58942-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,94 +58,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When DPT is placed in stolen it is populated using ioremap_wc() via GGTT.
+Instead of just looking at the first plane use the fb cached overall
+minimum alignment.
 
-I915 has established that on modern platforms a small flush and delay is
-required for those writes to reliably land so lets add the same logic
-(simplified by removing impossible platforms) to xe as well.
-
-v2:
- * Do it only for system memory buffers.
+This aligns with how the i915 version of intel_plane_pin_fb works.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Maarten Lankhort <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 45 ++++++++++++++++++++++++++
- 1 file changed, 45 insertions(+)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 11 ++++-------
+ 1 file changed, 4 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 1ccb4e563bba..bf47ba38e1e5 100644
+index d918ae1c8061..1538e2b02f89 100644
 --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
 +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -11,9 +11,11 @@
- #include "intel_fb.h"
- #include "intel_fb_pin.h"
- #include "intel_fbdev.h"
-+#include "regs/xe_engine_regs.h"
- #include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_ggtt.h"
-+#include "xe_mmio.h"
- #include "xe_pm.h"
+@@ -417,12 +417,9 @@ int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
+ 		       const struct intel_plane_state *old_plane_state)
+ {
+ 	struct drm_framebuffer *fb = new_plane_state->hw.fb;
+-	struct drm_gem_object *obj = intel_fb_bo(fb);
+-	struct xe_bo *bo = gem_to_xe_bo(obj);
+-	struct i915_vma *vma;
+ 	struct intel_framebuffer *intel_fb = to_intel_framebuffer(fb);
+-	struct intel_plane *plane = to_intel_plane(new_plane_state->uapi.plane);
+-	unsigned int alignment = plane->min_alignment(plane, fb, 0);
++	struct xe_bo *bo = gem_to_xe_bo(intel_fb_bo(fb));
++	struct i915_vma *vma;
  
- static void
-@@ -79,6 +81,46 @@ write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
- 	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
- }
+ 	if (reuse_vma(new_plane_state, old_plane_state))
+ 		return 0;
+@@ -430,8 +427,8 @@ int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
+ 	/* We reject creating !SCANOUT fb's, so this is weird.. */
+ 	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_FLAG_SCANOUT));
  
-+static void gt_flush_ggtt_writes(struct xe_gt *gt)
-+{
-+	if (!gt)
-+		return;
-+
-+	xe_mmio_read32(&gt->mmio, RING_TAIL(RENDER_RING_BASE));
-+}
-+
-+static void ggtt_flush_writes(struct xe_ggtt *ggtt)
-+{
-+	struct xe_device *xe = tile_to_xe(ggtt->tile);
-+
-+	/*
-+	 * No actual flushing is required for the GTT write domain for reads
-+	 * from the GTT domain. Writes to it "immediately" go to main memory
-+	 * as far as we know, so there's no chipset flush. It also doesn't
-+	 * land in the GPU render cache.
-+	 *
-+	 * However, we do have to enforce the order so that all writes through
-+	 * the GTT land before any writes to the device, such as updates to
-+	 * the GATT itself.
-+	 *
-+	 * We also have to wait a bit for the writes to land from the GTT.
-+	 * An uncached read (i.e. mmio) seems to be ideal for the round-trip
-+	 * timing. This issue has only been observed when switching quickly
-+	 * between GTT writes and CPU reads from inside the kernel on recent hw,
-+	 * and it appears to only affect discrete GTT blocks (i.e. on LLC
-+	 * system agents we cannot reproduce this behaviour, until Cannonlake
-+	 * that was!).
-+	 */
-+
-+	wmb();
-+
-+	if (xe_pm_runtime_get_if_active(xe)) {
-+		gt_flush_ggtt_writes(ggtt->tile->primary_gt);
-+		gt_flush_ggtt_writes(ggtt->tile->media_gt);
-+		xe_pm_runtime_put(xe);
-+	}
-+}
-+
- static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 			       const struct i915_gtt_view *view,
- 			       struct i915_vma *vma,
-@@ -162,6 +204,9 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 					  rot_info->plane[i].dst_stride);
- 	}
+-	vma = __xe_pin_fb_vma(intel_fb, &new_plane_state->view.gtt, alignment);
+-
++	vma = __xe_pin_fb_vma(intel_fb, &new_plane_state->view.gtt,
++			      intel_fb->min_alignment);
+ 	if (IS_ERR(vma))
+ 		return PTR_ERR(vma);
  
-+	if (dpt->vmap.is_iomem && !xe_bo_is_vram(bo))
-+		ggtt_flush_writes(tile0->mem.ggtt);
-+
- 	vma->dpt = dpt;
- 	vma->node = dpt->ggtt_node[tile0->id];
- 	return 0;
 -- 
 2.48.0
 
