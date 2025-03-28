@@ -4,59 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2BC9C3601A
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 16:12:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97C14C36011
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 16:20:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D93D510EA74;
-	Fri, 28 Mar 2025 16:12:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57E4C10EA50;
+	Fri, 28 Mar 2025 16:20:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OBHi3MZ0";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="qhBoJPA8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2740010EA62;
- Fri, 28 Mar 2025 16:12:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743178327; x=1774714327;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=7Q8mYrS8buhckSKArA0hNNf+PJ1wnGtspVGx3a7jivU=;
- b=OBHi3MZ09R9IbiBk2eZdcpxxRAQdS+/jOKpf/pbz8jbDuEo0Z37/dKRt
- R3YOK+BXSd/5mUlWF7ARumz8vOOur+z3eQiBjx4pPA7zoeuG3l5qzvxEn
- Ir5fAQFgfKMCEQPOVD4+7IDV2lon1YBwn2S5iIRdvcQ5bjhvCJ76Jt7Rn
- TSSei7e5hQ8AUkyKzAmSJGxNsPkefMBhOwEWX48UK2gzWs/jndvE50Ey3
- iYKy4uKOmrac/rajWUiCE4E6TcvXRPai/Ko15+kTDGvMNLnt+oA/Q4TbQ
- RCPwbf7/cbVBZrYVsHCpILuKTXsT/A7Qlh9JK/APBcBmARugm/xObiXyY A==;
-X-CSE-ConnectionGUID: tS4GlQzBSkis8pKm/CNtAw==
-X-CSE-MsgGUID: kzpirkPyQkW8IdhrdSRXJQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11387"; a="55207127"
-X-IronPort-AV: E=Sophos;i="6.14,283,1736841600"; d="scan'208";a="55207127"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2025 09:11:09 -0700
-X-CSE-ConnectionGUID: PU6ou7w2RbWf+2rrL5AP3g==
-X-CSE-MsgGUID: 7w34+dg/QumFbV4NxpRtyw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,283,1736841600"; d="scan'208";a="129624868"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmviesa003.fm.intel.com with ESMTP; 28 Mar 2025 09:11:07 -0700
-From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Fri, 28 Mar 2025 21:26:24 +0530
-Subject: [PATCH v11 5/5] drm/i915/display: Indexed 8bit format does not
- support async flip
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7A2F10EA50
+ for <intel-xe@lists.freedesktop.org>; Fri, 28 Mar 2025 16:20:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:References:
+ Cc:To:From:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=68QqegQpCnEJxQ3+MF4qV5dvYeWtMUVkkp4QBxNBAVY=; b=qhBoJPA8UBfrNvuTkGlRgUydfE
+ ulr6ura1wyFFLR0dIDl6cPmjGTXnu+WeK9C/WPa0OK6MVGJdwBsdwJGNcTUH6YKyBYq8Ou5de6dwX
+ glZcrYi3WewhVP8+IWtZsMgm5EAphQm0qLyc0POfAkfSD3dnGUL4VT7uTBtk7NDtZq73w3oA8lod6
+ 5R/s6YItn2t1+32FvuhWkVx1BNb09j7v/q8E2Kpvr8J0C9tA2mSD2i6q9EFnuiIVv6zzjE9tndXxd
+ KNGtox97zHQv30bfhC12Zi0JOIRI2x+wcDf18S0fzBWYQA+EF6uSO3bCxw+8fSDpZjzbf090YLkT/
+ 6ZtBNGaA==;
+Received: from [90.241.98.187] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1tyCR0-0081LA-A9; Fri, 28 Mar 2025 17:19:54 +0100
+Message-ID: <99c8ccad-30b1-4301-95f1-cb55ff7d3a1a@igalia.com>
+Date: Fri, 28 Mar 2025 16:19:53 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/8] AuxCCS handling and render compression modifiers
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: =?UTF-8?Q?Juha-Pekka_Heikkil=C3=A4?= <juhapekka.heikkila@gmail.com>
+Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com,
+ =?UTF-8?Q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>,
+ "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+References: <20250318162224.78846-1-tvrtko.ursulin@igalia.com>
+ <CAJ=qYWR-OqU+RKSFic6OH-eRSzKLGDwR2GJxRjQSYv_ED=c9eA@mail.gmail.com>
+ <6be0c617-49b7-44d5-9b75-e0a21703ac9c@igalia.com>
+ <CAJ=qYWQmh_4TMONXA2pfC0RfDtcOu3r3P250dkn2Dey5wVBS2Q@mail.gmail.com>
+ <CAJ=qYWRUzgyP2+Smj6p_RKfKkGzdnhs11YQG8Hs2+0Q8JNfNVg@mail.gmail.com>
+ <490c1c4f-a1e6-4075-b30a-2d3a2a0b3df7@igalia.com>
+Content-Language: en-GB
+In-Reply-To: <490c1c4f-a1e6-4075-b30a-2d3a2a0b3df7@igalia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250328-asyn-v11-5-a50d13bfea0d@intel.com>
-References: <20250328-asyn-v11-0-a50d13bfea0d@intel.com>
-In-Reply-To: <20250328-asyn-v11-0-a50d13bfea0d@intel.com>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- chaitanya.kumar.borah@intel.com, ville.syrjala@intel.com, 
- Arun R Murthy <arun.r.murthy@intel.com>, 
- =?utf-8?q?Ville_Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,30 +67,272 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Async flip is not supported with Indexed 8 bit format as it depends on
-LUT and can't be updated atomically.
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_atomic_plane.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+On 27/03/2025 13:25, Tvrtko Ursulin wrote:
+> 
+> Hi,
+> 
+> On 25/03/2025 17:39, Juha-Pekka Heikkilä wrote:
+>> First patch that freezes mtl for me is
+>>
+>> Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>> Date:   Tue Mar 18 16:22:16 2025 +0000
+>>
+>>      drm/xe: Add ring buffer handling for AuxCCS
+>>
+>>      Align the ring buffer handling of required AuxCCS flushes and
+>>      invalidations with the reference implementation from i915.
+>>
+>>      Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>>
+>>
+>> If it's of any use, last messages I saw on dmesg are
+>>
+>> [  +0,004882] xe 0000:00:02.0: [drm:xe_guc_capture_steered_list_init
+>> [xe]] GT0: capture found 48 ext-regs.
+>> [  +0,021150] xe 0000:00:02.0: [drm:xe_guc_ads_populate [xe]] GT0: ADS
+>> capture alloc size changed from 45056 to 20480
+>> [  +0,000765] xe 0000:00:02.0: [drm:__xe_guc_upload [xe]] GT0: load
+>> still in progress, timeouts = 0, freq = 2250MHz (req 2250MHz), status
+>> = 0x00000072 [0x39/00]
+>> [  +0,005246] xe 0000:00:02.0: [drm:__xe_guc_upload [xe]] GT0: load
+>> still in progress, timeouts = 0, freq = 2250MHz (req 2250MHz), status
+>> = 0x80000534 [0x1A/05]
+>> [  +0,001414] xe 0000:00:02.0: [drm:__xe_guc_upload [xe]] GT0: init
+>> took 6ms, freq = 2250MHz (req = 2250MHz), before = 2250MHz, status =
+>> 0x8002F034, timeouts = 0
+>> [  +0,000282] xe 0000:00:02.0: [drm:xe_guc_ct_enable [xe]] GT0: GuC CT
+>> communication channel enabled
+>> [  +0,000973] xe 0000:00:02.0: [drm:xe_gt_record_default_lrcs [xe]]
+>> GT0: LRC WA rcs0 save-restore batch
+>> [  +0,000075] xe 0000:00:02.0: [drm:xe_gt_record_default_lrcs [xe]]
+>> GT0: REG[0x7004] = 0x08000800
+>> [  +0,000070] xe 0000:00:02.0: [drm:xe_gt_record_default_lrcs [xe]]
+>> GT0: REG[0x7044] = 0x00200020
+> 
+> It could be the very first job submission.
+> 
+> I had another round of cross checking things and found two more 
+> differences against what i915 does on Meteorlake.
+> 
+> First one is that Wa 14016712196 is applied before pipe control 
+> invalidate and flush. Xe only has it before flush.
+> 
+> Other is PIPE_CONTROL_CCS_FLUSH is set on flushes.
+> 
+> I cannot test it but if you could, the patch below at least compiles.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index 3b9d3e1620cd882b8a7f9b4c96640e42367248bb..1bcfa5f4fd63442b632655ccaf325a87be78fe21 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -177,7 +177,8 @@ bool intel_plane_needs_physical(struct intel_plane *plane)
- bool intel_plane_can_async_flip(struct intel_plane *plane, u32 format,
- 				u64 modifier)
- {
--	if (intel_format_info_is_yuv_semiplanar(drm_format_info(format), modifier))
-+	if (intel_format_info_is_yuv_semiplanar(drm_format_info(format), modifier) ||
-+	    format == DRM_FORMAT_C8)
- 		return false;
- 
- 	return plane->can_async_flip && plane->can_async_flip(modifier);
+Hm I think I simply miscalculated MAX_JOB_SIZE_DW. I bumped it by 10, 
+but should have by 16 for MTL. I add two pipe controls (one implicit for 
+Wa_14016712196) and semaphore wait in the invalidation phase.
 
--- 
-2.25.1
+So "#define MAX_JOB_SIZE_DW 64" - if you would have time to test with 
+that it would be very helpful.
+
+Regards,
+
+Tvrtko
+
+> diff --git a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h b/ 
+> drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
+> index 93e4687feb71..38d723e47a04 100644
+> --- a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
+> +++ b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
+> @@ -42,6 +42,7 @@
+>   #define GFX_OP_PIPE_CONTROL(len)    ((0x3<<29)|(0x3<<27)|(0x2<<24)| 
+> ((len)-2))
+> 
+>   #define      PIPE_CONTROL0_HDC_PIPELINE_FLUSH        BIT(9)    /* 
+> gen12 */
+> +#define   PIPE_CONTROL0_CCS_FLUSH                       BIT(13) /* MTL+ */
+> 
+>   #define   PIPE_CONTROL_COMMAND_CACHE_INVALIDATE        (1<<29)
+>   #define   PIPE_CONTROL_TILE_CACHE_FLUSH            (1<<28)
+> diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/ 
+> xe_ring_ops.c
+> index a380964f3166..02b09826f831 100644
+> --- a/drivers/gpu/drm/xe/xe_ring_ops.c
+> +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+> @@ -141,8 +141,9 @@ emit_pipe_control(u32 *dw, int i, u32 bit_group_0, 
+> u32 bit_group_1, u32 offset,
+>       return i;
+>   }
+> 
+> -static int emit_pipe_invalidate(u32 mask_flags, bool invalidate_tlb, 
+> u32 *dw,
+> -                int i)
+> +static int
+> +emit_pipe_invalidate(struct xe_gt *gt, u32 mask_flags, bool 
+> invalidate_tlb,
+> +             u32 *dw, int i)
+>   {
+>       u32 flags = PIPE_CONTROL_CS_STALL |
+>           PIPE_CONTROL_COMMAND_CACHE_INVALIDATE |
+> @@ -159,6 +160,10 @@ static int emit_pipe_invalidate(u32 mask_flags, 
+> bool invalidate_tlb, u32 *dw,
+> 
+>       flags &= ~mask_flags;
+> 
+> +    if (XE_WA(gt, 14016712196))
+> +        i = emit_pipe_control(dw, i, 0, PIPE_CONTROL_DEPTH_CACHE_FLUSH,
+> +                      LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR, 0);
+> +
+>       return emit_pipe_control(dw, i, 0, flags, 
+> LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR, 0);
+>   }
+> 
+> @@ -180,12 +185,16 @@ static int emit_render_cache_flush(struct 
+> xe_sched_job *job, bool flush_l3,
+>       struct xe_gt *gt = job->q->gt;
+>       struct xe_device *xe = gt_to_xe(gt);
+>       bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
+> +    u32 bit_group_0 = PIPE_CONTROL0_HDC_PIPELINE_FLUSH;
+>       u32 flags;
+> 
+>       if (XE_WA(gt, 14016712196))
+>           i = emit_pipe_control(dw, i, 0, PIPE_CONTROL_DEPTH_CACHE_FLUSH,
+>                         LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR, 0);
+> 
+> +    if (GRAPHICS_VERx100(xe) >= 1270)
+> +        bit_group_0 |= PIPE_CONTROL0_CCS_FLUSH;
+> +
+>       flags = (PIPE_CONTROL_CS_STALL |
+>            PIPE_CONTROL_TILE_CACHE_FLUSH |
+>            PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
+> @@ -211,7 +220,7 @@ static int emit_render_cache_flush(struct 
+> xe_sched_job *job, bool flush_l3,
+>       else if (job->q->class == XE_ENGINE_CLASS_COMPUTE)
+>           flags &= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
+> 
+> -    return emit_pipe_control(dw, i, PIPE_CONTROL0_HDC_PIPELINE_FLUSH, 
+> flags, 0, 0);
+> +    return emit_pipe_control(dw, i, bit_group_0, flags, 0, 0);
+>   }
+> 
+>   static int emit_pipe_control_to_ring_end(struct xe_hw_engine *hwe, u32 
+> *dw, int i)
+> @@ -363,7 +372,7 @@ static void __emit_job_gen12_render_compute(struct 
+> xe_sched_job *job,
+>           mask_flags = PIPE_CONTROL_3D_ENGINE_FLAGS;
+> 
+>       /* See __xe_pt_bind_vma() for a discussion on TLB invalidations. */
+> -    i = emit_pipe_invalidate(mask_flags, invalidate_tlb, dw, i);
+> +    i = emit_pipe_invalidate(gt, mask_flags, invalidate_tlb, dw, i);
+> 
+>       /* hsdes: 1809175790 */
+>       if (aux_ccs)
+> 
+> 
+>>
+>> /Juha-Pekka
+>>
+>> On Thu, Mar 20, 2025 at 7:11 PM Juha-Pekka Heikkilä
+>> <juhapekka.heikkila@gmail.com> wrote:
+>>>
+>>> I'll try to find some moment to do bisecting, probably will be next 
+>>> week when I get to do this.
+>>>
+>>> /Juha-Pekka
+>>>
+>>> to 20. maalisk. 2025 klo 10.25 Tvrtko Ursulin 
+>>> <tvrtko.ursulin@igalia.com> kirjoitti:
+>>>>
+>>>>
+>>>> Hi,
+>>>>
+>>>> On 19/03/2025 13:41, Juha-Pekka Heikkilä wrote:
+>>>>> Hi Tvrtko,
+>>>>>
+>>>>> I did quick run with these patches. With these changes on top of
+>>>>> today's drm-tip I got a complete system freeze on mtl and its variants
+>>>>> when do modprobe. I had kgdb enabled but I wasn't even thrown there,
+>>>>> the machine went completely unresponsive. On 3/3 tries modprobe xe
+>>>>> always completely froze the box.
+>>>>
+>>>> I don't have MTL to try and neither apparently does CI, which otherwise
+>>>> seems happy, as is my ADL-P laptop.
+>>>>
+>>>> Would you have time to bisect? Or maybe netconsole to see what 
+>>>> explodes?
+>>>>
+>>>> Not much comes to mind looking at the patches.. Maybe something runs to
+>>>> early before something else is initialised. Guessing only.
+>>>>
+>>>> Regards,
+>>>>
+>>>> Tvrtko
+>>>>
+>>>>> On Tue, Mar 18, 2025 at 6:22 PM Tvrtko Ursulin
+>>>>> <tvrtko.ursulin@igalia.com> wrote:
+>>>>>>
+>>>>>> A series to fix and add xe support for AuxCSS framebuffers via DPT.
+>>>>>>
+>>>>>> Currently the auxiliary buffer data isn't mapped into the page 
+>>>>>> tables at all so
+>>>>>> cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if 
+>>>>>> built for Xe")
+>>>>>> had to disable the support.
+>>>>>>
+>>>>>> On top of that there are missing flushes and invalidations both 
+>>>>>> from the ring
+>>>>>> buffer side and from the CPU side.
+>>>>>>
+>>>>>> Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
+>>>>>>
+>>>>>>     [PLANE:32:plane 1A]: type=PRI
+>>>>>>             uapi: [FB:242] AR30 little-endian 
+>>>>>> (0x30335241),0x100000000000008,2880x1800, visible=visible, 
+>>>>>> src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, 
+>>>>>> rotation=0 (0x00000001)
+>>>>>>             hw: [FB:242] AR30 little-endian 
+>>>>>> (0x30335241),0x100000000000008,2880x1800, visible=yes, 
+>>>>>> src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, 
+>>>>>> rotation=0 (0x00000001)
+>>>>>>
+>>>>>> Display seems working fine - no artefacts, no DMAR/PIPE faults. CI 
+>>>>>> also appears
+>>>>>> to be happy with v2.
+>>>>>>
+>>>>>> v2:
+>>>>>>    * More patches added to fix kms_flip_tiling.
+>>>>>>
+>>>>>> v3:
+>>>>>>    * Rebased after some cleanup patches from v2 were merged.
+>>>>>>    * Added people to Cc as suggested by Rodrigo.
+>>>>>>    * Adjusted last patch title. (Rodrigo)
+>>>>>>    * Apply GGTT flushing only to iomapped system memory buffers.
+>>>>>>
+>>>>>> Cc: José Roberto de Souza <jose.souza@intel.com>
+>>>>>> Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+>>>>>> Cc: Michael J. Ruhl <michael.j.ruhl@intel.com>
+>>>>>> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>>>>>>
+>>>>>> Tvrtko Ursulin (8):
+>>>>>>     drm/xe: Add ring buffer handling for AuxCCS
+>>>>>>     drm/xe: Use fb cached min alignment
+>>>>>>     drm/xe: Reduce DPT table alignment as in i915
+>>>>>>     drm/xe: Flush GGTT writes after populating DPT
+>>>>>>     drm/xe: Handle DPT in system memory
+>>>>>>     drm/xe: Force flush system memory AuxCCS framebuffers before 
+>>>>>> scan out
+>>>>>>     drm/xe/display: Add support for AuxCCS
+>>>>>>     drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
+>>>>>>
+>>>>>>    .../drm/i915/display/skl_universal_plane.c    |   6 -
+>>>>>>    drivers/gpu/drm/xe/display/xe_fb_pin.c        | 181 +++++++++++ 
+>>>>>> +++----
+>>>>>>    .../gpu/drm/xe/instructions/xe_gpu_commands.h |   1 +
+>>>>>>    .../gpu/drm/xe/instructions/xe_mi_commands.h  |   6 +
+>>>>>>    drivers/gpu/drm/xe/regs/xe_gt_regs.h          |   1 +
+>>>>>>    drivers/gpu/drm/xe/xe_bo_types.h              |  14 +-
+>>>>>>    drivers/gpu/drm/xe/xe_ring_ops.c              | 173 ++++++++ 
+>>>>>> +--------
+>>>>>>    drivers/gpu/drm/xe/xe_ring_ops_types.h        |   2 +-
+>>>>>>    8 files changed, 261 insertions(+), 123 deletions(-)
+>>>>>>
+>>>>>> -- 
+>>>>>> 2.48.0
+>>>>>>
+>>>>
+> 
 
