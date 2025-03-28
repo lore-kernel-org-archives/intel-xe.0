@@ -4,60 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09029C28B20
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 06:36:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E76C4C36010
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 07:47:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A468210E988;
-	Fri, 28 Mar 2025 06:36:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EB5B10E98C;
+	Fri, 28 Mar 2025 07:47:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aUPWOvs1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cMR3LN3x";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A05E610E988
- for <intel-xe@lists.freedesktop.org>; Fri, 28 Mar 2025 06:36:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F12F210E98C;
+ Fri, 28 Mar 2025 07:47:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743143779; x=1774679779;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=tHaAJQqIAu52yQTzaBQ84GLr9DTgoTBdsymK4N1Tab8=;
- b=aUPWOvs1awKSPT+GA4qOG3UyP/3Z5F6VLXUJhKQGcRS3j/LhtmAHfHkV
- eOp7FOHNG+npga4SFMwlS0N+saU3nWjHxnl3hyB1dzwEYXUteMoaFtqcB
- C6o8FQL/y8V36eplZr3CzLr7zHGPZTAbxVhXtNYiSCOwSEWIRSbdYmGRH
- ws61UvQvl8oYWUxMH8UxVqZ/BIho5tCSFuW5h/e0haknrmeDm+4eiwChM
- Sj/W9rsihkfDcS7zlyf3fUPeDhjezN/vi6fVuo+BRwxQlhBFWOexjNCar
- m9ezeTUr0CwIvRRnuXwRfRzHCdoyDAy+UBypJ3sdB2COI4dNKaWA8wUcg A==;
-X-CSE-ConnectionGUID: yKmBXkIPRDmR95RE6VtfGg==
-X-CSE-MsgGUID: G6adIvHwSQ+iLQ1kRCJcpg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="55145717"
-X-IronPort-AV: E=Sophos;i="6.14,282,1736841600"; d="scan'208";a="55145717"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2025 23:36:16 -0700
-X-CSE-ConnectionGUID: C07eI14vT66HnDdTFHLvjg==
-X-CSE-MsgGUID: CrMOROKeQcC9Kq7Zx8g2Gg==
+ t=1743148068; x=1774684068;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=8EBbgjG1TKwHAm5Gp4cvu+0eElc93kG/iAgXTaK4vPg=;
+ b=cMR3LN3xnCz+M1t+S6n7yKLp90VSh/WQdebeMTGhmRPA72XvHCa3D0N+
+ cH48pwXSZ9s20SdZcbV4Tliu3lm/lTsjR4Ua6q/U0m4uof5fcu6g23z1g
+ SnbbYMrplP6OcAtb4KA6jo4TB5WLoViOAjrd6ZTvow5jmE/4rnRca52Bo
+ lqbvJA3OVYghbgdAeU+m+Ezj6ft9v4i+L3xCYbGUl9JQXLcaZjChs82NI
+ bSa8L6JJU3g2DrP1wm7v4hz015By4mzM3q7r2citT5S2+0fMhOo1xcIeo
+ 7vRiO7/JLwjlr+xsDf1KS7yt9NRljjAdJjnd9pC84xF+jzz3KKaqNvvjo g==;
+X-CSE-ConnectionGUID: 4/8SAR8bQF6APkl6zrPPhA==
+X-CSE-MsgGUID: 0LeyhhnZRu+DG2DGpVJC+Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="55871130"
+X-IronPort-AV: E=Sophos;i="6.14,282,1736841600"; d="scan'208";a="55871130"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2025 00:47:48 -0700
+X-CSE-ConnectionGUID: YgP3HePFSBe0f7HXMPcnMw==
+X-CSE-MsgGUID: /jXS7CX1RqOq2PSHvhZ4eA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,282,1736841600"; d="scan'208";a="130578921"
-Received: from nihaljai-mobl1.gar.corp.intel.com (HELO [10.247.253.176])
- ([10.247.253.176])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2025 23:36:15 -0700
-Message-ID: <363df5cc-0be6-44d4-b515-6070ad35d5cd@intel.com>
-Date: Fri, 28 Mar 2025 12:06:12 +0530
+X-IronPort-AV: E=Sophos;i="6.14,282,1736841600"; d="scan'208";a="125603356"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO jhogande-mobl1..)
+ ([10.245.245.243])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2025 00:47:45 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: animesh.manna@intel.com,
+ =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH v2] drm/i915/psr: Add PSR pause/resume reference count
+Date: Fri, 28 Mar 2025 09:47:15 +0200
+Message-ID: <20250328074715.1169540-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?Q?Re=3A_=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_drm/xe/xe2h?=
- =?UTF-8?Q?pg=3A_Add_Wa=5F16025250150_=28rev2=29?=
-To: intel-xe@lists.freedesktop.org, Tejas Upadhyay <tejas.upadhyay@intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Ayaz A Siddiqui <ayaz.siddiqui@intel.com>
-References: <20250325134421.1489416-1-aradhya.bhatia@intel.com>
- <174311817504.13007.12492813581667605313@e6b6f09ec485>
-Content-Language: en-US
-From: Aradhya Bhatia <aradhya.bhatia@intel.com>
-In-Reply-To: <174311817504.13007.12492813581667605313@e6b6f09ec485>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,87 +69,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+We have now seen this:
 
-On 28-03-2025 04:59, Patchwork wrote:
-> == Series Details ==
-> 
-> Series: drm/xe/xe2hpg: Add Wa_16025250150 (rev2)
-> URL   : https://patchwork.freedesktop.org/series/146709/
-> State : failure
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from xe-2859-1e750490a76bbb8bcb8ea8d5fba2a68bf0845def_FULL -> xe-pw-146709v2_FULL
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **FAILURE**
-> 
->   Serious unknown changes coming with xe-pw-146709v2_FULL absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in xe-pw-146709v2_FULL, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
->   to document this new failure mode, which will reduce false positives in CI.
-> 
->   
-> 
-> Participating hosts (4 -> 4)
-> ------------------------------
-> 
->   No changes in participating hosts
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in xe-pw-146709v2_FULL:
-> 
-> ### IGT changes ###
-> 
-> #### Possible regressions ####
-> 
->   * igt@kms_flip_scaled_crc@flip-64bpp-linear-to-16bpp-linear-upscaling:
->     - shard-lnl:          [PASS][1] -> ([PASS][2], [INCOMPLETE][3]) +1 other test ( 1 incomplete, 1 pass )
->    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2859-1e750490a76bbb8bcb8ea8d5fba2a68bf0845def/shard-lnl-2/igt@kms_flip_scaled_crc@flip-64bpp-linear-to-16bpp-linear-upscaling.html
->    [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146709v2/shard-lnl-4/igt@kms_flip_scaled_crc@flip-64bpp-linear-to-16bpp-linear-upscaling.html
->    [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146709v2/shard-lnl-1/igt@kms_flip_scaled_crc@flip-64bpp-linear-to-16bpp-linear-upscaling.html
-> 
->   * igt@kms_plane_multiple@2x-tiling-yf:
->     - shard-lnl:          NOTRUN -> [SKIP][4]
->    [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146709v2/shard-lnl-8/igt@kms_plane_multiple@2x-tiling-yf.html
-> 
->   * igt@kms_vblank@query-busy-hang:
->     - shard-dg2-set2:     [PASS][5] -> ([INCOMPLETE][6], [PASS][7]) +2 other tests ( 1 incomplete, 1 pass )
->    [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2859-1e750490a76bbb8bcb8ea8d5fba2a68bf0845def/shard-dg2-464/igt@kms_vblank@query-busy-hang.html
->    [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146709v2/shard-dg2-432/igt@kms_vblank@query-busy-hang.html
->    [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146709v2/shard-dg2-463/igt@kms_vblank@query-busy-hang.html
-> 
->   * igt@kms_vblank@query-busy-hang@pipe-d-dp-2:
->     - shard-dg2-set2:     NOTRUN -> [INCOMPLETE][8]
->    [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146709v2/shard-dg2-432/igt@kms_vblank@query-busy-hang@pipe-d-dp-2.html
-> 
->   * igt@xe_exec_sip_eudebug@wait-writesip-nodebug@drm_xe_engine_class_compute0:
->     - shard-lnl:          [PASS][9] -> [INCOMPLETE][10] +1 other test incomplete
->    [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2859-1e750490a76bbb8bcb8ea8d5fba2a68bf0845def/shard-lnl-4/igt@xe_exec_sip_eudebug@wait-writesip-nodebug@drm_xe_engine_class_compute0.html
->    [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146709v2/shard-lnl-7/igt@xe_exec_sip_eudebug@wait-writesip-nodebug@drm_xe_engine_class_compute0.html
-> 
->   * igt@xe_fault_injection@exec-queue-create-fail-xe_hw_engine_group_add_exec_queue:
->     - shard-bmg:          [PASS][11] -> ([PASS][12], [ABORT][13])
->    [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2859-1e750490a76bbb8bcb8ea8d5fba2a68bf0845def/shard-bmg-4/igt@xe_fault_injection@exec-queue-create-fail-xe_hw_engine_group_add_exec_queue.html
->    [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146709v2/shard-bmg-3/igt@xe_fault_injection@exec-queue-create-fail-xe_hw_engine_group_add_exec_queue.html
->    [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146709v2/shard-bmg-4/igt@xe_fault_injection@exec-queue-create-fail-xe_hw_engine_group_add_exec_queue.html
->     - shard-dg2-set2:     [PASS][14] -> ([ABORT][15], [PASS][16])
->    [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2859-1e750490a76bbb8bcb8ea8d5fba2a68bf0845def/shard-dg2-435/igt@xe_fault_injection@exec-queue-create-fail-xe_hw_engine_group_add_exec_queue.html
->    [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146709v2/shard-dg2-435/igt@xe_fault_injection@exec-queue-create-fail-xe_hw_engine_group_add_exec_queue.html
->    [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146709v2/shard-dg2-436/igt@xe_fault_injection@exec-queue-create-fail-xe_hw_engine_group_add_exec_queue.html
-> 
+<4> [2120.434153] i915 0000:00:02.0: [drm] drm_WARN_ON(psr->paused)
+<4> [2120.434196] WARNING: CPU: 3 PID: 4430 at drivers/gpu/drm/i915/display/intel_psr.c:2227 intel_psr_pause+0x16e/0x180 [i915]
 
-These possible regressions do not seem to be related to my patch.
+Comment for drm_WARN_ON(display->drm, psr->paused) in intel_psr_pause says:
 
+"If we ever hit this, we will need to add refcount to pause/resume"
 
---
-Regards
-Aradhya
+This patch is implementing PSR pause/resume refcount.
+
+v2: Add drm_warn for detecting possible unbalanced pause/resume
+
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ .../drm/i915/display/intel_display_types.h    |  2 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      | 26 +++++++++----------
+ 2 files changed, 13 insertions(+), 15 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 7d9cc430a6b8b..367b53a9eae2a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1620,7 +1620,7 @@ struct intel_psr {
+ 	bool sink_support;
+ 	bool source_support;
+ 	bool enabled;
+-	bool paused;
++	int pause_counter;
+ 	enum pipe pipe;
+ 	enum transcoder transcoder;
+ 	bool active;
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 708fbcfa9089a..4a8bacdf97ae1 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -2025,7 +2025,7 @@ static void intel_psr_enable_locked(struct intel_dp *intel_dp,
+ 
+ 	intel_psr_enable_source(intel_dp, crtc_state);
+ 	intel_dp->psr.enabled = true;
+-	intel_dp->psr.paused = false;
++	intel_dp->psr.pause_counter = 0;
+ 
+ 	/*
+ 	 * Link_ok is sticky and set here on PSR enable. We can assume link
+@@ -2211,7 +2211,6 @@ void intel_psr_disable(struct intel_dp *intel_dp,
+  */
+ void intel_psr_pause(struct intel_dp *intel_dp)
+ {
+-	struct intel_display *display = to_intel_display(intel_dp);
+ 	struct intel_psr *psr = &intel_dp->psr;
+ 
+ 	if (!CAN_PSR(intel_dp) && !CAN_PANEL_REPLAY(intel_dp))
+@@ -2224,12 +2223,10 @@ void intel_psr_pause(struct intel_dp *intel_dp)
+ 		return;
+ 	}
+ 
+-	/* If we ever hit this, we will need to add refcount to pause/resume */
+-	drm_WARN_ON(display->drm, psr->paused);
+-
+-	intel_psr_exit(intel_dp);
+-	intel_psr_wait_exit_locked(intel_dp);
+-	psr->paused = true;
++	if (intel_dp->psr.pause_counter++ == 0) {
++		intel_psr_exit(intel_dp);
++		intel_psr_wait_exit_locked(intel_dp);
++	}
+ 
+ 	mutex_unlock(&psr->lock);
+ 
+@@ -2252,13 +2249,14 @@ void intel_psr_resume(struct intel_dp *intel_dp)
+ 
+ 	mutex_lock(&psr->lock);
+ 
+-	if (!psr->paused)
+-		goto unlock;
++	if (!psr->enabled) {
++		mutex_unlock(&psr->lock);
++		return;
++	}
+ 
+-	psr->paused = false;
+-	intel_psr_activate(intel_dp);
++	if (--intel_dp->psr.pause_counter == 0)
++		intel_psr_activate(intel_dp);
+ 
+-unlock:
+ 	mutex_unlock(&psr->lock);
+ }
+ 
+@@ -3323,7 +3321,7 @@ void intel_psr_flush(struct intel_display *display,
+ 		 * we have to ensure that the PSR is not activated until
+ 		 * intel_psr_resume() is called.
+ 		 */
+-		if (intel_dp->psr.paused)
++		if (intel_dp->psr.pause_counter)
+ 			goto unlock;
+ 
+ 		if (origin == ORIGIN_FLIP ||
+-- 
+2.43.0
+
