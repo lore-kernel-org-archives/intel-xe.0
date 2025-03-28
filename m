@@ -4,34 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7B42C28B20
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 22:31:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2D50C28B20
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 22:34:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5416410EAC5;
-	Fri, 28 Mar 2025 22:31:55 +0000 (UTC)
-Received: from smtp79.iad3a.emailsrvr.com (smtp79.iad3a.emailsrvr.com
- [173.203.187.79])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C598F10EAC5
- for <intel-xe@lists.freedesktop.org>; Fri, 28 Mar 2025 22:31:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8255210EAC7;
+	Fri, 28 Mar 2025 22:34:36 +0000 (UTC)
+Received: from smtp106.iad3a.emailsrvr.com (smtp106.iad3a.emailsrvr.com
+ [173.203.187.106])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6777A10EAC7
+ for <intel-xe@lists.freedesktop.org>; Fri, 28 Mar 2025 22:34:35 +0000 (UTC)
 X-Auth-ID: kenneth@whitecape.org
-Received: by smtp26.relay.iad3a.emailsrvr.com (Authenticated sender:
- kenneth-AT-whitecape.org) with ESMTPSA id 8D4A358EF; 
- Fri, 28 Mar 2025 18:31:47 -0400 (EDT)
+Received: by smtp6.relay.iad3a.emailsrvr.com (Authenticated sender:
+ kenneth-AT-whitecape.org) with ESMTPSA id CDFB958F5; 
+ Fri, 28 Mar 2025 18:34:30 -0400 (EDT)
 From: Kenneth Graunke <kenneth@whitecape.org>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, zhanjun.dong@intel.com,
- stable@vger.kernel.org
-Subject: Re: [PATCH] drm/xe: Invalidate L3 read-only cachelines for geometry
+To: intel-xe@lists.freedesktop.org
+Cc: Kenneth Graunke <kenneth@whitecape.org>, stable@vger.kernel.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH v2] drm/xe: Invalidate L3 read-only cachelines for geometry
  streams too
-Date: Fri, 28 Mar 2025 15:34:58 -0700
-Message-ID: <4999188.31r3eYUQgx@imeretto>
+Date: Fri, 28 Mar 2025 15:37:15 -0700
+Message-ID: <20250328223734.31212-1-kenneth@whitecape.org>
+X-Mailer: git-send-email 2.48.1
 In-Reply-To: <Z-b2BYJkz5laBbew@intel.com>
-References: <20250320101212.7624-1-kenneth@whitecape.org>
- <Z-b2BYJkz5laBbew@intel.com>
+References: <Z-b2BYJkz5laBbew@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-Classification-ID: 01dadefe-d6b6-45d2-9b47-56690f42a8cc-1-1
+Content-Transfer-Encoding: 8bit
+X-Classification-ID: b220d8e1-e06c-4730-ba14-654078454d12-1-1
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,152 +45,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Friday, March 28, 2025 12:18:29=E2=80=AFPM Pacific Daylight Time Rodrigo=
- Vivi wrote:
-> On Thu, Mar 20, 2025 at 03:11:55AM -0700, Kenneth Graunke wrote:
-> > Historically, the Vertex Fetcher unit has not been an L3 client.  That
-> > meant that, when a buffer containing vertex data was written to, it was
-> > necessary to issue a PIPE_CONTROL::VF Cache Invalidate to invalidate any
-> > VF L2 cachelines associated with that buffer, so the new value would be
-> > properly read from memory.
-> >=20
-> > Since Tigerlake and later, VERTEX_BUFFER_STATE and 3DSTATE_INDEX_BUFFER
-> > have included an "L3 Bypass Enable" bit which userspace drivers can set
-> > to request that the vertex fetcher unit snoop L3.  However, unlike most
-> > true L3 clients, the "VF Cache Invalidate" bit continues to only
-> > invalidate the VF L2 cache - and not any associated L3 lines.
-> >=20
-> > To handle that, PIPE_CONTROL has a new "L3 Read Only Cache Invalidation
-> > Bit", which according to the docs, "controls the invalidation of the
-> > Geometry streams cached in L3 cache at the top of the pipe."  In other
-> > words, the vertex and index buffer data that gets cached in L3 when
-> > "L3 Bypass Disable" is set.
-> >=20
-> > Mesa always sets L3 Bypass Disable so that the VF unit snoops L3, and
-> > whenever it issues a VF Cache Invalidate, it also issues a L3 Read Only
-> > Cache Invalidate so that both L2 and L3 vertex data is invalidated.
-> >=20
-> > xe is issuing VF cache invalidates too (which handles cases like CPU
-> > writes to a buffer between GPU batches).  Because userspace may enable
-> > L3 snooping, it needs to issue an L3 Read Only Cache Invalidate as well.
-> >=20
-> > Fixes significant flickering in Firefox on Meteorlake, which was writing
-> > to vertex buffers via the CPU between batches; the missing L3 Read Only
-> > invalidates were causing the vertex fetcher to read stale data from L3.
-> >=20
-> > References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4460
-> > Cc: stable@vger.kernel.org # v6.13+
-> > ---
-> >=20
-> >  drivers/gpu/drm/xe/instructions/xe_gpu_commands.h |  1 +
-> >  drivers/gpu/drm/xe/xe_ring_ops.c                  | 13 +++++++++----
-> >  2 files changed, 10 insertions(+), 4 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-> > b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h index
-> > a255946b6f77e..8cfcd3360896c 100644
-> > --- a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-> > +++ b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-> > @@ -41,6 +41,7 @@
-> >=20
-> >  #define
-> >  GFX_OP_PIPE_CONTROL(len)	((0x3<<29)|(0x3<<27)|(0x2<<24)|((len)-2))
-> >=20
-> > +#define	  PIPE_CONTROL0_L3_READ_ONLY_CACHE_INVALIDATE	BIT(10)=09
-/* gen12 */
->=20
-> this definitely matches the spec on the bitgroup0, but Mesa
-> code got me a bit confused:
-> PIPE_CONTROL_L3_READ_ONLY_CACHE_INVALIDATE   =3D (1 << 28),
+Historically, the Vertex Fetcher unit has not been an L3 client.  That
+meant that, when a buffer containing vertex data was written to, it was
+necessary to issue a PIPE_CONTROL::VF Cache Invalidate to invalidate any
+VF L2 cachelines associated with that buffer, so the new value would be
+properly read from memory.
 
-Yeah...the values in iris_context.h is just a bitfield enum of every possib=
-le=20
-flag, in no particular order.  The comment above tries to clarify that they=
-=20
-don't match the hardware packing.  Sorry for the confusion!  src/intel/genx=
-ml/
-gen125.xml defines PIPE_CONTROL's actual bit layout where things get packed=
-=2E =20
-You can see that it's bit 10 there.
+Since Tigerlake and later, VERTEX_BUFFER_STATE and 3DSTATE_INDEX_BUFFER
+have included an "L3 Bypass Enable" bit which userspace drivers can set
+to request that the vertex fetcher unit snoop L3.  However, unlike most
+true L3 clients, the "VF Cache Invalidate" bit continues to only
+invalidate the VF L2 cache - and not any associated L3 lines.
 
-> >  #define	  PIPE_CONTROL0_HDC_PIPELINE_FLUSH		BIT(9)=09
-/* gen12 */
-> > =20
-> >  #define   PIPE_CONTROL_COMMAND_CACHE_INVALIDATE		(1<<29)
-> >=20
-> > diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c
-> > b/drivers/gpu/drm/xe/xe_ring_ops.c index 0c230ee53bba5..9d8901a33205a
-> > 100644
-> > --- a/drivers/gpu/drm/xe/xe_ring_ops.c
-> > +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-> > @@ -141,7 +141,8 @@ emit_pipe_control(u32 *dw, int i, u32 bit_group_0, =
-u32
-> > bit_group_1, u32 offset,>=20
-> >  static int emit_pipe_invalidate(u32 mask_flags, bool invalidate_tlb, u=
-32
-> >  *dw,> =20
-> >  				int i)
-> > =20
-> >  {
-> >=20
-> > -	u32 flags =3D PIPE_CONTROL_CS_STALL |
-> > +	u32 flags0 =3D 0;
-> > +	u32 flags1 =3D PIPE_CONTROL_CS_STALL |
-> >=20
-> >  		PIPE_CONTROL_COMMAND_CACHE_INVALIDATE |
-> >  		PIPE_CONTROL_INSTRUCTION_CACHE_INVALIDATE |
-> >  		PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE |
-> >=20
-> > @@ -152,11 +153,15 @@ static int emit_pipe_invalidate(u32 mask_flags, b=
-ool
-> > invalidate_tlb, u32 *dw,>=20
-> >  		PIPE_CONTROL_STORE_DATA_INDEX;
-> >  =09
-> >  	if (invalidate_tlb)
-> >=20
-> > -		flags |=3D PIPE_CONTROL_TLB_INVALIDATE;
-> > +		flags1 |=3D PIPE_CONTROL_TLB_INVALIDATE;
-> >=20
-> > -	flags &=3D ~mask_flags;
-> > +	flags1 &=3D ~mask_flags;
-> >=20
-> > -	return emit_pipe_control(dw, i, 0, flags,
-> > LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR, 0); +	if (flags1 &
-> > PIPE_CONTROL_VF_CACHE_INVALIDATE)
-> > +		flags0 |=3D PIPE_CONTROL0_L3_READ_ONLY_CACHE_INVALIDATE;
-> > +
-> > +	return emit_pipe_control(dw, i, flags0, flags1,
-> > +				=20
-LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR, 0);
->=20
-> Well, it respects the spec and if it is solving the issue let's go with i=
-t.
->=20
-> But last question, should we expect some performance change with this
-> extra invalidation in the Geometry streams caches?
+To handle that, PIPE_CONTROL has a new "L3 Read Only Cache Invalidation
+Bit", which according to the docs, "controls the invalidation of the
+Geometry streams cached in L3 cache at the top of the pipe."  In other
+words, the vertex and index buffer data that gets cached in L3 when
+"L3 Bypass Disable" is set.
 
-Not that I'm aware of.  I don't think we saw much of a performance drop whe=
-n=20
-enabling L3 bypass and the extra flushing.  But having VF be an L3 client a=
-long=20
-with most everything else let us have compute shaders do fewer expensive Da=
-ta=20
-Cache Flushes and instead only do cheaper HDC flushes, which did lead to=20
-performance gains.  So if there was a drop, I think it was more than offset.
+Mesa always sets L3 Bypass Disable so that the VF unit snoops L3, and
+whenever it issues a VF Cache Invalidate, it also issues a L3 Read Only
+Cache Invalidate so that both L2 and L3 vertex data is invalidated.
 
-I haven't specifically tried to benchmark this patch.
+xe is issuing VF cache invalidates too (which handles cases like CPU
+writes to a buffer between GPU batches).  Because userspace may enable
+L3 snooping, it needs to issue an L3 Read Only Cache Invalidate as well.
 
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
->=20
-> (I tried to trigger the CI manually, please confirm it is okay to
-> add your signed-off-by so we can get this merged soon)
+Fixes significant flickering in Firefox on Meteorlake, which was writing
+to vertex buffers via the CPU between batches; the missing L3 Read Only
+invalidates were causing the vertex fetcher to read stale data from L3.
 
-Thank you!  I'll resend with my Signed-off-by for clarity (I definitely mea=
-nt to=20
-include it)
+References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4460
+Cc: stable@vger.kernel.org # v6.13+
+Signed-off-by: Kenneth Graunke <kenneth@whitecape.org>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/xe/instructions/xe_gpu_commands.h |  1 +
+ drivers/gpu/drm/xe/xe_ring_ops.c                  | 13 +++++++++----
+ 2 files changed, 10 insertions(+), 4 deletions(-)
 
-> Thanks a lot for finding and fixing this.
-
-No problem!
-
+diff --git a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
+index a255946b6f77e..8cfcd3360896c 100644
+--- a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
++++ b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
+@@ -41,6 +41,7 @@
+ 
+ #define GFX_OP_PIPE_CONTROL(len)	((0x3<<29)|(0x3<<27)|(0x2<<24)|((len)-2))
+ 
++#define	  PIPE_CONTROL0_L3_READ_ONLY_CACHE_INVALIDATE	BIT(10)	/* gen12 */
+ #define	  PIPE_CONTROL0_HDC_PIPELINE_FLUSH		BIT(9)	/* gen12 */
+ 
+ #define   PIPE_CONTROL_COMMAND_CACHE_INVALIDATE		(1<<29)
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index 917fc16de866a..a7582b097ae67 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -137,7 +137,8 @@ emit_pipe_control(u32 *dw, int i, u32 bit_group_0, u32 bit_group_1, u32 offset,
+ static int emit_pipe_invalidate(u32 mask_flags, bool invalidate_tlb, u32 *dw,
+ 				int i)
+ {
+-	u32 flags = PIPE_CONTROL_CS_STALL |
++	u32 flags0 = 0;
++	u32 flags1 = PIPE_CONTROL_CS_STALL |
+ 		PIPE_CONTROL_COMMAND_CACHE_INVALIDATE |
+ 		PIPE_CONTROL_INSTRUCTION_CACHE_INVALIDATE |
+ 		PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE |
+@@ -148,11 +149,15 @@ static int emit_pipe_invalidate(u32 mask_flags, bool invalidate_tlb, u32 *dw,
+ 		PIPE_CONTROL_STORE_DATA_INDEX;
+ 
+ 	if (invalidate_tlb)
+-		flags |= PIPE_CONTROL_TLB_INVALIDATE;
++		flags1 |= PIPE_CONTROL_TLB_INVALIDATE;
+ 
+-	flags &= ~mask_flags;
++	flags1 &= ~mask_flags;
+ 
+-	return emit_pipe_control(dw, i, 0, flags, LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR, 0);
++	if (flags1 & PIPE_CONTROL_VF_CACHE_INVALIDATE)
++		flags0 |= PIPE_CONTROL0_L3_READ_ONLY_CACHE_INVALIDATE;
++
++	return emit_pipe_control(dw, i, flags0, flags1,
++				 LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR, 0);
+ }
+ 
+ static int emit_store_imm_ppgtt_posted(u64 addr, u64 value,
+-- 
+2.48.1
 
