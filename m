@@ -4,69 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F18E6C28B20
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 16:39:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B21AFC28B20
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 16:51:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF3A010EA7A;
-	Fri, 28 Mar 2025 16:39:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76CF910EA7C;
+	Fri, 28 Mar 2025 16:51:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XT6hP72S";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TfJlDKd5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A940110EA6E;
- Fri, 28 Mar 2025 16:39:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FAF910EA7C
+ for <intel-xe@lists.freedesktop.org>; Fri, 28 Mar 2025 16:51:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743179978; x=1774715978;
- h=from:date:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=rli8gCkSQGB9JpRw0Pa80TvJo0wcWK5OPRHOyfpODsM=;
- b=XT6hP72SR+R9c6gp+mWAWUiDCUKQIN6qyK6PVlFO5GT5JS3YNVQeTmNy
- wcTK1HvZJAhgdD5Lp2yIVJAIMnmYo+KkYfWSDzCu2inYD0+3WQ22BlKvB
- ZyjgCFjMOaHPyQXh3isntjgqkE3EKrC2vVnnhEUrA0Chm0bG73hS1Klvb
- RRpsX+yZcukZkza7gntLEw5oPU4+Ldehws4A66o6gv751q62pI/bm+b/M
- F11/Tr1I80SbWjAI/mJMEV/dBAJrJlj2hkA4rrUkg0nLEeaWsXq1MdvRp
- h61jISfZ/us4QU+jbD/1lWe9Yy+hbgo0TUCH/8mjrm3jThlrYpnzS1KF3 Q==;
-X-CSE-ConnectionGUID: gBm2B1AVRfiQ5whVlQ6bKg==
-X-CSE-MsgGUID: 6sWnxJguQWquwvg7jvPgLA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11387"; a="32153170"
-X-IronPort-AV: E=Sophos;i="6.14,283,1736841600"; d="scan'208";a="32153170"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2025 09:39:38 -0700
-X-CSE-ConnectionGUID: sbJ66p1vQY6AxqAT4flbNA==
-X-CSE-MsgGUID: 0ksRt6/wQDu9gNyM9SijuA==
+ t=1743180682; x=1774716682;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:to:cc;
+ bh=DcsrYmwKTxfOOlcY3+k/EAAC6AfAEzuinaYPQeUODO0=;
+ b=TfJlDKd5JlFLSl3sQ+D08iPMP7EjPKf/bXz2bAjS9+2WnB4GS3HHTY2G
+ 7NlhueH6Dy9LrwTX7j5r0+E2beCnDtvw/brTf+HJ7XvLU4bFcLoiDsxG3
+ SYP7oA8zMKZmfXqJwvFI5kOamu2u6TJatwaPF4LzNbj016lGs9doH15K8
+ 0txw8nnq2kctQiOd9LePNq9b+Rs7ZN5jjjsdK4V/cuL095zop2XKkyaCm
+ aKOc62srsBfe9epvKlJQYkDgFcZeN6rHOj6qvHPWoRaU6MdBvCZnaG3lU
+ Du3KynoeD2Ag6K/GybJLMdRN4TeQHNBd5uxaXduBOxzZlAxtXiwpDYLeQ g==;
+X-CSE-ConnectionGUID: UebuwntkQ8yyWFX0UJwF1w==
+X-CSE-MsgGUID: uuT3CPGwRTy8Eqyzoa0uAw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11387"; a="44709317"
+X-IronPort-AV: E=Sophos;i="6.14,283,1736841600"; d="scan'208";a="44709317"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2025 09:51:22 -0700
+X-CSE-ConnectionGUID: 5n17kZ+2TjSmr4CrVFwHoQ==
+X-CSE-MsgGUID: KmCvx9E+T5agtL8t6H5WxA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,283,1736841600"; d="scan'208";a="162724321"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.43])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2025 09:39:33 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Fri, 28 Mar 2025 18:39:29 +0200 (EET)
-To: =?ISO-8859-2?Q?Micha=B3_Winiarski?= <michal.winiarski@intel.com>
-cc: linux-pci@vger.kernel.org, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>, 
- Bjorn Helgaas <bhelgaas@google.com>, 
- =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>, 
- =?ISO-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Michal Wajdeczko <michal.wajdeczko@intel.com>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?ISO-8859-15?Q?Thomas_Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Matt Roper <matthew.d.roper@intel.com>
-Subject: Re: [PATCH v6 4/6] PCI/IOV: Check that VF BAR fits within the
- reservation
-In-Reply-To: <4959d675-edd8-a296-661c-6a7bd22fbc0d@linux.intel.com>
-Message-ID: <77a5558f-fe6f-cba1-4515-c8597ae3c9bb@linux.intel.com>
-References: <20250320110854.3866284-1-michal.winiarski@intel.com>
- <20250320110854.3866284-5-michal.winiarski@intel.com>
- <4959d675-edd8-a296-661c-6a7bd22fbc0d@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.14,283,1736841600"; d="scan'208";a="129634084"
+Received: from inaky-mobl1.amr.corp.intel.com (HELO
+ gjsousa-mobl2.corp.amr.intel.com) ([10.125.108.170])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2025 09:51:21 -0700
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+Date: Fri, 28 Mar 2025 13:50:50 -0300
+Subject: [PATCH] drm/xe: Make PPHWSP size explicit in xe_gt_lrc_size()
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323328-1549821212-1743179969=:932"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250328-explicit-pphwsp-size-in-xe_gt_lrc_size-v1-1-ceb9ce7c8bc1@intel.com>
+X-B4-Tracking: v=1; b=H4sIAGnT5mcC/x2NUQqDMBAFryL77UKatGC9SpEQkq0uSFyy0oaKd
+ 2/wcx7DmwOUCpPC2B1Q6MPKW25w6zuIS8gzIafGYI19GGcHpCorR95RZPmqoPKvORkr+Xn3a4n
+ +WtIzBGfd3Zk0QDuTQm+uV+g1necfJwAwdngAAAA=
+X-Change-ID: 20250328-explicit-pphwsp-size-in-xe_gt_lrc_size-d9aa323430d8
+To: intel-xe@lists.freedesktop.org
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+X-Mailer: b4 0.14.2
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,104 +70,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+The context of each engine starts with a 4k scratch memory space for the
+"Per-process HW status page" (PPHWSP). In xe_gt_lrc_size(), we have been
+implicitly accounting for that page in the switch statement on the
+engine class.
 
---8323328-1549821212-1743179969=:932
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
+Since the PPHWSP is common to all engines, let's extract that into it's
+own assignment. That makes the context structure more explicit in the
+code and aligns better with the descriptions in Bspec.
 
-On Wed, 26 Mar 2025, Ilpo J=C3=A4rvinen wrote:
+Another advantage of keeping it separate is that now the sizes used in
+the switch statement match the sizes we calculate engine-specific
+context images, which have their own Bspec pages.
 
-> On Thu, 20 Mar 2025, Micha=C5=82 Winiarski wrote:
->=20
-> > When the resource representing VF MMIO BAR reservation is created, its
-> > size is always large enough to accommodate the BAR of all SR-IOV Virtua=
-l
-> > Functions that can potentially be created (total VFs). If for whatever
-> > reason it's not possible to accommodate all VFs - the resource is not
-> > assigned and no VFs can be created.
-> >=20
-> > The following patch will allow VF BAR size to be modified by drivers at
->=20
-> "The following patch" sounds to be like you're referring to patch that=20
-> follows this description, ie., the patch below. "An upcoming change" is=
-=20
-> alternative that doesn't suffer from the same problem.
->=20
-> > a later point in time, which means that the check for resource
-> > assignment is no longer sufficient.
-> >=20
-> > Add an additional check that verifies that VF BAR for all enabled VFs
-> > fits within the underlying reservation resource.
->=20
-> So this does not solve the case where the initial size was too large to=
-=20
-> fix and such VF BARs remain unassigned, right?
->=20
-> > Signed-off-by: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
-> > ---
-> >  drivers/pci/iov.c | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> >=20
-> > diff --git a/drivers/pci/iov.c b/drivers/pci/iov.c
-> > index cbf335725d4fb..861273ad9a580 100644
-> > --- a/drivers/pci/iov.c
-> > +++ b/drivers/pci/iov.c
-> > @@ -646,8 +646,13 @@ static int sriov_enable(struct pci_dev *dev, int n=
-r_virtfn)
-> > =20
-> >  =09nres =3D 0;
-> >  =09for (i =3D 0; i < PCI_SRIOV_NUM_BARS; i++) {
-> > +=09=09resource_size_t vf_bar_sz =3D
-> > +=09=09=09pci_iov_resource_size(dev,
-> > +=09=09=09=09=09      pci_resource_num_from_vf_bar(i));
->=20
-> Please add int idx =3D pci_resource_num_from_vf_bar(i);
->=20
-> >  =09=09bars |=3D (1 << pci_resource_num_from_vf_bar(i));
-> >  =09=09res =3D &dev->resource[pci_resource_num_from_vf_bar(i)];
-> > +=09=09if (vf_bar_sz * nr_virtfn > resource_size(res))
-> > +=09=09=09continue;
->=20
-> Not directly related to this patch, I suspect this could actually try to=
-=20
-> assign an unassigned resource by doing something like this (perhaps in ow=
-n=20
-> patch, it doesn't even need to be part of this series but can be sent=20
-> later if you find the suggestion useful):
->=20
-> =09=09/* Retry assignment if the initial size didn't fit */
-> =09=09if (!res->parent && pci_assign_resource(res, idx))
-> =09=09=09continue;
->=20
-> Although I suspect reset_resource() might have been called for the=20
-> resource and IIRC it breaks the resource somehow but it could have been=
-=20
-> that IOV resources can be resummoned from that state though thanks to=20
-> their size not being stored into the resource itself but comes from iov=
-=20
-> structures.
+Bspec: 67296, 60159, 45554
+Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+---
+ drivers/gpu/drm/xe/xe_lrc.c | 17 ++++++++++-------
+ 1 file changed, 10 insertions(+), 7 deletions(-)
 
-I realized reset_resource() will zero the flags so it won't work without=20
-getting rid of reset_resource() calls first which I've not yet completed.=
-=20
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 81def179266443a58ee237b5bb2c30eea066ec7a..2639a3dfc9f7b3f420acbaf2c54c40efeb7bf354 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -37,6 +37,7 @@
+ #define LRC_ENGINE_CLASS			GENMASK_ULL(63, 61)
+ #define LRC_ENGINE_INSTANCE			GENMASK_ULL(53, 48)
+ 
++#define LRC_PPHWSP_SIZE				SZ_4K
+ #define LRC_INDIRECT_RING_STATE_SIZE		SZ_4K
+ 
+ static struct xe_device *
+@@ -50,19 +51,22 @@ size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class)
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	size_t size;
+ 
++	/* Per-process HW status page (PPHWSP) */
++	size = LRC_PPHWSP_SIZE;
++
++	/* Engine context image */
+ 	switch (class) {
+ 	case XE_ENGINE_CLASS_RENDER:
+ 		if (GRAPHICS_VER(xe) >= 20)
+-			size = 4 * SZ_4K;
++			size += 3 * SZ_4K;
+ 		else
+-			size = 14 * SZ_4K;
++			size += 13 * SZ_4K;
+ 		break;
+ 	case XE_ENGINE_CLASS_COMPUTE:
+-		/* 14 pages since graphics_ver == 11 */
+ 		if (GRAPHICS_VER(xe) >= 20)
+-			size = 3 * SZ_4K;
++			size += 2 * SZ_4K;
+ 		else
+-			size = 14 * SZ_4K;
++			size += 13 * SZ_4K;
+ 		break;
+ 	default:
+ 		WARN(1, "Unknown engine class: %d", class);
+@@ -71,7 +75,7 @@ size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class)
+ 	case XE_ENGINE_CLASS_VIDEO_DECODE:
+ 	case XE_ENGINE_CLASS_VIDEO_ENHANCE:
+ 	case XE_ENGINE_CLASS_OTHER:
+-		size = 2 * SZ_4K;
++		size += 1 * SZ_4K;
+ 	}
+ 
+ 	/* Add indirect ring state page */
+@@ -650,7 +654,6 @@ u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc)
+ #define LRC_START_SEQNO_PPHWSP_OFFSET (LRC_SEQNO_PPHWSP_OFFSET + 8)
+ #define LRC_CTX_JOB_TIMESTAMP_OFFSET (LRC_START_SEQNO_PPHWSP_OFFSET + 8)
+ #define LRC_PARALLEL_PPHWSP_OFFSET 2048
+-#define LRC_PPHWSP_SIZE SZ_4K
+ 
+ u32 xe_lrc_regs_offset(struct xe_lrc *lrc)
+ {
 
-And once I get the rebar sizes included into bridge window sizing=20
-algorithm, the default size could possibly be shrunk by the resource
-fitting/assignment code so the resource assignment should no longer fail=20
-just because the initial size was too large. So it shouldn't be necessary=
-=20
-after that.
+---
+base-commit: 4cac9bb1b5db81d533be95f97dd30c03a8733871
+change-id: 20250328-explicit-pphwsp-size-in-xe_gt_lrc_size-d9aa323430d8
 
-> >  =09=09if (res->parent)
-> >  =09=09=09nres++;
-> >  =09}
-> >=20
->=20
->=20
+Best regards,
+-- 
+Gustavo Sousa <gustavo.sousa@intel.com>
 
---=20
- i.
-
---8323328-1549821212-1743179969=:932--
