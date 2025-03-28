@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDD57C28B20
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 10:51:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26A5CC36010
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 10:58:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3F5210E9DC;
-	Fri, 28 Mar 2025 10:51:11 +0000 (UTC)
-Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AF6910E9DC;
- Fri, 28 Mar 2025 10:51:11 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11DC210E0F3;
+	Fri, 28 Mar 2025 10:58:11 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mL3Chbil";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7A6910E0F3;
+ Fri, 28 Mar 2025 10:58:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1743159490; x=1774695490;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=NBKMdXHbffNW2abK9cwB0JDAAEwFJMABJxQQhGo+3yA=;
+ b=mL3Chbil8HxTlMo/NZwWJe+SJq0R8IQgjnWaMIXe9Od+OQ6H262PIVvi
+ ONTLud50e2P8+3UIvrCOtht63tuZG6J4YuOGolxmo4j3LJBJULhizVhn5
+ igk4uYf7sDjDD8ZoAaj5TIKCd5XxyOHo2eNmPK6Xehp5WuWZyzRr+ytMC
+ EgtAixw8gLjHSQetPfYU+kBYvNx5DF8XlZ5XGZIcZHQXB9SpEOvsq8yzG
+ ImOSj2rozHySTMm+u1vZ34Cyy+x8rHzqEthSnHzKNkdGobVHlHrCA+WA9
+ HqsjgLQrZSrgJFPVBgMPw7IkUJa9QtKp2cT2epD634PVSMrYSS0YvJBp6 Q==;
+X-CSE-ConnectionGUID: 3FfrgvWKSc6sHqZx2WVpIQ==
+X-CSE-MsgGUID: 120S8aBaSiupNMG0xaePvw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="55886157"
+X-IronPort-AV: E=Sophos;i="6.14,283,1736841600"; d="scan'208";a="55886157"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2025 03:58:09 -0700
+X-CSE-ConnectionGUID: Iek/3Mw4SHWMNeo2r+T/fw==
+X-CSE-MsgGUID: 0KXJWNuWR9aKUWsq/u/qWg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,283,1736841600"; d="scan'208";a="130625460"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orviesa005.jf.intel.com with SMTP; 28 Mar 2025 03:58:07 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 28 Mar 2025 12:58:06 +0200
+Date: Fri, 28 Mar 2025 12:58:06 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 0/6] drm/i915: dpll, ddi, crc, psr etc conversions to
+ struct intel_display
+Message-ID: <Z-aAvijGRTTANm0_@intel.com>
+References: <cover.1742906146.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/pf=3A_Don=27t_all?=
- =?utf-8?q?ow_LMEM_provisioning_if_LMTT_isn=27t_available_on_the_device?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 28 Mar 2025 10:51:11 -0000
-Message-ID: <174315907116.14705.16590577198702348831@e6b6f09ec485>
-X-Patchwork-Hint: ignore
-References: <20250328102357.2391877-1-piotr.piorkowski@intel.com>
-In-Reply-To: <20250328102357.2391877-1-piotr.piorkowski@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <cover.1742906146.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +67,43 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, Mar 25, 2025 at 02:36:32PM +0200, Jani Nikula wrote:
+> We're getting there!
+> 
+> Jani Nikula (6):
+>   drm/i915/dpll: convert intel_dpll.[ch] to struct intel_display
+>   drm/i915/ddi: convert intel_ddi.c to struct intel_display
+>   drm/i915/crc: convert intel_pipe_crc.c to struct intel_display
+>   drm/i915/psr: further conversions to struct intel_display
+>   drm/i915/wa: convert intel_display_wa.[ch] to struct intel_display
+>   drm/i915/display: drop some unnecessary intel_de_* compatibility
+>     wrappers
 
-Series: drm/xe/pf: Don't allow LMEM provisioning if LMTT isn't available on the device
-URL   : https://patchwork.freedesktop.org/series/146941/
-State : success
+Series is
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-== Summary ==
+> 
+>  drivers/gpu/drm/i915/display/intel_ddi.c      | 904 +++++++++---------
+>  drivers/gpu/drm/i915/display/intel_de.h       |  16 +-
+>  drivers/gpu/drm/i915/display/intel_display.c  |   4 +-
+>  .../drm/i915/display/intel_display_driver.c   |   7 +-
+>  .../gpu/drm/i915/display/intel_display_wa.c   |  30 +-
+>  .../gpu/drm/i915/display/intel_display_wa.h   |  11 +-
+>  drivers/gpu/drm/i915/display/intel_dpll.c     | 312 +++---
+>  drivers/gpu/drm/i915/display/intel_dpll.h     |  13 +-
+>  drivers/gpu/drm/i915/display/intel_fbc.c      |   2 +-
+>  drivers/gpu/drm/i915/display/intel_pipe_crc.c | 137 ++-
+>  drivers/gpu/drm/i915/display/intel_pps.c      |   5 +-
+>  drivers/gpu/drm/i915/display/intel_psr.c      |  85 +-
+>  drivers/gpu/drm/xe/display/xe_display_wa.c    |   6 +-
+>  13 files changed, 729 insertions(+), 803 deletions(-)
+> 
+> -- 
+> 2.39.5
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast f823caa91ed490160b8e87792d3bb26ae3e87de0
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+-- 
+Ville Syrjälä
+Intel
