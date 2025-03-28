@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B6A8C28B20
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 12:14:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 066C4C36013
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 12:19:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19DF910E9F3;
-	Fri, 28 Mar 2025 12:14:07 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hXAojhVl";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FA7310E9F3
- for <intel-xe@lists.freedesktop.org>; Fri, 28 Mar 2025 12:14:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743164045; x=1774700045;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=pKJn8NXj7msaDBJL8XPnLKrwww1rQQ1oX1CDPntw+0g=;
- b=hXAojhVlH5AM1JVvtY/O5Gxu1NbIzpPa9q2Bu5MBwGcMMwiS5VqqG0b8
- MZ97fvjuyuzpE1sA8/QsSCNGrMDYjaHDCLOVGf27JHbQl2nSLCQbjOR5v
- 0AazRdBZdI/89DTzm3ezTqko0PeHIbC6fYIl6mzxqKz/1ZQvAMQePO14m
- Zq6++UdUS0A1VeNxeHDz26utlGdXydZrSdaf78kyPZyo0jkfWbP3RkvAa
- XnvX0VsemtzrNexmh8Diwupn5bn4kMccXoqBfYRm2m5qNkfR/T8OXIgDQ
- D6e4sfp8A3LOjKdzZYnE9mKiDY+n5yOkC7RgEHD9nEmOQvCBfSTEPpB1Y Q==;
-X-CSE-ConnectionGUID: lwuliptRQfm7ELTVdr7JuQ==
-X-CSE-MsgGUID: XJxHlSkAQWyXV8tfGC4VDQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="55524106"
-X-IronPort-AV: E=Sophos;i="6.14,283,1736841600"; d="scan'208";a="55524106"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2025 05:14:04 -0700
-X-CSE-ConnectionGUID: PFMYTjtbQNiXOdWsWKalVA==
-X-CSE-MsgGUID: tNL1EF/LRdyuSVZoqBmsXw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,283,1736841600"; d="scan'208";a="156367792"
-Received: from dgrzegor-mobl2.igk.intel.com ([172.28.180.40])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2025 05:14:04 -0700
-From: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: dominikgrzegorzek@proton.me,
- Dominik Grzegorzek <dominik.grzegorzek@intel.com>
-Subject: [PATCH] mailmap: Add entry for Dominik Grzegorzek
-Date: Fri, 28 Mar 2025 13:13:34 +0100
-Message-Id: <20250328121334.136578-1-dominik.grzegorzek@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id A28E110E1A2;
+	Fri, 28 Mar 2025 12:19:33 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9514D10E1A2;
+ Fri, 28 Mar 2025 12:19:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_mailmap=3A_Add_entry?=
+ =?utf-8?q?_for_Dominik_Grzegorzek?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dominik Grzegorzek" <dominik.grzegorzek@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 28 Mar 2025 12:19:32 -0000
+Message-ID: <174316437260.14705.4666599713706722521@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250328121334.136578-1-dominik.grzegorzek@intel.com>
+In-Reply-To: <20250328121334.136578-1-dominik.grzegorzek@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,29 +36,28 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Because I leave Intel, add mailmap entry which maps Intel email to
-private one.
+== Series Details ==
 
-Signed-off-by: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
----
- .mailmap | 1 +
- 1 file changed, 1 insertion(+)
+Series: mailmap: Add entry for Dominik Grzegorzek
+URL   : https://patchwork.freedesktop.org/series/146948/
+State : failure
 
-diff --git a/.mailmap b/.mailmap
-index 6686879ce0d5..747295e86d85 100644
---- a/.mailmap
-+++ b/.mailmap
-@@ -131,6 +131,7 @@ Dmitry Safonov <0x7f454c46@gmail.com> <dima@arista.com>
- Dmitry Safonov <0x7f454c46@gmail.com> <d.safonov@partner.samsung.com>
- Dmitry Safonov <0x7f454c46@gmail.com> <dsafonov@virtuozzo.com>
- Domen Puncer <domen@coderock.org>
-+Dominik Grzegorzek <dominikgrzegorzek@proton.me> <dominik.grzegorzek@intel.com>
- Douglas Gilbert <dougg@torque.net>
- Ed L. Cashin <ecashin@coraid.com>
- Enric Balletbo i Serra <eballetbo@kernel.org> <enric.balletbo@collabora.com>
--- 
-2.34.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: c66e1b5495ed drm-tip: 2025y-03m-28d-10h-56m-25s UTC integration manifest
+=== git am output follows ===
+error: patch failed: .mailmap:131
+error: .mailmap: patch does not apply
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Applying: mailmap: Add entry for Dominik Grzegorzek
+Patch failed at 0001 mailmap: Add entry for Dominik Grzegorzek
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
 
