@@ -4,33 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2D50C28B20
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 22:34:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9734CC28B20
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Mar 2025 22:40:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8255210EAC7;
-	Fri, 28 Mar 2025 22:34:36 +0000 (UTC)
-Received: from smtp106.iad3a.emailsrvr.com (smtp106.iad3a.emailsrvr.com
- [173.203.187.106])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6777A10EAC7
- for <intel-xe@lists.freedesktop.org>; Fri, 28 Mar 2025 22:34:35 +0000 (UTC)
-X-Auth-ID: kenneth@whitecape.org
-Received: by smtp6.relay.iad3a.emailsrvr.com (Authenticated sender:
- kenneth-AT-whitecape.org) with ESMTPSA id CDFB958F5; 
- Fri, 28 Mar 2025 18:34:30 -0400 (EDT)
-From: Kenneth Graunke <kenneth@whitecape.org>
-To: intel-xe@lists.freedesktop.org
-Cc: Kenneth Graunke <kenneth@whitecape.org>, stable@vger.kernel.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v2] drm/xe: Invalidate L3 read-only cachelines for geometry
- streams too
-Date: Fri, 28 Mar 2025 15:37:15 -0700
-Message-ID: <20250328223734.31212-1-kenneth@whitecape.org>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <Z-b2BYJkz5laBbew@intel.com>
-References: <Z-b2BYJkz5laBbew@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 834A410EAC5;
+	Fri, 28 Mar 2025 22:40:29 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CB8510EAC5;
+ Fri, 28 Mar 2025 22:40:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2099109673321746792=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Classification-ID: b220d8e1-e06c-4730-ba14-654078454d12-1-1
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/xe=5Fvm=3A_Implement?=
+ =?utf-8?q?_xe=5Fvm=5Fget=5Fproperty=5Fioctl_=28rev16=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 28 Mar 2025 22:40:28 -0000
+Message-ID: <174320162814.17146.1513855001414164619@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250328204045.157914-1-jonathan.cavitt@intel.com>
+In-Reply-To: <20250328204045.157914-1-jonathan.cavitt@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,93 +36,209 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Historically, the Vertex Fetcher unit has not been an L3 client.  That
-meant that, when a buffer containing vertex data was written to, it was
-necessary to issue a PIPE_CONTROL::VF Cache Invalidate to invalidate any
-VF L2 cachelines associated with that buffer, so the new value would be
-properly read from memory.
+--===============2099109673321746792==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Since Tigerlake and later, VERTEX_BUFFER_STATE and 3DSTATE_INDEX_BUFFER
-have included an "L3 Bypass Enable" bit which userspace drivers can set
-to request that the vertex fetcher unit snoop L3.  However, unlike most
-true L3 clients, the "VF Cache Invalidate" bit continues to only
-invalidate the VF L2 cache - and not any associated L3 lines.
+== Series Details ==
 
-To handle that, PIPE_CONTROL has a new "L3 Read Only Cache Invalidation
-Bit", which according to the docs, "controls the invalidation of the
-Geometry streams cached in L3 cache at the top of the pipe."  In other
-words, the vertex and index buffer data that gets cached in L3 when
-"L3 Bypass Disable" is set.
+Series: drm/xe/xe_vm: Implement xe_vm_get_property_ioctl (rev16)
+URL   : https://patchwork.freedesktop.org/series/145529/
+State : success
 
-Mesa always sets L3 Bypass Disable so that the VF unit snoops L3, and
-whenever it issues a VF Cache Invalidate, it also issues a L3 Read Only
-Cache Invalidate so that both L2 and L3 vertex data is invalidated.
+== Summary ==
 
-xe is issuing VF cache invalidates too (which handles cases like CPU
-writes to a buffer between GPU batches).  Because userspace may enable
-L3 snooping, it needs to issue an L3 Read Only Cache Invalidate as well.
+CI Bug Log - changes from xe-2874-9447a2490a5bfe1540aa5c59ac9cd537a9574158_BAT -> xe-pw-145529v16_BAT
+====================================================
 
-Fixes significant flickering in Firefox on Meteorlake, which was writing
-to vertex buffers via the CPU between batches; the missing L3 Read Only
-invalidates were causing the vertex fetcher to read stale data from L3.
+Summary
+-------
 
-References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4460
-Cc: stable@vger.kernel.org # v6.13+
-Signed-off-by: Kenneth Graunke <kenneth@whitecape.org>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/xe/instructions/xe_gpu_commands.h |  1 +
- drivers/gpu/drm/xe/xe_ring_ops.c                  | 13 +++++++++----
- 2 files changed, 10 insertions(+), 4 deletions(-)
+  **SUCCESS**
 
-diff --git a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-index a255946b6f77e..8cfcd3360896c 100644
---- a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-+++ b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-@@ -41,6 +41,7 @@
- 
- #define GFX_OP_PIPE_CONTROL(len)	((0x3<<29)|(0x3<<27)|(0x2<<24)|((len)-2))
- 
-+#define	  PIPE_CONTROL0_L3_READ_ONLY_CACHE_INVALIDATE	BIT(10)	/* gen12 */
- #define	  PIPE_CONTROL0_HDC_PIPELINE_FLUSH		BIT(9)	/* gen12 */
- 
- #define   PIPE_CONTROL_COMMAND_CACHE_INVALIDATE		(1<<29)
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 917fc16de866a..a7582b097ae67 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -137,7 +137,8 @@ emit_pipe_control(u32 *dw, int i, u32 bit_group_0, u32 bit_group_1, u32 offset,
- static int emit_pipe_invalidate(u32 mask_flags, bool invalidate_tlb, u32 *dw,
- 				int i)
- {
--	u32 flags = PIPE_CONTROL_CS_STALL |
-+	u32 flags0 = 0;
-+	u32 flags1 = PIPE_CONTROL_CS_STALL |
- 		PIPE_CONTROL_COMMAND_CACHE_INVALIDATE |
- 		PIPE_CONTROL_INSTRUCTION_CACHE_INVALIDATE |
- 		PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE |
-@@ -148,11 +149,15 @@ static int emit_pipe_invalidate(u32 mask_flags, bool invalidate_tlb, u32 *dw,
- 		PIPE_CONTROL_STORE_DATA_INDEX;
- 
- 	if (invalidate_tlb)
--		flags |= PIPE_CONTROL_TLB_INVALIDATE;
-+		flags1 |= PIPE_CONTROL_TLB_INVALIDATE;
- 
--	flags &= ~mask_flags;
-+	flags1 &= ~mask_flags;
- 
--	return emit_pipe_control(dw, i, 0, flags, LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR, 0);
-+	if (flags1 & PIPE_CONTROL_VF_CACHE_INVALIDATE)
-+		flags0 |= PIPE_CONTROL0_L3_READ_ONLY_CACHE_INVALIDATE;
-+
-+	return emit_pipe_control(dw, i, flags0, flags1,
-+				 LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR, 0);
- }
- 
- static int emit_store_imm_ppgtt_posted(u64 addr, u64 value,
--- 
-2.48.1
+  No regressions found.
 
+  
+
+Participating hosts (10 -> 9)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-145529v16_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_evict@evict-beng-small-cm:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][1] ([Intel XE#261] / [Intel XE#688]) +9 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v16/bat-adlp-vf/igt@xe_evict@evict-beng-small-cm.html
+
+  * igt@xe_exec_fault_mode@twice-rebind:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][2] ([Intel XE#288]) +32 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v16/bat-adlp-vf/igt@xe_exec_fault_mode@twice-rebind.html
+
+  * igt@xe_live_ktest@xe_bo:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][3] ([Intel XE#2229] / [Intel XE#455]) +2 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v16/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][4] ([Intel XE#2229])
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v16/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  * igt@xe_pat@pat-index-xe2:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][5] ([Intel XE#977])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v16/bat-adlp-vf/igt@xe_pat@pat-index-xe2.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][6] ([Intel XE#2838] / [Intel XE#979])
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v16/bat-adlp-vf/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][7] ([Intel XE#979])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v16/bat-adlp-vf/igt@xe_pat@pat-index-xelpg.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_pat@pat-index-xelp@render:
+    - bat-adlp-vf:        [ABORT][8] ([Intel XE#3970]) -> [PASS][9] +1 other test pass
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2874-9447a2490a5bfe1540aa5c59ac9cd537a9574158/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v16/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+
+  
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
+  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
+  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
+
+
+Build changes
+-------------
+
+  * Linux: xe-2874-9447a2490a5bfe1540aa5c59ac9cd537a9574158 -> xe-pw-145529v16
+
+  IGT_8292: 8292
+  xe-2874-9447a2490a5bfe1540aa5c59ac9cd537a9574158: 9447a2490a5bfe1540aa5c59ac9cd537a9574158
+  xe-pw-145529v16: 145529v16
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v16/index.html
+
+--===============2099109673321746792==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/xe_vm: Implement xe_vm_get_property_ioctl (rev16)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145529/">https://patchwork.freedesktop.org/series/145529/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v16/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v16/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2874-9447a2490a5bfe1540aa5c59ac9cd537a9574158_BAT -&gt; xe-pw-145529v16_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (10 -&gt; 9)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-145529v16_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_evict@evict-beng-small-cm:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v16/bat-adlp-vf/igt@xe_evict@evict-beng-small-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +9 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-rebind:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v16/bat-adlp-vf/igt@xe_exec_fault_mode@twice-rebind.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v16/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v16/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xe2:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v16/bat-adlp-vf/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v16/bat-adlp-vf/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v16/bat-adlp-vf/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_pat@pat-index-xelp@render:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2874-9447a2490a5bfe1540aa5c59ac9cd537a9574158/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v16/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2874-9447a2490a5bfe1540aa5c59ac9cd537a9574158 -&gt; xe-pw-145529v16</li>
+</ul>
+<p>IGT_8292: 8292<br />
+  xe-2874-9447a2490a5bfe1540aa5c59ac9cd537a9574158: 9447a2490a5bfe1540aa5c59ac9cd537a9574158<br />
+  xe-pw-145529v16: 145529v16</p>
+
+</body>
+</html>
+
+--===============2099109673321746792==--
