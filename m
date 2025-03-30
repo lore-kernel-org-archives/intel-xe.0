@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 046C7C28B20
-	for <intel-xe@archiver.kernel.org>; Sun, 30 Mar 2025 18:17:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94C8CC36010
+	for <intel-xe@archiver.kernel.org>; Sun, 30 Mar 2025 18:18:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCCA710E34A;
-	Sun, 30 Mar 2025 18:17:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55D6A10E34E;
+	Sun, 30 Mar 2025 18:18:02 +0000 (UTC)
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBAA810E34A;
- Sun, 30 Mar 2025 18:17:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1121B10E34E;
+ Sun, 30 Mar 2025 18:18:01 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
- =?utf-8?q?implement_wa=5F18038517565_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_imple?=
+ =?utf-8?q?ment_wa=5F18038517565_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sun, 30 Mar 2025 18:17:49 -0000
-Message-ID: <174335866989.18741.17308850602668399397@e6b6f09ec485>
+Date: Sun, 30 Mar 2025 18:18:01 -0000
+Message-ID: <174335868106.18808.7288439860429776308@e6b6f09ec485>
 X-Patchwork-Hint: ignore
 References: <20250330172616.718188-1-vinod.govindapillai@intel.com>
 In-Reply-To: <20250330172616.718188-1-vinod.govindapillai@intel.com>
@@ -44,13 +44,40 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/i915/display: implement wa_18038517565 (rev3)
 URL   : https://patchwork.freedesktop.org/series/144183/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: e5666096aca2 drm-tip: 2025y-03m-30d-18h-10m-06s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/display: implement wa_18038517565
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+99e5a866b5e13f134e606a3e29d9508d97826fb3
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 8de346ee09711c6273a8fbc239d7faedf3069b0c
+Author: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Date:   Sun Mar 30 20:26:16 2025 +0300
+
+    drm/i915/display: implement wa_18038517565
+    
+    Disable FBC compressor clock gating before enabling FBC and
+    clear it after disabling FBC.
+    
+    v2: update the DG2 registers for this wa
+    
+    v3: use local variable and single line reg definition (Jani)
+    
+    Bspec: 74212, 72197, 69741, 65555
+    Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
++ /mt/dim checkpatch e5666096aca27527596cf05ff22425f56e40dd40 drm-intel
+8de346ee0971 drm/i915/display: implement wa_18038517565
+-:81: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
+#81: FILE: drivers/gpu/drm/i915/i915_reg.h:4248:
++#define MTL_PIPE_CLKGATE_DIS2(pipe)		_MMIO_PIPE(pipe, _MTL_PIPE_CLKGATE_DIS2_A, _MTL_PIPE_CLKGATE_DIS2_B)
+
+total: 0 errors, 1 warnings, 0 checks, 58 lines checked
 
 
