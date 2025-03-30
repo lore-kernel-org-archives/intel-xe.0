@@ -4,52 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DACB5C36008
-	for <intel-xe@archiver.kernel.org>; Sat, 29 Mar 2025 20:26:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEBD2C28B20
+	for <intel-xe@archiver.kernel.org>; Sun, 30 Mar 2025 17:00:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2D1210E2D0;
-	Sat, 29 Mar 2025 20:26:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C63910E08F;
+	Sun, 30 Mar 2025 17:00:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BdRYUtnC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hyg+u4Wl";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DFAB10E2D0
- for <intel-xe@lists.freedesktop.org>; Sat, 29 Mar 2025 20:26:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06A0110E08F
+ for <intel-xe@lists.freedesktop.org>; Sun, 30 Mar 2025 17:00:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743279997; x=1774815997;
- h=date:from:to:cc:subject:message-id;
- bh=n6wpGAbEkTE6PXeRGE0Elgu/32vxSXo+s8H87Kjidi4=;
- b=BdRYUtnCdbPxmyOgYNGd3ppcy4xVNF1Mv0vX+OKrwG4tmR39oSnzWH4v
- /btSktn6t/xpLWob4e2GHckcbXj2r8vheIzThIe4KX3GVqaLKcrOnbscN
- PZxUIlcPJAYoTFMw/mYJvaCRIuCpu1Zzhc4rSL+RAfLNp34xH9ISKWPVh
- OWSoisWp1mdVV9gXIr0o3bJXChXQ1YEYHV3N2hs1m99TUMbUU02+lQOm0
- E1veQ8UjGewEg8aWsxn0eC1ZWXvvjSwRPnk2zlEJD4IzaO3gethSnMSUD
- T6q//r7H5JKWH4N4vb+U1YDclWmAV3oFI9shyly9msdjeEupiip61ZGkq w==;
-X-CSE-ConnectionGUID: 5s4CONw8SUKBKe/cwfzG8g==
-X-CSE-MsgGUID: mBesxU61QmW5qVHlvj1MuQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11388"; a="48397073"
-X-IronPort-AV: E=Sophos;i="6.14,286,1736841600"; d="scan'208";a="48397073"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2025 13:26:36 -0700
-X-CSE-ConnectionGUID: rtedcsEBRAWbHhUTu6tPng==
-X-CSE-MsgGUID: KvLWxDCvQd6LKyo+AwoEdw==
+ t=1743354015; x=1774890015;
+ h=from:to:cc:subject:date:message-id:
+ content-transfer-encoding:mime-version;
+ bh=4+f9FQlz44/bZ45p45KEragT8EAmw1dTmrVK/5c4UQ0=;
+ b=Hyg+u4Wl0rXnLZkMw4jBEdqYAZI1/P8Y0kUKV0u+XAMdGqtoETa3lhmJ
+ f7rPXGHmSQwnO+RzOD60Zus+7tkVhZPdWSedI7l/mRnn09ZHuM2m4p2f+
+ gJ61OWZkOaQ7vSEl9UAB+xpM329Jj7leupft5RIWkmYj3qGgZBzGurC3L
+ NcdHPoOirgJ8WYtEIrlLmHdDKdwToZM3nFWfdWVtiv31Y6S9eR4k8l3sH
+ wMDA/mwQuEqJTwyDwz0kCtgUBYR/xiOwaf+RoUGWMHN/TyV5GRJEo3lla
+ jBipvcWqeH0GkCrWuTal2D+DIDv9FH8iVzyNi0wjP+E8qM9L5/jTTAjgJ A==;
+X-CSE-ConnectionGUID: O3CdFB3TSY+FkLFg+iL4aA==
+X-CSE-MsgGUID: 3QBiBhNLQQOTt7GQDYeWPw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11389"; a="62185433"
+X-IronPort-AV: E=Sophos;i="6.14,289,1736841600"; d="scan'208";a="62185433"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2025 10:00:14 -0700
+X-CSE-ConnectionGUID: wUpsmeylQDG9r6FXMrGWcQ==
+X-CSE-MsgGUID: cJ4wxwUSQ3CPy9DSNRyeKQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,286,1736841600"; d="scan'208";a="125976721"
-Received: from lkp-server02.sh.intel.com (HELO e98e3655d6d2) ([10.239.97.151])
- by fmviesa008.fm.intel.com with ESMTP; 29 Mar 2025 13:26:35 -0700
-Received: from kbuild by e98e3655d6d2 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1tyclF-0008LM-0y;
- Sat, 29 Mar 2025 20:26:33 +0000
-Date: Sun, 30 Mar 2025 04:26:21 +0800
-From: kernel test robot <lkp@intel.com>
-To: John Harrison <John.C.Harrison@Intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- ce22fccd0773834a0b27900395e7b4a329041b6b
-Message-ID: <202503300411.EwLYJ2Dq-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-IronPort-AV: E=Sophos;i="6.14,289,1736841600"; d="scan'208";a="126365358"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2025 10:00:13 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14; Sun, 30 Mar 2025 10:00:12 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14 via Frontend Transport; Sun, 30 Mar 2025 10:00:12 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.46) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Sun, 30 Mar 2025 10:00:12 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=FfrSLo4uQMcHi+VWIzc9tE7sv94FOYWNHgh8EX0lI8fTyTzNNDQ8wxXjkubKmf8klS/WfcfjrqTMnZPQg7UUQRKy/5qEcrxwKc7sm35anifqUvSFbAHMCXXxfD1FipQH26D922byf2Ng7i/rZXcAcmqRWwGUXtf2dBVaS4Hqax4k4N10KcNRqja1+nwMLadQg4EKYbqbfBkAAz0coKNZU6ZMSYRb1iaN+i/h2K97SkFyphmMidQtWi5HS26LhL33btcBegZ7+p7wdMg2FpbxtQz+faGtQyRWcdAloZqOijCCrjewC+812yuNPe4rZXKpzHurKXb67/F5NGLSTbJyRA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ftXs5vmFBCr2pE+TEN2g02O+N6uHGytVuYz4Nr5LciQ=;
+ b=vNgSvjPG5x6thkJd3aASXSdOy1sm3nt59bw4VlbmmeqFBNuu10pGW9GeP4wXZFzbuVmDr6QRa0RuVZ539IXk/QsGnieJZ/0ui+fHhwA0ukXhd26XTHdKh9PFf+oCL2X0Fp+yKZT4YXYv2ePjVU2eNbyR4N63fMusuCrKhUEApROPFaSRN/kdFgDP5F/D7DT27MEIO2PT5TIArHk9FeXi6493WdrrRuCeH+6FaYUd79il4EDIfBolLMPgQ+mLOL6aEmMrScwRdHIfD2mng5Hc66eXUOWxqWYibbQtcpWfbzAAXjW7MAYMqbH82Ts9wYG0lT4UGLEyQrMCOhh24Y6cHg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
+ by SA3PR11MB7980.namprd11.prod.outlook.com (2603:10b6:806:2fc::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.44; Sun, 30 Mar
+ 2025 16:59:29 +0000
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::76d2:8036:2c6b:7563%4]) with mapi id 15.20.8534.043; Sun, 30 Mar 2025
+ 16:59:29 +0000
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+CC: Kenneth Graunke <kenneth@whitecape.org>, <stable@vger.kernel.org>,
+ "Rodrigo Vivi" <rodrigo.vivi@intel.com>
+Subject: [CI] drm/xe: Invalidate L3 read-only cachelines for geometry streams
+ too
+Date: Sun, 30 Mar 2025 12:59:23 -0400
+Message-ID: <20250330165923.56410-1-rodrigo.vivi@intel.com>
+X-Mailer: git-send-email 2.49.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: MW4P221CA0005.NAMP221.PROD.OUTLOOK.COM
+ (2603:10b6:303:8b::10) To CYYPR11MB8430.namprd11.prod.outlook.com
+ (2603:10b6:930:c6::19)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|SA3PR11MB7980:EE_
+X-MS-Office365-Filtering-Correlation-Id: bfead87c-d1b6-4ab6-f4f0-08dd6fac3c0c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?95jr8y2bou4I/F5ikzZNoID2HcltgHZqBq9Q4+Kfl41txro9ZTVe3b8iRqvM?=
+ =?us-ascii?Q?YCq5pvEXjhCQEa3dT/Xqn6f0RNoCOguA2XEekF8QBas4+sXYCq+m5fV3+3Ii?=
+ =?us-ascii?Q?xa8BVmz1MNFQAhHMqbq0b8k+bGiS9AtkCpMPneYajV8DR+pmxbota2bI8094?=
+ =?us-ascii?Q?sJhUT0vaa3qHejdOkQ46/RDD+LeeDl+NFAl6VFysTAlRnx7reL0ubY5iL1ob?=
+ =?us-ascii?Q?HULfwcO0y7awKIw53wvaDF/GuobjJX5NsthnYMSm2Zf2VmnXuu+BItiiGAqf?=
+ =?us-ascii?Q?9hRdETgLw3/CURkGOf7CtBHhxII4liQhGMCIa0U6MOw0JpUkEQ8/uuB29A/5?=
+ =?us-ascii?Q?274yUooo6hzYpLT9S9CZ/6T++/dujKKkFJpKyneqkVmkjcEESqJf8L4MssC6?=
+ =?us-ascii?Q?Q6JzS4dneUktTA9SBR3PvbIBL82ARLZ/ro939OvqblAszsuEhoYZ9ngR7UtS?=
+ =?us-ascii?Q?k2qiYweAoJw83oRBVDHbleD/I2mtI7COtimEMBTqeshqOrnUSyOs4q0MgNup?=
+ =?us-ascii?Q?3iVPMpBqz7LuIqkLqoJ7p31QF0FrpDSUYIlol36QPd6PF2SrJiFUVaH/gwsa?=
+ =?us-ascii?Q?mFPyHwPZkrkEP5ZIDhfLG1Yj9T0yjw+2CgnQJowGRmMPikkdWaWgJ03cflB8?=
+ =?us-ascii?Q?z6nW9iiw7Iak4ZvYeyKqgpb0FVQRUH1ZpG+OdOzxI+P7Ji8KyRXTT1648Qks?=
+ =?us-ascii?Q?HBk0msWQVGaGFX2BICW1ihG6jViIXalIG+90jNiEep3UsxLvU7W8lCtc1/U3?=
+ =?us-ascii?Q?rGTuDjSX2LTo3EjDwzbugtKHRmY1H0fhaTjxfJE4/Rn+1nqyPdxCn+EP5HJd?=
+ =?us-ascii?Q?sBgUwWnGpgDB4YfgDaFyos14fmpbBjza1982Rp3F8PsmM8KWG4fO/S5Dyi3Y?=
+ =?us-ascii?Q?mdcy9sBteUx1eABOX8qGYP83ftLDyNFFl7sYutojojPaGqX9YtuTfkmqIuzC?=
+ =?us-ascii?Q?rmVr4zMEQMRucDH1X2iNXNf8f+FWrFWrFD026mtQKf7mMeIp3wNI+CGfcvxP?=
+ =?us-ascii?Q?iues8BJgp6GOxlUtfOtIMRQmdgCOGhmJUhbk+SR+110sWDnwUmf6kUijErPh?=
+ =?us-ascii?Q?LYAl+x9x3G7qiJ596l7A+iBtfptEuzl+fDyFiaZA3HJjhco4XTDQ9wVRnrKp?=
+ =?us-ascii?Q?dzA/cPE1BB4ht/5x4tzsfe7RFWz7/mgRq6FQOtAHYGkssyqfm1z/3AKQSCa2?=
+ =?us-ascii?Q?5Gqd4h6u2JCjs7jxzRzHlh7wRIthHnW7oGgioC0OP0U71N6M5i48qCM5JIuM?=
+ =?us-ascii?Q?QTwzShqowk+sPsXH1RygAZ4vvRIXgorF5/DFDjBxxZ54chxbfUQsJTQUiFfg?=
+ =?us-ascii?Q?Pl+Eav5LkHJorFpTeT7S+MhEP8O1+EVQ0kA2004/H3u5vw=3D=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?kRx9/E3Wr5uQpNDJ1LFDN40YxNNDTzMATSvjogU7KFrX6mFzHoGLzeT3Hv+i?=
+ =?us-ascii?Q?lfaRvWzS+tcgLNm/qohGKOZzYfonqoExDnrFbrFP9593l3V93uAuFyFXjhVn?=
+ =?us-ascii?Q?6zZThMky0zdH1/tJ4zAipKvL+j14m8+fynQj4V0e8H+xGGNrYSlMFwZNQwk3?=
+ =?us-ascii?Q?iwXKjoffr5sicJCfldFj55DaVx83cYf8QyUY5ViEtOPIh2ph1nc+O7N2ld72?=
+ =?us-ascii?Q?2Ql363S3vHTOyGM3FJhDnMXEpOv0C65IEk4JgY9gWty1/5OhfTmYz7fruy4s?=
+ =?us-ascii?Q?PmEDGlSPppm2dcv8jlmnb4/4h1mWGW/7KaMqY3ybNgI14pIWKCc7uUkH67H+?=
+ =?us-ascii?Q?YbNHe0TzQoKG9bRtWEkV+rs7P58GCw5OiMTmX2cakPDZhKmREGjkPES4mpwJ?=
+ =?us-ascii?Q?qOJikHxCDNrQ0KVy8lONE1BPWRmvcQ+qWdF9RGO5U2Je+at8iafWfxxrf74g?=
+ =?us-ascii?Q?D/a1FWSE8xPKkii+MUpGcpzSYATUQa1+U7qMYid93n/sQ37RC/iFIZdn0eg1?=
+ =?us-ascii?Q?LTaae15dyDzhgMKn4ePKgOGWVPLqDGD9NWRRa1L/hElB0bMCuTQ92u8+mkez?=
+ =?us-ascii?Q?S+4/UTH0cfJOc1TtdUWQ+hL40UjCX6m+2V9M5V4qSx9MvwK+Us7/h4oDkzcB?=
+ =?us-ascii?Q?ybBhu+e/MXbp9eQaxpRf0M3S7kLpmt/QcZT0Km6mX6LpgFVJ8ayH7ThqRmGF?=
+ =?us-ascii?Q?POjqMefb6+i5IT+8eRz2YiKfFV+d+t1XLBUK5T41xEOZ25VCG5mDoySenDfK?=
+ =?us-ascii?Q?35wc0wUxmNY5rjumfLKPQoipqLsma3lJpUUHbAYKaTxD4+dDkf2Lxg14rYX0?=
+ =?us-ascii?Q?xg25u3x5qR56u0MYZYAIRAYAfgBpYfsunceT/WBVkNmUuCi0YlHAHnLNOuOD?=
+ =?us-ascii?Q?NcBlb/caxtHJqYcy5Sp9zX3LKQeiPfsEBepj31ehu7k6xaAPsXUITQnwqWNw?=
+ =?us-ascii?Q?0yUudGCPaED3hV9Ngm2FuC5HcqZbLpJIfky0+kFmNImbxbkprhrdSQj8Exb7?=
+ =?us-ascii?Q?wgpA+FvTlg/ibVBRtUgfF+GxHY0r0aYI+NDo9/C0C+eQ8vNpc5M+ExPbxkSF?=
+ =?us-ascii?Q?qVOnLxG4/eF+lzz7ipUK47+HT1YJ7PtStFIod0IXSF/f7DXVNRO+Kkea7F9P?=
+ =?us-ascii?Q?aj7NOe49dXYDhzulcPMDbOhx1g2LUaC8o8tQiAw0sEcWK8jgdneI4Uk0k6I5?=
+ =?us-ascii?Q?zNO/qY8B+ytWdF1rEBKNaOtv4Fp2cgFO5ReYNCjY5yEsELXzwFS8tpzpe8Vm?=
+ =?us-ascii?Q?rkn5+w5JABnb0PDmUHKgkNGvkMwU1Jg1I1kBkAR2H1Z/vAb0AA5Ge67LTWno?=
+ =?us-ascii?Q?q3GH8lhR9Yq3/lB1gmjQGBIH96rNZUgqdhxY/n/+Oa+z/X6bK01YZVYobXNY?=
+ =?us-ascii?Q?MFqvm1Haz731okzLbPSkfeCAmUfQTCBQxhhXyUD6p2UpPi1oFoiCfOpguHyM?=
+ =?us-ascii?Q?Q4tSecPUx5NcTdg1oCKXgEVVaihdJaAdCCi0cUPUgm51tBm1UEEU9v2zWI/9?=
+ =?us-ascii?Q?UyMjunMJMVOeW83jV/zuHOmO4pA/5cBYKzetrji+e1uRB6rqZvDAAO6c3oKT?=
+ =?us-ascii?Q?p7FbqjIOrzWj2Fb7irO2QT85DEhx5gqzoqgK5kBeO2nZQW5HJiWHGed30vQp?=
+ =?us-ascii?Q?Ig=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: bfead87c-d1b6-4ab6-f4f0-08dd6fac3c0c
+X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2025 16:59:29.0934 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: H3yIs9lwhwjel3qaVGK09OVYBgYmpTYdUkQmruIqsrhfTX8RsCkr061HK/OKsEneCoW3J7ZqPJQnT1RZqMmUog==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB7980
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,150 +174,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: ce22fccd0773834a0b27900395e7b4a329041b6b  drm/xe/guc: Re-word message about ADS size changes
+From: Kenneth Graunke <kenneth@whitecape.org>
 
-elapsed time: 1446m
+Historically, the Vertex Fetcher unit has not been an L3 client.  That
+meant that, when a buffer containing vertex data was written to, it was
+necessary to issue a PIPE_CONTROL::VF Cache Invalidate to invalidate any
+VF L2 cachelines associated with that buffer, so the new value would be
+properly read from memory.
 
-configs tested: 131
-configs skipped: 3
+Since Tigerlake and later, VERTEX_BUFFER_STATE and 3DSTATE_INDEX_BUFFER
+have included an "L3 Bypass Enable" bit which userspace drivers can set
+to request that the vertex fetcher unit snoop L3.  However, unlike most
+true L3 clients, the "VF Cache Invalidate" bit continues to only
+invalidate the VF L2 cache - and not any associated L3 lines.
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+To handle that, PIPE_CONTROL has a new "L3 Read Only Cache Invalidation
+Bit", which according to the docs, "controls the invalidation of the
+Geometry streams cached in L3 cache at the top of the pipe."  In other
+words, the vertex and index buffer data that gets cached in L3 when
+"L3 Bypass Disable" is set.
 
-tested configs:
-alpha                             allnoconfig    gcc-14.2.0
-alpha                            allyesconfig    gcc-14.2.0
-arc                              allmodconfig    gcc-14.2.0
-arc                               allnoconfig    gcc-14.2.0
-arc                              allyesconfig    gcc-14.2.0
-arc                            hsdk_defconfig    gcc-14.2.0
-arc                   randconfig-001-20250329    gcc-14.2.0
-arc                   randconfig-002-20250329    gcc-14.2.0
-arm                              allmodconfig    gcc-14.2.0
-arm                               allnoconfig    clang-21
-arm                              allyesconfig    gcc-14.2.0
-arm                   milbeaut_m10v_defconfig    clang-19
-arm                            mmp2_defconfig    gcc-14.2.0
-arm                            mps2_defconfig    clang-21
-arm                        neponset_defconfig    gcc-14.2.0
-arm                   randconfig-001-20250329    gcc-9.3.0
-arm                   randconfig-002-20250329    clang-17
-arm                   randconfig-003-20250329    clang-21
-arm                   randconfig-004-20250329    clang-21
-arm                           sunxi_defconfig    gcc-14.2.0
-arm64                            allmodconfig    clang-19
-arm64                             allnoconfig    gcc-14.2.0
-arm64                 randconfig-001-20250329    gcc-7.5.0
-arm64                 randconfig-002-20250329    gcc-9.5.0
-arm64                 randconfig-003-20250329    gcc-5.5.0
-arm64                 randconfig-004-20250329    gcc-5.5.0
-csky                              allnoconfig    gcc-14.2.0
-csky                  randconfig-001-20250329    gcc-11.5.0
-csky                  randconfig-002-20250329    gcc-13.3.0
-hexagon                          allmodconfig    clang-17
-hexagon                           allnoconfig    clang-21
-hexagon                          allyesconfig    clang-21
-hexagon               randconfig-001-20250329    clang-21
-hexagon               randconfig-002-20250329    clang-21
-i386                             allmodconfig    gcc-12
-i386                              allnoconfig    gcc-12
-i386                             allyesconfig    gcc-12
-i386        buildonly-randconfig-001-20250329    gcc-12
-i386        buildonly-randconfig-002-20250329    gcc-12
-i386        buildonly-randconfig-003-20250329    clang-20
-i386        buildonly-randconfig-004-20250329    gcc-11
-i386        buildonly-randconfig-005-20250329    gcc-12
-i386        buildonly-randconfig-006-20250329    clang-20
-i386                                defconfig    clang-20
-loongarch                        allmodconfig    gcc-14.2.0
-loongarch                         allnoconfig    gcc-14.2.0
-loongarch                 loongson3_defconfig    gcc-14.2.0
-loongarch             randconfig-001-20250329    gcc-14.2.0
-loongarch             randconfig-002-20250329    gcc-14.2.0
-m68k                             allmodconfig    gcc-14.2.0
-m68k                              allnoconfig    gcc-14.2.0
-m68k                             allyesconfig    gcc-14.2.0
-m68k                       bvme6000_defconfig    gcc-14.2.0
-microblaze                       allmodconfig    gcc-14.2.0
-microblaze                        allnoconfig    gcc-14.2.0
-microblaze                       allyesconfig    gcc-14.2.0
-mips                              allnoconfig    gcc-14.2.0
-mips                      bmips_stb_defconfig    clang-21
-mips                        vocore2_defconfig    clang-15
-nios2                             allnoconfig    gcc-14.2.0
-nios2                 randconfig-001-20250329    gcc-7.5.0
-nios2                 randconfig-002-20250329    gcc-7.5.0
-openrisc                         alldefconfig    gcc-14.2.0
-openrisc                          allnoconfig    gcc-14.2.0
-openrisc                         allyesconfig    gcc-14.2.0
-openrisc                            defconfig    gcc-14.2.0
-parisc                           allmodconfig    gcc-14.2.0
-parisc                            allnoconfig    gcc-14.2.0
-parisc                           allyesconfig    gcc-14.2.0
-parisc                              defconfig    gcc-14.2.0
-parisc                randconfig-001-20250329    gcc-6.5.0
-parisc                randconfig-002-20250329    gcc-14.2.0
-powerpc                          allmodconfig    gcc-14.2.0
-powerpc                           allnoconfig    gcc-14.2.0
-powerpc                          allyesconfig    clang-21
-powerpc                 mpc832x_rdb_defconfig    gcc-14.2.0
-powerpc               randconfig-001-20250329    gcc-5.5.0
-powerpc               randconfig-002-20250329    gcc-5.5.0
-powerpc               randconfig-003-20250329    gcc-9.3.0
-powerpc                     sequoia_defconfig    clang-17
-powerpc                     tqm8541_defconfig    clang-21
-powerpc64             randconfig-001-20250329    gcc-9.3.0
-powerpc64             randconfig-002-20250329    gcc-9.3.0
-powerpc64             randconfig-003-20250329    clang-21
-riscv                            allmodconfig    clang-21
-riscv                             allnoconfig    gcc-14.2.0
-riscv                            allyesconfig    clang-16
-riscv                               defconfig    clang-21
-riscv                 randconfig-001-20250329    gcc-14.2.0
-riscv                 randconfig-002-20250329    gcc-14.2.0
-s390                             allmodconfig    clang-18
-s390                              allnoconfig    clang-15
-s390                             allyesconfig    gcc-14.2.0
-s390                                defconfig    clang-15
-s390                  randconfig-001-20250329    gcc-8.5.0
-s390                  randconfig-002-20250329    gcc-6.5.0
-sh                               allmodconfig    gcc-14.2.0
-sh                                allnoconfig    gcc-14.2.0
-sh                               allyesconfig    gcc-14.2.0
-sh                                  defconfig    gcc-14.2.0
-sh                            hp6xx_defconfig    gcc-14.2.0
-sh                          landisk_defconfig    gcc-14.2.0
-sh                    randconfig-001-20250329    gcc-5.5.0
-sh                    randconfig-002-20250329    gcc-11.5.0
-sparc                            allmodconfig    gcc-14.2.0
-sparc                             allnoconfig    gcc-14.2.0
-sparc                 randconfig-001-20250329    gcc-8.5.0
-sparc                 randconfig-002-20250329    gcc-8.5.0
-sparc64                             defconfig    gcc-14.2.0
-sparc64               randconfig-001-20250329    gcc-6.5.0
-sparc64               randconfig-002-20250329    gcc-14.2.0
-um                               allmodconfig    clang-19
-um                                allnoconfig    clang-21
-um                               allyesconfig    gcc-12
-um                                  defconfig    clang-21
-um                             i386_defconfig    gcc-12
-um                    randconfig-001-20250329    gcc-12
-um                    randconfig-002-20250329    gcc-12
-um                           x86_64_defconfig    clang-15
-x86_64                            allnoconfig    clang-20
-x86_64                           allyesconfig    clang-20
-x86_64      buildonly-randconfig-001-20250329    clang-20
-x86_64      buildonly-randconfig-002-20250329    gcc-12
-x86_64      buildonly-randconfig-003-20250329    gcc-12
-x86_64      buildonly-randconfig-004-20250329    clang-20
-x86_64      buildonly-randconfig-005-20250329    clang-20
-x86_64      buildonly-randconfig-006-20250329    gcc-12
-x86_64                              defconfig    gcc-11
-xtensa                            allnoconfig    gcc-14.2.0
-xtensa                randconfig-001-20250329    gcc-10.5.0
-xtensa                randconfig-002-20250329    gcc-12.4.0
+Mesa always sets L3 Bypass Disable so that the VF unit snoops L3, and
+whenever it issues a VF Cache Invalidate, it also issues a L3 Read Only
+Cache Invalidate so that both L2 and L3 vertex data is invalidated.
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+xe is issuing VF cache invalidates too (which handles cases like CPU
+writes to a buffer between GPU batches).  Because userspace may enable
+L3 snooping, it needs to issue an L3 Read Only Cache Invalidate as well.
+
+Fixes significant flickering in Firefox on Meteorlake, which was writing
+to vertex buffers via the CPU between batches; the missing L3 Read Only
+invalidates were causing the vertex fetcher to read stale data from L3.
+
+References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4460
+Cc: stable@vger.kernel.org # v6.13+
+Signed-off-by: Kenneth Graunke <kenneth@whitecape.org>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/xe/instructions/xe_gpu_commands.h |  1 +
+ drivers/gpu/drm/xe/xe_ring_ops.c                  | 13 +++++++++----
+ 2 files changed, 10 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
+index a255946b6f77..8cfcd3360896 100644
+--- a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
++++ b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
+@@ -41,6 +41,7 @@
+ 
+ #define GFX_OP_PIPE_CONTROL(len)	((0x3<<29)|(0x3<<27)|(0x2<<24)|((len)-2))
+ 
++#define	  PIPE_CONTROL0_L3_READ_ONLY_CACHE_INVALIDATE	BIT(10)	/* gen12 */
+ #define	  PIPE_CONTROL0_HDC_PIPELINE_FLUSH		BIT(9)	/* gen12 */
+ 
+ #define   PIPE_CONTROL_COMMAND_CACHE_INVALIDATE		(1<<29)
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index 917fc16de866..a7582b097ae6 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -137,7 +137,8 @@ emit_pipe_control(u32 *dw, int i, u32 bit_group_0, u32 bit_group_1, u32 offset,
+ static int emit_pipe_invalidate(u32 mask_flags, bool invalidate_tlb, u32 *dw,
+ 				int i)
+ {
+-	u32 flags = PIPE_CONTROL_CS_STALL |
++	u32 flags0 = 0;
++	u32 flags1 = PIPE_CONTROL_CS_STALL |
+ 		PIPE_CONTROL_COMMAND_CACHE_INVALIDATE |
+ 		PIPE_CONTROL_INSTRUCTION_CACHE_INVALIDATE |
+ 		PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE |
+@@ -148,11 +149,15 @@ static int emit_pipe_invalidate(u32 mask_flags, bool invalidate_tlb, u32 *dw,
+ 		PIPE_CONTROL_STORE_DATA_INDEX;
+ 
+ 	if (invalidate_tlb)
+-		flags |= PIPE_CONTROL_TLB_INVALIDATE;
++		flags1 |= PIPE_CONTROL_TLB_INVALIDATE;
+ 
+-	flags &= ~mask_flags;
++	flags1 &= ~mask_flags;
+ 
+-	return emit_pipe_control(dw, i, 0, flags, LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR, 0);
++	if (flags1 & PIPE_CONTROL_VF_CACHE_INVALIDATE)
++		flags0 |= PIPE_CONTROL0_L3_READ_ONLY_CACHE_INVALIDATE;
++
++	return emit_pipe_control(dw, i, flags0, flags1,
++				 LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR, 0);
+ }
+ 
+ static int emit_store_imm_ppgtt_posted(u64 addr, u64 value,
+-- 
+2.49.0
+
