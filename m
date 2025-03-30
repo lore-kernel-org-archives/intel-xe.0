@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63737C28B20
-	for <intel-xe@archiver.kernel.org>; Sun, 30 Mar 2025 17:27:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1697C36010
+	for <intel-xe@archiver.kernel.org>; Sun, 30 Mar 2025 18:06:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F35A10E30E;
-	Sun, 30 Mar 2025 17:27:23 +0000 (UTC)
-Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F2B510E30E;
- Sun, 30 Mar 2025 17:27:22 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 936BC10E344;
+	Sun, 30 Mar 2025 18:06:12 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XdPH12KJ";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A20FB10E344;
+ Sun, 30 Mar 2025 18:06:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1743357971; x=1774893971;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4rRwOlwAX55kNVfRgYwOOvyspZCorxIXn5b6ede//Xw=;
+ b=XdPH12KJSE3mSqLscwBujPTgatAwhtZ8Hpw6A/8Ys8aE+cYXUZw9XYkR
+ e0IwJoRvL1aCvGaOJAlfibJhb8YkLCh1qW+tvQE9VEprZhWbhcqzD/pHo
+ l5N+LpYFrZtwxF8Di0cin9BIyEdfLyhakFX/OZunECP37t3XJbq7DTx3k
+ CISS3uTIduFISnO/RYJEe4LxCh7yETsP4IiUlsl6pqutCyg9MHzPHhO7A
+ CBx7ZKWbPqXR+cavAyHr0kddw61igGWD3E5XZfvtzQu3TbdgYBsezO3mf
+ s9JhPXsQ355cMqLWHEvG194+/PUpc9bQgQKoqsldbyCXIWo4AkprtiSF7 Q==;
+X-CSE-ConnectionGUID: x0CswFiLQiu8dHYFor9JhQ==
+X-CSE-MsgGUID: Vg2qUl5US5qXt/Gevv43CQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11389"; a="48316741"
+X-IronPort-AV: E=Sophos;i="6.14,289,1736841600"; d="scan'208";a="48316741"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2025 11:06:09 -0700
+X-CSE-ConnectionGUID: M8RBaY0qRAC6YGuVkO8rNw==
+X-CSE-MsgGUID: FVJF795fQDSuuriq89voNQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,289,1736841600"; d="scan'208";a="149081570"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO
+ vgovind2-mobl3.intel.com) ([10.245.246.159])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2025 11:06:06 -0700
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: vinod.govindapillai@intel.com, uma.shankar@intel.com,
+ jani.saarinen@intel.com
+Subject: [PATCH v1] drm/i915/display: implement wa_14022269668
+Date: Sun, 30 Mar 2025 21:05:54 +0300
+Message-ID: <20250330180554.729353-1-vinod.govindapillai@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe=3A_Invalidate_L3_?=
- =?utf-8?q?read-only_cachelines_for_geometry_streams_too_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Kenneth Graunke" <kenneth@whitecape.org>
-Cc: intel-xe@lists.freedesktop.org
-Date: Sun, 30 Mar 2025 17:27:22 -0000
-Message-ID: <174335564225.18741.11562469036611187312@e6b6f09ec485>
-X-Patchwork-Hint: ignore
-References: <20250330165923.56410-1-rodrigo.vivi@intel.com>
-In-Reply-To: <20250330165923.56410-1-rodrigo.vivi@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +65,38 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Woraround recommend programming the fbc_stride for bmg always.
+Display driver handles the need to program the fbc stride using
+the override stride. So ensure that we always get the override
+stride in case of bmg
 
-Series: drm/xe: Invalidate L3 read-only cachelines for geometry streams too (rev4)
-URL   : https://patchwork.freedesktop.org/series/146522/
-State : success
+Bspec: 74212
+Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_fbc.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 9b76925c9c5bc22d87fb7c1f710aad326d45a6d5
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index e89cee323d8b..970f8c96cc85 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -252,9 +252,12 @@ static u16 intel_fbc_override_cfb_stride(const struct intel_plane_state *plane_s
+ 	 * Gen9 hw miscalculates cfb stride for linear as
+ 	 * PLANE_STRIDE*512 instead of PLANE_STRIDE*64, so
+ 	 * we always need to use the override there.
++	 *
++	 * wa_14022269668 For bmg, always program the FBC_STRIDE before fbc enable
+ 	 */
+ 	if (stride != stride_aligned ||
+-	    (DISPLAY_VER(display) == 9 && fb->modifier == DRM_FORMAT_MOD_LINEAR))
++	    (DISPLAY_VER(display) == 9 && fb->modifier == DRM_FORMAT_MOD_LINEAR) ||
++	    display->platform.battlemage)
+ 		return stride_aligned * 4 / 64;
+ 
+ 	return 0;
+-- 
+2.43.0
 
