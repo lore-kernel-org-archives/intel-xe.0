@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD968C3600B
-	for <intel-xe@archiver.kernel.org>; Mon, 31 Mar 2025 14:24:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F59DC3600B
+	for <intel-xe@archiver.kernel.org>; Mon, 31 Mar 2025 14:24:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 938A510E054;
-	Mon, 31 Mar 2025 14:24:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57BFF10E401;
+	Mon, 31 Mar 2025 14:24:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pid5yJWI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OINkPiPD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8300E10E054
- for <intel-xe@lists.freedesktop.org>; Mon, 31 Mar 2025 14:24:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D943D10E401
+ for <intel-xe@lists.freedesktop.org>; Mon, 31 Mar 2025 14:24:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743431084; x=1774967084;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=7Yfl+MRMEmwy6Z+2Y3CH1Y9lJkYod34GPrDUs/X65wM=;
- b=Pid5yJWIk2xVs3m7SEXg3vyVjLi026dXpB8ogRC+p57NPrQhwkw9hMMe
- 7smSh6W6HVjOjjj8oOqn/RTt1Exi06HWNg+udRRkNY49BZs9wKWmGpZJ7
- IPeYY8SleTqbzHsrPiluYdAUI91e8J3nRjY0ZJh/gOq2L0RPLTsAteEc7
- +Vz4jmBOyOtpnGBFVkZzGnuFwbZ9hHPYborSPVYyzQACVqWnw9Y5i5wij
- /Rd2JQPrGJNwSgywIm+qLOH/oV903w0DzGrF+ofKSsbkEE+VDkQRuGUzm
- hdOF6Yqw7Q4JkQ+z31lnO0hll+bN3F+LYKX2KEfV/ctXlvs3Y/j2y8x6u Q==;
-X-CSE-ConnectionGUID: tJVHyv+HSTStv5US8LvlCw==
-X-CSE-MsgGUID: pY4FjKZNT4qozRBjo0i7Yw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11390"; a="44606190"
-X-IronPort-AV: E=Sophos;i="6.14,290,1736841600"; d="scan'208";a="44606190"
+ t=1743431089; x=1774967089;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=418SvXn4ao+nu8cayHlTU673NXVB0SMyyrRlHIU/cHE=;
+ b=OINkPiPDN8qzZZQaAgkJmEY6QBqUZ0JqEMMD+dsjeS4qCvFHO1iZtD/T
+ 0eqggF/c81jYnm1Rij2Zfzj7jGZybyPya7EZJ1fmKmfAs1yTrPqrbJOPb
+ W6mbKa/pI09S2zQs3Gfoktga9mL5Pz4EGwB5YAYX1jP8iuucO2R/1p3k7
+ bFqzAaPKzvSt/l/RQ2yaWsjceFMzdokOhf9J7qrNqWke1p58bYkHaElAH
+ RfZ92aXDL8lSifvQAtnKKfI7V55aoBj6+3wElY5aGaydPeoUrLXfqnPnf
+ H5Ux+BqvizEy4+qGb7mqlNQpdZMjVhEeClD7kkUCNYCaWkrN64OpMTM7c w==;
+X-CSE-ConnectionGUID: 7+tpFenUSUm8sVQELAYi1g==
+X-CSE-MsgGUID: Wa7Gwl0STIWRL3c8NOrz1w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11390"; a="44606210"
+X-IronPort-AV: E=Sophos;i="6.14,290,1736841600"; d="scan'208";a="44606210"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2025 07:24:44 -0700
-X-CSE-ConnectionGUID: crU1C803RUaQhkLtHDX2WA==
-X-CSE-MsgGUID: u/7RPNJCT6GPFu6ThMKtwA==
+ 31 Mar 2025 07:24:49 -0700
+X-CSE-ConnectionGUID: oY+UI0AHQrGXJmD9gUP3UA==
+X-CSE-MsgGUID: 4fq8XWkmRX+AXxKSq9lqOA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,290,1736841600"; d="scan'208";a="130808252"
+X-IronPort-AV: E=Sophos;i="6.14,290,1736841600"; d="scan'208";a="130808260"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa005.fm.intel.com with ESMTP; 31 Mar 2025 07:24:42 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 31 Mar 2025 07:24:47 -0700
 From: Raag Jadav <raag.jadav@intel.com>
 To: lucas.demarchi@intel.com,
 	rodrigo.vivi@intel.com
 Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
  badal.nilawar@intel.com, riana.tauro@intel.com,
  Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v1 0/2] DGFX PCIe Gen5 update telemetry and usage
-Date: Mon, 31 Mar 2025 19:53:34 +0530
-Message-Id: <20250331142336.640226-1-raag.jadav@intel.com>
+Subject: [PATCH v1 2/2] drm/xe/doc: Wire up PCIe Gen5 update limitations
+Date: Mon, 31 Mar 2025 19:53:36 +0530
+Message-Id: <20250331142336.640226-3-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250331142336.640226-1-raag.jadav@intel.com>
+References: <20250331142336.640226-1-raag.jadav@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,18 +68,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This series exposes debugfs telemetry for PCIe Gen5 update for discrete
-GPUs and documents its usage.
+Append PCIe Gen5 update limitations to xe_firmware document.
 
-Raag Jadav (2):
-  drm/xe/debugfs: Expose PCIe Gen5 update telemetry
-  drm/xe/doc: Wire up PCIe Gen5 update limitations
+Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+---
+ Documentation/gpu/xe/xe_firmware.rst | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
- Documentation/gpu/xe/xe_firmware.rst |  6 ++
- drivers/gpu/drm/xe/xe_debugfs.c      | 93 ++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_pcode_api.h    |  4 ++
- 3 files changed, 103 insertions(+)
-
+diff --git a/Documentation/gpu/xe/xe_firmware.rst b/Documentation/gpu/xe/xe_firmware.rst
+index afcb561cd37d..0c3f93e920fe 100644
+--- a/Documentation/gpu/xe/xe_firmware.rst
++++ b/Documentation/gpu/xe/xe_firmware.rst
+@@ -31,6 +31,12 @@ GuC Power Conservation (PC)
+ .. kernel-doc:: drivers/gpu/drm/xe/xe_guc_pc.c
+    :doc: GuC Power Conservation (PC)
+ 
++PCIe Gen5 Update Limitations
++============================
++
++.. kernel-doc:: drivers/gpu/drm/xe/xe_debugfs.c
++   :doc: PCIe Gen5 Update Limitations
++
+ Internal API
+ ============
+ 
 -- 
 2.34.1
 
