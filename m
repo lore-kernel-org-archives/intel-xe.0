@@ -4,56 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0596CC3601A
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Apr 2025 08:56:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00E69C3601A
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Apr 2025 09:26:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB2A510E525;
-	Tue,  1 Apr 2025 08:56:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A916010E534;
+	Tue,  1 Apr 2025 09:26:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S1chuqa2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="igAtX80g";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67ECE10E525;
- Tue,  1 Apr 2025 08:56:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E805D10E525;
+ Tue,  1 Apr 2025 09:25:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743497792; x=1775033792;
+ t=1743499559; x=1775035559;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=hXC+wqQB4Tjkka1nGzgSbhvGGl2YitLZG06Vbu6loZg=;
- b=S1chuqa2nbzpwCADhj7HQb3nihbvoWJVTHZ+Af4VuXbiYMsp4MNK6xoZ
- cxRaTf2K1ZXoQGSQ4F4AT5V5X+iocBf1ClRCjUA/wXoZ0pJdqvXYZwIC1
- clR6LdLBGnLus2OpFNAz6hW6gm1CNX9m+dJ/xsanMzxF7p1wYR/9lTIkx
- OP74HAfAmmBM4C/GNVnCQN7nWjJug1iYCas8iMwb+R557Y7zqxRNit+GX
- lJaJuPitjlx0QckSo40APDwTU3w5SnHKlhU+tDX7sK7Oz2Kqbpv8zCy3m
- WhZnQRr0GFuKKhEkX6M81Wzblfa4MlB1TSRTvbyZAsMcV9vs3nm3esNpH g==;
-X-CSE-ConnectionGUID: Jz/NoI67QxaB8Ls4isdcJQ==
-X-CSE-MsgGUID: jLuLvyivS/qOtzwsBPjoNg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11390"; a="56181063"
-X-IronPort-AV: E=Sophos;i="6.14,292,1736841600"; d="scan'208";a="56181063"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2025 01:56:32 -0700
-X-CSE-ConnectionGUID: RqFsnUwVSfGho9IRjP070Q==
-X-CSE-MsgGUID: YbzSEvfSSPGyz3G8keboGw==
+ message-id:mime-version:content-transfer-encoding;
+ bh=UGFXOToh6lfrPiPPb90VuHeAZQFaVEXIK7NGG0GjVCM=;
+ b=igAtX80gZggpVxCyvJI1iQkfQ2TLa+fCM+Ouwb3EA03lIEdxBUTxRqKk
+ 0ibVEykHmrADsaPphS7JU9rFaceERR4AFiwXF8cHnswSKuZTjHdjL1S6U
+ PEhm6ha901j/Tr4TNnXKLYKO5bvNpZCZIYW1579BxHpdxVASQuSpXl2kJ
+ bDMDtmfTWxKTNjqvb/B2+2EzR3kNL+xzOr3EkWMvI80e5lu4CG37pTyqW
+ RUzUgEHWqxnG7mSE05Tbno+xP6fYL0vkEdxm2u2CpnjSjiR1XSX4PKsGb
+ oSExNaRMKHqxoLEcr5PszMiIxP6B9Kd5k5W7RsaNRMRBxtf3VGeDbqXy0 g==;
+X-CSE-ConnectionGUID: 1/Ah8te9QJWgyIVfcFvLSw==
+X-CSE-MsgGUID: wdlwcASqT5+rvRTSwCZdKQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11390"; a="32411046"
+X-IronPort-AV: E=Sophos;i="6.14,293,1736841600"; d="scan'208";a="32411046"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2025 02:25:56 -0700
+X-CSE-ConnectionGUID: 3RM/SkxCShOsKKMWggYaFw==
+X-CSE-MsgGUID: KMq0UoMJToy0VxrQN2RF2w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,292,1736841600"; d="scan'208";a="131459006"
+X-IronPort-AV: E=Sophos;i="6.14,293,1736841600"; d="scan'208";a="126327679"
 Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.7])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2025 01:56:30 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915: reduce intel_wakeref.h dependencies
-In-Reply-To: <Z-bFEou3Q7xsksi_@intel.com>
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2025 02:25:54 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: Re: [PATCH] drm/i915/psr: Prevent DP Panel Replay as well when CRC
+ is enable
+In-Reply-To: <20250331090747.2964028-1-jouni.hogander@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250326115452.2090275-1-jani.nikula@intel.com>
- <Z-bFEou3Q7xsksi_@intel.com>
-Date: Tue, 01 Apr 2025 11:56:27 +0300
-Message-ID: <875xjo45vo.fsf@intel.com>
+References: <20250331090747.2964028-1-jouni.hogander@intel.com>
+Date: Tue, 01 Apr 2025 12:25:51 +0300
+Message-ID: <87wmc42py8.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,23 +70,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 28 Mar 2025, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Wed, Mar 26, 2025 at 01:54:52PM +0200, Jani Nikula wrote:
->> Forward declare struct drm_printer instead of including drm/drm_print.h,
->> as we only need the pointer. Turns out quite a few places depend on this
->> include implicitly. Make them explicit.
->> 
->> Some of the includes are just stale and unnecessary. Group the forward
->> declarations together while at it.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+On Mon, 31 Mar 2025, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrote:
+> We are seeing timeouts in opening CRC fd when testing on setup where DP
+> Panel Replay can be enabled. Fix these by checking if CRC is enabled for =
+DP
+> Panel Replay as well.
+>
+> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
 
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Thanks for the review, pushed to din.
 
-BR,
-Jani.
+> ---
+>  drivers/gpu/drm/i915/display/intel_psr.c | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i=
+915/display/intel_psr.c
+> index c4be3f46511f7..c8cfa27fb043d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -1595,6 +1595,12 @@ _panel_replay_compute_config(struct intel_dp *inte=
+l_dp,
+>  		return false;
+>  	}
+>=20=20
+> +	if (crtc_state->crc_enabled) {
+> +		drm_dbg_kms(display->drm,
+> +			    "Panel Replay not enabled because it would inhibit pipe CRC calcu=
+lation\n");
+> +		return false;
+> +	}
+> +
+>  	if (!intel_dp_is_edp(intel_dp))
+>  		return true;
+>=20=20
+> @@ -1625,12 +1631,6 @@ _panel_replay_compute_config(struct intel_dp *inte=
+l_dp,
+>  	if (!alpm_config_valid(intel_dp, crtc_state, true))
+>  		return false;
+>=20=20
+> -	if (crtc_state->crc_enabled) {
+> -		drm_dbg_kms(display->drm,
+> -			    "Panel Replay not enabled because it would inhibit pipe CRC calcu=
+lation\n");
+> -		return false;
+> -	}
+> -
+>  	return true;
+>  }
 
--- 
+--=20
 Jani Nikula, Intel
