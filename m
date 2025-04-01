@@ -4,164 +4,170 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5042AC36008
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Apr 2025 03:26:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1A65C36008
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Apr 2025 04:13:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA86E10E033;
-	Tue,  1 Apr 2025 03:26:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4AA110E24C;
+	Tue,  1 Apr 2025 04:13:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aImB9UAf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B2GgZe2Y";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C3EE10E033
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Apr 2025 03:26:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E28DA10E24C
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Apr 2025 04:13:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743477975; x=1775013975;
+ t=1743480795; x=1775016795;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=A1TjsGS94bMJsCUkOdHMfrwo4y4CMmFtbjtOSj2vXK0=;
- b=aImB9UAfFLbooUPoUplgJoLZhkEdmmjaWAi8QZHoyULOcyVgwG3IAHdP
- 3FWWvWRJ5UQQiG5hTukWJNqlZALMYZNtifgVOGT1Omuas23OU5c7FOM2i
- DKulLyy2wyMGKDg7Ocg/OEPc5j16YfYTEBnZWN2IcM2MBjyHC+lUn2ahO
- V9RWFsE07CYbCq/OzZ0YvaAv6gNPMU+XgHENYS2fHY0UVMS/uVpPaFWRp
- I4St7r27EaCZ6ucyehQaD3PcyalD6Yw1J5dVVaToztqq11xNQc1V0QO3s
- yBGMxi1N4aA5MqHehG7nWV6PwgaAJvGaNAV7onOea56DW9wwj9IMs1Uc+ w==;
-X-CSE-ConnectionGUID: JtiCrxaZSc+jOoGkIK/9tw==
-X-CSE-MsgGUID: DjYTT7DSQVKBo69/qEphXA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11390"; a="44495810"
-X-IronPort-AV: E=Sophos;i="6.14,292,1736841600"; d="scan'208";a="44495810"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2025 20:26:09 -0700
-X-CSE-ConnectionGUID: 9pgxL9iNSt+ae6A0nc8mSA==
-X-CSE-MsgGUID: FEK4zlORQHe0Hsc5wIfH5w==
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=5RtzCRQBivku6wY1UY07OWLqm84SwCU4vZSQTn2G2cE=;
+ b=B2GgZe2YtITSXbdhm3WqUxXlTTRhBrfAMVrlo4TWOap02GgQv2W8Kc5w
+ 7Ub8LLcsbB+WPDJ2b7qNIur9guTz40mMPVzP5HG06Odssp5dISdpHW3io
+ Smy1WYcmeU5nXtAtgsxF4AElKqSPgvXteDAuYL5hRxIlMQasAD7zqzlVe
+ 05JaEWSJXReXz7t9v78Xn9igNs7u6hFuIy7E455XuJB/iLPYVu5JRdxcg
+ 9P2/3ZHRv+ciStvOwiiOjuMgtsl+oak2LZQVsvTjriYFj7jdzvn9l96Vw
+ xk1ANWlenU91yxqRTEfFcvlts3GG3IzY5RJiaWiPMv5TGHzZWlva2aBTy w==;
+X-CSE-ConnectionGUID: ZqTmn+FQRHi7IVsEayCTyA==
+X-CSE-MsgGUID: xKQfD2ckRwmO2G0TLCLSnw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11390"; a="44958908"
+X-IronPort-AV: E=Sophos;i="6.14,292,1736841600"; d="scan'208";a="44958908"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2025 21:13:13 -0700
+X-CSE-ConnectionGUID: 8pBjF9ALTiam4Wwrpenj9w==
+X-CSE-MsgGUID: NiyljLkjS6Gbldtu4M+k2w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,292,1736841600"; d="scan'208";a="130976975"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2025 20:26:08 -0700
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.1544.14; Mon, 31 Mar 2025 20:26:07 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Mon, 31 Mar 2025 20:26:07 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.171)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.14,292,1736841600"; d="scan'208";a="126781473"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2025 21:13:13 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Mon, 31 Mar 2025 20:26:07 -0700
+ 15.2.1544.14; Mon, 31 Mar 2025 21:13:12 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14 via Frontend Transport; Mon, 31 Mar 2025 21:13:12 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.173)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Mon, 31 Mar 2025 21:13:12 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=j94OWqzCPUt9zktE6dyvTsfLjtEb/LVfxTS7B0dGwlgvbpLRxnVGIQA0CnA0yG700UY+B62VSX74TClCPnGXUJBD/Mmm/E+nDJ6c18fJ6ShPM8zquYZO1iAGGR6abPAtCK3UdYvQ6Yf7ZwZj4gByOVJNnQbRJjd+h0hCb8mt8d1SbRNoQNL0AZh2kyk/2xTrmY1ZfYb0b3MR/NcOr+0IKJGoGdN73bYFuJ9TqEB74dFlVH8tVkt6msIzq4icQCBwfO3Q69FH02oxO+S6L/zHtLmyZDkxFYzrXRzWJPlZscIhL5agxhm62AIXUEJz2Wu90lqztJaET8P3C7hTfgAg2g==
+ b=FAnI/cHWFthraZWul1XUKYVhjHhckl0VjhQNXzua8LnBaVOybbpT4cAjbdki2UZ2Z0h04WmOchPmI5g+2nHfW+7dvGNZNKxslbg2OpUNMVnUbTbVkuN3B5P++qZZpPcO1ml7DtdK+zsAXXjlBGcOvtB4rcjoQAwF9NmUaf7T0xkaAZs3YbEYsDEGLqAkj9OnG/YxZ5qjLF64UpjfhVsuMwCR9wNpyqooub3EOMQx5CmW/D64Vqf8eOti+yE6mjQbNAkKqc/ccpkXNqPNqOfQYkl0qxUhXJ15oP7LI1oHNY1Lu5ft7mvSVvMxH6cl28Kuv/earYWYb/kuGA3GyISNKg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=te0aqPMXDszICbvTj4d3dsH+BIaBq9E+C2e8IVeaqdo=;
- b=HZ6kqZ+QU9/2Deblv5UTlpwbQPXszIY0PZ/BgJZRZyP+4vcr5qEsG30Pq9oLKW0AtursjOYezK2hXmghxwDhkcpCu/luaHTh6VUGJJibyfXG1m8UWYHLb0DGTJcrwnVjo4K+xQbfDlSd4WYdYRriGzulPbymAb9wIqgWd2QTFTueZATO5vsqjNj8ks2Z7DRqRZZs/Hxa953vLsEcUhE1gv0gThHq9qXs5z+eG7Ay3lmjJ+8lX9TPay4hvD2WQTxt6lU+Zej3n25PhvDUqZ+pBQ8CbB2/Gq6R9hCsIE/NVJjPwbqi1993g2knRI0mKxSarZKBIwpixWCxf/C/k4oFPQ==
+ bh=RAPUWg9Vci8YpWujLhBPPx+j9REEZlqw8JFVXWms7/s=;
+ b=juFxVAmBjUxJ3zhcOVae7RKDxAdZyr6sMRjXS+ovNdLpFhFxGisZYAKHDuGEMYLzIkwpMMYLnk5gLvHmB5mILKPQyilniBj3y0eC0ujDNXz5vdP+8Q2gFPBHVrmAlv/U+qR7O7skUwKpAFQzDHV1fQo5r/VOu6HGZzSrjBdeKx6NNgoEVJ09u2WtTIDVDPza1OqcqV3s9a6WOdIaqIV4MbgDgWOdwqs/opLdLQHWVz0v2exY6i852jSWuYGjDGuv1K9QTfKtp3ig7bM5zEVtpD7cV3/6+LXA9OcdyK/SiUKP8boGNQQNV9P7pOKVwyWMl6mzvq/qAFG80nwTIxgp0g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by SJ1PR11MB6273.namprd11.prod.outlook.com (2603:10b6:a03:458::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.44; Tue, 1 Apr
- 2025 03:26:04 +0000
+ by DM4PR11MB6067.namprd11.prod.outlook.com (2603:10b6:8:63::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.50; Tue, 1 Apr
+ 2025 04:12:29 +0000
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::7141:316f:77a0:9c44%3]) with mapi id 15.20.8534.045; Tue, 1 Apr 2025
- 03:26:04 +0000
-Date: Mon, 31 Mar 2025 22:25:58 -0500
+ 04:12:29 +0000
+Date: Mon, 31 Mar 2025 23:12:26 -0500
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Riana Tauro <riana.tauro@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
- <rodrigo.vivi@intel.com>, <matthew.d.roper@intel.com>,
- <aravind.iddamsetty@linux.intel.com>
-Subject: Re: [PATCH 2/2] drm/xe: Enable configfs support for survivability mode
-Message-ID: <q2ay4f47m2iw5bs6mt7w32jmqqiuvouhok4xgi2xvlivw6ize5@34fzx5s5l5mz>
-References: <20250327064204.459968-1-riana.tauro@intel.com>
- <20250327064204.459968-3-riana.tauro@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
+To: Dafna Hirschfeld <dafna.hirschfeld@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Koby Elbaz <kelbaz@habana.ai>, "Daniel
+ Vetter" <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Ofir Bitton
+ <obitton@habana.ai>, =?utf-8?B?Sm9zw6k=?= Roberto de Souza
+ <jose.souza@intel.com>, Matt Roper <matthew.d.roper@intel.com>
+Subject: Re: [PATCH v2 2/2] drm/xe: add mmio debugfs file & restore
+ xe_mmio_ioctl as its ioctl handler
+Message-ID: <2yaatghz7dberaakuddebwwhbjfweuvy53oedssdxead4ja4ql@vdcyd3gthuyd>
+References: <20250324110730.2521805-1-dafna.hirschfeld@intel.com>
+ <20250324110730.2521805-2-dafna.hirschfeld@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20250327064204.459968-3-riana.tauro@intel.com>
-X-ClientProxiedBy: MW2PR2101CA0007.namprd21.prod.outlook.com
- (2603:10b6:302:1::20) To CY5PR11MB6139.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250324110730.2521805-2-dafna.hirschfeld@intel.com>
+X-ClientProxiedBy: MW2PR2101CA0004.namprd21.prod.outlook.com
+ (2603:10b6:302:1::17) To CY5PR11MB6139.namprd11.prod.outlook.com
  (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SJ1PR11MB6273:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1ce4bd4f-a2ed-4eba-338a-08dd70cceefe
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DM4PR11MB6067:EE_
+X-MS-Office365-Filtering-Correlation-Id: b0659617-3726-49a6-28e1-08dd70d36afb
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?CGYhW9CjVLUmCDd9B7W3JRSGQxSsNyMIg51bmWhqwcSf8Fq0bWZwdDZSyhGb?=
- =?us-ascii?Q?pFVTP1nVV4iO1GIXL2tg/w/KrpTo0tqXZ/M2DdHPd3abIH7/KNAHpfdYj6TJ?=
- =?us-ascii?Q?pCrjPNNVjkygAHsGAuC1PDckF3RlObfvf7QD7EpU017woTFCTofDaaBXFwA/?=
- =?us-ascii?Q?PjnScYIz33jeKCqofn0QRnv25yii+AwlmO76n/puCIv11wcYNlmXF7RisYJA?=
- =?us-ascii?Q?6e0naAgAOx9V2EFrSSytOzh0k0JZrD04wzRWzBd971xHd7qxPJX91B+M5wFb?=
- =?us-ascii?Q?70HkhcoUcqv5dny31Fkc8E1GnEbehHYld0/XvpsEW1b6QcfdUH6Q59lEwAxs?=
- =?us-ascii?Q?hifqZtoPOSDRZfnt+1vIMAv3ozh56bSAsVX6Ey3PS/bzslYOighm5LbcScp4?=
- =?us-ascii?Q?yBviggh1W+5KyWh2zg1XwMSE3PCZRdwsV3Q+rW/EaK4T1qtUq8BJ8NJJHEFr?=
- =?us-ascii?Q?oOA8Vgy7t2p/sT07BSAUWAIZgJMYFugehY82Zh7obkbO0YLvUyxnghr9xQi2?=
- =?us-ascii?Q?M/ijjsFPCxcC38RDZf8apNWPtUkl4YXX3tD0H63H98pnGVdsDzQY8nzu596T?=
- =?us-ascii?Q?KFmxMMNMzDY6v0wSchGRQmGj9D5bQ/Lpf/6ssSduF6eC8M/TPTzDkdr03lkk?=
- =?us-ascii?Q?dDzGTBMMPWWQZLkLoCwbAfgYMUmCB8Z4cbg+73FOeGchF37LXazwA6ULJ6aP?=
- =?us-ascii?Q?O4cFsrRkVYx4moPwD1MopS9juhvKaCmezAm+U3/1J3gERkUH5Eupf/4uIZJn?=
- =?us-ascii?Q?qFNziy+TpJq8Yi+cCHyTblZZtleNbLUMZoSO864LzO3CTEMfPTX7trerxV20?=
- =?us-ascii?Q?X7iJ2aO3LmXKPbij/Yz5VP8nv7Bkv4lY83tcB4nUFfipKfNlgZ6ve4nIg/ZS?=
- =?us-ascii?Q?QJvz8eTMejyRmEt0Dxq048hGoKmVxAqQI6p7evUpkGVoybGNasRb+b1Vrpwq?=
- =?us-ascii?Q?3xMrXju02Q7qerF30NSkWvHDP0yLJJRj1M++7fCNOmFVVr+kmJ+E/FXg4QTH?=
- =?us-ascii?Q?mNHniyfkS0jZ6rXgLRsVu7ROOPuJL1AxPhAso65/EVx7X9twiew0TpEST76z?=
- =?us-ascii?Q?EoFztevFRu88hTD0mB82DOnCSVdHzUl6HiSUe6dtItO5MU4czmv+xbz6KqDR?=
- =?us-ascii?Q?tucANXSrXCsHLrbTJCKmWmK6+13R3LQUgXK2OwAXWYg0HFWE8ddg3gP2SeZy?=
- =?us-ascii?Q?PEoSBNxnZLlNc6stvstt22+A4TheT/Pi7os2P2Bv5n6Fcw2MJ7M4nt/R4zbV?=
- =?us-ascii?Q?p/1/lhWtc18pGmDCwjU3CFYkTEOYdAst03BmTXllH6x+qZAFb0g0L5HVO/YW?=
- =?us-ascii?Q?yfvk6D+PR3qfIzOaHCN6mHP4LEvYq0qkB/jEOaxGHOLgt2psV+UT9IFaqLMd?=
- =?us-ascii?Q?EturkJxy+h5h2TF7bNYuNHmjinfd?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?ohzjaz+1ociXVvH/7XehXqCm2P9TCV4poTOmzttrUwlvuWnVbjC8BPw9Bc?=
+ =?iso-8859-1?Q?ZE6AyO2P7c6ZLdsKJGNO4jbaZBNXCha9eUICPB1cTKsuR3+8oJxIXn9Vbl?=
+ =?iso-8859-1?Q?fJGDrOTu3eanwGnqBzPdJAOFdYd6pPhhGPfhIdnAHVzWbzfVTuVFVJAZQO?=
+ =?iso-8859-1?Q?tbjfGh0SG0vpPQzVMgTlXMrCB2HVpr4x9fwhNjjRr0HAlOxUy/vE2XVw5m?=
+ =?iso-8859-1?Q?rggTRoCqcniWqK65zl7C32UJdOR+XKJJdVaAKSITnBapWkNeWa+jGK9Hq/?=
+ =?iso-8859-1?Q?aZRjAxQkGBMyBG+cHpTOSyPp/oE7CNTZav9Q3wtdI7BtW5nnbAyMVVShou?=
+ =?iso-8859-1?Q?SrPEIKc4c3Z8+8zMrvjPcFOW8+sEJdu/P6SsiI3b9o1W1tOkglUQcrs7SF?=
+ =?iso-8859-1?Q?okmChJThLfrPO0nmU38HgaWaD5L2NBcubE9FKlxPe5KU7s995uWw0EaCT2?=
+ =?iso-8859-1?Q?D2pSgVfGbGsxiPFRFCDvhQmSRsHTnc+fcnrJvjktSkNIz/avFHVmMHnwp2?=
+ =?iso-8859-1?Q?IBsmE+029Y7HPhFuN7H/lffGTY92TAvjfLu/anFq1raxO9XZ1arkdXHbY1?=
+ =?iso-8859-1?Q?8xypLfp0gan5Kasron0R3NoRkWLLU6ylflalkqSjW7wUVNqnQmNruSv8FF?=
+ =?iso-8859-1?Q?jeyKIbMMNdlKM+3CLmbCN8dUR1RPFXFsFfmhH25Fk0Ay3jjQDVFLj/YI2d?=
+ =?iso-8859-1?Q?9u7Yr7uHK0F5udLVbTKJSzmVihma9qHU0egfI+RtGKjgZgH+CAk+/hPYDr?=
+ =?iso-8859-1?Q?wcTZsb6Gnyn4Ct4V03tEcdgJkAaHimX3hPY6R5+1MhFmGllYFp6jy1EZM7?=
+ =?iso-8859-1?Q?KyB2yNDcVyV8cPkkXd2EGAlD0tjcIfBfDh5mVVqZ3Um/YgTXqrQXAljLb6?=
+ =?iso-8859-1?Q?vm/zyse0VPmKNs6hYqO3aYpYigtukeNQX1ZtLVfVCFwjejETZ2Cko/tYoG?=
+ =?iso-8859-1?Q?H6XIoo4nJHuU/cknPLaSav4ZNVmyAId4uR+rwbE0MyV2Rw0wC0+GY4VlyN?=
+ =?iso-8859-1?Q?Wm1s6Fs3CWajQHAHaNZs6vmC2rUyVhfZfwwUXmxTpIY86iB0K+0tCxWhJL?=
+ =?iso-8859-1?Q?QsF+FpgX/4uaxFWP8QgrJANRWd38q/vGQ9yMy7JLxejP+beqiU9kIU4Wtd?=
+ =?iso-8859-1?Q?mCrFB1CNzHReHYCT7Lc/2mzUTIRUOuhzwDQXHU0zwF+ScKqOtmSs9awMCr?=
+ =?iso-8859-1?Q?DOoC9h1uswqyIkCPQmoZglOBBipNSwFyAkhzrwgy3OvXZ92SyQUU3Psedu?=
+ =?iso-8859-1?Q?qfntZyuRu/5oOX1GVuAK5zM71IwuV48t2kxkGn1yggSrSHAShMMxyP9bN5?=
+ =?iso-8859-1?Q?d+4HXI5asnRLPQtFp7kI+8QcEviC90Gng5MGNqLE9Ea/yPegDgq/eqrrmD?=
+ =?iso-8859-1?Q?UvJERnHpcGOtQXtjPujXE3CCIpC0USrn47J4GGTGMDUfs1YrsFxSHMPL2o?=
+ =?iso-8859-1?Q?qeO4vM/IzSq1+vR1?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?uoyHqhga22K0BcU6i7bBsGZqp/IXMuhSj7Od+q+Fu4RnwoSXuFiuZylm9Ry4?=
- =?us-ascii?Q?Nk2joNgTLPIZxL5tjUtqDP14rT/C/KBInJErOebg8wdXkbBnxmjkKz9tkbuN?=
- =?us-ascii?Q?hrFsWLf7of+ZDO/gyz/X2atuKaeayWNmpBjJAhXlh8kXoVAbMAp89bf78dS+?=
- =?us-ascii?Q?2B0nTbIKEmEbzYjimOIj7yULXnpT6TNfUy0I3LS1X1DvSsNqAKV5r0WVkzri?=
- =?us-ascii?Q?9Ye39/xqDOKrsdAStRYsNU99RtTuElf7sH4Qp3ykm4wwHXHxctc1JEyO23q6?=
- =?us-ascii?Q?LDOI+xos93T4a8zksgx1wrjKQOiDdFcyll0VxNQ0+/1IOHOTGMofvCy8m5Pl?=
- =?us-ascii?Q?tSN1Ix0IPr76OYLCkQo7+fkyL3mOEQ76b6SYdQzOfR9NAuR59hq2aDEQKc1u?=
- =?us-ascii?Q?OOQ1V0mhlY7+NQZmadlo5Dt5wWwS5t1cXWQIZfIxLXwUT2ELEGUGraT9kBFo?=
- =?us-ascii?Q?BoZDCE8mHQZn7jJu68IKIeVzHTRTJPBdZsqfnQxoYD0k7KUTljw+mJiRDwJx?=
- =?us-ascii?Q?bHhUb+XfdR+Y71yX2LGgoC1uRIwmXo4Jrjm/axUSgPI9dt7C/gMfezOxCAuT?=
- =?us-ascii?Q?DOahcJjEHHUpTwT4uYQnhPYVfTsNJkLDbYHRGDyuMDBusV1o/udDbKVL4suW?=
- =?us-ascii?Q?qMRh7+vzioN+Qzi1SRZ0p5cgnPolF6PNtFUSjrth13pZdwWswxjD3wJwtcCR?=
- =?us-ascii?Q?Y8CEz+4I1Qx1kzvxgeVD40qGQbOWoDuAqB2ixJU3IJltlZPqfcNADoF/Fazb?=
- =?us-ascii?Q?PMNcjlNX7rLeRP7Gah7Zt8+yPYDAlOUJEfN/HToLmhjJkOrMbxlMSv3FzEiY?=
- =?us-ascii?Q?aE89BWpU+duA6U8XkDj0IBpTX48ffkc/yuNqQJBnuawNKERMqwzX5vEgvHe3?=
- =?us-ascii?Q?8RLt7aut5dAsXRp4NUJHaHNUHW1WyOC7Hu/4wyiQ+TyKe9AsRfxmTJHOguVn?=
- =?us-ascii?Q?wzC8PR+1XEPJtPtYOelR64wqLlQxXKGF/FPQc4y1z1wENd3XX/d2MV+c4Wi1?=
- =?us-ascii?Q?LmlyxW4WYyJsxg6zjfuvUEnfpZGHn3J5EW3v3XP65Tb30QEhXspGPlTM/Rwx?=
- =?us-ascii?Q?OwbBbP3IvcIoNr/eMg98ELwLIMGeFpQvgDf6Rzk3nfbM5Cf1cmX9srdWCIn7?=
- =?us-ascii?Q?DpYarXoyIDL46DCNsv0vVNeNjMAxNcl4dCA1g5MMISIW8f3erImGlu5iJKMy?=
- =?us-ascii?Q?e192h++VYAEQu+6NW7nYhZDNOdbI9Uq4+A0UskNGGjWR45CCyKNTif5gpmVv?=
- =?us-ascii?Q?IFo5ex9oE8oBf1V9XLTe5YOuQsVLWZgmXFzEUVpuzImjRjuCxJLfhCCNZLcC?=
- =?us-ascii?Q?Zf31DCaqxeY45QqvhX/LAXgqObbgAlrGy+KTViMCjDvvDzJfYitxeIndaKmN?=
- =?us-ascii?Q?pAa3i6mGLZk2vF9IrLNmhrpbQeJsE2wrwICjoDnFkzgTYZrNpKxTdvCDNkNw?=
- =?us-ascii?Q?QLKUKEjo9xA5xLN6bOzoMlx4SsiH/PDs6vr1oj1dakBzkbFpzRyA+0AG9oAf?=
- =?us-ascii?Q?hXtiOX91g5+IxB/JK54vShOv4SlyIgqVt4q6dz2NEQTFnzxmWG3gv24B+D/j?=
- =?us-ascii?Q?4SqJm4wQuR607dPGZls/4k+kY9ODUXgXh2rNemUAnhQkDE9olF5Uoqr/sU9b?=
- =?us-ascii?Q?ew=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1ce4bd4f-a2ed-4eba-338a-08dd70cceefe
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?9CMiTEBEolgfrgVZu4MF8PEfJYsU/G30Z84HZ+CLpzLEfOa/vSYF9yHb9T?=
+ =?iso-8859-1?Q?xY/5alcCKlQ2KjFPQ1qXiS/p2PgPat+LVTkOjxuyox9Yeq2ak6TkZaPsJN?=
+ =?iso-8859-1?Q?QF6ErrLk2Deh8DezU8lc2jTqSL2DjyZRf6TaSEkwyOdS9wUSVY0z7Oqrjh?=
+ =?iso-8859-1?Q?aU8pJPdFBGG1VzNJmCzWlNubmqbHU9QEuIMubvwgIjNcGOvsb8VgV0BK3Y?=
+ =?iso-8859-1?Q?OpPX5FsnG8A5InNXTb3zbK3wc96OIzzUVyqpStFa7D2fJcoc+EnKQkrGBs?=
+ =?iso-8859-1?Q?GHKxST0GpboRM+PV1KAeN/RdsWMt0pbzuqRt4YAE6x6XCXjIcQB8NQ87fD?=
+ =?iso-8859-1?Q?mE3jd8rlU7MtrPzfBWyo2niSQEwSPHX3ibwH1f3vCuNIpvl2qgVtfPlpkE?=
+ =?iso-8859-1?Q?Nq1T1AVL0O9YeCulEk5VCkijZLcQbVfC04ZWqYnnyEfs5VOVWBgI4UEGS1?=
+ =?iso-8859-1?Q?Ruyhi1pDDepYwvfh7bG3JyqvIlwiL27eJpceI2ozTNx+J0MjE8F9T+LIg5?=
+ =?iso-8859-1?Q?qPe6Xg+i9SAtxg69uYLzg3bRnKA9sUFgZTwXfQMfWsjd6ICHimN3TDYIcH?=
+ =?iso-8859-1?Q?12ZWyMUMfY3s2sU2mGZnNuNzvul3iHuCt2Ij/6H0u3ZIYlBYq+hMXE3Ygm?=
+ =?iso-8859-1?Q?N5TVxsDqL8e3Uhq89oKFnN1ocyoSWzTCxAzsvgW8542W5utSSvkj5tD5vW?=
+ =?iso-8859-1?Q?53E54PmwkhQzRbgF0p3XSMZIA11IprWjYunWs+SMOYZEbcJbPuNkjfri+H?=
+ =?iso-8859-1?Q?fXp4FEBHdYhH43vwVOeF1ly83hHXXGNNUiEdGaxio+SlRLW3TaMjVEsHgk?=
+ =?iso-8859-1?Q?wuJKbgsRGo0z5WP4Cj899Yocivok4NpJqes0ai1qnRmBJcbBg8VDe8d7JN?=
+ =?iso-8859-1?Q?zabdYByEfvQ7/58I21s8q7rUZEBAQj0w7rxmbquHH6ZpeHpIO4n+1WdkNO?=
+ =?iso-8859-1?Q?fDDdiCuEE70rtUynVBIxUtXKS2GKlv58AfAQxmqmYI+ROucEkpoNolGov7?=
+ =?iso-8859-1?Q?SN/tky67WdKgDBa9as9HUat/zJl7W5/sabCmyuSNqPoF81JZqoiRTnBx+O?=
+ =?iso-8859-1?Q?MK8VVPUXkEXkwMWUAEr3PlUcstqeyureBt8OLdaMnWwfCAfaoPcSkDfscE?=
+ =?iso-8859-1?Q?QSD1e3A7pjoad1mBDOa03m7tIhRS2JtQWMrgBpqE28Yc1iDmVAlf+iPc73?=
+ =?iso-8859-1?Q?fQK+f45MP/CSsKMz8FGyt3e5MZAgFJSJX+VBppKzwfM4cEiiD4fTcgC2AN?=
+ =?iso-8859-1?Q?AK6JV16ZU6Iohbqe8zWTGWq3kiIxwtSVJCrwocyyiHpR4ywTgR5Ad9y5tF?=
+ =?iso-8859-1?Q?59/Ghad/EArUs3z0IMvSqyhEhrtjHf+1gh5uw7q9dfuHekOskfgdL6SBVD?=
+ =?iso-8859-1?Q?OiHMwNIuCg3l1yNftTtAROvWMnnEjrCbs5edy5VFrX81XWAoBeEqqWNddM?=
+ =?iso-8859-1?Q?r7j1rl1FMPOtxmZHNyowh1vLYqFtZXgmFqClSeGYil3jettfy3NqZ/pMvO?=
+ =?iso-8859-1?Q?zaqI0drJEjhn4cwfrcFLkpSm39ejVeTtswNIXfSCP/MuV+rAVgOi+UQU2h?=
+ =?iso-8859-1?Q?halXoZixXTimIYzXunZ9b8ZCjn2jelDcuzFW03ayRpl3Ql3mhCCgzZMj/d?=
+ =?iso-8859-1?Q?ikkD0mK8dT8PGOr0dZDqELuVZ1N90JAsheI29LJoXUkJ9u7kg2ycqBgA?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b0659617-3726-49a6-28e1-08dd70d36afb
 X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2025 03:26:04.3827 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2025 04:12:29.5867 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lq8OY6glQPFLK9VJE92VEoMNXtzHRNOYIQ+nIgJONMreMLKgCxuDIEd6SoWdCPrMceeus4lLkt5lWM1lkW7ByQlfSc+FeBFLMa6CONuAHUo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR11MB6273
+X-MS-Exchange-CrossTenant-UserPrincipalName: pTvDD3IPVYAElaZu+7/UbEVpdcXyzYYZC3JRiWcU+zFQ8pT/9Nkyh1xQfy+MLox37n0QPzVD4f4lwN88UOADEn9S+Vq5p55kC8QZanZiCD8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6067
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -177,300 +183,384 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Mar 27, 2025 at 12:12:02PM +0530, Riana Tauro wrote:
->Enable survivability mode if supported and configfs attribute is set.
->Enabing survivability mode manually is useful in cases where pcode does
->not detect failure, validation and for IFR (in-field-repair).
+On Mon, Mar 24, 2025 at 01:07:30PM +0200, Dafna Hirschfeld wrote:
+>From: Koby Elbaz <kelbaz@habana.ai>
 >
->To set configfs survivability mode attribute for a device
+>The drm mmio ioctl handler (xe_mmio_ioctl) wasn't needed anymore,
+>and therefore, recently removed.
+>Nevertheless, it is now restored for debugging purposes as an
+>ioctl handler for a newly added 'mmio' debugfs file.
 >
->mkdir /config/xe/0000:03:00.0
->echo 0000:03:00.0 > /sys/bus/pci/drivers/xe/unbind
->echo 1 > /config/xe/0000:03:00.0/survivability_mode
->echo 0000:03:00.0 > /sys/bus/pci/drivers/xe/bind
->
->The card enters survivability mode if supported
+>Notes:
+>1. The non-admin user's limited mmio access (aka, whitelist),
+>was removed being irrelevant anymore, now that a user using debugfs
+>must anyway have root permissions to use it.
+>2. To support multi-tile access, the tile index is now dynamic and
+>will be retrieved from the given mmio address itself.
 
-this part is repeated in commit 1 and 2. You could leave the generic
-part with survivability_mode as the example in commit 1. Here you just
-mentioned setting survivability_mode to 1.
+humn... but each tile starts from 0. It's the gt that uses an offset
+inside each tile.
 
 >
->Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+>Cc: Daniel Vetter <daniel@ffwll.ch>
+>Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>Cc: Ofir Bitton <obitton@habana.ai>
+>Cc: José Roberto de Souza <jose.souza@intel.com>
+>Signed-off-by: Koby Elbaz <kelbaz@habana.ai>
+>Reviewed-by: Ofir Bitton <obitton@habana.ai>
 >---
-> drivers/gpu/drm/xe/xe_configfs.c           | 62 ++++++++++++++++++++++
-> drivers/gpu/drm/xe/xe_configfs.h           |  7 ++-
-> drivers/gpu/drm/xe/xe_device.c             |  2 +-
-> drivers/gpu/drm/xe/xe_pci.c                | 19 ++++---
-> drivers/gpu/drm/xe/xe_survivability_mode.c | 39 ++++++++++----
-> drivers/gpu/drm/xe/xe_survivability_mode.h |  2 +-
-> 6 files changed, 109 insertions(+), 22 deletions(-)
+> drivers/gpu/drm/xe/xe_debugfs.c      | 157 ++++++++++++++++++++++++++-
+> drivers/gpu/drm/xe/xe_debugfs_mmio.h |  40 +++++++
+> drivers/gpu/drm/xe/xe_gt_mcr.c       |  16 +++
+> drivers/gpu/drm/xe/xe_gt_mcr.h       |   2 +
+> 4 files changed, 214 insertions(+), 1 deletion(-)
+> create mode 100644 drivers/gpu/drm/xe/xe_debugfs_mmio.h
 >
->diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
->index 59e1bc4c5f76..57234904c061 100644
->--- a/drivers/gpu/drm/xe/xe_configfs.c
->+++ b/drivers/gpu/drm/xe/xe_configfs.c
->@@ -151,6 +151,68 @@ static struct configfs_subsystem xe_configfs = {
-> 	},
+>diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+>index e60eaefdd4a5..fb32679e88f0 100644
+>--- a/drivers/gpu/drm/xe/xe_debugfs.c
+>+++ b/drivers/gpu/drm/xe/xe_debugfs.c
+>@@ -5,12 +5,15 @@
+>
+> #include "xe_debugfs.h"
+>
+>+#include "regs/xe_reg_defs.h"
+> #include <linux/debugfs.h>
+> #include <linux/fault-inject.h>
+> #include <linux/string_helpers.h>
+>-
+>+#include <linux/security.h>
+> #include <drm/drm_debugfs.h>
+>
+>+#include "regs/xe_gt_regs.h"
+>+#include "xe_gt_mcr.h"
+> #include "xe_bo.h"
+> #include "xe_device.h"
+> #include "xe_force_wake.h"
+>@@ -21,6 +24,8 @@
+> #include "xe_pxp_debugfs.h"
+> #include "xe_sriov.h"
+> #include "xe_step.h"
+>+#include "xe_debugfs_mmio.h"
+>+#include "xe_mmio.h"
+>
+> #ifdef CONFIG_DRM_XE_DEBUG
+> #include "xe_bo_evict.h"
+>@@ -150,6 +155,150 @@ static const struct file_operations forcewake_all_fops = {
+> 	.release = forcewake_release,
 > };
 >
->+static struct xe_config_device *configfs_find_group(struct pci_dev *pdev)
+>+static struct xe_tile *get_xe_tile_from_args(struct xe_device *xe,
+>+					     struct xe_debugfs_mmio_ioctl_data *args)
 >+{
->+	struct config_item *item;
->+	char name[64];
+>+	u32 tile_mmio_base = 0;
+>+	struct xe_tile *tile;
+>+	unsigned int bytes;
+>+	u8 id;
 >+
->+	snprintf(name, sizeof(name), "%04x:%02x:%02x.%x", pci_domain_nr(pdev->bus),
->+		 pdev->bus->number, PCI_SLOT(pdev->devfn), PCI_FUNC(pdev->devfn));
->+
->+	mutex_lock(&xe_configfs.su_mutex);
->+	item = config_group_find_item(&xe_configfs.su_group, name);
->+	mutex_unlock(&xe_configfs.su_mutex);
->+
->+	if (!item)
+>+	if ((args->flags & XE_DEBUGFS_MMIO_BITS_MASK) == XE_DEBUGFS_MMIO_32BIT)
+>+		bytes = 4;
+>+	else if ((args->flags & XE_DEBUGFS_MMIO_BITS_MASK) == XE_DEBUGFS_MMIO_64BIT)
+>+		bytes = 8;
+>+	else
 >+		return NULL;
 >+
->+	return to_xe_config_device(item);
+>+	if (!IS_ALIGNED(args->addr, bytes))
+>+		return NULL;
+>+
+>+	for_each_tile(tile, xe, id) {
+>+		tile_mmio_base = id * SZ_16M;
+
+so the interface is such that you encode the tile in the address and the
+userspace side knows that each tile has 16MB?
+
+
+>+		/* Each tile has a 16M MMIO space, but the contained CFG space is only 4M */
+>+		if (args->addr >= tile_mmio_base && args->addr <= (tile_mmio_base + SZ_4M - bytes))
+
+this addr validation looks conflated with getting the tile.
+
+>+			return tile;
+>+	}
+>+
+>+	return NULL;
 >+}
 >+
->+/**
->+ * xe_configfs_get_survivability_mode - get configfs survivability mode attribute
->+ * @pdev: pci device
->+ *
->+ * find the configfs group that belongs to the pci device and return
->+ * the survivability mode attribute
->+ *
->+ * Return: survivability mode if config group is found, false otherwise
->+ */
->+bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
+>+static int _xe_debugfs_mmio_ioctl(struct xe_device *xe, struct xe_debugfs_mmio_ioctl_data *args)
 >+{
->+	struct xe_config_device *dev = configfs_find_group(pdev);
->+	bool mode;
+>+	struct xe_reg reg;
+>+	struct xe_reg_mcr reg_mcr;
+>+	struct xe_tile *tile;
+>+	u32 mmio_offset_in_tile;
+>+	bool is_mcr = false;
+>+	int ret;
 >+
->+	if (!dev)
->+		return false;
+>+	if (XE_IOCTL_DBG(xe, args->extensions) ||
+>+	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+>+		return -EINVAL;
 >+
->+	mode = dev->survivability_mode;
->+	config_item_put(&dev->group.cg_item);
+>+	if (XE_IOCTL_DBG(xe, args->flags & ~XE_DEBUGFS_MMIO_VALID_FLAGS))
+>+		return -EINVAL;
 >+
->+	return mode;
+>+	if (XE_IOCTL_DBG(xe, (args->flags & XE_DEBUGFS_MMIO_OPS_MASK) == XE_DEBUGFS_MMIO_OPS_MASK))
+>+		return -EINVAL;
+>+
+>+	if (XE_IOCTL_DBG(xe, !(args->flags & XE_DEBUGFS_MMIO_WRITE) && args->value))
+>+		return -EINVAL;
+>+
+>+	tile = get_xe_tile_from_args(xe, args);
+>+	if (!tile) {
+>+		ret = -EINVAL;
+>+		goto exit;
+>+	}
+>+
+>+	mmio_offset_in_tile = args->addr - tile->id * SZ_16M;
+
+here you already leak the information about the tile from
+get_xe_tile_from_args()... so I think you could just as well
+validate that the address falls into range here.
+
+>+
+>+	if (xe_gt_mcr_is_mcr_reg(tile->primary_gt, mmio_offset_in_tile)) {
+
+humn... it seems that what you are doing for should be done done for gt.
+At least for a reliable lookup of mcr, you need to know to which gt you
+should be looking. You can't assume the primary_gt is the target of the
+operation:
+
+xe_gt_mcr_init() {
+	if (gt->info.type == XE_GT_TYPE_MEDIA) {
+		...
+	} else {
+		...
+	}
+}
+
+the steering ranges are different depending on the gt type.
+
+Since this interface is supposed to be more "device-centric", you could
+loop through the xe_mmio and find the offset based on the register.
+Currently there's only 2 primary_gt with offset 0 and media_gt with
+offset 0x380000.  So here you could direct the operation to the media gt
+if addr >= 0x380000 (but doing that by looking up the actually GTs
+available, to be compatible with platforms before MTL).
+
+Another idea would be to make the gt part of the ioctl args.
+And yet another idea would be to have the mmio inside the gtN dir,
+so you don't need the addr lookups.
+
+
+>+		reg_mcr = XE_REG_MCR(mmio_offset_in_tile);
+>+		is_mcr = true;
+>+	} else {
+>+		reg = XE_REG(mmio_offset_in_tile);
+>+	}
+>+
+>+	ret = forcewake_get(xe);
+>+	if (ret)
+>+		return ret;
+>+
+>+	if (args->flags & XE_DEBUGFS_MMIO_WRITE) {
+>+		switch (args->flags & XE_DEBUGFS_MMIO_BITS_MASK) {
+>+		case XE_DEBUGFS_MMIO_32BIT:
+>+			if (XE_IOCTL_DBG(xe, args->value > U32_MAX)) {
+>+				ret = -EINVAL;
+>+				goto exit;
+>+			}
+>+			if (is_mcr)
+>+				xe_gt_mcr_multicast_write(tile->primary_gt, reg_mcr, args->value);
+>+			else
+>+				xe_mmio_write32(&tile->mmio, reg, args->value);
+>+			break;
+>+		default:
+>+			drm_dbg(&xe->drm, "Invalid MMIO bit size");
+
+what about XE_DEBUGFS_MMIO_64BIT?
+
+>+			ret = -EOPNOTSUPP;
+>+			goto exit;
+>+		}
+>+	}
+>+
+>+	if (args->flags & XE_DEBUGFS_MMIO_READ) {
+>+		switch (args->flags & XE_DEBUGFS_MMIO_BITS_MASK) {
+>+		case XE_DEBUGFS_MMIO_32BIT:
+>+			if (is_mcr)
+>+				args->value = xe_gt_mcr_unicast_read_any(tile->primary_gt, reg_mcr);
+>+			else
+>+				args->value = xe_mmio_read32(&tile->mmio, reg);
+>+			break;
+>+		case XE_DEBUGFS_MMIO_64BIT:
+>+			if (is_mcr)
+>+				ret = -EOPNOTSUPP;
+>+			else
+>+				args->value = xe_mmio_read64_2x32(&tile->mmio, reg);
+>+			break;
+>+		default:
+>+			drm_dbg(&xe->drm, "Invalid MMIO bit size");
+>+			ret = -EOPNOTSUPP;
+>+		}
+>+	}
+>+
+>+exit:
+>+	forcewake_put(xe);
+
+as Rodrigo said, just use xe_forcewake directly. No need for the first
+patch.
+
+>+	return ret;
 >+}
 >+
->+/**
->+ * xe_configfs_clear_survivability_mode - clear configfs survivability mode attribute
->+ * @pdev: pci device
->+ *
->+ * find the configfs group that belongs to the pci device and clear survivability
->+ * mode attribute
->+ */
->+void xe_configfs_clear_survivability_mode(struct pci_dev *pdev)
+>+static long xe_debugfs_mmio_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 >+{
->+	struct xe_config_device *dev = configfs_find_group(pdev);
+>+	struct xe_device *xe = file_inode(filp)->i_private;
+>+	struct xe_debugfs_mmio_ioctl_data mmio_data;
+>+	int ret;
 >+
->+	if (!dev)
->+		return;
+>+	ret = security_locked_down(LOCKDOWN_PCI_ACCESS);
+>+	if (ret)
+>+		return ret;
 >+
->+	mutex_lock(&dev->lock);
->+	dev->survivability_mode = 0;
->+	mutex_unlock(&dev->lock);
+>+	if (cmd == XE_DEBUGFS_MMIO_IOCTL) {
+>+		ret = copy_from_user(&mmio_data, (struct xe_debugfs_mmio_ioctl_data __user *)arg,
+>+				     sizeof(mmio_data));
+>+		if (ret)
+>+			return -EFAULT;
 >+
->+	config_item_put(&dev->group.cg_item);
+>+		ret = _xe_debugfs_mmio_ioctl(xe, &mmio_data);
+>+		if (ret)
+>+			return ret;
+>+
+>+		ret = copy_to_user((struct xe_debugfs_mmio_ioctl_data __user *)arg,
+>+				   &mmio_data, sizeof(mmio_data));
+>+		if (ret)
+>+			return -EFAULT;
+>+	} else {
+>+		return -EINVAL;
+>+	}
+>+
+>+	return 0;
 >+}
 >+
-> int __init xe_configfs_init(void)
+> static ssize_t wedged_mode_show(struct file *f, char __user *ubuf,
+> 				size_t size, loff_t *pos)
 > {
-> 	struct config_group *root = &xe_configfs.su_group;
->diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
->index 2c30be9a2c7e..6e8c5ccaf202 100644
->--- a/drivers/gpu/drm/xe/xe_configfs.h
->+++ b/drivers/gpu/drm/xe/xe_configfs.h
->@@ -5,7 +5,12 @@
-> #ifndef _XE_CONFIGFS_H_
-> #define _XE_CONFIGFS_H_
+>@@ -203,6 +352,11 @@ static const struct file_operations wedged_mode_fops = {
+> 	.write = wedged_mode_set,
+> };
 >
+>+static const struct file_operations mmio_fops = {
+>+	.owner = THIS_MODULE,
+>+	.unlocked_ioctl = xe_debugfs_mmio_ioctl,
+>+};
+>+
+> void xe_debugfs_register(struct xe_device *xe)
+> {
+> 	struct ttm_device *bdev = &xe->ttm;
+>@@ -245,6 +399,7 @@ void xe_debugfs_register(struct xe_device *xe)
+> 		xe_gt_debugfs_register(gt);
+>
+> 	xe_pxp_debugfs_register(xe->pxp);
+>+	debugfs_create_file("mmio", 0644, root, xe, &mmio_fops);
+>
+> 	fault_create_debugfs_attr("fail_gt_reset", root, &gt_reset_failure);
+> }
+>diff --git a/drivers/gpu/drm/xe/xe_debugfs_mmio.h b/drivers/gpu/drm/xe/xe_debugfs_mmio.h
+>new file mode 100644
+>index 000000000000..20074a691e44
+>--- /dev/null
+>+++ b/drivers/gpu/drm/xe/xe_debugfs_mmio.h
+>@@ -0,0 +1,40 @@
+>+/* SPDX-License-Identifier: MIT */
+>+/*
+>+ * Copyright © 2023 Intel Corporation
+>+ */
+>+
+>+#ifndef _XE_DEBUGFS_MMIO_H_
+>+#define _XE_DEBUGFS_MMIO_H_
+>+
 >+#include <linux/types.h>
+>+#include <linux/ioctl.h>
 >+
->+struct pci_dev;
+>+#define XE_DEBUGFS_MMIO_32BIT		0x1
+>+#define XE_DEBUGFS_MMIO_64BIT		0x2
+>+#define XE_DEBUGFS_MMIO_BITS_MASK	(XE_DEBUGFS_MMIO_32BIT | XE_DEBUGFS_MMIO_64BIT)
+>+#define XE_DEBUGFS_MMIO_READ		0x4
+>+#define XE_DEBUGFS_MMIO_WRITE		0x8
+>+#define XE_DEBUGFS_MMIO_OPS_MASK	(XE_DEBUGFS_MMIO_READ | XE_DEBUGFS_MMIO_WRITE)
 >+
-> int xe_configfs_init(void);
-> void xe_configfs_exit(void);
->-
->+bool xe_configfs_get_survivability_mode(struct pci_dev *pdev);
->+void xe_configfs_clear_survivability_mode(struct pci_dev *pdev);
-> #endif
->diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
->index 1ffb7d1f6be6..f4e59577ddc0 100644
->--- a/drivers/gpu/drm/xe/xe_device.c
->+++ b/drivers/gpu/drm/xe/xe_device.c
->@@ -712,7 +712,7 @@ int xe_device_probe_early(struct xe_device *xe)
-> 	sriov_update_device_info(xe);
->
-> 	err = xe_pcode_probe_early(xe);
->-	if (err) {
->+	if (err || xe_survivability_mode_requested(xe)) {
-> 		int save_err = err;
->
-> 		/*
->diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
->index da384acf731f..bcacfa78afd1 100644
->--- a/drivers/gpu/drm/xe/xe_pci.c
->+++ b/drivers/gpu/drm/xe/xe_pci.c
->@@ -812,18 +812,17 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
-> 		return err;
->
-> 	err = xe_device_probe_early(xe);
->-	if (err) {
->-		/*
->-		 * In Boot Survivability mode, no drm card is exposed and driver
->-		 * is loaded with bare minimum to allow for firmware to be
->-		 * flashed through mei. If early probe failed, but it managed to
->-		 * enable survivability mode, return success.
->-		 */
->-		if (xe_survivability_mode_is_enabled(xe))
->-			return 0;
->+	/*
->+	 * In Boot Survivability mode, no drm card is exposed and driver
->+	 * is loaded with bare minimum to allow for firmware to be
->+	 * flashed through mei. Return success, if survivability mode
->+	 * is enabled due to pcode failure or configfs being set
->+	 */
->+	if (xe_survivability_mode_is_enabled(xe))
->+		return 0;
->
->+	if (err)
-> 		return err;
->-	}
->
-> 	err = xe_info_init(xe, desc);
-> 	if (err)
->diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
->index cb813b337fd3..ed6599c5b85d 100644
->--- a/drivers/gpu/drm/xe/xe_survivability_mode.c
->+++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
->@@ -10,6 +10,7 @@
-> #include <linux/pci.h>
-> #include <linux/sysfs.h>
->
->+#include "xe_configfs.h"
-> #include "xe_device.h"
-> #include "xe_gt.h"
-> #include "xe_heci_gsc.h"
->@@ -28,8 +29,12 @@
->  * This is implemented by loading the driver with bare minimum (no drm card) to allow the firmware
->  * to be flashed through mei and collect telemetry. The driver's probe flow is modified
->  * such that it enters survivability mode when pcode initialization is incomplete and boot status
->- * denotes a failure. The driver then  populates the survivability_mode PCI sysfs indicating
->- * survivability mode and provides additional information required for debug
->+ * denotes a failure. Survivability mode can also be enabled manually by setting the
-
-I think this should start a new paragraph.
-
->+ * survivability_mode attribute of the device in xe configfs. This is useful in cases where pcode
->+ * does not detect failure, IFR (in-field-repair) use cases where the repair can be performed for
->+ * a single GPU card without impacting the usage of other cards in the same node and for validation.
-
-I'm missing a verb in in this phrase
-
->+ * The driver then populates the survivability_mode PCI sysfs indicating survivability mode and
->+ * provides additional information required for debug
->  *
->  * KMD exposes below admin-only readable sysfs in survivability mode
->  *
->@@ -42,6 +47,15 @@
->  *			      Overflow Information   - Provides history of previous failures
->  *			      Auxiliary Information  - Certain failures may have information in
->  *						       addition to postcode information
->+ *
->+ * Enable survivability mode through configfs
->+ *
->+ * Create device directory	: mkdir /config/xe/0000:03:00.0
->+ * Unbind			: echo 0000:03:00.0 > /sys/bus/pci/drivers/xe/unbind
->+ * Enable survivability mode	: echo 1 > /config/xe/0000:03:00.0/survivability_mode
->+ * Bind				: echo 0000:03:00.0 > /sys/bus/pci/drivers/xe/bind
-
-ditto about alignment and unbind.
-
-I didn't check how the html gets rendered though.
-
->+ *
->+ * The card enters survivability mode if supported
->  */
->
-> static u32 aux_history_offset(u32 reg_value)
->@@ -133,6 +147,7 @@ static void xe_survivability_mode_fini(void *arg)
-> 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-> 	struct device *dev = &pdev->dev;
->
->+	xe_configfs_clear_survivability_mode(pdev);
-> 	sysfs_remove_file(&dev->kobj, &dev_attr_survivability_mode.attr);
+>+#define XE_DEBUGFS_MMIO_VALID_FLAGS (XE_DEBUGFS_MMIO_BITS_MASK | XE_DEBUGFS_MMIO_OPS_MASK)
+>+
+>+struct xe_debugfs_mmio_ioctl_data {
+>+	/** @extensions: Pointer to the first extension struct, if any */
+>+	__u64 extensions;
+>+
+>+	__u32 addr;
+>+
+>+	__u32 flags;
+>+
+>+	__u64 value;
+>+
+>+	/** @reserved: Reserved */
+>+	__u64 reserved[2];
+>+};
+>+
+>+#define XE_DEBUGFS_MMIO_IOCTL_NR	0x00
+>+
+>+#define XE_DEBUGFS_MMIO_IOCTL \
+>+	_IOWR(0x20, XE_DEBUGFS_MMIO_IOCTL_NR, struct xe_debugfs_mmio_ioctl_data)
+>+
+>+#endif
+>diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
+>index 605aad3554e7..c0d46704cda6 100644
+>--- a/drivers/gpu/drm/xe/xe_gt_mcr.c
+>+++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
+>@@ -540,6 +540,22 @@ void xe_gt_mcr_set_implicit_defaults(struct xe_gt *gt)
+> 	}
 > }
 >
->@@ -186,24 +201,30 @@ bool xe_survivability_mode_is_enabled(struct xe_device *xe)
-> 	return xe->survivability.mode;
-> }
->
->-/*
->- * survivability_mode_requested - check if it's possible to enable
->- * survivability mode and that was requested by firmware
->+/**
->+ * xe_survivability_mode_requested - check if it's possible to enable survivability
->+ *				     mode that was requested by firmware or userspace
->+ * @xe: xe device instance
->  *
->- * This function reads the boot status from Pcode.
->+ * This function reads configfs and  boot status from Pcode.
->  *
->  * Return: true if platform support is available and boot status indicates
->- * failure, false otherwise.
->+ * failure or if survivability mode is requested, false otherwise.
->  */
->-static bool survivability_mode_requested(struct xe_device *xe)
->+bool xe_survivability_mode_requested(struct xe_device *xe)
-> {
-> 	struct xe_survivability *survivability = &xe->survivability;
-> 	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
->+	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-> 	u32 data;
->
-> 	if (!IS_DGFX(xe) || xe->info.platform < XE_BATTLEMAGE || IS_SRIOV_VF(xe))
-> 		return false;
->
->+	/* Enable survivability mode if set via configfs */
->+	if (xe_configfs_get_survivability_mode(pdev))
->+		return true;
+
+missing kernel-doc
+
+Also Cc Matt Roper. We should probably document that this is only ok to
+be called from outside places like you have. We don't want to keep doing
+this lookup from regular in-kernel callers.
+
+AFAICS it should work as long as you pass the right gt, which was not
+the case in this patch.
+
+>+bool xe_gt_mcr_is_mcr_reg(struct xe_gt *gt, u32 addr)
+>+{
+>+	const struct xe_reg reg = XE_REG(addr);
 >+
-> 	data = xe_mmio_read32(mmio, PCODE_SCRATCH(0));
-> 	survivability->boot_status = REG_FIELD_GET(BOOT_STATUS, data);
+>+	for (int type = 0; type < NUM_STEERING_TYPES; type++) {
+>+		if (!gt->steering[type].ranges)
+>+			continue;
+>+
+>+		for (int i = 0; gt->steering[type].ranges[i].end > 0; i++) {
+>+			if (xe_mmio_in_range(&gt->mmio, &gt->steering[type].ranges[i], reg))
+>+				return true;
+>+		}
+>+	}
+>+	return false;
+>+}
+>+
+> /*
+>  * xe_gt_mcr_get_nonterminated_steering - find group/instance values that
+>  *    will steer a register to a non-terminated instance
+>diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.h b/drivers/gpu/drm/xe/xe_gt_mcr.h
+>index bc06520befab..93328b536b7c 100644
+>--- a/drivers/gpu/drm/xe/xe_gt_mcr.h
+>+++ b/drivers/gpu/drm/xe/xe_gt_mcr.h
+>@@ -26,6 +26,8 @@ void xe_gt_mcr_unicast_write(struct xe_gt *gt, struct xe_reg_mcr mcr_reg,
+> void xe_gt_mcr_multicast_write(struct xe_gt *gt, struct xe_reg_mcr mcr_reg,
+> 			       u32 value);
 >
->@@ -226,7 +247,7 @@ int xe_survivability_mode_enable(struct xe_device *xe)
-> 	struct xe_survivability_info *info;
-> 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
->
->-	if (!survivability_mode_requested(xe))
->+	if (!xe_survivability_mode_requested(xe))
-> 		return 0;
->
-> 	survivability->size = MAX_SCRATCH_MMIO;
->diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.h b/drivers/gpu/drm/xe/xe_survivability_mode.h
->index d7e64885570d..70eaf56fb3bb 100644
->--- a/drivers/gpu/drm/xe/xe_survivability_mode.h
->+++ b/drivers/gpu/drm/xe/xe_survivability_mode.h
->@@ -12,5 +12,5 @@ struct xe_device;
->
-> int xe_survivability_mode_enable(struct xe_device *xe);
-> bool xe_survivability_mode_is_enabled(struct xe_device *xe);
->-
->+bool xe_survivability_mode_requested(struct xe_device *xe);
-
-keep empty line here and probably use _is_requested to be similar to the
-enabled case.
-
-Just a few nits.. From my tests today it appears to be working fine on
-BMG. Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-thanks
-Lucas De Marchi
-
-> #endif /* _XE_SURVIVABILITY_MODE_H_ */
+>+bool xe_gt_mcr_is_mcr_reg(struct xe_gt *gt, u32 addr);
+>+
+> bool xe_gt_mcr_get_nonterminated_steering(struct xe_gt *gt,
+> 					  struct xe_reg_mcr reg_mcr,
+> 					  u8 *group, u8 *instance);
 >-- 
->2.47.1
+>2.34.1
 >
