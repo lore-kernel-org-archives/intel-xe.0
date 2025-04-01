@@ -4,28 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E383C36010
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Apr 2025 11:40:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB02AC36010
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Apr 2025 11:55:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C441610E2C8;
-	Tue,  1 Apr 2025 11:40:55 +0000 (UTC)
-Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B89810E2C3;
- Tue,  1 Apr 2025 11:40:54 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8036057026726832336=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 784AE10E2C3;
+	Tue,  1 Apr 2025 11:55:45 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hfk6gt5N";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F6B810E2C3
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Apr 2025 11:55:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1743508543; x=1775044543;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=il/xS/3kS7UpZGuuyqtdK71/+/gm/IfVmNjlUo6NR9s=;
+ b=hfk6gt5N/g4x4v3LjgFWhiXCWLxUan5C+GggzckUQHxvFTsbD/5hNlZ2
+ gOKmeY4sVN+MTMeekIMxZ9Jx+1+tQQ91SROJTynv5ATvnT3PKSedfqMPI
+ P0eJlee7FpaYtL/NX0PTYTg8jfKkmHdMKohpmgSy5FqZcsLgiJ9DThn31
+ FB/tnUhCEezb73vEjriYxzWYKhRqUAcBfuF3LJl20fKizn79ceS8ePpwF
+ nTwsMcLJYe3tkIIS+FJsFz24r9CSR8fAKMHs2bccS/OMgPKnMwZAaXtwn
+ fs23BApkI9j1WpBQ7ZggDTKl15XMzpV9GLmEQmnXzj4qiPvTWvQy22gsi Q==;
+X-CSE-ConnectionGUID: U1q65KAmTRaoYeO0NCcWZw==
+X-CSE-MsgGUID: 3il3d49eTvWQPvnB+j2Grw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11391"; a="62226834"
+X-IronPort-AV: E=Sophos;i="6.14,293,1736841600"; d="scan'208";a="62226834"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2025 04:55:42 -0700
+X-CSE-ConnectionGUID: 8ULjk22zS2CpftBANwnOHQ==
+X-CSE-MsgGUID: GgkVwAiHQ5K+Uc+V17/GGA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,293,1736841600"; d="scan'208";a="131503258"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO [10.245.246.31])
+ ([10.245.246.31])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2025 04:55:41 -0700
+Message-ID: <5bf94f57b3d2bed5af7585b95b0bb67480cdbb3f.camel@linux.intel.com>
+Subject: Re: [PATCH v4 5/5] drm/xe: Make the PT code handle placement per
+ PTE rather than per vma / range
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>,
+ himal.prasad.ghimiray@intel.com, Matthew Auld <matthew.auld@intel.com>
+Date: Tue, 01 Apr 2025 13:55:39 +0200
+In-Reply-To: <x53tcs5bjldw6lcorjemuheklxcmepdvr2u7lvt3hpqrzqoc4h@nsu6hs25taqj>
+References: <20250326080551.40201-1-thomas.hellstrom@linux.intel.com>
+ <20250326080551.40201-6-thomas.hellstrom@linux.intel.com>
+ <x53tcs5bjldw6lcorjemuheklxcmepdvr2u7lvt3hpqrzqoc4h@nsu6hs25taqj>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/2?=
- =?utf-8?q?=5D_drm/dp=5Fmst=3A_Fix_GUID_DPCD_write_to_non-root_MST_branch_de?=
- =?utf-8?q?vices?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 01 Apr 2025 11:40:54 -0000
-Message-ID: <174350765449.22413.12419252899057525331@e6b6f09ec485>
-X-Patchwork-Hint: ignore
-References: <20250401103846.686408-1-imre.deak@intel.com>
-In-Reply-To: <20250401103846.686408-1-imre.deak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,185 +70,90 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8036057026726832336==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: series starting with [1/2] drm/dp_mst: Fix GUID DPCD write to non-root MST branch devices
-URL   : https://patchwork.freedesktop.org/series/147052/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-2889-9368766ece6c78cc0001f9b53037563fe521f887_BAT -> xe-pw-147052v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 8)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-147052v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_gt_freq@freq_fixed_idle:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][1] ([Intel XE#2464]) +2 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147052v1/bat-adlp-vf/igt@xe_gt_freq@freq_fixed_idle.html
-
-  * igt@xe_mmap@vram:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][2] ([Intel XE#1008])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147052v1/bat-adlp-vf/igt@xe_mmap@vram.html
-
-  * igt@xe_pm_residency@gt-c6-on-idle:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][3] ([Intel XE#2468])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147052v1/bat-adlp-vf/igt@xe_pm_residency@gt-c6-on-idle.html
-
-  * igt@xe_sriov_flr@flr-vf1-clear:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][4] ([Intel XE#3342])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147052v1/bat-adlp-vf/igt@xe_sriov_flr@flr-vf1-clear.html
-
-  * igt@xe_vm@shared-pte-page:
-    - bat-adlp-vf:        NOTRUN -> [ABORT][5] ([Intel XE#3970])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147052v1/bat-adlp-vf/igt@xe_vm@shared-pte-page.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_exec_basic@twice-bindexecqueue-rebind:
-    - bat-adlp-vf:        [ABORT][6] ([Intel XE#3970]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2889-9368766ece6c78cc0001f9b53037563fe521f887/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147052v1/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
-
-  
-  [Intel XE#1008]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1008
-  [Intel XE#2464]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2464
-  [Intel XE#2468]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2468
-  [Intel XE#3342]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342
-  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
+Hi, Lucas, Thanks for noticing. See inline.
 
 
-Build changes
--------------
+On Mon, 2025-03-31 at 10:55 -0500, Lucas De Marchi wrote:
+> On Wed, Mar 26, 2025 at 09:05:51AM +0100, Thomas Hellstr=C3=B6m wrote:
+> > diff --git a/drivers/gpu/drm/xe/xe_pt.c
+> > b/drivers/gpu/drm/xe/xe_pt.c
+> > index 9e719535a3bb..82ae159feed1 100644
+> > --- a/drivers/gpu/drm/xe/xe_pt.c
+> > +++ b/drivers/gpu/drm/xe/xe_pt.c
+> > @@ -278,13 +278,15 @@ struct xe_pt_stage_bind_walk {
+> > 	struct xe_vm *vm;
+> > 	/** @tile: The tile we're building for. */
+> > 	struct xe_tile *tile;
+> > -	/** @default_pte: PTE flag only template. No address is
+> > associated */
+> > -	u64 default_pte;
+> > +	/** @default_pte: PTE flag only template for VRAM. No
+> > address is associated */
+>=20
+> 		=C2=A0=C2=A0=C2=A0=C2=A0 ^
+> > +	u64 default_vram_pte;
+>=20
+> 		=C2=A0=C2=A0=C2=A0 ^
+>=20
+> doc is wrong here. This would fix that for this patch:
+>=20
+> // diff --git a/drivers/gpu/drm/xe/xe_pt.c
+> b/drivers/gpu/drm/xe/xe_pt.c
+> // index 82ae159feed12..91ad347c8c7bf 100644
+> // --- a/drivers/gpu/drm/xe/xe_pt.c
+> // +++ b/drivers/gpu/drm/xe/xe_pt.c
+> // @@ -278,9 +278,9 @@ struct xe_pt_stage_bind_walk {
+> //=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_vm *vm;
+> //=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /** @tile: The tile we=
+'re building for. */
+> //=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_tile *tile;
+> // -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /** @default_pte: PTE flag only =
+template for VRAM. No
+> address is associated */
+> // +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /** @default_vram_pte: PTE flag =
+only template for VRAM. No
+> address is associated */
+> //=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u64 default_vram_pte;
+> // -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /** @default_pte: PTE flag only =
+template for VRAM. No
+> address is associated */
+> // +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /** @default_system_pte: PTE fla=
+g only template for
+> system. No address is associated */
+> //=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u64 default_system_pte=
+;
+> //=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /** @dma_offset: DMA o=
+ffset to add to the PTE. */
+> //=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u64 dma_offset;
+>=20
+>=20
+> However I was surprised that we didn't get any error in our CI.Hooks.
+>=20
+>=20
+> It looks like this entire struct is not in our docs at all:
+> https://docs.kernel.org/gpu/xe/xe_mm.html#pagetable-building
+>=20
+> Should we add a
+>=20
+> /**
+> =C2=A0 * struct xe_pt_stage_bind_walk - ...
+> =C2=A0 */
+>=20
+> so it's visible? Or if it's internal detail from
+> drivers/gpu/drm/xe/xe_pt.c maybe we could drop the kernel-doc,
+> leaving
+> them as "/*" comments instead?
 
-  * Linux: xe-2889-9368766ece6c78cc0001f9b53037563fe521f887 -> xe-pw-147052v1
+I think it's worth having it kerneldoc'ed. I'll submit a patch for that
++ the fixes above unless you have it already in the pipe.
 
-  IGT_8297: 0a27244ed1972af84c78d68523d5791e596349e7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2889-9368766ece6c78cc0001f9b53037563fe521f887: 9368766ece6c78cc0001f9b53037563fe521f887
-  xe-pw-147052v1: 147052v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147052v1/index.html
-
---===============8036057026726832336==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thanks,
+Thomas
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+>=20
+> Lucas De Marchi
 
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/dp_mst: Fix GUID DPCD write to non-root MST branch devices</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147052/">https://patchwork.freedesktop.org/series/147052/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147052v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147052v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2889-9368766ece6c78cc0001f9b53037563fe521f887_BAT -&gt; xe-pw-147052v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-147052v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_gt_freq@freq_fixed_idle:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147052v1/bat-adlp-vf/igt@xe_gt_freq@freq_fixed_idle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2464">Intel XE#2464</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_mmap@vram:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147052v1/bat-adlp-vf/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1008">Intel XE#1008</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pm_residency@gt-c6-on-idle:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147052v1/bat-adlp-vf/igt@xe_pm_residency@gt-c6-on-idle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2468">Intel XE#2468</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_sriov_flr@flr-vf1-clear:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147052v1/bat-adlp-vf/igt@xe_sriov_flr@flr-vf1-clear.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342">Intel XE#3342</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_vm@shared-pte-page:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147052v1/bat-adlp-vf/igt@xe_vm@shared-pte-page.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_exec_basic@twice-bindexecqueue-rebind:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2889-9368766ece6c78cc0001f9b53037563fe521f887/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147052v1/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2889-9368766ece6c78cc0001f9b53037563fe521f887 -&gt; xe-pw-147052v1</li>
-</ul>
-<p>IGT_8297: 0a27244ed1972af84c78d68523d5791e596349e7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2889-9368766ece6c78cc0001f9b53037563fe521f887: 9368766ece6c78cc0001f9b53037563fe521f887<br />
-  xe-pw-147052v1: 147052v1</p>
-
-</body>
-</html>
-
---===============8036057026726832336==--
