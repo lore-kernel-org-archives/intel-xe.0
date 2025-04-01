@@ -4,57 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19306C36010
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Apr 2025 12:37:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F020C36010
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Apr 2025 12:58:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDA4410E2DE;
-	Tue,  1 Apr 2025 12:37:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00C0310E2DE;
+	Tue,  1 Apr 2025 12:58:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="El6ifnZj";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="gVKFKfPh";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 749E010E324
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Apr 2025 12:37:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743511039; x=1775047039;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=effOxjw5z4eiHrJm/V7VDJoAiVtFXx402JCsY4D507I=;
- b=El6ifnZjLhiY+OZAbmSzcJ+xHio9sOMB07PqVMuV6JmJtGzi6SIpRFX4
- zrXg/WPNJUXG/4yforMDzR/dBvFwZXK8xeDN/J6nkTwvyuhCJfrYEQDhF
- pw6CPh7DSGxmuyGA65sgy/VmzUzniYThJ9T1Yq5/qW/fik5+6jsxVBN5I
- g+m9A784tCF+4y+l26v2kMC6KtfBQCMzZbm/CjNFx1pJfOBuTjiks6Bza
- NytNmQ6jqq1Jl64CEYmAX1ARLFsE3zwauyWsPicQhQzOYlYHxWyi9fcq+
- jyVICm7mfz/S5ueapzMOggmAyEEGFPb/vbTWMdN/0PEMK7x5N0zPXbnCo w==;
-X-CSE-ConnectionGUID: Bn2y+FFbRO6uzLO2Vf816w==
-X-CSE-MsgGUID: YtY1qTR5Rt+BySIDZjB94g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11391"; a="44741579"
-X-IronPort-AV: E=Sophos;i="6.14,293,1736841600"; d="scan'208";a="44741579"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2025 05:37:19 -0700
-X-CSE-ConnectionGUID: xPMm0FPZRpC9lYXJRj9oWg==
-X-CSE-MsgGUID: YWIXA/KLTfSYn3lSSrgTCQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,293,1736841600"; d="scan'208";a="127273448"
-Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.7])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2025 05:37:17 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Patchwork <patchwork@emeril.freedesktop.org>
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: =?utf-8?Q?=E2=9C=97?= CI.Patch_applied: failure for hdrtest:
- hide the disgusting turds
-In-Reply-To: <174351034177.22413.14605498657948012385@e6b6f09ec485>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250401121830.21696-1-jani.nikula@intel.com>
- <174351034177.22413.14605498657948012385@e6b6f09ec485>
-Date: Tue, 01 Apr 2025 15:37:14 +0300
-Message-ID: <87o6xg2h39.fsf@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E345210E58D
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Apr 2025 12:58:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1743512324;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=nj3qCzc4f4ifM0KG5d8Lwvc9Y+5K+4gMJTdGUFQF2Is=;
+ b=gVKFKfPhzaqSSCS8KKHk0WliN+xLZ3Auduxjqb5a144rLd9phKTRZ8fc4YHBgqYkIQ2ly8
+ g9v9HsT0H+45NTE3XwAm2Eovw0CPYie9j/+bqwTsK16RdblbfUoZzHM2OL4QfntVGdvGU4
+ RjIgDhmaCn2pXoPweVEppBAYJhi0hIU=
+Received: from mx-prod-mc-04.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-78-XiB9IRkjN_OoBOGQpALg7A-1; Tue,
+ 01 Apr 2025 08:58:40 -0400
+X-MC-Unique: XiB9IRkjN_OoBOGQpALg7A-1
+X-Mimecast-MFC-AGG-ID: XiB9IRkjN_OoBOGQpALg7A_1743512318
+Received: from mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.15])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mx-prod-mc-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 750461955DDE; Tue,  1 Apr 2025 12:58:38 +0000 (UTC)
+Received: from hydra.redhat.com (unknown [10.44.32.206])
+ by mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
+ id 22F4B1956094; Tue,  1 Apr 2025 12:58:33 +0000 (UTC)
+From: Jocelyn Falempe <jfalempe@redhat.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Cc: Jocelyn Falempe <jfalempe@redhat.com>
+Subject: [PATCH v6 1/8] drm/i915/fbdev: Add intel_fbdev_get_map()
+Date: Tue,  1 Apr 2025 14:51:07 +0200
+Message-ID: <20250401125818.333033-2-jfalempe@redhat.com>
+In-Reply-To: <20250401125818.333033-1-jfalempe@redhat.com>
+References: <20250401125818.333033-1-jfalempe@redhat.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.15
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,35 +74,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 01 Apr 2025, Patchwork <patchwork@emeril.freedesktop.org> wrote:
-> == Series Details ==
->
-> Series: hdrtest: hide the disgusting turds
-> URL   : https://patchwork.freedesktop.org/series/147057/
-> State : failure
+The vaddr of the fbdev framebuffer is private to the struct
+intel_fbdev, so this function is needed to access it for drm_panic.
+Also the struct i915_vma is different between i915 and xe, so it
+requires a few functions to access fbdev->vma->iomap.
 
-The series is based on Linus' tree.
+Signed-off-by: Jocelyn Falempe <jfalempe@redhat.com>
+---
 
->
-> == Summary ==
->
-> === Applying kernel patches on branch 'drm-tip' with base: ===
-> Base commit: 9368766ece6c drm-tip: 2025y-04m-01d-08h-58m-05s UTC integration manifest
-> === git am output follows ===
-> error: patch failed: drivers/gpu/drm/Kconfig:489
-> error: drivers/gpu/drm/Kconfig: patch does not apply
-> hint: Use 'git am --show-current-patch=diff' to see the failed patch
-> Applying: drm: place header test files in .hdrtest subdirectories
-> Applying: drm/xe: place header test files in .hdrtest subdirectories
-> Applying: drm/i915: place header test files in .hdrtest subdirectories
-> Applying: kbuild: hdrtest: place header test files in .hdrtest subdirectories
-> Applying: drm: add config option for extra build-time checks
-> Patch failed at 0005 drm: add config option for extra build-time checks
-> When you have resolved this problem, run "git am --continue".
-> If you prefer to skip this patch, run "git am --skip" instead.
-> To restore the original branch and stop patching, run "git am --abort".
->
->
+v2:
+ * Add intel_fb_get_vaddr() and i915_vma_get_iomap() to build with Xe driver.
+ 
+v4:
+ * rename to get_map(), and return the struct iosys_map mapping.
+ * implement the Xe variant.
 
+ drivers/gpu/drm/i915/display/intel_fb_pin.c | 5 +++++
+ drivers/gpu/drm/i915/display/intel_fb_pin.h | 2 ++
+ drivers/gpu/drm/i915/display/intel_fbdev.c  | 5 +++++
+ drivers/gpu/drm/i915/display/intel_fbdev.h  | 6 +++++-
+ drivers/gpu/drm/i915/i915_vma.h             | 5 +++++
+ drivers/gpu/drm/xe/display/xe_fb_pin.c      | 5 +++++
+ 6 files changed, 27 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+index c648ab8a93d7..7f1c21eb12e0 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
++++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+@@ -333,3 +333,8 @@ void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state)
+ 			intel_dpt_unpin_from_ggtt(fb->dpt_vm);
+ 	}
+ }
++
++void intel_fb_get_map(struct i915_vma *vma, struct iosys_map *map)
++{
++	iosys_map_set_vaddr_iomem(map, i915_vma_get_iomap(vma));
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/drm/i915/display/intel_fb_pin.h
+index 01770dbba2e0..81ab79da1af7 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
++++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
+@@ -12,6 +12,7 @@ struct drm_framebuffer;
+ struct i915_vma;
+ struct intel_plane_state;
+ struct i915_gtt_view;
++struct iosys_map;
+ 
+ struct i915_vma *
+ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+@@ -27,5 +28,6 @@ void intel_fb_unpin_vma(struct i915_vma *vma, unsigned long flags);
+ int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
+ 		       const struct intel_plane_state *old_plane_state);
+ void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state);
++void intel_fb_get_map(struct i915_vma *vma, struct iosys_map *map);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+index 369f46286e95..5fdf71c3c74e 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.c
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+@@ -516,3 +516,8 @@ struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev)
+ {
+ 	return fbdev ? fbdev->vma : NULL;
+ }
++
++void intel_fbdev_get_map(struct intel_fbdev *fbdev, struct iosys_map *map)
++{
++	intel_fb_get_map(fbdev->vma, map);
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h b/drivers/gpu/drm/i915/display/intel_fbdev.h
+index 89bad3a2b01a..a4b3d6dd538f 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.h
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
+@@ -13,6 +13,7 @@ struct drm_fb_helper_surface_size;
+ struct drm_i915_private;
+ struct intel_fbdev;
+ struct intel_framebuffer;
++struct iosys_map;
+ 
+ #ifdef CONFIG_DRM_FBDEV_EMULATION
+ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
+@@ -22,7 +23,7 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
+ void intel_fbdev_setup(struct drm_i915_private *dev_priv);
+ struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev);
+ struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev);
+-
++void intel_fbdev_get_map(struct intel_fbdev *fbdev, struct iosys_map *map);
+ #else
+ #define INTEL_FBDEV_DRIVER_OPS \
+ 	.fbdev_probe = NULL
+@@ -39,6 +40,9 @@ static inline struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev
+ 	return NULL;
+ }
+ 
++static inline void intel_fbdev_get_map(struct intel_fbdev *fbdev, struct iosys_map *map)
++{
++}
+ #endif
+ 
+ #endif /* __INTEL_FBDEV_H__ */
+diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
+index 6a6be8048aa8..4ae610927fa7 100644
+--- a/drivers/gpu/drm/i915/i915_vma.h
++++ b/drivers/gpu/drm/i915/i915_vma.h
+@@ -353,6 +353,11 @@ static inline bool i915_node_color_differs(const struct drm_mm_node *node,
+ 	return drm_mm_node_allocated(node) && node->color != color;
+ }
+ 
++static inline void __iomem *i915_vma_get_iomap(struct i915_vma *vma)
++{
++	return READ_ONCE(vma->iomap);
++}
++
+ /**
+  * i915_vma_pin_iomap - calls ioremap_wc to map the GGTT VMA via the aperture
+  * @vma: VMA to iomap
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index b69896baa20c..b10ab7def601 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -463,3 +463,8 @@ u64 intel_dpt_offset(struct i915_vma *dpt_vma)
+ {
+ 	return 0;
+ }
++
++void intel_fb_get_map(struct i915_vma *vma, struct iosys_map *map)
++{
++	*map = vma->bo->vmap;
++}
 -- 
-Jani Nikula, Intel
+2.49.0
+
