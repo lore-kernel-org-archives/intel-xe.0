@@ -4,26 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0062CC36010
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Apr 2025 20:48:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19EE3C36010
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Apr 2025 20:52:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8E2810E699;
-	Tue,  1 Apr 2025 20:48:35 +0000 (UTC)
-Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4A2F10E699;
- Tue,  1 Apr 2025 20:48:33 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id D08F610E66E;
+	Tue,  1 Apr 2025 20:52:49 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QkLCCxX1";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BE0210E66E
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Apr 2025 20:52:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1743540768; x=1775076768;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=1dCRcpAhBq7pWDiUNq4qIfFEdvdudKN+i5D1rFR34NY=;
+ b=QkLCCxX1Ecu5jwfnUyZ1Z8+BEsPdBLo76sJe69PRaJ+MZVpVMcJuGaRh
+ N9aU3M2N8W3XEVVJGh1ndjCryXbpvtmrASg0As5BMbD0a92M24B8TXkAj
+ N2H5Rxpk0E+1N6ue5HWu6qizNpDV/eCgsak5tGX79CMedheBYzn6ynOeg
+ 6JefYfAFD2EaeCtIBrlssii/6sqW2xFEsoVHiNzRQx4TfPo1UphtCn/mr
+ FRoXdLHI2xDaxv4M7e0K1Ac2tMDJmK9B8LCkDpl3oUP4gjz2IM4WGWK6J
+ A7OVUQlXNcv5k4EeCjc8JYzkRe55CEXLtR47qBkF9jRxFH9xfdxMX5BAK w==;
+X-CSE-ConnectionGUID: m+RuZMstQtOL1qmqmMQitw==
+X-CSE-MsgGUID: y4QzBSHQS3yTvEFzn1KO/w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11391"; a="45008734"
+X-IronPort-AV: E=Sophos;i="6.14,294,1736841600"; d="scan'208";a="45008734"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2025 13:52:48 -0700
+X-CSE-ConnectionGUID: TGaU0nAgQNOWDZLRovP3JA==
+X-CSE-MsgGUID: spKFLe21TWi0Qjh/zC/dUA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,294,1736841600"; d="scan'208";a="131362210"
+Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.96])
+ by orviesa003.jf.intel.com with ESMTP; 01 Apr 2025 13:52:47 -0700
+From: Shuicheng Lin <shuicheng.lin@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
+ Janga Rahul Kumar <janga.rahul.kumar@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH] drm/xe: Add the missed value paramter of LE_COS
+Date: Tue,  1 Apr 2025 20:52:21 +0000
+Message-Id: <20250401205221.4179660-1-shuicheng.lin@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Large_devcoredump_file_support?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 01 Apr 2025 20:48:33 -0000
-Message-ID: <174354051380.24812.12308694975428757480@e6b6f09ec485>
-X-Patchwork-Hint: ignore
-References: <20250401204351.4130873-1-matthew.brost@intel.com>
-In-Reply-To: <20250401204351.4130873-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,88 +62,29 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Cc: Janga Rahul Kumar <janga.rahul.kumar@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Series: Large devcoredump file support
-URL   : https://patchwork.freedesktop.org/series/147085/
-State : failure
-
-== Summary ==
-
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../drivers/gpu/drm/xe/xe_migrate.c: In function ‘xe_migrate_access_memory’:
-../drivers/gpu/drm/xe/xe_migrate.c:1819:19: error: ‘CACHELINE_MASK’ undeclared (first use in this function)
- 1819 |         if (len & CACHELINE_MASK || ((uintptr_t)buf | offset) & CACHELINE_MASK) {
-      |                   ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c:1819:19: note: each undeclared identifier is reported only once for each function it appears in
-../drivers/gpu/drm/xe/xe_migrate.c:1827:35: error: ‘CACHELINE_BYTES’ undeclared (first use in this function)
- 1827 |                         u8 bounce[CACHELINE_BYTES];
-      |                                   ^~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c:1827:28: warning: unused variable ‘bounce’ [-Wunused-variable]
- 1827 |                         u8 bounce[CACHELINE_BYTES];
-      |                            ^~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c:1886:27: error: implicit declaration of function ‘xe_migrate_vram’; did you mean ‘xe_migrate_to_vram’? [-Werror=implicit-function-declaration]
- 1886 |                 __fence = xe_migrate_vram(m, current_bytes,
-      |                           ^~~~~~~~~~~~~~~
-      |                           xe_migrate_to_vram
-../drivers/gpu/drm/xe/xe_migrate.c:1890:43: error: ‘XE_MIGRATE_COPY_TO_VRAM’ undeclared (first use in this function)
- 1890 |                                           XE_MIGRATE_COPY_TO_VRAM :
-      |                                           ^~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c:1891:43: error: ‘XE_MIGRATE_COPY_TO_SRAM’ undeclared (first use in this function)
- 1891 |                                           XE_MIGRATE_COPY_TO_SRAM);
-      |                                           ^~~~~~~~~~~~~~~~~~~~~~~
-cc1: some warnings being treated as errors
-make[7]: *** [../scripts/Makefile.build:207: drivers/gpu/drm/xe/xe_migrate.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-make[6]: *** [../scripts/Makefile.build:465: drivers/gpu/drm/xe] Error 2
-make[6]: *** Waiting for unfinished jobs....
-make[5]: *** [../scripts/Makefile.build:465: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:465: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:465: drivers] Error 2
-make[2]: *** [/kernel/Makefile:1994: .] Error 2
-make[1]: *** [/kernel/Makefile:251: __sub-make] Error 2
-make: *** [Makefile:251: __sub-make] Error 2
-
-[20:48:05] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[20:48:09] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index da1f198ac107..042c8401aee9 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -62,7 +62,7 @@
+ #define   LE_SSE_MASK				REG_GENMASK(18, 17)
+ #define   LE_SSE(value)				REG_FIELD_PREP(LE_SSE_MASK, value)
+ #define   LE_COS_MASK				REG_GENMASK(16, 15)
+-#define   LE_COS(value)				REG_FIELD_PREP(LE_COS_MASK)
++#define   LE_COS(value)				REG_FIELD_PREP(LE_COS_MASK, value)
+ #define   LE_SCF_MASK				REG_BIT(14)
+ #define   LE_SCF(value)				REG_FIELD_PREP(LE_SCF_MASK, value)
+ #define   LE_PFM_MASK				REG_GENMASK(13, 11)
+-- 
+2.25.1
 
