@@ -4,44 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F29D2C36014
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Apr 2025 12:58:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EADD0C36018
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Apr 2025 12:58:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72E6D10E58C;
-	Tue,  1 Apr 2025 12:58:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A806210E59A;
+	Tue,  1 Apr 2025 12:58:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="S63yxBEu";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="IIhuYqkG";
 	dkim-atps=neutral
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBD8C10E324
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Apr 2025 12:58:37 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E4EB10E598
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Apr 2025 12:58:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1743512316;
+ s=mimecast20190719; t=1743512332;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=ZBPHk9cZuedRDs9pl9r5KL5+x0frCOEG1GupmWjuGtI=;
- b=S63yxBEuBbWnT0lUISgt8tkgxzpERrItD+ALAhSt/eNu7grcUzXPlBJnn7izp6KrdNVdnJ
- HrUw/KhmrlkRfUHRuKXaWxGBv/ZPdOD9Y9yAdun9/JB30sNMjwq0Q2ySnWjPRIhthxj0Q9
- 3UGJ+7QEq2PqavsPBtZN4W8RwZrHqbk=
-Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=gdBA6jsJfsrTLL4WUycFDFRP3fmh5ENTflYTA7f8G4c=;
+ b=IIhuYqkGeRaijy72Sgtv5Gu5Eh5wGrHK6TZzvcQ44TeqLblfT+oqJ1oWgU6tXjV4wAI3vr
+ CttcOxFocvwy2TX1P/aimpOkUP8wl2Db5EsAzDwpmgWNA88wKe53N1HTaBuUrAPGr96kG4
+ QnlvWqaxfFmrZozG9YcVEuFQgzl9uNY=
+Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
  (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-557-7bo5vYdoNfK-elKO9zWT7Q-1; Tue,
- 01 Apr 2025 08:58:35 -0400
-X-MC-Unique: 7bo5vYdoNfK-elKO9zWT7Q-1
-X-Mimecast-MFC-AGG-ID: 7bo5vYdoNfK-elKO9zWT7Q_1743512314
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-222-zPp512zjMHq5QT4E3xGkMQ-1; Tue,
+ 01 Apr 2025 08:58:49 -0400
+X-MC-Unique: zPp512zjMHq5QT4E3xGkMQ-1
+X-Mimecast-MFC-AGG-ID: zPp512zjMHq5QT4E3xGkMQ_1743512323
 Received: from mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com
  (mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.15])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (No client certificate requested)
- by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 936451800258; Tue,  1 Apr 2025 12:58:33 +0000 (UTC)
+ by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 7B36F180AF50; Tue,  1 Apr 2025 12:58:43 +0000 (UTC)
 Received: from hydra.redhat.com (unknown [10.44.32.206])
  by mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id C0A731956094; Tue,  1 Apr 2025 12:58:29 +0000 (UTC)
+ id 1B6231956094; Tue,  1 Apr 2025 12:58:38 +0000 (UTC)
 From: Jocelyn Falempe <jfalempe@redhat.com>
 To: Jani Nikula <jani.nikula@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
@@ -51,9 +52,12 @@ To: Jani Nikula <jani.nikula@linux.intel.com>,
  intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org
 Cc: Jocelyn Falempe <jfalempe@redhat.com>
-Subject: [PATCH v6 0/8] drm/i915: Add drm_panic support
-Date: Tue,  1 Apr 2025 14:51:06 +0200
-Message-ID: <20250401125818.333033-1-jfalempe@redhat.com>
+Subject: [PATCH v6 2/8] drm/i915/display/i9xx: Add a disable_tiling() for i9xx
+ planes
+Date: Tue,  1 Apr 2025 14:51:08 +0200
+Message-ID: <20250401125818.333033-3-jfalempe@redhat.com>
+In-Reply-To: <20250401125818.333033-1-jfalempe@redhat.com>
+References: <20250401125818.333033-1-jfalempe@redhat.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Scanned-By: MIMEDefang 3.0 on 10.30.177.15
@@ -71,67 +75,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is a draft of drm_panic support for i915.
+drm_panic draws in linear framebuffer, so it's easier to re-use the
+current framebuffer, and disable tiling in the panic handler, to show
+the panic screen.
 
-I've tested it on the 4 intel laptops I have at my disposal.
- * Haswell with 128MB of eDRAM.
- * Comet Lake  i7-10850H
- * Raptor Lake i7-1370P (with DPT, and Y-tiling).
- * Lunar Lake Ultra 5 228V (with DPT, and 4-tiling, and using the Xe driver.
+Signed-off-by: Jocelyn Falempe <jfalempe@redhat.com>
+---
+ drivers/gpu/drm/i915/display/i9xx_plane.c     | 23 +++++++++++++++++++
+ .../drm/i915/display/intel_display_types.h    |  2 ++
+ 2 files changed, 25 insertions(+)
 
-I tested panic in both fbdev console and gnome desktop.
-
-Best regards,
-
-v2:
- * Add the proper abstractions to build also for Xe.
- * Fix dim checkpatch issues.
-
-v3:
- * Add support for Y-tiled framebuffer when DPT is enabled.
-
-v4:
- * Add support for Xe driver, which shares most of the code.
- * Add support for 4-tiled framebuffer found in newest GPU.
-
-v5:
- * Rebase on top of git@gitlab.freedesktop.org:drm/i915/kernel.git drm-intel-next
- * Use struct intel_display instead of drm_i915_private.
- * Use iosys_map for intel_bo_panic_map().
-
-v6:
- * Rebase on top of git@gitlab.freedesktop.org:drm/i915/kernel.git drm-intel-next
- * Use struct intel_display instead of drm_i915_private for intel_atomic_plane.c
-
-Jocelyn Falempe (8):
-  drm/i915/fbdev: Add intel_fbdev_get_map()
-  drm/i915/display/i9xx: Add a disable_tiling() for i9xx planes
-  drm/i915/display: Add a disable_tiling() for skl planes
-  drm/i915/gem: Add i915_gem_object_panic_map()
-  drm/i915/display: Add drm_panic support
-  drm/i915/display: Flush the front buffer in panic handler
-  drm/i915/display: Add drm_panic support for Y-tiling with DPT
-  drm/i915/display: Add drm_panic support for 4-tiling with DPT
-
- drivers/gpu/drm/i915/display/i9xx_plane.c     |  23 +++
- .../gpu/drm/i915/display/intel_atomic_plane.c | 169 +++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_bo.c       |   5 +
- drivers/gpu/drm/i915/display/intel_bo.h       |   1 +
- .../drm/i915/display/intel_display_types.h    |   2 +
- drivers/gpu/drm/i915/display/intel_fb_pin.c   |   5 +
- drivers/gpu/drm/i915/display/intel_fb_pin.h   |   2 +
- drivers/gpu/drm/i915/display/intel_fbdev.c    |   5 +
- drivers/gpu/drm/i915/display/intel_fbdev.h    |   6 +-
- .../drm/i915/display/skl_universal_plane.c    |  27 +++
- drivers/gpu/drm/i915/gem/i915_gem_object.h    |   2 +
- drivers/gpu/drm/i915/gem/i915_gem_pages.c     |  29 +++
- drivers/gpu/drm/i915/i915_vma.h               |   5 +
- drivers/gpu/drm/xe/display/intel_bo.c         |  10 ++
- drivers/gpu/drm/xe/display/xe_fb_pin.c        |   5 +
- 15 files changed, 294 insertions(+), 2 deletions(-)
-
-
-base-commit: 010363c4618920838ca8777fdabd46871d289bf9
+diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
+index 5e8344fdfc28..9c93d5ac7129 100644
+--- a/drivers/gpu/drm/i915/display/i9xx_plane.c
++++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
+@@ -908,6 +908,27 @@ static const struct drm_plane_funcs i8xx_plane_funcs = {
+ 	.format_mod_supported = i8xx_plane_format_mod_supported,
+ };
+ 
++static void i9xx_disable_tiling(struct intel_plane *plane)
++{
++	struct intel_display *display = to_intel_display(plane);
++	enum i9xx_plane_id i9xx_plane = plane->i9xx_plane;
++	u32 dspcntr;
++	u32 reg;
++
++	dspcntr = intel_de_read_fw(display, DSPCNTR(display, i9xx_plane));
++	dspcntr &= ~DISP_TILED;
++	intel_de_write_fw(display, DSPCNTR(display, i9xx_plane), dspcntr);
++
++	if (DISPLAY_VER(display) >= 4) {
++		reg = intel_de_read_fw(display, DSPSURF(display, i9xx_plane));
++		intel_de_write_fw(display, DSPSURF(display, i9xx_plane), reg);
++
++	} else {
++		reg = intel_de_read_fw(display, DSPADDR(display, i9xx_plane));
++		intel_de_write_fw(display, DSPADDR(display, i9xx_plane), reg);
++	}
++}
++
+ struct intel_plane *
+ intel_primary_plane_create(struct intel_display *display, enum pipe pipe)
+ {
+@@ -1050,6 +1071,8 @@ intel_primary_plane_create(struct intel_display *display, enum pipe pipe)
+ 		}
+ 	}
+ 
++	plane->disable_tiling = i9xx_disable_tiling;
++
+ 	modifiers = intel_fb_plane_get_modifiers(display, INTEL_PLANE_CAP_TILING_X);
+ 
+ 	if (DISPLAY_VER(display) >= 5 || display->platform.g4x)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 367b53a9eae2..62d0785c9edf 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1512,6 +1512,8 @@ struct intel_plane {
+ 			   bool async_flip);
+ 	void (*enable_flip_done)(struct intel_plane *plane);
+ 	void (*disable_flip_done)(struct intel_plane *plane);
++	/* For drm_panic */
++	void (*disable_tiling)(struct intel_plane *plane);
+ };
+ 
+ #define to_intel_atomic_state(x) container_of(x, struct intel_atomic_state, base)
 -- 
 2.49.0
 
