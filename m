@@ -4,24 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11609C36014
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Apr 2025 15:42:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05B13C36010
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Apr 2025 15:42:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA42010E5F6;
-	Tue,  1 Apr 2025 15:42:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A517410E5F6;
+	Tue,  1 Apr 2025 15:42:53 +0000 (UTC)
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFA9510E5F6;
- Tue,  1 Apr 2025 15:42:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D342B10E5F6;
+ Tue,  1 Apr 2025 15:42:52 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_VRAM_Self_Refresh_=28rev2?=
- =?utf-8?q?=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_VRAM_Self_Refresh_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Anshuman Gupta" <anshuman.gupta@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 01 Apr 2025 15:42:23 -0000
-Message-ID: <174352214377.23500.1663672760430015319@e6b6f09ec485>
+Date: Tue, 01 Apr 2025 15:42:52 -0000
+Message-ID: <174352217285.23501.13456650842407981288@e6b6f09ec485>
 X-Patchwork-Hint: ignore
 References: <20250401153225.96379-1-anshuman.gupta@intel.com>
 In-Reply-To: <20250401153225.96379-1-anshuman.gupta@intel.com>
@@ -44,69 +43,251 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: VRAM Self Refresh (rev2)
 URL   : https://patchwork.freedesktop.org/series/145342/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-99e5a866b5e13f134e606a3e29d9508d97826fb3
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit ab1c592bbcdc021074954cf236dd2fa24641fb41
-Author: Badal Nilawar <badal.nilawar@intel.com>
-Date:   Tue Apr 1 21:02:25 2025 +0530
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+[15:42:24] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[15:42:28] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json ARCH=um O=.kunit --jobs=48
+ERROR:root:In file included from ../drivers/gpu/drm/xe/xe_device_types.h:10,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_bb.c:9:
+../include/linux/pci-acpi.h:149:5: warning: no previous prototype for ‘pci_acpi_register_aux_power_notifier’ [-Wmissing-prototypes]
+  149 | int pci_acpi_register_aux_power_notifier(struct notifier_block *nb)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:154:6: warning: no previous prototype for ‘pci_acpi_unregister_aux_power_notifier’ [-Wmissing-prototypes]
+  154 | void pci_acpi_unregister_aux_power_notifier(struct notifier_block *nb) { }
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:156:5: warning: no previous prototype for ‘pci_acpi_request_d3cold_aux_power’ [-Wmissing-prototypes]
+  156 | int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:161:5: warning: no previous prototype for ‘pci_acpi_add_perst_assertion_delay’ [-Wmissing-prototypes]
+  161 | int pci_acpi_add_perst_assertion_delay(struct pci_dev *dev, u32 delay_us)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:10,
+                 from ../drivers/gpu/drm/xe/xe_bo_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
+                 from ../drivers/gpu/drm/xe/xe_bo.c:6:
+../include/linux/pci-acpi.h:149:5: warning: no previous prototype for ‘pci_acpi_register_aux_power_notifier’ [-Wmissing-prototypes]
+  149 | int pci_acpi_register_aux_power_notifier(struct notifier_block *nb)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:154:6: warning: no previous prototype for ‘pci_acpi_unregister_aux_power_notifier’ [-Wmissing-prototypes]
+  154 | void pci_acpi_unregister_aux_power_notifier(struct notifier_block *nb) { }
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:156:5: warning: no previous prototype for ‘pci_acpi_request_d3cold_aux_power’ [-Wmissing-prototypes]
+  156 | int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:161:5: warning: no previous prototype for ‘pci_acpi_add_perst_assertion_delay’ [-Wmissing-prototypes]
+  161 | int pci_acpi_add_perst_assertion_delay(struct pci_dev *dev, u32 delay_us)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:10,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/tests/xe_pci_test.c:13:
+../include/linux/pci-acpi.h:149:5: warning: no previous prototype for ‘pci_acpi_register_aux_power_notifier’ [-Wmissing-prototypes]
+  149 | int pci_acpi_register_aux_power_notifier(struct notifier_block *nb)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:154:6: warning: no previous prototype for ‘pci_acpi_unregister_aux_power_notifier’ [-Wmissing-prototypes]
+  154 | void pci_acpi_unregister_aux_power_notifier(struct notifier_block *nb) { }
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:156:5: warning: no previous prototype for ‘pci_acpi_request_d3cold_aux_power’ [-Wmissing-prototypes]
+  156 | int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:161:5: warning: no previous prototype for ‘pci_acpi_add_perst_assertion_delay’ [-Wmissing-prototypes]
+  161 | int pci_acpi_add_perst_assertion_delay(struct pci_dev *dev, u32 delay_us)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:10,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/tests/xe_wa_test.c:11:
+../include/linux/pci-acpi.h:149:5: warning: no previous prototype for ‘pci_acpi_register_aux_power_notifier’ [-Wmissing-prototypes]
+  149 | int pci_acpi_register_aux_power_notifier(struct notifier_block *nb)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:154:6: warning: no previous prototype for ‘pci_acpi_unregister_aux_power_notifier’ [-Wmissing-prototypes]
+  154 | void pci_acpi_unregister_aux_power_notifier(struct notifier_block *nb) { }
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:156:5: warning: no previous prototype for ‘pci_acpi_request_d3cold_aux_power’ [-Wmissing-prototypes]
+  156 | int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:161:5: warning: no previous prototype for ‘pci_acpi_add_perst_assertion_delay’ [-Wmissing-prototypes]
+  161 | int pci_acpi_add_perst_assertion_delay(struct pci_dev *dev, u32 delay_us)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:10,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/tests/xe_rtp_test.c:16:
+../include/linux/pci-acpi.h:149:5: warning: no previous prototype for ‘pci_acpi_register_aux_power_notifier’ [-Wmissing-prototypes]
+  149 | int pci_acpi_register_aux_power_notifier(struct notifier_block *nb)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:154:6: warning: no previous prototype for ‘pci_acpi_unregister_aux_power_notifier’ [-Wmissing-prototypes]
+  154 | void pci_acpi_unregister_aux_power_notifier(struct notifier_block *nb) { }
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:156:5: warning: no previous prototype for ‘pci_acpi_request_d3cold_aux_power’ [-Wmissing-prototypes]
+  156 | int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:161:5: warning: no previous prototype for ‘pci_acpi_add_perst_assertion_delay’ [-Wmissing-prototypes]
+  161 | int pci_acpi_add_perst_assertion_delay(struct pci_dev *dev, u32 delay_us)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:10,
+                 from ../drivers/gpu/drm/xe/xe_bo_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
+                 from ../drivers/gpu/drm/xe/xe_bo_evict.c:8:
+../include/linux/pci-acpi.h:149:5: warning: no previous prototype for ‘pci_acpi_register_aux_power_notifier’ [-Wmissing-prototypes]
+  149 | int pci_acpi_register_aux_power_notifier(struct notifier_block *nb)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:154:6: warning: no previous prototype for ‘pci_acpi_unregister_aux_power_notifier’ [-Wmissing-prototypes]
+  154 | void pci_acpi_unregister_aux_power_notifier(struct notifier_block *nb) { }
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:156:5: warning: no previous prototype for ‘pci_acpi_request_d3cold_aux_power’ [-Wmissing-prototypes]
+  156 | int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:161:5: warning: no previous prototype for ‘pci_acpi_add_perst_assertion_delay’ [-Wmissing-prototypes]
+  161 | int pci_acpi_add_perst_assertion_delay(struct pci_dev *dev, u32 delay_us)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:10,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_devcoredump.c:15:
+../include/linux/pci-acpi.h:149:5: warning: no previous prototype for ‘pci_acpi_register_aux_power_notifier’ [-Wmissing-prototypes]
+  149 | int pci_acpi_register_aux_power_notifier(struct notifier_block *nb)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:154:6: warning: no previous prototype for ‘pci_acpi_unregister_aux_power_notifier’ [-Wmissing-prototypes]
+  154 | void pci_acpi_unregister_aux_power_notifier(struct notifier_block *nb) { }
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:156:5: warning: no previous prototype for ‘pci_acpi_request_d3cold_aux_power’ [-Wmissing-prototypes]
+  156 | int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:161:5: warning: no previous prototype for ‘pci_acpi_add_perst_assertion_delay’ [-Wmissing-prototypes]
+  161 | int pci_acpi_add_perst_assertion_delay(struct pci_dev *dev, u32 delay_us)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:10,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_device.c:6:
+../include/linux/pci-acpi.h:149:5: warning: no previous prototype for ‘pci_acpi_register_aux_power_notifier’ [-Wmissing-prototypes]
+  149 | int pci_acpi_register_aux_power_notifier(struct notifier_block *nb)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:154:6: warning: no previous prototype for ‘pci_acpi_unregister_aux_power_notifier’ [-Wmissing-prototypes]
+  154 | void pci_acpi_unregister_aux_power_notifier(struct notifier_block *nb) { }
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:156:5: warning: no previous prototype for ‘pci_acpi_request_d3cold_aux_power’ [-Wmissing-prototypes]
+  156 | int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:161:5: warning: no previous prototype for ‘pci_acpi_add_perst_assertion_delay’ [-Wmissing-prototypes]
+  161 | int pci_acpi_add_perst_assertion_delay(struct pci_dev *dev, u32 delay_us)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device.c:21:
+../drivers/gpu/drm/xe/display/xe_display.h: In function ‘xe_display_connected’:
+../drivers/gpu/drm/xe/display/xe_display.h:75:48: error: no return statement in function returning non-void [-Werror=return-type]
+   75 | static inline bool xe_display_connected(struct xe_device *xe) {}
+      |                                                ^~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:10,
+                 from ../drivers/gpu/drm/xe/xe_device.h:11,
+                 from ../drivers/gpu/drm/xe/xe_device_sysfs.c:12:
+../include/linux/pci-acpi.h:149:5: warning: no previous prototype for ‘pci_acpi_register_aux_power_notifier’ [-Wmissing-prototypes]
+  149 | int pci_acpi_register_aux_power_notifier(struct notifier_block *nb)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:154:6: warning: no previous prototype for ‘pci_acpi_unregister_aux_power_notifier’ [-Wmissing-prototypes]
+  154 | void pci_acpi_unregister_aux_power_notifier(struct notifier_block *nb) { }
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:156:5: warning: no previous prototype for ‘pci_acpi_request_d3cold_aux_power’ [-Wmissing-prototypes]
+  156 | int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:161:5: warning: no previous prototype for ‘pci_acpi_add_perst_assertion_delay’ [-Wmissing-prototypes]
+  161 | int pci_acpi_add_perst_assertion_delay(struct pci_dev *dev, u32 delay_us)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:10,
+                 from ../drivers/gpu/drm/xe/xe_bo_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
+                 from ../drivers/gpu/drm/xe/xe_dma_buf.c:17:
+../include/linux/pci-acpi.h:149:5: warning: no previous prototype for ‘pci_acpi_register_aux_power_notifier’ [-Wmissing-prototypes]
+  149 | int pci_acpi_register_aux_power_notifier(struct notifier_block *nb)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:154:6: warning: no previous prototype for ‘pci_acpi_unregister_aux_power_notifier’ [-Wmissing-prototypes]
+  154 | void pci_acpi_unregister_aux_power_notifier(struct notifier_block *nb) { }
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:156:5: warning: no previous prototype for ‘pci_acpi_request_d3cold_aux_power’ [-Wmissing-prototypes]
+  156 | int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:161:5: warning: no previous prototype for ‘pci_acpi_add_perst_assertion_delay’ [-Wmissing-prototypes]
+  161 | int pci_acpi_add_perst_assertion_delay(struct pci_dev *dev, u32 delay_us)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cc1: some warnings being treated as errors
+make[7]: *** [../scripts/Makefile.build:207: drivers/gpu/drm/xe/xe_device.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:10,
+                 from ../drivers/gpu/drm/xe/xe_gt_types.h:9,
+                 from ../drivers/gpu/drm/xe/xe_assert.h:13,
+                 from ../drivers/gpu/drm/xe/xe_drm_client.c:13:
+../include/linux/pci-acpi.h:149:5: warning: no previous prototype for ‘pci_acpi_register_aux_power_notifier’ [-Wmissing-prototypes]
+  149 | int pci_acpi_register_aux_power_notifier(struct notifier_block *nb)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:154:6: warning: no previous prototype for ‘pci_acpi_unregister_aux_power_notifier’ [-Wmissing-prototypes]
+  154 | void pci_acpi_unregister_aux_power_notifier(struct notifier_block *nb) { }
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:156:5: warning: no previous prototype for ‘pci_acpi_request_d3cold_aux_power’ [-Wmissing-prototypes]
+  156 | int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:161:5: warning: no previous prototype for ‘pci_acpi_add_perst_assertion_delay’ [-Wmissing-prototypes]
+  161 | int pci_acpi_add_perst_assertion_delay(struct pci_dev *dev, u32 delay_us)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_device_types.h:10,
+                 from ../drivers/gpu/drm/xe/xe_bo_types.h:16,
+                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
+                 from ../drivers/gpu/drm/xe/xe_eu_stall.c:15:
+../include/linux/pci-acpi.h:149:5: warning: no previous prototype for ‘pci_acpi_register_aux_power_notifier’ [-Wmissing-prototypes]
+  149 | int pci_acpi_register_aux_power_notifier(struct notifier_block *nb)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:154:6: warning: no previous prototype for ‘pci_acpi_unregister_aux_power_notifier’ [-Wmissing-prototypes]
+  154 | void pci_acpi_unregister_aux_power_notifier(struct notifier_block *nb) { }
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:156:5: warning: no previous prototype for ‘pci_acpi_request_d3cold_aux_power’ [-Wmissing-prototypes]
+  156 | int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/linux/pci-acpi.h:161:5: warning: no previous prototype for ‘pci_acpi_add_perst_assertion_delay’ [-Wmissing-prototypes]
+  161 | int pci_acpi_add_perst_assertion_delay(struct pci_dev *dev, u32 delay_us)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+make[6]: *** [../scripts/Makefile.build:465: drivers/gpu/drm/xe] Error 2
+make[5]: *** [../scripts/Makefile.build:465: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:465: drivers/gpu] Error 2
+make[4]: *** Waiting for unfinished jobs....
+make[3]: *** [../scripts/Makefile.build:465: drivers] Error 2
+make[3]: *** Waiting for unfinished jobs....
+../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+make[2]: *** [/kernel/Makefile:1994: .] Error 2
+make[1]: *** [/kernel/Makefile:251: __sub-make] Error 2
+make: *** [Makefile:251: __sub-make] Error 2
 
-    drm/xe/vrsr: Introduce a debugfs node named vrsr_capable
-    
-    Add a debugfs node named vrsr_capable to check if the device supports
-    VRSR
-    
-    Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
-+ /mt/dim checkpatch 075a54ae88695f050fb8baef7e98dee9dfd489df drm-intel
-16a13737be22 PCI/ACPI: Add D3cold Aux Power Limit_DSM method
-617cc8039d32 PCI/ACPI: Add PERST# Assertion Delay _DSM method
--:64: WARNING:MISSING_SPACE: break quoted strings at a space character
-#64: FILE: drivers/pci/pci-acpi.c:1547:
-+			 "PERST# Assertion Delay request failed"
-+			 "Previous valid delay: %u microseconds\n", result);
-
-total: 0 errors, 1 warnings, 0 checks, 84 lines checked
-f5c35285f625 PCI/ACPI: Add aux power grant notifier
-4822e43abc6d drm/xe/vrsr: Introduce flag has_vrsr
-423e85554df1 drm/xe/vrsr: Detect VRSR Capability
-52417d71d2a1 drm/xe/vrsr: Initialize VRSR feature
--:74: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#74: FILE: drivers/gpu/drm/xe/xe_pm.c:280:
-+	ret = xe_pcode_read(root_tile, PCODE_MBOX(PCODE_D3_VRAM_SELF_REFRESH,
-+			    PCODE_D3_VRSR_SC_AUX_PL_AND_PERST_DELAY, 0),
-
--:140: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#140: FILE: drivers/gpu/drm/xe/xe_pm.c:346:
-+		ret = xe_pcode_write(root_tile, PCODE_MBOX(PCODE_D3_VRAM_SELF_REFRESH,
-+				     PCODE_D3_VRSR_SC_ENABLE, 0), uval);
-
--:143: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#143: FILE: drivers/gpu/drm/xe/xe_pm.c:349:
-+		ret = xe_pcode_write(root_tile, PCODE_MBOX(PCODE_D3_VRAM_SELF_REFRESH,
-+				     PCODE_D3_VRSR_SC_DISABLE, 0), uval);
-
-total: 0 errors, 0 warnings, 3 checks, 136 lines checked
-203aff741da0 drm/xe/vrsr: Enable VRSR on default VGA boot device
-656e063b1c66 drm/xe: Add PCIe ACPI Aux Power notifier
-d32bae784227 drm/xe/vrsr: Refactor d3cold.allowed to a enum
-ae4578e9578f drm/xe/pm: D3Cold target state
-eeee16a5db81 drm/xe/vrsr: Enable VRSR
-ab1c592bbcdc drm/xe/vrsr: Introduce a debugfs node named vrsr_capable
--:20: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#20: FILE: drivers/gpu/drm/xe/xe_debugfs.c:195:
-+static ssize_t vrsr_capable_show(struct file *f, char __user *ubuf,
-+				size_t size, loff_t *pos)
-
-total: 0 errors, 0 warnings, 1 checks, 32 lines checked
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
