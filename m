@@ -4,164 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43C74C36017
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Apr 2025 19:23:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 062C9C36017
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Apr 2025 19:36:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 087FC10E0F4;
-	Tue,  1 Apr 2025 19:23:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC9E210E661;
+	Tue,  1 Apr 2025 19:36:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mRXhx+SJ";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="h4hTEfO4";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E42CC10E0F4
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Apr 2025 19:23:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743535397; x=1775071397;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=eylNaghqm8ltgoGFR+jcYtkvUbGrMm1hweUyHiJ707A=;
- b=mRXhx+SJeQuFJb7cE60vQabqNg3O39COgmbPeCA4hQDpxkpcuFPHfjpg
- jo2SDDG0ifDtI2xhKZXCDPgBfNXD+5ZvWz5UeDuPA5x/8A5a0HJ7SZldO
- fWriNxOSfxSFB3WqtRLl4eU2h87mUGGaYHccEYbeOPJUWmdeGq2LEdEaK
- VUL27iIeHN+TU2OwwFxRcs2pcGEjCdMAQCnABL6g39OvA3KPKYSnJpzrr
- AxRH8pDvtyIFnoQDN20kwHkeA+3Z2IicD7usBYb9maI/cJpzGfhwAqL9J
- HGjh8B8Pgp227Mhx7nxOerOWmFXZJPTuTYfhJ+tzjGde5DeUgxaNtX92Y w==;
-X-CSE-ConnectionGUID: ES/oiTQVQZ+96GIqfdgsUw==
-X-CSE-MsgGUID: OBYEP/tTSwmfAEYDjNeyVA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11391"; a="62277663"
-X-IronPort-AV: E=Sophos;i="6.14,294,1736841600"; d="scan'208";a="62277663"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2025 12:23:17 -0700
-X-CSE-ConnectionGUID: +n/SKL3UR7GTuugHGx7uXA==
-X-CSE-MsgGUID: wYHcZxRaSS2yPPfhoZ9ipw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,294,1736841600"; d="scan'208";a="126375380"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2025 12:23:17 -0700
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.1544.14; Tue, 1 Apr 2025 12:23:16 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Tue, 1 Apr 2025 12:23:16 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.175)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Tue, 1 Apr 2025 12:23:15 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GWM1TkgahpTqlDzSliylIPwhd7UAgxxhI6HdkIQ7WuQw12d77OkAJ4qK5R5iTtVmCCFjMUQIopRXWYeWCV3Zf3NHPuNSnBzZ/KL/WdtQZD84psT+96i9tE9QI2BQ/Qvpq0R3YEXIKB5il/mP3lY5l+X0DyDKLRJpL8fw2ZheMohNXFiMWTyYmNaIqO+/zRD9xcVLsrjnrpEm7OLFlqfFIagzmSW2P2XBFqNUFK4LTIXp7yWnclxD9zQ5Rc/c2H/syfNatqaaIfFvUn3zncKvsVKQ8Oc1Kv/kSPf+4GsjX70DqTv795508+qCRzaPgkJFSjYCJqTqJ+6WQaeJiOapdA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FmzIyEQLpzpjn53G9E5hVEqDK6/FWBgvOzR+5HW6e1E=;
- b=h8NIxkZlgc1CzkXjVAbHnvUNaWPFhPDg6VUnVBnJM7JUNeJmjl0/9D9vVDhj/2omlUO4oJUZXsY7l8gLAZa6uRk30xZukiMGXuex5zULQuZ0tLms30JFY+Lrjdnoby5JdQGL3WsQpl6Xh25FATnOs2GHyRSjixSUZHD/5vVWNLsr53r8JWMhWIKos5x5RkyHNFdQZ4N8Nq8miyT+zrxgtfRgOmYSHXC6rTkmxM8oQHxGpvZSJpKoOIlauoAHP4sY7Y58aGdJ8FwS90dNW5Gz999xyIgQRNDsv7nTt/QFJJlleuc/Qn+kSRvJGkEnWK+Xlq5Mb71FwpCM9TbeM6L46w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by DS7PR11MB6038.namprd11.prod.outlook.com (2603:10b6:8:75::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8534.44; Tue, 1 Apr 2025 19:23:13 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%3]) with mapi id 15.20.8534.045; Tue, 1 Apr 2025
- 19:23:13 +0000
-Date: Tue, 1 Apr 2025 14:23:11 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Maarten Lankhorst <dev@lankhorst.se>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 8/8] drm/xe: Split init of xe_gt_init_hwconfig to
- xe_gt_init and *_early
-Message-ID: <ux6jwr2zycscpe7265gfyg3yp5r5uxfruhym3qi7zj5nh5f3ih@c3uascv77b6m>
-References: <20250310200653.89731-1-dev@lankhorst.se>
- <20250310200653.89731-9-dev@lankhorst.se>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20250310200653.89731-9-dev@lankhorst.se>
-X-ClientProxiedBy: MW4PR04CA0208.namprd04.prod.outlook.com
- (2603:10b6:303:86::33) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BCBF10E661
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Apr 2025 19:36:05 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 63E80A41301
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Apr 2025 19:30:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1B8CC4CEE4
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Apr 2025 19:36:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1743536161;
+ bh=uZmGEmbD4YA5mIc17uNQ5/xgj0zYq+XYisT+Iv+qs2g=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=h4hTEfO4+uiZYnq08jlIsSJCq2LnosJX9gsdBT+we5bQcQ+jAPl6rXYpPlnYYk7RZ
+ NjYiEZ3B+//kkuUvkeEYU+rbO9OF0W9/UECis5+E8Pjr70b9WyTsOyaQ5TQgao8npN
+ 0zL+b8BHLWZmkxeun422ZjVdzzizFasD9c3iXofK0DKMyrJ9+VfeVgklZ85A6ik24I
+ AJ30xrBPaJfhbIKkEDO/4jB7jHD+YJU9AAa3ACQaVsbtJjfWrmBSYFPcg8BAOBCD/+
+ e4a83uSKLkSQLzbQG1SiCsCq11/1KJ0flMpngGyMjG0AttXve89kq+dC2YbY+2bUI+
+ frd40FMdQq4KA==
+Received: by mail-oa1-f52.google.com with SMTP id
+ 586e51a60fabf-2c787506611so1779987fac.3
+ for <intel-xe@lists.freedesktop.org>; Tue, 01 Apr 2025 12:36:01 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWUrz+NU7fD0U/DlNqIH90ka12UpJdvlNO2at5ma/JxIkIWiWdVdfQSVQZfYB42wD1G3LtKU1LMxQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yymjb+m06FKfblpIm3B7NFnaWQIzz9RUDsCF7Bg4Brapwd55AdU
+ FBJIYUCInFOJxCH5FFFr48OgkDNFyUIlVjEuY0+nxcpt8UGArMLze1seLn18DcQxjDy9Bmf02jN
+ g89VVZN7arRyim/aGlayygHOoN6M=
+X-Google-Smtp-Source: AGHT+IFYMOK/Gc0O8V9n7PIzZpIbf7yLiBicjJJp7Jh6neAaa2o+KDq+tmbNiXbpYRDPXDjZ08AGeymbf2TPm34c4FI=
+X-Received: by 2002:a05:6870:610e:b0:29f:a0b8:6f7f with SMTP id
+ 586e51a60fabf-2cbcf503f3amr8091404fac.12.1743536161053; Tue, 01 Apr 2025
+ 12:36:01 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DS7PR11MB6038:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6792c089-9663-44f6-aa90-08dd7152a59b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7053199007;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Zj69gHt+M6mxBoyzVcH6X3EVZJ1m5P9Aq4x6ygzVzkJHpx8vXcAn/yMSwemU?=
- =?us-ascii?Q?E3hqfrRtRQvx1yLLokq66r08kzTM5sYK+ywLwrFV/PfQVdZoEgGYp1TlGFBF?=
- =?us-ascii?Q?c5nXU3QQDdM9wSQgeCYMrgFjPITc486tWGEOzMo1XeQ6F2y59KTnQyIA0yuK?=
- =?us-ascii?Q?2JJS8/F0jEqcKUsNJhpN/1XrUnDai0mz4pJpVRe4IoP1Uhs7Dl/Dzp/QQZk8?=
- =?us-ascii?Q?V1XwxpT/pWVmImAW8Hi3b/TVcInIwlVQ3NIFUr87N8vSLsI5hXePFw+1czG2?=
- =?us-ascii?Q?M5cBemIxwG6l8rTfD7EvZ8HlbatS4UpAaDdfSmmg7XIyRMqOqhsjA6dMyWiN?=
- =?us-ascii?Q?OC26VmfBWKmsz5hWSFFBMnZCsbFVLQs6Y4rUxblOLgFG3E2+G4QnpZ7UFVZh?=
- =?us-ascii?Q?dXenac4Ca5AWcqdTeu2OIEoNoItk80rhZIpR/haHs3DVJoGEYcdgC2DDnPmG?=
- =?us-ascii?Q?zipsJQKQJrDq0R9ecSu3Y7NKNyvRXEPC+8SZBa9rk+2pUatkPPq2POD8jTaC?=
- =?us-ascii?Q?4wzfRnSEFw6GwIzMR/XKciACkSaIJb/68ARORIQ4pYSZrEMORXHLTg2LDr9q?=
- =?us-ascii?Q?Yw1cOErNBJM1j5l9M88y9G2vSj5/FfwL3CruOFzZ/U+ThfX1AbPFfGOhu1Za?=
- =?us-ascii?Q?HhRfB1XFn8gEaCb1JeOkaOnBl3ehXkF1/4WGhHekbtVbHjXWiBc0RL1zUJh8?=
- =?us-ascii?Q?doDk+AzktvGftbWchnhW95m04uMtrIMr02wTS2kdk4fDP/14JNifRGDlQ7Pu?=
- =?us-ascii?Q?SimUsosiZuUHaEdnJyoHIIe62btCj83k6QSPjzFv97Jwrn4dfFE79TlIkWU6?=
- =?us-ascii?Q?Ux/9OSiBw5PAxeCwQGQ0rOtDp/hqhnvcl66KDqSmB9hX4slRSd3D1WbMK1zr?=
- =?us-ascii?Q?tWZBNb92408248nLPmr/BFLtqDd36/0uoIOe9+ryiZYKIw5QwlEtzBE+BBtb?=
- =?us-ascii?Q?+jigz+BsqV15yqjKxb/T0YiMRf90NpTFZzUSNf6pQqCXvP0j/fAzZrGWLEA/?=
- =?us-ascii?Q?skmaCQwW77a9LW8QyjGNfGiUUJ8DF9Wk3hvVA7ZE7MDu7NdwGv4cXT6kV40L?=
- =?us-ascii?Q?6gCWGG6IoK/052Uh3KlkaUZduhyghVceGuvt9Zw1F8vo/bxdCIDWI+Yz/bkc?=
- =?us-ascii?Q?IKCk67fliwqyKUlUHuz3GhaQRGqUfKveGp1Bo0kiL1lsZVIYRuQq+pimXz9i?=
- =?us-ascii?Q?0OFcvLn7J89t2B8KeHGdibmRQVzHwkrgKowq7hZ6dPkzEFb+TElopxo6AdKY?=
- =?us-ascii?Q?xyWrxFcVvHh8QuSLqjOmVyfAg0jDi4Xym0Nk8dtN08XS1sg8enRSKnQ93ihm?=
- =?us-ascii?Q?hOpIKHsFfrDjbD37VKIslvnuCFYdLUF4AY90VKL4Kt6rG1gfWl5vZ0/rzcJQ?=
- =?us-ascii?Q?8ylQ/T4INv56F8yS86oncRXArMih?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(7053199007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?YxOcJ2eiQo+B/otJDjdgx3uz6KFVbhbUbkMd9s/FIPxK6Ip+3Rp9QkPWvoML?=
- =?us-ascii?Q?DQCD0ZLMmRx5fLoG+UaY6F4a4/lwMSicUUyqZZz1XgHiWCOSuiQFYwOgnvaZ?=
- =?us-ascii?Q?MSpkF/ze8cF2k+01jYDNJ8jYlZtG7lzi7JuHUJuX6CKY5iNVjetbtScSAeVg?=
- =?us-ascii?Q?UIFUL7mMArNHnJ62nB8ca7kmRk1BZP5DfkOrWt2E54odarqjcbvrv1uF3S1d?=
- =?us-ascii?Q?h4EXz95d7Hn6/NyLn6nkBdy3SnNHgX6gsTeNctwqs2GZ0BTpfYc5jBC9Ys9b?=
- =?us-ascii?Q?qc2aDp4m5lP/OQcHg5M0B2QvtBuvKEMsgjBH5BhyHkTExYeFofBwUejVcUFB?=
- =?us-ascii?Q?fZVAtKDfuk/NsowI7r85ijU+y+v5M2H2QMdSTFDZG/Vc8rH91EOa7jJYDNAk?=
- =?us-ascii?Q?W/XosvOeKaSWqzG8pl70JjEu2vZh7e1DfL+GTyS2KTviLxd9xS4TFh1cgv6K?=
- =?us-ascii?Q?EeU8/3eDXx27ySINNh5Gh/Twt1Sh/VR91o3rg8bCw0SkgtbD7HoQLEoVL4mE?=
- =?us-ascii?Q?Q3vYXLIFz2kEHEgfwYi10i15lQZpfNNgcXhURCZh6NnIg3HJp6czUkrlhkeR?=
- =?us-ascii?Q?uwYO73aOArOuRqUE9BQUhm5amNB2bFVwfho5yWeVtSkxB2NM6DF4TzcjK1Gz?=
- =?us-ascii?Q?ERaHTT6x/aH89LMWAxKwzZfjJQSPZPeIyi/1nGhG5MMJ8upEesT5c7K0T5BC?=
- =?us-ascii?Q?1e3HITyzEbXKlHphmbBBuZ3VfSu0BMjUTzzy5dV/GfZ89qdoo0AakBpMqNaD?=
- =?us-ascii?Q?qL2AA3QiQOFhDZC6HQ79Fh33FHsCdr8zxtUC4EX0UIPdebWiFhXSg8lRkO7E?=
- =?us-ascii?Q?Bt+MRXn1NTdybDKYui3mT2IlSiFIZOa5GrAeCnHKFiShud2JmzN4QieVBvpD?=
- =?us-ascii?Q?phahFHksGywwhTpZgG6Zm8IPiOVx5IsFjs70D0FlKgkIHeJyzt5kwgxIsnGK?=
- =?us-ascii?Q?kKZdQ/pf2u7+HPiz0L4KzTyLPGMMDY9IrGCnYJfj6yeMDwuL7y1ALU4WoaOD?=
- =?us-ascii?Q?XvnDEUNnSPlpR1unoeyo/WsmWreiJp0iJqua63wg85y1vT4QcsKB2ysIbq0p?=
- =?us-ascii?Q?Y2uduo4PPPslH7Q2p6IjjyW9pNvGFEmBNcMZql/HG8kZf/zbLBTfD57JReZp?=
- =?us-ascii?Q?ye4FUT/PTqqzJKl6XILdIOcAw05SJ5fQKN9BBzNXfWbOlYlfK+aPQCSWm8Nu?=
- =?us-ascii?Q?VnuiBcC1zidQrZqjjVrtipNAyyriVrhQSHq2AkBqGXUOGJNg8kR156nllVdV?=
- =?us-ascii?Q?li5I3ugE4w+GLQor0fP7Futa4OnUje0tUvJBzU+QxgXqLFtmHckUNwFcVY5l?=
- =?us-ascii?Q?VgmG2fYjNaFr+hweFkCQauPqrXT/fvwmwtQ+mRsd/Awl9v+DUnIflY2I9hrS?=
- =?us-ascii?Q?PgJN12nbCluF8fPr4J2xVQcH3asm0TsvH+58B1DhGrdJHtodSvrBIGwZ7buS?=
- =?us-ascii?Q?C4HQJ9/28Yy2a1nugQ8x0wz7IXhBDINrcBdlieIEbpF5Rl95CREgjRTXjwuY?=
- =?us-ascii?Q?BuNlFke8YeassY9vDDEctMggOiCtdTLi8ZffnTKi/h1axhTQhazUmLTygVtz?=
- =?us-ascii?Q?VQjPZsq6rWJQ/7pF7lz3eT+W3eug0LW+pmaI0qJVtoZ/84BwyOcs99LV190p?=
- =?us-ascii?Q?1Q=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6792c089-9663-44f6-aa90-08dd7152a59b
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2025 19:23:13.8207 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2ADhHid6xhdw3sM3DxNXD2SVXqCll0Twu+u5oWCo0/KEGmHzDJjCXDI0ATP3o23qHdUOValDNzncNMkPulkbHRs6/jKNss3hYwFZSYfbVeg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB6038
-X-OriginatorOrg: intel.com
+References: <20250327161914.432552-1-badal.nilawar@intel.com>
+ <8a514fa3-af9a-4b92-a6d3-3c6764b20a5e@intel.com> <Z-WHYbhu1QdjUFPR@intel.com>
+ <Z-bICZUBN_Fk0_mM@intel.com> <Z-eDJUtxjzIjGlJT@black.fi.intel.com>
+ <Z-q_n1g9wIEZc-dm@intel.com> <2d3f3cbe-c33d-4ded-8c19-e2bd2e76a68b@intel.com>
+ <Z-woHnrukI7qtB4m@black.fi.intel.com>
+In-Reply-To: <Z-woHnrukI7qtB4m@black.fi.intel.com>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Tue, 1 Apr 2025 21:35:49 +0200
+X-Gmail-Original-Message-ID: <CAJZ5v0j7ob4YQ9weQ6e5iVbHyRwf-6Vk2MU4r9mK11-8wD09RQ@mail.gmail.com>
+X-Gm-Features: AQ5f1Jo-gkfGu_0sPGCidEoXMsJtt25-ju4W4-LcuZr1Y6gIYuAHfpFN4OIpMIo
+Message-ID: <CAJZ5v0j7ob4YQ9weQ6e5iVbHyRwf-6Vk2MU4r9mK11-8wD09RQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/xe/d3cold: Set power state to D3Cold during s2idle/s3
+To: Raag Jadav <raag.jadav@intel.com>
+Cc: "Wysocki, Rafael J" <rafael.j.wysocki@intel.com>, lucas.demarchi@intel.com,
+ rodrigo.vivi@intel.com, "Nilawar, Badal" <badal.nilawar@intel.com>, 
+ intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com, 
+ "Rafael J. Wysocki" <rafael@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -176,126 +76,225 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Mar 10, 2025 at 09:06:53PM +0100, Maarten Lankhorst wrote:
->Now that we added the separate step of initialising GUC in
->xe_gt_init_early, it should be ok to initialise the minimum during early
->init, and the rest after allocations are allowed.
+On Tue, Apr 1, 2025 at 7:53=E2=80=AFPM Raag Jadav <raag.jadav@intel.com> wr=
+ote:
 >
->Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
->---
-> drivers/gpu/drm/xe/xe_device.c |  6 ----
-> drivers/gpu/drm/xe/xe_gt.c     | 60 +++++++++++++++-------------------
-> drivers/gpu/drm/xe/xe_gt.h     |  1 -
-> 3 files changed, 26 insertions(+), 41 deletions(-)
+> On Mon, Mar 31, 2025 at 10:18:16PM +0200, Wysocki, Rafael J wrote:
+> > On 3/31/2025 6:15 PM, Rodrigo Vivi wrote:
+> > > On Sat, Mar 29, 2025 at 07:20:37AM +0200, Raag Jadav wrote:
+> > > > On Fri, Mar 28, 2025 at 12:02:17PM -0400, Rodrigo Vivi wrote:
+> > > > > On Thu, Mar 27, 2025 at 01:14:09PM -0400, Rodrigo Vivi wrote:
+> > > > > > On Thu, Mar 27, 2025 at 10:02:29PM +0530, Nilawar, Badal wrote:
+> > > > > > > On 27-03-2025 21:49, Badal Nilawar wrote:
+> > > > > > > Hi Rodrigo,
+> > > > > > >
+> > > > > > > > According to pci core guidelines, pci_save_config is recomm=
+ended when the
+> > > > > > > > driver explicitly needs to set the pci power state. As of n=
+ow xe kmd is
+> > > > > > > > only doing pci_save_config while entering to s2idle/s3 stat=
+e, which makes
+> > > > > > > > pci core think that device driver has already applied requi=
+red pci power
+> > > > > > > > state. This leads to GPU remain in D0 state. To fix the iss=
+ue setting
+> > > > > > > > the pci power state to D3Cold.
+> > > > > > > >
+> > > > > > > > Fixes:dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for=
+ Intel GPUs")
+> > > > > > > > Cc: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+> > > > > > > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > > > > > > Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+> > > > > > > > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > > > > > > > ---
+> > > > > > > >    drivers/gpu/drm/xe/xe_pci.c | 1 +
+> > > > > > > >    1 file changed, 1 insertion(+)
+> > > > > > > >
+> > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/=
+xe/xe_pci.c
+> > > > > > > > index 7046e7e9a6c7..3317d475be79 100644
+> > > > > > > > --- a/drivers/gpu/drm/xe/xe_pci.c
+> > > > > > > > +++ b/drivers/gpu/drm/xe/xe_pci.c
+> > > > > > > > @@ -932,6 +932,7 @@ static int xe_pci_suspend(struct device=
+ *dev)
+> > > > > > > >           pci_save_state(pdev);
+> > > > > > > >           pci_disable_device(pdev);
+> > > > > > > > + pci_set_power_state(pdev, PCI_D3cold);
+> > > > > > > Another approach to avoid calling pci_save_state and pci_set_=
+power_state,
+> > > > > > > allowing the PCI core to manage this.
+> > > > > > > Currently, the above change aligns with the Xe RPM suspend fl=
+ow.
+> > > > > > Either way is fine it seems. Or we don't save the state and let=
+ pci subsystem
+> > > > > > handle that for us or we save and set explicitly. So, let's mov=
+e quickly
+> > > > > > with this option here that is already fixing our current issue.
+> > > > On our way to become another i915 now, are we?
+> > > could you please expand on this?
+> > >
+> > > A simple git grep on pci_set_power_state and on pci_save_state
+> > > return many more entries than i915.
+> > >
+> > > what am I missing?
 >
->diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
->index 343f7ac67eaee..0eb6eae65a52e 100644
->--- a/drivers/gpu/drm/xe/xe_device.c
->+++ b/drivers/gpu/drm/xe/xe_device.c
->@@ -780,12 +780,6 @@ int xe_device_probe(struct xe_device *xe)
-> 			return err;
-> 	}
+> It's not about PM at all, just a reference to the infinite
 >
->-	for_each_gt(gt, xe, id) {
->-		err = xe_gt_init_hwconfig(gt);
->-		if (err)
->-			return err;
->-	}
->-
-> 	err = xe_devcoredump_init(xe);
-> 	if (err)
-> 		return err;
->diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
->index 31aee3301a76c..8a8882c909bea 100644
->--- a/drivers/gpu/drm/xe/xe_gt.c
->+++ b/drivers/gpu/drm/xe/xe_gt.c
->@@ -348,6 +348,7 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
+> [1] more code -> merge -> dammit -> fix -> [1]
 >
-> int xe_gt_init_early(struct xe_gt *gt)
-> {
->+	unsigned int fw_ref;
-> 	int err;
+> cycle.
 >
-> 	if (IS_SRIOV_PF(gt_to_xe(gt))) {
->@@ -382,28 +383,9 @@ int xe_gt_init_early(struct xe_gt *gt)
-> 	 */
-> 	xe_gt_mmio_init(gt);
+> > > > While this might be a good enough band-aid, we should probably expl=
+ore
+> > > > how DPM_FLAG_SMART_* work and stop mixing/matching approaches to hi=
+de
+> > > > issues.
+> > > perhaps this indeed...
+> > > perhaps the ones doing power state themselves are the ones declaring =
+'smart'?
+> > >
+> > > Well, on a dumb script here it looks we have over 110 drivers using p=
+ci_save_state
+> > > and only 6 of those using DPM_FLAG_SMART_*
+> > >
+> > > So, I agree that it might be a good idea to explore things here and f=
+ind the
+> > > optimal settings.
+> >
+> > See https://www.kernel.org/doc/html/latest/driver-api/pm/devices.html#t=
+he-dpm-flag-smart-suspend-driver-flag
+> >
+> > It's fairly accurate.
+> >
+> > The rule of thumb is to avoid mixing these with calling pci_save_state(=
+)
+> > directly and setting device state from a driver callback.
 >
->-	return xe_uc_init_noalloc(&gt->uc);
->-}
->-
->-static void dump_pat_on_error(struct xe_gt *gt)
->-{
->-	struct drm_printer p;
->-	char prefix[32];
->-
->-	snprintf(prefix, sizeof(prefix), "[GT%u Error]", gt->info.id);
->-	p = drm_dbg_printer(&gt_to_xe(gt)->drm, DRM_UT_DRIVER, prefix);
->-
->-	xe_pat_dump(gt, &p);
->-}
->-
->-/*
->- * Initialize enough GT to be able to load GuC in order to obtain hwconfig and
->- * enable CTB communication.
->- */
->-int xe_gt_init_hwconfig(struct xe_gt *gt)
->-{
->-	unsigned int fw_ref;
->-	int err;
->+	err = xe_uc_init_noalloc(&gt->uc);
->+	if (err)
->+		return err;
+> That's not what I meant here. There are multiple issues at play.
 >
-> 	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-> 	if (!fw_ref)
->@@ -411,22 +393,20 @@ int xe_gt_init_hwconfig(struct xe_gt *gt)
+> 1. An AER is reported[*] on root port during system suspend even before w=
+e
+>    reach any of the driver PM callback. From initial investigation it see=
+ms
+>    like a case of misbehaviour by some child device, but this is a differ=
+ent
+>    issue entirely.
 >
-> 	xe_gt_mcr_init_early(gt);
-> 	xe_pat_init(gt);
->+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+> [*] irq/120-aerdrv-145     [002] .....  1264.981023: <stack trace>
+> =3D> xe_pm_runtime_resume
+> =3D> xe_pci_runtime_resume
+> =3D> pci_pm_runtime_resume
+> =3D> __rpm_callback
+> =3D> rpm_callback
+> =3D> rpm_resume
+> =3D> __pm_runtime_resume
+> =3D> pci_pm_runtime_get_sync
+> =3D> __pci_walk_bus
+> =3D> pci_walk_bus
+> =3D> pcie_do_recovery
+> =3D> aer_process_err_devices
+> =3D> aer_isr
 >
->-	err = xe_uc_init(&gt->uc);
->-	if (err)
->-		goto out_fw;
->+	return 0;
->+}
->
->-	err = xe_uc_init_hwconfig(&gt->uc);
->-	if (err)
->-		goto out_fw;
->+static void dump_pat_on_error(struct xe_gt *gt)
->+{
->+	struct drm_printer p;
->+	char prefix[32];
->
->-	xe_gt_topology_init(gt);
->-	xe_gt_mcr_init(gt);
->-	xe_gt_enable_host_l2_vram(gt);
->+	snprintf(prefix, sizeof(prefix), "[GT%u Error]", gt->info.id);
->+	p = drm_dbg_printer(&gt_to_xe(gt)->drm, DRM_UT_DRIVER, prefix);
->
->-out_fw:
->-	xe_force_wake_put(gt_to_fw(gt), fw_ref);
->-	return err;
->+	xe_pat_dump(gt, &p);
-> }
->
-> static void xe_gt_fini(void *arg)
->@@ -471,6 +451,18 @@ int xe_gt_init(struct xe_gt *gt)
-> 	if (!fw_ref)
-> 		return -ETIMEDOUT;
->
->+	err = xe_uc_init(&gt->uc);
->+	if (err)
->+		goto err_force_wake;
->+
->+	err = xe_uc_init_hwconfig(&gt->uc);
->+	if (err)
->+		goto err_force_wake;
+> 2. Setting explicit pci_set_power_state(pdev, PCI_D3cold) from xe_pm_susp=
+end().
+>    Although we see many drivers do it for their case, it's quite a questi=
+onable
+>    choice (atleast IMHO) to hard suspend the device from driver PM callba=
+ck
+>    without any regard to runtime_usage counter. It can hide potential iss=
+ues
+>    like AER during system suspend (regardless of whether or not it is sup=
+ported
+>    by the driver, since it is supposed to keep the device active on such =
+a
+>    catastrophic failure anyway), but I'll leave it to the experts to deci=
+de.
 
-with the merge of these done later on top,
+If the driver does not set DPM_FLAG_SMART_SUSPEND, and xe doesn't set
+it AFAICS (at least not in the mainline), pci_pm_suspend() will resume
+the device from runtime suspend before invoking its driver's callback.
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+This guarantees that the device is always RPM_ACTIVE when
+xe_pci_suspend() runs and it cannot be runtime-suspended because the
+core is holding a runtime PM reference on it (and so the runtime PM
+usage counter is always greater than zero when xe_pci_suspend() runs).
 
-Lucas De Marchi
+This means that neither xe_pci_runtime_suspend() nor
+xe_pci_runtime_resume() can run concurrently with respect to it, so
+xe_pci_suspend() can change the power state of the device etc. safely.
+Of course, it needs to call pci_save_state() before doing any of that,
+but it does so.
+
+This is expected to work, but resuming the device from runtime suspend
+during a system suspend transition can be avoided (see below).
+
+However, on the resume side, pci_pm_resume_noirq() runs first and
+because dev_pm_skip_resume() returns 'false' (since
+DPM_FLAG_SMART_SUSPEND is unset) and skip_bus_pm is 'false' (since the
+device is not in D0), it will call pci_pm_default_resume_early() which
+will (1) put the device into D0 unconditionally and (2) restore its
+state.
+
+This means that by the time when xe_pci_resume() runs, the power state
+of the device is already D0 and its state has already been restored,
+so the initial part of it is arguably redundant.
+
+There also appears to be a problem with calling pci_disable_device()
+after pci_save_state() in xe_pci_suspend() because restoring the
+device's state in pci_pm_default_resume_early() will inadvertently
+cause it to be enabled AFAICS.  I would call pci_save_state() after
+pci_disable_device(), so the device would still be disabled after
+running pci_pm_default_resume_early() and xe_pci_resume() would enable
+it as appropriate.
+
+> 2. Since we're already setting D0 and D3 states in our runtime PM callbac=
+ks,
+>    utilizing DPM_FLAG_SMART_* flags will allow us to skip unnecessary
+>    runtime_resume during system suspend and let PCI PM take care of all
+>    the PCI stuff in a smarter way (even skip D3hot/cold if it's already i=
+n it)
+>    without us needing to duplicate code and do everything manually.
+
+That's true in principle, but care needs to be taken.
+
+First of all, DPM_FLAG_SMART_PREPARE and DPM_FLAG_SMART_SUSPEND are
+about different things.
+
+DPM_FLAG_SMART_PREPARE is about the direct-complete optimization that
+allows the suspend and resume of the device to be skipped completely
+if some additional conditions are met and it allows the driver to
+control the behavior related to this optimization (see "Entering
+System Suspend" in Documentation/driver-api/pm/devices.rst for
+details).  The bottom line here is that because xe doesn't provide a
+->prepare() callback in xe_pm_ops, this flag will have no effect.  xe
+may want to set DPM_FLAG_NO_DIRECT_COMPLETE to disable the
+direct-complete optimization completely, though (i915 does this for
+some reason unclear to me).
+
+DPM_FLAG_SMART_SUSPEND is about leaving the device in runtime suspend
+across the entire system suspend transition if it is still
+runtime-suspended after running its driver's ->suspend() callback.
+
+This means in particular that if DPM_FLAG_SMART_SUSPEND is set, the
+->suspend() callback may run in parallel with xe_pci_runtime_resume(),
+so it cannot be the current xe_pci_suspend() because it cannot
+manipulate the device or call pci_save_state() on it or similar.  The
+most straightforward way to overcome this would be to point
+->suspend_late() to xe_pci_suspend(), but this would cause the device
+to be suspended later unless it was runtime-suspended already.  In
+turn, suspending it later may cause the total duration of the system
+suspend transition to increase (because the device will now be
+suspended in a different phase of the transition).
+
+The suspend time can be distributed somewhat differently if the core
+is allowed to take care of putting the device into a low-power state.
+Simply removing the pci_save_state() and pci_set_power_state() calls
+from xe_pci_suspend() should be sufficient to make this happen and
+that would be my first step (after fixing the device disable/enable
+issue described above).
+
+Next, you can point ->suspend_late(), instead of ->suspend(), to
+xe_pci_suspend() and that is still expected to work, but the total
+system suspend timing will change.
+
+If this works, you'll be ready to set DPM_FLAG_SMART_SUSPEND.
