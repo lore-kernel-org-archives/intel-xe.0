@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA4CAC36010
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Apr 2025 15:36:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B30AC36018
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Apr 2025 15:36:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94DAA10E083;
-	Tue,  1 Apr 2025 15:36:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3DC4510E5F1;
+	Tue,  1 Apr 2025 15:36:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mb3kY9yQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mV7HUVZj";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43A2110E5ED
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Apr 2025 15:36:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E8EF10E5EA
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Apr 2025 15:36:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743521795; x=1775057795;
+ t=1743521804; x=1775057804;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RGVfWksi97tOIwSsM8PfmoqSMtxWfhpbqylmDyrun3w=;
- b=Mb3kY9yQS5vo2ksl1ag6oIhQ0vUQxDHRzOhL+6b23DxPR7vn1ZoY1zc0
- GXh5Oq9DjGJe7rKO6r/Mgfc8N5hK46TI2/iGqqg8u72Fh5p2Zx7vcV9jm
- m63XQ7PE8eNOuOzdtfJHQoBsOatViUfkXLHATtZzDOkZwBlgrvbJcVkia
- KUjqCSYjwtCCS63LsoKZ99+nAG7NRCCWcF2XJfDmYhZoNk2JJ68BCg6Pt
- S8JzJmZWpW6PKo9ZBiOYLFFU12u+BpoHyQWxz5h9YcbKgIwkmLQ5v5nH5
- vCmo1cjZKKkdpkJEl2qxp6/Fd6fhiu/4S2lCgB27NnNRlYlaqmc/bDzV0 w==;
-X-CSE-ConnectionGUID: rVkfMFQNQcCeHMSvk76yng==
-X-CSE-MsgGUID: kLmqe9MNTPa0YzseLGX6Ww==
-X-IronPort-AV: E=McAfee;i="6700,10204,11391"; a="67324933"
-X-IronPort-AV: E=Sophos;i="6.14,293,1736841600"; d="scan'208";a="67324933"
+ bh=dsP+888uIdqDAiC2Bm7ZdgFdM4RIRERPL+I4RhA8s+M=;
+ b=mV7HUVZjzvenMJnbbhv0lTzwlqVAv1LikFGXXNnwgpvtY9bjsLRG82RQ
+ i4Ikfq+UkCguojEJrCPX3uI03G9xXdFAn+5+4V+yN8eYIdyxfmHyz3Q5u
+ z+jsTSCEOX97+DiAleMMn5KXnKjBaRyGbLNT+tasZVz7xUVh5tzGpyTlr
+ a0+DdOzxnYcbk1hPn3pufIRBnrUl2lkdGuxG0RRtx5uRyzKQjgBYATBxP
+ ju203skuoK71FN6316TPlKYgdY7xPp91DNmrGzUHd3hilivQCcLUdzBUl
+ DwVj2MBqtpXw37pinKYTabWxMa7Uy0jjJXFG8g6a/98/6bR/kQDmkkZ9I A==;
+X-CSE-ConnectionGUID: IrAG0N2XTeaiw/pv7q5qYg==
+X-CSE-MsgGUID: 5I6M5CdiQm+w4SqRuH43FQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11391"; a="67324968"
+X-IronPort-AV: E=Sophos;i="6.14,293,1736841600"; d="scan'208";a="67324968"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2025 08:36:35 -0700
-X-CSE-ConnectionGUID: Adpi5qGPSbSthHKsEI0htw==
-X-CSE-MsgGUID: RcDsk9/PTl2fNxN5ri5S9g==
+ 01 Apr 2025 08:36:43 -0700
+X-CSE-ConnectionGUID: 7tuduFq8SsysXcdMIqzJtg==
+X-CSE-MsgGUID: euFH4kPtTHSbmyPBe3rq6Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,293,1736841600"; d="scan'208";a="126410967"
+X-IronPort-AV: E=Sophos;i="6.14,293,1736841600"; d="scan'208";a="126410990"
 Received: from anshuma1-desk.iind.intel.com ([10.190.239.112])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2025 08:36:31 -0700
+ 01 Apr 2025 08:36:39 -0700
 From: Anshuman Gupta <anshuman.gupta@intel.com>
 To: intel-xe@lists.freedesktop.org, linux-acpi@vger.kernel.org,
  linux-pci@vger.kernel.org
@@ -48,9 +48,9 @@ Cc: rafael@kernel.org, lenb@kernel.org, bhelgaas@google.com,
  ilpo.jarvinen@linux.intel.com, lucas.demarchi@intel.com,
  rodrigo.vivi@intel.com, badal.nilawar@intel.com, anshuman.gupta@intel.com,
  varun.gupta@intel.com, ville.syrjala@linux.intel.com, uma.shankar@intel.com
-Subject: [PATCH 08/12] drm/xe: Add PCIe ACPI Aux Power notifier
-Date: Tue,  1 Apr 2025 21:02:21 +0530
-Message-ID: <20250401153225.96379-9-anshuman.gupta@intel.com>
+Subject: [PATCH 10/12] drm/xe/pm: D3Cold target state
+Date: Tue,  1 Apr 2025 21:02:23 +0530
+Message-ID: <20250401153225.96379-11-anshuman.gupta@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250401153225.96379-1-anshuman.gupta@intel.com>
 References: <20250401153225.96379-1-anshuman.gupta@intel.com>
@@ -70,91 +70,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Register PCIe ACPI notifier block and mark vrsr_capable
-false in the notifier callback. This will ensure that
-BMG GPU does not explode if any other PCIe child device
-(under same Root Port) aux power request returns
-with No main power removal.
+Trade-off D3Cold target state based upon current vram usage.
+If vram usage is greater than vram_d3cold_threshold and GPU
+is VRSR capable target D3Cold state is D3Cold-VRSR
+otherwise target state is D3Cold-Off.
 
 Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h |  3 ++
- drivers/gpu/drm/xe/xe_pm.c           | 41 ++++++++++++++++++++++++++++
- 2 files changed, 44 insertions(+)
+ drivers/gpu/drm/xe/xe_pm.c | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index fd9dea207580..9aacd5af7d0f 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -517,6 +517,9 @@ struct xe_device {
- 		struct mutex lock;
- 	} d3cold;
- 
-+	/** @nb: PCI ACPI Aux power notifier */
-+	struct notifier_block nb;
-+
- 	/** @pmt: Support the PMT driver callback interface */
- 	struct {
- 		/** @pmt.lock: protect access for telemetry data */
 diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 364b937e0ded..ea93923d6671 100644
+index d4149a2eace7..5db9313ae269 100644
 --- a/drivers/gpu/drm/xe/xe_pm.c
 +++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -87,6 +87,41 @@ static struct lockdep_map xe_pm_runtime_nod3cold_map = {
- };
- #endif
+@@ -148,6 +148,14 @@ static void xe_rpm_lockmap_release(const struct xe_device *xe)
+ 			 &xe_pm_runtime_d3cold_map);
+ }
  
-+static int aux_pwr_notifier(struct notifier_block *nb,
-+			    unsigned long val, void *data)
++static void xe_pm_suspend_prepare(struct xe_device *xe)
 +{
-+	struct pci_dev *root_pdev = data;
-+	struct pci_dev *pdev;
-+	struct xe_device *xe;
-+
-+	xe = container_of(nb, struct xe_device, nb);
-+
-+	pdev = pcie_find_root_port(to_pci_dev(xe->drm.dev));
-+	if (!pdev)
-+		return -EINVAL;
-+
-+	if (root_pdev != pdev)
-+		return 0;
-+
-+	xe_pm_runtime_get(xe);
-+
-+	if (val == ACPI_NO_MAIN_PW_REMOVAL) {
-+		drm_err(&xe->drm, "PCIe core blocked the removal of Main Supply\n");
-+		xe->d3cold.vrsr_capable = false;
-+	}
-+
-+	xe_pm_runtime_put(xe);
-+
-+	return 0;
-+}
-+
-+static void xe_pm_vrsr_fini(void *arg)
-+{
-+	struct xe_device *xe = arg;
-+
-+	pci_acpi_unregister_aux_power_notifier(&xe->nb);
++	if (pm_suspend_target_state == PM_SUSPEND_TO_IDLE)
++		xe_pm_d3cold_allowed_toggle(xe);
++	else
++		xe->d3cold.target_state = XE_D3COLD_OFF;
 +}
 +
  /**
-  * xe_rpm_reclaim_safe() - Whether runtime resume can be done from reclaim context
-  * @xe: The xe device.
-@@ -295,6 +330,12 @@ static int pci_acpi_aux_power_setup(struct xe_device *xe)
- 		return ret;
+  * xe_pm_suspend - Helper for System suspend, i.e. S0->S3 / S0->S2idle
+  * @xe: xe device instance
+@@ -163,6 +171,8 @@ int xe_pm_suspend(struct xe_device *xe)
+ 	drm_dbg(&xe->drm, "Suspending device\n");
+ 	trace_xe_pm_suspend(xe, __builtin_return_address(0));
  
- 	ret = pci_acpi_add_perst_assertion_delay(root_pdev, perst_delay);
-+	if (ret)
-+		return ret;
++	xe_pm_suspend_prepare(xe);
 +
-+	xe->nb.notifier_call = aux_pwr_notifier;
-+	pci_acpi_register_aux_power_notifier(&xe->nb);
-+	devm_add_action_or_reset(xe->drm.dev, xe_pm_vrsr_fini, xe);
+ 	err = xe_pxp_pm_suspend(xe->pxp);
+ 	if (err)
+ 		goto err;
+@@ -927,10 +937,14 @@ void xe_pm_d3cold_target_state_toggle(struct xe_device *xe)
  
- 	return ret;
+ 	if (total_vram_used_mb < xe->d3cold.vram_threshold)
+ 		xe->d3cold.target_state = XE_D3COLD_OFF;
++	else if (xe->d3cold.vrsr_capable)
++		xe->d3cold.target_state = XE_D3COLD_VRSR;
+ 	else
+ 		xe->d3cold.target_state = XE_D3HOT;
+ 
+ 	mutex_unlock(&xe->d3cold.lock);
++
++	drm_dbg(&xe->drm, "Xe d3cold target state %d\n", xe->d3cold.allowed);
  }
+ 
+ /**
 -- 
 2.43.0
 
