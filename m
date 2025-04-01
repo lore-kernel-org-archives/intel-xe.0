@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5E38C3601B
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Apr 2025 20:42:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50F74C3601A
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Apr 2025 20:47:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3928B10E16B;
-	Tue,  1 Apr 2025 20:42:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C03S3bzy";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80A1910E170
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Apr 2025 20:42:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743540160; x=1775076160;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=SM6O94T2S2/JMsSpPkBI+I4r36nS5mHnQ1CrvfsNmrc=;
- b=C03S3bzyPsDi+CfkVsRyJ9CAnIOMfL7uP01NaT5ALJ3BqjRELiEMlLBm
- Kwt6JpByUv7WBBx5TsLkGd+kmm0ltwCX9e5fZF+DhdF3BLb04qQwt2AGL
- rUaKbPZlMpddOZzbl26C7qImxfXuNVmSR0n4c5/dAEyNgnCn17+Qt0/qE
- KTM99UWOI4FFnA8pJpK2GPDjpDg54z62ND44DhX7GBsd+/v3Ol3D0wxE9
- eLdIigq/DKQbWQqO9Hcq1b5IKxuqJPB3fXMfS1ng6Bbom+lhsTFt84yPW
- Owjn+xp9D/SGFuFRnZHV50MxiOTnTzQKkMlMssL10X56O0Ol10GZ+AI8y g==;
-X-CSE-ConnectionGUID: QVNwvGYJS9uyVaHJsQ+9Nw==
-X-CSE-MsgGUID: aa/f9pOmQUWqEO0LcQlcSw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11391"; a="44892554"
-X-IronPort-AV: E=Sophos;i="6.14,294,1736841600"; d="scan'208";a="44892554"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2025 13:42:40 -0700
-X-CSE-ConnectionGUID: BQ6M/9drTEaPpkneJM1lgA==
-X-CSE-MsgGUID: AJnLIDs/Rf+Gb60Yo33jow==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,294,1736841600"; d="scan'208";a="126742348"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2025 13:42:39 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 1/2] drm/xe: Add devcoredump chunking
-Date: Tue,  1 Apr 2025 13:43:50 -0700
-Message-Id: <20250401204351.4130873-2-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250401204351.4130873-1-matthew.brost@intel.com>
-References: <20250401204351.4130873-1-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12D2B10E16B;
+	Tue,  1 Apr 2025 20:47:43 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F01A10E16B;
+ Tue,  1 Apr 2025 20:47:42 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Large_devcoredump_fi?=
+ =?utf-8?q?le_support?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 01 Apr 2025 20:47:42 -0000
+Message-ID: <174354046244.24975.9384381120835534262@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250401204351.4130873-1-matthew.brost@intel.com>
+In-Reply-To: <20250401204351.4130873-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,166 +36,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Chunk devcoredump into 1.5G pieces to avoid hitting the kvmalloc limit
-of 2G. Simple algorithm reads 1.5G at time in xe_devcoredump_read
-callback as needed.
+== Series Details ==
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_devcoredump.c       | 59 ++++++++++++++++++-----
- drivers/gpu/drm/xe/xe_devcoredump_types.h |  2 +
- drivers/gpu/drm/xe/xe_guc_hwconfig.c      |  2 +-
- 3 files changed, 50 insertions(+), 13 deletions(-)
+Series: Large devcoredump file support
+URL   : https://patchwork.freedesktop.org/series/147085/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-index 81b9d9bb3f57..a9e618abf8ac 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump.c
-+++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-@@ -80,7 +80,8 @@ static struct xe_guc *exec_queue_to_guc(struct xe_exec_queue *q)
- 	return &q->gt->uc.guc;
- }
- 
--static ssize_t __xe_devcoredump_read(char *buffer, size_t count,
-+static ssize_t __xe_devcoredump_read(char *buffer, ssize_t count,
-+				     ssize_t start,
- 				     struct xe_devcoredump *coredump)
- {
- 	struct xe_device *xe;
-@@ -94,7 +95,7 @@ static ssize_t __xe_devcoredump_read(char *buffer, size_t count,
- 	ss = &coredump->snapshot;
- 
- 	iter.data = buffer;
--	iter.start = 0;
-+	iter.start = start;
- 	iter.remain = count;
- 
- 	p = drm_coredump_printer(&iter);
-@@ -168,6 +169,8 @@ static void xe_devcoredump_snapshot_free(struct xe_devcoredump_snapshot *ss)
- 	ss->vm = NULL;
- }
- 
-+#define XE_DEVCOREDUMP_CHUNK_MAX	(SZ_512M + SZ_1G)
-+
- static ssize_t xe_devcoredump_read(char *buffer, loff_t offset,
- 				   size_t count, void *data, size_t datalen)
- {
-@@ -183,6 +186,9 @@ static ssize_t xe_devcoredump_read(char *buffer, loff_t offset,
- 	/* Ensure delayed work is captured before continuing */
- 	flush_work(&ss->work);
- 
-+	if (ss->read.size > XE_DEVCOREDUMP_CHUNK_MAX)
-+		xe_pm_runtime_get(gt_to_xe(ss->gt));
-+
- 	mutex_lock(&coredump->lock);
- 
- 	if (!ss->read.buffer) {
-@@ -195,12 +201,26 @@ static ssize_t xe_devcoredump_read(char *buffer, loff_t offset,
- 		return 0;
- 	}
- 
-+	if (offset >= ss->read.chunk_position + XE_DEVCOREDUMP_CHUNK_MAX ||
-+	    offset < ss->read.chunk_position) {
-+		ss->read.chunk_position =
-+			ALIGN_DOWN(offset, XE_DEVCOREDUMP_CHUNK_MAX);
-+
-+		__xe_devcoredump_read(ss->read.buffer,
-+				      XE_DEVCOREDUMP_CHUNK_MAX,
-+				      ss->read.chunk_position, coredump);
-+	}
-+
- 	byte_copied = count < ss->read.size - offset ? count :
- 		ss->read.size - offset;
--	memcpy(buffer, ss->read.buffer + offset, byte_copied);
-+	memcpy(buffer, ss->read.buffer +
-+	       (offset % XE_DEVCOREDUMP_CHUNK_MAX), byte_copied);
- 
- 	mutex_unlock(&coredump->lock);
- 
-+	if (ss->read.size > XE_DEVCOREDUMP_CHUNK_MAX)
-+		xe_pm_runtime_put(gt_to_xe(ss->gt));
-+
- 	return byte_copied;
- }
- 
-@@ -254,17 +274,32 @@ static void xe_devcoredump_deferred_snap_work(struct work_struct *work)
- 	xe_guc_exec_queue_snapshot_capture_delayed(ss->ge);
- 	xe_force_wake_put(gt_to_fw(ss->gt), fw_ref);
- 
--	xe_pm_runtime_put(xe);
-+	ss->read.chunk_position = 0;
- 
- 	/* Calculate devcoredump size */
--	ss->read.size = __xe_devcoredump_read(NULL, INT_MAX, coredump);
--
--	ss->read.buffer = kvmalloc(ss->read.size, GFP_USER);
--	if (!ss->read.buffer)
--		return;
-+	ss->read.size = __xe_devcoredump_read(NULL, LONG_MAX, 0, coredump);
-+
-+	if (ss->read.size > XE_DEVCOREDUMP_CHUNK_MAX) {
-+		ss->read.buffer = kvmalloc(XE_DEVCOREDUMP_CHUNK_MAX,
-+					   GFP_USER);
-+		if (!ss->read.buffer)
-+			goto put_pm;
-+
-+		__xe_devcoredump_read(ss->read.buffer,
-+				      XE_DEVCOREDUMP_CHUNK_MAX,
-+				      0, coredump);
-+	} else {
-+		ss->read.buffer = kvmalloc(ss->read.size, GFP_USER);
-+		if (!ss->read.buffer)
-+			goto put_pm;
-+
-+		__xe_devcoredump_read(ss->read.buffer, ss->read.size, 0,
-+				      coredump);
-+		xe_devcoredump_snapshot_free(ss);
-+	}
- 
--	__xe_devcoredump_read(ss->read.buffer, ss->read.size, coredump);
--	xe_devcoredump_snapshot_free(ss);
-+put_pm:
-+	xe_pm_runtime_put(xe);
- }
- 
- static void devcoredump_snapshot(struct xe_devcoredump *coredump,
-@@ -425,7 +460,7 @@ void xe_print_blob_ascii85(struct drm_printer *p, const char *prefix, char suffi
- 	if (offset & 3)
- 		drm_printf(p, "Offset not word aligned: %zu", offset);
- 
--	line_buff = kzalloc(DMESG_MAX_LINE_LEN, GFP_KERNEL);
-+	line_buff = kzalloc(DMESG_MAX_LINE_LEN, GFP_ATOMIC);
- 	if (!line_buff) {
- 		drm_printf(p, "Failed to allocate line buffer\n");
- 		return;
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump_types.h b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-index 1a1d16a96b2d..a174385a6d83 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump_types.h
-+++ b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-@@ -66,6 +66,8 @@ struct xe_devcoredump_snapshot {
- 	struct {
- 		/** @read.size: size of devcoredump in human readable format */
- 		ssize_t size;
-+		/** @read.chunk_position: position of devcoredump chunk */
-+		ssize_t chunk_position;
- 		/** @read.buffer: buffer of devcoredump in human readable format */
- 		char *buffer;
- 	} read;
-diff --git a/drivers/gpu/drm/xe/xe_guc_hwconfig.c b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
-index af2c817d552c..21403a250834 100644
---- a/drivers/gpu/drm/xe/xe_guc_hwconfig.c
-+++ b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
-@@ -175,7 +175,7 @@ int xe_guc_hwconfig_lookup_u32(struct xe_guc *guc, u32 attribute, u32 *val)
- 	if (num_dw == 0)
- 		return -EINVAL;
- 
--	hwconfig = kzalloc(size, GFP_KERNEL);
-+	hwconfig = kzalloc(size, GFP_ATOMIC);
- 	if (!hwconfig)
- 		return -ENOMEM;
- 
--- 
-2.34.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 2dda6162c8d9 drm-tip: 2025y-04m-01d-20h-22m-36s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Add devcoredump chunking
+Applying: drm/xe: Update xe_ttm_access_memory to use GPU for non-visible access
+
 
