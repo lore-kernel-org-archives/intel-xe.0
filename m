@@ -4,65 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 869CBC36017
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Apr 2025 17:57:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5CB2C36010
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Apr 2025 18:25:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3FF410E63F;
-	Tue,  1 Apr 2025 17:57:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80CAB10E654;
+	Tue,  1 Apr 2025 18:25:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TIdpu00T";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ZWb6BFW0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 604F510E63E;
- Tue,  1 Apr 2025 17:57:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743530234; x=1775066234;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Y8po2mG+ZdaKzrhPAKY3Rl4zdUDsFxDOPIFpWcJDdv0=;
- b=TIdpu00T8f4RCTgE29x8sf3XHxx13w9jo5zgLGgTaMkRA2o1V17deBa7
- thuxTXmmbVQ4xEe437HW8ccZZL0kdFxMT3whIEVR9lTkeSIrywSRCMJnf
- zmKex5Qk4gMIT/qaZ+WBR+tmX0Szp9MnPvlEw3TfpuNOJVBXaHgqe7xpf
- roUJfjLAZ6NGccyCCXHJH9aEqnPvPEhzZ5wmMG9RuEwI+T52gn6THscuq
- x0ORz3KgvW/y3j8Xgfxc6Jo2RUCYnS9D6em+312hvLIUNXLRLSZUJJ3qd
- UvaK8XSn9tVs66uhMwG1jEf50njKe7BImz7CCIWa5vveoCKAl/tbmX0Ry g==;
-X-CSE-ConnectionGUID: pSz1Q6WBQwiThhhqy6aiSA==
-X-CSE-MsgGUID: wj8hk7iXThu8oG+AXpTnBA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11391"; a="55067318"
-X-IronPort-AV: E=Sophos;i="6.14,294,1736841600"; d="scan'208";a="55067318"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2025 10:57:14 -0700
-X-CSE-ConnectionGUID: umPCKkn0S/CmVVIWh/SdPA==
-X-CSE-MsgGUID: MGn87gW3SuSRxx6RaXap2w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,294,1736841600"; d="scan'208";a="131660814"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 01 Apr 2025 10:57:09 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 01 Apr 2025 20:57:09 +0300
-Date: Tue, 1 Apr 2025 20:57:09 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jocelyn Falempe <jfalempe@redhat.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 4/8] drm/i915/gem: Add i915_gem_object_panic_map()
-Message-ID: <Z-wo9W5SnvVQDEDt@intel.com>
-References: <20250401125818.333033-1-jfalempe@redhat.com>
- <20250401125818.333033-5-jfalempe@redhat.com>
- <Z-wmxijRKQiZFyup@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 191E310E654
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Apr 2025 18:25:49 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 5A86743F67;
+ Tue,  1 Apr 2025 18:25:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F390C32781;
+ Tue,  1 Apr 2025 18:25:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1743531947;
+ bh=5HB9ueiryCuKloNBqcaRsUiS766sCo0OneF9+ChqGtQ=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:From;
+ b=ZWb6BFW0MhFDfroKOgrJcMqj3rwOKwDCg848nDpWhDhbzOc6qt/LFd1EqwyKazQf1
+ bVP7CFTO1E5a3XgO71EUv3OzeLcrwc9jrA2Mwdhyu7cRVC3VG5BmPAo8U1BvcYzUdb
+ 0oSMmXsQE/HkwZoXzkBFGcMLrmgotq1ZRRppMtJ/FNIzjBq1MYEc96z04fUkYXeMbX
+ yh99/zavGtUHRXc6cALi9w6fku3AtB/VjvxtKDeezfqM3ErxYFOWGLbM/7WThdSk7q
+ BOlF55NulEdZYzf2jpFXzWqpuTuUnGK3WwB89FVbIHmwgzkQYGXty6pyalOGEkvvOR
+ 0eFBXOOcx7GvQ==
+Date: Tue, 1 Apr 2025 13:25:45 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Cc: intel-xe@lists.freedesktop.org, linux-acpi@vger.kernel.org,
+ linux-pci@vger.kernel.org, rafael@kernel.org, lenb@kernel.org,
+ bhelgaas@google.com, ilpo.jarvinen@linux.intel.com,
+ lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
+ badal.nilawar@intel.com, varun.gupta@intel.com,
+ ville.syrjala@linux.intel.com, uma.shankar@intel.com
+Subject: Re: [PATCH 01/12] PCI/ACPI: Add D3cold Aux Power Limit_DSM method
+Message-ID: <20250401182545.GA1675819@bhelgaas>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Z-wmxijRKQiZFyup@intel.com>
-X-Patchwork-Hint: comment
+In-Reply-To: <20250401153225.96379-2-anshuman.gupta@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,141 +59,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Apr 01, 2025 at 08:47:50PM +0300, Ville Syrjälä wrote:
-> On Tue, Apr 01, 2025 at 02:51:10PM +0200, Jocelyn Falempe wrote:
-> > Prepare the work for drm_panic support. This is used to map the
-> > current framebuffer, so the CPU can overwrite it with the panic
-> > message.
-> > 
-> > Signed-off-by: Jocelyn Falempe <jfalempe@redhat.com>
-> > ---
-> > 
-> > v5:
-> >  * Use iosys_map for intel_bo_panic_map().
-> > 
-> >  drivers/gpu/drm/i915/display/intel_bo.c    |  5 ++++
-> >  drivers/gpu/drm/i915/display/intel_bo.h    |  1 +
-> >  drivers/gpu/drm/i915/gem/i915_gem_object.h |  2 ++
-> >  drivers/gpu/drm/i915/gem/i915_gem_pages.c  | 29 ++++++++++++++++++++++
-> >  drivers/gpu/drm/xe/display/intel_bo.c      | 10 ++++++++
-> >  5 files changed, 47 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_bo.c b/drivers/gpu/drm/i915/display/intel_bo.c
-> > index fbd16d7b58d9..ac904e9ec7d5 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_bo.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_bo.c
-> > @@ -57,3 +57,8 @@ void intel_bo_describe(struct seq_file *m, struct drm_gem_object *obj)
-> >  {
-> >  	i915_debugfs_describe_obj(m, to_intel_bo(obj));
-> >  }
-> > +
-> > +void intel_bo_panic_map(struct drm_gem_object *obj, struct iosys_map *map)
-> > +{
-> > +	i915_gem_object_panic_map(to_intel_bo(obj), map);
-> > +}
-> > diff --git a/drivers/gpu/drm/i915/display/intel_bo.h b/drivers/gpu/drm/i915/display/intel_bo.h
-> > index ea7a2253aaa5..5b6c63d99786 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_bo.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_bo.h
-> > @@ -23,5 +23,6 @@ struct intel_frontbuffer *intel_bo_set_frontbuffer(struct drm_gem_object *obj,
-> >  						   struct intel_frontbuffer *front);
-> >  
-> >  void intel_bo_describe(struct seq_file *m, struct drm_gem_object *obj);
-> > +void intel_bo_panic_map(struct drm_gem_object *obj, struct iosys_map *map);
-> >  
-> >  #endif /* __INTEL_BO__ */
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> > index a5f34542135c..b16092707ea5 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> > @@ -692,6 +692,8 @@ i915_gem_object_unpin_pages(struct drm_i915_gem_object *obj)
-> >  int __i915_gem_object_put_pages(struct drm_i915_gem_object *obj);
-> >  int i915_gem_object_truncate(struct drm_i915_gem_object *obj);
-> >  
-> > +void i915_gem_object_panic_map(struct drm_i915_gem_object *obj, struct iosys_map *map);
-> > +
-> >  /**
-> >   * i915_gem_object_pin_map - return a contiguous mapping of the entire object
-> >   * @obj: the object to map into kernel address space
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> > index 8780aa243105..718bea6474d7 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> > @@ -355,6 +355,35 @@ static void *i915_gem_object_map_pfn(struct drm_i915_gem_object *obj,
-> >  	return vaddr ?: ERR_PTR(-ENOMEM);
-> >  }
-> >  
-> > +/* Map the current framebuffer for CPU access. Called from panic handler, so no
-> > + * need to pin or cleanup.
-> > + */
-> > +void i915_gem_object_panic_map(struct drm_i915_gem_object *obj, struct iosys_map *map)
-> > +{
-> > +	enum i915_map_type has_type;
-> > +	void *ptr;
-> > +
-> > +	ptr = page_unpack_bits(obj->mm.mapping, &has_type);
-> > +
-> > +
-> > +	if (!ptr) {
-> > +		if (i915_gem_object_has_struct_page(obj))
-> > +			ptr = i915_gem_object_map_page(obj, I915_MAP_WB);
-> > +		else
-> > +			ptr = i915_gem_object_map_pfn(obj, I915_MAP_WB);
-> 
-> WB mapping would require clflushing to make it to the display.
-> Is that being done somewhere?
+On Tue, Apr 01, 2025 at 09:02:14PM +0530, Anshuman Gupta wrote:
+> Implement _DSM method 10 and _DSM Method 11 as per PCI firmware specs
+> section 4.6.10 Rev 3.3.
 
-This also seems to have a bunch of race conditions:
-- what happens if the oops happens before the pages have
-  even been swapped in?
-- what happens if the oops happens before we've committed
-  the fb to the hardware?
+Thanks for splitting this into two patches.  But I think now this only
+implements function 10 (0x0a), so this sentence needs to be updated.
 
-> 
-> > +
-> > +		if (IS_ERR(ptr))
-> > +			return;
-> 
-> What happens when the mapping fails?
-> 
-> > +
-> > +		obj->mm.mapping = page_pack_bits(ptr, I915_MAP_WB);
-> > +	}
-> > +
-> > +	if (i915_gem_object_has_iomem(obj))
-> > +		iosys_map_set_vaddr_iomem(map, (void __iomem *) ptr);
-> > +	else
-> > +		iosys_map_set_vaddr(map, ptr);
-> > +}
-> > +
-> >  /* get, pin, and map the pages of the object into kernel space */
-> >  void *i915_gem_object_pin_map(struct drm_i915_gem_object *obj,
-> >  			      enum i915_map_type type)
-> > diff --git a/drivers/gpu/drm/xe/display/intel_bo.c b/drivers/gpu/drm/xe/display/intel_bo.c
-> > index 27437c22bd70..c68166a64336 100644
-> > --- a/drivers/gpu/drm/xe/display/intel_bo.c
-> > +++ b/drivers/gpu/drm/xe/display/intel_bo.c
-> > @@ -59,3 +59,13 @@ void intel_bo_describe(struct seq_file *m, struct drm_gem_object *obj)
-> >  {
-> >  	/* FIXME */
-> >  }
-> > +
-> > +void intel_bo_panic_map(struct drm_gem_object *obj, struct iosys_map *map)
-> > +{
-> > +	struct xe_bo *bo = gem_to_xe_bo(obj);
-> > +	int ret;
-> > +
-> > +	ret = ttm_bo_vmap(&bo->ttm, map);
-> > +	if (ret)
-> > +		iosys_map_clear(map);
-> > +}
-> > -- 
-> > 2.49.0
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+I would write this consistently as "0x0a" or "0Ah" to match the spec
+description.  I don't think the spec ever uses "10".
 
--- 
-Ville Syrjälä
-Intel
+> Note that this implementation assumes only a single device below the
+> Downstream Port will request for Aux Power Limit under a given
+> Root Port because it does not track and aggregate requests
+> from all child devices below the Downstream Port as required
+> by Section 4.6.10 Rev 3.3.
+> 
+> One possible mitigation would be only allowing only first PCIe
+> Non-Bridge Endpoint Function 0 driver to call_DSM method 10.
+> 
+> Signed-off-by: Varun Gupta <varun.gupta@intel.com>
+> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>  drivers/pci/pci-acpi.c   | 78 ++++++++++++++++++++++++++++++++++++++++
+>  include/linux/pci-acpi.h |  6 ++++
+>  2 files changed, 84 insertions(+)
+> 
+> diff --git a/drivers/pci/pci-acpi.c b/drivers/pci/pci-acpi.c
+> index af370628e583..ebd49e43457e 100644
+> --- a/drivers/pci/pci-acpi.c
+> +++ b/drivers/pci/pci-acpi.c
+> @@ -1421,6 +1421,84 @@ static void pci_acpi_optimize_delay(struct pci_dev *pdev,
+>  	ACPI_FREE(obj);
+>  }
+>  
+> +/**
+> + * pci_acpi_request_d3cold_aux_power - Request D3cold aux power via ACPI DSM
+> + * @dev: PCI device instance
+> + * @requested_power: Requested auxiliary power in milliwatts
+> + *
+> + * This function sends a request to the host BIOS via ACPI _DSM Function 10
+> + * to grant the required D3Cold Auxiliary power for the specified PCI device.
+> + * It evaluates the _DSM (Device Specific Method) to request the Auxiliary
+> + * power and handles the response accordingly.
+> + *
+> + * This function shall be only called by 1st non-bridge Endpoint driver
+> + * on Function 0. For a Multi-Function Device, the driver for Function 0 is
+> + * required to report an aggregate power requirement covering all
+> + * functions contained within the device.
+> + *
+> + * Return: Returns 0 on success and errno on failure.
+
+Write all this in imperative mood, e.g.,
+
+  Request auxiliary power while device is in D3cold ...
+
+  Return 0 on success ...
+
+> + */
+> +int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power)
+> +{
+> +	union acpi_object in_obj = {
+> +		.integer.type = ACPI_TYPE_INTEGER,
+> +		.integer.value = requested_power,
+> +	};
+> +
+> +	union acpi_object *out_obj;
+> +	acpi_handle handle;
+> +	int result, ret = -EINVAL;
+> +
+> +	if (!dev || !ACPI_HANDLE(&dev->dev))
+> +		return -EINVAL;
+> +
+> +	handle = ACPI_HANDLE(&dev->dev);
+
+This needs an acpi_check_dsm() call to find out whether the platform
+supports DSM_PCI_D3COLD_AUX_POWER_LIMIT.
+
+We have several _DSM calls that *should* do this, but unfortunately
+they don't do it yet, so they're not good examples to copy.
+
+> +	out_obj = acpi_evaluate_dsm_typed(handle,
+> +					  &pci_acpi_dsm_guid,
+> +					  4,
+> +					  DSM_PCI_D3COLD_AUX_POWER_LIMIT,
+> +					  &in_obj,
+> +					  ACPI_TYPE_INTEGER);
+> +	if (!out_obj)
+> +		return -EINVAL;
+> +
+> +	result = out_obj->integer.value;
+> +
+> +	switch (result) {
+> +	case 0x0:
+> +		dev_dbg(&dev->dev, "D3cold Aux Power %umW request denied\n",
+> +			requested_power);
+
+Use pci_dbg(dev), pci_info(dev), etc.
+
+> +		break;
+> +	case 0x1:
+> +		dev_info(&dev->dev, "D3cold Aux Power request granted: %umW\n",
+> +			 requested_power);
+> +		ret = 0;
+> +		break;
+> +	case 0x2:
+> +		dev_info(&dev->dev, "D3cold Aux Power: Main power won't be removed\n");
+> +		ret = -EBUSY;
+> +		break;
+> +	default:
+> +		if (result >= 0x11 && result <= 0x1F) {
+> +			int retry_interval = result & 0xF;
+> +
+> +			dev_warn(&dev->dev, "D3cold Aux Power request needs retry."
+> +				 "Interval: %d seconds.\n", retry_interval);
+> +			msleep(retry_interval * 1000);
+
+It doesn't seem right to me to do this sleep internally because it
+means this interface might take up to 15 seconds to return, and the
+caller has no idea what is happening during that time.
+
+This seems like it should be done in the driver, which can decide
+*whether* it wants to sleep, and if it does sleep, it may give a nice
+indication to the user.
+
+Of course, that would mean returning some kind of retry interval
+information to the caller.
+
+> +			ret = -EAGAIN;
+> +		} else {
+> +			dev_err(&dev->dev, "D3cold Aux Power: Reserved or "
+> +				"unsupported response: 0x%x.\n", result);
+
+Drop periods at end of messages.
+
+> +		}
+> +		break;
+> +	}
+> +
+> +	ACPI_FREE(out_obj);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(pci_acpi_request_d3cold_aux_power);
