@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EAE3C36018
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DFB78C36014
 	for <intel-xe@archiver.kernel.org>; Tue,  1 Apr 2025 15:36:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1196910E5EA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A32CD10E5E6;
 	Tue,  1 Apr 2025 15:36:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DoKZafOE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z5H3rJAk";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5E2910E083
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Apr 2025 15:36:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4879D10E5E6
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Apr 2025 15:36:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743521784; x=1775057784;
+ t=1743521785; x=1775057785;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=AJWExx/lhsVKyDjZNNUh1i5V9rLOaQaDVOBlExnNiiI=;
- b=DoKZafOEeS0d6z1xrm02dM7yvs/jU4fFaG7auqFkUu4Ez69IWCS9oeT3
- tvDvOTyvyTwXflcoqaEXirctQUV0XxyMdUMSnMGQiFSwEowdAtlirzA6T
- lyZYxYO5x0+6BReDoSJNTqKKhswOG6EcSpSGiRF5Mnq5HxA/1OWnfpiZj
- 04q4ec/1yjwgx3+tXpSum6tUCzvo6jlxDXExf8oETF/kwxry3Mh63WFBi
- 3yC6JhF3NihRpxctFCgIG/zZ5kidZSU0VZtvIK8mi1MxBc8t07K3ERMBh
- 25Nf56zSisT6w3IDGD55Z7MqAREuLwL8/J4hj302WAXRhMCaXbbGNUCnA w==;
-X-CSE-ConnectionGUID: rhjJL2XKQW+k640AoimHFw==
-X-CSE-MsgGUID: l7/X5DQEQpWE11Nf7LVXYQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11391"; a="67324809"
-X-IronPort-AV: E=Sophos;i="6.14,293,1736841600"; d="scan'208";a="67324809"
+ bh=uExaOP1a4DxFAx6bbZRlSj9xlp0IAcng9Zs+2ugYS/8=;
+ b=Z5H3rJAk9DYeNPOhyZTHn5EhuW48rgpseARokHdzXpi2RUbHuFWKu+Mw
+ PJoc3i+AtHP2OyTUyphl/ON5QOB7j4ztn6GtrZb07W5dBC586MK4rIybz
+ dfsLhSXC52tiFG+ITpmuSo4j6Ux4EDm/4qBgSCO6vqjBH9fPod5X/HXQv
+ mOa4kzzkm8xGmkC4FqjYZpPBfvOMU6erKJdQEG3Ado+/a9dVkggP4JPw2
+ lkfqpS84T5944I0L6gvuYo5wbNPXQRkylEG2iiQNNwobYPD5v/M/WaKS0
+ hpKEhq8ssOnjwHSmMtz0T4r7AaSD7wmOwKfu7y6G0mmSwFtz1lU8pCngS g==;
+X-CSE-ConnectionGUID: VqJSG8neSZeQFvGhr4aclg==
+X-CSE-MsgGUID: 14zja+Z2SBaB7OIF8ImWGw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11391"; a="67324833"
+X-IronPort-AV: E=Sophos;i="6.14,293,1736841600"; d="scan'208";a="67324833"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2025 08:36:16 -0700
-X-CSE-ConnectionGUID: RSa7Q1WpQxm3car1WNtayw==
-X-CSE-MsgGUID: 0JLK/ni1TCyRpmHZEfJr6g==
+ 01 Apr 2025 08:36:19 -0700
+X-CSE-ConnectionGUID: T8EbKZs1Sf+ecB+4SGcKCw==
+X-CSE-MsgGUID: +cRi9RJ4QjS/KrePtLIb3g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,293,1736841600"; d="scan'208";a="126410797"
+X-IronPort-AV: E=Sophos;i="6.14,293,1736841600"; d="scan'208";a="126410833"
 Received: from anshuma1-desk.iind.intel.com ([10.190.239.112])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2025 08:36:12 -0700
+ 01 Apr 2025 08:36:16 -0700
 From: Anshuman Gupta <anshuman.gupta@intel.com>
 To: intel-xe@lists.freedesktop.org, linux-acpi@vger.kernel.org,
  linux-pci@vger.kernel.org
@@ -48,9 +48,9 @@ Cc: rafael@kernel.org, lenb@kernel.org, bhelgaas@google.com,
  ilpo.jarvinen@linux.intel.com, lucas.demarchi@intel.com,
  rodrigo.vivi@intel.com, badal.nilawar@intel.com, anshuman.gupta@intel.com,
  varun.gupta@intel.com, ville.syrjala@linux.intel.com, uma.shankar@intel.com
-Subject: [PATCH 03/12] PCI/ACPI: Add aux power grant notifier
-Date: Tue,  1 Apr 2025 21:02:16 +0530
-Message-ID: <20250401153225.96379-4-anshuman.gupta@intel.com>
+Subject: [PATCH 04/12] drm/xe/vrsr: Introduce flag has_vrsr
+Date: Tue,  1 Apr 2025 21:02:17 +0530
+Message-ID: <20250401153225.96379-5-anshuman.gupta@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250401153225.96379-1-anshuman.gupta@intel.com>
 References: <20250401153225.96379-1-anshuman.gupta@intel.com>
@@ -70,120 +70,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Adding a notifier to notify all PCIe child devices about the
-block main power removal. It is needed because theoretically
-multiple PCIe Endpoint devices on same Root Port
-can request for AUX power and _DSM method can return with
-80000000h signifies that the hierarchy connected via
-the slot cannot support main power removal when in D3Cold.
-This may disrupt functionality of other child device.
+From: Badal Nilawar <badal.nilawar@intel.com>
 
-Let's notify all PCIe devices requested Aux power resource
-and Let PCIe End Point driver handle it in its callback.
+Introduce flag has_vrsr to determine if platform supports VRSR feature
 
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
 ---
- drivers/pci/pci-acpi.c   | 34 +++++++++++++++++++++++++++++++---
- include/linux/pci-acpi.h | 13 +++++++++++++
- 2 files changed, 44 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_device_types.h | 2 ++
+ drivers/gpu/drm/xe/xe_pci.c          | 3 +++
+ 2 files changed, 5 insertions(+)
 
-diff --git a/drivers/pci/pci-acpi.c b/drivers/pci/pci-acpi.c
-index 04149f037664..d1ca1649e6e8 100644
---- a/drivers/pci/pci-acpi.c
-+++ b/drivers/pci/pci-acpi.c
-@@ -1421,6 +1421,32 @@ static void pci_acpi_optimize_delay(struct pci_dev *pdev,
- 	ACPI_FREE(obj);
- }
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index c54adebfe518..b8ccf729f7c0 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -334,6 +334,8 @@ struct xe_device {
+ 		u8 has_sriov:1;
+ 		/** @info.has_usm: Device has unified shared memory support */
+ 		u8 has_usm:1;
++		/** @info.has_vrsr: Has capability to enter into VRAM self refresh */
++		u8 has_vrsr:1;
+ 		/** @info.is_dgfx: is discrete device */
+ 		u8 is_dgfx:1;
+ 		/**
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 772b6c81672c..70d4827f5821 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -68,6 +68,7 @@ struct xe_device_desc {
+ 	u8 has_llc:1;
+ 	u8 has_pxp:1;
+ 	u8 has_sriov:1;
++	u8 has_vrsr:1;
+ 	u8 skip_guc_pc:1;
+ 	u8 skip_mtcfg:1;
+ 	u8 skip_pcode:1;
+@@ -343,6 +344,7 @@ static const struct xe_device_desc bmg_desc = {
+ 	.dma_mask_size = 46,
+ 	.has_display = true,
+ 	.has_fan_control = true,
++	.has_vrsr = true,
+ 	.has_heci_cscfi = 1,
+ };
  
-+static BLOCKING_NOTIFIER_HEAD(pci_acpi_aux_power_notify_list);
-+
-+/**
-+ * pci_acpi_register_aux_power_notifier - Register driver notifier
-+ * @nb: notifier block
-+ *
-+ * This function shall be called by PCIe End Point device requested the Aux
-+ * power resource in order to handle the any scenario gracefully when other
-+ * child PCIe devices Aux power request returns with No main power removal.
-+ * PCIe devices which register this notifier shall handle No main power
-+ * removal scenario accordingly.
-+ *
-+ * Return: Returns 0 on success and errno on failure.
-+ */
-+int pci_acpi_register_aux_power_notifier(struct notifier_block *nb)
-+{
-+	return blocking_notifier_chain_register(&pci_acpi_aux_power_notify_list, nb);
-+}
-+EXPORT_SYMBOL_GPL(pci_acpi_register_aux_power_notifier);
-+
-+void pci_acpi_unregister_aux_power_notifier(struct notifier_block *nb)
-+{
-+	blocking_notifier_chain_unregister(&pci_acpi_aux_power_notify_list, nb);
-+}
-+EXPORT_SYMBOL_GPL(pci_acpi_unregister_aux_power_notifier);
-+
- /**
-  * pci_acpi_request_d3cold_aux_power - Request D3cold aux power via ACPI DSM
-  * @dev: PCI device instance
-@@ -1466,17 +1492,19 @@ int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power)
- 	result = out_obj->integer.value;
- 
- 	switch (result) {
--	case 0x0:
-+	case ACPI_AUX_PW_DENIED:
- 		dev_dbg(&dev->dev, "D3cold Aux Power %umW request denied\n",
- 			requested_power);
- 		break;
--	case 0x1:
-+	case ACPI_AUX_PW_GRANTED:
- 		dev_info(&dev->dev, "D3cold Aux Power request granted: %umW\n",
- 			 requested_power);
- 		ret = 0;
- 		break;
--	case 0x2:
-+	case ACPI_NO_MAIN_PW_REMOVAL:
- 		dev_info(&dev->dev, "D3cold Aux Power: Main power won't be removed\n");
-+		blocking_notifier_call_chain(&pci_acpi_aux_power_notify_list,
-+					     ACPI_NO_MAIN_PW_REMOVAL, dev);
- 		ret = -EBUSY;
- 		break;
- 	default:
-diff --git a/include/linux/pci-acpi.h b/include/linux/pci-acpi.h
-index 4b7373f91a9a..793b979af98b 100644
---- a/include/linux/pci-acpi.h
-+++ b/include/linux/pci-acpi.h
-@@ -124,6 +124,10 @@ extern const guid_t pci_acpi_dsm_guid;
- #define DSM_PCI_D3COLD_AUX_POWER_LIMIT		0x0A
- #define DSM_PCI_PERST_ASSERTION_DELAY		0x0B
- 
-+#define ACPI_AUX_PW_DENIED			0x0
-+#define ACPI_AUX_PW_GRANTED			0x1
-+#define ACPI_NO_MAIN_PW_REMOVAL			0x2
-+
- #ifdef CONFIG_PCIE_EDR
- void pci_acpi_add_edr_notifier(struct pci_dev *pdev);
- void pci_acpi_remove_edr_notifier(struct pci_dev *pdev);
-@@ -134,12 +138,21 @@ static inline void pci_acpi_remove_edr_notifier(struct pci_dev *pdev) { }
- 
- int pci_acpi_set_companion_lookup_hook(struct acpi_device *(*func)(struct pci_dev *));
- void pci_acpi_clear_companion_lookup_hook(void);
-+int pci_acpi_register_aux_power_notifier(struct notifier_block *nb);
-+void pci_acpi_unregister_aux_power_notifier(struct notifier_block *nb);
- int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power);
- int pci_acpi_add_perst_assertion_delay(struct pci_dev *dev, u32 delay_us);
- 
- #else	/* CONFIG_ACPI */
- static inline void acpi_pci_add_bus(struct pci_bus *bus) { }
- static inline void acpi_pci_remove_bus(struct pci_bus *bus) { }
-+int pci_acpi_register_aux_power_notifier(struct notifier_block *nb)
-+{
-+	return -EOPNOTSUPP;
-+}
-+
-+void pci_acpi_unregister_aux_power_notifier(struct notifier_block *nb) { }
-+
- int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power)
- {
- 	return -EOPNOTSUPP;
+@@ -589,6 +591,7 @@ static int xe_info_init_early(struct xe_device *xe,
+ 	xe->info.has_llc = desc->has_llc;
+ 	xe->info.has_pxp = desc->has_pxp;
+ 	xe->info.has_sriov = desc->has_sriov;
++	xe->info.has_vrsr = desc->has_vrsr;
+ 	xe->info.skip_guc_pc = desc->skip_guc_pc;
+ 	xe->info.skip_mtcfg = desc->skip_mtcfg;
+ 	xe->info.skip_pcode = desc->skip_pcode;
 -- 
 2.43.0
 
