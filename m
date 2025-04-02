@@ -4,87 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9B12C28B20
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 16:06:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F0EEC28B20
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 16:28:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2703110E821;
-	Wed,  2 Apr 2025 16:06:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="JpcpZ3ID";
-	dkim-atps=neutral
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com
- [209.85.208.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 778AC10E820
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Apr 2025 16:06:30 +0000 (UTC)
-Received: by mail-ed1-f50.google.com with SMTP id
- 4fb4d7f45d1cf-5efe8d9ebdfso6534894a12.3
- for <intel-xe@lists.freedesktop.org>; Wed, 02 Apr 2025 09:06:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google; t=1743609989; x=1744214789;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=025ywTe8X2oiiTY/KI73kld6gosblZKwh9c0eIC7QAo=;
- b=JpcpZ3IDulNOelRpsOh3/2EWfVuuE1eHzK/dBPToE6QrU/Od9+8x+mxp5EwSipNbEw
- Pv85f3N63V1ORiyo7F83F5abpSvOV995Ropz4lEOEh9WpenMFZ9zRBv4MCyFYyeWiFgM
- VXb8hQ/iRy4+a2oF9WalyR8KhO4K90e75w7Xw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1743609989; x=1744214789;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=025ywTe8X2oiiTY/KI73kld6gosblZKwh9c0eIC7QAo=;
- b=wufUTB/K40BlDC5cn22xW1DK8NLVpxxRurSD7uwU1YMQpql/desFvAUf66v5dWFudb
- /P+W80gxC82ZwDhi41pdIY6u8ne4o0enpx8t70krfpy3U1YYhjSQRudRy+t2mugeY5yW
- xUV8aeFm7Y4WxxACjl0+fOUXaxdS76DOUYIz0H0q8w7NY+X6PsheSMhD9ZsyqI8+3QCn
- Mx+5Z1zD3qcPRqz4xfw6GEq3hAcHM+PXlI/zLlVOJBQczh2n5F14AJ7hy6KKxR3BJTU3
- TFDOu+dGvOWYjAPKlGGzcUhwVamwXlt5s0olmhCjISl911tBkRCTRjb11hmUCaHvL7mf
- Soxg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU/XMMJ9EQOmnzTRc/a6gOHP6Vb0Ze9rRM5MhERX9XF8sYauPZVjoj3SOwGZUZ/n07kvoQVtDErBg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywlgw7pgwAUaSo8nheP4Dg1PN1UxPLwsM2A03zeotgpzqoJaywH
- EnYsChZoj4LYup5Vuy2FE/HK68/u4TIUyafarp1mbX6iVyj8Y2Z0x81wcsQdXW8TtIJZjxf6MCN
- 0Vcc=
-X-Gm-Gg: ASbGnctY47WObeLc8NVzNNKybJCcLkxyLsn0j2GC8FpYStgcn8Bebg+COY9+bVkXgfU
- jD2mc/qOVCGDvpse8QWlsf/v9PRTE/jlcrXG6d+zJk6dHBg0Qic0E3gcLaYyN1kqZ38US+yyBaa
- 2hlKckRVjSd3S4OkO9+akLyRr21Ib3gF32M/+APhjkHURva6yHpgZfEngsag0KE0NebfYKE9znm
- Ti2RNqgL+PT4f4ifqICJl0iO1OR/zqx497+EmXOMJVDsNterH0RT1xGhDM5OFv2vPnI0R+XETWG
- 8gGWe8QqsBiPwRCU65baUlsT/p8TAM9oemLhC0QgP1y1MKPHPuuzXBW5+/ksoslAcMjvZUBRN+x
- 7PFwRsFJIW5TcXDkDfp4=
-X-Google-Smtp-Source: AGHT+IGICSBrh2HAvZc9ZziVK/qj0/qPCJQqaBhTufnA9uIm238IYLxJ30cj8E2UTZ3iDCnFJPICkw==
-X-Received: by 2002:a17:907:2d0d:b0:ac6:bf3d:bf45 with SMTP id
- a640c23a62f3a-ac738bae661mr1353685166b.36.1743609988692; 
- Wed, 02 Apr 2025 09:06:28 -0700 (PDT)
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com.
- [209.85.218.41]) by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-ac7196c8281sm946869466b.149.2025.04.02.09.06.27
- for <intel-xe@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 02 Apr 2025 09:06:27 -0700 (PDT)
-Received: by mail-ej1-f41.google.com with SMTP id
- a640c23a62f3a-ac3b12e8518so1321710766b.0
- for <intel-xe@lists.freedesktop.org>; Wed, 02 Apr 2025 09:06:27 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCVZojfKGJtVCiDHvwJHH/B+kuaPMlGkaUiX1Cb8niF5LodjsffS7MCaxXVngus8NoSiL4RBoTWyGw==@lists.freedesktop.org
-X-Received: by 2002:a17:906:dc95:b0:ac7:36c2:aed5 with SMTP id
- a640c23a62f3a-ac738a5aa5amr1649611366b.28.1743609986968; Wed, 02 Apr 2025
- 09:06:26 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A00F10E830;
+	Wed,  2 Apr 2025 16:28:15 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5D0110E830;
+ Wed,  2 Apr 2025 16:28:13 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0376111239478322287=="
 MIME-Version: 1.0
-References: <20250402124656.629226-1-jani.nikula@intel.com>
-In-Reply-To: <20250402124656.629226-1-jani.nikula@intel.com>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Wed, 2 Apr 2025 09:06:09 -0700
-X-Gmail-Original-Message-ID: <CAHk-=whkpFR93_rX2Wi5bQErH1-bzFXkWZP2wgBGCRgsFQuOhg@mail.gmail.com>
-X-Gm-Features: AQ5f1Jqd6jCqv34VGPiVcJowK6E-xTG9BBy-7Ow_2MxO0m2aPE5XhfB34p0FnyE
-Message-ID: <CAHk-=whkpFR93_rX2Wi5bQErH1-bzFXkWZP2wgBGCRgsFQuOhg@mail.gmail.com>
-Subject: Re: [PATCH v2 0/4] kbuild: resurrect generic header check facility
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: linux-kernel@vger.kernel.org, Jason Gunthorpe <jgg@nvidia.com>, 
- Masahiro Yamada <masahiroy@kernel.org>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona.vetter@ffwll.ch>, linux-kbuild@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Allow_scratch_page_under_fa?=
+ =?utf-8?q?ult_mode_for_certain_platform?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Oak Zeng" <oak.zeng@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 02 Apr 2025 16:28:13 -0000
+Message-ID: <174361129386.28827.17568132306759453298@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250402154602.2431681-1-oak.zeng@intel.com>
+In-Reply-To: <20250402154602.2431681-1-oak.zeng@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,19 +36,158 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2 Apr 2025 at 05:47, Jani Nikula <jani.nikula@intel.com> wrote:
->
-> Another go at hiding the turds.
+--===============0376111239478322287==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The patches look sane to me.
+== Series Details ==
 
-I didn't _test_ them - because that's not how I roll - but they look
-like they would do the right thing and not interfere with my odd TAB
-lifestyle (I say "odd", because apparently I'm the only one who lives
-and dies by auto-complete, but obviously my way is never really odd.
-By definition).
+Series: Allow scratch page under fault mode for certain platform
+URL   : https://patchwork.freedesktop.org/series/147154/
+State : failure
 
-         Linus
+== Summary ==
+
+CI Bug Log - changes from xe-2897-883e4daea46ff15b470f138ee61573513243210d_BAT -> xe-pw-147154v1_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-147154v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-147154v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-147154v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_intel_bb@create-in-region:
+    - bat-dg2-oem2:       [PASS][1] -> [ABORT][2] +1 other test abort
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2897-883e4daea46ff15b470f138ee61573513243210d/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147154v1/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html
+    - bat-atsm-2:         [PASS][3] -> [ABORT][4] +1 other test abort
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2897-883e4daea46ff15b470f138ee61573513243210d/bat-atsm-2/igt@xe_intel_bb@create-in-region.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147154v1/bat-atsm-2/igt@xe_intel_bb@create-in-region.html
+
+  * igt@xe_intel_bb@create-in-region@region-vram0:
+    - bat-dg2-oem2:       [PASS][5] -> [DMESG-FAIL][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2897-883e4daea46ff15b470f138ee61573513243210d/bat-dg2-oem2/igt@xe_intel_bb@create-in-region@region-vram0.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147154v1/bat-dg2-oem2/igt@xe_intel_bb@create-in-region@region-vram0.html
+    - bat-atsm-2:         [PASS][7] -> [DMESG-FAIL][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2897-883e4daea46ff15b470f138ee61573513243210d/bat-atsm-2/igt@xe_intel_bb@create-in-region@region-vram0.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147154v1/bat-atsm-2/igt@xe_intel_bb@create-in-region@region-vram0.html
+
+  
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8300 -> IGT_8301
+  * Linux: xe-2897-883e4daea46ff15b470f138ee61573513243210d -> xe-pw-147154v1
+
+  IGT_8300: 00e9274442b3407b4b16f999068f3f54d87496bd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8301: 8301
+  xe-2897-883e4daea46ff15b470f138ee61573513243210d: 883e4daea46ff15b470f138ee61573513243210d
+  xe-pw-147154v1: 147154v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147154v1/index.html
+
+--===============0376111239478322287==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Allow scratch page under fault mode for certain platform</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147154/">https://patchwork.freedesktop.org/series/147154/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147154v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147154v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2897-883e4daea46ff15b470f138ee61573513243210d_BAT -&gt; xe-pw-147154v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-147154v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-147154v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-147154v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@xe_intel_bb@create-in-region:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2897-883e4daea46ff15b470f138ee61573513243210d/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147154v1/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html">ABORT</a> +1 other test abort</li>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2897-883e4daea46ff15b470f138ee61573513243210d/bat-atsm-2/igt@xe_intel_bb@create-in-region.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147154v1/bat-atsm-2/igt@xe_intel_bb@create-in-region.html">ABORT</a> +1 other test abort</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_intel_bb@create-in-region@region-vram0:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2897-883e4daea46ff15b470f138ee61573513243210d/bat-dg2-oem2/igt@xe_intel_bb@create-in-region@region-vram0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147154v1/bat-dg2-oem2/igt@xe_intel_bb@create-in-region@region-vram0.html">DMESG-FAIL</a></li>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2897-883e4daea46ff15b470f138ee61573513243210d/bat-atsm-2/igt@xe_intel_bb@create-in-region@region-vram0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147154v1/bat-atsm-2/igt@xe_intel_bb@create-in-region@region-vram0.html">DMESG-FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8300 -&gt; IGT_8301</li>
+<li>Linux: xe-2897-883e4daea46ff15b470f138ee61573513243210d -&gt; xe-pw-147154v1</li>
+</ul>
+<p>IGT_8300: 00e9274442b3407b4b16f999068f3f54d87496bd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8301: 8301<br />
+  xe-2897-883e4daea46ff15b470f138ee61573513243210d: 883e4daea46ff15b470f138ee61573513243210d<br />
+  xe-pw-147154v1: 147154v1</p>
+
+</body>
+</html>
+
+--===============0376111239478322287==--
