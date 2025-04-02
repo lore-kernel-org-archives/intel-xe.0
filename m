@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55ADBC28B20
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 10:56:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDB3AC28B20
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 10:58:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0724E10E745;
-	Wed,  2 Apr 2025 10:56:35 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TVzw5VgR";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F53D10E745;
- Wed,  2 Apr 2025 10:56:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743591392; x=1775127392;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=+nYDdEpiOizEmSi2i1YIIj0TnEehSgjHXLxq5bXG0fY=;
- b=TVzw5VgR4WtfWBJUN2QejZqkFgzRpCZYLzbMcTYZr/P8wkSw+iSoNyOL
- SG32FYjv5j7r5XULtF/AV+HrUmT+EZqbbnmiTHQILV5XRcx+aETjB/8Da
- N309EsEl5L3wNphYh8QiwT2/WCGu5rldMTMDTjqi1G7lv5mTs0msVbG5r
- 9NttUOBndHw0PdUvkXwLlF0mBf3XsjLRTDa6cJeJztmSAYiGVNLy6tIDH
- IyuKcu00neE9CkPT2AgBrRRJDSKxKAhYeDq55JyZwm0UeIID+7izVVSwu
- SOV5P4Vfu7xPcUCLSzTxfCD9BWD9u7B54ydmF3E8jOCr03YlPfI3CnTEo w==;
-X-CSE-ConnectionGUID: 4HZeiOLlTACn7jBu1XzNJQ==
-X-CSE-MsgGUID: XUpRQzWqQsmfHQo7zi6/KQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="56317339"
-X-IronPort-AV: E=Sophos;i="6.14,182,1736841600"; d="scan'208";a="56317339"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2025 03:56:32 -0700
-X-CSE-ConnectionGUID: 7yIUpfdIQLCT6Az3DYsaJw==
-X-CSE-MsgGUID: NQ1xsJnQQGKEupyFeYtYCA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,182,1736841600"; d="scan'208";a="131858137"
-Received: from oandoniu-mobl3.ger.corp.intel.com (HELO [10.245.245.252])
- ([10.245.245.252])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2025 03:56:29 -0700
-Message-ID: <0488e011-a27a-4f5f-9d4f-52562212ff31@intel.com>
-Date: Wed, 2 Apr 2025 11:56:27 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8EAA210E751;
+	Wed,  2 Apr 2025 10:58:06 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDF9810E75D;
+ Wed,  2 Apr 2025 10:58:05 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/format-helper: fix build
-To: Thomas Zimmermann <tzimmermann@suse.de>, intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, Jocelyn Falempe <jfalempe@redhat.com>
-References: <20250402104430.142398-2-matthew.auld@intel.com>
- <4361e048-d2c6-4592-98fe-7b933c09e774@suse.de>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <4361e048-d2c6-4592-98fe-7b933c09e774@suse.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_Improve_SRIOV_VRAM_provisionin?=
+ =?utf-8?q?g_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 02 Apr 2025 10:58:05 -0000
+Message-ID: <174359148583.26680.4074436475110885313@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250402092921.79918-9-matthew.auld@intel.com>
+In-Reply-To: <20250402092921.79918-9-matthew.auld@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,147 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+== Series Details ==
 
-On 02/04/2025 11:53, Thomas Zimmermann wrote:
-> Hi
-> 
-> Am 02.04.25 um 12:44 schrieb Matthew Auld:
->> Build fails with:
->>
->> error: multiple unsequenced modifications to 'sbuf32'
->> [-Werror,-Wunsequenced]
->>    264 |                         le32_to_cpup(sbuf32++),
->>        |                                            ^
->>    265 |                         le32_to_cpup(sbuf32++),
->>        |                                            ~~
->>
->> With that move the increment of the sbuf32 pointer to the end of the
->> loop, instead of inside the array list initializer, where the
->> order/sequence of the sbuf32 pointer modifications is not defined.
->>
->> Fixes: 58523a25cbf7 ("drm/format-helper: Optimize 32-to-24-bpp 
->> conversion")
->> Fixes: 3f31a017ddbc ("drm/format-helper: Optimize 32-to-16-bpp 
->> conversion")
->> Fixes: 65931bbc5177 ("drm/format-helper: Optimize 32-to-8-bpp 
->> conversion")
->> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->> Cc: Thomas Zimmermann <tzimmermann@suse.de>
->> Cc: Jocelyn Falempe <jfalempe@redhat.com>
-> 
-> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
-> 
-> Thanks for the fix. I build with W=1 but never saw this error. Do you 
-> use other build flags?
+Series: Improve SRIOV VRAM provisioning (rev4)
+URL   : https://patchwork.freedesktop.org/series/142782/
+State : success
 
-Just building with clang. No other special build flags.
+== Summary ==
 
-> 
-> Best regards
-> Thomas
-> 
->> ---
->>   drivers/gpu/drm/drm_format_helper.c | 32 ++++++++++++++++-------------
->>   1 file changed, 18 insertions(+), 14 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/drm_format_helper.c b/drivers/gpu/drm/ 
->> drm_format_helper.c
->> index fc7347caf600..d36e6cacc575 100644
->> --- a/drivers/gpu/drm/drm_format_helper.c
->> +++ b/drivers/gpu/drm/drm_format_helper.c
->> @@ -261,10 +261,10 @@ static __always_inline void 
->> drm_fb_xfrm_line_32to8(void *dbuf, const void *sbuf,
->>       /* write 4 pixels at once */
->>       while (sbuf32 < ALIGN_DOWN_PIXELS(send32, pixels, 4)) {
->>           u32 pix[4] = {
->> -            le32_to_cpup(sbuf32++),
->> -            le32_to_cpup(sbuf32++),
->> -            le32_to_cpup(sbuf32++),
->> -            le32_to_cpup(sbuf32++),
->> +            le32_to_cpup(sbuf32),
->> +            le32_to_cpup(sbuf32 + 1),
->> +            le32_to_cpup(sbuf32 + 2),
->> +            le32_to_cpup(sbuf32 + 3),
->>           };
->>           /* write output bytes in reverse order for little endianness */
->>           u32 val32 = xfrm_pixel(pix[0]) |
->> @@ -272,6 +272,7 @@ static __always_inline void 
->> drm_fb_xfrm_line_32to8(void *dbuf, const void *sbuf,
->>                  (xfrm_pixel(pix[2]) << 16) |
->>                  (xfrm_pixel(pix[3]) << 24);
->>           *dbuf32++ = cpu_to_le32(val32);
->> +        sbuf32 += ARRAY_SIZE(pix);
->>       }
->>       /* write trailing pixels */
->> @@ -294,10 +295,10 @@ static __always_inline void 
->> drm_fb_xfrm_line_32to16(void *dbuf, const void *sbuf
->>       /* write 4 pixels at once */
->>       while (sbuf32 < ALIGN_DOWN_PIXELS(send32, pixels, 4)) {
->>           u32 pix[4] = {
->> -            le32_to_cpup(sbuf32++),
->> -            le32_to_cpup(sbuf32++),
->> -            le32_to_cpup(sbuf32++),
->> -            le32_to_cpup(sbuf32++),
->> +            le32_to_cpup(sbuf32),
->> +            le32_to_cpup(sbuf32 + 1),
->> +            le32_to_cpup(sbuf32 + 2),
->> +            le32_to_cpup(sbuf32 + 3),
->>           };
->>           /* write output bytes in reverse order for little endianness */
->>           u64 val64 = ((u64)xfrm_pixel(pix[0])) |
->> @@ -305,6 +306,7 @@ static __always_inline void 
->> drm_fb_xfrm_line_32to16(void *dbuf, const void *sbuf
->>                   ((u64)xfrm_pixel(pix[2]) << 32) |
->>                   ((u64)xfrm_pixel(pix[3]) << 48);
->>           *dbuf64++ = cpu_to_le64(val64);
->> +        sbuf32 += ARRAY_SIZE(pix);
->>       }
->>   #endif
->> @@ -312,13 +314,14 @@ static __always_inline void 
->> drm_fb_xfrm_line_32to16(void *dbuf, const void *sbuf
->>       dbuf32 = (__le32 __force *)dbuf64;
->>       while (sbuf32 < ALIGN_DOWN_PIXELS(send32, pixels, 2)) {
->>           u32 pix[2] = {
->> -            le32_to_cpup(sbuf32++),
->> -            le32_to_cpup(sbuf32++),
->> +            le32_to_cpup(sbuf32),
->> +            le32_to_cpup(sbuf32 + 1),
->>           };
->>           /* write output bytes in reverse order for little endianness */
->>           u32 val32 = xfrm_pixel(pix[0]) |
->>                  (xfrm_pixel(pix[1]) << 16);
->>           *dbuf32++ = cpu_to_le32(val32);
->> +        sbuf32 += ARRAY_SIZE(pix);
->>       }
->>       /* write trailing pixel */
->> @@ -339,10 +342,10 @@ static __always_inline void 
->> drm_fb_xfrm_line_32to24(void *dbuf, const void *sbuf
->>       /* write pixels in chunks of 4 */
->>       while (sbuf32 < ALIGN_DOWN_PIXELS(send32, pixels, 4)) {
->>           u32 val24[4] = {
->> -            xfrm_pixel(le32_to_cpup(sbuf32++)),
->> -            xfrm_pixel(le32_to_cpup(sbuf32++)),
->> -            xfrm_pixel(le32_to_cpup(sbuf32++)),
->> -            xfrm_pixel(le32_to_cpup(sbuf32++)),
->> +            xfrm_pixel(le32_to_cpup(sbuf32)),
->> +            xfrm_pixel(le32_to_cpup(sbuf32 + 1)),
->> +            xfrm_pixel(le32_to_cpup(sbuf32 + 2)),
->> +            xfrm_pixel(le32_to_cpup(sbuf32 + 3)),
->>           };
->>           u32 out32[3] = {
->>               /* write output bytes in reverse order for little 
->> endianness */
->> @@ -363,6 +366,7 @@ static __always_inline void 
->> drm_fb_xfrm_line_32to24(void *dbuf, const void *sbuf
->>           *dbuf32++ = cpu_to_le32(out32[0]);
->>           *dbuf32++ = cpu_to_le32(out32[1]);
->>           *dbuf32++ = cpu_to_le32(out32[2]);
->> +        sbuf32 += ARRAY_SIZE(val24);
->>       }
->>       /* write trailing pixel */
-> 
+lib/modules/6.14.0-xe+/kernel/arch/x86/events/amd/
+lib/modules/6.14.0-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.14.0-xe+/kernel/kernel/
+lib/modules/6.14.0-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.14.0-xe+/kernel/crypto/
+lib/modules/6.14.0-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.14.0-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.14.0-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.14.0-xe+/kernel/crypto/zstd.ko
+lib/modules/6.14.0-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.14.0-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.14.0-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.14.0-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/xctr.ko
+lib/modules/6.14.0-xe+/kernel/crypto/authenc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm3.ko
+lib/modules/6.14.0-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.14.0-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.14.0-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cmac.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.14.0-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/essiv.ko
+lib/modules/6.14.0-xe+/kernel/crypto/ccm.ko
+lib/modules/6.14.0-xe+/kernel/crypto/wp512.ko
+lib/modules/6.14.0-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.14.0-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.14.0-xe+/kernel/crypto/lrw.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.14.0-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.14.0-xe+/kernel/crypto/842.ko
+lib/modules/6.14.0-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.14.0-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/md4.ko
+lib/modules/6.14.0-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.14.0-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/lz4.ko
+lib/modules/6.14.0-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.14.0-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm4.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.14.0-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.14.0-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.14.0-xe+/kernel/block/
+lib/modules/6.14.0-xe+/kernel/block/bfq.ko
+lib/modules/6.14.0-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.14.0-xe+/build
+lib/modules/6.14.0-xe+/modules.alias.bin
+lib/modules/6.14.0-xe+/modules.builtin
+lib/modules/6.14.0-xe+/modules.softdep
+lib/modules/6.14.0-xe+/modules.alias
+lib/modules/6.14.0-xe+/modules.order
+lib/modules/6.14.0-xe+/modules.symbols
+lib/modules/6.14.0-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1743591473:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1743591473:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
