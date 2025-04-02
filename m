@@ -4,52 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69411C3601B
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 15:29:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15A29C28B20
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 15:30:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2302710E80C;
-	Wed,  2 Apr 2025 15:29:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0C9410E1E7;
+	Wed,  2 Apr 2025 15:30:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XkbnXt3E";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="LQvuWyFt";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27F8410E1E7
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Apr 2025 15:29:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743607747; x=1775143747;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=YvQwiVXJsDa2uPtAD9J5G0o73jSJ8siEfkWGu2YUJK0=;
- b=XkbnXt3E4AwjtIos/9O7zpV7UA5ePUEQt1PmXdIsUY38fCGv5ciKWosM
- gJ3h9DkoWLpUHZYFFKBZSYpgI2OeWi3yJV3VPQUs4fo13STIBTmG/VqP1
- 2qzNTh5we84nFJVRwqUwRyXXYA+ol9+m8Rm60C7bAfvc0qIAJpMUKWWz0
- RmVfip+EZBw+Rgr8ita9awiVf3SD9vTkx3Pvy4pGwW4whl8kTsvNE09pa
- qmcb1zBBB8TQz5IiUul7/T+AO4bdF6Fn/MgCMCaVzAikgss4K83eW0+Ox
- E4oTuDc+/UksDwRnqPC632+3obI2KFCoPruCXUCotYmFaruWoN6vA3MZl w==;
-X-CSE-ConnectionGUID: sMQxAY3NQBe4EYFXARfu0A==
-X-CSE-MsgGUID: BA+1dxP8SFKuYSjYh8Syew==
-X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="67447226"
-X-IronPort-AV: E=Sophos;i="6.15,182,1739865600"; d="scan'208";a="67447226"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2025 08:29:06 -0700
-X-CSE-ConnectionGUID: 4nAaUWaAR0eJbrIqY+E78A==
-X-CSE-MsgGUID: JK2LS3XHTr6xNeYZcy5i0w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,182,1739865600"; d="scan'208";a="163969965"
-Received: from szeng-desk.jf.intel.com ([10.165.21.160])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2025 08:29:06 -0700
-From: Oak Zeng <oak.zeng@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v9 2/3] drm/xe: Clear scratch page on vm_bind
-Date: Wed,  2 Apr 2025 11:46:01 -0400
-Message-Id: <20250402154602.2431681-3-oak.zeng@intel.com>
-X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20250402154602.2431681-1-oak.zeng@intel.com>
-References: <20250402154602.2431681-1-oak.zeng@intel.com>
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A5D010E1E7
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Apr 2025 15:30:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=1+H6oTShs6TFwtS5LlE4qw8edoi5GgFF8hg4nnGqm8w=; b=LQvuWyFtpOtRo4tuUZwJFw/YMb
+ rJVDLikb7iHXk7cGuwTPnaFKLbxi4qYA8gtdwPaA76lSSFkVtcywf+5bEcWApOQbqluZbutq/MrBP
+ b+SJ1oZuJ2RYF8/lJ8ES6Nuot0WWVEioM8CbmuaQWHdiiekj49cz0Br9a9GiIYMvcHm9VvfAz/ux2
+ vxj40i4dcRDUBdfKdX/g2WBe5xBLiaPvT1Z9jccR0mI2PEnKth6k4QslBp09vnmx/A+iOXoei0ZvT
+ MSxtBbBGTyfboP/j32EIi4cpBpw7LgWPIlmpvNIOLoiRs+ldC/9sizY5/zfGMmHFJcHyHQqKiIetS
+ 1W6OUjNQ==;
+Received: from [90.241.98.187] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1u0036-00ARAi-V6; Wed, 02 Apr 2025 17:30:41 +0200
+Message-ID: <7417aea1-ced3-48ba-b128-8ab41814eeff@igalia.com>
+Date: Wed, 2 Apr 2025 16:30:40 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/9] AuxCCS handling and render compression modifiers
+To: =?UTF-8?Q?Juha-Pekka_Heikkil=C3=A4?= <juhapekka.heikkila@gmail.com>
+Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com,
+ =?UTF-8?Q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>,
+ "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+References: <20250328163537.58942-1-tvrtko.ursulin@igalia.com>
+ <CAJ=qYWSj2ingLCapCSrYz5OgJoP_A_SgvPMkeYH+p4jEqBhS8w@mail.gmail.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <CAJ=qYWSj2ingLCapCSrYz5OgJoP_A_SgvPMkeYH+p4jEqBhS8w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,399 +63,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When a vm runs under fault mode, if scratch page is enabled, we need
-to clear the scratch page mapping on vm_bind for the vm_bind address
-range. Under fault mode, we depend on recoverable page fault to
-establish mapping in page table. If scratch page is not cleared, GPU
-access of address won't cause page fault because it always hits the
-existing scratch page mapping.
 
-When vm_bind with IMMEDIATE flag, there is no need of clearing as
-immediate bind can overwrite the scratch page mapping.
+Hi Juha-Pekka,
 
-So far only is xe2 and xe3 products are allowed to enable scratch page
-under fault mode. On other platform we don't allow scratch page under
-fault mode, so no need of such clearing.
+On 02/04/2025 12:42, Juha-Pekka Heikkilä wrote:
+> Hi Tvrtko,
+> 
+> I was going to run tests on your patches but there had just been
+> changes onto emit_pipe_invalidate() exactly at place where you had
+> added WA_14016712196 handling, so I didn't go figuring out what's the
+> correct form. Can you do rebase and I'll see what I get with mtl.
 
-v2: Rework vm_bind pipeline to clear scratch page mapping. This is similar
-to a map operation, with the exception that PTEs are cleared instead of
-pointing to valid physical pages. (Matt, Thomas)
+I've rebased and split out the bad commit into many small ones so it is 
+bisectable:
 
-TLB invalidation is needed after clear scratch page mapping as larger
-scratch page mapping could be backed by physical page and cached in
-TLB. (Matt, Thomas)
+https://gitlab.freedesktop.org/tursulin/kernel/-/commits/adl-auxccs
 
-v3: Fix the case of clearing huge pte (Thomas)
+I however thing the error of my ways was that I trusted MAX_JOB_SIZE_DW 
+too much.
 
-Improve commit message (Thomas)
+That is, when I added a new pipe control or two, I would bump it by 6 or 
+12 respectively. What I did not account for that it may be wrong to 
+start with. Because today I hand counted the worst case ring emission in 
+__emit_job_gen12_render_compute and counted 57 dwords. While the define 
+claims it is 48.
 
-v4: TLB invalidation on all LR cases, not only the clear on bind
-cases (Thomas)
+Hence I now have a first patch in the series which bumps it straight 
+away to 58:
 
-v5: Misc cosmetic changes (Matt)
-    Drop pt_update_ops.invalidate_on_bind. Directly wire
-    xe_vma_op.map.invalidata_on_bind to bind_op_prepare/commit (Matt)
+https://gitlab.freedesktop.org/tursulin/kernel/-/commit/8ce33fadee59dea5ba8272eeb0e2bf53d22fcb58
 
-v6: checkpatch fix (Matt)
+Then I bump it more as I am adding new commands.
 
-v7: No need to check platform needs_scratch deciding invalidate_on_bind
-    (Matt)
+Fingers crossed that was the bug and the only bug.
 
-v8: rebase
-v9: rebase
+Thank you for testing!
 
-Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_pt.c       | 97 ++++++++++++++++++++------------
- drivers/gpu/drm/xe/xe_vm.c       | 28 +++++++--
- drivers/gpu/drm/xe/xe_vm_types.h |  2 +
- 3 files changed, 86 insertions(+), 41 deletions(-)
+Regards,
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 82ae159feed1..2cd8f761a159 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -289,6 +289,8 @@ struct xe_pt_stage_bind_walk {
- 	 * granularity on VRAM.
- 	 */
- 	bool needs_64K;
-+	/* @clear_pt: clear page table entries during the bind walk */
-+	bool clear_pt;
- 	/**
- 	 * @vma: VMA being mapped
- 	 */
-@@ -438,6 +440,10 @@ static bool xe_pt_hugepte_possible(u64 addr, u64 next, unsigned int level,
- 	if (xe_vma_is_null(xe_walk->vma))
- 		return true;
- 
-+	/* if we are clearing page table, no dma addresses*/
-+	if (xe_walk->clear_pt)
-+		return true;
-+
- 	/* Is the DMA address huge PTE size aligned? */
- 	size = next - addr;
- 	dma = addr - xe_walk->va_curs_start + xe_res_dma(xe_walk->curs);
-@@ -521,23 +527,29 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
- 
- 		XE_WARN_ON(xe_walk->va_curs_start != addr);
- 
--		pte = vm->pt_ops->pte_encode_vma(is_null ? 0 :
--						 xe_res_dma(curs) + xe_walk->dma_offset,
--						 xe_walk->vma, pat_index, level);
--		if (!is_null)
--			pte |= is_vram ? xe_walk->default_vram_pte :
--				xe_walk->default_system_pte;
-+		if (xe_walk->clear_pt) {
-+			pte = 0;
-+		} else {
-+			pte = vm->pt_ops->pte_encode_vma(is_null ? 0 :
-+							 xe_res_dma(curs) +
-+							 xe_walk->dma_offset,
-+							 xe_walk->vma,
-+							 pat_index, level);
-+			if (!is_null)
-+				pte |= is_vram ? xe_walk->default_vram_pte :
-+					xe_walk->default_system_pte;
- 
--		/*
--		 * Set the XE_PTE_PS64 hint if possible, otherwise if
--		 * this device *requires* 64K PTE size for VRAM, fail.
--		 */
--		if (level == 0 && !xe_parent->is_compact) {
--			if (xe_pt_is_pte_ps64K(addr, next, xe_walk)) {
--				xe_walk->vma->gpuva.flags |= XE_VMA_PTE_64K;
--				pte |= XE_PTE_PS64;
--			} else if (XE_WARN_ON(xe_walk->needs_64K && is_vram)) {
--				return -EINVAL;
-+			/*
-+			 * Set the XE_PTE_PS64 hint if possible, otherwise if
-+			 * this device *requires* 64K PTE size for VRAM, fail.
-+			 */
-+			if (level == 0 && !xe_parent->is_compact) {
-+				if (xe_pt_is_pte_ps64K(addr, next, xe_walk)) {
-+					xe_walk->vma->gpuva.flags |= XE_VMA_PTE_64K;
-+					pte |= XE_PTE_PS64;
-+				} else if (XE_WARN_ON(xe_walk->needs_64K)) {
-+					return -EINVAL;
-+				}
- 			}
- 		}
- 
-@@ -545,7 +557,7 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
- 		if (unlikely(ret))
- 			return ret;
- 
--		if (!is_null)
-+		if (!is_null && !xe_walk->clear_pt)
- 			xe_res_next(curs, next - addr);
- 		xe_walk->va_curs_start = next;
- 		xe_walk->vma->gpuva.flags |= (XE_VMA_PTE_4K << level);
-@@ -655,6 +667,7 @@ static bool xe_atomic_for_system(struct xe_vm *vm, struct xe_bo *bo)
-  * @entries: Storage for the update entries used for connecting the tree to
-  * the main tree at commit time.
-  * @num_entries: On output contains the number of @entries used.
-+ * @clear_pt: Clear the page table entries.
-  *
-  * This function builds a disconnected page-table tree for a given address
-  * range. The tree is connected to the main vm tree for the gpu using
-@@ -668,7 +681,8 @@ static bool xe_atomic_for_system(struct xe_vm *vm, struct xe_bo *bo)
- static int
- xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
- 		 struct xe_svm_range *range,
--		 struct xe_vm_pgtable_update *entries, u32 *num_entries)
-+		 struct xe_vm_pgtable_update *entries,
-+		 u32 *num_entries, bool clear_pt)
- {
- 	struct xe_device *xe = tile_to_xe(tile);
- 	struct xe_bo *bo = xe_vma_bo(vma);
-@@ -688,6 +702,7 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
- 			xe_vma_start(vma),
- 		.vma = vma,
- 		.wupd.entries = entries,
-+		.clear_pt = clear_pt,
- 	};
- 	struct xe_pt *pt = vm->pt_root[tile->id];
- 	int ret;
-@@ -716,6 +731,9 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
- 	}
- 
- 	xe_walk.needs_64K = (vm->flags & XE_VM_FLAG_64K);
-+	if (clear_pt)
-+		goto walk_pt;
-+
- 	if (vma->gpuva.flags & XE_VMA_ATOMIC_PTE_BIT) {
- 		xe_walk.default_vram_pte = xe_atomic_for_vram(vm) ? XE_USM_PPGTT_PTE_AE : 0;
- 		xe_walk.default_system_pte = xe_atomic_for_system(vm, bo) ?
-@@ -741,6 +759,7 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
- 		curs.size = xe_vma_size(vma);
- 	}
- 
-+walk_pt:
- 	ret = xe_pt_walk_range(&pt->base, pt->level,
- 			       range ? range->base.itree.start : xe_vma_start(vma),
- 			       range ? range->base.itree.last + 1 : xe_vma_end(vma),
-@@ -1105,12 +1124,14 @@ static void xe_pt_free_bind(struct xe_vm_pgtable_update *entries,
- static int
- xe_pt_prepare_bind(struct xe_tile *tile, struct xe_vma *vma,
- 		   struct xe_svm_range *range,
--		   struct xe_vm_pgtable_update *entries, u32 *num_entries)
-+		   struct xe_vm_pgtable_update *entries,
-+		   u32 *num_entries, bool invalidate_on_bind)
- {
- 	int err;
- 
- 	*num_entries = 0;
--	err = xe_pt_stage_bind(tile, vma, range, entries, num_entries);
-+	err = xe_pt_stage_bind(tile, vma, range, entries, num_entries,
-+			       invalidate_on_bind);
- 	if (!err)
- 		xe_tile_assert(tile, *num_entries);
- 
-@@ -1795,7 +1816,7 @@ static int vma_reserve_fences(struct xe_device *xe, struct xe_vma *vma)
- 
- static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
- 			   struct xe_vm_pgtable_update_ops *pt_update_ops,
--			   struct xe_vma *vma)
-+			   struct xe_vma *vma, bool invalidate_on_bind)
- {
- 	u32 current_op = pt_update_ops->current_op;
- 	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
-@@ -1817,7 +1838,7 @@ static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
- 		return err;
- 
- 	err = xe_pt_prepare_bind(tile, vma, NULL, pt_op->entries,
--				 &pt_op->num_entries);
-+				 &pt_op->num_entries, invalidate_on_bind);
- 	if (!err) {
- 		xe_tile_assert(tile, pt_op->num_entries <=
- 			       ARRAY_SIZE(pt_op->entries));
-@@ -1839,11 +1860,11 @@ static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
- 		 * If !rebind, and scratch enabled VMs, there is a chance the scratch
- 		 * PTE is already cached in the TLB so it needs to be invalidated.
- 		 * On !LR VMs this is done in the ring ops preceding a batch, but on
--		 * non-faulting LR, in particular on user-space batch buffer chaining,
--		 * it needs to be done here.
-+		 * LR, in particular on user-space batch buffer chaining, it needs to
-+		 * be done here.
- 		 */
- 		if ((!pt_op->rebind && xe_vm_has_scratch(vm) &&
--		     xe_vm_in_preempt_fence_mode(vm)))
-+		     xe_vm_in_lr_mode(vm)))
- 			pt_update_ops->needs_invalidation = true;
- 		else if (pt_op->rebind && !xe_vm_in_lr_mode(vm))
- 			/* We bump also if batch_invalidate_tlb is true */
-@@ -1879,7 +1900,7 @@ static int bind_range_prepare(struct xe_vm *vm, struct xe_tile *tile,
- 	pt_op->rebind = BIT(tile->id) & range->tile_present;
- 
- 	err = xe_pt_prepare_bind(tile, vma, range, pt_op->entries,
--				 &pt_op->num_entries);
-+				 &pt_op->num_entries, false);
- 	if (!err) {
- 		xe_tile_assert(tile, pt_op->num_entries <=
- 			       ARRAY_SIZE(pt_op->entries));
-@@ -1991,11 +2012,13 @@ static int op_prepare(struct xe_vm *vm,
- 
- 	switch (op->base.op) {
- 	case DRM_GPUVA_OP_MAP:
--		if ((!op->map.immediate && xe_vm_in_fault_mode(vm)) ||
-+		if ((!op->map.immediate && xe_vm_in_fault_mode(vm) &&
-+		    !op->map.invalidate_on_bind) ||
- 		    op->map.is_cpu_addr_mirror)
- 			break;
- 
--		err = bind_op_prepare(vm, tile, pt_update_ops, op->map.vma);
-+		err = bind_op_prepare(vm, tile, pt_update_ops, op->map.vma,
-+				      op->map.invalidate_on_bind);
- 		pt_update_ops->wait_vm_kernel = true;
- 		break;
- 	case DRM_GPUVA_OP_REMAP:
-@@ -2009,12 +2032,12 @@ static int op_prepare(struct xe_vm *vm,
- 
- 		if (!err && op->remap.prev) {
- 			err = bind_op_prepare(vm, tile, pt_update_ops,
--					      op->remap.prev);
-+					      op->remap.prev, false);
- 			pt_update_ops->wait_vm_bookkeep = true;
- 		}
- 		if (!err && op->remap.next) {
- 			err = bind_op_prepare(vm, tile, pt_update_ops,
--					      op->remap.next);
-+					      op->remap.next, false);
- 			pt_update_ops->wait_vm_bookkeep = true;
- 		}
- 		break;
-@@ -2036,7 +2059,7 @@ static int op_prepare(struct xe_vm *vm,
- 		if (xe_vma_is_cpu_addr_mirror(vma))
- 			break;
- 
--		err = bind_op_prepare(vm, tile, pt_update_ops, vma);
-+		err = bind_op_prepare(vm, tile, pt_update_ops, vma, false);
- 		pt_update_ops->wait_vm_kernel = true;
- 		break;
- 	}
-@@ -2119,7 +2142,7 @@ ALLOW_ERROR_INJECTION(xe_pt_update_ops_prepare, ERRNO);
- static void bind_op_commit(struct xe_vm *vm, struct xe_tile *tile,
- 			   struct xe_vm_pgtable_update_ops *pt_update_ops,
- 			   struct xe_vma *vma, struct dma_fence *fence,
--			   struct dma_fence *fence2)
-+			   struct dma_fence *fence2, bool invalidate_on_bind)
- {
- 	xe_tile_assert(tile, !xe_vma_is_cpu_addr_mirror(vma));
- 
-@@ -2136,6 +2159,8 @@ static void bind_op_commit(struct xe_vm *vm, struct xe_tile *tile,
- 	}
- 	vma->tile_present |= BIT(tile->id);
- 	vma->tile_staged &= ~BIT(tile->id);
-+	if (invalidate_on_bind)
-+		vma->tile_invalidated |= BIT(tile->id);
- 	if (xe_vma_is_userptr(vma)) {
- 		lockdep_assert_held_read(&vm->userptr.notifier_lock);
- 		to_userptr_vma(vma)->userptr.initial_bind = true;
-@@ -2197,7 +2222,7 @@ static void op_commit(struct xe_vm *vm,
- 			break;
- 
- 		bind_op_commit(vm, tile, pt_update_ops, op->map.vma, fence,
--			       fence2);
-+			       fence2, op->map.invalidate_on_bind);
- 		break;
- 	case DRM_GPUVA_OP_REMAP:
- 	{
-@@ -2210,10 +2235,10 @@ static void op_commit(struct xe_vm *vm,
- 
- 		if (op->remap.prev)
- 			bind_op_commit(vm, tile, pt_update_ops, op->remap.prev,
--				       fence, fence2);
-+				       fence, fence2, false);
- 		if (op->remap.next)
- 			bind_op_commit(vm, tile, pt_update_ops, op->remap.next,
--				       fence, fence2);
-+				       fence, fence2, false);
- 		break;
- 	}
- 	case DRM_GPUVA_OP_UNMAP:
-@@ -2231,7 +2256,7 @@ static void op_commit(struct xe_vm *vm,
- 
- 		if (!xe_vma_is_cpu_addr_mirror(vma))
- 			bind_op_commit(vm, tile, pt_update_ops, vma, fence,
--				       fence2);
-+				       fence2, false);
- 		break;
- 	}
- 	case DRM_GPUVA_OP_DRIVER:
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 864266e38aa7..aa70076e9218 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2201,6 +2201,20 @@ static void print_op(struct xe_device *xe, struct drm_gpuva_op *op)
- }
- #endif
- 
-+static bool __xe_vm_needs_clear_scratch_pages(struct xe_vm *vm, u32 bind_flags)
-+{
-+	if (!xe_vm_in_fault_mode(vm))
-+		return false;
-+
-+	if (!xe_vm_has_scratch(vm))
-+		return false;
-+
-+	if (bind_flags & DRM_XE_VM_BIND_FLAG_IMMEDIATE)
-+		return false;
-+
-+	return true;
-+}
-+
- /*
-  * Create operations list from IOCTL arguments, setup operations fields so parse
-  * and commit steps are decoupled from IOCTL arguments. This step can fail.
-@@ -2273,6 +2287,8 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
- 				DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR;
- 			op->map.dumpable = flags & DRM_XE_VM_BIND_FLAG_DUMPABLE;
- 			op->map.pat_index = pat_index;
-+			op->map.invalidate_on_bind =
-+				__xe_vm_needs_clear_scratch_pages(vm, flags);
- 		} else if (__op->op == DRM_GPUVA_OP_PREFETCH) {
- 			op->prefetch.region = prefetch_region;
- 		}
-@@ -2472,8 +2488,9 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 				return PTR_ERR(vma);
- 
- 			op->map.vma = vma;
--			if ((op->map.immediate || !xe_vm_in_fault_mode(vm)) &&
--			    !op->map.is_cpu_addr_mirror)
-+			if (((op->map.immediate || !xe_vm_in_fault_mode(vm)) &&
-+			    !op->map.is_cpu_addr_mirror) ||
-+			    op->map.invalidate_on_bind)
- 				xe_vma_ops_incr_pt_update_ops(vops,
- 							      op->tile_mask);
- 			break;
-@@ -2726,9 +2743,10 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
- 
- 	switch (op->base.op) {
- 	case DRM_GPUVA_OP_MAP:
--		err = vma_lock_and_validate(exec, op->map.vma,
--					    !xe_vm_in_fault_mode(vm) ||
--					    op->map.immediate);
-+		if (!op->map.invalidate_on_bind)
-+			err = vma_lock_and_validate(exec, op->map.vma,
-+						    !xe_vm_in_fault_mode(vm) ||
-+						    op->map.immediate);
- 		break;
- 	case DRM_GPUVA_OP_REMAP:
- 		err = check_ufence(gpuva_to_vma(op->base.remap.unmap->va));
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 84fa41b9fa20..1662604c4486 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -330,6 +330,8 @@ struct xe_vma_op_map {
- 	bool is_cpu_addr_mirror;
- 	/** @dumpable: whether BO is dumped on GPU hang */
- 	bool dumpable;
-+	/** @invalidate: invalidate the VMA before bind */
-+	bool invalidate_on_bind;
- 	/** @pat_index: The pat index to use for this operation. */
- 	u16 pat_index;
- };
--- 
-2.26.3
+Tvrtko
+
+> On Fri, Mar 28, 2025 at 6:35 PM Tvrtko Ursulin
+> <tvrtko.ursulin@igalia.com> wrote:
+>>
+>> A series to fix and add xe support for AuxCSS framebuffers via DPT.
+>>
+>> Currently the auxiliary buffer data isn't mapped into the page tables at all so
+>> cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
+>> had to disable the support.
+>>
+>> On top of that there are missing flushes, invalidations and similar.
+>>
+>> Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
+>>
+>>    [PLANE:32:plane 1A]: type=PRI
+>>            uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+>>            hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+>>
+>> Display working fine - no artefacts, no DMAR/PIPE faults.
+>>
+>> v2:
+>>   * More patches added to fix kms_flip_tiling.
+>>
+>> v3:
+>>   * Rebased after some cleanup patches from v2 were merged.
+>>   * Added people to Cc as suggested by Rodrigo.
+>>   * Adjusted last patch title. (Rodrigo)
+>>   * Apply GGTT flushing only to iomapped system memory buffers.
+>>
+>> v4:
+>>   * Added patch for potentially misplaced Wa_14016712196.
+>>   * Fixed (hopefully) MAX_JOB_SIZE_DW on Meteorlake.
+>>
+>> Cc: José Roberto de Souza <jose.souza@intel.com>
+>> Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+>> Cc: Michael J. Ruhl <michael.j.ruhl@intel.com>
+>> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>>
+>> Tvrtko Ursulin (9):
+>>    drm/xe/xelpg: Move Wa_14016712196 to the invalidate path
+>>    drm/xe: Add ring buffer handling for AuxCCS
+>>    drm/xe: Use fb cached min alignment
+>>    drm/xe: Reduce DPT table alignment as in i915
+>>    drm/xe: Flush GGTT writes after populating DPT
+>>    drm/xe: Handle DPT in system memory
+>>    drm/xe: Force flush system memory AuxCCS framebuffers before scan out
+>>    drm/xe/display: Add support for AuxCCS
+>>    drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
+>>
+>>   .../drm/i915/display/skl_universal_plane.c    |   6 -
+>>   drivers/gpu/drm/xe/display/xe_fb_pin.c        | 181 +++++++++++++----
+>>   .../gpu/drm/xe/instructions/xe_gpu_commands.h |   2 +
+>>   .../gpu/drm/xe/instructions/xe_mi_commands.h  |   6 +
+>>   drivers/gpu/drm/xe/regs/xe_gt_regs.h          |   1 +
+>>   drivers/gpu/drm/xe/xe_bo_types.h              |  14 +-
+>>   drivers/gpu/drm/xe/xe_ring_ops.c              | 190 ++++++++++--------
+>>   drivers/gpu/drm/xe/xe_ring_ops_types.h        |   2 +-
+>>   8 files changed, 273 insertions(+), 129 deletions(-)
+>>
+>> --
+>> 2.48.0
+>>
 
