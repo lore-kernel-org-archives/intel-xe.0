@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C041C36018
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 19:20:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13684C36018
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 19:27:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB40010E132;
-	Wed,  2 Apr 2025 19:20:13 +0000 (UTC)
-Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8614310E0BA;
- Wed,  2 Apr 2025 19:20:13 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1251789060941892302=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id C88D310E0BA;
+	Wed,  2 Apr 2025 19:27:35 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FdMXGu2q";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 879E310E0BA
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Apr 2025 19:27:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1743622054; x=1775158054;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=T9oaecO5j26VKoxREdUE9tWipWjRmxiUfv4st6gneoI=;
+ b=FdMXGu2qOyYihBemAzptf6by+yVQ/dDEoKrCSoBzHIk9za/fgQOCwLKq
+ stCzdWatDAP10rmfK8WcB5dIw3nGVFha17AHcSlKAjkHRoH0qX9a4Vzsw
+ 76kBO0JaUm7VVj7w8q4fUKLRgcGlR6yUMVzW73TDTVYWQUbB7taoyR0SU
+ T7GaTi8ftN2eOriDQ12bZXxjYvgf5rG5YSC2zhUNUBD4QthnerNXSLhcI
+ GNkYK214PQQPDXNIjhKPaRw+UBjj2/Y1dPRfCAHY6qHvlhcqh1WDKuYe6
+ hxXrzNipM9J/iG82VObHKs9L1hA056u980M5IbPVJTp4pIZmVU3Bh67IJ A==;
+X-CSE-ConnectionGUID: KlY5wxzySt2KSSNKWTo8xQ==
+X-CSE-MsgGUID: vBpd/110RBaIvkwvdGL5YQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="45182175"
+X-IronPort-AV: E=Sophos;i="6.15,183,1739865600"; d="scan'208";a="45182175"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2025 12:27:34 -0700
+X-CSE-ConnectionGUID: YzbBz5BuQeCFNMYhzKYUTw==
+X-CSE-MsgGUID: 3uwk9pO7TnSy4Z0peOxI2w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,183,1739865600"; d="scan'208";a="126689396"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orviesa010.jf.intel.com with ESMTP; 02 Apr 2025 12:27:33 -0700
+Received: from [10.245.83.29] (unknown [10.245.83.29])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id D637334EF5;
+ Wed,  2 Apr 2025 20:27:31 +0100 (IST)
+Message-ID: <ab19b061-4b80-4acb-82f1-0311da276d26@intel.com>
+Date: Wed, 2 Apr 2025 21:27:31 +0200
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pmu=3A_Add_GT_freque?=
- =?utf-8?q?ncy_events_=28rev9=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 02 Apr 2025 19:20:13 -0000
-Message-ID: <174362161354.30316.934591406037812980@e6b6f09ec485>
-X-Patchwork-Hint: ignore
-References: <20250331204827.2535393-1-vinay.belgaumkar@intel.com>
-In-Reply-To: <20250331204827.2535393-1-vinay.belgaumkar@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] drm/xe/vf: Don't expose privileged GT debugfs files
+ if VF
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org,
+ Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
+References: <20250320210738.1733-1-michal.wajdeczko@intel.com>
+ <20250320210738.1733-4-michal.wajdeczko@intel.com>
+ <fvnsx2rcjljjlwdb2sjxqo3otzpffnfs666ueldgojsb5o5gqd@xxpmrvvmnisi>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <fvnsx2rcjljjlwdb2sjxqo3otzpffnfs666ueldgojsb5o5gqd@xxpmrvvmnisi>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +71,36 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1251789060941892302==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/xe/pmu: Add GT frequency events (rev9)
-URL   : https://patchwork.freedesktop.org/series/144164/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-2898-6deef7a0418bc26082804287b18c8db1e0810686_BAT -> xe-pw-144164v9_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
 
 
-Changes
--------
+On 21.03.2025 17:55, Lucas De Marchi wrote:
+> On Thu, Mar 20, 2025 at 10:07:38PM +0100, Michal Wajdeczko wrote:
 
-  No changes found
+...
 
+> 
+> Another possible idea: would it make sense to add a flag in
+> drm.driver_features to note if the driver if pf/vf? That way we may
+> simplify other places and then here we could just do:
+> 
+>     { {"steering", .show = xe_gt_debugfs_simple_show, .data = steering,
+>        .driver_features = DRIVER_SRIOV_PF },
+>        ...
+>     }
+> 
+> instead of splitting the array.
 
-Build changes
--------------
+tempting idea, but I'm not sure how/when this could be accepted at drm
+level, and whether our single static drm_driver instance will survive
+both PF and VFs instances at the same time
 
-  * Linux: xe-2898-6deef7a0418bc26082804287b18c8db1e0810686 -> xe-pw-144164v9
+> 
+> pass by comment since I was involved in other threads related to default
+> context in PTL... Are these default_lrc_* accurate from the VF point of
+> view? Are they different from the ones for PF?
 
-  IGT_8301: 8301
-  xe-2898-6deef7a0418bc26082804287b18c8db1e0810686: 6deef7a0418bc26082804287b18c8db1e0810686
-  xe-pw-144164v9: 144164v9
+it should reflect what VF uses and it should be the same as on PF
 
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144164v9/index.html
-
---===============1251789060941892302==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/pmu: Add GT frequency events (rev9)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144164/">https://patchwork.freedesktop.org/series/144164/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144164v9/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144164v9/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2898-6deef7a0418bc26082804287b18c8db1e0810686_BAT -&gt; xe-pw-144164v9_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2898-6deef7a0418bc26082804287b18c8db1e0810686 -&gt; xe-pw-144164v9</li>
-</ul>
-<p>IGT_8301: 8301<br />
-  xe-2898-6deef7a0418bc26082804287b18c8db1e0810686: 6deef7a0418bc26082804287b18c8db1e0810686<br />
-  xe-pw-144164v9: 144164v9</p>
-
-</body>
-</html>
-
---===============1251789060941892302==--
