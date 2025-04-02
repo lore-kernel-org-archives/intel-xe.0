@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 108A7C28B20
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 19:03:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C041C36018
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 19:20:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CED3310E062;
-	Wed,  2 Apr 2025 19:03:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB40010E132;
+	Wed,  2 Apr 2025 19:20:13 +0000 (UTC)
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 958D910E062;
- Wed,  2 Apr 2025 19:03:26 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8614310E0BA;
+ Wed,  2 Apr 2025 19:20:13 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1251789060941892302=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/pmu=3A_Add_GT_fre?=
- =?utf-8?q?quency_events_=28rev9=29?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pmu=3A_Add_GT_freque?=
+ =?utf-8?q?ncy_events_=28rev9=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 02 Apr 2025 19:03:26 -0000
-Message-ID: <174362060660.30285.2534614853985039295@e6b6f09ec485>
+Date: Wed, 02 Apr 2025 19:20:13 -0000
+Message-ID: <174362161354.30316.934591406037812980@e6b6f09ec485>
 X-Patchwork-Hint: ignore
 References: <20250331204827.2535393-1-vinay.belgaumkar@intel.com>
 In-Reply-To: <20250331204827.2535393-1-vinay.belgaumkar@intel.com>
@@ -40,6 +40,11 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============1251789060941892302==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: drm/xe/pmu: Add GT frequency events (rev9)
@@ -48,25 +53,89 @@ State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 6deef7a0418bc26082804287b18c8db1e0810686
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
+CI Bug Log - changes from xe-2898-6deef7a0418bc26082804287b18c8db1e0810686_BAT -> xe-pw-144164v9_BAT
+====================================================
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-2898-6deef7a0418bc26082804287b18c8db1e0810686 -> xe-pw-144164v9
+
+  IGT_8301: 8301
+  xe-2898-6deef7a0418bc26082804287b18c8db1e0810686: 6deef7a0418bc26082804287b18c8db1e0810686
+  xe-pw-144164v9: 144164v9
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144164v9/index.html
+
+--===============1251789060941892302==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/pmu: Add GT frequency events (rev9)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144164/">https://patchwork.freedesktop.org/series/144164/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144164v9/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144164v9/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2898-6deef7a0418bc26082804287b18c8db1e0810686_BAT -&gt; xe-pw-144164v9_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2898-6deef7a0418bc26082804287b18c8db1e0810686 -&gt; xe-pw-144164v9</li>
+</ul>
+<p>IGT_8301: 8301<br />
+  xe-2898-6deef7a0418bc26082804287b18c8db1e0810686: 6deef7a0418bc26082804287b18c8db1e0810686<br />
+  xe-pw-144164v9: 144164v9</p>
+
+</body>
+</html>
+
+--===============1251789060941892302==--
