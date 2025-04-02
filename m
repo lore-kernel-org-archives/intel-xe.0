@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7CA7C28B20
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 12:34:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4C3AC36017
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 12:47:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A67510E770;
-	Wed,  2 Apr 2025 12:34:44 +0000 (UTC)
-Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BFAF10E1AC;
- Wed,  2 Apr 2025 12:34:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8324983927340151924=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id A45BB10E0A4;
+	Wed,  2 Apr 2025 12:47:18 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A0GvEm2A";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAF4810E77E;
+ Wed,  2 Apr 2025 12:47:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1743598036; x=1775134036;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Gj2aB2JqBmqXPO78uNKvPd/l2jxWVWHHMd/bVheBitA=;
+ b=A0GvEm2ASQdClm4umbZDKin41Vf0GX3vO0v/3U6WtqlSXomrYI5hyQM1
+ rD2cW4CBddOTBj05KfhoiIqpdpEFje6s35CPvzuU1y3CpB2nQsLQlR9iX
+ Is0DTT+tLPqY+Gpo/cCdo0GEfI3PFCPZ3isnhhfpBxkq+zmBC7vEW6RFz
+ KSIY3sHJ7CxZ5LuHGaqYNeaWlRD5xPUJY7EO19bQ9o85cVPcQ7L7sYK1K
+ 6l7Yjl2G1HGtqnoJrHSVQivzqq0zi1KKsxbXAQ/7iRXSwkK8wU5HEEPAj
+ gsZcAvkv/HIHwpoVRmtDf/2+2cis52HG0ZKFOcbXL7ABmrugkozFsrO+Q A==;
+X-CSE-ConnectionGUID: aW4t6a2aSvCg4wRwsfJq5Q==
+X-CSE-MsgGUID: B3ZT9gB5Q7STmFmxrzlkoA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="55953437"
+X-IronPort-AV: E=Sophos;i="6.15,182,1739865600"; d="scan'208";a="55953437"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2025 05:47:11 -0700
+X-CSE-ConnectionGUID: gPJlNXYbQLS1e6N7A65cbg==
+X-CSE-MsgGUID: xLyK4DAQQ6S0hlKPTGmchw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,182,1739865600"; d="scan'208";a="127180570"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.73])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2025 05:47:07 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Linus Torvalds <torvalds@linux-foundation.org>,
+ linux-kernel@vger.kernel.org
+Cc: jani.nikula@intel.com, Jason Gunthorpe <jgg@nvidia.com>,
+ Masahiro Yamada <masahiroy@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona.vetter@ffwll.ch>, linux-kbuild@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Subject: [PATCH v2 0/4] kbuild: resurrect generic header check facility
+Date: Wed,  2 Apr 2025 15:46:52 +0300
+Message-Id: <20250402124656.629226-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/format-helper=3A_fix_bu?=
- =?utf-8?q?ild?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 02 Apr 2025 12:34:43 -0000
-Message-ID: <174359728356.27776.18091332825482070536@e6b6f09ec485>
-X-Patchwork-Hint: ignore
-References: <20250402104430.142398-2-matthew.auld@intel.com>
-In-Reply-To: <20250402104430.142398-2-matthew.auld@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +68,60 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8324983927340151924==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Another go at hiding the turds.
 
-== Series Details ==
+In v1 [1] I hid the build artifacts under .hdrtest subdirectories, one in each
+$(obj) directory, but the feedback from Linus [2] was to have one top level
+directory for this.
 
-Series: drm/format-helper: fix build
-URL   : https://patchwork.freedesktop.org/series/147118/
-State : success
+This is not possible without turning the whole thing back into a generic header
+check facility. Personally, I think this is a good thing. Just look at patches
+2-4, it's great.
 
-== Summary ==
+The main reason we've been doing this in the subsystem/driver level at all is
+the opposition from the kbuild maintainer. We'd very much like for Masahiro to
+support us in our efforts, but without that support, we're limited to hacking in
+the subsystem/driver Makefiles.
 
-CI Bug Log - changes from xe-2896-f0fd77956987f035c79d08c812343a27a655a57b_BAT -> xe-pw-147118v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
+BR,
+Jani.
 
 
-Changes
--------
+[1] https://lore.kernel.org/r/20250401121830.21696-1-jani.nikula@intel.com
 
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8297 -> IGT_8299
-  * Linux: xe-2896-f0fd77956987f035c79d08c812343a27a655a57b -> xe-pw-147118v1
-
-  IGT_8297: 0a27244ed1972af84c78d68523d5791e596349e7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8299: 8299
-  xe-2896-f0fd77956987f035c79d08c812343a27a655a57b: f0fd77956987f035c79d08c812343a27a655a57b
-  xe-pw-147118v1: 147118v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147118v1/index.html
-
---===============8324983927340151924==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+[2] https://lore.kernel.org/r/CAHk-=wiP0ea7xq2P3ryYs6xGWoqTw1E4jha67ZbJkaFrjqUdkQ@mail.gmail.com
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+Cc: Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Masahiro Yamada <masahiroy@kernel.org>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Simona Vetter <simona.vetter@ffwll.ch>
+Cc: linux-kbuild@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/format-helper: fix build</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147118/">https://patchwork.freedesktop.org/series/147118/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+Jani Nikula (4):
+  kbuild: add generic header check facility
+  drm: switch to generic header check facility
+  drm/i915: switch to generic header check facility
+  drm/xe: switch to generic header check facility
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147118v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147118v1/index.html</a></td></tr>
+ drivers/gpu/drm/Kconfig           |  2 +-
+ drivers/gpu/drm/Makefile          | 15 +--------------
+ drivers/gpu/drm/i915/Makefile     | 14 ++------------
+ drivers/gpu/drm/xe/Makefile       | 10 ++--------
+ drivers/gpu/drm/xe/xe_pcode_api.h |  4 ++++
+ include/drm/Makefile              | 15 +--------------
+ init/Kconfig                      | 25 +++++++++++++++++++++++++
+ scripts/Makefile.build            | 13 +++++++++++++
+ scripts/Makefile.lib              |  7 +++++++
+ 9 files changed, 56 insertions(+), 49 deletions(-)
 
-</table>
+-- 
+2.39.5
 
-
-    <h1>CI Bug Log - changes from xe-2896-f0fd77956987f035c79d08c812343a27a655a57b_BAT -&gt; xe-pw-147118v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8297 -&gt; IGT_8299</li>
-<li>Linux: xe-2896-f0fd77956987f035c79d08c812343a27a655a57b -&gt; xe-pw-147118v1</li>
-</ul>
-<p>IGT_8297: 0a27244ed1972af84c78d68523d5791e596349e7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8299: 8299<br />
-  xe-2896-f0fd77956987f035c79d08c812343a27a655a57b: f0fd77956987f035c79d08c812343a27a655a57b<br />
-  xe-pw-147118v1: 147118v1</p>
-
-</body>
-</html>
-
---===============8324983927340151924==--
