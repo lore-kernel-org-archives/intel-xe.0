@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5873C28B20
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 15:34:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B1E3C28B20
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 15:34:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACB7810E80E;
-	Wed,  2 Apr 2025 15:34:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EDD110E7B5;
+	Wed,  2 Apr 2025 15:34:57 +0000 (UTC)
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA9B710E80E;
- Wed,  2 Apr 2025 15:34:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F93E10E7B5;
+ Wed,  2 Apr 2025 15:34:56 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Allow_scratch_page_u?=
- =?utf-8?q?nder_fault_mode_for_certain_platform?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Allow_scratch_page_under_?=
+ =?utf-8?q?fault_mode_for_certain_platform?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Oak Zeng" <oak.zeng@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 02 Apr 2025 15:34:42 -0000
-Message-ID: <174360808269.28365.931167250116256842@e6b6f09ec485>
+Date: Wed, 02 Apr 2025 15:34:56 -0000
+Message-ID: <174360809605.28364.1401078259306875024@e6b6f09ec485>
 X-Patchwork-Hint: ignore
 References: <20250402154602.2431681-1-oak.zeng@intel.com>
 In-Reply-To: <20250402154602.2431681-1-oak.zeng@intel.com>
@@ -44,15 +44,72 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Allow scratch page under fault mode for certain platform
 URL   : https://patchwork.freedesktop.org/series/147154/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 6deef7a0418b drm-tip: 2025y-04m-02d-14h-43m-47s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Introduced needs_scratch bit in device descriptor
-Applying: drm/xe: Clear scratch page on vm_bind
-Applying: drm/xe: Allow scratch page under fault mode for certain platform
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+99e5a866b5e13f134e606a3e29d9508d97826fb3
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 14f172b0427e51f45c46b883c7b1fa74402990ba
+Author: Oak Zeng <oak.zeng@intel.com>
+Date:   Wed Apr 2 11:46:02 2025 -0400
+
+    drm/xe: Allow scratch page under fault mode for certain platform
+    
+    Normally scratch page is not allowed when a vm is operate under page
+    fault mode, i.e., in the existing codes, DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE
+    and DRM_XE_VM_CREATE_FLAG_FAULT_MODE are mutual exclusive. The reason
+    is fault mode relies on recoverable page to work, while scratch page
+    can mute recoverable page fault.
+    
+    On xe2 and xe3, out of bound prefetch can cause page fault and further
+    system hang because xekmd can't resolve such page fault. SYCL and OCL
+    language runtime requires out of bound prefetch to be silently dropped
+    without causing any functional problem, thus the existing behavior
+    doesn't meet language runtime requirement.
+    
+    At the same time, HW prefetching can cause page fault interrupt. Due to
+    page fault interrupt overhead (i.e., need Guc and KMD involved to fix
+    the page fault), HW prefetching can be slowed by many orders of magnitude.
+    
+    Fix those problems by allowing scratch page under fault mode for xe2 and
+    xe3. With scratch page in place, HW prefetching could always hit scratch
+    page instead of causing interrupt.
+    
+    A side effect is, scratch page could hide application program error.
+    Application out of bound accesses are hided by scratch page mapping,
+    instead of get reported to user.
+    
+    v2: Refine commit message (Thomas)
+    
+    v3: Move the scratch page flag check to after scratch page wa (Thomas)
+    
+    v4: drop NEEDS_SCRATCH macro (matt)
+        Add a comment to DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE
+    
+    Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 6deef7a0418bc26082804287b18c8db1e0810686 drm-intel
+69f53da976c4 drm/xe: Introduced needs_scratch bit in device descriptor
+702867a6e126 drm/xe: Clear scratch page on vm_bind
+-:238: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#238: FILE: drivers/gpu/drm/xe/xe_pt.c:2016:
++		if ((!op->map.immediate && xe_vm_in_fault_mode(vm) &&
++		    !op->map.invalidate_on_bind) ||
+
+-:362: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#362: FILE: drivers/gpu/drm/xe/xe_vm.c:2492:
++			if (((op->map.immediate || !xe_vm_in_fault_mode(vm)) &&
++			    !op->map.is_cpu_addr_mirror) ||
+
+total: 0 errors, 0 warnings, 2 checks, 305 lines checked
+14f172b0427e drm/xe: Allow scratch page under fault mode for certain platform
 
 
