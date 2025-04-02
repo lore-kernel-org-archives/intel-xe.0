@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 486A4C28B20
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 09:29:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 877EEC28B20
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 09:47:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E68D10E728;
-	Wed,  2 Apr 2025 09:29:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jU+8vw/c";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81D8110E72E
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Apr 2025 09:29:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743586187; x=1775122187;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=9HfUjn566KcCqNeeSGmDZXvxXlNpmAHWn/lun72k5N0=;
- b=jU+8vw/cDc66hdP+u7yb/wweY4vf8cwAd1wH7n9GIG5VAcBGJMOBcR7x
- +uuJqwWW0Hje40qaKAKulY5Acv95jioG8eJnjF5VDZuJnvQDj6WCIDkBL
- PyfRAJuj5LfJ4W0/fMGoVkIEEth+HOP8L08Avxah2EroRLdtgGYfudUuC
- OPYWbqnDaaP6mWMqzb80jUQnrMyT1BOqkx8Bn6pISck0ekADYlRAbcTxM
- FMKnam3gkTi+GvW6agTveEE7RqsbP9BiEk//uz1mCUmGUgOhPRRX8vodn
- G2rnrPkKxrL9UgFP07/SozRsWMV8PeJVTKEwIOy8xjBSouAbWJaJMspCc A==;
-X-CSE-ConnectionGUID: dIXImR93RPWIjtndPtE/cw==
-X-CSE-MsgGUID: gRBFVqRMQu2TwhpCsXezPA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11391"; a="44824872"
-X-IronPort-AV: E=Sophos;i="6.14,181,1736841600"; d="scan'208";a="44824872"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2025 02:29:47 -0700
-X-CSE-ConnectionGUID: Uv+eEF+DTIe1U19huqWdbw==
-X-CSE-MsgGUID: h5k/jHH/QFKiyoAztYCADQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,181,1736841600"; d="scan'208";a="126538412"
-Received: from oandoniu-mobl3.ger.corp.intel.com (HELO mwauld-desk.intel.com)
- ([10.245.245.252])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2025 02:29:47 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v5 7/7] drm/xe/sriov: support non-contig VRAM provisioning
-Date: Wed,  2 Apr 2025 10:29:29 +0100
-Message-ID: <20250402092921.79918-16-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250402092921.79918-9-matthew.auld@intel.com>
-References: <20250402092921.79918-9-matthew.auld@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40EAA10E741;
+	Wed,  2 Apr 2025 09:47:36 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D539E10E739;
+ Wed,  2 Apr 2025 09:47:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6514183898774402725=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_DPLL_framework_redesign_=28?=
+ =?utf-8?q?rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 02 Apr 2025 09:47:34 -0000
+Message-ID: <174358725486.26680.15927010988420386679@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250402083204.1523470-1-suraj.kandpal@intel.com>
+In-Reply-To: <20250402083204.1523470-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,63 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently we can run into issues with provisioning VRAM region, due to
-requiring contig VRAM BO underneath. We sometimes see that allocation
-(multiple GB) can fail even when there is enough free space.  We don't
-need CPU access to the buffer in the first place, so can forgo pin_map
-and therefore also the contig requirement. Keep the same behavior with
-save and restore during suspend/resume (which can now be done with
-blitter).  We also need the VRAM to occupy the same pages so we don't
-need to re-program the LMTT, so should still remain pinned (also we
-don't want something to try evict it). With that covert over to plain
-pinned kernel object.
+--===============6514183898774402725==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 20 ++++++++++++++------
- 1 file changed, 14 insertions(+), 6 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index 10be109bf357..2420a548cacc 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -1444,15 +1444,23 @@ static int pf_provision_vf_lmem(struct xe_gt *gt, unsigned int vfid, u64 size)
- 		return 0;
- 
- 	xe_gt_assert(gt, pf_get_lmem_alignment(gt) == SZ_2M);
--	bo = xe_bo_create_pin_map(xe, tile, NULL,
--				  ALIGN(size, PAGE_SIZE),
--				  ttm_bo_type_kernel,
--				  XE_BO_FLAG_VRAM_IF_DGFX(tile) |
--				  XE_BO_FLAG_NEEDS_2M |
--				  XE_BO_FLAG_PINNED);
-+	bo = xe_bo_create_locked(xe, tile, NULL,
-+				 ALIGN(size, PAGE_SIZE),
-+				 ttm_bo_type_kernel,
-+				 XE_BO_FLAG_VRAM_IF_DGFX(tile) |
-+				 XE_BO_FLAG_NEEDS_2M |
-+				 XE_BO_FLAG_PINNED |
-+				 XE_BO_FLAG_PINNED_LATE_RESTORE);
- 	if (IS_ERR(bo))
- 		return PTR_ERR(bo);
- 
-+	err = xe_bo_pin(bo);
-+	xe_bo_unlock(bo);
-+	if (unlikely(err)) {
-+		xe_bo_put(bo);
-+		return err;
-+	}
-+
- 	config->lmem_obj = bo;
- 
- 	if (xe_device_has_lmtt(xe)) {
--- 
-2.49.0
+Series: DPLL framework redesign (rev2)
+URL   : https://patchwork.freedesktop.org/series/145380/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-2896-f0fd77956987f035c79d08c812343a27a655a57b_BAT -> xe-pw-145380v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8297 -> IGT_8298
+  * Linux: xe-2896-f0fd77956987f035c79d08c812343a27a655a57b -> xe-pw-145380v2
+
+  IGT_8297: 0a27244ed1972af84c78d68523d5791e596349e7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8298: 8298
+  xe-2896-f0fd77956987f035c79d08c812343a27a655a57b: f0fd77956987f035c79d08c812343a27a655a57b
+  xe-pw-145380v2: 145380v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145380v2/index.html
+
+--===============6514183898774402725==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>DPLL framework redesign (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145380/">https://patchwork.freedesktop.org/series/145380/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145380v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145380v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2896-f0fd77956987f035c79d08c812343a27a655a57b_BAT -&gt; xe-pw-145380v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8297 -&gt; IGT_8298</li>
+<li>Linux: xe-2896-f0fd77956987f035c79d08c812343a27a655a57b -&gt; xe-pw-145380v2</li>
+</ul>
+<p>IGT_8297: 0a27244ed1972af84c78d68523d5791e596349e7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8298: 8298<br />
+  xe-2896-f0fd77956987f035c79d08c812343a27a655a57b: f0fd77956987f035c79d08c812343a27a655a57b<br />
+  xe-pw-145380v2: 145380v2</p>
+
+</body>
+</html>
+
+--===============6514183898774402725==--
