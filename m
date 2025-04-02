@@ -4,50 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9508EC36017
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 13:01:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5ECD0C3601A
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 13:01:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E604C10E793;
-	Wed,  2 Apr 2025 13:01:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CD5810E798;
+	Wed,  2 Apr 2025 13:01:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZOvv5SEV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gS0++rT+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67DEA10E787;
- Wed,  2 Apr 2025 13:01:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 544F010E793;
+ Wed,  2 Apr 2025 13:01:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743598913; x=1775134913;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=HCFl5k9I0wIgmvuMRCjwSH0FGKRRqoVUihsZPCcZldQ=;
- b=ZOvv5SEV0eBXFaHdS1FzZuMwDJR0CYu9+KHaI8TYPNKJl0lrdKgV2YN3
- 5FBoLt/qL8ffxq9bkw/Sk6nh6DYfeQNa9foeTEF5qY656AQ6Z5g4FURvK
- nB6u+eRo7uU7CunsA2ejzWR7f6BYBaZnGXo9OZICwb5X0dXnD+I8Pitxm
- fXhJUbSL/CVYOt5+TQbNFL6J0XRW8tJZZXaEmoNRrf/zsbh7BfCAKWF1q
- JQxRCFDu7jxB2EoTHhbHDB6YMHUSQgDvYNv9ed/cScOQ33MmKh2TewT1e
- A1XjZuHign8vLz8nHLSG5oW08iPmKoH7F8FbZUPaZq/KGueRkl0+gXW7C g==;
-X-CSE-ConnectionGUID: vt+RxAxHTreZUaAx0Yv4eQ==
-X-CSE-MsgGUID: axRGXZmnQzikNizdagpkJQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="44219005"
-X-IronPort-AV: E=Sophos;i="6.15,182,1739865600"; d="scan'208";a="44219005"
+ t=1743598914; x=1775134914;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=JS6CCLIvy+3q8T0XGcJ93Bz5Z1SsKdIg43rpE0gWw4A=;
+ b=gS0++rT+7a1mEPxodl57d/FRiV3f2aBJEx0ukyZWpYv6dgTjhS5/sY1k
+ JuBi7QQ0+kpiTRaDQMROUDFdUpaJOeX/L8BNmjG6UG7AQRhpgxgZLqDh6
+ w/Zp3r5N7RNMDwy8QrB+rGZr2H7qyeQ2L827GD42ZXMQg6YYwMI2PCsW7
+ 60M22OGKFZQzK7NvuMP3yNbJ7i/I85CHIgK5UXUxyEx+dfmKiVJHTnSUv
+ bTyAXkF6gb2A4J4dmUEt5BchwDakuRx9H22c4slKRVW3eH/mgNq8i/V+b
+ J3v4zYNKSYRdJC2zSFWhpnKanmZx10uw4sf+H94UruI9k8Hxi4hngBn32 g==;
+X-CSE-ConnectionGUID: U5IjNZe2Qp64G2ZwP+M9kQ==
+X-CSE-MsgGUID: d3VkHT42Q/aP4Dw9kAbiTw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="44219015"
+X-IronPort-AV: E=Sophos;i="6.15,182,1739865600"; d="scan'208";a="44219015"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2025 06:01:44 -0700
-X-CSE-ConnectionGUID: K0hw9xF/TEGD6c7oCKDwqA==
-X-CSE-MsgGUID: n54u48CNRi2K/CjcMfkPsg==
+ 02 Apr 2025 06:01:46 -0700
+X-CSE-ConnectionGUID: M2SUikvSQ5OBOXeUwYTeCw==
+X-CSE-MsgGUID: pqSEZ8JwQvu9nwfipSC4eA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,182,1739865600"; d="scan'208";a="127528150"
+X-IronPort-AV: E=Sophos;i="6.15,182,1739865600"; d="scan'208";a="127528167"
 Received: from nemesa.iind.intel.com ([10.190.239.22])
- by fmviesa009.fm.intel.com with ESMTP; 02 Apr 2025 06:01:40 -0700
+ by fmviesa009.fm.intel.com with ESMTP; 02 Apr 2025 06:01:44 -0700
 From: Nemesa Garg <nemesa.garg@intel.com>
 To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
-Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH 00/10]  Introduce drm sharpness property
-Date: Wed,  2 Apr 2025 18:26:37 +0530
-Message-Id: <20250402125647.361295-1-nemesa.garg@intel.com>
+Cc: Nemesa Garg <nemesa.garg@intel.com>,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 02/10] drm/i915/display: Introduce HAS_CASF for sharpness
+ support
+Date: Wed,  2 Apr 2025 18:26:39 +0530
+Message-Id: <20250402125647.361295-3-nemesa.garg@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250402125647.361295-1-nemesa.garg@intel.com>
+References: <20250402125647.361295-1-nemesa.garg@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,64 +68,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
- Many a times images are blurred or upscaled content is also not as
-crisp as original rendered image. Traditional sharpening techniques often
-apply a uniform level of enhancement across entire image, which sometimes
-result in over-sharpening of some areas and potential loss of natural details. 
+Add HAS_CASF macro to check whether platform supports
+the content adaptive sharpness capability or not.
 
-Intel has come up with Display Engine based adaptive sharpening filter 
-with minimal power and performance impact. From LNL onwards, the Display
-hardware can use one of the pipe scaler for adaptive sharpness filter.
-This can be used for both gaming and non-gaming use cases like photos,
-image viewing. It works on a region of pixels depending on the tap size.
+v2: Update commit message[Ankit]
 
-This is an attempt to introduce an adaptive sharpness solution which
-helps in improving the image quality. For this new CRTC property is added.
-The user can set this property with desired sharpness strength value with
-0-255. A value of 1 representing minimum sharpening strength and 255
-representing maximum sharpness strength. A strength value of 0 means no
-sharpening or sharpening feature disabled.
-It works on a region of pixels depending on the tap size. The coefficients
-are used to generate an alpha value which is used to blend the sharpened
-image to original image.
+Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 7 +++++++
+ drivers/gpu/drm/i915/display/intel_display_device.h  | 1 +
+ 2 files changed, 8 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+index 0c7f91046996..33ec30123214 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+@@ -373,6 +373,13 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
  
-Middleware MR link: https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3665
-IGT patchwork link: https://patchwork.freedesktop.org/series/130218/
-
-Continuing discussions from:  https://patchwork.freedesktop.org/series/129888/
-
-Nemesa Garg (10):
-  drm/i915/display: Introduce sharpness strength property
-  drm/i915/display: Introduce HAS_CASF for sharpness support
-  drm/i915/display: Add strength and winsize register
-  drm/i915/display: Add filter lut values
-  drm/i915/display: Compute the scaler coefficients
-  drm/i915/display: Add and compute scaler parameter
-  drm/i915/display: Configure the second scaler
-  drm/i915/display: Set and get the casf config
-  drm/i915/display: Enable/disable casf
-  drm/i915/display: Expose sharpness strength property
-
- drivers/gpu/drm/drm_atomic_uapi.c             |   4 +
- drivers/gpu/drm/drm_crtc.c                    |  35 +++
- drivers/gpu/drm/i915/Makefile                 |   1 +
- drivers/gpu/drm/i915/display/intel_casf.c     | 280 ++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_casf.h     |  24 ++
- .../gpu/drm/i915/display/intel_casf_regs.h    |  40 +++
- drivers/gpu/drm/i915/display/intel_crtc.c     |   3 +
- .../drm/i915/display/intel_crtc_state_dump.c  |   7 +
- drivers/gpu/drm/i915/display/intel_display.c  |  37 ++-
- .../drm/i915/display/intel_display_device.h   |   1 +
- .../drm/i915/display/intel_display_types.h    |  15 +
- drivers/gpu/drm/i915/display/skl_scaler.c     |  90 +++++-
- drivers/gpu/drm/i915/display/skl_scaler.h     |   1 +
- drivers/gpu/drm/xe/Makefile                   |   1 +
- include/drm/drm_crtc.h                        |  17 ++
- 15 files changed, 543 insertions(+), 13 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_casf.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_casf.h
- create mode 100644 drivers/gpu/drm/i915/display/intel_casf_regs.h
-
+ 	intel_vdsc_state_dump(&p, 0, pipe_config);
+ 
++	if (HAS_CASF(display)) {
++		drm_printf(&p, "sharpness strength: %d, sharpness tap size :%d\n sharpness enable :%d\n",
++			   pipe_config->hw.casf_params.strength,
++			   pipe_config->hw.casf_params.win_size,
++			   pipe_config->hw.casf_params.casf_enable);
++	}
++
+ dump_planes:
+ 	if (!state)
+ 		return;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index 368b0d3417c2..09b9991beffa 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -145,6 +145,7 @@ struct intel_display_platforms {
+ #define HAS_ASYNC_FLIPS(__display)	(DISPLAY_VER(__display) >= 5)
+ #define HAS_AS_SDP(__display)		(DISPLAY_VER(__display) >= 13)
+ #define HAS_BIGJOINER(__display)	(DISPLAY_VER(__display) >= 11 && HAS_DSC(__display))
++#define HAS_CASF(__display)		(DISPLAY_VER(__display) >= 20)
+ #define HAS_CDCLK_CRAWL(__display)	(DISPLAY_INFO(__display)->has_cdclk_crawl)
+ #define HAS_CDCLK_SQUASH(__display)	(DISPLAY_INFO(__display)->has_cdclk_squash)
+ #define HAS_CMRR(__display)		(DISPLAY_VER(__display) >= 20)
 -- 
 2.25.1
 
