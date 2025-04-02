@@ -4,56 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3001FC36014
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 09:11:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED0E7C36014
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 09:29:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E421910E726;
-	Wed,  2 Apr 2025 09:11:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0AB110E700;
+	Wed,  2 Apr 2025 09:29:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jZZ+HjCH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WTSQGyah";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2418F10E743;
- Wed,  2 Apr 2025 09:11:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 914BC10E726
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Apr 2025 09:29:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743585065; x=1775121065;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=659qeEUMOkhFP3a1/A6FQOnjN29aQ3lg8dIrLDkA/gg=;
- b=jZZ+HjCHWgQHRyJnFrlLzWox/i+N8ytQj+t/0orOZ2PJDqydTdd8ZYQi
- rUFixaFDTeaSM59SYqz1HJBqheuDWZE3uaEuXvowY/ljh2wmUpYEeOK6n
- X01AQ8tvHkzFnV0H1Vx7XbNvGw8Lknbn9auU0aIcKn1hcask7ViSSQfrx
- paQnCjOyPwMkE5F3P3Y/nMx90IIhiJBN7hhPWxmCGpICB4GCur4VRs3co
- vO8qek5W1DWfwTrmEPOyrUXBKR96csdBFjSMMbqZ9+kr8gS2bbuM5Qjs2
- ua/Fdkgb2EFYQJKho38lVXfO1iFX6F8icIrdpP+XyVKWzougp05QIIcYE A==;
-X-CSE-ConnectionGUID: 8j0/U8OsSXaQQbZlXI/ZRw==
-X-CSE-MsgGUID: OX3g2hUrRnadil4W/D3GqA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11391"; a="47656228"
-X-IronPort-AV: E=Sophos;i="6.14,295,1736841600"; d="scan'208";a="47656228"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2025 02:11:05 -0700
-X-CSE-ConnectionGUID: 07FlCuuGTKOOBI7pjTq8CA==
-X-CSE-MsgGUID: +oug0omLR1+ylrNwkpkhbQ==
+ t=1743586183; x=1775122183;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=y66IvRzHqCI0HklHrvrGbpaFWZopmppX+5axgUEVx/4=;
+ b=WTSQGyah2BsPKHMUKwNJKLGmAdLYDgMq/TFMZrt2tfqSI6I1XwW+SQIZ
+ Lj3EwCW+okZC9EnZVJbjnxzE8ltVc4dzrHhNUq1pbxObj/hvUdtYFWRYN
+ G3PLrk8T5EprZ7BwOoJLmCjshTen6iYPtpShHpXSh0AS7bXKn/NPkdDjB
+ dT5xtYzYdTcDRjAlbbZNlthgYln3CdMUxbWJE+hTdfP4zI2SvaHT8Xu1A
+ M6/fQPPcwBLVQuGQP275YBvTKjW7bLa/ZrCF9nGOrBEqRvTqG7nT2OKn6
+ BiwQr9kyeckSxFJ/XMgHYaKrCpOodNcF9ltweYqJucWXhAQ1sLvSk8i7D w==;
+X-CSE-ConnectionGUID: Q+WAZ7mITRu+4lHO80veDQ==
+X-CSE-MsgGUID: ulDXhKniQRue1ms8BeeIkg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11391"; a="44824857"
+X-IronPort-AV: E=Sophos;i="6.14,181,1736841600"; d="scan'208";a="44824857"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2025 02:29:41 -0700
+X-CSE-ConnectionGUID: LfrfADYrRAG8V9j58dGeJg==
+X-CSE-MsgGUID: D+ZHW4ULQEK0lE6xNTzYHw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,295,1736841600"; d="scan'208";a="131364964"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmviesa005.fm.intel.com with ESMTP; 02 Apr 2025 02:11:02 -0700
-From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Wed, 02 Apr 2025 14:26:28 +0530
-Subject: [PATCH v3 2/2] drm/i915/display/dp: Remove the uhbr13.5 pll state
- values
+X-IronPort-AV: E=Sophos;i="6.14,181,1736841600"; d="scan'208";a="126538392"
+Received: from oandoniu-mobl3.ger.corp.intel.com (HELO mwauld-desk.intel.com)
+ ([10.245.245.252])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2025 02:29:40 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v5 3/7] drm/xe/migrate: ignore CCS for kernel objects
+Date: Wed,  2 Apr 2025 10:29:25 +0100
+Message-ID: <20250402092921.79918-12-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250402092921.79918-9-matthew.auld@intel.com>
+References: <20250402092921.79918-9-matthew.auld@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250402-dprates-v3-2-9e5d8ca989dd@intel.com>
-References: <20250402-dprates-v3-0-9e5d8ca989dd@intel.com>
-In-Reply-To: <20250402-dprates-v3-0-9e5d8ca989dd@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, imre.deak@intel.com, 
- Arun R Murthy <arun.r.murthy@intel.com>
-X-Mailer: b4 0.15-dev
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,112 +70,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-uhbr13.5 is not supported on dg2/mtl. This patch removes the pll state
-table for synps and c20 PHY.
+For kernel BOs we don't clear the CCS state on creation, therefore we
+should be careful to ignore it when copying pages. In a future patch we
+opt for using the copy path here for kernel BOs, so this now needs to be
+considered.
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+v2:
+ - Drop bogus asserts (CI)
+
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 26 --------------------
- drivers/gpu/drm/i915/display/intel_snps_phy.c | 35 ---------------------------
- 2 files changed, 61 deletions(-)
+ drivers/gpu/drm/xe/xe_migrate.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 22595766eac5332e541f3441bed80a187dc80224..398e207159876a54472560087b5841ca372b4c01 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -902,31 +902,6 @@ static const struct intel_c20pll_state mtl_c20_dp_uhbr10 = {
- 		},
- };
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index c1277d599a11..96b244aaf2d6 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -779,10 +779,12 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 	bool dst_is_pltt = dst->mem_type == XE_PL_TT;
+ 	bool src_is_vram = mem_type_is_vram(src->mem_type);
+ 	bool dst_is_vram = mem_type_is_vram(dst->mem_type);
++	bool type_device = src_bo->ttm.type == ttm_bo_type_device;
++	bool needs_ccs_emit = type_device && xe_migrate_needs_ccs_emit(xe);
+ 	bool copy_ccs = xe_device_has_flat_ccs(xe) &&
+ 		xe_bo_needs_ccs_pages(src_bo) && xe_bo_needs_ccs_pages(dst_bo);
+ 	bool copy_system_ccs = copy_ccs && (!src_is_vram || !dst_is_vram);
+-	bool use_comp_pat = xe_device_has_flat_ccs(xe) &&
++	bool use_comp_pat = type_device && xe_device_has_flat_ccs(xe) &&
+ 		GRAPHICS_VER(xe) >= 20 && src_is_vram && !dst_is_vram;
  
--static const struct intel_c20pll_state mtl_c20_dp_uhbr13_5 = {
--	.clock = 1350000, /* 13.5 Gbps */
--	.tx = {	0xbea0, /* tx cfg0 */
--		0x4800, /* tx cfg1 */
--		0x0000, /* tx cfg2 */
--		},
--	.cmn = {0x0500, /* cmn cfg0*/
--		0x0005, /* cmn cfg1 */
--		0x0000, /* cmn cfg2 */
--		0x0000, /* cmn cfg3 */
--		},
--	.mpllb = { 0x015f,	/* mpllb cfg0 */
--		0x2205,		/* mpllb cfg1 */
--		0x1b17,		/* mpllb cfg2 */
--		0xffc1,		/* mpllb cfg3 */
--		0xe100,		/* mpllb cfg4 */
--		0xbd00,		/* mpllb cfg5 */
--		0x2000,		/* mpllb cfg6 */
--		0x0001,		/* mpllb cfg7 */
--		0x4800,		/* mpllb cfg8 */
--		0x0000,		/* mpllb cfg9 */
--		0x0000,		/* mpllb cfg10 */
--		},
--};
--
- static const struct intel_c20pll_state mtl_c20_dp_uhbr20 = {
- 	.clock = 2000000, /* 20 Gbps */
- 	.tx = {	0xbe20, /* tx cfg0 */
-@@ -957,7 +932,6 @@ static const struct intel_c20pll_state * const mtl_c20_dp_tables[] = {
- 	&mtl_c20_dp_hbr2,
- 	&mtl_c20_dp_hbr3,
- 	&mtl_c20_dp_uhbr10,
--	&mtl_c20_dp_uhbr13_5,
- 	&mtl_c20_dp_uhbr20,
- 	NULL,
- };
-diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-index b9acd9fe160cde7de682b48648eb183a0549b014..79a6d14d7592a35ba51c52f6fe26564f3e1c1340 100644
---- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-@@ -215,47 +215,12 @@ static const struct intel_mpllb_state dg2_dp_uhbr10_100 = {
- 		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_STEPSIZE, 76101),
- };
+ 	/* Copying CCS between two different BOs is not supported yet. */
+@@ -839,6 +841,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 					      avail_pts, avail_pts);
  
--static const struct intel_mpllb_state dg2_dp_uhbr13_100 = {
--	.clock = 1350000,
--	.ref_control =
--		REG_FIELD_PREP(SNPS_PHY_REF_CONTROL_REF_RANGE, 3),
--	.mpllb_cp =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT, 5) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP, 45) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT_GS, 65) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP_GS, 127),
--	.mpllb_div =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV5_CLK_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV_CLK_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV_MULTIPLIER, 8) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_PMIX_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_WORD_DIV2_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_DP2_MODE, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_V2I, 3),
--	.mpllb_div2 =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_REF_CLK_DIV, 2) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_MULTIPLIER, 508),
--	.mpllb_fracn1 =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_CGG_UPDATE_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_DEN, 1),
--
--	/*
--	 * SSC will be enabled, DP UHBR has a minimum SSC requirement.
--	 */
--	.mpllb_sscen =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_EN, 1) |
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_PEAK, 79626),
--	.mpllb_sscstep =
--		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_STEPSIZE, 102737),
--};
--
- static const struct intel_mpllb_state * const dg2_dp_100_tables[] = {
- 	&dg2_dp_rbr_100,
- 	&dg2_dp_hbr1_100,
- 	&dg2_dp_hbr2_100,
- 	&dg2_dp_hbr3_100,
- 	&dg2_dp_uhbr10_100,
--	&dg2_dp_uhbr13_100,
- 	NULL,
- };
+ 		if (copy_system_ccs) {
++			xe_assert(xe, type_device);
+ 			ccs_size = xe_device_ccs_bytes(xe, src_L0);
+ 			batch_size += pte_update_size(m, 0, NULL, &ccs_it, &ccs_size,
+ 						      &ccs_ofs, &ccs_pt, 0,
+@@ -849,7 +852,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
  
-
+ 		/* Add copy commands size here */
+ 		batch_size += ((copy_only_ccs) ? 0 : EMIT_COPY_DW) +
+-			((xe_migrate_needs_ccs_emit(xe) ? EMIT_COPY_CCS_DW : 0));
++			((needs_ccs_emit ? EMIT_COPY_CCS_DW : 0));
+ 
+ 		bb = xe_bb_new(gt, batch_size, usm);
+ 		if (IS_ERR(bb)) {
+@@ -878,7 +881,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 		if (!copy_only_ccs)
+ 			emit_copy(gt, bb, src_L0_ofs, dst_L0_ofs, src_L0, XE_PAGE_SIZE);
+ 
+-		if (xe_migrate_needs_ccs_emit(xe))
++		if (needs_ccs_emit)
+ 			flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs,
+ 							  IS_DGFX(xe) ? src_is_vram : src_is_pltt,
+ 							  dst_L0_ofs,
 -- 
-2.25.1
+2.49.0
 
