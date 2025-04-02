@@ -4,48 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B4A1C28B20
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 18:48:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87D41C28B20
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 18:59:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42E9A10E8B9;
-	Wed,  2 Apr 2025 18:48:52 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="rVa5JJDz";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC6D210E8B9
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Apr 2025 18:48:50 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 3C586614AD;
- Wed,  2 Apr 2025 18:48:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BA4DC4CEDD;
- Wed,  2 Apr 2025 18:48:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1743619728;
- bh=9n+nahJDE/U1RQG5JyQjbtq0snxTgb1Z/IfOzLAX1bk=;
- h=Date:From:To:Cc:Subject:In-Reply-To:From;
- b=rVa5JJDzpVwSKYnz03saVOFl0CreqGqb9yKZ8Vsm+TxUyXdWfzzvCEUovr9kprDou
- G4twRthSXLB9LKNyWC10G07q9hlw7QQ9u4z3i5TolnkYcswSLXnOWQZ6KHpTvXzYH5
- Yf9W/05TCnw5mH74S3fUIckcXjPVdANll5idffeeEl4mIvHQ0OQa+AAMWpsCFW3/QX
- S6jU5t+ShZvU6X+GdmJanq+oRF8L6lRB5H12Z0qTtBR+wkLFjel1+qamT+b8y4QJvb
- jhbw1hQC+hq5Ey/3P92djiKBsaxFfCiYVODv6mHwWOaRWmOiSfJDcwkgHSJUsB3Dc8
- q0aUw4x/bfOtg==
-Date: Wed, 2 Apr 2025 13:48:47 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: Anshuman Gupta <anshuman.gupta@intel.com>,
- intel-xe@lists.freedesktop.org, linux-acpi@vger.kernel.org,
- linux-pci@vger.kernel.org, lenb@kernel.org, bhelgaas@google.com,
- ilpo.jarvinen@linux.intel.com, lucas.demarchi@intel.com,
- rodrigo.vivi@intel.com, badal.nilawar@intel.com,
- varun.gupta@intel.com, ville.syrjala@linux.intel.com, uma.shankar@intel.com
-Subject: Re: [PATCH 02/12] PCI/ACPI: Add PERST# Assertion Delay _DSM method
-Message-ID: <20250402184847.GA1737363@bhelgaas>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F85F10E8BF;
+	Wed,  2 Apr 2025 18:59:49 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CBFA10E8BF;
+ Wed,  2 Apr 2025 18:59:48 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAJZ5v0h+oaw48B4EcrbNTtcKKY=1BwLdTcXoS0CkKFypnOs3cA@mail.gmail.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/pmu=3A_Add_GT_frequency?=
+ =?utf-8?q?_events_=28rev9=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 02 Apr 2025 18:59:48 -0000
+Message-ID: <174362038811.30285.5853054750371017473@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250331204827.2535393-1-vinay.belgaumkar@intel.com>
+In-Reply-To: <20250331204827.2535393-1-vinay.belgaumkar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,173 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Apr 02, 2025 at 07:51:29PM +0200, Rafael J. Wysocki wrote:
-> On Wed, Apr 2, 2025 at 5:50 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
-> > On Wed, Apr 02, 2025 at 04:52:55PM +0200, Rafael J. Wysocki wrote:
-> > > On Wed, Apr 2, 2025 at 4:21 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
-> > > > On Wed, Apr 02, 2025 at 01:06:42PM +0200, Rafael J. Wysocki wrote:
-> > > > > On Tue, Apr 1, 2025 at 5:36 PM Anshuman Gupta <anshuman.gupta@intel.com> wrote:
-> > > > > >
-> > > > > > Implement _DSM Method 11 as per PCI firmware specs
-> > > > > > section 4.6.11 Rev 3.3.
-> > > >
-> > > > > > +int pci_acpi_add_perst_assertion_delay(struct pci_dev *dev, u32 delay_us)
-> > > > > > +{
-> > > > > > +       union acpi_object in_obj = {
-> > > > > > +               .integer.type = ACPI_TYPE_INTEGER,
-> > > > > > +               .integer.value = delay_us,
-> > > > > > +       };
-> > > > > > +
-> > > > > > +       union acpi_object *out_obj;
-> > > > > > +       acpi_handle handle;
-> > > > > > +       int result, ret = -EINVAL;
-> > > > > > +
-> > > > > > +       if (!dev || !ACPI_HANDLE(&dev->dev))
-> > > > > > +               return -EINVAL;
-> > > > > > +
-> > > > > > +       handle = ACPI_HANDLE(&dev->dev);
-> > > > > > +
-> > > > > > +       out_obj = acpi_evaluate_dsm_typed(handle, &pci_acpi_dsm_guid, 4,
-> > > > >
-> > > > > This is something I haven't noticed in the previous patch, but also
-> > > > > applies to it.
-> > > > >
-> > > > > Why is rev 4 of the interface hard-coded here?
-> > > >
-> > > > Thanks for asking this because it's related to the whole _DSM revision
-> > > > question that I don't understand.
-> > > >
-> > > > If we didn't use rev 4 here, what should we use?  The PCI Firmware
-> > > > spec, r3.3, sec 4.6.11, documents this interface and says "lowest
-> > > > valid Revision ID value is 4", so that's the source of the 4.
-> > >
-> > > Well, the "lowest valid Revision ID" does not generally mean the "only
-> > > valid Revision ID".
-> >
-> > True, but why should the kernel change from using the tested revision
-> > ID to some other revision ID?  What would be the benefit of using rev
-> > 5?
-> 
-> TBH I'm not exactly buying the "tested revision ID" concept because
-> what does it really mean?
-> 
-> If a given _DSM interface has been tested on one platform, does it
-> necessarily mean that it will work on all of the other platforms
-> implementing it?
+== Series Details ==
 
-No, all we can say is that this OS rev 4 code works on the platforms
-we've tested.  Other platforms might have their own defects.
+Series: drm/xe/pmu: Add GT frequency events (rev9)
+URL   : https://patchwork.freedesktop.org/series/144164/
+State : success
 
-My point is that this OS code was written to the rev 4 spec and has
-been tested, and we shouldn't change the code or the revision it uses
-unless we're fixing something.
+== Summary ==
 
-> > > Now, I'm not sure how likely it is for the PCI Firmware spec to
-> > > bump up the revision of this interface (I suppose that it will
-> > > do so if a new function is defined), but even if it does so, the
-> > > kernel will have to check both the new revision and rev 4
-> > > anyway, in case the firmware doesn't know about the new
-> > > revision.
-> >
-> > I guess the reason the OS would check both rev 5 and rev 4 would
-> > be that a new platform might implement
-> > DSM_PCI_PERST_ASSERTION_DELAY only at rev 5?  I think this would
-> > be a real mistake in terms of implementing something to the spec.
-> 
-> This is a real possibility, however, because there's nothing to
-> prevent this kind of spec interpretation.
-> 
-> I didn't mean this, though.
-> 
-> Say the kernel wants to use a function that is only defined at rev
-> 5.  It will invoke function 0 at rev 5 to see if this function is
-> available, but then it may as well see if the other functions it
-> wants to use are available at rev 5 because it will get this
-> information from the same _DSM call.  If the platform firmware
-> responds that they all are implemented, why won't the kernel use
-> them all at rev 5?
+lib/modules/6.14.0-xe+/kernel/arch/x86/events/amd/
+lib/modules/6.14.0-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.14.0-xe+/kernel/kernel/
+lib/modules/6.14.0-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.14.0-xe+/kernel/crypto/
+lib/modules/6.14.0-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.14.0-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.14.0-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.14.0-xe+/kernel/crypto/zstd.ko
+lib/modules/6.14.0-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.14.0-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.14.0-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.14.0-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/xctr.ko
+lib/modules/6.14.0-xe+/kernel/crypto/authenc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm3.ko
+lib/modules/6.14.0-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.14.0-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.14.0-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cmac.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.14.0-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/essiv.ko
+lib/modules/6.14.0-xe+/kernel/crypto/ccm.ko
+lib/modules/6.14.0-xe+/kernel/crypto/wp512.ko
+lib/modules/6.14.0-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.14.0-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.14.0-xe+/kernel/crypto/lrw.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.14.0-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.14.0-xe+/kernel/crypto/842.ko
+lib/modules/6.14.0-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.14.0-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/md4.ko
+lib/modules/6.14.0-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.14.0-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/lz4.ko
+lib/modules/6.14.0-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.14.0-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm4.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.14.0-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.14.0-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.14.0-xe+/kernel/block/
+lib/modules/6.14.0-xe+/kernel/block/bfq.ko
+lib/modules/6.14.0-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.14.0-xe+/build
+lib/modules/6.14.0-xe+/modules.alias.bin
+lib/modules/6.14.0-xe+/modules.builtin
+lib/modules/6.14.0-xe+/modules.softdep
+lib/modules/6.14.0-xe+/modules.alias
+lib/modules/6.14.0-xe+/modules.order
+lib/modules/6.14.0-xe+/modules.symbols
+lib/modules/6.14.0-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1743620377:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1743620377:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-This is an unnecessary change, since the OS tested its rev 4 code and
-now we're saying the OS should use rev 5 instead, which the OS did not
-test.  The reason rev 5 exists at all is probably that some completely
-unrelated new function was added, and somebody decided it should be
-rev 5.
 
-I guess function 0 *could* have been defined to answer "yes/no" about
-whether a single (function, revision) is implemented.  Then we
-probably wouldn't be having this conversation.
-
-But we do get an entire bitmask of implemented functions back from
-function 0, which allows the possibility of using the same revision
-for all the functions.  I suppose we could have a boot-time function
-that calls function 0 with rev 0, 1, 2, ..., until it gets an empty
-bitmask, and saves the highest rev with a non-empty mask.
-
-In PCI we don't do that; instead, we call acpi_check_dsm() before
-every acpi_evaluate_dsm().  The main reason is that I don't think it's
-safe to change the function X rev just because function Y was added
-later with a higher revision.
-
-> > The spec documents DSM_PCI_PERST_ASSERTION_DELAY rev 4.  Some
-> > platforms implemented and tested DSM_PCI_PERST_ASSERTION_DELAY rev
-> > 4.  Linux added and tested support for
-> > DSM_PCI_PERST_ASSERTION_DELAY rev 4.  I propose new platforms
-> > should also implement and test DSM_PCI_PERST_ASSERTION_DELAY rev
-> > 4.
-> >
-> > If a new platform implements only DSM_PCI_PERST_ASSERTION_DELAY
-> > rev 5, there is no actual documentation for that rev other than
-> > the spec assertion that "rev 5 must support all functions defined
-> > by previous revs of the UUID."  IMO this is nonsense.  The
-> > platform might have no need to implement all the functions defined
-> > for the UUID.
-> 
-> Sure.  That's why function 0 should always be used.
-
-Yes.  But the requirement that rev 5 must support all functions ever
-previously documented for the UUID still makes no sense to me.  I
-don't think there's any requirement that a platform implement ALL of
-the documented PCI functions.
-
-Maybe the intent is that this only applies to a given platform, i.e.,
-that new firmware for that platform must continue to support all
-functions and revisions that were ever supported on that platform?
-That seems obvious to me and hardly worth mentioning.
-
-> > Even if the platform makes all its functions valid for "the lowest
-> > valid Revision ID" through the "current Revision ID", there's
-> > nothing other than the spec assertion to guarantee that they all
-> > behave the same.  And dealing with multiple revisions that are
-> > "supposed" to be the same just makes work and risk for the OS.
-> 
-> You seem to be questioning the interface versioning at large by
-> saying that there is no real guarantee of backwards compatibility
-> between consecutive interface revisions on the same platform.
-
-That's exactly what I'm saying, although I think problems are more
-likely across different platforms.  There's the requirement in the
-spec, but that's just words on a page.  There's no way to enforce or
-validate it.
-
-> Presumably, though, the interface is adhering to some specification
-> which defines the behavior of the functions (and the set of
-> available functions in the first place) for all of the valid
-> revisions of it.  The OS and the platform firmware both follow the
-> same spec and so they should be mutually compatible.  If this
-> particular spec defines rev 5 to be an exact superset of rev 4,
-> there is no reason to expect anything else.
-
-I don't *expect* rev 5 to be different.  But as a user of it, why
-would I change working, tested code that is not broken?
-
-The PCI DPC function 0xc is an example where rev 5 (per ECN) and rev 6
-(per r3.3) are not compatible.
-
-If the OS implemented rev 5, then learns via function 0 that function
-0xc is also supported at rev 6, and starts using the same OS code with
-rev 6, the OS is broken.
-
-Bjorn
