@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2801BC36014
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 08:32:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9AE9C3601A
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 08:32:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB49E10E705;
-	Wed,  2 Apr 2025 08:32:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 838E210E709;
+	Wed,  2 Apr 2025 08:32:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dkvl5MiY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kcs+lRnY";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3A9010E708;
- Wed,  2 Apr 2025 08:32:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C06C10E6FA;
+ Wed,  2 Apr 2025 08:32:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743582756; x=1775118756;
+ t=1743582767; x=1775118767;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Ktuq2XgTXTQ1sTe+9iNJRqxrBfe+CHLjMBwl+chzVxg=;
- b=dkvl5MiYtijj5/t0AxcAoe2Bt5VliF/fAJOzwmANgeXr3UmWU2lhbe0o
- NChsx7XB7gX/Buhxh0ZeRu1Z0S4WstFoSsze7AOj5IGEgpmADyLC1oQWG
- TdU67YB1dwCFdsUCiwKrLiNuPXwfKxEvxFTq24E0bRhHj/aH34VMQhkBJ
- hw9niA2j/Rf4Ht0XgiskxHW2fdJHxjKUNtRehu5h6yBCIFwYyIooCAQ9u
- CJYhIVicmQHR9FVbN0X5zFuH3LQUQcOuLFJ5ccLmggGTh1XE3zEDHxNDd
- 2a3ZfvZzckrE83rkTK7CmJSSKAV6qXyjKUVexlH06ZKsVz/DqI3QgqgIr Q==;
-X-CSE-ConnectionGUID: fxt4Yha3TnyQhS4e7/iGXQ==
-X-CSE-MsgGUID: NkoJZJYPR4iWG/ucCdGSkw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11391"; a="44828737"
-X-IronPort-AV: E=Sophos;i="6.14,295,1736841600"; d="scan'208";a="44828737"
+ bh=3+ytsS8HPHMx2ncAobC51QTCD1Sy5sEta5d+18zWfFs=;
+ b=Kcs+lRnYoJYAEBI7AHslIDbcUJcRZKiKXftkVmH0VaMc3S0GRFQwQjv8
+ dbwxz/3oPuXikGvAjbcxpOztuMeFRKTaNVDw756vgrd6ip+uLjCBuQ5wt
+ CNN7Hd3SwwT5vrlu4A5fS6t7m0h1ji9phOccLosX++qja5FlScaLGKMJ0
+ HEmBngZPjvNQY3C0/47fyMQiHdMCvDFpwghpPJ6n8bFF+Zvk0FmV0umCv
+ Qsn5oOGOe3tsVoypEfmtFmSOM1uIhnn08s8cd2ad0NpH40bol1Yj58ltM
+ cVGuuMQYTsnwBdK059o2k2vhCYH+2N8f+R7+vynjCdqZPWJqDOZ5dFA44 g==;
+X-CSE-ConnectionGUID: r9kl2+2rQxysUb8+pHulRw==
+X-CSE-MsgGUID: 3oGUabn6QEa9pyvnnudP6Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11391"; a="44828745"
+X-IronPort-AV: E=Sophos;i="6.14,295,1736841600"; d="scan'208";a="44828745"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2025 01:32:35 -0700
-X-CSE-ConnectionGUID: GlvXKnT9SYuaNPiG2Jm/2w==
-X-CSE-MsgGUID: n1Hije6XSA6pJbeOPVswtg==
+ 02 Apr 2025 01:32:41 -0700
+X-CSE-ConnectionGUID: cFuT/lrSRhmflz5dPdnqjg==
+X-CSE-MsgGUID: IBNawXVsT920PRPErhLFOw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,295,1736841600"; d="scan'208";a="126612471"
+X-IronPort-AV: E=Sophos;i="6.14,295,1736841600"; d="scan'208";a="126612494"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa007.fm.intel.com with ESMTP; 02 Apr 2025 01:32:32 -0700
+ by fmviesa007.fm.intel.com with ESMTP; 02 Apr 2025 01:32:37 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, uma.shankar@intel.com, jani.nikula@intel.com,
  mika.kahola@intel.com, ville.syrjala@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 13/16] drm/i915/dpll: Rename intel_unreference_dpll_global_crtc
-Date: Wed,  2 Apr 2025 14:02:01 +0530
-Message-Id: <20250402083204.1523470-14-suraj.kandpal@intel.com>
+Subject: [PATCH 15/16] drm/i915/dpll: Rename intel_compute_dpll_globals
+Date: Wed,  2 Apr 2025 14:02:03 +0530
+Message-Id: <20250402083204.1523470-16-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250402083204.1523470-1-suraj.kandpal@intel.com>
 References: <20250402083204.1523470-1-suraj.kandpal@intel.com>
@@ -68,85 +68,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Rename intel_unreference_dpll_global_crtc to intel_dpll_unreference_crtc
-in an effort to keep names of exported functions start with the filename.
+Rename intel_compute_dpll_globals to intel_dpll_compute in an
+effort to make sure all function names that are exported have
+the filename at start.
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c      | 10 +++++-----
- drivers/gpu/drm/i915/display/intel_dpll_mgr.h      |  6 +++---
- drivers/gpu/drm/i915/display/intel_modeset_setup.c |  6 +++---
- 3 files changed, 11 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dpll.c     | 6 +++---
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 8 ++++----
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.h | 6 +++---
+ 3 files changed, 10 insertions(+), 10 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
+index 13a70ef95804..1cdd54e5beaf 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+@@ -1162,7 +1162,7 @@ static int hsw_crtc_compute_clock(struct intel_atomic_state *state,
+ 	    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI))
+ 		return 0;
+ 
+-	ret = intel_compute_dpll_globals(state, crtc, encoder);
++	ret = intel_dpll_compute(state, crtc, encoder);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -1224,7 +1224,7 @@ static int mtl_crtc_compute_clock(struct intel_atomic_state *state,
+ 	if (ret)
+ 		return ret;
+ 
+-	/* TODO: Do the readback via intel_compute_dpll_globals() */
++	/* TODO: Do the readback via intel_dpll_compute() */
+ 	crtc_state->port_clock = intel_cx0pll_calc_port_clock(encoder, &crtc_state->dpll_hw_state.cx0pll);
+ 
+ 	crtc_state->hw.adjusted_mode.crtc_clock = intel_crtc_dotclock(crtc_state);
+@@ -1397,7 +1397,7 @@ static int ilk_crtc_compute_clock(struct intel_atomic_state *state,
+ 	ilk_compute_dpll(crtc_state, &crtc_state->dpll,
+ 			 &crtc_state->dpll);
+ 
+-	ret = intel_compute_dpll_globals(state, crtc, NULL);
++	ret = intel_dpll_compute(state, crtc, NULL);
+ 	if (ret)
+ 		return ret;
+ 
 diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 97447ac0fcdf..dd1f2104d5b1 100644
+index 7faf1b2e6399..03c08ada0261 100644
 --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
 +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -455,7 +455,7 @@ intel_reference_dpll_global(struct intel_atomic_state *state,
+@@ -4385,7 +4385,7 @@ void intel_dpll_global_init(struct intel_display *display)
  }
  
  /**
-- * intel_unreference_dpll_global_crtc - Drop a DPLL reference for a CRTC
-+ * intel_dpll_unreference_crtc - Drop a DPLL reference for a CRTC
-  * @crtc: CRTC on which behalf the reference is dropped
-  * @pll: DPLL for which the reference is dropped
-  * @dpll_state: the DPLL atomic state in which the reference is tracked
-@@ -463,9 +463,9 @@ intel_reference_dpll_global(struct intel_atomic_state *state,
-  * Drop a reference for @pll tracking the end of use of it by @crtc.
+- * intel_compute_dpll_globals - compute DPLL state CRTC and encoder combination
++ * intel_dpll_compute - compute DPLL state CRTC and encoder combination
+  * @state: atomic state
+  * @crtc: CRTC to compute DPLLs for
+  * @encoder: encoder
+@@ -4398,9 +4398,9 @@ void intel_dpll_global_init(struct intel_display *display)
+  * Returns:
+  * 0 on success, negative error code on failure.
   */
- void
--intel_unreference_dpll_global_crtc(const struct intel_crtc *crtc,
--				   const struct intel_dpll_global *pll,
--				   struct intel_dpll_state *dpll_state)
-+intel_dpll_unreference_crtc(const struct intel_crtc *crtc,
-+			    const struct intel_dpll_global *pll,
-+			    struct intel_dpll_state *dpll_state)
+-int intel_compute_dpll_globals(struct intel_atomic_state *state,
+-			       struct intel_crtc *crtc,
+-			       struct intel_encoder *encoder)
++int intel_dpll_compute(struct intel_atomic_state *state,
++		       struct intel_crtc *crtc,
++		       struct intel_encoder *encoder)
  {
- 	struct intel_display *display = to_intel_display(crtc);
- 
-@@ -485,7 +485,7 @@ static void intel_unreference_dpll_global(struct intel_atomic_state *state,
- 
- 	dpll_state = intel_atomic_get_dpll_global_state(&state->base);
- 
--	intel_unreference_dpll_global_crtc(crtc, pll, &dpll_state[pll->index]);
-+	intel_dpll_unreference_crtc(crtc, pll, &dpll_state[pll->index]);
- }
- 
- static void intel_put_dpll(struct intel_atomic_state *state,
+ 	struct intel_display *display = to_intel_display(state);
+ 	const struct intel_dpll_mgr *dpll_mgr = display->dpll.mgr;
 diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-index bc93cb36b737..f240018416c7 100644
+index b6d5a15b8103..9bd71aba6c6a 100644
 --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
 +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-@@ -404,9 +404,9 @@ int intel_reserve_dpll_globals(struct intel_atomic_state *state,
- 			       struct intel_encoder *encoder);
- void intel_release_dpll_globals(struct intel_atomic_state *state,
- 				struct intel_crtc *crtc);
--void intel_unreference_dpll_global_crtc(const struct intel_crtc *crtc,
--					const struct intel_dpll_global *pll,
--					struct intel_dpll_state *shared_dpll_state);
-+void intel_dpll_unreference_crtc(const struct intel_crtc *crtc,
-+				 const struct intel_dpll_global *pll,
-+				 struct intel_dpll_state *shared_dpll_state);
- void icl_set_active_port_dpll(struct intel_crtc_state *crtc_state,
- 			      enum icl_port_dpll_id port_dpll_id);
- void intel_update_active_dpll(struct intel_atomic_state *state,
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-index 4221d1566c8a..191027c9bd4f 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-@@ -92,9 +92,9 @@ static void intel_crtc_disable_noatomic_begin(struct intel_crtc *crtc,
- 	crtc->base.enabled = false;
- 
- 	if (crtc_state->dpll_global)
--		intel_unreference_dpll_global_crtc(crtc,
--						   crtc_state->dpll_global,
--						   &crtc_state->dpll_global->state);
-+		intel_dpll_unreference_crtc(crtc,
-+					    crtc_state->dpll_global,
-+					    &crtc_state->dpll_global->state);
- }
- 
- static void set_encoder_for_connector(struct intel_connector *connector,
+@@ -396,9 +396,9 @@ void assert_dpll_global(struct intel_display *display,
+ 			bool state);
+ #define assert_dpll_global_enabled(d, p) assert_dpll_global(d, p, true)
+ #define assert_dpll_global_disabled(d, p) assert_dpll_global(d, p, false)
+-int intel_compute_dpll_globals(struct intel_atomic_state *state,
+-			       struct intel_crtc *crtc,
+-			       struct intel_encoder *encoder);
++int intel_dpll_compute(struct intel_atomic_state *state,
++		       struct intel_crtc *crtc,
++		       struct intel_encoder *encoder);
+ int intel_dpll_reserve(struct intel_atomic_state *state,
+ 		       struct intel_crtc *crtc,
+ 		       struct intel_encoder *encoder);
 -- 
 2.34.1
 
