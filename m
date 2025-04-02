@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63FDBC36017
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 12:29:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7CA7C28B20
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 12:34:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D19E10E76B;
-	Wed,  2 Apr 2025 12:29:47 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kfWDez3v";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3900810E76B
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Apr 2025 12:29:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743596985; x=1775132985;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=RX81cDvAfIm6F1GzK2JqhEuybuGiptguA2JRsC9uHbs=;
- b=kfWDez3vJ4dbsfz42fIKHj8kxnTgD2L/MmQf2Rnqjjo0iR2xnWfckmJ2
- mS3Dg9dpzIDDA1JWT2GKjtbb3IeAQNa9a60PeirUVDkMrPenUN5ihHBBV
- zdh6vHHY6Hpfzz+nyfgSLSyYSN62WF+SaPIMJg7hvUxaaliwIf/dpe0Bl
- y00gi44xvxm/ZIHTiDn8/gp3lWoDDt4eCir66et8YQ7wNcI6rl0lRmv33
- CI6yMLANjqnvD0o21/nqDtZd0rqXIpEbeQzcaWpjtSnn22I7RnAiQpSxt
- h2LLs2ntGVDU7k5pRO0UGBcC+tD1o5ifufZYHkwI3Du+4MGLXt9gLU6P9 g==;
-X-CSE-ConnectionGUID: mQ4G3uphTuuR/2zPi631Tw==
-X-CSE-MsgGUID: Fy6VpFZDSs+s5BCEJtkGyw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="44105105"
-X-IronPort-AV: E=Sophos;i="6.15,182,1739865600"; d="scan'208";a="44105105"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2025 05:29:42 -0700
-X-CSE-ConnectionGUID: +r1ggz34R++Y/s7bU0Xpvw==
-X-CSE-MsgGUID: wzH6bh3BTyWfEALTQY25uA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,182,1739865600"; d="scan'208";a="149873352"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO fedora..)
- ([10.245.246.98])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2025 05:29:41 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH] drm/xe: Fix xe_pt_stage_bind_walk kerneldoc
-Date: Wed,  2 Apr 2025 14:29:24 +0200
-Message-ID: <20250402122924.25526-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.48.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A67510E770;
+	Wed,  2 Apr 2025 12:34:44 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BFAF10E1AC;
+ Wed,  2 Apr 2025 12:34:43 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8324983927340151924=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/format-helper=3A_fix_bu?=
+ =?utf-8?q?ild?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 02 Apr 2025 12:34:43 -0000
+Message-ID: <174359728356.27776.18091332825482070536@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250402104430.142398-2-matthew.auld@intel.com>
+In-Reply-To: <20250402104430.142398-2-matthew.auld@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,73 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The structure was missing a proper kerneldoc header and once
-that was added a number of typos and errors became obvious.
-Fix those.
+--===============8324983927340151924==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reported-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Closes: https://lore.kernel.org/intel-xe/x53tcs5bjldw6lcorjemuheklxcmepdvr2u7lvt3hpqrzqoc4h@nsu6hs25taqj/
-Fixes: b2d4b03b03a7 ("drm/xe: Make the PT code handle placement per PTE rather than per vma / range")
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_pt.c | 14 +++++++++-----
- 1 file changed, 9 insertions(+), 5 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 82ae159feed1..33839b25d708 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -269,8 +269,11 @@ struct xe_pt_update {
- 	bool preexisting;
- };
- 
-+/**
-+ * struct xe_pt_stage_bind_walk - Walk state for the stage_bind walk.
-+ */
- struct xe_pt_stage_bind_walk {
--	/** base: The base class. */
-+	/** @base: The base class. */
- 	struct xe_pt_walk base;
- 
- 	/* Input parameters for the walk */
-@@ -278,14 +281,14 @@ struct xe_pt_stage_bind_walk {
- 	struct xe_vm *vm;
- 	/** @tile: The tile we're building for. */
- 	struct xe_tile *tile;
--	/** @default_pte: PTE flag only template for VRAM. No address is associated */
-+	/** @default_vram_pte: PTE flag only template for VRAM. No address is associated */
- 	u64 default_vram_pte;
--	/** @default_pte: PTE flag only template for VRAM. No address is associated */
-+	/** @default_system_pte: PTE flag only template for System. No address is associated */
- 	u64 default_system_pte;
- 	/** @dma_offset: DMA offset to add to the PTE. */
- 	u64 dma_offset;
- 	/**
--	 * @needs_64k: This address range enforces 64K alignment and
-+	 * @needs_64K: This address range enforces 64K alignment and
- 	 * granularity on VRAM.
- 	 */
- 	bool needs_64K;
-@@ -301,6 +304,7 @@ struct xe_pt_stage_bind_walk {
- 	u64 va_curs_start;
- 
- 	/* Output */
-+	/** @wupd: Walk output data for page-table updates. */
- 	struct xe_walk_update {
- 		/** @wupd.entries: Caller provided storage. */
- 		struct xe_vm_pgtable_update *entries;
-@@ -318,7 +322,7 @@ struct xe_pt_stage_bind_walk {
- 	u64 l0_end_addr;
- 	/** @addr_64K: The start address of the current 64K chunk. */
- 	u64 addr_64K;
--	/** @found_64: Whether @add_64K actually points to a 64K chunk. */
-+	/** @found_64K: Whether @add_64K actually points to a 64K chunk. */
- 	bool found_64K;
- };
- 
--- 
-2.48.1
+Series: drm/format-helper: fix build
+URL   : https://patchwork.freedesktop.org/series/147118/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-2896-f0fd77956987f035c79d08c812343a27a655a57b_BAT -> xe-pw-147118v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8297 -> IGT_8299
+  * Linux: xe-2896-f0fd77956987f035c79d08c812343a27a655a57b -> xe-pw-147118v1
+
+  IGT_8297: 0a27244ed1972af84c78d68523d5791e596349e7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8299: 8299
+  xe-2896-f0fd77956987f035c79d08c812343a27a655a57b: f0fd77956987f035c79d08c812343a27a655a57b
+  xe-pw-147118v1: 147118v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147118v1/index.html
+
+--===============8324983927340151924==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/format-helper: fix build</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147118/">https://patchwork.freedesktop.org/series/147118/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147118v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147118v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2896-f0fd77956987f035c79d08c812343a27a655a57b_BAT -&gt; xe-pw-147118v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8297 -&gt; IGT_8299</li>
+<li>Linux: xe-2896-f0fd77956987f035c79d08c812343a27a655a57b -&gt; xe-pw-147118v1</li>
+</ul>
+<p>IGT_8297: 0a27244ed1972af84c78d68523d5791e596349e7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8299: 8299<br />
+  xe-2896-f0fd77956987f035c79d08c812343a27a655a57b: f0fd77956987f035c79d08c812343a27a655a57b<br />
+  xe-pw-147118v1: 147118v1</p>
+
+</body>
+</html>
+
+--===============8324983927340151924==--
