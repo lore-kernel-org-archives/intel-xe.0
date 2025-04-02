@@ -4,62 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13684C36018
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 19:27:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14AEDC36018
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Apr 2025 19:36:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C88D310E0BA;
-	Wed,  2 Apr 2025 19:27:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A26B910E0BA;
+	Wed,  2 Apr 2025 19:36:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FdMXGu2q";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="qKs5rtRz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 879E310E0BA
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Apr 2025 19:27:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743622054; x=1775158054;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=T9oaecO5j26VKoxREdUE9tWipWjRmxiUfv4st6gneoI=;
- b=FdMXGu2qOyYihBemAzptf6by+yVQ/dDEoKrCSoBzHIk9za/fgQOCwLKq
- stCzdWatDAP10rmfK8WcB5dIw3nGVFha17AHcSlKAjkHRoH0qX9a4Vzsw
- 76kBO0JaUm7VVj7w8q4fUKLRgcGlR6yUMVzW73TDTVYWQUbB7taoyR0SU
- T7GaTi8ftN2eOriDQ12bZXxjYvgf5rG5YSC2zhUNUBD4QthnerNXSLhcI
- GNkYK214PQQPDXNIjhKPaRw+UBjj2/Y1dPRfCAHY6qHvlhcqh1WDKuYe6
- hxXrzNipM9J/iG82VObHKs9L1hA056u980M5IbPVJTp4pIZmVU3Bh67IJ A==;
-X-CSE-ConnectionGUID: KlY5wxzySt2KSSNKWTo8xQ==
-X-CSE-MsgGUID: vBpd/110RBaIvkwvdGL5YQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="45182175"
-X-IronPort-AV: E=Sophos;i="6.15,183,1739865600"; d="scan'208";a="45182175"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2025 12:27:34 -0700
-X-CSE-ConnectionGUID: YzbBz5BuQeCFNMYhzKYUTw==
-X-CSE-MsgGUID: 3uwk9pO7TnSy4Z0peOxI2w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,183,1739865600"; d="scan'208";a="126689396"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa010.jf.intel.com with ESMTP; 02 Apr 2025 12:27:33 -0700
-Received: from [10.245.83.29] (unknown [10.245.83.29])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id D637334EF5;
- Wed,  2 Apr 2025 20:27:31 +0100 (IST)
-Message-ID: <ab19b061-4b80-4acb-82f1-0311da276d26@intel.com>
-Date: Wed, 2 Apr 2025 21:27:31 +0200
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D03410E0BA
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Apr 2025 19:36:21 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 8C0845C6A86
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Apr 2025 19:33:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C1A8C4CEEB
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Apr 2025 19:36:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1743622573;
+ bh=N6aEnNC1BVJp0+4yG0StSefwIxjnvJ1BAP9HWFigLMg=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=qKs5rtRzy/8w8K4QcavthdwiyqRS56rILrRRZvMFttPhL7EVZi2x1qNqBivnrWfWR
+ 0DnMaASiOtHP+5YEm6VMW64rk0aCKpVxQUPMdyNkrzR9DfnA2i16QGctd/XvhePIao
+ goHZk1jPhkny65sK6r41sw0hM8DWR4/vJJsEN/ayq2vi5LFQQJs0LOKla3gFIQf+J5
+ duNa/QLV8HWyb2bsXaEgyCw2nO//1OOQFcYaO6nsYLG2bV4KZQU+N62pPnAu47Eycu
+ OQBL3rXeVS/WRpU5ElRMky6hmwmENKR3kr6SdlBLpzKqV+n+08wyobTrf8XCtwBqzB
+ 74Wc6YKJBLRyw==
+Received: by mail-oa1-f46.google.com with SMTP id
+ 586e51a60fabf-2c77a5747e0so43506fac.2
+ for <intel-xe@lists.freedesktop.org>; Wed, 02 Apr 2025 12:36:13 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUVTBcIzxrT5yD7bd5z+CUR46FVg3CdO9Ga3Px/uAxOdxPnVqp44WfG5gxD6v5ruoPC4s6hMJ+9iQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyA/yHjehaTFHbTyuSOkVev8Ikouy1HkyZroVqtZ1cRBJhX6+jf
+ guf5TL3zVqKES+++ZqP39rctPL9nRR1V7IEMoLPX7G1z3wiBC3X+lIYaw83bw2WAYV20b5q035y
+ lYEug5Yfw9m6o01zKgDCgba8n4Hc=
+X-Google-Smtp-Source: AGHT+IEbLGuDKsj7mLsQ/fliURHgcHOUIssazmjJ/mSLq3LkY9RY8J7eawGItNQ60g+zmdbulS+xN5+5KirtjDRQWos=
+X-Received: by 2002:a05:6870:e389:b0:29e:24c7:2861 with SMTP id
+ 586e51a60fabf-2cc60af34f2mr2056482fac.13.1743622572376; Wed, 02 Apr 2025
+ 12:36:12 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] drm/xe/vf: Don't expose privileged GT debugfs files
- if VF
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org,
- Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
-References: <20250320210738.1733-1-michal.wajdeczko@intel.com>
- <20250320210738.1733-4-michal.wajdeczko@intel.com>
- <fvnsx2rcjljjlwdb2sjxqo3otzpffnfs666ueldgojsb5o5gqd@xxpmrvvmnisi>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <fvnsx2rcjljjlwdb2sjxqo3otzpffnfs666ueldgojsb5o5gqd@xxpmrvvmnisi>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <CAJZ5v0h+oaw48B4EcrbNTtcKKY=1BwLdTcXoS0CkKFypnOs3cA@mail.gmail.com>
+ <20250402184847.GA1737363@bhelgaas>
+In-Reply-To: <20250402184847.GA1737363@bhelgaas>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Wed, 2 Apr 2025 21:36:01 +0200
+X-Gmail-Original-Message-ID: <CAJZ5v0hQjtTCu1wXgKvBWBBegbj-VD+Z0yBspt1uFes8Xun7Cw@mail.gmail.com>
+X-Gm-Features: AQ5f1JqpkWWRN8yB3K891jYD1ZCljZwkLHbWFPmLbsL1CnEdBh7luPW11A3D8Qw
+Message-ID: <CAJZ5v0hQjtTCu1wXgKvBWBBegbj-VD+Z0yBspt1uFes8Xun7Cw@mail.gmail.com>
+Subject: Re: [PATCH 02/12] PCI/ACPI: Add PERST# Assertion Delay _DSM method
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+ Anshuman Gupta <anshuman.gupta@intel.com>, 
+ intel-xe@lists.freedesktop.org, linux-acpi@vger.kernel.org, 
+ linux-pci@vger.kernel.org, lenb@kernel.org, bhelgaas@google.com, 
+ ilpo.jarvinen@linux.intel.com, lucas.demarchi@intel.com, 
+ rodrigo.vivi@intel.com, badal.nilawar@intel.com, varun.gupta@intel.com, 
+ ville.syrjala@linux.intel.com, uma.shankar@intel.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,33 +76,225 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Wed, Apr 2, 2025 at 8:48=E2=80=AFPM Bjorn Helgaas <helgaas@kernel.org> w=
+rote:
+>
+> On Wed, Apr 02, 2025 at 07:51:29PM +0200, Rafael J. Wysocki wrote:
+> > On Wed, Apr 2, 2025 at 5:50=E2=80=AFPM Bjorn Helgaas <helgaas@kernel.or=
+g> wrote:
+> > > On Wed, Apr 02, 2025 at 04:52:55PM +0200, Rafael J. Wysocki wrote:
+> > > > On Wed, Apr 2, 2025 at 4:21=E2=80=AFPM Bjorn Helgaas <helgaas@kerne=
+l.org> wrote:
+> > > > > On Wed, Apr 02, 2025 at 01:06:42PM +0200, Rafael J. Wysocki wrote=
+:
+> > > > > > On Tue, Apr 1, 2025 at 5:36=E2=80=AFPM Anshuman Gupta <anshuman=
+.gupta@intel.com> wrote:
+> > > > > > >
+> > > > > > > Implement _DSM Method 11 as per PCI firmware specs
+> > > > > > > section 4.6.11 Rev 3.3.
+> > > > >
+> > > > > > > +int pci_acpi_add_perst_assertion_delay(struct pci_dev *dev, =
+u32 delay_us)
+> > > > > > > +{
+> > > > > > > +       union acpi_object in_obj =3D {
+> > > > > > > +               .integer.type =3D ACPI_TYPE_INTEGER,
+> > > > > > > +               .integer.value =3D delay_us,
+> > > > > > > +       };
+> > > > > > > +
+> > > > > > > +       union acpi_object *out_obj;
+> > > > > > > +       acpi_handle handle;
+> > > > > > > +       int result, ret =3D -EINVAL;
+> > > > > > > +
+> > > > > > > +       if (!dev || !ACPI_HANDLE(&dev->dev))
+> > > > > > > +               return -EINVAL;
+> > > > > > > +
+> > > > > > > +       handle =3D ACPI_HANDLE(&dev->dev);
+> > > > > > > +
+> > > > > > > +       out_obj =3D acpi_evaluate_dsm_typed(handle, &pci_acpi=
+_dsm_guid, 4,
+> > > > > >
+> > > > > > This is something I haven't noticed in the previous patch, but =
+also
+> > > > > > applies to it.
+> > > > > >
+> > > > > > Why is rev 4 of the interface hard-coded here?
+> > > > >
+> > > > > Thanks for asking this because it's related to the whole _DSM rev=
+ision
+> > > > > question that I don't understand.
+> > > > >
+> > > > > If we didn't use rev 4 here, what should we use?  The PCI Firmwar=
+e
+> > > > > spec, r3.3, sec 4.6.11, documents this interface and says "lowest
+> > > > > valid Revision ID value is 4", so that's the source of the 4.
+> > > >
+> > > > Well, the "lowest valid Revision ID" does not generally mean the "o=
+nly
+> > > > valid Revision ID".
+> > >
+> > > True, but why should the kernel change from using the tested revision
+> > > ID to some other revision ID?  What would be the benefit of using rev
+> > > 5?
+> >
+> > TBH I'm not exactly buying the "tested revision ID" concept because
+> > what does it really mean?
+> >
+> > If a given _DSM interface has been tested on one platform, does it
+> > necessarily mean that it will work on all of the other platforms
+> > implementing it?
+>
+> No, all we can say is that this OS rev 4 code works on the platforms
+> we've tested.  Other platforms might have their own defects.
+>
+> My point is that this OS code was written to the rev 4 spec and has
+> been tested, and we shouldn't change the code or the revision it uses
+> unless we're fixing something.
 
+Well, if the spec says "rev 5 is the same as rev 4 except for function
+Y which is new in rev 5", then arguably the same OS code is also
+compliant with rev 5 (it will not use function Y, but that's fine).
 
-On 21.03.2025 17:55, Lucas De Marchi wrote:
-> On Thu, Mar 20, 2025 at 10:07:38PM +0100, Michal Wajdeczko wrote:
+If the platform firmware follows the same spec, then the rev 5
+implementation in it can be expected to work exactly as its rev 4
+implementation either.
 
-...
+I see no problem with using rev 5 instead of rev 4 in that case and nn
+new platforms, rev 5 is just as risky as rev 4.
 
-> 
-> Another possible idea: would it make sense to add a flag in
-> drm.driver_features to note if the driver if pf/vf? That way we may
-> simplify other places and then here we could just do:
-> 
->     { {"steering", .show = xe_gt_debugfs_simple_show, .data = steering,
->        .driver_features = DRIVER_SRIOV_PF },
->        ...
->     }
-> 
-> instead of splitting the array.
+> > > > Now, I'm not sure how likely it is for the PCI Firmware spec to
+> > > > bump up the revision of this interface (I suppose that it will
+> > > > do so if a new function is defined), but even if it does so, the
+> > > > kernel will have to check both the new revision and rev 4
+> > > > anyway, in case the firmware doesn't know about the new
+> > > > revision.
+> > >
+> > > I guess the reason the OS would check both rev 5 and rev 4 would
+> > > be that a new platform might implement
+> > > DSM_PCI_PERST_ASSERTION_DELAY only at rev 5?  I think this would
+> > > be a real mistake in terms of implementing something to the spec.
+> >
+> > This is a real possibility, however, because there's nothing to
+> > prevent this kind of spec interpretation.
+> >
+> > I didn't mean this, though.
+> >
+> > Say the kernel wants to use a function that is only defined at rev
+> > 5.  It will invoke function 0 at rev 5 to see if this function is
+> > available, but then it may as well see if the other functions it
+> > wants to use are available at rev 5 because it will get this
+> > information from the same _DSM call.  If the platform firmware
+> > responds that they all are implemented, why won't the kernel use
+> > them all at rev 5?
+>
+> This is an unnecessary change, since the OS tested its rev 4 code and
+> now we're saying the OS should use rev 5 instead, which the OS did not
+> test.
 
-tempting idea, but I'm not sure how/when this could be accepted at drm
-level, and whether our single static drm_driver instance will survive
-both PF and VFs instances at the same time
+Yes, it did.  It is the same code, as per the above.
 
-> 
-> pass by comment since I was involved in other threads related to default
-> context in PTL... Are these default_lrc_* accurate from the VF point of
-> view? Are they different from the ones for PF?
+> The reason rev 5 exists at all is probably that some completely
+> unrelated new function was added, and somebody decided it should be
+> rev 5.
+>
+> I guess function 0 *could* have been defined to answer "yes/no" about
+> whether a single (function, revision) is implemented.  Then we
+> probably wouldn't be having this conversation.
+>
+> But we do get an entire bitmask of implemented functions back from
+> function 0, which allows the possibility of using the same revision
+> for all the functions.  I suppose we could have a boot-time function
+> that calls function 0 with rev 0, 1, 2, ..., until it gets an empty
+> bitmask, and saves the highest rev with a non-empty mask.
+>
+> In PCI we don't do that; instead, we call acpi_check_dsm() before
+> every acpi_evaluate_dsm().  The main reason is that I don't think it's
+> safe to change the function X rev just because function Y was added
+> later with a higher revision.
 
-it should reflect what VF uses and it should be the same as on PF
+So what if there is a platform that only implements revisions greater than =
+X?
 
+Presumably, there is another OS targeted by this platform that only
+uses revisions X+1 and forward.
+
+> > > The spec documents DSM_PCI_PERST_ASSERTION_DELAY rev 4.  Some
+> > > platforms implemented and tested DSM_PCI_PERST_ASSERTION_DELAY rev
+> > > 4.  Linux added and tested support for
+> > > DSM_PCI_PERST_ASSERTION_DELAY rev 4.  I propose new platforms
+> > > should also implement and test DSM_PCI_PERST_ASSERTION_DELAY rev
+> > > 4.
+> > >
+> > > If a new platform implements only DSM_PCI_PERST_ASSERTION_DELAY
+> > > rev 5, there is no actual documentation for that rev other than
+> > > the spec assertion that "rev 5 must support all functions defined
+> > > by previous revs of the UUID."  IMO this is nonsense.  The
+> > > platform might have no need to implement all the functions defined
+> > > for the UUID.
+> >
+> > Sure.  That's why function 0 should always be used.
+>
+> Yes.  But the requirement that rev 5 must support all functions ever
+> previously documented for the UUID still makes no sense to me.  I
+> don't think there's any requirement that a platform implement ALL of
+> the documented PCI functions.
+
+I think that there is some confusion in the spec language that seems
+to be conflating platforms with interface definitions.
+
+It ostensibly wants the definitions of subsequent revisions of the
+same interface to be consistent with each other, which is not a bad
+thing in principle IMV, but at the same time it ostensibly allows
+platforms to choose which functions to implement, and it doesn't say
+anything about the expected behavior when the OS attempts to use a
+function that is not implemented for a given rev.
+
+You are right that the backward compatibility language in the _DSM
+definition is not enforceable, but it can be regarded as a guidance:
+Do not change the interface that you have once defined arbitrarily
+between revisions.  After all, if you don't like this guidance, you
+can just allocate a new UUID and define a new interface based on it.
+
+Anyway, I'm not the author of this piece of the specification, so I
+don't really know the original intent, and it is not sufficiently
+clear.
+
+> Maybe the intent is that this only applies to a given platform, i.e.,
+> that new firmware for that platform must continue to support all
+> functions and revisions that were ever supported on that platform?
+> That seems obvious to me and hardly worth mentioning.
+>
+> > > Even if the platform makes all its functions valid for "the lowest
+> > > valid Revision ID" through the "current Revision ID", there's
+> > > nothing other than the spec assertion to guarantee that they all
+> > > behave the same.  And dealing with multiple revisions that are
+> > > "supposed" to be the same just makes work and risk for the OS.
+> >
+> > You seem to be questioning the interface versioning at large by
+> > saying that there is no real guarantee of backwards compatibility
+> > between consecutive interface revisions on the same platform.
+>
+> That's exactly what I'm saying, although I think problems are more
+> likely across different platforms.  There's the requirement in the
+> spec, but that's just words on a page.  There's no way to enforce or
+> validate it.
+>
+> > Presumably, though, the interface is adhering to some specification
+> > which defines the behavior of the functions (and the set of
+> > available functions in the first place) for all of the valid
+> > revisions of it.  The OS and the platform firmware both follow the
+> > same spec and so they should be mutually compatible.  If this
+> > particular spec defines rev 5 to be an exact superset of rev 4,
+> > there is no reason to expect anything else.
+>
+> I don't *expect* rev 5 to be different.  But as a user of it, why
+> would I change working, tested code that is not broken?
+>
+> The PCI DPC function 0xc is an example where rev 5 (per ECN) and rev 6
+> (per r3.3) are not compatible.
+>
+> If the OS implemented rev 5, then learns via function 0 that function
+> 0xc is also supported at rev 6, and starts using the same OS code with
+> rev 6, the OS is broken.
+
+Yes, in this case the backward compatibility language in the _DSM
+definition is obviously not followed.
