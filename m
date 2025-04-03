@@ -4,67 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38E82C3601E
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 10:21:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCC75C3600C
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 10:24:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF47310E98A;
-	Thu,  3 Apr 2025 10:21:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8162A10E996;
+	Thu,  3 Apr 2025 10:24:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eVNbctpM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LITgPh3u";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C48A410E987;
- Thu,  3 Apr 2025 10:21:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 718E710E996
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Apr 2025 10:24:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743675667; x=1775211667;
- h=from:date:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=WzPE+yc35G0Ukevwleocf1xZFNkNNZmTwRFnHBsa3R4=;
- b=eVNbctpMWrW06mMfjaeVHw4uAp+axkDYO4MozWWSnFs+xe1shpx8GZxg
- /epg/FJ1ksW1vbZ+zA1RmArJJWQM1fPRgMtVRYbBEWqt2/THNQsU5DwP3
- 4yrpEmMNwVeZeOUPYuxgJpAr5Yg3l0RSFjBVo9mHAeZKk6g7T4WCPG7MN
- SclOIgtK+/qpDmhhuSokdaq2WHuYZVUXkadlWAAo6zpp68zQuZEODH5FU
- TpOZjbh/o7bJbLGwityjHcMdXPp9VS446iEkp3ZF1eDYLLfc6oTxPeXlC
- 5JxcrkrayNATmgvN7l0SimlVH2wQ9USqVx11ZOQktEyynbIKXC7GWqeQ3 w==;
-X-CSE-ConnectionGUID: 6TLiwQE3QOyui5so0itM4w==
-X-CSE-MsgGUID: ZrIGKD8ZSUS6/JpLl9SAUA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="55745494"
-X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="55745494"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2025 03:21:06 -0700
-X-CSE-ConnectionGUID: E26iemQmTHK+vF7TmOFN3w==
-X-CSE-MsgGUID: buV1Yn3mT6KD5KN/3k38uQ==
+ t=1743675893; x=1775211893;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5pY68O1v9n0WkAGOZ0RbTRYdNa6SeQJwUD9ZMwB2HxM=;
+ b=LITgPh3udOTrI7d/M7+g+z8/K1rU+y+/06q8h7Uap2XRKnD/yTzJ8tUb
+ b6SKzUriIlUVFHVnzpiCkOm5sZC9B+9fUS+T1iIRU5XUQltutpaFd1jbC
+ 1WYN6UFuiXU/T7lciEGzGczzHmJGnt4/01VvROBt4C6NLBueXMeFhW+RY
+ 3TI8c0P6UtIc7VYy7HS0fsgz6WSnvLKJq1S+Mt/XWBaDIHSi30pqOCqNr
+ MFfX4H48MqVSFIWfu4nA8v0tftRUPJxFUkGp/BRV3FzJFEmZGxzpAyAkh
+ +llutOlLm9qJBQAv8MoheZUPmj7CUARoMebSK8CR/7sl8HUYRopcLKHJI w==;
+X-CSE-ConnectionGUID: zKNai61YRbWcjmZQVHVWvA==
+X-CSE-MsgGUID: KLT6Gp+9S4O2Ubhq+zdpig==
+X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="62475408"
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="62475408"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2025 03:24:52 -0700
+X-CSE-ConnectionGUID: AB4vRihxSEi6OtLjGCOCfg==
+X-CSE-MsgGUID: HlqQ+P0wQNmm/ryg6iLQbw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="164201212"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.152])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2025 03:21:01 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Thu, 3 Apr 2025 13:20:58 +0300 (EEST)
-To: =?ISO-8859-2?Q?Micha=B3_Winiarski?= <michal.winiarski@intel.com>
-cc: linux-pci@vger.kernel.org, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>, 
- Bjorn Helgaas <bhelgaas@google.com>, 
- =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>, 
- =?ISO-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Michal Wajdeczko <michal.wajdeczko@intel.com>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?ISO-8859-15?Q?Thomas_Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Matt Roper <matthew.d.roper@intel.com>
-Subject: Re: [PATCH v7 5/6] PCI: Allow drivers to control VF BAR size
-In-Reply-To: <20250402141122.2818478-6-michal.winiarski@intel.com>
-Message-ID: <14a7c29e-31b9-2954-9142-0d1c49988b07@linux.intel.com>
-References: <20250402141122.2818478-1-michal.winiarski@intel.com>
- <20250402141122.2818478-6-michal.winiarski@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="132166741"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO mwauld-desk.intel.com)
+ ([10.245.244.142])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2025 03:24:51 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH v6 0/7] Improve SRIOV VRAM provisioning
+Date: Thu,  3 Apr 2025 11:24:41 +0100
+Message-ID: <20250403102440.266113-9-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323328-1193295669-1743675658=:1302"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,197 +65,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+Support non-contig VRAM for pinned kernel objects. Main current usecase is
+when provisioning VRAM for SRIOV usecase (final patch). Currently we are
+artificially limited to using contig VRAM, however the allocations here are
+very large and the contig restriction can result in failing to provision
+the VF, even when there is enough free space (we just need at least 2M
+pages).
 
---8323328-1193295669-1743675658=:1302
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
+v2:
+ - Various fixes for CI reported issues.
+v3:
+ - suspend/resume and various other fixes.
+v4:
+ - drop one bogus assert.
+ - rebase on the newly merged apply-to-pinned infra.
+v5:
+ - rebase on newly merged dma-unmap on unplug, which interacts with
+   the pinned lists.
+v6:
+ - Small fix in patch 4, where I missed restoring the kernel bo late list
+   for igpu, which is needed for hibernation and GGTT restore.
 
-On Wed, 2 Apr 2025, Micha=C5=82 Winiarski wrote:
+-- 
+2.49.0
 
-> Drivers could leverage the fact that the VF BAR MMIO reservation is
-> created for total number of VFs supported by the device by resizing the
-> BAR to larger size when smaller number of VFs is enabled.
->=20
-> Add a pci_iov_vf_bar_set_size() function to control the size and a
-> pci_iov_vf_bar_get_sizes() helper to get the VF BAR sizes that will
-> allow up to num_vfs to be successfully enabled with the current
-> underlying reservation size.
->=20
-> Signed-off-by: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
-> ---
->  drivers/pci/iov.c   | 69 +++++++++++++++++++++++++++++++++++++++++++++
->  include/linux/pci.h |  6 ++++
->  2 files changed, 75 insertions(+)
->=20
-> diff --git a/drivers/pci/iov.c b/drivers/pci/iov.c
-> index 2fafbd6a998f0..8a62049b56b41 100644
-> --- a/drivers/pci/iov.c
-> +++ b/drivers/pci/iov.c
-> @@ -1313,3 +1313,72 @@ int pci_sriov_configure_simple(struct pci_dev *dev=
-, int nr_virtfn)
->  =09return nr_virtfn;
->  }
->  EXPORT_SYMBOL_GPL(pci_sriov_configure_simple);
-> +
-> +/**
-> + * pci_iov_vf_bar_set_size - set a new size for a VF BAR
-> + * @dev: the PCI device
-> + * @resno: the resource number
-> + * @size: new size as defined in the spec (0=3D1MB, 31=3D128TB)
-> + *
-> + * Set the new size of a VF BAR that supports VF resizable BAR capabilit=
-y.
-> + * Unlike pci_resize_resource(), this does not cause the resource that
-> + * reserves the MMIO space (originally up to total_VFs) to be resized, w=
-hich
-> + * means that following calls to pci_enable_sriov() can fail if the reso=
-urces
-> + * no longer fit.
-> + *
-> + * Return: 0 on success, or negative on failure.
-> + */
-> +int pci_iov_vf_bar_set_size(struct pci_dev *dev, int resno, int size)
-> +{
-> +=09int ret;
-> +=09u32 sizes;
-
-Please reverse the order of these variables.
-
-> +
-> +=09if (!pci_resource_is_iov(resno))
-> +=09=09return -EINVAL;
-> +
-> +=09if (pci_iov_is_memory_decoding_enabled(dev))
-> +=09=09return -EBUSY;
-> +
-> +=09sizes =3D pci_rebar_get_possible_sizes(dev, resno);
-> +=09if (!sizes)
-> +=09=09return -ENOTSUPP;
-> +
-> +=09if (!(sizes & BIT(size)))
-
-Add include for BIT().
-
-Although adding a helper like this would be helpful for multiple callers:
-
-@@ -3780,6 +3780,88 @@ u32 pci_rebar_get_possible_sizes(struct pci_dev *pde=
-v, int bar)
- }
- EXPORT_SYMBOL(pci_rebar_get_possible_sizes);
-=20
-+/**
-+ * pci_rebar_size_supported - check if size is supported for a resizable B=
-AR
-+ * @pdev: PCI device
-+ * @bar: BAR to check
-+ * @size: size as defined in the spec (0=3D1MB, 31=3D128TB)
-+ *
-+ * Return: %0 if @size is supported for @bar,
-+ *        %-EINVAL if @size is not supported,
-+ *        %-ENOTSUPP if @bar is not resizable.
-+ */
-+int pci_rebar_size_supported(struct pci_dev *pdev, int bar, int size)
-+{
-+       u64 sizes;
-+
-+       sizes =3D pci_rebar_get_possible_sizes(pdev, bar);
-+       if (!sizes)
-+               return -ENOTSUPP;
-+
-+       return BIT(size) & sizes ? 0 : -EINVAL;
-+}
-+EXPORT_SYMBOL_GPL(pci_rebar_size_supported);
-
-(Yes, I've some rebar helpers pending so this is extract from that.)
-
-> +=09=09return -EINVAL;
-> +
-> +=09ret =3D pci_rebar_set_size(dev, resno, size);
-> +=09if (ret)
-> +=09=09return ret;
-> +
-> +=09pci_iov_resource_set_size(dev, resno, pci_rebar_size_to_bytes(size));
-> +
-> +=09return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(pci_iov_vf_bar_set_size);
-> +
-> +/**
-> + * pci_iov_vf_bar_get_sizes - get VF BAR sizes allowing to create up to =
-num_vfs
-> + * @dev: the PCI device
-> + * @resno: the resource number
-> + * @num_vfs: number of VFs
-> + *
-> + * Get the sizes of a VF resizable BAR that can accommodate @num_vfs wit=
-hin
-> + * the currently assigned size of the resource @resno.
-> + *
-> + * Return: A bitmask of sizes in format defined in the spec (bit 0=3D1MB=
-,
-> + * bit 31=3D128TB).
-> + */
-> +u32 pci_iov_vf_bar_get_sizes(struct pci_dev *dev, int resno, int num_vfs=
-)
-> +{
-> +=09resource_size_t vf_len =3D pci_resource_len(dev, resno);
-> +=09u32 sizes;
-> +
-> +=09if (!num_vfs)
-> +=09=09return 0;
-> +
-> +=09do_div(vf_len, num_vfs);
-
-Add include for do_div().
-
-> +=09sizes =3D (roundup_pow_of_two(vf_len + 1) - 1) >> ilog2(SZ_1M);
-
-Doesn't resource_size() already do that + 1 so why is a second one needed=
-=20
-here?
-
-Add include for ilog() and SZ_*.
-
-> +
-> +=09return sizes & pci_rebar_get_possible_sizes(dev, resno);
-> +}
-> +EXPORT_SYMBOL_GPL(pci_iov_vf_bar_get_sizes);
-> diff --git a/include/linux/pci.h b/include/linux/pci.h
-> index 0e8e3fd77e967..c8708f3749757 100644
-> --- a/include/linux/pci.h
-> +++ b/include/linux/pci.h
-> @@ -2389,6 +2389,8 @@ int pci_sriov_set_totalvfs(struct pci_dev *dev, u16=
- numvfs);
->  int pci_sriov_get_totalvfs(struct pci_dev *dev);
->  int pci_sriov_configure_simple(struct pci_dev *dev, int nr_virtfn);
->  resource_size_t pci_iov_resource_size(struct pci_dev *dev, int resno);
-> +int pci_iov_vf_bar_set_size(struct pci_dev *dev, int resno, int size);
-> +u32 pci_iov_vf_bar_get_sizes(struct pci_dev *dev, int resno, int num_vfs=
-);
->  void pci_vf_drivers_autoprobe(struct pci_dev *dev, bool probe);
-> =20
->  /* Arch may override these (weak) */
-> @@ -2441,6 +2443,10 @@ static inline int pci_sriov_get_totalvfs(struct pc=
-i_dev *dev)
->  #define pci_sriov_configure_simple=09NULL
->  static inline resource_size_t pci_iov_resource_size(struct pci_dev *dev,=
- int resno)
->  { return 0; }
-> +static inline int pci_iov_vf_bar_set_size(struct pci_dev *dev, int resno=
-, int size)
-> +{ return -ENODEV; }
-> +static inline u32 pci_iov_vf_bar_get_sizes(struct pci_dev *dev, int resn=
-o, int num_vfs)
-> +{ return 0; }
->  static inline void pci_vf_drivers_autoprobe(struct pci_dev *dev, bool pr=
-obe) { }
->  #endif
-> =20
->=20
-
---=20
- i.
-
---8323328-1193295669-1743675658=:1302--
