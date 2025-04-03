@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5477BC3601A
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 19:14:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0B7EC36014
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 19:15:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7EC310EA96;
-	Thu,  3 Apr 2025 19:14:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9057910EAA4;
+	Thu,  3 Apr 2025 19:15:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="GET6YMZI";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="XvS5mkb5";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A66910EA97;
- Thu,  3 Apr 2025 19:14:30 +0000 (UTC)
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6060010EAA3;
+ Thu,  3 Apr 2025 19:15:22 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 8594C448E5;
- Thu,  3 Apr 2025 19:14:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 933C3C4CEE9;
- Thu,  3 Apr 2025 19:14:28 +0000 (UTC)
+ by nyc.source.kernel.org (Postfix) with ESMTP id C03A8A45C89;
+ Thu,  3 Apr 2025 19:09:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BD26C4CEE3;
+ Thu,  3 Apr 2025 19:15:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1743707669;
- bh=ZqnBz5XLFH+VGf0r+gXS385luM/LuY22XBL7qEG8e1k=;
+ s=k20201202; t=1743707721;
+ bh=CpVTYn9MyANMDuu9W8QVPxAeUr0kqUIv7GuCxZXQGok=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=GET6YMZI9mzphpZY/CHrqxUuDeTYiWUOaWneFwVwQoe1mLcSZIH6Kkaig3gxJzeib
- a1V21DR3uHBklEGnHVZYwoCuN9qenqFGuJVqsF8dh1C+Ipp51hYto7qnzC3Ppvb3Q7
- dEaNSdqnzBQbmZ2hZyZ/ISZMX1ncQRyE8SGJJP8RFKgewxZc93puWsGCof3tSAMozQ
- WPSNLQ7FlVcbO3p188hzTorMB5oe0tjhCC/SdwYPgmORHq//pRdf4r2tIiSRxvBAI3
- qpdTadh2Byir2ZJmZEJ+wgDgcT6GnPNwRbF0UYh8bEUcRFM8OE130dkct0DwzTGFpm
- 7zYMMcJMNz7Sg==
+ b=XvS5mkb5aKPyV8zVOX8kgQkC8C/Wea2Khhtf2nMjfdDaLCLDC7/weWpCVTAN597JK
+ 01e+4w0aisHeon+tpBJRXHtXE8pEPNKZpC5VD+zpe55rysmwGKPAb8T2bmCdGkmt3M
+ zYU40UZ0n8P5vin5LDyxH1IxpKau34iqilndBZcwEqwJgVYlEpbXg1bvwdG7zVTo2L
+ ie1sHB+fT9+cgQQ33enY6iHU99h0BuDl7lxEDlEFSoGHfh8zIXbdr9OmMNKoww3nUv
+ HvN4/J3KT3ewNcNNMldwZdgavmQvVKKx7lqd8UC4Fr91DIjFgo7Y5b8ec0sKWAO+r9
+ uNNCu8CGaSGfQ==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Gustavo Sousa <gustavo.sousa@intel.com>, Sasha Levin <sashal@kernel.org>,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- airlied@gmail.com, simona@ffwll.ch, intel-xe@lists.freedesktop.org,
+Cc: Shekhar Chauhan <shekhar.chauhan@intel.com>,
+ Clint Taylor <Clinton.A.Taylor@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sasha Levin <sashal@kernel.org>,
+ lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ tursulin@ursulin.net, airlied@gmail.com, simona@ffwll.ch,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.14 26/44] drm/xe/xelp: Move Wa_16011163337 from
- tunings to workarounds
-Date: Thu,  3 Apr 2025 15:12:55 -0400
-Message-Id: <20250403191313.2679091-26-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.13 02/37] drm/xe/bmg: Add new PCI IDs
+Date: Thu,  3 Apr 2025 15:14:38 -0400
+Message-Id: <20250403191513.2680235-2-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250403191313.2679091-1-sashal@kernel.org>
-References: <20250403191313.2679091-1-sashal@kernel.org>
+In-Reply-To: <20250403191513.2680235-1-sashal@kernel.org>
+References: <20250403191513.2680235-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.14
+X-stable-base: Linux 6.13.9
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,63 +66,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+From: Shekhar Chauhan <shekhar.chauhan@intel.com>
 
-[ Upstream commit d9b5d83c5a4d720af6ddbefe2825c78f0325a3fd ]
+[ Upstream commit fa8ffaae1b15236b8afb0fbbc04117ff7c900a83 ]
 
-Workaround database specifies 16011163337 as a workaround so lets move it
-there.
+Add 3 new PCI IDs for BMG.
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20250227101304.46660-3-tvrtko.ursulin@igalia.com
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+v2: Fix typo -> Replace '.' with ','
+
+Signed-off-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
+Reviewed-by: Clint Taylor <Clinton.A.Taylor@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20250128162015.3288675-1-shekhar.chauhan@intel.com
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/xe/xe_tuning.c | 8 --------
- drivers/gpu/drm/xe/xe_wa.c     | 7 +++++++
- 2 files changed, 7 insertions(+), 8 deletions(-)
+ include/drm/intel/pciids.h | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
-index d449de0fb6ecb..3c78f3d715591 100644
---- a/drivers/gpu/drm/xe/xe_tuning.c
-+++ b/drivers/gpu/drm/xe/xe_tuning.c
-@@ -97,14 +97,6 @@ static const struct xe_rtp_entry_sr engine_tunings[] = {
- };
+diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
+index 32480b5563db3..3a89f6bb8ee55 100644
+--- a/include/drm/intel/pciids.h
++++ b/include/drm/intel/pciids.h
+@@ -817,7 +817,10 @@
+ 	MACRO__(0xE20B, ## __VA_ARGS__), \
+ 	MACRO__(0xE20C, ## __VA_ARGS__), \
+ 	MACRO__(0xE20D, ## __VA_ARGS__), \
+-	MACRO__(0xE212, ## __VA_ARGS__)
++	MACRO__(0xE210, ## __VA_ARGS__), \
++	MACRO__(0xE212, ## __VA_ARGS__), \
++	MACRO__(0xE215, ## __VA_ARGS__), \
++	MACRO__(0xE216, ## __VA_ARGS__)
  
- static const struct xe_rtp_entry_sr lrc_tunings[] = {
--	{ XE_RTP_NAME("Tuning: ganged timer, also known as 16011163337"),
--	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210), ENGINE_CLASS(RENDER)),
--	  /* read verification is ignored due to 1608008084. */
--	  XE_RTP_ACTIONS(FIELD_SET_NO_READ_MASK(FF_MODE2,
--						FF_MODE2_GS_TIMER_MASK,
--						FF_MODE2_GS_TIMER_224))
--	},
--
- 	/* DG2 */
- 
- 	{ XE_RTP_NAME("Tuning: L3 cache"),
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 570fe03764025..2553accf8c517 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -618,6 +618,13 @@ static const struct xe_rtp_entry_sr engine_was[] = {
- };
- 
- static const struct xe_rtp_entry_sr lrc_was[] = {
-+	{ XE_RTP_NAME("16011163337"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210), ENGINE_CLASS(RENDER)),
-+	  /* read verification is ignored due to 1608008084. */
-+	  XE_RTP_ACTIONS(FIELD_SET_NO_READ_MASK(FF_MODE2,
-+						FF_MODE2_GS_TIMER_MASK,
-+						FF_MODE2_GS_TIMER_224))
-+	},
- 	{ XE_RTP_NAME("1409342910, 14010698770, 14010443199, 1408979724, 1409178076, 1409207793, 1409217633, 1409252684, 1409347922, 1409142259"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210)),
- 	  XE_RTP_ACTIONS(SET(COMMON_SLICE_CHICKEN3,
+ /* PTL */
+ #define INTEL_PTL_IDS(MACRO__, ...) \
 -- 
 2.39.5
 
