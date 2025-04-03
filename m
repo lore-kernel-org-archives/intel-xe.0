@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50292C369A2
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 19:03:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03DAAC369A1
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 19:03:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0931C10EA59;
-	Thu,  3 Apr 2025 19:03:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCC6310EA55;
+	Thu,  3 Apr 2025 19:03:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="AUwuALYd";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="NdAuWyEO";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8779910EA59
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Apr 2025 19:03:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A985010EA55
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Apr 2025 19:03:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,23 +22,23 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=MQ5wk6s7OJO4dY8IsZoDJREvMnH6Ozej8nOsOsSorik=; b=AUwuALYdu7ubKMDym6AdsmhEZt
- 7+dIjnZT96JG4P9Wyu3dqIqg8+7LODij+d+sZGlrx0Jeu6yFrtOkeSB1agq/Ka/GeRtFGoR/Ew5r6
- onBacrCbIDPwzqe16TpalAZVGpNMmol8dlQpTqlkrCO/BOA+mBerP2Ote4EEhcgpJ5K0dcsVMgn9q
- uMqqcCZP09OhGtgOjB8+5xJEAlUxS3k+mtcPmBE3uuHBqhN0ZnMtg5En4N7NIW7bvmJyc1+xmUMNz
- 35NfShV4oTD8fW/UmyqsnpayumEhOuJlQZRKwx7JtJbcR0ZD3sRiAOSuuufQGvaq+0vxMndPdtdqe
- Vhgi3aoQ==;
+ bh=6vfK4QlBJzW6S+QquELjHAxTHEx4c86l4PyDpa97oG8=; b=NdAuWyEO+Evu35NJQEz+symLFc
+ +xYADLC3tKle3K16Vy0mKKjA7TEAkJbqSJej957XB466XURKZSrNnE70XBquZHgVxKooRLBYuoWfG
+ 5H5ybGk6Up2sVfoajCPeMgX6ImuiHLlxtLAiePGPxLb6/1wNNexgXWHVJ4a7Swm9KBy1ymOn1Eyy0
+ Y1vy2gNhpV7kOrw4/jJTd0c18J7QFCEEzrTWkyxC0CeI58SVGZN+k0xrUD9nOQ1u5Eq0o9nkw/hEp
+ XWNn4sWnWfQW6fa51n0MbdqOl/qztCuNMAZrKS5lk0idvPo0/SaWfiBBqYWCwBWBV0e7Q48hPafmS
+ f7TLWDow==;
 Received: from [90.241.98.187] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1u0PqV-00Axly-RR; Thu, 03 Apr 2025 21:03:23 +0200
+ id 1u0PqY-00AxmH-0D; Thu, 03 Apr 2025 21:03:26 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com,
 	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH v5 04/16] drm/xe: Flush L3 when flushing render cache
-Date: Thu,  3 Apr 2025 20:03:04 +0100
-Message-ID: <20250403190317.6064-5-tvrtko.ursulin@igalia.com>
+Subject: [PATCH v5 07/16] drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
+Date: Thu,  3 Apr 2025 20:03:07 +0100
+Message-ID: <20250403190317.6064-8-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250403190317.6064-1-tvrtko.ursulin@igalia.com>
 References: <20250403190317.6064-1-tvrtko.ursulin@igalia.com>
@@ -58,51 +58,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-I915 sets PIPE_CONTROL_FLUSH_L3 (bit 27) when flushing render caches but
-interesting thing is Tigerlake PRM lists that bit as reserved.
+Emit MI_FLUSH_DW_CCS when invalidating on auxccs platforms.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
-Is xe missing this? Or has this been wrong for so long in i915? Or is this
-an undocumented bit?
----
- drivers/gpu/drm/xe/instructions/xe_gpu_commands.h |  1 +
- drivers/gpu/drm/xe/xe_ring_ops.c                  | 10 ++++++++++
- 2 files changed, 11 insertions(+)
+ drivers/gpu/drm/xe/xe_ring_ops.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-index 78c0e87dbd37..27892984403c 100644
---- a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-+++ b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-@@ -47,6 +47,7 @@
- 
- #define   PIPE_CONTROL_COMMAND_CACHE_INVALIDATE		(1<<29)
- #define   PIPE_CONTROL_TILE_CACHE_FLUSH			(1<<28)
-+#define   PIPE_CONTROL_FLUSH_L3                         (1<<27)
- #define   PIPE_CONTROL_AMFS_FLUSH			(1<<25)
- #define   PIPE_CONTROL_GLOBAL_GTT_IVB			(1<<24)
- #define   PIPE_CONTROL_LRI_POST_SYNC			BIT(23)
 diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 905bb5b06e92..61295f93ffb7 100644
+index 72979521ee7e..7509c41dee97 100644
 --- a/drivers/gpu/drm/xe/xe_ring_ops.c
 +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -197,6 +197,16 @@ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
- 	if (XE_WA(gt, 1409600907))
- 		flags |= PIPE_CONTROL_DEPTH_STALL;
+@@ -288,15 +288,16 @@ static void __emit_job_gen12_xcs(struct xe_sched_job *job, struct xe_lrc *lrc,
+ 			      class == XE_ENGINE_CLASS_VIDEO_DECODE ||
+ 			      class == XE_ENGINE_CLASS_VIDEO_ENHANCE);
+ 	const bool invalidate_tlb = aux_ccs || job->ring_ops_flush_tlb;
++	const u32 flags = aux_ccs && class == XE_ENGINE_CLASS_COPY ?
++			  MI_FLUSH_DW_CCS : 0;
  
-+	/*
-+	 * L3 fabric flush is needed for AUX CCS invalidation
-+	 * which happens as part of pipe-control so we can
-+	 * ignore PIPE_CONTROL_FLUSH_L3. Also PIPE_CONTROL_FLUSH_L3
-+	 * deals with Protected Memory which is not needed for
-+	 * AUX CCS invalidation and lead to unwanted side effects.
-+	 */
-+	if (GRAPHICS_VERx100(xe) < 1270)
-+		flags |= PIPE_CONTROL_FLUSH_L3;
-+
- 	if (lacks_render)
- 		flags &= ~PIPE_CONTROL_3D_ARCH_FLAGS;
- 	else if (job->q->class == XE_ENGINE_CLASS_COMPUTE)
+ 	i = emit_copy_timestamp(lrc, dw, i);
+ 
+ 	if (invalidate_tlb) {
+ 		dw[i++] = preparser_disable(true);
+ 		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+-					seqno,
+-					MI_INVALIDATE_TLB,
+-					dw, i);
++					seqno, MI_INVALIDATE_TLB | flags, dw,
++					i);
+ 		/* hsdes: 1809175790 */
+ 		if (aux_ccs) {
+ 			struct xe_reg reg;
 -- 
 2.48.0
 
