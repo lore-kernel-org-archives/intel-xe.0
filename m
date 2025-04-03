@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7953EC3601B
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 09:06:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39C02C3601E
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 09:11:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3945510E946;
-	Thu,  3 Apr 2025 09:06:26 +0000 (UTC)
-Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23DF010E13C;
- Thu,  3 Apr 2025 09:06:25 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8281833245718460033=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id E63E410E956;
+	Thu,  3 Apr 2025 09:11:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k3eoYa1V";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DA7010E956;
+ Thu,  3 Apr 2025 09:11:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1743671506; x=1775207506;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=aUEQroovJ6vRQA7UBSnMx4Fc2GF1cLqOsFQIGNVHq0I=;
+ b=k3eoYa1V8M7ltyUNzeacevIT14RR8ExrRhEja1kFmxbui3AyiOwwP+YH
+ 1dLxPVcxFtZwK5IgRtKVsLctr3z+196FkoD9QYs7bV1ckEjpbKAUKm/Jf
+ W26RZHjp42zrl5DbelkbZ1l7R/zawbly609L7N8jrZq7F8yKAhv7BFAns
+ 4J7leDTvd3Kt/Yeig6UjEqUAhCzaWGTswvqyjqZmeJazw9l9gbc52nebS
+ fmo4XVplkCaidfqZS3geoXX+lZtIax9CVwUtKroywdC+talq0yawb20BX
+ YyksrnuQB0u2XSCGBUz7/+Ql47CZj7sP5GHgUgCiLsP+bzt1GJd+DhtRV A==;
+X-CSE-ConnectionGUID: UWWCT22oSlWQsPyH3N3N7g==
+X-CSE-MsgGUID: sSM78bBPR92sYGys9ihy4Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="44960735"
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="44960735"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2025 02:11:46 -0700
+X-CSE-ConnectionGUID: Hsust/IGSpey11qMuyPpyQ==
+X-CSE-MsgGUID: 099+VDxrTteJOlzxFYC2TA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="127447960"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.158])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2025 02:11:44 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 0/7] drm/i915/wm: convert to struct intel_display
+Date: Thu,  3 Apr 2025 12:11:32 +0300
+Message-Id: <cover.1743671373.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_the_missed_va?=
- =?utf-8?q?lue_paramter_of_LE=5FCOS_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shuicheng Lin" <shuicheng.lin@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 03 Apr 2025 09:06:25 -0000
-Message-ID: <174367118510.31708.8107528520289670621@e6b6f09ec485>
-X-Patchwork-Hint: ignore
-References: <20250401205703.4179906-1-shuicheng.lin@intel.com>
-In-Reply-To: <20250401205703.4179906-1-shuicheng.lin@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +64,48 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8281833245718460033==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The wm code is one of the last big holdouts of struct drm_i915_private
+usage. Convert them all to struct intel_display, as much as possible
+anyway.
 
-== Series Details ==
-
-Series: drm/xe: Add the missed value paramter of LE_COS (rev4)
-URL   : https://patchwork.freedesktop.org/series/147087/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-2900-135e2838ed7d44d880e7e19971b1234e6ae04ded_BAT -> xe-pw-147087v4_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
+After this, we're really starting to get down to the bottom of the
+barrel.
 
 
-Changes
--------
+Jani Nikula (7):
+  drm/i915/wm: convert intel_wm.h external interfaces to struct
+    intel_display
+  drm/i915/wm: convert intel_wm.c internally to struct intel_display
+  drm/i915/wm: convert skl_watermark.h external interfaces to struct
+    intel_display
+  drm/i915/wm: convert skl_watermarks.c internally to struct
+    intel_display
+  drm/i915/wm: convert intel_wm.h external interfaces to struct
+    intel_display
+  drm/i915/wm: convert i9xx_wm.c to intel_de_*() register interface
+  drm/i915/wm: convert i9xx_wm.c internally to struct intel_display
 
-  No changes found
+ drivers/gpu/drm/i915/display/i9xx_wm.c        | 1222 ++++++++---------
+ drivers/gpu/drm/i915/display/i9xx_wm.h        |   18 +-
+ drivers/gpu/drm/i915/display/intel_bw.c       |   17 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |    4 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |   22 +-
+ .../gpu/drm/i915/display/intel_display_core.h |    6 +-
+ .../drm/i915/display/intel_display_debugfs.c  |    3 +-
+ .../drm/i915/display/intel_display_driver.c   |   12 +-
+ drivers/gpu/drm/i915/display/intel_dsb.c      |    4 +-
+ .../drm/i915/display/intel_modeset_setup.c    |   11 +-
+ drivers/gpu/drm/i915/display/intel_wm.c       |  166 +--
+ drivers/gpu/drm/i915/display/intel_wm.h       |   14 +-
+ drivers/gpu/drm/i915/display/skl_watermark.c  |  623 ++++-----
+ drivers/gpu/drm/i915/display/skl_watermark.h  |   23 +-
+ drivers/gpu/drm/i915/i915_driver.c            |    2 +-
+ drivers/gpu/drm/xe/display/xe_display.c       |    2 +-
+ 16 files changed, 1053 insertions(+), 1096 deletions(-)
 
+-- 
+2.39.5
 
-Build changes
--------------
-
-  * Linux: xe-2900-135e2838ed7d44d880e7e19971b1234e6ae04ded -> xe-pw-147087v4
-
-  IGT_8302: e2f972e6e21cd7bae732a649889325d2175bd1a5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2900-135e2838ed7d44d880e7e19971b1234e6ae04ded: 135e2838ed7d44d880e7e19971b1234e6ae04ded
-  xe-pw-147087v4: 147087v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v4/index.html
-
---===============8281833245718460033==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Add the missed value paramter of LE_COS (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147087/">https://patchwork.freedesktop.org/series/147087/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2900-135e2838ed7d44d880e7e19971b1234e6ae04ded_BAT -&gt; xe-pw-147087v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2900-135e2838ed7d44d880e7e19971b1234e6ae04ded -&gt; xe-pw-147087v4</li>
-</ul>
-<p>IGT_8302: e2f972e6e21cd7bae732a649889325d2175bd1a5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2900-135e2838ed7d44d880e7e19971b1234e6ae04ded: 135e2838ed7d44d880e7e19971b1234e6ae04ded<br />
-  xe-pw-147087v4: 147087v4</p>
-
-</body>
-</html>
-
---===============8281833245718460033==--
