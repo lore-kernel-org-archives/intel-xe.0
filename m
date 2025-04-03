@@ -4,48 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D70DFC369A4
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 18:56:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EED1C3601B
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 18:56:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95D3C10EA5A;
-	Thu,  3 Apr 2025 18:56:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CABF10EA5B;
+	Thu,  3 Apr 2025 18:56:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iKDlhRoA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HfMcRDdv";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CD6E10EA4D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7D5910EA43
  for <Intel-Xe@lists.freedesktop.org>; Thu,  3 Apr 2025 18:56:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743706581; x=1775242581;
+ t=1743706582; x=1775242582;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=JdUkweTom349eh/KGOUptLi9Y6ZcZxwMGVza7V0Dt+Q=;
- b=iKDlhRoAAyLKf6GQjTwITrVseLtLEx9Zf7gFP63yS2gkie091pXGPHgU
- 1hftQ778xITtGpRThzLQfVu6ExzvWp6ua7RFXricodNQxLnCEofe1AmXb
- MXBGic8GMj3M85Ljm0qMGSOhVYRb1kaCIZlBQj7c4iwQWU5fbEHSX49o4
- 8adGXQtRZt4H5BeV3vbR9fgEYY2ZAlAbI1kf3yV7zK9l8etAUPCZJQQ6w
- 2GIuMbpIUBf6a3UHHQmRs+QmApdNZbO/oHTgTt5zg2c5wsZ+2oK1mLZql
- 8Z3bbqYZQkWAHfC/QjTfE9g/H+O1ldgj1Z28IEhot+ZC4JnjRhHNn4FPc A==;
-X-CSE-ConnectionGUID: irAH4nTGSYGMmCWByqwAGA==
-X-CSE-MsgGUID: /hFrPg6ZRv+Dm8Zadh9RGQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11393"; a="32737757"
-X-IronPort-AV: E=Sophos;i="6.15,186,1739865600"; d="scan'208";a="32737757"
+ bh=gPaQEl55iOYEg9eHfxaM0lvCP/otidqN5bkVb0alY28=;
+ b=HfMcRDdvlEmno8E5/ZdScJNW87Xxi4Ttap+0JTyeG+nkImGXvTS8z9IG
+ 3OJ/aoYrnjOaKpZLJj2RKAmI+/JlN4+JeN4lqK6+gtnAVGxsDCmk1bFmC
+ 7i19BMdOd/EKOKg+LCiHDIcjlaZdoaPiTQ/LkMU0scmcK+lutmxLezXPv
+ N9demAvLdNkovU+UMrDiqtzvKH7h1x69uKm1cGsGwm9V5BHJF/HcQZO/U
+ T+7vvNaL5hjkeoecLKSYERh8euWnHgXu+3rOtoA6ep3G4dK8lcRDhTj2j
+ rv/crxlF5j0DIZPuKr5tm/p2cToFvY7OhGSi8qedAX150m1QdOwcwYLh3 w==;
+X-CSE-ConnectionGUID: 8GCdkoj2T/+Wx7D4xpuYog==
+X-CSE-MsgGUID: WPMPEZnHR4ur33nTibh0DA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11393"; a="32737764"
+X-IronPort-AV: E=Sophos;i="6.15,186,1739865600"; d="scan'208";a="32737764"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2025 11:56:19 -0700
-X-CSE-ConnectionGUID: fTND5c9GRXmRCmHiLse31g==
-X-CSE-MsgGUID: xCdgN9g8SUmaJHh9RuS4lw==
+ 03 Apr 2025 11:56:21 -0700
+X-CSE-ConnectionGUID: VnH5qMs+RceTbkh5HJ7BDQ==
+X-CSE-MsgGUID: GhqounrKRVqTZ0c1NrSEsg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,186,1739865600"; d="scan'208";a="126895840"
+X-IronPort-AV: E=Sophos;i="6.15,186,1739865600"; d="scan'208";a="126895862"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by fmviesa006.fm.intel.com with ESMTP; 03 Apr 2025 11:56:19 -0700
+ by fmviesa006.fm.intel.com with ESMTP; 03 Apr 2025 11:56:20 -0700
 From: John.C.Harrison@Intel.com
 To: Intel-Xe@Lists.FreeDesktop.Org
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Subject: [PATCH 1/8] drm/xe/guc: Enable w/a 16026508708
-Date: Thu,  3 Apr 2025 11:56:11 -0700
-Message-ID: <20250403185619.1555853-2-John.C.Harrison@Intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Matt Atwood <matthew.s.atwood@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH 8/8] drm/xe/ptl: Define HuC FW version for PTL
+Date: Thu,  3 Apr 2025 11:56:18 -0700
+Message-ID: <20250403185619.1555853-9-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250403185619.1555853-1-John.C.Harrison@Intel.com>
 References: <20250403185619.1555853-1-John.C.Harrison@Intel.com>
@@ -67,55 +69,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 
-The workaround is only relevant to SRIOV but does affect all platforms.
+First HuC release for PTL. Note that the HuC team now only releases
+GSC-enabled blobs, so we don't need the "_gsc" postfix to identify
+the variant anymore. The driver can identify the type of binary at
+runtime no matter the name.
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20241011163612.6558-1-matthew.s.atwood@intel.com
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/abi/guc_klvs_abi.h | 1 +
- drivers/gpu/drm/xe/xe_guc_ads.c       | 5 +++++
- drivers/gpu/drm/xe/xe_wa_oob.rules    | 2 ++
- 3 files changed, 8 insertions(+)
+ drivers/gpu/drm/xe/xe_uc_fw.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-index d633f1c739e4..7de8f827281f 100644
---- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-@@ -367,6 +367,7 @@ enum xe_guc_klv_ids {
- 	GUC_WA_KLV_NP_RD_WRITE_TO_CLEAR_RCSM_AT_CGP_LATE_RESTORE			= 0x9008,
- 	GUC_WORKAROUND_KLV_ID_BACK_TO_BACK_RCS_ENGINE_RESET				= 0x9009,
- 	GUC_WA_KLV_WAKE_POWER_DOMAINS_FOR_OUTBOUND_MMIO					= 0x900a,
-+	GUC_WA_KLV_RESET_BB_STACK_PTR_ON_VF_SWITCH					= 0x900b,
- };
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
+index 1db598d3b1de..40d48da19243 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.c
++++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+@@ -128,6 +128,7 @@ struct fw_blobs_by_type {
+ 	fw_def(TIGERLAKE,	GT_TYPE_ANY,	major_ver(i915,	guc,	tgl,	70, 44, 1))
  
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index bee4e0cfe7b8..9de8c2b81f0d 100644
---- a/drivers/gpu/drm/xe/xe_guc_ads.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -376,6 +376,11 @@ static void guc_waklv_init(struct xe_guc_ads *ads)
- 					GUC_WORKAROUND_KLV_ID_BACK_TO_BACK_RCS_ENGINE_RESET,
- 					&offset, &remain);
- 
-+	if (GUC_FIRMWARE_VER(&gt->uc.guc) >= MAKE_GUC_VER(70, 44, 0) && XE_WA(gt, 16026508708))
-+		guc_waklv_enable_simple(ads,
-+					GUC_WA_KLV_RESET_BB_STACK_PTR_ON_VF_SWITCH,
-+					&offset, &remain);
-+
- 	size = guc_ads_waklv_size(ads) - remain;
- 	if (!size)
- 		return;
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index 9b9e176992a8..9efc5accd43d 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -57,3 +57,5 @@ no_media_l3	MEDIA_VERSION(3000)
- 		GRAPHICS_VERSION(1260), GRAPHICS_STEP(A0, B0)
- 16023105232	GRAPHICS_VERSION_RANGE(2001, 3001)
- 		MEDIA_VERSION_RANGE(1301, 3000)
-+16026508708	GRAPHICS_VERSION_RANGE(1200, 3001)
-+		MEDIA_VERSION_RANGE(1300, 3000)
+ #define XE_HUC_FIRMWARE_DEFS(fw_def, mmp_ver, no_ver)		\
++	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	mmp_ver(xe,	huc,		ptl, 10, 2, 1))	\
+ 	fw_def(BATTLEMAGE,	GT_TYPE_ANY,	no_ver(xe,	huc,		bmg))		\
+ 	fw_def(LUNARLAKE,	GT_TYPE_ANY,	no_ver(xe,	huc,		lnl))		\
+ 	fw_def(METEORLAKE,	GT_TYPE_ANY,	no_ver(i915,	huc_gsc,	mtl))		\
 -- 
 2.49.0
 
