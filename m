@@ -4,56 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0D98C3600C
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 10:04:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0D1DC3600C
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 10:14:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A6AA10E992;
-	Thu,  3 Apr 2025 10:04:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YjdFSryi";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32BA310E992
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Apr 2025 10:04:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743674660; x=1775210660;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=d6JiPOtk9HnIdRU3nYtNqGi+Mrwirqgo2xPqkL6kvUw=;
- b=YjdFSryijE3S1E1mcQtasc9MTA54v2KnCPGu1mbHi3ZeV/tRyUOWa8Wz
- WLA3F0lTQ8iBOQBfkZvw4egfUxz/vQa3xw4DqER9QT8yePUoxRr8Huv2p
- 8AmWTmzOmflqHmE5GO0M4OzxG01fQDfhJ3jWKXp0evfV4/1pyqEG0YBKn
- GrFhqivAMO/o0YVgKiP+r9xxTmERJFt+jMKFGdz7hpvsCY+2/57c/BKhd
- 71TClBeD/N9EdPjnVw+kgDU0OISUSj6LnRZssUqC7DwLUa947PEm5BUNf
- jSdelVMup5dGR/l68xCUD2Mq20ai6SCLIP8YjFYyspYdekTC8SEo/TcwH w==;
-X-CSE-ConnectionGUID: PGeHjepGSbmBWZ6NXhDGvQ==
-X-CSE-MsgGUID: WM/J4GzWQ+ShMr2k9j+vvA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="44224422"
-X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="44224422"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2025 03:04:20 -0700
-X-CSE-ConnectionGUID: EQsn1KAPRlGjr2Xyo8yETw==
-X-CSE-MsgGUID: 64Grem5hRG+8SZIQ7s/Azg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="127470159"
-Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2025 03:04:18 -0700
-From: Riana Tauro <riana.tauro@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
- lucas.demarchi@intel.com, matthew.d.roper@intel.com,
- aravind.iddamsetty@linux.intel.com
-Subject: [PATCH v3 3/3] drm/xe: Enable configfs support for survivability mode
-Date: Thu,  3 Apr 2025 15:55:53 +0530
-Message-ID: <20250403102555.1265786-4-riana.tauro@intel.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20250403102555.1265786-1-riana.tauro@intel.com>
-References: <20250403102555.1265786-1-riana.tauro@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80CB810E095;
+	Thu,  3 Apr 2025 10:14:55 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E30610E095;
+ Thu,  3 Apr 2025 10:14:54 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_LOBF_enablement_fix_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Animesh Manna" <animesh.manna@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 03 Apr 2025 10:14:54 -0000
+Message-ID: <174367529437.31994.2834549884280328360@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250403092825.484347-1-animesh.manna@intel.com>
+In-Reply-To: <20250403092825.484347-1-animesh.manna@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,264 +35,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enable survivability mode if supported and configfs attribute is set.
-Enabling survivability mode manually is useful in cases where pcode does
-not detect failure, validation and for IFR (in-field-repair).
+== Series Details ==
 
-To set configfs survivability mode attribute for a device
+Series: LOBF enablement fix (rev6)
+URL   : https://patchwork.freedesktop.org/series/142278/
+State : success
 
-echo 1 > /sys/kernel/config/xe/0000:03:00.0/survivability_mode
+== Summary ==
 
-The card enters survivability mode if supported
+lib/modules/6.14.0-xe+/kernel/arch/x86/events/amd/
+lib/modules/6.14.0-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.14.0-xe+/kernel/kernel/
+lib/modules/6.14.0-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.14.0-xe+/kernel/crypto/
+lib/modules/6.14.0-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.14.0-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.14.0-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.14.0-xe+/kernel/crypto/zstd.ko
+lib/modules/6.14.0-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.14.0-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.14.0-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.14.0-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/xctr.ko
+lib/modules/6.14.0-xe+/kernel/crypto/authenc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm3.ko
+lib/modules/6.14.0-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.14.0-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.14.0-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cmac.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.14.0-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/essiv.ko
+lib/modules/6.14.0-xe+/kernel/crypto/ccm.ko
+lib/modules/6.14.0-xe+/kernel/crypto/wp512.ko
+lib/modules/6.14.0-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.14.0-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.14.0-xe+/kernel/crypto/lrw.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.14.0-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.14.0-xe+/kernel/crypto/842.ko
+lib/modules/6.14.0-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.14.0-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/md4.ko
+lib/modules/6.14.0-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.14.0-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/lz4.ko
+lib/modules/6.14.0-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.14.0-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm4.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.14.0-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.14.0-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.14.0-xe+/kernel/block/
+lib/modules/6.14.0-xe+/kernel/block/bfq.ko
+lib/modules/6.14.0-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.14.0-xe+/build
+lib/modules/6.14.0-xe+/modules.alias.bin
+lib/modules/6.14.0-xe+/modules.builtin
+lib/modules/6.14.0-xe+/modules.softdep
+lib/modules/6.14.0-xe+/modules.alias
+lib/modules/6.14.0-xe+/modules.order
+lib/modules/6.14.0-xe+/modules.symbols
+lib/modules/6.14.0-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1743675282:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1743675282:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-v2: add a log if survivability mode is enabled for unsupported
-    platforms (Rodrigo)
-
-Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/xe/xe_configfs.c           | 62 ++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_configfs.h           |  8 +++
- drivers/gpu/drm/xe/xe_device.c             |  2 +-
- drivers/gpu/drm/xe/xe_pci.c                | 19 ++++---
- drivers/gpu/drm/xe/xe_survivability_mode.c | 35 +++++++++---
- drivers/gpu/drm/xe/xe_survivability_mode.h |  1 +
- 6 files changed, 108 insertions(+), 19 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index 548468d2bda0..3cc9b02a678d 100644
---- a/drivers/gpu/drm/xe/xe_configfs.c
-+++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -166,6 +166,68 @@ static struct configfs_subsystem xe_configfs = {
- 	},
- };
- 
-+static struct xe_config_device *configfs_find_group(struct pci_dev *pdev)
-+{
-+	struct config_item *item;
-+	char name[64];
-+
-+	snprintf(name, sizeof(name), "%04x:%02x:%02x.%x", pci_domain_nr(pdev->bus),
-+		 pdev->bus->number, PCI_SLOT(pdev->devfn), PCI_FUNC(pdev->devfn));
-+
-+	mutex_lock(&xe_configfs.su_mutex);
-+	item = config_group_find_item(&xe_configfs.su_group, name);
-+	mutex_unlock(&xe_configfs.su_mutex);
-+
-+	if (!item)
-+		return NULL;
-+
-+	return to_xe_config_device(item);
-+}
-+
-+/**
-+ * xe_configfs_get_survivability_mode - get configfs survivability mode attribute
-+ * @pdev: pci device
-+ *
-+ * find the configfs group that belongs to the pci device and return
-+ * the survivability mode attribute
-+ *
-+ * Return: survivability mode if config group is found, false otherwise
-+ */
-+bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
-+{
-+	struct xe_config_device *dev = configfs_find_group(pdev);
-+	bool mode;
-+
-+	if (!dev)
-+		return false;
-+
-+	mode = dev->survivability_mode;
-+	config_item_put(&dev->group.cg_item);
-+
-+	return mode;
-+}
-+
-+/**
-+ * xe_configfs_clear_survivability_mode - clear configfs survivability mode attribute
-+ * @pdev: pci device
-+ *
-+ * find the configfs group that belongs to the pci device and clear survivability
-+ * mode attribute
-+ */
-+void xe_configfs_clear_survivability_mode(struct pci_dev *pdev)
-+{
-+	struct xe_config_device *dev = configfs_find_group(pdev);
-+
-+	if (!dev)
-+		return;
-+
-+	mutex_lock(&dev->lock);
-+	dev->survivability_mode = 0;
-+	mutex_unlock(&dev->lock);
-+
-+	config_item_put(&dev->group.cg_item);
-+}
-+
- int __init xe_configfs_init(void)
- {
- 	struct config_group *root = &xe_configfs.su_group;
-diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
-index 5532320818e4..d7d041ec2611 100644
---- a/drivers/gpu/drm/xe/xe_configfs.h
-+++ b/drivers/gpu/drm/xe/xe_configfs.h
-@@ -5,12 +5,20 @@
- #ifndef _XE_CONFIGFS_H_
- #define _XE_CONFIGFS_H_
- 
-+#include <linux/types.h>
-+
-+struct pci_dev;
-+
- #if IS_ENABLED(CONFIG_CONFIGFS_FS)
- int xe_configfs_init(void);
- void xe_configfs_exit(void);
-+bool xe_configfs_get_survivability_mode(struct pci_dev *pdev);
-+void xe_configfs_clear_survivability_mode(struct pci_dev *pdev);
- #else
- static inline int xe_configfs_init(void) { return 0; };
- static inline void xe_configfs_exit(void) {};
-+static inline bool xe_configfs_get_survivability_mode(struct pci_dev *pdev) { return false; };
-+static inline void xe_configfs_clear_survivability_mode(struct pci_dev *pdev) {};
- #endif
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index d8e227ddf255..75e753e0a682 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -712,7 +712,7 @@ int xe_device_probe_early(struct xe_device *xe)
- 	sriov_update_device_info(xe);
- 
- 	err = xe_pcode_probe_early(xe);
--	if (err) {
-+	if (err || xe_survivability_mode_is_requested(xe)) {
- 		int save_err = err;
- 
- 		/*
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 772b6c81672c..1d83d88cde90 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -812,18 +812,17 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 		return err;
- 
- 	err = xe_device_probe_early(xe);
--	if (err) {
--		/*
--		 * In Boot Survivability mode, no drm card is exposed and driver
--		 * is loaded with bare minimum to allow for firmware to be
--		 * flashed through mei. If early probe failed, but it managed to
--		 * enable survivability mode, return success.
--		 */
--		if (xe_survivability_mode_is_enabled(xe))
--			return 0;
-+	/*
-+	 * In Boot Survivability mode, no drm card is exposed and driver
-+	 * is loaded with bare minimum to allow for firmware to be
-+	 * flashed through mei. Return success, if survivability mode
-+	 * is enabled due to pcode failure or configfs being set
-+	 */
-+	if (xe_survivability_mode_is_enabled(xe))
-+		return 0;
- 
-+	if (err)
- 		return err;
--	}
- 
- 	err = xe_info_init(xe, desc);
- 	if (err)
-diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
-index 3d59753eae34..29350e23ece3 100644
---- a/drivers/gpu/drm/xe/xe_survivability_mode.c
-+++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
-@@ -10,6 +10,7 @@
- #include <linux/pci.h>
- #include <linux/sysfs.h>
- 
-+#include "xe_configfs.h"
- #include "xe_device.h"
- #include "xe_gt.h"
- #include "xe_heci_gsc.h"
-@@ -147,6 +148,7 @@ static void xe_survivability_mode_fini(void *arg)
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
- 	struct device *dev = &pdev->dev;
- 
-+	xe_configfs_clear_survivability_mode(pdev);
- 	sysfs_remove_file(&dev->kobj, &dev_attr_survivability_mode.attr);
- }
- 
-@@ -200,23 +202,40 @@ bool xe_survivability_mode_is_enabled(struct xe_device *xe)
- 	return xe->survivability.mode;
- }
- 
--/*
-- * survivability_mode_requested - check if it's possible to enable
-- * survivability mode and that was requested by firmware
-+/**
-+ * xe_survivability_mode_is_requested - check if it's possible to enable survivability
-+ *					mode that was requested by firmware or userspace
-+ * @xe: xe device instance
-  *
-- * This function reads the boot status from Pcode.
-+ * This function reads configfs and  boot status from Pcode.
-  *
-  * Return: true if platform support is available and boot status indicates
-- * failure, false otherwise.
-+ * failure or if survivability mode is requested, false otherwise.
-  */
--static bool survivability_mode_requested(struct xe_device *xe)
-+bool xe_survivability_mode_is_requested(struct xe_device *xe)
- {
- 	struct xe_survivability *survivability = &xe->survivability;
- 	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
-+	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
- 	u32 data;
-+	bool survivability_mode;
-+
-+	if (!IS_DGFX(xe) || IS_SRIOV_VF(xe))
-+		return false;
-+
-+	survivability_mode = xe_configfs_get_survivability_mode(pdev);
- 
--	if (!IS_DGFX(xe) || xe->info.platform < XE_BATTLEMAGE || IS_SRIOV_VF(xe))
-+	if (xe->info.platform < XE_BATTLEMAGE) {
-+		if (survivability_mode) {
-+			dev_err(&pdev->dev, "Survivability Mode is not supported on this card\n");
-+			xe_configfs_clear_survivability_mode(pdev);
-+		}
- 		return false;
-+	}
-+
-+	/* Enable survivability mode if set via configfs */
-+	if (survivability_mode)
-+		return true;
- 
- 	data = xe_mmio_read32(mmio, PCODE_SCRATCH(0));
- 	survivability->boot_status = REG_FIELD_GET(BOOT_STATUS, data);
-@@ -240,7 +259,7 @@ int xe_survivability_mode_enable(struct xe_device *xe)
- 	struct xe_survivability_info *info;
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
- 
--	if (!survivability_mode_requested(xe))
-+	if (!xe_survivability_mode_is_requested(xe))
- 		return 0;
- 
- 	survivability->size = MAX_SCRATCH_MMIO;
-diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.h b/drivers/gpu/drm/xe/xe_survivability_mode.h
-index d7e64885570d..02231c2bf008 100644
---- a/drivers/gpu/drm/xe/xe_survivability_mode.h
-+++ b/drivers/gpu/drm/xe/xe_survivability_mode.h
-@@ -12,5 +12,6 @@ struct xe_device;
- 
- int xe_survivability_mode_enable(struct xe_device *xe);
- bool xe_survivability_mode_is_enabled(struct xe_device *xe);
-+bool xe_survivability_mode_is_requested(struct xe_device *xe);
- 
- #endif /* _XE_SURVIVABILITY_MODE_H_ */
--- 
-2.47.1
 
