@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFA97C3600C
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 03:42:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 565A0C36014
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 03:46:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A498710E8F8;
-	Thu,  3 Apr 2025 03:42:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0EA410E113;
+	Thu,  3 Apr 2025 03:46:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f5JpfFVg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RlHq+uO/";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CBD410E8F8
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Apr 2025 03:42:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6837A10E113
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Apr 2025 03:46:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743651750; x=1775187750;
+ t=1743652010; x=1775188010;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=7BPfDaTKtL3w9ES+L1bb0ICpTiXj5FIcJM1vySARJGU=;
- b=f5JpfFVgr8PU+qH3uE/pksrl5gzNy9SUVcuZah3XEiKL7NgCfNO2k4UP
- MIp/i8WUkJjiYTIbWU/e7nGG4s+t3NbuRx1wYD1BlVF440wOonrGbYd1I
- KqIKJhj0FW16xXpOEgAyWlIQTJAvebUUKM0REAPyPD8URjiEDaQYTednm
- 6yGtBSxgoVQW0wK7QwPu8L/rjQef7mSQGsbEd3pBpIKY/rdAPrBMoYX49
- uAKymUxe3UgHks4ZmhzRnLd1KfTv2gb/UROWyMwPAmrS0/Xz9sso/myxu
- BnrRLewRWNzUOxuvFXZzKkyvF5woPALIjxkbqNlaxhoN/OJkrcuNa3SJR g==;
-X-CSE-ConnectionGUID: Vl/linRaSUOThp95STW5Kg==
-X-CSE-MsgGUID: w3w7YlwURBKYv2nElJI/pw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="56416432"
-X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="56416432"
+ bh=PhNIrkmO+I7WAjze6TfMMXkT+IBuJpbu2yBYsfqvBqQ=;
+ b=RlHq+uO/LGmpCWAFY60xTINnnbr0LDk8vv43LXdL+b6j1YbZLbSEojaM
+ Kpjeax8Kt2hnOFPFWScsI3B4DzZQAsNs733sngyIv8A4oEaZW6gNUThI8
+ PG/Ug6ND9y4MLRnJWCG9bPryJivuiWHmsPIyT8pYSl47tAYpERgJVIX9I
+ f9JT4MGKF+dSuLRx+oOlmnwvkbY890zwEbBICW668jAGm92jP133TkFzg
+ lHyZjgmSRrHl0vm2QUJiWNr0HmT0FhmLmWvb+E57yHAV67SwBPvT27K0M
+ eR5/PdA+ED4qVIjuWpr0BZYKPRpZfgPqSQ+nJjLBqlR3BeYazVK+KL47S w==;
+X-CSE-ConnectionGUID: /Mst7s8EQqqg9HZc4YX69Q==
+X-CSE-MsgGUID: vX3E0Eo0RK+FvFlQLFb/rg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="56416698"
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="56416698"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2025 20:42:29 -0700
-X-CSE-ConnectionGUID: ta7HoHBDRCeX5YPysiyQWw==
-X-CSE-MsgGUID: idJBScI/Q1inPLawRDNtlA==
+ 02 Apr 2025 20:46:50 -0700
+X-CSE-ConnectionGUID: 6pziotXrQdKS2XgreAdUNQ==
+X-CSE-MsgGUID: hvoSizedRn2q0Okg1cNDfQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="127796342"
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="127797132"
 Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.96])
- by orviesa008.jf.intel.com with ESMTP; 02 Apr 2025 20:42:28 -0700
+ by orviesa008.jf.intel.com with ESMTP; 02 Apr 2025 20:46:48 -0700
 From: Shuicheng Lin <shuicheng.lin@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v3] drm/xe: remove unused LE_COS
-Date: Thu,  3 Apr 2025 03:42:01 +0000
-Message-Id: <20250403034201.332395-1-shuicheng.lin@intel.com>
+Subject: [PATCH v4] drm/xe: remove unused LE_COS
+Date: Thu,  3 Apr 2025 03:46:08 +0000
+Message-Id: <20250403034608.332548-1-shuicheng.lin@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20250401205703.4179906-1-shuicheng.lin@intel.com>
 References: <20250401205703.4179906-1-shuicheng.lin@intel.com>
@@ -72,7 +73,7 @@ the old Xe_LP platforms, and the whole field has been removed from
 Xe_HP onward. Just delete the line so that we don't have an unused
 definition.
 
-Suggested-by:: Matt Roper <matthew.d.roper@intel.com>
+Suggested-by: Matt Roper <matthew.d.roper@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
 ---
