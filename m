@@ -4,171 +4,182 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A4CCC3601E
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 15:17:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A5AEC3601A
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 15:20:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4976B10E9F2;
-	Thu,  3 Apr 2025 15:17:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD66910EA3A;
+	Thu,  3 Apr 2025 15:20:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W+OdcLN1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h8EiSY+A";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E32610E275;
- Thu,  3 Apr 2025 15:17:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF16510EA3A
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Apr 2025 15:20:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743693467; x=1775229467;
- h=from:to:cc:subject:date:message-id:references:
+ t=1743693647; x=1775229647;
+ h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=/Vx07nq/Sr2A27L7ZxcB/dPC670VgRwUhQ7jWzQqChU=;
- b=W+OdcLN1l2PwaBCt59gBh9bMj3pkEjF6nPPdt20M4Ad3j1g1Qa+9xsbE
- 4YiIF+ArtiFQgtsN8+gUVBhrI/nZSYDmtrtSZcxjTyH13W5H/9cbWwQ16
- Ri8r08dUyW/raV7QvtyxMHiyh81VcalJJdRnzilLwPE+rX3RH413O3G/R
- Tdqgr8KyhxEsKGY7tb631ZENVDTjjgMtArricqwptSYVjKWO2O0KcFeeh
- cZ1rZpKpvrr87lY4vwPDzk7qJeUxGN1zTOpZbzKU4bH+er1tP4cZLH9ha
- IXvVGX/Y7gnzy9LRoAysRk+YiSCASlf5EV1KLddnsAML4v7CgxpBnj5nx w==;
-X-CSE-ConnectionGUID: 3ChwiM97Qy6T0Gh0072S5w==
-X-CSE-MsgGUID: ueQqb2f2RmivL+bWOy7J6w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11393"; a="44823763"
-X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="44823763"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2025 08:17:47 -0700
-X-CSE-ConnectionGUID: TAh7W1DSRGCamBbN1K1oUA==
-X-CSE-MsgGUID: 2q0kcG4NStGJKaXH2tyNvw==
+ bh=xz/pkHMDl1FeFMu9uzC1OZmSmy4nR03nwAgPHMXJqcA=;
+ b=h8EiSY+AWDGUZELgGImEb/JRAdKhU9uQ4GHaD2TEitDeRf7j/pwbn9Th
+ 20BOMlNtYHVG+wetjJu81CUjU8/pbKv4LS0HT3o0FHfnZhGpcybLucXbA
+ LA1iiwOyBpyNRLWEJwHqP8eZRqrrt3p5NvdOCdXx4Uq8MzsS5PsHTikfM
+ BE9xA7mwBBJSrIYgxOiZCxHXSSkcMsgsygp3qAbotRUv45U/ZyiOgXsRl
+ aLwP1Llo0iGQXGDi/HGmvJhd1/Wi6HWiU4H6fJAs0Euycz2Il4oaH6Ftz
+ f5gvSw1vHd88fnL0mhL8CJapWBDUrBydGAsQc99MRdiXkYyTE35FyO9sG g==;
+X-CSE-ConnectionGUID: 9O8RTehOQg++FMbpQTSc0A==
+X-CSE-MsgGUID: AhiJ7sSbQZ2lgfbvJNVKvA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11393"; a="55740059"
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="55740059"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2025 08:20:47 -0700
+X-CSE-ConnectionGUID: MMfmk88gRiWq5FeZLKo9UA==
+X-CSE-MsgGUID: oYHPyV9nSKCfGpzePSkRhg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="132165243"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 03 Apr 2025 08:17:46 -0700
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Thu, 3 Apr 2025 08:17:45 -0700
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="131895584"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2025 08:20:47 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14; Thu, 3 Apr 2025 08:20:45 -0700
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Thu, 3 Apr 2025 08:17:45 -0700
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.40) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14 via Frontend Transport; Thu, 3 Apr 2025 08:20:45 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.46) by
  edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 3 Apr 2025 08:17:44 -0700
+ 15.1.2507.44; Thu, 3 Apr 2025 08:20:44 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bnVdT8NQPy3t+SbpZa0bk7V06fM+H7UIVs/MV+uhTAS14sXK9MkLfAFciLlcsleSUdntsB2x06zO4+9jZHt450CLKER5def/Ew7ihvqwFrCC4Gqkb5Ip3VMkOm7WymTQIlKQMvN+u6zM6VFA2KkE/tIrC46v21k9CRyngEj7UqW45UqLadfh8GRlZ+be01CsGRD5djYer5Q1yP8A03Pu56vcwcyXnRSJpSblkQzVI58RAVzITmdiETyxRiU1WkMdi1aMvA5fZZAHOboFsXRXAeO/CfEzquwqT2dlsIoiLhfOQRc4DRJ6bI9UPIKsV+XgS2M4xQ0xhGxRr0Y7LpGT0w==
+ b=UJ3bkyb1U9QlEtTMzQPw8S7xFIP4IKU4PAoRaGIBoSLEQsT11UooTxg9oPgsv5h2jnf4D1pJLmQaxM3kfAp9g73yHRAXd7Wp9eJbjBXhqtgzHcjN2vMEjZe+UZdw/T/OQlfHV+AH8S48SjY3a/8gmtp7cNS6LT9frkYKweQRFUVRVR3doKURrJKHcV/MtFvCr8hsIhYHQci++NETYTm8ehqUKWEcj66KGaab3KTs0ypqcUZLapIAx5N7fibCbE/hHZ9lG69fQL37NyCcpFQuOy6p3tQQOh/qoKvVmc4Mrq59yXMrdUKAgkoeiuCT86txHaIB9EMvcienLRMyf3TYJA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=czWqNwKTUSTJwvEHPDFQemnsA9fwyNUeokyij6d6Pe8=;
- b=I+g6YJAKAdVdzTLYzJD8zpCTcawtNF7evilVw8GtmjZJpFw8pRt+eVr5F4j9SHVC4rNNS2vMI9ga2ftB/saNPxUJF9bwaISb2oXYWQ0ovWP9b7Syes3H0AV4H3D777ih4GEqvGa/kC7liZVtKchiWAKVcPXEi3PqSc0B3WbxBITeoyoVHIPQSMahYoF0UosO+N6uVWM1RBzDRxk8TsxpJns5QVJP1caxPIwQ60VEfhZmjE2FCvV7A4rhHh4EhX350f3OdJxbEH2kaMHN8LMySH6H4CVcfzRq3UZ5xG2n0OriPZQCvDH7+nCcucoCCM3Kee28Hv9MT8nAAn12kwFLfA==
+ bh=IoZPtmeOzBnqPDLuYwTXJYu9aT8Oeoc5CeVEdsLrW+o=;
+ b=reCdFnaP1CgC339zNbR19zpzx9XJDNaTqNegJjxjQCRbZ6Cw0LzQ37r6JPVcC8BSUgFALJ1ucZ0FlTvfsl3Dm7WNmrwGpm6xbXChwTmxWTd0NJHVMI1xq7imarTXAU59kRa4x0tro+TuKUdGcOc5GrtOC+ysMpmOouXELIJcUyJ7hXZHL3RpV8IAc1Ud/nhREd9+QjHv3ZpOsOh32PuLUE54kpt8almUtJZjZ6MOLuwU59Fh3lxBQkGZUisBhgVMPB884ZQSpkTKjlpw7QUx5iO7Bv9Qyso+WJX6B/GIgtGcCV0vDvxRgMowxsm51JvA/1mnGNRySM6N7Edp72aYww==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
- by SN7PR11MB6825.namprd11.prod.outlook.com (2603:10b6:806:2a0::17)
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from IA1PR11MB8200.namprd11.prod.outlook.com (2603:10b6:208:454::6)
+ by BL1PR11MB5953.namprd11.prod.outlook.com (2603:10b6:208:384::12)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.44; Thu, 3 Apr
- 2025 15:17:26 +0000
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::9570:169d:a0d5:527]) by SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::9570:169d:a0d5:527%4]) with mapi id 15.20.8534.043; Thu, 3 Apr 2025
- 15:17:26 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-CC: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, "Shankar, Uma"
- <uma.shankar@intel.com>, "Kahola, Mika" <mika.kahola@intel.com>, "Syrjala,
- Ville" <ville.syrjala@intel.com>
-Subject: RE: [PATCH 05/16] drm/i915/dpll: Move away from using shared dpll
-Thread-Topic: [PATCH 05/16] drm/i915/dpll: Move away from using shared dpll
-Thread-Index: AQHbo6nGmd9/cIGAgUeKZnOtGmCXcrOSC7uAgAADrMA=
-Date: Thu, 3 Apr 2025 15:17:26 +0000
-Message-ID: <SN7PR11MB675077F29F01399A3E76FD0BE3AE2@SN7PR11MB6750.namprd11.prod.outlook.com>
-References: <20250402083204.1523470-1-suraj.kandpal@intel.com>
- <20250402083204.1523470-6-suraj.kandpal@intel.com> <875xjl1e4q.fsf@intel.com>
-In-Reply-To: <875xjl1e4q.fsf@intel.com>
-Accept-Language: en-US
+ 2025 15:20:14 +0000
+Received: from IA1PR11MB8200.namprd11.prod.outlook.com
+ ([fe80::b6d:5228:91bf:469e]) by IA1PR11MB8200.namprd11.prod.outlook.com
+ ([fe80::b6d:5228:91bf:469e%5]) with mapi id 15.20.8534.043; Thu, 3 Apr 2025
+ 15:20:14 +0000
+Message-ID: <ce6d3489-ee79-4834-b4be-1c5a590d682d@intel.com>
+Date: Thu, 3 Apr 2025 11:20:11 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] drm/xe/guc: Add LFD format output for guc log
+To: Matthew Brost <matthew.brost@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+References: <20250327234028.249314-1-zhanjun.dong@intel.com>
+ <20250327234028.249314-2-zhanjun.dong@intel.com>
+ <Z+YaCmivtd1Wa9wU@lstrano-desk.jf.intel.com>
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|SN7PR11MB6825:EE_
-x-ms-office365-filtering-correlation-id: 5cddd765-bd9c-44cb-8808-08dd72c2a491
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|38070700018|7053199007; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?jmWJhlbI7r8Tr1i1y53pI8FmH4HzgBIk4E5823uOM3M/3QbmhaO9ahZiTxJR?=
- =?us-ascii?Q?Nps1CChIuVDRZIrx72ym4FmQfssQo0SsRE/bMi2XtGNZ4NMdVwfGxLmk5uKd?=
- =?us-ascii?Q?6NkyBeWJ+iwqR0bIC00GfCTVNQ/+846eiW0z+nydZcncvGAjqYBQau3SDBpj?=
- =?us-ascii?Q?a4rr+A6MoqgsiFJzu+kC6YZe1NJgcbSdEm3Xj0BySxuQBgRtKkVzRKndgUiU?=
- =?us-ascii?Q?rmowl08AqbjwN+buEgOBQk6N1sg8igXeLqvAahdjHT40xiyxa0uCQ7f9bJQK?=
- =?us-ascii?Q?ZZQFfzxmqHYGL8Px990ozqLwjJvNKbWKXNX66+Hu2ZpML8OAaG5FR5yaXKub?=
- =?us-ascii?Q?NNWfhYyq79vIlqK6cEW2rlVDYR4uuQCg4DVqLFcEb2ursu/kgRI6C14qJRKT?=
- =?us-ascii?Q?TlLMigp3OWhY4uPZ/QWArX+6Y0kz6Cp9gyETlIBDcf/ifaPND6hUJNMcdgWQ?=
- =?us-ascii?Q?58KlrOM2erXniaZo15eewQFXul08MXrEhb0nK1uP90wPRKYT2mW88dSVoCjT?=
- =?us-ascii?Q?oUgsiH7DtFUxPtPfcVGNtLY64rn7PFhqR1tA334uv+FC7GfpLsccTn5RvQFk?=
- =?us-ascii?Q?1E6ZvytmRDfuFeZiWWd47ysdXou3d3ZrJfFPH/T6mhXl+l8kEaA897/VchAb?=
- =?us-ascii?Q?D2Ac/Pq7qnfuLkezwJ2zOm/APoeMBfBuweqngreikn1zilfxEnZ5zaioMJMy?=
- =?us-ascii?Q?wPlJxqtKn+FcvBxqp5prYxEiMHe/aqthaZB+WknuSQhk5PH2cXohGAndjgwh?=
- =?us-ascii?Q?FEjxXZqJ9sRTzvp+g3LmvTqpMKSc52Gi7rz10KjEkPEArMnEWanduYYKOHcm?=
- =?us-ascii?Q?abhm0md3NEBGbMAwigBTZHJVyrl0UXsEpzrflS1FNAgQw6324eGHuVnMR655?=
- =?us-ascii?Q?JI1aW1yAv107omex4uN6gYsspBe6sVM0DH5RizGrNUJg/P2udspwiRvi2la2?=
- =?us-ascii?Q?SBzpbQXobpG1TlWUEg+xS3Anam9GaQsgiDjrBKJNALPK4AKY+37R9yWWgIAp?=
- =?us-ascii?Q?goM+5PI87PGA/6LWdu0F0+ZqdikZldXAGcNaxt/xP5CRVD3V5XaHUmiKZ0mN?=
- =?us-ascii?Q?yxSH7xIRdlbXMl0wFYbvxs7KSs+EiiiBoI8WahN5En9ASX0M0lGhEtayfYgV?=
- =?us-ascii?Q?vEX90Qv1hJlWQrNKKJDY2XlB3BflSll9r/UHU5ufVZipEdI6Jn5PkL0bcHyP?=
- =?us-ascii?Q?u/ZWGouNu/3RnA9xAL6HwFW8zX4z7hVnRzFTVwnKyn+1gR6D9Dmf1VJCwqp0?=
- =?us-ascii?Q?8xdPslCajMGcfGmQqt3je6R5Dl1DnWTP1wyXWK97XC0jS00+r/O1QqKDLhf5?=
- =?us-ascii?Q?qY5G7XO+dfc6my9ni+u333CSo35LLFW6G6c9eZ7dDPMsw7DY5ktqQQGKMvwg?=
- =?us-ascii?Q?0LIO+8NcQo/EQpOx+WAlyhkINHGDv8cEsCQi9vjD+GduE5uUvJ9Mig0bm5ww?=
- =?us-ascii?Q?J+RKbFgajxSHfQHqhH2Qqh2XUZ8YcLIt?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(38070700018)(7053199007); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?2HslZkMAxP5+rEOXoZmlUO1xuFOWGMJlp/ltMnjsnXUfdiJx0Ct2iv4AQn74?=
- =?us-ascii?Q?MqfIf8xQxElzjGpVpFVWroW6MQ98HRivr2XCdbTmJgVwZUfWzbjvWBq2eLYF?=
- =?us-ascii?Q?u/MQqSLLONMUDCIj2VIBy5CKzsGJi4kv6TFqaUsQ0jel1ZChyDkDT5kCUcqA?=
- =?us-ascii?Q?pG61Df4ORn3qeXMNWmzsXrxF++gTliIjczBhr8Oa4UIXpn7ey9ZeRuTz2OEG?=
- =?us-ascii?Q?Ds8w1kItf4wIFDU+rIxl3gpbXD4O9abEwNN364NrSKNZmAiqCfBD8afRG6Lm?=
- =?us-ascii?Q?W+ity/MvsM9T+fktJCDYPgDdYH8ksd5pBjDhvkfwA81Nl0taqQEtte10TThp?=
- =?us-ascii?Q?r/UsO/QFMUOqsmhKuev75Iqt3IMYtEGpqChSg5mylfVE6k87A731igoghBHt?=
- =?us-ascii?Q?E+MPQN5dPkcG0NJiO7Ox/+sOno5q+ovEzqOrc3liFlYXjr5K9azFRb1LDmXn?=
- =?us-ascii?Q?XqIING1VEVZP2kAVxmwm119DHpAkTYFwtQQa8ON1LjkQnBO83nxjomZGHu3d?=
- =?us-ascii?Q?xH0Cu65EvLptuL1/0cVhrI4J8UKdSIy2Sl+dbnPxGBiYj3/oTcvn440b9wl0?=
- =?us-ascii?Q?mlC70fE7T7Eybwh48wswyEirvVkrH6/fg+PUczqi/Y9vOvbpckeSQZXD41df?=
- =?us-ascii?Q?Dmsm4LX8wc2Jpoxq+uUwPDX3DP+YyiQlU5QiagNkpYKFBzXfKSLCiAgL/z6p?=
- =?us-ascii?Q?orboLTiuMoy+Dad7kExedHL9H1n29cuYcmgeG5Oo/Dq4EFeWP7VkO2XjXCnT?=
- =?us-ascii?Q?6tTZDQ3dSxkaOSjNzNk6sgBhcI44kHSE7N6gXSHzkHIAu/i+zW7yGVz7okjs?=
- =?us-ascii?Q?gime4Qn1tZrrKO871jXV/zkdTR1Gua3moej2oIzjolNZmPbKmjOZBB1M98k3?=
- =?us-ascii?Q?JFIZqN5FT3uVp2jwaRbZYznuteOyaAx9bsGu9sXUPnC1qDPTNURR/0NDTACM?=
- =?us-ascii?Q?nKRk14C6Sq/c/+46frVpOC0u8cNOZVR4Kalv9byy1gyOfFwBfstkciFagMgn?=
- =?us-ascii?Q?VAlnXP9AZSGK7K40caW85iFFTC2m8lz3lwC/a4Mn1eJa1396ZOQE/f9EUk5H?=
- =?us-ascii?Q?seQZt95jWJSVQIfJgmIjJDtSeyKxMT9j6NWmC4QOv+MlYBUjz+fvxpFmuUcf?=
- =?us-ascii?Q?6w2CsoOokNiS29RohEinJHtp7qmWq8AapFbSpFKLXezGQGz642WFwz378csu?=
- =?us-ascii?Q?8S+aCjulct3z8JtdNEVWkb/rFM138hItnRskhfS/ptQvjbLxBF58o7m8odYH?=
- =?us-ascii?Q?7gTxJ3HaIwVJ7nUeyFh6SwN8LzUuwFJUfvBf3jKyFfHWPPy0s+531eV8/DBA?=
- =?us-ascii?Q?6vP+v1OdXMUly8wcs5ka19HmrFaH4dnbcnGAixDwgc/g3yYSLSPdRHJsL5ss?=
- =?us-ascii?Q?j3AMR5gBXhMdR/o+PeodmqlAhOtnuUbGOCKgi9fIMkRk2RXueJk9T4OS8mVT?=
- =?us-ascii?Q?rMqJxTaiBDRSGku902GteyKP59OPvu1zfXj/EJdwzB76xQSEYTQpgzmge92/?=
- =?us-ascii?Q?wutc9T7NGCCXYNLLIO+tdBngc2lSCZ+MD0543l4kmI4rzu2FOzL3zvGTNsLd?=
- =?us-ascii?Q?IoxbyPsXsebCcmX9OilnW6GW9iiaGMNxsaLYehYb?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+From: "Dong, Zhanjun" <zhanjun.dong@intel.com>
+In-Reply-To: <Z+YaCmivtd1Wa9wU@lstrano-desk.jf.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MW4PR03CA0326.namprd03.prod.outlook.com
+ (2603:10b6:303:dd::31) To IA1PR11MB8200.namprd11.prod.outlook.com
+ (2603:10b6:208:454::6)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR11MB8200:EE_|BL1PR11MB5953:EE_
+X-MS-Office365-Filtering-Correlation-Id: 57dccb96-8b02-4eeb-fdff-08dd72c30865
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?b3F6bVk2NFpucGFxQUlmM25mOWNTVlRMbUc4NjdXQUdwWDB6cXA0VEpIeC9E?=
+ =?utf-8?B?YzV5RFF1Mms0M2FjQ0U2ZUFuWkoydFMwTmhaemYvdmRNa2xnWm1pMkZSQ0VM?=
+ =?utf-8?B?WllISWJIa2svdWFGaCtMQmZ0bnFWdml3MGpuT3M2WXhaSFEwcG1pVGtLQUpW?=
+ =?utf-8?B?ZXhGR0U5bkRJMlh0WkZVK2pRODdYVmZ3NUxGS1MyY2Z4RWxuUzQ1cFd1YkJW?=
+ =?utf-8?B?cXlrWUprekJNZmNUNTU0OGpYYjFPNW1acEdqenUwT3k5YnQ5N21CSktKNEJ1?=
+ =?utf-8?B?NTVab2xSa3UvRFNkUUpFOFZFWmY4NHd3RVo2bkw1eHQzbkNNZXN2UVptUGxm?=
+ =?utf-8?B?MDBVYVNKME1aRE1xWUt3alRYdDYraUowbDRCR09WOWlYRXdBczZ0TVFvNWJj?=
+ =?utf-8?B?VlN0YzNWY2VyVUJFM0ErcFN3MjZHdXBVeEQ1STBHbEtxWnM0NG9wTmxWRDUv?=
+ =?utf-8?B?ZXRsOHE5dWZQY3kyajFCVEJJc1U5b0xVUVZhQ2VpYWEyVnRVVDFSU2haUmpD?=
+ =?utf-8?B?ZUVXU09FenRyNzdWU1RabHA4dWNDTExuT1NmWEpTaFMxbVpTbTlYdnlqWEJR?=
+ =?utf-8?B?RWxqTHJWaW1QNS9WUms0ZXUreU0va0oxVThBYjFTdTYvUHArdGdsZDdTdFly?=
+ =?utf-8?B?RytXb0pJb2w4enZVQjRXWkNUVUJlNlluOEI5R1pIVHprNVRPUC80NjhTd2hZ?=
+ =?utf-8?B?TnRpQlgzdExkdEliZ2lrQTA5QmtVVVlYZEZ2MFZTbE5hVDl5Szlsa2wwOWh1?=
+ =?utf-8?B?cHNjZ1lvRXUwdnlySFd2VHB4M2V3WkRjYXpHTkQrWkZYOCtUR2JsSkxYWm5N?=
+ =?utf-8?B?cjZmU2RuZytiWGhPVFFQTVZXRUg4T3pWd3U2KzhLOVZHN3RtU3RINEljbmJI?=
+ =?utf-8?B?bkVwWWVWM0I1THR2SDUyc1ludW43UzBDb2QxSlVMVmxTM1haNVc1QzBDM2lj?=
+ =?utf-8?B?YVlwQXVtTC9JcWtXcnlpQjFaV21WR0EvWGVxSGxyQVF4SjZQRTFFQ2pKNm1k?=
+ =?utf-8?B?aVhLTzhqZjlmaUs4NFhvbHE5cFUwTDNrdkR6dUNsbGRuaTEwUnMrNzMvcDN2?=
+ =?utf-8?B?a1pPKzlFYmVkL05LZ1FENjhXUFFvbjBsSjIvUStzK2l2YS9ld0x2MWdTa1lN?=
+ =?utf-8?B?TGoyazJReUNmeHB2YnVyTW5YbE52M3pqWURQeUtQblN5UHB5UStZSGsxYnlR?=
+ =?utf-8?B?d0FQOFZUdXpRejRKUEo3ei9COEdScWI3c0daZzNqVEtkTkdEaDlqdlhkRWg4?=
+ =?utf-8?B?enJvZGhXcnFRcEZrRzlzUG1VaFhnV1JBdndERGdiTFRCakYyN1QwLys3UUk1?=
+ =?utf-8?B?YmllSUc5THpVTmJYc0VCaTFwZEV1TEg3MWpnSmUxOUdySG5IbTZPWUQzRHlz?=
+ =?utf-8?B?bVllNTVPbHJMc3RNak1aQWxmRzFLd1hOYWRBenY1ZTRlYVN1ODNSNzlYSDAv?=
+ =?utf-8?B?WGFubEhraUZUajEvWGo3R2dpTXNsMGZNUFM0SDNzSEdrWEc2cmhlaW5FSzRQ?=
+ =?utf-8?B?NUtGNGlaK3BWdTQwQXJnVFBIT0lsYkhKZWM0d3VkYTdTckJ5VDFHRnpQTXFm?=
+ =?utf-8?B?em9ueVZCc0RJWGJKdG5id0ZveVJ6OHFVRGNoMEEzM2x6c0pOUzdxS0hoeVdH?=
+ =?utf-8?B?dFpuVU81a3drbURKU1dNUG53MkpPdVo1aktnZm8vVG42a1Q1K0J2aEdBY1cr?=
+ =?utf-8?B?REd0RmdmUzdwZDBaT0c4ZG5TRW5RTW5IY1NwMlViYjdKUUhlTWRsd1Ztbmx1?=
+ =?utf-8?B?YkFwMmd1NDkwcmlEbUNrT01pUzM5b0h2RVBiZi9TcFNwclcyVDVlcDl6TFh2?=
+ =?utf-8?B?aVFSYnIwdUxKeWtKYWZKMng2bkU1ZHZycXhBZGNCRmFKMTYzSUZpMFF2L0pW?=
+ =?utf-8?Q?CTnNdkEkuZjCo?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA1PR11MB8200.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dUdBdE9QR0tHSDNIZVZKeC9vUytaSHVYY2FlbFgxZGRxT3M2dER1L1hSWFZD?=
+ =?utf-8?B?ZjFhR2JzeFlkNEpMVVJsMHNUT3FjYWFleFdrc3JoZUxoL3Z3QWp1TGtZT2Ju?=
+ =?utf-8?B?cE5ZTmpZT0t2WXJSTU0vR29ldEdoOTRKRDhWR2ZBOTlLQzE2TjQyUms4U2VW?=
+ =?utf-8?B?MUh6SDAwOEVUYm5hMWVrcEIveVFZcWdvdkdzLzlQWklwTTBjVWdRL2trb3lu?=
+ =?utf-8?B?MkdhT2dzemVxQ1VBMVBBMjlKUTBDZ2FRanNEeURkbEY4NzMwU3pUZzZRWmZR?=
+ =?utf-8?B?K3FzM0VtVXN1TklwMHR0YzdoYUZpVTVRMU52Wms0Sks0TUh6L21uT1pmUzhi?=
+ =?utf-8?B?R3p4Szk1VFBiK3RoS3kzVTdTTi96eUttV1p2R2JJakQ3THIydllYTldQTmJs?=
+ =?utf-8?B?NWN4NjZ3K2pXcSt6cjBDdUpxK0szU1lTUFl5UkxSTENGZkhKTnNvOUNWVFZo?=
+ =?utf-8?B?bkRVMmo1RVVkM3dRZlljSy9kNFFNMUllZ0F2c3Z1RGVwZXVDblBRYXpDdUdJ?=
+ =?utf-8?B?bTIwWVBRRjd2OEdQeHljQmVEaFhscW85M0R1VUIwampzWlNxaEtPTmJkcWJO?=
+ =?utf-8?B?Uk5GUkwrVTRsMnpicXNIUWZ6VFBwTUYvN1VZOEw4c1JNb0RabFU5Q3BjVzRv?=
+ =?utf-8?B?ZEtUakZKa29tMUE2b1B4bHhmMlJ5UENITWlyWVhMdGQ2M2xDTmViRGZGcEk4?=
+ =?utf-8?B?SDRRRzNoWHU3QVBGdVRTOVFPVDQyRFpKaUhwcWhxNVlsWUN6ZmRLNjlBVzc1?=
+ =?utf-8?B?bVpyVnNnZTZCWlJXcy9ub3h1Q1ErTnJieGJXTnlZR3htY3lNSDN2VWFNMm0z?=
+ =?utf-8?B?UGIwY3hzSjRlZFdTSUhxdzRteWpUbzAxczg0VGpGMFVkRFpuRmRvSU0xbjRy?=
+ =?utf-8?B?bGh0bEhaN2JTMUFrMnBEQzl5TzZMeFdRMklsVkJhVk9HYnREcFBEdW1COFk4?=
+ =?utf-8?B?MnNQUHljUEFveU11aDJQNHpuVXRTV0ZPcVJjN1VrRTBBTG5rYUs3Y3U2SFNO?=
+ =?utf-8?B?ZUtlSm9BYmpubFpVQS9JbjlBUVJyT0pxR2pheWg3cURhanltcnBDNHM4am5T?=
+ =?utf-8?B?MmxCOGJ6RnkyL1JaUE5UcUZJK0hOYmpHOXlYc3B1N3l2aThYMTR6eEVFUUJB?=
+ =?utf-8?B?MGwrN2did0ZqM2dsd3MxS1h1TkdEWDlQVXptektSNjBUTU9qeUNWUEs2bzBi?=
+ =?utf-8?B?Z29CUjNnTXVVKzVUbHpIbWZST0V5YjVKV3l0VkZpM3NIZ3Q2MEFCQiszVjRo?=
+ =?utf-8?B?NHNWdjNsTzF4TEc0M0htZ0p4WGppUmh4c1JVQkZ2T0EwZjVteXA3c0MyTmNp?=
+ =?utf-8?B?cFg1QWlVS2VBV2JOWllhUkhrV1ZpUVJEWnZRakZleWlXVis4MkRFWUczMWVF?=
+ =?utf-8?B?cTRCTlNKdHE1K20zL0Y4U2F0bkt0NzA1TnpFdzZyWHVOcGNDRVE0LzJOb0Zy?=
+ =?utf-8?B?REE4VjQ3YWhNS2FZOVlHSU43SUhrYjNRNlZiZS9XOTBncXdLUloxdnRIMzhs?=
+ =?utf-8?B?Y1hnZUxGS2JOL1dHa3J6ajl5NkhsTURxZ0pMcmM0TjlWOXNhWGtNOG1YNWlI?=
+ =?utf-8?B?emVwM1YxTmVHWHIyZzBrRkRaeVBHQmUyU0ptcE8yMmxjREczS3E4dU9tNmdp?=
+ =?utf-8?B?d0Nhb3JwY1VKM1JlR3hmYUtNTkhpendPSWRIckpSOEJyVVg3Nkw4bU5BQnhB?=
+ =?utf-8?B?WDdrQmFXSlJLSlhyMWtTVm9zVkZsSk5qMUJ4Y2pIKy8yZk5HT3FkcmJoUnNv?=
+ =?utf-8?B?Kzc5RG9FbWptczJOdmY5YVI3QXVSUjZvczRkaXVHQVl0S3ZNczlXOGVJNjVk?=
+ =?utf-8?B?NkxxSWJ3ZWxDMmpPY1Avems4ell5WkVZcUwzRjJWZTBHbzBsWHpaY2UxeTVC?=
+ =?utf-8?B?bkdmdTNGMFI4TmVZQ0RyRG94bFF3VjQ0WVF2ak5PRCtyY3BVQ3MxbUFKWUtH?=
+ =?utf-8?B?eEFnai9wNldaQ0M0Y0Fpcjl1VVF6d3Rtb3NMWlhiaDRhZGdyS2g0aElFN0Vz?=
+ =?utf-8?B?U3Bwd1lHY0NKOG1KVlNnQVpON2UwVXNFdUFUR3I1S29BSVBOY2F2VE5ZRndv?=
+ =?utf-8?B?VnppK0Y2YTVjaEF5TE1QVTRxdUxrVmkydFNoUDlROFhDV2tzTEdpczI1Y2Nr?=
+ =?utf-8?B?RE9STEdsbERlaUtsRDgxWlY2YjR6UWNPd3VqV294RkZ4U09EOFVuTWNOdUhV?=
+ =?utf-8?B?RFE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 57dccb96-8b02-4eeb-fdff-08dd72c30865
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB8200.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5cddd765-bd9c-44cb-8808-08dd72c2a491
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Apr 2025 15:17:26.6375 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: aw5tOxmaHj7q/N4SM5yg1VzgIB2cdltnriwmfkr/vbbPa18EDXH/R6mLWJkGQprDWb+/VzXrXLW4jX/7QlcEfA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6825
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2025 15:20:14.3765 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: rssSVaKDYPoLzAd7NNJ+3Rr3sL1Jsqq6vhF9eEGRGe3spv9zjMwbur61DlfydPBqC95JFXykN0JHjGvu+j/f8Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5953
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -184,1060 +195,912 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-> -----Original Message-----
-> From: Nikula, Jani <jani.nikula@intel.com>
-> Sent: Thursday, April 3, 2025 8:33 PM
-> To: Kandpal, Suraj <suraj.kandpal@intel.com>; intel-xe@lists.freedesktop.=
-org;
-> intel-gfx@lists.freedesktop.org
-> Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Shankar, Uma
-> <uma.shankar@intel.com>; Kahola, Mika <mika.kahola@intel.com>; Syrjala,
-> Ville <ville.syrjala@intel.com>; Kandpal, Suraj <suraj.kandpal@intel.com>
-> Subject: Re: [PATCH 05/16] drm/i915/dpll: Move away from using shared dpl=
-l
->=20
-> On Wed, 02 Apr 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> > Rename functions to move away from using shared dpll in the dpll
-> > framework as much as possible since dpll may not always be shared.
-> >
-> > --v2
-> > -Use intel_dpll_global instead of global_dpll [Jani]
->=20
-> I regret I didn't perhaps think this through in my earlier review, or did=
-n't get the
-> message across, but... why not just drop both shared and global? Just dpl=
-l.
->=20
-
-I think that can be done if one of my previous comments in the previous pat=
-ch makes sense and I can=20
-Spin a new revision more towards this approach of dropping both global and =
-shared
+Please see my inline comments below.
 
 Regards,
-Suraj Kandpal
+Zhanjun Dong
 
->=20
-> >
-> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_ddi.c      |  14 +-
-> >  drivers/gpu/drm/i915/display/intel_display.c  |   8 +-
-> >  .../drm/i915/display/intel_display_driver.c   |   2 +-
-> >  drivers/gpu/drm/i915/display/intel_dpll.c     |  10 +-
-> >  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 150
-> > +++++++++---------  drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  32=
- ++--
-> >  drivers/gpu/drm/i915/display/intel_lvds.c     |   2 +-
-> >  .../drm/i915/display/intel_modeset_setup.c    |   2 +-
-> >  .../drm/i915/display/intel_modeset_verify.c   |   4 +-
-> >  .../gpu/drm/i915/display/intel_pch_display.c  |  14 +-
-> >  10 files changed, 119 insertions(+), 119 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > index a8934ea5077d..3fe330bf2636 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > @@ -1567,7 +1567,7 @@ _icl_ddi_get_pll(struct intel_display *display,
-> > i915_reg_t reg,
-> >
-> >  	id =3D (intel_de_read(display, reg) & clk_sel_mask) >> clk_sel_shift;
-> >
-> > -	return intel_get_shared_dpll_by_id(display, id);
-> > +	return intel_get_dpll_global_by_id(display, id);
-> >  }
-> >
-> >  static void adls_ddi_enable_clock(struct intel_encoder *encoder, @@
-> > -1721,7 +1721,7 @@ static struct intel_dpll_global *dg1_ddi_get_pll(str=
-uct
-> intel_encoder *encoder)
-> >  	if (phy >=3D PHY_C)
-> >  		id +=3D DPLL_ID_DG1_DPLL2;
-> >
-> > -	return intel_get_shared_dpll_by_id(display, id);
-> > +	return intel_get_dpll_global_by_id(display, id);
-> >  }
-> >
-> >  static void icl_ddi_combo_enable_clock(struct intel_encoder *encoder,
-> > @@ -1893,7 +1893,7 @@ static struct intel_dpll_global
-> *icl_ddi_tc_get_pll(struct intel_encoder *encode
-> >  		return NULL;
-> >  	}
-> >
-> > -	return intel_get_shared_dpll_by_id(display, id);
-> > +	return intel_get_dpll_global_by_id(display, id);
-> >  }
-> >
-> >  static struct intel_dpll_global *bxt_ddi_get_pll(struct intel_encoder
-> > *encoder) @@ -1916,7 +1916,7 @@ static struct intel_dpll_global
-> *bxt_ddi_get_pll(struct intel_encoder *encoder)
-> >  		return NULL;
-> >  	}
-> >
-> > -	return intel_get_shared_dpll_by_id(display, id);
-> > +	return intel_get_dpll_global_by_id(display, id);
-> >  }
-> >
-> >  static void skl_ddi_enable_clock(struct intel_encoder *encoder, @@
-> > -1984,7 +1984,7 @@ static struct intel_dpll_global *skl_ddi_get_pll(str=
-uct
-> intel_encoder *encoder)
-> >  	id =3D (tmp & DPLL_CTRL2_DDI_CLK_SEL_MASK(port)) >>
-> >  		DPLL_CTRL2_DDI_CLK_SEL_SHIFT(port);
-> >
-> > -	return intel_get_shared_dpll_by_id(display, id);
-> > +	return intel_get_dpll_global_by_id(display, id);
-> >  }
-> >
-> >  void hsw_ddi_enable_clock(struct intel_encoder *encoder, @@ -2051,7
-> > +2051,7 @@ static struct intel_dpll_global *hsw_ddi_get_pll(struct
-> intel_encoder *encoder)
-> >  		return NULL;
-> >  	}
-> >
-> > -	return intel_get_shared_dpll_by_id(display, id);
-> > +	return intel_get_dpll_global_by_id(display, id);
-> >  }
-> >
-> >  void intel_ddi_enable_clock(struct intel_encoder *encoder, @@ -2758,7
-> > +2758,7 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state
-> *state,
-> >  	 * 4. Enable the port PLL.
-> >  	 *
-> >  	 * The PLL enabling itself was already done before this function by
-> > -	 * hsw_crtc_enable()->intel_enable_shared_dpll().  We need only
-> > +	 * hsw_crtc_enable()->intel_enable_dpll_global().  We need only
-> >  	 * configure the PLL to port mapping here.
-> >  	 */
-> >  	intel_ddi_enable_clock(encoder, crtc_state); diff --git
-> > a/drivers/gpu/drm/i915/display/intel_display.c
-> > b/drivers/gpu/drm/i915/display/intel_display.c
-> > index 5b808bad61e0..904b9544515b 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -1662,7 +1662,7 @@ static void hsw_crtc_enable(struct
-> intel_atomic_state *state,
-> >  	intel_encoders_pre_pll_enable(state, crtc);
-> >
-> >  	if (new_crtc_state->dpll_global)
-> > -		intel_enable_shared_dpll(new_crtc_state);
-> > +		intel_enable_dpll_global(new_crtc_state);
-> >
-> >  	intel_encoders_pre_enable(state, crtc);
-> >
-> > @@ -1791,7 +1791,7 @@ static void hsw_crtc_disable(struct
-> intel_atomic_state *state,
-> >  	intel_encoders_disable(state, crtc);
-> >  	intel_encoders_post_disable(state, crtc);
-> >
-> > -	intel_disable_shared_dpll(old_crtc_state);
-> > +	intel_disable_dpll_global(old_crtc_state);
-> >
-> >  	intel_encoders_post_pll_disable(state, crtc);
-> >
-> > @@ -6429,7 +6429,7 @@ int intel_atomic_check(struct drm_device *dev,
-> >
-> >  		any_ms =3D true;
-> >
-> > -		intel_release_shared_dplls(state, crtc);
-> > +		intel_release_dpll_globals(state, crtc);
-> >  	}
-> >
-> >  	if (any_ms && !check_digital_port_conflicts(state)) { @@ -7523,7
-> > +7523,7 @@ static int intel_atomic_swap_state(struct
-> > intel_atomic_state *state)
-> >
-> >  	intel_atomic_swap_global_state(state);
-> >
-> > -	intel_shared_dpll_swap_state(state);
-> > +	intel_dpll_swap_state(state);
-> >
-> >  	intel_atomic_track_fbs(state);
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c
-> > b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> > index 4edadebad13b..b6c670c54eb1 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> > @@ -441,7 +441,7 @@ int intel_display_driver_probe_nogem(struct
-> intel_display *display)
-> >  	}
-> >
-> >  	intel_plane_possible_crtcs_init(display);
-> > -	intel_shared_dpll_init(display);
-> > +	intel_dpll_global_init(display);
-> >  	intel_fdi_pll_freq_update(display);
-> >
-> >  	intel_update_czclk(display);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c
-> > b/drivers/gpu/drm/i915/display/intel_dpll.c
-> > index c6d29382378b..04fb76a399ab 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dpll.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
-> > @@ -1162,7 +1162,7 @@ static int hsw_crtc_compute_clock(struct
-> intel_atomic_state *state,
-> >  	    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI))
-> >  		return 0;
-> >
-> > -	ret =3D intel_compute_shared_dplls(state, crtc, encoder);
-> > +	ret =3D intel_compute_dpll_globals(state, crtc, encoder);
-> >  	if (ret)
-> >  		return ret;
-> >
-> > @@ -1190,7 +1190,7 @@ static int hsw_crtc_get_shared_dpll(struct
-> intel_atomic_state *state,
-> >  	    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI))
-> >  		return 0;
-> >
-> > -	return intel_reserve_shared_dplls(state, crtc, encoder);
-> > +	return intel_reserve_dpll_globals(state, crtc, encoder);
-> >  }
-> >
-> >  static int dg2_crtc_compute_clock(struct intel_atomic_state *state,
-> > @@ -1224,7 +1224,7 @@ static int mtl_crtc_compute_clock(struct
-> intel_atomic_state *state,
-> >  	if (ret)
-> >  		return ret;
-> >
-> > -	/* TODO: Do the readback via intel_compute_shared_dplls() */
-> > +	/* TODO: Do the readback via intel_compute_dpll_globals() */
-> >  	crtc_state->port_clock =3D intel_cx0pll_calc_port_clock(encoder,
-> > &crtc_state->dpll_hw_state.cx0pll);
-> >
-> >  	crtc_state->hw.adjusted_mode.crtc_clock =3D
-> > intel_crtc_dotclock(crtc_state); @@ -1397,7 +1397,7 @@ static int
-> ilk_crtc_compute_clock(struct intel_atomic_state *state,
-> >  	ilk_compute_dpll(crtc_state, &crtc_state->dpll,
-> >  			 &crtc_state->dpll);
-> >
-> > -	ret =3D intel_compute_shared_dplls(state, crtc, NULL);
-> > +	ret =3D intel_compute_dpll_globals(state, crtc, NULL);
-> >  	if (ret)
-> >  		return ret;
-> >
-> > @@ -1417,7 +1417,7 @@ static int ilk_crtc_get_shared_dpll(struct
-> intel_atomic_state *state,
-> >  	if (!crtc_state->has_pch_encoder)
-> >  		return 0;
-> >
-> > -	return intel_reserve_shared_dplls(state, crtc, NULL);
-> > +	return intel_reserve_dpll_globals(state, crtc, NULL);
-> >  }
-> >
-> >  static u32 vlv_dpll(const struct intel_crtc_state *crtc_state) diff
-> > --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> > b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> > index 833c90f3f0f1..e6546d735799 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> > @@ -49,21 +49,21 @@
-> >   * share a PLL if their configurations match.
-> >   *
-> >   * This file provides an abstraction over display PLLs. The function
-> > - * intel_shared_dpll_init() initializes the PLLs for the given
-> > platform.  The
-> > + * intel_dpll_global_init() initializes the PLLs for the given
-> > + platform.  The
-> >   * users of a PLL are tracked and that tracking is integrated with the=
- atomic
-> >   * modset interface. During an atomic operation, required PLLs can be
-> reserved
-> >   * for a given CRTC and encoder configuration by calling
-> > - * intel_reserve_shared_dplls() and previously reserved PLLs can be
-> > released
-> > - * with intel_release_shared_dplls().
-> > + * intel_reserve_dpll_globals() and previously reserved PLLs can be
-> > + released
-> > + * with intel_release_dpll_globals().
-> >   * Changes to the users are first staged in the atomic state, and
-> > then made
-> > - * effective by calling intel_shared_dpll_swap_state() during the
-> > atomic
-> > + * effective by calling intel_dpll_swap_state() during the atomic
-> >   * commit phase.
-> >   */
-> >
-> >  /* platform specific hooks for managing DPLLs */  struct
-> > intel_dpll_global_funcs {
-> >  	/*
-> > -	 * Hook for enabling the pll, called from intel_enable_shared_dpll() =
-if
-> > +	 * Hook for enabling the pll, called from intel_enable_dpll_global()
-> > +if
-> >  	 * the pll is not already enabled.
-> >  	 */
-> >  	void (*enable)(struct intel_display *display, @@ -71,7 +71,7 @@
-> > struct intel_dpll_global_funcs {
-> >  		       const struct intel_dpll_hw_state *dpll_hw_state);
-> >
-> >  	/*
-> > -	 * Hook for disabling the pll, called from intel_disable_shared_dpll(=
-)
-> > +	 * Hook for disabling the pll, called from
-> > +intel_disable_dpll_global()
-> >  	 * only when it is safe to disable the pll, i.e., there are no more
-> >  	 * tracked users for it.
-> >  	 */
-> > @@ -130,7 +130,7 @@ intel_atomic_duplicate_dpll_state(struct
-> > intel_display *display,  }
-> >
-> >  static struct intel_dpll_state *
-> > -intel_atomic_get_shared_dpll_state(struct drm_atomic_state *s)
-> > +intel_atomic_get_dpll_global_state(struct drm_atomic_state *s)
-> >  {
-> >  	struct intel_atomic_state *state =3D to_intel_atomic_state(s);
-> >  	struct intel_display *display =3D to_intel_display(state); @@ -148,7
-> > +148,7 @@ intel_atomic_get_shared_dpll_state(struct drm_atomic_state
-> > *s)  }
-> >
-> >  /**
-> > - * intel_get_shared_dpll_by_id - get a DPLL given its id
-> > + * intel_get_dpll_global_by_id - get a DPLL given its id
-> >   * @display: intel_display device instance
-> >   * @id: pll id
-> >   *
-> > @@ -156,7 +156,7 @@ intel_atomic_get_shared_dpll_state(struct
-> drm_atomic_state *s)
-> >   * A pointer to the DPLL with @id
-> >   */
-> >  struct intel_dpll_global *
-> > -intel_get_shared_dpll_by_id(struct intel_display *display,
-> > +intel_get_dpll_global_by_id(struct intel_display *display,
-> >  			    enum intel_dpll_id id)
-> >  {
-> >  	struct intel_dpll_global *pll;
-> > @@ -172,7 +172,7 @@ intel_get_shared_dpll_by_id(struct intel_display
-> > *display,  }
-> >
-> >  /* For ILK+ */
-> > -void assert_shared_dpll(struct intel_display *display,
-> > +void assert_dpll_global(struct intel_display *display,
-> >  			struct intel_dpll_global *pll,
-> >  			bool state)
-> >  {
-> > @@ -247,12 +247,12 @@ static void _intel_disable_shared_dpll(struct
-> > intel_display *display,  }
-> >
-> >  /**
-> > - * intel_enable_shared_dpll - enable a CRTC's shared DPLL
-> > - * @crtc_state: CRTC, and its state, which has a shared DPLL
-> > + * intel_enable_dpll_global - enable a CRTC's global DPLL
-> > + * @crtc_state: CRTC, and its state, which has a DPLL
-> >   *
-> > - * Enable the shared DPLL used by @crtc.
-> > + * Enable DPLL used by @crtc.
-> >   */
-> > -void intel_enable_shared_dpll(const struct intel_crtc_state
-> > *crtc_state)
-> > +void intel_enable_dpll_global(const struct intel_crtc_state
-> > +*crtc_state)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(crtc_state);
-> >  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> > @@ -279,7 +279,7 @@ void intel_enable_shared_dpll(const struct
-> > intel_crtc_state *crtc_state)
-> >
-> >  	if (old_mask) {
-> >  		drm_WARN_ON(display->drm, !pll->on);
-> > -		assert_shared_dpll_enabled(display, pll);
-> > +		assert_dpll_global_enabled(display, pll);
-> >  		goto out;
-> >  	}
-> >  	drm_WARN_ON(display->drm, pll->on);
-> > @@ -293,12 +293,12 @@ void intel_enable_shared_dpll(const struct
-> > intel_crtc_state *crtc_state)  }
-> >
-> >  /**
-> > - * intel_disable_shared_dpll - disable a CRTC's shared DPLL
-> > + * intel_disable_dpll_global - disable a CRTC's shared DPLL
-> >   * @crtc_state: CRTC, and its state, which has a shared DPLL
-> >   *
-> > - * Disable the shared DPLL used by @crtc.
-> > + * Disable DPLL used by @crtc.
-> >   */
-> > -void intel_disable_shared_dpll(const struct intel_crtc_state
-> > *crtc_state)
-> > +void intel_disable_dpll_global(const struct intel_crtc_state
-> > +*crtc_state)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(crtc_state);
-> >  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> > @@ -323,7 +323,7 @@ void intel_disable_shared_dpll(const struct
-> intel_crtc_state *crtc_state)
-> >  		    pll->info->name, pll->active_mask, pll->on,
-> >  		    crtc->base.base.id, crtc->base.name);
-> >
-> > -	assert_shared_dpll_enabled(display, pll);
-> > +	assert_dpll_global_enabled(display, pll);
-> >  	drm_WARN_ON(display->drm, !pll->on);
-> >
-> >  	pll->active_mask &=3D ~pipe_mask;
-> > @@ -355,7 +355,7 @@ intel_dpll_mask_all(struct intel_display *display)
-> > }
-> >
-> >  static struct intel_dpll_global *
-> > -intel_find_shared_dpll(struct intel_atomic_state *state,
-> > +intel_find_dpll_global(struct intel_atomic_state *state,
-> >  		       const struct intel_crtc *crtc,
-> >  		       const struct intel_dpll_hw_state *dpll_hw_state,
-> >  		       unsigned long dpll_mask)
-> > @@ -366,14 +366,14 @@ intel_find_shared_dpll(struct intel_atomic_state
-> *state,
-> >  	struct intel_dpll_global *unused_pll =3D NULL;
-> >  	enum intel_dpll_id id;
-> >
-> > -	dpll_state =3D intel_atomic_get_shared_dpll_state(&state->base);
-> > +	dpll_state =3D intel_atomic_get_dpll_global_state(&state->base);
-> >
-> >  	drm_WARN_ON(display->drm, dpll_mask & ~dpll_mask_all);
-> >
-> >  	for_each_set_bit(id, &dpll_mask, fls(dpll_mask_all)) {
-> >  		struct intel_dpll_global *pll;
-> >
-> > -		pll =3D intel_get_shared_dpll_by_id(display, id);
-> > +		pll =3D intel_get_dpll_global_by_id(display, id);
-> >  		if (!pll)
-> >  			continue;
-> >
-> > @@ -409,7 +409,7 @@ intel_find_shared_dpll(struct intel_atomic_state
-> > *state,  }
-> >
-> >  /**
-> > - * intel_reference_shared_dpll_crtc - Get a DPLL reference for a CRTC
-> > + * intel_reference_dpll_global_crtc - Get a DPLL reference for a CRTC
-> >   * @crtc: CRTC on which behalf the reference is taken
-> >   * @pll: DPLL for which the reference is taken
-> >   * @dpll_state: the DPLL atomic state in which the reference is
-> > tracked @@ -417,7 +417,7 @@ intel_find_shared_dpll(struct
-> intel_atomic_state *state,
-> >   * Take a reference for @pll tracking the use of it by @crtc.
-> >   */
-> >  static void
-> > -intel_reference_shared_dpll_crtc(const struct intel_crtc *crtc,
-> > +intel_reference_dpll_global_crtc(const struct intel_crtc *crtc,
-> >  				 const struct intel_dpll_global *pll,
-> >  				 struct intel_dpll_state *dpll_state)  { @@ -
-> 432,23 +432,23 @@
-> > intel_reference_shared_dpll_crtc(const struct intel_crtc *crtc,  }
-> >
-> >  static void
-> > -intel_reference_shared_dpll(struct intel_atomic_state *state,
-> > +intel_reference_dpll_global(struct intel_atomic_state *state,
-> >  			    const struct intel_crtc *crtc,
-> >  			    const struct intel_dpll_global *pll,
-> >  			    const struct intel_dpll_hw_state *dpll_hw_state)  {
-> >  	struct intel_dpll_state *dpll_state;
-> >
-> > -	dpll_state =3D intel_atomic_get_shared_dpll_state(&state->base);
-> > +	dpll_state =3D intel_atomic_get_dpll_global_state(&state->base);
-> >
-> >  	if (dpll_state[pll->index].pipe_mask =3D=3D 0)
-> >  		dpll_state[pll->index].hw_state =3D *dpll_hw_state;
-> >
-> > -	intel_reference_shared_dpll_crtc(crtc, pll, &dpll_state[pll->index]);
-> > +	intel_reference_dpll_global_crtc(crtc, pll,
-> > +&dpll_state[pll->index]);
-> >  }
-> >
-> >  /**
-> > - * intel_unreference_shared_dpll_crtc - Drop a DPLL reference for a
-> > CRTC
-> > + * intel_unreference_dpll_global_crtc - Drop a DPLL reference for a
-> > + CRTC
-> >   * @crtc: CRTC on which behalf the reference is dropped
-> >   * @pll: DPLL for which the reference is dropped
-> >   * @dpll_state: the DPLL atomic state in which the reference is
-> > tracked @@ -456,7 +456,7 @@ intel_reference_shared_dpll(struct
-> intel_atomic_state *state,
-> >   * Drop a reference for @pll tracking the end of use of it by @crtc.
-> >   */
-> >  void
-> > -intel_unreference_shared_dpll_crtc(const struct intel_crtc *crtc,
-> > +intel_unreference_dpll_global_crtc(const struct intel_crtc *crtc,
-> >  				   const struct intel_dpll_global *pll,
-> >  				   struct intel_dpll_state *dpll_state)  { @@ -
-> 470,15 +470,15 @@
-> > intel_unreference_shared_dpll_crtc(const struct intel_crtc *crtc,
-> >  		    crtc->base.base.id, crtc->base.name, pll->info->name);  }
-> >
-> > -static void intel_unreference_shared_dpll(struct intel_atomic_state
-> > *state,
-> > +static void intel_unreference_dpll_global(struct intel_atomic_state
-> > +*state,
-> >  					  const struct intel_crtc *crtc,
-> >  					  const struct intel_dpll_global *pll)  {
-> >  	struct intel_dpll_state *dpll_state;
-> >
-> > -	dpll_state =3D intel_atomic_get_shared_dpll_state(&state->base);
-> > +	dpll_state =3D intel_atomic_get_dpll_global_state(&state->base);
-> >
-> > -	intel_unreference_shared_dpll_crtc(crtc, pll, &dpll_state[pll->index]=
-);
-> > +	intel_unreference_dpll_global_crtc(crtc, pll,
-> > +&dpll_state[pll->index]);
-> >  }
-> >
-> >  static void intel_put_dpll(struct intel_atomic_state *state, @@
-> > -494,11 +494,11 @@ static void intel_put_dpll(struct intel_atomic_state
-> *state,
-> >  	if (!old_crtc_state->dpll_global)
-> >  		return;
-> >
-> > -	intel_unreference_shared_dpll(state, crtc, old_crtc_state-
-> >dpll_global);
-> > +	intel_unreference_dpll_global(state, crtc,
-> > +old_crtc_state->dpll_global);
-> >  }
-> >
-> >  /**
-> > - * intel_shared_dpll_swap_state - make atomic DPLL configuration
-> > effective
-> > + * intel_dpll_swap_state - make atomic DPLL configuration effective
-> >   * @state: atomic state
-> >   *
-> >   * This is the dpll version of drm_atomic_helper_swap_state() since
-> > the @@ -508,7 +508,7 @@ static void intel_put_dpll(struct
-> intel_atomic_state *state,
-> >   * i.e. it also puts the current state into @state, even though there =
-is no
-> >   * need for that at this moment.
-> >   */
-> > -void intel_shared_dpll_swap_state(struct intel_atomic_state *state)
-> > +void intel_dpll_swap_state(struct intel_atomic_state *state)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(state);
-> >  	struct intel_dpll_state *dpll_state =3D state->dpll_state; @@ -618,14
-> > +618,14 @@ static int ibx_get_dpll(struct intel_atomic_state *state,
-> >  	if (HAS_PCH_IBX(i915)) {
-> >  		/* Ironlake PCH has a fixed PLL->PCH pipe mapping. */
-> >  		id =3D (enum intel_dpll_id) crtc->pipe;
-> > -		pll =3D intel_get_shared_dpll_by_id(display, id);
-> > +		pll =3D intel_get_dpll_global_by_id(display, id);
-> >
-> >  		drm_dbg_kms(display->drm,
-> >  			    "[CRTC:%d:%s] using pre-allocated %s\n",
-> >  			    crtc->base.base.id, crtc->base.name,
-> >  			    pll->info->name);
-> >  	} else {
-> > -		pll =3D intel_find_shared_dpll(state, crtc,
-> > +		pll =3D intel_find_dpll_global(state, crtc,
-> >  					     &crtc_state->dpll_hw_state,
-> >  					     BIT(DPLL_ID_PCH_PLL_B) |
-> >  					     BIT(DPLL_ID_PCH_PLL_A));
-> > @@ -635,7 +635,7 @@ static int ibx_get_dpll(struct intel_atomic_state
-> *state,
-> >  		return -EINVAL;
-> >
-> >  	/* reference the pll */
-> > -	intel_reference_shared_dpll(state, crtc,
-> > +	intel_reference_dpll_global(state, crtc,
-> >  				    pll, &crtc_state->dpll_hw_state);
-> >
-> >  	crtc_state->dpll_global =3D pll;
-> > @@ -1064,7 +1064,7 @@ hsw_ddi_wrpll_get_dpll(struct intel_atomic_state
-> *state,
-> >  	struct intel_crtc_state *crtc_state =3D
-> >  		intel_atomic_get_new_crtc_state(state, crtc);
-> >
-> > -	return intel_find_shared_dpll(state, crtc,
-> > +	return intel_find_dpll_global(state, crtc,
-> >  				      &crtc_state->dpll_hw_state,
-> >  				      BIT(DPLL_ID_WRPLL2) |
-> >  				      BIT(DPLL_ID_WRPLL1));
-> > @@ -1111,7 +1111,7 @@ hsw_ddi_lcpll_get_dpll(struct intel_crtc_state
-> *crtc_state)
-> >  		return NULL;
-> >  	}
-> >
-> > -	pll =3D intel_get_shared_dpll_by_id(display, pll_id);
-> > +	pll =3D intel_get_dpll_global_by_id(display, pll_id);
-> >
-> >  	if (!pll)
-> >  		return NULL;
-> > @@ -1167,7 +1167,7 @@ hsw_ddi_spll_get_dpll(struct intel_atomic_state
-> *state,
-> >  	struct intel_crtc_state *crtc_state =3D
-> >  		intel_atomic_get_new_crtc_state(state, crtc);
-> >
-> > -	return intel_find_shared_dpll(state, crtc, &crtc_state->dpll_hw_state=
-,
-> > +	return intel_find_dpll_global(state, crtc,
-> > +&crtc_state->dpll_hw_state,
-> >  				      BIT(DPLL_ID_SPLL));
-> >  }
-> >
-> > @@ -1231,7 +1231,7 @@ static int hsw_get_dpll(struct intel_atomic_state
-> *state,
-> >  	if (!pll)
-> >  		return -EINVAL;
-> >
-> > -	intel_reference_shared_dpll(state, crtc,
-> > +	intel_reference_dpll_global(state, crtc,
-> >  				    pll, &crtc_state->dpll_hw_state);
-> >
-> >  	crtc_state->dpll_global =3D pll;
-> > @@ -1940,11 +1940,11 @@ static int skl_get_dpll(struct intel_atomic_sta=
-te
-> *state,
-> >  	struct intel_dpll_global *pll;
-> >
-> >  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
-> > -		pll =3D intel_find_shared_dpll(state, crtc,
-> > +		pll =3D intel_find_dpll_global(state, crtc,
-> >  					     &crtc_state->dpll_hw_state,
-> >  					     BIT(DPLL_ID_SKL_DPLL0));
-> >  	else
-> > -		pll =3D intel_find_shared_dpll(state, crtc,
-> > +		pll =3D intel_find_dpll_global(state, crtc,
-> >  					     &crtc_state->dpll_hw_state,
-> >  					     BIT(DPLL_ID_SKL_DPLL3) |
-> >  					     BIT(DPLL_ID_SKL_DPLL2) |
-> > @@ -1952,7 +1952,7 @@ static int skl_get_dpll(struct intel_atomic_state
-> *state,
-> >  	if (!pll)
-> >  		return -EINVAL;
-> >
-> > -	intel_reference_shared_dpll(state, crtc,
-> > +	intel_reference_dpll_global(state, crtc,
-> >  				    pll, &crtc_state->dpll_hw_state);
-> >
-> >  	crtc_state->dpll_global =3D pll;
-> > @@ -2432,12 +2432,12 @@ static int bxt_get_dpll(struct
-> > intel_atomic_state *state,
-> >
-> >  	/* 1:1 mapping between ports and PLLs */
-> >  	id =3D (enum intel_dpll_id) encoder->port;
-> > -	pll =3D intel_get_shared_dpll_by_id(display, id);
-> > +	pll =3D intel_get_dpll_global_by_id(display, id);
-> >
-> >  	drm_dbg_kms(display->drm, "[CRTC:%d:%s] using pre-allocated %s\n",
-> >  		    crtc->base.base.id, crtc->base.name, pll->info->name);
-> >
-> > -	intel_reference_shared_dpll(state, crtc,
-> > +	intel_reference_dpll_global(state, crtc,
-> >  				    pll, &crtc_state->dpll_hw_state);
-> >
-> >  	crtc_state->dpll_global =3D pll;
-> > @@ -3388,13 +3388,13 @@ static int icl_get_combo_phy_dpll(struct
-> intel_atomic_state *state,
-> >  	/* Eliminate DPLLs from consideration if reserved by HTI */
-> >  	dpll_mask &=3D ~intel_hti_dpll_mask(display);
-> >
-> > -	port_dpll->pll =3D intel_find_shared_dpll(state, crtc,
-> > +	port_dpll->pll =3D intel_find_dpll_global(state, crtc,
-> >  						&port_dpll->hw_state,
-> >  						dpll_mask);
-> >  	if (!port_dpll->pll)
-> >  		return -EINVAL;
-> >
-> > -	intel_reference_shared_dpll(state, crtc,
-> > +	intel_reference_dpll_global(state, crtc,
-> >  				    port_dpll->pll, &port_dpll->hw_state);
-> >
-> >  	icl_update_active_dpll(state, crtc, encoder); @@ -3452,25 +3452,25
-> > @@ static int icl_get_tc_phy_dplls(struct intel_atomic_state *state,
-> >  	int ret;
-> >
-> >  	port_dpll =3D &crtc_state->icl_port_dplls[ICL_PORT_DPLL_DEFAULT];
-> > -	port_dpll->pll =3D intel_find_shared_dpll(state, crtc,
-> > +	port_dpll->pll =3D intel_find_dpll_global(state, crtc,
-> >  						&port_dpll->hw_state,
-> >  						BIT(DPLL_ID_ICL_TBTPLL));
-> >  	if (!port_dpll->pll)
-> >  		return -EINVAL;
-> > -	intel_reference_shared_dpll(state, crtc,
-> > +	intel_reference_dpll_global(state, crtc,
-> >  				    port_dpll->pll, &port_dpll->hw_state);
-> >
-> >
-> >  	port_dpll =3D &crtc_state->icl_port_dplls[ICL_PORT_DPLL_MG_PHY];
-> >  	dpll_id =3D icl_tc_port_to_pll_id(intel_encoder_to_tc(encoder));
-> > -	port_dpll->pll =3D intel_find_shared_dpll(state, crtc,
-> > +	port_dpll->pll =3D intel_find_dpll_global(state, crtc,
-> >  						&port_dpll->hw_state,
-> >  						BIT(dpll_id));
-> >  	if (!port_dpll->pll) {
-> >  		ret =3D -EINVAL;
-> >  		goto err_unreference_tbt_pll;
-> >  	}
-> > -	intel_reference_shared_dpll(state, crtc,
-> > +	intel_reference_dpll_global(state, crtc,
-> >  				    port_dpll->pll, &port_dpll->hw_state);
-> >
-> >  	icl_update_active_dpll(state, crtc, encoder); @@ -3479,7 +3479,7 @@
-> > static int icl_get_tc_phy_dplls(struct intel_atomic_state *state,
-> >
-> >  err_unreference_tbt_pll:
-> >  	port_dpll =3D &crtc_state->icl_port_dplls[ICL_PORT_DPLL_DEFAULT];
-> > -	intel_unreference_shared_dpll(state, crtc, port_dpll->pll);
-> > +	intel_unreference_dpll_global(state, crtc, port_dpll->pll);
-> >
-> >  	return ret;
-> >  }
-> > @@ -3534,7 +3534,7 @@ static void icl_put_dplls(struct intel_atomic_sta=
-te
-> *state,
-> >  		if (!old_port_dpll->pll)
-> >  			continue;
-> >
-> > -		intel_unreference_shared_dpll(state, crtc, old_port_dpll->pll);
-> > +		intel_unreference_dpll_global(state, crtc, old_port_dpll->pll);
-> >  	}
-> >  }
-> >
-> > @@ -4300,12 +4300,12 @@ static const struct intel_dpll_mgr
-> > adlp_pll_mgr =3D {  };
-> >
-> >  /**
-> > - * intel_shared_dpll_init - Initialize shared DPLLs
-> > + * intel_dpll_global_init - Initialize DPLLs
-> >   * @display: intel_display device
-> >   *
-> > - * Initialize shared DPLLs for @display.
-> > + * Initialize DPLLs for @display.
-> >   */
-> > -void intel_shared_dpll_init(struct intel_display *display)
-> > +void intel_dpll_global_init(struct intel_display *display)
-> >  {
-> >  	struct drm_i915_private *i915 =3D to_i915(display->drm);
-> >  	const struct intel_dpll_mgr *dpll_mgr =3D NULL; @@ -4363,7 +4363,7
-> @@
-> > void intel_shared_dpll_init(struct intel_display *display)  }
-> >
-> >  /**
-> > - * intel_compute_shared_dplls - compute DPLL state CRTC and encoder
-> > combination
-> > + * intel_compute_dpll_globals - compute DPLL state CRTC and encoder
-> > + combination
-> >   * @state: atomic state
-> >   * @crtc: CRTC to compute DPLLs for
-> >   * @encoder: encoder
-> > @@ -4371,12 +4371,12 @@ void intel_shared_dpll_init(struct intel_displa=
-y
-> *display)
-> >   * This function computes the DPLL state for the given CRTC and encode=
-r.
-> >   *
-> >   * The new configuration in the atomic commit @state is made
-> > effective by
-> > - * calling intel_shared_dpll_swap_state().
-> > + * calling intel_dpll_swap_state().
-> >   *
-> >   * Returns:
-> >   * 0 on success, negative error code on failure.
-> >   */
-> > -int intel_compute_shared_dplls(struct intel_atomic_state *state,
-> > +int intel_compute_dpll_globals(struct intel_atomic_state *state,
-> >  			       struct intel_crtc *crtc,
-> >  			       struct intel_encoder *encoder)  { @@ -4390,7
-> +4390,7 @@ int
-> > intel_compute_shared_dplls(struct intel_atomic_state *state,  }
-> >
-> >  /**
-> > - * intel_reserve_shared_dplls - reserve DPLLs for CRTC and encoder
-> > combination
-> > + * intel_reserve_dpll_globals - reserve DPLLs for CRTC and encoder
-> > + combination
-> >   * @state: atomic state
-> >   * @crtc: CRTC to reserve DPLLs for
-> >   * @encoder: encoder
-> > @@ -4400,16 +4400,16 @@ int intel_compute_shared_dplls(struct
-> intel_atomic_state *state,
-> >   * state.
-> >   *
-> >   * The new configuration in the atomic commit @state is made
-> > effective by
-> > - * calling intel_shared_dpll_swap_state().
-> > + * calling intel_dpll_swap_state().
-> >   *
-> >   * The reserved DPLLs should be released by calling
-> > - * intel_release_shared_dplls().
-> > + * intel_release_dpll_globals().
-> >   *
-> >   * Returns:
-> >   * 0 if all required DPLLs were successfully reserved,
-> >   * negative error code otherwise.
-> >   */
-> > -int intel_reserve_shared_dplls(struct intel_atomic_state *state,
-> > +int intel_reserve_dpll_globals(struct intel_atomic_state *state,
-> >  			       struct intel_crtc *crtc,
-> >  			       struct intel_encoder *encoder)  { @@ -4423,17
-> +4423,17 @@
-> > int intel_reserve_shared_dplls(struct intel_atomic_state *state,  }
-> >
-> >  /**
-> > - * intel_release_shared_dplls - end use of DPLLs by CRTC in atomic
-> > state
-> > + * intel_release_dpll_globals - end use of DPLLs by CRTC in atomic
-> > + state
-> >   * @state: atomic state
-> >   * @crtc: crtc from which the DPLLs are to be released
-> >   *
-> > - * This function releases all DPLLs reserved by
-> > intel_reserve_shared_dplls()
-> > + * This function releases all DPLLs reserved by
-> > + intel_reserve_dpll_globals()
-> >   * from the current atomic commit @state and the old @crtc atomic stat=
-e.
-> >   *
-> >   * The new configuration in the atomic commit @state is made
-> > effective by
-> > - * calling intel_shared_dpll_swap_state().
-> > + * calling intel_dpll_swap_state().
-> >   */
-> > -void intel_release_shared_dplls(struct intel_atomic_state *state,
-> > +void intel_release_dpll_globals(struct intel_atomic_state *state,
-> >  				struct intel_crtc *crtc)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(state); @@ -4442,7
-> > +4442,7 @@ void intel_release_shared_dplls(struct intel_atomic_state
-> *state,
-> >  	/*
-> >  	 * FIXME: this function is called for every platform having a
-> >  	 * compute_clock hook, even though the platform doesn't yet support
-> > -	 * the shared DPLL framework and intel_reserve_shared_dplls() is not
-> > +	 * the global DPLL framework and intel_reserve_dpll_globals() is not
-> >  	 * called on those.
-> >  	 */
-> >  	if (!dpll_mgr)
-> > @@ -4458,7 +4458,7 @@ void intel_release_shared_dplls(struct
-> intel_atomic_state *state,
-> >   * @encoder: encoder determining the type of port DPLL
-> >   *
-> >   * Update the active DPLL for the given @crtc/@encoder in @crtc's
-> > atomic state,
-> > - * from the port DPLLs reserved previously by
-> > intel_reserve_shared_dplls(). The
-> > + * from the port DPLLs reserved previously by
-> > + intel_reserve_dpll_globals(). The
-> >   * DPLL selected will be based on the current mode of the encoder's po=
-rt.
-> >   */
-> >  void intel_update_active_dpll(struct intel_atomic_state *state, @@
-> > -4523,7 +4523,7 @@ static void readout_dpll_hw_state(struct intel_displ=
-ay
-> *display,
-> >  			to_intel_crtc_state(crtc->base.state);
-> >
-> >  		if (crtc_state->hw.active && crtc_state->dpll_global =3D=3D pll)
-> > -			intel_reference_shared_dpll_crtc(crtc, pll, &pll->state);
-> > +			intel_reference_dpll_global_crtc(crtc, pll, &pll->state);
-> >  	}
-> >  	pll->active_mask =3D pll->state.pipe_mask;
-> >
-> > @@ -4684,8 +4684,8 @@ static bool has_alt_port_dpll(const struct
-> intel_dpll_global *old_pll,
-> >  		(old_pll->info->is_alt_port_dpll ||
-> > new_pll->info->is_alt_port_dpll);  }
-> >
-> > -void intel_shared_dpll_state_verify(struct intel_atomic_state *state,
-> > -				    struct intel_crtc *crtc)
-> > +void intel_dpll_state_verify(struct intel_atomic_state *state,
-> > +			     struct intel_crtc *crtc)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(state);
-> >  	const struct intel_crtc_state *old_crtc_state =3D @@ -4715,7 +4715,7
-> > @@ void intel_shared_dpll_state_verify(struct intel_atomic_state *state=
-,
-> >  	}
-> >  }
-> >
-> > -void intel_shared_dpll_verify_disabled(struct intel_atomic_state
-> > *state)
-> > +void intel_dpll_global_verify_disabled(struct intel_atomic_state
-> > +*state)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(state);
-> >  	struct intel_dpll_global *pll;
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> > b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> > index bd52e30d83bd..6215da164ffc 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> > @@ -387,24 +387,24 @@ struct intel_dpll_global {  #define SKL_DPLL2 2
-> > #define SKL_DPLL3 3
-> >
-> > -/* shared dpll functions */
-> > +/* global dpll functions */
-> >  struct intel_dpll_global *
-> > -intel_get_shared_dpll_by_id(struct intel_display *display,
-> > +intel_get_dpll_global_by_id(struct intel_display *display,
-> >  			    enum intel_dpll_id id);
-> > -void assert_shared_dpll(struct intel_display *display,
-> > +void assert_dpll_global(struct intel_display *display,
-> >  			struct intel_dpll_global *pll,
-> >  			bool state);
-> > -#define assert_shared_dpll_enabled(d, p) assert_shared_dpll(d, p,
-> > true) -#define assert_shared_dpll_disabled(d, p) assert_shared_dpll(d,
-> > p, false) -int intel_compute_shared_dplls(struct intel_atomic_state
-> > *state,
-> > +#define assert_dpll_global_enabled(d, p) assert_dpll_global(d, p,
-> > +true) #define assert_dpll_global_disabled(d, p) assert_dpll_global(d,
-> > +p, false) int intel_compute_dpll_globals(struct intel_atomic_state
-> > +*state,
-> >  			       struct intel_crtc *crtc,
-> >  			       struct intel_encoder *encoder); -int
-> > intel_reserve_shared_dplls(struct intel_atomic_state *state,
-> > +int intel_reserve_dpll_globals(struct intel_atomic_state *state,
-> >  			       struct intel_crtc *crtc,
-> >  			       struct intel_encoder *encoder); -void
-> > intel_release_shared_dplls(struct intel_atomic_state *state,
-> > +void intel_release_dpll_globals(struct intel_atomic_state *state,
-> >  				struct intel_crtc *crtc);
-> > -void intel_unreference_shared_dpll_crtc(const struct intel_crtc
-> > *crtc,
-> > +void intel_unreference_dpll_global_crtc(const struct intel_crtc
-> > +*crtc,
-> >  					const struct intel_dpll_global *pll,
-> >  					struct intel_dpll_state
-> *shared_dpll_state);  void
-> > icl_set_active_port_dpll(struct intel_crtc_state *crtc_state, @@
-> > -418,10 +418,10 @@ int intel_dpll_get_freq(struct intel_display
-> > *display,  bool intel_dpll_get_hw_state(struct intel_display *display,
-> >  			     struct intel_dpll_global *pll,
-> >  			     struct intel_dpll_hw_state *dpll_hw_state); -void
-> > intel_enable_shared_dpll(const struct intel_crtc_state *crtc_state);
-> > -void intel_disable_shared_dpll(const struct intel_crtc_state
-> > *crtc_state); -void intel_shared_dpll_swap_state(struct
-> > intel_atomic_state *state); -void intel_shared_dpll_init(struct
-> > intel_display *display);
-> > +void intel_enable_dpll_global(const struct intel_crtc_state
-> > +*crtc_state); void intel_disable_dpll_global(const struct
-> > +intel_crtc_state *crtc_state); void intel_dpll_swap_state(struct
-> > +intel_atomic_state *state); void intel_dpll_global_init(struct
-> > +intel_display *display);
-> >  void intel_dpll_update_ref_clks(struct intel_display *display);  void
-> > intel_dpll_readout_hw_state(struct intel_display *display);  void
-> > intel_dpll_sanitize_state(struct intel_display *display); @@ -435,8
-> > +435,8 @@ bool intel_dpll_compare_hw_state(struct intel_display
-> > *display,  enum intel_dpll_id icl_tc_port_to_pll_id(enum tc_port
-> > tc_port);  bool intel_dpll_is_combophy(enum intel_dpll_id id);
-> >
-> > -void intel_shared_dpll_state_verify(struct intel_atomic_state *state,
-> > -				    struct intel_crtc *crtc);
-> > -void intel_shared_dpll_verify_disabled(struct intel_atomic_state
-> > *state);
-> > +void intel_dpll_state_verify(struct intel_atomic_state *state,
-> > +			     struct intel_crtc *crtc);
-> > +void intel_dpll_global_verify_disabled(struct intel_atomic_state
-> > +*state);
-> >
-> >  #endif /* _INTEL_DPLL_MGR_H_ */
-> > diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c
-> > b/drivers/gpu/drm/i915/display/intel_lvds.c
-> > index bc8725aa99da..52f61a120b70 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_lvds.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-> > @@ -251,7 +251,7 @@ static void intel_pre_enable_lvds(struct
-> > intel_atomic_state *state,
-> >
-> >  	if (HAS_PCH_SPLIT(i915)) {
-> >  		assert_fdi_rx_pll_disabled(display, pipe);
-> > -		assert_shared_dpll_disabled(display, crtc_state->dpll_global);
-> > +		assert_dpll_global_disabled(display, crtc_state->dpll_global);
-> >  	} else {
-> >  		assert_pll_disabled(display, pipe);
-> >  	}
-> > diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> > b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> > index 427eff400b53..4221d1566c8a 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> > @@ -92,7 +92,7 @@ static void intel_crtc_disable_noatomic_begin(struct
-> intel_crtc *crtc,
-> >  	crtc->base.enabled =3D false;
-> >
-> >  	if (crtc_state->dpll_global)
-> > -		intel_unreference_shared_dpll_crtc(crtc,
-> > +		intel_unreference_dpll_global_crtc(crtc,
-> >  						   crtc_state->dpll_global,
-> >  						   &crtc_state->dpll_global-
-> >state);  } diff --git
-> > a/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-> > b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-> > index a008412fdd04..eb080a1d8a42 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-> > @@ -246,7 +246,7 @@ void intel_modeset_verify_crtc(struct
-> intel_atomic_state *state,
-> >  	intel_wm_state_verify(state, crtc);
-> >  	verify_connector_state(state, crtc);
-> >  	verify_crtc_state(state, crtc);
-> > -	intel_shared_dpll_state_verify(state, crtc);
-> > +	intel_dpll_state_verify(state, crtc);
-> >  	intel_mpllb_state_verify(state, crtc);
-> >  	intel_cx0pll_state_verify(state, crtc);  } @@ -255,5 +255,5 @@ void
-> > intel_modeset_verify_disabled(struct intel_atomic_state *state)  {
-> >  	verify_encoder_state(state);
-> >  	verify_connector_state(state, NULL);
-> > -	intel_shared_dpll_verify_disabled(state);
-> > +	intel_dpll_global_verify_disabled(state);
-> >  }
-> > diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c
-> > b/drivers/gpu/drm/i915/display/intel_pch_display.c
-> > index 57303ecb77ad..aa39d0fb1e23 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_pch_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
-> > @@ -255,7 +255,7 @@ static void ilk_enable_pch_transcoder(const struct
-> intel_crtc_state *crtc_state)
-> >  	u32 val, pipeconf_val;
-> >
-> >  	/* Make sure PCH DPLL is enabled */
-> > -	assert_shared_dpll_enabled(display, crtc_state->dpll_global);
-> > +	assert_dpll_global_enabled(display, crtc_state->dpll_global);
-> >
-> >  	/* FDI must be feeding us bits for PCH ports */
-> >  	assert_fdi_tx_enabled(display, pipe); @@ -388,7 +388,7 @@ void
-> > ilk_pch_enable(struct intel_atomic_state *state,
-> >  		temp |=3D TRANS_DPLL_ENABLE(pipe);
-> >  		sel =3D TRANS_DPLLB_SEL(pipe);
-> >  		if (crtc_state->dpll_global =3D=3D
-> > -		    intel_get_shared_dpll_by_id(display, DPLL_ID_PCH_PLL_B))
-> > +		    intel_get_dpll_global_by_id(display, DPLL_ID_PCH_PLL_B))
-> >  			temp |=3D sel;
-> >  		else
-> >  			temp &=3D ~sel;
-> > @@ -400,11 +400,11 @@ void ilk_pch_enable(struct intel_atomic_state
-> *state,
-> >  	 * transcoder, and we actually should do this to not upset any PCH
-> >  	 * transcoder that already use the clock when we share it.
-> >  	 *
-> > -	 * Note that enable_shared_dpll tries to do the right thing, but
-> > -	 * get_shared_dpll unconditionally resets the pll - we need that
-> > +	 * Note that enable_dpll_global tries to do the right thing, but
-> > +	 * get_dpll_global unconditionally resets the pll - we need that
-> >  	 * to have the right LVDS enable sequence.
-> >  	 */
-> > -	intel_enable_shared_dpll(crtc_state);
-> > +	intel_enable_dpll_global(crtc_state);
-> >
-> >  	/* set transcoder timing, panel must allow it */
-> >  	assert_pps_unlocked(display, pipe);
-> > @@ -479,7 +479,7 @@ void ilk_pch_post_disable(struct
-> > intel_atomic_state *state,
-> >
-> >  	ilk_fdi_pll_disable(crtc);
-> >
-> > -	intel_disable_shared_dpll(old_crtc_state);
-> > +	intel_disable_dpll_global(old_crtc_state);
-> >  }
-> >
-> >  static void ilk_pch_clock_get(struct intel_crtc_state *crtc_state) @@
-> > -536,7 +536,7 @@ void ilk_pch_get_config(struct intel_crtc_state *crtc_=
-state)
-> >  			pll_id =3D DPLL_ID_PCH_PLL_A;
-> >  	}
-> >
-> > -	crtc_state->dpll_global =3D intel_get_shared_dpll_by_id(display, pll_=
-id);
-> > +	crtc_state->dpll_global =3D intel_get_dpll_global_by_id(display,
-> > +pll_id);
-> >  	pll =3D crtc_state->dpll_global;
-> >
-> >  	pll_active =3D intel_dpll_get_hw_state(display, pll,
->=20
-> --
-> Jani Nikula, Intel
+On 2025-03-27 11:39 p.m., Matthew Brost wrote:
+> On Thu, Mar 27, 2025 at 04:40:27PM -0700, Zhanjun Dong wrote:
+>> Add new debugfs entry "guc_log_lfd", which supports output guc log
+>> in LFD(Log Format Descriptors) format.
+>>
+> 
+> Not a full review - but couple of drive by comments.
+> 
+> I suggest trying to split this patch into a series of smaller ones if
+> possible. 756 loc is lot for a single patch. Off the top of my head...
+> 
+> - ABI patches
+> - New GuC patch
+> - New debugfs entry patch
+> 
+>> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/abi/guc_log_abi.h     | 112 +++++++
+>>   drivers/gpu/drm/xe/abi/guc_log_lfd_abi.h | 261 ++++++++++++++++
+>>   drivers/gpu/drm/xe/xe_guc_debugfs.c      |  14 +
+>>   drivers/gpu/drm/xe/xe_guc_log.c          | 368 +++++++++++++++++++++++
+>>   drivers/gpu/drm/xe/xe_guc_log.h          |   1 +
+>>   5 files changed, 756 insertions(+)
+>>   create mode 100644 drivers/gpu/drm/xe/abi/guc_log_lfd_abi.h
+>>
+>> diff --git a/drivers/gpu/drm/xe/abi/guc_log_abi.h b/drivers/gpu/drm/xe/abi/guc_log_abi.h
+>> index 554630b7ccd9..50b697e44c42 100644
+>> --- a/drivers/gpu/drm/xe/abi/guc_log_abi.h
+>> +++ b/drivers/gpu/drm/xe/abi/guc_log_abi.h
+>> @@ -17,6 +17,118 @@ enum guc_log_buffer_type {
+>>   
+>>   #define GUC_LOG_BUFFER_TYPE_MAX		3
+>>   
+>> +#define GUC_LOG_BUFFER_STATE_HEADER_LENGTH		4096
+>> +#define GUC_LOG_BUFFER_STATE_HEADER_ENTRY_LOG		0
+>> +#define GUC_LOG_BUFFER_STATE_HEADER_ENTRY_CRASH		1
+>> +#define GUC_LOG_BUFFER_STATE_HEADER_ENTRY_CAPTURE	2
+>> +#define GUC_LOG_BUFFER_STATE_HEADER_ENTRY_INIT		3
+>> +#define GUC_LOG_BUFFER_STATE_HEADER_ENTRY_COUNT		4
+>> +
+>> +#define GUC_LOG_INIT_CONFIG_LIC_MAGIC			0x8086900D
+>> +#define GUC_LOG_INIT_CONFIG_FORMAT_VERSION_MAJOR	0x0001
+>> +#define GUC_LOG_INIT_CONFIG_FORMAT_VERSION_MINOR	0x0000
+>> +
+>> +/** Log Init Config KLV IDs. */
+>> +enum guc_log_lic_type_t {
+> 
+> '_t' suffix isn't used in the Xe style as typically is used for typedefs
+> which are frowned upon in upstream Linux. I'd drop "_t" suffix
+> everywhere.
+
+I agree _t is not Xe style, while for this case, the ABI header file is 
+follows with GuC spec, which is a cross system/project thing. The name 
+here is the secondary defines.
+I guess simply follows orginal spec will make things more easy to 
+compare and reduce possible mismatches among systems.
+
+> 
+>> +	/**
+>> +	 * GuC firmware version. Value is a 32 bit number represented by
+>> +	 * guc_sw_version_t.
+>> +	 */
+>> +	GUC_LOG_LIC_TYPE_GUC_SW_VERSION = 0x1,
+>> +	/**
+>> +	 * GuC device id. Value is a 32 bit. Refer BSpec symbol
+>> +	 * GUC_DEVICEID
+>> +	 */
+>> +	GUC_LOG_LIC_TYPE_GUC_DEVICE_ID = 0x2,
+>> +	/**
+>> +	 * GuC timestamp counter frequency. Value is a 32 bit number
+>> +	 * representing frequency in kilohertz. This timestamp is utilized
+>> +	 * in log entries, timer and for engine utilization tracking.
+>> +	 */
+>> +	GUC_LOG_LIC_TYPE_TSC_FREQUENCY = 0x3,
+>> +	/**
+>> +	 * HW GMD ID. Value is a 32 bit number representing graphics,
+>> +	 * media and display HW architecture IDs.
+>> +	 */
+>> +	GUC_LOG_LIC_TYPE_GMD_ID = 0x4,
+>> +	/** GuC build platform ID. Value is 32 bits. */
+>> +	GUC_LOG_LIC_TYPE_BUILD_PLATFORM_ID = 0x5,
+>> +};
+>> +
+>> +#define GUC_LOG_LIC_TYPE_FIRST	(GUC_LOG_LIC_TYPE_GUC_SW_VERSION)
+>> +#define GUC_LOG_LIC_TYPE_LAST	(GUC_LOG_LIC_TYPE_BUILD_PLATFORM_ID + 1)
+>> +
+>> +/** struct guc_klv_generic_t - KLV with multiple DWs in an array */
+>> +struct guc_klv_generic_t {
+>> +	/** @length: Length in Dwords of data. */
+>> +	u16		length;
+>> +	/** @key: Key value */
+>> +	u16		key;
+>> +	/** @value: Value for this key */
+>> +	u32		value[];
+>> +} __packed;
+>> +
+>> +/**
+>> + * struct guc_sw_version_t - This structure describes the full version of
+>> + * a software component.
+>> + */
+>> +struct guc_sw_version_t {
+>> +	/** @patch_version: BR[7:0] Patch version */
+>> +	u32		patch_version : 8;
+>> +	/** @minor_version: BR[15:8] Minor version */
+>> +	u32		minor_version : 8;
+>> +	/** @major_version: BR[23:16] Major version */
+>> +	u32		major_version : 8;
+>> +	/** @branch_id: BR[31:24] Branch ID */
+>> +	u32		branch_id : 8;
+> 
+> This needs to be defines if this corresponds to a hardware interface.
+> Based on CPU compiler target endians, the bits can get flipped around.
+Right, LFD defined in GuC spec is for little endian ONLY. Let me think 
+about endian things (output little endian file from big endian system) 
+in later revisions.>
+>> +} __packed;
+>> +
+>> +/**
+>> + * struct guc_lic_format_version_t - Log Init Config Structure Version.
+>> + * Major-Minor is not a fractional number (i.e. Ver 1.3 would be older
+>> + * than 1.12)
+>> + */
+>> +struct guc_lic_format_version_t {
+>> +	/**
+>> +	 * @minor_version: BR[15:0] Log-Init-Config structure minor
+>> +	 * version. Must be GUC_LOG_INIT_CONFIG_FORMAT_VERSION_MINOR
+>> +	 */
+>> +	u32		minor_version : 16;
+>> +	/**
+>> +	 * @major_version: BR[31:16] Log-Init-Config structure major
+>> +	 * version. Must be GUC_LOG_INIT_CONFIG_FORMAT_VERSION_MAJOR
+>> +	 */
+>> +	u32		major_version : 16;
+> 
+> Same here.
+> 
+>> +} __packed;
+>> +
+>> +/**
+>> + * struct guc_log_init_config_t - GuC Log-Init-Config structure.
+>> + * This is populated by the GUC at log init time and is located in the log
+>> + * buffer as per the Log Buffer Layout (In Memory). The array of guc log
+>> + * buffer states plus this structure must not exceed 4KB
+>> + */
+>> +struct guc_log_init_config_t {
+>> +	/**
+>> +	 * @lic_magic: A magic number set by GuC to identify that this
+>> +	 * structure contains valid information: lic_magic = 0x8086900D.
+>> +	 * Used to verify the information in this structure is valid.
+>> +	 */
+>> +	u32		lic_magic;
+>> +	/**
+>> +	 * @lic_ver: The version of the this structure. Detail description
+>> +	 * is guc_lic_format_version_t
+>> +	 */
+>> +	struct guc_lic_format_version_t	lic_ver;
+>> +	/** @lic_dw_size: Number of Dws the `lic_data` array contains. */
+>> +	u32		lic_dw_size;
+>> +	/**
+>> +	 * @lic_data: Array of dwords representing a list of LIC KLVs of
+>> +	 * type guc_klv_generic_t with keys represented by
+>> +	 * guc_log_lic_type_t
+>> +	 */
+>> +	u32		lic_data[];
+> 
+> You can use __counted_by(lic_dw_size) for some additional checking.
+Good point, will add in next rev.>
+>> +} __packed;
+>> +
+>>   /**
+>>    * struct guc_log_buffer_state - GuC log buffer state
+>>    *
+>> diff --git a/drivers/gpu/drm/xe/abi/guc_log_lfd_abi.h b/drivers/gpu/drm/xe/abi/guc_log_lfd_abi.h
+>> new file mode 100644
+>> index 000000000000..8aaacab244cb
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/xe/abi/guc_log_lfd_abi.h
+>> @@ -0,0 +1,261 @@
+>> +/* SPDX-License-Identifier: MIT */
+>> +/*
+>> + * Copyright © 2025 Intel Corporation
+>> + */
+>> +
+>> +#ifndef _ABI_GUC_LOG_LFD_ABI_H_
+>> +#define _ABI_GUC_LOG_LFD_ABI_H_
+>> +
+>> +#include <linux/types.h>
+>> +
+>> +#include "abi/guc_log_abi.h"
+>> +
+>> +/* Magic keys define */
+>> +#define LFD_DRIVER_KEY_STREAMING		0x8086AAAA474C5346
+>> +#define LFD_LOG_BUFFER_MARKER_2			0xDEADFEED
+>> +#define LFD_CRASH_DUMP_BUFFER_MARKER_2		0x8086DEAD
+>> +#define LFD_STATE_CAPTURE_BUFFER_MARKER_2	0xBEEFFEED
+>> +#define LFD_LOG_BUFFER_MARKER_1V2		0xCABBA9E6
+>> +#define LFD_STATE_CAPTURE_BUFFER_MARKER_1V2	0xCABBA9F7
+>> +
+>> +#define GUC_LOGFILE_LFD_MAGIC	upper_16_bits(LFD_CRASH_DUMP_BUFFER_MARKER_2)
+>> +
+>> +/** The current major version of GuC-Log-File format. */
+>> +#define GUC_LOG_FILE_FORMAT_VERSION_MAJOR	0x0001
+>> +/** The current minor version of GuC-Log-File format. */
+>> +#define GUC_LOG_FILE_FORMAT_VERSION_MINOR	0x0000
+>> +
+>> +/** Log format descriptor type */
+>> +enum guc_lfd_type_t {
+>> +	/** Start of range for required LFDs from GuC */
+>> +	GUC_LFD_TYPE_FW_REQUIRED_RANGE_START = 0x1,
+>> +	/**
+>> +	 * GuC Firmware Version structure. LFDs payload is
+>> +	 * guc_lfd_data_fw_version_t
+>> +	 */
+>> +	GUC_LFD_TYPE_FW_VERSION = 0x1,
+>> +	/**
+>> +	 * GuC microcontroller device ID. LFDs payload is
+>> +	 * guc_lfd_data_guc_devid_t
+>> +	 */
+>> +	GUC_LFD_TYPE_GUC_DEVICE_ID = 0x2,
+>> +	/**
+>> +	 * Frequency of GuC timestamps. LFDs payload is
+>> +	 * guc_lfd_data_tsc_freq_t
+>> +	 */
+>> +	GUC_LFD_TYPE_TSC_FREQUENCY = 0x3,
+>> +	/** HW GMD ID. LFDs payload is guc_lfd_data_gmdid_t */
+>> +	GUC_LFD_TYPE_GMD_ID = 0x4,
+>> +	/**
+>> +	 * GuC build platform ID. LFDs payload is
+>> +	 * guc_lfd_data_build_platformid_t
+>> +	 */
+>> +	GUC_LFD_TYPE_BUILD_PLATFORM_ID = 0x5,
+>> +	/** End of this range */
+>> +	GUC_LFD_TYPE_FW_REQUIRED_RANGE_END = 0x1FFF,
+>> +	/** Start of range for required LFDs from GuC */
+>> +	GUC_LFD_TYPE_FW_OPTIONAL_RANGE_START = 0x2000,
+>> +	/**
+>> +	 * Log-event-entries buffer. LFDs payload is
+>> +	 * guc_lfd_data_log_events_buf_t
+>> +	 */
+>> +	GUC_LFD_TYPE_LOG_EVENTS_BUFFER = 0x2000,
+>> +	/**
+>> +	 * GuC generated crash-dump blob. LFDs payload is
+>> +	 * guc_lfd_data_fw_crashdump_t
+>> +	 */
+>> +	GUC_LFD_TYPE_FW_CRASH_DUMP = 0x2001,
+>> +	/** End of this range */
+>> +	GUC_LFD_TYPE_FW_OPTIONAL_RANGE_END = 0x3FFF,
+>> +	/** Start of range for required KMD LFDs */
+>> +	GUC_LFD_TYPE_KMD_REQUIRED_RANGE_START = 0x4000,
+>> +	/**
+>> +	 * An identifier for the OS. LFDs payload is guc_lfd_data_os_id_t
+>> +	 */
+>> +	GUC_LFD_TYPE_OS_ID = 0x4000,
+>> +	/** End of this range */
+>> +	GUC_LFD_TYPE_KMD_REQUIRED_RANGE_END = 0x5FFF,
+>> +	/** Start of range for optional KMD LFDs */
+>> +	GUC_LFD_TYPE_KMD_OPTIONAL_RANGE_START = 0x6000,
+>> +	/**
+>> +	 * Binary representation of GuC log-events schema. LFDs TLV
+>> +	 * payload is guc_lfd_data_binary_schema_t
+>> +	 */
+>> +	GUC_LFD_TYPE_BINARY_SCHEMA_FORMAT = 0x6000,
+>> +	/**
+>> +	 * ASCII string containing comments from the host/KMD. LFDs TLV
+>> +	 * payload is guc_lfd_data_host_comment_t
+>> +	 */
+>> +	GUC_LFD_TYPE_HOST_COMMENT = 0x6001,
+>> +	/** End of this range */
+>> +	GUC_LFD_TYPE_KMD_OPTIONAL_RANGE_END = 0x7FFF,
+>> +	/** Start of reserved range */
+>> +	GUC_LFD_TYPE_RESERVED_RANGE_START = 0x8000,
+>> +	/** End of this range */
+>> +	GUC_LFD_TYPE_RESERVED_RANGE_END = 0xFFFF,
+>> +};
+>> +
+>> +/** OS Type LFD-ID */
+>> +enum guc_lfd_os_type_t {
+>> +	/** Windows OS */
+>> +	GUC_LFD_OS_TYPE_OSID_WIN = 0x1,
+>> +	/** Linux OS */
+>> +	GUC_LFD_OS_TYPE_OSID_LIN = 0x2,
+>> +	/** VMWare OS */
+>> +	GUC_LFD_OS_TYPE_OSID_VMW = 0x3,
+>> +	/** Other */
+>> +	GUC_LFD_OS_TYPE_OSID_OTHER = 0x4,
+>> +};
+>> +
+>> +/**
+>> + * struct guc_logfile_lfd_t - Log format descriptor (LFD).
+>> + * A type of KLV with custom field-sizes + magic numbers.
+>> + */
+>> +struct guc_logfile_lfd_t {
+>> +	/**
+>> +	 * @magic: BR[15:0] Expected value: 0x8086. Helpful in detecting
+>> +	 * file errors.
+>> +	 */
+>> +	u32		magic : 16;
+>> +	/**
+>> +	 * @desc_type: BR[31:16] File descriptor type (the 'T' in TLV) is
+>> +	 * used to identify how to interpret `data` below. For the range
+>> +	 * of types, see guc_lfd_type_t
+>> +	 */
+>> +	u32		desc_type : 16;
+> 
+> Defines as above if this is hardware interface.
+Will handle endian things in later revisions.>
+>> +	/** @desc_dw_size: Number of dwords the `data` field contains. */
+>> +	u32		desc_dw_size;
+>> +	/** @data: Data defined by File descriptor type. */
+>> +	u32		data[];
+> 
+> __counted_by(desc_dw_size);
+> 
+>> +} __packed;
+>> +
+>> +/**
+>> + * struct guc_logfile_fmt_ver_t - GuC Log File Format Version.
+>> + * Major-Minor is not a fractional number (i.e. Ver 1.3 would be older
+>> + * than 1.12)
+>> + */
+>> +struct guc_logfile_fmt_ver_t {
+>> +	/**
+>> +	 * @minor_version: BR[15:0] Guc-Log-File Format minor version.
+>> +	 * Must be GUC_LOG_FILE_FORMAT_VERSION_MINOR
+>> +	 */
+>> +	u32		minor_version : 16;
+>> +	/**
+>> +	 * @major_version: BR[31:16] Guc-Log-File Format major version.
+>> +	 * Must be GUC_LOG_FILE_FORMAT_VERSION_MAJOR
+>> +	 */
+>> +	u32		major_version : 16;
+> 
+> Defines as above if this is hardware interface.
+> 
+>> +} __packed;
+>> +
+>> +/**
+>> + * struct guc_lfd_data_guc_devid_t - GuC Device ID.
+>> + * This is mandatory fw LFD data
+>> + */
+>> +struct guc_lfd_data_guc_devid_t {
+>> +	/**
+>> +	 * @guc_devid: GuC microcontroller device ID defined as described
+>> +	 * in GUC_LOG_LIC_TYPE_GUC_DEVICE_ID
+>> +	 */
+>> +	u32		guc_devid;
+>> +} __packed;
+>> +
+>> +/**
+>> + * struct guc_lfd_data_tsc_freq_t - GuC TSC Fequency.
+>> + * This is mandatory fw LFD data
+>> + */
+>> +struct guc_lfd_data_tsc_freq_t {
+>> +	/**
+>> +	 * @tsc_freq: GuC timestamp counter frequency as described in
+>> +	 * GUC_LOG_LIC_TYPE_TSC_FREQUENCY
+>> +	 */
+>> +	u32		tsc_freq;
+>> +} __packed;
+>> +
+>> +/** struct guc_lfd_data_gmdid_t - GMD ID. */
+>> +struct guc_lfd_data_gmdid_t {
+>> +	/** @gmd_id: GMD ID as described in GUC_LOG_LIC_TYPE_GMD_ID */
+>> +	u32		gmd_id;
+>> +} __packed;
+>> +
+>> +/** struct guc_lfd_data_build_platformid_t - GuC build platform ID. */
+>> +struct guc_lfd_data_build_platformid_t {
+>> +	/**
+>> +	 * @platform_build_id: GuC build platform ID as described in
+>> +	 * GUC_LOG_LIC_TYPE_BUILD_PLATFORM_ID
+>> +	 */
+>> +	u32		platform_build_id;
+>> +} __packed;
+>> +
+>> +/**
+>> + * struct guc_lfd_data_log_events_buf_t - GuC Log Events Buffer.
+>> + * This is optional fw LFD data
+>> + */
+>> +struct guc_lfd_data_log_events_buf_t {
+>> +	/**
+>> +	 * @log_events_format_version: version of GuC log format of buffer
+>> +	 */
+>> +	u32		log_events_format_version;
+>> +	/**
+>> +	 * @log_format_buf: If `log_format_version` == 1, array of
+>> +	 * guc_log_format_version_1_t. If `log_format_version` == 2, array
+>> +	 * of guc_log_format_version_2_t. Dword size determined by
+>> +	 * guc_logfile_lfd_t.`desc_dw_size` - 1
+>> +	 */
+>> +	u32		log_format_buf[];
+>> +} __packed;
+>> +
+>> +/**
+>> + * struct guc_lfd_data_os_id_t - OS Version Information.
+>> + * This is mandatory host LFD data
+>> + */
+>> +struct guc_lfd_data_os_id_t {
+>> +	/**
+>> +	 * @os_id: enum values to identify the OS brand (1=Windows,
+>> +	 * 2=Linux, etc..). See guc_lfd_os_type_t for the range of types
+>> +	 */
+>> +	u32		os_id;
+>> +	/**
+>> +	 * @build_version: ASCII string containing OS build version
+>> +	 * information based on os_id. String is padded with null
+>> +	 * characters to ensure its DWORD aligned. Dword size determined
+>> +	 * by guc_logfile_lfd_t.`desc_dw_size` - 1
+>> +	 */
+>> +	char		build_version[];
+>> +} __packed;
+>> +
+>> +/**
+>> + * struct guc_logfile_t - GuC Log Streaming-LFD-File Format.
+>> + * This structure encapsulates the layout of the guc-log-file format
+>> + */
+>> +struct guc_logfile_t {
+>> +	/**
+>> +	 * @magic: A magic number set by producer of a GuC log file to
+>> +	 * identify that file is a valid guc-log-file containing a stream
+>> +	 * of LFDs: Expected value: 0x8086AAAA474C5346.
+>> +	 */
+>> +	u64		magic;
+>> +	/**
+>> +	 * @version: Version of this file format layout as per
+>> +	 * guc_logfile_fmt_ver_t
+>> +	 */
+>> +	struct guc_logfile_fmt_ver_t	version;
+>> +	/**
+>> +	 * @lfd_stream: A stream of one or more guc_logfile_lfd_t LFD data
+>> +	 */
+>> +	struct guc_logfile_lfd_t	lfd_stream;
+>> +} __packed;
+>> +
+>> +/**
+>> + * struct guc_lfd_data_fw_version_t - GuC FW Version.
+>> + * This is mandatory fw LFD data
+>> + */
+>> +struct guc_lfd_data_fw_version_t {
+>> +	/**
+>> +	 * @guc_sw_version: The full version of the GuC microkernel that
+>> +	 * generated the logs as described in
+>> +	 * GUC_LOG_LIC_TYPE_GUC_SW_VERSION.
+>> +	 */
+>> +	struct guc_sw_version_t	guc_sw_version;
+>> +} __packed;
+>> +
+>> +#endif
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_debugfs.c b/drivers/gpu/drm/xe/xe_guc_debugfs.c
+>> index c569ff456e74..6449c9a69b8a 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_debugfs.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc_debugfs.c
+>> @@ -48,6 +48,19 @@ static int guc_log(struct seq_file *m, void *data)
+>>   	return 0;
+>>   }
+>>   
+>> +static int guc_log_lfd(struct seq_file *m, void *data)
+>> +{
+>> +	struct xe_guc *guc = node_to_guc(m->private);
+>> +	struct xe_device *xe = guc_to_xe(guc);
+>> +	struct drm_printer p = drm_seq_file_printer(m);
+>> +
+>> +	xe_pm_runtime_get(xe);
+>> +	xe_guc_log_print_lfd(&guc->log, &p);
+>> +	xe_pm_runtime_put(xe);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>   static int guc_log_dmesg(struct seq_file *m, void *data)
+>>   {
+>>   	struct xe_guc *guc = node_to_guc(m->private);
+>> @@ -89,6 +102,7 @@ static int guc_pc(struct seq_file *m, void *data)
+>>   static const struct drm_info_list debugfs_list[] = {
+>>   	{"guc_info", guc_info, 0},
+>>   	{"guc_log", guc_log, 0},
+>> +	{"guc_log_lfd", guc_log_lfd, 0},
+>>   	{"guc_log_dmesg", guc_log_dmesg, 0},
+>>   	{"guc_ctb", guc_ctb, 0},
+>>   	{"guc_pc", guc_pc, 0},
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
+>> index 80514a446ba2..5659d60e41ab 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_log.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc_log.c
+>> @@ -7,8 +7,12 @@
+>>   
+>>   #include <linux/fault-inject.h>
+>>   
+>> +//#include <generated/utsversion.h>
+>> +//#include "boot.h"
+>> +#include <linux/utsname.h>
+>>   #include <drm/drm_managed.h>
+>>   
+>> +#include "abi/guc_log_lfd_abi.h"
+>>   #include "regs/xe_guc_regs.h"
+>>   #include "xe_bo.h"
+>>   #include "xe_devcoredump.h"
+>> @@ -19,6 +23,57 @@
+>>   #include "xe_mmio.h"
+>>   #include "xe_module.h"
+>>   
+>> +static struct guc_log_buffer_entry_markers {
+>> +	u32 key[2];
+>> +} const entry_markers[4] = {
+>> +	{{
+>> +		LFD_LOG_BUFFER_MARKER_1V2,
+>> +		LFD_LOG_BUFFER_MARKER_2
+>> +	}},
+>> +	{{
+>> +		LFD_LOG_BUFFER_MARKER_1V2,
+>> +		LFD_CRASH_DUMP_BUFFER_MARKER_2
+>> +	}},
+>> +	{{
+>> +		LFD_STATE_CAPTURE_BUFFER_MARKER_1V2,
+>> +		LFD_STATE_CAPTURE_BUFFER_MARKER_2
+>> +	}},
+>> +	{{
+>> +		GUC_LOG_INIT_CONFIG_LIC_MAGIC,
+>> +		((GUC_LOG_INIT_CONFIG_FORMAT_VERSION_MAJOR << 16)
+>> +			| GUC_LOG_INIT_CONFIG_FORMAT_VERSION_MINOR)
+>> +	}}
+>> +};
+>> +
+>> +static struct guc_log_buffer_entry_list {
+>> +	u32 offset;
+>> +	u32 rd_ptr;
+>> +	u32 wr_ptr;
+>> +	u32 buf_size;
+>> +} entry_list[GUC_LOG_BUFFER_STATE_HEADER_ENTRY_COUNT];
+>> +
+>> +static const struct guc_logfile_lfd_t default_guc_logfile_lfd = {
+>> +	.magic = GUC_LOGFILE_LFD_MAGIC,
+>> +};
+>> +
+>> +static const struct guc_logfile_t default_guc_logfile = {
+>> +	.magic = LFD_DRIVER_KEY_STREAMING,
+>> +	.version = {
+>> +		.minor_version = GUC_LOG_FILE_FORMAT_VERSION_MINOR,
+>> +		.major_version = GUC_LOG_FILE_FORMAT_VERSION_MAJOR
+>> +	}
+>> +};
+>> +
+>> +struct guc_log_init_config_save_t {
+>> +	/*
+>> +	 * Array of init config KLVs.
+>> +	 * Range from GUC_LOG_LIC_TYPE_FIRST to
+>> +	 * GUC_LOG_LIC_TYPE_LAST
+>> +	 */
+>> +	u32 KLV[GUC_LOG_LIC_TYPE_LAST - GUC_LOG_LIC_TYPE_FIRST];
+>> +	struct guc_log_buffer_state log_buf_state;
+>> +};
+>> +
+>>   static struct xe_guc *
+>>   log_to_guc(struct xe_guc_log *log)
+>>   {
+>> @@ -216,6 +271,305 @@ void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_
+>>   	}
+>>   }
+>>   
+>> +static int xe_guc_log_add_lfd_header(char *buf, int buf_size)
+>> +{
+>> +	int len;
+>> +
+>> +	if (buf_size < sizeof(struct guc_logfile_lfd_t))
+>> +		return -ENOMEM;
+>> +
+>> +	len = sizeof(default_guc_logfile_lfd);
+>> +	memcpy(buf, &default_guc_logfile_lfd, len);
+>> +
+>> +	return len;
+>> +}
+>> +
+>> +static int xe_guc_log_add_payload(char *buf, int buf_size, u32 data_len, void *data)
+>> +{
+>> +	struct guc_logfile_lfd_t *lfd = (struct guc_logfile_lfd_t *)buf;
+>> +
+>> +	if (buf_size < sizeof(struct guc_logfile_lfd_t) + data_len)
+>> +		return -ENOMEM;
+>> +
+>> +	/* make length DW aligned */
+>> +	lfd->desc_dw_size = data_len / 4;
+> 
+> s/4/sizeof(u32)
+
+Sure, will be replaced in next rev.>
+> Matt
+> 
+>> +	if (data_len % 4)
+>> +		lfd->desc_dw_size++;
+>> +
+>> +	if (lfd->data != data)
+>> +		memcpy(lfd->data, data, data_len);
+>> +
+>> +	return lfd->desc_dw_size * 4;
+>> +}
+>> +
+>> +static int xe_guc_log_add_typed_payload(char *buf, int buf_size, u32 type,
+>> +					u32 data_len, void *data)
+>> +{
+>> +	int len;
+>> +	struct guc_logfile_lfd_t *lfd = (struct guc_logfile_lfd_t *)buf;
+>> +
+>> +	if (buf_size < sizeof(struct guc_logfile_lfd_t) + data_len)
+>> +		return -ENOMEM;
+>> +
+>> +	len = xe_guc_log_add_lfd_header(buf, buf_size);
+>> +	lfd->desc_type = type;
+>> +	len += xe_guc_log_add_payload(buf, buf_size, data_len, data);
+>> +
+>> +	return len;
+>> +}
+>> +
+>> +static int xe_guc_log_add_os_id(char *buf, int buf_size, u32 id)
+>> +{
+>> +	char *version;
+>> +	int info_len;
+>> +	struct guc_logfile_lfd_t *lfd = (struct guc_logfile_lfd_t *)buf;
+>> +	struct guc_lfd_data_os_id_t *os_id = (struct guc_lfd_data_os_id_t *)lfd->data;
+>> +
+>> +	os_id->os_id = id;
+>> +
+>> +	version = init_utsname()->release;
+>> +	info_len = strlen(version) + 1;
+>> +
+>> +	if (buf_size < sizeof(struct guc_logfile_lfd_t) + info_len)
+>> +		return -ENOMEM;
+>> +
+>> +	strscpy(os_id->build_version, version, info_len);
+>> +
+>> +	return xe_guc_log_add_typed_payload(buf, buf_size, GUC_LFD_TYPE_OS_ID,
+>> +					   info_len + sizeof(*os_id), os_id);
+>> +}
+>> +
+>> +static int
+>> +xe_guc_log_add_log_event(char *buf, int buf_size, char *log_bin,
+>> +			 struct guc_log_init_config_save_t *config)
+>> +{
+>> +	int len;
+>> +	char *data;
+>> +	u32 data_len;
+>> +	struct guc_lfd_data_log_events_buf_t *events_buf;
+>> +	struct guc_logfile_lfd_t *lfd = (struct guc_logfile_lfd_t *)buf;
+>> +	struct guc_log_buffer_entry_list *entry;
+>> +
+>> +	entry = &entry_list[GUC_LOG_BUFFER_STATE_HEADER_ENTRY_LOG];
+>> +
+>> +	/* Skip empty log */
+>> +	if (entry->rd_ptr == entry->wr_ptr)
+>> +		return 0;
+>> +
+>> +	len = xe_guc_log_add_lfd_header(buf, buf_size);
+>> +	if (len < 0)
+>> +		return len;
+>> +
+>> +	buf_size -= len;
+>> +	lfd = (struct guc_logfile_lfd_t *)buf;
+>> +
+>> +	lfd->desc_type = GUC_LFD_TYPE_LOG_EVENTS_BUFFER;
+>> +	events_buf = (struct guc_lfd_data_log_events_buf_t *)&lfd->data;
+>> +	events_buf->log_events_format_version = config->log_buf_state.version;
+>> +
+>> +	data = log_bin + entry->offset + entry->rd_ptr;
+>> +	if (entry->rd_ptr < entry->wr_ptr) {
+>> +		data_len = entry->wr_ptr - entry->rd_ptr;
+>> +		if (data_len <= buf_size) {
+>> +			memcpy(events_buf->log_format_buf, data, data_len);
+>> +			buf_size -= data_len;
+>> +		} else {
+>> +			return -ENOMEM;
+>> +		}
+>> +	} else {
+>> +		int cp_len;
+>> +
+>> +		/* Copy rd to buf end 1st */
+>> +		data_len = entry->buf_size - entry->rd_ptr;
+>> +		if (data_len <= buf_size) {
+>> +			memcpy(events_buf->log_format_buf, data, data_len);
+>> +			buf_size -= data_len;
+>> +		} else {
+>> +			return -ENOMEM;
+>> +		}
+>> +
+>> +		/* Copy buf start to wr */
+>> +		data = &log_bin[entry->offset];
+>> +		cp_len = entry->wr_ptr;
+>> +		if (cp_len <= buf_size - cp_len)
+>> +			memcpy(&events_buf->log_format_buf[data_len / 4], data, cp_len);
+>> +		else
+>> +			return -ENOMEM;
+>> +		data_len += cp_len;
+>> +	}
+>> +
+>> +	/* make length DW aligned */
+>> +	lfd->desc_dw_size = data_len / 4;
+>> +	if (data_len % 4)
+>> +		lfd->desc_dw_size++;
+>> +
+>> +	/* Addup log_events_format_version size */
+>> +	lfd->desc_dw_size++;
+>> +
+>> +	return len + lfd->desc_dw_size * 4;
+>> +}
+>> +
+>> +static inline int lic_type_to_KLV_index(u32 lic_type)
+>> +{
+>> +	XE_WARN_ON(lic_type < GUC_LOG_LIC_TYPE_FIRST || lic_type >= GUC_LOG_LIC_TYPE_LAST);
+>> +
+>> +	return lic_type - GUC_LOG_LIC_TYPE_FIRST;
+>> +}
+>> +
+>> +static int xe_guc_log_add_klv(char *buf, int size, u32 lic_type,
+>> +			      struct guc_log_init_config_save_t *config)
+>> +{
+>> +	/* LFD type must matches LIC type */
+>> +	BUILD_BUG_ON((int)GUC_LFD_TYPE_FW_VERSION != (int)GUC_LOG_LIC_TYPE_GUC_SW_VERSION);
+>> +	BUILD_BUG_ON((int)GUC_LFD_TYPE_GUC_DEVICE_ID != (int)GUC_LOG_LIC_TYPE_GUC_DEVICE_ID);
+>> +	BUILD_BUG_ON((int)GUC_LFD_TYPE_TSC_FREQUENCY != (int)GUC_LOG_LIC_TYPE_TSC_FREQUENCY);
+>> +	BUILD_BUG_ON((int)GUC_LFD_TYPE_GMD_ID != (int)GUC_LOG_LIC_TYPE_GMD_ID);
+>> +	BUILD_BUG_ON((int)GUC_LFD_TYPE_BUILD_PLATFORM_ID !=
+>> +		     (int)GUC_LOG_LIC_TYPE_BUILD_PLATFORM_ID);
+>> +
+>> +	return xe_guc_log_add_typed_payload(buf, size, lic_type, sizeof(u32),
+>> +				 &config->KLV[lic_type_to_KLV_index(lic_type)]);
+>> +}
+>> +
+>> +static void xe_guc_log_loop_log_init(struct guc_log_init_config_t *init,
+>> +				     struct guc_log_init_config_save_t *config)
+>> +{
+>> +	int i;
+>> +	struct guc_klv_generic_t *p = (struct guc_klv_generic_t *)init->lic_data;
+>> +
+>> +	memset(entry_list, 0, sizeof(entry_list));
+>> +
+>> +	for (i = 0; i < init->lic_dw_size;) {
+>> +		if (p->key < GUC_LOG_LIC_TYPE_GUC_SW_VERSION || p->key >= GUC_LOG_LIC_TYPE_LAST)
+>> +			break;
+>> +		config->KLV[lic_type_to_KLV_index(p->key)] = p->value[0];
+>> +		i += p->length + 1; /* +1DW to include kev(u16) and len(u16) */
+>> +		p = (struct guc_klv_generic_t *)((u32 *)p + p->length + 1);
+>> +	}
+>> +}
+>> +
+>> +static void xe_guc_log_load_log_buffer(u32 *guc_log, int len,
+>> +				       struct guc_log_init_config_save_t *config)
+>> +{
+>> +	int i = 0;
+>> +	u32 offset = GUC_LOG_BUFFER_STATE_HEADER_LENGTH;
+>> +	struct guc_log_buffer_state *p = (struct guc_log_buffer_state *)guc_log;
+>> +
+>> +	while (p) {
+>> +		for (i = 0; i < GUC_LOG_BUFFER_STATE_HEADER_ENTRY_COUNT; i++) {
+>> +			if (p->marker[0] == entry_markers[i].key[0] &&
+>> +			    p->marker[1] == entry_markers[i].key[1]) {
+>> +				entry_list[i].offset = offset;
+>> +				entry_list[i].rd_ptr = p->read_ptr;
+>> +				entry_list[i].wr_ptr = p->write_ptr;
+>> +				entry_list[i].buf_size = p->size;
+>> +
+>> +				if (i == GUC_LOG_BUFFER_STATE_HEADER_ENTRY_LOG)
+>> +					config->log_buf_state = *p;
+>> +
+>> +				if (i != GUC_LOG_BUFFER_STATE_HEADER_ENTRY_INIT) {
+>> +					offset += p->size;
+>> +					p++;
+>> +				} else {
+>> +					/* Load log init config */
+>> +					xe_guc_log_loop_log_init((struct guc_log_init_config_t *)p,
+>> +								 config);
+>> +
+>> +					/* Init config is the last */
+>> +					return;
+>> +				}
+>> +			}
+>> +		}
+>> +		if (i >= GUC_LOG_BUFFER_STATE_HEADER_ENTRY_COUNT)
+>> +			break;
+>> +	}
+>> +}
+>> +
+>> +static uint xe_guc_log_save_to_lfd_buf(char *buf, int size, u32 *guc_log_bin,
+>> +				       struct xe_guc_log *log,
+>> +				       struct guc_log_init_config_save_t *config)
+>> +{
+>> +	int index = 0, len = 0;
+>> +	char *bin = (char *)guc_log_bin;
+>> +	struct guc_logfile_t *guc_logfile;
+>> +
+>> +	if (size < sizeof(struct guc_logfile_t))
+>> +		return -ENOMEM;
+>> +
+>> +	guc_logfile = (struct guc_logfile_t *)buf;
+>> +	*guc_logfile = default_guc_logfile;
+>> +	index = offsetof(struct guc_logfile_t, lfd_stream);
+>> +
+>> +	len = xe_guc_log_add_klv(&buf[index], size - index, GUC_LFD_TYPE_FW_VERSION, config);
+>> +	if (len < 0)
+>> +		return len;
+>> +	index += len;
+>> +
+>> +	len = xe_guc_log_add_klv(&buf[index], size - index, GUC_LFD_TYPE_GUC_DEVICE_ID, config);
+>> +	if (len < 0)
+>> +		return len;
+>> +	index += len;
+>> +
+>> +	len = xe_guc_log_add_klv(&buf[index], size - index, GUC_LFD_TYPE_TSC_FREQUENCY, config);
+>> +	if (len < 0)
+>> +		return len;
+>> +	index += len;
+>> +
+>> +	len = xe_guc_log_add_klv(&buf[index], size - index, GUC_LOG_LIC_TYPE_GMD_ID, config);
+>> +	if (len < 0)
+>> +		return len;
+>> +	index += len;
+>> +
+>> +	len = xe_guc_log_add_klv(&buf[index], size - index, GUC_LOG_LIC_TYPE_BUILD_PLATFORM_ID,
+>> +				 config);
+>> +	if (len < 0)
+>> +		return len;
+>> +	index += len;
+>> +
+>> +	len = xe_guc_log_add_os_id(&buf[index], size - index, GUC_LFD_OS_TYPE_OSID_LIN);
+>> +	if (len < 0)
+>> +		return len;
+>> +	index += len;
+>> +
+>> +	len = xe_guc_log_add_log_event(&buf[index], size - index, bin, config);
+>> +	if (len < 0)
+>> +		return len;
+>> +	index += len;
+>> +
+>> +	return index;
+>> +}
+>> +
+>> +static void
+>> +xe_guc_log_snapshot_print_lfd(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p,
+>> +			      struct xe_guc_log *log)
+>> +{
+>> +	size_t remain;
+>> +	int i;
+>> +	struct guc_log_init_config_save_t init_config;
+>> +
+>> +	if (!snapshot)
+>> +		return;
+>> +
+>> +	remain = snapshot->size;
+>> +	for (i = 0; i < snapshot->num_chunks; i++) {
+>> +		int len = 0;
+>> +		size_t size = min(GUC_LOG_CHUNK_SIZE, remain);
+>> +		char *lfd_buf = kzalloc(size, GFP_KERNEL);
+>> +
+>> +		/* load from log bin */
+>> +		xe_guc_log_load_log_buffer(snapshot->copy[i], size, &init_config);
+>> +		/* Conver to LFD format */
+>> +		len = xe_guc_log_save_to_lfd_buf(lfd_buf, size, snapshot->copy[i], log,
+>> +						 &init_config);
+>> +		if (len > 0)
+>> +			xe_print_blob_ascii85(p, "[LOG].data", 0, lfd_buf, 0, len);
+>> +		kfree(lfd_buf);
+>> +		XE_WARN_ON(len <= 0);
+>> +
+>> +		remain -= size;
+>> +	}
+>> +}
+>> +
+>>   /**
+>>    * xe_guc_log_print_dmesg - dump a copy of the GuC log to dmesg
+>>    * @log: GuC log structure
+>> @@ -251,6 +605,20 @@ void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p)
+>>   	xe_guc_log_snapshot_free(snapshot);
+>>   }
+>>   
+>> +/**
+>> + * xe_guc_log_print_lfd - dump a copy of the GuC log to some useful location
+>> + * @log: GuC log structure
+>> + * @p: the printer object to output to
+>> + */
+>> +void xe_guc_log_print_lfd(struct xe_guc_log *log, struct drm_printer *p)
+>> +{
+>> +	struct xe_guc_log_snapshot *snapshot;
+>> +
+>> +	snapshot = xe_guc_log_snapshot_capture(log, false);
+>> +	xe_guc_log_snapshot_print_lfd(snapshot, p, log);
+>> +	xe_guc_log_snapshot_free(snapshot);
+>> +}
+>> +
+>>   int xe_guc_log_init(struct xe_guc_log *log)
+>>   {
+>>   	struct xe_device *xe = log_to_xe(log);
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_log.h b/drivers/gpu/drm/xe/xe_guc_log.h
+>> index 5b896f5fafaf..37ff4d11e6cf 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_log.h
+>> +++ b/drivers/gpu/drm/xe/xe_guc_log.h
+>> @@ -40,6 +40,7 @@ struct xe_device;
+>>   
+>>   int xe_guc_log_init(struct xe_guc_log *log);
+>>   void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p);
+>> +void xe_guc_log_print_lfd(struct xe_guc_log *log, struct drm_printer *p);
+>>   void xe_guc_log_print_dmesg(struct xe_guc_log *log);
+>>   struct xe_guc_log_snapshot *xe_guc_log_snapshot_capture(struct xe_guc_log *log, bool atomic);
+>>   void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p);
+>> -- 
+>> 2.34.1
+>>
+
