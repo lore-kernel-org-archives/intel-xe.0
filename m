@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F673C36014
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 12:25:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDEA4C36014
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 12:26:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACD3710E260;
-	Thu,  3 Apr 2025 12:25:14 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TrLPI/Lr";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9158C10E23A;
- Thu,  3 Apr 2025 12:25:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743683113; x=1775219113;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=gEdzei2dpJ8QjemyJcigL/vqwUfgTdquxVIpL9GkZBA=;
- b=TrLPI/LrrTugkgA/NwIP3smnvEKUB1zFJUutAWYBzzmI8lTjca7aVV26
- YK7peDMXhTM2tbijNwo0QM+G7QoLoJyjnHDE/hOTcqINBVeTaJeQxmC5C
- zhn2DV0gWuUj0Q7yyt/si/LcX4/WVXwb+ZUiXN7/g+JPptxN3k2bgfcdD
- z1O4cj+8TkC6rnChvKjzJcjqaTzIEGsNrqEo0VKWivA1xO3IFA135fQJW
- xACnKfs0I3uyUYClXQy0v/8T1Y6sT7EeC8I0K0FiMxXyG/yHHnV99NXLz
- tBzGlBewrLcihZTxaHbQ/BI94xzFrzPtdlLuh4xnDUHq1A0gW+I1UeWIy w==;
-X-CSE-ConnectionGUID: 63P17yAkRJiUAa6LH5fNjA==
-X-CSE-MsgGUID: dF0vwVWKQymwXdbxYE+v7g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11393"; a="32689816"
-X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="32689816"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2025 05:25:13 -0700
-X-CSE-ConnectionGUID: TOO4mbl+R4K8dmv2GF3bZA==
-X-CSE-MsgGUID: vHeph2LlRAefPitguloKbg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="127270028"
-Received: from unknown (HELO localhost) ([10.237.66.160])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2025 05:25:10 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "20250311100626.533888-1-william.tseng@intel.com"
- <20250311100626.533888-1-william.tseng@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Cc: Ville Syrjala <ville.syrjala@linux.intel.com>, "Lee, Shawn C"
- <shawn.c.lee@intel.com>, Cooper Chiou <cooper.chiou@intel.com>
-Subject: RE: [PATCH v4] drm/i915/dsi: let HW maintain the HS-TRAIL timing
-In-Reply-To: <SJ0PR11MB589490938579B493076E42D2F1AD2@SJ0PR11MB5894.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20211217100903.32599-1-william.tseng@intel.com>
- <20250311100626.533888-1-william.tseng@intel.com>
- <87semx4gsz.fsf@intel.com>
- <SJ0PR11MB589490938579B493076E42D2F1AD2@SJ0PR11MB5894.namprd11.prod.outlook.com>
-Date: Thu, 03 Apr 2025 15:25:07 +0300
-Message-ID: <87ecy91lgc.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8E8C10E22C;
+	Thu,  3 Apr 2025 12:26:24 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC3B810E22C;
+ Thu,  3 Apr 2025 12:26:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_VF=3A_Don=27t_update_GuC_reset?=
+ =?utf-8?q?_policy_when_changing_wedged_mode?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lukasz Laguna" <lukasz.laguna@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 03 Apr 2025 12:26:23 -0000
+Message-ID: <174368318376.32655.9292720234294419212@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250403094141.25941-1-lukasz.laguna@intel.com>
+In-Reply-To: <20250403094141.25941-1-lukasz.laguna@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,24 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 31 Mar 2025, "Tseng, William" <william.tseng@intel.com> wrote:
-> No problem.  Thank you so much for your time.
+== Series Details ==
 
-I was reading the Windows driver code when reviewing your changes, and
-spotted some other things. Posted at [1]. I'd appreciate it if you could
-test or review them. I don't have the hardware...
+Series: VF: Don't update GuC reset policy when changing wedged mode
+URL   : https://patchwork.freedesktop.org/series/147195/
+State : success
 
-BR,
-Jani.
+== Summary ==
+
+lib/modules/6.14.0-xe+/kernel/arch/x86/events/amd/
+lib/modules/6.14.0-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.14.0-xe+/kernel/kernel/
+lib/modules/6.14.0-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.14.0-xe+/kernel/crypto/
+lib/modules/6.14.0-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.14.0-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.14.0-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.14.0-xe+/kernel/crypto/zstd.ko
+lib/modules/6.14.0-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.14.0-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.14.0-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.14.0-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/xctr.ko
+lib/modules/6.14.0-xe+/kernel/crypto/authenc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm3.ko
+lib/modules/6.14.0-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.14.0-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.14.0-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cmac.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.14.0-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/essiv.ko
+lib/modules/6.14.0-xe+/kernel/crypto/ccm.ko
+lib/modules/6.14.0-xe+/kernel/crypto/wp512.ko
+lib/modules/6.14.0-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.14.0-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.14.0-xe+/kernel/crypto/lrw.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.14.0-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.14.0-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.14.0-xe+/kernel/crypto/842.ko
+lib/modules/6.14.0-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.14.0-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.14.0-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/md4.ko
+lib/modules/6.14.0-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.14.0-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/lz4.ko
+lib/modules/6.14.0-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.14.0-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/sm4.ko
+lib/modules/6.14.0-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.14.0-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.14.0-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.14.0-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.14.0-xe+/kernel/block/
+lib/modules/6.14.0-xe+/kernel/block/bfq.ko
+lib/modules/6.14.0-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.14.0-xe+/build
+lib/modules/6.14.0-xe+/modules.alias.bin
+lib/modules/6.14.0-xe+/modules.builtin
+lib/modules/6.14.0-xe+/modules.softdep
+lib/modules/6.14.0-xe+/modules.alias
+lib/modules/6.14.0-xe+/modules.order
+lib/modules/6.14.0-xe+/modules.symbols
+lib/modules/6.14.0-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1743683171:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1743683171:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
-
-[1] https://lore.kernel.org/r/cover.1743682608.git.jani.nikula@intel.com
-
-
-
--- 
-Jani Nikula, Intel
