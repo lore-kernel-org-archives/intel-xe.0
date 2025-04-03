@@ -4,53 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7659C369A2
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 20:25:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE3F3C36014
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 20:25:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B52210EAF1;
-	Thu,  3 Apr 2025 20:25:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7201310EA76;
+	Thu,  3 Apr 2025 20:25:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gyyYxpzo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QvpjxCx+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5CBC10EA5A;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 210A310EA5A;
  Thu,  3 Apr 2025 20:25:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1743711955; x=1775247955;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=12plUmyAMQbrqtMr8rbW/3nEIAi2BVyriKWTFI0IVxI=;
- b=gyyYxpzoVIWK4B4fStB/e8+0bF9xN9JhDa5N64Yr9ZP4n7Gcqjqm+6c5
- Z2Ryvt9o18KUrOI9b+TB83gCImUOtej0POCGOvfTljpo/5l0EmikYTtMU
- 8eqMauAjHrUlAvDj3oHQD+HCAP/4x/VVV4aohoWC2bzhEvTiuqmlOJ4KD
- PQMDLBAV7XYHjb12ezyIL2YYfwJaMOs3YL5zfCJUtwh6R5zTMqr5gGljU
- Zxec0yK/foxI6jasQCxaRXDChStrukQQOldO7spVVB6j2ip16u64AvxR6
- 0Po5T1iPz4TZ8ykMSBqAc1VmoRGGghsAuMMnmzTcV78pAYHi4oe+Hi5GY Q==;
-X-CSE-ConnectionGUID: unKtO4VhQhOTZBEBJK8vAQ==
-X-CSE-MsgGUID: 9oq4qbpIRBGwxfA7aY0dqg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11393"; a="55337819"
-X-IronPort-AV: E=Sophos;i="6.15,186,1739865600"; d="scan'208";a="55337819"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=g6lxwX3JwODMbAtpzU/jCxYqumCPW64Kgafm9156iPA=;
+ b=QvpjxCx+JASJSzNF2ReHUqWlEUBwBPGTb8FnSyUYgSS690lmxhfJhz50
+ B7mH0ZLvREQB9BGBz15xhjk+rP9scWQuzom/4nyZtFn3DdUJQa4zanoVk
+ vmFt6wQjiSRjZhJ/9JpWcLhvSKRTQc7OrDyeYavqx6UE6b6NCFK41L3ag
+ hUnBg8uJvhbniZNN7/t366NyzokmkN0P+5msaM5/6Yd4QBA/aUF/jSuId
+ JrgyQc7t2rVtyA9eoOgFNKJjkCgZgzlJKwuDHweFQ3+Ng11uvuI4QvqoR
+ 3+iYiagwKUNr2E+mK6mPLrtPUfoKTDT6BefOtGgirJZA/HJWJSM10uCr4 A==;
+X-CSE-ConnectionGUID: S8vE7iiJTNGdSbP6CO2dhw==
+X-CSE-MsgGUID: Usu5o8gwRyKu7zpEORPhsw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11393"; a="55337814"
+X-IronPort-AV: E=Sophos;i="6.15,186,1739865600"; d="scan'208";a="55337814"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2025 13:25:55 -0700
-X-CSE-ConnectionGUID: GuNSZSQ/R1KX+mSaqRm7tw==
-X-CSE-MsgGUID: 4SO+TzQ6QVaLrxJ9fkcvkA==
+ 03 Apr 2025 13:25:54 -0700
+X-CSE-ConnectionGUID: QeGd+mHrQJ62x2nWsm6ZOQ==
+X-CSE-MsgGUID: fwgR1FvISt+WBDPn+/yQ9A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,186,1739865600"; d="scan'208";a="127972863"
+X-IronPort-AV: E=Sophos;i="6.15,186,1739865600"; d="scan'208";a="127972857"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Apr 2025 13:25:54 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org
-Subject: [PATCH v2 4/4] drm/xe: Abort printing coredump in VM printer output
- if full
-Date: Thu,  3 Apr 2025 13:27:05 -0700
-Message-Id: <20250403202705.18488-5-matthew.brost@intel.com>
+Subject: [PATCH v2 0/4] Large devcoredump file support
+Date: Thu,  3 Apr 2025 13:27:01 -0700
+Message-Id: <20250403202705.18488-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250403202705.18488-1-matthew.brost@intel.com>
-References: <20250403202705.18488-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,29 +64,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Abort printing coredump in VM printer output if full. Helps speedup
-large coredumps which need to walked multiple times in
-xe_devcoredump_read.
+Devcoredump were truncated at 2G, remove this restriction. While here,
+add support for GPU copies of BOs to increase devcoredump speed.
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_vm.c | 3 +++
- 1 file changed, 3 insertions(+)
+v2:
+ - Fix build error
+ - Abort printing once printer if full
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 864266e38aa7..164824617a2e 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3847,6 +3847,9 @@ void xe_vm_snapshot_print(struct xe_vm_snapshot *snap, struct drm_printer *p)
- 		}
- 
- 		drm_puts(p, "\n");
-+
-+		if (drm_printer_is_full(p))
-+			return;
- 	}
- }
- 
+Matthew Brost (4):
+  drm/xe: Add devcoredump chunking
+  drm/xe: Update xe_ttm_access_memory to use GPU for non-visible access
+  drm/print: Add drm_printer_is_full
+  drm/xe: Abort printing coredump in VM printer output if full
+
+ drivers/gpu/drm/xe/xe_bo.c                |  15 +-
+ drivers/gpu/drm/xe/xe_devcoredump.c       |  59 ++++--
+ drivers/gpu/drm/xe/xe_devcoredump_types.h |   2 +
+ drivers/gpu/drm/xe/xe_guc_hwconfig.c      |   2 +-
+ drivers/gpu/drm/xe/xe_migrate.c           | 221 ++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_migrate.h           |   4 +
+ drivers/gpu/drm/xe/xe_vm.c                |   3 +
+ include/drm/drm_print.h                   |  17 ++
+ 8 files changed, 293 insertions(+), 30 deletions(-)
+
 -- 
 2.34.1
 
