@@ -4,58 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92D12C3600C
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 03:38:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFA97C3600C
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 03:42:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5646910E902;
-	Thu,  3 Apr 2025 03:38:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A498710E8F8;
+	Thu,  3 Apr 2025 03:42:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="izh3Dpm4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f5JpfFVg";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9D3510E8FE
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Apr 2025 03:38:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CBD410E8F8
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Apr 2025 03:42:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743651529; x=1775187529;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=yExx86uKBMxRgMpYt5oAipALnj9hbKovZfle0VmstTM=;
- b=izh3Dpm4VFBwTxbJw/reH1qrsAm3i//e972tigMAw3LrSnPWpAWu/9xl
- 0Gptjm/+3PuN1HNW/Cry0RX3qnV3CJm/KunwHl0hsVegShVjT57gGgFPA
- BkaNYd7HtrQW4N1ojfXnhjxKX6H2x5Gi/AwUcyHDelb+FEDMUcriBpDFj
- Vc1lfTS8qeg0XMgwjyL70jaNQDQjbR9vgx8FWNQLpk82JFNVu+LN+xVgZ
- cZlyx+GJYSgPJCCzEpv+M0li5rxCrc9UmXQ0pEK2ZfXTGe8gVsurHUjVO
- HKEn4yDw07LlbHIHjiGZSyWqLstq8AKC+vhTWJnQN3Kf/A8iykniDsx+G Q==;
-X-CSE-ConnectionGUID: EiJy+IgyQ5KeY8k9lYfhKw==
-X-CSE-MsgGUID: INpJ4QJ+TNWw5Ajp8elONw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="56405913"
-X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="56405913"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2025 20:38:48 -0700
-X-CSE-ConnectionGUID: qgz37bmdSymSLBRGs7LcKg==
-X-CSE-MsgGUID: jq7aqqgFTCCnUIY5+/Fzxw==
+ t=1743651750; x=1775187750;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=7BPfDaTKtL3w9ES+L1bb0ICpTiXj5FIcJM1vySARJGU=;
+ b=f5JpfFVgr8PU+qH3uE/pksrl5gzNy9SUVcuZah3XEiKL7NgCfNO2k4UP
+ MIp/i8WUkJjiYTIbWU/e7nGG4s+t3NbuRx1wYD1BlVF440wOonrGbYd1I
+ KqIKJhj0FW16xXpOEgAyWlIQTJAvebUUKM0REAPyPD8URjiEDaQYTednm
+ 6yGtBSxgoVQW0wK7QwPu8L/rjQef7mSQGsbEd3pBpIKY/rdAPrBMoYX49
+ uAKymUxe3UgHks4ZmhzRnLd1KfTv2gb/UROWyMwPAmrS0/Xz9sso/myxu
+ BnrRLewRWNzUOxuvFXZzKkyvF5woPALIjxkbqNlaxhoN/OJkrcuNa3SJR g==;
+X-CSE-ConnectionGUID: Vl/linRaSUOThp95STW5Kg==
+X-CSE-MsgGUID: w3w7YlwURBKYv2nElJI/pw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="56416432"
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="56416432"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2025 20:42:29 -0700
+X-CSE-ConnectionGUID: ta7HoHBDRCeX5YPysiyQWw==
+X-CSE-MsgGUID: idJBScI/Q1inPLawRDNtlA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="126874499"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2025 20:38:47 -0700
-Date: Thu, 3 Apr 2025 06:38:44 +0300
-From: Raag Jadav <raag.jadav@intel.com>
-To: "Nilawar, Badal" <badal.nilawar@intel.com>
-Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
- intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- riana.tauro@intel.com
-Subject: Re: [PATCH v1 1/2] drm/xe/debugfs: Expose PCIe Gen5 update telemetry
-Message-ID: <Z-4CxE_CDYHk_nxS@black.fi.intel.com>
-References: <20250331142336.640226-1-raag.jadav@intel.com>
- <20250331142336.640226-2-raag.jadav@intel.com>
- <2cdb9c41-6b0f-4399-b2c5-f9651a0b98a8@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="127796342"
+Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.96])
+ by orviesa008.jf.intel.com with ESMTP; 02 Apr 2025 20:42:28 -0700
+From: Shuicheng Lin <shuicheng.lin@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH v3] drm/xe: remove unused LE_COS
+Date: Thu,  3 Apr 2025 03:42:01 +0000
+Message-Id: <20250403034201.332395-1-shuicheng.lin@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250401205703.4179906-1-shuicheng.lin@intel.com>
+References: <20250401205703.4179906-1-shuicheng.lin@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2cdb9c41-6b0f-4399-b2c5-f9651a0b98a8@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,58 +66,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Apr 02, 2025 at 11:54:26PM +0530, Nilawar, Badal wrote:
-> On 31-03-2025 19:53, Raag Jadav wrote:
-> > Expose debugfs telemetry required for PCIe Gen5 firmware update for
-> > discrete GPUs.
-> > 
-> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > ---
-> >   drivers/gpu/drm/xe/xe_debugfs.c   | 93 +++++++++++++++++++++++++++++++
-> >   drivers/gpu/drm/xe/xe_pcode_api.h |  4 ++
-> >   2 files changed, 97 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-> > index d0503959a8ed..67c941abf4fe 100644
-> > --- a/drivers/gpu/drm/xe/xe_debugfs.c
-> > +++ b/drivers/gpu/drm/xe/xe_debugfs.c
-> > @@ -17,6 +17,9 @@
-> >   #include "xe_gt_debugfs.h"
-> >   #include "xe_gt_printk.h"
-> >   #include "xe_guc_ads.h"
-> > +#include "xe_mmio.h"
-> > +#include "xe_pcode_api.h"
-> > +#include "xe_pcode.h"
-> >   #include "xe_pm.h"
-> >   #include "xe_pxp_debugfs.h"
-> >   #include "xe_sriov.h"
-> > @@ -191,6 +194,89 @@ static const struct file_operations wedged_mode_fops = {
-> >   	.write = wedged_mode_set,
-> >   };
-> > +/**
-> > + * DOC: PCIe Gen5 Update Limitations
-> > + *
-> > + * Default link speed of discrete GPUs is determined by FIT parameters stored
-> > + * in their flash memory, which are subject to override through user initiated
-> > + * firmware updates. It has been observed that devices configured with PCIe
-> > + * Gen5 as their default speed can come across link quality issues due to host
-> > + * or motherboard limitations and may have to auto-downspeed to PCIe Gen4 when
-> > + * faced with unstable link at Gen5. The users are required to ensure that the
-> > + * device is capable of auto-downspeeding to PCIe Gen4 before pushing the image
-> > + * with Gen5 as default configuration. This can be done by reading
-> > + * ``pcie_gen4_downspeed_capable`` debugfs entry, which will denote PCIe Gen4
-> > + * auto-downspeed capability of the device with boolean output value of ``0``
-> > + * or ``1``, meaning `incapable` or `capable` respectively.
-> > + *
-> > + * .. code-block:: shell
-> > + *
-> > + *    $ cat /sys/kernel/debug/dri/<N>/pcie_gen4_downspeed_capable
-> 
-> Why not on sysfs?
-> 
-> So how about simply using "downgrade" instead of "downspeed" through out the
-> code?
+value is missed for LE_COS.
+The value for this field is universally "0" for every MOCS entry on
+the old Xe_LP platforms, and the whole field has been removed from
+Xe_HP onward. Just delete the line so that we don't have an unused
+definition.
 
-It might be confused between PCI link and firmware.
+Suggested-by:: Matt Roper <matthew.d.roper@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h | 1 -
+ 1 file changed, 1 deletion(-)
 
-Raag
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index da1f198ac107..c1590e322ef3 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -62,7 +62,6 @@
+ #define   LE_SSE_MASK				REG_GENMASK(18, 17)
+ #define   LE_SSE(value)				REG_FIELD_PREP(LE_SSE_MASK, value)
+ #define   LE_COS_MASK				REG_GENMASK(16, 15)
+-#define   LE_COS(value)				REG_FIELD_PREP(LE_COS_MASK)
+ #define   LE_SCF_MASK				REG_BIT(14)
+ #define   LE_SCF(value)				REG_FIELD_PREP(LE_SCF_MASK, value)
+ #define   LE_PFM_MASK				REG_GENMASK(13, 11)
+-- 
+2.25.1
+
