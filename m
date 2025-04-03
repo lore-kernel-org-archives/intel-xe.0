@@ -4,26 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0D1DC3600C
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 10:14:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D30FC3601E
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 10:16:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80CB810E095;
-	Thu,  3 Apr 2025 10:14:55 +0000 (UTC)
-Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E30610E095;
- Thu,  3 Apr 2025 10:14:54 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id F421E10E973;
+	Thu,  3 Apr 2025 10:16:40 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="l7224nIm";
+	dkim-atps=neutral
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E0DA10E973
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Apr 2025 10:16:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:References:
+ Cc:To:From:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=D/GahWrQis7BaDNehu4atsjPc5BpS1smHdEMpZegf0w=; b=l7224nImbcFhis7cUnz4j0Iuuw
+ IRL8VcZWmCyCbkwrH31u24Jxd3sGMGcI498rRSK4FIM4HEGsfrzGkQS/qi+D3vwlUPLmTKWU1nrYS
+ LYrChiTjVThvxRTl15mja0abxVKrLOkAqeK46k41QI2VfzOHu0n4adah5NlfSy7bc5V5on1HaT9n2
+ xogwpyHuFjcnmFtGvqcPCWhTOta7bAfjyYcTFQHsPB+0+B1VTxHnaMQ/jsAlyROIvFjtqLj+eKxPb
+ aMzbQrsqVut/vAVyq/kQKf6LUwW9W/Kt2CcYGenOy4hZp8xuL3RY0YdQQ6sxGKq4QUleQkR3I4Edv
+ Xek9+RIQ==;
+Received: from [90.241.98.187] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1u0Hcd-00Am6D-Sj; Thu, 03 Apr 2025 12:16:31 +0200
+Message-ID: <d57b4431-0fd1-4e4f-9720-84742dc723f7@igalia.com>
+Date: Thu, 3 Apr 2025 11:16:31 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_LOBF_enablement_fix_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Animesh Manna" <animesh.manna@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 03 Apr 2025 10:14:54 -0000
-Message-ID: <174367529437.31994.2834549884280328360@e6b6f09ec485>
-X-Patchwork-Hint: ignore
-References: <20250403092825.484347-1-animesh.manna@intel.com>
-In-Reply-To: <20250403092825.484347-1-animesh.manna@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/9] AuxCCS handling and render compression modifiers
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: =?UTF-8?Q?Juha-Pekka_Heikkil=C3=A4?= <juhapekka.heikkila@gmail.com>
+Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com,
+ =?UTF-8?Q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>,
+ "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+References: <20250328163537.58942-1-tvrtko.ursulin@igalia.com>
+ <CAJ=qYWSj2ingLCapCSrYz5OgJoP_A_SgvPMkeYH+p4jEqBhS8w@mail.gmail.com>
+ <7417aea1-ced3-48ba-b128-8ab41814eeff@igalia.com>
+Content-Language: en-GB
+In-Reply-To: <7417aea1-ced3-48ba-b128-8ab41814eeff@igalia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,118 +61,132 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: LOBF enablement fix (rev6)
-URL   : https://patchwork.freedesktop.org/series/142278/
-State : success
+On 02/04/2025 16:30, Tvrtko Ursulin wrote:
+> 
+> Hi Juha-Pekka,
+> 
+> On 02/04/2025 12:42, Juha-Pekka Heikkilä wrote:
+>> Hi Tvrtko,
+>>
+>> I was going to run tests on your patches but there had just been
+>> changes onto emit_pipe_invalidate() exactly at place where you had
+>> added WA_14016712196 handling, so I didn't go figuring out what's the
+>> correct form. Can you do rebase and I'll see what I get with mtl.
+> 
+> I've rebased and split out the bad commit into many small ones so it is 
+> bisectable:
+> 
+> https://gitlab.freedesktop.org/tursulin/kernel/-/commits/adl-auxccs
+> 
+> I however thing the error of my ways was that I trusted MAX_JOB_SIZE_DW 
+> too much.
+> 
+> That is, when I added a new pipe control or two, I would bump it by 6 or 
+> 12 respectively. What I did not account for that it may be wrong to 
+> start with. Because today I hand counted the worst case ring emission in 
+> __emit_job_gen12_render_compute and counted 57 dwords. While the define 
+> claims it is 48.
+> 
+> Hence I now have a first patch in the series which bumps it straight 
+> away to 58:
+> 
+> https://gitlab.freedesktop.org/tursulin/kernel/-/ 
+> commit/8ce33fadee59dea5ba8272eeb0e2bf53d22fcb58
+> 
+> Then I bump it more as I am adding new commands.
+> 
+> Fingers crossed that was the bug and the only bug.
 
-== Summary ==
+Other tester reports the problem was actually setting MI_FLUSH_DW_CCS on 
+!BCS and that things work fine without that. I don't remember if that 
+was an oversight or consequence of no public PRMs. Or copy paste error.
 
-lib/modules/6.14.0-xe+/kernel/arch/x86/events/amd/
-lib/modules/6.14.0-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
-lib/modules/6.14.0-xe+/kernel/arch/x86/events/rapl.ko
-lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/
-lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.14.0-xe+/kernel/arch/x86/kvm/kvm-amd.ko
-lib/modules/6.14.0-xe+/kernel/kernel/
-lib/modules/6.14.0-xe+/kernel/kernel/kheaders.ko
-lib/modules/6.14.0-xe+/kernel/crypto/
-lib/modules/6.14.0-xe+/kernel/crypto/ecrdsa_generic.ko
-lib/modules/6.14.0-xe+/kernel/crypto/xcbc.ko
-lib/modules/6.14.0-xe+/kernel/crypto/serpent_generic.ko
-lib/modules/6.14.0-xe+/kernel/crypto/aria_generic.ko
-lib/modules/6.14.0-xe+/kernel/crypto/crypto_simd.ko
-lib/modules/6.14.0-xe+/kernel/crypto/adiantum.ko
-lib/modules/6.14.0-xe+/kernel/crypto/tcrypt.ko
-lib/modules/6.14.0-xe+/kernel/crypto/crypto_engine.ko
-lib/modules/6.14.0-xe+/kernel/crypto/zstd.ko
-lib/modules/6.14.0-xe+/kernel/crypto/asymmetric_keys/
-lib/modules/6.14.0-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
-lib/modules/6.14.0-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
-lib/modules/6.14.0-xe+/kernel/crypto/des_generic.ko
-lib/modules/6.14.0-xe+/kernel/crypto/xctr.ko
-lib/modules/6.14.0-xe+/kernel/crypto/authenc.ko
-lib/modules/6.14.0-xe+/kernel/crypto/sm4_generic.ko
-lib/modules/6.14.0-xe+/kernel/crypto/camellia_generic.ko
-lib/modules/6.14.0-xe+/kernel/crypto/sm3.ko
-lib/modules/6.14.0-xe+/kernel/crypto/pcrypt.ko
-lib/modules/6.14.0-xe+/kernel/crypto/aegis128.ko
-lib/modules/6.14.0-xe+/kernel/crypto/af_alg.ko
-lib/modules/6.14.0-xe+/kernel/crypto/algif_aead.ko
-lib/modules/6.14.0-xe+/kernel/crypto/cmac.ko
-lib/modules/6.14.0-xe+/kernel/crypto/sm3_generic.ko
-lib/modules/6.14.0-xe+/kernel/crypto/aes_ti.ko
-lib/modules/6.14.0-xe+/kernel/crypto/chacha_generic.ko
-lib/modules/6.14.0-xe+/kernel/crypto/poly1305_generic.ko
-lib/modules/6.14.0-xe+/kernel/crypto/nhpoly1305.ko
-lib/modules/6.14.0-xe+/kernel/crypto/crc32_generic.ko
-lib/modules/6.14.0-xe+/kernel/crypto/essiv.ko
-lib/modules/6.14.0-xe+/kernel/crypto/ccm.ko
-lib/modules/6.14.0-xe+/kernel/crypto/wp512.ko
-lib/modules/6.14.0-xe+/kernel/crypto/streebog_generic.ko
-lib/modules/6.14.0-xe+/kernel/crypto/authencesn.ko
-lib/modules/6.14.0-xe+/kernel/crypto/echainiv.ko
-lib/modules/6.14.0-xe+/kernel/crypto/lrw.ko
-lib/modules/6.14.0-xe+/kernel/crypto/cryptd.ko
-lib/modules/6.14.0-xe+/kernel/crypto/crypto_user.ko
-lib/modules/6.14.0-xe+/kernel/crypto/algif_hash.ko
-lib/modules/6.14.0-xe+/kernel/crypto/polyval-generic.ko
-lib/modules/6.14.0-xe+/kernel/crypto/hctr2.ko
-lib/modules/6.14.0-xe+/kernel/crypto/842.ko
-lib/modules/6.14.0-xe+/kernel/crypto/pcbc.ko
-lib/modules/6.14.0-xe+/kernel/crypto/ansi_cprng.ko
-lib/modules/6.14.0-xe+/kernel/crypto/cast6_generic.ko
-lib/modules/6.14.0-xe+/kernel/crypto/twofish_common.ko
-lib/modules/6.14.0-xe+/kernel/crypto/twofish_generic.ko
-lib/modules/6.14.0-xe+/kernel/crypto/lz4hc.ko
-lib/modules/6.14.0-xe+/kernel/crypto/blowfish_generic.ko
-lib/modules/6.14.0-xe+/kernel/crypto/md4.ko
-lib/modules/6.14.0-xe+/kernel/crypto/chacha20poly1305.ko
-lib/modules/6.14.0-xe+/kernel/crypto/curve25519-generic.ko
-lib/modules/6.14.0-xe+/kernel/crypto/lz4.ko
-lib/modules/6.14.0-xe+/kernel/crypto/rmd160.ko
-lib/modules/6.14.0-xe+/kernel/crypto/algif_skcipher.ko
-lib/modules/6.14.0-xe+/kernel/crypto/cast5_generic.ko
-lib/modules/6.14.0-xe+/kernel/crypto/fcrypt.ko
-lib/modules/6.14.0-xe+/kernel/crypto/ecdsa_generic.ko
-lib/modules/6.14.0-xe+/kernel/crypto/sm4.ko
-lib/modules/6.14.0-xe+/kernel/crypto/cast_common.ko
-lib/modules/6.14.0-xe+/kernel/crypto/blowfish_common.ko
-lib/modules/6.14.0-xe+/kernel/crypto/michael_mic.ko
-lib/modules/6.14.0-xe+/kernel/crypto/async_tx/
-lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.14.0-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.14.0-xe+/kernel/crypto/algif_rng.ko
-lib/modules/6.14.0-xe+/kernel/block/
-lib/modules/6.14.0-xe+/kernel/block/bfq.ko
-lib/modules/6.14.0-xe+/kernel/block/kyber-iosched.ko
-lib/modules/6.14.0-xe+/build
-lib/modules/6.14.0-xe+/modules.alias.bin
-lib/modules/6.14.0-xe+/modules.builtin
-lib/modules/6.14.0-xe+/modules.softdep
-lib/modules/6.14.0-xe+/modules.alias
-lib/modules/6.14.0-xe+/modules.order
-lib/modules/6.14.0-xe+/modules.symbols
-lib/modules/6.14.0-xe+/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-+ echo -e '\e[0Ksection_end:1743675282:package_x86_64_nodebug\r\e[0K'
-[0Ksection_end:1743675282:package_x86_64_nodebug
-[0K
-+ sync
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Anyway, you can hold off testing until I send a respin or update the 
+branch.
 
+Regards,
+
+Tvrtko
+
+> 
+> Thank you for testing!
+> 
+> Regards,
+> 
+> Tvrtko
+> 
+>> On Fri, Mar 28, 2025 at 6:35 PM Tvrtko Ursulin
+>> <tvrtko.ursulin@igalia.com> wrote:
+>>>
+>>> A series to fix and add xe support for AuxCSS framebuffers via DPT.
+>>>
+>>> Currently the auxiliary buffer data isn't mapped into the page tables 
+>>> at all so
+>>> cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built 
+>>> for Xe")
+>>> had to disable the support.
+>>>
+>>> On top of that there are missing flushes, invalidations and similar.
+>>>
+>>> Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
+>>>
+>>>    [PLANE:32:plane 1A]: type=PRI
+>>>            uapi: [FB:242] AR30 little-endian 
+>>> (0x30335241),0x100000000000008,2880x1800, visible=visible, 
+>>> src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, 
+>>> rotation=0 (0x00000001)
+>>>            hw: [FB:242] AR30 little-endian 
+>>> (0x30335241),0x100000000000008,2880x1800, visible=yes, 
+>>> src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, 
+>>> rotation=0 (0x00000001)
+>>>
+>>> Display working fine - no artefacts, no DMAR/PIPE faults.
+>>>
+>>> v2:
+>>>   * More patches added to fix kms_flip_tiling.
+>>>
+>>> v3:
+>>>   * Rebased after some cleanup patches from v2 were merged.
+>>>   * Added people to Cc as suggested by Rodrigo.
+>>>   * Adjusted last patch title. (Rodrigo)
+>>>   * Apply GGTT flushing only to iomapped system memory buffers.
+>>>
+>>> v4:
+>>>   * Added patch for potentially misplaced Wa_14016712196.
+>>>   * Fixed (hopefully) MAX_JOB_SIZE_DW on Meteorlake.
+>>>
+>>> Cc: José Roberto de Souza <jose.souza@intel.com>
+>>> Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+>>> Cc: Michael J. Ruhl <michael.j.ruhl@intel.com>
+>>> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>>>
+>>> Tvrtko Ursulin (9):
+>>>    drm/xe/xelpg: Move Wa_14016712196 to the invalidate path
+>>>    drm/xe: Add ring buffer handling for AuxCCS
+>>>    drm/xe: Use fb cached min alignment
+>>>    drm/xe: Reduce DPT table alignment as in i915
+>>>    drm/xe: Flush GGTT writes after populating DPT
+>>>    drm/xe: Handle DPT in system memory
+>>>    drm/xe: Force flush system memory AuxCCS framebuffers before scan out
+>>>    drm/xe/display: Add support for AuxCCS
+>>>    drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
+>>>
+>>>   .../drm/i915/display/skl_universal_plane.c    |   6 -
+>>>   drivers/gpu/drm/xe/display/xe_fb_pin.c        | 181 +++++++++++++----
+>>>   .../gpu/drm/xe/instructions/xe_gpu_commands.h |   2 +
+>>>   .../gpu/drm/xe/instructions/xe_mi_commands.h  |   6 +
+>>>   drivers/gpu/drm/xe/regs/xe_gt_regs.h          |   1 +
+>>>   drivers/gpu/drm/xe/xe_bo_types.h              |  14 +-
+>>>   drivers/gpu/drm/xe/xe_ring_ops.c              | 190 ++++++++++--------
+>>>   drivers/gpu/drm/xe/xe_ring_ops_types.h        |   2 +-
+>>>   8 files changed, 273 insertions(+), 129 deletions(-)
+>>>
+>>> -- 
+>>> 2.48.0
+>>>
+> 
 
