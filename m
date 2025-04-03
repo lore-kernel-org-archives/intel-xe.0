@@ -4,48 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B28F4C369A2
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2952C369A3
 	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 18:56:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 752C810EA58;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A66310EA59;
 	Thu,  3 Apr 2025 18:56:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iRZKq6SV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S3CDdItX";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93F4410EA4E
- for <Intel-Xe@lists.freedesktop.org>; Thu,  3 Apr 2025 18:56:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D2A610EA4D
+ for <Intel-Xe@lists.freedesktop.org>; Thu,  3 Apr 2025 18:56:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743706581; x=1775242581;
+ t=1743706582; x=1775242582;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=q8+cm5hHy0fhkDnYR/0JHA00c5ifU4afWW1iBl6Tgo0=;
- b=iRZKq6SV9s+grW6+fih7Tqb7kkyiQu8mvIan+7tVTRwWlHXRXK/9a+Cm
- VhCRt3Pxd8Vw6Msa7TYtmo0d7WLcPzb2+wwSQTysclojGlzjDjAkEU/Qn
- 6nwSXd2d0dFU4ejLp3p6lp5UzHlZxHMRmGQW6o6GEmLL0dchKU+VJcPiG
- 0u1b17lxjbn+8AaB2AY8rpyicPAZQNySJqXgkXI94jYR0074ZKebYpm3g
- Sq6EJf2cgZalmJCy8Kyu2voT/JAjD2ksxStISDShsm9fPL4iFcULK9Rgo
- MScr/2ECS9M7ZkQ6ecHJBWihXkkMB1LzdsfJ/rDCVY1bcoQg1ZfLdUonf w==;
-X-CSE-ConnectionGUID: eWhFb9DIRbeTEqbHRzcawA==
-X-CSE-MsgGUID: 6+Bkkm6oSxWheE9nuzIpCQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11393"; a="32737758"
-X-IronPort-AV: E=Sophos;i="6.15,186,1739865600"; d="scan'208";a="32737758"
+ bh=pBfeELwxRrz41rkxa1Utrv1uB+/srrXjC9UUTnNw8lc=;
+ b=S3CDdItXbYiXpsr5kOpKSHleYDGPIbdovPX4XpNQxQ2wD88Wd0q+/TVk
+ go8GDaWMEhWGs99YeqjvhWutk0uRXPreKQgqbZcOUXxJpofI/wZremu6N
+ FcNNA1+CE9AdLeX6DVvFUUIeM2G0X85ptZinU61Nh5odJeIOGYHfJXdsp
+ HbWCSweaY4GDIdi/xi43IlA6y5iBOq3a7G7YsUuEnTRu/mMogccZvHlbp
+ KZQR8TDFL7i3BMXYgJ7BCBGkXHbzUYlUqSqfHlEU4wSK2KXGXhRWsjdG0
+ 2vZVhu+xZG4frDLm6DtLjH7vB/90mvXFf0LCruS1bcUDKehs5yWQihO2h w==;
+X-CSE-ConnectionGUID: xfWZhb3hT3qJC0F+MofqBA==
+X-CSE-MsgGUID: f9iTlqetSw+pIX9iSuJAMg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11393"; a="32737763"
+X-IronPort-AV: E=Sophos;i="6.15,186,1739865600"; d="scan'208";a="32737763"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2025 11:56:19 -0700
-X-CSE-ConnectionGUID: agF+7zTSSCKPPhZdTYxT6g==
-X-CSE-MsgGUID: AVkmfFJhT/WN2LhlX/Dm6g==
+ 03 Apr 2025 11:56:21 -0700
+X-CSE-ConnectionGUID: NWndkzfvTbCn3tIqcikuiA==
+X-CSE-MsgGUID: rb8eqMvZQ9CAWbHT6TYoLg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,186,1739865600"; d="scan'208";a="126895843"
+X-IronPort-AV: E=Sophos;i="6.15,186,1739865600"; d="scan'208";a="126895859"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by fmviesa006.fm.intel.com with ESMTP; 03 Apr 2025 11:56:19 -0700
+ by fmviesa006.fm.intel.com with ESMTP; 03 Apr 2025 11:56:20 -0700
 From: John.C.Harrison@Intel.com
 To: Intel-Xe@Lists.FreeDesktop.Org
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Subject: [PATCH 2/8] Revert "drm/xe/ptl: Define HuC FW version for PTL"
-Date: Thu,  3 Apr 2025 11:56:12 -0700
-Message-ID: <20250403185619.1555853-3-John.C.Harrison@Intel.com>
+Cc: Clint Taylor <clinton.a.taylor@intel.com>,
+ Matt Atwood <matthew.s.atwood@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>,
+ Jordan Justen <jordan.l.justen@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Subject: [PATCH 7/8] drm/xe/ptl: Add GuC firmware definition
+Date: Thu,  3 Apr 2025 11:56:17 -0700
+Message-ID: <20250403185619.1555853-8-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250403185619.1555853-1-John.C.Harrison@Intel.com>
 References: <20250403185619.1555853-1-John.C.Harrison@Intel.com>
@@ -67,25 +72,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+From: Clint Taylor <clinton.a.taylor@intel.com>
 
-This reverts commit 0a1388d7b15a70959418fce1ed1efae1f6a47302.
+Define the GuC firmware to load on the platform.
+
+Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
+Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+Tested-by: Jordan Justen <jordan.l.justen@intel.com>
+Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20241011163920.7926-1-matthew.s.atwood@intel.com
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_uc_fw.c | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/xe/xe_uc_fw.c | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index 70d7b542f665..9ce82116498e 100644
+index fe1813deff00..1db598d3b1de 100644
 --- a/drivers/gpu/drm/xe/xe_uc_fw.c
 +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -128,7 +128,6 @@ struct fw_blobs_by_type {
- 	fw_def(TIGERLAKE,	GT_TYPE_ANY,	major_ver(i915,	guc,	tgl,	70, 29, 2))
+@@ -114,6 +114,7 @@ struct fw_blobs_by_type {
+ #define XE_GT_TYPE_ANY XE_GT_TYPE_UNINITIALIZED
  
- #define XE_HUC_FIRMWARE_DEFS(fw_def, mmp_ver, no_ver)		\
--	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	mmp_ver(xe,	huc,		ptl, 10, 2, 1))	\
- 	fw_def(BATTLEMAGE,	GT_TYPE_ANY,	no_ver(xe,	huc,		bmg))		\
- 	fw_def(LUNARLAKE,	GT_TYPE_ANY,	no_ver(xe,	huc,		lnl))		\
- 	fw_def(METEORLAKE,	GT_TYPE_ANY,	no_ver(i915,	huc_gsc,	mtl))		\
+ #define XE_GUC_FIRMWARE_DEFS(fw_def, mmp_ver, major_ver)					\
++	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	ptl,	70, 44, 1))	\
+ 	fw_def(BATTLEMAGE,	GT_TYPE_ANY,	major_ver(xe,	guc,	bmg,	70, 44, 1))	\
+ 	fw_def(LUNARLAKE,	GT_TYPE_ANY,	major_ver(xe,	guc,	lnl,	70, 44, 1))	\
+ 	fw_def(METEORLAKE,	GT_TYPE_ANY,	major_ver(i915,	guc,	mtl,	70, 44, 1))	\
 -- 
 2.49.0
 
