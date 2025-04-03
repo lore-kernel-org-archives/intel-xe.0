@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB396C3601B
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 10:04:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0D98C3600C
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 10:04:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD19D10E990;
-	Thu,  3 Apr 2025 10:04:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A6AA10E992;
+	Thu,  3 Apr 2025 10:04:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aVYtT/Cd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YjdFSryi";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B350D10E990
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Apr 2025 10:04:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32BA310E992
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Apr 2025 10:04:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743674658; x=1775210658;
+ t=1743674660; x=1775210660;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=c6e8aV8576AzopTuEzJWDFaTosdiEOMVFbiE6O02n3s=;
- b=aVYtT/Cddajo8e0/TC6E82Lm4Gu3n3Kj7aWadzCJIoxT9MTRehW+llxX
- MyF2xi5XJ6SCxAQnGU7tScPXw5v6iNh5lV8V0iGhrvWOLKqJdCWZSex/z
- 3L0XZlkl0lz3bwXokvI9VRXdGBsTCPX3HSZ7772PJNR4mJewY3r/HizZH
- 4auFwHwxbwu18FtV0JRe0AuWnOVe92dYiOah3NRgdLsd2BO2zNGaaCCNc
- jkYLnsUtMDRsDfzsOgHsSyTfir3Y82M34Jil+1BwslGiF/bf1poSSjq7A
- pcI099lCVMPp0GT2agGItqQJfjZpT+k/jpvHVR3w2ib2jvFc6lQsDs3rK A==;
-X-CSE-ConnectionGUID: nB266da8RyyfD+gkUBdrww==
-X-CSE-MsgGUID: HlOnZ8NNRD2odCaxfG5H2w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="44224420"
-X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="44224420"
+ bh=d6JiPOtk9HnIdRU3nYtNqGi+Mrwirqgo2xPqkL6kvUw=;
+ b=YjdFSryijE3S1E1mcQtasc9MTA54v2KnCPGu1mbHi3ZeV/tRyUOWa8Wz
+ WLA3F0lTQ8iBOQBfkZvw4egfUxz/vQa3xw4DqER9QT8yePUoxRr8Huv2p
+ 8AmWTmzOmflqHmE5GO0M4OzxG01fQDfhJ3jWKXp0evfV4/1pyqEG0YBKn
+ GrFhqivAMO/o0YVgKiP+r9xxTmERJFt+jMKFGdz7hpvsCY+2/57c/BKhd
+ 71TClBeD/N9EdPjnVw+kgDU0OISUSj6LnRZssUqC7DwLUa947PEm5BUNf
+ jSdelVMup5dGR/l68xCUD2Mq20ai6SCLIP8YjFYyspYdekTC8SEo/TcwH w==;
+X-CSE-ConnectionGUID: PGeHjepGSbmBWZ6NXhDGvQ==
+X-CSE-MsgGUID: WM/J4GzWQ+ShMr2k9j+vvA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="44224422"
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="44224422"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2025 03:04:18 -0700
-X-CSE-ConnectionGUID: DGP8RemdTUWDREqJE1zRgw==
-X-CSE-MsgGUID: zcpSVvlrT6O+I7Ud68AYsw==
+ 03 Apr 2025 03:04:20 -0700
+X-CSE-ConnectionGUID: EQsn1KAPRlGjr2Xyo8yETw==
+X-CSE-MsgGUID: 64Grem5hRG+8SZIQ7s/Azg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="127470129"
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="127470159"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2025 03:04:15 -0700
+ 03 Apr 2025 03:04:18 -0700
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  lucas.demarchi@intel.com, matthew.d.roper@intel.com,
  aravind.iddamsetty@linux.intel.com
-Subject: [PATCH v3 2/3] drm/xe: add documentation for survivability mode
-Date: Thu,  3 Apr 2025 15:55:52 +0530
-Message-ID: <20250403102555.1265786-3-riana.tauro@intel.com>
+Subject: [PATCH v3 3/3] drm/xe: Enable configfs support for survivability mode
+Date: Thu,  3 Apr 2025 15:55:53 +0530
+Message-ID: <20250403102555.1265786-4-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20250403102555.1265786-1-riana.tauro@intel.com>
 References: <20250403102555.1265786-1-riana.tauro@intel.com>
@@ -68,79 +68,261 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add survivability mode document to pcode document
+Enable survivability mode if supported and configfs attribute is set.
+Enabling survivability mode manually is useful in cases where pcode does
+not detect failure, validation and for IFR (in-field-repair).
+
+To set configfs survivability mode attribute for a device
+
+echo 1 > /sys/kernel/config/xe/0000:03:00.0/survivability_mode
+
+The card enters survivability mode if supported
+
+v2: add a log if survivability mode is enabled for unsupported
+    platforms (Rodrigo)
 
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- Documentation/gpu/xe/xe_pcode.rst          |  7 +++++
- drivers/gpu/drm/xe/xe_survivability_mode.c | 36 +++++++++++++++-------
- 2 files changed, 32 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/xe/xe_configfs.c           | 62 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_configfs.h           |  8 +++
+ drivers/gpu/drm/xe/xe_device.c             |  2 +-
+ drivers/gpu/drm/xe/xe_pci.c                | 19 ++++---
+ drivers/gpu/drm/xe/xe_survivability_mode.c | 35 +++++++++---
+ drivers/gpu/drm/xe/xe_survivability_mode.h |  1 +
+ 6 files changed, 108 insertions(+), 19 deletions(-)
 
-diff --git a/Documentation/gpu/xe/xe_pcode.rst b/Documentation/gpu/xe/xe_pcode.rst
-index d2e22cc45061..5937ef3599b0 100644
---- a/Documentation/gpu/xe/xe_pcode.rst
-+++ b/Documentation/gpu/xe/xe_pcode.rst
-@@ -12,3 +12,10 @@ Internal API
+diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
+index 548468d2bda0..3cc9b02a678d 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.c
++++ b/drivers/gpu/drm/xe/xe_configfs.c
+@@ -166,6 +166,68 @@ static struct configfs_subsystem xe_configfs = {
+ 	},
+ };
  
- .. kernel-doc:: drivers/gpu/drm/xe/xe_pcode.c
-    :internal:
++static struct xe_config_device *configfs_find_group(struct pci_dev *pdev)
++{
++	struct config_item *item;
++	char name[64];
 +
-+==================
-+Boot Survivability
-+==================
++	snprintf(name, sizeof(name), "%04x:%02x:%02x.%x", pci_domain_nr(pdev->bus),
++		 pdev->bus->number, PCI_SLOT(pdev->devfn), PCI_FUNC(pdev->devfn));
 +
-+.. kernel-doc:: drivers/gpu/drm/xe/xe_survivability_mode.c
-+   :doc: Xe Boot Survivability
++	mutex_lock(&xe_configfs.su_mutex);
++	item = config_group_find_item(&xe_configfs.su_group, name);
++	mutex_unlock(&xe_configfs.su_mutex);
++
++	if (!item)
++		return NULL;
++
++	return to_xe_config_device(item);
++}
++
++/**
++ * xe_configfs_get_survivability_mode - get configfs survivability mode attribute
++ * @pdev: pci device
++ *
++ * find the configfs group that belongs to the pci device and return
++ * the survivability mode attribute
++ *
++ * Return: survivability mode if config group is found, false otherwise
++ */
++bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
++{
++	struct xe_config_device *dev = configfs_find_group(pdev);
++	bool mode;
++
++	if (!dev)
++		return false;
++
++	mode = dev->survivability_mode;
++	config_item_put(&dev->group.cg_item);
++
++	return mode;
++}
++
++/**
++ * xe_configfs_clear_survivability_mode - clear configfs survivability mode attribute
++ * @pdev: pci device
++ *
++ * find the configfs group that belongs to the pci device and clear survivability
++ * mode attribute
++ */
++void xe_configfs_clear_survivability_mode(struct pci_dev *pdev)
++{
++	struct xe_config_device *dev = configfs_find_group(pdev);
++
++	if (!dev)
++		return;
++
++	mutex_lock(&dev->lock);
++	dev->survivability_mode = 0;
++	mutex_unlock(&dev->lock);
++
++	config_item_put(&dev->group.cg_item);
++}
++
+ int __init xe_configfs_init(void)
+ {
+ 	struct config_group *root = &xe_configfs.su_group;
+diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
+index 5532320818e4..d7d041ec2611 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.h
++++ b/drivers/gpu/drm/xe/xe_configfs.h
+@@ -5,12 +5,20 @@
+ #ifndef _XE_CONFIGFS_H_
+ #define _XE_CONFIGFS_H_
+ 
++#include <linux/types.h>
++
++struct pci_dev;
++
+ #if IS_ENABLED(CONFIG_CONFIGFS_FS)
+ int xe_configfs_init(void);
+ void xe_configfs_exit(void);
++bool xe_configfs_get_survivability_mode(struct pci_dev *pdev);
++void xe_configfs_clear_survivability_mode(struct pci_dev *pdev);
+ #else
+ static inline int xe_configfs_init(void) { return 0; };
+ static inline void xe_configfs_exit(void) {};
++static inline bool xe_configfs_get_survivability_mode(struct pci_dev *pdev) { return false; };
++static inline void xe_configfs_clear_survivability_mode(struct pci_dev *pdev) {};
+ #endif
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index d8e227ddf255..75e753e0a682 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -712,7 +712,7 @@ int xe_device_probe_early(struct xe_device *xe)
+ 	sriov_update_device_info(xe);
+ 
+ 	err = xe_pcode_probe_early(xe);
+-	if (err) {
++	if (err || xe_survivability_mode_is_requested(xe)) {
+ 		int save_err = err;
+ 
+ 		/*
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 772b6c81672c..1d83d88cde90 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -812,18 +812,17 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 		return err;
+ 
+ 	err = xe_device_probe_early(xe);
+-	if (err) {
+-		/*
+-		 * In Boot Survivability mode, no drm card is exposed and driver
+-		 * is loaded with bare minimum to allow for firmware to be
+-		 * flashed through mei. If early probe failed, but it managed to
+-		 * enable survivability mode, return success.
+-		 */
+-		if (xe_survivability_mode_is_enabled(xe))
+-			return 0;
++	/*
++	 * In Boot Survivability mode, no drm card is exposed and driver
++	 * is loaded with bare minimum to allow for firmware to be
++	 * flashed through mei. Return success, if survivability mode
++	 * is enabled due to pcode failure or configfs being set
++	 */
++	if (xe_survivability_mode_is_enabled(xe))
++		return 0;
+ 
++	if (err)
+ 		return err;
+-	}
+ 
+ 	err = xe_info_init(xe, desc);
+ 	if (err)
 diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
-index cb813b337fd3..3d59753eae34 100644
+index 3d59753eae34..29350e23ece3 100644
 --- a/drivers/gpu/drm/xe/xe_survivability_mode.c
 +++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
-@@ -28,20 +28,34 @@
-  * This is implemented by loading the driver with bare minimum (no drm card) to allow the firmware
-  * to be flashed through mei and collect telemetry. The driver's probe flow is modified
-  * such that it enters survivability mode when pcode initialization is incomplete and boot status
-- * denotes a failure. The driver then  populates the survivability_mode PCI sysfs indicating
-- * survivability mode and provides additional information required for debug
-+ * denotes a failure.
-  *
-- * KMD exposes below admin-only readable sysfs in survivability mode
-+ * Survivability mode can also be entered manually using the survivability mode attribute available
-+ * through configfs which is beneficial in several usecases. It can be used to address scenarios
-+ * where pcode does not detect failure or for validation purposes. It can also be used in
-+ * In-Field-Repair (IFR) to repair a single card without impacting the other cards in a node.
-  *
-- * device/survivability_mode: The presence of this file indicates that the card is in survivability
-- *			      mode. Also, provides additional information on why the driver entered
-- *			      survivability mode.
-+ * Use below command enable survivability mode manually
-+ * ::
-  *
-- *			      Capability Information - Provides boot status
-- *			      Postcode Information   - Provides information about the failure
-- *			      Overflow Information   - Provides history of previous failures
-- *			      Auxiliary Information  - Certain failures may have information in
-- *						       addition to postcode information
-+ *	# echo 1 > /sys/kernel/config/xe/0000:03:00.0/survivability_mode
-+ *
-+ * Refer :ref:`xe_configfs` for more details on how to use configfs
-+ *
-+ * Survivability mode is indicated by the below admin-only readable sysfs which provides additional
-+ * debug information
-+ * ::
-+ *
-+ *	/sys/bus/pci/<device>/surivability_mode
-+ *
-+ * Capability Information:
-+ *	Provides boot status
-+ * Postcode Information:
-+ *	Provides information about the failure
-+ * Overflow Information
-+ *	Provides history of previous failures
-+ * Auxiliary Information
-+ *	Certain failures may have information in addition to postcode information
-  */
+@@ -10,6 +10,7 @@
+ #include <linux/pci.h>
+ #include <linux/sysfs.h>
  
- static u32 aux_history_offset(u32 reg_value)
++#include "xe_configfs.h"
+ #include "xe_device.h"
+ #include "xe_gt.h"
+ #include "xe_heci_gsc.h"
+@@ -147,6 +148,7 @@ static void xe_survivability_mode_fini(void *arg)
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+ 	struct device *dev = &pdev->dev;
+ 
++	xe_configfs_clear_survivability_mode(pdev);
+ 	sysfs_remove_file(&dev->kobj, &dev_attr_survivability_mode.attr);
+ }
+ 
+@@ -200,23 +202,40 @@ bool xe_survivability_mode_is_enabled(struct xe_device *xe)
+ 	return xe->survivability.mode;
+ }
+ 
+-/*
+- * survivability_mode_requested - check if it's possible to enable
+- * survivability mode and that was requested by firmware
++/**
++ * xe_survivability_mode_is_requested - check if it's possible to enable survivability
++ *					mode that was requested by firmware or userspace
++ * @xe: xe device instance
+  *
+- * This function reads the boot status from Pcode.
++ * This function reads configfs and  boot status from Pcode.
+  *
+  * Return: true if platform support is available and boot status indicates
+- * failure, false otherwise.
++ * failure or if survivability mode is requested, false otherwise.
+  */
+-static bool survivability_mode_requested(struct xe_device *xe)
++bool xe_survivability_mode_is_requested(struct xe_device *xe)
+ {
+ 	struct xe_survivability *survivability = &xe->survivability;
+ 	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
++	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+ 	u32 data;
++	bool survivability_mode;
++
++	if (!IS_DGFX(xe) || IS_SRIOV_VF(xe))
++		return false;
++
++	survivability_mode = xe_configfs_get_survivability_mode(pdev);
+ 
+-	if (!IS_DGFX(xe) || xe->info.platform < XE_BATTLEMAGE || IS_SRIOV_VF(xe))
++	if (xe->info.platform < XE_BATTLEMAGE) {
++		if (survivability_mode) {
++			dev_err(&pdev->dev, "Survivability Mode is not supported on this card\n");
++			xe_configfs_clear_survivability_mode(pdev);
++		}
+ 		return false;
++	}
++
++	/* Enable survivability mode if set via configfs */
++	if (survivability_mode)
++		return true;
+ 
+ 	data = xe_mmio_read32(mmio, PCODE_SCRATCH(0));
+ 	survivability->boot_status = REG_FIELD_GET(BOOT_STATUS, data);
+@@ -240,7 +259,7 @@ int xe_survivability_mode_enable(struct xe_device *xe)
+ 	struct xe_survivability_info *info;
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+ 
+-	if (!survivability_mode_requested(xe))
++	if (!xe_survivability_mode_is_requested(xe))
+ 		return 0;
+ 
+ 	survivability->size = MAX_SCRATCH_MMIO;
+diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.h b/drivers/gpu/drm/xe/xe_survivability_mode.h
+index d7e64885570d..02231c2bf008 100644
+--- a/drivers/gpu/drm/xe/xe_survivability_mode.h
++++ b/drivers/gpu/drm/xe/xe_survivability_mode.h
+@@ -12,5 +12,6 @@ struct xe_device;
+ 
+ int xe_survivability_mode_enable(struct xe_device *xe);
+ bool xe_survivability_mode_is_enabled(struct xe_device *xe);
++bool xe_survivability_mode_is_requested(struct xe_device *xe);
+ 
+ #endif /* _XE_SURVIVABILITY_MODE_H_ */
 -- 
 2.47.1
 
