@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F27D1C3601B
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 10:25:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C672C3601E
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 10:25:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFB1A10E99A;
-	Thu,  3 Apr 2025 10:25:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FD0510E996;
+	Thu,  3 Apr 2025 10:25:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gBGNBvR8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kfYcO+6q";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D24110E99F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43D1410E99A
  for <intel-xe@lists.freedesktop.org>; Thu,  3 Apr 2025 10:25:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1743675904; x=1775211904;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Aogr4B6tpyJ3PtOmi7p9ptTBsXdBdUXagl1d4SeylCM=;
- b=gBGNBvR8t7VoVfcRawkKuDc+dxRPFjkAICITwRTwf1Hr9vXLcHKTlfh6
- xIK0fhL1PhSvcxYYBxHxBaqSoYM4zOFWK8QwqBNugaHvIrnPFIe/TWgvq
- ikc3ADOh1gH07SJFUC4fkJved9BAl3vHCl9IHkRWl1tBFxtnSF8hV0Iw8
- gMHR207KKdcf4TfjCJT+QYLOTmPFn+1XKojnKQt8k3Z/uNu5QJQkbvV5a
- xx/aMSNjm4V7vheingp1HFCs4aEWar6rJkwIk6721UDeNHAOBknKxoC0p
- 3Nn1HnWU+dHz4BgFZmfL6G/WgiQEcbinB260rEzGLCyVkNcFmHfgUtL4a A==;
-X-CSE-ConnectionGUID: ffZ+bM5sQOKmqBE21UVdvw==
-X-CSE-MsgGUID: 8ri0t2ozRN+azPdja8gPfg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="62475469"
-X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="62475469"
+ bh=9HfUjn566KcCqNeeSGmDZXvxXlNpmAHWn/lun72k5N0=;
+ b=kfYcO+6qhjPeGSzT93XbbLiE9ukXcYtDkRfI4V2d/0dYqlBq20FnPUsX
+ DcZ+Myn0ngDyvhMvVS/aOVmz4ntiIOjmxTkl2qQR9NF9OKBCm0OMElryv
+ 8fY+xRyzXZjp9y3zI15vAB5rMwjebk4+azFy8/KEk7K22gygN1qfDw+O8
+ 8awr352L/O4YP5fWWWJdLCohG4gLRC6K/WitmBIeFnO5GSNJQ49Q0L5X6
+ 7Ifsqs3jMJxMUOjAp2S08nApt1LgAJKMh3ukclLNEeqfL7UEsr/RkGY6Q
+ ttfzEzOXN1XEuU8zS6vUCk259KfurEdxbNE1YDHrSiOhhZ7f8TJqpbZHa w==;
+X-CSE-ConnectionGUID: 0ZOf+EEsRfKqNw6ZxeLVAQ==
+X-CSE-MsgGUID: YkSzEHK9Qn6IX1lgf5hOaA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="62475477"
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="62475477"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2025 03:25:02 -0700
-X-CSE-ConnectionGUID: pbk1JT+mRNyFDJ50xuquRg==
-X-CSE-MsgGUID: IaFA0szxR5C3bvy9OxJwNg==
+ 03 Apr 2025 03:25:04 -0700
+X-CSE-ConnectionGUID: Ha/aHSvAQpSFRhAxFKq20w==
+X-CSE-MsgGUID: 2W+A7tRpRbi6kmL4g1ypuw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="132166817"
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="132166847"
 Received: from dalessan-mobl3.ger.corp.intel.com (HELO mwauld-desk.intel.com)
  ([10.245.244.142])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2025 03:25:01 -0700
+ 03 Apr 2025 03:25:02 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v6 6/7] drm/xe: allow non-contig VRAM kernel BO
-Date: Thu,  3 Apr 2025 11:24:47 +0100
-Message-ID: <20250403102440.266113-15-matthew.auld@intel.com>
+Subject: [PATCH v6 7/7] drm/xe/sriov: support non-contig VRAM provisioning
+Date: Thu,  3 Apr 2025 11:24:48 +0100
+Message-ID: <20250403102440.266113-16-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250403102440.266113-9-matthew.auld@intel.com>
 References: <20250403102440.266113-9-matthew.auld@intel.com>
@@ -70,9 +70,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If the kernel bo doesn't care about vmap(), either directly or
-indirectly with save/restore then we don't need to force contig for such
-buffers.
+Currently we can run into issues with provisioning VRAM region, due to
+requiring contig VRAM BO underneath. We sometimes see that allocation
+(multiple GB) can fail even when there is enough free space.  We don't
+need CPU access to the buffer in the first place, so can forgo pin_map
+and therefore also the contig requirement. Keep the same behavior with
+save and restore during suspend/resume (which can now be done with
+blitter).  We also need the VRAM to occupy the same pages so we don't
+need to re-program the LMTT, so should still remain pinned (also we
+don't want something to try evict it). With that covert over to plain
+pinned kernel object.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
@@ -80,33 +87,43 @@ Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 20 ++++++++++++++------
+ 1 file changed, 14 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 29e5849a9ae3..c337790c81ae 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -191,11 +191,18 @@ static void try_add_system(struct xe_device *xe, struct xe_bo *bo,
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+index 10be109bf357..2420a548cacc 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -1444,15 +1444,23 @@ static int pf_provision_vf_lmem(struct xe_gt *gt, unsigned int vfid, u64 size)
+ 		return 0;
  
- static bool force_contiguous(u32 bo_flags)
- {
-+	if (bo_flags & XE_BO_FLAG_STOLEN)
-+		return true; /* users expect this */
-+	else if (bo_flags & XE_BO_FLAG_PINNED &&
-+		 !(bo_flags & XE_BO_FLAG_PINNED_LATE_RESTORE))
-+		return true; /* needs vmap */
+ 	xe_gt_assert(gt, pf_get_lmem_alignment(gt) == SZ_2M);
+-	bo = xe_bo_create_pin_map(xe, tile, NULL,
+-				  ALIGN(size, PAGE_SIZE),
+-				  ttm_bo_type_kernel,
+-				  XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+-				  XE_BO_FLAG_NEEDS_2M |
+-				  XE_BO_FLAG_PINNED);
++	bo = xe_bo_create_locked(xe, tile, NULL,
++				 ALIGN(size, PAGE_SIZE),
++				 ttm_bo_type_kernel,
++				 XE_BO_FLAG_VRAM_IF_DGFX(tile) |
++				 XE_BO_FLAG_NEEDS_2M |
++				 XE_BO_FLAG_PINNED |
++				 XE_BO_FLAG_PINNED_LATE_RESTORE);
+ 	if (IS_ERR(bo))
+ 		return PTR_ERR(bo);
+ 
++	err = xe_bo_pin(bo);
++	xe_bo_unlock(bo);
++	if (unlikely(err)) {
++		xe_bo_put(bo);
++		return err;
++	}
 +
- 	/*
- 	 * For eviction / restore on suspend / resume objects pinned in VRAM
- 	 * must be contiguous, also only contiguous BOs support xe_bo_vmap.
- 	 */
--	return bo_flags & (XE_BO_FLAG_PINNED | XE_BO_FLAG_GGTT);
-+	return bo_flags & XE_BO_FLAG_NEEDS_CPU_ACCESS &&
-+	       bo_flags & XE_BO_FLAG_PINNED;
- }
+ 	config->lmem_obj = bo;
  
- static void add_vram(struct xe_device *xe, struct xe_bo *bo,
+ 	if (xe_device_has_lmtt(xe)) {
 -- 
 2.49.0
 
