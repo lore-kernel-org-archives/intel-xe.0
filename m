@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A83ECC3601B
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 11:50:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C37AC3600C
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 11:51:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69CCB10E22D;
-	Thu,  3 Apr 2025 11:50:47 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LpaNgzYy";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CAA410E22D
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Apr 2025 11:50:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743681045; x=1775217045;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=O1r1jNaGzYYLZ9vVcv9mULy8zRq7ECIP0pfXs5QgBa8=;
- b=LpaNgzYyYOtLVykPyCWP3gkmP0icnFVD1B/lCuDRUizq5TsU1uj/Yxn/
- kUB5Pzob5blCd2ElQa6aEBuNHQfEo0LXWg4DVDba50h8RF89XHIXS4sBE
- 7Fq83sGsNp/B2EghW5yaxgQtB40/gWqD7ZdUA4hTo9r7p51FtN/OcQ+W1
- LgW42WtCYttNMHEbf4G/prao+O+hIp0qB9LHtkiZqrFv0dbpWJ4cWHtsH
- nTFjkxyWr+GJAWHwetkY58T6h4j6rxZeNLtnjgKgKgugZXz5OxTbvG7iF
- 2Wb3GNx2igaGEbCnbVOy2dzMHOa4SAwg3jigrdMNoO3x9W04r7ysTjXUp w==;
-X-CSE-ConnectionGUID: f9k8KaXYR1SWqlP3V8u1iw==
-X-CSE-MsgGUID: EmYaDbY2SQ2Rgo+mk0OXmg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="55754791"
-X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="55754791"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2025 04:50:45 -0700
-X-CSE-ConnectionGUID: ZnA6Sw8QSfifDzr20WTwqw==
-X-CSE-MsgGUID: QeoXP5Z4RQOIYzLpJpnicQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="126973789"
-Received: from labhost1.iind.intel.com ([10.190.230.69])
- by fmviesa007.fm.intel.com with ESMTP; 03 Apr 2025 04:50:44 -0700
-From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Wajdeczko?= <michal.wajdeczko@intel.com>
-Subject: [PATCH 2/2] drm/xe: Introduce fault injection for guc CTB send/recv
-Date: Thu,  3 Apr 2025 17:36:41 +0530
-Message-Id: <20250403120641.7258-3-satyanarayana.k.v.p@intel.com>
-X-Mailer: git-send-email 2.35.3
-In-Reply-To: <20250403120641.7258-1-satyanarayana.k.v.p@intel.com>
-References: <20250403120641.7258-1-satyanarayana.k.v.p@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C0EC10E142;
+	Thu,  3 Apr 2025 11:51:28 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9065110E142;
+ Thu,  3 Apr 2025 11:51:26 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2854645709408562823=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_configfs_support_for_su?=
+ =?utf-8?q?rvivability_mode_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Riana Tauro" <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 03 Apr 2025 11:51:26 -0000
+Message-ID: <174368108658.32655.3737741722348512015@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250403102555.1265786-1-riana.tauro@intel.com>
+In-Reply-To: <20250403102555.1265786-1-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,44 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fault can be injected with below steps.
+--===============2854645709408562823==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-FAILTYPE=fail_function
-FAILFUNC=xe_guc_ct_send_recv
+== Series Details ==
 
-echo > /sys/kernel/debug/$FAILTYPE/inject
-echo $FAILFUNC > /sys/kernel/debug/$FAILTYPE/inject
-printf %#x -19 > /sys/kernel/debug/$FAILTYPE/$FAILFUNC/retval
+Series: Add configfs support for survivability mode (rev3)
+URL   : https://patchwork.freedesktop.org/series/145999/
+State : success
 
-echo N > /sys/kernel/debug/$FAILTYPE/task-filter
-echo 10 > /sys/kernel/debug/$FAILTYPE/probability
-echo 0 > /sys/kernel/debug/$FAILTYPE/interval
-echo -1 > /sys/kernel/debug/$FAILTYPE/times
-echo 0 > /sys/kernel/debug/$FAILTYPE/space
-echo 1 > /sys/kernel/debug/$FAILTYPE/verbose
+== Summary ==
 
-Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Michał Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_ct.c | 1 +
- 1 file changed, 1 insertion(+)
+CI Bug Log - changes from xe-2900-135e2838ed7d44d880e7e19971b1234e6ae04ded_BAT -> xe-pw-145999v3_BAT
+====================================================
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 686fe664c20d..4852f08dd370 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -1088,6 +1088,7 @@ int xe_guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 	KUNIT_STATIC_STUB_REDIRECT(xe_guc_ct_send_recv, ct, action, len, response_buffer);
- 	return guc_ct_send_recv(ct, action, len, response_buffer, false);
- }
-+ALLOW_ERROR_INJECTION(xe_guc_ct_send_recv, ERRNO);
- 
- int xe_guc_ct_send_recv_no_fail(struct xe_guc_ct *ct, const u32 *action,
- 				u32 len, u32 *response_buffer)
--- 
-2.35.3
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-2900-135e2838ed7d44d880e7e19971b1234e6ae04ded -> xe-pw-145999v3
+
+  IGT_8302: e2f972e6e21cd7bae732a649889325d2175bd1a5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2900-135e2838ed7d44d880e7e19971b1234e6ae04ded: 135e2838ed7d44d880e7e19971b1234e6ae04ded
+  xe-pw-145999v3: 145999v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145999v3/index.html
+
+--===============2854645709408562823==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add configfs support for survivability mode (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145999/">https://patchwork.freedesktop.org/series/145999/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145999v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145999v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2900-135e2838ed7d44d880e7e19971b1234e6ae04ded_BAT -&gt; xe-pw-145999v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2900-135e2838ed7d44d880e7e19971b1234e6ae04ded -&gt; xe-pw-145999v3</li>
+</ul>
+<p>IGT_8302: e2f972e6e21cd7bae732a649889325d2175bd1a5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2900-135e2838ed7d44d880e7e19971b1234e6ae04ded: 135e2838ed7d44d880e7e19971b1234e6ae04ded<br />
+  xe-pw-145999v3: 145999v3</p>
+
+</body>
+</html>
+
+--===============2854645709408562823==--
