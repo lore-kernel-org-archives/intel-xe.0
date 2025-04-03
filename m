@@ -4,23 +4,21 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7047C3600C
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 12:45:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72ADFC369A2
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 12:45:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79E5510E260;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC8FE10E9A1;
 	Thu,  3 Apr 2025 12:45:32 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4D3810E268
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4D9610E9A1
  for <intel-xe@lists.freedesktop.org>; Thu,  3 Apr 2025 12:45:30 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH 4/6] drm/xe/display: Remove dereferences of ggtt for tile id
-Date: Thu,  3 Apr 2025 14:45:18 +0200
-Message-ID: <20250403124520.470916-5-dev@lankhorst.se>
+Subject: [PATCH 0/6] drm/xe: Preparations for making struct xe_ggtt private.
+Date: Thu,  3 Apr 2025 14:45:14 +0200
+Message-ID: <20250403124520.470916-1-dev@lankhorst.se>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250403124520.470916-1-dev@lankhorst.se>
-References: <20250403124520.470916-1-dev@lankhorst.se>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -37,67 +35,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Obtain the id from the root tile. Likely this can be hardcoded to 0,
-but use the clean solution of obtaining root id and doing that.
+First part of making struct xe_ggtt more private, mostly reviewed.
 
-to_xe_device(ggtt->tile) can also be easily replaced with xe.
+Maarten Lankhorst (6):
+  drm/xe: Use xe_ggtt_map_bo_unlocked for resume
+  drm/xe: Add xe_ggtt_might_lock
+  drm/xe: Add xe_ggtt_alloc
+  drm/xe/display: Remove dereferences of ggtt for tile id
+  drm/xe/ggtt: Seperate flags and address in PTE encoding
+  drm/xe: Implement a helper for reading out a GGTT PTE at a specified
+    offset
 
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
----
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        |  50 +++----
+ drivers/gpu/drm/xe/display/xe_plane_initial.c |   6 +-
+ drivers/gpu/drm/xe/xe_bo.c                    |   2 +-
+ drivers/gpu/drm/xe/xe_bo_evict.c              |   4 +-
+ drivers/gpu/drm/xe/xe_ggtt.c                  | 125 ++++++++++++++----
+ drivers/gpu/drm/xe/xe_ggtt.h                  |  15 ++-
+ drivers/gpu/drm/xe/xe_ggtt_types.h            |   4 +-
+ drivers/gpu/drm/xe/xe_tile.c                  |   6 +-
+ 8 files changed, 141 insertions(+), 71 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index d918ae1c80618..d509def82b134 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -199,14 +199,15 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
- 	struct drm_gem_object *obj = intel_fb_bo(&fb->base);
- 	struct xe_bo *bo = gem_to_xe_bo(obj);
- 	struct xe_device *xe = to_xe_device(fb->base.dev);
--	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
-+	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
-+	struct xe_ggtt *ggtt = tile0->mem.ggtt;
- 	u32 align;
- 	int ret;
- 
- 	/* TODO: Consider sharing framebuffer mapping?
- 	 * embed i915_vma inside intel_framebuffer
- 	 */
--	xe_pm_runtime_get_noresume(tile_to_xe(ggtt->tile));
-+	xe_pm_runtime_get_noresume(xe);
- 	ret = mutex_lock_interruptible(&ggtt->lock);
- 	if (ret)
- 		goto out;
-@@ -215,8 +216,8 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
- 	if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
- 		align = max_t(u32, align, SZ_64K);
- 
--	if (bo->ggtt_node[ggtt->tile->id] && view->type == I915_GTT_VIEW_NORMAL) {
--		vma->node = bo->ggtt_node[ggtt->tile->id];
-+	if (bo->ggtt_node[tile0->id] && view->type == I915_GTT_VIEW_NORMAL) {
-+		vma->node = bo->ggtt_node[tile0->id];
- 	} else if (view->type == I915_GTT_VIEW_NORMAL) {
- 		u32 x, size = bo->ttm.base.size;
- 
-@@ -271,7 +272,7 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
- out_unlock:
- 	mutex_unlock(&ggtt->lock);
- out:
--	xe_pm_runtime_put(tile_to_xe(ggtt->tile));
-+	xe_pm_runtime_put(xe);
- 	return ret;
- }
- 
-@@ -348,7 +349,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
- 
- static void __xe_unpin_fb_vma(struct i915_vma *vma)
- {
--	u8 tile_id = vma->node->ggtt->tile->id;
-+	u8 tile_id = xe_device_get_root_tile(xe_bo_device(vma->bo))->id;
- 
- 	if (!refcount_dec_and_test(&vma->ref))
- 		return;
 -- 
 2.45.2
 
