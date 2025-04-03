@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D101C3600C
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 22:24:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42F56C3600C
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 22:24:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE35310E2EC;
-	Thu,  3 Apr 2025 22:24:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0449B10E046;
+	Thu,  3 Apr 2025 22:24:19 +0000 (UTC)
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48B0A10E046;
- Thu,  3 Apr 2025 22:24:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 863CF10E046;
+ Thu,  3 Apr 2025 22:24:17 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/xe=5Fvm=3A_Im?=
- =?utf-8?q?plement_xe=5Fvm=5Fget=5Fproperty=5Fioctl_=28rev18=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/xe=5Fvm=3A_Impleme?=
+ =?utf-8?q?nt_xe=5Fvm=5Fget=5Fproperty=5Fioctl_=28rev18=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 03 Apr 2025 22:24:03 -0000
-Message-ID: <174371904328.36353.3906644505917330586@e6b6f09ec485>
+Date: Thu, 03 Apr 2025 22:24:17 -0000
+Message-ID: <174371905754.36354.13457020393844907299@e6b6f09ec485>
 X-Patchwork-Hint: ignore
 References: <20250403173614.67195-1-jonathan.cavitt@intel.com>
 In-Reply-To: <20250403173614.67195-1-jonathan.cavitt@intel.com>
@@ -44,17 +44,116 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/xe_vm: Implement xe_vm_get_property_ioctl (rev18)
 URL   : https://patchwork.freedesktop.org/series/145529/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: bc18da45d48d drm-tip: 2025y-04m-03d-16h-39m-16s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/xe_gt_pagefault: Disallow writes to read-only VMAs
-Applying: drm/xe/xe_gt_pagefault: Move pagefault struct to header
-Applying: drm/xe/uapi: Define drm_xe_vm_get_property
-Applying: drm/xe/xe_vm: Add per VM fault info
-Applying: drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+99e5a866b5e13f134e606a3e29d9508d97826fb3
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b8f2571fbe318b87189252ef10139cb28189d20e
+Author: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Date:   Thu Apr 3 17:36:13 2025 +0000
+
+    drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
+    
+    Add support for userspace to request a list of observed faults
+    from a specified VM.
+    
+    v2:
+    - Only allow querying of failed pagefaults (Matt Brost)
+    
+    v3:
+    - Remove unnecessary size parameter from helper function, as it
+      is a property of the arguments. (jcavitt)
+    - Remove unnecessary copy_from_user (Jainxun)
+    - Set address_precision to 1 (Jainxun)
+    - Report max size instead of dynamic size for memory allocation
+      purposes.  Total memory usage is reported separately.
+    
+    v4:
+    - Return int from xe_vm_get_property_size (Shuicheng)
+    - Fix memory leak (Shuicheng)
+    - Remove unnecessary size variable (jcavitt)
+    
+    v5:
+    - Rename ioctl to xe_vm_get_faults_ioctl (jcavitt)
+    - Update fill_property_pfs to eliminate need for kzalloc (Jianxun)
+    
+    v6:
+    - Repair and move fill_faults break condition (Dan Carpenter)
+    - Free vm after use (jcavitt)
+    - Combine assertions (jcavitt)
+    - Expand size check in xe_vm_get_faults_ioctl (jcavitt)
+    - Remove return mask from fill_faults, as return is already -EFAULT or 0
+      (jcavitt)
+    
+    v7:
+    - Revert back to using xe_vm_get_property_ioctl
+    - Apply better copy_to_user logic (jcavitt)
+    
+    v8:
+    - Fix and clean up error value handling in ioctl (jcavitt)
+    - Reapply return mask for fill_faults (jcavitt)
+    
+    v9:
+    - Future-proof size logic for zero-size properties (jcavitt)
+    - Add access and fault types (Jianxun)
+    - Remove address type (Jianxun)
+    
+    v10:
+    - Remove unnecessary switch case logic (Raag)
+    - Compress size get, size validation, and property fill functions into a
+      single helper function (jcavitt)
+    - Assert valid size (jcavitt)
+    
+    v11:
+    - Remove unnecessary else condition
+    - Correct backwards helper function size logic (jcavitt)
+    
+    v12:
+    - Use size_t instead of int (Raag)
+    
+    v13:
+    - Remove engine class and instance (Ivan)
+    
+    v14:
+    - Map access type, fault type, and fault level to user macros (Matt
+      Brost, Ivan)
+    
+    Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+    Suggested-by: Matthew Brost <matthew.brost@intel.com>
+    Cc: Jainxun Zhang <jianxun.zhang@intel.com>
+    Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+    Cc: Raag Jadav <raag.jadav@intel.com>
+    Cc: Ivan Briano <ivan.briano@intel.com>
++ /mt/dim checkpatch bc18da45d48d337b92a7ff9546ba61da32b3b586 drm-intel
+72b9009ca0cc drm/xe/xe_gt_pagefault: Disallow writes to read-only VMAs
+1e13582cff2c drm/xe/xe_gt_pagefault: Move pagefault struct to header
+-:35: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#35: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 220 lines checked
+7733c9ec8947 drm/xe/uapi: Define drm_xe_vm_get_property
+-:51: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#51: FILE: include/uapi/drm/xe_drm.h:122:
++#define DRM_IOCTL_XE_VM_GET_PROPERTY	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_GET_PROPERTY, struct drm_xe_vm_get_property)
+
+total: 0 errors, 1 warnings, 0 checks, 110 lines checked
+25ba446a1332 drm/xe/xe_vm: Add per VM fault info
+-:173: WARNING:OOM_MESSAGE: Possible unnecessary 'out of memory' message
+#173: FILE: drivers/gpu/drm/xe/xe_vm.c:832:
++	if (!e) {
++		drm_warn(&vm->xe->drm,
+
+total: 0 errors, 1 warnings, 0 checks, 223 lines checked
+b8f2571fbe31 drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
 
 
