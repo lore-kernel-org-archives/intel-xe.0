@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C37AC3600C
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 11:51:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04F86C3601E
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 11:52:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C0EC10E142;
-	Thu,  3 Apr 2025 11:51:28 +0000 (UTC)
-Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9065110E142;
- Thu,  3 Apr 2025 11:51:26 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2854645709408562823=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40C7510E22D;
+	Thu,  3 Apr 2025 11:52:01 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T06suyzh";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB37210E22D;
+ Thu,  3 Apr 2025 11:51:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1743681120; x=1775217120;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=CxoGIZCci/GCLDqvjKJCt2i1L8Mt6YX9QRS2KF+AZnY=;
+ b=T06suyzhgO2EZLmq+k2yBU9JUDKtDU8ngUa6VpiV+VCIft3hU89OJSW0
+ eQvQuud66mhXAtk4G6Q1lxWypL+Dy9DRfFbEZ+LRHAkhMYfPemzWOHrcN
+ DebQlC0YORBKFgYenfGVNq+vqNxuFrMa93hRS6AKv37b53z6Ak9NaC1vw
+ PJXaK1DHZIalTEG+AJ9L8N2LEEgtblZ00k3dy6bG+n1ETgoDg5/yW8YXZ
+ mk8QuYK2rQL2RCeuZ50bhSQ+qRjR88bdKy09eNweRKCghHuULfEYMf3cY
+ 7c0XVNzCIaIkZObFm1kU5kMPvIq5EL57QYecUDlKxgO81d6q90JooDijS w==;
+X-CSE-ConnectionGUID: f5sVoE67Rp2r7giUxIbpCQ==
+X-CSE-MsgGUID: vDBpcu0DS3yv1kLFhKQFoA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="48948961"
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="48948961"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2025 04:51:55 -0700
+X-CSE-ConnectionGUID: Aa+X/XG3TG27lK5yatpX/g==
+X-CSE-MsgGUID: 7nVDT48qQkyum8unPEDyLg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="127836834"
+Received: from unknown (HELO localhost) ([10.237.66.160])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2025 04:51:53 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: imre.deak@intel.com, Arun R Murthy <arun.r.murthy@intel.com>
+Subject: Re: [PATCH v4 1/2] drm/i915/display/dp: Remove support for UHBR13.5
+ on display14
+In-Reply-To: <20250402-dprates-v4-1-752535b2068a@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250402-dprates-v4-0-752535b2068a@intel.com>
+ <20250402-dprates-v4-1-752535b2068a@intel.com>
+Date: Thu, 03 Apr 2025 14:51:50 +0300
+Message-ID: <87h6351mzt.fsf@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_configfs_support_for_su?=
- =?utf-8?q?rvivability_mode_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Riana Tauro" <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 03 Apr 2025 11:51:26 -0000
-Message-ID: <174368108658.32655.3737741722348512015@e6b6f09ec485>
-X-Patchwork-Hint: ignore
-References: <20250403102555.1265786-1-riana.tauro@intel.com>
-In-Reply-To: <20250403102555.1265786-1-riana.tauro@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +66,78 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2854645709408562823==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, 02 Apr 2025, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+> Support for UHBR 13.5 has been removed for mtl by the
+> commit caf3d748f646 ("drm/i915/dp: Remove support for UHBR13.5")
+> Removing UHBR13.5 on all display14- platforms due to the same
+> retimer constraint.
 
-== Series Details ==
+If you're removing UHBR 13.5 support from DG2, why does the subject say
+display 14 (DG2 is display 13, but it's not the only display 13), and
+the commit message say display14- (which is not a convention we ever use
+anywhere)?
 
-Series: Add configfs support for survivability mode (rev3)
-URL   : https://patchwork.freedesktop.org/series/145999/
-State : success
+Commit message for caf3d748f646 does not mention anything about
+retimers, so what is "the same retimer constraint"? It's not explained
+anywhere. I genuinely don't even know this.
 
-== Summary ==
+I'm not nitpicking this just for the sake of nitpicking or to be
+annoying. I want the commit messages to accurately reflect what the
+changes do and why.
 
-CI Bug Log - changes from xe-2900-135e2838ed7d44d880e7e19971b1234e6ae04ded_BAT -> xe-pw-145999v3_BAT
-====================================================
+Maybe you've seen the changelogs I write for pull requests? See [1]. Now
+imagine writing that changelog yourself, for hundreds of commits. What
+if you couldn't even rely on the commit messages to desribe what they
+do, and you had to look at the actual changes. For every single commit.
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
+And obviously when you get, say, a bisected regression report on a
+commit, and you observe the commit message doesn't match what the commit
+does, then you're left wondering what is correct and how does that
+correlate with the bug report.
 
 
-Build changes
--------------
-
-  * Linux: xe-2900-135e2838ed7d44d880e7e19971b1234e6ae04ded -> xe-pw-145999v3
-
-  IGT_8302: e2f972e6e21cd7bae732a649889325d2175bd1a5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2900-135e2838ed7d44d880e7e19971b1234e6ae04ded: 135e2838ed7d44d880e7e19971b1234e6ae04ded
-  xe-pw-145999v3: 145999v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145999v3/index.html
-
---===============2854645709408562823==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+BR,
+Jani.
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+[1] https://lore.kernel.org/r/87h64j7b7n.fsf@intel.com
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add configfs support for survivability mode (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145999/">https://patchwork.freedesktop.org/series/145999/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145999v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145999v3/index.html</a></td></tr>
+>
+> v2: Reframed the commit msg (Jani)
+> v4: Reframed the commit msg & update the max rate supported (Jani)
+>
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index f21f9b441fc2a4e644c69410e6ec6b3d37907478..92bca701a989b03e2ad4b3d9e7d0a9ef12567e5a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -481,7 +481,7 @@ bool intel_dp_has_joiner(struct intel_dp *intel_dp)
+>  
+>  static int dg2_max_source_rate(struct intel_dp *intel_dp)
+>  {
+> -	return intel_dp_is_edp(intel_dp) ? 810000 : 1350000;
+> +	return intel_dp_is_edp(intel_dp) ? 810000 : 1000000;
+>  }
+>  
+>  static int icl_max_source_rate(struct intel_dp *intel_dp)
+> @@ -550,7 +550,7 @@ intel_dp_set_source_rates(struct intel_dp *intel_dp)
+>  	};
+>  	static const int icl_rates[] = {
+>  		162000, 216000, 270000, 324000, 432000, 540000, 648000, 810000,
+> -		1000000, 1350000,
+> +		1000000,
+>  	};
+>  	static const int bxt_rates[] = {
+>  		162000, 216000, 243000, 270000, 324000, 432000, 540000
 
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2900-135e2838ed7d44d880e7e19971b1234e6ae04ded_BAT -&gt; xe-pw-145999v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2900-135e2838ed7d44d880e7e19971b1234e6ae04ded -&gt; xe-pw-145999v3</li>
-</ul>
-<p>IGT_8302: e2f972e6e21cd7bae732a649889325d2175bd1a5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2900-135e2838ed7d44d880e7e19971b1234e6ae04ded: 135e2838ed7d44d880e7e19971b1234e6ae04ded<br />
-  xe-pw-145999v3: 145999v3</p>
-
-</body>
-</html>
-
---===============2854645709408562823==--
+-- 
+Jani Nikula, Intel
