@@ -4,74 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DEC1C3600C
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 18:15:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03124C3600C
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 18:40:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC8C410E2D7;
-	Thu,  3 Apr 2025 18:15:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5B3E10EA77;
+	Thu,  3 Apr 2025 18:40:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="fBEfLS5p";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fyjrs+v5";
 	dkim-atps=neutral
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C0EC10E2D7
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Apr 2025 18:15:24 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id A4BE4A4256F
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Apr 2025 18:09:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CD1AC4AF09
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Apr 2025 18:15:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1743704123;
- bh=IHvXA/4ffeiIOCG6zsvNkcvaxlsrzA7Y1aHdH6cANCI=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=fBEfLS5pKLgOq5wdDD9ngMrdMHzFXELzKtddY+e61np67N9CTcG0zNfLITOjRCP6O
- 087dp2dAslrH+AOZIqccVFUCpDFZrWCzxtXsXSCagoch0CWdahQ76j+5mwtn01o1pW
- bBW6mNNEgFKDbb+3FVCUB5g2ZcrUnkuxyfb/VqoP0F8e+07P0YYxlKM8iwBF5YRIoY
- iw68bPwd2VS6d6EbH/2Mfr/rSyXjKtxoMwN2sSlT/rlN3GrBAjP0jouVJ+tVpCulah
- NwUUL2GT1Fol9OqhxE9rznWTSid/ptgfk5PzwTZxRN7AcnaS9mZVkvTTSbqxAVjlO1
- kwUGuYwmGlRFg==
-Received: by mail-ot1-f50.google.com with SMTP id
- 46e09a7af769-72c7336ed99so420785a34.0
- for <intel-xe@lists.freedesktop.org>; Thu, 03 Apr 2025 11:15:23 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCXPpAR6QMnjmb8yGAQlo+hz2ROnlfJ6uoGcpYmIjphfa89C39w64twdjhIsvgUBUagxMhGHr45xGg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw3eD36ufuzeDVIURUweoBiJzdc3JUArdVBXeXJ0qThlxa8b45c
- fvAA+kKvm05K8WdZlxigwBNkcP3d2COPznmfUGfYzMUNQPO84hTHR0duiANQorxRzNhf4lrsKFJ
- HcaAoh5GyMNrqbODroyF1D0NCuLw=
-X-Google-Smtp-Source: AGHT+IGrK2wpNc2eDmJ11ljJ/U6Ot5pRbJzbsDnWyAxDlhKPPT5nv5jHvdx5iRteP505Sf/T8C/Mb2YQFbcuL7ovc1E=
-X-Received: by 2002:a05:6830:6e97:b0:72b:9387:84b2 with SMTP id
- 46e09a7af769-72e36973f5fmr392572a34.27.1743704122428; Thu, 03 Apr 2025
- 11:15:22 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C46CB10EA6E
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Apr 2025 18:40:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1743705659; x=1775241659;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=1Fuk5MCtuF1NRlwdg2JmOj73Ay4YjqmDNof2H7Kc6aM=;
+ b=Fyjrs+v5c/Xy3EunYhiDnP/n648d9Ptaq/o+GOECFyEkGI7mp0ueyWNW
+ H7z7lO72A2+jz9rhoo6xy9c428RP7p37CIa6DFDpGToe7QZU2RkC3Kvid
+ XHJ+NaYzMqBj+sEyxZiWj/qr43btPMfFA5Z7cPWfiuDJ683MQGwtJxWwL
+ tip+aEXcyf/4asOuI3w1lStogyhy4LF3oqZZHdJI3w8oB4DoCeFu8w8Iq
+ BZImA+Vk2JDAXcmIMwrtrApjMzgrJQ2R8ruVV+qOhaQ10rtC5A5lGKMgs
+ NBd+m9zEYBqAmj4xVrg8fRMJCieCeQ1KFBzAxw0whkHSexwDdb0tTAZIY A==;
+X-CSE-ConnectionGUID: 5Gxd4zvQTEem5SMcs74CIg==
+X-CSE-MsgGUID: Sa9YtIDBTlCuNqL6V4OB1A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11393"; a="67604255"
+X-IronPort-AV: E=Sophos;i="6.15,186,1739865600"; d="scan'208";a="67604255"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2025 11:40:58 -0700
+X-CSE-ConnectionGUID: 1vn7cmzjSuavBDveDFa9aw==
+X-CSE-MsgGUID: 2XogsieURjC+19VgfSAaZg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,186,1739865600"; d="scan'208";a="132216392"
+Received: from gkczarna.igk.intel.com ([10.211.131.163])
+ by fmviesa004.fm.intel.com with ESMTP; 03 Apr 2025 11:40:56 -0700
+From: Tomasz Lis <tomasz.lis@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Wajdeczko?= <michal.wajdeczko@intel.com>,
+ =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH v7 0/4] drm/xe/vf: Post-migration recovery of GGTT nodes and
+ CTB
+Date: Thu,  3 Apr 2025 20:40:51 +0200
+Message-Id: <20250403184055.2317409-1-tomasz.lis@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20250401153225.96379-4-anshuman.gupta@intel.com>
- <20250401201349.GA1676401@bhelgaas>
- <CAJZ5v0irNFX6dFrStinNXamrhP143=yjjfx4iK0pY+-dTEkviw@mail.gmail.com>
- <CY5PR11MB6211021207DE5ECAA43BF26595AE2@CY5PR11MB6211.namprd11.prod.outlook.com>
- <CAJZ5v0inCpM2UhzZ_pD52S0Hf8aaEMa40CyE-dwzVmO1n3PMwA@mail.gmail.com>
- <MN0PR11MB6207F55ABAA2187609BB872695AE2@MN0PR11MB6207.namprd11.prod.outlook.com>
-In-Reply-To: <MN0PR11MB6207F55ABAA2187609BB872695AE2@MN0PR11MB6207.namprd11.prod.outlook.com>
-From: "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Thu, 3 Apr 2025 20:15:10 +0200
-X-Gmail-Original-Message-ID: <CAJZ5v0gKBYa_N-dA1JwF0yVbc6XSmQEy1LpVytDM7uc9kbZ8fA@mail.gmail.com>
-X-Gm-Features: AQ5f1Jp4RPnbi6Bs3PiB6NEgqUjb48BxQsVIREqIl0ymQIEeIELbrdMMQIZxQPk
-Message-ID: <CAJZ5v0gKBYa_N-dA1JwF0yVbc6XSmQEy1LpVytDM7uc9kbZ8fA@mail.gmail.com>
-Subject: Re: [PATCH 03/12] PCI/ACPI: Add aux power grant notifier
-To: "Gupta, Anshuman" <anshuman.gupta@intel.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Bjorn Helgaas <helgaas@kernel.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
- "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>, 
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
- "lenb@kernel.org" <lenb@kernel.org>, 
- "bhelgaas@google.com" <bhelgaas@google.com>, 
- "ilpo.jarvinen@linux.intel.com" <ilpo.jarvinen@linux.intel.com>, 
- "De Marchi, Lucas" <lucas.demarchi@intel.com>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>, 
- "Nilawar, Badal" <badal.nilawar@intel.com>, "Gupta,
- Varun" <varun.gupta@intel.com>, 
- "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>, "Shankar,
- Uma" <uma.shankar@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,268 +68,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Apr 3, 2025 at 6:09=E2=80=AFPM Gupta, Anshuman <anshuman.gupta@inte=
-l.com> wrote:
->
-> > -----Original Message-----
-> > From: Rafael J. Wysocki <rafael@kernel.org>
-> > Sent: Thursday, April 3, 2025 7:04 PM
-> > To: Gupta, Anshuman <anshuman.gupta@intel.com>
-> > Cc: Rafael J. Wysocki <rafael@kernel.org>; Bjorn Helgaas
-> > <helgaas@kernel.org>; intel-xe@lists.freedesktop.org; linux-
-> > acpi@vger.kernel.org; linux-pci@vger.kernel.org; lenb@kernel.org;
-> > bhelgaas@google.com; ilpo.jarvinen@linux.intel.com; De Marchi, Lucas
-> > <lucas.demarchi@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>; Nil=
-awar,
-> > Badal <badal.nilawar@intel.com>; Gupta, Varun <varun.gupta@intel.com>;
-> > ville.syrjala@linux.intel.com; Shankar, Uma <uma.shankar@intel.com>
-> > Subject: Re: [PATCH 03/12] PCI/ACPI: Add aux power grant notifier
-> >
-> > On Thu, Apr 3, 2025 at 1:30=E2=80=AFPM Gupta, Anshuman
-> > <anshuman.gupta@intel.com> wrote:
-> > >
-> > > > -----Original Message-----
-> > > > From: Rafael J. Wysocki <rafael@kernel.org>
-> > > > Sent: Wednesday, April 2, 2025 4:54 PM
-> > > > To: Bjorn Helgaas <helgaas@kernel.org>; Gupta, Anshuman
-> > > > <anshuman.gupta@intel.com>
-> > > > Cc: intel-xe@lists.freedesktop.org; linux-acpi@vger.kernel.org;
-> > > > linux- pci@vger.kernel.org; rafael@kernel.org; lenb@kernel.org;
-> > > > bhelgaas@google.com; ilpo.jarvinen@linux.intel.com; De Marchi, Luca=
-s
-> > > > <lucas.demarchi@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>;
-> > > > Nilawar, Badal <badal.nilawar@intel.com>; Gupta, Varun
-> > > > <varun.gupta@intel.com>; ville.syrjala@linux.intel.com; Shankar, Um=
-a
-> > > > <uma.shankar@intel.com>
-> > > > Subject: Re: [PATCH 03/12] PCI/ACPI: Add aux power grant notifier
-> > > >
-> > > > On Tue, Apr 1, 2025 at 10:13=E2=80=AFPM Bjorn Helgaas <helgaas@kern=
-el.org>
-> > wrote:
-> > > > >
-> > > > > On Tue, Apr 01, 2025 at 09:02:16PM +0530, Anshuman Gupta wrote:
-> > > > > > Adding a notifier to notify all PCIe child devices about the
-> > > > > > block main power removal. It is needed because theoretically
-> > > > > > multiple PCIe Endpoint devices on same Root Port can request fo=
-r
-> > > > > > AUX power and _DSM method can return with 80000000h signifies
-> > > > > > that the hierarchy connected via the slot cannot support main
-> > > > > > power removal when in D3Cold.
-> > > > >
-> > > > > I wish the spec used different language here.  "D3cold" *means*
-> > > > > "main power is removed" (PCIe r6.0, sec 5.3.1.4.2), so it doesn't
-> > > > > make sense to say that "the slot cannot support main power remova=
-l
-> > > > > when in D3cold".  If a device is in D3cold, its main power has
-> > > > > been removed by definition.
-> > > > >
-> > > > > I suppose the spec is trying to say if the driver has called this
-> > > > > _DSM with 80000000h, it means the platform must not remove main
-> > > > > power from the device while the system is in S0?  Is that what yo=
-u
-> > > > > think it means?
-> > > > >
-> > > > > The 2h return value description says it "indicates that the
-> > > > > platform will not remove main power from the slot while the syste=
-m is in
-> > S0,"
-> > > > > so I guess that must be it.
-> > > > >
-> > > > > In this series, pci_acpi_aux_power_setup() only supplies a 16-bit
-> > > > > aux_pwr_limit value, so the driver cannot *request* that the
-> > > > > platform not remove main power.
-> > > > >
-> > > > > So I guess the only scenario where the _DSM returns 80000000h is
-> > > > > when the platform itself or other devices prevent the removal of
-> > > > > main power.  And the point of the notifier is to tell devices tha=
-t
-> > > > > their main power will never be removed while the system is in S0.
-> > > > > Is that right?
-> > > > >
-> > > > > > This may disrupt functionality of other child device.
-> > > > >
-> > > > > What sort of disruption could happen?  I would think that if the
-> > > > > _DSM returns 80000000h, it just means the device will not have
-> > > > > main power removed, so it won't see that power state transition.
-> > > > > The only "disruption" would be that we're using more power.
-> > > > >
-> > > > > > Let's notify all PCIe devices requested Aux power resource and
-> > > > > > Let PCIe End Point driver handle it in its callback.
-> > > > >
-> > > > > Wrap to fill 75 columns.
-> > > > >
-> > > > > s/Adding/Add/
-> > > > > s/Let's notify/Notify/
-> > > > > s/and Let/and let/
-> > > > > s/End Point/Endpoint/ (several places here and below)
-> > > > >
-> > > > > > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> > > > > > ---
-> > > > > >  drivers/pci/pci-acpi.c   | 34 +++++++++++++++++++++++++++++++-=
---
-> > > > > >  include/linux/pci-acpi.h | 13 +++++++++++++
-> > > > > >  2 files changed, 44 insertions(+), 3 deletions(-)
-> > > > > >
-> > > > > > diff --git a/drivers/pci/pci-acpi.c b/drivers/pci/pci-acpi.c
-> > > > > > index
-> > > > > > 04149f037664..d1ca1649e6e8 100644
-> > > > > > --- a/drivers/pci/pci-acpi.c
-> > > > > > +++ b/drivers/pci/pci-acpi.c
-> > > > > > @@ -1421,6 +1421,32 @@ static void
-> > > > > > pci_acpi_optimize_delay(struct
-> > > > pci_dev *pdev,
-> > > > > >       ACPI_FREE(obj);
-> > > > > >  }
-> > > > > >
-> > > > > > +static BLOCKING_NOTIFIER_HEAD(pci_acpi_aux_power_notify_list);
-> > > > > > +
-> > > > > > +/**
-> > > > > > + * pci_acpi_register_aux_power_notifier - Register driver
-> > > > > > +notifier
-> > > > > > + * @nb: notifier block
-> > > > > > + *
-> > > > > > + * This function shall be called by PCIe End Point device
-> > > > > > +requested the Aux
-> > > > > > + * power resource in order to handle the any scenario
-> > > > > > +gracefully when other
-> > > > > > + * child PCIe devices Aux power request returns with No main
-> > > > > > +power
-> > > > removal.
-> > > > > > + * PCIe devices which register this notifier shall handle No
-> > > > > > +main power
-> > > > > > + * removal scenario accordingly.
-> > > > >
-> > > > > This would actually be called by the *driver* (not by the device)=
-.
-> > > >
-> > > Hi Rafael,
-> > > Thanks for review.
-> > > > Apart from this, there seems to be a design issue here because it
-> > > > won't notify every driver that has requested the Aux power, just th=
-e
-> > > > ones that have also registered notifiers.
-> > > IMHO that is what intended, if any device has functional impact in ou=
-r
-> > > case it is INTEL GPU has functional impact if other PCIe device's (on
-> > > same root port) Aux Power request returns with 0x2. We need to handle
-> > such case to handle it gracefully.
-> > > >
-> > > > So this appears to be an opt-in from getting notifications on Aux
-> > > > power request rejection responses to requests from other drivers
-> > > > requesting Aux power for the same Root Port, but the changelog of
-> > > > the first patch already claimed that the aggregation of requests wa=
-s
-> > > > not supported.  So if only one driver will be allowed to request th=
-e
-> > > > Aux power for the given Root Port, why would the notifiers be neces=
-sary
-> > after all?
-> > > >
-> > > Please guide us, if we remove the above limitation from the commit lo=
-g.
-> > > Then do we have any design issue with notifier approach ?
-> >
-> > Exactly like I said: If you only allow one driver to use the _DSM to re=
-quest the
-> > Aux power from a given Root Port, it will have all of the information a=
-nd does
-> > not need to be notified about any changes.  Since no one else is allowe=
-d to use
-> > this interface for that Root Port, no one else will need a notifier eit=
-her.  For this
-> > to work, you need some mechanism allowing drivers to claim the interfac=
-e so
-> > no one else can use it (on a per Root Port basis) which is currently mi=
-ssing
-> > AFAICS.
->
-> IMHO such kind of mechanism will require to add Root Port specific data s=
-tructure to claim
-> the interface. But real problem is the criteria  to claim the interface.
-> Is first PCIe Non-Bridge Endpoint Function 0 driver can be criteria  to c=
-laim the
-> Interface. Or first come and first serve approach ?
+To support VF Migration, it is necessary to do fixups to any
+non-virtualized resources. These fixups need to be applied within
+VM, on the KMD working with VF.
 
-IMV, the first PCIe Non-Bridge Endpoint Function 0 driver approach
-would be sort of fragile and cumbersome to enforce.
+This series adds two fixup functions to the recovery worker:
+* for fixing drm_mm nodes which represent GGTT allocations
+* for fixing content of outgoing CTB buffer
 
-First come, first serve is much simpler and should be sufficient for now AF=
-AICS.
+v2: Fixed missing include, made checkpatch happy
+v3: Moved some functs to xe_ggtt.c; moved shift computation to just
+  after querying; improved documentation; switched some warns to asserts;
+  skipping fixups when GGTT shift eq 0; iterating through tiles rather
+  than gts; fixes in log messages
+v4: Updated kerneldocs, removed unused funct, properly allocate
+  balloning nodes if non existent, removed inline keywords, enums for
+  offsets in CTB messages, less error messages, if return unused then
+  made functs void
+v5: Removed drm_mm change, but added VF init modifications. These then
+  allowed to re-use ballooning functions during ggtt node fixing.
+v6: Minor update - fixed some misplaced funct declarations; sent to
+  a different list by mistake:
+  https://patchwork.freedesktop.org/series/146977/#rev2
+v7: Altered, rephrased, added or promoted several kerneldocs; added
+  _locked versions of some functs; improved lockdep tagging; altered
+  error handling; renamed or moved some functions; defined few macros;
+  prepared CTB fixups for future changes of CTB handling; renamed and
+  introduced enums; did many minor changes to adjust for xe-specific
+  coding practices
 
-> > I think that this is the option you want to pursue.
-> >
-> We will prefer to stick with this option, if it can guaranty that XeKMD w=
-ill the only driver
-> allowed to request Aux power to enable VRSR.
->
-> > OTOH, if you want to allow multiple drivers to use this interface for t=
-he same
-> > Root Port, you need to aggregate the requests (as required by the spec =
-IIUC) in
-> > the first place, or else the users can override each other's request.  =
-In that case
->
-> INHO how Linux Kernel will aggregate the Aux Power request, without knowi=
-ng the
-> total Aux power budget. AFAIU aggregated Aux power request without knowle=
-dge of total
-> power budget can also be denied by BIOS[1].
-> Therefore how aggregation can be useful ?
+Tomasz Lis (4):
+  drm/xe/vf: Divide GGTT ballooning into allocation and insertion
+  drm/xe/vf: Shifting GGTT area post migration
+  drm/xe/guc: Introduce enum with offsets for context register H2Gs
+  drm/xe/vf: Fixup CTB send buffer messages after migration
 
-Say two drivers request the Aux power from the same Root Port and each
-of them passes a limit sufficient for its device.  Without
-aggregation, what guarantees that the last limit passed will be
-sufficient for both devices?
+ drivers/gpu/drm/xe/abi/guc_actions_abi.h  |  29 ++++
+ drivers/gpu/drm/xe/xe_ggtt.c              |  48 +++++-
+ drivers/gpu/drm/xe/xe_ggtt.h              |   1 +
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 195 +++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |   4 +
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |   2 +
+ drivers/gpu/drm/xe/xe_guc_ct.c            | 147 ++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_ct.h            |   2 +
+ drivers/gpu/drm/xe/xe_guc_submit.c        |  22 +++
+ drivers/gpu/drm/xe/xe_map.h               |  12 ++
+ drivers/gpu/drm/xe/xe_sriov_vf.c          |  40 +++++
+ 11 files changed, 470 insertions(+), 32 deletions(-)
 
-Also see the spec provision regarding retries below.
+-- 
+2.25.1
 
-> [1]As per r3.3 Section 4.6.10
-> Platform Firmware Budgeting of Aux Power Availability:
-> Platform firmware must not grant more power than what is available within=
- the system. For
-> example, a board may be designed with four CEM slots (one x16 slot, one x=
-4 slot, and two x1
-> slots). The board may implement a power delivery circuit capable of suppl=
-ying 2 W of power for
-> the 3.3 Vaux rail supplying all 4 slots. The 3.3 Vaux pins on each CEM sl=
-ot can supply 1 W each.
-> Platform firmware may use the retry mechanism to prioritize requests from=
- devices in preferred
-> slots in the following manner:
->
-> -> Requests from a device in the highest priority slot (e.g., x16) are gr=
-anted immediately, if
-> available.
->
-> -> Requests from devices in lower priority slots (e.g., x2, x1) are initi=
-ally rejected, with a retry
-> interval inversely proportional to the slot priority. For instance, if th=
-e x2 slot is higher priority
-> than the x1 slots, so the retry interval for the x2 slot may be 4 seconds=
-, and the x1 slots may be
-> 8 and 10 seconds.
->
-> ->As requests are granted, the granted values are subtracted from the ava=
-ilable budget.
->  Retried requests are granted based on the remaining power budget or deni=
-ed if insufficient
-> power budget is available. Another retry is not permitted.
->
-> -> When there is insufficient power budget for a request, firmware may ch=
-oose to keep main
-> power on and return no power removal (2h).
-
-This means that the platform firmware is supposed to do its own
-aggregation, but at the system (board) level, not at the Root Port
-level.
-
-The algorithm is described above and my understanding of it is that
-once a request has been granted, it cannot be retracted later.  Also
-it appears to assume a 1:1 correspondence between PCIe slots and Root
-Ports.
-
-The guys who haven't been granted their requests at once may be asked
-to try again later and there may not be enough Aux power for the last
-guys at all, so they will not get it and they will stay on the main
-power.  And again, this appears to be at the Root Port granularity.
