@@ -4,66 +4,194 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E845C3600C
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 11:16:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C25A6C3600C
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 11:31:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27C6910E223;
-	Thu,  3 Apr 2025 11:16:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EBE910E225;
+	Thu,  3 Apr 2025 11:30:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="rDa/WwRM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FIDiuvCD";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C2CC10E223
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Apr 2025 11:16:39 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 6DE394384F
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Apr 2025 11:16:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C89EDC4CEE3
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Apr 2025 11:16:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1743678994;
- bh=k7z7q5pV2BmChUi1am0e3T+bsqT3y2I1PvIo9G9EYKg=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=rDa/WwRMmNNgyR/jcxliuPh1mP5JLMwyR+1xaZsIzI+r2aMSdMX8lWKvI6zr9P77Q
- NdN5Giu5ZhL33j7OrNsj+1NLCUYQIw7R9tfcpkOW6c3OtBB5gA/dPMcEjzIOQ0QUoX
- qxjJCaweIaw5kdwmHQg5Lqk/Adx7R8xwBAQKIg6fQko9wtyxmVx4prm5EQ5yhjz61/
- 4glI+HJ9Aq6ZirCUBSXygQ7cWZPCDv4zSMjduXTtM/llM3zGhdj0fKj/cO7GMGkJPC
- x4I04tM86yH+KCL/IuNWEMC15IaLMz03WJFXpQmxRK6q9hPBGaEKDSAZOP1zJyk26e
- n8fd3C/RqzupQ==
-Received: by mail-oo1-f50.google.com with SMTP id
- 006d021491bc7-5fc447b03f2so206768eaf.0
- for <intel-xe@lists.freedesktop.org>; Thu, 03 Apr 2025 04:16:34 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCVTgJi2/hV5MMSHZrm6FkOr1Yw1dooNbh1Z85knjUIP79dqWtAw99MX5SJvT0+S8/pBmSV8FNh6cg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy7Qb/aXg+rE1v7UArJAHdHci5keJ6CiMEVCYc/4he9fJ0YJKh5
- e2K6vBJjDhp0xfReSkBu4DEe4QhskBhAY2nhsrdYUYiZx9R/G2wW+JKs5gmex/UXsSuzqGVAeo+
- ju0xF7cVm8BjVXVx2Eb/urZVyhHg=
-X-Google-Smtp-Source: AGHT+IHQq4nli131E5AOq3mtSw6Pb/6DctbCQMIvKTCsVIEjxSuVNmBt9bcXIyZNlN1pR7D7RYfgZwU9nLuFjOcpPRk=
-X-Received: by 2002:a05:6870:b522:b0:2cc:3530:d2fe with SMTP id
- 586e51a60fabf-2cc7f68d618mr1201274fac.21.1743678993965; Thu, 03 Apr 2025
- 04:16:33 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2273610E225
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Apr 2025 11:30:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1743679855; x=1775215855;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=8Qmo9M7Skwce/qHmTI3wQqQd0rttttYU/K+vliV8T/k=;
+ b=FIDiuvCDAN/gTlNDxZiWKpTwQZNIOELAXD0LkfoNsSN1FHozB4bpB55i
+ EdTYD/QqsnepUIN4Aco0VMqTX0/PmyxBtE4ZuYfOdZ0ViBeiZwM9yXS0e
+ qvXdzx/0fAcwv6cnKXxgJv4ExGxFmmqpKBOZ3xh9F6FAItZj/EgNiZeeo
+ ObvlxdNtPnbLqiQ8bgU4Rn7Zr64GiUbXDluN87yjmc1QzgR4q+BpboJIi
+ mYqEOgj/F/H2sfBG8mr/3abtXd2iSEbGp8U16tlZJFcWS7z2PaWbDYdvS
+ pgXhD88XEE1A+YU36/LP8FX72lerRC3IWrAe+lPIhDKP/4mUI+LHqA9+m Q==;
+X-CSE-ConnectionGUID: ELPi64L1T4KjtLkNvsFDAA==
+X-CSE-MsgGUID: T++4owddTX6tEK1mEuorzA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="44993873"
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="44993873"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2025 04:30:54 -0700
+X-CSE-ConnectionGUID: +1l80m6tS6OCKqnK60QS/g==
+X-CSE-MsgGUID: f+4jHdWWRTyuF4p1cmcOSg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="132188593"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2025 04:30:53 -0700
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.2.1544.14; Thu, 3 Apr 2025 04:30:53 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44 via Frontend Transport; Thu, 3 Apr 2025 04:30:53 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.41) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Thu, 3 Apr 2025 04:30:52 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=eruwrf7dAtLuXmjxZ7yVQnPe5lRJrsZn/sw+NwfAB3cawhM2YtzrvQuZ1ZNYX52sVrHp/NPNEOdJkgaH+cYx34VcP5Cni5WrG1pbAJUCi3L9TAAoU4to29ikbU1n+Pd636DXaF+vPWPGPxbFhsbketycBOgoVC37m8GVC/HmQn1bMzOsGZC4tQL3KUimymxhZAfE8GEejlyqSMvDnv5Qap27VxejbxjqPjNgGLjuRDZPj6SPQUBCy+cdaecbgmWt9F+FXb/Xygqoa7aru61iCOw4vGrhhzwKnSLtww7IMzWVzhQ9DWjdX/fXi6KteHlbzbywawalNyo7jPF5bax8dQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8Qmo9M7Skwce/qHmTI3wQqQd0rttttYU/K+vliV8T/k=;
+ b=B4RunV9B8WeGmwxhE9itqfkkgOaNGkkF84J/+bUx98QcPZccoc9XvGvgJwiFWtudc3bJZ06ikNY+ZPCQ0oGJJuJZDRLau+Nu2pbfk7PHZF85nsCET770spRcNm0R5z4vDpTkFfkEQsaT8J96g0MvG1JKfQZ2vV00MneEIYUC9FnglFAML/DN+DkoahSPmr4x/kz/BsCBiXj+Bw6ObZb8kVYgox7rGhqlfolnhRc0nOqaz+hUNVD1NHhOYuA60CaknIonpJCeDY2fMD+nOyxpbgamJyGUGHTX0NczLZo78z1bPybJ5EdRsYd6N/RmV8SS2cRx1rkhIqTVKuqf/QGLUw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from CY5PR11MB6211.namprd11.prod.outlook.com (2603:10b6:930:25::6)
+ by LV1PR11MB8841.namprd11.prod.outlook.com (2603:10b6:408:2b2::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.44; Thu, 3 Apr
+ 2025 11:30:50 +0000
+Received: from CY5PR11MB6211.namprd11.prod.outlook.com
+ ([fe80::df5a:a32c:8904:15f1]) by CY5PR11MB6211.namprd11.prod.outlook.com
+ ([fe80::df5a:a32c:8904:15f1%7]) with mapi id 15.20.8534.045; Thu, 3 Apr 2025
+ 11:30:50 +0000
+From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>, Bjorn Helgaas <helgaas@kernel.org>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>,
+ "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, "lenb@kernel.org"
+ <lenb@kernel.org>, "bhelgaas@google.com" <bhelgaas@google.com>,
+ "ilpo.jarvinen@linux.intel.com" <ilpo.jarvinen@linux.intel.com>, "De Marchi,
+ Lucas" <lucas.demarchi@intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ "Nilawar, Badal" <badal.nilawar@intel.com>, "Gupta, Varun"
+ <varun.gupta@intel.com>, "ville.syrjala@linux.intel.com"
+ <ville.syrjala@linux.intel.com>, "Shankar, Uma" <uma.shankar@intel.com>
+Subject: RE: [PATCH 03/12] PCI/ACPI: Add aux power grant notifier
+Thread-Topic: [PATCH 03/12] PCI/ACPI: Add aux power grant notifier
+Thread-Index: AQHboxvW09BLofS39EOnp6kodPmC7rOPPvGAgAD+SACAAZJksA==
+Date: Thu, 3 Apr 2025 11:30:50 +0000
+Message-ID: <CY5PR11MB6211021207DE5ECAA43BF26595AE2@CY5PR11MB6211.namprd11.prod.outlook.com>
+References: <20250401153225.96379-4-anshuman.gupta@intel.com>
+ <20250401201349.GA1676401@bhelgaas>
+ <CAJZ5v0irNFX6dFrStinNXamrhP143=yjjfx4iK0pY+-dTEkviw@mail.gmail.com>
+In-Reply-To: <CAJZ5v0irNFX6dFrStinNXamrhP143=yjjfx4iK0pY+-dTEkviw@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CY5PR11MB6211:EE_|LV1PR11MB8841:EE_
+x-ms-office365-filtering-correlation-id: eaca8ca5-dabe-4dfa-3b04-08dd72a2fc71
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|7053199007|38070700018; 
+x-microsoft-antispam-message-info: =?utf-8?B?cmFZYklRZkZNUjNPbldjTUtPS3hmYkhBZElMS1pmZHVlZmVLM3VEcWNNYkVF?=
+ =?utf-8?B?YTdnR1REb1dzSk4ySnoxL1hKUzFZc2hjZGhTRVJNSlRhbFR0YVpjemV2OGRT?=
+ =?utf-8?B?MHVzQm9maXVpZXk1QXFmQ1p0algySlpET0pKT09qdk5Eamc0T2xVVnVVMmRR?=
+ =?utf-8?B?R1BBenFaQkFmYUtaUVJVdDNtS0ZZZExwYWxZaGhYRUpiMnlSVTZjaVhqc1pV?=
+ =?utf-8?B?K1k1RnpsMzNuVVRrNC9FQjJyL0dZWEUwTGV3TXZqMkdUdjgzL29JRUNVNEpr?=
+ =?utf-8?B?d3MxMngxY1lXVGdGZC8vN2dtZ1p5ZHhkRndudmdGLytubWdjM0JLMTMrZDB2?=
+ =?utf-8?B?TXlvR1llemhDK2hBeW1aRmhtUTE4NEYrdWpDZmFXMEVqKzVJbmM0clFxenJC?=
+ =?utf-8?B?L3g4bUo1Mm5OaWtrdGNkSzgwdDlzMVNLNHUyR1YvYWpyS3B4V28xSG5CQVQ0?=
+ =?utf-8?B?UUkyUU1qdEg2OCszVjZqSDQ1YnQ0d002TFJLbGs2SDM1MnROWXdwYU81SElN?=
+ =?utf-8?B?b1FkbDZlZ0kxWitMQlArMUFLSVFqdzNQZHByTFJtakRCSTZ3TThVbHhMdkZa?=
+ =?utf-8?B?SkVPdEhYanFCKzFaZ3ROMW5BYXo3MlZUTGlQS1V6TXZ0emRZWTA3a1FGN0hm?=
+ =?utf-8?B?b2M5OEh4aW1CbzI4cnF4Z1ZqU0JDemZ2ZzFJallKUXl4M0pHOU12MHNiemZy?=
+ =?utf-8?B?SHdJbDU5Q0d5L3FsdENWanRBWXdUNFBPT3NCTUsxSkZWVzRxV0NQREZZaVQ4?=
+ =?utf-8?B?aHR3anFlRlhSRlJRNmk0eGlTbm1oUkltVUtubGtvSGNaMVh3R2lWdmNuNXV3?=
+ =?utf-8?B?QnhXQmtwY3JVNG9GL2RCWWUwa3hGbkYraTJRTG5CeXIzQkhndE0yNUNyZWs2?=
+ =?utf-8?B?Vmo4bENXclpmK1ZOc2RXa2E4T1FJQk1STER2Z3RpWnJRYkFTeXUwSDQybG0y?=
+ =?utf-8?B?aFAvMzQyK3BvMWVwTCtlVkVLOS85cEczbnlYckF4dm93clAyRUlPSUZBb0I2?=
+ =?utf-8?B?czJwWFRyOUJzOVl0VEx3L2R5OG1JU0FleHdMalFvZ21WaVQ1Lzh6V28yWFV4?=
+ =?utf-8?B?Wmp1aDBOSnVRZDlnRi90QUJjeEtoTXRlVUFQMm9TWU5zS2NCZjhFWTVidmp1?=
+ =?utf-8?B?ZVZ1Y3V3aWxyV3V4Q1RnUlpUY0NiZFpybHVwZ3U3NVVscWo3cGh0KzBjRlZQ?=
+ =?utf-8?B?N2drbW1DQ1NlSDQ5dHNCWTNJcGxLMEI3U3N2M0RvQlVFbFA4VGJlKzZlN09w?=
+ =?utf-8?B?a1NieVVkcm9VUlNGdnNrVThGTkNVb3NIQno5dUxmZXlEcXlmSVBqY3UzaFlu?=
+ =?utf-8?B?dEZ5OTZXcDR5UFB0QUk0cmNTb24yYW5tNnl4azJWVmRFVk9KSXpjK1dnSGNZ?=
+ =?utf-8?B?T1Jaa1hkUW8ycmhpcnREaEUybUpTUmVpWUczekRNYVAySkJtVWdHRS9ueDdZ?=
+ =?utf-8?B?MmFsK3dhckF6bUdKOVgwY2RjMHlLY002bVZORlRsYmsydXNvcFRnUWxDR0gx?=
+ =?utf-8?B?NHM5M0xUYjFxdUJjL2VUdE9qWWVDSkhWSXNQN0I5ZHJrMkhNSEovSmVtaUN1?=
+ =?utf-8?B?VDFrNktDVmRWTDZaVjFhYlJhZkFXcTRiSVdXQjE3VVhZa0hYYjJmVS9tWExP?=
+ =?utf-8?B?b1A5ekp1clBuRDc2WXgyWHdxUTNKNkFXb2xoTVF2Sno1NjNEeTk4cVFIc2RX?=
+ =?utf-8?B?OUtkUHBzVEJLN0ZpbktFaDBOWnVHOGlqYXBPUlVOM1dDZzU4ZnpWSEtjMWNx?=
+ =?utf-8?B?eUhZM1MrSXdQVnF3Y0JMUklsbm55Wk5hSittM3p0REJsSXB3cWdSRGFvOURL?=
+ =?utf-8?B?aEtmZEtUdVJxU3EyTlRvSU03UzR3bFQ5UFZpS2lIcGJCQnZSZGhCbTV4dFBv?=
+ =?utf-8?B?NFZtaXFCTXY4U0xQYjUreGZHZUNPVmtjZDhMYXg1cUhyUExHUUV2Zk55YjI2?=
+ =?utf-8?Q?8B/V2qW1myGVnXa4XCAqh2t272vSeR44?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6211.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(7053199007)(38070700018); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?R0tIRnNtTjhxWHBZZHE0aW1XQkZQZnh4d2hycDBTcmxXdzVkeWk0bTlrZWZw?=
+ =?utf-8?B?UVNBRDhIQ1RpQWFOMGM1T2tMMU11clE2Z2kyQ2Y0VnRkN3JYV2JVeUEyby9a?=
+ =?utf-8?B?NFdNdElWSVQyOTUveWZKZXpabHlUT2xHalQ0cnF3R1lWcERRcjljZWc4M2N4?=
+ =?utf-8?B?eHMxdzM0bGdqMkJXeWRQdXpwWVhPdTF3amNWcDg0OTBDOW9nYnMwNStkRmVJ?=
+ =?utf-8?B?d2MwYm9XbGZwbmp1aFZjMXVNN242WlQvYStGQnhyUlpoZ09ZSGk1aEs2dm1m?=
+ =?utf-8?B?bEt3N2R2VUtyZ21nMkFNemJidWUxR25NWXZVRjMwbUVnOGRkN2hETXpKQW9V?=
+ =?utf-8?B?QzNlcHFsejNUUzZ1NElpeVhvdVFscUpYYlBQdi85blhsRXdza1VxN2NoVURB?=
+ =?utf-8?B?QmwyU3J3MXFJSzJ0U0FvZ1gydkxUQm9mRXhMbTA5WnUvNW15Z1U4Zk9pVjhK?=
+ =?utf-8?B?M09IRm5VRkp6OFJ0dVptdzdxOGZPcnhwWGxLVW80RVVTQXlRNm9iekxOVFRl?=
+ =?utf-8?B?ZTlHcVRBT0taUkRnRUoxcmoyZnhyb2dzSk1XRUdqT3pDTTBYcWhKU0cweDU3?=
+ =?utf-8?B?Um81RURUaHlFT0k5Y1dRT0t5UkNycFV6UUwxU3cyRXhXQTE3SE9sbTRHRU0v?=
+ =?utf-8?B?Z2p2TzZGdDRvQlVNOTUwRjZqNUtLU2FIczF4T2ZNNHRvSjA4UUVZV1JBZzU3?=
+ =?utf-8?B?UDRJVmhaZ2g0cXkvQlVNcnk2Vnp2cS9EUE5UbitIczdEWlFaZHBjNzRpVnIy?=
+ =?utf-8?B?azcvbjloZVY1dDFOMGtES1VqMXVYeER0YVg2ZHZCQ3l5K2hyY0Q3NllDSlI1?=
+ =?utf-8?B?dTkxNEhqVS9iazZyMi9NTnFOYlhNaDJpaDQ0SXBaNUdsNFZkM283enRMeSto?=
+ =?utf-8?B?VkxEWmlCQS9TRU5NblVEWHF3MmlzTkNHZ3dZa2QwRTVqOWtXeThwY2pMeDFK?=
+ =?utf-8?B?TGdMb1k0d2FwdkZEOGp6UmZldE1veWt3WTZ1NVFNVWVmMXhTL21RSHZnYlhz?=
+ =?utf-8?B?YjM0THFVSVFwTmNnNTdiTVdjNEc0RW9kWFdnUGhISmt0WkcxUks5L2NBSWhh?=
+ =?utf-8?B?TjhsRzVTc1FTdEFGNk5CZlk3RVEwOU1ia2tGVy8vQ0FESVc0TkdNaWt6T0tN?=
+ =?utf-8?B?VWJkU0VlUStqclNzT2p0a050VWQvUzJNV0dYTWpZb0xJd1dlYjlxTkRLZlNa?=
+ =?utf-8?B?MWFvcVhncE56WGlZSzJ1a2hUL1ptV245Rzl1Rnk3WEg4cjlER1ZvMmcxQWE4?=
+ =?utf-8?B?U2lyRFcwQ2kyWUExT0I2dmltbm1nWnNDeUtDZkt3T0pIQXd3VzZ3OHhlWnRN?=
+ =?utf-8?B?UFA5NkJ1amxkKzl6dG1GM2Q5bzZiYXhiVWVqRkJibXBER1Q1akJ6VVg5UEdE?=
+ =?utf-8?B?cFJ1elpNTUpBNE8vSlcvQ1JKUnhodjA5TXM0bGY3RytRODBLaEQ1NVFTOStz?=
+ =?utf-8?B?bHlaaXZQOWJPaUk0MlZaaFUrV1owa0JFYWlWdWxFZGlGbzAyZUZxQXh4anpP?=
+ =?utf-8?B?dy8yQUI5QTZhZ3M1dnZDekxIMGlTbmJvYkY5V1RYaW1KQlF5ZmwvcTBqdFBv?=
+ =?utf-8?B?K2VXSmI3NGFqV0hTcGtSRHdSQm8yWkN0RnlZT1VqNnM0ZExJeThEVG9JOW0x?=
+ =?utf-8?B?RThtdFJsZkwzRGlRcWxJM2FuWUdnYmlzdlFEZHIzZmwxOXRoVFhZbmNkaHRj?=
+ =?utf-8?B?VkxzbTlhbFllcHo3b3JWL0NOWnN6Z0dOSVYwYzFSc0lyK3NyUkdCMXdHbm1C?=
+ =?utf-8?B?Y3VMZ1kzUi9SSGhRcXZrTUxCQWl1K1MrRFpTemdFSW1EcXFjRlJwOXBMbUdH?=
+ =?utf-8?B?bE5rOFBSRWhFa09MOFlVVkxVR3huZlZEVk95VEQ5Q2l1L0VoYTRzN2dqTEhl?=
+ =?utf-8?B?a1FIWXUwSURVL3ZWSExlQ3R4ZXROOUxkdWlmQkZJa3pRaWdCcjdTV3YrZWpn?=
+ =?utf-8?B?aDh2S0xCbnl1MzlQQndhVDhTMFErWkVhMkl3NE03RUpTWDFDYkRRZEVJWitv?=
+ =?utf-8?B?N0I2RTVHSWNZZGNLZVpYcFpqVkQ3Mk15L01jSzdUdkFsa1ozZUttYU1Rei90?=
+ =?utf-8?B?ZnpFQ3dtSlJCNnJwa1hTc3dvWmJDRTVpeFdncU5hMWp6V3R1elUxMDA3NmlX?=
+ =?utf-8?Q?ue49CsEBSU6AWBryBkpythRYm?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20250327161914.432552-1-badal.nilawar@intel.com>
- <8a514fa3-af9a-4b92-a6d3-3c6764b20a5e@intel.com> <Z-WHYbhu1QdjUFPR@intel.com>
- <Z-bICZUBN_Fk0_mM@intel.com> <Z-eDJUtxjzIjGlJT@black.fi.intel.com>
- <Z-q_n1g9wIEZc-dm@intel.com> <2d3f3cbe-c33d-4ded-8c19-e2bd2e76a68b@intel.com>
- <Z-woHnrukI7qtB4m@black.fi.intel.com>
- <CAJZ5v0j7ob4YQ9weQ6e5iVbHyRwf-6Vk2MU4r9mK11-8wD09RQ@mail.gmail.com>
- <287e5242-c2f3-4bad-a5b8-836c6ab6accc@intel.com>
-In-Reply-To: <287e5242-c2f3-4bad-a5b8-836c6ab6accc@intel.com>
-From: "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Thu, 3 Apr 2025 13:16:22 +0200
-X-Gmail-Original-Message-ID: <CAJZ5v0iPGDHDx9j8WiCDBdQ92szq8kxSpBV8p6xChX+0zgSPtg@mail.gmail.com>
-X-Gm-Features: AQ5f1JpRxWh34c5B5mu6dF_MEc7DxGrGTSZRfBFtKuYleJZUuPpDQQOBAQcNW-s
-Message-ID: <CAJZ5v0iPGDHDx9j8WiCDBdQ92szq8kxSpBV8p6xChX+0zgSPtg@mail.gmail.com>
-Subject: Re: [PATCH] drm/xe/d3cold: Set power state to D3Cold during s2idle/s3
-To: "Nilawar, Badal" <badal.nilawar@intel.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Raag Jadav <raag.jadav@intel.com>,
- "Wysocki, Rafael J" <rafael.j.wysocki@intel.com>, lucas.demarchi@intel.com, 
- rodrigo.vivi@intel.com, intel-xe@lists.freedesktop.org, 
- anshuman.gupta@intel.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6211.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: eaca8ca5-dabe-4dfa-3b04-08dd72a2fc71
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Apr 2025 11:30:50.1410 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: eU8DFzAdyzRmnd9OSkUqrIVaLzk9XmSYl7lZQtNqmH3s2mPjsh3G5oOvrArxR7gOWykHxyFCMNiAZ0oztrEoZzVBbGSlSm2dzZGIoM5Cn3M=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV1PR11MB8841
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,230 +206,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Apr 3, 2025 at 9:37=E2=80=AFAM Nilawar, Badal <badal.nilawar@intel.=
-com> wrote:
->
->
-> On 02-04-2025 01:05, Rafael J. Wysocki wrote:
-> > On Tue, Apr 1, 2025 at 7:53=E2=80=AFPM Raag Jadav <raag.jadav@intel.com=
-> wrote:
-> >> On Mon, Mar 31, 2025 at 10:18:16PM +0200, Wysocki, Rafael J wrote:
-> >>> On 3/31/2025 6:15 PM, Rodrigo Vivi wrote:
-> >>>> On Sat, Mar 29, 2025 at 07:20:37AM +0200, Raag Jadav wrote:
-> >>>>> On Fri, Mar 28, 2025 at 12:02:17PM -0400, Rodrigo Vivi wrote:
-> >>>>>> On Thu, Mar 27, 2025 at 01:14:09PM -0400, Rodrigo Vivi wrote:
-> >>>>>>> On Thu, Mar 27, 2025 at 10:02:29PM +0530, Nilawar, Badal wrote:
-> >>>>>>>> On 27-03-2025 21:49, Badal Nilawar wrote:
-> >>>>>>>> Hi Rodrigo,
-> >>>>>>>>
-> >>>>>>>>> According to pci core guidelines, pci_save_config is recommende=
-d when the
-> >>>>>>>>> driver explicitly needs to set the pci power state. As of now x=
-e kmd is
-> >>>>>>>>> only doing pci_save_config while entering to s2idle/s3 state, w=
-hich makes
-> >>>>>>>>> pci core think that device driver has already applied required =
-pci power
-> >>>>>>>>> state. This leads to GPU remain in D0 state. To fix the issue s=
-etting
-> >>>>>>>>> the pci power state to D3Cold.
-> >>>>>>>>>
-> >>>>>>>>> Fixes:dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Int=
-el GPUs")
-> >>>>>>>>> Cc: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
-> >>>>>>>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> >>>>>>>>> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
-> >>>>>>>>> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> >>>>>>>>> ---
-> >>>>>>>>>     drivers/gpu/drm/xe/xe_pci.c | 1 +
-> >>>>>>>>>     1 file changed, 1 insertion(+)
-> >>>>>>>>>
-> >>>>>>>>> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/x=
-e_pci.c
-> >>>>>>>>> index 7046e7e9a6c7..3317d475be79 100644
-> >>>>>>>>> --- a/drivers/gpu/drm/xe/xe_pci.c
-> >>>>>>>>> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> >>>>>>>>> @@ -932,6 +932,7 @@ static int xe_pci_suspend(struct device *de=
-v)
-> >>>>>>>>>            pci_save_state(pdev);
-> >>>>>>>>>            pci_disable_device(pdev);
-> >>>>>>>>> + pci_set_power_state(pdev, PCI_D3cold);
-> >>>>>>>> Another approach to avoid calling pci_save_state and pci_set_pow=
-er_state,
-> >>>>>>>> allowing the PCI core to manage this.
-> >>>>>>>> Currently, the above change aligns with the Xe RPM suspend flow.
-> >>>>>>> Either way is fine it seems. Or we don't save the state and let p=
-ci subsystem
-> >>>>>>> handle that for us or we save and set explicitly. So, let's move =
-quickly
-> >>>>>>> with this option here that is already fixing our current issue.
-> >>>>> On our way to become another i915 now, are we?
-> >>>> could you please expand on this?
-> >>>>
-> >>>> A simple git grep on pci_set_power_state and on pci_save_state
-> >>>> return many more entries than i915.
-> >>>>
-> >>>> what am I missing?
-> >> It's not about PM at all, just a reference to the infinite
-> >>
-> >> [1] more code -> merge -> dammit -> fix -> [1]
-> >>
-> >> cycle.
-> >>
-> >>>>> While this might be a good enough band-aid, we should probably expl=
-ore
-> >>>>> how DPM_FLAG_SMART_* work and stop mixing/matching approaches to hi=
-de
-> >>>>> issues.
-> >>>> perhaps this indeed...
-> >>>> perhaps the ones doing power state themselves are the ones declaring=
- 'smart'?
-> >>>>
-> >>>> Well, on a dumb script here it looks we have over 110 drivers using =
-pci_save_state
-> >>>> and only 6 of those using DPM_FLAG_SMART_*
-> >>>>
-> >>>> So, I agree that it might be a good idea to explore things here and =
-find the
-> >>>> optimal settings.
-> >>> See https://www.kernel.org/doc/html/latest/driver-api/pm/devices.html=
-#the-dpm-flag-smart-suspend-driver-flag
-> >>>
-> >>> It's fairly accurate.
-> >>>
-> >>> The rule of thumb is to avoid mixing these with calling pci_save_stat=
-e()
-> >>> directly and setting device state from a driver callback.
-> >> That's not what I meant here. There are multiple issues at play.
-> >>
-> >> 1. An AER is reported[*] on root port during system suspend even befor=
-e we
-> >>     reach any of the driver PM callback. From initial investigation it=
- seems
-> >>     like a case of misbehaviour by some child device, but this is a di=
-fferent
-> >>     issue entirely.
-> >>
-> >> [*] irq/120-aerdrv-145     [002] .....  1264.981023: <stack trace>
-> >> =3D> xe_pm_runtime_resume
-> >> =3D> xe_pci_runtime_resume
-> >> =3D> pci_pm_runtime_resume
-> >> =3D> __rpm_callback
-> >> =3D> rpm_callback
-> >> =3D> rpm_resume
-> >> =3D> __pm_runtime_resume
-> >> =3D> pci_pm_runtime_get_sync
-> >> =3D> __pci_walk_bus
-> >> =3D> pci_walk_bus
-> >> =3D> pcie_do_recovery
-> >> =3D> aer_process_err_devices
-> >> =3D> aer_isr
-> >>
-> >> 2. Setting explicit pci_set_power_state(pdev, PCI_D3cold) from xe_pm_s=
-uspend().
-> >>     Although we see many drivers do it for their case, it's quite a qu=
-estionable
-> >>     choice (atleast IMHO) to hard suspend the device from driver PM ca=
-llback
-> >>     without any regard to runtime_usage counter. It can hide potential=
- issues
-> >>     like AER during system suspend (regardless of whether or not it is=
- supported
-> >>     by the driver, since it is supposed to keep the device active on s=
-uch a
-> >>     catastrophic failure anyway), but I'll leave it to the experts to =
-decide.
-> > If the driver does not set DPM_FLAG_SMART_SUSPEND, and xe doesn't set
-> > it AFAICS (at least not in the mainline), pci_pm_suspend() will resume
-> > the device from runtime suspend before invoking its driver's callback.
-> >
-> > This guarantees that the device is always RPM_ACTIVE when
-> > xe_pci_suspend() runs and it cannot be runtime-suspended because the
-> > core is holding a runtime PM reference on it (and so the runtime PM
-> > usage counter is always greater than zero when xe_pci_suspend() runs).
-> >
-> > This means that neither xe_pci_runtime_suspend() nor
-> > xe_pci_runtime_resume() can run concurrently with respect to it, so
-> > xe_pci_suspend() can change the power state of the device etc. safely.
-> > Of course, it needs to call pci_save_state() before doing any of that,
-> > but it does so.
-> >
-> > This is expected to work, but resuming the device from runtime suspend
-> > during a system suspend transition can be avoided (see below).
-> >
-> > However, on the resume side, pci_pm_resume_noirq() runs first and
-> > because dev_pm_skip_resume() returns 'false' (since
-> > DPM_FLAG_SMART_SUSPEND is unset) and skip_bus_pm is 'false' (since the
-> > device is not in D0), it will call pci_pm_default_resume_early() which
-> > will (1) put the device into D0 unconditionally and (2) restore its
-> > state.
-> >
-> > This means that by the time when xe_pci_resume() runs, the power state
-> > of the device is already D0 and its state has already been restored,
-> > so the initial part of it is arguably redundant.
-> >
-> > There also appears to be a problem with calling pci_disable_device()
-> > after pci_save_state() in xe_pci_suspend() because restoring the
-> > device's state in pci_pm_default_resume_early() will inadvertently
-> > cause it to be enabled AFAICS.  I would call pci_save_state() after
-> > pci_disable_device(), so the device would still be disabled after
-> > running pci_pm_default_resume_early() and xe_pci_resume() would enable
-> > it as appropriate.
-> >
-> >> 2. Since we're already setting D0 and D3 states in our runtime PM call=
-backs,
-> >>     utilizing DPM_FLAG_SMART_* flags will allow us to skip unnecessary
-> >>     runtime_resume during system suspend and let PCI PM take care of a=
-ll
-> >>     the PCI stuff in a smarter way (even skip D3hot/cold if it's alrea=
-dy in it)
-> >>     without us needing to duplicate code and do everything manually.
-> > That's true in principle, but care needs to be taken.
-> >
-> > First of all, DPM_FLAG_SMART_PREPARE and DPM_FLAG_SMART_SUSPEND are
-> > about different things.
-> >
-> > DPM_FLAG_SMART_PREPARE is about the direct-complete optimization that
-> > allows the suspend and resume of the device to be skipped completely
-> > if some additional conditions are met and it allows the driver to
-> > control the behavior related to this optimization (see "Entering
-> > System Suspend" in Documentation/driver-api/pm/devices.rst for
-> > details).  The bottom line here is that because xe doesn't provide a
-> > ->prepare() callback in xe_pm_ops, this flag will have no effect.  xe
-> > may want to set DPM_FLAG_NO_DIRECT_COMPLETE to disable the
-> > direct-complete optimization completely, though (i915 does this for
-> > some reason unclear to me).
-> >
-> > DPM_FLAG_SMART_SUSPEND is about leaving the device in runtime suspend
-> > across the entire system suspend transition if it is still
-> > runtime-suspended after running its driver's ->suspend() callback.
-> >
-> > This means in particular that if DPM_FLAG_SMART_SUSPEND is set, the
-> > ->suspend() callback may run in parallel with xe_pci_runtime_resume(),
-> > so it cannot be the current xe_pci_suspend() because it cannot
-> > manipulate the device or call pci_save_state() on it or similar.  The
-> > most straightforward way to overcome this would be to point
-> > ->suspend_late() to xe_pci_suspend(), but this would cause the device
-> > to be suspended later unless it was runtime-suspended already.  In
-> > turn, suspending it later may cause the total duration of the system
-> > suspend transition to increase (because the device will now be
-> > suspended in a different phase of the transition).
-> >
-> > The suspend time can be distributed somewhat differently if the core
-> > is allowed to take care of putting the device into a low-power state.
-> > Simply removing the pci_save_state() and pci_set_power_state() calls
-> > from xe_pci_suspend() should be sufficient to make this happen and
-> > that would be my first step (after fixing the device disable/enable
-> > issue described above).
-> >
-> > Next, you can point ->suspend_late(), instead of ->suspend(), to
-> > xe_pci_suspend() and that is still expected to work, but the total
-> > system suspend timing will change.
-> >
-> > If this works, you'll be ready to set DPM_FLAG_SMART_SUSPEND.
->
->  From above what I understand, setting DPM_FLAG_SMART_SUSPEND enforces
-> the requirement that the device must be
-> runtime suspended in order to be suspended.
-
-No, it doesn't.
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogUmFmYWVsIEouIFd5c29j
+a2kgPHJhZmFlbEBrZXJuZWwub3JnPg0KPiBTZW50OiBXZWRuZXNkYXksIEFwcmlsIDIsIDIwMjUg
+NDo1NCBQTQ0KPiBUbzogQmpvcm4gSGVsZ2FhcyA8aGVsZ2Fhc0BrZXJuZWwub3JnPjsgR3VwdGEs
+IEFuc2h1bWFuDQo+IDxhbnNodW1hbi5ndXB0YUBpbnRlbC5jb20+DQo+IENjOiBpbnRlbC14ZUBs
+aXN0cy5mcmVlZGVza3RvcC5vcmc7IGxpbnV4LWFjcGlAdmdlci5rZXJuZWwub3JnOyBsaW51eC0N
+Cj4gcGNpQHZnZXIua2VybmVsLm9yZzsgcmFmYWVsQGtlcm5lbC5vcmc7IGxlbmJAa2VybmVsLm9y
+ZzsNCj4gYmhlbGdhYXNAZ29vZ2xlLmNvbTsgaWxwby5qYXJ2aW5lbkBsaW51eC5pbnRlbC5jb207
+IERlIE1hcmNoaSwgTHVjYXMNCj4gPGx1Y2FzLmRlbWFyY2hpQGludGVsLmNvbT47IFZpdmksIFJv
+ZHJpZ28gPHJvZHJpZ28udml2aUBpbnRlbC5jb20+OyBOaWxhd2FyLA0KPiBCYWRhbCA8YmFkYWwu
+bmlsYXdhckBpbnRlbC5jb20+OyBHdXB0YSwgVmFydW4gPHZhcnVuLmd1cHRhQGludGVsLmNvbT47
+DQo+IHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tOyBTaGFua2FyLCBVbWEgPHVtYS5zaGFu
+a2FyQGludGVsLmNvbT4NCj4gU3ViamVjdDogUmU6IFtQQVRDSCAwMy8xMl0gUENJL0FDUEk6IEFk
+ZCBhdXggcG93ZXIgZ3JhbnQgbm90aWZpZXINCj4gDQo+IE9uIFR1ZSwgQXByIDEsIDIwMjUgYXQg
+MTA6MTPigK9QTSBCam9ybiBIZWxnYWFzIDxoZWxnYWFzQGtlcm5lbC5vcmc+IHdyb3RlOg0KPiA+
+DQo+ID4gT24gVHVlLCBBcHIgMDEsIDIwMjUgYXQgMDk6MDI6MTZQTSArMDUzMCwgQW5zaHVtYW4g
+R3VwdGEgd3JvdGU6DQo+ID4gPiBBZGRpbmcgYSBub3RpZmllciB0byBub3RpZnkgYWxsIFBDSWUg
+Y2hpbGQgZGV2aWNlcyBhYm91dCB0aGUgYmxvY2sNCj4gPiA+IG1haW4gcG93ZXIgcmVtb3ZhbC4g
+SXQgaXMgbmVlZGVkIGJlY2F1c2UgdGhlb3JldGljYWxseSBtdWx0aXBsZSBQQ0llDQo+ID4gPiBF
+bmRwb2ludCBkZXZpY2VzIG9uIHNhbWUgUm9vdCBQb3J0IGNhbiByZXF1ZXN0IGZvciBBVVggcG93
+ZXIgYW5kDQo+ID4gPiBfRFNNIG1ldGhvZCBjYW4gcmV0dXJuIHdpdGggODAwMDAwMDBoIHNpZ25p
+ZmllcyB0aGF0IHRoZSBoaWVyYXJjaHkNCj4gPiA+IGNvbm5lY3RlZCB2aWEgdGhlIHNsb3QgY2Fu
+bm90IHN1cHBvcnQgbWFpbiBwb3dlciByZW1vdmFsIHdoZW4gaW4NCj4gPiA+IEQzQ29sZC4NCj4g
+Pg0KPiA+IEkgd2lzaCB0aGUgc3BlYyB1c2VkIGRpZmZlcmVudCBsYW5ndWFnZSBoZXJlLiAgIkQz
+Y29sZCIgKm1lYW5zKiAibWFpbg0KPiA+IHBvd2VyIGlzIHJlbW92ZWQiIChQQ0llIHI2LjAsIHNl
+YyA1LjMuMS40LjIpLCBzbyBpdCBkb2Vzbid0IG1ha2Ugc2Vuc2UNCj4gPiB0byBzYXkgdGhhdCAi
+dGhlIHNsb3QgY2Fubm90IHN1cHBvcnQgbWFpbiBwb3dlciByZW1vdmFsIHdoZW4gaW4NCj4gPiBE
+M2NvbGQiLiAgSWYgYSBkZXZpY2UgaXMgaW4gRDNjb2xkLCBpdHMgbWFpbiBwb3dlciBoYXMgYmVl
+biByZW1vdmVkIGJ5DQo+ID4gZGVmaW5pdGlvbi4NCj4gPg0KPiA+IEkgc3VwcG9zZSB0aGUgc3Bl
+YyBpcyB0cnlpbmcgdG8gc2F5IGlmIHRoZSBkcml2ZXIgaGFzIGNhbGxlZCB0aGlzIF9EU00NCj4g
+PiB3aXRoIDgwMDAwMDAwaCwgaXQgbWVhbnMgdGhlIHBsYXRmb3JtIG11c3Qgbm90IHJlbW92ZSBt
+YWluIHBvd2VyIGZyb20NCj4gPiB0aGUgZGV2aWNlIHdoaWxlIHRoZSBzeXN0ZW0gaXMgaW4gUzA/
+ICBJcyB0aGF0IHdoYXQgeW91IHRoaW5rIGl0DQo+ID4gbWVhbnM/DQo+ID4NCj4gPiBUaGUgMmgg
+cmV0dXJuIHZhbHVlIGRlc2NyaXB0aW9uIHNheXMgaXQgImluZGljYXRlcyB0aGF0IHRoZSBwbGF0
+Zm9ybQ0KPiA+IHdpbGwgbm90IHJlbW92ZSBtYWluIHBvd2VyIGZyb20gdGhlIHNsb3Qgd2hpbGUg
+dGhlIHN5c3RlbSBpcyBpbiBTMCwiDQo+ID4gc28gSSBndWVzcyB0aGF0IG11c3QgYmUgaXQuDQo+
+ID4NCj4gPiBJbiB0aGlzIHNlcmllcywgcGNpX2FjcGlfYXV4X3Bvd2VyX3NldHVwKCkgb25seSBz
+dXBwbGllcyBhIDE2LWJpdA0KPiA+IGF1eF9wd3JfbGltaXQgdmFsdWUsIHNvIHRoZSBkcml2ZXIg
+Y2Fubm90ICpyZXF1ZXN0KiB0aGF0IHRoZSBwbGF0Zm9ybQ0KPiA+IG5vdCByZW1vdmUgbWFpbiBw
+b3dlci4NCj4gPg0KPiA+IFNvIEkgZ3Vlc3MgdGhlIG9ubHkgc2NlbmFyaW8gd2hlcmUgdGhlIF9E
+U00gcmV0dXJucyA4MDAwMDAwMGggaXMgd2hlbg0KPiA+IHRoZSBwbGF0Zm9ybSBpdHNlbGYgb3Ig
+b3RoZXIgZGV2aWNlcyBwcmV2ZW50IHRoZSByZW1vdmFsIG9mIG1haW4NCj4gPiBwb3dlci4gIEFu
+ZCB0aGUgcG9pbnQgb2YgdGhlIG5vdGlmaWVyIGlzIHRvIHRlbGwgZGV2aWNlcyB0aGF0IHRoZWly
+DQo+ID4gbWFpbiBwb3dlciB3aWxsIG5ldmVyIGJlIHJlbW92ZWQgd2hpbGUgdGhlIHN5c3RlbSBp
+cyBpbiBTMC4gIElzIHRoYXQNCj4gPiByaWdodD8NCj4gPg0KPiA+ID4gVGhpcyBtYXkgZGlzcnVw
+dCBmdW5jdGlvbmFsaXR5IG9mIG90aGVyIGNoaWxkIGRldmljZS4NCj4gPg0KPiA+IFdoYXQgc29y
+dCBvZiBkaXNydXB0aW9uIGNvdWxkIGhhcHBlbj8gIEkgd291bGQgdGhpbmsgdGhhdCBpZiB0aGUg
+X0RTTQ0KPiA+IHJldHVybnMgODAwMDAwMDBoLCBpdCBqdXN0IG1lYW5zIHRoZSBkZXZpY2Ugd2ls
+bCBub3QgaGF2ZSBtYWluIHBvd2VyDQo+ID4gcmVtb3ZlZCwgc28gaXQgd29uJ3Qgc2VlIHRoYXQg
+cG93ZXIgc3RhdGUgdHJhbnNpdGlvbi4gIFRoZSBvbmx5DQo+ID4gImRpc3J1cHRpb24iIHdvdWxk
+IGJlIHRoYXQgd2UncmUgdXNpbmcgbW9yZSBwb3dlci4NCj4gPg0KPiA+ID4gTGV0J3Mgbm90aWZ5
+IGFsbCBQQ0llIGRldmljZXMgcmVxdWVzdGVkIEF1eCBwb3dlciByZXNvdXJjZSBhbmQgTGV0DQo+
+ID4gPiBQQ0llIEVuZCBQb2ludCBkcml2ZXIgaGFuZGxlIGl0IGluIGl0cyBjYWxsYmFjay4NCj4g
+Pg0KPiA+IFdyYXAgdG8gZmlsbCA3NSBjb2x1bW5zLg0KPiA+DQo+ID4gcy9BZGRpbmcvQWRkLw0K
+PiA+IHMvTGV0J3Mgbm90aWZ5L05vdGlmeS8NCj4gPiBzL2FuZCBMZXQvYW5kIGxldC8NCj4gPiBz
+L0VuZCBQb2ludC9FbmRwb2ludC8gKHNldmVyYWwgcGxhY2VzIGhlcmUgYW5kIGJlbG93KQ0KPiA+
+DQo+ID4gPiBTaWduZWQtb2ZmLWJ5OiBBbnNodW1hbiBHdXB0YSA8YW5zaHVtYW4uZ3VwdGFAaW50
+ZWwuY29tPg0KPiA+ID4gLS0tDQo+ID4gPiAgZHJpdmVycy9wY2kvcGNpLWFjcGkuYyAgIHwgMzQg
+KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKy0tLQ0KPiA+ID4gIGluY2x1ZGUvbGludXgv
+cGNpLWFjcGkuaCB8IDEzICsrKysrKysrKysrKysNCj4gPiA+ICAyIGZpbGVzIGNoYW5nZWQsIDQ0
+IGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pDQo+ID4gPg0KPiA+ID4gZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvcGNpL3BjaS1hY3BpLmMgYi9kcml2ZXJzL3BjaS9wY2ktYWNwaS5jIGluZGV4DQo+
+ID4gPiAwNDE0OWYwMzc2NjQuLmQxY2ExNjQ5ZTZlOCAxMDA2NDQNCj4gPiA+IC0tLSBhL2RyaXZl
+cnMvcGNpL3BjaS1hY3BpLmMNCj4gPiA+ICsrKyBiL2RyaXZlcnMvcGNpL3BjaS1hY3BpLmMNCj4g
+PiA+IEBAIC0xNDIxLDYgKzE0MjEsMzIgQEAgc3RhdGljIHZvaWQgcGNpX2FjcGlfb3B0aW1pemVf
+ZGVsYXkoc3RydWN0DQo+IHBjaV9kZXYgKnBkZXYsDQo+ID4gPiAgICAgICBBQ1BJX0ZSRUUob2Jq
+KTsNCj4gPiA+ICB9DQo+ID4gPg0KPiA+ID4gK3N0YXRpYyBCTE9DS0lOR19OT1RJRklFUl9IRUFE
+KHBjaV9hY3BpX2F1eF9wb3dlcl9ub3RpZnlfbGlzdCk7DQo+ID4gPiArDQo+ID4gPiArLyoqDQo+
+ID4gPiArICogcGNpX2FjcGlfcmVnaXN0ZXJfYXV4X3Bvd2VyX25vdGlmaWVyIC0gUmVnaXN0ZXIg
+ZHJpdmVyIG5vdGlmaWVyDQo+ID4gPiArICogQG5iOiBub3RpZmllciBibG9jaw0KPiA+ID4gKyAq
+DQo+ID4gPiArICogVGhpcyBmdW5jdGlvbiBzaGFsbCBiZSBjYWxsZWQgYnkgUENJZSBFbmQgUG9p
+bnQgZGV2aWNlIHJlcXVlc3RlZA0KPiA+ID4gK3RoZSBBdXgNCj4gPiA+ICsgKiBwb3dlciByZXNv
+dXJjZSBpbiBvcmRlciB0byBoYW5kbGUgdGhlIGFueSBzY2VuYXJpbyBncmFjZWZ1bGx5DQo+ID4g
+PiArd2hlbiBvdGhlcg0KPiA+ID4gKyAqIGNoaWxkIFBDSWUgZGV2aWNlcyBBdXggcG93ZXIgcmVx
+dWVzdCByZXR1cm5zIHdpdGggTm8gbWFpbiBwb3dlcg0KPiByZW1vdmFsLg0KPiA+ID4gKyAqIFBD
+SWUgZGV2aWNlcyB3aGljaCByZWdpc3RlciB0aGlzIG5vdGlmaWVyIHNoYWxsIGhhbmRsZSBObyBt
+YWluDQo+ID4gPiArcG93ZXINCj4gPiA+ICsgKiByZW1vdmFsIHNjZW5hcmlvIGFjY29yZGluZ2x5
+Lg0KPiA+DQo+ID4gVGhpcyB3b3VsZCBhY3R1YWxseSBiZSBjYWxsZWQgYnkgdGhlICpkcml2ZXIq
+IChub3QgYnkgdGhlIGRldmljZSkuDQo+IA0KSGkgUmFmYWVsLA0KVGhhbmtzIGZvciByZXZpZXcu
+DQo+IEFwYXJ0IGZyb20gdGhpcywgdGhlcmUgc2VlbXMgdG8gYmUgYSBkZXNpZ24gaXNzdWUgaGVy
+ZSBiZWNhdXNlIGl0IHdvbid0IG5vdGlmeQ0KPiBldmVyeSBkcml2ZXIgdGhhdCBoYXMgcmVxdWVz
+dGVkIHRoZSBBdXggcG93ZXIsIGp1c3QgdGhlIG9uZXMgdGhhdCBoYXZlIGFsc28NCj4gcmVnaXN0
+ZXJlZCBub3RpZmllcnMuDQpJTUhPIHRoYXQgaXMgd2hhdCBpbnRlbmRlZCwgaWYgYW55IGRldmlj
+ZSBoYXMgZnVuY3Rpb25hbCBpbXBhY3QgaW4gb3VyIGNhc2UgaXQgaXMNCklOVEVMIEdQVSBoYXMg
+ZnVuY3Rpb25hbCBpbXBhY3QgaWYgb3RoZXIgUENJZSBkZXZpY2UncyAob24gc2FtZSByb290IHBv
+cnQpIEF1eA0KUG93ZXIgcmVxdWVzdCByZXR1cm5zIHdpdGggMHgyLiBXZSBuZWVkIHRvIGhhbmRs
+ZSBzdWNoIGNhc2UgdG8gaGFuZGxlIGl0IGdyYWNlZnVsbHkuDQo+IA0KPiBTbyB0aGlzIGFwcGVh
+cnMgdG8gYmUgYW4gb3B0LWluIGZyb20gZ2V0dGluZyBub3RpZmljYXRpb25zIG9uIEF1eCBwb3dl
+cg0KPiByZXF1ZXN0IHJlamVjdGlvbiByZXNwb25zZXMgdG8gcmVxdWVzdHMgZnJvbSBvdGhlciBk
+cml2ZXJzIHJlcXVlc3RpbmcgQXV4DQo+IHBvd2VyIGZvciB0aGUgc2FtZSBSb290IFBvcnQsIGJ1
+dCB0aGUgY2hhbmdlbG9nIG9mIHRoZSBmaXJzdCBwYXRjaCBhbHJlYWR5DQo+IGNsYWltZWQgdGhh
+dCB0aGUgYWdncmVnYXRpb24gb2YgcmVxdWVzdHMgd2FzIG5vdCBzdXBwb3J0ZWQuICBTbyBpZiBv
+bmx5IG9uZQ0KPiBkcml2ZXIgd2lsbCBiZSBhbGxvd2VkIHRvIHJlcXVlc3QgdGhlIEF1eCBwb3dl
+ciBmb3IgdGhlIGdpdmVuIFJvb3QgUG9ydCwgd2h5DQo+IHdvdWxkIHRoZSBub3RpZmllcnMgYmUg
+bmVjZXNzYXJ5IGFmdGVyIGFsbD8NClBsZWFzZSBndWlkZSB1cywgaWYgd2UgcmVtb3ZlIHRoZSBh
+Ym92ZSBsaW1pdGF0aW9uIGZyb20gdGhlIGNvbW1pdCBsb2cuDQpUaGVuIGRvIHdlIGhhdmUgYW55
+IGRlc2lnbiBpc3N1ZSB3aXRoIG5vdGlmaWVyIGFwcHJvYWNoID8NClRoYW5rcywNCkFuc2h1bWFu
+Lg0K
