@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6FA1C3600C
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 17:48:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 138B2C369A0
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Apr 2025 17:48:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A3B210EA43;
-	Thu,  3 Apr 2025 17:48:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C843A10EA4E;
+	Thu,  3 Apr 2025 17:48:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IYcHPsd6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="geY/OJN3";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B8CA10EA3F
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Apr 2025 17:48:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67A5610EA4F
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Apr 2025 17:48:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743702502; x=1775238502;
+ t=1743702504; x=1775238504;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=mTEJh0kTpQJWUScgnyjrNuhu3QrCUnDx98NTJwOdu3E=;
- b=IYcHPsd6KXd/jjVayaR1NJuroyl59T+ZSygc1AImgks0bvlmOzLzHiuA
- OvTvwQqRxBUu9+3wlpXGxA/kREwgATTDeppjC4BjT5Izw78J86l5li6bC
- L2EQCIjxqUqOH1rsShdo5oktl58Ns42fk4KOKomdzMRsuen0PMmmaNE6Q
- VEQZIKJd/lg4ZRXpdfq7+s4tMwdIu1CfHaNNhakZGi2RN7HxNWjfLiVZI
- qs4eHh5zqq2YHbsUw4smIv7eMZSNl/cWnUuN5MFqWUG+xx7fgVrzgY1ZI
- v4Mg3Xl6f4sdtEPLssFD9WrLXynad0t6YR7WY7oo2gSQlytKzN5qUO1sd Q==;
-X-CSE-ConnectionGUID: kPiixMndQH2VA1X8E8fAkA==
-X-CSE-MsgGUID: t0Dwny1mQ6GJjVCwV78IPg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11393"; a="55758437"
-X-IronPort-AV: E=Sophos;i="6.15,186,1739865600"; d="scan'208";a="55758437"
+ bh=ioFRQb2OCrJz1I4hHjXOB4y4Fz6u21Y7KWvhCxCbv8I=;
+ b=geY/OJN3ttZdmhSMUWodvBgHZeJAF95NqTMclE3KZ0+r0eusVAqsXKja
+ 2V+zWJHAXJDN2R6zXEObSU2sRMRAMfGFV5V6hNUPfvk5Evdy1G/sSGouu
+ KI7ZQ/EDux2KGiywzzwLLqpUsOJKoUKPwEf7ujq3cJ8mPtXKY7dyxKM6A
+ Y7bAP0bY1lAyULUXO035bwfNkdgyCde8SG2P2uNwZl9Lx3A6nSH1y5Jp1
+ DkMxZpD4QLBdoBWQLhqaLtwPmfL9wMckz/7kgbmH4fRwIMNxM8SYQBdiJ
+ 0b1K/74CIaWDUm62AFYMspbNHECKBhzb8dYb7w+SDlLES1/m2qE/QcT5W Q==;
+X-CSE-ConnectionGUID: jW4PEF6hSfS++FxjU9cerw==
+X-CSE-MsgGUID: AQskVsQCS5CFdDV/+hQv6g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11393"; a="55758448"
+X-IronPort-AV: E=Sophos;i="6.15,186,1739865600"; d="scan'208";a="55758448"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2025 10:48:22 -0700
-X-CSE-ConnectionGUID: mhgyR/icTfCKQQZ4kvordg==
-X-CSE-MsgGUID: EBdVPwM9RrmnFYdnn8APkA==
+ 03 Apr 2025 10:48:24 -0700
+X-CSE-ConnectionGUID: LXtqurtDQr6zWzl2sLGBtg==
+X-CSE-MsgGUID: jRBm9FgSSOe/a88UdJMeWw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,186,1739865600"; d="scan'208";a="132201577"
+X-IronPort-AV: E=Sophos;i="6.15,186,1739865600"; d="scan'208";a="132201594"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa004.fm.intel.com with ESMTP; 03 Apr 2025 10:48:20 -0700
+ by fmviesa004.fm.intel.com with ESMTP; 03 Apr 2025 10:48:22 -0700
 From: Raag Jadav <raag.jadav@intel.com>
 To: lucas.demarchi@intel.com,
 	rodrigo.vivi@intel.com
 Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
  badal.nilawar@intel.com, riana.tauro@intel.com,
  Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v2 1/3] drm/xe: Move xe_device_sysfs_init() to xe_pci_probe()
-Date: Thu,  3 Apr 2025 23:17:40 +0530
-Message-Id: <20250403174742.1294227-2-raag.jadav@intel.com>
+Subject: [PATCH v2 2/3] drm/xe: Expose PCIe Gen4 downspeed attributes
+Date: Thu,  3 Apr 2025 23:17:41 +0530
+Message-Id: <20250403174742.1294227-3-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250403174742.1294227-1-raag.jadav@intel.com>
 References: <20250403174742.1294227-1-raag.jadav@intel.com>
@@ -68,92 +68,153 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move xe_device_sysfs_init() to xe_pci_probe() so that we can expose
-non-PM attributes as well.
+Expose sysfs attributes for PCIe Gen4 downspeed capability and status.
 
 Signed-off-by: Raag Jadav <raag.jadav@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_sysfs.c | 11 +++++++----
- drivers/gpu/drm/xe/xe_pci.c          |  6 ++++++
- drivers/gpu/drm/xe/xe_pm.c           |  5 -----
- 3 files changed, 13 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/xe_device_sysfs.c | 86 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_pcode_api.h    |  5 ++
+ 2 files changed, 91 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
-index 7efbd4c52791..d4c73acea1cf 100644
+index d4c73acea1cf..4e6175907832 100644
 --- a/drivers/gpu/drm/xe/xe_device_sysfs.c
 +++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
-@@ -67,7 +67,8 @@ static void xe_device_sysfs_fini(void *arg)
+@@ -11,6 +11,9 @@
+ 
+ #include "xe_device.h"
+ #include "xe_device_sysfs.h"
++#include "xe_mmio.h"
++#include "xe_pcode_api.h"
++#include "xe_pcode.h"
+ #include "xe_pm.h"
+ 
+ /**
+@@ -63,12 +66,85 @@ vram_d3cold_threshold_store(struct device *dev, struct device_attribute *attr,
+ 
+ static DEVICE_ATTR_RW(vram_d3cold_threshold);
+ 
++/**
++ * DOC: PCIe Gen5 Update Limitations
++ *
++ * Default link speed of discrete GPUs is determined by FIT parameters stored
++ * in their flash memory, which are subject to override through user initiated
++ * firmware updates. It has been observed that devices configured with PCIe
++ * Gen5 as their default speed can come across link quality issues due to host
++ * or motherboard limitations and may have to auto-downspeed to PCIe Gen4 when
++ * faced with unstable link at Gen5. The users are required to ensure that the
++ * device is capable of auto-downspeeding to PCIe Gen4 link before pushing the
++ * image with Gen5 as default configuration. This can be done by reading
++ * ``pcie_gen4_downspeed_capable`` sysfs entry, which will denote PCIe Gen4
++ * downspeed capability of the device with boolean output value of ``0`` or
++ * ``1``, meaning `incapable` or `capable` respectively.
++ *
++ * .. code-block:: shell
++ *
++ *    $ cat /sys/bus/pci/devices/<bdf>/pcie_gen4_downspeed_capable
++ *
++ * Pushing PCIe Gen5 update on a downspeed incapable device and facing link
++ * instability due to host or motherboard limitations can result in driver not
++ * being able to successfully bind to the device, making further firmware
++ * updates impossible with RMA being the only last resort.
++ *
++ * Link downspeed status of PCIe Gen4 downspeed capable devices is available
++ * through ``pcie_gen4_downspeed_status`` sysfs entry with boolean output value
++ * of ``0`` or ``1``, where ``0`` means no auto-downspeeding was required during
++ * link training (which is the optimal scenario) and ``1`` means the device has
++ * auto-downsped to PCIe Gen4 due to unstable Gen5 link.
++ *
++ * .. code-block:: shell
++ *
++ *    $ cat /sys/bus/pci/devices/<bdf>/pcie_gen4_downspeed_status
++ */
++
++static ssize_t
++pcie_gen4_downspeed_capable_show(struct device *dev, struct device_attribute *attr, char *buf)
++{
++	struct pci_dev *pdev = to_pci_dev(dev);
++	struct xe_device *xe = pdev_to_xe_device(pdev);
++	u32 cap, val;
++
++	xe_pm_runtime_get(xe);
++	val = xe_mmio_read32(xe_root_tile_mmio(xe), BMG_PCIE4_CAP);
++	xe_pm_runtime_put(xe);
++
++	cap = REG_FIELD_GET(PCIE4_DOWNSPEED, val);
++	return sysfs_emit(buf, "%u\n", cap == DOWNSPEED_CAPABLE ? true : false);
++}
++static DEVICE_ATTR_RO(pcie_gen4_downspeed_capable);
++
++static ssize_t
++pcie_gen4_downspeed_status_show(struct device *dev, struct device_attribute *attr, char *buf)
++{
++	struct pci_dev *pdev = to_pci_dev(dev);
++	struct xe_device *xe = pdev_to_xe_device(pdev);
++	u32 val;
++	int ret;
++
++	xe_pm_runtime_get(xe);
++	ret = xe_pcode_read(xe_device_get_root_tile(xe), PCODE_MBOX(DGFX_PCODE_STATUS,
++			    DGFX_GET_INIT_STATUS, 0), &val, NULL);
++	xe_pm_runtime_put(xe);
++
++	return ret ?: sysfs_emit(buf, "%u\n", REG_FIELD_GET(DGFX_PCIE4_DOWNSPEED_STATUS, val));
++}
++static DEVICE_ATTR_RO(pcie_gen4_downspeed_status);
++
+ static void xe_device_sysfs_fini(void *arg)
  {
  	struct xe_device *xe = arg;
  
--	sysfs_remove_file(&xe->drm.dev->kobj, &dev_attr_vram_d3cold_threshold.attr);
-+	if (xe->d3cold.capable)
-+		sysfs_remove_file(&xe->drm.dev->kobj, &dev_attr_vram_d3cold_threshold.attr);
+ 	if (xe->d3cold.capable)
+ 		sysfs_remove_file(&xe->drm.dev->kobj, &dev_attr_vram_d3cold_threshold.attr);
++
++	if (xe->info.platform == XE_BATTLEMAGE) {
++		sysfs_remove_file(&xe->drm.dev->kobj, &dev_attr_pcie_gen4_downspeed_capable.attr);
++		sysfs_remove_file(&xe->drm.dev->kobj, &dev_attr_pcie_gen4_downspeed_status.attr);
++	}
  }
  
  int xe_device_sysfs_init(struct xe_device *xe)
-@@ -75,9 +76,11 @@ int xe_device_sysfs_init(struct xe_device *xe)
- 	struct device *dev = xe->drm.dev;
- 	int ret;
+@@ -82,5 +158,15 @@ int xe_device_sysfs_init(struct xe_device *xe)
+ 			return ret;
+ 	}
  
--	ret = sysfs_create_file(&dev->kobj, &dev_attr_vram_d3cold_threshold.attr);
--	if (ret)
--		return ret;
-+	if (xe->d3cold.capable) {
-+		ret = sysfs_create_file(&dev->kobj, &dev_attr_vram_d3cold_threshold.attr);
++	if (xe->info.platform == XE_BATTLEMAGE) {
++		ret = sysfs_create_file(&dev->kobj, &dev_attr_pcie_gen4_downspeed_capable.attr);
++		if (ret)
++			return ret;
++
++		ret = sysfs_create_file(&dev->kobj, &dev_attr_pcie_gen4_downspeed_status.attr);
 +		if (ret)
 +			return ret;
 +	}
- 
++
  	return devm_add_action_or_reset(dev, xe_device_sysfs_fini, xe);
  }
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 58347fa91841..246682b2a2be 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -18,6 +18,7 @@
- #include "display/xe_display.h"
- #include "regs/xe_gt_regs.h"
- #include "xe_device.h"
-+#include "xe_device_sysfs.h"
- #include "xe_drv.h"
- #include "xe_gt.h"
- #include "xe_gt_sriov_vf.h"
-@@ -864,6 +865,11 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	if (err)
- 		goto err_driver_cleanup;
+diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
+index e622ae17f08d..1ea6b2a586ae 100644
+--- a/drivers/gpu/drm/xe/xe_pcode_api.h
++++ b/drivers/gpu/drm/xe/xe_pcode_api.h
+@@ -34,6 +34,7 @@
+ #define   DGFX_PCODE_STATUS		0x7E
+ #define     DGFX_GET_INIT_STATUS	0x0
+ #define     DGFX_INIT_STATUS_COMPLETE	0x1
++#define     DGFX_PCIE4_DOWNSPEED_STATUS	REG_BIT(31)
  
-+	/* We have PM related attributes, so do it after xe_pm_init(). */
-+	err = xe_device_sysfs_init(xe);
-+	if (err)
-+		return err;
+ #define   PCODE_POWER_SETUP			0x7C
+ #define     POWER_SETUP_SUBCOMMAND_READ_I1	0x4
+@@ -66,6 +67,10 @@
+ /* Auxiliary info bits */
+ #define   AUXINFO_HISTORY_OFFSET	REG_GENMASK(31, 29)
+ 
++#define BMG_PCIE4_CAP			XE_REG(0x138340)
++#define   PCIE4_DOWNSPEED		REG_GENMASK(1, 0)
++#define      DOWNSPEED_CAPABLE		2
 +
- 	drm_dbg(&xe->drm, "d3cold: capable=%s\n",
- 		str_yes_no(xe->d3cold.capable));
- 
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 7b6b754ad6eb..6af1de78dae8 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -16,7 +16,6 @@
- #include "xe_bo.h"
- #include "xe_bo_evict.h"
- #include "xe_device.h"
--#include "xe_device_sysfs.h"
- #include "xe_ggtt.h"
- #include "xe_gt.h"
- #include "xe_guc.h"
-@@ -306,10 +305,6 @@ int xe_pm_init(struct xe_device *xe)
- 	xe->d3cold.capable = xe_pm_pci_d3cold_capable(xe);
- 
- 	if (xe->d3cold.capable) {
--		err = xe_device_sysfs_init(xe);
--		if (err)
--			return err;
--
- 		vram_threshold = vram_threshold_value(xe);
- 		err = xe_pm_set_vram_threshold(xe, vram_threshold);
- 		if (err)
+ struct pcode_err_decode {
+ 	int errno;
+ 	const char *str;
 -- 
 2.34.1
 
