@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FE20C36010
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Apr 2025 22:11:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A33AC36010
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Apr 2025 22:20:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D6E510E33E;
-	Fri,  4 Apr 2025 22:11:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21BC910E33E;
+	Fri,  4 Apr 2025 22:20:25 +0000 (UTC)
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B90310E035;
- Fri,  4 Apr 2025 22:11:58 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0580706771044754751=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9531C10E035;
+ Fri,  4 Apr 2025 22:20:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Cleanup_GGTT_usag?=
- =?utf-8?q?e_outside_of_xe=5Fggtt=2Ec?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Offload_GGTT_binding?=
+ =?utf-8?q?_to_migration_engine=2E?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Maarten Lankhorst" <dev@lankhorst.se>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 04 Apr 2025 22:11:58 -0000
-Message-ID: <174380471810.39791.7800562145716872382@e6b6f09ec485>
+Date: Fri, 04 Apr 2025 22:20:23 -0000
+Message-ID: <174380522360.39800.17812874068220685484@e6b6f09ec485>
 X-Patchwork-Hint: ignore
-References: <20250404205028.620300-1-dev@lankhorst.se>
-In-Reply-To: <20250404205028.620300-1-dev@lankhorst.se>
+References: <20250404205138.620455-1-dev@lankhorst.se>
+In-Reply-To: <20250404205138.620455-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,106 +40,29 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0580706771044754751==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Cleanup GGTT usage outside of xe_ggtt.c
-URL   : https://patchwork.freedesktop.org/series/147281/
+Series: Offload GGTT binding to migration engine.
+URL   : https://patchwork.freedesktop.org/series/147283/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-2906-15ac66651307aa3178e5ff8fc7d62b97f2092d09_BAT -> xe-pw-147281v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 60b7ecc2c5c9 drm-tip: 2025y-04m-04d-21h-49m-10s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Use xe_ggtt_map_bo_unlocked for resume
+Applying: drm/xe: Add xe_ggtt_might_lock
+Applying: drm/xe: Add xe_ggtt_alloc
+Applying: drm/xe/display: Remove dereferences of ggtt for tile id
+Applying: drm/xe/ggtt: Seperate flags and address in PTE encoding
+Applying: drm/xe/display: Dont poke into GGTT internals to fill a DPT
+Applying: drm/xe/display: Convert GGTT mapping to use pte_encode_flags
+Applying: drm/xe: Remove pte_encode_bo callback
+Applying: drm/xe: Implement a helper for reading out a GGTT PTE at a specified offset
+Applying: drm/xe: Add GGTT updates to migration engine
+Applying: drm/xe: Convert xe_fb_pin to use a callback for insertion into GGTT
+Applying: drm/xe: Allow for optimization of xe_ggtt_map_bo
+Applying: drm/xe: Move struct xe_ggtt to xe_ggtt.c
 
 
-Build changes
--------------
-
-  * IGT: IGT_8307 -> IGT_8309
-  * Linux: xe-2906-15ac66651307aa3178e5ff8fc7d62b97f2092d09 -> xe-pw-147281v1
-
-  IGT_8307: a4e3c079328d3bfb2f071eae5ed93db3334c8cc9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8309: fb77fb2d8d58a2539c9d67d00e1747351eec0bea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2906-15ac66651307aa3178e5ff8fc7d62b97f2092d09: 15ac66651307aa3178e5ff8fc7d62b97f2092d09
-  xe-pw-147281v1: 147281v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147281v1/index.html
-
---===============0580706771044754751==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Cleanup GGTT usage outside of xe_ggtt.c</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147281/">https://patchwork.freedesktop.org/series/147281/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147281v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147281v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2906-15ac66651307aa3178e5ff8fc7d62b97f2092d09_BAT -&gt; xe-pw-147281v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8307 -&gt; IGT_8309</li>
-<li>Linux: xe-2906-15ac66651307aa3178e5ff8fc7d62b97f2092d09 -&gt; xe-pw-147281v1</li>
-</ul>
-<p>IGT_8307: a4e3c079328d3bfb2f071eae5ed93db3334c8cc9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8309: fb77fb2d8d58a2539c9d67d00e1747351eec0bea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2906-15ac66651307aa3178e5ff8fc7d62b97f2092d09: 15ac66651307aa3178e5ff8fc7d62b97f2092d09<br />
-  xe-pw-147281v1: 147281v1</p>
-
-</body>
-</html>
-
---===============0580706771044754751==--
