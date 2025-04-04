@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DA6EC3601A
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Apr 2025 15:52:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94D26C3601A
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Apr 2025 15:53:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1055E10E274;
-	Fri,  4 Apr 2025 15:52:44 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TipjXeKT";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6B5110E03A
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Apr 2025 15:52:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743781963; x=1775317963;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=lKGZF7cRvMnKn8vO4/iwtiMhr98heI19W1ojbSWx6ug=;
- b=TipjXeKTT3cAbpjtoCvGKJf9RbuP7kVG+oYUaOYoagCrSTuEfG97jeVU
- 8oZiUSnNuV4xjUplsYBzSdDCfxwYychjj/LkSkMPe5KXEWrdgDhL8rsVo
- eLfzXnkykIU5DJq0N6a29rItik+S0/Hjyl7upC7Rr8pU1c5UohoIsrBRK
- BCltu9OK6rS1TEH6qR8r6CXfDxChWhJphvYpJyKc7OPaj+DxPrxweUQL4
- xdDUTmOASMNDvlfBywj55YjFgNTd6EfGiq6ROqLWQD/zkIqRMjzhSlqzW
- DTkhXNOpOlm/7LYfUWTTey3u6Pu0N3wT8ipu7xLPLHy1CsImnHJs9L5qt g==;
-X-CSE-ConnectionGUID: 4y3h9rg8R1GlHPJ/gzU56w==
-X-CSE-MsgGUID: fnCY7/vYQ2Gs1KQAnIwjTA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11394"; a="48877363"
-X-IronPort-AV: E=Sophos;i="6.15,188,1739865600"; d="scan'208";a="48877363"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2025 08:52:42 -0700
-X-CSE-ConnectionGUID: PBU8jx/1QUigYRsSKB49fw==
-X-CSE-MsgGUID: zo/NgMf2Q4SKlSfx/zuvTw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,188,1739865600"; d="scan'208";a="132549063"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 04 Apr 2025 08:52:40 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 04 Apr 2025 18:52:39 +0300
-Date: Fri, 4 Apr 2025 18:52:39 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com
-Subject: Re: [PATCH v5 11/16] drm/xe: Reduce DPT table alignment as in i915
-Message-ID: <Z_AAR1-AZ5K5ItEn@intel.com>
-References: <20250403190317.6064-1-tvrtko.ursulin@igalia.com>
- <20250403190317.6064-12-tvrtko.ursulin@igalia.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54DCC10E03A;
+	Fri,  4 Apr 2025 15:53:15 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A472810E28E;
+ Fri,  4 Apr 2025 15:53:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250403190317.6064-12-tvrtko.ursulin@igalia.com>
-X-Patchwork-Hint: comment
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/dp=5Fmst=3A?=
+ =?utf-8?q?_Clean_up_active_stream_count_tracking?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 04 Apr 2025 15:53:13 -0000
+Message-ID: <174378199366.39095.6770863431785542861@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250404150310.1156696-1-imre.deak@intel.com>
+In-Reply-To: <20250404150310.1156696-1-imre.deak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,47 +36,26 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Apr 03, 2025 at 08:03:11PM +0100, Tvrtko Ursulin wrote:
-> There is some magic going on with DPT alignment values which are
+== Series Details ==
 
-The "magic" is just that we define the alignment in terms of the DPT
-address space, and to translate that back into the GGTT address space
-we just divide by 512 (page size / PTE size).
+Series: drm/i915/dp_mst: Clean up active stream count tracking
+URL   : https://patchwork.freedesktop.org/series/147274/
+State : success
 
-This does look to be interestin in the GGTT alignment so this looks
-correct to me.
+== Summary ==
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 15ac66651307 drm-tip: 2025y-04m-04d-12h-57m-01s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/dp: Rename intel_dp::link_trained to link.active
+Applying: drm/i915/dp_mst: Add intel_dp_mst_{inc, dec}_active_streams()
+Applying: drm/i915/dp_mst: Remove stream count assert from intel_dp_check_mst_status()
+Applying: drm/i915/dp_mst: Rename intel_dp_mst_encoder_active_links() to intel_dp_mst_active_streams()
+Applying: drm/i915/dp_mst: Use intel_dp_mst_active_streams() instead of open-coding it
+Applying: drm/i915/dp_mst: Rename intel_dp::mst.active_links to mst.active_streams
 
-> multiplied by 512, and then for specifically pinning the DPT table
-> scaled back down.
-> 
-> Make xe do it in the same way as i915.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> ---
->  drivers/gpu/drm/xe/display/xe_fb_pin.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> index 1538e2b02f89..1ccb4e563bba 100644
-> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> @@ -327,7 +327,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
->  
->  	vma->bo = bo;
->  	if (intel_fb_uses_dpt(&fb->base))
-> -		ret = __xe_pin_fb_vma_dpt(fb, view, vma, alignment);
-> +		ret = __xe_pin_fb_vma_dpt(fb, view, vma, alignment / 512);
->  	else
->  		ret = __xe_pin_fb_vma_ggtt(fb, view, vma,  alignment);
->  	if (ret)
-> -- 
-> 2.48.0
 
--- 
-Ville Syrjälä
-Intel
