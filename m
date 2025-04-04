@@ -4,64 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25FB0C36010
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Apr 2025 06:18:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63758C36010
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Apr 2025 06:51:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC35110E30C;
-	Fri,  4 Apr 2025 06:18:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C69A10E309;
+	Fri,  4 Apr 2025 06:51:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="tNW0ofYI";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="boYZmGZy";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="8Bpv8bro";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="boYZmGZy";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="8Bpv8bro";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFF5A10E02F;
- Fri,  4 Apr 2025 06:18:35 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 0710844F96;
- Fri,  4 Apr 2025 06:18:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 381B6C4CEED;
- Fri,  4 Apr 2025 06:18:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1743747511;
- bh=3p5RNKQynEmmFhTxUyZItzxVy7jBWoLZXalEJ5ewl1Q=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=tNW0ofYItsCGfFKgULwKUFWn/IsHIBsv27jrwH9TEpC5G+C8spXXN2kFLc7opQvSC
- pr1Z/sGeFmA973aKq95qpkXsV688D8QjUT45IJq4qBqOA5+/bdXQiTjVWy4LEHQKXy
- Kq6JTIbvTN6gRA98RMCdWUTlYk6pxmQpwRQh1yiriSLIW9WKzUhISKukVplZ2pZ25j
- hP/AVeVovgWBU2DNAvJ67yo3SA2LlPkStna/60NwqsPqQJDe7AUfIQKxsKFQhNobNN
- 67NG5bPVgWn9v9FTyIFJ8UWSTQYXTau3SAFjrlUiSDwE7MurlpOohJFJh5dPNOeiDq
- 4qBVqWTQ1KY1g==
-Received: by mail-lf1-f47.google.com with SMTP id
- 2adb3069b0e04-54b10594812so1919435e87.1; 
- Thu, 03 Apr 2025 23:18:31 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCUMqjVWNGW423Fa+CnhswBTasa+uKMnoQ+VzLssExdI72UnCTRYnToLMXVZPZM5HNK/ygio/Ju2sPuU@lists.freedesktop.org,
- AJvYcCUk6VoBaGWJITAOg03NM5dwsFDmx8updJS8KFQhZc4q3yWjTwbLg3zuZuLRn/DL5cW589IKYIP6mEQ=@lists.freedesktop.org,
- AJvYcCVxij/l6WPFErG24r18DH4Ph/ncexBp0ExCLiEhXHu/QKq30SCGaSyAJvqPrHQplKx4e7B25cvXg2g=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx0vO1bLnGkCCHQlbh/uT7ALZ3RnCOcWc8oxb3xupLvbpaWke8i
- UKK/JACB1MST83F81wF9W3LaJXQiQHVrV/Wkyczdwru1xRAtqZs15NDNTUlqC0xK49MOqLixM03
- 3eDdKtaQ8jVLyvgD9b/Rp3DDk/Ms=
-X-Google-Smtp-Source: AGHT+IE2XmXzaXXRt/W18azDyhTg48mW3/EOlXBV7L209Nxgz796Ei03JAtTjXjq/GjtOuzlgopGB7HjhNcXr2yPQss=
-X-Received: by 2002:a05:6512:398a:b0:549:8f15:db18 with SMTP id
- 2adb3069b0e04-54c232f8267mr313948e87.28.1743747509736; Thu, 03 Apr 2025
- 23:18:29 -0700 (PDT)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0803910E309
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Apr 2025 06:51:09 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 949F1211C4;
+ Fri,  4 Apr 2025 06:51:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1743749467; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=SjpAnnOxN0Q1H004weBg/wRQGuQae06E5nKdJp7hhjI=;
+ b=boYZmGZyifW3xCiPqqYo5S5EmFpeUqs2UZPrAx53H2xWh8Rk4eftK51K/1u3viMeTJ9//L
+ 3A8+1hg/mSxx35xVi1jB6eMNey+3jSbj/UFSqtwkEqDrJCDyloEH1rf2gdsLD5ATSy1+YC
+ kYdV8ZO/1iEcHGzp1BwO5wKI57W7mNg=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1743749467;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=SjpAnnOxN0Q1H004weBg/wRQGuQae06E5nKdJp7hhjI=;
+ b=8Bpv8bro85Fkmwdh5T0UIpPc90dQXIRq/G3Pjo/8tYT05jB1qN4rafZalujI3nIz6ASE24
+ T8kbAH36UfL91uAg==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1743749467; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=SjpAnnOxN0Q1H004weBg/wRQGuQae06E5nKdJp7hhjI=;
+ b=boYZmGZyifW3xCiPqqYo5S5EmFpeUqs2UZPrAx53H2xWh8Rk4eftK51K/1u3viMeTJ9//L
+ 3A8+1hg/mSxx35xVi1jB6eMNey+3jSbj/UFSqtwkEqDrJCDyloEH1rf2gdsLD5ATSy1+YC
+ kYdV8ZO/1iEcHGzp1BwO5wKI57W7mNg=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1743749467;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=SjpAnnOxN0Q1H004weBg/wRQGuQae06E5nKdJp7hhjI=;
+ b=8Bpv8bro85Fkmwdh5T0UIpPc90dQXIRq/G3Pjo/8tYT05jB1qN4rafZalujI3nIz6ASE24
+ T8kbAH36UfL91uAg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 30DEE13691;
+ Fri,  4 Apr 2025 06:51:07 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id x2afCluB72cgWgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Fri, 04 Apr 2025 06:51:07 +0000
+Date: Fri, 4 Apr 2025 08:51:05 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-next-fixes
+Message-ID: <20250404065105.GA27699@linux.fritz.box>
 MIME-Version: 1.0
-References: <20250402124656.629226-1-jani.nikula@intel.com>
-In-Reply-To: <20250402124656.629226-1-jani.nikula@intel.com>
-From: Masahiro Yamada <masahiroy@kernel.org>
-Date: Fri, 4 Apr 2025 15:17:52 +0900
-X-Gmail-Original-Message-ID: <CAK7LNAS6o_66bUB6-qj6NnaTRNKvu5ycxOP+kGfizYVBNjZAyw@mail.gmail.com>
-X-Gm-Features: AQ5f1JrOz4H_4S-Z7mgpbDaDA45qEgY5_OEPXah-LKNkWABZ8jBaQbV0gBwl1ms
-Message-ID: <CAK7LNAS6o_66bUB6-qj6NnaTRNKvu5ycxOP+kGfizYVBNjZAyw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/4] kbuild: resurrect generic header check facility
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: Linus Torvalds <torvalds@linux-foundation.org>,
- linux-kernel@vger.kernel.org, 
- Jason Gunthorpe <jgg@nvidia.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona.vetter@ffwll.ch>, linux-kbuild@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[99.99%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-0.992]; MIME_GOOD(-0.10)[text/plain];
+ FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; MIME_TRACE(0.00)[0:+];
+ ARC_NA(0.00)[]; RCPT_COUNT_TWELVE(0.00)[16];
+ MISSING_XM_UA(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ FUZZY_BLOCKED(0.00)[rspamd.com];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,101 +110,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Apr 2, 2025 at 9:47=E2=80=AFPM Jani Nikula <jani.nikula@intel.com> =
-wrote:
->
-> Another go at hiding the turds.
->
-> In v1 [1] I hid the build artifacts under .hdrtest subdirectories, one in=
- each
-> $(obj) directory, but the feedback from Linus [2] was to have one top lev=
-el
-> directory for this.
->
-> This is not possible without turning the whole thing back into a generic =
-header
-> check facility. Personally, I think this is a good thing. Just look at pa=
-tches
-> 2-4, it's great.
->
-> The main reason we've been doing this in the subsystem/driver level at al=
-l is
-> the opposition from the kbuild maintainer. We'd very much like for Masahi=
-ro to
-> support us in our efforts, but without that support, we're limited to hac=
-king in
-> the subsystem/driver Makefiles.
->
-> BR,
-> Jani.
->
->
-> [1] https://lore.kernel.org/r/20250401121830.21696-1-jani.nikula@intel.co=
-m
->
-> [2] https://lore.kernel.org/r/CAHk-=3DwiP0ea7xq2P3ryYs6xGWoqTw1E4jha67ZbJ=
-kaFrjqUdkQ@mail.gmail.com
->
->
-> Cc: Linus Torvalds <torvalds@linux-foundation.org>
-> Cc: Masahiro Yamada <masahiroy@kernel.org>
+Hi Dave, Sima,
 
+this is the final PR for this release cycle's drm-misc-next-fixes.
 
-NACK.
+Best regards
+Thomas
 
-This does not solve any real issue, except making Linus happy
-- Sure, he is happy as long as he no longer has to see the turds.
+drm-misc-next-fixes-2025-04-04:
+Short summary of fixes pull:
 
-This patch merely hides the turds by moving all the
-header-test build artifacts under the .header-check/
-and introducing CONFIG_HEADER_CHECK_DISABLE.
-Yes, Linus advised us to hide all the turds because he cares
-about the TAB-completion.
+bridge:
+- tda998x: Select CONFIG_DRM_KMS_HELPER
+The following changes since commit ee20c69c789b6cb2179a535cf440d72b98f4a134:
 
-But to me, from the Kbuild perspective, this is not a solution at all.
-What is worse, Jani is pushing his workaround into the common
-Kbuild Makefiles, which I maintain, and he is even make this
-broken feature widely accessible.
+  drm: adp: Fix NULL vs IS_ERR() check in adp_plane_new() (2025-03-14 09:42:11 -0400)
 
-I agree with Jason.
-His idea sounds better, although I do not have enough time
-for investigating it further or implementing it now.
+are available in the Git repository at:
 
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-fixes-2025-04-04
 
-At least, this patchset is not something we should rush into.
+for you to fetch changes up to 85a063b8b281e144ed96463936fb4e6b3d4fe9e4:
 
+  drm/i2c: tda998x: select CONFIG_DRM_KMS_HELPER (2025-03-30 21:02:06 +0300)
 
+----------------------------------------------------------------
+Short summary of fixes pull:
 
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Simona Vetter <simona.vetter@ffwll.ch>
-> Cc: linux-kbuild@vger.kernel.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: intel-xe@lists.freedesktop.org
-> Cc: intel-gfx@lists.freedesktop.org
->
->
-> Jani Nikula (4):
->   kbuild: add generic header check facility
->   drm: switch to generic header check facility
->   drm/i915: switch to generic header check facility
->   drm/xe: switch to generic header check facility
->
->  drivers/gpu/drm/Kconfig           |  2 +-
->  drivers/gpu/drm/Makefile          | 15 +--------------
->  drivers/gpu/drm/i915/Makefile     | 14 ++------------
->  drivers/gpu/drm/xe/Makefile       | 10 ++--------
->  drivers/gpu/drm/xe/xe_pcode_api.h |  4 ++++
->  include/drm/Makefile              | 15 +--------------
->  init/Kconfig                      | 25 +++++++++++++++++++++++++
->  scripts/Makefile.build            | 13 +++++++++++++
->  scripts/Makefile.lib              |  7 +++++++
->  9 files changed, 56 insertions(+), 49 deletions(-)
->
-> --
-> 2.39.5
->
+bridge:
+- tda998x: Select CONFIG_DRM_KMS_HELPER
 
+----------------------------------------------------------------
+Arnd Bergmann (1):
+      drm/i2c: tda998x: select CONFIG_DRM_KMS_HELPER
 
---=20
-Best Regards
-Masahiro Yamada
+ drivers/gpu/drm/bridge/Kconfig | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
+
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
