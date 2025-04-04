@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAC4FC3600C
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Apr 2025 03:32:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DA30C36010
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Apr 2025 04:52:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F22F10E090;
-	Fri,  4 Apr 2025 03:32:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C3AD10E127;
+	Fri,  4 Apr 2025 04:52:57 +0000 (UTC)
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEE4D10E090;
- Fri,  4 Apr 2025 03:32:35 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69C3610E127;
+ Fri,  4 Apr 2025 04:52:56 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5252000183749660425=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Large_devcoredump_file_support?=
- =?utf-8?q?_=28rev2=29?=
+Subject: =?utf-8?b?4pyTIFhlLkNJLkJBVDogc3VjY2VzcyBmb3IgVkY6IGRlYnVnZnMgZml4ZXMgKHJl?=
+ =?utf-8?b?djIp?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 04 Apr 2025 03:32:35 -0000
-Message-ID: <174373755584.37249.3603726306663056727@e6b6f09ec485>
+Date: Fri, 04 Apr 2025 04:52:56 -0000
+Message-ID: <174374237642.37340.1831085455962483002@e6b6f09ec485>
 X-Patchwork-Hint: ignore
-References: <20250403202705.18488-1-matthew.brost@intel.com>
-In-Reply-To: <20250403202705.18488-1-matthew.brost@intel.com>
+References: <20250403142635.1821-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20250403142635.1821-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,84 +40,121 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============5252000183749660425==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: Large devcoredump file support (rev2)
-URL   : https://patchwork.freedesktop.org/series/147085/
-State : failure
+Series: VF: debugfs fixes (rev2)
+URL   : https://patchwork.freedesktop.org/series/146561/
+State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-[03:32:02] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[03:32:06] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json ARCH=um O=.kunit --jobs=48
-ERROR:root:../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c: In function ‘xe_migrate_access_memory’:
-../drivers/gpu/drm/xe/xe_migrate.c:1819:19: error: ‘XE_CACHELINE_MASK’ undeclared (first use in this function)
- 1819 |         if (len & XE_CACHELINE_MASK ||
-      |                   ^~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c:1819:19: note: each undeclared identifier is reported only once for each function it appears in
-../drivers/gpu/drm/xe/xe_migrate.c:1828:35: error: ‘XE_CACHELINE_BYTES’ undeclared (first use in this function); did you mean ‘L1_CACHE_BYTES’?
- 1828 |                         u8 bounce[XE_CACHELINE_BYTES];
-      |                                   ^~~~~~~~~~~~~~~~~~
-      |                                   L1_CACHE_BYTES
-../drivers/gpu/drm/xe/xe_migrate.c:1828:28: warning: unused variable ‘bounce’ [-Wunused-variable]
- 1828 |                         u8 bounce[XE_CACHELINE_BYTES];
-      |                            ^~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c:1888:27: error: implicit declaration of function ‘xe_migrate_vram’; did you mean ‘xe_migrate_to_vram’? [-Werror=implicit-function-declaration]
- 1888 |                 __fence = xe_migrate_vram(m, current_bytes,
-      |                           ^~~~~~~~~~~~~~~
-      |                           xe_migrate_to_vram
-../drivers/gpu/drm/xe/xe_migrate.c:1892:43: error: ‘XE_MIGRATE_COPY_TO_VRAM’ undeclared (first use in this function)
- 1892 |                                           XE_MIGRATE_COPY_TO_VRAM :
-      |                                           ^~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c:1893:43: error: ‘XE_MIGRATE_COPY_TO_SRAM’ undeclared (first use in this function)
- 1893 |                                           XE_MIGRATE_COPY_TO_SRAM);
-      |                                           ^~~~~~~~~~~~~~~~~~~~~~~
-cc1: some warnings being treated as errors
-make[7]: *** [../scripts/Makefile.build:207: drivers/gpu/drm/xe/xe_migrate.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-make[6]: *** [../scripts/Makefile.build:465: drivers/gpu/drm/xe] Error 2
-make[5]: *** [../scripts/Makefile.build:465: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:465: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:465: drivers] Error 2
-make[2]: *** [/kernel/Makefile:1994: .] Error 2
-make[1]: *** [/kernel/Makefile:251: __sub-make] Error 2
-make: *** [Makefile:251: __sub-make] Error 2
+CI Bug Log - changes from xe-2903-9edc6ea87f86cbb6cda6b76d334c07492d0a8073_BAT -> xe-pw-146561v2_BAT
+====================================================
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-146561v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_exec_basic@twice-bindexecqueue-userptr-rebind:
+    - bat-adlp-vf:        [PASS][1] -> [ABORT][2] ([Intel XE#3970])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2903-9edc6ea87f86cbb6cda6b76d334c07492d0a8073/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-userptr-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146561v2/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-userptr-rebind.html
+
+  
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
 
 
+Build changes
+-------------
+
+  * Linux: xe-2903-9edc6ea87f86cbb6cda6b76d334c07492d0a8073 -> xe-pw-146561v2
+
+  IGT_8304: 8304
+  xe-2903-9edc6ea87f86cbb6cda6b76d334c07492d0a8073: 9edc6ea87f86cbb6cda6b76d334c07492d0a8073
+  xe-pw-146561v2: 146561v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146561v2/index.html
+
+--===============5252000183749660425==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>VF: debugfs fixes (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/146561/">https://patchwork.freedesktop.org/series/146561/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146561v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146561v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2903-9edc6ea87f86cbb6cda6b76d334c07492d0a8073_BAT -&gt; xe-pw-146561v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-146561v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_exec_basic@twice-bindexecqueue-userptr-rebind:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2903-9edc6ea87f86cbb6cda6b76d334c07492d0a8073/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-userptr-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146561v2/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-userptr-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2903-9edc6ea87f86cbb6cda6b76d334c07492d0a8073 -&gt; xe-pw-146561v2</li>
+</ul>
+<p>IGT_8304: 8304<br />
+  xe-2903-9edc6ea87f86cbb6cda6b76d334c07492d0a8073: 9edc6ea87f86cbb6cda6b76d334c07492d0a8073<br />
+  xe-pw-146561v2: 146561v2</p>
+
+</body>
+</html>
+
+--===============5252000183749660425==--
