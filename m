@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E29AFC36010
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Apr 2025 07:41:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E43C9C36010
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Apr 2025 08:19:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8773010EA58;
-	Fri,  4 Apr 2025 07:41:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D27910E334;
+	Fri,  4 Apr 2025 08:19:37 +0000 (UTC)
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1050D10EA68;
- Fri,  4 Apr 2025 07:41:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70F2D10E334;
+ Fri,  4 Apr 2025 08:19:36 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============8195163459795407903=="
+ boundary="===============1500415795438025819=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_drm/xe/xe=5Fvm=3A_Implemen?=
- =?utf-8?q?t_xe=5Fvm=5Fget=5Fproperty=5Fioctl_=28rev18=29?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Remove_support_for_UHBR13?=
+ =?utf-8?q?=2E5?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 04 Apr 2025 07:41:14 -0000
-Message-ID: <174375247405.37802.3178991328819050664@e6b6f09ec485>
+Date: Fri, 04 Apr 2025 08:19:36 -0000
+Message-ID: <174375477645.37881.1745269114652688199@e6b6f09ec485>
 X-Patchwork-Hint: ignore
-References: <20250403173614.67195-1-jonathan.cavitt@intel.com>
-In-Reply-To: <20250403173614.67195-1-jonathan.cavitt@intel.com>
+References: <20250404-dprates-v5-0-c93f561a095e@intel.com>
+In-Reply-To: <20250404-dprates-v5-0-c93f561a095e@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,26 +40,68 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8195163459795407903==
+--===============1500415795438025819==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/xe/xe_vm: Implement xe_vm_get_property_ioctl (rev18)
-URL   : https://patchwork.freedesktop.org/series/145529/
-State : failure
+Series: Remove support for UHBR13.5
+URL   : https://patchwork.freedesktop.org/series/147250/
+State : success
 
 == Summary ==
 
-ERROR: The runconfig 'xe-2904-bc18da45d48d337b92a7ff9546ba61da32b3b586_FULL' does not exist in the database
+CI Bug Log - changes from xe-2904-bc18da45d48d337b92a7ff9546ba61da32b3b586_BAT -> xe-pw-147250v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-147250v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_vm@munmap-style-unbind-userptr-inval-end:
+    - bat-adlp-vf:        [PASS][1] -> [ABORT][2] ([Intel XE#3970])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2904-bc18da45d48d337b92a7ff9546ba61da32b3b586/bat-adlp-vf/igt@xe_vm@munmap-style-unbind-userptr-inval-end.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147250v1/bat-adlp-vf/igt@xe_vm@munmap-style-unbind-userptr-inval-end.html
+
+  
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
+
+
+Build changes
+-------------
+
+  * Linux: xe-2904-bc18da45d48d337b92a7ff9546ba61da32b3b586 -> xe-pw-147250v1
+
+  IGT_8304: 8304
+  xe-2904-bc18da45d48d337b92a7ff9546ba61da32b3b586: bc18da45d48d337b92a7ff9546ba61da32b3b586
+  xe-pw-147250v1: 147250v1
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v18/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147250v1/index.html
 
---===============8195163459795407903==
+--===============1500415795438025819==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -79,18 +121,40 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/xe/xe_vm: Implement xe_vm_get_property_ioctl (rev18)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145529/">https://patchwork.freedesktop.org/series/145529/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
+<tr><td><b>Series:</b></td><td>Remove support for UHBR13.5</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147250/">https://patchwork.freedesktop.org/series/147250/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v18/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145529v18/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147250v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147250v1/index.html</a></td></tr>
 
 </table>
 
 
-    <p>ERROR: The runconfig 'xe-2904-bc18da45d48d337b92a7ff9546ba61da32b3b586_FULL' does not exist in the database</p>
+    <h1>CI Bug Log - changes from xe-2904-bc18da45d48d337b92a7ff9546ba61da32b3b586_BAT -&gt; xe-pw-147250v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-147250v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_vm@munmap-style-unbind-userptr-inval-end:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2904-bc18da45d48d337b92a7ff9546ba61da32b3b586/bat-adlp-vf/igt@xe_vm@munmap-style-unbind-userptr-inval-end.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147250v1/bat-adlp-vf/igt@xe_vm@munmap-style-unbind-userptr-inval-end.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2904-bc18da45d48d337b92a7ff9546ba61da32b3b586 -&gt; xe-pw-147250v1</li>
+</ul>
+<p>IGT_8304: 8304<br />
+  xe-2904-bc18da45d48d337b92a7ff9546ba61da32b3b586: bc18da45d48d337b92a7ff9546ba61da32b3b586<br />
+  xe-pw-147250v1: 147250v1</p>
 
 </body>
 </html>
 
---===============8195163459795407903==--
+--===============1500415795438025819==--
