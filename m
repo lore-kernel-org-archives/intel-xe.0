@@ -4,58 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C24ADC3601A
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Apr 2025 15:45:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DA6EC3601A
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Apr 2025 15:52:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58A4A10E246;
-	Fri,  4 Apr 2025 15:45:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1055E10E274;
+	Fri,  4 Apr 2025 15:52:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mRARH+Gz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TipjXeKT";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 344AF10E03A
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Apr 2025 15:45:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6B5110E03A
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Apr 2025 15:52:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743781500; x=1775317500;
+ t=1743781963; x=1775317963;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=WuYHkz8wrK5TF2xeusPozwEcwZAW2Mj1RBLedirRh9s=;
- b=mRARH+GzfxAybP9TvZkLkJurzRcvzi2t08C7tB+w9nhSMKN2OqNCeEHa
- oNhZvGhgaQZkwb75WbnSNoDM0fNFhElwiS6MznWJ2gdOvxfeMgX0/t5CB
- rHvRJPAf1aXj8OUq16sK9G5uZO/Z/NSvGw5KdEpmDZN4kKfhGEDVLX6Ej
- AzaLczQWsoDGSwIKpXFMxh/zYq2ERY1FuYTEtGZeqVmln4FCSuco3ViNL
- GkbF8qxoLlXrfEUfdRffWRAGGvuO3u+phnkAy0fnaQBB58tV4UX3+oiLZ
- EScT0KwvofwemDHZLLshw7RHWW9AZWIRf0Jie5YwDlsxKYiWQziiCqGgC w==;
-X-CSE-ConnectionGUID: rnRYOAqURYubi82tSDK8mA==
-X-CSE-MsgGUID: 46j/Q469TVm0byMPBwr6QQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11394"; a="55859788"
-X-IronPort-AV: E=Sophos;i="6.15,188,1739865600"; d="scan'208";a="55859788"
+ bh=lKGZF7cRvMnKn8vO4/iwtiMhr98heI19W1ojbSWx6ug=;
+ b=TipjXeKTT3cAbpjtoCvGKJf9RbuP7kVG+oYUaOYoagCrSTuEfG97jeVU
+ 8oZiUSnNuV4xjUplsYBzSdDCfxwYychjj/LkSkMPe5KXEWrdgDhL8rsVo
+ eLfzXnkykIU5DJq0N6a29rItik+S0/Hjyl7upC7Rr8pU1c5UohoIsrBRK
+ BCltu9OK6rS1TEH6qR8r6CXfDxChWhJphvYpJyKc7OPaj+DxPrxweUQL4
+ xdDUTmOASMNDvlfBywj55YjFgNTd6EfGiq6ROqLWQD/zkIqRMjzhSlqzW
+ DTkhXNOpOlm/7LYfUWTTey3u6Pu0N3wT8ipu7xLPLHy1CsImnHJs9L5qt g==;
+X-CSE-ConnectionGUID: 4y3h9rg8R1GlHPJ/gzU56w==
+X-CSE-MsgGUID: fnCY7/vYQ2Gs1KQAnIwjTA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11394"; a="48877363"
+X-IronPort-AV: E=Sophos;i="6.15,188,1739865600"; d="scan'208";a="48877363"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2025 08:45:00 -0700
-X-CSE-ConnectionGUID: Fj8QeozfQamPOBdJ/jy41A==
-X-CSE-MsgGUID: awmIN73EQOePZsM86wKGug==
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2025 08:52:42 -0700
+X-CSE-ConnectionGUID: PBU8jx/1QUigYRsSKB49fw==
+X-CSE-MsgGUID: zo/NgMf2Q4SKlSfx/zuvTw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,188,1739865600"; d="scan'208";a="132545430"
+X-IronPort-AV: E=Sophos;i="6.15,188,1739865600"; d="scan'208";a="132549063"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 04 Apr 2025 08:44:58 -0700
+ by orviesa005.jf.intel.com with SMTP; 04 Apr 2025 08:52:40 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 04 Apr 2025 18:44:56 +0300
-Date: Fri, 4 Apr 2025 18:44:56 +0300
+ Fri, 04 Apr 2025 18:52:39 +0300
+Date: Fri, 4 Apr 2025 18:52:39 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com
-Subject: Re: [PATCH v5 05/16] drm/xe/xelp: Quiesce memory traffic before
- invalidating auxccs
-Message-ID: <Z-_-ePLbnbZOALEN@intel.com>
+Subject: Re: [PATCH v5 11/16] drm/xe: Reduce DPT table alignment as in i915
+Message-ID: <Z_AAR1-AZ5K5ItEn@intel.com>
 References: <20250403190317.6064-1-tvrtko.ursulin@igalia.com>
- <20250403190317.6064-6-tvrtko.ursulin@igalia.com>
+ <20250403190317.6064-12-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250403190317.6064-6-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250403190317.6064-12-tvrtko.ursulin@igalia.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,89 +70,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Apr 03, 2025 at 08:03:05PM +0100, Tvrtko Ursulin wrote:
-> According to i915 before invalidating auxccs we must quiesce the memory
-> traffic by an extra flush.
+On Thu, Apr 03, 2025 at 08:03:11PM +0100, Tvrtko Ursulin wrote:
+> There is some magic going on with DPT alignment values which are
+
+The "magic" is just that we define the alignment in terms of the DPT
+address space, and to translate that back into the GGTT address space
+we just divide by 512 (page size / PTE size).
+
+This does look to be interestin in the GGTT alignment so this looks
+correct to me.
+
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+> multiplied by 512, and then for specifically pinning the DPT table
+> scaled back down.
+> 
+> Make xe do it in the same way as i915.
 > 
 > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 > ---
->  drivers/gpu/drm/xe/xe_ring_ops.c       | 14 ++++++++++----
->  drivers/gpu/drm/xe/xe_ring_ops_types.h |  2 +-
->  2 files changed, 11 insertions(+), 5 deletions(-)
+>  drivers/gpu/drm/xe/display/xe_fb_pin.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-> index 61295f93ffb7..3f075dd36c86 100644
-> --- a/drivers/gpu/drm/xe/xe_ring_ops.c
-> +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-> @@ -172,7 +172,8 @@ static int emit_store_imm_ppgtt_posted(u64 addr, u64 value,
->  	return i;
->  }
+> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> index 1538e2b02f89..1ccb4e563bba 100644
+> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> @@ -327,7 +327,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
 >  
-> -static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
-> +static int emit_render_cache_flush(struct xe_sched_job *job, bool flush_l3,
-> +				   u32 *dw, int i)
->  {
->  	struct xe_gt *gt = job->q->gt;
->  	struct xe_device *xe = gt_to_xe(gt);
-> @@ -204,7 +205,7 @@ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
->  	 * deals with Protected Memory which is not needed for
->  	 * AUX CCS invalidation and lead to unwanted side effects.
->  	 */
-> -	if (GRAPHICS_VERx100(xe) < 1270)
-> +	if (flush_l3 && GRAPHICS_VERx100(xe) < 1270)
->  		flags |= PIPE_CONTROL_FLUSH_L3;
->  
->  	if (lacks_render)
-> @@ -370,10 +371,15 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
->  	struct xe_gt *gt = job->q->gt;
->  	struct xe_device *xe = gt_to_xe(gt);
->  	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
-> +	const bool aux_ccs = has_aux_ccs(xe);
->  	u32 mask_flags = 0;
->  
->  	i = emit_copy_timestamp(lrc, dw, i);
->  
-> +	/* hsdes: 1809175790 */
-> +	if (aux_ccs)
-> +		i = emit_render_cache_flush(job, 0, dw, i);
-
-s/0/false/
-
-> +
->  	dw[i++] = preparser_disable(true);
->  	if (lacks_render)
->  		mask_flags = PIPE_CONTROL_3D_ARCH_FLAGS;
-> @@ -384,7 +390,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
->  	i = emit_pipe_invalidate(mask_flags, job->ring_ops_flush_tlb, dw, i);
->  
->  	/* hsdes: 1809175790 */
-> -	if (has_aux_ccs(xe))
-> +	if (aux_ccs)
->  		i = emit_aux_table_inv(gt, CCS_AUX_INV, dw, i);
->  
->  	dw[i++] = preparser_disable(false);
-> @@ -394,7 +400,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
->  
->  	i = emit_bb_start(batch_addr, ppgtt_flag, dw, i);
->  
-> -	i = emit_render_cache_flush(job, dw, i);
-> +	i = emit_render_cache_flush(job, true, dw, i);
->  
->  	if (job->user_fence.used)
->  		i = emit_store_imm_ppgtt_posted(job->user_fence.addr,
-> diff --git a/drivers/gpu/drm/xe/xe_ring_ops_types.h b/drivers/gpu/drm/xe/xe_ring_ops_types.h
-> index d7e3e150a9a5..477dc7defd72 100644
-> --- a/drivers/gpu/drm/xe/xe_ring_ops_types.h
-> +++ b/drivers/gpu/drm/xe/xe_ring_ops_types.h
-> @@ -8,7 +8,7 @@
->  
->  struct xe_sched_job;
->  
-> -#define MAX_JOB_SIZE_DW 58
-> +#define MAX_JOB_SIZE_DW 70
->  #define MAX_JOB_SIZE_BYTES (MAX_JOB_SIZE_DW * 4)
->  
->  /**
+>  	vma->bo = bo;
+>  	if (intel_fb_uses_dpt(&fb->base))
+> -		ret = __xe_pin_fb_vma_dpt(fb, view, vma, alignment);
+> +		ret = __xe_pin_fb_vma_dpt(fb, view, vma, alignment / 512);
+>  	else
+>  		ret = __xe_pin_fb_vma_ggtt(fb, view, vma,  alignment);
+>  	if (ret)
 > -- 
 > 2.48.0
 
