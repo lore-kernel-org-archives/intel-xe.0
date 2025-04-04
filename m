@@ -4,21 +4,22 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 349CAC369A2
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Apr 2025 20:50:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 758AAC369A7
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Apr 2025 20:50:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF83710E295;
-	Fri,  4 Apr 2025 20:50:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDFF510E32A;
+	Fri,  4 Apr 2025 20:50:40 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C14E810E320;
- Fri,  4 Apr 2025 20:50:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34B4A10E32F;
+ Fri,  4 Apr 2025 20:50:39 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org,
 	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH 4/9] drm/xe/display: Remove dereferences of ggtt for tile id
-Date: Fri,  4 Apr 2025 22:50:23 +0200
-Message-ID: <20250404205028.620300-5-dev@lankhorst.se>
+Subject: [PATCH 6/9] drm/xe/display: Dont poke into GGTT internals to fill a
+ DPT
+Date: Fri,  4 Apr 2025 22:50:25 +0200
+Message-ID: <20250404205028.620300-7-dev@lankhorst.se>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250404205028.620300-1-dev@lankhorst.se>
 References: <20250404205028.620300-1-dev@lankhorst.se>
@@ -38,67 +39,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Obtain the id from the root tile. Likely this can be hardcoded to 0,
-but use the clean solution of obtaining root id and doing that.
-
-to_xe_device(ggtt->tile) can also be easily replaced with xe.
+For DPT, it is sufficient to get the GGTT encode flags to fill the DPT.
+Create a function to return the encode flags, and then encode using the
+BO address.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 20 +++++++++-----------
+ drivers/gpu/drm/xe/xe_ggtt.c           | 15 +++++++++++++++
+ drivers/gpu/drm/xe/xe_ggtt.h           |  2 ++
+ 3 files changed, 26 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index d918ae1c80618..d509def82b134 100644
+index d509def82b134..5392e46a3a134 100644
 --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
 +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -199,14 +199,15 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
- 	struct drm_gem_object *obj = intel_fb_bo(&fb->base);
- 	struct xe_bo *bo = gem_to_xe_bo(obj);
- 	struct xe_device *xe = to_xe_device(fb->base.dev);
--	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
-+	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
-+	struct xe_ggtt *ggtt = tile0->mem.ggtt;
- 	u32 align;
- 	int ret;
+@@ -23,6 +23,7 @@ write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_
+ 	struct xe_device *xe = xe_bo_device(bo);
+ 	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
+ 	u32 column, row;
++	u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo, xe->pat.idx[XE_CACHE_NONE]);
  
- 	/* TODO: Consider sharing framebuffer mapping?
- 	 * embed i915_vma inside intel_framebuffer
- 	 */
--	xe_pm_runtime_get_noresume(tile_to_xe(ggtt->tile));
-+	xe_pm_runtime_get_noresume(xe);
- 	ret = mutex_lock_interruptible(&ggtt->lock);
- 	if (ret)
- 		goto out;
-@@ -215,8 +216,8 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
- 	if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
- 		align = max_t(u32, align, SZ_64K);
+ 	/* TODO: Maybe rewrite so we can traverse the bo addresses sequentially,
+ 	 * by writing dpt/ggtt in a different order?
+@@ -32,10 +33,9 @@ write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_
+ 		u32 src_idx = src_stride * (height - 1) + column + bo_ofs;
  
--	if (bo->ggtt_node[ggtt->tile->id] && view->type == I915_GTT_VIEW_NORMAL) {
--		vma->node = bo->ggtt_node[ggtt->tile->id];
-+	if (bo->ggtt_node[tile0->id] && view->type == I915_GTT_VIEW_NORMAL) {
-+		vma->node = bo->ggtt_node[tile0->id];
- 	} else if (view->type == I915_GTT_VIEW_NORMAL) {
- 		u32 x, size = bo->ttm.base.size;
+ 		for (row = 0; row < height; row++) {
+-			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
+-							      xe->pat.idx[XE_CACHE_NONE]);
++			u64 addr = xe_bo_addr(bo, src_idx * XE_PAGE_SIZE, XE_PAGE_SIZE);
  
-@@ -271,7 +272,7 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
- out_unlock:
- 	mutex_unlock(&ggtt->lock);
- out:
--	xe_pm_runtime_put(tile_to_xe(ggtt->tile));
-+	xe_pm_runtime_put(xe);
- 	return ret;
- }
- 
-@@ -348,7 +349,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
- 
- static void __xe_unpin_fb_vma(struct i915_vma *vma)
+-			iosys_map_wr(map, *dpt_ofs, u64, pte);
++			iosys_map_wr(map, *dpt_ofs, u64, pte | addr);
+ 			*dpt_ofs += 8;
+ 			src_idx -= src_stride;
+ 		}
+@@ -55,17 +55,15 @@ write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
  {
--	u8 tile_id = vma->node->ggtt->tile->id;
-+	u8 tile_id = xe_device_get_root_tile(xe_bo_device(vma->bo))->id;
+ 	struct xe_device *xe = xe_bo_device(bo);
+ 	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
+-	u64 (*pte_encode_bo)(struct xe_bo *bo, u64 bo_offset, u16 pat_index)
+-		= ggtt->pt_ops->pte_encode_bo;
+ 	u32 column, row;
++	u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo, xe->pat.idx[XE_CACHE_NONE]);
  
- 	if (!refcount_dec_and_test(&vma->ref))
- 		return;
+ 	for (row = 0; row < height; row++) {
+ 		u32 src_idx = src_stride * row + bo_ofs;
+ 
+ 		for (column = 0; column < width; column++) {
+-			iosys_map_wr(map, *dpt_ofs, u64,
+-				     pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
+-				     xe->pat.idx[XE_CACHE_NONE]));
++			u64 addr = xe_bo_addr(bo, src_idx * XE_PAGE_SIZE, XE_PAGE_SIZE);
++			iosys_map_wr(map, *dpt_ofs, u64, pte | addr);
+ 
+ 			*dpt_ofs += 8;
+ 			src_idx++;
+@@ -129,13 +127,13 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+ 		return PTR_ERR(dpt);
+ 
+ 	if (view->type == I915_GTT_VIEW_NORMAL) {
++		u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo, xe->pat.idx[XE_CACHE_NONE]);
+ 		u32 x;
+ 
+ 		for (x = 0; x < size / XE_PAGE_SIZE; x++) {
+-			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, x * XE_PAGE_SIZE,
+-							      xe->pat.idx[XE_CACHE_NONE]);
++			u64 addr = xe_bo_addr(bo, x * XE_PAGE_SIZE, XE_PAGE_SIZE);
+ 
+-			iosys_map_wr(&dpt->vmap, x * 8, u64, pte);
++			iosys_map_wr(&dpt->vmap, x * 8, u64, pte | addr);
+ 		}
+ 	} else if (view->type == I915_GTT_VIEW_REMAPPED) {
+ 		const struct intel_remapped_info *remap_info = &view->remapped;
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 8e1976bceb44f..5ea2f9fac85d4 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -918,3 +918,18 @@ u64 xe_ggtt_print_holes(struct xe_ggtt *ggtt, u64 alignment, struct drm_printer
+ 
+ 	return total;
+ }
++
++/**
++ * xe_ggtt_encode_pte_flags - Get PTE encoding flags for BO
++ * @ggtt: &xe_ggtt
++ * @bo: &xe_bo
++ * @pat_index: The pat_index for the PTE.
++ *
++ * This function returns the pte_flags for a given BO, without  address.
++ * It's used for DPT to fill a GGTT mapped BO with a linear lookup table.
++ */
++u64 xe_ggtt_encode_pte_flags(struct xe_ggtt *ggtt,
++			     struct xe_bo *bo, u16 pat_index)
++{
++	return ggtt->pt_ops->pte_encode_flags(bo, pat_index);
++}
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+index c48da99908848..437ba65f33860 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.h
++++ b/drivers/gpu/drm/xe/xe_ggtt.h
+@@ -49,4 +49,6 @@ static inline void xe_ggtt_might_lock(struct xe_ggtt *ggtt)
+ void xe_ggtt_might_lock(struct xe_ggtt *ggtt);
+ #endif
+ 
++u64 xe_ggtt_encode_pte_flags(struct xe_ggtt *ggtt, struct xe_bo *bo, u16 pat_index);
++
+ #endif
 -- 
 2.45.2
 
