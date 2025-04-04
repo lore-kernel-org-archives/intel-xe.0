@@ -4,22 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC4CBC369A4
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1CE7C369AB
 	for <intel-xe@archiver.kernel.org>; Fri,  4 Apr 2025 20:50:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D881D10E33F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED6C210E340;
 	Fri,  4 Apr 2025 20:50:44 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0DE610E295;
- Fri,  4 Apr 2025 20:50:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3240210E327;
+ Fri,  4 Apr 2025 20:50:39 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org,
 	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH 0/9] drm/xe: Cleanup GGTT usage outside of xe_ggtt.c
-Date: Fri,  4 Apr 2025 22:50:19 +0200
-Message-ID: <20250404205028.620300-1-dev@lankhorst.se>
+Subject: [PATCH 7/9] drm/xe/display: Convert GGTT mapping to use
+ pte_encode_flags
+Date: Fri,  4 Apr 2025 22:50:26 +0200
+Message-ID: <20250404205028.620300-8-dev@lankhorst.se>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20250404205028.620300-1-dev@lankhorst.se>
+References: <20250404205028.620300-1-dev@lankhorst.se>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -36,35 +39,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This should be non-controversial. I'm changing the GGTT signature of
-pte_encode_bo to pte_encode_flags, and removing the old callback after
-converting the display user. This is preparation of making struct xe_ggtt
-private in the future.
+Another small step in removing pte_encode_bo callback.
 
-Hopefully passes CI now.
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+---
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 17 +++++------------
+ 1 file changed, 5 insertions(+), 12 deletions(-)
 
-Maarten Lankhorst (9):
-  drm/xe: Use xe_ggtt_map_bo_unlocked for resume
-  drm/xe: Add xe_ggtt_might_lock
-  drm/xe: Add xe_ggtt_alloc
-  drm/xe/display: Remove dereferences of ggtt for tile id
-  drm/xe/ggtt: Seperate flags and address in PTE encoding
-  drm/xe/display: Dont poke into GGTT internals to fill a DPT
-  drm/xe/display: Convert GGTT mapping to use pte_encode_flags
-  drm/xe: Remove pte_encode_bo callback
-  drm/xe: Implement a helper for reading out a GGTT PTE at a specified
-    offset
-
- drivers/gpu/drm/xe/display/xe_fb_pin.c        |  50 +++----
- drivers/gpu/drm/xe/display/xe_plane_initial.c |   6 +-
- drivers/gpu/drm/xe/xe_bo.c                    |   2 +-
- drivers/gpu/drm/xe/xe_bo_evict.c              |   4 +-
- drivers/gpu/drm/xe/xe_ggtt.c                  | 140 ++++++++++++++----
- drivers/gpu/drm/xe/xe_ggtt.h                  |  16 +-
- drivers/gpu/drm/xe/xe_ggtt_types.h            |   4 +-
- drivers/gpu/drm/xe/xe_tile.c                  |   6 +-
- 8 files changed, 157 insertions(+), 71 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 5392e46a3a134..9059b56bc23c8 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -171,15 +171,15 @@ write_ggtt_rotated(struct xe_bo *bo, struct xe_ggtt *ggtt, u32 *ggtt_ofs, u32 bo
+ {
+ 	struct xe_device *xe = xe_bo_device(bo);
+ 	u32 column, row;
++	u64 pte = ggtt->pt_ops->pte_encode_flags(bo, xe->pat.idx[XE_CACHE_NONE]);
+ 
+ 	for (column = 0; column < width; column++) {
+ 		u32 src_idx = src_stride * (height - 1) + column + bo_ofs;
+ 
+ 		for (row = 0; row < height; row++) {
+-			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
+-							      xe->pat.idx[XE_CACHE_NONE]);
++			u64 addr = xe_bo_addr(bo, src_idx * XE_PAGE_SIZE, XE_PAGE_SIZE);
+ 
+-			ggtt->pt_ops->ggtt_set_pte(ggtt, *ggtt_ofs, pte);
++			ggtt->pt_ops->ggtt_set_pte(ggtt, *ggtt_ofs, pte | addr);
+ 			*ggtt_ofs += XE_PAGE_SIZE;
+ 			src_idx -= src_stride;
+ 		}
+@@ -217,26 +217,19 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
+ 	if (bo->ggtt_node[tile0->id] && view->type == I915_GTT_VIEW_NORMAL) {
+ 		vma->node = bo->ggtt_node[tile0->id];
+ 	} else if (view->type == I915_GTT_VIEW_NORMAL) {
+-		u32 x, size = bo->ttm.base.size;
+-
+ 		vma->node = xe_ggtt_node_init(ggtt);
+ 		if (IS_ERR(vma->node)) {
+ 			ret = PTR_ERR(vma->node);
+ 			goto out_unlock;
+ 		}
+ 
+-		ret = xe_ggtt_node_insert_locked(vma->node, size, align, 0);
++		ret = xe_ggtt_node_insert_locked(vma->node, bo->size, align, 0);
+ 		if (ret) {
+ 			xe_ggtt_node_fini(vma->node);
+ 			goto out_unlock;
+ 		}
+ 
+-		for (x = 0; x < size; x += XE_PAGE_SIZE) {
+-			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, x,
+-							      xe->pat.idx[XE_CACHE_NONE]);
+-
+-			ggtt->pt_ops->ggtt_set_pte(ggtt, vma->node->base.start + x, pte);
+-		}
++		xe_ggtt_map_bo(ggtt, vma->node, bo, xe->pat.idx[XE_CACHE_NONE]);
+ 	} else {
+ 		u32 i, ggtt_ofs;
+ 		const struct intel_rotation_info *rot_info = &view->rotated;
 -- 
 2.45.2
 
