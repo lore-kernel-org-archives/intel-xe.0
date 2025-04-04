@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CECAC3601E
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Apr 2025 20:51:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5249C36010
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Apr 2025 20:51:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AECE10E34D;
-	Fri,  4 Apr 2025 20:51:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4FC010E350;
+	Fri,  4 Apr 2025 20:51:54 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BA5F10E295
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Apr 2025 20:51:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2289C10E295
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Apr 2025 20:51:51 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [CI 10/13] drm/xe: Add GGTT updates to migration engine
-Date: Fri,  4 Apr 2025 22:51:35 +0200
-Message-ID: <20250404205138.620455-11-dev@lankhorst.se>
+Subject: [CI 12/13] drm/xe: Allow for optimization of xe_ggtt_map_bo
+Date: Fri,  4 Apr 2025 22:51:37 +0200
+Message-ID: <20250404205138.620455-13-dev@lankhorst.se>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250404205138.620455-1-dev@lankhorst.se>
 References: <20250404205138.620455-1-dev@lankhorst.se>
@@ -37,241 +37,155 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Allow for pipelining of GGTT updates, as pinning huge buffers to GGTT
-might end up being really slow.
-
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- .../gpu/drm/xe/instructions/xe_mi_commands.h  |  2 +
- drivers/gpu/drm/xe/tests/xe_migrate.c         | 74 ++++++++++++++++
- drivers/gpu/drm/xe/xe_migrate.c               | 87 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_migrate.h               | 12 +++
- 4 files changed, 175 insertions(+)
+ drivers/gpu/drm/xe/tests/xe_migrate.c |  1 +
+ drivers/gpu/drm/xe/xe_ggtt.c          | 74 ++++++++++++++++++---------
+ 2 files changed, 50 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-index eba582058d550..11477ef8fd241 100644
---- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-+++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-@@ -48,6 +48,8 @@
- #define   MI_LRI_FORCE_POSTED		REG_BIT(12)
- #define   MI_LRI_LEN(x)			(((x) & 0xff) + 1)
- 
-+#define MI_UPDATE_GTT			__MI_INSTR(0x23)
-+
- #define MI_FLUSH_DW			__MI_INSTR(0x26)
- #define   MI_FLUSH_DW_PROTECTED_MEM_EN	REG_BIT(22)
- #define   MI_FLUSH_DW_STORE_INDEX	REG_BIT(21)
 diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-index d5fe0ea889ad8..d6770ed4126c1 100644
+index d6770ed4126c1..772b6db3784d9 100644
 --- a/drivers/gpu/drm/xe/tests/xe_migrate.c
 +++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-@@ -365,6 +365,79 @@ static void xe_migrate_sanity_kunit(struct kunit *test)
- 	migrate_test_run_device(xe);
+@@ -9,6 +9,7 @@
+ #include "tests/xe_kunit_helpers.h"
+ #include "tests/xe_pci_test.h"
+ 
++#include "xe_ggtt.h"
+ #include "xe_pci.h"
+ #include "xe_pm.h"
+ 
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 2d4fe207ff62b..4c6a92f9f9f38 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -25,6 +25,7 @@
+ #include "xe_gt_sriov_vf.h"
+ #include "xe_gt_tlb_invalidation.h"
+ #include "xe_map.h"
++#include "xe_migrate.h"
+ #include "xe_mmio.h"
+ #include "xe_pm.h"
+ #include "xe_res_cursor.h"
+@@ -594,6 +595,25 @@ bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node)
+ 	return drm_mm_node_allocated(&node->base);
  }
  
-+static void update_gtt(void *arg, u32 ggtt_offset, u32 local_offset, u64 *pte, u32 num_pte)
-+{
-+	while (num_pte--) {
-+		*pte++ = 0x1234567890000abcULL | local_offset;
++struct xe_ggtt_cb_data {
++	struct xe_res_cursor cur;
++	u64 pte_flags;
++	bool sysmem;
++};
 +
-+		local_offset += XE_PAGE_SIZE;
++static void xe_ggtt_map_bo_cb(void *args, u32 ggtt_offset, u32 local_offset, u64 *ptes, u32 num_ptes)
++{
++	struct xe_ggtt_cb_data *data = args;
++
++	while (num_ptes--) {
++		u64 addr = data->sysmem ? xe_res_dma(&data->cur) : data->cur.start;
++
++		*ptes++ = data->pte_flags + addr;
++
++		xe_res_next(&data->cur, XE_PAGE_SIZE);
 +	}
 +}
 +
-+static void xe_migrate_test_ggtt(struct kunit *test,
-+				 struct xe_migrate *m,
-+				 struct xe_ggtt *ggtt)
-+{
-+	struct xe_ggtt_node *node = xe_ggtt_node_init(ggtt);
-+	struct dma_fence *fence;
-+	u32 i;
-+	int ret;
-+
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, node);
-+	if (IS_ERR(node))
-+		return;
-+
-+	ret = xe_ggtt_node_insert(node, SZ_32M, XE_PAGE_SIZE);
-+	KUNIT_ASSERT_EQ(test, ret, 0);
-+	if (ret)
-+		goto out;
-+
-+	fence = xe_migrate_update_gtt(m, update_gtt, NULL, node->base.start, node->base.size / XE_PAGE_SIZE);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, fence);
-+	if (IS_ERR(fence))
-+		goto out;
-+
-+	dma_fence_wait(fence, false);
-+
-+	for (i = 0; i < node->base.size; i += SZ_1M) {
-+		u64 pte = xe_ggtt_read_pte(ggtt, node->base.start + i);
-+		u64 expected = 0x1234567890000abc | i;
-+
-+		check(pte, expected, "GGTT update doesn't match expected update", test);
-+
-+	}
-+	dma_fence_put(fence);
-+
-+out:
-+	xe_ggtt_node_remove(node, false);
-+}
-+
-+static void xe_migrate_test_ggtt_device(struct kunit *test, struct xe_device *xe)
-+{
-+	struct xe_tile *tile;
-+	int id;
-+
-+	xe_pm_runtime_get(xe);
-+
-+	for_each_tile(tile, xe, id) {
-+		struct xe_migrate *m = tile->migrate;
-+
-+		kunit_info(test, "Testing tile id %d.\n", id);
-+		xe_vm_lock(m->q->vm, false);
-+		xe_migrate_test_ggtt(test, m, tile->mem.ggtt);
-+		xe_vm_unlock(m->q->vm);
-+	}
-+
-+	xe_pm_runtime_put(xe);
-+}
-+
-+static void xe_migrate_ggtt_kunit(struct kunit *test)
-+{
-+	struct xe_device *xe = test->priv;
-+
-+	xe_migrate_test_ggtt_device(test, xe);
-+}
-+
- static struct dma_fence *blt_copy(struct xe_tile *tile,
- 				  struct xe_bo *src_bo, struct xe_bo *dst_bo,
- 				  bool copy_only_ccs, const char *str, struct kunit *test)
-@@ -773,6 +846,7 @@ static void xe_validate_ccs_kunit(struct kunit *test)
- 
- static struct kunit_case xe_migrate_tests[] = {
- 	KUNIT_CASE_PARAM(xe_migrate_sanity_kunit, xe_pci_live_device_gen_param),
-+	KUNIT_CASE_PARAM(xe_migrate_ggtt_kunit, xe_pci_live_device_gen_param),
- 	KUNIT_CASE_PARAM(xe_validate_ccs_kunit, xe_pci_live_device_gen_param),
- 	{}
- };
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index c1277d599a11d..cf35ba0487d51 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -1723,6 +1723,93 @@ struct dma_fence *xe_migrate_from_vram(struct xe_migrate *m,
- 
- #endif
- 
-+struct dma_fence *xe_migrate_update_gtt(struct xe_migrate *m,
-+					xe_migrate_update_gtt_cb set_ptes_cb,
-+					void *arg,
-+					u32 ggtt_offset, u32 num_pte)
-+{
-+	struct xe_gt *gt = m->tile->primary_gt;
-+	struct xe_device *xe = gt_to_xe(gt);
+ /**
+  * xe_ggtt_map_bo - Map the BO into GGTT
+  * @ggtt: the &xe_ggtt where node will be mapped
+@@ -602,39 +622,43 @@ bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node)
+  * @pat_index: Which pat_index to use.
+  */
+ static void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_ggtt_node *node,
+-			   struct xe_bo *bo, u16 pat_index)
++			   struct xe_bo *bo, u16 pat_index, bool allow_accel)
+ {
+-	u64 start, pte;
+-	struct xe_res_cursor cur;
++	struct xe_ggtt_cb_data data;
 +	struct dma_fence *fence = NULL;
-+	u32 local_offset = 0;
-+	int err;
+ 
+ 	if (XE_WARN_ON(!node))
+ 		return;
+ 
+-	start = node->base.start;
+-
+-	pte = ggtt->pt_ops->pte_encode_flags(bo, pat_index);
+-	if (!xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo)) {
++	data.pte_flags = ggtt->pt_ops->pte_encode_flags(bo, pat_index);
++	data.sysmem = !xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo);
++	if (data.sysmem) {
+ 		xe_assert(xe_bo_device(bo), bo->ttm.ttm);
+ 
+-		for (xe_res_first_sg(xe_bo_sg(bo), 0, bo->size, &cur);
+-		     cur.remaining;
+-		     xe_res_next(&cur, XE_PAGE_SIZE)) {
+-			u64 addr = xe_res_dma(&cur);
+-
+-			ggtt->pt_ops->ggtt_set_pte(ggtt, start + cur.start, addr | pte);
+-		}
++		xe_res_first_sg(xe_bo_sg(bo), 0, bo->size, &data.cur);
+ 	} else {
+-		u64 end = start + bo->size;
+-
+ 		/* Prepend GPU offset */
+-		pte |= vram_region_gpu_offset(bo->ttm.resource);
++		data.pte_flags |= vram_region_gpu_offset(bo->ttm.resource);
 +
-+	while (num_pte) {
-+		struct xe_sched_job *job;
-+		struct xe_bb *bb;
-+		u32 batch_size, update_idx;
-+		bool usm = xe->info.has_usm;
-+		/*
-+		 * batch up to 33 MI_UPDATE_GTT commands,
-+		 * this is enough to map a 64MiB 3840x2160x8 buffer
-+		 * with the size ending up just above 32kB.
-+		 */
-+		u32 avail_ptes = min(num_pte, 33 * 511);
-+		num_pte -= avail_ptes;
-+
-+		/* 2 * MI_BATCH_BUFFER_END + align + #PTEs + MI_UPDATE_GTT */
-+		batch_size = 4 + 2 * avail_ptes + 2 * DIV_ROUND_UP(avail_ptes, 511);
-+
-+		bb = xe_bb_new(gt, batch_size, usm);
-+		if (IS_ERR(bb)) {
-+			err = PTR_ERR(bb);
-+			goto err_sync;
-+		}
-+
-+		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
-+		bb->len++; /* align to u64 */
-+		update_idx = bb->len;
-+		while (avail_ptes) {
-+			u32 batched_ptes = min(avail_ptes, 511);
-+			bb->cs[bb->len++] = MI_UPDATE_GTT | (2 * batched_ptes);
-+			bb->cs[bb->len++] = ggtt_offset + local_offset;
-+
-+			set_ptes_cb(arg, ggtt_offset, local_offset, (u64 *)&bb->cs[bb->len], batched_ptes);
-+			bb->len += 2 * batched_ptes;
-+
-+			local_offset += XE_PAGE_SIZE * batched_ptes;
-+			avail_ptes -= batched_ptes;
-+		}
-+
-+		job = xe_bb_create_migration_job(m->q, bb,
-+						 xe_migrate_batch_base(m, usm),
-+						 update_idx);
-+		if (IS_ERR(job)) {
-+			err = PTR_ERR(job);
-+			goto err;
-+		}
-+
-+		xe_sched_job_add_migrate_flush(job, MI_FLUSH_DW_CCS);
-+
-+		mutex_lock(&m->job_mutex);
-+		xe_sched_job_arm(job);
-+		dma_fence_put(fence);
-+		fence = dma_fence_get(&job->drm.s_fence->finished);
-+		xe_sched_job_push(job);
-+
-+		dma_fence_put(m->fence);
-+		m->fence = dma_fence_get(fence);
-+
-+		mutex_unlock(&m->job_mutex);
-+
-+		xe_bb_free(bb, fence);
-+		continue;
-+
-+err:
-+		xe_bb_free(bb, NULL);
-+err_sync:
-+		/* Sync partial copies if any. FIXME: job_mutex? */
-+		if (fence) {
-+			dma_fence_wait(fence, false);
-+			dma_fence_put(fence);
-+		}
-+
-+		return ERR_PTR(err);
++		xe_res_first(bo->ttm.resource, 0, bo->size, &data.cur);
 +	}
 +
-+	return fence;
-+}
++	if (allow_accel && node->base.size >= SZ_4K && ggtt->tile->migrate)
++		fence = xe_migrate_update_gtt(ggtt->tile->migrate, xe_ggtt_map_bo_cb, &data,
++					      node->base.start,
++					      node->base.size / XE_PAGE_SIZE);
 +
- #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
- #include "tests/xe_migrate.c"
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
-index 6ff9a963425c1..e03f28b7a021d 100644
---- a/drivers/gpu/drm/xe/xe_migrate.h
-+++ b/drivers/gpu/drm/xe/xe_migrate.h
-@@ -130,4 +130,16 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
- void xe_migrate_wait(struct xe_migrate *m);
++	if (!IS_ERR_OR_NULL(fence)) {
++		dma_fence_wait(fence, false);
++		dma_fence_put(fence);
++	} else {
++		/* Eat error, force map */
  
- struct xe_exec_queue *xe_tile_migrate_exec_queue(struct xe_tile *tile);
-+
-+typedef void (*xe_migrate_update_gtt_cb)(void *arg,
-+					 u32 ggtt_offset,
-+					 u32 local_offset,
-+					 u64 *pte,
-+					 u32 num_pte);
-+
-+struct dma_fence *xe_migrate_update_gtt(struct xe_migrate *m,
-+					xe_migrate_update_gtt_cb set_ptes_cb,
-+					void *arg,
-+					u32 ggtt_offset, u32 num_pte);
-+
- #endif
+-		for (xe_res_first(bo->ttm.resource, 0, bo->size, &cur);
+-		     cur.remaining;
+-		     xe_res_next(&cur, XE_PAGE_SIZE)) {
++		for (u32 local_offset = 0; local_offset < node->base.size; local_offset += XE_PAGE_SIZE) {
++			u64 pte;
++			xe_ggtt_map_bo_cb(&data, node->base.start, local_offset, &pte, 1);
+ 
+-			ggtt->pt_ops->ggtt_set_pte(ggtt, end - cur.remaining,
+-						   pte + cur.start);
++			ggtt->pt_ops->ggtt_set_pte(ggtt, node->base.start + local_offset, pte);
+ 		}
+ 	}
+ }
+@@ -652,7 +676,7 @@ void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo)
+ 	u16 pat_index = tile_to_xe(ggtt->tile)->pat.idx[cache_mode];
+ 
+ 	mutex_lock(&ggtt->lock);
+-	xe_ggtt_map_bo(ggtt, bo->ggtt_node[ggtt->tile->id], bo, pat_index);
++	xe_ggtt_map_bo(ggtt, bo->ggtt_node[ggtt->tile->id], bo, pat_index, false);
+ 	mutex_unlock(&ggtt->lock);
+ }
+ 
+@@ -696,7 +720,7 @@ struct xe_ggtt_node *xe_ggtt_node_insert_transform(struct xe_ggtt *ggtt,
+ 		u64 pte_flags = ggtt->pt_ops->pte_encode_flags(bo, pat_index);
+ 		transform(ggtt, node, pte_flags, ggtt->pt_ops->ggtt_set_pte, arg);
+ 	} else {
+-		xe_ggtt_map_bo(ggtt, node, bo, pat_index);
++		xe_ggtt_map_bo(ggtt, node, bo, pat_index, true);
+ 	}
+ 
+ 
+@@ -749,7 +773,7 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+ 		u16 cache_mode = bo->flags & XE_BO_FLAG_NEEDS_UC ? XE_CACHE_NONE : XE_CACHE_WB;
+ 		u16 pat_index = tile_to_xe(ggtt->tile)->pat.idx[cache_mode];
+ 
+-		xe_ggtt_map_bo(ggtt, bo->ggtt_node[tile_id], bo, pat_index);
++		xe_ggtt_map_bo(ggtt, bo->ggtt_node[tile_id], bo, pat_index, false);
+ 	}
+ 	mutex_unlock(&ggtt->lock);
+ 
 -- 
 2.45.2
 
