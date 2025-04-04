@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7888CC36010
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Apr 2025 05:09:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28843C3601E
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Apr 2025 05:10:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4082A10E2E7;
-	Fri,  4 Apr 2025 05:09:21 +0000 (UTC)
-Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7F2910E25D;
- Fri,  4 Apr 2025 05:09:19 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id A56DD10E2EB;
+	Fri,  4 Apr 2025 05:10:17 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R85EM26i";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6339B10E301;
+ Fri,  4 Apr 2025 05:10:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1743743416; x=1775279416;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:references:in-reply-to:to:cc;
+ bh=f4G75hLUJTASBGF0SDZi09pPgWfZGOhlXkebZtXpqrQ=;
+ b=R85EM26i9MnEOCmZIsdi8JprFBdF1omHnCPTMk3UON2Tbkb5wQTI2w9p
+ Vy4z5LNjwCS8gJGcmPfEFLC3uIrJpmz4p2fMeKUKDgvvJ88/eVm3La7bI
+ 2ShdT+QQMw8pMAQridf83W4EFxPaz6+rliex//5/Bl4mRXHt3mFtvKeyt
+ 9o5iakmOlIbuU2VNONeEEDAY+5GvUw3qH6o0atuB24Vgc7Kl4D/yrO/l/
+ W/IzUrBj786B3cQfcGpPg5oDCYQInjP4AFi0RHHjpAi76shZ1x0jHlUZa
+ m+a7ZpoCJk3WuoToG2LkRwBlWHFvRfwU4eHyPPD4jzXpuX8MfWwMpKfz2 A==;
+X-CSE-ConnectionGUID: s6YuHUo/TziLWgBmWku+ZQ==
+X-CSE-MsgGUID: 0PlU7r1RSjCATBDGNtnvHw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11393"; a="62572741"
+X-IronPort-AV: E=Sophos;i="6.15,187,1739865600"; d="scan'208";a="62572741"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2025 22:10:16 -0700
+X-CSE-ConnectionGUID: hO5jxN1ERBCRXAeFvTto0A==
+X-CSE-MsgGUID: HdzXF8HKRmK1YOQr53c82g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,187,1739865600"; d="scan'208";a="158186563"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by orviesa002.jf.intel.com with ESMTP; 03 Apr 2025 22:10:15 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
+Date: Fri, 04 Apr 2025 10:25:09 +0530
+Subject: [PATCH v5 2/2] drm/i915/display/dp: Remove the uhbr13.5 pll state
+ values
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/wm=3A_convert_to?=
- =?utf-8?q?_struct_intel=5Fdisplay?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 04 Apr 2025 05:09:19 -0000
-Message-ID: <174374335994.37371.7720038634994377156@e6b6f09ec485>
-X-Patchwork-Hint: ignore
-References: <cover.1743671373.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1743671373.git.jani.nikula@intel.com>
+Message-Id: <20250404-dprates-v5-2-c93f561a095e@intel.com>
+References: <20250404-dprates-v5-0-c93f561a095e@intel.com>
+In-Reply-To: <20250404-dprates-v5-0-c93f561a095e@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, imre.deak@intel.com, 
+ Arun R Murthy <arun.r.murthy@intel.com>
+X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,61 +65,115 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Remove the pll state table for UHBR13.5 on synps and c20 PHY as UHBR13.5
+is removed in previous patch.
 
-Series: drm/i915/wm: convert to struct intel_display
-URL   : https://patchwork.freedesktop.org/series/147192/
-State : warning
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 26 --------------------
+ drivers/gpu/drm/i915/display/intel_snps_phy.c | 35 ---------------------------
+ 2 files changed, 61 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index 22595766eac5332e541f3441bed80a187dc80224..398e207159876a54472560087b5841ca372b4c01 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -902,31 +902,6 @@ static const struct intel_c20pll_state mtl_c20_dp_uhbr10 = {
+ 		},
+ };
+ 
+-static const struct intel_c20pll_state mtl_c20_dp_uhbr13_5 = {
+-	.clock = 1350000, /* 13.5 Gbps */
+-	.tx = {	0xbea0, /* tx cfg0 */
+-		0x4800, /* tx cfg1 */
+-		0x0000, /* tx cfg2 */
+-		},
+-	.cmn = {0x0500, /* cmn cfg0*/
+-		0x0005, /* cmn cfg1 */
+-		0x0000, /* cmn cfg2 */
+-		0x0000, /* cmn cfg3 */
+-		},
+-	.mpllb = { 0x015f,	/* mpllb cfg0 */
+-		0x2205,		/* mpllb cfg1 */
+-		0x1b17,		/* mpllb cfg2 */
+-		0xffc1,		/* mpllb cfg3 */
+-		0xe100,		/* mpllb cfg4 */
+-		0xbd00,		/* mpllb cfg5 */
+-		0x2000,		/* mpllb cfg6 */
+-		0x0001,		/* mpllb cfg7 */
+-		0x4800,		/* mpllb cfg8 */
+-		0x0000,		/* mpllb cfg9 */
+-		0x0000,		/* mpllb cfg10 */
+-		},
+-};
+-
+ static const struct intel_c20pll_state mtl_c20_dp_uhbr20 = {
+ 	.clock = 2000000, /* 20 Gbps */
+ 	.tx = {	0xbe20, /* tx cfg0 */
+@@ -957,7 +932,6 @@ static const struct intel_c20pll_state * const mtl_c20_dp_tables[] = {
+ 	&mtl_c20_dp_hbr2,
+ 	&mtl_c20_dp_hbr3,
+ 	&mtl_c20_dp_uhbr10,
+-	&mtl_c20_dp_uhbr13_5,
+ 	&mtl_c20_dp_uhbr20,
+ 	NULL,
+ };
+diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+index b9acd9fe160cde7de682b48648eb183a0549b014..79a6d14d7592a35ba51c52f6fe26564f3e1c1340 100644
+--- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+@@ -215,47 +215,12 @@ static const struct intel_mpllb_state dg2_dp_uhbr10_100 = {
+ 		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_STEPSIZE, 76101),
+ };
+ 
+-static const struct intel_mpllb_state dg2_dp_uhbr13_100 = {
+-	.clock = 1350000,
+-	.ref_control =
+-		REG_FIELD_PREP(SNPS_PHY_REF_CONTROL_REF_RANGE, 3),
+-	.mpllb_cp =
+-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT, 5) |
+-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP, 45) |
+-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_INT_GS, 65) |
+-		REG_FIELD_PREP(SNPS_PHY_MPLLB_CP_PROP_GS, 127),
+-	.mpllb_div =
+-		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV5_CLK_EN, 1) |
+-		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV_CLK_EN, 1) |
+-		REG_FIELD_PREP(SNPS_PHY_MPLLB_DIV_MULTIPLIER, 8) |
+-		REG_FIELD_PREP(SNPS_PHY_MPLLB_PMIX_EN, 1) |
+-		REG_FIELD_PREP(SNPS_PHY_MPLLB_WORD_DIV2_EN, 1) |
+-		REG_FIELD_PREP(SNPS_PHY_MPLLB_DP2_MODE, 1) |
+-		REG_FIELD_PREP(SNPS_PHY_MPLLB_V2I, 3),
+-	.mpllb_div2 =
+-		REG_FIELD_PREP(SNPS_PHY_MPLLB_REF_CLK_DIV, 2) |
+-		REG_FIELD_PREP(SNPS_PHY_MPLLB_MULTIPLIER, 508),
+-	.mpllb_fracn1 =
+-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_CGG_UPDATE_EN, 1) |
+-		REG_FIELD_PREP(SNPS_PHY_MPLLB_FRACN_DEN, 1),
+-
+-	/*
+-	 * SSC will be enabled, DP UHBR has a minimum SSC requirement.
+-	 */
+-	.mpllb_sscen =
+-		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_EN, 1) |
+-		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_PEAK, 79626),
+-	.mpllb_sscstep =
+-		REG_FIELD_PREP(SNPS_PHY_MPLLB_SSC_STEPSIZE, 102737),
+-};
+-
+ static const struct intel_mpllb_state * const dg2_dp_100_tables[] = {
+ 	&dg2_dp_rbr_100,
+ 	&dg2_dp_hbr1_100,
+ 	&dg2_dp_hbr2_100,
+ 	&dg2_dp_hbr3_100,
+ 	&dg2_dp_uhbr10_100,
+-	&dg2_dp_uhbr13_100,
+ 	NULL,
+ };
+ 
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-99e5a866b5e13f134e606a3e29d9508d97826fb3
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 354a1b2e53d57817a46d8f4108f3a52e541c8aff
-Author: Jani Nikula <jani.nikula@intel.com>
-Date:   Thu Apr 3 12:11:39 2025 +0300
-
-    drm/i915/wm: convert i9xx_wm.c internally to struct intel_display
-    
-    Going forward, struct intel_display is the main display device data
-    pointer. Convert as much as possible of i9xx_wm.c to struct
-    intel_display.
-    
-    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-+ /mt/dim checkpatch bc18da45d48d337b92a7ff9546ba61da32b3b586 drm-intel
-092e6e286606 drm/i915/wm: convert intel_wm.h external interfaces to struct intel_display
-a76e96758e1c drm/i915/wm: convert intel_wm.c internally to struct intel_display
-0050a7d5e6c9 drm/i915/wm: convert skl_watermark.h external interfaces to struct intel_display
-b097254df723 drm/i915/wm: convert skl_watermarks.c internally to struct intel_display
-12aa0d66617f drm/i915/wm: convert intel_wm.h external interfaces to struct intel_display
--:166: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#166: FILE: drivers/gpu/drm/i915/display/i9xx_wm.h:25:
- }
-+static inline void ilk_wm_sanitize(struct intel_display *display)
-
--:170: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#170: FILE: drivers/gpu/drm/i915/display/i9xx_wm.h:28:
- }
-+static inline bool intel_set_memory_cxsr(struct intel_display *display, bool enable)
-
--:175: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#175: FILE: drivers/gpu/drm/i915/display/i9xx_wm.h:32:
- }
-+static inline void i9xx_wm_init(struct intel_display *display)
-
-total: 0 errors, 0 warnings, 3 checks, 205 lines checked
-bbbde3cf4c33 drm/i915/wm: convert i9xx_wm.c to intel_de_*() register interface
-354a1b2e53d5 drm/i915/wm: convert i9xx_wm.c internally to struct intel_display
-
+-- 
+2.25.1
 
