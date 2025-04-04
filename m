@@ -4,22 +4,21 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39C63C3601E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17E0DC36010
 	for <intel-xe@archiver.kernel.org>; Fri,  4 Apr 2025 20:50:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E92CD10E323;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C929010E31B;
 	Fri,  4 Apr 2025 20:50:38 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C154410E321;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C123910E31B;
  Fri,  4 Apr 2025 20:50:37 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org, Maarten Lankhorst <dev@lankhorst.se>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH 3/9] drm/xe: Add xe_ggtt_alloc
-Date: Fri,  4 Apr 2025 22:50:22 +0200
-Message-ID: <20250404205028.620300-4-dev@lankhorst.se>
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH 2/9] drm/xe: Add xe_ggtt_might_lock
+Date: Fri,  4 Apr 2025 22:50:21 +0200
+Message-ID: <20250404205028.620300-3-dev@lankhorst.se>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250404205028.620300-1-dev@lankhorst.se>
 References: <20250404205028.620300-1-dev@lankhorst.se>
@@ -39,78 +38,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Instead of allocating inside xe_tile, create a new function that returns
-an allocated struct xe_ggtt from xe_ggtt.c
+Another requirement of hiding more of struct xe_ggtt.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ggtt.c | 16 ++++++++++++++++
- drivers/gpu/drm/xe/xe_ggtt.h |  2 ++
- drivers/gpu/drm/xe/xe_tile.c |  6 +-----
- 3 files changed, 19 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c   | 2 +-
+ drivers/gpu/drm/xe/xe_ggtt.c | 7 +++++++
+ drivers/gpu/drm/xe/xe_ggtt.h | 7 +++++++
+ 3 files changed, 15 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 5f4be9f40c9ba..b197b835ed442 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -160,6 +160,22 @@ static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 3c7c2353d3c86..2f3bd9da6eedc 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -2934,7 +2934,7 @@ void xe_bo_put(struct xe_bo *bo)
+ #endif
+ 		for_each_tile(tile, xe_bo_device(bo), id)
+ 			if (bo->ggtt_node[id] && bo->ggtt_node[id]->ggtt)
+-				might_lock(&bo->ggtt_node[id]->ggtt->lock);
++				xe_ggtt_might_lock(bo->ggtt_node[id]->ggtt);
+ 		drm_gem_object_put(&bo->ttm.base);
  	}
  }
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 62025d9cb7380..5f4be9f40c9ba 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -176,6 +176,13 @@ static void ggtt_fini(void *arg)
+ 	ggtt->scratch = NULL;
+ }
  
-+/**
-+ * xe_ggtt_alloc - Allocate a GGTT for a given &xe_tile
-+ * @tile: &xe_tile
-+ *
-+ * Allocates a &xe_ggtt for a given tile.
-+ *
-+ * Return: &xe_ggtt on success, or NULL when out of memory.
-+ */
-+struct xe_ggtt *xe_ggtt_alloc(struct xe_tile *tile)
++#ifdef CONFIG_LOCKDEP
++void xe_ggtt_might_lock(struct xe_ggtt *ggtt)
 +{
-+	struct xe_ggtt *ggtt = drmm_kzalloc(&tile_to_xe(tile)->drm, sizeof(*ggtt), GFP_KERNEL);
-+	if (ggtt)
-+		ggtt->tile = tile;
-+	return ggtt;
++	might_lock(&ggtt->lock);
 +}
++#endif
 +
- static void ggtt_fini_early(struct drm_device *drm, void *arg)
+ static void primelockdep(struct xe_ggtt *ggtt)
  {
- 	struct xe_ggtt *ggtt = arg;
+ 	if (!IS_ENABLED(CONFIG_LOCKDEP))
 diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-index 62c8ce636939a..0bab1fd7cc817 100644
+index bdf6d0733e2ca..62c8ce636939a 100644
 --- a/drivers/gpu/drm/xe/xe_ggtt.h
 +++ b/drivers/gpu/drm/xe/xe_ggtt.h
-@@ -9,7 +9,9 @@
- #include "xe_ggtt_types.h"
+@@ -38,4 +38,11 @@ u64 xe_ggtt_print_holes(struct xe_ggtt *ggtt, u64 alignment, struct drm_printer
+ void xe_ggtt_assign(const struct xe_ggtt_node *node, u16 vfid);
+ #endif
  
- struct drm_printer;
-+struct xe_tile;
- 
-+struct xe_ggtt *xe_ggtt_alloc(struct xe_tile *tile);
- int xe_ggtt_init_early(struct xe_ggtt *ggtt);
- int xe_ggtt_init(struct xe_ggtt *ggtt);
- 
-diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-index 6f303d4097d6e..86e9811e60ba0 100644
---- a/drivers/gpu/drm/xe/xe_tile.c
-+++ b/drivers/gpu/drm/xe/xe_tile.c
-@@ -88,13 +88,9 @@
-  */
- static int xe_tile_alloc(struct xe_tile *tile)
- {
--	struct drm_device *drm = &tile_to_xe(tile)->drm;
--
--	tile->mem.ggtt = drmm_kzalloc(drm, sizeof(*tile->mem.ggtt),
--				      GFP_KERNEL);
-+	tile->mem.ggtt = xe_ggtt_alloc(tile);
- 	if (!tile->mem.ggtt)
- 		return -ENOMEM;
--	tile->mem.ggtt->tile = tile;
- 
- 	return 0;
- }
++#ifndef CONFIG_LOCKDEP
++static inline void xe_ggtt_might_lock(struct xe_ggtt *ggtt)
++{ }
++#else
++void xe_ggtt_might_lock(struct xe_ggtt *ggtt);
++#endif
++
+ #endif
 -- 
 2.45.2
 
