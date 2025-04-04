@@ -4,21 +4,21 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A188C369A2
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Apr 2025 20:51:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C08B4C36010
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Apr 2025 20:51:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BF9810E34A;
-	Fri,  4 Apr 2025 20:51:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83BAE10E295;
+	Fri,  4 Apr 2025 20:51:51 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 114FC10E345
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Apr 2025 20:51:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4871010E34B
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Apr 2025 20:51:48 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [CI 07/13] drm/xe/display: Convert GGTT mapping to use
- pte_encode_flags
-Date: Fri,  4 Apr 2025 22:51:32 +0200
-Message-ID: <20250404205138.620455-8-dev@lankhorst.se>
+Subject: [CI 09/13] drm/xe: Implement a helper for reading out a GGTT PTE at a
+ specified offset
+Date: Fri,  4 Apr 2025 22:51:34 +0200
+Message-ID: <20250404205138.620455-10-dev@lankhorst.se>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250404205138.620455-1-dev@lankhorst.se>
 References: <20250404205138.620455-1-dev@lankhorst.se>
@@ -38,65 +38,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Another small step in removing pte_encode_bo callback.
+Split the GGTT PTE readout to a separate function, this is useful for
+adding testcases in the next commit, and also cleaner than manually
+reading out GGTT.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 17 +++++------------
- 1 file changed, 5 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/xe/display/xe_plane_initial.c |  6 +-----
+ drivers/gpu/drm/xe/xe_ggtt.c                  | 12 ++++++++++++
+ drivers/gpu/drm/xe/xe_ggtt.h                  |  1 +
+ 3 files changed, 14 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 5392e46a3a134..9059b56bc23c8 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -171,15 +171,15 @@ write_ggtt_rotated(struct xe_bo *bo, struct xe_ggtt *ggtt, u32 *ggtt_ofs, u32 bo
+diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+index 4ca0cb5711941..67f712472ca26 100644
+--- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
++++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+@@ -87,12 +87,8 @@ initial_plane_bo(struct xe_device *xe,
+ 
+ 	base = round_down(plane_config->base, page_size);
+ 	if (IS_DGFX(xe)) {
+-		u64 __iomem *gte = tile0->mem.ggtt->gsm;
+-		u64 pte;
++		u64 pte = xe_ggtt_read_pte(tile0->mem.ggtt, base);
+ 
+-		gte += base / XE_PAGE_SIZE;
+-
+-		pte = ioread64(gte);
+ 		if (!(pte & XE_GGTT_PTE_DM)) {
+ 			drm_err(&xe->drm,
+ 				"Initial plane programming missing DM bit\n");
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 36d3a0d6aa24a..54d54ee25e9c3 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -919,3 +919,15 @@ u64 xe_ggtt_encode_pte_flags(struct xe_ggtt *ggtt,
  {
- 	struct xe_device *xe = xe_bo_device(bo);
- 	u32 column, row;
-+	u64 pte = ggtt->pt_ops->pte_encode_flags(bo, xe->pat.idx[XE_CACHE_NONE]);
+ 	return ggtt->pt_ops->pte_encode_flags(bo, pat_index);
+ }
++
++/**
++ * xe_ggtt_read_pte - Read a PTE from the GGTT
++ * @ggtt: &xe_ggtt
++ * @offset: the offset for which the mapping should be read.
++ *
++ * Used by testcases, and by display reading out an inherited bios FB.
++ */
++u64 xe_ggtt_read_pte(struct xe_ggtt *ggtt, u64 offset)
++{
++	return ioread64(ggtt->gsm + (offset / XE_PAGE_SIZE));
++}
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+index 437ba65f33860..600a76526cf34 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.h
++++ b/drivers/gpu/drm/xe/xe_ggtt.h
+@@ -50,5 +50,6 @@ void xe_ggtt_might_lock(struct xe_ggtt *ggtt);
+ #endif
  
- 	for (column = 0; column < width; column++) {
- 		u32 src_idx = src_stride * (height - 1) + column + bo_ofs;
+ u64 xe_ggtt_encode_pte_flags(struct xe_ggtt *ggtt, struct xe_bo *bo, u16 pat_index);
++u64 xe_ggtt_read_pte(struct xe_ggtt *ggtt, u64 offset);
  
- 		for (row = 0; row < height; row++) {
--			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
--							      xe->pat.idx[XE_CACHE_NONE]);
-+			u64 addr = xe_bo_addr(bo, src_idx * XE_PAGE_SIZE, XE_PAGE_SIZE);
- 
--			ggtt->pt_ops->ggtt_set_pte(ggtt, *ggtt_ofs, pte);
-+			ggtt->pt_ops->ggtt_set_pte(ggtt, *ggtt_ofs, pte | addr);
- 			*ggtt_ofs += XE_PAGE_SIZE;
- 			src_idx -= src_stride;
- 		}
-@@ -217,26 +217,19 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
- 	if (bo->ggtt_node[tile0->id] && view->type == I915_GTT_VIEW_NORMAL) {
- 		vma->node = bo->ggtt_node[tile0->id];
- 	} else if (view->type == I915_GTT_VIEW_NORMAL) {
--		u32 x, size = bo->ttm.base.size;
--
- 		vma->node = xe_ggtt_node_init(ggtt);
- 		if (IS_ERR(vma->node)) {
- 			ret = PTR_ERR(vma->node);
- 			goto out_unlock;
- 		}
- 
--		ret = xe_ggtt_node_insert_locked(vma->node, size, align, 0);
-+		ret = xe_ggtt_node_insert_locked(vma->node, bo->size, align, 0);
- 		if (ret) {
- 			xe_ggtt_node_fini(vma->node);
- 			goto out_unlock;
- 		}
- 
--		for (x = 0; x < size; x += XE_PAGE_SIZE) {
--			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, x,
--							      xe->pat.idx[XE_CACHE_NONE]);
--
--			ggtt->pt_ops->ggtt_set_pte(ggtt, vma->node->base.start + x, pte);
--		}
-+		xe_ggtt_map_bo(ggtt, vma->node, bo, xe->pat.idx[XE_CACHE_NONE]);
- 	} else {
- 		u32 i, ggtt_ofs;
- 		const struct intel_rotation_info *rot_info = &view->rotated;
+ #endif
 -- 
 2.45.2
 
