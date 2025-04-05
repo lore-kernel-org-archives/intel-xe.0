@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76D4CC36010
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Apr 2025 23:33:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 239B4C36010
+	for <intel-xe@archiver.kernel.org>; Sat,  5 Apr 2025 07:09:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E37110E345;
-	Fri,  4 Apr 2025 23:33:20 +0000 (UTC)
-Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF7DE10E345;
- Fri,  4 Apr 2025 23:33:18 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8728744228007520186=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id F375810E010;
+	Sat,  5 Apr 2025 07:09:48 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QQbPGL12";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE82010E010
+ for <intel-xe@lists.freedesktop.org>; Sat,  5 Apr 2025 07:09:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1743836987; x=1775372987;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=r5v8qpuuNJ7V5LDRfyqvzMuCtDG5kmjmKUducAd45K4=;
+ b=QQbPGL12prAKI4aXDICu73hB3UajA8cOGHmi3dIQM5FgLONFuH+l1Rr6
+ 5KjE+7JApsGQmzdlB9M02UiUuCdroshXYWuMXe/CxN/DJi8W1O5HY16CR
+ nefJNhxNfkzi0ntYciS5t6R4IOqVqxELOvY6KJZioRRsQQGMBXSubybuz
+ gQsTIyh0bX3JzD3/D6MYN+hENIKIY6bro4R7mYiV4cyy6CcwlnXXpAIaH
+ 29KGM1CZi7qIg6vF1gFCCmde069Hd5jlHTCZSbG+4BivDeu1JF77H9vlj
+ ti5dzhp67lx8F09Z4dDukDye80Cr+K4u4ikkV3zXgwwxR1ozwar+ipuSh g==;
+X-CSE-ConnectionGUID: Ox3JHYPCSKm0r/tXbXYe1Q==
+X-CSE-MsgGUID: urfNxelyRQO4965mY3Wspw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11394"; a="56649627"
+X-IronPort-AV: E=Sophos;i="6.15,190,1739865600"; d="scan'208";a="56649627"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2025 00:09:44 -0700
+X-CSE-ConnectionGUID: u/WkLMvbSC2e7H+PyrTtLg==
+X-CSE-MsgGUID: puX1rvr3RFCTJBgLf3mMLg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,190,1739865600"; d="scan'208";a="127808407"
+Received: from gsd-build.iind.intel.com ([10.190.229.173])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2025 00:09:43 -0700
+From: Sobin Thomas <sobin.thomas@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: tejas.upadhyay@intel.com
+Subject: [PATCH i-g-t 1/1] drm/xe: xe_hw_engine_class: Add fault injection and
+ improve error handling in kobj_xe_hw_engine_class
+Date: Sat,  5 Apr 2025 06:54:32 +0000
+Message-Id: <20250405065432.2254703-1-sobin.thomas@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Ensure_XE=5FBO=5F?=
- =?utf-8?q?FLAG=5FCPU=5FADDR=5FMIRROR_has_a_unique_value?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 04 Apr 2025 23:33:18 -0000
-Message-ID: <174380959877.39857.16410988368006236990@e6b6f09ec485>
-X-Patchwork-Hint: ignore
-References: <20250404220053.1758356-2-matthew.d.roper@intel.com>
-In-Reply-To: <20250404220053.1758356-2-matthew.d.roper@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +62,43 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8728744228007520186==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+- Added fault injection for `kobj_xe_hw_engine_class` to enhance coverage.
+- Improved error handling by checking for `IS_ERR_OR_NULL` on `keclass` and
+  propagating the error using `PTR_ERR`.
 
-== Series Details ==
+Can be tested using inject-fault-probe-function-kobj_xe_hw_engine_class
 
-Series: drm/xe: Ensure XE_BO_FLAG_CPU_ADDR_MIRROR has a unique value
-URL   : https://patchwork.freedesktop.org/series/147286/
-State : success
+Signed-off-by: Sobin Thomas <sobin.thomas@intel.com>
+---
+ drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
+index 640950172088..0cafe1175389 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
+@@ -571,6 +571,7 @@ kobj_xe_hw_engine_class(struct xe_device *xe, struct kobject *parent, const char
+ 
+ 	return keclass;
+ }
++ALLOW_ERROR_INJECTION(kobj_xe_hw_engine_class, NULL);
+ 
+ static void hw_engine_class_defaults_fini(void *arg)
+ {
+@@ -662,8 +663,8 @@ int xe_hw_engine_class_sysfs_init(struct xe_gt *gt)
+ 		}
+ 
+ 		keclass = kobj_xe_hw_engine_class(xe, kobj, name);
+-		if (!keclass) {
+-			err = -EINVAL;
++		if (IS_ERR_OR_NULL(keclass)) {
++			err = PTR_ERR(keclass);
+ 			goto err_object;
+ 		}
+ 
+-- 
+2.34.1
 
-CI Bug Log - changes from xe-2907-ebade66890117778809714085d5151b0050488a8_BAT -> xe-pw-147286v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-147286v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_exec_basic@twice-bindexecqueue-rebind:
-    - bat-adlp-vf:        [PASS][1] -> [ABORT][2] ([Intel XE#3970])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2907-ebade66890117778809714085d5151b0050488a8/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147286v1/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
-
-  
-  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
-
-
-Build changes
--------------
-
-  * Linux: xe-2907-ebade66890117778809714085d5151b0050488a8 -> xe-pw-147286v1
-
-  IGT_8309: fb77fb2d8d58a2539c9d67d00e1747351eec0bea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2907-ebade66890117778809714085d5151b0050488a8: ebade66890117778809714085d5151b0050488a8
-  xe-pw-147286v1: 147286v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147286v1/index.html
-
---===============8728744228007520186==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Ensure XE_BO_FLAG_CPU_ADDR_MIRROR has a unique value</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147286/">https://patchwork.freedesktop.org/series/147286/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147286v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147286v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2907-ebade66890117778809714085d5151b0050488a8_BAT -&gt; xe-pw-147286v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-147286v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_exec_basic@twice-bindexecqueue-rebind:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2907-ebade66890117778809714085d5151b0050488a8/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147286v1/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2907-ebade66890117778809714085d5151b0050488a8 -&gt; xe-pw-147286v1</li>
-</ul>
-<p>IGT_8309: fb77fb2d8d58a2539c9d67d00e1747351eec0bea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2907-ebade66890117778809714085d5151b0050488a8: ebade66890117778809714085d5151b0050488a8<br />
-  xe-pw-147286v1: 147286v1</p>
-
-</body>
-</html>
-
---===============8728744228007520186==--
