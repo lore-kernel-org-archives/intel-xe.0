@@ -4,29 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CB0BC36010
-	for <intel-xe@archiver.kernel.org>; Sat,  5 Apr 2025 07:36:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C9FEC36010
+	for <intel-xe@archiver.kernel.org>; Sat,  5 Apr 2025 08:27:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6126F10E078;
-	Sat,  5 Apr 2025 07:36:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 597CE10E04A;
+	Sat,  5 Apr 2025 08:26:55 +0000 (UTC)
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF8EB10E078;
- Sat,  5 Apr 2025 07:36:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B795110E04A;
+ Sat,  5 Apr 2025 08:26:53 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_series_starting_with_=5B?=
- =?utf-8?q?i-g-t=2C1/1=5D_drm/xe=3A_xe=5Fhw=5Fengine=5Fclass=3A_Add_fault_in?=
- =?utf-8?q?jection_and_improve_error_handling_in_kobj=5Fxe=5Fhw=5Fengine=5Fc?=
- =?utf-8?q?lass?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_xe=5Fhw=5F?=
+ =?utf-8?q?engine=5Fclass=3A_Add_fault_injection_and_improve_error_handling_?=
+ =?utf-8?q?in_kobj=5Fxe=5Fhw=5Fengine=5Fclass?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Sobin Thomas" <sobin.thomas@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 05 Apr 2025 07:36:37 -0000
-Message-ID: <174383859771.40246.746105693354505285@e6b6f09ec485>
+Date: Sat, 05 Apr 2025 08:26:53 -0000
+Message-ID: <174384161374.40302.17258655832800847982@e6b6f09ec485>
 X-Patchwork-Hint: ignore
-References: <20250405065432.2254703-1-sobin.thomas@intel.com>
-In-Reply-To: <20250405065432.2254703-1-sobin.thomas@intel.com>
+References: <20250405071703.2255259-1-sobin.thomas@intel.com>
+In-Reply-To: <20250405071703.2255259-1-sobin.thomas@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,31 +43,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [i-g-t,1/1] drm/xe: xe_hw_engine_class: Add fault injection and improve error handling in kobj_xe_hw_engine_class
-URL   : https://patchwork.freedesktop.org/series/147289/
+Series: drm/xe: xe_hw_engine_class: Add fault injection and improve error handling in kobj_xe_hw_engine_class
+URL   : https://patchwork.freedesktop.org/series/147290/
 State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 60b7ecc2c5c979cfb8863272348bd6724559b5be
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 60b7ecc2c5c9 drm-tip: 2025y-04m-04d-21h-49m-10s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: xe_hw_engine_class: Add fault injection and improve error handling in kobj_xe_hw_engine_class
 
 
