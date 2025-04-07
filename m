@@ -4,20 +4,21 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14E47C369A5
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 13:05:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3CC9C36010
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 13:05:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C09B910E459;
-	Mon,  7 Apr 2025 13:05:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7346610E45A;
+	Mon,  7 Apr 2025 13:05:09 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D730010E456
- for <intel-xe@lists.freedesktop.org>; Mon,  7 Apr 2025 13:05:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C772210E45A
+ for <intel-xe@lists.freedesktop.org>; Mon,  7 Apr 2025 13:05:06 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [CI 05/14] drm/xe/ggtt: Seperate flags and address in PTE encoding
-Date: Mon,  7 Apr 2025 15:04:40 +0200
-Message-ID: <20250407130449.1010470-6-dev@lankhorst.se>
+Subject: [CI 10/14] drm/xe: Do not rely on GGTT internals in xe_guc_buf kunit
+ tests
+Date: Mon,  7 Apr 2025 15:04:45 +0200
+Message-ID: <20250407130449.1010470-11-dev@lankhorst.se>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250407130449.1010470-1-dev@lankhorst.se>
 References: <20250407130449.1010470-1-dev@lankhorst.se>
@@ -37,227 +38,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Pinning large linear display framebuffers is becoming a bottleneck.
-My plan of attack is doing a custom walk over the BO, this allows for
-easier optimization of consecutive entries.
+Add a function to init ggtt for kunit, and use the GGTT function for
+initialising the GGTT node without populating it. This
+prevents the test from ever knowing about struct xe_ggtt.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_ggtt.c       | 92 +++++++++++++++++++++---------
- drivers/gpu/drm/xe/xe_ggtt.h       |  2 +
- drivers/gpu/drm/xe/xe_ggtt_types.h |  5 +-
- 3 files changed, 72 insertions(+), 27 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c | 11 +++++-----
+ drivers/gpu/drm/xe/xe_ggtt.c                | 23 ++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_ggtt.h                |  1 +
+ 3 files changed, 24 insertions(+), 11 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
+index 6faffcd748694..537766cdd882e 100644
+--- a/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
++++ b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
+@@ -42,10 +42,8 @@ static struct xe_bo *replacement_xe_managed_bo_create_pin_map(struct xe_device *
+ 		KUNIT_ASSERT_NOT_ERR_OR_NULL(test, bo->ggtt_node[tile->id]);
+ 
+ 		KUNIT_ASSERT_EQ(test, 0,
+-				drm_mm_insert_node_in_range(&ggtt->mm,
+-							    &bo->ggtt_node[tile->id]->base,
+-							    bo->size, SZ_4K,
+-							    0, 0, U64_MAX, 0));
++				xe_ggtt_node_insert(bo->ggtt_node[tile->id],
++						    bo->size, SZ_4K));
+ 	}
+ 
+ 	return bo;
+@@ -67,8 +65,9 @@ static int guc_buf_test_init(struct kunit *test)
+ 	ggtt = xe_device_get_root_tile(test->priv)->mem.ggtt;
+ 	guc = &xe_device_get_gt(test->priv, 0)->uc.guc;
+ 
+-	drm_mm_init(&ggtt->mm, DUT_GGTT_START, DUT_GGTT_SIZE);
+-	mutex_init(&ggtt->lock);
++	KUNIT_ASSERT_EQ(test, 0,
++			xe_ggtt_init_kunit(ggtt, DUT_GGTT_START,
++					   DUT_GGTT_START + DUT_GGTT_SIZE));
+ 
+ 	kunit_activate_static_stub(test, xe_managed_bo_create_pin_map,
+ 				   replacement_xe_managed_bo_create_pin_map);
 diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index b197b835ed442..8e1976bceb44f 100644
+index 54d54ee25e9c3..674dfd6c1efd8 100644
 --- a/drivers/gpu/drm/xe/xe_ggtt.c
 +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -27,6 +27,7 @@
- #include "xe_map.h"
- #include "xe_mmio.h"
- #include "xe_pm.h"
-+#include "xe_res_cursor.h"
- #include "xe_sriov.h"
- #include "xe_wa.h"
- #include "xe_wopcm.h"
-@@ -64,13 +65,9 @@
-  * give us the correct placement for free.
-  */
+@@ -5,6 +5,7 @@
  
--static u64 xelp_ggtt_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
--				   u16 pat_index)
-+static u64 xelp_ggtt_pte_flags(struct xe_bo *bo, u16 pat_index)
- {
--	u64 pte;
--
--	pte = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
--	pte |= XE_PAGE_PRESENT;
-+	u64 pte = XE_PAGE_PRESENT;
+ #include "xe_ggtt.h"
  
- 	if (xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo))
- 		pte |= XE_GGTT_PTE_DM;
-@@ -78,13 +75,17 @@ static u64 xelp_ggtt_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
- 	return pte;
- }
- 
--static u64 xelpg_ggtt_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
--				    u16 pat_index)
-+static u64 xelp_ggtt_encode_bo(struct xe_bo *bo, u64 bo_offset, u16 pat_index)
-+{
-+	return xelp_ggtt_pte_flags(bo, pat_index) | xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
-+}
-+
-+static u64 xelpg_ggtt_pte_flags(struct xe_bo *bo, u16 pat_index)
- {
- 	struct xe_device *xe = xe_bo_device(bo);
- 	u64 pte;
- 
--	pte = xelp_ggtt_pte_encode_bo(bo, bo_offset, pat_index);
-+	pte = xelp_ggtt_pte_flags(bo, pat_index);
- 
- 	xe_assert(xe, pat_index <= 3);
- 
-@@ -97,6 +98,12 @@ static u64 xelpg_ggtt_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
- 	return pte;
- }
- 
-+static u64 xelpg_ggtt_encode_bo(struct xe_bo *bo, u64 bo_offset,
-+				u16 pat_index)
-+{
-+	return xelpg_ggtt_pte_flags(bo, pat_index) | xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
-+}
-+
- static unsigned int probe_gsm_size(struct pci_dev *pdev)
- {
- 	u16 gmch_ctl, ggms;
-@@ -149,8 +156,9 @@ static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
- 	xe_tile_assert(ggtt->tile, start < end);
- 
- 	if (ggtt->scratch)
--		scratch_pte = ggtt->pt_ops->pte_encode_bo(ggtt->scratch, 0,
--							  pat_index);
-+		scratch_pte = xe_bo_addr(ggtt->scratch, 0, XE_PAGE_SIZE) |
-+			      ggtt->pt_ops->pte_encode_flags(ggtt->scratch,
-+							     pat_index);
- 	else
- 		scratch_pte = 0;
- 
-@@ -210,17 +218,20 @@ static void primelockdep(struct xe_ggtt *ggtt)
- }
- 
- static const struct xe_ggtt_pt_ops xelp_pt_ops = {
--	.pte_encode_bo = xelp_ggtt_pte_encode_bo,
-+	.pte_encode_bo = xelp_ggtt_encode_bo,
-+	.pte_encode_flags = xelp_ggtt_pte_flags,
- 	.ggtt_set_pte = xe_ggtt_set_pte,
- };
- 
- static const struct xe_ggtt_pt_ops xelpg_pt_ops = {
--	.pte_encode_bo = xelpg_ggtt_pte_encode_bo,
-+	.pte_encode_bo = xelpg_ggtt_encode_bo,
-+	.pte_encode_flags = xelpg_ggtt_pte_flags,
- 	.ggtt_set_pte = xe_ggtt_set_pte,
- };
- 
- static const struct xe_ggtt_pt_ops xelpg_pt_wa_ops = {
--	.pte_encode_bo = xelpg_ggtt_pte_encode_bo,
-+	.pte_encode_bo = xelpg_ggtt_encode_bo,
-+	.pte_encode_flags = xelpg_ggtt_pte_flags,
++#include <kunit/visibility.h>
+ #include <linux/fault-inject.h>
+ #include <linux/io-64-nonatomic-lo-hi.h>
+ #include <linux/sizes.h>
+@@ -221,6 +222,22 @@ static const struct xe_ggtt_pt_ops xelpg_pt_wa_ops = {
  	.ggtt_set_pte = xe_ggtt_set_pte_and_flush,
  };
  
-@@ -612,23 +623,46 @@ bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node)
++static void __xe_ggtt_init_early(struct xe_ggtt *ggtt, u32 reserved)
++{
++	drm_mm_init(&ggtt->mm, reserved,
++		    ggtt->size - reserved);
++	mutex_init(&ggtt->lock);
++	primelockdep(ggtt);
++}
++
++int xe_ggtt_init_kunit(struct xe_ggtt *ggtt, u32 reserved, u32 size)
++{
++	ggtt->size = size;
++	__xe_ggtt_init_early(ggtt, reserved);
++	return 0;
++}
++EXPORT_SYMBOL_IF_KUNIT(xe_ggtt_init_kunit);
++
  /**
-  * xe_ggtt_map_bo - Map the BO into GGTT
-  * @ggtt: the &xe_ggtt where node will be mapped
-+ * @node: the &xe_ggtt_node where this BO is mapped
-  * @bo: the &xe_bo to be mapped
-+ * @pat_index: Which pat_index to use.
-  */
--static void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
-+void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_ggtt_node *node,
-+		    struct xe_bo *bo, u16 pat_index)
- {
--	u16 cache_mode = bo->flags & XE_BO_FLAG_NEEDS_UC ? XE_CACHE_NONE : XE_CACHE_WB;
--	u16 pat_index = tile_to_xe(ggtt->tile)->pat.idx[cache_mode];
--	u64 start;
--	u64 offset, pte;
+  * xe_ggtt_init_early - Early GGTT initialization
+  * @ggtt: the &xe_ggtt to be initialized
+@@ -267,11 +284,7 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+ 		ggtt->pt_ops = &xelp_pt_ops;
  
--	if (XE_WARN_ON(!bo->ggtt_node[ggtt->tile->id]))
-+	u64 start, pte;
-+	struct xe_res_cursor cur;
-+
-+	if (XE_WARN_ON(!node))
- 		return;
+ 	ggtt->wq = alloc_workqueue("xe-ggtt-wq", 0, WQ_MEM_RECLAIM);
+-
+-	drm_mm_init(&ggtt->mm, xe_wopcm_size(xe),
+-		    ggtt->size - xe_wopcm_size(xe));
+-	mutex_init(&ggtt->lock);
+-	primelockdep(ggtt);
++	__xe_ggtt_init_early(ggtt, xe_wopcm_size(xe));
  
--	start = bo->ggtt_node[ggtt->tile->id]->base.start;
-+	start = node->base.start;
- 
--	for (offset = 0; offset < bo->size; offset += XE_PAGE_SIZE) {
--		pte = ggtt->pt_ops->pte_encode_bo(bo, offset, pat_index);
--		ggtt->pt_ops->ggtt_set_pte(ggtt, start + offset, pte);
-+	pte = ggtt->pt_ops->pte_encode_flags(bo, pat_index);
-+	if (!xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo)) {
-+		xe_assert(xe_bo_device(bo), bo->ttm.ttm);
-+
-+		for (xe_res_first_sg(xe_bo_sg(bo), 0, bo->size, &cur);
-+		     cur.remaining;
-+		     xe_res_next(&cur, XE_PAGE_SIZE)) {
-+			u64 addr = xe_res_dma(&cur);
-+
-+			ggtt->pt_ops->ggtt_set_pte(ggtt, start + cur.start, addr | pte);
-+		}
-+	} else {
-+		u64 end = start + bo->size;
-+
-+		/* Prepend GPU offset */
-+		pte |= vram_region_gpu_offset(bo->ttm.resource);
-+
-+		for (xe_res_first(bo->ttm.resource, 0, bo->size, &cur);
-+		     cur.remaining;
-+		     xe_res_next(&cur, XE_PAGE_SIZE)) {
-+
-+			ggtt->pt_ops->ggtt_set_pte(ggtt, end - cur.remaining,
-+						   pte + cur.start);
-+		}
- 	}
- }
- 
-@@ -641,8 +675,11 @@ static void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
-  */
- void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo)
- {
-+	u16 cache_mode = bo->flags & XE_BO_FLAG_NEEDS_UC ? XE_CACHE_NONE : XE_CACHE_WB;
-+	u16 pat_index = tile_to_xe(ggtt->tile)->pat.idx[cache_mode];
-+
- 	mutex_lock(&ggtt->lock);
--	xe_ggtt_map_bo(ggtt, bo);
-+	xe_ggtt_map_bo(ggtt, bo->ggtt_node[ggtt->tile->id], bo, pat_index);
- 	mutex_unlock(&ggtt->lock);
- }
- 
-@@ -682,7 +719,10 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
- 		xe_ggtt_node_fini(bo->ggtt_node[tile_id]);
- 		bo->ggtt_node[tile_id] = NULL;
- 	} else {
--		xe_ggtt_map_bo(ggtt, bo);
-+		u16 cache_mode = bo->flags & XE_BO_FLAG_NEEDS_UC ? XE_CACHE_NONE : XE_CACHE_WB;
-+		u16 pat_index = tile_to_xe(ggtt->tile)->pat.idx[cache_mode];
-+
-+		xe_ggtt_map_bo(ggtt, bo->ggtt_node[tile_id], bo, pat_index);
- 	}
- 	mutex_unlock(&ggtt->lock);
- 
+ 	err = drmm_add_action_or_reset(&xe->drm, ggtt_fini_early, ggtt);
+ 	if (err)
 diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-index 0bab1fd7cc817..c48da99908848 100644
+index 600a76526cf34..9a11872e16d80 100644
 --- a/drivers/gpu/drm/xe/xe_ggtt.h
 +++ b/drivers/gpu/drm/xe/xe_ggtt.h
-@@ -26,6 +26,8 @@ int xe_ggtt_node_insert_locked(struct xe_ggtt_node *node,
- 			       u32 size, u32 align, u32 mm_flags);
- void xe_ggtt_node_remove(struct xe_ggtt_node *node, bool invalidate);
- bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node);
-+void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_ggtt_node *node,
-+		    struct xe_bo *bo, u16 pat_index);
- void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo);
- int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
- int xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
-diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
-index cb02b7994a9ac..06b1a602dd8d1 100644
---- a/drivers/gpu/drm/xe/xe_ggtt_types.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
-@@ -74,8 +74,11 @@ struct xe_ggtt_node {
-  * Which can vary from platform to platform.
-  */
- struct xe_ggtt_pt_ops {
--	/** @pte_encode_bo: Encode PTE address for a given BO */
-+	/** @pte_encode_bo: Encode PTE flags for a given BO */
- 	u64 (*pte_encode_bo)(struct xe_bo *bo, u64 bo_offset, u16 pat_index);
-+
-+	/** @pte_encode_flags: Encode PTE flags for a given BO */
-+	u64 (*pte_encode_flags)(struct xe_bo *bo, u16 pat_index);
- 	/** @ggtt_set_pte: Directly write into GGTT's PTE */
- 	void (*ggtt_set_pte)(struct xe_ggtt *ggtt, u64 addr, u64 pte);
- };
+@@ -13,6 +13,7 @@ struct xe_tile;
+ 
+ struct xe_ggtt *xe_ggtt_alloc(struct xe_tile *tile);
+ int xe_ggtt_init_early(struct xe_ggtt *ggtt);
++int xe_ggtt_init_kunit(struct xe_ggtt *ggtt, u32 reserved, u32 size);
+ int xe_ggtt_init(struct xe_ggtt *ggtt);
+ 
+ struct xe_ggtt_node *xe_ggtt_node_init(struct xe_ggtt *ggtt);
 -- 
 2.45.2
 
