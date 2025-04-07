@@ -4,51 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C3E9C3601E
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 10:30:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAAFCC36010
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 10:33:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC52210E41D;
-	Mon,  7 Apr 2025 10:30:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95E9810E421;
+	Mon,  7 Apr 2025 10:33:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="XRpXyxfi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PFMRbPMd";
 	dkim-atps=neutral
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6C4010E41D;
- Mon,  7 Apr 2025 10:30:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1744021824;
- bh=5xJ6/MRvAgqaafqhcbFQ0suIwFHqaSsWKo7hABkc/NA=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=XRpXyxfirkK2czU/Ktb1AKIu6Z13NjaqcpAp+z2AyPXegkuvxVDGHrU+sNwVMEooa
- wWcwKaU7L8FCu7NXk9sfkTprn4eHoKKCHvn6dmREAy+8WEt7JKDboGsiWtIJcZNKIN
- 8XLYtaCPY4ofO3kJSV6BtflI2/Ll32q6g3H4zfDZ/HLbgnNcUiU/lFduIZ1X+FKwtd
- hX8oAek/ykJhBhvP3gduiZTTjCQGtF1e+O8uDmiBUgq7tsvpKJt0uJqoq22HbHOnwl
- JxrCt1KHnCs2Fr81GgDIaELuMPM7rNI24wpyBXxDFp0kFOFqisJMhxhixePprLMis9
- D8ZanfsvR3qoQ==
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: bbrezillon)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id D805617E001E;
- Mon,  7 Apr 2025 12:30:23 +0200 (CEST)
-Date: Mon, 7 Apr 2025 12:30:18 +0200
-From: Boris Brezillon <boris.brezillon@collabora.com>
-To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
- thomas.hellstrom@linux.intel.com, Danilo Krummrich <dakr@redhat.com>, Boris
- Brezillon <bbrezillon@kernel.org>, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v2 16/32] Introduce drm_gpuvm_sm_map_ops_flags enums for
- sm_map_ops
-Message-ID: <20250407123018.77f7aa94@collabora.com>
-In-Reply-To: <20250407101719.3350996-17-himal.prasad.ghimiray@intel.com>
-References: <20250407101719.3350996-1-himal.prasad.ghimiray@intel.com>
- <20250407101719.3350996-17-himal.prasad.ghimiray@intel.com>
-Organization: Collabora
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CA9710E417;
+ Mon,  7 Apr 2025 10:33:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744022027; x=1775558027;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=1ygYRmPCMtv7fK7r2fSEb9x52ysoIqeWHgwtl7tErQ0=;
+ b=PFMRbPMd7eGTyOGa8m+OyF5lJ1E7ja3CX6gaIT5xkK4OCpW6gABix4JT
+ ksDj2uD35o+BS0WLpTW1QeA1wmL6oinCA7AUJ2FfkrB7Pa225wUtxy7Pq
+ z51ZxpA5UU4oPCfPvOUBoiyFoQfI1wTewRrejn8j0ZoQo8ZREMeeMPXS3
+ Otj9dDcU7uUvdKQ1fbx24uYKytBHeiPjQJZPQ2gLz6WoDYmFFLouRpfLY
+ wbAZHF0Z0djF7YfAy/oKgH+J803B34oIIaPjJLGWACrXuDyKR3fqQVf9d
+ qiy87EGfEse9ecydq9SDkcigSjZm5NgkphxN2srGkM+JenMHDV11hMXYh w==;
+X-CSE-ConnectionGUID: Hx8Dt0AmS/uqYQZN2YpD7g==
+X-CSE-MsgGUID: esGvmyRmQJ2B2LEVSFeMLg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11396"; a="44644834"
+X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; d="scan'208";a="44644834"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2025 03:33:47 -0700
+X-CSE-ConnectionGUID: /d+fux7tQNyr6LC8Ykom1g==
+X-CSE-MsgGUID: lwBTZhdLQXaKoXNurf0/XQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; d="scan'208";a="128420121"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.51])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2025 03:33:45 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 0/6] drm/i915/dp_mst: Clean up active stream count tracking
+In-Reply-To: <20250404150310.1156696-1-imre.deak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250404150310.1156696-1-imre.deak@intel.com>
+Date: Mon, 07 Apr 2025 13:33:42 +0300
+Message-ID: <874iz0z2ex.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,59 +66,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon,  7 Apr 2025 15:47:03 +0530
-Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com> wrote:
+On Fri, 04 Apr 2025, Imre Deak <imre.deak@intel.com> wrote:
+> As requested by Jani, this patchset cleans up the MST active stream
+> count tracking, using the logical name for the counter (stream vs.
+> link) and adding helpers to simplify the functions where the counter is
+> queried.
+>
+> Cc: Jani Nikula <jani.nikula@intel.com>
 
-> - DRM_GPUVM_SM_MAP_NOT_MADVISE: Default sm_map operations for the input
->   range.
-> 
-> - DRM_GPUVM_SKIP_GEM_OBJ_VA_SPLIT_MADVISE: This flag is used by
->   drm_gpuvm_sm_map_ops_create to iterate over GPUVMA's in the
-> user-provided range and split the existing non-GEM object VMA if the
-> start or end of the input range lies within it. The operations can
-> create up to 2 REMAPS and 2 MAPs. The purpose of this operation is to be
-> used by the Xe driver to assign attributes to GPUVMA's within the
-> user-defined range. Unlike drm_gpuvm_sm_map_ops_flags in default mode,
-> the operation with this flag will never have UNMAPs and
-> merges, and can be without any final operations.
-> 
-> v2
-> - use drm_gpuvm_sm_map_ops_create with flags instead of defining new
->   ops_create (Danilo)
-> - Add doc (Danilo)
-> 
-> Cc: Danilo Krummrich <dakr@redhat.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Boris Brezillon <bbrezillon@kernel.org>
-> Cc: <dri-devel@lists.freedesktop.org>
-> Signed-off-by: Himal Prasad Ghimiray<himal.prasad.ghimiray@intel.com>
-> 
-> ---
-> RFC Link:
-> https://lore.kernel.org/intel-xe/20250314080226.2059819-1-himal.prasad.ghimiray@intel.com/T/#mb706bd1c55232110e42dc7d5c05de61946982472
-> ---
->  drivers/gpu/drm/drm_gpuvm.c            | 93 ++++++++++++++++++++------
->  drivers/gpu/drm/nouveau/nouveau_uvmm.c |  1 +
->  drivers/gpu/drm/xe/xe_vm.c             |  1 +
->  include/drm/drm_gpuvm.h                | 25 ++++++-
->  4 files changed, 98 insertions(+), 22 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
-> index f9eb56f24bef..9d09d177b9fa 100644
-> --- a/drivers/gpu/drm/drm_gpuvm.c
-> +++ b/drivers/gpu/drm/drm_gpuvm.c
-> @@ -2102,10 +2102,13 @@ static int
->  __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
->  		   const struct drm_gpuvm_ops *ops, void *priv,
->  		   u64 req_addr, u64 req_range,
-> +		   enum drm_gpuvm_sm_map_ops_flags flags,
->  		   struct drm_gem_object *req_obj, u64 req_offset)
+Looks good!
 
-Not exactly related to this series, but I've been playing with Lina's
-series[1] which is hooking up flag propagation from _map() calls to
-drm_gpuva, and I think we should pass all map args through a struct so
-we don't have to change all call-sites anytime we add one a new optional
-argument. Here's a patch [2] doing that.
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-[1]https://lore.kernel.org/lkml/4a431b98-cccc-495e-b72e-02362828c96b@asahilina.net/T/
-[2]https://gitlab.freedesktop.org/bbrezillon/linux/-/commit/0587c15b9b81ccae1e37ad0a5d524754d8455558
+
+>
+> Imre Deak (6):
+>   drm/i915/dp: Rename intel_dp::link_trained to link.active
+>   drm/i915/dp_mst: Add intel_dp_mst_{inc,dec}_active_streams()
+>   drm/i915/dp_mst: Remove stream count assert from
+>     intel_dp_check_mst_status()
+>   drm/i915/dp_mst: Rename intel_dp_mst_encoder_active_links() to
+>     intel_dp_mst_active_streams()
+>   drm/i915/dp_mst: Use intel_dp_mst_active_streams() instead of
+>     open-coding it
+>   drm/i915/dp_mst: Rename intel_dp::mst.active_links to
+>     mst.active_streams
+>
+>  drivers/gpu/drm/i915/display/g4x_dp.c         |  2 +-
+>  drivers/gpu/drm/i915/display/intel_ddi.c      | 10 +--
+>  .../drm/i915/display/intel_display_types.h    |  4 +-
+>  drivers/gpu/drm/i915/display/intel_dp.c       | 10 ++-
+>  .../drm/i915/display/intel_dp_link_training.c |  8 +--
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c   | 66 +++++++++++--------
+>  drivers/gpu/drm/i915/display/intel_dp_mst.h   |  2 +-
+>  drivers/gpu/drm/i915/display/intel_hdcp.c     |  3 +-
+>  drivers/gpu/drm/i915/display/intel_tc.c       | 20 +++---
+>  9 files changed, 67 insertions(+), 58 deletions(-)
+
+-- 
+Jani Nikula, Intel
