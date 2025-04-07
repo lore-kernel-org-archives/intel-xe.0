@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A985DC36010
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 14:07:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EA60C36010
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 14:08:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72A9E10E480;
-	Mon,  7 Apr 2025 14:07:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F1D710E489;
+	Mon,  7 Apr 2025 14:08:00 +0000 (UTC)
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33A8B10E480;
- Mon,  7 Apr 2025 14:07:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BDCC10E48F;
+ Mon,  7 Apr 2025 14:07:58 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_PREFETCH_and_MADVISE?=
- =?utf-8?q?_for_SVM_ranges_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_PREFETCH_and_MADVISE_for_?=
+ =?utf-8?q?SVM_ranges_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 07 Apr 2025 14:07:22 -0000
-Message-ID: <174403484220.43714.18037971002616163088@e6b6f09ec485>
+Date: Mon, 07 Apr 2025 14:07:58 -0000
+Message-ID: <174403487830.43715.719016090960441027@e6b6f09ec485>
 X-Patchwork-Hint: ignore
 References: <20250407101719.3350996-1-himal.prasad.ghimiray@intel.com>
 In-Reply-To: <20250407101719.3350996-1-himal.prasad.ghimiray@intel.com>
@@ -44,44 +44,152 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: PREFETCH and MADVISE for SVM ranges (rev3)
 URL   : https://patchwork.freedesktop.org/series/146290/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 100ba24787e8 drm-tip: 2025y-04m-07d-13h-47m-40s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Introduce xe_vma_op_prefetch_range struct for prefetch of ranges
-Applying: drm/xe: Make xe_svm_alloc_vram public
-Applying: drm/xe/svm: Helper to add tile masks to svm ranges
-Applying: drm/xe/svm: Make to_xe_range a public function
-Applying: drm/xe/svm: Make xe_svm_range_* end/start/size public
-Applying: drm/xe/vm: Update xe_vma_ops_incr_pt_update_ops to take an increment value
-Applying: drm/xe/vm: Add an identifier in xe_vma_ops for svm prefetch
-Applying: drm/xe: Rename lookup_vma function to xe_find_vma_by_addr
-Applying: drm/xe/svm: Allow unaligned addresses and ranges for prefetch
-Applying: drm/xe/svm: Refactor usage of drm_gpusvm* function in xe_svm
-Applying: drm/xe/svm: Add function to determine if range needs VRAM migration
-Applying: drm/gpusvm: Introduce vram_only flag for VRAM allocation
-Applying: drm/xe/svm: Incase of atomic access ensure get_pages happens from vram
-Applying: drm/xe/svm: Implement prefetch support for SVM ranges
-Applying: drm/xe/vm: Add debug prints for SVM range prefetch
-Applying: Introduce drm_gpuvm_sm_map_ops_flags enums for sm_map_ops
-Applying: drm/xe/uapi: Add madvise interface
-Applying: drm/xe/vm: Add attributes struct as member of vma
-Applying: drm/xe/vma: Move pat_index to vma attributes
-Applying: drm/xe/vma: Modify new_vma to accept struct xe_vma_mem_attr as parameter
-Applying: drm/gpusvm: Make drm_gpusvm_for_each_* macros public
-Applying: drm/xe/svm: Split system allocator vma incase of madvise call
-Applying: drm/xe: Implement madvise ioctl for xe
-Applying: drm/xe: Allow CPU address mirror VMA unbind with gpu bindings for madvise
-Applying: drm/xe/svm : Add svm ranges migration policy on atomic access
-Applying: drm/xe/madvise: Update migration policy based on preferred location
-Applying: drm/xe/svm: Support DRM_XE_SVM_ATTR_PAT memory attribute
-Applying: drm/xe/uapi: Add flag for consulting madvise hints on svm prefetch
-Applying: drm/xe/svm: Consult madvise preferred location in prefetch
-Applying: drm/xe/uapi: Add uapi for vma count and mem attributes
-Applying: drm/xe/bo: Add attributes field to xe_bo
-Applying: drm/xe/bo: Update atomic_access attribute on madvise
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+99e5a866b5e13f134e606a3e29d9508d97826fb3
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c443caaf71ea71a9bc61c61383a24b9e3326023f
+Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Date:   Mon Apr 7 15:47:19 2025 +0530
+
+    drm/xe/bo: Update atomic_access attribute on madvise
+    
+    Update the bo_atomic_access based on user-provided input and determine
+    the migration to smem during a CPU fault
+    
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
++ /mt/dim checkpatch 100ba24787e877cd422caa7d08cb046ef4bb769c drm-intel
+35ac963567d7 drm/xe: Introduce xe_vma_op_prefetch_range struct for prefetch of ranges
+41aa6781fbda drm/xe: Make xe_svm_alloc_vram public
+5eeaaef3d5aa drm/xe/svm: Helper to add tile masks to svm ranges
+6a907a068f1d drm/xe/svm: Make to_xe_range a public function
+63d2d2f23ae9 drm/xe/svm: Make xe_svm_range_* end/start/size public
+63fb574ac68d drm/xe/vm: Update xe_vma_ops_incr_pt_update_ops to take an increment value
+-:30: ERROR:SPACING: space required before the open parenthesis '('
+#30: FILE: drivers/gpu/drm/xe/xe_vm.c:813:
++	if(!inc_val)
+
+total: 1 errors, 0 warnings, 0 checks, 96 lines checked
+e7ff182670e3 drm/xe/vm: Add an identifier in xe_vma_ops for svm prefetch
+cef867ff66d6 drm/xe: Rename lookup_vma function to xe_find_vma_by_addr
+4579352136cb drm/xe/svm: Allow unaligned addresses and ranges for prefetch
+db7ba572a630 drm/xe/svm: Refactor usage of drm_gpusvm* function in xe_svm
+15b7e9bc3433 drm/xe/svm: Add function to determine if range needs VRAM migration
+bf4443a1c73d drm/gpusvm: Introduce vram_only flag for VRAM allocation
+6dd1de84a57c drm/xe/svm: Incase of atomic access ensure get_pages happens from vram
+c974aa30b4e8 drm/xe/svm: Implement prefetch support for SVM ranges
+aafacca0ea5f drm/xe/vm: Add debug prints for SVM range prefetch
+0ce18cc8b752 Introduce drm_gpuvm_sm_map_ops_flags enums for sm_map_ops
+971811347396 drm/xe/uapi: Add madvise interface
+-:37: WARNING:LONG_LINE: line length of 114 exceeds 100 columns
+#37: FILE: include/uapi/drm/xe_drm.h:122:
++#define DRM_IOCTL_XE_MADVISE			DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_MADVISE, struct drm_xe_madvise)
+
+total: 0 errors, 1 warnings, 0 checks, 121 lines checked
+22e154a312f9 drm/xe/vm: Add attributes struct as member of vma
+77eef0321e50 drm/xe/vma: Move pat_index to vma attributes
+dbe07bb8c967 drm/xe/vma: Modify new_vma to accept struct xe_vma_mem_attr as parameter
+250dadc7dda3 drm/gpusvm: Make drm_gpusvm_for_each_* macros public
+-:162: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'range__' - possible side-effects?
+#162: FILE: include/drm/drm_gpusvm.h:536:
++#define drm_gpusvm_for_each_range_safe(range__, next__, notifier__, start__, end__)	\
++	for ((range__) = __drm_gpusvm_range_find((notifier__), (start__), (end__)),	\
++	     (next__) = __drm_gpusvm_range_next(range__);				\
++	     (range__) && (drm_gpusvm_range_start(range__) < (end__));			\
++	     (range__) = (next__), (next__) = __drm_gpusvm_range_next(range__))
+
+-:162: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'next__' - possible side-effects?
+#162: FILE: include/drm/drm_gpusvm.h:536:
++#define drm_gpusvm_for_each_range_safe(range__, next__, notifier__, start__, end__)	\
++	for ((range__) = __drm_gpusvm_range_find((notifier__), (start__), (end__)),	\
++	     (next__) = __drm_gpusvm_range_next(range__);				\
++	     (range__) && (drm_gpusvm_range_start(range__) < (end__));			\
++	     (range__) = (next__), (next__) = __drm_gpusvm_range_next(range__))
+
+-:162: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'end__' - possible side-effects?
+#162: FILE: include/drm/drm_gpusvm.h:536:
++#define drm_gpusvm_for_each_range_safe(range__, next__, notifier__, start__, end__)	\
++	for ((range__) = __drm_gpusvm_range_find((notifier__), (start__), (end__)),	\
++	     (next__) = __drm_gpusvm_range_next(range__);				\
++	     (range__) && (drm_gpusvm_range_start(range__) < (end__));			\
++	     (range__) = (next__), (next__) = __drm_gpusvm_range_next(range__))
+
+-:209: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'notifier__' - possible side-effects?
+#209: FILE: include/drm/drm_gpusvm.h:583:
++#define drm_gpusvm_for_each_notifier(notifier__, gpusvm__, start__, end__)		\
++	for ((notifier__) = notifier_iter_first(&(gpusvm__)->root, (start__), (end__) - 1);	\
++	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
++	     (notifier__) = __drm_gpusvm_notifier_next(notifier__))
+
+-:209: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'end__' - possible side-effects?
+#209: FILE: include/drm/drm_gpusvm.h:583:
++#define drm_gpusvm_for_each_notifier(notifier__, gpusvm__, start__, end__)		\
++	for ((notifier__) = notifier_iter_first(&(gpusvm__)->root, (start__), (end__) - 1);	\
++	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
++	     (notifier__) = __drm_gpusvm_notifier_next(notifier__))
+
+-:225: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'notifier__' - possible side-effects?
+#225: FILE: include/drm/drm_gpusvm.h:599:
++#define drm_gpusvm_for_each_notifier_safe(notifier__, next__, gpusvm__, start__, end__)	\
++	for ((notifier__) = notifier_iter_first(&(gpusvm__)->root, (start__), (end__) - 1),	\
++	     (next__) = __drm_gpusvm_notifier_next(notifier__);				\
++	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
++	     (notifier__) = (next__), (next__) = __drm_gpusvm_notifier_next(notifier__))
+
+-:225: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'next__' - possible side-effects?
+#225: FILE: include/drm/drm_gpusvm.h:599:
++#define drm_gpusvm_for_each_notifier_safe(notifier__, next__, gpusvm__, start__, end__)	\
++	for ((notifier__) = notifier_iter_first(&(gpusvm__)->root, (start__), (end__) - 1),	\
++	     (next__) = __drm_gpusvm_notifier_next(notifier__);				\
++	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
++	     (notifier__) = (next__), (next__) = __drm_gpusvm_notifier_next(notifier__))
+
+-:225: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'end__' - possible side-effects?
+#225: FILE: include/drm/drm_gpusvm.h:599:
++#define drm_gpusvm_for_each_notifier_safe(notifier__, next__, gpusvm__, start__, end__)	\
++	for ((notifier__) = notifier_iter_first(&(gpusvm__)->root, (start__), (end__) - 1),	\
++	     (next__) = __drm_gpusvm_notifier_next(notifier__);				\
++	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
++	     (notifier__) = (next__), (next__) = __drm_gpusvm_notifier_next(notifier__))
+
+total: 0 errors, 0 warnings, 8 checks, 207 lines checked
+c520c7bdd542 drm/xe/svm: Split system allocator vma incase of madvise call
+7d4fe2a76106 drm/xe: Implement madvise ioctl for xe
+-:48: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#48: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 345 lines checked
+3bd47c6e5c68 drm/xe: Allow CPU address mirror VMA unbind with gpu bindings for madvise
+a07b3c5ab931 drm/xe/svm : Add svm ranges migration policy on atomic access
+27e8b71c4976 drm/xe/madvise: Update migration policy based on preferred location
+85c55d76bd45 drm/xe/svm: Support DRM_XE_SVM_ATTR_PAT memory attribute
+661425da0e06 drm/xe/uapi: Add flag for consulting madvise hints on svm prefetch
+aeef6241b5c5 drm/xe/svm: Consult madvise preferred location in prefetch
+b20f08c37021 drm/xe/uapi: Add uapi for vma count and mem attributes
+-:75: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#75: FILE: drivers/gpu/drm/xe/xe_vm.c:2210:
++		mem_attrs[i].preferred_mem_loc.migration_policy = vma->attr.preferred_loc.migration_policy;
+
+-:170: WARNING:LONG_LINE: line length of 130 exceeds 100 columns
+#170: FILE: include/uapi/drm/xe_drm.h:127:
++#define DRM_IOCTL_XE_VM_QUERY_VMAS		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_QUERY_VMAS, struct drm_xe_vm_query_num_vmas)
+
+-:171: WARNING:LONG_LINE: line length of 137 exceeds 100 columns
+#171: FILE: include/uapi/drm/xe_drm.h:128:
++#define DRM_IOCTL_XE_VM_QUERY_VMAS_ATTRS	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_QUERY_VMAS_ATTRS, struct drm_xe_vm_query_vmas_attr)
+
+total: 0 errors, 3 warnings, 0 checks, 256 lines checked
+9d789c08123e drm/xe/bo: Add attributes field to xe_bo
+c443caaf71ea drm/xe/bo: Update atomic_access attribute on madvise
 
 
