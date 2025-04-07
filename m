@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 669E2C36010
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 16:31:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CB04C36010
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 16:39:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 249B410E511;
-	Mon,  7 Apr 2025 16:31:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EE2610E511;
+	Mon,  7 Apr 2025 16:39:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fgZqdBq6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jCEo9W26";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80C2C10E511;
- Mon,  7 Apr 2025 16:31:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF89C10E511;
+ Mon,  7 Apr 2025 16:39:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744043462; x=1775579462;
+ t=1744043946; x=1775579946;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=xpv0axtL17bteMLxZfmq+ZDNeNruWEZlqJC4tChqyJk=;
- b=fgZqdBq6u+ZQERdn+CFRcDveu43HWs/+I5oUrMWrSo9JgqQsuNDLyoNe
- mUmK6dH9uqhXxZ2AXTKEFf8NRV0WGpQNQZBGxIathBBAvZhxNG/xJQ1ZU
- tCZlCHEzo48U1ZfSLtjyRVDtrzoxXRCOMow+Rr0Qy1b32/3mB/BS0UM+S
- RezLLARAS07AEbyhPZGo5CMwLsKdt4xQZ5WKfnTYx3wa1SmlZciMJVlFa
- +fB+yr3dSCQnlywMEedKumKZ4UroMQr4HGMtHX6LZn76n6LcDln5pOKbo
- 3ZP94Ko36y7oj28ZOw9khLAVxWVsKb4E1JpYXUpsKWgQVE/VMV8dwrsdw w==;
-X-CSE-ConnectionGUID: rYblgylPQD26SR0A+Hdiwg==
-X-CSE-MsgGUID: +azKvdZFRzCqryIKNROXVA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="45454585"
-X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; d="scan'208";a="45454585"
+ bh=YrXkOHjK16UxbF2eLUK2ojttb/xGJcqSL37KDdSePSY=;
+ b=jCEo9W260+cuYwOsLeDFc5zBg9W/MhMj3pJq1pWlvJWsFnqsJTzqLQnf
+ wOSQ/DOSfpp2DUaGRTEppeAHH+cKc9jX9ZtU2zZKsUpZYBwix2mi/ZhNw
+ zS8viFhd10nu5pX+Kf8+JfLeI7Verh90XzQUPRpCZec0TuN4255m3bwJc
+ QYjTej5BvnDmgiRDKLQNYvT8RpZvJTAl6sVc37Hp9YL12w9Vwtzb+lOBY
+ PP3UdYuz7ueEiUCojj2bwf0/AA4EXSmX8CPJuk889QYsEmgfpu6OxAz4Z
+ OtzI8pwVi/Ahapzv8CEYozNKaafqEiYBoPdwP4obiEcA0eXz9S6Ouk5bS Q==;
+X-CSE-ConnectionGUID: bCXmeyVYSSu5iqrWqfei5A==
+X-CSE-MsgGUID: Od56VlXWRua0WyMarNFlgg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="45455631"
+X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; d="scan'208";a="45455631"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2025 09:31:01 -0700
-X-CSE-ConnectionGUID: Zsts0Z1MTm6LwE0DKnQIUA==
-X-CSE-MsgGUID: kWBLEkJ3TcytrUD6uc1J7w==
+ 07 Apr 2025 09:39:06 -0700
+X-CSE-ConnectionGUID: pphOak46Ru+69Eewt+3KPQ==
+X-CSE-MsgGUID: Fdzb8p8+Rt23oVpVN/SFGQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; d="scan'208";a="133208836"
+X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; d="scan'208";a="133211746"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 07 Apr 2025 09:30:59 -0700
+ by orviesa005.jf.intel.com with SMTP; 07 Apr 2025 09:39:03 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 07 Apr 2025 19:30:57 +0300
-Date: Mon, 7 Apr 2025 19:30:57 +0300
+ Mon, 07 Apr 2025 19:39:01 +0300
+Date: Mon, 7 Apr 2025 19:39:01 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  uma.shankar@intel.com, animesh.manna@intel.com
-Subject: Re: [PATCH 06/11] drm/i915/dsb: Add support for GOSUB interrupt
-Message-ID: <Z_P9wdRcMKAb1sDs@intel.com>
+Subject: Re: [PATCH 07/11] drm/i915: s/dsb_color_vblank/dsb_color
+Message-ID: <Z_P_pYPTbGMziMVK@intel.com>
 References: <20250407142359.1398410-1-chaitanya.kumar.borah@intel.com>
- <20250407142359.1398410-7-chaitanya.kumar.borah@intel.com>
+ <20250407142359.1398410-8-chaitanya.kumar.borah@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250407142359.1398410-7-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20250407142359.1398410-8-chaitanya.kumar.borah@intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,65 +71,197 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Apr 07, 2025 at 07:53:54PM +0530, Chaitanya Kumar Borah wrote:
-> DSB raises an interrupt when there is a nested GOSUB command or
-> illegal Head/Tail. Add support to log such errors in the DSB
-> interrupt handler.
+On Mon, Apr 07, 2025 at 07:53:55PM +0530, Chaitanya Kumar Borah wrote:
+> With double buffer gamma registers in the mix, we need not wait for
+> vblank to execute gamma writes through dsb. Before we implement
+> that s/dsb_color_vblank/dsb_color.
 > 
 > Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
 > ---
->  drivers/gpu/drm/i915/display/intel_dsb.c      | 5 ++++-
->  drivers/gpu/drm/i915/display/intel_dsb_regs.h | 2 ++
->  2 files changed, 6 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/intel_atomic.c   |  4 +-
+>  drivers/gpu/drm/i915/display/intel_color.c    | 38 +++++++++----------
+>  drivers/gpu/drm/i915/display/intel_display.c  | 10 ++---
+>  .../drm/i915/display/intel_display_types.h    |  2 +-
+>  4 files changed, 27 insertions(+), 27 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-> index bffa02a0442c..da58f1c821c3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-> @@ -787,7 +787,7 @@ static void _intel_dsb_commit(struct intel_dsb *dsb, u32 ctrl,
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
+> index e83feca5c9c9..f85edb374c97 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+> @@ -274,7 +274,7 @@ intel_crtc_duplicate_state(struct drm_crtc *crtc)
+>  	crtc_state->do_async_flip = false;
+>  	crtc_state->fb_bits = 0;
+>  	crtc_state->update_planes = 0;
+> -	crtc_state->dsb_color_vblank = NULL;
+> +	crtc_state->dsb_color = NULL;
+>  	crtc_state->dsb_commit = NULL;
+>  	crtc_state->use_dsb = false;
 >  
->  	intel_de_write_fw(display, DSB_INTERRUPT(pipe, dsb->id),
->  			  dsb_error_int_status(display) | DSB_PROG_INT_STATUS |
-> -			  dsb_error_int_en(display) | DSB_PROG_INT_EN);
-> +			  dsb_error_int_en(display) | DSB_PROG_INT_EN | DSB_GOSUB_INT_EN);
-
-You need to add that to dsb_error_int_{en,status}(), with the
-appropriate platform checks to avoid the interrupt handler getting
-confused on platforms that don't have GOSUB.
-
+> @@ -310,7 +310,7 @@ intel_crtc_destroy_state(struct drm_crtc *crtc,
+>  {
+>  	struct intel_crtc_state *crtc_state = to_intel_crtc_state(state);
 >  
->  	intel_de_write_fw(display, DSB_HEAD(pipe, dsb->id),
->  			  intel_dsb_head(dsb));
-> @@ -980,4 +980,7 @@ void intel_dsb_irq_handler(struct intel_display *display,
->  	if (errors & DSB_POLL_ERR_INT_STATUS)
->  		drm_err(display->drm, "[CRTC:%d:%s] DSB %d poll error\n",
->  			crtc->base.base.id, crtc->base.name, dsb_id);
-> +	if (errors & DSB_GOSUB_INT_STATUS)
-> +		drm_err(display->drm, "[CRTC:%d:%s] DSB %d gosub int error\n",
-
-Maybe something like:
-"... GOSUB programming error"
-
-> +			crtc->base.base.id, crtc->base.name, dsb_id);
+> -	drm_WARN_ON(crtc->dev, crtc_state->dsb_color_vblank);
+> +	drm_WARN_ON(crtc->dev, crtc_state->dsb_color);
+>  	drm_WARN_ON(crtc->dev, crtc_state->dsb_commit);
+>  
+>  	__drm_atomic_helper_crtc_destroy_state(&crtc_state->uapi);
+> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+> index 98dddf72c0eb..bb2da3a53e9c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_color.c
+> +++ b/drivers/gpu/drm/i915/display/intel_color.c
+> @@ -1339,8 +1339,8 @@ static void ilk_lut_write(const struct intel_crtc_state *crtc_state,
+>  {
+>  	struct intel_display *display = to_intel_display(crtc_state);
+>  
+> -	if (crtc_state->dsb_color_vblank)
+> -		intel_dsb_reg_write(crtc_state->dsb_color_vblank, reg, val);
+> +	if (crtc_state->dsb_color)
+> +		intel_dsb_reg_write(crtc_state->dsb_color, reg, val);
+>  	else
+>  		intel_de_write_fw(display, reg, val);
 >  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_dsb_regs.h b/drivers/gpu/drm/i915/display/intel_dsb_regs.h
-> index cb6e0e5624a6..230104f36145 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dsb_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dsb_regs.h
-> @@ -51,11 +51,13 @@
->  #define   DSB_RESET_SM_STATE_MASK	REG_GENMASK(5, 4)
->  #define   DSB_RUN_SM_STATE_MASK		REG_GENMASK(2, 0)
->  #define DSB_INTERRUPT(pipe, id)		_MMIO(DSBSL_INSTANCE(pipe, id) + 0x28)
-> +#define   DSB_GOSUB_INT_EN		REG_BIT(21) /* ptl+ */
->  #define   DSB_ATS_FAULT_INT_EN		REG_BIT(20) /* mtl+ */
->  #define   DSB_GTT_FAULT_INT_EN		REG_BIT(19)
->  #define   DSB_RSPTIMEOUT_INT_EN		REG_BIT(18)
->  #define   DSB_POLL_ERR_INT_EN		REG_BIT(17)
->  #define   DSB_PROG_INT_EN		REG_BIT(16)
-> +#define   DSB_GOSUB_INT_STATUS		REG_BIT(5) /* ptl+ */
->  #define   DSB_ATS_FAULT_INT_STATUS	REG_BIT(4) /* mtl+ */
->  #define   DSB_GTT_FAULT_INT_STATUS	REG_BIT(3)
->  #define   DSB_RSPTIMEOUT_INT_STATUS	REG_BIT(2)
+> @@ -1350,8 +1350,8 @@ static void ilk_lut_write_indexed(const struct intel_crtc_state *crtc_state,
+>  {
+>  	struct intel_display *display = to_intel_display(crtc_state);
+>  
+> -	if (crtc_state->dsb_color_vblank)
+> -		intel_dsb_reg_write_indexed(crtc_state->dsb_color_vblank, reg, val);
+> +	if (crtc_state->dsb_color)
+> +		intel_dsb_reg_write_indexed(crtc_state->dsb_color, reg, val);
+>  	else
+>  		intel_de_write_fw(display, reg, val);
+>  }
+> @@ -1389,7 +1389,7 @@ static void ilk_load_lut_8(const struct intel_crtc_state *crtc_state,
+>  	for (i = 0; i < 256; i++) {
+>  		ilk_lut_write(crtc_state, LGC_PALETTE(pipe, i),
+>  			      i9xx_lut_8(&lut[i]));
+> -		if (crtc_state->dsb_color_vblank)
+> +		if (crtc_state->dsb_color)
+>  			ilk_lut_write(crtc_state, LGC_PALETTE(pipe, i),
+>  				      i9xx_lut_8(&lut[i]));
+>  	}
+> @@ -1917,7 +1917,7 @@ void intel_color_load_luts(const struct intel_crtc_state *crtc_state)
+>  {
+>  	struct intel_display *display = to_intel_display(crtc_state);
+>  
+> -	if (crtc_state->dsb_color_vblank)
+> +	if (crtc_state->dsb_color)
+>  		return;
+>  
+>  	display->funcs.color->load_luts(crtc_state);
+> @@ -1982,39 +1982,39 @@ void intel_color_prepare_commit(struct intel_atomic_state *state,
+>  	if (!crtc_state->pre_csc_lut && !crtc_state->post_csc_lut)
+>  		return;
+>  
+> -	crtc_state->dsb_color_vblank = intel_dsb_prepare(state, crtc, INTEL_DSB_1, 1024);
+> -	if (!crtc_state->dsb_color_vblank)
+> +	crtc_state->dsb_color = intel_dsb_prepare(state, crtc, INTEL_DSB_1, 1024);
+> +	if (!crtc_state->dsb_color)
+>  		return;
+>  
+>  	display->funcs.color->load_luts(crtc_state);
+>  
+>  	if (crtc_state->use_dsb) {
+> -		intel_vrr_send_push(crtc_state->dsb_color_vblank, crtc_state);
+> -		intel_dsb_wait_vblank_delay(state, crtc_state->dsb_color_vblank);
+> -		intel_vrr_check_push_sent(crtc_state->dsb_color_vblank, crtc_state);
+> -		intel_dsb_interrupt(crtc_state->dsb_color_vblank);
+> +		intel_vrr_send_push(crtc_state->dsb_color, crtc_state);
+> +		intel_dsb_wait_vblank_delay(state, crtc_state->dsb_color);
+> +		intel_vrr_check_push_sent(crtc_state->dsb_color, crtc_state);
+> +		intel_dsb_interrupt(crtc_state->dsb_color);
+>  	}
+>  
+> -	intel_dsb_finish(crtc_state->dsb_color_vblank);
+> +	intel_dsb_finish(crtc_state->dsb_color);
+>  }
+>  
+>  void intel_color_cleanup_commit(struct intel_crtc_state *crtc_state)
+>  {
+> -	if (crtc_state->dsb_color_vblank) {
+> -		intel_dsb_cleanup(crtc_state->dsb_color_vblank);
+> -		crtc_state->dsb_color_vblank = NULL;
+> +	if (crtc_state->dsb_color) {
+> +		intel_dsb_cleanup(crtc_state->dsb_color);
+> +		crtc_state->dsb_color = NULL;
+>  	}
+>  }
+>  
+>  void intel_color_wait_commit(const struct intel_crtc_state *crtc_state)
+>  {
+> -	if (crtc_state->dsb_color_vblank)
+> -		intel_dsb_wait(crtc_state->dsb_color_vblank);
+> +	if (crtc_state->dsb_color)
+> +		intel_dsb_wait(crtc_state->dsb_color);
+>  }
+>  
+>  bool intel_color_uses_dsb(const struct intel_crtc_state *crtc_state)
+>  {
+> -	return crtc_state->dsb_color_vblank;
+> +	return crtc_state->dsb_color;
+>  }
+>  
+>  static bool intel_can_preload_luts(struct intel_atomic_state *state,
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index dc7517da2ed5..69c1790199d3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -7182,7 +7182,7 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+>  	struct intel_crtc_state *new_crtc_state =
+>  		intel_atomic_get_new_crtc_state(state, crtc);
+>  
+> -	if (!new_crtc_state->use_dsb && !new_crtc_state->dsb_color_vblank)
+> +	if (!new_crtc_state->use_dsb && !new_crtc_state->dsb_color)
+>  		return;
+>  
+>  	/*
+> @@ -7229,7 +7229,7 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+>  			skl_detach_scalers(new_crtc_state->dsb_commit,
+>  					   new_crtc_state);
+>  
+> -		if (!new_crtc_state->dsb_color_vblank) {
+> +		if (!new_crtc_state->dsb_color) {
+>  			intel_dsb_wait_vblanks(new_crtc_state->dsb_commit, 1);
+>  
+>  			intel_vrr_send_push(new_crtc_state->dsb_commit, new_crtc_state);
+> @@ -7239,9 +7239,9 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+>  		}
+>  	}
+>  
+> -	if (new_crtc_state->dsb_color_vblank)
+> +	if (new_crtc_state->dsb_color)
+>  		intel_dsb_chain(state, new_crtc_state->dsb_commit,
+> -				new_crtc_state->dsb_color_vblank, true);
+> +				new_crtc_state->dsb_color, true);
+>  
+>  	intel_dsb_finish(new_crtc_state->dsb_commit);
+>  }
+> @@ -7430,7 +7430,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+>  		 *
+>  		 * FIXME get rid of this funny new->old swapping
+>  		 */
+> -		old_crtc_state->dsb_color_vblank = fetch_and_zero(&new_crtc_state->dsb_color_vblank);
+> +		old_crtc_state->dsb_color = fetch_and_zero(&new_crtc_state->dsb_color);
+>  		old_crtc_state->dsb_commit = fetch_and_zero(&new_crtc_state->dsb_commit);
+>  	}
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 367b53a9eae2..99244c2449d4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1292,7 +1292,7 @@ struct intel_crtc_state {
+>  	enum transcoder mst_master_transcoder;
+>  
+>  	/* For DSB based pipe updates */
+> -	struct intel_dsb *dsb_color_vblank, *dsb_commit;
+> +	struct intel_dsb *dsb_color, *dsb_commit;
+>  	bool use_dsb;
+>  
+>  	u32 psr2_man_track_ctl;
 > -- 
 > 2.25.1
 
