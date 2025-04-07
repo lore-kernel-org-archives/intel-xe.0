@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03870C3601E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38DF2C3601A
 	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 09:53:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B66CA10E3F9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFA9E10E3FF;
 	Mon,  7 Apr 2025 09:53:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Lhg/u7U/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dGHLR548";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE84B10E402
- for <intel-xe@lists.freedesktop.org>; Mon,  7 Apr 2025 09:53:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3953A10E3FF
+ for <intel-xe@lists.freedesktop.org>; Mon,  7 Apr 2025 09:53:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744019595; x=1775555595;
+ t=1744019596; x=1775555596;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=mSBRk+KyDoJCPZi8hniL/8mb7yvJFUvor8pn9FobXYg=;
- b=Lhg/u7U/rdEQLO0nuNt4k7SVJrH+ANVHGfrT7o1573U4pzBCW9zXUT/V
- 7jKZpITq17JgopFh+tStJCzPKaBCoQxGfQM2v584f5nx0lGZtTeA8nomG
- T9Zx6l0siAdg/ZhqwKpcZhQx+YOXHwpVKyqPuWEKG96L1FHzYwsHS/RNW
- UabsHafDgoKepDjoeI8ggZPts8osaB93gGWoaBSX71nWUmemBFAKA2yXj
- tmV9PLwOh3FsKnJSyLvJeBKhErOlhBnKIi8p+Y2eoq6uCtNur5L1E1V3O
- Ulj0gAeucHIN2r6GZCSqRHX0bDzQYre0V2jxArwh8shqK5jwRKTa9i8EE w==;
-X-CSE-ConnectionGUID: 96x8cgNSTV2+HFwGb7I/gg==
-X-CSE-MsgGUID: eg8HH9pKRZOxYeFMMYdX/w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11396"; a="56029428"
-X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; d="scan'208";a="56029428"
+ bh=VkbF20hGbPKn4tvS975w+yZD2IWGxMoMi/IvqGdPOys=;
+ b=dGHLR5486V5aSq6GNnzykMmpVWUlkuFVIElPTh9WYqi4RzuVgVcBxWWT
+ fT7g8EdsylVRVMfgoGu5dQQjwW6I2KmBT7m/7CsunDttkHYKCoxOChE5d
+ +skAPWetWcxOBxwW2eKDldg5f9nzSSXchTucEYY7h+So75Q6pu7mCL7jg
+ 6x/j6X+pHJ/o1/HTLHMNCNPR7IYC1K96T8lk7kgwMZaMuw0yOxu94Lprc
+ oaZgmoFPggC5v/vHQGcPLZ1Qd/X3Txe2R6eQzdclQydnGCrIxaAwC0e+u
+ kf6tuEgwfxekpMjOEUMQ8iCiR1CliX24/fG+fIy1ZwAoifcq2vQau7dTK A==;
+X-CSE-ConnectionGUID: 0HFdLUy3T0+YfezDdZ6B+w==
+X-CSE-MsgGUID: ZKNAhoHVSAmlOPD6CCtELg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11396"; a="56029430"
+X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; d="scan'208";a="56029430"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2025 02:53:14 -0700
-X-CSE-ConnectionGUID: MDhY8aLsT0y9LCqxAm65qA==
-X-CSE-MsgGUID: +gFrv+NbSW6/m9DcY8u+BQ==
+ 07 Apr 2025 02:53:16 -0700
+X-CSE-ConnectionGUID: 9rTDwMp9Qq6/KA+8IkULWQ==
+X-CSE-MsgGUID: IMZy6H4rShKhWc/RcaZsRA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; d="scan'208";a="128778785"
+X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; d="scan'208";a="128778798"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by fmviesa009.fm.intel.com with ESMTP; 07 Apr 2025 02:53:13 -0700
+ by fmviesa009.fm.intel.com with ESMTP; 07 Apr 2025 02:53:14 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v2 17/32] drm/xe/uapi: Add madvise interface
-Date: Mon,  7 Apr 2025 15:47:04 +0530
-Message-Id: <20250407101719.3350996-18-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v2 18/32] drm/xe/vm: Add attributes struct as member of vma
+Date: Mon,  7 Apr 2025 15:47:05 +0530
+Message-Id: <20250407101719.3350996-19-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250407101719.3350996-1-himal.prasad.ghimiray@intel.com>
 References: <20250407101719.3350996-1-himal.prasad.ghimiray@intel.com>
@@ -67,145 +67,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This commit introduces a new madvise interface to support
-driver-specific ioctl operations. The madvise interface allows for more
-efficient memory management by providing hints to the driver about the
-expected memory usage and pte update policy for gpuvma.
+The attribute of xe_vma will determine the migration policy and the
+encoding of the page table entries (PTEs) for that vma.
+This attribute helps manage how memory pages are moved and how their
+addresses are translated. It will be used by madvise to set the
+behavior of the vma.
 
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- include/uapi/drm/xe_drm.h | 97 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 97 insertions(+)
+ drivers/gpu/drm/xe/xe_vm.c       |  6 ++++++
+ drivers/gpu/drm/xe/xe_vm_types.h | 20 ++++++++++++++++++++
+ 2 files changed, 26 insertions(+)
 
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 9c08738c3b91..aaf515df3a83 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -81,6 +81,7 @@ extern "C" {
-  *  - &DRM_IOCTL_XE_EXEC
-  *  - &DRM_IOCTL_XE_WAIT_USER_FENCE
-  *  - &DRM_IOCTL_XE_OBSERVATION
-+ *  - &DRM_IOCTL_XE_MADVISE
-  */
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 27a8dbe709c2..1ff9e477e061 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2470,6 +2470,12 @@ static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
+ 		vma = ERR_PTR(err);
+ 	}
  
- /*
-@@ -102,6 +103,7 @@ extern "C" {
- #define DRM_XE_EXEC			0x09
- #define DRM_XE_WAIT_USER_FENCE		0x0a
- #define DRM_XE_OBSERVATION		0x0b
-+#define DRM_XE_MADVISE			0x0c
++	/*TODO: assign devmem_fd of local vram once multi device
++	 * support is added.
++	 */
++	vma->attr.preferred_loc.devmem_fd = 1;
++	vma->attr.atomic_access = DRM_XE_VMA_ATOMIC_UNDEFINED;
++
+ 	return vma;
+ }
  
- /* Must be kept compact -- no holes */
- 
-@@ -117,6 +119,7 @@ extern "C" {
- #define DRM_IOCTL_XE_EXEC			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, struct drm_xe_exec)
- #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
- #define DRM_IOCTL_XE_OBSERVATION		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OBSERVATION, struct drm_xe_observation_param)
-+#define DRM_IOCTL_XE_MADVISE			DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_MADVISE, struct drm_xe_madvise)
- 
- /**
-  * DOC: Xe IOCTL Extensions
-@@ -1965,6 +1968,100 @@ struct drm_xe_query_eu_stall {
- 	__u64 sampling_rates[];
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index d3c1209348e9..5f5feffecb82 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -77,6 +77,19 @@ struct xe_userptr {
+ #endif
  };
  
-+struct drm_xe_madvise_ops {
-+	/** @start: start of the virtual address range */
-+	__u64 start;
-+
-+	/** @size: size of the virtual address range */
-+	__u64 range;
-+
-+#define DRM_XE_VMA_ATTR_PREFERRED_LOC	0
-+#define DRM_XE_VMA_ATTR_ATOMIC		1
-+#define DRM_XE_VMA_ATTR_PAT		2
-+#define DRM_XE_VMA_ATTR_PURGEABLE_STATE	3
-+	/** @type: type of attribute */
-+	__u32 type;
-+
-+	/** @pad: MBZ */
-+	__u32 pad;
-+
-+	union {
-+		struct {
-+#define DRM_XE_VMA_ATOMIC_UNDEFINED	0
-+#define DRM_XE_VMA_ATOMIC_DEVICE	1
-+#define DRM_XE_VMA_ATOMIC_GLOBAL	2
-+#define DRM_XE_VMA_ATOMIC_CPU		3
-+		/** @val: value of atomic operation*/
-+			__u32 val;
-+
-+		/** @reserved: Reserved */
-+			__u32 reserved;
-+		} atomic;
-+
-+		struct {
-+#define DRM_XE_VMA_PURGEABLE_STATE_WILLNEED	0
-+#define DRM_XE_VMA_PURGEABLE_STATE_DONTNEED	1
-+#define DRM_XE_VMA_PURGEABLE_STATE_PURGED	2
-+		/** @val: value for DRM_XE_VMA_ATTR_PURGEABLE_STATE */
-+			__u32 val;
-+
-+		/** @reserved: Reserved */
-+			__u32 reserved;
-+		} purge_state_val;
-+
-+		struct {
-+			/** @pat_index */
-+			__u32 val;
-+
-+			/** @reserved: Reserved */
-+			__u32 reserved;
-+		} pat_index;
-+
-+		/** @preferred_mem_loc: preferred memory location */
-+		struct {
-+			__u32 devmem_fd;
-+
-+#define MIGRATE_ALL_PAGES 0
-+#define MIGRATE_ONLY_SYSTEM_PAGES 1
-+			__u32 migration_policy;
-+		} preferred_mem_loc;
-+	};
-+
-+	/** @reserved: Reserved */
-+	__u64 reserved[2];
-+};
-+
 +/**
-+ * struct drm_xe_madvise - Input of &DRM_IOCTL_XE_MADVISE
-+ *
-+ * Set memory attributes to a virtual address range
++ * struct xe_vma_mem_attr - memory attributes associated with vma
 + */
-+struct drm_xe_madvise {
-+	/** @extensions: Pointer to the first extension struct, if any */
-+	__u64 extensions;
-+
-+	/** @vm_id: vm_id of the virtual range */
-+	__u32 vm_id;
-+
-+	/** @num_ops: number of madvises in ioctl */
-+	__u32 num_ops;
-+
-+	union {
-+		/** @ops: used if num_ops == 1 */
-+		struct drm_xe_madvise_ops ops;
-+
-+		/**
-+		 * @vector_of_ops: userptr to array of struct
-+		 * drm_xe_vm_madvise_op if num_ops > 1
-+		 */
-+		__u64 vector_of_ops;
-+	};
-+
-+	/** @reserved: Reserved */
-+	__u64 reserved[2];
-+
++struct xe_vma_mem_attr {
++	/** @preferred_loc: perferred memory_location*/
++	struct {
++		u32 migration_policy; /* represents migration policies */
++		u32 devmem_fd; /* devmem_fd used for determining pagemap_fd requested by user */
++	} preferred_loc;
++	/** @atomic_access: The atomic access type for the vma */
++	u32 atomic_access;
 +};
 +
- #if defined(__cplusplus)
- }
- #endif
+ struct xe_vma {
+ 	/** @gpuva: Base GPUVA object */
+ 	struct drm_gpuva gpuva;
+@@ -128,6 +141,13 @@ struct xe_vma {
+ 	 * Needs to be signalled before UNMAP can be processed.
+ 	 */
+ 	struct xe_user_fence *ufence;
++
++	/**
++	 * @attr: The attributes of vma which determines the migration policy
++	 * and encoding of the PTEs for this vma.
++	 */
++	struct xe_vma_mem_attr attr;
++
+ };
+ 
+ /**
 -- 
 2.34.1
 
