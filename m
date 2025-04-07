@@ -4,55 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 253BCC36010
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 09:53:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A951BC36010
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 10:22:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCA4E10E40E;
-	Mon,  7 Apr 2025 09:53:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C268910E3F2;
+	Mon,  7 Apr 2025 10:22:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PIlqgXQY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BlxtB25s";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9088C10E408
- for <intel-xe@lists.freedesktop.org>; Mon,  7 Apr 2025 09:53:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4ECD810E3F2
+ for <intel-xe@lists.freedesktop.org>; Mon,  7 Apr 2025 10:22:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744019620; x=1775555620;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=psZd6UeyKghN6MmPiWeWp5agd6Mh7Zlh/96+iqtCwfo=;
- b=PIlqgXQYgh/y3VodlI1/IIuOyZbzRNeDXbwQaJI/hiMGUoMptGYWZNIF
- OsZfZMSzFftWE8YyhcIYyI1SEffYirscfqzSsjmxjx5ugrDGgvszLjlYR
- 0SCaFMXfBKil/0cuqoFwD4K96+VTyIiXsYpBkHp0IrSGwfVfV4ulpuZC/
- bn8MQHmb3SHPFmTe9dub+8f4j0RCUPxBXLJFVT0De5kYXEJ+ilOUSBXLc
- pnEcI2EYrFleO8IqPjsv75Cp7alcH0F/e/qxihW+h4qHNESrvMSC58kiM
- RDn0CIewQocPLNG84tZbH2tYUqh1AiykCplf0q3yySBZlEoNctVSugeaV g==;
-X-CSE-ConnectionGUID: sfqGa0oXQw+ulhk8e++ToQ==
-X-CSE-MsgGUID: pdIgstkdSNGbKhZSz4M7YA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11396"; a="56029473"
-X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; d="scan'208";a="56029473"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2025 02:53:40 -0700
-X-CSE-ConnectionGUID: /HZIaj4LQYe/ta4YgdEw+Q==
-X-CSE-MsgGUID: GD7IrYkSRKy2kP+o/+pd9A==
+ t=1744021336; x=1775557336;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=6LRR2n3SZ77KBg1plgBZes80Ob7JrAkiWSsXQsxaeC4=;
+ b=BlxtB25s00BOEQTILOj/y0GgCp2XJTfVtmzarpYisgurV855oup+TAvs
+ uEVydw9tRaZTROq5aGt/tJhrDYFxz8CIGMVme04+uQx/7FKdYGiNcPmYA
+ hI7E1BuTu+CryCVuE2yK5oSKRAanQuaj2RQ+2d3864PyVtlpvaFIKsDC+
+ oQQ7y3UeVl5O0EsVsB/yijth1ih5n5Fq6pOVJF7xGSZPzitvWlE6Lhkm9
+ dj7Mw8+D6KYhV4O5byjfUgUELzEgLD7Q6UCkhPzklfZVTrmANLIYz812Y
+ AyLVXwS8kCucHmFihCQK+kDpr0ZManjRqHkZEomDVJcZgoGdA101XUJJ7 A==;
+X-CSE-ConnectionGUID: 7vcDoHEiSgmydibVnwR+aw==
+X-CSE-MsgGUID: gmE9+kXTS8+0zNWqEOShHQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11396"; a="33001001"
+X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; d="scan'208";a="33001001"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2025 03:22:16 -0700
+X-CSE-ConnectionGUID: 6FZNFuoSRviZlBSWCKfpHQ==
+X-CSE-MsgGUID: lutHbfV1Qy67OsxWH7Z2MA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; d="scan'208";a="128778963"
-Received: from unknown (HELO himal-Super-Server.iind.intel.com)
- ([10.190.239.34])
- by fmviesa009.fm.intel.com with ESMTP; 07 Apr 2025 02:53:39 -0700
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v2 32/32] drm/xe/bo: Update atomic_access attribute on madvise
-Date: Mon,  7 Apr 2025 15:47:19 +0530
-Message-Id: <20250407101719.3350996-33-himal.prasad.ghimiray@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250407101719.3350996-1-himal.prasad.ghimiray@intel.com>
-References: <20250407101719.3350996-1-himal.prasad.ghimiray@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; d="scan'208";a="132647805"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmviesa005.fm.intel.com with ESMTP; 07 Apr 2025 03:22:15 -0700
+Received: from [10.245.96.73] (unknown [10.245.96.73])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id C843D32EDE;
+ Mon,  7 Apr 2025 11:22:13 +0100 (IST)
+Message-ID: <3c2ef067-9290-4b2e-90a0-1ecccfb36ecb@intel.com>
+Date: Mon, 7 Apr 2025 12:22:12 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: drm/xe: xe_hw_engine_class: Add fault injection and improve error
+ handling in kobj_xe_hw_engine_class
+To: Sobin Thomas <sobin.thomas@intel.com>, intel-xe@lists.freedesktop.org
+Cc: tejas.upadhyay@intel.com
+References: <20250405071703.2255259-1-sobin.thomas@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20250405071703.2255259-1-sobin.thomas@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,141 +71,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Update the bo_atomic_access based on user-provided input and determine
-the migration to smem during a CPU fault
+Hi,
 
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
----
- drivers/gpu/drm/xe/xe_bo.c         | 21 ++++++++++++++---
- drivers/gpu/drm/xe/xe_vm.c         | 11 +++++++--
- drivers/gpu/drm/xe/xe_vm_madvise.c | 38 +++++++++++++++++++++++++++---
- 3 files changed, 62 insertions(+), 8 deletions(-)
+Please use shorter title
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index c337790c81ae..fe78f6da7054 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1573,6 +1573,12 @@ static void xe_gem_object_close(struct drm_gem_object *obj,
- 	}
- }
- 
-+static bool should_migrate_to_smem(struct xe_bo *bo)
-+{
-+	return bo->attr.atomic_access == DRM_XE_VMA_ATOMIC_GLOBAL ||
-+	       bo->attr.atomic_access == DRM_XE_VMA_ATOMIC_CPU;
-+}
-+
- static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
- {
- 	struct ttm_buffer_object *tbo = vmf->vma->vm_private_data;
-@@ -1581,7 +1587,7 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
- 	struct xe_bo *bo = ttm_to_xe_bo(tbo);
- 	bool needs_rpm = bo->flags & XE_BO_FLAG_VRAM_MASK;
- 	vm_fault_t ret;
--	int idx;
-+	int idx, r = 0;
- 
- 	if (needs_rpm)
- 		xe_pm_runtime_get(xe);
-@@ -1593,8 +1599,17 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
- 	if (drm_dev_enter(ddev, &idx)) {
- 		trace_xe_bo_cpu_fault(bo);
- 
--		ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma->vm_page_prot,
--					       TTM_BO_VM_NUM_PREFAULT);
-+		if (should_migrate_to_smem(bo)) {
-+			r = xe_bo_migrate(bo, XE_PL_TT);
-+			if (r == -EBUSY || r == -ERESTARTSYS || r == -EINTR)
-+				ret = VM_FAULT_NOPAGE;
-+			else if (r)
-+				ret = VM_FAULT_SIGBUS;
-+		}
-+		if (!ret)
-+			ret = ttm_bo_vm_fault_reserved(vmf,
-+						       vmf->vma->vm_page_prot,
-+						       TTM_BO_VM_NUM_PREFAULT);
- 		drm_dev_exit(idx);
- 	} else {
- 		ret = ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index f1d4daf90efe..189e97113dbe 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3104,9 +3104,16 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
- 		err = vma_lock_and_validate(exec,
- 					    gpuva_to_vma(op->base.prefetch.va),
- 					    false);
--		if (!err && !xe_vma_has_no_bo(vma))
--			err = xe_bo_migrate(xe_vma_bo(vma),
-+		if (!err && !xe_vma_has_no_bo(vma)) {
-+			struct xe_bo *bo = xe_vma_bo(vma);
-+
-+			if (region == 0 && !vm->xe->info.has_device_atomics_on_smem &&
-+			    bo->attr.atomic_access == DRM_XE_VMA_ATOMIC_DEVICE)
-+				region = 1;
-+
-+			err = xe_bo_migrate(bo,
- 					    region_to_mem_type[region]);
-+		}
- 		break;
- 	}
- 	default:
-diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
-index f4e0545937b0..bbae2faee603 100644
---- a/drivers/gpu/drm/xe/xe_vm_madvise.c
-+++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-@@ -87,16 +87,48 @@ static int madvise_atomic(struct xe_device *xe, struct xe_vm *vm,
- 			  struct xe_vma **vmas, int num_vmas,
- 			  struct drm_xe_madvise_ops ops)
- {
--	int i;
-+	struct xe_bo *bo;
-+	int err, i;
- 
- 	xe_assert(vm->xe, ops.type == DRM_XE_VMA_ATTR_ATOMIC);
- 	xe_assert(vm->xe, ops.atomic.val > DRM_XE_VMA_ATOMIC_UNDEFINED &&
- 		  ops.atomic.val <= DRM_XE_VMA_ATOMIC_CPU);
- 	vm_dbg(&xe->drm, "attr_value = %d", ops.atomic.val);
- 
--	for (i = 0; i < num_vmas; i++)
-+	for (i = 0; i < num_vmas; i++) {
- 		vmas[i]->attr.atomic_access = ops.atomic.val;
--	/*TODO: handle bo backed vmas */
-+
-+		bo = xe_vma_bo(vmas[i]);
-+		if (!bo)
-+			continue;
-+
-+		if (XE_IOCTL_DBG(xe, ops.atomic.val == DRM_XE_VMA_ATOMIC_CPU &&
-+				 !(bo->flags & XE_BO_FLAG_SYSTEM)))
-+			return -EINVAL;
-+
-+		if (XE_IOCTL_DBG(xe, ops.atomic.val == DRM_XE_VMA_ATOMIC_DEVICE &&
-+				 !(bo->flags & XE_BO_FLAG_VRAM0) &&
-+				     !(bo->flags & XE_BO_FLAG_VRAM1)))
-+			return -EINVAL;
-+
-+		if (XE_IOCTL_DBG(xe, ops.atomic.val == DRM_XE_VMA_ATOMIC_GLOBAL &&
-+				 (!(bo->flags & XE_BO_FLAG_SYSTEM) ||
-+				      (!(bo->flags & XE_BO_FLAG_VRAM0) &&
-+				      !(bo->flags & XE_BO_FLAG_VRAM1)))))
-+			return -EINVAL;
-+
-+		err = xe_bo_lock(bo, true);
-+		if (err)
-+			return err;
-+		bo->attr.atomic_access = ops.atomic.val;
-+
-+		/* Invalidate cpu page table, so bo can migrate to smem in next access */
-+		if (bo->attr.atomic_access == DRM_XE_VMA_ATOMIC_CPU ||
-+		    bo->attr.atomic_access == DRM_XE_VMA_ATOMIC_GLOBAL)
-+			ttm_bo_unmap_virtual(&bo->ttm);
-+
-+		xe_bo_unlock(bo);
-+	}
- 	return 0;
- }
- 
--- 
-2.34.1
+You may drop "xe_hw_engine_class:" tag from the prefix
+Just "drm/xe:" or "drm/xe/sysfs:" should be sufficient
+
+On 05.04.2025 09:17, Sobin Thomas wrote:
+> - Added fault injection for `kobj_xe_hw_engine_class` to enhance coverage.
+> - Improved error handling by checking for `IS_ERR_OR_NULL` on `keclass` and
+>   propagating the error using `PTR_ERR`.
+
+Describe your changes according to [1] and (in case it turns out both
+changes are correct) consider split them into two patches since they are
+logically separate [2]
+
+[1]
+https://docs.kernel.org/process/submitting-patches.html#describe-your-changes
+
+[2]
+https://docs.kernel.org/process/submitting-patches.html#separate-your-changes
+
+> 
+> Can be tested using inject-fault-probe-function-kobj_xe_hw_engine_class
+
+Please mention that this is about IGT test (or use igt@... notation)
+
+> 
+> Signed-off-by: Sobin Thomas <sobin.thomas@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
+> index 640950172088..0cafe1175389 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
+> @@ -571,6 +571,7 @@ kobj_xe_hw_engine_class(struct xe_device *xe, struct kobject *parent, const char
+>  
+>  	return keclass;
+>  }
+> +ALLOW_ERROR_INJECTION(kobj_xe_hw_engine_class, NULL);
+>  
+>  static void hw_engine_class_defaults_fini(void *arg)
+>  {
+> @@ -662,8 +663,8 @@ int xe_hw_engine_class_sysfs_init(struct xe_gt *gt)
+>  		}
+>  
+>  		keclass = kobj_xe_hw_engine_class(xe, kobj, name);
+> -		if (!keclass) {
+> -			err = -EINVAL;
+> +		if (IS_ERR_OR_NULL(keclass)) {
+
+why?
+
+kobj_xe_hw_engine_class() seems to be always returning NULL on any error
+condition, and for error injection cases you also declare it as
+EI_ETYPE_NULL, not as EI_ETYPE_ERRNO_NULL like this condition may
+suggest, so it should be never an ERR_PTR
+
+> +			err = PTR_ERR(keclass);
+
+and now when kobj_xe_hw_engine_class() actually fails and returns NULL
+then "err" will be 0 instead of any proper error code
+
+>  			goto err_object;
+>  		}
+>  
 
