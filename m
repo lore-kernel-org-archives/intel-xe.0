@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C97CC3601A
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 08:17:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3F3DC36010
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 08:24:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D29A110E3DC;
-	Mon,  7 Apr 2025 08:17:38 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XoAvm711";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60F2D10E3D5;
- Mon,  7 Apr 2025 08:17:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744013858; x=1775549858;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=EHrnMo1n6SLPeiabMR9+0jXoLReyo3dfh49F8RM0IuA=;
- b=XoAvm711pGEwMKuOYa+HhP8YLaFBUPtfCV5bl2vV4GMFAuik3f+/zHYY
- MijiLg1/uV5bLaeP6IxhOTj9cyo2PkChcl3lt1r7QqGsvgFRKj+MtdNNK
- +V84wybhbBaKWg+DX/raJZooq0mSb9igN+/+mfKuj8MF86D2KhHrW7ipa
- VaNKsQEic/LAyAdkZfU7XrO6DSUBNbgKkf8GIaPZQ4GAgeolhyzlutJI6
- txBwGIEmDXARO4DzHZlfl36UNK9sJt+46T3GsQR3EHO8RxuAShLAsrU2T
- kLFcmyYivrO0X2tqqyXmFjpdERzUAvq1JFSQPOuypI/wwo0SijKwIfg9i Q==;
-X-CSE-ConnectionGUID: 2LrLjw9uQVakJiMulnxjaw==
-X-CSE-MsgGUID: XDqG1IeqT46hCxPJHFprGg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11396"; a="56755824"
-X-IronPort-AV: E=Sophos;i="6.15,193,1739865600"; d="scan'208";a="56755824"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2025 01:17:37 -0700
-X-CSE-ConnectionGUID: cnNyXyMDRYGVoaHebk8xnA==
-X-CSE-MsgGUID: 4pk38jn0SP6w9JQqHAtFhg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,193,1739865600"; d="scan'208";a="127728227"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa006.fm.intel.com with ESMTP; 07 Apr 2025 01:17:35 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, uma.shankar@intel.com, jani.nikula@intel.com,
- mika.kahola@intel.com, ville.syrjala@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 18/18] drm/i915/dpll: Rename intel_update_active_dpll
-Date: Mon,  7 Apr 2025 13:46:54 +0530
-Message-Id: <20250407081654.2013680-19-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250407081654.2013680-1-suraj.kandpal@intel.com>
-References: <20250407081654.2013680-1-suraj.kandpal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F2D610E19C;
+	Mon,  7 Apr 2025 08:24:40 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C0B110E19C;
+ Mon,  7 Apr 2025 08:24:39 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5410548073715271913=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_the_missed_va?=
+ =?utf-8?q?lue_paramter_of_LE=5FCOS_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 07 Apr 2025 08:24:39 -0000
+Message-ID: <174401427917.42701.18367937546039881580@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250401205703.4179906-1-shuicheng.lin@intel.com>
+In-Reply-To: <20250401205703.4179906-1-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,68 +36,209 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Rename intel_update_active_dpll to intel_dpll_update_active in an
-effort to have function names which are exported to start with
-filenames they are exported from.
+--===============5410548073715271913==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c      | 2 +-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 4 ++--
- drivers/gpu/drm/i915/display/intel_dpll_mgr.h | 2 +-
- 3 files changed, 4 insertions(+), 4 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 7a47cf449342..b1aa22d29e0e 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3647,7 +3647,7 @@ void intel_ddi_update_active_dpll(struct intel_atomic_state *state,
- 
- 	for_each_intel_crtc_in_pipe_mask(display->drm, pipe_crtc,
- 					 intel_crtc_joined_pipe_mask(crtc_state))
--		intel_update_active_dpll(state, pipe_crtc, encoder);
-+		intel_dpll_update_active(state, pipe_crtc, encoder);
- }
- 
- /*
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 4d1ab06237f8..8bd976ae9c26 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -4473,7 +4473,7 @@ void intel_dpll_release(struct intel_atomic_state *state,
- }
- 
- /**
-- * intel_update_active_dpll - update the active DPLL for a CRTC/encoder
-+ * intel_dpll_update_active - update the active DPLL for a CRTC/encoder
-  * @state: atomic state
-  * @crtc: the CRTC for which to update the active DPLL
-  * @encoder: encoder determining the type of port DPLL
-@@ -4482,7 +4482,7 @@ void intel_dpll_release(struct intel_atomic_state *state,
-  * from the port DPLLs reserved previously by intel_dpll_reserve(). The
-  * DPLL selected will be based on the current mode of the encoder's port.
-  */
--void intel_update_active_dpll(struct intel_atomic_state *state,
-+void intel_dpll_update_active(struct intel_atomic_state *state,
- 			      struct intel_crtc *crtc,
- 			      struct intel_encoder *encoder)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-index c2658ad409e4..821ffcc4b8d0 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-@@ -409,7 +409,7 @@ void intel_dpll_unreference_crtc(const struct intel_crtc *crtc,
- 				 struct intel_dpll_state *shared_dpll_state);
- void icl_set_active_port_dpll(struct intel_crtc_state *crtc_state,
- 			      enum icl_port_dpll_id port_dpll_id);
--void intel_update_active_dpll(struct intel_atomic_state *state,
-+void intel_dpll_update_active(struct intel_atomic_state *state,
- 			      struct intel_crtc *crtc,
- 			      struct intel_encoder *encoder);
- int intel_dpll_get_freq(struct intel_crtc_state *crtc_state,
--- 
-2.34.1
+Series: drm/xe: Add the missed value paramter of LE_COS (rev6)
+URL   : https://patchwork.freedesktop.org/series/147087/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-2910-c4fc93b0ec49f4b0105c142502b7d1d5de379950_BAT -> xe-pw-147087v6_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-147087v6_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_evict@evict-beng-small-cm:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][1] ([Intel XE#261] / [Intel XE#688]) +9 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v6/bat-adlp-vf/igt@xe_evict@evict-beng-small-cm.html
+
+  * igt@xe_exec_fault_mode@twice-rebind:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][2] ([Intel XE#288]) +32 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v6/bat-adlp-vf/igt@xe_exec_fault_mode@twice-rebind.html
+
+  * igt@xe_live_ktest@xe_bo:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][3] ([Intel XE#2229] / [Intel XE#455]) +2 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v6/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][4] ([Intel XE#2229])
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v6/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  * igt@xe_pat@pat-index-xe2:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][5] ([Intel XE#977])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v6/bat-adlp-vf/igt@xe_pat@pat-index-xe2.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][6] ([Intel XE#2838] / [Intel XE#979])
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v6/bat-adlp-vf/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][7] ([Intel XE#979])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v6/bat-adlp-vf/igt@xe_pat@pat-index-xelpg.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_pat@pat-index-xelp@render:
+    - bat-adlp-vf:        [ABORT][8] ([Intel XE#3970]) -> [PASS][9] +1 other test pass
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2910-c4fc93b0ec49f4b0105c142502b7d1d5de379950/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v6/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+
+  
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
+  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
+  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
+
+
+Build changes
+-------------
+
+  * Linux: xe-2910-c4fc93b0ec49f4b0105c142502b7d1d5de379950 -> xe-pw-147087v6
+
+  IGT_8309: fb77fb2d8d58a2539c9d67d00e1747351eec0bea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2910-c4fc93b0ec49f4b0105c142502b7d1d5de379950: c4fc93b0ec49f4b0105c142502b7d1d5de379950
+  xe-pw-147087v6: 147087v6
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v6/index.html
+
+--===============5410548073715271913==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Add the missed value paramter of LE_COS (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147087/">https://patchwork.freedesktop.org/series/147087/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v6/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2910-c4fc93b0ec49f4b0105c142502b7d1d5de379950_BAT -&gt; xe-pw-147087v6_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-147087v6_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_evict@evict-beng-small-cm:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v6/bat-adlp-vf/igt@xe_evict@evict-beng-small-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +9 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-rebind:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v6/bat-adlp-vf/igt@xe_exec_fault_mode@twice-rebind.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v6/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v6/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xe2:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v6/bat-adlp-vf/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v6/bat-adlp-vf/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v6/bat-adlp-vf/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_pat@pat-index-xelp@render:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2910-c4fc93b0ec49f4b0105c142502b7d1d5de379950/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v6/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2910-c4fc93b0ec49f4b0105c142502b7d1d5de379950 -&gt; xe-pw-147087v6</li>
+</ul>
+<p>IGT_8309: fb77fb2d8d58a2539c9d67d00e1747351eec0bea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2910-c4fc93b0ec49f4b0105c142502b7d1d5de379950: c4fc93b0ec49f4b0105c142502b7d1d5de379950<br />
+  xe-pw-147087v6: 147087v6</p>
+
+</body>
+</html>
+
+--===============5410548073715271913==--
