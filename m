@@ -4,63 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9528C36010
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 07:29:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AFC6C36010
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 07:35:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AED910E2B2;
-	Mon,  7 Apr 2025 07:29:17 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PUf5sVvE";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81EB210E2B2;
- Mon,  7 Apr 2025 07:29:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744010955; x=1775546955;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=ZT0eZ5+pXc5YVylbNfm1LPvGjVlPsjRPsUDx/guXTpQ=;
- b=PUf5sVvEYBSeecEhasZM6Hfowi9tXW7rRM2Pdg2TcJ1TqLO4x+hw3OLL
- lBFKdLofb9mxeCQJBlC5twZkHVWZw6dWT9vHqJTqUiedHyElQo6J0ZpeV
- mmqx0tAf1riD1tcrR837jsFXqPfuUgqJCq8bgEVkNxWnjwbL79q/BMGMb
- ke5Dz0BSeGqTQ3TmElnPDOb1Jqv9a7yeZH7BoJ6L2rPfb6r6lAiABzCS1
- OJEKXDSeQHRBCRIbMxSDJtuuR98zRkj1Rpw85XcjL6xpcX5JXbQsK9bBj
- f6Lt2/S43e5BHkvdCCvzUoRbjHYBz7iV3eudtMTI4Jv1bN4ZC6hOPvVVx g==;
-X-CSE-ConnectionGUID: LoE8sz0tQw+Nx4FGGXl+qQ==
-X-CSE-MsgGUID: ZzCyVZSLT6a/xktSpkD56g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11396"; a="56360631"
-X-IronPort-AV: E=Sophos;i="6.15,193,1739865600"; d="scan'208";a="56360631"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2025 00:29:15 -0700
-X-CSE-ConnectionGUID: OJ2p0GXzSH+BpOOsW/Gn3g==
-X-CSE-MsgGUID: 0VDJfIFoTva0CDtynT/cjA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,193,1739865600"; d="scan'208";a="128799406"
-Received: from oandoniu-mobl3.ger.corp.intel.com (HELO [10.245.245.196])
- ([10.245.245.196])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2025 00:29:14 -0700
-Message-ID: <2f6914f1-161b-473e-be7e-603540a8eb8f@intel.com>
-Date: Mon, 7 Apr 2025 08:29:11 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB88E10E29C;
+	Mon,  7 Apr 2025 07:35:43 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EB4010E3A2;
+ Mon,  7 Apr 2025 07:35:43 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 7/7] drm/xe/pt: unify xe_pt_svm_pre_commit with userptr
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-References: <20250328181028.288312-9-matthew.auld@intel.com>
- <20250328181028.288312-16-matthew.auld@intel.com>
- <Z+78wBNpgGG+D7h9@lstrano-desk.jf.intel.com>
- <bd0476de-fd5b-4ea6-806f-ca49b33b9404@intel.com>
- <Z/AQk2fRiIfNRF1I@lstrano-desk.jf.intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <Z/AQk2fRiIfNRF1I@lstrano-desk.jf.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe=3A_Add_the_missed_value?=
+ =?utf-8?q?_paramter_of_LE=5FCOS_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 07 Apr 2025 07:35:43 -0000
+Message-ID: <174401134318.42224.6440099278780011940@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250401205703.4179906-1-shuicheng.lin@intel.com>
+In-Reply-To: <20250401205703.4179906-1-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,182 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 04/04/2025 18:02, Matthew Brost wrote:
-> On Fri, Apr 04, 2025 at 09:19:34AM +0100, Matthew Auld wrote:
->> On 03/04/2025 22:25, Matthew Brost wrote:
->>> On Fri, Mar 28, 2025 at 06:10:36PM +0000, Matthew Auld wrote:
->>>> We now use the same notifier lock for SVM and userptr, with that we can
->>>> combine xe_pt_userptr_pre_commit and xe_pt_svm_pre_commit.
->>>>
->>>> Suggested-by: Matthew Brost <matthew.brost@intel.com>
->>>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->>>> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
->>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>>> ---
->>>>    drivers/gpu/drm/xe/xe_pt.c | 95 +++++++++++++-------------------------
->>>>    1 file changed, 33 insertions(+), 62 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
->>>> index b097c91e2e02..947b82aa19a6 100644
->>>> --- a/drivers/gpu/drm/xe/xe_pt.c
->>>> +++ b/drivers/gpu/drm/xe/xe_pt.c
->>>> @@ -1396,7 +1396,7 @@ static int op_check_userptr(struct xe_vm *vm, struct xe_vma_op *op,
->>>>    	return err;
->>>>    }
->>>> -static int xe_pt_userptr_pre_commit(struct xe_migrate_pt_update *pt_update)
->>>> +static int xe_pt_svm_userptr_pre_commit(struct xe_migrate_pt_update *pt_update)
->>>>    {
->>>>    	struct xe_vm *vm = pt_update->vops->vm;
->>>>    	struct xe_vma_ops *vops = pt_update->vops;
->>>> @@ -1409,55 +1409,40 @@ static int xe_pt_userptr_pre_commit(struct xe_migrate_pt_update *pt_update)
->>>>    	if (err)
->>>>    		return err;
->>>> -	down_read(&vm->svm.gpusvm.notifier_lock);
->>>> +	drm_gpusvm_notifier_lock(&vm->svm.gpusvm);
->>>
->>> Also any reason not use xe_svm_notifier_lock / xe_svm_notifier_unlock wrappers?
->>
->> Just that those are hidden behind CONFIG_DRM_XE_GPUSVM, so looks possible to
->> disable svm, but then I think we should still have working userptr. Should I
->> pull xe_svm_notifier_lock out of CONFIG_DRM_XE_GPUSVM?
->>
-> 
-> How would userptr work without GPU SVM if we building it on top of it?
+== Series Details ==
 
-Here I mean CONFIG_DRM_*XE*_GPUSVM, which looks to be specific to 
-everything around xe_svm.c AFAICT, which useptr doesn't touch. We do now 
-ofc require DRM_GPUSVM by default, but that's a different config.
+Series: drm/xe: Add the missed value paramter of LE_COS (rev6)
+URL   : https://patchwork.freedesktop.org/series/147087/
+State : success
 
-> 
-> Matt
-> 
->>>
->>> Matt
->>>
->>>>    	list_for_each_entry(op, &vops->list, link) {
->>>> -		err = op_check_userptr(vm, op, pt_update_ops);
->>>> -		if (err) {
->>>> -			up_read(&vm->svm.gpusvm.notifier_lock);
->>>> -			break;
->>>> +		if (pt_update_ops->needs_svm_lock) {
->>>> +#if IS_ENABLED(CONFIG_DRM_XE_GPUSVM)
->>>> +			struct xe_svm_range *range = op->map_range.range;
->>>> +
->>>> +			if (op->subop == XE_VMA_SUBOP_UNMAP_RANGE)
->>>> +				continue;
->>>> +
->>>> +			xe_svm_range_debug(range, "PRE-COMMIT");
->>>> +
->>>> +			xe_assert(vm->xe,
->>>> +				  xe_vma_is_cpu_addr_mirror(op->map_range.vma));
->>>> +			xe_assert(vm->xe, op->subop == XE_VMA_SUBOP_MAP_RANGE);
->>>> +
->>>> +			if (!xe_svm_range_pages_valid(range)) {
->>>> +				xe_svm_range_debug(range, "PRE-COMMIT - RETRY");
->>>> +				drm_gpusvm_notifier_unlock(&vm->svm.gpusvm);
->>>> +				return -EAGAIN;
->>>> +			}
->>>> +#endif
->>>> +		} else {
->>>> +			err = op_check_userptr(vm, op, pt_update_ops);
->>>> +			if (err) {
->>>> +				drm_gpusvm_notifier_unlock(&vm->svm.gpusvm);
->>>> +				break;
->>>> +			}
->>>>    		}
->>>>    	}
->>>>    	return err;
->>>>    }
->>>> -#if IS_ENABLED(CONFIG_DRM_XE_GPUSVM)
->>>> -static int xe_pt_svm_pre_commit(struct xe_migrate_pt_update *pt_update)
->>>> -{
->>>> -	struct xe_vm *vm = pt_update->vops->vm;
->>>> -	struct xe_vma_ops *vops = pt_update->vops;
->>>> -	struct xe_vma_op *op;
->>>> -	int err;
->>>> -
->>>> -	err = xe_pt_pre_commit(pt_update);
->>>> -	if (err)
->>>> -		return err;
->>>> -
->>>> -	xe_svm_notifier_lock(vm);
->>>> -
->>>> -	list_for_each_entry(op, &vops->list, link) {
->>>> -		struct xe_svm_range *range = op->map_range.range;
->>>> -
->>>> -		if (op->subop == XE_VMA_SUBOP_UNMAP_RANGE)
->>>> -			continue;
->>>> -
->>>> -		xe_svm_range_debug(range, "PRE-COMMIT");
->>>> -
->>>> -		xe_assert(vm->xe, xe_vma_is_cpu_addr_mirror(op->map_range.vma));
->>>> -		xe_assert(vm->xe, op->subop == XE_VMA_SUBOP_MAP_RANGE);
->>>> -
->>>> -		if (!xe_svm_range_pages_valid(range)) {
->>>> -			xe_svm_range_debug(range, "PRE-COMMIT - RETRY");
->>>> -			xe_svm_notifier_unlock(vm);
->>>> -			return -EAGAIN;
->>>> -		}
->>>> -	}
->>>> -
->>>> -	return 0;
->>>> -}
->>>> -#endif
->>>> -
->>>>    struct invalidation_fence {
->>>>    	struct xe_gt_tlb_invalidation_fence base;
->>>>    	struct xe_gt *gt;
->>>> @@ -2255,22 +2240,12 @@ static const struct xe_migrate_pt_update_ops migrate_ops = {
->>>>    	.pre_commit = xe_pt_pre_commit,
->>>>    };
->>>> -static const struct xe_migrate_pt_update_ops userptr_migrate_ops = {
->>>> +static const struct xe_migrate_pt_update_ops svm_userptr_migrate_ops = {
->>>>    	.populate = xe_vm_populate_pgtable,
->>>>    	.clear = xe_migrate_clear_pgtable_callback,
->>>> -	.pre_commit = xe_pt_userptr_pre_commit,
->>>> +	.pre_commit = xe_pt_svm_userptr_pre_commit,
->>>>    };
->>>> -#if IS_ENABLED(CONFIG_DRM_XE_GPUSVM)
->>>> -static const struct xe_migrate_pt_update_ops svm_migrate_ops = {
->>>> -	.populate = xe_vm_populate_pgtable,
->>>> -	.clear = xe_migrate_clear_pgtable_callback,
->>>> -	.pre_commit = xe_pt_svm_pre_commit,
->>>> -};
->>>> -#else
->>>> -static const struct xe_migrate_pt_update_ops svm_migrate_ops;
->>>> -#endif
->>>> -
->>>>    /**
->>>>     * xe_pt_update_ops_run() - Run PT update operations
->>>>     * @tile: Tile of PT update operations
->>>> @@ -2296,10 +2271,8 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
->>>>    	struct xe_vma_op *op;
->>>>    	int err = 0, i;
->>>>    	struct xe_migrate_pt_update update = {
->>>> -		.ops = pt_update_ops->needs_svm_lock ?
->>>> -			&svm_migrate_ops :
->>>> -			pt_update_ops->needs_userptr_lock ?
->>>> -			&userptr_migrate_ops :
->>>> +		.ops = pt_update_ops->needs_svm_lock || pt_update_ops->needs_userptr_lock ?
->>>> +			&svm_userptr_migrate_ops :
->>>>    			&migrate_ops,
->>>>    		.vops = vops,
->>>>    		.tile_id = tile->id,
->>>> @@ -2419,10 +2392,8 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
->>>>    				  &ifence->base.base, &mfence->base.base);
->>>>    	}
->>>> -	if (pt_update_ops->needs_svm_lock)
->>>> -		xe_svm_notifier_unlock(vm);
->>>> -	if (pt_update_ops->needs_userptr_lock)
->>>> -		up_read(&vm->svm.gpusvm.notifier_lock);
->>>> +	if (pt_update_ops->needs_svm_lock || pt_update_ops->needs_userptr_lock)
->>>> +		drm_gpusvm_notifier_unlock(&vm->svm.gpusvm);
->>>>    	return fence;
->>>> -- 
->>>> 2.48.1
->>>>
->>
+== Summary ==
+
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/events/amd/
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.15.0-rc1-xe+/kernel/kernel/
+lib/modules/6.15.0-rc1-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/zstd.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/xctr.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/authenc.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm3.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/cmac.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/essiv.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/ccm.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/wp512.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/lrw.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/842.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/md4.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/lz4.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm4.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.15.0-rc1-xe+/kernel/block/
+lib/modules/6.15.0-rc1-xe+/kernel/block/bfq.ko
+lib/modules/6.15.0-rc1-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.15.0-rc1-xe+/build
+lib/modules/6.15.0-rc1-xe+/modules.alias.bin
+lib/modules/6.15.0-rc1-xe+/modules.builtin
+lib/modules/6.15.0-rc1-xe+/modules.softdep
+lib/modules/6.15.0-rc1-xe+/modules.alias
+lib/modules/6.15.0-rc1-xe+/modules.order
+lib/modules/6.15.0-rc1-xe+/modules.symbols
+lib/modules/6.15.0-rc1-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1744011328:package_x86_64_nodebug\r\e[0K'
+[0Ksection_end:1744011328:package_x86_64_nodebug
+[0K
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
