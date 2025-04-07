@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C578C3601E
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 06:38:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F73BC36010
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 06:56:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 441E810E2A2;
-	Mon,  7 Apr 2025 06:38:39 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ex9jmO75";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A3E010E1F4;
- Mon,  7 Apr 2025 06:38:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744007918; x=1775543918;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Tc/IIjsu/4NVl+vTwU9AdcSFbVLgt4KMPp1F0sz1q4o=;
- b=ex9jmO75UG1rzbN9uVgEqJJnTVs+WIKn43BFhct9fdLRV7EG9qeOV3MQ
- OYof3ISpatH4RyinSmk/tAhiozlHB9ptBOZn3Z7Jwt9JtYztUUud9HhDf
- BNU63rK2fYm3W1Xh9gQyv94Hjrl3o47+h/1GB1dVW1NafVc0fLsWjqkTR
- bTRyhty5RslxgqNjgB6zJAp+SvZ63lp51LiMAKtUew/jEen3ok6KkgQ5/
- ezBeT70KBQV9BKOGieEWK9yUrGQsDCIrBEmzknWa+Ww9yYZDvpIC6OrPy
- lf7cJpmZ3UMpdQw1LIGCga+qj1EE4y5iRHY4TVP/jcCtpMniPI5Q/SMZ7 Q==;
-X-CSE-ConnectionGUID: 7ime/KTaRdWOYlW/yCXdZw==
-X-CSE-MsgGUID: PAqDSheBQSe0Iq72gm5PcA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11396"; a="56040257"
-X-IronPort-AV: E=Sophos;i="6.15,193,1739865600"; d="scan'208";a="56040257"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2025 23:38:37 -0700
-X-CSE-ConnectionGUID: zTjLE5jFRoSLauZyrodY7g==
-X-CSE-MsgGUID: mOOYfWSlR0yNGmEVuKv3UQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,193,1739865600"; d="scan'208";a="133073460"
-Received: from oandoniu-mobl3.ger.corp.intel.com (HELO jhogande-mobl1..)
- ([10.245.245.170])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2025 23:38:36 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH] drm/i915/vrr: Stop writing VRR_CTL_IGN_MAX_SHIFT for LNL
- onwards
-Date: Mon,  7 Apr 2025 09:37:58 +0300
-Message-ID: <20250407063758.3131498-1-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7C9210E2A2;
+	Mon,  7 Apr 2025 06:56:25 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F51510E2A2;
+ Mon,  7 Apr 2025 06:56:24 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3494102898070587286=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_the_missed_va?=
+ =?utf-8?q?lue_paramter_of_LE=5FCOS_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 07 Apr 2025 06:56:24 -0000
+Message-ID: <174400898418.42108.244803730594465027@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250401205703.4179906-1-shuicheng.lin@intel.com>
+In-Reply-To: <20250401205703.4179906-1-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,36 +36,209 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-According to Bspec VRR_CTL_IGN_MAX_SHIFT doesn't exist for LunarLake and
-onwards. Bit 30 is "Mask Block PkgC" instead. Stop writing that for
-LunarLake and onwards.
+--===============3494102898070587286==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Bspec: 68925
+== Series Details ==
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vrr.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+Series: drm/xe: Add the missed value paramter of LE_COS (rev5)
+URL   : https://patchwork.freedesktop.org/series/147087/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 633a66f6b73be..ed59e83a3857b 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -444,7 +444,10 @@ static u32 trans_vrr_ctl(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 
--	if (DISPLAY_VER(display) >= 13)
-+	if (DISPLAY_VER(display) >= 20)
-+		return VRR_CTL_FLIP_LINE_EN |
-+			XELPD_VRR_CTL_VRR_GUARDBAND(crtc_state->vrr.guardband);
-+	else if (DISPLAY_VER(display) >= 13)
- 		return VRR_CTL_IGN_MAX_SHIFT | VRR_CTL_FLIP_LINE_EN |
- 			XELPD_VRR_CTL_VRR_GUARDBAND(crtc_state->vrr.guardband);
- 	else
--- 
-2.43.0
+== Summary ==
 
+CI Bug Log - changes from xe-2910-c4fc93b0ec49f4b0105c142502b7d1d5de379950_BAT -> xe-pw-147087v5_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-147087v5_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_evict@evict-beng-small-cm:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][1] ([Intel XE#261] / [Intel XE#688]) +9 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v5/bat-adlp-vf/igt@xe_evict@evict-beng-small-cm.html
+
+  * igt@xe_exec_fault_mode@twice-rebind:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][2] ([Intel XE#288]) +32 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v5/bat-adlp-vf/igt@xe_exec_fault_mode@twice-rebind.html
+
+  * igt@xe_live_ktest@xe_bo:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][3] ([Intel XE#2229] / [Intel XE#455]) +2 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v5/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][4] ([Intel XE#2229])
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v5/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  * igt@xe_pat@pat-index-xe2:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][5] ([Intel XE#977])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v5/bat-adlp-vf/igt@xe_pat@pat-index-xe2.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][6] ([Intel XE#2838] / [Intel XE#979])
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v5/bat-adlp-vf/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][7] ([Intel XE#979])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v5/bat-adlp-vf/igt@xe_pat@pat-index-xelpg.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_pat@pat-index-xelp@render:
+    - bat-adlp-vf:        [ABORT][8] ([Intel XE#3970]) -> [PASS][9] +1 other test pass
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2910-c4fc93b0ec49f4b0105c142502b7d1d5de379950/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v5/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html
+
+  
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
+  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
+  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
+
+
+Build changes
+-------------
+
+  * Linux: xe-2910-c4fc93b0ec49f4b0105c142502b7d1d5de379950 -> xe-pw-147087v5
+
+  IGT_8309: fb77fb2d8d58a2539c9d67d00e1747351eec0bea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2910-c4fc93b0ec49f4b0105c142502b7d1d5de379950: c4fc93b0ec49f4b0105c142502b7d1d5de379950
+  xe-pw-147087v5: 147087v5
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v5/index.html
+
+--===============3494102898070587286==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Add the missed value paramter of LE_COS (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147087/">https://patchwork.freedesktop.org/series/147087/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2910-c4fc93b0ec49f4b0105c142502b7d1d5de379950_BAT -&gt; xe-pw-147087v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-147087v5_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_evict@evict-beng-small-cm:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v5/bat-adlp-vf/igt@xe_evict@evict-beng-small-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +9 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-rebind:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v5/bat-adlp-vf/igt@xe_exec_fault_mode@twice-rebind.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v5/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v5/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xe2:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v5/bat-adlp-vf/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v5/bat-adlp-vf/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v5/bat-adlp-vf/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_pat@pat-index-xelp@render:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2910-c4fc93b0ec49f4b0105c142502b7d1d5de379950/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147087v5/bat-adlp-vf/igt@xe_pat@pat-index-xelp@render.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2910-c4fc93b0ec49f4b0105c142502b7d1d5de379950 -&gt; xe-pw-147087v5</li>
+</ul>
+<p>IGT_8309: fb77fb2d8d58a2539c9d67d00e1747351eec0bea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2910-c4fc93b0ec49f4b0105c142502b7d1d5de379950: c4fc93b0ec49f4b0105c142502b7d1d5de379950<br />
+  xe-pw-147087v5: 147087v5</p>
+
+</body>
+</html>
+
+--===============3494102898070587286==--
