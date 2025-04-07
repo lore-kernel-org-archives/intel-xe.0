@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5A60C36010
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 14:01:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A985DC36010
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 14:07:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E55910E47F;
-	Mon,  7 Apr 2025 14:01:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72A9E10E480;
+	Mon,  7 Apr 2025 14:07:23 +0000 (UTC)
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5CF110E47E;
- Mon,  7 Apr 2025 14:01:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33A8B10E480;
+ Mon,  7 Apr 2025 14:07:22 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBuild=3A_failure_for_DPLL_framework_redesign_=28rev?=
- =?utf-8?q?3=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_PREFETCH_and_MADVISE?=
+ =?utf-8?q?_for_SVM_ranges_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 07 Apr 2025 14:01:52 -0000
-Message-ID: <174403451286.43715.16967852003169838842@e6b6f09ec485>
+Date: Mon, 07 Apr 2025 14:07:22 -0000
+Message-ID: <174403484220.43714.18037971002616163088@e6b6f09ec485>
 X-Patchwork-Hint: ignore
-References: <20250407081654.2013680-1-suraj.kandpal@intel.com>
-In-Reply-To: <20250407081654.2013680-1-suraj.kandpal@intel.com>
+References: <20250407101719.3350996-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20250407101719.3350996-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,111 +42,46 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: DPLL framework redesign (rev3)
-URL   : https://patchwork.freedesktop.org/series/145380/
-State : failure
+Series: PREFETCH and MADVISE for SVM ranges (rev3)
+URL   : https://patchwork.freedesktop.org/series/146290/
+State : success
 
 == Summary ==
 
-CC [M]  drivers/mfd/rt4831.o
-  CHK     kernel/kheaders_data.tar.xz
-  CC [M]  net/netfilter/xt_NFLOG.o
-  CC [M]  drivers/mfd/rt5033.o
-  GEN     kernel/kheaders_data.tar.xz
-  GZIP    kernel/config_data.gz
-  CC [M]  drivers/mfd/rt5120.o
-  CC [M]  net/netfilter/xt_NFQUEUE.o
-  CC      kernel/configs.o
-  CC [M]  drivers/mfd/sky81452.o
-  CC [M]  net/netfilter/xt_RATEEST.o
-  CC [M]  drivers/mfd/intel_soc_pmic_bxtwc.o
-  CC [M]  net/netfilter/xt_REDIRECT.o
-  CC [M]  drivers/mfd/intel_soc_pmic_chtdc_ti.o
-  CC [M]  net/netfilter/xt_MASQUERADE.o
-  AR      lib/built-in.a
-  CC [M]  drivers/mfd/intel_soc_pmic_mrfld.o
-  CC [M]  drivers/mfd/rave-sp.o
-  CC [M]  net/netfilter/xt_SECMARK.o
-  CC [M]  drivers/mfd/simple-mfd-i2c.o
-  CC [M]  net/netfilter/xt_TPROXY.o
-  CC [M]  drivers/mfd/smpro-core.o
-  CC [M]  drivers/mfd/intel-m10-bmc-core.o
-  CC [M]  net/netfilter/xt_TCPMSS.o
-  CC [M]  drivers/mfd/intel-m10-bmc-spi.o
-  CC [M]  net/netfilter/xt_TCPOPTSTRIP.o
-  CC [M]  drivers/mfd/atc260x-core.o
-  CC [M]  net/netfilter/xt_TEE.o
-  CC [M]  net/netfilter/xt_TRACE.o
-  CC [M]  drivers/mfd/atc260x-i2c.o
-  CC [M]  net/netfilter/xt_IDLETIMER.o
-  CC [M]  net/netfilter/xt_addrtype.o
-  CC [M]  net/netfilter/xt_bpf.o
-  CC [M]  net/netfilter/xt_cluster.o
-  CC [M]  net/netfilter/xt_comment.o
-  CC [M]  net/netfilter/xt_connbytes.o
-  CC [M]  net/netfilter/xt_connlabel.o
-  CC [M]  net/netfilter/xt_connlimit.o
-  CC [M]  net/netfilter/xt_conntrack.o
-  CC [M]  net/netfilter/xt_cpu.o
-  CC [M]  net/netfilter/xt_dccp.o
-  CC [M]  net/netfilter/xt_devgroup.o
-  CC [M]  net/netfilter/xt_dscp.o
-  CC [M]  net/netfilter/xt_ecn.o
-  CC [M]  net/netfilter/xt_esp.o
-  CC [M]  net/netfilter/xt_hashlimit.o
-  CC [M]  net/netfilter/xt_helper.o
-  CC [M]  net/netfilter/xt_hl.o
-  CC [M]  net/netfilter/xt_ipcomp.o
-  CC [M]  net/netfilter/xt_iprange.o
-  CC [M]  net/netfilter/xt_l2tp.o
-  CC [M]  net/netfilter/xt_length.o
-  CC [M]  net/netfilter/xt_limit.o
-  CC [M]  net/netfilter/xt_mac.o
-  CC [M]  net/netfilter/xt_multiport.o
-  CC [M]  net/netfilter/xt_nfacct.o
-  CC [M]  net/netfilter/xt_osf.o
-  CC [M]  net/netfilter/xt_owner.o
-  CC [M]  net/netfilter/xt_cgroup.o
-  CC [M]  net/netfilter/xt_physdev.o
-  CC [M]  net/netfilter/xt_pkttype.o
-  CC [M]  net/netfilter/xt_policy.o
-  CC [M]  net/netfilter/xt_quota.o
-  CC [M]  net/netfilter/xt_rateest.o
-  CC [M]  net/netfilter/xt_realm.o
-  CC [M]  net/netfilter/xt_recent.o
-  CC [M]  net/netfilter/xt_sctp.o
-  CC [M]  net/netfilter/xt_socket.o
-  CC [M]  net/netfilter/xt_state.o
-  AR      kernel/built-in.a
-  AR      fs/built-in.a
-  CC [M]  net/netfilter/xt_statistic.o
-  CC [M]  net/netfilter/xt_string.o
-  LD [M]  drivers/mfd/arizona.o
-  LD [M]  drivers/mfd/wm8994.o
-  CC [M]  net/netfilter/xt_tcpmss.o
-  LD [M]  drivers/mfd/madera.o
-  LD [M]  drivers/mfd/ocelot-soc.o
-  LD [M]  drivers/mfd/mt6397.o
-  LD [M]  drivers/mfd/si476x-core.o
-  CC [M]  net/netfilter/xt_time.o
-  AR      drivers/mfd/built-in.a
-make[3]: *** [../scripts/Makefile.build:461: drivers] Error 2
-make[3]: *** Waiting for unfinished jobs....
-  CC [M]  net/netfilter/xt_u32.o
-  LD [M]  net/netfilter/nf_conntrack.o
-  LD [M]  net/netfilter/nf_conntrack_h323.o
-  LD [M]  net/netfilter/nf_nat.o
-  LD [M]  net/netfilter/nf_tables.o
-  LD [M]  net/netfilter/nf_flow_table.o
-  AR      net/netfilter/built-in.a
-  AR      net/built-in.a
-  CC [M]  kernel/kheaders.o
-make[2]: *** [/kernel/Makefile:2006: .] Error 2
-make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
-make[1]: Leaving directory '/kernel/build64-default'
-make: *** [Makefile:248: __sub-make] Error 2
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 100ba24787e8 drm-tip: 2025y-04m-07d-13h-47m-40s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Introduce xe_vma_op_prefetch_range struct for prefetch of ranges
+Applying: drm/xe: Make xe_svm_alloc_vram public
+Applying: drm/xe/svm: Helper to add tile masks to svm ranges
+Applying: drm/xe/svm: Make to_xe_range a public function
+Applying: drm/xe/svm: Make xe_svm_range_* end/start/size public
+Applying: drm/xe/vm: Update xe_vma_ops_incr_pt_update_ops to take an increment value
+Applying: drm/xe/vm: Add an identifier in xe_vma_ops for svm prefetch
+Applying: drm/xe: Rename lookup_vma function to xe_find_vma_by_addr
+Applying: drm/xe/svm: Allow unaligned addresses and ranges for prefetch
+Applying: drm/xe/svm: Refactor usage of drm_gpusvm* function in xe_svm
+Applying: drm/xe/svm: Add function to determine if range needs VRAM migration
+Applying: drm/gpusvm: Introduce vram_only flag for VRAM allocation
+Applying: drm/xe/svm: Incase of atomic access ensure get_pages happens from vram
+Applying: drm/xe/svm: Implement prefetch support for SVM ranges
+Applying: drm/xe/vm: Add debug prints for SVM range prefetch
+Applying: Introduce drm_gpuvm_sm_map_ops_flags enums for sm_map_ops
+Applying: drm/xe/uapi: Add madvise interface
+Applying: drm/xe/vm: Add attributes struct as member of vma
+Applying: drm/xe/vma: Move pat_index to vma attributes
+Applying: drm/xe/vma: Modify new_vma to accept struct xe_vma_mem_attr as parameter
+Applying: drm/gpusvm: Make drm_gpusvm_for_each_* macros public
+Applying: drm/xe/svm: Split system allocator vma incase of madvise call
+Applying: drm/xe: Implement madvise ioctl for xe
+Applying: drm/xe: Allow CPU address mirror VMA unbind with gpu bindings for madvise
+Applying: drm/xe/svm : Add svm ranges migration policy on atomic access
+Applying: drm/xe/madvise: Update migration policy based on preferred location
+Applying: drm/xe/svm: Support DRM_XE_SVM_ATTR_PAT memory attribute
+Applying: drm/xe/uapi: Add flag for consulting madvise hints on svm prefetch
+Applying: drm/xe/svm: Consult madvise preferred location in prefetch
+Applying: drm/xe/uapi: Add uapi for vma count and mem attributes
+Applying: drm/xe/bo: Add attributes field to xe_bo
+Applying: drm/xe/bo: Update atomic_access attribute on madvise
 
 
