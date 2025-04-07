@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B801C36010
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 14:38:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D79DBC369A3
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 14:39:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 327B210E4AE;
-	Mon,  7 Apr 2025 14:38:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9607310E4B2;
+	Mon,  7 Apr 2025 14:39:12 +0000 (UTC)
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54F3810E4AE;
- Mon,  7 Apr 2025 14:38:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5039110E4AF;
+ Mon,  7 Apr 2025 14:39:11 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
- =?utf-8?q?_=5B1/2=5D_drm/xe/dma=5Fbuf=3A_stop_relying_on_placement_in_unmap?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_series_starting_with_=5B1?=
+ =?utf-8?q?/2=5D_drm/xe/dma=5Fbuf=3A_stop_relying_on_placement_in_unmap?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 07 Apr 2025 14:38:53 -0000
-Message-ID: <174403673334.44253.16109680674627835974@e6b6f09ec485>
+Date: Mon, 07 Apr 2025 14:39:11 -0000
+Message-ID: <174403675132.44253.14330842223633982458@e6b6f09ec485>
 X-Patchwork-Hint: ignore
 References: <20250407141823.44504-3-matthew.auld@intel.com>
 In-Reply-To: <20250407141823.44504-3-matthew.auld@intel.com>
@@ -48,10 +48,34 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 100ba24787e8 drm-tip: 2025y-04m-07d-13h-47m-40s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/dma_buf: stop relying on placement in unmap
-Applying: drm/amdgpu/dma_buf: fix page_link check
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+99e5a866b5e13f134e606a3e29d9508d97826fb3
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 591bd171ed0ed921e274af4de1def4b8ad70c66e
+Author: Matthew Auld <matthew.auld@intel.com>
+Date:   Mon Apr 7 15:18:25 2025 +0100
+
+    drm/amdgpu/dma_buf: fix page_link check
+    
+    The page_link lower bits of the first sg could contain something like
+    SG_END, if we are mapping a single VRAM page or contiguous blob which
+    fits into one sg entry. Rather pull out the struct page, and use that in
+    our check to know if we mapped struct pages vs VRAM.
+    
+    Fixes: f44ffd677fb3 ("drm/amdgpu: add support for exporting VRAM using DMA-buf v3")
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Cc: Christian König <christian.koenig@amd.com>
+    Cc: amd-gfx@lists.freedesktop.org
+    Cc: <stable@vger.kernel.org> # v5.8+
+    Reviewed-by: Christian König <christian.koenig@amd.com>
++ /mt/dim checkpatch 100ba24787e877cd422caa7d08cb046ef4bb769c drm-intel
+14d392b7452d drm/xe/dma_buf: stop relying on placement in unmap
+591bd171ed0e drm/amdgpu/dma_buf: fix page_link check
 
 
