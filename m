@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FC4EC36010
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 07:39:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9D7DC3601A
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 08:16:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25C6710E2D1;
-	Mon,  7 Apr 2025 07:39:30 +0000 (UTC)
-Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CFCB10E2D1;
- Mon,  7 Apr 2025 07:39:29 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7EEE10E39E;
+	Mon,  7 Apr 2025 08:16:49 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dPamiwYY";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B31A10E39E;
+ Mon,  7 Apr 2025 08:16:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744013808; x=1775549808;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=p1G/PPz9oj42/wY/TpCKypA7pafTszpqXL5Z+1x0gmY=;
+ b=dPamiwYY4MIM+Po2sQMwfTjx4cBOmDghBaRsjKIr1jxJR9aZRR1PJueN
+ juR9JIAC/BdUkRSEnpHlUbmfSra7YHDWt6iW2vLt9eZDDKmwILpwQod1d
+ L9UDGEqV+NrE/bc1jTVmO+t0wIpgB2nt+ogRc4XQw9GOvqtcDKR1U2GtL
+ 2vaQS62sha6x+eg4B454xgB4UmZf2jedPGJ2feXgfg//i7SsXRbOQlkAL
+ ju7AzxVs1dxOoXKFGP1whGjhvavLZ3jcWB8FQZ4Qz4EvYlFEYlxuYEvPY
+ ZIc1Zq3r8sIPpyrBYxNnn1wnOGwQ4n41kH6NlrWRkBQFYLmOXuX28/E3P A==;
+X-CSE-ConnectionGUID: obltnMFNTMy9r1IKZgZYZQ==
+X-CSE-MsgGUID: k3CnsQc7Q6eH+oEEo+wHXA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11396"; a="56755736"
+X-IronPort-AV: E=Sophos;i="6.15,193,1739865600"; d="scan'208";a="56755736"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2025 01:16:48 -0700
+X-CSE-ConnectionGUID: G/a0RrHvSkGZEs4xb97nTw==
+X-CSE-MsgGUID: 5OhqKS7FTwKHgxJo+t21wQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,193,1739865600"; d="scan'208";a="127727895"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by fmviesa006.fm.intel.com with ESMTP; 07 Apr 2025 01:16:45 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, uma.shankar@intel.com, jani.nikula@intel.com,
+ mika.kahola@intel.com, ville.syrjala@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH 00/18] DPLL framework redesign 
+Date: Mon,  7 Apr 2025 13:46:36 +0530
+Message-Id: <20250407081654.2013680-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe=3A_Add_the_missed?=
- =?utf-8?q?_value_paramter_of_LE=5FCOS_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shuicheng Lin" <shuicheng.lin@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 07 Apr 2025 07:39:29 -0000
-Message-ID: <174401156944.42281.8120676753763260850@e6b6f09ec485>
-X-Patchwork-Hint: ignore
-References: <20250401205703.4179906-1-shuicheng.lin@intel.com>
-In-Reply-To: <20250401205703.4179906-1-shuicheng.lin@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +63,68 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Since MTL we moved away from using our existing DPLL framework this
+was done since the existing API didnt really work for us.
+This Redesing is a first part of two part series which will
+redesign the current framework so that it can be used for
+PLL/PHY enablement going forward.
+Here we move away from the shared_dpll naming and also
+change arguments for some functions which are needed for PLL
+which have individual PHY keeping in mind that we don't break
+any of the legacy stuff. When this gets approved and merged a
+second series hooking up the SNPS PHY PLL API to this framework
+will be posted. This is done to reduce the rework in case the
+current design floated ends up getting changed during the review
+process.
+We also rename some functions in intel_dpll_mgr to start with
+intel_dpll_* in an effort to make sure all exported functions
+have the filename at the start.
 
-Series: drm/xe: Add the missed value paramter of LE_COS (rev6)
-URL   : https://patchwork.freedesktop.org/series/147087/
-State : success
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-== Summary ==
+Suraj Kandpal (18):
+  drm/i915/dpll: Rename intel_dpll
+  drm/i915/dpll: Rename intel_dpll_funcs
+  drm/i915/dpll: Rename intel_shared_dpll_state
+  drm/i915/dpll: Rename macro for_each_shared_dpll
+  drm/i915/dpll: Rename intel_shared_dpll_funcs
+  drm/i915/dpll: Rename intel_shared_dpll
+  drm/i915/dpll: Move away from using shared dpll
+  drm/i915/dpll: Rename crtc_get_shared_dpll
+  drm/i915/dpll: Change argument for enable hook in intel_dpll_funcs
+  drm/i915/drm: Rename disable hook in intel_dpll_global_func
+  drm/i915/dpll: Introduce new hook in intel_dpll_funcs
+  drm/i915/dpll: Add intel_encoder argument to get_hw_state hook
+  drm/i915/dpll: Change arguments for get_freq hook
+  drm/i915/dpll: Rename intel_[enable/disable]_dpll
+  drm/i915/dpll: Rename intel_unreference_dpll__crtc
+  drm/i915/dpll: Rename intel_<release/reserve>_dpll
+  drm/i915/dpll: Rename intel_compute_dpll
+  drm/i915/dpll: Rename intel_update_active_dpll
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast a33da369e8cde6c7208381a592866cd61f1ce188
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
+ drivers/gpu/drm/i915/display/icl_dsi.c        |   2 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  70 +-
+ drivers/gpu/drm/i915/display/intel_ddi.h      |   6 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |  22 +-
+ .../gpu/drm/i915/display/intel_display_core.h |  12 +-
+ .../drm/i915/display/intel_display_debugfs.c  |   4 +-
+ .../drm/i915/display/intel_display_driver.c   |   2 +-
+ .../drm/i915/display/intel_display_types.h    |   8 +-
+ drivers/gpu/drm/i915/display/intel_dpll.c     |  60 +-
+ drivers/gpu/drm/i915/display/intel_dpll.h     |   4 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 768 +++++++++---------
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  83 +-
+ drivers/gpu/drm/i915/display/intel_fdi.c      |   2 +-
+ drivers/gpu/drm/i915/display/intel_lvds.c     |   2 +-
+ .../drm/i915/display/intel_modeset_setup.c    |  10 +-
+ .../drm/i915/display/intel_modeset_verify.c   |   4 +-
+ .../gpu/drm/i915/display/intel_pch_display.c  |  20 +-
+ .../gpu/drm/i915/display/intel_pch_refclk.c   |   4 +-
+ 18 files changed, 552 insertions(+), 531 deletions(-)
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+-- 
+2.34.1
 
