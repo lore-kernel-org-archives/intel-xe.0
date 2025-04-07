@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE892C36010
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 13:35:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF573C36010
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 13:36:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 804BA10E1B0;
-	Mon,  7 Apr 2025 13:35:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B306310E1B0;
+	Mon,  7 Apr 2025 13:36:03 +0000 (UTC)
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 564BD10E1B0;
- Mon,  7 Apr 2025 13:35:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DC3010E1B0;
+ Mon,  7 Apr 2025 13:36:02 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Expose_modifiers/for?=
- =?utf-8?q?mats_supported_by_async_flips_=28rev16=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Expose_modifiers/formats_?=
+ =?utf-8?q?supported_by_async_flips_=28rev16=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Arun R Murthy" <arun.r.murthy@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 07 Apr 2025 13:35:41 -0000
-Message-ID: <174403294134.43550.461263312573516401@e6b6f09ec485>
+Date: Mon, 07 Apr 2025 13:36:02 -0000
+Message-ID: <174403296231.43550.2628460228387674542@e6b6f09ec485>
 X-Patchwork-Hint: ignore
 References: <20250407-asyn-v13-0-b93ef83076c5@intel.com>
 In-Reply-To: <20250407-asyn-v13-0-b93ef83076c5@intel.com>
@@ -48,13 +48,34 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 9bd4cfaac686 drm-tip: 2025y-04m-07d-13h-26m-23s UTC integration manifest
-=== git am output follows ===
-Applying: drm/plane: Add new plane property IN_FORMATS_ASYNC
-Applying: drm/plane: modify create_in_formats to acommodate async
-Applying: drm/i915/display: Acomodate format check in intel_plane_can_async_flip()
-Applying: drm/i915/display: Add i915 hook for format_mod_supported_async
-Applying: drm/i915/display: Indexed 8bit format does not support async flip
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+99e5a866b5e13f134e606a3e29d9508d97826fb3
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 59fa3aba8f92ad3fe91e9692e6db6e9224d5b4be
+Author: Arun R Murthy <arun.r.murthy@intel.com>
+Date:   Mon Apr 7 11:13:49 2025 +0530
+
+    drm/i915/display: Indexed 8bit format does not support async flip
+    
+    Async flip is not supported with Indexed 8 bit format as it depends on
+    LUT and can't be updated atomically.
+    
+    Note: This may change the alignment for C8 framebuffers on some
+    platforms.
+    
+    Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+    Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
++ /mt/dim checkpatch 9bd4cfaac6862127b1371a90bf47909879556aa0 drm-intel
+0f105d7d5bf6 drm/plane: Add new plane property IN_FORMATS_ASYNC
+2256b26e256e drm/plane: modify create_in_formats to acommodate async
+5099643542ae drm/i915/display: Acomodate format check in intel_plane_can_async_flip()
+a57a57b51a49 drm/i915/display: Add i915 hook for format_mod_supported_async
+59fa3aba8f92 drm/i915/display: Indexed 8bit format does not support async flip
 
 
