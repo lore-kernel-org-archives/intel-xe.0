@@ -4,80 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9C87C36010
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 14:32:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 193B5C36010
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 14:33:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E6BE10E4A2;
-	Mon,  7 Apr 2025 14:32:18 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="jJNzVrvd";
-	dkim-atps=neutral
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
- [209.85.221.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D01EB10E48E;
- Mon,  7 Apr 2025 14:32:16 +0000 (UTC)
-Received: by mail-wr1-f44.google.com with SMTP id
- ffacd0b85a97d-39149bccb69so4110126f8f.2; 
- Mon, 07 Apr 2025 07:32:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1744036335; x=1744641135; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=sspLXphw+bUvBqQ8IAow+bkdS8OEOw0XRgjN2W/fPrY=;
- b=jJNzVrvdvbUTVP0QY5nJ0f29maniBcvBaDHcHh0YMKRXXoRy1zVt9W9xPxBuvgurm3
- /Kgvw4Op0tfFimcp/tccjIpzkujvvdVhHjJCqtg1+5p6XMn7W6RmuBocEpYC3+/1Tyxt
- ycSIlnPMWYBrybyrB9MhexjEwE6XYvM8V0btHV4QLtjagEjM+A5O4l12LTFLGk4AIxsr
- nSIQ659hsI18swHSihLgAVsF6DAgD6zjT7UU0CvLHrJbCChJ9mz9llNMKTv1iyt+FQiz
- pvGRHrKJrl8/Db7bIo465q//+iOV2eCyWEf4EOADC4oQRdy8cUxzcp4PNSwtZP21f343
- bltA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1744036335; x=1744641135;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=sspLXphw+bUvBqQ8IAow+bkdS8OEOw0XRgjN2W/fPrY=;
- b=KRnM5T4YHYTPc9Zb2agr595ONmROMb9fsB3gf0oytfHNst7dv29HxPMcCUVB7RgqtA
- N6hcfeF+x2BQV6JUzU8ktcEFdh9JaUh4fki04xAVLQCzjBZ49jxQsTWHIebwy/a2fgo2
- dGlLBlC5vUNBIY+QBmcr/wEWKsOWqknYxk2rUdiqzhtmEaZsMqSasWTuD19mCytx7Oxd
- 48/P2OQsAeeqfMpcm1gITd1nCAAl4OpFwpQz3AZavP1oHb3yC3WImERniY+kiGokQbzz
- L5cX7BobYcTkzSeHcC+Lez4a8ZlsNK1Npm3T7K3Jik/TxEZZhA4iKfBb3X5SDo4iLtDq
- kcRA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVO+awrNobtLMKtLfvwRhgIR5XKcopYXugB+8MEtmT2ollg3eMR2XI+7gCXeS7nXhGIiXKG3A5k@lists.freedesktop.org,
- AJvYcCVpe+Gmog3nBqUmMVm6qfAcEBUOaMuBvPo3sh8KfBHeujv4RVb7hhRt2tFSD3xu+MHtJyhG701s13c=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw2Rofax8J52epwJ3DNGnSCmaN/CDJzalDXstsqIZSkrdDAu9GD
- JCWHqHS9vxpUBX+iATwKbNSEYKOnrsPu18e4ZXn2q9w0x53poIrY
-X-Gm-Gg: ASbGncuyi0rs7mn3MOYqaFI8jsMc+ANd56vjJFJsXGjwtMrq/Col85blrVI91JrZnlE
- mD0pJRJqcJTsFN8P2heDv4iVmRDA9me5++3ThZtTe8gfRoI6dy4d/RoM7JxXvSRXV5e4IhWIocC
- +RxE2Id75DgP8ocJRJNPARIaFbulo3+Y1qq9vcqRuAzfPxmkF0ZcCKSTXHRBSWi98Xn2Nltki6l
- sq4xuXRa0OsUEAsqB4D5L2YH3eTt64C2e0jeqV5PcgUV7R7fjNSpJk7svTvtv6dCs2+jX/TPHZv
- 6s3jK7axV0saiki9RWuvZXddEdbuAi2I1TdsFR81npmfUBJLrSDlX6bD0vmELpQVHxH6KDDxIg=
- =
-X-Google-Smtp-Source: AGHT+IFNhKjcgTLgsYLPmhlqMkUCkxPWbnj6cuzFcQXQlfH/tqY63ok6fsoDG3DZxFV8dfVRLwqgTQ==
-X-Received: by 2002:a05:6000:1849:b0:38f:6287:6474 with SMTP id
- ffacd0b85a97d-39d6fc49319mr8067246f8f.15.1744036335147; 
- Mon, 07 Apr 2025 07:32:15 -0700 (PDT)
-Received: from [10.254.108.83] (munvpn.amd.com. [165.204.72.6])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-39d75ac6d66sm5964473f8f.14.2025.04.07.07.32.14
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 07 Apr 2025 07:32:14 -0700 (PDT)
-Message-ID: <a4b1190d-4d4f-4c66-9fb7-2be19d2ea3dc@gmail.com>
-Date: Mon, 7 Apr 2025 16:32:13 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id D43F510E4A2;
+	Mon,  7 Apr 2025 14:33:26 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A786910E460;
+ Mon,  7 Apr 2025 14:33:25 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/amdgpu/dma_buf: fix page_link check
-To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- amd-gfx@lists.freedesktop.org, stable@vger.kernel.org
-References: <20250407141823.44504-3-matthew.auld@intel.com>
- <20250407141823.44504-4-matthew.auld@intel.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <20250407141823.44504-4-matthew.auld@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBuild=3A_failure_for_drm/xe=3A_Use_migration_for_di?=
+ =?utf-8?q?splay_GGTT_updates=2E?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 07 Apr 2025 14:33:25 -0000
+Message-ID: <174403640567.43715.11584079405614596348@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250407130449.1010470-1-dev@lankhorst.se>
+In-Reply-To: <20250407130449.1010470-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,45 +36,117 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Am 07.04.25 um 16:18 schrieb Matthew Auld:
-> The page_link lower bits of the first sg could contain something like
-> SG_END, if we are mapping a single VRAM page or contiguous blob which
-> fits into one sg entry. Rather pull out the struct page, and use that in
-> our check to know if we mapped struct pages vs VRAM.
->
-> Fixes: f44ffd677fb3 ("drm/amdgpu: add support for exporting VRAM using DMA-buf v3")
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: amd-gfx@lists.freedesktop.org
-> Cc: <stable@vger.kernel.org> # v5.8+
+== Series Details ==
 
-Good point, haven't thought about that at all since we only abuse the sg table as DMA addr container.
+Series: drm/xe: Use migration for display GGTT updates.
+URL   : https://patchwork.freedesktop.org/series/147326/
+State : failure
 
-Reviewed-by: Christian König <christian.koenig@amd.com>
+== Summary ==
 
-Were is patch #1 from this series?
+CC [M]  drivers/mfd/ocelot-core.o
+  CC [M]  net/netfilter/xt_iprange.o
+  CC [M]  drivers/mfd/ocelot-spi.o
+  CC [M]  net/netfilter/xt_l2tp.o
+  CC [M]  drivers/mfd/axp20x.o
+  CC [M]  net/netfilter/xt_length.o
+  CC [M]  drivers/mfd/axp20x-i2c.o
+  CC [M]  net/netfilter/xt_limit.o
+  CC [M]  drivers/mfd/lp3943.o
+  CC [M]  net/netfilter/xt_mac.o
+  CC [M]  net/netfilter/xt_multiport.o
+  CC [M]  drivers/mfd/ti-lmu.o
+  CC [M]  net/netfilter/xt_nfacct.o
+  CC [M]  net/netfilter/xt_osf.o
+  CC [M]  drivers/mfd/da9062-core.o
+  CC [M]  net/netfilter/xt_owner.o
+  CC [M]  net/netfilter/xt_cgroup.o
+  CC [M]  drivers/mfd/da9150-core.o
+  CC [M]  drivers/mfd/max77541.o
+  CC [M]  net/netfilter/xt_physdev.o
+  CC [M]  drivers/mfd/max8907.o
+  CC [M]  net/netfilter/xt_pkttype.o
+  CC [M]  drivers/mfd/mp2629.o
+  CC [M]  net/netfilter/xt_policy.o
+  CC [M]  net/netfilter/xt_quota.o
+  CC [M]  drivers/mfd/mt6360-core.o
+  CC [M]  net/netfilter/xt_rateest.o
+  CC [M]  drivers/mfd/mt6370.o
+  AR      fs/built-in.a
+  CC [M]  net/netfilter/xt_realm.o
+  CC [M]  drivers/mfd/mt6397-core.o
+  CC [M]  net/netfilter/xt_recent.o
+  CC [M]  net/netfilter/xt_sctp.o
+  CC [M]  drivers/mfd/mt6397-irq.o
+  CC [M]  net/netfilter/xt_socket.o
+  CC [M]  drivers/mfd/mt6358-irq.o
+  AR      drivers/scsi/built-in.a
+  CC [M]  net/netfilter/xt_state.o
+  CC [M]  drivers/mfd/kempld-core.o
+  CC [M]  net/netfilter/xt_statistic.o
+  CC [M]  net/netfilter/xt_string.o
+  CC [M]  net/netfilter/xt_tcpmss.o
+  CC [M]  drivers/mfd/intel_quark_i2c_gpio.o
+  CC [M]  net/netfilter/xt_time.o
+  CC [M]  drivers/mfd/lpc_sch.o
+  CC [M]  drivers/mfd/lpc_ich.o
+  CC [M]  net/netfilter/xt_u32.o
+  CC [M]  drivers/mfd/rdc321x-southbridge.o
+  CC [M]  drivers/mfd/janz-cmodio.o
+  CC [M]  drivers/mfd/vx855.o
+  CC [M]  drivers/mfd/wl1273-core.o
+  CC [M]  drivers/mfd/si476x-cmd.o
+  CC [M]  drivers/mfd/si476x-prop.o
+  CC [M]  drivers/mfd/si476x-i2c.o
+  CC [M]  drivers/mfd/intel_pmc_bxt.o
+  CC [M]  drivers/mfd/viperboard.o
+  CC [M]  drivers/mfd/lm3533-core.o
+  CC [M]  drivers/mfd/lm3533-ctrlbank.o
+  CC [M]  drivers/mfd/retu-mfd.o
+  CC [M]  drivers/mfd/iqs62x.o
+  CC [M]  drivers/mfd/menf21bmc.o
+  CC [M]  drivers/mfd/dln2.o
+  CC [M]  drivers/mfd/rt4831.o
+  CC [M]  drivers/mfd/rt5033.o
+  CC [M]  drivers/mfd/rt5120.o
+  CC [M]  drivers/mfd/sky81452.o
+  CC [M]  drivers/mfd/intel_soc_pmic_bxtwc.o
+  CC [M]  drivers/mfd/intel_soc_pmic_chtdc_ti.o
+  CC [M]  drivers/mfd/intel_soc_pmic_mrfld.o
+  CC [M]  drivers/mfd/rave-sp.o
+  CC [M]  drivers/mfd/simple-mfd-i2c.o
+  CC [M]  drivers/mfd/smpro-core.o
+  CC [M]  drivers/mfd/intel-m10-bmc-core.o
+  CC [M]  drivers/mfd/intel-m10-bmc-spi.o
+  CC [M]  drivers/mfd/atc260x-core.o
+  CC [M]  drivers/mfd/atc260x-i2c.o
+  LD [M]  net/netfilter/nf_conntrack.o
+  LD [M]  net/netfilter/nf_conntrack_h323.o
+  LD [M]  net/netfilter/nf_nat.o
+  LD [M]  net/netfilter/nf_tables.o
+  LD [M]  net/netfilter/nf_flow_table.o
+  AR      net/netfilter/built-in.a
+  LD [M]  drivers/mfd/arizona.o
+  LD [M]  drivers/mfd/wm8994.o
+  LD [M]  drivers/mfd/madera.o
+  LD [M]  drivers/mfd/ocelot-soc.o
+  LD [M]  drivers/mfd/mt6397.o
+  AR      drivers/mfd/built-in.a
+  AR      net/built-in.a
+  LD [M]  drivers/mfd/si476x-core.o
+make[3]: *** [../scripts/Makefile.build:461: drivers] Error 2
+make[3]: *** Waiting for unfinished jobs....
+  CC [M]  kernel/kheaders.o
+make[2]: *** [/kernel/Makefile:2006: .] Error 2
+make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
+make[1]: Leaving directory '/kernel/build64-default'
+make: *** [Makefile:248: __sub-make] Error 2
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-Thanks,
-Christian.
-
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
-> index 9f627caedc3f..c9842a0e2a1c 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
-> @@ -184,7 +184,7 @@ static void amdgpu_dma_buf_unmap(struct dma_buf_attachment *attach,
->  				 struct sg_table *sgt,
->  				 enum dma_data_direction dir)
->  {
-> -	if (sgt->sgl->page_link) {
-> +	if (sg_page(sgt->sgl)) {
->  		dma_unmap_sgtable(attach->dev, sgt, dir, 0);
->  		sg_free_table(sgt);
->  		kfree(sgt);
 
