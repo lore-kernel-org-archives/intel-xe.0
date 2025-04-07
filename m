@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C331BC36010
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 09:52:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE425C3601E
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 09:52:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 834FF10E3EE;
-	Mon,  7 Apr 2025 09:52:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B16CF10E3EF;
+	Mon,  7 Apr 2025 09:52:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QKXXD7PA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y4IfBgeY";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12F2C10E3ED
- for <intel-xe@lists.freedesktop.org>; Mon,  7 Apr 2025 09:52:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9777010E3EF
+ for <intel-xe@lists.freedesktop.org>; Mon,  7 Apr 2025 09:52:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744019569; x=1775555569;
+ t=1744019570; x=1775555570;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MOjsNzj5Avc7x0JZbJS2us27o5EEGTgGclfGdx2kG0o=;
- b=QKXXD7PAnjrnh3/tn6bvpWCLoK/SDYt/E2Uw1n5yPgEMPJpn0kiQJkif
- 5DUw38EwaVHWrR0sOjfqwN7rhd9CrzEiOUJNH5dCT8BU1cx9seVMvXmVO
- 1JAc7KMsLuDiTADIY3UNKv50x7MGz5P74sdnS3FjMbplFlkZcOWVqrXd1
- FqFslBLbxr5jd0SOQiRqktOwQpf4xE0gtl9eoYV47+z7eHJTtaBAOv411
- VgSWxoXO8v/MYD09JHuIRBmD4tuAdBx5Bb75xzIo3LrWapu5pQZzmpuhS
- Z4TKHgzKR8xvrd2Rqi2uOIhpQDARWmQzG9kWNwHbss4bNUtGINiECwiko Q==;
-X-CSE-ConnectionGUID: hYgX3S/yQXyt6E4cdcZg5w==
-X-CSE-MsgGUID: APsdOLMlQYyegT9OIv0Ymg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11396"; a="56029369"
-X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; d="scan'208";a="56029369"
+ bh=H92V8uMSOZEocwvE5mOfWvMF+rO5MRLAk5LyU/nAa8w=;
+ b=Y4IfBgeYtBesqF+2evxPlmOaW1rHVMU6JXm6AK034Ap0k6PNCp0pSBSK
+ trtcx2pv0aOaCRm7ruSgd18dznfL1UJKT6d/B8J0DVD/+hZKcNwVSCWlx
+ k/F7Vljkvra39b1LMLz/ipIHZl2qhCdFRKifWxLfgnZTo9bdTiTbilfeB
+ g4U0MH2+to2Bnspj8iXqTztvEidI4mnmoMmY3ep4Yv8M28IOdsip9hXvi
+ dJPFmBY8BViXaSzGNArujABQ+6I62ENytg1YpieoXJRpwbCWwyhFhxCc3
+ ItoKOEStrVoI2gOzWVWYhQJxxS7k7+ohMFSAWtv+jFdwwOCXXO0thzEiJ w==;
+X-CSE-ConnectionGUID: D7HPYjvQQsSWT6bQy8N3xg==
+X-CSE-MsgGUID: IBlqjwYhSt27qgBQVoEWMQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11396"; a="56029371"
+X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; d="scan'208";a="56029371"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2025 02:52:49 -0700
-X-CSE-ConnectionGUID: zT9I1BKGRbOJBOsUZ8PFhg==
-X-CSE-MsgGUID: Bc0AgjZRQ0WlxO2MFg++Uw==
+ 07 Apr 2025 02:52:50 -0700
+X-CSE-ConnectionGUID: XKI5E8IdRg6WPeszvIEcTg==
+X-CSE-MsgGUID: kG6wyAkYT1C2IFacRSJlFw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; d="scan'208";a="128778549"
+X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; d="scan'208";a="128778563"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by fmviesa009.fm.intel.com with ESMTP; 07 Apr 2025 02:52:47 -0700
+ by fmviesa009.fm.intel.com with ESMTP; 07 Apr 2025 02:52:49 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v2 03/32] drm/xe/svm: Helper to add tile masks to svm ranges
-Date: Mon,  7 Apr 2025 15:46:50 +0530
-Message-Id: <20250407101719.3350996-4-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v2 04/32] drm/xe/svm: Make to_xe_range a public function
+Date: Mon,  7 Apr 2025 15:46:51 +0530
+Message-Id: <20250407101719.3350996-5-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250407101719.3350996-1-himal.prasad.ghimiray@intel.com>
 References: <20250407101719.3350996-1-himal.prasad.ghimiray@intel.com>
@@ -67,55 +67,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce a helper to add tile mask of binding present and invalidated
-for the range. Add a lockdep_assert to ensure it is protected by GPU SVM
-notifier lock.
+The to_xe_range function will be used in other files. Therefore, make it
+public and add kernel-doc documentation
 
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pt.c | 19 ++++++++++++++-----
- 1 file changed, 14 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_svm.c |  5 -----
+ drivers/gpu/drm/xe/xe_svm.h | 20 ++++++++++++++++++++
+ 2 files changed, 20 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index b42cf5d1b20c..de4e3edda758 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -2216,6 +2216,16 @@ static void unbind_op_commit(struct xe_vm *vm, struct xe_tile *tile,
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index de19ad056287..24d42018981a 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -94,11 +94,6 @@ static void xe_svm_range_free(struct drm_gpusvm_range *range)
+ 	kfree(range);
  }
  
-+static void range_present_and_invalidated_tile(struct xe_vm *vm,
-+					       struct xe_svm_range *range,
-+					       u8 tile_id)
+-static struct xe_svm_range *to_xe_range(struct drm_gpusvm_range *r)
+-{
+-	return container_of(r, struct xe_svm_range, base);
+-}
+-
+ static void
+ xe_svm_garbage_collector_add_range(struct xe_vm *vm, struct xe_svm_range *range,
+ 				   const struct mmu_notifier_range *mmu_range)
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+index d8772f841ab7..ec5652c143ec 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -101,6 +101,20 @@ static inline bool xe_svm_range_has_dma_mapping(struct xe_svm_range *range)
+ 	return range->base.flags.has_dma_mapping;
+ }
+ 
++/**
++ * to_xe_range - Convert a drm_gpusvm_range pointer to a xe_svm_range
++ * @r: Pointer to the drm_gpusvm_range structure
++ *
++ * This function takes a pointer to a drm_gpusvm_range structure and
++ * converts it to a pointer to the containing xe_svm_range structure.
++ *
++ * Return: Pointer to the xe_svm_range structure
++ */
++static inline struct xe_svm_range *to_xe_range(struct drm_gpusvm_range *r)
 +{
-+	lockdep_assert_held(&vm->svm.gpusvm.notifier_lock);
-+
-+	range->tile_present |= BIT(tile_id);
-+	range->tile_invalidated &= ~BIT(tile_id);
++	return container_of(r, struct xe_svm_range, base);
 +}
 +
- static void op_commit(struct xe_vm *vm,
- 		      struct xe_tile *tile,
- 		      struct xe_vm_pgtable_update_ops *pt_update_ops,
-@@ -2270,12 +2280,11 @@ static void op_commit(struct xe_vm *vm,
- 	}
- 	case DRM_GPUVA_OP_DRIVER:
- 	{
--		if (op->subop == XE_VMA_SUBOP_MAP_RANGE) {
--			op->map_range.range->tile_present |= BIT(tile->id);
--			op->map_range.range->tile_invalidated &= ~BIT(tile->id);
--		} else if (op->subop == XE_VMA_SUBOP_UNMAP_RANGE) {
-+		if (op->subop == XE_VMA_SUBOP_MAP_RANGE)
-+			range_present_and_invalidated_tile(vm, op->map_range.range, tile->id);
-+		else if (op->subop == XE_VMA_SUBOP_UNMAP_RANGE)
- 			op->unmap_range.range->tile_present &= ~BIT(tile->id);
--		}
+ #define xe_svm_assert_in_notifier(vm__) \
+ 	lockdep_assert_held_write(&(vm__)->svm.gpusvm.notifier_lock)
+ 
+@@ -115,6 +129,7 @@ static inline bool xe_svm_range_has_dma_mapping(struct xe_svm_range *range)
+ 
+ struct drm_pagemap_device_addr;
+ struct drm_gpusvm_ctx;
++struct drm_gpusvm_range;
+ struct xe_bo;
+ struct xe_gt;
+ struct xe_vm;
+@@ -193,6 +208,11 @@ int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
+ 	return -EOPNOTSUPP;
+ }
+ 
++static inline struct xe_svm_range *to_xe_range(struct drm_gpusvm_range *r)
++{
++	return NULL;
++}
 +
- 		break;
- 	}
- 	default:
+ #define xe_svm_assert_in_notifier(...) do {} while (0)
+ #define xe_svm_range_has_dma_mapping(...) false
+ 
 -- 
 2.34.1
 
