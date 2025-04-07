@@ -4,64 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CAE0C36010
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 14:21:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B885C36010
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Apr 2025 14:23:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54B1F10E483;
-	Mon,  7 Apr 2025 14:21:35 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=kde.org header.i=@kde.org header.b="IO3BRrge";
-	dkim-atps=neutral
-Received: from letterbox.kde.org (letterbox.kde.org [46.43.1.242])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D2A010E482;
- Mon,  7 Apr 2025 14:21:31 +0000 (UTC)
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com
- [209.85.218.53]) (Authenticated sender: zamundaaa)
- by letterbox.kde.org (Postfix) with ESMTPSA id DDB4A32851C;
- Mon,  7 Apr 2025 15:21:30 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kde.org; s=users;
- t=1744035690; bh=rL5Kq/8Vnhgtbfk+mfM98iBpmaumiBMyogIjinqRYa8=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=IO3BRrgeVAcGE7VNzgFBqU/7nf+YlC43s24tbAdEWuqESiYMBzajaU3AHO23N5TFO
- UIoOm/TDrgk9j8l/m8u96ocrcvZIB/PM2WyhNgkt9+rI9MFNUWg33Fu0FhdnsNRdsd
- Fx0yPbpL92NtzT+Fmbqts50mYMvgkcFin5NsOX+7uBvOl+TtQlUmpUU8XvtRCPRca9
- CilsOiH9HzS3KfEnX6mqHNiGoMLy2rJ5FuJZW/g0a/rg/BTovwqHdU9po+GdPlvUTO
- nRM6mTKGsLTaLqZERQVjouaumSoVB2+zrEnjh8szFvT8CkztpUS3Cma2bFoStsGRwo
- ebzviK7zNoYmw==
-Received: by mail-ej1-f53.google.com with SMTP id
- a640c23a62f3a-ac3fcf5ab0dso746017266b.3; 
- Mon, 07 Apr 2025 07:21:30 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCVlnctUWEOUrEOYyDgBnRicWEcow3CzVjWGrP2EngDN96Dh6V06+F+qTtY6tnN3akE0lALXbPi6W5c=@lists.freedesktop.org,
- AJvYcCWJKqp2++e1++rTf5w0OA4xP35vnms0DULj+Wyg1voOylQdsdPlCVjZs9J+v3SQp9EHQqnK0RAqg2I=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzn8If6++rnOcety9ceFL9yA6gw59rQ0MKduiEblP5h/6sI9Sx7
- GDIaHpkDZGxgVwOgB4s9xYf0t2qxKCsCTgi/1J9RyEJm4vl/kYhOflME9yKpMMG+ckMzEA7evt3
- 7iozX5ghEGFaLn8bQIeUvJSmEMI4=
-X-Google-Smtp-Source: AGHT+IH7HiDsscO1rmoHwUzWFYHo9BKaTCnGgPq3dnUBfIzeKNrVjd4JIOyVFI74kyMMGCnXRVH4HQNWzWk5wi3OlhU=
-X-Received: by 2002:a17:907:94cf:b0:ac3:436e:12ad with SMTP id
- a640c23a62f3a-ac7e745c18dmr701762666b.36.1744035690507; Mon, 07 Apr 2025
- 07:21:30 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E172210E460;
+	Mon,  7 Apr 2025 14:23:03 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95C9010E45A;
+ Mon,  7 Apr 2025 14:23:02 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20250328-asyn-v11-0-a50d13bfea0d@intel.com>
- <CAFZQkGzKbpNHnhrC9NyeGG2_Ky_hn-KuDozYmxAHvT7ggZxLXQ@mail.gmail.com>
- <IA0PR11MB7307BDABFF7240506458F172BAAA2@IA0PR11MB7307.namprd11.prod.outlook.com>
-In-Reply-To: <IA0PR11MB7307BDABFF7240506458F172BAAA2@IA0PR11MB7307.namprd11.prod.outlook.com>
-From: Xaver Hugl <xaver.hugl@kde.org>
-Date: Mon, 7 Apr 2025 16:21:19 +0200
-X-Gmail-Original-Message-ID: <CAFZQkGx=jbgZ=jWpJTJFoMjHJ9aLi=3nGEb7G8G-SFv-T6Ookw@mail.gmail.com>
-X-Gm-Features: ATxdqUE_pXQMxgfafnVX31DOCkOahupB5z7AfX4C5bQriKkw1RU5iwC1EWjZkIU
-Message-ID: <CAFZQkGx=jbgZ=jWpJTJFoMjHJ9aLi=3nGEb7G8G-SFv-T6Ookw@mail.gmail.com>
-Subject: Re: [PATCH v11 0/5] Expose modifiers/formats supported by async flips
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- Jani Nikula <jani.nikula@linux.intel.com>, 
- "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>, 
- "Syrjala, Ville" <ville.syrjala@intel.com>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, 
- "Kumar, Naveen1" <naveen1.kumar@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBuild=3A_failure_for_PCI=3A_add_CONFIG=5FMMU_depend?=
+ =?utf-8?q?ency?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arnd Bergmann" <arnd@kernel.org>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 07 Apr 2025 14:23:02 -0000
+Message-ID: <174403578260.43715.9263599794104138977@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250407104025.3421624-1-arnd@kernel.org>
+In-Reply-To: <20250407104025.3421624-1-arnd@kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,10 +36,117 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-> Can I have your Acked-by: for this series?
+== Series Details ==
 
-Yes, consider it
-Acked-by: Xaver Hugl <xaver.hugl@kde.org>
+Series: PCI: add CONFIG_MMU dependency
+URL   : https://patchwork.freedesktop.org/series/147320/
+State : failure
+
+== Summary ==
+
+CC [M]  net/netfilter/xt_TCPMSS.o
+  CC [M]  drivers/mfd/intel_pmc_bxt.o
+  CC [M]  net/netfilter/xt_TCPOPTSTRIP.o
+  CC [M]  net/netfilter/xt_TEE.o
+  AR      kernel/built-in.a
+  CC [M]  drivers/mfd/viperboard.o
+  CC [M]  net/netfilter/xt_TRACE.o
+  CC [M]  drivers/mfd/lm3533-core.o
+  CC [M]  drivers/mfd/lm3533-ctrlbank.o
+  CC [M]  net/netfilter/xt_IDLETIMER.o
+  CC [M]  drivers/mfd/retu-mfd.o
+  CC [M]  drivers/mfd/iqs62x.o
+  CC [M]  net/netfilter/xt_addrtype.o
+  CC [M]  drivers/mfd/menf21bmc.o
+  CC [M]  net/netfilter/xt_bpf.o
+  CC [M]  drivers/mfd/dln2.o
+  CC [M]  net/netfilter/xt_cluster.o
+  CC [M]  drivers/mfd/rt4831.o
+  CC [M]  drivers/mfd/rt5033.o
+  CC [M]  net/netfilter/xt_comment.o
+  CC [M]  drivers/mfd/rt5120.o
+  CC [M]  net/netfilter/xt_connbytes.o
+  CC [M]  net/netfilter/xt_connlabel.o
+  CC      lib/crc32.o
+  CC [M]  net/netfilter/xt_connlimit.o
+  CC [M]  drivers/mfd/sky81452.o
+  LD [M]  fs/nfs/nfsv4.o
+  CC      lib/crc64.o
+  CC [M]  net/netfilter/xt_conntrack.o
+  CC [M]  drivers/mfd/intel_soc_pmic_bxtwc.o
+  CC [M]  net/netfilter/xt_cpu.o
+  CC [M]  drivers/mfd/intel_soc_pmic_chtdc_ti.o
+  CC [M]  net/netfilter/xt_dccp.o
+  CC [M]  drivers/mfd/intel_soc_pmic_mrfld.o
+  CC [M]  net/netfilter/xt_devgroup.o
+  CC [M]  drivers/mfd/rave-sp.o
+  CC [M]  drivers/mfd/simple-mfd-i2c.o
+  CC [M]  drivers/mfd/smpro-core.o
+  CC [M]  net/netfilter/xt_dscp.o
+  CC [M]  drivers/mfd/intel-m10-bmc-core.o
+  CC [M]  net/netfilter/xt_ecn.o
+  CC [M]  net/netfilter/xt_esp.o
+  CC [M]  drivers/mfd/intel-m10-bmc-spi.o
+  CC [M]  net/netfilter/xt_hashlimit.o
+  CC [M]  drivers/mfd/atc260x-core.o
+  CC [M]  net/netfilter/xt_helper.o
+  CC [M]  drivers/mfd/atc260x-i2c.o
+  CC [M]  net/netfilter/xt_hl.o
+  CC [M]  net/netfilter/xt_ipcomp.o
+  CC [M]  net/netfilter/xt_iprange.o
+  CC [M]  net/netfilter/xt_l2tp.o
+  CC [M]  net/netfilter/xt_length.o
+  CC [M]  net/netfilter/xt_limit.o
+  CC [M]  net/netfilter/xt_mac.o
+  CC [M]  net/netfilter/xt_multiport.o
+  CC [M]  net/netfilter/xt_nfacct.o
+  CC [M]  net/netfilter/xt_osf.o
+  CC [M]  net/netfilter/xt_owner.o
+  CC [M]  net/netfilter/xt_cgroup.o
+  CC [M]  net/netfilter/xt_physdev.o
+  AR      fs/built-in.a
+  CC [M]  net/netfilter/xt_pkttype.o
+  CC [M]  net/netfilter/xt_policy.o
+  CC [M]  net/netfilter/xt_quota.o
+  CC [M]  net/netfilter/xt_rateest.o
+  CC [M]  net/netfilter/xt_realm.o
+  CC [M]  net/netfilter/xt_recent.o
+  CC [M]  net/netfilter/xt_sctp.o
+  CC [M]  net/netfilter/xt_socket.o
+  CC [M]  net/netfilter/xt_state.o
+  CC [M]  net/netfilter/xt_statistic.o
+  AR      lib/built-in.a
+  CC [M]  net/netfilter/xt_string.o
+  CC [M]  net/netfilter/xt_tcpmss.o
+  CC [M]  net/netfilter/xt_time.o
+  CC [M]  net/netfilter/xt_u32.o
+  LD [M]  drivers/mfd/arizona.o
+  LD [M]  drivers/mfd/wm8994.o
+  LD [M]  drivers/mfd/madera.o
+  LD [M]  drivers/mfd/ocelot-soc.o
+  LD [M]  drivers/mfd/mt6397.o
+  LD [M]  drivers/mfd/si476x-core.o
+  AR      drivers/mfd/built-in.a
+  LD [M]  net/netfilter/nf_conntrack.o
+  LD [M]  net/netfilter/nf_conntrack_h323.o
+  LD [M]  net/netfilter/nf_nat.o
+  LD [M]  net/netfilter/nf_tables.o
+  LD [M]  net/netfilter/nf_flow_table.o
+  AR      net/netfilter/built-in.a
+make[3]: *** [../scripts/Makefile.build:461: drivers] Error 2
+make[3]: *** Waiting for unfinished jobs....
+  AR      net/built-in.a
+  CC [M]  kernel/kheaders.o
+make[2]: *** [/kernel/Makefile:2006: .] Error 2
+make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
+make[1]: Leaving directory '/kernel/build64-default'
+make: *** [Makefile:248: __sub-make] Error 2
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
