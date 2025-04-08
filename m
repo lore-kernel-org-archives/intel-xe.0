@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E29CC369A6
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 10:30:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70716C369A7
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 10:30:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 127D310E644;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B66510E641;
 	Tue,  8 Apr 2025 10:30:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XBgCj185";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nmkkb2pi";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E46D10E62E;
- Tue,  8 Apr 2025 10:29:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A7E810E644;
+ Tue,  8 Apr 2025 10:30:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744108199; x=1775644199;
+ t=1744108207; x=1775644207;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qwwz1qzQ9G3py7ZJBGnaicQBH35pPzuVyDrfr7IJNfs=;
- b=XBgCj185UkLZHm+8aKAthf1NO+qa6Sj7bneDVlLDQpIyaTR+HywZRuEW
- WEMrdmsu2IWHjdgXwo12lplqDGcB5rpBaH/F5S/9/plkej/4U2hCUqRSu
- NCv5s11JdSJjgt0qu2frDNDnhlSevoX3CfoJ4yjQl8VFExU6E4ovj9FQh
- D4XhIdtUiZPKbMe76+Q29EGv89fNctx6jcthmqi1gY6og+C0po2uamG7R
- U8+HDPV3viz3/sHngu5FRik0AelyfymimZgLAYLdmh53/pc343z7uzrEn
- 9uOlE+9KibGXzDvPslnarkg5CO6bUayHCx5XQ5S1Tysqrtbhus1FZO0zJ Q==;
-X-CSE-ConnectionGUID: nD7/qJB1RqOnBnylmDNmew==
-X-CSE-MsgGUID: hycB1oJ+SC6Rw2Ki3TtfBg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="62934142"
-X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; d="scan'208";a="62934142"
+ bh=dxo0fGD2/4JYrFAo0Oq01CeFWyP3q1JXZtnXqy0sIOc=;
+ b=nmkkb2piRlWHAbmPG93hGKJnlHStOKMRXhqSesWdkjqhc1ThECRD2gPe
+ j7AhM5xIaR/r3AzPMDB3JvQFBfB14VtbRa5i430MocX/WE0CssdARq7vW
+ vNBj+cknD18+OYd7rj9KvDayzAeftKCV3mrWqKsMLfwZwaP9m2s4nuXFH
+ ReyHYh73EQY0hhd0/Hnt3RSuT2fdycj4Wzc8LTZa9A9Mio1aN1ZCMg42r
+ LurrI9idOMFT2yQ/S2W61UDAkBabYXBRUtwsiz/rmWKKjNIjZ8wB89u3K
+ KhvzfBZb5Lxk36tC59jrdm4Fi1brGMIVEoTk9sStm78/a4F6FPD47SFqB w==;
+X-CSE-ConnectionGUID: 2j4c6UfQRqGFsMTdPseuqg==
+X-CSE-MsgGUID: JRPUhuBvSA+a9piNK9+Otw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="62934160"
+X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; d="scan'208";a="62934160"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2025 03:29:55 -0700
-X-CSE-ConnectionGUID: A5IoAHO+Q9WLJ2dfHZUcoQ==
-X-CSE-MsgGUID: PI+tieHfQRyTc4qfB+Fwsw==
+ 08 Apr 2025 03:30:07 -0700
+X-CSE-ConnectionGUID: mNzmpUlzRMahZupB33MlWQ==
+X-CSE-MsgGUID: VGGVD1hjSTOWPFVE6ABR1A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; d="scan'208";a="133391984"
+X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; d="scan'208";a="133392135"
 Received: from nemesa.iind.intel.com ([10.190.239.22])
- by fmviesa004.fm.intel.com with ESMTP; 08 Apr 2025 03:29:53 -0700
+ by fmviesa004.fm.intel.com with ESMTP; 08 Apr 2025 03:30:05 -0700
 From: Nemesa Garg <nemesa.garg@intel.com>
 To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
-Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH 01/10] drm/i915/display: Introduce sharpness strength property
-Date: Tue,  8 Apr 2025 15:54:57 +0530
-Message-Id: <20250408102506.1053569-2-nemesa.garg@intel.com>
+Cc: Nemesa Garg <nemesa.garg@intel.com>,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 07/10] drm/i915/display: Configure the second scaler
+Date: Tue,  8 Apr 2025 15:55:03 +0530
+Message-Id: <20250408102506.1053569-8-nemesa.garg@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20250408102506.1053569-1-nemesa.garg@intel.com>
 References: <20250408102506.1053569-1-nemesa.garg@intel.com>
@@ -66,139 +67,173 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduces the new crtc property "SHARPNESS_STRENGTH" that allows
-the user to set the intensity so as to get the sharpness effect.
-The value of this property can be set from 0-255.
-It is useful in scenario when the output is blurry and user
-want to sharpen the pixels. User can increase/decrease the
-sharpness level depending on the content displayed.
+Both sharpness and panel fitter use pipe scaler,
+but only one can be enabled at a time. Furthermore
+sharpness uses second scaler. So for CASF, check if
+second scaler is available and make sure that only
+either of panel fitter or sharpness is enabled at
+a time.
 
-v2: Rename crtc property variable [Arun]
-    Add modeset detail in uapi doc[Uma]
-v3: Fix build issue
+v2: Add the panel fitting check before enabling sharpness
+v3: Reframe commit message[Arun]
+v4: Replace string based comparison with plane_state[Jani]
+v5: Rebase
+v6: Fix build issue
+v7: Remove scaler id from verify_crtc_state[Ankit]
+v8: Change the patch title. Add code comment.
+    Move the config part in patch#6. [Ankit]
+v9: Refactor the patch[Ankit]
+v10: Modify the header of patch[Ankit]
 
 Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/drm_atomic_uapi.c |  4 ++++
- drivers/gpu/drm/drm_crtc.c        | 35 +++++++++++++++++++++++++++++++
- include/drm/drm_crtc.h            | 17 +++++++++++++++
- 3 files changed, 56 insertions(+)
+ drivers/gpu/drm/i915/display/intel_casf.c    |  8 +++++++
+ drivers/gpu/drm/i915/display/intel_casf.h    |  1 +
+ drivers/gpu/drm/i915/display/intel_display.c |  4 +++-
+ drivers/gpu/drm/i915/display/skl_scaler.c    | 25 +++++++++++++++-----
+ 4 files changed, 31 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
-index c2726af6698e..5c1297bcc920 100644
---- a/drivers/gpu/drm/drm_atomic_uapi.c
-+++ b/drivers/gpu/drm/drm_atomic_uapi.c
-@@ -418,6 +418,8 @@ static int drm_atomic_crtc_set_property(struct drm_crtc *crtc,
- 		set_out_fence_for_crtc(state->state, crtc, fence_ptr);
- 	} else if (property == crtc->scaling_filter_property) {
- 		state->scaling_filter = val;
-+	} else if (property == crtc->sharpness_strength_property) {
-+		state->sharpness_strength = val;
- 	} else if (crtc->funcs->atomic_set_property) {
- 		return crtc->funcs->atomic_set_property(crtc, state, property, val);
- 	} else {
-@@ -455,6 +457,8 @@ drm_atomic_crtc_get_property(struct drm_crtc *crtc,
- 		*val = 0;
- 	else if (property == crtc->scaling_filter_property)
- 		*val = state->scaling_filter;
-+	else if (property == crtc->sharpness_strength_property)
-+		*val = state->sharpness_strength;
- 	else if (crtc->funcs->atomic_get_property)
- 		return crtc->funcs->atomic_get_property(crtc, state, property, val);
- 	else {
-diff --git a/drivers/gpu/drm/drm_crtc.c b/drivers/gpu/drm/drm_crtc.c
-index 46655339003d..1b7ce99cea5e 100644
---- a/drivers/gpu/drm/drm_crtc.c
-+++ b/drivers/gpu/drm/drm_crtc.c
-@@ -229,6 +229,25 @@ struct dma_fence *drm_crtc_create_fence(struct drm_crtc *crtc)
-  * 		Driver's default scaling filter
-  * 	Nearest Neighbor:
-  * 		Nearest Neighbor scaling filter
-+ * SHARPNESS_STRENGTH:
-+ *	Atomic property for setting the sharpness strength/intensity by userspace.
-+ *
-+ *	The value of this property is set as an integer value ranging
-+ *	from 0 - 255 where:
-+ *
-+ *	0 means feature is disabled.
-+ *
-+ *	1 means minimum sharpness.
-+ *
-+ *	255 means maximum sharpness.
-+ *
-+ *	User can gradually increase or decrease the sharpness level and can
-+ *	set the optimum value depending on content and this value will be
-+ *	passed to kernel through the Uapi.
-+ *	The setting of this property does not require modeset.
-+ *	The sharpness effect takes place post blending on the final composed output.
-+ *	If the feature is disabled, the content remains same without any sharpening effect
-+ *	and when this feature is applied, it enhances the clarity of the content.
-  */
- 
- __printf(6, 0)
-@@ -940,6 +959,22 @@ int drm_crtc_create_scaling_filter_property(struct drm_crtc *crtc,
+diff --git a/drivers/gpu/drm/i915/display/intel_casf.c b/drivers/gpu/drm/i915/display/intel_casf.c
+index cb12f6359e4c..280e79573aaa 100644
+--- a/drivers/gpu/drm/i915/display/intel_casf.c
++++ b/drivers/gpu/drm/i915/display/intel_casf.c
+@@ -151,6 +151,14 @@ void intel_casf_sharpness_get_config(struct intel_crtc_state *crtc_state)
+ 	}
  }
- EXPORT_SYMBOL(drm_crtc_create_scaling_filter_property);
  
-+int drm_crtc_create_sharpness_strength_property(struct drm_crtc *crtc)
++bool intel_casf_needs_scaler(const struct intel_crtc_state *crtc_state)
 +{
-+	struct drm_device *dev = crtc->dev;
-+	struct drm_property *prop =
-+		drm_property_create_range(dev, 0, "SHARPNESS_STRENGTH", 0, 255);
++	if (crtc_state->hw.casf_params.casf_enable)
++		return true;
 +
-+	if (!prop)
-+		return -ENOMEM;
-+
-+	crtc->sharpness_strength_property = prop;
-+	drm_object_attach_property(&crtc->base, prop, 0);
-+
-+	return 0;
++	return false;
 +}
-+EXPORT_SYMBOL(drm_crtc_create_sharpness_strength_property);
 +
+ static int casf_coeff_tap(int i)
+ {
+ 	return i % SCALER_FILTER_NUM_TAPS;
+diff --git a/drivers/gpu/drm/i915/display/intel_casf.h b/drivers/gpu/drm/i915/display/intel_casf.h
+index 381d5e10c70d..026a2b8348df 100644
+--- a/drivers/gpu/drm/i915/display/intel_casf.h
++++ b/drivers/gpu/drm/i915/display/intel_casf.h
+@@ -17,5 +17,6 @@ void intel_casf_sharpness_get_config(struct intel_crtc_state *crtc_state);
+ void intel_filter_lut_load(struct intel_crtc *crtc,
+ 			   const struct intel_crtc_state *crtc_state);
+ void intel_casf_scaler_compute_config(struct intel_crtc_state *crtc_state);
++bool intel_casf_needs_scaler(const struct intel_crtc_state *crtc_state);
+ 
+ #endif /* __INTEL_CASF_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 16fd7c00ba01..1d6c4c1e5ddb 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -60,6 +60,7 @@
+ #include "intel_audio.h"
+ #include "intel_bo.h"
+ #include "intel_bw.h"
++#include "intel_casf.h"
+ #include "intel_cdclk.h"
+ #include "intel_clock_gating.h"
+ #include "intel_color.h"
+@@ -4243,7 +4244,8 @@ static int intel_crtc_atomic_check(struct intel_atomic_state *state,
+ 
+ 	if (DISPLAY_VER(display) >= 9) {
+ 		if (intel_crtc_needs_modeset(crtc_state) ||
+-		    intel_crtc_needs_fastset(crtc_state)) {
++		    intel_crtc_needs_fastset(crtc_state) ||
++		    intel_casf_needs_scaler(crtc_state)) {
+ 			ret = skl_update_scaler_crtc(crtc_state);
+ 			if (ret)
+ 				return ret;
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+index 39fc537e54f0..d816dae9cec4 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.c
++++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+@@ -5,6 +5,7 @@
+ 
+ #include "i915_drv.h"
+ #include "i915_reg.h"
++#include "intel_casf.h"
+ #include "intel_casf_regs.h"
+ #include "intel_de.h"
+ #include "intel_display_trace.h"
+@@ -272,7 +273,8 @@ int skl_update_scaler_crtc(struct intel_crtc_state *crtc_state)
+ 				 drm_rect_width(&crtc_state->pipe_src),
+ 				 drm_rect_height(&crtc_state->pipe_src),
+ 				 width, height, NULL, 0,
+-				 crtc_state->pch_pfit.enabled);
++				 crtc_state->pch_pfit.enabled ||
++				 intel_casf_needs_scaler(crtc_state));
+ }
+ 
  /**
-  * drm_crtc_in_clone_mode - check if the given CRTC state is in clone mode
-  *
-diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h
-index caa56e039da2..2b26b90e82e6 100644
---- a/include/drm/drm_crtc.h
-+++ b/include/drm/drm_crtc.h
-@@ -317,6 +317,16 @@ struct drm_crtc_state {
- 	 */
- 	enum drm_scaling_filter scaling_filter;
+@@ -311,7 +313,9 @@ int skl_update_scaler_plane(struct intel_crtc_state *crtc_state,
+ }
  
-+	/**
-+	 * @sharpness_strength:
-+	 *
-+	 * Used by the user to set the sharpness intensity.
-+	 * The value ranges from 0-255.
-+	 * Any value greater than 0 means enabling the featuring
-+	 * along with setting the value for sharpness.
-+	 */
-+	u8 sharpness_strength;
-+
- 	/**
- 	 * @event:
- 	 *
-@@ -1088,6 +1098,12 @@ struct drm_crtc {
- 	 */
- 	struct drm_property *scaling_filter_property;
+ static int intel_allocate_scaler(struct intel_crtc_scaler_state *scaler_state,
+-				 struct intel_crtc *crtc)
++				 struct intel_crtc *crtc,
++				 struct intel_plane_state *plane_state,
++				 bool casf_scaler)
+ {
+ 	int i;
  
-+	/**
-+	 * @sharpness_strength_property: property to apply
-+	 * the intensity of the sharpness requested.
-+	 */
-+	struct drm_property *sharpness_strength_property;
+@@ -319,6 +323,10 @@ static int intel_allocate_scaler(struct intel_crtc_scaler_state *scaler_state,
+ 		if (scaler_state->scalers[i].in_use)
+ 			continue;
+ 
++		/* CASF needs second scaler */
++		if (!plane_state && casf_scaler && i != 1)
++			continue;
 +
- 	/**
- 	 * @state:
- 	 *
-@@ -1324,4 +1340,5 @@ static inline struct drm_crtc *drm_crtc_find(struct drm_device *dev,
- int drm_crtc_create_scaling_filter_property(struct drm_crtc *crtc,
- 					    unsigned int supported_filters);
- bool drm_crtc_in_clone_mode(struct drm_crtc_state *crtc_state);
-+int drm_crtc_create_sharpness_strength_property(struct drm_crtc *crtc);
- #endif /* __DRM_CRTC_H__ */
+ 		scaler_state->scalers[i].in_use = true;
+ 
+ 		return i;
+@@ -369,7 +377,7 @@ static int intel_atomic_setup_scaler(struct intel_crtc_state *crtc_state,
+ 				     int num_scalers_need, struct intel_crtc *crtc,
+ 				     const char *name, int idx,
+ 				     struct intel_plane_state *plane_state,
+-				     int *scaler_id)
++				     int *scaler_id, bool casf_scaler)
+ {
+ 	struct intel_display *display = to_intel_display(crtc);
+ 	struct intel_crtc_scaler_state *scaler_state = &crtc_state->scaler_state;
+@@ -378,7 +386,7 @@ static int intel_atomic_setup_scaler(struct intel_crtc_state *crtc_state,
+ 	int vscale = 0;
+ 
+ 	if (*scaler_id < 0)
+-		*scaler_id = intel_allocate_scaler(scaler_state, crtc);
++		*scaler_id = intel_allocate_scaler(scaler_state, crtc, plane_state, casf_scaler);
+ 
+ 	if (drm_WARN(display->drm, *scaler_id < 0,
+ 		     "Cannot find scaler for %s:%d\n", name, idx))
+@@ -510,10 +518,14 @@ static int setup_crtc_scaler(struct intel_atomic_state *state,
+ 	struct intel_crtc_scaler_state *scaler_state =
+ 		&crtc_state->scaler_state;
+ 
++	if (intel_casf_needs_scaler(crtc_state) && crtc_state->pch_pfit.enabled)
++		return -EINVAL;
++
+ 	return intel_atomic_setup_scaler(crtc_state,
+ 					 hweight32(scaler_state->scaler_users),
+ 					 crtc, "CRTC", crtc->base.base.id,
+-					 NULL, &scaler_state->scaler_id);
++					 NULL, &scaler_state->scaler_id,
++					 intel_casf_needs_scaler(crtc_state));
+ }
+ 
+ static int setup_plane_scaler(struct intel_atomic_state *state,
+@@ -548,7 +560,8 @@ static int setup_plane_scaler(struct intel_atomic_state *state,
+ 	return intel_atomic_setup_scaler(crtc_state,
+ 					 hweight32(scaler_state->scaler_users),
+ 					 crtc, "PLANE", plane->base.base.id,
+-					 plane_state, &plane_state->scaler_id);
++					 plane_state, &plane_state->scaler_id,
++					 false);
+ }
+ 
+ /**
 -- 
 2.25.1
 
