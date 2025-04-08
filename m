@@ -4,164 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5097DC369A2
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 14:15:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3115AC369A4
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 14:23:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B38110E6C3;
-	Tue,  8 Apr 2025 14:15:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E65DE10E6CC;
+	Tue,  8 Apr 2025 14:23:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gNVSSr22";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QxMB+H/c";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADD4F10E08C;
- Tue,  8 Apr 2025 14:15:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D353E10E6CC
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Apr 2025 14:23:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744121739; x=1775657739;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- in-reply-to:mime-version;
- bh=XaPfalBsj8Zf6guuLV7QPjvWtSezBXb8LqqunC8TWWY=;
- b=gNVSSr22NY6NfRzZ6vYI5JgezW3JXuKJriPIjCQbson0zeTPTp5Lnlx+
- DUVPHhooMMs1qwid5NCVr8FauqkqOFLhuZKlP4Y1+mvCSC9FoWlOpI3Un
- YmYoXcL6zfSdvVS1iM7L6t8Dy025/TI8AnPw1tKFh84RoRSmi9/kYCOCb
- VGyRVM3//qx4ZgOtqUdcOsuWojAf0b3603bN9mnU78Kf3Fzs544O/RE9I
- oF+chS8jakObFTtapCVyGUMA8IchTecUmYY/ulzWlwsuEUJSCj/Czh7i5
- x9HZRUpKju9ZzXfUSb/+oCjwyQz2j80nqvWKrVkbYXjF+GqC+p6rV8VGh Q==;
-X-CSE-ConnectionGUID: /oYKmqOXQOeVKNhj5l8nsg==
-X-CSE-MsgGUID: mgTPGd3xSsqatAqCTtsceA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="56925910"
-X-IronPort-AV: E=Sophos;i="6.15,198,1739865600"; d="scan'208";a="56925910"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2025 07:15:38 -0700
-X-CSE-ConnectionGUID: Jz7x0OFwSRiH6/wWP+tLnA==
-X-CSE-MsgGUID: 35mSRJ9vRxGTYz4tLKq6Kw==
+ t=1744122206; x=1775658206;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=PrGmIQOTxnxEmD7rJ6ptGgrQ8daE7sZlD5vB0NAPFoc=;
+ b=QxMB+H/cDo/jcWiz8fehoupvU/RjQ9ZPAmrcJ3nevW9UoEiwexpIaz8e
+ 0j2S4YZI1ocGuztDdruV3IHtBT29QD6auN9nzop4eAlzHM1kjdlDa/q0Y
+ 5k0MYJ0VVtZQy3q/5ZaeItfs5oawDfkZDDvFh/NRKZC9aajtdhX1ViNHd
+ Q2dGv+C+2TD5Sa5TMuaCXOvZdGvhtzc79qw2/w4BhT8gk5CMbQyFQzHAe
+ pHZhZwXgj6VqnJ34EpEkP0tn2svavcvijO2bHP9fA9NdP+CMMaytmUrRR
+ Juli/598nt7f6atdg+0dj1k/Anydzx1dcCJdLB+kLoGEBIwMyasJ+MhpM w==;
+X-CSE-ConnectionGUID: 2uNi48C7TAClUz6ocjQCUw==
+X-CSE-MsgGUID: izWnbBJrTgG4VQl+91egyA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="56197993"
+X-IronPort-AV: E=Sophos;i="6.15,198,1739865600"; d="scan'208";a="56197993"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2025 07:23:25 -0700
+X-CSE-ConnectionGUID: zKoHBds5Q5GQTJ71twGp7w==
+X-CSE-MsgGUID: mSXYMHYXRnWlfjH/qi0ITw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,198,1739865600"; d="scan'208";a="133148381"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 08 Apr 2025 07:15:39 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Tue, 8 Apr 2025 07:15:37 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Tue, 8 Apr 2025 07:15:37 -0700
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.48) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Tue, 8 Apr 2025 07:15:36 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Sko6wMXfkmy4NH8rTDEVTB3HQ6YJUrQFEDG8E5edsByBK+Ms9Uys+eqlpIc2xP8yBUFcVI0LDKrPsyC3gHY2btHocsytAX+FQ0XH+zSMhKCfNCj8G8QSjOhKhtFJe5Sjj/pGDz8fFKmv0qeaBK57lD9Qz40kGthsIsYH9OT+hg8vjCuVriVtyckQTtGmm78TFmdk5SMLSml+Bm37S6ZstPgBI1E6PeoeUQHv95NN6Md0AdKpBBFm39JHWvjhtFl0o6AvwFp7Uz+Ajv+dJrEJGPrgWWZWm2PYl7cbX7SDl1FZ5G8tSxG1oOqkwAwWUDYw7uuGKQUsJtfEjzG9kOoeog==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JGaU+0NfUvAs51wOPF8m0mxugJnQ5x3XXb6dl3I549E=;
- b=fWMFSUTzS0LYvLddnSwR1fyO6tePYpi1SoEo3L8aXht2ykop6iB1DeYVqzm8ifBc8RA8h/BjloeRRqJrLi6UOXsfNmgy/mhC/7FR4xBWPbN+/yNodfTHGPvO/184MvOGK0SmNkQF4mhqxajzZ+07HioYGomcTywLqXZpCs64a2ZEos36YJh1yRZDrwjpWWUcuIeEXgYAqWP1etpYiNLdRn7fVCW3KDLQi3f8QITEcZ4Q3j0R6AhWmkJfdde2bNOcTW4dOhoBw94DMwgWfdX61NK+pFTFJ9O+lKDk88DH0kmwLd/2RW/uzwmllTl5LVIaZSD44+nxJmboX1yRHGd0rw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
- by CY5PR11MB6509.namprd11.prod.outlook.com (2603:10b6:930:43::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8606.34; Tue, 8 Apr
- 2025 14:15:14 +0000
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::8900:d137:e757:ac9f%6]) with mapi id 15.20.8606.033; Tue, 8 Apr 2025
- 14:15:13 +0000
-Date: Tue, 8 Apr 2025 17:15:16 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>
-CC: <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <vinod.govindapillai@intel.com>
-Subject: Re: [PATCH 1/3] drm/drm_dp_helper: export link symbol cycles
- calculation
-Message-ID: <Z_UvdB05S0sPbs6l@ideak-desk.fi.intel.com>
-References: <20250408-hblank-v1-0-4ba17aebee65@intel.com>
- <20250408-hblank-v1-1-4ba17aebee65@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250408-hblank-v1-1-4ba17aebee65@intel.com>
-X-ClientProxiedBy: DB7PR03CA0083.eurprd03.prod.outlook.com
- (2603:10a6:10:72::24) To SJ0PR11MB4845.namprd11.prod.outlook.com
- (2603:10b6:a03:2d1::10)
+X-IronPort-AV: E=Sophos;i="6.15,198,1739865600"; d="scan'208";a="132417686"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmviesa003.fm.intel.com with ESMTP; 08 Apr 2025 07:23:24 -0700
+Received: from [10.245.96.73] (mwajdecz-MOBL.ger.corp.intel.com [10.245.96.73])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 5345534336;
+ Tue,  8 Apr 2025 15:23:22 +0100 (IST)
+Message-ID: <5fe9853a-59df-4cbd-8e3f-4ee015178238@intel.com>
+Date: Tue, 8 Apr 2025 16:23:21 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|CY5PR11MB6509:EE_
-X-MS-Office365-Filtering-Correlation-Id: dc259c59-6073-4cab-7586-08dd76a7c75e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?6CTPBwzhukui5jtmRH1d6kKHnOaGv6I70AO6cxdSVD9sB1I9SnAw0ZAlCsrX?=
- =?us-ascii?Q?dH2pxnWAd0wy0O+10UFEpJUFJmRBC/pR1dkoORWMzWcMxNI8/HqSLWbiJg0r?=
- =?us-ascii?Q?qklXqLVKtB4uT+Pt0c1iOVwDGgnQFvWk4pxrNvYAnjrpOzST4vRRkpiuV1aR?=
- =?us-ascii?Q?M355IWCUFKS6eU7OvVNydJw413ZSD7QLxEPkPFqFsEmGCEhjzuUIfLNUT2uL?=
- =?us-ascii?Q?1NUI3QBsH5vJdopG/nvVPQ2pSensAmAtMHXMFOTbkv27iYra2WMpUyH12lE7?=
- =?us-ascii?Q?jVoGN7GwYGPoL74f62KjQVQfQi1xUJpgJbrhh+83LV6vCAAG0EBjWLPv7KT3?=
- =?us-ascii?Q?0Qb0YW8Ng34/mLt2EDk5JeRQg+fhFn7B7J8cPto38m2zod9v97GiCR3SkzQK?=
- =?us-ascii?Q?PXg8p1EqUy/WFrshbzhRMUYjptug3d3fApNjqPs2LymDAppPl7ASag2kva+E?=
- =?us-ascii?Q?x0ffjWGmtWY5gy0NfknyrFdNoWIjcEhfPK44ekY6TDHlAEagAIHdTYjpv4lE?=
- =?us-ascii?Q?K/7iT3lJpjbC3BYUW/rn1KIDQyvy1YIJyUzdbGcNgi8Upz5rCyS0ARg1Ao5m?=
- =?us-ascii?Q?piiIsceyf8QeIAnhIemX6eBVuBCS//ovo2KwNSdH/ReDPycMTH6VXORVcY7z?=
- =?us-ascii?Q?0WCmRhcHzF0vmyej9mRqCeFu2tDXcUgbiH6k+bQoVuAmGQb9e6F/gfrQA81n?=
- =?us-ascii?Q?dd1zhcqjCu3kkcPmYFlvTPtqrxLhl9IvHq+8eY/J17EEgRl8RLDIPHnMPqXV?=
- =?us-ascii?Q?P+oHtVlYak3hi2hfzK6EZ6cVKzRbRq0DkX6uhnbPflqm5D/nBBPjGtnQs/g4?=
- =?us-ascii?Q?UJI3DbHDE7nEcm10dGhOu/lQFzKYMLMGxSIBCYBtu85Ud4lS5VU/jdH/5GUY?=
- =?us-ascii?Q?xZ4Nsffeo0EehwVE7U/oD7ZJyv2bOjeuxuZetEwns2jsHrYET2TiQ5fjKwpF?=
- =?us-ascii?Q?8riY3BtlSOqgRZPJlenEY+MSqzu1AJJPqI2nm29xW8zEqJt9vZjRWaR8ielT?=
- =?us-ascii?Q?eM/yrEaWNhdrNVI/DxDBTI7PcLmyeuOKmO4dPWXKUMVb0d6Qo1G9gqwlZ6Xt?=
- =?us-ascii?Q?/UyfctpeNL6Bs4yDkTopUCWsJv9lUVykfIPRNQQmNQLv5PkgZDBxb7PJ0LPQ?=
- =?us-ascii?Q?Fa/zOBtmdAiXUF4u9PP2fQ3FRNAZDQ/BO9CN7+kYXiUbOtjZNfp0pvhCfaUk?=
- =?us-ascii?Q?MKQVYslrqkfpJedVHfhIZRE7VXAdhf0CKcJ376VllQj1l7H/+8t1OdT7Krd4?=
- =?us-ascii?Q?4307kO+IzxaEK8EOr6sc0kmbC06p21Cn5R3ucmIhrBPgOlqzv9K0fzUcqrFW?=
- =?us-ascii?Q?Tyuk9Ie+eTvA27N7tC2uhAuEmLfCwJa0dM3QtCLPrQV1y6bYvKOtgIw7cmeE?=
- =?us-ascii?Q?RP45+tli+LcLuGWzpq4L4Q0kyiTN?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?gBpjXgIJMxrLF0k1d3xQpfSbK/fgNUfbr3prqb2DLHad6r0hXwf0dexZhrxQ?=
- =?us-ascii?Q?Omo8EhZUDcPxMrNPMpdQ5hgJdLhbnvWnKr16ZWlQxQchI2zkJ/MorreR8Eew?=
- =?us-ascii?Q?N/Yd3YikSOvsCHktt9Cp+s8d9SaLwq7vN3TXIHyiKoshK2JJGTNucZEyGZUd?=
- =?us-ascii?Q?bQUhKb8zdPVQFBhxsyJMqyoYqAFVk9K3TgGEPIWtrf3bjtvYMgCVm651ugW4?=
- =?us-ascii?Q?SNoQJ130fUxGaWMSP8hg+wLEQabTjdxRYPM2avZjyetwVj4Q+SZUzzLjeTi7?=
- =?us-ascii?Q?0AFfnoiQgefWGNN/0U2RD7DftIR6LSbX12W7JKISmr6ef22gv7dliaI4FbSa?=
- =?us-ascii?Q?SwBqd1Gsm8ApBI5DC5nEUQt5+1qnrSWam5e5mnq8P0RhXVM14wCqkPvFY9E6?=
- =?us-ascii?Q?mb+Ra22gOfSxdvBFljx/zfqPEZvBlviNs5K3mOhmC+LwURHNBVESxr7bxAhT?=
- =?us-ascii?Q?uyazPaEYClE4MUmwlzM20nYq74noQ6XMatMxpACUmkSw51r/PfKk+hFAhZGy?=
- =?us-ascii?Q?2DmJSQzsQHpaFMhl3CjQtoV2c5zrItTsTeNmfH6SpLvNYD5H+j8bx9zZcNLL?=
- =?us-ascii?Q?/WFuy3pu294cYaSkPzgRvGjqZWi9rh5olvXJ8k8QfHruZ2cP0HrkTonfEuAz?=
- =?us-ascii?Q?Y5OdYG7ucJ4m52gelBBayMwWhG7yaw4+ZGf0h8uSqpO6uqNpMLV4FF7aDzyA?=
- =?us-ascii?Q?g473hjYm9dd2a2AeXhWnXDei/nSl0tSb9cQzUfWx1O0aaPtNdkhGMuDDjb3A?=
- =?us-ascii?Q?BoQQxCC2LPpQYeAdqM9NVJa/q3fxdFSn2k+DHsKk+28z6PF6bGnkeVHJ/isb?=
- =?us-ascii?Q?abEgTDwSd6SWMJVsg83IWzpIXQ/aETrOwL/Yv1lABWmbXgmGaIHmtuK5IYzB?=
- =?us-ascii?Q?nM5P/u2/NVu/1AQ46SU9CWCV1O8rhkywJkYP/Oou/j2DyFVjPoKHRreuRc4w?=
- =?us-ascii?Q?3RQDnBN/LiIDGMcKGLozElR2LVKKpJsfYd9+WQZstAS1j+WgHUFg3jS9AXlA?=
- =?us-ascii?Q?pOj/C1NcefEh0+jZVniOblge0kJVSQJGm8MzeUKvzvx154osKosjJ1ARZBAC?=
- =?us-ascii?Q?RQjXO9rTAFG7U7n2bn5tLRbb76ongEI629QOBZExIZp/evCVQAQPuAcQ3Dml?=
- =?us-ascii?Q?sM/za+uq9NMugzun8+eAhB+IQNw5apb1t2naf6o5s6ahAxrRvT/biinnXfWo?=
- =?us-ascii?Q?GR9LALYE/MoRFI3g+QNKTLIQxHxG73TxQEQihT1bfYNSblOIetUsmV9IWQix?=
- =?us-ascii?Q?oKkAUbTjsHORsrvJ4MMr8uTDjGhAFOok073ChkYwlkPJ+GweajTeUHeRO/xU?=
- =?us-ascii?Q?NY8LPd8DcUME0e8QFNK5etJV9CXjJSGNVvdRwVCVqcsBSZqm8m2WW2TrgAfd?=
- =?us-ascii?Q?T3FFHWMWDQMPDTdggvFCmtNAXeb6Zg9wUzg7fgKNLybFeLv0fGtkJmDuUTWf?=
- =?us-ascii?Q?e5peB4lvgs1LVMyGMDirmy8mlREubEsFuHBsqT/EHdJtsA8GALMLCJ8vFtIc?=
- =?us-ascii?Q?3uJ37isjcmQMy3HGqzkPZUuHPGuad89mWktEy9Q0CvzlP3bT1cS4vj4EPobJ?=
- =?us-ascii?Q?Zqmi3ORy6ewGKag50dPsXVv+bYia144FaCpmD/TK?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: dc259c59-6073-4cab-7586-08dd76a7c75e
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2025 14:15:13.4430 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: r4eGFEWMYq5UufxL3W1YmMim43sIqAyrWbQTCLGxSTatp/o0Z+33KwYZ/tZm9OtCnbb9FyBIx6jCN+1Joj8r2g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6509
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 4/4] drm/xe/vf: Fixup CTB send buffer messages after
+ migration
+To: Tomasz Lis <tomasz.lis@intel.com>, intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
+ =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+References: <20250403184055.2317409-1-tomasz.lis@intel.com>
+ <20250403184055.2317409-5-tomasz.lis@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20250403184055.2317409-5-tomasz.lis@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -173,79 +72,361 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Apr 08, 2025 at 09:40:34AM +0530, Arun R Murthy wrote:
-> Link symbol cycles are required for the calculation of the minimum
-> HBlank calculation.
+
+
+On 03.04.2025 20:40, Tomasz Lis wrote:
+> During post-migration recovery of a VF, it is necessary to update
+> GGTT references included in messages which are going to be sent
+> to GuC. GuC will start consuming messages after VF KMD will inform
+> it about fixups being done; before that, the VF KMD is expected
+> to update any H2G messages which are already in send buffer but
+> were not consumed by GuC.
 > 
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> Only a small subset of messages allowed for VFs have GGTT references
+> in them. This patch adds the functionality to parse the CTB send
+> ring buffer and shift addresses contained within.
+> 
+> While fixing the CTB content, ct->lock is not taken. This means
+> the only barrier taken remains GGTT address lock - which is ok,
+> because only requests with GGTT addresses matter, but it also means
+> tail changes can happen during the CTB fixups execution (which may
+> be ignored as any new messages will not have anything to fix).
+> 
+> The GGTT address locking will be introduced in a future series.
+> 
+> v2: removed storing shift as that's now done in VMA nodes patch;
+>   macros to inlines; warns to asserts; log messages fixes (Michal)
+> v3: removed inline keywords, enums for offsets in CTB messages,
+>   less error messages, if return unused then made functs void (Michal)
+> v4: update the cached head before starting fixups
+> v5: removed/updated comments, wrapped lines, converted assert into
+>   error, enums for offsets to separate patch, reused xe_map_rd
+> v6: define xe_map_*_array() macros, support CTB wrap which divides
+>   a message, updated comments, moved one function to an earlier patch
+> 
+> Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
 > ---
->  drivers/gpu/drm/display/drm_dp_helper.c | 10 ++++++----
->  include/drm/display/drm_dp_helper.h     |  5 +++++
->  2 files changed, 11 insertions(+), 4 deletions(-)
+>  drivers/gpu/drm/xe/xe_guc_ct.c   | 147 +++++++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_guc_ct.h   |   2 +
+>  drivers/gpu/drm/xe/xe_map.h      |  12 +++
+>  drivers/gpu/drm/xe/xe_sriov_vf.c |  18 ++++
+>  4 files changed, 179 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-> index 57828f2b7b5a0582ca4a6f2a9be2d5909fe8ad24..488aaef61e3aa8b25975dfc98cbccdf5b7f083f8 100644
-> --- a/drivers/gpu/drm/display/drm_dp_helper.c
-> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
-> @@ -4393,17 +4393,18 @@ EXPORT_SYMBOL(drm_panel_dp_aux_backlight);
->  #endif
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+> index 686fe664c20d..add2d9b12345 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+> @@ -84,6 +84,8 @@ struct g2h_fence {
+>  	bool done;
+>  };
 >  
->  /* See DP Standard v2.1 2.6.4.4.1.1, 2.8.4.4, 2.8.7 */
-> -static int drm_dp_link_symbol_cycles(int lane_count, int pixels, int bpp_x16,
-> -				     int symbol_size, bool is_mst)
-> +int drm_dp_link_symbol_cycles(int lane_count, int pixels, int bpp_x16,
-> +			      int symbol_size, bool is_mst)
->  {
->  	int cycles = DIV_ROUND_UP(pixels * bpp_x16, 16 * symbol_size * lane_count);
->  	int align = is_mst ? 4 / lane_count : 1;
->  
->  	return ALIGN(cycles, align);
->  }
-> +EXPORT_SYMBOL(drm_dp_link_symbol_cycles);
->  
-> -static int drm_dp_link_dsc_symbol_cycles(int lane_count, int pixels, int slice_count,
-> -					 int bpp_x16, int symbol_size, bool is_mst)
-> +int drm_dp_link_dsc_symbol_cycles(int lane_count, int pixels, int slice_count,
-> +				  int bpp_x16, int symbol_size, bool is_mst)
->  {
->  	int slice_pixels = DIV_ROUND_UP(pixels, slice_count);
->  	int slice_data_cycles = drm_dp_link_symbol_cycles(lane_count, slice_pixels,
-
-Could you simplify this i/f by calculating the DSC/non-DSC specific
-symbol count based on whether the passed in dsc_slice_count is non-zero
-or zero respectively (renaming this function to drm_dp_link_symbol_cycles() and the
-original drm_dp_link_symbol_cycles() to stg else)?
-
-That way you'd need to export only one function and drm_dp_bw_overhead()
-would also get simplified.
-
-> @@ -4412,6 +4413,7 @@ static int drm_dp_link_dsc_symbol_cycles(int lane_count, int pixels, int slice_c
->  
->  	return slice_count * (slice_data_cycles + slice_eoc_cycles);
->  }
-> +EXPORT_SYMBOL(drm_dp_link_dsc_symbol_cycles);
->  
->  /**
->   * drm_dp_bw_overhead - Calculate the BW overhead of a DP link stream
-> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-> index d9614e2c89397536f44bb7258e894628ae1dccc9..f6bfa3b74810438b837540dccb08a987bcdb5d03 100644
-> --- a/include/drm/display/drm_dp_helper.h
-> +++ b/include/drm/display/drm_dp_helper.h
-> @@ -972,4 +972,9 @@ int drm_dp_max_dprx_data_rate(int max_link_rate, int max_lanes);
->  
->  ssize_t drm_dp_vsc_sdp_pack(const struct drm_dp_vsc_sdp *vsc, struct dp_sdp *sdp);
->  
-> +int drm_dp_link_symbol_cycles(int lane_count, int pixels, int bpp_x16,
-> +			      int symbol_size, bool is_mst);
-> +int drm_dp_link_dsc_symbol_cycles(int lane_count, int pixels, int slice_count,
-> +				  int bpp_x16, int symbol_size, bool is_mst);
+> +#define make_u64(hi, lo) ((u64)((u64)(u32)(hi) << 32 | (u32)(lo)))
 > +
->  #endif /* _DRM_DP_HELPER_H_ */
-> 
-> -- 
-> 2.25.1
-> 
+>  static void g2h_fence_init(struct g2h_fence *g2h_fence, u32 *response_buffer)
+>  {
+>  	g2h_fence->response_buffer = response_buffer;
+> @@ -1622,6 +1624,151 @@ static void g2h_worker_func(struct work_struct *w)
+>  	receive_g2h(ct);
+>  }
+>  
+> +static void xe_ring_map_fixup_u64(struct xe_device *xe, struct iosys_map *cmds,
+> +				  u32 size, u32 head, u32 pos, s64 shift)
+> +{
+> +	u32 hi, lo;
+> +	u64 offset;
+> +
+> +	lo = xe_map_rd_array_u32(xe, cmds, (head + pos) % size);
+> +	hi = xe_map_rd_array_u32(xe, cmds, (head + pos + 1) % size);
+> +	offset = make_u64(hi, lo);
+> +	offset += shift;
+> +	lo = lower_32_bits(offset);
+> +	hi = upper_32_bits(offset);
+> +	xe_map_wr_array_u32(xe, cmds, (head + pos) % size, lo);
+> +	xe_map_wr_array_u32(xe, cmds, (head + pos + 1) % size, hi);
+> +}
+> +
+> +/*
+> + * Shift any GGTT addresses within a single message left within CTB from
+> + * before post-migration recovery.
+> + * @ct: pointer to CT struct of the target GuC
+> + * @cmds: iomap buffer containing CT messages
+> + * @head: start of the target message within the buffer
+> + * @len: length of the target message
+> + * @size: size of the commands buffer
+> + * @shift: the address shift to be added to each GGTT reference
+> + */
+> +static void ct_update_addresses_in_message(struct xe_guc_ct *ct,
+
+s/ct_update_addresses_in_message/ct_fixup_ggtt_in_message
+
+> +					   struct iosys_map *cmds, u32 head,
+> +					   u32 len, u32 size, s64 shift)
+> +{
+> +	struct xe_device *xe = ct_to_xe(ct);
+> +	u32 action, i, n;
+> +	u32 msg[1];
+
+	u32 msg;
+or
+	u32 msg[GUC_HXG_MSG_MIN_LEN];
+
+> +
+> +	xe_map_memcpy_from(xe, msg, cmds, head * sizeof(u32),
+> +			   1 * sizeof(u32));
+
+please use helpers that you already have:
+
+	msg[0] = xe_map_rd_array_u32(xe, cmds, head);
+
+> +	action = FIELD_GET(GUC_HXG_REQUEST_MSG_0_ACTION, msg[0]);
+> +	switch (action) {
+> +	case XE_GUC_ACTION_REGISTER_CONTEXT:
+
+maybe don't super-optimize by hand and just do those 3x fixups here,
+using related XE_GUC_REGISTER_CONTEXT_DATA_xxx definitions?
+
+it looks weird to have 2x "case" statements and then "if (case)" anyway,
+plus mixed enums that just accidentally points to the same offsets
+
+> +	case XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC:
+> +		xe_ring_map_fixup_u64(xe, cmds, size, head,
+> +				 XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_5_WQ_DESC_ADDR_LOWER,
+> +				 shift);
+> +		xe_ring_map_fixup_u64(xe, cmds, size, head,
+> +				 XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_7_WQ_BUF_BASE_LOWER,
+> +				 shift);
+> +		if (action == XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC) {
+> +			n = xe_map_rd_array_u32(xe, cmds, head +
+> +				       XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_10_NUM_CTXS);
+> +			for (i = 0; i < n; i++)
+> +				xe_ring_map_fixup_u64(xe, cmds, size, head,
+> +					    XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_11_HW_LRC_ADDR
+> +					    + 2 * i, shift);
+> +		} else {
+> +			xe_ring_map_fixup_u64(xe, cmds, size, head,
+> +					      XE_GUC_REGISTER_CONTEXT_DATA_10_HW_LRC_ADDR, shift);
+> +		}
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +}
+> +
+> +static int ct_update_addresses_in_buffer(struct xe_guc_ct *ct,
+
+s/ct_update_addresses_in_buffer/ct_fixup_ggtt_in_buffer
+
+> +					 struct guc_ctb *h2g,
+
+nit: this is redundant
+
+> +					 s64 shift, u32 *mhead, s32 avail)
+
+can you describe what is this mhead?
+
+> +{
+> +	struct xe_device *xe = ct_to_xe(ct);
+> +	u32 head = *mhead;
+> +	u32 size = h2g->info.size;
+> +	u32 msg[1];
+
+	u32 msg;
+or
+	u32 msg[GUC_CTB_MSG_MIN_LEN];
+	
+> +	u32 len;
+
+please try to order vars in rev-xmas-tree
+
+> +
+> +	/* Read header */
+
+you should at least assert that avail > 0 before reading even single u32
+
+	xe_gt_assert(gt, avail >= GUC_CTB_MSG_MIN_LEN);
+
+but since it is called in the loop, more appropriate would be:
+
+	if (avail < GUC_CTB_MSG_MIN_LEN)
+		goto broken;
+
+> +	xe_map_memcpy_from(xe, msg, &h2g->cmds, sizeof(u32) * head,
+> +			   sizeof(u32));
+
+	msg[0] = xe_map_rd_array_u32(xe, cmds, head);
+
+> +	len = FIELD_GET(GUC_CTB_MSG_0_NUM_DWORDS, msg[0]) + GUC_CTB_MSG_MIN_LEN;
+> +
+> +	if (unlikely(len > (u32)avail)) {
+> +		xe_gt_err(ct_to_gt(ct), "H2G channel broken on read, avail=%d, len=%d, fixups skipped\n",
+> +			  avail, len);
+> +		return 0;
+> +	}
+> +
+> +	head = (head + 1) % size;
+
+maybe don't update head here as you need to reverse it two lines below?
+and this magic "1" is GUC_CTB_MSG_MIN_LEN
+
+> +	ct_update_addresses_in_message(ct, &h2g->cmds, head, len - 1, size, shift);
+
+msg_len_to_hxg_len() instead of "len - 1" ?
+
+> +	*mhead = (head + len - 1) % size;
+
+maybe it's time to introduce
+
+	u32 move_head(u32 head, u32 step, u32 size)
+
+> +
+> +	return avail - len;
+> +}
+> +
+> +/**
+> + * xe_guc_ct_fixup_messages_with_ggtt - Fixup any pending H2G CTB messages
+> + * @ct: pointer to CT struct of the target GuC
+> + * @ggtt_shift: shift to be added to all GGTT addresses within the CTB
+> + *
+> + * Messages in guc-to-host CTB are owned by GuC and any fixups in them
+> + * are made by GuC. But content of the host-to-guc CTB is owned by the
+> + * KMD, so fixups to GGTT references in any pending messages need to be
+> + * applied here.
+
+s/guc-to-host/H2G
+
+like you have earlier and below
+
+> + * This function updates GGTT offsets in payloads of pending H2G CTB
+> + * messages (messages which were not consumed by GuC before the VF got
+> + * paused).
+> + */
+> +void xe_guc_ct_fixup_messages_with_ggtt(struct xe_guc_ct *ct, s64 ggtt_shift)
+> +{
+> +	struct xe_guc *guc = ct_to_guc(ct);
+> +	struct xe_gt *gt = guc_to_gt(guc);
+> +	struct guc_ctb *h2g = &ct->ctbs.h2g;
+> +	u32 head, tail, size;
+> +	s32 avail;
+
+early exit if shift == 0 ?
+
+> +
+> +	if (unlikely(h2g->info.broken))
+> +		return;
+> +
+> +	h2g->info.head = desc_read(ct_to_xe(ct), h2g, head);
+> +	head = h2g->info.head;
+> +	tail = READ_ONCE(h2g->info.tail);
+> +	size = h2g->info.size;
+> +
+> +	if (unlikely(head > size))
+> +		goto corrupted;
+> +
+> +	if (unlikely(tail >= size))
+> +		goto corrupted;
+> +
+> +	avail = tail - head;
+> +
+> +	/* beware of buffer wrap case */
+> +	if (unlikely(avail < 0))
+> +		avail += size;
+> +	xe_gt_dbg(gt, "available %d (%u:%u:%u)\n", avail, head, tail, size);
+> +	xe_gt_assert(gt, avail >= 0);
+> +
+> +	while (avail > 0)
+> +		avail = ct_update_addresses_in_buffer(ct, h2g, ggtt_shift, &head, avail);
+> +
+> +	return;
+> +
+> +corrupted:
+> +	xe_gt_err(gt, "Corrupted H2G descriptor head=%u tail=%u size=%u, fixups not applied\n",
+> +		 head, tail, size);
+> +	h2g->info.broken = true;
+> +}
+> +
+>  static struct xe_guc_ct_snapshot *guc_ct_snapshot_alloc(struct xe_guc_ct *ct, bool atomic,
+>  							bool want_ctb)
+>  {
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
+> index 82c4ae458dda..5649bda82823 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct.h
+> @@ -22,6 +22,8 @@ void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot, struct drm_pr
+>  void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot);
+>  void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool want_ctb);
+>  
+> +void xe_guc_ct_fixup_messages_with_ggtt(struct xe_guc_ct *ct, s64 ggtt_shift);
+> +
+>  static inline bool xe_guc_ct_enabled(struct xe_guc_ct *ct)
+>  {
+>  	return ct->state == XE_GUC_CT_STATE_ENABLED;
+> diff --git a/drivers/gpu/drm/xe/xe_map.h b/drivers/gpu/drm/xe/xe_map.h
+> index f62e0c8b67ab..db98c8fb121f 100644
+> --- a/drivers/gpu/drm/xe/xe_map.h
+> +++ b/drivers/gpu/drm/xe/xe_map.h
+> @@ -78,6 +78,18 @@ static inline void xe_map_write32(struct xe_device *xe, struct iosys_map *map,
+>  	iosys_map_wr(map__, offset__, type__, val__);			\
+>  })
+>  
+> +#define xe_map_rd_array(xe__, map__, index__, type__)			\
+> +	xe_map_rd(xe__, map__, (index__) * sizeof(type__), type__)
+> +
+> +#define xe_map_wr_array(xe__, map__, index__, type__, val__)		\
+> +	xe_map_wr(xe__, map__, (index__) * sizeof(type__), type__, val__)
+> +
+> +#define xe_map_rd_array_u32(xe__, map__, index__)			\
+> +	xe_map_rd_array(xe__, map__, index__, u32)
+> +
+> +#define xe_map_wr_array_u32(xe__, map__, index__, val__)		\
+> +	xe_map_wr_array(xe__, map__, index__, u32, val__)
+> +
+>  #define xe_map_rd_field(xe__, map__, struct_offset__, struct_type__, field__) ({	\
+>  	struct xe_device *__xe = xe__;					\
+>  	xe_device_assert_mem_access(__xe);				\
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
+> index e70f1ceabbb3..2674fa948fda 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov_vf.c
+> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
+> @@ -10,6 +10,7 @@
+>  #include "xe_gt.h"
+>  #include "xe_gt_sriov_printk.h"
+>  #include "xe_gt_sriov_vf.h"
+> +#include "xe_guc_ct.h"
+>  #include "xe_pm.h"
+>  #include "xe_sriov.h"
+>  #include "xe_sriov_printk.h"
+> @@ -158,6 +159,20 @@ static int vf_post_migration_requery_guc(struct xe_device *xe)
+>  	return ret;
+>  }
+>  
+> +static void vf_post_migration_fixup_ctb(struct xe_device *xe)
+> +{
+> +	struct xe_gt *gt;
+> +	unsigned int id;
+> +
+> +	xe_assert(xe, IS_SRIOV_VF(xe));
+> +
+> +	for_each_gt(gt, xe, id) {
+> +		s32 shift = xe_gt_sriov_vf_ggtt_shift(gt);
+> +
+> +		xe_guc_ct_fixup_messages_with_ggtt(&gt->uc.guc.ct, shift);
+> +	}
+> +}
+> +
+>  /*
+>   * vf_post_migration_imminent - Check if post-restore recovery is coming.
+>   * @xe: the &xe_device struct instance
+> @@ -224,6 +239,9 @@ static void vf_post_migration_recovery(struct xe_device *xe)
+>  
+>  	need_fixups = vf_post_migration_fixup_ggtt_nodes(xe);
+>  	/* FIXME: add the recovery steps */
+> +	if (need_fixups)
+> +		vf_post_migration_fixup_ctb(xe);
+> +
+>  	vf_post_migration_notify_resfix_done(xe);
+>  	xe_pm_runtime_put(xe);
+>  	drm_notice(&xe->drm, "migration recovery ended\n");
+
