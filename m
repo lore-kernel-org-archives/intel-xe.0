@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE6D8C369A1
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 05:11:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B316C3600C
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 06:05:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB20710E5BB;
-	Tue,  8 Apr 2025 05:11:48 +0000 (UTC)
-Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A762F10E5BB;
- Tue,  8 Apr 2025 05:11:47 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAE6C10E5CC;
+	Tue,  8 Apr 2025 06:05:53 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GZKGeRjm";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C70910E5CA;
+ Tue,  8 Apr 2025 06:05:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744092352; x=1775628352;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=McEkw4zbCW5b4WOGTjlWaKrrzeQOzS7t0z3lVq088ZI=;
+ b=GZKGeRjm3U9qirgO3cZ8vKWWCgAq1DiSOg6++z/eXQR6Bt5t/iOdw4wz
+ LYWgL/wPRTyCfsrgEV+9bMYVlNLlFtkbFc8kyGcm1quv9LZug9GKw9MXu
+ L4Te8ycNBL8PokjSldY0YKT0NTyydxUK6Ij67TI9Bo98IwHEJ7vDlnTSq
+ 2KRfaYiDuQqtOhP7l51wZ1qd3nmxMKs4I9WCXpKAY8YTjj7sFoImRqz4r
+ c9QxyPYJXifR11TToOBR5usvuLWAie916nNVusJGC074Iewn9HyLUPHZA
+ 2ggjIzO2KKeiALwmEipaY3xCKOyHHENZXlguCDvV63KtGrEz7mYiidRi3 w==;
+X-CSE-ConnectionGUID: Kb6O9I7URfG8BzK47/h2cw==
+X-CSE-MsgGUID: yLwqAxDgTJGKd140cP0V2A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="49352977"
+X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; d="scan'208";a="49352977"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2025 23:05:51 -0700
+X-CSE-ConnectionGUID: 52Mx0dnWS/a1c/PS30Ah7g==
+X-CSE-MsgGUID: 7154YVyAR6eUjzpVxOeeSg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; d="scan'208";a="133374822"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO jhogande-mobl1..)
+ ([10.245.244.58])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2025 23:05:50 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH] drm/i915/alpm: use variable from intel_crtc_state instead of
+ intel_psr
+Date: Tue,  8 Apr 2025 09:05:39 +0300
+Message-ID: <20250408060539.4167353-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBuild=3A_failure_for_Register_bit_definition_for_ED?=
- =?utf-8?q?P=5FGENERAL=5FCAP2?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 08 Apr 2025 05:11:47 -0000
-Message-ID: <174408910766.46058.6844814693924734621@e6b6f09ec485>
-X-Patchwork-Hint: ignore
-References: <20250408050138.2382452-1-suraj.kandpal@intel.com>
-In-Reply-To: <20250408050138.2382452-1-suraj.kandpal@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,117 +66,39 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Currently code is making assumption that PSR is enabled when
+intel_alpm_configure is called. This doesn't work if alpm is configured
+before PSR is enabled.
 
-Series: Register bit definition for EDP_GENERAL_CAP2
-URL   : https://patchwork.freedesktop.org/series/147365/
-State : failure
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_alpm.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-== Summary ==
-
-CC [M]  drivers/mfd/mt6360-core.o
-  CC [M]  net/netfilter/xt_cpu.o
-  CC [M]  drivers/mfd/mt6370.o
-  CC [M]  net/netfilter/xt_dccp.o
-  CC [M]  drivers/mfd/mt6397-core.o
-  CC [M]  net/netfilter/xt_devgroup.o
-  CC [M]  drivers/mfd/mt6397-irq.o
-  CC [M]  net/netfilter/xt_dscp.o
-  CC [M]  drivers/mfd/mt6358-irq.o
-  CC [M]  net/netfilter/xt_ecn.o
-  LD [M]  fs/nfs/nfsv4.o
-  CC [M]  net/netfilter/xt_esp.o
-  CC [M]  drivers/mfd/kempld-core.o
-  CC [M]  net/netfilter/xt_hashlimit.o
-  CC [M]  drivers/mfd/intel_quark_i2c_gpio.o
-  CC [M]  net/netfilter/xt_helper.o
-  CC [M]  drivers/mfd/lpc_sch.o
-  CC [M]  drivers/mfd/lpc_ich.o
-  CC [M]  drivers/mfd/rdc321x-southbridge.o
-  AR      fs/built-in.a
-  CC [M]  drivers/mfd/janz-cmodio.o
-  CC [M]  net/netfilter/xt_hl.o
-  CC [M]  drivers/mfd/vx855.o
-  CC [M]  net/netfilter/xt_ipcomp.o
-  CC [M]  drivers/mfd/wl1273-core.o
-  CC [M]  net/netfilter/xt_iprange.o
-  CC [M]  net/netfilter/xt_l2tp.o
-  CC [M]  net/netfilter/xt_length.o
-  CC [M]  drivers/mfd/si476x-cmd.o
-  CC [M]  net/netfilter/xt_limit.o
-  CC [M]  drivers/mfd/si476x-prop.o
-  CC [M]  drivers/mfd/si476x-i2c.o
-  CC [M]  net/netfilter/xt_mac.o
-  CC [M]  net/netfilter/xt_multiport.o
-  CC [M]  drivers/mfd/intel_pmc_bxt.o
-  CC [M]  net/netfilter/xt_nfacct.o
-  CC [M]  net/netfilter/xt_osf.o
-  CC [M]  drivers/mfd/viperboard.o
-  CC [M]  net/netfilter/xt_owner.o
-  CC [M]  drivers/mfd/lm3533-core.o
-  CC [M]  net/netfilter/xt_cgroup.o
-  CC [M]  drivers/mfd/lm3533-ctrlbank.o
-  CC [M]  net/netfilter/xt_physdev.o
-  CC [M]  net/netfilter/xt_pkttype.o
-  CC [M]  drivers/mfd/retu-mfd.o
-  CC [M]  net/netfilter/xt_policy.o
-  CC [M]  drivers/mfd/iqs62x.o
-  AR      kernel/built-in.a
-  CC [M]  drivers/mfd/menf21bmc.o
-  CC [M]  net/netfilter/xt_quota.o
-  CC [M]  net/netfilter/xt_rateest.o
-  CC [M]  drivers/mfd/dln2.o
-  CC [M]  net/netfilter/xt_realm.o
-  CC [M]  drivers/mfd/rt4831.o
-  CC [M]  net/netfilter/xt_recent.o
-  CC [M]  drivers/mfd/rt5033.o
-  CC [M]  net/netfilter/xt_sctp.o
-  CC [M]  net/netfilter/xt_socket.o
-  CC [M]  drivers/mfd/rt5120.o
-  CC [M]  drivers/mfd/sky81452.o
-  CC [M]  net/netfilter/xt_state.o
-  CC [M]  net/netfilter/xt_statistic.o
-  CC [M]  net/netfilter/xt_string.o
-  CC [M]  drivers/mfd/intel_soc_pmic_bxtwc.o
-  CC [M]  net/netfilter/xt_tcpmss.o
-  CC [M]  drivers/mfd/intel_soc_pmic_chtdc_ti.o
-  CC [M]  drivers/mfd/intel_soc_pmic_mrfld.o
-  CC [M]  net/netfilter/xt_time.o
-  CC [M]  net/netfilter/xt_u32.o
-  CC [M]  drivers/mfd/rave-sp.o
-  CC [M]  drivers/mfd/simple-mfd-i2c.o
-  CC [M]  drivers/mfd/smpro-core.o
-  CC [M]  drivers/mfd/intel-m10-bmc-core.o
-  CC [M]  drivers/mfd/intel-m10-bmc-spi.o
-  CC [M]  drivers/mfd/atc260x-core.o
-  CC [M]  drivers/mfd/atc260x-i2c.o
-  LD [M]  drivers/mfd/arizona.o
-  LD [M]  drivers/mfd/wm8994.o
-  LD [M]  drivers/mfd/madera.o
-  LD [M]  drivers/mfd/ocelot-soc.o
-  LD [M]  drivers/mfd/mt6397.o
-  AR      drivers/mfd/built-in.a
-  LD [M]  net/netfilter/nf_conntrack.o
-  LD [M]  net/netfilter/nf_conntrack_h323.o
-  LD [M]  net/netfilter/nf_nat.o
-  LD [M]  net/netfilter/nf_tables.o
-  LD [M]  net/netfilter/nf_flow_table.o
-  AR      net/netfilter/built-in.a
-  LD [M]  drivers/mfd/si476x-core.o
-make[3]: *** [../scripts/Makefile.build:461: drivers] Error 2
-make[3]: *** Waiting for unfinished jobs....
-  AR      net/built-in.a
-  CC [M]  kernel/kheaders.o
-make[2]: *** [/kernel/Makefile:2006: .] Error 2
-make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
-make[1]: Leaving directory '/kernel/build64-default'
-make: *** [Makefile:248: __sub-make] Error 2
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
+index eba49263e2fb8..746495ac675be 100644
+--- a/drivers/gpu/drm/i915/display/intel_alpm.c
++++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+@@ -317,14 +317,14 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
+ 	u32 alpm_ctl;
+ 
+ 	if (DISPLAY_VER(display) < 20 ||
+-	    (!intel_dp->psr.sel_update_enabled && !intel_dp_is_edp(intel_dp)))
++	    (!crtc_state->has_sel_update && !intel_dp_is_edp(intel_dp)))
+ 		return;
+ 
+ 	/*
+ 	 * Panel Replay on eDP is always using ALPM aux less. I.e. no need to
+ 	 * check panel support at this point.
+ 	 */
+-	if ((intel_dp->psr.panel_replay_enabled && intel_dp_is_edp(intel_dp)) ||
++	if ((crtc_state->has_panel_replay && intel_dp_is_edp(intel_dp)) ||
+ 	    (crtc_state->has_lobf && intel_alpm_aux_less_wake_supported(intel_dp))) {
+ 		alpm_ctl = ALPM_CTL_ALPM_ENABLE |
+ 			ALPM_CTL_ALPM_AUX_LESS_ENABLE |
+-- 
+2.43.0
 
