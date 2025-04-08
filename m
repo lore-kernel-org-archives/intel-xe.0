@@ -4,146 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E18CC369A2
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 12:46:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 238FCC3600C
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 13:02:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D705610E21B;
-	Tue,  8 Apr 2025 12:46:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2FD210E227;
+	Tue,  8 Apr 2025 13:02:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=arndb.de header.i=@arndb.de header.b="hA88t/vO";
-	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="favHyVHy";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Bx/u3rSO";
 	dkim-atps=neutral
-X-Greylist: delayed 511 seconds by postgrey-1.36 at gabe;
- Tue, 08 Apr 2025 12:46:14 UTC
-Received: from flow-a4-smtp.messagingengine.com
- (flow-a4-smtp.messagingengine.com [103.168.172.139])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BAA310E21B;
- Tue,  8 Apr 2025 12:46:14 +0000 (UTC)
-Received: from phl-compute-12.internal (phl-compute-12.phl.internal
- [10.202.2.52])
- by mailflow.phl.internal (Postfix) with ESMTP id 17DEF20014C;
- Tue,  8 Apr 2025 08:37:42 -0400 (EDT)
-Received: from phl-imap-11 ([10.202.2.101])
- by phl-compute-12.internal (MEProxy); Tue, 08 Apr 2025 08:37:42 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
- :cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm1; t=1744115862;
- x=1744123062; bh=zFcPiZ2dymYdvLOyrug0agUR+Yq1LwHn6b82n9khMg4=; b=
- hA88t/vObgZNfV8F5NhyBQDmfCG2RNVd3x2W8Zufg5dKOllZq0HmIBVOcD6R36zJ
- dUCUywkMJxl7olxwesgdwzLHVYZfXbO7TxVrBr34ZEZpUkerU1xvSRbkkDSZQ/9n
- ti95kDMNS1ircDu6txuTKq8Hh8VUCvlxep8/3cOOvCP7Q63L2FogRGZ33xdZokde
- PdfcEjksnqVG17B652nC+IhEmQNrFc3YibLlR/x90pUo9x9m0Ts21QdVCVpX/j7U
- 636ZLGawOhOkDuGc7S8W9Zmc4MYzQXDQHycgj5wwS0FmTIfNN0KNwgm4ro6pUeZX
- LsT22uPqc5Q1CNOHypTk1g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1744115862; x=
- 1744123062; bh=zFcPiZ2dymYdvLOyrug0agUR+Yq1LwHn6b82n9khMg4=; b=f
- avHyVHyAljzCU9WCVJ7GlxybwygLxx2202W3vZyzfM1hE0yjRO840WBBo4hP3JK2
- r1jKrH5EIHGvxEKWXY4Ig+qnPSSqpTtVGTfy9AGbDze5O8/y/6+v1I/xl+CLdYrK
- aEQf8yAGMssi1yqPB8HPMx1ia4cNhlshdMv9ijgMlpEo2WgQBksdXe5hArDFuaIw
- esnV/cUFAWWwKm4cSMr+F5MisAl5eaHMhTJGxYfxNiE4JMziwW8LaIobdf5PtJYo
- muj3hPmZ1/VVn9ARm6FTGVJN9+VdUdIcK1pYNOfzSn2jD1pfDE2TgwwauKx7EWmd
- RBPRlx9lcMiaCjPpvyLng==
-X-ME-Sender: <xms:lBj1Z37JAzdSNf8RJrNISVcmekNoGYtUdhdE1QR9UEGc2QW4tGNGOg>
- <xme:lBj1Z84awh_MckpPiLeuycHQNakSdVuimpyB1mLs-zmVBFHbzFvyCubtMH4eHE4JS
- akJYYWs_HT1xQkMCP4>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtdefuddtucetufdoteggodetrf
- dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
- pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
- gvnhhtshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtjeertder
- tddtnecuhfhrohhmpedftehrnhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnug
- gsrdguvgeqnecuggftrfgrthhtvghrnhephfdthfdvtdefhedukeetgefggffhjeeggeet
- fefggfevudegudevledvkefhvdeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrg
- hmpehmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvgdpnhgspghrtghpthhtohep
- hedtpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopegrlhgvgigrnhguvghrrdguvg
- hutghhvghrsegrmhgurdgtohhmpdhrtghpthhtoheptghhrhhishhtihgrnhdrkhhovghn
- ihhgsegrmhgurdgtohhmpdhrtghpthhtoheplhhijhhordhlrgiirghrsegrmhgurdgtoh
- hmpdhrtghpthhtohepmhgrrhhiohdrlhhimhhonhgtihgvlhhlohesrghmugdrtghomhdp
- rhgtphhtthhopegstghmqdhkvghrnhgvlhdqfhgvvggusggrtghkqdhlihhsthessghroh
- gruggtohhmrdgtohhmpdhrtghpthhtohepiigrtghkrdhruhhsihhnsegsrhhorggutgho
- mhdrtghomhdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnvghtpdhrtg
- hpthhtohepshhimhhonhgrsehffhiflhhlrdgthhdprhgtphhtthhopehgvggvrhhtodhr
- vghnvghsrghssehglhhiuggvrhdrsggv
-X-ME-Proxy: <xmx:lBj1Z-fVAjsZ2IIW4CR__HAOTrryAbYjqVMOrlOZgaW86YnkED3CFw>
- <xmx:lBj1Z4IJOnTETXjr4ynY7WjdTH_esquf0Z5UMtrXw7IIvLP8bg1uYg>
- <xmx:lBj1Z7KcXF2sCvdK7Ff6e9FiI3KbzMJNGznflf86a2Xe4P-8mJ791g>
- <xmx:lBj1ZxxANUYN7ozS0kgUp28zlepO11cm_xgpJdfD8viEjBQpcHAVAQ>
- <xmx:lhj1Z5h2PSWgYdsFLsX0gpRa4lpt3LVHr5UE24EGmNNdcmE4PFSdJj4t>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
- id 5F2962220073; Tue,  8 Apr 2025 08:37:40 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DEDA10E227
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Apr 2025 13:02:04 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 6E2E25C0269
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Apr 2025 12:59:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25D40C4AF0B
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Apr 2025 13:02:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1744117323;
+ bh=8GaiwcHWfRvoK90OTJYH2v6UniBDmHmB840KjBxhX9I=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=Bx/u3rSOYgMC7jIRf7LSFxGKUAE49p5zlPuOAGFbp6ba/lgcNkjmUfK+dNiDlZiCA
+ N6gpP7SyrT/+mGmXKbmseT05/H9DB4N5ZkjNBWR4m5mXbrJVUqvGw68IyeswxfbFid
+ mjzHPiydS/R95kzWi+Agq2Wnft8UvxJjXPjJl1zT6qublMQ+uHN+dK5vBEnNnJiRv3
+ fenZLDwbSIN5ae9T7sGBH0aiFAukS00fmNQx8TTEDJyJbHTpVv5l62DoiZC5NnjoWO
+ oLZxCdLlf67Dqc2zY5n5Qzs2YSYFmqeCGxiIKeY1UWewFy5Ok28pLOI5ERzE8ZLM01
+ 1CNlXj/8qPujA==
+Received: by mail-oa1-f46.google.com with SMTP id
+ 586e51a60fabf-2cca475546fso2150267fac.1
+ for <intel-xe@lists.freedesktop.org>; Tue, 08 Apr 2025 06:02:03 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU+e/wuGs53pk3rJBCdL0rCdOgHbNwWzS+6m7Bq4sQHvXpmrO8aVkITk/z5mspSM/vrMVpLq0Y6gA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw7Zjdrl83DzNv6p+/Toq+jQXQ/9VHEEKgSn8qRGijSd5jW7gUB
+ afjF8AJXJsUCEdvkwoK0858IU/ysTBPzSbymwncEZCffo8PKijSmV7W9yIKtRl9cp/qporztIUh
+ t/DRtmISg9C+/KBdiWAXKbEUecT4=
+X-Google-Smtp-Source: AGHT+IFjkp5ajfGr7EdSG92rcHQnSQqd9flrT9xcE+UImXVlpGkb6J2F1cd6PRh1PbU8p/vO/e6sJj2DBsJQNGW87m4=
+X-Received: by 2002:a05:6870:b520:b0:2c2:3da4:6389 with SMTP id
+ 586e51a60fabf-2cc9e659fb9mr9436751fac.23.1744117322463; Tue, 08 Apr 2025
+ 06:02:02 -0700 (PDT)
 MIME-Version: 1.0
-X-ThreadId: T702257fbe5397c0b
-Date: Tue, 08 Apr 2025 14:37:07 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Geert Uytterhoeven" <geert@linux-m68k.org>,
- "Arnd Bergmann" <arnd@kernel.org>
-Cc: "Bjorn Helgaas" <bhelgaas@google.com>,
- "Jeff Hugo" <jeff.hugo@oss.qualcomm.com>,
- "Carl Vanderlip" <quic_carlv@quicinc.com>,
- "Oded Gabbay" <ogabbay@kernel.org>,
- "Takashi Sakamoto" <o-takashi@sakamocchi.jp>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
- "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>,
- "Dave Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>,
- "Alex Deucher" <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- "Dave Airlie" <airlied@redhat.com>,
- "Jocelyn Falempe" <jfalempe@redhat.com>,
- "Patrik Jakobsson" <patrik.r.jakobsson@gmail.com>,
- "Xinliang Liu" <xinliang.liu@linaro.org>,
- "Tian Tao" <tiantao6@hisilicon.com>,
- "Xinwei Kong" <kong.kongxinwei@hisilicon.com>,
- "Sumit Semwal" <sumit.semwal@linaro.org>,
- "Yongqin Liu" <yongqin.liu@linaro.org>, "John Stultz" <jstultz@google.com>,
- "Sui Jingfeng" <suijingfeng@loongson.cn>,
- "Lyude Paul" <lyude@redhat.com>, "Danilo Krummrich" <dakr@kernel.org>,
- "Gerd Hoffmann" <kraxel@redhat.com>,
- "Zack Rusin" <zack.rusin@broadcom.com>,
- "Broadcom internal kernel review list"
- <bcm-kernel-feedback-list@broadcom.com>,
- "Lucas De Marchi" <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
- "Andrew Lunn" <andrew+netdev@lunn.ch>,
- "David S . Miller" <davem@davemloft.net>,
- "Eric Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>,
- "Paolo Abeni" <pabeni@redhat.com>, "Saurav Kashyap" <skashyap@marvell.com>,
- "Javed Hasan" <jhasan@marvell.com>, GR-QLogic-Storage-Upstream@marvell.com,
- "James E . J . Bottomley" <James.Bottomley@hansenpartnership.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- "Nilesh Javali" <njavali@marvell.com>,
- "Manish Rangankar" <mrangankar@marvell.com>,
- "Alex Williamson" <alex.williamson@redhat.com>,
- "Geert Uytterhoeven" <geert+renesas@glider.be>,
- "Javier Martinez Canillas" <javierm@redhat.com>,
- "Jani Nikula" <jani.nikula@intel.com>,
- "Mario Limonciello" <mario.limonciello@amd.com>,
- =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>,
- "Lijo Lazar" <lijo.lazar@amd.com>,
- "Niklas Schnelle" <schnelle@linux.ibm.com>,
- "Dmitry Baryshkov" <lumag@kernel.org>, linux-arm-msm@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux1394-devel@lists.sourceforge.net, amd-gfx@lists.freedesktop.org,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Netdev <netdev@vger.kernel.org>,
- linux-pci@vger.kernel.org, linux-scsi@vger.kernel.org,
- kvm@vger.kernel.org, "Greg Ungerer" <gerg@linux-m68k.org>
-Message-Id: <9abf582c-ea8e-42ca-a6d5-34c1e1932f95@app.fastmail.com>
-In-Reply-To: <CAMuHMdWN=wurw7qz0t2ovMkUNu0BJRAMv_0U63Lqs2MGxkVnHw@mail.gmail.com>
-References: <20250407104025.3421624-1-arnd@kernel.org>
- <CAMuHMdWN=wurw7qz0t2ovMkUNu0BJRAMv_0U63Lqs2MGxkVnHw@mail.gmail.com>
-Subject: Re: [RFC] PCI: add CONFIG_MMU dependency
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+References: <20250401153225.96379-4-anshuman.gupta@intel.com>
+ <20250401201349.GA1676401@bhelgaas>
+ <CAJZ5v0irNFX6dFrStinNXamrhP143=yjjfx4iK0pY+-dTEkviw@mail.gmail.com>
+ <CY5PR11MB6211021207DE5ECAA43BF26595AE2@CY5PR11MB6211.namprd11.prod.outlook.com>
+ <CAJZ5v0inCpM2UhzZ_pD52S0Hf8aaEMa40CyE-dwzVmO1n3PMwA@mail.gmail.com>
+ <MN0PR11MB6207F55ABAA2187609BB872695AE2@MN0PR11MB6207.namprd11.prod.outlook.com>
+ <CAJZ5v0gKBYa_N-dA1JwF0yVbc6XSmQEy1LpVytDM7uc9kbZ8fA@mail.gmail.com>
+ <CY5PR11MB621174B9AF1B5C6EA4FE27F095A92@CY5PR11MB6211.namprd11.prod.outlook.com>
+In-Reply-To: <CY5PR11MB621174B9AF1B5C6EA4FE27F095A92@CY5PR11MB6211.namprd11.prod.outlook.com>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Tue, 8 Apr 2025 15:01:51 +0200
+X-Gmail-Original-Message-ID: <CAJZ5v0hp-bYn8JFiBnTgrSdJWHm1jgCjcvbVZkzeOaySjvAQQg@mail.gmail.com>
+X-Gm-Features: ATxdqUHqV0sOwFWqSUOVlfsgC6-e9g7HrCV9B3ZHAiWPRSwaiLow0_l4zBDiy30
+Message-ID: <CAJZ5v0hp-bYn8JFiBnTgrSdJWHm1jgCjcvbVZkzeOaySjvAQQg@mail.gmail.com>
+Subject: Re: [PATCH 03/12] PCI/ACPI: Add aux power grant notifier
+To: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Bjorn Helgaas <helgaas@kernel.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
+ "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>, 
+ "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+ "lenb@kernel.org" <lenb@kernel.org>, 
+ "bhelgaas@google.com" <bhelgaas@google.com>, 
+ "ilpo.jarvinen@linux.intel.com" <ilpo.jarvinen@linux.intel.com>, 
+ "De Marchi, Lucas" <lucas.demarchi@intel.com>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>, 
+ "Nilawar, Badal" <badal.nilawar@intel.com>, "Gupta,
+ Varun" <varun.gupta@intel.com>, 
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>, "Shankar,
+ Uma" <uma.shankar@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,39 +88,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Apr 8, 2025, at 12:22, Geert Uytterhoeven wrote:
-> On Mon, 7 Apr 2025 at 12:40, Arnd Bergmann <arnd@kernel.org> wrote:
+On Fri, Apr 4, 2025 at 2:53=E2=80=AFPM Gupta, Anshuman <anshuman.gupta@inte=
+l.com> wrote:
 >
->> --- a/drivers/pci/Kconfig
->> +++ b/drivers/pci/Kconfig
->> @@ -21,6 +21,7 @@ config GENERIC_PCI_IOMAP
->>  menuconfig PCI
->>         bool "PCI support"
->>         depends on HAVE_PCI
->> +       depends on MMU
->>         help
->>           This option enables support for the PCI local bus, including
->>           support for PCI-X and the foundations for PCI Express support.
+> /snip
+> > > >
+> > > > Exactly like I said: If you only allow one driver to use the _DSM t=
+o
+> > > > request the Aux power from a given Root Port, it will have all of
+> > > > the information and does not need to be notified about any changes.
+> > > > Since no one else is allowed to use this interface for that Root
+> > > > Port, no one else will need a notifier either.  For this to work,
+> > > > you need some mechanism allowing drivers to claim the interface so
+> > > > no one else can use it (on a per Root Port basis) which is currentl=
+y missing
+> > AFAICS.
+> > >
+> > > IMHO such kind of mechanism will require to add Root Port specific
+> > > data structure to claim the interface. But real problem is the criter=
+ia  to claim
+> > the interface.
+> > > Is first PCIe Non-Bridge Endpoint Function 0 driver can be criteria
+> > > to claim the Interface. Or first come and first serve approach ?
+> >
+> > IMV, the first PCIe Non-Bridge Endpoint Function 0 driver approach woul=
+d be
+> > sort of fragile and cumbersome to enforce.
+> >
+> > First come, first serve is much simpler and should be sufficient for no=
+w AFAICS.
 >
-> While having an MMU is a hardware feature, I consider disabling MMU
-> support software configuration.  So this change prevents people from
-> disabling MMU support on a system that has both a PCI bus and an MMU.
-> But other people may not agree, or care?
+> We are enabling VRSR only for default vga boot device.
+> As it needed only GPU driving the display for better user experience.
+> Can we use same logic vga_default_device() to claim the interface under r=
+oot port.
+> That will simplify the criteria to claim the interface.
 
-I created this patch after Greg said that the coldfire-v4 chips
-that have an MMU are not really used without it any more, and
-I had accidentally only build tested a patch without CONFIG_MMU.
+Basically, you need to prevent somebody else from running
+DSM_PCI_D3COLD_AUX_POWER_LIMIT concurrently for the given Root Port
+and store the information that it has been run already.
 
-On ARM, CONFIG_MMU can no longer be disabled on CPUs that have
-one, this was a side-effect of the ARCH_MULTIPLATFORM conversion.
+Personally, I'd add aux_power_limit to struct acpi_device_power and
+I'd use a static mutex in pci_acpi_request_d3cold_aux_power() along
+the lines of:
 
-I just tried building an SH7751 kernel with MMU disabled but PCI
-enable. This produces build errors in several files, clearly nobody
-has tried this in a long time.
+1. Acquire the mutex.
+2. If power.aux_power_limit is set for the ACPI companion of pci_dev,
+release the mutex and bail out.
+3. Evaluate DSM_PCI_D3COLD_AUX_POWER_LIMIT and if it fails, release
+the mutex and bail out.
+4. Set power.aux_power_limit for the ACPI companion of pci_dev to the
+requested value.
+5. Release the mutex.
 
-I'm not entirely sure about xtensa, but it seems that PCI is
-only supported on the "virt" platform, which in turn cannot
-turn off MMU, even if there are other platforms that can build
-with out without MMU enabled.
-
-     Arnd
+Of course, this would only allow it to be set once per kernel boot, so
+in order to handle hibernation properly, the same Aux power limit
+would need to be requested again automatically on Root Port restore.
