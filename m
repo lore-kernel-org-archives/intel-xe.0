@@ -4,53 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D152C3DA4A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91DAFC36010
 	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 05:01:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C182D10E5BF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 638AD10E5BB;
 	Tue,  8 Apr 2025 05:01:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T3exOuqU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nK42beCJ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB0B610E5BB;
- Tue,  8 Apr 2025 05:01:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 075BC10E5BA;
+ Tue,  8 Apr 2025 05:01:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1744088495; x=1775624495;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=PfZE5U/1XhiAdDGzI4NaHNPZlfcu4oUUaYgEJTyXt/s=;
- b=T3exOuqUpLkK5a4e2RFmX+EBcXljET7tGb7zMl/Zf1vID+EbN83I+OnD
- AqcwlYeyZP+Lf4V+lDizS61h8rnBjCSBOuTx1ae6puO2k9KD3VENK4fNs
- qHvJwWgKI4AV3SACskG6U27ABVdb2dja8nZzRiIwvE3swIcoDtEe27bXa
- +aYRMZWHIubIh4P61QoHZFMD8uksuwoTzFTOqxDNcy2QdcDmK8akRrTvp
- M9onjOiOejtjKszKtClJiaOJMeFN4PNeyIL3LjZvfEaWt8kN1B62TulGN
- c1nsUuJqXvVec8VJZyw5R0Qw8ogFpU5bGw3zCyDwzpeqgAlES1oulW2Xm g==;
-X-CSE-ConnectionGUID: xxgWi67DR6uD/YhVT3Swtg==
-X-CSE-MsgGUID: H7afzDtpR7qoBwKJjNjSZg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="67975298"
-X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; d="scan'208";a="67975298"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Tvo0DkmWXK5DWGOEcJi2UYP+ujY/ow0zwj9QKB4+Uas=;
+ b=nK42beCJTE4DAj5Yv7EOfoIP3UY8Er4HOy/9HLhKiYdTNGfQDi9jy3JL
+ aGxputG2ZkuRTIrpilUmCsFqE+jzivf2X61fRT8Gk19j0cb10ED37CvTH
+ 1Bw6b17WsG0+cYJXweQwHgUIL5JagsWm+ZkabXMIczyrBTTuDNN1zq9sY
+ oW3NhDBvVEq5/nlsBam4x2awfDL5EQ8Dx4a5peaie3IorYWNqcpliO3Yv
+ hqgYBB6wt4IxGk58l+TCg3jVCuKiegHwNNWdcsJkRIh/TOvnjXu3+n67m
+ DbjD1BFt3T+lW8G7wqFts1da769/L1a6MACciW3c/2I8et5dQs+mMYWID A==;
+X-CSE-ConnectionGUID: nbD8j8aIRwy47ZvPKhFD4w==
+X-CSE-MsgGUID: /Wcwu15XQXm6d5GsFBjuag==
+X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="67975295"
+X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; d="scan'208";a="67975295"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2025 22:01:35 -0700
-X-CSE-ConnectionGUID: ckPdf+6RR/6gnL+42RQGiA==
-X-CSE-MsgGUID: iy2cKmjLTSG3JoW7YW+dNA==
+ 07 Apr 2025 22:01:33 -0700
+X-CSE-ConnectionGUID: vJ+hueNSR3ytQZtNz8hBCg==
+X-CSE-MsgGUID: GJOSk3hAR6m60lJS989YHA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; d="scan'208";a="133015449"
+X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; d="scan'208";a="133015422"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa003.jf.intel.com with ESMTP; 07 Apr 2025 22:01:33 -0700
+ by orviesa003.jf.intel.com with ESMTP; 07 Apr 2025 22:01:31 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 1/2] drm/dp: Add smooth brightness register bit definition
-Date: Tue,  8 Apr 2025 10:31:37 +0530
-Message-Id: <20250408050138.2382452-2-suraj.kandpal@intel.com>
+Subject: [PATCH 0/2] Register bit definition for EDP_GENERAL_CAP2
+Date: Tue,  8 Apr 2025 10:31:36 +0530
+Message-Id: <20250408050138.2382452-1-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250408050138.2382452-1-suraj.kandpal@intel.com>
-References: <20250408050138.2382452-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,26 +65,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add DP_EDP_SMOOTH_BRIGHTNESS register bit definition for
-EDP_GENERAL_CAPABILITY 2 register.
+Add smooth brightness register bit definition for register
+EDP_GENERAL_CAPABILITY 2
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- include/drm/display/drm_dp.h | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
-index c413ef68f9a3..ecf8b8d7b1f5 100644
---- a/include/drm/display/drm_dp.h
-+++ b/include/drm/display/drm_dp.h
-@@ -1025,6 +1025,7 @@
- #define DP_EDP_GENERAL_CAP_2		    0x703
- # define DP_EDP_OVERDRIVE_ENGINE_ENABLED		(1 << 0)
- # define DP_EDP_PANEL_LUMINANCE_CONTROL_CAPABLE		(1 << 4)
-+# define DP_EDP_SMOOTH_BRIGHTNESS_CAPABLE		(1 << 6)
- 
- #define DP_EDP_GENERAL_CAP_3		    0x704    /* eDP 1.4 */
- # define DP_EDP_X_REGION_CAP_MASK			(0xf << 0)
+Suraj Kandpal (2):
+  drm/dp: Add smooth brightness register bit definition
+  drm/i915/backlight: Modify condition to use panel luminance
+
+ drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 3 ++-
+ include/drm/display/drm_dp.h                          | 1 +
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+
 -- 
 2.34.1
 
