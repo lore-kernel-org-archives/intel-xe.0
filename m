@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82450C3600C
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 10:30:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 476EEC369A7
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 10:30:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2122110E64A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D48D10E653;
 	Tue,  8 Apr 2025 10:30:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HbbletWs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nF2bXdEy";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5548610E212;
- Tue,  8 Apr 2025 10:29:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE61110E646;
+ Tue,  8 Apr 2025 10:30:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744108200; x=1775644200;
+ t=1744108211; x=1775644211;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=JS6CCLIvy+3q8T0XGcJ93Bz5Z1SsKdIg43rpE0gWw4A=;
- b=HbbletWsFk5dDuLaYADUZ2wg4+HYp9UFpp0WMpACYGeacfBbvbF6u70T
- 58s/euTKUL3Rlx97INHqDqu5uBO8XfD6ADn6vyAfHsq4N6NfX/SLuoYbf
- mIwA+HXBhKEwfEGouXM57MKGFGKjA4qQvCG8XCk+oxtic/m29tkKlUGk6
- 23P++l2fb9QX1WRsOpee3iJOM8UAnurzJo2O11XgbuiR1vyF3L5KEZCx4
- 3MnVuZ3M884Uo9Onsi9nYZ1En0YrLv5zhVCBkYJtXaWRruIlma1ai1Dve
- DF3exKylN1ezmPU/5qt14eO2DZispnR3eddHgZh3j1LJWzCzHkuRTvTDS A==;
-X-CSE-ConnectionGUID: GMlXxZAjQlChm2eV8gow5w==
-X-CSE-MsgGUID: WRhjkBvMQHSJCzVzxkiiTg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="62934144"
-X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; d="scan'208";a="62934144"
+ bh=ZF2Ek2EKKTjakfXLmnEALNzupb9tVdWyFoGkHB/wNWw=;
+ b=nF2bXdEyhKgYfY1ONcIrFJyd6zPbUMafL3nNRsk5pEKFn4AVF8XOmTcs
+ YJttqXXQ7qXSl219cFHv8KKUslXMqwcTHUSDIAH/wHrtYKcbelFmpew7S
+ FOfiUpdQzxc/OwI9xRABByr0RKTGbZbIUWfzl3ktgSeSUGh/67K/c9stK
+ DOSYc4ObI87HySdH0WzbIm4xJ/Rar17Hp5NHzBHknpeavKMrXSWbi+Ork
+ nLivhcEa9GLyXHrnO7hJr/xN+/b70g/o2UQmidmRRfOcdDQd+1TMUX92E
+ nulAhIWpxhQE6I8mY8jg1aEP7HwxSPHHMIFNJmnCTz1rXo03UaULnocrj w==;
+X-CSE-ConnectionGUID: JuaZHRsPT/agVsZzelBZ4A==
+X-CSE-MsgGUID: oGPwpgYwQGuYRd9STPa9XA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="62934171"
+X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; d="scan'208";a="62934171"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2025 03:29:56 -0700
-X-CSE-ConnectionGUID: 5DtlhpfnQEaUoDtZxM1ZFw==
-X-CSE-MsgGUID: Bw0HWn9VTAquuAxPEOvUGw==
+ 08 Apr 2025 03:30:11 -0700
+X-CSE-ConnectionGUID: nlJLYoU0Rp6W7SkSfOr8DA==
+X-CSE-MsgGUID: Id/JcxM9QMmiTmZdjFXnRg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; d="scan'208";a="133391987"
+X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; d="scan'208";a="133392165"
 Received: from nemesa.iind.intel.com ([10.190.239.22])
- by fmviesa004.fm.intel.com with ESMTP; 08 Apr 2025 03:29:54 -0700
+ by fmviesa004.fm.intel.com with ESMTP; 08 Apr 2025 03:30:09 -0700
 From: Nemesa Garg <nemesa.garg@intel.com>
 To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
 Cc: Nemesa Garg <nemesa.garg@intel.com>,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 02/10] drm/i915/display: Introduce HAS_CASF for sharpness
- support
-Date: Tue,  8 Apr 2025 15:54:58 +0530
-Message-Id: <20250408102506.1053569-3-nemesa.garg@intel.com>
+Subject: [PATCH 09/10] drm/i915/display: Enable/disable casf
+Date: Tue,  8 Apr 2025 15:55:05 +0530
+Message-Id: <20250408102506.1053569-10-nemesa.garg@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20250408102506.1053569-1-nemesa.garg@intel.com>
 References: <20250408102506.1053569-1-nemesa.garg@intel.com>
@@ -68,48 +67,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add HAS_CASF macro to check whether platform supports
-the content adaptive sharpness capability or not.
+To enable or disable the sharpness check the
+casf_enable flag. While enabling the sharpness
+write the programmable coefficients, sharpness
+register bits and also enable the scaler.
+Load the filter lut value which needs to be done
+one time while enabling the sharpness.
 
-v2: Update commit message[Ankit]
+v2: Introduce casf_enable here[Ankit]
+v3: Use is_disabling in casf_disabling[Ankit]
+v4: Swap old_state and new_state param[Ankit]
 
 Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
 Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 7 +++++++
- drivers/gpu/drm/i915/display/intel_display_device.h  | 1 +
- 2 files changed, 8 insertions(+)
+ drivers/gpu/drm/i915/display/intel_casf.c    | 27 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_casf.h    |  2 ++
+ drivers/gpu/drm/i915/display/intel_display.c | 26 +++++++++++++++++++
+ 3 files changed, 55 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index 0c7f91046996..33ec30123214 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -373,6 +373,13 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 
- 	intel_vdsc_state_dump(&p, 0, pipe_config);
- 
-+	if (HAS_CASF(display)) {
-+		drm_printf(&p, "sharpness strength: %d, sharpness tap size :%d\n sharpness enable :%d\n",
-+			   pipe_config->hw.casf_params.strength,
-+			   pipe_config->hw.casf_params.win_size,
-+			   pipe_config->hw.casf_params.casf_enable);
-+	}
+diff --git a/drivers/gpu/drm/i915/display/intel_casf.c b/drivers/gpu/drm/i915/display/intel_casf.c
+index 280e79573aaa..49df8d4224a6 100644
+--- a/drivers/gpu/drm/i915/display/intel_casf.c
++++ b/drivers/gpu/drm/i915/display/intel_casf.c
+@@ -251,3 +251,30 @@ void intel_casf_scaler_compute_config(struct intel_crtc_state *crtc_state)
+ 					      filter_coeff[i]);
+ 	}
+ }
 +
- dump_planes:
- 	if (!state)
- 		return;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 368b0d3417c2..09b9991beffa 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -145,6 +145,7 @@ struct intel_display_platforms {
- #define HAS_ASYNC_FLIPS(__display)	(DISPLAY_VER(__display) >= 5)
- #define HAS_AS_SDP(__display)		(DISPLAY_VER(__display) >= 13)
- #define HAS_BIGJOINER(__display)	(DISPLAY_VER(__display) >= 11 && HAS_DSC(__display))
-+#define HAS_CASF(__display)		(DISPLAY_VER(__display) >= 20)
- #define HAS_CDCLK_CRAWL(__display)	(DISPLAY_INFO(__display)->has_cdclk_crawl)
- #define HAS_CDCLK_SQUASH(__display)	(DISPLAY_INFO(__display)->has_cdclk_squash)
- #define HAS_CMRR(__display)		(DISPLAY_VER(__display) >= 20)
++void intel_casf_enable(struct intel_crtc_state *crtc_state)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	u32 sharpness_ctl;
++
++	intel_filter_lut_load(crtc, crtc_state);
++
++	intel_casf_write_coeff(crtc_state);
++
++	sharpness_ctl = FILTER_EN | FILTER_STRENGTH(crtc_state->hw.casf_params.strength);
++
++	sharpness_ctl |= crtc_state->hw.casf_params.win_size;
++
++	intel_de_write(display, SHARPNESS_CTL(crtc->pipe), sharpness_ctl);
++
++	skl_scaler_setup_casf(crtc_state);
++}
++
++void intel_casf_disable(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++
++	intel_de_write(display, SHARPNESS_CTL(crtc->pipe), 0);
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_casf.h b/drivers/gpu/drm/i915/display/intel_casf.h
+index 026a2b8348df..301a9fbd930f 100644
+--- a/drivers/gpu/drm/i915/display/intel_casf.h
++++ b/drivers/gpu/drm/i915/display/intel_casf.h
+@@ -18,5 +18,7 @@ void intel_filter_lut_load(struct intel_crtc *crtc,
+ 			   const struct intel_crtc_state *crtc_state);
+ void intel_casf_scaler_compute_config(struct intel_crtc_state *crtc_state);
+ bool intel_casf_needs_scaler(const struct intel_crtc_state *crtc_state);
++void intel_casf_enable(struct intel_crtc_state *crtc_state);
++void intel_casf_disable(const struct intel_crtc_state *crtc_state);
+ 
+ #endif /* __INTEL_CASF_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 8c58cbaaf484..17fb6b031b49 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -1038,6 +1038,24 @@ static bool audio_disabling(const struct intel_crtc_state *old_crtc_state,
+ 		 memcmp(old_crtc_state->eld, new_crtc_state->eld, MAX_ELD_BYTES) != 0);
+ }
+ 
++static bool intel_casf_enabling(const struct intel_crtc_state *new_crtc_state,
++				const struct intel_crtc_state *old_crtc_state)
++{
++	if (!new_crtc_state->hw.active)
++		return false;
++
++	return is_enabling(hw.casf_params.casf_enable, old_crtc_state, new_crtc_state);
++}
++
++static bool intel_casf_disabling(const struct intel_crtc_state *old_crtc_state,
++				 const struct intel_crtc_state *new_crtc_state)
++{
++	if (!new_crtc_state->hw.active)
++		return false;
++
++	return is_disabling(hw.casf_params.casf_enable, old_crtc_state, new_crtc_state);
++}
++
+ #undef is_disabling
+ #undef is_enabling
+ 
+@@ -1187,6 +1205,9 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
+ 	if (audio_disabling(old_crtc_state, new_crtc_state))
+ 		intel_encoders_audio_disable(state, crtc);
+ 
++	if (intel_casf_disabling(old_crtc_state, new_crtc_state))
++		intel_casf_disable(new_crtc_state);
++
+ 	intel_drrs_deactivate(old_crtc_state);
+ 
+ 	if (hsw_ips_pre_update(state, crtc))
+@@ -6720,6 +6741,11 @@ static void intel_pre_update_crtc(struct intel_atomic_state *state,
+ 			intel_vrr_set_transcoder_timings(new_crtc_state);
+ 	}
+ 
++	if (intel_casf_enabling(new_crtc_state, old_crtc_state))
++		intel_casf_enable(new_crtc_state);
++	else if (new_crtc_state->hw.casf_params.strength != old_crtc_state->hw.casf_params.strength)
++		intel_casf_update_strength(new_crtc_state);
++
+ 	intel_fbc_update(state, crtc);
+ 
+ 	drm_WARN_ON(display->drm, !intel_display_power_is_enabled(display, POWER_DOMAIN_DC_OFF));
 -- 
 2.25.1
 
