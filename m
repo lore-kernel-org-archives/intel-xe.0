@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53436C369A2
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 16:12:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32076C369A4
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 16:22:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B4EF10E6EF;
-	Tue,  8 Apr 2025 16:12:05 +0000 (UTC)
-Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0363910E6EF;
- Tue,  8 Apr 2025 16:12:03 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1BAB10E6FB;
+	Tue,  8 Apr 2025 16:22:11 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ymw77jQx";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8155410E6FB;
+ Tue,  8 Apr 2025 16:22:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744129331; x=1775665331;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=R+Z0eOnpCrL4xbO9Uk7FjKxeGauiYhKxL3JOzc/Suj4=;
+ b=Ymw77jQxjUtvcNUybsZf+TbTeBxMxIvdqBtl6aCm3VyUafpmg38+GKAV
+ j6Fzs4sTI43gpdaZ3b7nkqKW7BvNrrfOq4ijc6iGWhXF+oPxe5GmZPh5O
+ +9ECAegoolAfnieVstwhhhCPj2w1SdKJv/6Vn2kfvG37+etw/7/sG10eQ
+ iWPOHVcrgpKb4DggD89DLu6jNkO+zdM5kpkKmaNR4ZUPJ7zEX+HiMki7k
+ Ya5NFlBS22PATDpez4zCrr92QGUUKGVFQUrICR6KNsYDyUyErTHgo9LDB
+ o1+Gh7Mmbu03nV9eBMyLwC+mrq4cum1Z0Ju/JQGOulfzb5in+N+KvaIQu A==;
+X-CSE-ConnectionGUID: lcw/Z+AXR0KHooLJghiubg==
+X-CSE-MsgGUID: /8YAb+0zQo6ir1errfmx5w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="62973617"
+X-IronPort-AV: E=Sophos;i="6.15,198,1739865600"; d="scan'208";a="62973617"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2025 09:22:10 -0700
+X-CSE-ConnectionGUID: PMR3+1fjQkyNeXscXzj7mg==
+X-CSE-MsgGUID: cKYGU/V9TFekkp13iPGxAQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,198,1739865600"; d="scan'208";a="159310760"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.137])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2025 09:22:09 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 0/5] drm/i915/plane: file and function renames
+Date: Tue,  8 Apr 2025 19:21:59 +0300
+Message-Id: <cover.1744129283.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBuild=3A_failure_for_drm/xe=3A_Add_page_queue_multi?=
- =?utf-8?q?plier?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 08 Apr 2025 16:12:03 -0000
-Message-ID: <174412872300.48725.1569037895756722164@e6b6f09ec485>
-X-Patchwork-Hint: ignore
-References: <20250408155915.78770-1-matthew.brost@intel.com>
-In-Reply-To: <20250408155915.78770-1-matthew.brost@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,117 +64,42 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The "atomic" is superfluous in a bunch of places.
 
-Series: drm/xe: Add page queue multiplier
-URL   : https://patchwork.freedesktop.org/series/147413/
-State : failure
+Jani Nikula (5):
+  drm/i915/plane: rename intel_atomic_plane.[ch] to intel_plane.[ch]
+  drm/i915/plane: drop atomic from intel_atomic_plane_check_clipping()
+  drm/i915/plane: make intel_plane_atomic_check() static and rename
+  drm/i915/plane: rename intel_atomic_check_planes() to
+    intel_plane_atomic_check()
+  drm/i915/plane: rename intel_atomic_add_affected_planes() to
+    intel_plane_add_affected()
 
-== Summary ==
+ drivers/gpu/drm/i915/Makefile                 |  4 ++--
+ drivers/gpu/drm/i915/display/i9xx_plane.c     | 10 ++++-----
+ drivers/gpu/drm/i915/display/intel_atomic.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_crtc.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_cursor.c   | 10 ++++-----
+ drivers/gpu/drm/i915/display/intel_display.c  | 10 ++++-----
+ .../gpu/drm/i915/display/intel_display_irq.c  |  2 +-
+ drivers/gpu/drm/i915/display/intel_fb.c       |  2 +-
+ drivers/gpu/drm/i915/display/intel_fb_pin.c   |  2 +-
+ .../{intel_atomic_plane.c => intel_plane.c}   | 22 +++++++++----------
+ .../{intel_atomic_plane.h => intel_plane.h}   | 22 +++++++++----------
+ .../drm/i915/display/intel_plane_initial.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_sprite.c   | 14 ++++++------
+ .../drm/i915/display/skl_universal_plane.c    |  8 +++----
+ drivers/gpu/drm/i915/display/skl_watermark.c  |  2 +-
+ drivers/gpu/drm/xe/Makefile                   |  2 +-
+ drivers/gpu/drm/xe/display/xe_plane_initial.c |  2 +-
+ 18 files changed, 59 insertions(+), 61 deletions(-)
+ rename drivers/gpu/drm/i915/display/{intel_atomic_plane.c => intel_plane.c} (98%)
+ rename drivers/gpu/drm/i915/display/{intel_atomic_plane.h => intel_plane.h} (85%)
 
-CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_mcg/dml2_mcg_dcn4.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_mcg/dml2_mcg_factory.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn3.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_factory.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn4_fams2.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_standalone_libraries/lib_float_math.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/dml21_translation_helper.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/dml21_wrapper.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/dml21_utils.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce120/dce120_timing_generator.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce112/dce112_compressor.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_timing_generator.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_compressor.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_opp_regamma_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_opp_csc_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_timing_generator_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_mem_input_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_opp_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_transform_v.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce80/dce80_timing_generator.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce60/dce60_timing_generator.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce60/dce60_hw_sequencer.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce60/dce60_resource.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/hdcp/hdcp_msg.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/sspl/dc_spl.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/sspl/dc_spl_scl_filters.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/sspl/dc_spl_scl_easf_filters.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/sspl/dc_spl_isharp_filters.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/sspl/dc_spl_filters.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/sspl/spl_fixpt31_32.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/sspl/spl_custom_float.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stat.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_resource.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_hw_sequencer.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_sink.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_surface.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_debug.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stream.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_link_enc_cfg.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_link_exports.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_state.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_vm_helper.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dc_helper.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dmub_srv.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dc_edid_parser.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dc_spl_translate.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/freesync/freesync.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/color/color_gamma.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/color/color_table.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/info_packet/info_packet.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/power/power_helpers.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_srv.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_srv_stat.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_reg.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn20.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn21.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn30.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn301.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn302.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn303.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn31.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn314.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn315.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn316.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn32.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn35.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn351.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn36.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn401.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp_ddc.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp_log.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp_psp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp1_execution.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp1_transition.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp2_execution.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/hdcp/hdcp2_transition.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_isp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/isp_v4_1_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/isp_v4_1_1.o
-  LD [M]  drivers/gpu/drm/amd/amdgpu/amdgpu.o
-  AR      drivers/gpu/built-in.a
-  AR      drivers/built-in.a
-  AR      built-in.a
-  AR      vmlinux.a
-  LD      vmlinux.o
-  OBJCOPY modules.builtin.modinfo
-  GEN     modules.builtin
-  GEN     .vmlinux.objs
-  MODPOST Module.symvers
-ERROR: modpost: "__devm_drm_panel_alloc" [drivers/gpu/drm/panel/panel-auo-a030jtn01.ko] undefined!
-make[3]: *** [../scripts/Makefile.modpost:147: Module.symvers] Error 1
-make[2]: *** [/kernel/Makefile:1956: modpost] Error 2
-make[1]: Leaving directory '/kernel/build64-default'
-make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+-- 
+2.39.5
 
