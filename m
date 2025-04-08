@@ -4,27 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7592EC36010
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 20:45:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E56AAC36010
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 20:48:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3AAD310E755;
-	Tue,  8 Apr 2025 20:45:17 +0000 (UTC)
-Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A1D110E755;
- Tue,  8 Apr 2025 20:45:16 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9D3310E1E0;
+	Tue,  8 Apr 2025 20:48:39 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ZeerjqIt";
+	dkim-atps=neutral
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 139F910E1E0
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Apr 2025 20:48:39 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id C133261143;
+ Tue,  8 Apr 2025 20:48:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5477FC4CEE5;
+ Tue,  8 Apr 2025 20:48:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1744145314;
+ bh=zAvEvlzAln/TlRU8vv7yAddue9mFYC9Fd0ZT0VyLmDw=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:From;
+ b=ZeerjqItVG+XzKiXVjEV3+a9A4z9SmvYa36d/vvVodFOpQeet67+HnRiQEfYnfPZt
+ AkNrjZQ2aIUus8osASPhych7Wtiw8F/AU2b4iJAjpnvS1omNVRfeXmiLqkawtGU5Ef
+ 0DiLd882sIJ9NUcV+WJ/ePfxZHnogkjG37UvTWwUwwp14xOJk5pEzyt5+p/K5Byz0i
+ DFAQmTEwcB/wq02v+YZskwvvvy+Q9MP+PpIb4y/8mbrQbuoIQxI+F8Pzs5hlvBGBxt
+ T8YHVBHPXWk2iL0XhvXPTfkFhVBtpNQszU4nV6EBD65QuFuYQn3zBJChJoYCBgxczr
+ qowTh2+/K4GGQ==
+Date: Tue, 8 Apr 2025 15:48:32 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: "Rafael J. Wysocki" <rafael@kernel.org>
+Cc: Anshuman Gupta <anshuman.gupta@intel.com>,
+ intel-xe@lists.freedesktop.org, linux-acpi@vger.kernel.org,
+ linux-pci@vger.kernel.org, lenb@kernel.org, bhelgaas@google.com,
+ ilpo.jarvinen@linux.intel.com, lucas.demarchi@intel.com,
+ rodrigo.vivi@intel.com, badal.nilawar@intel.com,
+ varun.gupta@intel.com, ville.syrjala@linux.intel.com, uma.shankar@intel.com
+Subject: Re: [PATCH 02/12] PCI/ACPI: Add PERST# Assertion Delay _DSM method
+Message-ID: <20250408204832.GA64565@bhelgaas>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_Revert_=22libata=3A_Down?=
- =?utf-8?q?grade_unsupported_feature_warnings_to_notifications=22?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 08 Apr 2025 20:45:16 -0000
-Message-ID: <174414511623.49898.1993773557701741192@e6b6f09ec485>
-X-Patchwork-Hint: ignore
-References: <20250408194331.11046-1-lucas.demarchi@intel.com>
-In-Reply-To: <20250408194331.11046-1-lucas.demarchi@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAJZ5v0hQjtTCu1wXgKvBWBBegbj-VD+Z0yBspt1uFes8Xun7Cw@mail.gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +57,50 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Apr 02, 2025 at 09:36:01PM +0200, Rafael J. Wysocki wrote:
+> On Wed, Apr 2, 2025 at 8:48 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
 
-Series: Revert "libata: Downgrade unsupported feature warnings to notifications"
-URL   : https://patchwork.freedesktop.org/series/147428/
-State : success
+> > I don't *expect* rev 5 to be different.  But as a user of it, why
+> > would I change working, tested code that is not broken?
+> >
+> > The PCI DPC function 0xc is an example where rev 5 (per ECN) and rev 6
+> > (per r3.3) are not compatible.
+> >
+> > If the OS implemented rev 5, then learns via function 0 that function
+> > 0xc is also supported at rev 6, and starts using the same OS code with
+> > rev 6, the OS is broken.
+> 
+> Yes, in this case the backward compatibility language in the _DSM
+> definition is obviously not followed.
 
-== Summary ==
+Rev 5 in the ECN isn't compatible with rev 6 in the PCI FW r3.3 spec,
+so it doesn't follow the ACPI compatibility requirement.  And this is
+documented in PCI FW, which says "Fn 0xC was added with rev 5 (see ECN
+for rev 5 details); here is how rev 6 works."
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 1951437999630d299a063863fb92d235dd8dc3d1
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
+An OS implemented to the ECN doesn't know that rev 6 is different from
+rev 5; it assumes they're the same because ACPI says we can assume
+that, and PCI FW r3.3 even says the OS should use the same rev for all
+functions.  If OS adds support for rev 6 of a some other function, it
+is supposed to use rev 6 of Fn 0xC, which doesn't work as the OS
+expects.
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+I guess one could argue that "OS didn't add rev 6 support for anything
+until PCI FW r3.3 added a function at rev 6, r3.3 did mention the
+difference between Fn 0xC rev 5 and 6, and OS should have looked at
+all the already-implemented unrelated functions for possible changes
+between rev 5 and rev 6."
 
+I think that causes unnecessary changes in unrelated code.  The OS can
+avoid the problem by *always* using Fn 0xC rev 5, regardless of what
+rev it uses for other functions.
 
+Of course, the OS can include support for multiple revs, e.g., it
+could add support for Fn 0xC rev 6 and use that when available.  And
+it could retain support for Fn 0xC rev 5 and use that if rev 6 isn't
+available.
+
+Bjorn
