@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04142C3600C
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 11:16:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C85FAC369A4
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 11:21:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE4D710E667;
-	Tue,  8 Apr 2025 11:15:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M8KpULqH";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B2C410E667;
- Tue,  8 Apr 2025 11:15:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744110958; x=1775646958;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=8d2HSKQM0SkvTkoiQWOv0tyogCqwPDHxwgHiW0yV0CE=;
- b=M8KpULqHZDu1znJOOgxqziKoDf/nefqcqKrrltJUBRBeD0UwFG0tqO4b
- URxfYbaSb1t8/rHBbojmGuMW26bXspYm3kPwlGvsMtPbEqJRdggsvuGwk
- BD+V9B4ZC91MkjyibHJEW+oy4E7Z8VEJx3EzKGzNHkZe0BvSPrCql1xBy
- 2C1ltWWzy9w2VOhTRxrNta28xXqbSjyG43ATMsat0bk8JhxLKHMfeMuun
- wPxdNErNST3Z+d+v7q92scR3hvcKtexX2/gOWJFT4ovFmJ7SuPWFYJQ/f
- XqsjsfNHy4DcN2yFtnJtMDnRPliA1YtvSMqg3rB7hKyxp4UbHyMA5pG5r A==;
-X-CSE-ConnectionGUID: 9m8r3tlIRS6VWTOJgovaPg==
-X-CSE-MsgGUID: sS1SBmPxRgS2xEieMaZTxw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="45655939"
-X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; d="scan'208";a="45655939"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2025 04:15:58 -0700
-X-CSE-ConnectionGUID: unNe2B/jRoOFWkG0qDoWpg==
-X-CSE-MsgGUID: U0jt5Jo4Qeya3IEwwtm6hg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; d="scan'208";a="133210026"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by orviesa004.jf.intel.com with ESMTP; 08 Apr 2025 04:15:56 -0700
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, uma.shankar@intel.com,
- chaitanya.kumar.borah@intel.com, animesh.manna@intel.com
-Subject: [PATCH 11/11] drm/i915: Disable updating of LUT values during vblank
-Date: Tue,  8 Apr 2025 16:30:22 +0530
-Message-Id: <20250408110022.1907802-12-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250408110022.1907802-1-chaitanya.kumar.borah@intel.com>
-References: <20250408110022.1907802-1-chaitanya.kumar.borah@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9035710E037;
+	Tue,  8 Apr 2025 11:21:19 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D1F710E037;
+ Tue,  8 Apr 2025 11:21:18 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/display=3A_Pr?=
+ =?utf-8?q?ogram_double_buffered_LUT_registers_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 08 Apr 2025 11:21:18 -0000
+Message-ID: <174411127830.47116.12024526411407321899@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250408110022.1907802-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20250408110022.1907802-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,38 +36,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Do not schedule vblank worker for LUT update if the registers are
-double buffered
+== Series Details ==
 
-v2: Do not schedule the worker at all (Ville)
+Series: drm/xe/display: Program double buffered LUT registers (rev6)
+URL   : https://patchwork.freedesktop.org/series/142436/
+State : success
 
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
----
- drivers/gpu/drm/i915/display/intel_crtc.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 5b2603ef2ff7..fd6d52712462 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -418,10 +418,13 @@ int intel_crtc_get_pipe_from_crtc_id_ioctl(struct drm_device *dev, void *data,
- 
- static bool intel_crtc_needs_vblank_work(const struct intel_crtc_state *crtc_state)
- {
-+	struct intel_display *display = to_intel_display(crtc_state);
-+
- 	return crtc_state->hw.active &&
- 		!crtc_state->preload_luts &&
- 		!intel_crtc_needs_modeset(crtc_state) &&
--		intel_crtc_needs_color_update(crtc_state) &&
-+		(intel_crtc_needs_color_update(crtc_state) &&
-+		 !HAS_DOUBLE_BUFFERED_LUT(display)) &&
- 		!intel_color_uses_dsb(crtc_state) &&
- 		!crtc_state->use_dsb;
- }
--- 
-2.25.1
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 0f84e82ac3f6 drm-tip: 2025y-04m-08d-09h-49m-23s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/dsb: Extract intel_dsb_ins_align()
+Applying: drm/i915/dsb: Extract assert_dsb_tail_is_aligned()
+Applying: drm/i915/dsb: Extract intel_dsb_{head,tail}()
+Applying: drm/i915/dsb: Implement intel_dsb_gosub()
+Applying: drm/i915/dsb: add intel_dsb_gosub_finish()
+Applying: drm/i915/dsb: Add support for GOSUB interrupt
+Applying: drm/i915: s/dsb_color_vblank/dsb_color
+Applying: drm/i915: use GOSUB to program doubled buffered LUT registers
+Applying: drm/i915: Program DB LUT registers before vblank
+Applying: drm/i915/color: Do not pre-load LUTs with DB registers
+Applying: drm/i915: Disable updating of LUT values during vblank
+
 
