@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F405AC36010
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 22:22:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CA7FC36010
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 22:36:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B027E10E786;
-	Tue,  8 Apr 2025 22:22:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5172C10E2DC;
+	Tue,  8 Apr 2025 22:36:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UHEvzZkk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Cy/hii7H";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD0A610E786
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Apr 2025 22:22:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 973B310E2DC
+ for <Intel-Xe@lists.freedesktop.org>; Tue,  8 Apr 2025 22:36:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744150925; x=1775686925;
- h=date:from:to:cc:subject:message-id;
- bh=eOIML5UymrS4GBUJwvtDMWV69KxMRbJI+pKfOl+hLxo=;
- b=UHEvzZkkO7alXLoqJ+2hA5x3fmy41jDWe1xSbQMF0gPtRaH0yJvURjLe
- tymR0Fu+8XSa8Bt8BV/tUks8ExCgGoZu18n4hGoAqvqNxDaFJRDg5eiCX
- Eivi1cU9+koQnXT1MVlTUXXYuLRouppnSWYG+adztEozOHdYx5a6bZx1d
- O67+PFf5jY5+0zgi+wiofbCyHn5LFPZhUg5dwMi2SoF2CQxDOlxkLymDA
- 4E/Wdqeb2ufaQn13pDeWdcsskPWr1ovhLEPrgk/qOQZ8LgX3PoUc84aTv
- +gIj6bmct6Ty1z0mNzBszWA+3PKYe4JHv27MJVWGh1MmJ/+YxC4SPrkZG g==;
-X-CSE-ConnectionGUID: 6VhAdiKoS7m7Mi8s9pPCqg==
-X-CSE-MsgGUID: bMbF8AcTTUurPUBRKey2Bg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="44749620"
-X-IronPort-AV: E=Sophos;i="6.15,199,1739865600"; d="scan'208";a="44749620"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2025 15:22:03 -0700
-X-CSE-ConnectionGUID: kK3X5E6KRHqL+AcWsE6sDA==
-X-CSE-MsgGUID: Fo0noJc5S0qMKgovC2F+/g==
+ t=1744151802; x=1775687802;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0pu04LrEjOCLu1qruEpvvEwYG/bthQlHvCBuE+XvCek=;
+ b=Cy/hii7HRkHhKWjKbv9h4Jan2IMjEeAVsgSdE5Xir6gSGQSMHFWma7g2
+ eIgBJV6nmxRPlue6i4iSRwNTJZRX7EPG3kRV8dSVNKaH6b6f9rN8XKrXd
+ tWh/FXBSv6jkiuf4lAZ5Ap4bGQNOpUsLHTshIhfyhGZ8vDD9NTHx1fqO2
+ lPaXarBPKZu+uzLg0RJrmibkn4+tePTwNEBkUPvJcsGZCzeajfQja8h3E
+ eeoe+QW0VVegHTd0lpXi07ZKpMGNaQU9lS7cnymJr8vQ1qsUCRsSqUUBi
+ mmJcVkWs+WOZLoJtQe4CSHQ9FE5jOZb/M1dymNigu9HcNPyEhQYuYMpcL A==;
+X-CSE-ConnectionGUID: JHCqcitUTJCqEGgySbBvPA==
+X-CSE-MsgGUID: DJ5NqcMGSK6nnyFZUn9+fw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="45619424"
+X-IronPort-AV: E=Sophos;i="6.15,199,1739865600"; d="scan'208";a="45619424"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2025 15:36:42 -0700
+X-CSE-ConnectionGUID: YZ4gjr/HQX+QFFrGrDkmmA==
+X-CSE-MsgGUID: 8QKgwr9nQvK2kN8PwzLRQA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,199,1739865600"; d="scan'208";a="129357794"
-Received: from lkp-server01.sh.intel.com (HELO b207828170a5) ([10.239.97.150])
- by orviesa008.jf.intel.com with ESMTP; 08 Apr 2025 15:22:03 -0700
-Received: from kbuild by b207828170a5 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1u2HKR-00081X-31;
- Tue, 08 Apr 2025 22:21:59 +0000
-Date: Wed, 09 Apr 2025 06:21:46 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- 1e1981b16bb1bbe2fafa57ed439b45cb5b34e32d
-Message-ID: <202504090639.SAu8dGnk-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-IronPort-AV: E=Sophos;i="6.15,199,1739865600"; d="scan'208";a="128137573"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
+ by orviesa009.jf.intel.com with ESMTP; 08 Apr 2025 15:36:41 -0700
+From: John.C.Harrison@Intel.com
+To: Intel-Xe@Lists.FreeDesktop.Org
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Subject: [PATCH] [CI] drm/xe/guc: Squash of new w/a and GuC update
+Date: Tue,  8 Apr 2025 15:36:41 -0700
+Message-ID: <20250408223641.1903073-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.49.0
+MIME-Version: 1.0
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,104 +65,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: 1e1981b16bb1bbe2fafa57ed439b45cb5b34e32d  drm/xe: Fix taking invalid lock on wedge
+From: John Harrison <John.C.Harrison@Intel.com>
 
-elapsed time: 1460m
+Single patch squash of enabling a new w/a and updating to the latest
+GuC, including forcing explicit load of that version, to get CI results.
 
-configs tested: 85
-configs skipped: 1
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+---
+ drivers/gpu/drm/xe/abi/guc_klvs_abi.h |  1 +
+ drivers/gpu/drm/xe/xe_guc_ads.c       |  5 +++++
+ drivers/gpu/drm/xe/xe_uc_fw.c         | 24 ++++++++++++------------
+ drivers/gpu/drm/xe/xe_wa_oob.rules    |  2 ++
+ 4 files changed, 20 insertions(+), 12 deletions(-)
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+index d633f1c739e4..7de8f827281f 100644
+--- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+@@ -367,6 +367,7 @@ enum xe_guc_klv_ids {
+ 	GUC_WA_KLV_NP_RD_WRITE_TO_CLEAR_RCSM_AT_CGP_LATE_RESTORE			= 0x9008,
+ 	GUC_WORKAROUND_KLV_ID_BACK_TO_BACK_RCS_ENGINE_RESET				= 0x9009,
+ 	GUC_WA_KLV_WAKE_POWER_DOMAINS_FOR_OUTBOUND_MMIO					= 0x900a,
++	GUC_WA_KLV_RESET_BB_STACK_PTR_ON_VF_SWITCH					= 0x900b,
+ };
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index 88400f249e61..315f86c9164f 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -376,6 +376,11 @@ static void guc_waklv_init(struct xe_guc_ads *ads)
+ 					GUC_WORKAROUND_KLV_ID_BACK_TO_BACK_RCS_ENGINE_RESET,
+ 					&offset, &remain);
+ 
++	if (GUC_FIRMWARE_VER(&gt->uc.guc) >= MAKE_GUC_VER(70, 44, 0) && XE_WA(gt, 16026508708))
++		guc_waklv_enable_simple(ads,
++					GUC_WA_KLV_RESET_BB_STACK_PTR_ON_VF_SWITCH,
++					&offset, &remain);
++
+ 	size = guc_ads_waklv_size(ads) - remain;
+ 	if (!size)
+ 		return;
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
+index 70d7b542f665..c1a933e78b0d 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.c
++++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+@@ -114,18 +114,18 @@ struct fw_blobs_by_type {
+ #define XE_GT_TYPE_ANY XE_GT_TYPE_UNINITIALIZED
+ 
+ #define XE_GUC_FIRMWARE_DEFS(fw_def, mmp_ver, major_ver)					\
+-	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	ptl,	70, 38, 1))	\
+-	fw_def(BATTLEMAGE,	GT_TYPE_ANY,	major_ver(xe,	guc,	bmg,	70, 29, 2))	\
+-	fw_def(LUNARLAKE,	GT_TYPE_ANY,	major_ver(xe,	guc,	lnl,	70, 29, 2))	\
+-	fw_def(METEORLAKE,	GT_TYPE_ANY,	major_ver(i915,	guc,	mtl,	70, 29, 2))	\
+-	fw_def(PVC,		GT_TYPE_ANY,	mmp_ver(xe,	guc,	pvc,	70, 29, 2))	\
+-	fw_def(DG2,		GT_TYPE_ANY,	major_ver(i915,	guc,	dg2,	70, 29, 2))	\
+-	fw_def(DG1,		GT_TYPE_ANY,	major_ver(i915,	guc,	dg1,	70, 29, 2))	\
+-	fw_def(ALDERLAKE_N,	GT_TYPE_ANY,	major_ver(i915,	guc,	tgl,	70, 29, 2))	\
+-	fw_def(ALDERLAKE_P,	GT_TYPE_ANY,	major_ver(i915,	guc,	adlp,	70, 29, 2))	\
+-	fw_def(ALDERLAKE_S,	GT_TYPE_ANY,	major_ver(i915,	guc,	tgl,	70, 29, 2))	\
+-	fw_def(ROCKETLAKE,	GT_TYPE_ANY,	major_ver(i915,	guc,	tgl,	70, 29, 2))	\
+-	fw_def(TIGERLAKE,	GT_TYPE_ANY,	major_ver(i915,	guc,	tgl,	70, 29, 2))
++	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	ptl,	70, 44, 1))	\
++	fw_def(BATTLEMAGE,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	bmg,	70, 44, 1))	\
++	fw_def(LUNARLAKE,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	lnl,	70, 44, 1))	\
++	fw_def(METEORLAKE,	GT_TYPE_ANY,	mmp_ver(i915,	guc,	mtl,	70, 44, 1))	\
++	fw_def(PVC,		GT_TYPE_ANY,	mmp_ver(xe,	guc,	pvc,	70, 44, 1))	\
++	fw_def(DG2,		GT_TYPE_ANY,	mmp_ver(i915,	guc,	dg2,	70, 44, 1))	\
++	fw_def(DG1,		GT_TYPE_ANY,	mmp_ver(i915,	guc,	dg1,	70, 44, 1))	\
++	fw_def(ALDERLAKE_N,	GT_TYPE_ANY,	mmp_ver(i915,	guc,	tgl,	70, 44, 1))	\
++	fw_def(ALDERLAKE_P,	GT_TYPE_ANY,	mmp_ver(i915,	guc,	adlp,	70, 44, 1))	\
++	fw_def(ALDERLAKE_S,	GT_TYPE_ANY,	mmp_ver(i915,	guc,	tgl,	70, 44, 1))	\
++	fw_def(ROCKETLAKE,	GT_TYPE_ANY,	mmp_ver(i915,	guc,	tgl,	70, 44, 1))	\
++	fw_def(TIGERLAKE,	GT_TYPE_ANY,	mmp_ver(i915,	guc,	tgl,	70, 44, 1))
+ 
+ #define XE_HUC_FIRMWARE_DEFS(fw_def, mmp_ver, no_ver)		\
+ 	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	mmp_ver(xe,	huc,		ptl, 10, 2, 1))	\
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 9b9e176992a8..9efc5accd43d 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -57,3 +57,5 @@ no_media_l3	MEDIA_VERSION(3000)
+ 		GRAPHICS_VERSION(1260), GRAPHICS_STEP(A0, B0)
+ 16023105232	GRAPHICS_VERSION_RANGE(2001, 3001)
+ 		MEDIA_VERSION_RANGE(1301, 3000)
++16026508708	GRAPHICS_VERSION_RANGE(1200, 3001)
++		MEDIA_VERSION_RANGE(1300, 3000)
+-- 
+2.49.0
 
-tested configs:
-alpha                            allyesconfig    gcc-14.2.0
-arc                              allmodconfig    gcc-14.2.0
-arc                              allyesconfig    gcc-14.2.0
-arc                   randconfig-001-20250408    gcc-14.2.0
-arc                   randconfig-002-20250408    gcc-14.2.0
-arm                              allmodconfig    gcc-14.2.0
-arm                              allyesconfig    gcc-14.2.0
-arm                   randconfig-001-20250408    clang-21
-arm                   randconfig-002-20250408    gcc-10.5.0
-arm                   randconfig-003-20250408    clang-17
-arm                   randconfig-004-20250408    gcc-6.5.0
-arm64                            allmodconfig    clang-19
-arm64                 randconfig-001-20250408    clang-21
-arm64                 randconfig-002-20250408    gcc-9.5.0
-arm64                 randconfig-003-20250408    gcc-9.5.0
-arm64                 randconfig-004-20250408    clang-20
-csky                  randconfig-001-20250408    gcc-14.2.0
-csky                  randconfig-002-20250408    gcc-9.3.0
-hexagon                          allmodconfig    clang-17
-hexagon                          allyesconfig    clang-21
-hexagon               randconfig-001-20250408    clang-21
-hexagon               randconfig-002-20250408    clang-21
-i386                             allmodconfig    gcc-12
-i386                              allnoconfig    gcc-12
-i386                             allyesconfig    gcc-12
-i386        buildonly-randconfig-001-20250408    clang-20
-i386        buildonly-randconfig-002-20250408    clang-20
-i386        buildonly-randconfig-003-20250408    gcc-12
-i386        buildonly-randconfig-004-20250408    gcc-12
-i386        buildonly-randconfig-005-20250408    gcc-12
-i386        buildonly-randconfig-006-20250408    gcc-12
-i386                                defconfig    clang-20
-loongarch                        allmodconfig    gcc-14.2.0
-loongarch             randconfig-001-20250408    gcc-14.2.0
-loongarch             randconfig-002-20250408    gcc-13.3.0
-m68k                             allmodconfig    gcc-14.2.0
-m68k                             allyesconfig    gcc-14.2.0
-microblaze                       allmodconfig    gcc-14.2.0
-microblaze                       allyesconfig    gcc-14.2.0
-nios2                 randconfig-001-20250408    gcc-13.3.0
-nios2                 randconfig-002-20250408    gcc-7.5.0
-openrisc                          allnoconfig    gcc-14.2.0
-parisc                            allnoconfig    gcc-14.2.0
-parisc                randconfig-001-20250408    gcc-6.5.0
-parisc                randconfig-002-20250408    gcc-8.5.0
-powerpc                           allnoconfig    gcc-14.2.0
-powerpc               randconfig-001-20250408    gcc-5.5.0
-powerpc               randconfig-002-20250408    gcc-9.3.0
-powerpc               randconfig-003-20250408    gcc-5.5.0
-powerpc64             randconfig-001-20250408    clang-21
-powerpc64             randconfig-002-20250408    gcc-5.5.0
-powerpc64             randconfig-003-20250408    gcc-7.5.0
-riscv                             allnoconfig    gcc-14.2.0
-riscv                 randconfig-001-20250408    gcc-9.3.0
-riscv                 randconfig-002-20250408    clang-21
-s390                             allmodconfig    clang-18
-s390                              allnoconfig    clang-15
-s390                             allyesconfig    gcc-14.2.0
-s390                  randconfig-001-20250408    gcc-8.5.0
-s390                  randconfig-002-20250408    clang-15
-sh                               allmodconfig    gcc-14.2.0
-sh                               allyesconfig    gcc-14.2.0
-sh                    randconfig-001-20250408    gcc-13.3.0
-sh                    randconfig-002-20250408    gcc-13.3.0
-sparc                            allmodconfig    gcc-14.2.0
-sparc                 randconfig-001-20250408    gcc-10.3.0
-sparc                 randconfig-002-20250408    gcc-6.5.0
-sparc64               randconfig-001-20250408    gcc-6.5.0
-sparc64               randconfig-002-20250408    gcc-14.2.0
-um                               allmodconfig    clang-19
-um                                allnoconfig    clang-21
-um                               allyesconfig    gcc-12
-um                    randconfig-001-20250408    clang-21
-um                    randconfig-002-20250408    gcc-12
-x86_64                            allnoconfig    clang-20
-x86_64                           allyesconfig    clang-20
-x86_64      buildonly-randconfig-001-20250408    clang-20
-x86_64      buildonly-randconfig-002-20250408    clang-20
-x86_64      buildonly-randconfig-003-20250408    clang-20
-x86_64      buildonly-randconfig-004-20250408    gcc-12
-x86_64      buildonly-randconfig-005-20250408    clang-20
-x86_64      buildonly-randconfig-006-20250408    clang-20
-x86_64                              defconfig    gcc-11
-xtensa                randconfig-001-20250408    gcc-6.5.0
-xtensa                randconfig-002-20250408    gcc-6.5.0
-
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
