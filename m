@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0612C36010
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 21:52:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF597C36010
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 22:05:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F18510E2E0;
-	Tue,  8 Apr 2025 21:52:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E5F310E2EE;
+	Tue,  8 Apr 2025 22:05:15 +0000 (UTC)
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B87F10E2E0;
- Tue,  8 Apr 2025 21:52:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1334179484677386069=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C868510E2EE;
+ Tue,  8 Apr 2025 22:05:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_Enable_w/a_16026508708_=28?=
- =?utf-8?q?rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/display=3A_Program_doub?=
+ =?utf-8?q?le_buffered_LUT_registers_=28rev7=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "John Harrison" <john.c.harrison@intel.com>
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 08 Apr 2025 21:52:04 -0000
-Message-ID: <174414912441.50261.16574840821850433233@e6b6f09ec485>
+Date: Tue, 08 Apr 2025 22:05:13 -0000
+Message-ID: <174414991381.50065.294523155260038953@e6b6f09ec485>
 X-Patchwork-Hint: ignore
-References: <20250403185619.1555853-1-John.C.Harrison@Intel.com>
-In-Reply-To: <20250403185619.1555853-1-John.C.Harrison@Intel.com>
+References: <20250408110022.1907802-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20250408110022.1907802-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,57 +40,114 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1334179484677386069==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Enable w/a 16026508708 (rev2)
-URL   : https://patchwork.freedesktop.org/series/147235/
-State : failure
+Series: drm/xe/display: Program double buffered LUT registers (rev7)
+URL   : https://patchwork.freedesktop.org/series/142436/
+State : success
 
 == Summary ==
 
-ERROR: The runconfig 'xe-2920-1951437999630d299a063863fb92d235dd8dc3d1_FULL' does not exist in the database
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/events/amd/
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.15.0-rc1-xe+/kernel/kernel/
+lib/modules/6.15.0-rc1-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/zstd.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/xctr.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/authenc.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm3.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/cmac.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/essiv.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/ccm.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/wp512.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/lrw.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/842.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/md4.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/lz4.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm4.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.15.0-rc1-xe+/kernel/block/
+lib/modules/6.15.0-rc1-xe+/kernel/block/bfq.ko
+lib/modules/6.15.0-rc1-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.15.0-rc1-xe+/build
+lib/modules/6.15.0-rc1-xe+/modules.alias.bin
+lib/modules/6.15.0-rc1-xe+/modules.builtin
+lib/modules/6.15.0-rc1-xe+/modules.softdep
+lib/modules/6.15.0-rc1-xe+/modules.alias
+lib/modules/6.15.0-rc1-xe+/modules.order
+lib/modules/6.15.0-rc1-xe+/modules.symbols
+lib/modules/6.15.0-rc1-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1744149894:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1744149894:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-== Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147235v2/index.html
-
---===============1334179484677386069==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Enable w/a 16026508708 (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147235/">https://patchwork.freedesktop.org/series/147235/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147235v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147235v2/index.html</a></td></tr>
-
-</table>
-
-
-    <p>ERROR: The runconfig 'xe-2920-1951437999630d299a063863fb92d235dd8dc3d1_FULL' does not exist in the database</p>
-
-</body>
-</html>
-
---===============1334179484677386069==--
