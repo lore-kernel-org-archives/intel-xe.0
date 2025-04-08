@@ -4,54 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CA59C3600C
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 06:40:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEDA0C369A1
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 06:46:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4ABD610E5D2;
-	Tue,  8 Apr 2025 06:40:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hJ4nM5NM";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19B1910E5D0;
- Tue,  8 Apr 2025 06:40:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744094436; x=1775630436;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=MVfUqwddhEACu0q+MNsTuOCG7qDhNDYe60T2n44uZQ8=;
- b=hJ4nM5NMwvHmubQ3ATN6GprCN98CjFdBieISn6bp2GtSXlDOw2GvPNKQ
- MlpcJkJrBM95KUq/CLBN4uEwSyFK7EeBAGIpTPspPQJzEXaz0JMBsxqG1
- C3aAgIFL8BvYQwLI+MvdCTKO2QntTfMK51SGhSfIM0D4MkOqoIBF/omKN
- aO2mp1o0dl70aeNHEZPzy3rt1WzFXrn+/fa1kJ5GRMLx2swPSiet1FnW9
- XTr1efo2df1zb2Wd90xRM92eWYrV1wLHRw7wB30nniDP4M32szzwz4Ve8
- C5vTJVpwC0/GSRHh7HQR8VhzGxRXt8SeSd1Bk5JxSgnVXz6SM0+43gbTs g==;
-X-CSE-ConnectionGUID: viA436ObTbCCsRIxOgkfSw==
-X-CSE-MsgGUID: oYmUie5FSEu2u/1gwJGjZA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="44759489"
-X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; d="scan'208";a="44759489"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2025 23:40:36 -0700
-X-CSE-ConnectionGUID: TRJVxZQyTOmFXwffa19kTA==
-X-CSE-MsgGUID: Zv8TzJsgRYqnquJ9ksY5JQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; d="scan'208";a="128043547"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by fmviesa006.fm.intel.com with ESMTP; 07 Apr 2025 23:40:34 -0700
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [core-for-CI] Revert "panel/auo-a030jtn01: Use refcounted allocation
- in place of devm_kzalloc()"
-Date: Tue,  8 Apr 2025 11:55:24 +0530
-Message-Id: <20250408062524.1825048-1-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9828910E5D4;
+	Tue,  8 Apr 2025 06:46:08 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB6CF10E5D4;
+ Tue,  8 Apr 2025 06:46:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Revert_=22panel/auo-?=
+ =?utf-8?q?a030jtn01=3A_Use_refcounted_allocation_in_place_of_devm=5Fkzalloc?=
+ =?utf-8?q?=28=29=22?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 08 Apr 2025 06:46:06 -0000
+Message-ID: <174409476669.46296.11900982881565871316@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250408062524.1825048-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20250408062524.1825048-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,63 +37,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This reverts commit 9d7d7c3c9a191864367b28e05b312ab3ac34ef0a.
+== Series Details ==
 
-The patch causes build errors in our CI. Revert it till a fix is found.
+Series: Revert "panel/auo-a030jtn01: Use refcounted allocation in place of devm_kzalloc()"
+URL   : https://patchwork.freedesktop.org/series/147371/
+State : success
 
-  CC [M]  drivers/gpu/drm/solomon/ssd130x-spi.o
-  CC [M]  drivers/gpu/drm/panel/panel-auo-a030jtn01.o
-drivers/gpu/drm/panel/panel-auo-a030jtn01.c: In function ‘a030jtn01_probe’:
-drivers/gpu/drm/panel/panel-auo-a030jtn01.c:203:9: error: ‘panel’ undeclared (first use in this function)
-  203 |         panel = devm_drm_panel_alloc(dev, struct a030jtn01, panel,
-      |         ^~~~~
-drivers/gpu/drm/panel/panel-auo-a030jtn01.c:203:9: note: each undeclared identifier is reported only once for each function it appears in
-make[6]: *** [scripts/Makefile.build:203: drivers/gpu/drm/panel/panel-auo-a030jtn01.o] Error 1
-make[5]: *** [scripts/Makefile.build:461: drivers/gpu/drm/panel] Error 2
-make[4]: *** [scripts/Makefile.build:461: drivers/gpu/drm] Error 2
-make[3]: *** [scripts/Makefile.build:461: drivers/gpu] Error 2
-make[2]: *** [scripts/Makefile.build:461: drivers] Error 2
-make[1]: *** [/home/kbuild2/kernel/Makefile:2006: .] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
+== Summary ==
 
-Link: https://lore.kernel.org/all/Z_P0A9lxWD0aAdjp@ideak-desk.fi.intel.com/
-References: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14039
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
----
- drivers/gpu/drm/panel/panel-auo-a030jtn01.c | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 6fda8f56691f drm-tip: 2025y-04m-07d-21h-23m-26s UTC integration manifest
+=== git am output follows ===
+Applying: Revert "panel/auo-a030jtn01: Use refcounted allocation in place of devm_kzalloc()"
 
-diff --git a/drivers/gpu/drm/panel/panel-auo-a030jtn01.c b/drivers/gpu/drm/panel/panel-auo-a030jtn01.c
-index 83529b1c2bac..77604d6a4e72 100644
---- a/drivers/gpu/drm/panel/panel-auo-a030jtn01.c
-+++ b/drivers/gpu/drm/panel/panel-auo-a030jtn01.c
-@@ -200,10 +200,9 @@ static int a030jtn01_probe(struct spi_device *spi)
- 
- 	spi->mode |= SPI_MODE_3 | SPI_3WIRE;
- 
--	panel = devm_drm_panel_alloc(dev, struct a030jtn01, panel,
--				     &a030jtn01_funcs, DRM_MODE_CONNECTOR_DPI);
--	if (IS_ERR(panel))
--		return PTR_ERR(panel);
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
- 
- 	priv->spi = spi;
- 	spi_set_drvdata(spi, priv);
-@@ -224,6 +223,9 @@ static int a030jtn01_probe(struct spi_device *spi)
- 	if (IS_ERR(priv->reset_gpio))
- 		return dev_err_probe(dev, PTR_ERR(priv->reset_gpio), "Failed to get reset GPIO");
- 
-+	drm_panel_init(&priv->panel, dev, &a030jtn01_funcs,
-+		       DRM_MODE_CONNECTOR_DPI);
-+
- 	err = drm_panel_of_backlight(&priv->panel);
- 	if (err)
- 		return err;
--- 
-2.25.1
 
