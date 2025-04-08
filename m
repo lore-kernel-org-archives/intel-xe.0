@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE97FC369AA
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 21:44:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B0BAC369A6
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 21:44:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F193810E776;
-	Tue,  8 Apr 2025 21:44:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E28B610E775;
+	Tue,  8 Apr 2025 21:44:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mwjejezq";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SjsTDias";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04DE210E769;
- Tue,  8 Apr 2025 21:44:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5246C10E774;
+ Tue,  8 Apr 2025 21:44:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744148660; x=1775684660;
+ t=1744148662; x=1775684662;
  h=from:to:subject:date:message-id:in-reply-to:references:
  content-transfer-encoding:mime-version;
- bh=WfwxJA1InyiiR9dAIw0J4W1xi9OdIGsM7GB75YRa5zc=;
- b=MwjejezqnejKPuGzSeQWXD6HyVYS7jDKlyf6VXm2wLuA1v27Bep1npyN
- 9y58XteiN6+v4r2H0mq1hInXhiWIsFZHgXl+PbUlvOvL8gR0QhR6u2E7h
- sH2OGUrBnWHXr2hErIXSPtJ6urE60T+SCD4CRsJplX6/aLPZITg5vW5S7
- V0V2dfE4RqmcXcUg2DXZ9yR7xarK3WfZKD5Pb4mTbCHfxSc3zy/p1C1/X
- QlJ5FPIzBzzwWnWFVKNgt3Z/CK6yBURvNZbLa2QXrdHF2qgQGb1a19bES
- oVXyQVf7lMkAzk58QIlwS6AoRqGjnZqpgZBymO/og2mJkacjt6RGIzdc8 g==;
-X-CSE-ConnectionGUID: hXIerbBoSiC+XUmntyFqKA==
-X-CSE-MsgGUID: kBdGvsdrQgCAQsrkhPycUQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="56243163"
-X-IronPort-AV: E=Sophos;i="6.15,199,1739865600"; d="scan'208";a="56243163"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2025 14:44:19 -0700
-X-CSE-ConnectionGUID: Zq7CqnPCSWCXi2726tzlvQ==
-X-CSE-MsgGUID: SwYWOQDISi6GXil4gsPh0A==
+ bh=ndOGA9kvjakkIWeijG/lLd38RXHUq1aEhwt6D1CEoGM=;
+ b=SjsTDiascxiUTbHu/1XQM3Ay14XYNqYfwnyM3i7lUNe8fqwv2F4a2Zev
+ YtjC1r8LUDgq7uM/tUagfx2kNA1iftQVsLlP806iVPUrZWSHvUQPLKaeA
+ LBvWRELjtNg5EZCqE1bzmUv2+iVVjiWbC2bXR/qoqV7N1bOkg9jhcmVBM
+ Vh6gxMk1Q++3DVfULZcqMXL0ZUM394IgieYFf1VQd/nKXN5o/oePLIj4g
+ 5u8ZGB4M00d0HGRdXzeElAI06D6PLpU6IqepKlxK5Ew8g8BNK4B55GOhf
+ SnLApz6DA9FKZuB32n23JwTQ5+ow8WBOxPsPZ4FviZxiu1F7P+gvzvTdC w==;
+X-CSE-ConnectionGUID: HuAf7DuvTkK8YzD2JOkfIA==
+X-CSE-MsgGUID: LNpnxMpqTweiLwAYdmPkVg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="44746781"
+X-IronPort-AV: E=Sophos;i="6.15,199,1739865600"; d="scan'208";a="44746781"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2025 14:44:22 -0700
+X-CSE-ConnectionGUID: uEPACcojQoCzaOZwtXpWNg==
+X-CSE-MsgGUID: taafNk1+RECfNQuMarb/Iw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,199,1739865600"; d="scan'208";a="128724383"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2025 14:44:19 -0700
+X-IronPort-AV: E=Sophos;i="6.15,199,1739865600"; d="scan'208";a="128381247"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2025 14:44:22 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Tue, 8 Apr 2025 14:44:19 -0700
+ 15.2.1544.14; Tue, 8 Apr 2025 14:44:21 -0700
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Tue, 8 Apr 2025 14:44:19 -0700
+ 15.2.1544.14 via Frontend Transport; Tue, 8 Apr 2025 14:44:21 -0700
 Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.40) by
  edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Tue, 8 Apr 2025 14:44:18 -0700
+ 15.1.2507.44; Tue, 8 Apr 2025 14:44:20 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wMkcHEmvhM2n4VTORwx+KdhwqJObXW0DzJvKv47gi/y9RxPhSEkmKMb0E/AlRpg2qGl88GtinwB+HRodrN1vYtP9HlvQSuCJtYTGN6usyUUhFTsTDsJ8o2+Y+pYXQnF+kPtt6AR1VMCZf6C5jniBkaCAaZ0Cbv4htRkGRIGhxZu0CanozMg896IuwwNgGDFD1d7a4kSuc9wtQYM224urXmq5MDH6JnNsEnrVmTd05r/ElvYjbJiCUDvP4ZwQHWZwHwq1zyUlGoXvoFaVuxXmqaSL54OZiiB+zbhpQud8tUo8DX9NVgy0harjnd4f1TfNWp0dzw5+vBsIZLtw5e0vfg==
+ b=qslZwDyS1yB6QIsX1iCr9+zuDGr4GsMKHOEifyaurB/y/43WVEYUoL3gsTC0IA3ZKwKH2mrBIUXSwj5KQmlOX6wL5FU5G8nWZhBeqXLEYodjfrmF/09lQ8U4ozxmp7qwjdl22iTWClk7tT6aEYzIxPtgQLRQSia8VrrWOKZ201uvKEyRAN1uy7eGJVSfRMwU1qlX7g7kBXAWvO3npSHetIaCTTzwtV9tKoJjRTt1dYh4JddfU9Ch8Wf6aYVNTYG/Sm/5JEhjvuqAUcw/mNipOB4pldaRvOw8ey4YCR9Xt0hhiju82JQv3hBW+eDDSk2kPLla8V0BX0TZetfumqKxcg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WNAo2lxNOzZRlWiw+t5EHZIoYhQWCP0E4S/Gl7DcQ9g=;
- b=rYMCHJSz2k7wwBp+aHwjsqdqG779DLgkXPUwSJoTvy0g+2Cgwo+ritJ9CCMl99kC8eUMkjAUq00L6pUWRQV17FOM+V++kntFzzvkNG3LEVlWvhL699JIhk94fzy3csuC6r3DyQwsqE5lUM8h6u0veBy8fuoXZ2rPkDO0q2RfM1UnZDAH+1Zn7/nBj1DcAc+mePOkKuCBETKaZ4ME9Tlk5YtxkTltpH0TIJc/j/pm/UBXtQPae5ug+VxKyTc91CRfCJxgS/d3NAf1nLac6N2XDIh04GJ8V00mdan0Ybak2FEzAzM76mHdREAP54nsUTUpZtQiq4IRc7559yEWmoQPVQ==
+ bh=apqyVXvNOQyXYxFiiGu/NQ+r/+ubm7a/awy3/PyhA/Y=;
+ b=lCkGXpteTmd22sGVw77P9MtlRLDeyFO4mtKL8x7C1MhkwM09cZp9hFDzGe4+Ba23EXontZPDlV4PxByrYtQIBsK895czACkcNwSb88VHNUYqF9AmK2NgoppoeRuXY31na14tKK6vgh2UasaVi5UGb/oMfe+vOgloVKeRrNMmTNcgV2l3WYXHSTobbFPcjW//OGrrX9tyYcm0HtesIO88NixZCQCMwTITk2xk3bsQWSAz1ivr++OdBTRWebuvnfHtMlVeZH2H0wrdlSnBkCNNfgI0YM4weaXYohRfSaXHhYPza7g+FYH6bpvCigzmHl8GY2DG9UGC0KLNSUBZjcY59w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,17 +69,17 @@ Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
  by DM6PR11MB4562.namprd11.prod.outlook.com (2603:10b6:5:2a8::15) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.20; Tue, 8 Apr
- 2025 21:43:44 +0000
+ 2025 21:43:47 +0000
 Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
  ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
  ([fe80::8900:d137:e757:ac9f%6]) with mapi id 15.20.8606.033; Tue, 8 Apr 2025
- 21:43:44 +0000
+ 21:43:47 +0000
 From: Imre Deak <imre.deak@intel.com>
 To: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Subject: [PATCH 03/10] drm/i915/dp_mst: Add support for fractional link bpps
- on MST
-Date: Wed, 9 Apr 2025 00:43:33 +0300
-Message-ID: <20250408214342.1953197-4-imre.deak@intel.com>
+Subject: [PATCH 05/10] drm/i915/display: Factor out intel_display_{min,
+ max}_pipe_bpp()
+Date: Wed, 9 Apr 2025 00:43:35 +0300
+Message-ID: <20250408214342.1953197-6-imre.deak@intel.com>
 X-Mailer: git-send-email 2.44.2
 In-Reply-To: <20250408214342.1953197-1-imre.deak@intel.com>
 References: <20250408214342.1953197-1-imre.deak@intel.com>
@@ -91,73 +91,73 @@ X-ClientProxiedBy: DU2PR04CA0060.eurprd04.prod.outlook.com
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|DM6PR11MB4562:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4ce4afcf-b328-4d11-ac0b-08dd76e66f53
+X-MS-Office365-Filtering-Correlation-Id: 55d7ee8c-9039-4074-0010-08dd76e670e6
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?bUb09aGtS2Lb4zBXsBlR6VaO6TgkCZg8LbRwpR4XXK5qPESMNNPq/A5xzWhZ?=
- =?us-ascii?Q?73IyVQCfUayg9l7nlYUkIlop1MhosXFvqwmzHecFBHJSILG9uJyoyE253TgX?=
- =?us-ascii?Q?hwkSYpBCI0p3rk3kSD92VTPWKlpidRe7lwNgJNfWMzqxuDG4XMc1BglXTPRW?=
- =?us-ascii?Q?d10AJsBHuE+AqF/1pAN7B4HVpTSfOxiU1bpQk+bi8NpmGdAqC+KOq2oeihON?=
- =?us-ascii?Q?4/QAPL0dN2xWhsvXFDcLoAKPo9yfkGJf6ie6eL1qLqlmXTEOVHMqQWz/y7Rz?=
- =?us-ascii?Q?BqigLIKQsLEMGfjjviZk4qTE77EUla+zHA7yeQ/mL9oV0V9NiCEOpgiO5MQd?=
- =?us-ascii?Q?Lzo62Y2YuZC/LGkTxDBoMChD4rhimuWV7sTFPmKA/J3vY9SqeQ5xBsZAJupY?=
- =?us-ascii?Q?XlR37zIntMiJHK7veoNvonPtl0/v4bDQrcvkGzjdJncnTpIi70C37+2XM2qI?=
- =?us-ascii?Q?dD7Y5YXRuZiG49xKZ4T6sastkkFCDNWJ9AMqCHCllhaOPTeDCw/971kTpLAr?=
- =?us-ascii?Q?l5qHjDvpPYATkrQ3/yu2035Ovz9b62tjCoAez/f/hdlNYWDGamm/G2cOxnOL?=
- =?us-ascii?Q?gFRBWJ0nQwxHARePM+xa6ONxVrQLWAwwAmewsVsqlHfWTW2z7dDRHAtDXXJB?=
- =?us-ascii?Q?Tu4iak/9iug4+3Me4J5fULixwpNzAW9CDO7v/BC0qhXP0vnHTvy5MhPSMx7S?=
- =?us-ascii?Q?Htz0HdIx4/w2Wa5IOVWNLvya1rUTcDd8/1wH/r+ssfR3TDa4ME8w4AupFUSL?=
- =?us-ascii?Q?50MQHgs8qjl3o7W7+Qnreaa300ydUsqL3MTibhTlz4CFu4Ro46nl6zbTlWPK?=
- =?us-ascii?Q?1HxKEAmRB+E07+ZPFzwv02uyUfrZs/7VoCRZdpllv5UIiBqKCIPLS1BRTp+b?=
- =?us-ascii?Q?UJ/xwQBbN2SPtmwtiHY4r5hio+r2j8K8ozTaGMVl/rdjHwEhoNLoYgt3YATq?=
- =?us-ascii?Q?JPBuv3rtqN7QIDX+x4Mje5rz+IjrSGbK4ASdXFEwkyLuk6lvHAHwh5nHxpn/?=
- =?us-ascii?Q?BZOeI8ad+HY9Jik51VNXE9vZYlafbsZQpSz0BGvUZZ9w2kIKefgIu4TVkuQY?=
- =?us-ascii?Q?MS/1R5a3MCnWGiJrNvFU8ouVgB5RJBgkm9jYfEbOjBEsu1RO4CFYz1PHY3mE?=
- =?us-ascii?Q?yP8Mh6sVbBruSC+OzSB7tHbp6t/TaTXdj+HblyuFNcNraBSNDlG3uh1nGITt?=
- =?us-ascii?Q?QL42HXsuZE7pw0hWmjoRK/94lVr2/95XrG4KDt5MSOhqrgpTiJefUxvcbC8H?=
- =?us-ascii?Q?fTDUy8L0Rw8EZl1/WEjaD/2CxI8hN/Al8pClFvybnHtIKAiET3SMO4qPx8BS?=
- =?us-ascii?Q?EabjVrxwFaTYy5M4G1oV17EMVB2/EmUW6+ot5oVxtx6+5ObwJuoTQ+aXcOo8?=
- =?us-ascii?Q?HG3loGGQN+gS0+PdZs74fa0+WNO1?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?SEo/2NHmUU5Bp6nRhsa450sgAbLQ0JDGYO/JRW/t+ijc6JjO8oiCBCEEWvHg?=
+ =?us-ascii?Q?VOOqjCWey7Bn6NtHlY0x2YMEK4aJChjB2FdMlpsglbrkyS3WZotcOgrxIEcS?=
+ =?us-ascii?Q?LOAbBHlymCs1gRTsV+Pq/zyl3Y3ACWE2zDs7Oetn7nMHMlzkzVh3OJ07zU+X?=
+ =?us-ascii?Q?IRuAI7ohCJbgUAXf/igxY4SWXq1n5kC7cIGKyA1iodzYF2JLdUTdXPlzFgDt?=
+ =?us-ascii?Q?9mzONqdtQh17JE/9+PLpcb2OFPV/6kQ9emUuWtwa37PWgEsuMUvmWhy/DR0q?=
+ =?us-ascii?Q?zgmFycof+ltpteuPf5GIzxcXsp3H1t6P4Amx1IbBF8QvzZZSLd1lQKHOeDvZ?=
+ =?us-ascii?Q?CUg9ifj0Wp04swe2rqLpBmUCstEwzrHiXSc9j4Ztw/vvCZOYbPUv/DsmOdoF?=
+ =?us-ascii?Q?lF7QQc05lw6Q6zpJUz/XoK88fP6ue2VuSqYR+QNfYRI+PSCmGaqWjRo11LFZ?=
+ =?us-ascii?Q?EemOksMLlapC4ADnqFW0XSEODWIDgTrEcBD7dKIburpEiEwjB3Hk4Ka+n7UZ?=
+ =?us-ascii?Q?6kTtyAx8CIUhx4Uvn94e7uqmCuSuGRXSHHS0NoovIdft6t0erVeS7ZlfC3Qc?=
+ =?us-ascii?Q?QgQBNxNfjM/mfeMPHVNQhJaHn194PBTJRDiIf0lr1KtLlT5LOzIoRWZE5+IS?=
+ =?us-ascii?Q?tVd1Y5F53nabiLTE9yqgNZ0LXT8LFxtQV877JKRo6CnDqnjGBwbHNo7BdtlV?=
+ =?us-ascii?Q?i2/A10WZ5mJZIjPKxpfnC2keuodZGSHGRTNOtE0B/J+se0rEQmnMHIobmlEr?=
+ =?us-ascii?Q?pBG6zcoX789BW+G1u8X+2dhujks0WDlGTIwm+0CbE2D+25QGYc7Cbw8N1gO9?=
+ =?us-ascii?Q?7jLBcI7Gf2f4zCvzxRmYY6PGD1EzFja5Xm/IuD80kAy78w4H2UaF4REPZ4lx?=
+ =?us-ascii?Q?UQEllP5AViTvyhbD+T8kTN1/IP5OjiC1dnQ6uJPCULDB5qSyycDn1mNLYaWg?=
+ =?us-ascii?Q?KVXp9QIAuAihd3AMrpeXp1sh9wzSjoDXzzeFMXtoZAM3ml3hd4mezIvVqHQf?=
+ =?us-ascii?Q?DJK/EMd+cdV/FI0UFlnxtKJXa7MEzKRjYaPu3ATMQw6N7w4CLXn+4GZXXyxM?=
+ =?us-ascii?Q?rFwj+BIyeIDrpDRcoMCDMemsWPDOB9ufiiakpJ7X2uFm0xOqy2+UDbIHB36l?=
+ =?us-ascii?Q?HSdJ6tfotyLOmRYkkuZGJ4DDeG0vFxYxvYRwhs0QG0roG93vnXK+YC12aYfq?=
+ =?us-ascii?Q?leqyowI3Xa5jQDA5BwsDs2pxJnMXQ4KzwirRlQYdUzsWbbLN99utM3zxzbN8?=
+ =?us-ascii?Q?VLHh/tPMIve4HB44aCWtFXfIyzJ1UiWXiHcdpNsNet7SefhT5PTr3IsilwVw?=
+ =?us-ascii?Q?hs8Brg5MCFTo5qjnZUVPSLuIOm5fIz7Rb7NmiF/vqZu60iUZ/p8QdbTt9Z6l?=
+ =?us-ascii?Q?SUlhPgLiQTj2vU5TOxV0+AqGm3bC?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?JFlLL9xLKJz4FKyDgPsqH1tQpHEVxMoO5bV19li+SqiKR4MSqOc6zKSTaXIM?=
- =?us-ascii?Q?QXIvdgkJswthyKvuTHebH4/1KtwCakNyRXjfJ1G8pzRcvKKOcDYrEl27Moad?=
- =?us-ascii?Q?HZht8vIUG/Mhj0e5Pk2quqJcVT+9PWQlSLSVLIHQvYVi6pGOsQFFr3bR0pYh?=
- =?us-ascii?Q?g4qdYVoPxPWb2zW273SmXyif4GiQGHPJYBDvc7oY6pjz7enGAwqnJPCCkNAK?=
- =?us-ascii?Q?qCLhw2UF8Ep7ltfMo2vB0JGnPJGql1Lyagfa2RkbWBConW7oXQCWyUvCBcaS?=
- =?us-ascii?Q?Akys49y3Xhu70ju7txJd+OtB/hv3KjG2X8fv6TrtBWBnPQ5Ft/vyVSXes/MS?=
- =?us-ascii?Q?Oe9llTFDZbifJ/cf84sNIH7PJf1q8i8Ll42dlzePX4b13kTZBgiSAV8KzmJx?=
- =?us-ascii?Q?wcxqi+h5SCUFO/xiV4WGw1klFcPVYXCzUOYTwvdlEl93Tlp93wk3znCoLGx2?=
- =?us-ascii?Q?PIxmZiAVGgfvDtx+5BQjU+OHAjd9j5D4WoGI45/hrkyJbycqaS3/X/kDC+Wx?=
- =?us-ascii?Q?+WYJZFUipoKZFtrprehRhjX/MBcHW4oSeXHWDVOK2BIjzhE50y6pc/n1VF7M?=
- =?us-ascii?Q?mKh+FJfGS55efBVdvdfTdX4tVFqJDiXn93bPPPTiN5ewdGaqF6z0dNkjF8uv?=
- =?us-ascii?Q?vv/QuJtA4mITlTIJ4MGCa3BK2a94DIMSIpg8TVQJENlf91aX1LsVEDuInumP?=
- =?us-ascii?Q?lFbViVqK5EgZinuzCprIh5LyCrotRWBW00OEP4AaYb6VZvTlTDRuPUzspylb?=
- =?us-ascii?Q?vEhhKETL0bSsIL4Qp6hpV41fsIOV6zun3Em0e/bpltFVVfluxYLfE3RJerBg?=
- =?us-ascii?Q?8r/xkE5GtwN1GB2XT0MhPiewglkvT0SgPoLftl22IexPNEXfnAL0TtDiAzsm?=
- =?us-ascii?Q?hdIpMphPbs4aL5vLMd1ZCIyht/+4XqkTbxt2q6+PWFcoXzshSxuToB7bMByr?=
- =?us-ascii?Q?vXtXNJkxchW06asczBvRSOKz+UMXlRaE39ybui9Z215QW0Vl9zzyIo7wYS6b?=
- =?us-ascii?Q?jbxN1wCNfNXeikI72pEXHDpdChWZ2uB/6NE5luFeM040BqLzlz6umUob7AW4?=
- =?us-ascii?Q?EhFJd8XHCdctdr/N0uHtNr36lobVA55tZGRYo1qubBZIy4CNZqo20qeN3SXu?=
- =?us-ascii?Q?2OX1DRLfhdrY3irxcaaPk27XWg8+STS7pg93WKWdSxcZAvBpAWiqtlQfbO/p?=
- =?us-ascii?Q?z6VOp8kwOcY2ATOOgZr+algL7CRHIjy0+gGsrEOhl6NVPr9hcZWNz3Nf+FlS?=
- =?us-ascii?Q?zScZayPKDWYpBB/GuG3xCCBHI5tNpJNkT6sc9SvYSgJXjXT/MbpbAo5amarD?=
- =?us-ascii?Q?O7wMbfe3R3vk8ZDjQF24pPYegA/whuJZEncVyPiFQEj0MaBCKJqTL+fHOp1l?=
- =?us-ascii?Q?wJybC89SoXoNUJZP5gRBkgxUc2GQUFs6pUTct7Ck6dcQA9zPngEa3+OcW1FK?=
- =?us-ascii?Q?fXQXERDMndB3+Ii8ECRw/vox2NdJLSb94MVhqNVPywPvMrsRDYuCgzV337CB?=
- =?us-ascii?Q?q6RoeTK4CVekZJSYYxj63CI4aeNFZMsLbKkI19A9gPTZoSGNmNky6b7AuzaY?=
- =?us-ascii?Q?hWGei/mhEoXuNp1bmL8acZMbmlFALxX/LP3TvisJ?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4ce4afcf-b328-4d11-ac0b-08dd76e66f53
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?TU7UxNqe5KaykD5N0lZJkGGGSBhjuGb0wcO5btEFvGWJndfqp+FhoE4ufHg3?=
+ =?us-ascii?Q?SZcSU+CcN6aOFR9JlbviMMU9dsXhJzErznGXRNh5rEsTPOdVAZ/AciUHz8+T?=
+ =?us-ascii?Q?M5D35iIChcFtzCZUaSf3WGejPHK58MvrPHPWPfAQZ5e6P1j7yg1OI6a+7mt0?=
+ =?us-ascii?Q?zlqATb5gfAxbxoJdUe22mL88EZ+W17FDTVpxBWqPg3aEZscGUslFsvZvSozr?=
+ =?us-ascii?Q?40RcvS5Cd4YarbbyfkrZP3+jVjTzM3IoIowamIiAb0fS5Wn4/wYR1ghqAxWI?=
+ =?us-ascii?Q?2csYQm9D4v6TwGYiWrsZNaCBOtl2pzPTRd2ELcfvaIf8fzZYHLVc3b7vJ2gS?=
+ =?us-ascii?Q?Reh/FPfPhwFprP4scpj/shJVryi4QBpniyg3ShaNwSSBp3+PWF8MLfNpMrxM?=
+ =?us-ascii?Q?8UL3pBEY930509bLqcJFyJTn8r6r9X9t3nuH0dTQalWTncsE71qYuyd13KFu?=
+ =?us-ascii?Q?LYd/1xWQ0yKxBP6dEkE3bfOA8J9LIaRnU4kAhkIlNWHl2Z6u3gzHqwiUNk2D?=
+ =?us-ascii?Q?bO1QZkwarzP/WEE9AXTaHCiQD+67RaavQrmfH59BRiNA/62hd+Jt/M+gornE?=
+ =?us-ascii?Q?LeyotFVw82e7B3ifpLDoMCZR90paFfDfgE5CL7UfHydO7O92JgJM2lv0vKMo?=
+ =?us-ascii?Q?6UIR815FXlGxeVMLYVxwv3PbN83f5fQyQoh+Dj69QYvy2mzHUMEK7T7CRkMN?=
+ =?us-ascii?Q?JdRpB3K9PTE37Evvp7/g+PbowNwg89RZbxCZrfLTkkQgS2RB+LUD+/cXgyPj?=
+ =?us-ascii?Q?H05pWD6f82n8VSWmHV9AiOJYQ7jcoiKsNIzYWzfMT7OaBsvCwrXNR0DlPpjw?=
+ =?us-ascii?Q?0iTbbP9/+CD6+RToqU9CdbHBItlnAyN3Jn79onMZgOQRo6cj/FKVhfyFAVTg?=
+ =?us-ascii?Q?vK2A314gDQuSnPSCDKoqJnlFj14dK7QuefBNeXloZmOKJXmxHjHD5NyhhG+H?=
+ =?us-ascii?Q?SSL7NO0YGE8PdU+MBvtLUzWm+kNtFXuS9eaH9LWjs4gm9S0/rUOz8iH3+1be?=
+ =?us-ascii?Q?kPbwyVy0KRXgnzn8/o/iAW1MpWWKPoY9pfFbSJBZmb5vrAtJWv0gRGtEGb4A?=
+ =?us-ascii?Q?JPzoY1+T7VL0Jo23GZgc2bg/eiwy7iksyNdNurhZGAU2HeJTY336966ANd7u?=
+ =?us-ascii?Q?WcGyzTZxoXd3taAcslCdN1e7BH3SpiUBLKsryGwcE/ofrvcXhxiPYp2TVXzd?=
+ =?us-ascii?Q?DRTJ/xZmYxuVH4d2KhOwUoi2t1uf68tkR/LyJ7t9HSP/r67mWsL6Lz037G1/?=
+ =?us-ascii?Q?DwPh4ys9I2Phxs0Vojfu3zyw5kqa3Sd8JMsl2S5fUIi6j8t3JhDdzk25go0O?=
+ =?us-ascii?Q?XtqfAbq6pNvpjQGEMx6IgCL5a/8k7hTceTb/CSUVuG359Wy1e7bioF1COEJY?=
+ =?us-ascii?Q?EG/ZePmv0C6pDBa0km/dQfGlNrYhsoEQt/5nukAlGBLU3yTHZ6yQGJ7kt1Al?=
+ =?us-ascii?Q?LWODhBdxw8SqcL6HCS/41W4GuGfvkwb2+9/MYzLGIr8Kxg0WIqDAc5U72FO2?=
+ =?us-ascii?Q?VKCuzx+xEwdpYL0OcU77bCn1Y7MPcDaF7zS08LNGTerlaCew2mMr+qFfb66Y?=
+ =?us-ascii?Q?vdTS+jFiSdisaxSxWU0Zybt8oT4kofDK0kpYYBiS?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 55d7ee8c-9039-4074-0010-08dd76e670e6
 X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2025 21:43:44.0433 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2025 21:43:46.9203 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: //FXKYBNf4rrLwBI5tkC9UUZGPHEmoSO4gY4VMnKyzIURTl6+hzJU4nB4wCwUE/h3p2Z1jpYgHXiWvy1lR6xEg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: dGvAAteWA4T0FHM5/qtD9hPuSi1E2SKuZi0fLnqFtdizUUMUTMQpwbE07uWjcUyZU9nvwH/KMrK5TzK8svj9nA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4562
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -174,171 +174,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add support for a fractional link bpp on an MST link. Leave enabling a
-fractional bpp to a follow-up change.
-
-This keeps the mode validation specific maximum link bpp as a
-rounded-down integer value still, changing that to a fractional value is
-left for later.
+Factor out helpers that can be used in a follow-up change to query the
+minimum and maximum pipe bpp supported by the HW.
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c     | 39 ++++++++++++---------
- drivers/gpu/drm/i915/display/intel_dp.h     |  2 +-
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 23 +++++-------
- 3 files changed, 32 insertions(+), 32 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 28 +++++++++++++-------
+ drivers/gpu/drm/i915/display/intel_display.h |  3 +++
+ drivers/gpu/drm/i915/display/intel_dp.c      |  2 +-
+ 3 files changed, 22 insertions(+), 11 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 16fd7c00ba010..621cc581cf51a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -4317,6 +4317,22 @@ compute_sink_pipe_bpp(const struct drm_connector_state *conn_state,
+ 	return 0;
+ }
+ 
++int intel_display_min_pipe_bpp(void)
++{
++	return 6 * 3;
++}
++
++int intel_display_max_pipe_bpp(struct intel_display *display)
++{
++	if (display->platform.g4x || display->platform.valleyview ||
++	    display->platform.cherryview)
++		return 10*3;
++	else if (DISPLAY_VER(display) >= 5)
++		return 12*3;
++	else
++		return 8*3;
++}
++
+ static int
+ compute_baseline_pipe_bpp(struct intel_atomic_state *state,
+ 			  struct intel_crtc *crtc)
+@@ -4326,17 +4342,9 @@ compute_baseline_pipe_bpp(struct intel_atomic_state *state,
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 	struct drm_connector *connector;
+ 	struct drm_connector_state *connector_state;
+-	int bpp, i;
++	int i;
+ 
+-	if (display->platform.g4x || display->platform.valleyview ||
+-	    display->platform.cherryview)
+-		bpp = 10*3;
+-	else if (DISPLAY_VER(display) >= 5)
+-		bpp = 12*3;
+-	else
+-		bpp = 8*3;
+-
+-	crtc_state->pipe_bpp = bpp;
++	crtc_state->pipe_bpp = intel_display_max_pipe_bpp(display);
+ 
+ 	/* Clamp display bpp to connector max bpp */
+ 	for_each_new_connector_in_state(&state->base, connector, connector_state, i) {
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index 3b54a62c290af..b6610e9175a7a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -524,6 +524,9 @@ void intel_plane_fixup_bitmasks(struct intel_crtc_state *crtc_state);
+ bool intel_crtc_vrr_disabling(struct intel_atomic_state *state,
+ 			      struct intel_crtc *crtc);
+ 
++int intel_display_min_pipe_bpp(void);
++int intel_display_max_pipe_bpp(struct intel_display *display);
++
+ /* modesetting */
+ int intel_modeset_pipes_in_mask_early(struct intel_atomic_state *state,
+ 				      const char *reason, u8 pipe_mask);
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 14c3d5e10a430..2944ae0d53e32 100644
+index 3cf8d6510bf90..881852390bb81 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -846,21 +846,22 @@ small_joiner_ram_size_bits(struct intel_display *display)
- 		return 6144 * 8;
- }
- 
--u32 intel_dp_dsc_nearest_valid_bpp(struct intel_display *display, u32 bpp, u32 pipe_bpp)
-+int intel_dp_dsc_nearest_valid_bpp(struct intel_display *display, int link_bpp_x16, int pipe_bpp)
+@@ -1199,7 +1199,7 @@ intel_dp_output_format(struct intel_connector *connector,
+ int intel_dp_min_bpp(enum intel_output_format output_format)
  {
--	u32 bits_per_pixel = bpp;
- 	int i;
- 
- 	/* Error out if the max bpp is less than smallest allowed valid bpp */
--	if (bits_per_pixel < valid_dsc_bpp[0]) {
--		drm_dbg_kms(display->drm, "Unsupported BPP %u, min %u\n",
--			    bits_per_pixel, valid_dsc_bpp[0]);
-+	if (link_bpp_x16 < fxp_q4_from_int(valid_dsc_bpp[0])) {
-+		drm_dbg_kms(display->drm,
-+			    "Unsupported BPP " FXP_Q4_FMT ", min " FXP_Q4_FMT "\n",
-+			    FXP_Q4_ARGS(link_bpp_x16),
-+			    FXP_Q4_ARGS(fxp_q4_from_int(valid_dsc_bpp[0])));
- 		return 0;
- 	}
- 
- 	/* From XE_LPD onwards we support from bpc upto uncompressed bpp-1 BPPs */
- 	if (DISPLAY_VER(display) >= 13) {
--		bits_per_pixel = min(bits_per_pixel, pipe_bpp - 1);
-+		link_bpp_x16 = min(link_bpp_x16, fxp_q4_from_int(pipe_bpp - 1));
- 
- 		/*
- 		 * According to BSpec, 27 is the max DSC output bpp,
-@@ -870,26 +871,28 @@ u32 intel_dp_dsc_nearest_valid_bpp(struct intel_display *display, u32 bpp, u32 p
- 		 * that and probably means we can't fit the required mode, even with
- 		 * DSC enabled.
- 		 */
--		if (bits_per_pixel < 8) {
-+		if (link_bpp_x16 < fxp_q4_from_int(8)) {
- 			drm_dbg_kms(display->drm,
--				    "Unsupported BPP %u, min 8\n",
--				    bits_per_pixel);
-+				    "Unsupported BPP " FXP_Q4_FMT ", min " FXP_Q4_FMT "\n",
-+				    FXP_Q4_ARGS(link_bpp_x16), FXP_Q4_ARGS(fxp_q4_from_int(8)));
- 			return 0;
- 		}
--		bits_per_pixel = min_t(u32, bits_per_pixel, 27);
-+		link_bpp_x16 = min(link_bpp_x16, fxp_q4_from_int(27));
- 	} else {
- 		/* Find the nearest match in the array of known BPPs from VESA */
- 		for (i = 0; i < ARRAY_SIZE(valid_dsc_bpp) - 1; i++) {
--			if (bits_per_pixel < valid_dsc_bpp[i + 1])
-+			if (link_bpp_x16 < fxp_q4_from_int(valid_dsc_bpp[i + 1]))
- 				break;
- 		}
--		drm_dbg_kms(display->drm, "Set dsc bpp from %d to VESA %d\n",
--			    bits_per_pixel, valid_dsc_bpp[i]);
-+		drm_dbg_kms(display->drm,
-+			    "Set dsc bpp from " FXP_Q4_FMT " to VESA " FXP_Q4_FMT "\n",
-+			    FXP_Q4_ARGS(link_bpp_x16),
-+			    FXP_Q4_ARGS(fxp_q4_from_int(valid_dsc_bpp[i])));
- 
--		bits_per_pixel = valid_dsc_bpp[i];
-+		link_bpp_x16 = fxp_q4_from_int(valid_dsc_bpp[i]);
- 	}
- 
--	return bits_per_pixel;
-+	return link_bpp_x16;
+ 	if (output_format == INTEL_OUTPUT_FORMAT_RGB)
+-		return 6 * 3;
++		return intel_display_min_pipe_bpp();
+ 	else
+ 		return 8 * 3;
  }
- 
- static int bigjoiner_interface_bits(struct intel_display *display)
-@@ -955,6 +958,7 @@ u32 get_max_compressed_bpp_with_joiner(struct intel_display *display,
- 	return max_bpp;
- }
- 
-+/* TODO: return a bpp_x16 value */
- u16 intel_dp_dsc_get_max_compressed_bpp(struct intel_display *display,
- 					u32 link_clock, u32 lane_count,
- 					u32 mode_clock, u32 mode_hdisplay,
-@@ -1007,9 +1011,10 @@ u16 intel_dp_dsc_get_max_compressed_bpp(struct intel_display *display,
- 							    mode_hdisplay, num_joined_pipes);
- 	bits_per_pixel = min(bits_per_pixel, joiner_max_bpp);
- 
--	bits_per_pixel = intel_dp_dsc_nearest_valid_bpp(display, bits_per_pixel, pipe_bpp);
-+	bits_per_pixel = intel_dp_dsc_nearest_valid_bpp(display,
-+							fxp_q4_from_int(bits_per_pixel), pipe_bpp);
- 
--	return bits_per_pixel;
-+	return fxp_q4_to_int(bits_per_pixel);
- }
- 
- u8 intel_dp_dsc_get_slice_count(const struct intel_connector *connector,
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index 98f90955fdb1d..f3ca6966abe00 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -173,7 +173,7 @@ bool intel_dp_supports_dsc(struct intel_dp *intel_dp,
- 			   const struct intel_connector *connector,
- 			   const struct intel_crtc_state *crtc_state);
- 
--u32 intel_dp_dsc_nearest_valid_bpp(struct intel_display *display, u32 bpp, u32 pipe_bpp);
-+int intel_dp_dsc_nearest_valid_bpp(struct intel_display *display, int link_bpp_x16, int pipe_bpp);
- 
- void intel_ddi_update_pipe(struct intel_atomic_state *state,
- 			   struct intel_encoder *encoder,
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index cde662daed5a4..4e607c0853cbd 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -457,7 +457,6 @@ static int mst_stream_dsc_compute_link_config(struct intel_dp *intel_dp,
- 	int num_bpc;
- 	u8 dsc_bpc[3] = {};
- 	int min_bpp, max_bpp, sink_min_bpp, sink_max_bpp;
--	int min_compressed_bpp, max_compressed_bpp;
- 
- 	max_bpp = limits->pipe.max_bpp;
- 	min_bpp = limits->pipe.min_bpp;
-@@ -482,24 +481,20 @@ static int mst_stream_dsc_compute_link_config(struct intel_dp *intel_dp,
- 
- 	crtc_state->pipe_bpp = max_bpp;
- 
--	max_compressed_bpp = fxp_q4_to_int(limits->link.max_bpp_x16);
--	min_compressed_bpp = fxp_q4_to_int_roundup(limits->link.min_bpp_x16);
--
--	drm_dbg_kms(display->drm, "DSC Sink supported compressed min bpp %d compressed max bpp %d\n",
--		    min_compressed_bpp, max_compressed_bpp);
--
--	/* Align compressed bpps according to our own constraints */
--	max_compressed_bpp = intel_dp_dsc_nearest_valid_bpp(display, max_compressed_bpp,
--							    crtc_state->pipe_bpp);
--	min_compressed_bpp = intel_dp_dsc_nearest_valid_bpp(display, min_compressed_bpp,
--							    crtc_state->pipe_bpp);
-+	drm_dbg_kms(display->drm,
-+		    "DSC Sink supported compressed min bpp " FXP_Q4_FMT " compressed max bpp " FXP_Q4_FMT "\n",
-+		    FXP_Q4_ARGS(limits->link.min_bpp_x16), FXP_Q4_ARGS(limits->link.max_bpp_x16));
- 
- 	crtc_state->lane_count = limits->max_lane_count;
- 	crtc_state->port_clock = limits->max_rate;
- 
- 	return intel_dp_mtp_tu_compute_config(intel_dp, crtc_state, conn_state,
--					      fxp_q4_from_int(min_compressed_bpp),
--					      fxp_q4_from_int(max_compressed_bpp),
-+					      intel_dp_dsc_nearest_valid_bpp(display,
-+									     limits->link.min_bpp_x16,
-+									     crtc_state->pipe_bpp),
-+					      intel_dp_dsc_nearest_valid_bpp(display,
-+									     limits->link.max_bpp_x16,
-+									     crtc_state->pipe_bpp),
- 					      fxp_q4_from_int(1), true);
- }
- 
 -- 
 2.44.2
 
