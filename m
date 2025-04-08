@@ -4,27 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88014C3600C
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 11:26:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AABB8C369A2
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 12:00:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 477C310E645;
-	Tue,  8 Apr 2025 11:26:20 +0000 (UTC)
-Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB50A10E645;
- Tue,  8 Apr 2025 11:26:18 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2985D10E689;
+	Tue,  8 Apr 2025 12:00:04 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GfifEFZg";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7979F10E66B
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Apr 2025 12:00:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744113602; x=1775649602;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=jlWsyYA/1vNid5SW6riDJTMILfANV/t2xfabNNkTmsw=;
+ b=GfifEFZgBlmLymAMFQdxv5YAIuKGn8pIPMrhj8pscWKlOkwsyK+0tNdr
+ 5zNzCILaHAnBdoRIuXEm1qNwUNYkHmvlyZbBklW/qT5mqNSZEW6BUjZ5/
+ la7hnAKXXMtULKMhzdwXKFhxVCkz/sYmufYRUX71vgebdt4gK1tOJFGKI
+ ToHsyBDUBniXCKDomAKjcXU9uRyU1tbTH4ZQOI0K5lWJhenIKI/yhTa1N
+ 0sNPrqZxL3QwsvN/EQKhSmkGBgXXhEyzrHqyM6aSku7FhikdC4hgHnedO
+ yC2f/YDF+AOXtvzdRcOzeADZsl/KOW2NuggQ+XI5rsth249y04Op2xasa A==;
+X-CSE-ConnectionGUID: yBhPkl4ZTaKs91x66IIp6w==
+X-CSE-MsgGUID: CktPMBiwSgWdYx0tzwHXzg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="45676480"
+X-IronPort-AV: E=Sophos;i="6.15,198,1739865600"; d="scan'208";a="45676480"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2025 05:00:02 -0700
+X-CSE-ConnectionGUID: eEvgd4jkR22387MJDgdEfQ==
+X-CSE-MsgGUID: f0cGIXN3TviwgqvJs4tdgg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,198,1739865600"; d="scan'208";a="151428074"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmviesa002.fm.intel.com with ESMTP; 08 Apr 2025 04:59:58 -0700
+Received: from [10.245.96.73] (mwajdecz-MOBL.ger.corp.intel.com [10.245.96.73])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 9542734304;
+ Tue,  8 Apr 2025 12:59:57 +0100 (IST)
+Message-ID: <df3d130a-8d4c-443d-99ba-92d79eda14d5@intel.com>
+Date: Tue, 8 Apr 2025 13:59:56 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 1/4] drm/xe/vf: Divide GGTT ballooning into allocation
+ and insertion
+To: Tomasz Lis <tomasz.lis@intel.com>, intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
+ =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+References: <20250403184055.2317409-1-tomasz.lis@intel.com>
+ <20250403184055.2317409-2-tomasz.lis@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20250403184055.2317409-2-tomasz.lis@intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBuild=3A_failure_for_drm/xe/display=3A_Program_doub?=
- =?utf-8?q?le_buffered_LUT_registers_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 08 Apr 2025 11:26:18 -0000
-Message-ID: <174411157888.47564.3115509550653743860@e6b6f09ec485>
-X-Patchwork-Hint: ignore
-References: <20250408110022.1907802-1-chaitanya.kumar.borah@intel.com>
-In-Reply-To: <20250408110022.1907802-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,117 +72,292 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/xe/display: Program double buffered LUT registers (rev6)
-URL   : https://patchwork.freedesktop.org/series/142436/
-State : failure
 
-== Summary ==
+On 03.04.2025 20:40, Tomasz Lis wrote:
+> The balloon nodes, which are used to fill areas of GGTT inaccessible
+> for a specific VF, were allocated and inserted into GGTT within one
+> function. To be able to re-use that insertion code during VF
+> migration recovery, we need to split it.
+> 
+> This patch separates allocation (init/fini functs) from the insertion
+> of balloons (balloon/deballoon functs). Locks are also moved to ensure
+> calls from post-migration recovery worker will not cause a deadlock.
+> 
+> v2: Moved declarations to proper header
+> v3: Rephrased description, introduced "_locked" versions of some
+>   functs, more lockdep checks, some functions renamed, altered error
+>   handling, added missing kerneldocs.
+> 
+> Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_ggtt.c        |  11 +--
+>  drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 102 +++++++++++++++++++++-------
+>  drivers/gpu/drm/xe/xe_gt_sriov_vf.h |   2 +
+>  3 files changed, 82 insertions(+), 33 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+> index 5fcb2b4c2c13..769a8dc9be6e 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt.c
+> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
+> @@ -447,14 +447,13 @@ int xe_ggtt_node_insert_balloon(struct xe_ggtt_node *node, u64 start, u64 end)
+>  	xe_tile_assert(ggtt->tile, IS_ALIGNED(start, XE_PAGE_SIZE));
+>  	xe_tile_assert(ggtt->tile, IS_ALIGNED(end, XE_PAGE_SIZE));
+>  	xe_tile_assert(ggtt->tile, !drm_mm_node_allocated(&node->base));
+> +	lockdep_assert_held(&ggtt->lock);
 
-CC      lib/oid_registry.o
-  CC [M]  drivers/mfd/si476x-prop.o
-  CC [M]  net/netfilter/xt_TRACE.o
-  CC      lib/crc32.o
-  CC [M]  drivers/mfd/si476x-i2c.o
-  CC [M]  net/netfilter/xt_IDLETIMER.o
-  CC      lib/crc64.o
-  CC [M]  net/netfilter/xt_addrtype.o
-  CC [M]  drivers/mfd/intel_pmc_bxt.o
-  CC [M]  drivers/mfd/viperboard.o
-  CC [M]  net/netfilter/xt_bpf.o
-  CC [M]  drivers/mfd/lm3533-core.o
-  CC [M]  drivers/mfd/lm3533-ctrlbank.o
-  CC [M]  drivers/mfd/retu-mfd.o
-  CC [M]  net/netfilter/xt_cluster.o
-  CC [M]  net/netfilter/xt_comment.o
-  CC [M]  net/netfilter/xt_connbytes.o
-  CC [M]  drivers/mfd/iqs62x.o
-  CC [M]  net/netfilter/xt_connlabel.o
-  CC [M]  net/netfilter/xt_connlimit.o
-  CC [M]  drivers/mfd/menf21bmc.o
-  CC [M]  drivers/mfd/dln2.o
-  CC [M]  net/netfilter/xt_conntrack.o
-  CC [M]  drivers/mfd/rt4831.o
-  CC [M]  net/netfilter/xt_cpu.o
-  CC [M]  drivers/mfd/rt5033.o
-  CC [M]  net/netfilter/xt_dccp.o
-  CC [M]  net/netfilter/xt_devgroup.o
-  CC [M]  drivers/mfd/rt5120.o
-  CC [M]  net/netfilter/xt_dscp.o
-  CC [M]  net/netfilter/xt_ecn.o
-  CC [M]  drivers/mfd/sky81452.o
-  CC [M]  net/netfilter/xt_esp.o
-  CC [M]  drivers/mfd/intel_soc_pmic_bxtwc.o
-  AR      fs/built-in.a
-  CC [M]  drivers/mfd/intel_soc_pmic_chtdc_ti.o
-  CC [M]  drivers/mfd/intel_soc_pmic_mrfld.o
-  CC [M]  net/netfilter/xt_hashlimit.o
-  CC [M]  drivers/mfd/rave-sp.o
-  CC [M]  net/netfilter/xt_helper.o
-  CC [M]  net/netfilter/xt_hl.o
-  CC [M]  drivers/mfd/simple-mfd-i2c.o
-  CC [M]  net/netfilter/xt_ipcomp.o
-  CC [M]  drivers/mfd/smpro-core.o
-  AR      lib/built-in.a
-  CC [M]  net/netfilter/xt_iprange.o
-  CC [M]  drivers/mfd/intel-m10-bmc-core.o
-  CC [M]  net/netfilter/xt_l2tp.o
-  AR      kernel/built-in.a
-  CC [M]  drivers/mfd/intel-m10-bmc-spi.o
-  CC [M]  net/netfilter/xt_length.o
-  CC [M]  drivers/mfd/atc260x-core.o
-  CC [M]  net/netfilter/xt_limit.o
-  CC [M]  drivers/mfd/atc260x-i2c.o
-  CC [M]  net/netfilter/xt_mac.o
-  CC [M]  net/netfilter/xt_multiport.o
-  CC [M]  net/netfilter/xt_nfacct.o
-  CC [M]  net/netfilter/xt_osf.o
-  CC [M]  net/netfilter/xt_owner.o
-  CC [M]  net/netfilter/xt_cgroup.o
-  CC [M]  net/netfilter/xt_physdev.o
-  CC [M]  net/netfilter/xt_pkttype.o
-  CC [M]  net/netfilter/xt_policy.o
-  CC [M]  net/netfilter/xt_quota.o
-  CC [M]  net/netfilter/xt_rateest.o
-  CC [M]  net/netfilter/xt_realm.o
-  CC [M]  net/netfilter/xt_recent.o
-  CC [M]  net/netfilter/xt_sctp.o
-  CC [M]  net/netfilter/xt_socket.o
-  CC [M]  net/netfilter/xt_state.o
-  CC [M]  net/netfilter/xt_statistic.o
-  CC [M]  net/netfilter/xt_string.o
-  CC [M]  net/netfilter/xt_tcpmss.o
-  CC [M]  net/netfilter/xt_time.o
-  CC [M]  net/netfilter/xt_u32.o
-  LD [M]  drivers/mfd/arizona.o
-  LD [M]  drivers/mfd/wm8994.o
-  LD [M]  drivers/mfd/madera.o
-  LD [M]  drivers/mfd/ocelot-soc.o
-  LD [M]  drivers/mfd/mt6397.o
-  LD [M]  drivers/mfd/si476x-core.o
-  AR      drivers/mfd/built-in.a
-  LD [M]  net/netfilter/nf_conntrack.o
-  LD [M]  net/netfilter/nf_conntrack_h323.o
-  LD [M]  net/netfilter/nf_nat.o
-  LD [M]  net/netfilter/nf_tables.o
-  LD [M]  net/netfilter/nf_flow_table.o
-  AR      net/netfilter/built-in.a
-make[3]: *** [../scripts/Makefile.build:461: drivers] Error 2
-make[3]: *** Waiting for unfinished jobs....
-  LD [M]  fs/nfs/nfsv4.o
-  AR      net/built-in.a
-  CC [M]  kernel/kheaders.o
-make[2]: *** [/kernel/Makefile:2006: .] Error 2
-make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
-make[1]: Leaving directory '/kernel/build64-default'
-make: *** [Makefile:248: __sub-make] Error 2
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+since lock is now prerequisite, this function shall be renamed to:
 
+	xe_ggtt_node_insert_balloon_locked()
+
+likely with update to kerneldoc like:
+
+	"To be used in cases where ggtt->lock is already taken.
+
+>  
+>  	node->base.color = 0;
+>  	node->base.start = start;
+>  	node->base.size = end - start;
+>  
+> -	mutex_lock(&ggtt->lock);
+>  	err = drm_mm_reserve_node(&ggtt->mm, &node->base);
+> -	mutex_unlock(&ggtt->lock);
+>  
+>  	if (xe_gt_WARN(ggtt->tile->primary_gt, err,
+>  		       "Failed to balloon GGTT %#llx-%#llx (%pe)\n",
+> @@ -477,16 +476,12 @@ void xe_ggtt_node_remove_balloon(struct xe_ggtt_node *node)
+
+same as in earlier comment, rename function to:
+
+	xe_ggtt_node_remove_balloon_locked()
+
+>  		return;
+>  
+>  	if (!drm_mm_node_allocated(&node->base))
+> -		goto free_node;
+> +		return;
+>  
+> +	lockdep_assert_held(&node->ggtt->lock);
+
+this should be earlier in the function, as by API SLA lock must be
+always taken, not only when node is allocated
+
+>  	xe_ggtt_dump_node(node->ggtt, &node->base, "remove-balloon");
+>  
+> -	mutex_lock(&node->ggtt->lock);
+>  	drm_mm_remove_node(&node->base);
+> -	mutex_unlock(&node->ggtt->lock);
+> -
+> -free_node:
+> -	xe_ggtt_node_fini(node);
+>  }
+>  
+>  /**
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> index a439261bf4d7..c3ca33725161 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> @@ -560,35 +560,38 @@ u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt)
+>  	return gt->sriov.vf.self_config.lmem_size;
+>  }
+>  
+> -static struct xe_ggtt_node *
+> -vf_balloon_ggtt_node(struct xe_ggtt *ggtt, u64 start, u64 end)
+> +static int vf_init_ggtt_balloons(struct xe_gt *gt)
+>  {
+> -	struct xe_ggtt_node *node;
+> -	int err;
+> +	struct xe_tile *tile = gt_to_tile(gt);
+> +	struct xe_ggtt *ggtt = tile->mem.ggtt;
+>  
+> -	node = xe_ggtt_node_init(ggtt);
+> -	if (IS_ERR(node))
+> -		return node;
+> +	tile->sriov.vf.ggtt_balloon[0] = xe_ggtt_node_init(ggtt);
+> +	if (IS_ERR(tile->sriov.vf.ggtt_balloon[0]))
+> +		return PTR_ERR(tile->sriov.vf.ggtt_balloon[0]);
+>  
+> -	err = xe_ggtt_node_insert_balloon(node, start, end);
+> -	if (err) {
+> -		xe_ggtt_node_fini(node);
+> -		return ERR_PTR(err);
+> -	}
+> +	tile->sriov.vf.ggtt_balloon[1] = xe_ggtt_node_init(ggtt);
+> +	if (IS_ERR(tile->sriov.vf.ggtt_balloon[1]))
+> +		return PTR_ERR(tile->sriov.vf.ggtt_balloon[1]);
+
+what about ggtt_balloon[0] ? no need to fini() it ?
+>  
+> -	return node;
+> +	return 0;
+>  }
+>  
+> -static int vf_balloon_ggtt(struct xe_gt *gt)
+> +/**
+> + * xe_gt_sriov_vf_balloon_ggtt_locked - Insert balloon nodes to limit used GGTT address range.
+> + * @gt: the &xe_gt struct instance
+> + * Return: 0 on success or a negative error code on failure.
+> + */
+> +int xe_gt_sriov_vf_balloon_ggtt_locked(struct xe_gt *gt)
+>  {
+>  	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
+>  	struct xe_tile *tile = gt_to_tile(gt);
+> -	struct xe_ggtt *ggtt = tile->mem.ggtt;
+>  	struct xe_device *xe = gt_to_xe(gt);
+>  	u64 start, end;
+> +	int err;
+>  
+>  	xe_gt_assert(gt, IS_SRIOV_VF(xe));
+>  	xe_gt_assert(gt, !xe_gt_is_media_type(gt));
+> +	lockdep_assert_held(&tile->mem.ggtt->lock);
+>  
+>  	if (!config->ggtt_size)
+>  		return -ENODATA;
+> @@ -611,33 +614,76 @@ static int vf_balloon_ggtt(struct xe_gt *gt)
+>  	start = xe_wopcm_size(xe);
+>  	end = config->ggtt_base;
+>  	if (end != start) {
+> -		tile->sriov.vf.ggtt_balloon[0] = vf_balloon_ggtt_node(ggtt, start, end);
+> -		if (IS_ERR(tile->sriov.vf.ggtt_balloon[0]))
+> -			return PTR_ERR(tile->sriov.vf.ggtt_balloon[0]);
+> +		err = xe_ggtt_node_insert_balloon(tile->sriov.vf.ggtt_balloon[0], start, end);
+> +		if (err)
+> +			return err;
+>  	}
+>  
+>  	start = config->ggtt_base + config->ggtt_size;
+>  	end = GUC_GGTT_TOP;
+>  	if (end != start) {
+> -		tile->sriov.vf.ggtt_balloon[1] = vf_balloon_ggtt_node(ggtt, start, end);
+> -		if (IS_ERR(tile->sriov.vf.ggtt_balloon[1])) {
+> +		err = xe_ggtt_node_insert_balloon(tile->sriov.vf.ggtt_balloon[1], start, end);
+> +		if (err) {
+>  			xe_ggtt_node_remove_balloon(tile->sriov.vf.ggtt_balloon[0]);
+> -			return PTR_ERR(tile->sriov.vf.ggtt_balloon[1]);
+> +			return err;
+>  		}
+>  	}
+>  
+>  	return 0;
+>  }
+>  
+> -static void deballoon_ggtt(struct drm_device *drm, void *arg)
+> +static int vf_balloon_ggtt(struct xe_gt *gt)
+>  {
+> -	struct xe_tile *tile = arg;
+> +	struct xe_ggtt *ggtt = gt_to_tile(gt)->mem.ggtt;
+> +	int err;
+> +
+> +	mutex_lock(&ggtt->lock);
+> +	err = xe_gt_sriov_vf_balloon_ggtt_locked(gt);
+> +	mutex_unlock(&ggtt->lock);
+> +
+> +	return err;
+> +}
+> +
+> +/**
+> + * xe_gt_sriov_vf_deballoon_ggtt_locked - Remove balloon nodes which limited used address renge.
+> + * @gt: the &xe_gt struct instance
+> + */
+> +void xe_gt_sriov_vf_deballoon_ggtt_locked(struct xe_gt *gt)
+> +{
+> +	struct xe_tile *tile = gt_to_tile(gt);
+>  
+>  	xe_tile_assert(tile, IS_SRIOV_VF(tile_to_xe(tile)));
+> +	lockdep_assert_held(&tile->mem.ggtt->lock);
+
+nit: IMO this is redundant as lock shall be asserted in
+xe_ggtt_node_remove_balloon_locked()
+
+> +
+>  	xe_ggtt_node_remove_balloon(tile->sriov.vf.ggtt_balloon[1]);
+>  	xe_ggtt_node_remove_balloon(tile->sriov.vf.ggtt_balloon[0]);
+>  }
+>  
+> +static void vf_deballoon_ggtt(struct xe_gt *gt)
+
+hmm, in this patch you don't really need to split (de)balloon logic into
+locked/unlocked parts, so maybe keep it as it was and introduce such
+split when really needed
+
+also it's quite unusual that unlocked part is named in completely
+different fashion than locked, can't it be (later) defined as pair of:
+
+	xe_gt_sriov_vf_deballoon_ggtt_locked()
+	xe_gt_sriov_vf_deballoon_ggtt()
+
+and
+
+	xe_gt_sriov_vf_balloon_ggtt_locked()
+	xe_gt_sriov_vf_balloon_ggtt()
+
+> +{
+> +	struct xe_tile *tile = gt_to_tile(gt);
+> +
+> +	mutex_lock(&tile->mem.ggtt->lock);
+> +	xe_gt_sriov_vf_deballoon_ggtt_locked(gt);
+> +	mutex_unlock(&tile->mem.ggtt->lock);
+> +}
+> +
+> +static void vf_balloon_fini(struct xe_gt *gt)
+> +{
+> +	struct xe_tile *tile = gt_to_tile(gt);
+
+missing asserts:
+
+  	xe_gt_assert(gt, IS_SRIOV_VF(xe));
+  	xe_gt_assert(gt, !xe_gt_is_media_type(gt));
+
+> +
+> +	xe_ggtt_node_fini(tile->sriov.vf.ggtt_balloon[1]);
+> +	xe_ggtt_node_fini(tile->sriov.vf.ggtt_balloon[0]);
+> +}
+> +
+> +static void deballoon_and_fini_ggtt(struct drm_device *drm, void *arg)
+> +{
+> +	struct xe_tile *tile = arg;
+> +
+> +	vf_deballoon_ggtt(tile->primary_gt);
+> +	vf_balloon_fini(tile->primary_gt);
+> +}
+> +
+>  /**
+>   * xe_gt_sriov_vf_prepare_ggtt - Prepare a VF's GGTT configuration.
+>   * @gt: the &xe_gt
+> @@ -655,11 +701,17 @@ int xe_gt_sriov_vf_prepare_ggtt(struct xe_gt *gt)
+>  	if (xe_gt_is_media_type(gt))
+>  		return 0;
+>  
+> -	err = vf_balloon_ggtt(gt);
+> +	err = vf_init_ggtt_balloons(gt);
+>  	if (err)
+>  		return err;
+>  
+> -	return drmm_add_action_or_reset(&xe->drm, deballoon_ggtt, tile);
+> +	err = vf_balloon_ggtt(gt);
+> +	if (err) {
+> +		vf_balloon_fini(gt);
+> +		return err;
+> +	}
+> +
+> +	return drmm_add_action_or_reset(&xe->drm, deballoon_and_fini_ggtt, tile);
+>  }
+>  
+>  static int relay_action_handshake(struct xe_gt *gt, u32 *major, u32 *minor)
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+> index ba6c5d74e326..d717deb8af91 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+> @@ -18,6 +18,8 @@ int xe_gt_sriov_vf_query_config(struct xe_gt *gt);
+>  int xe_gt_sriov_vf_connect(struct xe_gt *gt);
+>  int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt);
+>  int xe_gt_sriov_vf_prepare_ggtt(struct xe_gt *gt);
+> +int xe_gt_sriov_vf_balloon_ggtt_locked(struct xe_gt *gt);
+> +void xe_gt_sriov_vf_deballoon_ggtt_locked(struct xe_gt *gt);
+>  int xe_gt_sriov_vf_notify_resfix_done(struct xe_gt *gt);
+>  void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt);
+>  
 
