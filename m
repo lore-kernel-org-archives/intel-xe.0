@@ -4,184 +4,187 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55E08C36002
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Apr 2025 21:03:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24245C36002
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Apr 2025 21:05:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 123CF10E055;
-	Wed,  9 Apr 2025 21:03:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA35010E055;
+	Wed,  9 Apr 2025 21:05:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F+4iDevI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kCf/+N16";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 894EC10E752
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Apr 2025 21:03:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB80A10E055
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Apr 2025 21:05:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744232625; x=1775768625;
+ t=1744232710; x=1775768710;
  h=message-id:date:from:subject:to:cc:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=N7lJ+GbN4C/PamJSVZY7DdCPL/reNnRAlqMQ9Q/a7qA=;
- b=F+4iDevI0F5j0nL5CIohaUPW43ct1WJ5Xl0EUNe08rKR+FxWvwJsUsER
- M0+l3tu8bAPo/WxxQMuU8B7AHS5VH31HyWonkw8TOsVk7QjrgaAa6Wbxe
- RUX7Rc2NV2BzBtkV/gZOFnHACJVKNURWz2G/vf+rOBvEcUCsF2hn/0D9A
- HWdp643ZkG4ZK4fIppdZRoFlJ2FJF2rILVWuFhjo6GPK2oLt7LEEvpBhs
- YgqQ9VigHeqSULHltnL6ocnIVIozv5lfBhUDiusyLBlYuPZL8YeJoTXw9
- hf6dyQYb2vCe/kxK29wz8OamN1ZAxZAb9ZIb1UU+/WhYggIxMtgsRixDW g==;
-X-CSE-ConnectionGUID: ZWPp1YX2RJmIIPkhpwvIRA==
-X-CSE-MsgGUID: NQup0ox3SPOfItqSaGLRHw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11399"; a="49529273"
-X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; d="scan'208";a="49529273"
+ in-reply-to:mime-version;
+ bh=4hLlaHgbNiY/7c2PkQu/7Yac3TZYWoL+aa12zwYuExk=;
+ b=kCf/+N16ulseBbIv+zmza7eGiTapCPmjGCFrbmS7Y3orPNaOyEOQtRxO
+ 8wdbOEUPziNKBDhUbsHko7l0pj1bMvV8K5ZhDBAuu6gRcd69HjfYfxot3
+ cKgc+Jo+B22HXlGwPyRoiS9y3G0A8NNqOwvTv0zAvswiyP9aAA7ZJXU69
+ cilJabfIi89tTAZAEc+qjdhB0d657zCQwrYIrS36iFnoCmfmycho40Ajc
+ rUGhJeI55N6/kSLCB+RZPmONhfy2pEj8uyPPwW8IdiIAG54JvkW8Fv0Hs
+ EfdfsKTiMzpNmDk7i9FW6WylKEaL7FrKKyj+JmXyQ/VfLsERjSGbVNWli Q==;
+X-CSE-ConnectionGUID: GD7b+xCPSKmZg6RZg4OIWg==
+X-CSE-MsgGUID: ma5jmqH6RgSDnc97AhdFRg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11399"; a="49529448"
+X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; d="scan'208,217";a="49529448"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2025 14:03:45 -0700
-X-CSE-ConnectionGUID: W7Elsw63SYGAiMqwFXImrA==
-X-CSE-MsgGUID: OrNtk51USXiUn/xMHv0F0w==
+ 09 Apr 2025 14:05:10 -0700
+X-CSE-ConnectionGUID: AY5Qz3p/TzCVdq1tHr6RXg==
+X-CSE-MsgGUID: Fd/8PPVxTdyhXslT+Y6LjA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; d="scan'208";a="133675755"
+X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; 
+ d="scan'208,217";a="133675951"
 Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
  by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2025 14:03:44 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ 09 Apr 2025 14:05:09 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Wed, 9 Apr 2025 14:03:43 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.1544.14; Wed, 9 Apr 2025 14:05:09 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Wed, 9 Apr 2025 14:03:43 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.41) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.2.1544.14 via Frontend Transport; Wed, 9 Apr 2025 14:05:09 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.173)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Wed, 9 Apr 2025 14:03:43 -0700
+ 15.1.2507.44; Wed, 9 Apr 2025 14:05:07 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GnVEBvEuTEjJgjS6cxIAIZ8+tyAGAwZiCzAojGs+uf0fNPQNzCQ4XdiP5taGZailTB3EU0wBSXsBe0joa8raGKMAiOhdKSjcpLBbTEMnW5gHEbYOeH0BW6MbOsd3xOUkzHs60LJtO/J0SkdC9pEvaJyNt6FWWrsCqIBp+j19KCDAQQ4bhsr2XOiDi5bTRP5f0B+mnAGUf4r3vahQuVvrTEpeANsR/RnjUe3g+Scy5ETRFKYGTY+xg9V1/0LEAjJuey0/8Y3uo7aEYAwGOK+IAL4BSoSiskEuCZqGw9s3gLv57T/7Qvh4BdL9VoOknw2WSDpXW5RaY1HyxdQQJPF8PQ==
+ b=SlQxEXrTxhaak+8thoQGlj4E1rJyaJ+1t8fHGckiqizOjnNnZGI7O1sYKQG0EIocdj0l0Rb2gBtyEke/AW0/2+YTG3d+jnEN1BcbRP+DvOx5747eQb8jjcT2rNEC1IJS2Cq/BXUShH+r9cdUvsgH7MQPj16OoGENjL93OdGS8PecfnGWAM+kWQO0p2jfToqiTQu32R7oCryv1CwNuHDCMTVjMZ9fUgaE8U88anJv93HhWYfPoSZ2R7OBg/6DU4RGh+AQ83OeTCdGflXiceTK61OweqMIE8qFbT3RHHNRYDbL4XPQT1ty3ABEjZpgS9ypd4deV9tWu8J2LbksG2N/5g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YYHJ8us+syck0hQu+YStabevpI7AFYB8nzwFiPc7zeY=;
- b=GBEL2yfUalobhpeHFjR1EaCl2c3BBDgIcLOUIdCpokOQCCEvL22620YC7IseSULgrQSYDn+slbvzo8M3Ed4A5qXG0gjajGNtR6HezoY7w9BLUiVBaWVaMzpPS39ecWdKzxDRQ46XClK7rXxkauk9NoJXfqx/orlmSz1k+VaH0ZkBvGzJEBb7ezdKI7ShWTYrTQnv2aXPFF3gGniZ/GEVJoQ2mRkqTam16sLp5Uqx0ZwSGMkSomRxGSN/8dkkz2nJdbWsiFUIPv9bh4qG2b+JDve2v96LxJa7PyPvWFfEIFfqIvq7I2OmBBBq1+BaXRdakBDzZ5Ns84OWQMkVARk14g==
+ bh=w0n8qKZe82Zbsm0tl7MMawp2OBBtqVHfAoFSfoyZx0Q=;
+ b=ssOL7g5sscgVcE+4viGIBKYhhghImbdk5PxcudmFLLSz6Ejv4wlryAb+WTuZRrcuGdlOVTGbHwEuVRn8rbXhk8HosnTwals4lqim+7iADCgQm2plT3hq8kBq0m7QlCFTSkjBrJksU1bRNQJtnjOKBwDRZ7zx2lLBwWxiuIUEuQc6GSxmxvnAc+GTsc7FuV0j3/rs8fnZvALGE+ceDhaGYXMMKoFSnRj8czHI5jCi8sF1Pw8t0hdGRbFYs/boQaM7fhBStpFXCv4erze0v7iomy1cDdg/EAu4U9GQynmAebVXtHM81R0AWcdLOh4leRnvSbUTu2pSAnoOH6at5Nlb/Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from MW4PR11MB6714.namprd11.prod.outlook.com (2603:10b6:303:20f::20)
- by LV3PR11MB8554.namprd11.prod.outlook.com (2603:10b6:408:1bb::11)
+ by CY5PR11MB6115.namprd11.prod.outlook.com (2603:10b6:930:2c::19)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.20; Wed, 9 Apr
- 2025 21:03:41 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.22; Wed, 9 Apr
+ 2025 21:04:51 +0000
 Received: from MW4PR11MB6714.namprd11.prod.outlook.com
  ([fe80::e8c7:f61:d9d6:32a2]) by MW4PR11MB6714.namprd11.prod.outlook.com
  ([fe80::e8c7:f61:d9d6:32a2%4]) with mapi id 15.20.8606.033; Wed, 9 Apr 2025
- 21:03:41 +0000
-Message-ID: <937feeb4-0c33-465f-a34d-0ea57c390f63@intel.com>
-Date: Wed, 9 Apr 2025 23:03:33 +0200
+ 21:04:51 +0000
+Content-Type: multipart/alternative;
+ boundary="------------CNlXTYLnlGu4Emy4aBfcWuCG"
+Message-ID: <2f2e9385-6175-4c1c-aabc-6073c508e65d@intel.com>
+Date: Wed, 9 Apr 2025 23:04:43 +0200
 User-Agent: Mozilla Thunderbird
 From: "Lis, Tomasz" <tomasz.lis@intel.com>
-Subject: Re: [PATCH v7 2/4] drm/xe/vf: Shifting GGTT area post migration
+Subject: Re: [PATCH v7 3/4] drm/xe/guc: Introduce enum with offsets for
+ context register H2Gs
 To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  <intel-xe@lists.freedesktop.org>
 CC: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
  =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>, Matthew Brost
  <matthew.brost@intel.com>, Lucas De Marchi <lucas.demarchi@intel.com>
 References: <20250403184055.2317409-1-tomasz.lis@intel.com>
- <20250403184055.2317409-3-tomasz.lis@intel.com>
- <bb10b91b-9a47-4642-a023-15ae4780b7b4@intel.com>
+ <20250403184055.2317409-4-tomasz.lis@intel.com>
+ <b999151b-923d-457b-97eb-ef656cd7c1d3@intel.com>
 Content-Language: en-US
-In-Reply-To: <bb10b91b-9a47-4642-a023-15ae4780b7b4@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: VI1PR07CA0286.eurprd07.prod.outlook.com
- (2603:10a6:800:130::14) To MW4PR11MB6714.namprd11.prod.outlook.com
+In-Reply-To: <b999151b-923d-457b-97eb-ef656cd7c1d3@intel.com>
+X-ClientProxiedBy: WA2P291CA0015.POLP291.PROD.OUTLOOK.COM
+ (2603:10a6:1d0:1e::28) To MW4PR11MB6714.namprd11.prod.outlook.com
  (2603:10b6:303:20f::20)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MW4PR11MB6714:EE_|LV3PR11MB8554:EE_
-X-MS-Office365-Filtering-Correlation-Id: 10863d33-ef81-469f-a82b-08dd77aa0167
+X-MS-TrafficTypeDiagnostic: MW4PR11MB6714:EE_|CY5PR11MB6115:EE_
+X-MS-Office365-Filtering-Correlation-Id: 20f3d092-e5f8-42e7-9bcf-08dd77aa2b45
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?NnJsUHdwWjByd2xtUHRMQi9ERWllMXFseW1ZbDloTUIxekxlek9xWS9ncEVo?=
- =?utf-8?B?Uis1MnNpQ0I4Z2MwbEg2QWNacHhacmFrMVIxeEtNaTRoOEVIQXNiRGFXUCtk?=
- =?utf-8?B?QjhmR1NUSnlXeERiMjJ6MWVwMGdGNzhpV1Zkck53cmovQ0JLMEVpcXQyNVBU?=
- =?utf-8?B?aHdKbFlBZFMxYk15N0ZiRmdaNU5RVVlxbUdtZWMxQ2Z2WjdCUEs2VkExZ1Br?=
- =?utf-8?B?ekRFeElOaDRLZVFXWk5QLzd4SkRHbDl6T1JWQ25KeHZudyt1a3UzQWRjRXJQ?=
- =?utf-8?B?S1BVb3ZzdFAybTdPaDhwRTZrdGx3U3pod3IrSTJPMG9ybkpJTm1kQmZpRm5Y?=
- =?utf-8?B?MkRMTS9DakdJeGhzM1pVYzZ1ZllkZHVhMk1GTWtuMjA1R2YxanNEKy9NamJ4?=
- =?utf-8?B?NCtQZFo2ckZFd3JXMDkyR1JNODgrVHF6QlVtcWxrVkRKdU1FL2pJVk1KN29B?=
- =?utf-8?B?Z1ZBWjd3ZDV2WE5NYzFQT0I2R2p2dnZCZGlEY2ExaDhzWE5ZVzQySDFLS3Ba?=
- =?utf-8?B?R1hvYW9mWlN3THVKeGtYVDBQS21WU1F2RmtVMzV1UC8vSWxxV2NyYkRvZmhY?=
- =?utf-8?B?YzdORXhOM3M5NnhuMVBlYm1zbGFMR3kyeXlMeStmK20yMTByNGtkUzhDdGho?=
- =?utf-8?B?M29vc2hmdUJnQzNlRUM2TkVUYUVTc1NCUGhrZTV6Z2wwY2c5TzlkY3lnV3RZ?=
- =?utf-8?B?SjJBYTk1eUtkRVl4UHNQcFkrMUltRlc1QUtSenJTdXhvT0laMitWclYyS3ov?=
- =?utf-8?B?RmZwMXM4SVEvZ0dmU2dueFlnQVFMSFNnL1BBMnhoQmttUlBYN0t6Z3paMUNm?=
- =?utf-8?B?OXNSRHplakt1dUpJRFppN0RTZFlzeENyckpmWnQzN3RLZjIweHYwKzE5OE5z?=
- =?utf-8?B?ZTdkMTR3U2FTOXVSTDMreStFZTBnVHVLb0Nwc1drVTh2SE9INStpZGN4b3lo?=
- =?utf-8?B?UnBidGcrM3M5MVZqWE91K0xwRzcwRDBKbFBCNW56bFdIMlQwOGE2aExNTXNX?=
- =?utf-8?B?ZVZZTXIvUERTL2RwU3loaWNxd2VRbU5KdEw1VjBKT2xBNmRjR1RzdCt1MHhv?=
- =?utf-8?B?R2hETUQxZjRQbHlydFBabVFJRW9rSGEvY1NtRk8xQ3dGWDc0ZHppMnp0aUJC?=
- =?utf-8?B?UDhXVjgzTGFBSm9keFJxN2h6ZWFQd2tuSnVhWUNqbm0xRlByeXliY2VNNmxO?=
- =?utf-8?B?L1RRSk5FVEU4bXp3d1VaZmZyaGNZNFpGbmpWV1pNckMxYUdOVnR2dWRNNnhZ?=
- =?utf-8?B?SGh2WnZXMmlZZzFYRnVXdEpkMXNKOFRyT1ZTWUlDWU5hbVNNdmZUWkJSVnV3?=
- =?utf-8?B?QzVQZzY2UTArbkVObU9DYnNSNGtCMGtlM0RJSytuSWhBYWtheFdwY0lSNS83?=
- =?utf-8?B?YU5BS1U3UmRlaHFraGl0L1R2K0NNSk5hQjVVNTM2RE8vWDdMa29rNVpzc2Ju?=
- =?utf-8?B?cGsvM3RxQTdEOFBzVi95TXhtRTl1cnJ1RENOVUtjbjZjZXJvMUhxdTNMOUlN?=
- =?utf-8?B?REVnZ2FJTXBKUENqVVlMMlRKSE1xOThQa3BVMHFjUGh2MU9SVWM0NFV2TzI2?=
- =?utf-8?B?djEzVFliYlVJd01EV1BGTEt5Z0paMitydTN1Q0ZEcnplOHNHeGRYUmx0RGtq?=
- =?utf-8?B?RVp6SjJ1QlJaR1VTVTFOMzAzeHQxOW1pZHJhb2F3S2FTUTZaSWRaVExVa24x?=
- =?utf-8?B?N3JTUkp6VysvUzd4NnFESnRLMGpmV1JXTEsvY2VUZUZqWk4vZnBKR0dSdDdq?=
- =?utf-8?B?dEdGdlZwQkRFK1Q5Znh0bHZ1c0FDcWtkcFllZ1lkZUdRb1Z4YnJrZ3M4OFlP?=
- =?utf-8?B?QVRQaUdSYkQ3T1hqSnNVdnFrc1I2Z2IxNW1DWkdCNjZuUGlpWVB6OVhJUG41?=
- =?utf-8?Q?/jguQ5egc8bjF?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|8096899003;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?ZFhIYUVnYzRQdVlLRGZ1TnBMU01TZGVnOWhjTXRQMHJHY0wrMngxeHhYZmFZ?=
+ =?utf-8?B?bGRaUFpneXZvV0dxdk0rNDJ6c2dnSzhyc2x1UkZQVzhuV1VQVCtuTTlLYm8r?=
+ =?utf-8?B?bFFaamtjS1drVjhiQnE4ZFZ4ejlsekpja3gwYlFUb0I4czNsVm1zQ3crU3lk?=
+ =?utf-8?B?bVVRZEUzSllEWmY2YUQ3VkFIcnZTQnlqNjhUQXh0NzlzemFSSDJCT21MOTV1?=
+ =?utf-8?B?L1BtcTRmUHlTbDB6dncrSDM1ZytZNVc3NDhzYVZyRFNQS3cwNXpkMFR4SGFn?=
+ =?utf-8?B?dHBmQjIvQXBRZVpKcnJabTJVWEZOOTB6TElpbVZLaHhsa0FMQ2diR0RYVWVt?=
+ =?utf-8?B?enFVLzBQbktjeGdaQ0RIYm5VYnhJS3BISUdWQ05JS014R2Y1OFpwQitucG5P?=
+ =?utf-8?B?R2c2MUgzRVB5anNWeE9BMTQ1d1BSRis2bmhBTnB2RkNJZEZqZmh2dG00M01T?=
+ =?utf-8?B?c0I4QVhKMUdlTDFCbmRwRE1BRVVZZzk4a2M3K21ObUJoakNzV2kzaXJuVDFz?=
+ =?utf-8?B?N2dQSGRoVWpFMUV6d2k1cG96amZwZHdYeVppK25ieHJpb0xpQ29PSjZGRmVv?=
+ =?utf-8?B?VzcxdytCZ0c4bDR5ZTM0ZzN4VVgvTFY3VXJUR3J4RTJlMGxJM0lmRnFvQ29y?=
+ =?utf-8?B?MnBWcHZuL05FZDNJS3VpenVGZ0pjUWVWRlNhdWZRRFYvTkpsVDNnWG0zcFpj?=
+ =?utf-8?B?MWZoeU5Vb1Arb09FU1FZeWEvaDVwa3orK0NMUnhFRHhsY2VJSkN2aUt5OEYx?=
+ =?utf-8?B?ZE1qWnUrdmJBdzR5SDlIUFFSVkM4MXZJQ3hSM1cwZ1pQTnBmSXhJTnpvdXM4?=
+ =?utf-8?B?NzMrOVhHOFY4YWdxOTd3Y2tJK29IUHFSMzAzclRKZjVNMVBlMUNUK0pDUi92?=
+ =?utf-8?B?dDJXZTRlU2loVkNOZU56Y2hCVHFYYTZxaW8yUHYrb0ZNWkxzWVdvK3JJZ2Mx?=
+ =?utf-8?B?SUUrVDVPbFY0TCtkUmY5TjhkQzFYZUd1OThITFF3MnB5YmZiM1RaNHVjb1NO?=
+ =?utf-8?B?eU9LTEtsb2x2T0huVXRoQk5scEdneWQvUytPREQxdWIvcW0yVVd5dFJyRjlO?=
+ =?utf-8?B?QVdpck9rbmpjVDNzM0FJWmdTNm1NcG9hME1vdjU4cEEva0k3Rk5HSjN5Q3dv?=
+ =?utf-8?B?L2lqT21kVWxRZlg0RnJnVGhoWjVWWDVpQ2wrSjljaFZlV1cxczRkdzFQOU1T?=
+ =?utf-8?B?TUptQzR0TEJteXRBSDd0SDQvUUZpdWJQRlN1RHRGQmxLQlpDU3pHeEk4RnNr?=
+ =?utf-8?B?eGRWZ3FhdS9meFRPOGVoNmFqQ1ZyaVE2Z1RxUmprWjRKQTArSEkrcDRsMDJl?=
+ =?utf-8?B?MDdvSytxdkIwUjVMYkRhZ3RWRzlVUzAyOHJ4MHpEZmhab0NrbHVIWTd5a1ls?=
+ =?utf-8?B?NVdIVlZrMVZDdlFnYkJ6SDVTcEV6TW5CaDlQdGVhdVhWQmE3RHR3ZXVLTjN2?=
+ =?utf-8?B?YkdIa1d5ZEZTUnFBMXFCcjlQWFM5YXlkaFZrOE5YVlRXVGZYRUFQVWdDMVV0?=
+ =?utf-8?B?WVpjOGdRMEZBR3pSVG5ZdnZyL3JhU0hkZ0M3Wjl6eGVZcGJ6eFh0MWlIMERx?=
+ =?utf-8?B?WmprUnpqUFZNUml1bnNoRG9zREVYQVZ1SkdNZFprc1EwQjIvd1dnQytJSEp1?=
+ =?utf-8?B?bTJab0tPWTNINTBWVzZRai9oZlhmSFNGSUIyUDhzbm42cHc2a0JVY1hCZTVK?=
+ =?utf-8?B?V0lSaW44QWF2UjF0MFR4TGdQUVh3YWJDU1lGMGJWZ20xVDRDN0hCYVRia00v?=
+ =?utf-8?B?UlJURWdMbU1ZVmVGZUVvRjZpSkkwdmE1QUEwRENndSsxNTNtak8rL0lwWHJ4?=
+ =?utf-8?B?NUFXclptUWgvdW1SK1FrZFFvTHhVVG5mOGc2RElEdjVoVzhPbFdzek9RWjlJ?=
+ =?utf-8?B?UXp6T3NNTURER2hXRWhuajU5QXFjWVNnaHFNUW1SVWM4dDdSaDBTbkNZczBm?=
+ =?utf-8?Q?rFsfzVam1ZE=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MW4PR11MB6714.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(366016)(376014)(1800799024)(8096899003); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?STAydnF6VDlram1VUnBaUktXendPZXRtRklMemM1WDFQYzcxbEJUTG8xWXQ0?=
- =?utf-8?B?NlhJeEFzb0VEQ0lkY0hFTWFWSTFxbEVyeWxDUzJmSXNLVXRBY2lJZnpTWTBQ?=
- =?utf-8?B?dzRGR1RwcTZGemdqTnBmUERLWU1ZWEdZMHdxV003SVZ2aFluTTZMdlVXQ3Ft?=
- =?utf-8?B?dHh4VDdZdFZFNDFxbEp1RFlqeWxYN3hxK1NPMitMaHBtTUk1VzkwbUg0QlEr?=
- =?utf-8?B?Q0FjQkRCVFZIMkVvWEpsYVFsNlhTZ0Z6SmRkN2tHdDArRnVSeU5NQ1dlTUVm?=
- =?utf-8?B?SE4rTzlveGdVUDBMQ3JQSDRtQkI3YUluQm1WSkxlOXJ3bUFLakJMV3RPY1Bl?=
- =?utf-8?B?NUNwQVNxVjRHRHdSODBPSGJJaE51OHE5cGtSRTZOeS9XWFZPdGloUEhkcUpu?=
- =?utf-8?B?bENrdkxnckdlMVhpejdlVE1rbWIwMVA1UE0wOFVyZ3JlemU3NnFxK2s4elFW?=
- =?utf-8?B?VzRNQStDRTQvTzd1bFdtOFQ4ZGdIb0VJMjBybnRodG1zbjNIUHQyL0tzengv?=
- =?utf-8?B?WFMrRmk0YTJRb0daRkRkaVhlamFnNHMrdmNzTDlVNmJRdGg5WTQycTlsblVV?=
- =?utf-8?B?SEp3L2dzVFFnN0dFMDhUN2Q1ZHd4Q2NreDZxNmI4enZWdFg5d0dkUk5rVE9B?=
- =?utf-8?B?RlhDM0VDTitpaHJBbWtXa2FNaS9EU0RJcFhpc0p1S3NSaDZwOEx6NTU4eThV?=
- =?utf-8?B?K3BycHo5MWZoaTh4WVNqWlZVcG9WdFFBTkR4MU1ac3hUWGJ5VGIrdlpsY21P?=
- =?utf-8?B?TzVmc0V4VTNRdGVDZ2hEb1VxKzFQU3JrY1N1Y3kvNkdmMmNDeXQ3TUZhRENw?=
- =?utf-8?B?bzVhWDhqSHUzQVViUVdRMlBXYU9YM3J3aWZkZlVmWGdxQW9RODNyTnhpLzR5?=
- =?utf-8?B?dmpadXNhNE1QN0xtdXBreXhTNnk5VnNyeUhWWVVZRmJWQ3RyNUtyWXBJdFUr?=
- =?utf-8?B?Slp4d3JlWUJZbk54L0tNZEhYczlObnhzZ1ZWcnVhdVd0MVNoeXhTc1FiZWxW?=
- =?utf-8?B?eCtiN2FXZHgrQWZRYXdsUWxPaG1ZTGFXQ0srSE5McVJSSzZ5Rk1XaUpBRWJ0?=
- =?utf-8?B?bThxb09vMnlHVEx0ZEhUbTUyUEoxVlc1QUFpWVZBWTBHamxEN3FSTmx4NDJu?=
- =?utf-8?B?ekxiMStmWG5SQTU1aE9BR3hxM21FSnN4dEwvcWd4bmpXYkZyR0twUnQ5VUc1?=
- =?utf-8?B?OTFIZVpDQ0ZTSWwyY1hhejlwbTJaeVhETzlKeC8yTUUrN0hEVGZrS2UzRGd6?=
- =?utf-8?B?eXFnVUZPL09TM1MyMGxUd1djWU9zblR1bWpPV2xXVzRDYmVUUXBrOC83U2p0?=
- =?utf-8?B?VjlFdGNHZUhlN095ODZCZEIzdkllYXU4RURwWlF5RmNWbmpxaXN6clJ0MHl6?=
- =?utf-8?B?TlNLTVRFZUxLalRKcWs3alhlT1Rmb0hrbXJDODNrVWx1eFhxSlNjTlBxM3dZ?=
- =?utf-8?B?dVpDNUtWYmoybUpQM1F4YmpUS1pjdldXQUc0S0FhUXcvcnJCdi9tMWVLNWNz?=
- =?utf-8?B?d05qNk1CRCtoZytlT2JtZWIrdGRqMlVLK3Z3Ti8rdCtzT3loM2ZESjhuMFRI?=
- =?utf-8?B?T0dzTDFJR2FjZERscVpkWjAwcEpsUi82Zmc2TVZxb2tLNCtJZ3dYSFhZVzB2?=
- =?utf-8?B?ODNLQlF5ejh5cWxXNFV2VmQ1bVB4cXo2U1owbGhPLzNKdlp6cVd2bXFPOXRG?=
- =?utf-8?B?M2o4UlRjTmh1bVJRbk43ZFh0VmRhS3phWXhEQW5VMlZJSWZ3SWk3OTVFVHJI?=
- =?utf-8?B?cmtQTDFQQXdRbm9LMmpMQVZOM2ozQ21oUUx2TkFPOFhPVDlXdFk4bk12TnQ0?=
- =?utf-8?B?OFNMWFgzVzR6WEJNRU5pU1hkUEdWK3RNODF3cjY0RHdoRDI0R2xJM1FVb1J2?=
- =?utf-8?B?M3Z2cTF6YWxDV3Z6czVlZy8ydyt5dEpCQnZ2SnNKWXJzeFZmYitoVEVyVzFp?=
- =?utf-8?B?VFd0QUNXQUVKSVhrWFdJQUhFcjN5WnJMSWJpdUFXU1RmakZ0Umd6aktCVnNH?=
- =?utf-8?B?VWN3UUhQZUU4REd1cmJWWWRPYWplK2E1WTBSV1JkSzVsZTR6S2dBWlNkMkxa?=
- =?utf-8?B?ZjZwRFZ1NVo3MmgxZUVrRnlsZHowazFkOUZSbkhLT1lTZHN3L3NuZE82bzFk?=
- =?utf-8?Q?TEBymWmggiMv9Hb8j6YOdnoR8?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 10863d33-ef81-469f-a82b-08dd77aa0167
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QUxKaTJ6ZFBaSzNXaGErUUxndUJQTm5LQmp5ZjdtcU01VFRYZWZIK3pIaFQ5?=
+ =?utf-8?B?cDVQQU1wY05pQTI1L1VUR0hKcDRDaEdGSnJjdGJ3ZFQvVHFoMVFjNFg2UXZa?=
+ =?utf-8?B?bVdQMWMwMkZZR1RDR0d4cHNqYVFUK0RGNmFCakl3SG1PblBUbWlubG1CaFIz?=
+ =?utf-8?B?TENWNjRveXoxRGg2elVLbVpyTnYwQ21XT2RYMlBMQ09qb21lWXowSjBuMDdu?=
+ =?utf-8?B?M0JIaGZIbCtudnZuQk5OVlBsTzNhRjdCR0lZTDFxUHBveU52Y2I3UUUvTjF5?=
+ =?utf-8?B?R1lxejh5ZGpFYkVKM3JydkJoY0tyUDBVa3A5ZWVpOFAramdPR1FWSlFtQ3hw?=
+ =?utf-8?B?NXMvU1lVKzZnT0N0Rmg3RGlvRmQwL3AzQjhFd1pBMTdRdTZldCtpR1NabHha?=
+ =?utf-8?B?aTRoeTNqSnI1T3I3YysrVkk2MGlFbk8reHVuSlpVRERGNlFsSHU4WExyb2dZ?=
+ =?utf-8?B?VUptYmZlMXN4d25uMnlnYm0wR0pTNnFBOWVkQWNLOGdiZmhnbTBma3pPWjZ2?=
+ =?utf-8?B?TUJ0am85SzdYUGdBNXdGaFkzRjZ0WSs0dWxQTTVYUXg3eFZyc2lCc2kxWktq?=
+ =?utf-8?B?YUh5SGREMUhQYnVlWkI5cElveHZEREs4UmpJbmI3WkNlSUhNTkN5ZE9tUU1z?=
+ =?utf-8?B?SUJMNXFmU290ZmNZdzdwMTZLQ3A2RnpyNFBaVHdDblVEU25VYkRXeEVrVWJ1?=
+ =?utf-8?B?dUlSOFV6R0xkaTBsN3ROTFFWdGtWVDdQRHNrclovWWhYTDlXT2hFd3JQVFRo?=
+ =?utf-8?B?Mit4U1BXNzlCOVZIek1XUXJYK01ZaXNpeFFIVFhtSFdTa1ljSGprcFMzOSt3?=
+ =?utf-8?B?WnVhTnM0RURoQXB2YW1IVnlQci9RSDFpaUhkdFRyYTdQeXA1Si9nTHdESS9N?=
+ =?utf-8?B?RUt6VmhIay80ckZ4Tzd0QWFWeTJzTmVMVnZHdGtIQnV5VitPVmNJYlhUMlpZ?=
+ =?utf-8?B?UTFEcW43WXVrV2IzbG1MRmJoUW1acGVKYUllc1BmeUI5RVNha0ppeWxiZk9r?=
+ =?utf-8?B?eG1LVkFuNVkxUlNlQS9lZTJidFkyYXJ0Yks1Z1g1M2JxeTNCbDAyaVpzTGt0?=
+ =?utf-8?B?QUV1MVRzY2ZFZXF5WGZlWGtYUVBEZW1mYnQwb0p5OEN2aVJyTkpjUTE1N0s5?=
+ =?utf-8?B?VHZmeWN4QWF2Vk5SMVBnUm5xbytVYnFNTEUvSWZZdFdQUUh4Q1dGbW9EZXJM?=
+ =?utf-8?B?eFZqWUgyT0NQaW45NEc0NEZnMFhFMGRLLzdrNi9Rb0hNVVdsUzdWU3hZM0dx?=
+ =?utf-8?B?S0ZJMk84aXBpWEN1U2NlVFJXbnU3aWVqWmtxbnh3K2VIWkcvSlBVYzQ4akN4?=
+ =?utf-8?B?NGNuS0JJbGwyK2NLSmFGWGpSSGVvbjFrTkJ3MjF3cFVQeFVJbkJVajVUaEti?=
+ =?utf-8?B?UnBzUmluMC9hWlB0dnRFV1Z3bUNEUy9ybkhTZ2J3a1RSWExJaHlqZGxmT0hV?=
+ =?utf-8?B?UTZyaXJFS1ZHZlJtK1B6VVVJQW1xZVI4SklMbnV0QlJpTm1XVlovNFREV1J1?=
+ =?utf-8?B?UWd6NHI2YlQwaCsrNEdiZmJtRmZ0QzdZdlNqVk15bmJVZDJVWjh0ejFISnhV?=
+ =?utf-8?B?UjVOMmx1MjJsNWxlajBpN0pMc0xmaHhuY3JVOG41NUhRNTZsRDJodXRoTnBa?=
+ =?utf-8?B?ckQ2MkRHN0QwS252K0VhWTVEQjBQazE1MWVtRDZPQ2drOS9PUUNlTDJEcEg4?=
+ =?utf-8?B?QmI5T2hpc00rK240dGdTUnBHSkdrZ05nU0ErTWxDT2lkRnlBa29rbzg0VTVD?=
+ =?utf-8?B?NS9OMnNzbVV3QnFsR3NoTWtXWXZMTmNaNkRZYVMyTmdFUkl1Mk13V3BVK2Nk?=
+ =?utf-8?B?eVp6THNxN3ErdE1tTEhrVTJjaUJSR3RXWldpZ3IyZjMwck9qaG9SMmlaRVlp?=
+ =?utf-8?B?cWM1S0gyV29KTnpyNkdUMFNSNlR1S3dxNm5GZkpidVFDM1lnRGNpTGQxTjMv?=
+ =?utf-8?B?aG5WcU9hV0JpRnpvRGFBU2VqR2Q2TUtDNWo3cjRKN21mN1c0ZlVONEwzSldn?=
+ =?utf-8?B?UzNzSitROCtxUERRdlBQL1pwVHQvTnJvZ29mYTBWZG5pa3BmYjJ4QkNGMjMy?=
+ =?utf-8?B?cU90Mm9Cdi8vYjJpZlBOd1h4b2h6ZkFVWTczWXNWN2ZaTU5ZWWlLVnl3RWlX?=
+ =?utf-8?Q?AZI8KxGiDPd+FT9e6MMNkeHSf?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 20f3d092-e5f8-42e7-9bcf-08dd77aa2b45
 X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB6714.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2025 21:03:41.1600 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2025 21:04:51.1998 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: sxfp/t/cZHB0PKJ4sn0Vnzg9aqbzz47XewG5nWRnbJISVrCJa5svsgoI1NBFSpFPIJe43DpTE8H/hNwqoxJ2ng==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR11MB8554
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8IEB7LPPynAdbqindMQNG/mMHU6lZ67n6ASI2GTyTHY4xiDbrQ3hxiHfGNjTxZZX2qwUXW3iFURn3+/M4LyokQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6115
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -197,388 +200,296 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--------------CNlXTYLnlGu4Emy4aBfcWuCG
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 08.04.2025 15:23, Michal Wajdeczko wrote:
+
+On 08.04.2025 15:34, Michal Wajdeczko wrote:
 > On 03.04.2025 20:40, Tomasz Lis wrote:
->> We have only one GGTT for all IOV functions, with each VF having assigned
->> a range of addresses for its use. After migration, a VF can receive a
->> different range of addresses than it had initially.
+>> Some GuC messages are constructed with incrementing dword counter
+>> rather than referencing specific DWORDs, as described in GuC interface
+>> specification.
 >>
->> This implements shifting GGTT addresses within drm_mm nodes, so that
->> VMAs stay valid after migration. This will make the driver use new
->> addresses when accessing GGTT from the moment the shifting ends.
+>> This change introduces the definitions of DWORD numbers for parameters
+>> which will need to be referenced in a CTB parser to be added in a
+>> following patch. To ensure correctness of these DWORDs, verification
+>> in form of asserts was added to the message construction code.
 >>
->> By taking the ggtt->lock for the period of VMA fixups, this change
->> also adds constraint on that mutex. Any locks used during the recovery
->> cannot ever wait for hardware response - because after migration,
->> the hardware will not do anything until fixups are finished.
->>
->> v2: Moved some functs to xe_ggtt.c; moved shift computation to just
->>    after querying; improved documentation; switched some warns to asserts;
->>    skipping fixups when GGTT shift eq 0; iterating through tiles (Michal)
->> v3: Updated kerneldocs, removed unused funct, properly allocate
->>    balloning nodes if non existent
->> v4: Re-used ballooning functions from VF init, used bool in place of
->>    standard error codes
->> v5: Renamed one function
->> v6: Subject tag change, several kerneldocs updated, some functions
->>    renamed, some moved, added several asserts, shuffled declarations
->>    of variables, revealed more detail in high level functions
+>> v2: Renamed enum members, added ones for single context registration,
+>>    modified asserts to check values rather than indexes.
 >>
 >> Signed-off-by: Tomasz Lis<tomasz.lis@intel.com>
+>> Suggested-by: Michal Wajdeczko<michal.wajdeczko@intel.com>
 >> ---
->>   drivers/gpu/drm/xe/xe_ggtt.c              | 39 ++++++++++
->>   drivers/gpu/drm/xe/xe_ggtt.h              |  1 +
->>   drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 93 +++++++++++++++++++++++
->>   drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |  2 +
->>   drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  2 +
->>   drivers/gpu/drm/xe/xe_sriov_vf.c          | 22 ++++++
->>   6 files changed, 159 insertions(+)
+>>   drivers/gpu/drm/xe/abi/guc_actions_abi.h | 29 ++++++++++++++++++++++++
+>>   drivers/gpu/drm/xe/xe_guc_submit.c       | 22 ++++++++++++++++++
+>>   2 files changed, 51 insertions(+)
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
->> index 769a8dc9be6e..ab6717671542 100644
->> --- a/drivers/gpu/drm/xe/xe_ggtt.c
->> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
->> @@ -484,6 +484,45 @@ void xe_ggtt_node_remove_balloon(struct xe_ggtt_node *node)
->>   	drm_mm_remove_node(&node->base);
->>   }
+>> diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+>> index 448afb86e05c..64c71526356e 100644
+>> --- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+>> +++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+>> @@ -161,6 +161,35 @@ enum xe_guc_preempt_options {
+>>   	XE_GUC_PREEMPT_OPTION_DROP_SUBMIT_Q = 0x8,
+>>   };
 >>   
->> +/**
->> + * xe_ggtt_shift_nodes - Shift GGTT nodes to adjust for a change in usable address range.
->> + * @ggtt: the &xe_ggtt struct instance
->> + * @shift: change to the location of area provisioned for current VF
->> + *
->> + * This function moves all nodes from the GGTT VM, to a temp list. These nodes are expected
->> + * to represent allocations in range formerly assigned to current VF, before the range changed.
->> + * When the GGTT VM is completely clear of any nodes, they are re-added with shifted offsets.
->> + *
->> + * The function has no ability of failing - because it shifts existing nodes, without
->> + * any additional processing. If the nodes were successfully existing at the old address,
->> + * they will do the same at the new one. A fail inside this function would indicate that> + * the list of nodes was either already damaged, or that the shift
-> brings the address ramge
->
-> typo
-right
->> + * outside of valid bounds. Both cases justify an assert rather than error code.
->> + */
->> +void xe_ggtt_shift_nodes(struct xe_ggtt *ggtt, s64 shift)
-> xe_ggtt_shift_nodes_locked() ?
-will rename
->> +{
-> 	struct xe_tile *tile __maybe_unused = ggtt->tile;
-  ok
->> +	struct drm_mm_node *node, *tmpn;
->> +	LIST_HEAD(temp_list_head);
->> +	int err;
+>> +enum xe_guc_register_context_param_offsets {
+>> +	XE_GUC_REGISTER_CONTEXT_DATA_0_MBZ = 0,
+>> +	XE_GUC_REGISTER_CONTEXT_DATA_1_FLAGS,
+>> +	XE_GUC_REGISTER_CONTEXT_DATA_2_CONTEXT_INDEX,
+>> +	XE_GUC_REGISTER_CONTEXT_DATA_3_ENGINE_CLASS,
+>> +	XE_GUC_REGISTER_CONTEXT_DATA_4_ENGINE_SUBMIT_MASK,
+>> +	XE_GUC_REGISTER_CONTEXT_DATA_5_WQ_DESC_ADDR_LOWER,
+>> +	XE_GUC_REGISTER_CONTEXT_DATA_6_WQ_DESC_ADDR_UPPER,
+>> +	XE_GUC_REGISTER_CONTEXT_DATA_7_WQ_BUF_BASE_LOWER,
+>> +	XE_GUC_REGISTER_CONTEXT_DATA_8_WQ_BUF_BASE_UPPER,
+>> +	XE_GUC_REGISTER_CONTEXT_DATA_9_WQ_BUF_SIZE,
+>> +	XE_GUC_REGISTER_CONTEXT_DATA_10_HW_LRC_ADDR,
+>> +};
 >> +
->> +	lockdep_assert_held(&ggtt->lock);
+>> +enum xe_guc_register_context_multi_lrc_param_offsets {
+>> +	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_0_MBZ = 0,
+>> +	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_1_FLAGS,
+>> +	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_2_PARENT_CONTEXT,
+>> +	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_3_ENGINE_CLASS,
+>> +	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_4_ENGINE_SUBMIT_MASK,
+>> +	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_5_WQ_DESC_ADDR_LOWER,
+>> +	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_6_WQ_DESC_ADDR_UPPER,
+>> +	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_7_WQ_BUF_BASE_LOWER,
+>> +	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_8_WQ_BUF_BASE_UPPER,
+>> +	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_9_WQ_BUF_SIZE,
+>> +	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_10_NUM_CTXS,
+>> +	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_11_HW_LRC_ADDR,
+>> +};
 >> +
-> what about doing early exit here if shift is 0?
->
-> 	if (!shift)
-> 		return;
->
-> your asserts below will be simpler
-I don't see how this would make the asserts simpler. I see this as just 
-extra 2 or 3 lines with no effect on functionality.
->> +	drm_mm_for_each_node_safe(node, tmpn, &ggtt->mm) {
-> btw, shouldn't we have asserts here instead?
-our intention is not to verify the previous list of nodes, but the new one.
->> +		drm_mm_remove_node(node);
->> +		list_add(&node->node_list, &temp_list_head);
->> +	}
->> +
->> +	list_for_each_entry_safe(node, tmpn, &temp_list_head, node_list) {
->> +		xe_tile_assert(ggtt->tile, shift >= 0 || node->start >= (u64)(-shift));
-> shouldn't this be:
->
-> xe_tile_assert(tile, node->start + shift >= xe_wopcm_size(xe));
-> xe_tile_assert(tile, node->start + node->size + shift <
-> 		ggtt->size - xe_wopcm_size(xe));
-
-that's not equivalent, as addition could lead to overflow. This way 
-we're ignoring overflow, and accepting the shift if only the wrapped 
-value falls into proper range.
-
-but - while it's less useful, it's also a lot cleaner looking and has 
-lower chance of getting misinterpreted later. so, will change.
-
-> or maybe better introduce:
->
-> xe_ggtt_assert_fit(ggtt, start, size)
-> {
-> 	xe_tile_assert(tile, start >= wopcm);
-> 	xe_tile_assert(tile, start + size < ggtt->size - wopcm);
-> }
->
-> and then:
->
-> 	xe_ggtt_assert_fit(ggtt, node->start + shift, node->size);
-This make it completely impossible to detect overflow. But, will do.
->> +		xe_tile_assert(ggtt->tile, shift <= 0 || node->start + node->size <
->> +			       node->start + node->size + (u64)shift);
->> +		list_del(&node->node_list);
->> +		node->start += shift;
->> +		err = drm_mm_reserve_node(&ggtt->mm, node);
->> +		xe_tile_assert(ggtt->tile, !err);
->> +	}
->> +}
->> +
->>   /**
->>    * xe_ggtt_node_insert_locked - Locked version to insert a &xe_ggtt_node into the GGTT
->>    * @node: the &xe_ggtt_node to be inserted
->> diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
->> index 27e7d67de004..eb39023c4e1b 100644
->> --- a/drivers/gpu/drm/xe/xe_ggtt.h
->> +++ b/drivers/gpu/drm/xe/xe_ggtt.h
->> @@ -18,6 +18,7 @@ void xe_ggtt_node_fini(struct xe_ggtt_node *node);
->>   int xe_ggtt_node_insert_balloon(struct xe_ggtt_node *node,
->>   				u64 start, u64 size);
->>   void xe_ggtt_node_remove_balloon(struct xe_ggtt_node *node);
->> +void xe_ggtt_shift_nodes(struct xe_ggtt *ggtt, s64 shift);
+>>   enum xe_guc_report_status {
+>>   	XE_GUC_REPORT_STATUS_UNKNOWN = 0x0,
+>>   	XE_GUC_REPORT_STATUS_ACKED = 0x1,
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+>> index 31bc2022bfc2..63ef06d3a28f 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+>> @@ -485,6 +485,18 @@ static void __register_mlrc_exec_queue(struct xe_guc *guc,
+>>   		action[len++] = upper_32_bits(xe_lrc_descriptor(lrc));
+>>   	}
 >>   
->>   int xe_ggtt_node_insert(struct xe_ggtt_node *node, u32 size, u32 align);
->>   int xe_ggtt_node_insert_locked(struct xe_ggtt_node *node,
->> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
->> index c3ca33725161..50b0c3b7be8c 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
->> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
->> @@ -415,12 +415,20 @@ static int vf_get_ggtt_info(struct xe_gt *gt)
->>   	xe_gt_sriov_dbg_verbose(gt, "GGTT %#llx-%#llx = %lluK\n",
->>   				start, start + size - 1, size / SZ_1K);
->>   
->> +	config->ggtt_shift = start - (s64)config->ggtt_base;
->>   	config->ggtt_base = start;
->>   	config->ggtt_size = size;
->>   
->>   	return config->ggtt_size ? 0 : -ENODATA;
->>   }
->>   
->> +s32 xe_gt_sriov_vf_ggtt_shift(struct xe_gt *gt)
-> public functions are required to have kernel-doc
-ok
->> +{
->> +	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
->> +
->> +	return config->ggtt_shift;
->> +}
->> +
->>   static int vf_get_lmem_info(struct xe_gt *gt)
->>   {
->>   	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
->> @@ -809,6 +817,91 @@ int xe_gt_sriov_vf_connect(struct xe_gt *gt)
->>   	return err;
->>   }
->>   
->> +/**
->> + * DOC: GGTT nodes shifting during VF post-migration recovery
->> + *
->> + * The first fixup applied to the VF KMD structures as part of post-migration
->> + * recovery is shifting nodes within xe_ggtt instance. The nodes are moved
->> + * from range previously assigned to this VF, into newly provisioned area.
->> + * The chanes include balloons, which are resized accordingly.
-> typo
-ok
->> + *
->> + * The balloon nodes are there to eliminate unavailable ranges from use: one
->> + * reserves the GGTT area below the range for current VF, and another one
->> + * reserves area above.
->> + *
->> + * Below is a GGTT layout of example VF, with a certain address range assigned to
->> + * said VF, and inaccessible areas above and below:
->> + *
->> + *  0                                                                        4GiB
->> + *  |<--------------------------- Total GGTT size ----------------------------->|
->> + *      WOPCM                                                         GUC_TOP
->> + *      |<-------------- Area mappable by xe_ggtt instance ---------------->|
->> + *
->> + *  +---+---------------------------------+----------+----------------------+---+
->> + *  |\\\|/////////////////////////////////|  VF mem  |//////////////////////|\\\|
->> + *  +---+---------------------------------+----------+----------------------+---+
->> + *
->> + * Hardware enforced access rules before migration:
->> + *
->> + *  |<------- inaccessible for VF ------->|<VF owned>|<-- inaccessible for VF ->|
->> + *
->> + * GGTT nodes used for tracking allocations:
->> + *
->> + *     |<----------- balloon ------------>|<- nodes->|<----- balloon ------>|
->> + *
->> + * After the migration, GGTT area assigned to the VF might have shifted, either
->> + * to lower or to higher address. But we expect the total size and extra areas to
->> + * be identical, as migration can only happen between matching platforms.
->> + * Below is an example of GGTT layout of the VF after migration. Content of the
->> + * GGTT for VF has been moved to a new area, and we receive its address from GuC:
->> + *
->> + *  +---+----------------------+----------+---------------------------------+---+
->> + *  |\\\|//////////////////////|  VF mem  |/////////////////////////////////|\\\|
->> + *  +---+----------------------+----------+---------------------------------+---+
->> + *
->> + * Hardware enforced access rules after migration:
->> + *
->> + *  |<- inaccessible for VF -->|<VF owned>|<------- inaccessible for VF ------->|
->> + *
->> + * So the VF has a new slice of GGTT assigned, and during migration process, the
->> + * memory content was copied to that new area. But the drm_mm nodes within xe kmd
->> + * are still tracking allocations using the old addresses. The nodes within VF
->> + * owned area have to be shifted, and balloon nodes need to be resized to
->> + * properly mask out areas not owned by the VF.
->> + *
->> + * Fixed drm_mm nodes used for tracking allocations:
->> + *
->> + *     |<------ balloon ------>|<- nodes->|<----------- balloon ----------->|
->> + *
->> + * Due to use of GPU profiles, we do not expect the old and new GGTT ares to
->> + * overlap; but our node shifting will fix addresses properly regardless.
->> + */
->> +
->> +/**
->> + * xe_gt_sriov_vf_fixup_ggtt_nodes - Shift GGTT allocations to match assigned range.
->> + * @gt: the &xe_gt struct instance
->> + * @ggtt_shift: the shift value
->> + *
->> + * Since Global GTT is not virtualized, each VF has an assigned range
->> + * within the global space. This range might have changed during migration,
->> + * which requires all memory addresses pointing to GGTT to be shifted.
->> + */
->> +void xe_gt_sriov_vf_fixup_ggtt_nodes(struct xe_gt *gt, s64 ggtt_shift)
->> +{
->> +	struct xe_tile *tile = gt_to_tile(gt);
->> +	struct xe_ggtt *ggtt = tile->mem.ggtt;
->> +
->> +	xe_gt_assert(gt, !xe_gt_is_media_type(gt));
->> +
->> +	mutex_lock(&ggtt->lock);
->> +	if (ggtt_shift) {
-> early exit before taking a lock?
-This whole condition is pointless and brings no benefit. Will remove.
->> +		xe_gt_sriov_vf_deballoon_ggtt_locked(gt);
->> +		xe_ggtt_shift_nodes(ggtt, ggtt_shift);
->> +		xe_gt_sriov_vf_balloon_ggtt_locked(gt);
->> +	}
->> +	mutex_unlock(&ggtt->lock);
->> +}
->> +
->>   /**
->>    * xe_gt_sriov_vf_migrated_event_handler - Start a VF migration recovery,
->>    *   or just mark that a GuC is ready for it.
->> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
->> index d717deb8af91..904a600063e6 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
->> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
->> @@ -20,6 +20,8 @@ int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt);
->>   int xe_gt_sriov_vf_prepare_ggtt(struct xe_gt *gt);
->>   int xe_gt_sriov_vf_balloon_ggtt_locked(struct xe_gt *gt);
->>   void xe_gt_sriov_vf_deballoon_ggtt_locked(struct xe_gt *gt);
->> +s32 xe_gt_sriov_vf_ggtt_shift(struct xe_gt *gt);
->> +void xe_gt_sriov_vf_fixup_ggtt_nodes(struct xe_gt *gt, s64 ggtt_shift);
->>   int xe_gt_sriov_vf_notify_resfix_done(struct xe_gt *gt);
->>   void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt);
->>   
->> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
->> index a57f13b5afcd..5ccbdf8d08b6 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
->> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
->> @@ -40,6 +40,8 @@ struct xe_gt_sriov_vf_selfconfig {
->>   	u64 ggtt_base;
->>   	/** @ggtt_size: assigned size of the GGTT region. */
->>   	u64 ggtt_size;
->> +	/** @ggtt_shift: difference in ggtt_base on last migration */
->> +	s64 ggtt_shift;
->>   	/** @lmem_size: assigned size of the LMEM. */
->>   	u64 lmem_size;
->>   	/** @num_ctxs: assigned number of GuC submission context IDs. */
->> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
->> index c1275e64aa9c..e70f1ceabbb3 100644
->> --- a/drivers/gpu/drm/xe/xe_sriov_vf.c
->> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
->> @@ -7,6 +7,7 @@
->>   
->>   #include "xe_assert.h"
->>   #include "xe_device.h"
->> +#include "xe_gt.h"
->>   #include "xe_gt_sriov_printk.h"
->>   #include "xe_gt_sriov_vf.h"
->>   #include "xe_pm.h"
->> @@ -170,6 +171,25 @@ static bool vf_post_migration_imminent(struct xe_device *xe)
->>   	work_pending(&xe->sriov.vf.migration.worker);
->>   }
->>   
->> +static bool vf_post_migration_fixup_ggtt_nodes(struct xe_device *xe)
-> nit: the "fixup" word in the function name here, which means "shift"
-> here, slightly conflicts with the "fixup" in the steps we plan to do
-> later, where we actually will do some "fixup" due to shifted GGTT
-
-The shifting of nodes is not a pre-fixup part, it is already a fixup. 
-The xe_ggtt requires fixups.
-
-Whether subsequent fixups will use already fixed xe_ggtt or apply the 
-shift directly, it just an implementation decision.
-
-> so maybe:
+> nit: if we want to keep these asserts then small comment saying
 >
-> s/vf_post_migration_fixup_ggtt_nodes/vf_post_migration_shift_ggtt_nodes
-> s/xe_gt_sriov_vf_fixup_ggtt_nodes/xe_gt_sriov_vf_shift_ggtt_nodes
+> 	/* explicitly checks some fields that we might fixup later */
 >
-> but likely you will resist like always ...
+> will not hurt
+will add
+>> +	xe_gt_assert(guc_to_gt(guc),
+>> +		     action[XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_5_WQ_DESC_ADDR_LOWER]
+>> +		     == info->wq_desc_lo);
+>> +	xe_gt_assert(guc_to_gt(guc),
+>> +		     action[XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_7_WQ_BUF_BASE_LOWER]
+>> +		     == info->wq_base_lo);
+>> +	xe_gt_assert(guc_to_gt(guc),
+>> +		     action[XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_10_NUM_CTXS]
+>> +		     == q->width);
+>> +	xe_gt_assert(guc_to_gt(guc),
+>> +		     action[XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_11_HW_LRC_ADDR]
+>> +		     == info->hwlrca_lo);
+> maybe we can spare one line in each assert by:
+>
+> xe_gt_assert(guc_to_gt(guc), info->hwlrca_lo ==
+> 	action[XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_11_HW_LRC_ADDR]);
+>
+> or by introducing:
+>
+> 	xe_guc_assert(guc, cond)
+>
+> or by ignoring 100 column limit - it will not be first time in xe ;)
 
-True, I will always resist changes which go against some general concepts.
+will switch order of operands.
 
-In this case, we have post-migration recovery. The purpose of 
-post-migration recovery is - by arch document - to do fixups. One of the 
-fixups is shifting drm_mm nodes wrapped with xe_ggtt.
+a macro wouldn't be much better, unless it merges the enum name, ie. 
+`XE_GUC_REGISTER_CONTEXT_ ## part_name`.
 
-So the order of detail is: recovery [contains]-> fixups [contains]-> 
-shifting. Naming of functions should correspond to this order.
-
-With that, `vf_post_migration_fixup_ggtt_nodes()` is the name best 
-representing both what is being done, and the architectural concept.
-
-For what is called within - currently 
-`xe_gt_sriov_vf_fixup_ggtt_nodes()` - that function is doing the same 
-thing just on different level of objects, so the name should use the 
-same wording.
-
-Especially after, due to the review changes, it now consists of 3 steps: 
-deballoon, shift nodes, re-balloon. These 3 steps can be nicely called 
-fixing up ggtt nodes.
+But I really don't like such techniques, as I then _always_ hear someone 
+can't find the name and is confused.
 
 -Tomasz
 
->> +{
->> +	bool need_fixups = false;
->> +	struct xe_tile *tile;
->> +	unsigned int id;
->> +
->> +	for_each_tile(tile, xe, id) {
->> +		struct xe_gt *gt = tile->primary_gt;
->> +		s64 shift;
->> +
->> +		shift = xe_gt_sriov_vf_ggtt_shift(gt);
->> +		if (shift) {
->> +			need_fixups = true;
->> +			xe_gt_sriov_vf_fixup_ggtt_nodes(gt, shift);
->> +		}
->> +	}
->> +	return need_fixups;
->> +}
->> +
->>   /*
->>    * Notify all GuCs about resource fixups apply finished.
->>    */
->> @@ -191,6 +211,7 @@ static void vf_post_migration_notify_resfix_done(struct xe_device *xe)
+>>   	xe_gt_assert(guc_to_gt(guc), len <= MAX_MLRC_REG_SIZE);
+>>   #undef MAX_MLRC_REG_SIZE
 >>   
->>   static void vf_post_migration_recovery(struct xe_device *xe)
->>   {
->> +	bool need_fixups;
->>   	int err;
+>> @@ -509,6 +521,16 @@ static void __register_exec_queue(struct xe_guc *guc,
+>>   		info->hwlrca_hi,
+>>   	};
 >>   
->>   	drm_dbg(&xe->drm, "migration recovery in progress\n");
->> @@ -201,6 +222,7 @@ static void vf_post_migration_recovery(struct xe_device *xe)
->>   	if (unlikely(err))
->>   		goto fail;
+>> +	xe_gt_assert(guc_to_gt(guc),
+>> +		     action[XE_GUC_REGISTER_CONTEXT_DATA_5_WQ_DESC_ADDR_LOWER]
+>> +		     == info->wq_desc_lo);
+>> +	xe_gt_assert(guc_to_gt(guc),
+>> +		     action[XE_GUC_REGISTER_CONTEXT_DATA_7_WQ_BUF_BASE_LOWER]
+>> +		     == info->wq_base_lo);
+>> +	xe_gt_assert(guc_to_gt(guc),
+>> +		     action[XE_GUC_REGISTER_CONTEXT_DATA_10_HW_LRC_ADDR]
+>> +		     == info->hwlrca_lo);
+>> +
+>>   	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action), 0, 0);
+>>   }
 >>   
->> +	need_fixups = vf_post_migration_fixup_ggtt_nodes(xe);
->>   	/* FIXME: add the recovery steps */
->>   	vf_post_migration_notify_resfix_done(xe);
->>   	xe_pm_runtime_put(xe);
+> otherwise, since I don't have better ideas for enum names, LGTM
+>
+--------------CNlXTYLnlGu4Emy4aBfcWuCG
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 08.04.2025 15:34, Michal Wajdeczko
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:b999151b-923d-457b-97eb-ef656cd7c1d3@intel.com">
+      <pre wrap="" class="moz-quote-pre">On 03.04.2025 20:40, Tomasz Lis wrote:
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">Some GuC messages are constructed with incrementing dword counter
+rather than referencing specific DWORDs, as described in GuC interface
+specification.
+
+This change introduces the definitions of DWORD numbers for parameters
+which will need to be referenced in a CTB parser to be added in a
+following patch. To ensure correctness of these DWORDs, verification
+in form of asserts was added to the message construction code.
+
+v2: Renamed enum members, added ones for single context registration,
+  modified asserts to check values rather than indexes.
+
+Signed-off-by: Tomasz Lis <a class="moz-txt-link-rfc2396E" href="mailto:tomasz.lis@intel.com">&lt;tomasz.lis@intel.com&gt;</a>
+Suggested-by: Michal Wajdeczko <a class="moz-txt-link-rfc2396E" href="mailto:michal.wajdeczko@intel.com">&lt;michal.wajdeczko@intel.com&gt;</a>
+---
+ drivers/gpu/drm/xe/abi/guc_actions_abi.h | 29 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_submit.c       | 22 ++++++++++++++++++
+ 2 files changed, 51 insertions(+)
+
+diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+index 448afb86e05c..64c71526356e 100644
+--- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+@@ -161,6 +161,35 @@ enum xe_guc_preempt_options {
+ 	XE_GUC_PREEMPT_OPTION_DROP_SUBMIT_Q = 0x8,
+ };
+ 
++enum xe_guc_register_context_param_offsets {
++	XE_GUC_REGISTER_CONTEXT_DATA_0_MBZ = 0,
++	XE_GUC_REGISTER_CONTEXT_DATA_1_FLAGS,
++	XE_GUC_REGISTER_CONTEXT_DATA_2_CONTEXT_INDEX,
++	XE_GUC_REGISTER_CONTEXT_DATA_3_ENGINE_CLASS,
++	XE_GUC_REGISTER_CONTEXT_DATA_4_ENGINE_SUBMIT_MASK,
++	XE_GUC_REGISTER_CONTEXT_DATA_5_WQ_DESC_ADDR_LOWER,
++	XE_GUC_REGISTER_CONTEXT_DATA_6_WQ_DESC_ADDR_UPPER,
++	XE_GUC_REGISTER_CONTEXT_DATA_7_WQ_BUF_BASE_LOWER,
++	XE_GUC_REGISTER_CONTEXT_DATA_8_WQ_BUF_BASE_UPPER,
++	XE_GUC_REGISTER_CONTEXT_DATA_9_WQ_BUF_SIZE,
++	XE_GUC_REGISTER_CONTEXT_DATA_10_HW_LRC_ADDR,
++};
++
++enum xe_guc_register_context_multi_lrc_param_offsets {
++	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_0_MBZ = 0,
++	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_1_FLAGS,
++	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_2_PARENT_CONTEXT,
++	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_3_ENGINE_CLASS,
++	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_4_ENGINE_SUBMIT_MASK,
++	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_5_WQ_DESC_ADDR_LOWER,
++	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_6_WQ_DESC_ADDR_UPPER,
++	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_7_WQ_BUF_BASE_LOWER,
++	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_8_WQ_BUF_BASE_UPPER,
++	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_9_WQ_BUF_SIZE,
++	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_10_NUM_CTXS,
++	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_11_HW_LRC_ADDR,
++};
++
+ enum xe_guc_report_status {
+ 	XE_GUC_REPORT_STATUS_UNKNOWN = 0x0,
+ 	XE_GUC_REPORT_STATUS_ACKED = 0x1,
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 31bc2022bfc2..63ef06d3a28f 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -485,6 +485,18 @@ static void __register_mlrc_exec_queue(struct xe_guc *guc,
+ 		action[len++] = upper_32_bits(xe_lrc_descriptor(lrc));
+ 	}
+ 
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">nit: if we want to keep these asserts then small comment saying
+
+	/* explicitly checks some fields that we might fixup later */
+
+will not hurt</pre>
+    </blockquote>
+    will add<br>
+    <blockquote type="cite" cite="mid:b999151b-923d-457b-97eb-ef656cd7c1d3@intel.com">
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">+	xe_gt_assert(guc_to_gt(guc),
++		     action[XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_5_WQ_DESC_ADDR_LOWER]
++		     == info-&gt;wq_desc_lo);
++	xe_gt_assert(guc_to_gt(guc),
++		     action[XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_7_WQ_BUF_BASE_LOWER]
++		     == info-&gt;wq_base_lo);
++	xe_gt_assert(guc_to_gt(guc),
++		     action[XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_10_NUM_CTXS]
++		     == q-&gt;width);
++	xe_gt_assert(guc_to_gt(guc),
++		     action[XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_11_HW_LRC_ADDR]
++		     == info-&gt;hwlrca_lo);
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">maybe we can spare one line in each assert by:
+
+xe_gt_assert(guc_to_gt(guc), info-&gt;hwlrca_lo ==
+	action[XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_11_HW_LRC_ADDR]);
+
+or by introducing:
+
+	xe_guc_assert(guc, cond)
+
+or by ignoring 100 column limit - it will not be first time in xe ;)</pre>
+    </blockquote>
+    <p>will switch order of operands.</p>
+    <p>a macro wouldn't be much better, unless it merges the enum name,
+      ie. `<span style="white-space: pre-wrap">XE_GUC_REGISTER_CONTEXT_ ## part_name`.</span></p>
+    <p><span style="white-space: pre-wrap">But I really don't like such techniques, as I then _always_ hear someone can't find the name and is confused.</span></p>
+    <p><span style="white-space: pre-wrap">-Tomasz
+</span></p>
+    <blockquote type="cite" cite="mid:b999151b-923d-457b-97eb-ef656cd7c1d3@intel.com">
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre"> 	xe_gt_assert(guc_to_gt(guc), len &lt;= MAX_MLRC_REG_SIZE);
+ #undef MAX_MLRC_REG_SIZE
+ 
+@@ -509,6 +521,16 @@ static void __register_exec_queue(struct xe_guc *guc,
+ 		info-&gt;hwlrca_hi,
+ 	};
+ 
++	xe_gt_assert(guc_to_gt(guc),
++		     action[XE_GUC_REGISTER_CONTEXT_DATA_5_WQ_DESC_ADDR_LOWER]
++		     == info-&gt;wq_desc_lo);
++	xe_gt_assert(guc_to_gt(guc),
++		     action[XE_GUC_REGISTER_CONTEXT_DATA_7_WQ_BUF_BASE_LOWER]
++		     == info-&gt;wq_base_lo);
++	xe_gt_assert(guc_to_gt(guc),
++		     action[XE_GUC_REGISTER_CONTEXT_DATA_10_HW_LRC_ADDR]
++		     == info-&gt;hwlrca_lo);
++
+ 	xe_guc_ct_send(&amp;guc-&gt;ct, action, ARRAY_SIZE(action), 0, 0);
+ }
+ 
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">otherwise, since I don't have better ideas for enum names, LGTM
+
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------CNlXTYLnlGu4Emy4aBfcWuCG--
