@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 078D5C36002
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Apr 2025 07:04:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 834CEC36002
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Apr 2025 07:06:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C035810E02F;
-	Wed,  9 Apr 2025 07:04:08 +0000 (UTC)
-Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE14510E02F;
- Wed,  9 Apr 2025 07:04:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6363837370605268648=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 309F410E7E7;
+	Wed,  9 Apr 2025 07:06:00 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NiKv8Wvd";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02EFA10E7E7;
+ Wed,  9 Apr 2025 07:05:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744182359; x=1775718359;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=UpUp6JoJWvsj7fV0IWNHwVNCSKVwAB2RT+NzUqjqxjA=;
+ b=NiKv8WvdQ4sZrQm7mtJkVYc9W8EolSUCNI4HT4aPksaZFw0G9SL2x8fA
+ RWUvPfiB0nSfwWL1Zwj0mlIEvAgEciBrWLMdIQOvD2sKDe8gY1x95o2zQ
+ 3iAb29z2SFk2XjW42Azr5G8ezJzso9py6ulc5VmQoFjMpPejE6IuyRlhL
+ HO8IEb4e5d2ewQtrtn8S+yiWzOUs7EM8+FpmchfMGwb5QLhXeItuxHuST
+ fja6ftdDgPH3d967PL4xf2GxlbgwHwJav/Lj5jOjRj+ATw4Sx8+haTprD
+ 0hDPPHGU4oTjH5Hre4cjKqXnJq/6J8MSjcqouRV2yiDbmYkwG1g8yo6cZ A==;
+X-CSE-ConnectionGUID: SN/o1EUHQciibMBeswrQtA==
+X-CSE-MsgGUID: HiW/DXIVRgWTsfpnNUamLg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="45532437"
+X-IronPort-AV: E=Sophos;i="6.15,200,1739865600"; d="scan'208";a="45532437"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2025 00:05:39 -0700
+X-CSE-ConnectionGUID: bvc1UkM9RMm6MCxZu9vKUA==
+X-CSE-MsgGUID: ZKxgu0xoRTiLrmR9Bg6BUA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,200,1739865600"; d="scan'208";a="133484518"
+Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.201])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2025 00:05:36 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: Re: [PATCH topic/core-for-CI] Revert "libata: Downgrade unsupported
+ feature warnings to notifications"
+In-Reply-To: <20250408194331.11046-1-lucas.demarchi@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250408194331.11046-1-lucas.demarchi@intel.com>
+Date: Wed, 09 Apr 2025 10:05:33 +0300
+Message-ID: <87cydlyfuq.fsf@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/vrr=3A_Stop_writin?=
- =?utf-8?q?g_VRR=5FCTL=5FIGN=5FMAX=5FSHIFT_for_MTL_onwards?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 09 Apr 2025 07:04:06 -0000
-Message-ID: <174418224670.51035.4777511146611228799@e6b6f09ec485>
-X-Patchwork-Hint: ignore
-References: <20250409054909.968531-1-jouni.hogander@intel.com>
-In-Reply-To: <20250409054909.968531-1-jouni.hogander@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +66,83 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6363837370605268648==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 08 Apr 2025, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> This reverts commit 3f412047c54e28ecd50c10bdcec698f166c861e8.
+>
+> Tentative removal from topic/core-for-CI.
+>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-== Series Details ==
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 
-Series: drm/i915/vrr: Stop writing VRR_CTL_IGN_MAX_SHIFT for MTL onwards
-URL   : https://patchwork.freedesktop.org/series/147443/
-State : success
+> ---
+>  drivers/ata/libata-core.c | 16 ++++++++--------
+>  1 file changed, 8 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/ata/libata-core.c b/drivers/ata/libata-core.c
+> index 14bed90d83367..773799cfd4430 100644
+> --- a/drivers/ata/libata-core.c
+> +++ b/drivers/ata/libata-core.c
+> @@ -2178,7 +2178,7 @@ static bool ata_identify_page_supported(struct ata_device *dev, u8 page)
+>  		 * for drives which implement this ATA level or above.
+>  		 */
+>  		if (ata_id_major_version(dev->id) >= 10)
+> -			ata_dev_notice(dev,
+> +			ata_dev_warn(dev,
+>  				"ATA Identify Device Log not supported\n");
+>  		dev->quirks |= ATA_QUIRK_NO_ID_DEV_LOG;
+>  		return false;
+> @@ -2249,7 +2249,7 @@ static void ata_dev_config_ncq_send_recv(struct ata_device *dev)
+>  	unsigned int err_mask;
+>  
+>  	if (!ata_log_supported(dev, ATA_LOG_NCQ_SEND_RECV)) {
+> -		ata_dev_notice(dev, "NCQ Send/Recv Log not supported\n");
+> +		ata_dev_warn(dev, "NCQ Send/Recv Log not supported\n");
+>  		return;
+>  	}
+>  	err_mask = ata_read_log_page(dev, ATA_LOG_NCQ_SEND_RECV,
+> @@ -2273,8 +2273,8 @@ static void ata_dev_config_ncq_non_data(struct ata_device *dev)
+>  	unsigned int err_mask;
+>  
+>  	if (!ata_log_supported(dev, ATA_LOG_NCQ_NON_DATA)) {
+> -		ata_dev_notice(dev,
+> -			       "NCQ Non-Data Log not supported\n");
+> +		ata_dev_warn(dev,
+> +			     "NCQ Non-Data Log not supported\n");
+>  		return;
+>  	}
+>  	err_mask = ata_read_log_page(dev, ATA_LOG_NCQ_NON_DATA,
+> @@ -2937,14 +2937,14 @@ int ata_dev_configure(struct ata_device *dev)
+>  		if (ata_id_is_cfa(id)) {
+>  			/* CPRM may make this media unusable */
+>  			if (id[ATA_ID_CFA_KEY_MGMT] & 1)
+> -				ata_dev_notice(dev,
+> +				ata_dev_warn(dev,
+>  	"supports DRM functions and may not be fully accessible\n");
+>  			snprintf(revbuf, 7, "CFA");
+>  		} else {
+>  			snprintf(revbuf, 7, "ATA-%d", ata_id_major_version(id));
+>  			/* Warn the user if the device has TPM extensions */
+>  			if (ata_id_has_tpm(id))
+> -				ata_dev_notice(dev,
+> +				ata_dev_warn(dev,
+>  	"supports DRM functions and may not be fully accessible\n");
+>  		}
+>  
+> @@ -3100,8 +3100,8 @@ int ata_dev_configure(struct ata_device *dev)
+>  	}
+>  
+>  	if ((dev->quirks & ATA_QUIRK_FIRMWARE_WARN) && print_info) {
+> -		ata_dev_notice(dev, "WARNING: device requires firmware update to be fully functional\n");
+> -		ata_dev_notice(dev, "         contact the vendor or visit http://ata.wiki.kernel.org\n");
+> +		ata_dev_warn(dev, "WARNING: device requires firmware update to be fully functional\n");
+> +		ata_dev_warn(dev, "         contact the vendor or visit http://ata.wiki.kernel.org\n");
+>  	}
+>  
+>  	return 0;
 
-== Summary ==
-
-CI Bug Log - changes from xe-2921-a49a4787e6bc70296204f4a6e1b0fed3759938cd_BAT -> xe-pw-147443v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-2921-a49a4787e6bc70296204f4a6e1b0fed3759938cd -> xe-pw-147443v1
-
-  IGT_8311: 851a9c1cb1a690d8c527f26c49c250ec583af65e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2921-a49a4787e6bc70296204f4a6e1b0fed3759938cd: a49a4787e6bc70296204f4a6e1b0fed3759938cd
-  xe-pw-147443v1: 147443v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147443v1/index.html
-
---===============6363837370605268648==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/vrr: Stop writing VRR_CTL_IGN_MAX_SHIFT for MTL onwards</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147443/">https://patchwork.freedesktop.org/series/147443/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147443v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147443v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2921-a49a4787e6bc70296204f4a6e1b0fed3759938cd_BAT -&gt; xe-pw-147443v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2921-a49a4787e6bc70296204f4a6e1b0fed3759938cd -&gt; xe-pw-147443v1</li>
-</ul>
-<p>IGT_8311: 851a9c1cb1a690d8c527f26c49c250ec583af65e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2921-a49a4787e6bc70296204f4a6e1b0fed3759938cd: a49a4787e6bc70296204f4a6e1b0fed3759938cd<br />
-  xe-pw-147443v1: 147443v1</p>
-
-</body>
-</html>
-
---===============6363837370605268648==--
+-- 
+Jani Nikula, Intel
