@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10590C369A6
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EEB3C369A1
 	for <intel-xe@archiver.kernel.org>; Wed,  9 Apr 2025 18:18:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA1EF10E6EE;
-	Wed,  9 Apr 2025 18:18:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29C6210E6EF;
+	Wed,  9 Apr 2025 18:18:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a+1xnDpk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NnJB+XD4";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E34A010E2FC;
- Wed,  9 Apr 2025 18:18:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11E5E10E6AB;
+ Wed,  9 Apr 2025 18:18:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744222726; x=1775758726;
+ t=1744222728; x=1775758728;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=iz+AY4nSj0rvRtED+06IlDj3E1AxV/oxCWt5mClN1jY=;
- b=a+1xnDpkbRN6a+CrkKNvF00HlThWS2Qahpj+u1sMJau9MkTJxpxYkm/o
- +88TsBv0BUZa6rtjE53vX09m/reOwRwZlnWWH5f5aiJRORwmOGfI1wTTT
- 9+flAgeHpNXQb5IGhQiCNn2oeQZuEMr0e75fIhy8aSCDNkAHspan3UAN4
- /wqHsU56CnlnTtcYYLtwxVFAitDfijDH2ghkkAJnA8eEbRpV1oMpmRhyu
- CPxCEUh7cVjsGFD8qczlvl7+Tl/apMeRgvp318prs//V8LZ1ljMfypMjX
- Gkto2mkLfU5K81rdR4ntbYrBHFMwjQfm/q5PPRe/gjmIBe1mD/7rWPtjO Q==;
-X-CSE-ConnectionGUID: 5LyEjGb7SP+jAgcErdspdA==
-X-CSE-MsgGUID: ZmiPHweaSWu6c7dPPxrLcA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11399"; a="57088365"
-X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; d="scan'208";a="57088365"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2025 11:18:38 -0700
-X-CSE-ConnectionGUID: FuPxqR5QQE2iu9Oi2Y9vPQ==
-X-CSE-MsgGUID: TWDwOciDS4C5fluMNocy4g==
+ bh=9UoEgr6Mlz7C5Kzhz/W4fPmaHsBXCkR9Cl7dNn9VV6U=;
+ b=NnJB+XD49gO1dwd93Gm245UgTYuZ9yTkg0QfOg04AFYHE6qZ6XICJIim
+ 9yRjiGgwMHBf8zYijqUA84E82c/b0bLeboRAgMK+b255zl+13t4vAknYY
+ orAOuSHZb3Y+WmpGbgZ5j1X7m7BlkkJOUNFxCz8BIoEwCP4O4lA4ZAN2L
+ wbo2hP3yZgakHoIPGUwno5Le/kunYBY8chMUg/dUd7gMmuVTZSEhdtRUS
+ xzmrSNkjdtFNidiqUiHZcbeMkr0xkz+tbZj7e5nKLM02twHoJ1HBRhyKj
+ MRNfYDTqKzlp1D4dATHbg+jDokWU6e17F+LBgX4NBLKl4kVDwtm2HpfSB Q==;
+X-CSE-ConnectionGUID: yUV7OTL7S+epMjCTHBgspQ==
+X-CSE-MsgGUID: 91j6cPAlRDelu+SU8sZeaw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11399"; a="45729956"
+X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; d="scan'208";a="45729956"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2025 11:18:48 -0700
+X-CSE-ConnectionGUID: TFcLfehYTUW4Q8ZyXAuy0A==
+X-CSE-MsgGUID: o+atZmE1Si++ZHesjM/i3Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; d="scan'208";a="133785348"
+X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; d="scan'208";a="165879036"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.201])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2025 11:18:37 -0700
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2025 11:18:46 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 06/14] drm/i915/crt: switch to display->platform based
+Subject: [PATCH 08/14] drm/i915/dp-aux: switch to display->platform based
  platform detection
-Date: Wed,  9 Apr 2025 21:17:47 +0300
-Message-Id: <83980c1ae53157ef5d65d7ce99b294889622faa8.1744222449.git.jani.nikula@intel.com>
+Date: Wed,  9 Apr 2025 21:17:49 +0300
+Message-Id: <a5cde717001eb2843344beb21ca8907ab2e43d4f.1744222449.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1744222449.git.jani.nikula@intel.com>
 References: <cover.1744222449.git.jani.nikula@intel.com>
@@ -75,75 +75,46 @@ macros.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crt.c | 13 ++++++-------
- 1 file changed, 6 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp_aux.c | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
-index cca22d2402e8..8908b51dc3b9 100644
---- a/drivers/gpu/drm/i915/display/intel_crt.c
-+++ b/drivers/gpu/drm/i915/display/intel_crt.c
-@@ -370,7 +370,7 @@ intel_crt_mode_valid(struct drm_connector *connector,
- 
- 	if (HAS_PCH_LPT(dev_priv))
- 		max_clock = 180000;
--	else if (IS_VALLEYVIEW(dev_priv))
-+	else if (display->platform.valleyview)
- 		/*
- 		 * 270 MHz due to current DPLL limits,
- 		 * DAC limit supposedly 355 MHz.
-@@ -591,7 +591,7 @@ static bool intel_crt_detect_hotplug(struct drm_connector *connector)
- 	if (HAS_PCH_SPLIT(dev_priv))
- 		return ilk_crt_detect_hotplug(connector);
- 
--	if (IS_VALLEYVIEW(dev_priv))
-+	if (display->platform.valleyview)
- 		return valleyview_crt_detect_hotplug(connector);
- 
- 	/*
-@@ -599,7 +599,7 @@ static bool intel_crt_detect_hotplug(struct drm_connector *connector)
- 	 * to get a reliable result.
- 	 */
- 
--	if (IS_G45(dev_priv))
-+	if (display->platform.g45)
- 		tries = 2;
- 	else
- 		tries = 1;
-@@ -940,7 +940,6 @@ intel_crt_detect(struct drm_connector *connector,
- static int intel_crt_get_modes(struct drm_connector *connector)
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+index 0496061203fb..3245a15935db 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+@@ -177,12 +177,11 @@ static u32 g4x_get_aux_send_ctl(struct intel_dp *intel_dp,
+ 				int send_bytes,
+ 				u32 aux_clock_divider)
  {
- 	struct intel_display *display = to_intel_display(connector->dev);
--	struct drm_i915_private *dev_priv = to_i915(connector->dev);
- 	struct intel_crt *crt = intel_attached_crt(to_intel_connector(connector));
- 	struct intel_encoder *encoder = &crt->base;
- 	intel_wakeref_t wakeref;
-@@ -953,7 +952,7 @@ static int intel_crt_get_modes(struct drm_connector *connector)
- 	wakeref = intel_display_power_get(display, encoder->power_domain);
+-	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+-	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
++	struct intel_display *display = to_intel_display(intel_dp);
+ 	u32 timeout;
  
- 	ret = intel_crt_ddc_get_modes(connector, connector->ddc);
--	if (ret || !IS_G4X(dev_priv))
-+	if (ret || !display->platform.g4x)
- 		goto out;
- 
- 	/* Try to probe digital port for output in DVI-I -> VGA mode. */
-@@ -1021,7 +1020,7 @@ void intel_crt_init(struct intel_display *display)
- 
- 	if (HAS_PCH_SPLIT(dev_priv))
- 		adpa_reg = PCH_ADPA;
--	else if (IS_VALLEYVIEW(dev_priv))
-+	else if (display->platform.valleyview)
- 		adpa_reg = VLV_ADPA;
+ 	/* Max timeout value on G4x-BDW: 1.6ms */
+-	if (IS_BROADWELL(i915))
++	if (display->platform.broadwell)
+ 		timeout = DP_AUX_CH_CTL_TIME_OUT_600us;
  	else
- 		adpa_reg = ADPA;
-@@ -1069,7 +1068,7 @@ void intel_crt_init(struct intel_display *display)
+ 		timeout = DP_AUX_CH_CTL_TIME_OUT_400us;
+@@ -804,7 +803,7 @@ void intel_dp_aux_init(struct intel_dp *intel_dp)
+ 	} else if (HAS_PCH_SPLIT(i915)) {
+ 		intel_dp->aux_ch_ctl_reg = ilk_aux_ctl_reg;
+ 		intel_dp->aux_ch_data_reg = ilk_aux_data_reg;
+-	} else if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
++	} else if (display->platform.valleyview || display->platform.cherryview) {
+ 		intel_dp->aux_ch_ctl_reg = vlv_aux_ctl_reg;
+ 		intel_dp->aux_ch_data_reg = vlv_aux_data_reg;
+ 	} else {
+@@ -814,7 +813,7 @@ void intel_dp_aux_init(struct intel_dp *intel_dp)
  
- 	crt->base.type = INTEL_OUTPUT_ANALOG;
- 	crt->base.cloneable = BIT(INTEL_OUTPUT_DVO) | BIT(INTEL_OUTPUT_HDMI);
--	if (IS_I830(dev_priv))
-+	if (display->platform.i830)
- 		crt->base.pipe_mask = BIT(PIPE_A);
- 	else
- 		crt->base.pipe_mask = ~0;
+ 	if (DISPLAY_VER(display) >= 9)
+ 		intel_dp->get_aux_clock_divider = skl_get_aux_clock_divider;
+-	else if (IS_BROADWELL(i915) || IS_HASWELL(i915))
++	else if (display->platform.broadwell || display->platform.haswell)
+ 		intel_dp->get_aux_clock_divider = hsw_get_aux_clock_divider;
+ 	else if (HAS_PCH_SPLIT(i915))
+ 		intel_dp->get_aux_clock_divider = ilk_get_aux_clock_divider;
 -- 
 2.39.5
 
