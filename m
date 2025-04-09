@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97920C369A8
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Apr 2025 18:18:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3460FC36002
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Apr 2025 18:18:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B7F210E2FC;
-	Wed,  9 Apr 2025 18:18:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1985810E6A3;
+	Wed,  9 Apr 2025 18:18:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JjkmxQsY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZXrXTfmL";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29AD010E2FA;
- Wed,  9 Apr 2025 18:18:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 584E810E2FC;
+ Wed,  9 Apr 2025 18:18:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744222724; x=1775758724;
+ t=1744222725; x=1775758725;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZNnrqDqVBllljMHy+aYGwGmpeuBaG1xIfV68Ou0WaIg=;
- b=JjkmxQsY2s0sV10WT2YrDXpAn2IoaSJyxjglr9sGzlVs3F1zBOKJ5S7n
- EjhVK+asz1CAvA0tJhf237POJ6B43HU1PXha8umaEzR+7aLBGizTQiAjM
- ngIJlqFNq70JkZx7HnsJAWonTb3j6YSfA2jAlInRmBWRHnbOvZ4R4VZvl
- JT8OLvlDVOavveLdM9ib3jdC9THNvuzypQj0Tf79qtxZnw8KCZVKv1MBo
- ir34yxzB7AYtjtX9JWNf+ramPin23NElS/Vjnuhesetbms7cRmLjoNxvf
- DmSOEcrxjUpx4Cy8X9Dbd0tK5OR4sVTKPTNEU682tXhibktHuvXSBk2FV A==;
-X-CSE-ConnectionGUID: XdHwrm4gRaeuVPAel+CK6Q==
-X-CSE-MsgGUID: rxBNBG+fQ0WDFJQRon77Eg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11399"; a="57088350"
-X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; d="scan'208";a="57088350"
+ bh=DhO+clPATRmZIh3ywwx/A64KRCMKsHcIihQib71Wr+M=;
+ b=ZXrXTfmLh6MZQaCHcs/VLrLA8hQMO+gVrlOLNCBuehNDhtsEr2DUY30w
+ cJnPeNVxAX3mfTJCciYvOYGRaTRVL1cQTXDN+dGyBZAZGM7saM/TUlTBf
+ mRw51uTYVxBQnH719IaLHq8JW2GDXFVjc0HSFzS6TKgdM0O1AvkVvrbH3
+ X6k2koLwz508PoSN+3o+OkQQzQj3id4plsSD07nJBLbKBXLQd/4uHDj6T
+ yc4sUmggrbN14iOs38a54fA2sGL1i7CIdwdpDQFpU8UwLpvp+6fe9yb2K
+ TLsY/bPaTxbWHweQoLN56kwqPUkPs/dzEpMXaLO2HxwyTQ+xFrpGzYMOF A==;
+X-CSE-ConnectionGUID: wA9ii8SETuq1yD4xOmHMUA==
+X-CSE-MsgGUID: gSnxhWJqQ6WmeY79WwvvnA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11399"; a="57088354"
+X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; d="scan'208";a="57088354"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2025 11:18:25 -0700
-X-CSE-ConnectionGUID: V+BYe4TrTAq6UNHv6IX9yA==
-X-CSE-MsgGUID: d1v/ltjNQoOHv6jSkDJHnQ==
+ 09 Apr 2025 11:18:34 -0700
+X-CSE-ConnectionGUID: XZc5FD2dT/SgKHxUSN7Kvg==
+X-CSE-MsgGUID: oWIZ8YCzSFaShMj3wiXGXg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; d="scan'208";a="133785314"
+X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; d="scan'208";a="133785344"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.201])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2025 11:18:23 -0700
+ 09 Apr 2025 11:18:32 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 03/14] drm/i915/display: convert intel_modeset_verify.c to
+Subject: [PATCH 05/14] drm/i915/frontbuffer: convert intel_frontbuffer.[ch] to
  struct intel_display
-Date: Wed,  9 Apr 2025 21:17:44 +0300
-Message-Id: <b01a3ef3dbb2ffdaa6b5e9ebec14f91efcca3049.1744222449.git.jani.nikula@intel.com>
+Date: Wed,  9 Apr 2025 21:17:46 +0300
+Message-Id: <ef0860583b7d6ad141959f84c25657e0c102d6d2.1744222449.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1744222449.git.jani.nikula@intel.com>
 References: <cover.1744222449.git.jani.nikula@intel.com>
@@ -71,98 +71,285 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Going forward, struct intel_display is the main display device data
-pointer. Convert intel_modeset_verify.[ch] to struct intel_display.
+pointer. Convert intel_frontbuffer.[ch] to struct intel_display.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../gpu/drm/i915/display/intel_modeset_verify.c | 17 +++++++----------
- 1 file changed, 7 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c  |  7 +--
+ .../gpu/drm/i915/display/intel_frontbuffer.c  | 60 +++++++++----------
+ .../gpu/drm/i915/display/intel_frontbuffer.h  |  8 +--
+ drivers/gpu/drm/i915/display/intel_overlay.c  |  6 +-
+ 4 files changed, 37 insertions(+), 44 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_verify.c b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-index a008412fdd04..766a9983665a 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-@@ -6,13 +6,14 @@
-  */
- 
- #include <drm/drm_atomic_state_helper.h>
-+#include <drm/drm_print.h>
- 
--#include "i915_drv.h"
- #include "intel_atomic.h"
- #include "intel_crtc.h"
- #include "intel_crtc_state_dump.h"
- #include "intel_cx0_phy.h"
- #include "intel_display.h"
-+#include "intel_display_core.h"
- #include "intel_display_types.h"
- #include "intel_fdi.h"
- #include "intel_modeset_verify.h"
-@@ -28,9 +29,8 @@ static void intel_connector_verify_state(const struct intel_crtc_state *crtc_sta
- {
- 	struct intel_connector *connector = to_intel_connector(conn_state->connector);
- 	struct intel_display *display = to_intel_display(connector);
--	struct drm_i915_private *i915 = to_i915(connector->base.dev);
- 
--	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s]\n",
-+	drm_dbg_kms(display->drm, "[CONNECTOR:%d:%s]\n",
- 		    connector->base.base.id, connector->base.name);
- 
- 	if (connector->get_hw_state(connector)) {
-@@ -91,7 +91,6 @@ verify_connector_state(struct intel_atomic_state *state,
- static void intel_pipe_config_sanity_check(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
--	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
- 
- 	if (crtc_state->has_pch_encoder) {
- 		int fdi_dotclock = intel_dotclock_calculate(intel_fdi_link_freq(display, crtc_state),
-@@ -103,7 +102,7 @@ static void intel_pipe_config_sanity_check(const struct intel_crtc_state *crtc_s
- 		 * Yell if the encoder disagrees. Allow for slight
- 		 * rounding differences.
- 		 */
--		drm_WARN(&i915->drm, abs(fdi_dotclock - dotclock) > 1,
-+		drm_WARN(display->drm, abs(fdi_dotclock - dotclock) > 1,
- 			 "FDI dotclock and encoder dotclock mismatch, fdi: %i, encoder: %i\n",
- 			 fdi_dotclock, dotclock);
- 	}
-@@ -113,17 +112,16 @@ static void
- verify_encoder_state(struct intel_atomic_state *state)
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index db524d01e574..33c09999c42e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -1043,14 +1043,13 @@ static void intel_post_plane_update(struct intel_atomic_state *state,
+ 				    struct intel_crtc *crtc)
  {
  	struct intel_display *display = to_intel_display(state);
--	struct drm_i915_private *i915 = to_i915(state->base.dev);
- 	struct intel_encoder *encoder;
- 	struct drm_connector *connector;
- 	const struct drm_connector_state *old_conn_state, *new_conn_state;
- 	int i;
- 
--	for_each_intel_encoder(&i915->drm, encoder) {
-+	for_each_intel_encoder(display->drm, encoder) {
- 		bool enabled = false, found = false;
- 		enum pipe pipe;
- 
--		drm_dbg_kms(&i915->drm, "[ENCODER:%d:%s]\n",
-+		drm_dbg_kms(display->drm, "[ENCODER:%d:%s]\n",
- 			    encoder->base.base.id,
- 			    encoder->base.name);
- 
-@@ -166,7 +164,6 @@ verify_crtc_state(struct intel_atomic_state *state,
- 		  struct intel_crtc *crtc)
- {
- 	struct intel_display *display = to_intel_display(state);
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	const struct intel_crtc_state *sw_crtc_state =
+-	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+ 	const struct intel_crtc_state *old_crtc_state =
+ 		intel_atomic_get_old_crtc_state(state, crtc);
+ 	const struct intel_crtc_state *new_crtc_state =
  		intel_atomic_get_new_crtc_state(state, crtc);
- 	struct intel_crtc_state *hw_crtc_state;
-@@ -185,7 +182,7 @@ verify_crtc_state(struct intel_atomic_state *state,
- 	intel_crtc_get_pipe_config(hw_crtc_state);
+ 	enum pipe pipe = crtc->pipe;
  
- 	/* we keep both pipes enabled on 830 */
--	if (IS_I830(i915) && hw_crtc_state->hw.active)
-+	if (display->platform.i830 && hw_crtc_state->hw.active)
- 		hw_crtc_state->hw.active = sw_crtc_state->hw.active;
+-	intel_frontbuffer_flip(dev_priv, new_crtc_state->fb_bits);
++	intel_frontbuffer_flip(display, new_crtc_state->fb_bits);
  
- 	INTEL_DISPLAY_STATE_WARN(display,
+ 	if (new_crtc_state->update_wm_post && new_crtc_state->hw.active)
+ 		intel_update_watermarks(display);
+@@ -1281,7 +1280,7 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
+ static void intel_crtc_disable_planes(struct intel_atomic_state *state,
+ 				      struct intel_crtc *crtc)
+ {
+-	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
++	struct intel_display *display = to_intel_display(state);
+ 	const struct intel_crtc_state *new_crtc_state =
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 	unsigned int update_mask = new_crtc_state->update_planes;
+@@ -1303,7 +1302,7 @@ static void intel_crtc_disable_planes(struct intel_atomic_state *state,
+ 			fb_bits |= plane->frontbuffer_bit;
+ 	}
+ 
+-	intel_frontbuffer_flip(dev_priv, fb_bits);
++	intel_frontbuffer_flip(display, fb_bits);
+ }
+ 
+ static void intel_encoders_update_prepare(struct intel_atomic_state *state)
+diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+index ba2f88ca6117..43be5377ddc1 100644
+--- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
++++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+@@ -58,7 +58,6 @@
+ #include <drm/drm_gem.h>
+ 
+ #include "i915_active.h"
+-#include "i915_drv.h"
+ #include "i915_vma.h"
+ #include "intel_bo.h"
+ #include "intel_display_trace.h"
+@@ -72,7 +71,7 @@
+ 
+ /**
+  * frontbuffer_flush - flush frontbuffer
+- * @i915: i915 device
++ * @display: display device
+  * @frontbuffer_bits: frontbuffer plane tracking bits
+  * @origin: which operation caused the flush
+  *
+@@ -82,16 +81,14 @@
+  *
+  * Can be called without any locks held.
+  */
+-static void frontbuffer_flush(struct drm_i915_private *i915,
++static void frontbuffer_flush(struct intel_display *display,
+ 			      unsigned int frontbuffer_bits,
+ 			      enum fb_op_origin origin)
+ {
+-	struct intel_display *display = &i915->display;
+-
+ 	/* Delay flushing when rings are still busy.*/
+-	spin_lock(&i915->display.fb_tracking.lock);
+-	frontbuffer_bits &= ~i915->display.fb_tracking.busy_bits;
+-	spin_unlock(&i915->display.fb_tracking.lock);
++	spin_lock(&display->fb_tracking.lock);
++	frontbuffer_bits &= ~display->fb_tracking.busy_bits;
++	spin_unlock(&display->fb_tracking.lock);
+ 
+ 	if (!frontbuffer_bits)
+ 		return;
+@@ -107,7 +104,7 @@ static void frontbuffer_flush(struct drm_i915_private *i915,
+ 
+ /**
+  * intel_frontbuffer_flip_prepare - prepare asynchronous frontbuffer flip
+- * @i915: i915 device
++ * @display: display device
+  * @frontbuffer_bits: frontbuffer plane tracking bits
+  *
+  * This function gets called after scheduling a flip on @obj. The actual
+@@ -117,19 +114,19 @@ static void frontbuffer_flush(struct drm_i915_private *i915,
+  *
+  * Can be called without any locks held.
+  */
+-void intel_frontbuffer_flip_prepare(struct drm_i915_private *i915,
++void intel_frontbuffer_flip_prepare(struct intel_display *display,
+ 				    unsigned frontbuffer_bits)
+ {
+-	spin_lock(&i915->display.fb_tracking.lock);
+-	i915->display.fb_tracking.flip_bits |= frontbuffer_bits;
++	spin_lock(&display->fb_tracking.lock);
++	display->fb_tracking.flip_bits |= frontbuffer_bits;
+ 	/* Remove stale busy bits due to the old buffer. */
+-	i915->display.fb_tracking.busy_bits &= ~frontbuffer_bits;
+-	spin_unlock(&i915->display.fb_tracking.lock);
++	display->fb_tracking.busy_bits &= ~frontbuffer_bits;
++	spin_unlock(&display->fb_tracking.lock);
+ }
+ 
+ /**
+  * intel_frontbuffer_flip_complete - complete asynchronous frontbuffer flip
+- * @i915: i915 device
++ * @display: display device
+  * @frontbuffer_bits: frontbuffer plane tracking bits
+  *
+  * This function gets called after the flip has been latched and will complete
+@@ -137,22 +134,22 @@ void intel_frontbuffer_flip_prepare(struct drm_i915_private *i915,
+  *
+  * Can be called without any locks held.
+  */
+-void intel_frontbuffer_flip_complete(struct drm_i915_private *i915,
++void intel_frontbuffer_flip_complete(struct intel_display *display,
+ 				     unsigned frontbuffer_bits)
+ {
+-	spin_lock(&i915->display.fb_tracking.lock);
++	spin_lock(&display->fb_tracking.lock);
+ 	/* Mask any cancelled flips. */
+-	frontbuffer_bits &= i915->display.fb_tracking.flip_bits;
+-	i915->display.fb_tracking.flip_bits &= ~frontbuffer_bits;
+-	spin_unlock(&i915->display.fb_tracking.lock);
++	frontbuffer_bits &= display->fb_tracking.flip_bits;
++	display->fb_tracking.flip_bits &= ~frontbuffer_bits;
++	spin_unlock(&display->fb_tracking.lock);
+ 
+ 	if (frontbuffer_bits)
+-		frontbuffer_flush(i915, frontbuffer_bits, ORIGIN_FLIP);
++		frontbuffer_flush(display, frontbuffer_bits, ORIGIN_FLIP);
+ }
+ 
+ /**
+  * intel_frontbuffer_flip - synchronous frontbuffer flip
+- * @i915: i915 device
++ * @display: display device
+  * @frontbuffer_bits: frontbuffer plane tracking bits
+  *
+  * This function gets called after scheduling a flip on @obj. This is for
+@@ -161,15 +158,15 @@ void intel_frontbuffer_flip_complete(struct drm_i915_private *i915,
+  *
+  * Can be called without any locks held.
+  */
+-void intel_frontbuffer_flip(struct drm_i915_private *i915,
++void intel_frontbuffer_flip(struct intel_display *display,
+ 			    unsigned frontbuffer_bits)
+ {
+-	spin_lock(&i915->display.fb_tracking.lock);
++	spin_lock(&display->fb_tracking.lock);
+ 	/* Remove stale busy bits due to the old buffer. */
+-	i915->display.fb_tracking.busy_bits &= ~frontbuffer_bits;
+-	spin_unlock(&i915->display.fb_tracking.lock);
++	display->fb_tracking.busy_bits &= ~frontbuffer_bits;
++	spin_unlock(&display->fb_tracking.lock);
+ 
+-	frontbuffer_flush(i915, frontbuffer_bits, ORIGIN_FLIP);
++	frontbuffer_flush(display, frontbuffer_bits, ORIGIN_FLIP);
+ }
+ 
+ void __intel_fb_invalidate(struct intel_frontbuffer *front,
+@@ -198,7 +195,6 @@ void __intel_fb_flush(struct intel_frontbuffer *front,
+ 		      unsigned int frontbuffer_bits)
+ {
+ 	struct intel_display *display = to_intel_display(front->obj->dev);
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 
+ 	if (origin == ORIGIN_CS) {
+ 		spin_lock(&display->fb_tracking.lock);
+@@ -209,7 +205,7 @@ void __intel_fb_flush(struct intel_frontbuffer *front,
+ 	}
+ 
+ 	if (frontbuffer_bits)
+-		frontbuffer_flush(i915, frontbuffer_bits, origin);
++		frontbuffer_flush(display, frontbuffer_bits, origin);
+ }
+ 
+ static void intel_frontbuffer_flush_work(struct work_struct *work)
+@@ -280,7 +276,7 @@ static void frontbuffer_release(struct kref *ref)
+ struct intel_frontbuffer *
+ intel_frontbuffer_get(struct drm_gem_object *obj)
+ {
+-	struct drm_i915_private *i915 = to_i915(obj->dev);
++	struct intel_display *display = to_intel_display(obj->dev);
+ 	struct intel_frontbuffer *front, *cur;
+ 
+ 	front = intel_bo_get_frontbuffer(obj);
+@@ -300,9 +296,9 @@ intel_frontbuffer_get(struct drm_gem_object *obj)
+ 			 I915_ACTIVE_RETIRE_SLEEPS);
+ 	INIT_WORK(&front->flush_work, intel_frontbuffer_flush_work);
+ 
+-	spin_lock(&i915->display.fb_tracking.lock);
++	spin_lock(&display->fb_tracking.lock);
+ 	cur = intel_bo_set_frontbuffer(obj, front);
+-	spin_unlock(&i915->display.fb_tracking.lock);
++	spin_unlock(&display->fb_tracking.lock);
+ 	if (cur != front)
+ 		kfree(front);
+ 	return cur;
+diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.h b/drivers/gpu/drm/i915/display/intel_frontbuffer.h
+index 6237780a9f68..2fee12eaf9b6 100644
+--- a/drivers/gpu/drm/i915/display/intel_frontbuffer.h
++++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.h
+@@ -31,7 +31,7 @@
+ #include "i915_active_types.h"
+ 
+ struct drm_gem_object;
+-struct drm_i915_private;
++struct intel_display;
+ 
+ enum fb_op_origin {
+ 	ORIGIN_CPU = 0,
+@@ -68,11 +68,11 @@ struct intel_frontbuffer {
+ 	GENMASK(INTEL_FRONTBUFFER_BITS_PER_PIPE * ((pipe) + 1) - 1,	\
+ 		INTEL_FRONTBUFFER_BITS_PER_PIPE * (pipe))
+ 
+-void intel_frontbuffer_flip_prepare(struct drm_i915_private *i915,
++void intel_frontbuffer_flip_prepare(struct intel_display *display,
+ 				    unsigned frontbuffer_bits);
+-void intel_frontbuffer_flip_complete(struct drm_i915_private *i915,
++void intel_frontbuffer_flip_complete(struct intel_display *display,
+ 				     unsigned frontbuffer_bits);
+-void intel_frontbuffer_flip(struct drm_i915_private *i915,
++void intel_frontbuffer_flip(struct intel_display *display,
+ 			    unsigned frontbuffer_bits);
+ 
+ void intel_frontbuffer_put(struct intel_frontbuffer *front);
+diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
+index aff9a3455c1b..12308495afa5 100644
+--- a/drivers/gpu/drm/i915/display/intel_overlay.c
++++ b/drivers/gpu/drm/i915/display/intel_overlay.c
+@@ -291,7 +291,6 @@ static void intel_overlay_flip_prepare(struct intel_overlay *overlay,
+ 				       struct i915_vma *vma)
+ {
+ 	struct intel_display *display = overlay->display;
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	enum pipe pipe = overlay->crtc->pipe;
+ 	struct intel_frontbuffer *frontbuffer = NULL;
+ 
+@@ -307,7 +306,7 @@ static void intel_overlay_flip_prepare(struct intel_overlay *overlay,
+ 		intel_frontbuffer_put(overlay->frontbuffer);
+ 	overlay->frontbuffer = frontbuffer;
+ 
+-	intel_frontbuffer_flip_prepare(i915, INTEL_FRONTBUFFER_OVERLAY(pipe));
++	intel_frontbuffer_flip_prepare(display, INTEL_FRONTBUFFER_OVERLAY(pipe));
+ 
+ 	overlay->old_vma = overlay->vma;
+ 	if (vma)
+@@ -359,14 +358,13 @@ static int intel_overlay_continue(struct intel_overlay *overlay,
+ static void intel_overlay_release_old_vma(struct intel_overlay *overlay)
+ {
+ 	struct intel_display *display = overlay->display;
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	struct i915_vma *vma;
+ 
+ 	vma = fetch_and_zero(&overlay->old_vma);
+ 	if (drm_WARN_ON(display->drm, !vma))
+ 		return;
+ 
+-	intel_frontbuffer_flip_complete(i915, INTEL_FRONTBUFFER_OVERLAY(overlay->crtc->pipe));
++	intel_frontbuffer_flip_complete(display, INTEL_FRONTBUFFER_OVERLAY(overlay->crtc->pipe));
+ 
+ 	i915_vma_unpin(vma);
+ 	i915_vma_put(vma);
 -- 
 2.39.5
 
