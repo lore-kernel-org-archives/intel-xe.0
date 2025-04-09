@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3859DC36002
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Apr 2025 14:34:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 288BDC36002
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Apr 2025 14:39:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F15A10E904;
-	Wed,  9 Apr 2025 14:34:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE20110E90B;
+	Wed,  9 Apr 2025 14:39:57 +0000 (UTC)
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BF5910E904;
- Wed,  9 Apr 2025 14:34:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FE8810E90B;
+ Wed,  9 Apr 2025 14:39:57 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBuild=3A_failure_for_drm/xe=3A_Allow_to_drop_vram_r?=
- =?utf-8?q?esizing?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915=3A_error_ca?=
+ =?utf-8?q?pture_cleanups_and_refactor?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 09 Apr 2025 14:34:44 -0000
-Message-ID: <174420928404.52983.5775586342316450262@e6b6f09ec485>
+Date: Wed, 09 Apr 2025 14:39:57 -0000
+Message-ID: <174420959712.52991.7929911390687308220@e6b6f09ec485>
 X-Patchwork-Hint: ignore
-References: <20250409-bar-resize-param-v1-1-75bf4df38aa0@intel.com>
-In-Reply-To: <20250409-bar-resize-param-v1-1-75bf4df38aa0@intel.com>
+References: <cover.1744208554.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1744208554.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,111 +42,19 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe: Allow to drop vram resizing
-URL   : https://patchwork.freedesktop.org/series/147472/
-State : failure
+Series: drm/i915: error capture cleanups and refactor
+URL   : https://patchwork.freedesktop.org/series/147474/
+State : success
 
 == Summary ==
 
-lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/events/intel/intel-cstate.ko
-lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/events/amd/
-lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
-lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/events/rapl.ko
-lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/
-lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/kvm-amd.ko
-lib/modules/6.15.0-rc1-xe+/kernel/kernel/
-lib/modules/6.15.0-rc1-xe+/kernel/kernel/kheaders.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/ecrdsa_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/xcbc.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/serpent_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/aria_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/crypto_simd.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/adiantum.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/tcrypt.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/crypto_engine.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/zstd.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/asymmetric_keys/
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/des_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/xctr.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/authenc.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm4_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/camellia_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm3.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/pcrypt.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/aegis128.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/af_alg.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_aead.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/cmac.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm3_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/aes_ti.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/chacha_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/poly1305_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/nhpoly1305.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/crc32_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/essiv.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/ccm.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/wp512.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/streebog_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/authencesn.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/echainiv.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/lrw.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/cryptd.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/crypto_user.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_hash.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/polyval-generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/hctr2.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/842.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/pcbc.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/ansi_cprng.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/cast6_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/twofish_common.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/twofish_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/lz4hc.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/blowfish_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/md4.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/chacha20poly1305.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/curve25519-generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/lz4.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/rmd160.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_skcipher.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/cast5_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/fcrypt.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/ecdsa_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm4.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/cast_common.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/blowfish_common.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/michael_mic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_rng.ko
-lib/modules/6.15.0-rc1-xe+/kernel/block/
-lib/modules/6.15.0-rc1-xe+/kernel/block/bfq.ko
-lib/modules/6.15.0-rc1-xe+/kernel/block/kyber-iosched.ko
-lib/modules/6.15.0-rc1-xe+/build
-lib/modules/6.15.0-rc1-xe+/modules.alias.bin
-lib/modules/6.15.0-rc1-xe+/modules.builtin
-lib/modules/6.15.0-rc1-xe+/modules.softdep
-lib/modules/6.15.0-rc1-xe+/modules.alias
-lib/modules/6.15.0-rc1-xe+/modules.order
-lib/modules/6.15.0-rc1-xe+/modules.symbols
-lib/modules/6.15.0-rc1-xe+/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive-nodebug
-+ sync
-[+] Finished building and packaging 'nodebug'!
-+ echo '[+] Finished building and packaging '\''nodebug'\''!'
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: a4fa94e2a404 drm-tip: 2025y-04m-09d-10h-59m-10s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915: use 32-bit access for gen2 irq registers
+Applying: drm/i915: record GEN2_IER in gtier[0] for pre-ilk error capture
+Applying: drm/i915: stop recording IER in error capture
+Applying: drm/i915: use display snapshot mechanism for display irq regs
+Applying: drm/i915: use graphics version instead of PCH split in error capture
 
 
