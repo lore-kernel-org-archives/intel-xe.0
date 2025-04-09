@@ -4,146 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0CBEC369B9
-	for <intel-xe@archiver.kernel.org>; Mon, 14 Apr 2025 17:00:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53029C369A2
+	for <intel-xe@archiver.kernel.org>; Mon, 14 Apr 2025 17:00:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83AD610E2EE;
-	Mon, 14 Apr 2025 17:00:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1868310E311;
+	Mon, 14 Apr 2025 17:00:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="LhrKWVdB";
+	dkim=pass (4096-bit key; secure) header.d=ijzerbout.nl header.i=@ijzerbout.nl header.b="YlmtSUyk";
 	dkim-atps=neutral
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DDB610E503
- for <intel-xe@lists.freedesktop.org>; Mon,  7 Apr 2025 16:03:01 +0000 (UTC)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5378dnHW009241
- for <intel-xe@lists.freedesktop.org>; Mon, 7 Apr 2025 16:03:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- fc3XwojJ5GFfdF94r7F5k7ZenDcWsyFJvzqBaDf4v4E=; b=LhrKWVdB0XApgiSi
- 353Kx+c8j0G1MEQPLZS1YUKrFV/20lOlvVl+YLT7USlQXdf8LLogfhBC23nD1Ch4
- yE4zq3OMN6Hmy6UX1oWEBMkk8uQDaXiRe//l6AewLCu27L2z6+tZxByzRYalFM1q
- cj434Xz8yPb/C2ZV41WC7+73j6iqFrLlzbnRPi9DNjcstlwgOzsXWEcCCFGzrFYD
- PjFZPFWjLJi7H76w2fytPAYkrCrh7koGIfqc7vrYHY5pznJFi5IAtg8uamO+n+X0
- cD6jxRUCopbEC5Yap3+i3I15uJlUi63JIjhqmQMg2h4cLzPHob9twNKVgEjY+27B
- Nn0gOQ==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com
- [209.85.214.197])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twbucsmk-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <intel-xe@lists.freedesktop.org>; Mon, 07 Apr 2025 16:03:00 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id
- d9443c01a7336-223fd6e9408so41228585ad.1
- for <intel-xe@lists.freedesktop.org>; Mon, 07 Apr 2025 09:03:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1744041780; x=1744646580;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=fc3XwojJ5GFfdF94r7F5k7ZenDcWsyFJvzqBaDf4v4E=;
- b=AqUjBS7bolm+dnVYQV4+FWtPliS8veK72IXpItSkFhfVgrSMQANYHMZW1OcrWhweg7
- oJsy6JYZ1kiwAF3MH6KvGfhpD3L3HjeNMEsIG3d78VaqcXAvmJgr1JaICCjrl0w+y9fW
- 8u08PX7ws0F9cohHM3iAc0SCEsT6tdR7wMSOSZt87jEyzTVlUgUgBic4dIFBqGlIQMAV
- BkrC7MW0ZUgzrrDwDvH5/a1PA2Q4kFQEGMzZ8w+sp+z9PlN5azEozppVDgV4q5aReMpI
- aZ0qpKBtkb7Tuad8Qg8pUnDacawnxeSLuLP+i7NfJsyIKSzaGB8dwVx2lEdEusQdw1gh
- QD7g==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUGaew/Q41EpmQpevZx3DGexa+/u4gjWePJK+N44y2BJu2W/68l/Z3o8Kn3xFN0AkcSnkc3G8brYA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyCJe8FDaxDFKzd87eIJpZx4PcaquzOMVv3CIGYq48oeN0OHwrs
- TcM3AerKtewO6/eycu+YPN+8Lvn0Xu8FQj4JVAhLlLY3b70tEWdkLW1lFWT6KLXOTgi3UjHxDz7
- uMlboaMHWpkBHKyMFfomOM9K43Tp/fC6crxWH349dEi71bv49z5ymAD4ZbQepZqrddA==
-X-Gm-Gg: ASbGncvYKLsawXa00p/b2AEOgYLUEL5xhzrP1dWgrxWVfsYHo6P2601m4NBAKRC+xmz
- mvpVVaJ5hDEbc+JaDbsVNIxTd8CiPRELheFJQbA9ZeSPjeBGvpMj0uQ1TDx6pwx4SyZXH23TkjU
- OfGUjuFrzy2Kc6AJDRyPMVwvuW/CknehMeCweuDEjxFDIeXj5IF2fh/driOYIBkPaX+mxTzUDZH
- TgJu+zekv0iF6cyZNooET9TwWkY3JsjKRa+s5BbLnxkHdmcJRwBCvLon7xjBzYZn9U2UIZ0lmtL
- VFnxlvNqKJB31tUwHZ4fTi0IktrnyVbZ+ZQEML/tXSMsi2BVKFTw/kzlkhJR6fFLAA==
-X-Received: by 2002:a17:903:2a8f:b0:225:abd2:5e5a with SMTP id
- d9443c01a7336-22ab5df1b0dmr455865ad.4.1744041779636; 
- Mon, 07 Apr 2025 09:02:59 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHQkBFjjP+ONLlvzzb1gd0pTO1LSFOf1s2n0EEL7fUMEzu7Ove5cxahF9Lf52ILh1wQo+2pDg==
-X-Received: by 2002:a17:903:2a8f:b0:225:abd2:5e5a with SMTP id
- d9443c01a7336-22ab5df1b0dmr454955ad.4.1744041779170; 
- Mon, 07 Apr 2025 09:02:59 -0700 (PDT)
-Received: from [10.226.59.182] (i-global254.qualcomm.com. [199.106.103.254])
- by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-739d97f2fd3sm8971891b3a.69.2025.04.07.09.02.53
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 07 Apr 2025 09:02:58 -0700 (PDT)
-Message-ID: <cd94dff9-d28d-42f5-a071-26e9dd0c3490@oss.qualcomm.com>
-Date: Mon, 7 Apr 2025 10:02:52 -0600
+X-Greylist: delayed 389 seconds by postgrey-1.36 at gabe;
+ Wed, 09 Apr 2025 18:34:29 UTC
+Received: from bout3.ijzerbout.nl (bout3.ijzerbout.nl [136.144.140.114])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1695510E172;
+ Wed,  9 Apr 2025 18:34:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ijzerbout.nl; s=key;
+ t=1744223279; bh=yjh43TtDm+paZlNIRlrqPwPQ02q0Bjp2xXCqZ3x0O0c=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=YlmtSUykxFWQOWVLo+nuJDSq9I10JBfzx/66JhXKSVrahZo3YJ6OrGtlr9ANrHZj2
+ V6XiMqpK5OtKbhC9wJdVENM3IBjJ66WuPAP9VObAoATnjkuDNDJz4p45IsRtoD8KMz
+ tShzVjfUHsGSeiN3XfKjI1xAFznPtdmevsMFKTnsxebUPkfu1JweZZDOdU8xEjU4Yi
+ 8DG8G7XynnQFT8ZdBW1c8E/DdiJmtu3vsy5gXtsAeSJUlfYELB3eJE6fXpJV3Ypmjn
+ t43MuhuOhLr8gEyXgjLs1OUb9idkDTmKBM5JxNeJqp5Ekw5rCqvcr13L1grwRvDLXL
+ F7OiH+2W5w1zuhq4YoL4LoYvuFpPg0VXZLdlg1bn9au7WqqcpmUlmzoarSv7ACMc/l
+ HDwo9v86T+VRmsczy+3/ce+MLITfcvq7ZinrzpvgqusM99Hs251S1IyT6RmsO1YtQm
+ ybww8NKSL6xDVxDqKEpVZ5GZDehNJYj2uHsiBNfB8ejnoRbI7nZAICrUIdivrqLQbF
+ evOy9P93l28c/7HPtSJFzkn9x4KHSr0gGvjZzUoRUkvYyr5PMPbY1kiSt/ItmkOhCV
+ VPLKBd34n1pTFkHGCwPPsP7RgP5RRPFgKB4o+9UCEM0UAsa3jjocytrCV1KQs98aB7
+ 2B+/mq2B1o77rBAHWz5a3fjs=
+Received: from [IPV6:2a10:3781:99:1:1ac0:4dff:fea7:ec3a] (racer.ijzerbout.nl
+ [IPv6:2a10:3781:99:1:1ac0:4dff:fea7:ec3a])
+ by bout3.ijzerbout.nl (Postfix) with ESMTPSA id 7B4B8162A2C;
+ Wed,  9 Apr 2025 20:27:58 +0200 (CEST)
+Message-ID: <bf7bfe6f-69d7-4166-b3c4-010f7b9f3113@ijzerbout.nl>
+Date: Wed, 9 Apr 2025 20:27:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC] PCI: add CONFIG_MMU dependency
-To: Arnd Bergmann <arnd@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>
-Cc: Arnd Bergmann <arnd@arndb.de>, Carl Vanderlip <quic_carlv@quicinc.com>,
- Oded Gabbay <ogabbay@kernel.org>, Takashi Sakamoto
- <o-takashi@sakamocchi.jp>,
+Subject: Re: [PATCH RESEND RFC v4 3/6] drm/display: dp: use new DCPD access
+ helpers
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Lyude Paul <lyude@redhat.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
  Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Dave Airlie <airlied@redhat.com>, Jocelyn Falempe <jfalempe@redhat.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
  Xinliang Liu <xinliang.liu@linaro.org>, Tian Tao <tiantao6@hisilicon.com>,
  Xinwei Kong <kong.kongxinwei@hisilicon.com>,
  Sumit Semwal <sumit.semwal@linaro.org>, Yongqin Liu
- <yongqin.liu@linaro.org>, John Stultz <jstultz@google.com>,
- Sui Jingfeng <suijingfeng@loongson.cn>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@kernel.org>, Gerd Hoffmann <kraxel@redhat.com>,
- Zack Rusin <zack.rusin@broadcom.com>, Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Saurav Kashyap <skashyap@marvell.com>,
- Javed Hasan <jhasan@marvell.com>, GR-QLogic-Storage-Upstream@marvell.com,
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Nilesh Javali <njavali@marvell.com>,
- Manish Rangankar <mrangankar@marvell.com>,
- Alex Williamson <alex.williamson@redhat.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Jani Nikula <jani.nikula@intel.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>,
- Lijo Lazar <lijo.lazar@amd.com>, Niklas Schnelle <schnelle@linux.ibm.com>,
- Dmitry Baryshkov <lumag@kernel.org>, linux-arm-msm@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux1394-devel@lists.sourceforge.net, amd-gfx@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
- spice-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- netdev@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-scsi@vger.kernel.org, kvm@vger.kernel.org
-References: <20250407104025.3421624-1-arnd@kernel.org>
+ <yongqin.liu@linaro.org>, John Stultz <jstultz@google.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, Dmitry Baryshkov
+ <dmitry.baryshkov@linaro.org>, Jani Nikula <jani.nikula@intel.com>
+References: <20250324-drm-rework-dpcd-access-v4-0-e80ff89593df@oss.qualcomm.com>
+ <20250324-drm-rework-dpcd-access-v4-3-e80ff89593df@oss.qualcomm.com>
 Content-Language: en-US
-From: Jeff Hugo <jeff.hugo@oss.qualcomm.com>
-In-Reply-To: <20250407104025.3421624-1-arnd@kernel.org>
+From: Kees Bakker <kees@ijzerbout.nl>
+In-Reply-To: <20250324-drm-rework-dpcd-access-v4-3-e80ff89593df@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: yxRrpP3GTR-vV-6LGcGpFufFDZ-mkNoc
-X-Proofpoint-ORIG-GUID: yxRrpP3GTR-vV-6LGcGpFufFDZ-mkNoc
-X-Authority-Analysis: v=2.4 cv=dbeA3WXe c=1 sm=1 tr=0 ts=67f3f734 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=ZLGELXoPAAAA:8
- a=EUspDBNiAAAA:8 a=mM23EaL7GqIQzlWAp5AA:9
- a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22 a=CFiPc5v16LZhaT-MVE1c:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-07_04,2025-04-03_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0
- suspectscore=0 mlxlogscore=708 phishscore=0 mlxscore=0 spamscore=0
- malwarescore=0 clxscore=1011 adultscore=0 priorityscore=1501
- lowpriorityscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502280000 definitions=main-2504070112
 X-Mailman-Approved-At: Mon, 14 Apr 2025 17:00:23 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -159,20 +86,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 4/7/2025 4:38 AM, Arnd Bergmann wrote:
-> From: Arnd Bergmann <arnd@arndb.de>
-> 
-> It turns out that there are no platforms that have PCI but don't have an MMU,
-> so adding a Kconfig dependency on CONFIG_PCI simplifies build testing kernels
-> for those platforms a lot, and avoids a lot of inadvertent build regressions.
-> 
-> Add a dependency for CONFIG_PCI and remove all the ones for PCI specific
-> device drivers that are currently marked not having it.
-> 
-> Link: https://lore.kernel.org/lkml/a41f1b20-a76c-43d8-8c36-f12744327a54@app.fastmail.com/
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+Op 24-03-2025 om 12:51 schreef Dmitry Baryshkov:
+> From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>
+> Switch drm_dp_helper.c to use new set of DPCD read / write helpers.
+>
+> Reviewed-by: Lyude Paul <lyude@redhat.com>
+> Acked-by: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->   drivers/accel/qaic/Kconfig              | 1 -
-
-For qaic:
-Acked-by: Jeff Hugo <jeff.hugo@oss.qualcomm.com>
+>   drivers/gpu/drm/display/drm_dp_helper.c | 296 +++++++++++++-------------------
+>   1 file changed, 116 insertions(+), 180 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
+> index 410be0be233ad94702af423262a7d98e21afbfeb..e2439c8a7fefe116b04aaa689b557e2387b05540 100644
+> --- a/drivers/gpu/drm/display/drm_dp_helper.c
+> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
+> [...]
+> @@ -3542,7 +3509,7 @@ int drm_dp_pcon_frl_configure_2(struct drm_dp_aux *aux, int max_frl_mask,
+>   	else
+>   		buf &= ~DP_PCON_FRL_LINK_TRAIN_EXTENDED;
+>   
+> -	ret = drm_dp_dpcd_writeb(aux, DP_PCON_HDMI_LINK_CONFIG_2, buf);
+> +	return drm_dp_dpcd_write_byte(aux, DP_PCON_HDMI_LINK_CONFIG_2, buf);
+>   	if (ret < 0)
+>   		return ret;
+>   
+Don't forget to delete the remainder of the function.
+Also the variable `ret` isn't used anymore.
+-- 
+Kees
