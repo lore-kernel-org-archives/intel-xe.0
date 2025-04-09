@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0746C369A1
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Apr 2025 23:58:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F878C36010
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Apr 2025 00:10:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD5B810E79C;
-	Tue,  8 Apr 2025 23:58:02 +0000 (UTC)
-Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E449810E79C;
- Tue,  8 Apr 2025 23:58:00 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2377478371342074362=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A77F10E79E;
+	Wed,  9 Apr 2025 00:10:51 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D1JMv3B5";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FA6510E79E
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Apr 2025 00:10:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744157450; x=1775693450;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=LMhRNG1tgeObwW2zc5Fgx2K0361n4i9Xo3JysuxbUpA=;
+ b=D1JMv3B5omVdMj7rpE15EpFrW1Rm4SsjrI/FFKKlpdoJzJAv7h9GQMKA
+ 0kL04y/i/VRFtjwPmPlZ5vzMsj67clJva85jajeHspDg3JTjJt+J92Afx
+ iFjGPNwdv2jG0nrNvrhBX+TGhJhMJSbRzDPxDoiL6I9UAZ2hEwmwu6pXz
+ uUdv/z1AxS9iMDTRz/BSltqN6EEElLy6tgEPdjfqfqYo/f0xWVjAjTAHN
+ XAFDaG9p7kHu8n+OJXrfYDkzG/ApvBIc/0EEtE0G/xnbCN6U/I940ggkC
+ O8N4v8qUFpy4P4nnXCH2dmoVp6M3hb9UyFmnzI9RgASYYDBejZwM7KYsk A==;
+X-CSE-ConnectionGUID: KyQhpKmZS66kS3TR2QmRBg==
+X-CSE-MsgGUID: MOUEGd8ARq6L4hhfft+Phg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="56983940"
+X-IronPort-AV: E=Sophos;i="6.15,199,1739865600"; d="scan'208";a="56983940"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2025 17:10:50 -0700
+X-CSE-ConnectionGUID: 2aqAy3WoQyKyfa3WHy/9mA==
+X-CSE-MsgGUID: ccD1vbUqQXyKWVG3oUgPvg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,199,1739865600"; d="scan'208";a="129374321"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.141])
+ by orviesa008.jf.intel.com with ESMTP; 08 Apr 2025 17:10:50 -0700
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
+Subject: [PATCH] drm/xe/ptl: Extend Wa_13011645652
+Date: Tue,  8 Apr 2025 17:10:13 -0700
+Message-Id: <20250409001013.382830-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_drm/xe/display=3A_Program_?=
- =?utf-8?q?double_buffered_LUT_registers_=28rev7=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 08 Apr 2025 23:58:00 -0000
-Message-ID: <174415668092.50469.17874259016920548018@e6b6f09ec485>
-X-Patchwork-Hint: ignore
-References: <20250408110022.1907802-1-chaitanya.kumar.borah@intel.com>
-In-Reply-To: <20250408110022.1907802-1-chaitanya.kumar.borah@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,61 +61,30 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2377478371342074362==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Wa_13011645652 is applicable to PTL A-step as well.
 
-== Series Details ==
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+---
+ drivers/gpu/drm/xe/xe_wa_oob.rules | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Series: drm/xe/display: Program double buffered LUT registers (rev7)
-URL   : https://patchwork.freedesktop.org/series/142436/
-State : failure
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 9b9e176992a8..48491f8af746 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -29,7 +29,7 @@
+ 16022287689	GRAPHICS_VERSION(2001)
+ 		GRAPHICS_VERSION(2004)
+ 13011645652	GRAPHICS_VERSION(2004)
+-		GRAPHICS_VERSION(3001)
++		GRAPHICS_VERSION_RANGE(3000, 3001)
+ 14022293748	GRAPHICS_VERSION(2001)
+ 		GRAPHICS_VERSION(2004)
+ 		GRAPHICS_VERSION_RANGE(3000, 3001)
+-- 
+2.38.1
 
-== Summary ==
-
-ERROR: The runconfig 'xe-2920-1951437999630d299a063863fb92d235dd8dc3d1_FULL' does not exist in the database
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142436v7/index.html
-
---===============2377478371342074362==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/display: Program double buffered LUT registers (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142436/">https://patchwork.freedesktop.org/series/142436/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142436v7/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-142436v7/index.html</a></td></tr>
-
-</table>
-
-
-    <p>ERROR: The runconfig 'xe-2920-1951437999630d299a063863fb92d235dd8dc3d1_FULL' does not exist in the database</p>
-
-</body>
-</html>
-
---===============2377478371342074362==--
