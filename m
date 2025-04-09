@@ -4,57 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D51C4C36002
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Apr 2025 18:18:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7367DC369A6
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Apr 2025 18:18:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96AB010E2FA;
-	Wed,  9 Apr 2025 18:18:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A05B10E686;
+	Wed,  9 Apr 2025 18:18:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gU6KdkGH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e6g2yXs+";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CE9A10E2FA;
- Wed,  9 Apr 2025 18:18:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E09610E2FB;
+ Wed,  9 Apr 2025 18:18:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1744222724; x=1775758724;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=EllBjm9rjP8Lyx7UVt4DzITqVbxkWCvqwJOEUKpEcnQ=;
- b=gU6KdkGH8osQZF1J6p/Z5Un5/ST5vfRe2TL4gTt1UGknLGoV05SH8a7g
- wYL4y6tCRF7vc3YHJIBJnQcvhsdUzwO2a4TodbhoXKTSE2MGN+vCZbTC/
- 7UPCB6NwE3o9CN6kOIOXT/zdKvRS70vpbMclvN4kQjCyDR3tC9nTWoJhD
- 5w7sFQ6uPLh0GutI91YPaGVOYtll9fpquXTKqKtBpiT+v7IJiGA3VqFnC
- UQpoEX+l37a8brRInVefjBiQ1G7artov/PDcNxSaxgBWRGUWK525S88e4
- e5ipCptd5mAxXlYpXJgizh7KhfPwGMxpYCixt0afjh4XLnc7ZcFRBpVLR w==;
-X-CSE-ConnectionGUID: 46jD9F4hRvKZpzUxTcy1Nw==
-X-CSE-MsgGUID: H+5VYmouS8+N7/X/hSC0hQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11399"; a="45729940"
-X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; d="scan'208";a="45729940"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2025 11:18:43 -0700
-X-CSE-ConnectionGUID: 46QAf3E+TCaxn3X7/6F51A==
-X-CSE-MsgGUID: 0NSVcsnJRpq++snHgE5ZZg==
+ bh=MiRuUJNAjSBc4hey1bmnLvUaxnypCoxl7wnKHXDKSRc=;
+ b=e6g2yXs+OtazPyYJzWXykZOWWvMmbkOQYcNfyrOR30DdPFQ8Z1HSOy7W
+ Qb9qDV0tUvECcaMZifeLDmiUpgajTfjaPeP1dSAoG8O6vH6650HmsNq4b
+ vBzcKG6PLRgaflHKEhjAK4skGQcdRcYdsXuAjG4VUsnxPGxiERnwFkVDP
+ zM2El3u2SA3jDQ7Onxrm0s+kVj4u36o6FsiOkYVseDtNx17yL2VP2NynB
+ ospjXVIJ659p+nvO9pXUviOWLLzW25JgoR24ClIB7VEKZ7dUd6HzAaoVN
+ UjZCSGNZcmKxOYj5zP/OwbiNhGp+2akx3T+xc/CacbbJV3VmVzEUJLjOd g==;
+X-CSE-ConnectionGUID: lIbXg0+iSxGikIbECJ7RmQ==
+X-CSE-MsgGUID: ZB6Coj40SYmbuyue1VZRSg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11399"; a="57088351"
+X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; d="scan'208";a="57088351"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2025 11:18:29 -0700
+X-CSE-ConnectionGUID: 8bX2YF9ZTM+aA2VZ01pAzA==
+X-CSE-MsgGUID: Hhiwqw6zTXeVjKfSixUX5g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; d="scan'208";a="165879024"
+X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; d="scan'208";a="133785331"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.201])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2025 11:18:41 -0700
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2025 11:18:27 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 07/14] drm/i915/dmc: switch to display->platform based
- platform detection
-Date: Wed,  9 Apr 2025 21:17:48 +0300
-Message-Id: <eda2b6cd285ec76d57d91ea3fe33158852aaec22.1744222449.git.jani.nikula@intel.com>
+Subject: [PATCH 04/14] drm/i915/sprite: convert intel_sprite_uapi.c to struct
+ intel_display
+Date: Wed,  9 Apr 2025 21:17:45 +0300
+Message-Id: <d4f71c2976a1a28b4e74c2fc1097090fe7f78743.1744222449.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1744222449.git.jani.nikula@intel.com>
 References: <cover.1744222449.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,159 +71,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Prefer display->platform based platform detection over the old IS_*()
-macros.
+Going forward, struct intel_display is the main display device data
+pointer. Convert intel_sprite_uapi.c to struct intel_display.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc.c | 45 ++++++++++--------------
- 1 file changed, 19 insertions(+), 26 deletions(-)
+ .../gpu/drm/i915/display/intel_sprite_uapi.c    | 17 ++++++++---------
+ 1 file changed, 8 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 98f80a6c63e8..ff2b97a752b1 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -173,7 +173,6 @@ MODULE_FIRMWARE(BXT_DMC_PATH);
- 
- static const char *dmc_firmware_default(struct intel_display *display, u32 *size)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	const char *fw_path = NULL;
- 	u32 max_fw_size = 0;
- 
-@@ -189,39 +188,39 @@ static const char *dmc_firmware_default(struct intel_display *display, u32 *size
- 	} else if (DISPLAY_VERx100(display) == 1400) {
- 		fw_path = MTL_DMC_PATH;
- 		max_fw_size = XELPDP_DMC_MAX_FW_SIZE;
--	} else if (IS_DG2(i915)) {
-+	} else if (display->platform.dg2) {
- 		fw_path = DG2_DMC_PATH;
- 		max_fw_size = DISPLAY_VER13_DMC_MAX_FW_SIZE;
--	} else if (IS_ALDERLAKE_P(i915)) {
-+	} else if (display->platform.alderlake_p) {
- 		fw_path = ADLP_DMC_PATH;
- 		max_fw_size = DISPLAY_VER13_DMC_MAX_FW_SIZE;
--	} else if (IS_ALDERLAKE_S(i915)) {
-+	} else if (display->platform.alderlake_s) {
- 		fw_path = ADLS_DMC_PATH;
- 		max_fw_size = DISPLAY_VER12_DMC_MAX_FW_SIZE;
--	} else if (IS_DG1(i915)) {
-+	} else if (display->platform.dg1) {
- 		fw_path = DG1_DMC_PATH;
- 		max_fw_size = DISPLAY_VER12_DMC_MAX_FW_SIZE;
--	} else if (IS_ROCKETLAKE(i915)) {
-+	} else if (display->platform.rocketlake) {
- 		fw_path = RKL_DMC_PATH;
- 		max_fw_size = DISPLAY_VER12_DMC_MAX_FW_SIZE;
--	} else if (IS_TIGERLAKE(i915)) {
-+	} else if (display->platform.tigerlake) {
- 		fw_path = TGL_DMC_PATH;
- 		max_fw_size = DISPLAY_VER12_DMC_MAX_FW_SIZE;
- 	} else if (DISPLAY_VER(display) == 11) {
- 		fw_path = ICL_DMC_PATH;
- 		max_fw_size = ICL_DMC_MAX_FW_SIZE;
--	} else if (IS_GEMINILAKE(i915)) {
-+	} else if (display->platform.geminilake) {
- 		fw_path = GLK_DMC_PATH;
- 		max_fw_size = GLK_DMC_MAX_FW_SIZE;
--	} else if (IS_KABYLAKE(i915) ||
--		   IS_COFFEELAKE(i915) ||
--		   IS_COMETLAKE(i915)) {
-+	} else if (display->platform.kabylake ||
-+		   display->platform.coffeelake ||
-+		   display->platform.cometlake) {
- 		fw_path = KBL_DMC_PATH;
- 		max_fw_size = KBL_DMC_MAX_FW_SIZE;
--	} else if (IS_SKYLAKE(i915)) {
-+	} else if (display->platform.skylake) {
- 		fw_path = SKL_DMC_PATH;
- 		max_fw_size = SKL_DMC_MAX_FW_SIZE;
--	} else if (IS_BROXTON(i915)) {
-+	} else if (display->platform.broxton) {
- 		fw_path = BXT_DMC_PATH;
- 		max_fw_size = BXT_DMC_MAX_FW_SIZE;
- 	}
-@@ -541,8 +540,6 @@ static bool disable_dmc_evt(struct intel_display *display,
- 			    enum intel_dmc_id dmc_id,
- 			    i915_reg_t reg, u32 data)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
--
- 	if (!is_dmc_evt_ctl_reg(display, dmc_id, reg))
- 		return false;
- 
-@@ -551,12 +548,12 @@ static bool disable_dmc_evt(struct intel_display *display,
- 		return true;
- 
- 	/* also disable the flip queue event on the main DMC on TGL */
--	if (IS_TIGERLAKE(i915) &&
-+	if (display->platform.tigerlake &&
- 	    REG_FIELD_GET(DMC_EVT_CTL_EVENT_ID_MASK, data) == DMC_EVT_CTL_EVENT_ID_CLK_MSEC)
- 		return true;
- 
- 	/* also disable the HRR event on the main DMC on TGL/ADLS */
--	if ((IS_TIGERLAKE(i915) || IS_ALDERLAKE_S(i915)) &&
-+	if ((display->platform.tigerlake || display->platform.alderlake_s) &&
- 	    REG_FIELD_GET(DMC_EVT_CTL_EVENT_ID_MASK, data) == DMC_EVT_CTL_EVENT_ID_VBLANK_A)
- 		return true;
- 
-@@ -588,7 +585,6 @@ static u32 dmc_mmiodata(struct intel_display *display,
+diff --git a/drivers/gpu/drm/i915/display/intel_sprite_uapi.c b/drivers/gpu/drm/i915/display/intel_sprite_uapi.c
+index 1d0b84b464c1..4981cc34da05 100644
+--- a/drivers/gpu/drm/i915/display/intel_sprite_uapi.c
++++ b/drivers/gpu/drm/i915/display/intel_sprite_uapi.c
+@@ -3,21 +3,21 @@
+  * Copyright © 2023 Intel Corporation
   */
- void intel_dmc_load_program(struct intel_display *display)
+ 
+-#include "i915_drv.h"
+ #include "intel_crtc.h"
++#include "intel_display_core.h"
+ #include "intel_display_types.h"
+ #include "intel_sprite_uapi.h"
+ 
+-static bool has_dst_key_in_primary_plane(struct drm_i915_private *dev_priv)
++static bool has_dst_key_in_primary_plane(struct intel_display *display)
  {
--	struct drm_i915_private *i915 __maybe_unused = to_i915(display->drm);
- 	struct i915_power_domains *power_domains = &display->power.domains;
- 	struct intel_dmc *dmc = display_to_dmc(display);
- 	enum intel_dmc_id dmc_id;
-@@ -1012,9 +1008,7 @@ static void intel_dmc_runtime_pm_put(struct intel_display *display)
+-	return DISPLAY_VER(dev_priv) >= 9;
++	return DISPLAY_VER(display) >= 9;
+ }
  
- static const char *dmc_fallback_path(struct intel_display *display)
+ static void intel_plane_set_ckey(struct intel_plane_state *plane_state,
+ 				 const struct drm_intel_sprite_colorkey *set)
  {
--	struct drm_i915_private *i915 = to_i915(display->drm);
--
--	if (IS_ALDERLAKE_P(i915))
-+	if (display->platform.alderlake_p)
- 		return ADLP_DMC_FALLBACK_PATH;
++	struct intel_display *display = to_intel_display(plane_state);
+ 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+-	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+ 	struct drm_intel_sprite_colorkey *key = &plane_state->ckey;
  
- 	return NULL;
-@@ -1279,7 +1273,6 @@ static bool intel_dmc_get_dc6_allowed_count(struct intel_display *display, u32 *
- static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
+ 	*key = *set;
+@@ -34,7 +34,7 @@ static void intel_plane_set_ckey(struct intel_plane_state *plane_state,
+ 	 * On SKL+ we want dst key enabled on
+ 	 * the primary and not on the sprite.
+ 	 */
+-	if (DISPLAY_VER(dev_priv) >= 9 && plane->id != PLANE_PRIMARY &&
++	if (DISPLAY_VER(display) >= 9 && plane->id != PLANE_PRIMARY &&
+ 	    set->flags & I915_SET_COLORKEY_DESTINATION)
+ 		key->flags = 0;
+ }
+@@ -43,7 +43,6 @@ int intel_sprite_set_colorkey_ioctl(struct drm_device *dev, void *data,
+ 				    struct drm_file *file_priv)
  {
- 	struct intel_display *display = m->private;
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	struct intel_dmc *dmc = display_to_dmc(display);
- 	struct ref_tracker *wakeref;
- 	i915_reg_t dc5_reg, dc6_reg = INVALID_MMIO_REG;
-@@ -1299,7 +1292,7 @@ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
- 	seq_printf(m, "Pipe A fw loaded: %s\n",
- 		   str_yes_no(has_dmc_id_fw(display, DMC_FW_PIPEA)));
- 	seq_printf(m, "Pipe B fw needed: %s\n",
--		   str_yes_no(IS_ALDERLAKE_P(i915) ||
-+		   str_yes_no(display->platform.alderlake_p ||
- 			      DISPLAY_VER(display) >= 14));
- 	seq_printf(m, "Pipe B fw loaded: %s\n",
- 		   str_yes_no(has_dmc_id_fw(display, DMC_FW_PIPEB)));
-@@ -1313,7 +1306,7 @@ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
- 	if (DISPLAY_VER(display) >= 12) {
- 		i915_reg_t dc3co_reg;
+ 	struct intel_display *display = to_intel_display(dev);
+-	struct drm_i915_private *dev_priv = to_i915(dev);
+ 	struct drm_intel_sprite_colorkey *set = data;
+ 	struct drm_plane *plane;
+ 	struct drm_plane_state *plane_state;
+@@ -61,7 +60,7 @@ int intel_sprite_set_colorkey_ioctl(struct drm_device *dev, void *data,
+ 	if ((set->flags & (I915_SET_COLORKEY_DESTINATION | I915_SET_COLORKEY_SOURCE)) == (I915_SET_COLORKEY_DESTINATION | I915_SET_COLORKEY_SOURCE))
+ 		return -EINVAL;
  
--		if (IS_DGFX(i915) || DISPLAY_VER(display) >= 14) {
-+		if (display->platform.dgfx || DISPLAY_VER(display) >= 14) {
- 			dc3co_reg = DG1_DMC_DEBUG3;
- 			dc5_reg = DG1_DMC_DEBUG_DC5_COUNT;
- 		} else {
-@@ -1325,9 +1318,9 @@ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
- 		seq_printf(m, "DC3CO count: %d\n",
- 			   intel_de_read(display, dc3co_reg));
- 	} else {
--		dc5_reg = IS_BROXTON(i915) ? BXT_DMC_DC3_DC5_COUNT :
-+		dc5_reg = display->platform.broxton ? BXT_DMC_DC3_DC5_COUNT :
- 			SKL_DMC_DC3_DC5_COUNT;
--		if (!IS_GEMINILAKE(i915) && !IS_BROXTON(i915))
-+		if (!display->platform.geminilake && !display->platform.broxton)
- 			dc6_reg = SKL_DMC_DC5_DC6_COUNT;
- 	}
+-	if ((IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
++	if ((display->platform.valleyview || display->platform.cherryview) &&
+ 	    set->flags & I915_SET_COLORKEY_DESTINATION)
+ 		return -EINVAL;
  
+@@ -74,7 +73,7 @@ int intel_sprite_set_colorkey_ioctl(struct drm_device *dev, void *data,
+ 	 * Also multiple planes can't do destination keying on the same
+ 	 * pipe simultaneously.
+ 	 */
+-	if (DISPLAY_VER(dev_priv) >= 9 &&
++	if (DISPLAY_VER(display) >= 9 &&
+ 	    to_intel_plane(plane)->id >= PLANE_3 &&
+ 	    set->flags & I915_SET_COLORKEY_DESTINATION)
+ 		return -EINVAL;
+@@ -99,7 +98,7 @@ int intel_sprite_set_colorkey_ioctl(struct drm_device *dev, void *data,
+ 		 * On some platforms we have to configure
+ 		 * the dst colorkey on the primary plane.
+ 		 */
+-		if (!ret && has_dst_key_in_primary_plane(dev_priv)) {
++		if (!ret && has_dst_key_in_primary_plane(display)) {
+ 			struct intel_crtc *crtc =
+ 				intel_crtc_for_pipe(display,
+ 						    to_intel_plane(plane)->pipe);
 -- 
 2.39.5
 
