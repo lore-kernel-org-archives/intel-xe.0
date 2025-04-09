@@ -4,64 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C5F7C36002
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Apr 2025 06:07:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8E4BC36002
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Apr 2025 06:15:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0473410E7DC;
-	Wed,  9 Apr 2025 06:07:24 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="a2q5XJXf";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43B7F10E7DC;
- Wed,  9 Apr 2025 06:07:18 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 038D268432;
- Wed,  9 Apr 2025 06:07:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 278DEC4CEEA;
- Wed,  9 Apr 2025 06:07:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1744178833;
- bh=4VLTyB/y7fkkvfWGsIq6TQQScgFpmsOfPSy/CVaTpCI=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=a2q5XJXfXzgTGzQ8rtqXQ1wfl6bje9XAyaitY8ebevgyyCjtgTGemzOD5EGsMdk/5
- /etVDMjxsiBPkqae7KZF27vcnMrqkOOWgp2Gku1rAPHAEkNCJ+OBWPTLfDN9VMyBzA
- pYcWavr95wg9TsqOdMWX7qXu3yvoCNLobbdszV+sOX0+SqVJw4vQgXGcGM7jt4JZt1
- 5EGcwNbqLIcRQ64iFIk3/tzAJIhpWV1EWK7xpgzkmRFMU6NgapGWH+n59hH6na/l1Z
- vgy6GTNQtqOW51NwWmGRZvIRl/rx4LzsryiMLl82BwzJJ8RSQO6PkAUsqUzf32SKjE
- BuV03CWUvwsVQ==
-Received: by mail-lf1-f52.google.com with SMTP id
- 2adb3069b0e04-549b159c84cso4397249e87.3; 
- Tue, 08 Apr 2025 23:07:13 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCWxue5EP+74N6Nx72VdAY+738Vg1Qa+7pRA7ByM/G9ubJkajqQoBOKKUnI+EcIXWugBl+OhECS2qos=@lists.freedesktop.org,
- AJvYcCXL1kZOfw20bvzqydhX1fO0WVVM37jEPc5jLTG4Gj8JgZYzZh9z9pv1fhWsqgR9KeVl/6+hSBu9flg=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx3BEXDJhPoUv33emfEUbPhloUz1gU/7j76l2qJUyvjlBAEIeYw
- 7rEC7ZV6sRJ0DafvZ9ch0SITgaXMRdkOfZ57bfofgZw+BXB1Xp95bGZBBy40BL4CL/NR9ATDSqg
- 98AJ/J5L6Sz7myUDo9ss2yUarVYA=
-X-Google-Smtp-Source: AGHT+IHUuvqmuMZmnHu1Ea/lodHpPFpjpt+v62cdN4A0tXOT10coLDa6MCZKyZGwcCNGxLXdn6hM6+Ii6OY8YLXa/eQ=
-X-Received: by 2002:a05:6512:23a8:b0:545:743:cf44 with SMTP id
- 2adb3069b0e04-54c444b33d5mr349808e87.12.1744178831493; Tue, 08 Apr 2025
- 23:07:11 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7891F10E2EC;
+	Wed,  9 Apr 2025 06:15:04 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2285210E2EC;
+ Wed,  9 Apr 2025 06:15:03 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <SJ1PR11MB6129DE70566C6FB5E73400C7B9B42@SJ1PR11MB6129.namprd11.prod.outlook.com>
-In-Reply-To: <SJ1PR11MB6129DE70566C6FB5E73400C7B9B42@SJ1PR11MB6129.namprd11.prod.outlook.com>
-From: Ard Biesheuvel <ardb@kernel.org>
-Date: Wed, 9 Apr 2025 08:06:59 +0200
-X-Gmail-Original-Message-ID: <CAMj1kXEfBMczOmA2+dMMubuD-qE59GTAiV2E_9m8KNG4-rgP6Q@mail.gmail.com>
-X-Gm-Features: ATxdqUGtqKqQkXZ_e2kA5a79FnqkuCOGA_SinGq6AWPbToN1IRaLDpSKB9AOnVc
-Message-ID: <CAMj1kXEfBMczOmA2+dMMubuD-qE59GTAiV2E_9m8KNG4-rgP6Q@mail.gmail.com>
-Subject: Re: Build Failure on linux-next (next-20250407)
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-Cc: "linux-efi@vger.kernel.org" <linux-efi@vger.kernel.org>,
- "x86@kernel.org" <x86@kernel.org>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Saarinen,
- Jani" <jani.saarinen@intel.com>, 
- "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>, 
- "De Marchi, Lucas" <lucas.demarchi@intel.com>, 
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915/vrr=3A_Stop_writing_V?=
+ =?utf-8?q?RR=5FCTL=5FIGN=5FMAX=5FSHIFT_for_MTL_onwards?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 09 Apr 2025 06:15:03 -0000
+Message-ID: <174417930313.51048.7320569137640833200@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250409054909.968531-1-jouni.hogander@intel.com>
+In-Reply-To: <20250409054909.968531-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,51 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 9 Apr 2025 at 07:01, Borah, Chaitanya Kumar
-<chaitanya.kumar.borah@intel.com> wrote:
->
-> Hello Ard,
->
-> Hope you are doing well. I am Chaitanya from the linux graphics team in Intel.
->
-> This mail is regarding a build failure we are seeing in our CI runs[1] on linux-next repository.
->
-> Since the version next-20250407[2], we are seeing the following build error.
->
-> `````````````````````````````````````````````````````````````````````````````````
-> CALL    scripts/checksyscalls.sh
->   DESCEND objtool
->   INSTALL libsubcmd_headers
->   AS      arch/x86/boot/startup/efi-mixed.o
-> arch/x86/boot/startup/efi-mixed.o: error: objtool: efi64_stub_entry(): can't find starting instruction
-> make[3]: *** [scripts/Makefile.build:335: arch/x86/boot/startup/efi-mixed.o] Error 255
-> make[3]: *** Deleting file 'arch/x86/boot/startup/efi-mixed.o'
-> make[2]: *** [scripts/Makefile.build:461: arch/x86/boot/startup] Error 2
-> make[1]: *** [/home/kbuild2/kernel/Makefile:2006: .] Error 2
-> make: *** [Makefile:248: __sub-make] Error 2
-> `````````````````````````````````````````````````````````````````````````````````
->
-> After bisecting the tree, the following patch [3] seems to be the first "bad" commit
->
-> `````````````````````````````````````````````````````````````````````````````````````````````````````````
-> commit 4f2d1bbc2c92a32fd612e6c3b51832d5c1c3678e
-> Author: Ard Biesheuvel mailto:ardb@kernel.org
-> Date:   Tue Apr 1 15:34:20 2025 +0200
->
->     x86/boot: Move the EFI mixed mode startup code back under arch/x86, into startup/
-> `````````````````````````````````````````````````````````````````````````````````````````````````````````
->
-> We also verified that if we revert the patch the issue is not seen.
->
-> Another observation is that build passes when run on "Ubuntu 20.04", in contrast our CI systems uses "Ubuntu 24.04".
->
-> Could you please check why the patch causes this regression and provide a fix if necessary?
->
+== Series Details ==
 
-This should fix it. Please reply to the patch with a tested-by if it
-fixes the issue for you.
+Series: drm/i915/vrr: Stop writing VRR_CTL_IGN_MAX_SHIFT for MTL onwards
+URL   : https://patchwork.freedesktop.org/series/147443/
+State : success
 
-https://lore.kernel.org/linux-efi/20250408085254.836788-10-ardb+git@google.com/T/#u
+== Summary ==
+
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/events/amd/
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.15.0-rc1-xe+/kernel/kernel/
+lib/modules/6.15.0-rc1-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/zstd.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/xctr.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/authenc.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm3.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/cmac.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/essiv.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/ccm.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/wp512.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/lrw.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/842.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/md4.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/lz4.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm4.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.15.0-rc1-xe+/kernel/block/
+lib/modules/6.15.0-rc1-xe+/kernel/block/bfq.ko
+lib/modules/6.15.0-rc1-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.15.0-rc1-xe+/build
+lib/modules/6.15.0-rc1-xe+/modules.alias.bin
+lib/modules/6.15.0-rc1-xe+/modules.builtin
+lib/modules/6.15.0-rc1-xe+/modules.softdep
+lib/modules/6.15.0-rc1-xe+/modules.alias
+lib/modules/6.15.0-rc1-xe+/modules.order
+lib/modules/6.15.0-rc1-xe+/modules.symbols
+lib/modules/6.15.0-rc1-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1744179290:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1744179290:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
