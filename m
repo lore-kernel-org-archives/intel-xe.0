@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F282DC369A2
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Apr 2025 21:18:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FACCC36002
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Apr 2025 21:19:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9EF810E320;
-	Wed,  9 Apr 2025 21:18:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5C4F10E1F1;
+	Wed,  9 Apr 2025 21:19:16 +0000 (UTC)
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C60810E1F1;
- Wed,  9 Apr 2025 21:18:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AA3E10E1F1;
+ Wed,  9 Apr 2025 21:19:15 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/vf=3A_Post-mi?=
- =?utf-8?q?gration_recovery_of_GGTT_nodes_and_CTB_=28rev7=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/vf=3A_Post-migrati?=
+ =?utf-8?q?on_recovery_of_GGTT_nodes_and_CTB_=28rev7=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Tomasz Lis" <tomasz.lis@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 09 Apr 2025 21:18:59 -0000
-Message-ID: <174423353943.54277.13398439605570114058@e6b6f09ec485>
+Date: Wed, 09 Apr 2025 21:19:15 -0000
+Message-ID: <174423355556.54278.9816746698085366112@e6b6f09ec485>
 X-Patchwork-Hint: ignore
 References: <20250409211340.3046931-1-tomasz.lis@intel.com>
 In-Reply-To: <20250409211340.3046931-1-tomasz.lis@intel.com>
@@ -44,16 +44,91 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/vf: Post-migration recovery of GGTT nodes and CTB (rev7)
 URL   : https://patchwork.freedesktop.org/series/141439/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: ef33117e4583 drm-tip: 2025y-04m-09d-16h-51m-14s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/vf: Divide GGTT ballooning into allocation and insertion
-Applying: drm/xe/vf: Shifting GGTT area post migration
-Applying: drm/xe/guc: Introduce enum with offsets for context register H2Gs
-Applying: drm/xe/vf: Fixup CTB send buffer messages after migration
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+13a92ce9fd458ebd6064f23cec8c39c53d02ed26
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 88bf30c22701e930d9fcb55c2a7d1f9dc6ccf5ab
+Author: Tomasz Lis <tomasz.lis@intel.com>
+Date:   Wed Apr 9 23:13:40 2025 +0200
+
+    drm/xe/vf: Fixup CTB send buffer messages after migration
+    
+    During post-migration recovery of a VF, it is necessary to update
+    GGTT references included in messages which are going to be sent
+    to GuC. GuC will start consuming messages after VF KMD will inform
+    it about fixups being done; before that, the VF KMD is expected
+    to update any H2G messages which are already in send buffer but
+    were not consumed by GuC.
+    
+    Only a small subset of messages allowed for VFs have GGTT references
+    in them. This patch adds the functionality to parse the CTB send
+    ring buffer and shift addresses contained within.
+    
+    While fixing the CTB content, ct->lock is not taken. This means
+    the only barrier taken remains GGTT address lock - which is ok,
+    because only requests with GGTT addresses matter, but it also means
+    tail changes can happen during the CTB fixups execution (which may
+    be ignored as any new messages will not have anything to fix).
+    
+    The GGTT address locking will be introduced in a future series.
+    
+    v2: removed storing shift as that's now done in VMA nodes patch;
+      macros to inlines; warns to asserts; log messages fixes (Michal)
+    v3: removed inline keywords, enums for offsets in CTB messages,
+      less error messages, if return unused then made functs void (Michal)
+    v4: update the cached head before starting fixups
+    v5: removed/updated comments, wrapped lines, converted assert into
+      error, enums for offsets to separate patch, reused xe_map_rd
+    v6: define xe_map_*_array() macros, support CTB wrap which divides
+      a message, updated comments, moved one function to an earlier patch
+    v7: renamed few functions, wider use on previously introduced helper,
+      separate cases in parsing messges, documented a static funct
+    
+    Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
+    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
++ /mt/dim checkpatch ef33117e4583fab700ac35903cf68dd5309fa947 drm-intel
+f64b4885f074 drm/xe/vf: Divide GGTT ballooning into allocation and insertion
+-:32: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#32: FILE: drivers/gpu/drm/xe/xe_ggtt.c:1:
++/// SPDX-License-Identifier: MIT
+
+-:213: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#213: FILE: drivers/gpu/drm/xe/xe_gt_sriov_vf.c:619:
++		err = xe_ggtt_node_insert_balloon_locked(tile->sriov.vf.ggtt_balloon[0], start, end);
+
+-:225: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#225: FILE: drivers/gpu/drm/xe/xe_gt_sriov_vf.c:627:
++		err = xe_ggtt_node_insert_balloon_locked(tile->sriov.vf.ggtt_balloon[1], start, end);
+
+total: 0 errors, 3 warnings, 0 checks, 273 lines checked
+8f84753c8eb8 drm/xe/vf: Shifting GGTT area post migration
+d705307a4e4d drm/xe/guc: Introduce enum with offsets for context register H2Gs
+88bf30c22701 drm/xe/vf: Fixup CTB send buffer messages after migration
+-:84: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#84: FILE: drivers/gpu/drm/xe/xe_guc_ct.c:1655:
++static void ct_fixup_ggtt_in_message(struct xe_guc_ct *ct,
++					   struct iosys_map *cmds, u32 head,
+
+-:135: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#135: FILE: drivers/gpu/drm/xe/xe_guc_ct.c:1706:
++static int ct_fixup_ggtt_in_buffer(struct xe_guc_ct *ct, struct guc_ctb *h2g,
++					 s64 shift, u32 *mhead, s32 avail)
+
+-:212: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#212: FILE: drivers/gpu/drm/xe/xe_guc_ct.c:1783:
++	xe_gt_err(gt, "Corrupted H2G descriptor head=%u tail=%u size=%u, fixups not applied\n",
++		 head, tail, size);
+
+total: 0 errors, 0 warnings, 3 checks, 235 lines checked
 
 
