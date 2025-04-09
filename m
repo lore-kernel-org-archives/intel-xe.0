@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88F07C369A1
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Apr 2025 14:17:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E047EC369A1
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Apr 2025 14:17:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5222810E8D2;
-	Wed,  9 Apr 2025 14:17:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DBD610E8DB;
+	Wed,  9 Apr 2025 14:17:20 +0000 (UTC)
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2241A10E8D2;
- Wed,  9 Apr 2025 14:17:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E5A210E8DC;
+ Wed,  9 Apr 2025 14:17:19 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Allow_to_d?=
- =?utf-8?q?rop_vram_resizing?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Allow_to_drop_v?=
+ =?utf-8?q?ram_resizing?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 09 Apr 2025 14:17:04 -0000
-Message-ID: <174420822413.52567.11207048175428754009@e6b6f09ec485>
+Date: Wed, 09 Apr 2025 14:17:19 -0000
+Message-ID: <174420823931.52672.15435829192181579534@e6b6f09ec485>
 X-Patchwork-Hint: ignore
 References: <20250409-bar-resize-param-v1-1-75bf4df38aa0@intel.com>
 In-Reply-To: <20250409-bar-resize-param-v1-1-75bf4df38aa0@intel.com>
@@ -48,9 +48,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: a4fa94e2a404 drm-tip: 2025y-04m-09d-10h-59m-10s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Allow to drop vram resizing
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+13a92ce9fd458ebd6064f23cec8c39c53d02ed26
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 45b9e139900dd99c23f0ea4ddc92fdd7df43ffc2
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Wed Apr 9 07:09:56 2025 -0700
+
+    drm/xe: Allow to drop vram resizing
+    
+    The default behavior if the LMEMBAR doesn't match the maximum possible
+    size is to try to resize it. However the user might want to keep, even
+    for testing the behavior with small BAR, whatever size was set via
+    sysfs. Change the module parameter to int and check for negative value.
+    
+    Cc: Michał Winiarski <michal.winiarski@intel.com>
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch a4fa94e2a40459883139bc058d8c7b47514bb713 drm-intel
+45b9e139900d drm/xe: Allow to drop vram resizing
 
 
