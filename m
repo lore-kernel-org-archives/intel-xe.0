@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F086DC369A6
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Apr 2025 14:26:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3859DC36002
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Apr 2025 14:34:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADE7D10E90A;
-	Wed,  9 Apr 2025 14:26:18 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mPuQ6oWg";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E27010E908;
- Wed,  9 Apr 2025 14:26:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744208777; x=1775744777;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=aGowCRnl88XbQqS7nbUNmkFlduByro7x5z//9mMtf88=;
- b=mPuQ6oWg/9w1GusujQa6SW52PccWXXEnwfp0JD6mBFrz39MQ/oQh5pbB
- IXQ5cj1sbaZBEOwJUFDSMqxxoFTOTKQdT++/sjhAgxqFxG7mu9dZA/M4Y
- 6nv/anIC6bOJANfwJm3gQG96YX2z5dlKnaHQroZPHgTLdAMAP34a//vZx
- XuXYAradLjS/iOR5jQfbi+D4+Q9Q4pkB16L4nZImqitGnmxXiIOZdAe+c
- dC1dUlgYIGtEAVnddzxhODmOK2bW+vgMGK65Y6x5CjqZ9svvODrsmeThD
- HrnqI+RphdVgFBVWOqwhDCWmedpz3izLbE6ckagv1wts6ClmipULZMc23 A==;
-X-CSE-ConnectionGUID: bd53dNgMQeyKCuCVHMgWIQ==
-X-CSE-MsgGUID: BEjy5a29TwiuwJdWnKLAfw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="49347814"
-X-IronPort-AV: E=Sophos;i="6.15,200,1739865600"; d="scan'208";a="49347814"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2025 07:26:17 -0700
-X-CSE-ConnectionGUID: DKm2YmcATZ611lFCaWjVTw==
-X-CSE-MsgGUID: /VKxnCu7TPGhd7fQwMlr/Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,200,1739865600"; d="scan'208";a="132732753"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by fmviesa003.fm.intel.com with ESMTP; 09 Apr 2025 07:26:15 -0700
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jouni.hogander@intel.com, jani.nikula@intel.com, jeevan.b@intel.com,
- Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v8 9/9] drm/i915/lobf: Check for sink error and disable LOBF
-Date: Wed,  9 Apr 2025 19:32:58 +0530
-Message-Id: <20250409140258.785834-10-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20250409140258.785834-1-animesh.manna@intel.com>
-References: <20250409140258.785834-1-animesh.manna@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F15A10E904;
+	Wed,  9 Apr 2025 14:34:45 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BF5910E904;
+ Wed,  9 Apr 2025 14:34:44 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBuild=3A_failure_for_drm/xe=3A_Allow_to_drop_vram_r?=
+ =?utf-8?q?esizing?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 09 Apr 2025 14:34:44 -0000
+Message-ID: <174420928404.52983.5775586342316450262@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250409-bar-resize-param-v1-1-75bf4df38aa0@intel.com>
+In-Reply-To: <20250409-bar-resize-param-v1-1-75bf4df38aa0@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,145 +36,117 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Disable LOBF/ALPM for any erroneous condition from sink side.
+== Series Details ==
 
-v1: Initial version.
-v2: Add centralized alpm error handling. [Jouni]
-v3: Improve debug print. [Jouni]
-v4: Disable alpm permanently for sink error. [Jouni]
+Series: drm/xe: Allow to drop vram resizing
+URL   : https://patchwork.freedesktop.org/series/147472/
+State : failure
 
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_alpm.c     | 28 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_alpm.h     |  1 +
- .../drm/i915/display/intel_display_types.h    |  1 +
- drivers/gpu/drm/i915/display/intel_dp.c       |  5 ++++
- drivers/gpu/drm/i915/display/intel_psr.c      | 18 ++----------
- 5 files changed, 37 insertions(+), 16 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index e4eb7dae5f43..d7dbe32076ff 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -284,6 +284,9 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
- 		return;
- 	}
- 
-+	if (intel_dp->alpm_parameters.sink_alpm_error)
-+		return;
-+
- 	if (!intel_dp_is_edp(intel_dp))
- 		return;
- 
-@@ -510,5 +513,30 @@ void intel_alpm_disable(struct intel_dp *intel_dp)
- 		     PORT_ALPM_CTL(cpu_transcoder),
- 		     PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
- 
-+	drm_dbg_kms(display->drm, "Disabling ALPM\n");
- 	mutex_unlock(&intel_dp->alpm_parameters.lock);
- }
-+
-+bool intel_alpm_get_error(struct intel_dp *intel_dp)
-+{
-+	struct intel_display *display = to_intel_display(intel_dp);
-+	struct drm_dp_aux *aux = &intel_dp->aux;
-+	u8 val;
-+	int r;
-+
-+	r = drm_dp_dpcd_readb(aux, DP_RECEIVER_ALPM_STATUS, &val);
-+	if (r != 1) {
-+		drm_err(display->drm, "Error reading ALPM status\n");
-+		return true;
-+	}
-+
-+	if (val & DP_ALPM_LOCK_TIMEOUT_ERROR) {
-+		drm_dbg_kms(display->drm, "ALPM lock timeout error\n");
-+
-+		/* Clearing error */
-+		drm_dp_dpcd_writeb(aux, DP_RECEIVER_ALPM_STATUS, val);
-+		return true;
-+	}
-+
-+	return false;
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
-index 012b0b1d17ff..4f86322a9995 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.h
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.h
-@@ -29,4 +29,5 @@ void intel_alpm_lobf_debugfs_add(struct intel_connector *connector);
- bool intel_alpm_aux_wake_supported(struct intel_dp *intel_dp);
- bool intel_alpm_aux_less_wake_supported(struct intel_dp *intel_dp);
- void intel_alpm_disable(struct intel_dp *intel_dp);
-+bool intel_alpm_get_error(struct intel_dp *intel_dp);
- #endif
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 11346c159489..97db0f569a92 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1814,6 +1814,7 @@ struct intel_dp {
- 		u8 silence_period_sym_clocks;
- 		u8 lfps_half_cycle_num_of_syms;
- 		bool lobf_disable_debug;
-+		bool sink_alpm_error;
- 	} alpm_parameters;
- 
- 	u8 alpm_dpcd;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index ed94115560c7..cb2c097c1ec9 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -5391,6 +5391,11 @@ intel_dp_short_pulse(struct intel_dp *intel_dp)
- 
- 	intel_psr_short_pulse(intel_dp);
- 
-+	if (intel_alpm_get_error(intel_dp)) {
-+		intel_alpm_disable(intel_dp);
-+		intel_dp->alpm_parameters.sink_alpm_error = true;
-+	}
-+
- 	if (intel_dp_test_short_pulse(intel_dp))
- 		reprobe_needed = true;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 1bd2fcd0fa4b..43ed166007eb 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -3384,29 +3384,15 @@ static int psr_get_status_and_error_status(struct intel_dp *intel_dp,
- 
- static void psr_alpm_check(struct intel_dp *intel_dp)
- {
--	struct intel_display *display = to_intel_display(intel_dp);
--	struct drm_dp_aux *aux = &intel_dp->aux;
- 	struct intel_psr *psr = &intel_dp->psr;
--	u8 val;
--	int r;
- 
- 	if (!psr->sel_update_enabled)
- 		return;
- 
--	r = drm_dp_dpcd_readb(aux, DP_RECEIVER_ALPM_STATUS, &val);
--	if (r != 1) {
--		drm_err(display->drm, "Error reading ALPM status\n");
--		return;
--	}
--
--	if (val & DP_ALPM_LOCK_TIMEOUT_ERROR) {
-+	if (intel_alpm_get_error(intel_dp)) {
- 		intel_psr_disable_locked(intel_dp);
- 		psr->sink_not_reliable = true;
--		drm_dbg_kms(display->drm,
--			    "ALPM lock timeout error, disabling PSR\n");
--
--		/* Clearing error */
--		drm_dp_dpcd_writeb(aux, DP_RECEIVER_ALPM_STATUS, val);
-+		intel_alpm_disable(intel_dp);
- 	}
- }
- 
--- 
-2.29.0
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/events/amd/
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.15.0-rc1-xe+/kernel/kernel/
+lib/modules/6.15.0-rc1-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/zstd.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/xctr.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/authenc.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm3.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/cmac.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/essiv.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/ccm.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/wp512.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/lrw.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/842.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/md4.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/lz4.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm4.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.15.0-rc1-xe+/kernel/block/
+lib/modules/6.15.0-rc1-xe+/kernel/block/bfq.ko
+lib/modules/6.15.0-rc1-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.15.0-rc1-xe+/build
+lib/modules/6.15.0-rc1-xe+/modules.alias.bin
+lib/modules/6.15.0-rc1-xe+/modules.builtin
+lib/modules/6.15.0-rc1-xe+/modules.softdep
+lib/modules/6.15.0-rc1-xe+/modules.alias
+lib/modules/6.15.0-rc1-xe+/modules.order
+lib/modules/6.15.0-rc1-xe+/modules.symbols
+lib/modules/6.15.0-rc1-xe+/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive-nodebug
++ sync
+[+] Finished building and packaging 'nodebug'!
++ echo '[+] Finished building and packaging '\''nodebug'\''!'
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
