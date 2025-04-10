@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 054FDC3601E
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Apr 2025 08:53:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D04FC3601E
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Apr 2025 08:53:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9C3710E7F8;
-	Thu, 10 Apr 2025 08:53:06 +0000 (UTC)
-Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C138710E7F8;
- Thu, 10 Apr 2025 08:53:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7366206597013971891=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915=3A_error_capture_c?=
- =?utf-8?q?leanups_and_refactor?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DAF910E801;
+	Thu, 10 Apr 2025 08:53:56 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AGx46R52";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A98F410E801;
+ Thu, 10 Apr 2025 08:53:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744275235; x=1775811235;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=FHCm9/riXkrMcvOYPaPJr8E8TVkzZZkBvTrSaE7sZp4=;
+ b=AGx46R52+VH83CmrYhhOdi1HA21KchIrbdAH1zuYiGGYelkcZFXG2Zti
+ Pvh5+3+cW6JXlFU/ajB0u3LQ3qUphcS0HyuQC64JQzY5X0odWtmoGLbvv
+ h3PbeMyMFG6R/wZSYOmjCOjYRco7HEAZpkBz5bwwyHvwSDOChqDSY5ECq
+ +FAJfSqA0TcFvRE0r6pdVCP/YsvSEEt/Xid0fgDAPpd9z/7hljOTsDegN
+ kSxweUV38rPLWniWJzk4Cw3R4l+/EDf5McPU+zk9VluHeugyIgMowLVGt
+ NeG0DytMQJQcpBnTa9A4VgWAlx4NtLV5OV2PFy2JaQg7R9dFi8NWSJNBd w==;
+X-CSE-ConnectionGUID: eduJVnFwSH6P/SkedBVOsw==
+X-CSE-MsgGUID: Z2sdlghHQ5uk5es340N2Vg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11399"; a="45669411"
+X-IronPort-AV: E=Sophos;i="6.15,202,1739865600"; d="scan'208";a="45669411"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2025 01:53:54 -0700
+X-CSE-ConnectionGUID: 4aQWDF4hRIOpCNTG91MN4Q==
+X-CSE-MsgGUID: ALy6flCPRBS/2xEeZ4/rqA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,202,1739865600"; d="scan'208";a="128759125"
+Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.28])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2025 01:53:52 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 10 Apr 2025 08:53:05 -0000
-Message-ID: <174427518578.54720.11093639994208987372@e6b6f09ec485>
-X-Patchwork-Hint: ignore
-References: <cover.1744208554.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1744208554.git.jani.nikula@intel.com>
+Subject: Re: [PATCH v2 6/6] drm/i915: Don't pass crtc_state to
+ foo_plane_ctl() & co.
+In-Reply-To: <20250402172240.9275-7-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250402172240.9275-1-ville.syrjala@linux.intel.com>
+ <20250402172240.9275-7-ville.syrjala@linux.intel.com>
+Date: Thu, 10 Apr 2025 11:53:49 +0300
+Message-ID: <87plhkv1lu.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,129 +68,206 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7366206597013971891==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, 02 Apr 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> The *_plane_ctl() functions only consider the state of the
+> plane (the state of the crtc is handled by the corresponding
+> *_plane_ctl_crtc()), and thus they don't need the crtc_state
+> at all. Don't pass it in.
 
-== Series Details ==
+Trusting the compiler here,
 
-Series: drm/i915: error capture cleanups and refactor
-URL   : https://patchwork.freedesktop.org/series/147474/
-State : success
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-== Summary ==
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/i9xx_plane.c         |  5 ++---
+>  drivers/gpu/drm/i915/display/intel_cursor.c       | 10 ++++------
+>  drivers/gpu/drm/i915/display/intel_sprite.c       | 15 ++++++---------
+>  .../gpu/drm/i915/display/skl_universal_plane.c    | 11 ++++-------
+>  4 files changed, 16 insertions(+), 25 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/=
+i915/display/i9xx_plane.c
+> index bfeb4bf864e2..6a2609402431 100644
+> --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
+> +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
+> @@ -151,8 +151,7 @@ static bool i9xx_plane_has_windowing(struct intel_pla=
+ne *plane)
+>  			i9xx_plane =3D=3D PLANE_C;
+>  }
+>=20=20
+> -static u32 i9xx_plane_ctl(const struct intel_crtc_state *crtc_state,
+> -			  const struct intel_plane_state *plane_state)
+> +static u32 i9xx_plane_ctl(const struct intel_plane_state *plane_state)
+>  {
+>  	struct intel_display *display =3D to_intel_display(plane_state);
+>  	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
+> @@ -351,7 +350,7 @@ i9xx_plane_check(struct intel_crtc_state *crtc_state,
+>  	if (ret)
+>  		return ret;
+>=20=20
+> -	plane_state->ctl =3D i9xx_plane_ctl(crtc_state, plane_state);
+> +	plane_state->ctl =3D i9xx_plane_ctl(plane_state);
+>=20=20
+>  	return 0;
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/dr=
+m/i915/display/intel_cursor.c
+> index 5333b34a5776..8f9c8f0f4b27 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cursor.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+> @@ -205,8 +205,7 @@ static u32 i845_cursor_ctl_crtc(const struct intel_cr=
+tc_state *crtc_state)
+>  	return cntl;
+>  }
+>=20=20
+> -static u32 i845_cursor_ctl(const struct intel_crtc_state *crtc_state,
+> -			   const struct intel_plane_state *plane_state)
+> +static u32 i845_cursor_ctl(const struct intel_plane_state *plane_state)
+>  {
+>  	return CURSOR_ENABLE |
+>  		CURSOR_FORMAT_ARGB |
+> @@ -266,7 +265,7 @@ static int i845_check_cursor(struct intel_crtc_state =
+*crtc_state,
+>  		return -EINVAL;
+>  	}
+>=20=20
+> -	plane_state->ctl =3D i845_cursor_ctl(crtc_state, plane_state);
+> +	plane_state->ctl =3D i845_cursor_ctl(plane_state);
+>=20=20
+>  	return 0;
+>  }
+> @@ -398,8 +397,7 @@ static u32 i9xx_cursor_ctl_crtc(const struct intel_cr=
+tc_state *crtc_state)
+>  	return cntl;
+>  }
+>=20=20
+> -static u32 i9xx_cursor_ctl(const struct intel_crtc_state *crtc_state,
+> -			   const struct intel_plane_state *plane_state)
+> +static u32 i9xx_cursor_ctl(const struct intel_plane_state *plane_state)
+>  {
+>  	struct intel_display *display =3D to_intel_display(plane_state);
+>  	u32 cntl =3D 0;
+> @@ -526,7 +524,7 @@ static int i9xx_check_cursor(struct intel_crtc_state =
+*crtc_state,
+>  		return -EINVAL;
+>  	}
+>=20=20
+> -	plane_state->ctl =3D i9xx_cursor_ctl(crtc_state, plane_state);
+> +	plane_state->ctl =3D i9xx_cursor_ctl(plane_state);
+>=20=20
+>  	return 0;
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/dr=
+m/i915/display/intel_sprite.c
+> index 9bcb8dda6129..269065840b31 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
+> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+> @@ -263,8 +263,7 @@ static u32 vlv_sprite_ctl_crtc(const struct intel_crt=
+c_state *crtc_state)
+>  	return sprctl;
+>  }
+>=20=20
+> -static u32 vlv_sprite_ctl(const struct intel_crtc_state *crtc_state,
+> -			  const struct intel_plane_state *plane_state)
+> +static u32 vlv_sprite_ctl(const struct intel_plane_state *plane_state)
+>  {
+>  	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
+>  	unsigned int rotation =3D plane_state->hw.rotation;
+> @@ -659,8 +658,7 @@ static bool ivb_need_sprite_gamma(const struct intel_=
+plane_state *plane_state)
+>  		(display->platform.ivybridge || display->platform.haswell);
+>  }
+>=20=20
+> -static u32 ivb_sprite_ctl(const struct intel_crtc_state *crtc_state,
+> -			  const struct intel_plane_state *plane_state)
+> +static u32 ivb_sprite_ctl(const struct intel_plane_state *plane_state)
+>  {
+>  	struct intel_display *display =3D to_intel_display(plane_state);
+>  	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
+> @@ -1009,8 +1007,7 @@ static u32 g4x_sprite_ctl_crtc(const struct intel_c=
+rtc_state *crtc_state)
+>  	return dvscntr;
+>  }
+>=20=20
+> -static u32 g4x_sprite_ctl(const struct intel_crtc_state *crtc_state,
+> -			  const struct intel_plane_state *plane_state)
+> +static u32 g4x_sprite_ctl(const struct intel_plane_state *plane_state)
+>  {
+>  	struct intel_display *display =3D to_intel_display(plane_state);
+>  	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
+> @@ -1377,9 +1374,9 @@ g4x_sprite_check(struct intel_crtc_state *crtc_stat=
+e,
+>  		return ret;
+>=20=20
+>  	if (DISPLAY_VER(display) >=3D 7)
+> -		plane_state->ctl =3D ivb_sprite_ctl(crtc_state, plane_state);
+> +		plane_state->ctl =3D ivb_sprite_ctl(plane_state);
+>  	else
+> -		plane_state->ctl =3D g4x_sprite_ctl(crtc_state, plane_state);
+> +		plane_state->ctl =3D g4x_sprite_ctl(plane_state);
+>=20=20
+>  	return 0;
+>  }
+> @@ -1429,7 +1426,7 @@ vlv_sprite_check(struct intel_crtc_state *crtc_stat=
+e,
+>  	if (ret)
+>  		return ret;
+>=20=20
+> -	plane_state->ctl =3D vlv_sprite_ctl(crtc_state, plane_state);
+> +	plane_state->ctl =3D vlv_sprite_ctl(plane_state);
+>=20=20
+>  	return 0;
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers=
+/gpu/drm/i915/display/skl_universal_plane.c
+> index 808580826b0e..cc64d9598c17 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> @@ -1166,8 +1166,7 @@ static u32 skl_plane_ctl_crtc(const struct intel_cr=
+tc_state *crtc_state)
+>  	return plane_ctl;
+>  }
+>=20=20
+> -static u32 skl_plane_ctl(const struct intel_crtc_state *crtc_state,
+> -			 const struct intel_plane_state *plane_state)
+> +static u32 skl_plane_ctl(const struct intel_plane_state *plane_state)
+>  {
+>  	struct intel_display *display =3D to_intel_display(plane_state);
+>  	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
+> @@ -1225,8 +1224,7 @@ static u32 glk_plane_color_ctl_crtc(const struct in=
+tel_crtc_state *crtc_state)
+>  	return plane_color_ctl;
+>  }
+>=20=20
+> -static u32 glk_plane_color_ctl(const struct intel_crtc_state *crtc_state,
+> -			       const struct intel_plane_state *plane_state)
+> +static u32 glk_plane_color_ctl(const struct intel_plane_state *plane_sta=
+te)
+>  {
+>  	struct intel_display *display =3D to_intel_display(plane_state);
+>  	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
+> @@ -2355,11 +2353,10 @@ static int skl_plane_check(struct intel_crtc_stat=
+e *crtc_state,
+>  		plane_state->damage =3D DRM_RECT_INIT(0, 0, 0, 0);
+>  	}
+>=20=20
+> -	plane_state->ctl =3D skl_plane_ctl(crtc_state, plane_state);
+> +	plane_state->ctl =3D skl_plane_ctl(plane_state);
+>=20=20
+>  	if (DISPLAY_VER(display) >=3D 10)
+> -		plane_state->color_ctl =3D glk_plane_color_ctl(crtc_state,
+> -							     plane_state);
+> +		plane_state->color_ctl =3D glk_plane_color_ctl(plane_state);
+>=20=20
+>  	if (intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier) &&
+>  	    icl_is_hdr_plane(display, plane->id))
 
-CI Bug Log - changes from xe-2928-c54633598106dbdb97f3aa589587b8176009b6d8_BAT -> xe-pw-147474v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 8)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-147474v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_exec_balancer@twice-parallel-userptr-rebind:
-    - bat-adlp-vf:        [PASS][1] -> [ABORT][2] ([Intel XE#3970])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2928-c54633598106dbdb97f3aa589587b8176009b6d8/bat-adlp-vf/igt@xe_exec_balancer@twice-parallel-userptr-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147474v1/bat-adlp-vf/igt@xe_exec_balancer@twice-parallel-userptr-rebind.html
-
-  
-  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
-
-
-Build changes
--------------
-
-  * IGT: IGT_8312 -> IGT_8313
-  * Linux: xe-2928-c54633598106dbdb97f3aa589587b8176009b6d8 -> xe-pw-147474v1
-
-  IGT_8312: 8312
-  IGT_8313: 8313
-  xe-2928-c54633598106dbdb97f3aa589587b8176009b6d8: c54633598106dbdb97f3aa589587b8176009b6d8
-  xe-pw-147474v1: 147474v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147474v1/index.html
-
---===============7366206597013971891==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: error capture cleanups and refactor</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147474/">https://patchwork.freedesktop.org/series/147474/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147474v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147474v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2928-c54633598106dbdb97f3aa589587b8176009b6d8_BAT -&gt; xe-pw-147474v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-147474v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_exec_balancer@twice-parallel-userptr-rebind:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2928-c54633598106dbdb97f3aa589587b8176009b6d8/bat-adlp-vf/igt@xe_exec_balancer@twice-parallel-userptr-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147474v1/bat-adlp-vf/igt@xe_exec_balancer@twice-parallel-userptr-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8312 -&gt; IGT_8313</li>
-<li>Linux: xe-2928-c54633598106dbdb97f3aa589587b8176009b6d8 -&gt; xe-pw-147474v1</li>
-</ul>
-<p>IGT_8312: 8312<br />
-  IGT_8313: 8313<br />
-  xe-2928-c54633598106dbdb97f3aa589587b8176009b6d8: c54633598106dbdb97f3aa589587b8176009b6d8<br />
-  xe-pw-147474v1: 147474v1</p>
-
-</body>
-</html>
-
---===============7366206597013971891==--
+--=20
+Jani Nikula, Intel
