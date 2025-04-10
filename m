@@ -4,53 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09AA3C3601E
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Apr 2025 16:27:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EDECC369A9
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Apr 2025 16:32:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C252310EA09;
-	Thu, 10 Apr 2025 16:27:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BEB110EA0D;
+	Thu, 10 Apr 2025 16:32:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bDy1XTIj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R2YdDgzS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE1C310EA09
- for <intel-xe@lists.freedesktop.org>; Thu, 10 Apr 2025 16:27:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82C2010EA0E;
+ Thu, 10 Apr 2025 16:32:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744302449; x=1775838449;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=chKz2qbGpXeMzyi0x8vRH1CFhl6txUlwu3vv0gJbwUw=;
- b=bDy1XTIjbXM0PXJGG0Rdtsxp4fhY7veIzyH+b19/eCK0vJ2OZhcz7QbG
- h+9bQ1iKRjAd1+wiMxxofTkMoVu8DWZx10w0UL3Vtd2uJd/NPG/DALiul
- v8/gb9FTwjKKQnjOa/6DDZd7gzMMjO8yBw8HC3+YcP/fffZtVVVsiZ4hi
- NhwzX9UEQ8SbPc+NhA/mak2ZbjSJ8DLrTh4Izm4UowXQzIdj3wLz75t9H
- ctK8xTYjQnst1DEDPj/lc2D14liTRd9EB7tM6dj7opJUNQKJ4/9vvfE+8
- X6s/FIacgVFZx4FgbOkHBqQFYbQA7ckwNpzfuD3T8/9foyHYiBzLil/eH g==;
-X-CSE-ConnectionGUID: c0PPVfp2RYiUoodJj2Asug==
-X-CSE-MsgGUID: ckvUrzXgSUCg+TTX5mdkoA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11400"; a="63377528"
-X-IronPort-AV: E=Sophos;i="6.15,202,1739865600"; d="scan'208";a="63377528"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2025 09:27:29 -0700
-X-CSE-ConnectionGUID: VynYyzp3Sw6zOYf33MFRRA==
-X-CSE-MsgGUID: lS/peeEeTPuuQ9QBhaSONA==
+ t=1744302756; x=1775838756;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=rB/ljIGme2GzwJsuSZYmtYPYCAYkV1Q/JbAmzs0mIQ0=;
+ b=R2YdDgzS/wRRETOufIOecEa8xVk6MJlCXfHbe+nj/eSjnwlbrh37ZZtY
+ E2wMY7MmDYqpEeY4XXxxlOiKMNimhzhEZ//a/XBu8x4RiNF4NqKi/BZ9Y
+ xLKrwnDmN/HU0+7QfXA4Nusk63OS9Bq/s6mzfJNqLm42gNNs3/z19w3K+
+ 8Af9SFzxnVP+DJ8f+S0g0Z6H+ogOu21Y1aXHkEbTTEH2yBb6I/ffVp00D
+ RqI5qu2zE3AGCTDgqZ2vvYz1AirPa2+lghO5HJF1L4DsWSrfMo0/AxgpP
+ ffuRg/WtTrYEquEk53eJzdkNLnDe2qaWRFrWhGEKoUhyw8U7WBdD3/f2M g==;
+X-CSE-ConnectionGUID: lAujcjkTSgqVI7FiK+4KpA==
+X-CSE-MsgGUID: fHN2O34CQvKWHgHOuWbvKA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11400"; a="57219963"
+X-IronPort-AV: E=Sophos;i="6.15,202,1739865600"; d="scan'208";a="57219963"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2025 09:32:34 -0700
+X-CSE-ConnectionGUID: J4cM+0VvT5m2OcdNX6DGvg==
+X-CSE-MsgGUID: gp5lZHCBSmqezCfA82wmag==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,202,1739865600"; d="scan'208";a="152135201"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO mwauld-desk.intel.com)
- ([10.245.245.125])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2025 09:27:28 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>, stable@vger.kernel.org,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Subject: [PATCH] drm/xe/dma_buf: stop relying on placement in unmap
-Date: Thu, 10 Apr 2025 17:27:17 +0100
-Message-ID: <20250410162716.159403-2-matthew.auld@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,202,1739865600"; d="scan'208";a="134128855"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orviesa005.jf.intel.com with SMTP; 10 Apr 2025 09:32:23 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 10 Apr 2025 19:32:21 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
+Subject: [PATCH 01/19] drm: Pass pixel_format+modifier to .get_format_info()
+Date: Thu, 10 Apr 2025 19:32:00 +0300
+Message-ID: <20250410163218.15130-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250410163218.15130-1-ville.syrjala@linux.intel.com>
+References: <20250410163218.15130-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -68,52 +71,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The is_vram() is checking the current placement, however if we consider
-exported VRAM with dynamic dma-buf, it looks possible for the xe driver
-to async evict the memory, notifying the importer, however importer does
-not have to call unmap_attachment() immediately, but rather just as
-"soon as possible", like when the dma-resv idles. Following from this we
-would then pipeline the move, attaching the fence to the manager, and
-then update the current placement. But when the unmap_attachment() runs
-at some later point we might see that is_vram() is now false, and take
-the complete wrong path when dma-unmapping the sg, leading to
-explosions.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-To fix this check if the sgl was mapping a struct page.
+Decouple .get_format_info() from struct drm_mode_fb_cmd2 and just
+pass the pixel format+modifier combo in by hand.
 
-v2:
-  - The attachment can be mapped multiple times it seems, so we can't
-    really rely on encoding something in the attachment->priv. Instead
-    see if the page_link has an encoded struct page. For vram we expect
-    this to be NULL.
+We may want to use .get_format_info() outside of the normal
+addfb paths where we won't have a struct drm_mode_fb_cmd2, and
+creating a temporary one just for this seems silly.
 
-Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4563
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: <stable@vger.kernel.org> # v6.8+
-Acked-by: Christian König <christian.koenig@amd.com>
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Leo Li <sunpeng.li@amd.com>
+Cc: Rodrigo Siqueira <siqueira@igalia.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_dma_buf.c | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c | 4 ++--
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h | 2 +-
+ drivers/gpu/drm/drm_fourcc.c                            | 3 ++-
+ drivers/gpu/drm/i915/display/intel_fb.c                 | 9 +++++----
+ drivers/gpu/drm/i915/display/intel_fb.h                 | 2 +-
+ include/drm/drm_mode_config.h                           | 2 +-
+ 6 files changed, 12 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
-index f67803e15a0e..f7a20264ea33 100644
---- a/drivers/gpu/drm/xe/xe_dma_buf.c
-+++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-@@ -145,10 +145,7 @@ static void xe_dma_buf_unmap(struct dma_buf_attachment *attach,
- 			     struct sg_table *sgt,
- 			     enum dma_data_direction dir)
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+index 3e0f45f1711c..69d715b6abd3 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+@@ -92,9 +92,9 @@ enum dm_micro_swizzle {
+ 	MICRO_SWIZZLE_R = 3
+ };
+ 
+-const struct drm_format_info *amdgpu_dm_plane_get_format_info(const struct drm_mode_fb_cmd2 *cmd)
++const struct drm_format_info *amdgpu_dm_plane_get_format_info(u32 pixel_format, u64 modifier)
  {
--	struct dma_buf *dma_buf = attach->dmabuf;
--	struct xe_bo *bo = gem_to_xe_bo(dma_buf->priv);
--
--	if (!xe_bo_is_vram(bo)) {
-+	if (sg_page(sgt->sgl)) {
- 		dma_unmap_sgtable(attach->dev, sgt, dir, 0);
- 		sg_free_table(sgt);
- 		kfree(sgt);
+-	return amdgpu_lookup_format_info(cmd->pixel_format, cmd->modifier[0]);
++	return amdgpu_lookup_format_info(pixel_format, modifier);
+ }
+ 
+ void amdgpu_dm_plane_fill_blending_from_plane_state(const struct drm_plane_state *plane_state,
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h
+index 615d2ab2b803..ea2619b507db 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h
+@@ -58,7 +58,7 @@ int amdgpu_dm_plane_init(struct amdgpu_display_manager *dm,
+ 			 unsigned long possible_crtcs,
+ 			 const struct dc_plane_cap *plane_cap);
+ 
+-const struct drm_format_info *amdgpu_dm_plane_get_format_info(const struct drm_mode_fb_cmd2 *cmd);
++const struct drm_format_info *amdgpu_dm_plane_get_format_info(u32 pixel_format, u64 modifier);
+ 
+ void amdgpu_dm_plane_fill_blending_from_plane_state(const struct drm_plane_state *plane_state,
+ 				    bool *per_pixel_alpha, bool *pre_multiplied_alpha,
+diff --git a/drivers/gpu/drm/drm_fourcc.c b/drivers/gpu/drm/drm_fourcc.c
+index 3a94ca211f9c..f79fff8209fd 100644
+--- a/drivers/gpu/drm/drm_fourcc.c
++++ b/drivers/gpu/drm/drm_fourcc.c
+@@ -395,7 +395,8 @@ drm_get_format_info(struct drm_device *dev,
+ 	const struct drm_format_info *info = NULL;
+ 
+ 	if (dev->mode_config.funcs->get_format_info)
+-		info = dev->mode_config.funcs->get_format_info(mode_cmd);
++		info = dev->mode_config.funcs->get_format_info(mode_cmd->pixel_format,
++							       mode_cmd->modifier[0]);
+ 
+ 	if (!info)
+ 		info = drm_format_info(mode_cmd->pixel_format);
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index 2b0e0f220442..b83c42fe3233 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -421,21 +421,22 @@ unsigned int intel_fb_modifier_to_tiling(u64 fb_modifier)
+ 
+ /**
+  * intel_fb_get_format_info: Get a modifier specific format information
+- * @cmd: FB add command structure
++ * @pixel_format: pixel format
++ * @modifier: modifier
+  *
+  * Returns:
+  * Returns the format information for @cmd->pixel_format specific to @cmd->modifier[0],
+  * or %NULL if the modifier doesn't override the format.
+  */
+ const struct drm_format_info *
+-intel_fb_get_format_info(const struct drm_mode_fb_cmd2 *cmd)
++intel_fb_get_format_info(u32 pixel_format, u64 modifier)
+ {
+-	const struct intel_modifier_desc *md = lookup_modifier_or_null(cmd->modifier[0]);
++	const struct intel_modifier_desc *md = lookup_modifier_or_null(modifier);
+ 
+ 	if (!md || !md->formats)
+ 		return NULL;
+ 
+-	return lookup_format_info(md->formats, md->format_count, cmd->pixel_format);
++	return lookup_format_info(md->formats, md->format_count, pixel_format);
+ }
+ 
+ static bool plane_caps_contain_any(u8 caps, u8 mask)
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i915/display/intel_fb.h
+index bdd76b372957..7d1267fbeee2 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.h
++++ b/drivers/gpu/drm/i915/display/intel_fb.h
+@@ -47,7 +47,7 @@ u64 *intel_fb_plane_get_modifiers(struct intel_display *display,
+ bool intel_fb_plane_supports_modifier(struct intel_plane *plane, u64 modifier);
+ 
+ const struct drm_format_info *
+-intel_fb_get_format_info(const struct drm_mode_fb_cmd2 *cmd);
++intel_fb_get_format_info(u32 pixel_format, u64 modifier);
+ 
+ bool
+ intel_format_info_is_yuv_semiplanar(const struct drm_format_info *info,
+diff --git a/include/drm/drm_mode_config.h b/include/drm/drm_mode_config.h
+index 4b8f0370b79b..6fca0362bc31 100644
+--- a/include/drm/drm_mode_config.h
++++ b/include/drm/drm_mode_config.h
+@@ -95,7 +95,7 @@ struct drm_mode_config_funcs {
+ 	 * The format information specific to the given fb metadata, or
+ 	 * NULL if none is found.
+ 	 */
+-	const struct drm_format_info *(*get_format_info)(const struct drm_mode_fb_cmd2 *mode_cmd);
++	const struct drm_format_info *(*get_format_info)(u32 pixel_format, u64 modifier);
+ 
+ 	/**
+ 	 * @mode_valid:
 -- 
 2.49.0
 
