@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABDD9C369A9
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Apr 2025 15:36:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C9B5C3601E
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Apr 2025 15:55:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DF7210E9F7;
-	Thu, 10 Apr 2025 15:36:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D785210E9F4;
+	Thu, 10 Apr 2025 15:55:50 +0000 (UTC)
 Received: from 32c37dd7f93d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9CCE10E9F7;
- Thu, 10 Apr 2025 15:36:57 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29C5010E9F4;
+ Thu, 10 Apr 2025 15:55:49 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7573872981602524664=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/i915/debugfs=3A_caps?=
- =?utf-8?q?_cleanups?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/debugfs=3A_caps_cl?=
+ =?utf-8?q?eanups?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 10 Apr 2025 15:36:57 -0000
-Message-ID: <174429941794.153.12601419518289170656@32c37dd7f93d>
+Date: Thu, 10 Apr 2025 15:55:49 -0000
+Message-ID: <174430054916.281.9922555383696722213@32c37dd7f93d>
 X-Patchwork-Hint: ignore
 References: <cover.1744295009.git.jani.nikula@intel.com>
 In-Reply-To: <cover.1744295009.git.jani.nikula@intel.com>
@@ -40,6 +40,11 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============7573872981602524664==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: drm/i915/debugfs: caps cleanups
@@ -48,25 +53,108 @@ State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 457049ad31ee5b64dd86230518144d366c32bc04
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
+CI Bug Log - changes from xe-2931-457049ad31ee5b64dd86230518144d366c32bc04_BAT -> xe-pw-147528v1_BAT
+====================================================
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-147528v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_exec_basic@twice-rebind:
+    - bat-adlp-vf:        [PASS][1] -> [ABORT][2] ([Intel XE#3970])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2931-457049ad31ee5b64dd86230518144d366c32bc04/bat-adlp-vf/igt@xe_exec_basic@twice-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147528v1/bat-adlp-vf/igt@xe_exec_basic@twice-rebind.html
+
+  
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
 
 
+Build changes
+-------------
+
+  * Linux: xe-2931-457049ad31ee5b64dd86230518144d366c32bc04 -> xe-pw-147528v1
+
+  IGT_8313: 8313
+  xe-2931-457049ad31ee5b64dd86230518144d366c32bc04: 457049ad31ee5b64dd86230518144d366c32bc04
+  xe-pw-147528v1: 147528v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147528v1/index.html
+
+--===============7573872981602524664==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/debugfs: caps cleanups</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147528/">https://patchwork.freedesktop.org/series/147528/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147528v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147528v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2931-457049ad31ee5b64dd86230518144d366c32bc04_BAT -&gt; xe-pw-147528v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-147528v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_exec_basic@twice-rebind:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2931-457049ad31ee5b64dd86230518144d366c32bc04/bat-adlp-vf/igt@xe_exec_basic@twice-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147528v1/bat-adlp-vf/igt@xe_exec_basic@twice-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2931-457049ad31ee5b64dd86230518144d366c32bc04 -&gt; xe-pw-147528v1</li>
+</ul>
+<p>IGT_8313: 8313<br />
+  xe-2931-457049ad31ee5b64dd86230518144d366c32bc04: 457049ad31ee5b64dd86230518144d366c32bc04<br />
+  xe-pw-147528v1: 147528v1</p>
+
+</body>
+</html>
+
+--===============7573872981602524664==--
