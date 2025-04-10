@@ -4,79 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DF1CC369AA
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Apr 2025 19:44:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BACBDC3601E
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Apr 2025 19:51:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8836D10EA7D;
-	Thu, 10 Apr 2025 19:44:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="km2+W3BR";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BA7010E13B;
- Thu, 10 Apr 2025 19:44:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744314259; x=1775850259;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=bm3/8PF4xnmSSQgO/SPKCn9ZQH9WFMWfGuG8LCM47eI=;
- b=km2+W3BRfj7eb6W/dOhhdnPUwZ/qV5tmNi2EXUrwNACrAn8WBJ7W8aCt
- aBZlFuvufQQxurIeooGWLZdbJ3vwSs1kDUksMbx/jDF2k1OfxW9bnxSMQ
- 9L4Z85S0kC0DXttjTus8iEbG/FNC93U1yqhkiKInHBHYyBA6DSuMnQywV
- yqYHEfgqqkLM+Ro7FLTO1mAgQQ/Wd8xih1ldNdR/sIAKDIJUSeXd6afY/
- g5uURzrI/d2dDgVsyxqrV23W7Mi4S+y2I9pHOkuhOZIxQQtnh1qTlOQMg
- nnP5vK+Xz4kkLNkaVdcndCnAHgvIRMoiGlOOLl159MghBabO00a44PvF8 Q==;
-X-CSE-ConnectionGUID: He5cgpe9QCaHZlHim96vqA==
-X-CSE-MsgGUID: eMKz47DXSdiC7UTrhchzuQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11400"; a="68341408"
-X-IronPort-AV: E=Sophos;i="6.15,203,1739865600"; d="scan'208";a="68341408"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2025 12:44:19 -0700
-X-CSE-ConnectionGUID: ZJEymzmWQ+eyCd/EYrTOwQ==
-X-CSE-MsgGUID: G9cjUPyTRoyBY9bje9kCOw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,203,1739865600"; d="scan'208";a="129960821"
-Received: from lkp-server01.sh.intel.com (HELO b207828170a5) ([10.239.97.150])
- by orviesa008.jf.intel.com with ESMTP; 10 Apr 2025 12:44:11 -0700
-Received: from kbuild by b207828170a5 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1u2xon-000ATj-0b;
- Thu, 10 Apr 2025 19:44:09 +0000
-Date: Fri, 11 Apr 2025 03:43:29 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- dri-devel@lists.freedesktop.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Liviu Dudau <liviu.dudau@arm.com>, Russell King <linux@armlinux.org.uk>,
- Inki Dae <inki.dae@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <lumag@kernel.org>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>,
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Alex Deucher <alexander.deucher@amd.com>, Sandy Huang <hjc@rock-chips.com>,
- Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Mikko Perttunen <mperttunen@nvidia.com>,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org
-Subject: Re: [PATCH 02/19] drm: Pass pixel_format+modifier directly to
- drm_get_format_info()
-Message-ID: <202504110343.FEc4bNDr-lkp@intel.com>
-References: <20250410163218.15130-3-ville.syrjala@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6835E10EA74;
+	Thu, 10 Apr 2025 19:51:51 +0000 (UTC)
+Received: from 32c37dd7f93d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74FA410EA7B;
+ Thu, 10 Apr 2025 19:51:50 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5641415913794349533=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250410163218.15130-3-ville.syrjala@linux.intel.com>
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm=3A_Eliminate_redundant_?=
+ =?utf-8?q?drm=5Fformat=5Finfo_lookups?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 10 Apr 2025 19:51:50 -0000
+Message-ID: <174431471046.1985.2372884793848134608@32c37dd7f93d>
+X-Patchwork-Hint: ignore
+References: <20250410163218.15130-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20250410163218.15130-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,70 +36,164 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Ville,
+--===============5641415913794349533==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-kernel test robot noticed the following build warnings:
+== Series Details ==
 
-[auto build test WARNING on linus/master]
-[also build test WARNING on v6.15-rc1 next-20250410]
-[cannot apply to drm-exynos/exynos-drm-next tegra/for-next rmk-arm/drm-armada-devel rmk-arm/drm-armada-fixes]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Series: drm: Eliminate redundant drm_format_info lookups
+URL   : https://patchwork.freedesktop.org/series/147542/
+State : failure
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ville-Syrjala/drm-Pass-pixel_format-modifier-to-get_format_info/20250411-005845
-base:   linus/master
-patch link:    https://lore.kernel.org/r/20250410163218.15130-3-ville.syrjala%40linux.intel.com
-patch subject: [PATCH 02/19] drm: Pass pixel_format+modifier directly to drm_get_format_info()
-config: hexagon-randconfig-001-20250411 (https://download.01.org/0day-ci/archive/20250411/202504110343.FEc4bNDr-lkp@intel.com/config)
-compiler: clang version 21.0.0git (https://github.com/llvm/llvm-project f819f46284f2a79790038e1f6649172789734ae8)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250411/202504110343.FEc4bNDr-lkp@intel.com/reproduce)
+== Summary ==
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202504110343.FEc4bNDr-lkp@intel.com/
+CI Bug Log - changes from xe-2931-457049ad31ee5b64dd86230518144d366c32bc04_BAT -> xe-pw-147542v1_BAT
+====================================================
 
-All warnings (new ones prefixed by >>):
+Summary
+-------
 
->> drivers/gpu/drm/drm_fourcc.c:394: warning: Function parameter or struct member 'pixel_format' not described in 'drm_get_format_info'
->> drivers/gpu/drm/drm_fourcc.c:394: warning: Function parameter or struct member 'modifier' not described in 'drm_get_format_info'
->> drivers/gpu/drm/drm_fourcc.c:394: warning: Excess function parameter 'mode_cmd' description in 'drm_get_format_info'
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-147542v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-147542v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-147542v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries:
+    - bat-adlp-vf:        NOTRUN -> [ABORT][1]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147542v1/bat-adlp-vf/igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries.html
+    - bat-lnl-2:          NOTRUN -> [ABORT][2]
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147542v1/bat-lnl-2/igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-147542v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries:
+    - bat-lnl-1:          NOTRUN -> [ABORT][3] ([Intel XE#4624])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147542v1/bat-lnl-1/igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries.html
+
+  
+  [Intel XE#4624]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4624
 
 
-vim +394 drivers/gpu/drm/drm_fourcc.c
+Build changes
+-------------
 
-84770cc24f3a51 Laurent Pinchart 2016-10-18  381  
-6a0f9ebfc5e753 Ville Syrjälä    2017-03-21  382  /**
-6a0f9ebfc5e753 Ville Syrjälä    2017-03-21  383   * drm_get_format_info - query information for a given framebuffer configuration
-6a0f9ebfc5e753 Ville Syrjälä    2017-03-21  384   * @dev: DRM device
-6a0f9ebfc5e753 Ville Syrjälä    2017-03-21  385   * @mode_cmd: metadata from the userspace fb creation request
-6a0f9ebfc5e753 Ville Syrjälä    2017-03-21  386   *
-6a0f9ebfc5e753 Ville Syrjälä    2017-03-21  387   * Returns:
-6a0f9ebfc5e753 Ville Syrjälä    2017-03-21  388   * The instance of struct drm_format_info that describes the pixel format, or
-6a0f9ebfc5e753 Ville Syrjälä    2017-03-21  389   * NULL if the format is unsupported.
-6a0f9ebfc5e753 Ville Syrjälä    2017-03-21  390   */
-6a0f9ebfc5e753 Ville Syrjälä    2017-03-21  391  const struct drm_format_info *
-6a0f9ebfc5e753 Ville Syrjälä    2017-03-21  392  drm_get_format_info(struct drm_device *dev,
-9a77ad08811ab1 Ville Syrjälä    2025-04-10  393  		    u32 pixel_format, u64 modifier)
-6a0f9ebfc5e753 Ville Syrjälä    2017-03-21 @394  {
-6a0f9ebfc5e753 Ville Syrjälä    2017-03-21  395  	const struct drm_format_info *info = NULL;
-6a0f9ebfc5e753 Ville Syrjälä    2017-03-21  396  
-6a0f9ebfc5e753 Ville Syrjälä    2017-03-21  397  	if (dev->mode_config.funcs->get_format_info)
-9a77ad08811ab1 Ville Syrjälä    2025-04-10  398  		info = dev->mode_config.funcs->get_format_info(pixel_format,
-9a77ad08811ab1 Ville Syrjälä    2025-04-10  399  							       modifier);
-6a0f9ebfc5e753 Ville Syrjälä    2017-03-21  400  
-6a0f9ebfc5e753 Ville Syrjälä    2017-03-21  401  	if (!info)
-9a77ad08811ab1 Ville Syrjälä    2025-04-10  402  		info = drm_format_info(pixel_format);
-6a0f9ebfc5e753 Ville Syrjälä    2017-03-21  403  
-6a0f9ebfc5e753 Ville Syrjälä    2017-03-21  404  	return info;
-6a0f9ebfc5e753 Ville Syrjälä    2017-03-21  405  }
-6a0f9ebfc5e753 Ville Syrjälä    2017-03-21  406  EXPORT_SYMBOL(drm_get_format_info);
-6a0f9ebfc5e753 Ville Syrjälä    2017-03-21  407  
+  * IGT: IGT_8313 -> IGT_8314
+  * Linux: xe-2931-457049ad31ee5b64dd86230518144d366c32bc04 -> xe-pw-147542v1
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+  IGT_8313: 8313
+  IGT_8314: 337db6fa542d9c89500701f283a3cbeee4a61b50 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2931-457049ad31ee5b64dd86230518144d366c32bc04: 457049ad31ee5b64dd86230518144d366c32bc04
+  xe-pw-147542v1: 147542v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147542v1/index.html
+
+--===============5641415913794349533==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm: Eliminate redundant drm_format_info lookups</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147542/">https://patchwork.freedesktop.org/series/147542/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147542v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147542v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2931-457049ad31ee5b64dd86230518144d366c32bc04_BAT -&gt; xe-pw-147542v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-147542v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-147542v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-147542v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries:<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147542v1/bat-adlp-vf/igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries.html">ABORT</a></li>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147542v1/bat-lnl-2/igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-147542v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries:<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147542v1/bat-lnl-1/igt@intel_sysfs_debugfs@xe-debugfs-read-all-entries.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4624">Intel XE#4624</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8313 -&gt; IGT_8314</li>
+<li>Linux: xe-2931-457049ad31ee5b64dd86230518144d366c32bc04 -&gt; xe-pw-147542v1</li>
+</ul>
+<p>IGT_8313: 8313<br />
+  IGT_8314: 337db6fa542d9c89500701f283a3cbeee4a61b50 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2931-457049ad31ee5b64dd86230518144d366c32bc04: 457049ad31ee5b64dd86230518144d366c32bc04<br />
+  xe-pw-147542v1: 147542v1</p>
+
+</body>
+</html>
+
+--===============5641415913794349533==--
