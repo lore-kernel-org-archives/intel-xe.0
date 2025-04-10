@@ -4,27 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F704C369A9
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Apr 2025 16:53:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F30F2C3601E
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Apr 2025 16:54:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0111B10E140;
-	Thu, 10 Apr 2025 16:53:14 +0000 (UTC)
-Received: from 32c37dd7f93d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DFC110E140;
- Thu, 10 Apr 2025 16:53:12 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3273846409038382486=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id B536210E371;
+	Thu, 10 Apr 2025 16:54:34 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QlKcWVqS";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 739CD10E140
+ for <intel-xe@lists.freedesktop.org>; Thu, 10 Apr 2025 16:54:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744304073; x=1775840073;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=gAbdgC5OmKa9r6T+561hFOz/TaxX8wqc14z7StjkLDM=;
+ b=QlKcWVqSFPYP0Bv/gsUOs2HHoBjxS+tWABCXlvUperflC0MnTsmxrjJ0
+ pHtK49kLkAwFVwK6oFbqG/voBQMLp//zTy1oowIdIlQ1nguPlfZZSHYr8
+ d4mG9bJ35NRY2mVN6/F8+mZRq43wkFNYmnz7IkNaGXJi3WI392SBWvYTF
+ y4Kv2xOqZ3CW1OmWEEKGePDhAENLZFwXQ0flIfbAf6giZXNdaGpdiDYvx
+ syjI5alQvVJsulxGa7ASHhn95pkzT6SAELoR1MESn32Zg/b1EOPyQ7opc
+ xURKiW1iJUQNwoJk7+0TFVhek/m2iBn69EHohpl4sAjjboyxYfCDzgLbx A==;
+X-CSE-ConnectionGUID: xZzRmrCJQ+KJpVEpK4R6JQ==
+X-CSE-MsgGUID: B0CdkOOYR3y3jGTyTYv3UQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11400"; a="49673237"
+X-IronPort-AV: E=Sophos;i="6.15,202,1739865600"; d="scan'208";a="49673237"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2025 09:54:32 -0700
+X-CSE-ConnectionGUID: AKYB9DLuQiGBGDCiBErFig==
+X-CSE-MsgGUID: P+bSwFYWTCCob88nV3E+oQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,202,1739865600"; d="scan'208";a="166156260"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orviesa001.jf.intel.com with ESMTP; 10 Apr 2025 09:54:30 -0700
+Received: from [10.245.96.73] (mwajdecz-MOBL.ger.corp.intel.com [10.245.96.73])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 1BCDE32ED3;
+ Thu, 10 Apr 2025 17:54:27 +0100 (IST)
+Message-ID: <9f2fd22b-a439-4e86-bb6e-9efe7944fe7f@intel.com>
+Date: Thu, 10 Apr 2025 18:54:27 +0200
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Add_LFD_forma?=
- =?utf-8?q?t_output_for_guc_log_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Zhanjun Dong" <zhanjun.dong@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 10 Apr 2025 16:53:12 -0000
-Message-ID: <174430399257.367.8368031350645656093@32c37dd7f93d>
-X-Patchwork-Hint: ignore
-References: <20250410155853.574830-1-zhanjun.dong@intel.com>
-In-Reply-To: <20250410155853.574830-1-zhanjun.dong@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 1/4] drm/xe/vf: Divide GGTT ballooning into allocation
+ and insertion
+To: Tomasz Lis <tomasz.lis@intel.com>, intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
+ =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+References: <20250409211340.3046931-1-tomasz.lis@intel.com>
+ <20250409211340.3046931-2-tomasz.lis@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20250409211340.3046931-2-tomasz.lis@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,253 +72,369 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3273846409038382486==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/xe/guc: Add LFD format output for guc log (rev3)
-URL   : https://patchwork.freedesktop.org/series/146541/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-2931-457049ad31ee5b64dd86230518144d366c32bc04_BAT -> xe-pw-146541v3_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-146541v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_evict@evict-beng-small-cm:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][1] ([Intel XE#261] / [Intel XE#688]) +9 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v3/bat-adlp-vf/igt@xe_evict@evict-beng-small-cm.html
-
-  * igt@xe_exec_fault_mode@twice-rebind:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][2] ([Intel XE#288]) +32 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v3/bat-adlp-vf/igt@xe_exec_fault_mode@twice-rebind.html
-
-  * igt@xe_gt_freq@freq_fixed_idle:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][3] ([Intel XE#2464]) +2 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v3/bat-adlp-vf/igt@xe_gt_freq@freq_fixed_idle.html
-
-  * igt@xe_live_ktest@xe_bo:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][4] ([Intel XE#2229] / [Intel XE#455]) +2 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v3/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
-
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][5] ([Intel XE#2229])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v3/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
-
-  * igt@xe_mmap@vram:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][6] ([Intel XE#1008])
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v3/bat-adlp-vf/igt@xe_mmap@vram.html
-
-  * igt@xe_pat@pat-index-xe2:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][7] ([Intel XE#977])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v3/bat-adlp-vf/igt@xe_pat@pat-index-xe2.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][8] ([Intel XE#2838] / [Intel XE#979])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v3/bat-adlp-vf/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][9] ([Intel XE#979])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v3/bat-adlp-vf/igt@xe_pat@pat-index-xelpg.html
-
-  * igt@xe_pm_residency@gt-c6-on-idle:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][10] ([Intel XE#2468])
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v3/bat-adlp-vf/igt@xe_pm_residency@gt-c6-on-idle.html
-
-  * igt@xe_sriov_flr@flr-vf1-clear:
-    - bat-adlp-vf:        NOTRUN -> [SKIP][11] ([Intel XE#3342])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v3/bat-adlp-vf/igt@xe_sriov_flr@flr-vf1-clear.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_exec_basic@twice-bindexecqueue-userptr-rebind:
-    - bat-adlp-vf:        [ABORT][12] ([Intel XE#3970]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2931-457049ad31ee5b64dd86230518144d366c32bc04/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-userptr-rebind.html
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v3/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-userptr-rebind.html
-
-  
-  [Intel XE#1008]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1008
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#2464]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2464
-  [Intel XE#2468]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2468
-  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
-  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
-  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
-  [Intel XE#3342]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342
-  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
-  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
-  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
-  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
 
 
-Build changes
--------------
+On 09.04.2025 23:13, Tomasz Lis wrote:
+> The balloon nodes, which are used to fill areas of GGTT inaccessible
+> for a specific VF, were allocated and inserted into GGTT within one
+> function. To be able to re-use that insertion code during VF
+> migration recovery, we need to split it.
+> 
+> This patch separates allocation (init/fini functs) from the insertion
+> of balloons (balloon/deballoon functs). Locks are also moved to ensure
+> calls from post-migration recovery worker will not cause a deadlock.
+> 
+> v2: Moved declarations to proper header
+> v3: Rephrased description, introduced "_locked" versions of some
+>   functs, more lockdep checks, some functions renamed, altered error
+>   handling, added missing kerneldocs.
+> v4: Suffixed more functs with `_locked`, moved lockdep asserts,
+>   fixed finalization in error path, added asserts
+> 
+> Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_ggtt.c        |  34 ++++-----
+>  drivers/gpu/drm/xe/xe_ggtt.h        |   6 +-
+>  drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 109 +++++++++++++++++++++-------
+>  drivers/gpu/drm/xe/xe_gt_sriov_vf.h |   2 +
+>  4 files changed, 103 insertions(+), 48 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+> index 7062115909f2..e7d474bd0cfe 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt.c
+> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
+> @@ -1,4 +1,4 @@
+> -// SPDX-License-Identifier: MIT
+> +/// SPDX-License-Identifier: MIT
 
-  * Linux: xe-2931-457049ad31ee5b64dd86230518144d366c32bc04 -> xe-pw-146541v3
+what's this?
 
-  IGT_8313: 8313
-  xe-2931-457049ad31ee5b64dd86230518144d366c32bc04: 457049ad31ee5b64dd86230518144d366c32bc04
-  xe-pw-146541v3: 146541v3
+>  /*
+>   * Copyright © 2021 Intel Corporation
+>   */
+> @@ -429,16 +429,17 @@ static void xe_ggtt_dump_node(struct xe_ggtt *ggtt,
+>  }
+>  
+>  /**
+> - * xe_ggtt_node_insert_balloon - prevent allocation of specified GGTT addresses
+> + * xe_ggtt_node_insert_balloon_locked - prevent allocation of specified GGTT addresses
+>   * @node: the &xe_ggtt_node to hold reserved GGTT node
+>   * @start: the starting GGTT address of the reserved region
+>   * @end: then end GGTT address of the reserved region
+>   *
+> - * Use xe_ggtt_node_remove_balloon() to release a reserved GGTT node.
+> + * To be used in cases where ggtt->lock is already taken.
+> + * Use xe_ggtt_node_remove_balloon_locked() to release a reserved GGTT node.
+>   *
+>   * Return: 0 on success or a negative error code on failure.
+>   */
+> -int xe_ggtt_node_insert_balloon(struct xe_ggtt_node *node, u64 start, u64 end)
+> +int xe_ggtt_node_insert_balloon_locked(struct xe_ggtt_node *node, u64 start, u64 end)
+>  {
+>  	struct xe_ggtt *ggtt = node->ggtt;
+>  	int err;
+> @@ -447,14 +448,13 @@ int xe_ggtt_node_insert_balloon(struct xe_ggtt_node *node, u64 start, u64 end)
+>  	xe_tile_assert(ggtt->tile, IS_ALIGNED(start, XE_PAGE_SIZE));
+>  	xe_tile_assert(ggtt->tile, IS_ALIGNED(end, XE_PAGE_SIZE));
+>  	xe_tile_assert(ggtt->tile, !drm_mm_node_allocated(&node->base));
+> +	lockdep_assert_held(&ggtt->lock);
+>  
+>  	node->base.color = 0;
+>  	node->base.start = start;
+>  	node->base.size = end - start;
+>  
+> -	mutex_lock(&ggtt->lock);
+>  	err = drm_mm_reserve_node(&ggtt->mm, &node->base);
+> -	mutex_unlock(&ggtt->lock);
+>  
+>  	if (xe_gt_WARN(ggtt->tile->primary_gt, err,
+>  		       "Failed to balloon GGTT %#llx-%#llx (%pe)\n",
+> @@ -466,27 +466,25 @@ int xe_ggtt_node_insert_balloon(struct xe_ggtt_node *node, u64 start, u64 end)
+>  }
+>  
+>  /**
+> - * xe_ggtt_node_remove_balloon - release a reserved GGTT region
+> + * xe_ggtt_node_remove_balloon_locked - release a reserved GGTT region
+>   * @node: the &xe_ggtt_node with reserved GGTT region
+>   *
+> - * See xe_ggtt_node_insert_balloon() for details.
+> + * To be used in cases where ggtt->lock is already taken.
+> + * See xe_ggtt_node_insert_balloon_locked() for details.
+>   */
+> -void xe_ggtt_node_remove_balloon(struct xe_ggtt_node *node)
+> +void xe_ggtt_node_remove_balloon_locked(struct xe_ggtt_node *node)
+>  {
+> +	lockdep_assert_held(&node->ggtt->lock);
+> +
+>  	if (!node || !node->ggtt)
+>  		return;
+>  
+>  	if (!drm_mm_node_allocated(&node->base))
 
-== Logs ==
+nit: we should use xe_ggtt_node_allocated() instead
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v3/index.html
+> -		goto free_node;
+> +		return;
+>  
+>  	xe_ggtt_dump_node(node->ggtt, &node->base, "remove-balloon");
+>  
+> -	mutex_lock(&node->ggtt->lock);
+>  	drm_mm_remove_node(&node->base);
+> -	mutex_unlock(&node->ggtt->lock);
+> -
+> -free_node:
+> -	xe_ggtt_node_fini(node);
+>  }
+>  
+>  /**
+> @@ -539,10 +537,10 @@ int xe_ggtt_node_insert(struct xe_ggtt_node *node, u32 size, u32 align)
+>   *
+>   * This function will allocated the struct %xe_ggtt_node and return it's pointer.
 
---===============3273846409038382486==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+since you're around, can you fix above s/allocated/allocate
 
+>   * This struct will then be freed after the node removal upon xe_ggtt_node_remove()
+> - * or xe_ggtt_node_remove_balloon().
+> + * or xe_ggtt_node_remove_balloon_locked().
+>   * Having %xe_ggtt_node struct allocated doesn't mean that the node is already allocated
+>   * in GGTT. Only the xe_ggtt_node_insert(), xe_ggtt_node_insert_locked(),
+> - * xe_ggtt_node_insert_balloon() will ensure the node is inserted or reserved in GGTT.
+> + * xe_ggtt_node_insert_balloon_locked() will ensure the node is inserted or reserved in GGTT.
+>   *
+>   * Return: A pointer to %xe_ggtt_node struct on success. An ERR_PTR otherwise.
+>   **/
+> @@ -564,7 +562,7 @@ struct xe_ggtt_node *xe_ggtt_node_init(struct xe_ggtt *ggtt)
+>   * @node: the &xe_ggtt_node to be freed
+>   *
+>   * If anything went wrong with either xe_ggtt_node_insert(), xe_ggtt_node_insert_locked(),
+> - * or xe_ggtt_node_insert_balloon(); and this @node is not going to be reused, then,
+> + * or xe_ggtt_node_insert_balloon_locked(); and this @node is not going to be reused, then,
+>   * this function needs to be called to free the %xe_ggtt_node struct
+>   **/
+>  void xe_ggtt_node_fini(struct xe_ggtt_node *node)
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+> index 27e7d67de004..d468af96b465 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt.h
+> +++ b/drivers/gpu/drm/xe/xe_ggtt.h
+> @@ -15,9 +15,9 @@ int xe_ggtt_init(struct xe_ggtt *ggtt);
+>  
+>  struct xe_ggtt_node *xe_ggtt_node_init(struct xe_ggtt *ggtt);
+>  void xe_ggtt_node_fini(struct xe_ggtt_node *node);
+> -int xe_ggtt_node_insert_balloon(struct xe_ggtt_node *node,
+> -				u64 start, u64 size);
+> -void xe_ggtt_node_remove_balloon(struct xe_ggtt_node *node);
+> +int xe_ggtt_node_insert_balloon_locked(struct xe_ggtt_node *node,
+> +				       u64 start, u64 size);
+> +void xe_ggtt_node_remove_balloon_locked(struct xe_ggtt_node *node);
+>  
+>  int xe_ggtt_node_insert(struct xe_ggtt_node *node, u32 size, u32 align);
+>  int xe_ggtt_node_insert_locked(struct xe_ggtt_node *node,
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> index a439261bf4d7..d2f6bfb3aacf 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> @@ -560,35 +560,40 @@ u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt)
+>  	return gt->sriov.vf.self_config.lmem_size;
+>  }
+>  
+> -static struct xe_ggtt_node *
+> -vf_balloon_ggtt_node(struct xe_ggtt *ggtt, u64 start, u64 end)
+> +static int vf_init_ggtt_balloons(struct xe_gt *gt)
+>  {
+> -	struct xe_ggtt_node *node;
+> -	int err;
+> +	struct xe_tile *tile = gt_to_tile(gt);
+> +	struct xe_ggtt *ggtt = tile->mem.ggtt;
+>  
+> -	node = xe_ggtt_node_init(ggtt);
+> -	if (IS_ERR(node))
+> -		return node;
+> +	tile->sriov.vf.ggtt_balloon[0] = xe_ggtt_node_init(ggtt);
+> +	if (IS_ERR(tile->sriov.vf.ggtt_balloon[0]))
+> +		return PTR_ERR(tile->sriov.vf.ggtt_balloon[0]);
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+as mentioned earlier in similar case, since you are accessing vf
+specific fields we should have asserts in this function:
 
+  	xe_gt_assert(gt, IS_SRIOV_VF(xe));
+  	xe_gt_assert(gt, !xe_gt_is_media_type(gt));
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Add LFD format output for guc log (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/146541/">https://patchwork.freedesktop.org/series/146541/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+>  
+> -	err = xe_ggtt_node_insert_balloon(node, start, end);
+> -	if (err) {
+> -		xe_ggtt_node_fini(node);
+> -		return ERR_PTR(err);
+> +	tile->sriov.vf.ggtt_balloon[1] = xe_ggtt_node_init(ggtt);
+> +	if (IS_ERR(tile->sriov.vf.ggtt_balloon[1])) {
+> +		xe_ggtt_node_fini(tile->sriov.vf.ggtt_balloon[0]);
+> +		return PTR_ERR(tile->sriov.vf.ggtt_balloon[1]);
+>  	}
+>  
+> -	return node;
+> +	return 0;
+>  }
+>  
+> -static int vf_balloon_ggtt(struct xe_gt *gt)
+> +/**
+> + * xe_gt_sriov_vf_balloon_ggtt_locked - Insert balloon nodes to limit used GGTT address range.
+> + * @gt: the &xe_gt struct instance
+> + * Return: 0 on success or a negative error code on failure.
+> + */
+> +int xe_gt_sriov_vf_balloon_ggtt_locked(struct xe_gt *gt)
+>  {
+>  	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
+>  	struct xe_tile *tile = gt_to_tile(gt);
+> -	struct xe_ggtt *ggtt = tile->mem.ggtt;
+>  	struct xe_device *xe = gt_to_xe(gt);
+>  	u64 start, end;
+> +	int err;
+>  
+>  	xe_gt_assert(gt, IS_SRIOV_VF(xe));
+>  	xe_gt_assert(gt, !xe_gt_is_media_type(gt));
+> +	lockdep_assert_held(&tile->mem.ggtt->lock);
+>  
+>  	if (!config->ggtt_size)
+>  		return -ENODATA;
+> @@ -611,31 +616,75 @@ static int vf_balloon_ggtt(struct xe_gt *gt)
+>  	start = xe_wopcm_size(xe);
+>  	end = config->ggtt_base;
+>  	if (end != start) {
+> -		tile->sriov.vf.ggtt_balloon[0] = vf_balloon_ggtt_node(ggtt, start, end);
+> -		if (IS_ERR(tile->sriov.vf.ggtt_balloon[0]))
+> -			return PTR_ERR(tile->sriov.vf.ggtt_balloon[0]);
+> +		err = xe_ggtt_node_insert_balloon_locked(tile->sriov.vf.ggtt_balloon[0], start, end);
+> +		if (err)
+> +			return err;
+>  	}
+>  
+>  	start = config->ggtt_base + config->ggtt_size;
+>  	end = GUC_GGTT_TOP;
+>  	if (end != start) {
+> -		tile->sriov.vf.ggtt_balloon[1] = vf_balloon_ggtt_node(ggtt, start, end);
+> -		if (IS_ERR(tile->sriov.vf.ggtt_balloon[1])) {
+> -			xe_ggtt_node_remove_balloon(tile->sriov.vf.ggtt_balloon[0]);
+> -			return PTR_ERR(tile->sriov.vf.ggtt_balloon[1]);
+> +		err = xe_ggtt_node_insert_balloon_locked(tile->sriov.vf.ggtt_balloon[1], start, end);
+> +		if (err) {
+> +			xe_ggtt_node_remove_balloon_locked(tile->sriov.vf.ggtt_balloon[0]);
+> +			return err;
+>  		}
+>  	}
+>  
+>  	return 0;
+>  }
+>  
+> -static void deballoon_ggtt(struct drm_device *drm, void *arg)
+> +static int vf_balloon_ggtt(struct xe_gt *gt)
+>  {
+> -	struct xe_tile *tile = arg;
+> +	struct xe_ggtt *ggtt = gt_to_tile(gt)->mem.ggtt;
+> +	int err;
+> +
+> +	mutex_lock(&ggtt->lock);
+> +	err = xe_gt_sriov_vf_balloon_ggtt_locked(gt);
+> +	mutex_unlock(&ggtt->lock);
+> +
+> +	return err;
+> +}
+> +
+> +/**
+> + * xe_gt_sriov_vf_deballoon_ggtt_locked - Remove balloon nodes which limited used address renge.
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v3/index.html</a></td></tr>
+typo
 
-</table>
+hmm, but I'm not sure we need "which ..." part anyway
 
+> + * @gt: the &xe_gt struct instance
+> + */
+> +void xe_gt_sriov_vf_deballoon_ggtt_locked(struct xe_gt *gt)
+> +{
+> +	struct xe_tile *tile = gt_to_tile(gt);
+>  
+>  	xe_tile_assert(tile, IS_SRIOV_VF(tile_to_xe(tile)));
+> -	xe_ggtt_node_remove_balloon(tile->sriov.vf.ggtt_balloon[1]);
+> -	xe_ggtt_node_remove_balloon(tile->sriov.vf.ggtt_balloon[0]);
+> +	xe_ggtt_node_remove_balloon_locked(tile->sriov.vf.ggtt_balloon[1]);
+> +	xe_ggtt_node_remove_balloon_locked(tile->sriov.vf.ggtt_balloon[0]);
+> +}
+> +
+> +static void vf_deballoon_ggtt(struct xe_gt *gt)
+> +{
+> +	struct xe_tile *tile = gt_to_tile(gt);
+> +
+> +	mutex_lock(&tile->mem.ggtt->lock);
+> +	xe_gt_sriov_vf_deballoon_ggtt_locked(gt);
+> +	mutex_unlock(&tile->mem.ggtt->lock);
+> +}
+> +
+> +static void vf_balloon_fini(struct xe_gt *gt)
 
-    <h1>CI Bug Log - changes from xe-2931-457049ad31ee5b64dd86230518144d366c32bc04_BAT -&gt; xe-pw-146541v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-146541v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_evict@evict-beng-small-cm:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v3/bat-adlp-vf/igt@xe_evict@evict-beng-small-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +9 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@twice-rebind:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v3/bat-adlp-vf/igt@xe_exec_fault_mode@twice-rebind.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_gt_freq@freq_fixed_idle:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v3/bat-adlp-vf/igt@xe_gt_freq@freq_fixed_idle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2464">Intel XE#2464</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v3/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v3/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_mmap@vram:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v3/bat-adlp-vf/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1008">Intel XE#1008</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xe2:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v3/bat-adlp-vf/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v3/bat-adlp-vf/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v3/bat-adlp-vf/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pm_residency@gt-c6-on-idle:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v3/bat-adlp-vf/igt@xe_pm_residency@gt-c6-on-idle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2468">Intel XE#2468</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_sriov_flr@flr-vf1-clear:</p>
-<ul>
-<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v3/bat-adlp-vf/igt@xe_sriov_flr@flr-vf1-clear.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342">Intel XE#3342</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_exec_basic@twice-bindexecqueue-userptr-rebind:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2931-457049ad31ee5b64dd86230518144d366c32bc04/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-userptr-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146541v3/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-userptr-rebind.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2931-457049ad31ee5b64dd86230518144d366c32bc04 -&gt; xe-pw-146541v3</li>
-</ul>
-<p>IGT_8313: 8313<br />
-  xe-2931-457049ad31ee5b64dd86230518144d366c32bc04: 457049ad31ee5b64dd86230518144d366c32bc04<br />
-  xe-pw-146541v3: 146541v3</p>
+naming... since this is a cleanup of the vf_init_ggtt_balloons() then it
+should be named in matching fashion, so
 
-</body>
-</html>
+s/vf_balloon_fini/vf_fini_ggtt_balloons
 
---===============3273846409038382486==--
+> +{
+> +	struct xe_tile *tile = gt_to_tile(gt);
+> +
+> +	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+> +	xe_gt_assert(gt, !xe_gt_is_media_type(gt));
+> +
+> +	xe_ggtt_node_fini(tile->sriov.vf.ggtt_balloon[1]);
+> +	xe_ggtt_node_fini(tile->sriov.vf.ggtt_balloon[0]);
+> +}
+> +
+> +static void deballoon_and_fini_ggtt(struct drm_device *drm, void *arg)
+
+hmm, naming again...
+
+as this is a cleanup action for the xe_gt_sriov_vf_prepare_ggtt() then maybe
+	s/deballoon_and_fini_ggtt/cleanup_ggtt
+will suffice?
+
+> +{
+> +	struct xe_tile *tile = arg;
+> +
+> +	vf_deballoon_ggtt(tile->primary_gt);
+> +	vf_balloon_fini(tile->primary_gt);
+>  }
+>  
+>  /**
+> @@ -655,11 +704,17 @@ int xe_gt_sriov_vf_prepare_ggtt(struct xe_gt *gt)
+>  	if (xe_gt_is_media_type(gt))
+>  		return 0;
+>  
+> -	err = vf_balloon_ggtt(gt);
+> +	err = vf_init_ggtt_balloons(gt);
+>  	if (err)
+>  		return err;
+>  
+> -	return drmm_add_action_or_reset(&xe->drm, deballoon_ggtt, tile);
+> +	err = vf_balloon_ggtt(gt);
+> +	if (err) {
+> +		vf_balloon_fini(gt);
+> +		return err;
+> +	}
+> +
+> +	return drmm_add_action_or_reset(&xe->drm, deballoon_and_fini_ggtt, tile);
+>  }
+>  
+>  static int relay_action_handshake(struct xe_gt *gt, u32 *major, u32 *minor)
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+> index ba6c5d74e326..d717deb8af91 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+> @@ -18,6 +18,8 @@ int xe_gt_sriov_vf_query_config(struct xe_gt *gt);
+>  int xe_gt_sriov_vf_connect(struct xe_gt *gt);
+>  int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt);
+>  int xe_gt_sriov_vf_prepare_ggtt(struct xe_gt *gt);
+> +int xe_gt_sriov_vf_balloon_ggtt_locked(struct xe_gt *gt);
+> +void xe_gt_sriov_vf_deballoon_ggtt_locked(struct xe_gt *gt);
+>  int xe_gt_sriov_vf_notify_resfix_done(struct xe_gt *gt);
+>  void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt);
+>  
+
