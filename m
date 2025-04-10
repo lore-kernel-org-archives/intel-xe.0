@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42F76C3601E
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Apr 2025 06:22:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25DA3C3601E
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Apr 2025 06:38:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEF6410E35F;
-	Thu, 10 Apr 2025 06:22:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3DD010E785;
+	Thu, 10 Apr 2025 06:38:05 +0000 (UTC)
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 032B010E07D;
- Thu, 10 Apr 2025 06:22:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C1F010E35F;
+ Thu, 10 Apr 2025 06:38:05 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe=3A_Use_migration_for_di?=
- =?utf-8?q?splay_GGTT_updates=2E_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Use_migrat?=
+ =?utf-8?q?ion_for_display_GGTT_updates=2E_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Maarten Lankhorst" <dev@lankhorst.se>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 10 Apr 2025 06:22:44 -0000
-Message-ID: <174426616400.54720.13451619256193956628@e6b6f09ec485>
+Date: Thu, 10 Apr 2025 06:38:05 -0000
+Message-ID: <174426708517.54720.5092758098862134614@e6b6f09ec485>
 X-Patchwork-Hint: ignore
 References: <20250407130449.1010470-1-dev@lankhorst.se>
 In-Reply-To: <20250407130449.1010470-1-dev@lankhorst.se>
@@ -48,105 +48,22 @@ State : success
 
 == Summary ==
 
-lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/events/intel/intel-cstate.ko
-lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/events/amd/
-lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
-lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/events/rapl.ko
-lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/
-lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/kvm-amd.ko
-lib/modules/6.15.0-rc1-xe+/kernel/kernel/
-lib/modules/6.15.0-rc1-xe+/kernel/kernel/kheaders.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/ecrdsa_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/xcbc.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/serpent_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/aria_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/crypto_simd.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/adiantum.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/tcrypt.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/crypto_engine.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/zstd.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/asymmetric_keys/
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/des_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/xctr.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/authenc.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm4_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/camellia_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm3.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/pcrypt.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/aegis128.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/af_alg.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_aead.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/cmac.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm3_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/aes_ti.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/chacha_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/poly1305_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/nhpoly1305.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/crc32_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/essiv.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/ccm.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/wp512.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/streebog_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/authencesn.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/echainiv.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/lrw.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/cryptd.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/crypto_user.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_hash.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/polyval-generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/hctr2.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/842.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/pcbc.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/ansi_cprng.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/cast6_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/twofish_common.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/twofish_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/lz4hc.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/blowfish_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/md4.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/chacha20poly1305.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/curve25519-generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/lz4.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/rmd160.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_skcipher.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/cast5_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/fcrypt.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/ecdsa_generic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm4.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/cast_common.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/blowfish_common.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/michael_mic.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_rng.ko
-lib/modules/6.15.0-rc1-xe+/kernel/block/
-lib/modules/6.15.0-rc1-xe+/kernel/block/bfq.ko
-lib/modules/6.15.0-rc1-xe+/kernel/block/kyber-iosched.ko
-lib/modules/6.15.0-rc1-xe+/build
-lib/modules/6.15.0-rc1-xe+/modules.alias.bin
-lib/modules/6.15.0-rc1-xe+/modules.builtin
-lib/modules/6.15.0-rc1-xe+/modules.softdep
-lib/modules/6.15.0-rc1-xe+/modules.alias
-lib/modules/6.15.0-rc1-xe+/modules.order
-lib/modules/6.15.0-rc1-xe+/modules.symbols
-lib/modules/6.15.0-rc1-xe+/modules.dep.bin
-+ mv kernel-debug.tar.gz ..
-+ cd ..
-+ rm -rf archive-debug
-+ sync
-[+] Finished building and packaging 'debug'!
-+ echo '[+] Finished building and packaging '\''debug'\''!'
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: c54633598106 drm-tip: 2025y-04m-10d-02h-15m-42s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Use xe_ggtt_map_bo_unlocked for resume
+Applying: drm/xe: Add xe_ggtt_might_lock
+Applying: drm/xe: Add xe_ggtt_alloc
+Applying: drm/xe/display: Remove dereferences of ggtt for tile id
+Applying: drm/xe/ggtt: Seperate flags and address in PTE encoding
+Applying: drm/xe/display: Dont poke into GGTT internals to fill a DPT
+Applying: drm/xe/display: Convert GGTT mapping to use pte_encode_flags
+Applying: drm/xe: Remove pte_encode_bo callback
+Applying: drm/xe: Implement a helper for reading out a GGTT PTE at a specified offset
+Applying: drm/xe: Do not rely on GGTT internals in xe_guc_buf kunit tests
+Applying: drm/xe: Add GGTT updates to migration engine
+Applying: drm/xe: Convert xe_fb_pin to use a callback for insertion into GGTT
+Applying: drm/xe: Allow for optimization of xe_ggtt_map_bo
+Applying: drm/xe: Move struct xe_ggtt to xe_ggtt.c
 
 
