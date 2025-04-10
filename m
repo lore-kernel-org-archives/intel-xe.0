@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C6C6C369A9
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Apr 2025 16:13:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90F35C3601E
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Apr 2025 16:13:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1746310E9FE;
-	Thu, 10 Apr 2025 16:13:26 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nuGOBiAY";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC22110E9F4;
- Thu, 10 Apr 2025 16:13:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744301604; x=1775837604;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=rLZELZQl0b7Owyjkpc7O/HD3G6DNgzFwgdEdcFO6l5o=;
- b=nuGOBiAYrhr+U1xVMS5WIR8caBhrlspnwioeXxoXTWve8lm/2av+IYsj
- XjnQ07EnY+cGBhPeF8yC+ZGmuPpD4BHIDAfJtM069YxND+tg0mcSZiSmL
- bOrzRSwYaHqRGlKqsTFjGUSis7/CRgl/BvH0ZrM3FuGK2098PrPtuVwFM
- Qz4+DCk98BUfxlBZDECzO+dBt8SmxE1UijorHrW2KopHZ3SQW/HWMUqtV
- l665YfQ61/U0r0jvXChITFEZWam1vACv422Zc1a7ouC63WME+RVQgWxdJ
- 63nYskiCAxjNLvoTcAbdAbYbkpjDTO175ADcGiNrhgaBvb14ihZNi+LWN w==;
-X-CSE-ConnectionGUID: 68neHuCLRG+tANpqphjTHw==
-X-CSE-MsgGUID: AsdbhhNeQqGTGEZxknWJkw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11400"; a="49489549"
-X-IronPort-AV: E=Sophos;i="6.15,202,1739865600"; d="scan'208";a="49489549"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2025 09:13:24 -0700
-X-CSE-ConnectionGUID: xAnKWvTwR8uPXWH6O7jsGQ==
-X-CSE-MsgGUID: BpDLhUGXQKeNnPO3fYf6wQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,202,1739865600"; d="scan'208";a="134124320"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 10 Apr 2025 09:13:22 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 10 Apr 2025 19:13:21 +0300
-Date: Thu, 10 Apr 2025 19:13:21 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 1/5] drm/i915: use 32-bit access for gen2 irq registers
-Message-ID: <Z_fuIXiq4cFUa5NU@intel.com>
-References: <cover.1744208554.git.jani.nikula@intel.com>
- <274bcad720011919be268846e7791fc5a9766753.1744208554.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FD3110E9FF;
+	Thu, 10 Apr 2025 16:13:44 +0000 (UTC)
+Received: from 32c37dd7f93d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B5F410E9FF;
+ Thu, 10 Apr 2025 16:13:43 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <274bcad720011919be268846e7791fc5a9766753.1744208554.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/guc=3A_Add_LFD_format_o?=
+ =?utf-8?q?utput_for_guc_log_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Zhanjun Dong" <zhanjun.dong@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 10 Apr 2025 16:13:43 -0000
+Message-ID: <174430162303.367.14728134925473814379@32c37dd7f93d>
+X-Patchwork-Hint: ignore
+References: <20250410155853.574830-1-zhanjun.dong@intel.com>
+In-Reply-To: <20250410155853.574830-1-zhanjun.dong@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,37 +36,117 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Apr 09, 2025 at 05:23:43PM +0300, Jani Nikula wrote:
-> We've previously switched from 16-bit to 32-bit access for gen2 irq
-> registers, but one was left behind. Fix it.
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+== Series Details ==
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Series: drm/xe/guc: Add LFD format output for guc log (rev3)
+URL   : https://patchwork.freedesktop.org/series/146541/
+State : success
 
-> ---
->  drivers/gpu/drm/i915/i915_gpu_error.c | 2 --
->  1 file changed, 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-> index a6613eed3398..cf31e8fecd8d 100644
-> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
-> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-> @@ -1782,8 +1782,6 @@ static void gt_record_display_regs(struct intel_gt_coredump *gt)
->  		gt->ier = intel_uncore_read(uncore, VLV_IER);
->  	else if (HAS_PCH_SPLIT(i915))
->  		gt->ier = intel_uncore_read(uncore, DEIER);
-> -	else if (GRAPHICS_VER(i915) == 2)
-> -		gt->ier = intel_uncore_read16(uncore, GEN2_IER);
->  	else
->  		gt->ier = intel_uncore_read(uncore, GEN2_IER);
->  }
-> -- 
-> 2.39.5
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/events/amd/
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/events/amd/amd-uncore.ko
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.15.0-rc1-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.15.0-rc1-xe+/kernel/kernel/
+lib/modules/6.15.0-rc1-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/zstd.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/xctr.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/authenc.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm3.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/cmac.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/essiv.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/ccm.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/wp512.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/lrw.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/842.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/md4.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/lz4.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/sm4.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.15.0-rc1-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.15.0-rc1-xe+/kernel/block/
+lib/modules/6.15.0-rc1-xe+/kernel/block/bfq.ko
+lib/modules/6.15.0-rc1-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.15.0-rc1-xe+/build
+lib/modules/6.15.0-rc1-xe+/modules.alias.bin
+lib/modules/6.15.0-rc1-xe+/modules.builtin
+lib/modules/6.15.0-rc1-xe+/modules.softdep
+lib/modules/6.15.0-rc1-xe+/modules.alias
+lib/modules/6.15.0-rc1-xe+/modules.order
+lib/modules/6.15.0-rc1-xe+/modules.symbols
+lib/modules/6.15.0-rc1-xe+/modules.dep.bin
++ mv kernel-debug.tar.gz ..
++ cd ..
++ rm -rf archive-debug
++ sync
+[+] Finished building and packaging 'debug'!
++ echo '[+] Finished building and packaging '\''debug'\''!'
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
