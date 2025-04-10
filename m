@@ -4,106 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 592EAC369A8
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Apr 2025 12:24:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB855C369A6
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Apr 2025 12:45:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A6EE10E98A;
-	Thu, 10 Apr 2025 12:24:22 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="nX8Jpc2V";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="6Mn0WmhK";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="nX8Jpc2V";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="6Mn0WmhK";
-	dkim-atps=neutral
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34BDC10E989
- for <intel-xe@lists.freedesktop.org>; Thu, 10 Apr 2025 12:24:18 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 8D3432116A;
- Thu, 10 Apr 2025 12:24:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1744287856; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=TXPLsDwqNCm2caNORoFToERsilgnnF77WAFdS9SXJO0=;
- b=nX8Jpc2VY/mFo/WWuy0a3yI1APWRaauv2ceBggdKCowrNDN+Tmmhzl/xAXPGmcYYyAcYiH
- BqSeHY+kCBmNjG5DwbauZqsULy4+r4Ruq6CNSfgBHhakGvtbURICHMW6IiVeyqzCNofHV8
- yC8V5H/Bbzdqf31Xk0tqOt2Uu9PANOI=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1744287856;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=TXPLsDwqNCm2caNORoFToERsilgnnF77WAFdS9SXJO0=;
- b=6Mn0WmhKLuCQCS4/BqlEuEmVW1YUxolr9NdDOYktwzZ+OaVsNtMChDT40bHPE/PDyS+vgM
- pkrqMH07D2Hv+kAA==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=nX8Jpc2V;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=6Mn0WmhK
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1744287856; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=TXPLsDwqNCm2caNORoFToERsilgnnF77WAFdS9SXJO0=;
- b=nX8Jpc2VY/mFo/WWuy0a3yI1APWRaauv2ceBggdKCowrNDN+Tmmhzl/xAXPGmcYYyAcYiH
- BqSeHY+kCBmNjG5DwbauZqsULy4+r4Ruq6CNSfgBHhakGvtbURICHMW6IiVeyqzCNofHV8
- yC8V5H/Bbzdqf31Xk0tqOt2Uu9PANOI=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1744287856;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=TXPLsDwqNCm2caNORoFToERsilgnnF77WAFdS9SXJO0=;
- b=6Mn0WmhKLuCQCS4/BqlEuEmVW1YUxolr9NdDOYktwzZ+OaVsNtMChDT40bHPE/PDyS+vgM
- pkrqMH07D2Hv+kAA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 29A5A132D8;
- Thu, 10 Apr 2025 12:24:16 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id oVb0CHC492c8UwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 10 Apr 2025 12:24:16 +0000
-Date: Thu, 10 Apr 2025 14:24:14 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <20250410122414.GA32202@2a02-2454-fd5e-fd00-d686-8907-6053-f8d8.dyn6.pyur.net>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 899A810E98D;
+	Thu, 10 Apr 2025 12:45:02 +0000 (UTC)
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FE2D10E985;
+ Thu, 10 Apr 2025 12:45:01 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8475288581023017759=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Rspamd-Queue-Id: 8D3432116A
-X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- MIME_GOOD(-0.10)[text/plain]; MX_GOOD(-0.01)[];
- MISSING_XM_UA(0.00)[]; RCPT_COUNT_TWELVE(0.00)[16];
- ARC_NA(0.00)[]; FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
- FUZZY_BLOCKED(0.00)[rspamd.com]; MIME_TRACE(0.00)[0:+];
- RCVD_VIA_SMTP_AUTH(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- RCVD_TLS_ALL(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
- FROM_HAS_DN(0.00)[]; TO_DN_SOME(0.00)[];
- RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim];
- DNSWL_BLOCKED(0.00)[2a07:de40:b281:106:10:150:64:167:received,2a07:de40:b281:104:10:150:64:97:from];
- DKIM_TRACE(0.00)[suse.de:+]
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Rspamd-Action: no action
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Allow_to_drop_vra?=
+ =?utf-8?q?m_resizing_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 10 Apr 2025 12:45:01 -0000
+Message-ID: <174428910151.56548.11392347532179324256@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250409-bar-resize-param-v1-1-75bf4df38aa0@intel.com>
+In-Reply-To: <20250409-bar-resize-param-v1-1-75bf4df38aa0@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,148 +36,223 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+--===============8475288581023017759==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-this is the weekly PR for drm-misc-fixes.
+== Series Details ==
 
-Best regards
-Thomas
+Series: drm/xe: Allow to drop vram resizing (rev2)
+URL   : https://patchwork.freedesktop.org/series/147472/
+State : success
 
-drm-misc-fixes-2025-04-10:
-Short summary of fixes pull:
+== Summary ==
 
-imagination:
-- Fix overflow
-- Fix use-after-free
+CI Bug Log - changes from xe-2929-e74ca4100a9da8d41d1024e16165f7fe17f09427_BAT -> xe-pw-147472v2_BAT
+====================================================
 
-ivpu:
-- Fix suspend/resume
+Summary
+-------
 
-nouveau:
-- Do not deref dangling pointer
+  **SUCCESS**
 
-rockchip:
-- Set DP/HDMI registers correctly
+  No regressions found.
 
-tests:
-- Clean up struct drm_display_mode in various places
+  
 
-udmabuf:
-- Fix overflow
+Participating hosts (8 -> 8)
+------------------------------
 
-virtgpu:
-- Set reservation lock on dma-buf import
-- Fix error handling in prepare_fb
-The following changes since commit 0af2f6be1b4281385b618cb86ad946eded089ac8:
+  No changes in participating hosts
 
-  Linux 6.15-rc1 (2025-04-06 13:11:33 -0700)
+Known issues
+------------
 
-are available in the Git repository at:
+  Here are the changes found in xe-pw-147472v2_BAT that come from known issues:
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-04-10
+### IGT changes ###
 
-for you to fetch changes up to 1d34597a1e23004c7dd0ab5f58ba1ef95fd9ded5:
+#### Issues hit ####
 
-  drm/rockchip: dw_hdmi_qp: Fix io init for dw_hdmi_qp_rockchip_resume (2025-04-10 10:51:06 +0200)
+  * igt@xe_evict@evict-beng-small-cm:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][1] ([Intel XE#261] / [Intel XE#688]) +9 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147472v2/bat-adlp-vf/igt@xe_evict@evict-beng-small-cm.html
 
-----------------------------------------------------------------
-Short summary of fixes pull:
+  * igt@xe_exec_fault_mode@twice-rebind:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][2] ([Intel XE#288]) +32 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147472v2/bat-adlp-vf/igt@xe_exec_fault_mode@twice-rebind.html
 
-imagination:
-- Fix overflow
-- Fix use-after-free
+  * igt@xe_live_ktest@xe_bo:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][3] ([Intel XE#2229] / [Intel XE#455]) +2 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147472v2/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html
 
-ivpu:
-- Fix suspend/resume
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][4] ([Intel XE#2229])
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147472v2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
 
-nouveau:
-- Do not deref dangling pointer
+  * igt@xe_pat@pat-index-xe2:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][5] ([Intel XE#977])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147472v2/bat-adlp-vf/igt@xe_pat@pat-index-xe2.html
 
-rockchip:
-- Set DP/HDMI registers correctly
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][6] ([Intel XE#2838] / [Intel XE#979])
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147472v2/bat-adlp-vf/igt@xe_pat@pat-index-xehpc.html
 
-tests:
-- Clean up struct drm_display_mode in various places
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][7] ([Intel XE#979])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147472v2/bat-adlp-vf/igt@xe_pat@pat-index-xelpg.html
 
-udmabuf:
-- Fix overflow
+  
+#### Possible fixes ####
 
-virtgpu:
-- Set reservation lock on dma-buf import
-- Fix error handling in prepare_fb
+  * igt@fbdev@info:
+    - bat-atsm-2:         [SKIP][8] ([Intel XE#2134]) -> [PASS][9] +4 other tests pass
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2929-e74ca4100a9da8d41d1024e16165f7fe17f09427/bat-atsm-2/igt@fbdev@info.html
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147472v2/bat-atsm-2/igt@fbdev@info.html
 
-----------------------------------------------------------------
-Andy Yan (2):
-      drm/rockchip: vop2: Fix interface enable/mux setting of DP1 on rk3588
-      drm/rockchip: dw_hdmi_qp: Fix io init for dw_hdmi_qp_rockchip_resume
+  * igt@xe_vm@shared-pde2-page:
+    - bat-adlp-vf:        [ABORT][10] ([Intel XE#3970]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2929-e74ca4100a9da8d41d1024e16165f7fe17f09427/bat-adlp-vf/igt@xe_vm@shared-pde2-page.html
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147472v2/bat-adlp-vf/igt@xe_vm@shared-pde2-page.html
 
-Brendan King (2):
-      drm/imagination: take paired job reference
-      drm/imagination: fix firmware memory leaks
+  
+  [Intel XE#2134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
+  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
+  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
 
-Chris Bainbridge (1):
-      drm/nouveau: prime: fix ttm_bo_delayed_delete oops
 
-Dmitry Osipenko (2):
-      drm/virtio: Don't attach GEM to a non-created context in gem_object_open()
-      drm/virtio: Fix missed dmabuf unpinning in error path of prepare_fb()
+Build changes
+-------------
 
-Jacek Lawrynowicz (3):
-      accel/ivpu: Fix warning in ivpu_ipc_send_receive_internal()
-      accel/ivpu: Fix deadlock in ivpu_ms_cleanup()
-      accel/ivpu: Fix PM related deadlocks in MS IOCTLs
+  * Linux: xe-2929-e74ca4100a9da8d41d1024e16165f7fe17f09427 -> xe-pw-147472v2
 
-Maxime Ripard (7):
-      drm/tests: helpers: Create kunit helper to destroy a drm_display_mode
-      drm/tests: modeset: Fix drm_display_mode memory leak
-      drm/tests: modeset: Fix drm_display_mode memory leak
-      drm/tests: cmdline: Fix drm_display_mode memory leak
-      drm/tests: modes: Fix drm_display_mode memory leak
-      drm/tests: modes: Fix drm_display_mode memory leak
-      drm/tests: probe-helper: Fix drm_display_mode memory leak
+  IGT_8313: 8313
+  xe-2929-e74ca4100a9da8d41d1024e16165f7fe17f09427: e74ca4100a9da8d41d1024e16165f7fe17f09427
+  xe-pw-147472v2: 147472v2
 
-Rolf Eike Beer (1):
-      drm/sti: remove duplicate object names
+== Logs ==
 
-Thomas Zimmermann (1):
-      Merge drm/drm-fixes into drm-misc-fixes
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147472v2/index.html
 
-Vivek Kasireddy (1):
-      drm/virtio: Fix flickering issue seen with imported dmabufs
+--===============8475288581023017759==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Xiaogang Chen (1):
-      udmabuf: fix a buf size overflow issue during udmabuf creation
 
- drivers/accel/ivpu/ivpu_debugfs.c               |  4 ++--
- drivers/accel/ivpu/ivpu_ipc.c                   |  3 ++-
- drivers/accel/ivpu/ivpu_ms.c                    | 24 ++++++++++++++++++++++
- drivers/dma-buf/udmabuf.c                       |  2 +-
- drivers/gpu/drm/imagination/pvr_fw.c            | 27 ++++++++++++++++++-------
- drivers/gpu/drm/imagination/pvr_job.c           |  7 +++++++
- drivers/gpu/drm/imagination/pvr_queue.c         |  4 ++++
- drivers/gpu/drm/nouveau/nouveau_bo.c            |  3 +++
- drivers/gpu/drm/nouveau/nouveau_gem.c           |  3 ---
- drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c  | 23 +++------------------
- drivers/gpu/drm/rockchip/rockchip_vop2_reg.c    |  6 +++---
- drivers/gpu/drm/sti/Makefile                    |  2 --
- drivers/gpu/drm/tests/drm_client_modeset_test.c |  9 ++++++++-
- drivers/gpu/drm/tests/drm_cmdline_parser_test.c | 10 ++++++++-
- drivers/gpu/drm/tests/drm_kunit_helpers.c       | 22 ++++++++++++++++++++
- drivers/gpu/drm/tests/drm_modes_test.c          | 26 ++++++++++++++++++++++++
- drivers/gpu/drm/tests/drm_probe_helper_test.c   |  8 +++++++-
- drivers/gpu/drm/virtio/virtgpu_gem.c            | 11 +++++-----
- drivers/gpu/drm/virtio/virtgpu_plane.c          | 20 ++++++++++++------
- drivers/gpu/drm/virtio/virtgpu_prime.c          |  1 +
- include/drm/drm_kunit_helpers.h                 |  3 +++
- 21 files changed, 165 insertions(+), 53 deletions(-)
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Allow to drop vram resizing (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147472/">https://patchwork.freedesktop.org/series/147472/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147472v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147472v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2929-e74ca4100a9da8d41d1024e16165f7fe17f09427_BAT -&gt; xe-pw-147472v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 8)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-147472v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_evict@evict-beng-small-cm:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147472v2/bat-adlp-vf/igt@xe_evict@evict-beng-small-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +9 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-rebind:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147472v2/bat-adlp-vf/igt@xe_exec_fault_mode@twice-rebind.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147472v2/bat-adlp-vf/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147472v2/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xe2:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147472v2/bat-adlp-vf/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147472v2/bat-adlp-vf/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147472v2/bat-adlp-vf/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@fbdev@info:</p>
+<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2929-e74ca4100a9da8d41d1024e16165f7fe17f09427/bat-atsm-2/igt@fbdev@info.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147472v2/bat-atsm-2/igt@fbdev@info.html">PASS</a> +4 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_vm@shared-pde2-page:</p>
+<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2929-e74ca4100a9da8d41d1024e16165f7fe17f09427/bat-adlp-vf/igt@xe_vm@shared-pde2-page.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147472v2/bat-adlp-vf/igt@xe_vm@shared-pde2-page.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2929-e74ca4100a9da8d41d1024e16165f7fe17f09427 -&gt; xe-pw-147472v2</li>
+</ul>
+<p>IGT_8313: 8313<br />
+  xe-2929-e74ca4100a9da8d41d1024e16165f7fe17f09427: e74ca4100a9da8d41d1024e16165f7fe17f09427<br />
+  xe-pw-147472v2: 147472v2</p>
+
+</body>
+</html>
+
+--===============8475288581023017759==--
