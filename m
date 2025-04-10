@@ -4,182 +4,163 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64630C369A2
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Apr 2025 05:31:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8633FC3601E
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Apr 2025 05:34:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E6AA10E35F;
-	Thu, 10 Apr 2025 05:31:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D49710E35E;
+	Thu, 10 Apr 2025 05:34:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VQHJZ8ez";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bTUaHQ2v";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10FB310E0E3;
- Thu, 10 Apr 2025 05:31:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93ADD10E35E
+ for <intel-xe@lists.freedesktop.org>; Thu, 10 Apr 2025 05:34:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744263097; x=1775799097;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=ew9+17eTIOCl+Dd2f7mVZhYAFDzkj9AEi3QT0AvkVA0=;
- b=VQHJZ8ezN2TvVJBsZPatGnS7GcEDlBjU3VHXBC59Jw66xZkAVS1duqL5
- 8fKTu5VNoBnGSQF9CTJxS1olQeIoXRo3qqhpsgt9eRsCPl216ttL3Ikzl
- +uHoPCGjDLbBqxRPsiKuZQaGRFApjoMGBsOi+7xxa9tMjwmmGquC3NaH0
- bjdFJ2mh+MgHvxvvmMnEWsqO7XdNqqyC0h/cWKRZ4abmrkC6xeTkZAHgh
- gDnInHRaqRwzQAF862eCpNxsNZPlljz7eveRwFCfeiN75DURU5lWNWMU6
- wLoYr9AQtnk+tgNqrXdHhfiOWFhzHCeTRnL/a/lljP7DZQA59tjsmyGO6 w==;
-X-CSE-ConnectionGUID: YnfZfgIWQ9SRmu/lMbmXow==
-X-CSE-MsgGUID: eEV9zGYnSsyU7XSGAj2XxQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11399"; a="45652396"
-X-IronPort-AV: E=Sophos;i="6.15,202,1739865600"; d="scan'208";a="45652396"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2025 22:31:37 -0700
-X-CSE-ConnectionGUID: CPX+G12uTXSeCGQXEWSf9Q==
-X-CSE-MsgGUID: Elfbjon4T5KEaXMjwB6IBQ==
+ t=1744263298; x=1775799298;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=XBI2RHu6eHCfcqdYNvFSuXyuwVSssop6/ypYiGKFY0o=;
+ b=bTUaHQ2vvLBQQjM96zh+7iA/Hzguz9sQRctq6XUPuXymXNQh0yeP0B1c
+ XqyzpoYtFyAIE54mdArnhXCzv8tLtTTh4rdi2DTES3yt+F99GbgYVuRBL
+ vmUhWa69YSt4jOnzIkjb9XFmnJS35TZQbR0yw1skR1Zdmi6BEaJF0FNmv
+ O+A/DGaXCrrFeIGZ+Fs8z2nqNYcOT4hUbJ53uAno+WdVoyVDsR8DK10fC
+ 1b9lYoEyXHO2tOnaaAjabQ2gbl2PQhkltNWAljwILpAfw0t1/4DppFHfZ
+ 5MUui9AI8n+LBviqx/WsiAFMCyriPuF/DrGzLU0Pk5U/1IgMhSFaWC73F w==;
+X-CSE-ConnectionGUID: 4r3bpOw1TT6RQuSmCGAULw==
+X-CSE-MsgGUID: YaldMtNES6++iaJBmaSOhw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11399"; a="49602942"
+X-IronPort-AV: E=Sophos;i="6.15,202,1739865600"; d="scan'208";a="49602942"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2025 22:34:57 -0700
+X-CSE-ConnectionGUID: p76MSLMFSjCex2OIMbFxhA==
+X-CSE-MsgGUID: V00ZbJOETV6iFsYpDThdMw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,202,1739865600"; d="scan'208";a="132926841"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2025 22:31:37 -0700
+X-IronPort-AV: E=Sophos;i="6.15,202,1739865600"; d="scan'208";a="129737603"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2025 22:34:56 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14; Wed, 9 Apr 2025 22:34:55 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Wed, 9 Apr 2025 22:31:36 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.1544.14 via Frontend Transport; Wed, 9 Apr 2025 22:34:55 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.49) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Wed, 9 Apr 2025 22:31:36 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.169)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Wed, 9 Apr 2025 22:31:35 -0700
+ 15.1.2507.44; Wed, 9 Apr 2025 22:34:55 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aDcmAOf7uzOyMYBbSsAtmeO9KKGyew9v4asZ2wZqDea7S03WQD0nPoDTDcrQYPZDkLhKWAoeVJaVZQvb38PgIpP6s93VkC6SLZocjnamVFmLL/LDqgaOQ5lvMR19U1W3Wv9905RWSqZVZTziuma08qhSLdRH7iaPXyrRuD1VStAIN2J9gQJdU7Cf1gA+/RdDr8PQ0GKnlmQfn1FSQq9ev68LWofLNyOiT2T6fe0PCmSJ3InG4fTPGxKvmOerizyD8DOgoVdxd1ey0TBT2+aoj1hXgcvMDkm42KQYYAo4pGKw2qMgBUIJS+pgS2hH0U1R4b2lp1pKLihM3om2VQALCg==
+ b=H7GoRSk0ih8NMBVjfdSUnRwgbEJrGr0Ug2nUBZUkcmniVQGvWMNb1JsMVFY6i4HK5l4g2qOuMlNKQTd5LbeIEmsWgsAvGu0zEZrJcl4Du7NlHCQY9Y18qrhnKJNi28+Y5FyINpuscI2ila9tAxLcTRSXjMKLNZgUBKTK3mZAZY+x06A8ysgc8MVZ76zP5XNVFR6R2b96a1rNAUItQqcHeT/FwHX0sJuEJ/J2+3rYtp96xcy/pYNDFu5YtkY22vKBehjrW1xmqqWCcmH6KCEC5j6sHNKm+lqzELVAyV/KUsWyqWEY+QBdHcjJkNaLouaw6YrC45gA/82pf8Wa0pfPXA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hO7DR/L85eb6rmPrQoHfKC8alTw0qWRIGsGwvwAruw4=;
- b=R/Qdj+RW4/c7NmvACwOgEhwDudJcFLxpKJFkZkmGoZxQF5uyDyFbOl0ge0QxYZ/Ur364SqFsNlVCoXQZQeKVrl8ogzJfL03Ss/xnikcbdl2wkcjGxMNgXpL1E5Vp6cNpY3rE/Wx3ETfak17JQOb1hqC0rCjD2sIMikmnoiftkcFJzwQ+7cPrWWfNAMWmhRK7XIuHsPldshuTVIYbo2Lo+JFm6J6N3gvZrz1Rqog1odJo4ePvD9ewDZFtuFwz//rmdcw6Htdola3RxBkrf4D263GXL47FDOfmp+1S/GaUtZdEds8CNEq4x+BvPws8eTreGKPV1/TTERw7x8K+NZgh+w==
+ bh=SVajgzCKze3cNtsb4reHgHVFkX8vWYWbwTEDuJPetY0=;
+ b=mMNUnewIlg6XLCTRoZhNwK1s2Y3JH8dvmMx3eUwYSdauxEpbA1qWCbfcjwdZ66gPRBz07MhTp/4bAfc15vkkiwi80/jB+eASIDl/45RaPb6WDn8YDtkrTodmwDrlySA9RwAY1LUvQbJc/CR5QH10kcfZ7R04UhvZ8rb4pDLFL/e2HQb5OxzZYKtoBMKDalGOCSOjrQMn3S6IiZTChrKVrHp/bh4/WDHBKgHIEdNVYhSxOVMkeO9bk2mDYTfjOpFyWZvfByJYrKm3TCnmcOONGQsD2QOTIYKSbeocjzrtuphB5SxHLMQGJvBh+Vz6LcEKsJn3kkIJtkNWvC7vLt0pzw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by DS0PR11MB7902.namprd11.prod.outlook.com (2603:10b6:8:f6::8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8606.33; Thu, 10 Apr 2025 05:31:07 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839%5]) with mapi id 15.20.8632.021; Thu, 10 Apr 2025
- 05:31:07 +0000
-Message-ID: <235edcca-5322-4257-909a-c09e0e908366@intel.com>
-Date: Thu, 10 Apr 2025 11:01:00 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/dp: Add smooth brightness register bit definition
-To: Suraj Kandpal <suraj.kandpal@intel.com>,
- <dri-devel@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>
-CC: <arun.r.murthy@intel.com>
-References: <20250408050138.2382452-1-suraj.kandpal@intel.com>
- <20250408050138.2382452-2-suraj.kandpal@intel.com>
-Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <20250408050138.2382452-2-suraj.kandpal@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA1PR01CA0180.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:d::18) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by IA0PR11MB7862.namprd11.prod.outlook.com (2603:10b6:208:3dc::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8606.35; Thu, 10 Apr
+ 2025 05:34:53 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332%5]) with mapi id 15.20.8632.017; Thu, 10 Apr 2025
+ 05:34:53 +0000
+Date: Wed, 9 Apr 2025 22:36:10 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Chee Yin Wong <chee.yin.wong@intel.com>, 
+ John Harrison <john.c.harrison@intel.com>, Matt Roper
+ <matthew.d.roper@intel.com>
+Subject: Re: [PATCH] drm/xe: Set LRC addresses before guc load
+Message-ID: <Z/dYyioDSygp6STJ@lstrano-desk.jf.intel.com>
+References: <20250409-fix-guc-ads-v1-1-494135f7a5d0@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20250409-fix-guc-ads-v1-1-494135f7a5d0@intel.com>
+X-ClientProxiedBy: MW4PR03CA0199.namprd03.prod.outlook.com
+ (2603:10b6:303:b8::24) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|DS0PR11MB7902:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3ce4e843-0d37-4db7-f0a0-08dd77f0e499
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|IA0PR11MB7862:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1bdc43d6-bf88-4480-3cca-08dd77f16bc6
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?UzVQWFdJUXR3RVNFSFN4cFlhSVFjckRWbkpkaGNOSE1zd1NoSXcrRjJrOVdT?=
- =?utf-8?B?Z29IUW5BaGZUMURLTi9hL21aWlpPaVZmamZpalRwemZ4Rk94dE5GL09rYlRx?=
- =?utf-8?B?a1JWQnRCZ0JKcjBSRFZuQTNtVUNUL0NTTlk4Nm5Ham1Id2hWWmFxVVg4V3FK?=
- =?utf-8?B?dk1RNWhpaStDS1JFRkFDSE85cE9CV1JHZUQyclZYQldBdUFoNTEyc3BFQ3RN?=
- =?utf-8?B?OWNCNzBBM2hTWjM3NW5QUkI4cFV6UG8rYkZQbldidnp0MDFkNFlhWDJvc2cw?=
- =?utf-8?B?N0RqN1Z5S0VNLy96Y1V0b3JnK0d5MDZ6Q0pKUXZlWFUxcnNWckJtWU1ZcmhU?=
- =?utf-8?B?K2JTaXZHazBLRXZZZ2g2UFo0YStpQlJpQkE0Rk44bjB6S3ZiZ1FsRTAydTk0?=
- =?utf-8?B?YmNOSlJ2bTBIajF3NTZFV1NFaGlCT2Nhekh4djBrTi9nTDdra0NKdDNBSkNZ?=
- =?utf-8?B?YXJkK3dDd0Fib2Q5VjVqeVhVSTJqNHNKMUxZZjl1Y1JXK1RRY2pmeGdMZkNl?=
- =?utf-8?B?MWJWRzFzUHh1ZkMreXZrTTFjcHkyYmlJNW03MlNtdllDbEJkaEM2L0QwOUZ6?=
- =?utf-8?B?TlJRODFTUnNJR0RqY29USk9KcmtvMmgzdG4yeW13aDA4anY4eHVmMjN2OWhR?=
- =?utf-8?B?V3pnZHhoV0JHMkZ4anZvQWszSFBaMldON3lQTFBTNVk4ajhjSEsyWHkxYWpn?=
- =?utf-8?B?MXF6VEM5TkZKa3pwWWRsT0ZTNnJzSkwralhBWWp2RWo1aUwzdk5oSUFUOHA0?=
- =?utf-8?B?RFM5M0N0UFB1U1I2VFVxYy9sWjdnL2UveDNuM3I4d3dRd3BHSVN1c2pzOEVw?=
- =?utf-8?B?eWo0UytSZngyNDdaSTYzTzlucGthRWk3dTV3TWlOa29aUWZnbjA2OE1qNXYx?=
- =?utf-8?B?ZUFwdUhBa3FOZzlDaHV3OGdQbmFxTGZ3eVBHWWFEckVTdnZQNzJvMnorbFVP?=
- =?utf-8?B?Qm9QWU9xRWNMbHZoUC93eVovWmc3cFpyNU0zNmE4eDU0UURLRmJMN011TUdS?=
- =?utf-8?B?Ym5McExrRFFNSHdXK3pERTJ5NHBRS2lwV09LR2RPalM5MEtwb3pmUHVSbTMy?=
- =?utf-8?B?bWJ2MUhGRWJxZnFSb09zU0VFcXlEZng3OWVHRzh2eEdMMGt3SW8xd3o4bWl6?=
- =?utf-8?B?TU1zU1FhS3hJbGZZZHoxY3BKMUcyYU9MK2lDV1NHOHY4YXhka2UzT0RmaHlQ?=
- =?utf-8?B?UmN3cGZSaU5ScXQxciszVWNlaG54eDY3MysyNDFleFZDQzVNZGJqaVBMMVZI?=
- =?utf-8?B?YnowUlJhVlRkNTdrTEpZQzY3Rlhad01BTENQL2NybjgvMjQ1V1NFYkhJRGor?=
- =?utf-8?B?ZG9ETmNyRlMwNEpBbEVDUktRaHAydW1neGJnZnJrRXJKMFJlWmxYR3VEajNO?=
- =?utf-8?B?cnpsNWs0UENnUUx6cFVYcDNwTmtPRjQ3d21jekFRLzVmZGlQUWdMTVBKb2VQ?=
- =?utf-8?B?SjFBcndubEVHVDVNL1ZreVRpYkxGaUZCL3l5RjUwQWp0eTkwZGx6UVBhc256?=
- =?utf-8?B?Umkza2QzK1lKOG03SzQrUVpjSVdzOGw2akRhdGp4UjcvL216aWV6bTRZU0x3?=
- =?utf-8?B?UzNzQWh0SlZaTWdaS1BjMnp2NUxYclVFazlhL2NUeDYrMXp6NWZ4R3RxdWZ0?=
- =?utf-8?B?TmJqVmx1UDRZblc3d3F0d0d4bkVNdXpjM25mVnVRQ3ZSYzhXNmRNTTZXemlh?=
- =?utf-8?B?OWFlL2xQUmdOR2tBRmlibC83NkhZOUY3WW5pVzU5NldOQ1N0amlTQk1rMzFH?=
- =?utf-8?B?SEVNd1FsY1Vkc3E0RW4xY3NIL0ZOSzJ6eFJnMmw1OFQ1eVBiM0VGT0JSZ0dG?=
- =?utf-8?B?OFQyRjYvTFFQbzlPWWUxbmp0Mnp0RUYwVEZNd0twb1c3T01MM0JKN1JMdmlR?=
- =?utf-8?Q?3zxDKoljxm9+3?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Qm7fUBb1LymbhTSMOk1tXfjcvuxsUXza3Ok4zaBdOk+DAt3oiUuJTME8C2ts?=
+ =?us-ascii?Q?nGFN+aIJ9+v3c7QzGl3mQ5UaK7LOG/qu11AFMTToJK9xG/ABXpMIjRZTk196?=
+ =?us-ascii?Q?o0Oc8RZFscdEjai8dgEUsYi+801CUe5PVjevTx8Nm2CuBiEVqjhmkzpfnix6?=
+ =?us-ascii?Q?d/iilLpw0KfYkVC4JGyrzphuYWJAHkCOypji7mqwlrmddEMY/EZ2twZULBO3?=
+ =?us-ascii?Q?5JSf5jOEdu8G/+4Irdg0xRxWRUni8uvEylRt5aovhPaSMG9SSP1PVsjeJfAm?=
+ =?us-ascii?Q?XQ2E0BLLhNVaqXq5S1gRCB/HH24fMcd6XULUjgE4mAnoi0H/H65CvqqlVTx6?=
+ =?us-ascii?Q?A9qC2BDnUE4PGvvjqRZcF+PNuRx1jedo9ctoLRKLw2s3WWPDpXi0+GSImL5O?=
+ =?us-ascii?Q?IhyVRardW+++sP2phLkFL0ZPcwCfFasWS20EZy+Q0DkzZdrQPCr2RzTkTSdK?=
+ =?us-ascii?Q?mYmNwzysSxyHNrmHPqTVRxfg1myYbCWFVo76oAek4MyJ2dm41P2o85zfbtAf?=
+ =?us-ascii?Q?xLufF+gN6JhaezfRK7ZHY8yHG1ZZRsgzb1KW1X8cLDQyH0cvvylHiKQuTjs5?=
+ =?us-ascii?Q?G1/RZGZBOKQixNMUcxPOORH75718QR2upDoAa/tl5bcI2qQBE2xPKtdAILqu?=
+ =?us-ascii?Q?B1ppgBpPXVW1LsyMPqJMSxr4VD+m5eEXnRDm3k6Jnhr3LMal/SWw+Vpzpr3h?=
+ =?us-ascii?Q?LATGTWUT8KX9/6QbQ7JA8Z92bcQW+ouPTtrN0mlGQqkxVeRpN9Qac7LWW376?=
+ =?us-ascii?Q?yJL4DH+jamr/dcCR36sRu0ElT4cwWkvd1SoJBtZ5drIHauupIBOv0FmROiqg?=
+ =?us-ascii?Q?b9nAaiJmqdfx0Klpz+JYgvMZXD5LjMtWunzTdOI2qW7OHWyyouVrvh/L+urk?=
+ =?us-ascii?Q?MgbK16XvRBFIFyZV0e0jesUhdfLOb4vv0cqK9IdBsg9o9TgItVMct04+BggF?=
+ =?us-ascii?Q?iBqEpN2XwNC0Pf1hS20X1YUWIqRRSNSBBRKAqLBDtXRmeuD+ZBldnP0TcCIe?=
+ =?us-ascii?Q?AepJVIAI/BFWFDbzeTlFF0rcq53rnFTKYg7yK9gBbERMIUw/CBj2MQ8khu//?=
+ =?us-ascii?Q?NUrZ5NeuKRyuP53n5HzzvnFUx3DKsQ6mLmR5STejpdpNhBMmR0hJ0zF6NZcy?=
+ =?us-ascii?Q?u/VyRJhoTfMnHmceEooOCv9KjYHUGT0ebWAk+OVAdOfrJiFGVYnVgpqb39dG?=
+ =?us-ascii?Q?eIVpKEhHCOlGaS9CG6bLfgOIhY6hqltW+QPKTGcpWtUz2y/y9ysjC/228NRX?=
+ =?us-ascii?Q?4QrWAlaEya36rcqtAZfY+qxnjlbFpavZa2PqiFeDpZ39Q5OVNavq3BML+diJ?=
+ =?us-ascii?Q?sCekl4lLZ2lekAC3nII6YxGj40nBY9X/SsDXQ4Xy0vvGqfeOUz00FbP02JuQ?=
+ =?us-ascii?Q?SwkybxkxJYbtsedTlfzrdON+8HR+?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eGNTbWx2d2M5dlczMG1hMmt1ODI3VWlXWWdqcm1Wd3JhdXRqdDZOUG5vYm1p?=
- =?utf-8?B?WlNvallsTGZJSXpRdXBXVnUxSTl1VURHalpKck5QU1N4Uy8vN1lJekVOMEl5?=
- =?utf-8?B?Rzhsa2RqaHdpV2QvZmJQK1lCalRIU2IvZVl1R0RwOXBTK0gyeHBzSlNKSkx6?=
- =?utf-8?B?YllvbStDVXYxZ2NjcG5LckRTaUlVaUZYS0hhUVFBbjl1REdaaHV4UVpMYnZu?=
- =?utf-8?B?SXRYeE0yaVQwMnBISXYyZGNCRjlCQXRJaFREb3ZNMEQ3Q0d6cVFIQW84bGd4?=
- =?utf-8?B?UU1FVHJWUEhUV0I2NmxWZTIrY1hGL3VNM1JoOU9tQitYL2VFcFBmMWpHeHJY?=
- =?utf-8?B?WERlV0dteHN1NDBIOUJUbVZhdUoycVdPYWpWMzdRdmNnV1NXcFpuMzdzMDJU?=
- =?utf-8?B?a0lkN0lCUHJ3M2k2Ukc4V1M0Y2hqMitNb1duTzEwdjduTnpKaU91cDBPRjBS?=
- =?utf-8?B?UFZ4WEpCZmErMVMwU3ZWaDYvMDU4TEk3cHFHRHVBSXMzWXJoMW5RaFVWZU1o?=
- =?utf-8?B?QTlkTS85eHdER1FYeSsyS1lSV3c5VzEwazB2N0FLYWNNalQ0dXdJVmhkTnZN?=
- =?utf-8?B?NDc0Z2paSFNhOUQ0OXZXYnI5REVnTHNyYmk1MmdBSElKKzUwN3BFNElVdXdL?=
- =?utf-8?B?VDloWU81a00xcGVTMC9xUlF2ZUVNRis1VXlibTIwVE83djJFcHBsaGFJdkpK?=
- =?utf-8?B?bncrcVpRY2N5UHZZbzVyK1liYm5RT25EMzllTWhodUdqaDhyZlQ0ZmU0VVpw?=
- =?utf-8?B?UlVHNENveVJUNGwzT2IwS3VGQmw4TjZjeVdXWno1RVhLTjRZQ0gzWElLVWl4?=
- =?utf-8?B?dVNnNnJQU01HbmFySWtpbjFCV093ZTNQN003aGZXdHo2cEszU05QL0toU09P?=
- =?utf-8?B?cDkzb0UwMVYwcWxxNGRiMHVtYzltMEdXSURid0JZNEdQMzVNTGszUEkvaEoz?=
- =?utf-8?B?OVozcVFNQnRvbFRtVzV4WFdINTd6Ry9vNHI2bUdrbDJ0RGhHNEh3dnpFOHRY?=
- =?utf-8?B?WWltckFmZlNtLzFwZGFaSlhVbEFML3k3VGpjWmdSeTlQeU9nSEViQUh0T3lR?=
- =?utf-8?B?WnFpZDRYeW5qRFJNOVJKeWE4TEVaOWVOQi9NaVFDcDVHM1JSZnZWNmdudjc5?=
- =?utf-8?B?bkVEOGQzTnFBQjJ1TUVLV3gyK1Y1a3dYN3V5c0dycnRVb2JSU0tQSTFDOGJL?=
- =?utf-8?B?UkVNbEl2eXk4cWRXaEUxN2tlL0J6am5FRHRFQ2JSZWV6T2J5N1ZPcE4rdytM?=
- =?utf-8?B?ZzErbVYwS2VMSHJwTlFRYzFhZk90VzZ3NDhQWVNMSzdjSWFLL1RQMWZTR3lP?=
- =?utf-8?B?cEIzVVRaRzFHbndhRHExcUlob2lDODlVN09odUJuWm1IQW9CWWpJajVXYjdS?=
- =?utf-8?B?N3NIMmNtQzJBZFEramhzZURIdGlVbW9sZjUyVHVOc0tJQmovTjNIZ2l2SUl3?=
- =?utf-8?B?Q0MvamRXb3JSTXZvQ01CbjJJTHFWTndSSlljM3I3MVZyMUFaYWtFS0NieXBq?=
- =?utf-8?B?ZmtRMEJPUG10L1Rtd1QwczVudzlTWkhXU3JXNGFNVk9VNU5oLzRia1NUNG9Z?=
- =?utf-8?B?RnZReWRhK0M1d0M4RlhRRmVwaFFPVXRzZmI1ak0zWWJGV2dPdHpwY2ROdndx?=
- =?utf-8?B?ZkpoOUlPR3pFUGVBVUd2OU0vV3d5ZTB2S2xKWjR1eFhZcWE5dTlTa0ZnWFlF?=
- =?utf-8?B?ZmNGUG41Yms3S1UxbXNiM2U5ODJUUmRsNGVCNWZLSUUxVTNaRDV6UXI2ODBs?=
- =?utf-8?B?YmJHNERRdjF3d1RvNnhpMGs1SVhkUmg0YlNJMUN3aWNSOW91Y3JwNnljN0dX?=
- =?utf-8?B?WHhoN2l3SDRGWHV3OHpNYXZSVnBYM0NyOFpiSGtlZHJKa2Z4UmtCUFI1UWY5?=
- =?utf-8?B?bkdxR0d3VXh1TlR5aHlYRVlCeVlmSU9Sa2c2OVUrYXQwRFQ1S2FVSEdhL0Uw?=
- =?utf-8?B?d3FwS2dLQlNjVnFWZVVkbDdDSEZoNTdQYzhNOE1NK21WSTRvenFqbW1wVkhW?=
- =?utf-8?B?Z1NvRlJPb0VTRGgvQ3hNdDVrYnhsYklTa0FuMGNnTjltcTBqaXBtbUVXSVZZ?=
- =?utf-8?B?RjdiRVFIV3JlYzhyYkQzRHUvQVFqWk9ZTTV5NEU2VjlsYmQxeGlFWkRwYXI1?=
- =?utf-8?B?UUJDR1VUWjhpRU1pa1ZvUExVbVlOZlVjZUQrNEZTb1VKUW5SQ3lkOTRhT1o3?=
- =?utf-8?B?N3c9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3ce4e843-0d37-4db7-f0a0-08dd77f0e499
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Zrr3hh5osgPOUHMST/mvANuwIf2vgjMdiybVO17W6rMAwAZ1DSHhBHDJUykV?=
+ =?us-ascii?Q?XgUr83fS4wVF1NeNQoG5rJfxm5lON16EId8HGf3jbOOoJUciv07obsP+UM7v?=
+ =?us-ascii?Q?V38BmEAYzyLwrPpoIUOzz91wmXx1ZXAUVwRRf9i7owT2pOiAp9XKYSzzdMHu?=
+ =?us-ascii?Q?c7kI3gQRMJ8wqoUglq6p00yO49Z3Rs/aX4bmwNBAQogjptOOIXedml/ZRF8g?=
+ =?us-ascii?Q?nTXLPeOU/zOlPJp4viVJKI8Efen4j15KyWLGh6BL7kajqfLPpjdhm3pqNQn4?=
+ =?us-ascii?Q?7P2JhnCZAPe+9f37yq8lSuqi/KqDaXn2OFl0xPkRw9uasm/F+/ciAiDDKc9R?=
+ =?us-ascii?Q?LMyVkjwAhbVVF9ctmS1kENnG42hoq315fpoXdBSF811JgvnQ0AoqoJ+rOHXZ?=
+ =?us-ascii?Q?A7Nbea/gK2ADfQKbSqWlkc1qaDANA/ZkDsdLxNDdvkEzp+E+BCBl/JbgvuOF?=
+ =?us-ascii?Q?mYhwoViE36DaqqoHItMEcJXYn59LrEJEVqRFC4cjNScNMvJ/Cim5Whx8EHlV?=
+ =?us-ascii?Q?V/QwECQoqQ+4tZxfbHYBxmytQ3BgBxbhCn6oq1z9UOo+IhGcRTUvTWmbUNGi?=
+ =?us-ascii?Q?nf+18XiMDS8rOb/EabLIGK+hOoBB11pljNSvaQ6bKt3xG2Mw45O5gLkfITQC?=
+ =?us-ascii?Q?mtciW5EP1ThqUGFWs23EKfm+Ub7pL4c9RSVo5KMXvO5jb9nRhewGiFnF/ahb?=
+ =?us-ascii?Q?Wczyntdfyxg4KL79nVIWdOG7plxMUObHVEjbhRLl/9Oi6vMVYNG0bUosJTPo?=
+ =?us-ascii?Q?svwesXz7k/Enhd2FGv0xhW+/N251XygxPFVAFmePe7sVt3PbJwV9WNDsQ9w7?=
+ =?us-ascii?Q?TQtqYBs3K69uu7iJDJFvt+K6Gy4ud6AeC5IAJvnamyGWuGf88ODTjUJ7Avu2?=
+ =?us-ascii?Q?+2vTIgbe6I3Q5TOS6YYn2e/Ms554e93VXugzwTEm+vM+cUDp9zN6Y9wkiZhQ?=
+ =?us-ascii?Q?K1y9OG8QmU6VlWkePs0VPAD6oLBb694cvv6ghv5Mh2yt0LXH+1D5Om9fcm3w?=
+ =?us-ascii?Q?wsvT5hosUKxpdD0t1g3/ATYtQ7+Xe2qVU/32diPXoS7Wx5DFQrIAKhN4yyHn?=
+ =?us-ascii?Q?3WvN4BNCTGnHuWW7bCJNU2Nvwaw32lzhHo7W8SWEIcrXG3IV9reD3IJ/CLwX?=
+ =?us-ascii?Q?SB1Nm3qwLtbw5jEZ81Zfzxl7cUkG6zN/AWXXeeQtK9/rV6jZr9T70HnozOf3?=
+ =?us-ascii?Q?1T0WVIBxjY+T2kc+OpbcM5lsRLa3mM/CCeANskAVei5nITes8GAf/toPPG1c?=
+ =?us-ascii?Q?cCo1OhW15YvYlOc6d8j/5Mhd/a/6WHRXYgiqE+e4vV4RruAGs0Rl4TwZE4g9?=
+ =?us-ascii?Q?T9QpyVZ/8MXte4rDFQZpoDdeMbYEcjdBw+G5EZpn/FPzcMEEL4EnK7UUxShk?=
+ =?us-ascii?Q?6Iu8rZGKMIk7ulUb9jawEYm/Ix6f5Ce6NI5bX+WjMxjGVTManjkGOBtzwXX6?=
+ =?us-ascii?Q?8MkIVORHGpfn7I+c10/h6QJuTyBOHOWV52+wD42T9MX6w7skedQlilWTu1Hu?=
+ =?us-ascii?Q?e97u4Jb785Lgn4BQxL4hjrJVqAJBCaiCWfyCup3GH/ip0xd7wSw6vmbhdbxP?=
+ =?us-ascii?Q?738Drti3lPnv2RvL2pITN844aAXw0RdB/BwtQ+KwuZchRLIC6uQw0j+bOyRh?=
+ =?us-ascii?Q?bQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1bdc43d6-bf88-4480-3cca-08dd77f16bc6
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2025 05:31:07.1789 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2025 05:34:53.7134 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +RYQtSc2EHTj9pboir4DAKp7VRddWVorOcXA0K83xwxl3N89TzvJCY5zmoBGs01vrGhp/Qghb7JXWZ4ZmHZe7q/PNfoy5E6GiZvEqF/E28E=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7902
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1SE3UFjP93m9q6zyzRFbXFqPW6T6np9Oqtrm6zTNC0Vvii9uaMrVFlh8XYC9cdUyNZIuZ5c1EkKzJ5tBTO5Peg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7862
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -195,32 +176,180 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Wed, Apr 09, 2025 at 09:59:34PM -0700, Lucas De Marchi wrote:
+> The metadata saved in the ADS is read by GuC when it's initialized.
+> Saving the addresses to the LRCs when they are populated is too late as
+> GuC will keep using the old ones.
+> 
+> This was causing GuC to use the RCS LRC for any engine class. It's not a
+> big problem on a Linux-only scenario since the they are used by GuC only
+> on media engines when the watchdog is triggered. However, in a
+> virtualization scenario with Windows as the VF, it causes the wrong LRCs
+> to be loaded as the watchdog is used for all engines.
+> 
+> Fix it by letting guc_golden_lrc_init() initialize the metadata, like
+> other *_init() functions, and later guc_golden_lrc_populate() to copy
+> the LRCs to the right places. The former is called before the second GuC
+> load, while the latter is called after LRCs have been recorded.
+> 
+> Cc: Chee Yin Wong <chee.yin.wong@intel.com>
+> Cc: John Harrison <john.c.harrison@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
 
-On 4/8/2025 10:31 AM, Suraj Kandpal wrote:
-> Add DP_EDP_SMOOTH_BRIGHTNESS register bit definition for
-> EDP_GENERAL_CAPABILITY 2 register.
->
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Fixes tag? Anyways patch LGTM.
+
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 > ---
->   include/drm/display/drm_dp.h | 1 +
->   1 file changed, 1 insertion(+)
->
-> diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
-> index c413ef68f9a3..ecf8b8d7b1f5 100644
-> --- a/include/drm/display/drm_dp.h
-> +++ b/include/drm/display/drm_dp.h
-> @@ -1025,6 +1025,7 @@
->   #define DP_EDP_GENERAL_CAP_2		    0x703
->   # define DP_EDP_OVERDRIVE_ENGINE_ENABLED		(1 << 0)
->   # define DP_EDP_PANEL_LUMINANCE_CONTROL_CAPABLE		(1 << 4)
-> +# define DP_EDP_SMOOTH_BRIGHTNESS_CAPABLE		(1 << 6)
-
-Perhaps add eDP 2.0 in comments, as this Bit seems to be added in eDP2.0.
-
-Regards,
-
-Ankit
-
->   
->   #define DP_EDP_GENERAL_CAP_3		    0x704    /* eDP 1.4 */
->   # define DP_EDP_X_REGION_CAP_MASK			(0xf << 0)
+>  drivers/gpu/drm/xe/xe_guc_ads.c | 75 ++++++++++++++++++++++++-----------------
+>  1 file changed, 45 insertions(+), 30 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+> index 88400f249e614..2a227213c37ff 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ads.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+> @@ -491,24 +491,52 @@ static void fill_engine_enable_masks(struct xe_gt *gt,
+>  		       engine_enable_mask(gt, XE_ENGINE_CLASS_OTHER));
+>  }
+>  
+> -static void guc_prep_golden_lrc_null(struct xe_guc_ads *ads)
+> +/*
+> + * Write the offsets corresponding to the golden LRCs. The actual data is
+> + * populated later by guc_golden_lrc_populate()
+> + */
+> +static void guc_golden_lrc_init(struct xe_guc_ads *ads)
+>  {
+>  	struct xe_device *xe = ads_to_xe(ads);
+> +	struct xe_gt *gt = ads_to_gt(ads);
+>  	struct iosys_map info_map = IOSYS_MAP_INIT_OFFSET(ads_to_map(ads),
+>  			offsetof(struct __guc_ads_blob, system_info));
+> -	u8 guc_class;
+> +	size_t alloc_size, real_size;
+> +	u32 addr_ggtt, offset;
+> +	int class;
+> +
+> +	offset = guc_ads_golden_lrc_offset(ads);
+> +	addr_ggtt = xe_bo_ggtt_addr(ads->bo) + offset;
+> +
+> +	for (class = 0; class < XE_ENGINE_CLASS_MAX; ++class) {
+> +		u8 guc_class;
+> +
+> +		guc_class = xe_engine_class_to_guc_class(class);
+>  
+> -	for (guc_class = 0; guc_class <= GUC_MAX_ENGINE_CLASSES; ++guc_class) {
+>  		if (!info_map_read(xe, &info_map,
+>  				   engine_enabled_masks[guc_class]))
+>  			continue;
+>  
+> +		real_size = xe_gt_lrc_size(gt, class);
+> +		alloc_size = PAGE_ALIGN(real_size);
+> +
+> +		/*
+> +		 * This interface is slightly confusing. We need to pass the
+> +		 * base address of the full golden context and the size of just
+> +		 * the engine state, which is the section of the context image
+> +		 * that starts after the execlists LRC registers. This is
+> +		 * required to allow the GuC to restore just the engine state
+> +		 * when a watchdog reset occurs.
+> +		 * We calculate the engine state size by removing the size of
+> +		 * what comes before it in the context image (which is identical
+> +		 * on all engines).
+> +		 */
+>  		ads_blob_write(ads, ads.eng_state_size[guc_class],
+> -			       guc_ads_golden_lrc_size(ads) -
+> -			       xe_lrc_skip_size(xe));
+> +			       real_size - xe_lrc_skip_size(xe));
+>  		ads_blob_write(ads, ads.golden_context_lrca[guc_class],
+> -			       xe_bo_ggtt_addr(ads->bo) +
+> -			       guc_ads_golden_lrc_offset(ads));
+> +			       addr_ggtt);
+> +
+> +		addr_ggtt += alloc_size;
+>  	}
+>  }
+>  
+> @@ -858,7 +886,7 @@ void xe_guc_ads_populate_minimal(struct xe_guc_ads *ads)
+>  
+>  	xe_map_memset(ads_to_xe(ads), ads_to_map(ads), 0, 0, ads->bo->size);
+>  	guc_policies_init(ads);
+> -	guc_prep_golden_lrc_null(ads);
+> +	guc_golden_lrc_init(ads);
+>  	guc_mapping_table_init_invalid(gt, &info_map);
+>  	guc_doorbell_init(ads);
+>  
+> @@ -884,7 +912,7 @@ void xe_guc_ads_populate(struct xe_guc_ads *ads)
+>  	guc_policies_init(ads);
+>  	fill_engine_enable_masks(gt, &info_map);
+>  	guc_mmio_reg_state_init(ads);
+> -	guc_prep_golden_lrc_null(ads);
+> +	guc_golden_lrc_init(ads);
+>  	guc_mapping_table_init(gt, &info_map);
+>  	guc_capture_prep_lists(ads);
+>  	guc_doorbell_init(ads);
+> @@ -904,18 +932,22 @@ void xe_guc_ads_populate(struct xe_guc_ads *ads)
+>  		       guc_ads_private_data_offset(ads));
+>  }
+>  
+> -static void guc_populate_golden_lrc(struct xe_guc_ads *ads)
+> +/*
+> + * After the golden LRC's are recorded for each engine class by the first
+> + * submission, copy them to the ADS, as initialized earlier by
+> + * guc_golden_lrc_init().
+> + */
+> +static void guc_golden_lrc_populate(struct xe_guc_ads *ads)
+>  {
+>  	struct xe_device *xe = ads_to_xe(ads);
+>  	struct xe_gt *gt = ads_to_gt(ads);
+>  	struct iosys_map info_map = IOSYS_MAP_INIT_OFFSET(ads_to_map(ads),
+>  			offsetof(struct __guc_ads_blob, system_info));
+>  	size_t total_size = 0, alloc_size, real_size;
+> -	u32 addr_ggtt, offset;
+> +	u32 offset;
+>  	int class;
+>  
+>  	offset = guc_ads_golden_lrc_offset(ads);
+> -	addr_ggtt = xe_bo_ggtt_addr(ads->bo) + offset;
+>  
+>  	for (class = 0; class < XE_ENGINE_CLASS_MAX; ++class) {
+>  		u8 guc_class;
+> @@ -932,26 +964,9 @@ static void guc_populate_golden_lrc(struct xe_guc_ads *ads)
+>  		alloc_size = PAGE_ALIGN(real_size);
+>  		total_size += alloc_size;
+>  
+> -		/*
+> -		 * This interface is slightly confusing. We need to pass the
+> -		 * base address of the full golden context and the size of just
+> -		 * the engine state, which is the section of the context image
+> -		 * that starts after the execlists LRC registers. This is
+> -		 * required to allow the GuC to restore just the engine state
+> -		 * when a watchdog reset occurs.
+> -		 * We calculate the engine state size by removing the size of
+> -		 * what comes before it in the context image (which is identical
+> -		 * on all engines).
+> -		 */
+> -		ads_blob_write(ads, ads.eng_state_size[guc_class],
+> -			       real_size - xe_lrc_skip_size(xe));
+> -		ads_blob_write(ads, ads.golden_context_lrca[guc_class],
+> -			       addr_ggtt);
+> -
+>  		xe_map_memcpy_to(xe, ads_to_map(ads), offset,
+>  				 gt->default_lrc[class], real_size);
+>  
+> -		addr_ggtt += alloc_size;
+>  		offset += alloc_size;
+>  	}
+>  
+> @@ -960,7 +975,7 @@ static void guc_populate_golden_lrc(struct xe_guc_ads *ads)
+>  
+>  void xe_guc_ads_populate_post_load(struct xe_guc_ads *ads)
+>  {
+> -	guc_populate_golden_lrc(ads);
+> +	guc_golden_lrc_populate(ads);
+>  }
+>  
+>  static int guc_ads_action_update_policies(struct xe_guc_ads *ads, u32 policy_offset)
+> 
+> 
+> 
