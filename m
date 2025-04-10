@@ -4,49 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E475C369A2
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Apr 2025 04:05:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A7A6C3601E
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Apr 2025 04:05:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D928A10E0DD;
-	Thu, 10 Apr 2025 04:05:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4EE010E2A3;
+	Thu, 10 Apr 2025 04:05:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AQ6wmB6r";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eeDDXsSj";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94A3410E02C
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDF9910E080
  for <intel-xe@lists.freedesktop.org>; Thu, 10 Apr 2025 04:05:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744257907; x=1775793907;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=h2ccD/cLYGa0SvYBHv5iq3Bq17qINVy7XPLtx2m561k=;
- b=AQ6wmB6rjr81qWpwkmFGuDJKh1MYLcKhelk+dis0m5gpWm45OTo4lh4H
- jX6rtLPrrWWaMj5vpjFou2etKbud9LQscCTbrIhbWElLq3oQhHimh/1oE
- tYD7BsX8G6f7Ibq5zJUgYbmoUaQDsj0dy5A4qyLkI1k7U1gu7eJ7nknqy
- P3+ZyEphJLmfMJs3rfSz73JjVAM7wjRE9QG4OOZd5ZfdexiB7SuTuofAE
- yEvgDH+6FmfvpINiMSLOa1Qj8RoMcSnG6kgI8WxhxkGMJy0YwOQ5a9fjn
- TzUqhkQehMsWzLI/34b/tSBL+yTr4pj8e2BYUQAVu97Fny+57cv1rF2C2 w==;
-X-CSE-ConnectionGUID: wUfAkqX/RwyYZZF4TPEhAA==
-X-CSE-MsgGUID: h/DX98zOSqueE11Taaf3aw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11399"; a="44999849"
-X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; d="scan'208";a="44999849"
+ t=1744257908; x=1775793908;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=4F0gaaSPMEw2wSdMJ5aK8tXqMpkfAgSclEy6U71kOCY=;
+ b=eeDDXsSjHAA2dvzQqf+EXNVfBWRhIINgDL+pBYCwxRRmnF3zwB5Ove23
+ /T4sG2sO0hbU9YGQS2vu2dcvX0GAPdpL21OnyxewWUTfEtIjl5+eUoPWd
+ VEpZDWaBsLhE0BtE2LdTNtAddn6QwUhUJa5uNtwAubEOhu2KDxgfu2xiS
+ riwUn/vxEv89t/5JI+KKtpQSLOyfJLBdhdlVg/9LVzwnfdYrURaEurb0x
+ NuKn4jnNRqeMePe1VsmuMaiyKN3g1/bYKL/zm0PB5zyObz8OE/kpQTb53
+ ZN/9iKi6U3ND0XEDmc7TIM3hBxFvXJ4HLiLOwTLTYDFDJmE1BD0lXGkMF g==;
+X-CSE-ConnectionGUID: MoRU8lMhQrSGbbpXB7xCqQ==
+X-CSE-MsgGUID: s+5o7TAuTx+oYvyDxvLSRA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11399"; a="44999852"
+X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; d="scan'208";a="44999852"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Apr 2025 21:05:07 -0700
-X-CSE-ConnectionGUID: +tF9M2XMTdywZOw/FVoNTA==
-X-CSE-MsgGUID: n4OFwGnYT1yTR0SUCaLLjA==
+X-CSE-ConnectionGUID: HfFmoCvVRd+6g2jFP9a8ew==
+X-CSE-MsgGUID: ZPp0wkydQoCEEGHqN0SmKw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,202,1739865600"; d="scan'208";a="133642759"
+X-IronPort-AV: E=Sophos;i="6.15,202,1739865600"; d="scan'208";a="133642762"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Apr 2025 21:05:07 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 0/4] Large devcoredump file support
-Date: Wed,  9 Apr 2025 21:06:18 -0700
-Message-Id: <20250410040622.238389-1-matthew.brost@intel.com>
+Subject: [PATCH v3 3/4] drm/print: Add drm_printer_is_full
+Date: Wed,  9 Apr 2025 21:06:21 -0700
+Message-Id: <20250410040622.238389-4-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250410040622.238389-1-matthew.brost@intel.com>
+References: <20250410040622.238389-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -63,32 +65,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Devcoredump were truncated at 2G, remove this restriction. While here,
-add support for GPU copies of BOs to increase devcoredump speed.
+Add drm_printer_is_full which indicates if a drm printer's output is
+full. Useful to short circuit coredump printing once printer's output is
+full.
 
-v2:
- - Fix build error
- - Abort printing once printer if full
-v3:
- - Actually fix build error
- - Address a few nits from Jonathan
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+---
+ include/drm/drm_print.h | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
-Matthew Brost (4):
-  drm/xe: Add devcoredump chunking
-  drm/xe: Update xe_ttm_access_memory to use GPU for non-visible access
-  drm/print: Add drm_printer_is_full
-  drm/xe: Abort printing coredump in VM printer output if full
-
- drivers/gpu/drm/xe/xe_bo.c                |  15 +-
- drivers/gpu/drm/xe/xe_devcoredump.c       |  59 ++++--
- drivers/gpu/drm/xe/xe_devcoredump_types.h |   2 +
- drivers/gpu/drm/xe/xe_guc_hwconfig.c      |   2 +-
- drivers/gpu/drm/xe/xe_migrate.c           | 218 ++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_migrate.h           |   4 +
- drivers/gpu/drm/xe/xe_vm.c                |   3 +
- include/drm/drm_print.h                   |  17 ++
- 8 files changed, 288 insertions(+), 32 deletions(-)
-
+diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
+index f31eba1c7cab..db7517ee1b19 100644
+--- a/include/drm/drm_print.h
++++ b/include/drm/drm_print.h
+@@ -242,6 +242,23 @@ struct drm_print_iterator {
+ 	ssize_t offset;
+ };
+ 
++/**
++ * drm_printer_is_full() - DRM printer output is full
++ * @p: DRM printer
++ *
++ * DRM printer output is full, useful to short circuit coredump printing once
++ * printer is full.
++ *
++ * RETURNS:
++ * True if DRM printer output buffer is full, False otherwise
++ */
++static inline bool drm_printer_is_full(struct drm_printer *p)
++{
++	struct drm_print_iterator *iterator = p->arg;
++
++	return !iterator->remain;
++}
++
+ /**
+  * drm_coredump_printer - construct a &drm_printer that can output to a buffer
+  * from the read function for devcoredump
 -- 
 2.34.1
 
