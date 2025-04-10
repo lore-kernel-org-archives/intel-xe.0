@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54897C3601E
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Apr 2025 16:03:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB7F8C3601E
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Apr 2025 16:04:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BE6E10E9FE;
-	Thu, 10 Apr 2025 16:03:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9100F10E9F4;
+	Thu, 10 Apr 2025 16:04:11 +0000 (UTC)
 Received: from 32c37dd7f93d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4581010E9FE;
- Thu, 10 Apr 2025 16:03:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C475F10E9F4;
+ Thu, 10 Apr 2025 16:04:09 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/guc=3A_Add_LF?=
- =?utf-8?q?D_format_output_for_guc_log_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/guc=3A_Add_LFD_for?=
+ =?utf-8?q?mat_output_for_guc_log_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Zhanjun Dong" <zhanjun.dong@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 10 Apr 2025 16:03:56 -0000
-Message-ID: <174430103627.367.17285389065809453824@32c37dd7f93d>
+Date: Thu, 10 Apr 2025 16:04:09 -0000
+Message-ID: <174430104980.367.13856820145193044653@32c37dd7f93d>
 X-Patchwork-Hint: ignore
 References: <20250410155853.574830-1-zhanjun.dong@intel.com>
 In-Reply-To: <20250410155853.574830-1-zhanjun.dong@intel.com>
@@ -44,16 +44,38 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/guc: Add LFD format output for guc log (rev3)
 URL   : https://patchwork.freedesktop.org/series/146541/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 457049ad31ee drm-tip: 2025y-04m-10d-13h-43m-21s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/guc: Add LFD related abi definitions
-Applying: drm/xe/guc: Add new debugfs entry for lfd format output
-Applying: drm/xe/guc: Add GuC log LFD format support
-Applying: drm/xe/guc: Only add GuC crash dump if available
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+13a92ce9fd458ebd6064f23cec8c39c53d02ed26
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e78e4859a8d4eae5ee1476f0b205b8ab104ad33d
+Author: Zhanjun Dong <zhanjun.dong@intel.com>
+Date:   Thu Apr 10 08:58:53 2025 -0700
+
+    drm/xe/guc: Only add GuC crash dump if available
+    
+    Add GuC crash dump data empty check. LFD will only include crash dump
+    section when data is not empty.
+    
+    Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
++ /mt/dim checkpatch 457049ad31ee5b64dd86230518144d366c32bc04 drm-intel
+54e817d5dfa2 drm/xe/guc: Add LFD related abi definitions
+-:139: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#139: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 387 lines checked
+e5d43127a28d drm/xe/guc: Add new debugfs entry for lfd format output
+b0b2656cb45a drm/xe/guc: Add GuC log LFD format support
+e78e4859a8d4 drm/xe/guc: Only add GuC crash dump if available
 
 
