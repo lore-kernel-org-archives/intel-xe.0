@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05D90C36010
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Apr 2025 09:54:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99BBAC36010
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Apr 2025 10:00:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBB7B10EB62;
-	Fri, 11 Apr 2025 09:54:44 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NXEjTmLc";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1BD410EB5C;
- Fri, 11 Apr 2025 09:54:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744365284; x=1775901284;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=D/7eC9pjgV4UGlrW5qNilefdbGkx9Gac+s0qXKuOWxg=;
- b=NXEjTmLcmjTP98G/bIprxvPO8Hh0euPCtMCsvoAFWWmuM2JWYt+4QppE
- lvOs5Gk3HGqxFix5nX4vymnbeKnVgn5CxOqNlFo5+7MXm69IfJrHhGFsR
- j7RR7OCA3osvetL46Uz+1u/atiB7j4P4eWixF7UskLZgH+575yzxxHLPg
- xE7+kYusIYgQKfb5B1ZFWIVNJ1XMn6sjm/bLZBmHDDzCzCxYv1oDt4r+z
- /egTTU1uKjxAJRKVOMHHCcvKxg5gHwPKft6oPuubbNHBw8jTjjdEb+YID
- tDv4kk0DwYzpnZVPCR4SEUDS9g+IdoSkKXR4Izf6OnN0RfTXxfArYH7Ok g==;
-X-CSE-ConnectionGUID: CFjaFExrSdWzY45+pGsq4g==
-X-CSE-MsgGUID: sMmXVXfJRfmnrV4xAcomLQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11400"; a="56094880"
-X-IronPort-AV: E=Sophos;i="6.15,203,1739865600"; d="scan'208";a="56094880"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2025 02:54:43 -0700
-X-CSE-ConnectionGUID: BWBoT/huRRu11Xdt3zcE7g==
-X-CSE-MsgGUID: pyd0YEA/QAiGsDttQEk8ew==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,203,1739865600"; d="scan'208";a="133265688"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.115])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2025 02:54:41 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com, rodrigo.vivi@intel.com, lucas.demarchi@intel.com,
- ville.syrjala@linux.intel.com
-Subject: [PATCH 4/4] drm/i915/pch: clean up includes
-Date: Fri, 11 Apr 2025 12:54:14 +0300
-Message-Id: <68ec70f6880b7af19bc93b9817959299634a555d.1744364975.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1744364975.git.jani.nikula@intel.com>
-References: <cover.1744364975.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C39E10EB55;
+	Fri, 11 Apr 2025 10:00:06 +0000 (UTC)
+Received: from 32c37dd7f93d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E6A010EB55;
+ Fri, 11 Apr 2025 10:00:05 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/=7Bi915=2Cxe=7D?=
+ =?utf-8?q?=3A_Move_PCH_stuff_under_display?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 11 Apr 2025 10:00:05 -0000
+Message-ID: <174436560544.3740.15279558246522426509@32c37dd7f93d>
+X-Patchwork-Hint: ignore
+References: <cover.1744364975.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1744364975.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,63 +36,24 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We no longer need i915_drv.h in intel_pch.c, and we no longer need
-intel_pch.h universally.
+== Series Details ==
 
-With intel_pch.h being included from intel_display_core.h, it's still
-included pretty much everywhere, but there's no need to include it
-explicitly from i915_drv.h or xe_device_types.h.
+Series: drm/{i915,xe}: Move PCH stuff under display
+URL   : https://patchwork.freedesktop.org/series/147580/
+State : success
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_pch.c | 4 +++-
- drivers/gpu/drm/i915/i915_drv.h          | 1 -
- drivers/gpu/drm/xe/xe_device_types.h     | 1 -
- 3 files changed, 3 insertions(+), 3 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_pch.c b/drivers/gpu/drm/i915/display/intel_pch.c
-index c5045d2527b4..fec1919e5386 100644
---- a/drivers/gpu/drm/i915/display/intel_pch.c
-+++ b/drivers/gpu/drm/i915/display/intel_pch.c
-@@ -3,8 +3,10 @@
-  * Copyright 2025 Intel Corporation.
-  */
- 
--#include "i915_drv.h"
-+#include <drm/drm_print.h>
-+
- #include "i915_utils.h"
-+#include "intel_display_core.h"
- #include "intel_pch.h"
- 
- #define INTEL_PCH_DEVICE_ID_MASK		0xff80
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 38cd1750bc99..c0eec8fe5cad 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -38,7 +38,6 @@
- 
- #include "display/intel_display_limits.h"
- #include "display/intel_display_core.h"
--#include "display/intel_pch.h"
- 
- #include "gem/i915_gem_context_types.h"
- #include "gem/i915_gem_shrinker.h"
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index b69cd91c46d1..b9a892c44c67 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -31,7 +31,6 @@
- #endif
- 
- #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
--#include "intel_pch.h"
- #include "intel_display_core.h"
- #include "intel_display_device.h"
- #endif
--- 
-2.39.5
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 24cf8a809b44 drm-tip: 2025y-04m-11d-09h-54m-35s UTC integration manifest
+=== git am output follows ===
+Applying: drm/{i915,xe}: Move intel_pch under display
+Applying: drm/i915/display: Convert intel_pch towards intel_display
+Applying: drm/i915/pch: move PCH detection to intel_display_driver_early_probe()
+Applying: drm/i915/pch: clean up includes
+
 
