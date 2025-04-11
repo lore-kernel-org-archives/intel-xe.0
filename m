@@ -4,50 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2146DC369A2
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Apr 2025 19:30:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71944C369A2
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Apr 2025 19:31:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA23A10EC6B;
-	Fri, 11 Apr 2025 19:30:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3911310EC7D;
+	Fri, 11 Apr 2025 19:31:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VibJVomY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aFJy+Usk";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FE8110EC6B
- for <intel-xe@lists.freedesktop.org>; Fri, 11 Apr 2025 19:30:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9531F10EC7D;
+ Fri, 11 Apr 2025 19:31:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744399853; x=1775935853;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=yzaOTWbMPjjYp2cmraVWjBpI2UqG5SIq0P6ippvvaNI=;
- b=VibJVomYSkfykpBLSNntCPh72Ot6ibaOYwYBp7QNx16RSafXLi8+Cfvm
- JM+3ojOkB2+fAYXgWTaui22uWIBj+gbItlKX6mLK3A+jb9CIPoLwAwHyu
- wD2b16ppAwQO6HHk+YM+atP5u+jNczrjLkeOMRXp4FuY+aCp1w+kEPU7/
- bWDdQNTnTNf2VUNeFSIemWmwQVizgduXN0AQ0twdk56intTAuoCURaXgF
- 4X/8fM4Ah7017M0YDINP4u/Q5327vra81tgjaPTSVMhtNDjkF/dExmak6
- HwkOmtUizoqHXhUm4XOPoU/mz+3qgrxjYcJmYz9p2Du6ga//o75lzU9/b A==;
-X-CSE-ConnectionGUID: wRpWJCjBRVmcGW74EdB64Q==
-X-CSE-MsgGUID: l88pgVWWSNWoNIroDxQM1Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11401"; a="48667803"
-X-IronPort-AV: E=Sophos;i="6.15,206,1739865600"; d="scan'208";a="48667803"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2025 12:30:53 -0700
-X-CSE-ConnectionGUID: zX60w1KlSjGdE4dzfsmdHQ==
-X-CSE-MsgGUID: MJoz3/A8RMaLdFpybl4pww==
+ t=1744399899; x=1775935899;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=w+Vjmub2xScVHRka08R5XNRGsi6pot7a0OypMzMixXU=;
+ b=aFJy+UskGStKVbGmC6SetzuPhJ2RCz7vyV3DTLp9sFN33h36vhX04G0J
+ 7e6BfvGtkbdxyzSnmlXsiqNhwUcw3ZW5jRiDwpEyGiXxDeFKlD9wgvCOa
+ 3mfYzjv9r4nwY1I64hTLYDrOQXVw+1oqwqzrcS1YsBKTK7TFUqb2LUUQH
+ 2p4gSlW2qKMAopPYDGpxF/e8c7sAS+On6uNzfzocZvDRaynWn/lnmAVv3
+ 1pfP315VTmU+BwIzYqWycn6R2jbI1k72Dvbg1Pv8fdWUDpcAkHDKcsxT0
+ DiRgeX60E2wigjfAB1SuNAVqap0QCnMS7ebHwPlaIP0M3nj0SToDO9rPV g==;
+X-CSE-ConnectionGUID: 4vY82TL/QJW2L6y39kv5FQ==
+X-CSE-MsgGUID: OtxSkWd4QUCXWZCYMUikZQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11401"; a="68451355"
+X-IronPort-AV: E=Sophos;i="6.15,206,1739865600"; d="scan'208";a="68451355"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2025 12:31:38 -0700
+X-CSE-ConnectionGUID: hduMWZDBQryhLazq22oIUw==
+X-CSE-MsgGUID: +HM9mSdRR6GnAhQCKx1Lng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,206,1739865600"; d="scan'208";a="129622798"
-Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.96.73])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2025 12:30:52 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH] drm/xe/pf: Don't show GGTT/LMEM debugfs files under media GT
-Date: Fri, 11 Apr 2025 21:30:30 +0200
-Message-Id: <20250411193030.1865-1-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
+X-IronPort-AV: E=Sophos;i="6.15,206,1739865600"; d="scan'208";a="134435651"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orviesa005.jf.intel.com with SMTP; 11 Apr 2025 12:31:34 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 11 Apr 2025 22:31:32 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Dave Airlie <airlied@redhat.com>, Gerd Hoffmann <kraxel@redhat.com>,
+ Sandy Huang <hjc@rock-chips.com>,
+ =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
+ virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH v2 07/19] drm/gem: Pass along the format info from
+ .fb_create() to drm_helper_mode_fill_fb_struct()
+Date: Fri, 11 Apr 2025 22:31:32 +0300
+Message-ID: <20250411193132.9835-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250410163218.15130-8-ville.syrjala@linux.intel.com>
+References: <20250410163218.15130-8-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -65,146 +77,193 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Most of the PF's debugfs files (and their implementations) are
-based on the GT hierarchy even if files are related to GGTT or
-LMEM data, that are related to the tile.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-While we could reach the tile data from any GT, to avoid potential
-misuse, some functions allow to be used on the primary GT only,
-and may use asserts to enforce that.
+Pass along the format info from .fb_create() to aliminate the
+redundant drm_get_format_info() calls from the gem fb code.
 
-In our case, the following assert could be seen when reading the
-/sys/kernel/debug/dri/0000:00:02.0/gt1/pf/ggtt_available
+v2: Fix kernel docs (Laurent)
 
- [ ] xe 0000:00:02.0: [drm] Assertion `!xe_gt_is_media_type(gt)` failed!
- [ ] WARNING: CPU: 4 PID: 10609 at drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c:379 pf_get_spare_ggtt+0x256/0x4e0 [xe]
- [ ] RIP: 0010:pf_get_spare_ggtt+0x256/0x4e0 [xe]
- [ ] Call Trace:
- [ ]  <TASK>
- [ ]  xe_gt_sriov_pf_config_print_available_ggtt+0xb7/0x480 [xe]
- [ ]  ? __memcg_slab_post_alloc_hook+0x12f/0x3f0
- [ ]  xe_gt_debugfs_simple_show+0x7b/0xb0 [xe]
- [ ]  ? __pfx___drm_printfn_seq_file+0x10/0x10
- [ ]  ? __pfx___drm_puts_seq_file+0x10/0x10
- [ ]  seq_read_iter+0x139/0x4e0
- [ ]  seq_read+0x11d/0x160
- [ ]  full_proxy_read+0x6b/0xb0
- [ ]  vfs_read+0xfa/0x390
-
-Fix that by moving GGTT/LMEM debugfs attributes to separate lists
-and register them only when applicable (on primary GT, on DGFX).
-
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Dave Airlie <airlied@redhat.com>
+Cc: Gerd Hoffmann <kraxel@redhat.com>
+Cc: Sandy Huang <hjc@rock-chips.com>
+Cc: "Heiko Stübner" <heiko@sntech.de>
+Cc: Andy Yan <andy.yan@rock-chips.com>
+Cc: Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>
+Cc: virtualization@lists.linux.dev
+Cc: spice-devel@lists.freedesktop.org
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c | 66 +++++++++++++++------
- 1 file changed, 49 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/drm_gem_framebuffer_helper.c | 23 +++++++++-----------
+ drivers/gpu/drm/qxl/qxl_display.c            |  2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_fb.c   |  3 ++-
+ drivers/gpu/drm/xen/xen_drm_front_kms.c      |  2 +-
+ include/drm/drm_gem_framebuffer_helper.h     |  2 ++
+ 5 files changed, 16 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-index b2521dd6ec42..0fe47f41b63c 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-@@ -51,26 +51,17 @@ static unsigned int extract_vfid(struct dentry *d)
-  *      /sys/kernel/debug/dri/0/
-  *      ├── gt0
-  *      │   ├── pf
-- *      │   │   ├── ggtt_available
-- *      │   │   ├── ggtt_provisioned
-  *      │   │   ├── contexts_provisioned
-  *      │   │   ├── doorbells_provisioned
-  *      │   │   ├── runtime_registers
-  *      │   │   ├── negotiated_versions
-  *      │   │   ├── adverse_events
-+ *      ├── gt1
-+ *      │   ├── pf
-+ *      │   │   ├── ...
+diff --git a/drivers/gpu/drm/drm_gem_framebuffer_helper.c b/drivers/gpu/drm/drm_gem_framebuffer_helper.c
+index 2533655b3984..c526abcaa864 100644
+--- a/drivers/gpu/drm/drm_gem_framebuffer_helper.c
++++ b/drivers/gpu/drm/drm_gem_framebuffer_helper.c
+@@ -67,6 +67,7 @@ EXPORT_SYMBOL_GPL(drm_gem_fb_get_obj);
+ static int
+ drm_gem_fb_init(struct drm_device *dev,
+ 		 struct drm_framebuffer *fb,
++		 const struct drm_format_info *info,
+ 		 const struct drm_mode_fb_cmd2 *mode_cmd,
+ 		 struct drm_gem_object **obj, unsigned int num_planes,
+ 		 const struct drm_framebuffer_funcs *funcs)
+@@ -74,7 +75,7 @@ drm_gem_fb_init(struct drm_device *dev,
+ 	unsigned int i;
+ 	int ret;
+ 
+-	drm_helper_mode_fill_fb_struct(dev, fb, NULL, mode_cmd);
++	drm_helper_mode_fill_fb_struct(dev, fb, info, mode_cmd);
+ 
+ 	for (i = 0; i < num_planes; i++)
+ 		fb->obj[i] = obj[i];
+@@ -135,6 +136,7 @@ EXPORT_SYMBOL(drm_gem_fb_create_handle);
+  * @dev: DRM device
+  * @fb: framebuffer object
+  * @file: DRM file that holds the GEM handle(s) backing the framebuffer
++ * @info: pixel format information
+  * @mode_cmd: Metadata from the userspace framebuffer creation request
+  * @funcs: vtable to be used for the new framebuffer object
+  *
+@@ -151,21 +153,14 @@ EXPORT_SYMBOL(drm_gem_fb_create_handle);
+ int drm_gem_fb_init_with_funcs(struct drm_device *dev,
+ 			       struct drm_framebuffer *fb,
+ 			       struct drm_file *file,
++			       const struct drm_format_info *info,
+ 			       const struct drm_mode_fb_cmd2 *mode_cmd,
+ 			       const struct drm_framebuffer_funcs *funcs)
+ {
+-	const struct drm_format_info *info;
+ 	struct drm_gem_object *objs[DRM_FORMAT_MAX_PLANES];
+ 	unsigned int i;
+ 	int ret;
+ 
+-	info = drm_get_format_info(dev, mode_cmd->pixel_format,
+-				   mode_cmd->modifier[0]);
+-	if (!info) {
+-		drm_dbg_kms(dev, "Failed to get FB format info\n");
+-		return -EINVAL;
+-	}
+-
+ 	if (drm_drv_uses_atomic_modeset(dev) &&
+ 	    !drm_any_plane_has_format(dev, mode_cmd->pixel_format,
+ 				      mode_cmd->modifier[0])) {
+@@ -200,7 +195,7 @@ int drm_gem_fb_init_with_funcs(struct drm_device *dev,
+ 		}
+ 	}
+ 
+-	ret = drm_gem_fb_init(dev, fb, mode_cmd, objs, i, funcs);
++	ret = drm_gem_fb_init(dev, fb, info, mode_cmd, objs, i, funcs);
+ 	if (ret)
+ 		goto err_gem_object_put;
+ 
+@@ -221,6 +216,7 @@ EXPORT_SYMBOL_GPL(drm_gem_fb_init_with_funcs);
+  *                                  callback
+  * @dev: DRM device
+  * @file: DRM file that holds the GEM handle(s) backing the framebuffer
++ * @info: pixel format information
+  * @mode_cmd: Metadata from the userspace framebuffer creation request
+  * @funcs: vtable to be used for the new framebuffer object
+  *
+@@ -233,6 +229,7 @@ EXPORT_SYMBOL_GPL(drm_gem_fb_init_with_funcs);
   */
+ struct drm_framebuffer *
+ drm_gem_fb_create_with_funcs(struct drm_device *dev, struct drm_file *file,
++			     const struct drm_format_info *info,
+ 			     const struct drm_mode_fb_cmd2 *mode_cmd,
+ 			     const struct drm_framebuffer_funcs *funcs)
+ {
+@@ -243,7 +240,7 @@ drm_gem_fb_create_with_funcs(struct drm_device *dev, struct drm_file *file,
+ 	if (!fb)
+ 		return ERR_PTR(-ENOMEM);
  
- static const struct drm_info_list pf_info[] = {
--	{
--		"ggtt_available",
--		.show = xe_gt_debugfs_simple_show,
--		.data = xe_gt_sriov_pf_config_print_available_ggtt,
--	},
--	{
--		"ggtt_provisioned",
--		.show = xe_gt_debugfs_simple_show,
--		.data = xe_gt_sriov_pf_config_print_ggtt,
--	},
- 	{
- 		"contexts_provisioned",
- 		.show = xe_gt_debugfs_simple_show,
-@@ -81,11 +72,6 @@ static const struct drm_info_list pf_info[] = {
- 		.show = xe_gt_debugfs_simple_show,
- 		.data = xe_gt_sriov_pf_config_print_dbs,
- 	},
--	{
--		"lmem_provisioned",
--		.show = xe_gt_debugfs_simple_show,
--		.data = xe_gt_sriov_pf_config_print_lmem,
--	},
- 	{
- 		"runtime_registers",
- 		.show = xe_gt_debugfs_simple_show,
-@@ -103,6 +89,42 @@ static const struct drm_info_list pf_info[] = {
- 	},
- };
+-	ret = drm_gem_fb_init_with_funcs(dev, fb, file, mode_cmd, funcs);
++	ret = drm_gem_fb_init_with_funcs(dev, fb, file, info, mode_cmd, funcs);
+ 	if (ret) {
+ 		kfree(fb);
+ 		return ERR_PTR(ret);
+@@ -286,7 +283,7 @@ drm_gem_fb_create(struct drm_device *dev, struct drm_file *file,
+ 		  const struct drm_format_info *info,
+ 		  const struct drm_mode_fb_cmd2 *mode_cmd)
+ {
+-	return drm_gem_fb_create_with_funcs(dev, file, mode_cmd,
++	return drm_gem_fb_create_with_funcs(dev, file, info, mode_cmd,
+ 					    &drm_gem_fb_funcs);
+ }
+ EXPORT_SYMBOL_GPL(drm_gem_fb_create);
+@@ -326,7 +323,7 @@ drm_gem_fb_create_with_dirty(struct drm_device *dev, struct drm_file *file,
+ 			     const struct drm_format_info *info,
+ 			     const struct drm_mode_fb_cmd2 *mode_cmd)
+ {
+-	return drm_gem_fb_create_with_funcs(dev, file, mode_cmd,
++	return drm_gem_fb_create_with_funcs(dev, file, info, mode_cmd,
+ 					    &drm_gem_fb_funcs_dirtyfb);
+ }
+ EXPORT_SYMBOL_GPL(drm_gem_fb_create_with_dirty);
+diff --git a/drivers/gpu/drm/qxl/qxl_display.c b/drivers/gpu/drm/qxl/qxl_display.c
+index f7bc83f2d489..ae7e572b1b4a 100644
+--- a/drivers/gpu/drm/qxl/qxl_display.c
++++ b/drivers/gpu/drm/qxl/qxl_display.c
+@@ -1179,7 +1179,7 @@ qxl_user_framebuffer_create(struct drm_device *dev,
+ 			    const struct drm_format_info *info,
+ 			    const struct drm_mode_fb_cmd2 *mode_cmd)
+ {
+-	return drm_gem_fb_create_with_funcs(dev, file_priv, mode_cmd,
++	return drm_gem_fb_create_with_funcs(dev, file_priv, info, mode_cmd,
+ 					    &qxl_fb_funcs);
+ }
  
-+/*
-+ *      /sys/kernel/debug/dri/0/
-+ *      ├── gt0
-+ *      │   ├── pf
-+ *      │   │   ├── ggtt_available
-+ *      │   │   ├── ggtt_provisioned
-+ */
-+
-+static const struct drm_info_list pf_ggtt_info[] = {
-+	{
-+		"ggtt_available",
-+		.show = xe_gt_debugfs_simple_show,
-+		.data = xe_gt_sriov_pf_config_print_available_ggtt,
-+	},
-+	{
-+		"ggtt_provisioned",
-+		.show = xe_gt_debugfs_simple_show,
-+		.data = xe_gt_sriov_pf_config_print_ggtt,
-+	},
-+};
-+
-+/*
-+ *      /sys/kernel/debug/dri/0/
-+ *      ├── gt0
-+ *      │   ├── pf
-+ *      │   │   ├── lmem_provisioned
-+ */
-+
-+static const struct drm_info_list pf_lmem_info[] = {
-+	{
-+		"lmem_provisioned",
-+		.show = xe_gt_debugfs_simple_show,
-+		.data = xe_gt_sriov_pf_config_print_lmem,
-+	},
-+};
-+
- /*
-  *      /sys/kernel/debug/dri/0/
-  *      ├── gt0
-@@ -532,6 +554,16 @@ void xe_gt_sriov_pf_debugfs_register(struct xe_gt *gt, struct dentry *root)
- 	pfdentry->d_inode->i_private = gt;
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_fb.c b/drivers/gpu/drm/rockchip/rockchip_drm_fb.c
+index d46297bec5f8..1211ca0ffa00 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_drm_fb.c
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_fb.c
+@@ -40,7 +40,8 @@ rockchip_fb_create(struct drm_device *dev, struct drm_file *file,
+ 	if (!afbc_fb)
+ 		return ERR_PTR(-ENOMEM);
  
- 	drm_debugfs_create_files(pf_info, ARRAY_SIZE(pf_info), pfdentry, minor);
-+	if (!xe_gt_is_media_type(gt)) {
-+		drm_debugfs_create_files(pf_ggtt_info,
-+					 ARRAY_SIZE(pf_ggtt_info),
-+					 pfdentry, minor);
-+		if (IS_DGFX(gt_to_xe(gt)))
-+			drm_debugfs_create_files(pf_lmem_info,
-+						 ARRAY_SIZE(pf_lmem_info),
-+						 pfdentry, minor);
-+	}
-+
- 	pf_add_policy_attrs(gt, pfdentry);
- 	pf_add_config_attrs(gt, pfdentry, PFID);
+-	ret = drm_gem_fb_init_with_funcs(dev, &afbc_fb->base, file, mode_cmd,
++	ret = drm_gem_fb_init_with_funcs(dev, &afbc_fb->base,
++					 file, info, mode_cmd,
+ 					 &rockchip_drm_fb_funcs);
+ 	if (ret) {
+ 		kfree(afbc_fb);
+diff --git a/drivers/gpu/drm/xen/xen_drm_front_kms.c b/drivers/gpu/drm/xen/xen_drm_front_kms.c
+index a360003bee47..806ec66ee7f7 100644
+--- a/drivers/gpu/drm/xen/xen_drm_front_kms.c
++++ b/drivers/gpu/drm/xen/xen_drm_front_kms.c
+@@ -62,7 +62,7 @@ fb_create(struct drm_device *dev, struct drm_file *filp,
+ 	struct drm_gem_object *gem_obj;
+ 	int ret;
  
+-	fb = drm_gem_fb_create_with_funcs(dev, filp, mode_cmd, &fb_funcs);
++	fb = drm_gem_fb_create_with_funcs(dev, filp, info, mode_cmd, &fb_funcs);
+ 	if (IS_ERR(fb))
+ 		return fb;
+ 
+diff --git a/include/drm/drm_gem_framebuffer_helper.h b/include/drm/drm_gem_framebuffer_helper.h
+index 4fdf9d3d1863..971d266ab1ba 100644
+--- a/include/drm/drm_gem_framebuffer_helper.h
++++ b/include/drm/drm_gem_framebuffer_helper.h
+@@ -25,10 +25,12 @@ int drm_gem_fb_create_handle(struct drm_framebuffer *fb, struct drm_file *file,
+ int drm_gem_fb_init_with_funcs(struct drm_device *dev,
+ 			       struct drm_framebuffer *fb,
+ 			       struct drm_file *file,
++			       const struct drm_format_info *info,
+ 			       const struct drm_mode_fb_cmd2 *mode_cmd,
+ 			       const struct drm_framebuffer_funcs *funcs);
+ struct drm_framebuffer *
+ drm_gem_fb_create_with_funcs(struct drm_device *dev, struct drm_file *file,
++			     const struct drm_format_info *info,
+ 			     const struct drm_mode_fb_cmd2 *mode_cmd,
+ 			     const struct drm_framebuffer_funcs *funcs);
+ struct drm_framebuffer *
 -- 
-2.47.1
+2.49.0
 
