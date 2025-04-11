@@ -4,169 +4,169 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40D94C36010
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Apr 2025 13:07:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AF40C36010
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Apr 2025 13:28:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE3B910EBB9;
-	Fri, 11 Apr 2025 13:07:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5209110EBC2;
+	Fri, 11 Apr 2025 13:28:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nhb3VRC9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PGpr5nIa";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E88D10EBAF;
- Fri, 11 Apr 2025 13:07:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2F4710EBC0;
+ Fri, 11 Apr 2025 13:28:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744376862; x=1775912862;
- h=date:from:to:cc:subject:message-id:
- content-transfer-encoding:mime-version;
- bh=UJUk/uEgMNjdLbGrOrozKU3hl4QqY3UDxzRQnYowRkg=;
- b=nhb3VRC95wJpw2vZHToRtnpzjPygDzE0QYJleN/wilAefV/RafHW42Gw
- Vw8339GgLkfhx8y9Cx3tthu41+lkelNVcO1IYGHF+ZTCIVxr/utYSaa5N
- qHIFqHwZlQH7E7x+DPm0uei/yrg1GG9VDhfEZJ9fh2ltDy2hT0gBgE0yZ
- yYo4L4sgDul3CDCDBExTJvHtADTQSINPFpO2U8vd7fKyeuoCl5bZppm36
- mcusUWO2hm8FgaUmrn7JRtvfy+JdA5fSEEKs4TW6b3DAE+NpZYBFmrvyz
- lQkJAMvZ1D22SM4ulfJboRqDtJuA8cdbc+qaVSLYi1qcoKeYoAO0Q0KCA g==;
-X-CSE-ConnectionGUID: BX/TDGECRQGI6uqF/G3oDg==
-X-CSE-MsgGUID: ui5Gr2kCRQq+EnvijlZXag==
-X-IronPort-AV: E=McAfee;i="6700,10204,11401"; a="57308742"
-X-IronPort-AV: E=Sophos;i="6.15,205,1739865600"; d="scan'208";a="57308742"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2025 06:07:41 -0700
-X-CSE-ConnectionGUID: OBR+LVEoS3uWVdAfd/QR/A==
-X-CSE-MsgGUID: W42VYsuERNOiIMNgwFkZ8Q==
+ t=1744378099; x=1775914099;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=V10P5q8gf7gv9o+gZ5Veuu4g8NqHmdoZaLwYY4YO1Bs=;
+ b=PGpr5nIaZxghq60Au0syrjNMhbt/NEf2jUgBsuHkZ6m5VnL8sygh4qN/
+ 6oJyxU19hSJ8o6JBZYeh/Rikvb5esRaS3S1pEw9kSArKv1tyGOAPAnjdI
+ Ir2WJWy4lYem8mWrmXNIhaV54zz4S+dnZ8lPaanC/TtMlQ4G8+cp5fB04
+ ONtU/EAu4tgMr3Br0xdlpQILAsYPLsJL0sJ7OhPviucjp5f9Po8F22w8g
+ s9Wstir6CJjqgVzxJJTIu0liWGnm/foAcaSDgykATdRtAXzWmQeue1sNr
+ NH5G1V90tubFXwIkiw8Vr1io0nBwdDEzbK9/mr3BmOW1nqkSYECvyUIi8 A==;
+X-CSE-ConnectionGUID: LxJt2WB/RU2O9TVIW7OoVg==
+X-CSE-MsgGUID: Cp18HOEqTMK3y86x0/tWxg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11401"; a="33541724"
+X-IronPort-AV: E=Sophos;i="6.15,205,1739865600"; d="scan'208";a="33541724"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2025 06:28:19 -0700
+X-CSE-ConnectionGUID: cNywz0dmSm2FfJ5vROG/qA==
+X-CSE-MsgGUID: 5OkkouGhTfKhNPN4/OFn+w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,205,1739865600"; d="scan'208";a="134171731"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2025 06:07:41 -0700
+X-IronPort-AV: E=Sophos;i="6.15,205,1739865600"; d="scan'208";a="130032775"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2025 06:28:19 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Fri, 11 Apr 2025 06:07:40 -0700
+ 15.2.1544.14; Fri, 11 Apr 2025 06:28:18 -0700
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Fri, 11 Apr 2025 06:07:40 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.175)
+ 15.2.1544.14 via Frontend Transport; Fri, 11 Apr 2025 06:28:18 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.170)
  by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Fri, 11 Apr 2025 06:07:40 -0700
+ 15.1.2507.44; Fri, 11 Apr 2025 06:28:17 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ads8gjKc5wQXFZbhx/mQgEL/vLeHeuqmOJHCOoynP+mrRO4HG6E5x7oPyPpohRiey/F1/JaD5J5GtkigEPQHHwjxdEr1rBVlNkvERkXoBesvfIQdXq96zpiXDwCNeSe73NN8+YrDnNMW44kt06IotEznl141YgoyeT/89q/2bayWlrgcmHh8MbqdDkEC1FMla+r6pLHQLPKX+JGo01eIOS3QFBnmakpJ/dvHdiuct1YmaNvr3zxdmK9Xn0RyOcBUI3/cyN6zlGgLE3cpD8gJ+yPc/AwSKh/F5Dfxz/Dl9JNInD53o8tWLIJU25d+KGRRuVJohN7aoq/39JzM+KWXoQ==
+ b=br0fAwv3F2vCjlE371ZotIBhG8DbujJZoL2meQ/Xz6Xqzu4ItDOOjNkNx7auaYGtPG+P7tUxgpN0/gUZlVrkgzcSEFcWXwKjTxX+Usqa4N3co2vTKAat4XOHbkNSqfgpiagLvU1TvhNJcuo7KBOaE1bAY4tOtEdbC4YGOGz7t8UBzmUheR1uraqlsIP+Ob178nqbN8VlJnHIBEUIwpVqjyG1Gv9ENjqTh0TZ1NLhpZcSIIToxqgKF//bikoNTzQ1or7yFu581FN0IyFcrT6oDuj+6j2r2sq5IQ+nzEQIEm6Kiv/1p8ZHCHoOropEpreqlbGmjvmKyjnXehlHNaGHyQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BslwpUQx2XOmU7FYUhc5/pc705gRdSG25+0+HzpBCOg=;
- b=J3JBffl72P6aj+WEsJRW01jBQePn9rjsJjdkAH7fMVes2LrRqcxhacB6VWoo6g/ZY/spaZAyLdJWmghyFdTAyFAzvxEtc3QcM47Hu3npI/l7gWpm2pXuxyWIMQsKyotkFImciOLn1Oj8HlxLNaxkXZb5GK021717QrOp6zL43RaAF/zi6TVKpbW0GXO4sglTtErvd16Vz5Tr+jEF9Im12XZTpPpu+oadOZZOi35k+FZ0hqlnictNhmuMN717ZxDhpETBNXCCCRQ2X6F2QwBd9w2xS0hj6zT9yVTeeFTM+dmGvMvDDHXYY5bMCo4xLGJiJs7xRVyKfhavtdYN+BQKCw==
+ bh=mlp7AddAD0odV2f14MX20l+CvynZaDgN14heTGKcxAQ=;
+ b=EWZC5dtYUazBL265ndwQv5xgaxB6WrroqwpKMc33H8mNxN5TVFAYsVK9homiUlxL94M63HoW7It5s9f+o+k0zPMcwZAtOkULaNpvshrxPq6+VHAhjECC+vQbRKyq8wNoWXao3br4ho5qhqcNDpws3OrPEaeftub7c8gGCTemuBq2mf8/+uyhEu71paJ+wqJLtwYdtaakGqF7CWYYC1xtwvGyRbCUuahzYxpmUmI9aUKZKj4HR8GtazPf5FADbYfUSu2UwVWExgHZrC6dhVA7V5OX0tkhl8tyOJJXmY6UWQhT62Rop5wjlbN1HrR+8QBk+H1szoAGsmJ+ly88aGECRA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
- by SJ0PR11MB4910.namprd11.prod.outlook.com (2603:10b6:a03:2d7::7)
+Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
+ by IA3PR11MB9063.namprd11.prod.outlook.com (2603:10b6:208:57d::19)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.20; Fri, 11 Apr
- 2025 13:07:38 +0000
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563%4]) with mapi id 15.20.8632.017; Fri, 11 Apr 2025
- 13:07:37 +0000
-Date: Fri, 11 Apr 2025 09:07:32 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-CC: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, Oded Gabbay <ogabbay@kernel.org>, "Lucas
- De Marchi" <lucas.demarchi@intel.com>, <dri-devel@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <dim-tools@lists.freedesktop.org>
-Subject: [PULL] drm-intel-next
-Message-ID: <Z_kTqPX5Mjruq1pL@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MW4P221CA0018.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:303:8b::23) To CYYPR11MB8430.namprd11.prod.outlook.com
- (2603:10b6:930:c6::19)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.23; Fri, 11 Apr
+ 2025 13:28:01 +0000
+Received: from SN7PR11MB6750.namprd11.prod.outlook.com
+ ([fe80::9570:169d:a0d5:527]) by SN7PR11MB6750.namprd11.prod.outlook.com
+ ([fe80::9570:169d:a0d5:527%4]) with mapi id 15.20.8606.033; Fri, 11 Apr 2025
+ 13:28:01 +0000
+From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+CC: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, "Murthy, Arun R"
+ <arun.r.murthy@intel.com>
+Subject: RE: [PATCH 0/2] Register bit definition for EDP_GENERAL_CAP2
+Thread-Topic: [PATCH 0/2] Register bit definition for EDP_GENERAL_CAP2
+Thread-Index: AQHbqENP7XPxB0u7L0uaBQd+MAdIyLOeem3Q
+Date: Fri, 11 Apr 2025 13:28:01 +0000
+Message-ID: <SN7PR11MB675095838AB3BA86BDCF8D49E3B62@SN7PR11MB6750.namprd11.prod.outlook.com>
+References: <20250408050138.2382452-1-suraj.kandpal@intel.com>
+In-Reply-To: <20250408050138.2382452-1-suraj.kandpal@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|IA3PR11MB9063:EE_
+x-ms-office365-filtering-correlation-id: 48c7516b-3b53-43b8-05af-08dd78fcaebb
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|38070700018|7053199007; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?Q+dH0XLGZeixpHo1Vqi7rTwvxERtFptc0+WJpyvUGtAJN6OR1xz5AkgOcG6x?=
+ =?us-ascii?Q?l6r1gpHzVwbiqlrrXfG/oyRzpKKPTp5RI7JftI1zTHrd/s222Mvd9vGIlkBt?=
+ =?us-ascii?Q?CLh8vtcrAP7yaUkMGI8JFM6CRv7yYakwHF5YvCjPik5nuCowunF3dPSq/JGR?=
+ =?us-ascii?Q?5kRsnycGmGOR4PiBdJI9Otxw8e7LPbWCEC6tcPebJJlNevbMsRS+E9jO15DA?=
+ =?us-ascii?Q?Pba7Q9owfBUviqhNIiuUD1L0rZIsDCSP4Ax/rH5rYUytQgIDZyy5ldLvUeqa?=
+ =?us-ascii?Q?vsFZjqHn42Yi7P4ZmPEc6t2bnOKlJRAGC8ljndn4yL4hvCqPzkuBVMZj0MtT?=
+ =?us-ascii?Q?o4ogRYtqOoa0hkFWcs+VBS+O0S94K9mEK+YO85zzBXwXg1jb9Ht1NPCl+Ef1?=
+ =?us-ascii?Q?BzYKmiBpRHLhO8/TqTg0nYQCrD8qVJKkQ6+RE/wb4G304jnpsSEsc0sYQkd+?=
+ =?us-ascii?Q?4NE1gWUxLUytT44CfOIV5mrVEG6+Z1Cc5qwB3sr3cUEVwe53vGAxv3vBUvsw?=
+ =?us-ascii?Q?1AyBZ80icpAt1De25kvQnvYW9okLVYzSC16hHeH7UneT4tDME9VMGeq56l9U?=
+ =?us-ascii?Q?oXPUB708pbwv2clpALjI2JZJmdqGrTNgi/phAC0cIBniY2Xr8LPLSQat9lTK?=
+ =?us-ascii?Q?+nAEnKQ8o56E64AZrgNd7OBEQoabDZD8boe7lPVbvnnVkaarmEBzKW85RAj9?=
+ =?us-ascii?Q?ImTw6cBP4jksmfuNf6dFIeAk/1J6rUpNjUODLf+GVS0XAOsKoZE349kSF5cf?=
+ =?us-ascii?Q?FGRNxc/7JHL/4OCocsupoNQqu7Kt95XIcAT/iDN5JTxFvkfRncJ2BSfSujh3?=
+ =?us-ascii?Q?STiWQI/2+/hkEzw44Yz7tck6Y94Pgw+S//BLEfnSgrMD4czNy6/PqwJg1548?=
+ =?us-ascii?Q?uVpze3lhJzDvMkyIkLhoql3ZXyrhk1P93Z33/picsyPvBN5CNxcfk4uudTQv?=
+ =?us-ascii?Q?xa2ZTF7mzSiVE7P19CC67wXEfunM2oDfOBPbLDZnAdBhw0quge4opOdQZuP9?=
+ =?us-ascii?Q?jftkGjcmeVD/PeJxsVZIk74K2wvQuN9+00GYsPSBDEdrOmb+SYsE9OCR4bWu?=
+ =?us-ascii?Q?lbYYqgnDNlDfvvwurg8V+040WdQ5NisxziOn5UYjbAKXLVkhfTuQk2KyXuOJ?=
+ =?us-ascii?Q?Q8t2ro+7/mgOm+uIlbrGQdbz6fzS6B4KRreKf9qJ+0TTyC8a3xjHWtm9Q18X?=
+ =?us-ascii?Q?VCKfavsa6mo/4pYDCVDAr1uR7+yPtXlpbkzDXIuftBxuD4HxA1rir+d+5XpG?=
+ =?us-ascii?Q?WwwyUFsrAVzleR3qqbCkRJF9QMAYhZaKAMoxDHTMW63SMqiXmYh4FnTHijVf?=
+ =?us-ascii?Q?Svk5KpUMarmtsUKPF1vdn7rv+CqX0BQwTly7gvYCCtula75y2BTqIUhu4opE?=
+ =?us-ascii?Q?+Eu1AViOysyy1OHjbHrVj9OvdSpG9PR/EueDgjcui2Tsg4d7ipjk4ACST6jU?=
+ =?us-ascii?Q?KkcN+YddEFeZhYNLO0nxNge744nRe3TK?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(38070700018)(7053199007); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?et6V1cWLT/HCUv6WwTUIEpJ4LYcT1Zzj47rV+luP5pkASv7sEHTRE6Q7NzrM?=
+ =?us-ascii?Q?JegK8c0IcYxz8tOCWhSy7y23+Mte+WPF6iDaE4Su5m3TbICDNSnjH6IOz26e?=
+ =?us-ascii?Q?5l+1yQh6e9ODs+3VAHnHLileFd/K3fUCLjfwEJ+Igw0cbsWzgSLCK5sdFOfa?=
+ =?us-ascii?Q?HaUdRA4vec0AIK6hB6OnRqpoGZAGUJ+9VEMtQSpUHnl/aiKdCusJfNbCq083?=
+ =?us-ascii?Q?ifQ3NxIweuCgCgao+nQKOd6aIdGDRyIrLag2jSIpUvWDB4cR1snUVkLvQswA?=
+ =?us-ascii?Q?VgHSoEp1dmv8TlEt0ITM4xV/4PQv4KLkIm6GyJaJb9n9vCkR2KnCGfq41a+D?=
+ =?us-ascii?Q?dYl6C3UxBb5B+TMXsV1nngW0AGdHvwPdDaNgOyw6II7QuQRBr4weRZpVBXfS?=
+ =?us-ascii?Q?ywEKCV+2pgtLotKluR/JJcM2a4AY4+rsFJCuHIOGpUNlWPBrYRJcz9tt/L8r?=
+ =?us-ascii?Q?rc/mK+EYVXG5BTsFrqME23zilZM7T7RnYMa7qFno0zqyb/CWjq2j5OEGAiAh?=
+ =?us-ascii?Q?xLUCuzp90ZwOqwh/citmlFxvftsSH7mJVLnwWlOAry3eF8YklnEMw7JPXqL2?=
+ =?us-ascii?Q?zd4fG/uubOv0dU70pUDqoZoDLKwAqkQeXpN9DZFjD2ZixoKntFgniqp1ddMy?=
+ =?us-ascii?Q?8Gmrqgw58088o1P4cUa2Sr5sCBCXZ9XmfYBQaR3Zg8iz27o7FeOX7GZLA0/n?=
+ =?us-ascii?Q?Ue/hLJz3yN+UU3vcg+8SjLZtryL3F+Ysj94wfnE95+eSZhXb8Z8jYcDE79e2?=
+ =?us-ascii?Q?23ia7OmmckYpsBmfPr6Q4LAVFv8C2/P7J2g1yFFGSI+3xw8Zd/QDj6Xzfq1A?=
+ =?us-ascii?Q?RKS7KWHMuIGDxVYTjp7Vfhy4kPy8NyUMjqh8KGEpLWcPBOvLTd9Qd/B74Q1a?=
+ =?us-ascii?Q?8bY9/GQqslX8eB87LmPGfaKU1+cZA1w66XCZnQEg3Z8G6X79VkBii1ryvVwv?=
+ =?us-ascii?Q?YtxeTUU3QirVl2+4XRONVfst8o6QbNSSHonak7aFi/leGCOAXGJedyogYtrD?=
+ =?us-ascii?Q?bxDoYXd+Mvn6eeTma5posVaaWJXuAH/zvd996Fq9x3Aqf1GMWkG+UyxvDHSh?=
+ =?us-ascii?Q?umRXru0hf8kcBmTsiaKCetiZEvwwWmvHrWa4U0Y4Vdb4eLyw0TzWYyqwuVt+?=
+ =?us-ascii?Q?CorJhooEA360W0yhq4Uk7fDCiiki50WElAcKukBT1ePOdilKhmKiSzNnVv80?=
+ =?us-ascii?Q?eyP2iAVBc171FkBC7CcZDCU9gg5NpwYMqX34RNARE85owvGzILMq7/SOYgEE?=
+ =?us-ascii?Q?ArwFeROXp+UfkY1VQ1+1AQdkGepr18o9Jfr53LC2bjzu0ALcgD2H+2qb0H6e?=
+ =?us-ascii?Q?UiCsVIKe8XXwI85uEXauHSsQqFTdd686laGIDn1YZkzvU0rE+Cs7R1VNOZyc?=
+ =?us-ascii?Q?8+CUWRrElOOEjcrWDcU5dXMWxinddtvj7hjMOQ3DZhu5jIY0V0XHuh0Cf41j?=
+ =?us-ascii?Q?9E10e10xz6jxq59gCwjw9iY7DDXWtT8NCSOKrg/P5kcUDKsJZjzS24RTgxkX?=
+ =?us-ascii?Q?3cvEmFJSNQ0TFQebrwhUcgwVbLLTlMrTnYG1bVbk4trSQWeHt8yGF8WL8gEi?=
+ =?us-ascii?Q?nVVuytXUQQDnE7FUbNwUWcW/s9hnZipiZocjWxGl?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|SJ0PR11MB4910:EE_
-X-MS-Office365-Filtering-Correlation-Id: 772d7740-d069-434a-341f-08dd78f9d533
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?3pvHx2Qws/KnXzrKNZOQ1fvhdERi1IXwV9ww8ynm9Z/7X8gDXDKex5TRzl?=
- =?iso-8859-1?Q?PGAtcD13VnJTnp4cLVuCjn3AbQBE1EfjIAGIkqO4cn7JHEAll04vgdxyLO?=
- =?iso-8859-1?Q?Fo1+DKlSb2p1zmCQHBD6TxiGMfureWwEQPADOTFCcIwvCTvjkfN1Q4h3IT?=
- =?iso-8859-1?Q?CBuRdf8G2Y1WN0BI1LOTc8uJZ9EgI2jVFPQ2iNPyOevK8qyhYI1VLWDtDc?=
- =?iso-8859-1?Q?RxJMV3Lt6AM4xGfjpawa93Y0+ve7k01bvxWdEy9+1ynRsozO/dUYU3ouEm?=
- =?iso-8859-1?Q?kQ2GTot/+cN55R64WU4CvSFlxBnSNpastBD50jSzlXI+xSgFxeuKw/hYYw?=
- =?iso-8859-1?Q?YGbmE4V5sajxFfcbpdZyZxTqD+cRYi913106+whIf9DWnCID30XYx/6FPe?=
- =?iso-8859-1?Q?8kwdtb48181wJiu71fJCNv/dXOur8pyLYO9eqJrnmI97fSB3taZD6Ki2qs?=
- =?iso-8859-1?Q?qnMwgshf9UYVv4TZU0vKB1FtBts8bQqQC4ayF7hcp2xY5TAUsjHob6RGhD?=
- =?iso-8859-1?Q?YstSIXpNafPgQ6mjkcwBtDKZUB1k7DQF5K7qFzo21hiemU2EeZgXAbe/8R?=
- =?iso-8859-1?Q?IEDvAZH6vqLZiayH2MkNxk6p57TOXQpPrWA7YZLmUg55Bc7FlmisKcdIwh?=
- =?iso-8859-1?Q?+39KtqvFEFkSmTxT+osOe5yIUePRhdjH/oA4+5t9VrjqG38Ze0UWLXzajP?=
- =?iso-8859-1?Q?TcN1Pj6MIYfvt5xk3iudLsairLYACTAyR6vCl0mtZ+BVYlms+cWaFE0t6i?=
- =?iso-8859-1?Q?s3j77qemrVqcIjC9OKqvmMrejYl55azRU9JwU4HyGKpN1vtEUPk8tA4au6?=
- =?iso-8859-1?Q?tmu9cxM9bGwQlLRFQsV2ueQUCPPQ4aCeFwjxBt0OMtYvo4DnkUHvyKXLXu?=
- =?iso-8859-1?Q?HUVWjdtJycRU3xDlu9l58KZ0QR3/WSyBtoxLpLrtiCfz2j2AoW66jyy9eR?=
- =?iso-8859-1?Q?TJJ0zMk9fHDR5xydv2lTIH639soWSQh2WdFVJGFSl59aN51iKJzKNZYZTQ?=
- =?iso-8859-1?Q?CaqX1Yv7HcbNmndrwxKGpZIN2g/SowSFT/Mifk8RzQ+xd/2y4/POojgK1o?=
- =?iso-8859-1?Q?NVXUxf3O2/bs8EVRJ+OTSoyxIJaOB32180r37iCm8RizHbY6G31QpaRGAw?=
- =?iso-8859-1?Q?uj4HGaHaoeNayBqlB7CfyKJ3GG1mYfhTGgRDb1po0B0tbg0aA7tsO0quWG?=
- =?iso-8859-1?Q?fFSRTlyXOm+/b0hoXcctaOpQCfCI+i4S4dCm7gOf1z22PrHdxFpJh2Ry56?=
- =?iso-8859-1?Q?U9ESPyZ9QN5B2eSVzDJOhVpogxz6KSjzx47CVHym1+dzzG/7Gprr6ZdaCH?=
- =?iso-8859-1?Q?H48o+VZ3VNNcWeN4salJwFHz24VehTfOfdn1Sgi9NIdoHFMkyvaYgsKgSF?=
- =?iso-8859-1?Q?PQvvKyTnLT4Z2vsWfSgbD5ESMYSWTyk8eyDiiq6vwe/DU2eX2e4Og=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(7416014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?d+f+bp9iMHNYfmteHNzuUWxDJepgLLlWdzv2o0wCaWGzPSeiKzSdHQ4pbs?=
- =?iso-8859-1?Q?oYYqTp+S5ovKfIvOiHkxUgOfJLwhF9BrGHoh3B6Lu9tiYEW9fhiJocdzYF?=
- =?iso-8859-1?Q?y0W1zaRk1i6NXLfEcpShCmoqvhN9skp8hjwC/7xoVRcARNHr3FBnUyXYUV?=
- =?iso-8859-1?Q?wst8TThBbPzGiBg7v7ONzePxFdaaICH+Dlw1ZhXIQBO7mIrwl6BHO0YI4l?=
- =?iso-8859-1?Q?aCkHA2rJqBSF1vDO5+ePENZRHBnSqjmClMBJqou8/7igpuxNqH0zxEuoZG?=
- =?iso-8859-1?Q?D2+licbiNrGV/coZ7YWFS7d1pYfUENoP0HFMvsLdzePL1pmbWJzf6q1UcM?=
- =?iso-8859-1?Q?W0YFUjE4gwjr5EBSbCAcZy9V94UD6TpZtIP7rUZXjI+MbqhQlAvZx6XmiK?=
- =?iso-8859-1?Q?XfQvhR6a/XAlemSeRyOUZnV1LCpYbZeYxBNv6hKYJ96eMsgDIymQQ/JEJ+?=
- =?iso-8859-1?Q?7ULMue0tJYhov+1vuxxFXYQzsZQW+cytS3DQm9VpMdNdBauCUO/StpetZ/?=
- =?iso-8859-1?Q?cQolAx54BDJMu+6GBWSLzKPIbRotoT9yr93vq/lwi2ukRS7jGXNo7FjEks?=
- =?iso-8859-1?Q?RiSASZ5Yz1D/k1LesN1SYvT9iCR/8dPGmzu65H7tQ7DyP93dGGK2qn1FZ9?=
- =?iso-8859-1?Q?2JJJjsu62jxe2he/uVbhvhRA5rZvhMQwKD/3Rk+ecWY38Ov44ZAzHKZm0u?=
- =?iso-8859-1?Q?wZl0JkhZQXnrND2Dk2rfW1W1pcMfmj8ETUqOIUeSD4hN/OcvjUkFfErtKQ?=
- =?iso-8859-1?Q?XjL1E67s4Adp0BABLGE/ZKSAMHQOeyx1EPKexF0e+ZMS860BnR0fbonJGS?=
- =?iso-8859-1?Q?KM28jXO1Q2MI0vAL6V280nnRhBkFawJra4kh5YiKa8JdJXelHEhatKihx+?=
- =?iso-8859-1?Q?TcH4WWns4oKxUmsCuimB3dbt/iD0Uh+rdgo8Hn4N2Fz4gyIw+IAjxx19TL?=
- =?iso-8859-1?Q?TNXoeBR0Vtm9VygEMWWnjBREMpINEdje1FrjjF+St5qyT9qrD7Gb0y1A71?=
- =?iso-8859-1?Q?gOK9DToqprGUTWUgJE50vpd8nNi4HbcGeH0UXsb4OE/mYjUpslrKSg+xXg?=
- =?iso-8859-1?Q?VqIGdtghwCoTzTN3nuU2eIUZKQyxzvsauDRs1FApqht+yReNYNfMfRAQUU?=
- =?iso-8859-1?Q?APmoHHTyFrKN4nNHkeolTcsXdlxIU5GVtGmlkImnCvBkiVzO8JjCd1McXK?=
- =?iso-8859-1?Q?9vJ0Omu8jhyt24oICF8phQdtgLxjp0od/TxRyxnBj+cp40SBGg3xwr4mJe?=
- =?iso-8859-1?Q?K9ENzeFZwmsTxNUUtOpYg8v9460IJsbLt87phA5raivLwLPOaLoUKMBGyu?=
- =?iso-8859-1?Q?GNuM1jCCGxQ71C25cjNchdp9DfyW7X70RyKuDUHO4OeqWwFPM9/YXWeq14?=
- =?iso-8859-1?Q?htp4YBKx6PqDQPUgU15XgmbI9h/hxIFZ9ej+5j0sVsoHFff6pU8G12eB2Z?=
- =?iso-8859-1?Q?ecsQ+AxiKKLJ3amVPTfNikLdF0YCnSlBnBL6lQaVGIV4ObBFqUCzah1h+u?=
- =?iso-8859-1?Q?1gq0m45ZotrbQKg7OEJdN3mvknO9+ikE9ENaksyXw5wec5QETZkbO+Qgir?=
- =?iso-8859-1?Q?dEMSLugRUumkwO17xtUiB2OTh1OP2xEu+2sFntkK//YN4YcCpZiUC3pctg?=
- =?iso-8859-1?Q?OAalnx58AzcVLmVj7v6nfJ0J9z+mq9Qh6ItmrJ4ExYEF1Z9LJHdspQqA?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 772d7740-d069-434a-341f-08dd78f9d533
-X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Apr 2025 13:07:37.8353 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9dz/YmC1RnpBNVNK2Y345iyn9Mf2KWPVU6ZzXK3Db1iGZyrDyW0awanMOhO8bZ46rU2bdsQtn3ySES/wTbgkww==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4910
+X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 48c7516b-3b53-43b8-05af-08dd78fcaebb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Apr 2025 13:28:01.4423 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: M1kGcdvkJ2ffgez0dP7XLlN+Z+cO/KBIpPJUsBv2Q27fM3V3qzCFJJbtCOxbjJCkuz+QrfNdLIc4PM+S5JSUhA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB9063
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -182,399 +182,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave and Sima,
 
-Here goes our first pull request towards 6.16.
 
-It is worth to highlight the huge amount of patches around VRR refactor.
-Also more chunks of clean-up towards a separated display.
-And finally some changes in the debugfs entries.
+> -----Original Message-----
+> From: Kandpal, Suraj <suraj.kandpal@intel.com>
+> Sent: Tuesday, April 8, 2025 10:32 AM
+> To: dri-devel@lists.freedesktop.org; intel-xe@lists.freedesktop.org; inte=
+l-
+> gfx@lists.freedesktop.org
+> Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Murthy, Arun R
+> <arun.r.murthy@intel.com>; Kandpal, Suraj <suraj.kandpal@intel.com>
+> Subject: [PATCH 0/2] Register bit definition for EDP_GENERAL_CAP2
+>=20
+> Add smooth brightness register bit definition for register
+> EDP_GENERAL_CAPABILITY 2
+>=20
 
-Thanks,
-Rodrigo.
+Thanks for the reviews
+Pushed to drm-misc-next
 
-drm-intel-next-2025-04-11:
-Cross-subsystem Changes:
-- Update GVT MAINTAINERS (Jani)
+Regards,
+Suraj Kandpal
 
-Driver Changes:
-- Updates for xe3lpd display (Gustavo)
-- Fix link training interrupted by HPD pulse (Imre)
-- Watermark bound checks for DSC (Ankit)
-- VRR Refactor and other fixes and improvements (Ankit)
-- More conversions towards intel_display struct (Gustavo, Jani)
-- Other clean-up patches towards a display separation (Jani)
-- Maintain asciibetical order for HAS_* macros (Ankit)
-- Fixes around probe/initialization (Janusz)
-- Fix build and doc build issue (Yue, Rodrigo)
-- DSI related fixes (Suraj, William, Jani)
-- Improve DC6 entry counter (Mohammed)
-- Fix xe2hpd memory type identification (Vivek)
-- PSR related fixes and improvements (Animesh, Jouni)
-- DP MST related fixes and improvements (Imre)
-- Fix scanline_offset for LNL+/BMG+ (Ville)
-- Some gvt related fixes and changes (Ville, Jani)
-- Some PLL code adjustment (Ville)
-- Display wa addition (Vinod)
-- DRAM type logging (Lucas)
-- Pimp the initial FB readout (Ville)
-- Some sagv/bw cleanup (Ville)
-- Remove i915_display_capabilities debugfs entry (Jani)
-- Move PCH type to display caps debugfs entry (Jani)
-The following changes since commit bb800b56f01f430f4d7b360c758a9ed28f758d75:
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+>=20
+> Suraj Kandpal (2):
+>   drm/dp: Add smooth brightness register bit definition
+>   drm/i915/backlight: Modify condition to use panel luminance
+>=20
+>  drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 3 ++-
+>  include/drm/display/drm_dp.h                          | 1 +
+>  2 files changed, 3 insertions(+), 1 deletion(-)
+>=20
+> --
+> 2.34.1
 
-  drm/i915: Relocate intel_bw_crtc_update() (2025-03-07 19:11:41 +0200)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-2025-04-11
-
-for you to fetch changes up to 1954629dc649b25071eec0d353288c5ee303e358:
-
-  drm/i915/debugfs: move PCH type to display caps (2025-04-11 09:47:39 +0300)
-
-----------------------------------------------------------------
-Cross-subsystem Changes:
-- Update GVT MAINTAINERS (Jani)
-
-Driver Changes:
-- Updates for xe3lpd display (Gustavo)
-- Fix link training interrupted by HPD pulse (Imre)
-- Watermark bound checks for DSC (Ankit)
-- VRR Refactor and other fixes and improvements (Ankit)
-- More conversions towards intel_display struct (Gustavo, Jani)
-- Other clean-up patches towards a display separation (Jani)
-- Maintain asciibetical order for HAS_* macros (Ankit)
-- Fixes around probe/initialization (Janusz)
-- Fix build and doc build issue (Yue, Rodrigo)
-- DSI related fixes (Suraj, William, Jani)
-- Improve DC6 entry counter (Mohammed)
-- Fix xe2hpd memory type identification (Vivek)
-- PSR related fixes and improvements (Animesh, Jouni)
-- DP MST related fixes and improvements (Imre)
-- Fix scanline_offset for LNL+/BMG+ (Ville)
-- Some gvt related fixes and changes (Ville, Jani)
-- Some PLL code adjustment (Ville)
-- Display wa addition (Vinod)
-- DRAM type logging (Lucas)
-- Pimp the initial FB readout (Ville)
-- Some sagv/bw cleanup (Ville)
-- Remove i915_display_capabilities debugfs entry (Jani)
-- Move PCH type to display caps debugfs entry (Jani)
-
-----------------------------------------------------------------
-Animesh Manna (1):
-      drm/i915/display: Read panel replay source status through PSR2 status register
-
-Ankit Nautiyal (29):
-      drm/i915/watermark: Check bounds for scaler_users for dsc prefill latency
-      drm/i915/vrr: Remove unwanted comment
-      drm/i915:vrr: Separate out functions to compute vmin and vmax
-      drm/i915/vrr: Make helpers for cmrr and vrr timings
-      drm/i915/vrr: Disable CMRR
-      drm/i915/vrr: Track vrr.enable only for variable timing
-      drm/i915/vrr: Use crtc_vtotal for vmin
-      drm/i915/vrr: Prepare for fixed refresh rate timings
-      drm/i915/display: Enable MSA Ignore Timing PAR only when in not fixed_rr mode
-      drm/i915/display: Maintain asciibetical order for HAS_* macros
-      drm/i915/display: Add fixed_rr to crtc_state dump
-      drm/i915/vrr: Avoid reading vrr.enable based on fixed_rr check
-      drm/i915/hdmi: Use VRR Timing generator for HDMI for fixed_rr
-      drm/i915/dp_mst: Use VRR Timing generator for DP MST for fixed_rr
-      drm/i915/display: Disable PSR before disabling VRR
-      drm/i915/display: Move intel_psr_post_plane_update() at the later
-      drm/i915/vrr: Refactor condition for computing vmax and LRR
-      drm/i915/vrr: Always set vrr vmax/vmin/flipline in vrr_{enable/disable}
-      drm/i915/vrr: Set vrr.enable for VRR TG with fixed_rr
-      drm/i915/display: Use fixed_rr timings in modeset sequence
-      drm/i915/vrr: Use fixed timings for platforms that support VRR
-      drm/i915/display: Use fixed rr timings in intel_set_transcoder_timings_lrr()
-      drm/i915/display: Move vrr.guardband/pipeline_full out of !fastset block
-      drm/i915/vrr: Allow fixed_rr with pipe joiner
-      drm/i915/vrr: Always use VRR timing generator for PTL+
-      drm/i915/vrr: Set trans_vrr_ctl in intel_vrr_set_transcoder_timings()
-      drm/i915/display: Introduce transcoder_has_vrr() helper
-      drm/i915/display: Avoid use of VTOTAL.Vtotal bits
-      drm/i915/vrr: Add vrr.vsync_{start, end} in vrr_params_changed
-
-Gustavo Sousa (4):
-      drm/i915/xe3lpd: Map POWER_DOMAIN_AUDIO_PLAYBACK to DC_off
-      drm/i915/display: Convert intel_bw.c internally to intel_display
-      drm/i915/display: Convert intel_bw.c externally to intel_display
-      drm/i915/xe3lpd: Update bandwidth parameters
-
-Imre Deak (14):
-      drm/i915/hpd: Track HPD pins instead of ports for HPD pulse events
-      drm/i915/hpd: Let an HPD pin be in the disabled state when handling missed IRQs
-      drm/i915/hpd: Add support for blocking the IRQ handling on an HPD pin
-      drm/i915/dp: Fix link training interrupted by a short HPD pulse
-      drm/i915/dp: Queue a link check after link training is complete
-      drm/i915/crt: Use intel_hpd_block/unblock() instead of intel_hpd_disable/enable()
-      drm/i915/pps: Let calling intel_pps_vdd_{on, off}_unlocked() w/o PPS lock held
-      drm/i915/dp_mst: Fix side-band message timeouts due to long PPS delays
-      drm/i915/dp: Rename intel_dp::link_trained to link.active
-      drm/i915/dp_mst: Add intel_dp_mst_{inc, dec}_active_streams()
-      drm/i915/dp_mst: Remove stream count assert from intel_dp_check_mst_status()
-      drm/i915/dp_mst: Rename intel_dp_mst_encoder_active_links() to intel_dp_mst_active_streams()
-      drm/i915/dp_mst: Use intel_dp_mst_active_streams() instead of open-coding it
-      drm/i915/dp_mst: Rename intel_dp::mst.active_links to mst.active_streams
-
-Jani Nikula (48):
-      drm/i915/color: prefer display->platform.<platform> checks
-      drm/i915/connector: convert intel_connector.c to struct intel_display
-      drm/i915/hotplug: convert intel_hotplug.[ch] to struct intel_display
-      drm/i915/hotplug: convert hotplug debugfs to struct intel_display
-      drm/i915/hotplug: convert hotplug irq handling to intel_de_*()
-      drm/i915/hotplug: convert intel_hotplug_irq.[ch] to struct intel_display
-      drm/i915/irq: convert intel_display_irq.[ch] interfaces to struct intel_display
-      drm/i915/irq: convert rest of intel_display_irq.[ch] to struct intel_display
-      drm/i915/display: rename I915_HAS_HOTPLUG() to HAS_HOTPLUG
-      drm/i915/display: add display specific runtime PM wrappers
-      drm/i915/display: conversions to with_intel_display_rpm()
-      drm/i915/display: use display runtime PM interfaces for for atomic state
-      drm/i915/display: convert to display runtime PM interfaces
-      drm/i915/power: convert to display runtime PM interfaces
-      drm/xe/compat: remove intel_runtime_pm.h
-      drm/i915/dsi: convert vlv_dsi.[ch] to struct intel_display
-      drm/i915/dsi: convert vlv_dsi_pll.[ch] to struct intel_display
-      drm/i915/dsi: convert parameter printing to drm_printer
-      drm/i915/dsi: convert intel_dsi_vbt.[ch] to struct intel_display
-      drm/i915/dsi: convert intel_dsi_dcs_backlight.c to struct intel_display
-      drm/i915/dvo: convert intel_dvo.[ch] to struct intel_display
-      drm/i915/lvds: convert intel_lvds.[ch] to struct intel_display
-      drm/i915/tc: convert intel_tc.c to struct intel_display
-      drm/i915/atomic: convert intel_atomic.c to struct intel_display
-      drm/i915/display: convert intel_crtc_state_dump.c to struct intel_display
-      drm/i915/pch: convert intel_pch_display.[ch] to struct intel_display
-      drm/i915/pch: convert intel_pch_refclk.c to struct intel_display
-      drm/i915/dpll: convert intel_dpll.[ch] to struct intel_display
-      drm/i915/ddi: convert intel_ddi.c to struct intel_display
-      drm/i915/crc: convert intel_pipe_crc.c to struct intel_display
-      drm/i915/psr: further conversions to struct intel_display
-      drm/i915/wa: convert intel_display_wa.[ch] to struct intel_display
-      drm/i915/display: drop some unnecessary intel_de_* compatibility wrappers
-      drm/i915/gvt: fix unterminated-string-initialization warning
-      drm/i915/gvt: update MAINTAINERS
-      drm/i915: reduce intel_wakeref.h dependencies
-      drm/i915/gvt: use hardcoded reference clocks
-      drm/i915/dsi: separate clock and data lane prepare timing
-      drm/i915/dsi: unify naming and simplify checks for dphy params
-      drm/i915/wm: convert intel_wm.h external interfaces to struct intel_display
-      drm/i915/wm: convert intel_wm.c internally to struct intel_display
-      drm/i915/wm: convert skl_watermark.h external interfaces to struct intel_display
-      drm/i915/wm: convert skl_watermarks.c internally to struct intel_display
-      drm/i915/wm: convert i9xx_wm.h external interfaces to struct intel_display
-      drm/i915/wm: convert i9xx_wm.c to intel_de_*() register interface
-      drm/i915/wm: convert i9xx_wm.c internally to struct intel_display
-      drm/i915/debugfs: remove i915_display_capabilities
-      drm/i915/debugfs: move PCH type to display caps
-
-Janusz Krzysztofik (3):
-      drm/i915: Downgrade device register error if injected
-      drm/i915: Fix PXP cleanup missing from probe error rewind
-      drm/i915: Fix harmful driver register/unregister asymmetry
-
-Jouni Högander (2):
-      drm/i915/psr: Add PSR pause/resume reference count
-      drm/i915/psr: Prevent DP Panel Replay as well when CRC is enable
-
-Lucas De Marchi (2):
-      drm/i915/dram: Add missing INTEL_DRAM str conversions
-      drm/i915/dram: Consolidate logging of DRAM type
-
-Mohammed Thasleem (1):
-      drm/i915/dmc: Create debugfs entry for dc6 counter
-
-Rodrigo Vivi (1):
-      drm/i915/display: Fix htmldocs build
-
-Suraj Kandpal (1):
-      drm/i915/vdsc: Use the DSC config tables for DSI panels
-
-Ville Syrjälä (33):
-      drm/i915: Fix scanline_offset for LNL+ and BMG+
-      drm/i915: Reverse the scanline_offset if ladder
-      drm/i915: Replace the HAS_DDI() in intel_crtc_scanline_offset() with specific platform checks
-      drm/i915/gvt: Stop using intel_runtime_pm_put_unchecked()
-      drm/i915: Enable/disable shared dplls just the once for joined pipes
-      drm/i915: Move intel_disable_shared_dpll() into ilk_pch_post_disable()
-      drm/i915: Extract intel_memory_type_is_local()
-      drm/i915: Expose intel_memory_type_str()
-      agp/intel-gtt: Add intel_gmch_gtt_read_entry()
-      drm/i915/ggtt: Add intel_ggtt_read_entry()
-      drm/i915: Use intel_ggtt_read_entry() in the BIOS FB takeover
-      drm/i915: Verify the BIOS FB first PTE on non-LMEMBAR systems
-      drm/i915: Use a nicer way to lookup the memory region in BIOS FB takeover
-      drm/i915: Lookup the memory region first in the BIOS FB takeover
-      drm/i915: Use intel_memory_region_type_is_local() in the BIOS FB takeover
-      drm/i915: Eliminate the initial_plane_phys_{smem,lmem}() duplication
-      drm/i915/dp: Reject HBR3 when sink doesn't support TPS4
-      drm/i915: Drop the cached per-pipe min_cdclk[] from bw state
-      drm/i915: s/intel_crtc_bw/intel_dbuf_bw/
-      drm/i915: Extract intel_dbuf_bw_changed()
-      drm/i915: Pass intel_dbuf_bw to skl_*_calc_dbuf_bw() explicitly
-      drm/i915: Avoid triggering unwanted cdclk changes due to dbuf bandwidth changes
-      drm/i915: Do more bw readout
-      drm/i915: Flag even inactive crtcs as "inherited"
-      drm/i915: Drop force_check_qgv
-      drm/i915: Extract intel_bw_modeset_checks()
-      drm/i915: Extract intel_bw_check_sagv_mask()
-      drm/i915: Make intel_bw_check_sagv_mask() internal to intel_bw.c
-      drm/i915: Make intel_bw_modeset_checks() internal to intel_bw_atomic_check()
-      drm/i915: Skip bw stuff if per-crtc sagv state doesn't change
-      drm/i915: Eliminate intel_compute_sagv_mask()
-      drm/i915: Apply the combo PLL frac w/a on DG1
-      drm/i915: Simplify combo PLL frac w/a
-
-Vinod Govindapillai (3):
-      drm/i915/fbc: keep FBC disabled if selective update is on in xe2lpd
-      drm/i915/fbc: update the panel_replay dependency in fbc wa's
-      drm/i915/display: implement wa_18038517565
-
-Vivek Kasireddy (1):
-      drm/i915/xe2hpd: Identify the memory type for SKUs with GDDR + ECC
-
-William Tseng (1):
-      drm/i915/dsi: let HW maintain the HS-TRAIL timing
-
-Yue Haibing (1):
-      drm/i915/display: Fix build error without DRM_FBDEV_EMULATION
-
- MAINTAINERS                                        |    9 +-
- drivers/char/agp/intel-gtt.c                       |   55 +
- drivers/gpu/drm/i915/Makefile                      |    1 +
- drivers/gpu/drm/i915/display/dvo_ch7017.c          |    2 +
- drivers/gpu/drm/i915/display/dvo_ch7xxx.c          |    2 +
- drivers/gpu/drm/i915/display/dvo_ivch.c            |    2 +
- drivers/gpu/drm/i915/display/dvo_ns2501.c          |    2 +
- drivers/gpu/drm/i915/display/dvo_sil164.c          |    2 +
- drivers/gpu/drm/i915/display/dvo_tfp410.c          |    2 +
- drivers/gpu/drm/i915/display/g4x_dp.c              |    2 +-
- drivers/gpu/drm/i915/display/hsw_ips.c             |    8 +-
- drivers/gpu/drm/i915/display/i9xx_plane.c          |   24 +-
- drivers/gpu/drm/i915/display/i9xx_wm.c             | 1216 ++++++++++----------
- drivers/gpu/drm/i915/display/i9xx_wm.h             |   18 +-
- drivers/gpu/drm/i915/display/icl_dsi.c             |  102 +-
- drivers/gpu/drm/i915/display/intel_atomic.c        |   23 +-
- drivers/gpu/drm/i915/display/intel_backlight.c     |    5 +-
- drivers/gpu/drm/i915/display/intel_bios.c          |    6 +-
- drivers/gpu/drm/i915/display/intel_bw.c            |  649 ++++++-----
- drivers/gpu/drm/i915/display/intel_bw.h            |   18 +-
- drivers/gpu/drm/i915/display/intel_cdclk.c         |   11 +-
- drivers/gpu/drm/i915/display/intel_color.c         |   18 +-
- drivers/gpu/drm/i915/display/intel_combo_phy.c     |    2 +
- drivers/gpu/drm/i915/display/intel_connector.c     |   45 +-
- drivers/gpu/drm/i915/display/intel_crt.c           |   17 +-
- .../gpu/drm/i915/display/intel_crtc_state_dump.c   |   47 +-
- drivers/gpu/drm/i915/display/intel_ddi.c           |  919 +++++++--------
- drivers/gpu/drm/i915/display/intel_de.h            |   16 +-
- drivers/gpu/drm/i915/display/intel_display.c       |  134 ++-
- drivers/gpu/drm/i915/display/intel_display_core.h  |   11 +-
- .../gpu/drm/i915/display/intel_display_debugfs.c   |   37 +-
- .../gpu/drm/i915/display/intel_display_device.h    |   10 +-
- .../gpu/drm/i915/display/intel_display_driver.c    |   37 +-
- drivers/gpu/drm/i915/display/intel_display_irq.c   |  746 ++++++------
- drivers/gpu/drm/i915/display/intel_display_irq.h   |   75 +-
- drivers/gpu/drm/i915/display/intel_display_power.c |   69 +-
- .../gpu/drm/i915/display/intel_display_power_map.c |    1 +
- .../drm/i915/display/intel_display_power_well.c    |   33 +-
- drivers/gpu/drm/i915/display/intel_display_reset.c |    4 +-
- drivers/gpu/drm/i915/display/intel_display_rpm.c   |   68 ++
- drivers/gpu/drm/i915/display/intel_display_rpm.h   |   37 +
- drivers/gpu/drm/i915/display/intel_display_types.h |    8 +-
- drivers/gpu/drm/i915/display/intel_display_wa.c    |   30 +-
- drivers/gpu/drm/i915/display/intel_display_wa.h    |   11 +-
- drivers/gpu/drm/i915/display/intel_dkl_phy.c       |    1 +
- drivers/gpu/drm/i915/display/intel_dmc.c           |   59 +-
- drivers/gpu/drm/i915/display/intel_dmc.h           |    1 +
- drivers/gpu/drm/i915/display/intel_dp.c            |   70 +-
- drivers/gpu/drm/i915/display/intel_dp_aux.c        |   21 +-
- .../gpu/drm/i915/display/intel_dp_link_training.c  |   48 +-
- drivers/gpu/drm/i915/display/intel_dp_mst.c        |   73 +-
- drivers/gpu/drm/i915/display/intel_dp_mst.h        |    2 +-
- drivers/gpu/drm/i915/display/intel_dpll.c          |  323 +++---
- drivers/gpu/drm/i915/display/intel_dpll.h          |   13 +-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c      |   16 +-
- drivers/gpu/drm/i915/display/intel_dpt.c           |    7 +-
- drivers/gpu/drm/i915/display/intel_dsb.c           |   21 +-
- .../gpu/drm/i915/display/intel_dsi_dcs_backlight.c |    7 +-
- drivers/gpu/drm/i915/display/intel_dsi_vbt.c       |  209 ++--
- drivers/gpu/drm/i915/display/intel_dvo.c           |   64 +-
- drivers/gpu/drm/i915/display/intel_dvo.h           |    6 +-
- drivers/gpu/drm/i915/display/intel_fb_pin.c        |    7 +-
- drivers/gpu/drm/i915/display/intel_fbc.c           |   47 +-
- drivers/gpu/drm/i915/display/intel_fbdev.c         |   11 +-
- drivers/gpu/drm/i915/display/intel_fbdev.h         |    2 +
- drivers/gpu/drm/i915/display/intel_fifo_underrun.c |   31 +-
- drivers/gpu/drm/i915/display/intel_hdcp.c          |    8 +-
- drivers/gpu/drm/i915/display/intel_hdmi.c          |    3 +
- drivers/gpu/drm/i915/display/intel_hotplug.c       |  633 ++++++----
- drivers/gpu/drm/i915/display/intel_hotplug.h       |   31 +-
- drivers/gpu/drm/i915/display/intel_hotplug_irq.c   |  625 +++++-----
- drivers/gpu/drm/i915/display/intel_hotplug_irq.h   |   28 +-
- drivers/gpu/drm/i915/display/intel_hti.c           |    1 +
- drivers/gpu/drm/i915/display/intel_load_detect.c   |    1 +
- drivers/gpu/drm/i915/display/intel_lspcon.c        |    1 +
- drivers/gpu/drm/i915/display/intel_lvds.c          |  142 +--
- drivers/gpu/drm/i915/display/intel_lvds.h          |   18 +-
- drivers/gpu/drm/i915/display/intel_modeset_setup.c |   35 +-
- drivers/gpu/drm/i915/display/intel_pch_display.c   |  170 +--
- drivers/gpu/drm/i915/display/intel_pch_display.h   |   10 +-
- drivers/gpu/drm/i915/display/intel_pch_refclk.c    |  126 +-
- drivers/gpu/drm/i915/display/intel_pch_refclk.h    |   18 +-
- drivers/gpu/drm/i915/display/intel_pipe_crc.c      |  140 +--
- drivers/gpu/drm/i915/display/intel_plane_initial.c |   89 +-
- drivers/gpu/drm/i915/display/intel_pmdemand.c      |    2 +
- drivers/gpu/drm/i915/display/intel_pps.c           |   17 +-
- drivers/gpu/drm/i915/display/intel_psr.c           |  149 +--
- drivers/gpu/drm/i915/display/intel_sdvo.c          |    2 +-
- drivers/gpu/drm/i915/display/intel_snps_phy.c      |    2 +
- drivers/gpu/drm/i915/display/intel_tc.c            |  288 +++--
- drivers/gpu/drm/i915/display/intel_tv.c            |    4 +-
- drivers/gpu/drm/i915/display/intel_vblank.c        |   13 +-
- drivers/gpu/drm/i915/display/intel_vdsc.c          |   23 +-
- drivers/gpu/drm/i915/display/intel_vrr.c           |  320 +++++-
- drivers/gpu/drm/i915/display/intel_vrr.h           |    6 +
- drivers/gpu/drm/i915/display/intel_wm.c            |  171 +--
- drivers/gpu/drm/i915/display/intel_wm.h            |   14 +-
- drivers/gpu/drm/i915/display/skl_universal_plane.c |    6 +-
- drivers/gpu/drm/i915/display/skl_watermark.c       |  746 ++++++------
- drivers/gpu/drm/i915/display/skl_watermark.h       |   24 +-
- drivers/gpu/drm/i915/display/vlv_dsi.c             |  160 ++-
- drivers/gpu/drm/i915/display/vlv_dsi.h             |    6 +-
- drivers/gpu/drm/i915/display/vlv_dsi_pll.c         |  118 +-
- drivers/gpu/drm/i915/display/vlv_dsi_pll.h         |    5 +-
- drivers/gpu/drm/i915/gem/i915_gem_lmem.c           |    3 +-
- drivers/gpu/drm/i915/gt/intel_ggtt.c               |   56 +
- drivers/gpu/drm/i915/gt/intel_ggtt_gmch.c          |    8 +
- drivers/gpu/drm/i915/gt/intel_gtt.h                |    6 +
- drivers/gpu/drm/i915/gt/intel_rps.c                |    6 +-
- drivers/gpu/drm/i915/gvt/aperture_gm.c             |    7 +-
- drivers/gpu/drm/i915/gvt/debugfs.c                 |    5 +-
- drivers/gpu/drm/i915/gvt/gtt.c                     |    6 +-
- drivers/gpu/drm/i915/gvt/gvt.h                     |    9 +-
- drivers/gpu/drm/i915/gvt/handlers.c                |   27 +-
- drivers/gpu/drm/i915/gvt/opregion.c                |    7 +-
- drivers/gpu/drm/i915/gvt/sched_policy.c            |    5 +-
- drivers/gpu/drm/i915/i915_debugfs.c                |    2 -
- drivers/gpu/drm/i915/i915_driver.c                 |   42 +-
- drivers/gpu/drm/i915/i915_drv.h                    |    2 +
- drivers/gpu/drm/i915/i915_irq.c                    |  123 +-
- drivers/gpu/drm/i915/i915_reg.h                    |    6 +
- drivers/gpu/drm/i915/intel_memory_region.c         |   15 +-
- drivers/gpu/drm/i915/intel_memory_region.h         |    3 +
- drivers/gpu/drm/i915/intel_wakeref.h               |   11 +-
- drivers/gpu/drm/i915/soc/intel_dram.c              |   21 +-
- drivers/gpu/drm/xe/Makefile                        |    1 +
- drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h  |    1 -
- .../drm/xe/compat-i915-headers/intel_runtime_pm.h  |   76 --
- drivers/gpu/drm/xe/display/xe_display.c            |   42 +-
- drivers/gpu/drm/xe/display/xe_display_rpm.c        |   71 ++
- drivers/gpu/drm/xe/display/xe_display_wa.c         |    6 +-
- drivers/gpu/drm/xe/xe_device_types.h               |    2 +
- include/drm/intel/intel-gtt.h                      |    2 +
- 133 files changed, 5551 insertions(+), 4748 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_display_rpm.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_display_rpm.h
- delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h
- create mode 100644 drivers/gpu/drm/xe/display/xe_display_rpm.c
