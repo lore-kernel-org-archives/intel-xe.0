@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E416C36010
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Apr 2025 07:15:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62A48C369A8
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Apr 2025 07:15:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2A4510EB05;
-	Fri, 11 Apr 2025 07:15:24 +0000 (UTC)
-Received: from 32c37dd7f93d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 771B710EB0C;
- Fri, 11 Apr 2025 07:15:23 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915=3A_don=27t_captu?=
- =?utf-8?q?re_DERRMR_for_VLV/CHV_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 11 Apr 2025 07:15:23 -0000
-Message-ID: <174435572348.2979.11925129441086794596@32c37dd7f93d>
-X-Patchwork-Hint: ignore
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F24C10EB0F;
+	Fri, 11 Apr 2025 07:15:52 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VeOQ3yvX";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 752D710EB05;
+ Fri, 11 Apr 2025 07:15:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744355751; x=1775891751;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=5gmEMMaqoKgHJOTALaJ3fFxJYqIRBsTNERm8D6LQw7A=;
+ b=VeOQ3yvXpBBhEqjVNn2hsVkLv2aIcTy2hCjCN5zTDT6Xq4qVEend/koE
+ 4MrSBsE6DmqPlaJB3c6BkYscupIQ0UGWHeWh/6MFl7w2UleB587not94Q
+ rDvOxyzEcQLXl6i4sJIRxV9TCAuSom+tE+el2XzPvW02Kw3QhN3QyX6XM
+ RqyZxVfYAoadH9HpV0w3I9quT4zXvWjzQDIrtKqa2WeexADUjoKnGgRTm
+ 1+n39v7Ns5RB4KJp7zcg2gbVdxAuiDFIBdqBHUi7OiORtm30QbuXQO8ND
+ 1QVQcj1an/wYWGO83uFYtrbPKSpJ6B23lMOVekSgeylwoGBg/mRlH0KCT g==;
+X-CSE-ConnectionGUID: BmnhA13BQxu9zLGszntANw==
+X-CSE-MsgGUID: APAyDVgtSje2LRmb+d/c/Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11400"; a="45787736"
+X-IronPort-AV: E=Sophos;i="6.15,203,1739865600"; d="scan'208";a="45787736"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2025 00:15:50 -0700
+X-CSE-ConnectionGUID: 3+9rOtYASmyKBYp210yebw==
+X-CSE-MsgGUID: zK81rljgTb2E8PYuBgdt9Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,203,1739865600"; d="scan'208";a="134283536"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orviesa005.jf.intel.com with SMTP; 11 Apr 2025 00:15:48 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 11 Apr 2025 10:15:46 +0300
+Date: Fri, 11 Apr 2025 10:15:46 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915: don't capture DERRMR for VLV/CHV
+Message-ID: <Z_jBomYm-sqPpzjX@intel.com>
 References: <cover.1744208554.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1744208554.git.jani.nikula@intel.com>
+ <20250411070823.230909-1-jani.nikula@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250411070823.230909-1-jani.nikula@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,51 +67,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Apr 11, 2025 at 10:08:23AM +0300, Jani Nikula wrote:
+> DERRMR isn't valid for VLV/CHV. Don't capture it for them.
+> 
+> Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Series: drm/i915: don't capture DERRMR for VLV/CHV (rev2)
-URL   : https://patchwork.freedesktop.org/series/147474/
-State : warning
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-== Summary ==
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_irq.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> index f5dc050a6344..5d07b6a9e59e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> @@ -2343,7 +2343,7 @@ intel_display_irq_snapshot_capture(struct intel_display *display)
+>  	if (!snapshot)
+>  		return NULL;
+>  
+> -	if (DISPLAY_VER(display) >= 6 && DISPLAY_VER(display) < 20)
+> +	if (DISPLAY_VER(display) >= 6 && DISPLAY_VER(display) < 20 && !HAS_GMCH(display))
+>  		snapshot->derrmr = intel_de_read(display, DERRMR);
+>  
+>  	return snapshot;
+> -- 
+> 2.39.5
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-13a92ce9fd458ebd6064f23cec8c39c53d02ed26
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 78f26e44be3a9bd2d9228e4a43c943a5f1672593
-Author: Jani Nikula <jani.nikula@intel.com>
-Date:   Wed Apr 9 17:23:47 2025 +0300
-
-    drm/i915: use graphics version instead of PCH split in error capture
-    
-    Avoid using PCH checks in core i915 code, in preparation for moving PCH
-    handling to display.
-    
-    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-+ /mt/dim checkpatch 07a246112fe9a02c137ac9ce2bf3647f793c889b drm-intel
-fcd75e02fc25 drm/i915: use 32-bit access for gen2 irq registers
-23dea1273e37 drm/i915: record GEN2_IER in gtier[0] for pre-ilk error capture
-e6001d7f1bd7 drm/i915: stop recording IER in error capture
-9be53a2ec51f drm/i915: use display snapshot mechanism for display irq regs
--:76: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#76: FILE: drivers/gpu/drm/i915/display/intel_display_irq.h:87:
-+struct intel_display_irq_snapshot *intel_display_irq_snapshot_capture(struct intel_display *display);
-
--:77: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
-#77: FILE: drivers/gpu/drm/i915/display/intel_display_irq.h:88:
-+void intel_display_irq_snapshot_print(const struct intel_display_irq_snapshot *snapshot, struct drm_printer *p);
-
-total: 0 errors, 2 warnings, 0 checks, 132 lines checked
-78f26e44be3a drm/i915: use graphics version instead of PCH split in error capture
-
-
+-- 
+Ville Syrjälä
+Intel
