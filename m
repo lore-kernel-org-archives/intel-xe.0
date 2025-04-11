@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 392A0C369A2
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Apr 2025 22:02:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D924BC369A2
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Apr 2025 22:07:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9D6F10E0E0;
-	Fri, 11 Apr 2025 22:02:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6338A10E0E0;
+	Fri, 11 Apr 2025 22:07:57 +0000 (UTC)
 Received: from 32c37dd7f93d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE14A10E0E0;
- Fri, 11 Apr 2025 22:02:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2661550938811623254=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1395010E0E0;
+ Fri, 11 Apr 2025 22:07:56 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pf=3A_Don=27t_show_G?=
- =?utf-8?q?GTT/LMEM_debugfs_files_under_media_GT?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm=3A_Eliminate_red?=
+ =?utf-8?q?undant_drm=5Fformat=5Finfo_lookups_=28rev6=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 11 Apr 2025 22:02:45 -0000
-Message-ID: <174440896583.6239.9506947051467254558@32c37dd7f93d>
+Date: Fri, 11 Apr 2025 22:07:56 -0000
+Message-ID: <174440927607.6254.12901560930458421234@32c37dd7f93d>
 X-Patchwork-Hint: ignore
-References: <20250411193030.1865-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20250411193030.1865-1-michal.wajdeczko@intel.com>
+References: <20250410163218.15130-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20250410163218.15130-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,35 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2661550938811623254==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/pf: Don't show GGTT/LMEM debugfs files under media GT
-URL   : https://patchwork.freedesktop.org/series/147612/
+Series: drm: Eliminate redundant drm_format_info lookups (rev6)
+URL   : https://patchwork.freedesktop.org/series/147542/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-2941-95956f65403ec2f6784fca383eecbb54431ddebc_BAT -> xe-pw-147612v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 8)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-2941-95956f65403ec2f6784fca383eecbb54431ddebc -> xe-pw-147612v1
-
-  IGT_8316: 8bdb573f8f9a2fffdc26356caebe032370b6d480 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2941-95956f65403ec2f6784fca383eecbb54431ddebc: 95956f65403ec2f6784fca383eecbb54431ddebc
-  xe-pw-147612v1: 147612v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147612v1/index.html
-
---===============2661550938811623254==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 95956f65403e drm-tip: 2025y-04m-11d-16h-07m-20s UTC integration manifest
+=== git am output follows ===
+Applying: drm: Pass pixel_format+modifier to .get_format_info()
+Applying: drm: Pass pixel_format+modifier directly to drm_get_format_info()
+Applying: drm: Look up the format info earlier
+Applying: drm: Pass the format info to .fb_create()
+Applying: drm: Allow the caller to pass in the format info to drm_helper_mode_fill_fb_struct()
+Applying: drm/malidp: Pass along the format info from .fb_create() malidp_verify_afbc_framebuffer_size()
+Applying: drm/gem: Pass along the format info from .fb_create() to drm_helper_mode_fill_fb_struct()
+Applying: drm/gem/afbc: Eliminate redundant drm_get_format_info()
+Applying: drm/amdgpu: Pass along the format info from .fb_create() to drm_helper_mode_fill_fb_struct()
+Applying: drm/armada: Pass along the format info from .fb_create() to drm_helper_mode_fill_fb_struct()
+Applying: drm/exynos: Pass along the format info from .fb_create() to drm_helper_mode_fill_fb_struct()
+Applying: drm/gma500: Pass along the format info from .fb_create() to drm_helper_mode_fill_fb_struct()
+Applying: drm/i915: Pass along the format info from .fb_create() to drm_helper_mode_fill_fb_struct()
+Applying: drm/komeda: Pass along the format info from .fb_create() to drm_helper_mode_fill_fb_struct()
+Applying: drm/msm: Pass along the format info from .fb_create() to drm_helper_mode_fill_fb_struct()
+Applying: drm/tegra: Pass along the format info from .fb_create() to drm_helper_mode_fill_fb_struct()
+Applying: drm/virtio: Pass along the format info from .fb_create() to drm_helper_mode_fill_fb_struct()
+Applying: drm/vmwgfx: Pass along the format info from .fb_create() to drm_helper_mode_fill_fb_struct()
+Applying: drm: Make passing of format info to drm_helper_mode_fill_fb_struct() mandatory
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/pf: Don&#x27;t show GGTT/LMEM debugfs files under media GT</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147612/">https://patchwork.freedesktop.org/series/147612/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147612v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147612v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2941-95956f65403ec2f6784fca383eecbb54431ddebc_BAT -&gt; xe-pw-147612v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2941-95956f65403ec2f6784fca383eecbb54431ddebc -&gt; xe-pw-147612v1</li>
-</ul>
-<p>IGT_8316: 8bdb573f8f9a2fffdc26356caebe032370b6d480 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2941-95956f65403ec2f6784fca383eecbb54431ddebc: 95956f65403ec2f6784fca383eecbb54431ddebc<br />
-  xe-pw-147612v1: 147612v1</p>
-
-</body>
-</html>
-
---===============2661550938811623254==--
