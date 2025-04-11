@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 161E9C369A2
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Apr 2025 04:29:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C511C36010
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Apr 2025 04:36:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C84E810EAD8;
-	Fri, 11 Apr 2025 04:29:44 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A0J74vau";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4098710EAE8;
- Fri, 11 Apr 2025 04:29:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744345776; x=1775881776;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=uSoQP/ckp8qVibb9MlhciCuwRFRtFAHM4t1hy652N+A=;
- b=A0J74vauMPR6MTSrsi/TQO+fyfVNaJynH47cDogOIAEBZcw7QWy8aPC8
- GSLIqEzY/qTMeuvv/sZhqRVE6QbFQIqh4IAtgJyOG/9002CdLSMhxLELd
- rwzFNe1YCYzximp3LgUJS4AhnXNZTX8I4ARCxH+hyOm/E7a/8292ybbHN
- RBEo1lJQEWzuZxW9apEZY4rDLsHe/OjaA6MOoB8Ihnwb6whFHh1T7wXax
- QWUoFiacOi8cPK3UjxjB51OJB2/7gqwu5IpB5S9PrJiDrNI7lAmycCnWL
- hL29nO71uTlSscMUOnFJ/7Pens54TVRpFWAcYp1+i+3+mTZtTHj9IdsFG A==;
-X-CSE-ConnectionGUID: QJcL2KNGS4OOwVl1idzXfw==
-X-CSE-MsgGUID: ZoyQ53E3SsK7k8dNGM5yUA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11400"; a="57259976"
-X-IronPort-AV: E=Sophos;i="6.15,203,1739865600"; d="scan'208";a="57259976"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2025 21:29:36 -0700
-X-CSE-ConnectionGUID: Fqx+pHxnTLC3p0BcjkRlQA==
-X-CSE-MsgGUID: uaZ3fluPQv2gsUOvaBsrHw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,203,1739865600"; d="scan'208";a="160057145"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa002.jf.intel.com with ESMTP; 10 Apr 2025 21:29:34 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 13/13] drm/i915/backlight: Use drm_edp_backlight_enable
-Date: Fri, 11 Apr 2025 09:59:09 +0530
-Message-Id: <20250411042909.2626807-14-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250411042909.2626807-1-suraj.kandpal@intel.com>
-References: <20250411042909.2626807-1-suraj.kandpal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D174910EAC3;
+	Fri, 11 Apr 2025 04:36:17 +0000 (UTC)
+Received: from 32c37dd7f93d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F327010EAC3;
+ Fri, 11 Apr 2025 04:36:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Modify_drm_helpers_t?=
+ =?utf-8?q?o_use_luminance?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 11 Apr 2025 04:36:16 -0000
+Message-ID: <174434617699.2539.11420617041017510987@32c37dd7f93d>
+X-Patchwork-Hint: ignore
+References: <20250411042909.2626807-1-suraj.kandpal@intel.com>
+In-Reply-To: <20250411042909.2626807-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,43 +36,33 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use drm dp helper to enable backlight now that it has been modified
-to set PANEL_LUMINANCE_CONTROL_ENABLE bit based on if capability
-supports it and the driver wants it. Remove the dead code.
+== Series Details ==
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- .../gpu/drm/i915/display/intel_dp_aux_backlight.c  | 14 --------------
- 1 file changed, 14 deletions(-)
+Series: Modify drm helpers to use luminance
+URL   : https://patchwork.freedesktop.org/series/147565/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-index 0cd9fd72ebbb..57782697144e 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-@@ -499,20 +499,6 @@ intel_dp_aux_vesa_enable_backlight(const struct intel_crtc_state *crtc_state,
- 	struct intel_connector *connector = to_intel_connector(conn_state->connector);
- 	struct intel_panel *panel = &connector->panel;
- 	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
--	int ret;
--
--	if (panel->backlight.edp.vesa.luminance_control_support) {
--		ret = drm_dp_dpcd_writeb(&intel_dp->aux, DP_EDP_BACKLIGHT_MODE_SET_REGISTER,
--					 DP_EDP_PANEL_LUMINANCE_CONTROL_ENABLE);
--
--		if (ret == 1)
--			return;
--
--		if (!drm_edp_backlight_set_level(&intel_dp->aux,
--						 &panel->backlight.edp.vesa.info,
--						 level))
--			return;
--	}
- 
- 	if (!panel->backlight.edp.vesa.info.aux_enable) {
- 		u32 pwm_level;
--- 
-2.34.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 9337ad48531f drm-tip: 2025y-04m-11d-00h-43m-26s UTC integration manifest
+=== git am output follows ===
+Applying: drm/dp: Introduce new member in drm_backlight_info
+Applying: drm/dp: Add argument in drm_edp_backlight_init
+Applying: drm/dp: Add argument for luminance range info in drm_edp_backlight_init
+Applying: drm/dp: Move from u16 to u32 for max in drm_edp_backlight_info
+Applying: drm/dp: Change current_level argument type to u32
+Applying: drm/dp: Modify drm_edp_probe_state
+Applying: drm/dp: Change argument type for drm_edp_backlight_set_level
+Applying: drm/dp: Modify drm_edp_backlight_set_level
+Applying: drm/dp: Change argument type of drm_edp_backlight_enable
+Applying: drm/dp: Enable backlight control using luminance
+Applying: drm/i915/backlight: Use drm helper to initialize edp backlight
+Applying: drm/i915/backlight: Use drm helper to set edp backlight
+Applying: drm/i915/backlight: Use drm_edp_backlight_enable
+
 
