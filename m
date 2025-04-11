@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63C97C36010
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Apr 2025 07:08:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C70A6C36010
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Apr 2025 07:09:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B6E610EB03;
-	Fri, 11 Apr 2025 07:08:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iUOI6Fot";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4B4D10EB03;
- Fri, 11 Apr 2025 07:08:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744355311; x=1775891311;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=U242x1vAU2NFV3Qbr8wUlA1X+qzHSNCzfqqg52VmghE=;
- b=iUOI6FotGv1HP5Hm2Vc1gx3OgUf0lFPg7Z93RgIleOB6LGoFqI3GWvmA
- xkoZDDKgAsPSecQjLO9/3pM9vbUWpHFpZp9+g+ZoaQLHB1/icbRF/+Gug
- ojkydKbrxxYEeHfYC2LZZAYQ4tbWZn+fk81l0YnJwuTV8tzDJxebeU2yF
- hEewvitbOx8ZUliyEUhmGfrjUG3e3uvVPmAEqoxct4Jx7IYJQu8RWL+Jb
- T+vUHI3zUF0gmzCNc6A6fbwE1wnQ4fbi3QIofFpSOmeySoxl2MU+acPgx
- 6L6Pt+1GIMJYLOOBCq8uu2Is1oiK2Dq9ILXzs0SJ0AAduSHk2Qmdemzhr Q==;
-X-CSE-ConnectionGUID: mIFiS0NPR36AefEGF2G1oQ==
-X-CSE-MsgGUID: DjluPghGRrmvKfCu7PQ7Qw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11400"; a="33511535"
-X-IronPort-AV: E=Sophos;i="6.15,203,1739865600"; d="scan'208";a="33511535"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2025 00:08:31 -0700
-X-CSE-ConnectionGUID: Gn1TvwEzSXCxsQOzcoMoWA==
-X-CSE-MsgGUID: i9alWONpQPqnm+etBE69Tw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,203,1739865600"; d="scan'208";a="129678449"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.67])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2025 00:08:29 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com
-Subject: [PATCH] drm/i915: don't capture DERRMR for VLV/CHV
-Date: Fri, 11 Apr 2025 10:08:23 +0300
-Message-Id: <20250411070823.230909-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1744208554.git.jani.nikula@intel.com>
-References: <cover.1744208554.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8778B10EB05;
+	Fri, 11 Apr 2025 07:09:36 +0000 (UTC)
+Received: from 32c37dd7f93d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E3B110EB05;
+ Fri, 11 Apr 2025 07:09:35 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2674853841960529331=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Register_bit_definition_for?=
+ =?utf-8?q?_EDP=5FGENERAL=5FCAP2_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 11 Apr 2025 07:09:35 -0000
+Message-ID: <174435537538.2979.16413495789100659936@32c37dd7f93d>
+X-Patchwork-Hint: ignore
+References: <20250411060235.2732060-1-suraj.kandpal@intel.com>
+In-Reply-To: <20250411060235.2732060-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,30 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-DERRMR isn't valid for VLV/CHV. Don't capture it for them.
+--===============2674853841960529331==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_irq.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index f5dc050a6344..5d07b6a9e59e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -2343,7 +2343,7 @@ intel_display_irq_snapshot_capture(struct intel_display *display)
- 	if (!snapshot)
- 		return NULL;
- 
--	if (DISPLAY_VER(display) >= 6 && DISPLAY_VER(display) < 20)
-+	if (DISPLAY_VER(display) >= 6 && DISPLAY_VER(display) < 20 && !HAS_GMCH(display))
- 		snapshot->derrmr = intel_de_read(display, DERRMR);
- 
- 	return snapshot;
--- 
-2.39.5
+Series: Register bit definition for EDP_GENERAL_CAP2 (rev2)
+URL   : https://patchwork.freedesktop.org/series/147365/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-2935-9337ad48531f5eff1b8eff235f667db490ac8c91_BAT -> xe-pw-147365v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 8)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-2935-9337ad48531f5eff1b8eff235f667db490ac8c91 -> xe-pw-147365v2
+
+  IGT_8315: c85ef0df47b498f999b43dad6a5cc509228f953a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2935-9337ad48531f5eff1b8eff235f667db490ac8c91: 9337ad48531f5eff1b8eff235f667db490ac8c91
+  xe-pw-147365v2: 147365v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147365v2/index.html
+
+--===============2674853841960529331==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Register bit definition for EDP_GENERAL_CAP2 (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147365/">https://patchwork.freedesktop.org/series/147365/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147365v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147365v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2935-9337ad48531f5eff1b8eff235f667db490ac8c91_BAT -&gt; xe-pw-147365v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 8)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2935-9337ad48531f5eff1b8eff235f667db490ac8c91 -&gt; xe-pw-147365v2</li>
+</ul>
+<p>IGT_8315: c85ef0df47b498f999b43dad6a5cc509228f953a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2935-9337ad48531f5eff1b8eff235f667db490ac8c91: 9337ad48531f5eff1b8eff235f667db490ac8c91<br />
+  xe-pw-147365v2: 147365v2</p>
+
+</body>
+</html>
+
+--===============2674853841960529331==--
