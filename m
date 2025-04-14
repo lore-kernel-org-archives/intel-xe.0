@@ -4,56 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 041D0C3ABA1
-	for <intel-xe@archiver.kernel.org>; Mon, 14 Apr 2025 02:54:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19A41C3601E
+	for <intel-xe@archiver.kernel.org>; Mon, 14 Apr 2025 03:10:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C39710E450;
-	Mon, 14 Apr 2025 02:54:34 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gryHLDpp";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8578410E25F;
- Mon, 14 Apr 2025 02:54:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744599273; x=1776135273;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=kSoBvyhLQ8/vdVHZxYDxn4fxcqgmrjemokN1Q2sPLtM=;
- b=gryHLDppcWXWc8rjg6BFDokCRAezQb/6MY2FnU9rQ4Kz6JnwpxNHsbDH
- wd5UqCDsaw74o0L5aB7bG5PSgsg2R0xmT9G4MH2v2IVMpFqGTzuiscGHz
- lPPsZEAhQPwImooFZpDorv1gRn3TF7v8BgtSZvs3CnyxZmAyjQTIbr4uE
- 2plDIoeRJX8VcuqJ7rn2GpE5Jh87znNZwUkKap8o4VfcQlPtWndccUrtr
- tSMGJjZYedSTnve2qwcMdV8JjMME95YtGaoOhgGSNvl9SfGMjhYeeXOob
- yXX2mUgndQ2S98MHBJSTuIXBSMpp+hDFBju8Z4fvXK9pPtw9Autbv9AG4 g==;
-X-CSE-ConnectionGUID: 06sFqz+VQImCN+HqQE+zPw==
-X-CSE-MsgGUID: nfIMoT5DTW2aV0jiyDy21g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11402"; a="46189569"
-X-IronPort-AV: E=Sophos;i="6.15,211,1739865600"; d="scan'208";a="46189569"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2025 19:54:33 -0700
-X-CSE-ConnectionGUID: db6eUy0ERiCvfCR3pGknHA==
-X-CSE-MsgGUID: u/kj/3lwRrO4WHO1CBvpFg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,211,1739865600"; d="scan'208";a="130016223"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2025 19:54:31 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: suraj.kandpal@intel.com, stable@vger.kernel.org, ankit.k.nautiyal@intel.com
-Subject: [PATCH 2/2] drm/i915/dp: Check for HAS_DSC_3ENGINES while configuring
- DSC slices
-Date: Mon, 14 Apr 2025 08:12:56 +0530
-Message-ID: <20250414024256.2782702-3-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250414024256.2782702-1-ankit.k.nautiyal@intel.com>
-References: <20250414024256.2782702-1-ankit.k.nautiyal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC2CB10E450;
+	Mon, 14 Apr 2025 03:10:56 +0000 (UTC)
+Received: from 32c37dd7f93d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62BEA10E2D8;
+ Mon, 14 Apr 2025 03:10:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
+ =?utf-8?q?_=5B1/2=5D_drm/i915/display=3A_Add_macro_for_checking_3_DSC_engin?=
+ =?utf-8?q?es?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 14 Apr 2025 03:10:55 -0000
+Message-ID: <174460025537.8530.4497020544435318872@32c37dd7f93d>
+X-Patchwork-Hint: ignore
+References: <20250414024256.2782702-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250414024256.2782702-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,44 +37,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-DSC 12 slices configuration is used for some specific cases with
-Ultrajoiner. This can be supported only when each of the 4 joined pipes
-have 3 DSC engines each.
+== Series Details ==
 
-Add the missing check for 3 DSC engines support before using 3 DSC
-slices per pipe.
+Series: series starting with [1/2] drm/i915/display: Add macro for checking 3 DSC engines
+URL   : https://patchwork.freedesktop.org/series/147642/
+State : success
 
-Fixes: be7f5fcdf4a0 ("drm/i915/dp: Enable 3 DSC engines for 12 slices")
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>
-Cc: <stable@vger.kernel.org> # v6.14+
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index aeb14a5455fd..d7a30d0992b7 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1050,10 +1050,11 @@ u8 intel_dp_dsc_get_slice_count(const struct intel_connector *connector,
- 		u8 test_slice_count = valid_dsc_slicecount[i] * num_joined_pipes;
- 
- 		/*
--		 * 3 DSC Slices per pipe need 3 DSC engines,
--		 * which is supported only with Ultrajoiner.
-+		 * 3 DSC Slices per pipe need 3 DSC engines, which is supported only
-+		 * with Ultrajoiner only for some platforms.
- 		 */
--		if (valid_dsc_slicecount[i] == 3 && num_joined_pipes != 4)
-+		if (valid_dsc_slicecount[i] == 3 &&
-+		    (!HAS_DSC_3ENGINES(display) || num_joined_pipes != 4))
- 			continue;
- 
- 		if (test_slice_count >
--- 
-2.34.1
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: a2c9cfa67f8b drm-tip: 2025y-04m-13d-21h-45m-17s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/display: Add macro for checking 3 DSC engines
+Applying: drm/i915/dp: Check for HAS_DSC_3ENGINES while configuring DSC slices
+
 
