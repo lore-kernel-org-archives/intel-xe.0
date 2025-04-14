@@ -4,28 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F409C369B2
-	for <intel-xe@archiver.kernel.org>; Mon, 14 Apr 2025 09:37:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA0BDC369B2
+	for <intel-xe@archiver.kernel.org>; Mon, 14 Apr 2025 09:39:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68F6C10E508;
-	Mon, 14 Apr 2025 09:37:08 +0000 (UTC)
-Received: from f7756006eef8 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 799DD10E508;
- Mon, 14 Apr 2025 09:37:06 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAA5F10E515;
+	Mon, 14 Apr 2025 09:39:43 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CHl0vhfU";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FEA210E50F
+ for <intel-xe@lists.freedesktop.org>; Mon, 14 Apr 2025 09:39:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744623580; x=1776159580;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=i3veXoLiklur20XjOhb841SyLLzZ3KQNxJ7Jcy3Q4wo=;
+ b=CHl0vhfU+TCYo+x3oZV9CFng3+GwPlp6t8wJ0g3UF4lDLpAUhZGIROPt
+ liRGp7iZKX7X7cFBLChTbEW7N1ZSmeJ5uf60XX6SUO3A5JWaScFGUPq+b
+ TJaGWUF5+pgu7FXY1IqzZXoZSy+uNQ42iBMIKmuVPhxJCWtVrEaM29ji0
+ fHo53vZwqfrLoJAbvDCMC8vjUec08LTxWfbL83+X6LJsgIzbl4ME81yNl
+ 0i/c4ucnxkGeBqKxFf1ltfdUVKQHyAHq3WBLsavX97h9z0fWdL+xd/dkU
+ aWX0adxqmNwXzIgALNgpCEB3JqAwUEyHdaa8FaMwK8j5S1fbXBaoGJQTJ g==;
+X-CSE-ConnectionGUID: f8EGIALxT76QpHmDVe3/VQ==
+X-CSE-MsgGUID: j2PIz2x4TvOTe0gXe1qAsA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11402"; a="49890222"
+X-IronPort-AV: E=Sophos;i="6.15,211,1739865600"; d="scan'208";a="49890222"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2025 02:39:40 -0700
+X-CSE-ConnectionGUID: z1GLUQBoR7qeBM/J9unkMw==
+X-CSE-MsgGUID: he3nQ4aYRpG0SDmjHaqLOg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="129739687"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orviesa006.jf.intel.com with ESMTP; 14 Apr 2025 02:39:38 -0700
+Received: from [10.245.114.177] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.245.114.177])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 537F333E8A;
+ Mon, 14 Apr 2025 10:39:36 +0100 (IST)
+Message-ID: <9a86588a-3c2d-4748-9a71-3ae7791b9d95@intel.com>
+Date: Mon, 14 Apr 2025 11:39:35 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 4/4] drm/xe/vf: Fixup CTB send buffer messages after
+ migration
+To: Tomasz Lis <tomasz.lis@intel.com>, intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
+ =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+References: <20250411203626.3272415-1-tomasz.lis@intel.com>
+ <20250411203626.3272415-5-tomasz.lis@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20250411203626.3272415-5-tomasz.lis@intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_series_starting_with_=5B?=
- =?utf-8?q?1/2=5D_drm/i915/display=3A_Add_macro_for_checking_3_DSC_engines_?=
- =?utf-8?q?=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 14 Apr 2025 09:37:06 -0000
-Message-ID: <174462342647.608.15334589796462498099@f7756006eef8>
-X-Patchwork-Hint: ignore
-References: <20250414024256.2782702-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20250414024256.2782702-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,102 +73,346 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: series starting with [1/2] drm/i915/display: Add macro for checking 3 DSC engines (rev2)
-URL   : https://patchwork.freedesktop.org/series/147642/
-State : warning
 
-== Summary ==
+On 11.04.2025 22:36, Tomasz Lis wrote:
+> During post-migration recovery of a VF, it is necessary to update
+> GGTT references included in messages which are going to be sent
+> to GuC. GuC will start consuming messages after VF KMD will inform
+> it about fixups being done; before that, the VF KMD is expected
+> to update any H2G messages which are already in send buffer but
+> were not consumed by GuC.
+> 
+> Only a small subset of messages allowed for VFs have GGTT references
+> in them. This patch adds the functionality to parse the CTB send
+> ring buffer and shift addresses contained within.
+> 
+> While fixing the CTB content, ct->lock is not taken. This means
+> the only barrier taken remains GGTT address lock - which is ok,
+> because only requests with GGTT addresses matter, but it also means
+> tail changes can happen during the CTB fixups execution (which may
+> be ignored as any new messages will not have anything to fix).
+> 
+> The GGTT address locking will be introduced in a future series.
+> 
+> v2: removed storing shift as that's now done in VMA nodes patch;
+>   macros to inlines; warns to asserts; log messages fixes (Michal)
+> v3: removed inline keywords, enums for offsets in CTB messages,
+>   less error messages, if return unused then made functs void (Michal)
+> v4: update the cached head before starting fixups
+> v5: removed/updated comments, wrapped lines, converted assert into
+>   error, enums for offsets to separate patch, reused xe_map_rd
+> v6: define xe_map_*_array() macros, support CTB wrap which divides
+>   a message, updated comments, moved one function to an earlier patch
+> v7: renamed few functions, wider use on previously introduced helper,
+>   separate cases in parsing messges, documented a static funct
+> v8: Introduced more helpers, fixed coding style mistakes
+> 
+> Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_guc_ct.c   | 174 +++++++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_guc_ct.h   |   2 +
+>  drivers/gpu/drm/xe/xe_map.h      |  12 +++
+>  drivers/gpu/drm/xe/xe_sriov_vf.c |  18 ++++
+>  4 files changed, 206 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+> index 0a4fef7d7225..cff524d21d46 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+> @@ -84,6 +84,8 @@ struct g2h_fence {
+>  	bool done;
+>  };
+>  
+> +#define make_u64(hi, lo) ((u64)((u64)(u32)(hi) << 32 | (u32)(lo)))
+> +
+>  static void g2h_fence_init(struct g2h_fence *g2h_fence, u32 *response_buffer)
+>  {
+>  	g2h_fence->response_buffer = response_buffer;
+> @@ -1623,6 +1625,178 @@ static void g2h_worker_func(struct work_struct *w)
+>  	receive_g2h(ct);
+>  }
+>  
+> +static u32 xe_map_rd_ring_u32(struct xe_device *xe, struct iosys_map *map,
+> +			      u32 idx, u32 size)
+> +{
+> +	return xe_map_rd_array_u32(xe, map, idx % size);
+> +}
+> +
+> +static void xe_map_wr_ring_u32(struct xe_device *xe, struct iosys_map *map,
+> +			       u32 idx, u32 size, u32 val)
+> +{
+> +	xe_map_wr_array_u32(xe, map, idx % size, val);
+> +}
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 8d0b26a073a34e4eeef766fb53b62e7ec19f9456
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_ddi.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1991:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1991:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_hdcp.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_pps.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_psr.c: note: in included file:
-+drivers/gpu/drm/i915/gt/intel_reset.c:1571:12: warning: context imbalance in '_intel_gt_reset_lock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/i915_active.c:1063:16: warning: context imbalance in '__i915_active_fence_set' - different lock contexts for basic block
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    expected struct list_head const *list
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    got struct list_head [noderef] __rcu *pos
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/i915_irq.c:491:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:491:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:499:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:499:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:504:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:504:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:504:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:542:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:542:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:550:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:550:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:555:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:555:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:555:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:599:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:599:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:602:15: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:602:15: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:606:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:606:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:613:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:613:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:613:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:613:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/intel_uncore.c:1925:1: warning: context imbalance in 'fwtable_read8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1926:1: warning: context imbalance in 'fwtable_read16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1927:1: warning: context imbalance in 'fwtable_read32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1928:1: warning: context imbalance in 'fwtable_read64' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1993:1: warning: context imbalance in 'gen6_write8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1994:1: warning: context imbalance in 'gen6_write16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1995:1: warning: context imbalance in 'gen6_write32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2015:1: warning: context imbalance in 'fwtable_write8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2016:1: warning: context imbalance in 'fwtable_write16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2017:1: warning: context imbalance in 'fwtable_write32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_wakeref.c:145:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
+another two candidates to be promoted to xe_map.h
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+> +
+> +static void xe_fixup_u64_in_cmds(struct xe_device *xe, struct iosys_map *cmds,
+> +				 u32 size, u32 idx, s64 shift)
+> +{
+> +	u32 hi, lo;
+> +	u64 offset;
+> +
+> +	lo = xe_map_rd_ring_u32(xe, cmds, idx, size);
+> +	hi = xe_map_rd_ring_u32(xe, cmds, idx + 1, size);
+> +	offset = make_u64(hi, lo);
+> +	offset += shift;
+> +	lo = lower_32_bits(offset);
+> +	hi = upper_32_bits(offset);
+> +	xe_map_wr_ring_u32(xe, cmds, idx, size, lo);
+> +	xe_map_wr_ring_u32(xe, cmds, idx + 1, size, hi);
+> +}
+> +
+> +/*
+> + * Shift any GGTT addresses within a single message left within CTB from
+> + * before post-migration recovery.
+> + * @ct: pointer to CT struct of the target GuC
+> + * @cmds: iomap buffer containing CT messages
+> + * @head: start of the target message within the buffer
+> + * @len: length of the target message
+> + * @size: size of the commands buffer
+> + * @shift: the address shift to be added to each GGTT reference
+> + */
+> +static void ct_fixup_ggtt_in_message(struct xe_guc_ct *ct,
+> +				     struct iosys_map *cmds, u32 head,
+> +				     u32 len, u32 size, s64 shift)
+> +{
+> +	struct xe_device *xe = ct_to_xe(ct);
+> +	u32 msg[GUC_HXG_MSG_MIN_LEN];
+> +	u32 action, i, n;
+> +
 
+before reading msg[0] you should
+
+	xe_gt_assert(gt, len >= GUC_HXG_MSG_MIN_LEN);
+
+> +	msg[0] = xe_map_rd_ring_u32(xe, cmds, head, size);
+> +	action = FIELD_GET(GUC_HXG_REQUEST_MSG_0_ACTION, msg[0]);
+
+nit: what about adding some debug messages about what we do?
+
+	xe_gt_sriov_dbg_verbose(gt, "fixing H2G %#x\n", action);
+
+> +	switch (action) {
+> +	case XE_GUC_ACTION_REGISTER_CONTEXT:
+
+missing check for len < XE_GUC_REGISTER_CONTEXT_MSG_LEN
+
+> +		xe_fixup_u64_in_cmds(xe, cmds, size, head +
+> +				     XE_GUC_REGISTER_CONTEXT_DATA_5_WQ_DESC_ADDR_LOWER,
+> +				     shift);
+> +		xe_fixup_u64_in_cmds(xe, cmds, size, head +
+> +				     XE_GUC_REGISTER_CONTEXT_DATA_7_WQ_BUF_BASE_LOWER,
+> +				     shift);
+> +		xe_fixup_u64_in_cmds(xe, cmds, size, head +
+> +				     XE_GUC_REGISTER_CONTEXT_DATA_10_HW_LRC_ADDR, shift);
+> +		break;
+> +	case XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC:
+
+missing check for len < XE_GUC_REGISTER_CONTEXT_MULIT_LRC_MSG_MIN_LEN
+
+> +		xe_fixup_u64_in_cmds(xe, cmds, size, head +ebug 
+> +				     XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_5_WQ_DESC_ADDR_LOWER,
+> +				     shift);
+> +		xe_fixup_u64_in_cmds(xe, cmds, size, head +
+> +				     XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_7_WQ_BUF_BASE_LOWER,
+> +				     shift);
+> +		n = xe_map_rd_ring_u32(xe, cmds, head +
+> +				       XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_10_NUM_CTXS, size);
+
+missing check for
+
+	len < XE_GUC_REGISTER_CONTEXT_MULIT_LRC_MSG_MIN_LEN + 2 * n
+
+> +		for (i = 0; i < n; i++)
+> +			xe_fixup_u64_in_cmds(xe, cmds, size, head +
+> +					     XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_11_HW_LRC_ADDR
+> +					     + 2 * i, shift);
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +}
+> +
+> +/*
+> + * Apply fixups to the next outgoing CT message within given CTB
+> + * @ct: the &xe_guc_ct struct instance representing the target GuC
+> + * @h2g: the &guc_ctb struct instance of the target buffer
+> + * @shift: shift to be added to all GGTT addresses within the CTB
+> + * @mhead: pointer to an integer storing message start position; the
+> + *   position is changed to next message before this function return
+> + * @avail: size of the area available for parsing, that is length
+> + *   of all remaining messages stored within the CTB
+> + * Return: size of the area available for parsing after one message
+> + *   has been parsed, that is length remaining from the updated mhead
+> + */
+> +static int ct_fixup_ggtt_in_buffer(struct xe_guc_ct *ct, struct guc_ctb *h2g,
+> +				   s64 shift, u32 *mhead, s32 avail)
+> +{
+> +	struct xe_device *xe = ct_to_xe(ct);
+> +	u32 msg[GUC_HXG_MSG_MIN_LEN];
+> +	u32 size = h2g->info.size;
+> +	u32 head = *mhead;
+> +	u32 len;
+> +
+> +	xe_gt_assert(ct_to_gt(ct), avail >= (s32)GUC_CTB_MSG_MIN_LEN);
+> +
+> +	/* Read header */
+> +	msg[0] = xe_map_rd_ring_u32(xe, &h2g->cmds, head, size);
+> +	len = FIELD_GET(GUC_CTB_MSG_0_NUM_DWORDS, msg[0]) + GUC_CTB_MSG_MIN_LEN;
+> +
+> +	if (unlikely(len > (u32)avail)) {
+> +		xe_gt_err(ct_to_gt(ct), "H2G channel broken on read, avail=%d, len=%d, fixups skipped\n",
+> +			  avail, len);
+> +		return 0;
+> +	}
+> +
+> +	head = (head + GUC_CTB_MSG_MIN_LEN) % size;
+> +	ct_fixup_ggtt_in_message(ct, &h2g->cmds, head, msg_len_to_hxg_len(len), size, shift);
+> +	*mhead = (head + msg_len_to_hxg_len(len)) % size;
+> +
+> +	return avail - len;
+> +}
+> +
+> +/**
+> + * xe_guc_ct_fixup_messages_with_ggtt - Fixup any pending H2G CTB messages
+> + * @ct: pointer to CT struct of the target GuC
+> + * @ggtt_shift: shift to be added to all GGTT addresses within the CTB
+> + *
+> + * Messages in GuC to Host CTB are owned by GuC and any fixups in them
+> + * are made by GuC. But content of the Host to GuC CTB is owned by the
+> + * KMD, so fixups to GGTT references in any pending messages need to be
+> + * applied here.
+> + * This function updates GGTT offsets in payloads of pending H2G CTB
+> + * messages (messages which were not consumed by GuC before the VF got
+> + * paused).
+> + */
+> +void xe_guc_ct_fixup_messages_with_ggtt(struct xe_guc_ct *ct, s64 ggtt_shift)
+> +{
+> +	struct guc_ctb *h2g = &ct->ctbs.h2g;
+> +	struct xe_guc *guc = ct_to_guc(ct);
+> +	struct xe_gt *gt = guc_to_gt(guc);
+> +	u32 head, tail, size;
+> +	s32 avail;
+> +
+> +	if (unlikely(h2g->info.broken))
+> +		return;
+> +
+> +	h2g->info.head = desc_read(ct_to_xe(ct), h2g, head);
+> +	head = h2g->info.head;
+> +	tail = READ_ONCE(h2g->info.tail);
+> +	size = h2g->info.size;
+> +
+> +	if (unlikely(head > size))
+> +		goto corrupted;
+> +
+> +	if (unlikely(tail >= size))
+> +		goto corrupted;
+> +
+> +	avail = tail - head;
+> +
+> +	/* beware of buffer wrap case */
+> +	if (unlikely(avail < 0))
+> +		avail += size;
+> +	xe_gt_dbg(gt, "available %d (%u:%u:%u)\n", avail, head, tail, size);
+> +	xe_gt_assert(gt, avail >= 0);
+> +
+> +	while (avail > 0)
+> +		avail = ct_fixup_ggtt_in_buffer(ct, h2g, ggtt_shift, &head, avail);
+> +
+> +	return;
+> +
+> +corrupted:
+> +	xe_gt_err(gt, "Corrupted H2G descriptor head=%u tail=%u size=%u, fixups not applied\n",
+> +		  head, tail, size);
+> +	h2g->info.broken = true;
+> +}
+> +
+>  static struct xe_guc_ct_snapshot *guc_ct_snapshot_alloc(struct xe_guc_ct *ct, bool atomic,
+>  							bool want_ctb)
+>  {
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
+> index 82c4ae458dda..5649bda82823 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct.h
+> @@ -22,6 +22,8 @@ void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot, struct drm_pr
+>  void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot);
+>  void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool want_ctb);
+>  
+> +void xe_guc_ct_fixup_messages_with_ggtt(struct xe_guc_ct *ct, s64 ggtt_shift);
+> +
+>  static inline bool xe_guc_ct_enabled(struct xe_guc_ct *ct)
+>  {
+>  	return ct->state == XE_GUC_CT_STATE_ENABLED;
+> diff --git a/drivers/gpu/drm/xe/xe_map.h b/drivers/gpu/drm/xe/xe_map.h
+> index f62e0c8b67ab..db98c8fb121f 100644
+> --- a/drivers/gpu/drm/xe/xe_map.h
+> +++ b/drivers/gpu/drm/xe/xe_map.h
+> @@ -78,6 +78,18 @@ static inline void xe_map_write32(struct xe_device *xe, struct iosys_map *map,
+>  	iosys_map_wr(map__, offset__, type__, val__);			\
+>  })
+>  
+> +#define xe_map_rd_array(xe__, map__, index__, type__)			\
+> +	xe_map_rd(xe__, map__, (index__) * sizeof(type__), type__)
+> +
+> +#define xe_map_wr_array(xe__, map__, index__, type__, val__)		\
+> +	xe_map_wr(xe__, map__, (index__) * sizeof(type__), type__, val__)
+> +
+> +#define xe_map_rd_array_u32(xe__, map__, index__)			\
+> +	xe_map_rd_array(xe__, map__, index__, u32)
+> +
+> +#define xe_map_wr_array_u32(xe__, map__, index__, val__)		\
+> +	xe_map_wr_array(xe__, map__, index__, u32, val__)
+> +
+>  #define xe_map_rd_field(xe__, map__, struct_offset__, struct_type__, field__) ({	\
+>  	struct xe_device *__xe = xe__;					\
+>  	xe_device_assert_mem_access(__xe);				\
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
+> index e70f1ceabbb3..2674fa948fda 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov_vf.c
+> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
+> @@ -10,6 +10,7 @@
+>  #include "xe_gt.h"
+>  #include "xe_gt_sriov_printk.h"
+>  #include "xe_gt_sriov_vf.h"
+> +#include "xe_guc_ct.h"
+>  #include "xe_pm.h"
+>  #include "xe_sriov.h"
+>  #include "xe_sriov_printk.h"
+> @@ -158,6 +159,20 @@ static int vf_post_migration_requery_guc(struct xe_device *xe)
+>  	return ret;
+>  }
+>  
+> +static void vf_post_migration_fixup_ctb(struct xe_device *xe)
+> +{
+> +	struct xe_gt *gt;
+> +	unsigned int id;
+> +
+> +	xe_assert(xe, IS_SRIOV_VF(xe));
+> +
+> +	for_each_gt(gt, xe, id) {
+> +		s32 shift = xe_gt_sriov_vf_ggtt_shift(gt);
+> +
+> +		xe_guc_ct_fixup_messages_with_ggtt(&gt->uc.guc.ct, shift);
+> +	}
+> +}
+> +
+>  /*
+>   * vf_post_migration_imminent - Check if post-restore recovery is coming.
+>   * @xe: the &xe_device struct instance
+> @@ -224,6 +239,9 @@ static void vf_post_migration_recovery(struct xe_device *xe)
+>  
+>  	need_fixups = vf_post_migration_fixup_ggtt_nodes(xe);
+>  	/* FIXME: add the recovery steps */
+> +	if (need_fixups)
+> +		vf_post_migration_fixup_ctb(xe);
+> +
+>  	vf_post_migration_notify_resfix_done(xe);
+>  	xe_pm_runtime_put(xe);
+>  	drm_notice(&xe->drm, "migration recovery ended\n");
 
