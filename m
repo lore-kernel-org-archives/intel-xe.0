@@ -4,32 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B10CC369BB
-	for <intel-xe@archiver.kernel.org>; Mon, 14 Apr 2025 13:28:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F06EBC369B9
+	for <intel-xe@archiver.kernel.org>; Mon, 14 Apr 2025 13:29:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC01210E5CA;
-	Mon, 14 Apr 2025 13:28:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADD2C10E5C4;
+	Mon, 14 Apr 2025 13:29:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="bC4ztG2g";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="vChunc63";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F06510E5C5;
- Mon, 14 Apr 2025 13:28:10 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0474F10E5C4;
+ Mon, 14 Apr 2025 13:29:21 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id D25D14A55D;
- Mon, 14 Apr 2025 13:28:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDD9FC4CEE2;
- Mon, 14 Apr 2025 13:28:07 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id 76E095C540D;
+ Mon, 14 Apr 2025 13:27:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69BF5C4CEEB;
+ Mon, 14 Apr 2025 13:29:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1744637289;
- bh=k+SL8dEg7ENs/COZj5rZ0WhegA0J+cWXSyZ+EquTBI0=;
+ s=k20201202; t=1744637360;
+ bh=Xrq2Yfzw5zZd5Mm2iqX65yI4BHFIBG2Z1/asqp7BWNQ=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=bC4ztG2grhUYedyZ7KoSk6RAw1w/au/GlIX8S2JFlu4orvN4/IRUQBU5MYcne32lu
- TQTv2L69GWdg62DBQ2JldmTDD2I/AdbLg0HiJII5LU24tDoLukmwIZKiQwllYMDiuY
- aon3pC9AZYLp67ipMsPJqY8WkE0+FQOByhJsEbAJJfLkV6sCu0R+fc14KFaBNehHoY
- OwFCm1h2cnIM+c6M8dnLQP7GsNhwNCxoPtTurddZdp1sz52cZPB9NW6QhEiX4HCTj2
- 9usQLlVM5PFxtDhZwvdYg87mHVXPhR3/GO0WoPHEvwpYUIML2ET/Ahl5D7sQ4oYtMa
- 8MjCRjqjkSgLA==
+ b=vChunc63qjtqrwupt/24rbQKqu4+PWCOGY7TePtsstvInTVnMA6bYol/Aadih62Kw
+ qPmWsnoH2RblUd2WcUoayH6Hgu0llY2PQKpNfzQCqoCXKI7Q08+R2b6ewLTw6OzrwG
+ cPA00E9VtFf7bIGb4fFCv5f7Vq4fXXxyfP/ZPQ6CpMXDDPJ7z0nU+LCVjfvBuNfR04
+ gpoKso8k/Bm77VFGJj/Oy/eoG+1u4wCV4MbaYLP2SDeSSIg1HNLkycAsmeqxDcd89r
+ uYvLEpbgCgK9eA0vL7Y8dkbxy2C4EtK9ThTNvHfaV9dIU/dVox0nMunffO6nEJ9JIM
+ 7+tNXz3x0sGTg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -40,17 +40,17 @@ Cc: Julia Filipchuk <julia.filipchuk@intel.com>,
  Sasha Levin <sashal@kernel.org>, thomas.hellstrom@linux.intel.com,
  rodrigo.vivi@intel.com, airlied@gmail.com, simona@ffwll.ch,
  intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.13 16/34] drm/xe/xe3lpg: Apply Wa_14022293748,
+Subject: [PATCH AUTOSEL 6.12 12/30] drm/xe/xe3lpg: Apply Wa_14022293748,
  Wa_22019794406
-Date: Mon, 14 Apr 2025 09:27:10 -0400
-Message-Id: <20250414132729.679254-16-sashal@kernel.org>
+Date: Mon, 14 Apr 2025 09:28:29 -0400
+Message-Id: <20250414132848.679855-12-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250414132729.679254-1-sashal@kernel.org>
-References: <20250414132729.679254-1-sashal@kernel.org>
+In-Reply-To: <20250414132848.679855-1-sashal@kernel.org>
+References: <20250414132848.679855-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.13.11
+X-stable-base: Linux 6.12.23
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -84,7 +84,7 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 2 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index bcd04464b85e8..7fc65f1cec02d 100644
+index 264d6e116499c..93fa2708ee378 100644
 --- a/drivers/gpu/drm/xe/xe_wa_oob.rules
 +++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
 @@ -29,8 +29,10 @@
