@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 935D9C369B2
-	for <intel-xe@archiver.kernel.org>; Mon, 14 Apr 2025 12:33:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E09FEC369B2
+	for <intel-xe@archiver.kernel.org>; Mon, 14 Apr 2025 12:38:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55BC110E125;
-	Mon, 14 Apr 2025 12:33:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eyLw8sN5";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 639F110E59E;
- Mon, 14 Apr 2025 12:33:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744634011; x=1776170011;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=LT5PoLBy1nKQPSlnTCt2kkh9xoOP1gjQsiviCp6yTUM=;
- b=eyLw8sN5YBTXC+F2BmpLaAkCAU/sWMgq9iQq6Ys+R2Hh048n/wgpn3iC
- hCFAfi/2QNO7k4Lp49Ti8lM2T6fcpgUTTpd7+NU0mH9mkvArewL59Z11F
- 27llj0sOl45YIuKZfFq9SrLoX7wUvnWUlHd3WfcX9VYcMYTWTLBgaVNGx
- J6Gza4MneJwgwJXw5CEgM+Ar7LHvvFTXHfnIldQ6wTfAjX0mQ9yg3IKBs
- TKh0ya4vjG63dCFfAD7PSkSYjoCT4nZn43qIXIpdJh1X1BJJeCfUyQZA+
- BdDhqNdYtuI1vJ5kqp3AK4j40th2KNE7VlpiSAd9zFCp9hDwpBzigaP9V A==;
-X-CSE-ConnectionGUID: g/QLZM6jTg2M2RKGYSl0fQ==
-X-CSE-MsgGUID: yUk87DFSS/aQMJ8v+R3j2g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11402"; a="46011934"
-X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="46011934"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2025 05:33:31 -0700
-X-CSE-ConnectionGUID: xRRiIeWNTIOkCG7JzMQb/w==
-X-CSE-MsgGUID: giyuzuwYQXyfX/ZWBDAEfQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="134781631"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.205])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2025 05:33:29 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 3/3] drm/i915/pch: abstract fake PCH detection better
-Date: Mon, 14 Apr 2025 15:33:09 +0300
-Message-Id: <603a303f682d970787eecb10d9427ed1b65e2140.1744633934.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1744633934.git.jani.nikula@intel.com>
-References: <cover.1744633934.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2B2710E594;
+	Mon, 14 Apr 2025 12:38:28 +0000 (UTC)
+Received: from b68e5b3b99e1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 795F210E594;
+ Mon, 14 Apr 2025 12:38:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915=3A_error_captur?=
+ =?utf-8?q?e_cleanups_and_refactor?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 14 Apr 2025 12:38:27 -0000
+Message-ID: <174463430735.1455.10124334651264206708@b68e5b3b99e1>
+X-Patchwork-Hint: ignore
+References: <cover.1744630147.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1744630147.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,83 +36,102 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Abstract detection of platforms with south display on the same PCI
-device or SoC die as north display, and all around clarify what this
-means. Debug log about it for good measure.
+== Series Details ==
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_pch.c | 47 ++++++++++++++----------
- 1 file changed, 28 insertions(+), 19 deletions(-)
+Series: drm/i915: error capture cleanups and refactor
+URL   : https://patchwork.freedesktop.org/series/147673/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_pch.c b/drivers/gpu/drm/i915/display/intel_pch.c
-index fec1919e5386..5035b63a4889 100644
---- a/drivers/gpu/drm/i915/display/intel_pch.c
-+++ b/drivers/gpu/drm/i915/display/intel_pch.c
-@@ -39,6 +39,28 @@
- #define INTEL_PCH_P3X_DEVICE_ID_TYPE		0x7000
- #define INTEL_PCH_QEMU_DEVICE_ID_TYPE		0x2900 /* qemu q35 has 2918 */
- 
-+/*
-+ * Check for platforms where the south display is on the same PCI device or SoC
-+ * die as the north display. The PCH (if it even exists) is not involved in
-+ * display. Return a fake PCH type for south display handling on these
-+ * platforms, without actually detecting the PCH, and PCH_NONE otherwise.
-+ */
-+static enum intel_pch intel_pch_fake_for_south_display(struct intel_display *display)
-+{
-+	enum intel_pch pch_type = PCH_NONE;
-+
-+	if (DISPLAY_VER(display) >= 20)
-+		pch_type = PCH_LNL;
-+	else if (display->platform.battlemage || display->platform.meteorlake)
-+		pch_type = PCH_MTL;
-+	else if (display->platform.dg2)
-+		pch_type = PCH_DG2;
-+	else if (display->platform.dg1)
-+		pch_type = PCH_DG1;
-+
-+	return pch_type;
-+}
-+
- /* Map PCH device id to PCH type, or PCH_NONE if unknown. */
- static enum intel_pch
- intel_pch_type(const struct intel_display *display, unsigned short id)
-@@ -258,25 +280,12 @@ void intel_pch_detect(struct intel_display *display)
- 	unsigned short id;
- 	enum intel_pch pch_type;
- 
--	/*
--	 * South display engine on the same PCI device: just assign the fake
--	 * PCH.
--	 */
--	if (DISPLAY_VER(display) >= 20) {
--		display->pch_type = PCH_LNL;
--		return;
--	} else if (display->platform.battlemage || display->platform.meteorlake) {
--		/*
--		 * Both north display and south display are on the SoC die.
--		 * The real PCH (if it even exists) is uninvolved in display.
--		 */
--		display->pch_type = PCH_MTL;
--		return;
--	} else if (display->platform.dg2) {
--		display->pch_type = PCH_DG2;
--		return;
--	} else if (display->platform.dg1) {
--		display->pch_type = PCH_DG1;
-+	pch_type = intel_pch_fake_for_south_display(display);
-+	if (pch_type != PCH_NONE) {
-+		display->pch_type = pch_type;
-+		drm_dbg_kms(display->drm,
-+			    "PCH not involved in display, using fake PCH type %d for south display\n",
-+			    pch_type);
- 		return;
- 	}
- 
--- 
-2.39.5
+== Summary ==
+
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast 7fabc0c4629ff44d0472fa70ed6ae5caa334c3aa
+Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_ddi.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1978:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1991:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:1991:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_hdcp.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_pps.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_psr.c: note: in included file:
++drivers/gpu/drm/i915/gt/intel_reset.c:1571:12: warning: context imbalance in '_intel_gt_reset_lock' - different lock contexts for basic block
++drivers/gpu/drm/i915/i915_active.c:1063:16: warning: context imbalance in '__i915_active_fence_set' - different lock contexts for basic block
++drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    expected struct list_head const *list
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    got struct list_head [noderef] __rcu *pos
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/i915/i915_irq.c:491:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:491:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:499:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:499:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:504:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:504:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:504:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:542:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:542:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:550:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:550:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:555:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:555:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:555:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:599:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:599:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:602:15: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:602:15: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:606:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:606:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:613:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:613:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:613:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:613:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/intel_uncore.c:1925:1: warning: context imbalance in 'fwtable_read8' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1926:1: warning: context imbalance in 'fwtable_read16' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1927:1: warning: context imbalance in 'fwtable_read32' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1928:1: warning: context imbalance in 'fwtable_read64' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1993:1: warning: context imbalance in 'gen6_write8' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1994:1: warning: context imbalance in 'gen6_write16' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1995:1: warning: context imbalance in 'gen6_write32' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:2015:1: warning: context imbalance in 'fwtable_write8' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:2016:1: warning: context imbalance in 'fwtable_write16' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:2017:1: warning: context imbalance in 'fwtable_write32' - unexpected unlock
++drivers/gpu/drm/i915/intel_wakeref.c:145:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
+
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
