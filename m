@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1135C369B5
-	for <intel-xe@archiver.kernel.org>; Mon, 14 Apr 2025 10:05:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AEAEC369B9
+	for <intel-xe@archiver.kernel.org>; Mon, 14 Apr 2025 10:05:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 359D510E542;
-	Mon, 14 Apr 2025 10:05:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AC2D10E54A;
+	Mon, 14 Apr 2025 10:05:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Iqbg+ro2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WCDk6nL8";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB55F10E53F;
- Mon, 14 Apr 2025 10:05:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30E6E10E546;
+ Mon, 14 Apr 2025 10:05:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744625126; x=1776161126;
+ t=1744625130; x=1776161130;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VEuzruUgAHJn4jpTWHJ15d6soITmSTRigC0gYYcd8As=;
- b=Iqbg+ro2CrKHYewsMHJ44LDkCTDvSQWSI6QW7h85KYknFTbmbJMLJKGF
- U4vWfezsGzDPaqe2kw9UCEnwRi/9ekL2wu0w481MgRkvAH3BHQX4kFSXl
- qe/5f/PV/XwTpSSnobvEwzWQN/SlLg0+RaJC7CncKng8lrpR9Ojdvpi8n
- OqhnCeYCcqHlsSyH3cDdF9obvSsdc/a1waObFgyTzo39UMq2ZsKMtY0vK
- CVJ81ThtS8hlrliB6r4KcJO1/bwYDNHhgoTGiNGmaUgqw+mn5dgNOUzFO
- UP5hwpz1okwmQUv8xp9r4MjrlHcBvaQWTcrm2J2QBDvn4Yh9LchgUEA/y Q==;
-X-CSE-ConnectionGUID: N/ccqlIHT42aMscCvYTSjw==
-X-CSE-MsgGUID: s0KyeX8rQJm/sArV/njK8Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11402"; a="48789113"
-X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="48789113"
+ bh=eBzDpfPPAa9rQgSNYsbbDZcZZPNrbesGXN0ddQ2Hq/M=;
+ b=WCDk6nL8di6x6EQ8N7g70E2IRS/ZLj0/tvinVo/1wCuyBoj+54snkkJR
+ g55/Lmif6ezDDRbRsD8wZJxwjriVvCHbtNeVCbmy3TZLb/oDm9gjuiIB9
+ MGcGh0Unkm74kPPyJb4sPIDG3rGHlOXQu/kU6MRXKWKoISq7O4d7KxZ7f
+ YGWLdd43CwORf+n+sLfPwSfoJx45PTJ5yMsN30/F61xYqQHRVP473Dl/j
+ 59ZjZBkgg7VLrO0+Ab/QwfiJQzQ/VKzQMHmw7xi+lTpruc1+3P1GdXdS/
+ WltVuS8qjzRnB3Ex8Kd/HLba3ANlXX6XfUICNizZT9DUPy8vYY+jmouxx w==;
+X-CSE-ConnectionGUID: MgE3Q8zdSKeHTXje0PaD2g==
+X-CSE-MsgGUID: ODPVIjOIQGiq2r2ZdhJbNw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11402"; a="48789116"
+X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="48789116"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2025 03:05:26 -0700
-X-CSE-ConnectionGUID: 1NxgYLqyTSCF40NdlMZRAQ==
-X-CSE-MsgGUID: OXjmyBJDSnm8P2woWgktgQ==
+ 14 Apr 2025 03:05:30 -0700
+X-CSE-ConnectionGUID: abPytnJsQju24VfWoXyVwg==
+X-CSE-MsgGUID: nQLyogT7RsinbxOg4ZMCSw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="129743189"
+X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="129743195"
 Received: from dalessan-mobl3.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.244.194])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2025 03:05:26 -0700
+ 14 Apr 2025 03:05:29 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v3 03/13] drm/i915/dmc: Add PIPEDMC_EVT_CTL register definition
-Date: Mon, 14 Apr 2025 13:04:58 +0300
-Message-ID: <20250414100508.1208774-4-jouni.hogander@intel.com>
+Subject: [PATCH v3 05/13] drm/i915/dmc: Add interface to block PKG C-state
+Date: Mon, 14 Apr 2025 13:05:00 +0300
+Message-ID: <20250414100508.1208774-6-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250414100508.1208774-1-jouni.hogander@intel.com>
 References: <20250414100508.1208774-1-jouni.hogander@intel.com>
@@ -70,34 +70,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To implement workaround for underrun on idle PSR HW issue (Wa_16025596647)
-we need PIPEDMC_EVT_CTL_4 register. Add PIPEDMC_EVT_CTL_4 register
-definitions.
+Add interface to block PKG C-state. This is needed to implement workaround
+for underrun on idle PSR HW issue (Wa_16025596647).
 
-Bspec: 67576
-
+Bspec: 74151
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc_regs.h | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dmc.c | 17 +++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dmc.h |  2 ++
+ 2 files changed, 19 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-index 1bf446f96a10..2f1e3cb1a247 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-@@ -21,6 +21,12 @@
- #define MTL_PIPEDMC_CONTROL		_MMIO(0x45250)
- #define  PIPEDMC_ENABLE_MTL(pipe)	REG_BIT(((pipe) - PIPE_A) * 4)
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index 98f80a6c63e8..c65544e48c42 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -517,6 +517,23 @@ void intel_dmc_disable_pipe(struct intel_display *display, enum pipe pipe)
+ 		intel_de_rmw(display, PIPEDMC_CONTROL(pipe), PIPEDMC_ENABLE, 0);
+ }
  
-+#define _MTL_PIPEDMC_EVT_CTL_4_A	0x5f044
-+#define _MTL_PIPEDMC_EVT_CTL_4_B	0x5f444
-+#define MTL_PIPEDMC_EVT_CTL_4(pipe)	_MMIO_PIPE(pipe,		\
-+						   _MTL_PIPEDMC_EVT_CTL_4_A, \
-+						   _MTL_PIPEDMC_EVT_CTL_4_B)
++/**
++ * intel_dmc_block_pkgc() - block PKG C-state
++ * @display: display instance
++ * @pipe: pipe which register use to block
++ * @block: block/unblock
++ *
++ * This interface is target for Wa_16025596647 usage. I.e. to set/clear
++ * PIPEDMC_BLOCK_PKGC_SW_BLOCK_PKGC_ALWAYS bit in PIPEDMC_BLOCK_PKGC_SW register.
++ */
++void intel_dmc_block_pkgc(struct intel_display *display, enum pipe pipe,
++			  bool block)
++{
++	intel_de_rmw(display, PIPEDMC_BLOCK_PKGC_SW(pipe),
++		     PIPEDMC_BLOCK_PKGC_SW_BLOCK_PKGC_ALWAYS, block ?
++		     PIPEDMC_BLOCK_PKGC_SW_BLOCK_PKGC_ALWAYS : 0);
++}
 +
- #define _ADLP_PIPEDMC_REG_MMIO_BASE_A	0x5f000
- #define _TGL_PIPEDMC_REG_MMIO_BASE_A	0x92000
- 
+ static bool is_dmc_evt_ctl_reg(struct intel_display *display,
+ 			       enum intel_dmc_id dmc_id, i915_reg_t reg)
+ {
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h b/drivers/gpu/drm/i915/display/intel_dmc.h
+index c78426eb4cd5..236312fb791c 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.h
++++ b/drivers/gpu/drm/i915/display/intel_dmc.h
+@@ -18,6 +18,8 @@ void intel_dmc_load_program(struct intel_display *display);
+ void intel_dmc_disable_program(struct intel_display *display);
+ void intel_dmc_enable_pipe(struct intel_display *display, enum pipe pipe);
+ void intel_dmc_disable_pipe(struct intel_display *display, enum pipe pipe);
++void intel_dmc_block_pkgc(struct intel_display *display, enum pipe pipe,
++			  bool block);
+ void intel_dmc_fini(struct intel_display *display);
+ void intel_dmc_suspend(struct intel_display *display);
+ void intel_dmc_resume(struct intel_display *display);
 -- 
 2.43.0
 
