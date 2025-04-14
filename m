@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5E5EC369B2
-	for <intel-xe@archiver.kernel.org>; Mon, 14 Apr 2025 10:41:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BBD3C369B2
+	for <intel-xe@archiver.kernel.org>; Mon, 14 Apr 2025 11:04:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9955710E561;
-	Mon, 14 Apr 2025 10:41:19 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oFmay+1O";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4252510E561
- for <intel-xe@lists.freedesktop.org>; Mon, 14 Apr 2025 10:41:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744627278; x=1776163278;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=F/DDlwrwiKvC8FXGXcj3xvrAEhuK2tXluOuLXf8GQwg=;
- b=oFmay+1OJldsPj6CEnKWHRu234MEFwuihQPGdDjT2Ln8spH6q2o1+Ptv
- b63Ve4JJkR3LkKQ3Kk0D5qf02KFvk1lTy4XHxsZW2OAbW8XtBznVtCKm7
- STFN8RhSEOX5vK8ebq3XTMHeC4lQ4jRgOpiL+StAw36I/Myikg8CUqwQV
- 2e5k3bJ28gzpEGhFbA3juaQ5s316/S2EfKwaMwz+9trnVZcd8dxQZmlSf
- TzD2Nx9RWtKgLM+lNi48BDS8t9SOh0gl3q8BhXX7tv5MERQAgiQ1KRDze
- PM/zN2oetwLsASbbhMhVLLvJ9Zn01LY6tw2sLcRTZOZAQDldwu5NeIXpV g==;
-X-CSE-ConnectionGUID: n8zdCHrhSVClcdpLl8egCg==
-X-CSE-MsgGUID: agvA7xXoQkuwjMNQtgHupQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11402"; a="46002739"
-X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="46002739"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2025 03:41:17 -0700
-X-CSE-ConnectionGUID: dJ83XtHDTH+ezEjXoxgQrg==
-X-CSE-MsgGUID: r1pbeWXMTXam9rgykMIt2g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="129631182"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa006.fm.intel.com with ESMTP; 14 Apr 2025 03:41:17 -0700
-Received: from [10.245.114.177] (mwajdecz-MOBL.ger.corp.intel.com
- [10.245.114.177])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 4665412580
- for <intel-xe@lists.freedesktop.org>; Mon, 14 Apr 2025 11:41:16 +0100 (IST)
-Message-ID: <d8531c66-701a-4788-89e6-63f9eb383a68@intel.com>
-Date: Mon, 14 Apr 2025 12:41:15 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EC4510E31C;
+	Mon, 14 Apr 2025 11:04:17 +0000 (UTC)
+Received: from b68e5b3b99e1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C68810E31C;
+ Mon, 14 Apr 2025 11:04:16 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2176671423226109263=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?B?UmU6IOKclyBYZS5DSS5GdWxsOiBmYWlsdXJlIGZvciBkcm0veGUvcGY6?=
- =?UTF-8?Q?_Don=27t_show_GGTT/LMEM_debugfs_files_under_media_GT?=
-To: intel-xe@lists.freedesktop.org
-References: <20250411193030.1865-1-michal.wajdeczko@intel.com>
- <174441598144.6446.3255789442775450712@32c37dd7f93d>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <174441598144.6446.3255789442775450712@32c37dd7f93d>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_mtd=3A_add_driver_for_Intel?=
+ =?utf-8?q?_discrete_graphics?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alexander Usyskin" <alexander.usyskin@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 14 Apr 2025 11:04:16 -0000
+Message-ID: <174462865630.898.8388155124187393215@b68e5b3b99e1>
+X-Patchwork-Hint: ignore
+References: <20250414093803.2133463-1-alexander.usyskin@intel.com>
+In-Reply-To: <20250414093803.2133463-1-alexander.usyskin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,71 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============2176671423226109263==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: mtd: add driver for Intel discrete graphics
+URL   : https://patchwork.freedesktop.org/series/147661/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-2946-8d0b26a073a34e4eeef766fb53b62e7ec19f9456_BAT -> xe-pw-147661v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 8)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-147661v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@intel_sysfs_debugfs@xe-forcewake:
+    - bat-lnl-1:          [PASS][1] -> [ABORT][2] ([Intel XE#4624])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2946-8d0b26a073a34e4eeef766fb53b62e7ec19f9456/bat-lnl-1/igt@intel_sysfs_debugfs@xe-forcewake.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147661v1/bat-lnl-1/igt@intel_sysfs_debugfs@xe-forcewake.html
+
+  
+  [Intel XE#4624]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4624
 
 
-On 12.04.2025 01:59, Patchwork wrote:
-> == Series Details ==
-> 
-> Series: drm/xe/pf: Don't show GGTT/LMEM debugfs files under media GT
-> URL   : https://patchwork.freedesktop.org/series/147612/
-> State : failure
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from xe-2941-95956f65403ec2f6784fca383eecbb54431ddebc_FULL -> xe-pw-147612v1_FULL
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **FAILURE**
-> 
->   Serious unknown changes coming with xe-pw-147612v1_FULL absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in xe-pw-147612v1_FULL, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
->   to document this new failure mode, which will reduce false positives in CI.
-> 
->   
-> 
-> Participating hosts (4 -> 4)
-> ------------------------------
-> 
->   No changes in participating hosts
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in xe-pw-147612v1_FULL:
-> 
-> ### IGT changes ###
-> 
-> #### Possible regressions ####
+Build changes
+-------------
 
-both unrelated
+  * Linux: xe-2946-8d0b26a073a34e4eeef766fb53b62e7ec19f9456 -> xe-pw-147661v1
 
-> 
->   * igt@kms_cursor_edge_walk@256x256-top-bottom:
->     - shard-bmg:          NOTRUN -> [SKIP][1] +1 other test skip
->    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147612v1/shard-bmg-6/igt@kms_cursor_edge_walk@256x256-top-bottom.html
+  IGT_8317: 8317
+  xe-2946-8d0b26a073a34e4eeef766fb53b62e7ec19f9456: 8d0b26a073a34e4eeef766fb53b62e7ec19f9456
+  xe-pw-147661v1: 147661v1
 
-Starting subtest: 256x256-top-bottom
-At least one pipe/output combo needed.
-At least one pipe/output combo needed.
-No dynamic tests executed.
-Subtest 256x256-top-bottom: SKIP (0.001s)
+== Logs ==
 
-> 
->   * igt@kms_pm_rpm@i2c:
->     - shard-bmg:          [PASS][2] -> [DMESG-WARN][3] +3 other tests dmesg-warn
->    [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2941-95956f65403ec2f6784fca383eecbb54431ddebc/shard-bmg-1/igt@kms_pm_rpm@i2c.html
->    [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147612v1/shard-bmg-6/igt@kms_pm_rpm@i2c.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147661v1/index.html
 
-<3> [237.125422] xe 0000:03:00.0: [drm] *ERROR* Failed to read DPCD
-register 0x92
+--===============2176671423226109263==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>mtd: add driver for Intel discrete graphics</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147661/">https://patchwork.freedesktop.org/series/147661/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147661v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147661v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2946-8d0b26a073a34e4eeef766fb53b62e7ec19f9456_BAT -&gt; xe-pw-147661v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 8)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-147661v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@intel_sysfs_debugfs@xe-forcewake:<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2946-8d0b26a073a34e4eeef766fb53b62e7ec19f9456/bat-lnl-1/igt@intel_sysfs_debugfs@xe-forcewake.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147661v1/bat-lnl-1/igt@intel_sysfs_debugfs@xe-forcewake.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4624">Intel XE#4624</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2946-8d0b26a073a34e4eeef766fb53b62e7ec19f9456 -&gt; xe-pw-147661v1</li>
+</ul>
+<p>IGT_8317: 8317<br />
+  xe-2946-8d0b26a073a34e4eeef766fb53b62e7ec19f9456: 8d0b26a073a34e4eeef766fb53b62e7ec19f9456<br />
+  xe-pw-147661v1: 147661v1</p>
+
+</body>
+</html>
+
+--===============2176671423226109263==--
