@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2716BC369B2
-	for <intel-xe@archiver.kernel.org>; Mon, 14 Apr 2025 07:36:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2ED74C369B5
+	for <intel-xe@archiver.kernel.org>; Mon, 14 Apr 2025 08:14:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B31B210E4B8;
-	Mon, 14 Apr 2025 07:36:47 +0000 (UTC)
-Received: from f7756006eef8 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B43F10E4B8;
- Mon, 14 Apr 2025 07:36:46 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id D59BF10E4D4;
+	Mon, 14 Apr 2025 08:14:29 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a6gEhewS";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 977C310E4CA;
+ Mon, 14 Apr 2025 08:14:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744618468; x=1776154468;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=TRqcUUJvQsFHm6GbgqXly5t9vXRQVow+Ckf8tGcs/DY=;
+ b=a6gEhewSTy/dYCXHmpoJjc/w8h2RVg5v4V7cV/X0PuSvujxIbdrGUNfn
+ qZGIQvPHf8nX+tfzGcy7JpKamx8XDpg4ydZz33bk7EdOMfUo/LNbbgP/o
+ oLa/+JE9NEBxfpwpPeLibq3zWQnKitTs7M+jSF16Wmeg28nGWniMwRfUJ
+ pdgYTQ9RyHQ7IkKV7rCPuFVpud1zwdo/eqcvIH5CjBufyl0RKCe4qTkYq
+ Ne3p5wcginswyv2QV/nI/QZ3eFHYTlVz/thcFCWBLGrzDsuSdPO6OIMR1
+ s7TutqJMxY0zMEdBnUAXDvaupPlYi9a+NKXcnsH+xeGGii14NxuI84ijr A==;
+X-CSE-ConnectionGUID: P6yxFWiCTiCikPWZlH+p3w==
+X-CSE-MsgGUID: y6AU+O6LRw+GG450MHC6ew==
+X-IronPort-AV: E=McAfee;i="6700,10204,11402"; a="63618577"
+X-IronPort-AV: E=Sophos;i="6.15,211,1739865600"; d="scan'208";a="63618577"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2025 01:14:27 -0700
+X-CSE-ConnectionGUID: 3hIIU+PSTUOoyrHkDII1UA==
+X-CSE-MsgGUID: i+cAv3hrTKmJheRqnF5JXw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,211,1739865600"; d="scan'208";a="133855228"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.205])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2025 01:14:25 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ rodrigo.vivi@intel.com, ville.syrjala@linux.intel.com
+Subject: Re: [PATCH 2/4] drm/i915/display: Convert intel_pch towards
+ intel_display
+In-Reply-To: <dso7an5ln47xqjbhh5r7mighwt7fg3cooedxx46qi4ssde5qa5@qqka36ocja5i>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1744364975.git.jani.nikula@intel.com>
+ <8ffe86eb2a02153e3f866a81fb6dc8a3327a0f25.1744364975.git.jani.nikula@intel.com>
+ <dso7an5ln47xqjbhh5r7mighwt7fg3cooedxx46qi4ssde5qa5@qqka36ocja5i>
+Date: Mon, 14 Apr 2025 11:14:22 +0300
+Message-ID: <87r01vtb1d.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/pm=3A_Wait_for_lm?=
- =?utf-8?q?em_ready_in_resume_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Karthik Poosa" <karthik.poosa@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 14 Apr 2025 07:36:46 -0000
-Message-ID: <174461620636.299.2110885551642894001@f7756006eef8>
-X-Patchwork-Hint: ignore
-References: <20250410110057.2497056-1-karthik.poosa@intel.com>
-In-Reply-To: <20250410110057.2497056-1-karthik.poosa@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +68,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, 11 Apr 2025, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> why not merging intel_pch and intel_pch_display? Now that both are
+> under display/, there isn't much reason for the split, is there?
 
-Series: drm/xe/pm: Wait for lmem ready in resume (rev2)
-URL   : https://patchwork.freedesktop.org/series/147520/
-State : success
+One is about identifying the PCH, and the other is about supporting
+outputs on the south display, and not all of the PCHs even have
+that. The former doesn't need register reads/writes, the latter does.
 
-== Summary ==
+I think they should stay separate.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 0c0a1695c329c2fe7033bc162d975cdb64e8fb36
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
+BR,
+Jani.
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+-- 
+Jani Nikula, Intel
