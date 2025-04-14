@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CE15C369B2
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F26DDC369B8
 	for <intel-xe@archiver.kernel.org>; Mon, 14 Apr 2025 21:41:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2DA710E00A;
-	Mon, 14 Apr 2025 21:41:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABED110E055;
+	Mon, 14 Apr 2025 21:41:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hcAxoVjW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VNFYtS9x";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EC1310E00A;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D844010E1DF;
  Mon, 14 Apr 2025 21:41:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1744666865; x=1776202865;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=hl8+lM11PRLmxBjMwYzmp398zmvgVeUwbwpOM7K9t/8=;
- b=hcAxoVjWC7HDm59N5hmjQZiNDjkKgoKITckFrn8JEclHVN735bXk9E+I
- e4gR3glk7inNtMRldjD14dB7bCjUTGFqHjFI/QmUIG7McEjW2Z6ArxvXx
- sG8VyzzjLvlTYxGGDHNfxUbvq2pAxAeH/LVwUSTNmpWy0B/tlGP9CsqCJ
- AC/ZeEDmU9dACWeg/FdbsNoxNy/IILC6E7lNnD5oKnDGOpFiSJJdiWM1G
- mkP7w77JJiu1+tnN4B4hIVtlQral5iLlCeSn1+f6uOr1KBT3UN/+pshqQ
- K5GgtI7eS3uBRq88sKjx6sE+i0rFhKnJwY3ZIiFYG72xdPATLlSnC6xfV A==;
-X-CSE-ConnectionGUID: ixvyN6Z+THuMbqQMksP1Xg==
-X-CSE-MsgGUID: EPFnhLhmTAGohQjgzn1fxA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11403"; a="63556954"
-X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="63556954"
+ bh=+u0Swmk9+1gs2VvfM2IQUEtSBO8rRjJ2xLuHdeBxlI8=;
+ b=VNFYtS9xcVM2CoUqO7llw4H2u9AB5fI6ymOk1YGN36MF3wp3xPsdvvTY
+ l7IA6AKSWw6MOsGdUiSXbRfnI9CfidDQ6ejP2xfv2ZPMW9H1+thJNTbxf
+ SmK6VAbc3fLxSjjbrwMFi8pSsOow6YlWvrlfAX4t2It2LY1ACKnoh3LBn
+ 4tsJTg1KtCh1Xf8VDAm4WpxFg9KmCU6+Uijq0+N/IkUeig3igm87LBA4S
+ TpzBTMV6KX54QM4iKzjEnKY4wGh9fLJYNttp2QQ+Ydm3rYhHUm+5e3Son
+ VuQza2xdktkig8fbRY5mnvDWM6l+Uq/CClR6W1DSG6HeKO/vn8YlolhOa w==;
+X-CSE-ConnectionGUID: dQPLkL7lRwOGgKOrIScY/g==
+X-CSE-MsgGUID: 4CufeRGTQdiqQKgaUGuDWQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11403"; a="63556959"
+X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="63556959"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2025 14:41:04 -0700
-X-CSE-ConnectionGUID: k4I+WjcQQga4SR2lNMlUoQ==
-X-CSE-MsgGUID: At/K0g5tQIWbocCvwHCiUw==
+ 14 Apr 2025 14:41:05 -0700
+X-CSE-ConnectionGUID: 4QIDEcdmSk+BRpWYtFNFLQ==
+X-CSE-MsgGUID: mcP9juLOTa66zZAOX3Bvlw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="134705098"
+X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="134705109"
 Received: from dut4046ptlh.fm.intel.com ([10.105.8.66])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2025 14:41:00 -0700
+ 14 Apr 2025 14:41:01 -0700
 From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
@@ -49,10 +49,9 @@ Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
  dri-devel@lists.freedesktop.org, Michal.Wajdeczko@intel.com,
  michal.mrozek@intel.com, raag.jadav@intel.com, john.c.harrison@intel.com,
  ivan.briano@intel.com
-Subject: [PATCH v18 1/5] drm/xe/xe_gt_pagefault: Disallow writes to read-only
- VMAs
-Date: Mon, 14 Apr 2025 21:40:55 +0000
-Message-ID: <20250414214059.30657-2-jonathan.cavitt@intel.com>
+Subject: [PATCH v18 5/5] drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
+Date: Mon, 14 Apr 2025 21:40:59 +0000
+Message-ID: <20250414214059.30657-6-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250414214059.30657-1-jonathan.cavitt@intel.com>
 References: <20250414214059.30657-1-jonathan.cavitt@intel.com>
@@ -72,32 +71,229 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The page fault handler should reject write/atomic access to read only
-VMAs.  Add code to handle this in handle_pagefault after the VMA lookup.
+Add support for userspace to request a list of observed faults
+from a specified VM.
 
-Fixes: 3d420e9fa848 ("drm/xe: Rework GPU page fault handling")
+v2:
+- Only allow querying of failed pagefaults (Matt Brost)
+
+v3:
+- Remove unnecessary size parameter from helper function, as it
+  is a property of the arguments. (jcavitt)
+- Remove unnecessary copy_from_user (Jainxun)
+- Set address_precision to 1 (Jainxun)
+- Report max size instead of dynamic size for memory allocation
+  purposes.  Total memory usage is reported separately.
+
+v4:
+- Return int from xe_vm_get_property_size (Shuicheng)
+- Fix memory leak (Shuicheng)
+- Remove unnecessary size variable (jcavitt)
+
+v5:
+- Rename ioctl to xe_vm_get_faults_ioctl (jcavitt)
+- Update fill_property_pfs to eliminate need for kzalloc (Jianxun)
+
+v6:
+- Repair and move fill_faults break condition (Dan Carpenter)
+- Free vm after use (jcavitt)
+- Combine assertions (jcavitt)
+- Expand size check in xe_vm_get_faults_ioctl (jcavitt)
+- Remove return mask from fill_faults, as return is already -EFAULT or 0
+  (jcavitt)
+
+v7:
+- Revert back to using xe_vm_get_property_ioctl
+- Apply better copy_to_user logic (jcavitt)
+
+v8:
+- Fix and clean up error value handling in ioctl (jcavitt)
+- Reapply return mask for fill_faults (jcavitt)
+
+v9:
+- Future-proof size logic for zero-size properties (jcavitt)
+- Add access and fault types (Jianxun)
+- Remove address type (Jianxun)
+
+v10:
+- Remove unnecessary switch case logic (Raag)
+- Compress size get, size validation, and property fill functions into a
+  single helper function (jcavitt)
+- Assert valid size (jcavitt)
+
+v11:
+- Remove unnecessary else condition
+- Correct backwards helper function size logic (jcavitt)
+
+v12:
+- Use size_t instead of int (Raag)
+
+v13:
+- Remove engine class and instance (Ivan)
+
+v14:
+- Map access type, fault type, and fault level to user macros (Matt
+  Brost, Ivan)
+
 Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 Suggested-by: Matthew Brost <matthew.brost@intel.com>
+Cc: Jainxun Zhang <jianxun.zhang@intel.com>
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+Cc: Raag Jadav <raag.jadav@intel.com>
+Cc: Ivan Briano <ivan.briano@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_pagefault.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/xe/xe_device.c |   3 +
+ drivers/gpu/drm/xe/xe_vm.c     | 109 +++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vm.h     |   2 +
+ 3 files changed, 114 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index 9fa11e837dd1..3240890aac07 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -237,6 +237,11 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
- 		goto unlock_vm;
- 	}
- 
-+	if (xe_vma_read_only(vma) && pf->access_type != ACCESS_TYPE_READ) {
-+		err = -EPERM;
-+		goto unlock_vm;
-+	}
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 1ffb7d1f6be6..02f84a855502 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -195,6 +195,9 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
+ 	DRM_IOCTL_DEF_DRV(XE_WAIT_USER_FENCE, xe_wait_user_fence_ioctl,
+ 			  DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(XE_OBSERVATION, xe_observation_ioctl, DRM_RENDER_ALLOW),
++	DRM_IOCTL_DEF_DRV(XE_VM_GET_PROPERTY, xe_vm_get_property_ioctl,
++			  DRM_RENDER_ALLOW),
 +
- 	atomic = access_is_atomic(pf->access_type);
+ };
  
- 	if (xe_vma_is_cpu_addr_mirror(vma))
+ static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 1d97f4b9673f..9f37dec7c42f 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -3580,6 +3580,115 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	return err;
+ }
+ 
++/*
++ * Map access type, fault type, and fault level from current bspec
++ * specification to user spec abstraction.  The current mapping is
++ * 1-to-1, but if there is ever a hardware change, we will need
++ * this abstraction layer to maintain API stability through the
++ * hardware change.
++ */
++static u8 xe_to_user_access_type(u8 access_type)
++{
++	return access_type;
++}
++
++static u8 xe_to_user_fault_type(u8 fault_type)
++{
++	return fault_type;
++}
++
++static u8 xe_to_user_fault_level(u8 fault_level)
++{
++	return fault_level;
++}
++
++static int fill_faults(struct xe_vm *vm,
++		       struct drm_xe_vm_get_property *args)
++{
++	struct xe_vm_fault __user *usr_ptr = u64_to_user_ptr(args->data);
++	struct xe_vm_fault store = { 0 };
++	struct xe_vm_fault_entry *entry;
++	int ret = 0, i = 0, count, entry_size;
++
++	entry_size = sizeof(struct xe_vm_fault);
++	count = args->size / entry_size;
++
++	spin_lock(&vm->faults.lock);
++	list_for_each_entry(entry, &vm->faults.list, list) {
++		if (i++ == count)
++			break;
++
++		memset(&store, 0, entry_size);
++
++		store.address = entry->address;
++		store.address_precision = entry->address_precision;
++
++		store.access_type = xe_to_user_access_type(entry->access_type);
++		store.fault_type = xe_to_user_fault_type(entry->fault_type);
++		store.fault_level = xe_to_user_fault_level(entry->fault_level);
++
++		ret = copy_to_user(usr_ptr, &store, entry_size);
++		if (ret)
++			break;
++
++		usr_ptr++;
++	}
++	spin_unlock(&vm->faults.lock);
++
++	return ret ? -EFAULT : 0;
++}
++
++static int xe_vm_get_property_helper(struct xe_vm *vm,
++				     struct drm_xe_vm_get_property *args)
++{
++	size_t size;
++
++	switch (args->property) {
++	case DRM_XE_VM_GET_PROPERTY_FAULTS:
++		spin_lock(&vm->faults.lock);
++		size = size_mul(sizeof(struct xe_vm_fault), vm->faults.len);
++		spin_unlock(&vm->faults.lock);
++
++		if (args->size)
++			/*
++			 * Number of faults may increase between calls to
++			 * xe_vm_get_property_ioctl, so just report the
++			 * number of faults the user requests if it's less
++			 * than or equal to the number of faults in the VM
++			 * fault array.
++			 */
++			return args->size <= size ? fill_faults(vm, args) : -EINVAL;
++
++		args->size = size;
++		return 0;
++	}
++	return -EINVAL;
++}
++
++int xe_vm_get_property_ioctl(struct drm_device *drm, void *data,
++			     struct drm_file *file)
++{
++	struct xe_device *xe = to_xe_device(drm);
++	struct xe_file *xef = to_xe_file(file);
++	struct drm_xe_vm_get_property *args = data;
++	struct xe_vm *vm;
++	int ret = 0;
++
++	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
++		return -EINVAL;
++	if (XE_IOCTL_DBG(xe, args->size < 0))
++		return -EINVAL;
++
++	vm = xe_vm_lookup(xef, args->vm_id);
++	if (XE_IOCTL_DBG(xe, !vm))
++		return -ENOENT;
++
++	ret = xe_vm_get_property_helper(vm, args);
++
++	xe_vm_put(vm);
++	return ret;
++}
++
+ /**
+  * xe_vm_bind_kernel_bo - bind a kernel BO to a VM
+  * @vm: VM to bind the BO to
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 9bd7e93824da..63ec22458e04 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -196,6 +196,8 @@ int xe_vm_destroy_ioctl(struct drm_device *dev, void *data,
+ 			struct drm_file *file);
+ int xe_vm_bind_ioctl(struct drm_device *dev, void *data,
+ 		     struct drm_file *file);
++int xe_vm_get_property_ioctl(struct drm_device *dev, void *data,
++			     struct drm_file *file);
+ 
+ void xe_vm_close_and_put(struct xe_vm *vm);
+ 
 -- 
 2.43.0
 
