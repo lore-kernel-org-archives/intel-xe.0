@@ -4,53 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02109C369AB
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Apr 2025 11:15:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99D91C369B4
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Apr 2025 11:16:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D97410E733;
-	Tue, 15 Apr 2025 11:15:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6108110E733;
+	Tue, 15 Apr 2025 11:16:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xlf+lwXk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VfBhEkLH";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19DA910E745
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Apr 2025 11:15:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D27CC10E733
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Apr 2025 11:16:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744715738; x=1776251738;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=8Dg4uWtt/xQvHaOXJ4/iXwiZTA+euOfftZRn4vegoDU=;
- b=Xlf+lwXktkcYVXjA6whbXCKzutZMdQhN83YsVUezh58WjyAzZ8x8hIJL
- 81J3reWCjSGMLt8VM9rfPGcVAUgw0P7TK6BTbx9FqyPerd6F3QZQEpVs1
- KH88JWn3cOqcrB3A89jAoFeVQEMAYRDH/tLGDVa298p218KoYki3pG69L
- QPDpgToPTD8azpD/Lh7WjHLD2k3E+waWrkp0TipXy1uxZ2UZt5a+gJbOm
- SNV0bzNx9XCc06Pm3y0Y3d3pkh1B8U0h4ztF7W/jgN88psapg104MPCut
- 2ygng6qHqHBtrXUIUxLHQxKLRDAdNq9g8Q7UhY7k01OxfDtSvE9etv/V0 A==;
-X-CSE-ConnectionGUID: mr78WMXvQ6yi74uOx/uvxw==
-X-CSE-MsgGUID: atZkvDtZRJ6oNHwR9rhxkw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11403"; a="46383316"
-X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="46383316"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2025 04:15:37 -0700
-X-CSE-ConnectionGUID: cLfxwZaMTmiuztgA78iMvg==
-X-CSE-MsgGUID: lXPBq5ASSLy1a9oe2JPunQ==
+ t=1744715797; x=1776251797;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=eFlvmpvGloTjDmnIsXZut2DpE0sVrpVzzdYb6tIiumQ=;
+ b=VfBhEkLHGov5u+g6621tfVHVeNMUUbwDOcRE2/BOq0N3ug3fTI8Pxi6o
+ rfqIHL6yIUBj1ix37vu3vZ+RoefPWkM4Xmn5MS4p5xzDZiGNOaCU+o9Ph
+ ZxJXVHkZ7NL2ceA4AJBpe+UuOUs2k4+v2d1hs6cXxxMOEsUJ3mGia7Ydl
+ zSuqP9z52t3FWuu1lF/Itzn4SQSu9jG7RNfniKblqACosPE+3qh5iy5Va
+ H1TLqVqO1iV4tOft1J75thkTzNwrkN054QtgbmS6L5cgUN/egHHIEWkig
+ R7UPZZvfoWltFVyJBWcm+yNwd6erx0xwWVwTDZKHUXh8MK7wEl7mXwbvK w==;
+X-CSE-ConnectionGUID: co52WDbAR6i/D55Qbma7jA==
+X-CSE-MsgGUID: MNhYTNKjSQKkgqWSXwRN/g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11403"; a="45932369"
+X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="45932369"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2025 04:16:37 -0700
+X-CSE-ConnectionGUID: rdzdb18XTz66XIwXF5mWzw==
+X-CSE-MsgGUID: FtaEcSPtT4a9ppC7INe0Tw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="153288239"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO fdugast-desk.intel.com)
- ([10.245.246.8])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2025 04:15:36 -0700
-From: Francois Dugast <francois.dugast@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Francois Dugast <francois.dugast@intel.com>
-Subject: [PATCH] drm/xe/ring_ops_types: Increase MAX_JOB_SIZE_DW
-Date: Tue, 15 Apr 2025 13:15:23 +0200
-Message-ID: <20250415111523.149214-1-francois.dugast@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="130619277"
+Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.35])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2025 04:16:35 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>, Harry Austen
+ <hpausten@protonmail.com>
+Cc: intel-xe@lists.freedesktop.org, thomas.hellstrom@linux.intel.com
+Subject: Re: [PATCH] drm/xe: Allow building as kernel built-in
+In-Reply-To: <5ztkuw7ip5seoonhtnypq4wkpjnh3okq4fzdnbmmsiadt467fv@ar236dcnik6w>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250412220137.3892-2-hpausten@protonmail.com>
+ <5ztkuw7ip5seoonhtnypq4wkpjnh3okq4fzdnbmmsiadt467fv@ar236dcnik6w>
+Date: Tue, 15 Apr 2025 14:16:32 +0300
+Message-ID: <87cyddr7xr.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,36 +70,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This limit can be hit, for example when running IGT compute-square on MTL:
+On Mon, 14 Apr 2025, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Sat, Apr 12, 2025 at 10:07:21PM +0000, Harry Austen wrote:
+>>Fix Kconfig symbol dependency on KUNIT, which isn't actually required
+>>for XE to be built-in. However, if KUNIT is enabled, it must be built-in
+>>too.
+>>
+>>Fixes: 08987a8b6820 ("drm/xe: Fix build with KUNIT=3Dm")
+>>Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>>Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+>>Signed-off-by: Harry Austen <hpausten@protonmail.com>
+>>---
+>> drivers/gpu/drm/xe/Kconfig | 4 ++--
+>> 1 file changed, 2 insertions(+), 2 deletions(-)
+>>
+>>diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+>>index 9bce047901b22..b65bd6b9e65d4 100644
+>>--- a/drivers/gpu/drm/xe/Kconfig
+>>+++ b/drivers/gpu/drm/xe/Kconfig
+>>@@ -1,7 +1,7 @@
+>> # SPDX-License-Identifier: GPL-2.0-only
+>> config DRM_XE
+>> 	tristate "Intel Xe Graphics"
+>>-	depends on DRM && PCI && MMU && (m || (y && KUNIT=3Dy))
+>>+	depends on DRM && PCI && MMU && (m || (y && KUNIT!=3Dm))
+>> 	select INTERVAL_TREE
+>> 	# we need shmfs for the swappable backing store, and in particular
+>> 	# the shmem_readpage() which depends upon tmpfs
+>>@@ -51,7 +51,7 @@ config DRM_XE
+>>
+>> config DRM_XE_DISPLAY
+>> 	bool "Enable display support"
+>>-	depends on DRM_XE && DRM_XE=3Dm && HAS_IOPORT
+>>+	depends on DRM_XE && HAS_IOPORT
+>
+> this wouldn't work with i915 also built-in. Does it now?
 
-    [   63.582385] xe 0000:00:02.0: [drm] Assertion `i <= 48` failed!
-                   platform: METEORLAKE subplatform: 1
-                   graphics: Xe_LPG 12.71 step B0
-                   media: Xe_LPM+ 13.00 step C0
-                   tile: 0 VRAM 0 B
-                   GT: 0 type 1
-    [   63.582408] WARNING: CPU: 0 PID: 2439 at drivers/gpu/drm/xe/xe_ring_ops.c:395 __emit_job_gen12_render_compute+0xa7c/0xc70 [xe]
+I don't think so.
 
-Increase the value to allow this test to pass.
+BR,
+Jani.
 
-Signed-off-by: Francois Dugast <francois.dugast@intel.com>
----
- drivers/gpu/drm/xe/xe_ring_ops_types.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops_types.h b/drivers/gpu/drm/xe/xe_ring_ops_types.h
-index 1ae56e2ee7b4..121279c826eb 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops_types.h
-+++ b/drivers/gpu/drm/xe/xe_ring_ops_types.h
-@@ -8,7 +8,7 @@
- 
- struct xe_sched_job;
- 
--#define MAX_JOB_SIZE_DW 48
-+#define MAX_JOB_SIZE_DW 64
- #define MAX_JOB_SIZE_BYTES (MAX_JOB_SIZE_DW * 4)
- 
- /**
--- 
-2.43.0
-
+--=20
+Jani Nikula, Intel
