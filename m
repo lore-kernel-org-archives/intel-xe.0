@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58397C369AB
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Apr 2025 09:53:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E149EC369B4
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Apr 2025 09:53:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CAA410E6B8;
-	Tue, 15 Apr 2025 09:53:06 +0000 (UTC)
-Received: from b68e5b3b99e1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81D7910E0D8;
- Tue, 15 Apr 2025 09:53:04 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6CDF10E0D8;
+	Tue, 15 Apr 2025 09:53:07 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GAKpY0G2";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD82C10E0D8;
+ Tue, 15 Apr 2025 09:53:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744710786; x=1776246786;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=V2ELufSE3bc5JJpKuTkPU0OiUJVRnvU3d+I3lTQfvmA=;
+ b=GAKpY0G2N8FOxOpjaRsh19oWS5BeBvTXr9KbRcnh4U5wO2bXZVRvsDQ+
+ l+jkT0pJlDS7u1srd0RMOkX2MkqA6n2YDQbkytF9fOPXFD4BzSA4X80sF
+ XpYW0edQh5NRwqvEu9qhFoqv+G0gVig0b2ryTETWZCcH/m3DtmcyuUG6o
+ 4AvHhSoZPD6m7cNb77U3e1+I5HoU9UVDDrT6PMsXOvj6TSEwZLyDHPpvk
+ fHzATy5I/x/DPcbBD3acZg2NNr+NHDAKXqJ7qyX24v3MpP+QulTecccxo
+ HjY7qJFmtkoNFJ2vJcpdzk8K1W/Il/lY0AXBJ7XQdS1C3+FjRxQrYDK8h g==;
+X-CSE-ConnectionGUID: 5XdUIzzUS+CP30z/1uARAQ==
+X-CSE-MsgGUID: rFyLK9CWRK+jympshyi/sw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11403"; a="56849015"
+X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="56849015"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2025 02:53:04 -0700
+X-CSE-ConnectionGUID: Vzme2IFvQfmi2bV7aPYTLg==
+X-CSE-MsgGUID: glIMmwTISDGqZqvpMhDsGQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="161119174"
+Received: from nemesa.iind.intel.com ([10.190.239.22])
+ by fmviesa001.fm.intel.com with ESMTP; 15 Apr 2025 02:53:02 -0700
+From: Nemesa Garg <nemesa.garg@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ mika.kahola@intel.com
+Cc: Nemesa Garg <nemesa.garg@intel.com>
+Subject: [PATCH] drm/i915/display: Implement wa_14024400148
+Date: Tue, 15 Apr 2025 15:16:33 +0530
+Message-Id: <20250415094633.2465122-1-nemesa.garg@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/edid=3A_more_displayi?=
- =?utf-8?q?d_timing_parsing_and_cleanups?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 15 Apr 2025 09:53:04 -0000
-Message-ID: <174471078451.4942.10280092954907009616@b68e5b3b99e1>
-X-Patchwork-Hint: ignore
-References: <cover.1744708239.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1744708239.git.jani.nikula@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,59 +61,69 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Workaround recommend use polling method
+for pm_demand to finish as to avoid timeout.
 
-Series: drm/edid: more displayid timing parsing and cleanups
-URL   : https://patchwork.freedesktop.org/series/147737/
-State : warning
+Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_pmdemand.c | 27 +++++++++++++++++--
+ 1 file changed, 25 insertions(+), 2 deletions(-)
 
-== Summary ==
-
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-13a92ce9fd458ebd6064f23cec8c39c53d02ed26
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 8aa6507bd61179964b0fb3778320b86777d57a98
-Author: Egor Vorontsov <sdoregor@sdore.me>
-Date:   Tue Apr 15 12:13:31 2025 +0300
-
-    drm/edid: Refactor DisplayID timing block structs
-    
-    Using le16 instead of u8[2].
-    
-    Suggested-by: Jani Nikula <jani.nikula@linux.intel.com>
-    Signed-off-by: Egor Vorontsov <sdoregor@sdore.me>
-    Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-+ /mt/dim checkpatch 4e52f6bddf99cb28ed0279d56bb8286a8bbfda65 drm-intel
-d06c63335418 drm/edid: Implement DisplayID Type IX & X timing blocks parsing
--:64: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
-#64: FILE: drivers/gpu/drm/drm_edid.c:6837:
-+							   const struct displayid_formula_timings_9 *timings,
-
--:80: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
-#80: FILE: drivers/gpu/drm/drm_edid.c:6853:
-+	mode = drm_cvt_mode(dev, hactive, vactive, timings->vrefresh + 1, timing_formula == 1, false, false);
-
--:95: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
-#95: FILE: drivers/gpu/drm/drm_edid.c:6868:
-+	const struct displayid_formula_timing_block *formula_block = (struct displayid_formula_timing_block *)block;
-
-total: 0 errors, 3 warnings, 0 checks, 100 lines checked
-8aa6507bd611 drm/edid: Refactor DisplayID timing block structs
--:56: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
-#56: FILE: drivers/gpu/drm/drm_edid.c:6763:
-+							    const struct displayid_detailed_timings_1 *timings,
-
-total: 0 errors, 1 warnings, 0 checks, 66 lines checked
-
+diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+index d22b5469672d..610d05b73b99 100644
+--- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
++++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+@@ -478,6 +478,22 @@ static bool intel_pmdemand_req_complete(struct intel_display *display)
+ 		 XELPDP_PMDEMAND_REQ_ENABLE);
+ }
+ 
++static void intel_pmdemand_poll(struct intel_display *display)
++{
++	const unsigned int timeout_ms = 10;
++	u32 status;
++	int ret;
++
++	ret = intel_de_wait_custom(display, XELPDP_INITIATE_PMDEMAND_REQUEST(1),
++				   XELPDP_PMDEMAND_REQ_ENABLE, 0,
++				   50, timeout_ms, &status);
++
++	if (ret == -ETIMEDOUT)
++		drm_err(display->drm,
++			"timeout within %ums (status 0x%08x)\n",
++			timeout_ms, status);
++}
++
+ static void intel_pmdemand_wait(struct intel_display *display)
+ {
+ 	if (!wait_event_timeout(display->pmdemand.waitqueue,
+@@ -508,7 +524,11 @@ void intel_pmdemand_program_dbuf(struct intel_display *display,
+ 	intel_de_rmw(display, XELPDP_INITIATE_PMDEMAND_REQUEST(1), 0,
+ 		     XELPDP_PMDEMAND_REQ_ENABLE);
+ 
+-	intel_pmdemand_wait(display);
++	/* Wa_14024400148 For lnl use polling method */
++	if (DISPLAY_VER(display) == 20)
++		intel_pmdemand_poll(display);
++	else
++		intel_pmdemand_wait(display);
+ 
+ unlock:
+ 	mutex_unlock(&display->pmdemand.lock);
+@@ -617,7 +637,10 @@ intel_pmdemand_program_params(struct intel_display *display,
+ 	intel_de_rmw(display, XELPDP_INITIATE_PMDEMAND_REQUEST(1), 0,
+ 		     XELPDP_PMDEMAND_REQ_ENABLE);
+ 
+-	intel_pmdemand_wait(display);
++	if (DISPLAY_VER(display) == 20)
++		intel_pmdemand_poll(display);
++	else
++		intel_pmdemand_wait(display);
+ 
+ unlock:
+ 	mutex_unlock(&display->pmdemand.lock);
+-- 
+2.25.1
 
