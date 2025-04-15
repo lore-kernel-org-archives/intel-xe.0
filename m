@@ -4,70 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 721A4C369B5
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Apr 2025 12:48:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6543C369AB
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Apr 2025 12:52:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B51710E77D;
-	Tue, 15 Apr 2025 12:48:24 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="CnL1/O1W";
-	dkim-atps=neutral
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com
- [209.85.216.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C775D10E77C;
- Tue, 15 Apr 2025 12:48:17 +0000 (UTC)
-Received: by mail-pj1-f50.google.com with SMTP id
- 98e67ed59e1d1-2ff799d99dcso5103964a91.1; 
- Tue, 15 Apr 2025 05:48:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1744721297; x=1745326097; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=/50ZgMDNi0Julm+YQwFklu9hoBrhLVPwRA+raz1I+ds=;
- b=CnL1/O1WtNLwB94ENXCYKUk8Hbcif4eUWWPeI/Yzi/KBRh7co8uEMFbPeZzwi6Z0Xo
- k1gBFah2esDV1+yKaKFlykbHtJQX+OdP70uc71syXUi3z6A4YoNgU/hKJbSG4rcgZj3Y
- hh6VQdW/62M/VnNyCYBCb2G/jvWjhdSnyLcxjOnI/BGI0JygtcMcWRb5qOVGTFMxfwOZ
- vmG1LiB0BbwdT6B8G8rNE0XEKBK4n58zdswDSXMdMmMsnlQEJp6Vq/esawDUN59aklFT
- 0TTEpqH3ZTkqONpvrVe0ed7yqzHLAPQtiBm+IFuuWwmSFzPPnNP8UKWxW2ZaUqIpd0Hy
- wQ/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1744721297; x=1745326097;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=/50ZgMDNi0Julm+YQwFklu9hoBrhLVPwRA+raz1I+ds=;
- b=VtKPOFvWmKUTnnH7oDkrvyiKy5SvMWsbwO3JPJir8ByyiOZxa9DAH+N9fDYXaGBNYB
- 8GF6F547Fjr7v16hn4vKtbRPwQo7274yPIaJbKIz73EiwfbFYjhS85Z4nZ4Hdd3feKC+
- UbVprkrlLmhR0drcS5ys/ffMDuZ/Vn+OZzZEPpbxbbsW6gqERIGZL7rxDgwcdFuHzrKK
- Bdnp/vJ594TlY1OOrV4IggCeehaTwXjHc6+7DxO8iS7sC34ZWL1ZAxUsyTpzlu24yWrL
- 61n+AIep3ffEeSeWZn2TIwUUzwrgU3rPWwcWwxr/jEVFPQQgNBe5AelYHKCXP8whZ8UB
- N+RA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVOsNPya23cu0GRHFe1G9akb3GUxwxI1zkWGZQWFShg2nVmUYz24dOgX1ocX+nVcuCq5ntnL9Mlpw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzdQ99RZfAugX4/R08F+dFAlEoBTI1CfknQOtpqybqGJU31j2UC
- oB74Ew8kQWn9DI/IDxn6Re6CtmlIEQziNgQzBgF+mgzOm79O5mXyOU0OxiMXzGznt8Wb9qBHRcb
- 8Nwg3s7cm4Y6CV5eOj0IO7gq3GTY=
-X-Gm-Gg: ASbGncvb8TjH3ifLaQyi8B3k+VnuxnGZK8B8gjEnwuzz+CmzlQpGvVQfPznyM0Nx/Gv
- hHsQcX7jnNxWjIcFayjSB4TPvthNqKR+RbzVaEML2QgkG1PBd/9WphLVCiF0QKq83sK5FZyJSSL
- ArJk2+wz6kcOWYAzjMpVywyPFk
-X-Google-Smtp-Source: AGHT+IEEXWGQ2CWYBGH6Zvv/QQN5G7SPRvD5mzY8SMVDBnOR97o8dwdp5rRReK3Tj1qypC+wTNmYDaxPnNZUgjOprTA=
-X-Received: by 2002:a17:90b:5246:b0:2ef:2f49:7d7f with SMTP id
- 98e67ed59e1d1-3082364973fmr29719494a91.18.1744721297223; Tue, 15 Apr 2025
- 05:48:17 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 693BF10E780;
+	Tue, 15 Apr 2025 12:52:38 +0000 (UTC)
+Received: from b68e5b3b99e1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33CE810E77F;
+ Tue, 15 Apr 2025 12:52:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0150715210838910836=="
 MIME-Version: 1.0
-References: <20250330180554.729353-1-vinod.govindapillai@intel.com>
-In-Reply-To: <20250330180554.729353-1-vinod.govindapillai@intel.com>
-From: =?UTF-8?Q?Juha=2DPekka_Heikkil=C3=A4?= <juhapekka.heikkila@gmail.com>
-Date: Tue, 15 Apr 2025 15:48:04 +0300
-X-Gm-Features: ATxdqUG-dbyC2EDpKfHqjIKPZCasrPJXesbtCCDFlAve1aid4AGtw7DkDoSDno4
-Message-ID: <CAJ=qYWSca4V2ezVp8X9gvLzpzYM3b6HAhzGBm8WxDoeLSVHpNA@mail.gmail.com>
-Subject: Re: [PATCH v1] drm/i915/display: implement wa_14022269668
-To: Vinod Govindapillai <vinod.govindapillai@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- uma.shankar@intel.com, jani.saarinen@intel.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915=3A_i915=5Freg=2Eh_?=
+ =?utf-8?q?display_split_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 15 Apr 2025 12:52:37 -0000
+Message-ID: <174472155720.6683.5544381253745564384@b68e5b3b99e1>
+X-Patchwork-Hint: ignore
+References: <cover.1744714233.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1744714233.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,50 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-look ok to me
+--===============0150715210838910836==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+== Series Details ==
 
-On Sun, Mar 30, 2025 at 9:06=E2=80=AFPM Vinod Govindapillai
-<vinod.govindapillai@intel.com> wrote:
->
-> Woraround recommend programming the fbc_stride for bmg always.
-> Display driver handles the need to program the fbc stride using
-> the override stride. So ensure that we always get the override
-> stride in case of bmg
->
-> Bspec: 74212
-> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_fbc.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
-915/display/intel_fbc.c
-> index e89cee323d8b..970f8c96cc85 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -252,9 +252,12 @@ static u16 intel_fbc_override_cfb_stride(const struc=
-t intel_plane_state *plane_s
->          * Gen9 hw miscalculates cfb stride for linear as
->          * PLANE_STRIDE*512 instead of PLANE_STRIDE*64, so
->          * we always need to use the override there.
-> +        *
-> +        * wa_14022269668 For bmg, always program the FBC_STRIDE before f=
-bc enable
->          */
->         if (stride !=3D stride_aligned ||
-> -           (DISPLAY_VER(display) =3D=3D 9 && fb->modifier =3D=3D DRM_FOR=
-MAT_MOD_LINEAR))
-> +           (DISPLAY_VER(display) =3D=3D 9 && fb->modifier =3D=3D DRM_FOR=
-MAT_MOD_LINEAR) ||
-> +           display->platform.battlemage)
->                 return stride_aligned * 4 / 64;
->
->         return 0;
-> --
-> 2.43.0
->
+Series: drm/i915: i915_reg.h display split (rev2)
+URL   : https://patchwork.freedesktop.org/series/144506/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-2953-4e52f6bddf99cb28ed0279d56bb8286a8bbfda65_BAT -> xe-pw-144506v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 8)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-144506v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@intel_sysfs_debugfs@xe-forcewake:
+    - bat-lnl-1:          [PASS][1] -> [ABORT][2] ([Intel XE#4624])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2953-4e52f6bddf99cb28ed0279d56bb8286a8bbfda65/bat-lnl-1/igt@intel_sysfs_debugfs@xe-forcewake.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144506v2/bat-lnl-1/igt@intel_sysfs_debugfs@xe-forcewake.html
+
+  
+  [Intel XE#4624]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4624
+
+
+Build changes
+-------------
+
+  * Linux: xe-2953-4e52f6bddf99cb28ed0279d56bb8286a8bbfda65 -> xe-pw-144506v2
+
+  IGT_8319: db9eca9df70fbb72589fcaf689dd92784b06a9c0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2953-4e52f6bddf99cb28ed0279d56bb8286a8bbfda65: 4e52f6bddf99cb28ed0279d56bb8286a8bbfda65
+  xe-pw-144506v2: 144506v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144506v2/index.html
+
+--===============0150715210838910836==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: i915_reg.h display split (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144506/">https://patchwork.freedesktop.org/series/144506/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144506v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144506v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2953-4e52f6bddf99cb28ed0279d56bb8286a8bbfda65_BAT -&gt; xe-pw-144506v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 8)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-144506v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@intel_sysfs_debugfs@xe-forcewake:<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2953-4e52f6bddf99cb28ed0279d56bb8286a8bbfda65/bat-lnl-1/igt@intel_sysfs_debugfs@xe-forcewake.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-144506v2/bat-lnl-1/igt@intel_sysfs_debugfs@xe-forcewake.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4624">Intel XE#4624</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2953-4e52f6bddf99cb28ed0279d56bb8286a8bbfda65 -&gt; xe-pw-144506v2</li>
+</ul>
+<p>IGT_8319: db9eca9df70fbb72589fcaf689dd92784b06a9c0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2953-4e52f6bddf99cb28ed0279d56bb8286a8bbfda65: 4e52f6bddf99cb28ed0279d56bb8286a8bbfda65<br />
+  xe-pw-144506v2: 144506v2</p>
+
+</body>
+</html>
+
+--===============0150715210838910836==--
