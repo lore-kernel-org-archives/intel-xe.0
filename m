@@ -4,60 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6B77C369AB
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Apr 2025 08:56:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CEFDC369AB
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Apr 2025 09:13:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6533810E094;
-	Tue, 15 Apr 2025 08:56:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C35E310E0C9;
+	Tue, 15 Apr 2025 09:13:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S00ngXha";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cfkHXPwx";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB82310E094
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Apr 2025 08:56:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCCD910E0C9;
+ Tue, 15 Apr 2025 09:13:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744707382; x=1776243382;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Gp7LSR3ybPvyPz/MuEcd1Lm3bLnAaqVUpDn9ZTw1uiE=;
- b=S00ngXhaLCCn7D05dX2FunHnbMR+3eMISG+tlcqqL1/WIk2Ll1zBS9NW
- O5uah5FDgKYhAzSY4A0vEX8Sp3DrbNJdtU0MPsKQ5rdz6nWT81QOCmYVi
- Sjc1Ot5C2lwArzlnh9ri6oIa5WQfsigxPICbEaSl1nxDKPoPvOzlQv+ms
- mrujZG0kDHQIEBbZdGXdEOWbM6uWSoOEt611ejYijJjOVEOoM1wC0Riyw
- 96mqHuh1u/S1QKKzYInJpVId23oZwTmgAf0/BaVcZqznTN1WCz8YTVLr6
- Gh0mE6I6ajYpk8zZzEVzI/X/6shMuRVtjakZCyBXqxt/wG5XQoc7LhFT0 g==;
-X-CSE-ConnectionGUID: 4ytdveGnSE2H4htzezEzkw==
-X-CSE-MsgGUID: rlIOH9pvS7WNgwPwF3L8SA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11403"; a="50031781"
-X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="50031781"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2025 01:56:21 -0700
-X-CSE-ConnectionGUID: fU+Jw/U7SRCZDO51ktn9lA==
-X-CSE-MsgGUID: EWrnrL8OT/eqd+tGllaJgg==
+ t=1744708423; x=1776244423;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=eT09ZGkfujX+nvthus87tmeuIMZozYbGYyFoKcQlems=;
+ b=cfkHXPwx0YqWe7c8ZYkxubTIi2PzLHL5R79TuExVpHkSp5dwCD7z41AM
+ NSFnL0DJPgdiOlIVm/jvhg1boBI/CKTRlXw4p8BYtA0T16az2W7BZ/dtr
+ prHcbKYeJa/lEcoi7ZSZK3yLZbCdCkeUPksAl6BmWPoDNhJ2og8ExjBWD
+ BSFTMZgOAo6h4s6Vc8JzI48R9UFjxQdWMXgaffVhexr+GKGfAuXVxJleN
+ pV7SpKVzPhjupOhKf5yjpQHjVMzKQqWMQ/DTYshWJT7s+J3iYoSmNFsNk
+ HWOZoMeFGEawWsRwdOhqT8ylSpPBgZBgJJlr5oHxW+SPq8Z9oNa+tCuEY Q==;
+X-CSE-ConnectionGUID: BsfWOvXSTPWfmT6mQ2FUbw==
+X-CSE-MsgGUID: 8whOEPlFSwGVP2yL+sPoeQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11403"; a="46371155"
+X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="46371155"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2025 02:13:42 -0700
+X-CSE-ConnectionGUID: TusXxcogSau29wTSjDb3Mg==
+X-CSE-MsgGUID: OcgWT7I+SxSmI5VedDqZQA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="135045798"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa004.jf.intel.com with ESMTP; 15 Apr 2025 01:56:19 -0700
-Received: from [10.245.83.107] (unknown [10.245.83.107])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 9BA6933BE8;
- Tue, 15 Apr 2025 09:56:18 +0100 (IST)
-Message-ID: <fd748af6-e0f6-434d-ba05-8c2a16631533@intel.com>
-Date: Tue, 15 Apr 2025 10:56:17 +0200
+X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="130596221"
+Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.35])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2025 02:13:39 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jani.nikula@intel.com, Egor Vorontsov <sdoregor@sdore.me>
+Subject: [RESEND 0/2] drm/edid: more displayid timing parsing and cleanups
+Date: Tue, 15 Apr 2025 12:13:29 +0300
+Message-Id: <cover.1744708239.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/xe: Add fault injection for
- xe_hw_engine_class_to_str
-To: Sobin Thomas <sobin.thomas@intel.com>, intel-xe@lists.freedesktop.org
-Cc: tejas.upadhyay@intel.com
-References: <20250415064211.2889970-1-sobin.thomas@intel.com>
- <20250415064211.2889970-2-sobin.thomas@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20250415064211.2889970-2-sobin.thomas@intel.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,48 +68,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Resend of Egor's patches [1].
 
+[1] https://lore.kernel.org/r/20250214110643.506740-1-sdoregor@sdore.me
 
-On 15.04.2025 08:42, Sobin Thomas wrote:
-> - Added fault injection for `xe_hw_engine_class_to_str` to enhance coverage.
+Cc: Egor Vorontsov <sdoregor@sdore.me>
 
-what kind of coverage this function really provides?
+Egor Vorontsov (2):
+  drm/edid: Implement DisplayID Type IX & X timing blocks parsing
+  drm/edid: Refactor DisplayID timing block structs
 
-it returns string pointer so it's likely mostly used in the print()
-functions which can handle the NULL
+ drivers/gpu/drm/drm_displayid_internal.h | 31 +++++---
+ drivers/gpu/drm/drm_edid.c               | 91 ++++++++++++++++++++----
+ 2 files changed, 99 insertions(+), 23 deletions(-)
 
-and even if it used for something weird when it's really hard to deal
-with NULL string, then IMO simpler option would be to update this helper
-function to always return non-null string even for the unknown or missed
-class like "unk"
-
-btw, it looks that XE_ENGINE_CLASS_MAX was a) just a bad choice to be
-included as an enumerator, and b) only this one could return NULL
-
-> - can be tested with igt@inject-fault-probe-function-xe_hw_engine_class_to_str
-
-don't use bullets and "describe your changes in imperative mood"
-see [1]
-
-[1]
-https://docs.kernel.org/process/submitting-patches.html#describe-your-changes
-
-> 
-> Signed-off-by: Sobin Thomas <sobin.thomas@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_hw_engine.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-> index 93241fd0a4ba..56d95635374a 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
-> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-> @@ -1011,6 +1011,7 @@ const char *xe_hw_engine_class_to_str(enum xe_engine_class class)
->  
->  	return NULL;
->  }
-> +ALLOW_ERROR_INJECTION(xe_hw_engine_class_to_str, NULL);
->  
->  u64 xe_hw_engine_read_timestamp(struct xe_hw_engine *hwe)
->  {
+-- 
+2.39.5
 
