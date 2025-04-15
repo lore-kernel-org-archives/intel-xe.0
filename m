@@ -4,58 +4,165 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48C49C369AB
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Apr 2025 22:20:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C868FC369AB
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Apr 2025 22:41:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0453D10E39C;
-	Tue, 15 Apr 2025 22:20:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1810B10E186;
+	Tue, 15 Apr 2025 22:41:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j3iqsbGC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gG2Z5LdC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C78A10E397
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Apr 2025 22:20:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A46310E186
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Apr 2025 22:41:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744755642; x=1776291642;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=/0Vo4ZUCdKTH1dnR5GTp8/BnhjG18nKK8MG14fH/Kro=;
- b=j3iqsbGCRwtsnC525uZBDNtvrgs8aoaLA4+iFI5xV3e155NLvUOguDea
- T33bg/qw4VFIhQLkiAAxUK7AhZgCj3CGx4zqWsInpxkO0VOQO/3Iu2jl7
- kmVHGZ4GvJFQK3men4KI0mNnW5VmWf+E8dQysTZR3WtcYMPdXRfdEUXpy
- wWSKbg42EcqRN5JgtigxNHbI1nBVDPdOZTQrGWlDBOJxv9jphSDzWzXMs
- ULm5tCDuAxSANRATIKUIfk1vq/i9vK42zVorDr3wAB2IdMVg8rU9Ppn5Y
- 1dCSS+qU4GEkUkQCQ0H9dgFtIpXpUNoyHTE9oR/IdwdpcGQBcAADP3l3u w==;
-X-CSE-ConnectionGUID: fWy52Gp+S/KdkmIZ6er7jQ==
-X-CSE-MsgGUID: AsS07sbpRmy6bFzgGU3fGw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11404"; a="49936857"
-X-IronPort-AV: E=Sophos;i="6.15,214,1739865600"; d="scan'208";a="49936857"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2025 15:20:42 -0700
-X-CSE-ConnectionGUID: etXwBd65T+CZFp/Rd4e79A==
-X-CSE-MsgGUID: mtt433qGRx+vlrgXEnEVLg==
+ t=1744756879; x=1776292879;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=vo4qVTO2FI6yxT3lYXWVTisUjJUlpdZnUI0UBvAVlj8=;
+ b=gG2Z5LdCUz9MPpzZhbBY545EBxqgyj6vN8TJtt0MDtZpYMCcgbCeiJgn
+ SnMfLgOJLjNhBxT6Ds9xe/H2EwDTOAqmILrtnZnU+ystNBAB4FXs3XBJR
+ idUH50QYAIvJC162XH6Hil+SEbdBCPlvhxn5/MNLw39maJ+lIGo5yXX1c
+ 99hn/tqAdYxQtDpOg3jWnTm0rGTRvE1x4jfwZwARB2lOr2Hgi3S+s3TG6
+ OwhTrtbLNtWUjP9aMR13b0DwxxEgEJsbWxnvR4oKE2QPH4NPfUpuzvZt0
+ OGlUPImOnA0vCeo7jbZIlmokiHspym+RF3MqPthcI+86LWPnPJRxaV9fd Q==;
+X-CSE-ConnectionGUID: iupaHjI5R1WlLXV8hgIRuA==
+X-CSE-MsgGUID: jPcN4f7yTv6Bqy0lxnco9g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11404"; a="46415370"
+X-IronPort-AV: E=Sophos;i="6.15,214,1739865600"; d="scan'208";a="46415370"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2025 15:41:08 -0700
+X-CSE-ConnectionGUID: 7QYmYm5WSda2y3/Da/MY1A==
+X-CSE-MsgGUID: chAnFNHXQ0akm3TO4y84hw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,214,1739865600"; d="scan'208";a="131153920"
-Received: from gkczarna.igk.intel.com ([10.211.131.163])
- by fmviesa009.fm.intel.com with ESMTP; 15 Apr 2025 15:20:40 -0700
-From: Tomasz Lis <tomasz.lis@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Wajdeczko?= <michal.wajdeczko@intel.com>,
- =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v10 4/4] drm/xe/vf: Fixup CTB send buffer messages after
- migration
-Date: Wed, 16 Apr 2025 00:20:30 +0200
-Message-Id: <20250415222030.3616494-5-tomasz.lis@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250415222030.3616494-1-tomasz.lis@intel.com>
-References: <20250415222030.3616494-1-tomasz.lis@intel.com>
-MIME-Version: 1.0
+X-IronPort-AV: E=Sophos;i="6.15,214,1739865600"; d="scan'208";a="135047688"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2025 15:41:07 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14; Tue, 15 Apr 2025 15:41:06 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14 via Frontend Transport; Tue, 15 Apr 2025 15:41:06 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Tue, 15 Apr 2025 15:41:06 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=s4uAFs0CNTeT/P00YM3KvF+pqI0r/nGGAwphoIY9X6Xi8AQKSckSTN2IgRkMDf3WnPqV1me3JTH60kHOhZ3C8d3UYSR7pebXgTtoHK+S2AybeOf8sqtL6NPVaKu5CqoodfgEJhF/XzbYIZH0GsHpBRmG/fSk4NamgW7mcLSiCtkTZdpmGjxkXm2BLdjyS9Kgo+6Pcwx5EKQKS80VuEvudKftLo3HHuYC+9yxIB9AmezTLFAUrE4ywXlR8cWFP83oCC8w3LsknS/z2VNTgg2IftzA4o6f8Ucq2OgivaMB/IrPXbodZYGJpgK9nxknItOJC3Qnw2w62ZDDpsaYaoyNMQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0YHQvcJK2YDr9BfBS8WwZ8VeVJd+05be3TZ9jX6TvvQ=;
+ b=FnTwgRQHdDa/QMz92bqYlAIj22jnED0CxdJKUCCi5yOrTUuKC6Rgmjih3NEkTW2QNMMUfWZgV9dYPCOmkVyDfvGmUPbWtn4Q+2sV1aQE7vEpsEQWV43AG3on5VtdE+ABtp43TB5K8ZHBOhAWiRpxAOd6tvQsRYlxzjt2u344tsW8r+oewL8WQl7PRF9WlsVvQMWTZaFmguk+VKu0g2oqGdSKBbxVOPGVAhxJmQlidN7KXO/hTT9JiaDYU6895tWjSIhS/ZS4t5+eSo9Khlw6pjGaPf5RWYwQoWemu6gsHLjY84CDM61E6/26LEBMZ3SSfGS/6shYCnDcrv9xOBsEdQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by DS0PR11MB7925.namprd11.prod.outlook.com (2603:10b6:8:f8::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.33; Tue, 15 Apr
+ 2025 22:41:01 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332%6]) with mapi id 15.20.8632.036; Tue, 15 Apr 2025
+ 22:41:01 +0000
+Date: Tue, 15 Apr 2025 15:42:20 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@intel.com>, <stable@vger.kernel.org>
+Subject: Re: [PATCH] drm/xe/userptr: fix notifier vs folio deadlock
+Message-ID: <Z/7gzLDCtXfY2bz4@lstrano-desk.jf.intel.com>
+References: <20250414132539.26654-2-matthew.auld@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250414132539.26654-2-matthew.auld@intel.com>
+X-ClientProxiedBy: MW4PR03CA0056.namprd03.prod.outlook.com
+ (2603:10b6:303:8e::31) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DS0PR11MB7925:EE_
+X-MS-Office365-Filtering-Correlation-Id: eb9a8f16-e8e7-42ae-a1b7-08dd7c6e9947
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?qPWL15e1CysB9gwVWMNfVTWAEJSfS87T6f8Z0NviXao3Dl/FM1FxohUBVW?=
+ =?iso-8859-1?Q?se1A3XA8HY56XLMI4bNDTSisewyncmxbR/jeIqtDkONbT9kMKksjcmacda?=
+ =?iso-8859-1?Q?1xCJupOew+j/jpZHeXI43wKM6q4Y9W8+Ul/Ei4T23Fit1pMM9JOzenz5F9?=
+ =?iso-8859-1?Q?RNhFUEl+lMiWKvyg6rDtG+LhEYUR10Q1tsG1XgotF8o4WUuflN50Gf1uXW?=
+ =?iso-8859-1?Q?87aiX5hgNv9r5deWPdGg1l4LhTX1vXet8g1h9IgdJ9/uKMahwJ+oxQ2RCb?=
+ =?iso-8859-1?Q?Am91LdVVEcA/kziSJInu5oKDiJrOt5RdJaOLydzNJMctiDxdbw+akWPIQj?=
+ =?iso-8859-1?Q?SqtjviMrgkz26Ekvy5H2oPka/BBnQKU5KLjlXk7S42fIjXKT7AkXfQRkYq?=
+ =?iso-8859-1?Q?8eqTqx5qy6BAvsQAgs/49IAYZfRy0Fyl/Pkvx/qDco2lQvRUL5IT3+L0NI?=
+ =?iso-8859-1?Q?lEqqeTeGj/5qBqGKLpFFObb8LFreSz2Zu4xrtxLErEsQ129VnDbSAJFL4x?=
+ =?iso-8859-1?Q?wRwu6eBPgforto8w938gcg4TnkWIjF4rjVEzGeIUJHgMTVTCt3bllIv+l8?=
+ =?iso-8859-1?Q?qqsezhgME+lcOLC8VXESZHR6k8RDQ/jcK6xek1lEwx1sUaRQ19TVhfSXsx?=
+ =?iso-8859-1?Q?VzYH+wWNq8Ip6kd37qN+G0P7VK5FVBRq7nTFwBCmGo1bLmdfVJHgfzJZUm?=
+ =?iso-8859-1?Q?GsxNosuRRPf2/wyobBuWIGDDb4vfvYPVHw8Mu7n4mBH3J7aQ3kqEFex+Yx?=
+ =?iso-8859-1?Q?tv6GmHKCTPFqrrlR77OhqQanHOLpIj+av9ZntT0dbPqOEuXJZMrP9o8VvD?=
+ =?iso-8859-1?Q?wnjxtCMkB5SH+twGS52J68PQstFB901la8dlL9QasEr3+Rb8+/U1fRDhMg?=
+ =?iso-8859-1?Q?tUjFsm1mhn9W3BINJvXHLgakVYYIXFZGmFWkBVIfAYCj8mhCzglbRZ4NUr?=
+ =?iso-8859-1?Q?xRoQsNv8NBDXuv1l+okPv/GvPTEvIUAZKcQSnBf4YqsiBsBxldhf9w1NKk?=
+ =?iso-8859-1?Q?gn/eQceGkxDoVylRwDRWCuX7r/E0lHFjlk9Gu92nxR1F8hj65OCLl2/WMm?=
+ =?iso-8859-1?Q?vh+rm73DfkslrxWNrxvejfOMNHYHRf+9hL0rlQfou990xE6Gajo5+WXdUw?=
+ =?iso-8859-1?Q?yPw8f1smUe1N188Ou0oN391oLSsEn4kFCdsYD4wNR3MUSTt3NXcUfRXSB6?=
+ =?iso-8859-1?Q?sXNpQBen5GhAtYNousogXwIcDEMcD7F0Rxug2GqpZvgt+zZOGVu6W1kp7V?=
+ =?iso-8859-1?Q?ssQVAdZdWpOWERFEoibYG/8EQH5e1rQ5hWz+k/Fpmxf5N2uTNTWOXVYyyc?=
+ =?iso-8859-1?Q?rWVpa6Q7nVjN4yqvfFU8dUmGIBD6OUFolvyM5maH9mnaSuyWz3Zb2T8kZv?=
+ =?iso-8859-1?Q?rg5ln4OGLgPMcdeTlTB4D1N3JZyUhDerZ7Gp+SMsaOtbuZQndSicU=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?FNCIFFMunadt7s2IlrmvOg2xIr74EAj+OE4O+72yXAvc9mMD4dRMjZXmsc?=
+ =?iso-8859-1?Q?/3mwV2LI/u7jsf5LqPfCopyExn3oiiEvOIajqMZZP4h1iosRYff0VQrhYs?=
+ =?iso-8859-1?Q?bMYTzShEyaw87lm0OekLgkWu4TlfGbIU8qScodbsnWyOBVbQHzoUHsMAw9?=
+ =?iso-8859-1?Q?vhT10wRI4dk93yeH4dY7Vhx41kxtcI7OTSSFrt3hk0N6oBNavKSKAj40VE?=
+ =?iso-8859-1?Q?5xa5A8gPzyNW+aeD2faeGHcEtCIL+PGVpOCqNX5QETs9w6drHKmbcoYaLb?=
+ =?iso-8859-1?Q?5QFnZVBpqwFICr/IwskUrtnBlqLmwucANZKiRaHpGGaNRPLe/A30TsceU6?=
+ =?iso-8859-1?Q?DchBCnfoOM+RLMZpnF82ecs/Y49l5yNiCv6j9zHSCaA7ix0JrMwWfM+6Re?=
+ =?iso-8859-1?Q?BAsFCyRMHChxg9Fvw3ThUO1ZFz6+YWQG1PC58c0cTLvHvDWlMSfAZhUU+p?=
+ =?iso-8859-1?Q?gJi4M7WGx8G3AoQs9gSS5ztuPJkloBL//9DdWovjOJvhrhUxwDadRCUFOf?=
+ =?iso-8859-1?Q?dNHPabAEdlswZFvNj79xxQwEb3ISYduSg2Q7ZluXMWgIdcrhYyLotkgEjl?=
+ =?iso-8859-1?Q?9bVnmHKJoD/pOMiUSla56V+oIkz3kq0lBvA6ATbgT0XzDXaJFw2GEkhs6n?=
+ =?iso-8859-1?Q?oqe9/g0jaIA6GEnRtgN69O85rviZDalw+M6iLa3qRF0362SpgY7JVzdbQu?=
+ =?iso-8859-1?Q?0roi6qirjl9IBeUtg3wMUTzPWDuyzyUZdMaJqJ5x5aJmRckQfpK27CKyOs?=
+ =?iso-8859-1?Q?bNuoO1oibTpKzK666lrm3uSGoDWSu320TlcFWgL2nGilcg4Fdwp7pTvD8K?=
+ =?iso-8859-1?Q?QfrRDQI8Q0+IhALCyOrsNV1JEoALo3j/87MpTumteKLZU6QcF0xx9o9UlK?=
+ =?iso-8859-1?Q?AG1vViRaJ7h3GkkPb/IahS4XDJPN9TIMWEZtd8HkSoxiLpTvERWYmM4+cj?=
+ =?iso-8859-1?Q?1hcKiGmBpmc52aYO258gbPK1LMXc8fQPlpgCabOj3PBX0CmXov5bRJWT9m?=
+ =?iso-8859-1?Q?XlK8dvxuEb8ZRWYv00QWOalqpKUqMLDOYG45SLsccFJW/7T6QNzIxryV8j?=
+ =?iso-8859-1?Q?4+en2GXly6LVoREB3Q8m0dvfwx4oRdznw96pI5TAebeBMSLHIJU4IvqdN+?=
+ =?iso-8859-1?Q?yIfJ8OoeeK33QnIl8EZtaJh87kjbaEDGedTZYE28EUCh/H0FQ4nDeLOmHL?=
+ =?iso-8859-1?Q?inFqfleMZXck41b2iV8I3Ox7xclH5cGpKflaPgTs+H8JjuWK+ZGJQWuox4?=
+ =?iso-8859-1?Q?A/eVy3wNJH3JOSm7IouauSlxl8La8IbmDOkOs46Ty+OZ/c82Ns1kGjQSux?=
+ =?iso-8859-1?Q?/S77n+v1sct+Op31RwEKtJ7VWyqmWUBrDpUgP6LOqDn6gnistjrpHSNaBz?=
+ =?iso-8859-1?Q?MXcaIG+2uQT7IWTKQkud7hx6Ms5nz4oBMdlTF3MRZR5UCC+E9hN9m2m4s+?=
+ =?iso-8859-1?Q?7BIp7ciBemv1GIHLBvhjSkXIJbLhf+1ryuSGfuL2t5sdmrdqcIqLCr3VIG?=
+ =?iso-8859-1?Q?Hnpawv0Cz1Wf9RbzGY9ae4RMj2kmR9q3cF+fASXJ5XwZFz16xKx7g28e7w?=
+ =?iso-8859-1?Q?2LrfzeJQ/wLynOIEDYIEXzM1YGPffkQOKU5+nhH4tpEMM//CimQOqdz+Bx?=
+ =?iso-8859-1?Q?ktKf054ZZsHq2xNzZFjDiVloqd2sSYqi+/eEoE4Dtq/FfjhmsG9Ldkpw?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: eb9a8f16-e8e7-42ae-a1b7-08dd7c6e9947
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Apr 2025 22:41:01.8232 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: JKCVgJMoSjLGs+URPEFrfE/8eOvwZqdE+BeoMm92RxXbYcM0Gut9j1k6kk2DhXtU4rbUzUCySZORkFS7T6Y/Jw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7925
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,330 +177,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-During post-migration recovery of a VF, it is necessary to update
-GGTT references included in messages which are going to be sent
-to GuC. GuC will start consuming messages after VF KMD will inform
-it about fixups being done; before that, the VF KMD is expected
-to update any H2G messages which are already in send buffer but
-were not consumed by GuC.
+On Mon, Apr 14, 2025 at 02:25:40PM +0100, Matthew Auld wrote:
+> User is reporting what smells like notifier vs folio deadlock, where
+> migrate_pages_batch() on core kernel side is holding folio lock(s) and
+> then interacting with the mappings of it, however those mappings are
+> tied to some userptr, which means calling into the notifier callback and
+> grabbing the notifier lock. With perfect timing it looks possible that
+> the pages we pulled from the hmm fault can get sniped by
+> migrate_pages_batch() at the same time that we are holding the notifier
+> lock to mark the pages as accessed/dirty, but at this point we also want
+> to grab the folio locks(s) to mark them as dirty, but if they are
+> contended from notifier/migrate_pages_batch side then we deadlock since
+> folio lock won't be dropped until we drop the notifier lock.
+> 
+> Fortunately the mark_page_accessed/dirty is not really needed in the
+> first place it seems and should have already been done by hmm fault, so
+> just remove it.
+> 
+> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4765
+> Fixes: 0a98219bcc96 ("drm/xe/hmm: Don't dereference struct page pointers without notifier lock")
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
 
-Only a small subset of messages allowed for VFs have GGTT references
-in them. This patch adds the functionality to parse the CTB send
-ring buffer and shift addresses contained within.
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-While fixing the CTB content, ct->lock is not taken. This means
-the only barrier taken remains GGTT address lock - which is ok,
-because only requests with GGTT addresses matter, but it also means
-tail changes can happen during the CTB fixups execution (which may
-be ignored as any new messages will not have anything to fix).
-
-The GGTT address locking will be introduced in a future series.
-
-v2: removed storing shift as that's now done in VMA nodes patch;
-  macros to inlines; warns to asserts; log messages fixes (Michal)
-v3: removed inline keywords, enums for offsets in CTB messages,
-  less error messages, if return unused then made functs void (Michal)
-v4: update the cached head before starting fixups
-v5: removed/updated comments, wrapped lines, converted assert into
-  error, enums for offsets to separate patch, reused xe_map_rd
-v6: define xe_map_*_array() macros, support CTB wrap which divides
-  a message, updated comments, moved one function to an earlier patch
-v7: renamed few functions, wider use on previously introduced helper,
-  separate cases in parsing messges, documented a static funct
-v8: Introduced more helpers, fixed coding style mistakes
-v9: Move xe_map*() functs to macros, add asserts, add debug print
-
-Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_ct.c   | 172 +++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_ct.h   |   2 +
- drivers/gpu/drm/xe/xe_map.h      |  18 ++++
- drivers/gpu/drm/xe/xe_sriov_vf.c |  18 ++++
- 4 files changed, 210 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 0a4fef7d7225..b0fd05550af8 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -25,6 +25,7 @@
- #include "xe_gt_printk.h"
- #include "xe_gt_sriov_pf_control.h"
- #include "xe_gt_sriov_pf_monitor.h"
-+#include "xe_gt_sriov_printk.h"
- #include "xe_gt_tlb_invalidation.h"
- #include "xe_guc.h"
- #include "xe_guc_log.h"
-@@ -84,6 +85,8 @@ struct g2h_fence {
- 	bool done;
- };
- 
-+#define make_u64(hi, lo) ((u64)((u64)(u32)(hi) << 32 | (u32)(lo)))
-+
- static void g2h_fence_init(struct g2h_fence *g2h_fence, u32 *response_buffer)
- {
- 	g2h_fence->response_buffer = response_buffer;
-@@ -1623,6 +1626,175 @@ static void g2h_worker_func(struct work_struct *w)
- 	receive_g2h(ct);
- }
- 
-+static void xe_fixup_u64_in_cmds(struct xe_device *xe, struct iosys_map *cmds,
-+				 u32 size, u32 idx, s64 shift)
-+{
-+	u32 hi, lo;
-+	u64 offset;
-+
-+	lo = xe_map_rd_ring_u32(xe, cmds, idx, size);
-+	hi = xe_map_rd_ring_u32(xe, cmds, idx + 1, size);
-+	offset = make_u64(hi, lo);
-+	offset += shift;
-+	lo = lower_32_bits(offset);
-+	hi = upper_32_bits(offset);
-+	xe_map_wr_ring_u32(xe, cmds, idx, size, lo);
-+	xe_map_wr_ring_u32(xe, cmds, idx + 1, size, hi);
-+}
-+
-+/*
-+ * Shift any GGTT addresses within a single message left within CTB from
-+ * before post-migration recovery.
-+ * @ct: pointer to CT struct of the target GuC
-+ * @cmds: iomap buffer containing CT messages
-+ * @head: start of the target message within the buffer
-+ * @len: length of the target message
-+ * @size: size of the commands buffer
-+ * @shift: the address shift to be added to each GGTT reference
-+ */
-+static void ct_fixup_ggtt_in_message(struct xe_guc_ct *ct,
-+				     struct iosys_map *cmds, u32 head,
-+				     u32 len, u32 size, s64 shift)
-+{
-+	struct xe_gt *gt __maybe_unused = ct_to_gt(ct);
-+	struct xe_device *xe = ct_to_xe(ct);
-+	u32 msg[GUC_HXG_MSG_MIN_LEN];
-+	u32 action, i, n;
-+
-+	xe_gt_assert(gt, len >= GUC_HXG_MSG_MIN_LEN);
-+
-+	msg[0] = xe_map_rd_ring_u32(xe, cmds, head, size);
-+	action = FIELD_GET(GUC_HXG_REQUEST_MSG_0_ACTION, msg[0]);
-+
-+	xe_gt_sriov_dbg_verbose(gt, "fixing H2G %#x\n", action);
-+
-+	switch (action) {
-+	case XE_GUC_ACTION_REGISTER_CONTEXT:
-+		xe_gt_assert(gt, len >= XE_GUC_REGISTER_CONTEXT_MSG_LEN);
-+		xe_fixup_u64_in_cmds(xe, cmds, size, head +
-+				     XE_GUC_REGISTER_CONTEXT_DATA_5_WQ_DESC_ADDR_LOWER,
-+				     shift);
-+		xe_fixup_u64_in_cmds(xe, cmds, size, head +
-+				     XE_GUC_REGISTER_CONTEXT_DATA_7_WQ_BUF_BASE_LOWER,
-+				     shift);
-+		xe_fixup_u64_in_cmds(xe, cmds, size, head +
-+				     XE_GUC_REGISTER_CONTEXT_DATA_10_HW_LRC_ADDR, shift);
-+		break;
-+	case XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC:
-+		xe_gt_assert(gt, len >= XE_GUC_REGISTER_CONTEXT_MULTI_LRC_MSG_LEN);
-+		xe_fixup_u64_in_cmds(xe, cmds, size, head +
-+				     XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_5_WQ_DESC_ADDR_LOWER,
-+				     shift);
-+		xe_fixup_u64_in_cmds(xe, cmds, size, head +
-+				     XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_7_WQ_BUF_BASE_LOWER,
-+				     shift);
-+		n = xe_map_rd_ring_u32(xe, cmds, head +
-+				       XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_10_NUM_CTXS, size);
-+		xe_gt_assert(gt, len >= XE_GUC_REGISTER_CONTEXT_MULTI_LRC_MSG_LEN + 2 * n);
-+		for (i = 0; i < n; i++)
-+			xe_fixup_u64_in_cmds(xe, cmds, size, head +
-+					     XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_11_HW_LRC_ADDR
-+					     + 2 * i, shift);
-+		break;
-+	default:
-+		break;
-+	}
-+}
-+
-+/*
-+ * Apply fixups to the next outgoing CT message within given CTB
-+ * @ct: the &xe_guc_ct struct instance representing the target GuC
-+ * @h2g: the &guc_ctb struct instance of the target buffer
-+ * @shift: shift to be added to all GGTT addresses within the CTB
-+ * @mhead: pointer to an integer storing message start position; the
-+ *   position is changed to next message before this function return
-+ * @avail: size of the area available for parsing, that is length
-+ *   of all remaining messages stored within the CTB
-+ * Return: size of the area available for parsing after one message
-+ *   has been parsed, that is length remaining from the updated mhead
-+ */
-+static int ct_fixup_ggtt_in_buffer(struct xe_guc_ct *ct, struct guc_ctb *h2g,
-+				   s64 shift, u32 *mhead, s32 avail)
-+{
-+	struct xe_device *xe = ct_to_xe(ct);
-+	u32 msg[GUC_HXG_MSG_MIN_LEN];
-+	u32 size = h2g->info.size;
-+	u32 head = *mhead;
-+	u32 len;
-+
-+	xe_gt_assert(ct_to_gt(ct), avail >= (s32)GUC_CTB_MSG_MIN_LEN);
-+
-+	/* Read header */
-+	msg[0] = xe_map_rd_ring_u32(xe, &h2g->cmds, head, size);
-+	len = FIELD_GET(GUC_CTB_MSG_0_NUM_DWORDS, msg[0]) + GUC_CTB_MSG_MIN_LEN;
-+
-+	if (unlikely(len > (u32)avail)) {
-+		xe_gt_err(ct_to_gt(ct), "H2G channel broken on read, avail=%d, len=%d, fixups skipped\n",
-+			  avail, len);
-+		return 0;
-+	}
-+
-+	head = (head + GUC_CTB_MSG_MIN_LEN) % size;
-+	ct_fixup_ggtt_in_message(ct, &h2g->cmds, head, msg_len_to_hxg_len(len), size, shift);
-+	*mhead = (head + msg_len_to_hxg_len(len)) % size;
-+
-+	return avail - len;
-+}
-+
-+/**
-+ * xe_guc_ct_fixup_messages_with_ggtt - Fixup any pending H2G CTB messages
-+ * @ct: pointer to CT struct of the target GuC
-+ * @ggtt_shift: shift to be added to all GGTT addresses within the CTB
-+ *
-+ * Messages in GuC to Host CTB are owned by GuC and any fixups in them
-+ * are made by GuC. But content of the Host to GuC CTB is owned by the
-+ * KMD, so fixups to GGTT references in any pending messages need to be
-+ * applied here.
-+ * This function updates GGTT offsets in payloads of pending H2G CTB
-+ * messages (messages which were not consumed by GuC before the VF got
-+ * paused).
-+ */
-+void xe_guc_ct_fixup_messages_with_ggtt(struct xe_guc_ct *ct, s64 ggtt_shift)
-+{
-+	struct guc_ctb *h2g = &ct->ctbs.h2g;
-+	struct xe_guc *guc = ct_to_guc(ct);
-+	struct xe_gt *gt = guc_to_gt(guc);
-+	u32 head, tail, size;
-+	s32 avail;
-+
-+	if (unlikely(h2g->info.broken))
-+		return;
-+
-+	h2g->info.head = desc_read(ct_to_xe(ct), h2g, head);
-+	head = h2g->info.head;
-+	tail = READ_ONCE(h2g->info.tail);
-+	size = h2g->info.size;
-+
-+	if (unlikely(head > size))
-+		goto corrupted;
-+
-+	if (unlikely(tail >= size))
-+		goto corrupted;
-+
-+	avail = tail - head;
-+
-+	/* beware of buffer wrap case */
-+	if (unlikely(avail < 0))
-+		avail += size;
-+	xe_gt_dbg(gt, "available %d (%u:%u:%u)\n", avail, head, tail, size);
-+	xe_gt_assert(gt, avail >= 0);
-+
-+	while (avail > 0)
-+		avail = ct_fixup_ggtt_in_buffer(ct, h2g, ggtt_shift, &head, avail);
-+
-+	return;
-+
-+corrupted:
-+	xe_gt_err(gt, "Corrupted H2G descriptor head=%u tail=%u size=%u, fixups not applied\n",
-+		  head, tail, size);
-+	h2g->info.broken = true;
-+}
-+
- static struct xe_guc_ct_snapshot *guc_ct_snapshot_alloc(struct xe_guc_ct *ct, bool atomic,
- 							bool want_ctb)
- {
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-index 82c4ae458dda..5649bda82823 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.h
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.h
-@@ -22,6 +22,8 @@ void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot, struct drm_pr
- void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot);
- void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool want_ctb);
- 
-+void xe_guc_ct_fixup_messages_with_ggtt(struct xe_guc_ct *ct, s64 ggtt_shift);
-+
- static inline bool xe_guc_ct_enabled(struct xe_guc_ct *ct)
- {
- 	return ct->state == XE_GUC_CT_STATE_ENABLED;
-diff --git a/drivers/gpu/drm/xe/xe_map.h b/drivers/gpu/drm/xe/xe_map.h
-index f62e0c8b67ab..fa65e6c908fa 100644
---- a/drivers/gpu/drm/xe/xe_map.h
-+++ b/drivers/gpu/drm/xe/xe_map.h
-@@ -78,6 +78,24 @@ static inline void xe_map_write32(struct xe_device *xe, struct iosys_map *map,
- 	iosys_map_wr(map__, offset__, type__, val__);			\
- })
- 
-+#define xe_map_rd_array(xe__, map__, index__, type__)			\
-+	xe_map_rd(xe__, map__, (index__) * sizeof(type__), type__)
-+
-+#define xe_map_wr_array(xe__, map__, index__, type__, val__)		\
-+	xe_map_wr(xe__, map__, (index__) * sizeof(type__), type__, val__)
-+
-+#define xe_map_rd_array_u32(xe__, map__, index__)			\
-+	xe_map_rd_array(xe__, map__, index__, u32)
-+
-+#define xe_map_wr_array_u32(xe__, map__, index__, val__)		\
-+	xe_map_wr_array(xe__, map__, index__, u32, val__)
-+
-+#define xe_map_rd_ring_u32(xe__, map__, index__, size__)		\
-+	xe_map_rd_array_u32(xe__, map__, (index__) % (size__))
-+
-+#define xe_map_wr_ring_u32(xe__, map__, index__, size__, val__)		\
-+	xe_map_wr_array_u32(xe__, map__, (index__) % (size__), val__)
-+
- #define xe_map_rd_field(xe__, map__, struct_offset__, struct_type__, field__) ({	\
- 	struct xe_device *__xe = xe__;					\
- 	xe_device_assert_mem_access(__xe);				\
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-index e70f1ceabbb3..2674fa948fda 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-@@ -10,6 +10,7 @@
- #include "xe_gt.h"
- #include "xe_gt_sriov_printk.h"
- #include "xe_gt_sriov_vf.h"
-+#include "xe_guc_ct.h"
- #include "xe_pm.h"
- #include "xe_sriov.h"
- #include "xe_sriov_printk.h"
-@@ -158,6 +159,20 @@ static int vf_post_migration_requery_guc(struct xe_device *xe)
- 	return ret;
- }
- 
-+static void vf_post_migration_fixup_ctb(struct xe_device *xe)
-+{
-+	struct xe_gt *gt;
-+	unsigned int id;
-+
-+	xe_assert(xe, IS_SRIOV_VF(xe));
-+
-+	for_each_gt(gt, xe, id) {
-+		s32 shift = xe_gt_sriov_vf_ggtt_shift(gt);
-+
-+		xe_guc_ct_fixup_messages_with_ggtt(&gt->uc.guc.ct, shift);
-+	}
-+}
-+
- /*
-  * vf_post_migration_imminent - Check if post-restore recovery is coming.
-  * @xe: the &xe_device struct instance
-@@ -224,6 +239,9 @@ static void vf_post_migration_recovery(struct xe_device *xe)
- 
- 	need_fixups = vf_post_migration_fixup_ggtt_nodes(xe);
- 	/* FIXME: add the recovery steps */
-+	if (need_fixups)
-+		vf_post_migration_fixup_ctb(xe);
-+
- 	vf_post_migration_notify_resfix_done(xe);
- 	xe_pm_runtime_put(xe);
- 	drm_notice(&xe->drm, "migration recovery ended\n");
--- 
-2.25.1
-
+> Cc: <stable@vger.kernel.org> # v6.10+
+> ---
+>  drivers/gpu/drm/xe/xe_hmm.c | 24 ------------------------
+>  1 file changed, 24 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_hmm.c b/drivers/gpu/drm/xe/xe_hmm.c
+> index c3cc0fa105e8..57b71956ddf4 100644
+> --- a/drivers/gpu/drm/xe/xe_hmm.c
+> +++ b/drivers/gpu/drm/xe/xe_hmm.c
+> @@ -19,29 +19,6 @@ static u64 xe_npages_in_range(unsigned long start, unsigned long end)
+>  	return (end - start) >> PAGE_SHIFT;
+>  }
+>  
+> -/**
+> - * xe_mark_range_accessed() - mark a range is accessed, so core mm
+> - * have such information for memory eviction or write back to
+> - * hard disk
+> - * @range: the range to mark
+> - * @write: if write to this range, we mark pages in this range
+> - * as dirty
+> - */
+> -static void xe_mark_range_accessed(struct hmm_range *range, bool write)
+> -{
+> -	struct page *page;
+> -	u64 i, npages;
+> -
+> -	npages = xe_npages_in_range(range->start, range->end);
+> -	for (i = 0; i < npages; i++) {
+> -		page = hmm_pfn_to_page(range->hmm_pfns[i]);
+> -		if (write)
+> -			set_page_dirty_lock(page);
+> -
+> -		mark_page_accessed(page);
+> -	}
+> -}
+> -
+>  static int xe_alloc_sg(struct xe_device *xe, struct sg_table *st,
+>  		       struct hmm_range *range, struct rw_semaphore *notifier_sem)
+>  {
+> @@ -331,7 +308,6 @@ int xe_hmm_userptr_populate_range(struct xe_userptr_vma *uvma,
+>  	if (ret)
+>  		goto out_unlock;
+>  
+> -	xe_mark_range_accessed(&hmm_range, write);
+>  	userptr->sg = &userptr->sgt;
+>  	xe_hmm_userptr_set_mapped(uvma);
+>  	userptr->notifier_seq = hmm_range.notifier_seq;
+> -- 
+> 2.49.0
+> 
