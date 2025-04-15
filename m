@@ -4,59 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBF6BC369AB
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Apr 2025 10:32:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D462C369B5
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Apr 2025 10:33:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B021710E6FA;
-	Tue, 15 Apr 2025 10:32:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 311CC10E703;
+	Tue, 15 Apr 2025 10:33:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VWGZK2QR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TnKNW0fQ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94B9810E6FA
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Apr 2025 10:32:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98BFB10E702;
+ Tue, 15 Apr 2025 10:33:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744713174; x=1776249174;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=NhLnFlUTICwsWEPiZpBfavSb6eBL9GL7sMIetE6CiG0=;
- b=VWGZK2QRO3gSHURlGzX5Qkcto0T4oqyyiBFyu/kI2+DT0YC+ivMUM3vw
- fXVr7NKPZ0QNZckLe1n5vvwACfoDQVAPBzJ0eGIZWwKg9ZY+nkgBlpcUc
- Mwz5sgN+S//bFkHMbDp6OqAday0oDYcIBCAQErJWbhyjWquJKC2E3V0IG
- fDmf1PT9InMkLAtn/43LbARxdITSZc5i+PhtXJWK1GhM2qVTBKHw0fhZy
- MHqbVTBtJHujJ+FAJW4bGt/BKa2uQFhJFApb/7K0hE0tZS9OzshaNZnxT
- 87JRUxP7kD+4pZ1jgO1iifVT9WdBA6CL9Al53SpgzKzM3RX4lU2z9zY6h A==;
-X-CSE-ConnectionGUID: cyNHFcZQRRyLm6+8NQI9+Q==
-X-CSE-MsgGUID: oMquO0l5QHWqjeGGSjUKSg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11403"; a="46345258"
-X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="46345258"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2025 03:32:51 -0700
-X-CSE-ConnectionGUID: 1s9bxFuASLWJnhTzXMzlWA==
-X-CSE-MsgGUID: ZZC/SG39QVOgugWX/yK/Bg==
+ t=1744713193; x=1776249193;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=r46OcGCRMT8cmzcQfQ5UGCplc5gNW7dAISfleS7C4C8=;
+ b=TnKNW0fQaRroh+6bAzlMgIJeFItj1G6ziI1WVHscg4d+M5q1C05IlAuh
+ T/3KhPl8oetlTLgXLsDMX/lqihQwnVgU0bxpKulRrzDHpA20K5nyU0aEL
+ 1VzZguBe9SOTbFOsfSMUnOtvRRbpcpz0u6x2mWXIRVlOtBmnzbhYI6Ktu
+ HrekKjV7bvm7J7gWnJfi6U/d4Rm/sPpOVI08omcAFUnzAE2wihitsCfDc
+ 8cZTwHxz60Pj18vuBGBx0QiAuHRsrdWAJp89sg/MfZ/WzxME+mZHnS1uW
+ O2v7ic4VvA5hLeUK5qKvfAj6cRgq37Izh43RHXfTWYp7Mtt4h/44HXhxV g==;
+X-CSE-ConnectionGUID: cNrdDujeSkegLJD9t7pO5A==
+X-CSE-MsgGUID: NdT1agvbSiyFm46KwBxbNQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11403"; a="49866692"
+X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="49866692"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2025 03:33:12 -0700
+X-CSE-ConnectionGUID: N7/qO0fHTBWoKR46PGvh0g==
+X-CSE-MsgGUID: ko3QxOvvSAObVzIF7hFwUw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="134937851"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa003.jf.intel.com with ESMTP; 15 Apr 2025 03:32:49 -0700
-Received: from [10.245.83.107] (unknown [10.245.83.107])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 9584033E91;
- Tue, 15 Apr 2025 11:32:48 +0100 (IST)
-Message-ID: <1b9c70d4-de69-4585-ad85-f61e72b72b55@intel.com>
-Date: Tue, 15 Apr 2025 12:32:47 +0200
+X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="130052195"
+Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.35])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2025 03:33:10 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Nemesa Garg <nemesa.garg@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, mika.kahola@intel.com
+Cc: Nemesa Garg <nemesa.garg@intel.com>
+Subject: Re: [PATCH] drm/i915/display: Implement wa_14024400148
+In-Reply-To: <20250415094633.2465122-1-nemesa.garg@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250415094633.2465122-1-nemesa.garg@intel.com>
+Date: Tue, 15 Apr 2025 13:33:07 +0300
+Message-ID: <87ecxtsoik.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/pf: Don't allow LMEM provisioning if LMTT isn't
- available on the device
-To: =?UTF-8?Q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20250328102357.2391877-1-piotr.piorkowski@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20250328102357.2391877-1-piotr.piorkowski@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,81 +68,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-On 28.03.2025 11:23, Piórkowski, Piotr wrote:
-> From: Piotr Piórkowski <piotr.piorkowski@intel.com>
-> 
-> Currently, LMEM provisioning is fully dependent on LMTT, and we are
-> unable to make useful LMEM provisioning without LMTT.
-> Let's don't allow LMEM provisioning if LMTT is not available on the
-> device.
-
-maybe shorter:
-
-"The LMEM provisioning is applicable only on platforms with LMTT.
-
-> 
-> Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+On Tue, 15 Apr 2025, Nemesa Garg <nemesa.garg@intel.com> wrote:
+> Workaround recommend use polling method
+> for pm_demand to finish as to avoid timeout.
+>
+> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c  | 8 +++++---
->  drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c | 2 +-
->  2 files changed, 6 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-> index 10be109bf357..265e58c55c6d 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-> @@ -1513,7 +1513,9 @@ int xe_gt_sriov_pf_config_set_lmem(struct xe_gt *gt, unsigned int vfid, u64 size
->  	int err;
+>  drivers/gpu/drm/i915/display/intel_pmdemand.c | 27 +++++++++++++++++--
+>  1 file changed, 25 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+> index d22b5469672d..610d05b73b99 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+> @@ -478,6 +478,22 @@ static bool intel_pmdemand_req_complete(struct intel_display *display)
+>  		 XELPDP_PMDEMAND_REQ_ENABLE);
+>  }
 >  
->  	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
-> -	if (vfid)
-> +	if (!xe_device_has_lmtt(gt_to_xe(gt)))
-> +		err = -EROFS;
+> +static void intel_pmdemand_poll(struct intel_display *display)
+> +{
+> +	const unsigned int timeout_ms = 10;
+> +	u32 status;
+> +	int ret;
+> +
+> +	ret = intel_de_wait_custom(display, XELPDP_INITIATE_PMDEMAND_REQUEST(1),
+> +				   XELPDP_PMDEMAND_REQ_ENABLE, 0,
+> +				   50, timeout_ms, &status);
+> +
+> +	if (ret == -ETIMEDOUT)
+> +		drm_err(display->drm,
+> +			"timeout within %ums (status 0x%08x)\n",
+> +			timeout_ms, status);
 
-do we need this? if there is no lmtt then we shouldn't use/expose lmem
-configuration in the first place
+Imagine seeing "timeout within 10ms" in dmesg.
 
-maybe xe_gt_assert will be sufficient?
+Timeout of what? 
 
-> +	else if (vfid)
->  		err = pf_provision_vf_lmem(gt, vfid, size);
->  	else
->  		err = pf_set_spare_lmem(gt, size);
-> @@ -1621,7 +1623,7 @@ int xe_gt_sriov_pf_config_set_fair_lmem(struct xe_gt *gt, unsigned int vfid,
->  	xe_gt_assert(gt, num_vfs);
->  	xe_gt_assert(gt, !xe_gt_is_media_type(gt));
+> +}
+> +
+>  static void intel_pmdemand_wait(struct intel_display *display)
+>  {
+>  	if (!wait_event_timeout(display->pmdemand.waitqueue,
+> @@ -508,7 +524,11 @@ void intel_pmdemand_program_dbuf(struct intel_display *display,
+>  	intel_de_rmw(display, XELPDP_INITIATE_PMDEMAND_REQUEST(1), 0,
+>  		     XELPDP_PMDEMAND_REQ_ENABLE);
 >  
-> -	if (!IS_DGFX(gt_to_xe(gt)))
-> +	if (!xe_device_has_lmtt(gt_to_xe(gt)))
->  		return 0;
->  
->  	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
-> @@ -2155,7 +2157,7 @@ static int pf_validate_vf_config(struct xe_gt *gt, unsigned int vfid)
->  	valid_all = valid_all && valid_ggtt;
->  	valid_any = valid_any || (valid_ggtt && is_primary);
->  
-> -	if (IS_DGFX(xe)) {
-> +	if (xe_device_has_lmtt(xe)) {
->  		bool valid_lmem = pf_get_vf_config_lmem(primary_gt, vfid);
->  
->  		valid_any = valid_any || (valid_lmem && is_primary);
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-> index b2521dd6ec42..5f41381df860 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-> @@ -286,7 +286,7 @@ static void pf_add_config_attrs(struct xe_gt *gt, struct dentry *parent, unsigne
->  	if (!xe_gt_is_media_type(gt)) {
->  		debugfs_create_file_unsafe(vfid ? "ggtt_quota" : "ggtt_spare",
->  					   0644, parent, parent, &ggtt_fops);
-> -		if (IS_DGFX(gt_to_xe(gt)))
-> +		if (xe_device_has_lmtt(gt_to_xe(gt)))
->  			debugfs_create_file_unsafe(vfid ? "lmem_quota" : "lmem_spare",
->  						   0644, parent, parent, &lmem_fops);
->  	}
+> -	intel_pmdemand_wait(display);
+> +	/* Wa_14024400148 For lnl use polling method */
+> +	if (DISPLAY_VER(display) == 20)
+> +		intel_pmdemand_poll(display);
+> +	else
+> +		intel_pmdemand_wait(display);
 
-btw, this needs to be rebased and take into account the pf_lmem_info
-attributes introduced recently
+Please just hide this within intel_pmdemand_wait() instead of
+duplicating it everywhere.
 
+>  
+>  unlock:
+>  	mutex_unlock(&display->pmdemand.lock);
+> @@ -617,7 +637,10 @@ intel_pmdemand_program_params(struct intel_display *display,
+>  	intel_de_rmw(display, XELPDP_INITIATE_PMDEMAND_REQUEST(1), 0,
+>  		     XELPDP_PMDEMAND_REQ_ENABLE);
+>  
+> -	intel_pmdemand_wait(display);
+> +	if (DISPLAY_VER(display) == 20)
+> +		intel_pmdemand_poll(display);
+> +	else
+> +		intel_pmdemand_wait(display);
+>  
+>  unlock:
+>  	mutex_unlock(&display->pmdemand.lock);
 
+-- 
+Jani Nikula, Intel
