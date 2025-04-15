@@ -4,28 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 883B1C369B8
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Apr 2025 07:17:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CBFCC369AB
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Apr 2025 07:17:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1282F10E2AC;
-	Tue, 15 Apr 2025 07:17:01 +0000 (UTC)
-Received: from b68e5b3b99e1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B13F10E2AC;
- Tue, 15 Apr 2025 07:16:59 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 339DA10E36E;
+	Tue, 15 Apr 2025 07:17:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dCHtd7iK";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B47CE10E36E;
+ Tue, 15 Apr 2025 07:17:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744701431; x=1776237431;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=SfqplkzMKHmvAml6eQ8xHN2tknxcnoULWNX6BN16ZbE=;
+ b=dCHtd7iK8m5+nmTy75n3WhKi5xd5nC5nqMeZ0IaqeBDGYHC40GUz3HF8
+ 8Lm9r96DNpItR8n6zTTej9i3M8YOh1R0JiO/Iu81y+ioJHw9XrUmlbR0P
+ I9TXEiWKwzcXZfe8C5VD4vwdRfAvOzlX6/EPGS82rwzr2coblWnX28IGf
+ 75uc/Oy4qY6SoJxTvNdfZw/Y9usr4BtIbCJ6XR/5dTk05KSO9/9Fwk4Zc
+ Yk2YLE1YCgaZzPEGUsxwXQlQmKMoiLi0rqucDBCfivnbZk0JUM2EZ0kiE
+ 00fBpEDZ/Nkd2ZAu17tqfajLunlXxtQoPgH/y6/I0NroUIczaj5P4ovdN w==;
+X-CSE-ConnectionGUID: zLRd15tHQtC2geWKuFwlAA==
+X-CSE-MsgGUID: mO97WBXGQKOpjVCyNefdMw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11403"; a="45428705"
+X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="45428705"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2025 00:17:10 -0700
+X-CSE-ConnectionGUID: T8Acfdg3SrOmB5Ed2zeN5w==
+X-CSE-MsgGUID: RGlFWzX+T5KB9x6RrIw8rA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="130363869"
+Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.249])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2025 00:17:07 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: suraj.kandpal@intel.com, stable@vger.kernel.org, ankit.k.nautiyal@intel.com
+Subject: Re: [PATCH 1/2] drm/i915/display: Add macro for checking 3 DSC engines
+In-Reply-To: <20250414085701.2802374-1-ankit.k.nautiyal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250414024256.2782702-2-ankit.k.nautiyal@intel.com>
+ <20250414085701.2802374-1-ankit.k.nautiyal@intel.com>
+Date: Tue, 15 Apr 2025 10:17:04 +0300
+Message-ID: <87y0w1sxlb.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_series_starting_with_=5B?=
- =?utf-8?q?1/2=5D_drm/xe=3A_Add_fault_injection_for_kobj=5Fxe=5Fhw=5Fengine?=
- =?utf-8?q?=5Fclass?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sobin Thomas" <sobin.thomas@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 15 Apr 2025 07:16:59 -0000
-Message-ID: <174470141956.4177.15093331027223274063@b68e5b3b99e1>
-X-Patchwork-Hint: ignore
-References: <20250415064211.2889970-1-sobin.thomas@intel.com>
-In-Reply-To: <20250415064211.2889970-1-sobin.thomas@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,37 +66,52 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, 14 Apr 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+> 3 DSC engines per pipe is currently supported only for BMG.
+> Add a macro to check whether a platform supports 3 DSC engines per pipe.
 
-Series: series starting with [1/2] drm/xe: Add fault injection for kobj_xe_hw_engine_class
-URL   : https://patchwork.freedesktop.org/series/147729/
-State : success
+Nitpick, feels like a macro returning the number of DSC engines per pipe
+would be more generic. Like, would you also add HAS_DSC_2ENGINES() and
+HAS_DSC_4ENGINES() if you needed to know that? But I guess we can go
+with what you have for the immediate fix.
 
-== Summary ==
+However, adding the tiniest macro and its only user in separate patches,
+for something that needs to be backported to stable, seems like erring
+on the side of splitting up patches too much.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 08045a4121ee058ead3c4483e6c217be20ab86d4
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+BR,
+Jani.
 
 
+>
+> v2:Fix Typo in macro argument. (Suraj).
+> Added fixes tag.
+>
+> Bspec: 50175
+> Fixes: be7f5fcdf4a0 ("drm/i915/dp: Enable 3 DSC engines for 12 slices")
+> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+> Cc: <stable@vger.kernel.org> # v6.14+
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_device.h | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+> index 368b0d3417c2..87c666792c0d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+> @@ -163,6 +163,7 @@ struct intel_display_platforms {
+>  #define HAS_DP_MST(__display)		(DISPLAY_INFO(__display)->has_dp_mst)
+>  #define HAS_DSB(__display)		(DISPLAY_INFO(__display)->has_dsb)
+>  #define HAS_DSC(__display)		(DISPLAY_RUNTIME_INFO(__display)->has_dsc)
+> +#define HAS_DSC_3ENGINES(__display)	(DISPLAY_VERx100(__display) == 1401 && HAS_DSC(__display))
+>  #define HAS_DSC_MST(__display)		(DISPLAY_VER(__display) >= 12 && HAS_DSC(__display))
+>  #define HAS_FBC(__display)		(DISPLAY_RUNTIME_INFO(__display)->fbc_mask != 0)
+>  #define HAS_FBC_DIRTY_RECT(__display)	(DISPLAY_VER(__display) >= 30)
+
+-- 
+Jani Nikula, Intel
