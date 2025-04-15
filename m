@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7740C369AB
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Apr 2025 10:49:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D79F6C369B5
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Apr 2025 10:51:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C8C810E720;
-	Tue, 15 Apr 2025 10:49:26 +0000 (UTC)
-Received: from b68e5b3b99e1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82DD510E720;
- Tue, 15 Apr 2025 10:49:25 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EDD910E727;
+	Tue, 15 Apr 2025 10:51:30 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aHTEFCIn";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11C8110E720;
+ Tue, 15 Apr 2025 10:51:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744714289; x=1776250289;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=8BBVbI/jbblxu3BWVU8rU+IAFYEYiqsJAdAT/irrfEQ=;
+ b=aHTEFCInOY64eSd2OOb/QSGx3gx5ks3WzMVxYW4vUyn9tv0sRiq4Zewd
+ Y0IyQdA35LLq0qXvAQZrYrG0T1wiY7UpNVj0aDb/iEnsGJ/kpBlQ78tyU
+ w8NDnkQTbDf/jjE+OK8RlVym3PU9d18WdVRmj6TkEgwVFXKxzENrDDP/k
+ YKhFbCQx5DA0ZP5sTmkgX5cDT4S/4vwXBp0jxMPy9ycFEVeHdreSfrrx/
+ xAenqfr0eJFr3F52D4dN43qDLwidjg+Up694ovksuT9VpvDXRolfT2RIE
+ 6A/qapN7IIq6BASSblxIC4m77Ij4VpS2/Ni1eJNCpKn7hVnq72Uf5l+S7 w==;
+X-CSE-ConnectionGUID: MaHuPzzyR3OTb8QZ2ATJJg==
+X-CSE-MsgGUID: NTfv8xisSta0KieFF1FnAA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11403"; a="56854375"
+X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="56854375"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2025 03:51:29 -0700
+X-CSE-ConnectionGUID: xh428fcXRDGEqK9kkpRFdA==
+X-CSE-MsgGUID: WYAmtDSETuW3mlchEkU/Jw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="153283617"
+Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.35])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2025 03:51:27 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH v2 0/3] drm/i915: i915_reg.h display split
+Date: Tue, 15 Apr 2025 13:51:19 +0300
+Message-Id: <cover.1744714233.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/i915/display=3A_Impl?=
- =?utf-8?q?ement_wa=5F14024400148?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nemesa Garg" <nemesa.garg@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 15 Apr 2025 10:49:25 -0000
-Message-ID: <174471416553.5842.4170341270784448432@b68e5b3b99e1>
-X-Patchwork-Hint: ignore
-References: <20250415094633.2465122-1-nemesa.garg@intel.com>
-In-Reply-To: <20250415094633.2465122-1-nemesa.garg@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +66,92 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+v2 of https://lore.kernel.org/r/cover.1738935286.git.jani.nikula@intel.com
 
-Series: drm/i915/display: Implement wa_14024400148
-URL   : https://patchwork.freedesktop.org/series/147745/
-State : success
+Jani Nikula (3):
+  drm/i915/reg: use REG_BIT and friends to define DP registers
+  drm/i915/reg: Add/remove some extra blank lines
+  drm/i915: split out display register macros to a separate file
 
-== Summary ==
+ drivers/gpu/drm/i915/display/g4x_dp.c         |   24 +-
+ drivers/gpu/drm/i915/display/g4x_hdmi.c       |    1 +
+ drivers/gpu/drm/i915/display/hsw_ips.c        |    1 +
+ .../gpu/drm/i915/display/i9xx_display_sr.c    |    1 +
+ drivers/gpu/drm/i915/display/i9xx_plane.c     |    2 +
+ drivers/gpu/drm/i915/display/i9xx_wm.c        |    1 +
+ drivers/gpu/drm/i915/display/icl_dsi.c        |    1 +
+ .../gpu/drm/i915/display/intel_backlight.c    |    2 +-
+ drivers/gpu/drm/i915/display/intel_bw.c       |    3 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |    1 +
+ drivers/gpu/drm/i915/display/intel_cmtg.c     |    3 +-
+ .../gpu/drm/i915/display/intel_combo_phy.c    |    1 +
+ drivers/gpu/drm/i915/display/intel_crt.c      |    1 +
+ drivers/gpu/drm/i915/display/intel_ddi.c      |    1 +
+ drivers/gpu/drm/i915/display/intel_display.c  |    3 +-
+ .../drm/i915/display/intel_display_debugfs.c  |    1 +
+ .../drm/i915/display/intel_display_device.c   |    6 +-
+ .../gpu/drm/i915/display/intel_display_irq.c  |    2 +
+ .../drm/i915/display/intel_display_power.c    |    1 +
+ .../i915/display/intel_display_power_map.c    |    1 +
+ .../i915/display/intel_display_power_well.c   |    1 +
+ .../gpu/drm/i915/display/intel_display_regs.h | 2878 ++++++++++++++++
+ .../gpu/drm/i915/display/intel_display_wa.c   |    1 +
+ drivers/gpu/drm/i915/display/intel_dmc.c      |    3 +-
+ drivers/gpu/drm/i915/display/intel_dmc_wl.c   |    1 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |    4 +-
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c  |    1 +
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |    1 +
+ drivers/gpu/drm/i915/display/intel_dp_test.c  |    1 +
+ drivers/gpu/drm/i915/display/intel_dpio_phy.c |    1 +
+ drivers/gpu/drm/i915/display/intel_dpll.c     |    1 +
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |    1 +
+ .../gpu/drm/i915/display/intel_dpt_common.c   |    1 +
+ drivers/gpu/drm/i915/display/intel_drrs.c     |    1 +
+ drivers/gpu/drm/i915/display/intel_dsb.c      |    1 +
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |    3 +-
+ drivers/gpu/drm/i915/display/intel_dvo.c      |    1 +
+ drivers/gpu/drm/i915/display/intel_fbc.c      |    3 +
+ drivers/gpu/drm/i915/display/intel_fdi.c      |    3 +-
+ .../drm/i915/display/intel_fifo_underrun.c    |    1 +
+ drivers/gpu/drm/i915/display/intel_gmbus.c    |    1 +
+ drivers/gpu/drm/i915/display/intel_hdcp.c     |    1 +
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |    2 +-
+ .../gpu/drm/i915/display/intel_hotplug_irq.c  |    1 +
+ drivers/gpu/drm/i915/display/intel_lspcon.c   |    1 +
+ .../drm/i915/display/intel_modeset_setup.c    |    3 +-
+ drivers/gpu/drm/i915/display/intel_overlay.c  |    2 +
+ .../gpu/drm/i915/display/intel_pch_display.c  |    1 +
+ .../gpu/drm/i915/display/intel_pch_refclk.c   |    1 +
+ drivers/gpu/drm/i915/display/intel_pfit.c     |    1 +
+ drivers/gpu/drm/i915/display/intel_pipe_crc.c |    1 +
+ drivers/gpu/drm/i915/display/intel_pmdemand.c |    1 +
+ drivers/gpu/drm/i915/display/intel_pps.c      |    1 +
+ drivers/gpu/drm/i915/display/intel_psr.c      |    1 +
+ drivers/gpu/drm/i915/display/intel_sdvo.c     |    1 +
+ drivers/gpu/drm/i915/display/intel_snps_phy.c |    1 +
+ drivers/gpu/drm/i915/display/intel_tc.c       |    1 +
+ drivers/gpu/drm/i915/display/intel_vblank.c   |    1 +
+ drivers/gpu/drm/i915/display/intel_vga.c      |    2 +
+ drivers/gpu/drm/i915/display/intel_vrr.c      |    1 +
+ drivers/gpu/drm/i915/display/skl_scaler.c     |    1 +
+ .../drm/i915/display/skl_universal_plane.c    |    4 +-
+ drivers/gpu/drm/i915/display/skl_watermark.c  |    1 +
+ drivers/gpu/drm/i915/display/vlv_dsi.c        |    1 +
+ drivers/gpu/drm/i915/gvt/cmd_parser.c         |    1 +
+ drivers/gpu/drm/i915/gvt/display.c            |    1 +
+ drivers/gpu/drm/i915/gvt/fb_decoder.c         |    1 +
+ drivers/gpu/drm/i915/gvt/handlers.c           |    1 +
+ drivers/gpu/drm/i915/gvt/interrupt.c          |    1 +
+ drivers/gpu/drm/i915/gvt/mmio.c               |    1 +
+ drivers/gpu/drm/i915/i915_reg.h               | 2911 +----------------
+ drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |    1 +
+ drivers/gpu/drm/xe/display/xe_plane_initial.c |    1 +
+ 73 files changed, 2980 insertions(+), 2936 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_display_regs.h
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 4e52f6bddf99cb28ed0279d56bb8286a8bbfda65
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+-- 
+2.39.5
 
