@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40B35C369AB
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Apr 2025 23:15:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9311C369AB
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Apr 2025 23:16:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 040D610E396;
-	Tue, 15 Apr 2025 23:15:46 +0000 (UTC)
-Received: from b68e5b3b99e1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1285210E399;
- Tue, 15 Apr 2025 23:15:44 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3713585218645818903=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A13110E396;
+	Tue, 15 Apr 2025 23:16:26 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WGa6qvS+";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0A4010E396
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Apr 2025 23:16:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744758985; x=1776294985;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=kp2X+Dn9ktwFnSYRsqwzLj9iqubW0h7bOOpJAwh1TQg=;
+ b=WGa6qvS+VhUdVnCbzmDXCdxMhvnFPyiXw8pygXbEngPNG5GYp4Za6lEU
+ p4hx9woSVmD+cjwO8jThk0CXfxQ5ApYp8rFiiGP/t/8avVXtjZ83diC3r
+ 0Yv6KHhA3V9V9Wc27+SNjkjzx5rg2OWEI/wSZq6920prftI0NU0voYhZI
+ LuBeI+JeDUJdaHIcBPM8fkGiDDjqmS1MYRePEax0ZYgGmMzyBTJsEWPTH
+ Yw5d2Z16f4EoaGqr5MmldeD9frdwO9/lrrs8oP6TdE+4VPt/07978Nf22
+ negRI+g6FRMVukuGaKrszFvfZ0xfDR0hdbRDan0sQMu1r4rjV8bFsMVjs w==;
+X-CSE-ConnectionGUID: pA++xnkaSyiEZBjd+J83gA==
+X-CSE-MsgGUID: ahYDz3ZbQTKYLz3/jx/Krw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11404"; a="68781703"
+X-IronPort-AV: E=Sophos;i="6.15,214,1739865600"; d="scan'208";a="68781703"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2025 16:16:24 -0700
+X-CSE-ConnectionGUID: gThdcZpSRDGne02RgF7YZg==
+X-CSE-MsgGUID: Iw2nE70LRPCU+Bxz9Qhlnw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,214,1739865600"; d="scan'208";a="131166504"
+Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2025 16:16:24 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>
+Subject: [xe-for-CI] drm/xe/ptl: Update HuC FW version to v10.3.2
+Date: Tue, 15 Apr 2025 16:16:10 -0700
+Message-ID: <20250415231610.1286014-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/vf=3A_Post-migration?=
- =?utf-8?q?_recovery_of_GGTT_nodes_and_CTB?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tomasz Lis" <tomasz.lis@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 15 Apr 2025 23:15:44 -0000
-Message-ID: <174475894406.8361.12094721249773381163@b68e5b3b99e1>
-X-Patchwork-Hint: ignore
-References: <20250415222030.3616494-1-tomasz.lis@intel.com>
-In-Reply-To: <20250415222030.3616494-1-tomasz.lis@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +62,33 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3713585218645818903==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This is the latest version recommended by the media team.
 
-== Series Details ==
+Note that this patch should be squashed with the one introducing the FW
+definition in the for-CI branch.
 
-Series: drm/xe/vf: Post-migration recovery of GGTT nodes and CTB
-URL   : https://patchwork.freedesktop.org/series/147786/
-State : success
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+---
+ drivers/gpu/drm/xe/xe_uc_fw.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
+index 40d48da19243..7b2d01d39b86 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.c
++++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+@@ -128,7 +128,7 @@ struct fw_blobs_by_type {
+ 	fw_def(TIGERLAKE,	GT_TYPE_ANY,	major_ver(i915,	guc,	tgl,	70, 44, 1))
+ 
+ #define XE_HUC_FIRMWARE_DEFS(fw_def, mmp_ver, no_ver)		\
+-	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	mmp_ver(xe,	huc,		ptl, 10, 2, 1))	\
++	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	mmp_ver(xe,	huc,		ptl, 10, 3, 2))	\
+ 	fw_def(BATTLEMAGE,	GT_TYPE_ANY,	no_ver(xe,	huc,		bmg))		\
+ 	fw_def(LUNARLAKE,	GT_TYPE_ANY,	no_ver(xe,	huc,		lnl))		\
+ 	fw_def(METEORLAKE,	GT_TYPE_ANY,	no_ver(i915,	huc_gsc,	mtl))		\
+-- 
+2.43.0
 
-CI Bug Log - changes from xe-2956-b61f5de7570012cb79e72624a97b216d395f7380_BAT -> xe-pw-147786v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-2956-b61f5de7570012cb79e72624a97b216d395f7380 -> xe-pw-147786v1
-
-  IGT_8320: cd3b5612be3cef838f16e074bf1bc421399d584d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2956-b61f5de7570012cb79e72624a97b216d395f7380: b61f5de7570012cb79e72624a97b216d395f7380
-  xe-pw-147786v1: 147786v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147786v1/index.html
-
---===============3713585218645818903==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/vf: Post-migration recovery of GGTT nodes and CTB</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147786/">https://patchwork.freedesktop.org/series/147786/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147786v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147786v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2956-b61f5de7570012cb79e72624a97b216d395f7380_BAT -&gt; xe-pw-147786v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2956-b61f5de7570012cb79e72624a97b216d395f7380 -&gt; xe-pw-147786v1</li>
-</ul>
-<p>IGT_8320: cd3b5612be3cef838f16e074bf1bc421399d584d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2956-b61f5de7570012cb79e72624a97b216d395f7380: b61f5de7570012cb79e72624a97b216d395f7380<br />
-  xe-pw-147786v1: 147786v1</p>
-
-</body>
-</html>
-
---===============3713585218645818903==--
