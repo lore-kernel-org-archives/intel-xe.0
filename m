@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99F06C369AB
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Apr 2025 09:36:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F44EC369B4
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Apr 2025 09:51:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5565210E6AF;
-	Tue, 15 Apr 2025 09:36:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1621D10E6B8;
+	Tue, 15 Apr 2025 09:51:57 +0000 (UTC)
 Received: from b68e5b3b99e1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5120810E6AF;
- Tue, 15 Apr 2025 09:36:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADAA210E6B8;
+ Tue, 15 Apr 2025 09:51:55 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_Rework/Correction_on?=
- =?utf-8?q?_minimum_hblank_calculation_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/edid=3A_more_dis?=
+ =?utf-8?q?playid_timing_parsing_and_cleanups?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arun R Murthy" <arun.r.murthy@intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 15 Apr 2025 09:36:58 -0000
-Message-ID: <174470981832.4840.11094457078249160381@b68e5b3b99e1>
+Date: Tue, 15 Apr 2025 09:51:55 -0000
+Message-ID: <174471071565.4973.8133084597453430996@b68e5b3b99e1>
 X-Patchwork-Hint: ignore
-References: <20250415-hblank-v2-0-1a23e9d97360@intel.com>
-In-Reply-To: <20250415-hblank-v2-0-1a23e9d97360@intel.com>
+References: <cover.1744708239.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1744708239.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,24 +42,16 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Rework/Correction on minimum hblank calculation (rev2)
-URL   : https://patchwork.freedesktop.org/series/147360/
-State : failure
+Series: drm/edid: more displayid timing parsing and cleanups
+URL   : https://patchwork.freedesktop.org/series/147737/
+State : success
 
 == Summary ==
 
 === Applying kernel patches on branch 'drm-tip' with base: ===
 Base commit: 4e52f6bddf99 drm-tip: 2025y-04m-15d-08h-16m-46s UTC integration manifest
 === git am output follows ===
-error: patch failed: drivers/gpu/drm/i915/display/intel_dp_mst.c:998
-error: drivers/gpu/drm/i915/display/intel_dp_mst.c: patch does not apply
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Applying: drm/display/dp: Export fn to calculate link symbol cycles
-Applying: drm/i915/display: export function to count dsc slices
-Applying: drm/i915/display: move min_hblank from dp_mst.c to dp.c
-Patch failed at 0003 drm/i915/display: move min_hblank from dp_mst.c to dp.c
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Applying: drm/edid: Implement DisplayID Type IX & X timing blocks parsing
+Applying: drm/edid: Refactor DisplayID timing block structs
 
 
