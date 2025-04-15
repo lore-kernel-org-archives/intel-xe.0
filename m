@@ -4,183 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B910DC369AB
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Apr 2025 07:29:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BC48C369AB
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Apr 2025 07:40:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 675B010E07D;
-	Tue, 15 Apr 2025 07:29:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 308E010E36E;
+	Tue, 15 Apr 2025 07:40:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RIcySlV4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kD8hLTgS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AE6310E07D
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Apr 2025 07:29:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4337210E36E
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Apr 2025 07:40:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744702192; x=1776238192;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=eNdqBJPIVlwI/h+2rUFdCQho12USKxEwDW1iIC3acCA=;
- b=RIcySlV4Xa49HiLCP8F4YomwgfNXgGRQvj8Q9jnj8oXneW+N/caG3s8j
- PDdOFZpm8jeFeKnfji6Mnlh9CxgeCGSJIYzRIo3f9gTx6e/ykUom9WIHV
- zy7+OZdbWpkbbbCw348mrqTIjigumn/COoKnOFfSbnaP+JR2eTauBWLLQ
- EpVc1NZlvxpX7TS0YbZYiwfd7uh1SzHpXsaSmzjUB88VSPQi5rlXXAEEi
- WBgJcGI8t9LSIUR/DcVT415TYxewWiZmfyLCzxOQMZKXbSrxzjkS1jdy4
- pVchvXyn3HqtDWD1FflZS4F+fY8QmZz61xvHK8Uy9VMBCqMNoYNf7bbTz g==;
-X-CSE-ConnectionGUID: PJraVDofRjK685lFxbTVOw==
-X-CSE-MsgGUID: 0/NY7IJvTvebbRAd4FYkhw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11403"; a="57187791"
-X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="57187791"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2025 00:29:51 -0700
-X-CSE-ConnectionGUID: obYo6dEaTDWxJ03Q0mzf0A==
-X-CSE-MsgGUID: 3NWs3NpSR3a43D8UqZy9Kw==
+ t=1744702853; x=1776238853;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=p0+YxlOPADY9oUzznCCAg64/ypcfga0hAwBaToSIwIA=;
+ b=kD8hLTgSA3A5GRdtbF81ftHM/sUbWiR0D2rIpLvmjz29R4/Oy6B8CUdW
+ 21WUBnhnyTWL1EBtt1omo5UaqFhD4s/7mOHXyo9FMh/dL3F4RbSIZ3NNs
+ mKzA6RjIRTUsPE6Wxq3Ai9ZPlFUONTFEezI8vSMUKPJ48NDFiFyS3hSDu
+ 3uKQbYtlC9lIxNyC0ANu0V/JLm7ykk+Z+iJNhU+KGob0i5jLfFBOPy5he
+ Ftrfe44ulGG0KX/SuXwZvMN/ujoet7o2h7C5Iv9XbYAIBbL1p6CnVX4H6
+ ccI0YYsLPgvfrdklE8c7lFxsIeanglwkS2sqLjxHG0cnKN7Z0UeSRwhyW Q==;
+X-CSE-ConnectionGUID: kjXjPe8TTpqfoUi/CDM1Jg==
+X-CSE-MsgGUID: hx1Oiy90S0uY8hPc/1+6iw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11403"; a="45909107"
+X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="45909107"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2025 00:40:44 -0700
+X-CSE-ConnectionGUID: je8HW6vsQWqpWmc3Bo2sPw==
+X-CSE-MsgGUID: SUDJ+/dXTU68PObp/mG6cA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="161014031"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2025 00:29:51 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Tue, 15 Apr 2025 00:29:50 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Tue, 15 Apr 2025 00:29:50 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.177)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Tue, 15 Apr 2025 00:29:50 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AtiydeaKOReIPQ4zHH1ZGZbZN702gtnm6B3cyufT/ItFJUjDMPMXXAFhiwwbBmo66DIXeesyb4D92Y/SRiwans8eGWWGCjGhxzBgP+yXczhtCv8jEUUb22WdgguJOCBKJT+zmsWNs9gLiSU/urKRD8tAkK/4ZnIuMFrGMdyzJSY8zxrL6aCxh9h6yBFxEh3KP4rJv5+zZklwd/Ic0Mx3SztJ3u58maBac49/dzrdB4sjBGMyjeX1sM8SUn7qBQEu0rt2CSP1xOhT8jxtq5f2AjVRxA2Osc4AvUwgcwPInteRcRHXRxyDAivAESJ/awb+pYZyieTQKxKVQCpQdy/SIw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=X36aUZxEt3zjq6FodSafo3JtoWwnZS3QkLC0mrwU8jw=;
- b=tPXjPHEdNmEtXA+1NUH326YtxtoGTlFzayfBpp7AYqHO4zGme6PCpmCZNJB687beIgv9mh9CpaU5QNiXwLfnpQhr3BCA3fB5yFHyP6W6RNVDz0ukQd1WHieGiRvHAM3kmmNKnH42XJCxaLGf2c6Y7Idd4Yd/vfaIlQ/0Lh9JqkDgajHm4CIJ3F4BswgQb2oPtiNeN450JPq0Obgg4qKoBa3UbR1CCXR9GsdNh/+w5zOEBZd28HDeFNckkTy2/DgmSTq8KiK0L+T/9J9MPv6G588bCI+n9y24lJzQq92HWnWzm3K78b97bSF+BMurbpXCBI71l2lwyWth90XtuGM5kg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
- IA1PR11MB6196.namprd11.prod.outlook.com (2603:10b6:208:3e8::6) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8632.35; Tue, 15 Apr 2025 07:29:29 +0000
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::d3ba:63fc:10be:dfca]) by DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::d3ba:63fc:10be:dfca%6]) with mapi id 15.20.8632.030; Tue, 15 Apr 2025
- 07:29:29 +0000
-Message-ID: <51c2caef-23e7-4c1b-8365-6e0ff7e3d5b6@intel.com>
-Date: Tue, 15 Apr 2025 12:59:23 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/xe/guc: Fix out-of-bound while enabling engine
- activity stats
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- <intel-xe@lists.freedesktop.org>
-CC: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-References: <20250414202347.1909-1-michal.wajdeczko@intel.com>
-Content-Language: en-US
-From: Riana Tauro <riana.tauro@intel.com>
-In-Reply-To: <20250414202347.1909-1-michal.wajdeczko@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA1PR01CA0172.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:d::16) To IA0PR11MB7955.namprd11.prod.outlook.com
- (2603:10b6:208:3dd::6)
+X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="130043729"
+Received: from labhost1.iind.intel.com ([10.190.230.69])
+ by fmviesa007.fm.intel.com with ESMTP; 15 Apr 2025 00:40:40 -0700
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>,
+ Adam Miszczak <adam.miszczak@linux.intel.com>,
+ Jakub Kolakowski <jakub1.kolakowski@intel.com>,
+ Lukasz Laguna <lukasz.laguna@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
+ Tomasz Lis <tomasz.lis@intel.com>
+Subject: [RFC] drm/xe/vf: Allow to inject VF provisioning errors
+Date: Tue, 15 Apr 2025 13:26:47 +0530
+Message-ID: <20250415075647.29295-1-satyanarayana.k.v.p@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|IA1PR11MB6196:EE_
-X-MS-Office365-Filtering-Correlation-Id: 54a0a6bd-5ae7-45f1-5298-08dd7bef41ad
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?VGthVDJWQXZydGtlZ004UDJPT2xGczkxSXJTNjVRa2tDdVRWUGZhWEs4MTNL?=
- =?utf-8?B?ZldZdkljV283NmtIT1pSdFl0eTdTNW00UnViallwUUQvSGpWeXJhcG9YaUoz?=
- =?utf-8?B?T1p6bk1hY1AvQkpObVczTnlpY1VFcStiMkxBU3MxQWV0N2NNZXdUWDRWT2ZU?=
- =?utf-8?B?aThwTUt2emJKYnYvemJLZDFDL01OSVI5YTdDUTQ1QmxJODI5WjdxZGJUU200?=
- =?utf-8?B?ZU5McERROEZ1bWRIbFRRREtMalo4ZzIvbWVrSURKNm1JT21Ka0d1dFFCRFda?=
- =?utf-8?B?aldKWXdQWG50WVp6Z09SMmNINGtoZCtLb3czL0tVMmJkV0x2ZVBpWjIrUnI1?=
- =?utf-8?B?cEdvUjdTSmZvSlFKV2FXK1VaUWtKYzRJbjNrZUhDT3lNczhMbExDMFBqSnQz?=
- =?utf-8?B?aUJ6RW5yTDlZR2V4d1h3eXlORGM3QXU0N3RxWWtsY2RnSTFvNlFqNzFNWDQ5?=
- =?utf-8?B?ajhyMFM4OW0zR0JoQ1VaS1pyanVWY3U0UkhpNDNCb3I1ZHJOcTcxdlZHMzha?=
- =?utf-8?B?ZGJjUTZkTmJSRmZqdVVCTXB4NEpRUHQxYXpDaGp0aXZxc1NRNDdyUEY1NEFJ?=
- =?utf-8?B?MmpscEJaN016Y0k3Q3c2WHJISGZSMTZKWlB6R2dPVG9pYW9hbzhlVHByUTN2?=
- =?utf-8?B?cThxdDk5UzFKSVZqKzdBb3VuZ2xYdXlrTXUzNkFZVWpjQ1dNczRJWDFzVzNV?=
- =?utf-8?B?VDRVWGhuS2FSd21UeTlhcG9MWHg1cmtPSldaNURXcDBqTUZiVzJ1UmF0alVn?=
- =?utf-8?B?aEp0SjJnbFdqaS90cmJmb3VxY1FrUEQrdit1MkpET2lBdEpJa1NIRU9kL2tQ?=
- =?utf-8?B?WTdNRTVlelc1cS9ndHNzOEJTemZsTytvQ0tyL1pkMlVYSVhCVEdxTHZrSjRP?=
- =?utf-8?B?WENYa1kyb2U1QW55WEVqQlZMV3V4OWVxZkJRd2JWRWR3NWhWU0djVHcwNEc3?=
- =?utf-8?B?a3V2ejJMS0I4U3VTZTk5ZSs0Z01aNnB6bGZQa2piQU1OdEdQQjR2MlNkY2xO?=
- =?utf-8?B?ZlZ2OHkvbjJqYW5PSnV6SnE0eFpHYmpTZEZHM1hKK2Vlc1MwSUI1dHNiK2hN?=
- =?utf-8?B?bmwzM3pEd0F2ZEZaeVFtRzlIWjN0VW1BRXkrVEtIRmsydWFORFVFYzNhRGtZ?=
- =?utf-8?B?N0pBazlnVXhYRnc2cGZYNldjNS8xZVU2M05LblQ4UDFwOXk1VmVtb1lyNE5L?=
- =?utf-8?B?RTZ4RjUxQyt3N0ZRUFMzWTdCdmlGL1hRUjI0NkRFMFdVdW9nN2Jlc0wybitX?=
- =?utf-8?B?UXE1TTQxZTh6MGJldG5GeFJqWVdmbWd6RldKOG9ibFRlclVHWXF5cXJzcHZT?=
- =?utf-8?B?V1BEa3QvajZIVEErQmlXMVo4SEdLRGxQOUo3NENmNzRWaTFYblBtUDhHNTFU?=
- =?utf-8?B?MStrTlhIUXF1TEs0VlNBQVN2ZTlYdndIeHFKeUE2UnhEVEtNSjRBSkIveE15?=
- =?utf-8?B?dHFKNnk2eFNuSG9INE0vc24wckpVT1diVVl6NUU3S0oyVjZqTW04aFYyb0Ro?=
- =?utf-8?B?NEV0SWtvVlRPYnJFOWEvRHUvbGNpeUdoS1dFbVJXUTZLU0lUdGplYzdJZjhv?=
- =?utf-8?B?aTJiU3Q0Rzg2TkY2eDh0ZWNSVktWbThlUU1CT2RlRDZyVkovTEdza29odXha?=
- =?utf-8?B?cWhQRnZ4MGJ6WHhKcVlJclkwYkxSb1N0M09QbXZMU3U5cHdITGNha2RIM0hm?=
- =?utf-8?B?a1ZjYzRjNlpONHNZNUpnR3BkcWZzemd5ZFBDWGlKak5qSU9OUlVxYmtwNTNX?=
- =?utf-8?B?TlZMMDBvanIrLys5OTdUTlhxeTFRRVRvOU9Jc2p0ODN1c2NzekY3MTdNUFI1?=
- =?utf-8?B?M2duY2lPcGk5Wm9nVXA1cm84MjBkRnR1MDdjZTQrT05YV2xqQXJ1VXdFVjI1?=
- =?utf-8?B?K2hvT3VCNHdjM09PVllocmE4bVFnZkdIZFluN2x5bk9xODRYZCtPZm1XQnJj?=
- =?utf-8?Q?i44i0lHoAV4=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NHcwL3hLL1hNVzMzSGFibkdkUWRyd2ZoRk9qZjUxOGxLN0xtK2R2bFphNjhV?=
- =?utf-8?B?eDl2YUw5VkQxUkRSTHV1NVVUUCtLLy9oMklHall6V3dBczltVnYxL3BDRjFv?=
- =?utf-8?B?TS90T0t2OHRBMzNSMXRLUXBoaVRkZlBRVTl2bjFhTUFQZi9CT2ZocS9ucW1C?=
- =?utf-8?B?ay9EaWkzdmY3SUp2bzY1U01wNkRvYnQ1aVBPQVZIYkZoT2I4R3lLVW1tZnVl?=
- =?utf-8?B?bXJjd3AyTFJKVEdYWERJTHVkeC9VMVpOWnhtTXBTK214a0dRK0R4WEthcUx2?=
- =?utf-8?B?a2k5eTIwSmlSQTZUeXhwRU9oVlRHbkRWbWhEcFZuaVYyWkRybjZmSUVwWW9o?=
- =?utf-8?B?L0Y1UHlQZFpHWnRMVHJ2bmFzQkJXMnovTlZSay9CNlhOaG5taUNPYy9BN3pX?=
- =?utf-8?B?RGJCSm8vSXp0UTlWWXFONGNwY1ZyS2ptdVpxNC9SeDRKVG9TWE83Tms5QVdY?=
- =?utf-8?B?ekhRK3hqdGNGV25hait6Z21jOVdjcXd0SFBIdnJsRzQyYjNIaE9XSG00KzRh?=
- =?utf-8?B?TVNqQk5Pa25BTEJSMHE4S0h4ZWprb1V2S3I4dEVQaUJ2NnF3RGxBOW5xQ0lj?=
- =?utf-8?B?Uk9CZVpLUWtBUERZeGFPR20rTXkrQ1RUQ1A3c0NYdFBwRERzR2xWK0I0YmhS?=
- =?utf-8?B?WWJ3Y3lUWTYzdTdoQnlBb2lNVStVVUVPMjlvWkNsRlY5U0xxUTAzajVDa3Na?=
- =?utf-8?B?RUNmbW8wS1cyWFByK0xUbkZQV2dqcjBnUEJWWTNDa29FSlY4aW5NUVVMMkg1?=
- =?utf-8?B?WkNOb0V0Tkt6bnBOYkNZYlg1WG9BSWo2djA0Y2R0ME5SblZUM3cwbStRN09R?=
- =?utf-8?B?MFBFUkEwc2tHUFA1anhXWThmZnNUblZRa21PQzVMNU9Wc2JHY2JjbEMzTnNm?=
- =?utf-8?B?eGhBQjBPV25kNExQZXc0alYyTm1LVVVwSDVnaCt4Q2tibmZZMWVzZURaWjRY?=
- =?utf-8?B?emtLcDR5bmlUYjJZNU9UZkNaTytQU1hCTnVRNXVXSGhnRk9ZWWF1VFRRQjhj?=
- =?utf-8?B?R2NwYUdISUs5SmFxNkZSRkhLN3VMNFJSM2ovNm1iU0JnYVhrZStSVThsSS9Q?=
- =?utf-8?B?aHlUc3J4d3ZoSEdPNXIwUFpQdWJFMFlKOVpEZ3d0NmFiZFRJa2RWV0pQVnpN?=
- =?utf-8?B?bWZBTGw1cmo2TTdmbnRqenB6WG9rbDkrRjgvelRSUmpNczdBWDJodXlUa0F4?=
- =?utf-8?B?V05GZG5rc0lVSG9SVW1vR1cxYytIdEpiWTFFSVFuWHoxZUROZ2lINWdndUhP?=
- =?utf-8?B?eDRYZVN2YUtzZlIwVGlXOFJqeTF2Q2VWOElRTXgxSVlZU2Y0NEpuMEd3VFho?=
- =?utf-8?B?ckIxSk0wOTMyY3gwODVmeDhEU0Y1TUVlbWxSSHdjSHlZLzZ1TG4vbndETkFm?=
- =?utf-8?B?enluSVhyWHBRZC9SdTRndkpOUHNpV2NRSXhYYS8xRG5vdGlMMVQyaEVSZWF1?=
- =?utf-8?B?QkdhUUtaSkNkQXRrTERuSmhld0duR0tyazR6MzNzU2g2ZWt1N0pJS2tuSGhK?=
- =?utf-8?B?ank5cGl1R0VUWkVobFloT0hRZFlxQlE2a3ljbXlQZVRBRFFGWDB1aVJnRHRs?=
- =?utf-8?B?RmJWa1l2VVZFQXVKeW5EemJyMVdFa3Q1SUJjVlJLanQwbUl5dHRodUQwZ0RF?=
- =?utf-8?B?b2dWUndnZmJxZ1JLYzJqKzdGSmZvWWozOEZ1cFBUNi9RYU1MNFI0by8vZm50?=
- =?utf-8?B?N3E5RnJFM2NYbGRXclRQSVExM0ZxS3N4WFVnMm5KbVVBOWt5VEdDSU9vcnJN?=
- =?utf-8?B?WkV2VUdMdUdQYWxqZnp0bndVQjY0ZHJ5YlM3NlAxSWV3V1ZudHBucVpMZ1du?=
- =?utf-8?B?UmJkcmp3SUJNYmVMTGRaQ0thdEVWeGNDNjRYYzB6WmZuVTl5TTFUMnlMSnBm?=
- =?utf-8?B?MVRDVG1nWTNpVitRWmhkRVRTeXFEcnNEcXpmSHFwWVRvaHUveTJuYmVHTUhE?=
- =?utf-8?B?WGNQdlpnU2ZVaERzNWVZUVEvU2cvdnRsZFlsY3BmRnpMOEQwdnVybTh5WGJ1?=
- =?utf-8?B?REcvaEhsNkdMS2xnSkp3S01tSklDaHVQZytJdTVDTUxTU2QwOWdTV0NXUkIw?=
- =?utf-8?B?NWVoVzhyTkViS3VtZXRvREg1d3pSV1RDc0NtdVR2SlBSOTNCL1AwM09sSU1t?=
- =?utf-8?Q?8P1LmLbIvTDv1GkVmCGi+w/V3?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 54a0a6bd-5ae7-45f1-5298-08dd7bef41ad
-X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7955.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Apr 2025 07:29:29.4677 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: l9Qtn6GiMUXQk5QiU8mxvgWpN+jSAL4FSxkllUjdgL0MGDPkPoQz902YG6hrEqbw2hL46XTFcOJb4545ppdZ1Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6196
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -195,73 +72,391 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Michal
+In unlikely event, due to PF malfunction or misconfiguration, VF may
+receive incomplete or invalid configuration and it must be prepared
+to handle such cases without causing a crash.
 
-On 4/15/2025 1:53 AM, Michal Wajdeczko wrote:
-> In the PF mode we allocate array of struct engine_activity_group
-> that holds activity data split for the PF and all potential VFs.
-> But while preparing data for use by VFs we ended with bad index.
-> 
->   [ ] BUG: KASAN: slab-out-of-bounds in xe_guc_engine_activity_function_stats+0x41e/0x4f0 [xe]
->   [ ] Call Trace:
->   [ ]  <TASK>
->   [ ]  dump_stack_lvl+0x91/0xf0
->   [ ]  print_report+0xd1/0x680
->   [ ]  ? __virt_addr_valid+0x23a/0x440
->   [ ]  ? kasan_addr_to_slab+0xd/0xb0
->   [ ]  kasan_report+0xe7/0x130
->   [ ]  ? xe_guc_engine_activity_function_stats+0x41e/0x4f0 [xe]
->   [ ]  ? xe_guc_engine_activity_function_stats+0x41e/0x4f0 [xe]
->   [ ]  __asan_report_store8_noabort+0x17/0x30
->   [ ]  xe_guc_engine_activity_function_stats+0x41e/0x4f0 [xe]
->   [ ]  pf_engine_activity_stats+0x1b6/0x7f0 [xe]
->   [ ]  ? kobject_put+0x5f/0x470
->   [ ]  xe_pci_sriov_configure+0x28c9/0x3270 [xe]
->   [ ]  ? __pfx_dev_attr_store+0x10/0x10
->   [ ]  ? kstrtoull+0x3b/0x70
->   [ ]  ? __pfx___lock_acquire+0x10/0x10
->   [ ]  ? kstrtou16+0x65/0xf0
->   [ ]  sriov_numvfs_store+0x20c/0x400
->   [ ]  ? __pfx_sriov_numvfs_store+0x10/0x10
->   [ ]  ? __pfx__copy_from_iter+0x10/0x10
->   [ ]  ? __pfx_dev_attr_store+0x10/0x10
->   [ ]  dev_attr_store+0x3b/0x80
->   [ ]  ? sysfs_file_ops+0x135/0x190
-> 
-> Fixes: 2de3f38fbf89 ("drm/xe: Add support for per-function engine activity")
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> Cc: Riana Tauro <riana.tauro@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_guc_engine_activity.c | 7 +++++--
->   1 file changed, 5 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity.c b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-> index b96fea78df8b..0fb48f8f05d8 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-> @@ -304,6 +304,8 @@ static void engine_activity_set_cpu_ts(struct xe_guc *guc, unsigned int index)
->   	struct engine_activity_group *eag = &engine_activity->eag[index];
->   	int i, j;
->   
-> +	xe_gt_assert(guc_to_gt(guc), index < engine_activity->num_activity_group);
-This would happen only when num_vfs is greater than total_vfs since 
-num_activity_group is total_vfs+1. enable_vfs has that check> +
->   	for (i = 0; i < GUC_MAX_ENGINE_CLASSES; i++)
->   		for (j = 0; j < GUC_MAX_INSTANCES_PER_CLASS; j++)
->   			eag->engine[i][j].last_cpu_ts = ktime_get();
-> @@ -374,8 +376,9 @@ static int engine_activity_enable_function_stats(struct xe_guc *guc, int num_vfs
->   		return ret;
->   	}
->   
-> -	for (i = 0; i < engine_activity->num_functions; i++)
-> -		engine_activity_set_cpu_ts(guc, i + 1);
-> +	/* skip PF as it was already setup */
-> +	for (i = 1; i < engine_activity->num_functions; i++)
-> +		engine_activity_set_cpu_ts(guc, i);
-sorry, missed this when removing global.
-Thanks for fixing this. Assert seems unnecessary
+Since we believe that our PF implementation will not provide invalid VF
+config, reuse existing FUNCTION_ERROR_INJECTION framework to alter VF
+provisioning to verify driver reaction to unexpected or invalid
+configurations.
 
-Reviewed-by: Riana Tauro <riana.tauro@intel.com>>
->   	return 0;
->   }
+However we can't use FUNCTION_ERROR_INJECTION directly on functions that
+query VF provisioning, as all detected error conditions will cause
+immediate abort. Instead define dummy functions, where we could inject
+error using FUNCTION_ERROR_INJECTION framework, and any errors from these
+functions will be used to adjust the received valid provisioning data into
+the invalid one.
+
+The following errors are recognized by these functions and to trigger
+specific provisioning misconfiguration.
+
+-ENODATA (-61)  : Force resource size to zero (unprovisioned)
+-EREMCHG (-78)  : Force resource size smaller than received (should be
+		  harmless until driver detects inconsistency)
+-EINVAL  (-22)  : Force resource location invalid (like GGTT base
+		  below WOPCM)
+-ENOSPC  (-28)  : Force resource size bigger than HW limit
+-EDQUOT  (-122) : Force resource size larger than received (will cause use
+                  of unassigned part of the resource)
+-ESRMNT  (-69)  : Force resource size larger than received with invalid
+                  base address. (Will cause use of unassigned part of the
+                  resource).
+
+Fault can be injected with below steps (using GGTT resource and -ENODATA
+error as an example)
+
+$ FAILFUNC=xe_should_fail_ggtt_provisioning
+
+$ echo $FAILFUNC    > /sys/kernel/debug/fail_function/inject
+$ printf %#x -61    > /sys/kernel/debug/fail_function/$FAILFUNC/retval
+$ echo 100          > /sys/kernel/debug/fail_function/probability
+$ echo 0            > /sys/kernel/debug/fail_function/space
+
+Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Suggested-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+
+---
+An IGT will be developed to further test and validate the functionality
+introduced by this patch based on acceptance of this RFC patch.
+
+Cc: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
+Cc: Adam Miszczak <adam.miszczak@linux.intel.com>
+Cc: Jakub Kolakowski <jakub1.kolakowski@intel.com>
+Cc: Lukasz Laguna <lukasz.laguna@intel.com>
+Cc: Michał Winiarski <michal.winiarski@intel.com>
+Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Cc: Tomasz Lis <tomasz.lis@intel.com>
+---
+ drivers/gpu/drm/xe/Makefile                |   3 +
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c        |  10 +
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_tweaks.c | 223 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_tweaks.h |  25 +++
+ 4 files changed, 261 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_vf_tweaks.c
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_vf_tweaks.h
+
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 5ce65ccb3c08..d6651b9d5969 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -150,6 +150,9 @@ xe-$(CONFIG_PCI_IOV) += \
+ 	xe_pci_sriov.o \
+ 	xe_sriov_pf.o
+ 
++xe-$(CONFIG_FUNCTION_ERROR_INJECTION) += \
++	xe_gt_sriov_vf_tweaks.o
++
+ # include helpers for tests even when XE is built-in
+ ifdef CONFIG_DRM_XE_KUNIT_TEST
+ xe-y += tests/xe_kunit_helpers.o
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index a439261bf4d7..af15cd8ed1aa 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -21,6 +21,7 @@
+ #include "xe_ggtt.h"
+ #include "xe_gt_sriov_printk.h"
+ #include "xe_gt_sriov_vf.h"
++#include "xe_gt_sriov_vf_tweaks.h"
+ #include "xe_gt_sriov_vf_types.h"
+ #include "xe_guc.h"
+ #include "xe_guc_hxg_helpers.h"
+@@ -406,6 +407,8 @@ static int vf_get_ggtt_info(struct xe_gt *gt)
+ 	if (unlikely(err))
+ 		return err;
+ 
++	xe_gt_sriov_vf_tweak_ggtt(gt, &start, &size);
++
+ 	if (config->ggtt_size && config->ggtt_size != size) {
+ 		xe_gt_sriov_err(gt, "Unexpected GGTT reassignment: %lluK != %lluK\n",
+ 				size / SZ_1K, config->ggtt_size / SZ_1K);
+@@ -435,6 +438,8 @@ static int vf_get_lmem_info(struct xe_gt *gt)
+ 	if (unlikely(err))
+ 		return err;
+ 
++	xe_gt_sriov_vf_tweak_lmem(gt, &size);
++
+ 	if (config->lmem_size && config->lmem_size != size) {
+ 		xe_gt_sriov_err(gt, "Unexpected LMEM reassignment: %lluM != %lluM\n",
+ 				size / SZ_1M, config->lmem_size / SZ_1M);
+@@ -466,11 +471,16 @@ static int vf_get_submission_cfg(struct xe_gt *gt)
+ 	if (unlikely(err))
+ 		return err;
+ 
++	xe_gt_sriov_vf_tweak_ctxs(gt, &num_ctxs);
++
+ 	if (config->num_ctxs && config->num_ctxs != num_ctxs) {
+ 		xe_gt_sriov_err(gt, "Unexpected CTXs reassignment: %u != %u\n",
+ 				num_ctxs, config->num_ctxs);
+ 		return -EREMCHG;
+ 	}
++
++	xe_gt_sriov_vf_tweak_dbs(gt, &num_dbs);
++
+ 	if (config->num_dbs && config->num_dbs != num_dbs) {
+ 		xe_gt_sriov_err(gt, "Unexpected DBs reassignment: %u != %u\n",
+ 				num_dbs, config->num_dbs);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_tweaks.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf_tweaks.c
+new file mode 100644
+index 000000000000..200671da34ae
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_tweaks.c
+@@ -0,0 +1,223 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#include "regs/xe_guc_regs.h"
++#include "xe_device.h"
++#include "xe_gt_sriov_printk.h"
++#include "xe_gt_sriov_vf.h"
++#include "xe_gt_sriov_vf_types.h"
++#include "xe_gt_sriov_vf_tweaks.h"
++
++#define DEFINE_FAIL_FUNC(NAME)  \
++	static noinline int NAME(void)  \
++	{                               \
++		return 0;               \
++	}                               \
++	ALLOW_ERROR_INJECTION(NAME, ERRNO)
++
++DEFINE_FAIL_FUNC(xe_should_fail_ggtt_provisioning);
++DEFINE_FAIL_FUNC(xe_should_fail_lmem_provisioning);
++DEFINE_FAIL_FUNC(xe_should_fail_context_provisioning);
++DEFINE_FAIL_FUNC(xe_should_fail_doorbell_provisioning);
++
++/**
++ * xe_gt_sriov_vf_tweak_ggtt - Tweak ggtt provisioning parameters
++ * @gt: the &xe_gt struct instance linked to target GuC
++ * @base : Pointer to base address of GGTT
++ * @size : Pointer to size of the GGTT region.
++ *
++ * Tweak provisioned GGTT parameters according to the error injected
++ * into xe_should_fail_ggtt_provisioning() using fault
++ * injection framework.
++ *
++ * Returns: None.
++ */
++void xe_gt_sriov_vf_tweak_ggtt(struct xe_gt *gt, u64 *base, u64 *size)
++{
++	u64 new_base, new_size;
++	int err;
++
++	err = xe_should_fail_ggtt_provisioning();
++	switch (err) {
++	case -ENODATA:
++		new_size = 0;
++		new_base = 0;
++		break;
++	case -EREMCHG:
++		new_size = *size - SZ_4K;
++		new_base = *base;
++		break;
++	case -EINVAL:
++		new_base = SZ_4G - SZ_4K;
++		new_size = SZ_4K;
++		break;
++	case -ENOSPC:
++		new_base = *base + *size - SZ_4K;
++		new_size = SZ_4K;
++		break;
++	case -EDQUOT:
++		new_size = *size + SZ_4K;
++		new_base = *base;
++		break;
++	case -ESRMNT:
++		new_base = *base - SZ_4K;
++		new_size = *size + SZ_4K;
++		break;
++	default:
++		xe_gt_sriov_dbg(gt, "ignored unsupported fault code %pe\n", ERR_PTR(err));
++		fallthrough;
++	case 0:
++		return;
++	}
++
++	xe_gt_sriov_notice(gt, "tweaking GGTT assignment: from %#llx-%#llx to %#llx-%#llx\n",
++			   *base, *base + *size - 1, new_base, new_base + new_size - 1);
++	*base = new_base;
++	*size = new_size;
++}
++
++/**
++ * xe_gt_sriov_vf_tweak_lmem - Tweak LMEM provisioning parameters
++ * @gt: the &xe_gt struct instance linked to target GuC
++ * @size : Pointer to size in the LMEM region.
++ *
++ * Tweak provisioned LMEM size according to the error injected
++ * into xe_should_fail_lmem_provisioning() using fault
++ * injection framework.
++ *
++ * Returns: None.
++ */
++void xe_gt_sriov_vf_tweak_lmem(struct xe_gt *gt, u64 *size)
++{
++	u64 new_size;
++	int err;
++
++	err = xe_should_fail_lmem_provisioning();
++	switch (err) {
++	case -ENODATA:
++		new_size = 0;
++		break;
++	case -EREMCHG:
++		new_size = *size - SZ_32M;
++		break;
++	case -EINVAL:
++		new_size = SZ_256M;
++		break;
++	case -ENOSPC:
++		new_size = SZ_512M;
++		break;
++	case -EDQUOT:
++		new_size = *size + SZ_512M;
++		break;
++	case -ESRMNT:
++		new_size = *size + SZ_1G;
++		break;
++	default:
++		xe_gt_sriov_dbg(gt, "ignored unsupported fault code %pe\n", ERR_PTR(err));
++		fallthrough;
++	case 0:
++		return;
++	}
++
++	xe_gt_sriov_notice(gt, "tweaking LMEM assignment: from %#llx to %#llx\n",
++			   *size, new_size);
++	*size = new_size;
++}
++
++/**
++ * xe_gt_sriov_vf_tweak_ctxs - Tweak context provisioning parameters
++ * @gt: the &xe_gt struct instance linked to target GuC
++ * @num_ctx : Pointer to number of contexts.
++ *
++ * Tweak provisioned number of contexts according to the error
++ * injected into xe_should_fail_context_provisioning() using
++ * fault injection framework.
++ *
++ * Returns: None.
++ */
++void xe_gt_sriov_vf_tweak_ctxs(struct xe_gt *gt, u32 *num_ctx)
++{
++	u32 new_num_ctx;
++	int err;
++
++	err = xe_should_fail_context_provisioning();
++	switch (err) {
++	case -ENODATA:
++		new_num_ctx = 0;
++		break;
++	case -EREMCHG:
++		new_num_ctx = *num_ctx - SZ_128K;
++		break;
++	case -EINVAL:
++		new_num_ctx = GUC_ID_MAX + 1;
++		break;
++	case -ENOSPC:
++		new_num_ctx = SZ_1;
++		break;
++	case -EDQUOT:
++		new_num_ctx = *num_ctx + SZ_128K;
++		break;
++	case -ESRMNT:
++		new_num_ctx = *num_ctx + SZ_4K;
++		break;
++	default:
++		xe_gt_sriov_dbg(gt, "ignored unsupported fault code %pe\n", ERR_PTR(err));
++		fallthrough;
++	case 0:
++		return;
++	}
++
++	xe_gt_sriov_notice(gt, "tweaking context assignment: from %u to %u\n",
++			   *num_ctx, new_num_ctx);
++	*num_ctx = new_num_ctx;
++}
++
++/**
++ * xe_gt_sriov_vf_tweak_dbs - Tweak doorbell provisioning parameters
++ * @gt: the &xe_gt struct instance linked to target GuC
++ * @num_dbs : Pointer to number of doorbells.
++ *
++ * Tweak provisioned number of doorbells according to the error injected
++ * into xe_should_fail_doorbell_provisioning() using fault
++ * injection framework.
++ *
++ * Returns: None.
++ */
++void xe_gt_sriov_vf_tweak_dbs(struct xe_gt *gt, u32 *num_dbs)
++{
++	u32 new_num_dbs;
++	int err;
++
++	err = xe_should_fail_doorbell_provisioning();
++	switch (err) {
++	case -ENODATA:
++		new_num_dbs = 0;
++		break;
++	case -EREMCHG:
++		new_num_dbs = *num_dbs - SZ_32;
++		break;
++	case -EINVAL:
++		new_num_dbs = GUC_NUM_DOORBELLS + 1;
++		break;
++	case -ENOSPC:
++		new_num_dbs = SZ_1;
++		break;
++	case -EDQUOT:
++		new_num_dbs = *num_dbs + SZ_256 + 1;
++		break;
++	case -ESRMNT:
++		new_num_dbs = *num_dbs + SZ_32;
++		break;
++	default:
++		xe_gt_sriov_dbg(gt, "ignored unsupported fault code %pe\n", ERR_PTR(err));
++		fallthrough;
++	case 0:
++		return;
++	}
++
++	xe_gt_sriov_notice(gt, "tweaking doorbells assignment: from %u to %u\n",
++			   *num_dbs, new_num_dbs);
++	*num_dbs = new_num_dbs;
++}
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_tweaks.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_tweaks.h
+new file mode 100644
+index 000000000000..dfaac11f3e3a
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_tweaks.h
+@@ -0,0 +1,25 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#ifndef _XE_GT_SRIOV_VF_TWEAKS_H_
++#define _XE_GT_SRIOV_VF_TWEAKS_H_
++
++#include <linux/types.h>
++
++struct xe_gt;
++
++#ifdef CONFIG_FUNCTION_ERROR_INJECTION
++void xe_gt_sriov_vf_tweak_ggtt(struct xe_gt *gt, u64 *base, u64 *size);
++void xe_gt_sriov_vf_tweak_lmem(struct xe_gt *gt, u64 *size);
++void xe_gt_sriov_vf_tweak_ctxs(struct xe_gt *gt, u32 *size);
++void xe_gt_sriov_vf_tweak_dbs(struct xe_gt *gt, u32 *size);
++#else
++static inline void xe_gt_sriov_vf_tweak_ggtt(struct xe_gt *gt, u64 *base, u64 *size) {}
++static inline void xe_gt_sriov_vf_tweak_lmem(struct xe_gt *gt, u64 *size) { }
++static inline void xe_gt_sriov_vf_tweak_ctxs(struct xe_gt *gt, u32 *size) { }
++static inline void xe_gt_sriov_vf_tweak_dbs(struct xe_gt *gt, u32 *size) { }
++#endif
++
++#endif
+-- 
+2.43.0
+
