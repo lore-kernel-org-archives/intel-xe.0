@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96CC2C369B1
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Apr 2025 06:48:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E96BEC369B1
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Apr 2025 07:14:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A80010E075;
-	Wed, 16 Apr 2025 06:48:25 +0000 (UTC)
-Received: from b68e5b3b99e1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A294C10E075;
- Wed, 16 Apr 2025 06:48:23 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3715540436070727286=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/xe=5Fpmu=3A_Add_a_nu?=
- =?utf-8?q?ll_check_for_xe_gt?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Riana Tauro" <riana.tauro@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABA5410E07B;
+	Wed, 16 Apr 2025 07:14:53 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c0rH0SHa";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B073010E07B
+ for <intel-xe@lists.freedesktop.org>; Wed, 16 Apr 2025 07:14:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744787689; x=1776323689;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=i41OK8bOajm1M1nATqMi79ayjPwsvmg1KuYpL5bIqHk=;
+ b=c0rH0SHauDBIHZkEfxAf7s3zDFpmA1xHpCdBSjXTKCY2SNpJdhkWk+mR
+ O6WJPEEjOfmCbJkOInh0wNpnlDtVbZfBTM2H0ejP13mjQG92GN/lysR8Z
+ 8XCHdyhsG9eYqrEfJ7ofIqK07EKH0nSkp/WcCX0wewh7wHNsYy78Memvq
+ WGDeyfKPRhyDmLgtK04BX5uQySHVdpPeuU7WO/FAUE7oRPdnnxKsNbrN7
+ tVfGBh/ow/K3n6gqFPfvQhYf7OGPR2wLUV9cA1GPOx2i5nf0WS9xe14bt
+ xd7wVkxukPHVD7ABsdrphPk/t4xXA+KGP9fuEaBOimdHhcABAy3/qmLOq Q==;
+X-CSE-ConnectionGUID: BHwzJMXMQQWSSdFgnwqSHw==
+X-CSE-MsgGUID: eIx+fic7TIqJ+vP7OhSGQg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11404"; a="46037633"
+X-IronPort-AV: E=Sophos;i="6.15,215,1739865600"; d="scan'208";a="46037633"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2025 00:14:48 -0700
+X-CSE-ConnectionGUID: 5oyJC7rrQmSVAd+JAQGIZA==
+X-CSE-MsgGUID: a92uBQPqT6WTcaiJID9U3A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,215,1739865600"; d="scan'208";a="135197629"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.96])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2025 00:14:47 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 16 Apr 2025 06:48:23 -0000
-Message-ID: <174478610366.8986.234348495357355826@b68e5b3b99e1>
-X-Patchwork-Hint: ignore
-References: <20250416060531.2454332-1-riana.tauro@intel.com>
-In-Reply-To: <20250416060531.2454332-1-riana.tauro@intel.com>
+Subject: Re: [PATCH v3 3/4] drm/print: Add drm_printer_is_full
+In-Reply-To: <Z/6TB/QNRrCAtbIc@lstrano-desk.jf.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250410040622.238389-1-matthew.brost@intel.com>
+ <20250410040622.238389-4-matthew.brost@intel.com>
+ <87h62wuson.fsf@intel.com> <Z/6TB/QNRrCAtbIc@lstrano-desk.jf.intel.com>
+Date: Wed, 16 Apr 2025 10:14:43 +0300
+Message-ID: <877c3kr318.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +66,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3715540436070727286==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 15 Apr 2025, Matthew Brost <matthew.brost@intel.com> wrote:
+> On Thu, Apr 10, 2025 at 03:06:32PM +0300, Jani Nikula wrote:
+>> On Wed, 09 Apr 2025, Matthew Brost <matthew.brost@intel.com> wrote:
+>> > Add drm_printer_is_full which indicates if a drm printer's output is
+>> > full. Useful to short circuit coredump printing once printer's output is
+>> > full.
+>> 
+>> The function is presented as a generic drm_printer thing, but it's
+>> really only valid for a coredump printer, and will return random results
+>> for other printers. Which can't even be "full" in any meaningful sense,
+>> making the documentation for the function seem completely weird.
+>> 
+>
+> So maybe:
+>
+> s/drm_printer_is_full/drm_coredump_printer_is_full?
 
-== Series Details ==
+Works for me.
 
-Series: drm/xe/xe_pmu: Add a null check for xe gt
-URL   : https://patchwork.freedesktop.org/series/147798/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from xe-2957-b8f79cb562e983515cf827f0f336f79423b8d5a7_BAT -> xe-pw-147798v1_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-147798v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-147798v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (9 -> 0)
-------------------------------
-
-  ERROR: It appears as if the changes made in xe-pw-147798v1_BAT prevented too many machines from booting.
-
-  Missing    (9): bat-bmg-1 bat-lnl-2 bat-adlp-vf bat-lnl-1 bat-dg2-oem2 bat-atsm-2 bat-bmg-2 bat-adlp-vm bat-adlp-7 
+BR,
+Jani.
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-2957-b8f79cb562e983515cf827f0f336f79423b8d5a7 -> xe-pw-147798v1
-
-  IGT_8320: cd3b5612be3cef838f16e074bf1bc421399d584d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2957-b8f79cb562e983515cf827f0f336f79423b8d5a7: b8f79cb562e983515cf827f0f336f79423b8d5a7
-  xe-pw-147798v1: 147798v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147798v1/index.html
-
---===============3715540436070727286==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/xe_pmu: Add a null check for xe gt</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147798/">https://patchwork.freedesktop.org/series/147798/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147798v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147798v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2957-b8f79cb562e983515cf827f0f336f79423b8d5a7_BAT -&gt; xe-pw-147798v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-147798v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-147798v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (9 -&gt; 0)</h2>
-<p>ERROR: It appears as if the changes made in xe-pw-147798v1_BAT prevented too many machines from booting.</p>
-<p>Missing    (9): bat-bmg-1 bat-lnl-2 bat-adlp-vf bat-lnl-1 bat-dg2-oem2 bat-atsm-2 bat-bmg-2 bat-adlp-vm bat-adlp-7 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2957-b8f79cb562e983515cf827f0f336f79423b8d5a7 -&gt; xe-pw-147798v1</li>
-</ul>
-<p>IGT_8320: cd3b5612be3cef838f16e074bf1bc421399d584d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2957-b8f79cb562e983515cf827f0f336f79423b8d5a7: b8f79cb562e983515cf827f0f336f79423b8d5a7<br />
-  xe-pw-147798v1: 147798v1</p>
-
-</body>
-</html>
-
---===============3715540436070727286==--
+-- 
+Jani Nikula, Intel
