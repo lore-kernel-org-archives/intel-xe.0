@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08305C369B1
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Apr 2025 06:45:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96CC2C369B1
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Apr 2025 06:48:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA6F410E847;
-	Wed, 16 Apr 2025 06:45:01 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b="BSITgQOc";
-	dkim-atps=neutral
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFC8D10E845;
- Wed, 16 Apr 2025 06:44:59 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1744785896; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=Y3eiYJ6e8CgDbGLWRWvY3Dk5F8nrgnFh39kUZ2kV7SgwkMY7ohmJY+QUNQr5gNzOrTfoM5ibf+y6t9l6S7u4HodwlK3FEIUvFNLbTUbKq80Za8EWzw0iDJYOyklPxb34N7IlCzgS+G+HbClWtJA9WRQxaHwoCrUZPsabJ9IiAek=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1744785896;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=9/nvMzXrROYeNn4+PCWslifty45CG46gd92CWnrTo3k=; 
- b=YIbsTbuW0ZGA0zvqLbu22Hnir+mIo7Rs/E6/3yA5bCBeNuWKewEyvRFFahzw6xWx/KU+roI8kTIC0OkyJ9dOhgq6oAfxHANFoG2Zedr1pFalokAoTM9dr2B6LJNuYG/wb+0kHUYNp7/GojlU7jYVoH1RmeME8nsctdTRZxsMpaI=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=dmitry.osipenko@collabora.com;
- dmarc=pass header.from=<dmitry.osipenko@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1744785896; 
- s=zohomail; d=collabora.com; i=dmitry.osipenko@collabora.com; 
- h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
- bh=9/nvMzXrROYeNn4+PCWslifty45CG46gd92CWnrTo3k=;
- b=BSITgQOcWomUuQpCD/SRhpGD3RbmSANlIS7Bu7+4Xjp4pgy9EqW/dbQb/q9W7u4y
- ZvhGWz7SmBI/EN40zDUZR2qjNtezbtE/XgXWZh17BVgLB51/JsQINReYveTpKsdXmH9
- 2sUqE00RIvkoE/CRN0x/S0uPdNrb0LaiO974t7eo=
-Received: by mx.zohomail.com with SMTPS id 1744785895561587.3497358810888;
- Tue, 15 Apr 2025 23:44:55 -0700 (PDT)
-Message-ID: <103b62c9-18e2-43b9-866a-4dace75df422@collabora.com>
-Date: Wed, 16 Apr 2025 09:44:52 +0300
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A80010E075;
+	Wed, 16 Apr 2025 06:48:25 +0000 (UTC)
+Received: from b68e5b3b99e1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A294C10E075;
+ Wed, 16 Apr 2025 06:48:23 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3715540436070727286=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 17/19] drm/virtio: Pass along the format info from
- .fb_create() to drm_helper_mode_fill_fb_struct()
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- David Airlie <airlied@redhat.com>, Gerd Hoffmann <kraxel@redhat.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
- <olvaffe@gmail.com>, virtualization@lists.linux.dev
-References: <20250410163218.15130-1-ville.syrjala@linux.intel.com>
- <20250410163218.15130-18-ville.syrjala@linux.intel.com>
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250410163218.15130-18-ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/xe=5Fpmu=3A_Add_a_nu?=
+ =?utf-8?q?ll_check_for_xe_gt?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Riana Tauro" <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 16 Apr 2025 06:48:23 -0000
+Message-ID: <174478610366.8986.234348495357355826@b68e5b3b99e1>
+X-Patchwork-Hint: ignore
+References: <20250416060531.2454332-1-riana.tauro@intel.com>
+In-Reply-To: <20250416060531.2454332-1-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,60 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 4/10/25 19:32, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Plumb the format info from .fb_create() all the way to
-> drm_helper_mode_fill_fb_struct() to avoid the redundant
-> lookup.
-> 
-> Cc: David Airlie <airlied@redhat.com>
-> Cc: Gerd Hoffmann <kraxel@redhat.com>
-> Cc: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-> Cc: Gurchetan Singh <gurchetansingh@chromium.org>
-> Cc: Chia-I Wu <olvaffe@gmail.com>
-> Cc: virtualization@lists.linux.dev
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/virtio/virtgpu_display.c | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/virtio/virtgpu_display.c b/drivers/gpu/drm/virtio/virtgpu_display.c
-> index 93763b91bab5..e5805ca646c7 100644
-> --- a/drivers/gpu/drm/virtio/virtgpu_display.c
-> +++ b/drivers/gpu/drm/virtio/virtgpu_display.c
-> @@ -66,6 +66,7 @@ static const struct drm_framebuffer_funcs virtio_gpu_fb_funcs = {
->  static int
->  virtio_gpu_framebuffer_init(struct drm_device *dev,
->  			    struct virtio_gpu_framebuffer *vgfb,
-> +			    const struct drm_format_info *info,
->  			    const struct drm_mode_fb_cmd2 *mode_cmd,
->  			    struct drm_gem_object *obj)
->  {
-> @@ -73,7 +74,7 @@ virtio_gpu_framebuffer_init(struct drm_device *dev,
->  
->  	vgfb->base.obj[0] = obj;
->  
-> -	drm_helper_mode_fill_fb_struct(dev, &vgfb->base, NULL, mode_cmd);
-> +	drm_helper_mode_fill_fb_struct(dev, &vgfb->base, info, mode_cmd);
->  
->  	ret = drm_framebuffer_init(dev, &vgfb->base, &virtio_gpu_fb_funcs);
->  	if (ret) {
-> @@ -315,7 +316,7 @@ virtio_gpu_user_framebuffer_create(struct drm_device *dev,
->  		return ERR_PTR(-ENOMEM);
->  	}
->  
-> -	ret = virtio_gpu_framebuffer_init(dev, virtio_gpu_fb, mode_cmd, obj);
-> +	ret = virtio_gpu_framebuffer_init(dev, virtio_gpu_fb, info, mode_cmd, obj);
->  	if (ret) {
->  		kfree(virtio_gpu_fb);
->  		drm_gem_object_put(obj);
+--===============3715540436070727286==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Acked-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+== Series Details ==
 
--- 
-Best regards,
-Dmitry
+Series: drm/xe/xe_pmu: Add a null check for xe gt
+URL   : https://patchwork.freedesktop.org/series/147798/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from xe-2957-b8f79cb562e983515cf827f0f336f79423b8d5a7_BAT -> xe-pw-147798v1_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-147798v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-147798v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (9 -> 0)
+------------------------------
+
+  ERROR: It appears as if the changes made in xe-pw-147798v1_BAT prevented too many machines from booting.
+
+  Missing    (9): bat-bmg-1 bat-lnl-2 bat-adlp-vf bat-lnl-1 bat-dg2-oem2 bat-atsm-2 bat-bmg-2 bat-adlp-vm bat-adlp-7 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-2957-b8f79cb562e983515cf827f0f336f79423b8d5a7 -> xe-pw-147798v1
+
+  IGT_8320: cd3b5612be3cef838f16e074bf1bc421399d584d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-2957-b8f79cb562e983515cf827f0f336f79423b8d5a7: b8f79cb562e983515cf827f0f336f79423b8d5a7
+  xe-pw-147798v1: 147798v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147798v1/index.html
+
+--===============3715540436070727286==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/xe_pmu: Add a null check for xe gt</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147798/">https://patchwork.freedesktop.org/series/147798/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147798v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147798v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2957-b8f79cb562e983515cf827f0f336f79423b8d5a7_BAT -&gt; xe-pw-147798v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-147798v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-147798v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (9 -&gt; 0)</h2>
+<p>ERROR: It appears as if the changes made in xe-pw-147798v1_BAT prevented too many machines from booting.</p>
+<p>Missing    (9): bat-bmg-1 bat-lnl-2 bat-adlp-vf bat-lnl-1 bat-dg2-oem2 bat-atsm-2 bat-bmg-2 bat-adlp-vm bat-adlp-7 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2957-b8f79cb562e983515cf827f0f336f79423b8d5a7 -&gt; xe-pw-147798v1</li>
+</ul>
+<p>IGT_8320: cd3b5612be3cef838f16e074bf1bc421399d584d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-2957-b8f79cb562e983515cf827f0f336f79423b8d5a7: b8f79cb562e983515cf827f0f336f79423b8d5a7<br />
+  xe-pw-147798v1: 147798v1</p>
+
+</body>
+</html>
+
+--===============3715540436070727286==--
