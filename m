@@ -4,27 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BE2FC369C2
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Apr 2025 10:42:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2D08C369BD
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Apr 2025 10:49:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BA1F10E08B;
-	Wed, 16 Apr 2025 10:42:03 +0000 (UTC)
-Received: from b68e5b3b99e1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBB3A10E08B;
- Wed, 16 Apr 2025 10:42:01 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8728574937354213909=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id A899110E08B;
+	Wed, 16 Apr 2025 10:49:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fXXIr1NV";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDAE810E08B
+ for <intel-xe@lists.freedesktop.org>; Wed, 16 Apr 2025 10:49:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744800565; x=1776336565;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=t+Pi/pD8vKxeJrJjg+3n3RE+HjoLi3b1vAKLuiHkSFs=;
+ b=fXXIr1NVqBan808fJioLIKZJBhaE1YLaX4+T2saQvlWI0tbKaAIzX9n5
+ +8tWhwzvBSbIXkfnL1t1ldKFbMtgEz4wzkZYDhTPRCDdDq8H8gy5isr8j
+ igonJJulOvVBWlZESgJRp9EpbgjYds7VhcjGkTgOUtvGE+VEWre8V6vZN
+ 4u4mgO4UJXgR6ipCC7ooONmdtDXse/F3e58YR95JbOls4Rfdy4sbJqBI7
+ W7oAzorF5Hg0EBkbHuNlFafGPxBY9Wy804r7xPqSxk5koW+n0cEK7iBjM
+ SP5tYtjvSpype1Qwpn4VFTEUhFpigtmbwqFfh33YV3H/KKbVY1P9QmZZO g==;
+X-CSE-ConnectionGUID: tqee8urxQSWWjiZGAT9M6A==
+X-CSE-MsgGUID: OdRA3VA4T1aLf3CNEeL9Dw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11404"; a="56977110"
+X-IronPort-AV: E=Sophos;i="6.15,216,1739865600"; d="scan'208";a="56977110"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2025 03:49:24 -0700
+X-CSE-ConnectionGUID: HrBraT+JSOe7TfstyYQ5kQ==
+X-CSE-MsgGUID: Wsgq+uG9QVWyiXzDQ6n+Jg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,216,1739865600"; d="scan'208";a="131399972"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2025 03:49:22 -0700
+Date: Wed, 16 Apr 2025 13:49:19 +0300
+From: Raag Jadav <raag.jadav@intel.com>
+To: Riana Tauro <riana.tauro@intel.com>
+Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
+ intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ badal.nilawar@intel.com
+Subject: Re: [PATCH v2 1/3] drm/xe: Move xe_device_sysfs_init() to
+ xe_pci_probe()
+Message-ID: <Z_-LLx2Qb-iAouGF@black.fi.intel.com>
+References: <20250403174742.1294227-1-raag.jadav@intel.com>
+ <20250403174742.1294227-2-raag.jadav@intel.com>
+ <6a2068b5-d86e-4e8d-9c41-f47cc322e394@intel.com>
+ <7fb3fcf0-3dc1-4d98-af23-58c9e77a47d9@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/psr=3A_Do_not_read?=
- =?utf-8?q?_PSR2=5FSU=5FSTATUS_on_AlderLake_and_onwards?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 16 Apr 2025 10:42:01 -0000
-Message-ID: <174480012189.9796.8972093416841924849@b68e5b3b99e1>
-X-Patchwork-Hint: ignore
-References: <20250416093535.3231914-1-jouni.hogander@intel.com>
-In-Reply-To: <20250416093535.3231914-1-jouni.hogander@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <7fb3fcf0-3dc1-4d98-af23-58c9e77a47d9@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +70,84 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8728574937354213909==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Apr 16, 2025 at 03:34:43PM +0530, Riana Tauro wrote:
+> On 4/16/2025 1:25 PM, Riana Tauro wrote:
+> > Hi Raag
+> > 
+> > On 4/3/2025 11:17 PM, Raag Jadav wrote:
+> > > Move xe_device_sysfs_init() to xe_pci_probe() so that we can expose
+> > > non-PM attributes as well.
+> > > 
+> > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> > > ---
+> > >   drivers/gpu/drm/xe/xe_device_sysfs.c | 11 +++++++----
+> > >   drivers/gpu/drm/xe/xe_pci.c          |  6 ++++++
+> > >   drivers/gpu/drm/xe/xe_pm.c           |  5 -----
+> > >   3 files changed, 13 insertions(+), 9 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/
+> > > xe/xe_device_sysfs.c
+> > > index 7efbd4c52791..d4c73acea1cf 100644
+> > > --- a/drivers/gpu/drm/xe/xe_device_sysfs.c
+> > > +++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+> > > @@ -67,7 +67,8 @@ static void xe_device_sysfs_fini(void *arg)
+> > >   {
+> > >       struct xe_device *xe = arg;
+> > > -    sysfs_remove_file(&xe->drm.dev->kobj,
+> > > &dev_attr_vram_d3cold_threshold.attr);
+> > > +    if (xe->d3cold.capable)
+> > > +        sysfs_remove_file(&xe->drm.dev->kobj,
+> > > &dev_attr_vram_d3cold_threshold.attr);
+> > >   }
+> > >   int xe_device_sysfs_init(struct xe_device *xe)
+> > > @@ -75,9 +76,11 @@ int xe_device_sysfs_init(struct xe_device *xe)
+> > >       struct device *dev = xe->drm.dev;
+> > >       int ret;
+> > > -    ret = sysfs_create_file(&dev->kobj,
+> > > &dev_attr_vram_d3cold_threshold.attr);
+> > > -    if (ret)
+> > > -        return ret;
+> > > +    if (xe->d3cold.capable) {
+> > > +        ret = sysfs_create_file(&dev->kobj,
+> > > &dev_attr_vram_d3cold_threshold.attr);
+> > > +        if (ret)
+> > > +            return ret;
+> > > +    }
+> > >       return devm_add_action_or_reset(dev, xe_device_sysfs_fini, xe);
+> > >   }
+> > > diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> > > index 58347fa91841..246682b2a2be 100644
+> > > --- a/drivers/gpu/drm/xe/xe_pci.c
+> > > +++ b/drivers/gpu/drm/xe/xe_pci.c
+> > > @@ -18,6 +18,7 @@
+> > >   #include "display/xe_display.h"
+> > >   #include "regs/xe_gt_regs.h"
+> > >   #include "xe_device.h"
+> > > +#include "xe_device_sysfs.h"
+> > >   #include "xe_drv.h"
+> > >   #include "xe_gt.h"
+> > >   #include "xe_gt_sriov_vf.h"
+> > > @@ -864,6 +865,11 @@ static int xe_pci_probe(struct pci_dev *pdev,
+> > > const struct pci_device_id *ent)
+> > >       if (err)
+> > >           goto err_driver_cleanup;
+> > > +    /* We have PM related attributes, so do it after xe_pm_init(). */
+> > > +    err = xe_device_sysfs_init(xe);
+> > Layering doesn't seem right. This should in xe_device_probe.
+> > d3cold capable can be moved to pm_init_early and this to device_probe
 
-== Series Details ==
+Are you sure if we can use ttm_manager_type() in pm_init_early()?
 
-Series: drm/i915/psr: Do not read PSR2_SU_STATUS on AlderLake and onwards
-URL   : https://patchwork.freedesktop.org/series/147814/
-State : success
+> +    if (err)
+> 
+> Also this should be a goto
+> 
+> if (err)
+>  	goto err_driver_cleanup;
 
-== Summary ==
+Sure.
 
-CI Bug Log - changes from xe-2958-b2d6822c6bcc4a76641008d73fdffad35a81ff0f_BAT -> xe-pw-147814v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8320 -> IGT_8321
-  * Linux: xe-2958-b2d6822c6bcc4a76641008d73fdffad35a81ff0f -> xe-pw-147814v1
-
-  IGT_8320: cd3b5612be3cef838f16e074bf1bc421399d584d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8321: 8321
-  xe-2958-b2d6822c6bcc4a76641008d73fdffad35a81ff0f: b2d6822c6bcc4a76641008d73fdffad35a81ff0f
-  xe-pw-147814v1: 147814v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147814v1/index.html
-
---===============8728574937354213909==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/psr: Do not read PSR2_SU_STATUS on AlderLake and onwards</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147814/">https://patchwork.freedesktop.org/series/147814/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147814v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147814v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2958-b2d6822c6bcc4a76641008d73fdffad35a81ff0f_BAT -&gt; xe-pw-147814v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8320 -&gt; IGT_8321</li>
-<li>Linux: xe-2958-b2d6822c6bcc4a76641008d73fdffad35a81ff0f -&gt; xe-pw-147814v1</li>
-</ul>
-<p>IGT_8320: cd3b5612be3cef838f16e074bf1bc421399d584d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8321: 8321<br />
-  xe-2958-b2d6822c6bcc4a76641008d73fdffad35a81ff0f: b2d6822c6bcc4a76641008d73fdffad35a81ff0f<br />
-  xe-pw-147814v1: 147814v1</p>
-
-</body>
-</html>
-
---===============8728574937354213909==--
+Raag
