@@ -4,60 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 293A9C369BD
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Apr 2025 15:26:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F4C4C369BD
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Apr 2025 15:44:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E286510E0F9;
-	Wed, 16 Apr 2025 15:26:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04B0110E0F9;
+	Wed, 16 Apr 2025 15:44:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vz11hE7y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LjLnT/va";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AD3B10E0F9
- for <intel-xe@lists.freedesktop.org>; Wed, 16 Apr 2025 15:26:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6042310E0F9
+ for <intel-xe@lists.freedesktop.org>; Wed, 16 Apr 2025 15:43:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744817187; x=1776353187;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Yac9G86MFFc4HisrsUUj0DNo8uUh0NWObun+KvOc4XY=;
- b=Vz11hE7yy2vP9wSyu9qKSXXRj5CI0YY+nL40a4JPEaTco8Qf0u9EAF9s
- 87gVPPVxZsexao/K/Z/SNnWa8peDTOWPfA0dYWFo3Z+AJLe61aGSpJjFu
- CuDmJVuaHqJsA9YQgrD8YJunYcw+Edhmp19lLDEafyXsSy2jgbfftfj4g
- HaptW2g4plhOQ4xi5+Rud+J1Dqk9y6Dc+dXIOV3gI5A31I8JM64WnDRil
- GKMGbFZyqg3JrdleomiZ8paOyonR8Kct8Cvi74jG4iaCUnmmkZZibn6Zy
- YCGKrSNd2LhyyhE6NH81OpEzRpHOC53FZCmJqAPwnFQQCSQNrydlI4BYY g==;
-X-CSE-ConnectionGUID: HpPQUxxFR9m1AwBbbU5YNQ==
-X-CSE-MsgGUID: NKHfizT0TQy07J0WUFhpSA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11405"; a="63909466"
-X-IronPort-AV: E=Sophos;i="6.15,216,1739865600"; d="scan'208";a="63909466"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2025 08:26:26 -0700
-X-CSE-ConnectionGUID: bPHGbIfaQc2MXrCFMd7ZBg==
-X-CSE-MsgGUID: rtcI9dX2RGOrReDtilT3WA==
+ t=1744818238; x=1776354238;
+ h=message-id:subject:from:to:date:in-reply-to:references:
+ content-transfer-encoding:mime-version;
+ bh=6EEBvCSwRw9w+0XaZiXXeBwwPQIjgojDvB8sT2WhN3k=;
+ b=LjLnT/vaD3ODsw7tpbKpnkGKzbVZz+HAV7jW6mUqtPLlZL6acWez0CdU
+ 4FJE1/buDSQd3ZWBcN6TnEsffiYl1sBEvAuHplI0LgIREA5oeauVKy1z+
+ gBLL70PweoMXip0wfRHUHwX20CQL7RRnbE/2NpVvIOoSCHy34WBn1NrwL
+ C8c6ce2agmWlTriffABCy8G5JPhLZgTrxK+etArrhJfFtlhqISFUf01gD
+ eEWeqx6LwVHsr/JK3yQ9cGar3uy1h3ZI20JFlbtEU9hAEvsQFCnBYORGZ
+ 47hQK0Tf/PkZ8/6tzsV2jRFwlRGw5oMYT47JLC/oJr6KeoMsTFLFkxqGn A==;
+X-CSE-ConnectionGUID: kdpTLUqOQceRnZpmYiuYJg==
+X-CSE-MsgGUID: apSMs5L5SUSyDVOFz4neGw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11405"; a="46266956"
+X-IronPort-AV: E=Sophos;i="6.15,216,1739865600"; d="scan'208";a="46266956"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2025 08:43:57 -0700
+X-CSE-ConnectionGUID: dbswVShITciAl2+sdkU2Yw==
+X-CSE-MsgGUID: /zoHhiXjRBq9DlmPH+zMqg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,216,1739865600"; d="scan'208";a="130515859"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2025 08:26:24 -0700
-Date: Wed, 16 Apr 2025 18:26:22 +0300
-From: Raag Jadav <raag.jadav@intel.com>
-To: Riana Tauro <riana.tauro@intel.com>
-Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
- intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- badal.nilawar@intel.com
-Subject: Re: [PATCH v2 2/3] drm/xe: Expose PCIe Gen4 downspeed attributes
-Message-ID: <Z__MHqrwNmXW8lmu@black.fi.intel.com>
-References: <20250403174742.1294227-1-raag.jadav@intel.com>
- <20250403174742.1294227-3-raag.jadav@intel.com>
- <d98a6b4b-1b14-4dbc-8833-e39c846a3b12@intel.com>
- <Z_-NUpQjdXIqrP_9@black.fi.intel.com>
- <16165ccb-25f8-4cd1-9ac7-63496c965be4@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,216,1739865600"; d="scan'208";a="153708472"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO [10.245.246.121])
+ ([10.245.246.121])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2025 08:43:55 -0700
+Message-ID: <848f97a54c37795a25eaa45016e48a14815379a1.camel@linux.intel.com>
+Subject: Re: [PATCH v2 2/3] drm/xe: share bo dma-resv with backup object
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
+Date: Wed, 16 Apr 2025 17:43:39 +0200
+In-Reply-To: <20250416150913.434369-7-matthew.auld@intel.com>
+References: <20250416150913.434369-5-matthew.auld@intel.com>
+ <20250416150913.434369-7-matthew.auld@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <16165ccb-25f8-4cd1-9ac7-63496c965be4@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,37 +69,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Apr 16, 2025 at 08:22:38PM +0530, Riana Tauro wrote:
-> On 4/16/2025 4:28 PM, Raag Jadav wrote:
-> > On Wed, Apr 16, 2025 at 03:36:55PM +0530, Riana Tauro wrote:
-> > > Hi Raag
-> > > 
-> > > On 4/3/2025 11:17 PM, Raag Jadav wrote:
-> > > > Expose sysfs attributes for PCIe Gen4 downspeed capability and status.
+On Wed, 2025-04-16 at 16:09 +0100, Matthew Auld wrote:
+> We end up needing to grab both locks together anyway and keep them
+> held
+> until we complete the copy or add the fence. Plus the backup_obj is
+> short lived and tied to the parent object, so seems reasonable to
+> share
+> the same dma-resv. This will simplify the locking here, and in follow
+> up patches.
+>=20
+> v2:
+> =C2=A0 - Hold reference to the parent bo to be sure the shared dma-resv
+> can't
+> =C2=A0=C2=A0=C2=A0 go out of scope too soon. (Thomas)
+>=20
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 
-...
+Another thought: What if someone releases the last "ordinary" reference
+on an object that has a backup object so that the only remaining
+reference is the backup object. Can that happen?
 
-> > > > +static ssize_t
-> > > > +pcie_gen4_downspeed_status_show(struct device *dev, struct device_attribute *attr, char *buf)
-> > > > +{
-> > > > +	struct pci_dev *pdev = to_pci_dev(dev);
-> > > > +	struct xe_device *xe = pdev_to_xe_device(pdev);
-> > > > +	u32 val;
-> > > > +	int ret;
-> > > > +
-> > > > +	xe_pm_runtime_get(xe);
-> > > > +	ret = xe_pcode_read(xe_device_get_root_tile(xe), PCODE_MBOX(DGFX_PCODE_STATUS,
-> > > > +			    DGFX_GET_INIT_STATUS, 0), &val, NULL);
-> > > indentation
-> > 
-> > Can you please elaborate? Shouldn't it follow the parentheses?
-> yeah it should. DGFX_GET_INIT_STATUS should follow PCODE_MBOX parenthesis
-> 
-> or align PCODE_MBOX instead
-> 
-> ret = xe_pcode_read(xe_device_get_root_tile(xe),
->                     PCODE_MBOX...
+I have a vague recollection of having to deal with that for i915...
 
-Which means we should change it in hwmon as well?
+/Thomas
 
-Raag
+
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 28=
+ +++++++++++++---------------
+> =C2=A0drivers/gpu/drm/xe/xe_bo_types.h |=C2=A0 2 ++
+> =C2=A02 files changed, 15 insertions(+), 15 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index c337790c81ae..79adaee5a0e9 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -1120,13 +1120,15 @@ int xe_bo_evict_pinned(struct xe_bo *bo)
+> =C2=A0	if (bo->flags & XE_BO_FLAG_PINNED_NORESTORE)
+> =C2=A0		goto out_unlock_bo;
+> =C2=A0
+> -	backup =3D xe_bo_create_locked(xe, NULL, NULL, bo->size,
+> ttm_bo_type_kernel,
+> -				=C2=A0=C2=A0=C2=A0=C2=A0 XE_BO_FLAG_SYSTEM |
+> XE_BO_FLAG_NEEDS_CPU_ACCESS |
+> -				=C2=A0=C2=A0=C2=A0=C2=A0 XE_BO_FLAG_PINNED);
+> +	backup =3D ___xe_bo_create_locked(xe, NULL, NULL, bo-
+> >ttm.base.resv, NULL, bo->size,
+> +					DRM_XE_GEM_CPU_CACHING_WB,
+> ttm_bo_type_kernel,
+> +					XE_BO_FLAG_SYSTEM |
+> XE_BO_FLAG_NEEDS_CPU_ACCESS |
+> +					XE_BO_FLAG_PINNED);
+> =C2=A0	if (IS_ERR(backup)) {
+> =C2=A0		ret =3D PTR_ERR(backup);
+> =C2=A0		goto out_unlock_bo;
+> =C2=A0	}
+> +	backup->parent_obj =3D xe_bo_get(bo); /* Released by
+> bo_destroy */
+> =C2=A0
+> =C2=A0	if (xe_bo_is_user(bo) || (bo->flags &
+> XE_BO_FLAG_PINNED_LATE_RESTORE)) {
+> =C2=A0		struct xe_migrate *migrate;
+> @@ -1177,7 +1179,6 @@ int xe_bo_evict_pinned(struct xe_bo *bo)
+> =C2=A0
+> =C2=A0out_backup:
+> =C2=A0	xe_bo_vunmap(backup);
+> -	xe_bo_unlock(backup);
+> =C2=A0	if (ret)
+> =C2=A0		xe_bo_put(backup);
+> =C2=A0out_unlock_bo:
+> @@ -1212,17 +1213,12 @@ int xe_bo_restore_pinned(struct xe_bo *bo)
+> =C2=A0	if (!backup)
+> =C2=A0		return 0;
+> =C2=A0
+> -	xe_bo_lock(backup, false);
+> +	xe_bo_lock(bo, false);
+> =C2=A0
+> =C2=A0	ret =3D ttm_bo_validate(&backup->ttm, &backup->placement,
+> &ctx);
+> =C2=A0	if (ret)
+> =C2=A0		goto out_backup;
+> =C2=A0
+> -	if (WARN_ON(!dma_resv_trylock(bo->ttm.base.resv))) {
+> -		ret =3D -EBUSY;
+> -		goto out_backup;
+> -	}
+> -
+> =C2=A0	if (xe_bo_is_user(bo) || (bo->flags &
+> XE_BO_FLAG_PINNED_LATE_RESTORE)) {
+> =C2=A0		struct xe_migrate *migrate;
+> =C2=A0		struct dma_fence *fence;
+> @@ -1271,15 +1267,14 @@ int xe_bo_restore_pinned(struct xe_bo *bo)
+> =C2=A0
+> =C2=A0	bo->backup_obj =3D NULL;
+> =C2=A0
+> +out_backup:
+> +	xe_bo_vunmap(backup);
+> +	if (!bo->backup_obj)
+> +		xe_bo_put(backup);
+> =C2=A0out_unlock_bo:
+> =C2=A0	if (unmap)
+> =C2=A0		xe_bo_vunmap(bo);
+> =C2=A0	xe_bo_unlock(bo);
+> -out_backup:
+> -	xe_bo_vunmap(backup);
+> -	xe_bo_unlock(backup);
+> -	if (!bo->backup_obj)
+> -		xe_bo_put(backup);
+> =C2=A0	return ret;
+> =C2=A0}
+> =C2=A0
+> @@ -1532,6 +1527,9 @@ static void xe_ttm_bo_destroy(struct
+> ttm_buffer_object *ttm_bo)
+> =C2=A0	if (bo->vm && xe_bo_is_user(bo))
+> =C2=A0		xe_vm_put(bo->vm);
+> =C2=A0
+> +	if (bo->parent_obj)
+> +		xe_bo_put(bo->parent_obj);
+> +
+> =C2=A0	mutex_lock(&xe->mem_access.vram_userfault.lock);
+> =C2=A0	if (!list_empty(&bo->vram_userfault_link))
+> =C2=A0		list_del(&bo->vram_userfault_link);
+> diff --git a/drivers/gpu/drm/xe/xe_bo_types.h
+> b/drivers/gpu/drm/xe/xe_bo_types.h
+> index 81396181aaea..eb5e83c5f233 100644
+> --- a/drivers/gpu/drm/xe/xe_bo_types.h
+> +++ b/drivers/gpu/drm/xe/xe_bo_types.h
+> @@ -30,6 +30,8 @@ struct xe_bo {
+> =C2=A0	struct ttm_buffer_object ttm;
+> =C2=A0	/** @backup_obj: The backup object when pinned and suspended
+> (vram only) */
+> =C2=A0	struct xe_bo *backup_obj;
+> +	/** @parent_obj: Ref to parent bo if this a backup_obj */
+> +	struct xe_bo *parent_obj;
+> =C2=A0	/** @size: Size of this buffer object */
+> =C2=A0	size_t size;
+> =C2=A0	/** @flags: flags for this buffer object */
+
