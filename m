@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 609BCC369C9
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Apr 2025 19:32:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B568EC369C9
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Apr 2025 19:36:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24CA510E3AF;
-	Thu, 17 Apr 2025 19:32:45 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ni0aFuCv";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0423810E3AF
- for <intel-xe@lists.freedesktop.org>; Thu, 17 Apr 2025 19:32:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744918364; x=1776454364;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=2ib/+dpxR3kHMKsYbjSYIn5rWG7nJm6X8bTrkmmZXDg=;
- b=Ni0aFuCv5H8ih2Q47i94v0wh7c5uUYtDwDE2aW3o01OP4UjpUJA0scdw
- Yh5mWiwOmmN2LRmpp21T861RRQ/G19YhtikD0Jjdx975qhLsUmPQzZmrZ
- tF4Kek+J35YpJjjAX4xuP653r8astkB2XNw0iR5w2Kghd3CgCTEOzHIpV
- SrphH9NIuG8gx37AJ89hossaL9DG+nX+6WnsPIH6lQJpOOENNW5GJikV2
- DlRh/JqQrbSjtt+jLzSPAYKjT+gkTPQ0B2pIfpdoydlXRuQXMBXK8ezVd
- 1eBiZYHFzgxyomFwNCUujXbig/8gQJqOtCIUw6tMQvD3EdMHKWwTnT9+g w==;
-X-CSE-ConnectionGUID: Vsu7fVi6TWq4kSb+QVnJWg==
-X-CSE-MsgGUID: 4IZCi1UeT+ieUKbENDoCvQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11406"; a="64071465"
-X-IronPort-AV: E=Sophos;i="6.15,220,1739865600"; d="scan'208";a="64071465"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2025 12:32:43 -0700
-X-CSE-ConnectionGUID: psdom6MwSf+baIuMjizOww==
-X-CSE-MsgGUID: oRXFzCZYS9KS0lH5r9fm3Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,220,1739865600"; d="scan'208";a="131215872"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa008.fm.intel.com with ESMTP; 17 Apr 2025 12:32:42 -0700
-Received: from [10.245.81.148] (nowickik-mobl5.ger.corp.intel.com
- [10.245.81.148])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 2EEF43497C;
- Thu, 17 Apr 2025 20:32:41 +0100 (IST)
-Message-ID: <87056576-65f5-4106-878e-7d1701e554ab@intel.com>
-Date: Thu, 17 Apr 2025 21:32:40 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F7D910E3B1;
+	Thu, 17 Apr 2025 19:36:25 +0000 (UTC)
+Received: from b68e5b3b99e1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF36310E3B1;
+ Thu, 17 Apr 2025 19:36:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] drm/xe/pf: Don't allow LMEM provisioning if LMTT isn't
- available on the device
-To: "Summers, Stuart" <stuart.summers@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Piorkowski, Piotr" <piotr.piorkowski@intel.com>
-References: <20250417142147.278727-1-piotr.piorkowski@intel.com>
- <0b9ac8787dc00ed191b8cea981a56c6b29dc9e85.camel@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <0b9ac8787dc00ed191b8cea981a56c6b29dc9e85.camel@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915/display=3A_Ensure_eno?=
+ =?utf-8?q?ugh_lines_between_delayed_VBlank_and_VBlank?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 17 Apr 2025 19:36:23 -0000
+Message-ID: <174491858384.16087.6966712570007826759@b68e5b3b99e1>
+X-Patchwork-Hint: ignore
+References: <20250417182356.169593-1-jouni.hogander@intel.com>
+In-Reply-To: <20250417182356.169593-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,136 +36,117 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
+Series: drm/i915/display: Ensure enough lines between delayed VBlank and VBlank
+URL   : https://patchwork.freedesktop.org/series/147935/
+State : success
 
-On 17.04.2025 20:18, Summers, Stuart wrote:
-> On Thu, 2025-04-17 at 16:21 +0200, Piórkowski, Piotr wrote:
->> From: Piotr Piórkowski <piotr.piorkowski@intel.com>
->>
->> The LMEM provisioning is applicable only on platforms with LMTT.
->>
->> v2:
->>  - new commit description
->>  - use xe_gt_assert in xe_gt_sriov_pf_config_set_lmem instead return
->>    error,
->>  - disable pf_lmem_info if LMTT is not available
->> v3: fix condition in xe_gt_assert
->>
->> Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
->> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> ---
->>  drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c  | 6 ++++--
->>  drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c | 4 ++--
->>  2 files changed, 6 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
->> b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
->> index 2420a548cacc..3556c41c041b 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
->> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
->> @@ -1520,6 +1520,8 @@ int xe_gt_sriov_pf_config_set_lmem(struct xe_gt
->> *gt, unsigned int vfid, u64 size
->>  {
->>         int err;
->>  
->> +       xe_gt_assert(gt, xe_device_has_lmtt(gt_to_xe(gt)));
->> +
->>         mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
->>         if (vfid)
->>                 err = pf_provision_vf_lmem(gt, vfid, size);
->> @@ -1629,7 +1631,7 @@ int xe_gt_sriov_pf_config_set_fair_lmem(struct
->> xe_gt *gt, unsigned int vfid,
->>         xe_gt_assert(gt, num_vfs);
->>         xe_gt_assert(gt, !xe_gt_is_media_type(gt));
->>  
->> -       if (!IS_DGFX(gt_to_xe(gt)))
->> +       if (!xe_device_has_lmtt(gt_to_xe(gt)))
->>                 return 0;
->>  
->>         mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
->> @@ -2163,7 +2165,7 @@ static int pf_validate_vf_config(struct xe_gt
->> *gt, unsigned int vfid)
->>         valid_all = valid_all && valid_ggtt;
->>         valid_any = valid_any || (valid_ggtt && is_primary);
->>  
->> -       if (IS_DGFX(xe)) {
->> +       if (xe_device_has_lmtt(xe)) {
-> 
-> I see a few other calls like pf_sanitize_vf_resources() and
+== Summary ==
 
-from old offline discussion - there is/was a plan to reuse lmem_obj also
-when we will not let to configure LMEM manually, not sure if that stands
-still, though
+lib/modules/6.15.0-rc2-xe+/kernel/arch/x86/events/rapl.ko
+lib/modules/6.15.0-rc2-xe+/kernel/arch/x86/kvm/
+lib/modules/6.15.0-rc2-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.15.0-rc2-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.15.0-rc2-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.15.0-rc2-xe+/kernel/virt/
+lib/modules/6.15.0-rc2-xe+/kernel/virt/lib/
+lib/modules/6.15.0-rc2-xe+/kernel/virt/lib/irqbypass.ko
+lib/modules/6.15.0-rc2-xe+/kernel/kernel/
+lib/modules/6.15.0-rc2-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/zstd.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/xctr.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/authenc.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/sm3.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/cmac.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/essiv.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/ccm.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/wp512.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/lrw.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/842.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/md4.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/lz4.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/sm4.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/async_tx/
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.15.0-rc2-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.15.0-rc2-xe+/kernel/block/
+lib/modules/6.15.0-rc2-xe+/kernel/block/bfq.ko
+lib/modules/6.15.0-rc2-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.15.0-rc2-xe+/build
+lib/modules/6.15.0-rc2-xe+/modules.alias.bin
+lib/modules/6.15.0-rc2-xe+/modules.builtin
+lib/modules/6.15.0-rc2-xe+/modules.softdep
+lib/modules/6.15.0-rc2-xe+/modules.alias
+lib/modules/6.15.0-rc2-xe+/modules.order
+lib/modules/6.15.0-rc2-xe+/modules.symbols
+lib/modules/6.15.0-rc2-xe+/modules.dep.bin
++ mv kernel-debug.tar.gz ..
++ cd ..
++ rm -rf archive-debug
++ sync
+[+] Finished building and packaging 'debug'!
++ echo '[+] Finished building and packaging '\''debug'\''!'
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-> pf_validate_vf_config() 
-
-it's touched in this patch right here ;)
-
-> and pf_restore_vf_config_klv() and
-> pf_get_ggtt_alignment() in this same file. Is there a reason not to
-> just change all these at once?
-
-if we want to allow the LMEM configuration only with LMTT then agree
-
-then maybe we should drop new explicit assert in:
-
-	xe_gt_sriov_pf_config_set_lmem
-
-and instead replace legacy IS_DGFX in:
-
-	pf_release_vf_config_lmem
-	pf_provision_vf_lmem
-	pf_release_vf_config
-
-but let Piotr speak here
-
-> 
-> Also right now has_lmtt just calls IS_DGFX, and I confirmed this looks
-> right from the specs, so at a high level:
-> Reviewed-by: Stuart Summers <stuart.summers@intel.com>
-
-I'll wait with my r-b until Piotr reply
-
-> 
-> Thanks,
-> Stuart
-> 
->>                 bool valid_lmem = pf_get_vf_config_lmem(primary_gt,
->> vfid);
->>  
->>                 valid_any = valid_any || (valid_lmem && is_primary);
->> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
->> b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
->> index 0fe47f41b63c..13970d5a2867 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
->> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
->> @@ -308,7 +308,7 @@ static void pf_add_config_attrs(struct xe_gt *gt,
->> struct dentry *parent, unsigne
->>         if (!xe_gt_is_media_type(gt)) {
->>                 debugfs_create_file_unsafe(vfid ? "ggtt_quota" :
->> "ggtt_spare",
->>                                            0644, parent, parent,
->> &ggtt_fops);
->> -               if (IS_DGFX(gt_to_xe(gt)))
->> +               if (xe_device_has_lmtt(gt_to_xe(gt)))
->>                         debugfs_create_file_unsafe(vfid ?
->> "lmem_quota" : "lmem_spare",
->>                                                    0644, parent,
->> parent, &lmem_fops);
->>         }
->> @@ -558,7 +558,7 @@ void xe_gt_sriov_pf_debugfs_register(struct xe_gt
->> *gt, struct dentry *root)
->>                 drm_debugfs_create_files(pf_ggtt_info,
->>                                          ARRAY_SIZE(pf_ggtt_info),
->>                                          pfdentry, minor);
->> -               if (IS_DGFX(gt_to_xe(gt)))
->> +               if (xe_device_has_lmtt(gt_to_xe(gt)))
->>                         drm_debugfs_create_files(pf_lmem_info,
->>                                                 
->> ARRAY_SIZE(pf_lmem_info),
->>                                                  pfdentry, minor);
-> 
 
