@@ -4,63 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D84E7C369D0
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Apr 2025 10:51:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31718C369C2
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Apr 2025 11:07:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CDBD10EAAB;
-	Thu, 17 Apr 2025 10:51:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D89C310EABD;
+	Thu, 17 Apr 2025 11:07:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k1lJsVbo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MxbSHUna";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2E8C10EAAF;
- Thu, 17 Apr 2025 10:51:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5B5A10EAB8;
+ Thu, 17 Apr 2025 11:07:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744887107; x=1776423107;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=DULzl20VbMKXtBBpzkfJise1OGn8egMfg77jnheWWRc=;
- b=k1lJsVboYR+rmj2LNGkB5JIzaOJtCe9IYSy+sFroufNO+pYg8d8As7d+
- 2pTe3d1BDZg2H9NXNIyP5RPgsnnplYS3axS5liCBJsxFhVGRI/i5puyS/
- ahmEOO7YM//c6rE5wO4ZagqvM64lJHS2YSP3KEi2MW5obtsBLkH9EhvvE
- aUkDIVmkvnh2cCJngEN8Z3xrigClrKygyCaEcxjtuTjNyS5qC1lYYybJk
- kcqZmfGil5yf5L5PUu1YB4w1jkea83Haetx9jGfDQChITuTsiSvdi48Ub
- T/ocO4EldjrqgWJoG3YHLKlPvhaAQMV0+4sec7kJ49n+GncKjGfcyEvdw w==;
-X-CSE-ConnectionGUID: 4XedSWFjRS+WvChvy9017g==
-X-CSE-MsgGUID: TTFmul+FQ7a9iFdZiy8WoA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11405"; a="68959794"
-X-IronPort-AV: E=Sophos;i="6.15,218,1739865600"; d="scan'208";a="68959794"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2025 03:51:47 -0700
-X-CSE-ConnectionGUID: ZxWbpQrtRua/FeKVVTCflw==
-X-CSE-MsgGUID: Xq1TWOEWS2WFLze0XQnuAQ==
+ t=1744888021; x=1776424021;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:references:in-reply-to:to:cc;
+ bh=hYBtwQ9foEjwQ00a6TAO++yMh5CmivKZ9V7KJMdfqXY=;
+ b=MxbSHUnaDajrBq6s7zQMNTCsmk14jZOD8xa2D8rKB2ep8Vl8ulbR0c/b
+ xb4w+CNV2Ubg1Ux3gEx1X1YODLH5BbtA+DtWCs37gBUlnNLWOYsKWjyLr
+ wy5eyMF8frcb2YE8LNIemUhv3JKqJnCCmEfUHnulgEaQgWhIRnFcnYpoj
+ Gc9mOA43KpzW1gXHl0z1fJCY0Xrtbjin9+2486zFSwmgF1SZ5Itl0U3nW
+ 30cDMXtTUwDo8X1bb/JksCAjK+3J18Bayy+vGP9U6I62gpAW+piPhg1NS
+ RhDHpQYGI9cSC15OS1FINpcXOU1uSajneqVSGuE1SHaFZ0DYYQ1vMcqKo g==;
+X-CSE-ConnectionGUID: q5G3pCviSOO3mv1Sv6ScOg==
+X-CSE-MsgGUID: kASAnFy5S9S9UYoMHA08sw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11405"; a="46481071"
+X-IronPort-AV: E=Sophos;i="6.15,218,1739865600"; d="scan'208";a="46481071"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2025 04:07:01 -0700
+X-CSE-ConnectionGUID: tHoe+Ms1Te2zPFrRjuK8RA==
+X-CSE-MsgGUID: sh+MEZUDQTKiu4GMI/6s4g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,218,1739865600"; d="scan'208";a="130729678"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO fedora..)
- ([10.245.246.168])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2025 03:51:43 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- himal.prasad.ghimiray@intel.com, apopple@nvidia.com, airlied@gmail.com,
- Simona Vetter <simona.vetter@ffwll.ch>, felix.kuehling@amd.com,
- Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- dakr@kernel.org, "Mrozek, Michal" <michal.mrozek@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Subject: [PATCH 3/3] drm/xe: Implement and use the drm_pagemap populate_mm op
-Date: Thu, 17 Apr 2025 12:51:13 +0200
-Message-ID: <20250417105113.48831-4-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250417105113.48831-1-thomas.hellstrom@linux.intel.com>
-References: <20250417105113.48831-1-thomas.hellstrom@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,218,1739865600"; d="scan'208";a="131754040"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by orviesa008.jf.intel.com with ESMTP; 17 Apr 2025 04:06:59 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
+Date: Thu, 17 Apr 2025 16:22:29 +0530
+Subject: [PATCH v3 2/3] drm/i915/display: export function to count dsc slices
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250417-hblank-v3-2-d3387df7efce@intel.com>
+References: <20250417-hblank-v3-0-d3387df7efce@intel.com>
+In-Reply-To: <20250417-hblank-v3-0-d3387df7efce@intel.com>
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Cc: vinod.govindapillai@intel.com, imre.deak@intel.com, 
+ Arun R Murthy <arun.r.murthy@intel.com>
+X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,219 +68,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add runtime PM since we might call populate_mm on a foreign device.
-Also create the VRAM bos as ttm_bo_type_kernel. This avoids the
-initial clearing and the creation of an mmap handle.
+Export the function to calculate dsc slice count. This will be used in
+minimum hblank calculation.
 
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
- drivers/gpu/drm/drm_pagemap.c |  4 +-
- drivers/gpu/drm/xe/xe_svm.c   | 80 ++++++++++++++++++-----------------
- drivers/gpu/drm/xe/xe_tile.h  | 11 +++++
- 3 files changed, 55 insertions(+), 40 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 4 ++--
+ drivers/gpu/drm/i915/display/intel_dp_mst.h | 3 +++
+ 2 files changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
-index 27e3f90cf49a..99394c7d1d66 100644
---- a/drivers/gpu/drm/drm_pagemap.c
-+++ b/drivers/gpu/drm/drm_pagemap.c
-@@ -276,7 +276,8 @@ npages_in_range(unsigned long start, unsigned long end)
-  * The caller should hold a reference to the device memory allocation,
-  * and the reference is consumed by this function unless it returns with
-  * an error.
-- * @mm: Pointer to the struct mm_struct.
-+ * @mm: Pointer to the struct mm_struct. This pointer should hold a reference to
-+ * the mm, and the mm should be locked on entry.
-  * @start: Start of the virtual address range to migrate.
-  * @end: End of the virtual address range to migrate.
-  * @pgmap_owner: Not used currently, since only system memory is considered.
-@@ -814,3 +815,4 @@ int drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
- 
- 	return err;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index d2988b9a6e7bd55d2ea4d34230c4d017e1f4cc93..af98a0d0e8376a79ce1ab6ff3c4f6af30f4d3e73 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -198,8 +198,8 @@ static int intel_dp_mst_calc_pbn(int pixel_clock, int bpp_x16, int bw_overhead)
+ 	return DIV_ROUND_UP(effective_data_rate * 64, 54 * 1000);
  }
-+EXPORT_SYMBOL(drm_pagemap_populate_mm);
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 185c726d6824..bd867a23c9ab 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -3,13 +3,17 @@
-  * Copyright © 2024 Intel Corporation
-  */
  
-+#include <drm/drm_drv.h>
-+
- #include "xe_bo.h"
- #include "xe_gt_stats.h"
- #include "xe_gt_tlb_invalidation.h"
- #include "xe_migrate.h"
- #include "xe_module.h"
-+#include "xe_pm.h"
- #include "xe_pt.h"
- #include "xe_svm.h"
-+#include "xe_tile.h"
- #include "xe_ttm_vram_mgr.h"
- #include "xe_vm.h"
- #include "xe_vm_types.h"
-@@ -536,8 +540,10 @@ static struct xe_bo *to_xe_bo(struct drm_pagemap_devmem *devmem_allocation)
- static void xe_svm_devmem_release(struct drm_pagemap_devmem *devmem_allocation)
+-static int intel_dp_mst_dsc_get_slice_count(const struct intel_connector *connector,
+-					    const struct intel_crtc_state *crtc_state)
++int intel_dp_mst_dsc_get_slice_count(const struct intel_connector *connector,
++				     const struct intel_crtc_state *crtc_state)
  {
- 	struct xe_bo *bo = to_xe_bo(devmem_allocation);
-+	struct xe_device *xe = xe_bo_device(bo);
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&crtc_state->hw.adjusted_mode;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.h b/drivers/gpu/drm/i915/display/intel_dp_mst.h
+index c1bbfeb02ca9e7afb96156f58143275225245956..b3d5b347c4b5258cefb0e559a5cb8d0d769111cc 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.h
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.h
+@@ -12,6 +12,7 @@ struct drm_connector_state;
+ struct intel_atomic_state;
+ struct intel_crtc;
+ struct intel_crtc_state;
++struct intel_connector;
+ struct intel_digital_port;
+ struct intel_dp;
+ struct intel_link_bw_limits;
+@@ -35,5 +36,7 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
+ 				   struct intel_crtc_state *crtc_state,
+ 				   struct drm_connector_state *conn_state,
+ 				   int min_bpp_x16, int max_bpp_x16, int bpp_step_x16, bool dsc);
++int intel_dp_mst_dsc_get_slice_count(const struct intel_connector *connector,
++				     const struct intel_crtc_state *crtc_state);
  
- 	xe_bo_put_async(bo);
-+	xe_pm_runtime_put(xe);
- }
- 
- static u64 block_offset_to_pfn(struct xe_vram_region *vr, u64 offset)
-@@ -661,77 +667,66 @@ static struct xe_vram_region *tile_to_vr(struct xe_tile *tile)
- 	return &tile->mem.vram;
- }
- 
--static int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
--			     struct xe_svm_range *range,
--			     const struct drm_gpusvm_ctx *ctx)
-+static int xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
-+				      unsigned long start, unsigned long end,
-+				      struct mm_struct *mm)
- {
--	struct mm_struct *mm = vm->svm.gpusvm.mm;
-+	struct xe_tile *tile = container_of(dpagemap, typeof(*tile), mem.vram.dpagemap);
-+	struct xe_device *xe = tile_to_xe(tile);
-+	struct device *dev = xe->drm.dev;
- 	struct xe_vram_region *vr = tile_to_vr(tile);
- 	struct drm_buddy_block *block;
- 	struct list_head *blocks;
- 	struct xe_bo *bo;
--	ktime_t end = 0;
--	int err;
-+	ktime_t time_end = 0;
-+	int err, idx;
- 
--	if (!range->base.flags.migrate_devmem)
--		return -EINVAL;
-+	if (!drm_dev_enter(&xe->drm, &idx))
-+		return -ENODEV;
- 
--	range_debug(range, "ALLOCATE VRAM");
-+	xe_pm_runtime_get(xe);
- 
--	if (!mmget_not_zero(mm))
--		return -EFAULT;
--	mmap_read_lock(mm);
--
--retry:
--	bo = xe_bo_create_locked(tile_to_xe(tile), NULL, NULL,
--				 xe_svm_range_size(range),
--				 ttm_bo_type_device,
-+ retry:
-+	bo = xe_bo_create_locked(tile_to_xe(tile), NULL, NULL, end - start,
-+				 ttm_bo_type_kernel,
- 				 XE_BO_FLAG_VRAM_IF_DGFX(tile) |
- 				 XE_BO_FLAG_CPU_ADDR_MIRROR);
- 	if (IS_ERR(bo)) {
- 		err = PTR_ERR(bo);
--		if (xe_vm_validate_should_retry(NULL, err, &end))
-+		if (xe_vm_validate_should_retry(NULL, err, &time_end))
- 			goto retry;
--		goto unlock;
-+		goto out_pm_put;
- 	}
- 
--	drm_pagemap_devmem_init(&bo->devmem_allocation,
--				vm->xe->drm.dev, mm,
-+	drm_pagemap_devmem_init(&bo->devmem_allocation, dev, mm,
- 				&dpagemap_devmem_ops,
- 				&tile->mem.vram.dpagemap,
--				xe_svm_range_size(range));
-+				end - start);
- 
- 	blocks = &to_xe_ttm_vram_mgr_resource(bo->ttm.resource)->blocks;
- 	list_for_each_entry(block, blocks, link)
- 		block->private = vr;
- 
- 	xe_bo_get(bo);
--	err = drm_pagemap_migrate_to_devmem(&bo->devmem_allocation,
--					    mm,
--					    xe_svm_range_start(range),
--					    xe_svm_range_end(range),
--					    xe_svm_devm_owner(vm->xe));
-+
-+	/* Ensure the device has a pm ref while there are device pages active. */
-+	xe_pm_runtime_get_noresume(xe);
-+	err = drm_pagemap_migrate_to_devmem(&bo->devmem_allocation, mm,
-+					    start, end, xe_svm_devm_owner(xe));
- 	if (err)
- 		xe_svm_devmem_release(&bo->devmem_allocation);
- 
- 	xe_bo_unlock(bo);
- 	xe_bo_put(bo);
- 
--unlock:
--	mmap_read_unlock(mm);
--	mmput(mm);
-+out_pm_put:
-+	xe_pm_runtime_put(xe);
-+	drm_dev_exit(idx);
- 
- 	return err;
- }
--#else
--static int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
--			     struct xe_svm_range *range,
--			     const struct drm_gpusvm_ctx *ctx)
--{
--	return -EOPNOTSUPP;
--}
--#endif
- 
-+#endif
- 
- /**
-  * xe_svm_handle_pagefault() - SVM handle page fault
-@@ -791,9 +786,15 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 	/* XXX: Add migration policy, for now migrate range once */
- 	if (!range->skip_migrate && range->base.flags.migrate_devmem &&
- 	    xe_svm_range_size(range) >= SZ_64K) {
-+		struct drm_pagemap *dpagemap;
-+
- 		range->skip_migrate = true;
- 
--		err = xe_svm_alloc_vram(vm, tile, range, &ctx);
-+		range_debug(range, "ALLOCATE VRAM");
-+		dpagemap = xe_tile_local_pagemap(tile);
-+		err = drm_pagemap_populate_mm(dpagemap, xe_svm_range_start(range),
-+					      xe_svm_range_end(range),
-+					      range->base.gpusvm->mm);
- 		if (err) {
- 			drm_dbg(&vm->xe->drm,
- 				"VRAM allocation failed, falling back to "
-@@ -915,6 +916,7 @@ xe_drm_pagemap_device_map(struct drm_pagemap *dpagemap,
- 
- static const struct drm_pagemap_ops xe_drm_pagemap_ops = {
- 	.device_map = xe_drm_pagemap_device_map,
-+	.populate_mm = xe_drm_pagemap_populate_mm,
- };
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_tile.h b/drivers/gpu/drm/xe/xe_tile.h
-index eb939316d55b..066a3d0cea79 100644
---- a/drivers/gpu/drm/xe/xe_tile.h
-+++ b/drivers/gpu/drm/xe/xe_tile.h
-@@ -16,4 +16,15 @@ int xe_tile_init(struct xe_tile *tile);
- 
- void xe_tile_migrate_wait(struct xe_tile *tile);
- 
-+#if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
-+static inline struct drm_pagemap *xe_tile_local_pagemap(struct xe_tile *tile)
-+{
-+	return &tile->mem.vram.dpagemap;
-+}
-+#else
-+static inline struct drm_pagemap *xe_tile_local_pagemap(struct xe_tile *tile)
-+{
-+	return NULL;
-+}
-+#endif
- #endif
+ #endif /* __INTEL_DP_MST_H__ */
+
 -- 
-2.49.0
+2.25.1
 
