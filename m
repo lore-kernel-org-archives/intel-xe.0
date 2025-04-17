@@ -4,172 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FFA0C369CA
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Apr 2025 07:15:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75C99C369B2
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Apr 2025 07:18:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 224C910EA10;
-	Thu, 17 Apr 2025 07:15:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34FDA10E07E;
+	Thu, 17 Apr 2025 07:18:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NxrZXYPz";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=haloniitty.fi header.i=@haloniitty.fi header.b="l+98n7hi";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F50E10E181;
- Thu, 17 Apr 2025 07:15:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744874131; x=1776410131;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=FQAw2eSMOranwL1fckGT3xCDtpjF1EB3v/1D0b7ZTmo=;
- b=NxrZXYPzNjZkOsxfhkrdxwVXCHnN5GK4if0TIyanKhGQYccEHoMyrrZv
- GuzGo/EpfvTpoDXd7ZyLV5MBZ20uHSuG6Pv4pBGpnnHFrjOKuWXl/62cZ
- veJesGF6jn6F7OgvI4hSEZO7hITR91qD06QGjn20/pZkKGLOx2CKCXoJb
- /P6L7lSw1/xJ8ce+5ykFsIxz/ZkoWQhUuJM6pm2tQS4fFPYlgU/xJ5ZMT
- ThQdYr9yRdmR414OgeSnrbK7SpWAVNa+t7iVyiZBk/38/QZ9jsM9tLNbX
- bjh999idyqW4/L0n3TKdvT2/vQTn9zNcUkuNMUqznL4qDSJ6mjjCQLtFv g==;
-X-CSE-ConnectionGUID: 5JVs+YiPTbyahKJVrPmRsg==
-X-CSE-MsgGUID: HA6ZzNWTRpymKzTM7VQCeA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11405"; a="46580441"
-X-IronPort-AV: E=Sophos;i="6.15,218,1739865600"; d="scan'208";a="46580441"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2025 00:15:27 -0700
-X-CSE-ConnectionGUID: ubKW47YDTmqsksrSXyTdpQ==
-X-CSE-MsgGUID: gK5GLkErTL6YMsoxEA6Inw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,218,1739865600"; d="scan'208";a="131252068"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2025 00:15:27 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Thu, 17 Apr 2025 00:15:26 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Thu, 17 Apr 2025 00:15:26 -0700
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.169)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 17 Apr 2025 00:15:26 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PveKJdD9nS/ej9ZSGFrUV6W6H5CjayfvwQJ9312OjUyPL/fG8ZIeYW0+1kn/wMnBj1XMxxyv/3Ds5aIddIlxxzhwF6sJypNmD7mGsxFgzCeYlrYu9BJ11Nz8gAwUkO2K9R2qSvV376gKaRhULKOUSLpC6EmqQpCpeAbs1QMLqBKNtAUAjldAfO7VhOAZUObvFgRPQe8lTsTKTNYhwiwQJNcIL/YhQ/ekx5ysBozBr910UWdoHk+7P6UiYY1FO/BUwmq3/PxqNtns8BS2N0l2ytrQCmqp67ujsFtL7jSydILAMe+uZhtuzi8c8AphXB5/AUIWse0KCZOqJa3lxz3DBQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nx6FX5l2qT5NUtEwck2eoj2KCmT77JVCAdkFGdOP7/Q=;
- b=dG2hI8OoBhVqiCWFWcYEJ70/vOwcZP/ZNj/yShmWiswO3hA7mMGjTqyBGwrHT9hQR0Z7EWDYojVno6Et7jsPGbEs8AoDAD9m4TAMRslUgtQtoYGqP0Z7avJgZssq9/EoZ2x/7INVuCPclRtjCPULezpH95nXz427rYIokabs/R2Zoc8O42KFAcuuZQKRCnWuzQhYpUqyiZaT2z42umFZiDyvh8Z0Nb+cuXaNz6VlxxgYjYeC5uErs+LM2QFemMMvJIry7zUKzBhzkr+CB1myFqsqI56iktcZbuNl0nYqk4JtiDi8PF7yspooqAQ8eVwwXUKLho4Xi0KP8HR9Jbi6Rw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com (2603:10b6:a03:488::12)
- by CO1PR11MB4770.namprd11.prod.outlook.com (2603:10b6:303:94::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.35; Thu, 17 Apr
- 2025 07:14:51 +0000
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::21c3:4b36:8cc5:b525]) by SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::21c3:4b36:8cc5:b525%5]) with mapi id 15.20.8632.030; Thu, 17 Apr 2025
- 07:14:50 +0000
-From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-CC: "Nikula, Jani" <jani.nikula@intel.com>
-Subject: RE: [PATCH 00/14] drm/i915/display: final (?!) mass conversions to
- struct intel_display
-Thread-Topic: [PATCH 00/14] drm/i915/display: final (?!) mass conversions to
- struct intel_display
-Thread-Index: AQHbqXvVpns1l5ahJk+crB/IUO5rWbOnfbSA
-Date: Thu, 17 Apr 2025 07:14:50 +0000
-Message-ID: <SJ1PR11MB6129CC87485F5CFA1650FED6B9BC2@SJ1PR11MB6129.namprd11.prod.outlook.com>
-References: <cover.1744222449.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1744222449.git.jani.nikula@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ1PR11MB6129:EE_|CO1PR11MB4770:EE_
-x-ms-office365-filtering-correlation-id: f856b593-7c4b-4de7-7b32-08dd7d7f8b40
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|7053199007|38070700018; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?vimRMDI5cQjxzZhG1vQ+EHmb3l4vxg4fmw7eD+Bi/e4g98dE/GY+Uy7N4oxH?=
- =?us-ascii?Q?kEGLhimlnwu49Xzi1X7jxUEb/O7+li7e8puPaJ+Hl36ZQNajBEMbA2GQ+FkU?=
- =?us-ascii?Q?SnruElTXJZoWstYTK9hM7YdRtGHzddE2MK1r6+MwAG7cpHEbKLYf1hYf9fjE?=
- =?us-ascii?Q?JvDByFFx6ZHdlFCxo1psyT9d1jjs3fEiHLCtYLDUJ5dvocuu71IqHwUjX0jG?=
- =?us-ascii?Q?cy0171PtlLnXEi2nSCl6b1XrYhUdNHkN37Sv1K0qxZd1dgY7+DsqBnU9UeqP?=
- =?us-ascii?Q?T1ZmKfEU11EPUd0QMB5WYiyfMGXnE36nRL9p/le7+9EEY6B3k4PQtWVkxXXv?=
- =?us-ascii?Q?IH1bKCltdvj3+MXETE9HftGAPlPsewBT8FEI0RtGjOH2iaKW1fgECpdRbBg4?=
- =?us-ascii?Q?qjqTl5EuezBLvhZnWIeA0MuxAXa9eT4Iqv8OPbFgFhADk+QTWJXyGiDBoULo?=
- =?us-ascii?Q?m+OHMBySclAaIrQi4T7nKaWBibI1siqLn1ehRmCE2ke1qZ1wTq9HxfuWe4GJ?=
- =?us-ascii?Q?ksL/AdJibJeO+Fihm2PZCJAvIolnLGbBXX6LeF9TYd1xpD830ueeOy5o9H0n?=
- =?us-ascii?Q?PNSA8qgjm4tqjPws7Of3sNAuegEKCZkl4AMnWmEIietCVGNxm2arBO2rLsVw?=
- =?us-ascii?Q?iDK4+7m9+eEP0nU9z100Q9GKLWlzl9zpJ+qJLdQTKEHeMTEIdwymaejo5N/u?=
- =?us-ascii?Q?kqpcbKHzFPoC9w6TFteFBDjgZFHhRJ6G1JZNEXTA2MCbw2AY5SEfXEpjx/f6?=
- =?us-ascii?Q?uTrxtcFFCfR7Z6ot3kuoOa0RI/poBXWQGoQpykGDVxVMiC8zjg5+oU/t6RFZ?=
- =?us-ascii?Q?vd552IieG7YU9rYOz8Fy8lgejjNgmbzm32XZxByLLEra7hVmWFNM4rjnl/EG?=
- =?us-ascii?Q?Jjf3MTOUeZli95FBspiDeROcF3hCG7QhQ0XDRO+VTbnTrk+ZkF0u9A8qED4z?=
- =?us-ascii?Q?f4utTHUt+js3vOcAne8kPf0Kf5VkC/quXkUC5VdJc4AnV1mi7DtU5zvYgqGF?=
- =?us-ascii?Q?nGP60zGkYMkuwp09Wy8aAxqrZKmwHTJu1GVOn72MZAF+snO+rACy3vBVK2kT?=
- =?us-ascii?Q?pgFuXxv7aRW/AEKOaYt6kfj8HQS3qWkwN811KvzSPvtnY32DLMtUPWuCdGRS?=
- =?us-ascii?Q?s5OM8PTX31fnBQ8Yjng32dM+Xka/HBxCrclXnlMF8OJWE4xBO/tnjziFSTph?=
- =?us-ascii?Q?lpGeOPniY8LDYGj3LfXjTZviMQFEUm4g9LIFmPmK1hgQJnwyetqITqTIXZ0G?=
- =?us-ascii?Q?9q0/GuJMfLamqwp4oHtdZfi8qr3RE8X8ote5/Tlv5gQbwAdU9Ew1pCfn3yg3?=
- =?us-ascii?Q?AYGXCSQow6l6ovWSTnqYyIV1Mj8snrGnzIoL8+FISlj7raQpNIt4a4q1zckU?=
- =?us-ascii?Q?twLFFs7P/GIT9S7Zu8sGm+0qPBxhcrOeHNFcQSMkxf1pAPDoe7usxK3OETHi?=
- =?us-ascii?Q?D5Mtbr+aQMHSpg6T8a5x2mxGUPuQnhY1eHtvs4QfqDveAKpAjvdw0Q=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ1PR11MB6129.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(7053199007)(38070700018); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?i1cEHXPTScb6QJjX1xHl31GBooNe67wDJmmu3ZAbrm2MS2BJsgqkKEDmbNay?=
- =?us-ascii?Q?7l2NBhfuobgU19VBRcuHw3gSmSevGhN01yJtFCtI+moaTDMqGZKyE6khWpUr?=
- =?us-ascii?Q?cgs6jp+N+zaGlnfV4QeqkmRQWqgYv592fNznjrmRBQuYasZEo5UQH2FYvWR8?=
- =?us-ascii?Q?9dZecymQ/obl/ZNrEnC3OELlm7Ov9EeKktQ3QEgkBss2/EzusXa4zc55MBBm?=
- =?us-ascii?Q?3k5zWUw6GOGlu4ljr9Xu+1aaEXj5d5mCeC5Kpspz0e/PI3IPc5NmYuPVxTB5?=
- =?us-ascii?Q?jHXARMEhsYbNzgfw/wT4xw6MfcNQn/nhwoI3i61V9Ca7bskxLtlIEbVF4LO/?=
- =?us-ascii?Q?2ny+pw/SpTsW2TxX5AStbgnTI+NK4ipxADcxzW7ofiTLdutWvADk2kYzHjvP?=
- =?us-ascii?Q?fp2F7R/DbJ4YJQefOWK/y3qcXMOWLKrPp1sIpsKPX+KsyXPzWLb4hQAVg7yM?=
- =?us-ascii?Q?/iWLX2NuELL48M6TxpF9/p3+T6K4VjGHPnjUWw/6VVDaQizQdLVajLrMa2Fl?=
- =?us-ascii?Q?bgr5Ga+fz3jy4/jLblqWeyoOW++FbAFEurXZpyaKUFdxbMYtZRxBcJ/kZk17?=
- =?us-ascii?Q?zF1Vffohh1Lz5KrgdgtQ+EUzlFF9c0K2SjwcsCYl4cMKqj6sZ9BaAyhNL3Vk?=
- =?us-ascii?Q?BL4JG4SiuNm+bf8s4HJwChP/4yxMQFOhPz9BXpSxhExNkCWzHpnW2qK9kK0Y?=
- =?us-ascii?Q?NErOAQbOSwiKpVz6RCn31WjafNzAEAN+ldMqD3DcQHHTe99FSKDv6HM+fLRj?=
- =?us-ascii?Q?/a3Dh+lS2k7kDRcibby+AsB/YsFfRGfv7+SYCB+8pHcdyHnqFW2Dk3LT9OcF?=
- =?us-ascii?Q?RNy/pKynkR9B1jsJztqat+Nim3wrgTUDYvBOaS8k2yUz+E7ZS525/JDP8Jxg?=
- =?us-ascii?Q?9eQb9iamVAJ2ULAGIGC+BYyy2KiR/NY1qWNgAIaP8mtiQstJZ9t8q5Uvjy0A?=
- =?us-ascii?Q?P/dVJZ/4z94uS/rXUqJF9R9+9BrPoWlgqz9BY67YdY7UIEy9urnUOr/LVgrn?=
- =?us-ascii?Q?Zhoe5AIqUFnyghc01WqMsYudRS1mpxeTVKk1c3gTyLDXn2vfQyHT4b71e+7W?=
- =?us-ascii?Q?RPVlvHbdEr2DFtC0VM/nci0kmQrcclnQG1IFugSIjqTIrQ41gjsVVK0rP+Io?=
- =?us-ascii?Q?9ESdr5H3VE+7PCJugovhOLaVzs3/dwrp9BbwuaJa13uQMHbOyB/9bZkW1wJ5?=
- =?us-ascii?Q?5tTbLUQyNJZcQfwCv8HCJTG6MDk1zx38hzyPykrdUWLGK9KljNQWD416Y7lT?=
- =?us-ascii?Q?0xoIFl4WYqVtIWq8NNNc4e8c1eXRkSqhqP4OLyq0Edo9u88kZKJ+VduZW8fO?=
- =?us-ascii?Q?H8n1eZ0uB9om8TfxUi1t/xFTJz4RRU93ZOyt9G8sx1XL01PKU38DLXkYQATB?=
- =?us-ascii?Q?93zOr2hQTvwnS+w8KNQHjIxsIRKgUa9S08wuL8tp9+AHtgqq57+iqONEFU8x?=
- =?us-ascii?Q?7CmwvMCxakIKr1cDCtWLrvf+Rs2agOluitviMSmNEoG7YlgMMuc/0zc+sHrQ?=
- =?us-ascii?Q?/QkZhhuuU+WgvWq3d/vptZQBaiLcaYgW02yBJ+2FgDFn732mDL5O4ZaJ5chP?=
- =?us-ascii?Q?8NC8rb77/cYAB6T2wrmPDAv32OkDnSfM2k3WZjyez+iykEPu556/Q5fYwTOT?=
- =?us-ascii?Q?QA=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from whm50.louhi.net (whm50.louhi.net [77.240.19.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5ACFA10E07E;
+ Thu, 17 Apr 2025 07:18:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=haloniitty.fi; s=default; h=Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=phiY14deJRI6a3x3lcvFEsIivtjBgBUNrrzrJMy7L4k=; b=l+98n7hizFNvJVcikT8dAmWdEL
+ 9EgniV8ASWyX5G4XinPabRXRsZ0dyrZBSUYqAxyuM9gM98x8GgbEQz+jx/Nbe73zGI0LoLRTLFxiF
+ l3aSuMMTQrFtWQ1eaojWgO/NSOhnDEsMo6sSdWY9Djx4iVdmqE37JnBDS07Y5oZ8urKYy85iMhO1z
+ KDldgm9oeybFPEX7Fdh5b+XvrEuBApknG3MPuEiRRlQhRMolScdnqFYcaI/cBAvlTWKbIytNTR7MG
+ v/FXuN0EdxhKS0Y11XU+zs4yp+6LOJKQu3/a+cbY58FmCIQOcKF/S9crs2pGtTroDfiIRlBHf0GIP
+ wNa3YR9g==;
+Received: from [194.136.85.206] (port=35442 helo=eldfell)
+ by whm50.louhi.net with esmtpsa (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.98.1)
+ (envelope-from <pekka.paalanen@haloniitty.fi>)
+ id 1u5JVl-000000002m3-3lhC; Thu, 17 Apr 2025 10:18:13 +0300
+Date: Thu, 17 Apr 2025 10:18:06 +0300
+From: Pekka Paalanen <pekka.paalanen@haloniitty.fi>
+To: "Shankar, Uma" <uma.shankar@intel.com>
+Cc: "Murthy, Arun R" <arun.r.murthy@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "Kandpal, Suraj" <suraj.kandpal@intel.com>, "harry.wentland@amd.com"
+ <harry.wentland@amd.com>, "alex.hung@amd.com" <alex.hung@amd.com>, "Vetter,
+ Simona" <simona.vetter@intel.com>, "airlied@gmail.com" <airlied@gmail.com>
+Subject: Re: [PATCH v8 01/14] drm: Define histogram structures exposed to user
+Message-ID: <20250417101806.08df0731@eldfell>
+In-Reply-To: <DM4PR11MB63600B85A21E03A5E6938652F4BC2@DM4PR11MB6360.namprd11.prod.outlook.com>
+References: <20250128-dpst-v8-0-871b94d777f8@intel.com>
+ <20250128-dpst-v8-1-871b94d777f8@intel.com>
+ <20250217120808.708b9b4d@eldfell>
+ <c423efcb-5ab8-41c2-af0a-621007c6175d@intel.com>
+ <20250218181819.11ca41ab@eldfell>
+ <cd095fd7-3043-402a-9e21-c0c85c53f8e3@intel.com>
+ <20250220175047.412ee8d4@eldfell>
+ <95a3e35d-2c5e-4861-b7bf-f38815a44e14@intel.com>
+ <20250303112010.469b9685@eldfell>
+ <IA0PR11MB7307CCBB82AF958121A6B3A9BAD92@IA0PR11MB7307.namprd11.prod.outlook.com>
+ <20250320112309.1d9c3e09@eldfell>
+ <IA0PR11MB73070374E14C44DA1C7EDFA3BAA62@IA0PR11MB7307.namprd11.prod.outlook.com>
+ <20250327105925.1e9e8609@eldfell>
+ <IA0PR11MB7307082B787829CA3569F25FBAA02@IA0PR11MB7307.namprd11.prod.outlook.com>
+ <DM4PR11MB63600B85A21E03A5E6938652F4BC2@DM4PR11MB6360.namprd11.prod.outlook.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6129.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f856b593-7c4b-4de7-7b32-08dd7d7f8b40
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Apr 2025 07:14:50.6995 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 6EfF4RHV/au39JSONblTxvbb06mXpXIS3zrEj+o5U3Sh+JgKJ2gFiXUP8rKq0OD2j+tvryoTVLRPIkFX5YjVlW7NMgU8oQLeSLvkeF2OFK4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4770
-X-OriginatorOrg: intel.com
+Content-Type: multipart/signed; boundary="Sig_/vewU.i/mKCy.1/0LU/QAvb9";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - whm50.louhi.net
+X-AntiAbuse: Original Domain - lists.freedesktop.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - haloniitty.fi
+X-Get-Message-Sender-Via: whm50.louhi.net: authenticated_id:
+ pekka.paalanen@haloniitty.fi
+X-Authenticated-Sender: whm50.louhi.net: pekka.paalanen@haloniitty.fi
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -184,79 +90,164 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-LGTM
+--Sig_/vewU.i/mKCy.1/0LU/QAvb9
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+On Thu, 17 Apr 2025 06:31:21 +0000
+"Shankar, Uma" <uma.shankar@intel.com> wrote:
+
+> > -----Original Message-----
+> > From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Mu=
+rthy,
+> > Arun R
+> > Sent: Friday, March 28, 2025 10:36 AM
+> > To: Pekka Paalanen <pekka.paalanen@haloniitty.fi>
+> > Cc: intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org; dr=
+i-
+> > devel@lists.freedesktop.org; Kandpal, Suraj <suraj.kandpal@intel.com>;
+> > harry.wentland@amd.com; alex.hung@amd.com; Vetter, Simona
+> > <simona.vetter@intel.com>; airlied@gmail.com
+> > Subject: RE: [PATCH v8 01/14] drm: Define histogram structures exposed =
+to user
+> >  =20
+> > > On Wed, 26 Mar 2025 06:03:27 +0000
+> > > "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
+> > > =20
+> > > > > On Wed, 19 Mar 2025 12:08:15 +0000 "Murthy, Arun R"
+> > > > > <arun.r.murthy@intel.com> wrote:
+> > > > > =20
+> > > > > > > On Mon, 3 Mar 2025 13:23:42 +0530 "Murthy, Arun R"
+> > > > > > > <arun.r.murthy@intel.com> wrote:
+> > > > > > > =20
+> > > > > > > > On 20-02-2025 21:20, Pekka Paalanen wrote: =20
+> > > > > > > > > On Wed, 19 Feb 2025 09:28:51 +0530 "Murthy, Arun R"
+> > > > > > > > > <arun.r.murthy@intel.com> wrote: =20
+> > > > >
+> > > > > ...
+> > > > > =20
+> > > > > > > > Hi Pekka,
+> > > > > > > > Sorry got getting back late on this.
+> > > > > > > > I totally agree that the UAPI should not be any hardware
+> > > > > > > > specific and have taken care to get rid of such if any.
+> > > > > > > > Here we are just exposing the histogram data and what point
+> > > > > > > > is the histogram generated is out of the scope. =20
+> > > > > > >
+> > > > > > > It's not out of scope. Understanding exactly at what point the
+> > > > > > > histogram is generated in the KMS pixel pipeline is paramount
+> > > > > > > to being able to use the results correctly - how it relates to
+> > > > > > > the =20
+> > > framebuffers' =20
+> > > > > > > contents and KMS pixel pipeline configuration.
+> > > > > > > =20
+> > > > > >
+> > > > > > While working around this comment, it looks to be quite
+> > > > > > challenging to address this comment and agree that this will
+> > > > > > have to be addressed and is important for the user to know at
+> > > > > > which point in the pixel pipeline configuration the histogram i=
+s generated.
+> > > > > > I can think of 2 options on addressing this.
+> > > > > >
+> > > > > > 1.  Have this documented in the driver. Since this can vary on
+> > > > > > each vendor hardware, can have this documented in the drivers or
+> > > > > > ReST =20
+> > > document. =20
+> > > > > > =20
+> > > > >
+> > > > > Hi Arun,
+> > > > >
+> > > > > this is not acceptable in KMS, because it requires userspace to
+> > > > > have code that depends on the hardware revision or identity. When
+> > > > > new hardware appears, it will not be enough to update the drivers,
+> > > > > one will also need to update userspace. There currently is no
+> > > > > userspace "standard KMS library" to abstract all drivers further,
+> > > > > like there is libcamera =20
+> > > and Mesa. =20
+> > > > > =20
+> > > > > > 2. Maybe have a bitmapping like we have it for histogram_mode.
+> > > > > > Define user readable macros for that.
+> > > > > > Ex: CC1_DEGAMMA_HIST_CC2
+> > > > > > In this case histogram is between the two color conversion
+> > > > > > hardware block in the pixel pipeline.
+> > > > > > This macro will have to be defined on need basis and define a
+> > > > > > u32 variable for this bit manipulation. =20
+> > > > >
+> > > > > This one still has problems in that some hardware may not have all
+> > > > > the non- HIST elements or not in the same order. It's a better
+> > > > > abstraction than option 1, but it's still weak.
+> > > > >
+> > > > > I can see one solid solution, but it won't be usable for quite
+> > > > > some time I
+> > > > > suppose:
+> > > > >
+> > > > > https://lore.kernel.org/dri-devel/20241220043410.416867-5-
+> > > > > alex.hung@amd.com/
+> > > > >
+> > > > > The current work on the color pipelines UAPI is concentrated on
+> > > > > the per-plane operations. The idea is that once those are hashed
+> > > > > out, the same design is applied to CRTCs as well, deprecating all
+> > > > > existing CRTC color processing properties. A histogram processing
+> > > > > element could be exposed as a colorop object, and its position in
+> > > > > a CRTC color pipeline represents the point where the histogram is=
+ collected.
+> > > > >
+> > > > > That would be the best possible UAPI design on current knowledge
+> > > > > in my opinion.
+> > > > > =20
+> > > > Yes this would be the best design, but looking into the timeline for
+> > > > this CRTC color pipeline can we proceed with this as in interim sol=
+ution.
+> > > > Once we have the CRTC color pipeline in drm, will rebase this
+> > > > histogram to make use of the pipeline.
+> > > > We can also take up the crtc color pipeline and will also start
+> > > > contributing to get things faster but since there is not timeline
+> > > > defined for that activity, would it be viable to go ahead with
+> > > > option2 as in =20
+> > > interim solution?
+> > >
+> > > Hi Arun,
+> > >
+> > > I think that's something the DRM maintainers should chime in on. =20
+>=20
+> As a first step, I think we can expose the Histogram through the property.
+> We can later hook this into the crtc color pipeline once we implement it.
+
+Do you mean upstreamed as well?
+
+How is that different from the original proposal here that I raised
+concerns about?
 
 
+Thanks,
+pq
 
-> -----Original Message-----
-> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Jani
-> Nikula
-> Sent: Wednesday, April 9, 2025 11:48 PM
-> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> Cc: Nikula, Jani <jani.nikula@intel.com>
-> Subject: [PATCH 00/14] drm/i915/display: final (?!) mass conversions to s=
-truct
-> intel_display
+> A userspace implementation showing end to end benefit of the feature and
+> usecase would be needed. Hope this is ok and no strong objection to this
+> approach.
 >=20
-> With this, we are approaching the end of mass conversions to struct
-> intel_display. There are still plenty of drm_i915_private uses left, of c=
-ourse,
-> but the straightforward conversions of entire files are done. And we no l=
-onger
-> use any of the IS_*() platform checks.
+> Regards,
+> Uma Shankar
 >=20
-> BR,
-> Jani.
->=20
-> Jani Nikula (14):
->   drm/i915/fb: convert intel_fbdev.[ch] and intel_fbdev_fb.[ch] to
->     struct intel_display
->   drm/i915/display: convert intel_modeset_setup.[ch] to struct
->     intel_display
->   drm/i915/display: convert intel_modeset_verify.c to struct
->     intel_display
->   drm/i915/sprite: convert intel_sprite_uapi.c to struct intel_display
->   drm/i915/frontbuffer: convert intel_frontbuffer.[ch] to struct
->     intel_display
->   drm/i915/crt: switch to display->platform based platform detection
->   drm/i915/dmc: switch to display->platform based platform detection
->   drm/i915/dp-aux: switch to display->platform based platform detection
->   drm/i915/dpio: switch to display->platform based platform detection
->   drm/i915/gmbus: switch to display->platform based platform detection
->   drm/i915/hdmi: switch to display->platform based platform detection
->   drm/i915/display: switch to display->platform.dgfx from IS_DGFX()
->   drm/i915/audio: don't set LPE audio irq chip data, it's unused
->   drm/xe/compat: clean up unused platform check macros
->=20
->  drivers/gpu/drm/i915/display/intel_bios.c     |   2 +-
->  drivers/gpu/drm/i915/display/intel_crt.c      |  13 +-
->  drivers/gpu/drm/i915/display/intel_display.c  |   7 +-
->  .../drm/i915/display/intel_display_driver.c   |   9 +-
->  drivers/gpu/drm/i915/display/intel_dmc.c      |  45 ++--
->  drivers/gpu/drm/i915/display/intel_dp_aux.c   |   9 +-
->  drivers/gpu/drm/i915/display/intel_dpio_phy.c |   4 +-
->  drivers/gpu/drm/i915/display/intel_fb.c       |   4 +-
->  drivers/gpu/drm/i915/display/intel_fbdev.c    |  74 ++++---
->  drivers/gpu/drm/i915/display/intel_fbdev.h    |   6 +-
->  drivers/gpu/drm/i915/display/intel_fbdev_fb.c |  13 +-
->  drivers/gpu/drm/i915/display/intel_fbdev_fb.h |   4 +-
->  .../gpu/drm/i915/display/intel_frontbuffer.c  |  60 +++---
->  .../gpu/drm/i915/display/intel_frontbuffer.h  |   8 +-
->  drivers/gpu/drm/i915/display/intel_gmbus.c    |  22 +-
->  drivers/gpu/drm/i915/display/intel_hdmi.c     |  44 ++--
->  .../gpu/drm/i915/display/intel_lpe_audio.c    |   2 +-
->  .../drm/i915/display/intel_modeset_setup.c    | 192 +++++++++---------
->  .../drm/i915/display/intel_modeset_setup.h    |   4 +-
->  .../drm/i915/display/intel_modeset_verify.c   |  17 +-
->  drivers/gpu/drm/i915/display/intel_overlay.c  |   6 +-
->  .../drm/i915/display/intel_plane_initial.c    |   8 +-
->  .../gpu/drm/i915/display/intel_sprite_uapi.c  |  17 +-
-> .../gpu/drm/xe/compat-i915-headers/i915_drv.h |  36 +---
->  drivers/gpu/drm/xe/display/intel_fbdev_fb.c   |   6 +-
->  25 files changed, 269 insertions(+), 343 deletions(-)
->=20
-> --
-> 2.39.5
 
+--Sig_/vewU.i/mKCy.1/0LU/QAvb9
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmgAqy4ACgkQI1/ltBGq
+qqc05hAAlCyVGG6Blf7aoJ4zP8yF+qJdkerJ3oay1W1UswtiJM4ybgKG7MZVC62v
+UJviC9JquTffmdNGgsr+mG6HY11PiZL5pKgd9GzYvunra6w4OcwHayQm0qHgsC/V
+NOLLn9LubtvMPZSslHgy65REDwiou9SfJMkMJ26qSB+vU9880/+1wbrnW/8T9QNm
+EWzQK+N4ZXdqNQVhjYxGFyb7vd/PAPpZU7+p95bG/zSvHELIQYnsvyHKcZOM2opt
+ejXuUGb+VqzsSx3OzEOQNgZfGSs9lghiI0kZOdxjXPJJiIQMPK6p+X0gTEtCU/67
+MaAWnpyGffbAIfvGqBY1qzHlllUvr9dB4vj8vK6Vav1z5Yiuw7DwUhjBMJrpxKH2
+xDw/vXqgLQbEIWhRP6QONRNK7bRcnHFL7q4qnDpRJTsoza3xuYdx2Ex1pWxB6LNA
+ZnopN1/zAxi1Ey3BAcZ905O9242D+ocY1NL0CdVtT3JSnaO81onPSS3ugzjiFQzj
+4Bebacd8fUsm8fHo9R5FfOM1970uPjTfpEhaEBGoFHApHyYfKxGLjuwX+2pIPbwu
+A04l7Uwi1pm2UoBBryNkFrpG6p8WMUeK2Xz1p32Wri4I6WRUTnsfH7OWDzscBwCU
+8ExSo3vYHxnL3sHQUSea9QsGGBhFiS/F5f5Vd+wDjZoMyXc2EqA=
+=m/Q5
+-----END PGP SIGNATURE-----
+
+--Sig_/vewU.i/mKCy.1/0LU/QAvb9--
