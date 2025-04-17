@@ -4,62 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E76CC369B2
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Apr 2025 07:48:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11237C369C7
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Apr 2025 07:55:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4271C10E18C;
-	Thu, 17 Apr 2025 07:48:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C626110EA1C;
+	Thu, 17 Apr 2025 07:55:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n8kdj11q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PZ7gJUbE";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 332ED10E18C
- for <intel-xe@lists.freedesktop.org>; Thu, 17 Apr 2025 07:48:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FD6010EA1C
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Apr 2025 07:55:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744876095; x=1776412095;
+ t=1744876505; x=1776412505;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=wVziAHUufwH3iKMILOfKBxB+XPVOWl95IrItS/2AIvk=;
- b=n8kdj11qT6/3AysODkr6RnuEr54BEH8TRiQsTLY+Q14lKnYeQH++oEWd
- kJajlGwTdUXwLggdxa3A310/b8BrUZxepOHFsB8k9L2p6dJvoIYJBl7+N
- DcLaLePUx78SOd4payXCavTnl8kZTdfPJiPU+JZnt8NEXueR9CGqON3UW
- wE7Z8TIUh8f0VkgTHP4uXX6609IobqqGsx8YV+FplwUYAgdi3d9LaRDhv
- 7z761q564LenerQRy+U11ywkA/os9DqTNVH5XbNj+WW7Vvw0uX/av4Vec
- t6V6XZHgvUULXYZR/LzG2UHLcpF5krYZkmeJTjk71RjTFQRCz3EceraMT Q==;
-X-CSE-ConnectionGUID: WfAVUsTDQOC45UVJNyrLMg==
-X-CSE-MsgGUID: qw0O7peVRwyNkieNZGMYeg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11405"; a="46462091"
-X-IronPort-AV: E=Sophos;i="6.15,218,1739865600"; d="scan'208";a="46462091"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2025 00:48:14 -0700
-X-CSE-ConnectionGUID: MHm16eFwSOWkqSFVpFIhLg==
-X-CSE-MsgGUID: 526c6M9vQZuISWSXMYMCGQ==
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=FzjBm7HhMTbvhqhtFnHkAgsNWkGpDs3w8lqoXRAPCLQ=;
+ b=PZ7gJUbEcWe9sSNvxZCQGityrZ6eQMmripwt/qLoxN5SEckt6SiXMV2I
+ LhwDXKFgdatQzL8qOwnDNgX5CZk7EjYsK3U9TpS8wVZTCzYiM64S6ajZi
+ QNBc9TxSpE2UsdWOe25g0xPsJK526zKvtoksJZnvy8EPHVeFzfFHRViH1
+ EGQsV0V3VY8K/eD3tnBtcGmVaDlWHaLUJau+7PRYa5/+L7jrJQ/PSq8RJ
+ EwyZq/EY+yU57vSlZ2g+NI/yCJQz/xKZ9GZB387CRviJvgGhV3zzVwgmR
+ m6cnATo9UfOXYJFq7UmDRGAwWxxRkSOaq3lLgBkOrmXS2DFnnvWzkRMjN g==;
+X-CSE-ConnectionGUID: lNdcnxrHTC+RuF4OgdYB1w==
+X-CSE-MsgGUID: 8GvPH6+8STWrmRYo4o6Ubw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11405"; a="46336898"
+X-IronPort-AV: E=Sophos;i="6.15,218,1739865600"; d="scan'208";a="46336898"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2025 00:55:05 -0700
+X-CSE-ConnectionGUID: ORqi/H/SQfWkCdKXzAufuQ==
+X-CSE-MsgGUID: X0ry1nUOSHWiA3aQjfjq+A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,218,1739865600"; d="scan'208";a="135541169"
+X-IronPort-AV: E=Sophos;i="6.15,218,1739865600"; d="scan'208";a="167913890"
 Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2025 00:48:12 -0700
-Date: Thu, 17 Apr 2025 10:48:09 +0300
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2025 00:55:03 -0700
+Date: Thu, 17 Apr 2025 10:54:59 +0300
 From: Raag Jadav <raag.jadav@intel.com>
 To: Riana Tauro <riana.tauro@intel.com>
 Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
  intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
  badal.nilawar@intel.com
-Subject: Re: [PATCH v2 2/3] drm/xe: Expose PCIe Gen4 downspeed attributes
-Message-ID: <aACyOW5u9Hof1vaP@black.fi.intel.com>
+Subject: Re: [PATCH v2 1/3] drm/xe: Move xe_device_sysfs_init() to
+ xe_pci_probe()
+Message-ID: <aACz02tjPQSThiKd@black.fi.intel.com>
 References: <20250403174742.1294227-1-raag.jadav@intel.com>
- <20250403174742.1294227-3-raag.jadav@intel.com>
- <d98a6b4b-1b14-4dbc-8833-e39c846a3b12@intel.com>
- <Z_-NUpQjdXIqrP_9@black.fi.intel.com>
- <16165ccb-25f8-4cd1-9ac7-63496c965be4@intel.com>
- <Z__MHqrwNmXW8lmu@black.fi.intel.com>
- <6ef5b3b0-cf8c-4882-a686-9b9c7f6679c1@intel.com>
+ <20250403174742.1294227-2-raag.jadav@intel.com>
+ <6a2068b5-d86e-4e8d-9c41-f47cc322e394@intel.com>
+ <7fb3fcf0-3dc1-4d98-af23-58c9e77a47d9@intel.com>
+ <Z_-LLx2Qb-iAouGF@black.fi.intel.com>
+ <83da2447-1242-4bb2-8039-ffd76d925c28@intel.com>
+ <Z__crNClWVPQHE6y@black.fi.intel.com>
+ <5c6726de-dcdf-4bd8-9522-492608738177@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <6ef5b3b0-cf8c-4882-a686-9b9c7f6679c1@intel.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <5c6726de-dcdf-4bd8-9522-492608738177@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,53 +77,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Apr 17, 2025 at 10:47:19AM +0530, Riana Tauro wrote:
-> On 4/16/2025 8:56 PM, Raag Jadav wrote:
-> > On Wed, Apr 16, 2025 at 08:22:38PM +0530, Riana Tauro wrote:
-> > > On 4/16/2025 4:28 PM, Raag Jadav wrote:
-> > > > On Wed, Apr 16, 2025 at 03:36:55PM +0530, Riana Tauro wrote:
-> > > > > Hi Raag
-> > > > > 
-> > > > > On 4/3/2025 11:17 PM, Raag Jadav wrote:
-> > > > > > Expose sysfs attributes for PCIe Gen4 downspeed capability and status.
-> > 
-> > ...
-> > 
-> > > > > > +static ssize_t
-> > > > > > +pcie_gen4_downspeed_status_show(struct device *dev, struct device_attribute *attr, char *buf)
-> > > > > > +{
-> > > > > > +	struct pci_dev *pdev = to_pci_dev(dev);
-> > > > > > +	struct xe_device *xe = pdev_to_xe_device(pdev);
-> > > > > > +	u32 val;
-> > > > > > +	int ret;
-> > > > > > +
-> > > > > > +	xe_pm_runtime_get(xe);
-> > > > > > +	ret = xe_pcode_read(xe_device_get_root_tile(xe), PCODE_MBOX(DGFX_PCODE_STATUS,
-> > > > > > +			    DGFX_GET_INIT_STATUS, 0), &val, NULL);
-> > > > > indentation
+On Thu, Apr 17, 2025 at 10:52:54AM +0530, Riana Tauro wrote:
+> On 4/16/2025 10:07 PM, Raag Jadav wrote:
+> > On Wed, Apr 16, 2025 at 08:15:48PM +0530, Riana Tauro wrote:
+> > > Hi Raag
+> > > 
+> > > On 4/16/2025 4:19 PM, Raag Jadav wrote:
+> > > > On Wed, Apr 16, 2025 at 03:34:43PM +0530, Riana Tauro wrote:
+> > > > > On 4/16/2025 1:25 PM, Riana Tauro wrote:
+> > > > > > Hi Raag
+> > > > > > 
+> > > > > > On 4/3/2025 11:17 PM, Raag Jadav wrote:
+> > > > > > > Move xe_device_sysfs_init() to xe_pci_probe() so that we can expose
+> > > > > > > non-PM attributes as well.
+> > > > > > > 
+> > > > > > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> > > > > > > ---
+> > > > > > >     drivers/gpu/drm/xe/xe_device_sysfs.c | 11 +++++++----
+> > > > > > >     drivers/gpu/drm/xe/xe_pci.c          |  6 ++++++
+> > > > > > >     drivers/gpu/drm/xe/xe_pm.c           |  5 -----
+> > > > > > >     3 files changed, 13 insertions(+), 9 deletions(-)
+> > > > > > > 
+> > > > > > > diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/
+> > > > > > > xe/xe_device_sysfs.c
+> > > > > > > index 7efbd4c52791..d4c73acea1cf 100644
+> > > > > > > --- a/drivers/gpu/drm/xe/xe_device_sysfs.c
+> > > > > > > +++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+> > > > > > > @@ -67,7 +67,8 @@ static void xe_device_sysfs_fini(void *arg)
+> > > > > > >     {
+> > > > > > >         struct xe_device *xe = arg;
+> > > > > > > -    sysfs_remove_file(&xe->drm.dev->kobj,
+> > > > > > > &dev_attr_vram_d3cold_threshold.attr);
+> > > > > > > +    if (xe->d3cold.capable)
+> > > > > > > +        sysfs_remove_file(&xe->drm.dev->kobj,
+> > > > > > > &dev_attr_vram_d3cold_threshold.attr);
+> > > > > > >     }
+> > > > > > >     int xe_device_sysfs_init(struct xe_device *xe)
+> > > > > > > @@ -75,9 +76,11 @@ int xe_device_sysfs_init(struct xe_device *xe)
+> > > > > > >         struct device *dev = xe->drm.dev;
+> > > > > > >         int ret;
+> > > > > > > -    ret = sysfs_create_file(&dev->kobj,
+> > > > > > > &dev_attr_vram_d3cold_threshold.attr);
+> > > > > > > -    if (ret)
+> > > > > > > -        return ret;
+> > > > > > > +    if (xe->d3cold.capable) {
+> > > > > > > +        ret = sysfs_create_file(&dev->kobj,
+> > > > > > > &dev_attr_vram_d3cold_threshold.attr);
+> > > > > > > +        if (ret)
+> > > > > > > +            return ret;
+> > > > > > > +    }
+> > > > > > >         return devm_add_action_or_reset(dev, xe_device_sysfs_fini, xe);
+> > > > > > >     }
+> > > > > > > diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> > > > > > > index 58347fa91841..246682b2a2be 100644
+> > > > > > > --- a/drivers/gpu/drm/xe/xe_pci.c
+> > > > > > > +++ b/drivers/gpu/drm/xe/xe_pci.c
+> > > > > > > @@ -18,6 +18,7 @@
+> > > > > > >     #include "display/xe_display.h"
+> > > > > > >     #include "regs/xe_gt_regs.h"
+> > > > > > >     #include "xe_device.h"
+> > > > > > > +#include "xe_device_sysfs.h"
+> > > > > > >     #include "xe_drv.h"
+> > > > > > >     #include "xe_gt.h"
+> > > > > > >     #include "xe_gt_sriov_vf.h"
+> > > > > > > @@ -864,6 +865,11 @@ static int xe_pci_probe(struct pci_dev *pdev,
+> > > > > > > const struct pci_device_id *ent)
+> > > > > > >         if (err)
+> > > > > > >             goto err_driver_cleanup;
+> > > > > > > +    /* We have PM related attributes, so do it after xe_pm_init(). */
+> > > > > > > +    err = xe_device_sysfs_init(xe);
+> > > > > > Layering doesn't seem right. This should in xe_device_probe.
+> > > > > > d3cold capable can be moved to pm_init_early and this to device_probe
 > > > > 
-> > > > Can you please elaborate? Shouldn't it follow the parentheses?
-> > > yeah it should. DGFX_GET_INIT_STATUS should follow PCODE_MBOX parenthesis
+> > > > Are you sure if we can use ttm_manager_type() in pm_init_early()?
 > > > 
-> > > or align PCODE_MBOX instead
+> > > you need only d3cold.capable to setup sysfs. This call is using only pci
+> > > calls. So this should work
 > > > 
-> > > ret = xe_pcode_read(xe_device_get_root_tile(xe),
-> > >                      PCODE_MBOX...
-
-This'll warrant a third line which we can easily avoid here.
-
-> > Which means we should change it in hwmon as well?
-> Not sure about hwmon. checkpatch is also mentioning the same
+> > > xe->d3cold.capable = xe_pm_pci_d3cold_capable(xe);
+> > 
+> > Sure, but should we expose vram_d3cold_threshold before calculating its
+> > value?
 > 
-> -:89: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-> #89: FILE: drivers/gpu/drm/xe/xe_device_sysfs.c:130:
-> 	ret = xe_pcode_read(xe_device_get_root_tile(xe),
-> PCODE_MBOX(DGFX_PCODE_STATUS,
-> 			    DGFX_GET_INIT_STATUS, 0), &val, NULL);
+> pm_init anyway fails if it's not able to set vram_d3cold_threshold.
 
-Yes, it complains about a lot of things but it's referred as a general
-guidance than a hard rule.
+Which means we should make sure it's valid before exposing it.
 
-https://lore.kernel.org/all/CAHk-=wgfzPOao+Rbq4aSitQ2gPaZ9PPGbR290X4BikD_W8ZcUg@mail.gmail.com/
+> Adding it to xe pci layer seemed wrong to me because there are no other
+> sysfs init calls in probe.
+> 
+> But upto you
+
+Sure, we can change if there's an alternative that doesn't break one rule
+of thumb for another.
 
 Raag
