@@ -4,51 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31718C369C2
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33EB7C369D0
 	for <intel-xe@archiver.kernel.org>; Thu, 17 Apr 2025 11:07:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D89C310EABD;
-	Thu, 17 Apr 2025 11:07:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D54910EAB5;
+	Thu, 17 Apr 2025 11:06:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MxbSHUna";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DFs1eCdD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5B5A10EAB8;
- Thu, 17 Apr 2025 11:07:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28E8110EAAD;
+ Thu, 17 Apr 2025 11:06:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744888021; x=1776424021;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=hYBtwQ9foEjwQ00a6TAO++yMh5CmivKZ9V7KJMdfqXY=;
- b=MxbSHUnaDajrBq6s7zQMNTCsmk14jZOD8xa2D8rKB2ep8Vl8ulbR0c/b
- xb4w+CNV2Ubg1Ux3gEx1X1YODLH5BbtA+DtWCs37gBUlnNLWOYsKWjyLr
- wy5eyMF8frcb2YE8LNIemUhv3JKqJnCCmEfUHnulgEaQgWhIRnFcnYpoj
- Gc9mOA43KpzW1gXHl0z1fJCY0Xrtbjin9+2486zFSwmgF1SZ5Itl0U3nW
- 30cDMXtTUwDo8X1bb/JksCAjK+3J18Bayy+vGP9U6I62gpAW+piPhg1NS
- RhDHpQYGI9cSC15OS1FINpcXOU1uSajneqVSGuE1SHaFZ0DYYQ1vMcqKo g==;
-X-CSE-ConnectionGUID: q5G3pCviSOO3mv1Sv6ScOg==
-X-CSE-MsgGUID: kASAnFy5S9S9UYoMHA08sw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11405"; a="46481071"
-X-IronPort-AV: E=Sophos;i="6.15,218,1739865600"; d="scan'208";a="46481071"
+ t=1744888017; x=1776424017;
+ h=from:subject:date:message-id:mime-version:
+ content-transfer-encoding:to:cc;
+ bh=J9M2NbvoJEIjhCrEQiVGQ76lzGlXLmEmsrRkUXw9TNo=;
+ b=DFs1eCdDFfqToiNq6zHnAzJ6+DDKXVHxRqJvhvwO7MlYT/vZyzQM31/9
+ dLlj9ErU7NIGJBtDbi61otSS0m8V5HK/eNaBEiQvJGZ4UtkDgi7AtyMoO
+ hgoRlAi8v8IPp4xyaoSXMEaMC/9JxQL/oQdKEgVwAWM83sPPANPnyJXpL
+ eKLIfJkjnaIc4b7VbQyX0de2EgFL9jyhnNo8sYnv9QdOtV6nvhJJagQxX
+ syzBo/YgBmN7Z7AfQKBBJCel18MFoJytJXsgYYnwveynsCI7PZZgPMhcV
+ mjr5baYIS/ovlt+jvaqk7YZhtVSJx4qLG9gdNdZd3Lk8B+5pv6Z7xNnXS g==;
+X-CSE-ConnectionGUID: kKWBduf3SBG9X7R+vlL5iQ==
+X-CSE-MsgGUID: WHoLVOR2SuilmIWmkeFNMA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11405"; a="46481055"
+X-IronPort-AV: E=Sophos;i="6.15,218,1739865600"; d="scan'208";a="46481055"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2025 04:07:01 -0700
-X-CSE-ConnectionGUID: tHoe+Ms1Te2zPFrRjuK8RA==
-X-CSE-MsgGUID: sh+MEZUDQTKiu4GMI/6s4g==
+ 17 Apr 2025 04:06:56 -0700
+X-CSE-ConnectionGUID: /URRlrcSS/KtucbqUUNHjw==
+X-CSE-MsgGUID: ogWRntMWT2ej7Ll2KjNGSw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,218,1739865600"; d="scan'208";a="131754040"
+X-IronPort-AV: E=Sophos;i="6.15,218,1739865600"; d="scan'208";a="131754017"
 Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa008.jf.intel.com with ESMTP; 17 Apr 2025 04:06:59 -0700
+ by orviesa008.jf.intel.com with ESMTP; 17 Apr 2025 04:06:55 -0700
 From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Thu, 17 Apr 2025 16:22:29 +0530
-Subject: [PATCH v3 2/3] drm/i915/display: export function to count dsc slices
+Subject: [PATCH v3 0/3] Rework/Correction on minimum hblank calculation
+Date: Thu, 17 Apr 2025 16:22:27 +0530
+Message-Id: <20250417-hblank-v3-0-d3387df7efce@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250417-hblank-v3-2-d3387df7efce@intel.com>
-References: <20250417-hblank-v3-0-d3387df7efce@intel.com>
-In-Reply-To: <20250417-hblank-v3-0-d3387df7efce@intel.com>
+X-B4-Tracking: v=1; b=H4sIAGzdAGgC/03MTQ6CMBCG4auQWVvTP0BceQ/jooVRJmJrWtJoC
+ He3kGBYfpN5nwkiBsII52KCgIkieZeHOhTQ9sY9kFGXN0guS655zXo7GPdkurFKc4PWKAH5+R3
+ wTp8Vut7y7imOPnxXN4nluhGnjUiCcaatEXVmEKvyQm7E4dj6FyxEkrtMlP9M5kwYqbDpmlpVf
+ J/N8/wDogy8ZNMAAAA=
+X-Change-ID: 20250407-hblank-49b340aeba31
 To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
  intel-xe@lists.freedesktop.org
 Cc: vinod.govindapillai@intel.com, imre.deak@intel.com, 
@@ -68,51 +71,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Export the function to calculate dsc slice count. This will be used in
-minimum hblank calculation.
-
 Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 4 ++--
- drivers/gpu/drm/i915/display/intel_dp_mst.h | 3 +++
- 2 files changed, 5 insertions(+), 2 deletions(-)
+Changes in v3:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v2: https://lore.kernel.org/r/20250415-hblank-v2-0-1a23e9d97360@intel.com
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index d2988b9a6e7bd55d2ea4d34230c4d017e1f4cc93..af98a0d0e8376a79ce1ab6ff3c4f6af30f4d3e73 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -198,8 +198,8 @@ static int intel_dp_mst_calc_pbn(int pixel_clock, int bpp_x16, int bw_overhead)
- 	return DIV_ROUND_UP(effective_data_rate * 64, 54 * 1000);
- }
- 
--static int intel_dp_mst_dsc_get_slice_count(const struct intel_connector *connector,
--					    const struct intel_crtc_state *crtc_state)
-+int intel_dp_mst_dsc_get_slice_count(const struct intel_connector *connector,
-+				     const struct intel_crtc_state *crtc_state)
- {
- 	const struct drm_display_mode *adjusted_mode =
- 		&crtc_state->hw.adjusted_mode;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.h b/drivers/gpu/drm/i915/display/intel_dp_mst.h
-index c1bbfeb02ca9e7afb96156f58143275225245956..b3d5b347c4b5258cefb0e559a5cb8d0d769111cc 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.h
-@@ -12,6 +12,7 @@ struct drm_connector_state;
- struct intel_atomic_state;
- struct intel_crtc;
- struct intel_crtc_state;
-+struct intel_connector;
- struct intel_digital_port;
- struct intel_dp;
- struct intel_link_bw_limits;
-@@ -35,5 +36,7 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
- 				   struct intel_crtc_state *crtc_state,
- 				   struct drm_connector_state *conn_state,
- 				   int min_bpp_x16, int max_bpp_x16, int bpp_step_x16, bool dsc);
-+int intel_dp_mst_dsc_get_slice_count(const struct intel_connector *connector,
-+				     const struct intel_crtc_state *crtc_state);
- 
- #endif /* __INTEL_DP_MST_H__ */
+Changes in v2:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v1: https://lore.kernel.org/r/20250408-hblank-v1-0-4ba17aebee65@intel.com
 
+---
+Arun R Murthy (3):
+      drm/display/dp: Export fn to calculate link symbol cycles
+      drm/i915/display: export function to count dsc slices
+      drm/i915/display: move min_hblank from dp_mst.c to dp.c
+
+ drivers/gpu/drm/display/drm_dp_helper.c      | 53 ++++++++++++-----------
+ drivers/gpu/drm/i915/display/intel_display.c | 18 ++++++++
+ drivers/gpu/drm/i915/display/intel_dp.c      | 64 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dp.h      |  4 ++
+ drivers/gpu/drm/i915/display/intel_dp_mst.c  | 56 ++----------------------
+ drivers/gpu/drm/i915/display/intel_dp_mst.h  |  3 ++
+ include/drm/display/drm_dp_helper.h          |  2 +
+ 7 files changed, 122 insertions(+), 78 deletions(-)
+---
+base-commit: c4fc93b0ec49f4b0105c142502b7d1d5de379950
+change-id: 20250407-hblank-49b340aeba31
+
+Best regards,
 -- 
-2.25.1
+Arun R Murthy <arun.r.murthy@intel.com>
 
