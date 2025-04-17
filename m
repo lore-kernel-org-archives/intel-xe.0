@@ -4,65 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08CB5C369C9
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Apr 2025 18:50:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0722FC369C9
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Apr 2025 19:06:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BF4210E09D;
-	Thu, 17 Apr 2025 18:50:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD04710E072;
+	Thu, 17 Apr 2025 19:06:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UKjQnFd/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZiyF6dsc";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C42810E09D
- for <intel-xe@lists.freedesktop.org>; Thu, 17 Apr 2025 18:50:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9834B10E072
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Apr 2025 19:06:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744915837; x=1776451837;
+ t=1744916783; x=1776452783;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=fGymtTv5vPOxXKSTiNB2vHHhofTduZdoXCacrnM9H68=;
- b=UKjQnFd/JfbkwNogVkKDN62sbpZ03AIvIXYojvTmmzEgjI+mnOKpblTT
- KMaXMeC7zTyLLJQpmotbI49+Fx1sMlFiQd94TQMU18PomV+/iapGqzRtr
- 349HHdmHmmpww5TYhcLwLr6F8y6DwNJAf5Rp2KjulkfUbl4BvfG/TpUZG
- Hv5EtvtoYxiguFbA0dduE1cPJZN9AcLjGgT+ITC7bTyIc2RXsrhW75mSH
- 51PNARoMKfzhz4unFGXaz5lwyBiJdAlAJMVR6qqf6IjpN82x0beg5cs2A
- No3kiDmn3baN31l4uNffgHDAE9UHTuyhgVrmHKpTsazZ/6CS0MuD1kz64 Q==;
-X-CSE-ConnectionGUID: 16HMSfEgQ+GalgTv0jY9nQ==
-X-CSE-MsgGUID: nuC7enokRYqnxMxMn9Bd1A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11406"; a="49212819"
-X-IronPort-AV: E=Sophos;i="6.15,219,1739865600"; d="scan'208";a="49212819"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2025 11:50:35 -0700
-X-CSE-ConnectionGUID: P5SZlG+lQSmeO937kIA60g==
-X-CSE-MsgGUID: CoXw7tuOQnqwKmooRj71UA==
+ bh=qH10Nc51NBO93h9L5znm8dsKS/lcYW9gfPCzMFBEg+s=;
+ b=ZiyF6dscKOjOcPPmLq+2oQ29GDGYwrH5bYygkpvrBezBTIinyvBUcqY1
+ H88CZ+cAHyve/YBL1+E9foYYE759hNDHVIQmLLcw94bNb5tK18T2vhzF6
+ Wq2HxX+P0hd8CjnRqsK4b7DG3ICH2qnX8lOVAh3uZMkupBzjDTX8cLykd
+ mgxCK5SJ9DZ79bMGyb0ZGFjLRj2ABtJa3xhwD+N8uP+bHlRswMTZxSq3Z
+ Iln438imThSy806qqD8/naRA7WBnIrlVmQcBFBtW5RyL8cpRVBVkU+o3f
+ kkZs7DJB92jogOZFb09nKDVh81l5dBEzlGGMtQOrYYECG4otjeAmmyT8C g==;
+X-CSE-ConnectionGUID: xfEFMIa3Ql29evuMCqVFrA==
+X-CSE-MsgGUID: cBc5RNh9Sx+ohEzJS/tpLA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11406"; a="63944887"
+X-IronPort-AV: E=Sophos;i="6.15,219,1739865600"; d="scan'208";a="63944887"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2025 12:06:22 -0700
+X-CSE-ConnectionGUID: VusZ8W03Tc6o9PGCj5+gSA==
+X-CSE-MsgGUID: fxuX5GPMTBuljNGVQOCI7Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,219,1739865600"; d="scan'208";a="131792601"
+X-IronPort-AV: E=Sophos;i="6.15,219,1739865600"; d="scan'208";a="136016862"
 Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa009.fm.intel.com with ESMTP; 17 Apr 2025 11:50:33 -0700
+ by fmviesa004.fm.intel.com with ESMTP; 17 Apr 2025 12:06:19 -0700
 Received: from [10.245.81.148] (nowickik-mobl5.ger.corp.intel.com
  [10.245.81.148])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id E780934964;
- Thu, 17 Apr 2025 19:50:30 +0100 (IST)
-Message-ID: <21c3c6ab-701b-427b-a705-975bcb68b5d3@intel.com>
-Date: Thu, 17 Apr 2025 20:50:30 +0200
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 87CD734971;
+ Thu, 17 Apr 2025 20:06:18 +0100 (IST)
+Message-ID: <1b69feb6-eb36-4eac-bbde-0bfef7d22f1b@intel.com>
+Date: Thu, 17 Apr 2025 21:06:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 2/4] drm/xe/vf: Shifting GGTT area post migration
-To: "Lis, Tomasz" <tomasz.lis@intel.com>, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v10 4/4] drm/xe/vf: Fixup CTB send buffer messages after
+ migration
+To: Tomasz Lis <tomasz.lis@intel.com>, intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
  =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-References: <20250411203626.3272415-1-tomasz.lis@intel.com>
- <20250411203626.3272415-3-tomasz.lis@intel.com>
- <179d9877-f260-49e3-a014-46c071a1c973@intel.com>
- <a2b6c2ab-b4db-40ec-9399-0e31718b9ea3@intel.com>
+References: <20250415222030.3616494-1-tomasz.lis@intel.com>
+ <20250415222030.3616494-5-tomasz.lis@intel.com>
 Content-Language: en-US
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <a2b6c2ab-b4db-40ec-9399-0e31718b9ea3@intel.com>
+In-Reply-To: <20250415222030.3616494-5-tomasz.lis@intel.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,447 +78,371 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-On 16.04.2025 00:08, Lis, Tomasz wrote:
+On 16.04.2025 00:20, Tomasz Lis wrote:
+> During post-migration recovery of a VF, it is necessary to update
+> GGTT references included in messages which are going to be sent
+> to GuC. GuC will start consuming messages after VF KMD will inform
+> it about fixups being done; before that, the VF KMD is expected
+> to update any H2G messages which are already in send buffer but
+> were not consumed by GuC.
 > 
-> On 14.04.2025 11:23, Michal Wajdeczko wrote:
->> On 11.04.2025 22:36, Tomasz Lis wrote:
->>> We have only one GGTT for all IOV functions, with each VF having
->>> assigned
->>> a range of addresses for its use. After migration, a VF can receive a
->>> different range of addresses than it had initially.
->>>
->>> This implements shifting GGTT addresses within drm_mm nodes, so that
->>> VMAs stay valid after migration. This will make the driver use new
->>> addresses when accessing GGTT from the moment the shifting ends.
->>>
->>> By taking the ggtt->lock for the period of VMA fixups, this change
->>> also adds constraint on that mutex. Any locks used during the recovery
->>> cannot ever wait for hardware response - because after migration,
->>> the hardware will not do anything until fixups are finished.
->>>
->>> v2: Moved some functs to xe_ggtt.c; moved shift computation to just
->>>    after querying; improved documentation; switched some warns to
->>> asserts;
->>>    skipping fixups when GGTT shift eq 0; iterating through tiles
->>> (Michal)
->>> v3: Updated kerneldocs, removed unused funct, properly allocate
->>>    balloning nodes if non existent
->>> v4: Re-used ballooning functions from VF init, used bool in place of
->>>    standard error codes
->>> v5: Renamed one function
->>> v6: Subject tag change, several kerneldocs updated, some functions
->>>    renamed, some moved, added several asserts, shuffled declarations
->>>    of variables, revealed more detail in high level functions
->>> v7: Fixed typos, added `_locked` suffix to some functs, improved
->>>    readability of asserts, removed unneeded conditional
->>> v8: Moved one function, removed implementation detail from kerneldoc,
->>>    added asserts
->>>
->>> Signed-off-by: Tomasz Lis<tomasz.lis@intel.com>
->>> Cc: Michal Wajdeczko<michal.wajdeczko@intel.com>
->>> ---
->>>   drivers/gpu/drm/xe/xe_ggtt.c              |  48 ++++++++++
->>>   drivers/gpu/drm/xe/xe_ggtt.h              |   1 +
->>>   drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 102 ++++++++++++++++++++++
->>>   drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |   2 +
->>>   drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |   2 +
->>>   drivers/gpu/drm/xe/xe_sriov_vf.c          |  22 +++++
->>>   6 files changed, 177 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
->>> index 5a37233f2420..9fc0d57be00a 100644
->>> --- a/drivers/gpu/drm/xe/xe_ggtt.c
->>> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
->>> @@ -484,6 +484,54 @@ void xe_ggtt_node_remove_balloon_locked(struct
->>> xe_ggtt_node *node)
->>>       drm_mm_remove_node(&node->base);
->>>   }
->>>   +static void xe_ggtt_assert_fit(struct xe_ggtt *ggtt, u64 start,
->>> u64 size)
->>> +{
->>> +    struct xe_tile *tile = ggtt->tile;
->>> +    struct xe_device *xe = tile_to_xe(tile);
->>> +    u64 __maybe_unused wopcm = xe_wopcm_size(xe);
->>> +
->>> +    xe_tile_assert(tile, start >= wopcm);
->>> +    xe_tile_assert(tile, start + size < ggtt->size - wopcm);
->>> +}
->>> +
->>> +/**
->>> + * xe_ggtt_shift_nodes_locked - Shift GGTT nodes to adjust for a
->>> change in usable address range.
->>> + * @ggtt: the &xe_ggtt struct instance
->>> + * @shift: change to the location of area provisioned for current VF
->>> + *
->>> + * This function moves all nodes from the GGTT VM, to a temp list.
->>> These nodes are expected
->>> + * to represent allocations in range formerly assigned to current
->>> VF, before the range changed.
->>> + * When the GGTT VM is completely clear of any nodes, they are re-
->>> added with shifted offsets.
->>> + *
->>> + * The function has no ability of failing - because it shifts
->>> existing nodes, without
->>> + * any additional processing. If the nodes were successfully
->>> existing at the old address,
->>> + * they will do the same at the new one. A fail inside this function
->>> would indicate that
->>> + * the list of nodes was either already damaged, or that the shift
->>> brings the address range
->>> + * outside of valid bounds. Both cases justify an assert rather than
->>> error code.
->>> + */
->>> +void xe_ggtt_shift_nodes_locked(struct xe_ggtt *ggtt, s64 shift)
->>> +{
->>> +    struct xe_tile *tile __maybe_unused = ggtt->tile;
->>> +    struct drm_mm_node *node, *tmpn;
->>> +    LIST_HEAD(temp_list_head);
->>> +    int err;
->>> +
->>> +    lockdep_assert_held(&ggtt->lock);
->>> +
->> nit: my idea was to assert that we have room in the GGTT for that shift
->> ahead of doing any movements and if there is no easy way to get that
->> from the drm_mm is one call then do it like:
->>
->> drm_mm_for_each_node_safe(node, tmpn, &ggtt->mm)
->>     xe_ggtt_assert_fit(ggtt, node->start + shift, node->size);
->>
->> and then follow with pure code that we know it must be ok
-> ok, can do that. Though this does not look better in any way to me. In
-> fact it looks worse, as it introduces another iteration through the
-> nodes which optimizations most likely won't be able to cut out. I
-> thought we should avoid debug-only iterating.
-
-if compiler can't full optimize out the loop then we can do it with:
-
-	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG))
-		drm_mm_for_each_node_safe(...)
-			xe_ggtt_assert_fit(...);
-
->>> +    drm_mm_for_each_node_safe(node, tmpn, &ggtt->mm) {
->>> +        drm_mm_remove_node(node);
->>> +        list_add(&node->node_list, &temp_list_head);
->>> +    }
->>> +
->>> +    list_for_each_entry_safe(node, tmpn, &temp_list_head, node_list) {
->>> +        xe_ggtt_assert_fit(ggtt, node->start + shift, node->size);
->> so without this assert here (as we did it in a separate loop above)
-> ok
->>> +        list_del(&node->node_list);
->>> +        node->start += shift;
->>> +        err = drm_mm_reserve_node(&ggtt->mm, node);
->>> +        xe_tile_assert(tile, !err);
->> maybe drop the 'err' assignment and just confirm that:
->>
->>     xe_tile_assert(tile, xe_ggtt_node_allocated(node));
+> Only a small subset of messages allowed for VFs have GGTT references
+> in them. This patch adds the functionality to parse the CTB send
+> ring buffer and shift addresses contained within.
 > 
-> The proposed solution is again worse than original. Ignoring an error
-> return should be avoided. There is no reason to ignore it here.
-
-but we don't ignore the error, we just rely on node_allocated() instead
-of looking directly at err, which in non-debug build we will just assign
-and then completely ignore, risking static code analyzer to complain
-
+> While fixing the CTB content, ct->lock is not taken. This means
+> the only barrier taken remains GGTT address lock - which is ok,
+> because only requests with GGTT addresses matter, but it also means
+> tail changes can happen during the CTB fixups execution (which may
+> be ignored as any new messages will not have anything to fix).
 > 
-> Also here we are not iterating through xe wrappers of drm_mm nodes. I
-> will stick to current implementation.
-
-you can still use drm_mm_node_allocated(node)
-
+> The GGTT address locking will be introduced in a future series.
 > 
-> Like the one before, all this request would do is generate changes. If
-> solutions have almost equal weights, maybe it's worth to just stick with
-> what the author proposed.
-
-'almost' makes a difference
-
-usually review comments helps author to wider his/her view, but it looks
-the some authors are just too resistant for different views, and NAK
-them without even trying to understand them
-
+> v2: removed storing shift as that's now done in VMA nodes patch;
+>   macros to inlines; warns to asserts; log messages fixes (Michal)
+> v3: removed inline keywords, enums for offsets in CTB messages,
+>   less error messages, if return unused then made functs void (Michal)
+> v4: update the cached head before starting fixups
+> v5: removed/updated comments, wrapped lines, converted assert into
+>   error, enums for offsets to separate patch, reused xe_map_rd
+> v6: define xe_map_*_array() macros, support CTB wrap which divides
+>   a message, updated comments, moved one function to an earlier patch
+> v7: renamed few functions, wider use on previously introduced helper,
+>   separate cases in parsing messges, documented a static funct
+> v8: Introduced more helpers, fixed coding style mistakes
+> v9: Move xe_map*() functs to macros, add asserts, add debug print
 > 
->>> +    }
->>> +}
->>> +
->>>   /**
->>>    * xe_ggtt_node_insert_locked - Locked version to insert a
->>> &xe_ggtt_node into the GGTT
->>>    * @node: the &xe_ggtt_node to be inserted
->>> diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
->>> index d468af96b465..4337a279ff3b 100644
->>> --- a/drivers/gpu/drm/xe/xe_ggtt.h
->>> +++ b/drivers/gpu/drm/xe/xe_ggtt.h
->>> @@ -18,6 +18,7 @@ void xe_ggtt_node_fini(struct xe_ggtt_node *node);
->>>   int xe_ggtt_node_insert_balloon_locked(struct xe_ggtt_node *node,
->>>                          u64 start, u64 size);
->>>   void xe_ggtt_node_remove_balloon_locked(struct xe_ggtt_node *node);
->>> +void xe_ggtt_shift_nodes_locked(struct xe_ggtt *ggtt, s64 shift);
->>>     int xe_ggtt_node_insert(struct xe_ggtt_node *node, u32 size, u32
->>> align);
->>>   int xe_ggtt_node_insert_locked(struct xe_ggtt_node *node,
->>> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/
->>> xe/xe_gt_sriov_vf.c
->>> index fa299da08684..a822549169d8 100644
->>> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
->>> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
->>> @@ -415,6 +415,7 @@ static int vf_get_ggtt_info(struct xe_gt *gt)
->>>       xe_gt_sriov_dbg_verbose(gt, "GGTT %#llx-%#llx = %lluK\n",
->>>                   start, start + size - 1, size / SZ_1K);
->>>   +    config->ggtt_shift = start - (s64)config->ggtt_base;
->>>       config->ggtt_base = start;
->>>       config->ggtt_size = size;
->>>   @@ -560,6 +561,24 @@ u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt)
->>>       return gt->sriov.vf.self_config.lmem_size;
->>>   }
->>>   +/**
->>> + * xe_gt_sriov_vf_ggtt_shift - Return shift in GGTT range due to VF
->>> migration
->>> + * @gt: the &xe_gt struct instance
->>> + *
->>> + * This function is for VF use only.
->>> + *
->>> + * Return: The shift value; could be negative
->>> + */
->>> +s64 xe_gt_sriov_vf_ggtt_shift(struct xe_gt *gt)
->>> +{
->>> +    struct xe_gt_sriov_vf_selfconfig *config = &gt-
->>> >sriov.vf.self_config;
->>> +
->>> +    xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
->>> +    xe_gt_assert(gt, !xe_gt_is_media_type(gt));
->>> +
->>> +    return config->ggtt_shift;
->>> +}
->>> +
->>>   static int vf_init_ggtt_balloons(struct xe_gt *gt)
->>>   {
->>>       struct xe_tile *tile = gt_to_tile(gt);
->>> @@ -817,6 +836,89 @@ int xe_gt_sriov_vf_connect(struct xe_gt *gt)
->>>       return err;
->>>   }
->>>   +/**
->>> + * DOC: GGTT nodes shifting during VF post-migration recovery
->>> + *
->>> + * The first fixup applied to the VF KMD structures as part of post-
->>> migration
->>> + * recovery is shifting nodes within &xe_ggtt instance. The nodes
->>> are moved
->>> + * from range previously assigned to this VF, into newly provisioned
->>> area.
->>> + * The changes include balloons, which are resized accordingly.
->>> + *
->>> + * The balloon nodes are there to eliminate unavailable ranges from
->>> use: one
->>> + * reserves the GGTT area below the range for current VF, and
->>> another one
->>> + * reserves area above.
->>> + *
->>> + * Below is a GGTT layout of example VF, with a certain address
->>> range assigned to
->>> + * said VF, and inaccessible areas above and below:
->>> + *
->>> + * 
->>> 0                                                                        4GiB
->>> + *  |<--------------------------- Total GGTT size
->>> ----------------------------->|
->>> + *     
->>> WOPCM                                                         GUC_TOP
->>> + *      |<-------------- Area mappable by xe_ggtt instance
->>> ---------------->|
->>> + *
->>> + *  +---+---------------------------------+----------
->>> +----------------------+---+
->>> + *  |\\\|/////////////////////////////////|  VF mem 
->>> |//////////////////////|\\\|
->>> + *  +---+---------------------------------+----------
->>> +----------------------+---+
->>> + *
->>> + * Hardware enforced access rules before migration:
->>> + *
->>> + *  |<------- inaccessible for VF ------->|<VF owned>|<--
->>> inaccessible for VF ->|
->>> + *
->>> + * GGTT nodes used for tracking allocations:
->>> + *
->>> + *     |<----------- balloon ------------>|<- nodes->|<----- balloon
->>> ------>|
->> left side is little misaligned to above WOPCM (it that was the idea)
-> true, will fix.
->>> + *
->>> + * After the migration, GGTT area assigned to the VF might have
->>> shifted, either
->>> + * to lower or to higher address. But we expect the total size and
->>> extra areas to
->>> + * be identical, as migration can only happen between matching
->>> platforms.
->>> + * Below is an example of GGTT layout of the VF after migration.
->>> Content of the
->>> + * GGTT for VF has been moved to a new area, and we receive its
->>> address from GuC:
->>> + *
->>> + *  +---+----------------------+----------
->>> +---------------------------------+---+
->>> + *  |\\\|//////////////////////|  VF mem 
->>> |/////////////////////////////////|\\\|
->>> + *  +---+----------------------+----------
->>> +---------------------------------+---+
->>> + *
->>> + * Hardware enforced access rules after migration:
->>> + *
->>> + *  |<- inaccessible for VF -->|<VF owned>|<------- inaccessible for
->>> VF ------->|
->>> + *
->>> + * So the VF has a new slice of GGTT assigned, and during migration
->>> process, the
->>> + * memory content was copied to that new area. But the &xe_ggtt
->>> nodes are still
->>> + * tracking allocations using the old addresses. The nodes within VF
->>> owned area
->>> + * have to be shifted, and balloon nodes need to be resized to
->>> properly mask out
->>> + * areas not owned by the VF.
->>> + *
->>> + * Fixed &xe_ggtt nodes used for tracking allocations:
->>> + *
->>> + *     |<------ balloon ------>|<- nodes->|<----------- balloon
->>> ----------->|
->>> + *
->>> + * Due to use of GPU profiles, we do not expect the old and new GGTT
->>> ares to
->>> + * overlap; but our node shifting will fix addresses properly
->>> regardless.
->>> + */
->>> +
->>> +/**
->>> + * xe_gt_sriov_vf_fixup_ggtt_nodes - Shift GGTT allocations to match
->>> assigned range.
->>> + * @gt: the &xe_gt struct instance
->>> + * @ggtt_shift: the shift value
->> nit: function is about _GGTT_ so maybe we can drop ggtt_ prefix here?
-> True, since we already did that everywhere else.
->>> + *
->>> + * Since Global GTT is not virtualized, each VF has an assigned range
->>> + * within the global space. This range might have changed during
->>> migration,
->>> + * which requires all memory addresses pointing to GGTT to be shifted.
->>> + */
->>> +void xe_gt_sriov_vf_fixup_ggtt_nodes(struct xe_gt *gt, s64 ggtt_shift)
->>> +{
->>> +    struct xe_tile *tile = gt_to_tile(gt);
->>> +    struct xe_ggtt *ggtt = tile->mem.ggtt;
->>> +
->>> +    xe_gt_assert(gt, !xe_gt_is_media_type(gt));
->>> +
->>> +    mutex_lock(&ggtt->lock);
->>> +    xe_gt_sriov_vf_deballoon_ggtt_locked(gt);
->>> +    xe_ggtt_shift_nodes_locked(ggtt, ggtt_shift);
->>> +    xe_gt_sriov_vf_balloon_ggtt_locked(gt);
->>> +    mutex_unlock(&ggtt->lock);
->>> +}
->>> +
->>>   /**
->>>    * xe_gt_sriov_vf_migrated_event_handler - Start a VF migration
->>> recovery,
->>>    *   or just mark that a GuC is ready for it.
->>> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/
->>> xe/xe_gt_sriov_vf.h
->>> index d717deb8af91..6e0da81d0359 100644
->>> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
->>> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
->>> @@ -20,6 +20,8 @@ int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt);
->>>   int xe_gt_sriov_vf_prepare_ggtt(struct xe_gt *gt);
->>>   int xe_gt_sriov_vf_balloon_ggtt_locked(struct xe_gt *gt);
->>>   void xe_gt_sriov_vf_deballoon_ggtt_locked(struct xe_gt *gt);
->>> +s64 xe_gt_sriov_vf_ggtt_shift(struct xe_gt *gt);
->>> +void xe_gt_sriov_vf_fixup_ggtt_nodes(struct xe_gt *gt, s64 ggtt_shift);
->>>   int xe_gt_sriov_vf_notify_resfix_done(struct xe_gt *gt);
->>>   void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt);
->>>   diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/
->>> gpu/drm/xe/xe_gt_sriov_vf_types.h
->>> index a57f13b5afcd..5ccbdf8d08b6 100644
->>> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
->>> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
->>> @@ -40,6 +40,8 @@ struct xe_gt_sriov_vf_selfconfig {
->>>       u64 ggtt_base;
->>>       /** @ggtt_size: assigned size of the GGTT region. */
->>>       u64 ggtt_size;
->>> +    /** @ggtt_shift: difference in ggtt_base on last migration */
->>> +    s64 ggtt_shift;
->> btw, do we want to expose this in self_config where we already show GGTT
->> base and size? if so then update xe_gt_sriov_vf_print_config()
+> Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_guc_ct.c   | 172 +++++++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_guc_ct.h   |   2 +
+>  drivers/gpu/drm/xe/xe_map.h      |  18 ++++
+>  drivers/gpu/drm/xe/xe_sriov_vf.c |  18 ++++
+>  4 files changed, 210 insertions(+)
 > 
-> No, I don't think that's a good idea. It's just a derivative value valid
-> only during the recovery.
-> 
-> GGTT base and size from logged lines before and after can be compared to
-> get the shift.
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+> index 0a4fef7d7225..b0fd05550af8 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+> @@ -25,6 +25,7 @@
+>  #include "xe_gt_printk.h"
+>  #include "xe_gt_sriov_pf_control.h"
+>  #include "xe_gt_sriov_pf_monitor.h"
+> +#include "xe_gt_sriov_printk.h"
+>  #include "xe_gt_tlb_invalidation.h"
+>  #include "xe_guc.h"
+>  #include "xe_guc_log.h"
+> @@ -84,6 +85,8 @@ struct g2h_fence {
+>  	bool done;
+>  };
+>  
+> +#define make_u64(hi, lo) ((u64)((u64)(u32)(hi) << 32 | (u32)(lo)))
+> +
+>  static void g2h_fence_init(struct g2h_fence *g2h_fence, u32 *response_buffer)
+>  {
+>  	g2h_fence->response_buffer = response_buffer;
+> @@ -1623,6 +1626,175 @@ static void g2h_worker_func(struct work_struct *w)
+>  	receive_g2h(ct);
+>  }
+>  
+> +static void xe_fixup_u64_in_cmds(struct xe_device *xe, struct iosys_map *cmds,
+> +				 u32 size, u32 idx, s64 shift)
+> +{
+> +	u32 hi, lo;
+> +	u64 offset;
+> +
+> +	lo = xe_map_rd_ring_u32(xe, cmds, idx, size);
+> +	hi = xe_map_rd_ring_u32(xe, cmds, idx + 1, size);
+> +	offset = make_u64(hi, lo);
+> +	offset += shift;
+> +	lo = lower_32_bits(offset);
+> +	hi = upper_32_bits(offset);
+> +	xe_map_wr_ring_u32(xe, cmds, idx, size, lo);
+> +	xe_map_wr_ring_u32(xe, cmds, idx + 1, size, hi);
+> +}
+> +
+> +/*
+> + * Shift any GGTT addresses within a single message left within CTB from
+> + * before post-migration recovery.
+> + * @ct: pointer to CT struct of the target GuC
+> + * @cmds: iomap buffer containing CT messages
+> + * @head: start of the target message within the buffer
+> + * @len: length of the target message
+> + * @size: size of the commands buffer
+> + * @shift: the address shift to be added to each GGTT reference
+> + */
+> +static void ct_fixup_ggtt_in_message(struct xe_guc_ct *ct,
+> +				     struct iosys_map *cmds, u32 head,
+> +				     u32 len, u32 size, s64 shift)
+> +{
+> +	struct xe_gt *gt __maybe_unused = ct_to_gt(ct);
+> +	struct xe_device *xe = ct_to_xe(ct);
+> +	u32 msg[GUC_HXG_MSG_MIN_LEN];
+> +	u32 action, i, n;
+> +
+> +	xe_gt_assert(gt, len >= GUC_HXG_MSG_MIN_LEN);
+> +
+> +	msg[0] = xe_map_rd_ring_u32(xe, cmds, head, size);
+> +	action = FIELD_GET(GUC_HXG_REQUEST_MSG_0_ACTION, msg[0]);
+> +
+> +	xe_gt_sriov_dbg_verbose(gt, "fixing H2G %#x\n", action);
+> +
+> +	switch (action) {
+> +	case XE_GUC_ACTION_REGISTER_CONTEXT:
+> +		xe_gt_assert(gt, len >= XE_GUC_REGISTER_CONTEXT_MSG_LEN);
 
-it's not about the math
+I'm not sure assert is a good choice here, as this is different check
+than above where GUC_HXG_MSG_MIN_LEN is used to verify your code only
 
-relying on the dmesg with those lines being always available might be
-just too optimistic, usually we want to able to collect data directly
-from the driver/debugfs in case we detect a failure
+here you are fixing specific action written to CTB and at this point you
+must be sure that 'len' is actually equal to MSG_LEN as only then you
+could be sure CTB is not broken and there is whole message available and
+you can continue with fixups at those offsets
 
-> 
-> -Tomasz
-> 
->>>       /** @lmem_size: assigned size of the LMEM. */
->>>       u64 lmem_size;
->>>       /** @num_ctxs: assigned number of GuC submission context IDs. */
->>> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/
->>> xe_sriov_vf.c
->>> index c1275e64aa9c..e70f1ceabbb3 100644
->>> --- a/drivers/gpu/drm/xe/xe_sriov_vf.c
->>> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
->>> @@ -7,6 +7,7 @@
->>>     #include "xe_assert.h"
->>>   #include "xe_device.h"
->>> +#include "xe_gt.h"
->>>   #include "xe_gt_sriov_printk.h"
->>>   #include "xe_gt_sriov_vf.h"
->>>   #include "xe_pm.h"
->>> @@ -170,6 +171,25 @@ static bool vf_post_migration_imminent(struct
->>> xe_device *xe)
->>>       work_pending(&xe->sriov.vf.migration.worker);
->>>   }
->>>   +static bool vf_post_migration_fixup_ggtt_nodes(struct xe_device *xe)
->>> +{
->>> +    bool need_fixups = false;
->>> +    struct xe_tile *tile;
->>> +    unsigned int id;
->>> +
->>> +    for_each_tile(tile, xe, id) {
->>> +        struct xe_gt *gt = tile->primary_gt;
->>> +        s64 shift;
->>> +
->>> +        shift = xe_gt_sriov_vf_ggtt_shift(gt);
->>> +        if (shift) {
->>> +            need_fixups = true;
->>> +            xe_gt_sriov_vf_fixup_ggtt_nodes(gt, shift);
->>> +        }
->>> +    }
->>> +    return need_fixups;
->>> +}
->>> +
->>>   /*
->>>    * Notify all GuCs about resource fixups apply finished.
->>>    */
->>> @@ -191,6 +211,7 @@ static void
->>> vf_post_migration_notify_resfix_done(struct xe_device *xe)
->>>     static void vf_post_migration_recovery(struct xe_device *xe)
->>>   {
->>> +    bool need_fixups;
->>>       int err;
->>>         drm_dbg(&xe->drm, "migration recovery in progress\n");
->>> @@ -201,6 +222,7 @@ static void vf_post_migration_recovery(struct
->>> xe_device *xe)
->>>       if (unlikely(err))
->>>           goto fail;
->>>   +    need_fixups = vf_post_migration_fixup_ggtt_nodes(xe);
->>>       /* FIXME: add the recovery steps */
->>>       vf_post_migration_notify_resfix_done(xe);
->>>       xe_pm_runtime_put(xe);
->> otherwise, LGTM
->>
+if you would read my comments for rev9 more carefully then you would
+notice that I was saying about 'missing check' not 'missing assert'
+
+> +		xe_fixup_u64_in_cmds(xe, cmds, size, head +
+> +				     XE_GUC_REGISTER_CONTEXT_DATA_5_WQ_DESC_ADDR_LOWER,
+> +				     shift);
+> +		xe_fixup_u64_in_cmds(xe, cmds, size, head +
+> +				     XE_GUC_REGISTER_CONTEXT_DATA_7_WQ_BUF_BASE_LOWER,
+> +				     shift);
+> +		xe_fixup_u64_in_cmds(xe, cmds, size, head +
+> +				     XE_GUC_REGISTER_CONTEXT_DATA_10_HW_LRC_ADDR, shift);
+> +		break;
+> +	case XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC:
+> +		xe_gt_assert(gt, len >= XE_GUC_REGISTER_CONTEXT_MULTI_LRC_MSG_LEN);
+
+this needs to be more than assert
+
+> +		xe_fixup_u64_in_cmds(xe, cmds, size, head +
+> +				     XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_5_WQ_DESC_ADDR_LOWER,
+> +				     shift);
+> +		xe_fixup_u64_in_cmds(xe, cmds, size, head +
+> +				     XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_7_WQ_BUF_BASE_LOWER,
+> +				     shift);
+> +		n = xe_map_rd_ring_u32(xe, cmds, head +
+> +				       XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_10_NUM_CTXS, size);
+> +		xe_gt_assert(gt, len >= XE_GUC_REGISTER_CONTEXT_MULTI_LRC_MSG_LEN + 2 * n);
+
+and here
+
+> +		for (i = 0; i < n; i++)
+> +			xe_fixup_u64_in_cmds(xe, cmds, size, head +
+> +					     XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_11_HW_LRC_ADDR
+> +					     + 2 * i, shift);
+
+and maybe all fixups should be done *after* checking that the whole
+message is not truncated, so
+
+	// check min size (to make sure DATA10 is there)
+	// read DATA_10_NUM_CTXS
+	// check full size
+	// fixups
+
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +}
+> +
+> +/*
+> + * Apply fixups to the next outgoing CT message within given CTB
+> + * @ct: the &xe_guc_ct struct instance representing the target GuC
+> + * @h2g: the &guc_ctb struct instance of the target buffer
+> + * @shift: shift to be added to all GGTT addresses within the CTB
+> + * @mhead: pointer to an integer storing message start position; the
+> + *   position is changed to next message before this function return
+> + * @avail: size of the area available for parsing, that is length
+> + *   of all remaining messages stored within the CTB
+> + * Return: size of the area available for parsing after one message
+> + *   has been parsed, that is length remaining from the updated mhead
+> + */
+> +static int ct_fixup_ggtt_in_buffer(struct xe_guc_ct *ct, struct guc_ctb *h2g,
+> +				   s64 shift, u32 *mhead, s32 avail)
+> +{
+> +	struct xe_device *xe = ct_to_xe(ct);
+> +	u32 msg[GUC_HXG_MSG_MIN_LEN];
+> +	u32 size = h2g->info.size;
+> +	u32 head = *mhead;
+> +	u32 len;
+> +
+> +	xe_gt_assert(ct_to_gt(ct), avail >= (s32)GUC_CTB_MSG_MIN_LEN);
+> +
+> +	/* Read header */
+> +	msg[0] = xe_map_rd_ring_u32(xe, &h2g->cmds, head, size);
+> +	len = FIELD_GET(GUC_CTB_MSG_0_NUM_DWORDS, msg[0]) + GUC_CTB_MSG_MIN_LEN;
+> +
+> +	if (unlikely(len > (u32)avail)) {
+> +		xe_gt_err(ct_to_gt(ct), "H2G channel broken on read, avail=%d, len=%d, fixups skipped\n",
+> +			  avail, len);
+> +		return 0;
+> +	}
+> +
+> +	head = (head + GUC_CTB_MSG_MIN_LEN) % size;
+> +	ct_fixup_ggtt_in_message(ct, &h2g->cmds, head, msg_len_to_hxg_len(len), size, shift);
+> +	*mhead = (head + msg_len_to_hxg_len(len)) % size;
+> +
+> +	return avail - len;
+> +}
+> +
+> +/**
+> + * xe_guc_ct_fixup_messages_with_ggtt - Fixup any pending H2G CTB messages
+> + * @ct: pointer to CT struct of the target GuC
+> + * @ggtt_shift: shift to be added to all GGTT addresses within the CTB
+> + *
+> + * Messages in GuC to Host CTB are owned by GuC and any fixups in them
+> + * are made by GuC. But content of the Host to GuC CTB is owned by the
+> + * KMD, so fixups to GGTT references in any pending messages need to be
+> + * applied here.
+> + * This function updates GGTT offsets in payloads of pending H2G CTB
+> + * messages (messages which were not consumed by GuC before the VF got
+> + * paused).
+> + */
+> +void xe_guc_ct_fixup_messages_with_ggtt(struct xe_guc_ct *ct, s64 ggtt_shift)
+> +{
+> +	struct guc_ctb *h2g = &ct->ctbs.h2g;
+> +	struct xe_guc *guc = ct_to_guc(ct);
+> +	struct xe_gt *gt = guc_to_gt(guc);
+> +	u32 head, tail, size;
+> +	s32 avail;
+> +
+> +	if (unlikely(h2g->info.broken))
+> +		return;
+> +
+> +	h2g->info.head = desc_read(ct_to_xe(ct), h2g, head);
+> +	head = h2g->info.head;
+> +	tail = READ_ONCE(h2g->info.tail);
+> +	size = h2g->info.size;
+> +
+> +	if (unlikely(head > size))
+> +		goto corrupted;
+> +
+> +	if (unlikely(tail >= size))
+> +		goto corrupted;
+> +
+> +	avail = tail - head;
+> +
+> +	/* beware of buffer wrap case */
+> +	if (unlikely(avail < 0))
+> +		avail += size;
+> +	xe_gt_dbg(gt, "available %d (%u:%u:%u)\n", avail, head, tail, size);
+> +	xe_gt_assert(gt, avail >= 0);
+> +
+> +	while (avail > 0)
+> +		avail = ct_fixup_ggtt_in_buffer(ct, h2g, ggtt_shift, &head, avail);
+> +
+> +	return;
+> +
+> +corrupted:
+> +	xe_gt_err(gt, "Corrupted H2G descriptor head=%u tail=%u size=%u, fixups not applied\n",
+> +		  head, tail, size);
+> +	h2g->info.broken = true;
+> +}
+> +
+>  static struct xe_guc_ct_snapshot *guc_ct_snapshot_alloc(struct xe_guc_ct *ct, bool atomic,
+>  							bool want_ctb)
+>  {
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
+> index 82c4ae458dda..5649bda82823 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct.h
+> @@ -22,6 +22,8 @@ void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot, struct drm_pr
+>  void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot);
+>  void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool want_ctb);
+>  
+> +void xe_guc_ct_fixup_messages_with_ggtt(struct xe_guc_ct *ct, s64 ggtt_shift);
+> +
+>  static inline bool xe_guc_ct_enabled(struct xe_guc_ct *ct)
+>  {
+>  	return ct->state == XE_GUC_CT_STATE_ENABLED;
+> diff --git a/drivers/gpu/drm/xe/xe_map.h b/drivers/gpu/drm/xe/xe_map.h
+> index f62e0c8b67ab..fa65e6c908fa 100644
+> --- a/drivers/gpu/drm/xe/xe_map.h
+> +++ b/drivers/gpu/drm/xe/xe_map.h
+> @@ -78,6 +78,24 @@ static inline void xe_map_write32(struct xe_device *xe, struct iosys_map *map,
+>  	iosys_map_wr(map__, offset__, type__, val__);			\
+>  })
+>  
+> +#define xe_map_rd_array(xe__, map__, index__, type__)			\
+> +	xe_map_rd(xe__, map__, (index__) * sizeof(type__), type__)
+> +
+> +#define xe_map_wr_array(xe__, map__, index__, type__, val__)		\
+> +	xe_map_wr(xe__, map__, (index__) * sizeof(type__), type__, val__)
+> +
+> +#define xe_map_rd_array_u32(xe__, map__, index__)			\
+> +	xe_map_rd_array(xe__, map__, index__, u32)
+> +
+> +#define xe_map_wr_array_u32(xe__, map__, index__, val__)		\
+> +	xe_map_wr_array(xe__, map__, index__, u32, val__)
+> +
+> +#define xe_map_rd_ring_u32(xe__, map__, index__, size__)		\
+> +	xe_map_rd_array_u32(xe__, map__, (index__) % (size__))
+> +
+> +#define xe_map_wr_ring_u32(xe__, map__, index__, size__, val__)		\
+> +	xe_map_wr_array_u32(xe__, map__, (index__) % (size__), val__)
+> +
+
+nit: for simple line split no need to align \ to the far right
+
+instead
+
+	#define xe_map_wr_ring_u32(...)				\
+		xe_map_wr_array_u32(...)
+
+just
+
+	#define xe_map_wr_ring_u32(...) \
+		xe_map_wr_array_u32(...)
+
+
+
+>  #define xe_map_rd_field(xe__, map__, struct_offset__, struct_type__, field__) ({	\
+>  	struct xe_device *__xe = xe__;					\
+>  	xe_device_assert_mem_access(__xe);				\
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
+> index e70f1ceabbb3..2674fa948fda 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov_vf.c
+> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
+> @@ -10,6 +10,7 @@
+>  #include "xe_gt.h"
+>  #include "xe_gt_sriov_printk.h"
+>  #include "xe_gt_sriov_vf.h"
+> +#include "xe_guc_ct.h"
+>  #include "xe_pm.h"
+>  #include "xe_sriov.h"
+>  #include "xe_sriov_printk.h"
+> @@ -158,6 +159,20 @@ static int vf_post_migration_requery_guc(struct xe_device *xe)
+>  	return ret;
+>  }
+>  
+> +static void vf_post_migration_fixup_ctb(struct xe_device *xe)
+> +{
+> +	struct xe_gt *gt;
+> +	unsigned int id;
+> +
+> +	xe_assert(xe, IS_SRIOV_VF(xe));
+> +
+> +	for_each_gt(gt, xe, id) {
+> +		s32 shift = xe_gt_sriov_vf_ggtt_shift(gt);
+> +
+> +		xe_guc_ct_fixup_messages_with_ggtt(&gt->uc.guc.ct, shift);
+> +	}
+> +}
+> +
+>  /*
+>   * vf_post_migration_imminent - Check if post-restore recovery is coming.
+>   * @xe: the &xe_device struct instance
+> @@ -224,6 +239,9 @@ static void vf_post_migration_recovery(struct xe_device *xe)
+>  
+>  	need_fixups = vf_post_migration_fixup_ggtt_nodes(xe);
+>  	/* FIXME: add the recovery steps */
+> +	if (need_fixups)
+> +		vf_post_migration_fixup_ctb(xe);
+> +
+>  	vf_post_migration_notify_resfix_done(xe);
+>  	xe_pm_runtime_put(xe);
+>  	drm_notice(&xe->drm, "migration recovery ended\n");
 
