@@ -4,53 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C03FC369CA
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Apr 2025 18:06:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED96FC369C9
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Apr 2025 18:11:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6255C10E39D;
-	Thu, 17 Apr 2025 18:06:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A913410E39D;
+	Thu, 17 Apr 2025 18:11:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j9ovUjhL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hsPMJ+uw";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8575A10E39D
- for <intel-xe@lists.freedesktop.org>; Thu, 17 Apr 2025 18:06:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBA0610E39D
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Apr 2025 18:11:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744913197; x=1776449197;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=IY23DfsscA7xY2nuoJzvuvPYKula45DHy1uWq0opXDI=;
- b=j9ovUjhLcmni+gCxDRApFJjaf+z45N7N68AMol0BpuV0Kph4NyaDdDFw
- xMk9CJPdBPp2jSIgmSVpgd9dTbLb6bsZocFKQUfcu+QW5+Y0+i/w/PqaE
- /ZPP2vDJh8YmI+P6RcMf+IasdHky295G0b2pgfIJmqWdxjMjoyLYsOMKF
- up/sirxCrAurWi+Uhk/hBz69L33ZIQTaQ7WiflXWnq0k/p7VEskKGjC4h
- j2vdqomR2zyRyib39watg6vmnZ6T8rqmIAhiDFZC/HPIUJogV00XgmfN1
- 8940R/PXV9au3KUpvnpEtScs8UaAQ2GB6Lfg2WqbZaF8w5DhEKOQiCCQ+ Q==;
-X-CSE-ConnectionGUID: wlfKYtDhSGa/o/KigswlMw==
-X-CSE-MsgGUID: WRu/QwVYR/ecBDmxgvpcgg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11406"; a="56707792"
-X-IronPort-AV: E=Sophos;i="6.15,219,1739865600"; d="scan'208";a="56707792"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2025 11:06:35 -0700
-X-CSE-ConnectionGUID: 9TaWa2fbSWWnuKtTg6/Eag==
-X-CSE-MsgGUID: HHDZqtf0Q0qlWWFgp/a2kg==
+ t=1744913467; x=1776449467;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=lvVzOpBVBvI3THC4YUCdYRRMm2Ea4DytEB/IU5OlS0g=;
+ b=hsPMJ+uwphfuFui1dAvbiG2ScPkYuBncJox9RjRtUU2NeVKgCbbwI+DD
+ SGQsLT/mS5h7x2qHhPAFlBRVWYd01/EI7vHp1tVWH1wIjO39hF1od0qzY
+ 0F89M9qew4FULgjK1FR7+gDog99+yU4N3lTIuawMj2ECF0k8BxHYL4WtN
+ rkJi/K3Ks1PVnmHBDshbnzW4UY5NxqGP2AlsIUqGj7mE9WxvdDrIR3PSC
+ kImO6ko0JnoIM1e7KZPh3zCE6O7jKSnOA/EaEh3yMPJLxuah++R6WZHCs
+ 6rt3fMn99n+vl6n4AAn4cvan0up4cFR5dBgzkay1lQvGjBdKb99O8HQsj A==;
+X-CSE-ConnectionGUID: 4cLcoLnZQ+CxcBx8BsZubw==
+X-CSE-MsgGUID: AkxDn/NfTwSPYkjIFLIV/g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11406"; a="46657537"
+X-IronPort-AV: E=Sophos;i="6.15,219,1739865600"; d="scan'208";a="46657537"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2025 11:11:01 -0700
+X-CSE-ConnectionGUID: oghNkrAWSUuJJliwNBpaaA==
+X-CSE-MsgGUID: ymdVwru6S8abs7lTy7ZWHA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,219,1739865600"; d="scan'208";a="135851381"
-Received: from dut136arlu.fm.intel.com ([10.105.23.68])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2025 11:06:34 -0700
-From: Stuart Summers <stuart.summers@intel.com>
-To: 
-Cc: stuart.summers@intel.com, niranjana.vishwanathapura@intel.com,
- intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/xe: Refactor exec queue deregister
-Date: Thu, 17 Apr 2025 18:06:29 +0000
-Message-Id: <20250417180629.16418-1-stuart.summers@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=Sophos;i="6.15,219,1739865600"; d="scan'208";a="135728292"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmviesa005.fm.intel.com with ESMTP; 17 Apr 2025 11:10:59 -0700
+Received: from [10.245.81.148] (nowickik-mobl5.ger.corp.intel.com
+ [10.245.81.148])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id B8AA034957;
+ Thu, 17 Apr 2025 19:10:57 +0100 (IST)
+Message-ID: <14387ed9-074a-48ac-822a-d1d7b3f6260e@intel.com>
+Date: Thu, 17 Apr 2025 20:10:57 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 1/4] drm/xe/vf: Divide GGTT ballooning into allocation
+ and insertion
+To: Tomasz Lis <tomasz.lis@intel.com>, intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
+ =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+References: <20250415222030.3616494-1-tomasz.lis@intel.com>
+ <20250415222030.3616494-2-tomasz.lis@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20250415222030.3616494-2-tomasz.lis@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,109 +76,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-No functional change here, just combine the two similar
-routines we currently have for submitting the context
-deregistration to GuC.
 
-Signed-off-by: Stuart Summers <stuart.summers@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_submit.c | 62 ++++++++++++------------------
- 1 file changed, 25 insertions(+), 37 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 813c3c0bb250..42c709729352 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -568,6 +568,30 @@ static void register_exec_queue(struct xe_exec_queue *q)
- 	init_policies(guc, q);
- }
- 
-+static void deregister_exec_queue(struct xe_guc *guc, struct xe_exec_queue *q)
-+{
-+	u32 action[] = {
-+		XE_GUC_ACTION_DEREGISTER_CONTEXT,
-+		q->guc->id,
-+	};
-+
-+	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q));
-+	xe_gt_assert(guc_to_gt(guc), !exec_queue_pending_enable(q));
-+	xe_gt_assert(guc_to_gt(guc), !exec_queue_pending_disable(q));
-+
-+	trace_xe_exec_queue_deregister(q);
-+
-+	if (!exec_queue_destroyed(q)) {
-+		set_exec_queue_destroyed(q);
-+
-+		xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action),
-+			       G2H_LEN_DW_DEREGISTER_CONTEXT, 1);
-+	} else {
-+		xe_guc_ct_send_g2h_handler(&guc->ct, action,
-+					   ARRAY_SIZE(action));
-+	}
-+}
-+
- static u32 wq_space_until_wrap(struct xe_exec_queue *q)
- {
- 	return (WQ_SIZE - q->guc->wqi_tail);
-@@ -1026,25 +1050,6 @@ static void disable_scheduling(struct xe_exec_queue *q, bool immediate)
- 		       G2H_LEN_DW_SCHED_CONTEXT_MODE_SET, 1);
- }
- 
--static void __deregister_exec_queue(struct xe_guc *guc, struct xe_exec_queue *q)
--{
--	u32 action[] = {
--		XE_GUC_ACTION_DEREGISTER_CONTEXT,
--		q->guc->id,
--	};
--
--	xe_gt_assert(guc_to_gt(guc), !exec_queue_destroyed(q));
--	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q));
--	xe_gt_assert(guc_to_gt(guc), !exec_queue_pending_enable(q));
--	xe_gt_assert(guc_to_gt(guc), !exec_queue_pending_disable(q));
--
--	set_exec_queue_destroyed(q);
--	trace_xe_exec_queue_deregister(q);
--
--	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action),
--		       G2H_LEN_DW_DEREGISTER_CONTEXT, 1);
--}
--
- static enum drm_gpu_sched_stat
- guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- {
-@@ -1213,7 +1218,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	if (!wedged && exec_queue_registered(q) && !exec_queue_destroyed(q)) {
- 		set_exec_queue_extra_ref(q);
- 		xe_exec_queue_get(q);
--		__deregister_exec_queue(guc, q);
-+		deregister_exec_queue(guc, q);
- 	}
- 
- 	/* Stop fence signaling */
-@@ -1857,23 +1862,6 @@ g2h_exec_queue_lookup(struct xe_guc *guc, u32 guc_id)
- 	return q;
- }
- 
--static void deregister_exec_queue(struct xe_guc *guc, struct xe_exec_queue *q)
--{
--	u32 action[] = {
--		XE_GUC_ACTION_DEREGISTER_CONTEXT,
--		q->guc->id,
--	};
--
--	xe_gt_assert(guc_to_gt(guc), exec_queue_destroyed(q));
--	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q));
--	xe_gt_assert(guc_to_gt(guc), !exec_queue_pending_disable(q));
--	xe_gt_assert(guc_to_gt(guc), !exec_queue_pending_enable(q));
--
--	trace_xe_exec_queue_deregister(q);
--
--	xe_guc_ct_send_g2h_handler(&guc->ct, action, ARRAY_SIZE(action));
--}
--
- static void handle_sched_done(struct xe_guc *guc, struct xe_exec_queue *q,
- 			      u32 runnable_state)
- {
--- 
-2.34.1
+On 16.04.2025 00:20, Tomasz Lis wrote:
+> The balloon nodes, which are used to fill areas of GGTT inaccessible
+> for a specific VF, were allocated and inserted into GGTT within one
+> function. To be able to re-use that insertion code during VF
+> migration recovery, we need to split it.
+> 
+> This patch separates allocation (init/fini functs) from the insertion
+> of balloons (balloon/deballoon functs). Locks are also moved to ensure
+> calls from post-migration recovery worker will not cause a deadlock.
+> 
+> v2: Moved declarations to proper header
+> v3: Rephrased description, introduced "_locked" versions of some
+>   functs, more lockdep checks, some functions renamed, altered error
+>   handling, added missing kerneldocs.
+> v4: Suffixed more functs with `_locked`, moved lockdep asserts,
+>   fixed finalization in error path, added asserts
+> v5: Renamed another few functs, used xe_ggtt_node_allocated(),
+>   moved lockdep back again to avoid null dereference, added
+>   asserts, improved comments
+> v6: Changed params of cleanup_ggtt()
+> 
+> Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> ---
+
+hmm, still not 100% happy with all this gt<->tile dance that seems to be
+unavoidable right now, likely we need to do little refactor and move
+some stuff to xe_tile_sriov_vf.* files, but that's really not your
+fault, so let this is in as-is and try to cleanup later,
+
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 
