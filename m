@@ -4,183 +4,164 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 526DBC369B2
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Apr 2025 04:50:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 323D9C369B2
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Apr 2025 04:54:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15CF610E07E;
-	Thu, 17 Apr 2025 04:50:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6AAB10E16B;
+	Thu, 17 Apr 2025 04:54:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z9E20PoC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O/XGejHH";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1EC410E07E
- for <intel-xe@lists.freedesktop.org>; Thu, 17 Apr 2025 04:50:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E33110E16B
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Apr 2025 04:54:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744865436; x=1776401436;
+ t=1744865663; x=1776401663;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=LAcFO96OWVo5Uq8LUrkFISnQ6ZRjZ8BBJijP+9q5uGA=;
- b=Z9E20PoCh4no68xPr5CuIlMp2cS2H8gSJlXJaSTjN5UQKKvJgJF+QPDX
- 97xOP1oaf7rZPhP8C+s4jhhPeSAyIb+S2fte20G6tzJcebXzpTkgUcq7q
- yxvE+2t42SeHemY0vam/9iaGFt0PzVOWzxNP75QUyQKk8vOrWL6y0UANz
- OaQYHDKGl49aqZ3olBARUZ41d+C1C89oBN2ZGMPFq47UJCHaGuzs903Df
- Ozgqd6mOZj5J+8cCXgr5ORqMb6BeE6mnc+DUlqIs2Zq3REr5yUcDB+7y7
- HanfZlaMIDm78/Rm/xpD/HSaYL7K9ibmxp2wOlacQISXp3dHLG93XTxuj A==;
-X-CSE-ConnectionGUID: IQ5VJZ+RQV2nAYzhOZNmuQ==
-X-CSE-MsgGUID: /D0MnoXFSmCTgbN/HSyG0g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11405"; a="46567317"
-X-IronPort-AV: E=Sophos;i="6.15,218,1739865600"; d="scan'208";a="46567317"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2025 21:50:35 -0700
-X-CSE-ConnectionGUID: c9xELeMSQ1mmflJMD6lrgA==
-X-CSE-MsgGUID: G9lX6wNVSSmHuXZAm1qe/A==
+ bh=TyOlcuZCklPGvzsIrAIYZENXlDVlQkGi5ZWYrSEYwi8=;
+ b=O/XGejHHfPWvWweSfbJcL70CLF/XNIaY9rE9JfK5323nPqMfjh0s6auM
+ VeM18qTTlWLCiO2cq3Dxrc1VJR0rlFwVF08sGqW8GiZHm1y6iry94TEc1
+ jjqAgcTkKyJfHWjBgzSjlS0tVHnQH9Z5+XzzhoCjbBnc9R+aQiIqDFt0O
+ 8+n+GaezIbVKFjQexRDBDCcAltxHfWP2RDzUrrTGLE6i7AFyLN7zlD6wf
+ 5EYQ6/NnCZDEEYAopJwDoBpaks+4eZsdxPH9+Nvxmq3h1JGxnVdsLPh6p
+ vPvy2K7CQxzhLX1VHhm8yBcg0CesfXzJsZnHn1lTMVqDlNejbGTAetQmV w==;
+X-CSE-ConnectionGUID: jR68nm+YR5aYBMsgjkHV4w==
+X-CSE-MsgGUID: NfPiOx1dQvyUlt7AMqcy5A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11405"; a="34051997"
+X-IronPort-AV: E=Sophos;i="6.15,218,1739865600"; d="scan'208";a="34051997"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2025 21:54:22 -0700
+X-CSE-ConnectionGUID: Zt5lXxfPS9a97A9Z9woy3w==
+X-CSE-MsgGUID: eTGbT6J8RVCPydJ21vHfGQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,218,1739865600"; d="scan'208";a="135544006"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2025 21:50:35 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.15,218,1739865600"; d="scan'208";a="131671330"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2025 21:54:22 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Wed, 16 Apr 2025 21:50:34 -0700
+ 15.2.1544.14; Wed, 16 Apr 2025 21:54:22 -0700
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Wed, 16 Apr 2025 21:50:34 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.172)
+ 15.2.1544.14 via Frontend Transport; Wed, 16 Apr 2025 21:54:22 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.174)
  by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Wed, 16 Apr 2025 21:50:34 -0700
+ 15.1.2507.44; Wed, 16 Apr 2025 21:54:21 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pnxGAOYrIKQoqnCEaKQmbyemYLfAfqw9eqVIJ8RBK+GSjfNj+cZzhOanWZ1jm2hf3CrMzH5VEiysi4PmR4vbsy0d171dicriTiEgtZdOogjbh4JSYE6doHTh8VpsboDSRTnRxKjUzju3M93BSCBhCXoXWCaq0LRPbzJEVC2unfWXuf9lAMdvJQxje4MsqrCNN4q5EOrBbjkvR44oDAC97e1K/gfhjKgk+VY9Px79uEt+srz7lSL6KVfwuL0krBO7Ya9xVCyIenHankX4t3JJv3wQTI2R4giyewAzoJnjyQU6sIIRdUD8LV5djFE+acTZFCFwVDGkvqKlwz6IZYoyRA==
+ b=nKIDa4BL0I410rGwebrAfKBxnXg4IdjFUzKaJjQb7y74NdMKA0whzR90mfs2WCXNufuuHQu3GsjAoGg4cQcKZ+GgNhlT0rQv5NWJRZ61lg/TK4/LALa5uHCktCKfNS6KBLGqS1mH7kpY/q2oi7RlWDlp/3SE8FfbuU9NyT9GjbWg8wJrBRI/JCTGOEIPO21w2fYvtEk1Zll7THc41FB7+j2E/3FU5T/oSWh3/kg0mKtcZWNqkL0+7KAWpzHCDOlqygxXwpd/vn0wpt3UDy1ssXplzvy+MEDkHd8qWCNNhxt7ZPyzCk1M0IIc7ulcUFHLENafOQLPNHTyrm9fsOChhA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=k/CbIheVwP0dbvI7HFZcihSt5Xh3EIEvaFkovQ5/Ivc=;
- b=jiaVwZ6VeOk+oH28L8BQv5n111EBZQEfl51sJ0bQyX+ZHTg4kpTLQbkzbD5GLoaGO/W6s03Vg+G8KibGC98wWAMJYWWHT79t4XXj9ulC4g+og4qKzRKfaOeiv7Htiqc/wiRfxa2N+5sm9am3Es8LH6N/Dz9BZKcZOpbKJc53vdvK+G0rL4RBv0/TsmRQ1JBk3+UiOqB4ahwcRl2itSjHeVQ2cLQlBA7sS1CtQr89cOcAPtQsq7YOpTv7zPk9TlpHcO+LbNJQPty6TqPFz1X26gf3WfWH9hGGzIYSs6b4rxUSfnLhbzHNBp1tZxN0QRMPx9GdETyWFZOzFbuAh1Tsag==
+ bh=3sQnqa6ZyYY15yrj6aMw18gX4llOpJ0t1mSNbeZJpzg=;
+ b=gJsqDD6lTRdDX/xpCTyaWHuyiOsDn97gfKYZJ2Ll2I+V2CGuc0FD6r+DSI26MPcYwoDfDddiv206edYRFBXJHZ3SMHY6tNm5nWowJXbrirl0WRm/XZMbigiBUHsBmKu/gYXHF4Kdy2DM52HjaSQ3zK9izV7sY4Pfg2URxb95kARKVSK721nFTXF0kX+Lvp3GDQ4B87hCjlTjoDfMWGKcGh7P264MCnH81g9TD+XEtLCRh+SodhVaT2qwb73OoH/vs7GWGGXNa++XexwPlNgEMx6whPfWjVCGugaSZeaCqR2xmP3UoEL73Rsd/HafJv1iSId9Q3DcvqYytvQcj6q0rQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6278.namprd11.prod.outlook.com (2603:10b6:208:3c2::8)
- by PH7PR11MB5864.namprd11.prod.outlook.com (2603:10b6:510:136::18)
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by IA3PR11MB9086.namprd11.prod.outlook.com (2603:10b6:208:57b::5)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.35; Thu, 17 Apr
- 2025 04:50:19 +0000
-Received: from MN0PR11MB6278.namprd11.prod.outlook.com
- ([fe80::a9df:4a4d:b9e7:76e2]) by MN0PR11MB6278.namprd11.prod.outlook.com
- ([fe80::a9df:4a4d:b9e7:76e2%3]) with mapi id 15.20.8632.030; Thu, 17 Apr 2025
- 04:50:18 +0000
-Date: Wed, 16 Apr 2025 21:50:10 -0700
-From: Harish Chegondi <harish.chegondi@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <ashutosh.dixit@intel.com>,
- <james.ausmus@intel.com>, <felix.j.degrood@intel.com>,
- <matthew.olson@intel.com>, <shubham.kumar@intel.com>,
- <joshua.santosh.ranjan@intel.com>, <lucas.demarchi@intel.com>
-Subject: Re: [PATCH v12 4/8] drm/xe/eustall: Add support to read() and poll()
- EU stall data
-Message-ID: <aACIggiyMxYohAw8@intel.com>
-References: <cover.1740533885.git.harish.chegondi@intel.com>
- <369dee85a3b6bd2c08aeae89ca55e66a9a0242d2.1740533885.git.harish.chegondi@intel.com>
- <5b4ca4af-71e9-43c4-aa82-8ec4a0c8edb7@intel.com>
-Content-Type: text/plain; charset="utf-8"
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.38; Thu, 17 Apr
+ 2025 04:53:38 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332%6]) with mapi id 15.20.8632.036; Thu, 17 Apr 2025
+ 04:53:38 +0000
+Date: Wed, 16 Apr 2025 21:54:57 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCH v2 14/32] drm/xe/svm: Implement prefetch support for SVM
+ ranges
+Message-ID: <aACJoZMXsfA+hu4F@lstrano-desk.jf.intel.com>
+References: <20250407101719.3350996-1-himal.prasad.ghimiray@intel.com>
+ <20250407101719.3350996-15-himal.prasad.ghimiray@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <5b4ca4af-71e9-43c4-aa82-8ec4a0c8edb7@intel.com>
-X-ClientProxiedBy: MW4PR04CA0153.namprd04.prod.outlook.com
- (2603:10b6:303:85::8) To MN0PR11MB6278.namprd11.prod.outlook.com
- (2603:10b6:208:3c2::8)
+In-Reply-To: <20250407101719.3350996-15-himal.prasad.ghimiray@intel.com>
+X-ClientProxiedBy: MW4PR03CA0085.namprd03.prod.outlook.com
+ (2603:10b6:303:b6::30) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6278:EE_|PH7PR11MB5864:EE_
-X-MS-Office365-Filtering-Correlation-Id: c99b92bf-7197-479e-1c87-08dd7d6b5a2c
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|IA3PR11MB9086:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8da756d1-bd98-4a50-06fb-08dd7d6bd175
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?bXovU3FxUy9IekF3djgvdFAwNUdpT1kvdnIxSjMvNXl3OVFFeURGS0VCQU9X?=
- =?utf-8?B?Z0VhejgrZlR6dnBWR2RuWXhJSDliWnhZa1B2YUl3amtVc21rZDc4eTNUbUdv?=
- =?utf-8?B?T2IzekdYemhJY29XYzF2OStvaklKSUFVL3ZScFR0U01qYlRtRnRDT1h3UzVS?=
- =?utf-8?B?MFhqbWxoVmxDanVQMDB6eHhUaWVRWThDWndtRER1VHJzRzdBTzQ4Z0t4YmVM?=
- =?utf-8?B?c25PQjlLVHJuMnorZzJGb2ZpRHByc1A5WmtEa1VJMTcrQ0p6N0VJNUJTdHRt?=
- =?utf-8?B?RUcrbHh0WGMzUUpkbWxPUjgvaXZKMC9Ta1dVRXFpUy9ZR3BsV0hWNFRSM2Qy?=
- =?utf-8?B?Q0QzRHFHTXBqbFNQdGhGZldVTHJmUUpWQS80R3k5UTlidlBtTlZxVTE0QlVt?=
- =?utf-8?B?clJDWW9HemxCZUIxeXd6OGVRNEswRWtnRXR2VVlqQm1CNUJTOTZiTnc1VWIy?=
- =?utf-8?B?eVg4VTB2Qy9FOStVTjhYeE94ekxMT082NTA1Q0JQMTBpd1NIWmVmaXBvb3I0?=
- =?utf-8?B?djM0U05vMUJxVTFVZjlzeDIzd0NSKzNCc2grc2lTRjU1Y2w5cmRRd3RJYVNl?=
- =?utf-8?B?SFdtNjVidzFIWjM0NENKZUFqa2J6eVhjbVlVSkl0NHM5SWx4bjJHOE1oeTk3?=
- =?utf-8?B?bzloWW1ZZTZWVXJEMmtuTTdDaWVwRnpoUVJ4ZTBlc0lTc29HT0E2bkdGUldU?=
- =?utf-8?B?dTZ2VUpzWjFBTHNNUTcxT3d6UXlmaWJTSERiNWh5WFN2OWRxWERzcmVCeW83?=
- =?utf-8?B?NWpyY215NVJWQ1ozYWlpN2l0R2I4M20wd1RtWWUrM3NScHc1WEdsOVcxQzdq?=
- =?utf-8?B?WWpaazNqKzkrM3FXNmdnelEyRmdXa2ZZYTlWOFV6c2lTaFQxRjdSYUtVT3l0?=
- =?utf-8?B?MnlVelBnRVg5Z3lnQlpBZUNUWG1uM0JNQlVPalVMcGVRaDNCTzVTQ0ZjZHJD?=
- =?utf-8?B?MDBpejQ3aU13MG9CQkJzRjd2dFd2L0t0Y1hMMkdNcGl5eTF4ZE96YXk5RXVS?=
- =?utf-8?B?b0dGZkFIanlYTkFuajhpSktaS0hMeGs2UVAwaHJSeUlid08vU1ZWTERMRHJw?=
- =?utf-8?B?LytGR1liMVBUWEtYRnhCNUZDTWZ5OU9NSlE2ZVg5SlRnUHZjNDRTN1JaUjV0?=
- =?utf-8?B?V2VuVDJoZHljbVI5MEtINzJlSmhvWTc0eGdUeVJaTmw2NnlScXhNbWw2OG9H?=
- =?utf-8?B?Q0h6aWZ4OU0wbE9ZVWlBUy9jRVRqL285WFlKTWVVVkhWa01YdE50WllKUTJE?=
- =?utf-8?B?Zk1KS0c3aVBJdGtac0F2UzI4Z2wydm9Ca3JYRWZoYzQyTFBaTjR1KzRYMzBL?=
- =?utf-8?B?aEIvOHFSQy9GQytCdWZDb2x2QlgvMWZBelU0R21ieTNLV0NKYUpkQWlCbXY1?=
- =?utf-8?B?S2FUUlViVDlOMmVsNTlGY2J6czh3ZEo1MkRGV0padTV6RnVEV1c1WkdhR1kx?=
- =?utf-8?B?TWhiaW16dFdXRzVhLzdxZkNXczdOYWJxUEtzQVluS2RtcExPMVJPQ0F5RHhR?=
- =?utf-8?B?bkxZdkRGcEpVWnE3QnhpWTAvbGdNVGM0N0k2VVNTZFBpQVFpK29hU3Bxa3FS?=
- =?utf-8?B?Vk14bEpreCtZdENvTVo0RElNTVVtWWMvSUhqUWczV20vSjJBRGNJUUh3bjRu?=
- =?utf-8?B?Tkl2Uko2UmhqcXprUUdMZ0FpYTVYT1J2VFNjRjZNeWNOVUcxMFhNTjVmM0Yv?=
- =?utf-8?B?RFRqTm85TnJRNU5GaG9hSGdhdWdzZzRsR2J0K0R3a1pnSnBCNzQyM2g3cFpC?=
- =?utf-8?B?ZGQ2Y2NFd09vSFU0V3NSMXpqeTgyS0tlN04wOVdjODJpY2hxcFNhQVQzM2xV?=
- =?utf-8?Q?VLmnUAPUD4kBBiQ0FEaEBTEFTA0yACqXsioX4=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Oq9WGyX/nQA+GkCbg1us/q9NAfCBlDVAgtDQEMvSmvrPd1H4HmmMj1iHBetz?=
+ =?us-ascii?Q?EmzvORP/bd54RSR51vnPqZ8D52YgRJ8ShLwS+ZNxOXbaddN3G3onbnyKH+M/?=
+ =?us-ascii?Q?AEtFLBs9RlqL4euIsnNQNuaBVhbrPfY7BjRbz7fzG9XUaw28PT60xv+cz4s6?=
+ =?us-ascii?Q?Z0Dg1qAYmk3uCQujD/2IuplIQ8HleLqur1S85cQDg57Rv342S6Ly47MvGc0l?=
+ =?us-ascii?Q?GtMUDW+wxrA6XWaqn/6rWcBr2uVfoboH1rAfNemC20VAI0rLM1jvSCK6NH7m?=
+ =?us-ascii?Q?SMMMUGwEQMvdLNKjg4d2yJZLfKEAzx0S2djP9Y7EpCaHlCvJYeghekTzBvxi?=
+ =?us-ascii?Q?aoxsPg9IstbYgfQA3L6/ModQ0njYDNI1MktHRXf1HtWi9GcNF6aBiDIlxktP?=
+ =?us-ascii?Q?7Xwj+OPpyaTEb6V6pW/V82hMXwvuufYIiKr6u6vN9ViQPZq+zDlq5zLARktf?=
+ =?us-ascii?Q?mJfu3e1+XNaVBDPrrj4q4XO2opkq1FHU8LNoUBsSTtFoGpLwzYgDq8XSymdi?=
+ =?us-ascii?Q?ilPEjG429gZeKGgymrY3624T9qaNCo653BlLFKuWo2LNDRAdl7KNVDJ3xr1g?=
+ =?us-ascii?Q?ePIVBnwxvnk1QPWzH81cjPtenaep2vOrIDy40yVQUZQKPAGThWB8gsF5Jo0F?=
+ =?us-ascii?Q?fB17zTrGcm+dG6DjUPdktacmJuke7PNEm64sU5jNBkbRAhn4xTmDRWDoCLbO?=
+ =?us-ascii?Q?pY7jmogr2lNyp468HQarhPyMxatcGgF/hi6WLIwC0CKNF7di4IdM4eaIyTSs?=
+ =?us-ascii?Q?/pgsVVc1NgofZlKnBppyZrq1Er3ZQuu0OzpuBC/Dm8PWgK9diuVMQvjyOQDR?=
+ =?us-ascii?Q?HP5LBm5eBrRLRVlkZeKMQyMy3TPE9LsOoOduceMn/baWfckJJOCWbwBmF4Gv?=
+ =?us-ascii?Q?SAo2KFlRsvWg7mOKPWoBI2rLJsLXhHwU9oM4o+aWAWuxRXBouq/+FtWg2nnu?=
+ =?us-ascii?Q?mI1XUvefn6dDBm7QHThzOL1tHLpAKphUOfU2hEiZZq0+DeKsh+0nI5oqr9SJ?=
+ =?us-ascii?Q?yZn1ZZm18bSsSGH5MB9DqF3qDA2SNYTd+crv4GSv6w6Nt5fiOoqRkHasHnIS?=
+ =?us-ascii?Q?/ItaxrRznkB7zBysHtOqtDBgcwJsrrtHQ9SQiiWD5ShMx09xlOLSpNGHMHRq?=
+ =?us-ascii?Q?bGSBdJYL+suvPJbBFCUXzPF2kft9uF8j+T5xQ4kaq/4pkuzNkNZRxytSQ6fE?=
+ =?us-ascii?Q?UMhf7WZJAwyH56X+6vVx2lG010wOgm8R4PopIGLUNhluf75/YnSx/crRkvJl?=
+ =?us-ascii?Q?M7f9+uY+M60wJFTVysNvbMlX7UGoHcG6ESx06wm3t0/WJVhKTLcQnyf4spgw?=
+ =?us-ascii?Q?aXxax4tSseUWJUXLtGEueQLtAzKBU4zmTMnDKJaVIxG1jE7+4Gxckqp2FTs8?=
+ =?us-ascii?Q?rWfh+O+Hzk0jkQjXqQJRdX7T54dFq6MDTigD3rbaw4EhXF7bv+gXlu0hqvS5?=
+ =?us-ascii?Q?VS7HGY4ws9Q=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6278.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bjUwTFNYdWV1dWJRRGNPakJidXkvQmtaNTgxaS9jcFBKVWJPenpPVUgwaTZz?=
- =?utf-8?B?OTROOXdlcnBEL3pWaXZpZDVudm4zWGZmS0pDaE0yRUdyVEZqbm5adTVocmlD?=
- =?utf-8?B?bXpNRDlMVTMxNVp0eTRDdFl4Q2s1KzBqNHdrVktZL0htY3drS2xjSVpWTjdv?=
- =?utf-8?B?bkU1bW0xVmhtQ0ZCSFM5S0l3dXZFek5VUW0zS1ZjK0o5d0FtdUZ4SkRZTFBH?=
- =?utf-8?B?Q1lLbDhOYmJGRHRHRHdieXR4bHBvazd5UmpoWlY1OHRNV0E4ME1zNVF1d3NM?=
- =?utf-8?B?VklpSjEvd0NwNnp3cDlMdE45N3ZadG1ibEUwZzU1MTZ4YXNyVmFaNTlzMDhP?=
- =?utf-8?B?VW44bmpVYldXekJWM2NBM1V0MTF3eFBIZWFWeUpXaE5YQzJWbWZ4VmNVczI3?=
- =?utf-8?B?QWIxRGcyVnhYZVBkTlhOQXgyRk5lZUVINXIzTDQzUzRRSzdFY3RTdUxPSzdo?=
- =?utf-8?B?UnMwOXhoT0xBTmlmaURtY2l0K2xCZldZWEpnR3A0VzYxei82VnN6U1pGL29j?=
- =?utf-8?B?cDF3S3k0ZVRIZ2NhUXZJR2taMWZvMWlPaDYra1dHRTVHMGZlVWN4b2M4c3ZW?=
- =?utf-8?B?TDhXQkJvcHVRalVTRmhhcEJtbU5kbEVoU2F2V0wxeFNHb0MxR1NaZ0NPNEdL?=
- =?utf-8?B?OWdMd1ZaTkJibkx5ZGZCWnp3K1RBL2I2OUJJeExkQ3lUWmFVaU9JbjNjUTVX?=
- =?utf-8?B?VDVLcXB2WVRnZDhRbk9WVm1yd04yWi90eVA5Q2dyVEpDN1VTVGxhVjNla3dn?=
- =?utf-8?B?Q0c2ZmJRSHdpakhJZVMvbXQ4ajdiRjArTGNlTXpZRlNlaEVIVU1leVVXYzVr?=
- =?utf-8?B?L1E4UlBBM2VVcGYvd0J0ZlYxN2IvWFVvV2d1REdER1FaM0xnTm5hbm1jWkNs?=
- =?utf-8?B?UEtJR1hkVFBPTFJCYzZ0RHJMUjhWbWZBc252alEyMW1JQWYzb1F1ZlNNUFdD?=
- =?utf-8?B?S2szN3FsOHdtTStPZzlUNlZiZDBhZ0xOYUZ3VDhvWGk0aUNzUStJZGpoMkVG?=
- =?utf-8?B?bWdYa1BTV21lUXBmc2dDVU5VQ3lOOEdKTDgremF5SzNjMUhraVNLSCtCTE9v?=
- =?utf-8?B?ZU1EN3NTNHdTNWdUblJ4aHRrdE5PdDlkTzk4MkxLV1lTWVIraExDeTM2QThH?=
- =?utf-8?B?eWdXOGsvQjAwTkdQaXFuL3VUVkZxVzBOQk1lYUQ4cVRoUmRtUnJNNUNUTFZF?=
- =?utf-8?B?bjNPd3FiSzBOUWVvZC9rYVBJRk1DaksyM3ZabC9wOWRQWWxadTdOZTQvVG5O?=
- =?utf-8?B?cTNDNDJZZTVnRXI5UXZ6TmplOTcwVDFCQXduR2ljcnY3R00xS2lZSkdzM1dQ?=
- =?utf-8?B?VXFsZFZhTXdraEdYVTVmaWlIM1JIcnFkMnpYblRsV3g4Y2pLdDdRb0dkVi9w?=
- =?utf-8?B?YkhBUkRLNXp4amtZS0ljSmhHbjY0MHhGK1BTM2NHNHNGb3Mzam9wYmhzTjg0?=
- =?utf-8?B?SU1EaTlMaktIMTh4OFlvN0JQTlNWVUI1U0pTUjlLSHNkeWZYSDJ6azZLV2FN?=
- =?utf-8?B?NHUwZTFaR3pra2gweEtZRWhMWW1oSU9ldXZyYTBrWjNkd1VKZzY2MlFkYUNq?=
- =?utf-8?B?VEg3NGlpb3h6SXNUdGlTR0xENk9yeVNWUitjeU1IdVpSYlh0cFI3VlA0YXBp?=
- =?utf-8?B?T1VPSS9uSzJLNW9BbnBURVFwM0tOS3NCUE5reDdJTXRKNnQ0dzF4Wm5tdUdq?=
- =?utf-8?B?MFhaVXoyOHU5b3VZakpzZ0JTZVpQcDd2UHFlL0pkcCszam40cGEvTTVkZHU3?=
- =?utf-8?B?SUVwZHh0R2VBTmx3d2ZMZGFDT21UQVBGTzAwZlYwZG5wY1JOakZ0LytoOFBH?=
- =?utf-8?B?c3pWa0QrQUJOZVRGYVBlQVFZbm9Uc0l5d3AxM05oaHdBQnExL1dFdFhockM1?=
- =?utf-8?B?bHNwV3AzbnZlTm8yZko1L0pRQ21CTlMxbm9aWnFCNnBwSGJEd3BKVGlrdmJy?=
- =?utf-8?B?M3ZtUWhvenM5WmFOdXh3TllCcUVHOENHRHhzZHJIeHE1WDRucWszVGQrdmJV?=
- =?utf-8?B?dXk3SHdOcFhsMHhlSndqUUR6V3ZrT29Ob0lLZzN2NnVIdnM4ZTZKd3F3c2cv?=
- =?utf-8?B?S0VNaDJZSVBpRFkrQmNkYWpZVDkrekhVN29FZzZhQnpuRHUwRFE2c2dQNVg4?=
- =?utf-8?B?bGpHMnJxeFNsTHFJTkk3czZmelRMZUtPR1hXWDd5YXQ1WVJpTXNxdExpcStH?=
- =?utf-8?B?aVE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: c99b92bf-7197-479e-1c87-08dd7d6b5a2c
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6278.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Cqv3vh9SidgVydL3I9+hmXKSkLl1WmJN/GC1j+FFJJkfUhbuAmBgABNlaRjV?=
+ =?us-ascii?Q?zC1fXzIM697iw21u+vbFo5VN3RQckz3vjqbRWm4d0dqnjK42X0tgTauwN6FH?=
+ =?us-ascii?Q?kOFDlJDysQ7FE5AMBD+PvAFqRqRqgF5JCaJ5zXvwWdC8tgkxSDjnCqXyU1c1?=
+ =?us-ascii?Q?1aBZyQSe0uQDDxTg6HpAd3KC2NE99nx47LnsWc9MpyHQHmAZFCbMX7rGBsEW?=
+ =?us-ascii?Q?6SkRHKEWYl3rA4lssmOPqSUJ/tRj70qy6Gpc6WvHDcRZiMk7tc10vyrqw1cJ?=
+ =?us-ascii?Q?nt2jqkiAMQXTlPnfBGpP+ZuYsB7T1cQzTT5T2SfbjFGAOZQauJn6URroS2XX?=
+ =?us-ascii?Q?It2yTeaNwauxUUcyinw99baeRGZgwriOvpspzgQ4e5eOyCvJZDAdSvGy1r+s?=
+ =?us-ascii?Q?9TaNwU2FuAtbruPjjTIPBECDGQN2vPSn+h/jbBKXOD/0fx5OIvAEgA7HZLyp?=
+ =?us-ascii?Q?pdnyELcNt8KnEMK3mZpta0kt6HY11/onlB264EYzKcfriGzNFNSDB8zisIHf?=
+ =?us-ascii?Q?29vTvtLBeTC9pZBvYSY5mntDq0pqoAfWcMI3JxConRtcVXM1aQLId2/cRCr8?=
+ =?us-ascii?Q?7mijUexQZ2Y8OyGNuDp7DlO3hy1XmlAhLJaYiQCwxJiZ8IMkcJtqTAUMlwuX?=
+ =?us-ascii?Q?wX3QLjS85SM2npRBQwpyjYVY/tLlMr3LSje9+9hpbXCgTm6z5B93dORPaIlP?=
+ =?us-ascii?Q?HMv14sM43AUDXppL/jvkJ7xtXdcnvtFaWtPjnxfd4b6cbW4tqFIbdG6tOaqd?=
+ =?us-ascii?Q?pvHoK8yGjjxVBlFradPIEv8W6/c4sve7K7etckfgQy8hMVP8RAVAIvmvuN1N?=
+ =?us-ascii?Q?RNJnOyugp25yWUr2vwWyEdFdk7E77WcBjOM3LrA23IDsvAukhdiz5EdqhKqZ?=
+ =?us-ascii?Q?ImDwdU8yOmwuVUjSFCgsDNTRxYBTNSa4WYkEL0w4rb5fxO6Z7yqvYo6YLsw3?=
+ =?us-ascii?Q?3QnTC9oDO5rR395a+ZV3lk/k05cxQ21vgSsVLi3jrJdHes0dlU/r/6FdHLsa?=
+ =?us-ascii?Q?aPSU6ZJ2HCOVvBdYHN72Yq6sNmOd8T30uY4e2299QHyizWLbxI49KL+cxBuu?=
+ =?us-ascii?Q?3msEhdsdh1/5PoqLgtS/Gom9l4IuhbSX4+rlbQh8goWVahWJFxP04wSVCfRP?=
+ =?us-ascii?Q?YDpxMys+3wvZkWeHgW9JDyQyTFw14wUyfYB2xe8mftttjyA4heouDHIO0W/K?=
+ =?us-ascii?Q?dAaYtx2WqoJYuHTKXHrw8yXKVXrcS3u/zflG3Zo6Bj3gfY0X/tnJrc+QJxCC?=
+ =?us-ascii?Q?/zRxCa81HrWpq1GRq2cFsLZrx/GTfsVrHBzabAsw/O2nP1q++Jfxo7zEt/cF?=
+ =?us-ascii?Q?++C6iLOr7MchnSiB1kad/FCI/nP6OjYfJGdIZ3z7ZSS+URl9DhTP4D5fu5Vv?=
+ =?us-ascii?Q?vBerxL1mOJaPOwJk513zUumQGqtzGtI3hevkYe4ZsD4bRMNEBo+DNqhfQ91T?=
+ =?us-ascii?Q?DdjyCLymqlQjUxf9IQhaJ7w150gPn7WoJwv/Mrsi7FFR0Kcjan0tNVJp8TV8?=
+ =?us-ascii?Q?HZGkyDW3D3aoVeomE22JasqzlB0Bt3GVNpAP224D0yy2bYUgdeTTVB5faR7D?=
+ =?us-ascii?Q?KyxErYDGqej8ycK0QTR+OqFAIysvqxqg9D6zxhfmI6DAmjsfSXhLgkzJAUAP?=
+ =?us-ascii?Q?7A=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8da756d1-bd98-4a50-06fb-08dd7d6bd175
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2025 04:50:18.7242 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2025 04:53:38.7730 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qJK/1BNQQ17fGMOFKRa7uPorf89lVw3JXfS+NGfZeBseczVJDPCnnwj/P1b891JSxO7+s550xM7/DzI09jndjXFQeMNF4HffGAqytQiXBRk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB5864
+X-MS-Exchange-CrossTenant-UserPrincipalName: /pTkVgoVJoMEGaR+1ixULLKvRNKk6KoJmmkNYR7AZy6m6wg/a9WYtScq5VKYHx6/wQOz1SVO4oAO0UTOWL9Neg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB9086
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -196,442 +177,508 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Apr 16, 2025 at 10:22:36AM +0100, Matthew Auld wrote:
-> On 26/02/2025 01:47, Harish Chegondi wrote:
-> > Implement the EU stall sampling APIs to read() and poll() EU stall data.
-> > A work function periodically polls the EU stall data buffer write pointer
-> > registers to look for any new data and caches the write pointer. The read
-> > function compares the cached read and write pointers and copies any new
-> > data to the user space.
-> > 
-> > v11: Used gt->eu_stall->stream_lock instead of stream->buf_lock.
-> >       Removed read and write offsets from trace and added read size.
-> >       Moved workqueue from struct xe_eu_stall_data_stream to
-> >       struct xe_eu_stall_gt.
-> > v10: Used cancel_delayed_work_sync() instead of flush_delayed_work()
-> >       Replaced per xecore lock with a lock for all the xecore buffers
-> >       Code movement and optimizations as per review feedback
-> > v9:  New patch split from the previous patch.
-> >       Used *_delayed_work functions instead of hrtimer
-> >       Addressed the review feedback in read and poll functions
-> > 
-> > Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-> > Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
-> > ---
-> >   drivers/gpu/drm/xe/xe_eu_stall.c | 267 ++++++++++++++++++++++++++++++-
-> >   drivers/gpu/drm/xe/xe_trace.h    |  30 ++++
-> >   2 files changed, 294 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
-> > index 2e7d00f8ff40..e82a6ebfe979 100644
-> > --- a/drivers/gpu/drm/xe/xe_eu_stall.c
-> > +++ b/drivers/gpu/drm/xe/xe_eu_stall.c
-> > @@ -21,10 +21,13 @@
-> >   #include "xe_macros.h"
-> >   #include "xe_observation.h"
-> >   #include "xe_pm.h"
-> > +#include "xe_trace.h"
-> >   #include "regs/xe_eu_stall_regs.h"
-> >   #include "regs/xe_gt_regs.h"
-> > +#define POLL_PERIOD_MS	5
-> > +
-> >   static size_t per_xecore_buf_size = SZ_512K;
-> >   struct per_xecore_buf {
-> > @@ -37,15 +40,18 @@ struct per_xecore_buf {
-> >   };
-> >   struct xe_eu_stall_data_stream {
-> > +	bool pollin;
-> >   	bool enabled;
-> >   	int wait_num_reports;
-> >   	int sampling_rate_mult;
-> > +	wait_queue_head_t poll_wq;
-> >   	size_t data_record_size;
-> >   	size_t per_xecore_buf_size;
-> >   	struct xe_gt *gt;
-> >   	struct xe_bo *bo;
-> >   	struct per_xecore_buf *xecore_buf;
-> > +	struct delayed_work buf_poll_work;
-> >   };
-> >   struct xe_eu_stall_gt {
-> > @@ -53,6 +59,8 @@ struct xe_eu_stall_gt {
-> >   	struct mutex stream_lock;
-> >   	/* EU stall data stream */
-> >   	struct xe_eu_stall_data_stream *stream;
-> > +	/* Workqueue to schedule buffer pointers polling work */
-> > +	struct workqueue_struct *buf_ptr_poll_wq;
-> >   };
-> >   /**
-> > @@ -114,6 +122,7 @@ static void xe_eu_stall_fini(void *arg)
-> >   {
-> >   	struct xe_gt *gt = arg;
-> > +	destroy_workqueue(gt->eu_stall->buf_ptr_poll_wq);
-> >   	mutex_destroy(&gt->eu_stall->stream_lock);
-> >   	kfree(gt->eu_stall);
-> >   }
-> > @@ -139,11 +148,19 @@ int xe_eu_stall_init(struct xe_gt *gt)
-> >   	mutex_init(&gt->eu_stall->stream_lock);
-> > +	gt->eu_stall->buf_ptr_poll_wq = alloc_ordered_workqueue("xe_eu_stall", 0);
-> > +	if (!gt->eu_stall->buf_ptr_poll_wq) {
-> > +		ret = -ENOMEM;
-> > +		goto exit_free;
-> > +	}
-> > +
-> >   	ret = devm_add_action_or_reset(xe->drm.dev, xe_eu_stall_fini, gt);
-> >   	if (ret)
-> > -		goto exit_free;
-> > +		goto exit_destroy;
-> >   	return 0;
-> > +exit_destroy:
-> > +	destroy_workqueue(gt->eu_stall->buf_ptr_poll_wq);
-> >   exit_free:
-> >   	mutex_destroy(&gt->eu_stall->stream_lock);
-> >   	kfree(gt->eu_stall);
-> > @@ -248,6 +265,172 @@ static int xe_eu_stall_user_extensions(struct xe_device *xe, u64 extension,
-> >   	return 0;
-> >   }
-> > +/**
-> > + * buf_data_size - Calculate the number of bytes in a circular buffer
-> > + *		   given the read and write pointers and the size of
-> > + *		   the buffer.
-> > + *
-> > + * @buf_size: Size of the circular buffer
-> > + * @read_ptr: Read pointer with an additional overflow bit
-> > + * @write_ptr: Write pointer with an additional overflow bit
-> > + *
-> > + * Since the read and write pointers have an additional overflow bit,
-> > + * this function calculates the offsets from the pointers and use the
-> > + * offsets to calculate the data size in the buffer.
-> > + *
-> > + * Returns: number of bytes of data in the buffer
-> > + */
-> > +static u32 buf_data_size(size_t buf_size, u32 read_ptr, u32 write_ptr)
-> > +{
-> > +	u32 read_offset, write_offset, size = 0;
-> > +
-> > +	if (read_ptr == write_ptr)
-> > +		goto exit;
-> > +
-> > +	read_offset = read_ptr & (buf_size - 1);
-> > +	write_offset = write_ptr & (buf_size - 1);
-> > +
-> > +	if (write_offset > read_offset)
-> > +		size = write_offset - read_offset;
-> > +	else
-> > +		size = buf_size - read_offset + write_offset;
-> > +exit:
-> > +	return size;
-> > +}
-> > +
-> > +/**
-> > + * eu_stall_data_buf_poll - Poll for EU stall data in the buffer.
-> > + *
-> > + * @stream: xe EU stall data stream instance
-> > + *
-> > + * Returns: true if the EU stall buffer contains minimum stall data as
-> > + *	    specified by the event report count, else false.
-> > + */
-> > +static bool eu_stall_data_buf_poll(struct xe_eu_stall_data_stream *stream)
-> > +{
-> > +	u32 read_ptr, write_ptr_reg, write_ptr, total_data = 0;
-> > +	u32 buf_size = stream->per_xecore_buf_size;
-> > +	struct per_xecore_buf *xecore_buf;
-> > +	struct xe_gt *gt = stream->gt;
-> > +	bool min_data_present = false;
-> > +	u16 group, instance;
-> > +	unsigned int xecore;
-> > +
-> > +	mutex_lock(&gt->eu_stall->stream_lock);
-> > +	for_each_dss_steering(xecore, gt, group, instance) {
-> > +		xecore_buf = &stream->xecore_buf[xecore];
-> > +		read_ptr = xecore_buf->read;
-> > +		write_ptr_reg = xe_gt_mcr_unicast_read(gt, XEHPC_EUSTALL_REPORT,
-> > +						       group, instance);
-> > +		write_ptr = REG_FIELD_GET(XEHPC_EUSTALL_REPORT_WRITE_PTR_MASK, write_ptr_reg);
-> > +		write_ptr <<= 6;
-> > +		write_ptr &= ((buf_size << 1) - 1);
-> > +		if (!min_data_present) {
-> > +			total_data += buf_data_size(buf_size, read_ptr, write_ptr);
-> > +			if (num_data_rows(total_data) >= stream->wait_num_reports)
-> > +				min_data_present = true;
-> > +		}
-> > +		xecore_buf->write = write_ptr;
-> > +	}
-> > +	mutex_unlock(&gt->eu_stall->stream_lock);
-> > +
-> > +	return min_data_present;
-> > +}
-> > +
-> > +static int xe_eu_stall_data_buf_read(struct xe_eu_stall_data_stream *stream,
-> > +				     char __user *buf, size_t count,
-> > +				     size_t *total_data_size, struct xe_gt *gt,
-> > +				     u16 group, u16 instance, unsigned int xecore)
-> > +{
-> > +	size_t read_data_size, copy_size, buf_size;
-> > +	u32 read_ptr_reg, read_ptr, write_ptr;
-> > +	u8 *xecore_start_vaddr, *read_vaddr;
-> > +	struct per_xecore_buf *xecore_buf;
-> > +	u32 read_offset, write_offset;
-> > +
-> > +	/* Hardware increments the read and write pointers such that they can
-> > +	 * overflow into one additional bit. For example, a 256KB size buffer
-> > +	 * offset pointer needs 18 bits. But HW uses 19 bits for the read and
-> > +	 * write pointers. This technique avoids wasting a slot in the buffer.
-> > +	 * Read and write offsets are calculated from the pointers in order to
-> > +	 * check if the write pointer has wrapped around the array.
-> > +	 */
-> > +	xecore_buf = &stream->xecore_buf[xecore];
-> > +	xecore_start_vaddr = xecore_buf->vaddr;
-> > +	read_ptr = xecore_buf->read;
-> > +	write_ptr = xecore_buf->write;
-> > +	buf_size = stream->per_xecore_buf_size;
-> > +
-> > +	read_data_size = buf_data_size(buf_size, read_ptr, write_ptr);
-> > +	/* Read only the data that the user space buffer can accommodate */
-> > +	read_data_size = min_t(size_t, count - *total_data_size, read_data_size);
-> > +	if (read_data_size == 0)
-> > +		return 0;
-> > +
-> > +	read_offset = read_ptr & (buf_size - 1);
-> > +	write_offset = write_ptr & (buf_size - 1);
-> > +	read_vaddr = xecore_start_vaddr + read_offset;
-> > +
-> > +	if (write_offset > read_offset) {
-> > +		if (copy_to_user(buf + *total_data_size, read_vaddr, read_data_size))
-> > +			return -EFAULT;
-> > +	} else {
-> > +		if (read_data_size >= buf_size - read_offset)
-> > +			copy_size = buf_size - read_offset;
-> > +		else
-> > +			copy_size = read_data_size;
-> > +		if (copy_to_user(buf + *total_data_size, read_vaddr, copy_size))
-> > +			return -EFAULT;
-> > +		if (copy_to_user(buf + *total_data_size + copy_size,
-> > +				 xecore_start_vaddr, read_data_size - copy_size))
-> > +			return -EFAULT;
-> > +	}
-> > +
-> > +	*total_data_size += read_data_size;
-> > +	read_ptr += read_data_size;
-> > +
-> > +	/* Read pointer can overflow into one additional bit */
-> > +	read_ptr &= (buf_size << 1) - 1;
-> > +	read_ptr_reg = REG_FIELD_PREP(XEHPC_EUSTALL_REPORT1_READ_PTR_MASK, (read_ptr >> 6));
-> > +	read_ptr_reg = _MASKED_FIELD(XEHPC_EUSTALL_REPORT1_READ_PTR_MASK, read_ptr_reg);
-> > +	xe_gt_mcr_unicast_write(gt, XEHPC_EUSTALL_REPORT1, read_ptr_reg, group, instance);
-> > +	xecore_buf->read = read_ptr;
-> > +	trace_xe_eu_stall_data_read(group, instance, read_ptr, write_ptr,
-> > +				    read_data_size, *total_data_size);
-> > +	return 0;
-> > +}
-> > +
-> > +/**
-> > + * xe_eu_stall_stream_read_locked - copy EU stall counters data from the
-> > + *				    per xecore buffers to the userspace buffer
-> > + * @stream: A stream opened for EU stall count metrics
-> > + * @file: An xe EU stall data stream file
-> > + * @buf: destination buffer given by userspace
-> > + * @count: the number of bytes userspace wants to read
-> > + *
-> > + * Returns: Number of bytes copied or a negative error code
-> > + * If we've successfully copied any data then reporting that takes
-> > + * precedence over any internal error status, so the data isn't lost.
-> > + */
-> > +static ssize_t xe_eu_stall_stream_read_locked(struct xe_eu_stall_data_stream *stream,
-> > +					      struct file *file, char __user *buf,
-> > +					      size_t count)
-> > +{
-> > +	struct xe_gt *gt = stream->gt;
-> > +	size_t total_size = 0;
-> > +	u16 group, instance;
-> > +	unsigned int xecore;
-> > +	int ret = 0;
-> > +
-> > +	for_each_dss_steering(xecore, gt, group, instance) {
-> > +		ret = xe_eu_stall_data_buf_read(stream, buf, count, &total_size,
-> > +						gt, group, instance, xecore);
-> > +		if (ret || count == total_size)
-> > +			break;
-> > +	}
-> > +	return total_size ?: (ret ?: -EAGAIN);
-> > +}
-> > +
-> >   /*
-> >    * Userspace must enable the EU stall stream with DRM_XE_OBSERVATION_IOCTL_ENABLE
-> >    * before calling read().
-> > @@ -255,7 +438,41 @@ static int xe_eu_stall_user_extensions(struct xe_device *xe, u64 extension,
-> >   static ssize_t xe_eu_stall_stream_read(struct file *file, char __user *buf,
-> >   				       size_t count, loff_t *ppos)
-> >   {
-> > -	ssize_t ret = 0;
-> > +	struct xe_eu_stall_data_stream *stream = file->private_data;
-> > +	struct xe_gt *gt = stream->gt;
-> > +	ssize_t ret, aligned_count;
-> > +
-> > +	aligned_count = ALIGN_DOWN(count, stream->data_record_size);
-> > +	if (aligned_count == 0)
-> > +		return -EINVAL;
-> > +
-> > +	if (!stream->enabled) {
-> > +		xe_gt_dbg(gt, "EU stall data stream not enabled to read\n");
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	if (!(file->f_flags & O_NONBLOCK)) {
-> > +		do {
-> > +			ret = wait_event_interruptible(stream->poll_wq, stream->pollin);
-> > +			if (ret)
-> > +				return -EINTR;
-> > +
-> > +			mutex_lock(&gt->eu_stall->stream_lock);
-> > +			ret = xe_eu_stall_stream_read_locked(stream, file, buf, aligned_count);
-> > +			mutex_unlock(&gt->eu_stall->stream_lock);
-> > +		} while (ret == -EAGAIN);
-> > +	} else {
-> > +		mutex_lock(&gt->eu_stall->stream_lock);
-> > +		ret = xe_eu_stall_stream_read_locked(stream, file, buf, aligned_count);
-> > +		mutex_unlock(&gt->eu_stall->stream_lock);
-> > +	}
-> > +
-> > +	/*
-> > +	 * This may not work correctly if the user buffer is very small.
-> > +	 * We don't want to block the next read() when there is data in the buffer
-> > +	 * now, but couldn't be accommodated in the small user buffer.
-> > +	 */
-> > +	stream->pollin = false;
-> >   	return ret;
-> >   }
-> > @@ -348,6 +565,21 @@ static int xe_eu_stall_stream_enable(struct xe_eu_stall_data_stream *stream)
-> >   	return 0;
-> >   }
-> > +static void eu_stall_data_buf_poll_work_fn(struct work_struct *work)
-> > +{
-> > +	struct xe_eu_stall_data_stream *stream =
-> > +		container_of(work, typeof(*stream), buf_poll_work.work);
-> > +	struct xe_gt *gt = stream->gt;
-> > +
-> > +	if (eu_stall_data_buf_poll(stream)) {
-> > +		stream->pollin = true;
-> > +		wake_up(&stream->poll_wq);
-> > +	}
-> > +	queue_delayed_work(gt->eu_stall->buf_ptr_poll_wq,
-> > +			   &stream->buf_poll_work,
-> > +			   msecs_to_jiffies(POLL_PERIOD_MS));
-> > +}
-> > +
-> >   static int xe_eu_stall_stream_init(struct xe_eu_stall_data_stream *stream,
-> >   				   struct eu_stall_open_properties *props)
-> >   {
-> > @@ -372,6 +604,9 @@ static int xe_eu_stall_stream_init(struct xe_eu_stall_data_stream *stream,
-> >   			  max_wait_num_reports);
-> >   		return -EINVAL;
-> >   	}
-> > +
-> > +	init_waitqueue_head(&stream->poll_wq);
-> > +	INIT_DELAYED_WORK(&stream->buf_poll_work, eu_stall_data_buf_poll_work_fn);
-> >   	stream->per_xecore_buf_size = per_xecore_buf_size;
-> >   	stream->sampling_rate_mult = props->sampling_rate_mult;
-> >   	stream->wait_num_reports = props->wait_num_reports;
-> > @@ -389,15 +624,35 @@ static int xe_eu_stall_stream_init(struct xe_eu_stall_data_stream *stream,
-> >   	return 0;
-> >   }
-> > +static __poll_t xe_eu_stall_stream_poll_locked(struct xe_eu_stall_data_stream *stream,
-> > +					       struct file *file, poll_table *wait)
-> > +{
-> > +	__poll_t events = 0;
-> > +
-> > +	poll_wait(file, &stream->poll_wq, wait);
-> > +
-> > +	if (stream->pollin)
-> > +		events |= EPOLLIN;
-> > +
-> > +	return events;
-> > +}
-> > +
-> >   static __poll_t xe_eu_stall_stream_poll(struct file *file, poll_table *wait)
-> >   {
-> > -	__poll_t ret = 0;
-> > +	struct xe_eu_stall_data_stream *stream = file->private_data;
-> > +	struct xe_gt *gt = stream->gt;
-> > +	__poll_t ret;
-> > +
-> > +	mutex_lock(&gt->eu_stall->stream_lock);
-> > +	ret = xe_eu_stall_stream_poll_locked(stream, file, wait);
-> > +	mutex_unlock(&gt->eu_stall->stream_lock);
-> >   	return ret;
-> >   }
-> >   static int xe_eu_stall_enable_locked(struct xe_eu_stall_data_stream *stream)
-> >   {
-> > +	struct xe_gt *gt = stream->gt;
-> >   	int ret = 0;
-> >   	if (stream->enabled)
-> > @@ -406,6 +661,10 @@ static int xe_eu_stall_enable_locked(struct xe_eu_stall_data_stream *stream)
-> >   	stream->enabled = true;
-Adding a delay here is helping me to consistently reproduce the
-deadlock. This is just for testing the fix.
-> >   	ret = xe_eu_stall_stream_enable(stream);
-> > +
-> > +	queue_delayed_work(gt->eu_stall->buf_ptr_poll_wq,
-> > +			   &stream->buf_poll_work,
-> > +			   msecs_to_jiffies(POLL_PERIOD_MS));
-> >   	return ret;
-> >   }
-> > @@ -420,6 +679,8 @@ static int xe_eu_stall_disable_locked(struct xe_eu_stall_data_stream *stream)
-> >   	xe_gt_mcr_multicast_write(gt, XEHPC_EUSTALL_BASE, 0);
-> > +	cancel_delayed_work_sync(&stream->buf_poll_work);
-> > +
+On Mon, Apr 07, 2025 at 03:47:01PM +0530, Himal Prasad Ghimiray wrote:
+> This commit adds prefetch support for SVM ranges, utilizing the
+> existing ioctl vm_bind functionality to achieve this.
 > 
-> There looks to be a possible deadlock here:
-> https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4598
+> v2: rebase
 > 
-> Can you please take a look?
-I am working on a fix for this issue. I have seen this deadlock warning
-only once in my testing so far. In order to consistently create the
-deadlock, I had to add delay in xe_eu_stall_enable_locked for testing.
-I will send out the patch soon.
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_pt.c |  61 +++++++++---
+>  drivers/gpu/drm/xe/xe_vm.c | 185 +++++++++++++++++++++++++++++++++++--
+>  2 files changed, 222 insertions(+), 24 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> index de4e3edda758..59dc065fae93 100644
+> --- a/drivers/gpu/drm/xe/xe_pt.c
+> +++ b/drivers/gpu/drm/xe/xe_pt.c
+> @@ -1458,7 +1458,8 @@ static int xe_pt_svm_pre_commit(struct xe_migrate_pt_update *pt_update)
+>  	struct xe_vm *vm = pt_update->vops->vm;
+>  	struct xe_vma_ops *vops = pt_update->vops;
+>  	struct xe_vma_op *op;
+> -	int err;
+> +	int ranges_count;
+> +	int err, i;
+>  
+>  	err = xe_pt_pre_commit(pt_update);
+>  	if (err)
+> @@ -1467,20 +1468,33 @@ static int xe_pt_svm_pre_commit(struct xe_migrate_pt_update *pt_update)
+>  	xe_svm_notifier_lock(vm);
+>  
+>  	list_for_each_entry(op, &vops->list, link) {
+> -		struct xe_svm_range *range = op->map_range.range;
+> +		struct xe_svm_range *range = NULL;
+>  
+>  		if (op->subop == XE_VMA_SUBOP_UNMAP_RANGE)
+>  			continue;
+>  
+> -		xe_svm_range_debug(range, "PRE-COMMIT");
+> -
+> -		xe_assert(vm->xe, xe_vma_is_cpu_addr_mirror(op->map_range.vma));
+> -		xe_assert(vm->xe, op->subop == XE_VMA_SUBOP_MAP_RANGE);
+> +		if (op->base.op == DRM_GPUVA_OP_PREFETCH) {
+> +			xe_assert(vm->xe,
+> +				  xe_vma_is_cpu_addr_mirror(gpuva_to_vma(op->base.prefetch.va)));
+> +			ranges_count = op->prefetch_range.ranges_count;
+> +		} else {
+> +			xe_assert(vm->xe, xe_vma_is_cpu_addr_mirror(op->map_range.vma));
+> +			xe_assert(vm->xe, op->subop == XE_VMA_SUBOP_MAP_RANGE);
+> +			ranges_count  = 1;
+> +		}
+>  
+> -		if (!xe_svm_range_pages_valid(range)) {
+> -			xe_svm_range_debug(range, "PRE-COMMIT - RETRY");
+> -			xe_svm_notifier_unlock(vm);
+> -			return -EAGAIN;
+> +		for (i = 0; i < ranges_count; i++) {
 
-Thank You
-Harish.
+xa_for_each as it doesn't make any assumptions above the key (e.g. the value of i).
 
-> 
-> >   	xe_force_wake_put(gt_to_fw(gt), XE_FW_RENDER);
-> >   	xe_pm_runtime_put(gt_to_xe(gt));
-> > diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-> > index d5281de04d54..b4a3577df70c 100644
-> > --- a/drivers/gpu/drm/xe/xe_trace.h
-> > +++ b/drivers/gpu/drm/xe/xe_trace.h
-> > @@ -427,6 +427,36 @@ DEFINE_EVENT(xe_pm_runtime, xe_pm_runtime_get_ioctl,
-> >   	     TP_ARGS(xe, caller)
-> >   );
-> > +TRACE_EVENT(xe_eu_stall_data_read,
-> > +	    TP_PROTO(u8 slice, u8 subslice,
-> > +		     u32 read_ptr, u32 write_ptr,
-> > +		     size_t read_size, size_t total_size),
-> > +	    TP_ARGS(slice, subslice,
-> > +		    read_ptr, write_ptr,
-> > +		    read_size, total_size),
-> > +
-> > +	    TP_STRUCT__entry(__field(u8, slice)
-> > +			     __field(u8, subslice)
-> > +			     __field(u32, read_ptr)
-> > +			     __field(u32, write_ptr)
-> > +			     __field(size_t, read_size)
-> > +			     __field(size_t, total_size)
-> > +			     ),
-> > +
-> > +	    TP_fast_assign(__entry->slice = slice;
-> > +			   __entry->subslice = subslice;
-> > +			   __entry->read_ptr = read_ptr;
-> > +			   __entry->write_ptr = write_ptr;
-> > +			   __entry->read_size = read_size;
-> > +			   __entry->total_size = total_size;
-> > +			   ),
-> > +
-> > +	    TP_printk("slice: %u subslice: %u read ptr: 0x%x write ptr: 0x%x read size: %zu total read size: %zu",
-> > +		      __entry->slice, __entry->subslice,
-> > +		      __entry->read_ptr, __entry->write_ptr,
-> > +		      __entry->read_size, __entry->total_size)
-> > +);
-> > +
-> >   #endif
-> >   /* This part must be outside protection */
+> +			if (op->base.op == DRM_GPUVA_OP_PREFETCH)
+> +				range = xa_load(&op->prefetch_range.range, i);
+
+I'd move this logic above... So I'd write it like this...
+
+if (op->base.op == DRM_GPUVA_OP_PREFETCH) {
+	assert
+	xe_for_each
+		do_pages_check()
+} else {
+	assert
+	do_pages_check();
+}
+
+> +			else
+> +				range = op->map_range.range;
+> +			xe_svm_range_debug(range, "PRE-COMMIT");
+> +
+> +			if (!xe_svm_range_pages_valid(range)) {
+> +				xe_svm_range_debug(range, "PRE-COMMIT - RETRY");
+> +				xe_svm_notifier_unlock(vm);
+> +				return -EAGAIN;
+
+So in the case of prefetch, this is bit inconsistent as below when
+things race, you return -ENODATA which is converted to 0 in the IOCTL.
+-EAGAIN here could result in a livelock in the right conditions as
+-EAGAIN means must retry. I think maybe just -ENODATA if a prefetch
+fails... If there are any other binds in the array of IOCTL they will
+just fault I guess. Maybe not a concern as only VK uses array of binds
+at the moment.
+
+> +			}
+>  		}
+>  	}
+>  
+> @@ -2065,11 +2079,21 @@ static int op_prepare(struct xe_vm *vm,
+>  	{
+>  		struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
+>  
+> -		if (xe_vma_is_cpu_addr_mirror(vma))
+> -			break;
+> +		if (xe_vma_is_cpu_addr_mirror(vma)) {
+> +			struct xe_svm_range *range;
+> +			int i;
+>  
+> -		err = bind_op_prepare(vm, tile, pt_update_ops, vma, false);
+> -		pt_update_ops->wait_vm_kernel = true;
+> +			for (i = 0; i < op->prefetch_range.ranges_count; i++) {
+> +				range = xa_load(&op->prefetch_range.range, i);
+
+Again xe_for_each...
+
+> +				err = bind_range_prepare(vm, tile, pt_update_ops,
+> +							 vma, range);
+> +				if (err)
+> +					return err;
+> +			}
+> +		} else {
+> +			err = bind_op_prepare(vm, tile, pt_update_ops, vma, false);
+> +			pt_update_ops->wait_vm_kernel = true;
+> +		}
+>  		break;
+>  	}
+>  	case DRM_GPUVA_OP_DRIVER:
+> @@ -2273,9 +2297,16 @@ static void op_commit(struct xe_vm *vm,
+>  	{
+>  		struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
+>  
+> -		if (!xe_vma_is_cpu_addr_mirror(vma))
+> +		if (xe_vma_is_cpu_addr_mirror(vma)) {
+> +			for (int i = 0 ; i < op->prefetch_range.ranges_count; i++) {
+
+Again xe_for_each...
+
+> +				struct xe_svm_range *range = xa_load(&op->prefetch_range.range, i);
+> +
+> +				range_present_and_invalidated_tile(vm, range, tile->id);
+> +			}
+> +		} else {
+>  			bind_op_commit(vm, tile, pt_update_ops, vma, fence,
+>  				       fence2, false);
+> +		}
+>  		break;
+>  	}
+>  	case DRM_GPUVA_OP_DRIVER:
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 57af2c37f927..ffd7ad664921 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -798,10 +798,36 @@ static int xe_vma_ops_alloc(struct xe_vma_ops *vops, bool array_of_binds)
+>  }
+>  ALLOW_ERROR_INJECTION(xe_vma_ops_alloc, ERRNO);
+>  
+> +static void clean_svm_prefetch_op(struct xe_vma_op *op)
+> +{
+
+Can we rename this with fini convention to match xe_vma_ops_fini?
+
+> +	struct xe_vma *vma;
+> +
+> +	vma = gpuva_to_vma(op->base.prefetch.va);
+> +
+> +	if (op->base.op == DRM_GPUVA_OP_PREFETCH && xe_vma_is_cpu_addr_mirror(vma)) {
+> +		xa_destroy(&op->prefetch_range.range);
+> +		op->prefetch_range.ranges_count = 0;
+
+Do you need to set 'op->prefetch_range.ranges_count' to zero here.
+
+> +	}
+> +}
+> +
+> +static void clean_svm_prefetch_in_vma_ops(struct xe_vma_ops *vops)
+> +{
+
+Same here, fini convention?
+
+> +	struct xe_vma_op *op;
+> +
+> +	if (!(vops->flags & XE_VMA_OPS_HAS_SVM_PREFETCH))
+> +		return;
+> +
+> +	list_for_each_entry(op, &vops->list, link) {
+> +		clean_svm_prefetch_op(op);
+> +	}
+
+Brackets not needed.
+
+> +}
+> +
+>  static void xe_vma_ops_fini(struct xe_vma_ops *vops)
+>  {
+>  	int i;
+>  
+> +	clean_svm_prefetch_in_vma_ops(vops);
+> +
+>  	for (i = 0; i < XE_MAX_TILES_PER_DEVICE; ++i)
+>  		kfree(vops->pt_update_ops[i].ops);
+>  }
+> @@ -2248,13 +2274,25 @@ static bool __xe_vm_needs_clear_scratch_pages(struct xe_vm *vm, u32 bind_flags)
+>  	return true;
+>  }
+>  
+> +static void clean_svm_prefetch_in_gpuva_ops(struct drm_gpuva_ops *ops)
+> +{
+
+Same here, fini convention?
+
+> +	struct drm_gpuva_op *__op;
+> +
+> +	drm_gpuva_for_each_op(__op, ops) {
+> +		struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
+> +
+> +		clean_svm_prefetch_op(op);
+> +	}
+> +}
+> +
+>  /*
+>   * Create operations list from IOCTL arguments, setup operations fields so parse
+>   * and commit steps are decoupled from IOCTL arguments. This step can fail.
+>   */
+>  static struct drm_gpuva_ops *
+> -vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+> -			 u64 bo_offset_or_userptr, u64 addr, u64 range,
+> +vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
+> +			 struct xe_bo *bo, u64 bo_offset_or_userptr,
+> +			 u64 addr, u64 range,
+>  			 u32 operation, u32 flags,
+>  			 u32 prefetch_region, u16 pat_index)
+>  {
+> @@ -2262,6 +2300,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+>  	struct drm_gpuva_ops *ops;
+>  	struct drm_gpuva_op *__op;
+>  	struct drm_gpuvm_bo *vm_bo;
+> +	u64 range_end = addr + range;
+>  	int err;
+>  
+>  	lockdep_assert_held_write(&vm->lock);
+> @@ -2323,14 +2362,61 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+>  			op->map.invalidate_on_bind =
+>  				__xe_vm_needs_clear_scratch_pages(vm, flags);
+>  		} else if (__op->op == DRM_GPUVA_OP_PREFETCH) {
+> -			op->prefetch.region = prefetch_region;
+> -		}
+> +			struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
+> +
+> +			if (!xe_vma_is_cpu_addr_mirror(vma)) {
+> +				op->prefetch.region = prefetch_region;
+> +				break;
+> +			}
+>  
+> +			struct drm_gpusvm_ctx ctx = {
+> +			.read_only = xe_vma_read_only(vma),
+> +			.devmem_possible = IS_DGFX(vm->xe) &&
+> +					   IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR),
+> +			.check_pages_threshold = IS_DGFX(vm->xe) &&
+> +						 IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR) ?
+> +						 SZ_64K : 0,
+
+The alignment looks weird here.
+
+Also you don't techincally need to set check_pages_threshold here give
+this is used by get_pages which is not called here.
+
+> +			};
+> +
+> +			op->prefetch_range.region = prefetch_region;
+> +			struct xe_svm_range *svm_range;
+> +			int i = 0;
+
+I don't think you need 'i' here, you probably just can use xa_alloc
+rather than xa_store if use xe_for_each everywhere else.
+
+
+> +
+> +			xa_init(&op->prefetch_range.range);
+> +			op->prefetch_range.ranges_count = 0;
+> +alloc_next_range:
+> +			svm_range = xe_svm_range_find_or_insert(vm, addr, vma, &ctx);
+> +
+
+I think you want to check if range has a mapping and is in preferred
+location, if it is then don't add to the xarray as no reason to try to
+migrate it or rebind the GPU pages.
+
+> +			if (PTR_ERR(svm_range) == -ENOENT)
+> +				break;
+> +
+> +			if (IS_ERR(svm_range)) {
+> +				err = PTR_ERR(svm_range);
+> +				goto unwind_prefetch_ops;
+> +			}
+> +
+> +			xa_store(&op->prefetch_range.range, i, svm_range, GFP_KERNEL);
+> +			op->prefetch_range.ranges_count++;
+> +			vops->flags |= XE_VMA_OPS_HAS_SVM_PREFETCH;
+> +
+> +			if (range_end > xe_svm_range_end(svm_range) &&
+> +			    xe_svm_range_end(svm_range) < xe_vma_end(vma)) {
+> +				i++;
+> +				addr = xe_svm_range_end(svm_range);
+> +				goto alloc_next_range;
+> +			}
+> +		}
+>  		print_op(vm->xe, __op);
+>  	}
+>  
+>  	return ops;
+> +
+> +unwind_prefetch_ops:
+> +	clean_svm_prefetch_in_gpuva_ops(ops);
+> +	drm_gpuva_ops_free(&vm->gpuvm, ops);
+> +	return ERR_PTR(err);
+>  }
+> +
+>  ALLOW_ERROR_INJECTION(vm_bind_ioctl_ops_create, ERRNO);
+>  
+>  static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
+> @@ -2645,8 +2731,12 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+>  					return err;
+>  			}
+>  
+> -			if (!xe_vma_is_cpu_addr_mirror(vma))
+> +			if (xe_vma_is_cpu_addr_mirror(vma))
+> +				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask,
+> +							      op->prefetch_range.ranges_count);
+> +			else
+>  				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask, 1);
+> +
+>  			break;
+>  		default:
+>  			drm_warn(&vm->xe->drm, "NOT POSSIBLE");
+> @@ -2772,6 +2862,58 @@ static int check_ufence(struct xe_vma *vma)
+>  	return 0;
+>  }
+>  
+> +static int prefetch_ranges_lock_and_prep(struct xe_vm *vm,
+> +					 struct xe_vma_op *op)
+> +{
+> +	int err = 0;
+> +
+> +	if (op->base.op  == DRM_GPUVA_OP_PREFETCH) {
+
+
+if (op->base.op != DRM_GPUVA_OP_PREFETCH || xe_vma_is_cpu_addr_mirror(vma))
+	return 0;
+
+Will help with spacing. Or do this check at the caller.
+
+> +		struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
+> +		struct drm_gpusvm_ctx ctx = {
+> +			.read_only = xe_vma_read_only(vma),
+> +			.devmem_possible = IS_DGFX(vm->xe) &&
+> +					   IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR),
+> +			.check_pages_threshold = IS_DGFX(vm->xe) &&
+> +						 IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR) ?
+> +						 SZ_64K : 0,
+> +		};
+> +		struct xe_svm_range *svm_range;
+> +		struct xe_tile *tile;
+> +		u32 region;
+> +		int i;
+> +
+> +		if (!xe_vma_is_cpu_addr_mirror(vma))
+> +			return 0;
+> +
+> +		region = op->prefetch_range.region;
+> +
+> +		/* TODO: Threading the migration */
+> +		for (i = 0; i < op->prefetch_range.ranges_count; i++) {
+
+Again xa_for_each...
+
+> +			svm_range = xa_load(&op->prefetch_range.range, i);
+> +			if (xe_svm_range_needs_migrate_to_vram(svm_range, vma, region)) {
+> +				tile = &vm->xe->tiles[region_to_mem_type[region] - XE_PL_VRAM0];
+> +				err = xe_svm_alloc_vram(vm, tile, svm_range, &ctx);
+> +				if (err) {
+> +					drm_err(&vm->xe->drm, "VRAM allocation failed, can be retried from userspace, asid=%u, gpusvm=%p, errno=%pe\n",
+> +						vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
+
+Not drm_err here, drm_dbg as user space can easily retrigger this.
+
+> +					return -ENODATA;
+
+So this gets squashed into return 0, which I think is correct for now.
+Same explaination as above wrt to error codes.
+
+> +				}
+> +			}
+> +
+> +			err = xe_svm_range_get_pages(vm, svm_range, &ctx);
+> +			if (err) {
+> +				if (err == -EOPNOTSUPP || err == -EFAULT || err == -EPERM)
+> +					err = -ENODATA;
+> +
+> +				drm_err(&vm->xe->drm, "Get pages failed, asid=%u, gpusvm=%p, errno=%pe\n",
+> +					vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
+
+Same as above.
+
+We are going to want IGTs to test these error paths btw, issue prefetch
+then have another thread immediately touch some of the memory to abort
+the prefetch.
+
+> +				return err;
+> +			}
+> +		}
+> +	}
+> +	return err;
+> +}
+> +
+>  static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
+>  			    struct xe_vma_op *op)
+>  {
+> @@ -2809,7 +2951,12 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
+>  	case DRM_GPUVA_OP_PREFETCH:
+>  	{
+>  		struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
+> -		u32 region = op->prefetch.region;
+> +		u32 region;
+> +
+> +		if (xe_vma_is_cpu_addr_mirror(vma))
+> +			region = op->prefetch_range.region;
+> +		else
+> +			region = op->prefetch.region;
+>  
+>  		xe_assert(vm->xe, region <= ARRAY_SIZE(region_to_mem_type));
+>  
+> @@ -2828,6 +2975,23 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
+>  	return err;
+>  }
+>  
+> +static int xe_vma_ops_execute_ready(struct xe_vm *vm, struct xe_vma_ops *vops)
+> +{
+
+Let's make these names consistent.
+
+How about...
+
+s/xe_vma_ops_execute_ready/vm_bind_ioctl_ops_prefetch_ranges
+
+s/prefetch_ranges_lock_and_prep/prefetch_ranges
+
+> +	struct xe_vma_op *op;
+> +	int err;
+> +
+> +	if (!(vops->flags & XE_VMA_OPS_HAS_SVM_PREFETCH))
+> +		return 0;
+> +
+> +	list_for_each_entry(op, &vops->list, link) {
+> +		err = prefetch_ranges_lock_and_prep(vm, op);
+> +		if (err)
+> +			return err;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static int vm_bind_ioctl_ops_lock_and_prep(struct drm_exec *exec,
+>  					   struct xe_vm *vm,
+>  					   struct xe_vma_ops *vops)
+> @@ -2850,7 +3014,6 @@ static int vm_bind_ioctl_ops_lock_and_prep(struct drm_exec *exec,
+>  	    vm->xe->vm_inject_error_position == FORCE_OP_ERROR_LOCK)
+>  		return -ENOSPC;
+>  #endif
+> -
+
+Look unrelated.
+
+Matt
+
+>  	return 0;
+>  }
+>  
+> @@ -3492,7 +3655,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>  		u32 prefetch_region = bind_ops[i].prefetch_mem_region_instance;
+>  		u16 pat_index = bind_ops[i].pat_index;
+>  
+> -		ops[i] = vm_bind_ioctl_ops_create(vm, bos[i], obj_offset,
+> +		ops[i] = vm_bind_ioctl_ops_create(vm, &vops, bos[i], obj_offset,
+>  						  addr, range, op, flags,
+>  						  prefetch_region, pat_index);
+>  		if (IS_ERR(ops[i])) {
+> @@ -3525,6 +3688,10 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>  	if (err)
+>  		goto unwind_ops;
+>  
+> +	err = xe_vma_ops_execute_ready(vm, &vops);
+> +	if (err)
+> +		goto unwind_ops;
+> +
+>  	fence = vm_bind_ioctl_ops_execute(vm, &vops);
+>  	if (IS_ERR(fence))
+>  		err = PTR_ERR(fence);
+> @@ -3594,7 +3761,7 @@ struct dma_fence *xe_vm_bind_kernel_bo(struct xe_vm *vm, struct xe_bo *bo,
+>  
+>  	xe_vma_ops_init(&vops, vm, q, NULL, 0);
+>  
+> -	ops = vm_bind_ioctl_ops_create(vm, bo, 0, addr, bo->size,
+> +	ops = vm_bind_ioctl_ops_create(vm, &vops, bo, 0, addr, bo->size,
+>  				       DRM_XE_VM_BIND_OP_MAP, 0, 0,
+>  				       vm->xe->pat.idx[cache_lvl]);
+>  	if (IS_ERR(ops)) {
+> -- 
+> 2.34.1
 > 
