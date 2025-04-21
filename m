@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 336D1C369D2
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Apr 2025 15:50:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE6E4C369AB
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Apr 2025 15:51:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6D4110E031;
-	Mon, 21 Apr 2025 15:50:04 +0000 (UTC)
-Received: from b68e5b3b99e1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDE2310E031;
- Mon, 21 Apr 2025 15:50:02 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E8CD10E031;
+	Mon, 21 Apr 2025 15:51:10 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aSbJEysq";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47DD110E0ED;
+ Mon, 21 Apr 2025 15:51:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1745250668; x=1776786668;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=xaErQpjTOFI5gGW8ELb86Uy2U3jv4OZOJmYA9XLXnlQ=;
+ b=aSbJEysqwAD+fxFlNVCEPwP3Gw49hUPoT14JAvnnpMA48QKt9WJtbyWF
+ V7aRnjuc8t7vZJRltySTL9qhknar+tUoFE8D+uq3pRT9mpIVRdsS2ptRq
+ 8KXW+Opcj/RuiBRVwKXXClNnXRP5qPlh2euknH59bsV4IOJMU3YLzMw2b
+ 7T+9m+ddSf33tO7P1ryMg311ZHFGJWZ82u30r3Y2t/kzNEX7wi1vtv5I6
+ +cZKrCrpKicQBwuCLERs6C14EQYzsF7iMDZnqWrgNuaG3AhClTRSDu8dU
+ gyoz5UxuHDGnrG/eQuivkMjGkKU4XJTZtxLn7lefhXHkYdAi0LDs2tC4g A==;
+X-CSE-ConnectionGUID: oX2Kd+jNRE2b0azDbVLMAw==
+X-CSE-MsgGUID: A/GJhD4+RJaqOhC9+9TJTA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11410"; a="57434058"
+X-IronPort-AV: E=Sophos;i="6.15,228,1739865600"; d="scan'208";a="57434058"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2025 08:51:08 -0700
+X-CSE-ConnectionGUID: EjnDYk0lTGyM0sq8z22GgQ==
+X-CSE-MsgGUID: l0FnK8RVQE6vjBYTDCHOMA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,228,1739865600"; d="scan'208";a="162725559"
+Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
+ by orviesa002.jf.intel.com with ESMTP; 21 Apr 2025 08:51:06 -0700
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com,
+	ankit.k.nautiyal@intel.com
+Subject: [PATCH v2 01/13] drm/i915/vrr: Refactor vmin/vmax stuff
+Date: Mon, 21 Apr 2025 21:18:48 +0530
+Message-ID: <20250421154900.2095202-2-mitulkumar.ajitkumar.golani@intel.com>
+X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250421154900.2095202-1-mitulkumar.ajitkumar.golani@intel.com>
+References: <20250421154900.2095202-1-mitulkumar.ajitkumar.golani@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/hwmon=3A_Documentation_?=
- =?utf-8?q?fixes_wrt_kernel_version?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 21 Apr 2025 15:50:02 -0000
-Message-ID: <174525060283.22615.17922148364573528107@b68e5b3b99e1>
-X-Patchwork-Hint: ignore
-References: <20250421-hwmon-doc-fix-v1-0-9f68db702249@intel.com>
-In-Reply-To: <20250421-hwmon-doc-fix-v1-0-9f68db702249@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,117 +65,95 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Series: drm/xe/hwmon: Documentation fixes wrt kernel version
-URL   : https://patchwork.freedesktop.org/series/148023/
-State : success
+Refactor vmin/vmax functions for better computation.
 
-== Summary ==
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_vrr.c | 41 +++++++++++-------------
+ 1 file changed, 19 insertions(+), 22 deletions(-)
 
-lib/modules/6.15.0-rc2-xe+/kernel/arch/x86/events/rapl.ko
-lib/modules/6.15.0-rc2-xe+/kernel/arch/x86/kvm/
-lib/modules/6.15.0-rc2-xe+/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.15.0-rc2-xe+/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.15.0-rc2-xe+/kernel/arch/x86/kvm/kvm-amd.ko
-lib/modules/6.15.0-rc2-xe+/kernel/virt/
-lib/modules/6.15.0-rc2-xe+/kernel/virt/lib/
-lib/modules/6.15.0-rc2-xe+/kernel/virt/lib/irqbypass.ko
-lib/modules/6.15.0-rc2-xe+/kernel/kernel/
-lib/modules/6.15.0-rc2-xe+/kernel/kernel/kheaders.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/ecrdsa_generic.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/xcbc.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/serpent_generic.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/aria_generic.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/crypto_simd.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/adiantum.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/tcrypt.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/crypto_engine.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/zstd.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/asymmetric_keys/
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/des_generic.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/xctr.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/authenc.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/sm4_generic.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/camellia_generic.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/sm3.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/pcrypt.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/aegis128.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/af_alg.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/algif_aead.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/cmac.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/sm3_generic.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/aes_ti.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/chacha_generic.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/poly1305_generic.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/nhpoly1305.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/crc32_generic.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/essiv.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/ccm.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/wp512.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/streebog_generic.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/authencesn.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/echainiv.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/lrw.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/cryptd.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/crypto_user.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/algif_hash.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/polyval-generic.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/hctr2.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/842.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/pcbc.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/ansi_cprng.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/cast6_generic.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/twofish_common.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/twofish_generic.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/lz4hc.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/blowfish_generic.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/md4.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/chacha20poly1305.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/curve25519-generic.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/lz4.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/rmd160.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/algif_skcipher.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/cast5_generic.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/fcrypt.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/ecdsa_generic.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/sm4.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/cast_common.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/blowfish_common.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/michael_mic.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/async_tx/
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.15.0-rc2-xe+/kernel/crypto/algif_rng.ko
-lib/modules/6.15.0-rc2-xe+/kernel/block/
-lib/modules/6.15.0-rc2-xe+/kernel/block/bfq.ko
-lib/modules/6.15.0-rc2-xe+/kernel/block/kyber-iosched.ko
-lib/modules/6.15.0-rc2-xe+/build
-lib/modules/6.15.0-rc2-xe+/modules.alias.bin
-lib/modules/6.15.0-rc2-xe+/modules.builtin
-lib/modules/6.15.0-rc2-xe+/modules.softdep
-lib/modules/6.15.0-rc2-xe+/modules.alias
-lib/modules/6.15.0-rc2-xe+/modules.order
-lib/modules/6.15.0-rc2-xe+/modules.symbols
-lib/modules/6.15.0-rc2-xe+/modules.dep.bin
-+ mv kernel-debug.tar.gz ..
-+ cd ..
-+ rm -rf archive-debug
-+ sync
-+ echo '[+] Finished building and packaging '\''debug'\''!'
-[+] Finished building and packaging 'debug'!
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index c6565baf815a..adfd231eb578 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -146,37 +146,41 @@ static int intel_vrr_vblank_exit_length(const struct intel_crtc_state *crtc_stat
+ 		return crtc_state->vrr.pipeline_full + crtc_state->framestart_delay + 1;
+ }
+ 
+-int intel_vrr_vmin_vtotal(const struct intel_crtc_state *crtc_state)
++static int intel_vrr_vtotal(const struct intel_crtc_state *crtc_state, int vmin_vmax)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+ 
+-	/* Min vblank actually determined by flipline */
+ 	if (DISPLAY_VER(display) >= 13)
+-		return intel_vrr_vmin_flipline(crtc_state);
++		return vmin_vmax;
+ 	else
+-		return intel_vrr_vmin_flipline(crtc_state) +
+-			intel_vrr_real_vblank_delay(crtc_state);
++		return vmin_vmax + intel_vrr_real_vblank_delay(crtc_state);
+ }
+ 
+-int intel_vrr_vmax_vtotal(const struct intel_crtc_state *crtc_state)
++static int intel_vrr_vblank_start(const struct intel_crtc_state *crtc_state,
++				  int vmin_vmax)
+ {
+-	struct intel_display *display = to_intel_display(crtc_state);
++	return intel_vrr_vtotal(crtc_state, vmin_vmax) -
++			intel_vrr_vblank_exit_length(crtc_state);
++}
+ 
+-	if (DISPLAY_VER(display) >= 13)
+-		return crtc_state->vrr.vmax;
+-	else
+-		return crtc_state->vrr.vmax +
+-			intel_vrr_real_vblank_delay(crtc_state);
++int intel_vrr_vmin_vtotal(const struct intel_crtc_state *crtc_state)
++{
++	return intel_vrr_vtotal(crtc_state, intel_vrr_vmin_flipline(crtc_state));
++}
++
++int intel_vrr_vmax_vtotal(const struct intel_crtc_state *crtc_state)
++{
++	return intel_vrr_vtotal(crtc_state, crtc_state->vrr.vmax);
+ }
+ 
+ int intel_vrr_vmin_vblank_start(const struct intel_crtc_state *crtc_state)
+ {
+-	return intel_vrr_vmin_vtotal(crtc_state) - intel_vrr_vblank_exit_length(crtc_state);
++	return intel_vrr_vblank_start(crtc_state, intel_vrr_vmin_flipline(crtc_state));
+ }
+ 
+ int intel_vrr_vmax_vblank_start(const struct intel_crtc_state *crtc_state)
+ {
+-	return intel_vrr_vmax_vtotal(crtc_state) - intel_vrr_vblank_exit_length(crtc_state);
++	return intel_vrr_vblank_start(crtc_state, crtc_state->vrr.vmax);
+ }
+ 
+ static bool
+@@ -257,14 +261,7 @@ void intel_vrr_compute_vrr_timings(struct intel_crtc_state *crtc_state)
+ static
+ int intel_vrr_fixed_rr_vtotal(const struct intel_crtc_state *crtc_state)
+ {
+-	struct intel_display *display = to_intel_display(crtc_state);
+-	int crtc_vtotal = crtc_state->hw.adjusted_mode.crtc_vtotal;
+-
+-	if (DISPLAY_VER(display) >= 13)
+-		return crtc_vtotal;
+-	else
+-		return crtc_vtotal -
+-			intel_vrr_real_vblank_delay(crtc_state);
++	return intel_vrr_vtotal(crtc_state, crtc_state->hw.adjusted_mode.crtc_vtotal);
+ }
+ 
+ static
+-- 
+2.48.1
 
