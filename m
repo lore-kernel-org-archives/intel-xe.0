@@ -4,54 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5D93C369D2
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Apr 2025 15:51:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E11DFC369D7
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Apr 2025 15:51:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 756BB10E0ED;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA39A10E270;
 	Mon, 21 Apr 2025 15:51:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E/092ozt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZcyNjOpx";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE94A10E031;
- Mon, 21 Apr 2025 15:51:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A207C10E0E1;
+ Mon, 21 Apr 2025 15:51:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745250670; x=1776786670;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=BHrumGJgDLrRHKpp1mBoBdYiKcLYy4ObUxzmzV53KTE=;
- b=E/092oztscPvxM5MA9f+PJWipvsEvcbotOrLwKTMJTmWZy3VGTCORhZZ
- y/11OwdO9/FygZy1Cuh0g54XeatQ3L47f4Nf7eyLFam7u6r4Ip/V/xe37
- muRGM1S45UpFzd39CD0KUFEtkj9cPkGpf1uuca1miDwBnUyxkjkwEug2Q
- JczaDvwgYhQekW8ztdSZQOzX15rv3JvjOXRHviHvpbh4zBm1ZHFUboDkY
- LmcRq9txrOB8m5XQxkjj3z8n4jOlgcnqom1RGyNnKlZzZeUSvH6Y4Pdvz
- DU+wzl3xDZlLsXrLZ06s9Q7CNDt3+intIvzBJBSMe7Z6DX0/SgqZgBOWM A==;
-X-CSE-ConnectionGUID: nhIO1RQ6TGWDHdCNI9XnSA==
-X-CSE-MsgGUID: ZVJi6w03TpmInzW7cFShnw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11410"; a="57434063"
-X-IronPort-AV: E=Sophos;i="6.15,228,1739865600"; d="scan'208";a="57434063"
+ t=1745250668; x=1776786668;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0GchZCABeVEOOvWqs+GfjcTp7zp7pthtnKUYgmNKTPQ=;
+ b=ZcyNjOpxRlhIuWxjBMEBi5/uIzuQbv1+Fyk4yu6f37mfqMQUyyobg2dU
+ T/vzUEteWbY1ev8OCD+Bf0VsdAKMLsjVZXFrpYpyVGJppImeLmacxVpWt
+ F2MFz2m8EKIT9d6S/po9+RUShv8XMmdmTCVVj/mLwjs+jdhrtoC39DgWg
+ JKcadvQa1LJYc2UJEel3j25nMFdxQuyIIFC8QRhieFUTPrGTWb+07e39T
+ x10wwQybZiI0+AdCp+3JeAF4NbFoU41iNcTnlK2Yzu+anAwIjDwUJEr0a
+ UY33cbxJVKI4r9sZxbgfIyMfnxup9nYRd5Lr+o1w5wxatcufEbKwejCuj Q==;
+X-CSE-ConnectionGUID: 9aMp9VUIQt+N7loUhFZCcw==
+X-CSE-MsgGUID: VK5Z7tCoT0iO5ZAGNkRO+A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11410"; a="57434057"
+X-IronPort-AV: E=Sophos;i="6.15,228,1739865600"; d="scan'208";a="57434057"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2025 08:51:09 -0700
-X-CSE-ConnectionGUID: Zd6TiTnFSzWfdViUihQ5bg==
-X-CSE-MsgGUID: UZfmTJ/oSaSXZU4wGVtjcg==
+ 21 Apr 2025 08:51:06 -0700
+X-CSE-ConnectionGUID: +tXA5SBkSiyAUqqAxDK1NA==
+X-CSE-MsgGUID: 2ptmstsxSwm00AM6vQhgrQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,228,1739865600"; d="scan'208";a="162725567"
+X-IronPort-AV: E=Sophos;i="6.15,228,1739865600"; d="scan'208";a="162725553"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa002.jf.intel.com with ESMTP; 21 Apr 2025 08:51:08 -0700
+ by orviesa002.jf.intel.com with ESMTP; 21 Apr 2025 08:51:04 -0700
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com,
 	ankit.k.nautiyal@intel.com
-Subject: [PATCH v2 02/13] drm/i915/vrr: Add functions to read out vmin/vmax
- stuff
-Date: Mon, 21 Apr 2025 21:18:49 +0530
-Message-ID: <20250421154900.2095202-3-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH v2 00/13] Enable/Disable DC balance along with VRR DSB
+Date: Mon, 21 Apr 2025 21:18:47 +0530
+Message-ID: <20250421154900.2095202-1-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250421154900.2095202-1-mitulkumar.ajitkumar.golani@intel.com>
-References: <20250421154900.2095202-1-mitulkumar.ajitkumar.golani@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -69,153 +66,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Control DC Balance Adjustment bit to accomodate changes along
+with VRR DSB implementation.
 
-Calculate delayed vblank start position with the help of added
-vmin/vmax stuff for next frame and final computation.
+Mitul Golani (7):
+  drm/i915/display: Add source param for dc balance
+  drm/i915/vrr: Add enable/disable calls for DC Balance
+  drm/i915/vrr: Add compute config for DC balance params
+  drm/i915/vrr: Add state dump for dc balance params
+  drm/i915/vrr: Add state checker for dc balance params
+  drm/i915/display: Prepare state checker for dc balance enable
+  drm/i915/vrr: enable dc balance bit
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vrr.c      | 57 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_vrr.h      |  5 ++
- drivers/gpu/drm/i915/display/intel_vrr_regs.h | 44 ++++++++++++++
- 3 files changed, 106 insertions(+)
+Ville Syrjälä (6):
+  drm/i915/vrr: Refactor vmin/vmax stuff
+  drm/i915/vrr: Add functions to read out vmin/vmax stuff
+  drm/i915: Extract vrr_vblank_start()
+  drm/i915/vrr: Implement vblank evasion with DC balancing
+  drm/i915/dsb: Add pipedmc dc balance enable/disable
+  drm/i915/vrr: Pause DC balancing for DSB commits
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index adfd231eb578..1c0eaa08927b 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -746,3 +746,60 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
- 	if (crtc_state->vrr.enable)
- 		crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
- }
-+
-+int intel_vrr_dcb_vmin_vblank_start_next(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-+	u32 tmp;
-+
-+	tmp = intel_de_read(display,
-+			    TRANS_VRR_DCB_ADJ_FLIPLINE_CFG(display, cpu_transcoder));
-+
-+	if (REG_FIELD_GET(VRR_DCB_ADJ_FLIPLINE_CNT_MASK, tmp) == 0)
-+		return -1;
-+
-+	return intel_vrr_vblank_start(crtc_state,
-+				      REG_FIELD_GET(VRR_DCB_ADJ_FLIPLINE_MASK, tmp) + 1);
-+}
-+
-+int intel_vrr_dcb_vmax_vblank_start_next(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-+	u32 tmp;
-+
-+	tmp = intel_de_read(display,
-+			    TRANS_VRR_DCB_ADJ_VMAX_CFG(display, cpu_transcoder));
-+
-+	if (REG_FIELD_GET(VRR_DCB_ADJ_VMAX_CNT_MASK, tmp) == 0)
-+		return -1;
-+
-+	return intel_vrr_vblank_start(crtc_state,
-+				      REG_FIELD_GET(VRR_DCB_ADJ_VMAX_MASK, tmp) + 1);
-+}
-+
-+int intel_vrr_dcb_vmin_vblank_start_final(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-+	u32 tmp;
-+
-+	tmp = intel_de_read(display,
-+			    TRANS_VRR_FLIPLINE_DCB(display, cpu_transcoder));
-+
-+	return intel_vrr_vblank_start(crtc_state,
-+				      REG_FIELD_GET(VRR_FLIPLINE_DCB_MASK, tmp) + 1);
-+}
-+
-+int intel_vrr_dcb_vmax_vblank_start_final(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-+	u32 tmp;
-+
-+	tmp = intel_de_read(display, TRANS_VRR_VMAX_DCB(display, cpu_transcoder));
-+
-+	return intel_vrr_vblank_start(crtc_state,
-+				      REG_FIELD_GET(VRR_VMAX_DCB_MASK, tmp) + 1);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
-index 38bf9996b883..e62b8b50aec6 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.h
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.h
-@@ -42,4 +42,9 @@ void intel_vrr_transcoder_disable(const struct intel_crtc_state *crtc_state);
- void intel_vrr_set_fixed_rr_timings(const struct intel_crtc_state *crtc_state);
- bool intel_vrr_always_use_vrr_tg(struct intel_display *display);
- 
-+int intel_vrr_dcb_vmin_vblank_start_next(const struct intel_crtc_state *crtc_state);
-+int intel_vrr_dcb_vmax_vblank_start_next(const struct intel_crtc_state *crtc_state);
-+int intel_vrr_dcb_vmin_vblank_start_final(const struct intel_crtc_state *crtc_state);
-+int intel_vrr_dcb_vmax_vblank_start_final(const struct intel_crtc_state *crtc_state);
-+
- #endif /* __INTEL_VRR_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr_regs.h b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
-index 6ed0e0dc97e7..2214c10d4084 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
-@@ -9,6 +9,50 @@
- #include "intel_display_reg_defs.h"
- 
- /* VRR registers */
-+#define _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_A		0x604D4
-+#define _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_B		0x614D4
-+#define _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_C		0x624D4
-+#define _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_D		0x634D4
-+#define _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_E		0x6B4D4
-+#define TRANS_VRR_DCB_ADJ_FLIPLINE_CFG(dev_priv, trans)	\
-+					_MMIO_TRANS2(dev_priv, \
-+						     trans, \
-+						     _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_A)
-+
-+#define _TRANS_VRR_DCB_ADJ_VMAX_CFG_A			0x604D8
-+#define _TRANS_VRR_DCB_ADJ_VMAX_CFG_B			0x614D8
-+#define _TRANS_VRR_DCB_ADJ_VMAX_CFG_C			0x624D8
-+#define _TRANS_VRR_DCB_ADJ_VMAX_CFG_D			0x634D8
-+#define _TRANS_VRR_DCB_ADJ_VMAX_CFG_E			0x6B4D8
-+#define TRANS_VRR_DCB_ADJ_VMAX_CFG(dev_priv, trans)	_MMIO_TRANS2(dev_priv, \
-+								     trans, \
-+								     _TRANS_VRR_DCB_ADJ_VMAX_CFG_A)
-+
-+#define _TRANS_VRR_FLIPLINE_DCB_A		0x60418
-+#define _TRANS_VRR_FLIPLINE_DCB_B		0x61418
-+#define _TRANS_VRR_FLIPLINE_DCB_C		0x62418
-+#define _TRANS_VRR_FLIPLINE_DCB_D		0x63418
-+#define _TRANS_VRR_FLIPLINE_DCB_E		0x6B418
-+#define TRANS_VRR_FLIPLINE_DCB(dev_priv, trans) _MMIO_TRANS2(dev_priv, \
-+							     trans, \
-+							     _TRANS_VRR_FLIPLINE_DCB_A)
-+
-+#define _TRANS_VRR_VMAX_DCB_A			0x60414
-+#define _TRANS_VRR_VMAX_DCB_B			0x61414
-+#define _TRANS_VRR_VMAX_DCB_C			0x62414
-+#define _TRANS_VRR_VMAX_DCB_D			0x63414
-+#define _TRANS_VRR_VMAX_DCB_E			0x6B414
-+#define TRANS_VRR_VMAX_DCB(dev_priv, trans)	_MMIO_TRANS2(dev_priv, \
-+							     trans, \
-+							     _TRANS_VRR_VMAX_DCB_A)
-+
-+#define VRR_DCB_ADJ_FLIPLINE_CNT_MASK		REG_GENMASK(31, 24)
-+#define VRR_DCB_ADJ_FLIPLINE_MASK		REG_GENMASK(19, 0)
-+#define VRR_DCB_ADJ_VMAX_CNT_MASK		REG_GENMASK(31, 24)
-+#define VRR_DCB_ADJ_VMAX_MASK			REG_GENMASK(19, 0)
-+#define VRR_FLIPLINE_DCB_MASK			REG_GENMASK(19, 0)
-+#define VRR_VMAX_DCB_MASK			REG_GENMASK(19, 0)
-+
- #define _TRANS_VRR_CTL_A			0x60420
- #define _TRANS_VRR_CTL_B			0x61420
- #define _TRANS_VRR_CTL_C			0x62420
+ .../drm/i915/display/intel_crtc_state_dump.c  |   9 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |  21 ++
+ .../drm/i915/display/intel_display_device.h   |   1 +
+ .../drm/i915/display/intel_display_types.h    |   7 +
+ drivers/gpu/drm/i915/display/intel_dmc.c      |  24 ++
+ drivers/gpu/drm/i915/display/intel_dmc.h      |   5 +
+ drivers/gpu/drm/i915/display/intel_dmc_regs.h |  80 +++++++
+ drivers/gpu/drm/i915/display/intel_dsb.c      |  31 ++-
+ drivers/gpu/drm/i915/display/intel_vblank.c   |  33 ++-
+ drivers/gpu/drm/i915/display/intel_vrr.c      | 210 +++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_vrr.h      |   5 +
+ drivers/gpu/drm/i915/display/intel_vrr_regs.h |  66 ++++++
+ 12 files changed, 452 insertions(+), 40 deletions(-)
+
 -- 
 2.48.1
 
