@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D78DC369AB
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Apr 2025 17:13:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA6A5C369AB
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Apr 2025 17:53:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2526E10E0F9;
-	Mon, 21 Apr 2025 17:13:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k6tg2MNQ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE74F10E0F9
- for <intel-xe@lists.freedesktop.org>; Mon, 21 Apr 2025 17:13:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745255599; x=1776791599;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=pvCd4o4jLKx0obrig+qWsZUMMmV2EJ/BbQjRcI94QxQ=;
- b=k6tg2MNQfWhi5s1UINUqJcpxPDucvi7IRDGpfK5++ECN+sw6NgEGGh/g
- ZiN5PPnXYg9hrlhM7p1NurmB19WMTO3ibvO63SBn98LdhinAmNo9wtdHA
- HoHCU29RaOPSE27gGVwdQzdFtshtTu19dx++38l299sfwud+kMMbI125Y
- lmFuUvJfh1bdVHdgvpMme4qleDKvZacgBHRHF3jOBow72mMlweIQppDyV
- ALtEfBBTSepeiczvQeRXakGm3dVrwk5W7Ewn5lmNNH8oN9mzCOD4Jd5+x
- 16FGCycnaJxCIxoz8WPZoVzShgF/Wvaz9QLWAu1eBjo6TXouyabMHlUv8 w==;
-X-CSE-ConnectionGUID: dAn0LTnaRFS4uC8xhG3VwA==
-X-CSE-MsgGUID: ctreX1vATj+izeAgW1psIQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11410"; a="46801936"
-X-IronPort-AV: E=Sophos;i="6.15,228,1739865600"; d="scan'208";a="46801936"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2025 10:13:18 -0700
-X-CSE-ConnectionGUID: aTHx4fFSRcW9rUsE2s/7Lw==
-X-CSE-MsgGUID: 5kRNC7N5RvKFV1f05IOp3w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,228,1739865600"; d="scan'208";a="136731142"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2025 10:13:16 -0700
-Date: Mon, 21 Apr 2025 20:13:13 +0300
-From: Raag Jadav <raag.jadav@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Badal Nilawar <badal.nilawar@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Ulisses Furquim <ulisses.furquim@intel.com>
-Subject: Re: [PATCH 1/2] drm/xe/hwmon: Fix kernel version documentation for
- temperature
-Message-ID: <aAZ8qZytCQQrSLez@black.fi.intel.com>
-References: <20250421-hwmon-doc-fix-v1-0-9f68db702249@intel.com>
- <20250421-hwmon-doc-fix-v1-1-9f68db702249@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80F5010E288;
+	Mon, 21 Apr 2025 17:53:52 +0000 (UTC)
+Received: from b68e5b3b99e1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66ECE10E070;
+ Mon, 21 Apr 2025 17:53:51 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4833893116180631191=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250421-hwmon-doc-fix-v1-1-9f68db702249@intel.com>
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_drm/xe/hwmon=3A_Documentat?=
+ =?utf-8?q?ion_fixes_wrt_kernel_version?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 21 Apr 2025 17:53:51 -0000
+Message-ID: <174525803140.22808.8983746368018388064@b68e5b3b99e1>
+X-Patchwork-Hint: ignore
+References: <20250421-hwmon-doc-fix-v1-0-9f68db702249@intel.com>
+In-Reply-To: <20250421-hwmon-doc-fix-v1-0-9f68db702249@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,35 +36,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Apr 21, 2025 at 08:15:38AM -0700, Lucas De Marchi wrote:
-> Wrong copy and paste from other entries: these are starting to be
-> supported with 6.15.
+--===============4833893116180631191==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I had an impression that we follow the upstream drm tree, but it seems not?
+== Series Details ==
 
-> Fixes: dac328dea701 ("drm/xe/hwmon: expose package and vram temperature")
-> Reported-by: Ulisses Furquim <ulisses.furquim@intel.com>
-> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4840
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
->  Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> index adbb9bce15a5d..6fbab98fb639d 100644
-> --- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> @@ -111,7 +111,7 @@ Description:	RO. Package current voltage in millivolt.
->  
->  What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp2_input
->  Date:		March 2025
-> -KernelVersion:	6.14
-> +KernelVersion:	6.15
+Series: drm/xe/hwmon: Documentation fixes wrt kernel version
+URL   : https://patchwork.freedesktop.org/series/148023/
+State : failure
 
-Perhaps the date should match the release?
-https://hansen.beer/~dave/phb/
+== Summary ==
 
-Raag
+ERROR: The runconfig 'xe-2975-59b03675a8b030e69f6a4927223cd342cb01cea8_FULL' does not exist in the database
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148023v1/index.html
+
+--===============4833893116180631191==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/hwmon: Documentation fixes wrt kernel version</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148023/">https://patchwork.freedesktop.org/series/148023/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148023v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148023v1/index.html</a></td></tr>
+
+</table>
+
+
+    <p>ERROR: The runconfig 'xe-2975-59b03675a8b030e69f6a4927223cd342cb01cea8_FULL' does not exist in the database</p>
+
+</body>
+</html>
+
+--===============4833893116180631191==--
