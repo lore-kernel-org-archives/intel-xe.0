@@ -4,27 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 053DBC369AB
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Apr 2025 15:53:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12DE5C369D5
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Apr 2025 16:02:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B486B10E498;
-	Mon, 21 Apr 2025 15:53:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1BAB10E488;
+	Mon, 21 Apr 2025 16:02:21 +0000 (UTC)
 Received: from b68e5b3b99e1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F61810E497;
- Mon, 21 Apr 2025 15:53:38 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6735210E47E;
+ Mon, 21 Apr 2025 16:02:21 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6355987140776448341=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/hwmon=3A_Document?=
- =?utf-8?q?ation_fixes_wrt_kernel_version?=
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_Wait_for_VRAM_ready?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+To: "Karthik Poosa" <karthik.poosa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 21 Apr 2025 15:53:38 -0000
-Message-ID: <174525081819.22789.11138826570953620076@b68e5b3b99e1>
+Date: Mon, 21 Apr 2025 16:02:21 -0000
+Message-ID: <174525134141.22806.18112713133864804520@b68e5b3b99e1>
 X-Patchwork-Hint: ignore
-References: <20250421-hwmon-doc-fix-v1-0-9f68db702249@intel.com>
-In-Reply-To: <20250421-hwmon-doc-fix-v1-0-9f68db702249@intel.com>
+References: <20250421135029.3489950-1-karthik.poosa@intel.com>
+In-Reply-To: <20250421135029.3489950-1-karthik.poosa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,33 +39,57 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============6355987140776448341==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: drm/xe/hwmon: Documentation fixes wrt kernel version
-URL   : https://patchwork.freedesktop.org/series/148023/
-State : success
+Series: Wait for VRAM ready
+URL   : https://patchwork.freedesktop.org/series/148022/
+State : failure
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast dc7f23c4cada96925696c13525cad17bdbc3d33e
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
+ERROR: The runconfig 'xe-2975-59b03675a8b030e69f6a4927223cd342cb01cea8_FULL' does not exist in the database
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148022v1/index.html
+
+--===============6355987140776448341==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Wait for VRAM ready</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148022/">https://patchwork.freedesktop.org/series/148022/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148022v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148022v1/index.html</a></td></tr>
+
+</table>
+
+
+    <p>ERROR: The runconfig 'xe-2975-59b03675a8b030e69f6a4927223cd342cb01cea8_FULL' does not exist in the database</p>
+
+</body>
+</html>
+
+--===============6355987140776448341==--
