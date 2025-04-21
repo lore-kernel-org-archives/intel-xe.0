@@ -4,167 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED925C369AB
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Apr 2025 19:53:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9B42C369D7
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Apr 2025 20:34:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5DC68920E;
-	Mon, 21 Apr 2025 19:53:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4897A10E499;
+	Mon, 21 Apr 2025 20:33:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YunV6z8q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cX0XjKvR";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1EBB8920E
- for <intel-xe@lists.freedesktop.org>; Mon, 21 Apr 2025 19:53:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07B9C10E4A7;
+ Mon, 21 Apr 2025 20:33:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745265187; x=1776801187;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=b2kmIpRp4bYq3MttaUzlbIVV9CfXwMVxqKaCMzdB/Fs=;
- b=YunV6z8qqNyL2bb1MgkTTgWzUBVzpobxRnQHKCByf+NDi3mAXnlKGrWZ
- iKzA5+2GrfPAWxljtxrMy/vQJjrAh7iHDJndkrktBlCywMs4AcsQk+lRf
- oPHnL3HT8XD1OzGn002YJGHfDWC3R8kKY4qLxYvPkUHF6fdlEre4ov7YL
- 91Yv7ES+WXXW/xkhop463mvPQeT/g/MRvNrR0dZfgC6Eg5TqvmWcVkVA1
- 3ky29exX4fnyhzympgD4K5MkvCk8GNBE6oJn5my3VkZsJKEEOH7qLYSn3
- 6n0SW+eZLkcT8xPkiFZd30oNWYTBUTARQ6zjRa6+wWuuaSnjqMVLRMBea g==;
-X-CSE-ConnectionGUID: DyxbuYaBRZmV4AuRpln5YQ==
-X-CSE-MsgGUID: tNmppuwxSKWs08/opzFgwg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11410"; a="45927819"
-X-IronPort-AV: E=Sophos;i="6.15,229,1739865600"; d="scan'208";a="45927819"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2025 12:53:06 -0700
-X-CSE-ConnectionGUID: zICWLeoFRHeuS+1+zJORzA==
-X-CSE-MsgGUID: DWbx9FeRQbG3Uny7BlGW3w==
+ t=1745267637; x=1776803637;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=AjbnsEhO6zwrLfOLrQJMGK2FirAICnsfI2Qel5RrmzA=;
+ b=cX0XjKvREQ7iaEzSbzDgs7ge25cf8PJZhP2AJkV1e/Y2qFhjLuMqY+6W
+ Ped4GWgGXk+JA6+5Bp+pVLSBmHkNms2FpHen3dTRRrSGSqA+4eTj6MnEy
+ gOzh/O9m0AoqkQ1NVoGHrPnqxnMjmrQ9gv0DGDaaMiLAAAktMGscmxwv1
+ pvfgDK0U0z0+e1ClXMMiGwielebjPp0LwVoPWdKAQd7QNJ4wFe1hHjF83
+ KRJnm81MSGg/k6HgEWH1Lwtn8vckjceRp4zXnOQk98QXZzKwNoYygoXtd
+ 1RWyBPKhQ3/K61cS00au6vdSYJtPzHwU7d0lG8B3NzbYCUARVxmouqnBq w==;
+X-CSE-ConnectionGUID: ISa80r3OTjWYbX3KkRPPFw==
+X-CSE-MsgGUID: 6NZtZpA4QCStLDHywHZ5pQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11410"; a="57471155"
+X-IronPort-AV: E=Sophos;i="6.15,229,1739865600"; d="scan'208";a="57471155"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2025 13:33:53 -0700
+X-CSE-ConnectionGUID: WIBTczb7QlGZXOO1iasy+g==
+X-CSE-MsgGUID: ENR2waJ1QamIP8QozydTow==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,229,1739865600"; d="scan'208";a="162779838"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2025 12:53:06 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Mon, 21 Apr 2025 12:53:05 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Mon, 21 Apr 2025 12:53:05 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.44) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Mon, 21 Apr 2025 12:53:05 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=c0PnPfvrZg6uLypyibfFwm7KBsfkBOFLfwdV65YCP1B28L1bs1TD+pPY+Sm0/OyyqoreGhiFDOIntShrnZS5uhGJqrO4Q09anInN9tstD1rNaMtVaUHKJoKj78WgsjX6WbM9+CoC/WwBE7FfLCHhr5xSRcP/wI9RFKEzy1QbDNlGIcQ+vwkYVJvXRZ7/Lr7GSk34p6J7Smdrty31nDulzRktcRUyqowvwm3je6WAXDfgbnLETy9Z344TXPFZxlh5xZYzAZOgoe0hRnKpc2RXJxZ8zDelj2e2Zh3+U1F7nxCAafw/STNDaJz4MsJIJvzEi50+UPTkM3jA68OgOylUKQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uUyVcCb0sDVZga3lUcH/GjHsjLuG97thU5Z2IUTLZJY=;
- b=qOWWBR15aJwjPwt5tCDL5Ivq9U/f5GwaV+4V/vBqGLm1ZzVrYWm5mO0PsW7XSNcUMfy5n2SDb3IDOaXUVmdFnFJFHejoVl0DsO9UgIbSdkyevJ/uhH2DJlaMGZB3m8noFb/ylpo6v35uDy1zjBUksrPG8i+yXfV76OlGgWVdWLeLEFx3OJO0jHw+Rm9KF8znSUUDVynHlo1A3bvWMBWfNaGgjWG3/r2+q42Y+gy2xxtK6rAZ+Kba5ALgT3+k1rl2Yd8ADOUcvsGmoXO8SXyyv9jzoeqoeBiWPOTzEy29Qc+Rlt6bAY9YA7sSoWyfWHDGOoMP/NggQZvttVWHfn+EdQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by SA2PR11MB5211.namprd11.prod.outlook.com (2603:10b6:806:fb::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8655.35; Mon, 21 Apr
- 2025 19:53:03 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%3]) with mapi id 15.20.8655.030; Mon, 21 Apr 2025
- 19:53:02 +0000
-Date: Mon, 21 Apr 2025 14:53:00 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Raag Jadav <raag.jadav@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Badal Nilawar <badal.nilawar@intel.com>, 
- Andi Shyti <andi.shyti@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Ulisses Furquim <ulisses.furquim@intel.com>
-Subject: Re: [PATCH 1/2] drm/xe/hwmon: Fix kernel version documentation for
- temperature
-Message-ID: <uorgzeqaszua5ofvdff2u2y5gba5ctc5tq3ziu6voih6uceox5@jypdw3tcp2oe>
-References: <20250421-hwmon-doc-fix-v1-0-9f68db702249@intel.com>
- <20250421-hwmon-doc-fix-v1-1-9f68db702249@intel.com>
- <aAZ8qZytCQQrSLez@black.fi.intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <aAZ8qZytCQQrSLez@black.fi.intel.com>
-X-ClientProxiedBy: MW4PR02CA0006.namprd02.prod.outlook.com
- (2603:10b6:303:16d::12) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+X-IronPort-AV: E=Sophos;i="6.15,229,1739865600"; d="scan'208";a="132343363"
+Received: from dut4440lnl.fm.intel.com ([10.105.10.70])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2025 13:33:53 -0700
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
+ joonas.lahtinen@linux.intel.com, matthew.brost@intel.com,
+ jianxun.zhang@intel.com, shuicheng.lin@intel.com,
+ dri-devel@lists.freedesktop.org, Michal.Wajdeczko@intel.com,
+ michal.mrozek@intel.com, raag.jadav@intel.com, john.c.harrison@intel.com,
+ ivan.briano@intel.com, matthew.auld@intel.com
+Subject: [PATCH v20 3/5] drm/xe/uapi: Define drm_xe_vm_get_property
+Date: Mon, 21 Apr 2025 20:33:50 +0000
+Message-ID: <20250421203353.64900-4-jonathan.cavitt@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250421203353.64900-1-jonathan.cavitt@intel.com>
+References: <20250421203353.64900-1-jonathan.cavitt@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SA2PR11MB5211:EE_
-X-MS-Office365-Filtering-Correlation-Id: 18f42d69-9af0-4c2e-862a-08dd810e2041
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?3fD3hBO7bXtgwRbUJh4x1ZgVqYqohU1wkVDM65Ib+2H5WOauxa+mJi8YcDMJ?=
- =?us-ascii?Q?LZUlazimGPDrw+/WN9DyHWrQ+FCQxtxmmaneonPK8dkf9u61UqqrtPb8/653?=
- =?us-ascii?Q?SVfsp75pQBieNa/3OSxRynqbl28KSA1XY4AtjjP9DD9YDHtMeVXuePlsGWm0?=
- =?us-ascii?Q?EouZ9xbQXWLG1haHRe8uYZksoeAoM4GkZLaAzns3TwwlhYPRewos1XeNrRsB?=
- =?us-ascii?Q?2UMHhssK98Q5cZQFj9NTKXu2ih7P9lH0iHEuaQmCaqeGVrm9hIhKaRbHUPRZ?=
- =?us-ascii?Q?Sf8QDDG5k7LTui8zDT08cjrlCMK7z0ee6WYI5zIWy8e8H2wERw7P/huX4qRL?=
- =?us-ascii?Q?0B5Fd/o5z68fyso0UiDTZNw+4lvChV1r95YcMSykGgvk5LymLMqmhosEZyFf?=
- =?us-ascii?Q?E4I9hEu75qyP5IoNrBXH3V6WXMmf0/qX4tVixjGhp5/PShJ/MtOFk0mc3QTf?=
- =?us-ascii?Q?K9t7K0DtDi0p1FF6RrJ+zDUiR2rsVDtvJH7qKHkY1j0r2TL4smk4xhTvu5dD?=
- =?us-ascii?Q?Oks2uejZ9IpYHBJNCdBhpSITSR2BUxyBj2cbpUpXUeOZzCj7ZYn4BgZPxcLE?=
- =?us-ascii?Q?oA8ztdJ4nEd6XVqMkUqMsOWZND0pNYgtd3LrQu5xZopVP4A/6i8dxr1+epxS?=
- =?us-ascii?Q?Nnlyd1xLpmBZ+BRxVnO/dCN/+BGgdANtvaWNuGW1mAXjNqh0P3HDyNLyaJDb?=
- =?us-ascii?Q?YnOshKdtv84BCWIFFTUGFH281HReJxOGyjiSWp2325xaKFUY6aF15oRSUFU6?=
- =?us-ascii?Q?tnIjnQ+4mPA7Jg4zD0Idazr7AhVYyLlpNp6vN774ELps1+Bn3qtC7iEOU+SA?=
- =?us-ascii?Q?BS+fqDdgT7EggKaNoFEzpp4LIxl8RH9T1VgeDFlWvAhW+BVX81Qg9U4Z3kB3?=
- =?us-ascii?Q?4QDem0uM+SIALXJvV19ELKk6sQoxeKOPy33duwMk/i47qqGL97QowYJHQQJp?=
- =?us-ascii?Q?/sXTxMbbZLpJkwL9fL05HHV6pfq0ogp55Ra/a2zhklfwDPmReORhf9QDGprs?=
- =?us-ascii?Q?2va1BAhuiFIT34qLntYUnThZRZjz4rEmrsEgkTzxDkn9fBlXJ3fpic+YNpyE?=
- =?us-ascii?Q?9+aS5Fwbl2kktxwlRKOOeluOYxdhgG9XtQmhSLpJaoBsmvsVVt6Qh0+Wv+6W?=
- =?us-ascii?Q?/cCjx52aTUI4jM/vcuaybFlcQV7C4FMVW/aLtY7qGO6tRdA1yv2lBMeXF8NH?=
- =?us-ascii?Q?0J6Tdqh8B7JmSC8Z8tKFg7lXxst/+/QHvzx9m1lp3NLLqS5QHpgno/YGoz9I?=
- =?us-ascii?Q?PSw7dyA6hxw+ZZLbCImOyPq47j4hFPrS5bQpQO798bEKzAAp33WOnXFPdRi+?=
- =?us-ascii?Q?koXgx7tZSY+VnPVgdMZMACKsubce+598zFdVe0z88uRsq6lNFEkH2q2C75dg?=
- =?us-ascii?Q?qbwcdBA=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?43tNcCKiKll33kLgk4HMcGouQ0JehNRKwMZyHN5lAo6kzSVLb6zkhaH7YSPP?=
- =?us-ascii?Q?+5M355GVnqc+k6Ssg0sSfi50ldm9txDRQFRm+G2m/kMvk93wI6JFX9ANJmqC?=
- =?us-ascii?Q?hK4gOYbBq8Guj2DqVtzUNiQFiNjuR7m4ovlqYRCGKC1mdx6lnOFagh6LITAS?=
- =?us-ascii?Q?/EbchJvL31UTwZyNG1wWG96AsRRvtBcT/147ejwnej8OHzT0NDx4yFYzaK+5?=
- =?us-ascii?Q?KY7FiR6DE314cCM4djv09FniLe5C5EMB60zyH3JHlJT5znHQi7Pzn+l6ImZB?=
- =?us-ascii?Q?IYdCVQiv82a2aO2iehpIpY/ejFHnj4l6wV98oX8LOEwmlg59KCQaAwIGgpqD?=
- =?us-ascii?Q?UzkIxpP/O9AHp8YADbu5HZqK6niEKts+DZH/lYK4gElzsZEVw9CvkHtYn6a3?=
- =?us-ascii?Q?Uckh7qFAUB1daGfswbkVFfLwFLe9gXpnciDrIK2+UMPvILteplqg4vA/BvDR?=
- =?us-ascii?Q?PgNnAXgkSICAFjWie6Y/Gppq1rFJTBtBTA6MmIXgIPN1iNwUEF66mBgoRCFF?=
- =?us-ascii?Q?rDYBfJKk8XHbY6puhTIZf+HMM07kgrhc3TnlgemDs4yPrUGuyPka/SNrCiUY?=
- =?us-ascii?Q?oBQveHOiCBfSVMoSJEJS+9eoSEWYmTMr2tCgrjioxdG9Jarq4igXdB9Z0hmY?=
- =?us-ascii?Q?4sGAj/+4cY69HhjCdFkPGe+3yO8j5RfKSv3U+b8MximFJA1tZ1CKxf54dx+s?=
- =?us-ascii?Q?sYyWTgL4XvIqQLrttL/wM2T76q2l+JsI/dkdtpUMP72Bhp9wwJySIsx3Nlm/?=
- =?us-ascii?Q?aN1fwz+D+DyhrOhqibVxCyd+Q+SC9OaWp5aG49hXVeV9byT/ZW+sZ10DjLa7?=
- =?us-ascii?Q?2Oix1HpOV6Pkzn3pXcbF0n1EuS7rLBzoOWx79wLhqSDircUiXJIlZ6WnqTW4?=
- =?us-ascii?Q?zfwJKorLCm9MlasU4RsfgFt/yUZoAuwa01s2Ple5vQUIiHh0GVittgHVo3xi?=
- =?us-ascii?Q?heAXnoVSd1yqRPS1wumdyTMeFMbnav4A8ldwlmnrnhiGqXkobJBJVHRNHu8k?=
- =?us-ascii?Q?ifC7iZfFJq3QiPI9l79YJDraQf2f4lpVdKt0EB18c6eGmbnbfqizJiR4t5qL?=
- =?us-ascii?Q?xGjaSwoUVT3swag4XKa/OnlwfGz4FMHvG+fG0zXjBe37ZRC7xfHlUkNa9XUC?=
- =?us-ascii?Q?FstXzuANHgQrEY9bAx6POt4pScyYCSFPhjoMNUQiw79RUEPZc0aOUcARfuQZ?=
- =?us-ascii?Q?bjDeciCARRbfHKmGprX6193RVqrqJNzP3qqS7tkorkpXjE8q0qrCAe0PwEOf?=
- =?us-ascii?Q?XrAmqBt5Yb3puLgit9rrRJLCz9Sh366HTZ7Fyluplq4I552z6ScS4OuredqA?=
- =?us-ascii?Q?xbyo8a2JzIv1HiSVDHn1mOS0ZkCdc1FhU8I/dWhiBxE1eGCKEDPCg78OhsCv?=
- =?us-ascii?Q?YKX8j8KwYrZ7LKh+vjjKcWKNLBlhx9Dq8URokJruxmRGSI3/KmYwIM2Z295o?=
- =?us-ascii?Q?RKMN26o5gvfaOrs35Pf+D9WyRZY9fTCoGhn3DnRMnrjNN8H7nTNEk2xi3Hzj?=
- =?us-ascii?Q?c3TZkhK3YWAj4RyX+xdwD5QZShJU6k6FEvGJY2YxmI5k1RPkd9jSQzkcDdc8?=
- =?us-ascii?Q?AJNGHVU/WmLdpRvK/1MjEqWbHpca7vZvx1P8R2qojSH5wc25RYgkzAi+vPaX?=
- =?us-ascii?Q?dw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 18f42d69-9af0-4c2e-862a-08dd810e2041
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Apr 2025 19:53:02.9041 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jeh6QLl6pXUJUlI0hY8Y6zi+jslYT4ir9e7b9stWeQH4no8/cgy2hB2KyMEh3TGwupgyOtTE58qVpeUcUjHWp0XolKt9yw820bXgTzJY52U=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5211
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -179,71 +71,151 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Apr 21, 2025 at 08:13:13PM +0300, Raag Jadav wrote:
->On Mon, Apr 21, 2025 at 08:15:38AM -0700, Lucas De Marchi wrote:
->> Wrong copy and paste from other entries: these are starting to be
->> supported with 6.15.
->
->I had an impression that we follow the upstream drm tree, but it seems not?
+Add initial declarations for the drm_xe_vm_get_property ioctl.
 
-This is a simplified diagram on how it propagates to a X.Y kernel release:
+v2:
+- Expand kernel docs for drm_xe_vm_get_property (Jianxun)
 
-                                                (a)
-         drm-xe/drm-xe-next  ->  drm/drm-next   ->  linus/master
-                         |                      (b)      |
-                         `---->  drm/drm-fixes  ->       `- <X.Y-rc1>
-                         `---->  drm/drm-fixes  ->       `- <X.Y-rc2>
-                                                         `- ...
-                                                         `- <X.Y>
+v3:
+- Remove address type external definitions (Jianxun)
+- Add fault type to xe_drm_fault struct (Jianxun)
 
-	(a) 2-weeks merge window
-	(b) weekly fixes propagation
+v4:
+- Remove engine class and instance (Ivan)
 
-We always first merge it to drm-xe-next, but depending on when we merge
-it, a **feature** may be targeting different kernel releases. As a rule of
-thumb, a -next branch always target either the next kernel release or
-next+1 in case current is already on ~ rc6. Fixes target the current or
-next release (depending if the current has the bug or not).
+v5:
+- Add declares for fault type, access type, and fault level (Matt Brost,
+  Ivan)
 
-This sysfs documentation is for the end user and userspace developer: they
-have now idea (and shouldn't have) of any branch propagation in the
-kernel to get to a release. This propagation is not even stable across
-the different subsystems in the kernel.
+v6:
+- Fix inconsistent use of whitespace in defines
 
->
->> Fixes: dac328dea701 ("drm/xe/hwmon: expose package and vram temperature")
->> Reported-by: Ulisses Furquim <ulisses.furquim@intel.com>
->> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4840
->> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> ---
->>  Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon | 4 ++--
->>  1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
->> index adbb9bce15a5d..6fbab98fb639d 100644
->> --- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
->> +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
->> @@ -111,7 +111,7 @@ Description:	RO. Package current voltage in millivolt.
->>
->>  What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp2_input
->>  Date:		March 2025
->> -KernelVersion:	6.14
->> +KernelVersion:	6.15
->
->Perhaps the date should match the release?
->https://hansen.beer/~dave/phb/
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Cc: Zhang Jianxun <jianxun.zhang@intel.com>
+Cc: Ivan Briano <ivan.briano@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+---
+ include/uapi/drm/xe_drm.h | 86 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 86 insertions(+)
 
-from Documentation/ABI/README:
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 9c08738c3b91..a4d8c330f8b8 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -81,6 +81,7 @@ extern "C" {
+  *  - &DRM_IOCTL_XE_EXEC
+  *  - &DRM_IOCTL_XE_WAIT_USER_FENCE
+  *  - &DRM_IOCTL_XE_OBSERVATION
++ *  - &DRM_IOCTL_XE_VM_GET_PROPERTY
+  */
+ 
+ /*
+@@ -102,6 +103,7 @@ extern "C" {
+ #define DRM_XE_EXEC			0x09
+ #define DRM_XE_WAIT_USER_FENCE		0x0a
+ #define DRM_XE_OBSERVATION		0x0b
++#define DRM_XE_VM_GET_PROPERTY		0x0c
+ 
+ /* Must be kept compact -- no holes */
+ 
+@@ -117,6 +119,7 @@ extern "C" {
+ #define DRM_IOCTL_XE_EXEC			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, struct drm_xe_exec)
+ #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
+ #define DRM_IOCTL_XE_OBSERVATION		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OBSERVATION, struct drm_xe_observation_param)
++#define DRM_IOCTL_XE_VM_GET_PROPERTY	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_GET_PROPERTY, struct drm_xe_vm_get_property)
+ 
+ /**
+  * DOC: Xe IOCTL Extensions
+@@ -1193,6 +1196,89 @@ struct drm_xe_vm_bind {
+ 	__u64 reserved[2];
+ };
+ 
++/** struct xe_vm_fault - Describes faults for %DRM_XE_VM_GET_PROPERTY_FAULTS */
++struct xe_vm_fault {
++	/** @address: Address of the fault */
++	__u64 address;
++	/** @address_precision: Precision of faulted address */
++	__u32 address_precision;
++	/** @access_type: Type of address access that resulted in fault */
++#define FAULT_ACCESS_TYPE_READ		0
++#define FAULT_ACCESS_TYPE_WRITE		1
++#define FAULT_ACCESS_TYPE_ATOMIC	2
++	__u8 access_type;
++	/** @fault_type: Type of fault reported */
++#define FAULT_TYPE_NOT_PRESENT		0
++#define FAULT_TYPE_WRITE_ACCESS		1
++#define FAULT_TYPE_ATOMIC_ACCESS	2
++	__u8 fault_type;
++	/** @fault_level: fault level of the fault */
++#define FAULT_LEVEL_PTE		0
++#define FAULT_LEVEL_PDE		1
++#define FAULT_LEVEL_PDP		2
++#define FAULT_LEVEL_PML4	3
++#define FAULT_LEVEL_PML5	4
++	__u8 fault_level;
++	/** @pad: MBZ */
++	__u8 pad;
++	/** @reserved: MBZ */
++	__u64 reserved[4];
++};
++
++/**
++ * struct drm_xe_vm_get_property - Input of &DRM_IOCTL_XE_VM_GET_PROPERTY
++ *
++ * The user provides a VM and a property to query among DRM_XE_VM_GET_PROPERTY_*,
++ * and sets the values in the vm_id and property members, respectively.  This
++ * determines both the VM to get the property of, as well as the property to
++ * report.
++ *
++ * If size is set to 0, the driver fills it with the required size for the
++ * requested property.  The user is expected here to allocate memory for the
++ * property structure and to provide a pointer to the allocated memory using the
++ * data member.  For some properties, this may be zero, in which case, the
++ * value of the property will be saved to the value member and size will remain
++ * zero on return.
++ *
++ * If size is not zero, then the IOCTL will attempt to copy the requested
++ * property into the data member.
++ *
++ * The IOCTL will return -ENOENT if the VM could not be identified from the
++ * provided VM ID, or -EINVAL if the IOCTL fails for any other reason, such as
++ * providing an invalid size for the given property or if the property data
++ * could not be copied to the memory allocated to the data member.
++ *
++ * The property member can be:
++ *  - %DRM_XE_VM_GET_PROPERTY_FAULTS
++ */
++struct drm_xe_vm_get_property {
++	/** @extensions: Pointer to the first extension struct, if any */
++	__u64 extensions;
++
++	/** @vm_id: The ID of the VM to query the properties of */
++	__u32 vm_id;
++
++#define DRM_XE_VM_GET_PROPERTY_FAULTS		0
++	/** @property: property to get */
++	__u32 property;
++
++	/** @size: Size to allocate for @data */
++	__u32 size;
++
++	/** @pad: MBZ */
++	__u32 pad;
++
++	union {
++		/** @data: Pointer to user-defined array of flexible size and type */
++		__u64 data;
++		/** @value: Return value for scalar queries */
++		__u64 value;
++	};
++
++	/** @reserved: MBZ */
++	__u64 reserved[3];
++};
++
+ /**
+  * struct drm_xe_exec_queue_create - Input of &DRM_IOCTL_XE_EXEC_QUEUE_CREATE
+  *
+-- 
+2.43.0
 
-	Date:           Date created
-	KernelVersion:  Kernel version this feature first showed up in.
-
-I don't think we need to try to predict the exact month a kernel release
-will happen. There would certainly be mistakes. "Date created" can
-simply be interpreted as when the feature merged in our branch and
-doesn't matter much. The more important part is the kernel version.
-
-Lucas De Marchi
-
->
->Raag
