@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 919EBC369D6
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Apr 2025 15:51:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 604C4C369D6
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Apr 2025 15:51:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D018D10E47E;
-	Mon, 21 Apr 2025 15:51:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CE2F10E48D;
+	Mon, 21 Apr 2025 15:51:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iZm4iomu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J3X4hdyo";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7869410E27A;
- Mon, 21 Apr 2025 15:51:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31B4F10E481;
+ Mon, 21 Apr 2025 15:51:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745250671; x=1776786671;
+ t=1745250675; x=1776786675;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=iJCmxbJbbBZ31qSkXmhQBMNWc3fBqpgeTHe/x4fsW9U=;
- b=iZm4iomuh2m/tOJR2Hi11AytZU5Q+6wbEzUmrKBHsSJiacGULgvGf3Sk
- CEKgx+3HEUrca6OnWM2VyGS2C26xg68Cb2PmwTF85Liecm3tlXT//s9ki
- pe3/rNV0aHfb8pgbCdsmDKBZ/sxHhnkK5t+4PKsatogZ+M2qzU4uLnMBj
- +UGnyOoNeKbjVU7rqnEq5FA0ntHsRT5A3s01pJN1PBwDBmhOJCcYPjiMc
- 7W3PIs4w4+g8wznDBRKul5I9rtJ8qbA+6zP1O77IUu/ggaOL9evOVQre/
- ySHmGfcYfF4nb/bHJSYsTtwQD28kE/KUJhDwMNysT077168NOjiOttaqQ Q==;
-X-CSE-ConnectionGUID: aOA0SEG9RWabBzNHWhyCiw==
-X-CSE-MsgGUID: qlE2833CRemFTL7ckK9FFQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11410"; a="57434065"
-X-IronPort-AV: E=Sophos;i="6.15,228,1739865600"; d="scan'208";a="57434065"
+ bh=Pc0ALEMyOAHTl3eqJjOQco79Iw5X5G6WZAy9EkRYN8A=;
+ b=J3X4hdyooCTkN8TI37SN+ibsZIus+XqbSTtANKUT2NN3BF7lWkO97+zk
+ T1Tv+G3r0MXLKtUx/ozRPNtAG3JRUkIHC56NHmO3DkgSq/jvgGLE55OPo
+ zG0nRmDwkbikWLB3/2YXdqkjg8E/2z4ia6mXMPUAzV9ocvhnAQtuo3AIT
+ 7mhuqbdirExTFfshItSXGT3OMrhkNcyzfgI4q3gbU5O94fEPP05vulv8g
+ Yg/iHTmoS4TQ83d+o0fSkmGJnAAjwbgKW9OYKjRQntxU03g/AxHcg9JU1
+ GDJtaw+ECdj7UKhgBYA6iyjHfFinwdDn/0+ku/ckWQjMN0CXa0E97oeXI Q==;
+X-CSE-ConnectionGUID: Nii8YZxQSzeay++rr4s5vQ==
+X-CSE-MsgGUID: uIhJZJ7mRGCe+tytnEwrqQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11410"; a="57434070"
+X-IronPort-AV: E=Sophos;i="6.15,228,1739865600"; d="scan'208";a="57434070"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2025 08:51:11 -0700
-X-CSE-ConnectionGUID: /097yWDRTke5MiX7JqVcyA==
-X-CSE-MsgGUID: 6+vgtVLHTFuSorCJ34Sixg==
+ 21 Apr 2025 08:51:15 -0700
+X-CSE-ConnectionGUID: TldunpM8TSqRQ6vdvuajWA==
+X-CSE-MsgGUID: dVybJ9taScafSt1dSj1s9A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,228,1739865600"; d="scan'208";a="162725573"
+X-IronPort-AV: E=Sophos;i="6.15,228,1739865600"; d="scan'208";a="162725595"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa002.jf.intel.com with ESMTP; 21 Apr 2025 08:51:10 -0700
+ by orviesa002.jf.intel.com with ESMTP; 21 Apr 2025 08:51:13 -0700
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com,
 	ankit.k.nautiyal@intel.com
-Subject: [PATCH v2 03/13] drm/i915/display: Add source param for dc balance
-Date: Mon, 21 Apr 2025 21:18:50 +0530
-Message-ID: <20250421154900.2095202-4-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH v2 05/13] drm/i915/vrr: Add compute config for DC balance
+ params
+Date: Mon, 21 Apr 2025 21:18:52 +0530
+Message-ID: <20250421154900.2095202-6-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250421154900.2095202-1-mitulkumar.ajitkumar.golani@intel.com>
 References: <20250421154900.2095202-1-mitulkumar.ajitkumar.golani@intel.com>
@@ -67,25 +68,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add source param for dc balance enablement further.
+Add compute config for DC balance params. This will be required
+to calculate correct balance requirement for DMC firmware.
 
 Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_device.h | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 87c666792c0d..653483fa99ea 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -144,6 +144,7 @@ struct intel_display_platforms {
- #define HAS_4TILE(__display)		((__display)->platform.dg2 || DISPLAY_VER(__display) >= 14)
- #define HAS_ASYNC_FLIPS(__display)	(DISPLAY_VER(__display) >= 5)
- #define HAS_AS_SDP(__display)		(DISPLAY_VER(__display) >= 13)
-+#define HAS_DC_BALANCE(__display)		(DISPLAY_VER(__display) >= 30)
- #define HAS_BIGJOINER(__display)	(DISPLAY_VER(__display) >= 11 && HAS_DSC(__display))
- #define HAS_CDCLK_CRAWL(__display)	(DISPLAY_INFO(__display)->has_cdclk_crawl)
- #define HAS_CDCLK_SQUASH(__display)	(DISPLAY_INFO(__display)->has_cdclk_squash)
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index c4fb78d86ab0..383024dc2784 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -16,6 +16,9 @@
+ 
+ #define FIXED_POINT_PRECISION		100
+ #define CMRR_PRECISION_TOLERANCE	10
++#define DCB_CORRECTION_SENSITIVITY	30
++#define DCB_CORRECTION_AGGRESSIVENESS	1000
++#define DCB_BLANK_TARGET		50
+ 
+ bool intel_vrr_is_capable(struct intel_connector *connector)
+ {
+@@ -409,6 +412,24 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+ 			(crtc_state->hw.adjusted_mode.crtc_vtotal -
+ 			 crtc_state->hw.adjusted_mode.vsync_end);
+ 	}
++
++	if (crtc_state->vrr.dc_balance.enable && HAS_DC_BALANCE(display)) {
++		crtc_state->vrr.dc_balance.vmax = crtc_state->vrr.vmax;
++		crtc_state->vrr.dc_balance.vmin = crtc_state->vrr.vmin;
++		crtc_state->vrr.dc_balance.max_increase =
++			crtc_state->vrr.vmax - crtc_state->vrr.vmin;
++		crtc_state->vrr.dc_balance.max_decrease =
++			crtc_state->vrr.vmax - crtc_state->vrr.vmin;
++		crtc_state->vrr.dc_balance.guardband =
++		DIV_ROUND_UP(crtc_state->vrr.dc_balance.vmax * DCB_CORRECTION_SENSITIVITY,
++			     100);
++		crtc_state->vrr.dc_balance.slope =
++			DIV_ROUND_UP(DCB_CORRECTION_AGGRESSIVENESS * 10,
++				     crtc_state->vrr.dc_balance.guardband);
++		crtc_state->vrr.dc_balance.vblank_target =
++		DIV_ROUND_UP((crtc_state->vrr.vmax - crtc_state->vrr.vmin) * DCB_BLANK_TARGET,
++			     100);
++	}
+ }
+ 
+ void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state)
 -- 
 2.48.1
 
