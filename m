@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A697C369AB
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76F97C369D5
 	for <intel-xe@archiver.kernel.org>; Mon, 21 Apr 2025 15:16:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04A3910E26C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E0F410E27A;
 	Mon, 21 Apr 2025 15:16:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Muc4rFDI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="STAPk7oS";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 580BF10E27A
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61C5610E46B
  for <intel-xe@lists.freedesktop.org>; Mon, 21 Apr 2025 15:16:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1745248604; x=1776784604;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=HnuzhecnBJbmwUXtfcq0EGI9mpept00sxIOqYNODy+0=;
- b=Muc4rFDIhOd+YhXxEwR/6w44YNYQzkED04xOtZvPbyKC6u8dGoRZuEAV
- 5r6GwuvA72csvXX0/YjTpY/SGCO0APhYy+hsmt512W7yYd68T3IN81OaB
- UPrSZOPy65YF38d6IYsa7waRPsNznP/cHrKWWTpfKisxD4MfdPBnOT4mT
- 3UVcuApAtQxrxnw7t/w8JhMjserqKUzEt+mNoAcOeRBE9f3B3K7Ocnx34
- 7SLOaoCAS/aX+Sn6kTGmDeO35RQ91tKyIkN3iFnS0ijHsyxic8LSIksdE
- a4CsTdu1X1DQXDDG39xgFnF2AHSKQ7JLYgPU4U/10ChWTII6mrCBV77Aw Q==;
-X-CSE-ConnectionGUID: cr7uFDYERFq3Z6zObYpQYQ==
-X-CSE-MsgGUID: uxrQMPn5QHucczCs5WMtkw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11410"; a="46882679"
-X-IronPort-AV: E=Sophos;i="6.15,228,1739865600"; d="scan'208";a="46882679"
+ bh=Qoy2aIVzdg/0hbwcipEX8vp+kSzdNDylwfU3RRwXCJY=;
+ b=STAPk7oSfu9H7HDVlRgSf+FBvqTIpYsfRZtXQcz3Ojh59/1Rk2Ezqc+B
+ 6h0R6D+L2SRFw5hju5kH88MVEeyFdIUkBHrVrxeKhe5T4LUe1tcLS+vNt
+ qz4wwn3HnJSFn15F5mIJdKOmurVtXNtSaWZ5aUgAxg8FjRU93PK/LWZqx
+ n/TiCHv5DgLdvlTWEOWE6rMDxuE1ltEKh14K4Itrghmtd+PIhNDQVHlxI
+ BvI8vTqLRZapMOYiMoBTTTlg/6UapUYRkY7LsL4Ow7uUrDYQLDrQCfkBA
+ 5TiSzkvIfels0nnKjA9aiIsoZhVA0wua/GGWkzwjv2xM9l7AMsUHAOy2h A==;
+X-CSE-ConnectionGUID: g3AiNi6UQv6BW+pECrlHeQ==
+X-CSE-MsgGUID: HoB9/gagQIawCJN/+lVVeQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11410"; a="46882680"
+X-IronPort-AV: E=Sophos;i="6.15,228,1739865600"; d="scan'208";a="46882680"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Apr 2025 08:16:34 -0700
-X-CSE-ConnectionGUID: b9bfGiHcQXuBVMTwWHR1AA==
-X-CSE-MsgGUID: 97f4ufugSJStEPXbl8M5EA==
+X-CSE-ConnectionGUID: yliTaXM+T/mBqbIAsFkP6A==
+X-CSE-MsgGUID: sr0BzeZzQ16YK+uxBwyvRA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,228,1739865600"; d="scan'208";a="136607270"
+X-IronPort-AV: E=Sophos;i="6.15,228,1739865600"; d="scan'208";a="136607273"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Apr 2025 08:16:34 -0700
@@ -48,10 +48,10 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Andi Shyti <andi.shyti@linux.intel.com>, Raag Jadav <raag.jadav@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Ulisses Furquim <ulisses.furquim@intel.com>
-Subject: [PATCH 1/2] drm/xe/hwmon: Fix kernel version documentation for
- temperature
-Date: Mon, 21 Apr 2025 08:15:38 -0700
-Message-ID: <20250421-hwmon-doc-fix-v1-1-9f68db702249@intel.com>
+Subject: [PATCH 2/2] drm/xe/hwmon: Fix kernel version documentation for fan
+ speed
+Date: Mon, 21 Apr 2025 08:15:39 -0700
+Message-ID: <20250421-hwmon-doc-fix-v1-2-9f68db702249@intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250421-hwmon-doc-fix-v1-0-9f68db702249@intel.com>
 References: <20250421-hwmon-doc-fix-v1-0-9f68db702249@intel.com>
@@ -74,37 +74,46 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Wrong copy and paste from other entries: these are starting to be
-supported with 6.15.
+supported with 6.16.
 
-Fixes: dac328dea701 ("drm/xe/hwmon: expose package and vram temperature")
+Fixes: 28f79ac609de ("drm/xe/hwmon: expose fan speed")
 Reported-by: Ulisses Furquim <ulisses.furquim@intel.com>
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4840
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4841
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-index adbb9bce15a5d..6fbab98fb639d 100644
+index 6fbab98fb639d..4ca917ac6382d 100644
 --- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
 +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-@@ -111,7 +111,7 @@ Description:	RO. Package current voltage in millivolt.
+@@ -127,7 +127,7 @@ Description:	RO. VRAM temperature in millidegree Celsius.
  
- What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp2_input
+ What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/fan1_input
  Date:		March 2025
 -KernelVersion:	6.14
-+KernelVersion:	6.15
++KernelVersion:	6.16
  Contact:	intel-xe@lists.freedesktop.org
- Description:	RO. Package temperature in millidegree Celsius.
+ Description:	RO. Fan 1 speed in RPM.
  
-@@ -119,7 +119,7 @@ Description:	RO. Package temperature in millidegree Celsius.
+@@ -135,7 +135,7 @@ Description:	RO. Fan 1 speed in RPM.
  
- What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/temp3_input
+ What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/fan2_input
  Date:		March 2025
 -KernelVersion:	6.14
-+KernelVersion:	6.15
++KernelVersion:	6.16
  Contact:	intel-xe@lists.freedesktop.org
- Description:	RO. VRAM temperature in millidegree Celsius.
+ Description:	RO. Fan 2 speed in RPM.
+ 
+@@ -143,7 +143,7 @@ Description:	RO. Fan 2 speed in RPM.
+ 
+ What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/fan3_input
+ Date:		March 2025
+-KernelVersion:	6.14
++KernelVersion:	6.16
+ Contact:	intel-xe@lists.freedesktop.org
+ Description:	RO. Fan 3 speed in RPM.
  
 
 -- 
