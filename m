@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CAC7C369AB
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Apr 2025 00:46:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D658CC369AB
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Apr 2025 00:59:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E80C010E0E0;
-	Tue, 22 Apr 2025 00:46:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B19C310E0E0;
+	Tue, 22 Apr 2025 00:59:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BvUCLXTu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a4KLF7HG";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EA3010E0E0
- for <intel-xe@lists.freedesktop.org>; Tue, 22 Apr 2025 00:46:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB2A210E0E0
+ for <intel-xe@lists.freedesktop.org>; Tue, 22 Apr 2025 00:59:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745282773; x=1776818773;
+ t=1745283583; x=1776819583;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=X7JWtwG7u7bENKJbJCjYOM6rxf9dvgEfhQPHKh2JyYY=;
- b=BvUCLXTuF65b/Ss0sY9Q9hnRD6ZbTjLDf3CV6gnF001SubgwLv5Wq5rh
- YJftsU2ttUD5lIB0u5FphF9ifZIcI/9keIwMaCbH0kNYGlmqIFz5GBLs9
- b4gAHtnJacyWpXo8479i6bFcF/gZpX5PMxL5VRfYxNEZ0A7RfB27BKsf2
- zJdyq+XHxRxpjbg8h3zESuVinGkqEVgU0xYPYpsGjx1R6akWKJ/2AAmj0
- dDNrDAT/XUQoWGltK333xL5JXA3DsFrX1Bco20cS1h+PyDP4Q+p4IatE7
- e0CrD9jm7mOVnQZm+GDEKjs9xLF4AI1YOjzW9Bnj3iwhiOy8umcXBolV+ Q==;
-X-CSE-ConnectionGUID: J7Qk8KGlRoKzCtTp5TLaAA==
-X-CSE-MsgGUID: KxvUN2RuQSmvciDK81YNhw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11410"; a="64239375"
-X-IronPort-AV: E=Sophos;i="6.15,229,1739865600"; d="scan'208";a="64239375"
+ bh=IwJu4VTMwn6xOXVzq2wGjg+rfTOsP4vHp5e/yf1xjhA=;
+ b=a4KLF7HG2x3AI4UiRYSx56+1vB4k5wnokgnXnB1Y2zke7NjYE992bPw2
+ aDWflKoyZ8/5t186yT+vR524aExQqYXjxnWsE3B5caH4SJuY4+tUEwUhj
+ JaYIlHsmWfxZkzTj5dI6IrXM3pvr9FvjJ9xDqiaNoDh2F2tjX7sOyUY+i
+ wC/zp72iwBg0P+gsSUne7nX+NkooldlPl3W3gEx+u7egmdFqPUYKVtnJN
+ oWXhaxal3YtkkZExigA/vINlBKYjNtesqkFi+L3+shGpcj4+0O1j08qEq
+ Hwb2PUQg30qUvZoaUr0Jv6+DWv3/eSvNjFUJzrv+Aa6IHxxjP4TskQ4Fw w==;
+X-CSE-ConnectionGUID: BJj7pEw+Qi+TQ+s+RcYiGA==
+X-CSE-MsgGUID: FkttatmRS3O9Pq7liv2mJw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11410"; a="64239934"
+X-IronPort-AV: E=Sophos;i="6.15,229,1739865600"; d="scan'208";a="64239934"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2025 17:46:11 -0700
-X-CSE-ConnectionGUID: wTiAzQUsR5uc1AM9ZzcH+g==
-X-CSE-MsgGUID: /V7VQjQSRkSl5FJ7wY7UfA==
+ 21 Apr 2025 17:59:43 -0700
+X-CSE-ConnectionGUID: 1+UQo5G3SeO+NLhB2Ilm+Q==
+X-CSE-MsgGUID: 1hQFkfClQFCUvRpjMxchTA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,229,1739865600"; d="scan'208";a="162828538"
+X-IronPort-AV: E=Sophos;i="6.15,229,1739865600"; d="scan'208";a="162830515"
 Received: from zschafft-mobl.amr.corp.intel.com (HELO adixit-MOBL3.intel.com)
  ([10.125.218.216])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2025 17:46:10 -0700
-Date: Mon, 21 Apr 2025 17:46:09 -0700
-Message-ID: <87h62h10ry.wl-ashutosh.dixit@intel.com>
+ 21 Apr 2025 17:59:44 -0700
+Date: Mon, 21 Apr 2025 17:59:43 -0700
+Message-ID: <87fri1105c.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Harish Chegondi <harish.chegondi@intel.com>
-Cc: <intel-xe@lists.freedesktop.org>, <matthew.auld@intel.com>
-Subject: Re: [PATCH 1/1] drm/xe/eustall: Resolve a possible circular locking
- dependency
-In-Reply-To: <c896932fca84f79db2df5942911997ed77b2b9b6.1744934656.git.harish.chegondi@intel.com>
-References: <c896932fca84f79db2df5942911997ed77b2b9b6.1744934656.git.harish.chegondi@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>, <matthew.s.atwood@intel.com>
+Subject: Re: [PATCH 1/1] drm/xe/eustall: Do not support EU stall on SRIOV VF
+In-Reply-To: <10db5d1c7e17aadca7078ff74575b7ffc0d5d6b8.1745215022.git.harish.chegondi@intel.com>
+References: <10db5d1c7e17aadca7078ff74575b7ffc0d5d6b8.1745215022.git.harish.chegondi@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/29.4 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -70,179 +69,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 17 Apr 2025 17:07:17 -0700, Harish Chegondi wrote:
+On Sun, 20 Apr 2025 22:59:01 -0700, Harish Chegondi wrote:
 >
-
-Hi Harish,
-
-> Use a separate lock in the polling function eu_stall_data_buf_poll()
-> instead of eu_stall->stream_lock. This would prevent a possible
-> circular locking dependency leading to a deadlock as described below.
-
-I was trying to avoid adding the extra lock. The result can be seen here:
-
-	https://patchwork.freedesktop.org/series/148026/
-
-But the result is not pretty and has its own complications, so I don't want
-to pursue it. So let us look at the approach in this patch.
-
-So previously we have the following lock order, in different code paths:
-
-	1. eu_stall_data_buf_poll_work_fn queue_delayed_work():
-	   workqueue_lock -> stream_lock
-
-	2. Read:
-	   stream_lock
-
-	3. Enable/disable
-	   stream_lock -> workqueue_lock -> stream_lock
-
-So we have lock order inversion between 1 and 3 and also possible deadlock
-in 3 itself.
-
-After this patch we have:
-
-	1. eu_stall_data_buf_poll_work_fn queue_delayed_work():
-	   workqueue_lock -> xecore_buf_lock
-
-	2. Read:
-	   stream_lock -> xecore_buf_lock
-
-	3. Enable/disable:
-	   stream_lock -> workqueue_lock -> xecore_buf_lock
-
-Which fixes both the lock order inversion and the deadlock. And the patch
-looks good too, so this is:
-
-Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-
-> This would also require additional locking with the new lock in
-> the read function.
+> EU stall sampling is not supported on SRIOV VF. Do not
+> initialize or open EU stall stream on SRIOV VF.
 >
-> <4> [787.192986] ======================================================
-> <4> [787.192988] WARNING: possible circular locking dependency detected
-> <4> [787.192991] 6.14.0-rc7-xe+ #1 Tainted: G     U
-> <4> [787.192993] ------------------------------------------------------
-> <4> [787.192994] xe_eu_stall/20093 is trying to acquire lock:
-> <4> [787.192996] ffff88819847e2c0 ((work_completion)
-> (&(&stream->buf_poll_work)->work)), at: __flush_work+0x1f8/0x5e0
-> <4> [787.193005] but task is already holding lock:
-> <4> [787.193007] ffff88814ce83ba8 (&gt->eu_stall->stream_lock){3:3},
-> at: xe_eu_stall_stream_ioctl+0x41/0x6a0 [xe]
-> <4> [787.193090] which lock already depends on the new lock.
-> <4> [787.193093] the existing dependency chain (in reverse order) is:
-> <4> [787.193095]
-> -> #1 (&gt->eu_stall->stream_lock){+.+.}-{3:3}:
-> <4> [787.193099]        __mutex_lock+0xb4/0xe40
-> <4> [787.193104]        mutex_lock_nested+0x1b/0x30
-> <4> [787.193106]        eu_stall_data_buf_poll_work_fn+0x44/0x1d0 [xe]
-> <4> [787.193155]        process_one_work+0x21c/0x740
-> <4> [787.193159]        worker_thread+0x1db/0x3c0
-> <4> [787.193161]        kthread+0x10d/0x270
-> <4> [787.193164]        ret_from_fork+0x44/0x70
-> <4> [787.193168]        ret_from_fork_asm+0x1a/0x30
-> <4> [787.193172]
-> -> #0 ((work_completion)(&(&stream->buf_poll_work)->work)){+.+.}-{0:0}:
-> <4> [787.193176]        __lock_acquire+0x1637/0x2810
-> <4> [787.193180]        lock_acquire+0xc9/0x300
-> <4> [787.193183]        __flush_work+0x219/0x5e0
-> <4> [787.193186]        cancel_delayed_work_sync+0x87/0x90
-> <4> [787.193189]        xe_eu_stall_disable_locked+0x9a/0x260 [xe]
-> <4> [787.193237]        xe_eu_stall_stream_ioctl+0x5b/0x6a0 [xe]
-> <4> [787.193285]        __x64_sys_ioctl+0xa4/0xe0
-> <4> [787.193289]        x64_sys_call+0x131e/0x2650
-> <4> [787.193292]        do_syscall_64+0x91/0x180
-> <4> [787.193295]        entry_SYSCALL_64_after_hwframe+0x76/0x7e
-> <4> [787.193299]
-> other info that might help us debug this:
-> <4> [787.193302]  Possible unsafe locking scenario:
-> <4> [787.193304]        CPU0                    CPU1
-> <4> [787.193305]        ----                    ----
-> <4> [787.193306]   lock(&gt->eu_stall->stream_lock);
-> <4> [787.193308]                        lock((work_completion)
->					(&(&stream->buf_poll_work)->work));
-> <4> [787.193311]                        lock(&gt->eu_stall->stream_lock);
-> <4> [787.193313]   lock((work_completion)
->			(&(&stream->buf_poll_work)->work));
-> <4> [787.193315]
->  *** DEADLOCK ***
->
-> Fixes: 760edec939685 ("drm/xe/eustall: Add support to read() and poll() EU stall data")
-> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4598
 > Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_eu_stall.c | 11 +++++++++--
->  1 file changed, 9 insertions(+), 2 deletions(-)
+>  drivers/gpu/drm/xe/xe_eu_stall.c | 3 +++
+>  drivers/gpu/drm/xe/xe_eu_stall.h | 3 ++-
+>  2 files changed, 5 insertions(+), 1 deletion(-)
 >
 > diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
-> index f2bb9168967c..78f28f3c5e5c 100644
+> index f2bb9168967c..64788277ea52 100644
 > --- a/drivers/gpu/drm/xe/xe_eu_stall.c
 > +++ b/drivers/gpu/drm/xe/xe_eu_stall.c
-> @@ -52,6 +52,8 @@ struct xe_eu_stall_data_stream {
+> @@ -208,6 +208,9 @@ int xe_eu_stall_init(struct xe_gt *gt)
+>	struct xe_device *xe = gt_to_xe(gt);
+>	int ret;
 >
->	struct xe_gt *gt;
->	struct xe_bo *bo;
-> +	/* Lock to protect data buffer pointers */
-> +	struct mutex xecore_buf_lock;
->	struct per_xecore_buf *xecore_buf;
->	struct {
->		bool reported_to_user;
-> @@ -378,7 +380,7 @@ static bool eu_stall_data_buf_poll(struct xe_eu_stall_data_stream *stream)
->	u16 group, instance;
->	unsigned int xecore;
+> +	if (!xe_eu_stall_supported_on_platform(xe))
+> +		return 0;
+
+This check is not strictly needed. If the check is not there, just some
+unnecessary stuff will get initialized.
+
+But if you want to add this check here, you will also need to a
+'if (!gt->eu_stall)' check in xe_eu_stall_fini(). If you test this patch,
+maybe you will already see oops when unloading the driver?
+
+So either remove this check or add the additional check in
+xe_eu_stall_fini().
+
+> +
+>	gt->eu_stall = kzalloc(sizeof(*gt->eu_stall), GFP_KERNEL);
+>	if (!gt->eu_stall) {
+>		ret = -ENOMEM;
+> diff --git a/drivers/gpu/drm/xe/xe_eu_stall.h b/drivers/gpu/drm/xe/xe_eu_stall.h
+> index ed9d0f233566..d1c76e503799 100644
+> --- a/drivers/gpu/drm/xe/xe_eu_stall.h
+> +++ b/drivers/gpu/drm/xe/xe_eu_stall.h
+> @@ -7,6 +7,7 @@
+>  #define __XE_EU_STALL_H__
 >
-> -	mutex_lock(&gt->eu_stall->stream_lock);
-> +	mutex_lock(&stream->xecore_buf_lock);
->	for_each_dss_steering(xecore, gt, group, instance) {
->		xecore_buf = &stream->xecore_buf[xecore];
->		read_ptr = xecore_buf->read;
-> @@ -396,7 +398,7 @@ static bool eu_stall_data_buf_poll(struct xe_eu_stall_data_stream *stream)
->			set_bit(xecore, stream->data_drop.mask);
->		xecore_buf->write = write_ptr;
->	}
-> -	mutex_unlock(&gt->eu_stall->stream_lock);
-> +	mutex_unlock(&stream->xecore_buf_lock);
+>  #include "xe_gt_types.h"
+> +#include "xe_sriov.h"
 >
->	return min_data_present;
->  }
-> @@ -511,11 +513,13 @@ static ssize_t xe_eu_stall_stream_read_locked(struct xe_eu_stall_data_stream *st
->	unsigned int xecore;
->	int ret = 0;
+>  size_t xe_eu_stall_get_per_xecore_buf_size(void);
+>  size_t xe_eu_stall_data_record_size(struct xe_device *xe);
+> @@ -19,6 +20,6 @@ int xe_eu_stall_stream_open(struct drm_device *dev,
 >
-> +	mutex_lock(&stream->xecore_buf_lock);
->	if (bitmap_weight(stream->data_drop.mask, XE_MAX_DSS_FUSE_BITS)) {
->		if (!stream->data_drop.reported_to_user) {
->			stream->data_drop.reported_to_user = true;
->			xe_gt_dbg(gt, "EU stall data dropped in XeCores: %*pb\n",
->				  XE_MAX_DSS_FUSE_BITS, stream->data_drop.mask);
-> +			mutex_unlock(&stream->xecore_buf_lock);
->			return -EIO;
->		}
->		stream->data_drop.reported_to_user = false;
-> @@ -527,6 +531,7 @@ static ssize_t xe_eu_stall_stream_read_locked(struct xe_eu_stall_data_stream *st
->		if (ret || count == total_size)
->			break;
->	}
-> +	mutex_unlock(&stream->xecore_buf_lock);
->	return total_size ?: (ret ?: -EAGAIN);
->  }
->
-> @@ -583,6 +588,7 @@ static void xe_eu_stall_stream_free(struct xe_eu_stall_data_stream *stream)
+>  static inline bool xe_eu_stall_supported_on_platform(struct xe_device *xe)
 >  {
->	struct xe_gt *gt = stream->gt;
->
-> +	mutex_destroy(&stream->xecore_buf_lock);
->	gt->eu_stall->stream = NULL;
->	kfree(stream);
+> -	return xe->info.platform == XE_PVC || GRAPHICS_VER(xe) >= 20;
+> +	return !IS_SRIOV_VF(xe) && (xe->info.platform == XE_PVC || GRAPHICS_VER(xe) >= 20);
 >  }
-> @@ -718,6 +724,7 @@ static int xe_eu_stall_stream_init(struct xe_eu_stall_data_stream *stream,
->	}
->
->	init_waitqueue_head(&stream->poll_wq);
-> +	mutex_init(&stream->xecore_buf_lock);
->	INIT_DELAYED_WORK(&stream->buf_poll_work, eu_stall_data_buf_poll_work_fn);
->	stream->per_xecore_buf_size = per_xecore_buf_size;
->	stream->sampling_rate_mult = props->sampling_rate_mult;
+>  #endif
 > --
 > 2.48.1
 >
