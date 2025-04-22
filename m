@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C455C369C2
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Apr 2025 17:03:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A3D9C369D8
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Apr 2025 17:03:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A19510E609;
-	Tue, 22 Apr 2025 17:03:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09F7189EFF;
+	Tue, 22 Apr 2025 17:03:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jbcMxdsh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iPU110f2";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7C9E10E603;
- Tue, 22 Apr 2025 17:02:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37EAA10E608;
+ Tue, 22 Apr 2025 17:02:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1745341379; x=1776877379;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=vYktfllJKFa4C+JLWL9QOzVFl+KW6OyzHiyHy/deynk=;
- b=jbcMxdsherL2wkxDkhlGrCmF/mlt6/fkokdMR+AZrg4b58YIh6duyVLg
- rWlYWlxl94Ip+ye5zX58FglsqmgsN7sd15ENLAWKjx/bvotkB9aEAbwr8
- /daJi9T2JV+wTBe73wuxQZGyszQ7r3bpWZxi45ZYB/kJjJ76MIL06CvZn
- u9C4zDmJuXtOJVKlZcL8oXb5FqNSiNiz6Djv98ffzP6WrEtn0FyEfXMJ+
- I0unG1HY9ixNewsKqk5QAoB1rpK4YmtC/KKvg+9PpCgXLOCkATBCF8FoJ
- PWW8xHKTZNCCwn/BEKbcDqvzh8fd6Dww5yIjWv858rZ0T75uabQLDLvaQ A==;
-X-CSE-ConnectionGUID: 1zFPPfULTJuADitNDyIvpQ==
-X-CSE-MsgGUID: 5/53c0r9TRGyOwTDSjemnQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11411"; a="46794352"
-X-IronPort-AV: E=Sophos;i="6.15,231,1739865600"; d="scan'208";a="46794352"
+ bh=10DJjbDLwYUR6HTXbF0xjIErqRGD/GTYKONsUzy33I0=;
+ b=iPU110f2BqcwWBF+ezNfooPuLhx5M2AxgO3QwJY6Y9DSWeed6T+YmbsY
+ YQiuDPKSUjN+am+wx8yICPTvnY4ZDFHNOLVMPxBo/g+d4qfxUzFrXMZ3u
+ v5Y8LYp14CjMqRlVAI24hMjK/tajIEmAuLrp+Yu6T6w7C+IbOdiMaMaVT
+ RNI/aS/CFStOuBqlcWhXR7l3E728DW7lNMUetmLCW4KP7w/aXA77pE86i
+ m86O5NEkgs5Om9b4tAhho9i9Qb5ivmnBhfrIr5sFdSUK7zXqhQXC3p6ZX
+ aqdk1QggGg7dOIswey7pZTEVGqjfaNXYulgUwGOVhNi1mFapS02+OoAlc Q==;
+X-CSE-ConnectionGUID: 7LJ9h3pTRkeFpM/pFFiVCg==
+X-CSE-MsgGUID: ctEdMci5SjGPGgT/98e3Cw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11411"; a="46794358"
+X-IronPort-AV: E=Sophos;i="6.15,231,1739865600"; d="scan'208";a="46794358"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  22 Apr 2025 10:02:56 -0700
-X-CSE-ConnectionGUID: c6LFLuuHRLiBT+kp+859mQ==
-X-CSE-MsgGUID: ZjvcEDUJTOCrR1Vy0Ki+Rg==
+X-CSE-ConnectionGUID: U6YoTxVbQfyvu+lHE7aAAw==
+X-CSE-MsgGUID: wFM9XK4cRsmPh5Z0PUeGIQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,231,1739865600"; d="scan'208";a="131964239"
+X-IronPort-AV: E=Sophos;i="6.15,231,1739865600"; d="scan'208";a="131964248"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  22 Apr 2025 10:02:56 -0700
@@ -45,9 +45,9 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org, thomas.hellstrom@linux.intel.com,
  himal.prasad.ghimiray@intel.com
-Subject: [PATCH v4 2/5] drm/xe: Strict migration policy for atomic SVM faults
-Date: Tue, 22 Apr 2025 10:04:12 -0700
-Message-Id: <20250422170415.584662-3-matthew.brost@intel.com>
+Subject: [PATCH v4 5/5] drm/xe: Add atomic_svm_timeslice_ms debugfs entry
+Date: Tue, 22 Apr 2025 10:04:15 -0700
+Message-Id: <20250422170415.584662-6-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250422170415.584662-1-matthew.brost@intel.com>
 References: <20250422170415.584662-1-matthew.brost@intel.com>
@@ -67,222 +67,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Mixing GPU and CPU atomics does not work unless a strict migration
-policy of GPU atomics must be device memory. Enforce a policy of must be
-in VRAM with a retry loop of 2 attempts, if retry loop fails abort
-fault.
+Add some informal control for atomic SVM fault GPU timeslice to be able
+to play around with values and tweak performance.
 
 v2:
- - Only retry migration on atomics
- - Drop alway migrate modparam
-v3:
- - Only set vram_only on DGFX (Himal)
- - Bail on get_pages failure if vram_only and retry count exceeded (Himal)
- - s/vram_only/devmem_only
- - Update xe_svm_range_is_valid to accept devmem_only argument
-v4:
- - Fix logic bug get_pages failure
+ - Reduce timeslice default value to 5ms
 
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_module.c |  3 --
- drivers/gpu/drm/xe/xe_module.h |  1 -
- drivers/gpu/drm/xe/xe_svm.c    | 89 +++++++++++++++++++++++++---------
- drivers/gpu/drm/xe/xe_svm.h    |  5 --
- 4 files changed, 65 insertions(+), 33 deletions(-)
+ drivers/gpu/drm/xe/xe_debugfs.c      | 38 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_device.c       |  1 +
+ drivers/gpu/drm/xe/xe_device_types.h |  3 +++
+ drivers/gpu/drm/xe/xe_svm.c          |  3 ++-
+ 4 files changed, 44 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index 05c7d0ae6d83..1c4dfafbcd0b 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -33,9 +33,6 @@ struct xe_modparam xe_modparam = {
- module_param_named(svm_notifier_size, xe_modparam.svm_notifier_size, uint, 0600);
- MODULE_PARM_DESC(svm_notifier_size, "Set the svm notifier size(in MiB), must be power of 2");
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index d0503959a8ed..d83cd6ed3fa8 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -191,6 +191,41 @@ static const struct file_operations wedged_mode_fops = {
+ 	.write = wedged_mode_set,
+ };
  
--module_param_named(always_migrate_to_vram, xe_modparam.always_migrate_to_vram, bool, 0444);
--MODULE_PARM_DESC(always_migrate_to_vram, "Always migrate to VRAM on GPU fault");
--
- module_param_named_unsafe(force_execlist, xe_modparam.force_execlist, bool, 0444);
- MODULE_PARM_DESC(force_execlist, "Force Execlist submission");
++static ssize_t atomic_svm_timeslice_ms_show(struct file *f, char __user *ubuf,
++					    size_t size, loff_t *pos)
++{
++	struct xe_device *xe = file_inode(f)->i_private;
++	char buf[32];
++	int len = 0;
++
++	len = scnprintf(buf, sizeof(buf), "%d\n", xe->atomic_svm_timeslice_ms);
++
++	return simple_read_from_buffer(ubuf, size, pos, buf, len);
++}
++
++static ssize_t atomic_svm_timeslice_ms_set(struct file *f,
++					   const char __user *ubuf,
++					   size_t size, loff_t *pos)
++{
++	struct xe_device *xe = file_inode(f)->i_private;
++	u32 atomic_svm_timeslice_ms;
++	ssize_t ret;
++
++	ret = kstrtouint_from_user(ubuf, size, 0, &atomic_svm_timeslice_ms);
++	if (ret)
++		return ret;
++
++	xe->atomic_svm_timeslice_ms = atomic_svm_timeslice_ms;
++
++	return size;
++}
++
++static const struct file_operations atomic_svm_timeslice_ms_fops = {
++	.owner = THIS_MODULE,
++	.read = atomic_svm_timeslice_ms_show,
++	.write = atomic_svm_timeslice_ms_set,
++};
++
+ void xe_debugfs_register(struct xe_device *xe)
+ {
+ 	struct ttm_device *bdev = &xe->ttm;
+@@ -211,6 +246,9 @@ void xe_debugfs_register(struct xe_device *xe)
+ 	debugfs_create_file("wedged_mode", 0600, root, xe,
+ 			    &wedged_mode_fops);
  
-diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
-index 84339e509c80..5a3bfea8b7b4 100644
---- a/drivers/gpu/drm/xe/xe_module.h
-+++ b/drivers/gpu/drm/xe/xe_module.h
-@@ -12,7 +12,6 @@
- struct xe_modparam {
- 	bool force_execlist;
- 	bool probe_display;
--	bool always_migrate_to_vram;
- 	u32 force_vram_bar_size;
- 	int guc_log_level;
- 	char *guc_firmware_path;
++	debugfs_create_file("atomic_svm_timeslice_ms", 0600, root, xe,
++			    &atomic_svm_timeslice_ms_fops);
++
+ 	for (mem_type = XE_PL_VRAM0; mem_type <= XE_PL_VRAM1; ++mem_type) {
+ 		man = ttm_manager_type(bdev, mem_type);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 75e753e0a682..abf3c72baaa6 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -444,6 +444,7 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+ 	xe->info.devid = pdev->device;
+ 	xe->info.revid = pdev->revision;
+ 	xe->info.force_execlist = xe_modparam.force_execlist;
++	xe->atomic_svm_timeslice_ms = 5;
+ 
+ 	err = xe_irq_init(xe);
+ 	if (err)
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index b9a892c44c67..6f5222f42410 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -567,6 +567,9 @@ struct xe_device {
+ 	/** @pmu: performance monitoring unit */
+ 	struct xe_pmu pmu;
+ 
++	/** @atomic_svm_timeslice_ms: Atomic SVM fault timeslice MS */
++	u32 atomic_svm_timeslice_ms;
++
+ #ifdef TEST_VM_OPS_ERROR
+ 	/**
+ 	 * @vm_inject_error_position: inject errors at different places in VM
 diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 890f6b2f40e9..f749ae367a8f 100644
+index d5376a76cdd1..de4eb04fc78e 100644
 --- a/drivers/gpu/drm/xe/xe_svm.c
 +++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -650,9 +650,11 @@ void xe_svm_fini(struct xe_vm *vm)
- }
- 
- static bool xe_svm_range_is_valid(struct xe_svm_range *range,
--				  struct xe_tile *tile)
-+				  struct xe_tile *tile,
-+				  bool devmem_only)
- {
--	return (range->tile_present & ~range->tile_invalidated) & BIT(tile->id);
-+	return ((range->tile_present & ~range->tile_invalidated) & BIT(tile->id))
-+		&& (!devmem_only || range->base.flags.migrate_devmem);
- }
- 
- #if IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR)
-@@ -726,6 +728,35 @@ static int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
- }
- #endif
- 
-+static bool supports_4K_migration(struct xe_device *xe)
-+{
-+	if (xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
-+		return false;
-+
-+	return true;
-+}
-+
-+static bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range,
-+					       struct xe_vma *vma)
-+{
-+	struct xe_vm *vm = range_to_vm(&range->base);
-+	u64 range_size = xe_svm_range_size(range);
-+
-+	if (!range->base.flags.migrate_devmem)
-+		return false;
-+
-+	if (xe_svm_range_in_vram(range)) {
-+		drm_dbg(&vm->xe->drm, "Range is already in VRAM\n");
-+		return false;
-+	}
-+
-+	if (range_size <= SZ_64K && !supports_4K_migration(vm->xe)) {
-+		drm_dbg(&vm->xe->drm, "Platform doesn't support SZ_4K range migration\n");
-+		return false;
-+	}
-+
-+	return true;
-+}
- 
- /**
-  * xe_svm_handle_pagefault() - SVM handle page fault
-@@ -750,12 +781,15 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+@@ -784,7 +784,8 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 		.devmem_only = atomic && IS_DGFX(vm->xe) &&
  			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR),
- 		.check_pages_threshold = IS_DGFX(vm->xe) &&
- 			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR) ? SZ_64K : 0,
-+		.devmem_only = atomic && IS_DGFX(vm->xe) &&
-+			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR),
+ 		.timeslice_ms = atomic && IS_DGFX(vm->xe) &&
+-			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR) ? 5 : 0,
++			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR) ?
++			vm->xe->atomic_svm_timeslice_ms : 0,
  	};
  	struct xe_svm_range *range;
  	struct drm_gpusvm_range *r;
- 	struct drm_exec exec;
- 	struct dma_fence *fence;
- 	struct xe_tile *tile = gt_to_tile(gt);
-+	int migrate_try_count = ctx.devmem_only ? 3 : 1;
- 	ktime_t end = 0;
- 	int err;
- 
-@@ -777,23 +811,26 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 		return PTR_ERR(r);
- 
- 	range = to_xe_range(r);
--	if (xe_svm_range_is_valid(range, tile))
-+	if (xe_svm_range_is_valid(range, tile, ctx.devmem_only))
- 		return 0;
- 
- 	range_debug(range, "PAGE FAULT");
- 
--	/* XXX: Add migration policy, for now migrate range once */
--	if (!range->skip_migrate && range->base.flags.migrate_devmem &&
--	    xe_svm_range_size(range) >= SZ_64K) {
--		range->skip_migrate = true;
--
-+	if (--migrate_try_count >= 0 &&
-+	    xe_svm_range_needs_migrate_to_vram(range, vma)) {
- 		err = xe_svm_alloc_vram(vm, tile, range, &ctx);
- 		if (err) {
--			drm_dbg(&vm->xe->drm,
--				"VRAM allocation failed, falling back to "
--				"retrying fault, asid=%u, errno=%pe\n",
--				vm->usm.asid, ERR_PTR(err));
--			goto retry;
-+			if (migrate_try_count || !ctx.devmem_only) {
-+				drm_dbg(&vm->xe->drm,
-+					"VRAM allocation failed, falling back to retrying fault, asid=%u, errno=%pe\n",
-+					vm->usm.asid, ERR_PTR(err));
-+				goto retry;
-+			} else {
-+				drm_err(&vm->xe->drm,
-+					"VRAM allocation failed, retry count exceeded, asid=%u, errno=%pe\n",
-+					vm->usm.asid, ERR_PTR(err));
-+				return err;
-+			}
- 		}
- 	}
- 
-@@ -801,15 +838,22 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 	err = drm_gpusvm_range_get_pages(&vm->svm.gpusvm, r, &ctx);
- 	/* Corner where CPU mappings have changed */
- 	if (err == -EOPNOTSUPP || err == -EFAULT || err == -EPERM) {
--		if (err == -EOPNOTSUPP) {
--			range_debug(range, "PAGE FAULT - EVICT PAGES");
--			drm_gpusvm_range_evict(&vm->svm.gpusvm, &range->base);
-+		if (migrate_try_count > 0 || !ctx.devmem_only) {
-+			if (err == -EOPNOTSUPP) {
-+				range_debug(range, "PAGE FAULT - EVICT PAGES");
-+				drm_gpusvm_range_evict(&vm->svm.gpusvm,
-+						       &range->base);
-+			}
-+			drm_dbg(&vm->xe->drm,
-+				"Get pages failed, falling back to retrying, asid=%u, gpusvm=%p, errno=%pe\n",
-+				vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
-+			range_debug(range, "PAGE FAULT - RETRY PAGES");
-+			goto retry;
-+		} else {
-+			drm_err(&vm->xe->drm,
-+				"Get pages failed, retry count exceeded, asid=%u, gpusvm=%p, errno=%pe\n",
-+				vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
- 		}
--		drm_dbg(&vm->xe->drm,
--			"Get pages failed, falling back to retrying, asid=%u, gpusvm=%p, errno=%pe\n",
--			vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
--		range_debug(range, "PAGE FAULT - RETRY PAGES");
--		goto retry;
- 	}
- 	if (err) {
- 		range_debug(range, "PAGE FAULT - FAIL PAGE COLLECT");
-@@ -843,9 +887,6 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 	}
- 	drm_exec_fini(&exec);
- 
--	if (xe_modparam.always_migrate_to_vram)
--		range->skip_migrate = false;
--
- 	dma_fence_wait(fence, false);
- 	dma_fence_put(fence);
- 
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index 3d441eb1f7ea..0e1f376a7471 100644
---- a/drivers/gpu/drm/xe/xe_svm.h
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -39,11 +39,6 @@ struct xe_svm_range {
- 	 * range. Protected by GPU SVM notifier lock.
- 	 */
- 	u8 tile_invalidated;
--	/**
--	 * @skip_migrate: Skip migration to VRAM, protected by GPU fault handler
--	 * locking.
--	 */
--	u8 skip_migrate	:1;
- };
- 
- /**
 -- 
 2.34.1
 
