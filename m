@@ -4,58 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D96FC369D7
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Apr 2025 13:13:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9DB3C369C2
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Apr 2025 13:14:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2344410E59A;
-	Tue, 22 Apr 2025 13:13:42 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cpe2zRca";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EB0B10E22E;
- Tue, 22 Apr 2025 13:13:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745327618; x=1776863618;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=O7ySDkjxY5bFshYvmlu9914kDky76gIlRyiQ39jBxkw=;
- b=cpe2zRca4+OyOpij8vZ7rlpFbxabxj2/DH5WrxlPXABJOfKRqJjK7qN/
- GwSBuBTA4JISYTtdgcGp+7YTvB5xBRN7FfoQAQq3oa0RcA4MC9yJcVipQ
- oKqXYg3hu5kF8nbGAPQxDpu/iY7SMaHtVt+4gG1WFkkspO+Widjgmvhun
- apynCUgWo4iEBZF6c94FF1qGDAWZ6bPfl/inDXlvrC3QMVt3I1XaCYq1T
- b6LgWzIsCUOdiy0MMnsyIFG0fEZvRYGzwKjjDJmiBh/z8bPVpRNJbIuwd
- Ge0bLmfFBIz4x5H4j+86Xk2aOBgeQEnigDqtUwwUy5jW36gR9kWmylzKA Q==;
-X-CSE-ConnectionGUID: yC+sif6fRmWni6f2URoNMg==
-X-CSE-MsgGUID: E9N+ldpnR0CkgZSUcC0OuQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11411"; a="47013525"
-X-IronPort-AV: E=Sophos;i="6.15,231,1739865600"; d="scan'208";a="47013525"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2025 06:13:37 -0700
-X-CSE-ConnectionGUID: LJCcW5J4SYOOHBe2bu9U/w==
-X-CSE-MsgGUID: yZcLwE60RKGBXJ5ic6ANRg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,231,1739865600"; d="scan'208";a="132551021"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.98])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2025 06:13:35 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH v2 1/3] drm/i915/display: pass struct intel_display to
- PCH macros
-In-Reply-To: <SJ1PR11MB612936A75B38A19FB5ED33F9B9B82@SJ1PR11MB6129.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1744880985.git.jani.nikula@intel.com>
- <999f4d7b8ed11739b1c5ec8d6408fc39d5e3776b.1744880985.git.jani.nikula@intel.com>
- <SJ1PR11MB612936A75B38A19FB5ED33F9B9B82@SJ1PR11MB6129.namprd11.prod.outlook.com>
-Date: Tue, 22 Apr 2025 16:13:32 +0300
-Message-ID: <87bjso1gqr.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D07E10E59C;
+	Tue, 22 Apr 2025 13:14:09 +0000 (UTC)
+Received: from b68e5b3b99e1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CBC510E59C;
+ Tue, 22 Apr 2025 13:14:08 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2669859282013543826=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Wait_for_VRAM_ready?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Karthik Poosa" <karthik.poosa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 22 Apr 2025 13:14:08 -0000
+Message-ID: <174532764837.25713.15537353382084504640@b68e5b3b99e1>
+X-Patchwork-Hint: ignore
+References: <20250421135029.3489950-1-karthik.poosa@intel.com>
+In-Reply-To: <20250421135029.3489950-1-karthik.poosa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,42 +35,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 21 Apr 2025, "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com> wrote:
->> -----Original Message-----
->> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Jani
->> Nikula
->> Sent: Thursday, April 17, 2025 2:41 PM
->> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
->> Cc: Nikula, Jani <jani.nikula@intel.com>
->> Subject: [PATCH v2 1/3] drm/i915/display: pass struct intel_display to PCH
->> macros
->> 
->> Now that INTEL_PCH_TYPE() and HAS_PCH_*() macros are under display, and
->> accept a struct intel_display pointer, use that instead of struct
->> drm_i915_private pointer in display code.
->> 
->> This is done naively by running:
->> 
->> $ sed -i 's/\(INTEL_PCH_TYPE\|HAS_PCH_[A-Z0-9_-]*\)([^)]*)/\1(display)/g' \
->>   $(find drivers/gpu/drm/i915/display -name "*.c")
->> 
->> and fixing the fallout, i.e. removing unused local i915 variables and
->> adding display variables where needed.
->> 
->> v2: Rebase
->
-> LGTM
->
->
-> Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+--===============2669859282013543826==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thanks for the reviews, series pushed to drm-intel-next.
+== Series Details ==
 
-BR,
-Jani.
+Series: Wait for VRAM ready
+URL   : https://patchwork.freedesktop.org/series/148022/
+State : success
 
--- 
-Jani Nikula, Intel
+== Summary ==
+
+CI Bug Log - changes from xe-2975-59b03675a8b030e69f6a4927223cd342cb01cea8_BAT -> xe-pw-148022v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-2975-59b03675a8b030e69f6a4927223cd342cb01cea8 -> xe-pw-148022v1
+
+  IGT_8329: 8329
+  xe-2975-59b03675a8b030e69f6a4927223cd342cb01cea8: 59b03675a8b030e69f6a4927223cd342cb01cea8
+  xe-pw-148022v1: 148022v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148022v1/index.html
+
+--===============2669859282013543826==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Wait for VRAM ready</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148022/">https://patchwork.freedesktop.org/series/148022/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148022v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148022v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-2975-59b03675a8b030e69f6a4927223cd342cb01cea8_BAT -&gt; xe-pw-148022v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-2975-59b03675a8b030e69f6a4927223cd342cb01cea8 -&gt; xe-pw-148022v1</li>
+</ul>
+<p>IGT_8329: 8329<br />
+  xe-2975-59b03675a8b030e69f6a4927223cd342cb01cea8: 59b03675a8b030e69f6a4927223cd342cb01cea8<br />
+  xe-pw-148022v1: 148022v1</p>
+
+</body>
+</html>
+
+--===============2669859282013543826==--
