@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C1B9C369D3
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Apr 2025 13:31:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E01FC369C2
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Apr 2025 13:37:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52B1510E053;
-	Tue, 22 Apr 2025 13:31:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0736210E5A8;
+	Tue, 22 Apr 2025 13:37:10 +0000 (UTC)
 Received: from b68e5b3b99e1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 269CE10E053;
- Tue, 22 Apr 2025 13:31:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CF3410E5A8;
+ Tue, 22 Apr 2025 13:37:09 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============6129959528094584451=="
+ boundary="===============2512498423170988142=="
 MIME-Version: 1.0
 Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/ptl=3A_Extend_GuC_Wa?=
  =?utf-8?q?=5F13011645652?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 22 Apr 2025 13:31:49 -0000
-Message-ID: <174532870910.25760.12994514168597789615@b68e5b3b99e1>
+Date: Tue, 22 Apr 2025 13:37:09 -0000
+Message-ID: <174532902911.25874.6447659984814530561@b68e5b3b99e1>
 X-Patchwork-Hint: ignore
 References: <20250421221031.1781629-1-vinay.belgaumkar@intel.com>
 In-Reply-To: <20250421221031.1781629-1-vinay.belgaumkar@intel.com>
@@ -40,7 +40,7 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6129959528094584451==
+--===============2512498423170988142==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,7 +90,7 @@ Build changes
 
 For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148039v1/index.html
 
---===============6129959528094584451==
+--===============2512498423170988142==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -138,4 +138,4 @@ Content-Transfer-Encoding: 7bit
 </body>
 </html>
 
---===============6129959528094584451==--
+--===============2512498423170988142==--
