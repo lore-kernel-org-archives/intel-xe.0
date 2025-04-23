@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47F4FC369DC
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Apr 2025 21:58:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 807C3C369CB
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Apr 2025 21:58:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E0BE10E3B7;
-	Wed, 23 Apr 2025 21:58:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 453AD10E0B9;
+	Wed, 23 Apr 2025 21:58:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h7NgxDv1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mDm10Azg";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0731610E283
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5384210E0B9
  for <intel-xe@lists.freedesktop.org>; Wed, 23 Apr 2025 21:58:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1745445506; x=1776981506;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Nz06ALb4+MkaaZevjzxdaLQy64lJFqylOwLfntAgCbQ=;
- b=h7NgxDv1k1i9C45VHuHKxaSMBii9LAUVca8krRCi6KdO7W4jMHQMUCdw
- E0d/yHC3m09z09SLpBv9O8yeH8A2Eg64GbeR48yRJ3bO27TJbrKt5ir4Y
- RJs6x4xuP7ZOK0i05sP+JwLQHExarRhth1+z+Z/Jo1rwkK32yn/OnKWUZ
- Fye3CjK7jEO7AZUpd6MdnMKeFBJaOUuIF1zV3JFK8d2v8dpcClR7x5VXp
- q8ADK8gS0CyY4WTJs0pzGCpcYY9QLV/C+A2GQhlJ8n2zCr/NIPhKK/GIW
- 8lEpRA99dyFt9p3DWb8hmh7e8Riks8PQ1ULoAY6FtM8tJfwneYui6l1ay g==;
-X-CSE-ConnectionGUID: zGio99nYRJKHj3szuAQnLQ==
-X-CSE-MsgGUID: 7gOGEeatS2eOcbb+PEkl3Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11412"; a="47073113"
-X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="47073113"
+ bh=sR73lAIson2Nz/yrXdktT4Qnc5TRTSuumqZgfSX4tuc=;
+ b=mDm10AzgqELSIvgOE/vQGAEBkv0SariEBs+zK3C2x4chuzbnMjqAUz4A
+ qcas9qG0tk9iiFpYW+0UrmQVCJmwWdimsTUjX5eea1NOkeR7KbdYlIacJ
+ 1NxzNVK95NgCvekubw+gheGxXTF+3OpO8AJ27kfXzoSxajIAL7uYkjxdI
+ KFR2VTIIjdvH9ruuK3szq4/vkSuuQyn5nrGEU3JtIxaSc+XZLO8V5lUt6
+ 52zVlT0s590m/CSKYhGQ3a/QfdOTwfhWO7sTI7ftPDizBc6NZKXSZIyIB
+ miaLK0H8XpCzfEcIVJKg7u0foETVvP76I9paKt1s6NdGhou1lAcOd1n9c w==;
+X-CSE-ConnectionGUID: tbkpEsNUT7adYASi7X1cSA==
+X-CSE-MsgGUID: LX+te/SZTt2Z3Hee9fwegg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11412"; a="47073117"
+X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="47073117"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Apr 2025 14:58:23 -0700
-X-CSE-ConnectionGUID: jYRF1FxjROqBb96AVIC8Qw==
-X-CSE-MsgGUID: UUmJ4mglQayD3UGLYYVdKA==
+X-CSE-ConnectionGUID: cHY1SexMTnKofGpRetbuMQ==
+X-CSE-MsgGUID: N/y2+PaVTmqeMrxK57/lRw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="136507644"
+X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="136507657"
 Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
  by fmviesa003.fm.intel.com with ESMTP; 23 Apr 2025 14:58:23 -0700
 From: Zhanjun Dong <zhanjun.dong@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Zhanjun Dong <zhanjun.dong@intel.com>
-Subject: [PATCH v4 1/6] drm/xe/guc: Add log init config abi definitions
-Date: Wed, 23 Apr 2025 14:58:16 -0700
-Message-Id: <20250423215821.3078428-2-zhanjun.dong@intel.com>
+Subject: [PATCH v4 5/6] drm/xe/guc: Add GuC log event buffer output in LFD
+ format
+Date: Wed, 23 Apr 2025 14:58:20 -0700
+Message-Id: <20250423215821.3078428-6-zhanjun.dong@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250423215821.3078428-1-zhanjun.dong@intel.com>
 References: <20250423215821.3078428-1-zhanjun.dong@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,137 +66,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add GuC log init config (LIC) ABI definitions.
+Add GuC log event buffer output in LFD format.
 
 Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
 ---
- drivers/gpu/drm/xe/abi/guc_log_lic_abi.h | 117 +++++++++++++++++++++++
- 1 file changed, 117 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/abi/guc_log_lic_abi.h
+ drivers/gpu/drm/xe/xe_guc_log.c | 87 +++++++++++++++++++++++++++++++--
+ 1 file changed, 84 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/abi/guc_log_lic_abi.h b/drivers/gpu/drm/xe/abi/guc_log_lic_abi.h
-new file mode 100644
-index 000000000000..48302bfcab2b
---- /dev/null
-+++ b/drivers/gpu/drm/xe/abi/guc_log_lic_abi.h
-@@ -0,0 +1,117 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2025 Intel Corporation
-+ */
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
+index 3fdf3823e2d0..5aa9b9dbe3f3 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.c
++++ b/drivers/gpu/drm/xe/xe_guc_log.c
+@@ -33,6 +33,7 @@ struct guc_log_buffer_entry_list {
+ };
+ 
+ struct guc_log_init_config_save {
++	u32 version;
+ 	/*
+ 	 * Array of init config KLVs.
+ 	 * Range from GUC_LOG_LIC_TYPE_FIRST to GUC_LOG_LIC_TYPE_LAST
+@@ -336,7 +337,6 @@ static int xe_guc_log_add_os_id(void *buf, int buf_size, u32 id)
+ 		return -ENOMEM;
+ 
+ 	strscpy(os_id->build_version, version, info_len);
+-
+ 	return xe_guc_log_add_typed_payload(buf, buf_size, GUC_LFD_TYPE_OS_ID,
+ 					   info_len + sizeof(*os_id), os_id);
+ }
+@@ -366,6 +366,7 @@ static void xe_guc_log_load_lic(void *guc_log, struct guc_log_init_config_save *
+ 	int i = 0;
+ 
+ 	memset(config, 0, sizeof(struct guc_log_init_config_save));
++	config->version = p->version;
+ 	while (p) {
+ 		for (i = 0; i < GUC_LOG_BUFFER_STATE_HEADER_ENTRY_COUNT; i++) {
+ 			if (p->marker[0] == entry_markers[i].key[0] &&
+@@ -380,8 +381,7 @@ static void xe_guc_log_load_lic(void *guc_log, struct guc_log_init_config_save *
+ 					p++;
+ 				} else {
+ 					/* Load log init config */
+-					xe_guc_log_loop_log_init((void *)p,
+-								 config);
++					xe_guc_log_loop_log_init((void *)p, config);
+ 
+ 					/* Init config is the last */
+ 					return;
+@@ -417,6 +417,86 @@ xe_guc_log_output_lfd_init(char *buf, struct xe_guc_log_snapshot *snapshot,
+ 	return index;
+ }
+ 
++static void
++xe_guc_log_print_over_chunks(struct drm_printer *p, struct xe_guc_log_snapshot *snapshot,
++			     u32 from, u32 to)
++{
++	int chunk_from = from % GUC_LOG_CHUNK_SIZE;
++	int chunk_id = from / GUC_LOG_CHUNK_SIZE;
++	int to_chunk_id = to / GUC_LOG_CHUNK_SIZE;
++	int chunk_to = to % GUC_LOG_CHUNK_SIZE;
++	int pos = from;
 +
-+#ifndef _ABI_GUC_LOG_LIC_ABI_H_
-+#define _ABI_GUC_LOG_LIC_ABI_H_
++	do {
++		size_t size = (to_chunk_id > chunk_id ? GUC_LOG_CHUNK_SIZE : chunk_to) - chunk_from;
 +
-+#include <linux/types.h>
++		xe_print_blob_ascii85(p, NULL, 0, snapshot->copy[chunk_id], chunk_from, size);
++		pos += size;
++		chunk_id++;
++		chunk_from = 0;
++	} while (pos < to);
++}
 +
-+#define GUC_LOG_BUFFER_STATE_HEADER_LENGTH		4096
-+#define GUC_LOG_BUFFER_STATE_HEADER_ENTRY_LOG		0
-+#define GUC_LOG_BUFFER_STATE_HEADER_ENTRY_CRASH		1
-+#define GUC_LOG_BUFFER_STATE_HEADER_ENTRY_CAPTURE	2
-+#define GUC_LOG_BUFFER_STATE_HEADER_ENTRY_INIT		3
-+#define GUC_LOG_BUFFER_STATE_HEADER_ENTRY_COUNT		4
++static void
++xe_guc_log_lfd_print_from_chunks(struct drm_printer *p, struct xe_guc_log_snapshot *snapshot,
++				 struct guc_log_buffer_entry_list *entry)
++{
++	/* Output data from guc log chunks directly */
++	if (entry->rd_ptr < entry->wr_ptr) {
++		xe_guc_log_print_over_chunks(p, snapshot,
++					     entry->offset + entry->rd_ptr,
++					     entry->offset + entry->wr_ptr);
++	} else {
++		/* print from rd to buf end 1st */
++		xe_guc_log_print_over_chunks(p, snapshot,
++					     entry->offset + entry->rd_ptr,
++					     entry->offset + entry->buf_size);
 +
-+#define GUC_LOG_INIT_CONFIG_LIC_MAGIC			0x8086900D
-+#define GUC_LOG_INIT_CONFIG_FORMAT_VERSION_MAJOR	0x0001
-+#define GUC_LOG_INIT_CONFIG_FORMAT_VERSION_MINOR	0x0000
++		/* print from buf start to wr */
++		xe_guc_log_print_over_chunks(p, snapshot, entry->offset,
++					     entry->offset + entry->wr_ptr);
++	}
++}
 +
-+/** enum guc_log_lic_type - Log Init Config KLV IDs. */
-+enum guc_log_lic_type {
-+	/**
-+	 * @GUC_LOG_LIC_TYPE_GUC_SW_VERSION: GuC firmware version. Value
-+	 * is a 32 bit number represented by guc_sw_version.
-+	 */
-+	GUC_LOG_LIC_TYPE_GUC_SW_VERSION = 0x1,
-+	/**
-+	 * @GUC_LOG_LIC_TYPE_GUC_DEVICE_ID: GuC device id. Value is a 32
-+	 * bit.
-+	 */
-+	GUC_LOG_LIC_TYPE_GUC_DEVICE_ID = 0x2,
-+	/**
-+	 * @GUC_LOG_LIC_TYPE_TSC_FREQUENCY: GuC timestamp counter
-+	 * frequency. Value is a 32 bit number representing frequency in
-+	 * kilohertz. This timestamp is utilized in log entries, timer and
-+	 * for engine utilization tracking.
-+	 */
-+	GUC_LOG_LIC_TYPE_TSC_FREQUENCY = 0x3,
-+	/**
-+	 * @GUC_LOG_LIC_TYPE_GMD_ID: HW GMD ID. Value is a 32 bit number
-+	 * representing graphics, media and display HW architecture IDs.
-+	 */
-+	GUC_LOG_LIC_TYPE_GMD_ID = 0x4,
-+	/**
-+	 * @GUC_LOG_LIC_TYPE_BUILD_PLATFORM_ID: GuC build platform ID.
-+	 * Value is 32 bits.
-+	 */
-+	GUC_LOG_LIC_TYPE_BUILD_PLATFORM_ID = 0x5,
-+};
++static inline int
++xe_guc_log_add_log_event(struct drm_printer *p, char *buf, struct xe_guc_log_snapshot *snapshot,
++			 struct guc_log_init_config_save *config)
++{
++	struct guc_logfile_lfd_data *lfd = (void *)buf;
++	struct guc_lfd_data_log_events_buf *events_buf;
++	struct guc_log_buffer_entry_list *entry;
++	u32 data_len;
++	int index;
 +
-+/**
-+ * struct guc_sw_version - This structure describes the full version of a
-+ * software component.
-+ */
-+struct guc_sw_version {
-+	/** @dw0: A 32 bits dword, contains multiple bit fields */
-+	u32 dw0;
-+	/*  Patch version */
-+#define GUC_SW_VERSION_PATCH_VERSION		GENMASK(7, 0)
-+	/*  Minor version */
-+#define GUC_SW_VERSION_MINOR_VERSION		GENMASK(15, 8)
-+	/*  Major version */
-+#define GUC_SW_VERSION_MAJOR_VERSION		GENMASK(23, 16)
-+	/*  Branch ID */
-+#define GUC_SW_VERSION_BRANCH_ID		GENMASK(31, 24)
-+} __packed;
++	memset(buf, 0, GUC_LOG_CHUNK_SIZE);
++	entry = &config->entry[GUC_LOG_BUFFER_STATE_HEADER_ENTRY_LOG];
 +
-+/**
-+ * struct guc_lic_format_version - Log Init Config Structure Version.
-+ * Major-Minor is not a fractional number (i.e. Ver 1.3 would be older
-+ * than 1.12)
-+ */
-+struct guc_lic_format_version {
-+	/** @dw0: A 32 bits dword, contains multiple bit fields */
-+	u32 dw0;
-+	/*
-+	 *  Log-Init-Config structure minor version. Must be
-+	 * GUC_LOG_INIT_CONFIG_FORMAT_VERSION_MINOR
-+	 */
-+#define GUC_LIC_FORMAT_VERSION_MINOR_VERSION		GENMASK(15, 0)
-+	/*
-+	 *  Log-Init-Config structure major version. Must be
-+	 * GUC_LOG_INIT_CONFIG_FORMAT_VERSION_MAJOR
-+	 */
-+#define GUC_LIC_FORMAT_VERSION_MAJOR_VERSION		GENMASK(31, 16)
-+} __packed;
++	/* Skip empty log */
++	if (entry->rd_ptr == entry->wr_ptr)
++		return 0;
 +
-+/**
-+ * struct guc_log_init_config - GuC Log-Init-Config structure.
-+ * This is populated by the GUC at log init time and is located in the log
-+ * buffer as per the Log Buffer Layout (In Memory). The array of guc log
-+ * buffer states plus this structure must not exceed 4KB
-+ */
-+struct guc_log_init_config {
-+	/**
-+	 * @magic: A magic number set by GuC to identify that this
-+	 * structure contains valid information: magic = 0x8086900D.
-+	 * Used to verify the information in this structure is valid.
-+	 */
-+	u32 magic;
-+	/**
-+	 * @ver: The version of the this structure. Detail description
-+	 * is guc_lic_format_version
-+	 */
-+	struct guc_lic_format_version ver;
-+	/** @dw_size: Number of Dws the `data` array contains. */
-+	u32 dw_size;
-+	/**
-+	 * @data: Array of dwords representing a list of LIC KLVs of
-+	 * type guc_klv_generic with keys represented by guc_log_lic_type
-+	 */
-+	u32 data[] __counted_by(dw_size);
-+} __packed;
++	index = xe_guc_log_add_lfd_header(buf, GUC_LOG_CHUNK_SIZE);
++	lfd->dw0 |= FIELD_PREP(GUC_LOGFILE_LFD_DESC_TYPE, GUC_LFD_TYPE_LOG_EVENTS_BUFFER);
++	events_buf = (void *)&lfd->data;
++	events_buf->log_events_format_version = config->version;
 +
-+#endif
++	/* Adjust to log_format_buf */
++	data_len = offsetof(struct guc_lfd_data_log_events_buf, log_format_buf);
++	index += data_len;
++
++	/* Calculate data length */
++	data_len += (entry->wr_ptr + entry->buf_size - entry->rd_ptr) % entry->buf_size;
++	/* make length u32 aligned */
++	lfd->desc_dw_size = DIV_ROUND_UP(data_len, sizeof(u32));
++
++	/* Output GUC_LFD_TYPE_LOG_EVENTS_BUFFER header */
++	xe_print_blob_ascii85(p, NULL, 0, buf, 0, (size_t)index);
++
++	xe_guc_log_lfd_print_from_chunks(p, snapshot, entry);
++	/* log event buffer content did not use buf, exclude from size count */
++	return index;
++}
++
+ static void
+ xe_guc_log_snapshot_print_lfd(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p,
+ 			      struct xe_guc_log *log)
+@@ -441,6 +521,7 @@ xe_guc_log_snapshot_print_lfd(struct xe_guc_log_snapshot *snapshot, struct drm_p
+ 		goto lfd_out;
+ 
+ 	xe_print_blob_ascii85(p, "[LOG].data", 0, lfd_buf, 0, (size_t)index);
++	index = xe_guc_log_add_log_event(p, lfd_buf, snapshot, &config);
+ 
+ lfd_out:
+ 	drm_printf(p, "\n");
 -- 
 2.34.1
 
