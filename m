@@ -4,56 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2FEFC369D3
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Apr 2025 09:47:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34774C369CB
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Apr 2025 09:52:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76DCD10E66D;
-	Wed, 23 Apr 2025 09:47:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC48810E668;
+	Wed, 23 Apr 2025 09:52:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SK5kxmM0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ILItbBj7";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CA9310E65F;
- Wed, 23 Apr 2025 09:47:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CE0610E658;
+ Wed, 23 Apr 2025 09:52:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745401637; x=1776937637;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=U5xqi+BU7vFws/PoABPxrvP9/vm/xpSMJqWEFVioTnM=;
- b=SK5kxmM0Ev29xx+v18EhNCrEZn7cugvIX+Ev+Qd5HWDLG1FuvP1fFWt7
- dcMKDdEAWrbu048xr/7fazZXRnpwCjLHCgwO+50SGsoph6C69O/iTxHkS
- hQmfb15BmWu6+Kw5aWtSeSCzNbMLNKt6xQLkMR9zePEKHxmBYi7/OMkCe
- 168IVh2/4+7wWdAq7sV5Spok/pxOqWouzjbgfYTrmK4PLpC5YlmZOlMZV
- FosUCOLgPudQ0FuGBmYYuqt7i+6pcOoz00++EmAtgeMm9S9aGbUQvjlIH
- BwP+biwKAvsJgQjCK7RGgjTeH78+Mmrj8hU1PYfwB84tuLBEePvElj9sz w==;
-X-CSE-ConnectionGUID: scC0U2D4RAevQyO6lTWeGA==
-X-CSE-MsgGUID: 8gYwfqPbSyqgNoqBhIxobA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11411"; a="58358009"
-X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="58358009"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2025 02:47:08 -0700
-X-CSE-ConnectionGUID: w1E//LVVTwGM707pinvdFw==
-X-CSE-MsgGUID: 4VSNy6LfSYaG2M9s2NWJ3w==
+ t=1745401934; x=1776937934;
+ h=from:subject:date:message-id:mime-version:
+ content-transfer-encoding:to:cc;
+ bh=ffaWTA861PvXBG7qetBvydmdZela/cIhNbYOklxd+3s=;
+ b=ILItbBj73ixSlky1X8uOKxOSaXkrrioOII9YDjSZfSWUq73UkRYo/rMO
+ 1OKgXTzMRTHwuCjnF8zxBJPkXV9xM0OHn4EoJs8tZ7TgKoqCXTNUY6Tjq
+ U/V/I0Kb8bQLi4W2dtUJCPVsxFwJrLeGZdwsoLEMUKkY5ZwAy6H0GwSav
+ r+kENscuWtkkVNkmA4M/ZD1IoFZBjM2UffqKcpN6qfysLkXckAdW2/bev
+ Vp71CpmraoFkRTQitdloSq4CK1IGTDMDYV+NfdzQrkyR0c7Rg0n6BlkCd
+ WbOdj74aioOTJvO+JKB8hJkTu6WNw32KgpxtT8Kg2hccElNdhlKhGJwF5 g==;
+X-CSE-ConnectionGUID: DAmMTCBITHGn+54wEwFyug==
+X-CSE-MsgGUID: dUsGQU5bTXuVipQ8g/XSig==
+X-IronPort-AV: E=McAfee;i="6700,10204,11411"; a="46221930"
+X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="46221930"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2025 02:52:14 -0700
+X-CSE-ConnectionGUID: V081JWnmR6q1Sijk4Hug6g==
+X-CSE-MsgGUID: kFnw9N8TRRufa7xy14Kj4Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="132811221"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by fmviesa010.fm.intel.com with ESMTP; 23 Apr 2025 02:47:06 -0700
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jouni.hogander@intel.com, jani.nikula@intel.com, jeevan.b@intel.com,
- Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v10 09/11] drm/i915/lobf: Check for sink error and disable LOBF
-Date: Wed, 23 Apr 2025 14:53:32 +0530
-Message-Id: <20250423092334.2294483-10-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20250423092334.2294483-1-animesh.manna@intel.com>
-References: <20250423092334.2294483-1-animesh.manna@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="163327158"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by fmviesa001.fm.intel.com with ESMTP; 23 Apr 2025 02:52:11 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCH v4 0/2] Rework/Correction on minimum hblank calculation
+Date: Wed, 23 Apr 2025 15:07:38 +0530
+Message-Id: <20250423-hblank-v4-0-8e513cc54652@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOK0CGgC/13MSwrCMBSF4a2UjI3k1aZx5D7EQR5XG9RUkhKU0
+ r2bFlqKw3O53z+iBNFDQqdqRBGyT74PZYhDhWynwx2wd2UjRlhNBJG4M08dHlgowwXRYDSnqDy
+ /I9z8ZwldrmV3Pg19/C7dTOfrmmjXRKaYYGE0lSUD0NRnHwZ4Hm3/QnMisx2j9cZYYVQzDsopy
+ Rvyz8SOMbYxUZhxRhqnrGgbu2fTNP0AEMVFlgoBAAA=
+X-Change-ID: 20250407-hblank-49b340aeba31
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+Cc: imre.deak@intel.com, vinod.govindapillai@intel.com, 
+ Arun R Murthy <arun.r.murthy@intel.com>
+X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,142 +71,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Disable LOBF/ALPM for any erroneous condition from sink side.
-
-v1: Initial version.
-v2: Add centralized alpm error handling. [Jouni]
-v3: Improve debug print. [Jouni]
-v4: Disable alpm permanently for sink error. [Jouni]
-
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_alpm.c     | 28 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_alpm.h     |  1 +
- .../drm/i915/display/intel_display_types.h    |  1 +
- drivers/gpu/drm/i915/display/intel_dp.c       |  5 ++++
- drivers/gpu/drm/i915/display/intel_psr.c      | 18 ++----------
- 5 files changed, 37 insertions(+), 16 deletions(-)
+Changes in v5:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v4: https://lore.kernel.org/r/20250422-hblank-v4-0-bdb7bd9c486c@intel.com
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index 606cb3e5f30d..24b666e6d8f9 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -284,6 +284,9 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
- 		return;
- 	}
- 
-+	if (intel_dp->alpm_parameters.sink_alpm_error)
-+		return;
-+
- 	if (!intel_dp_is_edp(intel_dp))
- 		return;
- 
-@@ -546,5 +549,30 @@ void intel_alpm_disable(struct intel_dp *intel_dp)
- 		     PORT_ALPM_CTL(cpu_transcoder),
- 		     PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
- 
-+	drm_dbg_kms(display->drm, "Disabling ALPM\n");
- 	mutex_unlock(&intel_dp->alpm_parameters.lock);
- }
-+
-+bool intel_alpm_get_error(struct intel_dp *intel_dp)
-+{
-+	struct intel_display *display = to_intel_display(intel_dp);
-+	struct drm_dp_aux *aux = &intel_dp->aux;
-+	u8 val;
-+	int r;
-+
-+	r = drm_dp_dpcd_readb(aux, DP_RECEIVER_ALPM_STATUS, &val);
-+	if (r != 1) {
-+		drm_err(display->drm, "Error reading ALPM status\n");
-+		return true;
-+	}
-+
-+	if (val & DP_ALPM_LOCK_TIMEOUT_ERROR) {
-+		drm_dbg_kms(display->drm, "ALPM lock timeout error\n");
-+
-+		/* Clearing error */
-+		drm_dp_dpcd_writeb(aux, DP_RECEIVER_ALPM_STATUS, val);
-+		return true;
-+	}
-+
-+	return false;
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
-index c043a071f84f..d7126d65b60f 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.h
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.h
-@@ -31,4 +31,5 @@ void intel_alpm_lobf_debugfs_add(struct intel_connector *connector);
- bool intel_alpm_aux_wake_supported(struct intel_dp *intel_dp);
- bool intel_alpm_aux_less_wake_supported(struct intel_dp *intel_dp);
- void intel_alpm_disable(struct intel_dp *intel_dp);
-+bool intel_alpm_get_error(struct intel_dp *intel_dp);
- #endif
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 11346c159489..97db0f569a92 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1814,6 +1814,7 @@ struct intel_dp {
- 		u8 silence_period_sym_clocks;
- 		u8 lfps_half_cycle_num_of_syms;
- 		bool lobf_disable_debug;
-+		bool sink_alpm_error;
- 	} alpm_parameters;
- 
- 	u8 alpm_dpcd;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index ece787bb3335..607aea1bf6fa 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -5392,6 +5392,11 @@ intel_dp_short_pulse(struct intel_dp *intel_dp)
- 
- 	intel_psr_short_pulse(intel_dp);
- 
-+	if (intel_alpm_get_error(intel_dp)) {
-+		intel_alpm_disable(intel_dp);
-+		intel_dp->alpm_parameters.sink_alpm_error = true;
-+	}
-+
- 	if (intel_dp_test_short_pulse(intel_dp))
- 		reprobe_needed = true;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 1bd2fcd0fa4b..43ed166007eb 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -3384,29 +3384,15 @@ static int psr_get_status_and_error_status(struct intel_dp *intel_dp,
- 
- static void psr_alpm_check(struct intel_dp *intel_dp)
- {
--	struct intel_display *display = to_intel_display(intel_dp);
--	struct drm_dp_aux *aux = &intel_dp->aux;
- 	struct intel_psr *psr = &intel_dp->psr;
--	u8 val;
--	int r;
- 
- 	if (!psr->sel_update_enabled)
- 		return;
- 
--	r = drm_dp_dpcd_readb(aux, DP_RECEIVER_ALPM_STATUS, &val);
--	if (r != 1) {
--		drm_err(display->drm, "Error reading ALPM status\n");
--		return;
--	}
--
--	if (val & DP_ALPM_LOCK_TIMEOUT_ERROR) {
-+	if (intel_alpm_get_error(intel_dp)) {
- 		intel_psr_disable_locked(intel_dp);
- 		psr->sink_not_reliable = true;
--		drm_dbg_kms(display->drm,
--			    "ALPM lock timeout error, disabling PSR\n");
--
--		/* Clearing error */
--		drm_dp_dpcd_writeb(aux, DP_RECEIVER_ALPM_STATUS, val);
-+		intel_alpm_disable(intel_dp);
- 	}
- }
- 
+Changes in v3:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v2: https://lore.kernel.org/r/20250415-hblank-v2-0-1a23e9d97360@intel.com
+
+Changes in v2:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v1: https://lore.kernel.org/r/20250408-hblank-v1-0-4ba17aebee65@intel.com
+
+---
+Arun R Murthy (2):
+      drm/display/dp: Export fn to calculate link symbol cycles
+      drm/i915/display: move min_hblank from dp_mst.c to dp.c
+
+ drivers/gpu/drm/display/drm_dp_helper.c      | 51 ++++++++++++-------
+ drivers/gpu/drm/i915/display/intel_display.c | 17 +++++++
+ drivers/gpu/drm/i915/display/intel_dp.c      | 76 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dp.h      |  3 ++
+ drivers/gpu/drm/i915/display/intel_dp_mst.c  | 57 +++------------------
+ include/drm/display/drm_dp_helper.h          |  2 +
+ 6 files changed, 137 insertions(+), 69 deletions(-)
+---
+base-commit: ada794bd93930fd265c2df8f38196994173e1fde
+change-id: 20250407-hblank-49b340aeba31
+
+Best regards,
 -- 
-2.29.0
+Arun R Murthy <arun.r.murthy@intel.com>
 
