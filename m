@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B511C369D3
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Apr 2025 10:06:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F7A9C369CB
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Apr 2025 10:22:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C000D10E21A;
-	Wed, 23 Apr 2025 10:05:59 +0000 (UTC)
-Received: from b68e5b3b99e1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E026110E21A;
- Wed, 23 Apr 2025 10:05:58 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4168B10E1F6;
+	Wed, 23 Apr 2025 10:22:03 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NcU3cJ6d";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CED3510E1F6;
+ Wed, 23 Apr 2025 10:22:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1745403722; x=1776939722;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=AODP+ePOi6E48kPCfAKcJy4LPVPbq8wlWT+ql5k6/zY=;
+ b=NcU3cJ6dW6ZvVbrEStiQKKWU7lIuHv8VKGCdEDJzR9GsVoJIjlmjZat+
+ YBCByDXZ3sukG132IzokwtuTOKEEwNtLXSJ9mXd39dqyS/WlZIoMdAKOr
+ 7C8UVM/1NiRxE2NVHJmwp5iv7AqqELYdE1lzvf65XbIUCxF/xVc2azJ2m
+ rcE5p9mIIWs04HBED1SIfisc/BVtjQfX/yO0e4e3fZAU213ykfkpHk6gv
+ x1MgNdxHa+aZeN2/qiu8sDC0fZsQJE7Fhi/mzGtB2iboQjjQyJ/fTSGOL
+ cvAEN5lIggaVzG8rjeul4+Sn59YU1um79jHIA+sgjQTslsY/h4ARCw3++ w==;
+X-CSE-ConnectionGUID: M5fu9szISTaVnp+5CFZTtw==
+X-CSE-MsgGUID: 0iw2pfX0RuOLxd2qyUGqZg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11411"; a="69479157"
+X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="69479157"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2025 03:21:54 -0700
+X-CSE-ConnectionGUID: knNKY4poS4a9EnBKJsbGog==
+X-CSE-MsgGUID: EYN+FjdsS0+z7ElaweWwXg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="132266784"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.175])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2025 03:21:51 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, Mitul Golani
+ <mitulkumar.ajitkumar.golani@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com
+Subject: Re: [PATCH v2 11/13] drm/i915/vrr: Add state checker for dc balance
+ params
+In-Reply-To: <e66ce2ea-f0d4-422d-a3d6-08b95565e188@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250421154900.2095202-1-mitulkumar.ajitkumar.golani@intel.com>
+ <20250421154900.2095202-12-mitulkumar.ajitkumar.golani@intel.com>
+ <e66ce2ea-f0d4-422d-a3d6-08b95565e188@intel.com>
+Date: Wed, 23 Apr 2025 13:21:48 +0300
+Message-ID: <8734dz18lf.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_LOBF_enablement_fix_=28r?=
- =?utf-8?q?ev9=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Animesh Manna" <animesh.manna@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 23 Apr 2025 10:05:58 -0000
-Message-ID: <174540275891.28826.17427296651799647094@b68e5b3b99e1>
-X-Patchwork-Hint: ignore
-References: <20250423092334.2294483-1-animesh.manna@intel.com>
-In-Reply-To: <20250423092334.2294483-1-animesh.manna@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,56 +69,92 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, 23 Apr 2025, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com> wrote:
+> On 4/21/2025 9:18 PM, Mitul Golani wrote:
+>> Add state checker for dc balance params. Also add macro to
+>> check source support.
+>>
+>> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_display.c |  7 +++++++
+>>   drivers/gpu/drm/i915/display/intel_vrr.c     | 20 +++++++++++++++++++-
+>>   2 files changed, 26 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+>> index 274d01552ccf..4a21acb88aa7 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> @@ -5402,6 +5402,13 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+>>   		PIPE_CONF_CHECK_LLI(cmrr.cmrr_m);
+>>   		PIPE_CONF_CHECK_LLI(cmrr.cmrr_n);
+>>   		PIPE_CONF_CHECK_BOOL(cmrr.enable);
+>> +		PIPE_CONF_CHECK_I(vrr.dc_balance.vmin);
+> Add check for vrr.dc_balance.enable?
 
-Series: LOBF enablement fix (rev9)
-URL   : https://patchwork.freedesktop.org/series/142278/
-State : warning
+They should match regardless, no? Something's wrong if they differ.
 
-== Summary ==
+>> +		PIPE_CONF_CHECK_I(vrr.dc_balance.vmax);
+>> +		PIPE_CONF_CHECK_I(vrr.dc_balance.guardband);
+>> +		PIPE_CONF_CHECK_I(vrr.dc_balance.slope);
+>> +		PIPE_CONF_CHECK_I(vrr.dc_balance.max_increase);
+>> +		PIPE_CONF_CHECK_I(vrr.dc_balance.max_decrease);
+>> +		PIPE_CONF_CHECK_I(vrr.dc_balance.vblank_target);
+>>   	}
+>>   
+>>   	if (!fastset || intel_vrr_always_use_vrr_tg(display)) {
+>> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+>> index fb96d03bbf03..e8802348e5fa 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+>> @@ -740,7 +740,7 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
+>>   {
+>>   	struct intel_display *display = to_intel_display(crtc_state);
+>>   	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+>> -	u32 trans_vrr_ctl, trans_vrr_vsync;
+>> +	u32 trans_vrr_ctl, trans_vrr_vsync, dcb_ctl;
+>>   	bool vrr_enable;
+>>   
+>>   	trans_vrr_ctl = intel_de_read(display,
+>> @@ -802,6 +802,24 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
+>>   	else
+>>   		crtc_state->vrr.enable = vrr_enable;
+>>   
+>> +	if (HAS_DC_BALANCE(display)) {
+>> +		dcb_ctl = intel_de_read(display, PIPEDMC_DCB_CTL(display, cpu_transcoder));
+>
+> dsb_ctl is not used. Need to use it for vrr.dc_balance.enable.
+>
+>
+> IMO we can introduce the new members (which is done in Patch#4), readout 
+> and state checker in one patch.
+>
+> Regards,
+>
+> Ankit
+>
+>
+>> +		crtc_state->vrr.dc_balance.vmin =
+>> +			intel_de_read(display, PIPEDMC_DCB_VMIN(display, cpu_transcoder)) + 1;
+>> +		crtc_state->vrr.dc_balance.vmax =
+>> +			intel_de_read(display, PIPEDMC_DCB_VMAX(display, cpu_transcoder)) + 1;
+>> +		crtc_state->vrr.dc_balance.guardband =
+>> +			intel_de_read(display, PIPEDMC_DCB_GUARDBAND(display, cpu_transcoder));
+>> +		crtc_state->vrr.dc_balance.max_increase =
+>> +			intel_de_read(display, PIPEDMC_DCB_MAX_INCREASE(display, cpu_transcoder));
+>> +		crtc_state->vrr.dc_balance.max_decrease =
+>> +			intel_de_read(display, PIPEDMC_DCB_MAX_DECREASE(display, cpu_transcoder));
+>> +		crtc_state->vrr.dc_balance.slope =
+>> +			intel_de_read(display, PIPEDMC_DCB_SLOPE(display, cpu_transcoder));
+>> +		crtc_state->vrr.dc_balance.vblank_target =
+>> +			intel_de_read(display, PIPEDMC_DCB_VBLANK(display, cpu_transcoder));
+>> +	}
+>> +
+>>   	/*
+>>   	 * #TODO: For Both VRR and CMRR the flag I915_MODE_FLAG_VRR is set for mode_flags.
+>>   	 * Since CMRR is currently disabled, set this flag for VRR for now.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 3a6aa65ba6ed7ef9992ded617f44faa063b664d9
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-+drivers/gpu/drm/i915/display/intel_alpm.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_ddi.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_display_types.h:1982:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1982:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1982:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1982:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1982:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1982:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1982:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1982:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1982:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1982:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1982:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1982:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1995:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1995:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_hdcp.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_pps.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c:106:17: warning: cast truncates bits from constant value (e8d4a51000 becomes d4a51000)
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+-- 
+Jani Nikula, Intel
