@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E48C2C369CB
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Apr 2025 12:58:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59816C369D1
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Apr 2025 13:02:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E16810E66A;
-	Wed, 23 Apr 2025 12:58:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18DF710E66A;
+	Wed, 23 Apr 2025 13:02:48 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 435A510E66A;
- Wed, 23 Apr 2025 12:58:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACCCB10E66A;
+ Wed, 23 Apr 2025 13:02:46 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_Enable_SVM_atomics_in_Xe_/_GPU?=
- =?utf-8?q?_SVM_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Enable_SVM_atomics_i?=
+ =?utf-8?q?n_Xe_/_GPU_SVM_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 23 Apr 2025 12:58:04 -0000
-Message-ID: <174541308427.445.17662337290306025310@c664b1dc75d1>
+Date: Wed, 23 Apr 2025 13:02:46 -0000
+Message-ID: <174541336671.425.15938817261715960700@c664b1dc75d1>
 X-Patchwork-Hint: ignore
-References: <20250422165723.584286-1-matthew.brost@intel.com>
-In-Reply-To: <20250422165723.584286-1-matthew.brost@intel.com>
+References: <20250422170415.584662-1-matthew.brost@intel.com>
+In-Reply-To: <20250422170415.584662-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,111 +42,19 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Enable SVM atomics in Xe / GPU SVM (rev3)
+Series: Enable SVM atomics in Xe / GPU SVM (rev4)
 URL   : https://patchwork.freedesktop.org/series/147846/
 State : success
 
 == Summary ==
 
-lib/modules/6.15.0-rc3-xe+/kernel/arch/x86/events/rapl.ko
-lib/modules/6.15.0-rc3-xe+/kernel/arch/x86/kvm/
-lib/modules/6.15.0-rc3-xe+/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.15.0-rc3-xe+/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.15.0-rc3-xe+/kernel/arch/x86/kvm/kvm-amd.ko
-lib/modules/6.15.0-rc3-xe+/kernel/virt/
-lib/modules/6.15.0-rc3-xe+/kernel/virt/lib/
-lib/modules/6.15.0-rc3-xe+/kernel/virt/lib/irqbypass.ko
-lib/modules/6.15.0-rc3-xe+/kernel/kernel/
-lib/modules/6.15.0-rc3-xe+/kernel/kernel/kheaders.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/ecrdsa_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/xcbc.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/serpent_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/aria_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/crypto_simd.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/adiantum.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/tcrypt.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/crypto_engine.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/zstd.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/asymmetric_keys/
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/des_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/xctr.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/authenc.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/sm4_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/camellia_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/sm3.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/pcrypt.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/aegis128.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/af_alg.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/algif_aead.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/cmac.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/sm3_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/aes_ti.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/chacha_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/poly1305_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/nhpoly1305.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/crc32_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/essiv.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/ccm.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/wp512.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/streebog_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/authencesn.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/echainiv.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/lrw.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/cryptd.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/crypto_user.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/algif_hash.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/polyval-generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/hctr2.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/842.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/pcbc.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/ansi_cprng.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/cast6_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/twofish_common.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/twofish_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/lz4hc.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/blowfish_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/md4.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/chacha20poly1305.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/curve25519-generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/lz4.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/rmd160.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/algif_skcipher.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/cast5_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/fcrypt.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/ecdsa_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/sm4.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/cast_common.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/blowfish_common.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/michael_mic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/async_tx/
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/algif_rng.ko
-lib/modules/6.15.0-rc3-xe+/kernel/block/
-lib/modules/6.15.0-rc3-xe+/kernel/block/bfq.ko
-lib/modules/6.15.0-rc3-xe+/kernel/block/kyber-iosched.ko
-lib/modules/6.15.0-rc3-xe+/build
-lib/modules/6.15.0-rc3-xe+/modules.alias.bin
-lib/modules/6.15.0-rc3-xe+/modules.builtin
-lib/modules/6.15.0-rc3-xe+/modules.softdep
-lib/modules/6.15.0-rc3-xe+/modules.alias
-lib/modules/6.15.0-rc3-xe+/modules.order
-lib/modules/6.15.0-rc3-xe+/modules.symbols
-lib/modules/6.15.0-rc3-xe+/modules.dep.bin
-+ mv kernel-debug.tar.gz ..
-+ cd ..
-+ rm -rf archive-debug
-+ sync
-[+] Finished building and packaging 'debug'!
-+ echo '[+] Finished building and packaging '\''debug'\''!'
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: d6a6684585dd drm-tip: 2025y-04m-23d-09h-52m-43s UTC integration manifest
+=== git am output follows ===
+Applying: drm/gpusvm: Introduce devmem_only flag for allocation
+Applying: drm/xe: Strict migration policy for atomic SVM faults
+Applying: drm/gpusvm: Add timeslicing support to GPU SVM
+Applying: drm/xe: Timeslice GPU on atomic SVM fault
+Applying: drm/xe: Add atomic_svm_timeslice_ms debugfs entry
 
 
