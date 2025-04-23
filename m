@@ -4,62 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35E37C369D7
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Apr 2025 15:01:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9021AC369D7
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Apr 2025 15:21:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE4FA10E6D7;
-	Wed, 23 Apr 2025 15:01:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CC1B10E6DF;
+	Wed, 23 Apr 2025 15:21:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZMYM6mb+";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Q+tZqSog";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0811310E6D7
- for <intel-xe@lists.freedesktop.org>; Wed, 23 Apr 2025 15:01:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745420508; x=1776956508;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=tAkN43kkMs4ILunE81u6kimEfTNrlL834JCXV0c1Pa8=;
- b=ZMYM6mb+lf2fTHEso1RSmmKpBFcFQ/W0BdzDoFXJRvZOH7VEpUGOZ29N
- PQySBMhHDtvdveggSVCxPSyd21hOTGF0kF5i2NVCr7jsq/mvUAIVEazHA
- iZ1ZvjQ4bzqB738JovcgTF+6aZY8bUmetIsdMAvync15vghltgOi2ymp5
- myzeQWj681cFurqTcwZp3gTnVsoN7SkgXrvjsExaDSiDy/vaa749QHUfd
- lxymBvnlewhE6tpWKeCbC141obGrsRJth21N+Zkp2LYqrM0YKpI+HuLF7
- cIx824mIgQJ6fDexOeciaCvYCJdU5nSZAbjp6oPBD1E9TxeMCLf47ZXjZ w==;
-X-CSE-ConnectionGUID: Ce1w/IQcRbW4yFXjzsXUQQ==
-X-CSE-MsgGUID: vsUq57rASAa4XR0rhkxm/Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11412"; a="72402646"
-X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="72402646"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2025 08:01:47 -0700
-X-CSE-ConnectionGUID: f1xTsRzvTGK2o7LqDAxFXQ==
-X-CSE-MsgGUID: UIsdN5tFQyGuepSNenRz6Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="163315194"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2025 08:01:46 -0700
-Date: Wed, 23 Apr 2025 18:01:42 +0300
-From: Raag Jadav <raag.jadav@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Riana Tauro <riana.tauro@intel.com>, rodrigo.vivi@intel.com,
- intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- badal.nilawar@intel.com
-Subject: Re: [PATCH v3 2/3] drm/xe: Expose PCIe Gen4 downspeed attributes
-Message-ID: <aAkA1swWzrROJbqv@black.fi.intel.com>
-References: <20250417111233.2322000-1-raag.jadav@intel.com>
- <20250417111233.2322000-3-raag.jadav@intel.com>
- <02d74b93-563e-4fab-a330-f05cf1898ca5@intel.com>
- <aAipZ3pFfD_w7e2z@black.fi.intel.com>
- <05dc8b40-a37a-4fc6-a759-d1ddc0a6c56d@intel.com>
- <aAjIvZ0eqLBsI2Nt@black.fi.intel.com>
- <csahlwfbgaxsm7rf4g5i747wftr5zet7ta434jop5vr2he5lmw@baknat76wftw>
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com
+ [209.85.216.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87ADE10E6E2;
+ Wed, 23 Apr 2025 15:21:30 +0000 (UTC)
+Received: by mail-pj1-f48.google.com with SMTP id
+ 98e67ed59e1d1-2ff53b26af2so912107a91.0; 
+ Wed, 23 Apr 2025 08:21:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1745421690; x=1746026490; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=fmyi5vZZ7mGUn2QC3T8ka63Rf5qEN3cGUQLOCWVEt1U=;
+ b=Q+tZqSogVsPF1MxV0rQew5K+81EQabHmkjnweNJpzX4p10tDdAGmUbARUHRag/tL+W
+ z6ubh0+ZarMATyOIe/9yqRn3/sy5nyKnlMPm76x4JEzZ8OAQ46SnM1eB2jrkmQHybRGc
+ 5BvMTBLUVuDiCUjZVRaCHjCH8sD1Imo7sPIzimze8Fg9cFa9iKjqNvUyUWv4SLA/jpCy
+ i7flIYKl9tiKbRG5647M6KrZOvVM6jSc21SaOXwkpR4RoxktBmKJby6fhNTkbN4tPAEC
+ 1SY35N2DJNWDKLS4/t5AAyLOS+/FoKnz6QpVl3/qP25s5LTnERsaUZ6Qo4CFi3CKrThF
+ LRmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1745421690; x=1746026490;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=fmyi5vZZ7mGUn2QC3T8ka63Rf5qEN3cGUQLOCWVEt1U=;
+ b=lG8a/9c7v9WLsytc0FS6rgikNhs4NI4neHG1ceLPHgPQ6DGEczxO+EYdl8ML5sH66w
+ IdRxljbhFUrtbFnvpexLB2N/Uiv2KeEjgHRwxZCWWWW136w0En2dqAAb02RhkP9ZGaBm
+ NoTtuSvkp+g/1r4zqtJbAPxX64ghtSN/tcy5USx+beevYJEsTNudoUe0SVyXN+8HFDt6
+ Jb3MAeuFF+pfv8HLyq5sbo0yWmG0h05LSxiaWyZgap3D8ErLyLv0+h+XDtGcnCK/pK0Y
+ gJSfmsBtxDCPNnmx2n0zZVC5ACdc4zaHCQf7C8EXerbny+nZdfltHccPwfWCPA+rSVC1
+ 6puA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU+0OwQW1b5eKAV9/h2eXR+ITym+CMZpW0DFyitzYopwzI/eJvfzCZKkkbFhSAhU0GguKW4IXRlbQI9@lists.freedesktop.org,
+ AJvYcCWCa6sYSA79/pHIH7ZUhz6T6/iQ1rZNMGliL5bBKo/k1VN8GGS9Ro7hIoTdskkzjZvzJFwlIwefCiE=@lists.freedesktop.org,
+ AJvYcCXA3TVqpsPmo9v5yeGU5s0XxABlSJLiL5WpR8e26a/tkL5l7q5yoweCNX1DWpvQpaGMke2RTCQTcRU=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzbYb36HQolXS7n0BlyfJTnZ6GdB7GqhC1vEEaxOFCVQjWXK9VA
+ Rg4kmm01r/M1kTuo+plxluQrqKz2C26qsHiNiy5oPFSnqxX1o79t/d4D/d0T1dtVkTt1ciaI0Pl
+ NSNWElMF6KpfhhWqRWuctQ6ZlwK8=
+X-Gm-Gg: ASbGncs4lJlC+TdFYzkmLPuW6L5oAM7TrwXrcErvqBzoi38vpZU1/6o4E/pNweA8yuq
+ 4qsBfG1fc/7ns1ZXC6lps1a00viYaNTb3Z2JYBUZgmSMF3IXkL+h2VjV3yV4BxZ1GdcqwY79lo9
+ JIlS17T0JMWkxHdG+DZX+mEw==
+X-Google-Smtp-Source: AGHT+IF8AjqdfMjic0pSLtgVDlsQvTB5k11mnthsWR/JGmuDXps66QWl4LK60Wb4UuTG6xr/3hPGpniN7EwidLSVCg0=
+X-Received: by 2002:a17:90b:4d05:b0:306:e75e:dbc7 with SMTP id
+ 98e67ed59e1d1-309debc7ce6mr2004009a91.0.1745421689972; Wed, 23 Apr 2025
+ 08:21:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <csahlwfbgaxsm7rf4g5i747wftr5zet7ta434jop5vr2he5lmw@baknat76wftw>
+References: <20250407-asyn-v13-0-b93ef83076c5@intel.com>
+ <SJ1PR11MB6129BDF34CF14847EEE77168B9BD2@SJ1PR11MB6129.namprd11.prod.outlook.com>
+In-Reply-To: <SJ1PR11MB6129BDF34CF14847EEE77168B9BD2@SJ1PR11MB6129.namprd11.prod.outlook.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 23 Apr 2025 11:21:18 -0400
+X-Gm-Features: ATxdqUHW08BKqAI3d2gZcamBlcwWcvdH_ZBpx1HYv8qjGY0-e5DhpcLcGhwhjsU
+Message-ID: <CADnq5_P3_usd9RDdLfjshz-o+nzkVSBrHmrqRUQThtX4X3jP9g@mail.gmail.com>
+Subject: Re: [PATCH RESEND v13 0/5] Expose modifiers/formats supported by
+ async flips
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>, 
+ "Wentland, Harry" <Harry.Wentland@amd.com>,
+ "Leo (Sunpeng) Li" <Sunpeng.Li@amd.com>
+Cc: "Murthy, Arun R" <arun.r.murthy@intel.com>, 
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
+ "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ "Syrjala, Ville" <ville.syrjala@intel.com>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, 
+ "Kumar, Naveen1" <naveen1.kumar@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,140 +95,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Apr 23, 2025 at 08:35:42AM -0500, Lucas De Marchi wrote:
-> On Wed, Apr 23, 2025 at 02:02:21PM +0300, Raag Jadav wrote:
-> > On Wed, Apr 23, 2025 at 03:29:41PM +0530, Riana Tauro wrote:
-> > > On 4/23/2025 2:18 PM, Raag Jadav wrote:
-> > > > On Wed, Apr 23, 2025 at 10:55:30AM +0530, Riana Tauro wrote:
-> > > > > Hi Raag
-> > > > >
-> > > > > On 4/17/2025 4:42 PM, Raag Jadav wrote:
-> > > > > > Expose sysfs attributes for PCIe Gen4 downspeed capability and status.
-> > > > > >
-> > > > > > v2: Move from debugfs to sysfs (Lucas, Rodrigo, Badal)
-> > > > > >       Rework macros and their naming (Rodrigo)
-> > > > > > v3: Use sysfs_create_files() (Riana)
-> > > > > >       Fix checkpatch warning (Riana)
-> > > > > >
-> > > > > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > > > > > ---
-> > > > > >    drivers/gpu/drm/xe/xe_device.c       |   5 ++
-> > > > > >    drivers/gpu/drm/xe/xe_device_sysfs.c | 101 +++++++++++++++++++++++++++
-> > > > > >    drivers/gpu/drm/xe/xe_device_sysfs.h |   1 +
-> > > > > >    drivers/gpu/drm/xe/xe_pcode_api.h    |   5 ++
-> > > > > >    4 files changed, 112 insertions(+)
-> > > > > >
-> > > > > > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> > > > > > index 6c9d3009aa03..79b7b0ecfbae 100644
-> > > > > > --- a/drivers/gpu/drm/xe/xe_device.c
-> > > > > > +++ b/drivers/gpu/drm/xe/xe_device.c
-> > > > > > @@ -26,6 +26,7 @@
-> > > > > >    #include "xe_bo_evict.h"
-> > > > > >    #include "xe_debugfs.h"
-> > > > > >    #include "xe_devcoredump.h"
-> > > > > > +#include "xe_device_sysfs.h"
-> > > > > >    #include "xe_dma_buf.h"
-> > > > > >    #include "xe_drm_client.h"
-> > > > > >    #include "xe_drv.h"
-> > > > > > @@ -916,6 +917,10 @@ int xe_device_probe(struct xe_device *xe)
-> > > > > >    	if (err)
-> > > > > >    		goto err_unregister_display;
-> > > > > > +	err = xe_device_sysfs_init(xe);
-> > > > > > +	if (err)
-> > > > > > +		goto err_unregister_display;
-> > > > > > +
-> > > > > >    	xe_debugfs_register(xe);
-> > > > > >    	err = xe_hwmon_register(xe);
-> > > > > > diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
-> > > > > > index 2d25e5b5d4bf..923612a0a2e0 100644
-> > > > > > --- a/drivers/gpu/drm/xe/xe_device_sysfs.c
-> > > > > > +++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
-> > > > > > @@ -11,6 +11,9 @@
-> > > > > >    #include "xe_device.h"
-> > > > > >    #include "xe_device_sysfs.h"
-> > > > > > +#include "xe_mmio.h"
-> > > > > > +#include "xe_pcode_api.h"
-> > > > > > +#include "xe_pcode.h"
-> > > > > >    #include "xe_pm.h"
-> > > > > >    /**
-> > > > > > @@ -81,3 +84,101 @@ int xe_pm_sysfs_init(struct xe_device *xe)
-> > > > > >    	return devm_add_action_or_reset(dev, xe_pm_sysfs_fini, xe);
-> > > > > >    }
-> > > > > > +
-> > > > > > +/**
-> > > > > > + * DOC: PCIe Gen5 Update Limitations
-> > > > > > + *
-> > > > > > + * Default link speed of discrete GPUs is determined by configuration
-> > > > > > + * parameters stored in their flash memory, which are subject to override
-> > > > > > + * through user initiated firmware updates. It has been observed that devices
-> > > > > > + * configured with PCIe Gen5 as their default speed can come across link
-> > > > > > + * quality issues due to host or motherboard limitations and may have to
-> > > > > > + * auto-downspeed to PCIe Gen4 when faced with unstable link at Gen5, which
-> > > > > > + * makes firmware updates rather risky on such setups. It is required to
-> > > > > > + * ensure that the device is capable of auto-downspeeding to PCIe Gen4 link
-> > > > > > + * before pushing the image with PCIe Gen5 as default configuration. This
-> > > > > > + * can be done by reading ``pcie_gen4_downspeed_capable`` sysfs entry, which
-> > > > > > + * will denote PCIe Gen4 downspeed capability of the device with boolean output
-> > > > > > + * value of ``0`` or ``1``, meaning `incapable` or `capable` respectively.
-> > > > > > + *
-> > > > > > + * .. code-block:: shell
-> > > > > > + *
-> > > > > > + *    $ cat /sys/bus/pci/devices/<bdf>/pcie_gen4_downspeed_capable
-> > > > > > + *
-> > > > > > + * Pushing PCIe Gen5 update on a downspeed incapable device and facing link
-> > > > > > + * instability due to host or motherboard limitations can result in driver
-> > > > > > + * failing to bind to the device, making further firmware updates impossible
-> > > > > > + * with RMA being the only last resort.
-> > > > > > + *
-> > > > > > + * PCIe Gen4 downspeed status of downspeed capable devices is available through
-> > > > > > + * ``pcie_gen4_downspeed_status`` sysfs entry with boolean output value of
-> > > > > > + * ``0`` or ``1``, where ``0`` means no auto-downspeeding was required during
-> > > > > > + * link training (which is the optimal scenario) and ``1`` means the device
-> > > > > > + * has auto-downsped to PCIe Gen4 due to unstable Gen5 link.
-> > > > > > + *
-> > > > > > + * .. code-block:: shell
-> > > > > > + *
-> > > > > > + *    $ cat /sys/bus/pci/devices/<bdf>/pcie_gen4_downspeed_status
-> > > > > The code looks good. But i am not sure of the word downspeed.
-> > > > > Couldn't find downspeed used in Pcie generation context. For link,
-> > > > > it is mentioned as  'link downgrade'
-> > > > >
-> > > > > Could you share if you found any?
-> 
-> I'm with Riana here and also found it strange. User is cat'ing a file
-> inside  /sys/bus/pci/devices/<bdf>/ - it's odd to use downspeed when
-> that word is not used in PCIe spec and...
-> 
-> > > >
-> > > > Since we're describing both firmware and PCI link in the same document,
-> > > >
-> > > > 1. It helps distinguish between them.
-> 
-> I also don't understand the distinction you are trying to make. The
-> firmware is there, monitoring the communication and and is capable to
-> auto downgrade the link to gen4 if it needs to. I imagine that if this
-> situation happens, the link speed is re-negotiated and we will end up
-> seeing the new one on LnkSta... LnkCap still shows what is possible. The
-> only difference I see here from "I'm connecting a gen5 capable device on
-> a max gen4 slot" is that initially the gen5 is attempted (since both the
-> host and device report they support it), but the firmware may make a decision
-> in runtime to "downgrade the link speed".
++ Harry and Leo
 
-And all of this will take place when the user is doing a "firmware upgrade",
-and this can potentially open the door for "link speed downgrade" to be
-confused with "firmware rollback (downgrade) done for the link speed",
-which is not the case.
+On Wed, Apr 16, 2025 at 2:33=E2=80=AFAM Borah, Chaitanya Kumar
+<chaitanya.kumar.borah@intel.com> wrote:
+>
+> Hello Alexander,
+>
+> > -----Original Message-----
+> > From: Murthy, Arun R <arun.r.murthy@intel.com>
+> > Sent: Monday, April 7, 2025 11:14 AM
+> > To: dri-devel@lists.freedesktop.org; intel-gfx@lists.freedesktop.org; i=
+ntel-
+> > xe@lists.freedesktop.org
+> > Cc: Jani Nikula <jani.nikula@linux.intel.com>; Borah, Chaitanya Kumar
+> > <chaitanya.kumar.borah@intel.com>; Syrjala, Ville <ville.syrjala@intel.=
+com>;
+> > Murthy, Arun R <arun.r.murthy@intel.com>; Ville Syrj=C3=A4l=C3=A4
+> > <ville.syrjala@linux.intel.com>; Kumar, Naveen1
+> > <naveen1.kumar@intel.com>
+> > Subject: [PATCH RESEND v13 0/5] Expose modifiers/formats supported by
+> > async flips
+> >
+> > All of the formats/modifiers supported by the plane during synchronous =
+flips
+> > are nor supported by asynchronous flips. The formats/modifiers exposed =
+to
+> > user by IN_FORMATS exposes all formats/modifiers supported by plane and
+> > this list varies for async flips. If the async flip supported formats/m=
+odifiers are
+> > exposed to the user, user based on this list can take decision to proce=
+ed or
+> > not and avoid flip failures during async flips.
+> > Discussion around this can be located @
+> > https://gitlab.freedesktop.org/mesa/mesa/-
+> > /merge_requests/29618#note_2487123
+> > Mutter implementation for IN_FORMARTS_ASYNC under review @
+> > https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/4063
+> > Xorg/modesetting patch
+> > https://gitlab.freedesktop.org/xorg/xserver/-/merge_requests/1816
+> >
+>
+> We have added a new drm plane property to expose the format modifier pair=
+s supported by a plane for async flip.
+> Can you please let us know if this implementation looks good to you? If s=
+o, kindly provide an Ack.
+>
+> IGT implementation: https://patchwork.freedesktop.org/series/146853/
 
-> > > > 2. This information is for the end user and has to be translatable enough
-> > > >     regardless of what spec says about it and the distinction reduces the
-> > > >     chances of misinterpretation.
-> 
-> when you introduce a new term that is not known, I'd say the effect is
-> pretty much the opposite and it can be even worse if a future pcie spec
-> starts to use that term.
+Seems reasonable to me, but I'm not as involved in the display side
+anymore.  I'd defer to Harry and Leo.  @Wentland, Harry, @Leo
+(Sunpeng) Li can you take a look?
 
-Agree, unless we're expecting users to be informed about the spec to be
-able to flash their firmwares. But if you insist, sure will _upgrade_ the
-document ;)
+Thanks,
 
-Raag
+Alex
+
+>
+> Regards
+>
+> Chaitanya
