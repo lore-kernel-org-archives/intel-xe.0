@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C410CC369DC
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Apr 2025 20:49:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 049E2C369AB
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Apr 2025 20:52:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B85EA10E879;
-	Thu, 24 Apr 2025 20:49:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m5vLyyLA";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23FD110E869;
- Thu, 24 Apr 2025 20:49:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745527764; x=1777063764;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=GZjTp++EtvLGViHWweSRFpHCVXukKHDvAx0eIJybDzI=;
- b=m5vLyyLAvlqmqt+DNJpZQLAhxxeco+v2NNPqL6ySi74QdMFsZ0lHzmrs
- XEvBYOVY+wKgvi6u3hw7sDHdsic+O/U+pfkh1PELsP1seELYRF8wXApKV
- T1y9f63DfjL2nO4xpaGna3XKiVVmrlB/R8HaEkDbp/s/Np2aPFO9kUxvT
- ufFSAAm4FpX5uE5dvQIZQGxnuszNWSdiX2OaEOT2A5NNCyoeqDQuiNC8K
- ww7VDxTmlPvZN5Vt3IA6bmi4VvZL/TA1Zo1qkxJ4HmAF3IIjV1RlUq+9w
- RLGtaCV8yghnnZbppuNwA9tsjOcspPZOgENqcughG0qobWRctrsufAULN g==;
-X-CSE-ConnectionGUID: qkrBbUPdSHqYpd43SvymfQ==
-X-CSE-MsgGUID: djKTrP4TS1OaejuX65HoMg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11413"; a="58556184"
-X-IronPort-AV: E=Sophos;i="6.15,237,1739865600"; d="scan'208";a="58556184"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2025 13:49:20 -0700
-X-CSE-ConnectionGUID: qgtxRx3iQx6KsTtVm0LrMw==
-X-CSE-MsgGUID: wq6NU1KWQB25LJhJtHJGyQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,237,1739865600"; d="scan'208";a="133689372"
-Received: from dut4046ptlh.fm.intel.com ([10.105.8.85])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2025 13:49:19 -0700
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
- joonas.lahtinen@linux.intel.com, matthew.brost@intel.com,
- jianxun.zhang@intel.com, shuicheng.lin@intel.com,
- dri-devel@lists.freedesktop.org, Michal.Wajdeczko@intel.com,
- michal.mrozek@intel.com, raag.jadav@intel.com, john.c.harrison@intel.com,
- ivan.briano@intel.com, matthew.auld@intel.com
-Subject: [PATCH v23 5/5] drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
-Date: Thu, 24 Apr 2025 20:49:14 +0000
-Message-ID: <20250424204917.172708-6-jonathan.cavitt@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250424204917.172708-1-jonathan.cavitt@intel.com>
-References: <20250424204917.172708-1-jonathan.cavitt@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBE9110E0E5;
+	Thu, 24 Apr 2025 20:52:29 +0000 (UTC)
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BD7610E0B6;
+ Thu, 24 Apr 2025 20:52:29 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_Rework/Correction_on_minimum_h?=
+ =?utf-8?q?blank_calculation_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 24 Apr 2025 20:52:29 -0000
+Message-ID: <174552794937.8616.8320220065270917362@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <20250424-hblank-v7-0-8b002f1506cc@intel.com>
+In-Reply-To: <20250424-hblank-v7-0-8b002f1506cc@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,238 +36,117 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add support for userspace to request a list of observed faults
-from a specified VM.
+== Series Details ==
 
-v2:
-- Only allow querying of failed pagefaults (Matt Brost)
+Series: Rework/Correction on minimum hblank calculation (rev7)
+URL   : https://patchwork.freedesktop.org/series/147360/
+State : success
 
-v3:
-- Remove unnecessary size parameter from helper function, as it
-  is a property of the arguments. (jcavitt)
-- Remove unnecessary copy_from_user (Jainxun)
-- Set address_precision to 1 (Jainxun)
-- Report max size instead of dynamic size for memory allocation
-  purposes.  Total memory usage is reported separately.
+== Summary ==
 
-v4:
-- Return int from xe_vm_get_property_size (Shuicheng)
-- Fix memory leak (Shuicheng)
-- Remove unnecessary size variable (jcavitt)
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/wp512.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/sm3.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/zstd.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/sm4.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/lz4.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/essiv.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/842.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/xctr.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/md4.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/ccm.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/lrw.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.15.0-rc3-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.15.0-rc3-xe+/kernel/virt/
+lib/modules/6.15.0-rc3-xe+/kernel/virt/lib/
+lib/modules/6.15.0-rc3-xe+/kernel/virt/lib/irqbypass.ko
+lib/modules/6.15.0-rc3-xe+/kernel/lib/
+lib/modules/6.15.0-rc3-xe+/kernel/lib/ts_kmp.ko
+lib/modules/6.15.0-rc3-xe+/kernel/lib/ts_bm.ko
+lib/modules/6.15.0-rc3-xe+/kernel/lib/crc7.ko
+lib/modules/6.15.0-rc3-xe+/kernel/lib/reed_solomon/
+lib/modules/6.15.0-rc3-xe+/kernel/lib/reed_solomon/reed_solomon.ko
+lib/modules/6.15.0-rc3-xe+/kernel/lib/ts_fsm.ko
+lib/modules/6.15.0-rc3-xe+/kernel/lib/lz4/
+lib/modules/6.15.0-rc3-xe+/kernel/lib/lz4/lz4_compress.ko
+lib/modules/6.15.0-rc3-xe+/kernel/lib/lz4/lz4hc_compress.ko
+lib/modules/6.15.0-rc3-xe+/kernel/lib/pm-notifier-error-inject.ko
+lib/modules/6.15.0-rc3-xe+/kernel/lib/kunit/
+lib/modules/6.15.0-rc3-xe+/kernel/lib/kunit/kunit.ko
+lib/modules/6.15.0-rc3-xe+/kernel/lib/memory-notifier-error-inject.ko
+lib/modules/6.15.0-rc3-xe+/kernel/lib/842/
+lib/modules/6.15.0-rc3-xe+/kernel/lib/842/842_compress.ko
+lib/modules/6.15.0-rc3-xe+/kernel/lib/842/842_decompress.ko
+lib/modules/6.15.0-rc3-xe+/kernel/lib/bch.ko
+lib/modules/6.15.0-rc3-xe+/kernel/lib/crypto/
+lib/modules/6.15.0-rc3-xe+/kernel/lib/crypto/libpoly1305.ko
+lib/modules/6.15.0-rc3-xe+/kernel/lib/crypto/libchacha.ko
+lib/modules/6.15.0-rc3-xe+/kernel/lib/crypto/libdes.ko
+lib/modules/6.15.0-rc3-xe+/kernel/lib/crypto/libcurve25519-generic.ko
+lib/modules/6.15.0-rc3-xe+/kernel/lib/crc8.ko
+lib/modules/6.15.0-rc3-xe+/kernel/lib/notifier-error-inject.ko
+lib/modules/6.15.0-rc3-xe+/kernel/lib/math/
+lib/modules/6.15.0-rc3-xe+/kernel/lib/math/cordic.ko
+lib/modules/6.15.0-rc3-xe+/kernel/lib/math/prime_numbers.ko
+lib/modules/6.15.0-rc3-xe+/kernel/lib/lru_cache.ko
+lib/modules/6.15.0-rc3-xe+/modules.symbols
+lib/modules/6.15.0-rc3-xe+/modules.alias
+lib/modules/6.15.0-rc3-xe+/modules.devname
+lib/modules/6.15.0-rc3-xe+/modules.builtin
+lib/modules/6.15.0-rc3-xe+/modules.builtin.alias.bin
+lib/modules/6.15.0-rc3-xe+/modules.dep
+lib/modules/6.15.0-rc3-xe+/modules.softdep
+lib/modules/6.15.0-rc3-xe+/modules.order
+lib/modules/6.15.0-rc3-xe+/build
+lib/modules/6.15.0-rc3-xe+/modules.builtin.bin
+lib/modules/6.15.0-rc3-xe+/modules.alias.bin
+lib/modules/6.15.0-rc3-xe+/modules.symbols.bin
+lib/modules/6.15.0-rc3-xe+/modules.dep.bin
++ mv kernel-debug.tar.gz ..
++ cd ..
++ rm -rf archive-debug
++ [[ no == \y\e\s ]]
++ sync
++ echo '[+] Finished building and packaging '\''debug'\''!'
++ cleanup
+[+] Finished building and packaging 'debug'!
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-v5:
-- Rename ioctl to xe_vm_get_faults_ioctl (jcavitt)
-- Update fill_property_pfs to eliminate need for kzalloc (Jianxun)
-
-v6:
-- Repair and move fill_faults break condition (Dan Carpenter)
-- Free vm after use (jcavitt)
-- Combine assertions (jcavitt)
-- Expand size check in xe_vm_get_faults_ioctl (jcavitt)
-- Remove return mask from fill_faults, as return is already -EFAULT or 0
-  (jcavitt)
-
-v7:
-- Revert back to using xe_vm_get_property_ioctl
-- Apply better copy_to_user logic (jcavitt)
-
-v8:
-- Fix and clean up error value handling in ioctl (jcavitt)
-- Reapply return mask for fill_faults (jcavitt)
-
-v9:
-- Future-proof size logic for zero-size properties (jcavitt)
-- Add access and fault types (Jianxun)
-- Remove address type (Jianxun)
-
-v10:
-- Remove unnecessary switch case logic (Raag)
-- Compress size get, size validation, and property fill functions into a
-  single helper function (jcavitt)
-- Assert valid size (jcavitt)
-
-v11:
-- Remove unnecessary else condition
-- Correct backwards helper function size logic (jcavitt)
-
-v12:
-- Use size_t instead of int (Raag)
-
-v13:
-- Remove engine class and instance (Ivan)
-
-v14:
-- Map access type, fault type, and fault level to user macros (Matt
-  Brost, Ivan)
-
-v15:
-- Remove unnecessary size assertion (jcavitt)
-
-v16:
-- Nit fixes (Matt Brost)
-
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Shuicheng Lin <shuicheng.lin@intel.com>
-Acked-by: Matthew Brost <matthew.brost@intel.com>
-Cc: Jainxun Zhang <jianxun.zhang@intel.com>
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>
-Cc: Raag Jadav <raag.jadav@intel.com>
-Cc: Ivan Briano <ivan.briano@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c |   2 +
- drivers/gpu/drm/xe/xe_vm.c     | 108 +++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vm.h     |   2 +
- 3 files changed, 112 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 75e753e0a682..319768733504 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -196,6 +196,8 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
- 	DRM_IOCTL_DEF_DRV(XE_WAIT_USER_FENCE, xe_wait_user_fence_ioctl,
- 			  DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(XE_OBSERVATION, xe_observation_ioctl, DRM_RENDER_ALLOW),
-+	DRM_IOCTL_DEF_DRV(XE_VM_GET_PROPERTY, xe_vm_get_property_ioctl,
-+			  DRM_RENDER_ALLOW),
- };
- 
- static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 107e397b4987..5e79de592dd3 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3600,6 +3600,114 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	return err;
- }
- 
-+/*
-+ * Map access type, fault type, and fault level from current bspec
-+ * specification to user spec abstraction.  The current mapping is
-+ * 1-to-1, but if there is ever a hardware change, we will need
-+ * this abstraction layer to maintain API stability through the
-+ * hardware change.
-+ */
-+static u8 xe_to_user_access_type(u8 access_type)
-+{
-+	return access_type;
-+}
-+
-+static u8 xe_to_user_fault_type(u8 fault_type)
-+{
-+	return fault_type;
-+}
-+
-+static u8 xe_to_user_fault_level(u8 fault_level)
-+{
-+	return fault_level;
-+}
-+
-+static int fill_faults(struct xe_vm *vm,
-+		       struct drm_xe_vm_get_property *args)
-+{
-+	struct xe_vm_fault __user *usr_ptr = u64_to_user_ptr(args->data);
-+	struct xe_vm_fault store = { 0 };
-+	struct xe_vm_fault_entry *entry;
-+	int ret = 0, i = 0, count, entry_size;
-+
-+	entry_size = sizeof(struct xe_vm_fault);
-+	count = args->size / entry_size;
-+
-+	spin_lock(&vm->faults.lock);
-+	list_for_each_entry(entry, &vm->faults.list, list) {
-+		if (i++ == count)
-+			break;
-+
-+		memset(&store, 0, entry_size);
-+
-+		store.address = entry->address;
-+		store.address_precision = entry->address_precision;
-+
-+		store.access_type = xe_to_user_access_type(entry->access_type);
-+		store.fault_type = xe_to_user_fault_type(entry->fault_type);
-+		store.fault_level = xe_to_user_fault_level(entry->fault_level);
-+
-+		ret = copy_to_user(usr_ptr, &store, entry_size);
-+		if (ret)
-+			break;
-+
-+		usr_ptr++;
-+	}
-+	spin_unlock(&vm->faults.lock);
-+
-+	return ret ? -EFAULT : 0;
-+}
-+
-+static int xe_vm_get_property_helper(struct xe_vm *vm,
-+				     struct drm_xe_vm_get_property *args)
-+{
-+	size_t size;
-+
-+	switch (args->property) {
-+	case DRM_XE_VM_GET_PROPERTY_FAULTS:
-+		spin_lock(&vm->faults.lock);
-+		size = size_mul(sizeof(struct xe_vm_fault), vm->faults.len);
-+		spin_unlock(&vm->faults.lock);
-+
-+		if (args->size)
-+			/*
-+			 * Number of faults may increase between calls to
-+			 * xe_vm_get_property_ioctl, so just report the
-+			 * number of faults the user requests if it's less
-+			 * than or equal to the number of faults in the VM
-+			 * fault array.
-+			 */
-+			return args->size <= size ? fill_faults(vm, args) : -EINVAL;
-+
-+		args->size = size;
-+		return 0;
-+	}
-+	return -EINVAL;
-+}
-+
-+int xe_vm_get_property_ioctl(struct drm_device *drm, void *data,
-+			     struct drm_file *file)
-+{
-+	struct xe_device *xe = to_xe_device(drm);
-+	struct xe_file *xef = to_xe_file(file);
-+	struct drm_xe_vm_get_property *args = data;
-+	struct xe_vm *vm;
-+	int ret = 0;
-+
-+	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1] ||
-+			     args->reserved[2]))
-+		return -EINVAL;
-+
-+	vm = xe_vm_lookup(xef, args->vm_id);
-+	if (XE_IOCTL_DBG(xe, !vm))
-+		return -ENOENT;
-+
-+	ret = xe_vm_get_property_helper(vm, args);
-+
-+	xe_vm_put(vm);
-+	return ret;
-+}
-+
- /**
-  * xe_vm_bind_kernel_bo - bind a kernel BO to a VM
-  * @vm: VM to bind the BO to
-diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index 9bd7e93824da..63ec22458e04 100644
---- a/drivers/gpu/drm/xe/xe_vm.h
-+++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -196,6 +196,8 @@ int xe_vm_destroy_ioctl(struct drm_device *dev, void *data,
- 			struct drm_file *file);
- int xe_vm_bind_ioctl(struct drm_device *dev, void *data,
- 		     struct drm_file *file);
-+int xe_vm_get_property_ioctl(struct drm_device *dev, void *data,
-+			     struct drm_file *file);
- 
- void xe_vm_close_and_put(struct xe_vm *vm);
- 
--- 
-2.43.0
 
