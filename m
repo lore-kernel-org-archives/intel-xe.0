@@ -4,50 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69C73C369D9
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Apr 2025 19:08:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC830C369D3
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Apr 2025 19:08:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05C2810E9AA;
-	Fri, 25 Apr 2025 19:08:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A10CF10E9AE;
+	Fri, 25 Apr 2025 19:08:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=163.com header.i=@163.com header.b="LKodL/4w";
+	dkim=pass (1024-bit key; unprotected) header.d=163.com header.i=@163.com header.b="JIChhbBM";
 	dkim-atps=neutral
-X-Greylist: delayed 397 seconds by postgrey-1.36 at gabe;
- Thu, 24 Apr 2025 02:55:59 UTC
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0EFCE10E703;
- Thu, 24 Apr 2025 02:55:58 +0000 (UTC)
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.2])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B449210E719;
+ Thu, 24 Apr 2025 03:19:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
- s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=ZyWGd
- L4fQntO+YSj4uhZTWjk9DIBPdHQjqeylVNy+pc=; b=LKodL/4w1+PguPYD/a3LM
- SjgoRzu9HO0CRJT7QC+pduMeRqc/IC5iSvLCYK8vK16Dego7BtrD7pwNObI6ExLH
- MAuT7PpH+VlN/yHbinMKwsdpkl48RooPbuUhdgmVoq0+ClJ1UynBEXuvV9WloZwf
- MeFZBi1SkGVYnVqC6BbxAc=
+ s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=/qHdb
+ A/SsKmSVbxALImyuT2U+gPSzBFsItLJqVnqFQg=; b=JIChhbBMKSrqIerR2Oeca
+ jdo9HRpJJaxmUw9/1RAwwKy5G0POQdMWz70jyU8dxsxJHdedT8R4Zryoi8lHQ+Qn
+ JRLjr2QBpwWMD8RgoGRFnaT7J8pHp8P+vI5I5jB/no+OJIT2MxAQKrigCTc3w+ZC
+ A0Zk8PPOvNTAHTT2F0eyMk=
 Received: from icess-ProLiant-DL380-Gen10.. (unknown [])
  by gzga-smtp-mtada-g0-3 (Coremail) with SMTP id
- _____wB3U1csqAloHYubCA--.21713S4; 
- Thu, 24 Apr 2025 10:55:42 +0800 (CST)
+ _____wBXvlQBowlogHeXCA--.20626S4; 
+ Thu, 24 Apr 2025 10:33:39 +0800 (CST)
 From: Haoxiang Li <haoxiang_li2024@163.com>
-To: rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com,
- tursulin@ursulin.net, airlied@gmail.com, simona@ffwll.ch,
- gustavo.sousa@intel.com
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Haoxiang Li <haoxiang_li2024@163.com>, stable@vger.kernel.org
-Subject: [PATCH v2 RESEND] drm/i915/display: Add check for
- alloc_ordered_workqueue() and alloc_workqueue()
-Date: Thu, 24 Apr 2025 10:55:39 +0800
-Message-Id: <20250424025539.3504019-1-haoxiang_li2024@163.com>
+To: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
+ rodrigo.vivi@intel.com, airlied@gmail.com, simona@ffwll.ch,
+ badal.nilawar@intel.com, himal.prasad.ghimiray@intel.com,
+ matthew.brost@intel.com
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Haoxiang Li <haoxiang_li2024@163.com>,
+ stable@vger.kernel.org
+Subject: [PATCH RESEND] drm/xe: Add check for alloc_ordered_workqueue()
+Date: Thu, 24 Apr 2025 10:33:35 +0800
+Message-Id: <20250424023335.3497842-1-haoxiang_li2024@163.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: _____wB3U1csqAloHYubCA--.21713S4
-X-Coremail-Antispam: 1Uf129KBjvJXoWxAF4xGw1xAF18WrykKryfZwb_yoW5Ar1xpw
- 4fXFyUArW5XFs2kay7Xa18uFyxW3409w15GF1fC3Wqq3WUAw4jg3W0kFyUXryDGF1xXF1f
- AFWqyF429r1DCF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pimhF7UUUUU=
+X-CM-TRANSID: _____wBXvlQBowlogHeXCA--.20626S4
+X-Coremail-Antispam: 1Uf129KBjvdXoW7Jr18tr4kAr4DArWfGryUJrb_yoWfZFc_CF
+ WxXrn7XFs8CF1qvF1SkrWfZFyayryrua97uF15K3s3try7WrW2v39Fvr98ZFyxXa17uFnr
+ Z3W8W3ZIvwnrWjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+ 9fnUUvcSsGvfC2KfnxnUUI43ZEXa7sRNyxRDUUUUU==
 X-Originating-IP: [183.174.60.14]
-X-CM-SenderInfo: xkdr5xpdqjszblsqjki6rwjhhfrp/1tbiqAQ5bmgJpmBSsgAAs8
+X-CM-SenderInfo: xkdr5xpdqjszblsqjki6rwjhhfrp/xtbBkA05bmgJnX3o1QAAs2
 X-Mailman-Approved-At: Fri, 25 Apr 2025 19:08:24 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,91 +62,29 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Add check for the return value of alloc_ordered_workqueue()
-and alloc_workqueue(). Furthermore, if some allocations fail,
-cleanup works are added to avoid potential memory leak problem.
+in xe_gt_alloc() to catch potential exception.
 
-Fixes: 40053823baad ("drm/i915/display: move modeset probe/remove functions to intel_display_driver.c")
+Fixes: e2d84e5b2205 ("drm/xe: Mark GT work queue with WQ_MEM_RECLAIM")
 Cc: stable@vger.kernel.org
 Signed-off-by: Haoxiang Li <haoxiang_li2024@163.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
-Changes in v2:
-- Split the compound conditional statement into separate
-  conditional statements to facilitate cleanup works.
-- Add cleanup works to destory work queues if allocations fail,
-  and modify the later goto destination to do the full excercise.
-- modify the patch description. Thanks, Jani!
----
- .../drm/i915/display/intel_display_driver.c   | 30 +++++++++++++++----
- 1 file changed, 25 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_gt.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index 31740a677dd8..ac94561715dc 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -241,31 +241,45 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
- 	intel_dmc_init(display);
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 10a9e3c72b36..1f50f26fb657 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -81,6 +81,8 @@ struct xe_gt *xe_gt_alloc(struct xe_tile *tile)
+ 	gt->tile = tile;
+ 	gt->ordered_wq = alloc_ordered_workqueue("gt-ordered-wq",
+ 						 WQ_MEM_RECLAIM);
++	if (!gt->ordered_wq)
++		return ERR_PTR(-ENOMEM);
  
- 	display->wq.modeset = alloc_ordered_workqueue("i915_modeset", 0);
-+	if (!display->wq.modeset) {
-+		ret = -ENOMEM;
-+		goto cleanup_vga_client_pw_domain_dmc;
-+	}
-+
- 	display->wq.flip = alloc_workqueue("i915_flip", WQ_HIGHPRI |
- 						WQ_UNBOUND, WQ_UNBOUND_MAX_ACTIVE);
-+	if (!display->wq.flip) {
-+		ret = -ENOMEM;
-+		goto cleanup_wq_modeset;
-+	}
-+
- 	display->wq.cleanup = alloc_workqueue("i915_cleanup", WQ_HIGHPRI, 0);
-+	if (!display->wq.cleanup) {
-+		ret = -ENOMEM;
-+		goto cleanup_wq_flip;
-+	}
- 
- 	intel_mode_config_init(display);
- 
- 	ret = intel_cdclk_init(display);
- 	if (ret)
--		goto cleanup_vga_client_pw_domain_dmc;
-+		goto cleanup_wq_cleanup;
- 
- 	ret = intel_color_init(display);
- 	if (ret)
--		goto cleanup_vga_client_pw_domain_dmc;
-+		goto cleanup_wq_cleanup;
- 
- 	ret = intel_dbuf_init(i915);
- 	if (ret)
--		goto cleanup_vga_client_pw_domain_dmc;
-+		goto cleanup_wq_cleanup;
- 
- 	ret = intel_bw_init(i915);
- 	if (ret)
--		goto cleanup_vga_client_pw_domain_dmc;
-+		goto cleanup_wq_cleanup;
- 
- 	ret = intel_pmdemand_init(display);
- 	if (ret)
--		goto cleanup_vga_client_pw_domain_dmc;
-+		goto cleanup_wq_cleanup;
- 
- 	intel_init_quirks(display);
- 
-@@ -273,6 +287,12 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
- 
- 	return 0;
- 
-+cleanup_wq_cleanup:
-+	destroy_workqueue(display->wq.cleanup);
-+cleanup_wq_flip:
-+	destroy_workqueue(display->wq.flip);
-+cleanup_wq_modeset:
-+	destroy_workqueue(display->wq.modeset);
- cleanup_vga_client_pw_domain_dmc:
- 	intel_dmc_fini(display);
- 	intel_power_domains_driver_remove(display);
+ 	err = drmm_add_action_or_reset(&gt_to_xe(gt)->drm, gt_fini, gt);
+ 	if (err)
 -- 
 2.25.1
 
