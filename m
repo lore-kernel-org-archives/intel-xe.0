@@ -4,69 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 115BCC369AB
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Apr 2025 13:38:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3109EC369AB
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Apr 2025 13:52:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA79310E821;
-	Thu, 24 Apr 2025 13:38:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z3vSaQ2d";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3AA810E0FC;
- Thu, 24 Apr 2025 13:38:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745501922; x=1777037922;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=U92c1PJ/qLawtJ9HQpghJXWeJo5jiaoFnblKRYCvOD4=;
- b=Z3vSaQ2dMXem2FIgH2tzuY+pBAgAIsMS1TpyzH5J7Xovih2duSqINJYJ
- GHCBtA8Xv3chtAdahSgOa4V32yt599hSWhJUWX3II/YJGKzFkZC4XJzf1
- 4p27Q9KdBVtFmLsgBljq0Rg39IeZAJZZIw5ETuBPDvCZ3DXqaQPb2rvsP
- uY2VRE0ZuvA3qBALQCVtAGzk8eJlO8caCfOoN4l+4C14Lqi1D94Ath3yT
- VUfTJ9FUrnBcpoawANMvTVxQKUOktnUFECnR27AK4zkJ7f04rsTfKntS+
- Ii84hn8dvK/suatC2VjzI86nK8ySXqCNoEYyXQyb5WVnQSnd2UAxYeqEs A==;
-X-CSE-ConnectionGUID: 6Y8f1LEdQ4OExpnZV2h9ug==
-X-CSE-MsgGUID: 3BsRUx1hQ/yETQVex9189w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11413"; a="46368231"
-X-IronPort-AV: E=Sophos;i="6.15,236,1739865600"; d="scan'208";a="46368231"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2025 06:38:41 -0700
-X-CSE-ConnectionGUID: dLQ3W9H9QtyAoFBQOZR9Lg==
-X-CSE-MsgGUID: j5OuZRBGT2O6X22YgGNeJA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,236,1739865600"; d="scan'208";a="136701452"
-Received: from sannilnx-dsk.jer.intel.com ([10.12.231.107])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2025 06:38:36 -0700
-From: Alexander Usyskin <alexander.usyskin@intel.com>
-To: Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Karthik Poosa <karthik.poosa@intel.com>
-Cc: Reuven Abliyev <reuven.abliyev@intel.com>,
- Oren Weil <oren.jer.weil@intel.com>, linux-mtd@lists.infradead.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Alexander Usyskin <alexander.usyskin@intel.com>
-Subject: [PATCH v9 12/12] drm/xe/nvm: add support for non-posted erase
-Date: Thu, 24 Apr 2025 16:25:36 +0300
-Message-ID: <20250424132536.3043825-13-alexander.usyskin@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250424132536.3043825-1-alexander.usyskin@intel.com>
-References: <20250424132536.3043825-1-alexander.usyskin@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D635310E11F;
+	Thu, 24 Apr 2025 13:52:41 +0000 (UTC)
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24A4810E11F;
+ Thu, 24 Apr 2025 13:52:40 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
+ =?utf-8?q?remove_intel=5Fde=5F*=28=29_compat_wrappers?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 24 Apr 2025 13:52:40 -0000
+Message-ID: <174550276015.6762.2391608274420713714@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <cover.1745399318.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1745399318.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,201 +36,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Reuven Abliyev <reuven.abliyev@intel.com>
+== Series Details ==
 
-Erase command is slow on discrete graphics storage
-and may overshot PCI completion timeout.
-BMG introduces the ability to have non-posted erase.
-Add driver support for non-posted erase with polling
-for erase completion.
+Series: drm/i915/display: remove intel_de_*() compat wrappers
+URL   : https://patchwork.freedesktop.org/series/148181/
+State : success
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Reuven Abliyev <reuven.abliyev@intel.com>
-Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
----
- drivers/gpu/drm/xe/xe_nvm.c        | 25 +++++++++++++++++
- drivers/mtd/devices/mtd_intel_dg.c | 43 ++++++++++++++++++++++++++++--
- include/linux/intel_dg_nvm_aux.h   |  2 ++
- 3 files changed, 68 insertions(+), 2 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_nvm.c b/drivers/gpu/drm/xe/xe_nvm.c
-index 8aec20bc629a..dd91f2e37661 100644
---- a/drivers/gpu/drm/xe/xe_nvm.c
-+++ b/drivers/gpu/drm/xe/xe_nvm.c
-@@ -14,7 +14,15 @@
- #include "xe_sriov.h"
- 
- #define GEN12_GUNIT_NVM_BASE 0x00102040
-+#define GEN12_DEBUG_NVM_BASE 0x00101018
-+
-+#define GEN12_CNTL_PROTECTED_NVM_REG 0x0010100C
-+
- #define GEN12_GUNIT_NVM_SIZE 0x80
-+#define GEN12_DEBUG_NVM_SIZE 0x4
-+
-+#define NVM_NON_POSTED_ERASE_CHICKEN_BIT BIT(13)
-+
- #define HECI_FW_STATUS_2_NVM_ACCESS_MODE BIT(3)
- 
- static const struct intel_dg_nvm_region regions[INTEL_DG_NVM_REGIONS] = {
-@@ -28,6 +36,16 @@ static void xe_nvm_release_dev(struct device *dev)
- {
- }
- 
-+static bool xe_nvm_non_posted_erase(struct xe_device *xe)
-+{
-+	struct xe_gt *gt = xe_root_mmio_gt(xe);
-+
-+	if (xe->info.platform != XE_BATTLEMAGE)
-+		return false;
-+	return !(xe_mmio_read32(&gt->mmio, XE_REG(GEN12_CNTL_PROTECTED_NVM_REG)) &
-+		 NVM_NON_POSTED_ERASE_CHICKEN_BIT);
-+}
-+
- static bool xe_nvm_writable_override(struct xe_device *xe)
- {
- 	struct xe_gt *gt = xe_root_mmio_gt(xe);
-@@ -85,6 +103,7 @@ void xe_nvm_init(struct xe_device *xe)
- 	nvm = xe->nvm;
- 
- 	nvm->writable_override = xe_nvm_writable_override(xe);
-+	nvm->non_posted_erase = xe_nvm_non_posted_erase(xe);
- 	nvm->bar.parent = &pdev->resource[0];
- 	nvm->bar.start = GEN12_GUNIT_NVM_BASE + pdev->resource[0].start;
- 	nvm->bar.end = nvm->bar.start + GEN12_GUNIT_NVM_SIZE - 1;
-@@ -92,6 +111,12 @@ void xe_nvm_init(struct xe_device *xe)
- 	nvm->bar.desc = IORES_DESC_NONE;
- 	nvm->regions = regions;
- 
-+	nvm->bar2.parent = &pdev->resource[0];
-+	nvm->bar2.start = GEN12_DEBUG_NVM_BASE + pdev->resource[0].start;
-+	nvm->bar2.end = nvm->bar2.start + GEN12_DEBUG_NVM_SIZE - 1;
-+	nvm->bar2.flags = IORESOURCE_MEM;
-+	nvm->bar2.desc = IORES_DESC_NONE;
-+
- 	aux_dev = &nvm->aux_dev;
- 
- 	aux_dev->name = "nvm";
-diff --git a/drivers/mtd/devices/mtd_intel_dg.c b/drivers/mtd/devices/mtd_intel_dg.c
-index 9f4bb15a03b8..3016e9cab00e 100644
---- a/drivers/mtd/devices/mtd_intel_dg.c
-+++ b/drivers/mtd/devices/mtd_intel_dg.c
-@@ -28,6 +28,9 @@ struct intel_dg_nvm {
- 	struct mtd_info mtd;
- 	struct mutex lock; /* region access lock */
- 	void __iomem *base;
-+	void __iomem *base2;
-+	bool non_posted_erase;
-+
- 	size_t size;
- 	unsigned int nregions;
- 	struct {
-@@ -44,6 +47,7 @@ struct intel_dg_nvm {
- #define NVM_VALSIG_REG        0x00000010
- #define NVM_ADDRESS_REG       0x00000040
- #define NVM_REGION_ID_REG     0x00000044
-+#define NVM_DEBUG_REG         0x00000000
- /*
-  * [15:0]-Erase size = 0x0010 4K 0x0080 32K 0x0100 64K
-  * [23:16]-Reserved
-@@ -75,6 +79,9 @@ struct intel_dg_nvm {
- #define NVM_FREG_ADDR_SHIFT 12
- #define NVM_FREG_MIN_REGION_SIZE 0xFFF
- 
-+#define NVM_NON_POSTED_ERASE_DONE BIT(23)
-+#define NVM_NON_POSTED_ERASE_DONE_ITER 3000
-+
- static inline void idg_nvm_set_region_id(struct intel_dg_nvm *nvm, u8 region)
- {
- 	iowrite32((u32)region, nvm->base + NVM_REGION_ID_REG);
-@@ -370,11 +377,30 @@ idg_erase(struct intel_dg_nvm *nvm, u8 region, loff_t from, u64 len, u64 *fail_a
- {
- 	u64 i;
- 	const u32 block = 0x10;
-+	u32 reg;
-+	u32 iter = 0;
- 	void __iomem *base = nvm->base;
-+	void __iomem *base2 = nvm->base2;
- 
- 	for (i = 0; i < len; i += SZ_4K) {
- 		iowrite32(from + i, base + NVM_ADDRESS_REG);
- 		iowrite32(region << 24 | block, base + NVM_ERASE_REG);
-+		if (nvm->non_posted_erase) {
-+			/* Wait for Erase Done */
-+			reg = ioread32(base2 + NVM_DEBUG_REG);
-+			while (!(reg & NVM_NON_POSTED_ERASE_DONE) &&
-+			       ++iter < NVM_NON_POSTED_ERASE_DONE_ITER) {
-+				msleep(10);
-+				reg = ioread32(base2 + NVM_DEBUG_REG);
-+			}
-+			if (reg & NVM_NON_POSTED_ERASE_DONE) {
-+				/* Clear Erase Done */
-+				iowrite32(reg, base2 + NVM_DEBUG_REG);
-+			} else {
-+				*fail_addr = from + i;
-+				return -ETIME;
-+			}
-+		}
- 		/* Since the writes are via sguint
- 		 * we cannot do back to back erases.
- 		 */
-@@ -383,7 +409,8 @@ idg_erase(struct intel_dg_nvm *nvm, u8 region, loff_t from, u64 len, u64 *fail_a
- 	return len;
- }
- 
--static int intel_dg_nvm_init(struct intel_dg_nvm *nvm, struct device *device)
-+static int intel_dg_nvm_init(struct intel_dg_nvm *nvm, struct device *device,
-+			     bool non_posted_erase)
- {
- 	int ret;
- 	unsigned int i, n;
-@@ -443,7 +470,10 @@ static int intel_dg_nvm_init(struct intel_dg_nvm *nvm, struct device *device)
- 			n++;
- 	}
- 
-+	nvm->non_posted_erase = non_posted_erase;
-+
- 	dev_dbg(device, "Registered %d regions\n", n);
-+	dev_dbg(device, "Non posted erase %d\n", nvm->non_posted_erase);
- 
- 	/* Need to add 1 to the amount of memory
- 	 * so it is reported as an even block
-@@ -778,7 +808,16 @@ static int intel_dg_mtd_probe(struct auxiliary_device *aux_dev,
- 		goto err;
- 	}
- 
--	ret = intel_dg_nvm_init(nvm, device);
-+	if (invm->non_posted_erase) {
-+		nvm->base2 = devm_ioremap_resource(device, &invm->bar2);
-+		if (IS_ERR(nvm->base2)) {
-+			dev_err(device, "base2 mmio not mapped\n");
-+			ret = PTR_ERR(nvm->base2);
-+			goto err;
-+		}
-+	}
-+
-+	ret = intel_dg_nvm_init(nvm, device, invm->non_posted_erase);
- 	if (ret < 0) {
- 		dev_err(device, "cannot initialize nvm %d\n", ret);
- 		goto err;
-diff --git a/include/linux/intel_dg_nvm_aux.h b/include/linux/intel_dg_nvm_aux.h
-index 68df634c994c..bee25dfc6982 100644
---- a/include/linux/intel_dg_nvm_aux.h
-+++ b/include/linux/intel_dg_nvm_aux.h
-@@ -17,7 +17,9 @@ struct intel_dg_nvm_region {
- struct intel_dg_nvm_dev {
- 	struct auxiliary_device aux_dev;
- 	bool writable_override;
-+	bool non_posted_erase;
- 	struct resource bar;
-+	struct resource bar2;
- 	const struct intel_dg_nvm_region *regions;
- };
- 
--- 
-2.43.0
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 6176f7182260 drm-tip: 2025y-04m-24d-12h-05m-09s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/dpt: convert intel_dpt_common.c to struct intel_display
+Applying: drm/i915/hdmi: convert rest of intel_hdmi.c to struct intel_display
+Applying: drm/i915/de: drop drm_i915_private compat wrappers from intel_de_*()
+
 
