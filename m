@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88042C369AB
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Apr 2025 19:49:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F7D0C369AB
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Apr 2025 20:01:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B19810E096;
-	Thu, 24 Apr 2025 19:49:27 +0000 (UTC)
-Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 781E410E096;
- Thu, 24 Apr 2025 19:49:26 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EAFC10E1A5;
+	Thu, 24 Apr 2025 20:01:55 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bmssctzb";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5894510E127;
+ Thu, 24 Apr 2025 20:01:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1745524912; x=1777060912;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ZwV1UVhd2RpT0XiAlnG5a3CR6kLnh5g52rquEieIL+8=;
+ b=BmssctzbFuIxtTBbnbB3o1o5IZUvsWTR4pprMdJqU8+YNLtYS0H/9ppf
+ CNl+9KSCwfDopcUN+wuzHksg9ldClOkm3/uZ7HLT8Zcq+d4Pk/Z4SrtQj
+ OfJwIJxrnIQluYprBK/pKinfoPlZVtVlYfnIu8mHmhskItHTGr9JfEAKN
+ RQdkduLKvP5wL8gsXzdZ3q3vsP8ivpxBNEn2Z0C6CeYEqaqYgc+JwAmFS
+ 0rlWr19+uFyFH+wJp4m79jDfzJ/LcnzWmLU8zw+qfsPpV1jx2KHxSVLW9
+ aVPM1xpOYdwA9plQe9KOK0jIzSsqodrjRx39n291LfXGwHFILNk0CqS8B g==;
+X-CSE-ConnectionGUID: N0T9CYdiQzKQfnr049ACtw==
+X-CSE-MsgGUID: vPw/C294R/mcA2C9RvD9Zw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11413"; a="58543367"
+X-IronPort-AV: E=Sophos;i="6.15,237,1739865600"; d="scan'208";a="58543367"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Apr 2025 13:01:51 -0700
+X-CSE-ConnectionGUID: 346C/8ICR8m6RNOasmNOcw==
+X-CSE-MsgGUID: TQxH9vV6TWqIK6drva7RiQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,237,1739865600"; d="scan'208";a="137788222"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.48])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Apr 2025 13:01:49 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 00/10] drm/i915/hdcp: refactor HDCP GSC
+Date: Thu, 24 Apr 2025 23:01:32 +0300
+Message-Id: <cover.1745524803.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/xe=5Fvm=3A_Implem?=
- =?utf-8?q?ent_xe=5Fvm=5Fget=5Fproperty=5Fioctl?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 24 Apr 2025 19:49:26 -0000
-Message-ID: <174552416649.8338.5160810919340706175@c664b1dc75d1>
-X-Patchwork-Hint: ignore
-References: <20250424143812.11210-1-jonathan.cavitt@intel.com>
-In-Reply-To: <20250424143812.11210-1-jonathan.cavitt@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +64,34 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Reduce duplication, clarify interfaces between parts, and stop using
+drm_i915_private in the display parts.
 
-Series: drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
-URL   : https://patchwork.freedesktop.org/series/148215/
-State : success
+Jani Nikula (10):
+  drm/i915/hdcp: remove duplicate declarations
+  drm/i915/hdcp: deduplicate and refactor HDCP GSC ops initialization
+  drm/i915/hdcp: split HDCP GSC message alloc/save responsibilities
+  drm/i915/hdcp: rename struct intel_hdcp_gsc_message to
+    intel_hdcp_gsc_context
+  drm/i915/hdcp: rename HDCP GSC context alloc/free functions
+  drm/i915/hdcp: pass the context to the HDCP GSC message interface
+  drm/i915/hdcp: switch the HDCP GSC message interface from u8* to void*
+  drm/i915/hdcp: simplify HDCP GSC firmware usage selection
+  drm/i915/hdcp: pass struct drm_device to driver specific HDCP GSC code
+  drm/i915/hdcp: drop unnecessary include from intel_hdcp_gsc.h
 
-== Summary ==
+ .../gpu/drm/i915/display/intel_display_core.h |   2 +-
+ drivers/gpu/drm/i915/display/intel_hdcp.c     |  13 +-
+ drivers/gpu/drm/i915/display/intel_hdcp_gsc.c | 124 ++++--------
+ drivers/gpu/drm/i915/display/intel_hdcp_gsc.h |  20 +-
+ .../drm/i915/display/intel_hdcp_gsc_message.c | 181 ++++++++++++------
+ .../drm/i915/display/intel_hdcp_gsc_message.h |  63 +-----
+ drivers/gpu/drm/xe/display/xe_hdcp_gsc.c      | 133 ++++---------
+ 7 files changed, 219 insertions(+), 317 deletions(-)
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 6f55ae2f38d94749192304df6ac565c1fd5b584b
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+-- 
+2.39.5
 
