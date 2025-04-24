@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8742FC369AB
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Apr 2025 14:59:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A13FAC369C2
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Apr 2025 14:59:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BFA510E07F;
-	Thu, 24 Apr 2025 14:59:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64C4010E07F;
+	Thu, 24 Apr 2025 14:59:59 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D014510E07F;
- Thu, 24 Apr 2025 14:59:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2595E10E0A5;
+ Thu, 24 Apr 2025 14:59:58 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Rework/Correction_on?=
- =?utf-8?q?_minimum_hblank_calculation_=28rev6=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Rework/Correction_on_mini?=
+ =?utf-8?q?mum_hblank_calculation_=28rev6=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Arun R Murthy" <arun.r.murthy@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 24 Apr 2025 14:59:41 -0000
-Message-ID: <174550678185.7087.16833876106099289480@c664b1dc75d1>
+Date: Thu, 24 Apr 2025 14:59:58 -0000
+Message-ID: <174550679815.7100.7350667225367937677@c664b1dc75d1>
 X-Patchwork-Hint: ignore
 References: <20250424-hblank-v6-0-3d10442d9a31@intel.com>
 In-Reply-To: <20250424-hblank-v6-0-3d10442d9a31@intel.com>
@@ -48,10 +48,41 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 6176f7182260 drm-tip: 2025y-04m-24d-12h-05m-09s UTC integration manifest
-=== git am output follows ===
-Applying: drm/display/dp: Export fn to calculate link symbol cycles
-Applying: drm/i915/display: move min_hblank from dp_mst.c to dp.c
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a854796ef51bcb995282b27e1f09b1123bc19184
+Author: Arun R Murthy <arun.r.murthy@intel.com>
+Date:   Thu Apr 24 13:52:30 2025 +0530
+
+    drm/i915/display: move min_hblank from dp_mst.c to dp.c
+    
+    Minimum HBlank is programmed to address jitter for high resolutions with
+    high refresh rates that have small Hblank, specifically where Hblank is
+    smaller than one MTP.
+    
+    TODO: Add the min_hblank calculation for hdmi as well.
+    
+    v2: move from intel_audio.c to intel_dp.c
+        some correction in link_bpp_x16 (Imre)
+    v3: min_hblank for 8b/10b MST and 128b/132b SST/MST
+        handle error for intel_dp_mst_dsc_get_slice_count
+        reset min_hblank before disabling transcoder (Imre)
+    v4: compute link_bpp_x16 within compute_min_hblank,
+        return error in case of compute failure
+        call compute_min_hblank() before vrr_compute_config (Imre)
+    v5: readout MIN_HBLAN reg for Xe3+
+    
+    Reviewed-by: Imre Deak <imre.deak@intel.com>
+    Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
++ /mt/dim checkpatch 6176f71822602f52bc4327965090275c5570ed0d drm-intel
+dcb31d3e5b87 drm/display/dp: Export fn to calculate link symbol cycles
+a854796ef51b drm/i915/display: move min_hblank from dp_mst.c to dp.c
 
 
