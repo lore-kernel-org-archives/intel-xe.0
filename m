@@ -4,185 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FF3EC369AB
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Apr 2025 10:04:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D166C369AB
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Apr 2025 10:23:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5607110E7C0;
-	Thu, 24 Apr 2025 10:04:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3276989E2A;
+	Thu, 24 Apr 2025 10:23:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g2Onzjif";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MmEALz7v";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54FEA10E7C0
- for <intel-xe@lists.freedesktop.org>; Thu, 24 Apr 2025 10:04:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D95789E2A
+ for <intel-xe@lists.freedesktop.org>; Thu, 24 Apr 2025 10:23:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745489060; x=1777025060;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=T+N1qtIKg71iU2miqUAfJE9/oo9cplb0TPD+8hIPSc4=;
- b=g2OnzjifIYdj3pAvLYvchwT4A/JrvW4vPYSCj04G4ekU8aVMyE9m2jBg
- CSSoDA+8Z1s8e/Rk2Z6ZtZfLv/a59+/MHowJo4IVAaonAluOkoI1mqk38
- K5YLjjt0FzDg6I/geMBn9ltLExMmakg810rTq9Kauu4JfPqn/lQE+evzq
- cUYKOVmiiuk9ypqc05cF6obdeVJP8NLQwD4J796QykYTJvrHowZcL0Je6
- f9TEW1kK1AnPxUYYL2DpiCbWbCNN7ap/SAUMXAH4gPA/BZw7k9UNsNpPL
- kQwI1K6bimn947XGdl9X47oU09tR8q25qVSTrcKUjkq7vRBMvGGsQnQbf A==;
-X-CSE-ConnectionGUID: ipdQ7JJnQKq2ar/qlH6SKQ==
-X-CSE-MsgGUID: 9yVINwVqRQCcOV+yJ7mw8w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11412"; a="46820965"
-X-IronPort-AV: E=Sophos;i="6.15,235,1739865600"; d="scan'208";a="46820965"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2025 03:04:20 -0700
-X-CSE-ConnectionGUID: DZ3szhHJSjy5jFaj5gTA8Q==
-X-CSE-MsgGUID: os2FI2LkTZ2zLkRXdx7awA==
+ t=1745490195; x=1777026195;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Vr/88LuMQegj3Y08ZEc2HgEFN3cRN7m0ppe7r6Om7UU=;
+ b=MmEALz7vhQBTjHJvPjk4D9QE2jQ6YzIiz1bbULfbrksVSjPqjplcYsR6
+ SbGNAJBVAfmEVsOmXdr+1jDD1vdD0j4uiX/9kOGMFcrM6dy3kpY8kcAUt
+ +A4c1Qjzyys2XvBVIXSHSUmtk7kkAOva8lr7U8uHSf8KJsA4oSgUHa1da
+ 3VtIoGmrL0l69UVmPo8gJn/6WiFOm2jigFZ76vq1vLhl1kmUiE1N64lsX
+ tM4bw9xq32Xbza7+CDI2hVIWYmHa8x+k063ifuGh3vAsG0YTUCPI+Cu3n
+ HKtXG2pbaOxEmJLaagBd2NLaYyJzV9ZqVzg11lARKMhgsUMos7ei7JKUJ w==;
+X-CSE-ConnectionGUID: G6EtPX1CThKbNdVP1X9b9g==
+X-CSE-MsgGUID: qVlD8WcJT4ubsqnw/yJcMA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11412"; a="47026745"
+X-IronPort-AV: E=Sophos;i="6.15,235,1739865600"; d="scan'208";a="47026745"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Apr 2025 03:23:15 -0700
+X-CSE-ConnectionGUID: 6V2Kl+6JSI2jbs9o3WmLSg==
+X-CSE-MsgGUID: nhqnGyw9QAqszdD43e17AA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,235,1739865600"; d="scan'208";a="132421200"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2025 03:04:20 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Thu, 24 Apr 2025 03:04:19 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Thu, 24 Apr 2025 03:04:19 -0700
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.45) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 24 Apr 2025 03:04:18 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Mz6QmNOpMcdI1iurgMfPUvULsS0OqlbBCO5iBeXuxBDRVQthpP18LgbKHfRjpAvyNoyFbfnE/qzHjJGpqhHC3NKWYjjMTeslE6z6kkPruqrI7+LUfQH68A9wGbY6EOdcJZ4MGLg2YRRd1unXDy9R80WmRy6CiSFOIJ/hwyuC59R4QyvK0223czwYZ4zdUArL/QJ0EXDlV++b5gWwd3XQhJA3OjwH96a6GmRjDlLDAVnuP8ukaVqrhFBMjqOoYeiqBKROwdYOjaB+t6z2LBbc2fZYvRxb7CuIyKySmwt3gJgjsOXkFuCzFfwjGMs3Yo7xdlUyBLMlyEjJFHQFIIFKJA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=L6ylSc+LczziVtJv0AOpHyJ4VEACM80ESEtOifJBEO8=;
- b=i3E7ZkPXfajB/RUcRrVS9596b7lCrTXhAIMgsQhlE3FZ1UaXOy5cEsDc/zo1pNbypomUaMkfiy9UKy+Zse0SzccvFaPGiNAXHg4Ghfrs/DGDOoYfKReVM4THzNgSs16dkTj5bX3x3geBqfZb5Gycqn3JIfjD22yg/cVxyRQMCaC6ZT24PZn9NKfT4kVpg76POseubrHC6EnVwFVcRfIpRYSHEglDQFIAghHu2cBdWH2ooZwgyMkobffIqA1RfEH/EHbPP69oZiaxDL0qU+x4L1WuS123q7t2cLHvxjKZrNZ3vr54A+PcSVIXzrZ+lBcIm6p6jp54uXXdgW6ADzWo5w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MW4PR11MB7056.namprd11.prod.outlook.com (2603:10b6:303:21a::12)
- by PH8PR11MB6830.namprd11.prod.outlook.com (2603:10b6:510:22e::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8655.36; Thu, 24 Apr
- 2025 10:03:36 +0000
-Received: from MW4PR11MB7056.namprd11.prod.outlook.com
- ([fe80::c4d8:5a0b:cf67:99c5]) by MW4PR11MB7056.namprd11.prod.outlook.com
- ([fe80::c4d8:5a0b:cf67:99c5%5]) with mapi id 15.20.8655.033; Thu, 24 Apr 2025
- 10:03:35 +0000
-Message-ID: <0f22ea7e-e6cf-4464-8044-4520ebe9ecd6@intel.com>
-Date: Thu, 24 Apr 2025 15:33:29 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 14/32] drm/xe/svm: Implement prefetch support for SVM
- ranges
-To: Matthew Brost <matthew.brost@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <thomas.hellstrom@linux.intel.com>
-References: <20250407101719.3350996-1-himal.prasad.ghimiray@intel.com>
- <20250407101719.3350996-15-himal.prasad.ghimiray@intel.com>
- <aACJoZMXsfA+hu4F@lstrano-desk.jf.intel.com>
-Content-Language: en-US
-From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-In-Reply-To: <aACJoZMXsfA+hu4F@lstrano-desk.jf.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA1PR01CA0181.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:d::19) To MW4PR11MB7056.namprd11.prod.outlook.com
- (2603:10b6:303:21a::12)
+X-IronPort-AV: E=Sophos;i="6.15,235,1739865600"; d="scan'208";a="133106258"
+Received: from unknown (HELO himal-Super-Server.iind.intel.com)
+ ([10.190.239.34])
+ by orviesa007.jf.intel.com with ESMTP; 24 Apr 2025 03:23:12 -0700
+From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Subject: [PATCH 1/1] drm/xe/svm: PREFETCH svm patches squash for CI
+Date: Thu, 24 Apr 2025 16:18:17 +0530
+Message-Id: <20250424104817.3791574-1-himal.prasad.ghimiray@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MW4PR11MB7056:EE_|PH8PR11MB6830:EE_
-X-MS-Office365-Filtering-Correlation-Id: ed9bf6df-5038-4304-61b9-08dd831746c0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?Ynp5dURyOUx2T2U5cDJCOEFIMUZkNGRQbG5xUXpjRXpTK2hWQmhLUHI1R1B2?=
- =?utf-8?B?Rjlvc1lyeTM3TUMvSUNYQ2cwNHRkR1lBY0JNc3JKMCtoQ1JFVDRpT3hKbjA1?=
- =?utf-8?B?b1RhTGJVbE50N3VFRTN2NVJwMlpxbnNEVEI5U0xGYVJ1L1VVMnN5V3U5NTJN?=
- =?utf-8?B?cnJqbHRqUUNUUmV2T25ValYvVmNZVlNZUHVpczZGSTlZMHRLbjNIa0FjZzBB?=
- =?utf-8?B?Smozd0RWeXBJV3VtM3dsVFd0azZKMXFRcjJKRHpMU1dnYVQ0aXk1a3h5Q3pL?=
- =?utf-8?B?VGxnWENhZHRuL2VGN2Z0K3FBT01kMUhvcDg2UWwrR2psKzJrMXlOUlIydGJU?=
- =?utf-8?B?NkNCU2VQdXRGQ25UNjJjNVZrbDdQQXNKcTNnZnNha05QdEpXYXdJU0k4ekh3?=
- =?utf-8?B?VFYrUEQ2eTE4anlpVTVwNGkxRFlVcGdsRFZiZmgvRU5qbUdhV3F0OWJFMXVU?=
- =?utf-8?B?SEdGQXdQR3NQZTJVT0MyM1pMUnZONXR4TUJ1N2ZtSFVVSXZaeWZsOXlTcXBH?=
- =?utf-8?B?Mis1WGErbGxGelFFY1YvVHd5NUo2VDQyRFIrc0ZBMHIwdTV1VEZCb25GV2pV?=
- =?utf-8?B?d2plTHpHVGJVRTBRWXJiS0wzUksrNXBWcXhYUVZpZENwNkg4ZmwvS0h3K3RV?=
- =?utf-8?B?c044bkVGL3VKNkt4NzgrZGpOTlRVbFJmS0hrK0cvUHc5dzkrdWh4RmRzcDA0?=
- =?utf-8?B?dG9mZFZoMjQ4NWxKdThmUjVkSy9NZXFaNms5amp2anBRd1BESk1aOVhwYjE5?=
- =?utf-8?B?ODI0c0ZzWlZDeHFSR1pYOG1SQ2dLdVg5SUp1bXRpaWdQVlU0ZjFEWVNMeVd0?=
- =?utf-8?B?ZXI5VlJnY1JXNkEvZk9aWHZNdEVSVGU4ekU0WThkN01LNDZ1M2w3Y1FXeDRa?=
- =?utf-8?B?N1hqaUVlTXhTNlY5MEFuRkRyeG9tVEdQVHUxbFpub3BxRVN1dHFBUlo0VGc2?=
- =?utf-8?B?bmtEblE5K21zR1RzaWlhMnJWdXhVZzBDWHY0UnlOMmYwMDNqRHRNd1pVNHNI?=
- =?utf-8?B?dEhRWVlUaDkrWlZiSzNvZ0d6V1NzdWR0RXgwQWNnYjhtTlFEOU9lV25Qa3Mr?=
- =?utf-8?B?VzJicWpVVGtXOXIxTjJnL21kM3JQQ240VUdORFB6Vkh5aFRRcVlFb0NjTXhM?=
- =?utf-8?B?Qml5NHFqS2V5NXB0UDhoR2FEWForSDNTZlhUenVGdkVoUFp4eUtUMmJZZzQ2?=
- =?utf-8?B?VnYxNWRoWGhXNWVGTzZURWI1azNzUGxmU1BmWU1ZdmVPRTRvckxJMy9GV2VR?=
- =?utf-8?B?K2tMTGxFaUhLZzhXVGprWGY5dDNEUDZ1VGthMG40cVpBVFZ6akZCVzZrMGpi?=
- =?utf-8?B?RWs2QWJhbHdiUVhWRnpqZXFWeVduVzkvYzZvVGUyNEF1ZXFRd2drMEJVVEZh?=
- =?utf-8?B?aVpDSVhBWFJRdm1Kczk2QURVM3BjVERTbVVRMkRlN0dMZ1dvT3pxKzNxQVZM?=
- =?utf-8?B?MkNZcXR5dzVHdEg5RGc3Y0M1ZERwMXlzS2U0djF5YlR0WWNEUGlHT2U1S2pN?=
- =?utf-8?B?bnJyMW8rQ05hdkV3OC95d2RIbm9LelVyVjVhZWF4Snk4bTRnMHk2NkFKV1p3?=
- =?utf-8?B?V3FramlhNU01SUJrMkpTdTgrMDR6ZW0ydGFycG1EMERTeld4MGJEdE44V1dP?=
- =?utf-8?B?b1p0OGc0SEJVZ0owMXdiaS9wMENXNEhkd2NpelBod3NCd3hGY2hRUU9qRFR3?=
- =?utf-8?B?dElLUDdhcHRrdFA0NmNqMWNCU3U1K1RwVTFTR1AraG5lTlYxY3NJdUxBa0k3?=
- =?utf-8?B?bys5VERhY2F1Zm5PdjZOQnhUZzRTdWpsWDQrNTFUWFNVZkZNYU1YWHk2TExB?=
- =?utf-8?B?ZmFmOEtrSlhkdXdYWWh3QVZadi9RTSt5S2VXSC9vWHJZWlNoWWljQTU4azht?=
- =?utf-8?B?d2lmU2FFY2RvKzVwK3FHRmdyT1FnVVdXcVR5NXFvQmlRZWRrSnN6MGlvcFFH?=
- =?utf-8?Q?YqM9CIzy7iE=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW4PR11MB7056.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S2lLWDNlWWlySnU5emg1bDR2WjBndVBhOHp2WVAwNy9BVFRBaGZlTjRBY1lk?=
- =?utf-8?B?UVJidFI5dTVKV0svWFFocm5oWHMrOEkyY3lxaXlRUkR5bmNCdWpWc3ptenhO?=
- =?utf-8?B?bjFuV3A4SEFhcDk4T0VPN0l6VFlrQkhSODBVdERzTTI4R2pXZEFUeEdTWTRM?=
- =?utf-8?B?WWw5OGpRdG90R2JtaG1va3lLU0x5b3ZVaXh1Vjkrd1gwSkJpMlVGa2pidmlB?=
- =?utf-8?B?K2hXQWt4eStKZVZ0a1JqYXlydmgyNFdnYzJHNGZwa1czbEswTS95aTQ5Vmsv?=
- =?utf-8?B?Q2RqaGMwTnFGWCtXS3hkbmNSSitTOXFtaGQ4YmYwUkZLK2k1WisxSHpiMUt0?=
- =?utf-8?B?eVAxckxyVDRZcXhwUUF2MHFzd25lbnVadXIvTSthczdBQTBXY2NOcGtFbWwx?=
- =?utf-8?B?TE1IcnJDY21INm1qZ2g4TWNySW8vZnRwdy9Db0VwQkR4SGx0a1JGZmJBeWRs?=
- =?utf-8?B?eThpQ01NMUxXd1FPcHlac1Z4RkFnYmpxeXJZNHJKYmplRTFYSDd1NFQ2OVBh?=
- =?utf-8?B?aGl5ZzlQSlAxMnRDeW51UVh5OTFFeVNQUDViOGZ4U1NWQk5mam4wQXFsVVZz?=
- =?utf-8?B?RTkrMVE1NC9RTjBmbSthVjF6NkVtVmRMc1FMcWFJOTNPSkZKckpGeXIwT2U3?=
- =?utf-8?B?QVRJekt5UmZiSG5NM0tpeS90NnRGeUlLVjkvbGdGamlaeVpid3Rhcm8xcGNC?=
- =?utf-8?B?VlNURmpLTVhBY2tSOFZFZTBMMlBZbFV2SWFIY1lEM3k1UzUrZ3phd1gwekls?=
- =?utf-8?B?R0Zkd0xXMHdSb0VWYytZbmJBekJDN0krRDY2dDBsL1d3M3RHU1BENFFtZUhG?=
- =?utf-8?B?VWVLNUIrZUs4WnN6WHNvMnd0ZnJkNnF2SUg5bTM0UDJrLzR3aGlpYWdETEFp?=
- =?utf-8?B?dHQrQ2I5elpUb1dJMjhKOFNvWCtrOUZWd2RuS3RDTVFIdTAyZDd2VWhqMFNq?=
- =?utf-8?B?VWlTLy9JS1JGcE00WU1SR0ZRSGhGR21JdGJWNWxvUlMvaVBOdkprZGduUjVW?=
- =?utf-8?B?MW1yOGNBY09sMVBuY2tWaDM0YzhHUW5xb096QVB1K3NRVFpKdWZMeUdOOHd6?=
- =?utf-8?B?NGhWZU9tdGNYa2VQbWpIQTJ0MWl0OHJyWEllajRHTG9KY093TGNIUW9IVGhi?=
- =?utf-8?B?RkpzaktFZmpxVnA5TzA5Qk9JZTgyaW1JSlR5RkZKK3hZLzMreWdmTEJHbFRh?=
- =?utf-8?B?eWxGaENhODF6aE1GUmVEdzRabWJyRTRoV1VFbGNPcGhxaURHS3hVdkx4a1Ex?=
- =?utf-8?B?SmEyTzVsd3lxMERObThIdmpERklQUnF0RE16VXB5TkNGeXIvMVk2cXM2Y3BC?=
- =?utf-8?B?YmpPcGZVUU92RWdDT0U1eUVTUUtQczF1ZEg5cjJDazdrQlM1bUtIN3EwaHRq?=
- =?utf-8?B?ZDBmQkJLU1VDVHFIRlZMUXJoNGtwZUgxc2pld24vSVNKdHdqZUhDQ0dLekhD?=
- =?utf-8?B?RXNCRzZ1ZGlqRHNGenNIdG5UdFA4YjhibkpZenRRTlVGOFZCMThqbC9Zc2VE?=
- =?utf-8?B?Z1ZMa0tmd2k0VnRPUzc5WHVpdzVxcDQyQ05rWUk3MVoxTzNDRlRmTmZFMExZ?=
- =?utf-8?B?bUxZTjdIY1ZsVWZrSU1GVE5oaVl0RlRBMEdyQVI5Sis5YjgwRkZZc2hiaksw?=
- =?utf-8?B?cG5MSUd1QjdIRkFOQTNRcENENDExUkswRWlSMGRMTHNZaXF3blcxQVVvbFZo?=
- =?utf-8?B?OWRKYmp0SHZmYzlRMEQ0RHV2T0cwZG53MTN3SHNjSktIVkpqbVN3a2drVWdI?=
- =?utf-8?B?d2NJR2FEck1TV2x5WndRTkp5bVBlNnBINGY0Q1lkcnhZMjllQnBhdWEyN3J4?=
- =?utf-8?B?MXlzQjhtYmJBcmcrckZZY1dhbXBHYkIxYUtsalF4K3NJL1BFV3puMHpKVXFX?=
- =?utf-8?B?b1BKbTk5d2VuWXd6VkR1UTE4TSs1amI2Y2tjMUJ6a2J0LzdJK0tlM1JFcGlS?=
- =?utf-8?B?elZUNldMLytEZWMwTmQyelVlMXJERkJKTTFDMURNSjIvVWhoaE8vRzluQnNW?=
- =?utf-8?B?WWVkYlVaalRndEFGamZJeUZac2RSYmNVams5REptK3gzek9sTTNMZVhWWktT?=
- =?utf-8?B?TnpMMWsyVzBTbzZENnBmbktncGxMWncwS3g5Q0ladDd0clJzcmowQk5Mazlq?=
- =?utf-8?B?TzdxWEU1SjRnVTBBdlkzcUxFOTNvZG9zTWh5MEZ0LzZocWdhSkd5aGlmem5u?=
- =?utf-8?Q?qUoTDpuwXLFhe3hGUe79Rsw=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: ed9bf6df-5038-4304-61b9-08dd831746c0
-X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB7056.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Apr 2025 10:03:35.4460 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pLUI/Y3IdJ9Pdftdl8Bwfxfao6I95bBafSIP1jtRy3nqj2kpWtgNlIQcAauTdidUbGHkhNttzv6eZiZl4GwkJSuhzUDNoo4PEBypg1kvdW8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6830
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -197,558 +64,1356 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+DO NOT REVIEW
 
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+---
+ drivers/gpu/drm/drm_gpusvm.c         |  14 ++
+ drivers/gpu/drm/xe/xe_debugfs.c      |  38 ++++
+ drivers/gpu/drm/xe/xe_device.c       |   1 +
+ drivers/gpu/drm/xe/xe_device_types.h |   3 +
+ drivers/gpu/drm/xe/xe_gt_pagefault.c |  24 +--
+ drivers/gpu/drm/xe/xe_module.c       |   3 -
+ drivers/gpu/drm/xe/xe_module.h       |   1 -
+ drivers/gpu/drm/xe/xe_pt.c           |  77 +++++++--
+ drivers/gpu/drm/xe/xe_svm.c          | 227 +++++++++++++++++-------
+ drivers/gpu/drm/xe/xe_svm.h          | 126 +++++++++++++-
+ drivers/gpu/drm/xe/xe_vm.c           | 248 +++++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_vm.h           |   2 +
+ drivers/gpu/drm/xe/xe_vm_types.h     |  15 ++
+ include/drm/drm_gpusvm.h             |   7 +
+ 14 files changed, 655 insertions(+), 131 deletions(-)
 
-On 17-04-2025 10:24, Matthew Brost wrote:
-> On Mon, Apr 07, 2025 at 03:47:01PM +0530, Himal Prasad Ghimiray wrote:
->> This commit adds prefetch support for SVM ranges, utilizing the
->> existing ioctl vm_bind functionality to achieve this.
->>
->> v2: rebase
->>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_pt.c |  61 +++++++++---
->>   drivers/gpu/drm/xe/xe_vm.c | 185 +++++++++++++++++++++++++++++++++++--
->>   2 files changed, 222 insertions(+), 24 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
->> index de4e3edda758..59dc065fae93 100644
->> --- a/drivers/gpu/drm/xe/xe_pt.c
->> +++ b/drivers/gpu/drm/xe/xe_pt.c
->> @@ -1458,7 +1458,8 @@ static int xe_pt_svm_pre_commit(struct xe_migrate_pt_update *pt_update)
->>   	struct xe_vm *vm = pt_update->vops->vm;
->>   	struct xe_vma_ops *vops = pt_update->vops;
->>   	struct xe_vma_op *op;
->> -	int err;
->> +	int ranges_count;
->> +	int err, i;
->>   
->>   	err = xe_pt_pre_commit(pt_update);
->>   	if (err)
->> @@ -1467,20 +1468,33 @@ static int xe_pt_svm_pre_commit(struct xe_migrate_pt_update *pt_update)
->>   	xe_svm_notifier_lock(vm);
->>   
->>   	list_for_each_entry(op, &vops->list, link) {
->> -		struct xe_svm_range *range = op->map_range.range;
->> +		struct xe_svm_range *range = NULL;
->>   
->>   		if (op->subop == XE_VMA_SUBOP_UNMAP_RANGE)
->>   			continue;
->>   
->> -		xe_svm_range_debug(range, "PRE-COMMIT");
->> -
->> -		xe_assert(vm->xe, xe_vma_is_cpu_addr_mirror(op->map_range.vma));
->> -		xe_assert(vm->xe, op->subop == XE_VMA_SUBOP_MAP_RANGE);
->> +		if (op->base.op == DRM_GPUVA_OP_PREFETCH) {
->> +			xe_assert(vm->xe,
->> +				  xe_vma_is_cpu_addr_mirror(gpuva_to_vma(op->base.prefetch.va)));
->> +			ranges_count = op->prefetch_range.ranges_count;
->> +		} else {
->> +			xe_assert(vm->xe, xe_vma_is_cpu_addr_mirror(op->map_range.vma));
->> +			xe_assert(vm->xe, op->subop == XE_VMA_SUBOP_MAP_RANGE);
->> +			ranges_count  = 1;
->> +		}
->>   
->> -		if (!xe_svm_range_pages_valid(range)) {
->> -			xe_svm_range_debug(range, "PRE-COMMIT - RETRY");
->> -			xe_svm_notifier_unlock(vm);
->> -			return -EAGAIN;
->> +		for (i = 0; i < ranges_count; i++) {
-> 
-> xa_for_each as it doesn't make any assumptions above the key (e.g. the value of i).
-
-Sure
-
-
-> 
->> +			if (op->base.op == DRM_GPUVA_OP_PREFETCH)
->> +				range = xa_load(&op->prefetch_range.range, i);
-> 
-> I'd move this logic above... So I'd write it like this...
-> 
-> if (op->base.op == DRM_GPUVA_OP_PREFETCH) {
-> 	assert
-> 	xe_for_each
-> 		do_pages_check()
-> } else {
-> 	assert
-> 	do_pages_check();
-> }
-
-Looks better.
-
-> 
->> +			else
->> +				range = op->map_range.range;
->> +			xe_svm_range_debug(range, "PRE-COMMIT");
->> +
->> +			if (!xe_svm_range_pages_valid(range)) {
->> +				xe_svm_range_debug(range, "PRE-COMMIT - RETRY");
->> +				xe_svm_notifier_unlock(vm);
->> +				return -EAGAIN;
-> 
-> So in the case of prefetch, this is bit inconsistent as below when
-> things race, you return -ENODATA which is converted to 0 in the IOCTL.
-> -EAGAIN here could result in a livelock in the right conditions as
-> -EAGAIN means must retry. I think maybe just -ENODATA if a prefetch
-> fails... If there are any other binds in the array of IOCTL they will
-> just fault I guess. Maybe not a concern as only VK uses array of binds
-> at the moment.
-
-Ok
-
-> 
->> +			}
->>   		}
->>   	}
->>   
->> @@ -2065,11 +2079,21 @@ static int op_prepare(struct xe_vm *vm,
->>   	{
->>   		struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
->>   
->> -		if (xe_vma_is_cpu_addr_mirror(vma))
->> -			break;
->> +		if (xe_vma_is_cpu_addr_mirror(vma)) {
->> +			struct xe_svm_range *range;
->> +			int i;
->>   
->> -		err = bind_op_prepare(vm, tile, pt_update_ops, vma, false);
->> -		pt_update_ops->wait_vm_kernel = true;
->> +			for (i = 0; i < op->prefetch_range.ranges_count; i++) {
->> +				range = xa_load(&op->prefetch_range.range, i);
-> 
-> Again xe_for_each...
-
-Noted
-
-> 
->> +				err = bind_range_prepare(vm, tile, pt_update_ops,
->> +							 vma, range);
->> +				if (err)
->> +					return err;
->> +			}
->> +		} else {
->> +			err = bind_op_prepare(vm, tile, pt_update_ops, vma, false);
->> +			pt_update_ops->wait_vm_kernel = true;
->> +		}
->>   		break;
->>   	}
->>   	case DRM_GPUVA_OP_DRIVER:
->> @@ -2273,9 +2297,16 @@ static void op_commit(struct xe_vm *vm,
->>   	{
->>   		struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
->>   
->> -		if (!xe_vma_is_cpu_addr_mirror(vma))
->> +		if (xe_vma_is_cpu_addr_mirror(vma)) {
->> +			for (int i = 0 ; i < op->prefetch_range.ranges_count; i++) {
-> 
-> Again xe_for_each...
-> 
->> +				struct xe_svm_range *range = xa_load(&op->prefetch_range.range, i);
->> +
->> +				range_present_and_invalidated_tile(vm, range, tile->id);
->> +			}
->> +		} else {
->>   			bind_op_commit(vm, tile, pt_update_ops, vma, fence,
->>   				       fence2, false);
->> +		}
->>   		break;
->>   	}
->>   	case DRM_GPUVA_OP_DRIVER:
->> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
->> index 57af2c37f927..ffd7ad664921 100644
->> --- a/drivers/gpu/drm/xe/xe_vm.c
->> +++ b/drivers/gpu/drm/xe/xe_vm.c
->> @@ -798,10 +798,36 @@ static int xe_vma_ops_alloc(struct xe_vma_ops *vops, bool array_of_binds)
->>   }
->>   ALLOW_ERROR_INJECTION(xe_vma_ops_alloc, ERRNO);
->>   
->> +static void clean_svm_prefetch_op(struct xe_vma_op *op)
->> +{
-> 
-> Can we rename this with fini convention to match xe_vma_ops_fini?
-
-Sure
-
-> 
->> +	struct xe_vma *vma;
->> +
->> +	vma = gpuva_to_vma(op->base.prefetch.va);
->> +
->> +	if (op->base.op == DRM_GPUVA_OP_PREFETCH && xe_vma_is_cpu_addr_mirror(vma)) {
->> +		xa_destroy(&op->prefetch_range.range);
->> +		op->prefetch_range.ranges_count = 0;
-> 
-> Do you need to set 'op->prefetch_range.ranges_count' to zero here.
-
-Looks redundant.
-
-> 
->> +	}
->> +}
->> +
->> +static void clean_svm_prefetch_in_vma_ops(struct xe_vma_ops *vops)
->> +{
-> 
-> Same here, fini convention?
-
-Sure
-
-> 
->> +	struct xe_vma_op *op;
->> +
->> +	if (!(vops->flags & XE_VMA_OPS_HAS_SVM_PREFETCH))
->> +		return;
->> +
->> +	list_for_each_entry(op, &vops->list, link) {
->> +		clean_svm_prefetch_op(op);
->> +	}
-> 
-> Brackets not needed.
-
-Noted
-
-> 
->> +}
->> +
->>   static void xe_vma_ops_fini(struct xe_vma_ops *vops)
->>   {
->>   	int i;
->>   
->> +	clean_svm_prefetch_in_vma_ops(vops);
->> +
->>   	for (i = 0; i < XE_MAX_TILES_PER_DEVICE; ++i)
->>   		kfree(vops->pt_update_ops[i].ops);
->>   }
->> @@ -2248,13 +2274,25 @@ static bool __xe_vm_needs_clear_scratch_pages(struct xe_vm *vm, u32 bind_flags)
->>   	return true;
->>   }
->>   
->> +static void clean_svm_prefetch_in_gpuva_ops(struct drm_gpuva_ops *ops)
->> +{
-> 
-> Same here, fini convention?
-> 
->> +	struct drm_gpuva_op *__op;
->> +
->> +	drm_gpuva_for_each_op(__op, ops) {
->> +		struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
->> +
->> +		clean_svm_prefetch_op(op);
->> +	}
->> +}
->> +
->>   /*
->>    * Create operations list from IOCTL arguments, setup operations fields so parse
->>    * and commit steps are decoupled from IOCTL arguments. This step can fail.
->>    */
->>   static struct drm_gpuva_ops *
->> -vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
->> -			 u64 bo_offset_or_userptr, u64 addr, u64 range,
->> +vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
->> +			 struct xe_bo *bo, u64 bo_offset_or_userptr,
->> +			 u64 addr, u64 range,
->>   			 u32 operation, u32 flags,
->>   			 u32 prefetch_region, u16 pat_index)
->>   {
->> @@ -2262,6 +2300,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
->>   	struct drm_gpuva_ops *ops;
->>   	struct drm_gpuva_op *__op;
->>   	struct drm_gpuvm_bo *vm_bo;
->> +	u64 range_end = addr + range;
->>   	int err;
->>   
->>   	lockdep_assert_held_write(&vm->lock);
->> @@ -2323,14 +2362,61 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
->>   			op->map.invalidate_on_bind =
->>   				__xe_vm_needs_clear_scratch_pages(vm, flags);
->>   		} else if (__op->op == DRM_GPUVA_OP_PREFETCH) {
->> -			op->prefetch.region = prefetch_region;
->> -		}
->> +			struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
->> +
->> +			if (!xe_vma_is_cpu_addr_mirror(vma)) {
->> +				op->prefetch.region = prefetch_region;
->> +				break;
->> +			}
->>   
->> +			struct drm_gpusvm_ctx ctx = {
->> +			.read_only = xe_vma_read_only(vma),
->> +			.devmem_possible = IS_DGFX(vm->xe) &&
->> +					   IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR),
->> +			.check_pages_threshold = IS_DGFX(vm->xe) &&
->> +						 IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR) ?
->> +						 SZ_64K : 0,
-> 
-> The alignment looks weird here.
-
-Checkpatch confirms its good.
-
-> 
-> Also you don't techincally need to set check_pages_threshold here give
-> this is used by get_pages which is not called here.
-
-Thats true, will remove it
-
-> 
->> +			};
->> +
->> +			op->prefetch_range.region = prefetch_region;
->> +			struct xe_svm_range *svm_range;
->> +			int i = 0;
-> 
-> I don't think you need 'i' here, you probably just can use xa_alloc
-> rather than xa_store if use xe_for_each everywhere else.
-
-Yes xa_alloc with xa_init_flags will be cleaner here. Will change
-
-> 
-> 
->> +
->> +			xa_init(&op->prefetch_range.range);
->> +			op->prefetch_range.ranges_count = 0;
->> +alloc_next_range:
->> +			svm_range = xe_svm_range_find_or_insert(vm, addr, vma, &ctx);
->> +
-> 
-> I think you want to check if range has a mapping and is in preferred
-> location, if it is then don't add to the xarray as no reason to try to
-> migrate it or rebind the GPU pages.
-
-Makes sense, will add a check here.
-
-> 
->> +			if (PTR_ERR(svm_range) == -ENOENT)
->> +				break;
->> +
->> +			if (IS_ERR(svm_range)) {
->> +				err = PTR_ERR(svm_range);
->> +				goto unwind_prefetch_ops;
->> +			}
->> +
->> +			xa_store(&op->prefetch_range.range, i, svm_range, GFP_KERNEL);
->> +			op->prefetch_range.ranges_count++;
->> +			vops->flags |= XE_VMA_OPS_HAS_SVM_PREFETCH;
->> +
->> +			if (range_end > xe_svm_range_end(svm_range) &&
->> +			    xe_svm_range_end(svm_range) < xe_vma_end(vma)) {
->> +				i++;
->> +				addr = xe_svm_range_end(svm_range);
->> +				goto alloc_next_range;
->> +			}
->> +		}
->>   		print_op(vm->xe, __op);
->>   	}
->>   
->>   	return ops;
->> +
->> +unwind_prefetch_ops:
->> +	clean_svm_prefetch_in_gpuva_ops(ops);
->> +	drm_gpuva_ops_free(&vm->gpuvm, ops);
->> +	return ERR_PTR(err);
->>   }
->> +
->>   ALLOW_ERROR_INJECTION(vm_bind_ioctl_ops_create, ERRNO);
->>   
->>   static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
->> @@ -2645,8 +2731,12 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
->>   					return err;
->>   			}
->>   
->> -			if (!xe_vma_is_cpu_addr_mirror(vma))
->> +			if (xe_vma_is_cpu_addr_mirror(vma))
->> +				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask,
->> +							      op->prefetch_range.ranges_count);
->> +			else
->>   				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask, 1);
->> +
->>   			break;
->>   		default:
->>   			drm_warn(&vm->xe->drm, "NOT POSSIBLE");
->> @@ -2772,6 +2862,58 @@ static int check_ufence(struct xe_vma *vma)
->>   	return 0;
->>   }
->>   
->> +static int prefetch_ranges_lock_and_prep(struct xe_vm *vm,
->> +					 struct xe_vma_op *op)
->> +{
->> +	int err = 0;
->> +
->> +	if (op->base.op  == DRM_GPUVA_OP_PREFETCH) {
-> 
-> 
-> if (op->base.op != DRM_GPUVA_OP_PREFETCH || xe_vma_is_cpu_addr_mirror(vma))
-> 	return 0;
-> 
-> Will help with spacing. Or do this check at the caller.
-> 
->> +		struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
->> +		struct drm_gpusvm_ctx ctx = {
->> +			.read_only = xe_vma_read_only(vma),
->> +			.devmem_possible = IS_DGFX(vm->xe) &&
->> +					   IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR),
->> +			.check_pages_threshold = IS_DGFX(vm->xe) &&
->> +						 IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR) ?
->> +						 SZ_64K : 0,
->> +		};
->> +		struct xe_svm_range *svm_range;
->> +		struct xe_tile *tile;
->> +		u32 region;
->> +		int i;
->> +
->> +		if (!xe_vma_is_cpu_addr_mirror(vma))
->> +			return 0;
->> +
->> +		region = op->prefetch_range.region;
->> +
->> +		/* TODO: Threading the migration */
->> +		for (i = 0; i < op->prefetch_range.ranges_count; i++) {
-> 
-> Again xa_for_each...
-> 
->> +			svm_range = xa_load(&op->prefetch_range.range, i);
->> +			if (xe_svm_range_needs_migrate_to_vram(svm_range, vma, region)) {
->> +				tile = &vm->xe->tiles[region_to_mem_type[region] - XE_PL_VRAM0];
->> +				err = xe_svm_alloc_vram(vm, tile, svm_range, &ctx);
->> +				if (err) {
->> +					drm_err(&vm->xe->drm, "VRAM allocation failed, can be retried from userspace, asid=%u, gpusvm=%p, errno=%pe\n",
->> +						vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
-> 
-> Not drm_err here, drm_dbg as user space can easily retrigger this.
-
-Sure
-
-> 
->> +					return -ENODATA;
-> 
-> So this gets squashed into return 0, which I think is correct for now.
-> Same explaination as above wrt to error codes.
-> 
->> +				}
->> +			}
->> +
->> +			err = xe_svm_range_get_pages(vm, svm_range, &ctx);
->> +			if (err) {
->> +				if (err == -EOPNOTSUPP || err == -EFAULT || err == -EPERM)
->> +					err = -ENODATA;
->> +
->> +				drm_err(&vm->xe->drm, "Get pages failed, asid=%u, gpusvm=%p, errno=%pe\n",
->> +					vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
-> 
-> Same as above.
-> 
-> We are going to want IGTs to test these error paths btw, issue prefetch
-> then have another thread immediately touch some of the memory to abort
-> the prefetch.
-
-Sure will look into it.
-
-> 
->> +				return err;
->> +			}
->> +		}
->> +	}
->> +	return err;
->> +}
->> +
->>   static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
->>   			    struct xe_vma_op *op)
->>   {
->> @@ -2809,7 +2951,12 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
->>   	case DRM_GPUVA_OP_PREFETCH:
->>   	{
->>   		struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
->> -		u32 region = op->prefetch.region;
->> +		u32 region;
->> +
->> +		if (xe_vma_is_cpu_addr_mirror(vma))
->> +			region = op->prefetch_range.region;
->> +		else
->> +			region = op->prefetch.region;
->>   
->>   		xe_assert(vm->xe, region <= ARRAY_SIZE(region_to_mem_type));
->>   
->> @@ -2828,6 +2975,23 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
->>   	return err;
->>   }
->>   
->> +static int xe_vma_ops_execute_ready(struct xe_vm *vm, struct xe_vma_ops *vops)
->> +{
-> 
-> Let's make these names consistent.
-> 
-> How about...
-> 
-> s/xe_vma_ops_execute_ready/vm_bind_ioctl_ops_prefetch_ranges
-> 
-> s/prefetch_ranges_lock_and_prep/prefetch_ranges
-
-Sure
-
-> 
->> +	struct xe_vma_op *op;
->> +	int err;
->> +
->> +	if (!(vops->flags & XE_VMA_OPS_HAS_SVM_PREFETCH))
->> +		return 0;
->> +
->> +	list_for_each_entry(op, &vops->list, link) {
->> +		err = prefetch_ranges_lock_and_prep(vm, op);
->> +		if (err)
->> +			return err;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->>   static int vm_bind_ioctl_ops_lock_and_prep(struct drm_exec *exec,
->>   					   struct xe_vm *vm,
->>   					   struct xe_vma_ops *vops)
->> @@ -2850,7 +3014,6 @@ static int vm_bind_ioctl_ops_lock_and_prep(struct drm_exec *exec,
->>   	    vm->xe->vm_inject_error_position == FORCE_OP_ERROR_LOCK)
->>   		return -ENOSPC;
->>   #endif
->> -
-> 
-> Look unrelated.
-> 
-> Matt
-> 
->>   	return 0;
->>   }
->>   
->> @@ -3492,7 +3655,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->>   		u32 prefetch_region = bind_ops[i].prefetch_mem_region_instance;
->>   		u16 pat_index = bind_ops[i].pat_index;
->>   
->> -		ops[i] = vm_bind_ioctl_ops_create(vm, bos[i], obj_offset,
->> +		ops[i] = vm_bind_ioctl_ops_create(vm, &vops, bos[i], obj_offset,
->>   						  addr, range, op, flags,
->>   						  prefetch_region, pat_index);
->>   		if (IS_ERR(ops[i])) {
->> @@ -3525,6 +3688,10 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->>   	if (err)
->>   		goto unwind_ops;
->>   
->> +	err = xe_vma_ops_execute_ready(vm, &vops);
->> +	if (err)
->> +		goto unwind_ops;
->> +
->>   	fence = vm_bind_ioctl_ops_execute(vm, &vops);
->>   	if (IS_ERR(fence))
->>   		err = PTR_ERR(fence);
->> @@ -3594,7 +3761,7 @@ struct dma_fence *xe_vm_bind_kernel_bo(struct xe_vm *vm, struct xe_bo *bo,
->>   
->>   	xe_vma_ops_init(&vops, vm, q, NULL, 0);
->>   
->> -	ops = vm_bind_ioctl_ops_create(vm, bo, 0, addr, bo->size,
->> +	ops = vm_bind_ioctl_ops_create(vm, &vops, bo, 0, addr, bo->size,
->>   				       DRM_XE_VM_BIND_OP_MAP, 0, 0,
->>   				       vm->xe->pat.idx[cache_lvl]);
->>   	if (IS_ERR(ops)) {
->> -- 
->> 2.34.1
->>
+diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
+index 2451c816edd5..7466eb1694ef 100644
+--- a/drivers/gpu/drm/drm_gpusvm.c
++++ b/drivers/gpu/drm/drm_gpusvm.c
+@@ -1454,6 +1454,11 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
+ 				goto err_unmap;
+ 			}
+ 
++			if (ctx->devmem_only) {
++				err = -EFAULT;
++				goto err_unmap;
++			}
++
+ 			addr = dma_map_page(gpusvm->drm->dev,
+ 					    page, 0,
+ 					    PAGE_SIZE << order,
+@@ -1765,6 +1770,8 @@ int drm_gpusvm_migrate_to_devmem(struct drm_gpusvm *gpusvm,
+ 		goto err_finalize;
+ 
+ 	/* Upon success bind devmem allocation to range and zdd */
++	devmem_allocation->timeslice_expiration = get_jiffies_64() +
++		msecs_to_jiffies(ctx->timeslice_ms);
+ 	zdd->devmem_allocation = devmem_allocation;	/* Owns ref */
+ 
+ err_finalize:
+@@ -1985,6 +1992,13 @@ static int __drm_gpusvm_migrate_to_ram(struct vm_area_struct *vas,
+ 	void *buf;
+ 	int i, err = 0;
+ 
++	if (page) {
++		zdd = page->zone_device_data;
++		if (time_before64(get_jiffies_64(),
++				  zdd->devmem_allocation->timeslice_expiration))
++			return 0;
++	}
++
+ 	start = ALIGN_DOWN(fault_addr, size);
+ 	end = ALIGN(fault_addr + 1, size);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index d0503959a8ed..d83cd6ed3fa8 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -191,6 +191,41 @@ static const struct file_operations wedged_mode_fops = {
+ 	.write = wedged_mode_set,
+ };
+ 
++static ssize_t atomic_svm_timeslice_ms_show(struct file *f, char __user *ubuf,
++					    size_t size, loff_t *pos)
++{
++	struct xe_device *xe = file_inode(f)->i_private;
++	char buf[32];
++	int len = 0;
++
++	len = scnprintf(buf, sizeof(buf), "%d\n", xe->atomic_svm_timeslice_ms);
++
++	return simple_read_from_buffer(ubuf, size, pos, buf, len);
++}
++
++static ssize_t atomic_svm_timeslice_ms_set(struct file *f,
++					   const char __user *ubuf,
++					   size_t size, loff_t *pos)
++{
++	struct xe_device *xe = file_inode(f)->i_private;
++	u32 atomic_svm_timeslice_ms;
++	ssize_t ret;
++
++	ret = kstrtouint_from_user(ubuf, size, 0, &atomic_svm_timeslice_ms);
++	if (ret)
++		return ret;
++
++	xe->atomic_svm_timeslice_ms = atomic_svm_timeslice_ms;
++
++	return size;
++}
++
++static const struct file_operations atomic_svm_timeslice_ms_fops = {
++	.owner = THIS_MODULE,
++	.read = atomic_svm_timeslice_ms_show,
++	.write = atomic_svm_timeslice_ms_set,
++};
++
+ void xe_debugfs_register(struct xe_device *xe)
+ {
+ 	struct ttm_device *bdev = &xe->ttm;
+@@ -211,6 +246,9 @@ void xe_debugfs_register(struct xe_device *xe)
+ 	debugfs_create_file("wedged_mode", 0600, root, xe,
+ 			    &wedged_mode_fops);
+ 
++	debugfs_create_file("atomic_svm_timeslice_ms", 0600, root, xe,
++			    &atomic_svm_timeslice_ms_fops);
++
+ 	for (mem_type = XE_PL_VRAM0; mem_type <= XE_PL_VRAM1; ++mem_type) {
+ 		man = ttm_manager_type(bdev, mem_type);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 75e753e0a682..abf3c72baaa6 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -444,6 +444,7 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+ 	xe->info.devid = pdev->device;
+ 	xe->info.revid = pdev->revision;
+ 	xe->info.force_execlist = xe_modparam.force_execlist;
++	xe->atomic_svm_timeslice_ms = 5;
+ 
+ 	err = xe_irq_init(xe);
+ 	if (err)
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 3745389ead0d..70924e75b597 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -571,6 +571,9 @@ struct xe_device {
+ 	/** @pmu: performance monitoring unit */
+ 	struct xe_pmu pmu;
+ 
++	/** @atomic_svm_timeslice_ms: Atomic SVM fault timeslice MS */
++	u32 atomic_svm_timeslice_ms;
++
+ #ifdef TEST_VM_OPS_ERROR
+ 	/**
+ 	 * @vm_inject_error_position: inject errors at different places in VM
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index 10622ca471a2..7a8f87709e39 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -72,28 +72,6 @@ static bool vma_is_valid(struct xe_tile *tile, struct xe_vma *vma)
+ 		!(BIT(tile->id) & vma->tile_invalidated);
+ }
+ 
+-static bool vma_matches(struct xe_vma *vma, u64 page_addr)
+-{
+-	if (page_addr > xe_vma_end(vma) - 1 ||
+-	    page_addr + SZ_4K - 1 < xe_vma_start(vma))
+-		return false;
+-
+-	return true;
+-}
+-
+-static struct xe_vma *lookup_vma(struct xe_vm *vm, u64 page_addr)
+-{
+-	struct xe_vma *vma = NULL;
+-
+-	if (vm->usm.last_fault_vma) {   /* Fast lookup */
+-		if (vma_matches(vm->usm.last_fault_vma, page_addr))
+-			vma = vm->usm.last_fault_vma;
+-	}
+-	if (!vma)
+-		vma = xe_vm_find_overlapping_vma(vm, page_addr, SZ_4K);
+-
+-	return vma;
+-}
+ 
+ static int xe_pf_begin(struct drm_exec *exec, struct xe_vma *vma,
+ 		       bool atomic, unsigned int id)
+@@ -231,7 +209,7 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
+ 		goto unlock_vm;
+ 	}
+ 
+-	vma = lookup_vma(vm, pf->page_addr);
++	vma = xe_vm_find_vma_by_addr(vm, pf->page_addr);
+ 	if (!vma) {
+ 		err = -EINVAL;
+ 		goto unlock_vm;
+diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
+index 64bf46646544..e4742e27e2cd 100644
+--- a/drivers/gpu/drm/xe/xe_module.c
++++ b/drivers/gpu/drm/xe/xe_module.c
+@@ -30,9 +30,6 @@ struct xe_modparam xe_modparam = {
+ module_param_named(svm_notifier_size, xe_modparam.svm_notifier_size, uint, 0600);
+ MODULE_PARM_DESC(svm_notifier_size, "Set the svm notifier size(in MiB), must be power of 2");
+ 
+-module_param_named(always_migrate_to_vram, xe_modparam.always_migrate_to_vram, bool, 0444);
+-MODULE_PARM_DESC(always_migrate_to_vram, "Always migrate to VRAM on GPU fault");
+-
+ module_param_named_unsafe(force_execlist, xe_modparam.force_execlist, bool, 0444);
+ MODULE_PARM_DESC(force_execlist, "Force Execlist submission");
+ 
+diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
+index 84339e509c80..5a3bfea8b7b4 100644
+--- a/drivers/gpu/drm/xe/xe_module.h
++++ b/drivers/gpu/drm/xe/xe_module.h
+@@ -12,7 +12,6 @@
+ struct xe_modparam {
+ 	bool force_execlist;
+ 	bool probe_display;
+-	bool always_migrate_to_vram;
+ 	u32 force_vram_bar_size;
+ 	int guc_log_level;
+ 	char *guc_firmware_path;
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index b42cf5d1b20c..f3a99ee4f733 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -1458,6 +1458,7 @@ static int xe_pt_svm_pre_commit(struct xe_migrate_pt_update *pt_update)
+ 	struct xe_vm *vm = pt_update->vops->vm;
+ 	struct xe_vma_ops *vops = pt_update->vops;
+ 	struct xe_vma_op *op;
++	unsigned long i;
+ 	int err;
+ 
+ 	err = xe_pt_pre_commit(pt_update);
+@@ -1467,20 +1468,35 @@ static int xe_pt_svm_pre_commit(struct xe_migrate_pt_update *pt_update)
+ 	xe_svm_notifier_lock(vm);
+ 
+ 	list_for_each_entry(op, &vops->list, link) {
+-		struct xe_svm_range *range = op->map_range.range;
++		struct xe_svm_range *range = NULL;
+ 
+ 		if (op->subop == XE_VMA_SUBOP_UNMAP_RANGE)
+ 			continue;
+ 
+-		xe_svm_range_debug(range, "PRE-COMMIT");
++		if (op->base.op == DRM_GPUVA_OP_PREFETCH) {
++			xe_assert(vm->xe,
++				  xe_vma_is_cpu_addr_mirror(gpuva_to_vma(op->base.prefetch.va)));
++			xa_for_each(&op->prefetch_range.range, i, range) {
++				xe_svm_range_debug(range, "PRE-COMMIT");
+ 
+-		xe_assert(vm->xe, xe_vma_is_cpu_addr_mirror(op->map_range.vma));
+-		xe_assert(vm->xe, op->subop == XE_VMA_SUBOP_MAP_RANGE);
++				if (!xe_svm_range_pages_valid(range)) {
++					xe_svm_range_debug(range, "PRE-COMMIT - RETRY");
++					xe_svm_notifier_unlock(vm);
++					return -ENODATA;
++				}
++			}
++		} else {
++			xe_assert(vm->xe, xe_vma_is_cpu_addr_mirror(op->map_range.vma));
++			xe_assert(vm->xe, op->subop == XE_VMA_SUBOP_MAP_RANGE);
++			range = op->map_range.range;
+ 
+-		if (!xe_svm_range_pages_valid(range)) {
+-			xe_svm_range_debug(range, "PRE-COMMIT - RETRY");
+-			xe_svm_notifier_unlock(vm);
+-			return -EAGAIN;
++			xe_svm_range_debug(range, "PRE-COMMIT");
++
++			if (!xe_svm_range_pages_valid(range)) {
++				xe_svm_range_debug(range, "PRE-COMMIT - RETRY");
++				xe_svm_notifier_unlock(vm);
++				return -EAGAIN;
++			}
+ 		}
+ 	}
+ 
+@@ -2065,11 +2081,20 @@ static int op_prepare(struct xe_vm *vm,
+ 	{
+ 		struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
+ 
+-		if (xe_vma_is_cpu_addr_mirror(vma))
+-			break;
++		if (xe_vma_is_cpu_addr_mirror(vma)) {
++			struct xe_svm_range *range;
++			unsigned long i;
+ 
+-		err = bind_op_prepare(vm, tile, pt_update_ops, vma, false);
+-		pt_update_ops->wait_vm_kernel = true;
++			xa_for_each(&op->prefetch_range.range, i, range) {
++				err = bind_range_prepare(vm, tile, pt_update_ops,
++							 vma, range);
++				if (err)
++					return err;
++			}
++		} else {
++			err = bind_op_prepare(vm, tile, pt_update_ops, vma, false);
++			pt_update_ops->wait_vm_kernel = true;
++		}
+ 		break;
+ 	}
+ 	case DRM_GPUVA_OP_DRIVER:
+@@ -2216,6 +2241,16 @@ static void unbind_op_commit(struct xe_vm *vm, struct xe_tile *tile,
+ 	}
+ }
+ 
++static void range_present_and_invalidated_tile(struct xe_vm *vm,
++					       struct xe_svm_range *range,
++					       u8 tile_id)
++{
++	lockdep_assert_held(&vm->svm.gpusvm.notifier_lock);
++
++	range->tile_present |= BIT(tile_id);
++	range->tile_invalidated &= ~BIT(tile_id);
++}
++
+ static void op_commit(struct xe_vm *vm,
+ 		      struct xe_tile *tile,
+ 		      struct xe_vm_pgtable_update_ops *pt_update_ops,
+@@ -2263,19 +2298,25 @@ static void op_commit(struct xe_vm *vm,
+ 	{
+ 		struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
+ 
+-		if (!xe_vma_is_cpu_addr_mirror(vma))
++		if (xe_vma_is_cpu_addr_mirror(vma)) {
++			struct xe_svm_range *range = NULL;
++			unsigned long i;
++
++			xa_for_each(&op->prefetch_range.range, i, range)
++				range_present_and_invalidated_tile(vm, range, tile->id);
++		} else {
+ 			bind_op_commit(vm, tile, pt_update_ops, vma, fence,
+ 				       fence2, false);
++		}
+ 		break;
+ 	}
+ 	case DRM_GPUVA_OP_DRIVER:
+ 	{
+-		if (op->subop == XE_VMA_SUBOP_MAP_RANGE) {
+-			op->map_range.range->tile_present |= BIT(tile->id);
+-			op->map_range.range->tile_invalidated &= ~BIT(tile->id);
+-		} else if (op->subop == XE_VMA_SUBOP_UNMAP_RANGE) {
++		if (op->subop == XE_VMA_SUBOP_MAP_RANGE)
++			range_present_and_invalidated_tile(vm, op->map_range.range, tile->id);
++		else if (op->subop == XE_VMA_SUBOP_UNMAP_RANGE)
+ 			op->unmap_range.range->tile_present &= ~BIT(tile->id);
+-		}
++
+ 		break;
+ 	}
+ 	default:
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index d927f50f2a68..284c7752e164 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -36,21 +36,6 @@ static struct xe_vm *range_to_vm(struct drm_gpusvm_range *r)
+ 	return gpusvm_to_vm(r->gpusvm);
+ }
+ 
+-static unsigned long xe_svm_range_start(struct xe_svm_range *range)
+-{
+-	return drm_gpusvm_range_start(&range->base);
+-}
+-
+-static unsigned long xe_svm_range_end(struct xe_svm_range *range)
+-{
+-	return drm_gpusvm_range_end(&range->base);
+-}
+-
+-static unsigned long xe_svm_range_size(struct xe_svm_range *range)
+-{
+-	return drm_gpusvm_range_size(&range->base);
+-}
+-
+ #define range_debug(r__, operaton__)					\
+ 	vm_dbg(&range_to_vm(&(r__)->base)->xe->drm,			\
+ 	       "%s: asid=%u, gpusvm=%p, vram=%d,%d, seqno=%lu, " \
+@@ -94,11 +79,6 @@ static void xe_svm_range_free(struct drm_gpusvm_range *range)
+ 	kfree(range);
+ }
+ 
+-static struct xe_svm_range *to_xe_range(struct drm_gpusvm_range *r)
+-{
+-	return container_of(r, struct xe_svm_range, base);
+-}
+-
+ static void
+ xe_svm_garbage_collector_add_range(struct xe_vm *vm, struct xe_svm_range *range,
+ 				   const struct mmu_notifier_range *mmu_range)
+@@ -649,10 +629,23 @@ void xe_svm_fini(struct xe_vm *vm)
+ 	drm_gpusvm_fini(&vm->svm.gpusvm);
+ }
+ 
+-static bool xe_svm_range_is_valid(struct xe_svm_range *range,
+-				  struct xe_tile *tile)
++/**
++ * xe_svm_range_is_valid - Check if the SVM range is valid
++ * @range: Pointer to the SVM range structure
++ * @tile_mask: Mask representing the tiles to be checked
++ * @devmem_only: if true range needs to be in devmem
++ *
++ * This function checks if the range is mapped and is in preferred
++ * location.
++ *
++ * Return: true if the range is valid, false otherwise
++ */
++
++bool xe_svm_range_is_valid(struct xe_svm_range *range,
++			   u8 tile_mask, bool devmem_only)
+ {
+-	return (range->tile_present & ~range->tile_invalidated) & BIT(tile->id);
++	return (range->tile_present & ~range->tile_invalidated & tile_mask) == tile_mask
++		&& (!devmem_only || range->base.flags.has_devmem_pages);
+ }
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR)
+@@ -661,9 +654,19 @@ static struct xe_vram_region *tile_to_vr(struct xe_tile *tile)
+ 	return &tile->mem.vram;
+ }
+ 
+-static int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
+-			     struct xe_svm_range *range,
+-			     const struct drm_gpusvm_ctx *ctx)
++/**
++ * xe_svm_alloc_vram()- Allocate device memory pages for range,
++ * migrating existing data.
++ * @vm: The VM.
++ * @tile: tile to allocate vram from
++ * @range: SVM range
++ * @ctx: DRM GPU SVM context
++ *
++ * Return: 0 on success, error code on failure.
++ */
++int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
++		      struct xe_svm_range *range,
++		      const struct drm_gpusvm_ctx *ctx)
+ {
+ 	struct mm_struct *mm = vm->svm.gpusvm.mm;
+ 	struct xe_vram_region *vr = tile_to_vr(tile);
+@@ -717,15 +720,47 @@ static int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
+ 
+ 	return err;
+ }
+-#else
+-static int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
+-			     struct xe_svm_range *range,
+-			     const struct drm_gpusvm_ctx *ctx)
++#endif
++
++static bool supports_4K_migration(struct xe_device *xe)
+ {
+-	return -EOPNOTSUPP;
++	if (xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
++		return false;
++
++	return true;
+ }
+-#endif
+ 
++/**
++ * xe_svm_range_needs_migrate_to_vram() - SVM range needs migrate to VRAM or not
++ * @range: SVM range for which migration needs to be decided
++ * @vma: vma which has range
++ * @preferred_region_is_vram: preferred region for range is vram
++ *
++ * Return: True for range needing migration and migration is supported else false
++ */
++bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vma *vma,
++					bool preferred_region_is_vram)
++{
++	struct xe_vm *vm = range_to_vm(&range->base);
++	u64 range_size = xe_svm_range_size(range);
++
++	if (!range->base.flags.migrate_devmem || !preferred_region_is_vram)
++		return false;
++
++	xe_assert(vm->xe, IS_DGFX(vm->xe));
++
++	if (preferred_region_is_vram && xe_svm_range_in_vram(range)) {
++		drm_info(&vm->xe->drm, "Range is already in VRAM\n");
++		return false;
++	}
++
++	if (preferred_region_is_vram && range_size <= SZ_64K && !supports_4K_migration(vm->xe)) {
++		drm_warn(&vm->xe->drm, "Platform doesn't support SZ_4K range migration\n");
++		return false;
++	}
++
++	return true;
++}
+ 
+ /**
+  * xe_svm_handle_pagefault() - SVM handle page fault
+@@ -750,12 +785,17 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR),
+ 		.check_pages_threshold = IS_DGFX(vm->xe) &&
+ 			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR) ? SZ_64K : 0,
++		.devmem_only = atomic && IS_DGFX(vm->xe) &&
++			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR),
++		.timeslice_ms = atomic && IS_DGFX(vm->xe) &&
++			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR) ?
++			vm->xe->atomic_svm_timeslice_ms : 0,
+ 	};
+ 	struct xe_svm_range *range;
+-	struct drm_gpusvm_range *r;
+ 	struct drm_exec exec;
+ 	struct dma_fence *fence;
+ 	struct xe_tile *tile = gt_to_tile(gt);
++	int migrate_try_count = ctx.devmem_only ? 3 : 1;
+ 	ktime_t end = 0;
+ 	int err;
+ 
+@@ -770,46 +810,55 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 	if (err)
+ 		return err;
+ 
+-	r = drm_gpusvm_range_find_or_insert(&vm->svm.gpusvm, fault_addr,
+-					    xe_vma_start(vma), xe_vma_end(vma),
+-					    &ctx);
+-	if (IS_ERR(r))
+-		return PTR_ERR(r);
++	range = xe_svm_range_find_or_insert(vm, fault_addr, vma, &ctx);
++
++	if (IS_ERR(range))
++		return PTR_ERR(range);
+ 
+-	range = to_xe_range(r);
+-	if (xe_svm_range_is_valid(range, tile))
++	if (xe_svm_range_is_valid(range, BIT(tile->id), ctx.devmem_only))
+ 		return 0;
+ 
+ 	range_debug(range, "PAGE FAULT");
+ 
+-	/* XXX: Add migration policy, for now migrate range once */
+-	if (!range->skip_migrate && range->base.flags.migrate_devmem &&
+-	    xe_svm_range_size(range) >= SZ_64K) {
+-		range->skip_migrate = true;
+-
++	if (--migrate_try_count >= 0 &&
++	    xe_svm_range_needs_migrate_to_vram(range, vma, IS_DGFX(vm->xe))) {
+ 		err = xe_svm_alloc_vram(vm, tile, range, &ctx);
++		ctx.timeslice_ms <<= 1;	/* Double timeslice if we have to retry */
+ 		if (err) {
+-			drm_dbg(&vm->xe->drm,
+-				"VRAM allocation failed, falling back to "
+-				"retrying fault, asid=%u, errno=%pe\n",
+-				vm->usm.asid, ERR_PTR(err));
+-			goto retry;
++			if (migrate_try_count || !ctx.devmem_only) {
++				drm_dbg(&vm->xe->drm,
++					"VRAM allocation failed, falling back to retrying fault, asid=%u, errno=%pe\n",
++					vm->usm.asid, ERR_PTR(err));
++				goto retry;
++			} else {
++				drm_err(&vm->xe->drm,
++					"VRAM allocation failed, retry count exceeded, asid=%u, errno=%pe\n",
++					vm->usm.asid, ERR_PTR(err));
++				return err;
++			}
+ 		}
+ 	}
+ 
+ 	range_debug(range, "GET PAGES");
+-	err = drm_gpusvm_range_get_pages(&vm->svm.gpusvm, r, &ctx);
++	err = xe_svm_range_get_pages(vm, range, &ctx);
+ 	/* Corner where CPU mappings have changed */
+ 	if (err == -EOPNOTSUPP || err == -EFAULT || err == -EPERM) {
+-		if (err == -EOPNOTSUPP) {
+-			range_debug(range, "PAGE FAULT - EVICT PAGES");
+-			drm_gpusvm_range_evict(&vm->svm.gpusvm, &range->base);
++		if (migrate_try_count > 0 || !ctx.devmem_only) {
++			if (err == -EOPNOTSUPP) {
++				range_debug(range, "PAGE FAULT - EVICT PAGES");
++				drm_gpusvm_range_evict(&vm->svm.gpusvm,
++						       &range->base);
++			}
++			drm_dbg(&vm->xe->drm,
++				"Get pages failed, falling back to retrying, asid=%u, gpusvm=%p, errno=%pe\n",
++				vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
++			range_debug(range, "PAGE FAULT - RETRY PAGES");
++			goto retry;
++		} else {
++			drm_err(&vm->xe->drm,
++				"Get pages failed, retry count exceeded, asid=%u, gpusvm=%p, errno=%pe\n",
++				vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
+ 		}
+-		drm_dbg(&vm->xe->drm,
+-			"Get pages failed, falling back to retrying, asid=%u, gpusvm=%p, errno=%pe\n",
+-			vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
+-		range_debug(range, "PAGE FAULT - RETRY PAGES");
+-		goto retry;
+ 	}
+ 	if (err) {
+ 		range_debug(range, "PAGE FAULT - FAIL PAGE COLLECT");
+@@ -843,9 +892,6 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 	}
+ 	drm_exec_fini(&exec);
+ 
+-	if (xe_modparam.always_migrate_to_vram)
+-		range->skip_migrate = false;
+-
+ 	dma_fence_wait(fence, false);
+ 	dma_fence_put(fence);
+ 
+@@ -883,6 +929,56 @@ int xe_svm_bo_evict(struct xe_bo *bo)
+ 	return drm_gpusvm_evict_to_ram(&bo->devmem_allocation);
+ }
+ 
++/**
++ * xe_svm_range_find_or_insert- Find or insert GPU SVM range
++ * @vm: xe_vm pointer
++ * @addr: address for which range needs to be found/inserted
++ * @vma:  Pointer to struct xe_vma which mirrors CPU
++ * @ctx: GPU SVM context
++ *
++ * This function finds or inserts a newly allocated a SVM range based on the
++ * address.
++ *
++ * Return: Pointer to the SVM range on success, ERR_PTR() on failure.
++ */
++struct xe_svm_range *xe_svm_range_find_or_insert(struct xe_vm *vm, u64 addr,
++						 struct xe_vma *vma, struct drm_gpusvm_ctx *ctx)
++{
++	struct drm_gpusvm_range *r;
++
++	r = drm_gpusvm_range_find_or_insert(&vm->svm.gpusvm, max(addr, xe_vma_start(vma)),
++					    xe_vma_start(vma), xe_vma_end(vma), ctx);
++	if (IS_ERR(r))
++		return ERR_PTR(PTR_ERR(r));
++
++	return to_xe_range(r);
++}
++
++/**
++ * xe_svm_range_get_pages() - Get pages for a SVM range
++ * @vm: Pointer to the struct xe_vm
++ * @range: Pointer to the xe SVM range structure
++ * @ctx: GPU SVM context
++ *
++ * This function gets pages for a SVM range and ensures they are mapped for
++ * DMA access. In case of failure with -EOPNOTSUPP, it evicts the range.
++ *
++ * Return: 0 on success, negative error code on failure.
++ */
++int xe_svm_range_get_pages(struct xe_vm *vm, struct xe_svm_range *range,
++			   struct drm_gpusvm_ctx *ctx)
++{
++	int err = 0;
++
++	err = drm_gpusvm_range_get_pages(&vm->svm.gpusvm, &range->base, ctx);
++	if (err == -EOPNOTSUPP) {
++		range_debug(range, "PAGE FAULT - EVICT PAGES");
++		drm_gpusvm_range_evict(&vm->svm.gpusvm, &range->base);
++	}
++
++	return err;
++}
++
+ #if IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR)
+ 
+ static struct drm_pagemap_device_addr
+@@ -961,6 +1057,13 @@ int xe_devm_add(struct xe_tile *tile, struct xe_vram_region *vr)
+ 	return 0;
+ }
+ #else
++int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
++		      struct xe_svm_range *range,
++		      const struct drm_gpusvm_ctx *ctx)
++{
++	return -EOPNOTSUPP;
++}
++
+ int xe_devm_add(struct xe_tile *tile, struct xe_vram_region *vr)
+ {
+ 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+index 3d441eb1f7ea..35fdd70ec9b0 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -39,11 +39,6 @@ struct xe_svm_range {
+ 	 * range. Protected by GPU SVM notifier lock.
+ 	 */
+ 	u8 tile_invalidated;
+-	/**
+-	 * @skip_migrate: Skip migration to VRAM, protected by GPU fault handler
+-	 * locking.
+-	 */
+-	u8 skip_migrate	:1;
+ };
+ 
+ /**
+@@ -75,6 +70,22 @@ int xe_svm_bo_evict(struct xe_bo *bo);
+ 
+ void xe_svm_range_debug(struct xe_svm_range *range, const char *operation);
+ 
++int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
++		      struct xe_svm_range *range,
++		      const struct drm_gpusvm_ctx *ctx);
++
++struct xe_svm_range *xe_svm_range_find_or_insert(struct xe_vm *vm, u64 addr,
++						 struct xe_vma *vma, struct drm_gpusvm_ctx *ctx);
++
++int xe_svm_range_get_pages(struct xe_vm *vm, struct xe_svm_range *range,
++			   struct drm_gpusvm_ctx *ctx);
++
++bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vma *vma,
++					bool preferred_region_is_vram);
++
++bool xe_svm_range_is_valid(struct xe_svm_range *range,
++			   u8 tile_mask, bool devmem_only);
++
+ /**
+  * xe_svm_range_has_dma_mapping() - SVM range has DMA mapping
+  * @range: SVM range
+@@ -87,6 +98,53 @@ static inline bool xe_svm_range_has_dma_mapping(struct xe_svm_range *range)
+ 	return range->base.flags.has_dma_mapping;
+ }
+ 
++/**
++ * to_xe_range - Convert a drm_gpusvm_range pointer to a xe_svm_range
++ * @r: Pointer to the drm_gpusvm_range structure
++ *
++ * This function takes a pointer to a drm_gpusvm_range structure and
++ * converts it to a pointer to the containing xe_svm_range structure.
++ *
++ * Return: Pointer to the xe_svm_range structure
++ */
++static inline struct xe_svm_range *to_xe_range(struct drm_gpusvm_range *r)
++{
++	return container_of(r, struct xe_svm_range, base);
++}
++
++/**
++ * xe_svm_range_start() - SVM range start address
++ * @range: SVM range
++ *
++ * Return: start address of range.
++ */
++static inline unsigned long xe_svm_range_start(struct xe_svm_range *range)
++{
++	return drm_gpusvm_range_start(&range->base);
++}
++
++/**
++ * xe_svm_range_end() - SVM range end address
++ * @range: SVM range
++ *
++ * Return: end address of range.
++ */
++static inline unsigned long xe_svm_range_end(struct xe_svm_range *range)
++{
++	return drm_gpusvm_range_end(&range->base);
++}
++
++/**
++ * xe_svm_range_size() - SVM range size
++ * @range: SVM range
++ *
++ * Return: Size of range.
++ */
++static inline unsigned long xe_svm_range_size(struct xe_svm_range *range)
++{
++	return drm_gpusvm_range_size(&range->base);
++}
++
+ #define xe_svm_assert_in_notifier(vm__) \
+ 	lockdep_assert_held_write(&(vm__)->svm.gpusvm.notifier_lock)
+ 
+@@ -100,6 +158,8 @@ static inline bool xe_svm_range_has_dma_mapping(struct xe_svm_range *range)
+ #include <linux/interval_tree.h>
+ 
+ struct drm_pagemap_device_addr;
++struct drm_gpusvm_ctx;
++struct drm_gpusvm_range;
+ struct xe_bo;
+ struct xe_gt;
+ struct xe_vm;
+@@ -170,6 +230,62 @@ void xe_svm_range_debug(struct xe_svm_range *range, const char *operation)
+ {
+ }
+ 
++static inline
++int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
++		      struct xe_svm_range *range,
++		      const struct drm_gpusvm_ctx *ctx)
++{
++	return -EOPNOTSUPP;
++}
++
++static inline
++struct xe_svm_range *xe_svm_range_find_or_insert(struct xe_vm *vm, u64 addr,
++						 struct xe_vma *vma, struct drm_gpusvm_ctx *ctx)
++{
++	return ERR_PTR(-EINVAL);
++}
++
++static inline
++int xe_svm_range_get_pages(struct xe_vm *vm, struct xe_svm_range *range,
++			   struct drm_gpusvm_ctx *ctx)
++{
++	return -EINVAL;
++}
++
++static inline struct xe_svm_range *to_xe_range(struct drm_gpusvm_range *r)
++{
++	return NULL;
++}
++
++static inline unsigned long xe_svm_range_start(struct xe_svm_range *range)
++{
++	return 0;
++}
++
++static inline unsigned long xe_svm_range_end(struct xe_svm_range *range)
++{
++	return 0;
++}
++
++static inline unsigned long xe_svm_range_size(struct xe_svm_range *range)
++{
++	return 0;
++}
++
++static inline
++bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vma *vma,
++					u32 region)
++{
++	return false;
++}
++
++static inline
++bool xe_svm_range_is_valid(struct xe_svm_range *range,
++			   u8 tile_mask, bool devmem_only)
++{
++	return false;
++}
++
+ #define xe_svm_assert_in_notifier(...) do {} while (0)
+ #define xe_svm_range_has_dma_mapping(...) false
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 0c69ef6b5ec5..fbe50a438cf9 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -798,21 +798,47 @@ static int xe_vma_ops_alloc(struct xe_vma_ops *vops, bool array_of_binds)
+ }
+ ALLOW_ERROR_INJECTION(xe_vma_ops_alloc, ERRNO);
+ 
++static void xe_vma_svm_prefetch_op_fini(struct xe_vma_op *op)
++{
++	struct xe_vma *vma;
++
++	vma = gpuva_to_vma(op->base.prefetch.va);
++
++	if (op->base.op == DRM_GPUVA_OP_PREFETCH && xe_vma_is_cpu_addr_mirror(vma))
++		xa_destroy(&op->prefetch_range.range);
++}
++
++static void xe_vma_svm_prefetch_ops_fini(struct xe_vma_ops *vops)
++{
++	struct xe_vma_op *op;
++
++	if (!(vops->flags & XE_VMA_OPS_FLAG_HAS_SVM_PREFETCH))
++		return;
++
++	list_for_each_entry(op, &vops->list, link)
++		xe_vma_svm_prefetch_op_fini(op);
++}
++
+ static void xe_vma_ops_fini(struct xe_vma_ops *vops)
+ {
+ 	int i;
+ 
++	xe_vma_svm_prefetch_ops_fini(vops);
++
+ 	for (i = 0; i < XE_MAX_TILES_PER_DEVICE; ++i)
+ 		kfree(vops->pt_update_ops[i].ops);
+ }
+ 
+-static void xe_vma_ops_incr_pt_update_ops(struct xe_vma_ops *vops, u8 tile_mask)
++static void xe_vma_ops_incr_pt_update_ops(struct xe_vma_ops *vops, u8 tile_mask, int inc_val)
+ {
+ 	int i;
+ 
++	if (!inc_val)
++		return;
++
+ 	for (i = 0; i < XE_MAX_TILES_PER_DEVICE; ++i)
+ 		if (BIT(i) & tile_mask)
+-			++vops->pt_update_ops[i].num_ops;
++			vops->pt_update_ops[i].num_ops += inc_val;
+ }
+ 
+ static void xe_vm_populate_rebind(struct xe_vma_op *op, struct xe_vma *vma,
+@@ -842,7 +868,7 @@ static int xe_vm_ops_add_rebind(struct xe_vma_ops *vops, struct xe_vma *vma,
+ 
+ 	xe_vm_populate_rebind(op, vma, tile_mask);
+ 	list_add_tail(&op->link, &vops->list);
+-	xe_vma_ops_incr_pt_update_ops(vops, tile_mask);
++	xe_vma_ops_incr_pt_update_ops(vops, tile_mask, 1);
+ 
+ 	return 0;
+ }
+@@ -977,7 +1003,7 @@ xe_vm_ops_add_range_rebind(struct xe_vma_ops *vops,
+ 
+ 	xe_vm_populate_range_rebind(op, vma, range, tile_mask);
+ 	list_add_tail(&op->link, &vops->list);
+-	xe_vma_ops_incr_pt_update_ops(vops, tile_mask);
++	xe_vma_ops_incr_pt_update_ops(vops, tile_mask, 1);
+ 
+ 	return 0;
+ }
+@@ -1062,7 +1088,7 @@ xe_vm_ops_add_range_unbind(struct xe_vma_ops *vops,
+ 
+ 	xe_vm_populate_range_unbind(op, range);
+ 	list_add_tail(&op->link, &vops->list);
+-	xe_vma_ops_incr_pt_update_ops(vops, range->tile_present);
++	xe_vma_ops_incr_pt_update_ops(vops, range->tile_present, 1);
+ 
+ 	return 0;
+ }
+@@ -2136,6 +2162,35 @@ int xe_vm_destroy_ioctl(struct drm_device *dev, void *data,
+ 	return err;
+ }
+ 
++static bool vma_matches(struct xe_vma *vma, u64 page_addr)
++{
++	if (page_addr > xe_vma_end(vma) - 1 ||
++	    page_addr + SZ_4K - 1 < xe_vma_start(vma))
++		return false;
++
++	return true;
++}
++
++/**
++ * xe_vm_find_vma_by_addr() - Find a VMA by its address
++ *
++ * @vm: the xe_vm the vma belongs to
++ * @page_addr: address to look up
++ */
++struct xe_vma *xe_vm_find_vma_by_addr(struct xe_vm *vm, u64 page_addr)
++{
++	struct xe_vma *vma = NULL;
++
++	if (vm->usm.last_fault_vma) {   /* Fast lookup */
++		if (vma_matches(vm->usm.last_fault_vma, page_addr))
++			vma = vm->usm.last_fault_vma;
++	}
++	if (!vma)
++		vma = xe_vm_find_overlapping_vma(vm, page_addr, SZ_4K);
++
++	return vma;
++}
++
+ static const u32 region_to_mem_type[] = {
+ 	XE_PL_TT,
+ 	XE_PL_VRAM0,
+@@ -2216,13 +2271,25 @@ static bool __xe_vm_needs_clear_scratch_pages(struct xe_vm *vm, u32 bind_flags)
+ 	return true;
+ }
+ 
++static void xe_svm_prefetch_gpuva_ops_fini(struct drm_gpuva_ops *ops)
++{
++	struct drm_gpuva_op *__op;
++
++	drm_gpuva_for_each_op(__op, ops) {
++		struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
++
++		xe_vma_svm_prefetch_op_fini(op);
++	}
++}
++
+ /*
+  * Create operations list from IOCTL arguments, setup operations fields so parse
+  * and commit steps are decoupled from IOCTL arguments. This step can fail.
+  */
+ static struct drm_gpuva_ops *
+-vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+-			 u64 bo_offset_or_userptr, u64 addr, u64 range,
++vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
++			 struct xe_bo *bo, u64 bo_offset_or_userptr,
++			 u64 addr, u64 range,
+ 			 u32 operation, u32 flags,
+ 			 u32 prefetch_region, u16 pat_index)
+ {
+@@ -2230,6 +2297,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+ 	struct drm_gpuva_ops *ops;
+ 	struct drm_gpuva_op *__op;
+ 	struct drm_gpuvm_bo *vm_bo;
++	u64 range_end = addr + range;
+ 	int err;
+ 
+ 	lockdep_assert_held_write(&vm->lock);
+@@ -2291,14 +2359,74 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+ 			op->map.invalidate_on_bind =
+ 				__xe_vm_needs_clear_scratch_pages(vm, flags);
+ 		} else if (__op->op == DRM_GPUVA_OP_PREFETCH) {
+-			op->prefetch.region = prefetch_region;
+-		}
++			struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
++
++			if (!xe_vma_is_cpu_addr_mirror(vma)) {
++				op->prefetch.region = prefetch_region;
++				break;
++			}
++
++			struct drm_gpusvm_ctx ctx = {
++			.read_only = xe_vma_read_only(vma),
++			.devmem_possible = IS_DGFX(vm->xe) &&
++					   IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR),
++			};
++
++			struct xe_svm_range *svm_range;
++			struct xe_tile *tile;
++			u8 id, tile_mask = 0;
++			u32 i;
++
++			for_each_tile(tile, vm->xe, id)
++				tile_mask |= 0x1 << id;
++
++			xa_init_flags(&op->prefetch_range.range, XA_FLAGS_ALLOC);
++			op->prefetch_range.region = prefetch_region;
++			op->prefetch_range.ranges_count = 0;
++alloc_next_range:
++			svm_range = xe_svm_range_find_or_insert(vm, addr, vma, &ctx);
++
++			if (PTR_ERR(svm_range) == -ENOENT)
++				break;
++
++			if (IS_ERR(svm_range)) {
++				err = PTR_ERR(svm_range);
++				goto unwind_prefetch_ops;
++			}
+ 
++			if (xe_svm_range_is_valid(svm_range, tile_mask, !!prefetch_region)){
++				xe_svm_range_debug(svm_range, "PREFETCH - RANGE IS VALID");
++				goto check_next_range;
++			}
++
++			err = xa_alloc(&op->prefetch_range.range,
++				       &i, svm_range, xa_limit_32b,
++				       GFP_KERNEL);
++
++			if (err)
++				goto unwind_prefetch_ops;
++
++			op->prefetch_range.ranges_count++;
++			vops->flags |= XE_VMA_OPS_FLAG_HAS_SVM_PREFETCH;
++			xe_svm_range_debug(svm_range, "PREFETCH - RANGE CREATED");
++check_next_range:
++			if (range_end > xe_svm_range_end(svm_range) &&
++			    xe_svm_range_end(svm_range) < xe_vma_end(vma)) {
++				addr = xe_svm_range_end(svm_range);
++				goto alloc_next_range;
++			}
++		}
+ 		print_op(vm->xe, __op);
+ 	}
+ 
+ 	return ops;
++
++unwind_prefetch_ops:
++	xe_svm_prefetch_gpuva_ops_fini(ops);
++	drm_gpuva_ops_free(&vm->gpuvm, ops);
++	return ERR_PTR(err);
+ }
++
+ ALLOW_ERROR_INJECTION(vm_bind_ioctl_ops_create, ERRNO);
+ 
+ static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
+@@ -2493,7 +2621,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 			     !op->map.is_cpu_addr_mirror) ||
+ 			    op->map.invalidate_on_bind)
+ 				xe_vma_ops_incr_pt_update_ops(vops,
+-							      op->tile_mask);
++							      op->tile_mask, 1);
+ 			break;
+ 		}
+ 		case DRM_GPUVA_OP_REMAP:
+@@ -2502,6 +2630,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 				gpuva_to_vma(op->base.remap.unmap->va);
+ 			bool skip = xe_vma_is_cpu_addr_mirror(old);
+ 			u64 start = xe_vma_start(old), end = xe_vma_end(old);
++			int num_remap_ops = 0;
+ 
+ 			if (op->base.remap.prev)
+ 				start = op->base.remap.prev->va.addr +
+@@ -2554,7 +2683,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 					       (ULL)op->remap.start,
+ 					       (ULL)op->remap.range);
+ 				} else {
+-					xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
++					num_remap_ops++;
+ 				}
+ 			}
+ 
+@@ -2583,11 +2712,13 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 					       (ULL)op->remap.start,
+ 					       (ULL)op->remap.range);
+ 				} else {
+-					xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
++					num_remap_ops++;
+ 				}
+ 			}
+ 			if (!skip)
+-				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
++				num_remap_ops++;
++
++			xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask, num_remap_ops);
+ 			break;
+ 		}
+ 		case DRM_GPUVA_OP_UNMAP:
+@@ -2599,7 +2730,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 				return -EBUSY;
+ 
+ 			if (!xe_vma_is_cpu_addr_mirror(vma))
+-				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
++				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask, 1);
+ 			break;
+ 		case DRM_GPUVA_OP_PREFETCH:
+ 			vma = gpuva_to_vma(op->base.prefetch.va);
+@@ -2610,8 +2741,12 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 					return err;
+ 			}
+ 
+-			if (!xe_vma_is_cpu_addr_mirror(vma))
+-				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
++			if (xe_vma_is_cpu_addr_mirror(vma))
++				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask,
++							      op->prefetch_range.ranges_count);
++			else
++				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask, 1);
++
+ 			break;
+ 		default:
+ 			drm_warn(&vm->xe->drm, "NOT POSSIBLE");
+@@ -2737,6 +2872,52 @@ static int check_ufence(struct xe_vma *vma)
+ 	return 0;
+ }
+ 
++static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op *op)
++{
++	struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
++	int err = 0;
++
++	struct xe_svm_range *svm_range;
++	struct xe_tile *tile;
++	unsigned long i;
++	u32 region;
++
++	if (!xe_vma_is_cpu_addr_mirror(vma))
++		return 0;
++	region = op->prefetch_range.region;
++	struct drm_gpusvm_ctx ctx = {
++		.read_only = xe_vma_read_only(vma),
++		.devmem_possible = IS_DGFX(vm->xe) && IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR),
++		.check_pages_threshold = IS_DGFX(vm->xe) &&
++					 IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR) ? SZ_64K : 0,
++		.devmem_only = region && IS_DGFX(vm->xe) && IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR),
++	};
++	/* TODO: Threading the migration */
++	xa_for_each(&op->prefetch_range.range, i, svm_range) {
++		if (xe_svm_range_needs_migrate_to_vram(svm_range, vma, region)) {
++			tile = &vm->xe->tiles[region_to_mem_type[region] - XE_PL_VRAM0];
++			err = xe_svm_alloc_vram(vm, tile, svm_range, &ctx);
++			if (err) {
++				drm_dbg(&vm->xe->drm, "VRAM allocation failed, retry from userspace, asid=%u, gpusvm=%p, errno=%pe\n",
++					vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
++				return -ENODATA;
++			}
++			xe_svm_range_debug(svm_range, "PREFETCH - RANGE MIGRATED TO VRAM");
++		}
++
++		err = xe_svm_range_get_pages(vm, svm_range, &ctx);
++		if (err) {
++			if (err == -EOPNOTSUPP || err == -EFAULT || err == -EPERM)
++				err = -ENODATA;
++			drm_dbg(&vm->xe->drm, "Get pages failed, asid=%u, gpusvm=%p, errno=%pe\n",
++				vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
++			return err;
++		}
++		xe_svm_range_debug(svm_range, "PREFETCH - RANGE GET PAGES DONE");
++	}
++	return err;
++}
++
+ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
+ 			    struct xe_vma_op *op)
+ {
+@@ -2774,7 +2955,12 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
+ 	case DRM_GPUVA_OP_PREFETCH:
+ 	{
+ 		struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
+-		u32 region = op->prefetch.region;
++		u32 region;
++
++		if (xe_vma_is_cpu_addr_mirror(vma))
++			region = op->prefetch_range.region;
++		else
++			region = op->prefetch.region;
+ 
+ 		xe_assert(vm->xe, region <= ARRAY_SIZE(region_to_mem_type));
+ 
+@@ -2793,6 +2979,25 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
+ 	return err;
+ }
+ 
++static int vm_bind_ioctl_ops_prefetch_ranges(struct xe_vm *vm, struct xe_vma_ops *vops)
++{
++	struct xe_vma_op *op;
++	int err;
++
++	if (!(vops->flags & XE_VMA_OPS_FLAG_HAS_SVM_PREFETCH))
++		return 0;
++
++	list_for_each_entry(op, &vops->list, link) {
++		if (op->base.op  == DRM_GPUVA_OP_PREFETCH) {
++			err = prefetch_ranges(vm, op);
++			if (err)
++				return err;
++		}
++	}
++
++	return 0;
++}
++
+ static int vm_bind_ioctl_ops_lock_and_prep(struct drm_exec *exec,
+ 					   struct xe_vm *vm,
+ 					   struct xe_vma_ops *vops)
+@@ -3234,6 +3439,7 @@ static void xe_vma_ops_init(struct xe_vma_ops *vops, struct xe_vm *vm,
+ 	vops->q = q;
+ 	vops->syncs = syncs;
+ 	vops->num_syncs = num_syncs;
++	vops->flags = 0;
+ }
+ 
+ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
+@@ -3442,7 +3648,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		u32 prefetch_region = bind_ops[i].prefetch_mem_region_instance;
+ 		u16 pat_index = bind_ops[i].pat_index;
+ 
+-		ops[i] = vm_bind_ioctl_ops_create(vm, bos[i], obj_offset,
++		ops[i] = vm_bind_ioctl_ops_create(vm, &vops, bos[i], obj_offset,
+ 						  addr, range, op, flags,
+ 						  prefetch_region, pat_index);
+ 		if (IS_ERR(ops[i])) {
+@@ -3475,6 +3681,10 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	if (err)
+ 		goto unwind_ops;
+ 
++	err = vm_bind_ioctl_ops_prefetch_ranges(vm, &vops);
++	if (err)
++		goto unwind_ops;
++
+ 	fence = vm_bind_ioctl_ops_execute(vm, &vops);
+ 	if (IS_ERR(fence))
+ 		err = PTR_ERR(fence);
+@@ -3544,7 +3754,7 @@ struct dma_fence *xe_vm_bind_kernel_bo(struct xe_vm *vm, struct xe_bo *bo,
+ 
+ 	xe_vma_ops_init(&vops, vm, q, NULL, 0);
+ 
+-	ops = vm_bind_ioctl_ops_create(vm, bo, 0, addr, bo->size,
++	ops = vm_bind_ioctl_ops_create(vm, &vops, bo, 0, addr, bo->size,
+ 				       DRM_XE_VM_BIND_OP_MAP, 0, 0,
+ 				       vm->xe->pat.idx[cache_lvl]);
+ 	if (IS_ERR(ops)) {
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 0ef811fc2bde..99e164852f63 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -169,6 +169,8 @@ static inline bool xe_vma_is_userptr(struct xe_vma *vma)
+ 		!xe_vma_is_cpu_addr_mirror(vma);
+ }
+ 
++struct xe_vma *xe_vm_find_vma_by_addr(struct xe_vm *vm, u64 page_addr);
++
+ /**
+  * to_userptr_vma() - Return a pointer to an embedding userptr vma
+  * @vma: Pointer to the embedded struct xe_vma
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 1662604c4486..bfc145baad49 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -374,6 +374,16 @@ struct xe_vma_op_unmap_range {
+ 	struct xe_svm_range *range;
+ };
+ 
++/** struct xe_vma_op_prefetch_range - VMA prefetch range operation */
++struct xe_vma_op_prefetch_range {
++	/** @range: xarray for SVM ranges data */
++	struct xarray range;
++	/** @ranges_count: number of svm ranges to map */
++	u32 ranges_count;
++	/** @region: memory region to prefetch to */
++	u32 region;
++};
++
+ /** enum xe_vma_op_flags - flags for VMA operation */
+ enum xe_vma_op_flags {
+ 	/** @XE_VMA_OP_COMMITTED: VMA operation committed */
+@@ -416,6 +426,8 @@ struct xe_vma_op {
+ 		struct xe_vma_op_map_range map_range;
+ 		/** @unmap_range: VMA unmap range operation specific data */
+ 		struct xe_vma_op_unmap_range unmap_range;
++		/** @prefetch_range: VMA prefetch range operation specific data */
++		struct xe_vma_op_prefetch_range prefetch_range;
+ 	};
+ };
+ 
+@@ -433,6 +445,9 @@ struct xe_vma_ops {
+ 	u32 num_syncs;
+ 	/** @pt_update_ops: page table update operations */
+ 	struct xe_vm_pgtable_update_ops pt_update_ops[XE_MAX_TILES_PER_DEVICE];
++	/** @flag: signify the properties within xe_vma_ops*/
++#define XE_VMA_OPS_FLAG_HAS_SVM_PREFETCH BIT(0)
++	u32 flags;
+ #ifdef TEST_VM_OPS_ERROR
+ 	/** @inject_error: inject error to test error handling */
+ 	bool inject_error;
+diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
+index df120b4d1f83..cce217bc136f 100644
+--- a/include/drm/drm_gpusvm.h
++++ b/include/drm/drm_gpusvm.h
+@@ -89,6 +89,7 @@ struct drm_gpusvm_devmem_ops {
+  * @ops: Pointer to the operations structure for GPU SVM device memory
+  * @dpagemap: The struct drm_pagemap of the pages this allocation belongs to.
+  * @size: Size of device memory allocation
++ * @timeslice_expiration: Timeslice expiration in jiffies
+  */
+ struct drm_gpusvm_devmem {
+ 	struct device *dev;
+@@ -97,6 +98,7 @@ struct drm_gpusvm_devmem {
+ 	const struct drm_gpusvm_devmem_ops *ops;
+ 	struct drm_pagemap *dpagemap;
+ 	size_t size;
++	u64 timeslice_expiration;
+ };
+ 
+ /**
+@@ -283,17 +285,22 @@ struct drm_gpusvm {
+  * @check_pages_threshold: Check CPU pages for present if chunk is less than or
+  *                         equal to threshold. If not present, reduce chunk
+  *                         size.
++ * @timeslice_ms: The timeslice MS which in minimum time a piece of memory
++ *		  remains with either exclusive GPU or CPU access.
+  * @in_notifier: entering from a MMU notifier
+  * @read_only: operating on read-only memory
+  * @devmem_possible: possible to use device memory
++ * @devmem_only: use only device memory
+  *
+  * Context that is DRM GPUSVM is operating in (i.e. user arguments).
+  */
+ struct drm_gpusvm_ctx {
+ 	unsigned long check_pages_threshold;
++	unsigned long timeslice_ms;
+ 	unsigned int in_notifier :1;
+ 	unsigned int read_only :1;
+ 	unsigned int devmem_possible :1;
++	unsigned int devmem_only :1;
+ };
+ 
+ int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
+-- 
+2.34.1
 
