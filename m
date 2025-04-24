@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2591C369AB
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Apr 2025 15:13:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3A69C369C2
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Apr 2025 15:29:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47B1610E82C;
-	Thu, 24 Apr 2025 15:13:09 +0000 (UTC)
-Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A69C789125;
- Thu, 24 Apr 2025 15:13:07 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8622510E82C;
+	Thu, 24 Apr 2025 15:29:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eKGpChUZ";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08CE610E82C;
+ Thu, 24 Apr 2025 15:29:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1745508585; x=1777044585;
+ h=from:subject:date:message-id:mime-version:
+ content-transfer-encoding:to:cc;
+ bh=rHntk/aEZyC9YOHKgQCpD4LJD2bljYNJKF/eWEOxAHE=;
+ b=eKGpChUZvfYymfaOqlICBPEPMA/WQEtIsPJnHLgtJkDd+20TESXZ3q6k
+ A4eb0ibW/v00Bzj+Udm1Z6oF+q4PZcE9C4TvUkm2aoFJYbV4jm4cDldVN
+ 92PE2TexmRFufnOI1aLu7FvkY5mTIjAVtIAZN64eZixciusvqXHYFHjdL
+ /e1u41976t8Q1vsCP2B5qKqk2QZcaK0GtcZW29Iz/9F436fUNgsmZZctv
+ QWnV3pskTEQCNKjO4PBL7XsZ7qidvn6EtCfmNdeWn53NLkgHfPk5JimDq
+ L2mhxKIe//J/mNTpaGmQ3Mq7yZ2vsfUQ6sE6RbpMFzqXfAJ0dC21e3Txg w==;
+X-CSE-ConnectionGUID: SY3KibngR+mzJBgzKGBTkQ==
+X-CSE-MsgGUID: 7vGH7j4XRg+9UcwFi1v94Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11413"; a="50816443"
+X-IronPort-AV: E=Sophos;i="6.15,236,1739865600"; d="scan'208";a="50816443"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Apr 2025 08:29:44 -0700
+X-CSE-ConnectionGUID: FB/oBR94TSaPKMDUoRZQuA==
+X-CSE-MsgGUID: XsqAKT7ZTGqI5s7yzeLC9A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,236,1739865600"; d="scan'208";a="137748307"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by fmviesa004.fm.intel.com with ESMTP; 24 Apr 2025 08:29:42 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCH v7 0/2] Rework/Correction on minimum hblank calculation
+Date: Thu, 24 Apr 2025 20:45:13 +0530
+Message-Id: <20250424-hblank-v7-0-8b002f1506cc@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_Rework/Correction_on_min?=
- =?utf-8?q?imum_hblank_calculation_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arun R Murthy" <arun.r.murthy@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 24 Apr 2025 15:13:07 -0000
-Message-ID: <174550758768.7174.18183608825732283402@c664b1dc75d1>
-X-Patchwork-Hint: ignore
-References: <20250424-hblank-v6-0-3d10442d9a31@intel.com>
-In-Reply-To: <20250424-hblank-v6-0-3d10442d9a31@intel.com>
+X-B4-Tracking: v=1; b=H4sIAIFVCmgC/13QTU7EMAwF4KuMsp6ixHGSZlbcA7HIj6ERQ4vaU
+ QUa9e64I7WELl/k71nOXUw0FprE5XQXI81lKkPPwZ1PInWhf6emZM4CJBiJ0jVdvIb+o0EfNcp
+ AMWglePhrpLfy/Sh6eeXclek2jD+P3lmtr1tFu1XMqpENxqAc1xBZ81z6G12f0vAp1ooZKqbMz
+ oCZCqDJZ++0lUeGFQPYGTKLObqYfcLWpoqdt/tA/xtvySidkkFr4LjF1Fv+mGFm12tUG5N3/sh
+ szXBnlpnOSiJC9vylNVuW5Rd9MwjzpwEAAA==
+X-Change-ID: 20250407-hblank-49b340aeba31
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+Cc: imre.deak@intel.com, vinod.govindapillai@intel.com, 
+ Arun R Murthy <arun.r.murthy@intel.com>
+X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,43 +69,58 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+---
+Changes in v7:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v6: https://lore.kernel.org/r/20250424-hblank-v6-0-3d10442d9a31@intel.com
 
-Series: Rework/Correction on minimum hblank calculation (rev6)
-URL   : https://patchwork.freedesktop.org/series/147360/
-State : warning
+Changes in v6:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v5: https://lore.kernel.org/r/20250423-hblank-v5-0-6bee618bc979@intel.com
 
-== Summary ==
+Changes in v5:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v4: https://lore.kernel.org/r/20250423-hblank-v4-0-8e513cc54652@intel.com
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 6176f71822602f52bc4327965090275c5570ed0d
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-+drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_display_types.h:1985:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1985:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1985:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:1998:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_hdcp.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c:106:17: warning: cast truncates bits from constant value (e8d4a51000 becomes d4a51000)
+Changes in v5:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v4: https://lore.kernel.org/r/20250422-hblank-v4-0-bdb7bd9c486c@intel.com
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Changes in v3:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v2: https://lore.kernel.org/r/20250415-hblank-v2-0-1a23e9d97360@intel.com
 
+Changes in v2:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v1: https://lore.kernel.org/r/20250408-hblank-v1-0-4ba17aebee65@intel.com
+
+---
+Arun R Murthy (2):
+      drm/display/dp: Export fn to calculate link symbol cycles
+      drm/i915/display: move min_hblank from dp_mst.c to dp.c
+
+ drivers/gpu/drm/display/drm_dp_helper.c      | 52 ++++++++++++-------
+ drivers/gpu/drm/i915/display/intel_display.c | 19 +++++++
+ drivers/gpu/drm/i915/display/intel_dp.c      | 74 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dp.h      |  2 +
+ drivers/gpu/drm/i915/display/intel_dp_mst.c  | 56 ++-------------------
+ include/drm/display/drm_dp_helper.h          |  2 +
+ 6 files changed, 136 insertions(+), 69 deletions(-)
+---
+base-commit: ada794bd93930fd265c2df8f38196994173e1fde
+change-id: 20250407-hblank-49b340aeba31
+
+Best regards,
+-- 
+Arun R Murthy <arun.r.murthy@intel.com>
 
