@@ -4,58 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6D8FC369D9
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Apr 2025 14:38:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 462DAC369C2
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Apr 2025 14:39:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88E5F10E835;
-	Thu, 24 Apr 2025 14:38:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C61C10E82C;
+	Thu, 24 Apr 2025 14:39:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TZGbh7j3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fk/8LtJZ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87B5710E446;
- Thu, 24 Apr 2025 14:38:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4515E10E446;
+ Thu, 24 Apr 2025 14:39:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745505493; x=1777041493;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=jzM1oIT0DlHA9Dn/MigZjjrpZwt6tlCvVPquTrMCCgM=;
- b=TZGbh7j3D3jFpk86AMKHt4TrAPOSNGNQ7FLLZIv7J2SeH0RK6nqExJhq
- 3PZKWaDiK2ohcKzEqGmqtAX3764w3pGzN5vmmEDtfCMs4/2LF5AhfndPR
- 03+pmOCe13zaytHPwn+q+npRcMX+hon+GhqlUtaphq1/FIUIzb2NGypfC
- QdBCRSlxTKLebDC6Y8ZHW5KXGoLq7OZ6nZrByAcXivV+jrqlnOGJwr15y
- QWBTjpq+mKEv9VpyR17+GVPPTyV9XCeyBq/4HhlENwFGVUmxuglpBwZVN
- lQXuJ5AUXlXAQQYhwDmgsvfCWzGN25oj1SXy1zIyI6709dXZhRKPWgIwb w==;
-X-CSE-ConnectionGUID: yXDmOX1jTMWg6AXh3bWyRw==
-X-CSE-MsgGUID: BEBR7saGRhSwZb1NDQgS4g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11413"; a="50952212"
-X-IronPort-AV: E=Sophos;i="6.15,236,1739865600"; d="scan'208";a="50952212"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2025 07:38:13 -0700
-X-CSE-ConnectionGUID: cHdhcM27RUueqdRc0P+Wsw==
-X-CSE-MsgGUID: nZIhNlKtThmMdKCZeftT9A==
+ t=1745505597; x=1777041597;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=2QcUvzorWSznQeELTM23X6+VWJ/i3tj1ZcE3km2ZHdU=;
+ b=fk/8LtJZc7P2WLTxSqgsCvxiFRY/HMP6Ur4Xo6l6Xc+236itP0EylW3y
+ DBAG+C88Oe7c7nOh4U+6BExADlOmiVNSIPyYbIHsNOrWzQP4AIxkKchFM
+ LlmNOlLCGVffl7tL0RUbCQ2jFc5hrI3xUDDzcMfdju/cfvhz4QWr4ThKE
+ /Uk7PBu5C1uZy7T5Zj4EXlxQdji/UC2El6SjNBgqkz54IWQGH08GPT+dy
+ +YnCT/SJERICLfYIG8OG1yZPL8AVTJrq0PK1Z1MPeoEPtgK2hcic3hfqb
+ 43XkasXiHWildddPCqDWVgW17H+wQG3d7aa7FZ9OlR+Khs+XNg+hgq4JA Q==;
+X-CSE-ConnectionGUID: 2cXu01b1RByqVvZUWJ+KDg==
+X-CSE-MsgGUID: Id7OBjx2TEi/sCuNcxJHJQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11413"; a="58136186"
+X-IronPort-AV: E=Sophos;i="6.15,236,1739865600"; d="scan'208";a="58136186"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Apr 2025 07:39:25 -0700
+X-CSE-ConnectionGUID: gAbWWZ96Qjib+K8WoZCGpg==
+X-CSE-MsgGUID: BZNn/OXrSK+EWdSJPB0CKw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,236,1739865600"; d="scan'208";a="132615108"
-Received: from live-gta-imageloader.fm.intel.com (HELO
- DUT4046PTLH.fm.intel.com) ([10.105.8.85])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2025 07:38:12 -0700
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
- joonas.lahtinen@linux.intel.com, matthew.brost@intel.com,
- jianxun.zhang@intel.com, shuicheng.lin@intel.com,
- dri-devel@lists.freedesktop.org, Michal.Wajdeczko@intel.com,
- michal.mrozek@intel.com, raag.jadav@intel.com, john.c.harrison@intel.com,
- ivan.briano@intel.com, matthew.auld@intel.com
-Subject: [PATCH v22 0/5] drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
-Date: Thu, 24 Apr 2025 14:38:05 +0000
-Message-ID: <20250424143812.11210-1-jonathan.cavitt@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.15,236,1739865600"; d="scan'208";a="137497055"
+Received: from vpanait-mobl.ger.corp.intel.com (HELO [10.245.246.20])
+ ([10.245.246.20])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Apr 2025 07:39:24 -0700
+Message-ID: <1391a2ab3cbf8b690f1ec371cdc932032a647645.camel@linux.intel.com>
+Subject: Re: [PATCH v4 2/5] drm/xe: Strict migration policy for atomic SVM
+ faults
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com
+Date: Thu, 24 Apr 2025 16:39:21 +0200
+In-Reply-To: <20250422170415.584662-3-matthew.brost@intel.com>
+References: <20250422170415.584662-1-matthew.brost@intel.com>
+ <20250422170415.584662-3-matthew.brost@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,165 +71,296 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add additional information to each VM so they can report up to the first
-50 seen faults.  Only pagefaults are saved this way currently, though in
-the future, all faults should be tracked by the VM for future reporting.
+On Tue, 2025-04-22 at 10:04 -0700, Matthew Brost wrote:
+> Mixing GPU and CPU atomics does not work unless a strict migration
+> policy of GPU atomics must be device memory. Enforce a policy of must
+> be
+> in VRAM with a retry loop of 2 attempts, if retry loop fails abort
+> fault.
+>=20
+> v2:
+> =C2=A0- Only retry migration on atomics
+> =C2=A0- Drop alway migrate modparam
+> v3:
+> =C2=A0- Only set vram_only on DGFX (Himal)
+> =C2=A0- Bail on get_pages failure if vram_only and retry count exceeded
+> (Himal)
+> =C2=A0- s/vram_only/devmem_only
+> =C2=A0- Update xe_svm_range_is_valid to accept devmem_only argument
+> v4:
+> =C2=A0- Fix logic bug get_pages failure
+>=20
+> Signed-off-by: Himal Prasad Ghimiray
+> <himal.prasad.ghimiray@intel.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_module.c |=C2=A0 3 --
+> =C2=A0drivers/gpu/drm/xe/xe_module.h |=C2=A0 1 -
+> =C2=A0drivers/gpu/drm/xe/xe_svm.c=C2=A0=C2=A0=C2=A0 | 89 ++++++++++++++++=
++++++++++-------
+> --
+> =C2=A0drivers/gpu/drm/xe/xe_svm.h=C2=A0=C2=A0=C2=A0 |=C2=A0 5 --
+> =C2=A04 files changed, 65 insertions(+), 33 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_module.c
+> b/drivers/gpu/drm/xe/xe_module.c
+> index 05c7d0ae6d83..1c4dfafbcd0b 100644
+> --- a/drivers/gpu/drm/xe/xe_module.c
+> +++ b/drivers/gpu/drm/xe/xe_module.c
+> @@ -33,9 +33,6 @@ struct xe_modparam xe_modparam =3D {
+> =C2=A0module_param_named(svm_notifier_size, xe_modparam.svm_notifier_size=
+,
+> uint, 0600);
+> =C2=A0MODULE_PARM_DESC(svm_notifier_size, "Set the svm notifier size(in
+> MiB), must be power of 2");
+> =C2=A0
+> -module_param_named(always_migrate_to_vram,
+> xe_modparam.always_migrate_to_vram, bool, 0444);
+> -MODULE_PARM_DESC(always_migrate_to_vram, "Always migrate to VRAM on
+> GPU fault");
+> -
+=C2=A0module_param_named_unsafe(force_execlist,
+> xe_modparam.force_execlist, bool, 0444);
+> =C2=A0MODULE_PARM_DESC(force_execlist, "Force Execlist submission");
+> =C2=A0
+> diff --git a/drivers/gpu/drm/xe/xe_module.h
+> b/drivers/gpu/drm/xe/xe_module.h
+> index 84339e509c80..5a3bfea8b7b4 100644
+> --- a/drivers/gpu/drm/xe/xe_module.h
+> +++ b/drivers/gpu/drm/xe/xe_module.h
+> @@ -12,7 +12,6 @@
+> =C2=A0struct xe_modparam {
+> =C2=A0	bool force_execlist;
+> =C2=A0	bool probe_display;
+> -	bool always_migrate_to_vram;
+> =C2=A0	u32 force_vram_bar_size;
+> =C2=A0	int guc_log_level;
+> =C2=A0	char *guc_firmware_path;
+> diff --git a/drivers/gpu/drm/xe/xe_svm.c
+> b/drivers/gpu/drm/xe/xe_svm.c
+> index 890f6b2f40e9..f749ae367a8f 100644
+> --- a/drivers/gpu/drm/xe/xe_svm.c
+> +++ b/drivers/gpu/drm/xe/xe_svm.c
+> @@ -650,9 +650,11 @@ void xe_svm_fini(struct xe_vm *vm)
+> =C2=A0}
+> =C2=A0
+> =C2=A0static bool xe_svm_range_is_valid(struct xe_svm_range *range,
+> -				=C2=A0 struct xe_tile *tile)
+> +				=C2=A0 struct xe_tile *tile,
+> +				=C2=A0 bool devmem_only)
+> =C2=A0{
+> -	return (range->tile_present & ~range->tile_invalidated) &
+> BIT(tile->id);
+> +	return ((range->tile_present & ~range->tile_invalidated) &
+> BIT(tile->id))
+> +		&& (!devmem_only || range-
+> >base.flags.migrate_devmem);
+> =C2=A0}
 
-Additionally, of the pagefaults reported, only failed pagefaults are
-saved this way, as successful pagefaults should recover silently and not
-need to be reported to userspace.
+So let's say devmem_only is true here, and range-
+>base.flags.migrate_devmem is false. Wouldn't that mean the range is
+unusable and needs to be freed and re-allocated?
 
-To allow userspace to access these faults, a new ioctl -
-xe_vm_get_property_ioct - was created.
+Also another thing going back to older code, it seems like range-
+>tile_invalidated is protected by the notifier lock, so shouldn't we
+assert that to be held in the function? It seems not to be held further
+below:
 
-v2: (Matt Brost)
-- Break full ban list request into a separate property.
-- Reformat drm_xe_vm_get_property struct.
-- Remove need for drm_xe_faults helper struct.
-- Separate data pointer and scalar return value in ioctl.
-- Get address type on pagefault report and save it to the pagefault.
-- Correctly reject writes to read-only VMAs.
-- Miscellaneous formatting fixes.
+> =C2=A0
+> =C2=A0#if IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR)
+> @@ -726,6 +728,35 @@ static int xe_svm_alloc_vram(struct xe_vm *vm,
+> struct xe_tile *tile,
+> =C2=A0}
+> =C2=A0#endif
+> =C2=A0
+> +static bool supports_4K_migration(struct xe_device *xe)
+> +{
+> +	if (xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
+> +		return false;
+> +
+> +	return true;
+> +}
 
-v3: (Matt Brost)
-- Only allow querying of failed pagefaults
+Do we have any hardware that supports pagefaults but not 4K VRAM pages?
 
-v4:
-- Remove unnecessary size parameter from helper function, as it
-  is a property of the arguments. (jcavitt)
-- Remove unnecessary copy_from_user (Jainxun)
-- Set address_precision to 1 (Jainxun)
-- Report max size instead of dynamic size for memory allocation
-  purposes.  Total memory usage is reported separately.
+> +
+> +static bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range
+> *range,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_vma *vma)
+> +{
+> +	struct xe_vm *vm =3D range_to_vm(&range->base);
+> +	u64 range_size =3D xe_svm_range_size(range);
+> +
+> +	if (!range->base.flags.migrate_devmem)
+> +		return false;
+> +
+> +	if (xe_svm_range_in_vram(range)) {
+> +		drm_dbg(&vm->xe->drm, "Range is already in VRAM\n");
+> +		return false;
+> +	}
+> +
+> +	if (range_size <=3D SZ_64K && !supports_4K_migration(vm->xe))
+> {
+> +		drm_dbg(&vm->xe->drm, "Platform doesn't support
+> SZ_4K range migration\n");
+> +		return false;
+> +	}
+> +
+> +	return true;
+> +}
+> =C2=A0
+> =C2=A0/**
+> =C2=A0 * xe_svm_handle_pagefault() - SVM handle page fault
+> @@ -750,12 +781,15 @@ int xe_svm_handle_pagefault(struct xe_vm *vm,
+> struct xe_vma *vma,
+> =C2=A0			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR),
+> =C2=A0		.check_pages_threshold =3D IS_DGFX(vm->xe) &&
+> =C2=A0			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR) ?
+> SZ_64K : 0,
+> +		.devmem_only =3D atomic && IS_DGFX(vm->xe) &&
+> +			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR),
+> =C2=A0	};
+> =C2=A0	struct xe_svm_range *range;
+> =C2=A0	struct drm_gpusvm_range *r;
+> =C2=A0	struct drm_exec exec;
+> =C2=A0	struct dma_fence *fence;
+> =C2=A0	struct xe_tile *tile =3D gt_to_tile(gt);
+> +	int migrate_try_count =3D ctx.devmem_only ? 3 : 1;
+> =C2=A0	ktime_t end =3D 0;
+> =C2=A0	int err;
+> =C2=A0
+> @@ -777,23 +811,26 @@ int xe_svm_handle_pagefault(struct xe_vm *vm,
+> struct xe_vma *vma,
+> =C2=A0		return PTR_ERR(r);
+> =C2=A0
+> =C2=A0	range =3D to_xe_range(r);
+> -	if (xe_svm_range_is_valid(range, tile))
+> +	if (xe_svm_range_is_valid(range, tile, ctx.devmem_only))
 
-v5:
-- Return int from xe_vm_get_property_size (Shuicheng)
-- Fix memory leak (Shuicheng)
-- Remove unnecessary size variable (jcavitt)
+Requires notifier lock. Also see comment on re-allocating the range
+above.
 
-v6:
-- Free vm after use (Shuicheng)
-- Compress pf copy logic (Shuicheng)
-- Update fault_unsuccessful before storing (Shuicheng)
-- Fix old struct name in comments (Shuicheng)
-- Keep first 50 pagefaults instead of last 50 (Jianxun)
-- Rename ioctl to xe_vm_get_faults_ioctl (jcavitt)
+> =C2=A0		return 0;
+> =C2=A0
+> =C2=A0	range_debug(range, "PAGE FAULT");
+> =C2=A0
+> -	/* XXX: Add migration policy, for now migrate range once */
+> -	if (!range->skip_migrate && range->base.flags.migrate_devmem
+> &&
+> -	=C2=A0=C2=A0=C2=A0 xe_svm_range_size(range) >=3D SZ_64K) {
+> -		range->skip_migrate =3D true;
+> -
+> +	if (--migrate_try_count >=3D 0 &&
+> +	=C2=A0=C2=A0=C2=A0 xe_svm_range_needs_migrate_to_vram(range, vma)
 
-v7:
-- Avoid unnecessary execution by checking MAX_PFS earlier (jcavitt)
-- Fix double-locking error (jcavitt)
-- Assert kmemdump is successful (Shuicheng)
-- Repair and move fill_faults break condition (Dan Carpenter)
-- Free vm after use (jcavitt)
-- Combine assertions (jcavitt)
-- Expand size check in xe_vm_get_faults_ioctl (jcavitt)
-- Remove return mask from fill_faults, as return is already -EFAULT or 0
-  (jcavitt)
+Requires notifier lock.
 
-v8:
-- Revert back to using drm_xe_vm_get_property_ioctl
-- s/Migrate/Move (Michal)
-- s/xe_pagefault/xe_gt_pagefault (Michal)
-- Create new header file, xe_gt_pagefault_types.h (Michal)
-- Add and fix kernel docs (Michal)
-- Rename xe_vm.pfs to xe_vm.faults (jcavitt)
-- Store fault data and not pagefault in xe_vm faults list (jcavitt)
-- Store address, address type, and address precision per fault (jcavitt)
-- Store engine class and instance data per fault (Jianxun)
-- Properly handle kzalloc error (Michal W)
-- s/MAX_PFS/MAX_FAULTS_SAVED_PER_VM (Michal W)
-- Store fault level per fault (Micahl M)
-- Apply better copy_to_user logic (jcavitt)
+Should we have some sort of timeout instead of a try-count? Perhaps as
+a last resort fall back to a 4K range?
 
-v9:
-- More kernel doc fixes (Michal W, Jianxun)
-- Better error handling (jcavitt)
+/Thomas
 
-v10:
-- Convert enums to defines in regs folder (Michal W)
-- Move xe_guc_pagefault_desc to regs folder (Michal W)
-- Future-proof size logic for zero-size properties (jcavitt)
-- Replace address type extern with access type (Jianxun)
-- Add fault type to xe_drm_fault (Jianxun)
 
-v11:
-- Remove unnecessary switch case logic (Raag)
-- Compress size get, size validation, and property fill functions into a
-  single helper function (jcavitt)
-- Assert valid size (jcavitt)
-- Store pagefaults in non-fault-mode VMs as well (Jianxun)
 
-v12:
-- Remove unnecessary else condition
-- Correct backwards helper function size logic (jcavitt)
-- Fix kernel docs and comments (Michal W)
-
-v13:
-- Move xe and user engine class mapping arrays to header (John H)
-
-v14:
-- Fix double locking issue (Jianxun)
-- Use size_t instead of int (Raag)
-- Remove unnecessary includes (jcavitt)
-
-v15:
-- Do not report faults from reserved engines (Jianxun)
-
-v16:
-- Remove engine class and instance (Ivan)
-
-v17:
-- Map access type, fault type, and fault level to user macros (Matt
-  Brost, Ivan)
-
-v18:
-- Add uAPI merge request to this cover letter
-
-v19:
-- Perform kzalloc outside of lock (Auld)
-
-v20:
-- Fix inconsistent use of whitespace in defines
-
-v21:
-- Remove unnecessary size assertion (jcavitt)
-
-v22:
-- Fix xe_vm_fault_entry kernel docs (Shuicheng)
-
-uAPI: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/32987
-Signed-off-by: Jonathan Cavitt <joanthan.cavitt@intel.com>
-Suggested-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
-Cc: Zhang Jianxun <jianxun.zhang@intel.com>
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>
-Cc: Michal Wajdeczko <Michal.Wajdeczko@intel.com>
-Cc: Michal Mrozek <michal.mrozek@intel.com>
-Cc: Raag Jadav <raag.jadav@intel.com>
-Cc: John Harrison <john.c.harrison@intel.com>
-Cc: Ivan Briano <ivan.briano@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-
-Jonathan Cavitt (5):
-  drm/xe/xe_gt_pagefault: Disallow writes to read-only VMAs
-  drm/xe/xe_gt_pagefault: Move pagefault struct to header
-  drm/xe/uapi: Define drm_xe_vm_get_property
-  drm/xe/xe_vm: Add per VM fault info
-  drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
-
- drivers/gpu/drm/xe/regs/xe_pagefault_desc.h |  49 +++++
- drivers/gpu/drm/xe/xe_device.c              |   3 +
- drivers/gpu/drm/xe/xe_gt_pagefault.c        |  72 ++++----
- drivers/gpu/drm/xe/xe_gt_pagefault_types.h  |  42 +++++
- drivers/gpu/drm/xe/xe_guc_fwif.h            |  28 ---
- drivers/gpu/drm/xe/xe_vm.c                  | 195 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vm.h                  |  11 ++
- drivers/gpu/drm/xe/xe_vm_types.h            |  29 +++
- include/uapi/drm/xe_drm.h                   |  86 +++++++++
- 9 files changed, 454 insertions(+), 61 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/regs/xe_pagefault_desc.h
- create mode 100644 drivers/gpu/drm/xe/xe_gt_pagefault_types.h
-
--- 
-2.43.0
+> ) {
+> =C2=A0		err =3D xe_svm_alloc_vram(vm, tile, range, &ctx);
+> =C2=A0		if (err) {
+> -			drm_dbg(&vm->xe->drm,
+> -				"VRAM allocation failed, falling
+> back to "
+> -				"retrying fault, asid=3D%u,
+> errno=3D%pe\n",
+> -				vm->usm.asid, ERR_PTR(err));
+> -			goto retry;
+> +			if (migrate_try_count || !ctx.devmem_only) {
+> +				drm_dbg(&vm->xe->drm,
+> +					"VRAM allocation failed,
+> falling back to retrying fault, asid=3D%u, errno=3D%pe\n",
+> +					vm->usm.asid, ERR_PTR(err));
+> +				goto retry;
+> +			} else {
+> +				drm_err(&vm->xe->drm,
+> +					"VRAM allocation failed,
+> retry count exceeded, asid=3D%u, errno=3D%pe\n",
+> +					vm->usm.asid, ERR_PTR(err));
+> +				return err;
+> +			}
+> =C2=A0		}
+> =C2=A0	}
+> =C2=A0
+> @@ -801,15 +838,22 @@ int xe_svm_handle_pagefault(struct xe_vm *vm,
+> struct xe_vma *vma,
+> =C2=A0	err =3D drm_gpusvm_range_get_pages(&vm->svm.gpusvm, r, &ctx);
+> =C2=A0	/* Corner where CPU mappings have changed */
+> =C2=A0	if (err =3D=3D -EOPNOTSUPP || err =3D=3D -EFAULT || err =3D=3D -EP=
+ERM) {
+> -		if (err =3D=3D -EOPNOTSUPP) {
+> -			range_debug(range, "PAGE FAULT - EVICT
+> PAGES");
+> -			drm_gpusvm_range_evict(&vm->svm.gpusvm,
+> &range->base);
+> +		if (migrate_try_count > 0 || !ctx.devmem_only) {
+> +			if (err =3D=3D -EOPNOTSUPP) {
+> +				range_debug(range, "PAGE FAULT -
+> EVICT PAGES");
+> +				drm_gpusvm_range_evict(&vm-
+> >svm.gpusvm,
+> +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &range-
+> >base);
+> +			}
+> +			drm_dbg(&vm->xe->drm,
+> +				"Get pages failed, falling back to
+> retrying, asid=3D%u, gpusvm=3D%p, errno=3D%pe\n",
+> +				vm->usm.asid, &vm->svm.gpusvm,
+> ERR_PTR(err));
+> +			range_debug(range, "PAGE FAULT - RETRY
+> PAGES");
+> +			goto retry;
+> +		} else {
+> +			drm_err(&vm->xe->drm,
+> +				"Get pages failed, retry count
+> exceeded, asid=3D%u, gpusvm=3D%p, errno=3D%pe\n",
+> +				vm->usm.asid, &vm->svm.gpusvm,
+> ERR_PTR(err));
+> =C2=A0		}
+> -		drm_dbg(&vm->xe->drm,
+> -			"Get pages failed, falling back to retrying,
+> asid=3D%u, gpusvm=3D%p, errno=3D%pe\n",
+> -			vm->usm.asid, &vm->svm.gpusvm,
+> ERR_PTR(err));
+> -		range_debug(range, "PAGE FAULT - RETRY PAGES");
+> -		goto retry;
+> =C2=A0	}
+> =C2=A0	if (err) {
+> =C2=A0		range_debug(range, "PAGE FAULT - FAIL PAGE
+> COLLECT");
+> @@ -843,9 +887,6 @@ int xe_svm_handle_pagefault(struct xe_vm *vm,
+> struct xe_vma *vma,
+> =C2=A0	}
+> =C2=A0	drm_exec_fini(&exec);
+> =C2=A0
+> -	if (xe_modparam.always_migrate_to_vram)
+> -		range->skip_migrate =3D false;
+> -
+> =C2=A0	dma_fence_wait(fence, false);
+> =C2=A0	dma_fence_put(fence);
+> =C2=A0
+> diff --git a/drivers/gpu/drm/xe/xe_svm.h
+> b/drivers/gpu/drm/xe/xe_svm.h
+> index 3d441eb1f7ea..0e1f376a7471 100644
+> --- a/drivers/gpu/drm/xe/xe_svm.h
+> +++ b/drivers/gpu/drm/xe/xe_svm.h
+> @@ -39,11 +39,6 @@ struct xe_svm_range {
+> =C2=A0	 * range. Protected by GPU SVM notifier lock.
+> =C2=A0	 */
+> =C2=A0	u8 tile_invalidated;
+> -	/**
+> -	 * @skip_migrate: Skip migration to VRAM, protected by GPU
+> fault handler
+> -	 * locking.
+> -	 */
+> -	u8 skip_migrate	:1;
+> =C2=A0};
+> =C2=A0
+> =C2=A0/**
 
