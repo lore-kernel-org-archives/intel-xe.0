@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D164C369D5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F358BC369C2
 	for <intel-xe@archiver.kernel.org>; Thu, 24 Apr 2025 14:30:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0983A10E81A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98BE310E827;
 	Thu, 24 Apr 2025 14:30:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JVk0BaQy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dbfkICCQ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72E5F10E81A
- for <intel-xe@lists.freedesktop.org>; Thu, 24 Apr 2025 14:30:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0579910E81A
+ for <intel-xe@lists.freedesktop.org>; Thu, 24 Apr 2025 14:30:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745505052; x=1777041052;
+ t=1745505056; x=1777041056;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zFm/wqUyiJTcvlWGrEw6uBa4va/uoJdbtNi92XcWHGo=;
- b=JVk0BaQyTZjM+8rhVLkRK9l1mAX6ymN8RoNF1xDdwcRxbWX2VSmu/vWu
- lSzFwBFWyAIjtfl9I8vwUMbFhBK51CXE36TgO8KlYRMHTVrOUhcAlGSQV
- KzgZoWW79B/rWtXFugb0E5PFaNgHg3CJtxaZOB11Sq1jX1bldr0sDtasf
- F2MgJ9AlBmInP/u+rNlFcoKi3evSsvNfRszW8M34bBO6lU9OAF14LBZZn
- 1DwqxO7wTr1InQWSDRLxvWAVom4dFvRkGMxNCVIsNyWGEZS6Bo8hB+oPq
- LsPO3GdOXiTE0xMfLDkopD4fXnIYO7dLKEp1hcTz5BGlSliDmadVRuj+e Q==;
-X-CSE-ConnectionGUID: iwaYP8+JSCeymDEU2XbNzQ==
-X-CSE-MsgGUID: x2SEg9+sTFWiujn7t+tZag==
-X-IronPort-AV: E=McAfee;i="6700,10204,11413"; a="50805578"
-X-IronPort-AV: E=Sophos;i="6.15,236,1739865600"; d="scan'208";a="50805578"
+ bh=wxPqYI9i5fOqP+FWvZoH7TXSMAmYrosTRddwIrORkpM=;
+ b=dbfkICCQjxRVPI9FSRg4e3BdqK+v7YySVG1xMJ/9htZEtSL+ZWSQnsgk
+ 849Ue0vX3Yiff2Qa8XZuoOtbKZLCsmiFHVYG0tCirGqoXm8TzNM3yVoJB
+ AZjV8nmX0VSYkmvzMhVXeDIcsHYuYFI3vrW6riH5WfdLQqsmzgAA5AhuZ
+ 0J8Ojn46TZrxPIjURTgbenKM0+Uq3ZCffayFXmz8NVvsGc5MdRwbk6Epa
+ 4CrEv6mdLYdPRgKA2O6bdtkyD5MMdPQPejSVeKHQyIcxmZoPEpxJs0MuH
+ NVvJZ8oVoQgQ1ACwvQtxDoLy7uifRROn/J+tji3eZbZIO9T+tGJroR7KZ w==;
+X-CSE-ConnectionGUID: yFCmGRpZQQm93TJfMnlbEw==
+X-CSE-MsgGUID: JQkf8MMIQbKRceKcoskM9w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11413"; a="50805604"
+X-IronPort-AV: E=Sophos;i="6.15,236,1739865600"; d="scan'208";a="50805604"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2025 07:30:52 -0700
-X-CSE-ConnectionGUID: XBz538wLQPe7M7uGzbJ2PA==
-X-CSE-MsgGUID: Bb5CsbolTrW78CfzFQiWZQ==
+ 24 Apr 2025 07:30:56 -0700
+X-CSE-ConnectionGUID: L2gh72JGRsi/LsvKnPMU3w==
+X-CSE-MsgGUID: /4gdIKB1TjWJRiG1WqvS3g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,236,1739865600"; d="scan'208";a="137632714"
+X-IronPort-AV: E=Sophos;i="6.15,236,1739865600"; d="scan'208";a="137632731"
 Received: from llaguna-dev.igk.intel.com (HELO localhost) ([10.91.214.40])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2025 07:30:51 -0700
+ 24 Apr 2025 07:30:55 -0700
 From: Lukasz Laguna <lukasz.laguna@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: michal.wajdeczko@intel.com, rodrigo.vivi@intel.com, lukasz.laguna@intel.com
-Subject: [PATCH 1/4] drm/xe: Don't update wedged mode in case of an error
-Date: Thu, 24 Apr 2025 16:30:40 +0200
-Message-Id: <20250424143043.937-2-lukasz.laguna@intel.com>
+Subject: [PATCH 2/4] drm/xe: Validate wedged_mode modparam input
+Date: Thu, 24 Apr 2025 16:30:41 +0200
+Message-Id: <20250424143043.937-3-lukasz.laguna@intel.com>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20250424143043.937-1-lukasz.laguna@intel.com>
 References: <20250424143043.937-1-lukasz.laguna@intel.com>
@@ -66,35 +66,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Update driver's internal wedged.mode state only in case of a success to
-avoid inconsistent state.
+Check correctness of the wedged_mode module parameter input. If the
+value is out of the expected range (>2), set the default (1) and log a
+debug message.
 
 Signed-off-by: Lukasz Laguna <lukasz.laguna@intel.com>
 ---
- drivers/gpu/drm/xe/xe_debugfs.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c      | 7 ++++++-
+ drivers/gpu/drm/xe/xe_guc_capture.c | 2 +-
+ drivers/gpu/drm/xe/xe_module.c      | 2 +-
+ 3 files changed, 8 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index d0503959a8ed..2e6d8744003b 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -169,8 +169,6 @@ static ssize_t wedged_mode_set(struct file *f, const char __user *ubuf,
- 	if (xe->wedged.mode == wedged_mode)
- 		return size;
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 75e753e0a682..d2de6936cc20 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -731,7 +731,12 @@ int xe_device_probe_early(struct xe_device *xe)
+ 	if (err)
+ 		return err;
  
--	xe->wedged.mode = wedged_mode;
--
- 	xe_pm_runtime_get(xe);
- 	for_each_gt(gt, xe, id) {
- 		ret = xe_guc_ads_scheduler_policy_toggle_reset(&gt->uc.guc.ads);
-@@ -182,6 +180,8 @@ static ssize_t wedged_mode_set(struct file *f, const char __user *ubuf,
- 	}
- 	xe_pm_runtime_put(xe);
+-	xe->wedged.mode = xe_modparam.wedged_mode;
++	if (xe_modparam.wedged_mode > 2) {
++		drm_dbg(&xe->drm, "Used wedged_mode value is invalid. Setting default (1)\n");
++		xe->wedged.mode = 1; /* default */
++	} else {
++		xe->wedged.mode = xe_modparam.wedged_mode;
++	}
  
-+	xe->wedged.mode = wedged_mode;
-+
- 	return size;
+ 	return 0;
  }
+diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
+index 859a3ba91be5..a471cf55ad8d 100644
+--- a/drivers/gpu/drm/xe/xe_guc_capture.c
++++ b/drivers/gpu/drm/xe/xe_guc_capture.c
+@@ -1856,7 +1856,7 @@ xe_guc_capture_get_matching_and_lock(struct xe_exec_queue *q)
+ 		return NULL;
+ 
+ 	xe = gt_to_xe(q->gt);
+-	if (xe->wedged.mode >= 2 || !xe_device_uc_enabled(xe) || IS_SRIOV_VF(xe))
++	if (xe->wedged.mode == 2 || !xe_device_uc_enabled(xe) || IS_SRIOV_VF(xe))
+ 		return NULL;
+ 
+ 	ss = &xe->devcoredump.snapshot;
+diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
+index 05c7d0ae6d83..b1b9bb2056ae 100644
+--- a/drivers/gpu/drm/xe/xe_module.c
++++ b/drivers/gpu/drm/xe/xe_module.c
+@@ -71,7 +71,7 @@ MODULE_PARM_DESC(max_vfs,
+ 		 "(0 = no VFs [default]; N = allow up to N VFs)");
+ #endif
+ 
+-module_param_named_unsafe(wedged_mode, xe_modparam.wedged_mode, int, 0600);
++module_param_named_unsafe(wedged_mode, xe_modparam.wedged_mode, uint, 0600);
+ MODULE_PARM_DESC(wedged_mode,
+ 		 "Module's default policy for the wedged mode - 0=never, 1=upon-critical-errors[default], 2=upon-any-hang");
  
 -- 
 2.40.0
