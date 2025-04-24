@@ -4,57 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F1BBC369AB
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Apr 2025 04:56:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 616B7C369AB
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Apr 2025 05:01:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C23DB10E436;
-	Thu, 24 Apr 2025 04:56:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A5D010E723;
+	Thu, 24 Apr 2025 05:01:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MxMfCcV2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X6TXKy+v";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74BC910E436
- for <intel-xe@lists.freedesktop.org>; Thu, 24 Apr 2025 04:56:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 239FB10E723
+ for <intel-xe@lists.freedesktop.org>; Thu, 24 Apr 2025 05:01:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745470583; x=1777006583;
+ t=1745470905; x=1777006905;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=+AaERV4ukkdIs9YasGpDoO52FaQam6qBBNNGkoVR/kI=;
- b=MxMfCcV2CXjdYy6BX8OLEUnhViQILg+g7A37Do+TWRHLl1Mrn3Tr8mtl
- 9bggFGWTBpuU/FZ6ZcYURZHrrPoKImBWNB2KR/Ui5f69THDl5Qqc9/k2w
- qdFIntjCU03HaWuOVRQfboF/6b70pXN/u++smMFvqRJ2ofBf1spSFgDxz
- OJP8Ly6jqYxJZObLqtD7ZyxQn1kTLEwCaHrHCARE4URh1E8aw0knmgcQo
- zUCvb2jsVHqmh8lyvGgGmIcA6yl3FBikF40RxrEGTKmWb1GGL+JD+UrHO
- XtZ7bKZcM2V7p9TrJP/JB5xX1usOAEMCpZ41VFuUhbm2PAq9ssppR6BjE A==;
-X-CSE-ConnectionGUID: j5FJOeavRJWZemrrBnzCQA==
-X-CSE-MsgGUID: H8wIBFCDS+6iZu0KiDmhBg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11412"; a="46970613"
-X-IronPort-AV: E=Sophos;i="6.15,235,1739865600"; d="scan'208";a="46970613"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2025 21:56:22 -0700
-X-CSE-ConnectionGUID: GpuXHnQ8SyOc7hI0gggZLw==
-X-CSE-MsgGUID: fT3pyYq6SkmUdx4wamqZUw==
+ bh=oXIG7wPx6zwifm13QON+wHfeulRCtSNXV1CB2BFXvks=;
+ b=X6TXKy+vf6Tbs2t/+mcYOhl8LPoqytt0O9X2znKdsefsClAD53NVHpGb
+ nuSinL5tiGYc2+um1YpXO7CYA6MSopFK0FnfUQZqrO6mKriP7hElQLBvF
+ aSmpBTDyJ87pn/ICqQ2vMGdxlElY4ynJRw86aDgrMzTbw+FNCfNixUbiA
+ lB9jvrgh/s6eXYyD8fhXmPJKZ2g3Pb6aNJUGxlRlz6qXu+c6izkC3Z8js
+ MAPPEWfku2BSGqpuAXDZIS+XsNvXz3AnX5662adpYGAXGj2+Z/X/J1Zk4
+ DiOC5aMD+vLrOAJMXQlqXZidJFpMYn4sQucji+yaxYIXWzMylDoSJb7Ry w==;
+X-CSE-ConnectionGUID: P7P6iKtSSnecWmZRGd1k2A==
+X-CSE-MsgGUID: MbHTKu1HRNuOlN5PmpKTkw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11412"; a="58459949"
+X-IronPort-AV: E=Sophos;i="6.15,235,1739865600"; d="scan'208";a="58459949"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2025 22:01:45 -0700
+X-CSE-ConnectionGUID: W1F1j7caTx6EBuWhsjvzfQ==
+X-CSE-MsgGUID: mLMLt8oBR9WYtmVIJhWc1Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,235,1739865600"; d="scan'208";a="133022198"
+X-IronPort-AV: E=Sophos;i="6.15,235,1739865600"; d="scan'208";a="169719419"
 Received: from ekhalili-mobl.amr.corp.intel.com (HELO adixit-MOBL3.intel.com)
  ([10.125.183.189])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2025 21:56:21 -0700
-Date: Wed, 23 Apr 2025 21:56:20 -0700
-Message-ID: <8734dy5f9n.wl-ashutosh.dixit@intel.com>
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2025 22:01:45 -0700
+Date: Wed, 23 Apr 2025 22:01:44 -0700
+Message-ID: <871pti5f0n.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Harish Chegondi <harish.chegondi@intel.com>
 Cc: <intel-xe@lists.freedesktop.org>,
 	<matthew.s.atwood@intel.com>
 Subject: Re: [PATCH 1/1] drm/xe/eustall: Do not support EU stall on SRIOV VF
-In-Reply-To: <874iye5uuu.wl-ashutosh.dixit@intel.com>
+In-Reply-To: <8734dy5f9n.wl-ashutosh.dixit@intel.com>
 References: <10db5d1c7e17aadca7078ff74575b7ffc0d5d6b8.1745215022.git.harish.chegondi@intel.com>
  <87fri1105c.wl-ashutosh.dixit@intel.com>
  <87ecxk256d.wl-ashutosh.dixit@intel.com>
  <aAledu4zlIpfE2_h@intel.com>
  <874iye5uuu.wl-ashutosh.dixit@intel.com>
+ <8734dy5f9n.wl-ashutosh.dixit@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/29.4 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -74,92 +75,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 23 Apr 2025 16:19:37 -0700, Dixit, Ashutosh wrote:
+On Wed, 23 Apr 2025 21:56:20 -0700, Dixit, Ashutosh wrote:
 >
-> On Wed, 23 Apr 2025 14:41:10 -0700, Harish Chegondi wrote:
+> On Wed, 23 Apr 2025 16:19:37 -0700, Dixit, Ashutosh wrote:
 > >
-> > On Mon, Apr 21, 2025 at 09:25:46PM -0700, Dixit, Ashutosh wrote:
-> > > On Mon, 21 Apr 2025 17:59:43 -0700, Dixit, Ashutosh wrote:
-> > > >
-> > > > On Sun, 20 Apr 2025 22:59:01 -0700, Harish Chegondi wrote:
-> > > > >
-> > > > > EU stall sampling is not supported on SRIOV VF. Do not
-> > > > > initialize or open EU stall stream on SRIOV VF.
-> > > > >
-> > > > > Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/xe/xe_eu_stall.c | 3 +++
-> > > > >  drivers/gpu/drm/xe/xe_eu_stall.h | 3 ++-
-> > > > >  2 files changed, 5 insertions(+), 1 deletion(-)
-> > > > >
-> > > > > diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
-> > > > > index f2bb9168967c..64788277ea52 100644
-> > > > > --- a/drivers/gpu/drm/xe/xe_eu_stall.c
-> > > > > +++ b/drivers/gpu/drm/xe/xe_eu_stall.c
-> > > > > @@ -208,6 +208,9 @@ int xe_eu_stall_init(struct xe_gt *gt)
-> > > > >	struct xe_device *xe = gt_to_xe(gt);
-> > > > >	int ret;
-> > > > >
-> > > > > +	if (!xe_eu_stall_supported_on_platform(xe))
-> > > > > +		return 0;
-> > > >
-> > > > This check is not strictly needed. If the check is not there, just some
-> > > > unnecessary stuff will get initialized.
-> > > >
-> > > > But if you want to add this check here, you will also need to a
-> > > > 'if (!gt->eu_stall)' check in xe_eu_stall_fini(). If you test this patch,
-> > > > maybe you will already see oops when unloading the driver?
-> > > >
-> > > > So either remove this check or add the additional check in
-> > > > xe_eu_stall_fini().
+> > On Wed, 23 Apr 2025 14:41:10 -0700, Harish Chegondi wrote:
 > > >
-> > > If you do retain this check, maybe change the
-> > > xe_eu_stall_supported_on_platform() check in xe_eu_stall_stream_open() to
-> > > also 'if (!gt->eu_stall)' check, I think.
+> > > On Mon, Apr 21, 2025 at 09:25:46PM -0700, Dixit, Ashutosh wrote:
+> > > > On Mon, 21 Apr 2025 17:59:43 -0700, Dixit, Ashutosh wrote:
+> > > > >
+> > > > > On Sun, 20 Apr 2025 22:59:01 -0700, Harish Chegondi wrote:
+> > > > > >
+> > > > > > EU stall sampling is not supported on SRIOV VF. Do not
+> > > > > > initialize or open EU stall stream on SRIOV VF.
+> > > > > >
+> > > > > > Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
+> > > > > > ---
+> > > > > >  drivers/gpu/drm/xe/xe_eu_stall.c | 3 +++
+> > > > > >  drivers/gpu/drm/xe/xe_eu_stall.h | 3 ++-
+> > > > > >  2 files changed, 5 insertions(+), 1 deletion(-)
+> > > > > >
+> > > > > > diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
+> > > > > > index f2bb9168967c..64788277ea52 100644
+> > > > > > --- a/drivers/gpu/drm/xe/xe_eu_stall.c
+> > > > > > +++ b/drivers/gpu/drm/xe/xe_eu_stall.c
+> > > > > > @@ -208,6 +208,9 @@ int xe_eu_stall_init(struct xe_gt *gt)
+> > > > > >	struct xe_device *xe = gt_to_xe(gt);
+> > > > > >	int ret;
+> > > > > >
+> > > > > > +	if (!xe_eu_stall_supported_on_platform(xe))
+> > > > > > +		return 0;
+> > > > >
+> > > > > This check is not strictly needed. If the check is not there, just some
+> > > > > unnecessary stuff will get initialized.
+> > > > >
+> > > > > But if you want to add this check here, you will also need to a
+> > > > > 'if (!gt->eu_stall)' check in xe_eu_stall_fini(). If you test this patch,
+> > > > > maybe you will already see oops when unloading the driver?
+> > > > >
+> > > > > So either remove this check or add the additional check in
+> > > > > xe_eu_stall_fini().
+> > > >
+> > > > If you do retain this check, maybe change the
+> > > > xe_eu_stall_supported_on_platform() check in xe_eu_stall_stream_open() to
+> > > > also 'if (!gt->eu_stall)' check, I think.
+> > >
+> > > I can change the if check to 'if (!gt->eu_stall)', but at this point in
+> > > the function GT hasn't been determined yet. I will have to move the
+> > > check later in the function after GT has been determined.
 > >
-> > I can change the if check to 'if (!gt->eu_stall)', but at this point in
-> > the function GT hasn't been determined yet. I will have to move the
-> > check later in the function after GT has been determined.
+> > Sure, let's put it after the 'if (!props.gt)' check.
 >
-> Sure, let's put it after the 'if (!props.gt)' check.
+> Hi Harish, sorry for the noise, but I changed my mind on this. So need to
+> change xe_eu_stall_stream_open(), the patch is good as is, so this is:
+>
+> Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+>
+> Though I do have a question: do media gt's also have eu stall hw? Since I
+> don't believe there are any gt's on media gt's, though I may be
+> wrong. Thanks.
+>
 
-Hi Harish, sorry for the noise, but I changed my mind on this. So need to
-change xe_eu_stall_stream_open(), the patch is good as is, so this is:
-
-Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-
-Though I do have a question: do media gt's also have eu stall hw? Since I
-don't believe there are any gt's on media gt's, though I may be
-wrong. Thanks.
-
+Sorry: I meant "Since I don't believe there are any eu's on media gt's".
 
 >
-> > >
+> >
 > > > >
-> > > > > +
-> > > > >	gt->eu_stall = kzalloc(sizeof(*gt->eu_stall), GFP_KERNEL);
-> > > > >	if (!gt->eu_stall) {
-> > > > >		ret = -ENOMEM;
-> > > > > diff --git a/drivers/gpu/drm/xe/xe_eu_stall.h b/drivers/gpu/drm/xe/xe_eu_stall.h
-> > > > > index ed9d0f233566..d1c76e503799 100644
-> > > > > --- a/drivers/gpu/drm/xe/xe_eu_stall.h
-> > > > > +++ b/drivers/gpu/drm/xe/xe_eu_stall.h
-> > > > > @@ -7,6 +7,7 @@
-> > > > >  #define __XE_EU_STALL_H__
 > > > > >
-> > > > >  #include "xe_gt_types.h"
-> > > > > +#include "xe_sriov.h"
-> > > > >
-> > > > >  size_t xe_eu_stall_get_per_xecore_buf_size(void);
-> > > > >  size_t xe_eu_stall_data_record_size(struct xe_device *xe);
-> > > > > @@ -19,6 +20,6 @@ int xe_eu_stall_stream_open(struct drm_device *dev,
-> > > > >
-> > > > >  static inline bool xe_eu_stall_supported_on_platform(struct xe_device *xe)
-> > > > >  {
-> > > > > -	return xe->info.platform == XE_PVC || GRAPHICS_VER(xe) >= 20;
-> > > > > +	return !IS_SRIOV_VF(xe) && (xe->info.platform == XE_PVC || GRAPHICS_VER(xe) >= 20);
-> > > > >  }
-> > > > >  #endif
-> > > > > --
-> > > > > 2.48.1
-> > > > >
+> > > > > > +
+> > > > > >	gt->eu_stall = kzalloc(sizeof(*gt->eu_stall), GFP_KERNEL);
+> > > > > >	if (!gt->eu_stall) {
+> > > > > >		ret = -ENOMEM;
+> > > > > > diff --git a/drivers/gpu/drm/xe/xe_eu_stall.h b/drivers/gpu/drm/xe/xe_eu_stall.h
+> > > > > > index ed9d0f233566..d1c76e503799 100644
+> > > > > > --- a/drivers/gpu/drm/xe/xe_eu_stall.h
+> > > > > > +++ b/drivers/gpu/drm/xe/xe_eu_stall.h
+> > > > > > @@ -7,6 +7,7 @@
+> > > > > >  #define __XE_EU_STALL_H__
+> > > > > >
+> > > > > >  #include "xe_gt_types.h"
+> > > > > > +#include "xe_sriov.h"
+> > > > > >
+> > > > > >  size_t xe_eu_stall_get_per_xecore_buf_size(void);
+> > > > > >  size_t xe_eu_stall_data_record_size(struct xe_device *xe);
+> > > > > > @@ -19,6 +20,6 @@ int xe_eu_stall_stream_open(struct drm_device *dev,
+> > > > > >
+> > > > > >  static inline bool xe_eu_stall_supported_on_platform(struct xe_device *xe)
+> > > > > >  {
+> > > > > > -	return xe->info.platform == XE_PVC || GRAPHICS_VER(xe) >= 20;
+> > > > > > +	return !IS_SRIOV_VF(xe) && (xe->info.platform == XE_PVC || GRAPHICS_VER(xe) >= 20);
+> > > > > >  }
+> > > > > >  #endif
+> > > > > > --
+> > > > > > 2.48.1
+> > > > > >
