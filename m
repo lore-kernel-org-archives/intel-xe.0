@@ -4,61 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 642D0C369C2
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Apr 2025 14:01:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C116BC369D7
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Apr 2025 14:07:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2084F10E136;
-	Fri, 25 Apr 2025 14:01:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85E5910E136;
+	Fri, 25 Apr 2025 14:07:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X9RP/828";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="auavd4qL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9542110E136;
- Fri, 25 Apr 2025 14:01:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1378F10E136
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Apr 2025 14:07:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745589687; x=1777125687;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=qJwvzDI/Ecr+K4pKDMV7GxiLNnGXwiyiJLLgrVXjl/8=;
- b=X9RP/8282XKWEqwwQ1seF/oIzTn+wRvohejTweFsHQ+eZ90khzlbjrJl
- WLG4uSCKKd508IwlNp2WjmRXLMrgzVfVjIIrY2SSQgrqxbIunGb5UC28c
- +z4A/X0i65REBlkHNh4YpBskBcu7MzjG57CygfsHCnMz6bmlR1A0tlPrY
- nyPME3MiXfYoaOVABkkqLlDilbzylpxp+/9QyBlS9dy2dCb1fuP/FJyK4
- 9lpoNzbcRuzglZyAjPmsdAf3S9iOlti9OaMw7D7AbMLBPdiPfFyjK1UW6
- kM9W6FwNXo6agYKyRHdCLYKTEUMfudqzHQWs7Xpq970OdO8A1y+biBju6 A==;
-X-CSE-ConnectionGUID: y8UPV2vtTt6yatsg3UUqoQ==
-X-CSE-MsgGUID: WVfdjEy2RUKiTDj6rFBoAQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11414"; a="58618395"
-X-IronPort-AV: E=Sophos;i="6.15,238,1739865600"; d="scan'208";a="58618395"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2025 07:01:23 -0700
-X-CSE-ConnectionGUID: WPIN99XYTSOGUq13aNBqYg==
-X-CSE-MsgGUID: w3oFJ/h1SNKujDE+bMVYbA==
+ t=1745590061; x=1777126061;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=exF9/+qSKatduki/o+biZVNA6SX9b5h0/3nwq/uj7bA=;
+ b=auavd4qLBIeGrd22mGlx/oWYE8Z1tgtA2FgkHrJHi6qd2XNGQR0WkiM7
+ P4n7nvenSwBjzV2LvUe4nQYqzMp46OnfoijcKrW6oWo3ZmTiLEzy748Gm
+ SqL92HdX+pZjQQnBB+wQOxeQDOxxzH7/i/WVBsSLgyX3v7ch96oVUvqUG
+ L20T0X2wCjdSQfGAwBFFkx2srvAoRlaXQzH+t5spsCdqPvYQtuI5JUqSo
+ /bW25q1j4PQmkcybW/UNxGeYpVr3h/ITSIc0/TkTLiXX6uwMpIECStV0d
+ NT3NZuKso7B3fYhcLTro/tx/O4SVBx7nmmJDd9euGN64hWMt9QZ1c515S w==;
+X-CSE-ConnectionGUID: QYjJBHoETVSS25bYLEXDHA==
+X-CSE-MsgGUID: wz5JMe0eT3+x0xRthfpBGw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11414"; a="47345491"
+X-IronPort-AV: E=Sophos;i="6.15,238,1739865600"; d="scan'208";a="47345491"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Apr 2025 07:07:40 -0700
+X-CSE-ConnectionGUID: d06mOrlvSQiH2Wz1h+/c8g==
+X-CSE-MsgGUID: t+qnUlAQTRKXIHhPYy/Fxg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,238,1739865600"; d="scan'208";a="136970958"
-Received: from lkp-server01.sh.intel.com (HELO 050dd05385d1) ([10.239.97.150])
- by fmviesa003.fm.intel.com with ESMTP; 25 Apr 2025 07:01:22 -0700
-Received: from kbuild by 050dd05385d1 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1u8JcG-0005G1-0m;
- Fri, 25 Apr 2025 14:01:20 +0000
-Date: Fri, 25 Apr 2025 22:00:33 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Paul Gazzillo <paul@pgazz.com>,
- Necip Fazil Yildiran <fazilyildiran@gmail.com>,
- oe-kbuild-all@lists.linux.dev, dri-devel@lists.freedesktop.org,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: Re: [PATCH v3 6/7] drm/xe/userptr: replace xe_hmm with gpusvm
-Message-ID: <202504252124.jQDkibSg-lkp@intel.com>
-References: <20250424121827.862729-15-matthew.auld@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,238,1739865600"; d="scan'208";a="132900189"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by fmviesa007.fm.intel.com with ESMTP; 25 Apr 2025 07:07:38 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: lucas.demarchi@intel.com,
+	rodrigo.vivi@intel.com
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ badal.nilawar@intel.com, riana.tauro@intel.com,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v4 0/3] BMG PCIe Gen5 downgrade attributes and usage
+Date: Fri, 25 Apr 2025 19:36:23 +0530
+Message-Id: <20250425140626.3082588-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250424121827.862729-15-matthew.auld@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,41 +66,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Matthew,
+This series exposes sysfs attributes for BMG PCIe Gen5 downgrade and
+documents their usage.
 
-kernel test robot noticed the following build warnings:
+v1: https://patchwork.freedesktop.org/series/147023/
 
-[auto build test WARNING on drm-xe/drm-xe-next]
-[also build test WARNING on next-20250424]
-[cannot apply to drm-exynos/exynos-drm-next linus/master drm/drm-next drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-misc/drm-misc-next drm-tip/drm-tip v6.15-rc3]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+v2: Move from debugfs to sysfs (Lucas, Rodrigo, Badal)
+    Rework macros and their naming (Rodrigo)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Matthew-Auld/drm-gpusvm-fix-hmm_pfn_to_map_order-usage/20250424-202128
-base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-patch link:    https://lore.kernel.org/r/20250424121827.862729-15-matthew.auld%40intel.com
-patch subject: [PATCH v3 6/7] drm/xe/userptr: replace xe_hmm with gpusvm
-config: alpha-kismet-CONFIG_DRM_GPUSVM-CONFIG_DRM_XE-0-0 (https://download.01.org/0day-ci/archive/20250425/202504252124.jQDkibSg-lkp@intel.com/config)
-reproduce: (https://download.01.org/0day-ci/archive/20250425/202504252124.jQDkibSg-lkp@intel.com/reproduce)
+v3: Move xe_device_sysfs_init() to xe_device_probe() (Riana)
+    Use sysfs_create_files() (Riana)
+    Fix checkpatch warning (Riana)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202504252124.jQDkibSg-lkp@intel.com/
+v4: s/gen4_downspeed/gen5_downgrade (Lucas, Rodrigo, Riana)
 
-kismet warnings: (new ones prefixed by >>)
->> kismet: WARNING: unmet direct dependencies detected for DRM_GPUSVM when selected by DRM_XE
-   WARNING: unmet direct dependencies detected for LEDS_EXPRESSWIRE
-     Depends on [n]: GPIOLIB [=n] || NEW_LEDS [=y] && GPIOLIB [=n]
-     Selected by [y]:
-     - BACKLIGHT_KTD2801 [=y] && HAS_IOMEM [=y] && BACKLIGHT_CLASS_DEVICE [=y]
-   
-   WARNING: unmet direct dependencies detected for DRM_GPUSVM
-     Depends on [n]: HAS_IOMEM [=y] && DRM [=y] && DEVICE_PRIVATE [=n]
-     Selected by [m]:
-     - DRM_XE [=m] && HAS_IOMEM [=y] && DRM [=y] && PCI [=y] && MMU [=y] && (m [=m] && MODULES [=y] || KUNIT [=n]=y [=y])
+Raag Jadav (3):
+  drm/xe/pm: s/xe_device_sysfs_init/xe_pm_sysfs_init
+  drm/xe: Expose PCIe Gen5 downgrade attributes
+  drm/xe/doc: Wire up PCIe Gen5 limitations
+
+ Documentation/gpu/xe/xe_firmware.rst |   6 ++
+ drivers/gpu/drm/xe/xe_device.c       |   5 ++
+ drivers/gpu/drm/xe/xe_device_sysfs.c | 107 ++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_device_sysfs.h |   1 +
+ drivers/gpu/drm/xe/xe_pcode_api.h    |   5 ++
+ drivers/gpu/drm/xe/xe_pm.c           |   2 +-
+ 6 files changed, 123 insertions(+), 3 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
