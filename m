@@ -4,64 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CD89C369C2
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Apr 2025 09:10:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2290AC369D1
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Apr 2025 09:50:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1EBC10E8DF;
-	Fri, 25 Apr 2025 09:10:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7FFD10E8F7;
+	Fri, 25 Apr 2025 09:50:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OjZjz52i";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="hJlZhKUm";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A700210E0C1;
- Fri, 25 Apr 2025 09:10:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745572211; x=1777108211;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=Rh0Qi1rR5m49J8eD8icWiz8ltW2inSdijLSmfe9dbg4=;
- b=OjZjz52iCKm44Kn/DMUgr/oYN8pD6/cmulzFUQ1qNGbiHOQBgnjmHoxD
- 2TxosXCVwfVPPdLGWvditP1sx6Nf2OCZlwP2Ms8SZl0NLYodrOrLBIkxx
- bBCImBaqOfaSiHe1e6GLuR5L/R2o/MSYX8+ODb+/slhUCb3ps1Wzp2eAF
- 4D7EBkfcbXzAP7nLOPLvoTOnrItLJMoW8h1LvTPk1QNDpEtUhE3t+G066
- RJ6bkuq5uKhOohmtiXfbF7RnZiPQ3FPZFdPwtKDdzAQwnoKBWP+Ckozjr
- 6Idg7p0RTEyZF64Q1hYUHuPtiTbfMQW/9Q9Mqz2f5JBxs/gxjFq33esUZ w==;
-X-CSE-ConnectionGUID: Fsn3/4IjRjyYpM4+WjNyZg==
-X-CSE-MsgGUID: +6W/9cPZTvCiR73ygDLMAw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11413"; a="69722398"
-X-IronPort-AV: E=Sophos;i="6.15,238,1739865600"; d="scan'208";a="69722398"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2025 02:10:06 -0700
-X-CSE-ConnectionGUID: UhYdWh5aRhykH6/Wz1Z57w==
-X-CSE-MsgGUID: lMJN9r2kSial3LZLbdCrZw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,238,1739865600"; d="scan'208";a="136922436"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO [10.245.246.70])
- ([10.245.246.70])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2025 02:10:05 -0700
-Message-ID: <b5569de8cc036e23b976f21a51c4eb5ca104d4bb.camel@linux.intel.com>
-Subject: Re: [PATCH v4 2/5] drm/xe: Strict migration policy for atomic SVM
- faults
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- himal.prasad.ghimiray@intel.com
-Date: Fri, 25 Apr 2025 11:10:01 +0200
-In-Reply-To: <aAs8GtJJm0zBNh1U@lstrano-desk.jf.intel.com>
-References: <20250422170415.584662-1-matthew.brost@intel.com>
- <20250422170415.584662-3-matthew.brost@intel.com>
- <1391a2ab3cbf8b690f1ec371cdc932032a647645.camel@linux.intel.com>
- <aAp88xbpx3ik3H4p@lstrano-desk.jf.intel.com>
- <0a98149f281c081c4ef560c12a0e55fd2f3239aa.camel@linux.intel.com>
- <aAs8GtJJm0zBNh1U@lstrano-desk.jf.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88E9210E8F7
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Apr 2025 09:50:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1745574624;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=WbO8sDKR1DYgNfD0PC4T5pYoJ24jGI0MZMOqn7zpeAc=;
+ b=hJlZhKUmTGZ/XFVPMMr0Pt+sJuQ4Lsbk6ga1XHclTatp1ze+3onIGf5+2qv3hgKs+Z7YSS
+ t5Ba90l9+7P6hjnBq3RQuY3tr5GkHD1v6fBNbREeosNxAZMWWtDxpZ06A2qz54OOzKeTN9
+ LPb4FawUOeGyKJpp3KAZmpqudwPh7Q0=
+Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-472-bwYedG-9MYqo-s-gtvjDmw-1; Fri,
+ 25 Apr 2025 05:50:17 -0400
+X-MC-Unique: bwYedG-9MYqo-s-gtvjDmw-1
+X-Mimecast-MFC-AGG-ID: bwYedG-9MYqo-s-gtvjDmw_1745574616
+Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id B554F1956078; Fri, 25 Apr 2025 09:50:15 +0000 (UTC)
+Received: from hydra.redhat.com (unknown [10.44.34.172])
+ by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
+ id 2EA0F195608D; Fri, 25 Apr 2025 09:50:08 +0000 (UTC)
+From: Jocelyn Falempe <jfalempe@redhat.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: Jocelyn Falempe <jfalempe@redhat.com>
+Subject: [PATCH v7 0/8] drm/i915: Add drm_panic support
+Date: Fri, 25 Apr 2025 11:37:46 +0200
+Message-ID: <20250425094949.473060-1-jfalempe@redhat.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,507 +73,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2025-04-25 at 00:39 -0700, Matthew Brost wrote:
-> On Fri, Apr 25, 2025 at 09:18:19AM +0200, Thomas Hellstr=C3=B6m wrote:
-> > On Thu, 2025-04-24 at 11:03 -0700, Matthew Brost wrote:
-> > > On Thu, Apr 24, 2025 at 04:39:21PM +0200, Thomas Hellstr=C3=B6m wrote=
-:
-> > > > On Tue, 2025-04-22 at 10:04 -0700, Matthew Brost wrote:
-> > > > > Mixing GPU and CPU atomics does not work unless a strict
-> > > > > migration
-> > > > > policy of GPU atomics must be device memory. Enforce a policy
-> > > > > of
-> > > > > must
-> > > > > be
-> > > > > in VRAM with a retry loop of 2 attempts, if retry loop fails
-> > > > > abort
-> > > > > fault.
-> > > > >=20
-> > > > > v2:
-> > > > > =C2=A0- Only retry migration on atomics
-> > > > > =C2=A0- Drop alway migrate modparam
-> > > > > v3:
-> > > > > =C2=A0- Only set vram_only on DGFX (Himal)
-> > > > > =C2=A0- Bail on get_pages failure if vram_only and retry count
-> > > > > exceeded
-> > > > > (Himal)
-> > > > > =C2=A0- s/vram_only/devmem_only
-> > > > > =C2=A0- Update xe_svm_range_is_valid to accept devmem_only
-> > > > > argument
-> > > > > v4:
-> > > > > =C2=A0- Fix logic bug get_pages failure
-> > > > >=20
-> > > > > Signed-off-by: Himal Prasad Ghimiray
-> > > > > <himal.prasad.ghimiray@intel.com>
-> > > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > > > ---
-> > > > > =C2=A0drivers/gpu/drm/xe/xe_module.c |=C2=A0 3 --
-> > > > > =C2=A0drivers/gpu/drm/xe/xe_module.h |=C2=A0 1 -
-> > > > > =C2=A0drivers/gpu/drm/xe/xe_svm.c=C2=A0=C2=A0=C2=A0 | 89
-> > > > > +++++++++++++++++++++++++---
-> > > > > ----
-> > > > > --
-> > > > > =C2=A0drivers/gpu/drm/xe/xe_svm.h=C2=A0=C2=A0=C2=A0 |=C2=A0 5 --
-> > > > > =C2=A04 files changed, 65 insertions(+), 33 deletions(-)
-> > > > >=20
-> > > > > diff --git a/drivers/gpu/drm/xe/xe_module.c
-> > > > > b/drivers/gpu/drm/xe/xe_module.c
-> > > > > index 05c7d0ae6d83..1c4dfafbcd0b 100644
-> > > > > --- a/drivers/gpu/drm/xe/xe_module.c
-> > > > > +++ b/drivers/gpu/drm/xe/xe_module.c
-> > > > > @@ -33,9 +33,6 @@ struct xe_modparam xe_modparam =3D {
-> > > > > =C2=A0module_param_named(svm_notifier_size,
-> > > > > xe_modparam.svm_notifier_size,
-> > > > > uint, 0600);
-> > > > > =C2=A0MODULE_PARM_DESC(svm_notifier_size, "Set the svm notifier
-> > > > > size(in
-> > > > > MiB), must be power of 2");
-> > > > > =C2=A0
-> > > > > -module_param_named(always_migrate_to_vram,
-> > > > > xe_modparam.always_migrate_to_vram, bool, 0444);
-> > > > > -MODULE_PARM_DESC(always_migrate_to_vram, "Always migrate to
-> > > > > VRAM
-> > > > > on
-> > > > > GPU fault");
-> > > > > -
-> > > > =C2=A0module_param_named_unsafe(force_execlist,
-> > > > > xe_modparam.force_execlist, bool, 0444);
-> > > > > =C2=A0MODULE_PARM_DESC(force_execlist, "Force Execlist
-> > > > > submission");
-> > > > > =C2=A0
-> > > > > diff --git a/drivers/gpu/drm/xe/xe_module.h
-> > > > > b/drivers/gpu/drm/xe/xe_module.h
-> > > > > index 84339e509c80..5a3bfea8b7b4 100644
-> > > > > --- a/drivers/gpu/drm/xe/xe_module.h
-> > > > > +++ b/drivers/gpu/drm/xe/xe_module.h
-> > > > > @@ -12,7 +12,6 @@
-> > > > > =C2=A0struct xe_modparam {
-> > > > > =C2=A0	bool force_execlist;
-> > > > > =C2=A0	bool probe_display;
-> > > > > -	bool always_migrate_to_vram;
-> > > > > =C2=A0	u32 force_vram_bar_size;
-> > > > > =C2=A0	int guc_log_level;
-> > > > > =C2=A0	char *guc_firmware_path;
-> > > > > diff --git a/drivers/gpu/drm/xe/xe_svm.c
-> > > > > b/drivers/gpu/drm/xe/xe_svm.c
-> > > > > index 890f6b2f40e9..f749ae367a8f 100644
-> > > > > --- a/drivers/gpu/drm/xe/xe_svm.c
-> > > > > +++ b/drivers/gpu/drm/xe/xe_svm.c
-> > > > > @@ -650,9 +650,11 @@ void xe_svm_fini(struct xe_vm *vm)
-> > > > > =C2=A0}
-> > > > > =C2=A0
-> > > > > =C2=A0static bool xe_svm_range_is_valid(struct xe_svm_range
-> > > > > *range,
-> > > > > -				=C2=A0 struct xe_tile *tile)
-> > > > > +				=C2=A0 struct xe_tile *tile,
-> > > > > +				=C2=A0 bool devmem_only)
-> > > > > =C2=A0{
-> > > > > -	return (range->tile_present & ~range-
-> > > > > >tile_invalidated)
-> > > > > &
-> > > > > BIT(tile->id);
-> > > > > +	return ((range->tile_present & ~range-
-> > > > > >tile_invalidated)
-> > > > > &
-> > > > > BIT(tile->id))
-> > > > > +		&& (!devmem_only || range-
-> > > > > > base.flags.migrate_devmem);
-> > > > > =C2=A0}
-> > > >=20
-> > > > So let's say devmem_only is true here, and range-
-> > > > > base.flags.migrate_devmem is false. Wouldn't that mean the
-> > > > > range
-> > > > > is
-> > > > unusable and needs to be freed and re-allocated?
-> > > >=20
-> > >=20
-> > > This is typo, this should be s/migrate_devmem/has_devmem_pages.
-> > >=20
-> > > This translates to:
-> > >=20
-> > > Either devmem_only is not required or we have devmem pages with a
-> > > valid mapping.
-> > >=20
-> > > If migrate_devmem is false and devmem_only is true, that is a
-> > > fatal
-> > > error actually, we should have check for that and kill the fault.
-> > > An
-> > > example of this would be shared mapping which cannot be migrated
-> > > to
-> > > devmem.
-> > > =C2=A0
-> > > > Also another thing going back to older code, it seems like
-> > > > range-
-> > > > > tile_invalidated is protected by the notifier lock, so
-> > > > > shouldn't
-> > > > > we
-> > > > assert that to be held in the function? It seems not to be held
-> > > > further
-> > > > below:
-> > >=20
-> > > Yea techincally to get a stable value we'd need the notifier lock
-> > > but
-> > > this is an opportunistic check - at worst if we read a valid
-> > > range we
-> > > skip the page faults and will immediately get another page fault.
-> > > So
-> > > we
-> > > could take the notifier lock here but I don't think this is
-> > > strickly
-> > > required. Let me know what you think here.
-> >=20
-> > The problem with this is that the code gets harder to maintain and
->=20
-> Agree.
->=20
-> > understand. A new reader would probably first react over the
-> > lockless
-> > read, and then why there are no memory barriers and then what
-> > happens
-> > if the page-fault was marked as resolved without actually resolving
-> > it.
-> >=20
-> > So IMO if we do opportunistic tests to opt out of locking (which is
-> > discouraged in the drm locking guidelines
-> > https://blog.ffwll.ch/2022/08/locking-hierarchy.html)
-> > we should definitely add separate functions for that with extensive
-> > docs and READ_ONCE() annotation.
-> >=20
->=20
-> A lock here doesn't actually gain us anything, though, as the state
-> can
-> immediately change after lock release triggering another fault. If
-> you
-> agree, I'll go with READ_ONCE and add comments in the code indicating
-> it's an opportunistic check.
+This is a draft of drm_panic support for i915.
 
-Yeah. Ideally I think a well documented
-xe_svm_range_check_valid() (or perhaps better name),
+I've tested it on the 4 intel laptops I have at my disposal.
+ * Haswell with 128MB of eDRAM.
+ * Comet Lake  i7-10850H
+ * Raptor Lake i7-1370P (with DPT, and Y-tiling).
+ * Lunar Lake Ultra 5 228V (with DPT, and 4-tiling, and using the Xe driver.
 
-and an
-xe_svm_range_is_valid() with an assert.
+I tested panic in both fbdev console and gnome desktop.
 
-in the spirit of=20
-mmu_interval_check_retry() (lockless, documented) and
-mmu_interval_read_retry() (requires lock).
+Best regards,
 
->=20
-> > But also think if this is really worth sacrificing readability
-> > instead
-> > of actually relying on alloc_vram() and get_pages() exiting early
-> > if
-> > everything looks ok?
-> >=20
->=20
-> alloc_vram() as is very expensive, get_pages() less but still CPU
-> cycles.
->=20
-> The idea here is to short-circuit "page fault storms," where many EUs
-> access the same page simultaneously. If I recall correctly, this was
-> a
-> significant issue on PVC=E2=80=94so much so that we are considering firmw=
-are
-> and
-> hardware changes going forward. We should try to mitigate these
-> conditions in the page fault handler, if possible.
+v2:
+ * Add the proper abstractions to build also for Xe.
+ * Fix dim checkpatch issues.
 
-Yes, I think that's a perfectly legit case.
+v3:
+ * Add support for Y-tiled framebuffer when DPT is enabled.
 
-Perhaps in the future we could even short-circuit pf storms in the G2H
-handler?
+v4:
+ * Add support for Xe driver, which shares most of the code.
+ * Add support for 4-tiled framebuffer found in newest GPU.
 
-/Thomas
+v5:
+ * Rebase on top of git@gitlab.freedesktop.org:drm/i915/kernel.git drm-intel-next
+ * Use struct intel_display instead of drm_i915_private.
+ * Use iosys_map for intel_bo_panic_map().
+
+v6:
+ * Rebase on top of git@gitlab.freedesktop.org:drm/i915/kernel.git drm-intel-next
+ * Use struct intel_display instead of drm_i915_private for intel_atomic_plane.c
+
+v7:
+ * Fix mismatch {} in intel_panic_flush() (Jani Nikula)
+ * Return int for i915_gem_object_panic_map() (Ville Syrjälä)
+ * Reword commit message about alignment/size when disabling tiling (Ville Syrjälä)
+
+Jocelyn Falempe (8):
+  drm/i915/fbdev: Add intel_fbdev_get_map()
+  drm/i915/display/i9xx: Add a disable_tiling() for i9xx planes
+  drm/i915/display: Add a disable_tiling() for skl planes
+  drm/i915/gem: Add i915_gem_object_panic_map()
+  drm/i915/display: Add drm_panic support
+  drm/i915/display: Flush the front buffer in panic handler
+  drm/i915/display: Add drm_panic support for Y-tiling with DPT
+  drm/i915/display: Add drm_panic support for 4-tiling with DPT
+
+ drivers/gpu/drm/i915/display/i9xx_plane.c     |  23 +++
+ .../gpu/drm/i915/display/intel_atomic_plane.c | 172 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_bo.c       |   5 +
+ drivers/gpu/drm/i915/display/intel_bo.h       |   1 +
+ .../drm/i915/display/intel_display_types.h    |   2 +
+ drivers/gpu/drm/i915/display/intel_fb_pin.c   |   5 +
+ drivers/gpu/drm/i915/display/intel_fb_pin.h   |   2 +
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |   5 +
+ drivers/gpu/drm/i915/display/intel_fbdev.h    |   6 +-
+ .../drm/i915/display/skl_universal_plane.c    |  27 +++
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |   2 +
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c     |  29 +++
+ drivers/gpu/drm/i915/i915_vma.h               |   5 +
+ drivers/gpu/drm/xe/display/intel_bo.c         |   7 +
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        |   5 +
+ 15 files changed, 294 insertions(+), 2 deletions(-)
 
 
->=20
-> Matt
->=20
-> > >=20
-> > > >=20
-> > > > > =C2=A0
-> > > > > =C2=A0#if IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR)
-> > > > > @@ -726,6 +728,35 @@ static int xe_svm_alloc_vram(struct
-> > > > > xe_vm
-> > > > > *vm,
-> > > > > struct xe_tile *tile,
-> > > > > =C2=A0}
-> > > > > =C2=A0#endif
-> > > > > =C2=A0
-> > > > > +static bool supports_4K_migration(struct xe_device *xe)
-> > > > > +{
-> > > > > +	if (xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
-> > > > > +		return false;
-> > > > > +
-> > > > > +	return true;
-> > > > > +}
-> > > >=20
-> > > > Do we have any hardware that supports pagefaults but not 4K
-> > > > VRAM
-> > > > pages?
-> > > >=20
-> > >=20
-> > > PVC
-> >=20
-> > OK, I was under the impression that PVC actually supported 4K
-> > pages.
-> > But perhaps there was a bug encountered while implementing that.
-> >=20
-> >=20
-> > >=20
-> > > > > +
-> > > > > +static bool xe_svm_range_needs_migrate_to_vram(struct
-> > > > > xe_svm_range
-> > > > > *range,
-> > > > > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_vma
-> > > > > *vma)
-> > > > > +{
-> > > > > +	struct xe_vm *vm =3D range_to_vm(&range->base);
-> > > > > +	u64 range_size =3D xe_svm_range_size(range);
-> > > > > +
-> > > > > +	if (!range->base.flags.migrate_devmem)
-> > > > > +		return false;
-> > > > > +
-> > > > > +	if (xe_svm_range_in_vram(range)) {
-> > > > > +		drm_dbg(&vm->xe->drm, "Range is already in
-> > > > > VRAM\n");
-> > > > > +		return false;
-> > > > > +	}
-> > > > > +
-> > > > > +	if (range_size <=3D SZ_64K &&
-> > > > > !supports_4K_migration(vm-
-> > > > > > xe))
-> > > > > {
-> > > > > +		drm_dbg(&vm->xe->drm, "Platform doesn't
-> > > > > support
-> > > > > SZ_4K range migration\n");
-> > > > > +		return false;
-> > > > > +	}
-> > > > > +
-> > > > > +	return true;
-> > > > > +}
-> > > > > =C2=A0
-> > > > > =C2=A0/**
-> > > > > =C2=A0 * xe_svm_handle_pagefault() - SVM handle page fault
-> > > > > @@ -750,12 +781,15 @@ int xe_svm_handle_pagefault(struct
-> > > > > xe_vm
-> > > > > *vm,
-> > > > > struct xe_vma *vma,
-> > > > > =C2=A0			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRR
-> > > > > OR),
-> > > > > =C2=A0		.check_pages_threshold =3D IS_DGFX(vm->xe) &&
-> > > > > =C2=A0			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRR
-> > > > > OR)
-> > > > > ?
-> > > > > SZ_64K : 0,
-> > > > > +		.devmem_only =3D atomic && IS_DGFX(vm->xe) &&
-> > > > > +			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRR
-> > > > > OR),
-> > > > > =C2=A0	};
-> > > > > =C2=A0	struct xe_svm_range *range;
-> > > > > =C2=A0	struct drm_gpusvm_range *r;
-> > > > > =C2=A0	struct drm_exec exec;
-> > > > > =C2=A0	struct dma_fence *fence;
-> > > > > =C2=A0	struct xe_tile *tile =3D gt_to_tile(gt);
-> > > > > +	int migrate_try_count =3D ctx.devmem_only ? 3 : 1;
-> > > > > =C2=A0	ktime_t end =3D 0;
-> > > > > =C2=A0	int err;
-> > > > > =C2=A0
-> > > > > @@ -777,23 +811,26 @@ int xe_svm_handle_pagefault(struct
-> > > > > xe_vm
-> > > > > *vm,
-> > > > > struct xe_vma *vma,
-> > > > > =C2=A0		return PTR_ERR(r);
-> > > > > =C2=A0
-> > > > > =C2=A0	range =3D to_xe_range(r);
-> > > > > -	if (xe_svm_range_is_valid(range, tile))
-> > > > > +	if (xe_svm_range_is_valid(range, tile,
-> > > > > ctx.devmem_only))
-> > > >=20
-> > > > Requires notifier lock. Also see comment on re-allocating the
-> > > > range
-> > > > above.
-> > > >=20
-> > >=20
-> > > Same as above.
-> > >=20
-> > > > > =C2=A0		return 0;
-> > > > > =C2=A0
-> > > > > =C2=A0	range_debug(range, "PAGE FAULT");
-> > > > > =C2=A0
-> > > > > -	/* XXX: Add migration policy, for now migrate range
-> > > > > once
-> > > > > */
-> > > > > -	if (!range->skip_migrate && range-
-> > > > > > base.flags.migrate_devmem
-> > > > > &&
-> > > > > -	=C2=A0=C2=A0=C2=A0 xe_svm_range_size(range) >=3D SZ_64K) {
-> > > > > -		range->skip_migrate =3D true;
-> > > > > -
-> > > > > +	if (--migrate_try_count >=3D 0 &&
-> > > > > +	=C2=A0=C2=A0=C2=A0 xe_svm_range_needs_migrate_to_vram(range, vm=
-a)
-> > > >=20
-> > > > Requires notifier lock.
-> > > >=20
-> > >=20
-> > > Same as above.
-> > >=20
-> > > > Should we have some sort of timeout instead of a try-count?
-> > > > Perhaps
-> > > > as
-> > > > a last resort fall back to a 4K range?
-> > > >=20
-> > >=20
-> > > I did have code like that at one point to reduce range size but
-> > > it is
-> > > a
-> > > bit complicated as we'd have to remove the range... I'd rather
-> > > stick
-> > > with the retry loop for now and if this becomes problematic,
-> > > circle
-> > > back
-> > > to reducing the size of the fault page on each retry loop.
-> >=20
-> > OK, makes sense.
-> >=20
-> > /Thomas
-> >=20
-> >=20
-> > >=20
-> > > Matt
-> > >=20
-> > > > /Thomas
-> > > >=20
-> > > >=20
-> > > >=20
-> > > > > ) {
-> > > > > =C2=A0		err =3D xe_svm_alloc_vram(vm, tile, range,
-> > > > > &ctx);
-> > > > > =C2=A0		if (err) {
-> > > > > -			drm_dbg(&vm->xe->drm,
-> > > > > -				"VRAM allocation failed,
-> > > > > falling
-> > > > > back to "
-> > > > > -				"retrying fault, asid=3D%u,
-> > > > > errno=3D%pe\n",
-> > > > > -				vm->usm.asid, ERR_PTR(err));
-> > > > > -			goto retry;
-> > > > > +			if (migrate_try_count ||
-> > > > > !ctx.devmem_only) {
-> > > > > +				drm_dbg(&vm->xe->drm,
-> > > > > +					"VRAM allocation
-> > > > > failed,
-> > > > > falling back to retrying fault, asid=3D%u, errno=3D%pe\n",
-> > > > > +					vm->usm.asid,
-> > > > > ERR_PTR(err));
-> > > > > +				goto retry;
-> > > > > +			} else {
-> > > > > +				drm_err(&vm->xe->drm,
-> > > > > +					"VRAM allocation
-> > > > > failed,
-> > > > > retry count exceeded, asid=3D%u, errno=3D%pe\n",
-> > > > > +					vm->usm.asid,
-> > > > > ERR_PTR(err));
-> > > > > +				return err;
-> > > > > +			}
-> > > > > =C2=A0		}
-> > > > > =C2=A0	}
-> > > > > =C2=A0
-> > > > > @@ -801,15 +838,22 @@ int xe_svm_handle_pagefault(struct
-> > > > > xe_vm
-> > > > > *vm,
-> > > > > struct xe_vma *vma,
-> > > > > =C2=A0	err =3D drm_gpusvm_range_get_pages(&vm->svm.gpusvm, r,
-> > > > > &ctx);
-> > > > > =C2=A0	/* Corner where CPU mappings have changed */
-> > > > > =C2=A0	if (err =3D=3D -EOPNOTSUPP || err =3D=3D -EFAULT || err =
-=3D=3D -
-> > > > > EPERM) {
-> > > > > -		if (err =3D=3D -EOPNOTSUPP) {
-> > > > > -			range_debug(range, "PAGE FAULT -
-> > > > > EVICT
-> > > > > PAGES");
-> > > > > -			drm_gpusvm_range_evict(&vm-
-> > > > > >svm.gpusvm,
-> > > > > &range->base);
-> > > > > +		if (migrate_try_count > 0 ||
-> > > > > !ctx.devmem_only) {
-> > > > > +			if (err =3D=3D -EOPNOTSUPP) {
-> > > > > +				range_debug(range, "PAGE
-> > > > > FAULT -
-> > > > > EVICT PAGES");
-> > > > > +				drm_gpusvm_range_evict(&vm-
-> > > > > > svm.gpusvm,
-> > > > > +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > > > > &range-
-> > > > > > base);
-> > > > > +			}
-> > > > > +			drm_dbg(&vm->xe->drm,
-> > > > > +				"Get pages failed, falling
-> > > > > back
-> > > > > to
-> > > > > retrying, asid=3D%u, gpusvm=3D%p, errno=3D%pe\n",
-> > > > > +				vm->usm.asid, &vm-
-> > > > > >svm.gpusvm,
-> > > > > ERR_PTR(err));
-> > > > > +			range_debug(range, "PAGE FAULT -
-> > > > > RETRY
-> > > > > PAGES");
-> > > > > +			goto retry;
-> > > > > +		} else {
-> > > > > +			drm_err(&vm->xe->drm,
-> > > > > +				"Get pages failed, retry
-> > > > > count
-> > > > > exceeded, asid=3D%u, gpusvm=3D%p, errno=3D%pe\n",
-> > > > > +				vm->usm.asid, &vm-
-> > > > > >svm.gpusvm,
-> > > > > ERR_PTR(err));
-> > > > > =C2=A0		}
-> > > > > -		drm_dbg(&vm->xe->drm,
-> > > > > -			"Get pages failed, falling back to
-> > > > > retrying,
-> > > > > asid=3D%u, gpusvm=3D%p, errno=3D%pe\n",
-> > > > > -			vm->usm.asid, &vm->svm.gpusvm,
-> > > > > ERR_PTR(err));
-> > > > > -		range_debug(range, "PAGE FAULT - RETRY
-> > > > > PAGES");
-> > > > > -		goto retry;
-> > > > > =C2=A0	}
-> > > > > =C2=A0	if (err) {
-> > > > > =C2=A0		range_debug(range, "PAGE FAULT - FAIL PAGE
-> > > > > COLLECT");
-> > > > > @@ -843,9 +887,6 @@ int xe_svm_handle_pagefault(struct xe_vm
-> > > > > *vm,
-> > > > > struct xe_vma *vma,
-> > > > > =C2=A0	}
-> > > > > =C2=A0	drm_exec_fini(&exec);
-> > > > > =C2=A0
-> > > > > -	if (xe_modparam.always_migrate_to_vram)
-> > > > > -		range->skip_migrate =3D false;
-> > > > > -
-> > > > > =C2=A0	dma_fence_wait(fence, false);
-> > > > > =C2=A0	dma_fence_put(fence);
-> > > > > =C2=A0
-> > > > > diff --git a/drivers/gpu/drm/xe/xe_svm.h
-> > > > > b/drivers/gpu/drm/xe/xe_svm.h
-> > > > > index 3d441eb1f7ea..0e1f376a7471 100644
-> > > > > --- a/drivers/gpu/drm/xe/xe_svm.h
-> > > > > +++ b/drivers/gpu/drm/xe/xe_svm.h
-> > > > > @@ -39,11 +39,6 @@ struct xe_svm_range {
-> > > > > =C2=A0	 * range. Protected by GPU SVM notifier lock.
-> > > > > =C2=A0	 */
-> > > > > =C2=A0	u8 tile_invalidated;
-> > > > > -	/**
-> > > > > -	 * @skip_migrate: Skip migration to VRAM, protected
-> > > > > by
-> > > > > GPU
-> > > > > fault handler
-> > > > > -	 * locking.
-> > > > > -	 */
-> > > > > -	u8 skip_migrate	:1;
-> > > > > =C2=A0};
-> > > > > =C2=A0
-> > > > > =C2=A0/**
-> > > >=20
-> >=20
+base-commit: 93d33af699f271b908d3eacf7e5872a8784e5a6d
+-- 
+2.49.0
 
