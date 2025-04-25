@@ -4,27 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99FB7C369C2
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Apr 2025 18:46:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 437BAC369D7
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Apr 2025 19:08:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B34310E32F;
-	Fri, 25 Apr 2025 18:46:14 +0000 (UTC)
-Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45DFE10E32F;
- Fri, 25 Apr 2025 18:46:13 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7852216686589091306=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0793F10E9A5;
+	Fri, 25 Apr 2025 19:08:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=protonmail.com header.i=@protonmail.com header.b="eGOPRP9E";
+	dkim-atps=neutral
+X-Greylist: delayed 15354 seconds by postgrey-1.36 at gabe;
+ Fri, 25 Apr 2025 11:52:33 UTC
+Received: from mail-0201.mail-europe.com (mail-0201.mail-europe.com
+ [51.77.79.158])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0286F10E078
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Apr 2025 11:52:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+ s=protonmail3; t=1745581943; x=1745841143;
+ bh=22DV/2WcFp8+Zb8dkstxxlNiVBTcBoaxKhkaohG3HVg=;
+ h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+ Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector:
+ List-Unsubscribe:List-Unsubscribe-Post;
+ b=eGOPRP9EyMXYovvxr/C9PVp9RN2HqQ4rvxs8lNAH7n2pa9i9DGBVV6xkQ5qQwxZqH
+ BM/UolStZ3Gq9XvEZr1TLutjmnqtAbKXCwi5Q2PwqH/z6/+cpuA1GFXTWs/4q0tWKP
+ Vgi66kHrPENveoAhA5DYkBli4XxEObhELUJyAxcz1aUAITMD44sYsU/vO49lDdopR4
+ wTdqZlbL1vhCTV5AaMQrRMku/sSfOLWsjVZs4E9mpb9MTwCL2qepZiAh79hpvQmVfu
+ 9toD4//eYdgk2a9vWhF90m2lCqA1aFTlh6uvXotDWV/R63qYGvmjekqawHGBorptIs
+ zpZ6uyqfHF2XA==
+Date: Fri, 25 Apr 2025 11:52:15 +0000
+To: intel-xe@lists.freedesktop.org
+From: Harry Austen <hpausten@protonmail.com>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Harry Austen <hpausten@protonmail.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?utf-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: [PATCH v3] drm/xe: Allow building as kernel built-in
+Message-ID: <20250425115148.12815-1-hpausten@protonmail.com>
+Feedback-ID: 53116287:user:proton
+X-Pm-Message-ID: 8886096547096976ec602d0c33774f8f26c5f9a0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/hwmon=3A_Add_support?=
- =?utf-8?q?_to_manage_power_limits_using_mailbox_commands_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Karthik Poosa" <karthik.poosa@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 25 Apr 2025 18:46:13 -0000
-Message-ID: <174560677326.12251.6941471508420401154@c664b1dc75d1>
-X-Patchwork-Hint: ignore
-References: <20250425174410.3705932-1-karthik.poosa@intel.com>
-In-Reply-To: <20250425174410.3705932-1-karthik.poosa@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Fri, 25 Apr 2025 19:08:24 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,161 +57,52 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7852216686589091306==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Fix Kconfig symbol dependency on KUNIT, which isn't actually required
+for XE to be built-in. However, if KUNIT is enabled, it must be built-in
+too.
 
-== Series Details ==
+Also, allow DRM_XE_DISPLAY to be built-in. But only as long as DRM_I915
+isn't, since that results in duplicate symbol errors.
 
-Series: drm/xe/hwmon: Add support to manage power limits using mailbox commands (rev2)
-URL   : https://patchwork.freedesktop.org/series/148148/
-State : failure
+Fixes: 08987a8b6820 ("drm/xe: Fix build with KUNIT=3Dm")
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Signed-off-by: Harry Austen <hpausten@protonmail.com>
+---
+v3: Simplify KUNIT dependency, as suggested by Jani Nikula
+v2: Ensure DRM_XE_DISPLAY and DRM_I915 can't both be built-in
 
-== Summary ==
+ drivers/gpu/drm/xe/Kconfig | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-CI Bug Log - changes from xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20_BAT -> xe-pw-148148v2_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-148148v2_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-148148v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-148148v2_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-1:          [PASS][1] -> [DMESG-WARN][2] +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148148v2/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@xe_exec_compute_mode@twice-userptr-invalidate:
-    - bat-atsm-2:         [PASS][3] -> [DMESG-WARN][4] +10 other tests dmesg-warn
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20/bat-atsm-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148148v2/bat-atsm-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html
-
-  * igt@xe_module_load@load:
-    - bat-dg2-oem2:       [PASS][5] -> [DMESG-WARN][6] +1 other test dmesg-warn
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20/bat-dg2-oem2/igt@xe_module_load@load.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148148v2/bat-dg2-oem2/igt@xe_module_load@load.html
-    - bat-bmg-2:          [PASS][7] -> [DMESG-WARN][8] +1 other test dmesg-warn
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20/bat-bmg-2/igt@xe_module_load@load.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148148v2/bat-bmg-2/igt@xe_module_load@load.html
-
-  
+diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+index 9bce047901b22..214f40264fa12 100644
+--- a/drivers/gpu/drm/xe/Kconfig
++++ b/drivers/gpu/drm/xe/Kconfig
+@@ -1,7 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ config DRM_XE
+ =09tristate "Intel Xe Graphics"
+-=09depends on DRM && PCI && MMU && (m || (y && KUNIT=3Dy))
++=09depends on DRM && PCI && MMU
++=09depends on KUNIT || KUNIT=3Dn
+ =09select INTERVAL_TREE
+ =09# we need shmfs for the swappable backing store, and in particular
+ =09# the shmem_readpage() which depends upon tmpfs
+@@ -51,7 +52,7 @@ config DRM_XE
+=20
+ config DRM_XE_DISPLAY
+ =09bool "Enable display support"
+-=09depends on DRM_XE && DRM_XE=3Dm && HAS_IOPORT
++=09depends on DRM_XE && (DRM_XE=3Dm || DRM_I915!=3Dy) && HAS_IOPORT
+ =09select FB_IOMEM_HELPERS if DRM_FBDEV_EMULATION
+ =09select I2C
+ =09select I2C_ALGOBIT
+--=20
+2.49.0
 
 
-Build changes
--------------
-
-  * Linux: xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20 -> xe-pw-148148v2
-
-  IGT_8338: 8338
-  xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20: 6e67a7af43567bb9f23fe156fde7efa3d214fd20
-  xe-pw-148148v2: 148148v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148148v2/index.html
-
---===============7852216686589091306==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/hwmon: Add support to manage power limits using mailbox commands (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148148/">https://patchwork.freedesktop.org/series/148148/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148148v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148148v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20_BAT -&gt; xe-pw-148148v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-148148v2_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-148148v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-148148v2_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148148v2/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_compute_mode@twice-userptr-invalidate:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20/bat-atsm-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148148v2/bat-atsm-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html">DMESG-WARN</a> +10 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_module_load@load:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20/bat-dg2-oem2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148148v2/bat-dg2-oem2/igt@xe_module_load@load.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20/bat-bmg-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148148v2/bat-bmg-2/igt@xe_module_load@load.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20 -&gt; xe-pw-148148v2</li>
-</ul>
-<p>IGT_8338: 8338<br />
-  xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20: 6e67a7af43567bb9f23fe156fde7efa3d214fd20<br />
-  xe-pw-148148v2: 148148v2</p>
-
-</body>
-</html>
-
---===============7852216686589091306==--
