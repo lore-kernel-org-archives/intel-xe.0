@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCF48C369C2
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Apr 2025 18:03:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDFE5C369D3
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Apr 2025 18:08:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 790CC10E036;
-	Fri, 25 Apr 2025 18:03:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9279E10E036;
+	Fri, 25 Apr 2025 18:08:14 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68CF410E036;
- Fri, 25 Apr 2025 18:03:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B630110E036;
+ Fri, 25 Apr 2025 18:08:13 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/hwmon=3A_Add_support_to?=
- =?utf-8?q?_manage_power_limits_using_mailbox_commands_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/hwmon=3A_Add_supp?=
+ =?utf-8?q?ort_to_manage_power_limits_using_mailbox_commands_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Karthik Poosa" <karthik.poosa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 25 Apr 2025 18:03:53 -0000
-Message-ID: <174560423343.11980.8542698067745054310@c664b1dc75d1>
+Date: Fri, 25 Apr 2025 18:08:13 -0000
+Message-ID: <174560449371.11985.17203491816127478858@c664b1dc75d1>
 X-Patchwork-Hint: ignore
 References: <20250425174410.3705932-1-karthik.poosa@intel.com>
 In-Reply-To: <20250425174410.3705932-1-karthik.poosa@intel.com>
@@ -48,103 +48,23 @@ State : success
 
 == Summary ==
 
-lib/modules/6.15.0-rc3-xe+/kernel/arch/x86/kvm/
-lib/modules/6.15.0-rc3-xe+/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.15.0-rc3-xe+/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.15.0-rc3-xe+/kernel/arch/x86/kvm/kvm-amd.ko
-lib/modules/6.15.0-rc3-xe+/kernel/virt/
-lib/modules/6.15.0-rc3-xe+/kernel/virt/lib/
-lib/modules/6.15.0-rc3-xe+/kernel/virt/lib/irqbypass.ko
-lib/modules/6.15.0-rc3-xe+/kernel/kernel/
-lib/modules/6.15.0-rc3-xe+/kernel/kernel/kheaders.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/ecrdsa_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/xcbc.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/serpent_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/aria_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/crypto_simd.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/adiantum.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/tcrypt.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/crypto_engine.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/zstd.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/asymmetric_keys/
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/des_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/xctr.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/authenc.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/sm4_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/camellia_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/sm3.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/pcrypt.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/aegis128.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/af_alg.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/algif_aead.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/cmac.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/sm3_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/aes_ti.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/chacha_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/poly1305_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/nhpoly1305.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/crc32_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/essiv.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/ccm.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/wp512.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/streebog_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/authencesn.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/echainiv.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/lrw.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/cryptd.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/crypto_user.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/algif_hash.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/polyval-generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/hctr2.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/842.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/pcbc.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/ansi_cprng.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/cast6_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/twofish_common.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/twofish_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/lz4hc.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/blowfish_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/md4.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/chacha20poly1305.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/curve25519-generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/lz4.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/rmd160.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/algif_skcipher.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/cast5_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/fcrypt.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/ecdsa_generic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/sm4.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/cast_common.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/blowfish_common.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/michael_mic.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/async_tx/
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.15.0-rc3-xe+/kernel/crypto/algif_rng.ko
-lib/modules/6.15.0-rc3-xe+/kernel/block/
-lib/modules/6.15.0-rc3-xe+/kernel/block/bfq.ko
-lib/modules/6.15.0-rc3-xe+/kernel/block/kyber-iosched.ko
-lib/modules/6.15.0-rc3-xe+/build
-lib/modules/6.15.0-rc3-xe+/modules.alias.bin
-lib/modules/6.15.0-rc3-xe+/modules.builtin
-lib/modules/6.15.0-rc3-xe+/modules.softdep
-lib/modules/6.15.0-rc3-xe+/modules.alias
-lib/modules/6.15.0-rc3-xe+/modules.order
-lib/modules/6.15.0-rc3-xe+/modules.symbols
-lib/modules/6.15.0-rc3-xe+/modules.dep.bin
-+ mv kernel-debug.tar.gz ..
-+ cd ..
-+ rm -rf archive-debug
-+ [[ no == \y\e\s ]]
-+ sync
-[+] Finished building and packaging 'debug'!
-+ echo '[+] Finished building and packaging '\''debug'\''!'
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast 6e67a7af43567bb9f23fe156fde7efa3d214fd20
+Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
+Fast mode used, each commit won't be checked separately.
+Okay!
+
 + cleanup
 ++ stat -c %u:%g /kernel
 + chown -R 1003:1003 /kernel
