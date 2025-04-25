@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FD13C369C2
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Apr 2025 22:33:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62D73C369C2
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Apr 2025 22:39:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EFF710E9D6;
-	Fri, 25 Apr 2025 22:33:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09AC110E00D;
+	Fri, 25 Apr 2025 22:39:10 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F37F610E9D6;
- Fri, 25 Apr 2025 22:33:51 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4265972373677104514=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F8E610E00D;
+ Fri, 25 Apr 2025 22:39:08 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_WA_BB_to_capt?=
- =?utf-8?q?ure_active_context_utilization?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/vf=3A_Fix_guc?=
+ =?utf-8?q?=5Finfo_debugfs_for_VFs_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 25 Apr 2025 22:33:51 -0000
-Message-ID: <174562043198.13411.1033163131387930404@c664b1dc75d1>
+Date: Fri, 25 Apr 2025 22:39:08 -0000
+Message-ID: <174562074826.13431.6688082203619494207@c664b1dc75d1>
 X-Patchwork-Hint: ignore
-References: <20250425191039.1551559-1-umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <20250425191039.1551559-1-umesh.nerlige.ramappa@intel.com>
+References: <20250423173908.1571412-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20250423173908.1571412-1-daniele.ceraolospurio@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,106 +40,17 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4265972373677104514==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Add WA BB to capture active context utilization
-URL   : https://patchwork.freedesktop.org/series/148289/
+Series: drm/xe/vf: Fix guc_info debugfs for VFs (rev2)
+URL   : https://patchwork.freedesktop.org/series/148143/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20_BAT -> xe-pw-148289v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 671e1ba64838 drm-tip: 2025y-04m-25d-22h-18m-16s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/vf: Fix guc_info debugfs for VFs
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8338 -> IGT_8339
-  * Linux: xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20 -> xe-pw-148289v1
-
-  IGT_8338: 8338
-  IGT_8339: 8339
-  xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20: 6e67a7af43567bb9f23fe156fde7efa3d214fd20
-  xe-pw-148289v1: 148289v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148289v1/index.html
-
---===============4265972373677104514==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Add WA BB to capture active context utilization</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148289/">https://patchwork.freedesktop.org/series/148289/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148289v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148289v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20_BAT -&gt; xe-pw-148289v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8338 -&gt; IGT_8339</li>
-<li>Linux: xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20 -&gt; xe-pw-148289v1</li>
-</ul>
-<p>IGT_8338: 8338<br />
-  IGT_8339: 8339<br />
-  xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20: 6e67a7af43567bb9f23fe156fde7efa3d214fd20<br />
-  xe-pw-148289v1: 148289v1</p>
-
-</body>
-</html>
-
---===============4265972373677104514==--
