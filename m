@@ -4,54 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43151C369C2
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Apr 2025 13:44:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 642D0C369C2
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Apr 2025 14:01:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0033D10E2D5;
-	Fri, 25 Apr 2025 13:44:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2084F10E136;
+	Fri, 25 Apr 2025 14:01:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VJXEwa6X";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X9RP/828";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 757C710E2AD;
- Fri, 25 Apr 2025 13:44:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9542110E136;
+ Fri, 25 Apr 2025 14:01:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745588656; x=1777124656;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=/OJB8qkTcvfUUEe3I9ibsi+57PjJd+lRSp6q8UZg+eI=;
- b=VJXEwa6XJl3W5hXP4oid60pCdKr0RlWu3099+zcauzzF+aeoA4ONWZ5l
- jKyzRtONpEXba3n+NqQT/Ec7OFxIkCYv+nePhd00y+IaaJu5IrruXXzU7
- 2OHOgAzX1osG7R/GF+56pISlmqwQInr035x1nkdKd3T/3YoWyCRmZ8e05
- zbVW5lK1hujLKdLMOe5wwDYeNEof0o+0VoiPualGWXPSn2lQx+ttYzb9t
- Fj6ZRUK3KGkuwzqu0kyrFs1BxnqdfhgyJKCcuCuYEOaw1fm1i8XdiD9sl
- G0oqmq+wJm8WV37nHxHi89PzHzrkC5/bGzgbCvjFQK18rMqwkXZ4Z1o5o w==;
-X-CSE-ConnectionGUID: y5f9EupsT4SYj9DgJajrnQ==
-X-CSE-MsgGUID: IE7JTyfpSRqsfHqTXKk55g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11414"; a="47378287"
-X-IronPort-AV: E=Sophos;i="6.15,238,1739865600"; d="scan'208";a="47378287"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2025 06:44:15 -0700
-X-CSE-ConnectionGUID: DGm+yn9JRZOCHemuwKKO1A==
-X-CSE-MsgGUID: 2uvAWTnNQwymtBZeIsvqVg==
+ t=1745589687; x=1777125687;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=qJwvzDI/Ecr+K4pKDMV7GxiLNnGXwiyiJLLgrVXjl/8=;
+ b=X9RP/8282XKWEqwwQ1seF/oIzTn+wRvohejTweFsHQ+eZ90khzlbjrJl
+ WLG4uSCKKd508IwlNp2WjmRXLMrgzVfVjIIrY2SSQgrqxbIunGb5UC28c
+ +z4A/X0i65REBlkHNh4YpBskBcu7MzjG57CygfsHCnMz6bmlR1A0tlPrY
+ nyPME3MiXfYoaOVABkkqLlDilbzylpxp+/9QyBlS9dy2dCb1fuP/FJyK4
+ 9lpoNzbcRuzglZyAjPmsdAf3S9iOlti9OaMw7D7AbMLBPdiPfFyjK1UW6
+ kM9W6FwNXo6agYKyRHdCLYKTEUMfudqzHQWs7Xpq970OdO8A1y+biBju6 A==;
+X-CSE-ConnectionGUID: y8UPV2vtTt6yatsg3UUqoQ==
+X-CSE-MsgGUID: WVfdjEy2RUKiTDj6rFBoAQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11414"; a="58618395"
+X-IronPort-AV: E=Sophos;i="6.15,238,1739865600"; d="scan'208";a="58618395"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Apr 2025 07:01:23 -0700
+X-CSE-ConnectionGUID: WPIN99XYTSOGUq13aNBqYg==
+X-CSE-MsgGUID: w3oFJ/h1SNKujDE+bMVYbA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,238,1739865600"; d="scan'208";a="132826233"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by orviesa006.jf.intel.com with ESMTP; 25 Apr 2025 06:44:14 -0700
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jouni.hogander@intel.com,
-	Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH] drm/i915/alpm: Check for alpm support before accessing alpm
- register
-Date: Fri, 25 Apr 2025 18:51:07 +0530
-Message-Id: <20250425132107.2926759-1-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
+X-IronPort-AV: E=Sophos;i="6.15,238,1739865600"; d="scan'208";a="136970958"
+Received: from lkp-server01.sh.intel.com (HELO 050dd05385d1) ([10.239.97.150])
+ by fmviesa003.fm.intel.com with ESMTP; 25 Apr 2025 07:01:22 -0700
+Received: from kbuild by 050dd05385d1 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1u8JcG-0005G1-0m;
+ Fri, 25 Apr 2025 14:01:20 +0000
+Date: Fri, 25 Apr 2025 22:00:33 +0800
+From: kernel test robot <lkp@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Paul Gazzillo <paul@pgazz.com>,
+ Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+ oe-kbuild-all@lists.linux.dev, dri-devel@lists.freedesktop.org,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: Re: [PATCH v3 6/7] drm/xe/userptr: replace xe_hmm with gpusvm
+Message-ID: <202504252124.jQDkibSg-lkp@intel.com>
+References: <20250424121827.862729-15-matthew.auld@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250424121827.862729-15-matthew.auld@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,27 +73,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently as EDP only support alpm and check for alpm support will
-prevent DP connector to access alpm register.
+Hi Matthew,
 
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/display/intel_alpm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+kernel test robot noticed the following build warnings:
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index 482dd192d47d..1bf08b80c23f 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -556,7 +556,7 @@ void intel_alpm_disable(struct intel_dp *intel_dp)
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	enum transcoder cpu_transcoder = intel_dp->alpm_parameters.transcoder;
- 
--	if (DISPLAY_VER(display) < 20)
-+	if (DISPLAY_VER(display) < 20 || !intel_dp->alpm_dpcd)
- 		return;
- 
- 	mutex_lock(&intel_dp->alpm_parameters.lock);
+[auto build test WARNING on drm-xe/drm-xe-next]
+[also build test WARNING on next-20250424]
+[cannot apply to drm-exynos/exynos-drm-next linus/master drm/drm-next drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-misc/drm-misc-next drm-tip/drm-tip v6.15-rc3]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Matthew-Auld/drm-gpusvm-fix-hmm_pfn_to_map_order-usage/20250424-202128
+base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+patch link:    https://lore.kernel.org/r/20250424121827.862729-15-matthew.auld%40intel.com
+patch subject: [PATCH v3 6/7] drm/xe/userptr: replace xe_hmm with gpusvm
+config: alpha-kismet-CONFIG_DRM_GPUSVM-CONFIG_DRM_XE-0-0 (https://download.01.org/0day-ci/archive/20250425/202504252124.jQDkibSg-lkp@intel.com/config)
+reproduce: (https://download.01.org/0day-ci/archive/20250425/202504252124.jQDkibSg-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202504252124.jQDkibSg-lkp@intel.com/
+
+kismet warnings: (new ones prefixed by >>)
+>> kismet: WARNING: unmet direct dependencies detected for DRM_GPUSVM when selected by DRM_XE
+   WARNING: unmet direct dependencies detected for LEDS_EXPRESSWIRE
+     Depends on [n]: GPIOLIB [=n] || NEW_LEDS [=y] && GPIOLIB [=n]
+     Selected by [y]:
+     - BACKLIGHT_KTD2801 [=y] && HAS_IOMEM [=y] && BACKLIGHT_CLASS_DEVICE [=y]
+   
+   WARNING: unmet direct dependencies detected for DRM_GPUSVM
+     Depends on [n]: HAS_IOMEM [=y] && DRM [=y] && DEVICE_PRIVATE [=n]
+     Selected by [m]:
+     - DRM_XE [=m] && HAS_IOMEM [=y] && DRM [=y] && PCI [=y] && MMU [=y] && (m [=m] && MODULES [=y] || KUNIT [=n]=y [=y])
+
 -- 
-2.29.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
