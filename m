@@ -4,41 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5198BC369D3
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 444F5C369D8
 	for <intel-xe@archiver.kernel.org>; Fri, 25 Apr 2025 19:08:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0601A10E9AB;
-	Fri, 25 Apr 2025 19:08:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F18EB10E9A9;
+	Fri, 25 Apr 2025 19:08:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=protonmail.com header.i=@protonmail.com header.b="HG0avtgt";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=protonmail.com header.i=@protonmail.com header.b="BZ6IBnwQ";
 	dkim-atps=neutral
-Received: from mail-4321.protonmail.ch (mail-4321.protonmail.ch [185.70.43.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6319B10E8A1
- for <intel-xe@lists.freedesktop.org>; Fri, 25 Apr 2025 07:36:41 +0000 (UTC)
+Received: from mail-24418.protonmail.ch (mail-24418.protonmail.ch
+ [109.224.244.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C35D110E32A
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Apr 2025 08:31:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
- s=protonmail3; t=1745566590; x=1745825790;
- bh=pzB+ULPjZJoXWNCIbG47lG7lxSlV7q022ronMCkd2Co=;
- h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
- Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector:
- List-Unsubscribe:List-Unsubscribe-Post;
- b=HG0avtgtjX1JJplmZ2W+xPmQcxNkKBLhOg5j0EHiybAfRtWMWBmgyWc7J+sACxz0L
- R9lHs89Py8lV2OveRBpvGfGmn1ttoBTbngs99N0ue/vD1CIvGJkuRZiIzoijQWelRa
- rDwXt1bv3YIzoUcegnBYrd/pYq9y9p2t1yyo4bGMPp1yp3QT/W4uUwdprHofNPAHpk
- LWRtYy2cZfFCmffg2nHgSL4+ihoF4XeEBpPij3zWLHNSlH4hw8CNjpkff1U8P8oFQG
- Moewtq6Rp9sB6j63t+9HQU0VZr8Q101D7BO0QEPsDJ++uSbQtdCkMhuBIzow/xHe13
- UBPlHVw22Vu3w==
-Date: Fri, 25 Apr 2025 07:36:23 +0000
-To: intel-xe@lists.freedesktop.org
+ s=protonmail3; t=1745569894; x=1745829094;
+ bh=6a75d/sPBXMfpiYTV2jvtt8ItESsFJTSxpA5+JF4rWw=;
+ h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+ Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+ Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
+ b=BZ6IBnwQ4AJWDjDTQN7gwoi++dWBs9TGO4130pvCu7PAyJIzbrEV3D24Zt9TQz05U
+ yYuSipnmohHTtYecJ8aGDCOwtnSUZ85N6ug5YFPBsxkrd1cXjwyaJXX33TnWVWbMRw
+ yQkHDXSkCD7LC/CR2AkCslxvFTJYpxYG29XjpsnBkKaB9AUy7cZJakZtmX5UJ/HsdV
+ bnDrM3utKpeNYWWLpjUIO7U51oKBeiDwAHhoEqfUV9qyXrcs1VwUwhsocroqWIDSPs
+ 3yTnKeBxWbKLvXi70tklZcy5s8mBmzBqBM9nNdd5XMcmBFBQifpSOFT6hVrVHT5LNX
+ PzosMyxziCZ1A==
+Date: Fri, 25 Apr 2025 08:31:28 +0000
+To: Jani Nikula <jani.nikula@linux.intel.com>, intel-xe@lists.freedesktop.org
 From: Harry Austen <hpausten@protonmail.com>
 Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Harry Austen <hpausten@protonmail.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
- =?utf-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: [PATCH v2] drm/xe: Allow building as kernel built-in
-Message-ID: <20250425073534.101976-1-hpausten@protonmail.com>
+ =?utf-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCH v2] drm/xe: Allow building as kernel built-in
+Message-ID: <D9FKVQL9LOK4.BSCX5E1QNGN1@protonmail.com>
+In-Reply-To: <87y0voy8mn.fsf@intel.com>
+References: <20250425073534.101976-1-hpausten@protonmail.com>
+ <87y0voy8mn.fsf@intel.com>
 Feedback-ID: 53116287:user:proton
-X-Pm-Message-ID: d1dccf1a1237e941559f5aa11cd9a2ed1b6e14c6
+X-Pm-Message-ID: ed5b41a7773e5d22ff3d0b33e09b86ec6758089e
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -57,47 +59,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fix Kconfig symbol dependency on KUNIT, which isn't actually required
-for XE to be built-in. However, if KUNIT is enabled, it must be built-in
-too.
+On Fri Apr 25, 2025 at 8:59 AM BST, Jani Nikula wrote:
+> On Fri, 25 Apr 2025, Harry Austen <hpausten@protonmail.com> wrote:
+>> Fix Kconfig symbol dependency on KUNIT, which isn't actually required
+>> for XE to be built-in. However, if KUNIT is enabled, it must be built-in
+>> too.
+>>
+>> Also, allow DRM_XE_DISPLAY to be built-in. But only as long as DRM_I915
+>> isn't, since that results in duplicate symbol errors.
+>>
+>> Fixes: 08987a8b6820 ("drm/xe: Fix build with KUNIT=3Dm")
+>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+>> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+>> Signed-off-by: Harry Austen <hpausten@protonmail.com>
+>> ---
+>> v2: Ensure DRM_XE_DISPLAY and DRM_I915 can't both be built-in
+>>
+>>  drivers/gpu/drm/xe/Kconfig | 4 ++--
+>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+>> index 9bce047901b22..bc63c396d7fef 100644
+>> --- a/drivers/gpu/drm/xe/Kconfig
+>> +++ b/drivers/gpu/drm/xe/Kconfig
+>> @@ -1,7 +1,7 @@
+>>  # SPDX-License-Identifier: GPL-2.0-only
+>>  config DRM_XE
+>>  =09tristate "Intel Xe Graphics"
+>> -=09depends on DRM && PCI && MMU && (m || (y && KUNIT=3Dy))
+>> +=09depends on DRM && PCI && MMU && (m || (y && KUNIT!=3Dm))
+>
+> I can't make heads or tails about that. I think expressing the kunit
+> dependency on a separate line like this is both much more common and
+> clear:
+>
+> =09depends on KUNIT || KUNIT=3Dn
 
-Also, allow DRM_XE_DISPLAY to be built-in. But only as long as DRM_I915
-isn't, since that results in duplicate symbol errors.
+Ah, yes that looks like it should do the trick and does seem clearer. Will =
+do in
+v3.
 
-Fixes: 08987a8b6820 ("drm/xe: Fix build with KUNIT=3Dm")
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Signed-off-by: Harry Austen <hpausten@protonmail.com>
----
-v2: Ensure DRM_XE_DISPLAY and DRM_I915 can't both be built-in
+>
+>>  =09select INTERVAL_TREE
+>>  =09# we need shmfs for the swappable backing store, and in particular
+>>  =09# the shmem_readpage() which depends upon tmpfs
+>> @@ -51,7 +51,7 @@ config DRM_XE
+>>
+>>  config DRM_XE_DISPLAY
+>>  =09bool "Enable display support"
+>> -=09depends on DRM_XE && DRM_XE=3Dm && HAS_IOPORT
+>> +=09depends on DRM_XE && (DRM_XE=3Dm || DRM_I915!=3Dy) && HAS_IOPORT
+>>  =09select FB_IOMEM_HELPERS if DRM_FBDEV_EMULATION
+>>  =09select I2C
+>>  =09select I2C_ALGOBIT
+>
+> --
+> Jani Nikula, Intel
 
- drivers/gpu/drm/xe/Kconfig | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-index 9bce047901b22..bc63c396d7fef 100644
---- a/drivers/gpu/drm/xe/Kconfig
-+++ b/drivers/gpu/drm/xe/Kconfig
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0-only
- config DRM_XE
- =09tristate "Intel Xe Graphics"
--=09depends on DRM && PCI && MMU && (m || (y && KUNIT=3Dy))
-+=09depends on DRM && PCI && MMU && (m || (y && KUNIT!=3Dm))
- =09select INTERVAL_TREE
- =09# we need shmfs for the swappable backing store, and in particular
- =09# the shmem_readpage() which depends upon tmpfs
-@@ -51,7 +51,7 @@ config DRM_XE
-=20
- config DRM_XE_DISPLAY
- =09bool "Enable display support"
--=09depends on DRM_XE && DRM_XE=3Dm && HAS_IOPORT
-+=09depends on DRM_XE && (DRM_XE=3Dm || DRM_I915!=3Dy) && HAS_IOPORT
- =09select FB_IOMEM_HELPERS if DRM_FBDEV_EMULATION
- =09select I2C
- =09select I2C_ALGOBIT
---=20
-2.49.0
-
+Thanks,
+Harry
 
