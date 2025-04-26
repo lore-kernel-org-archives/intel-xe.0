@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC12FC369D8
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41337C369D5
 	for <intel-xe@archiver.kernel.org>; Sat, 26 Apr 2025 00:29:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75D1B10E9DA;
-	Sat, 26 Apr 2025 00:29:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BCEF10E17C;
+	Sat, 26 Apr 2025 00:29:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WDHFuYSj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JXA0zsuN";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9400F10E167
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBF2210E17C
  for <intel-xe@lists.freedesktop.org>; Sat, 26 Apr 2025 00:29:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1745627397; x=1777163397;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=LoSSwPz6Q0DcMxb/yu8TqUXI4+fT8yMKxYb8QO+eT9w=;
- b=WDHFuYSjA935/GaTdSv4uakVxd5ChckuptoI//EoZHA0yK/+Npi/ObAG
- KO69TXnOUGf0hDLD5WlMioqMVRmAWqiA9FpWyoAqTgSM4GoKn2XoHMBiW
- OULhg6A6S+K8N3fMoOS33AX+KZs2takKan/hKh5bum69LBzIFzSkBoRV2
- tMS7khzJqh1HAOoIhhOw4cQgUwdEYJ6xsFBbQeoNrdQincmiDX0ASCC33
- uoyQd+2BUW1HFXiWBabR+yUYMcpBouCukC8TUs54VzGQGyFVniEPbzfwf
- 8sWk8e2wnyGzIHvefkoAhYb5XQpnLemkx5a4q9HlYNUSWX8ecH0NBsE0C A==;
-X-CSE-ConnectionGUID: ASUv6SlHRXiCjM97rZct0A==
-X-CSE-MsgGUID: HY6NZb8OTSaUrgIENSWF7w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11414"; a="46532993"
-X-IronPort-AV: E=Sophos;i="6.15,240,1739865600"; d="scan'208";a="46532993"
+ bh=aDQ9bBLZY/OAss+NmgiW5WAMVVpIS2iAIM7emYMvF2M=;
+ b=JXA0zsuNBa2w0/cuDIIhKVF4Jxe0u3hUJvsuGECXZzwsXirbFQMZBGsU
+ zzzVUdI4RaihDTkLM8m/iGbsii+t8vtgyLXDI+glUKiV6LfjYHvY0V7rm
+ aDDHIeL4qppmT5YXw1JH9QHM9ag/8L3ig+TvrpnE3Lx9NNPc33gWYpXOJ
+ A2f+Q6GfdsqjHE5Te4d2zJKFhilmGpj/zKVLdC0pwrCoVlfnlwSlTp/az
+ 720DTPyBNVXI8vBrR+VpbcNFd/WY4kdmeb6E0z/Ypq/FPGoz0Q8YrHpHf
+ 5rP4P2xs7TTS+btefPqEYLxJulM7LjrVCrLeUGVmBZEq4pvasiB6l4JLH A==;
+X-CSE-ConnectionGUID: d0w9EGTIRpC71/7zq7m53w==
+X-CSE-MsgGUID: /9zHQ7PUTfeZFQUdx3nrYA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11414"; a="46532995"
+X-IronPort-AV: E=Sophos;i="6.15,240,1739865600"; d="scan'208";a="46532995"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2025 17:29:54 -0700
-X-CSE-ConnectionGUID: wqfpbwj9Rgi1S6uQLKKRAQ==
-X-CSE-MsgGUID: 9DyKQJxNTqePG+LqFp3H4w==
+ 25 Apr 2025 17:29:55 -0700
+X-CSE-ConnectionGUID: JfxvzZfBQZuELiLUDNaRUQ==
+X-CSE-MsgGUID: xtXM5QX+TPKLZRg6frisrA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,240,1739865600"; d="scan'208";a="138134881"
+X-IronPort-AV: E=Sophos;i="6.15,240,1739865600"; d="scan'208";a="138134888"
 Received: from unerlige-desk1.jf.intel.com ([10.165.21.138])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Apr 2025 17:29:54 -0700
@@ -45,10 +45,9 @@ From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-xe@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
  matthew.brost@intel.com
 Cc: Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH v2 1/3] drm/xe: Save CTX_TIMESTAMP mmio value instead of LRC
- value
-Date: Fri, 25 Apr 2025 17:29:49 -0700
-Message-ID: <20250426002951.1795492-2-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v2 3/3] drm/xe: Add WA BB to capture active context utilization
+Date: Fri, 25 Apr 2025 17:29:51 -0700
+Message-ID: <20250426002951.1795492-4-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250426002951.1795492-1-umesh.nerlige.ramappa@intel.com>
 References: <20250426002951.1795492-1-umesh.nerlige.ramappa@intel.com>
@@ -68,36 +67,356 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For determining actual job execution time, save the current value of the
-CTX_TIMESTAMP register rather than the value saved in LRC since the
-current register value is the closest to the start time of the job.
+Context Timestamp (CTX_TIMESTAMP) in the lrc accumulates the run ticks
+of the context, but only gets updated when the context switches out. In
+order to check how long a context has been active before it switches
+out, two things are required:
 
-Fixes: 65921374c48f ("drm/xe: Emit ctx timestamp copy in ring ops")
+(1) Determine if the context is running:
+
+To do so, we program the wa bb to set an initial value for CTX_TIMESTAMP
+in the lrc. The value chosen is 1 since 0 is the initial value when the
+lrc is initialized. During a query, we just check for this value to
+determine if the context is active. If the context switched out, it
+would overwrite this location with the actual CTX_TIMESTAMP MMIO value.
+Note that wa bb will run after the context has been restored, so reusing
+this lrc location will not clobber anything.
+
+(2) Calculate the time that the context has been active for:
+
+The CTX_TIMESTAMP ticks only when the context is active. If a context is
+active, we just use the CTX_TIMESTAMP MMIO as the new value of
+utilization. While doing so, we need to read the CTX_TIMESTAMP MMIO
+for the specific engine instance. Since we do not know which instance
+the context is running on until it is scheduled, we also read the
+ENGINE_ID MMIO in the wa bb and store it in the PPHSWP.
+
+Using the above 2 instructions in a WA BB, capture active context
+utilization.
+
+v2: (Matt Brost)
+- This breaks TDR, fix it by saving the CTX_TIMESTAMP register
+  "drm/xe: Save CTX_TIMESTAMP mmio value instead of LRC value"
+- Drop tile from lrc if using gt
+  "drm/xe: Save the gt pointer in lrc and drop the tile"
+
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ring_ops.c | 7 ++-----
- 1 file changed, 2 insertions(+), 5 deletions(-)
+ .../gpu/drm/xe/instructions/xe_mi_commands.h  |   4 +
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h      |   4 +
+ drivers/gpu/drm/xe/regs/xe_lrc_layout.h       |   1 +
+ drivers/gpu/drm/xe/xe_lrc.c                   | 167 +++++++++++++++++-
+ drivers/gpu/drm/xe/xe_lrc_types.h             |   3 +
+ 5 files changed, 177 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index a7582b097ae6..bc1689db4cd7 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -234,13 +234,10 @@ static u32 get_ppgtt_flag(struct xe_sched_job *job)
+diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+index eba582058d55..9153a7cd2ceb 100644
+--- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
++++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+@@ -62,6 +62,10 @@
+ #define MI_LOAD_REGISTER_MEM		(__MI_INSTR(0x29) | XE_INSTR_NUM_DW(4))
+ #define   MI_LRM_USE_GGTT		REG_BIT(22)
  
- static int emit_copy_timestamp(struct xe_lrc *lrc, u32 *dw, int i)
++#define MI_STORE_REGISTER_MEM		(__MI_INSTR(0x24) | XE_INSTR_NUM_DW(4))
++#define   MI_SRM_USE_GGTT		REG_BIT(22)
++#define   MI_SRM_ADD_CS_OFFSET		REG_BIT(19)
++
+ #define MI_LOAD_REGISTER_REG		(__MI_INSTR(0x2a) | XE_INSTR_NUM_DW(3))
+ #define   MI_LRR_DST_CS_MMIO		REG_BIT(19)
+ #define   MI_LRR_SRC_CS_MMIO		REG_BIT(18)
+diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+index da713634d6a0..cc698136a6f6 100644
+--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+@@ -43,6 +43,10 @@
+ #define XEHPC_BCS8_RING_BASE			0x3ee000
+ #define GSCCS_RING_BASE				0x11a000
+ 
++#define ENGINE_ID(base)				XE_REG((base) + 0x8c)
++#define   ENGINE_INSTANCE_ID			REG_GENMASK(9, 4)
++#define   ENGINE_CLASS_ID			REG_GENMASK(2, 0)
++
+ #define RING_TAIL(base)				XE_REG((base) + 0x30)
+ #define   TAIL_ADDR				REG_GENMASK(20, 3)
+ 
+diff --git a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+index 57944f90bbf6..210be0ef12f2 100644
+--- a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
++++ b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+@@ -11,6 +11,7 @@
+ #define CTX_RING_TAIL			(0x06 + 1)
+ #define CTX_RING_START			(0x08 + 1)
+ #define CTX_RING_CTL			(0x0a + 1)
++#define CTX_BB_PER_CTX_PTR		(0x12 + 1)
+ #define CTX_TIMESTAMP			(0x22 + 1)
+ #define CTX_INDIRECT_RING_STATE		(0x26 + 1)
+ #define CTX_PDP0_UDW			(0x30 + 1)
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 089b195e2635..a78acec1a358 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -24,6 +24,7 @@
+ #include "xe_hw_fence.h"
+ #include "xe_map.h"
+ #include "xe_memirq.h"
++#include "xe_mmio.h"
+ #include "xe_sriov.h"
+ #include "xe_trace_lrc.h"
+ #include "xe_vm.h"
+@@ -654,6 +655,7 @@ u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc)
+ #define LRC_START_SEQNO_PPHWSP_OFFSET (LRC_SEQNO_PPHWSP_OFFSET + 8)
+ #define LRC_CTX_JOB_TIMESTAMP_OFFSET (LRC_START_SEQNO_PPHWSP_OFFSET + 8)
+ #define LRC_PARALLEL_PPHWSP_OFFSET 2048
++#define LRC_ENGINE_ID_PPHWSP_OFFSET 2096
+ 
+ u32 xe_lrc_regs_offset(struct xe_lrc *lrc)
  {
--	dw[i++] = MI_COPY_MEM_MEM | MI_COPY_MEM_MEM_SRC_GGTT |
--		MI_COPY_MEM_MEM_DST_GGTT;
-+	dw[i++] = MI_STORE_REGISTER_MEM | MI_SRM_USE_GGTT | MI_SRM_ADD_CS_OFFSET;
-+	dw[i++] = RING_CTX_TIMESTAMP(0).addr;
- 	dw[i++] = xe_lrc_ctx_job_timestamp_ggtt_addr(lrc);
- 	dw[i++] = 0;
--	dw[i++] = xe_lrc_ctx_timestamp_ggtt_addr(lrc);
--	dw[i++] = 0;
--	dw[i++] = MI_NOOP;
- 
- 	return i;
+@@ -697,11 +699,21 @@ static inline u32 __xe_lrc_parallel_offset(struct xe_lrc *lrc)
+ 	return xe_lrc_pphwsp_offset(lrc) + LRC_PARALLEL_PPHWSP_OFFSET;
  }
+ 
++static inline u32 __xe_lrc_engine_id_offset(struct xe_lrc *lrc)
++{
++	return xe_lrc_pphwsp_offset(lrc) + LRC_ENGINE_ID_PPHWSP_OFFSET;
++}
++
+ static u32 __xe_lrc_ctx_timestamp_offset(struct xe_lrc *lrc)
+ {
+ 	return __xe_lrc_regs_offset(lrc) + CTX_TIMESTAMP * sizeof(u32);
+ }
+ 
++static u32 __xe_lrc_bb_per_ctx_ptr_offset(struct xe_lrc *lrc)
++{
++	return __xe_lrc_regs_offset(lrc) + CTX_BB_PER_CTX_PTR * sizeof(u32);
++}
++
+ static inline u32 __xe_lrc_indirect_ring_offset(struct xe_lrc *lrc)
+ {
+ 	/* Indirect ring state page is at the very end of LRC */
+@@ -731,6 +743,8 @@ DECL_MAP_ADDR_HELPERS(ctx_job_timestamp)
+ DECL_MAP_ADDR_HELPERS(ctx_timestamp)
+ DECL_MAP_ADDR_HELPERS(parallel)
+ DECL_MAP_ADDR_HELPERS(indirect_ring)
++DECL_MAP_ADDR_HELPERS(bb_per_ctx_ptr)
++DECL_MAP_ADDR_HELPERS(engine_id)
+ 
+ #undef DECL_MAP_ADDR_HELPERS
+ 
+@@ -880,6 +894,58 @@ static void xe_lrc_finish(struct xe_lrc *lrc)
+ 	xe_bo_unpin(lrc->bo);
+ 	xe_bo_unlock(lrc->bo);
+ 	xe_bo_put(lrc->bo);
++	xe_bo_unpin_map_no_vm(lrc->bb_per_ctx_bo);
++}
++
++/*
++ * xe_lrc_setup_utilization() - Setup wa bb to assist in calculating active
++ * context run ticks.
++ * @lrc: Pointer to the lrc.
++ *
++ * Context Timestamp (CTX_TIMESTAMP) in the lrc accumulates the run ticks of the
++ * context, but only gets updated when the context switches out. In order to
++ * check how long a context has been running before it switches out, two things
++ * are required:
++ *
++ * (1) Determine if the context is running
++ * To do so, we program the wa bb to set an initial value for CTX_TIMESTAMP in
++ * the lrc. The value chosen is 1 since 0 is the initial value when the lrc is
++ * initialized. During a query, we just check for this value to determine if the
++ * context is active. If the context switched out, it would overwrite this
++ * location with the actual CTX_TIMESTAMP MMIO value. Note that wa bb will run
++ * after the context has been restored, so reusing this lrc location will not
++ * clobber anything.
++ *
++ * (2) Calculate the time that the context has been running for
++ * The CTX_TIMESTAMP ticks only when the context is active. If a context is
++ * active, we just use the CTX_TIMESTAMP MMIO as the new value of utilization.
++ * While doing so, we need to read the CTX_TIMESTAMP MMIO from the specific
++ * engine instance. Since we do not know which instance the context is running
++ * on until it is scheduled, we also read the ENGINE_ID MMIO in the wa bb and
++ * store it in the PPHSWP.
++ */
++
++static void xe_lrc_setup_utilization(struct xe_lrc *lrc)
++{
++	u32 *cmd;
++
++	cmd = lrc->bb_per_ctx_bo->vmap.vaddr;
++
++	*cmd++ = MI_STORE_REGISTER_MEM | MI_SRM_USE_GGTT | MI_SRM_ADD_CS_OFFSET;
++	*cmd++ = ENGINE_ID(0).addr;
++	*cmd++ = __xe_lrc_engine_id_ggtt_addr(lrc);
++	*cmd++ = 0;
++
++	*cmd++ = MI_STORE_DATA_IMM | MI_SDI_GGTT | MI_SDI_NUM_DW(1);
++	*cmd++ = __xe_lrc_ctx_timestamp_ggtt_addr(lrc);
++	*cmd++ = 0;
++	*cmd++ = 1;
++
++	*cmd++ = MI_BATCH_BUFFER_END;
++
++	xe_lrc_write_ctx_reg(lrc, CTX_BB_PER_CTX_PTR,
++			     xe_bo_ggtt_addr(lrc->bb_per_ctx_bo) | 1);
++
+ }
+ 
+ #define PVC_CTX_ASID		(0x2e + 1)
+@@ -921,6 +987,14 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+ 	if (IS_ERR(lrc->bo))
+ 		return PTR_ERR(lrc->bo);
+ 
++	lrc->bb_per_ctx_bo = xe_bo_create_pin_map(xe, tile, NULL, SZ_4K,
++						  ttm_bo_type_kernel,
++						  bo_flags);
++	if (IS_ERR(lrc->bb_per_ctx_bo)) {
++		err = PTR_ERR(lrc->bb_per_ctx_bo);
++		goto err_lrc_finish;
++	}
++
+ 	lrc->size = lrc_size;
+ 	lrc->ring.size = ring_size;
+ 	lrc->ring.tail = 0;
+@@ -1026,6 +1100,8 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+ 	map = __xe_lrc_start_seqno_map(lrc);
+ 	xe_map_write32(lrc_to_xe(lrc), &map, lrc->fence_ctx.next_seqno - 1);
+ 
++	xe_lrc_setup_utilization(lrc);
++
+ 	return 0;
+ 
+ err_lrc_finish:
+@@ -1245,6 +1321,21 @@ struct iosys_map xe_lrc_parallel_map(struct xe_lrc *lrc)
+ 	return __xe_lrc_parallel_map(lrc);
+ }
+ 
++/**
++ * xe_lrc_engine_id() - Read engine id value
++ * @lrc: Pointer to the lrc.
++ *
++ * Returns: context id value
++ */
++static u32 xe_lrc_engine_id(struct xe_lrc *lrc)
++{
++	struct xe_device *xe = lrc_to_xe(lrc);
++	struct iosys_map map;
++
++	map = __xe_lrc_engine_id_map(lrc);
++	return xe_map_read32(xe, &map);
++}
++
+ static int instr_dw(u32 cmd_header)
+ {
+ 	/* GFXPIPE "SINGLE_DW" opcodes are a single dword */
+@@ -1792,21 +1883,93 @@ void xe_lrc_snapshot_free(struct xe_lrc_snapshot *snapshot)
+ 	kfree(snapshot);
+ }
+ 
++static u32 get_ctx_timestamp(struct xe_lrc *lrc, u32 engine_id)
++{
++	static u32 base[XE_ENGINE_CLASS_MAX][XE_HW_ENGINE_MAX_INSTANCE] = {
++		{
++			RENDER_RING_BASE,
++		},
++		{
++			BSD_RING_BASE,
++			BSD2_RING_BASE,
++			BSD3_RING_BASE,
++			BSD4_RING_BASE,
++			XEHP_BSD5_RING_BASE,
++			XEHP_BSD6_RING_BASE,
++			XEHP_BSD7_RING_BASE,
++			XEHP_BSD8_RING_BASE,
++		},
++		{
++			VEBOX_RING_BASE,
++			VEBOX2_RING_BASE,
++			XEHP_VEBOX3_RING_BASE,
++			XEHP_VEBOX4_RING_BASE,
++		},
++		{
++			BLT_RING_BASE,
++			XEHPC_BCS1_RING_BASE,
++			XEHPC_BCS2_RING_BASE,
++			XEHPC_BCS3_RING_BASE,
++			XEHPC_BCS4_RING_BASE,
++			XEHPC_BCS5_RING_BASE,
++			XEHPC_BCS6_RING_BASE,
++			XEHPC_BCS7_RING_BASE,
++			XEHPC_BCS8_RING_BASE,
++		},
++		{ 0 },
++		{
++			COMPUTE0_RING_BASE,
++			COMPUTE1_RING_BASE,
++			COMPUTE2_RING_BASE,
++			COMPUTE3_RING_BASE,
++		},
++	};
++	u32 c = REG_FIELD_GET(ENGINE_CLASS_ID, engine_id);
++	u32 i = REG_FIELD_GET(ENGINE_INSTANCE_ID, engine_id);
++	u32 mmio_base = base[c][i];
++
++	if (xe_gt_WARN_ONCE(lrc->gt, !mmio_base,
++			    "Unexpected engine c:i %d:%d for context utilization\n",
++			    c, i))
++		return 0;
++
++	return xe_mmio_read32(&lrc->gt->mmio, RING_CTX_TIMESTAMP(mmio_base));
++}
++
+ /**
+  * xe_lrc_update_timestamp() - Update ctx timestamp
+  * @lrc: Pointer to the lrc.
+  * @old_ts: Old timestamp value
+  *
+  * Populate @old_ts current saved ctx timestamp, read new ctx timestamp and
+- * update saved value.
++ * update saved value. With support for active contexts, the calculation may be
++ * slightly racy, so follow a read-again logic to ensure that the context is
++ * still active before returning the right timestamp.
+  *
+  * Returns: New ctx timestamp value
+  */
+ u32 xe_lrc_update_timestamp(struct xe_lrc *lrc, u32 *old_ts)
+ {
++	u32 ctx_lrc, ctx_reg, engine_id;
++
+ 	*old_ts = lrc->ctx_timestamp;
+ 
+-	lrc->ctx_timestamp = xe_lrc_ctx_timestamp(lrc);
++	ctx_lrc = xe_lrc_ctx_timestamp(lrc);
++	if (ctx_lrc == 1) {
++		engine_id = xe_lrc_engine_id(lrc);
++		ctx_reg = get_ctx_timestamp(lrc, engine_id);
++		if (!ctx_reg)
++			lrc->ctx_timestamp = *old_ts;
++		else
++			lrc->ctx_timestamp = ctx_reg;
++
++		/* read lrc again to ensure context is still active */
++		ctx_lrc = xe_lrc_ctx_timestamp(lrc);
++	}
++
++	/* If context switched out, just use the lrc value */
++	if (ctx_lrc != 1)
++		lrc->ctx_timestamp = ctx_lrc;
+ 
+ 	trace_xe_lrc_update_timestamp(lrc, *old_ts);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
+index cd38586ae989..a62d0b8ca8a4 100644
+--- a/drivers/gpu/drm/xe/xe_lrc_types.h
++++ b/drivers/gpu/drm/xe/xe_lrc_types.h
+@@ -53,6 +53,9 @@ struct xe_lrc {
+ 
+ 	/** @ctx_timestamp: readout value of CTX_TIMESTAMP on last update */
+ 	u32 ctx_timestamp;
++
++	/** @bb_per_ctx_bo: buffer object for per context batch wa buffer */
++	struct xe_bo *bb_per_ctx_bo;
+ };
+ 
+ struct xe_lrc_snapshot;
 -- 
 2.43.0
 
