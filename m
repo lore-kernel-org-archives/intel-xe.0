@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64604C369D3
-	for <intel-xe@archiver.kernel.org>; Sun, 27 Apr 2025 09:49:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3280C369D1
+	for <intel-xe@archiver.kernel.org>; Sun, 27 Apr 2025 18:04:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22DF810E36D;
-	Sun, 27 Apr 2025 09:49:19 +0000 (UTC)
-Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98B4010E193;
- Sun, 27 Apr 2025 09:49:17 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB5EE10E16A;
+	Sun, 27 Apr 2025 18:04:51 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d8dfFxzs";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F5AC10E16A;
+ Sun, 27 Apr 2025 18:04:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1745777090; x=1777313090;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=w8iu0in0rmZmoC27jCK5DdfNJu4rYuwfXnFWyrpQkS8=;
+ b=d8dfFxzsSieJI7tO+Qn7nBi8lJTZ83Z8bR1rV6+/hkJr6iDX3uE74dQR
+ tNAlAkm7ZWEh/o8lAnzEyffWXwAFkO2YeiFE0ZA5exCvZQuK+oQ4oaboA
+ 1mt1f25wmx//41IgwAcdegUbEhBhd3oMZkt3HBCR8HtwOriqeJ+SjgqE+
+ 5ACt8Ecmhw89ltoH7KpDk92MKgwf3TI784hv71QzM3L3WEtStoPbtTY9m
+ K4K7Sb/nIKqCeLbYbZmhZ5/Zd2zauEsiTWGdjSFTm1rCc85dnlfpb3ZKM
+ 6ugb4ILpQaL0fQ4wC2tP8lI6+LkSKgrxQqHaKbGgK9wFlv825bv9LDLC4 w==;
+X-CSE-ConnectionGUID: G62B15ONQs+23sfAWnVJrw==
+X-CSE-MsgGUID: btTFSDSWQTaqLQxGBPVtjA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11416"; a="58350225"
+X-IronPort-AV: E=Sophos;i="6.15,244,1739865600"; d="scan'208";a="58350225"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2025 11:04:48 -0700
+X-CSE-ConnectionGUID: h1sF9JZgSHaeU7Af1YC09A==
+X-CSE-MsgGUID: a6mEHzBBT/eEf4/UbahqPg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,244,1739865600"; d="scan'208";a="133213398"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2025 11:04:47 -0700
+Date: Sun, 27 Apr 2025 21:04:44 +0300
+From: Raag Jadav <raag.jadav@intel.com>
+To: jani.nikula@intel.com, rodrigo.vivi@intel.com, lucas.demarchi@intel.com,
+ ville.syrjala@intel.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Rare divide error during display resume
+Message-ID: <aA5xvOhy9qKiVcE0@black.fi.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/gpusvm=3A_set_has=5Fdma=5F?=
- =?utf-8?q?mapping_inside_mapping_loop?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dafna Hirschfeld" <dafna.hirschfeld@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Sun, 27 Apr 2025 09:49:17 -0000
-Message-ID: <174574735763.15606.7808085684038942873@c664b1dc75d1>
-X-Patchwork-Hint: ignore
-References: <20250427094238.1497681-1-dafna.hirschfeld@intel.com>
-In-Reply-To: <20250427094238.1497681-1-dafna.hirschfeld@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,54 +61,72 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+I came across this while testing an unrelated feature. It's not easily
+reproducible so thought I'd share here.
 
-Series: drm/gpusvm: set has_dma_mapping inside mapping loop
-URL   : https://patchwork.freedesktop.org/series/148313/
-State : failure
-
-== Summary ==
-
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:In file included from ../drivers/gpu/drm/xe/xe_bo.c:3118:
-../drivers/gpu/drm/xe/tests/xe_bo.c: In function ‘ccs_test_migrate’:
-../drivers/gpu/drm/xe/tests/xe_bo.c:63:15: error: too many arguments to function ‘xe_bo_evict’
-   63 |         ret = xe_bo_evict(bo, true);
-      |               ^~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_bo.c:2939:5: note: declared here
- 2939 | int xe_bo_evict(struct xe_bo *bo)
-      |     ^~~~~~~~~~~
-At top level:
-cc1: note: unrecognized command-line option ‘-Wno-unterminated-string-initialization’ may have been intended to silence earlier diagnostics
-make[7]: *** [../scripts/Makefile.build:203: drivers/gpu/drm/xe/xe_bo.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-make[6]: *** [../scripts/Makefile.build:461: drivers/gpu/drm/xe] Error 2
-make[6]: *** Waiting for unfinished jobs....
-make[5]: *** [../scripts/Makefile.build:461: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:461: drivers/gpu] Error 2
-make[4]: *** Waiting for unfinished jobs....
-make[3]: *** [../scripts/Makefile.build:461: drivers] Error 2
-make[3]: *** Waiting for unfinished jobs....
-make[2]: *** [/kernel/Makefile:2011: .] Error 2
-make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
-
-[09:48:49] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[09:48:53] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+[ 1802.992726] PM: suspend entry (s2idle)
+[ 1802.993986] Filesystems sync: 0.001 seconds
+[ 1826.223060] xe 0000:03:00.0: [drm] *ERROR* Writing dc state to 0xbffffff4 failed, now 0xffffffff
+[ 1826.315308] xe 0000:03:00.0: [drm] *ERROR* DC state mismatch (0x0 -> 0x4000000b)
+[ 1830.528929] xe 0000:03:00.0: [drm] *ERROR* Writing dc state to 0xbffffff4 failed, now 0xffffffff
+[ 1831.130028] xe 0000:03:00.0: [drm] *ERROR* timeout waiting for CDCLK PLL unlock
+[ 1831.140420] Oops: divide error: 0000 [#1] PREEMPT SMP NOPTI
+[ 1831.145976] CPU: 14 UID: 0 PID: 9834 Comm: kworker/u128:32 Kdump: loaded Tainted: G     U  W          6.14.0-xe+ #14
+[ 1831.156426] Tainted: [U]=USER, [W]=WARN
+[ 1831.160246] Hardware name: Intel Corporation Raptor Lake Client Platform/RPL-S ADP-S DDR5 UDIMM CRB, BIOS RPLSFWI1.R00.5045.A00.2401260733 01/26/2024
+[ 1831.173536] Workqueue: async async_run_entry_fn
+[ 1831.178051] RIP: 0010:bxt_cdclk_ctl.isra.0+0x6c/0x2a0 [xe]
+[ 1831.183599] Code: c2 c1 e1 04 0f b7 f8 f3 0f b8 c7 90 0f af c3 85 c0 40 0f 9e c6 85 c9 0f 9f c2 40 38 d6 89 ca 0f 84 71 01 00 00 d1 fa 01 d0 99 <f7> f9 83 f8 04 0f 84 71 01 00 00 0f 8f 90 00 00 00 45 31 ff 83 f8
+[ 1831.202219] RSP: 0018:ffffc9000b69fa18 EFLAGS: 00010246
+[ 1831.207419] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
+[ 1831.214515] RDX: 0000000000000000 RSI: 0000000000000001 RDI: 000000000000ffff
+[ 1831.221611] RBP: ffffc9000b69fa58 R08: 0000000000000000 R09: ffffc9000b69f858
+[ 1831.228706] R10: ffffc9000b69f850 R11: ffff88888c5fffe8 R12: 0000000000000000
+[ 1831.235796] R13: ffff888173adb3f0 R14: ffffffffffffffff R15: 0000000000000000
+[ 1831.242891] FS:  0000000000000000(0000) GS:ffff88888d500000(0000) knlGS:0000000000000000
+[ 1831.250931] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[ 1831.256647] CR2: 00005632ddf55000 CR3: 0000000003258001 CR4: 0000000000f72ef0
+[ 1831.263741] PKRU: 55555554
+[ 1831.266450] Call Trace:
+[ 1831.268900]  <TASK>
+[ 1831.271006]  ? show_regs+0x6d/0x80
+[ 1831.274400]  ? die+0x3c/0xa0
+[ 1831.277276]  ? do_trap+0xcf/0xf0
+[ 1831.280497]  ? do_error_trap+0x7a/0x100
+[ 1831.284319]  ? bxt_cdclk_ctl.isra.0+0x6c/0x2a0 [xe]
+[ 1831.289264]  ? exc_divide_error+0x3f/0x60
+[ 1831.293260]  ? bxt_cdclk_ctl.isra.0+0x6c/0x2a0 [xe]
+[ 1831.298200]  ? asm_exc_divide_error+0x1f/0x30
+[ 1831.302539]  ? bxt_cdclk_ctl.isra.0+0x6c/0x2a0 [xe]
+[ 1831.307479]  ? bxt_cdclk_ctl.isra.0+0x35/0x2a0 [xe]
+[ 1831.312421]  ? cdclk_squash_waveform+0x9f/0xc0 [xe]
+[ 1831.317361]  _bxt_set_cdclk+0x295/0x650 [xe]
+[ 1831.321699]  bxt_set_cdclk+0x80/0x570 [xe]
+[ 1831.325863]  ? bxt_calc_cdclk_pll_vco+0xa2/0xc0 [xe]
+[ 1831.330890]  intel_cdclk_init_hw+0x238/0x470 [xe]
+[ 1831.335655]  icl_display_core_init+0xde/0x800 [xe]
+[ 1831.340513]  intel_power_domains_init_hw+0x1bc/0x660 [xe]
+[ 1831.345972]  intel_power_domains_resume+0xa4/0x100 [xe]
+[ 1831.351256]  intel_display_power_resume_early+0x5a/0xf0 [xe]
+[ 1831.356971]  xe_display_pm_resume_early+0x27/0x30 [xe]
+[ 1831.362172]  xe_pm_resume+0x12c/0x280 [xe]
+[ 1831.366324]  ? __pfx_pci_pm_resume+0x10/0x10
+[ 1831.370580]  xe_pci_resume+0x60/0x70 [xe]
+[ 1831.374645]  pci_pm_resume+0x78/0x110
+[ 1831.378300]  dpm_run_callback+0x58/0x100
+[ 1831.382213]  device_resume+0x13c/0x350
+[ 1831.385950]  ? __pfx_dpm_watchdog_handler+0x10/0x10
+[ 1831.390808]  async_resume+0x22/0x40
+[ 1831.394287]  async_run_entry_fn+0x36/0x140
+[ 1831.398368]  process_one_work+0x217/0x680
+[ 1831.402365]  worker_thread+0x1a2/0x340
+[ 1831.406103]  ? __pfx_worker_thread+0x10/0x10
+[ 1831.410358]  kthread+0x10b/0x270
+[ 1831.413585]  ? __pfx_kthread+0x10/0x10
+[ 1831.417324]  ret_from_fork+0x3d/0x60
+[ 1831.420894]  ? __pfx_kthread+0x10/0x10
+[ 1831.424632]  ret_from_fork_asm+0x1a/0x30
+[ 1831.428546]  </TASK>
