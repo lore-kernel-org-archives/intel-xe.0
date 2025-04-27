@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34094C369CB
-	for <intel-xe@archiver.kernel.org>; Sat, 26 Apr 2025 12:28:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BE58C369D3
+	for <intel-xe@archiver.kernel.org>; Sun, 27 Apr 2025 09:43:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B963710E34D;
-	Sat, 26 Apr 2025 12:28:09 +0000 (UTC)
-Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 226FE10E09F;
- Sat, 26 Apr 2025 12:28:09 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4175225657812623850=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9009410E05D;
+	Sun, 27 Apr 2025 09:43:50 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iR4DR5Bd";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89C8310E05D
+ for <intel-xe@lists.freedesktop.org>; Sun, 27 Apr 2025 09:43:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1745747028; x=1777283028;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Us+6coO3PcbYdNGnS/UaYuggc3qL39wSpIc3URPYVM8=;
+ b=iR4DR5BdYEZ4YvIawsvOvyqSA7h3OJ/VPurJFnpbZd1a4+s3UmkH+nWY
+ GEQQ8+2ZGzsnfMOEvzd4DeUEH35M69Y92hxVpDCQLHvXxk5wXEO3SG6BS
+ 8i4cbZFTKdUQ8n+s/FnOhe/ln97Ao69+BRbzshaGkdotB2CfO1BjHJypx
+ tZqxZbauWcN/pBcoSLjyVncxXYsLqNO52At4OlvYI3PxHtafo+ciR14zQ
+ lZ/ETJ0oL6tePmzCqYo/k7FcG96oVeBBoMtnJwg1EzBDoox2QIJTQHsfx
+ iW0VDCrOMTmwkVor462ntJi0RqFa4nQDMhNH9oX8kv1IhpSYJBBkOZU8R g==;
+X-CSE-ConnectionGUID: En2oVJDlROSdp8CZj7x6tg==
+X-CSE-MsgGUID: q5DyUodoTUiCZfpPs2Urvw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11415"; a="47237651"
+X-IronPort-AV: E=Sophos;i="6.15,243,1739865600"; d="scan'208";a="47237651"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2025 02:43:42 -0700
+X-CSE-ConnectionGUID: qemDA9KmSxaV6Tk2TOaWLw==
+X-CSE-MsgGUID: fimCuGJfS+KuTpxiEnM5/A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,243,1739865600"; d="scan'208";a="138081609"
+Received: from intelmailrelay-01.habana-labs.com ([10.111.11.20])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2025 02:43:41 -0700
+Received: internal info suppressed
+Received: from dhirschfeld-vm-u22.habana-labs.com (localhost [127.0.0.1])
+ by dhirschfeld-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with
+ ESMTPS id 53R9hWZl1497712
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+ Sun, 27 Apr 2025 12:43:32 +0300
+Received: (from dhirschfeld@localhost)
+ by dhirschfeld-vm-u22.habana-labs.com (8.15.2/8.15.2/Submit) id
+ 53R9hWMv1497711; Sun, 27 Apr 2025 12:43:32 +0300
+From: Dafna Hirschfeld <dafna.hirschfeld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Dafna Hirschfeld <dafna.hirschfeld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH] drm/gpusvm: set has_dma_mapping inside mapping loop
+Date: Sun, 27 Apr 2025 12:42:38 +0300
+Message-Id: <20250427094238.1497681-1-dafna.hirschfeld@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_drm/xe=3A_Add_WA_BB_to_cap?=
- =?utf-8?q?ture_active_context_utilization?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 26 Apr 2025 12:28:09 -0000
-Message-ID: <174567048914.14759.8568789391641030175@c664b1dc75d1>
-X-Patchwork-Hint: ignore
-References: <20250425191039.1551559-1-umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <20250425191039.1551559-1-umesh.nerlige.ramappa@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,61 +71,32 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4175225657812623850==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The 'has_dma_mapping' flag should be set once there is a
+mapping so it could be unmapped in case of error.
 
-== Series Details ==
+Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@intel.com>
+---
+ drivers/gpu/drm/drm_gpusvm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Series: drm/xe: Add WA BB to capture active context utilization
-URL   : https://patchwork.freedesktop.org/series/148289/
-State : failure
+diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
+index 30408f2dd370..4e18b201b5e7 100644
+--- a/drivers/gpu/drm/drm_gpusvm.c
++++ b/drivers/gpu/drm/drm_gpusvm.c
+@@ -1464,9 +1464,9 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
+ 		}
+ 		i += 1 << order;
+ 		num_dma_mapped = i;
++		range->flags.has_dma_mapping = true;
+ 	}
+ 
+-	range->flags.has_dma_mapping = true;
+ 	if (zdd) {
+ 		range->flags.has_devmem_pages = true;
+ 		range->dpagemap = dpagemap;
+-- 
+2.34.1
 
-== Summary ==
-
-ERROR: The runconfig 'xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20_FULL' does not exist in the database
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148289v1/index.html
-
---===============4175225657812623850==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Add WA BB to capture active context utilization</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148289/">https://patchwork.freedesktop.org/series/148289/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148289v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148289v1/index.html</a></td></tr>
-
-</table>
-
-
-    <p>ERROR: The runconfig 'xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20_FULL' does not exist in the database</p>
-
-</body>
-</html>
-
---===============4175225657812623850==--
