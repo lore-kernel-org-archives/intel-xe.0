@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B79F3C36005
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Apr 2025 04:35:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 293EAC369D5
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Apr 2025 04:35:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D46DC10E1EB;
-	Mon, 28 Apr 2025 04:35:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6A8410E36B;
+	Mon, 28 Apr 2025 04:35:52 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F41A10E1EB;
- Mon, 28 Apr 2025 04:35:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0076710E36B;
+ Mon, 28 Apr 2025 04:35:52 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Avoid_plai?=
- =?utf-8?q?n_modulus_in_devcoredump_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Avoid_plain_mod?=
+ =?utf-8?q?ulus_in_devcoredump_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 28 Apr 2025 04:35:41 -0000
-Message-ID: <174581494165.17559.9105319972990935153@c664b1dc75d1>
+Date: Mon, 28 Apr 2025 04:35:52 -0000
+Message-ID: <174581495200.17556.5731205106836914756@c664b1dc75d1>
 X-Patchwork-Hint: ignore
 References: <20250426001039.860444-1-matthew.brost@intel.com>
 In-Reply-To: <20250426001039.860444-1-matthew.brost@intel.com>
@@ -48,9 +48,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 3169be72c46a drm-tip: 2025y-04m-28d-02h-42m-37s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Avoid plain modulus in devcoredump
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d8130fcd541cfec1006158ecab9f1a6d846450ac
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Fri Apr 25 17:10:39 2025 -0700
+
+    drm/xe: Avoid plain modulus in devcoredump
+    
+    Avoid plain modulus in devcoredump rather use div_s64_rem to fix xtensa
+    build.
+    
+    Reported-by: kernel test robot <lkp@intel.com>
+    Closes:  https://lore.kernel.org/oe-kbuild-all/202504251238.JsNgFeFc-lkp@intel.com/
+    Fixes: c4a2e5f865b7 ("drm/xe: Add devcoredump chunking")
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 3169be72c46a44190c6bb7dcf3a0b80986809319 drm-intel
+d8130fcd541c drm/xe: Avoid plain modulus in devcoredump
 
 
