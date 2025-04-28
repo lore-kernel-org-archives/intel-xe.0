@@ -4,27 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5C35C36005
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Apr 2025 04:11:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 599EDC36005
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Apr 2025 04:25:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 623D210E333;
-	Mon, 28 Apr 2025 04:11:58 +0000 (UTC)
-Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99C5510E333;
- Mon, 28 Apr 2025 04:11:56 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id C32C010E36A;
+	Mon, 28 Apr 2025 04:25:00 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="n+OR4rGl";
+	dkim-atps=neutral
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDD1710E364;
+ Mon, 28 Apr 2025 04:24:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=202503; t=1745814294;
+ bh=Pi/iIMCSJTDwYpAX7VGNjNL+T038S3Xs7GDOBapDxyk=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=n+OR4rGl69tAMaeHFyv40owrPKk2Qvq0FgWnuAWtmdHunJocbqdP2hZS7BBU9RDjw
+ aSzyrrpsibL76AZFlL5+MwbI56Apclq/k7wTUrLahWkfWf2Y6IhiDfv6/rKkwbg0in
+ +P190Z8qMYmgFJxlc51RTcGRNd06Pj5EtGLXLzDCdPWTyhAwMMDAzHjoeaXRWTqkJX
+ eon2+44oBJOqXC0VCO/dQJnmUFrXsjN1kqQ6sXHn5J3/oR54ua1uUSo5MBMu7Y+JQn
+ mDOLR7jlTzCeyrJRNkNhX+RrVPx7Z6hBhn3xu6GLs6mYx5BRkgMWrmLLBlKJtftaTY
+ a41wzzm/V2ZIA==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (Client did not present a certificate)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4Zm9Mp0Bf5z4wyh;
+ Mon, 28 Apr 2025 14:24:53 +1000 (AEST)
+Date: Mon, 28 Apr 2025 14:24:52 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Dave Airlie <airlied@redhat.com>, DRI <dri-devel@lists.freedesktop.org>
+Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
+ Mailing List <linux-next@vger.kernel.org>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?=
+ <thomas.hellstrom@linux.intel.com>, DRM XE List
+ <intel-xe@lists.freedesktop.org>
+Subject: Re: linux-next: build failure after merge of the drm tree
+Message-ID: <20250428142452.64ff7dd7@canb.auug.org.au>
+In-Reply-To: <20250428133013.5ad6b6b7@canb.auug.org.au>
+References: <20250428133013.5ad6b6b7@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/xe/tests=3A?=
- =?utf-8?q?_fix_the_bo_evict_build_break?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dave Airlie" <airlied@gmail.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 28 Apr 2025 04:11:56 -0000
-Message-ID: <174581351663.17467.15586158780844628704@c664b1dc75d1>
-X-Patchwork-Hint: ignore
-References: <20250428034043.407486-1-airlied@gmail.com>
-In-Reply-To: <20250428034043.407486-1-airlied@gmail.com>
+Content-Type: multipart/signed; boundary="Sig_/A2wB=lPK0WB_n+yZjXAX+G5";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,19 +57,60 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+--Sig_/A2wB=lPK0WB_n+yZjXAX+G5
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Series: drm/xe/tests: fix the bo evict build break
-URL   : https://patchwork.freedesktop.org/series/148332/
-State : failure
+Hi all,
 
-== Summary ==
+On Mon, 28 Apr 2025 13:30:13 +1000 Stephen Rothwell <sfr@canb.auug.org.au> =
+wrote:
+>
+> After merging the drm tree, today's linux-next build (x86_64 allmodconfig)
+> failed like this:
+>=20
+> In file included from drivers/gpu/drm/xe/xe_bo.c:3118:
+> drivers/gpu/drm/xe/tests/xe_bo.c: In function 'ccs_test_migrate':
+> drivers/gpu/drm/xe/tests/xe_bo.c:63:15: error: too many arguments to func=
+tion 'xe_bo_evict'
+>    63 |         ret =3D xe_bo_evict(bo, true);
+>       |               ^~~~~~~~~~~
+> drivers/gpu/drm/xe/xe_bo.c:2939:5: note: declared here
+>  2939 | int xe_bo_evict(struct xe_bo *bo)
+>       |     ^~~~~~~~~~~
+>=20
+> Caused by commit
+>=20
+>   55df7c0c62c1 ("drm/ttm/xe: drop unused force_alloc flag")
+>=20
+> I have used the drm tree from next-20250424 for today.
 
-Address 'airlied@gmail.com' is not on the allowlist!
-Exception occurred during validation, bailing out!
+The fix for this turned up in the drm-xe tree while I was writing the
+above.  I have now used the current drm tree combined with the current
+drm-xe tree for today.  So the drm tree on its own is broken as above,
+but linux-next is not.
 
+--=20
+Cheers,
+Stephen Rothwell
 
+--Sig_/A2wB=lPK0WB_n+yZjXAX+G5
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmgPAxQACgkQAVBC80lX
+0GzHOgf+I1NaDO9ZHmexBHMt/XiPvkGsTAvn9fA8pR3qyGKurtxJOPAuea/9Rjvx
+OI8a8icC4ZFa0w4IqnSdtU4uF+fZje6rUVm7HLeBf6nBr5zOb3y3Myv5/DlakR+Q
+tTlscB7tBnTgJozR9ZcfhaBGQXblxL4IYZkbvDwpnMfEAuMqQDwlOHTpZI4+Wb8T
+wnnv2h47yZ13H8g7P8qA4GiEjpdtz41b43/IKWB6Smebr3MqtYEoMw86OIxwysiI
+h9vGr6/rlO3/d5RS6N/QGaL/Z/jqJkAb6aAsRbkKZali9Qp/iIjyQXcGu9KTD43G
+Hx/kWZ8z/yYKDKLmBgsSWDsNLZ8+WQ==
+=qDw9
+-----END PGP SIGNATURE-----
+
+--Sig_/A2wB=lPK0WB_n+yZjXAX+G5--
