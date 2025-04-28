@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B63CBC369D3
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Apr 2025 10:04:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20BFAC36005
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Apr 2025 10:07:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 747F510E1AE;
-	Mon, 28 Apr 2025 10:04:49 +0000 (UTC)
-Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 420C110E1AE;
- Mon, 28 Apr 2025 10:04:48 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7285589732695906399=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BECA10E1AE;
+	Mon, 28 Apr 2025 10:07:16 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HHDSfBa3";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D78110E1AE
+ for <intel-xe@lists.freedesktop.org>; Mon, 28 Apr 2025 10:07:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1745834835; x=1777370835;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=WR/uhG+X5q995eEJxUShr5v9DDIcNWkSBO2fCxI5N1Q=;
+ b=HHDSfBa3quLwD1v/z/8xXYUCu7KfcauOBDQnuKu9fLvRf+wRSRuZw2pp
+ yQ+lNWjXTuRae/OwVRYbccYQ5aWDE7Hv+/sNilgUR5pComv4LXf+A/GES
+ bMn5n6UyI4czHEJ8rH9XEhkErlWd3FsIGaeluVa5GpCia4TM+5kX+zOkY
+ nlhalf9dWzsVm/fA8UHlf3ck1VKh/niWtmpRftOjN7nKG6hM1DS3Aa/7K
+ pgSJvCrfOK8c/Gt/IWHtkgz7OjwrtFHVO6Hp2jlsVJlgngTVnp26F0pwn
+ ArYg9U+dAJ15VOUTjEXVZHd3Lq4cLkGQ5JDMCFO94WvXPXugUgzzUPxSK w==;
+X-CSE-ConnectionGUID: /poeb2+bS9Cy4X1wvF1M3w==
+X-CSE-MsgGUID: SW4YeOA2T6CjY1locA+FJA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11416"; a="58783915"
+X-IronPort-AV: E=Sophos;i="6.15,246,1739865600"; d="scan'208";a="58783915"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2025 03:07:15 -0700
+X-CSE-ConnectionGUID: Y3wudvVHSLGq7JiIwP16zA==
+X-CSE-MsgGUID: VIuNz8G3RRyaojfXMqqtoA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,246,1739865600"; d="scan'208";a="138291450"
+Received: from unknown (HELO himal-Super-Server.iind.intel.com)
+ ([10.190.239.34])
+ by orviesa003.jf.intel.com with ESMTP; 28 Apr 2025 03:07:13 -0700
+From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v4 00/18] Prefetch Support for svm ranges
+Date: Mon, 28 Apr 2025 16:02:06 +0530
+Message-Id: <20250428103224.69534-1-himal.prasad.ghimiray@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/1?=
- =?utf-8?q?=5D_drm/xe/svm=3A_PREFETCH_SQUASH_for_CI?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 28 Apr 2025 10:04:48 -0000
-Message-ID: <174583468827.19142.13031493244752072079@c664b1dc75d1>
-X-Patchwork-Hint: ignore
-References: <20250428090016.4128149-1-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20250428090016.4128149-1-himal.prasad.ghimiray@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +62,68 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7285589732695906399==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This series builds upon the SVM work by Matt Brost and introduces the
+ability to prefetch SVM ranges. The prefetch functionality utilizes the
+existing ioctl vm_bind for the user interface.
 
-== Series Details ==
+Prefetching ensures that pages are populated in the requested region and
+that PTEs are updated, thereby preventing GPU page faults.
 
-Series: series starting with [1/1] drm/xe/svm: PREFETCH SQUASH for CI
-URL   : https://patchwork.freedesktop.org/series/148348/
-State : success
+Region 0: Ranges will remain in SMEM, and only PTE updates will occur.
+Region 1: Ranges will migrate to VRAM, and PTEs will be updated
+accordingly
 
-== Summary ==
+Patches[1 - 5] are part of https://patchwork.freedesktop.org/series/147846/
+and are already under review.
 
-CI Bug Log - changes from xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20_BAT -> xe-pw-148348v1_BAT
-====================================================
+v3:
+  - Seperate out madvise and Prefetch series
+  - Rebase on top of atomic fixes for svm
+  - address comments from Matthew Brost
 
-Summary
--------
+Himal Prasad Ghimiray (14):
+  drm/gpusvm: Introduce devmem_only flag for allocation
+  drm/xe: Introduce xe_vma_op_prefetch_range struct for prefetch of
+    ranges
+  drm/xe: Make xe_svm_alloc_vram public
+  drm/xe/svm: Helper to add tile masks to svm ranges
+  drm/xe/svm: Make to_xe_range a public function
+  drm/xe/svm: Make xe_svm_range_* end/start/size public
+  drm/xe/vm: Update xe_vma_ops_incr_pt_update_ops to take an increment
+    value
+  drm/xe/vm: Add an identifier in xe_vma_ops for svm prefetch
+  drm/xe: Rename lookup_vma function to xe_find_vma_by_addr
+  drm/xe/svm: Refactor usage of drm_gpusvm* function in xe_svm
+  drm/xe/svm: Make xe_svm_range_needs_migrate_to_vram() public
+  drm/xe/svm: Add xe_svm_range_validate_and_evict() function
+  drm/xe/svm: Implement prefetch support for SVM ranges
+  drm/xe/vm: Add debug prints for SVM range prefetch
 
-  **SUCCESS**
+Matthew Brost (4):
+  drm/xe: Strict migration policy for atomic SVM faults
+  drm/gpusvm: Add timeslicing support to GPU SVM
+  drm/xe: Timeslice GPU on atomic SVM fault
+  drm/xe: Add atomic_svm_timeslice_ms debugfs entry
 
-  No regressions found.
+ drivers/gpu/drm/drm_gpusvm.c         |  14 ++
+ drivers/gpu/drm/xe/xe_debugfs.c      |  38 ++++
+ drivers/gpu/drm/xe/xe_device.c       |   1 +
+ drivers/gpu/drm/xe/xe_device_types.h |   3 +
+ drivers/gpu/drm/xe/xe_gt_pagefault.c |  24 +--
+ drivers/gpu/drm/xe/xe_module.c       |   3 -
+ drivers/gpu/drm/xe/xe_module.h       |   1 -
+ drivers/gpu/drm/xe/xe_pt.c           |  77 ++++++--
+ drivers/gpu/drm/xe/xe_svm.c          | 251 +++++++++++++++++++------
+ drivers/gpu/drm/xe/xe_svm.h          | 128 ++++++++++++-
+ drivers/gpu/drm/xe/xe_vm.c           | 271 +++++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_vm.h           |   2 +
+ drivers/gpu/drm/xe/xe_vm_types.h     |  15 ++
+ include/drm/drm_gpusvm.h             |   7 +
+ 14 files changed, 705 insertions(+), 130 deletions(-)
 
-  
+-- 
+2.34.1
 
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8338 -> IGT_8340
-  * Linux: xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20 -> xe-pw-148348v1
-
-  IGT_8338: 8338
-  IGT_8340: 9eda33fedff747e846671328a19fa516b5bd7015 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20: 6e67a7af43567bb9f23fe156fde7efa3d214fd20
-  xe-pw-148348v1: 148348v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148348v1/index.html
-
---===============7285589732695906399==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/1] drm/xe/svm: PREFETCH SQUASH for CI</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148348/">https://patchwork.freedesktop.org/series/148348/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148348v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148348v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20_BAT -&gt; xe-pw-148348v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8338 -&gt; IGT_8340</li>
-<li>Linux: xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20 -&gt; xe-pw-148348v1</li>
-</ul>
-<p>IGT_8338: 8338<br />
-  IGT_8340: 9eda33fedff747e846671328a19fa516b5bd7015 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20: 6e67a7af43567bb9f23fe156fde7efa3d214fd20<br />
-  xe-pw-148348v1: 148348v1</p>
-
-</body>
-</html>
-
---===============7285589732695906399==--
