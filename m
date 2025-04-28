@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86F1FC36005
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Apr 2025 10:12:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31314C36005
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Apr 2025 10:13:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C2BC10E3E8;
-	Mon, 28 Apr 2025 10:12:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBE7B10E1E6;
+	Mon, 28 Apr 2025 10:13:20 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0AE310E3EA;
- Mon, 28 Apr 2025 10:12:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E597910E1E6;
+ Mon, 28 Apr 2025 10:13:19 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Prefetch_Support_for?=
- =?utf-8?q?_svm_ranges_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Prefetch_Support_for_svm_?=
+ =?utf-8?q?ranges_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 28 Apr 2025 10:12:53 -0000
-Message-ID: <174583517398.19281.9479092094255356139@c664b1dc75d1>
+Date: Mon, 28 Apr 2025 10:13:19 -0000
+Message-ID: <174583519994.19281.12878091481036867451@c664b1dc75d1>
 X-Patchwork-Hint: ignore
 References: <20250428103224.69534-1-himal.prasad.ghimiray@intel.com>
 In-Reply-To: <20250428103224.69534-1-himal.prasad.ghimiray@intel.com>
@@ -44,30 +44,53 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Prefetch Support for svm ranges (rev3)
 URL   : https://patchwork.freedesktop.org/series/146079/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 4dfede9f7f69 drm-tip: 2025y-04m-28d-09h-50m-50s UTC integration manifest
-=== git am output follows ===
-Applying: drm/gpusvm: Introduce devmem_only flag for allocation
-Applying: drm/xe: Strict migration policy for atomic SVM faults
-Applying: drm/gpusvm: Add timeslicing support to GPU SVM
-Applying: drm/xe: Timeslice GPU on atomic SVM fault
-Applying: drm/xe: Add atomic_svm_timeslice_ms debugfs entry
-Applying: drm/xe: Introduce xe_vma_op_prefetch_range struct for prefetch of ranges
-Applying: drm/xe: Make xe_svm_alloc_vram public
-Applying: drm/xe/svm: Helper to add tile masks to svm ranges
-Applying: drm/xe/svm: Make to_xe_range a public function
-Applying: drm/xe/svm: Make xe_svm_range_* end/start/size public
-Applying: drm/xe/vm: Update xe_vma_ops_incr_pt_update_ops to take an increment value
-Applying: drm/xe/vm: Add an identifier in xe_vma_ops for svm prefetch
-Applying: drm/xe: Rename lookup_vma function to xe_find_vma_by_addr
-Applying: drm/xe/svm: Refactor usage of drm_gpusvm* function in xe_svm
-Applying: drm/xe/svm: Make xe_svm_range_needs_migrate_to_vram() public
-Applying: drm/xe/svm: Add xe_svm_range_validate_and_evict() function
-Applying: drm/xe/svm: Implement prefetch support for SVM ranges
-Applying: drm/xe/vm: Add debug prints for SVM range prefetch
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 3c32b0ee285edb4b7557965e74ee3f67885ea159
+Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Date:   Mon Apr 28 16:02:24 2025 +0530
+
+    drm/xe/vm: Add debug prints for SVM range prefetch
+    
+    Introduce debug logs for the prefetch operation of SVM ranges.
+    
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 4dfede9f7f69716060d29d84a1267f893da9dbee drm-intel
+77bf90e34047 drm/gpusvm: Introduce devmem_only flag for allocation
+972c7902ed4b drm/xe: Strict migration policy for atomic SVM faults
+-:66: CHECK:LOGICAL_CONTINUATIONS: Logical continuations should be on the previous line
+#66: FILE: drivers/gpu/drm/xe/xe_svm.c:657:
++	return ((range->tile_present & ~range->tile_invalidated) & BIT(tile->id))
++		&& (!devmem_only || range->base.flags.migrate_devmem);
+
+total: 0 errors, 0 warnings, 1 checks, 166 lines checked
+0af7b177b185 drm/gpusvm: Add timeslicing support to GPU SVM
+eb3524c0578e drm/xe: Timeslice GPU on atomic SVM fault
+896f90fbd0ed drm/xe: Add atomic_svm_timeslice_ms debugfs entry
+de0b1804b0e7 drm/xe: Introduce xe_vma_op_prefetch_range struct for prefetch of ranges
+990952574494 drm/xe: Make xe_svm_alloc_vram public
+801772dcd92e drm/xe/svm: Helper to add tile masks to svm ranges
+0152ea0175f8 drm/xe/svm: Make to_xe_range a public function
+f4a7e2041184 drm/xe/svm: Make xe_svm_range_* end/start/size public
+1923bd7e233f drm/xe/vm: Update xe_vma_ops_incr_pt_update_ops to take an increment value
+c1aba9b9b489 drm/xe/vm: Add an identifier in xe_vma_ops for svm prefetch
+30446470a472 drm/xe: Rename lookup_vma function to xe_find_vma_by_addr
+65dad551a22a drm/xe/svm: Refactor usage of drm_gpusvm* function in xe_svm
+5b32fdc93708 drm/xe/svm: Make xe_svm_range_needs_migrate_to_vram() public
+dcd7533d7a40 drm/xe/svm: Add xe_svm_range_validate_and_evict() function
+e7ac02484d1b drm/xe/svm: Implement prefetch support for SVM ranges
+3c32b0ee285e drm/xe/vm: Add debug prints for SVM range prefetch
 
 
