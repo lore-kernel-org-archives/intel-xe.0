@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49A24C369D9
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Apr 2025 07:23:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 350AEC369D3
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Apr 2025 07:31:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CF3010E3BA;
-	Mon, 28 Apr 2025 07:23:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E353210E1D0;
+	Mon, 28 Apr 2025 07:31:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KjY5L6wp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nxffPgHa";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EBCC10E3BE
- for <intel-xe@lists.freedesktop.org>; Mon, 28 Apr 2025 07:23:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91A6410E1D0;
+ Mon, 28 Apr 2025 07:31:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745825026; x=1777361026;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=haB4v7udLWp0erpaLIVPJkUnjdCrSgXz8WDOQvid5VQ=;
- b=KjY5L6wp1iKrgNZaT1qZaaEgKJzBt/v4edDy8GZ6bB6d1E+doaGWYEA4
- IOy7clUVdvwUmMQ5mnoO/SC1k/lNlVF+JIWcqEAgMT61QYU2JXaRJshuJ
- cK17ArS++X4lleTRhPPKNGSHCAdDEhjdfYzJlou+l+EYwZcGiCOLKCgA6
- 3reb6U2ol0rVMQ3TFG6ff1SNPkGyePr3zE6vzGT5Jou/VrCzQWEvm7xeF
- SOmt/KPeFGoYyDhy3hKfxkdFuq++WVn/DS+81BKD1KSp6sVL7hYMtMkIM
- Eym10XyRpvMYEIUBMzfGEWI8WChd+CxGEbW7QMulv3PJPOwh9gtkvAL6c A==;
-X-CSE-ConnectionGUID: ezJADtdRRvm56lJ0wZ96ag==
-X-CSE-MsgGUID: Hw4sqzPKRjqpROyha/v2YA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11416"; a="50057004"
-X-IronPort-AV: E=Sophos;i="6.15,245,1739865600"; d="scan'208";a="50057004"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2025 00:23:46 -0700
-X-CSE-ConnectionGUID: 73RKSgi9RSSVlUrgKsSG4w==
-X-CSE-MsgGUID: DTYZMkAHQi64iaOb+7fDbA==
+ t=1745825513; x=1777361513;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=yYagYxpuEuB1EXTQkvFTGZWN2WTlWMZP6v5ZS6zTjTE=;
+ b=nxffPgHay/qWIySkAW2LoFKk2E+BwdP1YncnlWNBOFTWGHvafm+YBYNR
+ owWX+KE0QfF/ttUcRGGja9fVoLxymERShTzIeGKzPVwCiI7oGUf/Aio9o
+ KmGFnAtCKu964w6rGBOO/O+xKus04v8Z3g4OoffLPPlKUKGe0xVY5bnDj
+ IfzKIdvkm/ganHwGYhFv6BAknk4b9n31vQApQtjiditLHj6wOrDadrADy
+ fYPY5lvwC3nQzsZJeTgKJ2mycjO4FR8ZPnCkByOIy4M1tlWOnH2O/D0x6
+ BwGvl1sdnmPNXivJWiPSup0e7miyu/kOHhNOJnltI389jnmC3JU4/H/rT g==;
+X-CSE-ConnectionGUID: PcSCbjSCSaOC4BCAmpWTJg==
+X-CSE-MsgGUID: xoj8Mo2ERCa6/6NiUbhluw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11416"; a="64817246"
+X-IronPort-AV: E=Sophos;i="6.15,245,1739865600"; d="scan'208";a="64817246"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2025 00:31:35 -0700
+X-CSE-ConnectionGUID: HyqZ3A7mTKa0RHqd0fI4pQ==
+X-CSE-MsgGUID: SBCzH+LuQ8CbP8KGWmrSRA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,245,1739865600"; d="scan'208";a="133408760"
-Received: from unknown (HELO himal-Super-Server.iind.intel.com)
- ([10.190.239.34])
- by fmviesa007.fm.intel.com with ESMTP; 28 Apr 2025 00:23:44 -0700
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v3 15/18] drm/xe/svm: Make
- xe_svm_range_needs_migrate_to_vram() public
-Date: Mon, 28 Apr 2025 13:18:26 +0530
-Message-Id: <20250428074829.4125547-16-himal.prasad.ghimiray@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250428074829.4125547-1-himal.prasad.ghimiray@intel.com>
-References: <20250428074829.4125547-1-himal.prasad.ghimiray@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,245,1739865600"; d="scan'208";a="133750458"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.174])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2025 00:31:32 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Raag Jadav <raag.jadav@intel.com>, rodrigo.vivi@intel.com,
+ lucas.demarchi@intel.com, ville.syrjala@intel.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: Rare divide error during display resume
+In-Reply-To: <aA5xvOhy9qKiVcE0@black.fi.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <aA5xvOhy9qKiVcE0@black.fi.intel.com>
+Date: Mon, 28 Apr 2025 10:31:23 +0300
+Message-ID: <87ldrkyc6s.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,100 +68,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_svm_range_needs_migrate_to_vram() determines whether range needs
-migration to vram or not, modify it to accept region preference parameter
-too, so we can use it in prefetch too.
 
-v2
-- add assert instead of warn (Matthew Brost)
+PCI ID of the platform? 
 
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
----
- drivers/gpu/drm/xe/xe_svm.c | 26 ++++++++++++++++++--------
- drivers/gpu/drm/xe/xe_svm.h | 10 ++++++++++
- 2 files changed, 28 insertions(+), 8 deletions(-)
+On Sun, 27 Apr 2025, Raag Jadav <raag.jadav@intel.com> wrote:
+> I came across this while testing an unrelated feature. It's not easily
+> reproducible so thought I'd share here.
+>
+> [ 1802.992726] PM: suspend entry (s2idle)
+> [ 1802.993986] Filesystems sync: 0.001 seconds
+> [ 1826.223060] xe 0000:03:00.0: [drm] *ERROR* Writing dc state to 0xbffffff4 failed, now 0xffffffff
+> [ 1826.315308] xe 0000:03:00.0: [drm] *ERROR* DC state mismatch (0x0 -> 0x4000000b)
+> [ 1830.528929] xe 0000:03:00.0: [drm] *ERROR* Writing dc state to 0xbffffff4 failed, now 0xffffffff
+> [ 1831.130028] xe 0000:03:00.0: [drm] *ERROR* timeout waiting for CDCLK PLL unlock
+> [ 1831.140420] Oops: divide error: 0000 [#1] PREEMPT SMP NOPTI
+> [ 1831.145976] CPU: 14 UID: 0 PID: 9834 Comm: kworker/u128:32 Kdump: loaded Tainted: G     U  W          6.14.0-xe+ #14
+> [ 1831.156426] Tainted: [U]=USER, [W]=WARN
+> [ 1831.160246] Hardware name: Intel Corporation Raptor Lake Client Platform/RPL-S ADP-S DDR5 UDIMM CRB, BIOS RPLSFWI1.R00.5045.A00.2401260733 01/26/2024
+> [ 1831.173536] Workqueue: async async_run_entry_fn
+> [ 1831.178051] RIP: 0010:bxt_cdclk_ctl.isra.0+0x6c/0x2a0 [xe]
+> [ 1831.183599] Code: c2 c1 e1 04 0f b7 f8 f3 0f b8 c7 90 0f af c3 85 c0 40 0f 9e c6 85 c9 0f 9f c2 40 38 d6 89 ca 0f 84 71 01 00 00 d1 fa 01 d0 99 <f7> f9 83 f8 04 0f 84 71 01 00 00 0f 8f 90 00 00 00 45 31 ff 83 f8
+> [ 1831.202219] RSP: 0018:ffffc9000b69fa18 EFLAGS: 00010246
+> [ 1831.207419] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
+> [ 1831.214515] RDX: 0000000000000000 RSI: 0000000000000001 RDI: 000000000000ffff
+> [ 1831.221611] RBP: ffffc9000b69fa58 R08: 0000000000000000 R09: ffffc9000b69f858
+> [ 1831.228706] R10: ffffc9000b69f850 R11: ffff88888c5fffe8 R12: 0000000000000000
+> [ 1831.235796] R13: ffff888173adb3f0 R14: ffffffffffffffff R15: 0000000000000000
+> [ 1831.242891] FS:  0000000000000000(0000) GS:ffff88888d500000(0000) knlGS:0000000000000000
+> [ 1831.250931] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> [ 1831.256647] CR2: 00005632ddf55000 CR3: 0000000003258001 CR4: 0000000000f72ef0
+> [ 1831.263741] PKRU: 55555554
+> [ 1831.266450] Call Trace:
+> [ 1831.268900]  <TASK>
+> [ 1831.271006]  ? show_regs+0x6d/0x80
+> [ 1831.274400]  ? die+0x3c/0xa0
+> [ 1831.277276]  ? do_trap+0xcf/0xf0
+> [ 1831.280497]  ? do_error_trap+0x7a/0x100
+> [ 1831.284319]  ? bxt_cdclk_ctl.isra.0+0x6c/0x2a0 [xe]
+> [ 1831.289264]  ? exc_divide_error+0x3f/0x60
+> [ 1831.293260]  ? bxt_cdclk_ctl.isra.0+0x6c/0x2a0 [xe]
+> [ 1831.298200]  ? asm_exc_divide_error+0x1f/0x30
+> [ 1831.302539]  ? bxt_cdclk_ctl.isra.0+0x6c/0x2a0 [xe]
+> [ 1831.307479]  ? bxt_cdclk_ctl.isra.0+0x35/0x2a0 [xe]
+> [ 1831.312421]  ? cdclk_squash_waveform+0x9f/0xc0 [xe]
+> [ 1831.317361]  _bxt_set_cdclk+0x295/0x650 [xe]
+> [ 1831.321699]  bxt_set_cdclk+0x80/0x570 [xe]
+> [ 1831.325863]  ? bxt_calc_cdclk_pll_vco+0xa2/0xc0 [xe]
+> [ 1831.330890]  intel_cdclk_init_hw+0x238/0x470 [xe]
+> [ 1831.335655]  icl_display_core_init+0xde/0x800 [xe]
+> [ 1831.340513]  intel_power_domains_init_hw+0x1bc/0x660 [xe]
+> [ 1831.345972]  intel_power_domains_resume+0xa4/0x100 [xe]
+> [ 1831.351256]  intel_display_power_resume_early+0x5a/0xf0 [xe]
+> [ 1831.356971]  xe_display_pm_resume_early+0x27/0x30 [xe]
+> [ 1831.362172]  xe_pm_resume+0x12c/0x280 [xe]
+> [ 1831.366324]  ? __pfx_pci_pm_resume+0x10/0x10
+> [ 1831.370580]  xe_pci_resume+0x60/0x70 [xe]
+> [ 1831.374645]  pci_pm_resume+0x78/0x110
+> [ 1831.378300]  dpm_run_callback+0x58/0x100
+> [ 1831.382213]  device_resume+0x13c/0x350
+> [ 1831.385950]  ? __pfx_dpm_watchdog_handler+0x10/0x10
+> [ 1831.390808]  async_resume+0x22/0x40
+> [ 1831.394287]  async_run_entry_fn+0x36/0x140
+> [ 1831.398368]  process_one_work+0x217/0x680
+> [ 1831.402365]  worker_thread+0x1a2/0x340
+> [ 1831.406103]  ? __pfx_worker_thread+0x10/0x10
+> [ 1831.410358]  kthread+0x10b/0x270
+> [ 1831.413585]  ? __pfx_kthread+0x10/0x10
+> [ 1831.417324]  ret_from_fork+0x3d/0x60
+> [ 1831.420894]  ? __pfx_kthread+0x10/0x10
+> [ 1831.424632]  ret_from_fork_asm+0x1a/0x30
+> [ 1831.428546]  </TASK>
 
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 72263df1d69d..90fae13b77ae 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -719,22 +719,32 @@ static bool supports_4K_migration(struct xe_device *xe)
- 	return true;
- }
- 
--static bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range,
--					       struct xe_vma *vma)
-+/**
-+ * xe_svm_range_needs_migrate_to_vram() - SVM range needs migrate to VRAM or not
-+ * @range: SVM range for which migration needs to be decided
-+ * @vma: vma which has range
-+ * @preferred_region_is_vram: preferred region for range is vram
-+ *
-+ * Return: True for range needing migration and migration is supported else false
-+ */
-+bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vma *vma,
-+					bool preferred_region_is_vram)
- {
- 	struct xe_vm *vm = range_to_vm(&range->base);
- 	u64 range_size = xe_svm_range_size(range);
- 
--	if (!range->base.flags.migrate_devmem)
-+	if (!range->base.flags.migrate_devmem || !preferred_region_is_vram)
- 		return false;
- 
--	if (xe_svm_range_in_vram(range)) {
--		drm_dbg(&vm->xe->drm, "Range is already in VRAM\n");
-+	xe_assert(vm->xe, IS_DGFX(vm->xe));
-+
-+	if (preferred_region_is_vram && xe_svm_range_in_vram(range)) {
-+		drm_info(&vm->xe->drm, "Range is already in VRAM\n");
- 		return false;
- 	}
- 
--	if (range_size <= SZ_64K && !supports_4K_migration(vm->xe)) {
--		drm_dbg(&vm->xe->drm, "Platform doesn't support SZ_4K range migration\n");
-+	if (preferred_region_is_vram && range_size <= SZ_64K && !supports_4K_migration(vm->xe)) {
-+		drm_warn(&vm->xe->drm, "Platform doesn't support SZ_4K range migration\n");
- 		return false;
- 	}
- 
-@@ -800,7 +810,7 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 	range_debug(range, "PAGE FAULT");
- 
- 	if (--migrate_try_count >= 0 &&
--	    xe_svm_range_needs_migrate_to_vram(range, vma)) {
-+	    xe_svm_range_needs_migrate_to_vram(range, vma, IS_DGFX(vm->xe))) {
- 		err = xe_svm_alloc_vram(vm, tile, range, &ctx);
- 		ctx.timeslice_ms <<= 1;	/* Double timeslice if we have to retry */
- 		if (err) {
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index cafca625bba9..9be7bb25725c 100644
---- a/drivers/gpu/drm/xe/xe_svm.h
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -80,6 +80,9 @@ struct xe_svm_range *xe_svm_range_find_or_insert(struct xe_vm *vm, u64 addr,
- int xe_svm_range_get_pages(struct xe_vm *vm, struct xe_svm_range *range,
- 			   struct drm_gpusvm_ctx *ctx);
- 
-+bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vma *vma,
-+					bool preferred_region_is_vram);
-+
- /**
-  * xe_svm_range_has_dma_mapping() - SVM range has DMA mapping
-  * @range: SVM range
-@@ -266,6 +269,13 @@ static inline unsigned long xe_svm_range_size(struct xe_svm_range *range)
- 	return 0;
- }
- 
-+static inline
-+bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vma *vma,
-+					u32 region)
-+{
-+	return false;
-+}
-+
- #define xe_svm_assert_in_notifier(...) do {} while (0)
- #define xe_svm_range_has_dma_mapping(...) false
- 
 -- 
-2.34.1
-
+Jani Nikula, Intel
