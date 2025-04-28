@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8B30C36005
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Apr 2025 10:26:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7E97C36005
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Apr 2025 10:31:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C2FC10E1E6;
-	Mon, 28 Apr 2025 10:26:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F1C810E0D4;
+	Mon, 28 Apr 2025 10:31:21 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74CEC10E1E6;
- Mon, 28 Apr 2025 10:26:32 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 669E310E0D4;
+ Mon, 28 Apr 2025 10:31:20 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8560440043164423819=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_Prefetch_Support_for_svm?=
- =?utf-8?q?_ranges_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_drm/xe/tests/mocs=3A_Hold_?=
+ =?utf-8?q?XE=5FFORCEWAKE=5FALL_for_LNCF_regs_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 28 Apr 2025 10:26:32 -0000
-Message-ID: <174583599247.19396.1621096481778896910@c664b1dc75d1>
+Date: Mon, 28 Apr 2025 10:31:20 -0000
+Message-ID: <174583628041.19411.18227779131596805909@c664b1dc75d1>
 X-Patchwork-Hint: ignore
-References: <20250428103224.69534-1-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20250428103224.69534-1-himal.prasad.ghimiray@intel.com>
+References: <20250428082357.1730068-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20250428082357.1730068-1-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,33 +40,57 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============8560440043164423819==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: Prefetch Support for svm ranges (rev3)
-URL   : https://patchwork.freedesktop.org/series/146079/
-State : success
+Series: drm/xe/tests/mocs: Hold XE_FORCEWAKE_ALL for LNCF regs (rev2)
+URL   : https://patchwork.freedesktop.org/series/147446/
+State : failure
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 4dfede9f7f69716060d29d84a1267f893da9dbee
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
+ERROR: The runconfig 'xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20_FULL' does not exist in the database
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147446v2/index.html
+
+--===============8560440043164423819==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/tests/mocs: Hold XE_FORCEWAKE_ALL for LNCF regs (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147446/">https://patchwork.freedesktop.org/series/147446/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147446v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147446v2/index.html</a></td></tr>
+
+</table>
+
+
+    <p>ERROR: The runconfig 'xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20_FULL' does not exist in the database</p>
+
+</body>
+</html>
+
+--===============8560440043164423819==--
