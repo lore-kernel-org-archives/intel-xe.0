@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAFC2C369D3
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Apr 2025 11:29:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1173FC369D3
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Apr 2025 11:29:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F43610E410;
-	Mon, 28 Apr 2025 11:29:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF87210E3D7;
+	Mon, 28 Apr 2025 11:29:18 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8343F10E3D7;
- Mon, 28 Apr 2025 11:29:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19CFC10E3D7;
+ Mon, 28 Apr 2025 11:29:17 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/alpm=3A_Int?=
- =?utf-8?q?roduce_has=5Falpm_to_simplify_alpm_check_in_enable/disable?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/alpm=3A_Introduc?=
+ =?utf-8?q?e_has=5Falpm_to_simplify_alpm_check_in_enable/disable?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Animesh Manna" <animesh.manna@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 28 Apr 2025 11:29:06 -0000
-Message-ID: <174583974653.19588.13216906160315419162@c664b1dc75d1>
+Date: Mon, 28 Apr 2025 11:29:17 -0000
+Message-ID: <174583975710.19587.6829102004684664870@c664b1dc75d1>
 X-Patchwork-Hint: ignore
 References: <20250428095838.3154962-1-animesh.manna@intel.com>
 In-Reply-To: <20250428095838.3154962-1-animesh.manna@intel.com>
@@ -44,13 +44,42 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/i915/alpm: Introduce has_alpm to simplify alpm check in enable/disable
 URL   : https://patchwork.freedesktop.org/series/148355/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 4dfede9f7f69 drm-tip: 2025y-04m-28d-09h-50m-50s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/alpm: Introduce has_alpm to simplify alpm check in enable/disable
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 2b67d1894d695719716a8ab33cb5f2d88195fca7
+Author: Animesh Manna <animesh.manna@intel.com>
+Date:   Mon Apr 28 15:28:38 2025 +0530
+
+    drm/i915/alpm: Introduce has_alpm to simplify alpm check in enable/disable
+    
+    Simplify alpm check in enable/disable with has_alpm.
+    Add a check for alpm during lobf disable which can be enabled
+    with panel replay/psr2.
+    
+    Suggested-by: Jouni Högander <jouni.hogander@intel.com>
+    Signed-off-by: Animesh Manna <animesh.manna@intel.com>
++ /mt/dim checkpatch 4dfede9f7f69716060d29d84a1267f893da9dbee drm-intel
+2b67d1894d69 drm/i915/alpm: Introduce has_alpm to simplify alpm check in enable/disable
+-:49: WARNING:LINE_SPACING: Missing a blank line after declarations
+#49: FILE: drivers/gpu/drm/i915/display/intel_alpm.c:424:
++			u32 alpm_ctl = intel_de_read(display, ALPM_CTL(display, cpu_transcoder));
++			if (alpm_ctl & ALPM_CTL_LOBF_ENABLE) {
+
+-:51: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#51: FILE: drivers/gpu/drm/i915/display/intel_alpm.c:426:
++				intel_de_write(display, ALPM_CTL(display, cpu_transcoder), alpm_ctl);
+
+total: 0 errors, 2 warnings, 0 checks, 66 lines checked
 
 
