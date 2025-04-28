@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DC1FC369D3
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Apr 2025 07:32:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 235B6C36005
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Apr 2025 07:37:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35AEF10E1D0;
-	Mon, 28 Apr 2025 07:32:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA25210E3BC;
+	Mon, 28 Apr 2025 07:37:30 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD8B310E1D0;
- Mon, 28 Apr 2025 07:32:15 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6949160158754606485=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1AFA10E3BC;
+ Mon, 28 Apr 2025 07:37:29 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Enable/Disable_DC_balance_a?=
- =?utf-8?q?long_with_VRR_DSB_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/xe=3A_Fix_xe=5Fb?=
+ =?utf-8?q?o=5Fevict_build_error?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 28 Apr 2025 07:32:15 -0000
-Message-ID: <174582553577.18444.1833562460807983272@c664b1dc75d1>
+Date: Mon, 28 Apr 2025 07:37:29 -0000
+Message-ID: <174582584966.18439.8397330102334488005@c664b1dc75d1>
 X-Patchwork-Hint: ignore
-References: <20250428062058.2811655-1-mitulkumar.ajitkumar.golani@intel.com>
-In-Reply-To: <20250428062058.2811655-1-mitulkumar.ajitkumar.golani@intel.com>
+References: <20250428063956.1729460-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20250428063956.1729460-1-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,106 +40,28 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6949160158754606485==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Enable/Disable DC balance along with VRR DSB (rev2)
-URL   : https://patchwork.freedesktop.org/series/148025/
-State : success
+Series: drm/xe: Fix xe_bo_evict build error
+URL   : https://patchwork.freedesktop.org/series/148340/
+State : failure
 
 == Summary ==
 
-CI Bug Log - changes from xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20_BAT -> xe-pw-148025v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 3169be72c46a drm-tip: 2025y-04m-28d-02h-42m-37s UTC integration manifest
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/xe/xe_bo.c:2930
+error: drivers/gpu/drm/xe/xe_bo.c: patch does not apply
+error: patch failed: drivers/gpu/drm/xe/xe_bo.h:274
+error: drivers/gpu/drm/xe/xe_bo.h: patch does not apply
+error: patch failed: drivers/gpu/drm/xe/xe_dma_buf.c:233
+error: drivers/gpu/drm/xe/xe_dma_buf.c: patch does not apply
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Applying: drm/xe: Fix xe_bo_evict build error
+Patch failed at 0001 drm/xe: Fix xe_bo_evict build error
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
-Build changes
--------------
-
-  * IGT: IGT_8338 -> IGT_8340
-  * Linux: xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20 -> xe-pw-148025v2
-
-  IGT_8338: 8338
-  IGT_8340: 9eda33fedff747e846671328a19fa516b5bd7015 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20: 6e67a7af43567bb9f23fe156fde7efa3d214fd20
-  xe-pw-148025v2: 148025v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148025v2/index.html
-
---===============6949160158754606485==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Enable/Disable DC balance along with VRR DSB (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148025/">https://patchwork.freedesktop.org/series/148025/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148025v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148025v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20_BAT -&gt; xe-pw-148025v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8338 -&gt; IGT_8340</li>
-<li>Linux: xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20 -&gt; xe-pw-148025v2</li>
-</ul>
-<p>IGT_8338: 8338<br />
-  IGT_8340: 9eda33fedff747e846671328a19fa516b5bd7015 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-2999-6e67a7af43567bb9f23fe156fde7efa3d214fd20: 6e67a7af43567bb9f23fe156fde7efa3d214fd20<br />
-  xe-pw-148025v2: 148025v2</p>
-
-</body>
-</html>
-
---===============6949160158754606485==--
