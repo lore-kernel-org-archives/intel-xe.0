@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFCF5C369D9
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Apr 2025 10:21:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5DCDC36005
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Apr 2025 10:22:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E35C10E3EE;
-	Mon, 28 Apr 2025 10:21:51 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X1kAsZZ5";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27A7210E3EC;
- Mon, 28 Apr 2025 10:21:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745835710; x=1777371710;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Upnd9scjzRI+RgklU80Xj4//8eTo3te5prip+GVBoD4=;
- b=X1kAsZZ5vMHzpcB4MfXKU+9Sy+++ub2XCaL5vIJ9/KOwKRO31p9LSTpS
- pIYkaJfdSJFyes2tfsZ+gvAzwfM9It3HkyDSwM0IkoiVWlirSga9z4nxh
- SklcKCwerDCt5jJ/8DwRIii3pkJAfPWXPq7EGbFGET9inqyaS2HQL7SI7
- 4F24YNNSaEYE3Cd41qYaDvieVZu7IMBuy5clcURw0Vh4BwSuikSo4Y3Hb
- Nyg6BKsWhxWjwrqNL6+GBE74d/U98XkGFcFJE0fDZmQPGAKDRLBCIWVk4
- ePtNWADu6EtVU5tXXMMW+pXOYh4HJqCQ9iCaoqyM+LNGb27a0CNwjHAc/ w==;
-X-CSE-ConnectionGUID: BsnLHRvcQ4y5HnOVxAVc+Q==
-X-CSE-MsgGUID: AiqLeEUjRxOyDiM1JQ5U3g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11416"; a="57618048"
-X-IronPort-AV: E=Sophos;i="6.15,246,1739865600"; d="scan'208";a="57618048"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2025 03:21:50 -0700
-X-CSE-ConnectionGUID: gaP8bwOKTdC2+k+D/VfTzw==
-X-CSE-MsgGUID: vhJ035xNS6a7RFA2UIaDyw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,246,1739865600"; d="scan'208";a="164555247"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by fmviesa001.fm.intel.com with ESMTP; 28 Apr 2025 03:21:48 -0700
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jouni.hogander@intel.com,
-	Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH] drm/i915/alpm: Introduce has_alpm to simplify alpm check in
- enable/disable
-Date: Mon, 28 Apr 2025 15:28:38 +0530
-Message-Id: <20250428095838.3154962-1-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98D0510E3EE;
+	Mon, 28 Apr 2025 10:22:57 +0000 (UTC)
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B719710E3EE;
+ Mon, 28 Apr 2025 10:22:56 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_Prefetch_Support_for_svm_range?=
+ =?utf-8?q?s_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 28 Apr 2025 10:22:56 -0000
+Message-ID: <174583577674.19369.10806889011575027809@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <20250428103224.69534-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20250428103224.69534-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,105 +36,117 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Simplify alpm check in enable/disable with has_alpm.
-Add a check for alpm during lobf disable which can be enabled
-with panel replay/psr2.
+== Series Details ==
 
-Suggested-by: Jouni Högander <jouni.hogander@intel.com>
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/display/intel_alpm.c     | 23 +++++++++++++------
- .../drm/i915/display/intel_display_types.h    |  3 +++
- drivers/gpu/drm/i915/display/intel_psr.c      |  2 ++
- 3 files changed, 21 insertions(+), 7 deletions(-)
+Series: Prefetch Support for svm ranges (rev3)
+URL   : https://patchwork.freedesktop.org/series/146079/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index 1bf08b80c23f..aa3f442bf8bd 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -322,6 +322,8 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
- 
- 	crtc_state->has_lobf = (context_latency + guardband) >
- 		(first_sdp_position + waketime_in_lines);
-+
-+	crtc_state->has_alpm |= crtc_state->has_lobf;
- }
- 
- static void lnl_alpm_configure(struct intel_dp *intel_dp,
-@@ -332,8 +334,7 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
- 	enum port port = dp_to_dig_port(intel_dp)->base.port;
- 	u32 alpm_ctl;
- 
--	if (DISPLAY_VER(display) < 20 || (!intel_psr_needs_alpm(intel_dp, crtc_state) &&
--					  !crtc_state->has_lobf))
-+	if (DISPLAY_VER(display) < 20 || !crtc_state->has_alpm)
- 		return;
- 
- 	mutex_lock(&intel_dp->alpm_parameters.lock);
-@@ -417,12 +418,20 @@ void intel_alpm_pre_plane_update(struct intel_atomic_state *state,
- 		if (!intel_dp_is_edp(intel_dp))
- 			continue;
- 
--		if (old_crtc_state->has_lobf) {
--			mutex_lock(&intel_dp->alpm_parameters.lock);
-+		mutex_lock(&intel_dp->alpm_parameters.lock);
-+		if (crtc_state->has_alpm) {
-+			u32 alpm_ctl = intel_de_read(display, ALPM_CTL(display, cpu_transcoder));
-+			if (alpm_ctl & ALPM_CTL_LOBF_ENABLE) {
-+				alpm_ctl &= ~ALPM_CTL_LOBF_ENABLE;
-+				intel_de_write(display, ALPM_CTL(display, cpu_transcoder), alpm_ctl);
-+				drm_dbg_kms(display->drm, "Link off between frames (LOBF) disabled\n");
-+			}
-+		} else {
- 			intel_de_write(display, ALPM_CTL(display, cpu_transcoder), 0);
--			drm_dbg_kms(display->drm, "Link off between frames (LOBF) disabled\n");
--			mutex_unlock(&intel_dp->alpm_parameters.lock);
-+			drm_dbg_kms(display->drm,
-+				    "Link off between frames (LOBF) with ALPM disabled\n");
- 		}
-+		mutex_unlock(&intel_dp->alpm_parameters.lock);
- 	}
- }
- 
-@@ -431,7 +440,7 @@ static void intel_alpm_enable_sink(struct intel_dp *intel_dp,
- {
- 	u8 val;
- 
--	if (!intel_psr_needs_alpm(intel_dp, crtc_state) && !crtc_state->has_lobf)
-+	if (!crtc_state->has_alpm)
- 		return;
- 
- 	val = DP_ALPM_ENABLE | DP_ALPM_LOCK_ERROR_IRQ_HPD_ENABLE;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 7415564d058a..6edcfa5d9c41 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1328,6 +1328,9 @@ struct intel_crtc_state {
- 
- 	/* LOBF flag */
- 	bool has_lobf;
-+
-+	/* ALPM flag */
-+	bool has_alpm;
- };
- 
- enum intel_pipe_crc_source {
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index ccd66bbc72f7..e643f36057f8 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1707,6 +1707,8 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
- 
- 	crtc_state->has_sel_update = intel_sel_update_config_valid(intel_dp, crtc_state);
- 
-+	crtc_state->has_alpm = intel_psr_needs_alpm(intel_dp, crtc_state);
-+
- 	/* Wa_18037818876 */
- 	if (intel_psr_needs_wa_18037818876(intel_dp, crtc_state)) {
- 		crtc_state->has_psr = false;
--- 
-2.29.0
+== Summary ==
+
+lib/modules/6.15.0-rc4-xe+/kernel/arch/x86/kvm/
+lib/modules/6.15.0-rc4-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.15.0-rc4-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.15.0-rc4-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.15.0-rc4-xe+/kernel/virt/
+lib/modules/6.15.0-rc4-xe+/kernel/virt/lib/
+lib/modules/6.15.0-rc4-xe+/kernel/virt/lib/irqbypass.ko
+lib/modules/6.15.0-rc4-xe+/kernel/kernel/
+lib/modules/6.15.0-rc4-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/zstd.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/xctr.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/authenc.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/sm3.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/cmac.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/essiv.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/ccm.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/wp512.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/lrw.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/842.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/md4.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/lz4.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/sm4.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/async_tx/
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.15.0-rc4-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.15.0-rc4-xe+/kernel/block/
+lib/modules/6.15.0-rc4-xe+/kernel/block/bfq.ko
+lib/modules/6.15.0-rc4-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.15.0-rc4-xe+/build
+lib/modules/6.15.0-rc4-xe+/modules.alias.bin
+lib/modules/6.15.0-rc4-xe+/modules.builtin
+lib/modules/6.15.0-rc4-xe+/modules.softdep
+lib/modules/6.15.0-rc4-xe+/modules.alias
+lib/modules/6.15.0-rc4-xe+/modules.order
+lib/modules/6.15.0-rc4-xe+/modules.symbols
+lib/modules/6.15.0-rc4-xe+/modules.dep.bin
++ mv kernel-debug.tar.gz ..
++ cd ..
++ rm -rf archive-debug
++ [[ no == \y\e\s ]]
++ sync
+[+] Finished building and packaging 'debug'!
++ echo '[+] Finished building and packaging '\''debug'\''!'
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
