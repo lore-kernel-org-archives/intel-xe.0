@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3347FC369DC
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Apr 2025 07:23:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3AEEC369D3
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Apr 2025 07:23:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECADB10E3BB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5DF010E3B8;
 	Mon, 28 Apr 2025 07:23:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g7U1UAvW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k8KGv85G";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2990C10E3BA
- for <intel-xe@lists.freedesktop.org>; Mon, 28 Apr 2025 07:23:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41C9E10E391
+ for <intel-xe@lists.freedesktop.org>; Mon, 28 Apr 2025 07:23:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745825019; x=1777361019;
+ t=1745825009; x=1777361009;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=uph3d2Ywi97thmTrd7AHUDy5Saz+v3uaMbfVio6jR88=;
- b=g7U1UAvWlYwJ44O6QV1g1o0HtZe6cy2M9yt9MYQ7p4ach5XjijK8kphl
- iR3Rq2CI0PGDOReQbaRmkUjohKvOjzsHhid/5HN2+zwzyuKENDLoMQAY3
- Y9MGvmSrYDhavmtWspcGtqc2/cQCrYsy3iEf7Lb5jopG9jByhZU4g/aYU
- h6ZpfU7fwMHvAh5BPJugHtwwGn8yetYe7wG4Ldv1s99JyetllObCUC622
- ZmDqrcuKr7/a1XTxfnPy0k7RVFSFSpFely2p5PzUtdqBQj/lSltp4i1qK
- BfaMVu1yDL4WBjXsAd8MO5WRGKi++XklXf0rS5WirkTnXNILh/UNLs1MR Q==;
-X-CSE-ConnectionGUID: zrUgJJQdSQKCnDtLVvgJ9w==
-X-CSE-MsgGUID: epPqwCOLRRKW6F/tFtfjSA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11416"; a="50056971"
-X-IronPort-AV: E=Sophos;i="6.15,245,1739865600"; d="scan'208";a="50056971"
+ bh=6MlRz/dMumcUP5q62pJhErznpV9BWoB/EdcgFSViOTM=;
+ b=k8KGv85G0fRFXKIzMc+bJzqa38QmmoOFNzgxYRPj6k/61mlvD7ten8xY
+ x/ECDGDKtanWTs2Ygl4ONUP5HmXHgb8yXfQiMh8o/T9l78cXUTKRkIKWS
+ SV6fF9zBwAwaa55ZSy9R2M/+CVz3uKYjzTiHuY6LzZNWXfE2lxKHVjg3I
+ donXNeykyXq2Uj6m2K+CeKaLadachyfHytY4MLNN3xNT4fSJhEPkbUTGH
+ byKk6MTyTIgcAYf/yOhHKhIM+VTpP1VdZnD907+7474WL2ChTsF4M6Cvf
+ tZ+9wE3SVEMwL1/0Sd5LP4DPS6tIFV8VBCd25wyay/peMGih6QeFAgzhO g==;
+X-CSE-ConnectionGUID: GUR+jnHZSRSHYZWf7ZL3pA==
+X-CSE-MsgGUID: +VHiibckTeKbDnRuPacdQg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11416"; a="50056921"
+X-IronPort-AV: E=Sophos;i="6.15,245,1739865600"; d="scan'208";a="50056921"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2025 00:23:39 -0700
-X-CSE-ConnectionGUID: ROb9TKmuRUa8Pa5Ov7OMfQ==
-X-CSE-MsgGUID: opE8w+2ZRHWgKVE9PPPDdw==
+ 28 Apr 2025 00:23:29 -0700
+X-CSE-ConnectionGUID: 0fIi42KzTEeZhLopHSOyJw==
+X-CSE-MsgGUID: wtBVozX/QSuq4G39viqMnw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,245,1739865600"; d="scan'208";a="133408746"
+X-IronPort-AV: E=Sophos;i="6.15,245,1739865600"; d="scan'208";a="133408721"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by fmviesa007.fm.intel.com with ESMTP; 28 Apr 2025 00:23:37 -0700
+ by fmviesa007.fm.intel.com with ESMTP; 28 Apr 2025 00:23:28 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v3 11/18] drm/xe/vm: Update xe_vma_ops_incr_pt_update_ops to
- take an increment value
-Date: Mon, 28 Apr 2025 13:18:22 +0530
-Message-Id: <20250428074829.4125547-12-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v3 05/18] drm/xe: Add atomic_svm_timeslice_ms debugfs entry
+Date: Mon, 28 Apr 2025 13:18:16 +0530
+Message-Id: <20250428074829.4125547-6-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250428074829.4125547-1-himal.prasad.ghimiray@intel.com>
 References: <20250428074829.4125547-1-himal.prasad.ghimiray@intel.com>
@@ -68,132 +67,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Prefetch for SVM ranges can have more than one operation to increment,
-hence modify the function to accept an increment value as input.
+From: Matthew Brost <matthew.brost@intel.com>
+
+Add some informal control for atomic SVM fault GPU timeslice to be able
+to play around with values and tweak performance.
 
 v2:
-  - Call xe_vma_ops_incr_pt_update_ops only once for REMAP (Matthew Brost)
-  - Add check for 0 ops
+ - Reduce timeslice default value to 5ms
 
-v3:
-  - s/u8/int for inc_val and num_remap_ops (Matthew Brost)
-
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 28 +++++++++++++++++-----------
- 1 file changed, 17 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/xe/xe_debugfs.c      | 38 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_device.c       |  1 +
+ drivers/gpu/drm/xe/xe_device_types.h |  3 +++
+ drivers/gpu/drm/xe/xe_svm.c          |  3 ++-
+ 4 files changed, 44 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 80e56e232685..2ce91aebf39a 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -806,13 +806,16 @@ static void xe_vma_ops_fini(struct xe_vma_ops *vops)
- 		kfree(vops->pt_update_ops[i].ops);
- }
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index d0503959a8ed..d83cd6ed3fa8 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -191,6 +191,41 @@ static const struct file_operations wedged_mode_fops = {
+ 	.write = wedged_mode_set,
+ };
  
--static void xe_vma_ops_incr_pt_update_ops(struct xe_vma_ops *vops, u8 tile_mask)
-+static void xe_vma_ops_incr_pt_update_ops(struct xe_vma_ops *vops, u8 tile_mask, int inc_val)
++static ssize_t atomic_svm_timeslice_ms_show(struct file *f, char __user *ubuf,
++					    size_t size, loff_t *pos)
++{
++	struct xe_device *xe = file_inode(f)->i_private;
++	char buf[32];
++	int len = 0;
++
++	len = scnprintf(buf, sizeof(buf), "%d\n", xe->atomic_svm_timeslice_ms);
++
++	return simple_read_from_buffer(ubuf, size, pos, buf, len);
++}
++
++static ssize_t atomic_svm_timeslice_ms_set(struct file *f,
++					   const char __user *ubuf,
++					   size_t size, loff_t *pos)
++{
++	struct xe_device *xe = file_inode(f)->i_private;
++	u32 atomic_svm_timeslice_ms;
++	ssize_t ret;
++
++	ret = kstrtouint_from_user(ubuf, size, 0, &atomic_svm_timeslice_ms);
++	if (ret)
++		return ret;
++
++	xe->atomic_svm_timeslice_ms = atomic_svm_timeslice_ms;
++
++	return size;
++}
++
++static const struct file_operations atomic_svm_timeslice_ms_fops = {
++	.owner = THIS_MODULE,
++	.read = atomic_svm_timeslice_ms_show,
++	.write = atomic_svm_timeslice_ms_set,
++};
++
+ void xe_debugfs_register(struct xe_device *xe)
  {
- 	int i;
+ 	struct ttm_device *bdev = &xe->ttm;
+@@ -211,6 +246,9 @@ void xe_debugfs_register(struct xe_device *xe)
+ 	debugfs_create_file("wedged_mode", 0600, root, xe,
+ 			    &wedged_mode_fops);
  
-+	if (!inc_val)
-+		return;
++	debugfs_create_file("atomic_svm_timeslice_ms", 0600, root, xe,
++			    &atomic_svm_timeslice_ms_fops);
 +
- 	for (i = 0; i < XE_MAX_TILES_PER_DEVICE; ++i)
- 		if (BIT(i) & tile_mask)
--			++vops->pt_update_ops[i].num_ops;
-+			vops->pt_update_ops[i].num_ops += inc_val;
- }
+ 	for (mem_type = XE_PL_VRAM0; mem_type <= XE_PL_VRAM1; ++mem_type) {
+ 		man = ttm_manager_type(bdev, mem_type);
  
- static void xe_vm_populate_rebind(struct xe_vma_op *op, struct xe_vma *vma,
-@@ -842,7 +845,7 @@ static int xe_vm_ops_add_rebind(struct xe_vma_ops *vops, struct xe_vma *vma,
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 75e753e0a682..abf3c72baaa6 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -444,6 +444,7 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+ 	xe->info.devid = pdev->device;
+ 	xe->info.revid = pdev->revision;
+ 	xe->info.force_execlist = xe_modparam.force_execlist;
++	xe->atomic_svm_timeslice_ms = 5;
  
- 	xe_vm_populate_rebind(op, vma, tile_mask);
- 	list_add_tail(&op->link, &vops->list);
--	xe_vma_ops_incr_pt_update_ops(vops, tile_mask);
-+	xe_vma_ops_incr_pt_update_ops(vops, tile_mask, 1);
+ 	err = xe_irq_init(xe);
+ 	if (err)
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 495bc00ebed4..59babadeb9d1 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -571,6 +571,9 @@ struct xe_device {
+ 	/** @pmu: performance monitoring unit */
+ 	struct xe_pmu pmu;
  
- 	return 0;
- }
-@@ -977,7 +980,7 @@ xe_vm_ops_add_range_rebind(struct xe_vma_ops *vops,
- 
- 	xe_vm_populate_range_rebind(op, vma, range, tile_mask);
- 	list_add_tail(&op->link, &vops->list);
--	xe_vma_ops_incr_pt_update_ops(vops, tile_mask);
-+	xe_vma_ops_incr_pt_update_ops(vops, tile_mask, 1);
- 
- 	return 0;
- }
-@@ -1062,7 +1065,7 @@ xe_vm_ops_add_range_unbind(struct xe_vma_ops *vops,
- 
- 	xe_vm_populate_range_unbind(op, range);
- 	list_add_tail(&op->link, &vops->list);
--	xe_vma_ops_incr_pt_update_ops(vops, range->tile_present);
-+	xe_vma_ops_incr_pt_update_ops(vops, range->tile_present, 1);
- 
- 	return 0;
- }
-@@ -2493,7 +2496,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 			     !op->map.is_cpu_addr_mirror) ||
- 			    op->map.invalidate_on_bind)
- 				xe_vma_ops_incr_pt_update_ops(vops,
--							      op->tile_mask);
-+							      op->tile_mask, 1);
- 			break;
- 		}
- 		case DRM_GPUVA_OP_REMAP:
-@@ -2502,6 +2505,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 				gpuva_to_vma(op->base.remap.unmap->va);
- 			bool skip = xe_vma_is_cpu_addr_mirror(old);
- 			u64 start = xe_vma_start(old), end = xe_vma_end(old);
-+			int num_remap_ops = 0;
- 
- 			if (op->base.remap.prev)
- 				start = op->base.remap.prev->va.addr +
-@@ -2554,7 +2558,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 					       (ULL)op->remap.start,
- 					       (ULL)op->remap.range);
- 				} else {
--					xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
-+					num_remap_ops++;
- 				}
- 			}
- 
-@@ -2583,11 +2587,13 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 					       (ULL)op->remap.start,
- 					       (ULL)op->remap.range);
- 				} else {
--					xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
-+					num_remap_ops++;
- 				}
- 			}
- 			if (!skip)
--				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
-+				num_remap_ops++;
++	/** @atomic_svm_timeslice_ms: Atomic SVM fault timeslice MS */
++	u32 atomic_svm_timeslice_ms;
 +
-+			xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask, num_remap_ops);
- 			break;
- 		}
- 		case DRM_GPUVA_OP_UNMAP:
-@@ -2599,7 +2605,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 				return -EBUSY;
- 
- 			if (!xe_vma_is_cpu_addr_mirror(vma))
--				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
-+				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask, 1);
- 			break;
- 		case DRM_GPUVA_OP_PREFETCH:
- 			vma = gpuva_to_vma(op->base.prefetch.va);
-@@ -2611,7 +2617,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 			}
- 
- 			if (!xe_vma_is_cpu_addr_mirror(vma))
--				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
-+				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask, 1);
- 			break;
- 		default:
- 			drm_warn(&vm->xe->drm, "NOT POSSIBLE");
+ #ifdef TEST_VM_OPS_ERROR
+ 	/**
+ 	 * @vm_inject_error_position: inject errors at different places in VM
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index d5376a76cdd1..de4eb04fc78e 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -784,7 +784,8 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 		.devmem_only = atomic && IS_DGFX(vm->xe) &&
+ 			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR),
+ 		.timeslice_ms = atomic && IS_DGFX(vm->xe) &&
+-			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR) ? 5 : 0,
++			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR) ?
++			vm->xe->atomic_svm_timeslice_ms : 0,
+ 	};
+ 	struct xe_svm_range *range;
+ 	struct drm_gpusvm_range *r;
 -- 
 2.34.1
 
