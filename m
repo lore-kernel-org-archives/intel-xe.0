@@ -4,56 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DB84C369DC
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Apr 2025 10:07:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C01D4C36005
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Apr 2025 10:12:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFB9710E3E1;
-	Mon, 28 Apr 2025 10:07:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7237810E3E5;
+	Mon, 28 Apr 2025 10:12:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gc0UTXq5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YOVkkLYp";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F64910E3DE
- for <intel-xe@lists.freedesktop.org>; Mon, 28 Apr 2025 10:07:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE1F410E3E5
+ for <intel-xe@lists.freedesktop.org>; Mon, 28 Apr 2025 10:12:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745834860; x=1777370860;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=0/KoPWvRTbF0phAKd/P2HagRgyByiI0WiV+xJhE2SvA=;
- b=gc0UTXq59Y4EokEH9UfvS6eMSIh0KSXWr8AZZFEEw17Rcq/MzwLQXHbS
- VRsNxHNReumg4zxOF1dWiQ1fscNGUZEYexxsrQj2cyYcHZKP8tOoCvN2O
- 7vcHCpbvYJMW3WCr/OBiVP7UvAYF734ruIlavIPgXZ2k4Y1a11USLi6eU
- U6R/KMLyBiKhJshr8qUqMHV8GvSB1k/0eE3Sr9zgZxtqit8c7u9dqmnCv
- JH1UDvf5VUyEyL+5kN1lVmgOFbQEFLabEHbxnxsKzFZaS8hckQtc/nImo
- 9HM+xtPKF1RRN+Vy3uduFGhsW9svMCy0jt6VYfcu8O3d6IHXQW9/5RGLZ w==;
-X-CSE-ConnectionGUID: NUelzng4Smi+bLPn6YcraQ==
-X-CSE-MsgGUID: 3FR8H+10Rj+xH2op8MOb9w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11416"; a="58783975"
-X-IronPort-AV: E=Sophos;i="6.15,246,1739865600"; d="scan'208";a="58783975"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2025 03:07:40 -0700
-X-CSE-ConnectionGUID: 2zs1SI8ZT7WfxeDIWtPqRg==
-X-CSE-MsgGUID: hyj6gzObREeQ80tIWzFFOQ==
+ t=1745835164; x=1777371164;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=97tijpHSrYj8opPAe16nZiavd3FJ9y35Ws7iSNOpcEc=;
+ b=YOVkkLYpmIyNyYg++h9nV2aCz8OrIFu+DlzU1bpiHgRIDwp+ZYt6UmZF
+ y69k0chwByDxHl4FCB6YDupnhKxachIk14JhtqX6gpQs48t8+r6nhtcJJ
+ +OTi43K7/ki9i6r/AxCPSbPQp0m2DmOM9YAOvNZ5XuYQ2+n3qwGK/FKj5
+ GKdlbSdrriPbnexR4gLT+mrDJDR5WtGhhkcbodLhIjEMvPm4B3rBcqukG
+ 5gvR1R9NoR3meNPxJKzyo6E27vreOBwCP9Y793nx5ClZ+Sih7BEsNNKfa
+ 8gzCS4nPyxUL3vVbFDeZZZb5ngyY6U397XuaD7rBnSxXf/Y9gMNTiO0BA Q==;
+X-CSE-ConnectionGUID: BJEk/utRRoSnp+hTdukQjA==
+X-CSE-MsgGUID: hAFrf+t0QMy1lez8u4yOUA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11416"; a="57616750"
+X-IronPort-AV: E=Sophos;i="6.15,246,1739865600"; d="scan'208";a="57616750"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2025 03:12:43 -0700
+X-CSE-ConnectionGUID: 1ffHwNm1SuqH5tCBu/fY1w==
+X-CSE-MsgGUID: r22WpNuCSciP85lh6j3Jmg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,246,1739865600"; d="scan'208";a="138291512"
-Received: from unknown (HELO himal-Super-Server.iind.intel.com)
- ([10.190.239.34])
- by orviesa003.jf.intel.com with ESMTP; 28 Apr 2025 03:07:38 -0700
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v4 13/18] drm/xe: Rename lookup_vma function to
- xe_find_vma_by_addr
-Date: Mon, 28 Apr 2025 16:02:19 +0530
-Message-Id: <20250428103224.69534-14-himal.prasad.ghimiray@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250428103224.69534-1-himal.prasad.ghimiray@intel.com>
-References: <20250428103224.69534-1-himal.prasad.ghimiray@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,246,1739865600"; d="scan'208";a="138280547"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2025 03:12:41 -0700
+Date: Mon, 28 Apr 2025 13:12:38 +0300
+From: Raag Jadav <raag.jadav@intel.com>
+To: lucas.demarchi@intel.com, rodrigo.vivi@intel.com
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ badal.nilawar@intel.com, riana.tauro@intel.com
+Subject: Re: [PATCH v4 0/3] BMG PCIe Gen5 downgrade attributes and usage
+Message-ID: <aA9UlvQfo5-6-CtB@black.fi.intel.com>
+References: <20250425140626.3082588-1-raag.jadav@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250425140626.3082588-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,116 +67,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This update renames the lookup_vma function to xe_vm_find_vma_by_addr and
-makes it accessible externally. The function, which looks up a VMA by
-its address within a specified VM, will be utilized in upcoming patches.
+On Fri, Apr 25, 2025 at 07:36:23PM +0530, Raag Jadav wrote:
+> This series exposes sysfs attributes for BMG PCIe Gen5 downgrade and
+> documents their usage.
 
-v2
- - Fix doc
+Anything I can do to move this forward?
 
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_pagefault.c | 24 +----------------------
- drivers/gpu/drm/xe/xe_vm.c           | 29 ++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vm.h           |  2 ++
- 3 files changed, 32 insertions(+), 23 deletions(-)
+Raag
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index 10622ca471a2..7a8f87709e39 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -72,28 +72,6 @@ static bool vma_is_valid(struct xe_tile *tile, struct xe_vma *vma)
- 		!(BIT(tile->id) & vma->tile_invalidated);
- }
- 
--static bool vma_matches(struct xe_vma *vma, u64 page_addr)
--{
--	if (page_addr > xe_vma_end(vma) - 1 ||
--	    page_addr + SZ_4K - 1 < xe_vma_start(vma))
--		return false;
--
--	return true;
--}
--
--static struct xe_vma *lookup_vma(struct xe_vm *vm, u64 page_addr)
--{
--	struct xe_vma *vma = NULL;
--
--	if (vm->usm.last_fault_vma) {   /* Fast lookup */
--		if (vma_matches(vm->usm.last_fault_vma, page_addr))
--			vma = vm->usm.last_fault_vma;
--	}
--	if (!vma)
--		vma = xe_vm_find_overlapping_vma(vm, page_addr, SZ_4K);
--
--	return vma;
--}
- 
- static int xe_pf_begin(struct drm_exec *exec, struct xe_vma *vma,
- 		       bool atomic, unsigned int id)
-@@ -231,7 +209,7 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
- 		goto unlock_vm;
- 	}
- 
--	vma = lookup_vma(vm, pf->page_addr);
-+	vma = xe_vm_find_vma_by_addr(vm, pf->page_addr);
- 	if (!vma) {
- 		err = -EINVAL;
- 		goto unlock_vm;
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 655bcf88f760..555ed10dac85 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2139,6 +2139,35 @@ int xe_vm_destroy_ioctl(struct drm_device *dev, void *data,
- 	return err;
- }
- 
-+static bool vma_matches(struct xe_vma *vma, u64 page_addr)
-+{
-+	if (page_addr > xe_vma_end(vma) - 1 ||
-+	    page_addr + SZ_4K - 1 < xe_vma_start(vma))
-+		return false;
-+
-+	return true;
-+}
-+
-+/**
-+ * xe_vm_find_vma_by_addr() - Find a VMA by its address
-+ *
-+ * @vm: the xe_vm the vma belongs to
-+ * @page_addr: address to look up
-+ */
-+struct xe_vma *xe_vm_find_vma_by_addr(struct xe_vm *vm, u64 page_addr)
-+{
-+	struct xe_vma *vma = NULL;
-+
-+	if (vm->usm.last_fault_vma) {   /* Fast lookup */
-+		if (vma_matches(vm->usm.last_fault_vma, page_addr))
-+			vma = vm->usm.last_fault_vma;
-+	}
-+	if (!vma)
-+		vma = xe_vm_find_overlapping_vma(vm, page_addr, SZ_4K);
-+
-+	return vma;
-+}
-+
- static const u32 region_to_mem_type[] = {
- 	XE_PL_TT,
- 	XE_PL_VRAM0,
-diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index 0ef811fc2bde..99e164852f63 100644
---- a/drivers/gpu/drm/xe/xe_vm.h
-+++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -169,6 +169,8 @@ static inline bool xe_vma_is_userptr(struct xe_vma *vma)
- 		!xe_vma_is_cpu_addr_mirror(vma);
- }
- 
-+struct xe_vma *xe_vm_find_vma_by_addr(struct xe_vm *vm, u64 page_addr);
-+
- /**
-  * to_userptr_vma() - Return a pointer to an embedding userptr vma
-  * @vma: Pointer to the embedded struct xe_vma
--- 
-2.34.1
-
+> v1: https://patchwork.freedesktop.org/series/147023/
+> 
+> v2: Move from debugfs to sysfs (Lucas, Rodrigo, Badal)
+>     Rework macros and their naming (Rodrigo)
+> 
+> v3: Move xe_device_sysfs_init() to xe_device_probe() (Riana)
+>     Use sysfs_create_files() (Riana)
+>     Fix checkpatch warning (Riana)
+> 
+> v4: s/gen4_downspeed/gen5_downgrade (Lucas, Rodrigo, Riana)
+> 
+> Raag Jadav (3):
+>   drm/xe/pm: s/xe_device_sysfs_init/xe_pm_sysfs_init
+>   drm/xe: Expose PCIe Gen5 downgrade attributes
+>   drm/xe/doc: Wire up PCIe Gen5 limitations
+> 
+>  Documentation/gpu/xe/xe_firmware.rst |   6 ++
+>  drivers/gpu/drm/xe/xe_device.c       |   5 ++
+>  drivers/gpu/drm/xe/xe_device_sysfs.c | 107 ++++++++++++++++++++++++++-
+>  drivers/gpu/drm/xe/xe_device_sysfs.h |   1 +
+>  drivers/gpu/drm/xe/xe_pcode_api.h    |   5 ++
+>  drivers/gpu/drm/xe/xe_pm.c           |   2 +-
+>  6 files changed, 123 insertions(+), 3 deletions(-)
+> 
+> -- 
+> 2.34.1
+> 
