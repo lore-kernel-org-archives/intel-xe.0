@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 330FAC3ABA5
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Apr 2025 20:18:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6F72C3ABA9
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Apr 2025 20:18:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1BC610E23B;
-	Tue, 29 Apr 2025 20:18:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8372710E2EC;
+	Tue, 29 Apr 2025 20:18:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bGAMhwEx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lfex8oza";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C674310E23B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E60F010E1B2
  for <intel-xe@lists.freedesktop.org>; Tue, 29 Apr 2025 20:17:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1745957880; x=1777493880;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Eg3Zh+oxdXozLcYaq2vyUG54YMAFzqj7v7e4yj99eFs=;
- b=bGAMhwEx5HxGqbg3vV2qbR7Xu7YClZciBX9WbYVojiO0je6jJo5gFxyA
- bkRL/8z1rw6i8tJT5eIomRK+N/0vMbWBE+MsaAMAG89zs+z+S9hbhXn/q
- uTTN0d4ez5yGL8W3JuVFSxV0B28LJuqjXYtrBEMoDGtM5vgPETTQnKnOj
- MPWCr9YvrAYopR36QTwfAtle1mSV6LizgJ9Kbo56xES/TC6bLJg9HaiBx
- l3xU0MR1MNH3DmtYDfwbfzxePTKWHBv0vmZscrZMtU3XrHHfQQxWyS13D
- sw8ILDGpqINblInzgRi6t6ASOvAznLC4T7BJDWtt6jBg8ZDB3RYjDaed0 w==;
-X-CSE-ConnectionGUID: iqSQUrbGQKWQyi98RdiFtw==
-X-CSE-MsgGUID: mjsfVr4kSsu+q6PhFAMfSA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="47481922"
-X-IronPort-AV: E=Sophos;i="6.15,250,1739865600"; d="scan'208";a="47481922"
+ bh=fhwFwWvRYrUAlgcWR6zI60iCYgoOeqJ1TWV8d2XyYdg=;
+ b=lfex8ozaSiBrQRs20lBt45aaSIFRNmMEMRWVO2BEJ9QsRKKDIsh7aSfU
+ RKJxzoge9pVbZgPT2VcHQxB0k9WwL4s+qC7+e2emgNvdUTlN0ikla94bg
+ ewMqJfSiBc9feSu32Kh5JUjIFY/IZaWBEk1bvfJjGhiSynTGCIcCDtVaD
+ MCoIYYcU041GiTgx8c2qTq27MYnYjABHd7BGusNozUvF7PQYZRr+QCOEs
+ SHjoBAHBtE3bP7+yilTiWD+VbL3iRz6tGGqi2qBT5RasFgw4GWO7qf01s
+ dCyz2Ooz998NqkjH/yFKBMAwvW5BY/9M3S6t0eVH8lY5X9u4UeBi8eZHS w==;
+X-CSE-ConnectionGUID: qH4d4MdcTI6Mo2vGrW7Wfw==
+X-CSE-MsgGUID: xXyG6hTpRXy6ptJnVuiIew==
+X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="47481923"
+X-IronPort-AV: E=Sophos;i="6.15,250,1739865600"; d="scan'208";a="47481923"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  29 Apr 2025 13:17:57 -0700
-X-CSE-ConnectionGUID: so5ZVEnPRiiR8+UCeACNUw==
-X-CSE-MsgGUID: 0FkgzoODS+u0Ke7F26RIeQ==
+X-CSE-ConnectionGUID: JQsk0uvkScOV7bMRU/otkA==
+X-CSE-MsgGUID: 627FbZ82QhC98BUiQKWrwg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,250,1739865600"; d="scan'208";a="134876638"
+X-IronPort-AV: E=Sophos;i="6.15,250,1739865600"; d="scan'208";a="134876642"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  29 Apr 2025 13:17:56 -0700
@@ -45,9 +45,9 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: thomas.hellstrom@linux.intel.com,
 	himal.prasad.ghimiray@intel.com
-Subject: [PATCH v5 3/5] drm/gpusvm: Add timeslicing support to GPU SVM
-Date: Tue, 29 Apr 2025 13:19:13 -0700
-Message-Id: <20250429201915.1025600-4-matthew.brost@intel.com>
+Subject: [PATCH v5 4/5] drm/xe: Timeslice GPU on atomic SVM fault
+Date: Tue, 29 Apr 2025 13:19:14 -0700
+Message-Id: <20250429201915.1025600-5-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250429201915.1025600-1-matthew.brost@intel.com>
 References: <20250429201915.1025600-1-matthew.brost@intel.com>
@@ -67,85 +67,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add timeslicing support to GPU SVM which will guarantee the GPU a
-minimum execution time on piece of physical memory before migration back
-to CPU. Intended to implement strict migration policies which require
-memory to be in a certain placement for correct execution.
+Ensure GPU can make forward progress on an atomic SVM GPU fault by
+giving the GPU a timeslice of 5ms
 
-Required for shared CPU and GPU atomics on certain devices.
+v2:
+ - Reduce timeslice to 5ms
+ - Double timeslice on retry
+ - Split out GPU SVM changes into independent patch
+v5:
+ - Double timeslice in a few more places
 
-Fixes: 99624bdff867 ("drm/gpusvm: Add support for GPU Shared Virtual Memory")
+Fixes: 2f118c949160 ("drm/xe: Add SVM VRAM migration")
 Cc: stable@vger.kernel.org
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/drm_gpusvm.c | 9 +++++++++
- include/drm/drm_gpusvm.h     | 5 +++++
- 2 files changed, 14 insertions(+)
+ drivers/gpu/drm/xe/xe_svm.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
-index a58d03e6cac2..c94a8d7a293d 100644
---- a/drivers/gpu/drm/drm_gpusvm.c
-+++ b/drivers/gpu/drm/drm_gpusvm.c
-@@ -1770,6 +1770,8 @@ int drm_gpusvm_migrate_to_devmem(struct drm_gpusvm *gpusvm,
- 		goto err_finalize;
- 
- 	/* Upon success bind devmem allocation to range and zdd */
-+	devmem_allocation->timeslice_expiration = get_jiffies_64() +
-+		msecs_to_jiffies(ctx->timeslice_ms);
- 	zdd->devmem_allocation = devmem_allocation;	/* Owns ref */
- 
- err_finalize:
-@@ -1990,6 +1992,13 @@ static int __drm_gpusvm_migrate_to_ram(struct vm_area_struct *vas,
- 	void *buf;
- 	int i, err = 0;
- 
-+	if (page) {
-+		zdd = page->zone_device_data;
-+		if (time_before64(get_jiffies_64(),
-+				  zdd->devmem_allocation->timeslice_expiration))
-+			return 0;
-+	}
-+
- 	start = ALIGN_DOWN(fault_addr, size);
- 	end = ALIGN(fault_addr + 1, size);
- 
-diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
-index 653d48dbe1c1..eaf704d3d05e 100644
---- a/include/drm/drm_gpusvm.h
-+++ b/include/drm/drm_gpusvm.h
-@@ -89,6 +89,7 @@ struct drm_gpusvm_devmem_ops {
-  * @ops: Pointer to the operations structure for GPU SVM device memory
-  * @dpagemap: The struct drm_pagemap of the pages this allocation belongs to.
-  * @size: Size of device memory allocation
-+ * @timeslice_expiration: Timeslice expiration in jiffies
-  */
- struct drm_gpusvm_devmem {
- 	struct device *dev;
-@@ -97,6 +98,7 @@ struct drm_gpusvm_devmem {
- 	const struct drm_gpusvm_devmem_ops *ops;
- 	struct drm_pagemap *dpagemap;
- 	size_t size;
-+	u64 timeslice_expiration;
- };
- 
- /**
-@@ -295,6 +297,8 @@ struct drm_gpusvm {
-  * @check_pages_threshold: Check CPU pages for present if chunk is less than or
-  *                         equal to threshold. If not present, reduce chunk
-  *                         size.
-+ * @timeslice_ms: The timeslice MS which in minimum time a piece of memory
-+ *		  remains with either exclusive GPU or CPU access.
-  * @in_notifier: entering from a MMU notifier
-  * @read_only: operating on read-only memory
-  * @devmem_possible: possible to use device memory
-@@ -304,6 +308,7 @@ struct drm_gpusvm {
-  */
- struct drm_gpusvm_ctx {
- 	unsigned long check_pages_threshold;
-+	unsigned long timeslice_ms;
- 	unsigned int in_notifier :1;
- 	unsigned int read_only :1;
- 	unsigned int devmem_possible :1;
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index dcc84e65ca96..f967caabc895 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -790,6 +790,8 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR) ? SZ_64K : 0,
+ 		.devmem_only = atomic && IS_DGFX(vm->xe) &&
+ 			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR),
++		.timeslice_ms = atomic && IS_DGFX(vm->xe) &&
++			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR) ? 5 : 0,
+ 	};
+ 	struct xe_svm_range *range;
+ 	struct drm_gpusvm_range *r;
+@@ -829,6 +831,7 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 	if (--migrate_try_count >= 0 &&
+ 	    xe_svm_range_needs_migrate_to_vram(range, vma)) {
+ 		err = xe_svm_alloc_vram(vm, tile, range, &ctx);
++		ctx.timeslice_ms <<= 1;	/* Double timeslice if we have to retry */
+ 		if (err) {
+ 			if (migrate_try_count || !ctx.devmem_only) {
+ 				drm_dbg(&vm->xe->drm,
+@@ -848,6 +851,7 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 	err = drm_gpusvm_range_get_pages(&vm->svm.gpusvm, r, &ctx);
+ 	/* Corner where CPU mappings have changed */
+ 	if (err == -EOPNOTSUPP || err == -EFAULT || err == -EPERM) {
++		ctx.timeslice_ms <<= 1;	/* Double timeslice if we have to retry */
+ 		if (migrate_try_count > 0 || !ctx.devmem_only) {
+ 			if (err == -EOPNOTSUPP) {
+ 				range_debug(range, "PAGE FAULT - EVICT PAGES");
+@@ -887,6 +891,7 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 			drm_exec_fini(&exec);
+ 			err = PTR_ERR(fence);
+ 			if (err == -EAGAIN) {
++				ctx.timeslice_ms <<= 1;	/* Double timeslice if we have to retry */
+ 				range_debug(range, "PAGE FAULT - RETRY BIND");
+ 				goto retry;
+ 			}
 -- 
 2.34.1
 
