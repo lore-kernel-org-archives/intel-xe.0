@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF0BCC3ABA9
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Apr 2025 11:25:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 095ADC369DC
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Apr 2025 11:45:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FAFD10E437;
-	Tue, 29 Apr 2025 11:25:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SMqOOCgy";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F19510E428;
- Tue, 29 Apr 2025 11:25:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745925941; x=1777461941;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=PHeGZRg1zCQrfczxlpdtZgOIMWH6uq0EnrbZIjSqAMI=;
- b=SMqOOCgyW0cSuDgZUOY/Jnn5THe1gBX3t5RahtLOQN9vEgtrwg0ehUW0
- 7enh5wRVj1io0i+8k/T9OrtxLTic6UI9wW6CR2Q7EoL8VXHe0sbzH8RyY
- QmLMvytibv8phRLF4U8dl/aOHlwqZyPLyS/mUs73QlXq8GObIw/Mf2RfI
- ZNAkOeN9eOE1mlcBdF2qLs0Lyrsdz2+uDtuNT9iwpTAjckoKB8b0+9Nbh
- wQz7O+/cFMpJIr0sbP62mEGNA4/+lgTfl4BIuEiW5mI0btRplxd2pARFS
- Ehy7+4fUYp6ZcnnEFqz7Eamexwq3r1wcFAGqtvY3BmhNcmGxR/9qVjAzI w==;
-X-CSE-ConnectionGUID: pPY74VdKQ4+z+x5p0U/17w==
-X-CSE-MsgGUID: HPdPkO/gT4i7vLg79fmWoA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11417"; a="72916208"
-X-IronPort-AV: E=Sophos;i="6.15,249,1739865600"; d="scan'208";a="72916208"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2025 04:25:41 -0700
-X-CSE-ConnectionGUID: NRTBlVo/RnuQpN0p3BvFGg==
-X-CSE-MsgGUID: JbcCOxZARea6HG0GWizmjQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,249,1739865600"; d="scan'208";a="133697541"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.9])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2025 04:25:39 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH] drm/i915/backlight: drop dmesg suggestion to file bugs
-Date: Tue, 29 Apr 2025 14:25:34 +0300
-Message-Id: <20250429112534.2121656-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
+	by gabe.freedesktop.org (Postfix) with ESMTP id A213B10E276;
+	Tue, 29 Apr 2025 11:45:25 +0000 (UTC)
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0202010E423;
+ Tue, 29 Apr 2025 11:45:25 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/backlight?=
+ =?utf-8?q?=3A_drop_dmesg_suggestion_to_file_bugs?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 29 Apr 2025 11:45:25 -0000
+Message-ID: <174592712501.24168.12692573610848857171@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <20250429112534.2121656-1-jani.nikula@intel.com>
+In-Reply-To: <20250429112534.2121656-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,56 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Drop the FDO_BUG_URL from the source, and stop suggesting to file bugs
-on DPCD backlight issues. We don't do this anywhere else in display,
-this isn't a special snowflake.
+== Series Details ==
 
-As a consequence, also drop the dependency on i915_utils.h from
-intel_dp_aux_backlight.c.
+Series: drm/i915/backlight: drop dmesg suggestion to file bugs
+URL   : https://patchwork.freedesktop.org/series/148408/
+State : success
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 3 +--
- drivers/gpu/drm/i915/i915_utils.h                     | 2 --
- 2 files changed, 1 insertion(+), 4 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-index 20ab90acb351..271b27c9de51 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-@@ -36,7 +36,6 @@
- 
- #include <drm/drm_print.h>
- 
--#include "i915_utils.h"
- #include "intel_backlight.h"
- #include "intel_display_core.h"
- #include "intel_display_types.h"
-@@ -149,7 +148,7 @@ intel_dp_aux_supports_hdr_backlight(struct intel_connector *connector)
- 	    !(connector->base.hdr_sink_metadata.hdmi_type1.metadata_type &
- 	      BIT(HDMI_STATIC_METADATA_TYPE1))) {
- 		drm_info(display->drm,
--			 "[CONNECTOR:%d:%s] Panel is missing HDR static metadata. Possible support for Intel HDR backlight interface is not used. If your backlight controls don't work try booting with i915.enable_dpcd_backlight=%d. needs this, please file a _new_ bug report on drm/i915, see " FDO_BUG_URL " for details.\n",
-+			 "[CONNECTOR:%d:%s] Panel is missing HDR static metadata. Possible support for Intel HDR backlight interface is not used. If your backlight controls don't work try booting with i915.enable_dpcd_backlight=%d.\n",
- 			 connector->base.base.id, connector->base.name,
- 			 INTEL_DP_AUX_BACKLIGHT_FORCE_INTEL);
- 		return false;
-diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
-index 609214231ffc..f7fb40cfdb70 100644
---- a/drivers/gpu/drm/i915/i915_utils.h
-+++ b/drivers/gpu/drm/i915/i915_utils.h
-@@ -40,8 +40,6 @@
- struct drm_i915_private;
- struct timer_list;
- 
--#define FDO_BUG_URL "https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html"
--
- #define MISSING_CASE(x) WARN(1, "Missing case (%s == %ld)\n", \
- 			     __stringify(x), (long)(x))
- 
--- 
-2.39.5
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 5752a8bfd947 drm-tip: 2025y-04m-29d-10h-43m-16s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/backlight: drop dmesg suggestion to file bugs
+
 
