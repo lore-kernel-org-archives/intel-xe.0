@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71612C369DC
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83133C3ABAA
 	for <intel-xe@archiver.kernel.org>; Tue, 29 Apr 2025 10:17:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3403710E422;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4691710E423;
 	Tue, 29 Apr 2025 10:17:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k7YK3fu4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QHmsgF3D";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B358E10E422
- for <intel-xe@lists.freedesktop.org>; Tue, 29 Apr 2025 10:17:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA81310E41F
+ for <intel-xe@lists.freedesktop.org>; Tue, 29 Apr 2025 10:17:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745921856; x=1777457856;
+ t=1745921852; x=1777457852;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ak5GzWca/vjcRiAm2P4o56QcMmQtDqVsksOPF1yM+ak=;
- b=k7YK3fu4Werv3KkZyrS/yace9PkbjqA5vQIwgK09NAUDucpBO7/3+fzU
- nzoAPqSD1SBU9o1GKdeCv1nghGO0TnKCrAdTEJ41L7tQsB8vd2APOU76P
- VCSB4CSOKzCbzDv4luWtOzx5E+xyFRwqYSfSNzbTCn6Rd5ROGjFLL+uZm
- 2664BNU5abspIK5RCwCFCzrN3gYcUqjTlvWaSEcPc3xcAMXNUYTv3svXH
- sUi+xUN9wXCmd7dynW2c9TjGnTEkpzd65uyVA8IM+scynAi9JCJ9/ofxH
- 2IVahprYAKg39ly7zfMUXkDdoDRnhPT7SyXjslaPXRIDH6EC51xbZpGPN g==;
-X-CSE-ConnectionGUID: x2fX53xAQcKSAAHhwnIGyA==
-X-CSE-MsgGUID: 0Z37VL1uTsCNQC5eAAPOTg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11417"; a="47243181"
-X-IronPort-AV: E=Sophos;i="6.15,248,1739865600"; d="scan'208";a="47243181"
+ bh=KmQsVARs8uW8LAwHjvrQ9oG87EtmccU5w9krCu1lp+k=;
+ b=QHmsgF3D2cfhlr4NjJ8B00rx9WaJDeoNo6H65Y0nrH15VsfizzCyY5L5
+ YWzOpgRmkrsufpatGPKNOvHdZuUV5UqO52rw30SB5+DYM9RZJUJ0DHY2Y
+ C4n2t8PJ+kr+MRx9aP9HztKTacu8TtsPjB3yrVrYXwsIG8T35if4QeHGv
+ nRVUhdAzodhPC+Geh9rP9KnVj0L7AdSYoogSTGOea7w8R30xrEMBtp711
+ AjHd7SrBW1fbFfuD6PXhIrfHWW7qwAedfOng9mVUgwHy6BNTW9EWOhVAo
+ yVlZgUWpccGKL3sOiuCeOAWo26u7QfDR871llLZBoz6xLry3COJSJ3dwS w==;
+X-CSE-ConnectionGUID: Y2hcZCtrSNqHhat2nMPMsw==
+X-CSE-MsgGUID: X8l4vsmBT+OICrDhnHfBYw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11417"; a="47243179"
+X-IronPort-AV: E=Sophos;i="6.15,248,1739865600"; d="scan'208";a="47243179"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2025 03:17:36 -0700
-X-CSE-ConnectionGUID: g7WTz354R4CfCSl3e7MBuw==
-X-CSE-MsgGUID: jSmwyvbaRSmohbcAbzMsNw==
+ 29 Apr 2025 03:17:32 -0700
+X-CSE-ConnectionGUID: uXkPDcnNSGaVGwPzlwRIxA==
+X-CSE-MsgGUID: VAJJlrj7SXKMT9dGRHxhhA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,248,1739865600"; d="scan'208";a="134287550"
+X-IronPort-AV: E=Sophos;i="6.15,248,1739865600"; d="scan'208";a="134287541"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by orviesa007.jf.intel.com with ESMTP; 29 Apr 2025 03:17:34 -0700
+ by orviesa007.jf.intel.com with ESMTP; 29 Apr 2025 03:17:30 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v5 06/20] drm/xe: Introduce xe_vma_op_prefetch_range struct
- for prefetch of ranges
-Date: Tue, 29 Apr 2025 16:12:19 +0530
-Message-Id: <20250429104233.215602-7-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v5 04/20] drm/xe: Timeslice GPU on atomic SVM fault
+Date: Tue, 29 Apr 2025 16:12:17 +0530
+Message-Id: <20250429104233.215602-5-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250429104233.215602-1-himal.prasad.ghimiray@intel.com>
 References: <20250429104233.215602-1-himal.prasad.ghimiray@intel.com>
@@ -68,47 +67,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add xe_vma_op_prefetch_range struct for svm ranges prefetching, including
-an xarray of SVM range pointers, range count, and target memory region.
+From: Matthew Brost <matthew.brost@intel.com>
 
--v2: Fix doc
+Ensure GPU can make forward progress on an atomic SVM GPU fault by
+giving the GPU a timeslice of 5ms
 
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+v2:
+ - Reduce timeslice to 5ms
+ - Double timeslice on retry
+ - Split out GPU SVM changes into independent patch
+
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm_types.h | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ drivers/gpu/drm/xe/xe_svm.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 1662604c4486..0afd0296a57e 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -374,6 +374,16 @@ struct xe_vma_op_unmap_range {
- 	struct xe_svm_range *range;
- };
- 
-+/** struct xe_vma_op_prefetch_range - VMA prefetch range operation */
-+struct xe_vma_op_prefetch_range {
-+	/** @range: xarray for SVM ranges data */
-+	struct xarray range;
-+	/** @ranges_count: number of svm ranges to map */
-+	u32 ranges_count;
-+	/** @region: memory region to prefetch to */
-+	u32 region;
-+};
-+
- /** enum xe_vma_op_flags - flags for VMA operation */
- enum xe_vma_op_flags {
- 	/** @XE_VMA_OP_COMMITTED: VMA operation committed */
-@@ -416,6 +426,8 @@ struct xe_vma_op {
- 		struct xe_vma_op_map_range map_range;
- 		/** @unmap_range: VMA unmap range operation specific data */
- 		struct xe_vma_op_unmap_range unmap_range;
-+		/** @prefetch_range: VMA prefetch range operation specific data */
-+		struct xe_vma_op_prefetch_range prefetch_range;
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index f749ae367a8f..d5376a76cdd1 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -783,6 +783,8 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR) ? SZ_64K : 0,
+ 		.devmem_only = atomic && IS_DGFX(vm->xe) &&
+ 			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR),
++		.timeslice_ms = atomic && IS_DGFX(vm->xe) &&
++			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR) ? 5 : 0,
  	};
- };
- 
+ 	struct xe_svm_range *range;
+ 	struct drm_gpusvm_range *r;
+@@ -819,6 +821,7 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 	if (--migrate_try_count >= 0 &&
+ 	    xe_svm_range_needs_migrate_to_vram(range, vma)) {
+ 		err = xe_svm_alloc_vram(vm, tile, range, &ctx);
++		ctx.timeslice_ms <<= 1;	/* Double timeslice if we have to retry */
+ 		if (err) {
+ 			if (migrate_try_count || !ctx.devmem_only) {
+ 				drm_dbg(&vm->xe->drm,
 -- 
 2.34.1
 
