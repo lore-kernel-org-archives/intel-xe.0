@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A29BBC369DC
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Apr 2025 15:01:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9197C369DC
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Apr 2025 15:05:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DB9A10E4AF;
-	Tue, 29 Apr 2025 15:01:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BF7D10E4C9;
+	Tue, 29 Apr 2025 15:05:59 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4232A10E4AF;
- Tue, 29 Apr 2025 15:01:24 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80C4410E4C9;
+ Tue, 29 Apr 2025 15:05:58 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1517283081309358912=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/i915/vrr=3A_Program_?=
- =?utf-8?q?EMP=5FAS=5FSDP=5FTL_for_DP_AS_SDP?=
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_drm/i915/backlight=3A_drop?=
+ =?utf-8?q?_dmesg_suggestion_to_file_bugs?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 29 Apr 2025 15:01:24 -0000
-Message-ID: <174593888425.24888.4823541047466582300@c664b1dc75d1>
+Date: Tue, 29 Apr 2025 15:05:58 -0000
+Message-ID: <174593915851.24887.15621613228983653795@c664b1dc75d1>
 X-Patchwork-Hint: ignore
-References: <20250429143055.130701-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20250429143055.130701-1-ankit.k.nautiyal@intel.com>
+References: <20250429112534.2121656-1-jani.nikula@intel.com>
+In-Reply-To: <20250429112534.2121656-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,33 +40,57 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============1517283081309358912==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: drm/i915/vrr: Program EMP_AS_SDP_TL for DP AS SDP
-URL   : https://patchwork.freedesktop.org/series/148422/
-State : success
+Series: drm/i915/backlight: drop dmesg suggestion to file bugs
+URL   : https://patchwork.freedesktop.org/series/148408/
+State : failure
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 3f6ff17a8fd279cbaaee052bbf54458ea1ebfc8f
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
+ERROR: The runconfig 'xe-3004-5ee9d7c2aac6950c88c9eaf9002761ce4c430345_FULL' does not exist in the database
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148408v1/index.html
+
+--===============1517283081309358912==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/backlight: drop dmesg suggestion to file bugs</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148408/">https://patchwork.freedesktop.org/series/148408/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148408v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148408v1/index.html</a></td></tr>
+
+</table>
+
+
+    <p>ERROR: The runconfig 'xe-3004-5ee9d7c2aac6950c88c9eaf9002761ce4c430345_FULL' does not exist in the database</p>
+
+</body>
+</html>
+
+--===============1517283081309358912==--
