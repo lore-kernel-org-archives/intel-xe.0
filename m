@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6582C369DC
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Apr 2025 10:36:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8DEBC369DC
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Apr 2025 10:36:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74F4610E435;
-	Tue, 29 Apr 2025 10:36:48 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bqhWmMdm";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E194010E434;
- Tue, 29 Apr 2025 10:36:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745923007; x=1777459007;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=3J/wKIr+5Tv3E8rfUPOes1b4d7FvStWNovrWkSuQhEM=;
- b=bqhWmMdmaTSxmGuGLQCWPoj0q4Vz9M1d5uUc7dNG5pAqx2T/2BuWl0LA
- TFv4jlHs8zjYkMb6/z5DmK11h1alJ9Dv9Cths0BXqipKRKt5YAJj9D/UO
- eT4R2YCG+vy/XPuRcoEJRi4EfZ67kCqkz4G+Dyy9WqDcy1Po4nldBNoQz
- z0JHuhf0jcSCVE9fNZzHuKJRD13RW5Ue36nWDJRWAOWmdxjBXxvSBg9Z/
- fm/zGof//9pU+winQES5zHJUm6rwSWurvPtDvNYPGjy4Q+fyPo+xMLHIq
- EZa94ercWjDsSeYV6LegDR5WNZhFYTMQxX3A3CQxJPpC0NbWeUOIWBix6 g==;
-X-CSE-ConnectionGUID: ix2ougfeS4yCHLYrRnUvUA==
-X-CSE-MsgGUID: FiL/pHTFTuOU7i2tOBikYQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11417"; a="47548778"
-X-IronPort-AV: E=Sophos;i="6.15,248,1739865600"; d="scan'208";a="47548778"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2025 03:36:47 -0700
-X-CSE-ConnectionGUID: bPIr7BDmQ6+8xWWTO6WyZg==
-X-CSE-MsgGUID: tnw6bjV1SiCh9bfERvlzAw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,248,1739865600"; d="scan'208";a="157013497"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.9])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2025 03:36:44 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 2/2] drm/i915/hdmi: Use an intel_connector pointer
- everywhere
-In-Reply-To: <20250428134716.3396802-3-imre.deak@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250428134716.3396802-1-imre.deak@intel.com>
- <20250428134716.3396802-3-imre.deak@intel.com>
-Date: Tue, 29 Apr 2025 13:36:41 +0300
-Message-ID: <87a57zw8xy.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CE2110E436;
+	Tue, 29 Apr 2025 10:36:51 +0000 (UTC)
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F2E210E436;
+ Tue, 29 Apr 2025 10:36:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Prefetch_Support_for?=
+ =?utf-8?q?_svm_ranges_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 29 Apr 2025 10:36:49 -0000
+Message-ID: <174592300913.24023.12240538811827958937@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <20250429104233.215602-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20250429104233.215602-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,30 +36,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 28 Apr 2025, Imre Deak <imre.deak@intel.com> wrote:
->  static void
-> -intel_hdmi_add_properties(struct intel_hdmi *intel_hdmi, struct drm_connector *connector)
-> +intel_hdmi_add_properties(struct intel_hdmi *intel_hdmi, struct drm_connector *_connector)
->  {
-> +	struct intel_connector *connector = to_intel_connector(_connector);
->  	struct intel_display *display = to_intel_display(intel_hdmi);
->  
-> -	intel_attach_force_audio_property(connector);
-> -	intel_attach_broadcast_rgb_property(connector);
-> -	intel_attach_aspect_ratio_property(connector);
-> +	intel_attach_force_audio_property(&connector->base);
-> +	intel_attach_broadcast_rgb_property(&connector->base);
-> +	intel_attach_aspect_ratio_property(&connector->base);
+== Series Details ==
 
-A guess a follow-up could convert all of these and more to accept
-intel_connector as parameter.
+Series: Prefetch Support for svm ranges (rev4)
+URL   : https://patchwork.freedesktop.org/series/146079/
+State : success
 
-BR,
-Jani.
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: c0d5f348399e drm-tip: 2025y-04m-29d-09h-22m-18s UTC integration manifest
+=== git am output follows ===
+Applying: drm/gpusvm: Introduce devmem_only flag for allocation
+Applying: drm/xe: Strict migration policy for atomic SVM faults
+Applying: drm/gpusvm: Add timeslicing support to GPU SVM
+Applying: drm/xe: Timeslice GPU on atomic SVM fault
+Applying: drm/xe: Add atomic_svm_timeslice_ms debugfs entry
+Applying: drm/xe: Introduce xe_vma_op_prefetch_range struct for prefetch of ranges
+Applying: drm/xe: Make xe_svm_alloc_vram public
+Applying: drm/xe/svm: Helper to add tile masks to svm ranges
+Applying: drm/xe/svm: Make to_xe_range a public function
+Applying: drm/xe/svm: Make xe_svm_range_* end/start/size public
+Applying: drm/xe/vm: Update xe_vma_ops_incr_pt_update_ops to take an increment value
+Applying: drm/xe/vm: Add an identifier in xe_vma_ops for svm prefetch
+Applying: drm/xe: Rename lookup_vma function to xe_find_vma_by_addr
+Applying: drm/xe/svm: Refactor usage of drm_gpusvm* function in xe_svm
+Applying: drm/xe/svm: Make xe_svm_range_needs_migrate_to_vram() public
+Applying: drm/xe/svm: Add xe_svm_range_validate_and_evict() function
+Applying: drm/gpusvm: Introduce drm_gpusvm_range_find_or_insert_start() function
+Applying: drm/xe/svm: Add xe_svm_range_find_or_insert_start()
+Applying: drm/xe/svm: Implement prefetch support for SVM ranges
+Applying: drm/xe/vm: Add debug prints for SVM range prefetch
 
 
--- 
-Jani Nikula, Intel
