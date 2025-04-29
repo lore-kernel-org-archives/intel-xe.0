@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FB05C369DC
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Apr 2025 13:35:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 779EDC369DC
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Apr 2025 13:36:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05D3E10E493;
-	Tue, 29 Apr 2025 13:35:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30E0410E496;
+	Tue, 29 Apr 2025 13:36:06 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EBA710E493;
- Tue, 29 Apr 2025 13:35:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCA5910E493;
+ Tue, 29 Apr 2025 13:36:04 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Add_helper?=
- =?utf-8?q?_function_to_inject_fault_into_ct=5Fdead=5Fcapture=28=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Add_helper_func?=
+ =?utf-8?q?tion_to_inject_fault_into_ct=5Fdead=5Fcapture=28=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 29 Apr 2025 13:35:50 -0000
-Message-ID: <174593375032.24510.11914081012906548168@c664b1dc75d1>
+Date: Tue, 29 Apr 2025 13:36:04 -0000
+Message-ID: <174593376484.24548.8078796371994194946@c664b1dc75d1>
 X-Patchwork-Hint: ignore
 References: <20250429134649.4747-1-satyanarayana.k.v.p@intel.com>
 In-Reply-To: <20250429134649.4747-1-satyanarayana.k.v.p@intel.com>
@@ -44,13 +44,40 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Add helper function to inject fault into ct_dead_capture()
 URL   : https://patchwork.freedesktop.org/series/148415/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 5752a8bfd947 drm-tip: 2025y-04m-29d-10h-43m-16s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Add helper function to inject fault into ct_dead_capture()
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d19eb540ddd3c4626a069b3ef240fb41ceb3781f
+Author: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Date:   Tue Apr 29 19:16:49 2025 +0530
+
+    drm/xe: Add helper function to inject fault into ct_dead_capture()
+    
+    When injecting fault to xe_guc_ct_send_recv() & xe_guc_mmio_send_recv()
+    functions, the CI test systems are going out of space and crashing. To
+    avoid this issue, a new helper function is created and when fault is injected
+    into this xe_should_fail_ct_dead_capture() helper function, ct dead capture is
+    avoided which suppresses ct dumps in the log.
+    
+    Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+    Suggested-by: John Harrison <John.C.Harrison@Intel.com>
+    Tested-by: Aditya Chauhan <aditya.chauhan@intel.com>
++ /mt/dim checkpatch 5752a8bfd947553d8006307e10d1bd5abdfc8039 drm-intel
+d19eb540ddd3 drm/xe: Add helper function to inject fault into ct_dead_capture()
+-:9: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#9: 
+avoid this issue, a new helper function is created and when fault is injected
+
+total: 0 errors, 1 warnings, 0 checks, 25 lines checked
 
 
