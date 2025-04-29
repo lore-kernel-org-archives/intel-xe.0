@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C992C369DC
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Apr 2025 11:55:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75998C369DC
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Apr 2025 11:56:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27F3710E306;
-	Tue, 29 Apr 2025 11:55:15 +0000 (UTC)
-Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0853A10E306;
- Tue, 29 Apr 2025 11:55:13 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CBDC10E439;
+	Tue, 29 Apr 2025 11:56:59 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AwGEBHZN";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88D7410E41B;
+ Tue, 29 Apr 2025 11:56:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1745927817; x=1777463817;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=nWH+xT2ovDwUcvgunaecQlN8B7WTLKW1oC/M0WWGFnY=;
+ b=AwGEBHZNI9lRCO32a9VNacPea8UqpSEXNVihgeVP8GgjJClBcZ9vxFGv
+ UFDw2zU9AqonXRAjVxNAn5vX8KLWUyitLU/KdE8r/6Z3qGks4p9CYbwwH
+ GdET3uQhnGu/p2nolStP3Ag5nP6fjW7585nCJx6s+Lt7czc0DiweEosGW
+ Hw9lJL9G4k4g/GOFk18PmvJX3rWIXfjXbst5f4V0fvkvURetzFeHH9mNm
+ pFi35eRn2Quy+l7ppmI7iINrt25EC1gA3xHZOrv/ugizfGwS8FtMg1y2k
+ 0MoL7Za/cp15PVm3W54UFJxu4/bNBe+Mw1ClaHmdeXugR+BbsLO5A0/ew Q==;
+X-CSE-ConnectionGUID: PRU1EOvqRfSXnr+masJYcQ==
+X-CSE-MsgGUID: g0TrTtx4SU+Yi/69gtKhUw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11417"; a="72921151"
+X-IronPort-AV: E=Sophos;i="6.15,249,1739865600"; d="scan'208";a="72921151"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2025 04:56:57 -0700
+X-CSE-ConnectionGUID: lWmI91a3TnKrKmhQK9fY+Q==
+X-CSE-MsgGUID: mH0psiiZSmW8zbUhsIJoTQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,249,1739865600"; d="scan'208";a="164892670"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.9])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2025 04:56:54 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Harry Austen <hpausten@protonmail.com>, intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org, Harry
+ Austen <hpausten@protonmail.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCH v3] drm/xe: Allow building as kernel built-in
+In-Reply-To: <20250425115148.12815-1-hpausten@protonmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250425115148.12815-1-hpausten@protonmail.com>
+Date: Tue, 29 Apr 2025 14:56:51 +0300
+Message-ID: <874iy7w58c.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915/backlight=3A_drop_dme?=
- =?utf-8?q?sg_suggestion_to_file_bugs?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 29 Apr 2025 11:55:13 -0000
-Message-ID: <174592771301.24168.4700501490816854228@c664b1dc75d1>
-X-Patchwork-Hint: ignore
-References: <20250429112534.2121656-1-jani.nikula@intel.com>
-In-Reply-To: <20250429112534.2121656-1-jani.nikula@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,117 +68,57 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, 25 Apr 2025, Harry Austen <hpausten@protonmail.com> wrote:
+> Fix Kconfig symbol dependency on KUNIT, which isn't actually required
+> for XE to be built-in. However, if KUNIT is enabled, it must be built-in
+> too.
+>
+> Also, allow DRM_XE_DISPLAY to be built-in. But only as long as DRM_I915
+> isn't, since that results in duplicate symbol errors.
+>
+> Fixes: 08987a8b6820 ("drm/xe: Fix build with KUNIT=3Dm")
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Signed-off-by: Harry Austen <hpausten@protonmail.com>
 
-Series: drm/i915/backlight: drop dmesg suggestion to file bugs
-URL   : https://patchwork.freedesktop.org/series/148408/
-State : success
+I didn't test this, but it makes sense to me.
 
-== Summary ==
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 
-lib/modules/6.15.0-rc4-xe+/kernel/arch/x86/kvm/
-lib/modules/6.15.0-rc4-xe+/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.15.0-rc4-xe+/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.15.0-rc4-xe+/kernel/arch/x86/kvm/kvm-amd.ko
-lib/modules/6.15.0-rc4-xe+/kernel/virt/
-lib/modules/6.15.0-rc4-xe+/kernel/virt/lib/
-lib/modules/6.15.0-rc4-xe+/kernel/virt/lib/irqbypass.ko
-lib/modules/6.15.0-rc4-xe+/kernel/kernel/
-lib/modules/6.15.0-rc4-xe+/kernel/kernel/kheaders.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/ecrdsa_generic.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/xcbc.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/serpent_generic.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/aria_generic.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/crypto_simd.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/adiantum.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/tcrypt.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/crypto_engine.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/zstd.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/asymmetric_keys/
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/des_generic.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/xctr.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/authenc.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/sm4_generic.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/camellia_generic.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/sm3.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/pcrypt.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/aegis128.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/af_alg.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/algif_aead.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/cmac.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/sm3_generic.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/aes_ti.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/chacha_generic.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/poly1305_generic.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/nhpoly1305.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/crc32_generic.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/essiv.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/ccm.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/wp512.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/streebog_generic.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/authencesn.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/echainiv.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/lrw.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/cryptd.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/crypto_user.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/algif_hash.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/polyval-generic.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/hctr2.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/842.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/pcbc.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/ansi_cprng.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/cast6_generic.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/twofish_common.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/twofish_generic.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/lz4hc.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/blowfish_generic.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/md4.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/chacha20poly1305.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/curve25519-generic.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/lz4.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/rmd160.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/algif_skcipher.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/cast5_generic.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/fcrypt.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/ecdsa_generic.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/sm4.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/cast_common.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/blowfish_common.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/michael_mic.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/async_tx/
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.15.0-rc4-xe+/kernel/crypto/algif_rng.ko
-lib/modules/6.15.0-rc4-xe+/kernel/block/
-lib/modules/6.15.0-rc4-xe+/kernel/block/bfq.ko
-lib/modules/6.15.0-rc4-xe+/kernel/block/kyber-iosched.ko
-lib/modules/6.15.0-rc4-xe+/build
-lib/modules/6.15.0-rc4-xe+/modules.alias.bin
-lib/modules/6.15.0-rc4-xe+/modules.builtin
-lib/modules/6.15.0-rc4-xe+/modules.softdep
-lib/modules/6.15.0-rc4-xe+/modules.alias
-lib/modules/6.15.0-rc4-xe+/modules.order
-lib/modules/6.15.0-rc4-xe+/modules.symbols
-lib/modules/6.15.0-rc4-xe+/modules.dep.bin
-+ mv kernel-debug.tar.gz ..
-+ cd ..
-+ rm -rf archive-debug
-+ [[ no == \y\e\s ]]
-+ sync
-+ echo '[+] Finished building and packaging '\''debug'\''!'
-[+] Finished building and packaging 'debug'!
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+> ---
+> v3: Simplify KUNIT dependency, as suggested by Jani Nikula
+> v2: Ensure DRM_XE_DISPLAY and DRM_I915 can't both be built-in
+>
+>  drivers/gpu/drm/xe/Kconfig | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+> index 9bce047901b22..214f40264fa12 100644
+> --- a/drivers/gpu/drm/xe/Kconfig
+> +++ b/drivers/gpu/drm/xe/Kconfig
+> @@ -1,7 +1,8 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>  config DRM_XE
+>  	tristate "Intel Xe Graphics"
+> -	depends on DRM && PCI && MMU && (m || (y && KUNIT=3Dy))
+> +	depends on DRM && PCI && MMU
+> +	depends on KUNIT || KUNIT=3Dn
+>  	select INTERVAL_TREE
+>  	# we need shmfs for the swappable backing store, and in particular
+>  	# the shmem_readpage() which depends upon tmpfs
+> @@ -51,7 +52,7 @@ config DRM_XE
+>=20=20
+>  config DRM_XE_DISPLAY
+>  	bool "Enable display support"
+> -	depends on DRM_XE && DRM_XE=3Dm && HAS_IOPORT
+> +	depends on DRM_XE && (DRM_XE=3Dm || DRM_I915!=3Dy) && HAS_IOPORT
+>  	select FB_IOMEM_HELPERS if DRM_FBDEV_EMULATION
+>  	select I2C
+>  	select I2C_ALGOBIT
 
-
+--=20
+Jani Nikula, Intel
