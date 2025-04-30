@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AB30C3ABAD
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CE95C3ABB0
 	for <intel-xe@archiver.kernel.org>; Wed, 30 Apr 2025 11:54:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0827010E751;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E74510E753;
 	Wed, 30 Apr 2025 11:54:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="miwEP3fB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aP6r/kwc";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 019B610E747
- for <intel-xe@lists.freedesktop.org>; Wed, 30 Apr 2025 11:54:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16C2010E74B
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Apr 2025 11:54:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746014070; x=1777550070;
+ t=1746014075; x=1777550075;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=SYQHmToN9qhTFZ1Chu8IuGc4Yi7JWKY0VhTybeVAjos=;
- b=miwEP3fBuLnbWUf0tq0gu78tbwCe0Y2M9F3Iul/p+kWf94oa/TGhGz60
- 2k0uPy4cJPQnLK/5qEYKLwfr9pixY2apjzFX76TkjIidSpIPKEiwUJh5Y
- L4Yo14q37WcoUtfyR6SPkB8IcxpOUJICDA35siURMmUkM4YYiAjuwmRUW
- KiFZz1OQxZ3kkteTQ3YvmTgMxCCBtPLp5goBm+uH3S56XTJ3VAqcXS0ix
- 2jkveYjI32o9xUqKDTVteYk0HouoqNMCZDPYXDlZi0CtUdxYGiIwg0Rui
- IlF3Wchmd+fSJkony3Jmz4n/GjuX1vFwO6WahdoFy+Z5h99jx4o3/fWh4 w==;
-X-CSE-ConnectionGUID: Rci27XRaRByoX/0UA7ISbQ==
-X-CSE-MsgGUID: SY8YhbyISgCwDVT+QiouiA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="47759960"
-X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="47759960"
+ bh=v+nCLo+xtrvWL7FECFuUo8o2OoZXsqTJYKGMfVqyqrs=;
+ b=aP6r/kwcxVaTvpozUGVQHK+nw5NiTPmjwIlcwm3jQ1G8lGCF+8hrfHhZ
+ hDbvcWCyk3GOe6D/dbloBs7ZY4hOjs8TkWT3ywcamiHh3NOlAIZmzQIKe
+ sNrtgWun3uBCw+T9QwL66/X0X6jwIimNHaFqwy8GFc9oIug7I03Q1h4tI
+ ESlDXbuI5eaTL5ZoDzm39vJKNIjVJ/0/ZzyIaauwxdMT7DWSMRIvVRz3p
+ yCRvCFwffRH0NKCwqcskeYSo1TXk3+yXEIkp9XrQr5y49MBawiInJivn3
+ kSXSucw6lv8+cr7xQk3bW1ivgNeaoSpYLF76/LL8y5HcWCrpXoizES/nJ Q==;
+X-CSE-ConnectionGUID: P1zHxR+tTT+fdj/xIipX6g==
+X-CSE-MsgGUID: kL0GQ/D9QiW+yltOKj2X5Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="47759970"
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="47759970"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2025 04:54:30 -0700
-X-CSE-ConnectionGUID: 7u6h/YzbTbelVEjBgPij1w==
-X-CSE-MsgGUID: XrmXulJ8QiOtW5yJPuvjeA==
+ 30 Apr 2025 04:54:35 -0700
+X-CSE-ConnectionGUID: 3XN7a12uTwK6lNJVG2sZ5Q==
+X-CSE-MsgGUID: HNoc/0LzQn+kJhGC0dhMaA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="134050736"
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="134050756"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by fmviesa007.fm.intel.com with ESMTP; 30 Apr 2025 04:54:28 -0700
+ by fmviesa007.fm.intel.com with ESMTP; 30 Apr 2025 04:54:33 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v6 17/20] drm/gpusvm: Introduce drm_gpusvm_find_vma_start()
- function
-Date: Wed, 30 Apr 2025 17:49:09 +0530
-Message-Id: <20250430121912.337601-18-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v6 20/20] drm/xe/vm: Add debug prints for SVM range prefetch
+Date: Wed, 30 Apr 2025 17:49:12 +0530
+Message-Id: <20250430121912.337601-21-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250430121912.337601-1-himal.prasad.ghimiray@intel.com>
 References: <20250430121912.337601-1-himal.prasad.ghimiray@intel.com>
@@ -68,79 +67,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The drm_gpusvm_find_vma_start() function is used to determine the starting
-address of a CPU VMA within a specified user range. If the range does not
-contain any VMA, the function returns ULONG_MAX.
-
-v2
-- Rename function as drm_gpusvm_find_vma_start() (Matthew Brost)
-- mmget/mmput
+Introduce debug logs for the prefetch operation of SVM ranges.
 
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/drm_gpusvm.c | 32 ++++++++++++++++++++++++++++++++
- include/drm/drm_gpusvm.h     |  5 +++++
- 2 files changed, 37 insertions(+)
+ drivers/gpu/drm/xe/xe_vm.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
-index c94a8d7a293d..48bb29b78b96 100644
---- a/drivers/gpu/drm/drm_gpusvm.c
-+++ b/drivers/gpu/drm/drm_gpusvm.c
-@@ -980,6 +980,38 @@ static void drm_gpusvm_driver_lock_held(struct drm_gpusvm *gpusvm)
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index dd5c63ee8720..abadd2097d13 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2399,8 +2399,10 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
+ 				goto unwind_prefetch_ops;
+ 			}
+ 
+-			if (xe_svm_range_validate(vm, svm_range, tile_mask, !!prefetch_region))
++			if (xe_svm_range_validate(vm, svm_range, tile_mask, !!prefetch_region)) {
++				xe_svm_range_debug(svm_range, "PREFETCH - RANGE IS VALID");
+ 				goto check_next_range;
++			}
+ 
+ 			err = xa_alloc(&op->prefetch_range.range,
+ 				       &i, svm_range, xa_limit_32b,
+@@ -2411,6 +2413,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
+ 
+ 			op->prefetch_range.ranges_count++;
+ 			vops->flags |= XE_VMA_OPS_FLAG_HAS_SVM_PREFETCH;
++			xe_svm_range_debug(svm_range, "PREFETCH - RANGE CREATED");
+ check_next_range:
+ 			if (range_end > xe_svm_range_end(svm_range) &&
+ 			    xe_svm_range_end(svm_range) < xe_vma_end(vma)) {
+@@ -2911,6 +2914,7 @@ static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op *op)
+ 					vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
+ 				return -ENODATA;
+ 			}
++			xe_svm_range_debug(svm_range, "PREFETCH - RANGE MIGRATED TO VRAM");
+ 		}
+ 
+ 		err = xe_svm_range_get_pages(vm, svm_range, &ctx);
+@@ -2921,6 +2925,7 @@ static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op *op)
+ 				vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
+ 			return err;
+ 		}
++		xe_svm_range_debug(svm_range, "PREFETCH - RANGE GET PAGES DONE");
+ 	}
+ 	return err;
  }
- #endif
- 
-+/**
-+ * drm_gpusvm_find_vma_start() - Find start address for first VMA in range
-+ * @gpusvm: Pointer to the GPU SVM structure
-+ * @start: The inclusive start user address.
-+ * @end: The exclusive end user address.
-+ *
-+ * Returns: The start address of first VMA within the provided range,
-+ * ULONG_MAX otherwise. Assumes start_addr < end_addr.
-+ */
-+unsigned long
-+drm_gpusvm_find_vma_start(struct drm_gpusvm *gpusvm,
-+			  unsigned long start,
-+			  unsigned long end)
-+{
-+	struct mm_struct *mm = gpusvm->mm;
-+	struct vm_area_struct *vma;
-+	unsigned long addr = ULONG_MAX;
-+
-+	mmget(mm);
-+	mmap_read_lock(mm);
-+
-+	vma = find_vma_intersection(mm, start, end);
-+	if (vma)
-+		addr =  vma->vm_start;
-+
-+	mmap_read_unlock(mm);
-+	mmput(mm);
-+
-+	return addr;
-+}
-+EXPORT_SYMBOL_GPL(drm_gpusvm_find_vma_start);
-+
- /**
-  * drm_gpusvm_range_find_or_insert() - Find or insert GPU SVM range
-  * @gpusvm: Pointer to the GPU SVM structure
-diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
-index eaf704d3d05e..6a5156476bf4 100644
---- a/include/drm/drm_gpusvm.h
-+++ b/include/drm/drm_gpusvm.h
-@@ -327,6 +327,11 @@ void drm_gpusvm_fini(struct drm_gpusvm *gpusvm);
- 
- void drm_gpusvm_free(struct drm_gpusvm *gpusvm);
- 
-+unsigned long
-+drm_gpusvm_find_vma_start(struct drm_gpusvm *gpusvm,
-+			  unsigned long start,
-+			  unsigned long end);
-+
- struct drm_gpusvm_range *
- drm_gpusvm_range_find_or_insert(struct drm_gpusvm *gpusvm,
- 				unsigned long fault_addr,
 -- 
 2.34.1
 
