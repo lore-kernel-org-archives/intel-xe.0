@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74F23C369D9
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Apr 2025 04:47:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 910FEC369D9
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Apr 2025 04:47:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3867A10E6D0;
-	Wed, 30 Apr 2025 04:47:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5839D10E06C;
+	Wed, 30 Apr 2025 04:47:59 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26B2B10E6D0;
- Wed, 30 Apr 2025 04:47:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BA2B10E06C;
+ Wed, 30 Apr 2025 04:47:58 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_BMG_PCIe_link_downgr?=
- =?utf-8?q?ade_attributes_and_usage?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_BMG_PCIe_link_downgrade_a?=
+ =?utf-8?q?ttributes_and_usage?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Raag Jadav" <raag.jadav@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 30 Apr 2025 04:47:46 -0000
-Message-ID: <174598846615.28172.6589022948711808717@c664b1dc75d1>
+Date: Wed, 30 Apr 2025 04:47:58 -0000
+Message-ID: <174598847850.28173.18313923653571539435@c664b1dc75d1>
 X-Patchwork-Hint: ignore
 References: <20250430042419.3256029-1-raag.jadav@intel.com>
 In-Reply-To: <20250430042419.3256029-1-raag.jadav@intel.com>
@@ -48,11 +48,28 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 1295f065de1d drm-tip: 2025y-04m-29d-22h-18m-18s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/pm: s/xe_device_sysfs_init/xe_pm_sysfs_init
-Applying: drm/xe: Expose PCIe link downgrade attributes
-Applying: drm/xe/doc: Wire up PCIe Gen5 limitations
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 5a8b8477599e35518966c531c5a202bc9b0b618f
+Author: Raag Jadav <raag.jadav@intel.com>
+Date:   Wed Apr 30 09:54:19 2025 +0530
+
+    drm/xe/doc: Wire up PCIe Gen5 limitations
+    
+    Append PCIe Gen5 limitations to xe_firmware document.
+    
+    Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch 1295f065de1df2595f37d907efa3354b19d9b639 drm-intel
+55aed8803c2f drm/xe/pm: s/xe_device_sysfs_init/xe_pm_sysfs_init
+76b403ad465a drm/xe: Expose PCIe link downgrade attributes
+5a8b8477599e drm/xe/doc: Wire up PCIe Gen5 limitations
 
 
