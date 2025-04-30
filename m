@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA94FC369D9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEE9CC3ABA9
 	for <intel-xe@archiver.kernel.org>; Wed, 30 Apr 2025 11:54:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7169110E746;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A247E10E747;
 	Wed, 30 Apr 2025 11:54:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G/7rUS1W";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LD646Iwa";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2EEAD10E747
- for <intel-xe@lists.freedesktop.org>; Wed, 30 Apr 2025 11:54:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC38510E746
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Apr 2025 11:54:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746014064; x=1777550064;
+ t=1746014067; x=1777550067;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=0/KoPWvRTbF0phAKd/P2HagRgyByiI0WiV+xJhE2SvA=;
- b=G/7rUS1WF0cqzvTPNNd/iNKFoeQiLU+xE1DbeN2nSX4U9wtKHRKwfe1F
- 8GSRhoCykVBPYr7v2o+4Sz9PUP06jGBEtcB3E2uFB+yPecE/WGcJqkaj0
- B+vq4i703QMCnnVJ/qYS3yBrvFwgEGliVlygz6on77AxVcJaU4UjI2Mmy
- v5sdl7IiFsGSsdqOVUSUEAP0/L5Ce/4GFUuAK2HJdHbpGOqR7ke7fL/Ix
- yfA/YUBUFtNhI28JC1LiD2vEGItGLU2C3vIoXhsS5HWQulq0Jyl6lK/ms
- 26gvZzD1LuvqofNVhWqYWpnhjtD00xS3VYwFLUkqCh9ymuavlWnmWsJcM w==;
-X-CSE-ConnectionGUID: NNJE7609Qo605qZOzqwZVg==
-X-CSE-MsgGUID: PCIMRl4wRGqOouv7UspWgw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="47759954"
-X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="47759954"
+ bh=Y1AI29piarVFTB8b3LcqjzRS3qrqf6pJMn/GhJzgX3w=;
+ b=LD646Iway98AmBdv4Rgf8Miqg2T3jzoRe97iBf013d5O342h7JYDaGnC
+ nM1lwIyFkO9kCzhf34lBDy0NoOtmLdGJgp6jE/Yn/+G9MiSVzq6/7Otqm
+ yVi/dXJsttQexmCSoOlLvA8CMmNdjmAiXEz+311ltMLXzMqvnp+OsJKxo
+ +jbFdy9OGnqCIegh43W18RQ6FpefYiRc5ZggN0K1/bamTmAWvzbMAdjvr
+ Z7H5h1S+cOWrlJfGzt+LULJbTKrChe+OByOVb1C1sa9d/xeBb7aCW2yrJ
+ 0uz9p/I3v6+3tZQkvFKJRn7zrOU7dJfdC+/Enr98cAx8ghWxj2I4vpTeh g==;
+X-CSE-ConnectionGUID: ScZy0M+YSfSg7sMyMIHb6A==
+X-CSE-MsgGUID: zu8dvC+yQFidlzjrgTXx4g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="47759958"
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="47759958"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2025 04:54:23 -0700
-X-CSE-ConnectionGUID: FNKl864xR/qKj2QPPV4uGQ==
-X-CSE-MsgGUID: mw2vB2GwQValTxp1eCLeKA==
+ 30 Apr 2025 04:54:27 -0700
+X-CSE-ConnectionGUID: OInv9cp3R5K+3ovfhHANrA==
+X-CSE-MsgGUID: 8sJ/mFTyTFuy6FR75BLEyQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="134050698"
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="134050721"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by fmviesa007.fm.intel.com with ESMTP; 30 Apr 2025 04:54:21 -0700
+ by fmviesa007.fm.intel.com with ESMTP; 30 Apr 2025 04:54:25 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v6 13/20] drm/xe: Rename lookup_vma function to
- xe_find_vma_by_addr
-Date: Wed, 30 Apr 2025 17:49:05 +0530
-Message-Id: <20250430121912.337601-14-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v6 15/20] drm/xe/svm: Make
+ xe_svm_range_needs_migrate_to_vram() public
+Date: Wed, 30 Apr 2025 17:49:07 +0530
+Message-Id: <20250430121912.337601-16-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250430121912.337601-1-himal.prasad.ghimiray@intel.com>
 References: <20250430121912.337601-1-himal.prasad.ghimiray@intel.com>
@@ -68,116 +68,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This update renames the lookup_vma function to xe_vm_find_vma_by_addr and
-makes it accessible externally. The function, which looks up a VMA by
-its address within a specified VM, will be utilized in upcoming patches.
+xe_svm_range_needs_migrate_to_vram() determines whether range needs
+migration to vram or not, modify it to accept region preference parameter
+too, so we can use it in prefetch too.
 
 v2
- - Fix doc
+- add assert instead of warn (Matthew Brost)
 
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_pagefault.c | 24 +----------------------
- drivers/gpu/drm/xe/xe_vm.c           | 29 ++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vm.h           |  2 ++
- 3 files changed, 32 insertions(+), 23 deletions(-)
+ drivers/gpu/drm/xe/xe_svm.c | 26 ++++++++++++++++++--------
+ drivers/gpu/drm/xe/xe_svm.h | 10 ++++++++++
+ 2 files changed, 28 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index 10622ca471a2..7a8f87709e39 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -72,28 +72,6 @@ static bool vma_is_valid(struct xe_tile *tile, struct xe_vma *vma)
- 		!(BIT(tile->id) & vma->tile_invalidated);
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index bdbd0495b1a4..cb4a849c018b 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -725,23 +725,33 @@ static bool supports_4K_migration(struct xe_device *xe)
+ 	return true;
  }
  
--static bool vma_matches(struct xe_vma *vma, u64 page_addr)
--{
--	if (page_addr > xe_vma_end(vma) - 1 ||
--	    page_addr + SZ_4K - 1 < xe_vma_start(vma))
--		return false;
--
--	return true;
--}
--
--static struct xe_vma *lookup_vma(struct xe_vm *vm, u64 page_addr)
--{
--	struct xe_vma *vma = NULL;
--
--	if (vm->usm.last_fault_vma) {   /* Fast lookup */
--		if (vma_matches(vm->usm.last_fault_vma, page_addr))
--			vma = vm->usm.last_fault_vma;
--	}
--	if (!vma)
--		vma = xe_vm_find_overlapping_vma(vm, page_addr, SZ_4K);
--
--	return vma;
--}
+-static bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range,
+-					       struct xe_vma *vma)
++/**
++ * xe_svm_range_needs_migrate_to_vram() - SVM range needs migrate to VRAM or not
++ * @range: SVM range for which migration needs to be decided
++ * @vma: vma which has range
++ * @preferred_region_is_vram: preferred region for range is vram
++ *
++ * Return: True for range needing migration and migration is supported else false
++ */
++bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vma *vma,
++					bool preferred_region_is_vram)
+ {
+ 	struct xe_vm *vm = range_to_vm(&range->base);
+ 	u64 range_size = xe_svm_range_size(range);
  
- static int xe_pf_begin(struct drm_exec *exec, struct xe_vma *vma,
- 		       bool atomic, unsigned int id)
-@@ -231,7 +209,7 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
- 		goto unlock_vm;
+-	if (!range->base.flags.migrate_devmem)
++	if (!range->base.flags.migrate_devmem || !preferred_region_is_vram)
+ 		return false;
+ 
++	xe_assert(vm->xe, IS_DGFX(vm->xe));
++
+ 	/* Not reliable without notifier lock, opportunistic only */
+-	if (xe_svm_range_in_vram(range)) {
+-		drm_dbg(&vm->xe->drm, "Range is already in VRAM\n");
++	if (preferred_region_is_vram && xe_svm_range_in_vram(range)) {
++		drm_info(&vm->xe->drm, "Range is already in VRAM\n");
+ 		return false;
  	}
  
--	vma = lookup_vma(vm, pf->page_addr);
-+	vma = xe_vm_find_vma_by_addr(vm, pf->page_addr);
- 	if (!vma) {
- 		err = -EINVAL;
- 		goto unlock_vm;
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 655bcf88f760..555ed10dac85 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2139,6 +2139,35 @@ int xe_vm_destroy_ioctl(struct drm_device *dev, void *data,
- 	return err;
- }
+-	if (range_size <= SZ_64K && !supports_4K_migration(vm->xe)) {
+-		drm_dbg(&vm->xe->drm, "Platform doesn't support SZ_4K range migration\n");
++	if (preferred_region_is_vram && range_size <= SZ_64K && !supports_4K_migration(vm->xe)) {
++		drm_warn(&vm->xe->drm, "Platform doesn't support SZ_4K range migration\n");
+ 		return false;
+ 	}
  
-+static bool vma_matches(struct xe_vma *vma, u64 page_addr)
-+{
-+	if (page_addr > xe_vma_end(vma) - 1 ||
-+	    page_addr + SZ_4K - 1 < xe_vma_start(vma))
-+		return false;
-+
-+	return true;
-+}
-+
-+/**
-+ * xe_vm_find_vma_by_addr() - Find a VMA by its address
-+ *
-+ * @vm: the xe_vm the vma belongs to
-+ * @page_addr: address to look up
-+ */
-+struct xe_vma *xe_vm_find_vma_by_addr(struct xe_vm *vm, u64 page_addr)
-+{
-+	struct xe_vma *vma = NULL;
-+
-+	if (vm->usm.last_fault_vma) {   /* Fast lookup */
-+		if (vma_matches(vm->usm.last_fault_vma, page_addr))
-+			vma = vm->usm.last_fault_vma;
-+	}
-+	if (!vma)
-+		vma = xe_vm_find_overlapping_vma(vm, page_addr, SZ_4K);
-+
-+	return vma;
-+}
-+
- static const u32 region_to_mem_type[] = {
- 	XE_PL_TT,
- 	XE_PL_VRAM0,
-diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index 0ef811fc2bde..99e164852f63 100644
---- a/drivers/gpu/drm/xe/xe_vm.h
-+++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -169,6 +169,8 @@ static inline bool xe_vma_is_userptr(struct xe_vma *vma)
- 		!xe_vma_is_cpu_addr_mirror(vma);
- }
+@@ -810,7 +820,7 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 	range_debug(range, "PAGE FAULT");
  
-+struct xe_vma *xe_vm_find_vma_by_addr(struct xe_vm *vm, u64 page_addr);
+ 	if (--migrate_try_count >= 0 &&
+-	    xe_svm_range_needs_migrate_to_vram(range, vma)) {
++	    xe_svm_range_needs_migrate_to_vram(range, vma, IS_DGFX(vm->xe))) {
+ 		err = xe_svm_alloc_vram(vm, tile, range, &ctx);
+ 		ctx.timeslice_ms <<= 1;	/* Double timeslice if we have to retry */
+ 		if (err) {
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+index cafca625bba9..9be7bb25725c 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -80,6 +80,9 @@ struct xe_svm_range *xe_svm_range_find_or_insert(struct xe_vm *vm, u64 addr,
+ int xe_svm_range_get_pages(struct xe_vm *vm, struct xe_svm_range *range,
+ 			   struct drm_gpusvm_ctx *ctx);
+ 
++bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vma *vma,
++					bool preferred_region_is_vram);
 +
  /**
-  * to_userptr_vma() - Return a pointer to an embedding userptr vma
-  * @vma: Pointer to the embedded struct xe_vma
+  * xe_svm_range_has_dma_mapping() - SVM range has DMA mapping
+  * @range: SVM range
+@@ -266,6 +269,13 @@ static inline unsigned long xe_svm_range_size(struct xe_svm_range *range)
+ 	return 0;
+ }
+ 
++static inline
++bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vma *vma,
++					u32 region)
++{
++	return false;
++}
++
+ #define xe_svm_assert_in_notifier(...) do {} while (0)
+ #define xe_svm_range_has_dma_mapping(...) false
+ 
 -- 
 2.34.1
 
