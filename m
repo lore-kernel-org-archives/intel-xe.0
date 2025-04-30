@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53B09C369D9
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Apr 2025 05:11:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CDD4C369DC
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Apr 2025 05:11:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B70E10E6D1;
-	Wed, 30 Apr 2025 05:11:14 +0000 (UTC)
-Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7C8B10E6D0;
- Wed, 30 Apr 2025 05:11:13 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3305910E6D0;
+	Wed, 30 Apr 2025 05:11:21 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PkPsf3tD";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4839D10E6D0
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Apr 2025 05:11:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1745989879; x=1777525879;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=k8BbfT+CphABLe9evvG3bNLaSXkr+EcuKi3OMZmWF5c=;
+ b=PkPsf3tDPbDtWfqEfNG/wthMzDpVf/IFq/Fui8vbcbEcY0OLVayrPXO6
+ kzRsqMB5MMjRwsEVnQ2tBbTrLDp6eNZ5k7v/757703ZjFhYUvhcb5Rc2K
+ yDtqDT/J+aFR9ywkvuhp9iOerMtgWWgy2+3aPwbLmhUc3mCEoWUulDuGM
+ 8gr+gSuMYodra752yhneF5jYOjDNwBvM+IIkAczJ9mKK9u9vx9RSnsXtK
+ MBvG40QTySV3sYBlrx17q3cs+1EmcQq9QOTjHxnigJ2Xy9uJtoFU0r9Ak
+ c55O9edpxu5dCDsgHNgU1xDCR99QdeEp67rRcol+qsWZRRQowLYnHta+7 Q==;
+X-CSE-ConnectionGUID: rUh+nVeHQNWPtLY5uJ7V7w==
+X-CSE-MsgGUID: UyiEL8m4S/O4L+eu1W8oJg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="58268736"
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="58268736"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2025 22:11:16 -0700
+X-CSE-ConnectionGUID: psbSZ5RGSdKW4ibY3WGwjg==
+X-CSE-MsgGUID: ZFgZGK0zQ7iGysTM3FRVTQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="133912646"
+Received: from hchegond-ivm1.jf.intel.com ([10.165.21.208])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2025 22:11:15 -0700
+From: Harish Chegondi <harish.chegondi@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: ashutosh.dixit@intel.com, kees@kernel.org,
+ Harish Chegondi <harish.chegondi@intel.com>
+Subject: [PATCH 1/1] drm/xe/eustall: Use copy_from_user() instead of
+ __copy_from_user()
+Date: Tue, 29 Apr 2025 22:11:11 -0700
+Message-ID: <c8b410629c1825f5b16537974a3cee11b2d911f2.1745989733.git.harish.chegondi@intel.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_BMG_PCIe_link_downgrade_?=
- =?utf-8?q?attributes_and_usage?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Raag Jadav" <raag.jadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 30 Apr 2025 05:11:13 -0000
-Message-ID: <174598987387.28242.10836462571559910511@c664b1dc75d1>
-X-Patchwork-Hint: ignore
-References: <20250430042419.3256029-1-raag.jadav@intel.com>
-In-Reply-To: <20250430042419.3256029-1-raag.jadav@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +63,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+copy_from_user() has more checks and is more safer than
+__copy_from_user()
 
-Series: BMG PCIe link downgrade attributes and usage
-URL   : https://patchwork.freedesktop.org/series/148460/
-State : success
+Fixes: 1537ec85ebd7 ("drm/xe/uapi: Introduce API for EU stall sampling")
+Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_eu_stall.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 1295f065de1df2595f37d907efa3354b19d9b639
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
+index e2bb156c71fb..96732613b4b7 100644
+--- a/drivers/gpu/drm/xe/xe_eu_stall.c
++++ b/drivers/gpu/drm/xe/xe_eu_stall.c
+@@ -283,7 +283,7 @@ static int xe_eu_stall_user_ext_set_property(struct xe_device *xe, u64 extension
+ 	int err;
+ 	u32 idx;
+ 
+-	err = __copy_from_user(&ext, address, sizeof(ext));
++	err = copy_from_user(&ext, address, sizeof(ext));
+ 	if (XE_IOCTL_DBG(xe, err))
+ 		return -EFAULT;
+ 
+@@ -313,7 +313,7 @@ static int xe_eu_stall_user_extensions(struct xe_device *xe, u64 extension,
+ 	if (XE_IOCTL_DBG(xe, ext_number >= MAX_USER_EXTENSIONS))
+ 		return -E2BIG;
+ 
+-	err = __copy_from_user(&ext, address, sizeof(ext));
++	err = copy_from_user(&ext, address, sizeof(ext));
+ 	if (XE_IOCTL_DBG(xe, err))
+ 		return -EFAULT;
+ 
+-- 
+2.48.1
 
