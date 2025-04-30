@@ -4,51 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93B3EC369D9
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Apr 2025 11:54:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C69DC369D9
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Apr 2025 11:54:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F3C010E746;
-	Wed, 30 Apr 2025 11:54:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4ED2910E75A;
+	Wed, 30 Apr 2025 11:54:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="apV8Nxx0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="APE+okQs";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 393FC10E746
- for <intel-xe@lists.freedesktop.org>; Wed, 30 Apr 2025 11:54:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D2D910E748
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Apr 2025 11:54:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746014042; x=1777550042;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Mb974RftlKGCgq5d1qph3c6jYiRt2gq03n4c5laZhrU=;
- b=apV8Nxx0ggJIn8T1oiwm0iu+NJFO/eGddVkacrRgQR/C6USuLHcOld8b
- mz3jT3uIooxCKJT/pD0jRyKs6oYOYs+hBZ5Gc4sfFIPdXuO7Uj3QvLUb9
- qAC309eN5kSvgSDLIAF9GfHQtS14h2NS0Wj8Cs81OoLvWB1wbC6sO5FTA
- 0etq+OUpSCTqwTprB56JA2ViXDPNphMF+kJQsM7mQiopzBWGYXGF3RuBL
- rlB+M+XdDjGh6sfSJJdIqL5KUMWZDWGXo44X744BWDGMijxvaEeEOGvvg
- zzRtEY/R/Syz1hqMjIcyzUtY11pf2v4cxU2Q9D+2g1/rXH1WdHqJStQYf w==;
-X-CSE-ConnectionGUID: UQkWVDlQTemtYuFgNgC24Q==
-X-CSE-MsgGUID: 64nCizOHSZGCnhwh4NNF7w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="47759903"
-X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="47759903"
+ t=1746014043; x=1777550043;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=tRUJskwSzU6RDw4rLHNZE3XIPWRy1vMISVeR+2fe7Dc=;
+ b=APE+okQsk3BesTSB0/AOfc8XDmX/b8gv9hg8ux2QbB5mdGbWnAXkLX9m
+ Ui1i3We1cEd6HHf64YRXmjMD2YbnXz/QlWaOCzNA31NZOKHT6lHwQleLg
+ VRRjqXJWp5gBOcA5cNTf12v74ZsvyVQalmbYhQecFbivdDqSFe+Bcu0MH
+ AUxvKF3nu28cs2ci3QJjekpB3U7EX7WZ1IV7Ptyd6iwSsnPeFclY+fdJq
+ mByMOadXFuaHfKhQeHvNZq1zAMX13IbwzOU11ysS0zJUv5b/pv3B3Fcvz
+ UVYk5njOfvs9X7ORNZm+lgW5QHUvz3hhB1ANTpB87J9AeV3+KQJoOMS5u A==;
+X-CSE-ConnectionGUID: aboZcc85RB6A2KvPj9q++w==
+X-CSE-MsgGUID: jqvGEOldSVGz9YT8D894Vg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="47759906"
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="47759906"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2025 04:54:01 -0700
-X-CSE-ConnectionGUID: tU47ZU/RSF2DWiyQ+bJ6IA==
-X-CSE-MsgGUID: C0VYg8+uSjm+F+DaUuX+4w==
+ 30 Apr 2025 04:54:02 -0700
+X-CSE-ConnectionGUID: JK74C0TJTIiHkIN4II7WtA==
+X-CSE-MsgGUID: jOwMavoWRoWNn23YL+9d6g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="134050569"
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="134050578"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by fmviesa007.fm.intel.com with ESMTP; 30 Apr 2025 04:53:59 -0700
+ by fmviesa007.fm.intel.com with ESMTP; 30 Apr 2025 04:54:00 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v6 00/20] Prefetch Support for svm ranges
-Date: Wed, 30 Apr 2025 17:48:52 +0530
-Message-Id: <20250430121912.337601-1-himal.prasad.ghimiray@intel.com>
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ stable@vger.kernel.org
+Subject: [PATCH v6 01/20] drm/gpusvm: Introduce devmem_only flag for allocation
+Date: Wed, 30 Apr 2025 17:48:53 +0530
+Message-Id: <20250430121912.337601-2-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250430121912.337601-1-himal.prasad.ghimiray@intel.com>
+References: <20250430121912.337601-1-himal.prasad.ghimiray@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,79 +68,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This series builds upon the SVM work by Matt Brost and introduces the
-ability to prefetch SVM ranges. The prefetch functionality utilizes the
-existing ioctl vm_bind for the user interface.
+This commit adds a new flag, devmem_only, to the drm_gpusvm structure. The
+purpose of this flag is to ensure that the get_pages function allocates
+memory exclusively from the device's memory. If the allocation from
+device memory fails, the function will return an -EFAULT error.
 
-Prefetching ensures that pages are populated in the requested region and
-that PTEs are updated, thereby preventing GPU page faults.
-
-Region 0: Ranges will remain in SMEM, and only PTE updates will occur.
-Region 1: Ranges will migrate to VRAM, and PTEs will be updated
-accordingly
-
-Patches[1 - 5] are part of https://patchwork.freedesktop.org/series/147846/
-and are already under review.
+Required for shared CPU and GPU atomics on certain devices.
 
 v3:
-  - Separate out madvise and Prefetch series
-  - Rebase on top of atomic fixes for svm
-  - address comments from Matthew Brost
+ - s/vram_only/devmem_only/
 
-v4:
-  - CI fixes
+Fixes: 99624bdff867 ("drm/gpusvm: Add support for GPU Shared Virtual Memory")
+Cc: stable@vger.kernel.org
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+---
+ drivers/gpu/drm/drm_gpusvm.c | 5 +++++
+ include/drm/drm_gpusvm.h     | 2 ++
+ 2 files changed, 7 insertions(+)
 
-v5
-  - Move finding start addr of cpu vma to drm gpusvm layer
-
-v6
-  - Rebase on top of latest SVM ATOMIC Fixes
-  - move eviction logic to prefetch_ranges
-  - Rename functions properly
-
-Himal Prasad Ghimiray (16):
-  drm/gpusvm: Introduce devmem_only flag for allocation
-  drm/xe: Introduce xe_vma_op_prefetch_range struct for prefetch of
-    ranges
-  drm/xe: Make xe_svm_alloc_vram public
-  drm/xe/svm: Helper to add tile masks to svm ranges
-  drm/xe/svm: Make to_xe_range a public function
-  drm/xe/svm: Make xe_svm_range_* end/start/size public
-  drm/xe/vm: Update xe_vma_ops_incr_pt_update_ops to take an increment
-    value
-  drm/xe/vm: Add an identifier in xe_vma_ops for svm prefetch
-  drm/xe: Rename lookup_vma function to xe_find_vma_by_addr
-  drm/xe/svm: Refactor usage of drm_gpusvm* function in xe_svm
-  drm/xe/svm: Make xe_svm_range_needs_migrate_to_vram() public
-  drm/xe/svm: Add xe_svm_range_validate() and
-    xe_svm_range_migrate_to_smem()
-  drm/gpusvm: Introduce drm_gpusvm_find_vma_start() function
-  drm/xe/svm: Add xe_svm_find_vma_start() helper
-  drm/xe/svm: Implement prefetch support for SVM ranges
-  drm/xe/vm: Add debug prints for SVM range prefetch
-
-Matthew Brost (4):
-  drm/xe: Strict migration policy for atomic SVM faults
-  drm/gpusvm: Add timeslicing support to GPU SVM
-  drm/xe: Timeslice GPU on atomic SVM fault
-  drm/xe: Add atomic_svm_timeslice_ms debugfs entry
-
- drivers/gpu/drm/drm_gpusvm.c         |  46 +++++
- drivers/gpu/drm/xe/xe_debugfs.c      |  38 ++++
- drivers/gpu/drm/xe/xe_device.c       |   1 +
- drivers/gpu/drm/xe/xe_device_types.h |   3 +
- drivers/gpu/drm/xe/xe_gt_pagefault.c |  24 +--
- drivers/gpu/drm/xe/xe_module.c       |   3 -
- drivers/gpu/drm/xe/xe_module.h       |   1 -
- drivers/gpu/drm/xe/xe_pt.c           |  77 +++++--
- drivers/gpu/drm/xe/xe_svm.c          | 293 +++++++++++++++++++++------
- drivers/gpu/drm/xe/xe_svm.h          | 143 ++++++++++++-
- drivers/gpu/drm/xe/xe_vm.c           | 260 ++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_vm.h           |   2 +
- drivers/gpu/drm/xe/xe_vm_types.h     |  15 ++
- include/drm/drm_gpusvm.h             |  52 +++--
- 14 files changed, 812 insertions(+), 146 deletions(-)
-
+diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
+index de424e670995..a58d03e6cac2 100644
+--- a/drivers/gpu/drm/drm_gpusvm.c
++++ b/drivers/gpu/drm/drm_gpusvm.c
+@@ -1454,6 +1454,11 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
+ 				goto err_unmap;
+ 			}
+ 
++			if (ctx->devmem_only) {
++				err = -EFAULT;
++				goto err_unmap;
++			}
++
+ 			addr = dma_map_page(gpusvm->drm->dev,
+ 					    page, 0,
+ 					    PAGE_SIZE << order,
+diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
+index df120b4d1f83..9fd25fc880a4 100644
+--- a/include/drm/drm_gpusvm.h
++++ b/include/drm/drm_gpusvm.h
+@@ -286,6 +286,7 @@ struct drm_gpusvm {
+  * @in_notifier: entering from a MMU notifier
+  * @read_only: operating on read-only memory
+  * @devmem_possible: possible to use device memory
++ * @devmem_only: use only device memory
+  *
+  * Context that is DRM GPUSVM is operating in (i.e. user arguments).
+  */
+@@ -294,6 +295,7 @@ struct drm_gpusvm_ctx {
+ 	unsigned int in_notifier :1;
+ 	unsigned int read_only :1;
+ 	unsigned int devmem_possible :1;
++	unsigned int devmem_only :1;
+ };
+ 
+ int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
 -- 
 2.34.1
 
