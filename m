@@ -4,57 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA833C3ABA9
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Apr 2025 11:48:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93B3EC369D9
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Apr 2025 11:54:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75DD110E743;
-	Wed, 30 Apr 2025 11:48:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F3C010E746;
+	Wed, 30 Apr 2025 11:54:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EWCJMksN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="apV8Nxx0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DDDF510E0E2;
- Wed, 30 Apr 2025 11:48:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 393FC10E746
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Apr 2025 11:54:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746013681; x=1777549681;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=cvZDcBsXWKWJpyaNRzC0GH8PJHas0D4umuw8g9rTmS8=;
- b=EWCJMksN/XcbrUDBpN7aPHnhqoRvsz8+ekrthfzhbyYx/lQ0fnwwrphH
- EZnrkQw8WzuABcEAW6cO1Pu2hAZc4sIUSAk73EyW8EcIoRcHLLsRdMT90
- N+hnTKGG97PjeckmxAZaVUQMgiTj8szzBaDkUx0dzj5UVVSspyV4mQ0xo
- oxha7gImHOvUKEfr9s/RFael9PlH4h2PlIijuoD3Bn/SREdPXXezfsLh8
- kD22M2COVVHurR8BYn7Zr3kCUFQVw+P+vhHI2bgNoILBMU2mIZeqR+33g
- +vVK8ZiCZ5yVdc/68U0bIcjJwdEonxWCigUsISq42pr/toPODvA+J+SUe Q==;
-X-CSE-ConnectionGUID: IEfvhNcKRSWxXXZLE5rtdw==
-X-CSE-MsgGUID: 9d/pqyo+R0+047WcewxnLQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="59029929"
-X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="59029929"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2025 04:48:00 -0700
-X-CSE-ConnectionGUID: sUtHADSWTHyLmdiSnueWUA==
-X-CSE-MsgGUID: Cdbg2aOuSVeGqnMICU67PQ==
+ t=1746014042; x=1777550042;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Mb974RftlKGCgq5d1qph3c6jYiRt2gq03n4c5laZhrU=;
+ b=apV8Nxx0ggJIn8T1oiwm0iu+NJFO/eGddVkacrRgQR/C6USuLHcOld8b
+ mz3jT3uIooxCKJT/pD0jRyKs6oYOYs+hBZ5Gc4sfFIPdXuO7Uj3QvLUb9
+ qAC309eN5kSvgSDLIAF9GfHQtS14h2NS0Wj8Cs81OoLvWB1wbC6sO5FTA
+ 0etq+OUpSCTqwTprB56JA2ViXDPNphMF+kJQsM7mQiopzBWGYXGF3RuBL
+ rlB+M+XdDjGh6sfSJJdIqL5KUMWZDWGXo44X744BWDGMijxvaEeEOGvvg
+ zzRtEY/R/Syz1hqMjIcyzUtY11pf2v4cxU2Q9D+2g1/rXH1WdHqJStQYf w==;
+X-CSE-ConnectionGUID: UQkWVDlQTemtYuFgNgC24Q==
+X-CSE-MsgGUID: 64nCizOHSZGCnhwh4NNF7w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="47759903"
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="47759903"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2025 04:54:01 -0700
+X-CSE-ConnectionGUID: tU47ZU/RSF2DWiyQ+bJ6IA==
+X-CSE-MsgGUID: C0VYg8+uSjm+F+DaUuX+4w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="138926787"
-Received: from unknown (HELO localhost) ([10.237.66.160])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2025 04:47:57 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Badal Nilawar <badal.nilawar@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
- alexander.usyskin@intel.com, gregkh@linuxfoundation.org,
- daniele.ceraolospurio@intel.com
-Subject: Re: [RFC 0/9] Introducing firmware late binding
-In-Reply-To: <20250429160956.1014376-1-badal.nilawar@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250429160956.1014376-1-badal.nilawar@intel.com>
-Date: Wed, 30 Apr 2025 14:47:55 +0300
-Message-ID: <87jz71vpjo.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="134050569"
+Received: from unknown (HELO himal-Super-Server.iind.intel.com)
+ ([10.190.239.34])
+ by fmviesa007.fm.intel.com with ESMTP; 30 Apr 2025 04:53:59 -0700
+From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v6 00/20] Prefetch Support for svm ranges
+Date: Wed, 30 Apr 2025 17:48:52 +0530
+Message-Id: <20250430121912.337601-1-himal.prasad.ghimiray@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,77 +65,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 29 Apr 2025, Badal Nilawar <badal.nilawar@intel.com> wrote:
-> Introducing firmware late binding feature to enable firmware loading
-> for the devices, such as the fan controller and voltage regulator,
-> during the driver probe.
-> Typically, firmware for these devices are part of IFWI flash image but
-> can be replaced at probe after OEM tuning.
+This series builds upon the SVM work by Matt Brost and introduces the
+ability to prefetch SVM ranges. The prefetch functionality utilizes the
+existing ioctl vm_bind for the user interface.
 
-I replied to the previous version [1], the comment has been ignored, and
-there's no version information in this series on what changed.
+Prefetching ensures that pages are populated in the requested region and
+that PTEs are updated, thereby preventing GPU page faults.
 
-Please don't do that.
+Region 0: Ranges will remain in SMEM, and only PTE updates will occur.
+Region 1: Ranges will migrate to VRAM, and PTEs will be updated
+accordingly
 
-BR,
-Jani.
+Patches[1 - 5] are part of https://patchwork.freedesktop.org/series/147846/
+and are already under review.
 
+v3:
+  - Separate out madvise and Prefetch series
+  - Rebase on top of atomic fixes for svm
+  - address comments from Matthew Brost
 
-[1] https://lore.kernel.org/r/87v7qnwdm3.fsf@intel.com
+v4:
+  - CI fixes
 
+v5
+  - Move finding start addr of cpu vma to drm gpusvm layer
 
->
-> Alexander Usyskin (2):
->   mei: bus: add mei_cldev_mtu interface
->   mei: late_bind: add late binding component driver
->
-> Badal Nilawar (6):
->   drm/xe/late_bind_fw: Introducing late_bind_fw
->   drm/xe/xe_late_bind_fw: Initialize late binding firmware
->   drm/xe/xe_late_bind_fw: Load late binding firmware
->   drm/xe/xe_late_bind_fw: Reload late binding fw in rpm resume
->   drm/xe/xe_late_bind_fw: Reload late binding fw in S2Idle/S3 resume
->   drm/xe/xe_late_bind_fw: Introduce debug fs node to disable late
->     binding
->
-> Rodrigo Vivi (1):
->   {fwctl,drm}/xe/pcode: Introduce xe_pcode_fwctl
->
->  Documentation/userspace-api/fwctl/index.rst   |   1 +
->  drivers/gpu/drm/xe/Kconfig                    |   2 +
->  drivers/gpu/drm/xe/Makefile                   |   2 +
->  drivers/gpu/drm/xe/xe_debugfs.c               |  42 +++
->  drivers/gpu/drm/xe/xe_device.c                |   7 +
->  drivers/gpu/drm/xe/xe_device_types.h          |   4 +
->  drivers/gpu/drm/xe/xe_late_bind_fw.c          | 289 ++++++++++++++++++
->  drivers/gpu/drm/xe/xe_late_bind_fw.h          |  18 ++
->  drivers/gpu/drm/xe/xe_late_bind_fw_types.h    |  97 ++++++
->  drivers/gpu/drm/xe/xe_pci.c                   |   5 +
->  drivers/gpu/drm/xe/xe_pcode_fwctl.c           | 218 +++++++++++++
->  drivers/gpu/drm/xe/xe_pcode_fwctl.h           |  13 +
->  drivers/gpu/drm/xe/xe_pm.c                    |   7 +
->  drivers/misc/mei/Kconfig                      |   1 +
->  drivers/misc/mei/Makefile                     |   1 +
->  drivers/misc/mei/bus.c                        |  13 +
->  drivers/misc/mei/late_bind/Kconfig            |  12 +
->  drivers/misc/mei/late_bind/Makefile           |   9 +
->  drivers/misc/mei/late_bind/mei_late_bind.c    | 261 ++++++++++++++++
->  include/drm/intel/i915_component.h            |   1 +
->  .../drm/intel/xe_late_bind_mei_interface.h    |  49 +++
->  include/linux/mei_cl_bus.h                    |   1 +
->  include/uapi/fwctl/fwctl.h                    |   1 +
->  include/uapi/fwctl/xe_pcode.h                 |  80 +++++
->  24 files changed, 1134 insertions(+)
->  create mode 100644 drivers/gpu/drm/xe/xe_late_bind_fw.c
->  create mode 100644 drivers/gpu/drm/xe/xe_late_bind_fw.h
->  create mode 100644 drivers/gpu/drm/xe/xe_late_bind_fw_types.h
->  create mode 100644 drivers/gpu/drm/xe/xe_pcode_fwctl.c
->  create mode 100644 drivers/gpu/drm/xe/xe_pcode_fwctl.h
->  create mode 100644 drivers/misc/mei/late_bind/Kconfig
->  create mode 100644 drivers/misc/mei/late_bind/Makefile
->  create mode 100644 drivers/misc/mei/late_bind/mei_late_bind.c
->  create mode 100644 include/drm/intel/xe_late_bind_mei_interface.h
->  create mode 100644 include/uapi/fwctl/xe_pcode.h
+v6
+  - Rebase on top of latest SVM ATOMIC Fixes
+  - move eviction logic to prefetch_ranges
+  - Rename functions properly
+
+Himal Prasad Ghimiray (16):
+  drm/gpusvm: Introduce devmem_only flag for allocation
+  drm/xe: Introduce xe_vma_op_prefetch_range struct for prefetch of
+    ranges
+  drm/xe: Make xe_svm_alloc_vram public
+  drm/xe/svm: Helper to add tile masks to svm ranges
+  drm/xe/svm: Make to_xe_range a public function
+  drm/xe/svm: Make xe_svm_range_* end/start/size public
+  drm/xe/vm: Update xe_vma_ops_incr_pt_update_ops to take an increment
+    value
+  drm/xe/vm: Add an identifier in xe_vma_ops for svm prefetch
+  drm/xe: Rename lookup_vma function to xe_find_vma_by_addr
+  drm/xe/svm: Refactor usage of drm_gpusvm* function in xe_svm
+  drm/xe/svm: Make xe_svm_range_needs_migrate_to_vram() public
+  drm/xe/svm: Add xe_svm_range_validate() and
+    xe_svm_range_migrate_to_smem()
+  drm/gpusvm: Introduce drm_gpusvm_find_vma_start() function
+  drm/xe/svm: Add xe_svm_find_vma_start() helper
+  drm/xe/svm: Implement prefetch support for SVM ranges
+  drm/xe/vm: Add debug prints for SVM range prefetch
+
+Matthew Brost (4):
+  drm/xe: Strict migration policy for atomic SVM faults
+  drm/gpusvm: Add timeslicing support to GPU SVM
+  drm/xe: Timeslice GPU on atomic SVM fault
+  drm/xe: Add atomic_svm_timeslice_ms debugfs entry
+
+ drivers/gpu/drm/drm_gpusvm.c         |  46 +++++
+ drivers/gpu/drm/xe/xe_debugfs.c      |  38 ++++
+ drivers/gpu/drm/xe/xe_device.c       |   1 +
+ drivers/gpu/drm/xe/xe_device_types.h |   3 +
+ drivers/gpu/drm/xe/xe_gt_pagefault.c |  24 +--
+ drivers/gpu/drm/xe/xe_module.c       |   3 -
+ drivers/gpu/drm/xe/xe_module.h       |   1 -
+ drivers/gpu/drm/xe/xe_pt.c           |  77 +++++--
+ drivers/gpu/drm/xe/xe_svm.c          | 293 +++++++++++++++++++++------
+ drivers/gpu/drm/xe/xe_svm.h          | 143 ++++++++++++-
+ drivers/gpu/drm/xe/xe_vm.c           | 260 ++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_vm.h           |   2 +
+ drivers/gpu/drm/xe/xe_vm_types.h     |  15 ++
+ include/drm/drm_gpusvm.h             |  52 +++--
+ 14 files changed, 812 insertions(+), 146 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.34.1
+
