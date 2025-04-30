@@ -4,58 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F595C369D9
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Apr 2025 08:12:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC41AC369D9
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Apr 2025 08:24:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A93F10E04C;
-	Wed, 30 Apr 2025 08:12:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D4F310E6F6;
+	Wed, 30 Apr 2025 08:24:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="ZQFm1Oke";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="V93SWDEy";
 	dkim-atps=neutral
-Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9314D10E04C;
- Wed, 30 Apr 2025 08:12:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=GB9EKzpuDEOZcuYn8Gfqkx/b/N0yPsaTslvoeb0qsJ0=; b=ZQFm1Oke0RZZz6LPmaUy8TcU+b
- /qna5jxSZjL15d215GYQK7Sz3mIoHTDghvt8zlpzvfHBqUWJDLIAnAiDAdxK1I8RdLt4KxwF2olWa
- Ej9QpvERz7hdMtbJradbE99VcByFE0oRnPIccMwMMPSQHcXQmopH1hEJXx0CGG8wUdXZlvq4p2JhI
- d69a1TjpWryozuRYC8yz3s2MKifawe6iij5Qu96tDSK/mXvpsT7PfMhmp3BUaTUyZsuZq5atEUSGS
- jpCTmFUCYEn5YYFbNvx8XEFhvRlpf04cx2cRLThAQffsRlrFEzyaOMuYaNPh+0ehExZpmOM++F7Vl
- c8hn0drA==;
-Received: from 77-249-17-252.cable.dynamic.v4.ziggo.nl ([77.249.17.252]
- helo=noisy.programming.kicks-ass.net)
- by desiato.infradead.org with esmtpsa (Exim 4.98.1 #2 (Red Hat Linux))
- id 1uA2Xr-0000000DjTZ-1sJu; Wed, 30 Apr 2025 08:11:55 +0000
-Received: by noisy.programming.kicks-ass.net (Postfix, from userid 1000)
- id 99AFF300230; Wed, 30 Apr 2025 10:11:54 +0200 (CEST)
-Date: Wed, 30 Apr 2025 10:11:54 +0200
-From: Peter Zijlstra <peterz@infradead.org>
-To: Hugh Dickins <hughd@google.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
- "luto@kernel.org" <luto@kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>,
- "Saarinen, Jani" <jani.saarinen@intel.com>,
- "De Marchi, Lucas" <lucas.demarchi@intel.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Ingo Molnar <mingo@kernel.org>, riel@surriel.com
-Subject: Re: [REGRESSION] x86/efi: Make efi_enter/leave_mm() use the
- use_/unuse_temporary_mm() machinery (linux-next)
-Message-ID: <20250430081154.GH4439@noisy.programming.kicks-ass.net>
-References: <SJ1PR11MB6129E62E3B372932C6B7477FB9BD2@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <SJ1PR11MB61293655E9386DC0FBD263F4B9852@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <87selrwdct.fsf@intel.com>
- <20250429182904.GL4198@noisy.programming.kicks-ass.net>
- <64dae856-e51a-9fc4-2eb4-c41c1a42c9d7@google.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D5D510E6F2
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Apr 2025 08:24:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1746001449;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=hb6pTemUwrPvp+AseX4PlHV6IcQRgPX7swD6dyKnr5k=;
+ b=V93SWDEyuc2IxSpaXnNgrN7cb5R/APmcCA3mULgbadKM1CEBbfZUBc+7HuEw9p4haVczN5
+ XTmE4kUCsa6pZ38BqhwtF8iC6Rmrh/K55UeVh9nEYnt7LBNCVf4z+WDEgKLrFBdkOHymLp
+ JO+MBuP1fwMiAwXVpXE3Yb5Z4LFsVi4=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-633-Qj1b-MP8OAKa6TGTuglPNQ-1; Wed, 30 Apr 2025 04:24:06 -0400
+X-MC-Unique: Qj1b-MP8OAKa6TGTuglPNQ-1
+X-Mimecast-MFC-AGG-ID: Qj1b-MP8OAKa6TGTuglPNQ_1746001445
+Received: by mail-wr1-f70.google.com with SMTP id
+ ffacd0b85a97d-39ee4b91d1cso261866f8f.0
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Apr 2025 01:24:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1746001445; x=1746606245;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=hb6pTemUwrPvp+AseX4PlHV6IcQRgPX7swD6dyKnr5k=;
+ b=CwDvDOmysbZw5Y++X+LqXh7iSVdGsTeASYgyCCmHE6q4oAF5c6pmS7ycP1WK5PFSPX
+ GOey9Yl5noJtO3ORarwRounqrFGO8muds+wlepokCQ7pVfjJcLb5oM5NXW8RKwzVvK1e
+ BwsZgtIMpT5b7dUpElerTmCRLQ/GJpdh1cbqKFXhe6GUt3sok8DK/aIQo+JE1aB31GHe
+ 4Idw3ksX/whRMIyLZXS01q5EPjLib4r482Ea+5am9BWBqEgjfVaIQ9T91HWE5oLiGJei
+ luwaueYXAyirDaG6IZa5N6JrmobXPP9vS7+2pwY+ntxPZZ3MgHdQW4IWcoQTyT40O369
+ 1Fdw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX7wi9i4ax/etpDGVW7V59hHZMKTPKxea/dxrdgQMttP1uI8fwDqtLbIB5jz9IT4uH+RFloElyjFw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy7DY7n1fc0bDIfVbKUE8Vw4z5ZsXw0yoxvLrnPS3EPH1Y1eNwm
+ ofSa1Dv9HC6mtml6a02IKzPqR9baDMzKwLVYq5xEmfBWm8mlv61e3Ri01VJwFztALfIplrRWd6x
+ H3qeuNrymV7dZzf9H1MsLKZCfHKrkVzN2RCFLdAhnt90cxsHBJP9BZ9ZR0qGncGBQ
+X-Gm-Gg: ASbGncuhULqtcD+q6a4PLTcPRCupkRWTVZ9aUdW703UJdszSyY/N7DZyYQcLpL+3EQn
+ C52xHI7Q24o3uhd+ZfW4XUC+6lb3/G+KYNYwB28psJQpH5KDYFwcC4LXf56EDsdERp4L1+Ha3uh
+ 8saA687ZOPJeSyi0QvUKI9SgaatOrhy0uF8HYbYaVBKK8xCpYRsut1qPaR7TBnTPaohv/FTXZsw
+ lTSaDJxZ4Qx0HZ4xOGfGg4DB4XaFLML2vAbg3g5CR3+pbZ3fpNGmdYomxwk+x0=
+X-Received: by 2002:a5d:64a5:0:b0:39e:cbca:74cf with SMTP id
+ ffacd0b85a97d-3a08fb41409mr1343264f8f.6.1746001445470; 
+ Wed, 30 Apr 2025 01:24:05 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFHGemppamvwSCqHDIVa3HIbr+Tpnkq94FyJ5AaoxXCnEuJj4Qicu00zLHTRNlwRKDERNtL/w==
+X-Received: by 2002:a5d:64a5:0:b0:39e:cbca:74cf with SMTP id
+ ffacd0b85a97d-3a08fb41409mr1343231f8f.6.1746001444981; 
+ Wed, 30 Apr 2025 01:24:04 -0700 (PDT)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-3a073cbdb78sm15988040f8f.41.2025.04.30.01.24.04
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 30 Apr 2025 01:24:04 -0700 (PDT)
+Date: Wed, 30 Apr 2025 10:24:04 +0200
+From: Maxime Ripard <mripard@redhat.com>
+To: Dave Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <20250430-dark-eggplant-trout-c4ea6c@houat>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="e5pn3vtrlnzatp6i"
 Content-Disposition: inline
-In-Reply-To: <64dae856-e51a-9fc4-2eb4-c41c1a42c9d7@google.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,157 +100,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Apr 29, 2025 at 11:07:45PM -0700, Hugh Dickins wrote:
-> On Tue, 29 Apr 2025, Peter Zijlstra wrote:
 
-> > diff --git a/arch/x86/mm/tlb.c b/arch/x86/mm/tlb.c
-> > index 79c124f6f3f2..39761c7765bd 100644
-> > --- a/arch/x86/mm/tlb.c
-> > +++ b/arch/x86/mm/tlb.c
-> > @@ -986,6 +986,7 @@ struct mm_struct *use_temporary_mm(struct mm_struct *temp_mm)
-> >  	struct mm_struct *prev_mm;
-> >  
-> >  	lockdep_assert_preemption_disabled();
-> > +	guard(irqsave)();
-> >  
-> >  	/*
-> >  	 * Make sure not to be in TLB lazy mode, as otherwise we'll end up
-> > @@ -1018,6 +1019,7 @@ struct mm_struct *use_temporary_mm(struct mm_struct *temp_mm)
-> >  void unuse_temporary_mm(struct mm_struct *prev_mm)
-> >  {
-> >  	lockdep_assert_preemption_disabled();
-> > +	guard(irqsave)();
-> >  
-> >  	/* Clear the cpumask, to indicate no TLB flushing is needed anywhere */
-> >  	cpumask_clear_cpu(smp_processor_id(), mm_cpumask(this_cpu_read(cpu_tlbstate.loaded_mm)));
-> 
-> Hi Peter, I haven't checked on most recent -nexts, but earlier found that
-> patch to be not quite enough, at least if you have CONFIG_DEBUG_VM=y:
-> because switch_mm_irqs_off() contains a
-> 
-> 		VM_WARN_ON_ONCE(prev != &init_mm && !cpumask_test_cpu(cpu,
-> 				mm_cpumask(prev)));
-> 
-> which doesn't like what (un)use_temporary_mm() is now doing. I couldn't
-> be sure who was right or wrong, and just proceeded by commenting out
-> the warning - ONCE shouldn't be much trouble, except xfstests uses
-> some nefarious mechanism to resurrect ONCE repeatedly.
+--e5pn3vtrlnzatp6i
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: [PULL] drm-misc-fixes
+MIME-Version: 1.0
 
-Oh that one. Yeah, I thought Ingo had already delete that WARN, but it
-seems it's still there.
+Hi Dave, Sima,
 
-So the problem is that unuse_temporary_mm() explicitly clears that bit;
-and it has to, because otherwise the flush_tlb_mm_range() in
-__text_poke() will try sending IPIs, which are not at all needed.
+Here's this week drm-misc-fixes PR.
 
- (See also:
-   https://lore.kernel.org/all/20241113095550.GBZzR3pg-RhJKPDazS@fat_crate.local/
- )
+Maxime
 
-Notably, the whole {,un}use_temporary_mm() thing requires preemption to
-be disabled across it with the express purpose of keeping all TLB
-nonsense CPU local, such that invalidations can also stay local etc.
+drm-misc-fixes-2025-04-30:
+A spurious WARN fix for nouveau, an init and interrupt handling fixes
+for ivpu, a warning fix for ttm, a hotplug fix for fdinfo, vblank fixes
+for adp, a memory leak fix for the shmem kunit tests, and a timing fix
+for mipi-dbi.
+The following changes since commit 095c8e61f4c71cd4630ee11a82e82cc341b38464:
 
-However, as a side-effect, we violate this above WARN(), which sorta
-makes sense for the normal case, but very much doesn't make sense here.
+  drm: panel: jd9365da: fix reset signal polarity in unprepare (2025-04-22 09:42:04 +0200)
 
-There are two ways out, one have unuse_temporary_mm() mark the mm_struct
-such that a further exception (beyond init_mm) can be grafted, or simply
-delete the whole check.
+are available in the Git repository at:
 
-Anyway, something like the below, or just delete the check I suppose.
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-04-30
 
-Opinions?
+for you to fetch changes up to 1a8bc0fe8039e1e57f68c4a588f0403d98bfeb1f:
 
----
-diff --git a/arch/x86/include/asm/mmu.h b/arch/x86/include/asm/mmu.h
-index 8b8055a8eb9e..0fe9c569d171 100644
---- a/arch/x86/include/asm/mmu.h
-+++ b/arch/x86/include/asm/mmu.h
-@@ -16,6 +16,8 @@
- #define MM_CONTEXT_LOCK_LAM		2
- /* Allow LAM and SVA coexisting */
- #define MM_CONTEXT_FORCE_TAGGED_SVA	3
-+/* Tracks mm_cpumask */
-+#define MM_CONTEXT_NOTRACK		4
- 
- /*
-  * x86 has arch-specific MMU state beyond what lives in mm_struct.
-@@ -44,9 +46,7 @@ typedef struct {
- 	struct ldt_struct	*ldt;
- #endif
- 
--#ifdef CONFIG_X86_64
- 	unsigned long flags;
--#endif
- 
- #ifdef CONFIG_ADDRESS_MASKING
- 	/* Active LAM mode:  X86_CR3_LAM_U48 or X86_CR3_LAM_U57 or 0 (disabled) */
-diff --git a/arch/x86/include/asm/mmu_context.h b/arch/x86/include/asm/mmu_context.h
-index c511f8584ae4..73bf3b1b44e8 100644
---- a/arch/x86/include/asm/mmu_context.h
-+++ b/arch/x86/include/asm/mmu_context.h
-@@ -247,6 +247,16 @@ static inline bool is_64bit_mm(struct mm_struct *mm)
- }
- #endif
- 
-+static inline bool is_notrack_mm(struct mm_struct *mm)
-+{
-+	return test_bit(MM_CONTEXT_NOTRACK, &mm->context.flags);
-+}
-+
-+static inline void set_notrack_mm(struct mm_struct *mm)
-+{
-+	set_bit(MM_CONTEXT_NOTRACK, &mm->context.flags);
-+}
-+
- /*
-  * We only want to enforce protection keys on the current process
-  * because we effectively have no access to PKRU for other
-diff --git a/arch/x86/mm/init.c b/arch/x86/mm/init.c
-index f8c74d19bebb..aa56d9ac0b8f 100644
---- a/arch/x86/mm/init.c
-+++ b/arch/x86/mm/init.c
-@@ -28,6 +28,7 @@
- #include <asm/text-patching.h>
- #include <asm/memtype.h>
- #include <asm/paravirt.h>
-+#include <asm/mmu_context.h>
- 
- /*
-  * We need to define the tracepoints somewhere, and tlb.c
-@@ -830,6 +831,8 @@ void __init poking_init(void)
- 	/* Xen PV guests need the PGD to be pinned. */
- 	paravirt_enter_mmap(text_poke_mm);
- 
-+	set_notrack_mm(text_poke_mm);
-+
- 	/*
- 	 * Randomize the poking address, but make sure that the following page
- 	 * will be mapped at the same PMD. We need 2 pages, so find space for 3,
-diff --git a/arch/x86/mm/tlb.c b/arch/x86/mm/tlb.c
-index 1451e022129a..25bfc3305158 100644
---- a/arch/x86/mm/tlb.c
-+++ b/arch/x86/mm/tlb.c
-@@ -852,7 +852,8 @@ void switch_mm_irqs_off(struct mm_struct *unused, struct mm_struct *next,
- 		 * mm_cpumask. The TLB shootdown code can figure out from
- 		 * cpu_tlbstate_shared.is_lazy whether or not to send an IPI.
- 		 */
--		if (IS_ENABLED(CONFIG_DEBUG_VM) && WARN_ON_ONCE(prev != &init_mm &&
-+		if (IS_ENABLED(CONFIG_DEBUG_VM) &&
-+		    WARN_ON_ONCE(prev != &init_mm && !is_notrack_mm(prev) &&
- 				 !cpumask_test_cpu(cpu, mm_cpumask(next))))
- 			cpumask_set_cpu(cpu, mm_cpumask(next));
- 
-diff --git a/arch/x86/platform/efi/efi_64.c b/arch/x86/platform/efi/efi_64.c
-index 8e1796dd6c68..e7e8f77f77f8 100644
---- a/arch/x86/platform/efi/efi_64.c
-+++ b/arch/x86/platform/efi/efi_64.c
-@@ -89,6 +89,7 @@ int __init efi_alloc_page_tables(void)
- 	efi_mm.pgd = efi_pgd;
- 	mm_init_cpumask(&efi_mm);
- 	init_new_context(NULL, &efi_mm);
-+	set_notrack_mm(&efi_mm);
- 
- 	return 0;
- 
+  drm/mipi-dbi: Fix blanking for non-16 bit formats (2025-04-29 17:29:49 +0200)
+
+----------------------------------------------------------------
+A spurious WARN fix for nouveau, an init and interrupt handling fixes
+for ivpu, a warning fix for ttm, a hotplug fix for fdinfo, vblank fixes
+for adp, a memory leak fix for the shmem kunit tests, and a timing fix
+for mipi-dbi.
+
+----------------------------------------------------------------
+Andrzej Kacprowski (1):
+      accel/ivpu: Fix the D0i2 disable test mode
+
+Janne Grunau (5):
+      drm: adp: Use spin_lock_irqsave for drm device event_lock
+      drm: adp: Handle drm_crtc_vblank_get() errors
+      drm: adp: Enable vblank interrupts in crtc's .atomic_enable
+      drm: adp: Remove pointless irq_lock spin lock
+      drm: Select DRM_KMS_HELPER from DRM_DEBUG_DP_MST_TOPOLOGY_REFS
+
+Karol Wachowski (1):
+      accel/ivpu: Correct DCT interrupt handling
+
+Maxime Ripard (1):
+      drm/tests: shmem: Fix memleak
+
+Philipp Stanner (1):
+      drm/nouveau: Fix WARN_ON in nouveau_fence_context_kill()
+
+Russell Cloran (1):
+      drm/mipi-dbi: Fix blanking for non-16 bit formats
+
+Sunil Khatri (1):
+      drm/ttm: fix the warning for hit_low and evict_low
+
+Tvrtko Ursulin (1):
+      drm/fdinfo: Protect against driver unbind
+
+ drivers/accel/ivpu/ivpu_fw.c               |  4 ++--
+ drivers/accel/ivpu/ivpu_hw_btrs.h          |  2 +-
+ drivers/accel/ivpu/ivpu_pm.c               | 18 ++++++++++--------
+ drivers/gpu/drm/Kconfig                    |  2 +-
+ drivers/gpu/drm/adp/adp_drv.c              | 27 ++++++++++++++-------------
+ drivers/gpu/drm/drm_file.c                 |  6 ++++++
+ drivers/gpu/drm/drm_mipi_dbi.c             |  6 +++++-
+ drivers/gpu/drm/nouveau/nouveau_fence.c    |  2 +-
+ drivers/gpu/drm/tests/drm_gem_shmem_test.c |  3 +++
+ drivers/gpu/drm/ttm/ttm_bo.c               |  3 ++-
+ 10 files changed, 45 insertions(+), 28 deletions(-)
+
+--e5pn3vtrlnzatp6i
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaBHeIwAKCRAnX84Zoj2+
+dq9SAX49nDYR4pa5wfM1v9z/s/EI+SWCkFSGH+P885Bw5K7GOBKkDxPIYol9MvMT
++z9xB/kBewZp8AI9olqj4EOGWXbCLZcNA0Icvt5AjL84r3KmNOk34Z/Bmxr3bFm4
+568Sr15FbA==
+=UKKk
+-----END PGP SIGNATURE-----
+
+--e5pn3vtrlnzatp6i--
+
