@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8C99C369D9
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Apr 2025 11:54:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98F44C369D9
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Apr 2025 11:54:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8529710E744;
-	Wed, 30 Apr 2025 11:54:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E10389304;
+	Wed, 30 Apr 2025 11:54:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CW2pXkdf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fh6VAD8z";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17DC889304
- for <intel-xe@lists.freedesktop.org>; Wed, 30 Apr 2025 11:54:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AA1C10E747
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Apr 2025 11:54:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746014051; x=1777550051;
+ t=1746014057; x=1777550057;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ak5GzWca/vjcRiAm2P4o56QcMmQtDqVsksOPF1yM+ak=;
- b=CW2pXkdfqRUCv1jofqGD96cYrqMySdubP4pxqJRWiwICn9yEvHxGCmvY
- 4tIaBxn6A2UoXoYIlhJtItB1BYm9fGO7ji6xmpl/jdUQ4iVnvIJXQ6soo
- Qq7FXfy9SqJX9ebOuWsSG78zUawoqUs4cIQhUFcYKQLSUJvCQrKYfyE8y
- R1+buTiDqR/ucyR6ab3ncD7HVYEkcTUrQKzb/rumW68MFyCLSVdvdYHv8
- 3cYlAy8kh91SO23expiy4c79x42VKbI5tpHMg2YZ420kcx8/obEMD3yPd
- ehSjaYqsy7ByeScXmvARGXuT6Nr59aLKRLA1EBHNDM0vMfXoXt2AOhqE/ w==;
-X-CSE-ConnectionGUID: 4xdl93PHTLuQ2ctIn6esPg==
-X-CSE-MsgGUID: XVSHTy6jToW0nmuT/mlKPg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="47759928"
-X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="47759928"
+ bh=vAW/TyteStPQyddCfzFzMQsqSxsMVOJYDMTnqDt9mlY=;
+ b=fh6VAD8zEarHRueBLOdJj5BDk0ekU34uRfZD+IZFVyRzhZ5ZNudyqnU1
+ Ofu12RZDsr8/I1liPDGkC2iib+gBeM6qC6vPr9AqScGw2g8lww2bC8RNU
+ p4ZDSxL7ZnyssoogVJyjBlYJYHH6lgiWsmuSEUbDH8D3obEtKJE71dGCM
+ gXJXXQ27EF4xILtDrpQYK3A/b/4H8c9yJdjFXsGb2AfkAXB3IRT0Fc/AL
+ Y3U6SL0JXNKbv4eWht1n735VVojgF8VCk9kn36mBlE4BQlZrKhtxXD6qo
+ oTCIQB88a5NO4YOtvHCPkkFC14smjs87mD1ncZcasTgdGLPgiRcvv1m98 g==;
+X-CSE-ConnectionGUID: vhUkXOlCQoisU8V/b8fN+g==
+X-CSE-MsgGUID: uFonucCRSbGSOz4WvZwAwQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="47759941"
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="47759941"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2025 04:54:11 -0700
-X-CSE-ConnectionGUID: PCRj+G+9R56Opw7o4K0bkA==
-X-CSE-MsgGUID: 5P5pm8zKQICtksXi8OreDg==
+ 30 Apr 2025 04:54:16 -0700
+X-CSE-ConnectionGUID: z3kzbguVT4iTv2JoKrUkDg==
+X-CSE-MsgGUID: tml0h6IqTTmH6IuHUiKfNQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="134050615"
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="134050650"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by fmviesa007.fm.intel.com with ESMTP; 30 Apr 2025 04:54:09 -0700
+ by fmviesa007.fm.intel.com with ESMTP; 30 Apr 2025 04:54:14 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v6 06/20] drm/xe: Introduce xe_vma_op_prefetch_range struct
- for prefetch of ranges
-Date: Wed, 30 Apr 2025 17:48:58 +0530
-Message-Id: <20250430121912.337601-7-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v6 09/20] drm/xe/svm: Make to_xe_range a public function
+Date: Wed, 30 Apr 2025 17:49:01 +0530
+Message-Id: <20250430121912.337601-10-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250430121912.337601-1-himal.prasad.ghimiray@intel.com>
 References: <20250430121912.337601-1-himal.prasad.ghimiray@intel.com>
@@ -68,46 +67,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add xe_vma_op_prefetch_range struct for svm ranges prefetching, including
-an xarray of SVM range pointers, range count, and target memory region.
-
--v2: Fix doc
+The to_xe_range function will be used in other files. Therefore, make it
+public and add kernel-doc documentation
 
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm_types.h | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ drivers/gpu/drm/xe/xe_svm.c |  5 -----
+ drivers/gpu/drm/xe/xe_svm.h | 20 ++++++++++++++++++++
+ 2 files changed, 20 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 1662604c4486..0afd0296a57e 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -374,6 +374,16 @@ struct xe_vma_op_unmap_range {
- 	struct xe_svm_range *range;
- };
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 1a6a59e4be5d..a16e0c2902c1 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -98,11 +98,6 @@ static void xe_svm_range_free(struct drm_gpusvm_range *range)
+ 	kfree(range);
+ }
  
-+/** struct xe_vma_op_prefetch_range - VMA prefetch range operation */
-+struct xe_vma_op_prefetch_range {
-+	/** @range: xarray for SVM ranges data */
-+	struct xarray range;
-+	/** @ranges_count: number of svm ranges to map */
-+	u32 ranges_count;
-+	/** @region: memory region to prefetch to */
-+	u32 region;
-+};
+-static struct xe_svm_range *to_xe_range(struct drm_gpusvm_range *r)
+-{
+-	return container_of(r, struct xe_svm_range, base);
+-}
+-
+ static void
+ xe_svm_garbage_collector_add_range(struct xe_vm *vm, struct xe_svm_range *range,
+ 				   const struct mmu_notifier_range *mmu_range)
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+index 55695097a8d1..2b52bc20ad46 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -85,6 +85,20 @@ static inline bool xe_svm_range_has_dma_mapping(struct xe_svm_range *range)
+ 	return range->base.flags.has_dma_mapping;
+ }
+ 
++/**
++ * to_xe_range - Convert a drm_gpusvm_range pointer to a xe_svm_range
++ * @r: Pointer to the drm_gpusvm_range structure
++ *
++ * This function takes a pointer to a drm_gpusvm_range structure and
++ * converts it to a pointer to the containing xe_svm_range structure.
++ *
++ * Return: Pointer to the xe_svm_range structure
++ */
++static inline struct xe_svm_range *to_xe_range(struct drm_gpusvm_range *r)
++{
++	return container_of(r, struct xe_svm_range, base);
++}
 +
- /** enum xe_vma_op_flags - flags for VMA operation */
- enum xe_vma_op_flags {
- 	/** @XE_VMA_OP_COMMITTED: VMA operation committed */
-@@ -416,6 +426,8 @@ struct xe_vma_op {
- 		struct xe_vma_op_map_range map_range;
- 		/** @unmap_range: VMA unmap range operation specific data */
- 		struct xe_vma_op_unmap_range unmap_range;
-+		/** @prefetch_range: VMA prefetch range operation specific data */
-+		struct xe_vma_op_prefetch_range prefetch_range;
- 	};
- };
+ #define xe_svm_assert_in_notifier(vm__) \
+ 	lockdep_assert_held_write(&(vm__)->svm.gpusvm.notifier_lock)
+ 
+@@ -99,6 +113,7 @@ static inline bool xe_svm_range_has_dma_mapping(struct xe_svm_range *range)
+ 
+ struct drm_pagemap_device_addr;
+ struct drm_gpusvm_ctx;
++struct drm_gpusvm_range;
+ struct xe_bo;
+ struct xe_gt;
+ struct xe_vm;
+@@ -177,6 +192,11 @@ int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
+ 	return -EOPNOTSUPP;
+ }
+ 
++static inline struct xe_svm_range *to_xe_range(struct drm_gpusvm_range *r)
++{
++	return NULL;
++}
++
+ #define xe_svm_assert_in_notifier(...) do {} while (0)
+ #define xe_svm_range_has_dma_mapping(...) false
  
 -- 
 2.34.1
