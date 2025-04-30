@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E606BC369D9
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Apr 2025 04:25:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF6C6C369DC
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Apr 2025 04:25:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABB5110E6CC;
-	Wed, 30 Apr 2025 04:25:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8EDC910E6CE;
+	Wed, 30 Apr 2025 04:25:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q5U3rANb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VVKVxvG1";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AAEE10E6CC
- for <intel-xe@lists.freedesktop.org>; Wed, 30 Apr 2025 04:25:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFCDF10E6CE
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Apr 2025 04:25:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745987156; x=1777523156;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=M6+ZUBwD3BQgN3qKLs2BkxqWcuVanQydF+dD3pU2NVA=;
- b=Q5U3rANbI7R0seNYztUX9FWOlrqmR1aRMni8SDp3MBS3SV8bQJJcfX/a
- WxQoLJHm/u60Q7hcUITWblnEMGpUrjDArLb9lTs49M4PUisl3pKDmyLHe
- gV35Ab6frjwkGjJ+ZFgP+lhRN5wv7j0qQLOEq7YQJse+EXEsTlHFuHSA7
- YvOYpI6mmuDY1xyQPPwQIx/I1RXTX30YgONzasfI0RITDRZuPz0dqTsUw
- Y+6Gd2VLtNQdO1aEQKhAZ017JYOXq34XEdwE9o6iexMJA0klEsctLzQAM
- LIFZ/VZNpKdKy61eZLId5NvSYN+pUoQ7g+QDXB0G8NpRUk1iYmz7bviRz w==;
-X-CSE-ConnectionGUID: O8g9nk29QQaMOH3hG1a/DQ==
-X-CSE-MsgGUID: Me2waGXyTI25/pG+AGSCWQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="59009463"
-X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="59009463"
+ t=1745987158; x=1777523158;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=SAYhm+U4HIsoqpes4xh5JHcqbTB/FgEu3O+jUytKk9w=;
+ b=VVKVxvG19uTL5/TtBod9QnTfOs6+57w9Cb5gvdk9rAU0gWikZ8sOL88c
+ 1dhgQkLiLtiJ5IFSJQPVfCOkz9M4sU4q/H6SzlbTt1MELBBVxShBE34zZ
+ fLpn+3H1Bv0m6ejPrEIVXR1ATaIomfmeu71+eUCYsUjqOJR5+oRs8XemP
+ 37N8q8xw2wnnAICdxD3yyU5yu0YuijL0WJuTJuN74O0qjK9sB5WKHs5J5
+ EP9ymG1vU5dZzXK/7/j1GXERg6+yW3jtv85jT+98VdznQ6g5L6TVYnDpx
+ kEcOG70UUVyOaY+7LXdniwZgySnDNWSTrY0BYTeGjkP0ycPJUO7Nd/Uco g==;
+X-CSE-ConnectionGUID: pt1MLUlvQ3eZfbVaf8kiZA==
+X-CSE-MsgGUID: pVhSnCWfTu2I34XLjK+XKA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="59009467"
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="59009467"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2025 21:25:56 -0700
-X-CSE-ConnectionGUID: S/sID+oQSOKeyP1bsJSfMQ==
-X-CSE-MsgGUID: 7OcND3AISI62Cmz3/upsJg==
+ 29 Apr 2025 21:25:58 -0700
+X-CSE-ConnectionGUID: 1A3/rTNRR1ilEAWKxQnsmg==
+X-CSE-MsgGUID: UaHJCmWTTZe+seZ2kFYa2Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="138841579"
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="138841585"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa005.fm.intel.com with ESMTP; 29 Apr 2025 21:25:53 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 29 Apr 2025 21:25:55 -0700
 From: Raag Jadav <raag.jadav@intel.com>
 To: lucas.demarchi@intel.com,
 	rodrigo.vivi@intel.com
 Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
  badal.nilawar@intel.com, riana.tauro@intel.com,
  Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v5 0/3] BMG PCIe link downgrade attributes and usage
-Date: Wed, 30 Apr 2025 09:54:16 +0530
-Message-Id: <20250430042419.3256029-1-raag.jadav@intel.com>
+Subject: [PATCH v5 1/3] drm/xe/pm: s/xe_device_sysfs_init/xe_pm_sysfs_init
+Date: Wed, 30 Apr 2025 09:54:17 +0530
+Message-Id: <20250430042419.3256029-2-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250430042419.3256029-1-raag.jadav@intel.com>
+References: <20250430042419.3256029-1-raag.jadav@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,35 +68,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This series exposes sysfs attributes for BMG PCIe link downgrade
-and documents their usage.
+Attributes being exposed in xe_pm_init() are PM specific and should
+follow its naming.
 
-v1: https://patchwork.freedesktop.org/series/147023/
+Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+Reviewed-by: Riana Tauro <riana.tauro@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device_sysfs.c | 6 +++---
+ drivers/gpu/drm/xe/xe_device_sysfs.h | 2 +-
+ drivers/gpu/drm/xe/xe_pm.c           | 2 +-
+ 3 files changed, 5 insertions(+), 5 deletions(-)
 
-v2: Move from debugfs to sysfs (Lucas, Rodrigo, Badal)
-    Rework macros and their naming (Rodrigo)
-
-v3: Move xe_device_sysfs_init() to xe_device_probe() (Riana)
-    Use sysfs_create_files() (Riana)
-    Fix checkpatch warning (Riana)
-
-v4: s/downspeed/downgrade (Lucas, Rodrigo, Riana)
-
-v5: Use PCIe Gen agnostic naming (Rodrigo)
-
-Raag Jadav (3):
-  drm/xe/pm: s/xe_device_sysfs_init/xe_pm_sysfs_init
-  drm/xe: Expose PCIe link downgrade attributes
-  drm/xe/doc: Wire up PCIe Gen5 limitations
-
- Documentation/gpu/xe/xe_firmware.rst |   6 ++
- drivers/gpu/drm/xe/xe_device.c       |   5 ++
- drivers/gpu/drm/xe/xe_device_sysfs.c | 107 ++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_device_sysfs.h |   1 +
- drivers/gpu/drm/xe/xe_pcode_api.h    |   5 ++
- drivers/gpu/drm/xe/xe_pm.c           |   2 +-
- 6 files changed, 123 insertions(+), 3 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
+index 7efbd4c52791..2d25e5b5d4bf 100644
+--- a/drivers/gpu/drm/xe/xe_device_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+@@ -63,14 +63,14 @@ vram_d3cold_threshold_store(struct device *dev, struct device_attribute *attr,
+ 
+ static DEVICE_ATTR_RW(vram_d3cold_threshold);
+ 
+-static void xe_device_sysfs_fini(void *arg)
++static void xe_pm_sysfs_fini(void *arg)
+ {
+ 	struct xe_device *xe = arg;
+ 
+ 	sysfs_remove_file(&xe->drm.dev->kobj, &dev_attr_vram_d3cold_threshold.attr);
+ }
+ 
+-int xe_device_sysfs_init(struct xe_device *xe)
++int xe_pm_sysfs_init(struct xe_device *xe)
+ {
+ 	struct device *dev = xe->drm.dev;
+ 	int ret;
+@@ -79,5 +79,5 @@ int xe_device_sysfs_init(struct xe_device *xe)
+ 	if (ret)
+ 		return ret;
+ 
+-	return devm_add_action_or_reset(dev, xe_device_sysfs_fini, xe);
++	return devm_add_action_or_reset(dev, xe_pm_sysfs_fini, xe);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.h b/drivers/gpu/drm/xe/xe_device_sysfs.h
+index f9e83d8bd2c7..2c1fabdba9e4 100644
+--- a/drivers/gpu/drm/xe/xe_device_sysfs.h
++++ b/drivers/gpu/drm/xe/xe_device_sysfs.h
+@@ -8,6 +8,6 @@
+ 
+ struct xe_device;
+ 
+-int xe_device_sysfs_init(struct xe_device *xe);
++int xe_pm_sysfs_init(struct xe_device *xe);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index 38514cef817e..183813e43b29 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -347,7 +347,7 @@ int xe_pm_init(struct xe_device *xe)
+ 	xe->d3cold.capable = xe_pm_pci_d3cold_capable(xe);
+ 
+ 	if (xe->d3cold.capable) {
+-		err = xe_device_sysfs_init(xe);
++		err = xe_pm_sysfs_init(xe);
+ 		if (err)
+ 			goto err_unregister;
+ 
 -- 
 2.34.1
 
