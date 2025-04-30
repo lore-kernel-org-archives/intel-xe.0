@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8332C3ABB6
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8B01C3ABB2
 	for <intel-xe@archiver.kernel.org>; Wed, 30 Apr 2025 11:54:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8946310E756;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 855E910E754;
 	Wed, 30 Apr 2025 11:54:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NC8FJENY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a5R3cCMd";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86F0910E74B
- for <intel-xe@lists.freedesktop.org>; Wed, 30 Apr 2025 11:54:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB58710E747
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Apr 2025 11:54:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746014072; x=1777550072;
+ t=1746014065; x=1777550065;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dnDu0VESbo0PeijBz3gK5ZQBP0w3kI8hz6We6/5qiiY=;
- b=NC8FJENYKBConikNLVuLUVo3BUqiAdgShkPzg75e5z7QhIeINQE3hPhC
- jqtIgEN7uJktunEhpQLhAJmKfiq09RqFLQv6I6LLorRe8zAJ7dJdp6ZnU
- et5ZbwF1B+faJ5tNM2bp9FysV2Uwl9j8DTFOqA4dbbmwCvqMZBA1ufwTd
- 55pBjYuCJm78DwLacxzczuIOd5PXWXXAIPHLXo47cNtXJcXhd/8n8MGFo
- N7UALR7AfnWBDeeueBjggX81a2fOH5k4uPI2yIDDJ1H/d+DyLZBahu6Yp
- QPBLQSCgPwALXb+2lH4zhTLoP977tVzVYcMioQXZgAOs3D20qt9j8bvyS g==;
-X-CSE-ConnectionGUID: tr8aNYXYS7OWNdzIb/NmiQ==
-X-CSE-MsgGUID: lIHIwgEFR9KJoqs6TwWyag==
-X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="47759964"
-X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="47759964"
+ bh=3Uq7RLxDzTdoQvM3DfrP6+M4DoehNDdeUKBOmy137cc=;
+ b=a5R3cCMdAUyRXSyAiE3saGrgzB5Ewkx5rSyvyV587BxhgS2VBnq3/IHL
+ qlBxvjk7R4TK7HC0jETN7+lGeQcd2UWsGZFprQgmmgyaA1wYuxSHMLAz8
+ Cvb2V6kqjueDyN43Z83JiACMSuPixv4Mp2HpGJlda5D3LVlqBEZsKJXe1
+ s0VVynFKjir6fVQAsXQh9aqAHVxLqe5BfZgnkZVN38El0ELwmU5EssuO/
+ pmpAQjNXHwBPfUOyvK2VEjSFRWXhVXDduCvAcFR5IHa9YUXBscaGqSCrc
+ yXPW0qawjnO4nz4/Vgfjs4U8X9fFbxh4U0UNJqzTcicrl7V4MK8l1XsQi w==;
+X-CSE-ConnectionGUID: ZhTdp77aRoWzvOr9UBi42A==
+X-CSE-MsgGUID: liDgywjKS82y2H6mheiY9g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="47759956"
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="47759956"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2025 04:54:32 -0700
-X-CSE-ConnectionGUID: 0BuS5GwVTrmBKai5o3kwaA==
-X-CSE-MsgGUID: eiNkFsHORiWGEF32TiMjiA==
+ 30 Apr 2025 04:54:25 -0700
+X-CSE-ConnectionGUID: idcaQyK3SVKauvwmsbADJA==
+X-CSE-MsgGUID: Iu6UFu0cRgOaRDpFl5sxIg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="134050741"
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="134050710"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by fmviesa007.fm.intel.com with ESMTP; 30 Apr 2025 04:54:30 -0700
+ by fmviesa007.fm.intel.com with ESMTP; 30 Apr 2025 04:54:23 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v6 18/20] drm/xe/svm: Add xe_svm_find_vma_start() helper
-Date: Wed, 30 Apr 2025 17:49:10 +0530
-Message-Id: <20250430121912.337601-19-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v6 14/20] drm/xe/svm: Refactor usage of drm_gpusvm* function
+ in xe_svm
+Date: Wed, 30 Apr 2025 17:49:06 +0530
+Message-Id: <20250430121912.337601-15-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250430121912.337601-1-himal.prasad.ghimiray@intel.com>
 References: <20250430121912.337601-1-himal.prasad.ghimiray@intel.com>
@@ -67,74 +68,162 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add helper xe_svm_find_vma_start() function to determine start of cpu
-vma in input range.
+Define xe_svm_range_find_or_insert function wrapping
+drm_gpusvm_range_find_or_insert for reusing in prefetch.
 
+Define xe_svm_range_get_pages function wrapping
+drm_gpusvm_range_get_pages for reusing in prefetch.
+
+-v2 pass pagefault defined drm_gpu_svm context as parameter
+in xe_svm_range_find_or_insert(Matthew Brost)
+
+Cc: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm.c | 22 ++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_svm.h |  8 ++++++++
- 2 files changed, 30 insertions(+)
+ drivers/gpu/drm/xe/xe_svm.c | 65 ++++++++++++++++++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_svm.h | 21 ++++++++++++
+ 2 files changed, 77 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index fff3a279e232..727c393d19b8 100644
+index 08e05afb8b18..bdbd0495b1a4 100644
 --- a/drivers/gpu/drm/xe/xe_svm.c
 +++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -684,6 +684,28 @@ bool xe_svm_range_validate(struct xe_vm *vm,
- 	return ret;
+@@ -778,7 +778,6 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 			vm->xe->atomic_svm_timeslice_ms : 0,
+ 	};
+ 	struct xe_svm_range *range;
+-	struct drm_gpusvm_range *r;
+ 	struct drm_exec exec;
+ 	struct dma_fence *fence;
+ 	struct xe_tile *tile = gt_to_tile(gt);
+@@ -797,16 +796,14 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 	if (err)
+ 		return err;
+ 
+-	r = drm_gpusvm_range_find_or_insert(&vm->svm.gpusvm, fault_addr,
+-					    xe_vma_start(vma), xe_vma_end(vma),
+-					    &ctx);
+-	if (IS_ERR(r))
+-		return PTR_ERR(r);
++	range = xe_svm_range_find_or_insert(vm, fault_addr, vma, &ctx);
+ 
+-	if (ctx.devmem_only && !r->flags.migrate_devmem)
++	if (IS_ERR(range))
++		return PTR_ERR(range);
++
++	if (ctx.devmem_only && !range->base.flags.migrate_devmem)
+ 		return -EACCES;
+ 
+-	range = to_xe_range(r);
+ 	if (xe_svm_range_is_valid(range, tile, ctx.devmem_only))
+ 		return 0;
+ 
+@@ -832,7 +829,7 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 	}
+ 
+ 	range_debug(range, "GET PAGES");
+-	err = drm_gpusvm_range_get_pages(&vm->svm.gpusvm, r, &ctx);
++	err = xe_svm_range_get_pages(vm, range, &ctx);
+ 	/* Corner where CPU mappings have changed */
+ 	if (err == -EOPNOTSUPP || err == -EFAULT || err == -EPERM) {
+ 		ctx.timeslice_ms <<= 1;	/* Double timeslice if we have to retry */
+@@ -923,6 +920,56 @@ int xe_svm_bo_evict(struct xe_bo *bo)
+ 	return drm_gpusvm_evict_to_ram(&bo->devmem_allocation);
  }
  
 +/**
-+ * xe_svm_find_vma_start - Find start of CPU VMA
++ * xe_svm_range_find_or_insert- Find or insert GPU SVM range
 + * @vm: xe_vm pointer
-+ * @start: start address
-+ * @end: end address
-+ * @vma: Pointer to struct xe_vma
++ * @addr: address for which range needs to be found/inserted
++ * @vma:  Pointer to struct xe_vma which mirrors CPU
++ * @ctx: GPU SVM context
 + *
++ * This function finds or inserts a newly allocated a SVM range based on the
++ * address.
 + *
-+ * This function searches for a cpu vma, within the specified
-+ * range [start, end] in the given VM. It adjusts the range based on the
-+ * xe_vma start and end addresses. If no cpu VMA is found, it returns ULONG_MAX.
-+ *
-+ * Return: The starting address of the VMA within the range,
-+ * or ULONG_MAX if no VMA is found
++ * Return: Pointer to the SVM range on success, ERR_PTR() on failure.
 + */
-+u64 xe_svm_find_vma_start(struct xe_vm *vm, u64 start, u64 end, struct xe_vma *vma)
++struct xe_svm_range *xe_svm_range_find_or_insert(struct xe_vm *vm, u64 addr,
++						 struct xe_vma *vma, struct drm_gpusvm_ctx *ctx)
 +{
-+	return drm_gpusvm_find_vma_start(&vm->svm.gpusvm,
-+					 max(start, xe_vma_start(vma)),
-+					 min(end, xe_vma_end(vma)));
++	struct drm_gpusvm_range *r;
++
++	r = drm_gpusvm_range_find_or_insert(&vm->svm.gpusvm, max(addr, xe_vma_start(vma)),
++					    xe_vma_start(vma), xe_vma_end(vma), ctx);
++	if (IS_ERR(r))
++		return ERR_PTR(PTR_ERR(r));
++
++	return to_xe_range(r);
++}
++
++/**
++ * xe_svm_range_get_pages() - Get pages for a SVM range
++ * @vm: Pointer to the struct xe_vm
++ * @range: Pointer to the xe SVM range structure
++ * @ctx: GPU SVM context
++ *
++ * This function gets pages for a SVM range and ensures they are mapped for
++ * DMA access. In case of failure with -EOPNOTSUPP, it evicts the range.
++ *
++ * Return: 0 on success, negative error code on failure.
++ */
++int xe_svm_range_get_pages(struct xe_vm *vm, struct xe_svm_range *range,
++			   struct drm_gpusvm_ctx *ctx)
++{
++	int err = 0;
++
++	err = drm_gpusvm_range_get_pages(&vm->svm.gpusvm, &range->base, ctx);
++	if (err == -EOPNOTSUPP) {
++		range_debug(range, "PAGE FAULT - EVICT PAGES");
++		drm_gpusvm_range_evict(&vm->svm.gpusvm, &range->base);
++	}
++
++	return err;
 +}
 +
  #if IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR)
- static struct xe_vram_region *tile_to_vr(struct xe_tile *tile)
- {
+ 
+ static struct drm_pagemap_device_addr
 diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index 3f8c82f9c363..fe9f6fcaeb3a 100644
+index 642da7acf986..cafca625bba9 100644
 --- a/drivers/gpu/drm/xe/xe_svm.h
 +++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -89,6 +89,8 @@ bool xe_svm_range_validate(struct xe_vm *vm,
- 			   struct xe_svm_range *range,
- 			   u8 tile_mask, bool devmem_preferred);
- 
-+u64 xe_svm_find_vma_start(struct xe_vm *vm, u64 addr, u64 end,  struct xe_vma *vma);
+@@ -73,6 +73,13 @@ void xe_svm_range_debug(struct xe_svm_range *range, const char *operation);
+ int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
+ 		      struct xe_svm_range *range,
+ 		      const struct drm_gpusvm_ctx *ctx);
++
++struct xe_svm_range *xe_svm_range_find_or_insert(struct xe_vm *vm, u64 addr,
++						 struct xe_vma *vma, struct drm_gpusvm_ctx *ctx);
++
++int xe_svm_range_get_pages(struct xe_vm *vm, struct xe_svm_range *range,
++			   struct drm_gpusvm_ctx *ctx);
 +
  /**
   * xe_svm_range_has_dma_mapping() - SVM range has DMA mapping
   * @range: SVM range
-@@ -295,6 +297,12 @@ bool xe_svm_range_validate(struct xe_vm *vm,
- 	return false;
+@@ -225,6 +232,20 @@ int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
+ 	return -EOPNOTSUPP;
  }
  
 +static inline
-+u64 xe_svm_find_vma_start(struct xe_vm *vm, u64 addr, u64 end, struct xe_vma *vma)
++struct xe_svm_range *xe_svm_range_find_or_insert(struct xe_vm *vm, u64 addr,
++						 struct xe_vma *vma, struct drm_gpusvm_ctx *ctx)
 +{
-+	return ULONG_MAX;
++	return ERR_PTR(-EINVAL);
 +}
 +
- #define xe_svm_assert_in_notifier(...) do {} while (0)
- #define xe_svm_range_has_dma_mapping(...) false
- 
++static inline
++int xe_svm_range_get_pages(struct xe_vm *vm, struct xe_svm_range *range,
++			   struct drm_gpusvm_ctx *ctx)
++{
++	return -EINVAL;
++}
++
+ static inline struct xe_svm_range *to_xe_range(struct drm_gpusvm_range *r)
+ {
+ 	return NULL;
 -- 
 2.34.1
 
