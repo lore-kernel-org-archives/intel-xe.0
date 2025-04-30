@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06B45C369D9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10B84C3ABAA
 	for <intel-xe@archiver.kernel.org>; Wed, 30 Apr 2025 04:26:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBC3010E6D0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C500210E6D1;
 	Wed, 30 Apr 2025 04:26:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jGO5EZI7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C5Q1byT0";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 847B610E6D0
- for <intel-xe@lists.freedesktop.org>; Wed, 30 Apr 2025 04:26:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4929210E6D0
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Apr 2025 04:26:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745987163; x=1777523163;
+ t=1745987160; x=1777523160;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=bF8P3m+i1SCjT5PpWoigWBuRvnr+VbHLtYVNJRDsmu8=;
- b=jGO5EZI7CDqaxC47XHfDIkYUKXsoplf6I0FxPJ3TM5jeOcMppvI5dia5
- eTCCDSwIOcA6iY6Z3VkEc98QxApqrw1UIzpjmymXDHH+swXHSZN2dgW6n
- v7K9Ff/Csjl6bMfwIb5wFi2U6LTjWdYpqJ8ei66ykoJybqYg2Go/207Ke
- +PEiovQsTLYjWaKWaB0rt/bUfLQSEvgEmiAG/jE3Kl0/BLQMVZ6GSvAbh
- s2SMi6GT1JYoRHzwo1g8lB2R+aUTijG8UFDbmBQUPcdJjuZaqtACGM4bV
- UbR8r4KveXNv1K8ePQCzBrExnjQPQIh5kqZJGCqr6Y38Gs5tl8dZqVBNR w==;
-X-CSE-ConnectionGUID: J18s06/AQ7GTZI5e9hT9qg==
-X-CSE-MsgGUID: jbsw0fiNRgaJxqGnW73U6w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="59009475"
-X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="59009475"
+ bh=YY369Aurrh6A8fGy4QnPnxLRiO4IAtH5PSRlXESG+3w=;
+ b=C5Q1byT0AJO2Loy5wZG9wbuIeBMTe+H1xw7PEPt4OrgHEgDmHum7z5Kg
+ aAHl6U9/IJrP//dh6Sz7s3oWIUtMUbqPcxi6P4Mu2TGvYLD5RD9R4noYs
+ omLNI7rsOFBKMXBUxYJAsqvTgvS5lXIAZ6c+++o+n43bBIV8JmTappfd1
+ 9TSxkgXMCtX9emrRAL5YQSNX7LzID7EdBKDrQX2kOAq0sPnW3QOr5POpo
+ OAC+W5r15EFYVfX86Yhgb8hrR0plVWzATYRSo2zrBU0bejwEKYS8aUiX3
+ YtzcFyX9/kHzp+o4FpwldybuP/bcRJkixFRwnn/PtJtQRnFWqw3bs6s8U w==;
+X-CSE-ConnectionGUID: dZ+N43J+TxWt1Lo9Ary2qQ==
+X-CSE-MsgGUID: apkZpRqeTQau5JJkvihLcg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="59009470"
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="59009470"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2025 21:26:02 -0700
-X-CSE-ConnectionGUID: WVOqHD1xQ5uICh5HO8sAwg==
-X-CSE-MsgGUID: yHal8riTTUO3OUR501ihbw==
+ 29 Apr 2025 21:26:00 -0700
+X-CSE-ConnectionGUID: CeMjyFnnTx+Nd+uo5FdH1Q==
+X-CSE-MsgGUID: +5dnq8K8RCuOXGZGdc3MPA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="138841592"
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="138841588"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa005.fm.intel.com with ESMTP; 29 Apr 2025 21:26:00 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 29 Apr 2025 21:25:57 -0700
 From: Raag Jadav <raag.jadav@intel.com>
 To: lucas.demarchi@intel.com,
 	rodrigo.vivi@intel.com
 Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
  badal.nilawar@intel.com, riana.tauro@intel.com,
  Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v5 3/3] drm/xe/doc: Wire up PCIe Gen5 limitations
-Date: Wed, 30 Apr 2025 09:54:19 +0530
-Message-Id: <20250430042419.3256029-4-raag.jadav@intel.com>
+Subject: [PATCH v5 2/3] drm/xe: Expose PCIe link downgrade attributes
+Date: Wed, 30 Apr 2025 09:54:18 +0530
+Message-Id: <20250430042419.3256029-3-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250430042419.3256029-1-raag.jadav@intel.com>
 References: <20250430042419.3256029-1-raag.jadav@intel.com>
@@ -68,31 +68,199 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Append PCIe Gen5 limitations to xe_firmware document.
+Expose sysfs attributes for PCIe link downgrade capability and status.
+
+v2: Move from debugfs to sysfs (Lucas, Rodrigo, Badal)
+    Rework macros and their naming (Rodrigo)
+v3: Use sysfs_create_files() (Riana)
+    Fix checkpatch warning (Riana)
+v4: s/downspeed/downgrade (Lucas, Rodrigo, Riana)
+v5: Use PCIe Gen agnostic naming (Rodrigo)
 
 Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Riana Tauro <riana.tauro@intel.com>
 ---
- Documentation/gpu/xe/xe_firmware.rst | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/xe/xe_device.c       |   5 ++
+ drivers/gpu/drm/xe/xe_device_sysfs.c | 103 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_device_sysfs.h |   1 +
+ drivers/gpu/drm/xe/xe_pcode_api.h    |   5 ++
+ 4 files changed, 114 insertions(+)
 
-diff --git a/Documentation/gpu/xe/xe_firmware.rst b/Documentation/gpu/xe/xe_firmware.rst
-index afcb561cd37d..5d23e9f27391 100644
---- a/Documentation/gpu/xe/xe_firmware.rst
-+++ b/Documentation/gpu/xe/xe_firmware.rst
-@@ -31,6 +31,12 @@ GuC Power Conservation (PC)
- .. kernel-doc:: drivers/gpu/drm/xe/xe_guc_pc.c
-    :doc: GuC Power Conservation (PC)
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 6c9d3009aa03..79b7b0ecfbae 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -26,6 +26,7 @@
+ #include "xe_bo_evict.h"
+ #include "xe_debugfs.h"
+ #include "xe_devcoredump.h"
++#include "xe_device_sysfs.h"
+ #include "xe_dma_buf.h"
+ #include "xe_drm_client.h"
+ #include "xe_drv.h"
+@@ -916,6 +917,10 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		goto err_unregister_display;
  
-+PCIe Gen5 Limitations
-+=====================
++	err = xe_device_sysfs_init(xe);
++	if (err)
++		goto err_unregister_display;
 +
-+.. kernel-doc:: drivers/gpu/drm/xe/xe_device_sysfs.c
-+   :doc: PCIe Gen5 Limitations
-+
- Internal API
- ============
+ 	xe_debugfs_register(xe);
  
+ 	err = xe_hwmon_register(xe);
+diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
+index 2d25e5b5d4bf..de31d93dec82 100644
+--- a/drivers/gpu/drm/xe/xe_device_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+@@ -11,6 +11,9 @@
+ 
+ #include "xe_device.h"
+ #include "xe_device_sysfs.h"
++#include "xe_mmio.h"
++#include "xe_pcode_api.h"
++#include "xe_pcode.h"
+ #include "xe_pm.h"
+ 
+ /**
+@@ -81,3 +84,103 @@ int xe_pm_sysfs_init(struct xe_device *xe)
+ 
+ 	return devm_add_action_or_reset(dev, xe_pm_sysfs_fini, xe);
+ }
++
++/**
++ * DOC: PCIe Gen5 Limitations
++ *
++ * Default link speed of discrete GPUs is determined by configuration parameters
++ * stored in their flash memory, which are subject to override through user
++ * initiated firmware updates. It has been observed that devices configured with
++ * PCIe Gen5 as their default link speed can come across link quality issues due
++ * to host or motherboard limitations and may have to auto-downgrade their link
++ * to PCIe Gen4 speed when faced with unstable link at Gen5, which makes
++ * firmware updates rather risky on such setups. It is required to ensure that
++ * the device is capable of auto-downgrading its link to PCIe Gen4 speed before
++ * pushing the firmware image with PCIe Gen5 as default configuration. This can
++ * be done by reading ``pcie_gen_downgrade_capable`` sysfs entry, which will
++ * denote if the device is capable of auto-downgrading its link to PCIe Gen4
++ * speed with boolean output value of ``0`` or ``1``, meaning `incapable` or
++ * `capable` respectively.
++ *
++ * .. code-block:: shell
++ *
++ *    $ cat /sys/bus/pci/devices/<bdf>/pcie_gen_downgrade_capable
++ *
++ * Pushing the firmware image with PCIe Gen5 as default configuration on a link
++ * auto-downgrade incapable device and facing link instability due to host or
++ * motherboard limitations can result in driver failing to bind to the device,
++ * making further firmware updates impossible with RMA being the only last
++ * resort.
++ *
++ * Link downgrade status of auto-downgrade capable devices is available through
++ * ``pcie_gen_downgrade_status`` sysfs entry with boolean output value of ``0``
++ * or ``1``, where ``0`` means no auto-downgrading was required during link
++ * training (which is the optimal scenario) and ``1`` means the device has
++ * auto-downgraded its link to PCIe Gen4 speed due to unstable Gen5 link.
++ *
++ * .. code-block:: shell
++ *
++ *    $ cat /sys/bus/pci/devices/<bdf>/pcie_gen_downgrade_status
++ */
++
++static ssize_t
++pcie_gen_downgrade_capable_show(struct device *dev, struct device_attribute *attr, char *buf)
++{
++	struct pci_dev *pdev = to_pci_dev(dev);
++	struct xe_device *xe = pdev_to_xe_device(pdev);
++	u32 cap, val;
++
++	xe_pm_runtime_get(xe);
++	val = xe_mmio_read32(xe_root_tile_mmio(xe), BMG_PCIE_CAP);
++	xe_pm_runtime_put(xe);
++
++	cap = REG_FIELD_GET(PCIE_DOWNGRADE, val);
++	return sysfs_emit(buf, "%u\n", cap == DOWNGRADE_CAPABLE ? true : false);
++}
++static DEVICE_ATTR_ADMIN_RO(pcie_gen_downgrade_capable);
++
++static ssize_t
++pcie_gen_downgrade_status_show(struct device *dev, struct device_attribute *attr, char *buf)
++{
++	struct pci_dev *pdev = to_pci_dev(dev);
++	struct xe_device *xe = pdev_to_xe_device(pdev);
++	u32 val;
++	int ret;
++
++	xe_pm_runtime_get(xe);
++	ret = xe_pcode_read(xe_device_get_root_tile(xe),
++			    PCODE_MBOX(DGFX_PCODE_STATUS, DGFX_GET_INIT_STATUS, 0),
++			    &val, NULL);
++	xe_pm_runtime_put(xe);
++
++	return ret ?: sysfs_emit(buf, "%u\n", REG_FIELD_GET(DGFX_PCIE_DOWNGRADE_STATUS, val));
++}
++static DEVICE_ATTR_ADMIN_RO(pcie_gen_downgrade_status);
++
++static const struct attribute *pcie_gen_downgrade_attrs[] = {
++	&dev_attr_pcie_gen_downgrade_capable.attr,
++	&dev_attr_pcie_gen_downgrade_status.attr,
++	NULL
++};
++
++static void xe_device_sysfs_fini(void *arg)
++{
++	struct xe_device *xe = arg;
++
++	if (xe->info.platform == XE_BATTLEMAGE)
++		sysfs_remove_files(&xe->drm.dev->kobj, pcie_gen_downgrade_attrs);
++}
++
++int xe_device_sysfs_init(struct xe_device *xe)
++{
++	struct device *dev = xe->drm.dev;
++	int ret;
++
++	if (xe->info.platform == XE_BATTLEMAGE) {
++		ret = sysfs_create_files(&dev->kobj, pcie_gen_downgrade_attrs);
++		if (ret)
++			return ret;
++	}
++
++	return devm_add_action_or_reset(dev, xe_device_sysfs_fini, xe);
++}
+diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.h b/drivers/gpu/drm/xe/xe_device_sysfs.h
+index 2c1fabdba9e4..b557db0a6023 100644
+--- a/drivers/gpu/drm/xe/xe_device_sysfs.h
++++ b/drivers/gpu/drm/xe/xe_device_sysfs.h
+@@ -9,5 +9,6 @@
+ struct xe_device;
+ 
+ int xe_pm_sysfs_init(struct xe_device *xe);
++int xe_device_sysfs_init(struct xe_device *xe);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
+index e622ae17f08d..d32286bf9182 100644
+--- a/drivers/gpu/drm/xe/xe_pcode_api.h
++++ b/drivers/gpu/drm/xe/xe_pcode_api.h
+@@ -34,6 +34,7 @@
+ #define   DGFX_PCODE_STATUS		0x7E
+ #define     DGFX_GET_INIT_STATUS	0x0
+ #define     DGFX_INIT_STATUS_COMPLETE	0x1
++#define     DGFX_PCIE_DOWNGRADE_STATUS	REG_BIT(31)
+ 
+ #define   PCODE_POWER_SETUP			0x7C
+ #define     POWER_SETUP_SUBCOMMAND_READ_I1	0x4
+@@ -66,6 +67,10 @@
+ /* Auxiliary info bits */
+ #define   AUXINFO_HISTORY_OFFSET	REG_GENMASK(31, 29)
+ 
++#define BMG_PCIE_CAP			XE_REG(0x138340)
++#define   PCIE_DOWNGRADE		REG_GENMASK(1, 0)
++#define     DOWNGRADE_CAPABLE		2
++
+ struct pcode_err_decode {
+ 	int errno;
+ 	const char *str;
 -- 
 2.34.1
 
