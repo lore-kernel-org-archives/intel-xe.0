@@ -4,56 +4,172 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10B84C3ABAA
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Apr 2025 04:26:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79FE5C3ABAA
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Apr 2025 04:31:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C500210E6D1;
-	Wed, 30 Apr 2025 04:26:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68FA510E6D0;
+	Wed, 30 Apr 2025 04:31:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C5Q1byT0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Lkrgl+jw";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4929210E6D0
- for <intel-xe@lists.freedesktop.org>; Wed, 30 Apr 2025 04:26:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C19B510E281;
+ Wed, 30 Apr 2025 04:31:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745987160; x=1777523160;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=YY369Aurrh6A8fGy4QnPnxLRiO4IAtH5PSRlXESG+3w=;
- b=C5Q1byT0AJO2Loy5wZG9wbuIeBMTe+H1xw7PEPt4OrgHEgDmHum7z5Kg
- aAHl6U9/IJrP//dh6Sz7s3oWIUtMUbqPcxi6P4Mu2TGvYLD5RD9R4noYs
- omLNI7rsOFBKMXBUxYJAsqvTgvS5lXIAZ6c+++o+n43bBIV8JmTappfd1
- 9TSxkgXMCtX9emrRAL5YQSNX7LzID7EdBKDrQX2kOAq0sPnW3QOr5POpo
- OAC+W5r15EFYVfX86Yhgb8hrR0plVWzATYRSo2zrBU0bejwEKYS8aUiX3
- YtzcFyX9/kHzp+o4FpwldybuP/bcRJkixFRwnn/PtJtQRnFWqw3bs6s8U w==;
-X-CSE-ConnectionGUID: dZ+N43J+TxWt1Lo9Ary2qQ==
-X-CSE-MsgGUID: apkZpRqeTQau5JJkvihLcg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="59009470"
-X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="59009470"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2025 21:26:00 -0700
-X-CSE-ConnectionGUID: CeMjyFnnTx+Nd+uo5FdH1Q==
-X-CSE-MsgGUID: +5dnq8K8RCuOXGZGdc3MPA==
+ t=1745987488; x=1777523488;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=1k3nP1RQZDKNVII5jb7VG4mgk8lM/RGA7/9rpw5rpl4=;
+ b=Lkrgl+jwc0nqxbpG41nEYdlSCSQfi203jCZedX3jEb5tLgX0jRqw5jmy
+ HNFBQZZms2Ne2a/iGP0SPcrpzZ4lsIWtMqzqe1J8+SkXTUcQdaWBZM1d9
+ q9r/2297QKP3NY2kXaB60UA2LP8dD+ppC80/29w/Z2y/uZSgbGOiM451w
+ 1dQfko9TycWQxx/pYkjZSEK4xRM8iIVJpBLgP+UJ46AOQ984a9OgGl82G
+ S+E7cloNeOpUBObKfq/uWu+bUd6yZvYTQGkjcZ82lHCU2I8IlQ876ms+z
+ opamfNXDr9Pt6oYg63YCiPboWIfdh5mVL6aPbu2mz63AhVUSpX42SKj5E g==;
+X-CSE-ConnectionGUID: EjnYzQP1Qh+nMvfImx9Zqg==
+X-CSE-MsgGUID: 64jOG06CTB2q0cBlTBm2IA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="47771213"
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="47771213"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2025 21:31:28 -0700
+X-CSE-ConnectionGUID: LebYydwTTNeaAVEUJp6CbA==
+X-CSE-MsgGUID: P/sjX8URQkKH8Im+1vuLHQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="138841588"
-Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa005.fm.intel.com with ESMTP; 29 Apr 2025 21:25:57 -0700
-From: Raag Jadav <raag.jadav@intel.com>
-To: lucas.demarchi@intel.com,
-	rodrigo.vivi@intel.com
-Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- badal.nilawar@intel.com, riana.tauro@intel.com,
- Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v5 2/3] drm/xe: Expose PCIe link downgrade attributes
-Date: Wed, 30 Apr 2025 09:54:18 +0530
-Message-Id: <20250430042419.3256029-3-raag.jadav@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250430042419.3256029-1-raag.jadav@intel.com>
-References: <20250430042419.3256029-1-raag.jadav@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="138822333"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2025 21:31:28 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14; Tue, 29 Apr 2025 21:31:27 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14 via Frontend Transport; Tue, 29 Apr 2025 21:31:27 -0700
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.47) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Tue, 29 Apr 2025 21:31:26 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=H+0Lsgbxkog4O72vm4Q4D44MbY3Ehr4006zRJVmWwFJRWEQ65hjTv7+VnjOROXCJiLSzs1f9cbAi66reBIXRZFZYvw6t8KhPebsOXJ+5wYZBqLSoCXXYbSlD8+OYvxcOmHYjRi2jrxOdfxG+PngJwBiN2uUgOFIFhy2kKDL2kFWudkb9c8Fcd+QOV89vyNXeRptlI2t2xRdcW1iQSoYYzy9yZKnD0YywPh89StJhx66yYHmYMhbuoH1Thn5b4Wl0uEeQkTTD/TiH62iRmKejrxr5VR3JQ7mV1VRzldilSvkvMpm8bOrhx1DqZyZQBVGkr3ZH+Fk4cb4bG0wpaj5GHQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CuYWYjAy99I/wugqe4113VjGCqPZPomAVfe33L+ZoNo=;
+ b=W6QbIFeKPVt5fE90PVoNzr7TeSUMjIS+JkjgkKmECgGVNuU0udqOuhcIquht9AfSsmmBak4tqnOAxBRswflVFCwK3yXANI13bazLSVaygqpwPTY0RenqeHeemHZi5RDkh6frZujdjGDsDvo5p/3/LHZYd2LEMfJMoi8qim5iDhyEmkTbT82zsy0jga7EyzpLs5LPsdlISeOWKpuXmvR7xuzkdVY2/UEFn7bskCYYmzd1nPGYX3cu9s9tAsjz+A4BJwT4bCdxPpL+wjKfDpoTfjrLs4pGw6cfo6mE70Oqix49ad357GgPIdtc52BHgmNqKyEAGfBf38rMEOmsfqzc1Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
+ by SJ2PR11MB7646.namprd11.prod.outlook.com (2603:10b6:a03:4c3::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8678.33; Wed, 30 Apr
+ 2025 04:30:57 +0000
+Received: from SN7PR11MB6750.namprd11.prod.outlook.com
+ ([fe80::9570:169d:a0d5:527]) by SN7PR11MB6750.namprd11.prod.outlook.com
+ ([fe80::9570:169d:a0d5:527%4]) with mapi id 15.20.8655.038; Wed, 30 Apr 2025
+ 04:30:57 +0000
+From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH 08/10] drm/i915/hdcp: simplify HDCP GSC firmware usage
+ selection
+Thread-Topic: [PATCH 08/10] drm/i915/hdcp: simplify HDCP GSC firmware usage
+ selection
+Thread-Index: AQHbtVPXBbGH9JhVNUe6HKfq5T4r5LO7pjMA
+Date: Wed, 30 Apr 2025 04:30:56 +0000
+Message-ID: <SN7PR11MB6750EF331CF8AFF23DA597F7E3832@SN7PR11MB6750.namprd11.prod.outlook.com>
+References: <cover.1745524803.git.jani.nikula@intel.com>
+ <a1d031bfbff7073e576dfe8d3d3d5a28d7bb2c15.1745524803.git.jani.nikula@intel.com>
+In-Reply-To: <a1d031bfbff7073e576dfe8d3d3d5a28d7bb2c15.1745524803.git.jani.nikula@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|SJ2PR11MB7646:EE_
+x-ms-office365-filtering-correlation-id: 11719a45-aa87-4a1f-da6b-08dd879fcd4a
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|366016|376014|38070700018|7053199007; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?uBzEDd9QrbrZqQ7+vW6cUzZsWYGxF5MqhCmS2Rh8NlLPf1c3iavJc0kgWKrb?=
+ =?us-ascii?Q?t7mtf89FzxnRFF3ECqwPFYukcHdKlzDkQiqVH3EirdkSuRDsNWYQ3BkTr/Tj?=
+ =?us-ascii?Q?agtaBIlqtuwYzYwv92RxkZMARW8u1cYvHmeZlLuvtEHKVisShvKKJCkKs4KK?=
+ =?us-ascii?Q?3BxmYZSP1aZKLh9uc3Gxo7oKw0W1tv/GZCkGzUohpOB3tvTUoLtCkAhr75/O?=
+ =?us-ascii?Q?vHxk08DTc9qOHRUHSkQKuH0vKp5MXh6qipIwOptGKV6pYpgcPS/3bQW9WT1x?=
+ =?us-ascii?Q?TWMAdxeo7kyHG8WjVdnGfXJGKjC+KAM9KSKJ+Hy3xVDWMhgjy0MNkICwA3Mp?=
+ =?us-ascii?Q?cNXQxGA7DXUFvn3ZSBhDkC/7cyDhIa4waL3KCoigUG/Y9/ONFS68BfiSBd4j?=
+ =?us-ascii?Q?tNlfQCLd4ZrON3QI+TZugHnBBcIYKghQV4LYOIuo5VeiObHOBE/Ahdeya5NE?=
+ =?us-ascii?Q?fYlQ/fR2LWfyeiwOWg++rLp2akTu1u6jfG/qe23EJQimOca7jdtEsItARRGw?=
+ =?us-ascii?Q?v9f4hTzIlZtaK/TAsljwLuiv+UUG+I97HK/Y68EUawsiSpYtSj5E/loqG6hX?=
+ =?us-ascii?Q?QaW+XyFm28mWr42bIRymsCr0q1/3cG9cXfZE6l38fCi0vvQsHc4GlO4mcQUY?=
+ =?us-ascii?Q?bhyEthbHqa8TTWxaM/Qm/Dh0PI4XRYiApfzGjm4Ey6qok6ueboUVJBxz5orF?=
+ =?us-ascii?Q?3Ycaq8wDs8+t+qvXwYQsCfG9ru6NV5IIHj5rMsOO+XngOHx2iyDX1L1QmEZF?=
+ =?us-ascii?Q?luPp9aSnTWNK/6g/jUCpWdmRRTiV5Q8hJ2vrBVeJPgAApEPnxBxdnXJO2Bdy?=
+ =?us-ascii?Q?wNp0J4bs2rM0aSDWBNp1W0kWlilgh4ArBvMrtmv0362UpRolTyU4MDb0HkMn?=
+ =?us-ascii?Q?Yvnjexa+aiNxe2sMgVSNnDvFlrDeUbN9DD46rrrTyTXMI6en2aF9rDyXgqdB?=
+ =?us-ascii?Q?vY/Rws6k3i51X4GveVeqSUv1KfxIJ2bPc6qOhjw1jv5uInW51n4c7BrXauSY?=
+ =?us-ascii?Q?ZjkBMJTXgUlgDdXkbGtDVzgwc2mXr92VBTEQBogA3mWQHeD3TxurGtgWVFgi?=
+ =?us-ascii?Q?xKVj0Bq0n7CiK8yzmQwQpTX/wW+jXrxJiH1w0Yu1GlIFh4TfiYGcWuACN62n?=
+ =?us-ascii?Q?SYh0h/WTnzUTR2o3qU6+H3RVG2zCdYK1TDgjam+k6FG8LBAMJjDo1FPQ0kEr?=
+ =?us-ascii?Q?hbrchRHV5nUPunGpj0SWVnTEKcwx+nZdvPKOu8oxPuY9U5mU59G2l6DBQApJ?=
+ =?us-ascii?Q?hHNLMhSCUhFzlKUXlFGtgNdM3bsVrEZmQH24GRGShRaXup+cyoMm1R6B4c3w?=
+ =?us-ascii?Q?WbqTc8wDipnUT4Gn1jREYDCZBEMcDXdhXvMbTff4u0d5xRf4s/8p2Z4Rjmau?=
+ =?us-ascii?Q?tN9z9AXQOxEvUTGC6jxi7x1FhqeZrs/q+iHo9Z7GrUehdaJzcqUFPiMr0L3s?=
+ =?us-ascii?Q?HfEU1pb6oPgPDTqQ8WG8ruzTheGBSxeXzt2kspi/5REUxhi8oN1/WrgIfMT8?=
+ =?us-ascii?Q?yDRM2btD3Y5VDsw=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(38070700018)(7053199007); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?YM1/0TNnyio6ZSJZCWVvhYpoESj3pFlq6SMzmOcv7TfTuWhtyqt9L5sEOCr5?=
+ =?us-ascii?Q?yu6cj3try5xRUUlKEgdnyN+jPdeyIb2pl0/FJ/YvlyexjX9+rks9Zn2LqlDI?=
+ =?us-ascii?Q?2Z0QHEx4/xcQmxutTrGVPwE7XTeQY0TL6jQJuvd3lW7FS/bc3RWtmrlkjHwa?=
+ =?us-ascii?Q?7yvoDR9RjSlA4wU5tFNQRwu/HBUU7q3yfpcHqq6Ptm+CP2b78K9juoQeymVk?=
+ =?us-ascii?Q?7EU/vzaXgNrQRTEwGPum3XDJFnbgxfGlp4ehVK4LDaSsjNJ90aj+spHIYOmo?=
+ =?us-ascii?Q?J1fHNnLHUrrxGh1E3jaN2nlKBt3r0d2C/HA7YwbGlbbsNCGOxFFE+HyYlVbz?=
+ =?us-ascii?Q?vjSjjJOvSZT1wEdSY4v+UZ6Ww2/bYtgc8FDhY2DQoEeynMJWK0Pt7pRhZQQ+?=
+ =?us-ascii?Q?oIub9WaqIH2izP8MJ5pYJBvlyuuZf5tiNzieX48/D6KhElSajTGCXAYMHGjg?=
+ =?us-ascii?Q?UY8EElOw1JLCnu1oerDHeqWnNIAkQXB8qEDUE5Bfon55Yoe/vqr96ddpXNMH?=
+ =?us-ascii?Q?LZOTedHFPUQ1K40wa0lVZCnwT8eif/5a7ldxvMr8XGTb42NKS+F3VKTff7By?=
+ =?us-ascii?Q?w0c+bI6C1JmjYeCt3pb8n0+3VlSF4j9MOTMIusApCuMGK9h9IsmLJ+yek7Ah?=
+ =?us-ascii?Q?+QsyYmRpXEXHGV415/r04KpW7oNebfx+xLGtGcKlqFCGhBLmfTsO9fytF30I?=
+ =?us-ascii?Q?WwJqTXee9nuSTA1md4B1HQ8YXuw2EILkwIC7M2L+omMc0O679e1twA0W2cU/?=
+ =?us-ascii?Q?hmlwABULRJLb0fKLKw2eDkxdIdf0Ie1TqYzYSUxaVb/0vv634LC3BAVlHoLi?=
+ =?us-ascii?Q?w9JVdERRP0EuxCFGAnPNjyDFyOZXiWwWlZZtd2LrmyUHAiVSvV/mHmF8ZfNP?=
+ =?us-ascii?Q?ZLUBb+lticKe6YszDPU2p2wxm9XAW4W92K4E1ySamETUmbmjmRt+Y2zYM3/9?=
+ =?us-ascii?Q?90fnQAj6F45lsHyNHBIy3tjBjeM7Mh/MacvSfRTnzdwYmRZFxKIjAzQv6GZ3?=
+ =?us-ascii?Q?JVVNF17FmIEcXm6hgpgPhgvnqnCl5JTI7i0yFJXmB//xEt7WToq7cPuuHHUG?=
+ =?us-ascii?Q?fDU61kW9H4J4SwBW2UpeJfI/P6fSI5VauaO5yPSSS1QHkSXkY8KHTnOlYXlD?=
+ =?us-ascii?Q?Fvk521ObaBTzfRCZxfOHxGlrUKroIjChbQaW3wS7JZcQqQwNNNEbKowc8GJO?=
+ =?us-ascii?Q?inLKIMt622WLCPLws2D8gn0wrlYIgN0PdWL0MJhPuubzBue9OhNphTO7TLMK?=
+ =?us-ascii?Q?+i1Zev3v+PYarKUjaKOXgSPgEil7yG8FDmdaw3yueSnulx0Vc895sgTWPdF5?=
+ =?us-ascii?Q?5jmSGjK93fvVIXok6F0eS52l7Gi6qOjsXhxSXcix0umXPAhA+4QIVL3k/3qW?=
+ =?us-ascii?Q?1aC67Xa7LbO6uWhp8itgmUH1ILB337Jyrcd50ALOVf044qpJR67MErnaiH/w?=
+ =?us-ascii?Q?F/tAwVcFnYKyMtchetXlGnhCO9CIZ3pRLqMBOvQVqMLG8s7PV+0a54GEN7mQ?=
+ =?us-ascii?Q?ezIZUrnu5O8myFALC5qh53IGktdAfITU017mx7YyEPa0Th7thkD4x/P3TjwO?=
+ =?us-ascii?Q?lN6Lxhx3/IB10oW+15xaBWXog9HAY4JyTHTtzi5w?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 11719a45-aa87-4a1f-da6b-08dd879fcd4a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Apr 2025 04:30:56.9872 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: uo0df5cI/dzT1i1NbHc7EKzduWEDZwOVR44gTpvifx4+vuKy0Z/YByv9mAiMpkyP0zuFLf07H8JEHLUWHWYhMQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7646
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,199 +184,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Expose sysfs attributes for PCIe link downgrade capability and status.
 
-v2: Move from debugfs to sysfs (Lucas, Rodrigo, Badal)
-    Rework macros and their naming (Rodrigo)
-v3: Use sysfs_create_files() (Riana)
-    Fix checkpatch warning (Riana)
-v4: s/downspeed/downgrade (Lucas, Rodrigo, Riana)
-v5: Use PCIe Gen agnostic naming (Rodrigo)
 
-Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-Reviewed-by: Riana Tauro <riana.tauro@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c       |   5 ++
- drivers/gpu/drm/xe/xe_device_sysfs.c | 103 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_device_sysfs.h |   1 +
- drivers/gpu/drm/xe/xe_pcode_api.h    |   5 ++
- 4 files changed, 114 insertions(+)
+> -----Original Message-----
+> From: Nikula, Jani <jani.nikula@intel.com>
+> Sent: Friday, April 25, 2025 1:32 AM
+> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+> Cc: Nikula, Jani <jani.nikula@intel.com>; Kandpal, Suraj
+> <suraj.kandpal@intel.com>
+> Subject: [PATCH 08/10] drm/i915/hdcp: simplify HDCP GSC firmware usage
+> selection
+>=20
+> Just localize the GSC decision inside intel_hdcp.c, and deduplicate the
+> conditions.
+>=20
+> Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 6c9d3009aa03..79b7b0ecfbae 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -26,6 +26,7 @@
- #include "xe_bo_evict.h"
- #include "xe_debugfs.h"
- #include "xe_devcoredump.h"
-+#include "xe_device_sysfs.h"
- #include "xe_dma_buf.h"
- #include "xe_drm_client.h"
- #include "xe_drv.h"
-@@ -916,6 +917,10 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		goto err_unregister_display;
- 
-+	err = xe_device_sysfs_init(xe);
-+	if (err)
-+		goto err_unregister_display;
-+
- 	xe_debugfs_register(xe);
- 
- 	err = xe_hwmon_register(xe);
-diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
-index 2d25e5b5d4bf..de31d93dec82 100644
---- a/drivers/gpu/drm/xe/xe_device_sysfs.c
-+++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
-@@ -11,6 +11,9 @@
- 
- #include "xe_device.h"
- #include "xe_device_sysfs.h"
-+#include "xe_mmio.h"
-+#include "xe_pcode_api.h"
-+#include "xe_pcode.h"
- #include "xe_pm.h"
- 
- /**
-@@ -81,3 +84,103 @@ int xe_pm_sysfs_init(struct xe_device *xe)
- 
- 	return devm_add_action_or_reset(dev, xe_pm_sysfs_fini, xe);
- }
-+
-+/**
-+ * DOC: PCIe Gen5 Limitations
-+ *
-+ * Default link speed of discrete GPUs is determined by configuration parameters
-+ * stored in their flash memory, which are subject to override through user
-+ * initiated firmware updates. It has been observed that devices configured with
-+ * PCIe Gen5 as their default link speed can come across link quality issues due
-+ * to host or motherboard limitations and may have to auto-downgrade their link
-+ * to PCIe Gen4 speed when faced with unstable link at Gen5, which makes
-+ * firmware updates rather risky on such setups. It is required to ensure that
-+ * the device is capable of auto-downgrading its link to PCIe Gen4 speed before
-+ * pushing the firmware image with PCIe Gen5 as default configuration. This can
-+ * be done by reading ``pcie_gen_downgrade_capable`` sysfs entry, which will
-+ * denote if the device is capable of auto-downgrading its link to PCIe Gen4
-+ * speed with boolean output value of ``0`` or ``1``, meaning `incapable` or
-+ * `capable` respectively.
-+ *
-+ * .. code-block:: shell
-+ *
-+ *    $ cat /sys/bus/pci/devices/<bdf>/pcie_gen_downgrade_capable
-+ *
-+ * Pushing the firmware image with PCIe Gen5 as default configuration on a link
-+ * auto-downgrade incapable device and facing link instability due to host or
-+ * motherboard limitations can result in driver failing to bind to the device,
-+ * making further firmware updates impossible with RMA being the only last
-+ * resort.
-+ *
-+ * Link downgrade status of auto-downgrade capable devices is available through
-+ * ``pcie_gen_downgrade_status`` sysfs entry with boolean output value of ``0``
-+ * or ``1``, where ``0`` means no auto-downgrading was required during link
-+ * training (which is the optimal scenario) and ``1`` means the device has
-+ * auto-downgraded its link to PCIe Gen4 speed due to unstable Gen5 link.
-+ *
-+ * .. code-block:: shell
-+ *
-+ *    $ cat /sys/bus/pci/devices/<bdf>/pcie_gen_downgrade_status
-+ */
-+
-+static ssize_t
-+pcie_gen_downgrade_capable_show(struct device *dev, struct device_attribute *attr, char *buf)
-+{
-+	struct pci_dev *pdev = to_pci_dev(dev);
-+	struct xe_device *xe = pdev_to_xe_device(pdev);
-+	u32 cap, val;
-+
-+	xe_pm_runtime_get(xe);
-+	val = xe_mmio_read32(xe_root_tile_mmio(xe), BMG_PCIE_CAP);
-+	xe_pm_runtime_put(xe);
-+
-+	cap = REG_FIELD_GET(PCIE_DOWNGRADE, val);
-+	return sysfs_emit(buf, "%u\n", cap == DOWNGRADE_CAPABLE ? true : false);
-+}
-+static DEVICE_ATTR_ADMIN_RO(pcie_gen_downgrade_capable);
-+
-+static ssize_t
-+pcie_gen_downgrade_status_show(struct device *dev, struct device_attribute *attr, char *buf)
-+{
-+	struct pci_dev *pdev = to_pci_dev(dev);
-+	struct xe_device *xe = pdev_to_xe_device(pdev);
-+	u32 val;
-+	int ret;
-+
-+	xe_pm_runtime_get(xe);
-+	ret = xe_pcode_read(xe_device_get_root_tile(xe),
-+			    PCODE_MBOX(DGFX_PCODE_STATUS, DGFX_GET_INIT_STATUS, 0),
-+			    &val, NULL);
-+	xe_pm_runtime_put(xe);
-+
-+	return ret ?: sysfs_emit(buf, "%u\n", REG_FIELD_GET(DGFX_PCIE_DOWNGRADE_STATUS, val));
-+}
-+static DEVICE_ATTR_ADMIN_RO(pcie_gen_downgrade_status);
-+
-+static const struct attribute *pcie_gen_downgrade_attrs[] = {
-+	&dev_attr_pcie_gen_downgrade_capable.attr,
-+	&dev_attr_pcie_gen_downgrade_status.attr,
-+	NULL
-+};
-+
-+static void xe_device_sysfs_fini(void *arg)
-+{
-+	struct xe_device *xe = arg;
-+
-+	if (xe->info.platform == XE_BATTLEMAGE)
-+		sysfs_remove_files(&xe->drm.dev->kobj, pcie_gen_downgrade_attrs);
-+}
-+
-+int xe_device_sysfs_init(struct xe_device *xe)
-+{
-+	struct device *dev = xe->drm.dev;
-+	int ret;
-+
-+	if (xe->info.platform == XE_BATTLEMAGE) {
-+		ret = sysfs_create_files(&dev->kobj, pcie_gen_downgrade_attrs);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return devm_add_action_or_reset(dev, xe_device_sysfs_fini, xe);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.h b/drivers/gpu/drm/xe/xe_device_sysfs.h
-index 2c1fabdba9e4..b557db0a6023 100644
---- a/drivers/gpu/drm/xe/xe_device_sysfs.h
-+++ b/drivers/gpu/drm/xe/xe_device_sysfs.h
-@@ -9,5 +9,6 @@
- struct xe_device;
- 
- int xe_pm_sysfs_init(struct xe_device *xe);
-+int xe_device_sysfs_init(struct xe_device *xe);
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
-index e622ae17f08d..d32286bf9182 100644
---- a/drivers/gpu/drm/xe/xe_pcode_api.h
-+++ b/drivers/gpu/drm/xe/xe_pcode_api.h
-@@ -34,6 +34,7 @@
- #define   DGFX_PCODE_STATUS		0x7E
- #define     DGFX_GET_INIT_STATUS	0x0
- #define     DGFX_INIT_STATUS_COMPLETE	0x1
-+#define     DGFX_PCIE_DOWNGRADE_STATUS	REG_BIT(31)
- 
- #define   PCODE_POWER_SETUP			0x7C
- #define     POWER_SETUP_SUBCOMMAND_READ_I1	0x4
-@@ -66,6 +67,10 @@
- /* Auxiliary info bits */
- #define   AUXINFO_HISTORY_OFFSET	REG_GENMASK(31, 29)
- 
-+#define BMG_PCIE_CAP			XE_REG(0x138340)
-+#define   PCIE_DOWNGRADE		REG_GENMASK(1, 0)
-+#define     DOWNGRADE_CAPABLE		2
-+
- struct pcode_err_decode {
- 	int errno;
- 	const char *str;
--- 
-2.34.1
+LGTM,
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdcp.c     | 10 ++++++----
+>  drivers/gpu/drm/i915/display/intel_hdcp_gsc.c |  5 -----
+> drivers/gpu/drm/i915/display/intel_hdcp_gsc.h |  1 -
+>  drivers/gpu/drm/xe/display/xe_hdcp_gsc.c      |  5 -----
+>  4 files changed, 6 insertions(+), 15 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index 4857685c4020..39bcf8f3d810 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -32,6 +32,8 @@
+>  #include "intel_hdcp_shim.h"
+>  #include "intel_pcode.h"
+>=20
+> +#define USE_HDCP_GSC(__display)		(DISPLAY_VER(__display) >=3D
+> 14)
+> +
+>  #define KEY_LOAD_TRIES	5
+>  #define HDCP2_LC_RETRY_CNT			3
+>=20
+> @@ -251,7 +253,7 @@ static bool intel_hdcp2_prerequisite(struct
+> intel_connector *connector)
+>  		return false;
+>=20
+>  	/* If MTL+ make sure gsc is loaded and proxy is setup */
+> -	if (intel_hdcp_gsc_cs_required(display)) {
+> +	if (USE_HDCP_GSC(display)) {
+>  		if (!intel_hdcp_gsc_check_status(display))
+>  			return false;
+>  	}
+> @@ -2340,7 +2342,7 @@ static int initialize_hdcp_port_data(struct
+> intel_connector *connector,
+>=20
+>  static bool is_hdcp2_supported(struct intel_display *display)  {
+> -	if (intel_hdcp_gsc_cs_required(display))
+> +	if (USE_HDCP_GSC(display))
+>  		return true;
+>=20
+>  	if (!IS_ENABLED(CONFIG_INTEL_MEI_HDCP))
+> @@ -2364,7 +2366,7 @@ void intel_hdcp_component_init(struct intel_display
+> *display)
+>=20
+>  	display->hdcp.comp_added =3D true;
+>  	mutex_unlock(&display->hdcp.hdcp_mutex);
+> -	if (intel_hdcp_gsc_cs_required(display))
+> +	if (USE_HDCP_GSC(display))
+>  		ret =3D intel_hdcp_gsc_init(display);
+>  	else
+>  		ret =3D component_add_typed(display->drm->dev,
+> &i915_hdcp_ops, @@ -2639,7 +2641,7 @@ void
+> intel_hdcp_component_fini(struct intel_display *display)
+>  	display->hdcp.comp_added =3D false;
+>  	mutex_unlock(&display->hdcp.hdcp_mutex);
+>=20
+> -	if (intel_hdcp_gsc_cs_required(display))
+> +	if (USE_HDCP_GSC(display))
+>  		intel_hdcp_gsc_fini(display);
+>  	else
+>  		component_del(display->drm->dev, &i915_hdcp_ops); diff --git
+> a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+> b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+> index 1ea2c7204444..4194ef77f7c3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+> @@ -19,11 +19,6 @@ struct intel_hdcp_gsc_context {
+>  	void *hdcp_cmd_out;
+>  };
+>=20
+> -bool intel_hdcp_gsc_cs_required(struct intel_display *display) -{
+> -	return DISPLAY_VER(display) >=3D 14;
+> -}
+> -
+>  bool intel_hdcp_gsc_check_status(struct intel_display *display)  {
+>  	struct drm_i915_private *i915 =3D to_i915(display->drm); diff --git
+> a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
+> b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
+> index fbef56db54f2..e963c1fcc39e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
+> @@ -12,7 +12,6 @@
+>  struct intel_display;
+>  struct intel_hdcp_gsc_context;
+>=20
+> -bool intel_hdcp_gsc_cs_required(struct intel_display *display);  ssize_t
+> intel_hdcp_gsc_msg_send(struct intel_hdcp_gsc_context *gsc_context,
+>  				void *msg_in, size_t msg_in_len,
+>  				void *msg_out, size_t msg_out_len); diff --git
+> a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+> b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+> index 7712d53627f0..078916072c10 100644
+> --- a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+> +++ b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+> @@ -30,11 +30,6 @@ struct intel_hdcp_gsc_context {
+>=20
+>  #define HDCP_GSC_HEADER_SIZE sizeof(struct intel_gsc_mtl_header)
+>=20
+> -bool intel_hdcp_gsc_cs_required(struct intel_display *display) -{
+> -	return DISPLAY_VER(display) >=3D 14;
+> -}
+> -
+>  bool intel_hdcp_gsc_check_status(struct intel_display *display)  {
+>  	struct xe_device *xe =3D to_xe_device(display->drm);
+> --
+> 2.39.5
 
