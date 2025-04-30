@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E90F2C369DC
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Apr 2025 20:36:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D8D9C369DC
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Apr 2025 20:36:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B010910E027;
-	Wed, 30 Apr 2025 20:36:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C879110E124;
+	Wed, 30 Apr 2025 20:36:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ch9HxKep";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oBvxGnrN";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45C8710E027
- for <intel-xe@lists.freedesktop.org>; Wed, 30 Apr 2025 20:36:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6278D10E124
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Apr 2025 20:36:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746045405; x=1777581405;
+ t=1746045410; x=1777581410;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=jee/Cb1kb7UomnSBnAEbDq9y0bmrn9I0Btd1WycbcKM=;
- b=ch9HxKep/TFoO4udA4nj9J8aMTm1Q3LkjFaQyOb7Jcz0SWAZy+suN5qM
- n2uR9kwYz8Ke8xMEaDYy5ijGAlj29lhV8mf9xi6qK4z6NxuzLyWVxKd6B
- ++TR3FkHKjvl9m20B1E/KQk1D9eAtxK1NdHjR7f+/Jouneg1cTu1PJpkR
- ORhY1FMkAvQTh25YwrXHLlkrkYBr8MAo+acpWCXSp5DB7RC0POgNf0SQn
- ycqpiwrZS476C1fS+vsLvTwPJF6NIAXkwimRS+XFFWRBN2GEiFn7ZjdAP
- XU9Gyb/EU9kTm0IoTLvxw26Kz/iJccU8LW7qyyWcIpPgZYnwQTcUiNFoN Q==;
-X-CSE-ConnectionGUID: 9iyyYeoVTla9LjkZNqIVsg==
-X-CSE-MsgGUID: q3paLObuSRqcU3ZVZedqCQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11419"; a="58712389"
-X-IronPort-AV: E=Sophos;i="6.15,252,1739865600"; d="scan'208";a="58712389"
+ bh=vkEAAdJ8nFnAeaZDaKEyfND73sROrIr6OsPkk9j+1ew=;
+ b=oBvxGnrN4qFYBIjOxpAcZssV5VFdoKMkthDtUsmKZ4vhSTl3aEhKr6m2
+ CMi+oWGe6wEwRHYu7dw+D2U82yAnA01ddPQE6wyjweL4FsHT5mlBHiAZd
+ 9zCLybkGMX5CnklWXmJBBrNMbNXnVCHj1WjUWvzF1pAU8VD8bmcJa/G8D
+ vYSClxBhShejGXBQ+pTPQtA7belN1NbAEtDVMC+fTr8L6lH/nEuHHlQUv
+ bY371/QSixSXAZ2AL7h2/57fEccFBMTJswjtQDZke7x/0acqFMChYDfrf
+ SB6z0tbWKHZJ1d+IZvrX51pWNiGTgk0kvFBN6rhzma7NJOJvhsKY2zPTA Q==;
+X-CSE-ConnectionGUID: fnj+os/CQlWVoWP2f0MGeA==
+X-CSE-MsgGUID: dDgGKXb4RUS20eSZd0Sn7g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11419"; a="58712399"
+X-IronPort-AV: E=Sophos;i="6.15,252,1739865600"; d="scan'208";a="58712399"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2025 13:36:45 -0700
-X-CSE-ConnectionGUID: whUy44DsS3StxYkFwtveZQ==
-X-CSE-MsgGUID: onEEdS2lTYSZTeeVN/2/RA==
+ 30 Apr 2025 13:36:49 -0700
+X-CSE-ConnectionGUID: ouPf2uyARPSP+zte41rfog==
+X-CSE-MsgGUID: 5MR8Z2v7QvuxrU3preBzPw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,252,1739865600"; d="scan'208";a="134112621"
+X-IronPort-AV: E=Sophos;i="6.15,252,1739865600"; d="scan'208";a="134112627"
 Received: from unknown (HELO sinjan-Super-Server.iind.intel.com)
  ([10.190.239.39])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2025 13:36:42 -0700
+ 30 Apr 2025 13:36:46 -0700
 From: Karthik Poosa <karthik.poosa@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
  ashutosh.dixit@intel.com, rodrigo.vivi@intel.com, michael.j.ruhl@intel.com,
  Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH v3 4/5] drm/xe/hwmon: Expose powerX_cap_interval
-Date: Thu,  1 May 2025 02:06:06 +0530
-Message-Id: <20250430203607.926585-5-karthik.poosa@intel.com>
+Subject: [PATCH v3 5/5] drm/xe/hwmon: Read energy status from PMT
+Date: Thu,  1 May 2025 02:06:07 +0530
+Message-Id: <20250430203607.926585-6-karthik.poosa@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20250430203607.926585-1-karthik.poosa@intel.com>
 References: <20250430203607.926585-1-karthik.poosa@intel.com>
@@ -69,92 +69,213 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Expose powerX_cap_interval to manage burst power limit time window.
+Read card and package energy status using pmt apis instead
+of xe_mmio for supported platforms.
+Enable Battlemage to read energy from PMT.
 
 Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
 ---
- .../ABI/testing/sysfs-driver-intel-xe-hwmon    | 18 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_hwmon.c                  | 16 +++++++++++++---
- 2 files changed, 31 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_pcode_regs.h |  3 +-
+ drivers/gpu/drm/xe/regs/xe_pmt.h        |  2 ++
+ drivers/gpu/drm/xe/xe_device_types.h    |  2 ++
+ drivers/gpu/drm/xe/xe_hwmon.c           | 46 +++++++++++++++++++------
+ drivers/gpu/drm/xe/xe_pci.c             |  3 ++
+ drivers/gpu/drm/xe/xe_vsec.c            |  4 +--
+ drivers/gpu/drm/xe/xe_vsec.h            |  4 +++
+ 7 files changed, 49 insertions(+), 15 deletions(-)
 
-diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-index 9dc2ee348aa6..124fa0883924 100644
---- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-+++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-@@ -176,3 +176,21 @@ Description:	RW. Package burst (PL2) power limit in microwatts.
- 		limit. Writing values > 0 and <= TDP will enable the power limit.
+diff --git a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+index c7d5d782e3f9..487a01455f2a 100644
+--- a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+@@ -20,14 +20,13 @@
  
- 		Only supported for particular Intel Xe graphics platforms.
+ #define BMG_PACKAGE_POWER_SKU			XE_REG(0x138098)
+ #define BMG_PACKAGE_POWER_SKU_UNIT		XE_REG(0x1380dc)
+-#define BMG_PACKAGE_ENERGY_STATUS		XE_REG(0x138120)
+ #define BMG_FAN_1_SPEED				XE_REG(0x138140)
+ #define BMG_FAN_2_SPEED				XE_REG(0x138170)
+ #define BMG_FAN_3_SPEED				XE_REG(0x1381a0)
+ #define BMG_VRAM_TEMPERATURE			XE_REG(0x1382c0)
+ #define BMG_PACKAGE_TEMPERATURE			XE_REG(0x138434)
+ #define BMG_PACKAGE_RAPL_LIMIT			XE_REG(0x138440)
+-#define BMG_PLATFORM_ENERGY_STATUS		XE_REG(0x138458)
+ #define BMG_PLATFORM_POWER_LIMIT		XE_REG(0x138460)
++#define BMG_ENERGY_STATUS_PMT_OFFSET		(0x30)
+ 
+ #endif /* _XE_PCODE_REGS_H_ */
+diff --git a/drivers/gpu/drm/xe/regs/xe_pmt.h b/drivers/gpu/drm/xe/regs/xe_pmt.h
+index f45abcd96ba8..ad91f6fef6bb 100644
+--- a/drivers/gpu/drm/xe/regs/xe_pmt.h
++++ b/drivers/gpu/drm/xe/regs/xe_pmt.h
+@@ -10,6 +10,8 @@
+ #define BMG_PMT_BASE_OFFSET		0xDB000
+ #define BMG_DISCOVERY_OFFSET		(SOC_BASE + BMG_PMT_BASE_OFFSET)
+ 
++#define PUNIT_TELEMETRY_GUID		XE_REG(BMG_DISCOVERY_OFFSET + 0x4)
 +
-+What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/power1_cap_interval
-+Date:		May 2025
-+KernelVersion:	6.15
-+Contact:	intel-xe@lists.freedesktop.org
-+Description:	RW. Card burst power limit interval (Tau in PL2/Tau) in
-+		milliseconds over which sustained power is averaged.
-+
-+		Only supported for particular Intel Xe graphics platforms.
-+
-+What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/power2_cap_interval
-+Date:		May 2025
-+KernelVersion:	6.15
-+Contact:	intel-xe@lists.freedesktop.org
-+Description:	RW. Package burst power limit interval (Tau in PL2/Tau) in
-+		milliseconds over which sustained power is averaged.
-+
-+		Only supported for particular Intel Xe graphics platforms.
+ #define BMG_TELEMETRY_BASE_OFFSET	0xE0000
+ #define BMG_TELEMETRY_OFFSET		(SOC_BASE + BMG_TELEMETRY_BASE_OFFSET)
+ 
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 2c8321eb41b9..cfac809dd7aa 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -330,6 +330,8 @@ struct xe_device {
+ 		 * pcode mailbox commands.
+ 		 */
+ 		u8 has_mbx_power_limits:1;
++		/** @info.has_pxp: Device has energy status in PMT */
++		u8 has_pmt_energy:1;
+ 		/** @info.has_pxp: Device has PXP support */
+ 		u8 has_pxp:1;
+ 		/** @info.has_range_tlb_invalidation: Has range based TLB invalidations */
 diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index 115758c88175..ada8c15829a3 100644
+index ada8c15829a3..349eb27d977b 100644
 --- a/drivers/gpu/drm/xe/xe_hwmon.c
 +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -473,7 +473,7 @@ xe_hwmon_power_max_interval_show(struct device *dev, struct device_attribute *at
- 	u32 x, y, x_w = 2; /* 2 bits */
- 	u64 r, tau4, out;
- 	int channel = (to_sensor_dev_attr(attr)->index % 2) ? CHANNEL_PKG : CHANNEL_CARD;
--	u32 power_attr = PL1_HWMON_ATTR;
-+	u32 power_attr = (to_sensor_dev_attr(attr)->index > 1) ? PL2_HWMON_ATTR : PL1_HWMON_ATTR;
+@@ -20,6 +20,8 @@
+ #include "xe_pcode_api.h"
+ #include "xe_sriov.h"
+ #include "xe_pm.h"
++#include "xe_vsec.h"
++#include "regs/xe_pmt.h"
  
- 	int ret = 0;
+ enum xe_hwmon_reg {
+ 	REG_TEMP,
+@@ -263,12 +265,7 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg
+ 			return GT_PERF_STATUS;
+ 		break;
+ 	case REG_PKG_ENERGY_STATUS:
+-		if (xe->info.platform == XE_BATTLEMAGE) {
+-			if (channel == CHANNEL_PKG)
+-				return BMG_PACKAGE_ENERGY_STATUS;
+-			else
+-				return BMG_PLATFORM_ENERGY_STATUS;
+-		} else if (xe->info.platform == XE_PVC && channel == CHANNEL_PKG) {
++		if (xe->info.platform == XE_PVC && channel == CHANNEL_PKG) {
+ 			return PVC_GT0_PLATFORM_ENERGY_STATUS;
+ 		} else if ((xe->info.platform == XE_DG2) && (channel == CHANNEL_PKG)) {
+ 			return PCU_CR_PACKAGE_ENERGY_STATUS;
+@@ -449,9 +446,29 @@ xe_hwmon_energy_get(struct xe_hwmon *hwmon, int channel, long *energy)
+ 	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
+ 	struct xe_hwmon_energy_info *ei = &hwmon->ei[channel];
+ 	u64 reg_val;
++	int ret = 0;
  
-@@ -528,7 +528,7 @@ xe_hwmon_power_max_interval_store(struct device *dev, struct device_attribute *a
- 	u64 tau4, r, max_win;
- 	unsigned long val;
- 	int channel = (to_sensor_dev_attr(attr)->index % 2) ? CHANNEL_PKG : CHANNEL_CARD;
--	u32 power_attr = PL1_HWMON_ATTR;
-+	u32 power_attr = (to_sensor_dev_attr(attr)->index > 1) ? PL2_HWMON_ATTR : PL1_HWMON_ATTR;
- 	int ret;
+-	reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_PKG_ENERGY_STATUS,
+-							channel));
++	/* Energy is supported only for card and pkg */
++	if (channel > CHANNEL_PKG) {
++		*energy = 0;
++		return;
++	}
++
++	if (hwmon->xe->info.platform == XE_BATTLEMAGE) {
++		ret = xe_pmt_telem_read(to_pci_dev(hwmon->xe->drm.dev),
++					xe_mmio_read32(mmio, PUNIT_TELEMETRY_GUID),
++					&reg_val, BMG_ENERGY_STATUS_PMT_OFFSET,	sizeof(reg_val));
++		drm_dbg(&hwmon->xe->drm, "energy from pmt, ch %d read from mbx 0x%016llx, ret %d\n",
++			channel, reg_val, ret);
++
++		if (channel == CHANNEL_PKG)
++			reg_val &= 0xFFFFFFFF;
++		else
++			reg_val = reg_val >> 32;
++	} else {
++		reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_PKG_ENERGY_STATUS,
++								channel));
++	}
  
- 	ret = kstrtoul(buf, 0, &val);
-@@ -612,10 +612,20 @@ static SENSOR_DEVICE_ATTR(power1_max_interval, 0664,
- static SENSOR_DEVICE_ATTR(power2_max_interval, 0664,
- 			  xe_hwmon_power_max_interval_show,
- 			  xe_hwmon_power_max_interval_store, SENSOR_INDEX_PKG_PL1);
-+/* PSYS PL2 */
-+static SENSOR_DEVICE_ATTR(power1_cap_interval, 0664,
-+			  xe_hwmon_power_max_interval_show,
-+			  xe_hwmon_power_max_interval_store, SENSOR_INDEX_PSYS_PL2);
-+/* PKG PL2 */
-+static SENSOR_DEVICE_ATTR(power2_cap_interval, 0664,
-+			  xe_hwmon_power_max_interval_show,
-+			  xe_hwmon_power_max_interval_store, SENSOR_INDEX_PKG_PL2);
+ 	if (reg_val >= ei->reg_val_prev)
+ 		ei->accum_energy += reg_val - ei->reg_val_prev;
+@@ -927,11 +944,18 @@ xe_hwmon_in_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
+ static umode_t
+ xe_hwmon_energy_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+ {
++	long energy = 0;
++
+ 	switch (attr) {
+ 	case hwmon_energy_input:
+ 	case hwmon_energy_label:
+-		return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_PKG_ENERGY_STATUS,
+-				       channel)) ? 0444 : 0;
++		if (hwmon->xe->info.platform == XE_BATTLEMAGE) {
++			xe_hwmon_energy_get(hwmon, channel, &energy);
++			return energy ? 0444 : 0;
++		} else {
++			return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_PKG_ENERGY_STATUS,
++					       channel)) ? 0444 : 0;
++		}
+ 	default:
+ 		return 0;
+ 	}
+@@ -1278,4 +1302,4 @@ int xe_hwmon_register(struct xe_device *xe)
  
- static struct attribute *hwmon_attributes[] = {
- 	&sensor_dev_attr_power1_max_interval.dev_attr.attr,
- 	&sensor_dev_attr_power2_max_interval.dev_attr.attr,
-+	&sensor_dev_attr_power1_cap_interval.dev_attr.attr,
-+	&sensor_dev_attr_power2_cap_interval.dev_attr.attr,
- 	NULL
+ 	return 0;
+ }
+-
++MODULE_IMPORT_NS("INTEL_PMT_TELEMETRY");
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 95a2a458e8f7..f49452e4ef08 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -67,6 +67,7 @@ struct xe_device_desc {
+ 	u8 has_heci_cscfi:1;
+ 	u8 has_llc:1;
+ 	u8 has_mbx_power_limits:1;
++	u8 has_pmt_energy:1;
+ 	u8 has_pxp:1;
+ 	u8 has_sriov:1;
+ 	u8 needs_scratch:1;
+@@ -345,6 +346,7 @@ static const struct xe_device_desc bmg_desc = {
+ 	.has_display = true,
+ 	.has_fan_control = true,
+ 	.has_mbx_power_limits = true,
++	.has_pmt_energy = true,
+ 	.has_heci_cscfi = 1,
+ 	.needs_scratch = true,
  };
+@@ -588,6 +590,7 @@ static int xe_info_init_early(struct xe_device *xe,
+ 	xe->info.is_dgfx = desc->is_dgfx;
+ 	xe->info.has_fan_control = desc->has_fan_control;
+ 	xe->info.has_mbx_power_limits = desc->has_mbx_power_limits;
++	xe->info.has_pmt_energy = desc->has_pmt_energy;
+ 	xe->info.has_heci_gscfi = desc->has_heci_gscfi;
+ 	xe->info.has_heci_cscfi = desc->has_heci_cscfi;
+ 	xe->info.has_llc = desc->has_llc;
+diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
+index b378848d3b7b..3e573b0b7ebd 100644
+--- a/drivers/gpu/drm/xe/xe_vsec.c
++++ b/drivers/gpu/drm/xe/xe_vsec.c
+@@ -149,8 +149,8 @@ static int xe_guid_decode(u32 guid, int *index, u32 *offset)
+ 	return 0;
+ }
  
-@@ -626,7 +636,7 @@ static umode_t xe_hwmon_attributes_visible(struct kobject *kobj,
- 	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
- 	int ret = 0;
- 	int channel = (index % 2) ? CHANNEL_PKG : CHANNEL_CARD;
--	u32 power_attr = PL1_HWMON_ATTR;
-+	u32 power_attr = (index > 1) ? PL2_HWMON_ATTR : PL1_HWMON_ATTR;
- 	u32 uval;
+-static int xe_pmt_telem_read(struct pci_dev *pdev, u32 guid, u64 *data, loff_t user_offset,
+-			     u32 count)
++int xe_pmt_telem_read(struct pci_dev *pdev, u32 guid, u64 *data, loff_t user_offset,
++		      u32 count)
+ {
+ 	struct xe_device *xe = pdev_to_xe_device(pdev);
+ 	void __iomem *telem_addr = xe->mmio.regs + BMG_TELEMETRY_OFFSET;
+diff --git a/drivers/gpu/drm/xe/xe_vsec.h b/drivers/gpu/drm/xe/xe_vsec.h
+index 5777c53faec2..6d0db46d4700 100644
+--- a/drivers/gpu/drm/xe/xe_vsec.h
++++ b/drivers/gpu/drm/xe/xe_vsec.h
+@@ -4,8 +4,12 @@
+ #ifndef _XE_VSEC_H_
+ #define _XE_VSEC_H_
  
- 	xe_pm_runtime_get(hwmon->xe);
++#include "linux/types.h"
++#include "linux/pci.h"
++
+ struct xe_device;
+ 
+ void xe_vsec_init(struct xe_device *xe);
++int xe_pmt_telem_read(struct pci_dev *pdev, u32 guid, u64 *data, loff_t user_offset, u32 count);
+ 
+ #endif
 -- 
 2.25.1
 
