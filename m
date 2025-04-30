@@ -4,56 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02190C3ABB5
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Apr 2025 11:54:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9C06C369DC
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Apr 2025 12:02:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9B0910E758;
-	Wed, 30 Apr 2025 11:54:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A26210E75D;
+	Wed, 30 Apr 2025 12:02:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SyoRnhmK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DlAfJ+g5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 771EC10E746
- for <intel-xe@lists.freedesktop.org>; Wed, 30 Apr 2025 11:54:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0E6D10E75D
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Apr 2025 12:02:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746014069; x=1777550069;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=t9oJfpT6A/l8Q2bXkVoccX5JuogqlahAz3g2zm89ZEE=;
- b=SyoRnhmK+qfqLjwOdPc4dgaRvEtyxRvMRTquBqr5WnePeGyQN0fjCAV+
- PXo8wXuSDtdYjluKQ71dQWviPe+/wCfbE377CHQX6H9ICqlJRGfQFJaXq
- ZuNDfYhB/526/ICe7PBtlFxSEqCiaryMnCFPFr6e8CR6rjXYZD41CXtYf
- +Iob0IO+8bwyJEweTF8eMDXy7wSjF30MGK6iIJ4dSlBb1Enh5S2DgiYP7
- aXLIfGtxPDjsFwikslvAeIC9JbQj3BFZ41dCiTtazhHOjsg0S2fBhjn3N
- wVzg2APnNC13HGicQVxvmeFkxlEbzOgcmrJEPA8v2oQwMZpfmXf0a26xM w==;
-X-CSE-ConnectionGUID: lvBCPUe4TC+/uFMbjx74Sg==
-X-CSE-MsgGUID: sol5zsCHRgiXPHFKKEZfKw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="47759959"
-X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="47759959"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2025 04:54:29 -0700
-X-CSE-ConnectionGUID: Nsf8E8V9ToevO2kz1Crxzw==
-X-CSE-MsgGUID: 9EU/xPB4Qry3A91h4pBZsQ==
+ t=1746014522; x=1777550522;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=QdTMOizthwpqLG3SEuZQuI8nvXeqpKcaoyMEx1V5deQ=;
+ b=DlAfJ+g5vWXEQSN09OZJ9HkYoiYXSwFRcdB1f2eVBNsjh9jasB8huKAw
+ d014r9C+ge8ySOwbD4+4LuCT9EjlSv+00niG4mDdm4hEJ9gNKpjWeU12E
+ Rx3x8jCDJEaiRIfz416ARaeyfSrqhOyqFVH7j75GsKhn+8XOyfmI8Lkdd
+ 20uuhunlc1slXVqR82Gi3U24GhnXIUBmquPaHT1oqRDPrDSIEtOXFOfXb
+ fJOlWlIpC/vpu+it0HIcO/rauckpU6UsYx4vCX5AulIbo+/8zF9xIBr2p
+ bZNEynfAo/5Cu8ZVSX7cW/AtUNg+IR2YFyjmmzmtV3OXZovUW0FwyBSZX g==;
+X-CSE-ConnectionGUID: RPZHAkKZTUelZOCgroVT6Q==
+X-CSE-MsgGUID: MRZCVnl7SKyUg6vWtXaRfw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="51485069"
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="51485069"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2025 05:02:02 -0700
+X-CSE-ConnectionGUID: x3rkRlv6QkG0so4W5uNe3w==
+X-CSE-MsgGUID: sZUYSYr+Rf20NcZZCZt+cw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="134050727"
-Received: from unknown (HELO himal-Super-Server.iind.intel.com)
- ([10.190.239.34])
- by fmviesa007.fm.intel.com with ESMTP; 30 Apr 2025 04:54:26 -0700
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v6 16/20] drm/xe/svm: Add xe_svm_range_validate() and
- xe_svm_range_migrate_to_smem()
-Date: Wed, 30 Apr 2025 17:49:08 +0530
-Message-Id: <20250430121912.337601-17-himal.prasad.ghimiray@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250430121912.337601-1-himal.prasad.ghimiray@intel.com>
-References: <20250430121912.337601-1-himal.prasad.ghimiray@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="138121950"
+Received: from unknown (HELO localhost) ([10.237.66.160])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2025 05:02:00 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>, John Harrison
+ <John.C.Harrison@Intel.com>, Aditya Chauhan <aditya.chauhan@intel.com>
+Subject: Re: [PATCH] drm/xe: Add helper function to inject fault into
+ ct_dead_capture()
+In-Reply-To: <20250429134649.4747-1-satyanarayana.k.v.p@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250429134649.4747-1-satyanarayana.k.v.p@intel.com>
+Date: Wed, 30 Apr 2025 15:01:58 +0300
+Message-ID: <87h625vow9.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,119 +69,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The xe_svm_range_validate() function checks if a range is
-valid and located in the desired memory region.
+On Tue, 29 Apr 2025, Satyanarayana K V P <satyanarayana.k.v.p@intel.com> wrote:
+> When injecting fault to xe_guc_ct_send_recv() & xe_guc_mmio_send_recv()
+> functions, the CI test systems are going out of space and crashing. To
+> avoid this issue, a new helper function is created and when fault is injected
+> into this xe_should_fail_ct_dead_capture() helper function, ct dead capture is
+> avoided which suppresses ct dumps in the log.
+>
+> Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+> Suggested-by: John Harrison <John.C.Harrison@Intel.com>
+> Tested-by: Aditya Chauhan <aditya.chauhan@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_guc_ct.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+> index 2447de0ebedf..3a49e432f74a 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+> @@ -1770,6 +1770,12 @@ void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool want_ctb)
+>  }
+>  
+>  #if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+> +static noinline int xe_should_fail_ct_dead_capture(void)
 
-xe_svm_range_migrate_to_smem() checks if range have pages in devmem and
-migrate them to smem.
+IMO noinline needs an explanation. I can guess, but let's not make
+everyone guess.
 
-v2
-- Fix function stub in xe_svm.h
-- Fix doc
+BR,
+Jani.
 
-v3 (Matthew Brost)
-- Remove extra new line
-- s/range->base.flags.has_devmem_pages/xe_svm_range_in_vram
+> +{
+> +	return 0;
+> +}
+> +ALLOW_ERROR_INJECTION(xe_should_fail_ct_dead_capture, ERRNO);
+> +
+>  static void ct_dead_capture(struct xe_guc_ct *ct, struct guc_ctb *ctb, u32 reason_code)
+>  {
+>  	struct xe_guc_log_snapshot *snapshot_log;
+> @@ -1778,6 +1784,13 @@ static void ct_dead_capture(struct xe_guc_ct *ct, struct guc_ctb *ctb, u32 reaso
+>  	unsigned long flags;
+>  	bool have_capture;
+>  
+> +	/*
+> +	 * Huge dump is getting generated when injecting error for guc CT/MMIO
+> +	 * functions. So, let us suppress the dump when fault is injected.
+> +	 */
+> +	if (xe_should_fail_ct_dead_capture())
+> +		return;
+> +
+>  	if (ctb)
+>  		ctb->info.broken = true;
 
-v4 (Matthew Brost)
-- s/xe_svm_range_in_vram/range->base.flags.has_devmem_pages
-- Move eviction logic to separate function
-
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
----
- drivers/gpu/drm/xe/xe_svm.c | 41 +++++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_svm.h | 19 +++++++++++++++++
- 2 files changed, 60 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index cb4a849c018b..fff3a279e232 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -643,6 +643,47 @@ static bool xe_svm_range_is_valid(struct xe_svm_range *range,
- 		(!devmem_only || xe_svm_range_in_vram(range));
- }
- 
-+/** xe_svm_range_migrate_to_smem() - Move range pages from VRAM to SMEM
-+ * @vm: xe_vm pointer
-+ * @range: Pointer to the SVM range structure
-+ *
-+ * The xe_svm_range_migrate_to_smem() checks range has pages in VRAM
-+ * and migrates them to SMEM
-+ */
-+void xe_svm_range_migrate_to_smem(struct xe_vm *vm, struct xe_svm_range *range)
-+{
-+	if (xe_svm_range_in_vram(range))
-+		drm_gpusvm_range_evict(&vm->svm.gpusvm, &range->base);
-+}
-+
-+/**
-+ * xe_svm_range_validate() - Check if the SVM range is valid
-+ * @vm: xe_vm pointer
-+ * @range: Pointer to the SVM range structure
-+ * @tile_mask: Mask representing the tiles to be checked
-+ * @devmem_preferred : if true range needs to be in devmem
-+ *
-+ * The xe_svm_range_validate() function checks if a range is
-+ * valid and located in the desired memory region.
-+ *
-+ * Return: true if the range is valid, false otherwise
-+ */
-+bool xe_svm_range_validate(struct xe_vm *vm,
-+			   struct xe_svm_range *range,
-+			   u8 tile_mask, bool devmem_preferred)
-+{
-+	bool ret;
-+
-+	xe_svm_notifier_lock(vm);
-+
-+	ret = (range->tile_present & ~range->tile_invalidated & tile_mask) == tile_mask &&
-+	       (devmem_preferred == range->base.flags.has_devmem_pages);
-+
-+	xe_svm_notifier_unlock(vm);
-+
-+	return ret;
-+}
-+
- #if IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR)
- static struct xe_vram_region *tile_to_vr(struct xe_tile *tile)
- {
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index 9be7bb25725c..3f8c82f9c363 100644
---- a/drivers/gpu/drm/xe/xe_svm.h
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -83,6 +83,12 @@ int xe_svm_range_get_pages(struct xe_vm *vm, struct xe_svm_range *range,
- bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vma *vma,
- 					bool preferred_region_is_vram);
- 
-+void xe_svm_range_migrate_to_smem(struct xe_vm *vm, struct xe_svm_range *range);
-+
-+bool xe_svm_range_validate(struct xe_vm *vm,
-+			   struct xe_svm_range *range,
-+			   u8 tile_mask, bool devmem_preferred);
-+
- /**
-  * xe_svm_range_has_dma_mapping() - SVM range has DMA mapping
-  * @range: SVM range
-@@ -276,6 +282,19 @@ bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vm
- 	return false;
- }
- 
-+static inline
-+void xe_svm_range_migrate_to_smem(struct xe_vm *vm, struct xe_svm_range *range)
-+{
-+}
-+
-+static inline
-+bool xe_svm_range_validate(struct xe_vm *vm,
-+			   struct xe_svm_range *range,
-+			   u8 tile_mask, bool devmem_preferred)
-+{
-+	return false;
-+}
-+
- #define xe_svm_assert_in_notifier(...) do {} while (0)
- #define xe_svm_range_has_dma_mapping(...) false
- 
 -- 
-2.34.1
-
+Jani Nikula, Intel
