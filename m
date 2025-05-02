@@ -4,23 +4,21 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C93AC3DA4A
-	for <intel-xe@archiver.kernel.org>; Fri,  2 May 2025 10:36:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C30DBC3ABB7
+	for <intel-xe@archiver.kernel.org>; Fri,  2 May 2025 10:36:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 418F410E196;
-	Fri,  2 May 2025 10:36:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8656C10E8F2;
+	Fri,  2 May 2025 10:36:49 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 096C510E369
- for <intel-xe@lists.freedesktop.org>; Fri,  2 May 2025 10:36:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 886CB10E8F2
+ for <intel-xe@lists.freedesktop.org>; Fri,  2 May 2025 10:36:48 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Maarten Lankhorst <dev@lankhorst.se>
-Subject: [CI 01/10] drm/xe: Use xe_ggtt_map_bo_unlocked for resume
-Date: Fri,  2 May 2025 12:36:28 +0200
-Message-ID: <20250502103638.521845-2-dev@lankhorst.se>
+Cc: Maarten Lankhorst <dev@lankhorst.se>
+Subject: [CI 07/10] drm/xe/display: Convert GGTT mapping to use
+ pte_encode_flags
+Date: Fri,  2 May 2025 12:36:34 +0200
+Message-ID: <20250502103638.521845-8-dev@lankhorst.se>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250502103638.521845-1-dev@lankhorst.se>
 References: <20250502103638.521845-1-dev@lankhorst.se>
@@ -40,82 +38,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Another small step in removing pte_encode_bo callback.
 
-This is the first step to hide the details of struct xe_ggtt.
-
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_bo_evict.c |  4 +---
- drivers/gpu/drm/xe/xe_ggtt.c     | 16 +++++++++++++++-
- drivers/gpu/drm/xe/xe_ggtt.h     |  2 +-
- 3 files changed, 17 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 17 +++++------------
+ 1 file changed, 5 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c b/drivers/gpu/drm/xe/xe_bo_evict.c
-index ed3746d32b27b..7484ce55a303d 100644
---- a/drivers/gpu/drm/xe/xe_bo_evict.c
-+++ b/drivers/gpu/drm/xe/xe_bo_evict.c
-@@ -197,9 +197,7 @@ static int xe_bo_restore_and_map_ggtt(struct xe_bo *bo)
- 			if (tile != bo->tile && !(bo->flags & XE_BO_FLAG_GGTTx(tile)))
- 				continue;
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 5392e46a3a134..9059b56bc23c8 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -171,15 +171,15 @@ write_ggtt_rotated(struct xe_bo *bo, struct xe_ggtt *ggtt, u32 *ggtt_ofs, u32 bo
+ {
+ 	struct xe_device *xe = xe_bo_device(bo);
+ 	u32 column, row;
++	u64 pte = ggtt->pt_ops->pte_encode_flags(bo, xe->pat.idx[XE_CACHE_NONE]);
  
--			mutex_lock(&tile->mem.ggtt->lock);
--			xe_ggtt_map_bo(tile->mem.ggtt, bo);
--			mutex_unlock(&tile->mem.ggtt->lock);
-+			xe_ggtt_map_bo_unlocked(tile->mem.ggtt, bo);
+ 	for (column = 0; column < width; column++) {
+ 		u32 src_idx = src_stride * (height - 1) + column + bo_ofs;
+ 
+ 		for (row = 0; row < height; row++) {
+-			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
+-							      xe->pat.idx[XE_CACHE_NONE]);
++			u64 addr = xe_bo_addr(bo, src_idx * XE_PAGE_SIZE, XE_PAGE_SIZE);
+ 
+-			ggtt->pt_ops->ggtt_set_pte(ggtt, *ggtt_ofs, pte);
++			ggtt->pt_ops->ggtt_set_pte(ggtt, *ggtt_ofs, pte | addr);
+ 			*ggtt_ofs += XE_PAGE_SIZE;
+ 			src_idx -= src_stride;
  		}
- 	}
+@@ -217,26 +217,19 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
+ 	if (bo->ggtt_node[tile0->id] && view->type == I915_GTT_VIEW_NORMAL) {
+ 		vma->node = bo->ggtt_node[tile0->id];
+ 	} else if (view->type == I915_GTT_VIEW_NORMAL) {
+-		u32 x, size = bo->ttm.base.size;
+-
+ 		vma->node = xe_ggtt_node_init(ggtt);
+ 		if (IS_ERR(vma->node)) {
+ 			ret = PTR_ERR(vma->node);
+ 			goto out_unlock;
+ 		}
  
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 7062115909f2d..c0cd7bb497a54 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -591,7 +591,7 @@ bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node)
-  * @ggtt: the &xe_ggtt where node will be mapped
-  * @bo: the &xe_bo to be mapped
-  */
--void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
-+static void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
- {
- 	u16 cache_mode = bo->flags & XE_BO_FLAG_NEEDS_UC ? XE_CACHE_NONE : XE_CACHE_WB;
- 	u16 pat_index = tile_to_xe(ggtt->tile)->pat.idx[cache_mode];
-@@ -609,6 +609,20 @@ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
- 	}
- }
+-		ret = xe_ggtt_node_insert_locked(vma->node, size, align, 0);
++		ret = xe_ggtt_node_insert_locked(vma->node, bo->size, align, 0);
+ 		if (ret) {
+ 			xe_ggtt_node_fini(vma->node);
+ 			goto out_unlock;
+ 		}
  
-+/**
-+ * xe_ggtt_map_bo_unlocked - Restore a mapping of a BO into GGTT
-+ * @ggtt: the &xe_ggtt where node will be mapped
-+ * @bo: the &xe_bo to be mapped
-+ *
-+ * This is used to restore a GGTT mapping after suspend.
-+ */
-+void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo)
-+{
-+	mutex_lock(&ggtt->lock);
-+	xe_ggtt_map_bo(ggtt, bo);
-+	mutex_unlock(&ggtt->lock);
-+}
-+
- static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
- 				  u64 start, u64 end)
- {
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-index 27e7d67de0047..bdf6d0733e2ca 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt.h
-@@ -24,7 +24,7 @@ int xe_ggtt_node_insert_locked(struct xe_ggtt_node *node,
- 			       u32 size, u32 align, u32 mm_flags);
- void xe_ggtt_node_remove(struct xe_ggtt_node *node, bool invalidate);
- bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node);
--void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
-+void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo);
- int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
- int xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
- 			 u64 start, u64 end);
+-		for (x = 0; x < size; x += XE_PAGE_SIZE) {
+-			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, x,
+-							      xe->pat.idx[XE_CACHE_NONE]);
+-
+-			ggtt->pt_ops->ggtt_set_pte(ggtt, vma->node->base.start + x, pte);
+-		}
++		xe_ggtt_map_bo(ggtt, vma->node, bo, xe->pat.idx[XE_CACHE_NONE]);
+ 	} else {
+ 		u32 i, ggtt_ofs;
+ 		const struct intel_rotation_info *rot_info = &view->rotated;
 -- 
 2.45.2
 
