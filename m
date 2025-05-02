@@ -4,21 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC695C3ABAA
-	for <intel-xe@archiver.kernel.org>; Fri,  2 May 2025 10:36:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5E4CC3ABBB
+	for <intel-xe@archiver.kernel.org>; Fri,  2 May 2025 10:36:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E6DA10E8F7;
-	Fri,  2 May 2025 10:36:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79DBC10E8F6;
+	Fri,  2 May 2025 10:36:51 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE8E710E8F4
- for <intel-xe@lists.freedesktop.org>; Fri,  2 May 2025 10:36:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A78010E8CA
+ for <intel-xe@lists.freedesktop.org>; Fri,  2 May 2025 10:36:49 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [CI 10/10] drm/xe: Do not rely on GGTT internals in xe_guc_buf kunit
- tests
-Date: Fri,  2 May 2025 12:36:37 +0200
-Message-ID: <20250502103638.521845-11-dev@lankhorst.se>
+Subject: [CI 08/10] drm/xe: Remove pte_encode_bo callback
+Date: Fri,  2 May 2025 12:36:35 +0200
+Message-ID: <20250502103638.521845-9-dev@lankhorst.se>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250502103638.521845-1-dev@lankhorst.se>
 References: <20250502103638.521845-1-dev@lankhorst.se>
@@ -38,106 +37,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a function to init ggtt for kunit, and use the GGTT function for
-initialising the GGTT node without populating it. This
-prevents the test from ever knowing about struct xe_ggtt.
+The users inside display have been converted to use thepte_encode_flags
+callback, we can now remove the pte_encode_bo cb.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c | 11 +++++-----
- drivers/gpu/drm/xe/xe_ggtt.c                | 23 ++++++++++++++++-----
- drivers/gpu/drm/xe/xe_ggtt.h                |  1 +
- 3 files changed, 24 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/xe/xe_ggtt.c       | 14 --------------
+ drivers/gpu/drm/xe/xe_ggtt_types.h |  3 ---
+ 2 files changed, 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
-index 6faffcd748694..537766cdd882e 100644
---- a/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
-+++ b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
-@@ -42,10 +42,8 @@ static struct xe_bo *replacement_xe_managed_bo_create_pin_map(struct xe_device *
- 		KUNIT_ASSERT_NOT_ERR_OR_NULL(test, bo->ggtt_node[tile->id]);
- 
- 		KUNIT_ASSERT_EQ(test, 0,
--				drm_mm_insert_node_in_range(&ggtt->mm,
--							    &bo->ggtt_node[tile->id]->base,
--							    bo->size, SZ_4K,
--							    0, 0, U64_MAX, 0));
-+				xe_ggtt_node_insert(bo->ggtt_node[tile->id],
-+						    bo->size, SZ_4K));
- 	}
- 
- 	return bo;
-@@ -67,8 +65,9 @@ static int guc_buf_test_init(struct kunit *test)
- 	ggtt = xe_device_get_root_tile(test->priv)->mem.ggtt;
- 	guc = &xe_device_get_gt(test->priv, 0)->uc.guc;
- 
--	drm_mm_init(&ggtt->mm, DUT_GGTT_START, DUT_GGTT_SIZE);
--	mutex_init(&ggtt->lock);
-+	KUNIT_ASSERT_EQ(test, 0,
-+			xe_ggtt_init_kunit(ggtt, DUT_GGTT_START,
-+					   DUT_GGTT_START + DUT_GGTT_SIZE));
- 
- 	kunit_activate_static_stub(test, xe_managed_bo_create_pin_map,
- 				   replacement_xe_managed_bo_create_pin_map);
 diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 6cf7af8e71e33..b06bfb095ca77 100644
+index 5daac9810f3a6..ee9475d3bb4fb 100644
 --- a/drivers/gpu/drm/xe/xe_ggtt.c
 +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -5,6 +5,7 @@
+@@ -75,11 +75,6 @@ static u64 xelp_ggtt_pte_flags(struct xe_bo *bo, u16 pat_index)
+ 	return pte;
+ }
  
- #include "xe_ggtt.h"
+-static u64 xelp_ggtt_encode_bo(struct xe_bo *bo, u64 bo_offset, u16 pat_index)
+-{
+-	return xelp_ggtt_pte_flags(bo, pat_index) | xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
+-}
+-
+ static u64 xelpg_ggtt_pte_flags(struct xe_bo *bo, u16 pat_index)
+ {
+ 	struct xe_device *xe = xe_bo_device(bo);
+@@ -98,12 +93,6 @@ static u64 xelpg_ggtt_pte_flags(struct xe_bo *bo, u16 pat_index)
+ 	return pte;
+ }
  
-+#include <kunit/visibility.h>
- #include <linux/fault-inject.h>
- #include <linux/io-64-nonatomic-lo-hi.h>
- #include <linux/sizes.h>
-@@ -221,6 +222,22 @@ static const struct xe_ggtt_pt_ops xelpg_pt_wa_ops = {
- 	.ggtt_set_pte = xe_ggtt_set_pte_and_flush,
+-static u64 xelpg_ggtt_encode_bo(struct xe_bo *bo, u64 bo_offset,
+-				u16 pat_index)
+-{
+-	return xelpg_ggtt_pte_flags(bo, pat_index) | xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
+-}
+-
+ static unsigned int probe_gsm_size(struct pci_dev *pdev)
+ {
+ 	u16 gmch_ctl, ggms;
+@@ -218,19 +207,16 @@ static void primelockdep(struct xe_ggtt *ggtt)
+ }
+ 
+ static const struct xe_ggtt_pt_ops xelp_pt_ops = {
+-	.pte_encode_bo = xelp_ggtt_encode_bo,
+ 	.pte_encode_flags = xelp_ggtt_pte_flags,
+ 	.ggtt_set_pte = xe_ggtt_set_pte,
  };
  
-+static void __xe_ggtt_init_early(struct xe_ggtt *ggtt, u32 reserved)
-+{
-+	drm_mm_init(&ggtt->mm, reserved,
-+		    ggtt->size - reserved);
-+	mutex_init(&ggtt->lock);
-+	primelockdep(ggtt);
-+}
-+
-+int xe_ggtt_init_kunit(struct xe_ggtt *ggtt, u32 reserved, u32 size)
-+{
-+	ggtt->size = size;
-+	__xe_ggtt_init_early(ggtt, reserved);
-+	return 0;
-+}
-+EXPORT_SYMBOL_IF_KUNIT(xe_ggtt_init_kunit);
-+
- /**
-  * xe_ggtt_init_early - Early GGTT initialization
-  * @ggtt: the &xe_ggtt to be initialized
-@@ -267,11 +284,7 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
- 		ggtt->pt_ops = &xelp_pt_ops;
+ static const struct xe_ggtt_pt_ops xelpg_pt_ops = {
+-	.pte_encode_bo = xelpg_ggtt_encode_bo,
+ 	.pte_encode_flags = xelpg_ggtt_pte_flags,
+ 	.ggtt_set_pte = xe_ggtt_set_pte,
+ };
  
- 	ggtt->wq = alloc_workqueue("xe-ggtt-wq", 0, WQ_MEM_RECLAIM);
+ static const struct xe_ggtt_pt_ops xelpg_pt_wa_ops = {
+-	.pte_encode_bo = xelpg_ggtt_encode_bo,
+ 	.pte_encode_flags = xelpg_ggtt_pte_flags,
+ 	.ggtt_set_pte = xe_ggtt_set_pte_and_flush,
+ };
+diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
+index 06b1a602dd8d1..c5e999d58ff2a 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt_types.h
++++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
+@@ -74,9 +74,6 @@ struct xe_ggtt_node {
+  * Which can vary from platform to platform.
+  */
+ struct xe_ggtt_pt_ops {
+-	/** @pte_encode_bo: Encode PTE flags for a given BO */
+-	u64 (*pte_encode_bo)(struct xe_bo *bo, u64 bo_offset, u16 pat_index);
 -
--	drm_mm_init(&ggtt->mm, xe_wopcm_size(xe),
--		    ggtt->size - xe_wopcm_size(xe));
--	mutex_init(&ggtt->lock);
--	primelockdep(ggtt);
-+	__xe_ggtt_init_early(ggtt, xe_wopcm_size(xe));
- 
- 	err = drmm_add_action_or_reset(&xe->drm, ggtt_fini_early, ggtt);
- 	if (err)
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-index 600a76526cf34..9a11872e16d80 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt.h
-@@ -13,6 +13,7 @@ struct xe_tile;
- 
- struct xe_ggtt *xe_ggtt_alloc(struct xe_tile *tile);
- int xe_ggtt_init_early(struct xe_ggtt *ggtt);
-+int xe_ggtt_init_kunit(struct xe_ggtt *ggtt, u32 reserved, u32 size);
- int xe_ggtt_init(struct xe_ggtt *ggtt);
- 
- struct xe_ggtt_node *xe_ggtt_node_init(struct xe_ggtt *ggtt);
+ 	/** @pte_encode_flags: Encode PTE flags for a given BO */
+ 	u64 (*pte_encode_flags)(struct xe_bo *bo, u16 pat_index);
+ 	/** @ggtt_set_pte: Directly write into GGTT's PTE */
 -- 
 2.45.2
 
