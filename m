@@ -4,164 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CB9CC3ABAA
-	for <intel-xe@archiver.kernel.org>; Fri,  2 May 2025 16:59:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19035C3ABAA
+	for <intel-xe@archiver.kernel.org>; Fri,  2 May 2025 17:01:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 639AE10E94A;
-	Fri,  2 May 2025 16:58:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C32A210E94A;
+	Fri,  2 May 2025 17:01:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M+7AXTk6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XwM4ddon";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2AE810E94A
- for <intel-xe@lists.freedesktop.org>; Fri,  2 May 2025 16:58:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B350410E94A
+ for <intel-xe@lists.freedesktop.org>; Fri,  2 May 2025 17:01:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746205135; x=1777741135;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=JkXLXLb+maC8gNlpfSSvJAvb3yJCYUBFkiOT5x6JasY=;
- b=M+7AXTk6Rr+LtHYZVoObzfPtIJxRGCko1/WHy8gqmTIuVrNQz1dmmCnU
- some4DfwYyfROURTxP7UkNKOvfT11Ve9AeXC9PaVq0n4DbCNbNuOXhziw
- pZmOm/8y2Yqv+CsbLl5XJG5vlE+v80/wVD9FFEPpz+db37xlDmrcrRXZT
- R6h0SA/TN4BjYoxp+VnZBMvnAVFE4kQ01leF1hVAmtQ9qcBTru5tM/P2b
- lwo/usexF7MFTOMtK2kWcAhjg3GagFzg72s9/Xz4pWyRr5RTl4P+LqheW
- 3nD/zxpRapJhodxWPPWSSgzikcxOmR3m7B6xoM+uZg9Na0cXF4olTU5Xb A==;
-X-CSE-ConnectionGUID: bhgmZQCGRQmK/x5edZWfgg==
-X-CSE-MsgGUID: uVDNDaCYQX6h0hl9GqVhxQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11421"; a="58098639"
-X-IronPort-AV: E=Sophos;i="6.15,257,1739865600"; d="scan'208";a="58098639"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2025 09:58:54 -0700
-X-CSE-ConnectionGUID: /YIy5BpGQgmjSkpDruO+FA==
-X-CSE-MsgGUID: jB12QiNWT5SeyLbvZ2W/Gg==
+ t=1746205304; x=1777741304;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=8OdafQmjTUj6nX05lr+fLtNNf5lhiim8lGUJgySKagY=;
+ b=XwM4ddonRyq5ssN5hIRb9dtim+1CnuOKdPeUxG4McZtTb077PwGxYwvm
+ 6toWm+M5ttCfsMp4Yi2nbEXz7GK1HZ+hmHg7l7VMA18zjZjTCGhoe5ULz
+ UKxqk/9sczA5LGylt72n+oJteaa1voFvOvbj/r8DnrrAZf/xqrvdFNYTc
+ 3IfBwLLHWG+w+/QoqrW/QK+z7pyzG1oNr5gVKkgN1N2p/q2OsE407CzpE
+ AlyeS7j4tSYoveQaByDwphYS6l+YrovR+oWC93ITSTwm709SfBZ12fA+u
+ ZIRrooSs1AoxVk5HoMf8X1g+wLqCsorKjJgsmELNcaKPB6Kh+ENTyQhJ1 w==;
+X-CSE-ConnectionGUID: Tf18PBYMSDG3SJ1+HlBkgw==
+X-CSE-MsgGUID: vUThF3QlTceD8O9zjmMToQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11421"; a="51707505"
+X-IronPort-AV: E=Sophos;i="6.15,257,1739865600"; d="scan'208";a="51707505"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2025 10:01:44 -0700
+X-CSE-ConnectionGUID: RM1O0MaLRVCwtelC8q/t3A==
+X-CSE-MsgGUID: CKBC+jmvR5Of2WtrW2Rmhw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,257,1739865600"; d="scan'208";a="134603164"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2025 09:58:54 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Fri, 2 May 2025 09:58:53 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Fri, 2 May 2025 09:58:53 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.40) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Fri, 2 May 2025 09:58:52 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ix4ZBpgGAuzTLxoJyjmnUmYM80DiByBF2/m0Xy3Zf7G3wk6wUll197oohr+gM9kQjkqOCTFxdfhvCf8TowycgXkXoKWMS/vi50bxunAXyQogrklQT/pipSJKxud2RrtQCBQMvi1pVkNhCd0QktwSDfDZXL7Z4DS1h1J76s28DIXDmbI37fPI5svPpwXOwpWYfdCp7tEpClt8cc6UKEZO68pVwE9JwZLlt9/tYCzXoaYzsFQS+4TK97D9vQx9g0ZIpBebQJJqmA28sQPGuRaLgnzWuloEfE475+KJJSXG99/UJPbC8uWqz35MNrYEcPmWdKxuliZHZhzEL/96doBQJg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cDF06Xa0+lyLZadlyFFKk1xgu+GmFpwe2YAfq43mPeU=;
- b=VwENL5yV9PkzDFAzET2OGyKzesJs5sejd0Wk+awVHCRJbDdcmzvsy23e29z3SuIlzLVXpmvqtmc1J3OzA1kBTp6OpKgl1LmAN1OcVNIfgH0rGCTUA46CsNiO8jpdjmsqlShM8IoMNqfb123hJy5h6HVJs09T7Fc9L/1Bzy9VmcJz8dcjyxfoX9mr322VCPUdAxCu13lFGMTS0+KuJs6dWAEkzFplxekltPZ4SOFmXYxVjJCohao/n1vtSnTMTaLFoyNO/fZsBcuqt3Yx1+8g++Vpf2BmTuK1rxCTDV9lFRHCBTuRaFuo/QiZIFVEPfKTHwZpMQhesmiss6IJiPqxhw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by MN2PR11MB4727.namprd11.prod.outlook.com (2603:10b6:208:26f::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.24; Fri, 2 May
- 2025 16:58:22 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%4]) with mapi id 15.20.8699.012; Fri, 2 May 2025
- 16:58:22 +0000
-Date: Fri, 2 May 2025 09:59:46 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Maarten Lankhorst <dev@lankhorst.se>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 3/4] drm/xe: Fix small leak in migration error path.
-Message-ID: <aBT6AoCXxR6sNtPK@lstrano-desk.jf.intel.com>
-References: <20250502093514.510621-1-dev@lankhorst.se>
- <20250502093514.510621-4-dev@lankhorst.se>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250502093514.510621-4-dev@lankhorst.se>
-X-ClientProxiedBy: BYAPR06CA0006.namprd06.prod.outlook.com
- (2603:10b6:a03:d4::19) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+X-IronPort-AV: E=Sophos;i="6.15,257,1739865600"; d="scan'208";a="171937370"
+Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.103])
+ by orviesa001.jf.intel.com with ESMTP; 02 May 2025 10:01:43 -0700
+From: Shuicheng Lin <shuicheng.lin@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v2] drm/xe: Add config control for svm flush work
+Date: Fri,  2 May 2025 17:00:52 +0000
+Message-Id: <20250502170052.1787973-1-shuicheng.lin@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250502040757.1722973-1-shuicheng.lin@intel.com>
+References: <20250502040757.1722973-1-shuicheng.lin@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|MN2PR11MB4727:EE_
-X-MS-Office365-Filtering-Correlation-Id: b15fa373-f170-4ad9-a0dc-08dd899a8bcd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|7053199007;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?NQ/gadKhQi4F2be1VQPm0W6H9Xv1M3s+6iU4FrdRPTGfeHsp8WPeXdSTCsro?=
- =?us-ascii?Q?YUOby0uhrW08k4HMChW24taOTa7DQ4PqPOBX+AAftAflC/LW8fFzhTamttdx?=
- =?us-ascii?Q?U+qsFSlfRfNQxMHyKDPcNi9bjw9iiXKzabuLcpCNLipTCS32OndSPALf/XxY?=
- =?us-ascii?Q?83G146aw+3dTMHejkzNjJg066TFhNPnX4AnoQTDfaF87oAHOTvWEwlQIjy1R?=
- =?us-ascii?Q?aRco3+l+8oXNmIUFk5CStgWD/3BtVz4QavqQuIdDxJOP39v1wv568Gi2gOSa?=
- =?us-ascii?Q?T1CBwJvitNNVRH7s7Y/j1Ze+AuyFjpTeS4lY2GdqZqQ6B96aWbx0PbFAS33r?=
- =?us-ascii?Q?v5BCMiJIiRlEplLC/cuM7uVuMhhoFe0bR1ncxkz6TIZMKHm+6//hAN5dgZSw?=
- =?us-ascii?Q?oD+vCxV42vYrM1RrNaoig3NbdxjDLcqZfx+RJoo8TE5nBCFYhXs1T/KT1GQu?=
- =?us-ascii?Q?WwpcRr0vwVF7AFd51fcJtjVxGjFWR/PISVYBQg7JlntrqBZN2EAhLUSi4GIF?=
- =?us-ascii?Q?di8cGgkwa9YdR91vHxXhEzTSbhUeqxx0N7JOEUifetrhmd+vEKZEitXTSpJj?=
- =?us-ascii?Q?y47dgAyrlU6b6cypmNS0bfXCd2vr9qi7coJvGC3B4YLwtsKxhynQWtMFDzSb?=
- =?us-ascii?Q?dwIz9bdg4ZMqt+6hbldp3JOjO50VYu7+b6XdTvmrsXijX6LmBZDjg78sjUqg?=
- =?us-ascii?Q?5h4F9nSZ33jcptV6C/AdhhYnp/Nb8sFxto/R1vVglj1D9BO0PDC5PztKnp0E?=
- =?us-ascii?Q?aM2130QrMYLfUaUT4VwAnblydrqpV2mOKtKw/RyTdT6rdvjEJ332QIXFrdG7?=
- =?us-ascii?Q?JFg2ZEy715sQUWX4oqtRgY1qnq0xPHhdCvR3Rchu1zzOPsUYpQWqMJogIPZr?=
- =?us-ascii?Q?IMQd9ASk9RuTvHYXABqrZparngu/Ri39dU3A7rh0ntn7ERmDV+4kJ30BL27U?=
- =?us-ascii?Q?J1w3K3dOawt6TId+sTG+KZJgBkMDNnc+u2yxak5RB8h/+EiEOBG2ED+OJN7i?=
- =?us-ascii?Q?MNYO1QJgR5KeiOKz2TcHdEkvxcbSUGWOlLy/97Sak4S2WOiPgwQRf5oYtmYa?=
- =?us-ascii?Q?NbqfUc5yuv1Z0z9K7Wxo35WAooRSNg7rfCOMiJ7iebNcynlPTIEM3inTh1yY?=
- =?us-ascii?Q?a4dGZ6TIZ4TOx4iY7jA0Xg4xQPbJq8MXRYE1QObWQ+CTJKZhpwX9HGzu5X02?=
- =?us-ascii?Q?bFh1k+QvpSsxVlJxtay19UKW3jrOEFzcXYeLWALbYVIlvLazgV8beyHAv9Z8?=
- =?us-ascii?Q?5C7789KVsnGEbxERLK6mggmg+HLv/anWldj63v3oKijRKTmfGquaKs30ZrCQ?=
- =?us-ascii?Q?/yKLa8iMb1vKwfOzJrfA10DHvQWxe1f3211TV9fNuR7b4eM3A4Zg5RHfpwr8?=
- =?us-ascii?Q?DDTT0qpzrdjz0lsqDrLE7q8QzckofhVUpx6pV9crqk9A3DL8L0cEyCiT54QY?=
- =?us-ascii?Q?FRZoBW3gwuA=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(7053199007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?m7QCCOZIP54CtEeAVGOGLOemuR3FJE7txvQ/14Idil/fItxbRKgjJAiL4m/d?=
- =?us-ascii?Q?d2k194I2azqRbttw8FSe7jIAniJ9Y2Klsvg2v+34K6FYa0fBGIxaCO0Yqn++?=
- =?us-ascii?Q?82lhqDm+oEnVM/Tskzh5r9wT3N2dptmtmsIWrWeDW0OhN+e0JxkxfamFOxqr?=
- =?us-ascii?Q?jMOmgO8Zevsg4qcSVs/LUbeQTFmge7kACbWZ+3+PZy5TpjBQzX3uAveott6Q?=
- =?us-ascii?Q?yVfStbPCLtpK90raG+IswSuXe4cvhu4rFQjDsE7sxERCswWyYrfJcyeKNruo?=
- =?us-ascii?Q?F0E8uYzEuOOndlVly/Q++yCgosBMINZ4ttFJaVPTnMKO++ss30RIlP43WTgd?=
- =?us-ascii?Q?m9d5UbGhB2fCqupYgzDgTlcq4gIhK470cM4f+Mqjir/+HuT2Vjk4Yjng2yIC?=
- =?us-ascii?Q?lwgIHvyH2jIV3aeTRIVi0hWqvsRR0a4XLMOMzXWfHPU6AXEMDO/HCJo45zzG?=
- =?us-ascii?Q?WRkWZlElKr8osk6zHF2ahEfK9jX2aENfYlLNZrSoNOeTTXGjsODv1yMP9z7V?=
- =?us-ascii?Q?h+ku2Pk6HEFV1sVyDfoQCdpDDCoxEzDMus8cHj3kKsHSSwIF4B7PxZ9OsJ7h?=
- =?us-ascii?Q?5wp1fpnkEA0WvZ2263ccrNUEr3/crnL9tpSE1+cDsG7uAkAytRGWvk+2O13k?=
- =?us-ascii?Q?6PPXbGkcH2uhXmnqXn4yWZEJkkGv6kQD4qdth7gqrR/1PdrUCHy7Jo841b8K?=
- =?us-ascii?Q?aoxq5Oe84RI5SaBdhb1aWRYxMCcfswNpTvFtvlrvEO3L0T5KAl+Tie+AM7nD?=
- =?us-ascii?Q?pbh2THkjgroQ/kFBmI150Rlmft7+q1uUc6V12o7UVgIp2/O8Qb3vwVA/j3X8?=
- =?us-ascii?Q?3at429/X0M9T16CrI30eUpAI3jXmeYNNoi3kPW171w2OCmuVpIb7EM3LOCpe?=
- =?us-ascii?Q?nGYRCo2VEuES6hdCsRHq3qQFx8LN5MYnhC7EP5KDjo3eyH5DEu+ezl1JdV6N?=
- =?us-ascii?Q?4IUKabSALDLko5Z0920ThIG9WbXLj3ZouY1l8FfEh7jN1p4DABTg3tuEk3s3?=
- =?us-ascii?Q?uJ3J9Hw3WHwLU3SUtkwkCFC7hMMdfP25f51yUDgjVwbYyL1sedqgfY9JHXqM?=
- =?us-ascii?Q?YqZabuTiWA+DeB4AJyVRuHVteRFZXRNrUYKsh9LWGKhEvCPDdQw6xHOuMpmV?=
- =?us-ascii?Q?WVdlJPlUvC9Tj4onRE/NVdh8JhUyQo8MapunEKFULZgm1XugYOYACPaBcWBE?=
- =?us-ascii?Q?v8XmdwEsDujrvqO4bhG6GqZtGlU+Uv1AS7CCVavFV4PpOJgYAaJpaXzFZg8w?=
- =?us-ascii?Q?jXWeB2iDzVhtTBt8inxelTQk/fv+aJ9rqmItu4YELgD85UB/D9VKAA3TMj0V?=
- =?us-ascii?Q?HccxWlQjQZ/LfbTxNxyGJfVh6U4Pbo5T2nmm3xSEmyBIYe82nXZNrQ/ax45O?=
- =?us-ascii?Q?npsobJi4gxxdDLrks/gWSQijrBRGc+V5ofk0Y0uk2XJRvhbO+lsb2vfHEnYk?=
- =?us-ascii?Q?ozxyhgm/J+05t0OVxVmOZUaMsuNB3Mc3igaGiG57K8aTyz3Id/3LCOw+XI+P?=
- =?us-ascii?Q?iOzhD2lW8NLrGOuz0kl/KMgq7HyIeHdOWjJ4biOnCeFExk/DQluszXhqbWc6?=
- =?us-ascii?Q?b60u92btKl4Jj2Ta+cd0+JwUzpKcvhCGE0xRyAFWJURmWL5dR81tglvMglru?=
- =?us-ascii?Q?YA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b15fa373-f170-4ad9-a0dc-08dd899a8bcd
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 May 2025 16:58:22.1607 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: IF+PJjySfVM/zl2mHmcb/EdSKSkobqEFJf7jTunCB1IAiC/PHZvD2b3cXoSKbqj8ko69kNAniA7LMSmTkYmfXw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4727
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -176,108 +66,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, May 02, 2025 at 11:35:12AM +0200, Maarten Lankhorst wrote:
-> When logical_mask or hwe are zero, we should call xe_vm_close_and_put,
-> and on error, m->pt_bo is also not cleared.
-> 
-> Also call xe_bo_unpin_map_no_vm even though it is a vm bo,
-> to ensure the BO is freed.
-> 
-> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+Without CONFIG_DRM_XE_GPUSVM set, GPU SVM is not initialized thus below
+warning pops. Refine the flush work code to be controlled by the config
+to avoid below warning:
+"
+[  453.132028] ------------[ cut here ]------------
+[  453.132527] WARNING: CPU: 9 PID: 4491 at kernel/workqueue.c:4205 __flush_work+0x379/0x3a0
+[  453.133355] Modules linked in: xe drm_ttm_helper ttm gpu_sched drm_buddy drm_suballoc_helper drm_gpuvm drm_exec
+[  453.134352] CPU: 9 UID: 0 PID: 4491 Comm: xe_exec_mix_mod Tainted: G     U  W           6.15.0-rc3+ #7 PREEMPT(full)
+[  453.135405] Tainted: [U]=USER, [W]=WARN
+...
+[  453.136921] RIP: 0010:__flush_work+0x379/0x3a0
+[  453.137417] Code: 8b 45 00 48 8b 55 08 89 c7 48 c1 e8 04 83 e7 08 83 e0 0f 83 cf 02 89 c6 48 0f ba 6d 00 03 e9 d5 fe ff ff 0f 0b e9 db fd ff ff <0f> 0b 45 31 e4 e9 d1 fd ff ff 0f 0b e9 03 ff ff ff 0f 0b e9 d6 fe
+[  453.139250] RSP: 0018:ffffc90000c67b18 EFLAGS: 00010246
+[  453.139782] RAX: 0000000000000000 RBX: ffff888108a24000 RCX: 0000000000002000
+[  453.140521] RDX: 0000000000000001 RSI: 0000000000000000 RDI: ffff8881016d61c8
+[  453.141253] RBP: ffff8881016d61c8 R08: 0000000000000000 R09: 0000000000000000
+[  453.141985] R10: 0000000000000000 R11: 0000000008a24000 R12: 0000000000000001
+[  453.142709] R13: 0000000000000002 R14: 0000000000000000 R15: ffff888107db8c00
+[  453.143450] FS:  00007f44853d4c80(0000) GS:ffff8882f469b000(0000) knlGS:0000000000000000
+[  453.144276] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  453.144853] CR2: 00007f4487629228 CR3: 00000001016aa000 CR4: 00000000000406f0
+[  453.145594] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[  453.146320] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[  453.147061] Call Trace:
+[  453.147336]  <TASK>
+[  453.147579]  ? tick_nohz_tick_stopped+0xd/0x30
+[  453.148067]  ? xas_load+0x9/0xb0
+[  453.148435]  ? xa_load+0x6f/0xb0
+[  453.148781]  __xe_vm_bind_ioctl+0xbd5/0x1500 [xe]
+[  453.149338]  ? dev_printk_emit+0x48/0x70
+[  453.149762]  ? _dev_printk+0x57/0x80
+[  453.150148]  ? drm_ioctl+0x17c/0x440
+[  453.150544]  ? __drm_dev_vprintk+0x36/0x90
+[  453.150983]  ? __pfx_xe_vm_bind_ioctl+0x10/0x10 [xe]
+[  453.151575]  ? drm_ioctl_kernel+0x9f/0xf0
+[  453.151998]  ? __pfx_xe_vm_bind_ioctl+0x10/0x10 [xe]
+[  453.152560]  drm_ioctl_kernel+0x9f/0xf0
+[  453.152968]  drm_ioctl+0x20f/0x440
+[  453.153332]  ? __pfx_xe_vm_bind_ioctl+0x10/0x10 [xe]
+[  453.153893]  ? ioctl_has_perm.constprop.0.isra.0+0xae/0x100
+[  453.154489]  ? memory_bm_test_bit+0x5/0x60
+[  453.154935]  xe_drm_ioctl+0x47/0x70 [xe]
+[  453.155419]  __x64_sys_ioctl+0x8d/0xc0
+[  453.155824]  do_syscall_64+0x47/0x110
+[  453.156228]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+"
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+v2 (Matt):
+    refine commit message to have more details
+    add Fixes tag
+    move the code to xe_svm.h which already have the config
+    remove a blank line per codestyle suggestion
 
-> ---
->  drivers/gpu/drm/xe/xe_migrate.c | 60 +++++++++++++++++++--------------
->  1 file changed, 35 insertions(+), 25 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-> index 673a5d165482e..7ee27c9f77bac 100644
-> --- a/drivers/gpu/drm/xe/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> @@ -386,6 +386,38 @@ static bool xe_migrate_needs_ccs_emit(struct xe_device *xe)
->  	return xe_device_has_flat_ccs(xe) && !(GRAPHICS_VER(xe) >= 20 && IS_DGFX(xe));
->  }
->  
-> +static struct xe_exec_queue *xe_migrate_create_queue(struct xe_tile *tile,
-> +						     struct xe_vm *vm)
-> +{
-> +	struct xe_device *xe = tile_to_xe(tile);
-> +	struct xe_gt *primary_gt = tile->primary_gt;
-> +
-> +	if (xe->info.has_usm) {
-> +		struct xe_hw_engine *hwe = xe_gt_hw_engine(primary_gt,
-> +							   XE_ENGINE_CLASS_COPY,
-> +							   primary_gt->usm.reserved_bcs_instance,
-> +							   false);
-> +		u32 logical_mask = xe_migrate_usm_logical_mask(primary_gt);
-> +
-> +		if (!hwe || !logical_mask)
-> +			return ERR_PTR(-EINVAL);
-> +
-> +		/*
-> +		 * XXX: Currently only reserving 1 (likely slow) BCS instance on
-> +		 * PVC, may want to revisit if performance is needed.
-> +		 */
-> +		return xe_exec_queue_create(xe, vm, logical_mask, 1, hwe,
-> +					    EXEC_QUEUE_FLAG_KERNEL |
-> +					    EXEC_QUEUE_FLAG_PERMANENT |
-> +					    EXEC_QUEUE_FLAG_HIGH_PRIORITY, 0);
-> +	} else {
-> +		return xe_exec_queue_create_class(xe, primary_gt, vm,
-> +						  XE_ENGINE_CLASS_COPY,
-> +						  EXEC_QUEUE_FLAG_KERNEL |
-> +						  EXEC_QUEUE_FLAG_PERMANENT, 0);
-> +	}
-> +}
-> +
->  /**
->   * xe_migrate_init() - Initialize a migrate context
->   * @tile: Back-pointer to the tile we're initializing for.
-> @@ -395,7 +427,6 @@ static bool xe_migrate_needs_ccs_emit(struct xe_device *xe)
->  struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
->  {
->  	struct xe_device *xe = tile_to_xe(tile);
-> -	struct xe_gt *primary_gt = tile->primary_gt;
->  	struct xe_migrate *m;
->  	struct xe_vm *vm;
->  	int err;
-> @@ -420,32 +451,11 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
->  		return ERR_PTR(err);
->  	}
->  
-> -	if (xe->info.has_usm) {
-> -		struct xe_hw_engine *hwe = xe_gt_hw_engine(primary_gt,
-> -							   XE_ENGINE_CLASS_COPY,
-> -							   primary_gt->usm.reserved_bcs_instance,
-> -							   false);
-> -		u32 logical_mask = xe_migrate_usm_logical_mask(primary_gt);
-> -
-> -		if (!hwe || !logical_mask)
-> -			return ERR_PTR(-EINVAL);
-> -
-> -		/*
-> -		 * XXX: Currently only reserving 1 (likely slow) BCS instance on
-> -		 * PVC, may want to revisit if performance is needed.
-> -		 */
-> -		m->q = xe_exec_queue_create(xe, vm, logical_mask, 1, hwe,
-> -					    EXEC_QUEUE_FLAG_KERNEL |
-> -					    EXEC_QUEUE_FLAG_PERMANENT |
-> -					    EXEC_QUEUE_FLAG_HIGH_PRIORITY, 0);
-> -	} else {
-> -		m->q = xe_exec_queue_create_class(xe, primary_gt, vm,
-> -						  XE_ENGINE_CLASS_COPY,
-> -						  EXEC_QUEUE_FLAG_KERNEL |
-> -						  EXEC_QUEUE_FLAG_PERMANENT, 0);
-> -	}
-> +	m->q = xe_migrate_create_queue(tile, vm);
->  	if (IS_ERR(m->q)) {
-> +		xe_bo_unpin_map_no_vm(m->pt_bo);
->  		xe_vm_close_and_put(vm);
-> +		drm_suballoc_manager_fini(&m->vm_update_sa);
->  		return ERR_CAST(m->q);
->  	}
->  
-> -- 
-> 2.45.2
-> 
+Fixes: 63f6e480d115 ("drm/xe: Add SVM garbage collector")
+Cc: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+---
+ drivers/gpu/drm/xe/xe_svm.c | 13 ++++++++++++-
+ drivers/gpu/drm/xe/xe_svm.h |  6 ++++++
+ drivers/gpu/drm/xe/xe_vm.c  |  3 +--
+ 3 files changed, 19 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 890f6b2f40e9..d25f02c8d7fc 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -726,7 +726,6 @@ static int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
+ }
+ #endif
+ 
+-
+ /**
+  * xe_svm_handle_pagefault() - SVM handle page fault
+  * @vm: The VM.
+@@ -966,3 +965,15 @@ int xe_devm_add(struct xe_tile *tile, struct xe_vram_region *vr)
+ 	return 0;
+ }
+ #endif
++
++/**
++ * xe_svm_flush() - SVM flush
++ * @vm: The VM.
++ *
++ * Flush all SVM actions.
++ */
++void xe_svm_flush(struct xe_vm *vm)
++{
++	if (xe_vm_in_fault_mode(vm))
++		flush_work(&vm->svm.garbage_collector.work);
++}
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+index 3d441eb1f7ea..2881af1e60b2 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -96,6 +96,8 @@ static inline bool xe_svm_range_has_dma_mapping(struct xe_svm_range *range)
+ #define xe_svm_notifier_unlock(vm__)	\
+ 	drm_gpusvm_notifier_unlock(&(vm__)->svm.gpusvm)
+ 
++void xe_svm_flush(struct xe_vm *vm);
++
+ #else
+ #include <linux/interval_tree.h>
+ 
+@@ -180,5 +182,9 @@ static inline void xe_svm_notifier_lock(struct xe_vm *vm)
+ static inline void xe_svm_notifier_unlock(struct xe_vm *vm)
+ {
+ }
++
++static inline void xe_svm_flush(struct xe_vm *vm)
++{
++}
+ #endif
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 2a9d58a4471c..91a0570abb16 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -3419,8 +3419,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	}
+ 
+ 	/* Ensure all UNMAPs visible */
+-	if (xe_vm_in_fault_mode(vm))
+-		flush_work(&vm->svm.garbage_collector.work);
++	xe_svm_flush(vm);
+ 
+ 	err = down_write_killable(&vm->lock);
+ 	if (err)
+-- 
+2.25.1
+
