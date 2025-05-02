@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 393DFC3ABAC
-	for <intel-xe@archiver.kernel.org>; Fri,  2 May 2025 14:25:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7578AC3ABAC
+	for <intel-xe@archiver.kernel.org>; Fri,  2 May 2025 14:25:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D411A10E93D;
-	Fri,  2 May 2025 14:25:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20A3710E93D;
+	Fri,  2 May 2025 14:25:42 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F32B10E93D;
- Fri,  2 May 2025 14:25:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E52110E93D;
+ Fri,  2 May 2025 14:25:40 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/ttm=3A_Remove_th?=
- =?utf-8?q?e_struct_ttm=5Fbackup_abstraction?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/ttm=3A_Remove_the_str?=
+ =?utf-8?q?uct_ttm=5Fbackup_abstraction?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 02 May 2025 14:25:28 -0000
-Message-ID: <174619592825.35768.1406113551406090095@c664b1dc75d1>
+Date: Fri, 02 May 2025 14:25:40 -0000
+Message-ID: <174619594057.35767.17615215100406931485@c664b1dc75d1>
 X-Patchwork-Hint: ignore
 References: <20250502130014.3156-1-thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20250502130014.3156-1-thomas.hellstrom@linux.intel.com>
@@ -48,9 +48,43 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 0135b020716c drm-tip: 2025y-05m-02d-13h-34m-46s UTC integration manifest
-=== git am output follows ===
-Applying: drm/ttm: Remove the struct ttm_backup abstraction
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4e2760bb06c96ef42d62bf903607f37e2a524546
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Fri May 2 15:00:14 2025 +0200
+
+    drm/ttm: Remove the struct ttm_backup abstraction
+    
+    The abstraction was previously added to support separate
+    ttm_backup implementations.
+    
+    However with the current implementation casting from a
+    struct file to a struct ttm_backup, we run into trouble since
+    struct file may have randomized the layout and gcc complains.
+    
+    Remove the struct ttm_backup abstraction
+    
+    Cc: dri-devel@lists.freedesktop.org
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Dave Airlie <airlied@redhat.com>
+    Cc: Christian König <christian.koenig@amd.com>
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    Cc: Al Viro <viro@zeniv.linux.org.uk>
+    Reported-by: Kees Cook <kees@kernel.org>
+    Closes: https://lore.kernel.org/dri-devel/9c8dbbafdaf9f3f089da2cde5a772d69579b3795.camel@linux.intel.com/T/#mb153ab9216cb813b92bdeb36f391ad4808c2ba29
+    Suggested-by: Christian König <christian.koenig@amd.com>
+    Fixes: 70d645deac98 ("drm/ttm: Add helpers for shrinking")
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Reviewed-by: Christian König <christian.koenig@amd.com>
++ /mt/dim checkpatch 0135b020716c4986b53b735e41753ebb8ed43c3e drm-intel
+4e2760bb06c9 drm/ttm: Remove the struct ttm_backup abstraction
 
 
