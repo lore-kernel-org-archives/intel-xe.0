@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B1A4C3ABAC
-	for <intel-xe@archiver.kernel.org>; Fri,  2 May 2025 08:59:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8EF67C3ABAC
+	for <intel-xe@archiver.kernel.org>; Fri,  2 May 2025 09:00:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CFA710E8DA;
-	Fri,  2 May 2025 08:59:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kLJOh1b1";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DDED10E8D3;
- Fri,  2 May 2025 08:59:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746176380; x=1777712380;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=k36njRo1ey2qcIR6dy0F/QCOqIoDHEVwupbvkOHCxmA=;
- b=kLJOh1b1wrdccjZ7C47WMRAKGR7O4LP8JQUptjb5S6hRKgXvM3TERUo0
- pBwtMDkW2klu2IV4AufOiS/rut+rhLRr2TCTN7sn7WL5uMVakbtkDBnMS
- 68g5WCcd+eoAa6mgau23U42JWMDaKzmcMiFz2NLc2saOzFb12vKhfVMxX
- z71tATmHxJ1W9r/ooDAtT5RDx7xIVHIZGshc4JaOuBFm0AUqpO2nM+nlR
- cuSeUydCM5BHS0ewJ5cIXYcpJqqrtFdZQ7rX7jBfl0pYnSkJ2IXonq+zQ
- IuGL5W5OqupdsrQS+pnbQP7RzoGziT1Q6GiiwyHv/C1cK+WSxJmkHhxVT g==;
-X-CSE-ConnectionGUID: NpMQzK9RS9KoNn4t8y1N3g==
-X-CSE-MsgGUID: 7gfAQBECRgu5w54QCBAeWA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11420"; a="47943204"
-X-IronPort-AV: E=Sophos;i="6.15,256,1739865600"; d="scan'208";a="47943204"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2025 01:59:40 -0700
-X-CSE-ConnectionGUID: dOVX7KJpQ7CwnT5nrExfJA==
-X-CSE-MsgGUID: 87rcAvR1SKOiB0HIULsnFg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,256,1739865600"; d="scan'208";a="134346765"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO jhogande-mobl1..)
- ([10.245.244.55])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2025 01:59:38 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 11/11] drm/i915/psr: Do not disable Panel Replay in case VRR
- is enabled
-Date: Fri,  2 May 2025 11:59:02 +0300
-Message-ID: <20250502085902.154740-12-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250502085902.154740-1-jouni.hogander@intel.com>
-References: <20250502085902.154740-1-jouni.hogander@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38C1510E8C3;
+	Fri,  2 May 2025 09:00:58 +0000 (UTC)
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5670A10E8C3;
+ Fri,  2 May 2025 09:00:57 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/i915/display=3A_remov?=
+ =?utf-8?q?e_intel=5Fde=5F*=28=29_compat_wrappers_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 02 May 2025 09:00:57 -0000
+Message-ID: <174617645734.34266.7356714601490936395@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <cover.1746175756.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1746175756.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,48 +36,41 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patch is allowing Panel Replay with VRR. All VRR modes are supposed to
-work with Panel Replay.
+== Series Details ==
 
-Bspec: 68920, 68925
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+Series: drm/i915/display: remove intel_de_*() compat wrappers (rev2)
+URL   : https://patchwork.freedesktop.org/series/148181/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 8d8fe1c34479d..3657dd5800f9a 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1572,6 +1572,12 @@ static bool _psr_compute_config(struct intel_dp *intel_dp,
- 	if (!CAN_PSR(intel_dp))
- 		return false;
- 
-+	/*
-+	 * Currently PSR doesn't work reliably with VRR enabled.
-+	 */
-+	if (crtc_state->vrr.enable)
-+		return false;
-+
- 	entry_setup_frames = intel_psr_entry_setup_frames(intel_dp, adjusted_mode);
- 
- 	if (entry_setup_frames >= 0) {
-@@ -1689,12 +1695,6 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
- 		return;
- 	}
- 
--	/*
--	 * Currently PSR/PR doesn't work reliably with VRR enabled.
--	 */
--	if (crtc_state->vrr.enable)
--		return;
--
- 	crtc_state->has_panel_replay = _panel_replay_compute_config(intel_dp,
- 								    crtc_state,
- 								    conn_state);
--- 
-2.43.0
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ceed8249e8ccf2e921f07cc65873b649dab4795a
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Fri May 2 11:49:56 2025 +0300
+
+    drm/i915/de: drop drm_i915_private compat wrappers from intel_de_*()
+    
+    All the users of intel_de_*() functions now pass in struct
+    intel_display, and we can remove the __to_intel_display() _Generic()
+    compat wrappers.
+    
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch cdf42c84d8714384d23c24b5ef5f726c0061a028 drm-intel
+f9cfce8234fa drm/i915/dpt: convert intel_dpt_common.c to struct intel_display
+40fba4792bce drm/i915/hdmi: convert rest of intel_hdmi.c to struct intel_display
+ceed8249e8cc drm/i915/de: drop drm_i915_private compat wrappers from intel_de_*()
+
 
