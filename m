@@ -4,21 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41142C3ABA3
-	for <intel-xe@archiver.kernel.org>; Fri,  2 May 2025 10:36:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C93AC3DA4A
+	for <intel-xe@archiver.kernel.org>; Fri,  2 May 2025 10:36:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0693910E8C3;
-	Fri,  2 May 2025 10:36:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 418F410E196;
+	Fri,  2 May 2025 10:36:48 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09D0210E8C3
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 096C510E369
  for <intel-xe@lists.freedesktop.org>; Fri,  2 May 2025 10:36:47 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [CI 00/10] Preparations to make struct xe_ggtt private.
-Date: Fri,  2 May 2025 12:36:27 +0200
-Message-ID: <20250502103638.521845-1-dev@lankhorst.se>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Maarten Lankhorst <dev@lankhorst.se>
+Subject: [CI 01/10] drm/xe: Use xe_ggtt_map_bo_unlocked for resume
+Date: Fri,  2 May 2025 12:36:28 +0200
+Message-ID: <20250502103638.521845-2-dev@lankhorst.se>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20250502103638.521845-1-dev@lankhorst.se>
+References: <20250502103638.521845-1-dev@lankhorst.se>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -35,34 +40,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Resend, just seeing what display tests are still failing CI.
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-Still missing display conversion before be ing able to make struct xe_ggtt private.
+This is the first step to hide the details of struct xe_ggtt.
 
-Maarten Lankhorst (10):
-  drm/xe: Use xe_ggtt_map_bo_unlocked for resume
-  drm/xe: Add xe_ggtt_might_lock
-  drm/xe: Add xe_ggtt_alloc
-  drm/xe/display: Remove dereferences of ggtt for tile id
-  drm/xe/ggtt: Seperate flags and address in PTE encoding
-  drm/xe/display: Dont poke into GGTT internals to fill a DPT
-  drm/xe/display: Convert GGTT mapping to use pte_encode_flags
-  drm/xe: Remove pte_encode_bo callback
-  drm/xe: Implement a helper for reading out a GGTT PTE at a specified
-    offset
-  drm/xe: Do not rely on GGTT internals in xe_guc_buf kunit tests
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+---
+ drivers/gpu/drm/xe/xe_bo_evict.c |  4 +---
+ drivers/gpu/drm/xe/xe_ggtt.c     | 16 +++++++++++++++-
+ drivers/gpu/drm/xe/xe_ggtt.h     |  2 +-
+ 3 files changed, 17 insertions(+), 5 deletions(-)
 
- drivers/gpu/drm/xe/display/xe_fb_pin.c        |  50 +++---
- drivers/gpu/drm/xe/display/xe_plane_initial.c |   6 +-
- drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c   |  11 +-
- drivers/gpu/drm/xe/xe_bo.c                    |   2 +-
- drivers/gpu/drm/xe/xe_bo_evict.c              |   4 +-
- drivers/gpu/drm/xe/xe_ggtt.c                  | 163 ++++++++++++++----
- drivers/gpu/drm/xe/xe_ggtt.h                  |  17 +-
- drivers/gpu/drm/xe/xe_ggtt_types.h            |   4 +-
- drivers/gpu/drm/xe/xe_tile.c                  |   6 +-
- 9 files changed, 181 insertions(+), 82 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c b/drivers/gpu/drm/xe/xe_bo_evict.c
+index ed3746d32b27b..7484ce55a303d 100644
+--- a/drivers/gpu/drm/xe/xe_bo_evict.c
++++ b/drivers/gpu/drm/xe/xe_bo_evict.c
+@@ -197,9 +197,7 @@ static int xe_bo_restore_and_map_ggtt(struct xe_bo *bo)
+ 			if (tile != bo->tile && !(bo->flags & XE_BO_FLAG_GGTTx(tile)))
+ 				continue;
+ 
+-			mutex_lock(&tile->mem.ggtt->lock);
+-			xe_ggtt_map_bo(tile->mem.ggtt, bo);
+-			mutex_unlock(&tile->mem.ggtt->lock);
++			xe_ggtt_map_bo_unlocked(tile->mem.ggtt, bo);
+ 		}
+ 	}
+ 
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 7062115909f2d..c0cd7bb497a54 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -591,7 +591,7 @@ bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node)
+  * @ggtt: the &xe_ggtt where node will be mapped
+  * @bo: the &xe_bo to be mapped
+  */
+-void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
++static void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+ {
+ 	u16 cache_mode = bo->flags & XE_BO_FLAG_NEEDS_UC ? XE_CACHE_NONE : XE_CACHE_WB;
+ 	u16 pat_index = tile_to_xe(ggtt->tile)->pat.idx[cache_mode];
+@@ -609,6 +609,20 @@ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+ 	}
+ }
+ 
++/**
++ * xe_ggtt_map_bo_unlocked - Restore a mapping of a BO into GGTT
++ * @ggtt: the &xe_ggtt where node will be mapped
++ * @bo: the &xe_bo to be mapped
++ *
++ * This is used to restore a GGTT mapping after suspend.
++ */
++void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo)
++{
++	mutex_lock(&ggtt->lock);
++	xe_ggtt_map_bo(ggtt, bo);
++	mutex_unlock(&ggtt->lock);
++}
++
+ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+ 				  u64 start, u64 end)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+index 27e7d67de0047..bdf6d0733e2ca 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.h
++++ b/drivers/gpu/drm/xe/xe_ggtt.h
+@@ -24,7 +24,7 @@ int xe_ggtt_node_insert_locked(struct xe_ggtt_node *node,
+ 			       u32 size, u32 align, u32 mm_flags);
+ void xe_ggtt_node_remove(struct xe_ggtt_node *node, bool invalidate);
+ bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node);
+-void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
++void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo);
+ int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
+ int xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+ 			 u64 start, u64 end);
 -- 
 2.45.2
 
