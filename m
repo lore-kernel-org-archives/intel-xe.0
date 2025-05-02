@@ -4,25 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5E4CC3ABBB
-	for <intel-xe@archiver.kernel.org>; Fri,  2 May 2025 10:36:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FE03C3ABA3
+	for <intel-xe@archiver.kernel.org>; Fri,  2 May 2025 11:02:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79DBC10E8F6;
-	Fri,  2 May 2025 10:36:51 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A78010E8CA
- for <intel-xe@lists.freedesktop.org>; Fri,  2 May 2025 10:36:49 +0000 (UTC)
-From: Maarten Lankhorst <dev@lankhorst.se>
-To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [CI 08/10] drm/xe: Remove pte_encode_bo callback
-Date: Fri,  2 May 2025 12:36:35 +0200
-Message-ID: <20250502103638.521845-9-dev@lankhorst.se>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250502103638.521845-1-dev@lankhorst.se>
-References: <20250502103638.521845-1-dev@lankhorst.se>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D020E10E188;
+	Fri,  2 May 2025 11:02:19 +0000 (UTC)
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D57B810E05D;
+ Fri,  2 May 2025 11:02:18 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Update_mig?=
+ =?utf-8?q?ration_tests=2E?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 02 May 2025 11:02:18 -0000
+Message-ID: <174618373888.34885.8737651883134022741@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <20250502093514.510621-1-dev@lankhorst.se>
+In-Reply-To: <20250502093514.510621-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -34,81 +36,24 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The users inside display have been converted to use thepte_encode_flags
-callback, we can now remove the pte_encode_bo cb.
+== Series Details ==
 
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
----
- drivers/gpu/drm/xe/xe_ggtt.c       | 14 --------------
- drivers/gpu/drm/xe/xe_ggtt_types.h |  3 ---
- 2 files changed, 17 deletions(-)
+Series: drm/xe: Update migration tests.
+URL   : https://patchwork.freedesktop.org/series/148544/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 5daac9810f3a6..ee9475d3bb4fb 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -75,11 +75,6 @@ static u64 xelp_ggtt_pte_flags(struct xe_bo *bo, u16 pat_index)
- 	return pte;
- }
- 
--static u64 xelp_ggtt_encode_bo(struct xe_bo *bo, u64 bo_offset, u16 pat_index)
--{
--	return xelp_ggtt_pte_flags(bo, pat_index) | xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
--}
--
- static u64 xelpg_ggtt_pte_flags(struct xe_bo *bo, u16 pat_index)
- {
- 	struct xe_device *xe = xe_bo_device(bo);
-@@ -98,12 +93,6 @@ static u64 xelpg_ggtt_pte_flags(struct xe_bo *bo, u16 pat_index)
- 	return pte;
- }
- 
--static u64 xelpg_ggtt_encode_bo(struct xe_bo *bo, u64 bo_offset,
--				u16 pat_index)
--{
--	return xelpg_ggtt_pte_flags(bo, pat_index) | xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
--}
--
- static unsigned int probe_gsm_size(struct pci_dev *pdev)
- {
- 	u16 gmch_ctl, ggms;
-@@ -218,19 +207,16 @@ static void primelockdep(struct xe_ggtt *ggtt)
- }
- 
- static const struct xe_ggtt_pt_ops xelp_pt_ops = {
--	.pte_encode_bo = xelp_ggtt_encode_bo,
- 	.pte_encode_flags = xelp_ggtt_pte_flags,
- 	.ggtt_set_pte = xe_ggtt_set_pte,
- };
- 
- static const struct xe_ggtt_pt_ops xelpg_pt_ops = {
--	.pte_encode_bo = xelpg_ggtt_encode_bo,
- 	.pte_encode_flags = xelpg_ggtt_pte_flags,
- 	.ggtt_set_pte = xe_ggtt_set_pte,
- };
- 
- static const struct xe_ggtt_pt_ops xelpg_pt_wa_ops = {
--	.pte_encode_bo = xelpg_ggtt_encode_bo,
- 	.pte_encode_flags = xelpg_ggtt_pte_flags,
- 	.ggtt_set_pte = xe_ggtt_set_pte_and_flush,
- };
-diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
-index 06b1a602dd8d1..c5e999d58ff2a 100644
---- a/drivers/gpu/drm/xe/xe_ggtt_types.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
-@@ -74,9 +74,6 @@ struct xe_ggtt_node {
-  * Which can vary from platform to platform.
-  */
- struct xe_ggtt_pt_ops {
--	/** @pte_encode_bo: Encode PTE flags for a given BO */
--	u64 (*pte_encode_bo)(struct xe_bo *bo, u64 bo_offset, u16 pat_index);
--
- 	/** @pte_encode_flags: Encode PTE flags for a given BO */
- 	u64 (*pte_encode_flags)(struct xe_bo *bo, u16 pat_index);
- 	/** @ggtt_set_pte: Directly write into GGTT's PTE */
--- 
-2.45.2
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 6a0ed9d606fc drm-tip: 2025y-05m-02d-10h-28m-24s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Simplify migration kunit tests
+Applying: drm/xe: Silence migrate debug message.
+Applying: drm/xe: Fix small leak in migration error path.
+Applying: drm/xe: Add migrate performance kunit test
+
 
