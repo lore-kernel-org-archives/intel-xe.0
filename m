@@ -4,52 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAFAEC3ABB6
-	for <intel-xe@archiver.kernel.org>; Mon,  5 May 2025 22:37:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF987C3ABB9
+	for <intel-xe@archiver.kernel.org>; Mon,  5 May 2025 22:38:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 790FE10E4EC;
-	Mon,  5 May 2025 22:37:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E26F10E4EE;
+	Mon,  5 May 2025 22:38:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="SzNJ28bV";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="uov1OvbS";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFDE810E4EB;
- Mon,  5 May 2025 22:37:49 +0000 (UTC)
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A31DA10E4F1;
+ Mon,  5 May 2025 22:38:07 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id DE16C447F3;
- Mon,  5 May 2025 22:37:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04371C4CEED;
- Mon,  5 May 2025 22:37:47 +0000 (UTC)
+ by nyc.source.kernel.org (Postfix) with ESMTP id 3D5C3A4CF5D;
+ Mon,  5 May 2025 22:32:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F543C4CEE4;
+ Mon,  5 May 2025 22:38:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1746484669;
- bh=gFi6sHJ6tPLpA0YfCiCoQ4kFfd40G6cmYkYcUli5dVY=;
+ s=k20201202; t=1746484686;
+ bh=29KvfpKGApl5o6vv3+62ZrJl+SlOvakeWQ15Ex0YBZI=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=SzNJ28bVsmbegV0D5v2iEuU5uJzEApCOWDT/B1DBCNMv9F3UqBPn+AEDTgAA9bfB7
- K59vcmK4eq4sdS7nHfwGo2vQQfZYsLhJJNDO6xNMmhgFiOwIQat85kc8ZKPX3hTyUc
- wxJ80aPPjtXJCJ2niT3+0sBbmPFKcbRl3BW8o5UmoANdx3WXJW76nA/H1qSwu4zE0J
- XYhplWuuLZ4/AnGnh680nr1RE20WGW2XMkwPwW/0CUBMTmp9YZ1qAMDuH9bg02vDya
- UzXS9dqMbjxCxWrcIizyiW/e9dUv//7I7Q/fpNy6YjdgU+cz2/FfqwO1Z5NZZdWScQ
- VNtworCnMOizw==
+ b=uov1OvbSolvYZXMcwxdo1lnEFNBpqlgg6gXVElqroEGuzLyzD69LYlGlFbzbnCv9P
+ LibqufwuA/4JsxXq6oHVVdPe97bl/c1MJTx3uAZOwGP9edT5mt8EPNFIirnGiJoOc+
+ nDeQm2hrql+L4ewV87QODuvr4heQI22cAM3H2aLzVOtl3bOofsl5nTvL2mAdP333gx
+ wOo54KVlZJn9I/lgE+6JmfCELrLAP8ou0i4XiPvr21vJ89NuOjv8w9C/Z6jDt/5HMr
+ 7Ni16Xze6TPhq6wURcYEsfqhQHlplQPkEIYcuE0uCbqnIh6z50139P+w9dogMlAPAu
+ IgJpVc/4fGNgw==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- Stuart Summers <stuart.summers@intel.com>, Sasha Levin <sashal@kernel.org>,
- lucas.demarchi@intel.com, rodrigo.vivi@intel.com, airlied@gmail.com,
- simona@ffwll.ch, intel-xe@lists.freedesktop.org,
+Cc: Maarten Lankhorst <dev@lankhorst.se>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sasha Levin <sashal@kernel.org>,
+ lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
+ airlied@gmail.com, simona@ffwll.ch, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.14 597/642] drm/xe/pf: Move VFs reprovisioning to
- worker
-Date: Mon,  5 May 2025 18:13:33 -0400
-Message-Id: <20250505221419.2672473-597-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.14 606/642] drm/xe: Move suballocator init to after
+ display init
+Date: Mon,  5 May 2025 18:13:42 -0400
+Message-Id: <20250505221419.2672473-606-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20250505221419.2672473-1-sashal@kernel.org>
 References: <20250505221419.2672473-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.14.5
@@ -68,142 +64,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+From: Maarten Lankhorst <dev@lankhorst.se>
 
-[ Upstream commit a4d1c5d0b99b75263a5626d2e52d569db3844b33 ]
+[ Upstream commit 380b0cdaa76bc8f5c16db16eaf48751e792ff041 ]
 
-Since the GuC is reset during GT reset, we need to re-send the
-entire SR-IOV provisioning configuration to the GuC. But since
-this whole configuration is protected by the PF master mutex and
-we can't avoid making allocations under this mutex (like during
-LMEM provisioning), we can't do this reprovisioning from gt-reset
-path if we want to be reclaim-safe. Move VFs reprovisioning to a
-async worker that we will start from the gt-reset path.
+No allocations should be done before we have had a chance to preserve
+the display fb.
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Michał Winiarski <michal.winiarski@intel.com>
-Reviewed-by: Stuart Summers <stuart.summers@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20250125215505.720-1-michal.wajdeczko@intel.com
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20241210083111.230484-4-dev@lankhorst.se
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_pf.c       | 43 +++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h | 10 ++++++
- 2 files changed, 51 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c |  6 ++++++
+ drivers/gpu/drm/xe/xe_tile.c   | 12 ++++++++----
+ drivers/gpu/drm/xe/xe_tile.h   |  1 +
+ 3 files changed, 15 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
-index b80930a6bc1a2..c08efca6420e7 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
-@@ -15,7 +15,11 @@
- #include "xe_gt_sriov_pf_helpers.h"
- #include "xe_gt_sriov_pf_migration.h"
- #include "xe_gt_sriov_pf_service.h"
-+#include "xe_gt_sriov_printk.h"
- #include "xe_mmio.h"
-+#include "xe_pm.h"
-+
-+static void pf_worker_restart_func(struct work_struct *w);
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index e22f29ac96631..74516e73ba4e5 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -736,6 +736,12 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		goto err;
  
- /*
-  * VF's metadata is maintained in the flexible array where:
-@@ -41,6 +45,11 @@ static int pf_alloc_metadata(struct xe_gt *gt)
- 	return 0;
- }
- 
-+static void pf_init_workers(struct xe_gt *gt)
-+{
-+	INIT_WORK(&gt->sriov.pf.workers.restart, pf_worker_restart_func);
-+}
++	for_each_tile(tile, xe, id) {
++		err = xe_tile_init(tile);
++		if (err)
++			goto err;
++	}
 +
- /**
-  * xe_gt_sriov_pf_init_early - Prepare SR-IOV PF data structures on PF.
-  * @gt: the &xe_gt to initialize
-@@ -65,6 +74,8 @@ int xe_gt_sriov_pf_init_early(struct xe_gt *gt)
+ 	for_each_gt(gt, xe, id) {
+ 		last_gt = id;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+index 37f170effcd67..377438ea6b838 100644
+--- a/drivers/gpu/drm/xe/xe_tile.c
++++ b/drivers/gpu/drm/xe/xe_tile.c
+@@ -170,15 +170,19 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
  	if (err)
  		return err;
  
-+	pf_init_workers(gt);
-+
- 	return 0;
+-	tile->mem.kernel_bb_pool = xe_sa_bo_manager_init(tile, SZ_1M, 16);
+-	if (IS_ERR(tile->mem.kernel_bb_pool))
+-		return PTR_ERR(tile->mem.kernel_bb_pool);
+-
+ 	xe_wa_apply_tile_workarounds(tile);
+ 
+ 	return xe_tile_sysfs_init(tile);
  }
  
-@@ -161,6 +172,35 @@ void xe_gt_sriov_pf_sanitize_hw(struct xe_gt *gt, unsigned int vfid)
- 	pf_clear_vf_scratch_regs(gt, vfid);
- }
- 
-+static void pf_restart(struct xe_gt *gt)
++int xe_tile_init(struct xe_tile *tile)
 +{
-+	struct xe_device *xe = gt_to_xe(gt);
++	tile->mem.kernel_bb_pool = xe_sa_bo_manager_init(tile, SZ_1M, 16);
++	if (IS_ERR(tile->mem.kernel_bb_pool))
++		return PTR_ERR(tile->mem.kernel_bb_pool);
 +
-+	xe_pm_runtime_get(xe);
-+	xe_gt_sriov_pf_config_restart(gt);
-+	xe_gt_sriov_pf_control_restart(gt);
-+	xe_pm_runtime_put(xe);
-+
-+	xe_gt_sriov_dbg(gt, "restart completed\n");
++	return 0;
 +}
-+
-+static void pf_worker_restart_func(struct work_struct *w)
-+{
-+	struct xe_gt *gt = container_of(w, typeof(*gt), sriov.pf.workers.restart);
-+
-+	pf_restart(gt);
-+}
-+
-+static void pf_queue_restart(struct xe_gt *gt)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+
-+	xe_gt_assert(gt, IS_SRIOV_PF(xe));
-+
-+	if (!queue_work(xe->sriov.wq, &gt->sriov.pf.workers.restart))
-+		xe_gt_sriov_dbg(gt, "restart already in queue!\n");
-+}
-+
- /**
-  * xe_gt_sriov_pf_restart - Restart SR-IOV support after a GT reset.
-  * @gt: the &xe_gt
-@@ -169,6 +209,5 @@ void xe_gt_sriov_pf_sanitize_hw(struct xe_gt *gt, unsigned int vfid)
-  */
- void xe_gt_sriov_pf_restart(struct xe_gt *gt)
+ void xe_tile_migrate_wait(struct xe_tile *tile)
  {
--	xe_gt_sriov_pf_config_restart(gt);
--	xe_gt_sriov_pf_control_restart(gt);
-+	pf_queue_restart(gt);
- }
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
-index 0426b1a77069a..a64a6835ad656 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
-@@ -35,8 +35,17 @@ struct xe_gt_sriov_metadata {
- 	struct xe_gt_sriov_state_snapshot snapshot;
- };
+ 	xe_migrate_wait(tile->migrate);
+diff --git a/drivers/gpu/drm/xe/xe_tile.h b/drivers/gpu/drm/xe/xe_tile.h
+index 1c9e42ade6b05..eb939316d55b0 100644
+--- a/drivers/gpu/drm/xe/xe_tile.h
++++ b/drivers/gpu/drm/xe/xe_tile.h
+@@ -12,6 +12,7 @@ struct xe_tile;
  
-+/**
-+ * struct xe_gt_sriov_pf_workers - GT level workers used by the PF.
-+ */
-+struct xe_gt_sriov_pf_workers {
-+	/** @restart: worker that executes actions post GT reset */
-+	struct work_struct restart;
-+};
-+
- /**
-  * struct xe_gt_sriov_pf - GT level PF virtualization data.
-+ * @workers: workers data.
-  * @service: service data.
-  * @control: control data.
-  * @policy: policy data.
-@@ -45,6 +54,7 @@ struct xe_gt_sriov_metadata {
-  * @vfs: metadata for all VFs.
-  */
- struct xe_gt_sriov_pf {
-+	struct xe_gt_sriov_pf_workers workers;
- 	struct xe_gt_sriov_pf_service service;
- 	struct xe_gt_sriov_pf_control control;
- 	struct xe_gt_sriov_pf_policy policy;
+ int xe_tile_init_early(struct xe_tile *tile, struct xe_device *xe, u8 id);
+ int xe_tile_init_noalloc(struct xe_tile *tile);
++int xe_tile_init(struct xe_tile *tile);
+ 
+ void xe_tile_migrate_wait(struct xe_tile *tile);
+ 
 -- 
 2.39.5
 
