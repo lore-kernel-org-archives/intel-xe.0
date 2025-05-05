@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 999ACC3ABB6
-	for <intel-xe@archiver.kernel.org>; Mon,  5 May 2025 22:36:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21DD1C3ABB6
+	for <intel-xe@archiver.kernel.org>; Mon,  5 May 2025 22:37:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64FD010E4E8;
-	Mon,  5 May 2025 22:36:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF8BC10E4E9;
+	Mon,  5 May 2025 22:37:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="UkEU9teS";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="EPsYuB37";
 	dkim-atps=neutral
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EF0810E4ED;
- Mon,  5 May 2025 22:36:54 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB2CF10E4E9;
+ Mon,  5 May 2025 22:37:45 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id E55F7A4CEDB;
- Mon,  5 May 2025 22:31:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2274C4CEEE;
- Mon,  5 May 2025 22:36:51 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id 1F0655C594E;
+ Mon,  5 May 2025 22:35:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1424C4CEED;
+ Mon,  5 May 2025 22:37:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1746484613;
- bh=5gAlm/aMRs/kQvtu4edHnWgZ6FVR2gwuKKGPTPrg1Tc=;
+ s=k20201202; t=1746484665;
+ bh=8X9ddNDbU0jcoiFuiqpuu0HcacA5iDHnbRDAr8bUjsE=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=UkEU9teSW2GGkIaEW8ukLl70gUS7uw5G/x+CjWZTE3BWL2wjjGU+p8UipvswrOKPF
- 8u09vYLDXbxGxoB+geiGlme+giMzQiTr0gaXLixlmQdMcr7q0CuZpeNIyvDNV3pB4Q
- i6kXaKEU2U4eVl8dtIZTDNUflKy0/83RWKHJDTV+mVVF0fuUV9KNbdHfdsSkTe3CAs
- uFnwqQHi75dRrADgS595kW7fBOdhNX3r3vmdYee2ztwjDNUG/ogvkne+2wNaGR7yUN
- 4v6lv4lahi63wXZut9GOiZZOomTqcgEwGzvjUjchxKH+AFaCrqJS2lxWFxfHSwQT0G
- ysrQ7asqtkX8w==
+ b=EPsYuB37rImoTlqeEiI5aTjbXng9ezT+1xAqRKpUOyI02fu3PnsIdDXhy0EQvZ0+X
+ KwVRMnLZcJqkf4prtrtKJxHCRNJKY/0OqVLU6ALVkjvkVpcE4gvSptoDUQjtubj8/I
+ JeklYRyH+wtA0LOs8yEJHJVTySgIHNI5dqCK+JIFYg/yAWxBMAMO/7cYYBbz8NsTRO
+ ANfxLKg+s8My1wzxbl+fVkfZnz03QJa7yAUJdHaFwXX+SmZ+dqPtaz7TafP1mVOG/g
+ sKpNQE2vV4EaxrIVHxZ3lZQJnjvx54iVU21QhDxpRS9J9nXxkAE2wbY61cz5aVAc0q
+ WId/Dkv2dJzoQ==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
  Sasha Levin <sashal@kernel.org>, lucas.demarchi@intel.com,
  thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
  airlied@gmail.com, simona@ffwll.ch, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.14 562/642] drm/xe/relay: Don't use GFP_KERNEL for
- new transactions
-Date: Mon,  5 May 2025 18:12:58 -0400
-Message-Id: <20250505221419.2672473-562-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.14 594/642] drm/xe/pf: Reset GuC VF config when
+ unprovisioning critical resource
+Date: Mon,  5 May 2025 18:13:30 -0400
+Message-Id: <20250505221419.2672473-594-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20250505221419.2672473-1-sashal@kernel.org>
 References: <20250505221419.2672473-1-sashal@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.14.5
@@ -67,58 +68,107 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 
-[ Upstream commit 78d5d1e20d1de9422f013338a0f2311448588ba7 ]
+[ Upstream commit 33f17e2cbd930a2a00eb007d9b241b6db010a880 ]
 
-VFs use a relay transaction during the resume/reset flow and use
-of the GFP_KERNEL flag may conflict with the reclaim:
+GuC firmware counts received VF configuration KLVs and may start
+validation of the complete VF config even if some resources where
+unprovisioned in the meantime, leading to unexpected errors like:
 
-     -> #0 (fs_reclaim){+.+.}-{0:0}:
- [ ]        __lock_acquire+0x1874/0x2bc0
- [ ]        lock_acquire+0xd2/0x310
- [ ]        fs_reclaim_acquire+0xc5/0x100
- [ ]        mempool_alloc_noprof+0x5c/0x1b0
- [ ]        __relay_get_transaction+0xdc/0xa10 [xe]
- [ ]        relay_send_to+0x251/0xe50 [xe]
- [ ]        xe_guc_relay_send_to_pf+0x79/0x3a0 [xe]
- [ ]        xe_gt_sriov_vf_connect+0x90/0x4d0 [xe]
- [ ]        xe_uc_init_hw+0x157/0x3b0 [xe]
- [ ]        do_gt_restart+0x1ae/0x650 [xe]
- [ ]        xe_gt_resume+0xb6/0x120 [xe]
- [ ]        xe_pm_runtime_resume+0x15b/0x370 [xe]
- [ ]        xe_pci_runtime_resume+0x73/0x90 [xe]
- [ ]        pci_pm_runtime_resume+0xa0/0x100
- [ ]        __rpm_callback+0x4d/0x170
- [ ]        rpm_callback+0x64/0x70
- [ ]        rpm_resume+0x594/0x790
- [ ]        __pm_runtime_resume+0x4e/0x90
- [ ]        xe_pm_runtime_get_ioctl+0x9c/0x160 [xe]
+ $ echo 1 | sudo tee /sys/kernel/debug/dri/0000:00:02.0/gt0/vf1/contexts_quota
+ $ echo 0 | sudo tee /sys/kernel/debug/dri/0000:00:02.0/gt0/vf1/contexts_quota
+ $ echo 1 | sudo tee /sys/kernel/debug/dri/0000:00:02.0/gt0/vf1/doorbells_quota
+ $ echo 0 | sudo tee /sys/kernel/debug/dri/0000:00:02.0/gt0/vf1/doorbells_quota
+ $ echo 1 | sudo tee /sys/kernel/debug/dri/0000:00:02.0/gt0/vf1/ggtt_quota
+ tee: '/sys/kernel/debug/dri/0000:00:02.0/gt0/vf1/ggtt_quota': Input/output error
 
-Since we have a preallocated pool of relay transactions, which
-should cover all our normal relay use cases, we may use the
-GFP_NOWAIT flag when allocating new outgoing transactions.
+To mitigate this problem trigger explicit VF config reset after
+unprovisioning any of the critical resources (GGTT, context or
+doorbell IDs) that GuC is monitoring.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Tested-by: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
-Reviewed-by: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20250131153713.808-1-michal.wajdeczko@intel.com
+Reviewed-by: Michał Winiarski <michal.winiarski@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20250129195947.764-3-michal.wajdeczko@intel.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/xe/xe_guc_relay.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 37 +++++++++++++++++++---
+ 1 file changed, 33 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_relay.c b/drivers/gpu/drm/xe/xe_guc_relay.c
-index 8f62de026724c..e5dc94f3e6181 100644
---- a/drivers/gpu/drm/xe/xe_guc_relay.c
-+++ b/drivers/gpu/drm/xe/xe_guc_relay.c
-@@ -225,7 +225,7 @@ __relay_get_transaction(struct xe_guc_relay *relay, bool incoming, u32 remote, u
- 	 * with CTB lock held which is marked as used in the reclaim path.
- 	 * Btw, that's one of the reason why we use mempool here!
- 	 */
--	txn = mempool_alloc(&relay->pool, incoming ? GFP_ATOMIC : GFP_KERNEL);
-+	txn = mempool_alloc(&relay->pool, incoming ? GFP_ATOMIC : GFP_NOWAIT);
- 	if (!txn)
- 		return ERR_PTR(-ENOMEM);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+index aaca54b40091f..27f309e3a76e6 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -336,6 +336,26 @@ static int pf_push_full_vf_config(struct xe_gt *gt, unsigned int vfid)
+ 	return err;
+ }
  
++static int pf_push_vf_cfg(struct xe_gt *gt, unsigned int vfid, bool reset)
++{
++	int err = 0;
++
++	xe_gt_assert(gt, vfid);
++	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
++
++	if (reset)
++		err = pf_send_vf_cfg_reset(gt, vfid);
++	if (!err)
++		err = pf_push_full_vf_config(gt, vfid);
++
++	return err;
++}
++
++static int pf_refresh_vf_cfg(struct xe_gt *gt, unsigned int vfid)
++{
++	return pf_push_vf_cfg(gt, vfid, true);
++}
++
+ static u64 pf_get_ggtt_alignment(struct xe_gt *gt)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+@@ -432,6 +452,10 @@ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
+ 			return err;
+ 
+ 		pf_release_vf_config_ggtt(gt, config);
++
++		err = pf_refresh_vf_cfg(gt, vfid);
++		if (unlikely(err))
++			return err;
+ 	}
+ 	xe_gt_assert(gt, !xe_ggtt_node_allocated(config->ggtt_region));
+ 
+@@ -757,6 +781,10 @@ static int pf_provision_vf_ctxs(struct xe_gt *gt, unsigned int vfid, u32 num_ctx
+ 			return ret;
+ 
+ 		pf_release_config_ctxs(gt, config);
++
++		ret = pf_refresh_vf_cfg(gt, vfid);
++		if (unlikely(ret))
++			return ret;
+ 	}
+ 
+ 	if (!num_ctxs)
+@@ -1054,6 +1082,10 @@ static int pf_provision_vf_dbs(struct xe_gt *gt, unsigned int vfid, u32 num_dbs)
+ 			return ret;
+ 
+ 		pf_release_config_dbs(gt, config);
++
++		ret = pf_refresh_vf_cfg(gt, vfid);
++		if (unlikely(ret))
++			return ret;
+ 	}
+ 
+ 	if (!num_dbs)
+@@ -2085,10 +2117,7 @@ int xe_gt_sriov_pf_config_push(struct xe_gt *gt, unsigned int vfid, bool refresh
+ 	xe_gt_assert(gt, vfid);
+ 
+ 	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
+-	if (refresh)
+-		err = pf_send_vf_cfg_reset(gt, vfid);
+-	if (!err)
+-		err = pf_push_full_vf_config(gt, vfid);
++	err = pf_push_vf_cfg(gt, vfid, refresh);
+ 	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
+ 
+ 	if (unlikely(err)) {
 -- 
 2.39.5
 
