@@ -4,50 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9065BC3ABB9
-	for <intel-xe@archiver.kernel.org>; Mon,  5 May 2025 22:56:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79613C3ABB9
+	for <intel-xe@archiver.kernel.org>; Mon,  5 May 2025 22:56:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D1B810E58F;
-	Mon,  5 May 2025 22:56:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26BCC10E594;
+	Mon,  5 May 2025 22:56:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jjdaj52l";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="V6ew2PLO";
 	dkim-atps=neutral
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D190A10E58E;
- Mon,  5 May 2025 22:56:00 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3F6F10E594;
+ Mon,  5 May 2025 22:56:14 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 7841DA4D251;
- Mon,  5 May 2025 22:50:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F6ECC4CEEF;
- Mon,  5 May 2025 22:55:58 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 155AB44792;
+ Mon,  5 May 2025 22:56:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F17DC4CEEF;
+ Mon,  5 May 2025 22:56:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1746485759;
- bh=5EK3ujhSzpb7eoLDLCPJ4F+Yy6hZCLVlJzYSvX3MzDw=;
+ s=k20201202; t=1746485774;
+ bh=cTQLQC5i8yLJif6gLu/9urK5FsL/5Z55FbEPV4/2QFA=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=jjdaj52lFXUNnI7YmzHd7MJn+YoXhaAdTqQ9ybJetVTRbd3sDonwF1hS8kXC+wDk7
- uxGPkKFjDSXgiO8B2DXeFGynCIDdcOsxDyUsFsKDmekXXfCqxoJK9Dk07CwBsGxQkZ
- 1BEg+CkJrfV4cQmlF4q+Obxk0O7u94IEc1dM3lyatv7B1Iy6pjcww4n6y8aQxaWU3e
- 0jZ8dYFha35XkSqYiVlEFAmTcXp/vE8xZzCpO10kR+S/a5qR6gIiZalDHd/6eMslzA
- cmbVjalizJQQTI6pMwCl/IXwDvqBi2M4jMDIxM+5IZiWK6pp8Xp2W3XHa30IkVFKI3
- tbqbvYMZ4/qMA==
+ b=V6ew2PLOtFg3vGAKY09xqxd6xDKuLc6ENHqiXuCauoRVGWUVIf5qpIa1HaIKjqoRg
+ ZgzkuJkcvHXRTDdxgR8qoyYHK1IAFqkrz9Ld9l/AeBuwgh+0iN1oCvoAOqNJXXM6vr
+ UIN9/2/aiPubPXvBZWhrkAecBznvFsoOGkxPEV9GsbNaXlZ/jCLBCcnIWk9yrYgGvg
+ 9QuMzImYapsTIkvmHP+cYZdgXSMvH5sOu2NEB2of9SaEBSbW2nXAY4bocz5laypNq1
+ 7De4eIvmTXcR/bmRrf7sSsKo8ryz9XdUe6Mip9cPC5ed/dkVmBdINh9JPHBv7k3UGx
+ YDyFI2x06wxCA==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- Sasha Levin <sashal@kernel.org>, lucas.demarchi@intel.com,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+Cc: Maarten Lankhorst <dev@lankhorst.se>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sasha Levin <sashal@kernel.org>,
+ lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
  airlied@gmail.com, simona@ffwll.ch, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.12 469/486] drm/xe/pf: Reset GuC VF config when
- unprovisioning critical resource
-Date: Mon,  5 May 2025 18:39:05 -0400
-Message-Id: <20250505223922.2682012-469-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.12 477/486] drm/xe: Move suballocator init to after
+ display init
+Date: Mon,  5 May 2025 18:39:13 -0400
+Message-Id: <20250505223922.2682012-477-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20250505223922.2682012-1-sashal@kernel.org>
 References: <20250505223922.2682012-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.12.26
@@ -66,109 +64,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+From: Maarten Lankhorst <dev@lankhorst.se>
 
-[ Upstream commit 33f17e2cbd930a2a00eb007d9b241b6db010a880 ]
+[ Upstream commit 380b0cdaa76bc8f5c16db16eaf48751e792ff041 ]
 
-GuC firmware counts received VF configuration KLVs and may start
-validation of the complete VF config even if some resources where
-unprovisioned in the meantime, leading to unexpected errors like:
+No allocations should be done before we have had a chance to preserve
+the display fb.
 
- $ echo 1 | sudo tee /sys/kernel/debug/dri/0000:00:02.0/gt0/vf1/contexts_quota
- $ echo 0 | sudo tee /sys/kernel/debug/dri/0000:00:02.0/gt0/vf1/contexts_quota
- $ echo 1 | sudo tee /sys/kernel/debug/dri/0000:00:02.0/gt0/vf1/doorbells_quota
- $ echo 0 | sudo tee /sys/kernel/debug/dri/0000:00:02.0/gt0/vf1/doorbells_quota
- $ echo 1 | sudo tee /sys/kernel/debug/dri/0000:00:02.0/gt0/vf1/ggtt_quota
- tee: '/sys/kernel/debug/dri/0000:00:02.0/gt0/vf1/ggtt_quota': Input/output error
-
-To mitigate this problem trigger explicit VF config reset after
-unprovisioning any of the critical resources (GGTT, context or
-doorbell IDs) that GuC is monitoring.
-
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Reviewed-by: Michał Winiarski <michal.winiarski@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20250129195947.764-3-michal.wajdeczko@intel.com
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20241210083111.230484-4-dev@lankhorst.se
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 37 +++++++++++++++++++---
- 1 file changed, 33 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c |  6 ++++++
+ drivers/gpu/drm/xe/xe_tile.c   | 12 ++++++++----
+ drivers/gpu/drm/xe/xe_tile.h   |  1 +
+ 3 files changed, 15 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index c9ed996b9cb0c..786f0dba41437 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -323,6 +323,26 @@ static int pf_push_full_vf_config(struct xe_gt *gt, unsigned int vfid)
- 	return err;
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 5c37bed3c948f..23e02372a49db 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -708,6 +708,12 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		goto err;
+ 
++	for_each_tile(tile, xe, id) {
++		err = xe_tile_init(tile);
++		if (err)
++			goto err;
++	}
++
+ 	for_each_gt(gt, xe, id) {
+ 		last_gt = id;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+index 349beddf9b383..36c87d7c72fbc 100644
+--- a/drivers/gpu/drm/xe/xe_tile.c
++++ b/drivers/gpu/drm/xe/xe_tile.c
+@@ -167,15 +167,19 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
+ 	if (err)
+ 		return err;
+ 
+-	tile->mem.kernel_bb_pool = xe_sa_bo_manager_init(tile, SZ_1M, 16);
+-	if (IS_ERR(tile->mem.kernel_bb_pool))
+-		return PTR_ERR(tile->mem.kernel_bb_pool);
+-
+ 	xe_wa_apply_tile_workarounds(tile);
+ 
+ 	return xe_tile_sysfs_init(tile);
  }
  
-+static int pf_push_vf_cfg(struct xe_gt *gt, unsigned int vfid, bool reset)
++int xe_tile_init(struct xe_tile *tile)
 +{
-+	int err = 0;
++	tile->mem.kernel_bb_pool = xe_sa_bo_manager_init(tile, SZ_1M, 16);
++	if (IS_ERR(tile->mem.kernel_bb_pool))
++		return PTR_ERR(tile->mem.kernel_bb_pool);
 +
-+	xe_gt_assert(gt, vfid);
-+	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
-+
-+	if (reset)
-+		err = pf_send_vf_cfg_reset(gt, vfid);
-+	if (!err)
-+		err = pf_push_full_vf_config(gt, vfid);
-+
-+	return err;
++	return 0;
 +}
-+
-+static int pf_refresh_vf_cfg(struct xe_gt *gt, unsigned int vfid)
-+{
-+	return pf_push_vf_cfg(gt, vfid, true);
-+}
-+
- static u64 pf_get_ggtt_alignment(struct xe_gt *gt)
+ void xe_tile_migrate_wait(struct xe_tile *tile)
  {
- 	struct xe_device *xe = gt_to_xe(gt);
-@@ -419,6 +439,10 @@ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
- 			return err;
+ 	xe_migrate_wait(tile->migrate);
+diff --git a/drivers/gpu/drm/xe/xe_tile.h b/drivers/gpu/drm/xe/xe_tile.h
+index 1c9e42ade6b05..eb939316d55b0 100644
+--- a/drivers/gpu/drm/xe/xe_tile.h
++++ b/drivers/gpu/drm/xe/xe_tile.h
+@@ -12,6 +12,7 @@ struct xe_tile;
  
- 		pf_release_vf_config_ggtt(gt, config);
-+
-+		err = pf_refresh_vf_cfg(gt, vfid);
-+		if (unlikely(err))
-+			return err;
- 	}
- 	xe_gt_assert(gt, !xe_ggtt_node_allocated(config->ggtt_region));
+ int xe_tile_init_early(struct xe_tile *tile, struct xe_device *xe, u8 id);
+ int xe_tile_init_noalloc(struct xe_tile *tile);
++int xe_tile_init(struct xe_tile *tile);
  
-@@ -744,6 +768,10 @@ static int pf_provision_vf_ctxs(struct xe_gt *gt, unsigned int vfid, u32 num_ctx
- 			return ret;
+ void xe_tile_migrate_wait(struct xe_tile *tile);
  
- 		pf_release_config_ctxs(gt, config);
-+
-+		ret = pf_refresh_vf_cfg(gt, vfid);
-+		if (unlikely(ret))
-+			return ret;
- 	}
- 
- 	if (!num_ctxs)
-@@ -1041,6 +1069,10 @@ static int pf_provision_vf_dbs(struct xe_gt *gt, unsigned int vfid, u32 num_dbs)
- 			return ret;
- 
- 		pf_release_config_dbs(gt, config);
-+
-+		ret = pf_refresh_vf_cfg(gt, vfid);
-+		if (unlikely(ret))
-+			return ret;
- 	}
- 
- 	if (!num_dbs)
-@@ -2003,10 +2035,7 @@ int xe_gt_sriov_pf_config_push(struct xe_gt *gt, unsigned int vfid, bool refresh
- 	xe_gt_assert(gt, vfid);
- 
- 	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
--	if (refresh)
--		err = pf_send_vf_cfg_reset(gt, vfid);
--	if (!err)
--		err = pf_push_full_vf_config(gt, vfid);
-+	err = pf_push_vf_cfg(gt, vfid, refresh);
- 	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
- 
- 	if (unlikely(err)) {
 -- 
 2.39.5
 
