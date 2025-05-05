@@ -4,48 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4404AC3ABB6
-	for <intel-xe@archiver.kernel.org>; Mon,  5 May 2025 22:29:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D9ADC3ABB9
+	for <intel-xe@archiver.kernel.org>; Mon,  5 May 2025 22:31:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04A9210E48C;
-	Mon,  5 May 2025 22:29:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7C5B10E4A4;
+	Mon,  5 May 2025 22:31:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="G4DVXrb8";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="EXSvnC8G";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DDC310E48C;
- Mon,  5 May 2025 22:29:19 +0000 (UTC)
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68A5510E4A4;
+ Mon,  5 May 2025 22:31:05 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 3C47C43F0F;
- Mon,  5 May 2025 22:29:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CA31C4CEEE;
- Mon,  5 May 2025 22:29:17 +0000 (UTC)
+ by nyc.source.kernel.org (Postfix) with ESMTP id 39EEBA4CD51;
+ Mon,  5 May 2025 22:25:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43441C4CEED;
+ Mon,  5 May 2025 22:31:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1746484158;
- bh=0rY6USwdH/BbMFJeP4DFM3Cbs9aUeKCtF98Za21TGq8=;
+ s=k20201202; t=1746484264;
+ bh=kadxP6WANXnFgGHhpgdEJ1JC4CJv8Ro89kYhIKY7X9g=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=G4DVXrb8fMMegn6uH7SzHtL4s6Qnmcr34TTV2YwOnUWsSmR4RhW8dcM1d6JkBYXm7
- nTgpas9KwBMPbduU/57VjjO/1eQvExgAw0Xx0pzLxTM+CqJW7MXKRV5kEwMjampcqD
- KgcMFJVqyV7rqAovmUC8Tx5+D3MgpOvYhsxS3h3LxXFfUWw3Hdmx+siq+sWkjDay6F
- +gaenyNTTGjQBqR2evYwNAOYpVOntJ8v9j8jWgzeksFIoxv1rdfGiH0uSCWMfMdMFr
- N9gy6d63xjIvBAiBp6JJr+PZSR5mPya/BTykZR+fSVdlPHn8TNfi7h9ZvM1tXq3zp3
- kA9EotkVpwznA==
+ b=EXSvnC8GHe5Dz2wRbxXRQc5U/bCCs8sKGBPGP/kzz1am2ZZSn/NPk0MRYnyxzA1Ue
+ UQVpryQrnlhTDl22357u+neG/gtxZJUSUlblvhNAPZVPeFCNq8Hf57tO1Cx3aWqrRN
+ M7HWZ/pEi3e9ij7NO4dSj+HFiPCGGpnCvzJlZrBaOPFT0/+sq3Hl5AInbC1FybACue
+ ES2jE6QBiK2G8HUBGC58GhCaHBlU+fagxJAHgtTFUyVhiCM/xFpmtSNvhPtr5h377V
+ h8IXtpT7TK2qqXrup/3zlq/Vqn0sjuoFKDZ+kiFqAXRe8j/5tp1kh+Wlwlex8HFUH+
+ ngfAXggh4G9DQ==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- Sasha Levin <sashal@kernel.org>, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@gmail.com, simona@ffwll.ch,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.14 381/642] drm/xe/client: Skip show_run_ticks if
- unable to read timestamp
-Date: Mon,  5 May 2025 18:09:57 -0400
-Message-Id: <20250505221419.2672473-381-sashal@kernel.org>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
+ Sasha Levin <sashal@kernel.org>, lucas.demarchi@intel.com,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ airlied@gmail.com, simona@ffwll.ch, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH AUTOSEL 6.14 421/642] drm/xe/pf: Release all VFs configs on
+ device removal
+Date: Mon,  5 May 2025 18:10:37 -0400
+Message-Id: <20250505221419.2672473-421-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20250505221419.2672473-1-sashal@kernel.org>
 References: <20250505221419.2672473-1-sashal@kernel.org>
@@ -69,46 +66,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 
-[ Upstream commit 94030a1d3283251778411cf74553607a65260f78 ]
+[ Upstream commit 611160b02a40ce3f60ab94eea85b394dca1cafd2 ]
 
-RING_TIMESTAMP registers are inaccessible in VF mode.
-Without drm-total-cycles-*, other keys provide little value.
-Skip all optional "run_ticks" keys in this case.
+If we try to manually provision VFs using debugfs and then we
+try to unload the driver, we will see complains like:
 
-Signed-off-by: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Michał Winiarski <michal.winiarski@intel.com>
-Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Reviewed-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+ [ ] Memory manager not clean during takedown.
+ [ ] RIP: 0010:drm_mm_takedown+0x3f/0x100
+ [ ] [drm:drm_mm_takedown] *ERROR* node [fedff000 + 00001000]: inserted at
+      drm_mm_insert_node_in_range+0x2bd/0x520
+      xe_ggtt_node_insert+0x52/0x90 [xe]
+      pf_provision_vf_ggtt+0x1fa/0xac0 [xe]
+      xe_gt_sriov_pf_config_set_ggtt+0x79/0x7a0 [xe]
+      ggtt_set+0x53/0x80 [xe]
+      simple_attr_write_xsigned.isra.0+0xd2/0x150
+      simple_attr_write+0x14/0x30
+      debugfs_attr_write+0x4e/0x80
+
+ [ ] xe 0000:00:02.0: [drm] *ERROR* GT0: GUC ID manager unclean (1/65535)
+ [ ] xe 0000:00:02.0: [drm] GT0:      total 65535
+ [ ] xe 0000:00:02.0: [drm] GT0:      used 1
+ [ ] xe 0000:00:02.0: [drm] GT0:      range 65534..65534 (1)
+
+ [ ] xe 0000:00:02.0: [drm] *ERROR* GT0: GuC doorbells manager unclean (1/256)
+ [ ] xe 0000:00:02.0: [drm] GT0:      count: 256
+ [ ] xe 0000:00:02.0: [drm] GT0:      available range: 1..255 (255)
+ [ ] xe 0000:00:02.0: [drm] GT0:      available total: 255
+ [ ] xe 0000:00:02.0: [drm] GT0:      reserved range: 0..0 (1)
+ [ ] xe 0000:00:02.0: [drm] GT0:      reserved total: 1
+
+This could be easily fixed by adding config release action.
+
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20250205191644.2550879-3-marcin.bernatowicz@linux.intel.com
+Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20250211155034.1028-1-michal.wajdeczko@intel.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/xe/xe_drm_client.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/gpu/drm/xe/xe_gt_sriov_pf.c        |  6 +++++
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 29 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h |  1 +
+ 3 files changed, 36 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
-index 2d4874d2b9225..31f688e953d7b 100644
---- a/drivers/gpu/drm/xe/xe_drm_client.c
-+++ b/drivers/gpu/drm/xe/xe_drm_client.c
-@@ -324,6 +324,14 @@ static void show_run_ticks(struct drm_printer *p, struct drm_file *file)
- 	u64 gpu_timestamp;
- 	unsigned int fw_ref;
- 
-+	/*
-+	 * RING_TIMESTAMP registers are inaccessible in VF mode.
-+	 * Without drm-total-cycles-*, other keys provide little value.
-+	 * Show all or none of the optional "run_ticks" keys in this case.
-+	 */
-+	if (IS_SRIOV_VF(xe))
-+		return;
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
+index 6f906c8e8108b..b80930a6bc1a2 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
+@@ -78,6 +78,12 @@ int xe_gt_sriov_pf_init_early(struct xe_gt *gt)
+  */
+ int xe_gt_sriov_pf_init(struct xe_gt *gt)
+ {
++	int err;
 +
- 	/*
- 	 * Wait for any exec queue going away: their cycles will get updated on
- 	 * context switch out, so wait for that to happen
++	err = xe_gt_sriov_pf_config_init(gt);
++	if (err)
++		return err;
++
+ 	return xe_gt_sriov_pf_migration_init(gt);
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+index 4bd255adfb401..aaca54b40091f 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -2320,6 +2320,35 @@ int xe_gt_sriov_pf_config_restore(struct xe_gt *gt, unsigned int vfid,
+ 	return err;
+ }
+ 
++static void fini_config(void *arg)
++{
++	struct xe_gt *gt = arg;
++	struct xe_device *xe = gt_to_xe(gt);
++	unsigned int n, total_vfs = xe_sriov_pf_get_totalvfs(xe);
++
++	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
++	for (n = 1; n <= total_vfs; n++)
++		pf_release_vf_config(gt, n);
++	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
++}
++
++/**
++ * xe_gt_sriov_pf_config_init - Initialize SR-IOV configuration data.
++ * @gt: the &xe_gt
++ *
++ * This function can only be called on PF.
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_gt_sriov_pf_config_init(struct xe_gt *gt)
++{
++	struct xe_device *xe = gt_to_xe(gt);
++
++	xe_gt_assert(gt, IS_SRIOV_PF(xe));
++
++	return devm_add_action_or_reset(xe->drm.dev, fini_config, gt);
++}
++
+ /**
+  * xe_gt_sriov_pf_config_restart - Restart SR-IOV configurations after a GT reset.
+  * @gt: the &xe_gt
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+index f894e9d4abba2..513e6512a575b 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+@@ -63,6 +63,7 @@ int xe_gt_sriov_pf_config_restore(struct xe_gt *gt, unsigned int vfid,
+ 
+ bool xe_gt_sriov_pf_config_is_empty(struct xe_gt *gt, unsigned int vfid);
+ 
++int xe_gt_sriov_pf_config_init(struct xe_gt *gt);
+ void xe_gt_sriov_pf_config_restart(struct xe_gt *gt);
+ 
+ int xe_gt_sriov_pf_config_print_ggtt(struct xe_gt *gt, struct drm_printer *p);
 -- 
 2.39.5
 
