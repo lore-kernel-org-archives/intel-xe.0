@@ -4,20 +4,21 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80956C3ABBD
-	for <intel-xe@archiver.kernel.org>; Mon,  5 May 2025 12:20:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D585C3ABB9
+	for <intel-xe@archiver.kernel.org>; Mon,  5 May 2025 12:20:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 406EF10E3D8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1F2810E3DE;
 	Mon,  5 May 2025 12:20:10 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A881110E3E0
- for <intel-xe@lists.freedesktop.org>; Mon,  5 May 2025 12:20:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B8AC10E3D8
+ for <intel-xe@lists.freedesktop.org>; Mon,  5 May 2025 12:20:09 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH 08/10] drm/xe: Remove pte_encode_bo callback
-Date: Mon,  5 May 2025 14:19:21 +0200
-Message-ID: <20250505121924.921544-9-dev@lankhorst.se>
+Subject: [PATCH 09/10] drm/xe: Implement a helper for reading out a GGTT PTE
+ at a specified offset
+Date: Mon,  5 May 2025 14:19:22 +0200
+Message-ID: <20250505121924.921544-10-dev@lankhorst.se>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250505121924.921544-1-dev@lankhorst.se>
 References: <20250505121924.921544-1-dev@lankhorst.se>
@@ -37,78 +38,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The users inside display have been converted to use thepte_encode_flags
-callback, we can now remove the pte_encode_bo cb.
+Split the GGTT PTE readout to a separate function, this is useful for
+adding testcases in the next commit, and also cleaner than manually
+reading out GGTT.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_ggtt.c       | 14 --------------
- drivers/gpu/drm/xe/xe_ggtt_types.h |  3 ---
- 2 files changed, 17 deletions(-)
+ drivers/gpu/drm/xe/display/xe_plane_initial.c |  6 +-----
+ drivers/gpu/drm/xe/xe_ggtt.c                  | 12 ++++++++++++
+ drivers/gpu/drm/xe/xe_ggtt.h                  |  1 +
+ 3 files changed, 14 insertions(+), 5 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+index 6502b82741732..59b2ff2026d47 100644
+--- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
++++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+@@ -87,12 +87,8 @@ initial_plane_bo(struct xe_device *xe,
+ 
+ 	base = round_down(plane_config->base, page_size);
+ 	if (IS_DGFX(xe)) {
+-		u64 __iomem *gte = tile0->mem.ggtt->gsm;
+-		u64 pte;
++		u64 pte = xe_ggtt_read_pte(tile0->mem.ggtt, base);
+ 
+-		gte += base / XE_PAGE_SIZE;
+-
+-		pte = ioread64(gte);
+ 		if (!(pte & XE_GGTT_PTE_DM)) {
+ 			drm_err(&xe->drm,
+ 				"Initial plane programming missing DM bit\n");
 diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 59097c7a494b2..20d49a96c2407 100644
+index 20d49a96c2407..2316f3a74d9c3 100644
 --- a/drivers/gpu/drm/xe/xe_ggtt.c
 +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -75,11 +75,6 @@ static u64 xelp_ggtt_pte_flags(struct xe_bo *bo, u16 pat_index)
- 	return pte;
- }
- 
--static u64 xelp_ggtt_encode_bo(struct xe_bo *bo, u64 bo_offset, u16 pat_index)
--{
--	return xelp_ggtt_pte_flags(bo, pat_index) | xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
--}
--
- static u64 xelpg_ggtt_pte_flags(struct xe_bo *bo, u16 pat_index)
+@@ -912,3 +912,15 @@ u64 xe_ggtt_encode_pte_flags(struct xe_ggtt *ggtt,
  {
- 	struct xe_device *xe = xe_bo_device(bo);
-@@ -98,12 +93,6 @@ static u64 xelpg_ggtt_pte_flags(struct xe_bo *bo, u16 pat_index)
- 	return pte;
+ 	return ggtt->pt_ops->pte_encode_flags(bo, pat_index);
  }
++
++/**
++ * xe_ggtt_read_pte - Read a PTE from the GGTT
++ * @ggtt: &xe_ggtt
++ * @offset: the offset for which the mapping should be read.
++ *
++ * Used by testcases, and by display reading out an inherited bios FB.
++ */
++u64 xe_ggtt_read_pte(struct xe_ggtt *ggtt, u64 offset)
++{
++	return ioread64(ggtt->gsm + (offset / XE_PAGE_SIZE));
++}
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+index 437ba65f33860..600a76526cf34 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.h
++++ b/drivers/gpu/drm/xe/xe_ggtt.h
+@@ -50,5 +50,6 @@ void xe_ggtt_might_lock(struct xe_ggtt *ggtt);
+ #endif
  
--static u64 xelpg_ggtt_encode_bo(struct xe_bo *bo, u64 bo_offset,
--				u16 pat_index)
--{
--	return xelpg_ggtt_pte_flags(bo, pat_index) | xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
--}
--
- static unsigned int probe_gsm_size(struct pci_dev *pdev)
- {
- 	u16 gmch_ctl, ggms;
-@@ -218,19 +207,16 @@ static void primelockdep(struct xe_ggtt *ggtt)
- }
+ u64 xe_ggtt_encode_pte_flags(struct xe_ggtt *ggtt, struct xe_bo *bo, u16 pat_index);
++u64 xe_ggtt_read_pte(struct xe_ggtt *ggtt, u64 offset);
  
- static const struct xe_ggtt_pt_ops xelp_pt_ops = {
--	.pte_encode_bo = xelp_ggtt_encode_bo,
- 	.pte_encode_flags = xelp_ggtt_pte_flags,
- 	.ggtt_set_pte = xe_ggtt_set_pte,
- };
- 
- static const struct xe_ggtt_pt_ops xelpg_pt_ops = {
--	.pte_encode_bo = xelpg_ggtt_encode_bo,
- 	.pte_encode_flags = xelpg_ggtt_pte_flags,
- 	.ggtt_set_pte = xe_ggtt_set_pte,
- };
- 
- static const struct xe_ggtt_pt_ops xelpg_pt_wa_ops = {
--	.pte_encode_bo = xelpg_ggtt_encode_bo,
- 	.pte_encode_flags = xelpg_ggtt_pte_flags,
- 	.ggtt_set_pte = xe_ggtt_set_pte_and_flush,
- };
-diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
-index 06b1a602dd8d1..c5e999d58ff2a 100644
---- a/drivers/gpu/drm/xe/xe_ggtt_types.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
-@@ -74,9 +74,6 @@ struct xe_ggtt_node {
-  * Which can vary from platform to platform.
-  */
- struct xe_ggtt_pt_ops {
--	/** @pte_encode_bo: Encode PTE flags for a given BO */
--	u64 (*pte_encode_bo)(struct xe_bo *bo, u64 bo_offset, u16 pat_index);
--
- 	/** @pte_encode_flags: Encode PTE flags for a given BO */
- 	u64 (*pte_encode_flags)(struct xe_bo *bo, u16 pat_index);
- 	/** @ggtt_set_pte: Directly write into GGTT's PTE */
+ #endif
 -- 
 2.45.2
 
