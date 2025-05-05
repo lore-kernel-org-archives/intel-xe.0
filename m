@@ -4,168 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3940C3ABB0
-	for <intel-xe@archiver.kernel.org>; Mon,  5 May 2025 15:08:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1264AC3ABB0
+	for <intel-xe@archiver.kernel.org>; Mon,  5 May 2025 15:20:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5564110E321;
-	Mon,  5 May 2025 15:08:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC20510E40A;
+	Mon,  5 May 2025 15:20:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Oq4mMkcJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S7wVVps0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4DE510E321;
- Mon,  5 May 2025 15:08:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B7EE10E40A
+ for <intel-xe@lists.freedesktop.org>; Mon,  5 May 2025 15:20:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746457682; x=1777993682;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=WvHbPWU4w+t8/9R+mHJVDlKLP/ah/9c0CxFrhJR3L+U=;
- b=Oq4mMkcJi8QBK89TDXH6XlfHsftxfH3m5570yod/TAd3LUVUrGdMXl3U
- 2qIbK7A/B9CF8PqydGhTBxp0ZsTTotKas0ebLSo1cN2TGa110iJb2tZP8
- hJJlE4wDf30jzwJuOh3QOe/66XMlRASnnUPwlNcGJWmGnb+50RuwxXoGS
- tm/nBvhZYF5rHqSuVjw2Pd4hDZQhd4x78Ld2zq+Yup7x0jTSspMmyUPTc
- OuTncvN0A6bje/9dIG7lqIxZxvgabm7aSRPN6UB9GqvCjSluHBP+2RGVl
- Uzxugjv88fdS3Qp9JTKUm5qP778w/g6IcjsJYfoMbohBCxif68NbB8T5V g==;
-X-CSE-ConnectionGUID: i7KDL7mSTIOuJbFgP6U9VA==
-X-CSE-MsgGUID: d8CzvhzvT6SGj5cFX15OUg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11424"; a="48211833"
-X-IronPort-AV: E=Sophos;i="6.15,262,1739865600"; d="scan'208";a="48211833"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2025 08:07:56 -0700
-X-CSE-ConnectionGUID: 5SO/PJC3SjWZZSg1Jvcgrw==
-X-CSE-MsgGUID: +0hcAS10TceIo9ZxRGK4zw==
+ t=1746458405; x=1777994405;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=3xmEwxHDFPVeDqJKr5jRcY5w330Zg4ng6C51OYjE5Hc=;
+ b=S7wVVps0jbydcA0SHFhU/cMiO06AhZTF83d9/19sFSUNLDws/OiQ8c/B
+ oZO0kFBUVcVkl/1T9Rf6PbiNLBTKFOPaRK/kUnx58un2YAz8zeITswFtt
+ DFBQ2Bj0pqnqoeKLkLqM1DkblwUDYmfFIgm3K2DsFTzyzapqG/se2AjkQ
+ YdpgjIjyfUjs4qDgblFAs4lHd3ctPvnEdOOE6fSu6UFxA3J3q72lQzI6V
+ 5DH23jyJfE2qDM2PRwJwYv5t9BmNAVYZhdek4zV6q+p8TJ+10oAvWwo5D
+ iwWawLH9F8r/IF7YaSPeqBgAiHRZukOGxZmCnd/QhTcx8rhJLFn3LIPI2 Q==;
+X-CSE-ConnectionGUID: LuUgtt39RzaLxmX+oCwE2Q==
+X-CSE-MsgGUID: dMAg0buZTgSxZ5N9meu/Ow==
+X-IronPort-AV: E=McAfee;i="6700,10204,11424"; a="47974044"
+X-IronPort-AV: E=Sophos;i="6.15,262,1739865600"; d="scan'208";a="47974044"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2025 08:20:05 -0700
+X-CSE-ConnectionGUID: m6niOiYHQiG0TQu8aGDp5g==
+X-CSE-MsgGUID: Q2oKz1tiRTicM88SczfFxQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,262,1739865600"; d="scan'208";a="135180036"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2025 08:07:54 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Mon, 5 May 2025 08:07:46 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Mon, 5 May 2025 08:07:46 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.175)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Mon, 5 May 2025 08:07:27 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=h6csXJOhx0bv6u147y446JLrh71exrr6L0501YDPkGyQg8Nu1piNHFBJv+Y1zMX1qTWXBpBjq4XGg7zmXl4+BoZnLHzh9Yepw+tGWCFGW8WxgOzpzT1J0cwvG9L7mHiPYvIFMfRMofKStQobyjAl31ZFS0aFHYfremUS7LpJ/aoJACRYVENT6mF1V6M1FKcb5jpVXLzQeTwNMS11oiiT1jzum+FBlr38HmvCl9Rx6jx76BjrTiwVsYMA9ojVERx/A769dYPzjiYuQR5hiC8ueW/fVBz8TQytkTRKK7tIj8xqnvRYbwUGzO0gHJf9Wjg2KtnVUZbjznlZ+fp+QEpK9w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ONGVs4j/lUzPy9euFMeVGS0XcmMyXvzw8yJWVh0KtXw=;
- b=a0AGoFDYRwIO7gTKJiKegXeeVSPtL7cj5ciYRx+luYTOvE4xsxeIzYSlm2+6hbQ68EnhxdIfnQv089KLJqgWz+JkWHl2VILwyFBL4cBP3eGx/vchjRNJgKMPuSeVAu3hY/GYPx0vV6yUXNCDZFYkHF6QwwIUN9aMj0Fp48sFx8zY4DBSVTb/WmcU2lWXTxjiQ3hoP7yye4P5lhFp3Ck0MvkCfw+GNqWC8TZ5XEDErgzdbg9FsimMPRR5IWvwg1fc1xqEatDOfFEKzBP/8Xd1WLAx4E8PpFZnT6OThtUd5REgKrNkG4MrF5vcprSlPMvEaqS7I3OICGtI46urq38gRQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by CO1PR11MB4900.namprd11.prod.outlook.com (2603:10b6:303:9e::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.26; Mon, 5 May
- 2025 15:06:57 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%4]) with mapi id 15.20.8699.026; Mon, 5 May 2025
- 15:06:57 +0000
-Date: Mon, 5 May 2025 08:08:21 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Christian =?iso-8859-1?Q?K=F6nig?=
- <christian.koenig@amd.com>, Matthew Auld <matthew.auld@intel.com>,
- <dri-devel@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/ttm: Fix ttm_backup kerneldoc
-Message-ID: <aBjUZS7Oek/od3CW@lstrano-desk.jf.intel.com>
-References: <20250502130101.3185-1-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250502130101.3185-1-thomas.hellstrom@linux.intel.com>
-X-ClientProxiedBy: SJ0PR03CA0174.namprd03.prod.outlook.com
- (2603:10b6:a03:338::29) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+X-IronPort-AV: E=Sophos;i="6.15,262,1739865600"; d="scan'208";a="139297753"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO [10.245.246.221])
+ ([10.245.246.221])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2025 08:20:04 -0700
+Message-ID: <0e60fc015731a15c9cc9b3eac2959c693a52f2d3.camel@linux.intel.com>
+Subject: Re: [PATCH v6 02/20] drm/xe: Strict migration policy for atomic SVM
+ faults
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>, 
+ intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, stable@vger.kernel.org
+Date: Mon, 05 May 2025 17:20:00 +0200
+In-Reply-To: <20250430121912.337601-3-himal.prasad.ghimiray@intel.com>
+References: <20250430121912.337601-1-himal.prasad.ghimiray@intel.com>
+ <20250430121912.337601-3-himal.prasad.ghimiray@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CO1PR11MB4900:EE_
-X-MS-Office365-Filtering-Correlation-Id: da66d63f-cd6f-4218-a9eb-08dd8be67a9a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016|7053199007;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?uOVX0qoekdCXdUvtsQFNUUgwibj+NwQDJVdWFSqhfNGdabAtpe6eoOJCAn?=
- =?iso-8859-1?Q?UIZvmbThCJnMfo2oEqnIqvM3qw39yjivDzgWk8kkMZ8cqG6waKfrVaw9Nk?=
- =?iso-8859-1?Q?RfanHkVQptPz0uG9Nqa9YYweebFPuwkp3E7EGaCzdq7SCU69Wz3PVhV1HX?=
- =?iso-8859-1?Q?UZ0HMhgYpM+LyuKhFhVgMhVk4Ppu8/Y7aF1c7PrwndwwMTO6FBXWcr8Oz5?=
- =?iso-8859-1?Q?G0iMJ3CuIxHRdv+YNwwh4om/YXtlzSzgxfAUoC7CEvRMawdh7g3Q/s9hU9?=
- =?iso-8859-1?Q?+gWWv2UtvlgWy/8ndZh5j8plTnBtR6cYcBkdKihzq8GaXNbL7xwKi6Sm7n?=
- =?iso-8859-1?Q?nCIQvAT35Ts49HpXkSzqYlCh+s5AZipayiC2kcwvfeNhr2fWKfMpkB5Kg1?=
- =?iso-8859-1?Q?nHbxKMeXVymyY87V3TyyYwroeWp4Bs93YwLi8KrqsVDTPSXbFQEX/9fmMz?=
- =?iso-8859-1?Q?1BH/RVLRzxF46aJ9D8pRSmyBcq0NIHg0EiDky0MMicP6ePLrp+t3Ehyvja?=
- =?iso-8859-1?Q?VxK1RdhJ2k+UMeN08bVDofEBLp3w7NMNq+30hJZUY0A4FZ/eS7HQhTQuLW?=
- =?iso-8859-1?Q?mgEVNcaxiSzcWbYms169fGj1ER4d4C5oBALRN2C0geCEcPhziKcGzsDcBW?=
- =?iso-8859-1?Q?xdDLDrSuyOdKBrCv5XdaDEwpHndnPgg0eZeKqlfirv+ZHaEZnYa/TFsnaR?=
- =?iso-8859-1?Q?5hvmbtpuHDfXQRLHFSpySAX3VV/MHHMTFaduAsJqyBnRUxIMWiYWfucErp?=
- =?iso-8859-1?Q?6m/+Cr2Js/r7bcvRb+DpKuZV7g5E5t+crYjwF9LuBfVYCVMUIlfxVfgL3z?=
- =?iso-8859-1?Q?WkXswVHjW8lu1eEMMBYmz7ZCSwEpsvPTw3E/WFeyxWGacNCpuK2zJ0znY0?=
- =?iso-8859-1?Q?Igi/UCO8AdR4bm7jV6QaASka+j+BXxtPcgURN8bsXVPuXwHOGm2ZBF4Lbm?=
- =?iso-8859-1?Q?UHhgpuQnNSh9Q7FHcM05Dip5k/BdRdgcQ3tKJyHSdMqKs9ZF9jxZOIjoBH?=
- =?iso-8859-1?Q?j8Bw77xk6bh3/0qBfGbXmTCjqCyj+Xx5/wnnV5xQuG+vaUvKfdAEPnf/x7?=
- =?iso-8859-1?Q?w5Fj9vP8bShumsl1CXAGJOIYeWE5ZZIPZlmdqj1MZNTlLb5MRpztsvYtco?=
- =?iso-8859-1?Q?ZTZ8pos2zSflfLpfP1uop9I2HU4Hx1MO0sc8R+4ck2zVBaEhU4WWn03Tmw?=
- =?iso-8859-1?Q?fRGVZTvcHvg/4q7/aLOShTHY/tcCBRmG7Bvwc/wPhLTYFIDJvp0DEliG1s?=
- =?iso-8859-1?Q?dN6iuxpe2W88oyjtViMBUF0cC4/fuW3gY27G3I7MVkCh7FEbhJfUVtYRV9?=
- =?iso-8859-1?Q?jf31nT5eUxDiM98NUVEAN4U237xKYaGVZsn3LSQIup848L9fK+B4FPdh9R?=
- =?iso-8859-1?Q?NDuexcHK5dmlRC50eKQ2FdCQrwm4ZF1dIJT7lF0nWY1V7jg6mskvqcXRah?=
- =?iso-8859-1?Q?CjRT1A2ufEWlBX7DbGCIC5IdZw56eILLRuLkjTmDVgquk7YKxfZHDCsMTZ?=
- =?iso-8859-1?Q?E=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(7053199007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?0/B2/irBaWrXeLVkEtOHt/Z3YswGC/116g+cctwzDZ2SH9VgXEGUAjpBwF?=
- =?iso-8859-1?Q?5/GkPnnpaxdE3cck6UM45yQw7ya82wGXP4pS1zNiLO6GlYXDbez1pySIz7?=
- =?iso-8859-1?Q?RYkci0O4yvcBAxlrdBn/9GLocUVCjE2pwDNzbXfL/Jq91VkjoZ96IEdj8O?=
- =?iso-8859-1?Q?ZzhZe+xfe75LoSiyptPgywnPEvV+DTsSSfevn7kPQkCgZ9J8T76hSs0TdJ?=
- =?iso-8859-1?Q?gyXZebLi8UWkyd3WprZHE1gjFFJxgRQa6UCOtQr6NiCmpEW2Fbr+78zmyw?=
- =?iso-8859-1?Q?L+XCxg2tgFbOwEEKu03XUrEOEGupcF2O+MxTyOkbg18l/ENwdNsYMm6Uwa?=
- =?iso-8859-1?Q?vIrkzb8CDcoKLB9waeGL3jHbFeqmKIiCfVGM5DC48IDN1LbLRSWxVvl43f?=
- =?iso-8859-1?Q?LDOuXhpRUbEHqgR4wU7SItyhNw0i8HDNp0Mp6QmkgTaPjpzKvDrpn2YsUs?=
- =?iso-8859-1?Q?8OcLi4Yg+eEdYwI/i0Tqnk/Eme0AcHJb8t4v3exH9xyxVH3fY9Xf32w2u5?=
- =?iso-8859-1?Q?qEccsYrs4NYGK/ahpjnqLMnGsU4OCaTVd7zTpso9/pEgefRw9SxFDL56oa?=
- =?iso-8859-1?Q?HHS/Ol4wVVOwkQoPl/bk3L1ydq+SHbsU4wl7GWREyvMmDYIpVo/uHEc4it?=
- =?iso-8859-1?Q?w4RuLrdTPhk7lzfM918TUzgTMKtDfz1ZLZ2LZc/T6UiEBjC/n1jRohUp27?=
- =?iso-8859-1?Q?JOg21zDOvH7MnXbvADjZRv6JMGsaurie3MtsH2Ykbo/D/6NsEgw94gnXDj?=
- =?iso-8859-1?Q?QVgQbHeMsXEVBq84p9dDNVbQsHnBYIFFYntZ3Dlqou/IB5pniUwT3WrPSt?=
- =?iso-8859-1?Q?VzuRvmZVut3zJlFKzpuxsjJCWEyqFDRdEUvlQmCV/xyqBEaxPsXk7AdCvY?=
- =?iso-8859-1?Q?QX+8nkqvw3iqrG+AuifMGvWN7JdNSa+r49WknzGmDaEmZVvu5+vcVOcoIJ?=
- =?iso-8859-1?Q?RES2x1bJscH+FPItn+t1Tg4CMazA34iiO1lEm1yuzfSMaLRkr9WObJoAok?=
- =?iso-8859-1?Q?2vj3fIcpjw5YHR3Dv6N0+S+nv6ZikMnD49TEdxkAuO0Rb5Oi5jhQKBJmpJ?=
- =?iso-8859-1?Q?GzE/1472e9qdrLNjgBpjeO6jIPrrTlOpDsIf0KnQ0xiKBvuBydX9ySfxWH?=
- =?iso-8859-1?Q?9mPntTteEB82fGU0H2HRi/GUlbg3+eKwoegB/owTxPjdZI9RhXUzZcEKgP?=
- =?iso-8859-1?Q?/X7iCvPuIDZ0J4O50HSVnIgT/jucDNHEWD+/79NlwvGhh9YqySAls07Hr+?=
- =?iso-8859-1?Q?ezFr+kjOJaZjjbJDHzWZn30ALk0AtjJsiA7+Rq4ofXgKAyZBbOsf+zF2dU?=
- =?iso-8859-1?Q?4C8VC38lp55FCKnKcR9jUIQU9kGcNl2wZTrDoFgBTrHhrAy+YqYHgzbSU/?=
- =?iso-8859-1?Q?B/QdrEsOThsWl0TBuIrz0s9uSunz5oogR+3zujQRFV4ofMmPIg8DOMWhZJ?=
- =?iso-8859-1?Q?qiVSVe9a+HxcC88pZiUPQwaOe73+eddPP3FV/akDnOiWO/k5yzA7OlQbFe?=
- =?iso-8859-1?Q?tqFXbqdacewRDwR7oTb5mn9WKVOgY33H0m4fXpaZwVcYwWKOJLFlsJHXB+?=
- =?iso-8859-1?Q?aNdI1rgEwvOnbwPjMvH0U52SPKvYQiH7MIHuNgYbAdL77Lz47MgenHsx1l?=
- =?iso-8859-1?Q?9rwyhg83JFMn5nWIhn4MmLBkOPP0/iSCOIYh10HvAZ2Nz6WCQloN6igw?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: da66d63f-cd6f-4218-a9eb-08dd8be67a9a
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2025 15:06:57.4936 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cvmPc6bjtd/Lp9pjXQiMiP95C9FHPeG7sLF5/QTsW9IswiYgRm51cM8k8Phul79offPriyI1OxXkj/Rj66DpUQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4900
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -180,60 +72,404 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, May 02, 2025 at 03:01:01PM +0200, Thomas Hellström wrote:
-> The docs were not properly updated from an earlier version of the code.
-> 
-> Fixes: e7b5d23e5d47 ("drm/ttm: Provide a shmem backup implementation")
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
+Hi, Himal,
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+On Wed, 2025-04-30 at 17:48 +0530, Himal Prasad Ghimiray wrote:
+> From: Matthew Brost <matthew.brost@intel.com>
+>=20
+> Mixing GPU and CPU atomics does not work unless a strict migration
+> policy of GPU atomics must be device memory. Enforce a policy of must
+> be
+> in VRAM with a retry loop of 3 attempts, if retry loop fails abort
+> fault.
+>=20
+> Removing always_migrate_to_vram modparam as we now have real
+> migration
+> policy.
+>=20
+> v2:
+> =C2=A0- Only retry migration on atomics
+> =C2=A0- Drop alway migrate modparam
+> v3:
+> =C2=A0- Only set vram_only on DGFX (Himal)
+> =C2=A0- Bail on get_pages failure if vram_only and retry count exceeded
+> (Himal)
+> =C2=A0- s/vram_only/devmem_only
+> =C2=A0- Update xe_svm_range_is_valid to accept devmem_only argument
+> v4:
+> =C2=A0- Fix logic bug get_pages failure
+> v5:
+> =C2=A0- Fix commit message (Himal)
+> =C2=A0- Mention removing always_migrate_to_vram in commit message (Lucas)
+> =C2=A0- Fix xe_svm_range_is_valid to check for devmem pages
+> =C2=A0- Bail on devmem_only && !migrate_devmem (Thomas)
+> v6:
+> =C2=A0- Add READ_ONCE barriers for opportunistic checks (Thomas)
+>=20
+> Fixes: 2f118c949160 ("drm/xe: Add SVM VRAM migration")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Himal Prasad Ghimiray
+> <himal.prasad.ghimiray@intel.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> Acked-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 > ---
->  drivers/gpu/drm/ttm/ttm_backup.c | 2 +-
->  include/drm/ttm/ttm_backup.h     | 6 +++---
->  2 files changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/ttm/ttm_backup.c b/drivers/gpu/drm/ttm/ttm_backup.c
-> index 9b3b5624c3eb..9e2d72c447ee 100644
-> --- a/drivers/gpu/drm/ttm/ttm_backup.c
-> +++ b/drivers/gpu/drm/ttm/ttm_backup.c
-> @@ -41,7 +41,7 @@ void ttm_backup_drop(struct file *backup, pgoff_t handle)
->   * @backup: The struct backup pointer used to back up the page.
->   * @dst: The struct page to copy into.
->   * @handle: The handle returned when the page was backed up.
-> - * @intr: Try to perform waits interruptable or at least killable.
-> + * @intr: Try to perform waits interruptible or at least killable.
->   *
->   * Return: 0 on success, Negative error code on failure, notably
->   * -EINTR if @intr was set to true and a signal is pending.
-> diff --git a/include/drm/ttm/ttm_backup.h b/include/drm/ttm/ttm_backup.h
-> index 4da7c825088f..c33cba111171 100644
-> --- a/include/drm/ttm/ttm_backup.h
-> +++ b/include/drm/ttm/ttm_backup.h
-> @@ -14,7 +14,7 @@
->   * @handle: The handle to convert.
->   *
->   * Converts an opaque handle received from the
-> - * struct ttm_backoup_ops::backup_page() function to an (invalid)
-> + * ttm_backup_backup_page() function to an (invalid)
->   * struct page pointer suitable for a struct page array.
->   *
->   * Return: An (invalid) struct page pointer.
-> @@ -43,8 +43,8 @@ static inline bool ttm_backup_page_ptr_is_handle(const struct page *page)
->   *
->   * Return: The handle that was previously used in
->   * ttm_backup_handle_to_page_ptr() to obtain a struct page pointer, suitable
-> - * for use as argument in the struct ttm_backup_ops drop() or
-> - * copy_backed_up_page() functions.
-> + * for use as argument in the struct ttm_backup_drop() or
-> + * ttm_backup_copy_page() functions.
->   */
->  static inline unsigned long
->  ttm_backup_page_ptr_to_handle(const struct page *page)
-> -- 
-> 2.49.0
-> 
+> =C2=A0drivers/gpu/drm/xe/xe_module.c |=C2=A0=C2=A0 3 -
+> =C2=A0drivers/gpu/drm/xe/xe_module.h |=C2=A0=C2=A0 1 -
+> =C2=A0drivers/gpu/drm/xe/xe_svm.c=C2=A0=C2=A0=C2=A0 | 103 +++++++++++++++=
++++++++++-------
+> --
+> =C2=A0drivers/gpu/drm/xe/xe_svm.h=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 5 --
+> =C2=A0include/drm/drm_gpusvm.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
+=A0 40 ++++++++-----
+> =C2=A05 files changed, 103 insertions(+), 49 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_module.c
+> b/drivers/gpu/drm/xe/xe_module.c
+> index 64bf46646544..e4742e27e2cd 100644
+> --- a/drivers/gpu/drm/xe/xe_module.c
+> +++ b/drivers/gpu/drm/xe/xe_module.c
+> @@ -30,9 +30,6 @@ struct xe_modparam xe_modparam =3D {
+> =C2=A0module_param_named(svm_notifier_size, xe_modparam.svm_notifier_size=
+,
+> uint, 0600);
+> =C2=A0MODULE_PARM_DESC(svm_notifier_size, "Set the svm notifier size(in
+> MiB), must be power of 2");
+> =C2=A0
+> -module_param_named(always_migrate_to_vram,
+> xe_modparam.always_migrate_to_vram, bool, 0444);
+> -MODULE_PARM_DESC(always_migrate_to_vram, "Always migrate to VRAM on
+> GPU fault");
+> -
+> =C2=A0module_param_named_unsafe(force_execlist,
+> xe_modparam.force_execlist, bool, 0444);
+> =C2=A0MODULE_PARM_DESC(force_execlist, "Force Execlist submission");
+> =C2=A0
+> diff --git a/drivers/gpu/drm/xe/xe_module.h
+> b/drivers/gpu/drm/xe/xe_module.h
+> index 84339e509c80..5a3bfea8b7b4 100644
+> --- a/drivers/gpu/drm/xe/xe_module.h
+> +++ b/drivers/gpu/drm/xe/xe_module.h
+> @@ -12,7 +12,6 @@
+> =C2=A0struct xe_modparam {
+> =C2=A0	bool force_execlist;
+> =C2=A0	bool probe_display;
+> -	bool always_migrate_to_vram;
+> =C2=A0	u32 force_vram_bar_size;
+> =C2=A0	int guc_log_level;
+> =C2=A0	char *guc_firmware_path;
+> diff --git a/drivers/gpu/drm/xe/xe_svm.c
+> b/drivers/gpu/drm/xe/xe_svm.c
+> index 890f6b2f40e9..dcc84e65ca96 100644
+> --- a/drivers/gpu/drm/xe/xe_svm.c
+> +++ b/drivers/gpu/drm/xe/xe_svm.c
+> @@ -16,8 +16,12 @@
+> =C2=A0
+> =C2=A0static bool xe_svm_range_in_vram(struct xe_svm_range *range)
+> =C2=A0{
+> -	/* Not reliable without notifier lock */
+> -	return range->base.flags.has_devmem_pages;
+> +	/* Not reliable without notifier lock, opportunistic only */
+> +	struct drm_gpusvm_range_flags flags =3D {
+> +		.__flags =3D READ_ONCE(range->base.flags.__flags),
+> +	};
+> +
+> +	return flags.has_devmem_pages;
+> =C2=A0}
+> =C2=A0
+> =C2=A0static bool xe_svm_range_has_vram_binding(struct xe_svm_range
+> *range)
+> @@ -650,9 +654,13 @@ void xe_svm_fini(struct xe_vm *vm)
+> =C2=A0}
+> =C2=A0
+> =C2=A0static bool xe_svm_range_is_valid(struct xe_svm_range *range,
+> -				=C2=A0 struct xe_tile *tile)
+> +				=C2=A0 struct xe_tile *tile,
+> +				=C2=A0 bool devmem_only)
+> =C2=A0{
+> -	return (range->tile_present & ~range->tile_invalidated) &
+> BIT(tile->id);
+> +	/* Not reliable without notifier lock, opportunistic only */
+> +	return ((READ_ONCE(range->tile_present) &
+> +		 ~READ_ONCE(range->tile_invalidated)) & BIT(tile-
+> >id)) &&
+> +		(!devmem_only || xe_svm_range_in_vram(range));
+> =C2=A0}
+
+Hmm, TBH I had something more elaborate in mind:
+
+https://lore.kernel.org/intel-xe/b5569de8cc036e23b976f21a51c4eb5ca104d4bb.c=
+amel@linux.intel.com/
+
+(Separate function for lockless access and a lockdep assert for locked
+access + similar documentation as the functions I mentioned there + a
+"Pairs with" comment.
+
+Thanks,
+Thomas
+
+
+
+> =C2=A0
+> =C2=A0#if IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR)
+> @@ -726,6 +734,36 @@ static int xe_svm_alloc_vram(struct xe_vm *vm,
+> struct xe_tile *tile,
+> =C2=A0}
+> =C2=A0#endif
+> =C2=A0
+> +static bool supports_4K_migration(struct xe_device *xe)
+> +{
+> +	if (xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
+> +		return false;
+> +
+> +	return true;
+> +}
+> +
+> +static bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range
+> *range,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_vma *vma)
+> +{
+> +	struct xe_vm *vm =3D range_to_vm(&range->base);
+> +	u64 range_size =3D xe_svm_range_size(range);
+> +
+> +	if (!range->base.flags.migrate_devmem)
+> +		return false;
+> +
+> +	/* Not reliable without notifier lock, opportunistic only */
+> +	if (xe_svm_range_in_vram(range)) {
+> +		drm_dbg(&vm->xe->drm, "Range is already in VRAM\n");
+> +		return false;
+> +	}
+> +
+> +	if (range_size <=3D SZ_64K && !supports_4K_migration(vm->xe))
+> {
+> +		drm_dbg(&vm->xe->drm, "Platform doesn't support
+> SZ_4K range migration\n");
+> +		return false;
+> +	}
+> +
+> +	return true;
+> +}
+> =C2=A0
+> =C2=A0/**
+> =C2=A0 * xe_svm_handle_pagefault() - SVM handle page fault
+> @@ -750,12 +788,15 @@ int xe_svm_handle_pagefault(struct xe_vm *vm,
+> struct xe_vma *vma,
+> =C2=A0			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR),
+> =C2=A0		.check_pages_threshold =3D IS_DGFX(vm->xe) &&
+> =C2=A0			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR) ?
+> SZ_64K : 0,
+> +		.devmem_only =3D atomic && IS_DGFX(vm->xe) &&
+> +			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR),
+> =C2=A0	};
+> =C2=A0	struct xe_svm_range *range;
+> =C2=A0	struct drm_gpusvm_range *r;
+> =C2=A0	struct drm_exec exec;
+> =C2=A0	struct dma_fence *fence;
+> =C2=A0	struct xe_tile *tile =3D gt_to_tile(gt);
+> +	int migrate_try_count =3D ctx.devmem_only ? 3 : 1;
+> =C2=A0	ktime_t end =3D 0;
+> =C2=A0	int err;
+> =C2=A0
+> @@ -776,24 +817,30 @@ int xe_svm_handle_pagefault(struct xe_vm *vm,
+> struct xe_vma *vma,
+> =C2=A0	if (IS_ERR(r))
+> =C2=A0		return PTR_ERR(r);
+> =C2=A0
+> +	if (ctx.devmem_only && !r->flags.migrate_devmem)
+> +		return -EACCES;
+> +
+> =C2=A0	range =3D to_xe_range(r);
+> -	if (xe_svm_range_is_valid(range, tile))
+> +	if (xe_svm_range_is_valid(range, tile, ctx.devmem_only))
+> =C2=A0		return 0;
+> =C2=A0
+> =C2=A0	range_debug(range, "PAGE FAULT");
+> =C2=A0
+> -	/* XXX: Add migration policy, for now migrate range once */
+> -	if (!range->skip_migrate && range->base.flags.migrate_devmem
+> &&
+> -	=C2=A0=C2=A0=C2=A0 xe_svm_range_size(range) >=3D SZ_64K) {
+> -		range->skip_migrate =3D true;
+> -
+> +	if (--migrate_try_count >=3D 0 &&
+> +	=C2=A0=C2=A0=C2=A0 xe_svm_range_needs_migrate_to_vram(range, vma)) {
+> =C2=A0		err =3D xe_svm_alloc_vram(vm, tile, range, &ctx);
+> =C2=A0		if (err) {
+> -			drm_dbg(&vm->xe->drm,
+> -				"VRAM allocation failed, falling
+> back to "
+> -				"retrying fault, asid=3D%u,
+> errno=3D%pe\n",
+> -				vm->usm.asid, ERR_PTR(err));
+> -			goto retry;
+> +			if (migrate_try_count || !ctx.devmem_only) {
+> +				drm_dbg(&vm->xe->drm,
+> +					"VRAM allocation failed,
+> falling back to retrying fault, asid=3D%u, errno=3D%pe\n",
+> +					vm->usm.asid, ERR_PTR(err));
+> +				goto retry;
+> +			} else {
+> +				drm_err(&vm->xe->drm,
+> +					"VRAM allocation failed,
+> retry count exceeded, asid=3D%u, errno=3D%pe\n",
+> +					vm->usm.asid, ERR_PTR(err));
+> +				return err;
+> +			}
+> =C2=A0		}
+> =C2=A0	}
+> =C2=A0
+> @@ -801,15 +848,22 @@ int xe_svm_handle_pagefault(struct xe_vm *vm,
+> struct xe_vma *vma,
+> =C2=A0	err =3D drm_gpusvm_range_get_pages(&vm->svm.gpusvm, r, &ctx);
+> =C2=A0	/* Corner where CPU mappings have changed */
+> =C2=A0	if (err =3D=3D -EOPNOTSUPP || err =3D=3D -EFAULT || err =3D=3D -EP=
+ERM) {
+> -		if (err =3D=3D -EOPNOTSUPP) {
+> -			range_debug(range, "PAGE FAULT - EVICT
+> PAGES");
+> -			drm_gpusvm_range_evict(&vm->svm.gpusvm,
+> &range->base);
+> +		if (migrate_try_count > 0 || !ctx.devmem_only) {
+> +			if (err =3D=3D -EOPNOTSUPP) {
+> +				range_debug(range, "PAGE FAULT -
+> EVICT PAGES");
+> +				drm_gpusvm_range_evict(&vm-
+> >svm.gpusvm,
+> +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &range-
+> >base);
+> +			}
+> +			drm_dbg(&vm->xe->drm,
+> +				"Get pages failed, falling back to
+> retrying, asid=3D%u, gpusvm=3D%p, errno=3D%pe\n",
+> +				vm->usm.asid, &vm->svm.gpusvm,
+> ERR_PTR(err));
+> +			range_debug(range, "PAGE FAULT - RETRY
+> PAGES");
+> +			goto retry;
+> +		} else {
+> +			drm_err(&vm->xe->drm,
+> +				"Get pages failed, retry count
+> exceeded, asid=3D%u, gpusvm=3D%p, errno=3D%pe\n",
+> +				vm->usm.asid, &vm->svm.gpusvm,
+> ERR_PTR(err));
+> =C2=A0		}
+> -		drm_dbg(&vm->xe->drm,
+> -			"Get pages failed, falling back to retrying,
+> asid=3D%u, gpusvm=3D%p, errno=3D%pe\n",
+> -			vm->usm.asid, &vm->svm.gpusvm,
+> ERR_PTR(err));
+> -		range_debug(range, "PAGE FAULT - RETRY PAGES");
+> -		goto retry;
+> =C2=A0	}
+> =C2=A0	if (err) {
+> =C2=A0		range_debug(range, "PAGE FAULT - FAIL PAGE
+> COLLECT");
+> @@ -843,9 +897,6 @@ int xe_svm_handle_pagefault(struct xe_vm *vm,
+> struct xe_vma *vma,
+> =C2=A0	}
+> =C2=A0	drm_exec_fini(&exec);
+> =C2=A0
+> -	if (xe_modparam.always_migrate_to_vram)
+> -		range->skip_migrate =3D false;
+> -
+> =C2=A0	dma_fence_wait(fence, false);
+> =C2=A0	dma_fence_put(fence);
+> =C2=A0
+> diff --git a/drivers/gpu/drm/xe/xe_svm.h
+> b/drivers/gpu/drm/xe/xe_svm.h
+> index 3d441eb1f7ea..0e1f376a7471 100644
+> --- a/drivers/gpu/drm/xe/xe_svm.h
+> +++ b/drivers/gpu/drm/xe/xe_svm.h
+> @@ -39,11 +39,6 @@ struct xe_svm_range {
+> =C2=A0	 * range. Protected by GPU SVM notifier lock.
+> =C2=A0	 */
+> =C2=A0	u8 tile_invalidated;
+> -	/**
+> -	 * @skip_migrate: Skip migration to VRAM, protected by GPU
+> fault handler
+> -	 * locking.
+> -	 */
+> -	u8 skip_migrate	:1;
+> =C2=A0};
+> =C2=A0
+> =C2=A0/**
+> diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
+> index 9fd25fc880a4..653d48dbe1c1 100644
+> --- a/include/drm/drm_gpusvm.h
+> +++ b/include/drm/drm_gpusvm.h
+> @@ -185,6 +185,31 @@ struct drm_gpusvm_notifier {
+> =C2=A0	} flags;
+> =C2=A0};
+> =C2=A0
+> +/**
+> + * struct drm_gpusvm_range_flags - Structure representing a GPU SVM
+> range flags
+> + *
+> + * @migrate_devmem: Flag indicating whether the range can be
+> migrated to device memory
+> + * @unmapped: Flag indicating if the range has been unmapped
+> + * @partial_unmap: Flag indicating if the range has been partially
+> unmapped
+> + * @has_devmem_pages: Flag indicating if the range has devmem pages
+> + * @has_dma_mapping: Flag indicating if the range has a DMA mapping
+> + * @__flags: Flags for range in u16 form (used for READ_ONCE)
+> + */
+> +struct drm_gpusvm_range_flags {
+> +	union {
+> +		struct {
+> +			/* All flags below must be set upon creation
+> */
+> +			u16 migrate_devmem : 1;
+> +			/* All flags below must be set / cleared
+> under notifier lock */
+> +			u16 unmapped : 1;
+> +			u16 partial_unmap : 1;
+> +			u16 has_devmem_pages : 1;
+> +			u16 has_dma_mapping : 1;
+> +		};
+> +		u16 __flags;
+> +	};
+> +};
+> +
+> =C2=A0/**
+> =C2=A0 * struct drm_gpusvm_range - Structure representing a GPU SVM range
+> =C2=A0 *
+> @@ -198,11 +223,6 @@ struct drm_gpusvm_notifier {
+> =C2=A0 * @dpagemap: The struct drm_pagemap of the device pages we're dma-
+> mapping.
+> =C2=A0 *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 Note this is assuming only one drm_pagemap per range
+> is allowed.
+> =C2=A0 * @flags: Flags for range
+> - * @flags.migrate_devmem: Flag indicating whether the range can be
+> migrated to device memory
+> - * @flags.unmapped: Flag indicating if the range has been unmapped
+> - * @flags.partial_unmap: Flag indicating if the range has been
+> partially unmapped
+> - * @flags.has_devmem_pages: Flag indicating if the range has devmem
+> pages
+> - * @flags.has_dma_mapping: Flag indicating if the range has a DMA
+> mapping
+> =C2=A0 *
+> =C2=A0 * This structure represents a GPU SVM range used for tracking
+> memory ranges
+> =C2=A0 * mapped in a DRM device.
+> @@ -216,15 +236,7 @@ struct drm_gpusvm_range {
+> =C2=A0	unsigned long notifier_seq;
+> =C2=A0	struct drm_pagemap_device_addr *dma_addr;
+> =C2=A0	struct drm_pagemap *dpagemap;
+> -	struct {
+> -		/* All flags below must be set upon creation */
+> -		u16 migrate_devmem : 1;
+> -		/* All flags below must be set / cleared under
+> notifier lock */
+> -		u16 unmapped : 1;
+> -		u16 partial_unmap : 1;
+> -		u16 has_devmem_pages : 1;
+> -		u16 has_dma_mapping : 1;
+> -	} flags;
+> +	struct drm_gpusvm_range_flags flags;
+> =C2=A0};
+> =C2=A0
+> =C2=A0/**
+
