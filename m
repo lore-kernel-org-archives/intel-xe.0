@@ -4,44 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 414E4C3ABB6
-	for <intel-xe@archiver.kernel.org>; Mon,  5 May 2025 22:49:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 501B7C3ABB9
+	for <intel-xe@archiver.kernel.org>; Mon,  5 May 2025 22:51:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E778F10E54C;
-	Mon,  5 May 2025 22:48:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1558D10E55D;
+	Mon,  5 May 2025 22:51:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="aMbHx3Bf";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="pGB+BLCZ";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90AFB10E54B;
- Mon,  5 May 2025 22:48:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AC2310E55D;
+ Mon,  5 May 2025 22:51:31 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id B991149D63;
- Mon,  5 May 2025 22:48:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09EBDC4CEF1;
- Mon,  5 May 2025 22:48:56 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id BD3EB4A226;
+ Mon,  5 May 2025 22:51:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11700C4CEE4;
+ Mon,  5 May 2025 22:51:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1746485338;
- bh=481MeWMj+cVJvQa2lmFDWC+y3q6Ng+pvrM0i1634QHw=;
+ s=k20201202; t=1746485490;
+ bh=2ceJD08yP8wgB+0CCl0SfGxjXpS17on4ocWe/k5HT0E=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=aMbHx3BfoXcqdmk6hmfbud33gFVjGjKYz2A6pMDiH5Eb2vkFgBfUNJgNYIoM2xIfj
- qAPY1caxYro9dTzypd1zsQqgaPPKB8mrTKizfuMxtGZbQZdtwUKcFiaK6kxu3OLxBy
- DVkPWF2XXmHzXQwovXRLCjj/e0TpH5DxFnkSTKc+qc2w2Zz535yYBngYlqveRSR8UW
- O9Mb4bnkCTYjRB+OdcvUOIN18k/lxG1unrVk+B1vIGZbm5eZdbVvE/nDAMgAbGtx5D
- RnA7N84MlQGAcBMcXhjEC15z7gKaZ3BCVb76izoZ/TjqktqOwk4eHuj4hLbZ8TLEQv
- KPhCY+eKsLaww==
+ b=pGB+BLCZjylOvlxmaKInG9Ty+JxrugtN8I0B7vS1qgkR86Uj2GDGnToWxPuIJf94R
+ 55qYtqAyccpWj5YUB8s5ggGSF10bRrrC6+z4VdRlVl+E7+/mQZjkc6yiY+CkwAj3Uc
+ 9d//JNQW7TG+MH7O619XDXYRtIUGZPIYrqOzc1ro6dNnv8PITMKpal++7UM6C7W+yJ
+ WKMYcHnF8xlia9Z1kIr8y/jzylSyX8Q9LeVOD868LE3g9AhD3s3yDTIdqardSwezXJ
+ 3p8NV1zqcMKIhego+yH0m4uCz3jYYPKRyMmL9vwzpLPGSgHNxNtuS3s4feCsFIZ+XU
+ 4uY/HQZwBspiQ==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- Ashutosh Dixit <ashutosh.dixit@intel.com>, Sasha Levin <sashal@kernel.org>,
- lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Francois Dugast <francois.dugast@intel.com>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Sasha Levin <sashal@kernel.org>, thomas.hellstrom@linux.intel.com,
  rodrigo.vivi@intel.com, airlied@gmail.com, simona@ffwll.ch,
  intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.12 275/486] drm/xe/oa: Ensure that polled read
- returns latest data
-Date: Mon,  5 May 2025 18:35:51 -0400
-Message-Id: <20250505223922.2682012-275-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.12 343/486] drm/xe: Stop ignoring errors from
+ xe_ttm_stolen_mgr_init()
+Date: Mon,  5 May 2025 18:36:59 -0400
+Message-Id: <20250505223922.2682012-343-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20250505223922.2682012-1-sashal@kernel.org>
 References: <20250505223922.2682012-1-sashal@kernel.org>
@@ -64,35 +65,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+From: Lucas De Marchi <lucas.demarchi@intel.com>
 
-[ Upstream commit 98c9d27ab30aa9c6451d3a34e6e297171f273e51 ]
+[ Upstream commit ff57025c358603555f1e0ae0d50282a460433594 ]
 
-In polled mode, user calls poll() for read data to be available before
-performing a read(). In the duration between these 2 calls, there may be
-new data available in the OA buffer. To ensure user reads all available
-data, check for latest data in the OA buffer in polled read.
+Make sure to differentiate normal behavior, e.g. there's no stolen, from
+allocation errors or failure to initialize lower layers.
 
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20250212010255.1423343-1-umesh.nerlige.ramappa@intel.com
+Reviewed-by: Francois Dugast <francois.dugast@intel.com>
+Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20250213192909.996148-5-lucas.demarchi@intel.com
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/xe/xe_oa.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/xe/xe_device.c         |  4 +++-
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c | 17 +++++++++--------
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h |  2 +-
+ 3 files changed, 13 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 448766033690c..d306ed0a04434 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -535,6 +535,7 @@ static ssize_t xe_oa_read(struct file *file, char __user *buf,
- 			mutex_unlock(&stream->stream_lock);
- 		} while (!offset && !ret);
- 	} else {
-+		xe_oa_buffer_check_unlocked(stream);
- 		mutex_lock(&stream->stream_lock);
- 		ret = __xe_oa_read(stream, buf, count, &offset);
- 		mutex_unlock(&stream->stream_lock);
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index bb85208cf1a94..5c37bed3c948f 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -694,7 +694,9 @@ int xe_device_probe(struct xe_device *xe)
+ 	}
+ 
+ 	/* Allocate and map stolen after potential VRAM resize */
+-	xe_ttm_stolen_mgr_init(xe);
++	err = xe_ttm_stolen_mgr_init(xe);
++	if (err)
++		return err;
+ 
+ 	/*
+ 	 * Now that GT is initialized (TTM in particular),
+diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+index f7113cf6109d5..ef84fa757b26f 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+@@ -201,17 +201,16 @@ static u64 detect_stolen(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
+ #endif
+ }
+ 
+-void xe_ttm_stolen_mgr_init(struct xe_device *xe)
++int xe_ttm_stolen_mgr_init(struct xe_device *xe)
+ {
+-	struct xe_ttm_stolen_mgr *mgr = drmm_kzalloc(&xe->drm, sizeof(*mgr), GFP_KERNEL);
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
++	struct xe_ttm_stolen_mgr *mgr;
+ 	u64 stolen_size, io_size;
+ 	int err;
+ 
+-	if (!mgr) {
+-		drm_dbg_kms(&xe->drm, "Stolen mgr init failed\n");
+-		return;
+-	}
++	mgr = drmm_kzalloc(&xe->drm, sizeof(*mgr), GFP_KERNEL);
++	if (!mgr)
++		return -ENOMEM;
+ 
+ 	if (IS_SRIOV_VF(xe))
+ 		stolen_size = 0;
+@@ -224,7 +223,7 @@ void xe_ttm_stolen_mgr_init(struct xe_device *xe)
+ 
+ 	if (!stolen_size) {
+ 		drm_dbg_kms(&xe->drm, "No stolen memory support\n");
+-		return;
++		return 0;
+ 	}
+ 
+ 	/*
+@@ -240,7 +239,7 @@ void xe_ttm_stolen_mgr_init(struct xe_device *xe)
+ 				     io_size, PAGE_SIZE);
+ 	if (err) {
+ 		drm_dbg_kms(&xe->drm, "Stolen mgr init failed: %i\n", err);
+-		return;
++		return err;
+ 	}
+ 
+ 	drm_dbg_kms(&xe->drm, "Initialized stolen memory support with %llu bytes\n",
+@@ -248,6 +247,8 @@ void xe_ttm_stolen_mgr_init(struct xe_device *xe)
+ 
+ 	if (io_size)
+ 		mgr->mapping = devm_ioremap_wc(&pdev->dev, mgr->io_base, io_size);
++
++	return 0;
+ }
+ 
+ u64 xe_ttm_stolen_io_offset(struct xe_bo *bo, u32 offset)
+diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
+index 1777245ff8101..8e877d1e839bd 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
++++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
+@@ -12,7 +12,7 @@ struct ttm_resource;
+ struct xe_bo;
+ struct xe_device;
+ 
+-void xe_ttm_stolen_mgr_init(struct xe_device *xe);
++int xe_ttm_stolen_mgr_init(struct xe_device *xe);
+ int xe_ttm_stolen_io_mem_reserve(struct xe_device *xe, struct ttm_resource *mem);
+ bool xe_ttm_stolen_cpu_access_needs_ggtt(struct xe_device *xe);
+ u64 xe_ttm_stolen_io_offset(struct xe_bo *bo, u32 offset);
 -- 
 2.39.5
 
