@@ -4,44 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12B28C3ABB9
-	for <intel-xe@archiver.kernel.org>; Mon,  5 May 2025 22:36:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 999ACC3ABB6
+	for <intel-xe@archiver.kernel.org>; Mon,  5 May 2025 22:36:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF15E10E4E1;
-	Mon,  5 May 2025 22:36:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64FD010E4E8;
+	Mon,  5 May 2025 22:36:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="IAL5jiSh";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="UkEU9teS";
 	dkim-atps=neutral
 Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4833910E4E1;
- Mon,  5 May 2025 22:36:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EF0810E4ED;
+ Mon,  5 May 2025 22:36:54 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id D7A15A4CEA8;
- Mon,  5 May 2025 22:30:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BEA0C4CEEF;
- Mon,  5 May 2025 22:36:00 +0000 (UTC)
+ by nyc.source.kernel.org (Postfix) with ESMTP id E55F7A4CEDB;
+ Mon,  5 May 2025 22:31:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2274C4CEEE;
+ Mon,  5 May 2025 22:36:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1746484562;
- bh=F973BCTRSrl66uFyaTkGbQP5pwTjAHxZzTa3RasnXYU=;
+ s=k20201202; t=1746484613;
+ bh=5gAlm/aMRs/kQvtu4edHnWgZ6FVR2gwuKKGPTPrg1Tc=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=IAL5jiShD1jcoT9NJeWEkRHNGDEhJGshphEFvLPE18TbeZ+RorTjxlKy1alBHDKFq
- wUU66NfQCjGdm0FflVZGGiJJekR7NI+szq+SJKBvV7Jk8eSRZGH9OrgRVhchGdTP9z
- R0KIU31RD0fVUMCj3OwBdDcEqy+xnd/MsUzfNi1IC5ZP9XIUJ3z4/C/8VY4xImzKLq
- AohA9l+StxIqvExexq3mx/FkkYvO5J0XVtTdA3ffw9CKQrZPLbMMIYNfraEntzl9wY
- oLO52wmA5y9HEuPNudmFEKseyL7Iankf46TXnHrX5TvtvWPd/jjsor0MJerMtpZQ7Y
- ZNYlSU9ZrL9gw==
+ b=UkEU9teSW2GGkIaEW8ukLl70gUS7uw5G/x+CjWZTE3BWL2wjjGU+p8UipvswrOKPF
+ 8u09vYLDXbxGxoB+geiGlme+giMzQiTr0gaXLixlmQdMcr7q0CuZpeNIyvDNV3pB4Q
+ i6kXaKEU2U4eVl8dtIZTDNUflKy0/83RWKHJDTV+mVVF0fuUV9KNbdHfdsSkTe3CAs
+ uFnwqQHi75dRrADgS595kW7fBOdhNX3r3vmdYee2ztwjDNUG/ogvkne+2wNaGR7yUN
+ 4v6lv4lahi63wXZut9GOiZZOomTqcgEwGzvjUjchxKH+AFaCrqJS2lxWFxfHSwQT0G
+ ysrQ7asqtkX8w==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- Sasha Levin <sashal@kernel.org>, thomas.hellstrom@linux.intel.com,
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>,
+ Sasha Levin <sashal@kernel.org>, lucas.demarchi@intel.com,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
  airlied@gmail.com, simona@ffwll.ch, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.14 538/642] drm/xe: Fix PVC RPe and RPa information
-Date: Mon,  5 May 2025 18:12:34 -0400
-Message-Id: <20250505221419.2672473-538-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.14 562/642] drm/xe/relay: Don't use GFP_KERNEL for
+ new transactions
+Date: Mon,  5 May 2025 18:12:58 -0400
+Message-Id: <20250505221419.2672473-562-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20250505221419.2672473-1-sashal@kernel.org>
 References: <20250505221419.2672473-1-sashal@kernel.org>
@@ -64,70 +65,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 
-[ Upstream commit 8a734b9359cfa1bdb805f5ca23e20bd99dd18a0a ]
+[ Upstream commit 78d5d1e20d1de9422f013338a0f2311448588ba7 ]
 
-A simple lazy buggy copy and paste of the PVC comment has brought
-the attention to the incorrect masks of the PVC register for RPa
-and RPe. So, let's fix them all.
+VFs use a relay transaction during the resume/reset flow and use
+of the GFP_KERNEL flag may conflict with the reclaim:
 
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Reviewed-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20250109195219.658557-1-rodrigo.vivi@intel.com
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+     -> #0 (fs_reclaim){+.+.}-{0:0}:
+ [ ]        __lock_acquire+0x1874/0x2bc0
+ [ ]        lock_acquire+0xd2/0x310
+ [ ]        fs_reclaim_acquire+0xc5/0x100
+ [ ]        mempool_alloc_noprof+0x5c/0x1b0
+ [ ]        __relay_get_transaction+0xdc/0xa10 [xe]
+ [ ]        relay_send_to+0x251/0xe50 [xe]
+ [ ]        xe_guc_relay_send_to_pf+0x79/0x3a0 [xe]
+ [ ]        xe_gt_sriov_vf_connect+0x90/0x4d0 [xe]
+ [ ]        xe_uc_init_hw+0x157/0x3b0 [xe]
+ [ ]        do_gt_restart+0x1ae/0x650 [xe]
+ [ ]        xe_gt_resume+0xb6/0x120 [xe]
+ [ ]        xe_pm_runtime_resume+0x15b/0x370 [xe]
+ [ ]        xe_pci_runtime_resume+0x73/0x90 [xe]
+ [ ]        pci_pm_runtime_resume+0xa0/0x100
+ [ ]        __rpm_callback+0x4d/0x170
+ [ ]        rpm_callback+0x64/0x70
+ [ ]        rpm_resume+0x594/0x790
+ [ ]        __pm_runtime_resume+0x4e/0x90
+ [ ]        xe_pm_runtime_get_ioctl+0x9c/0x160 [xe]
+
+Since we have a preallocated pool of relay transactions, which
+should cover all our normal relay use cases, we may use the
+GFP_NOWAIT flag when allocating new outgoing transactions.
+
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Tested-by: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
+Reviewed-by: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20250131153713.808-1-michal.wajdeczko@intel.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/xe/xe_guc_pc.c | 22 ++++++++++++----------
- 1 file changed, 12 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_relay.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index f382f5d53ca8b..2276d85926fcb 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -371,16 +371,17 @@ static void tgl_update_rpa_value(struct xe_guc_pc *pc)
- 	u32 reg;
- 
- 	/*
--	 * For PVC we still need to use fused RP1 as the approximation for RPe
--	 * For other platforms than PVC we get the resolved RPe directly from
-+	 * For PVC we still need to use fused RP0 as the approximation for RPa
-+	 * For other platforms than PVC we get the resolved RPa directly from
- 	 * PCODE at a different register
+diff --git a/drivers/gpu/drm/xe/xe_guc_relay.c b/drivers/gpu/drm/xe/xe_guc_relay.c
+index 8f62de026724c..e5dc94f3e6181 100644
+--- a/drivers/gpu/drm/xe/xe_guc_relay.c
++++ b/drivers/gpu/drm/xe/xe_guc_relay.c
+@@ -225,7 +225,7 @@ __relay_get_transaction(struct xe_guc_relay *relay, bool incoming, u32 remote, u
+ 	 * with CTB lock held which is marked as used in the reclaim path.
+ 	 * Btw, that's one of the reason why we use mempool here!
  	 */
--	if (xe->info.platform == XE_PVC)
-+	if (xe->info.platform == XE_PVC) {
- 		reg = xe_mmio_read32(&gt->mmio, PVC_RP_STATE_CAP);
--	else
-+		pc->rpa_freq = REG_FIELD_GET(RP0_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
-+	} else {
- 		reg = xe_mmio_read32(&gt->mmio, FREQ_INFO_REC);
--
--	pc->rpa_freq = REG_FIELD_GET(RPA_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
-+		pc->rpa_freq = REG_FIELD_GET(RPA_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
-+	}
- }
+-	txn = mempool_alloc(&relay->pool, incoming ? GFP_ATOMIC : GFP_KERNEL);
++	txn = mempool_alloc(&relay->pool, incoming ? GFP_ATOMIC : GFP_NOWAIT);
+ 	if (!txn)
+ 		return ERR_PTR(-ENOMEM);
  
- static void tgl_update_rpe_value(struct xe_guc_pc *pc)
-@@ -394,12 +395,13 @@ static void tgl_update_rpe_value(struct xe_guc_pc *pc)
- 	 * For other platforms than PVC we get the resolved RPe directly from
- 	 * PCODE at a different register
- 	 */
--	if (xe->info.platform == XE_PVC)
-+	if (xe->info.platform == XE_PVC) {
- 		reg = xe_mmio_read32(&gt->mmio, PVC_RP_STATE_CAP);
--	else
-+		pc->rpe_freq = REG_FIELD_GET(RP1_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
-+	} else {
- 		reg = xe_mmio_read32(&gt->mmio, FREQ_INFO_REC);
--
--	pc->rpe_freq = REG_FIELD_GET(RPE_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
-+		pc->rpe_freq = REG_FIELD_GET(RPE_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
-+	}
- }
- 
- static void pc_update_rp_values(struct xe_guc_pc *pc)
 -- 
 2.39.5
 
