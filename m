@@ -4,59 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60378C3ABAC
-	for <intel-xe@archiver.kernel.org>; Sun,  4 May 2025 04:59:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D09BC369C2
+	for <intel-xe@archiver.kernel.org>; Mon,  5 May 2025 03:50:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C16EB10E232;
-	Sun,  4 May 2025 04:59:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C05C810E17E;
+	Mon,  5 May 2025 03:50:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KbjG42ui";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qa1SLPnP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 644A710E232
- for <intel-xe@lists.freedesktop.org>; Sun,  4 May 2025 04:59:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E442B10E17E;
+ Mon,  5 May 2025 03:50:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746334786; x=1777870786;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=SRKI2IbAZR6ZkXCObWhCZp2YP+27WcDlZKsceAwpFbs=;
- b=KbjG42uiATyvYx/Zl50Y/st86HtdkFXyRj3k1yywG4orzzMWXmZLDvCr
- 0b46aJxkVYY+GlFRlAlI6Z7YeE2Z5uf0XKbgw5Wvp11CZuUE4wGd14ZkL
- UMQiBcydAB5VQ7xqJ7XFOOkE9vRaSmGCtjp4lTyfV7ZrbTltRSVIO+bUW
- u5QO9oAzrbJTNwLtyLjsnNZIUq6rKdIIWb3u6LOXGBkIraIjzd+0dVNXG
- 0onRwOjm73g/2Y0GCNlNt9D+vHXjvLlosjrRRNYRYLaMKh8EqldkRfDwo
- 9uOgXP2mdeDynYgm4VcRIjqEBHqy+5TpHIDwjlVOgelUK2+l9Gh9mk4o7 w==;
-X-CSE-ConnectionGUID: 6HnD+7DKTt+Y8WjLRM+OhQ==
-X-CSE-MsgGUID: X4VuZUYNQW+vC4RcyD8gIA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11422"; a="35586337"
-X-IronPort-AV: E=Sophos;i="6.15,261,1739865600"; d="scan'208";a="35586337"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2025 21:59:37 -0700
-X-CSE-ConnectionGUID: FHKsK1vuQMC3AfchBmezCg==
-X-CSE-MsgGUID: FDeu9kknSM+mdgEL6/l+Ig==
+ t=1746417031; x=1777953031;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ecaWMLQ8nhYKNxzqC+vh155RpMK5GNL9g7VgVueadlY=;
+ b=Qa1SLPnP26y0WWEFRdznVOUXJUIkrbUl4S9yLeAiH+RG9jAsosWMkeAz
+ 38FoLRcpf2fRU4EYJcbGCg1B8Xd1nzmgYZgtMkDm+p8X2JMsbqE9kdK/3
+ G8i+CesGklc5VlcO5stIewJ0FWm/JyGckCGpS1jI00hrN4Vc69G0KwSnY
+ 1lQi2sH7iNY/RjtXYtb2JMZH63yFhdxhxkPGRhF14VOJPusSum/PCYrvm
+ HGT/F8UF69/pz3NiwVMK+dDodOlZ79i4BaTqqCVxRrmpp7i3wIZQTr3BW
+ y2tHRA7ab1JGfJZ+DyiDq2xAo8u3SPIcTicPPBTr83SQN7wKymLFB/yI6 Q==;
+X-CSE-ConnectionGUID: Qn1TKm1gTVyc6uVGa2rLwA==
+X-CSE-MsgGUID: wLXIgycGTjSldd76jv27Fg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11423"; a="59003544"
+X-IronPort-AV: E=Sophos;i="6.15,262,1739865600"; d="scan'208";a="59003544"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2025 20:50:29 -0700
+X-CSE-ConnectionGUID: DdVh9UtvQN+K6k96nHz4Qg==
+X-CSE-MsgGUID: ijSnwKeOTjeV56c/Uw84Yg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,261,1739865600"; d="scan'208";a="140124610"
-Received: from intelmailrelay-02.habana-labs.com ([10.111.11.21])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2025 21:59:34 -0700
-Received: internal info suppressed
-Received: from dhirschfeld-vm-u22.habana-labs.com (localhost [127.0.0.1])
- by dhirschfeld-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with
- SMTP id 5444xPjO2402506; Sun, 4 May 2025 07:59:25 +0300
-Date: Sun, 4 May 2025 07:59:25 +0300
-From: Dafna Hirschfeld <dafna.hirschfeld@intel.com>
-To: Stuart Summers <stuart.summers@intel.com>
-Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
- lucas.demarchi@intel.com
-Subject: Re: [PATCH] drm/xe: Fix page fault queue calculation
-Message-ID: <rxxppw5ey5ynialzv6b4v6ro2hshy5qoggmjyyjiorgu64oyo2@bn4zn2rowzc7>
-References: <20250501183220.72097-1-stuart.summers@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,262,1739865600"; d="scan'208";a="166188879"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2025 20:50:27 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
+ jani.nikula@linux.intel.com
+Subject: [PATCH v2] drm/i915/vrr: Program EMP_AS_SDP_TL for DP AS SDP
+Date: Mon,  5 May 2025 09:09:11 +0530
+Message-ID: <20250505033911.393628-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20250501183220.72097-1-stuart.summers@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,59 +67,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 01.05.2025 18:32, Stuart Summers wrote:
->We followed up with the design architects to have a more
->precise calculation for a theoretical maximum number of
->page faults we might expect based on the number of TLBs
->available in the system. Fix the original calculation which
->did not take the number of TLBs into consideration.
->
->Fixes: 29582e0ea75c ("drm/xe: Add page queue multiplier")
->Fixes: 3338e4f90c14 ("drm/xe: Use topology to determine page fault queue size")
->
->Signed-off-by: Stuart Summers <stuart.summers@intel.com>
->---
-> drivers/gpu/drm/xe/xe_gt_pagefault.c | 17 +++++++++++------
-> 1 file changed, 11 insertions(+), 6 deletions(-)
->
->diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
->index 10622ca471a2..80a816c3837b 100644
->--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
->+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
->@@ -436,15 +436,20 @@ static int xe_alloc_pf_queue(struct xe_gt *gt, struct pf_queue *pf_queue)
-> 				XE_MAX_EU_FUSE_BITS) * num_dss;
->
-> 	/*
->-	 * user can issue separate page faults per EU and per CS
->+	 * Each TLB can report up to 32 faults. The number of TLBs is
->+	 * equal to the number of render/compute/media engines plus twice
->+	 * the number of copy engines plus the number of EUs.
-> 	 *
->-	 * XXX: Multiplier required as compute UMD are getting PF queue errors
->-	 * without it. Follow on why this multiplier is required.
->+	 * Reserve enough space here to ensure we are able to cover that
->+	 * theoretical maximum.
-> 	 */
->-#define PF_MULTIPLIER	8
->+#define MAX_FAULTS_PER_TLB	32
-> 	pf_queue->num_dw =
->-		(num_eus + XE_NUM_HW_ENGINES) * PF_MSG_LEN_DW * PF_MULTIPLIER;
->-#undef PF_MULTIPLIER
->+		PF_MSG_LEN_DW * MAX_FAULTS_PER_TLB *
->+		(num_eus +
->+		 hweight64(gt->info.engine_mask) +
->+		 hweight32(xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_COPY)));
->+#undef MAX_FAULTS_PER_TLB
+The register EMP_AS_SDP_TL (MTL) was introduced for configuring the
+double buffering point and transmission line for all
+HDMI2.1 Extended Metadata Packets (VT-EMP for VRR, CVT-EMP for DSC etc).
+This was also intended to be configured for DP to HDMI2.1 PCON to
+support VRR.
 
-the queue uses the circ-buffer API which assumes buffer size is a power of 2.
-can we be sure that num_dw is a power of 2?
+From BMG and LNL+ onwards, this register was extended to Display Port
+Adaptive Sync SDP to have a common register to configure double
+buffering point and transmission line for both HDMI EMPs and DP VRR related
+packets.
 
-Thanks,
-Dafna
+Currently, we do not support VRR for either native HDMI or via PCON.
+However we need to configure this for DP SDP case. As per the spec,
+program the register to set Vsync start as the double buffering point
+for DP AS SDP.
 
->
-> 	pf_queue->gt = gt;
-> 	pf_queue->data = devm_kcalloc(xe->drm.dev, pf_queue->num_dw,
->-- 
->2.34.1
->
+v2:
+-Make the helper more readable. (Jani)
+-Add more information in commit message and comment.
+
+Bspec:70984, 71197
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Tested-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_vrr.c      | 23 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_vrr_regs.h |  6 +++++
+ 2 files changed, 29 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index c6565baf815a..c55b8144e234 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -576,6 +576,25 @@ bool intel_vrr_always_use_vrr_tg(struct intel_display *display)
+ 	return false;
+ }
+ 
++static
++void intel_vrr_set_db_point_and_transmission_line(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
++	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
++
++	/*
++	 * For BMG and LNL+ onwards the EMP_AS_SDP_TL is used for programming
++	 * double buffering point and transmission line for VRR packets for
++	 * HDMI2.1/DP/eDP/DP->HDMI2.1 PCON.
++	 * Since currently we support VRR only for DP/eDP, so this is programmed
++	 * to for Adaptive Sync SDP to Vsync start.
++	 */
++	if (DISPLAY_VERx100(display) == 1401 || DISPLAY_VER(display) >= 20)
++		intel_de_write(display,
++			       EMP_AS_SDP_TL(display, cpu_transcoder),
++			       EMP_AS_SDP_DB_TL(crtc_state->vrr.vsync_start));
++}
++
+ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+@@ -595,6 +614,8 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
+ 		       TRANS_PUSH_EN);
+ 
+ 	if (!intel_vrr_always_use_vrr_tg(display)) {
++		intel_vrr_set_db_point_and_transmission_line(crtc_state);
++
+ 		if (crtc_state->cmrr.enable) {
+ 			intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
+ 				       VRR_CTL_VRR_ENABLE | VRR_CTL_CMRR_ENABLE |
+@@ -646,6 +667,8 @@ void intel_vrr_transcoder_enable(const struct intel_crtc_state *crtc_state)
+ 	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder),
+ 		       TRANS_PUSH_EN);
+ 
++	intel_vrr_set_db_point_and_transmission_line(crtc_state);
++
+ 	intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
+ 		       VRR_CTL_VRR_ENABLE | trans_vrr_ctl(crtc_state));
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr_regs.h b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
+index 6ed0e0dc97e7..09cdd50d6187 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
+@@ -108,6 +108,12 @@
+ #define VRR_VSYNC_START_MASK			REG_GENMASK(12, 0)
+ #define VRR_VSYNC_START(vsync_start)		REG_FIELD_PREP(VRR_VSYNC_START_MASK, (vsync_start))
+ 
++/* Common register for HDMI EMP and DP AS SDP */
++#define _EMP_AS_SDP_TL_A			0x60204
++#define EMP_AS_SDP_DB_TL_MASK			REG_GENMASK(12, 0)
++#define EMP_AS_SDP_TL(dev_priv, trans)		_MMIO_TRANS2(dev_priv, trans, _EMP_AS_SDP_TL_A)
++#define EMP_AS_SDP_DB_TL(db_transmit_line)	REG_FIELD_PREP(EMP_AS_SDP_DB_TL_MASK, (db_transmit_line))
++
+ /*CMRR Registers*/
+ 
+ #define _TRANS_CMRR_M_LO_A			0x604F0
+-- 
+2.45.2
+
