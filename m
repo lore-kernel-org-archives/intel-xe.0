@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87649C3ABB6
-	for <intel-xe@archiver.kernel.org>; Mon,  5 May 2025 22:38:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C392C3ABB9
+	for <intel-xe@archiver.kernel.org>; Mon,  5 May 2025 22:45:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D08B10E4FE;
-	Mon,  5 May 2025 22:38:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F35410E52B;
+	Mon,  5 May 2025 22:45:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="cRl3yQE3";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="rHY9nrsI";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81E3E10E4EE;
- Mon,  5 May 2025 22:38:25 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B608410E52D;
+ Mon,  5 May 2025 22:45:45 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 27B7B629C1;
- Mon,  5 May 2025 22:37:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D335C4CEE4;
- Mon,  5 May 2025 22:38:23 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id E4B2A43F44;
+ Mon,  5 May 2025 22:45:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E8EEC4CEE4;
+ Mon,  5 May 2025 22:45:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1746484704;
- bh=lezU5NsjbYIMJJZt0x5J6+DVey+U20nESnU8t++H3uo=;
+ s=k20201202; t=1746485145;
+ bh=IafRBD/jEyGO5Ye/U4fLc8c8KFzd/zjgQ46BK4wrpJk=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=cRl3yQE3ARCqO2ISkJqme9cFkGvfn9fnOAwiyrdjmJhzZwpNouwjGEgztYdvDoPph
- VOlDUTX1GyHem88g6ura720UjycKTXIsst0t+Wfy9HzZtS5nw89lqtf8UzpZ3J9vZp
- yg+sw+3jFWXLyn2systM2NdsUCAgxfd639Voef2dwX5vwgRrEUHnXGLx5fqe9PzJb+
- aqsnFspAbvIuIpu+poHi3VKufgfqbeLNs/x2dgEkpf9CNNlTtH3vF2hKNKmr74J8q6
- 5TDSIIUPKxK//aErYzL8bv6xP/ykUW3FKcdRLlZfx70mc1Xwsm4WeZcm/Bp09hinHV
- 1ktbPr2kx7uSw==
+ b=rHY9nrsIIWUlqnxH2yJf4Nz28YCcUdpGrjjHCAsnkc456dKP2DWKDRHkhnPxrkJIo
+ pPj39fjx2Xgp9zCsbGuSSVgGRGLsh6A5mMRJfF4BfF8CAyPQVr+42SAlKudRqZ90vc
+ wLZkFHxAeBQBRFkzdHuuibggou+eimuG4dfcxF2NR6mS9MFeQk56uFB8M3Y1gy+bAf
+ itn+qYJCVqYvJbQIZ+vYk6jZjdrgPFWTXXAfKN7sqAIP2So1Tmy7FZw6Qbie08hZBb
+ TjIALzkj60rpNup0uNbFmn5FCnb0r6QUMBsOdgDPVX1fEJwev8wqcfsKGYkpDKau8g
+ SKl21CzRhDQXg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Sasha Levin <sashal@kernel.org>,
- thomas.hellstrom@linux.intel.com, airlied@gmail.com, simona@ffwll.ch,
+Cc: Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Sasha Levin <sashal@kernel.org>, lucas.demarchi@intel.com,
+ rodrigo.vivi@intel.com, airlied@gmail.com, simona@ffwll.ch,
  intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.14 617/642] drm/xe: Add locks in gtidle code
-Date: Mon,  5 May 2025 18:13:53 -0400
-Message-Id: <20250505221419.2672473-617-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.12 183/486] drm/xe: Nuke VM's mapping upon close
+Date: Mon,  5 May 2025 18:34:19 -0400
+Message-Id: <20250505223922.2682012-183-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250505221419.2672473-1-sashal@kernel.org>
-References: <20250505221419.2672473-1-sashal@kernel.org>
+In-Reply-To: <20250505223922.2682012-1-sashal@kernel.org>
+References: <20250505223922.2682012-1-sashal@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.14.5
+X-stable-base: Linux 6.12.26
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,121 +64,190 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+From: Matthew Brost <matthew.brost@intel.com>
 
-[ Upstream commit d160dc6f53914d729be7fcb7afbd0e9e6a3725b2 ]
+[ Upstream commit 074e40d9c2a84939fe28d7121d3469db50f34a3d ]
 
-The update of the residency values needs to be protected by a lock to
-avoid multiple entrypoints, for example when multiple userspace clients
-read the sysfs file. Other in-kernel clients are going to be added to
-sample these values, making the problem worse. Protect those updates
-with a raw_spinlock so it can be called by future integration with perf
-pmu.
+Clear root PT entry and invalidate entire VM's address space when
+closing the VM. Will prevent the GPU from accessing any of the VM's
+memory after closing.
 
-Suggested-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20250110173308.2412232-2-lucas.demarchi@intel.com
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+v2:
+ - s/vma/vm in kernel doc (CI)
+ - Don't nuke migration VM as this occur at driver unload (CI)
+v3:
+ - Rebase and pull into SVM series (Thomas)
+ - Wait for pending binds (Thomas)
+v5:
+ - Remove xe_gt_tlb_invalidation_fence_fini in error case (Matt Auld)
+ - Drop local migration bool (Thomas)
+v7:
+ - Add drm_dev_enter/exit protecting invalidation (CI, Matt Auld)
+
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20250306012657.3505757-12-matthew.brost@intel.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/xe/xe_gt_idle.c       | 23 ++++++++++++++++++++---
- drivers/gpu/drm/xe/xe_gt_idle.h       |  1 +
- drivers/gpu/drm/xe/xe_gt_idle_types.h |  3 +++
- 3 files changed, 24 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 22 ++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h |  2 ++
+ drivers/gpu/drm/xe/xe_pt.c                  | 14 +++++++++
+ drivers/gpu/drm/xe/xe_pt.h                  |  3 ++
+ drivers/gpu/drm/xe/xe_vm.c                  | 32 +++++++++++++++++++++
+ 5 files changed, 73 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c b/drivers/gpu/drm/xe/xe_gt_idle.c
-index ffd3ba7f66561..fbbace7b0b12a 100644
---- a/drivers/gpu/drm/xe/xe_gt_idle.c
-+++ b/drivers/gpu/drm/xe/xe_gt_idle.c
-@@ -69,6 +69,8 @@ static u64 get_residency_ms(struct xe_gt_idle *gtidle, u64 cur_residency)
- {
- 	u64 delta, overflow_residency, prev_residency;
- 
-+	lockdep_assert_held(&gtidle->lock);
-+
- 	overflow_residency = BIT_ULL(32);
- 
- 	/*
-@@ -275,8 +277,21 @@ static ssize_t idle_status_show(struct device *dev,
- 
- 	return sysfs_emit(buff, "%s\n", gt_idle_state_to_string(state));
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+index 98a450271f5ce..3155825fa46ad 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+@@ -406,6 +406,28 @@ int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
+ 	return send_tlb_invalidation(&gt->uc.guc, fence, action, len);
  }
--static DEVICE_ATTR_RO(idle_status);
  
-+u64 xe_gt_idle_residency_msec(struct xe_gt_idle *gtidle)
++/**
++ * xe_gt_tlb_invalidation_vm - Issue a TLB invalidation on this GT for a VM
++ * @gt: graphics tile
++ * @vm: VM to invalidate
++ *
++ * Invalidate entire VM's address space
++ */
++void xe_gt_tlb_invalidation_vm(struct xe_gt *gt, struct xe_vm *vm)
 +{
-+	struct xe_guc_pc *pc = gtidle_to_pc(gtidle);
-+	u64 residency;
-+	unsigned long flags;
++	struct xe_gt_tlb_invalidation_fence fence;
++	u64 range = 1ull << vm->xe->info.va_bits;
++	int ret;
 +
-+	raw_spin_lock_irqsave(&gtidle->lock, flags);
-+	residency = get_residency_ms(gtidle, gtidle->idle_residency(pc));
-+	raw_spin_unlock_irqrestore(&gtidle->lock, flags);
++	xe_gt_tlb_invalidation_fence_init(gt, &fence, true);
 +
-+	return residency;
++	ret = xe_gt_tlb_invalidation_range(gt, &fence, 0, range, vm->usm.asid);
++	if (ret < 0)
++		return;
++
++	xe_gt_tlb_invalidation_fence_wait(&fence);
 +}
 +
-+static DEVICE_ATTR_RO(idle_status);
- static ssize_t idle_residency_ms_show(struct device *dev,
- 				      struct device_attribute *attr, char *buff)
- {
-@@ -285,10 +300,10 @@ static ssize_t idle_residency_ms_show(struct device *dev,
- 	u64 residency;
+ /**
+  * xe_gt_tlb_invalidation_vma - Issue a TLB invalidation on this GT for a VMA
+  * @gt: graphics tile
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
+index 672acfcdf0d70..abe9b03d543e6 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
+@@ -12,6 +12,7 @@
  
- 	xe_pm_runtime_get(pc_to_xe(pc));
--	residency = gtidle->idle_residency(pc);
-+	residency = xe_gt_idle_residency_msec(gtidle);
- 	xe_pm_runtime_put(pc_to_xe(pc));
+ struct xe_gt;
+ struct xe_guc;
++struct xe_vm;
+ struct xe_vma;
  
--	return sysfs_emit(buff, "%llu\n", get_residency_ms(gtidle, residency));
-+	return sysfs_emit(buff, "%llu\n", residency);
+ int xe_gt_tlb_invalidation_init_early(struct xe_gt *gt);
+@@ -21,6 +22,7 @@ int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt);
+ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
+ 			       struct xe_gt_tlb_invalidation_fence *fence,
+ 			       struct xe_vma *vma);
++void xe_gt_tlb_invalidation_vm(struct xe_gt *gt, struct xe_vm *vm);
+ int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
+ 				 struct xe_gt_tlb_invalidation_fence *fence,
+ 				 u64 start, u64 end, u32 asid);
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 230cf47fb9c5e..fb94ff55c7361 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -217,6 +217,20 @@ void xe_pt_destroy(struct xe_pt *pt, u32 flags, struct llist_head *deferred)
+ 	xe_pt_free(pt);
  }
- static DEVICE_ATTR_RO(idle_residency_ms);
  
-@@ -331,6 +346,8 @@ int xe_gt_idle_init(struct xe_gt_idle *gtidle)
- 	if (!kobj)
- 		return -ENOMEM;
- 
-+	raw_spin_lock_init(&gtidle->lock);
++/**
++ * xe_pt_clear() - Clear a page-table.
++ * @xe: xe device.
++ * @pt: The page-table.
++ *
++ * Clears page-table by setting to zero.
++ */
++void xe_pt_clear(struct xe_device *xe, struct xe_pt *pt)
++{
++	struct iosys_map *map = &pt->bo->vmap;
 +
- 	if (xe_gt_is_media_type(gt)) {
- 		snprintf(gtidle->name, sizeof(gtidle->name), "gt%d-mc", gt->info.id);
- 		gtidle->idle_residency = xe_guc_pc_mc6_residency;
-diff --git a/drivers/gpu/drm/xe/xe_gt_idle.h b/drivers/gpu/drm/xe/xe_gt_idle.h
-index 4455a6501cb07..591a01e181bcc 100644
---- a/drivers/gpu/drm/xe/xe_gt_idle.h
-+++ b/drivers/gpu/drm/xe/xe_gt_idle.h
-@@ -17,5 +17,6 @@ void xe_gt_idle_disable_c6(struct xe_gt *gt);
- void xe_gt_idle_enable_pg(struct xe_gt *gt);
- void xe_gt_idle_disable_pg(struct xe_gt *gt);
- int xe_gt_idle_pg_print(struct xe_gt *gt, struct drm_printer *p);
-+u64 xe_gt_idle_residency_msec(struct xe_gt_idle *gtidle);
++	xe_map_memset(xe, map, 0, 0, SZ_4K);
++}
++
+ /**
+  * DOC: Pagetable building
+  *
+diff --git a/drivers/gpu/drm/xe/xe_pt.h b/drivers/gpu/drm/xe/xe_pt.h
+index 9ab386431cadd..8e43912ae8e94 100644
+--- a/drivers/gpu/drm/xe/xe_pt.h
++++ b/drivers/gpu/drm/xe/xe_pt.h
+@@ -13,6 +13,7 @@ struct dma_fence;
+ struct xe_bo;
+ struct xe_device;
+ struct xe_exec_queue;
++struct xe_svm_range;
+ struct xe_sync_entry;
+ struct xe_tile;
+ struct xe_vm;
+@@ -35,6 +36,8 @@ void xe_pt_populate_empty(struct xe_tile *tile, struct xe_vm *vm,
  
- #endif /* _XE_GT_IDLE_H_ */
-diff --git a/drivers/gpu/drm/xe/xe_gt_idle_types.h b/drivers/gpu/drm/xe/xe_gt_idle_types.h
-index b8b297a3f8848..a3667c567f8a7 100644
---- a/drivers/gpu/drm/xe/xe_gt_idle_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_idle_types.h
-@@ -6,6 +6,7 @@
- #ifndef _XE_GT_IDLE_SYSFS_TYPES_H_
- #define _XE_GT_IDLE_SYSFS_TYPES_H_
+ void xe_pt_destroy(struct xe_pt *pt, u32 flags, struct llist_head *deferred);
  
-+#include <linux/spinlock.h>
- #include <linux/types.h>
++void xe_pt_clear(struct xe_device *xe, struct xe_pt *pt);
++
+ int xe_pt_update_ops_prepare(struct xe_tile *tile, struct xe_vma_ops *vops);
+ struct dma_fence *xe_pt_update_ops_run(struct xe_tile *tile,
+ 				       struct xe_vma_ops *vops);
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 872de052d670f..de257a032225f 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -8,6 +8,7 @@
+ #include <linux/dma-fence-array.h>
+ #include <linux/nospec.h>
  
- struct xe_guc_pc;
-@@ -31,6 +32,8 @@ struct xe_gt_idle {
- 	u64 cur_residency;
- 	/** @prev_residency: previous residency counter */
- 	u64 prev_residency;
-+	/** @lock: Lock protecting idle residency counters */
-+	raw_spinlock_t lock;
- 	/** @idle_status: get the current idle state */
- 	enum xe_gt_idle_state (*idle_status)(struct xe_guc_pc *pc);
- 	/** @idle_residency: get idle residency counter */
++#include <drm/drm_drv.h>
+ #include <drm/drm_exec.h>
+ #include <drm/drm_print.h>
+ #include <drm/ttm/ttm_execbuf_util.h>
+@@ -1581,9 +1582,40 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 
+ static void xe_vm_close(struct xe_vm *vm)
+ {
++	struct xe_device *xe = vm->xe;
++	bool bound;
++	int idx;
++
++	bound = drm_dev_enter(&xe->drm, &idx);
++
+ 	down_write(&vm->lock);
++
+ 	vm->size = 0;
++
++	if (!((vm->flags & XE_VM_FLAG_MIGRATION))) {
++		struct xe_tile *tile;
++		struct xe_gt *gt;
++		u8 id;
++
++		/* Wait for pending binds */
++		dma_resv_wait_timeout(xe_vm_resv(vm),
++				      DMA_RESV_USAGE_BOOKKEEP,
++				      false, MAX_SCHEDULE_TIMEOUT);
++
++		if (bound) {
++			for_each_tile(tile, xe, id)
++				if (vm->pt_root[id])
++					xe_pt_clear(xe, vm->pt_root[id]);
++
++			for_each_gt(gt, xe, id)
++				xe_gt_tlb_invalidation_vm(gt, vm);
++		}
++	}
++
+ 	up_write(&vm->lock);
++
++	if (bound)
++		drm_dev_exit(idx);
+ }
+ 
+ void xe_vm_close_and_put(struct xe_vm *vm)
 -- 
 2.39.5
 
