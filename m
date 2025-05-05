@@ -4,45 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECC71C3ABB9
-	for <intel-xe@archiver.kernel.org>; Mon,  5 May 2025 22:47:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 414E4C3ABB6
+	for <intel-xe@archiver.kernel.org>; Mon,  5 May 2025 22:49:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72A5F10E548;
-	Mon,  5 May 2025 22:47:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E778F10E54C;
+	Mon,  5 May 2025 22:48:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jhw2t/A8";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="aMbHx3Bf";
 	dkim-atps=neutral
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0CFD10E548;
- Mon,  5 May 2025 22:47:45 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90AFB10E54B;
+ Mon,  5 May 2025 22:48:58 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 931E8A4D097;
- Mon,  5 May 2025 22:42:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97982C4CEED;
- Mon,  5 May 2025 22:47:43 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id B991149D63;
+ Mon,  5 May 2025 22:48:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09EBDC4CEF1;
+ Mon,  5 May 2025 22:48:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1746485264;
- bh=uoqatsxnaznUHh7zR9Q6eQtHRh1oWtgPBgbDgbm5Xfs=;
+ s=k20201202; t=1746485338;
+ bh=481MeWMj+cVJvQa2lmFDWC+y3q6Ng+pvrM0i1634QHw=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=jhw2t/A8hsTBGfqj5YyTPYzRb0pX3OTKU3rTc4nrraALssGPZPdPm5RQPBG75OfFc
- Sk6lfUknIXg0ioVtkircDlqLJN5EfxwP6sv9RqwR+Hn4vWjF1e5PqT230PwR8vMhsa
- 5Fe21a3KdA+SeTgTNCJYgudIWFxMXguCCxplRjjPLS3ZNHOHUyfdJpvvt0Z1xqMF7j
- 6e3xClefsl4eUv3fIZi260KOYwG6/f8IR0wz1fp7pvjNjuhRV0/Zvn8ZpMzOSWX8ZE
- yXeZo+j2xAhRmy/MbS0WHl0ep0F/pE4tv+IPyQA408SOYpGxakVafU7hiZLliNew0M
- PHBMzcrS/k5jA==
+ b=aMbHx3BfoXcqdmk6hmfbud33gFVjGjKYz2A6pMDiH5Eb2vkFgBfUNJgNYIoM2xIfj
+ qAPY1caxYro9dTzypd1zsQqgaPPKB8mrTKizfuMxtGZbQZdtwUKcFiaK6kxu3OLxBy
+ DVkPWF2XXmHzXQwovXRLCjj/e0TpH5DxFnkSTKc+qc2w2Zz535yYBngYlqveRSR8UW
+ O9Mb4bnkCTYjRB+OdcvUOIN18k/lxG1unrVk+B1vIGZbm5eZdbVvE/nDAMgAbGtx5D
+ RnA7N84MlQGAcBMcXhjEC15z7gKaZ3BCVb76izoZ/TjqktqOwk4eHuj4hLbZ8TLEQv
+ KPhCY+eKsLaww==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Daniel Gomez <da.gomez@samsung.com>,
- Masahiro Yamada <masahiroy@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Sasha Levin <sashal@kernel.org>, thomas.hellstrom@linux.intel.com,
+Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
+ Ashutosh Dixit <ashutosh.dixit@intel.com>, Sasha Levin <sashal@kernel.org>,
+ lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
  rodrigo.vivi@intel.com, airlied@gmail.com, simona@ffwll.ch,
  intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.12 242/486] drm/xe: xe_gen_wa_oob: replace
- program_invocation_short_name
-Date: Mon,  5 May 2025 18:35:18 -0400
-Message-Id: <20250505223922.2682012-242-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.12 275/486] drm/xe/oa: Ensure that polled read
+ returns latest data
+Date: Mon,  5 May 2025 18:35:51 -0400
+Message-Id: <20250505223922.2682012-275-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20250505223922.2682012-1-sashal@kernel.org>
 References: <20250505223922.2682012-1-sashal@kernel.org>
@@ -65,56 +64,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Daniel Gomez <da.gomez@samsung.com>
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
-[ Upstream commit 89eb42b5539f6ae6a0cabcb39e5b6fcc83c106a1 ]
+[ Upstream commit 98c9d27ab30aa9c6451d3a34e6e297171f273e51 ]
 
-program_invocation_short_name may not be available in other systems.
-Instead, replace it with the argv[0] to pass the executable name.
+In polled mode, user calls poll() for read data to be available before
+performing a read(). In the duration between these 2 calls, there may be
+new data available in the OA buffer. To ensure user reads all available
+data, check for latest data in the OA buffer in polled read.
 
-Fixes build error when program_invocation_short_name is not available:
-
-drivers/gpu/drm/xe/xe_gen_wa_oob.c:34:3: error: use of
-undeclared identifier 'program_invocation_short_name'    34 |
-program_invocation_short_name);       |                 ^ 1 error
-generated.
-
-Suggested-by: Masahiro Yamada <masahiroy@kernel.org>
-Signed-off-by: Daniel Gomez <da.gomez@samsung.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20250224-macos-build-support-xe-v3-1-d2c9ed3a27cc@samsung.com
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20250212010255.1423343-1-umesh.nerlige.ramappa@intel.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/xe/xe_gen_wa_oob.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_oa.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gen_wa_oob.c b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
-index 904cf47925aa1..ed9183599e31c 100644
---- a/drivers/gpu/drm/xe/xe_gen_wa_oob.c
-+++ b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
-@@ -28,10 +28,10 @@
- 	"\n" \
- 	"#endif\n"
- 
--static void print_usage(FILE *f)
-+static void print_usage(FILE *f, const char *progname)
- {
- 	fprintf(f, "usage: %s <input-rule-file> <generated-c-source-file> <generated-c-header-file>\n",
--		program_invocation_short_name);
-+		progname);
- }
- 
- static void print_parse_error(const char *err_msg, const char *line,
-@@ -144,7 +144,7 @@ int main(int argc, const char *argv[])
- 
- 	if (argc < 3) {
- 		fprintf(stderr, "ERROR: wrong arguments\n");
--		print_usage(stderr);
-+		print_usage(stderr, argv[0]);
- 		return 1;
- 	}
- 
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index 448766033690c..d306ed0a04434 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -535,6 +535,7 @@ static ssize_t xe_oa_read(struct file *file, char __user *buf,
+ 			mutex_unlock(&stream->stream_lock);
+ 		} while (!offset && !ret);
+ 	} else {
++		xe_oa_buffer_check_unlocked(stream);
+ 		mutex_lock(&stream->stream_lock);
+ 		ret = __xe_oa_read(stream, buf, count, &offset);
+ 		mutex_unlock(&stream->stream_lock);
 -- 
 2.39.5
 
