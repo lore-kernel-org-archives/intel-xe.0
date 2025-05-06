@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75F72C3ABAC
-	for <intel-xe@archiver.kernel.org>; Tue,  6 May 2025 11:32:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6247CC3ABAC
+	for <intel-xe@archiver.kernel.org>; Tue,  6 May 2025 11:40:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3699110E65E;
-	Tue,  6 May 2025 11:32:36 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="nhNaH0bH";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75E5910E65E;
- Tue,  6 May 2025 11:32:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=jWax/7UjKOTXSjxDDCNFk6s+HaIdKBbx9TwvhLVsDn4=; b=nhNaH0bHa0YFAC4xJCXjsmGA5n
- +h/G0Ng9RWI2g+wlQi5Ys3+r1gvqVugqAqSkBe2t5pm7cEqVFb5F4cgf6WTvFKu8bVbL4L4UYLDHU
- dOjnNTRHO+05QW34blajjQC515+0ahSlWIK6RvntxPLws9DMxmzsYhnDfA39icD23uyw/soy6zaQv
- wsYeyLEWoL/rTIFxmx5b+9j6DGXoZ8osmjQd/nM8taxGcn17DBlPpsEXgVSzBj/EXGqbCDfKwYG4c
- 1i/HRebBMkm4ZNn3Oz/DfROO0VeRCx5Z9NjJvVYNObTJhFCaj1Dkk0aqBf1DAwOGq3YCvIq+dWQUT
- 01rCGXrQ==;
-Received: from [81.79.92.254] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1uCGTO-004Anm-8a; Tue, 06 May 2025 13:32:03 +0200
-Message-ID: <f48aa17a-3135-4480-b396-2e2077a7d2aa@igalia.com>
-Date: Tue, 6 May 2025 12:32:02 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26B9110E661;
+	Tue,  6 May 2025 11:40:39 +0000 (UTC)
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 807AC10E660;
+ Tue,  6 May 2025 11:40:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4703347870592112256=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/8] drm/sched: Allow drivers to skip the reset and keep
- on running
-To: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
- Matthew Brost <matthew.brost@intel.com>, Danilo Krummrich <dakr@kernel.org>,
- Philipp Stanner <phasta@kernel.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Melissa Wen <mwen@igalia.com>,
- Lucas Stach <l.stach@pengutronix.de>,
- Russell King <linux+etnaviv@armlinux.org.uk>,
- Christian Gmeiner <christian.gmeiner@gmail.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>
-Cc: kernel-dev@igalia.com, dri-devel@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-References: <20250503-sched-skip-reset-v1-0-ed0d6701a3fe@igalia.com>
- <20250503-sched-skip-reset-v1-1-ed0d6701a3fe@igalia.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <20250503-sched-skip-reset-v1-1-ed0d6701a3fe@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_minor_c?=
+ =?utf-8?q?leanups_on_drm=5Fi915=5Fprivate_use?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 06 May 2025 11:40:37 -0000
+Message-ID: <174653163750.51145.809148945406469729@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <cover.1746529001.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1746529001.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,125 +36,165 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============4703347870592112256==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 03/05/2025 21:59, Maíra Canal wrote:
-> When the DRM scheduler times out, it's possible that the GPU isn't hung;
-> instead, a job may still be running, and there may be no valid reason to
-> reset the hardware. This can occur in two situations:
-> 
->    1. The GPU exposes some mechanism that ensures the GPU is still making
->       progress. By checking this mechanism, we can safely skip the reset,
->       rearm the timeout, and allow the job to continue running until
->       completion. This is the case for v3d and Etnaviv.
->    2. TDR has fired before the IRQ that signals the fence. Consequently,
->       the job actually finishes, but it triggers a timeout before signaling
->       the completion fence.
-> 
-> These two scenarios are problematic because we remove the job from the
-> `sched->pending_list` before calling `sched->ops->timedout_job()`. This
-> means that when the job finally signals completion (e.g. in the IRQ
-> handler), the scheduler won't call `sched->ops->free_job()`. As a result,
-> the job and its resources won't be freed, leading to a memory leak.
-> 
-> To resolve this issue, we create a new `drm_gpu_sched_stat` that allows a
-> driver to skip the reset. This new status will indicate that the job
-> should be reinserted into the pending list, and the driver will still
-> signal its completion.
+== Series Details ==
 
-Since this is de facto what drivers do today I agree it makes sense to 
-formalise handling for it in the scheduler itself.
+Series: drm/i915/display: minor cleanups on drm_i915_private use
+URL   : https://patchwork.freedesktop.org/series/148630/
+State : success
 
-Acked-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+== Summary ==
 
-Some minor comments below.
+CI Bug Log - changes from xe-3041-25c796cd9b15016d205d6c1f7cb3c3852ec55453_BAT -> xe-pw-148630v1_BAT
+====================================================
 
-> Signed-off-by: Maíra Canal <mcanal@igalia.com>
-> ---
->   drivers/gpu/drm/scheduler/sched_main.c | 14 ++++++++++++++
->   include/drm/gpu_scheduler.h            |  2 ++
->   2 files changed, 16 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-> index 829579c41c6b5d8b2abce5ad373c7017469b7680..68ca827d77e32187a034309f881135dbc639a9b4 100644
-> --- a/drivers/gpu/drm/scheduler/sched_main.c
-> +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> @@ -568,6 +568,17 @@ static void drm_sched_job_timedout(struct work_struct *work)
->   			job->sched->ops->free_job(job);
->   			sched->free_guilty = false;
->   		}
-> +
-> +		/*
-> +		 * If the driver indicated that the GPU is still running and wants to skip
-> +		 * the reset, reinsert the job back into the pending list and realarm the
+Summary
+-------
 
-re-arm
+  **SUCCESS**
 
-> +		 * timeout.
-> +		 */
-> +		if (status == DRM_GPU_SCHED_STAT_RUNNING) {
-> +			spin_lock(&sched->job_list_lock);
-> +			list_add(&job->list, &sched->pending_list);
-> +			spin_unlock(&sched->job_list_lock);
-> +		}
->   	} else {
->   		spin_unlock(&sched->job_list_lock);
->   	}
-> @@ -590,6 +601,9 @@ static void drm_sched_job_timedout(struct work_struct *work)
->    * This function is typically used for reset recovery (see the docu of
->    * drm_sched_backend_ops.timedout_job() for details). Do not call it for
->    * scheduler teardown, i.e., before calling drm_sched_fini().
-> + *
-> + * As it's used for reset recovery, drm_sched_stop() shouldn't be called
-> + * if the scheduler skipped the timeout (DRM_SCHED_STAT_RUNNING).
+  No regressions found.
 
-s/scheduler/driver/ ?
+  
 
->    */
->   void drm_sched_stop(struct drm_gpu_scheduler *sched, struct drm_sched_job *bad)
->   {
-> diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-> index 1a7e377d4cbb4fc12ed93c548b236970217945e8..fe9043b6d43141bee831b5fc16b927202a507d51 100644
-> --- a/include/drm/gpu_scheduler.h
-> +++ b/include/drm/gpu_scheduler.h
-> @@ -389,11 +389,13 @@ struct drm_sched_job {
->    * @DRM_GPU_SCHED_STAT_NONE: Reserved. Do not use.
->    * @DRM_GPU_SCHED_STAT_NOMINAL: Operation succeeded.
->    * @DRM_GPU_SCHED_STAT_ENODEV: Error: Device is not available anymore.
-> + * @DRM_GPU_SCHED_STAT_RUNNING: GPU is still running, so skip the reset.
+Participating hosts (9 -> 8)
+------------------------------
 
-s/GPU/job/ ?
+  Missing    (1): bat-adlp-vm 
 
->    */
->   enum drm_gpu_sched_stat {
->   	DRM_GPU_SCHED_STAT_NONE,
->   	DRM_GPU_SCHED_STAT_NOMINAL,
->   	DRM_GPU_SCHED_STAT_ENODEV,
-> +	DRM_GPU_SCHED_STAT_RUNNING,
+Known issues
+------------
 
-I am wondering if we could make it more obvious what is the difference 
-between "nominal" and "running" and from whose point of view should 
-those statuses be considered.
+  Here are the changes found in xe-pw-148630v1_BAT that come from known issues:
 
-So far we have "nominal" which means scheduler/hardware is working fine 
-but the job may or may have not been cancelled. With "running" we kind 
-of split it into two sub-statuses and it would be nice for that to be 
-intuitively visible from the naming. But I struggle to suggest an 
-elegant name while preserving nominal as is.
+### IGT changes ###
 
-Thinking out loud here - perhaps that is pointing towards an alternative 
-that instead of a new status, a new helper to re-insert the single job 
-(like drm_sched_resubmit_job(sched, job)) would fit better? Although it 
-would be more churn.
+#### Issues hit ####
 
-Regards,
+  * igt@xe_evict@evict-beng-small-cm:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][1] ([Intel XE#261] / [Intel XE#688]) +9 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148630v1/bat-adlp-vf/igt@xe_evict@evict-beng-small-cm.html
 
-Tvrtko
+  * igt@xe_exec_fault_mode@twice-rebind:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][2] ([Intel XE#288]) +32 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148630v1/bat-adlp-vf/igt@xe_exec_fault_mode@twice-rebind.html
 
->   };
->   
->   /**
-> 
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][3] ([Intel XE#2229])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148630v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
 
+  
+#### Possible fixes ####
+
+  * igt@xe_live_ktest@xe_migrate:
+    - bat-adlp-vf:        [ABORT][4] ([Intel XE#4508]) -> [PASS][5] +1 other test pass
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3041-25c796cd9b15016d205d6c1f7cb3c3852ec55453/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148630v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html
+
+  
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#4508]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4508
+  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+
+
+Build changes
+-------------
+
+  * Linux: xe-3041-25c796cd9b15016d205d6c1f7cb3c3852ec55453 -> xe-pw-148630v1
+
+  IGT_8354: 59f7153426484367f58edfafb6567ce4e6a9e499 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3041-25c796cd9b15016d205d6c1f7cb3c3852ec55453: 25c796cd9b15016d205d6c1f7cb3c3852ec55453
+  xe-pw-148630v1: 148630v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148630v1/index.html
+
+--===============4703347870592112256==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: minor cleanups on drm_i915_private use</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148630/">https://patchwork.freedesktop.org/series/148630/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148630v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148630v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3041-25c796cd9b15016d205d6c1f7cb3c3852ec55453_BAT -&gt; xe-pw-148630v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-148630v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_evict@evict-beng-small-cm:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148630v1/bat-adlp-vf/igt@xe_evict@evict-beng-small-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +9 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-rebind:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148630v1/bat-adlp-vf/igt@xe_exec_fault_mode@twice-rebind.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148630v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_migrate:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3041-25c796cd9b15016d205d6c1f7cb3c3852ec55453/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4508">Intel XE#4508</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148630v1/bat-adlp-vf/igt@xe_live_ktest@xe_migrate.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3041-25c796cd9b15016d205d6c1f7cb3c3852ec55453 -&gt; xe-pw-148630v1</li>
+</ul>
+<p>IGT_8354: 59f7153426484367f58edfafb6567ce4e6a9e499 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3041-25c796cd9b15016d205d6c1f7cb3c3852ec55453: 25c796cd9b15016d205d6c1f7cb3c3852ec55453<br />
+  xe-pw-148630v1: 148630v1</p>
+
+</body>
+</html>
+
+--===============4703347870592112256==--
