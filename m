@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92F20C3ABBE
-	for <intel-xe@archiver.kernel.org>; Tue,  6 May 2025 07:55:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F9AFC3ABAC
+	for <intel-xe@archiver.kernel.org>; Tue,  6 May 2025 07:56:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57E7810E14A;
-	Tue,  6 May 2025 07:55:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42C9F10E14A;
+	Tue,  6 May 2025 07:56:17 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1EE810E14A;
- Tue,  6 May 2025 07:55:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A9F310E14A;
+ Tue,  6 May 2025 07:56:16 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============0741514099564188540=="
+ boundary="===============6493902728056903830=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_helper_functi?=
- =?utf-8?q?on_to_inject_fault_into_ct=5Fdead=5Fcapture=28=29_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/hwmon=3A_Add_mailbox?=
+ =?utf-8?q?_power_limits=2C_PL2=2C_read_energy_from_PMT?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "K V P, Satyanarayana" <satyanarayana.k.v.p@intel.com>
+To: "Poosa, Karthik" <karthik.poosa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 06 May 2025 07:55:45 -0000
-Message-ID: <174651814578.50314.3635206181506406491@c664b1dc75d1>
+Date: Tue, 06 May 2025 07:56:16 -0000
+Message-ID: <174651817649.50252.6281196445942660071@c664b1dc75d1>
 X-Patchwork-Hint: ignore
-References: <20250430131710.20532-1-satyanarayana.k.v.p@intel.com>
-In-Reply-To: <20250430131710.20532-1-satyanarayana.k.v.p@intel.com>
+References: <20250430203607.926585-1-karthik.poosa@intel.com>
+In-Reply-To: <20250430203607.926585-1-karthik.poosa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,28 +40,33 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0741514099564188540==
+--===============6493902728056903830==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/xe: Add helper function to inject fault into ct_dead_capture() (rev2)
-URL   : https://patchwork.freedesktop.org/series/148415/
-State : success
+Series: drm/xe/hwmon: Add mailbox power limits, PL2, read energy from PMT
+URL   : https://patchwork.freedesktop.org/series/148506/
+State : failure
 
 == Summary ==
 
-CI Bug Log - changes from xe-3013-1351e9f42d757ef4ce7d2cf2401aa2b5fe36df6d_BAT -> xe-pw-148415v2_BAT
+CI Bug Log - changes from xe-3014-48801f872be1ca3cc4f9faf1818b5ea44d1df318_BAT -> xe-pw-148506v1_BAT
 ====================================================
 
 Summary
 -------
 
-  **SUCCESS**
+  **FAILURE**
 
-  No regressions found.
+  Serious unknown changes coming with xe-pw-148506v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-148506v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
   
 
@@ -70,38 +75,49 @@ Participating hosts (9 -> 8)
 
   Missing    (1): bat-adlp-vm 
 
-Known issues
-------------
+Possible new issues
+-------------------
 
-  Here are the changes found in xe-pw-148415v2_BAT that come from known issues:
+  Here are the unknown changes that may have been introduced in xe-pw-148506v1_BAT:
 
 ### IGT changes ###
 
-#### Issues hit ####
+#### Possible regressions ####
 
-  * igt@xe_intel_bb@blit-simple:
-    - bat-adlp-vf:        [PASS][1] -> [ABORT][2] ([Intel XE#3970])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3013-1351e9f42d757ef4ce7d2cf2401aa2b5fe36df6d/bat-adlp-vf/igt@xe_intel_bb@blit-simple.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148415v2/bat-adlp-vf/igt@xe_intel_bb@blit-simple.html
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-1:          [PASS][1] -> [DMESG-WARN][2] +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3014-48801f872be1ca3cc4f9faf1818b5ea44d1df318/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148506v1/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:
+    - bat-atsm-2:         [PASS][3] -> [DMESG-WARN][4] +9 other tests dmesg-warn
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3014-48801f872be1ca3cc4f9faf1818b5ea44d1df318/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148506v1/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
+
+  * igt@xe_module_load@load:
+    - bat-bmg-2:          [PASS][5] -> [DMESG-WARN][6] +1 other test dmesg-warn
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3014-48801f872be1ca3cc4f9faf1818b5ea44d1df318/bat-bmg-2/igt@xe_module_load@load.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148506v1/bat-bmg-2/igt@xe_module_load@load.html
 
   
-  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
 
 
 Build changes
 -------------
 
-  * Linux: xe-3013-1351e9f42d757ef4ce7d2cf2401aa2b5fe36df6d -> xe-pw-148415v2
+  * IGT: IGT_8349 -> IGT_8350
+  * Linux: xe-3014-48801f872be1ca3cc4f9faf1818b5ea44d1df318 -> xe-pw-148506v1
 
-  IGT_8348: b16e09d706d803fa61530a274b9443e1d542898f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3013-1351e9f42d757ef4ce7d2cf2401aa2b5fe36df6d: 1351e9f42d757ef4ce7d2cf2401aa2b5fe36df6d
-  xe-pw-148415v2: 148415v2
+  IGT_8349: be0b7853bb2ded0b183e87bdaeab4318a7e2cd52 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8350: 641cb40b6e0075eedc1bc2c11efd246a2957b1ab @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3014-48801f872be1ca3cc4f9faf1818b5ea44d1df318: 48801f872be1ca3cc4f9faf1818b5ea44d1df318
+  xe-pw-148506v1: 148506v1
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148415v2/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148506v1/index.html
 
---===============0741514099564188540==
+--===============6493902728056903830==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -121,40 +137,60 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/xe: Add helper function to inject fault into ct_dead_capture() (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148415/">https://patchwork.freedesktop.org/series/148415/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+<tr><td><b>Series:</b></td><td>drm/xe/hwmon: Add mailbox power limits, PL2, read energy from PMT</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148506/">https://patchwork.freedesktop.org/series/148506/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148415v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148415v2/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148506v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148506v1/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from xe-3013-1351e9f42d757ef4ce7d2cf2401aa2b5fe36df6d_BAT -&gt; xe-pw-148415v2_BAT</h1>
+    <h1>CI Bug Log - changes from xe-3014-48801f872be1ca3cc4f9faf1818b5ea44d1df318_BAT -&gt; xe-pw-148506v1_BAT</h1>
 <h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-148506v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-148506v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
 <h2>Participating hosts (9 -&gt; 8)</h2>
 <p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-148415v2_BAT that come from known issues:</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-148506v1_BAT:</p>
 <h3>IGT changes</h3>
-<h4>Issues hit</h4>
+<h4>Possible regressions</h4>
 <ul>
-<li>igt@xe_intel_bb@blit-simple:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3013-1351e9f42d757ef4ce7d2cf2401aa2b5fe36df6d/bat-adlp-vf/igt@xe_intel_bb@blit-simple.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148415v2/bat-adlp-vf/igt@xe_intel_bb@blit-simple.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>)</li>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3014-48801f872be1ca3cc4f9faf1818b5ea44d1df318/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148506v1/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:</p>
+<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3014-48801f872be1ca3cc4f9faf1818b5ea44d1df318/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148506v1/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">DMESG-WARN</a> +9 other tests dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_module_load@load:</p>
+<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3014-48801f872be1ca3cc4f9faf1818b5ea44d1df318/bat-bmg-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148506v1/bat-bmg-2/igt@xe_module_load@load.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
 </ul>
 </li>
 </ul>
 <h2>Build changes</h2>
 <ul>
-<li>Linux: xe-3013-1351e9f42d757ef4ce7d2cf2401aa2b5fe36df6d -&gt; xe-pw-148415v2</li>
+<li>IGT: IGT_8349 -&gt; IGT_8350</li>
+<li>Linux: xe-3014-48801f872be1ca3cc4f9faf1818b5ea44d1df318 -&gt; xe-pw-148506v1</li>
 </ul>
-<p>IGT_8348: b16e09d706d803fa61530a274b9443e1d542898f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3013-1351e9f42d757ef4ce7d2cf2401aa2b5fe36df6d: 1351e9f42d757ef4ce7d2cf2401aa2b5fe36df6d<br />
-  xe-pw-148415v2: 148415v2</p>
+<p>IGT_8349: be0b7853bb2ded0b183e87bdaeab4318a7e2cd52 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8350: 641cb40b6e0075eedc1bc2c11efd246a2957b1ab @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3014-48801f872be1ca3cc4f9faf1818b5ea44d1df318: 48801f872be1ca3cc4f9faf1818b5ea44d1df318<br />
+  xe-pw-148506v1: 148506v1</p>
 
 </body>
 </html>
 
---===============0741514099564188540==--
+--===============6493902728056903830==--
