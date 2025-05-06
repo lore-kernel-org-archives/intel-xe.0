@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CDD9C3ABAC
-	for <intel-xe@archiver.kernel.org>; Tue,  6 May 2025 07:57:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A132C3ABBC
+	for <intel-xe@archiver.kernel.org>; Tue,  6 May 2025 07:58:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E974610E14A;
-	Tue,  6 May 2025 07:57:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C97310E14A;
+	Tue,  6 May 2025 07:58:05 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CC0110E14A;
- Tue,  6 May 2025 07:57:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB6E610E14A;
+ Tue,  6 May 2025 07:58:03 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============8935288258334887121=="
+ boundary="===============0003938859432693197=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Call_svm_worker_o?=
- =?utf-8?q?nly_when_svm_is_enabled?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_remove_?=
+ =?utf-8?q?intel=5Fde=5F*=28=29_compat_wrappers_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 06 May 2025 07:57:46 -0000
-Message-ID: <174651826610.50252.359145555075288678@c664b1dc75d1>
+Date: Tue, 06 May 2025 07:58:03 -0000
+Message-ID: <174651828388.50382.15661535588782554500@c664b1dc75d1>
 X-Patchwork-Hint: ignore
-References: <20250502040757.1722973-1-shuicheng.lin@intel.com>
-In-Reply-To: <20250502040757.1722973-1-shuicheng.lin@intel.com>
+References: <cover.1746175756.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1746175756.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,20 +40,20 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8935288258334887121==
+--===============0003938859432693197==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/xe: Call svm worker only when svm is enabled
-URL   : https://patchwork.freedesktop.org/series/148535/
+Series: drm/i915/display: remove intel_de_*() compat wrappers (rev2)
+URL   : https://patchwork.freedesktop.org/series/148181/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-3022-f376245e305184e2526285ca190ee58feaac720b_BAT -> xe-pw-148535v1_BAT
+CI Bug Log - changes from xe-3024-cdf42c84d8714384d23c24b5ef5f726c0061a028_BAT -> xe-pw-148181v2_BAT
 ====================================================
 
 Summary
@@ -70,27 +70,38 @@ Participating hosts (9 -> 8)
 
   Missing    (1): bat-adlp-vm 
 
+Known issues
+------------
 
-Changes
--------
+  Here are the changes found in xe-pw-148181v2_BAT that come from known issues:
 
-  No changes found
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_exec_basic@twice-bindexecqueue-rebind:
+    - bat-adlp-vf:        [PASS][1] -> [ABORT][2] ([Intel XE#3970])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3024-cdf42c84d8714384d23c24b5ef5f726c0061a028/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148181v2/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
+
+  
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
 
 
 Build changes
 -------------
 
-  * Linux: xe-3022-f376245e305184e2526285ca190ee58feaac720b -> xe-pw-148535v1
+  * Linux: xe-3024-cdf42c84d8714384d23c24b5ef5f726c0061a028 -> xe-pw-148181v2
 
   IGT_8351: a994944173f1428dcf7247af03a821d51feae1cc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3022-f376245e305184e2526285ca190ee58feaac720b: f376245e305184e2526285ca190ee58feaac720b
-  xe-pw-148535v1: 148535v1
+  xe-3024-cdf42c84d8714384d23c24b5ef5f726c0061a028: cdf42c84d8714384d23c24b5ef5f726c0061a028
+  xe-pw-148181v2: 148181v2
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148535v1/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148181v2/index.html
 
---===============8935288258334887121==
+--===============0003938859432693197==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -110,32 +121,40 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/xe: Call svm worker only when svm is enabled</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148535/">https://patchwork.freedesktop.org/series/148535/</a></td></tr>
+<tr><td><b>Series:</b></td><td>drm/i915/display: remove intel_de_*() compat wrappers (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148181/">https://patchwork.freedesktop.org/series/148181/</a></td></tr>
 <tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148535v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148535v1/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148181v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148181v2/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from xe-3022-f376245e305184e2526285ca190ee58feaac720b_BAT -&gt; xe-pw-148535v1_BAT</h1>
+    <h1>CI Bug Log - changes from xe-3024-cdf42c84d8714384d23c24b5ef5f726c0061a028_BAT -&gt; xe-pw-148181v2_BAT</h1>
 <h2>Summary</h2>
 <p><strong>SUCCESS</strong></p>
 <p>No regressions found.</p>
 <h2>Participating hosts (9 -&gt; 8)</h2>
 <p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-148181v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_exec_basic@twice-bindexecqueue-rebind:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3024-cdf42c84d8714384d23c24b5ef5f726c0061a028/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148181v2/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>)</li>
+</ul>
+</li>
+</ul>
 <h2>Build changes</h2>
 <ul>
-<li>Linux: xe-3022-f376245e305184e2526285ca190ee58feaac720b -&gt; xe-pw-148535v1</li>
+<li>Linux: xe-3024-cdf42c84d8714384d23c24b5ef5f726c0061a028 -&gt; xe-pw-148181v2</li>
 </ul>
 <p>IGT_8351: a994944173f1428dcf7247af03a821d51feae1cc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3022-f376245e305184e2526285ca190ee58feaac720b: f376245e305184e2526285ca190ee58feaac720b<br />
-  xe-pw-148535v1: 148535v1</p>
+  xe-3024-cdf42c84d8714384d23c24b5ef5f726c0061a028: cdf42c84d8714384d23c24b5ef5f726c0061a028<br />
+  xe-pw-148181v2: 148181v2</p>
 
 </body>
 </html>
 
---===============8935288258334887121==--
+--===============0003938859432693197==--
