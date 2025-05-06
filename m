@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B08D9C3ABBE
-	for <intel-xe@archiver.kernel.org>; Tue,  6 May 2025 17:10:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40330C3ABBC
+	for <intel-xe@archiver.kernel.org>; Tue,  6 May 2025 17:15:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AF8510E705;
-	Tue,  6 May 2025 17:10:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDA4610E029;
+	Tue,  6 May 2025 17:15:36 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C62F110E705;
- Tue,  6 May 2025 17:10:48 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5295275027631154973=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C97610E029;
+ Tue,  6 May 2025 17:15:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Enable/Disable_DC_balance_a?=
- =?utf-8?q?long_with_VRR_DSB_=28rev4=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/hwmon=3A_Add_?=
+ =?utf-8?q?mailbox_power_limits=2C_PL2=2C_read_energy_from_PMT_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
+To: "Karthik Poosa" <karthik.poosa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 06 May 2025 17:10:48 -0000
-Message-ID: <174655144880.52687.4051150138532727012@c664b1dc75d1>
+Date: Tue, 06 May 2025 17:15:35 -0000
+Message-ID: <174655173537.52693.7253771741370179288@c664b1dc75d1>
 X-Patchwork-Hint: ignore
-References: <20250506145517.4129419-1-mitulkumar.ajitkumar.golani@intel.com>
-In-Reply-To: <20250506145517.4129419-1-mitulkumar.ajitkumar.golani@intel.com>
+References: <20250506153058.1389470-1-karthik.poosa@intel.com>
+In-Reply-To: <20250506153058.1389470-1-karthik.poosa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,21 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5295275027631154973==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Enable/Disable DC balance along with VRR DSB (rev4)
-URL   : https://patchwork.freedesktop.org/series/148025/
+Series: drm/xe/hwmon: Add mailbox power limits, PL2, read energy from PMT (rev2)
+URL   : https://patchwork.freedesktop.org/series/148506/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-3043-842c3c276c106040f9b96d72b9df35ed6aed9ae9_BAT -> xe-pw-148025v4_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 842c3c276c10 drm-tip: 2025y-05m-06d-15h-34m-18s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/hwmon: Add support to manage power limits though mailbox
+Applying: drm/xe/hwmon: Move card reactive critical power under channel card
+Applying: drm/xe/hwmon: Add support to manage PL2 though mailbox
+Applying: drm/xe/hwmon: Expose powerX_cap_interval
+Applying: drm/xe/hwmon: Read energy status from PMT
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3043-842c3c276c106040f9b96d72b9df35ed6aed9ae9 -> xe-pw-148025v4
-
-  IGT_8354: 59f7153426484367f58edfafb6567ce4e6a9e499 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3043-842c3c276c106040f9b96d72b9df35ed6aed9ae9: 842c3c276c106040f9b96d72b9df35ed6aed9ae9
-  xe-pw-148025v4: 148025v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148025v4/index.html
-
---===============5295275027631154973==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Enable/Disable DC balance along with VRR DSB (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148025/">https://patchwork.freedesktop.org/series/148025/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148025v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148025v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3043-842c3c276c106040f9b96d72b9df35ed6aed9ae9_BAT -&gt; xe-pw-148025v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3043-842c3c276c106040f9b96d72b9df35ed6aed9ae9 -&gt; xe-pw-148025v4</li>
-</ul>
-<p>IGT_8354: 59f7153426484367f58edfafb6567ce4e6a9e499 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3043-842c3c276c106040f9b96d72b9df35ed6aed9ae9: 842c3c276c106040f9b96d72b9df35ed6aed9ae9<br />
-  xe-pw-148025v4: 148025v4</p>
-
-</body>
-</html>
-
---===============5295275027631154973==--
