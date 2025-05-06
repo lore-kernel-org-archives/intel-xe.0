@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DE69C3ABBC
-	for <intel-xe@archiver.kernel.org>; Tue,  6 May 2025 23:05:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C22CC3ABBE
+	for <intel-xe@archiver.kernel.org>; Tue,  6 May 2025 23:06:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1707310E112;
-	Tue,  6 May 2025 23:05:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52D3710E112;
+	Tue,  6 May 2025 23:06:06 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B4EE10E112;
- Tue,  6 May 2025 23:05:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 315DE10E112;
+ Tue,  6 May 2025 23:06:05 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Enable_SVM_atomics_i?=
- =?utf-8?q?n_Xe_/_GPU_SVM_=28rev6=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Enable_SVM_atomics_in_Xe_?=
+ =?utf-8?q?/_GPU_SVM_=28rev6=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 06 May 2025 23:05:47 -0000
-Message-ID: <174657274744.52693.15486297536376329357@c664b1dc75d1>
+Date: Tue, 06 May 2025 23:06:05 -0000
+Message-ID: <174657276518.53100.16984225912597351101@c664b1dc75d1>
 X-Patchwork-Hint: ignore
 References: <20250506230132.1188732-1-matthew.brost@intel.com>
 In-Reply-To: <20250506230132.1188732-1-matthew.brost@intel.com>
@@ -48,13 +48,34 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 842c3c276c10 drm-tip: 2025y-05m-06d-15h-34m-18s UTC integration manifest
-=== git am output follows ===
-Applying: drm/gpusvm: Introduce devmem_only flag for allocation
-Applying: drm/xe: Strict migration policy for atomic SVM faults
-Applying: drm/gpusvm: Add timeslicing support to GPU SVM
-Applying: drm/xe: Timeslice GPU on atomic SVM fault
-Applying: drm/xe: Add atomic_svm_timeslice_ms debugfs entry
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 9972ee53e5cbaf9cd3ae947fe1a4b1d1aaac6fa4
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Tue May 6 16:01:32 2025 -0700
+
+    drm/xe: Add atomic_svm_timeslice_ms debugfs entry
+    
+    Add some informal control for atomic SVM fault GPU timeslice to be able
+    to play around with values and tweak performance.
+    
+    v2:
+     - Reduce timeslice default value to 5ms
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
++ /mt/dim checkpatch 842c3c276c106040f9b96d72b9df35ed6aed9ae9 drm-intel
+b06f9748cd18 drm/gpusvm: Introduce devmem_only flag for allocation
+8364e3d9d720 drm/xe: Strict migration policy for atomic SVM faults
+e27b8f7eb2ae drm/gpusvm: Add timeslicing support to GPU SVM
+43d221ad3d59 drm/xe: Timeslice GPU on atomic SVM fault
+9972ee53e5cb drm/xe: Add atomic_svm_timeslice_ms debugfs entry
 
 
