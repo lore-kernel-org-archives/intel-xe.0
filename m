@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25594C3ABBF
-	for <intel-xe@archiver.kernel.org>; Tue,  6 May 2025 10:57:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3078BC3ABBF
+	for <intel-xe@archiver.kernel.org>; Tue,  6 May 2025 11:03:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA5FD10E656;
-	Tue,  6 May 2025 10:57:39 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j1gccOiO";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8480D10E64F;
- Tue,  6 May 2025 10:57:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746529059; x=1778065059;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=9AN7sl6uz5XvHG47osj5jOJevuZEjw+8hGzZDPd1tMs=;
- b=j1gccOiOoib2dUNIPXpmd9LC7Bf45n0sPfRqOQWccGwRwoOC1ZpoS62y
- clU34S9phJszmE70xUS7m8Usx1taCtQTGTvqbWOpsWHpVHNLlJ144iPVi
- ImNPDwXaHRGFOZATFVvB2RaszoNz1EbWee3t3Z8G9rOj9h1xiRkI9ABCs
- 8fH9+AzbmCs/9eVj+Dg175htKhwGA5zd3vYalCHy0dWE58qwaRCZNoD8O
- hZzbGKfKVFvXhOuqUUjMSoG62c8iLrsVAABD0W3eAEp6PVkBPOQcnRxrt
- BSscew7q/GuN1AN91EVFHIvcgJzkuKBfttyhuLTqWuaUmcRLFKzuU+8Hk A==;
-X-CSE-ConnectionGUID: +UcVGc57QdWk9k6kzIRDGQ==
-X-CSE-MsgGUID: WUX3EgtvQU+WXxOJofG6jA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11424"; a="59580323"
-X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; d="scan'208";a="59580323"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2025 03:57:39 -0700
-X-CSE-ConnectionGUID: q7RqaIIXQReitApXXJxEFw==
-X-CSE-MsgGUID: rdnofmVmSMe17bNiZn0TxA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; d="scan'208";a="139636372"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.221])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2025 03:57:37 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 4/4] drm/i915/crtc: pass struct intel_display to DISPLAY_VER()
-Date: Tue,  6 May 2025 13:57:19 +0300
-Message-Id: <cb84073ff92a99e74ff6dfb8e395365b7cbb5332.1746529001.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1746529001.git.jani.nikula@intel.com>
-References: <cover.1746529001.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E50CE10E045;
+	Tue,  6 May 2025 11:03:58 +0000 (UTC)
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C698E10E045;
+ Tue,  6 May 2025 11:03:57 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
+ =?utf-8?q?minor_cleanups_on_drm=5Fi915=5Fprivate_use?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 06 May 2025 11:03:57 -0000
+Message-ID: <174652943780.50798.8248917667240340009@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <cover.1746529001.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1746529001.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,37 +36,24 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Drop another reference to struct drm_i915_private.
+== Series Details ==
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_crtc.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+Series: drm/i915/display: minor cleanups on drm_i915_private use
+URL   : https://patchwork.freedesktop.org/series/148630/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 537859630363..29cfc38f12e0 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -305,7 +305,6 @@ static const struct drm_crtc_funcs i8xx_crtc_funcs = {
- 
- int intel_crtc_init(struct intel_display *display, enum pipe pipe)
- {
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	struct intel_plane *primary, *cursor;
- 	const struct drm_crtc_funcs *funcs;
- 	struct intel_crtc *crtc;
-@@ -333,7 +332,7 @@ int intel_crtc_init(struct intel_display *display, enum pipe pipe)
- 	for_each_sprite(display, pipe, sprite) {
- 		struct intel_plane *plane;
- 
--		if (DISPLAY_VER(dev_priv) >= 9)
-+		if (DISPLAY_VER(display) >= 9)
- 			plane = skl_universal_plane_create(display, pipe, PLANE_2 + sprite);
- 		else
- 			plane = intel_sprite_plane_create(display, pipe, sprite);
--- 
-2.39.5
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 25c796cd9b15 drm-tip: 2025y-05m-06d-09h-09m-57s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/dsi: remove dependency on i915_drv.h
+Applying: drm/i915/display: remove struct drm_i915_private forward declaration
+Applying: drm/i915/bios: fix a comment referencing struct drm_i915_private
+Applying: drm/i915/crtc: pass struct intel_display to DISPLAY_VER()
+
 
