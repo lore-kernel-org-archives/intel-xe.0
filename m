@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A87F8C3ABAC
-	for <intel-xe@archiver.kernel.org>; Tue,  6 May 2025 07:00:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E2E8C3ABBC
+	for <intel-xe@archiver.kernel.org>; Tue,  6 May 2025 07:01:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C37310E562;
-	Tue,  6 May 2025 07:00:23 +0000 (UTC)
-Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EF6410E562;
- Tue,  6 May 2025 07:00:22 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5982298151876406981=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E96B10E562;
+	Tue,  6 May 2025 07:01:45 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NGMfUsF7";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 780A710E562;
+ Tue,  6 May 2025 07:01:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1746514904; x=1778050904;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=BYQ3+k0PDyG9yd2xnxofXZ+tBSnWncI9KK7heDjqNPY=;
+ b=NGMfUsF78Pp9Inpt0oZg554xX8GsP1x0i02NeYMDaujE9VgjBZPzD+Pl
+ InbLXX7r207fCbLIhIN2UaSN3Ujpo7e40Ex2lqHY91BA9RJqW8nejPW4v
+ OoLr+E7p45JuYbUs96KoYbVuK2HgsPShBTexMux5GqJDuo4WUn5NPJfmp
+ KnFNpbwj5e+GRZZXJqa2JeU2t0MMONcRt5bwPHcHyU5Lg2ul7VNno6eQu
+ tIIr/LOJPGL2L3VB+zXwKZZV5UHEeJJodV/0UvQ3R2Yx4dcc9/hsLxrbS
+ R/SdDwmHhn8qgKxNogkRrqgiNfmCK+XXx+ADMzxjMNj8cVes8sFou5UCO Q==;
+X-CSE-ConnectionGUID: F/Xreq/zSVSLj8XLoDaYLg==
+X-CSE-MsgGUID: +QkTdt/sSJK4jQ2yADNICg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11424"; a="48067979"
+X-IronPort-AV: E=Sophos;i="6.15,265,1739865600"; d="scan'208";a="48067979"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2025 00:01:12 -0700
+X-CSE-ConnectionGUID: WVMjI20lQz6zSiz17jwg+g==
+X-CSE-MsgGUID: KXf+T8pmRy22Cy2iiqWiUA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,265,1739865600"; d="scan'208";a="140273099"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO jhogande-mobl1..)
+ ([10.245.245.171])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2025 00:01:11 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: animesh.manna@intel.com,
+ =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH 2/4] drm/i915/alpm: Move disabling sink ALPM to intel_alpm.c
+Date: Tue,  6 May 2025 10:00:27 +0300
+Message-ID: <20250506070029.1326368-3-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250506070029.1326368-1-jouni.hogander@intel.com>
+References: <20250506070029.1326368-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_BMG_PCIe_link_downgrade_att?=
- =?utf-8?q?ributes_and_usage?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Raag Jadav" <raag.jadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 06 May 2025 07:00:22 -0000
-Message-ID: <174651482224.50100.10211835939454056889@c664b1dc75d1>
-X-Patchwork-Hint: ignore
-References: <20250506054835.3395220-1-raag.jadav@intel.com>
-In-Reply-To: <20250506054835.3395220-1-raag.jadav@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +68,53 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5982298151876406981==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Currently disabling sink ALPM is done only when disabling PSR. Now
+ALPM code is shared between LOBF and PSR. Enabling sink ALPM is
+already done in intel_alpm.c. Not really expected it getting disabled
+in intel_psr.c. Move disabling sink ALPM to intel_alpm.c.
 
-== Series Details ==
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_alpm.c | 2 ++
+ drivers/gpu/drm/i915/display/intel_psr.c  | 7 +------
+ 2 files changed, 3 insertions(+), 6 deletions(-)
 
-Series: BMG PCIe link downgrade attributes and usage
-URL   : https://patchwork.freedesktop.org/series/148617/
-State : success
+diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
+index d48d1e6cc356..2454f78fc416 100644
+--- a/drivers/gpu/drm/i915/display/intel_alpm.c
++++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+@@ -564,6 +564,8 @@ void intel_alpm_disable(struct intel_dp *intel_dp)
+ 	intel_de_write(display, ALPM_CTL(display, cpu_transcoder), 0);
+ 	intel_de_write(display, PORT_ALPM_CTL(dp_to_dig_port(intel_dp)->base.port), 0);
+ 
++	drm_dp_dpcd_writeb(&intel_dp->aux, DP_RECEIVER_ALPM_CONFIG, 0);
++
+ 	drm_dbg_kms(display->drm, "Disabling ALPM\n");
+ 	mutex_unlock(&intel_dp->alpm_parameters.lock);
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index ccd66bbc72f7..89c4aaf8bd36 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -2173,14 +2173,9 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
+ 		intel_snps_phy_update_psr_power_state(&dp_to_dig_port(intel_dp)->base, false);
+ 
+ 	/* Disable PSR on Sink */
+-	if (!intel_dp->psr.panel_replay_enabled) {
++	if (!intel_dp->psr.panel_replay_enabled)
+ 		drm_dp_dpcd_writeb(&intel_dp->aux, DP_PSR_EN_CFG, 0);
+ 
+-		if (intel_dp->psr.sel_update_enabled)
+-			drm_dp_dpcd_writeb(&intel_dp->aux,
+-					   DP_RECEIVER_ALPM_CONFIG, 0);
+-	}
+-
+ 	/* Wa_16025596647 */
+ 	if ((DISPLAY_VER(display) == 20 ||
+ 	     IS_DISPLAY_VERx100_STEP(display, 3000, STEP_A0, STEP_B0)) &&
+-- 
+2.43.0
 
-== Summary ==
-
-CI Bug Log - changes from xe-3039-a4ab06017eec906c708db6a350820f07858160ec_BAT -> xe-pw-148617v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3039-a4ab06017eec906c708db6a350820f07858160ec -> xe-pw-148617v1
-
-  IGT_8354: 59f7153426484367f58edfafb6567ce4e6a9e499 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3039-a4ab06017eec906c708db6a350820f07858160ec: a4ab06017eec906c708db6a350820f07858160ec
-  xe-pw-148617v1: 148617v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148617v1/index.html
-
---===============5982298151876406981==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>BMG PCIe link downgrade attributes and usage</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148617/">https://patchwork.freedesktop.org/series/148617/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148617v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148617v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3039-a4ab06017eec906c708db6a350820f07858160ec_BAT -&gt; xe-pw-148617v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3039-a4ab06017eec906c708db6a350820f07858160ec -&gt; xe-pw-148617v1</li>
-</ul>
-<p>IGT_8354: 59f7153426484367f58edfafb6567ce4e6a9e499 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3039-a4ab06017eec906c708db6a350820f07858160ec: a4ab06017eec906c708db6a350820f07858160ec<br />
-  xe-pw-148617v1: 148617v1</p>
-
-</body>
-</html>
-
---===============5982298151876406981==--
