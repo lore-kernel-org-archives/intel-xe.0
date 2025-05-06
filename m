@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 340FCC3ABAC
-	for <intel-xe@archiver.kernel.org>; Tue,  6 May 2025 08:10:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8418C3ABBE
+	for <intel-xe@archiver.kernel.org>; Tue,  6 May 2025 08:15:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECCE510E1E1;
-	Tue,  6 May 2025 08:10:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70CA610E14A;
+	Tue,  6 May 2025 08:15:05 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F214C10E1E1;
- Tue,  6 May 2025 08:10:03 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3882017028882935838=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED37F10E159;
+ Tue,  6 May 2025 08:15:04 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/ttm=3A_Remove_the_struc?=
- =?utf-8?q?t_ttm=5Fbackup_abstraction?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_ALPM_rework_and_fixe?=
+ =?utf-8?q?s?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 06 May 2025 08:10:03 -0000
-Message-ID: <174651900397.50382.4711886825360378676@c664b1dc75d1>
+Date: Tue, 06 May 2025 08:15:04 -0000
+Message-ID: <174651930496.50407.1102164580624579470@c664b1dc75d1>
 X-Patchwork-Hint: ignore
-References: <20250502130014.3156-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20250502130014.3156-1-thomas.hellstrom@linux.intel.com>
+References: <20250506070029.1326368-1-jouni.hogander@intel.com>
+In-Reply-To: <20250506070029.1326368-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,20 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3882017028882935838==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/ttm: Remove the struct ttm_backup abstraction
-URL   : https://patchwork.freedesktop.org/series/148553/
+Series: ALPM rework and fixes
+URL   : https://patchwork.freedesktop.org/series/148619/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-3026-5303c0e49b49fe27639ba8b2c178931bc22344a2_BAT -> xe-pw-148553v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 6ecf79fd8e91 drm-tip: 2025y-05m-06d-07h-32m-28s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/alpm: Clear ALPM registers when disabling ALPM
+Applying: drm/i915/alpm: Move disabling sink ALPM to intel_alpm.c
+Applying: drm/i915/alpm: Disable ALPM rework
+Applying: drm/i915/alpm: Stop writing ALPM registers when PSR is enabled
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3026-5303c0e49b49fe27639ba8b2c178931bc22344a2 -> xe-pw-148553v1
-
-  IGT_8351: a994944173f1428dcf7247af03a821d51feae1cc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3026-5303c0e49b49fe27639ba8b2c178931bc22344a2: 5303c0e49b49fe27639ba8b2c178931bc22344a2
-  xe-pw-148553v1: 148553v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148553v1/index.html
-
---===============3882017028882935838==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/ttm: Remove the struct ttm_backup abstraction</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148553/">https://patchwork.freedesktop.org/series/148553/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148553v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148553v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3026-5303c0e49b49fe27639ba8b2c178931bc22344a2_BAT -&gt; xe-pw-148553v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3026-5303c0e49b49fe27639ba8b2c178931bc22344a2 -&gt; xe-pw-148553v1</li>
-</ul>
-<p>IGT_8351: a994944173f1428dcf7247af03a821d51feae1cc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3026-5303c0e49b49fe27639ba8b2c178931bc22344a2: 5303c0e49b49fe27639ba8b2c178931bc22344a2<br />
-  xe-pw-148553v1: 148553v1</p>
-
-</body>
-</html>
-
---===============3882017028882935838==--
