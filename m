@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF817C3ABBF
-	for <intel-xe@archiver.kernel.org>; Wed,  7 May 2025 12:25:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE60AC3ABC0
+	for <intel-xe@archiver.kernel.org>; Wed,  7 May 2025 12:25:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D6AF10E79C;
-	Wed,  7 May 2025 12:25:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F9D910E7A0;
+	Wed,  7 May 2025 12:25:49 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3543F10E79C;
- Wed,  7 May 2025 12:25:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50C8910E79F;
+ Wed,  7 May 2025 12:25:48 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/ptl=3A_Disabl?=
- =?utf-8?q?e_null_query_for_anyhit_shader?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/ptl=3A_Disable_nul?=
+ =?utf-8?q?l_query_for_anyhit_shader?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Nitin Gote" <nitin.r.gote@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 07 May 2025 12:25:37 -0000
-Message-ID: <174662073719.54752.17670265993762733645@c664b1dc75d1>
+Date: Wed, 07 May 2025 12:25:48 -0000
+Message-ID: <174662074832.54752.15061759239998704724@c664b1dc75d1>
 X-Patchwork-Hint: ignore
 References: <20250507124437.2651331-1-nitin.r.gote@intel.com>
 In-Reply-To: <20250507124437.2651331-1-nitin.r.gote@intel.com>
@@ -48,9 +48,28 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: b5600d5671f0 drm-tip: 2025y-05m-07d-08h-16m-10s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/ptl: Disable null query for anyhit shader
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 40574d71607b31579adba16de599fd76ec2ea3b5
+Author: Nitin Gote <nitin.r.gote@intel.com>
+Date:   Wed May 7 18:14:37 2025 +0530
+
+    drm/xe/ptl: Disable null query for anyhit shader
+    
+    For PTL, disable null query for anyhit shader as it
+    currently does not bring any performance benefits.
+    Quite the contrary, disabling the mechanism brings a
+    small but consistent perf uplift.
+    
+    Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
++ /mt/dim checkpatch b5600d5671f0e468c0c73bc7a1de942097ddaab4 drm-intel
+40574d71607b drm/xe/ptl: Disable null query for anyhit shader
 
 
