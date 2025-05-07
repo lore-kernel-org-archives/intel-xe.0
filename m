@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8F7FC3ABC5
-	for <intel-xe@archiver.kernel.org>; Wed,  7 May 2025 20:36:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82D51C3ABBF
+	for <intel-xe@archiver.kernel.org>; Wed,  7 May 2025 20:36:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7291910E8AA;
-	Wed,  7 May 2025 20:36:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 432ED10E8B9;
+	Wed,  7 May 2025 20:36:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bFZESJjG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WoKQp4wb";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C03910E8A6
- for <intel-xe@lists.freedesktop.org>; Wed,  7 May 2025 20:36:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8D3810E8B6
+ for <intel-xe@lists.freedesktop.org>; Wed,  7 May 2025 20:36:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746650211; x=1778186211;
+ t=1746650215; x=1778186215;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=zwueP7F29nJf7ZLe81FFm+T8sEz60zaedRztAVyZqQE=;
- b=bFZESJjGM1dejvendK/D1LNBxWzUTyWLuuPBCR0XEoE6TfXRGCSEWGk/
- +/ilAW0Q+R12XASFKHl6QE43dfNGj69mTXsKk5KMMRBgKp300yUSnqlpe
- LhagvV8AFvvh9nmnwlVbIMFCLsjQQuC3b+RylRMAO40djVnQmEmhNXLS9
- 6Z0Y6pZvJ5RoduVmNPihhbsnxU1i8Gv8b3r8ROY6TqyHk4hEuGan+TS7z
- 64oNOYtAWaJRAcwtZ9S5NRFqoaJrkgSKnUmCK7Y/ZYg2GWyjVS3eHt/6x
- ooyOWSZFMvWgb8w6J4U/858E9ZDB4JD/rKpAeSdLCQO3HZSIR/YgjgSPK A==;
-X-CSE-ConnectionGUID: 1J/dRJkUSPekbLF/cihJ4w==
-X-CSE-MsgGUID: TBhB8nKlSO+pxp2xmAIX4Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11426"; a="59396567"
-X-IronPort-AV: E=Sophos;i="6.15,270,1739865600"; d="scan'208";a="59396567"
+ bh=jX6ghPLv4fe1aOo+Y99ktamQxMjUI7SLmDJQ2If+T8A=;
+ b=WoKQp4wbs7xDDayNTY6wlVhFQdgxUmb9vlOrI4cimFoirVdolgodNmNh
+ GK3tDSlI5NSkDM92NkKjeo9mSdqh67gVRo8VUsIIkT+CBqWIR5ioaatm8
+ 7Ks0d+e1cCStLnB05HqUj+KBJLkfWf9OLBq+ir8bh6jN5Q3tzAQFPBzwg
+ +bKqe0oWouyo5xRVBWZMcsmGlNe0f2QkCvysdse54gfzQwHd/AA3zPDZG
+ +CAqXYOvnYxygxFgAg8PfTK3moj2geMk6xnawyLW35rRQMdlsO6ZrwbuV
+ ZKuVcmcynAldiXF5WCwwE1ZKgIdQIjO9DQkQpqv6ExKqO8apOsKGY0KJV Q==;
+X-CSE-ConnectionGUID: 0ODtPR9xRj2QCSKkHl1TtQ==
+X-CSE-MsgGUID: CFTgnVnuQtOWmlPEWQZ7UQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11426"; a="59396581"
+X-IronPort-AV: E=Sophos;i="6.15,270,1739865600"; d="scan'208";a="59396581"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2025 13:36:51 -0700
-X-CSE-ConnectionGUID: 8Gv34UmBRMez9Gr4rsTuEg==
-X-CSE-MsgGUID: vT3kWtsWTge89yX82QkjvQ==
+ 07 May 2025 13:36:54 -0700
+X-CSE-ConnectionGUID: 0vzCyjBMQmmnzK4uC10PdQ==
+X-CSE-MsgGUID: D2HotMAYT5S+8VN+G1x8tw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,270,1739865600"; d="scan'208";a="141038376"
+X-IronPort-AV: E=Sophos;i="6.15,270,1739865600"; d="scan'208";a="141038385"
 Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
  by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2025 13:36:52 -0700
+ 07 May 2025 13:36:55 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Wed, 7 May 2025 13:36:50 -0700
+ 15.2.1544.14; Wed, 7 May 2025 13:36:53 -0700
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Wed, 7 May 2025 13:36:50 -0700
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.45) by
+ 15.2.1544.14 via Frontend Transport; Wed, 7 May 2025 13:36:53 -0700
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.40) by
  edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Wed, 7 May 2025 13:36:49 -0700
+ 15.1.2507.44; Wed, 7 May 2025 13:36:52 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EovBpEO1u9opMkU5qbzaGH6Lsx3OnBBHbl40RBbr/SmTpVfKdFTg0D8dJmzvuLSaCYqkYhobaCK3/66AKb/50mWdf5RX5s5FecxCEBSJBE/QqjOCSex3uODJJQQArX1HAAtNyEYNgKLnkTOXG9x2m5PNicu+Zp7uLeKFA0ZMdN5MKydSAvSefE17mbtS+EBYM/a+2S/bGWbzM/6Mq2liG0BwqIiG7bKw0JAhkV14TSz1B/dS0if4KQH1erXVX9Fw6Hvie6Osji+KpLHbggG0LpXR6FzGILUsnxwZViHrAiLNiLaEMP/zUT8L4kkx+z4SDP4DXJ9Mfq7lKwb8jD29OQ==
+ b=sXyBtWeUudW3TcYYB5QrJs0JXG+NWD0ULRyx+W+o4ptOmijCJVR1NorOA+7CJ0dfht8/NLvcEn0r9rs3kJClwH6wIdM0xxMzg8RaVVgR6CRybceH8OoufPzhyb1tSrmZJ8dKoB1CwAS9D7FpkDmTdCaMPC/HufswS2KiS56Faqd2bfHBIAIn+NHU22TN2Mfz0LF8r2EoZg3IMQq03uGPaHD1KJgHvN/ys1z2KbsO+9K3SbhiGk+x36OC53toaXa/9xRt9xGgmdT2XlQRtsyGwha2JFfZ6U07sm1+ZwqZF4GjvDreuDmjCJose2hYXjYkCY9HL0vCgZI1L6wEV2N6Qg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hs/dwIEzXbYSlDwYrMNXbC8NeMZ7Qj+XiVJl2a08rrY=;
- b=FsnINwyxRr6RKZmYDFbBf/Y/ulcri8GlaSGBJ8OODuvzDmG9TpjFraTFNNri0uuwF4QfscoXJ6EecIT2/vu3YYDeVaooO6PQCfRWzGpe6HLg6wthfCTeUp00nx7u7f4fsfg1rbN9OsL2YFDYGnASK+pWyKtZb6etDWfji7Ecq0MXHez4og2jD1B1MnApARqx/2Bnq6PEYrTAPC0nx4ql0jKLff0baxeVCfQwIAQhmuet/QcOu5C6kQgXa4KS1iGn3PZmcrrirJRztNRvpMBd60y1lmAj++9k0/0RquzKZ+aXKO3MObvcu67DLYSQBo1GSlAevX8sf3drM6oPy3OZlQ==
+ bh=3vWm0ppqON2JT+ImRz8S1tIY5AocOY8QXpztsajrk9I=;
+ b=g917AcNpuu1mbzWDQLE8+HiLmfAJjbr9ePlheBxkXjVn4RG13V+xel53QAfwyLBhUn8zlC7IE32+yurmhNPyRBwDTX10l04zYQICdunRG5zHrS1ZuoxnIwXNwo2FgEcXHgbgiXsh0lX5UCzM/88Kv5lPVw8zmY2TvA42J5GOIqutr7j3SZ/CtVrRsjh7VoyqWUSLUx4izr2gr40ljQOveiKfi4rqGx6Pjb6/O9/fcrSzVlH4sUgwiNIe0Dohe2x0+s8gORojAO8dAVj5+ZOD1IKPebubu3OkQcBQlrN1qELsXasjcgBPMxReKwPt284qGBuDktsLW42W+i+IMYKmhw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -67,11 +67,11 @@ Received: from CH0PR11MB5444.namprd11.prod.outlook.com (2603:10b6:610:d3::13)
  by CY8PR11MB7009.namprd11.prod.outlook.com (2603:10b6:930:57::12)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.35; Wed, 7 May
- 2025 20:36:46 +0000
+ 2025 20:36:50 +0000
 Received: from CH0PR11MB5444.namprd11.prod.outlook.com
  ([fe80::5f89:ba81:ff70:bace]) by CH0PR11MB5444.namprd11.prod.outlook.com
  ([fe80::5f89:ba81:ff70:bace%7]) with mapi id 15.20.8722.018; Wed, 7 May 2025
- 20:36:46 +0000
+ 20:36:50 +0000
 From: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
 To: "Brost, Matthew" <matthew.brost@intel.com>,
  "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
@@ -79,16 +79,16 @@ CC: "Souza, Jose" <jose.souza@intel.com>, "Santa, Carlos"
  <carlos.santa@intel.com>, "Venkatesh Reddy, Sushma"
  <sushma.venkatesh.reddy@intel.com>, "Cavitt, Jonathan"
  <jonathan.cavitt@intel.com>
-Subject: RE: [PATCH v4 8/9] drm/xe: Add replay_offset and replay_length lines
- to LRC HWCTX snapshot
-Thread-Topic: [PATCH v4 8/9] drm/xe: Add replay_offset and replay_length lines
- to LRC HWCTX snapshot
-Thread-Index: AQHbv4yyFO+nqq12F0eMcbA/ObGbO7PHnrXA
-Date: Wed, 7 May 2025 20:36:46 +0000
-Message-ID: <CH0PR11MB54448115A724B1A444D2C931E588A@CH0PR11MB5444.namprd11.prod.outlook.com>
+Subject: RE: [PATCH v4 9/9] drm/xe: Implement
+ DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE
+Thread-Topic: [PATCH v4 9/9] drm/xe: Implement
+ DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE
+Thread-Index: AQHbv4ysUXxGQ1JNm0WsmV7eqoC7xbPHnxxA
+Date: Wed, 7 May 2025 20:36:49 +0000
+Message-ID: <CH0PR11MB5444A3DB2A84FB38A5A01B8DE588A@CH0PR11MB5444.namprd11.prod.outlook.com>
 References: <20250507201539.1316770-1-matthew.brost@intel.com>
- <20250507201539.1316770-9-matthew.brost@intel.com>
-In-Reply-To: <20250507201539.1316770-9-matthew.brost@intel.com>
+ <20250507201539.1316770-10-matthew.brost@intel.com>
+In-Reply-To: <20250507201539.1316770-10-matthew.brost@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -97,83 +97,83 @@ authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
 x-ms-traffictypediagnostic: CH0PR11MB5444:EE_|CY8PR11MB7009:EE_
-x-ms-office365-filtering-correlation-id: d9298b2e-3ded-4f9b-c200-08dd8da6e2eb
+x-ms-office365-filtering-correlation-id: 7b0a329c-380e-4664-4c1b-08dd8da6e4d3
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
  ARA:13230040|366016|1800799024|376014|7053199007|38070700018; 
-x-microsoft-antispam-message-info: =?iso-8859-1?Q?1KPy3iTCQYqB90cOTA3iq5Bnq48n3GNEW7WqucFpsDVsGSr59N61toOCMt?=
- =?iso-8859-1?Q?uwTlddRF+XQAk7UJV+Z3x8q3yVmuMwJTThY9/CDDiM1CzdsdzVo0P0BkFc?=
- =?iso-8859-1?Q?+txETxZ/nE4oLEzwCwriU//R38b9NQZ4HyELVoTkY7ogy/ka3I3vMjR2XK?=
- =?iso-8859-1?Q?2UDE4uE347S7tSQr4OfhabYDN97+MC0V1UnbueP9MgH/yGygS7GClR9cOx?=
- =?iso-8859-1?Q?SN/Uw9OtyhOYchcZmdPUkrDEEaQaAvz5G9wMUj4HNu2lwrChO9DBywV/vy?=
- =?iso-8859-1?Q?ivTr+XFUcbumvrSJmVxmnetux9Lwh6bGxBDZSZEpEX7TGnxxmx2CLBrIty?=
- =?iso-8859-1?Q?A1PDjn4CynbV7pdkjNAZMW/QZ9jm//MHAukJ59wICBQ0l6tTCfGwHspafJ?=
- =?iso-8859-1?Q?LXrdn5Gg0r3aIpLVPV6wT3gDM2eSdX4+mX+zHPNlhAb+CeO9d/mj0jTRAJ?=
- =?iso-8859-1?Q?Y5ay8doZMe0Peuq3CcqZcPlmpAefKNnNbkLmxQlrX7wyig7nQSiXMU+47/?=
- =?iso-8859-1?Q?NshXTT6/8M/kxXprg+EEGCblA7rBFwL+z8DE4zIdKDg0xEF6wuNpVUovYl?=
- =?iso-8859-1?Q?YnQ5pHuYgCvuhVutV53Vwy2hdnHPlguNra97CCjj/Lv5u8Ym15TMgtfHYF?=
- =?iso-8859-1?Q?p1YI5y2iq1eOClNwR0izuruy4Is4oo0++bssCkOnWjzT9FqdUy+6xNKQwE?=
- =?iso-8859-1?Q?URLWqggBqcGbj0CZqDVfH6iOzblr4yfMS/4EbYDgiC8KviO4yOncBEXy37?=
- =?iso-8859-1?Q?GQJsLMxv7IYRVLxn3K/TPqarU6J2AiPq2+SpmEV60tO2qTm9+UZwWSdjqm?=
- =?iso-8859-1?Q?ycmd8/EvBByXrvnxMkbo6CTnFLEm3ooxZY+HkGer0Wcq6sfREOFmbLnQI/?=
- =?iso-8859-1?Q?zc1JMQO7fhRv5wavzJ4y384Fz1IHNaoqHT3b5mmeJjfE68FR4Pv7IoMt++?=
- =?iso-8859-1?Q?ZnhyebevZrJNpT9oh41WQwvRQu6ZgxS/aE1E/yi92R9dvcLn5ztusO+g0J?=
- =?iso-8859-1?Q?sJrvPPdVFdlbs+lmuPcFPYyW1oncdEXjDeSq2GXWixiWScxmCpjcrUcJEW?=
- =?iso-8859-1?Q?B0Nv9CwJx0IvObIt6QIRQlmb2uzQRRCT5tJLdlznY18bpC+qLnq0klcJxh?=
- =?iso-8859-1?Q?BPFwU9rkVoritjd/waorBPIWS7AVpTO6b3R9YgumA27zznjVzj5gz5G+/m?=
- =?iso-8859-1?Q?dX8L7aYYHu9E5eIu1t5kiWJzMsPY87IDw/q4wtHJDc5GA23wOyuDywzvem?=
- =?iso-8859-1?Q?pXZcyfTeFkTVmsNlVRDsUAKYkqlCCd6chiP//AB/RV06v+z9s+CT0xSmlD?=
- =?iso-8859-1?Q?VohRHARcuA1u3kP+EhLNxzrsw09pVKxYEXHAB+YgoXu00ZT3gTofF1Oafd?=
- =?iso-8859-1?Q?Ga/Auhj0R19zhqK12DviRlJHgD9RGQTzwN9ZwWOXBAlzoOoyBNhEpShyvT?=
- =?iso-8859-1?Q?5JnTuCevT+XX8nf8RfmWiqx33x60PZfuZPUDoLEbKa12DOwAwHkn45WbE2?=
- =?iso-8859-1?Q?B3yqqp7fTyHDV1YuKM/E/EdNpd/GJGA0TSFQ1i0aP6/RTDfY2m+0MVrMnt?=
- =?iso-8859-1?Q?po28sDU=3D?=
+x-microsoft-antispam-message-info: =?iso-8859-1?Q?99/fMDMbLwh0F8tYvRexqjbz5Z+qxLyC5ErIYkEBrNOQRAHSgpf9riXGDs?=
+ =?iso-8859-1?Q?E6rk5ASxVPABeCTWgDE6kDSPSyacAMbIkyMl1xJrbGgsgg4C4xIwHdD/EJ?=
+ =?iso-8859-1?Q?Fu1+mlyfGStcAq9dknWwyAR91of9GdICv2qg3ZcCjJDysepCHKeyJHp2pr?=
+ =?iso-8859-1?Q?PDDuJrAX6pFW9yIdkP7B0zxcNgumxz+eDXpXHLyz0wrw9ocJ2ImTMoPGDz?=
+ =?iso-8859-1?Q?2MBTxakCWoOfa5BLQLmOccj1TnlKsX88rX3f3YUnIRm9GItQ9YwUlvx8kv?=
+ =?iso-8859-1?Q?mCLAyo/pe6hPAv1XCEMksaOnPuNiUtQL/dMVH7BxvH1JmLcNTiTUxN1vfU?=
+ =?iso-8859-1?Q?oNK9ngwdblnuucQw5R9Ei3KZbcUnn8bBUZLZbrXoDZvuG5Hl1I+8yqZzKV?=
+ =?iso-8859-1?Q?F4iUfl1tZ0Aa6RBwntWdaIIJV1Bdg2guij2LL5X1SmW/2FI6+LwVYOA3d8?=
+ =?iso-8859-1?Q?JdpZjM6eNLkevdx+iyyGkhH/O1arKlxF01+cEDrcLPfrMmq5taM7rkt07Z?=
+ =?iso-8859-1?Q?wHN4q1WBleUQxj4y6kkWUJzQNer0N++9RM4lGv4XW6vRQbNX5MAFHVIBx/?=
+ =?iso-8859-1?Q?ws58hMLzGpsd3mfqfYlSoEmUcjX7+ipVPwPhchaUjX5LNHH6WrS3L/G7tl?=
+ =?iso-8859-1?Q?yrFP25FWIc1rUdhato/awc+LyRDPLXVPFR+IIc1zmbWf36RrOT1phULX+K?=
+ =?iso-8859-1?Q?vNX+mk/BL1GAJIRtAtnpcCmbkebrlLQC+uzlQ2DpXO2XbAa9g8gIWwK4T4?=
+ =?iso-8859-1?Q?xK6Z9kJIKYSZAd1UNRoXjhgxTiNQmkF+1SeVIcG0J1HPPMGgTA4vImXqzk?=
+ =?iso-8859-1?Q?QNkBkmqdvdLlp7IVDqa4qKZLX6mazG9WpuhjGJ+564cLeTQsWtXWyz/Dzb?=
+ =?iso-8859-1?Q?HTIE8kQCCTRAviD6pLwVVQnm2e2uaruIsPAUaJ7Z9UV/nNHx5sqcoPC6Jg?=
+ =?iso-8859-1?Q?A26XASgCXnRVYl92VxwnjHbrWC5eqPrJ5EzmoVb8hXPF0jBuCLNB4ahYsK?=
+ =?iso-8859-1?Q?FX5B7ez6oWWryFkntCoSc16hWvam6cxgaJMSzfnZ3m5ktScCJITTlXxae2?=
+ =?iso-8859-1?Q?N3opsqliOFYZOKDyqF/OQ0850yjVlVqq5j0p5h3MA96O/rTpWF8ofcBRq2?=
+ =?iso-8859-1?Q?SdFENPjwtLY0rf3cQpuSEdGlU8Mr/JudOU5lcxbufPYPayYSf7tpBeY5mN?=
+ =?iso-8859-1?Q?1bOvU36LnlEBWZL3rzUL2ngC5CQtNNvz8fDrSAkyUtFu3kAr/fTw0Cu8zF?=
+ =?iso-8859-1?Q?6LJ7kEZcZjmzMPu85Yytw1nsuFm/EbeQ2slUiN7GwGngCenuVeOTQPaZn5?=
+ =?iso-8859-1?Q?nVo7IbDb/YjBTkxupAaMHMlM3VK48D3J0IxUhn/y2qZ/q3gtE8hnX9zMw4?=
+ =?iso-8859-1?Q?oYcUz1jtB56ZIx5W87qDCHbf2iVwJRBUMiPT/zDrGQyZElWMZabgOaWeS+?=
+ =?iso-8859-1?Q?TTf1D6/6lH39H3k1uLoLkFUdjFRajhl/bedTGp+qCaUuGqQFpwXmV+Ogr0?=
+ =?iso-8859-1?Q?5hNbikN6e0w3ZTpsQBwNeyOJVUHEqdpa2YcL7fOupSI5E9CXO4/FiSCx5K?=
+ =?iso-8859-1?Q?eFCCSUo=3D?=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH0PR11MB5444.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(1800799024)(376014)(7053199007)(38070700018); DIR:OUT;
  SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?//Y9g9KUcGFsSjG8dp6033PUyH+EJK7yiqQ7LM6l7huWwNEDk8DTfuFQRz?=
- =?iso-8859-1?Q?pUHq36ePacm4ZdpT993EaV3+DN2MT0Z7vf+ZmPW2eHEDvSdn8SSm57jtpd?=
- =?iso-8859-1?Q?zdEYdtBRHC/axWNj7SmJrg9qZFhivda2GIwalvfG4af9ized09R6gUNktq?=
- =?iso-8859-1?Q?+JhEY6KkuRuUmCg52rXfz+hVTyLRfdr8WwddwqlKID4oJISc7QcF+Aw3SN?=
- =?iso-8859-1?Q?ZQ1zfA/BDKUNik5acc7NUjPpQLGNr2OT+EQNxlZShiVv/Mz7TbCvddzzAj?=
- =?iso-8859-1?Q?pagAO4svn5CklL9BOwzk10EUXU1HOQnZjfzagSH7ht1JLXi+M+Vz7KyaWK?=
- =?iso-8859-1?Q?oRSC0OFOlsyHXJvU0Z0Wb/QmKV7LNdghgi4JqjDgk41Kbbrk2ejME6PQwB?=
- =?iso-8859-1?Q?NAdd5EAg+ag3BsY9in/Y4fPmVh57xlkFHGaKq+APi355+vzDfTo6eWHoIB?=
- =?iso-8859-1?Q?Jt1pHsCQ6VZCRinOFMqQzXYU8NJVUSVbS/leVigYVw24ikvRyXBTAwcx09?=
- =?iso-8859-1?Q?piNKSb7o36brm33Qlr2Q9m5cVAt3MGR5uzc0Ds2e/ZWnOdPAKKchBMwBxn?=
- =?iso-8859-1?Q?JCJ0D0vhNQ4xKabnwzPfUBqLW1Agdpv7vtLJcmxUrvSOXF04mHIk1xaj/q?=
- =?iso-8859-1?Q?GZcsNvzATVuGicwF+gyQALscG6h4ShlDEgCPxI9YeaJIbLjFHFNzYOtC99?=
- =?iso-8859-1?Q?/zBZ132n7efVYFiSHnjZHdswL2w1jVLAIu48hhgkgX1rAknRshqXgC0d+0?=
- =?iso-8859-1?Q?yCi18UQv/RgzNLWpPv6jjSIYTp/i8QSYONdXipqZO/czGNEYnE8P2xUK12?=
- =?iso-8859-1?Q?gPIOi0Vh7QUkAiO48uReBIL+7a32jjbbnkm/9TATGqPlv7Xl23FUdZhCTO?=
- =?iso-8859-1?Q?bXlX7IZvIUkHPbEgU9emw79Fnr06838jtpTjsh2wxJGInEnFcORWYQBD0l?=
- =?iso-8859-1?Q?HcjrJi5q94gGCOhIWrTcms3Aq8g4jrMmhoVgn+HyOrkknZqfHpvLTEHRCO?=
- =?iso-8859-1?Q?7fRIAOHJuhYQuq943r46d8zgVgZXEfQBAvvOLN1BALGEX8nXevldJ4jq5s?=
- =?iso-8859-1?Q?iTwraTQygDoIuwvG3dPU/Nq38cUPIQkN5HxUcEOYd5eFR/O+VCYcioWBUS?=
- =?iso-8859-1?Q?7FaYPqaB4QxNM92l+sBSOZVk0nbRmt4ALTiv0NY2+xsDsSJqvo2M23abqM?=
- =?iso-8859-1?Q?RuoTMh70yJ8JNNRhEIcbtzYypRnSqUwW/GospCAYAHWERcLavI1q9DA2u4?=
- =?iso-8859-1?Q?0+5KraUwtGn3TWr2n5F3dNtfONwnbssa+Za50rtxsmOcjxDn7QmOlOh50O?=
- =?iso-8859-1?Q?zSdlrBXdfGV9GLV7Zuc7DVSSbX3dNK3QjWSSDZR4V2lsTba0s70KAgjE+a?=
- =?iso-8859-1?Q?tLGKh5mdmCpGcXaWRizbgrUx5L0g9YLt33aP5Mc+uTIOEr5SU6cTvghIVY?=
- =?iso-8859-1?Q?eleZ7dMLtwTBf/bV6mV0li8W56d5ex9jmtAG6xAlteqaeW6xHPJwKOuRyx?=
- =?iso-8859-1?Q?nbP3VrAcHM3+vaQhC9xPq+2/k+8rEd53X7/djgfLU92NjQvsklMnKIG8Vs?=
- =?iso-8859-1?Q?VNpPwWTuvTs/XGz/n3dt5AE6FNYEDRcrGetkMg0NodZWv/KIYZLKCxfFM6?=
- =?iso-8859-1?Q?tGfeLlX1zrynd2AeY3ZQnhIF+5XZFhHhIC5/nW3mEB7pREBFQZq0LBCg?=
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?AypdggENNa3HWjtma7NeaqzVAyyaeMTnl9WzvV6fmxkL4tbO5CmKM3j3/l?=
+ =?iso-8859-1?Q?PddMTqqoRnmD0lUY1qaBkziaPlW2OwDT5clhNCZnAw0pZ/xrOZKEfu3fEJ?=
+ =?iso-8859-1?Q?5CWfDYyDwIijMQvAwziKKHb94b7k2dFiwX/tgw6f5k2GyazxA96XcwOdWc?=
+ =?iso-8859-1?Q?gcB2f2zjPI68nDaz8zI8e27/Zb42/+Ah8sMk4R4q8gh7NVp8bmwXG/aMpW?=
+ =?iso-8859-1?Q?NfLeUHDXoQE9oXb2/f5+dPDkQ94k3SEisnBr0IM+X9s4BMKalgVyviOFBy?=
+ =?iso-8859-1?Q?2wdw94Ybv2FVsTBvGQG7mZk0ibPLBbHab1FzKZasFUEbeAERgjuOcYelmo?=
+ =?iso-8859-1?Q?x69+jyyaezfDswPlitH5FYUYHQMYaeApaaf4mbLmSdNExHXtsVYaFcEas0?=
+ =?iso-8859-1?Q?aRbavDk6LWaDRKId20PRD45YSujD/FECL6lrGMX1yuW0ZB45Pl/J/0QYg0?=
+ =?iso-8859-1?Q?aybo4N+S1yDJ6tUPYnkTb99XhVVA+jwGzVz21YlK+h2uhtpAiRmftBSLOq?=
+ =?iso-8859-1?Q?oLd54F+cTxvTuXoiL7JfF5BZkUeHRUycWenL7u2nEFtr5aCIx0gK/rO3Ce?=
+ =?iso-8859-1?Q?WNVvIMPs1tsedqkzBn2toqt923X5RZYM03qqySvj5erXDNJJKaWKMJ3K6s?=
+ =?iso-8859-1?Q?B/91nwJqzzBsDO72lub9oMUXXCy6Ke425VfxXKj4xt7Df1T97QBjiayA6h?=
+ =?iso-8859-1?Q?JciG86y7zcfamReINjS/JcnwaPkkZQvoZOlrFd4Qbo7X72V/X9hkAl2Gp1?=
+ =?iso-8859-1?Q?AmHg5fheYoYXKydWrlL1z7fnX/m00puTKdw92d7lvkpz+Ro+cP9MNexR4w?=
+ =?iso-8859-1?Q?BZ8xOJunTlrkRGfn4g3lJbtDMLONsi3K0QuV+f4WReEG3YuGkJyJb/psHx?=
+ =?iso-8859-1?Q?ORa18YuYxbuWuB7GarFzYGQVly6WMrzzkbxrSZK1Q7QfPOV1QsKxUooDwi?=
+ =?iso-8859-1?Q?RMDxuvP42JSVbKzmepbI5pW92BgKQau5MsH6rV0zBkV0ArIrGqsHNx/bvJ?=
+ =?iso-8859-1?Q?VuyV2iTulE1UJ+s2A+biJmuBq64N6BPgHludvFAAWr3NSHc7tNKwa3DSCQ?=
+ =?iso-8859-1?Q?HfiCvBvMe5akZzuJpGeZOyeE0IgA9wYQ+3rjMVCk/lQmYD12g8eue1ZfCj?=
+ =?iso-8859-1?Q?tXZlAijr3x9b2avsUaUwzOxSROd9pTsOUczJ9loe3cgigFv8bZ97qxBq/p?=
+ =?iso-8859-1?Q?RpkHghTFdux9dW5k1bFwqq9SeRhuaw9lTqSd/j4bzwp82qvynCaSOGg+tK?=
+ =?iso-8859-1?Q?bPOq1L8pcOT8deh0i8lyLkvB/KUljEMaPwxVcbrfhV9fCphSitPKx5ITL4?=
+ =?iso-8859-1?Q?EJPyQIEKiguldz1PNvqle5L8LcORPXWThs9sOLhgLOH+8hqdx+J4ysFxPw?=
+ =?iso-8859-1?Q?RnL1cDbECmkSJxUYHkU10JZmmjBoedOQ/czneNVlJU9xb7QVJaG4UPvk4j?=
+ =?iso-8859-1?Q?sO1SuESygF6wGFylSCBU+0Tt0zc3X98/G4coAbUfLzJVud2Xqt+FhZApWq?=
+ =?iso-8859-1?Q?us2POoJbklq4pXBZ9awWbo98nI60G92ccg0wDl8WwIvbR5UGLPfl6kb9cI?=
+ =?iso-8859-1?Q?G95GrYBm4RseNjFbaiRwpoVNoBxeH2/rxo/UuMBVssTQbVQDz4GQ73NTm2?=
+ =?iso-8859-1?Q?W9Qqscbw/8mwhc224CFYm8M/iE4So3AfhN1Mn4KZCjtN1SjOI+xHzGvg?=
  =?iso-8859-1?Q?=3D=3D?=
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5444.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d9298b2e-3ded-4f9b-c200-08dd8da6e2eb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2025 20:36:46.7296 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7b0a329c-380e-4664-4c1b-08dd8da6e4d3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2025 20:36:49.9437 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ItKQmxnTSUe5YLEdGBwUwGZg+8ai66zDZnU9yAwbTGpbdelck5VamXvi+TnH5nsWN3W8N919HQoCmmESoQRqEAt3tI1rx8xnDtLWf7c7KlU=
+X-MS-Exchange-CrossTenant-userprincipalname: Swdu3FbQOMFU8xozOpMuqUzboVy31UAFP7xqV5Q7td/9XWyNQBzSfISCuOGfTEeMCS988mZgThjYJ7pUhyV+118Wu/Z6CT9tjRzddOomsTk=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7009
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -197,99 +197,299 @@ Sent: Wednesday, May 7, 2025 1:16 PM
 To: intel-xe@lists.freedesktop.org
 Cc: Souza, Jose <jose.souza@intel.com>; Santa, Carlos <carlos.santa@intel.c=
 om>; Venkatesh Reddy, Sushma <sushma.venkatesh.reddy@intel.com>
-Subject: [PATCH v4 8/9] drm/xe: Add replay_offset and replay_length lines t=
-o LRC HWCTX snapshot
+Subject: [PATCH v4 9/9] drm/xe: Implement DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY=
+_STATE
 >=20
-> Add replay_offset and replay_length lines to LRC HWCTX snapshot with the
-> idea being this information can be used extract the data which needs to
-> be pass to exec queue extension DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE
-> so GPU hang can be replayed via a Mesa tool.
+> Implement DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE which sets the exec
+> queue default state to user data passed in. The intent is for a Mesa
+> tool to use this replay GPU hangs.
 >=20
-> The additional lines look like:
->=20
-> [HWCTX].replay_offset: 0x%x
-> [HWCTX].replay_length: 0x%x
+> v2:
+>  - Enable the flag DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE
+>  - Fix the page size math calculation to avoid a crash
+> v4:
+>  - Use vmemdup_user (Maarten)
+>  - Copy default state first into LRC, then replay state (Testing, Carlos)
 >=20
 > Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
 > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_exec_queue.c       | 25 ++++++++++++--
+>  drivers/gpu/drm/xe/xe_exec_queue_types.h |  3 ++
+>  drivers/gpu/drm/xe/xe_execlist.c         |  2 +-
+>  drivers/gpu/drm/xe/xe_lrc.c              | 42 ++++++++++++++++--------
+>  drivers/gpu/drm/xe/xe_lrc.h              |  3 +-
+>  5 files changed, 58 insertions(+), 17 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_e=
+xec_queue.c
+> index 21d4ced31dd9..a4d0a2c9be51 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+> @@ -47,6 +47,7 @@ static void __xe_exec_queue_free(struct xe_exec_queue *=
+q)
+>  	if (q->xef)
+>  		xe_file_put(q->xef);
+> =20
+> +	kvfree(q->replay_state);
+>  	kfree(q);
+>  }
+> =20
+> @@ -139,7 +140,8 @@ static int __xe_exec_queue_init(struct xe_exec_queue =
+*q)
+>  	}
+> =20
+>  	for (i =3D 0; i < q->width; ++i) {
+> -		q->lrc[i] =3D xe_lrc_create(q->hwe, q->vm, SZ_16K, q->msix_vec, flags)=
+;
+> +		q->lrc[i] =3D xe_lrc_create(q->hwe, q->vm, q->replay_state,
+> +					  SZ_16K, q->msix_vec, flags);
+>  		if (IS_ERR(q->lrc[i])) {
+>  			err =3D PTR_ERR(q->lrc[i]);
+>  			goto err_unlock;
+> @@ -460,6 +462,23 @@ exec_queue_set_pxp_type(struct xe_device *xe, struct=
+ xe_exec_queue *q, u64 value
+>  	return xe_pxp_exec_queue_set_type(xe->pxp, q, DRM_XE_PXP_TYPE_HWDRM);
+>  }
+> =20
+> +static int exec_queue_set_hang_replay_state(struct xe_device *xe,
+> +					    struct xe_exec_queue *q,
+> +					    u64 value)
+> +{
+> +	size_t size =3D xe_gt_lrc_hang_replay_size(q->gt, q->class);
+> +	u64 __user *address =3D u64_to_user_ptr(value);
+> +	void *ptr;
+> +
+> +	ptr =3D vmemdup_user(address, size);
+> +	if (XE_IOCTL_DBG(xe, IS_ERR(ptr)))
+> +		return PTR_ERR(ptr);
+> +
+> +	q->replay_state =3D ptr;
+> +
+> +	return 0;
+> +}
+> +
+>  typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
+>  					     struct xe_exec_queue *q,
+>  					     u64 value);
+> @@ -468,6 +487,7 @@ static const xe_exec_queue_set_property_fn exec_queue=
+_set_property_funcs[] =3D {
+>  	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY] =3D exec_queue_set_priority,
+>  	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE] =3D exec_queue_set_timeslice=
+,
+>  	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_PXP_TYPE] =3D exec_queue_set_pxp_type,
+> +	[DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE] =3D exec_queue_set_hang_repla=
+y_state,
+>  };
+> =20
+>  static int exec_queue_user_ext_set_property(struct xe_device *xe,
+> @@ -488,7 +508,8 @@ static int exec_queue_user_ext_set_property(struct xe=
+_device *xe,
+>  	    XE_IOCTL_DBG(xe, ext.pad) ||
+>  	    XE_IOCTL_DBG(xe, ext.property !=3D DRM_XE_EXEC_QUEUE_SET_PROPERTY_P=
+RIORITY &&
+>  			 ext.property !=3D DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE &&
+> -			 ext.property !=3D DRM_XE_EXEC_QUEUE_SET_PROPERTY_PXP_TYPE))
+> +			 ext.property !=3D DRM_XE_EXEC_QUEUE_SET_PROPERTY_PXP_TYPE &&
+> +			 ext.property !=3D DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE))
+>  		return -EINVAL;
+> =20
+>  	idx =3D array_index_nospec(ext.property, ARRAY_SIZE(exec_queue_set_prop=
+erty_funcs));
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/x=
+e/xe_exec_queue_types.h
+> index cc1cffb5c87f..94185854ffbf 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> @@ -140,6 +140,9 @@ struct xe_exec_queue {
+>  		struct list_head link;
+>  	} pxp;
+> =20
+> +	/** @replay_state: GPU hang replay state */
+> +	void *replay_state;
+> +
+>  	/** @ops: submission backend exec queue operations */
+>  	const struct xe_exec_queue_ops *ops;
+> =20
+> diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_exe=
+clist.c
+> index 788f56b066b6..cbc2ed9f6ffb 100644
+> --- a/drivers/gpu/drm/xe/xe_execlist.c
+> +++ b/drivers/gpu/drm/xe/xe_execlist.c
+> @@ -269,7 +269,7 @@ struct xe_execlist_port *xe_execlist_port_create(stru=
+ct xe_device *xe,
+> =20
+>  	port->hwe =3D hwe;
+> =20
+> -	port->lrc =3D xe_lrc_create(hwe, NULL, SZ_16K, XE_IRQ_DEFAULT_MSIX, 0);
+> +	port->lrc =3D xe_lrc_create(hwe, NULL, NULL, SZ_16K, XE_IRQ_DEFAULT_MSI=
+X, 0);
+>  	if (IS_ERR(port->lrc)) {
+>  		err =3D PTR_ERR(port->lrc);
+>  		goto err;
+> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+> index fa4bd48c1874..d9130c360a23 100644
+> --- a/drivers/gpu/drm/xe/xe_lrc.c
+> +++ b/drivers/gpu/drm/xe/xe_lrc.c
+> @@ -46,13 +46,19 @@ lrc_to_xe(struct xe_lrc *lrc)
+>  	return gt_to_xe(lrc->fence_ctx.gt);
+>  }
+> =20
+> -size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class)
+> +/**
+> + * xe_gt_lrc_hang_replay_size() - Hang replay size
+> + * @gt: The GT
+> + * @class: Hardware engine class
+> + *
+> + * Determine size of GPU hang replay state for a GT and hardware engine =
+class.
+> + *
+> + * Return: Size of GPU hang replay size
+> + */
+> +size_t xe_gt_lrc_hang_replay_size(struct xe_gt *gt, enum xe_engine_class=
+ class)
+>  {
+>  	struct xe_device *xe =3D gt_to_xe(gt);
+> -	size_t size;
+> -
+> -	/* Per-process HW status page (PPHWSP) */
+> -	size =3D LRC_PPHWSP_SIZE;
+> +	size_t size =3D 0;
+> =20
+>  	/* Engine context image */
+>  	switch (class) {
+> @@ -78,11 +84,18 @@ size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engin=
+e_class class)
+>  		size +=3D 1 * SZ_4K;
+>  	}
+> =20
+> +	return size;
+> +}
+> +
+> +size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class)
+> +{
+> +	size_t size =3D xe_gt_lrc_hang_replay_size(gt, class);
+> +
+>  	/* Add indirect ring state page */
+>  	if (xe_gt_has_indirect_ring_state(gt))
+>  		size +=3D LRC_INDIRECT_RING_STATE_SIZE;
+> =20
+> -	return size;
+> +	return size + LRC_PPHWSP_SIZE;
+>  }
+> =20
+>  /*
+> @@ -886,7 +899,8 @@ static void xe_lrc_finish(struct xe_lrc *lrc)
+>  #define PVC_CTX_ACC_CTR_THOLD	(0x2a + 1)
+> =20
+>  static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+> -		       struct xe_vm *vm, u32 ring_size, u16 msix_vec,
+> +		       struct xe_vm *vm, void *replay_state, u32 ring_size,
+> +		       u16 msix_vec,
+>  		       u32 init_flags)
 
-LGTM.
+The formatting here is a bit weird.  I think msix_vec and init_flags can go=
+ on the same line:
 
+"""
+static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+		struct xe_vm *vm, void *replay_state, u32 ring_size,
+		u16 msix_vec, u32 init_flags)
+{
+"""
+
+This isn't a blocking request, though, so:
 Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 -Jonathan Cavitt
 
-> ---
->  drivers/gpu/drm/xe/xe_lrc.c       | 8 ++++++++
->  drivers/gpu/drm/xe/xe_lrc.h       | 1 +
->  drivers/gpu/drm/xe/xe_lrc_types.h | 3 +++
->  3 files changed, 12 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-> index 855c8acaf3f1..fa4bd48c1874 100644
-> --- a/drivers/gpu/drm/xe/xe_lrc.c
-> +++ b/drivers/gpu/drm/xe/xe_lrc.c
-> @@ -901,6 +901,9 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_=
+>  {
+>  	struct xe_gt *gt =3D hwe->gt;
+> @@ -901,9 +915,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_=
 hw_engine *hwe,
 > =20
 >  	kref_init(&lrc->refcount);
 >  	lrc->flags =3D 0;
-> +	lrc->replay_size =3D xe_gt_lrc_size(gt, hwe->class);
-> +	if (xe_gt_has_indirect_ring_state(gt))
-> +		lrc->replay_size -=3D LRC_INDIRECT_RING_STATE_SIZE;
+> -	lrc->replay_size =3D xe_gt_lrc_size(gt, hwe->class);
+> -	if (xe_gt_has_indirect_ring_state(gt))
+> -		lrc->replay_size -=3D LRC_INDIRECT_RING_STATE_SIZE;
+> +	lrc->replay_size =3D xe_gt_lrc_hang_replay_size(gt, hwe->class);
 >  	lrc_size =3D ring_size + xe_gt_lrc_size(gt, hwe->class);
 >  	if (xe_gt_has_indirect_ring_state(gt))
 >  		lrc->flags |=3D XE_LRC_FLAG_INDIRECT_RING_STATE;
-> @@ -1691,6 +1694,8 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(str=
-uct xe_lrc *lrc)
->  	snapshot->lrc_bo =3D xe_bo_get(lrc->bo);
->  	snapshot->lrc_offset =3D xe_lrc_pphwsp_offset(lrc);
->  	snapshot->lrc_size =3D lrc->bo->size - snapshot->lrc_offset;
-> +	snapshot->replay_offset =3D 0;
-> +	snapshot->replay_size =3D lrc->replay_size;
->  	snapshot->lrc_snapshot =3D NULL;
->  	snapshot->ctx_timestamp =3D xe_lrc_ctx_timestamp(lrc);
->  	snapshot->ctx_job_timestamp =3D xe_lrc_ctx_job_timestamp(lrc);
-> @@ -1765,6 +1770,9 @@ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *=
-snapshot, struct drm_printer
->  	}
+> @@ -932,7 +944,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_=
+hw_engine *hwe,
+>  	xe_hw_fence_ctx_init(&lrc->fence_ctx, hwe->gt,
+>  			     hwe->fence_irq, hwe->name);
 > =20
->  	drm_printf(p, "\n\t[HWCTX].length: 0x%lx\n", snapshot->lrc_size - LRC_P=
-PHWSP_SIZE);
-> +	drm_printf(p, "\n\t[HWCTX].replay_offset: 0x%lx\n", snapshot->replay_of=
-fset);
-> +	drm_printf(p, "\n\t[HWCTX].replay_length: 0x%lx\n", snapshot->replay_si=
-ze);
-> +
->  	drm_puts(p, "\t[HWCTX].data: ");
->  	for (; i < snapshot->lrc_size; i +=3D sizeof(u32)) {
->  		u32 *val =3D snapshot->lrc_snapshot + i;
+> -	if (!gt->default_lrc[hwe->class]) {
+> +	if (!gt->default_lrc[hwe->class] && !replay_state) {
+>  		init_data =3D empty_lrc_data(hwe);
+>  		if (!init_data) {
+>  			err =3D -ENOMEM;
+> @@ -950,6 +962,9 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_=
+hw_engine *hwe,
+>  		xe_map_memcpy_to(xe, &map, LRC_PPHWSP_SIZE,
+>  				 gt->default_lrc[hwe->class] + LRC_PPHWSP_SIZE,
+>  				 xe_gt_lrc_size(gt, hwe->class) - LRC_PPHWSP_SIZE);
+> +		if (replay_state)
+> +			xe_map_memcpy_to(xe, &map, LRC_PPHWSP_SIZE, replay_state,
+> +					 lrc->replay_size);
+>  	} else {
+>  		xe_map_memcpy_to(xe, &map, 0, init_data,
+>  				 xe_gt_lrc_size(gt, hwe->class));
+> @@ -1040,6 +1055,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct x=
+e_hw_engine *hwe,
+>   * xe_lrc_create - Create a LRC
+>   * @hwe: Hardware Engine
+>   * @vm: The VM (address space)
+> + * @replay_state: GPU hang replay state
+>   * @ring_size: LRC ring size
+>   * @msix_vec: MSI-X interrupt vector (for platforms that support it)
+>   * @flags: LRC initialization flags
+> @@ -1050,7 +1066,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct x=
+e_hw_engine *hwe,
+>   * upon failure.
+>   */
+>  struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
+> -			     u32 ring_size, u16 msix_vec, u32 flags)
+> +			     void *replay_state, u32 ring_size, u16 msix_vec, u32 flags)
+>  {
+>  	struct xe_lrc *lrc;
+>  	int err;
+> @@ -1059,7 +1075,7 @@ struct xe_lrc *xe_lrc_create(struct xe_hw_engine *h=
+we, struct xe_vm *vm,
+>  	if (!lrc)
+>  		return ERR_PTR(-ENOMEM);
+> =20
+> -	err =3D xe_lrc_init(lrc, hwe, vm, ring_size, msix_vec, flags);
+> +	err =3D xe_lrc_init(lrc, hwe, vm, replay_state, ring_size, msix_vec, fl=
+ags);
+>  	if (err) {
+>  		kfree(lrc);
+>  		return ERR_PTR(err);
 > diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-> index 0b40f349ab95..2d6838645858 100644
+> index 2d6838645858..1ee1bff40569 100644
 > --- a/drivers/gpu/drm/xe/xe_lrc.h
 > +++ b/drivers/gpu/drm/xe/xe_lrc.h
-> @@ -23,6 +23,7 @@ struct xe_lrc_snapshot {
->  	struct xe_bo *lrc_bo;
->  	void *lrc_snapshot;
->  	unsigned long lrc_size, lrc_offset;
-> +	unsigned long replay_size, replay_offset;
+> @@ -46,7 +46,7 @@ struct xe_lrc_snapshot {
+>  #define XE_LRC_CREATE_RUNALONE 0x1
+>  #define XE_LRC_CREATE_PXP 0x2
+>  struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
+> -			     u32 ring_size, u16 msix_vec, u32 flags);
+> +			     void *replay_state, u32 ring_size, u16 msix_vec, u32 flags);
+>  void xe_lrc_destroy(struct kref *ref);
 > =20
->  	u32 context_desc;
->  	u32 ring_addr;
-> diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lr=
-c_types.h
-> index 71ecb453f811..c2766719ff77 100644
-> --- a/drivers/gpu/drm/xe/xe_lrc_types.h
-> +++ b/drivers/gpu/drm/xe/xe_lrc_types.h
-> @@ -25,6 +25,9 @@ struct xe_lrc {
->  	/** @size: size of lrc including any indirect ring state page */
->  	u32 size;
+>  /**
+> @@ -73,6 +73,7 @@ static inline void xe_lrc_put(struct xe_lrc *lrc)
+>  	kref_put(&lrc->refcount, xe_lrc_destroy);
+>  }
 > =20
-> +	/** @replay_size: Size LRC needed for replaying a hang */
-> +	u32 replay_size;
-> +
->  	/** @tile: tile which this LRC belongs to */
->  	struct xe_tile *tile;
-> =20
+> +size_t xe_gt_lrc_hang_replay_size(struct xe_gt *gt, enum xe_engine_class=
+ class);
+>  size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class);
+>  u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc);
+>  u32 xe_lrc_regs_offset(struct xe_lrc *lrc);
 > --=20
 > 2.34.1
 >=20
