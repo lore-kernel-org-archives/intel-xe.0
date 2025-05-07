@@ -4,184 +4,184 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12BDDC3ABBF
-	for <intel-xe@archiver.kernel.org>; Wed,  7 May 2025 23:11:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A534C3ABBF
+	for <intel-xe@archiver.kernel.org>; Wed,  7 May 2025 23:18:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD11510E1C2;
-	Wed,  7 May 2025 23:11:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15CCB10E1C2;
+	Wed,  7 May 2025 23:18:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fvNzT5uk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RkKWwxMm";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3241810E1C2;
- Wed,  7 May 2025 23:11:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F003110E1C2
+ for <intel-xe@lists.freedesktop.org>; Wed,  7 May 2025 23:18:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746659473; x=1778195473;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=uJnmvIj7Nj53MaPDQ86Bo3DZX/eNCgRNwTQjh5yKRYM=;
- b=fvNzT5ukT87V0cK8On5BItfFrkH9Vyuz90Ac1hxD19nB+peSK8vI1Nz0
- KnRkpsOGT72v63UihYAy2TfaPbPdxuBqp7f3D2SbVlmEOoSO/tJnuqPQ/
- vQXIJ50Bky1mRQQkAkyn0ZDgqaQapWikPGpACBJHx39OwwI1vwF6D3anh
- oAE4Vu00HIQ+waPawlOm5jO2KZG1Nxy8mHweDiJ41CqhK1Y7xay4Yo7Wt
- vIZfBr/hRgESMYSsvK4hRQqqL9arR2BzTjYnPMiiUMf+4EkY3l3hreXtH
- yKLHqjmIjmIFAQS6hdT3FZOj7rFXdb+zgbsaWBl0LwTkW10fXA1lvyiU3 g==;
-X-CSE-ConnectionGUID: nBKUnUN2T024QoKnxXHvnQ==
-X-CSE-MsgGUID: 7/mg64p3TPaHyzOl/ukkxg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11426"; a="52230001"
-X-IronPort-AV: E=Sophos;i="6.15,270,1739865600"; d="scan'208";a="52230001"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2025 16:11:11 -0700
-X-CSE-ConnectionGUID: e3N23ALgRJm5qrE+i26XAg==
-X-CSE-MsgGUID: XLFvMOR+S0S5eUCkr/SMrQ==
+ t=1746659887; x=1778195887;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=TOhE4TskWhHhPR5Bio7uQBnY48eCwsg5nHj2i3kkXY8=;
+ b=RkKWwxMm1JTLHOoscKxAs+yNPcJTaSQtF1cP51riyEYtPgNa01Q8JYfO
+ XPQrT2H/28ggpmt5hNAJtqf2qNQWUIJKWAhF90yowb7xKB6U+GHBx8DNl
+ /cXmwqNduC+Sb4RD9jxlOH+S4FmEXtmD7fQ1wSrGL6jimM5MCpX7F2AII
+ lnh/eq72X79UJvfXLcIyLY/wcnEjymRnbOER2jF2AuompvWIpAdf38+me
+ WmrJd96Qu1WiH5lBUMLLqHatFz/a0al1VarqzhlWUd6igEV0Ir/ogKLrQ
+ 5Drxxi3jWiCtysv5DnO4bVg/QznGAaGSW4Cpz4F5zLfTYHZD/WqwRu4q5 A==;
+X-CSE-ConnectionGUID: IDYJO0EmS4GmUHR1itW4kw==
+X-CSE-MsgGUID: 9ND/a+UVRDiVX4xHuIu3Tw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11426"; a="47677449"
+X-IronPort-AV: E=Sophos;i="6.15,270,1739865600"; d="scan'208";a="47677449"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2025 16:18:01 -0700
+X-CSE-ConnectionGUID: Qh3cL9baRDOHxcDwFG8ZLw==
+X-CSE-MsgGUID: pqe4M1TpT1+33KPC/pHxxg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,270,1739865600"; d="scan'208";a="167050343"
+X-IronPort-AV: E=Sophos;i="6.15,270,1739865600"; d="scan'208";a="135816032"
 Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2025 16:11:11 -0700
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2025 16:18:01 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Wed, 7 May 2025 16:11:09 -0700
+ 15.2.1544.14; Wed, 7 May 2025 16:18:00 -0700
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Wed, 7 May 2025 16:11:09 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
+ 15.2.1544.14 via Frontend Transport; Wed, 7 May 2025 16:18:00 -0700
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.45) by
  edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Wed, 7 May 2025 16:11:09 -0700
+ 15.1.2507.44; Wed, 7 May 2025 16:17:59 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=eNorj45ozGPasDSzXX0gzZ1ObNkUVVLe33QCYNTfH634zBWrmt7kSvHQZb3O8IoL3RZQRAvkjQ2TC2FcPOhbTG1kuNjawMhxN/FNB7bnFPtPoEJ1pbqFbH8IXT4xp+ZXkP4Ciw7vqJ6MYGkSEgnzOImmQG51/mTsVWixjg6+8zlMJ0oHiqo88iGFPyZRWFoKI+KSLNOmZ8GpPyguigQ91oQ0m8RpNqmrwfUNYejMNAeJbP/kxpqFBi7SA5Et1DkPACFNorYi6k3nlo+LnsiiMh4OgO6LBrJjn+tt4CM0g8IBV3Vn4pEkWHqtwt1euIpLRUUvdBg9zjr9Mp8CXGqtFg==
+ b=eZ0pOzXeJSt/Yjm/7O6BIWFETX97xrx8VrxYng5vXK+FhvvdSyeQS5gr4io3B0cxF9gICA3buUYmbP643aSdwhKbu2hR+lb7IUzGvsQvQ2IyPufi6DtIdgEFtSPjyZelEvNsz8naKW3DGOA3kLvQvggkkTf6DJgEmJHXERV2cxf1RQNZoPaQN2Osv2ss3GrQrk8FFFfXW5I3M5eVSWG9UWdK2BXLrWLSvWFnhvs5Yfqmdhyax9i7Kl8g9yXJ6FJsu9Z1tdOEAr9yM4LHj25QdTOyW1OsHtLSBTv3TcEehxUE3kkGvmRt0v8CIKvXPO97BZHA5WA9NYOJlJeOGHtXCA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1HR46J25af28ygojXJb6Bq6jg2khn0oxq0o7MAtt6xc=;
- b=MbxCxdVM7zG5HX1BMjkuQR2PALYtJZavtV1yrJmhghcuNLbzVCFwhn6Hp1duceucGYjyUTvSgQnNFCW6WnnoOUTM6OilTL/C7I8kKU9l6xrj4mHaGKBrTMI+GgdA0fYBTxIJkKeERwh9lppN4ucqy4Lm6EYtBKr2mOEPmWjKUYzz9/75ukgjeK5enehYLme2sVaKaTLxkkH36OGuNlyVyzxyodjE5YuM+lWKN+WbkDgvCcerv/GYBDfmtqFLCbq+7OfbuV/te0rBccdMiQK3AOMTLrxFQU2s4Yy/em5nlGbwhihTsjayPoPrmnnR+XF56OskJsj/2f78xLlPy9z1gQ==
+ bh=8uJsdjccnPUYS3Pa7qhmkukHYiNJsqMM4x/xS+xTTK0=;
+ b=mKERpwPmg19a8wm/ZRIGVxC9Bqs1Y2J/jknf20X4zTU9eNvv2c9YPeQScwKY/gH9sxzE6Jx5Vm2+9Hw8Q1QBe32uSbDTyISXpARotFC5vGd9BUvcwIUxSrcz0CL4+faIOuNGAYCTG3HdHYF5VJaDszjZ5RhHcXsRqo3jnykXlDMNsHoTuLwwjpiHwiKjMare0pyyOgU7t/1OXaX0QZ1h/wflfxGYdz4GzmWkMdenHhc+TjjMJrXanIxprrT06YpiGo5x2AJzneQPi9677RCTtFHB1fubyi4BKi8ERkhsx0xBZZ8HISsIQwxXSNrgfAYh4saQ2vyy6WYoXcFhnHD/aA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
- by PH0PR11MB5061.namprd11.prod.outlook.com (2603:10b6:510:3c::21)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com (2603:10b6:8:136::15)
+ by PH8PR11MB6777.namprd11.prod.outlook.com (2603:10b6:510:1c8::14) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.26; Wed, 7 May
- 2025 23:11:08 +0000
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::d720:25db:67bb:6f50]) by PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::d720:25db:67bb:6f50%6]) with mapi id 15.20.8699.012; Wed, 7 May 2025
- 23:11:07 +0000
-Message-ID: <359f8288-480a-47f0-97e6-9bcda94cff30@intel.com>
-Date: Wed, 7 May 2025 16:11:08 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 4/9] drm/xe/xe_late_bind_fw: Initialize late binding firmware
-To: Badal Nilawar <badal.nilawar@intel.com>, <intel-xe@lists.freedesktop.org>, 
- <dri-devel@lists.freedesktop.org>
-CC: <anshuman.gupta@intel.com>, <rodrigo.vivi@intel.com>,
- <alexander.usyskin@intel.com>, <gregkh@linuxfoundation.org>
-References: <20250429160956.1014376-1-badal.nilawar@intel.com>
- <20250429160956.1014376-5-badal.nilawar@intel.com>
-Content-Language: en-US
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-In-Reply-To: <20250429160956.1014376-5-badal.nilawar@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR03CA0191.namprd03.prod.outlook.com
- (2603:10b6:a03:2ef::16) To PH7PR11MB7605.namprd11.prod.outlook.com
- (2603:10b6:510:277::5)
+ 2025 23:17:52 +0000
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::6387:4b73:8906:7543]) by DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::6387:4b73:8906:7543%4]) with mapi id 15.20.8699.022; Wed, 7 May 2025
+ 23:17:52 +0000
+Date: Wed, 7 May 2025 16:17:43 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+CC: Lucas De Marchi <lucas.demarchi@intel.com>,
+ <intel-xe@lists.freedesktop.org>, <michal.wajdeczko@intel.com>
+Subject: Re: [PATCH v4 3/4] drm/xe: Check 64-bit CTX timestamp for TDR when
+ available
+Message-ID: <aBvqFxhkzyPfu5d2@unerlige-desk.amr.corp.intel.com>
+References: <20250507013039.2043897-6-umesh.nerlige.ramappa@intel.com>
+ <20250507013039.2043897-9-umesh.nerlige.ramappa@intel.com>
+ <njcubtyaqbejliohfpklue6b3zxbxat2ly6bz4imivaxoh37vu@wi3pickrjp36>
+ <aBvPBb5lzKRLlmyF@lstrano-desk.jf.intel.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <aBvPBb5lzKRLlmyF@lstrano-desk.jf.intel.com>
+X-ClientProxiedBy: MW4PR04CA0223.namprd04.prod.outlook.com
+ (2603:10b6:303:87::18) To DS0PR11MB7408.namprd11.prod.outlook.com
+ (2603:10b6:8:136::15)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|PH0PR11MB5061:EE_
-X-MS-Office365-Filtering-Correlation-Id: 457b5335-deaf-43e3-71c8-08dd8dbc72e8
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7408:EE_|PH8PR11MB6777:EE_
+X-MS-Office365-Filtering-Correlation-Id: e647eb34-244d-4675-4311-08dd8dbd63f8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?dWhPN0x5RGNTNG5RU3VpbWVnVVRHaVpvNkFvVGg5UDhFcFFxS2RVV0hTZ0Vl?=
- =?utf-8?B?N2ZqdElXMUo4ZGx1TTJWcWg3V243VXRUbmY3SWkzM0U5RGR1bWhmS1JhY3JB?=
- =?utf-8?B?Y2E1NDFIS3l1MDYrL1pKaHZJQUNCNjUvdFJSU3lFWWNndjhDUzVPWnIrazF3?=
- =?utf-8?B?UUZ0RWhySDBVNTNpaHBJVTIyemVRT2R1T3E4YmhhQ0x3TFhYQzg5NDFHMmVQ?=
- =?utf-8?B?bVpkOW41VG5IbUw2dlNON1hjZ0psV3NCNVVZdkpOK0dQMVdoT2NReWFaVEFi?=
- =?utf-8?B?dklMU0dmUURZMDQ3akl2alF6MXBlbURlNC9JRWhJa3R3VHBXVU5Yb3pRY1No?=
- =?utf-8?B?NVQvb3BMQjJBSVdzaHphVVRkWkpVSnZVYkJ2VWlOTFdhbUhrTENkcy9ncTBG?=
- =?utf-8?B?UjVtQzN4MjFrQjE3eDlrbU1KNmErVHZvTlNLQ084TXBCVkU1dmtnOCtBYzgz?=
- =?utf-8?B?enU3Q2VPSjBuSmFad2ZlVEhJbnFHcmkvYkRoaHNabGhEV3RoNFdzcEpJVVQz?=
- =?utf-8?B?dlY0TzMrU2JMeVlYOHJrbUFxMkpBSlJmWDJaUE5Ua0NFU3ovdVp1TnBmR0ZN?=
- =?utf-8?B?R2RtM3dCOHBsNWlWWVlNMlpqZXpodXFXalVzUWh3TEQzV1QyWC9tSCtUbjkv?=
- =?utf-8?B?cDFIN0x4QXJ4Y1hwQU1vQ2tPL0JFM0FVY0c4dFNmeW42UUdjY2QraEliTWx4?=
- =?utf-8?B?TkJIZjJQdXBCbGlWa3dVMFRvQy9LVk91YVYrdnQxaGRSdUJpQktQRHUxMmlP?=
- =?utf-8?B?aHNpWmIyN2FYVEQzTEZjd0d0M2pzMDN5Z0pUOTVjUUsxYWNNOUxWWXQ0aXI4?=
- =?utf-8?B?dGEzSTl3TitNdnBHckdRT25UZG9uN3NLcXRUa0dlc0ZXUFZBRnNHUHZudGhG?=
- =?utf-8?B?aTVNS3NIeGZzUGlGOVhLL0Mra3JsUkliNU9hWjgzdFlaOXNodDBySUpURDVs?=
- =?utf-8?B?d01WQTNsUitOWG9IejhYaVRicmtVSUErTDJGLzk4bEVhU1hsQUZGWEZzNGIx?=
- =?utf-8?B?NndDclFyNGVMN21SQWxHVTQyUmtyTE13NS9hTjdYcnRLOXlrYUk5VFRIUW5r?=
- =?utf-8?B?bUhHWFdsOWN3N1Q0L0JmWGpSZUtHbDN3TUlMZ3ZDZU16RDZtNnNHenhXZjdZ?=
- =?utf-8?B?U1Z5bnRLZ2Vyd0dwK005MUdQdjFjMkswNVVDZytVUTVXVHR6dUQ2MXhhOFls?=
- =?utf-8?B?MEltOG5BRW54MTd3SGU1OHA0clV4QkRyRnVNUFBPUng5K2h0YVVWWGpjWWZh?=
- =?utf-8?B?djU2blMxQklYSU44YXBtQktKNjNsbUpRa0szdXBUTkFQRU9oQ0hmVVppaTln?=
- =?utf-8?B?blkyVlFXV0lEZTV5OGNDcDNpbEtSTDBORmJkNk9wRlhRZ0xtRTJGY3ZLS0hn?=
- =?utf-8?B?T1dwSzhXbWx5VitwZkdXdUlVc3pwZ1Q1L3RWdkJWeWcxV3BpS1ZtaUVaRWt2?=
- =?utf-8?B?ZS81UFl3cy9YcGQwMGtENzRRTTNRRUI5SE9kOUtKME0rWkVnc1ZCendRUTJM?=
- =?utf-8?B?blVoTHZFVjRsWmlyUkxnREM0SVJ1VW4wTFJKelNDYUFhZFh6SmNYL01OdTM1?=
- =?utf-8?B?dVlKWG1MSUVsNlNGTUpjL3dJNjIzUExBeFFJN24zeTRmWUN6ODQ5cnhLQU9M?=
- =?utf-8?B?My9XRVdVbnZFdzBnenhyUkZpSUR6cUNTRlZ2MVpORHlreUN5WHkxSVFZbmFC?=
- =?utf-8?B?OHJaQXk2VVIyK3NlQmNEOC95STJjMGQrb0xmQ3RoYU91Z09FbXExSGMrQzYy?=
- =?utf-8?B?bEl4ZE82dHNRWmpDNGVWQXJlbm5wTkZUN01wVUR0Rm5wMzRoYWgwQkVtQUhw?=
- =?utf-8?B?ZS9xM3d6N1VBTjNJQlowTVBZTWljMyttM3Z1NXByTW42YXlvOWwxYmNTdGJI?=
- =?utf-8?B?TnB2di9hUWxRWEwyVTB2S3VIeWUySXFpRldJUEJwcE44bmVXRk5nTEs4azZo?=
- =?utf-8?Q?QAOlnIPD3do=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Z2srM1NDcTZpbTNoV2FTcEVldUlUL25TTk8yanRMNVFyK2dEU1NORXRxREhz?=
+ =?utf-8?B?bjc0UlZock81SHpPbmp4bVJtTHlPNnlYWmNNRnROK2VWQ2NPQitTMlhsZkQ2?=
+ =?utf-8?B?OVVvK1FCbTJpekJ4U1paTlJTeUdvV1FFTlhka3ZyUFdXQXRPN0hsdzcrMkZO?=
+ =?utf-8?B?bVQwbVBHVUI0UjR2ZjdjaWVFOVRnMzVFYWJ4TGQvTCtpbXFpUEVZMUs4VThW?=
+ =?utf-8?B?NDlrdGQvcW5USXI4NjZrcXhmSExNb1pROEsya1p6SnpJTHNWanlFazd3NHZI?=
+ =?utf-8?B?VEJaZkV5ZEw0aXNheFVXVVIwRSsvbjlQT09ZUys1WVJ2bVBZaVE5djh2NnJX?=
+ =?utf-8?B?bVFzZThOWHJNQTlDWFZrb3ozTmtITisvREZOanpGazcrMEc4QzlXZzhKVzlN?=
+ =?utf-8?B?TERJM3RPUUVjQ2Qrby9wT1czQWVveXNERFcyM3QzcnhJdGI5NkxQREtGa1V6?=
+ =?utf-8?B?cE5RRWxsbHB6K2ZPSnUxdVJXOUhaYVhTQnZ0TDlwemNnS3lDL0F2QUlvZnBD?=
+ =?utf-8?B?VmpxdW1ITiszZ24rcm1rcjNybk5yR0IxWlo3N0JkSE8yT0c0akxGOGxqUHpT?=
+ =?utf-8?B?TktKRy81SHgraURDeFlxTDhQejdTeXFmWDhQUXhsQzdHYkdqRDdubEpvZkNq?=
+ =?utf-8?B?cyswM1EzN1JsajcvdkpBNS9CWWZRSTUwTStaMWtmayt5aXJDRU12QmZVQ05N?=
+ =?utf-8?B?dzRGaityQmNoUFNheXZlSHJmOFBnaThoa0lyK280TXd3NDZFRjVVa2VnK3dw?=
+ =?utf-8?B?eUdDaDlHU0hHTDBJbHdWdTlRRmN2YVV0R01lUStuRWR4ekIwdTRaZWE2VnpF?=
+ =?utf-8?B?UERJeVBQcE9OclFLcU9TRExHYnc1UkhvYk5rc2l4WVcyNlVQVVMvWnJqeitB?=
+ =?utf-8?B?Z1FDanlqbFlIWEFRY1hMbUhVMFRIUVFITkFUbktIL3lHaHBWK2l4QWt1OExj?=
+ =?utf-8?B?a2JtZGNaNVRGMGVrTTdjT1NUSEpJeEhNQjV4MWpGbkdJdmZWbm9YYk81aUJV?=
+ =?utf-8?B?YTd6b1pMbUtCVkFvQWkyZWtmQXNRVklqZFFPVDh4dmE1WEFwLzdhV0xzRTBF?=
+ =?utf-8?B?OS9hd3NBeThBK3EzelFQR3pIWTVlUEdMQWZIUHdNTEsrSzd5RlN3eUQ4N0J4?=
+ =?utf-8?B?bnlOUVpQN2k2bktzbHpRZCtuUEpqdVhrUFhFL3pSSXR4RGI0ZmVXUHhsZzBB?=
+ =?utf-8?B?RHBOczFqK01tQzIrYXFFUzBzY3V6OGRpZHRBNjZad3BaYmlwU21ZN1FlcVJr?=
+ =?utf-8?B?WklLR1FVQXhGaW94a0hQQ1NLcWVjU21DT2NkMUV1L3E4VWJVZHZVSUMzaHFv?=
+ =?utf-8?B?OGdZbVNKQzF3amtjbXkzSUJiOGs0LzFEdkVOWmQ4TWFNbUJsWE41RGZjMSsz?=
+ =?utf-8?B?MFBIemkwNi8wbDZ4aHZleVAxUExBVHJZakU1OVdrV1B3STJKQnNkbkNQd28w?=
+ =?utf-8?B?TEVrTlZuMS82UHhEV0M3b04rSUY2L2oxOFNkWVpKMUJSRXZxMW9yUWViZWp3?=
+ =?utf-8?B?MHcwSHduZG1LTXBYUTdudFNlMERoOHpUTU9UOWZVYm01UUtYZG9vVENrdXg2?=
+ =?utf-8?B?L2pUdFUyWWE4QWsrcEU3blBEYkVPYWJNMlFQZDNseS96WUxSeCt5aUdONllO?=
+ =?utf-8?B?YVBadVJWMVZjdTRFWEhWM2d5S2xpZlcyQ3BMVks3R3FVVlJiTEhiL2Y4aWg2?=
+ =?utf-8?B?NlhxZGZBK2hBNFBXQ05hWEsraW0vN2RYaUM2K2orOG04Z2lUUTZnQXVIa00r?=
+ =?utf-8?B?QklBV01uZi9qQUxMRFBlbUNkeU9nMm5RajdOWk5ncmVPbmRETGZTZWlMVnBy?=
+ =?utf-8?B?VXQrOHg5VE1JekRYYklvVFM3U2pqdVh0eENIdlBkc0dLMDQwaWNNNkRmZ2hI?=
+ =?utf-8?B?L2t3RFdnbkZPNHpKZXd2ekpzaTI2Rk5VSXl0M2h4YzkrRkFkcUlTdk9DWU9X?=
+ =?utf-8?Q?ca7RrHVCLcQ=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7408.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UCswUFlHMkdIaFd4WXQ4Z24wNXQ2WlMvTTVhblI3L3IrV2NwTmd2bHJ6QWlE?=
- =?utf-8?B?cjZrRjgvYXFqSVU5cHFQTVpESUlaOFJUNlJOZ25XN3ZyUVRMV3oxNXlKWE16?=
- =?utf-8?B?MFY0cGR5RmtOeTJ4ZlhCTFdIZlAxK3JzUk0vSWw4RlRoeFJtM0d4dk5KOW1P?=
- =?utf-8?B?ZHl6b0g5SGFtYWxDa0h5VlBRMmZtMDJ4eU9XeGxTMFg5aE84c25saUxESkVv?=
- =?utf-8?B?bk1XODlneWFRNThyOEMxZEFIYmNPdDhLRUxhNVBmeTZIYXM1Tm15SnVsbjFo?=
- =?utf-8?B?MGVpczluM002VytaN1dsTzNKdGVSVWZURjdCUW9Vamc0VEJOUXZRQnZKbHRy?=
- =?utf-8?B?SWtLQ3ZXcmhuRmVrdy9rcDd4NWJHcWdRMUE3SEVDbGJwUExLNjRWUGhKZFVF?=
- =?utf-8?B?M0tBeFlpQkx3YlhXQnhiZllCVHpmL0lhVFNVNElKd3NZQVR0Q1hqbjR0VkhL?=
- =?utf-8?B?cW5EVGl4QUhLb3VZbDhkR0l4ZDVSYjVnSDFzOFF0Kzc1b0syellsMWlaSTJZ?=
- =?utf-8?B?cDBMRmV3aVlka1VaNHJIM2RZczNHTndNMGc1ZUl2SUdmVjRyRFZlNGl4WHYz?=
- =?utf-8?B?MiswTGh0TFBBRWtYZzl0R3crQmZWQ2Y0ZS9JQ2pDc0Zoa1BGZVpLOWNRSitU?=
- =?utf-8?B?RlZTNTRINW1rRCtldlRkQlVVTHBzbjc4Q2NhMVFpaVVDQ1UzSFlZdG5oMlA3?=
- =?utf-8?B?MkkyQWdudXZudTFFeElpOVBjQStlcVhja1dMdElwRytRd3c1cGo0dmx0MWVQ?=
- =?utf-8?B?dUtEMEtEcGVXOElpVWNLc2orbEQyd2RRUmU3OFhJRnBzY0l6RzFxUlgzcGhU?=
- =?utf-8?B?V1I3ek1LSlJ0KzNGcTl5dHdXVENmMTVJMS9NRTRGdUR0YUN2T3Q4V1I1MWpi?=
- =?utf-8?B?L0J2bzVUSlZtL3RlNFZpbk5DV0VHRktEKzNpM09ja1d5dnQyWEJaeWw3R0RU?=
- =?utf-8?B?MWRPT012R0dvT1ZxZEU5OWJqT21HZUw1RFNvaTlKQjdxRTl1SnY1ZytLdjFO?=
- =?utf-8?B?bXhPRStsVE8yRHBFY2xzSXkveVF3M3ZnRFdrMlpmTEtzdEQ1NjhjZ21qRGNl?=
- =?utf-8?B?Szc5RXdoWCtWeFZNeXIrQ0tTZStFaUJXZFdLaEN5Y0Z3dmNSWGR0U0R5WjBT?=
- =?utf-8?B?U2t5dzNhWWFrZjZwbnBMZ09VZTF0S3BGTW5QUHA0WHNZNTljeTBUaDBzWjFv?=
- =?utf-8?B?UDlVR2JEUndaL05FVFZqclBxOXZqa3RQRmQ4bWdyMGJiV1NXVEs1Ylc2a01n?=
- =?utf-8?B?NS9BRDY4b3M4RGhsbm5BaThVU1luR1BmdldpVlFzcnF2U2FtYmNnRjRxV1c0?=
- =?utf-8?B?NERmWVdtdVR0S3lIcUlFK3NYbSsveTdpMnZmQWVsTjdiUjB1a0F4c0svQnoy?=
- =?utf-8?B?T2JNQWlVK0NSSW5Wb0dCUVpZNzJNTWNLWnpibzQvRTc3bmI3WllhcFFHVWtP?=
- =?utf-8?B?cHl6SmFtVm5maEliZDcrVFljbDl0K3N1dU9WTFhnODBiWENJS2hOTjcrbjd0?=
- =?utf-8?B?WmRQemhzQUV1YTlqNjc2akZ0N3dCNS9XTDkrYko0dHZ1Y0M3YUI4UmpqejAr?=
- =?utf-8?B?MGU3TFdTKzFHTlFyWkZ0VDJFZndqNFZFaUhIcWNqak16UlN2dmEyNEJyQWhn?=
- =?utf-8?B?RlplRFJiTmphbGdGUDYvRFNDbHJKU1NtV3ZPSkZHaWNGNlUrczBIbTFWZll6?=
- =?utf-8?B?WDgwWUI4QXhYSGtENjVwS2RnQ2NyVGlXNTIyZDJSMmI3MDFSQUpwQzhOQlg2?=
- =?utf-8?B?NkMrd01PQVhYMGFzNGlzQ2NGdHRYZWxFVW51UGVEd0NxLzJ1WGpNUnRvZ216?=
- =?utf-8?B?cENCZkNsNFRHWjh6WGdEY01YNzdtYjUwM2JwVUpyZDlnSTdCS3VUVk9yK3hX?=
- =?utf-8?B?RFFvaU9FYlpiZXZOKzRqcjFHU2JFcUMwN3hmaDRiTE5odW9XVHdBb25MenIv?=
- =?utf-8?B?cStZZzY4ZVp6MkhuQXNCOXRPVTVKY1N2eWQrV3l6eWwzQlA5WVoxYnpFMGNO?=
- =?utf-8?B?VTYzU251c0FjVThyOStvVklUV0t6aHpJS1hlNVN6UzNXeW9XSjU4aXl0a1dH?=
- =?utf-8?B?c2ltOEE3c0ZHUGJibXUvZDhlWFVNVjJhay9reXgwUHo3WkZNemRXdnlhYU1J?=
- =?utf-8?B?TjlpVlN1KzhDZC9la0ZaaHlMWGlaZUZzOWtRR01NdmhRZTJmYWpZTVRxYzd0?=
- =?utf-8?Q?r6KvRa/9eSlqJ30KhoYl3qQ=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 457b5335-deaf-43e3-71c8-08dd8dbc72e8
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QjFUUjU5VVFSa0tFRHBpUkdzcXNSekkzRXcrT1F0ZVZ1N0FNMjlBcTdQUlVV?=
+ =?utf-8?B?UjBaenJMQnh3N2FYVDVNMUV2cTNKVzBrVWhNM2JQdVpmMzRyd204cUpoeTcw?=
+ =?utf-8?B?M1ZaVTR3aGpMYjVYR3VpWVFtY2UycnhIUzFUNlBXQ2ZJdW91MU5GL0ZJODJZ?=
+ =?utf-8?B?ZjM0SUxVTEZ5M2ppVVF5OU5JYlFYZnJjSWR2OUVIekJjd1FhRmZ6aThUaVhH?=
+ =?utf-8?B?di8wUmlZcjJMbzRNR3Fpd0d6Nm8yU3hlTHUwNExLMmY5WGhyNjhvS2JPQnhw?=
+ =?utf-8?B?NndTeGVPa1dhR1BUYnhkYWVqbGpYUk9VSmdGUkRXR0czWDJIcnZHbVgrUkIv?=
+ =?utf-8?B?TDM5blBNVzFSVzhVZll6ak90M2Rpclp0TGtPY2JOTnBOWThuM2xKMmVHUFRD?=
+ =?utf-8?B?TWwrTUM2V0FoazArc0k5SklERUVlc3M3MFRsUUN4YmVZUm9ETVdJdDNWenBx?=
+ =?utf-8?B?RXI0YytSOE1FTDIvb3lJUmVhNmdsTzl6K1V4d0RSQVBYbi9pYmpZNHg3U3FC?=
+ =?utf-8?B?Tlp4V3JNLzB4V3FNUW9jVlJrSlkxQkpPRzZ1ZmdaQ2UvKzNuR1dqdlk5UUQ5?=
+ =?utf-8?B?d21HYmh6MlN2dzZrN0xvckVsUlJiV3JjUytvZnh0Z21xMUZMcEY3R3RXRnBK?=
+ =?utf-8?B?a3JxeXVJZUJtbC9FcmtqcDJSeXlEYm1LWUJsNDMySVhCby9qRFhQTi9ua3J5?=
+ =?utf-8?B?cmxoQ3BBWUJpa2w1M1dTaHQ1TUJJZTZ6aXJHRklCd2FuZGxpaEV2NWxkbEpq?=
+ =?utf-8?B?OHhmNEZ2YU05SWVxNzhCSElBdkdpM3FQeFFmSTRmdVVTbWdIRTFBNXk3aHov?=
+ =?utf-8?B?ZVBQQWMydzRON0FVT1U4TzhrK3NlaHpVa09yN2E1b1dXZDdkWFVGeEdhQXJQ?=
+ =?utf-8?B?c3Y3d1FoNXh3d0xzd1VoL3BaM0R4V3dsNVlvUEQ2RDV4NzRVYW80UzB0NEZU?=
+ =?utf-8?B?T083THIwME5XSlVnbUZUTllMaTk4V2Fub25rSUE2Q1ZWTEZESnlRNVl5TmQy?=
+ =?utf-8?B?ejZqR255Ukc5eWVDNytoN2lrb2ZGaVVkMGhJZnhMenVxbmhKSUx6VW5BSHJ5?=
+ =?utf-8?B?dlhDN3VjLysrYmpKWXlFRUg5RDl4eENhOHBnU2lyK2lZV1lUcUIydktDZXY4?=
+ =?utf-8?B?cC96NklEdUV6YnRKcVUrYUZwc1dPU05IV2RGcS9rR3Rwa1FXcUszTmJMdFVi?=
+ =?utf-8?B?ZnU0UG1CTkhEMHJtLzJUZTA3VngwRWVVeTdNRDJlWDF5SktiT0JaaVR1NVVx?=
+ =?utf-8?B?WEZmN2xsWHl6NjJmaTgwbmR4SlgyYlFhSXlXWkhlU2FCRW8wcEN1TWZ5R2hP?=
+ =?utf-8?B?VE9KTkI1ZjMwQnptamdYT1p3R0hhbjJTVkl0WG5lWExwU3ArWFhSSW8zL09z?=
+ =?utf-8?B?LzZvaVZiRW9vdldiRDZGVkhKdnlHUzN4OUxnbjlaUVBoM0xpZ1lCSzdoSU1P?=
+ =?utf-8?B?MVFteVNIM2tRNmtBd3lWNy9ldlRmaEQxTmswL2N3cFZiQTBZQnZ3MHZXRVlz?=
+ =?utf-8?B?MkZJcWIybHRFUk1lcFFJYkw0a2tUYzM4OFNrOXRXaWJxMjdjVVZaZzN4andk?=
+ =?utf-8?B?K05tQVErdmljRnpRY0R0MGwySXBKM3lOeGpaQ3hud2dneVpJMEM0ZGgzY1dw?=
+ =?utf-8?B?MjdnM09IMk1xYlhZYnNqUE1Qc2NhU3NUL0VSSitOSWdxZWUyck9wQUVNL2Jz?=
+ =?utf-8?B?a1JiMEtZUGQ0WEQ2Tnd6dTJzaHNidFRjVFNRN3JUNVBNcE9WZ0RKd1VoUlVC?=
+ =?utf-8?B?SlRuTGdheVFVMGNOa2Q1bE5Pcm5wdVl5ZzVCZnpEY2hsaVBZZXV2UUh0YVhN?=
+ =?utf-8?B?elRBbllzNmk0cjJmUWZtRld3L1Q2UHcwRkg3UEszbUwwR2dMVWR1cVRnSmFH?=
+ =?utf-8?B?SWNQeFpLM0dyN0U5c0RkYnBlVHkyWVFlL1Z6eWxRbkVTbXFLZXl1THNZRTRr?=
+ =?utf-8?B?VzkySU5NZk84T0VreFRXa2R1aURmTzBvRjE3c0E2VzdlcE9iRkhkU29YdjQv?=
+ =?utf-8?B?WDREK2hUd1ZDNU9SbFAxZEdBVTk4U0JOUkFIVk9RSmkrSUlEVU5BQkdEUkk3?=
+ =?utf-8?B?azhKclJHV1IwWUlYa2xjTS9PMEVvZFBHM0ZaaW9jNFR2YlN0ZkRVejg0VkY2?=
+ =?utf-8?B?STFpYlZoVW02Q1hlSkZJWTRLWkVZMklCYUhsRVVXa1IxTEN0TUQ1RkxacEs3?=
+ =?utf-8?Q?mxz/TRsRv8bHcyxUYhGGBIA=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e647eb34-244d-4675-4311-08dd8dbd63f8
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7408.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2025 23:11:07.9211 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2025 23:17:52.4525 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jsOrtGGaToMSWgQF8GjLlJaBk9j+KYM88sQ5lz9VxP4u7tvoPlO7wqaxco/2gdY8s3hTxoA6BdRbuvMKRZhQT4AjbqBkaw9llO5lrQRhE+4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5061
+X-MS-Exchange-CrossTenant-UserPrincipalName: HLwU8C2zVi2j6Z1kiWcLYrDeAZQGUE5z8KDjyWvZpLo7Kz7I2ZOZFpzlODjDeEDgMIbzkGQEBi+k1PjHCQDpIxTKgP5iLS+nMFgHWml4eM0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6777
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -197,195 +197,242 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-On 4/29/2025 9:09 AM, Badal Nilawar wrote:
-> Search for late binding firmware binaries and populate the meta data of
-> firmware structures.
+On Wed, May 07, 2025 at 02:22:13PM -0700, Matthew Brost wrote:
+>On Wed, May 07, 2025 at 04:14:22PM -0500, Lucas De Marchi wrote:
+>> On Tue, May 06, 2025 at 06:30:42PM -0700, Umesh Nerlige Ramappa wrote:
+>> > Where available, add support for 64-bit CTX timestamp when calculating
+>> > job run time.
+>> >
+>> > v2: (Matt)
+>> > - Use xe->info.has_64bit_timestamp instead of version check
+>> > - Allow timeout > 100sec on platforms with 64-bit timestampt
+>> >
+>> > Suggested-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> > Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>> > ---
+>> > drivers/gpu/drm/xe/regs/xe_engine_regs.h |  1 +
+>> > drivers/gpu/drm/xe/regs/xe_lrc_layout.h  |  1 +
+>> > drivers/gpu/drm/xe/xe_device_types.h     |  2 +
+>> > drivers/gpu/drm/xe/xe_guc_submit.c       | 18 ++++---
+>> > drivers/gpu/drm/xe/xe_lrc.c              | 64 +++++++++++++++++++++---
+>> > drivers/gpu/drm/xe/xe_lrc.h              | 10 ++--
+>> > drivers/gpu/drm/xe/xe_pci.c              |  2 +
+>> > drivers/gpu/drm/xe/xe_pci_types.h        |  1 +
+>> > drivers/gpu/drm/xe/xe_ring_ops.c         |  8 +++
+>> > 9 files changed, 90 insertions(+), 17 deletions(-)
+>> >
+>> > diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+>> > index da713634d6a0..52f4c96c01dc 100644
+>> > --- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+>> > +++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+>> > @@ -154,6 +154,7 @@
+>> > #define   STOP_RING				REG_BIT(8)
+>> >
+>> > #define RING_CTX_TIMESTAMP(base)		XE_REG((base) + 0x3a8)
+>> > +#define RING_CTX_TIMESTAMP_UDW(base)		XE_REG((base) + 0x3ac)
+>> > #define CSBE_DEBUG_STATUS(base)			XE_REG((base) + 0x3fc)
+>> >
+>> > #define RING_FORCE_TO_NONPRIV(base, i)		XE_REG(((base) + 0x4d0) + (i) * 4)
+>> > diff --git a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+>> > index 57944f90bbf6..8619244b7c7b 100644
+>> > --- a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+>> > +++ b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+>> > @@ -12,6 +12,7 @@
+>> > #define CTX_RING_START			(0x08 + 1)
+>> > #define CTX_RING_CTL			(0x0a + 1)
+>> > #define CTX_TIMESTAMP			(0x22 + 1)
+>> > +#define CTX_TIMESTAMP_UDW		(0x24 + 1)
+>> > #define CTX_INDIRECT_RING_STATE		(0x26 + 1)
+>> > #define CTX_PDP0_UDW			(0x30 + 1)
+>> > #define CTX_PDP0_LDW			(0x32 + 1)
+>> > diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+>> > index 495bc00ebed4..9446a739948c 100644
+>> > --- a/drivers/gpu/drm/xe/xe_device_types.h
+>> > +++ b/drivers/gpu/drm/xe/xe_device_types.h
+>> > @@ -334,6 +334,8 @@ struct xe_device {
+>> > 		u8 has_sriov:1;
+>> > 		/** @info.has_usm: Device has unified shared memory support */
+>> > 		u8 has_usm:1;
+>> > +		/** @info.has_64bit_timestamp: Device supports 64-bit timestamps */
+>> > +		u8 has_64bit_timestamp:1;
+>> > 		/** @info.is_dgfx: is discrete device */
+>> > 		u8 is_dgfx:1;
+>> > 		/** @info.needs_scratch: needs scratch page for oob prefetch to work */
+>> > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+>> > index 813c3c0bb250..bef32f2b0081 100644
+>> > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+>> > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+>> > @@ -936,10 +936,12 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
+>> >
+>> > static bool check_timeout(struct xe_exec_queue *q, struct xe_sched_job *job)
+>> > {
+>> > -	struct xe_gt *gt = guc_to_gt(exec_queue_to_guc(q));
+>> > -	u32 ctx_timestamp, ctx_job_timestamp;
+>> > -	u32 timeout_ms = q->sched_props.job_timeout_ms;
+>> > -	u32 diff;
+>> > +	struct xe_guc *guc = exec_queue_to_guc(q);
+>> > +	struct xe_device *xe = guc_to_xe(guc);
+>> > +	struct xe_gt *gt = guc_to_gt(guc);
+>> > +	u64 ctx_timestamp, ctx_job_timestamp;
+>> > +	u64 timeout_ms = q->sched_props.job_timeout_ms;
+>> > +	u64 diff, max = U32_MAX;
+>> > 	u64 running_time_ms;
+>> >
+>> > 	if (!xe_sched_job_started(job)) {
+>> > @@ -952,15 +954,17 @@ static bool check_timeout(struct xe_exec_queue *q, struct xe_sched_job *job)
+>> >
+>> > 	ctx_timestamp = xe_lrc_ctx_timestamp(q->lrc[0]);
+>> > 	ctx_job_timestamp = xe_lrc_ctx_job_timestamp(q->lrc[0]);
+>> > +	if (xe->info.has_64bit_timestamp)
+>> > +		max = U64_MAX;
+>> >
+>> > 	/*
+>> > 	 * Counter wraps at ~223s at the usual 19.2MHz, be paranoid catch
+>> > 	 * possible overflows with a high timeout.
+>>
+>> this would not be true anymore with a 64b counter. Anyway, why would we
+>> need to be soooo paranoid to increase this and consider a diff >=
+>> 223sec? For the timeout check we can leave with the counter wrapping at
+>> 32b afaics and not change anything here.
+>>
 >
-> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_device.c       |   2 +
->   drivers/gpu/drm/xe/xe_late_bind_fw.c | 101 ++++++++++++++++++++++++++-
->   drivers/gpu/drm/xe/xe_late_bind_fw.h |   1 +
->   3 files changed, 101 insertions(+), 3 deletions(-)
+>Why? If the counter is 64 bits I don't see why you'd wouldn't use all the bits.
 >
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index 86a7b7065122..d83864e7189c 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -892,6 +892,8 @@ int xe_device_probe(struct xe_device *xe)
->   
->   	xe_late_bind_init(&xe->late_bind);
->   
-> +	xe_late_bind_fw_init(&xe->late_bind);
+>> > 	 */
+>> > -	xe_gt_assert(gt, timeout_ms < 100 * MSEC_PER_SEC);
+>> > +	xe_gt_assert(gt, xe->info.has_64bit_timestamp || timeout_ms < 100 * MSEC_PER_SEC);
+>>
+>> the assert is on the value of q->sched_props.job_timeout_ms.
+>> Why are you removing it? Or even why is the assert in this function
+>> rather than on init?
+>>
+>
+>Admittedly a bit of an odd choice to have an assert here rather than on
+>init. Also in practice the highest value I think timeout can be is 10s
+>without a special build of the kernel to allow crazy high values.
+>
+>>
+>> >
+>> > 	if (ctx_timestamp < ctx_job_timestamp)
+>> > -		diff = ctx_timestamp + U32_MAX - ctx_job_timestamp;
+>> > +		diff = ctx_timestamp + max - ctx_job_timestamp;
+>> > 	else
+>> > 		diff = ctx_timestamp - ctx_job_timestamp;
+>> >
+>> > @@ -971,7 +975,7 @@ static bool check_timeout(struct xe_exec_queue *q, struct xe_sched_job *job)
+>> > 		ADJUST_FIVE_PERCENT(xe_gt_clock_interval_to_ms(gt, diff));
+>> >
+>> > 	xe_gt_dbg(gt,
+>> > -		  "Check job timeout: seqno=%u, lrc_seqno=%u, guc_id=%d, running_time_ms=%llu, timeout_ms=%u, diff=0x%08x",
+>> > +		  "Check job timeout: seqno=%u, lrc_seqno=%u, guc_id=%d, running_time_ms=%llu, timeout_ms=%llu, diff=0x%llx",
+>> > 		  xe_sched_job_seqno(job), xe_sched_job_lrc_seqno(job),
+>> > 		  q->guc->id, running_time_ms, timeout_ms, diff);
+>> >
+>> > diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+>> > index 9d9be9383207..b5f5547c7c4f 100644
+>> > --- a/drivers/gpu/drm/xe/xe_lrc.c
+>> > +++ b/drivers/gpu/drm/xe/xe_lrc.c
+>> > @@ -653,6 +653,7 @@ u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc)
+>> > #define LRC_SEQNO_PPHWSP_OFFSET 512
+>> > #define LRC_START_SEQNO_PPHWSP_OFFSET (LRC_SEQNO_PPHWSP_OFFSET + 8)
+>> > #define LRC_CTX_JOB_TIMESTAMP_OFFSET (LRC_START_SEQNO_PPHWSP_OFFSET + 8)
+>> > +#define LRC_CTX_JOB_TIMESTAMP_UDW_OFFSET (LRC_CTX_JOB_TIMESTAMP_OFFSET + 4)
+>> > #define LRC_PARALLEL_PPHWSP_OFFSET 2048
+>> >
+>> > u32 xe_lrc_regs_offset(struct xe_lrc *lrc)
+>> > @@ -691,6 +692,12 @@ static u32 __xe_lrc_ctx_job_timestamp_offset(struct xe_lrc *lrc)
+>> > 	return xe_lrc_pphwsp_offset(lrc) + LRC_CTX_JOB_TIMESTAMP_OFFSET;
+>> > }
+>> >
+>> > +static u32 __xe_lrc_ctx_job_timestamp_udw_offset(struct xe_lrc *lrc)
+>> > +{
+>> > +	/* This is stored in the driver-defined portion of PPHWSP */
+>> > +	return xe_lrc_pphwsp_offset(lrc) + LRC_CTX_JOB_TIMESTAMP_UDW_OFFSET;
+>> > +}
+>> > +
+>> > static inline u32 __xe_lrc_parallel_offset(struct xe_lrc *lrc)
+>> > {
+>> > 	/* The parallel is stored in the driver-defined portion of PPHWSP */
+>> > @@ -702,6 +709,11 @@ static u32 __xe_lrc_ctx_timestamp_offset(struct xe_lrc *lrc)
+>> > 	return __xe_lrc_regs_offset(lrc) + CTX_TIMESTAMP * sizeof(u32);
+>> > }
+>> >
+>> > +static u32 __xe_lrc_ctx_timestamp_udw_offset(struct xe_lrc *lrc)
+>> > +{
+>> > +	return __xe_lrc_regs_offset(lrc) + CTX_TIMESTAMP_UDW * sizeof(u32);
+>> > +}
+>> > +
+>> > static inline u32 __xe_lrc_indirect_ring_offset(struct xe_lrc *lrc)
+>> > {
+>> > 	/* Indirect ring state page is at the very end of LRC */
+>> > @@ -728,7 +740,9 @@ DECL_MAP_ADDR_HELPERS(seqno)
+>> > DECL_MAP_ADDR_HELPERS(regs)
+>> > DECL_MAP_ADDR_HELPERS(start_seqno)
+>> > DECL_MAP_ADDR_HELPERS(ctx_job_timestamp)
+>> > +DECL_MAP_ADDR_HELPERS(ctx_job_timestamp_udw)
+>> > DECL_MAP_ADDR_HELPERS(ctx_timestamp)
+>> > +DECL_MAP_ADDR_HELPERS(ctx_timestamp_udw)
+>> > DECL_MAP_ADDR_HELPERS(parallel)
+>> > DECL_MAP_ADDR_HELPERS(indirect_ring)
+>> >
+>> > @@ -745,19 +759,38 @@ u32 xe_lrc_ctx_timestamp_ggtt_addr(struct xe_lrc *lrc)
+>> > 	return __xe_lrc_ctx_timestamp_ggtt_addr(lrc);
+>> > }
+>> >
+>> > +/**
+>> > + * xe_lrc_ctx_timestamp_udw_ggtt_addr() - Get ctx timestamp udw GGTT address
+>> > + * @lrc: Pointer to the lrc.
+>> > + *
+>> > + * Returns: ctx timestamp udw GGTT address
+>> > + */
+>> > +u32 xe_lrc_ctx_timestamp_udw_ggtt_addr(struct xe_lrc *lrc)
+>> > +{
+>> > +	return __xe_lrc_ctx_timestamp_udw_ggtt_addr(lrc);
+>> > +}
+>> > +
+>> > /**
+>> >  * xe_lrc_ctx_timestamp() - Read ctx timestamp value
+>> >  * @lrc: Pointer to the lrc.
+>> >  *
+>> >  * Returns: ctx timestamp value
+>> >  */
+>> > -u32 xe_lrc_ctx_timestamp(struct xe_lrc *lrc)
+>> > +u64 xe_lrc_ctx_timestamp(struct xe_lrc *lrc)
+>> > {
+>> > 	struct xe_device *xe = lrc_to_xe(lrc);
+>> > 	struct iosys_map map;
+>> > +	u32 ldw, udw = 0;
+>> >
+>> > 	map = __xe_lrc_ctx_timestamp_map(lrc);
+>> > -	return xe_map_read32(xe, &map);
+>> > +	ldw = xe_map_read32(xe, &map);
+>> > +
+>> > +	if (xe->info.has_64bit_timestamp) {
+>> > +		map = __xe_lrc_ctx_timestamp_udw_map(lrc);
+>> > +		udw = xe_map_read32(xe, &map);
+>> > +	}
+>> > +
+>> > +	return (u64)udw << 32 | ldw;
+>>
+>> I understand doing this for the next patch, but for this timeout I think
+>> we could just discard the upper part and let the 32b wrap.
+>>
+>
+>Again why? Seems odd to not use all 64 bits if available.
 
-Maybe call this from inside xe_late_bind_init?
+I would use all the 64 bits. The only problem with 32 bits is it appears 
+to be small, maybe if you run a job for something like 500s, then the 
+wrap may have happened twice and we won't know.
 
-> +
->   	err = xe_oa_init(xe);
->   	if (err)
->   		return err;
-> diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw.c b/drivers/gpu/drm/xe/xe_late_bind_fw.c
-> index 7981fc500a78..297238fd3d16 100644
-> --- a/drivers/gpu/drm/xe/xe_late_bind_fw.c
-> +++ b/drivers/gpu/drm/xe/xe_late_bind_fw.c
-> @@ -5,6 +5,7 @@
->   
->   #include <linux/component.h>
->   #include <linux/delay.h>
-> +#include <linux/firmware.h>
->   
->   #include <drm/drm_managed.h>
->   #include <drm/intel/i915_component.h>
-> @@ -13,13 +14,108 @@
->   
->   #include "xe_device.h"
->   #include "xe_late_bind_fw.h"
-> +#include "xe_pcode.h"
-> +#include "xe_pcode_api.h"
->   
-> -static struct xe_device *
-> -late_bind_to_xe(struct xe_late_bind *late_bind)
-> +static const char * const fw_id_to_name[] = {
-> +		[FAN_CONTROL_ID] = "fan_control",
-> +		[VOLTAGE_REGULATOR_ID] = "voltage_regulator",
-> +	};
-> +
-> +static const u32 fw_id_to_type[] = {
-> +		[FAN_CONTROL_ID] = CSC_LATE_BINDING_TYPE_FAN_CONTROL,
-> +		[VOLTAGE_REGULATOR_ID] = CSC_LATE_BINDING_TYPE_VOLTAGE_REGULATOR
-> +	};
-> +
-> +static struct xe_device *late_bind_to_xe(struct xe_late_bind *late_bind)
->   {
->   	return container_of(late_bind, struct xe_device, late_bind);
->   }
->   
-> +static int late_bind_fw_num_fans(struct xe_late_bind *late_bind)
-> +{
-> +	struct xe_device *xe = late_bind_to_xe(late_bind);
-> +	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
-> +	u32 uval;
-> +
-> +	if (!xe_pcode_read(root_tile,
-> +			   PCODE_MBOX(FAN_SPEED_CONTROL, FSC_READ_NUM_FANS, 0), &uval, NULL))
-> +		return uval;
-> +	else
-> +		return 0;
-> +}
-> +
-> +static int late_bind_fw_init(struct xe_late_bind *late_bind, u32 id)
-> +{
-> +	struct xe_device *xe = late_bind_to_xe(late_bind);
-> +	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-> +	struct xe_late_bind_fw *lb_fw;
-> +	const struct firmware *fw;
-> +	u32 num_fans;
-> +	int ret;
-> +
-> +	if (!late_bind->component_added)
-> +		return 0;
-> +
-> +	if (id >= MAX_ID)
-> +		return -EINVAL;
-> +
-> +	lb_fw = &late_bind->late_bind_fw[id];
-> +
-> +	lb_fw->id = id;
-> +	lb_fw->type = fw_id_to_type[id];
-> +
-> +	if (lb_fw->type == CSC_LATE_BINDING_TYPE_FAN_CONTROL) {
-> +		num_fans = late_bind_fw_num_fans(late_bind);
-> +		drm_dbg(&xe->drm, "Number of Fans: %d\n", num_fans);
-> +		if (!num_fans)
-> +			return 0;
-> +	}
-> +
-> +	lb_fw->flags = CSC_LATE_BINDING_FLAGS_IS_PERSISTENT;
-> +
-> +	snprintf(lb_fw->blob_path, sizeof(lb_fw->blob_path), "xe/%s_8086_%04x_%04x_%04x.bin",
-> +		 fw_id_to_name[id], pdev->device,
-> +		 pdev->subsystem_vendor, pdev->subsystem_device);
-> +
-> +	drm_dbg(&xe->drm, "Request late binding firmware %s\n", lb_fw->blob_path);
-> +	ret = request_firmware(&fw, lb_fw->blob_path, xe->drm.dev);
+Is the LR (long running mode) not subject to drm job timeouts? If yes, 
+and if there is no practical need for 64 bits for regular mode, I can 
+revert those parts.
 
-Are we expecting late binding firmwares for all possible cards to always 
-be available? because if not (and therefore if this fetch can fail) we 
-should change this to firmware_request_nowarn to avoid throwing errors
+Please advise.
 
-> +	if (ret) {
-> +		drm_err(&xe->drm, "Failed to request %s\n", lb_fw->blob_path);
-
-Same as above, if not finding the blob is a valid scenario then this 
-should be a drm_dbg. Maybe even reword to make it clear it's not a 
-failure but just the fact that there is no FW for the card.
-
-> +		lb_fw->valid = false;
-> +		return 0;
-> +	}
-> +
-> +	if (fw->size > MAX_PAYLOAD_SIZE)
-> +		lb_fw->payload_size = MAX_PAYLOAD_SIZE;
-
-Is this safe? It feels weird to send a truncated firmware for something 
-like voltage regulators. IMO if the firmware is too big we should throw 
-and error and bail out.
-
-> +	else
-> +		lb_fw->payload_size = fw->size;
-> +
-> +	memcpy(lb_fw->payload, fw->data, lb_fw->payload_size);
-> +	release_firmware(fw);
-> +	lb_fw->valid = true;
-> +
-> +	return 0;
-> +}
-> +
-> +/**
-> + * xe_mei_late_bind_fw_init() - Initialize late bind firmware
-> + *
-> + * Return: 0 if the initialization was successful, a negative errno otherwise.
-> + */
-> +int xe_late_bind_fw_init(struct xe_late_bind *late_bind)
-> +{
-> +	int id;
-> +	int ret;
-> +
-> +	for (id = 0; id < MAX_ID; id++) {
-> +		ret = late_bind_fw_init(late_bind, id);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +	return ret;
-> +}
-> +
->   static int xe_late_bind_component_bind(struct device *xe_kdev,
->   				       struct device *mei_kdev, void *data)
->   {
-> @@ -83,7 +179,6 @@ int xe_late_bind_init(struct xe_late_bind *late_bind)
->   	}
->   
->   	late_bind->component_added = true;
-> -
-
-stray blank line removal
-
-Daniele
-
->   	/* the component must be removed before unload, so can't use drmm for cleanup */
->   
->   	return 0;
-> diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw.h b/drivers/gpu/drm/xe/xe_late_bind_fw.h
-> index 21299de54b47..e88c637b15a6 100644
-> --- a/drivers/gpu/drm/xe/xe_late_bind_fw.h
-> +++ b/drivers/gpu/drm/xe/xe_late_bind_fw.h
-> @@ -12,5 +12,6 @@ struct xe_late_bind;
->   
->   int xe_late_bind_init(struct xe_late_bind *late_bind);
->   void xe_late_bind_remove(struct xe_late_bind *late_bind);
-> +int xe_late_bind_fw_init(struct xe_late_bind *late_bind);
->   
->   #endif
-
+Thanks,
+Umesh
+>
+>Matt
+>
+>> Lucas De Marchi
