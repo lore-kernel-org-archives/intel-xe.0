@@ -4,167 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5F8EC3ABC0
-	for <intel-xe@archiver.kernel.org>; Wed,  7 May 2025 10:58:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 951D0C3ABBF
+	for <intel-xe@archiver.kernel.org>; Wed,  7 May 2025 11:05:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B92410E176;
-	Wed,  7 May 2025 10:58:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50B5610E18F;
+	Wed,  7 May 2025 11:05:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AoU/QO6n";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fKq8KjnZ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3064C10E176;
- Wed,  7 May 2025 10:58:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78E0A10E18F
+ for <intel-xe@lists.freedesktop.org>; Wed,  7 May 2025 11:05:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746615522; x=1778151522;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- in-reply-to:mime-version;
- bh=1KVXT7n9OAiinxc1cw2tUE4+wPzhDH2OaHS3i1407Ho=;
- b=AoU/QO6nVA4cuLU5hk/XwsJE6QEpkjt3OyJH7qE3TaShDr/qw6EaA+/G
- VdUQNnw2qoSLUGSil7kDj26YLp5qTRg0/wlRH5I0CyarV2BZdGRVko60K
- jPU5pAE0soVp+tirF+FHCSpv2kSLKexp8+gEH+6cTJQNII0eQ6bzhbw8Y
- sFVrXqbqFlEgkT02t45GRnX83mynmeKQJa4QORily9e0upjB1OO20BsYc
- qbMEYh776aX2SztyVb6ticnIXXO5WcYn5Z9cNS0wbxBbGndxpWpE3F71x
- hompIZeMHrf2WeHf9b3MPUZ9kRsdx1+L+UGaLrn8NtWzrRmi9/z1ny4ha g==;
-X-CSE-ConnectionGUID: 0oK/xjDtTUySRykZRAZJng==
-X-CSE-MsgGUID: 2PvvvsxERqaU2KrLi2Xp0w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11425"; a="58968160"
-X-IronPort-AV: E=Sophos;i="6.15,269,1739865600"; d="scan'208";a="58968160"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2025 03:58:42 -0700
-X-CSE-ConnectionGUID: K/ph2L1XQpyHU/5kN1plOA==
-X-CSE-MsgGUID: rmmErQFUSliideEFEAyKZg==
+ t=1746615900; x=1778151900;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=zEveRKw0OEQAu1xR+Fhi/0aJ08nBvE7eldTOEpIyx7w=;
+ b=fKq8KjnZFZmN/3siDBWj1lnzXfqgWUunxSwr49p4mz7Uv02202ptDL82
+ vd7u8zLOfsys02BLBZb0ATd/h2r+BiooS8i0mZ22NhbFJUxmEXcokgfvK
+ NViBOp7X3V2IrTmYN3bNLZJKw2pJBQTrxSfw42mIUDhsq+Vk6/6FYJBUg
+ +wrsOz2Kpp8f/tU/1UIK5E/bog2dQSN4M+0Uj3wpGmR49ytwWqqUtG5b3
+ Bj8mVRWYoTzH0JQo7vLl8IzQm5ct5x3vGJ1462ih0Z/Nv3zHxPjA301+w
+ oFaK6M38eTm2rs3cxkdgsxTBi7VJae681VTGfWGRoKFwc2p3H+D7X0HGg Q==;
+X-CSE-ConnectionGUID: nl1XBGchR5qKWOduF29SsQ==
+X-CSE-MsgGUID: 9EeV0YUZQVyMWUrMPwOa6w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11425"; a="48453218"
+X-IronPort-AV: E=Sophos;i="6.15,269,1739865600"; d="scan'208";a="48453218"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2025 04:05:00 -0700
+X-CSE-ConnectionGUID: O43wP8U6QCW4XkeYWOX7fQ==
+X-CSE-MsgGUID: dJg3PK9/Qkq2XHI+gqb9Ng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,269,1739865600"; d="scan'208";a="136851494"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2025 03:58:42 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Wed, 7 May 2025 03:58:41 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Wed, 7 May 2025 03:58:41 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.172)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Wed, 7 May 2025 03:58:26 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iVUKAY8kAeqtA5M13vMC/BcjcAjwLlEIGbieqtqbBs+lGpm1nSoc2UiDnUWSM60rpAU7P3bDO23af2RqTp+hiLTtEA1UVI0IiDl/TeTR1RZ3ZOM4V94G4eLJgrSJTq9z7HMKY3IHmJxAiD54o61ma5D9MhUzY1hAWleMvAJWgw0BVIIEJHAAoU2EVkg+7Jk71DV5p6PRQhm88t1vm2aBVruwHsDPO4Jy9HOvfEFpogp3ZBgGDWsSPFZqvea1aOVGejABvV6Jfiu/xDpZpfiCh4DE4YbOR37mjHJ/Hb0lTMhofixl0NIgbIgsUL/kSaV7hEyLxX1rJz6GKBhukOwojQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=55ghpR7o3XbJjZ07+PIq9kjWnjeYwKCMNhBa9JroVmI=;
- b=mh1oBJGaue0KIqtUEg6kReC5akiqERp5FEGU34VaGr7g9+iP4zAPebeCv25+Sc8KGiPPOY6BgBJDfAsX0o5JRCzAvcZOMpaiIp572MF7/JrV5qD2vV/QbISSUYFlVwPzAbizStLqYXBAC3ApGy27pVY4p0Fg9IcbMx3U6Q5tuIzyAsxEqeJpt9VhrBtWE/2C49ELzo98qmZbpYMnQ52UGHH+BlVXrwyi5DNJyjVfRjvDxWrsFxu3ZDiaMv6rpTAxDfEPvqjnzVXU15XoMdxFXoNlgfCw5eL4gHdi77TJrexq9Vy+A6TGWNi8YUHSL4wR1mc6JVCZ5mCDl79qmzFb4Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
- by SJ0PR11MB4799.namprd11.prod.outlook.com (2603:10b6:a03:2ae::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.26; Wed, 7 May
- 2025 10:58:18 +0000
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::8900:d137:e757:ac9f%5]) with mapi id 15.20.8722.020; Wed, 7 May 2025
- 10:58:18 +0000
-Date: Wed, 7 May 2025 13:58:26 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v2 09/12] drm/i915/display: Factor out
- intel_display_{min, max}_pipe_bpp()
-Message-ID: <aBs80q9JJaCArh9W@ideak-desk.fi.intel.com>
-References: <20250428133135.3396080-1-imre.deak@intel.com>
- <20250428133135.3396080-10-imre.deak@intel.com>
- <abe21867-4735-4e73-a16a-bee34658cae7@intel.com>
- <aBon62ld9JyoRuY1@ideak-desk.fi.intel.com>
- <f5d72e0e-894d-4061-874b-d56d13741caf@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <f5d72e0e-894d-4061-874b-d56d13741caf@intel.com>
-X-ClientProxiedBy: DB8PR06CA0060.eurprd06.prod.outlook.com
- (2603:10a6:10:120::34) To SJ0PR11MB4845.namprd11.prod.outlook.com
- (2603:10b6:a03:2d1::10)
+X-IronPort-AV: E=Sophos;i="6.15,269,1739865600"; d="scan'208";a="173115279"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.218])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2025 04:04:56 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Karthik Poosa <karthik.poosa@intel.com>, intel-xe@lists.freedesktop.org
+Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
+ riana.tauro@intel.com, ashutosh.dixit@intel.com, rodrigo.vivi@intel.com,
+ michael.j.ruhl@intel.com, Karthik Poosa <karthik.poosa@intel.com>
+Subject: Re: [PATCH v4 5/5] drm/xe/hwmon: Read energy status from PMT
+In-Reply-To: <20250506153058.1389470-6-karthik.poosa@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250506153058.1389470-1-karthik.poosa@intel.com>
+ <20250506153058.1389470-6-karthik.poosa@intel.com>
+Date: Wed, 07 May 2025 14:04:54 +0300
+Message-ID: <87ikmcvfzd.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|SJ0PR11MB4799:EE_
-X-MS-Office365-Filtering-Correlation-Id: 23cf4bda-abf4-478e-d16a-08dd8d5612f5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?qcYpuuDEjDz3mon+idC438/QiPkjoXHlaSn9rYWASJCBPNHrftLQSpMgbcgP?=
- =?us-ascii?Q?ftP57npWb63Cv24J3mtcjgxUgvLedWagGKL/NlV50jG8voXf9MzV0z02S9hy?=
- =?us-ascii?Q?xLYSKTA3D4G7OpxHndwG3W432qH+IBSVVj/8RRyssV5Pw7YYpHioivn05cIQ?=
- =?us-ascii?Q?KWK4XK8GTsQ4QuM4+62WewJVtyxbM2sw+KjFzNZ+UiV8A7WII5vegJCUNX8i?=
- =?us-ascii?Q?wixqtEnmTvRObQ5H4qfHOz0Cau9LPMoZfeTLQFv22IO+l70j7f8Er3ag3WJ/?=
- =?us-ascii?Q?lueJqn3XRs9A41Ebzav3/L+YZgl1MjDj34t6N8yQq0xOxR7C6TXqOiOdXFzJ?=
- =?us-ascii?Q?AbkzIsB99e7Q1xv+pa8bJHjYxbMdYgDOMbwYVR6Oxmfn9enBEeCW4t7Nxt4Z?=
- =?us-ascii?Q?oPKa9Mj/3s+pbcMARen0aLYWmlfAUuge2lZ/lYxFewAsxrXEeNiMbUEpi8l5?=
- =?us-ascii?Q?6TumJZyWelVX8eWZPHSLSzM4NTA7LY0VDX3Cm2utt5cx/UF2uZV4pOkR6SsL?=
- =?us-ascii?Q?yQSjAGQ76hI0D2+ps8zbG+ATVTmPfah8HQfxo8qAyGIMnfcDeKIbEP3Rnlqg?=
- =?us-ascii?Q?YMeKp2zf6cQJged6TfVAD54yBnTsyRZEqu6wd3ixnFD4rOFjX9wQ/mKoE4bo?=
- =?us-ascii?Q?evXSpDpJEwMKWU2aJBGizNVigKnEGmGHCuDjFqNvYSN4LUl/UE/rJ1g6oDwJ?=
- =?us-ascii?Q?Pr50ltJyXwJ8KajC2vfbrUMDSjmK6GBBUFZu2+3bcJ7HsADaM0yJk6g4rQzN?=
- =?us-ascii?Q?Eviri2xnhJMr4omiW9I+svU7GXbbUKVg+vetmy6PPZM28+K/AkZbuek4GPUe?=
- =?us-ascii?Q?qtzRpomSI4bwmc/A72Fgz9E/VEejLxTuXr+h3ctXvNtx+mR/D83K8CyvJ6Pp?=
- =?us-ascii?Q?CqedGFioLoMYHBhP7ewEqb0AGbOd8abYFYj3W1Uur0yxJ+geX2GUNX7R/b0h?=
- =?us-ascii?Q?8wGbI3KHzXjnOuDQ1AjGlWSUiO34aMbb92WmyI0kmywJvPfjaTZN0DkY4yAt?=
- =?us-ascii?Q?KtahPYMUWItXDK7JN7mrpuAYVndTQbJdHN5qhw7UiapyYvuMYjAoqITK4pA0?=
- =?us-ascii?Q?In8zocl5dpDQGix6hqe0YZZPgm9DWs6F+/etKqlWCxEngySrG5qJVoDHyDCM?=
- =?us-ascii?Q?2K+gRMOX3QMltiui9UBMO8OqYSrHzhzXZV7cZHpY3v/MPGW9eOPKAzHtn2wH?=
- =?us-ascii?Q?Y6uJ4GAHFfZEHMeUs3wdOv/cdSU6oZ+6dvH5MBJ1NV1Sfm+eYr/d7kD3Kz23?=
- =?us-ascii?Q?TYFXfb3ogcpJ8lDIPqbDNacwgbKwuka8KAp66PSLH/4TwJFDZFnt+Xnm1jUO?=
- =?us-ascii?Q?g/+3bzVRAcQlEaD7AkJatWICO97+qsvQBNTXpKHwYpc7ITHi52eZDA+UZQFm?=
- =?us-ascii?Q?RFi3D62IUIXGGNNUEN/RzE9f5QFmL8AMqYB4laY407qISzc6YpL6Xd7QzJMK?=
- =?us-ascii?Q?QVxRTOR4U7c=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?bVh9GhJCt4pima7MUvr6yNKD+rH6BaLB0WifVLJQXqG5rRZg+79QwRC1u/Tx?=
- =?us-ascii?Q?Bmdyy6GhAoQAkRJutT3MgvhQHAKaN9ce6ZHm0e1X3D/r5SoP+PzD6l/ruszD?=
- =?us-ascii?Q?qjmVNH2IlHKUrcGEGjE5TZ7+2edokYKs4yB+okCIV7dpdmTkTj9Y6xT716gF?=
- =?us-ascii?Q?Wlanu+gPtWHj9oO2hjqG6IE2Zqsu68AI/JmSkW+V+nPZ4gBz1vyC7TceuxxK?=
- =?us-ascii?Q?kZR1hyma6JpoCrzh5881t5jKOa9J5n/49Bhq4ZCPVYEWS9oq1PR8L7WqHADM?=
- =?us-ascii?Q?9omZexjrPMasgpdJ9r6P4A3+MwkPmiAnY3bM7gBXWa2ole5Kh6oJ4aCRg9K0?=
- =?us-ascii?Q?9/dZXU3VbQybqyxzPW+4vECqLvAfRGRvdolcK7tmp+pBQU42mYsk8VJacxRR?=
- =?us-ascii?Q?XSd6ApLmLLK743FOfDoB0Q2BjlpJUhz3WYL3JwYNINh1N5HYAP1Op+PvaVfO?=
- =?us-ascii?Q?9FRj1nerug/AFODJhcGhp9vBIWZej4NS3hFuSUUr3NR8elnOSSBP1cluo8vj?=
- =?us-ascii?Q?uxi24ORAUq9o0k6cDOcXfmrdk7iVOP/TAazl8fpmA0pd5Crh5X+O+ICeS6V9?=
- =?us-ascii?Q?UUX7nkjt9juokNHkFsdr7p3hVP/J1KdYdQYlIKp6ra03NkqX1XT68Rd73pNO?=
- =?us-ascii?Q?gOsrX1EVydEfckqqc28OVu06rpDxxy6IQU56VMaBRKO+xG7sOhElmNnNpQef?=
- =?us-ascii?Q?+KGHy3ckKf5Vkwl5kjmK7ckjco9tBvVmnHc/82Hft7Ue0l5qo8V0HIoVUodW?=
- =?us-ascii?Q?PFsDGfHb/6WNQBKgMDu5PBOEY9CRDOiiwZUzieQ5LdZK+w7R1LoFDRyjRGNn?=
- =?us-ascii?Q?xMZ1LPJMjqkIgjhDRE+k7849FImuGlgDBwr7MxdYVUjlbkto8ewQMsxhAyXC?=
- =?us-ascii?Q?IJzHY70ajIsBd6nwmaJj34udf/7KgNJnfPc05RYWGBrxYWxm28H/DzlX60Fe?=
- =?us-ascii?Q?3Qi5oV8Q6SwTjec2whLYseCBFs6IS5HXLzKpnIeabYYcKtmuEtvr1u8O7TIO?=
- =?us-ascii?Q?UmF+J7/GtCDOuGTdZnUgC5OjVZm98HJs/paK2yjSaepqjruS+l2L2IuTeUEe?=
- =?us-ascii?Q?SKLHuAuiai+HFSMK4DtQ1kA7rljMtuunjYYZ+rfm0Lzcq2oVlz9plsuMEYsX?=
- =?us-ascii?Q?bJEppQdRlh8pMTBc9b/XT15S/4ghe23bBqZLwegsCnRs0O3huuA1AUeH4sOv?=
- =?us-ascii?Q?wcnrEA7rcPg34pMxlLXwGvyJ920ue7QdK8WgrTublqvXvng6ynau/mtMzhG6?=
- =?us-ascii?Q?H9mtT9PnJpAkMI80lXkcAlnZaoQSp7CnDRZEonfouKvSAUHlWINXPdsFliRS?=
- =?us-ascii?Q?O+E7xlWgXb/jE/KFFMdhAUbyIS1zFijoeGzHBPYdSgyZzTvUecNHnPFbatX4?=
- =?us-ascii?Q?GkOlahrZrl2XorLCQogzqlYP2TOmA37ScO8eOZPyHcAvqZP1eft5omALfWPm?=
- =?us-ascii?Q?UKdYRB36JCOB11z+D1k3+5PLqjqNKkNQQKIuA5bzgOK/EW/si4HMhLPkwBu6?=
- =?us-ascii?Q?pDbmMaZLnvFBx+esgKI/+zr40VGQIZWw5PPLGorfX0/0kp74fLHEA77DStpZ?=
- =?us-ascii?Q?RTtD3ErSpa+QJ9/379R87iE9SOWDrNuOUnHmj0Hc?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 23cf4bda-abf4-478e-d16a-08dd8d5612f5
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2025 10:58:18.3018 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mRflHl+SorqWRFqy2jSQ3KvgriBx+JLDMUYR0BQRKtTMOfrsD7LCQ/q9RmmAGqvd/jo7e+ptQJ1DkTfhJewa3A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4799
-X-OriginatorOrg: intel.com
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -176,139 +67,184 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, May 07, 2025 at 09:29:21AM +0530, Nautiyal, Ankit K wrote:
-> 
-> On 5/6/2025 8:46 PM, Imre Deak wrote:
-> > On Tue, May 06, 2025 at 06:37:50PM +0530, Nautiyal, Ankit K wrote:
-> > > On 4/28/2025 7:01 PM, Imre Deak wrote:
-> > > > Factor out helpers that can be used in a follow-up change to query the
-> > > > minimum and maximum pipe bpp supported by the HW.
-> > > > 
-> > > > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > > > ---
-> > > >    drivers/gpu/drm/i915/display/intel_display.c | 28 +++++++++++++-------
-> > > >    drivers/gpu/drm/i915/display/intel_display.h |  3 +++
-> > > >    drivers/gpu/drm/i915/display/intel_dp.c      |  2 +-
-> > > >    3 files changed, 22 insertions(+), 11 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > > > index b4ddffe53e23f..cf2c11826ffb3 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > > @@ -4301,6 +4301,22 @@ compute_sink_pipe_bpp(const struct drm_connector_state *conn_state,
-> > > >    	return 0;
-> > > >    }
-> > > > +int intel_display_min_pipe_bpp(void)
-> > > > +{
-> > > > +	return 6 * 3;
-> > > Hmm.. I think this is DP specific, for HDMI min is 8 * 3 = 24 bpp.
-> > > 
-> > > I see this is function is used while checking for min bpp while adding
-> > > support for forcing a bpp for different connectors.
-> > > 
-> > > Would it make sense to make this connector specific?
-> > I wonder if it could be kept simple for now and use the platform's min
-> > bpp value in the above debugfs entry. IIUC the
-> > platform/connector/output_type specific min pipe bpps are:
-> > 
-> > DP/RGB:      18
-> > DP/YCBCR:    24
-> > LVDS:        18
-> > DSI/DDI:     24
-> > DSI/non-DDI: 18
-> > All other:   24
-> > 
-> > It would make sense to add a helper and use it everywhere, but it would
-> > be a bigger change. Are you ok to do this as a follow up?
-> 
-> Yes we can have a follow up for this, to get this connector specific.
-> 
-> Should we make the min as 24 for now, that will work for most things.
-> 
-> Or else we can let that be 18 for now, and the tests when forcing a
-> particular bpp, will then use modeset with try commit.
+On Tue, 06 May 2025, Karthik Poosa <karthik.poosa@intel.com> wrote:
+> Read card and package energy status using pmt apis instead
+> of xe_mmio for supported platforms.
+> Enable Battlemage to read energy from PMT.
 >
-> If commit fails with -EINVAL, tests will try again with higher bpp.
+> v2:
+>  - Remove unused has_pmt_energy field. (Badal)
+>  - Use GENMASK to extract energy data. (Badal)
+>
+> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+> ---
+>  drivers/gpu/drm/xe/regs/xe_pcode_regs.h |  5 +--
+>  drivers/gpu/drm/xe/regs/xe_pmt.h        |  2 ++
+>  drivers/gpu/drm/xe/xe_hwmon.c           | 46 +++++++++++++++++++------
+>  drivers/gpu/drm/xe/xe_vsec.c            |  4 +--
+>  drivers/gpu/drm/xe/xe_vsec.h            |  4 +++
+>  5 files changed, 46 insertions(+), 15 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+> index c556a04670ee..c65d6ed470b5 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+> @@ -18,12 +18,13 @@
+>  #define PVC_GT0_PLATFORM_ENERGY_STATUS          XE_REG(0x28106c)
+>  #define PVC_GT0_PACKAGE_POWER_SKU               XE_REG(0x281080)
+>  
+> -#define BMG_PACKAGE_ENERGY_STATUS		XE_REG(0x138120)
+>  #define BMG_FAN_1_SPEED				XE_REG(0x138140)
+>  #define BMG_FAN_2_SPEED				XE_REG(0x138170)
+>  #define BMG_FAN_3_SPEED				XE_REG(0x1381a0)
+>  #define BMG_VRAM_TEMPERATURE			XE_REG(0x1382c0)
+>  #define BMG_PACKAGE_TEMPERATURE			XE_REG(0x138434)
+> -#define BMG_PLATFORM_ENERGY_STATUS		XE_REG(0x138458)
+> +#define BMG_ENERGY_STATUS_PMT_OFFSET		(0x30)
+> +#define	ENERGY_PKG				REG_GENMASK64(31, 0)
+> +#define	ENERGY_CARD				REG_GENMASK64(63, 32)
+>  
+>  #endif /* _XE_PCODE_REGS_H_ */
+> diff --git a/drivers/gpu/drm/xe/regs/xe_pmt.h b/drivers/gpu/drm/xe/regs/xe_pmt.h
+> index f45abcd96ba8..ad91f6fef6bb 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_pmt.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_pmt.h
+> @@ -10,6 +10,8 @@
+>  #define BMG_PMT_BASE_OFFSET		0xDB000
+>  #define BMG_DISCOVERY_OFFSET		(SOC_BASE + BMG_PMT_BASE_OFFSET)
+>  
+> +#define PUNIT_TELEMETRY_GUID		XE_REG(BMG_DISCOVERY_OFFSET + 0x4)
+> +
+>  #define BMG_TELEMETRY_BASE_OFFSET	0xE0000
+>  #define BMG_TELEMETRY_OFFSET		(SOC_BASE + BMG_TELEMETRY_BASE_OFFSET)
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+> index c0aa5587e855..a990f2c32449 100644
+> --- a/drivers/gpu/drm/xe/xe_hwmon.c
+> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+> @@ -20,6 +20,8 @@
+>  #include "xe_pcode_api.h"
+>  #include "xe_sriov.h"
+>  #include "xe_pm.h"
+> +#include "xe_vsec.h"
+> +#include "regs/xe_pmt.h"
+>  
+>  enum xe_hwmon_reg {
+>  	REG_TEMP,
+> @@ -253,12 +255,7 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg
+>  			return GT_PERF_STATUS;
+>  		break;
+>  	case REG_PKG_ENERGY_STATUS:
+> -		if (xe->info.platform == XE_BATTLEMAGE) {
+> -			if (channel == CHANNEL_PKG)
+> -				return BMG_PACKAGE_ENERGY_STATUS;
+> -			else
+> -				return BMG_PLATFORM_ENERGY_STATUS;
+> -		} else if (xe->info.platform == XE_PVC && channel == CHANNEL_PKG) {
+> +		if (xe->info.platform == XE_PVC && channel == CHANNEL_PKG) {
+>  			return PVC_GT0_PLATFORM_ENERGY_STATUS;
+>  		} else if ((xe->info.platform == XE_DG2) && (channel == CHANNEL_PKG)) {
+>  			return PCU_CR_PACKAGE_ENERGY_STATUS;
+> @@ -441,9 +438,29 @@ xe_hwmon_energy_get(struct xe_hwmon *hwmon, int channel, long *energy)
+>  	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
+>  	struct xe_hwmon_energy_info *ei = &hwmon->ei[channel];
+>  	u64 reg_val;
+> +	int ret = 0;
+> +
+> +	/* Energy is supported only for card and pkg */
+> +	if (channel > CHANNEL_PKG) {
+> +		*energy = 0;
+> +		return;
+> +	}
+>  
+> -	reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_PKG_ENERGY_STATUS,
+> -							channel));
+> +	if (hwmon->xe->info.platform == XE_BATTLEMAGE) {
+> +		ret = xe_pmt_telem_read(to_pci_dev(hwmon->xe->drm.dev),
+> +					xe_mmio_read32(mmio, PUNIT_TELEMETRY_GUID),
+> +					&reg_val, BMG_ENERGY_STATUS_PMT_OFFSET,	sizeof(reg_val));
+> +		drm_dbg(&hwmon->xe->drm, "energy from pmt, ch %d read from mbx 0x%016llx, ret %d\n",
+> +			channel, reg_val, ret);
+> +
+> +		if (channel == CHANNEL_PKG)
+> +			reg_val = REG_FIELD_GET64(ENERGY_PKG, reg_val);
+> +		else
+> +			reg_val = REG_FIELD_GET64(ENERGY_CARD, reg_val);
+> +	} else {
+> +		reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_PKG_ENERGY_STATUS,
+> +								channel));
+> +	}
+>  
+>  	if (reg_val >= ei->reg_val_prev)
+>  		ei->accum_energy += reg_val - ei->reg_val_prev;
+> @@ -919,11 +936,18 @@ xe_hwmon_in_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
+>  static umode_t
+>  xe_hwmon_energy_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+>  {
+> +	long energy = 0;
+> +
+>  	switch (attr) {
+>  	case hwmon_energy_input:
+>  	case hwmon_energy_label:
+> -		return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_PKG_ENERGY_STATUS,
+> -				       channel)) ? 0444 : 0;
+> +		if (hwmon->xe->info.platform == XE_BATTLEMAGE) {
+> +			xe_hwmon_energy_get(hwmon, channel, &energy);
+> +			return energy ? 0444 : 0;
+> +		} else {
+> +			return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_PKG_ENERGY_STATUS,
+> +					       channel)) ? 0444 : 0;
+> +		}
+>  	default:
+>  		return 0;
+>  	}
+> @@ -1268,4 +1292,4 @@ int xe_hwmon_register(struct xe_device *xe)
+>  
+>  	return 0;
+>  }
+> -
+> +MODULE_IMPORT_NS("INTEL_PMT_TELEMETRY");
+> diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
+> index b378848d3b7b..3e573b0b7ebd 100644
+> --- a/drivers/gpu/drm/xe/xe_vsec.c
+> +++ b/drivers/gpu/drm/xe/xe_vsec.c
+> @@ -149,8 +149,8 @@ static int xe_guid_decode(u32 guid, int *index, u32 *offset)
+>  	return 0;
+>  }
+>  
+> -static int xe_pmt_telem_read(struct pci_dev *pdev, u32 guid, u64 *data, loff_t user_offset,
+> -			     u32 count)
+> +int xe_pmt_telem_read(struct pci_dev *pdev, u32 guid, u64 *data, loff_t user_offset,
+> +		      u32 count)
+>  {
+>  	struct xe_device *xe = pdev_to_xe_device(pdev);
+>  	void __iomem *telem_addr = xe->mmio.regs + BMG_TELEMETRY_OFFSET;
+> diff --git a/drivers/gpu/drm/xe/xe_vsec.h b/drivers/gpu/drm/xe/xe_vsec.h
+> index 5777c53faec2..6d0db46d4700 100644
+> --- a/drivers/gpu/drm/xe/xe_vsec.h
+> +++ b/drivers/gpu/drm/xe/xe_vsec.h
+> @@ -4,8 +4,12 @@
+>  #ifndef _XE_VSEC_H_
+>  #define _XE_VSEC_H_
+>  
+> +#include "linux/types.h"
 
-Yes, I think it can be left on the platform minimum 18 (for now). The
-valid range of the debugfs entry is anyway the platform's valid range
-not the connected sink's valid range, so a commit can anyway fail if a
-value outside of the sink's range is set. This is so that you can set
-the debugfs entry _before_ connecting a sink.
+<linux/types.h>
 
-> Regards,
-> 
-> Ankit
-> 
-> 
-> 
-> > 
-> > > Regards,
-> > > 
-> > > Ankit
-> > > 
-> > > 
-> > > > +}
-> > > > +
-> > > > +int intel_display_max_pipe_bpp(struct intel_display *display)
-> > > > +{
-> > > > +	if (display->platform.g4x || display->platform.valleyview ||
-> > > > +	    display->platform.cherryview)
-> > > > +		return 10*3;
-> > > > +	else if (DISPLAY_VER(display) >= 5)
-> > > > +		return 12*3;
-> > > > +	else
-> > > > +		return 8*3;
-> > > > +}
-> > > > +
-> > > >    static int
-> > > >    compute_baseline_pipe_bpp(struct intel_atomic_state *state,
-> > > >    			  struct intel_crtc *crtc)
-> > > > @@ -4310,17 +4326,9 @@ compute_baseline_pipe_bpp(struct intel_atomic_state *state,
-> > > >    		intel_atomic_get_new_crtc_state(state, crtc);
-> > > >    	struct drm_connector *connector;
-> > > >    	struct drm_connector_state *connector_state;
-> > > > -	int bpp, i;
-> > > > +	int i;
-> > > > -	if (display->platform.g4x || display->platform.valleyview ||
-> > > > -	    display->platform.cherryview)
-> > > > -		bpp = 10*3;
-> > > > -	else if (DISPLAY_VER(display) >= 5)
-> > > > -		bpp = 12*3;
-> > > > -	else
-> > > > -		bpp = 8*3;
-> > > > -
-> > > > -	crtc_state->pipe_bpp = bpp;
-> > > > +	crtc_state->pipe_bpp = intel_display_max_pipe_bpp(display);
-> > > >    	/* Clamp display bpp to connector max bpp */
-> > > >    	for_each_new_connector_in_state(&state->base, connector, connector_state, i) {
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-> > > > index 3b54a62c290af..b6610e9175a7a 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_display.h
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> > > > @@ -524,6 +524,9 @@ void intel_plane_fixup_bitmasks(struct intel_crtc_state *crtc_state);
-> > > >    bool intel_crtc_vrr_disabling(struct intel_atomic_state *state,
-> > > >    			      struct intel_crtc *crtc);
-> > > > +int intel_display_min_pipe_bpp(void);
-> > > > +int intel_display_max_pipe_bpp(struct intel_display *display);
-> > > > +
-> > > >    /* modesetting */
-> > > >    int intel_modeset_pipes_in_mask_early(struct intel_atomic_state *state,
-> > > >    				      const char *reason, u8 pipe_mask);
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > index 0f89a301e4a0d..73ca9f8efefc5 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > @@ -1198,7 +1198,7 @@ intel_dp_output_format(struct intel_connector *connector,
-> > > >    int intel_dp_min_bpp(enum intel_output_format output_format)
-> > > >    {
-> > > >    	if (output_format == INTEL_OUTPUT_FORMAT_RGB)
-> > > > -		return 6 * 3;
-> > > > +		return intel_display_min_pipe_bpp();
-> > > >    	else
-> > > >    		return 8 * 3;
-> > > >    }
+> +#include "linux/pci.h"
+
+struct pci_dev;
+
+> +
+>  struct xe_device;
+>  
+>  void xe_vsec_init(struct xe_device *xe);
+> +int xe_pmt_telem_read(struct pci_dev *pdev, u32 guid, u64 *data, loff_t user_offset, u32 count);
+>  
+>  #endif
+
+-- 
+Jani Nikula, Intel
