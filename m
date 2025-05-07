@@ -4,58 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 951D0C3ABBF
-	for <intel-xe@archiver.kernel.org>; Wed,  7 May 2025 11:05:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B3FDC3ABBF
+	for <intel-xe@archiver.kernel.org>; Wed,  7 May 2025 11:39:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50B5610E18F;
-	Wed,  7 May 2025 11:05:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CD0C10E786;
+	Wed,  7 May 2025 11:39:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fKq8KjnZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SCVUDy8X";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78E0A10E18F
- for <intel-xe@lists.freedesktop.org>; Wed,  7 May 2025 11:05:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D8D110E786
+ for <intel-xe@lists.freedesktop.org>; Wed,  7 May 2025 11:39:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746615900; x=1778151900;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=zEveRKw0OEQAu1xR+Fhi/0aJ08nBvE7eldTOEpIyx7w=;
- b=fKq8KjnZFZmN/3siDBWj1lnzXfqgWUunxSwr49p4mz7Uv02202ptDL82
- vd7u8zLOfsys02BLBZb0ATd/h2r+BiooS8i0mZ22NhbFJUxmEXcokgfvK
- NViBOp7X3V2IrTmYN3bNLZJKw2pJBQTrxSfw42mIUDhsq+Vk6/6FYJBUg
- +wrsOz2Kpp8f/tU/1UIK5E/bog2dQSN4M+0Uj3wpGmR49ytwWqqUtG5b3
- Bj8mVRWYoTzH0JQo7vLl8IzQm5ct5x3vGJ1462ih0Z/Nv3zHxPjA301+w
- oFaK6M38eTm2rs3cxkdgsxTBi7VJae681VTGfWGRoKFwc2p3H+D7X0HGg Q==;
-X-CSE-ConnectionGUID: nl1XBGchR5qKWOduF29SsQ==
-X-CSE-MsgGUID: 9EeV0YUZQVyMWUrMPwOa6w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11425"; a="48453218"
-X-IronPort-AV: E=Sophos;i="6.15,269,1739865600"; d="scan'208";a="48453218"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2025 04:05:00 -0700
-X-CSE-ConnectionGUID: O43wP8U6QCW4XkeYWOX7fQ==
-X-CSE-MsgGUID: dJg3PK9/Qkq2XHI+gqb9Ng==
+ t=1746617964; x=1778153964;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=90kdE6BUMTwjJ2DI0v/iFeWJyLWnksB9K2SsRgsURog=;
+ b=SCVUDy8X95PWRI8XWVUb7Ys/mUfF0+SAtyjKCTSyWZMEWo+e+R/GFEMv
+ zmncfBA14GuK3HzFoiaGhUesnGrVqOh8t5oB8irBAm7OzD8UqTFL3s2Yz
+ j+d89M17LGOkGj16wfwCEIUiEp3SIECEpFFYzHuXyWGv6shfdd8vfFZCZ
+ 1fFapjG5ppkbJ7QwI08uFZ7o9c1BIXcgzsn53Mbp4byGBto1AG/6Dtjvn
+ cwIwvUBR6350lJ9Sz3GItIF57B1txsSX1gbRC3NTOxGQ+of+d8TNPv+Kr
+ ULUoF4nLJIFERA6T6taJEl3Q73YXEpHnBk2bkNzbXQ6v6sLLzrhSJ1oTV Q==;
+X-CSE-ConnectionGUID: 8T/ZPE8zRpWUjbE9wyU4Yw==
+X-CSE-MsgGUID: Vrf3IL1YR6+P0+llB3XxlQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11426"; a="52156669"
+X-IronPort-AV: E=Sophos;i="6.15,269,1739865600"; d="scan'208";a="52156669"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2025 04:39:24 -0700
+X-CSE-ConnectionGUID: lg0hSysMQIi6z2uK8ykkjA==
+X-CSE-MsgGUID: B4ovgRPQR5yEqyjLh0TjvA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,269,1739865600"; d="scan'208";a="173115279"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.218])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2025 04:04:56 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Karthik Poosa <karthik.poosa@intel.com>, intel-xe@lists.freedesktop.org
-Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
- riana.tauro@intel.com, ashutosh.dixit@intel.com, rodrigo.vivi@intel.com,
- michael.j.ruhl@intel.com, Karthik Poosa <karthik.poosa@intel.com>
-Subject: Re: [PATCH v4 5/5] drm/xe/hwmon: Read energy status from PMT
-In-Reply-To: <20250506153058.1389470-6-karthik.poosa@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250506153058.1389470-1-karthik.poosa@intel.com>
- <20250506153058.1389470-6-karthik.poosa@intel.com>
-Date: Wed, 07 May 2025 14:04:54 +0300
-Message-ID: <87ikmcvfzd.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,269,1739865600"; d="scan'208";a="136859500"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO [10.245.244.238])
+ ([10.245.244.238])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2025 04:39:22 -0700
+Message-ID: <2e2f9c7f17df535635a957a95740d2cd69c0be6f.camel@linux.intel.com>
+Subject: Re: [PATCH v6 19/20] drm/xe/svm: Implement prefetch support for SVM
+ ranges
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>, 
+ intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com
+Date: Wed, 07 May 2025 13:39:20 +0200
+In-Reply-To: <c8bf7de5-d62d-49fe-bfc3-b71e5c58680c@intel.com>
+References: <20250430121912.337601-1-himal.prasad.ghimiray@intel.com>
+ <20250430121912.337601-20-himal.prasad.ghimiray@intel.com>
+ <62989f8bbb1d8f57fea227f7afdbc753b492dbcf.camel@linux.intel.com>
+ <6206f91e-aef4-400f-891c-6b11bbe4ffca@intel.com>
+ <17301febd0068fc40549b5f75773577fa0b4846a.camel@linux.intel.com>
+ <c8bf7de5-d62d-49fe-bfc3-b71e5c58680c@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 MIME-Version: 1.0
-Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,181 +76,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 06 May 2025, Karthik Poosa <karthik.poosa@intel.com> wrote:
-> Read card and package energy status using pmt apis instead
-> of xe_mmio for supported platforms.
-> Enable Battlemage to read energy from PMT.
->
-> v2:
->  - Remove unused has_pmt_energy field. (Badal)
->  - Use GENMASK to extract energy data. (Badal)
->
-> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
-> ---
->  drivers/gpu/drm/xe/regs/xe_pcode_regs.h |  5 +--
->  drivers/gpu/drm/xe/regs/xe_pmt.h        |  2 ++
->  drivers/gpu/drm/xe/xe_hwmon.c           | 46 +++++++++++++++++++------
->  drivers/gpu/drm/xe/xe_vsec.c            |  4 +--
->  drivers/gpu/drm/xe/xe_vsec.h            |  4 +++
->  5 files changed, 46 insertions(+), 15 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-> index c556a04670ee..c65d6ed470b5 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-> @@ -18,12 +18,13 @@
->  #define PVC_GT0_PLATFORM_ENERGY_STATUS          XE_REG(0x28106c)
->  #define PVC_GT0_PACKAGE_POWER_SKU               XE_REG(0x281080)
->  
-> -#define BMG_PACKAGE_ENERGY_STATUS		XE_REG(0x138120)
->  #define BMG_FAN_1_SPEED				XE_REG(0x138140)
->  #define BMG_FAN_2_SPEED				XE_REG(0x138170)
->  #define BMG_FAN_3_SPEED				XE_REG(0x1381a0)
->  #define BMG_VRAM_TEMPERATURE			XE_REG(0x1382c0)
->  #define BMG_PACKAGE_TEMPERATURE			XE_REG(0x138434)
-> -#define BMG_PLATFORM_ENERGY_STATUS		XE_REG(0x138458)
-> +#define BMG_ENERGY_STATUS_PMT_OFFSET		(0x30)
-> +#define	ENERGY_PKG				REG_GENMASK64(31, 0)
-> +#define	ENERGY_CARD				REG_GENMASK64(63, 32)
->  
->  #endif /* _XE_PCODE_REGS_H_ */
-> diff --git a/drivers/gpu/drm/xe/regs/xe_pmt.h b/drivers/gpu/drm/xe/regs/xe_pmt.h
-> index f45abcd96ba8..ad91f6fef6bb 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_pmt.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_pmt.h
-> @@ -10,6 +10,8 @@
->  #define BMG_PMT_BASE_OFFSET		0xDB000
->  #define BMG_DISCOVERY_OFFSET		(SOC_BASE + BMG_PMT_BASE_OFFSET)
->  
-> +#define PUNIT_TELEMETRY_GUID		XE_REG(BMG_DISCOVERY_OFFSET + 0x4)
-> +
->  #define BMG_TELEMETRY_BASE_OFFSET	0xE0000
->  #define BMG_TELEMETRY_OFFSET		(SOC_BASE + BMG_TELEMETRY_BASE_OFFSET)
->  
-> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> index c0aa5587e855..a990f2c32449 100644
-> --- a/drivers/gpu/drm/xe/xe_hwmon.c
-> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> @@ -20,6 +20,8 @@
->  #include "xe_pcode_api.h"
->  #include "xe_sriov.h"
->  #include "xe_pm.h"
-> +#include "xe_vsec.h"
-> +#include "regs/xe_pmt.h"
->  
->  enum xe_hwmon_reg {
->  	REG_TEMP,
-> @@ -253,12 +255,7 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg
->  			return GT_PERF_STATUS;
->  		break;
->  	case REG_PKG_ENERGY_STATUS:
-> -		if (xe->info.platform == XE_BATTLEMAGE) {
-> -			if (channel == CHANNEL_PKG)
-> -				return BMG_PACKAGE_ENERGY_STATUS;
-> -			else
-> -				return BMG_PLATFORM_ENERGY_STATUS;
-> -		} else if (xe->info.platform == XE_PVC && channel == CHANNEL_PKG) {
-> +		if (xe->info.platform == XE_PVC && channel == CHANNEL_PKG) {
->  			return PVC_GT0_PLATFORM_ENERGY_STATUS;
->  		} else if ((xe->info.platform == XE_DG2) && (channel == CHANNEL_PKG)) {
->  			return PCU_CR_PACKAGE_ENERGY_STATUS;
-> @@ -441,9 +438,29 @@ xe_hwmon_energy_get(struct xe_hwmon *hwmon, int channel, long *energy)
->  	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
->  	struct xe_hwmon_energy_info *ei = &hwmon->ei[channel];
->  	u64 reg_val;
-> +	int ret = 0;
-> +
-> +	/* Energy is supported only for card and pkg */
-> +	if (channel > CHANNEL_PKG) {
-> +		*energy = 0;
-> +		return;
-> +	}
->  
-> -	reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_PKG_ENERGY_STATUS,
-> -							channel));
-> +	if (hwmon->xe->info.platform == XE_BATTLEMAGE) {
-> +		ret = xe_pmt_telem_read(to_pci_dev(hwmon->xe->drm.dev),
-> +					xe_mmio_read32(mmio, PUNIT_TELEMETRY_GUID),
-> +					&reg_val, BMG_ENERGY_STATUS_PMT_OFFSET,	sizeof(reg_val));
-> +		drm_dbg(&hwmon->xe->drm, "energy from pmt, ch %d read from mbx 0x%016llx, ret %d\n",
-> +			channel, reg_val, ret);
-> +
-> +		if (channel == CHANNEL_PKG)
-> +			reg_val = REG_FIELD_GET64(ENERGY_PKG, reg_val);
-> +		else
-> +			reg_val = REG_FIELD_GET64(ENERGY_CARD, reg_val);
-> +	} else {
-> +		reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_PKG_ENERGY_STATUS,
-> +								channel));
-> +	}
->  
->  	if (reg_val >= ei->reg_val_prev)
->  		ei->accum_energy += reg_val - ei->reg_val_prev;
-> @@ -919,11 +936,18 @@ xe_hwmon_in_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
->  static umode_t
->  xe_hwmon_energy_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
->  {
-> +	long energy = 0;
-> +
->  	switch (attr) {
->  	case hwmon_energy_input:
->  	case hwmon_energy_label:
-> -		return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_PKG_ENERGY_STATUS,
-> -				       channel)) ? 0444 : 0;
-> +		if (hwmon->xe->info.platform == XE_BATTLEMAGE) {
-> +			xe_hwmon_energy_get(hwmon, channel, &energy);
-> +			return energy ? 0444 : 0;
-> +		} else {
-> +			return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_PKG_ENERGY_STATUS,
-> +					       channel)) ? 0444 : 0;
-> +		}
->  	default:
->  		return 0;
->  	}
-> @@ -1268,4 +1292,4 @@ int xe_hwmon_register(struct xe_device *xe)
->  
->  	return 0;
->  }
-> -
-> +MODULE_IMPORT_NS("INTEL_PMT_TELEMETRY");
-> diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-> index b378848d3b7b..3e573b0b7ebd 100644
-> --- a/drivers/gpu/drm/xe/xe_vsec.c
-> +++ b/drivers/gpu/drm/xe/xe_vsec.c
-> @@ -149,8 +149,8 @@ static int xe_guid_decode(u32 guid, int *index, u32 *offset)
->  	return 0;
->  }
->  
-> -static int xe_pmt_telem_read(struct pci_dev *pdev, u32 guid, u64 *data, loff_t user_offset,
-> -			     u32 count)
-> +int xe_pmt_telem_read(struct pci_dev *pdev, u32 guid, u64 *data, loff_t user_offset,
-> +		      u32 count)
->  {
->  	struct xe_device *xe = pdev_to_xe_device(pdev);
->  	void __iomem *telem_addr = xe->mmio.regs + BMG_TELEMETRY_OFFSET;
-> diff --git a/drivers/gpu/drm/xe/xe_vsec.h b/drivers/gpu/drm/xe/xe_vsec.h
-> index 5777c53faec2..6d0db46d4700 100644
-> --- a/drivers/gpu/drm/xe/xe_vsec.h
-> +++ b/drivers/gpu/drm/xe/xe_vsec.h
-> @@ -4,8 +4,12 @@
->  #ifndef _XE_VSEC_H_
->  #define _XE_VSEC_H_
->  
-> +#include "linux/types.h"
+On Fri, 2025-05-02 at 21:41 +0530, Ghimiray, Himal Prasad wrote:
+>=20
+>=20
+> On 02-05-2025 20:09, Thomas Hellstr=C3=B6m wrote:
+> > On Fri, 2025-05-02 at 20:05 +0530, Ghimiray, Himal Prasad wrote:
+> > >=20
+> > >=20
+> > > On 02-05-2025 19:12, Thomas Hellstr=C3=B6m wrote:
+> > > > On Wed, 2025-04-30 at 17:49 +0530, Himal Prasad Ghimiray wrote:
+> > > > > This commit adds prefetch support for SVM ranges, utilizing
+> > > > > the
+> > > > > existing ioctl vm_bind functionality to achieve this.
+> > > > >=20
+> > > > > v2: rebase
+> > > > >=20
+> > > > > v3:
+> > > > > =C2=A0=C2=A0=C2=A0=C2=A0 - use xa_for_each() instead of manual lo=
+op
+> > > > > =C2=A0=C2=A0=C2=A0=C2=A0 - check range is valid and in preferred =
+location before
+> > > > > adding to
+> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xarray
+> > > > > =C2=A0=C2=A0=C2=A0=C2=A0 - Fix naming conventions
+> > > > > =C2=A0=C2=A0=C2=A0=C2=A0 - Fix return condition as -ENODATA inste=
+ad of -EAGAIN
+> > > > > (Matthew
+> > > > > Brost)
+> > > > > =C2=A0=C2=A0=C2=A0=C2=A0 - Handle sparsely populated cpu vma rang=
+e (Matthew
+> > > > > Brost)
+> > > > >=20
+> > > > > v4:
+> > > > > =C2=A0=C2=A0=C2=A0=C2=A0 - fix end address to find next cpu vma i=
+n case of -
+> > > > > ENOENT
+> > > > >=20
+> > > > > v5:
+> > > > > =C2=A0=C2=A0=C2=A0=C2=A0 - Move find next vma logic to drm gpusvm=
+ layer
+> > > > > =C2=A0=C2=A0=C2=A0=C2=A0 - Avoid mixing declaration and logic
+> > > > >=20
+> > > > > v6:
+> > > > > =C2=A0=C2=A0=C2=A0 - Use new function names
+> > > > > =C2=A0=C2=A0=C2=A0 - Move eviction logic to prefetch_ranges
+> > > > >=20
+> > > > > Cc: Matthew Brost <matthew.brost@intel.com>
+> > > > > Signed-off-by: Himal Prasad Ghimiray
+> > > > > <himal.prasad.ghimiray@intel.com>
+> > > > > ---
+> > > > > =C2=A0=C2=A0=C2=A0drivers/gpu/drm/xe/xe_pt.c |=C2=A0 58 ++++++++-=
+--
+> > > > > =C2=A0=C2=A0=C2=A0drivers/gpu/drm/xe/xe_vm.c | 197
+> > > > > +++++++++++++++++++++++++++++++++++--
+> > > > > =C2=A0=C2=A0=C2=A02 files changed, 234 insertions(+), 21 deletion=
+s(-)
+> > > > >=20
+> > > >=20
+> > > > I was thinking a bit around the UAPI, and prefetching foreign
+> > > > device
+> > > > regions. That doesn't really fit into the current UAPI.
+> > > >=20
+> > > > What are your thoughts here. IMO this should align somewhat to
+> > > > what
+> > > > we
+> > > > do for madvise().
+> > > >=20
+> > > > Let's say we want to prefetch into a foreign device memory
+> > > > region
+> > > > identified by an fd? I figure we could add that later as an
+> > > > extension.
+> > > >=20
+> > > > But how does the UMD API for this look? Do we cover current
+> > > > usage
+> > > > with
+> > > > the existing UAPI syntax?
+> > >=20
+> > > During Initial discussions one of the way we discussed was using
+> > > a
+> > > flag
+> > > something like DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC for prefetch to
+> > > madvise assigned preferred location.
+> > >=20
+> > > so it will be two step process from UMD perspective:
+> > > 1) madvise sets up preferred location: which should also be used
+> > > in
+> > > pagefault handler.
+> > >=20
+> > > 2) If user wants to prefetch to same location, user passes region
+> > > as
+> > > DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC to vm_bind ioctl.
+> > >=20
+> > > https://patchwork.freedesktop.org/patch/647180/?series=3D146290&rev=
+=3D4
+> >=20
+> > Indeed, thanks for reminding me.
+> >=20
+> > >=20
+> > > or we can simply pass u32 devmem_fd as
+> > > prefetch_mem_region_instance
+> > > to
+> > > vm_bind ioctl,
+> >=20
+> > But that wouldn't work if we have published UMD using the
+> > mem_region_instance as the local mem_region_instance, right?
+>=20
+> Thats correct.
+>=20
+> >=20
+> > So if we want that we'd need an extension?
+>=20
+> True. IMO sticking to DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC=C2=A0 makes more
+> sense.
 
-<linux/types.h>
+OK, then for the uapi part
+Acked-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 
-> +#include "linux/pci.h"
 
-struct pci_dev;
+>=20
+> >=20
+> > /Thomas
+> >=20
+> >=20
+> >=20
+> > > =C2=A0 if we want it to be single step, but w/o madvise that
+> > > wont work for pf handler.
+> >=20
+> >=20
+> >=20
+> > >=20
+> > > /Himal>
+> > > > /Thomas
+> > > >=20
+> > >=20
+> >=20
+>=20
 
-> +
->  struct xe_device;
->  
->  void xe_vsec_init(struct xe_device *xe);
-> +int xe_pmt_telem_read(struct pci_dev *pdev, u32 guid, u64 *data, loff_t user_offset, u32 count);
->  
->  #endif
-
--- 
-Jani Nikula, Intel
