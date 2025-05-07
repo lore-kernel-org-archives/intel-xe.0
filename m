@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02FCCC3ABBC
-	for <intel-xe@archiver.kernel.org>; Tue,  6 May 2025 23:46:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 198C8C3ABBE
+	for <intel-xe@archiver.kernel.org>; Wed,  7 May 2025 01:30:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1D5A10E116;
-	Tue,  6 May 2025 23:46:27 +0000 (UTC)
-Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A6E110E116;
- Tue,  6 May 2025 23:46:26 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4790022624886820445=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id B509C10E0BE;
+	Wed,  7 May 2025 01:30:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KwQ8OmDn";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EC3710E008
+ for <intel-xe@lists.freedesktop.org>; Wed,  7 May 2025 01:30:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1746581444; x=1778117444;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=mNMlUjqixtWmns7MwSvs9IASuqQaAD0NF+paMWXA/hc=;
+ b=KwQ8OmDnLznBuNdGes49X+TKcdKTY+dtaYybCPA3ZNkPaMpXwIyRJQgc
+ IxJJX0uByvLIf15gjSMKohkoM8xDuRy0S+ijQwSgHuzUX1UaiONnUAW7h
+ dT2oCptPLlpHU8tvQgM74mp5AYU3T92GMk4/vWszkMvybMpQgU5/iCgCC
+ ojr4QbLt8FwMhnkRg/Mf1KuyBEJdxpOqIt8lFgO9H69hmYIagYxNKN9Nk
+ 97wDjWS+0BHUzaBxTyIagVeRTGglh5FZpsag39viwlyL2GqLzHARkj8kk
+ wC+Z0NLCkiG2e0dJ9BljgrbVn5vp3GvArFLloaJzJO0mTz+Olpbt1Cl2d A==;
+X-CSE-ConnectionGUID: BQ4uG+jWT36BVtMOL2tClQ==
+X-CSE-MsgGUID: bTVZ/HqjTveNhGy7u8M35w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11425"; a="58913457"
+X-IronPort-AV: E=Sophos;i="6.15,268,1739865600"; d="scan'208";a="58913457"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2025 18:30:42 -0700
+X-CSE-ConnectionGUID: UU92LXOiTwi6X+yDPm8Vew==
+X-CSE-MsgGUID: tXKGo/CHQiqc82jgwEogXg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,268,1739865600"; d="scan'208";a="135792194"
+Received: from unerlige-desk1.jf.intel.com ([10.165.21.138])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2025 18:30:41 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: intel-xe@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ matthew.brost@intel.com
+Cc: michal.wajdeczko@intel.com
+Subject: [PATCH v3 0/4] Support active context utilization
+Date: Tue,  6 May 2025 18:30:39 -0700
+Message-ID: <20250507013039.2043897-6-umesh.nerlige.ramappa@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Enable_SVM_atomics_in_Xe_/_?=
- =?utf-8?q?GPU_SVM_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 06 May 2025 23:46:26 -0000
-Message-ID: <174657518649.53100.8872235875931606418@c664b1dc75d1>
-X-Patchwork-Hint: ignore
-References: <20250506230132.1188732-1-matthew.brost@intel.com>
-In-Reply-To: <20250506230132.1188732-1-matthew.brost@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +62,46 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4790022624886820445==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Add support for active context utilization using WA BB.
 
-== Series Details ==
+v2: (Matt)
+- Fix breakage in TDR due to this feature.
+- Other review comments
 
-Series: Enable SVM atomics in Xe / GPU SVM (rev6)
-URL   : https://patchwork.freedesktop.org/series/147846/
-State : success
+v3:
+- Include review comments from Matt and Lucas
+- Bug fixes
 
-== Summary ==
+v4:
+- Review comments
+- CI bug fixes
 
-CI Bug Log - changes from xe-3043-842c3c276c106040f9b96d72b9df35ed6aed9ae9_BAT -> xe-pw-147846v6_BAT
-====================================================
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
-Summary
--------
+Umesh Nerlige Ramappa (4):
+  drm/xe: Save CTX_TIMESTAMP mmio value instead of LRC value
+  drm/xe: Save the gt pointer in lrc and drop the tile
+  drm/xe: Check 64-bit CTX timestamp for TDR when available
+  drm/xe: Add WA BB to capture active context utilization
 
-  **SUCCESS**
+ .../gpu/drm/xe/instructions/xe_mi_commands.h  |   4 +
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h      |   5 +
+ drivers/gpu/drm/xe/regs/xe_lrc_layout.h       |   2 +
+ drivers/gpu/drm/xe/xe_device_types.h          |   2 +
+ drivers/gpu/drm/xe/xe_exec_queue.c            |   2 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c            |  18 +-
+ drivers/gpu/drm/xe/xe_lrc.c                   | 226 +++++++++++++++++-
+ drivers/gpu/drm/xe/xe_lrc.h                   |  12 +-
+ drivers/gpu/drm/xe/xe_lrc_types.h             |   9 +-
+ drivers/gpu/drm/xe/xe_pci.c                   |   2 +
+ drivers/gpu/drm/xe/xe_pci_types.h             |   1 +
+ drivers/gpu/drm/xe/xe_ring_ops.c              |  15 +-
+ drivers/gpu/drm/xe/xe_trace_lrc.h             |   8 +-
+ 13 files changed, 268 insertions(+), 38 deletions(-)
 
-  No regressions found.
+-- 
+2.43.0
 
-  
-
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3043-842c3c276c106040f9b96d72b9df35ed6aed9ae9 -> xe-pw-147846v6
-
-  IGT_8354: 59f7153426484367f58edfafb6567ce4e6a9e499 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3043-842c3c276c106040f9b96d72b9df35ed6aed9ae9: 842c3c276c106040f9b96d72b9df35ed6aed9ae9
-  xe-pw-147846v6: 147846v6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147846v6/index.html
-
---===============4790022624886820445==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Enable SVM atomics in Xe / GPU SVM (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147846/">https://patchwork.freedesktop.org/series/147846/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147846v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147846v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3043-842c3c276c106040f9b96d72b9df35ed6aed9ae9_BAT -&gt; xe-pw-147846v6_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3043-842c3c276c106040f9b96d72b9df35ed6aed9ae9 -&gt; xe-pw-147846v6</li>
-</ul>
-<p>IGT_8354: 59f7153426484367f58edfafb6567ce4e6a9e499 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3043-842c3c276c106040f9b96d72b9df35ed6aed9ae9: 842c3c276c106040f9b96d72b9df35ed6aed9ae9<br />
-  xe-pw-147846v6: 147846v6</p>
-
-</body>
-</html>
-
---===============4790022624886820445==--
