@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E087C3ABBF
-	for <intel-xe@archiver.kernel.org>; Wed,  7 May 2025 18:37:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE4BFC3ABBF
+	for <intel-xe@archiver.kernel.org>; Wed,  7 May 2025 18:39:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3898810E0A4;
-	Wed,  7 May 2025 18:37:37 +0000 (UTC)
-Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CCEF10E0A4;
- Wed,  7 May 2025 18:37:36 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1C4910E02B;
+	Wed,  7 May 2025 18:39:22 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fcOH9KnW";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2ECD110E02B
+ for <intel-xe@lists.freedesktop.org>; Wed,  7 May 2025 18:39:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1746643161; x=1778179161;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=1aL3YxIfxvX2h4QkVqprMdL8LQKP7D2njz2IKPs1qJY=;
+ b=fcOH9KnWrmJmG6My301+nLPqJoHbMrwwBgAEIIjjbVik5IpnycN1dugl
+ ECRVuXVFSCGokuPx3I4MRUoKQPnfq8b1RHV7qoQEq652vfiL6mC9xB3ah
+ anB3ZVCvdqBypBBirYIWvW7qNhoqYuGpn9OcwVdRU1v5IyKJRlCfqH6UI
+ pRN6ev5wLOWetCqrd5J2jjEh/7qKk+UlTJ4md91qNE3K754bbnenqtfuJ
+ 3UWKmBbW+tP2LG1dyD85NJKgNe9HK6nzEjB+ITIpzLIL0Nl1evoAyrZ4d
+ udzUvGN/scCS4TfyOAu1YM01KuLpr4Cg6JaiWRw/iTxUABcb2KN/yHP/K w==;
+X-CSE-ConnectionGUID: oPo6mbydRT+UKFlPYRNDhQ==
+X-CSE-MsgGUID: tEXrlUI8R9qj0ApvZyW6Gg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11426"; a="59748846"
+X-IronPort-AV: E=Sophos;i="6.15,270,1739865600"; d="scan'208";a="59748846"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2025 11:39:21 -0700
+X-CSE-ConnectionGUID: p0pmimdQQDyhCkzbrVJvFw==
+X-CSE-MsgGUID: KTEzhyAgRsG/0jNgjUCzQg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,270,1739865600"; d="scan'208";a="137038505"
+Received: from mjruhl-desk.amr.corp.intel.com (HELO mjruhl-desk.intel.com)
+ ([10.124.222.94])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2025 11:39:19 -0700
+From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+To: intel-xe@lists.freedesktop.org, nicholas.johnstone@intel.com,
+ david.e.box@intel.com, rodrigo.vivi@intel.com, lucas.demarchi@intel.com
+Cc: "Michael J. Ruhl" <mjruhl@habana.ai>
+Subject: [PATCH] drm/xe/vsec: Allow for kernel context access
+Date: Wed,  7 May 2025 14:39:01 -0400
+Message-ID: <20250507183907.260707-1-michael.j.ruhl@intel.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/xe=5Fvm=3A_Implement_xe?=
- =?utf-8?q?=5Fvm=5Fget=5Fproperty=5Fioctl?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 07 May 2025 18:37:36 -0000
-Message-ID: <174664305610.57056.3961879307868176983@c664b1dc75d1>
-X-Patchwork-Hint: ignore
-References: <20250507155727.130444-1-jonathan.cavitt@intel.com>
-In-Reply-To: <20250507155727.130444-1-jonathan.cavitt@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,117 +63,84 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: "Michael J. Ruhl" <mjruhl@habana.ai>
 
-Series: drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
-URL   : https://patchwork.freedesktop.org/series/148712/
-State : success
+The PMT driver allows kernel level access to device data.
+Because of this, the mutex lock turns out to be a poor
+lock.
 
-== Summary ==
+Change the mutex to a spinlock to avoid sleeping when it
+isn't allowed.
 
-lib/modules/6.15.0-rc5-xe+/kernel/arch/x86/kvm/
-lib/modules/6.15.0-rc5-xe+/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.15.0-rc5-xe+/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.15.0-rc5-xe+/kernel/arch/x86/kvm/kvm-amd.ko
-lib/modules/6.15.0-rc5-xe+/kernel/virt/
-lib/modules/6.15.0-rc5-xe+/kernel/virt/lib/
-lib/modules/6.15.0-rc5-xe+/kernel/virt/lib/irqbypass.ko
-lib/modules/6.15.0-rc5-xe+/kernel/kernel/
-lib/modules/6.15.0-rc5-xe+/kernel/kernel/kheaders.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/ecrdsa_generic.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/xcbc.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/serpent_generic.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/aria_generic.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/crypto_simd.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/adiantum.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/tcrypt.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/crypto_engine.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/zstd.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/asymmetric_keys/
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/des_generic.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/xctr.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/authenc.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/sm4_generic.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/camellia_generic.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/sm3.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/pcrypt.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/aegis128.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/af_alg.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/algif_aead.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/cmac.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/sm3_generic.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/aes_ti.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/chacha_generic.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/poly1305_generic.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/nhpoly1305.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/crc32_generic.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/essiv.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/ccm.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/wp512.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/streebog_generic.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/authencesn.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/echainiv.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/lrw.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/cryptd.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/crypto_user.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/algif_hash.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/polyval-generic.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/hctr2.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/842.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/pcbc.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/ansi_cprng.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/cast6_generic.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/twofish_common.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/twofish_generic.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/lz4hc.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/blowfish_generic.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/md4.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/chacha20poly1305.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/curve25519-generic.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/lz4.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/rmd160.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/algif_skcipher.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/cast5_generic.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/fcrypt.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/ecdsa_generic.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/sm4.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/cast_common.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/blowfish_common.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/michael_mic.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/async_tx/
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.15.0-rc5-xe+/kernel/crypto/algif_rng.ko
-lib/modules/6.15.0-rc5-xe+/kernel/block/
-lib/modules/6.15.0-rc5-xe+/kernel/block/bfq.ko
-lib/modules/6.15.0-rc5-xe+/kernel/block/kyber-iosched.ko
-lib/modules/6.15.0-rc5-xe+/build
-lib/modules/6.15.0-rc5-xe+/modules.alias.bin
-lib/modules/6.15.0-rc5-xe+/modules.builtin
-lib/modules/6.15.0-rc5-xe+/modules.softdep
-lib/modules/6.15.0-rc5-xe+/modules.alias
-lib/modules/6.15.0-rc5-xe+/modules.order
-lib/modules/6.15.0-rc5-xe+/modules.symbols
-lib/modules/6.15.0-rc5-xe+/modules.dep.bin
-+ mv kernel-debug.tar.gz ..
-+ cd ..
-+ rm -rf archive-debug
-+ [[ no == \y\e\s ]]
-+ sync
-+ echo '[+] Finished building and packaging '\''debug'\''!'
-+ cleanup
-[+] Finished building and packaging 'debug'!
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Fixes: 0c45e76fcc62 ("drm/xe/vsec: Support BMG devices")
+Signed-off-by: Michael J. Ruhl <mjruhl@habana.ai>
+---
+ drivers/gpu/drm/xe/xe_device.c       | 5 ++---
+ drivers/gpu/drm/xe/xe_device_types.h | 2 +-
+ drivers/gpu/drm/xe/xe_vsec.c         | 4 ++--
+ 3 files changed, 5 insertions(+), 6 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 75e753e0a682..72c81b8203a5 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -8,6 +8,7 @@
+ #include <linux/aperture.h>
+ #include <linux/delay.h>
+ #include <linux/fault-inject.h>
++#include <linux/spinlock.h>
+ #include <linux/units.h>
+ 
+ #include <drm/drm_atomic_helper.h>
+@@ -488,9 +489,7 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+ 		goto err;
+ 	}
+ 
+-	err = drmm_mutex_init(&xe->drm, &xe->pmt.lock);
+-	if (err)
+-		goto err;
++	spin_lock_init(&xe->pmt.lock);
+ 
+ 	err = xe_display_create(xe);
+ 	if (WARN_ON(err))
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 06c65dace026..8bfbe2cfa9c2 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -527,7 +527,7 @@ struct xe_device {
+ 	/** @pmt: Support the PMT driver callback interface */
+ 	struct {
+ 		/** @pmt.lock: protect access for telemetry data */
+-		struct mutex lock;
++		struct spinlock lock;
+ 	} pmt;
+ 
+ 	/**
+diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
+index b378848d3b7b..df44e28abbdf 100644
+--- a/drivers/gpu/drm/xe/xe_vsec.c
++++ b/drivers/gpu/drm/xe/xe_vsec.c
+@@ -6,7 +6,7 @@
+ #include <linux/errno.h>
+ #include <linux/intel_vsec.h>
+ #include <linux/module.h>
+-#include <linux/mutex.h>
++#include <linux/spinlock.h>
+ #include <linux/pci.h>
+ #include <linux/types.h>
+ 
+@@ -164,7 +164,7 @@ static int xe_pmt_telem_read(struct pci_dev *pdev, u32 guid, u64 *data, loff_t u
+ 
+ 	telem_addr += offset + user_offset;
+ 
+-	guard(mutex)(&xe->pmt.lock);
++	guard(spinlock)(&xe->pmt.lock);
+ 
+ 	/* indicate that we are not at an appropriate power level */
+ 	if (!xe_pm_runtime_get_if_active(xe))
+-- 
+2.34.1
 
