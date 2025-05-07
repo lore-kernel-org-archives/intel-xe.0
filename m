@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F596C3ABBE
-	for <intel-xe@archiver.kernel.org>; Wed,  7 May 2025 03:14:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30B10C3ABBC
+	for <intel-xe@archiver.kernel.org>; Wed,  7 May 2025 03:14:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0286110E059;
-	Wed,  7 May 2025 03:14:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E643C10E059;
+	Wed,  7 May 2025 03:14:22 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CE5A10E059;
- Wed,  7 May 2025 03:14:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A594F10E059;
+ Wed,  7 May 2025 03:14:21 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
- =?utf-8?q?_=5B1/1=5D_drm/xe=3A_Use_copy=5Ffrom=5Fuser=28=29_instead_of_=5F?=
- =?utf-8?q?=5Fcopy=5Ffrom=5Fuser=28=29_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_series_starting_with_=5B1?=
+ =?utf-8?q?/1=5D_drm/xe=3A_Use_copy=5Ffrom=5Fuser=28=29_instead_of_=5F=5Fcop?=
+ =?utf-8?q?y=5Ffrom=5Fuser=28=29_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Harish Chegondi" <harish.chegondi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 07 May 2025 03:14:08 -0000
-Message-ID: <174658764804.53681.8392149998414349340@c664b1dc75d1>
+Date: Wed, 07 May 2025 03:14:21 -0000
+Message-ID: <174658766167.53681.1576926419596401283@c664b1dc75d1>
 X-Patchwork-Hint: ignore
 References: <acabf20aa8621c7bc8de09b1bffb8d14b5376484.1746126614.git.harish.chegondi@intel.com>
 In-Reply-To: <acabf20aa8621c7bc8de09b1bffb8d14b5376484.1746126614.git.harish.chegondi@intel.com>
@@ -49,9 +49,28 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 842c3c276c10 drm-tip: 2025y-05m-06d-15h-34m-18s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Use copy_from_user() instead of __copy_from_user()
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 3366886d1d9ef1b1b4783aee36f595cbfbc6bc3c
+Author: Harish Chegondi <harish.chegondi@intel.com>
+Date:   Thu May 1 12:14:45 2025 -0700
+
+    drm/xe: Use copy_from_user() instead of __copy_from_user()
+    
+    copy_from_user() has more checks and is more safer than
+    __copy_from_user()
+    
+    Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
++ /mt/dim checkpatch 842c3c276c106040f9b96d72b9df35ed6aed9ae9 drm-intel
+3366886d1d9e drm/xe: Use copy_from_user() instead of __copy_from_user()
 
 
