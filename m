@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C53DC3ABBE
-	for <intel-xe@archiver.kernel.org>; Thu,  8 May 2025 05:29:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D357C3ABC0
+	for <intel-xe@archiver.kernel.org>; Thu,  8 May 2025 05:29:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F277210E32B;
-	Thu,  8 May 2025 05:29:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C093E10E36F;
+	Thu,  8 May 2025 05:29:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P1gnvteg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="amuYmw6Q";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0A4F10E32B
- for <intel-xe@lists.freedesktop.org>; Thu,  8 May 2025 05:29:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2388E10E36F
+ for <intel-xe@lists.freedesktop.org>; Thu,  8 May 2025 05:29:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746682140; x=1778218140;
+ t=1746682144; x=1778218144;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=7ncpf9edHCywi7tptUQPwZcnXEohoRMkuvlm7NRDZzw=;
- b=P1gnvtegsfA/7WJJvLgKrLETu1PDDI2NhTj3t8PDZJnUDnBLpx3FCaak
- EWYbcoplMdb9gm5rGmxPKkCWU5GFblYKxoGa87mlLdNA0tfvNxyR/nJSD
- OXjU2Eip6nA+3og7y8pv3SsMZ9DlsLGNMDeeL7T6SbTKoFqUt9KjIvAsl
- V86yD0fpLBGydQuU0AdEIWFN29JCEFbHG3OIfZxPl5atDY7kQNm8WEnbV
- YRNTFlHo301Qz0Okoa7pPfvv3/Iu/+1Kdh5qgsLakeo7k7Glu9L76lOGO
- nzejG/FuWHYRbT8xcUknKLB28gYaNB29CPM7YPPR2hRrXJIc6EWrQu2lv w==;
-X-CSE-ConnectionGUID: fvQuCmQPR2+7FAmaHBGH8A==
-X-CSE-MsgGUID: 5QiHKUa1SguhL4IASgBlpg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11426"; a="59106064"
-X-IronPort-AV: E=Sophos;i="6.15,271,1739865600"; d="scan'208";a="59106064"
+ bh=VuGUQ2jDwz1ScY7pmaoeQIOyXyMijvt7hxw5SWS4AUI=;
+ b=amuYmw6QpJcVD2M22BF2lu6hNCx88BQBOmsphwWdZX0KEMkRvZ0pGueG
+ snpaBHTu4cTOdZ/8yriBNxd/TzHqM8lYoA/KjURYjmecSt9G6oZcTa0cj
+ Xy6rcUOZpUYDQ0wMxbdbIcxmYjxWnwopPvhaS4INpdjXy4HBNCX04prH7
+ eJy6mVkeOCvx7q2JyPJG4mQUDCFnPagw2nvFuRjQIwThRxdBovfv6W5TR
+ iVqCZegmaOM54jtkbHh0VUQo71HqEIFZRdIVPKCzsCVn2DoYKQbWj+395
+ jcxdSx6QiobbG53v7/VFRKWCzK/R6lM3prn/+OqJtjxYszDTZbdrM4bQ+ g==;
+X-CSE-ConnectionGUID: umF+7OL4Qc+5Di8AVEmdiA==
+X-CSE-MsgGUID: K5UFyixYRcyeW+ouN/XUDA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11426"; a="59106065"
+X-IronPort-AV: E=Sophos;i="6.15,271,1739865600"; d="scan'208";a="59106065"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2025 22:29:00 -0700
-X-CSE-ConnectionGUID: jKz04WaKRFizU1jPJYyu8w==
-X-CSE-MsgGUID: GzNzo8XETHa7ZxlWFB4PRw==
+ 07 May 2025 22:29:04 -0700
+X-CSE-ConnectionGUID: NX34UrQKTCG7fDWKdAJsNw==
+X-CSE-MsgGUID: YGpLgYf0QpCFARaMj7bXYg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,271,1739865600"; d="scan'208";a="141140466"
+X-IronPort-AV: E=Sophos;i="6.15,271,1739865600"; d="scan'208";a="141140480"
 Received: from unknown (HELO sinjan-Super-Server.iind.intel.com)
  ([10.190.239.39])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2025 22:28:58 -0700
+ 07 May 2025 22:29:02 -0700
 From: Karthik Poosa <karthik.poosa@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
  ashutosh.dixit@intel.com, rodrigo.vivi@intel.com, michael.j.ruhl@intel.com,
  Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH v5 2/5] drm/xe/hwmon: Move card reactive critical power under
- channel card
-Date: Thu,  8 May 2025 10:58:38 +0530
-Message-Id: <20250508052841.22705-3-karthik.poosa@intel.com>
+Subject: [PATCH v5 3/5] drm/xe/hwmon: Add support to manage PL2 though mailbox
+Date: Thu,  8 May 2025 10:58:39 +0530
+Message-Id: <20250508052841.22705-4-karthik.poosa@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20250508052841.22705-1-karthik.poosa@intel.com>
 References: <20250508052841.22705-1-karthik.poosa@intel.com>
@@ -70,83 +69,286 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move power2/curr2_crit to channel 1 i.e power1/curr1_crit as this
-represents the entire card critical power/current.
+Add support to manage power limit PL2 (burst limit) through
+pcode mailbox commands.
 
-v2: Update the date of curr1_crit also in hwmon documentation.
+v2:
+ - Update power1_cap definition in hwmon documentation. (Badal)
+ - Clamp PL2 power limit to BIOS default value.
+
+v3:
+ - Activate the power label when either the PL1 or PL2 power
+   limit is enabled.
 
 Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
-Fixes: 345dadc4f68b ("drm/xe/hwmon: Add infra to support card power and energy attributes")
 ---
- .../ABI/testing/sysfs-driver-intel-xe-hwmon   | 20 +++++++++----------
- drivers/gpu/drm/xe/xe_hwmon.c                 |  6 +++---
- 2 files changed, 13 insertions(+), 13 deletions(-)
+ .../ABI/testing/sysfs-driver-intel-xe-hwmon   | 30 ++++++++
+ drivers/gpu/drm/xe/xe_hwmon.c                 | 74 ++++++++++++++-----
+ 2 files changed, 84 insertions(+), 20 deletions(-)
 
 diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-index 4ca917ac6382..5a91dcccd3ac 100644
+index 5a91dcccd3ac..dffd6443664a 100644
 --- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
 +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-@@ -60,26 +60,26 @@ Description:	RO. Package default power limit (default TDP setting).
+@@ -148,3 +148,33 @@ Contact:	intel-xe@lists.freedesktop.org
+ Description:	RO. Fan 3 speed in RPM.
  
  		Only supported for particular Intel Xe graphics platforms.
- 
--What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/power2_crit
--Date:		February 2024
--KernelVersion:	6.8
-+What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/power1_crit
++
++What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/power1_cap
 +Date:		May 2025
 +KernelVersion:	6.15
- Contact:	intel-xe@lists.freedesktop.org
--Description:	RW. Package reactive critical (I1) power limit in microwatts.
-+Description:	RW. Card reactive critical (I1) power limit in microwatts.
- 
--		Package reactive critical (I1) power limit in microwatts is exposed
-+		Card reactive critical (I1) power limit in microwatts is exposed
- 		for client products. The power controller will throttle the
- 		operating frequency if the power averaged over a window exceeds
- 		this limit.
- 
- 		Only supported for particular Intel Xe graphics platforms.
- 
--What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/curr2_crit
--Date:		February 2024
--KernelVersion:	6.8
-+What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/curr1_crit
++Contact:	intel-xe@lists.freedesktop.org
++Description:	RW. Card burst (PL2) power limit in microwatts.
++
++		The power controller will throttle the operating frequency
++		if the power averaged over a window (typically milli seconds)
++		exceeds this limit. A read value of 0 means that the PL2
++		power limit is disabled, writing 0 disables the	limit.
++		PL2 is greater than PL1 and its time window is lesser
++		compared to PL1.
++
++		Only supported for particular Intel Xe graphics platforms.
++
++What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/power2_cap
 +Date:		May 2025
 +KernelVersion:	6.15
- Contact:	intel-xe@lists.freedesktop.org
--Description:	RW. Package reactive critical (I1) power limit in milliamperes.
-+Description:	RW. Card reactive critical (I1) power limit in milliamperes.
- 
--		Package reactive critical (I1) power limit in milliamperes is
-+		Card reactive critical (I1) power limit in milliamperes is
- 		exposed for server products. The power controller will throttle
- 		the operating frequency if the power averaged over a window
- 		exceeds this limit.
++Contact:	intel-xe@lists.freedesktop.org
++Description:	RW. Package burst (PL2) power limit in microwatts.
++
++		The power controller will throttle the operating frequency
++		if the power averaged over a window (typically milli seconds)
++		exceeds this limit. A read value of 0 means that the PL2
++		power limit is disabled, writing 0 disables the	limit.
++		PL2 is greater than PL1 and its time window is lesser
++		compared to PL1.
++
++		Only supported for particular Intel Xe graphics platforms.
 diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index b4f99b761a2e..5ba800b35969 100644
+index 5ba800b35969..4de79b0d5c49 100644
 --- a/drivers/gpu/drm/xe/xe_hwmon.c
 +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -637,8 +637,8 @@ static const struct attribute_group *hwmon_groups[] = {
+@@ -51,6 +51,14 @@ enum xe_fan_channel {
+ 	FAN_MAX,
+ };
+ 
++/* Attribute index for powerX_xxx_interval sysfs entries */
++enum sensor_attr_power {
++	SENSOR_INDEX_PSYS_PL1,
++	SENSOR_INDEX_PKG_PL1,
++	SENSOR_INDEX_PSYS_PL2,
++	SENSOR_INDEX_PKG_PL2,
++};
++
+ /*
+  * For platforms that support mailbox commands for power limits, REG_PKG_POWER_SKU_UNIT is
+  * not supported and below are SKU units to be used.
+@@ -72,8 +80,9 @@ enum xe_fan_channel {
+  * PL*_HWMON_ATTR - mapping of hardware power limits to corresponding hwmon power attribute.
+  */
+ #define PL1_HWMON_ATTR	hwmon_power_max
++#define PL2_HWMON_ATTR	hwmon_power_cap
+ 
+-#define PWR_ATTR_TO_STR(attr)	(((attr) == hwmon_power_max) ? "PL1" : "Invalid")
++#define PWR_ATTR_TO_STR(attr)	(((attr) == hwmon_power_max) ? "PL1" : "PL2")
+ 
+ /*
+  * Timeout for power limit write mailbox command.
+@@ -124,6 +133,9 @@ struct xe_hwmon {
+ 	bool boot_power_limit_read;
+ 	/** pl1_on_boot: power limit PL1 on boot */
+ 	u32 pl1_on_boot[CHANNEL_MAX];
++	/** pl2_on_boot: power limit PL2 on boot */
++	u32 pl2_on_boot[CHANNEL_MAX];
++
+ };
+ 
+ static int xe_hwmon_pcode_read_power_limit(const struct xe_hwmon *hwmon, u32 attr, int channel,
+@@ -151,8 +163,10 @@ static int xe_hwmon_pcode_read_power_limit(const struct xe_hwmon *hwmon, u32 att
+ 	/* return the value only if limit is enabled */
+ 	if (attr == PL1_HWMON_ATTR)
+ 		*uval = (val0 & PWR_LIM_EN) ? val0 : 0;
++	else if (attr == PL2_HWMON_ATTR)
++		*uval = (val1 & PWR_LIM_EN) ? val1 : 0;
+ 	else if (attr == hwmon_power_label)
+-		*uval = (val0 & PWR_LIM_EN) ? 1 : 0;
++		*uval = (val0 & PWR_LIM_EN) ? 1 : (val1 & PWR_LIM_EN) ? 1 : 0;
+ 	else
+ 		*uval = 0;
+ 
+@@ -180,6 +194,8 @@ static int xe_hwmon_pcode_write_power_limit(const struct xe_hwmon *hwmon, u32 at
+ 
+ 	if (attr == PL1_HWMON_ATTR)
+ 		val0 = uval;
++	else if (attr == PL2_HWMON_ATTR)
++		val1 = uval;
+ 	else
+ 		return -EIO;
+ 
+@@ -328,7 +344,7 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, u32 attr, int channe
+ {
+ 	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
+ 	int ret = 0;
+-	u32 reg_val;
++	u32 reg_val, max;
+ 	struct xe_reg rapl_limit;
+ 
+ 	mutex_lock(&hwmon->hwmon_lock);
+@@ -356,20 +372,24 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, u32 attr, int channe
+ 
+ 	/* Computation in 64-bits to avoid overflow. Round to nearest. */
+ 	reg_val = DIV_ROUND_CLOSEST_ULL((u64)value << hwmon->scl_shift_power, SF_POWER);
+-	reg_val = PWR_LIM_EN | REG_FIELD_PREP(PWR_LIM_VAL, reg_val);
+ 
+ 	/*
+ 	 * Clamp power limit to card-firmware default as maximum, as an additional protection to
+ 	 * pcode clamp.
+ 	 */
+ 	if (hwmon->xe->info.has_mbx_power_limits) {
+-		if (reg_val > REG_FIELD_GET(PWR_LIM_VAL, hwmon->pl1_on_boot[channel])) {
+-			reg_val = REG_FIELD_GET(PWR_LIM_VAL, hwmon->pl1_on_boot[channel]);
++		max = (attr == PL1_HWMON_ATTR) ?
++		       hwmon->pl1_on_boot[channel] : hwmon->pl2_on_boot[channel];
++		max = REG_FIELD_PREP(PWR_LIM_VAL, max);
++		if (reg_val > max) {
++			reg_val = max;
+ 			drm_dbg(&hwmon->xe->drm, "Clamping power limit to firmware default 0x%x\n",
+ 				reg_val);
+ 		}
+ 	}
+ 
++	reg_val = PWR_LIM_EN | REG_FIELD_PREP(PWR_LIM_VAL, reg_val);
++
+ 	if (hwmon->xe->info.has_mbx_power_limits)
+ 		ret = xe_hwmon_pcode_write_power_limit(hwmon, attr, channel, reg_val);
+ 	else
+@@ -453,8 +473,9 @@ xe_hwmon_power_max_interval_show(struct device *dev, struct device_attribute *at
+ 	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
+ 	u32 x, y, x_w = 2; /* 2 bits */
+ 	u64 r, tau4, out;
+-	int channel = to_sensor_dev_attr(attr)->index;
++	int channel = (to_sensor_dev_attr(attr)->index % 2) ? CHANNEL_PKG : CHANNEL_CARD;
+ 	u32 power_attr = PL1_HWMON_ATTR;
++
+ 	int ret = 0;
+ 
+ 	xe_pm_runtime_get(hwmon->xe);
+@@ -507,9 +528,9 @@ xe_hwmon_power_max_interval_store(struct device *dev, struct device_attribute *a
+ 	u32 x, y, rxy, x_w = 2; /* 2 bits */
+ 	u64 tau4, r, max_win;
+ 	unsigned long val;
+-	int ret;
+-	int channel = to_sensor_dev_attr(attr)->index;
++	int channel = (to_sensor_dev_attr(attr)->index % 2) ? CHANNEL_PKG : CHANNEL_CARD;
+ 	u32 power_attr = PL1_HWMON_ATTR;
++	int ret;
+ 
+ 	ret = kstrtoul(buf, 0, &val);
+ 	if (ret)
+@@ -587,11 +608,11 @@ xe_hwmon_power_max_interval_store(struct device *dev, struct device_attribute *a
+ /* PSYS PL1 */
+ static SENSOR_DEVICE_ATTR(power1_max_interval, 0664,
+ 			  xe_hwmon_power_max_interval_show,
+-			  xe_hwmon_power_max_interval_store, CHANNEL_CARD);
+-
++			  xe_hwmon_power_max_interval_store, SENSOR_INDEX_PSYS_PL1);
++/* PKG PL1 */
+ static SENSOR_DEVICE_ATTR(power2_max_interval, 0664,
+ 			  xe_hwmon_power_max_interval_show,
+-			  xe_hwmon_power_max_interval_store, CHANNEL_PKG);
++			  xe_hwmon_power_max_interval_store, SENSOR_INDEX_PKG_PL1);
+ 
+ static struct attribute *hwmon_attributes[] = {
+ 	&sensor_dev_attr_power1_max_interval.dev_attr.attr,
+@@ -605,7 +626,7 @@ static umode_t xe_hwmon_attributes_visible(struct kobject *kobj,
+ 	struct device *dev = kobj_to_dev(kobj);
+ 	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
+ 	int ret = 0;
+-	int channel = index ? CHANNEL_PKG : CHANNEL_CARD;
++	int channel = (index % 2) ? CHANNEL_PKG : CHANNEL_CARD;
+ 	u32 power_attr = PL1_HWMON_ATTR;
+ 	u32 uval;
+ 
+@@ -637,8 +658,9 @@ static const struct attribute_group *hwmon_groups[] = {
  static const struct hwmon_channel_info * const hwmon_info[] = {
  	HWMON_CHANNEL_INFO(temp, HWMON_T_LABEL, HWMON_T_INPUT | HWMON_T_LABEL,
  			   HWMON_T_INPUT | HWMON_T_LABEL),
--	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL,
--			   HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_CRIT | HWMON_P_LABEL),
-+	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL | HWMON_P_CRIT,
-+			   HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL),
+-	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL | HWMON_P_CRIT,
+-			   HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL),
++	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL | HWMON_P_CRIT |
++			   HWMON_P_CAP,
++			   HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL | HWMON_P_CAP),
  	HWMON_CHANNEL_INFO(curr, HWMON_C_LABEL, HWMON_C_CRIT | HWMON_C_LABEL),
  	HWMON_CHANNEL_INFO(in, HWMON_I_INPUT | HWMON_I_LABEL, HWMON_I_INPUT | HWMON_I_LABEL),
  	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT | HWMON_E_LABEL, HWMON_E_INPUT | HWMON_E_LABEL),
-@@ -778,7 +778,7 @@ xe_hwmon_power_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+@@ -763,9 +785,11 @@ xe_hwmon_power_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+ 
+ 	switch (attr) {
+ 	case hwmon_power_max:
++	case hwmon_power_cap:
++	case hwmon_power_label:
+ 		if (hwmon->xe->info.has_mbx_power_limits) {
+ 			xe_hwmon_pcode_read_power_limit(hwmon, attr, channel, &uval);
+-			return (uval) ? 0664 : 0;
++			return (uval) ? (attr == hwmon_power_label) ? 0444 : 0664 : 0;
+ 		} else {
+ 			return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT,
+ 				       channel)) ? 0664 : 0;
+@@ -777,11 +801,9 @@ xe_hwmon_power_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+ 			return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU,
  					       channel)) ? 0444 : 0;
  	case hwmon_power_crit:
- 	case hwmon_power_label:
--		if (channel == CHANNEL_PKG) {
-+		if (channel == CHANNEL_CARD) {
+-	case hwmon_power_label:
+ 		if (channel == CHANNEL_CARD) {
  			xe_hwmon_pcode_read_i1(hwmon, &uval);
- 			return (uval & POWER_SETUP_I1_WATTS) ? (attr == hwmon_power_label) ?
- 				0444 : 0644 : 0;
+-			return (uval & POWER_SETUP_I1_WATTS) ? (attr == hwmon_power_label) ?
+-				0444 : 0644 : 0;
++			return (uval & POWER_SETUP_I1_WATTS) ? 0644 : 0;
+ 		}
+ 		break;
+ 	default:
+@@ -795,6 +817,7 @@ xe_hwmon_power_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
+ {
+ 	switch (attr) {
+ 	case hwmon_power_max:
++	case hwmon_power_cap:
+ 		xe_hwmon_power_max_read(hwmon, attr, channel, val);
+ 		return 0;
+ 	case hwmon_power_rated_max:
+@@ -811,6 +834,7 @@ static int
+ xe_hwmon_power_write(struct xe_hwmon *hwmon, u32 attr, int channel, long val)
+ {
+ 	switch (attr) {
++	case hwmon_power_cap:
+ 	case hwmon_power_max:
+ 		return xe_hwmon_power_max_write(hwmon, attr, channel, val);
+ 	case hwmon_power_crit:
+@@ -1137,7 +1161,11 @@ xe_hwmon_get_preregistration_info(struct xe_hwmon *hwmon)
+ 		if (xe_hwmon_pcode_read_power_limit(hwmon, PL1_HWMON_ATTR, CHANNEL_CARD,
+ 						    &hwmon->pl1_on_boot[CHANNEL_CARD]) |
+ 		    xe_hwmon_pcode_read_power_limit(hwmon, PL1_HWMON_ATTR, CHANNEL_PKG,
+-						    &hwmon->pl1_on_boot[CHANNEL_PKG])) {
++						    &hwmon->pl1_on_boot[CHANNEL_PKG]) |
++		    xe_hwmon_pcode_read_power_limit(hwmon, PL2_HWMON_ATTR, CHANNEL_CARD,
++						    &hwmon->pl2_on_boot[CHANNEL_CARD]) |
++		    xe_hwmon_pcode_read_power_limit(hwmon, PL1_HWMON_ATTR, CHANNEL_PKG,
++						    &hwmon->pl2_on_boot[CHANNEL_PKG])) {
+ 			drm_warn(&hwmon->xe->drm,
+ 				 "Failed to read power limits, check card firmware !\n");
+ 		} else {
+@@ -1149,6 +1177,12 @@ xe_hwmon_get_preregistration_info(struct xe_hwmon *hwmon)
+ 			xe_hwmon_pcode_write_power_limit(hwmon, PL1_HWMON_ATTR,
+ 							 CHANNEL_PKG,
+ 							 hwmon->pl1_on_boot[CHANNEL_PKG]);
++			xe_hwmon_pcode_write_power_limit(hwmon, PL2_HWMON_ATTR,
++							 CHANNEL_CARD,
++							 hwmon->pl2_on_boot[CHANNEL_CARD]);
++			xe_hwmon_pcode_write_power_limit(hwmon, PL2_HWMON_ATTR,
++							 CHANNEL_PKG,
++							 hwmon->pl2_on_boot[CHANNEL_PKG]);
+ 			hwmon->scl_shift_power = PWR_UNIT;
+ 			hwmon->scl_shift_energy = ENERGY_UNIT;
+ 			hwmon->scl_shift_time = TIME_UNIT;
 -- 
 2.25.1
 
