@@ -4,53 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76B7FC3ABC6
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78F37C3ABC5
 	for <intel-xe@archiver.kernel.org>; Thu,  8 May 2025 14:17:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABDC510E914;
-	Thu,  8 May 2025 14:17:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D44D310E922;
+	Thu,  8 May 2025 14:17:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="naWomkEp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GAHcierv";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9598A10E914;
- Thu,  8 May 2025 14:17:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AFC810E91A;
+ Thu,  8 May 2025 14:17:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746713831; x=1778249831;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=iYUPAutYGaDpUAhubWSk6gM0uPiKbA2l2KSMitnQWHs=;
- b=naWomkEpgwFQdaWTTxCBTncil7UtqM7j9O9YyZKF+CUNOXz9M2yssyCH
- SyqfaBCfiL9mBcRF60J5ExQMKVX46hFcjLRavZmD8vxmwijV0Myh+RZmD
- WKZGFf/gcS3FYlN9QEar+5LR0neUtV88UdCMvGo5zgup88kQRIP/EB2NR
- AUpZ8Yva6avnF9p807VwN9D6tIUqLobjz/n0syZkYR9sssIkVl13pq5Ho
- MRMKeU0iKgyY8S9mbEJ5CyIWqCbGKWn3OlN3mLUaQ4ck8LV1jwehqAbXD
- aagWEdi3NYHdQR1BaBgcyqnucwEr2DZiOmeb2ZyoJxA/0ZjoVySWzXQvq A==;
-X-CSE-ConnectionGUID: +VF80Qn7QcGjVsmw+XdpXw==
-X-CSE-MsgGUID: a6MxL0E2TzeKroCJAaoCWA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11426"; a="48411124"
-X-IronPort-AV: E=Sophos;i="6.15,272,1739865600"; d="scan'208";a="48411124"
+ t=1746713834; x=1778249834;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=xIx5K04INxTk6qxYzvOn4blMGsWJgtdux1DyYU+vSPM=;
+ b=GAHciervkf8lN0qU5c39nvuNJ8pYBCC8gviR7sbPJa8xgSjjtZ1WkTS8
+ rR1+QDRtDcpccoEKcFoGID4NUTR2uZrVBnHKyyXX1yt4uKrTurqgJqrbG
+ glX86MRgAItYp3PdcaupEMDwTSKui/U06T8m/9RwsaBQZurIghHiZ556r
+ 5puU/+nr5njczubYJpGspRVvsuOAxljTDtIEFZ790OWIkJrfWxdR59K4Z
+ sxwQIl0vs07ORlyeZcO9W1apXReRz77nJWGfV2SGtCrY6vPdWw5FsC4M1
+ ZML3nlffXym/DBBCiGE0816PWqz3TgUDZglNV7E8zWH5manzFU+1+cUyU A==;
+X-CSE-ConnectionGUID: MoNO+R1RSgSlUj5bx65L5Q==
+X-CSE-MsgGUID: bIp78dG9TdaubEwVuvbzyw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11426"; a="48411140"
+X-IronPort-AV: E=Sophos;i="6.15,272,1739865600"; d="scan'208";a="48411140"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2025 07:17:11 -0700
-X-CSE-ConnectionGUID: TWIkGBaHSeONSn3XGamTgg==
-X-CSE-MsgGUID: JrLdHSaPTim0loApQqhzRw==
+ 08 May 2025 07:17:14 -0700
+X-CSE-ConnectionGUID: p5ain0YISnagSb7mfQlfIA==
+X-CSE-MsgGUID: zBeRLpy6QpmBguJ5u6Rk8g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,272,1739865600"; d="scan'208";a="159609571"
+X-IronPort-AV: E=Sophos;i="6.15,272,1739865600"; d="scan'208";a="159609629"
 Received: from johunt-mobl9.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.124.222.197])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2025 07:17:09 -0700
+ 08 May 2025 07:17:13 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: animesh.manna@intel.com,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v3 0/2] ALPM rework and fixes
-Date: Thu,  8 May 2025 17:16:59 +0300
-Message-ID: <20250508141701.3878486-1-jouni.hogander@intel.com>
+Subject: [PATCH v3 2/2] drm/i915/alpm: Stop writing ALPM registers when PSR is
+ enabled
+Date: Thu,  8 May 2025 17:17:01 +0300
+Message-ID: <20250508141701.3878486-3-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250508141701.3878486-1-jouni.hogander@intel.com>
+References: <20250508141701.3878486-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -69,38 +72,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently there are couple of problems in ALPM implelementation:
+Currently we are seeing these on PTL:
 
-1. ALPM registers are written while PSR/ Panel Replay is kept
-   enabled. This is causing following error messages on PTL:
-   
-   "xe 0000:00:02.0: [drm] *ERROR* Timeout waiting for DDI BUF A to
-   get active".
+xe 0000:00:02.0: [drm] *ERROR* Timeout waiting for DDI BUF A to get active
 
-   This is fixed by enabling ALPM only once when needed.
+These seem to be caused by writing ALPM registers while Panel Replay is
+enabled.
 
-2. ALPM is never disabled when used by PSR/Panel Replay. I.e. if PSR
-   is once enabled ALPM is left enabled for good when PSR is
-   disabled. This is fixed by using intel_alpm_disable and calling it
-   for both cases: LOBF disable and PSR disable.
+Fix this by writing ALPM registers only when Panel Replay is about to be
+enabled.
 
-This patch set is addressing these.
+v3: enable/disable ALPM from PSR code
 
-v3:
-  - enable/disable ALPM from PSR code
-v2:
-  - continue using rmw when disabling ALPM
-  - take into account disabled hw in old_crtc_state
+Fixes: 172757acd6f6 ("drm/i915/lobf: Add lobf enablement in post plane update")
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_alpm.c | 4 ++--
+ drivers/gpu/drm/i915/display/intel_psr.c  | 8 +++++++-
+ 2 files changed, 9 insertions(+), 3 deletions(-)
 
-Jouni Högander (2):
-  drm/i915/alpm: Make intel_alpm_enable_sink available for PSR
-  drm/i915/alpm: Stop writing ALPM registers when PSR is enabled
-
- drivers/gpu/drm/i915/display/intel_alpm.c | 15 +++++++++++----
- drivers/gpu/drm/i915/display/intel_alpm.h |  2 ++
- drivers/gpu/drm/i915/display/intel_psr.c  |  8 +++++++-
- 3 files changed, 20 insertions(+), 5 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
+index 9442483058d2..bc93e8026703 100644
+--- a/drivers/gpu/drm/i915/display/intel_alpm.c
++++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+@@ -460,8 +460,8 @@ void intel_alpm_post_plane_update(struct intel_atomic_state *state,
+ 		intel_atomic_get_old_crtc_state(state, crtc);
+ 	struct intel_encoder *encoder;
+ 
+-	if ((!crtc_state->has_lobf ||
+-	     crtc_state->has_lobf == old_crtc_state->has_lobf) && !crtc_state->has_psr)
++	if (crtc_state->has_psr || !crtc_state->has_lobf ||
++	    crtc_state->has_lobf == old_crtc_state->has_lobf)
+ 		return;
+ 
+ 	for_each_intel_encoder_mask(display->drm, encoder,
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index ccd66bbc72f7..0dbe59d06187 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -800,6 +800,8 @@ static void _psr_enable_sink(struct intel_dp *intel_dp,
+ static void intel_psr_enable_sink(struct intel_dp *intel_dp,
+ 				  const struct intel_crtc_state *crtc_state)
+ {
++	intel_alpm_enable_sink(intel_dp, crtc_state);
++
+ 	crtc_state->has_panel_replay ?
+ 		_panel_replay_enable_sink(intel_dp, crtc_state) :
+ 		_psr_enable_sink(intel_dp, crtc_state);
+@@ -1962,6 +1964,8 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+ 	     IS_DISPLAY_VERx100_STEP(display, 3000, STEP_A0, STEP_B0)) &&
+ 	    !intel_dp->psr.panel_replay_enabled)
+ 		intel_dmc_block_pkgc(display, intel_dp->psr.pipe, true);
++
++	intel_alpm_configure(intel_dp, crtc_state);
+ }
+ 
+ static bool psr_interrupt_error_check(struct intel_dp *intel_dp)
+@@ -2172,6 +2176,9 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
+ 	if (intel_dp_is_edp(intel_dp))
+ 		intel_snps_phy_update_psr_power_state(&dp_to_dig_port(intel_dp)->base, false);
+ 
++	if (intel_dp->psr.panel_replay_enabled && intel_dp_is_edp(intel_dp))
++		intel_alpm_disable(intel_dp);
++
+ 	/* Disable PSR on Sink */
+ 	if (!intel_dp->psr.panel_replay_enabled) {
+ 		drm_dp_dpcd_writeb(&intel_dp->aux, DP_PSR_EN_CFG, 0);
+@@ -3498,7 +3505,6 @@ static void psr_alpm_check(struct intel_dp *intel_dp)
+ 	if (intel_alpm_get_error(intel_dp)) {
+ 		intel_psr_disable_locked(intel_dp);
+ 		psr->sink_not_reliable = true;
+-		intel_alpm_disable(intel_dp);
+ 	}
+ }
+ 
 -- 
 2.43.0
 
