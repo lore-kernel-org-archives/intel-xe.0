@@ -4,61 +4,170 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83BEDC3ABBE
-	for <intel-xe@archiver.kernel.org>; Thu,  8 May 2025 21:26:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 718E3C3ABBE
+	for <intel-xe@archiver.kernel.org>; Thu,  8 May 2025 21:36:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4382410E21E;
-	Thu,  8 May 2025 21:26:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1100E10E13E;
+	Thu,  8 May 2025 21:36:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dDthrVp2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D3pm9n0n";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0D4610E21E
- for <intel-xe@lists.freedesktop.org>; Thu,  8 May 2025 21:26:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95B8510E13E
+ for <intel-xe@lists.freedesktop.org>; Thu,  8 May 2025 21:36:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746739574; x=1778275574;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=EfVW9ahRRFapizX/eWyKq05IHyPBuumFMBnfp+MnyNs=;
- b=dDthrVp2nXBweMUC1/FlczCoC+uuuqQ9NViYtGPyEz12I01+KeH2/0FY
- ngiXCRX9WxWwXfJ4yBnq9Z2/WoDXfyCPkAhZTJEICEEdVC0rT/+i+/Pja
- sNhD+rRqk6iJNsfGOs4Qj2Fsgd8wGh/M1ONahN/iwj4qDBBxTR0hiPask
- fYX87bO6Xd+TpAJt2oc3NC+7eGcgFCXzGt3XbmvsOhZgs0Sa7y4T4fY4k
- p1KCte/0v1VqwgJKyIpmdIhUS1ybugJsRq+t6XIARenf+pDu59XIehM/a
- nj+kDpUwHiLtBscdwU90nPiY1K1++ABV7SbOw6Q/wHYhv93P9Bqhl923m A==;
-X-CSE-ConnectionGUID: wYS9XpZZSKOLdhnUyI6mHQ==
-X-CSE-MsgGUID: p/N556ehSKW6AlrmzLiGHg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11427"; a="48255736"
-X-IronPort-AV: E=Sophos;i="6.15,273,1739865600"; d="scan'208";a="48255736"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2025 14:26:10 -0700
-X-CSE-ConnectionGUID: 0XGduDDZT+KqVgN2CbBYZw==
-X-CSE-MsgGUID: eyOGHxwMSAWgPo7d2djDQA==
+ t=1746740215; x=1778276215;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=I5K0xa+3ImfeGpFtrJPapg8KiQJvlFOTEluayV95ThI=;
+ b=D3pm9n0nj9DWFDqzhBh8ahkumD8k/DLjfqNGeN+DPLJJ+oNf2hdZuZr5
+ GfR68kyb831WrY06b/IA3NrcheTaBC2yI6qyHG9Ekn5u8EeYDu3T4153R
+ W69Cn0xV7YQcvcyf0uG3L3zgY+xsGttP7oAw7QGyOpkkvvZiY5s5ndpZK
+ 1uoZWE85Nep5FV2tug4pEp7Lx74Rz9KyGDS1T1RE+lJS/kj4HUuUxQuDp
+ tf7YtoXuYtuypvx2UcaXOJcTJMvV650bM3Zq+ytCl5H1TiY1CNJjSlbKo
+ /aOAS+yHdczKAfc5chfR0Z3KJFhdUxDTtCua5HllcXl6V9jzTNszjXyR5 w==;
+X-CSE-ConnectionGUID: dHI4gdd6SQiN8swz85vyyw==
+X-CSE-MsgGUID: c3oaFbxvQqCAzlo9Dahirw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11427"; a="59947217"
+X-IronPort-AV: E=Sophos;i="6.15,273,1739865600"; d="scan'208";a="59947217"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2025 14:36:51 -0700
+X-CSE-ConnectionGUID: UNDf5UQWSlWW3DDpzdi+lA==
+X-CSE-MsgGUID: a9YUruZMQRuh9WKNFbOeOQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,273,1739865600"; d="scan'208";a="137413117"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa009.fm.intel.com with ESMTP; 08 May 2025 14:26:08 -0700
-Received: from [10.245.114.177] (mwajdecz-MOBL.ger.corp.intel.com
- [10.245.114.177])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 2B94034EF6;
- Thu,  8 May 2025 22:26:07 +0100 (IST)
-Message-ID: <47ffb406-8d68-4ae9-a59d-78bebdaedfdd@intel.com>
-Date: Thu, 8 May 2025 23:26:06 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] drm/xe/vf: Store the GuC FW info in guc->fw
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Lukasz Laguna <lukasz.laguna@intel.com>
-References: <20250408213146.793855-1-daniele.ceraolospurio@intel.com>
- <20250408213146.793855-3-daniele.ceraolospurio@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,273,1739865600"; d="scan'208";a="136131453"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2025 14:36:51 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14; Thu, 8 May 2025 14:36:50 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14 via Frontend Transport; Thu, 8 May 2025 14:36:50 -0700
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.172)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Thu, 8 May 2025 14:36:50 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=J4sZZmIU8atb7dKN9d+fwpATt6L3KLJ2xEfCch+gRrG5aoy9w+hUzLP9/3U6430g98RtdkDMeO3cWO48J7VELuOtkdUhutHZhy/RklutvXbWlKmOpZ1phPvZW+zSMG3aALigOjxZ6qosRZ6U2Om5bQn/uYHblXGlefotxvbmU7SV9AB7vfvHludV3aGl8v8hXAUKsONBmFt6V8W/PV/wJHuLHxCCvtbRKrKwYocqz1o2/5W119nVTvh8yP3YPodSpjlehJk5rsHaPeNuJfa2VP+6fNfBm7jCvySnjky36QC/kbFLbM9O5ROC6XIfY3LMbxpptN2JDwyTzY5VAyJPWg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DmTkROJVsEn6hFBRhM6o+l7T+hKTaeZu1uWAZJEzyQ8=;
+ b=FOC//VjN8osExnU6N545xwobrHLAvagTzmD5R9tUA0s71oZFs0B/cWeZ+oAMbeIpltBxlaXwQAhIqbrRdkRt1fDjZoXC3lehuIa3ITGOKNMi3uktfuQU/65uVuw9aQYA5tXBqe+YOpGCP9pN4dyB6sZAzV1zExLIxww879pzQ6EhtoJQDztTcrvwb9UBEDdzNr7Wy5N1rgoFeuUzi3UR1Xz7Zzoh+0WOBYvwLKNcJuos/Y+NeR50iYR+ysgfy+YWFwrha5bhHZAPX3Eeh4cUkrlCFlbNGkCoxKNAycIs+g4rBvkeonrgm0NSPPoIAIY2xVT6lOSWpeYMYZWL7JIe7A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from CH0PR11MB5444.namprd11.prod.outlook.com (2603:10b6:610:d3::13)
+ by DS4PPF990BCE628.namprd11.prod.outlook.com (2603:10b6:f:fc02::3d)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.24; Thu, 8 May
+ 2025 21:36:40 +0000
+Received: from CH0PR11MB5444.namprd11.prod.outlook.com
+ ([fe80::5f89:ba81:ff70:bace]) by CH0PR11MB5444.namprd11.prod.outlook.com
+ ([fe80::5f89:ba81:ff70:bace%7]) with mapi id 15.20.8722.018; Thu, 8 May 2025
+ 21:36:40 +0000
+From: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
+To: "Brost, Matthew" <matthew.brost@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
+Subject: RE: [PATCH] drm/xe: Do not print engine reset message on a killed
+ queue
+Thread-Topic: [PATCH] drm/xe: Do not print engine reset message on a killed
+ queue
+Thread-Index: AQHbwEyQeNE+NGCigkKNU25Qhxw3Q7PJQAJg
+Date: Thu, 8 May 2025 21:36:40 +0000
+Message-ID: <CH0PR11MB5444B702AA6676DCAAD5BA49E58BA@CH0PR11MB5444.namprd11.prod.outlook.com>
+References: <20250508190920.1343610-1-matthew.brost@intel.com>
+In-Reply-To: <20250508190920.1343610-1-matthew.brost@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20250408213146.793855-3-daniele.ceraolospurio@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CH0PR11MB5444:EE_|DS4PPF990BCE628:EE_
+x-ms-office365-filtering-correlation-id: 2439d965-7959-4858-45fa-08dd8e786b1f
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|7053199007|38070700018; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?tV/P/6tYoad1jYNzaxBDX3WMN6tnD17AoUGjiJ9HiQ3NyQR0uGPfYMn0R1nK?=
+ =?us-ascii?Q?Rvr2SEyMbYSErDqd0BvAJHzeVDJMa7azdBzKesTWjv/57mF3ZFxa4l5D9V9B?=
+ =?us-ascii?Q?9W0a2ow7NGGIIoKNAWXTFAgn3Vz1ft3MNfg8nQorKXvUjmQIEr4vWiVXQtSv?=
+ =?us-ascii?Q?zR7r5vwNX7EAuXnutELYPSAQyhmynNe2riwZsU9O7vD49/nyjNWlr9YKnjaT?=
+ =?us-ascii?Q?NvK6cEx802F5ATgdcNaga7RNQ/zDR0u5qY+k3EeApBgXyCvOCJdiRqS7dlXS?=
+ =?us-ascii?Q?FpA8rPlfMKudFAlrsTWQkRRDSrNapfimYc0GQp5M50RNz/lU3r2ARNm5GeSG?=
+ =?us-ascii?Q?uLxvoMXtMx0kbmW9alJ1twpQRxjzc5yPp4R+jMblQdGQfTPN9m5Hjyz87VCD?=
+ =?us-ascii?Q?B3Qu688goW0POGL9nyCDYr1V10mYr+vBqdGBXcyRSZ9eGwxj4r25ffkAMHSB?=
+ =?us-ascii?Q?bXsWMKVd+lRbGVLusgCIa4rkKK1u1zSQWgnQiyykKCAAnhIsWsDIAaakiJHM?=
+ =?us-ascii?Q?+tnuDeeusuqe3ws9r1M8q+53T3XJOLwYR3nef1EO7Q1Vmlmy4GUVU6ab3wsz?=
+ =?us-ascii?Q?gbCqKAGW/yDPoJmFh0ienY3K/EfrG+X/t937+VNy06dUCm8wHhJdIBaVm56Y?=
+ =?us-ascii?Q?+7j5nG5xk7QmwKJfMNdvruVh0czXug1j5xwwpxY0XgM3a2mMgOLf4naNnvJb?=
+ =?us-ascii?Q?tFGMCZ5b9ixl/Updxmdwm5xxm13Hb14eqRtq48H85Udls5Dx49KUwvFzt9Eh?=
+ =?us-ascii?Q?Zei4lJvZEzfR/mUr0KaiTWkcPSWOYPTRJFs7gQLtM+rEjtRgLXvwnlaOICig?=
+ =?us-ascii?Q?JvPqt92BpacpjjEnmay34EbUO/JMQWD10fBjFYlUwNfIOwlEXjENRUb0ip/u?=
+ =?us-ascii?Q?RwcDEETMEV2eTJInNxPC/MMw990KTOrKh+JcnPX0vNPeUMulOdcVE8+7oUl3?=
+ =?us-ascii?Q?516XYDEy2OrBqovROoCK2q6rB7iUv+CF6BppaU30fibN5AhMuzl3T/2glkN1?=
+ =?us-ascii?Q?/wMDnLhlx5q3u2YoKfq9nQ/IXXsskFB9r6sj1Picz7IZA8EjVUpckxG1hxV2?=
+ =?us-ascii?Q?bPFBqagganOKrpoBgjolmLutLDdopyOZbtqWv8S1CD+pjlTlHSBSrDcZrdfd?=
+ =?us-ascii?Q?XtRc8iEjyV684gfash/a6g5oesT7J26wuhhSTiGkspAYN7TA/90NDXyEf9SY?=
+ =?us-ascii?Q?90EKv4OAJqBF5ToET+hf9I+vI7KEni1K29QsxmWeVUyB788HXKXygik7/uHH?=
+ =?us-ascii?Q?dNQQ0PYzzJ0mhM1UgU32QDALZstcUHiJd5ik6HeWWrTOUeIO5PXFlhEcWk90?=
+ =?us-ascii?Q?xMSPhPfz2w16f2EvvuNdXBv8cUn0kdIjsygU6ibsblfYb+2uVQDm80zg1qc/?=
+ =?us-ascii?Q?GdW/aELMfjw7PliWSBXJjhQx6Z2JBkDPvNv+p/cfkuIlp7dSqlIQNatTn6dk?=
+ =?us-ascii?Q?uu7lVdBuVlE=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH0PR11MB5444.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(7053199007)(38070700018); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?R58ZVYjrmQC0dwTCVDyD6yvwKryZT5LCHFQIobRtqjeI/1I1zjvzgOSexNbp?=
+ =?us-ascii?Q?/aXN735PFh5nr1uVYyH/W/gjTjKTN/orr/oTcKj5w0V6GajY/X/x5Zly82JM?=
+ =?us-ascii?Q?UTLGvOwSW0zxsbWuIlJCuriox/ATAkWmX1YL7RD4aCxZzL/2CFetfDUzZp8X?=
+ =?us-ascii?Q?S/NTdxLFgeYn6I9HHV1LW3bUnrUzR8pzB7LGatzl/aSIPR9V9XZyvLl/sn9J?=
+ =?us-ascii?Q?pKztlJ0FFF+npZStBFDOpBTaeSLYLKqqa4xLe++io0YHdGt6bIKpLoxiQyCh?=
+ =?us-ascii?Q?pCjUoyjZqMPtQysCA4ODgn7aJjIR01jiIgOdKEkCBL41KGVrxz6yF0QXWvle?=
+ =?us-ascii?Q?kTr9c0NBQt+8Xul0IOy9I2or0Xb9a6ydcFLSite+OyFHLd5nIer6gfuuvVPV?=
+ =?us-ascii?Q?u78Nizcq8ad055K6nmsRHYo4brEngf6/DKBhPgwypSQeF229PIJmwf8UXSVo?=
+ =?us-ascii?Q?46l8B0Uld/J+3XGMXMhnCWIPipVB03t0j/jWhAEXNoipFCL3i0R+HvqMeSff?=
+ =?us-ascii?Q?hIkkA6wWQ5CI6qm0lhnJeMVDXv0nfq1GKWOoZHPgmv+U7+jA5lJpE0iDeasy?=
+ =?us-ascii?Q?LqNTjL3I6rH1foW6cs/ObDkwy+Bx9Eel67khcHosdwZS1IM4T7/sRG0xrNjj?=
+ =?us-ascii?Q?9AkDk3elOc2z912wFIhEED9SHjR1zmP9bO30+xgW/LnY8nO5rvRKg/OXjV8+?=
+ =?us-ascii?Q?NTWrcBKmZ6Ow22c5O1W2yJrBvCKuQNJt9dQBNK4xGGP8q+AxWtHPHu4nOJMP?=
+ =?us-ascii?Q?B37kvEN9P4iNfZRWtjt79VyuZD2uh776vFReWCQoGKUi/t/saulSw0W0x+57?=
+ =?us-ascii?Q?iogLBK60wdRiWuHL8r4pDt8V+geDA/Pvf+kfgOWLBe0hGqEbd6qr+qITlu7L?=
+ =?us-ascii?Q?kRn8nYhOPFdzCfHzaXiQjn3aE4zt/MTsX/HhHyvpJq6DARu4eTAbHkA6bsaz?=
+ =?us-ascii?Q?n6BAQIEXBIT4R9zHdW6w7Btm7UDmFSzVlnzE5gNl4NsplJnvfcVuMXAwnqNU?=
+ =?us-ascii?Q?HaQdwlQUPJg8lg0tlNuJB6UN4jAjDuY27d+OJ5C+dpgtJRlY9hNOzDZaAu/i?=
+ =?us-ascii?Q?9W6kXECeU5yy6MdlzSwGxVWY7dFhDeRZwvZmIO8buvKAM4TjM/9rDdSsFItY?=
+ =?us-ascii?Q?Z/om5diYp7tvpFeBbm7hP5+by6OwpxDqv+Vyv/+R7KEGX4qF6SMnmopMjxlf?=
+ =?us-ascii?Q?ZG6ltnwVkYboMtbirp1sNp4NjuzICvBgXj1qGtIqS3Z0t/9iMr0eK44Z8IAM?=
+ =?us-ascii?Q?TqC7gAPqll04KxYsVfaUO8SFEeRnlVVk7tae9Jby3GSCifPFtIBs6J/DA0dh?=
+ =?us-ascii?Q?2aALyuE++bpXgs3Rjyqnk2359u+KD/DC6GbqY1Q/W4quxTg2XZ230N4KP3y6?=
+ =?us-ascii?Q?7Fpd5/d55bRgipyrGlclpBXux5GSjDN/sNtr/6ISXF98QlWDIfEygrqmJnj3?=
+ =?us-ascii?Q?jjB1dnLLveIUUAKRUlE8Z1C+KbH0OQZ+SNCIQmRmIxL1h5V8rP6XiRrYX5aQ?=
+ =?us-ascii?Q?hK8tF/gQCsU0If9E74QCXWikJgYXGDxnpbHyKbh95r1FNEpwrkwObnLvDVXZ?=
+ =?us-ascii?Q?8LZ4wHZ83ZJ+Wu+9Oi7yK/83ynDyQLHeali5ZaEG?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5444.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2439d965-7959-4858-45fa-08dd8e786b1f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 May 2025 21:36:40.0751 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: yGaG1eSmKYgjFEzEkksggr92cW9TT0/LdiDDMya5ebLuOq5UqCkIP9xu+WSVtkRKqZ5O9s5ttA1D26A1Zx4CfjvAXkIkaf4xEOQr0ctpb7Q=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PPF990BCE628
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,247 +182,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Daniele,
-
-On 08.04.2025 23:31, Daniele Ceraolo Spurio wrote:
-> The GuC compatibility version that we read from the CSS header in
-> native/PF and the GuC VF version that we get when a VF handshakes with
-> the GuC are the same version number, so we should store it into the same
-> structure. This makes all the checks based on the compatibility version
-> automatically work for VFs without having to copy the value over.
-> 
-> For completion, also copy the wanted version and set the path to a known
-> string to indicate that the FW is PF-loaded. This way all the info will
-> be coherent when dumped from debugfs.
-> 
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Lukasz Laguna <lukasz.laguna@intel.com>
+-----Original Message-----
+From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Matthe=
+w Brost
+Sent: Thursday, May 8, 2025 12:09 PM
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH] drm/xe: Do not print engine reset message on a killed queu=
+e
+>=20
+> When an app is ctrl-c (killed) any queues running on the GPU have their
+> preemption timeout set to the minimum value and scheduling is disabled.
+> If the queue has something active on the GPU it is very likely for the
+> GuC will trigger an engine reset resulting in the engine reset message
+> being printed when this is fully expected. Do not print the engine reset
+> message on queues which have been killed.
+>=20
+> Reported-by: Paulo Zanoni <paulo.r.zanoni@intel.com>
+> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4904
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 42 ++++++++++++++++++++-
->  drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |  4 ++
->  drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  2 +
->  drivers/gpu/drm/xe/xe_uc_fw.c             | 46 +++++++++++++++++------
->  4 files changed, 81 insertions(+), 13 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> index 68714e607b10..a1c025d7e6a9 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> @@ -173,6 +173,9 @@ static int vf_handshake_with_guc(struct xe_gt *gt)
->  	} else {
->  		vf_wanted_guc_version(gt, &wanted);
->  		xe_gt_assert(gt, wanted.major != GUC_VERSION_MAJOR_ANY);
-> +
-> +		/* First time we handshake, so record the minimum wanted */
-> +		gt->sriov.vf.wanted_guc_version = wanted;
->  	}
->  
->  	err = guc_action_match_version(guc, &wanted, guc_version);
-> @@ -558,6 +561,40 @@ u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt)
->  	return gt->sriov.vf.self_config.num_ctxs;
->  }
->  
+>  drivers/gpu/drm/xe/xe_guc_submit.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_g=
+uc_submit.c
+> index 369be36f7dc5..efff462ddd75 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -2005,8 +2005,9 @@ int xe_guc_exec_queue_reset_handler(struct xe_guc *=
+guc, u32 *msg, u32 len)
+>  	if (unlikely(!q))
+>  		return -EPROTO;
+> =20
+> -	xe_gt_info(gt, "Engine reset: engine_class=3D%s, logical_mask: 0x%x, gu=
+c_id=3D%d",
+> -		   xe_hw_engine_class_to_str(q->class), q->logical_mask, guc_id);
+> +	if (!exec_queue_killed(q))
+> +		xe_gt_info(gt, "Engine reset: engine_class=3D%s, logical_mask: 0x%x, g=
+uc_id=3D%d",
+> +			   xe_hw_engine_class_to_str(q->class), q->logical_mask, guc_id);
+> =20
+>  	trace_xe_exec_queue_reset(q);
 
-it looks that below function is put between
+Hmm... what does this trace do, again?  I can't find the declaration of thi=
+s function in the code for some reason.
+If it's also in charge of printing additional debug data, then we should pr=
+obably shove it into the above if statement as well.
+If not, or if there's other reasons why it needs to be run every time the e=
+xec queue reset handler function is executed, then:
+Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+-Jonathan Cavitt
 
-	xe_gt_sriov_vf_guc_ids
-	xe_gt_sriov_vf_lmem
-
-which serve different purposes are both are related
-
-a place just after xe_gt_sriov_vf_bootstrap() seems better
-
-> +/**
-> + * xe_gt_sriov_vf_guc_versions - Minimum required and found GuC ABI versions
-> + * @gt: the &xe_gt
-> + * @min: pointer to the xe_uc_fw_version to be filled with the min version
-> + * @guc_version: pointer to the xe_uc_fw_version to be filled with the found version
-
-as the "min version" is just "min"
-then "found version" can be
-
-s/guc_version/found
-
-> + *
-> + * This function is for VF use only.
-> + *
-> + * Return: 0 if the versions are available, an errno value if the bootstrap
-> + * failed
-> + */
-> +int xe_gt_sriov_vf_guc_versions(struct xe_gt *gt,
-> +				struct xe_uc_fw_version *min,
-> +				struct xe_uc_fw_version *guc_version)
-> +{
-> +	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-
-asserts should be after local vars list
-
-> +	int err;
-> +
-> +	if (!gt->sriov.vf.guc_version.major) {
-> +		xe_guc_comm_init_early(&gt->uc.guc);
-> +		err = xe_gt_sriov_vf_bootstrap(gt);
-
-hmm, this looks like we are trying to hide that we somehow missed to do
-proper init/bootstrap before calling this function
-
-so maybe call ordering is just wrong ?
-
-then either we can assert that at this point we should know the outcome
-of the handshake or return an error due to failed previous handshake
-
-> +		if (err)
-> +			return err;
-> +	}
-> +
-> +	if (min)
-> +		*min =  gt->sriov.vf.wanted_guc_version;
-> +
-> +	if (guc_version)
-> +		*guc_version = gt->sriov.vf.guc_version;
-> +
-> +	return 0;
-> +}
-> +
->  /**
->   * xe_gt_sriov_vf_lmem - VF LMEM configuration.
->   * @gt: the &xe_gt
-> @@ -1095,6 +1132,7 @@ void xe_gt_sriov_vf_print_runtime(struct xe_gt *gt, struct drm_printer *p)
->  void xe_gt_sriov_vf_print_version(struct xe_gt *gt, struct drm_printer *p)
->  {
->  	struct xe_uc_fw_version *guc_version = &gt->sriov.vf.guc_version;
-> +	struct xe_uc_fw_version *wanted = &gt->sriov.vf.wanted_guc_version;
->  	struct xe_gt_sriov_vf_relay_version *pf_version = &gt->sriov.vf.pf_version;
->  	struct xe_uc_fw_version ver;
->  
-> @@ -1105,8 +1143,8 @@ void xe_gt_sriov_vf_print_version(struct xe_gt *gt, struct drm_printer *p)
->  	vf_minimum_guc_version(gt, &ver);
->  	drm_printf(p, "\tbase:\t%u.%u.%u.*\n", ver.branch, ver.major, ver.minor);
->  
-> -	vf_wanted_guc_version(gt, &ver);
-> -	drm_printf(p, "\twanted:\t%u.%u.%u.*\n", ver.branch, ver.major, ver.minor);
-> +	drm_printf(p, "\twanted:\t%u.%u.%u.*\n",
-> +		   wanted->branch, wanted->major, wanted->minor);
->  
->  	drm_printf(p, "\thandshake:\t%u.%u.%u.%u\n",
->  		   guc_version->branch, guc_version->major,
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-> index ba6c5d74e326..32ac8fa0d5fb 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-> @@ -11,6 +11,7 @@
->  struct drm_printer;
->  struct xe_gt;
->  struct xe_reg;
-> +struct xe_uc_fw_version;
->  
->  int xe_gt_sriov_vf_reset(struct xe_gt *gt);
->  int xe_gt_sriov_vf_bootstrap(struct xe_gt *gt);
-> @@ -23,6 +24,9 @@ void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt);
->  
->  u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt);
->  u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt);
-> +int xe_gt_sriov_vf_guc_versions(struct xe_gt *gt,
-> +				struct xe_uc_fw_version *min,
-> +				struct xe_uc_fw_version *actual);
->  u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt);
->  u32 xe_gt_sriov_vf_read32(struct xe_gt *gt, struct xe_reg reg);
->  void xe_gt_sriov_vf_write32(struct xe_gt *gt, struct xe_reg reg, u32 val);
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-> index f1b5e523ddf0..da97e3351a13 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-> @@ -58,6 +58,8 @@ struct xe_gt_sriov_vf_runtime {
->   * struct xe_gt_sriov_vf - GT level VF virtualization data.
->   */
->  struct xe_gt_sriov_vf {
-> +	/** @wanted_guc_version: minimum wanted GuC ABI version. */
-> +	struct xe_uc_fw_version wanted_guc_version;
->  	/** @guc_version: negotiated GuC ABI version. */
->  	struct xe_uc_fw_version guc_version;
->  	/** @self_config: resource configurations. */
-> diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-> index 70d7b542f665..d913440fabf1 100644
-> --- a/drivers/gpu/drm/xe/xe_uc_fw.c
-> +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-> @@ -16,6 +16,7 @@
->  #include "xe_gsc.h"
->  #include "xe_gt.h"
->  #include "xe_gt_printk.h"
-> +#include "xe_gt_sriov_vf.h"
->  #include "xe_guc.h"
->  #include "xe_map.h"
->  #include "xe_mmio.h"
-> @@ -665,6 +666,38 @@ do { \
->  			  ver_->major, ver_->minor, ver_->patch); \
->  } while (0)
->  
-> +static int uc_fw_vf_override(struct xe_uc_fw *uc_fw)
-> +{
-> +	struct xe_uc_fw_version *wanted = &uc_fw->versions.wanted;
-> +	struct xe_uc_fw_version *compat = &uc_fw->versions.found[XE_UC_FW_VER_COMPATIBILITY];
-> +	int err;
-
-rev-xmas-order?
-
-> +
-> +	/* Only GuC/HuC are supported */
-> +	if (uc_fw->type != XE_UC_FW_TYPE_GUC && uc_fw->type != XE_UC_FW_TYPE_HUC)
-> +		uc_fw->path = NULL;
-> +
-> +	/* VF will support only firmwares that driver can autoselect */
-> +	xe_uc_fw_change_status(uc_fw, uc_fw->path ?
-> +			       XE_UC_FIRMWARE_PRELOADED :
-> +			       XE_UC_FIRMWARE_NOT_SUPPORTED);
-> +
-> +	if (!xe_uc_fw_is_supported(uc_fw))
-> +		return 0;
-> +
-> +	/* PF is doing the loading, so we don't need a path on the VF */
-> +	uc_fw->path = "Loaded by PF";
-> +
-> +	/* The GuC versions are set up during the VF bootstrap */
-> +	if (uc_fw->type == XE_UC_FW_TYPE_GUC) {
-> +		uc_fw->versions.wanted_type = XE_UC_FW_VER_COMPATIBILITY;
-> +		err = xe_gt_sriov_vf_guc_versions(uc_fw_to_gt(uc_fw), wanted, compat);
-> +		if (err)
-> +			return err;
-
-on this error, shouldn't we change status to:
-
-	XE_UC_FIRMWARE_ERROR, /* invalid format or version */
-
-> +	}
-
-shouldn't we set uc_fw->path and uc_fw->versions.wanted_type here just
-before claiming success?
-
-> +
-> +	return 0;
-> +}
-> +
->  static int uc_fw_request(struct xe_uc_fw *uc_fw, const struct firmware **firmware_p)
->  {
->  	struct xe_device *xe = uc_fw_to_xe(uc_fw);
-> @@ -683,17 +716,8 @@ static int uc_fw_request(struct xe_uc_fw *uc_fw, const struct firmware **firmwar
->  
->  	uc_fw_auto_select(xe, uc_fw);
->  
-> -	if (IS_SRIOV_VF(xe)) {
-> -		/* Only GuC/HuC are supported */
-> -		if (uc_fw->type != XE_UC_FW_TYPE_GUC &&
-> -		    uc_fw->type != XE_UC_FW_TYPE_HUC)
-> -			uc_fw->path = NULL;
-> -		/* VF will support only firmwares that driver can autoselect */
-> -		xe_uc_fw_change_status(uc_fw, uc_fw->path ?
-> -				       XE_UC_FIRMWARE_PRELOADED :
-> -				       XE_UC_FIRMWARE_NOT_SUPPORTED);
-> -		return 0;
-> -	}
-> +	if (IS_SRIOV_VF(xe))
-> +		return uc_fw_vf_override(uc_fw);
->  
->  	uc_fw_override(uc_fw);
->  
-
+> =20
+> --=20
+> 2.34.1
+>=20
+>=20
