@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4942AC3ABBE
-	for <intel-xe@archiver.kernel.org>; Thu,  8 May 2025 11:57:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 902DAC3ABBE
+	for <intel-xe@archiver.kernel.org>; Thu,  8 May 2025 12:12:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E02B510E8E7;
-	Thu,  8 May 2025 11:57:15 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hta3iAms";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60EAA10E8E7;
- Thu,  8 May 2025 11:57:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746705436; x=1778241436;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Nv/F7Lwb8UKRkeKfASic+pPB9gwsmstcAC6QzCA/XMY=;
- b=Hta3iAms3+NodsLyT6QAhm14BiUaj8wE8E9lp2uS2dzqZatC/993QJ4M
- 0zyJm4dCUfyqs6QajuGjQL942J7EqPZyOSkp1OHx7tZPDd6IaRnjeEdfd
- gtZKmcxFiAOlQQG7vvjAnY3RyCK1Zt29YzMSPDfxpZDblBB2BPrAvmQmU
- BXH1lKngFVFLcTEt5yB9ghY7Ctqf8Cq/IlUZ2Dwr8XPcPez1aO9syqG//
- nA5bFV5SUoSG93c+HRvLyKv514tCd4AMlOW/ueqKtZQGALYClXajRGKb2
- lljO+oqd12T2AuwHvjuWakyPVc/jURVigfobgqwNssiRBT1KOqkdIJeGH g==;
-X-CSE-ConnectionGUID: ipA+lnoLQ02BmFGmqNftXQ==
-X-CSE-MsgGUID: cRtcHJgwT3u/2tDyLyWL2w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11426"; a="51143397"
-X-IronPort-AV: E=Sophos;i="6.15,272,1739865600"; d="scan'208";a="51143397"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2025 04:57:15 -0700
-X-CSE-ConnectionGUID: HWfgUUTkSf+lVtvVZ2PNxA==
-X-CSE-MsgGUID: Tfb8ZlfWSEmg7HCjEOKDCw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,272,1739865600"; d="scan'208";a="141485156"
-Received: from unknown (HELO localhost) ([10.237.66.160])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2025 04:57:12 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Animesh Manna <animesh.manna@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: jouni.hogander@intel.com, jeevan.b@intel.com, Animesh Manna
- <animesh.manna@intel.com>
-Subject: Re: [PATCH v8 6/9] drm/i915/lobf: Update lobf if any change in
- dependent parameters
-In-Reply-To: <20250409140258.785834-7-animesh.manna@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250409140258.785834-1-animesh.manna@intel.com>
- <20250409140258.785834-7-animesh.manna@intel.com>
-Date: Thu, 08 May 2025 14:57:10 +0300
-Message-ID: <87frhftiw9.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23BA610E90D;
+	Thu,  8 May 2025 12:12:39 +0000 (UTC)
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27DE810E8FD;
+ Thu,  8 May 2025 12:12:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6255304398523654026=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fix_the_gem_shrin?=
+ =?utf-8?q?ker_name?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 08 May 2025 12:12:37 -0000
+Message-ID: <174670635715.59073.6769355786672100109@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <20250508112931.3347-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20250508112931.3347-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,59 +36,168 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 09 Apr 2025, Animesh Manna <animesh.manna@intel.com> wrote:
-> For every commit the dependent condition for LOBF is checked
-> and accordingly update has_lobf flag which will be used
-> to update the ALPM_CTL register during commit.
->
-> v1: Initial version.
-> v2: Avoid reading h/w register without has_lobf check. [Jani]
-> v3: Update LOBF in post plane update instead of separate function. [Jouni]
-> v4:
-> - Add lobf disable print. [Jouni]
-> - Simplify condition check for enabling/disabling lobf. [Jouni]
->
-> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_alpm.c | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-> index 01949b90c0c3..4fe1914ff759 100644
-> --- a/drivers/gpu/drm/i915/display/intel_alpm.c
-> +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-> @@ -362,6 +362,8 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
->  	if (crtc_state->has_lobf) {
->  		alpm_ctl |= ALPM_CTL_LOBF_ENABLE;
->  		drm_dbg_kms(display->drm, "Link off between frames (LOBF) enabled\n");
-> +	} else {
-> +		drm_dbg_kms(display->drm, "Link off between frames (LOBF) disabled\n");
->  	}
+--===============6255304398523654026==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Maybe just one line?
+== Series Details ==
 
-	drm_dbg_kms(display->drm, "Link off between frames (LOBF) %s\n",
-		    str_enabled_disabled(crtc_state->has_lobf));
+Series: drm/xe: Fix the gem shrinker name
+URL   : https://patchwork.freedesktop.org/series/148756/
+State : success
 
->  
->  	alpm_ctl |= ALPM_CTL_ALPM_ENTRY_CHECK(intel_dp->alpm_parameters.check_entry_lines);
-> @@ -382,9 +384,12 @@ void intel_alpm_post_plane_update(struct intel_atomic_state *state,
->  	struct intel_display *display = to_intel_display(state);
->  	const struct intel_crtc_state *crtc_state =
->  		intel_atomic_get_new_crtc_state(state, crtc);
-> +	const struct intel_crtc_state *old_crtc_state =
-> +		intel_atomic_get_old_crtc_state(state, crtc);
->  	struct intel_encoder *encoder;
->  
-> -	if (!crtc_state->has_lobf && !crtc_state->has_psr)
-> +	if (crtc_state->has_lobf == old_crtc_state->has_lobf &&
-> +	    !crtc_state->has_psr)
->  		return;
->  
->  	for_each_intel_encoder_mask(display->drm, encoder,
+== Summary ==
 
--- 
-Jani Nikula, Intel
+CI Bug Log - changes from xe-3050-ca0305cadc2d34c8887b891b96226af17571b2a3_BAT -> xe-pw-148756v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (10 -> 9)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-148756v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries:
+    - bat-lnl-2:          [PASS][1] -> [ABORT][2] ([Intel XE#4624])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3050-ca0305cadc2d34c8887b891b96226af17571b2a3/bat-lnl-2/igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148756v1/bat-lnl-2/igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries.html
+
+  * igt@xe_gt_freq@freq_fixed_idle:
+    - bat-adlp-vf:        NOTRUN -> [SKIP][3] ([Intel XE#2464]) +2 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148756v1/bat-adlp-vf/igt@xe_gt_freq@freq_fixed_idle.html
+
+  * igt@xe_intel_bb@intel-bb-blit-x:
+    - bat-adlp-vf:        NOTRUN -> [ABORT][4] ([Intel XE#3970])
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148756v1/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_exec_basic@twice-bindexecqueue-rebind:
+    - bat-adlp-vf:        [ABORT][5] ([Intel XE#3970]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3050-ca0305cadc2d34c8887b891b96226af17571b2a3/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148756v1/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
+
+  
+  [Intel XE#2464]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2464
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
+  [Intel XE#4624]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4624
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8356 -> IGT_8357
+  * Linux: xe-3050-ca0305cadc2d34c8887b891b96226af17571b2a3 -> xe-pw-148756v1
+
+  IGT_8356: 4db4ba9b619fefa181cf0fc73cf8c35d282c61ae @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8357: 8357
+  xe-3050-ca0305cadc2d34c8887b891b96226af17571b2a3: ca0305cadc2d34c8887b891b96226af17571b2a3
+  xe-pw-148756v1: 148756v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148756v1/index.html
+
+--===============6255304398523654026==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Fix the gem shrinker name</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148756/">https://patchwork.freedesktop.org/series/148756/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148756v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148756v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3050-ca0305cadc2d34c8887b891b96226af17571b2a3_BAT -&gt; xe-pw-148756v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (10 -&gt; 9)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-148756v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries:</p>
+<ul>
+<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3050-ca0305cadc2d34c8887b891b96226af17571b2a3/bat-lnl-2/igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148756v1/bat-lnl-2/igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4624">Intel XE#4624</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_gt_freq@freq_fixed_idle:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148756v1/bat-adlp-vf/igt@xe_gt_freq@freq_fixed_idle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2464">Intel XE#2464</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_intel_bb@intel-bb-blit-x:</p>
+<ul>
+<li>bat-adlp-vf:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148756v1/bat-adlp-vf/igt@xe_intel_bb@intel-bb-blit-x.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_exec_basic@twice-bindexecqueue-rebind:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3050-ca0305cadc2d34c8887b891b96226af17571b2a3/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148756v1/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8356 -&gt; IGT_8357</li>
+<li>Linux: xe-3050-ca0305cadc2d34c8887b891b96226af17571b2a3 -&gt; xe-pw-148756v1</li>
+</ul>
+<p>IGT_8356: 4db4ba9b619fefa181cf0fc73cf8c35d282c61ae @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8357: 8357<br />
+  xe-3050-ca0305cadc2d34c8887b891b96226af17571b2a3: ca0305cadc2d34c8887b891b96226af17571b2a3<br />
+  xe-pw-148756v1: 148756v1</p>
+
+</body>
+</html>
+
+--===============6255304398523654026==--
