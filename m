@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 039A6C3ABBE
-	for <intel-xe@archiver.kernel.org>; Thu,  8 May 2025 11:29:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CB98C3ABBE
+	for <intel-xe@archiver.kernel.org>; Thu,  8 May 2025 11:30:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51F9B10E0A3;
-	Thu,  8 May 2025 11:29:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C71FF10E0A3;
+	Thu,  8 May 2025 11:30:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BF3WyYCn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OaM4rsU1";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48B4610E0A3
- for <intel-xe@lists.freedesktop.org>; Thu,  8 May 2025 11:29:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D6D610E1F7
+ for <intel-xe@lists.freedesktop.org>; Thu,  8 May 2025 11:30:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746703790; x=1778239790;
+ t=1746703841; x=1778239841;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=jdSGOuPccOHhNwrCh8K+vtk5B1nLClkVYSehEQZ20q0=;
- b=BF3WyYCnCnGl9arwesKmcXstBn9jLj4kDWxBG0CKulmsOfBGy1AAhqjx
- BEeHOj7gWNHvnotZqMFGzvyziiLrGoOVJfBX9gnhDY1ae1HCUDzCNacfS
- LXI/1/+pTfDLuhJt56Doo63Ykb5IrFTl72DVL5mxKLuqzNlTjkQi9H9yp
- edct8JpDh+hH0cS3JPqRHZ4E1XPL3V8YcU0wa9xORcr+4FhgVnOQ93VAL
- 83lsEDdgPd6nYLFpwBpY9FafX//4XdOBIOBcMNEk7how00VnnqVdFUotb
- pDnV6FwK2MBmtnFOGiagNrbeOPJDHNCHVxzm5u9NVSokBXugLgytyDHih g==;
-X-CSE-ConnectionGUID: uQgR9SsISTuGFSFaurdXwA==
-X-CSE-MsgGUID: c9O5pM4VQVKsfiRlBeHpUQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11426"; a="52132826"
-X-IronPort-AV: E=Sophos;i="6.15,272,1739865600"; d="scan'208";a="52132826"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2025 04:29:49 -0700
-X-CSE-ConnectionGUID: bKtdRW3DSeSIXiDl9EgStw==
-X-CSE-MsgGUID: e0aGYQXXTwu4GgmxWmVt/w==
+ bh=igS9AJ/EgbRrIoY/mf4JmIGrzq7RgcuLAF9AWAkrNWY=;
+ b=OaM4rsU1SM1qsyOvEw6BfMu3OqYhNm9jqn9DDB0X4RJkn4AUUOORlJpR
+ PJ0nVmLRz+ucVtGFeQvts9qRA8bpHeFvZMHJUgiZGXLSv1et9PP7jB4hS
+ SaW/AuiwgogScn0uBIljqy8eq1N9UClbgV3p013IFhPsuqrZ11bCHUJZz
+ nt5rvtLe+pDEBb92fhIYPLKYVFlPcJZdQjs2l3loeg1GNKZwJXMIykw+M
+ KLMDt7X/bQ9IC4ncsNEAQQ8UZ6WRHtABotRslDdJsihvrUl9izlsE1p+B
+ 9aeRvd/zB9k0yKbXGjLijD09gDLV2CyjZqmYP7LAm6Kg7vS9Pj4+n8xEd A==;
+X-CSE-ConnectionGUID: nwoOiGudQU2Ulod9lXTyIw==
+X-CSE-MsgGUID: hmyj5WviTB6b+u4b0g2DTA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11426"; a="59831388"
+X-IronPort-AV: E=Sophos;i="6.15,272,1739865600"; d="scan'208";a="59831388"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2025 04:30:30 -0700
+X-CSE-ConnectionGUID: OP6ACwGPQ66owJQYZ3A/fg==
+X-CSE-MsgGUID: 1lgRhENUSDGy1GexAD3rHg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,272,1739865600"; d="scan'208";a="141037710"
+X-IronPort-AV: E=Sophos;i="6.15,272,1739865600"; d="scan'208";a="140306346"
 Received: from uaeoff-desk2.amr.corp.intel.com (HELO fedora..)
  ([10.124.222.207])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2025 04:29:47 -0700
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2025 04:30:27 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH] drm/xe: Fix the gem shrinker name
-Date: Thu,  8 May 2025 13:29:31 +0200
-Message-ID: <20250508112931.3347-1-thomas.hellstrom@linux.intel.com>
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: [PATCH] drm/xe: Make the gem shrinker drm managed
+Date: Thu,  8 May 2025 13:30:15 +0200
+Message-ID: <20250508113015.3374-1-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -67,37 +66,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The xe buffer object shrinker name is visible in the
-<debugfs>/shrinker directory and most if not all other shinkers
-follow a naming convention that looks like
-<subsystem>-<driver>_<objects>:<unique>
-Follow the same convention for xe, changing the name to
-drm-xe_gem:<unique>.
+Make the xe drm shrinker drm managed like many other resources
+created at device creation time.
 
-Other shrinkers typically use the device node for <unique> but
-since drm drivers typically don't have a single unique device-
-node, instead use the unique name in the drm device.
-
-Fixes: 00c8efc3180f ("drm/xe: Add a shrinker for xe bos")
-Cc: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_shrinker.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_device.c   |  9 +++-----
+ drivers/gpu/drm/xe/xe_shrinker.c | 37 ++++++++++++++++----------------
+ drivers/gpu/drm/xe/xe_shrinker.h |  4 +---
+ 3 files changed, 22 insertions(+), 28 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index c02c4c4e9412..399ae5f40321 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -402,9 +402,6 @@ static void xe_device_destroy(struct drm_device *dev, void *dummy)
+ 	if (xe->unordered_wq)
+ 		destroy_workqueue(xe->unordered_wq);
+ 
+-	if (!IS_ERR_OR_NULL(xe->mem.shrinker))
+-		xe_shrinker_destroy(xe->mem.shrinker);
+-
+ 	if (xe->destroy_wq)
+ 		destroy_workqueue(xe->destroy_wq);
+ 
+@@ -438,9 +435,9 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+ 	if (err)
+ 		goto err;
+ 
+-	xe->mem.shrinker = xe_shrinker_create(xe);
+-	if (IS_ERR(xe->mem.shrinker))
+-		return ERR_CAST(xe->mem.shrinker);
++	err = xe_shrinker_create(xe);
++	if (err)
++		goto err;
+ 
+ 	xe->info.devid = pdev->device;
+ 	xe->info.revid = pdev->revision;
 diff --git a/drivers/gpu/drm/xe/xe_shrinker.c b/drivers/gpu/drm/xe/xe_shrinker.c
-index 8184390f9c7b..86d47aaf0358 100644
+index 86d47aaf0358..125c836e0ee4 100644
 --- a/drivers/gpu/drm/xe/xe_shrinker.c
 +++ b/drivers/gpu/drm/xe/xe_shrinker.c
-@@ -227,7 +227,7 @@ struct xe_shrinker *xe_shrinker_create(struct xe_device *xe)
- 	if (!shrinker)
- 		return ERR_PTR(-ENOMEM);
+@@ -5,6 +5,7 @@
  
--	shrinker->shrink = shrinker_alloc(0, "xe system shrinker");
-+	shrinker->shrink = shrinker_alloc(0, "drm-xe_gem:%s", xe->drm.unique);
+ #include <linux/shrinker.h>
+ 
++#include <drm/drm_managed.h>
+ #include <drm/ttm/ttm_backup.h>
+ #include <drm/ttm/ttm_bo.h>
+ #include <drm/ttm/ttm_tt.h>
+@@ -213,24 +214,34 @@ static void xe_shrinker_pm(struct work_struct *work)
+ 	xe_pm_runtime_put(shrinker->xe);
+ }
+ 
++static void xe_shrinker_fini(struct drm_device *drm, void *arg)
++{
++	struct xe_shrinker *shrinker = arg;
++
++	xe_assert(shrinker->xe, !shrinker->shrinkable_pages);
++	xe_assert(shrinker->xe, !shrinker->purgeable_pages);
++	shrinker_free(shrinker->shrink);
++	flush_work(&shrinker->pm_worker);
++	kfree(shrinker);
++}
++
+ /**
+  * xe_shrinker_create() - Create an xe per-device shrinker
+  * @xe: Pointer to the xe device.
+  *
+- * Returns: A pointer to the created shrinker on success,
+- * Negative error code on failure.
++ * Return: %0 on success. Negative error code on failure.
+  */
+-struct xe_shrinker *xe_shrinker_create(struct xe_device *xe)
++int xe_shrinker_create(struct xe_device *xe)
+ {
+ 	struct xe_shrinker *shrinker = kzalloc(sizeof(*shrinker), GFP_KERNEL);
+ 
+ 	if (!shrinker)
+-		return ERR_PTR(-ENOMEM);
++		return -ENOMEM;
+ 
+ 	shrinker->shrink = shrinker_alloc(0, "drm-xe_gem:%s", xe->drm.unique);
  	if (!shrinker->shrink) {
  		kfree(shrinker);
- 		return ERR_PTR(-ENOMEM);
+-		return ERR_PTR(-ENOMEM);
++		return -ENOMEM;
+ 	}
+ 
+ 	INIT_WORK(&shrinker->pm_worker, xe_shrinker_pm);
+@@ -240,19 +251,7 @@ struct xe_shrinker *xe_shrinker_create(struct xe_device *xe)
+ 	shrinker->shrink->scan_objects = xe_shrinker_scan;
+ 	shrinker->shrink->private_data = shrinker;
+ 	shrinker_register(shrinker->shrink);
++	xe->mem.shrinker = shrinker;
+ 
+-	return shrinker;
+-}
+-
+-/**
+- * xe_shrinker_destroy() - Destroy an xe per-device shrinker
+- * @shrinker: Pointer to the shrinker to destroy.
+- */
+-void xe_shrinker_destroy(struct xe_shrinker *shrinker)
+-{
+-	xe_assert(shrinker->xe, !shrinker->shrinkable_pages);
+-	xe_assert(shrinker->xe, !shrinker->purgeable_pages);
+-	shrinker_free(shrinker->shrink);
+-	flush_work(&shrinker->pm_worker);
+-	kfree(shrinker);
++	return drmm_add_action_or_reset(&xe->drm, xe_shrinker_fini, shrinker);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_shrinker.h b/drivers/gpu/drm/xe/xe_shrinker.h
+index 28a038f4fcbf..5132ae5192e1 100644
+--- a/drivers/gpu/drm/xe/xe_shrinker.h
++++ b/drivers/gpu/drm/xe/xe_shrinker.h
+@@ -11,8 +11,6 @@ struct xe_device;
+ 
+ void xe_shrinker_mod_pages(struct xe_shrinker *shrinker, long shrinkable, long purgeable);
+ 
+-struct xe_shrinker *xe_shrinker_create(struct xe_device *xe);
+-
+-void xe_shrinker_destroy(struct xe_shrinker *shrinker);
++int xe_shrinker_create(struct xe_device *xe);
+ 
+ #endif
 -- 
 2.49.0
 
