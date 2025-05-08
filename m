@@ -4,171 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58D98C3ABBE
-	for <intel-xe@archiver.kernel.org>; Thu,  8 May 2025 06:12:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D7C5C3ABC0
+	for <intel-xe@archiver.kernel.org>; Thu,  8 May 2025 06:21:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AAB710E32E;
-	Thu,  8 May 2025 06:12:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E27610E32E;
+	Thu,  8 May 2025 06:21:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z8SG50ra";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EAZyX9+7";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17C4D10E32E
- for <intel-xe@lists.freedesktop.org>; Thu,  8 May 2025 06:12:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D3E410E88D;
+ Thu,  8 May 2025 06:21:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746684775; x=1778220775;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=CR77z8jr3Qkrb3xmuHjibLig8u+50gOyiQpxdWLDo34=;
- b=Z8SG50rasOlWWz71ASdS8NZrsn3wYPdE2rT72/NpWev5GNVq/PRxcV2I
- wRGxX10R6PNbYHACfijk81Sf1CGMuZiuV/i2Cl7og51gcbuVt4fFQFWqd
- eMqvlhyahQ4MWf5y78SCPGIch/rAzR9o/hyGiYxdxkr7Mtfl2Hz5I3VGa
- Vk4BS8UWiMno1IIrCcLzqVnZ6YhuQtRHngOwCUAJEnl7PfNBInmqaNoXL
- a+X0qd0NxW3aGvGiWktfnGRoAeFiS56fRWuBAwFTLcHptLpvGj8r4YLwG
- rvRC5Te4csMO9EFmlFPU8NcyeeCBFas9u72MW676SN4Ecmn+TbcYxCR2P A==;
-X-CSE-ConnectionGUID: cqGwi6AOQrq9DyATcJR1mQ==
-X-CSE-MsgGUID: p+vdvwIyTxWqXK7NWhhxyw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11426"; a="59079056"
-X-IronPort-AV: E=Sophos;i="6.15,271,1739865600"; d="scan'208";a="59079056"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2025 23:12:55 -0700
-X-CSE-ConnectionGUID: PsTXx70aRDaFasWFsHGjzg==
-X-CSE-MsgGUID: N34PRxwNRamzNUy/EDuafA==
+ t=1746685290; x=1778221290;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=369fNYmztQjOk16YQ3+hBiFn3BvnOwUqdHf/qFeRDi0=;
+ b=EAZyX9+7Sq/YnmtWfw1aUPKpa/LYtK8zjx96jpugvq0gv6j0l8CQZ93I
+ 4J0A7Y/zHcaAgAIQI8ZA13WbVU62T9KGeKrNi5DgN4DD90UBjOQwiZcwY
+ H79//XxF8i+P/7TFC7n6Bicj4dj3ITvS+x4SC2UaWB/fei4oCthuLzi2p
+ +yMkNb82GpjrIWy41aAH3WZVn2JCkL5AGfjAv+Ga2Np52kvsKYxEhJBlX
+ RZlhWHoEpYcg7sGh0YreMD2dzrWxGwoh7IQvglMsvwom6kdksesSrN1lk
+ WxRIqCgq7aozvdU3gPdAUEtZ6Pqgtop4QV1vbm+lGH40V90AIM11VaCH/ w==;
+X-CSE-ConnectionGUID: jz7enB7KRhK+58S0E6K/yQ==
+X-CSE-MsgGUID: q5J+joHeQKeH2Bdw28tiqw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11426"; a="51108636"
+X-IronPort-AV: E=Sophos;i="6.15,271,1739865600"; d="scan'208";a="51108636"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2025 23:21:29 -0700
+X-CSE-ConnectionGUID: zej2lHO/SkeetEj6U7vnWQ==
+X-CSE-MsgGUID: VUqObYIvQM2qhhPgQYIYVQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,271,1739865600"; d="scan'208";a="136075122"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2025 23:12:55 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Wed, 7 May 2025 23:12:54 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Wed, 7 May 2025 23:12:54 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.173)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Wed, 7 May 2025 23:12:54 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=n3/y4MxBnJ82BeuvRZaScwTgfB++mnhuTBeKYlSCk9qnEZlaZ8z4wHhWHX3NsF75XkN4OoNKq0fkUVNX2BigWA6E7fjoxnSh15A0irvHukfkwapPuay/lUpsH6ApqY3tDvA4SrNnN/l4oQWNFtJlTmiu8tJxuZ0zbTXrk+TBx4Ul/smkdXNyyHVJdcpTCRKR9mN+X4GFw8MmNSn79wuO5Dt4uqq5kd4eKrWXGMwMHjDKLlZSmxj9PF3vKvyYBYAdFynLUHp8SS2bkVMsVMHhjBL02hZ1tcQoK2HNVzEpy/HATPhnYsQyhEJ/wBTtnliEmZLDjmv3VpM0cZCP1u09Pg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cVJJmWWwFdovIohPb/Tct0j3wyOCI59Pc5p3BG/NdLA=;
- b=K1K7XPiXD0Qf+/ufQJNt1AglPI0pSD1iIwQY0+iQMb/4X/Pn72AF36YZuEaaV5R8nMIG6bR9+78OAwxkNullfTQFtc/smCyArA2CE50qPdG4Xt3DZph8OlVEiSQo6T4LnZ1qjvEP9HxkXeb1TnETNMCB2gqdiGmxX2p+DAeulXiqy1onPBjASUVGT5A4k/B5V0nl/hR+6hvxEJbEJZGMLtwgB0tVCd4gxZIugk/2xd7638QrI6WwmUJXBtEjsakLkDj7g8uRTs914ppkctAlwP57QBEfzdhDnaY3V2YeiWph0IXAqnHXhwlv+VaUTuDsujk1nz6wse7iT8UGkimV9A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by DS0PR11MB7578.namprd11.prod.outlook.com (2603:10b6:8:141::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.24; Thu, 8 May
- 2025 06:12:48 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%4]) with mapi id 15.20.8699.026; Thu, 8 May 2025
- 06:12:48 +0000
-Date: Wed, 7 May 2025 23:14:13 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Souza, 
- Jose" <jose.souza@intel.com>, "Santa, Carlos" <carlos.santa@intel.com>,
- "Venkatesh Reddy, Sushma" <sushma.venkatesh.reddy@intel.com>
-Subject: Re: [PATCH v4 2/9] drm/xe: Add "null_sparse" type to VM snap
- properties
-Message-ID: <aBxLtX662kMWyvfE@lstrano-desk.jf.intel.com>
-References: <20250507201539.1316770-1-matthew.brost@intel.com>
- <20250507201539.1316770-3-matthew.brost@intel.com>
- <CH0PR11MB54443926ECC62F6A064CDF9AE588A@CH0PR11MB5444.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CH0PR11MB54443926ECC62F6A064CDF9AE588A@CH0PR11MB5444.namprd11.prod.outlook.com>
-X-ClientProxiedBy: MW4P221CA0017.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:303:8b::22) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+X-IronPort-AV: E=Sophos;i="6.15,271,1739865600"; d="scan'208";a="136129312"
+Received: from oandoniu-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.132])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2025 23:21:25 -0700
+Date: Thu, 8 May 2025 09:21:22 +0300
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-gt-next
+Message-ID: <aBxNYp0IviE23zy-@jlahtine-mobl>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DS0PR11MB7578:EE_
-X-MS-Office365-Filtering-Correlation-Id: 58e6f824-38dd-40dc-9d57-08dd8df75aed
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024|7053199007;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?DwyTezUrZfwR0vHdL5Nkl0cNtDHOtxb6wiLvP5TRWnGzbvyc/ZOJZMOUpm?=
- =?iso-8859-1?Q?pcMxcjsdhKO0yGS3hrfUSQH/T2wLV49kFpomzYwSrUddEEydl7E/yFoJbn?=
- =?iso-8859-1?Q?+U0rXV4K6JghELe3sPaQS5a+UtpTNGxUsGcfgkHJzhDFWNIpA4Li9Rt+YR?=
- =?iso-8859-1?Q?hkHmGAlC8bjPDCIsZR2ruEiJRH2WEKCpZOOUsAmXSmL0iUyxLzBXqzn2mq?=
- =?iso-8859-1?Q?PDO8yC4dE3AyMgSfd1jRZQkFQl7XWmytDgrn7TfAJlotzbOMp4kZOQADh9?=
- =?iso-8859-1?Q?sv8eRN8WU06MsXZY0BROkG6Ic6lRTocq1y5jCFadK4uG4ZHs8YM04QLcA2?=
- =?iso-8859-1?Q?M16QIBNwDiu8xFVNyMQwG32Z4JwDYOS8EafW2UPyOXavNRYz10rZSbdoay?=
- =?iso-8859-1?Q?NzhNPQEUAL7Kt/JdzKVsIsLphN22ItP123bQnrGxMO4n/vypASyMDZ3NUi?=
- =?iso-8859-1?Q?B81LzW2IibBEsk8AjWHwns06K23M8JXX5dcrZIFPeKmJDIw6KI1cua9p/b?=
- =?iso-8859-1?Q?7fX3iGZ3FU9hQmkMw389QEOHjo+JBRVX7SttQN02lqnEjHMabq57SQtTEb?=
- =?iso-8859-1?Q?J+ASxLvxWXgAMK9haV9NVOk7WFbMUnnWPtDquHTA4oOcUblSxap2qYd2pq?=
- =?iso-8859-1?Q?n+QcAEDQ85PNfXIVl3c9puGEnezgyPJngVKWGkEaZw4RRRKL4TpF/jk1UA?=
- =?iso-8859-1?Q?Hxxy846NZXGKAxwhjj2BCCCI2pWyCD345aOpOkBXtyVPAIXInnXiEse88D?=
- =?iso-8859-1?Q?T0KztMnZC2WxGGh4rAhmEAev2ikyOclrOUdr2B7gmiGhLdnKu1FAwllf3X?=
- =?iso-8859-1?Q?4nrMQiQZqf8lTRM2d8sGKbaTv0DzMAI5W1CpwV6ll3betYjuca89rcEu8H?=
- =?iso-8859-1?Q?DEjjPu9Ymwmar5hARC6oFkR0ybn/nUwoW92UXLTKosJE7bRcVbsjDy64Bd?=
- =?iso-8859-1?Q?nAFNS7Jv8OCiOCtsY2cvc8Kc+5MK/256PNS/KTBKRrECESBq86L87TZ1oB?=
- =?iso-8859-1?Q?XelOVwDwjAUO5iuzhuBzXjBPAisBWntpObwy4Yt88OUm5RZOBV6fSzz8LH?=
- =?iso-8859-1?Q?H7RDCF1AFTI9PoysgN9+SV02A8dT0ScaMXd3IASTzoECdAz6Nlq0wC3VOi?=
- =?iso-8859-1?Q?UrqTWtntqTPTIkXpBGwRYYLp4amyxFlIkqVV3tHCAoA5sPjcjTaU7ntxzm?=
- =?iso-8859-1?Q?nFl0FzO/lhuynTPbcgi5VjDipC5VBnscyoU1HNeBwlzCbkOK6UmFhnzkuv?=
- =?iso-8859-1?Q?HbbGZDEex7rtRPKb5qlsrhmB4+9ZcB8MB84DufRi1CWtXGW9TRwEWgKdHZ?=
- =?iso-8859-1?Q?ngs9DWz5MOO7KRilS0b2kfvbgb48uxexYKorunwH93skOC6MJNCWpz5L+r?=
- =?iso-8859-1?Q?QZ39mP311UmWewKU7nBTAo8E66Xdz+fh/m2BqePVEP9nOAkuuSHqepNlhC?=
- =?iso-8859-1?Q?15YCeBO58LbNLCp7Nb9abx10+K8P54YEB7wkXWo6VUFiyU+aE+OESVR9Ky?=
- =?iso-8859-1?Q?M=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(7053199007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?2uQOQJuGMW+o5HiybOxuNlYrYo6Iv2xWhu8ZpYhXIJIIaQIm6k3xSdNvGa?=
- =?iso-8859-1?Q?wjXxDx3YiZqVHjEknNu5xWppvZzC/CJvV5gRwmPyQdPJWIwg6ieYlpcrN/?=
- =?iso-8859-1?Q?JAPTC1mUaA+8sRo+46htilMP+zdY2EbagIqmtsHK754p+FZHgcD40mwybs?=
- =?iso-8859-1?Q?XhPaQ2nIU/dYS++NQ9yrM5fI9HbfCDSvYve+n+aDQAh0I+IRcknG+aJmVE?=
- =?iso-8859-1?Q?d8OIzV1mnk+uNF2gvVHuBqeE2g4esJJ0DPkE0x/aEUM79VbTr7DFrpeqGV?=
- =?iso-8859-1?Q?KYzEKeJYDN7iHf3g8eoBaTssTqOUi0KaIGbHNkUVKV+YnMWqR2/iMHqBBM?=
- =?iso-8859-1?Q?bdXzFQCeiB2/pRtBdA9b4zdMdW2bmvyHQQTVx7ybt0v270qqPU6+UPanDy?=
- =?iso-8859-1?Q?6nlVnLMoPx9KOYj9Pfye7DqhchqzAZndEzSCvu2ILeGF9SwNnLmOG/2I1L?=
- =?iso-8859-1?Q?FYqvyhhUEchfdsm34+JoPW+U91/18GXQ9qYL2Wh0h5idsriI9lNJGVCOcf?=
- =?iso-8859-1?Q?eK/KuAiXvmGrHqJzhYcepWIzQX5921DOr1t/qu2QHKfvjhKJIadGP/j3Zn?=
- =?iso-8859-1?Q?TZ1fKIB/OaALrkbTkkcf+q9lMkm16+OMFY3vjBSipknKqw+ujF/YRj6YR/?=
- =?iso-8859-1?Q?m8C9LNELOk9OWfLqdSzsCij4b+9tPXApcRlKSFTvaKIkx+kwMJpyOjoHrC?=
- =?iso-8859-1?Q?cLlgA15qN9guXnNvt+lpdOeig8KKQjmpsQ7kLll2psMVeDb8dE77WAosHk?=
- =?iso-8859-1?Q?blUo49/m/aAmGwz49Ehm1rDuRQqzu9MXP1V3GPKFG7UUsWqQx4pX83Hep3?=
- =?iso-8859-1?Q?KagmnAHeIs3SwxVSEuMkyxbQq9jbPCDJ+rrs4TlsUc7/I4/HSj3nudbESV?=
- =?iso-8859-1?Q?PIEZGZ6+8nRkMsXsr7gsP8ZIsQXcsWZ3luNANi4TN7q9wmfwiCoqTiGpyE?=
- =?iso-8859-1?Q?Q3LCJU/0R566DMsx4q6wAHjp9LdyhaDI9wf5QU8S7b9E+fvnmIQp3sxSdM?=
- =?iso-8859-1?Q?gvBcRhbLMAeEJCv5r6D+lmyetwvXE/7oay75crgJdTU5Ob26oG+WVPX/XP?=
- =?iso-8859-1?Q?APHfufMHpSTq6PZtfe9Gze6LvLUOwoqMYjF+ExEFsDZ2MeZRfKxdorfxcB?=
- =?iso-8859-1?Q?SIRILTzRcLhPcFmf9XwSs6IV2+h6i2V+cE1FMo/R+Fl2d3tAPYXW1MHlAJ?=
- =?iso-8859-1?Q?wIlF2HyeJs+JvVykG2RYVUr+Y4mSSD5oxP85+cpEa/rDd25uG9eEWjzZiY?=
- =?iso-8859-1?Q?tS1TLRsPLIOOTa6Z1rUT0BQPNgqha0MUbilWkWULFnLWJO0gXQQo/qlZqM?=
- =?iso-8859-1?Q?PvliKIMT+1WuIw3B+93ZLAB23dA5Oe+wYqhq1lkqt9XmT4Cf6AkEoUcEZt?=
- =?iso-8859-1?Q?wjEO+E5NeubsaI+8xlFAIZMxB3srujFJkckXKVSTqwNfsuseQueyU0MKYo?=
- =?iso-8859-1?Q?/UpI2bJrFMc4AphWtBmpwe0Y7QHP6gtJqgcoADg0awWXTuYrVPOmmUYgqu?=
- =?iso-8859-1?Q?Xbsi2ezOVj3yheKacjcuIqMI2wlJTDGnYq9bWuVjU4EVKeA0YAWuS2rDhZ?=
- =?iso-8859-1?Q?nAm6Jc1G+EWvsz5HJ71B012gT/xaa1Mh8fS0i/yjzpK95F31ZNt3DIoHpd?=
- =?iso-8859-1?Q?5JU+uz2fPrf7L1JO4Sx3bZjh8IA4yG62KfvIv0XHV3z1BJDh62OZZX9w?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 58e6f824-38dd-40dc-9d57-08dd8df75aed
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2025 06:12:48.0311 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Kgp2ML4OfgPMka9kHg3QMp/8gOXEgTd0WiRcobv/MTkckFFafEdznEtTraBW1XupgZuej62pqXR8NY7TR2qX4A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7578
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -183,95 +75,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, May 07, 2025 at 02:36:28PM -0600, Cavitt, Jonathan wrote:
-> -----Original Message-----
-> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Matthew Brost
-> Sent: Wednesday, May 7, 2025 1:16 PM
-> To: intel-xe@lists.freedesktop.org
-> Cc: Souza, Jose <jose.souza@intel.com>; Santa, Carlos <carlos.santa@intel.com>; Venkatesh Reddy, Sushma <sushma.venkatesh.reddy@intel.com>
-> Subject: [PATCH v4 2/9] drm/xe: Add "null_sparse" type to VM snap properties
-> > 
-> > Add "null_sparse" type to VM snap properties indicating the VMA reads
-> > zero and writes are droppped. This is useful information for debug and
-> > will help build a robust GPU hang replay tool.
-> > 
-> > The current format is:
-> > 
-> > [<vma address>]: <permissions>|<type>
-> > 
-> > Permissions has two options, either "read_only" or "read_write".
-> > 
-> > Type has three options, either "userptr", "null_sparse", or "bo".
-> > 
-> > Cc: José Roberto de Souza <jose.souza@intel.com>
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> 
-> Admittedly, this looks like it could or should be squashed with
-> the previous patch in this series, but it's not a blocking request.
-> 
+Hi Dave & Sima,
 
-Yea this one should probably be squashed. Will do.
+Here goes the drm-intel-gt-next PR towards 6.16. No new features, just fixes.
 
-Matt
+SLPC wait boost fix for DG1/DG2, engine reset fix for HSW.
+Move to usleep_range for <20ms timeouts and fix splats on early probe
+errors.
 
-> Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> -Jonathan Cavitt
-> 
-> > ---
-> >  drivers/gpu/drm/xe/xe_vm.c | 11 ++++++++++-
-> >  1 file changed, 10 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> > index ddeec681f71f..95c51834c620 100644
-> > --- a/drivers/gpu/drm/xe/xe_vm.c
-> > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > @@ -3729,6 +3729,7 @@ struct xe_vm_snapshot {
-> >  		unsigned long len;
-> >  #define XE_VM_SNAP_FLAG_USERPTR		BIT(0)
-> >  #define XE_VM_SNAP_FLAG_READ_ONLY	BIT(1)
-> > +#define XE_VM_SNAP_FLAG_IS_NULL		BIT(2)
-> >  		unsigned long flags;
-> >  		struct xe_bo *bo;
-> >  		void *data;
-> > @@ -3786,6 +3787,8 @@ struct xe_vm_snapshot *xe_vm_snapshot_capture(struct xe_vm *vm)
-> >  
-> >  			snap->snap[i].bo_ofs = xe_vma_userptr(vma);
-> >  			snap->snap[i].flags |= XE_VM_SNAP_FLAG_USERPTR;
-> > +		} else if (xe_vma_is_null(vma)) {
-> > +			snap->snap[i].flags |= XE_VM_SNAP_FLAG_IS_NULL;
-> >  		} else {
-> >  			snap->snap[i].data = ERR_PTR(-ENOENT);
-> >  		}
-> > @@ -3806,7 +3809,8 @@ void xe_vm_snapshot_capture_delayed(struct xe_vm_snapshot *snap)
-> >  		struct xe_bo *bo = snap->snap[i].bo;
-> >  		int err;
-> >  
-> > -		if (IS_ERR(snap->snap[i].data))
-> > +		if (IS_ERR(snap->snap[i].data) ||
-> > +		    snap->snap[i].flags & XE_VM_SNAP_FLAG_IS_NULL)
-> >  			continue;
-> >  
-> >  		snap->snap[i].data = kvmalloc(snap->snap[i].len, GFP_USER);
-> > @@ -3858,6 +3862,8 @@ void xe_vm_snapshot_print(struct xe_vm_snapshot *snap, struct drm_printer *p)
-> >  		drm_printf(p, "[%llx].properties: %s|%s\n", snap->snap[i].ofs,
-> >  			   snap->snap[i].flags & XE_VM_SNAP_FLAG_READ_ONLY ?
-> >  			   "read_only" : "read_write",
-> > +			   snap->snap[i].flags & XE_VM_SNAP_FLAG_IS_NULL ?
-> > +			   "null_sparse" :
-> >  			   snap->snap[i].flags & XE_VM_SNAP_FLAG_USERPTR ?
-> >  			   "userptr" : "bo");
-> >  
-> > @@ -3867,6 +3873,9 @@ void xe_vm_snapshot_print(struct xe_vm_snapshot *snap, struct drm_printer *p)
-> >  			continue;
-> >  		}
-> >  
-> > +		if (snap->snap[i].flags & XE_VM_SNAP_FLAG_IS_NULL)
-> > +			continue;
-> > +
-> >  		drm_printf(p, "[%llx].data: ", snap->snap[i].ofs);
-> >  
-> >  		for (j = 0; j < snap->snap[i].len; j += sizeof(u32)) {
-> > -- 
-> > 2.34.1
-> > 
-> > 
+The rest is usual cleanups and improvements to selftests.
+
+Regards, Joonas
+
+***
+
+drm-intel-gt-next-2025-05-08-1:
+
+Driver Changes:
+
+- Fix SLPC wait boosting reference counting to avoid getting stuck on non-boost
+  frequency on power saving profile on DG1/DG2 (Vinay)
+- Add 20ms delay to engine reset for robustness on HSW (Nitin)
+
+- Use proper sleeping functions for timeouts shorter than 20ms (Andi)
+- Fix fence not released on early probe errors for HuC (Janusz)
+
+- Remove const from struct i915_wa list allocation (Kees)
+- Apply SPDX license format where missing and use single-line format (Andi)
+- Whitespace fixes (Dan, Andi)
+- Selftest improvements (Mikolaj, Badal, Sk,
+
+The following changes since commit bfef148f3680e6b9d28e7fca46d9520f80c5e50e:
+
+  drm/i915: Increase I915_PARAM_MMAP_GTT_VERSION version to indicate support for partial mmaps (2025-03-11 07:04:51 -0700)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-gt-next-2025-05-08-1
+
+for you to fetch changes up to b2602a84ff85926be8d1fb7186128976c9f76c3f:
+
+  drm/i915/gt: Remove const from struct i915_wa list allocation (2025-05-07 12:34:59 +0200)
+
+----------------------------------------------------------------
+Driver Changes:
+
+- Fix SLPC wait boosting reference counting to avoid getting stuck on non-boost
+  frequency on power saving profile on DG1/DG2 (Vinay)
+- Add 20ms delay to engine reset for robustness on HSW (Nitin)
+
+- Use proper sleeping functions for timeouts shorter than 20ms (Andi)
+- Fix fence not released on early probe errors for HuC (Janusz)
+
+- Remove const from struct i915_wa list allocation (Kees)
+- Apply SPDX license format where missing and use single-line format (Andi)
+- Whitespace fixes (Dan, Andi)
+- Selftest improvements (Mikolaj, Badal, Sk,
+
+----------------------------------------------------------------
+Andi Shyti (4):
+      drm/i915/gt: Fix SPDX license format
+      drm/i915/gt: Remove trailing blank lines
+      drm/i915/gt: Use proper sleeping functions for timeouts shorter than 20ms
+      drm/i915/gem: Convert SPDX headers to single-line format
+
+Badal Nilawar (1):
+      drm/i915: Disable RPG during live selftest
+
+Dan Carpenter (1):
+      drm/i915/gsc: delete a stray tab in intel_gsc_fw_get_binary_info()
+
+Janusz Krzysztofik (1):
+      drm/i915/huc: Fix fence not released on early probe errors
+
+Kees Cook (1):
+      drm/i915/gt: Remove const from struct i915_wa list allocation
+
+Mikolaj Wasiak (2):
+      i915/selftest/igt_mmap: let mmap tests run in kthread
+      i915/gt/selftests: Disable lrc_timestamp test
+
+Nitin Gote (1):
+      drm/i915/gt: Add delay to let engine resumes properly
+
+Sk Anirban (1):
+      drm/i915/selftests: Refactor RC6 power measurement and error handling
+
+Vinay Belgaumkar (1):
+      drm/i915/slpc: Balance the inc/dec for num_waiters
+
+ drivers/gpu/drm/i915/gem/i915_gem_busy.c           |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_clflush.c        |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_clflush.h        |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.c        |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.h        |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context_types.h  |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c         |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_domain.c         |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_internal.c       |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ioctls.h         |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c           |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_mman.h           |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object.c         |  1 +
+ drivers/gpu/drm/i915/gem/i915_gem_object.h         |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_object_types.h   |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c          |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_phys.c           |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_pm.c             |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_pm.h             |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c          |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_shrinker.c       |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c         |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_throttle.c       |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_tiling.c         |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_userptr.c        |  5 +-
+ drivers/gpu/drm/i915/gem/i915_gem_wait.c           |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gemfs.c              |  3 +-
+ drivers/gpu/drm/i915/gem/i915_gemfs.h              |  3 +-
+ drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c | 14 +++++-
+ drivers/gpu/drm/i915/gt/intel_gtt.c                |  1 -
+ drivers/gpu/drm/i915/gt/intel_lrc.c                |  1 -
+ drivers/gpu/drm/i915/gt/intel_mocs.c               |  1 -
+ drivers/gpu/drm/i915/gt/intel_rc6.c                | 19 ++------
+ drivers/gpu/drm/i915/gt/intel_ring_submission.c    |  8 +++-
+ drivers/gpu/drm/i915/gt/intel_rps.c                | 14 ++++--
+ drivers/gpu/drm/i915/gt/intel_wopcm.h              |  3 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c        |  2 +-
+ drivers/gpu/drm/i915/gt/selftest_lrc.c             |  9 ++++
+ drivers/gpu/drm/i915/gt/selftest_rc6.c             | 54 +++++++++++++++-------
+ drivers/gpu/drm/i915/gt/selftest_tlb.c             |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c          |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_huc.c             | 11 ++---
+ drivers/gpu/drm/i915/gt/uc/intel_huc.h             |  1 +
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c              |  1 +
+ drivers/gpu/drm/i915/selftests/i915_selftest.c     | 18 ++++++++
+ 46 files changed, 140 insertions(+), 108 deletions(-)
