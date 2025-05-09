@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DA8CC3ABC9
-	for <intel-xe@archiver.kernel.org>; Fri,  9 May 2025 10:27:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E2DAC3ABC3
+	for <intel-xe@archiver.kernel.org>; Fri,  9 May 2025 10:29:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FA9410EA0B;
-	Fri,  9 May 2025 10:27:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F58810EA0C;
+	Fri,  9 May 2025 10:29:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ennY7OMF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bAIugQA3";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B15710EA08;
- Fri,  9 May 2025 10:27:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7691410EA0C;
+ Fri,  9 May 2025 10:29:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746786444; x=1778322444;
+ t=1746786560; x=1778322560;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=vuZhT/b2utgegxfQWCs6TlZdpjAQ2mt5nm/dTDX7e9I=;
- b=ennY7OMFzNo4Y7QALSlQOvbpMbPsvux1ICqCV7jC6XGCriJCLoqmu+Dv
- 9EowVGFpIAlGU4pmfM+qM56XIi/WaPLnoY0bvSVSkt3FfzVVDQkaC14Kc
- P4MocoOvs28L3/WiAfNJRCoIDDi8aFc0wpNij2jwXU7+cmc/NtUnQKihc
- JvADqvT0nq08oGeZ5LJ/rqEXivAR1X9y5uH2QW2Tac3auFEq03dF/6NPc
- vUYJVsf2A4evZsmcR1PoyPkK7YR23UL9iU4hrMY0TR+rmCKKgwxFyAdMC
- gBnHgzdN040SjsEtfc1326KbxVSNXwIOzr3YSJ2tQjW+XXFTOGBD3XMPP w==;
-X-CSE-ConnectionGUID: MVDQQvT1Sf2PPAdbcn1R7w==
-X-CSE-MsgGUID: eeAxmru8TWuk3sNZCJvM1w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11427"; a="52419317"
-X-IronPort-AV: E=Sophos;i="6.15,275,1739865600"; d="scan'208";a="52419317"
+ bh=vvuuIwOfaWMb/OiTyMoWaKe1eeWKqX2wtZN02MQBoiA=;
+ b=bAIugQA3TLdT7XFldGpW9QriLxUycLoiXu/RmfamRU7zhq+F/oQGjCgd
+ GHx2Hv5/CkSfk2JK0EJhUrJ5YhqcXwxVTe5hMTchv06M3TqF3uNjvj2Fs
+ kmYy1Azt53mDtxDSJaW4Sel1CIgQE1O2ehURM5fhPcpxxPEHjO9XFLIxk
+ ygifWo51tOagVqG/KQWHK1ALAC83sNhr1YoEyEgJHV/jwjQa7BdmmSG5N
+ G72XGl3zgNuZ7AOCHC3WGwTKU+kC12bTZEKpArie31jqM8pRGINukrT25
+ b92COph20Tl7CgAns/kzaXj04QuVZc2gpd+pUieGt2JaBfUBXGLFjMiE6 w==;
+X-CSE-ConnectionGUID: eORYCutRT4CdHkNmZ4bdNQ==
+X-CSE-MsgGUID: 0u3CcBLTQbSu+oaSks+4Xw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11427"; a="52419490"
+X-IronPort-AV: E=Sophos;i="6.15,275,1739865600"; d="scan'208";a="52419490"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2025 03:27:24 -0700
-X-CSE-ConnectionGUID: kC8oCkiiQfCLzmFXyvxCJw==
-X-CSE-MsgGUID: Nh67Jj+xT2SbDt+DnIU7Kw==
+ 09 May 2025 03:29:20 -0700
+X-CSE-ConnectionGUID: gtBFDVgPRS64TGWXrYfP9g==
+X-CSE-MsgGUID: 2tUEyWi1Sbe6BZasAMo42w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,275,1739865600"; d="scan'208";a="141357247"
+X-IronPort-AV: E=Sophos;i="6.15,275,1739865600"; d="scan'208";a="141357533"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.201])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2025 03:27:22 -0700
+ 09 May 2025 03:29:18 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, Suraj Kandpal
  <suraj.kandpal@intel.com>
-Subject: Re: [PATCH 13/18] drm/i915/dpll: Change arguments for get_freq hook
-In-Reply-To: <20250509042729.1152004-14-suraj.kandpal@intel.com>
+Subject: Re: [PATCH 14/18] drm/i915/dpll: Rename intel_[enable/disable]_dpll
+In-Reply-To: <20250509042729.1152004-15-suraj.kandpal@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20250509042729.1152004-1-suraj.kandpal@intel.com>
- <20250509042729.1152004-14-suraj.kandpal@intel.com>
-Date: Fri, 09 May 2025 13:27:18 +0300
-Message-ID: <87bjs2krjt.fsf@intel.com>
+ <20250509042729.1152004-15-suraj.kandpal@intel.com>
+Date: Fri, 09 May 2025 13:29:14 +0300
+Message-ID: <878qn6krgl.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -71,317 +71,122 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On Fri, 09 May 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> Change the arguments for get_freq hook in intel_dpll_funcs
-> to use only intel_crtc_state and intel_encoder since that all we need
-> and the rest can be derived from the above two.
-
-Same as before, hard to review with no user, what does NULL mean.
-
-It's generally not enough to say "we need" when you don't say why, and
-there's no user to justify.
-
-BR,
-Jani.
-
+> Rename  intel_[enable/disable]_dpll to intel_dpll_[enable/disable]
+> in an effort to make sure all functions that are exported
+> start with the filename.
 >
 > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+I think you should repost the series with the controversial or
+incomplete stuff dropped, and get the straightforward renames merged.
+
 > ---
->  drivers/gpu/drm/i915/display/intel_ddi.c      |   6 +-
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 107 +++++++++---------
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.h |   5 +-
->  3 files changed, 57 insertions(+), 61 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display.c     | 4 ++--
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c    | 8 ++++----
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.h    | 4 ++--
+>  drivers/gpu/drm/i915/display/intel_pch_display.c | 6 +++---
+>  4 files changed, 11 insertions(+), 11 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 11ebcb40c91f..66dea34ebcd3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -4203,8 +4203,7 @@ void intel_ddi_get_clock(struct intel_encoder *encoder,
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index b091faff6680..8ee4833daede 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -1664,7 +1664,7 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
+>  	intel_encoders_pre_pll_enable(state, crtc);
 >  
->  	icl_set_active_port_dpll(crtc_state, port_dpll_id);
+>  	if (new_crtc_state->intel_dpll)
+> -		intel_enable_dpll(new_crtc_state);
+> +		intel_dpll_enable(new_crtc_state);
 >  
-> -	crtc_state->port_clock = intel_dpll_get_freq(display, crtc_state->intel_dpll,
-> -						     &crtc_state->dpll_hw_state);
-> +	crtc_state->port_clock = intel_dpll_get_freq(crtc_state, encoder);
->  }
+>  	intel_encoders_pre_enable(state, crtc);
 >  
->  static void mtl_ddi_get_config(struct intel_encoder *encoder,
-> @@ -4316,8 +4315,7 @@ static void icl_ddi_tc_get_clock(struct intel_encoder *encoder,
->  	if (icl_ddi_tc_pll_is_tbt(crtc_state->intel_dpll))
->  		crtc_state->port_clock = icl_calc_tbt_pll_link(display, encoder->port);
->  	else
-> -		crtc_state->port_clock = intel_dpll_get_freq(display, crtc_state->intel_dpll,
-> -							     &crtc_state->dpll_hw_state);
-> +		crtc_state->port_clock = intel_dpll_get_freq(crtc_state, encoder);
->  }
+> @@ -1793,7 +1793,7 @@ static void hsw_crtc_disable(struct intel_atomic_state *state,
+>  	intel_encoders_disable(state, crtc);
+>  	intel_encoders_post_disable(state, crtc);
 >  
->  static void icl_ddi_tc_get_config(struct intel_encoder *encoder,
+> -	intel_disable_dpll(old_crtc_state);
+> +	intel_dpll_disable(old_crtc_state);
+>  
+>  	intel_encoders_post_pll_disable(state, crtc);
+>  
 > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> index 4a184d1e83a3..3a724d84861b 100644
+> index 3a724d84861b..d1399ab24d8c 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -79,7 +79,7 @@ struct intel_dpll_funcs {
->  			struct intel_dpll *pll);
->  
->  	/*
-> -	 * Hook for disabling the shared pll, called from intel_disable_global_dpll()
-> +	 * Hook for disabling the shared pll, called from intel_disable_dpll()
->  	 * only when it is safe to disable the pll, i.e., there are no more
->  	 * tracked users for it.
->  	 */
-> @@ -100,9 +100,8 @@ struct intel_dpll_funcs {
->  	 * Hook for calculating the pll's output frequency based on its passed
->  	 * in state.
->  	 */
-> -	int (*get_freq)(struct intel_display *i915,
-> -			const struct intel_dpll *pll,
-> -			const struct intel_dpll_hw_state *dpll_hw_state);
-> +	int (*get_freq)(struct intel_crtc_state *crtc_state,
-> +			struct intel_encoder *encoder);
->  };
->  
->  struct intel_dpll_mgr {
-> @@ -1008,11 +1007,11 @@ hsw_ddi_calculate_wrpll(int clock /* in Hz */,
->  	*r2_out = best.r2;
+> @@ -257,12 +257,12 @@ static void _intel_disable_shared_dpll(struct intel_display *display,
 >  }
->  
-> -static int hsw_ddi_wrpll_get_freq(struct intel_display *display,
-> -				  const struct intel_dpll *pll,
-> -				  const struct intel_dpll_hw_state *dpll_hw_state)
-> +static int hsw_ddi_wrpll_get_freq(struct intel_crtc_state *crtc_state,
-> +				  struct intel_encoder *encoder)
->  {
-> -	const struct hsw_dpll_hw_state *hw_state = &dpll_hw_state->hsw;
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	const struct hsw_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state.hsw;
->  	int refclk;
->  	int n, p, r;
->  	u32 wrpll = hw_state->wrpll;
-> @@ -1053,7 +1052,6 @@ static int
->  hsw_ddi_wrpll_compute_dpll(struct intel_atomic_state *state,
->  			   struct intel_crtc *crtc)
->  {
-> -	struct intel_display *display = to_intel_display(state);
->  	struct intel_crtc_state *crtc_state =
->  		intel_atomic_get_new_crtc_state(state, crtc);
->  	struct hsw_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state.hsw;
-> @@ -1066,8 +1064,7 @@ hsw_ddi_wrpll_compute_dpll(struct intel_atomic_state *state,
->  		WRPLL_DIVIDER_REFERENCE(r2) | WRPLL_DIVIDER_FEEDBACK(n2) |
->  		WRPLL_DIVIDER_POST(p);
->  
-> -	crtc_state->port_clock = hsw_ddi_wrpll_get_freq(display, NULL,
-> -							&crtc_state->dpll_hw_state);
-> +	crtc_state->port_clock = hsw_ddi_wrpll_get_freq(crtc_state, NULL);
->  
->  	return 0;
->  }
-> @@ -1134,10 +1131,11 @@ hsw_ddi_lcpll_get_dpll(struct intel_crtc_state *crtc_state)
->  	return pll;
->  }
->  
-> -static int hsw_ddi_lcpll_get_freq(struct intel_display *display,
-> -				  const struct intel_dpll *pll,
-> -				  const struct intel_dpll_hw_state *dpll_hw_state)
-> +static int hsw_ddi_lcpll_get_freq(struct intel_crtc_state *crtc_state,
-> +				  struct intel_encoder *encoder)
->  {
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	struct intel_dpll *pll = crtc_state->intel_dpll;
->  	int link_clock = 0;
->  
->  	switch (pll->info->id) {
-> @@ -1186,11 +1184,11 @@ hsw_ddi_spll_get_dpll(struct intel_atomic_state *state,
->  				      BIT(DPLL_ID_SPLL));
->  }
->  
-> -static int hsw_ddi_spll_get_freq(struct intel_display *display,
-> -				 const struct intel_dpll *pll,
-> -				 const struct intel_dpll_hw_state *dpll_hw_state)
-> +static int hsw_ddi_spll_get_freq(struct intel_crtc_state *crtc_state,
-> +				 struct intel_encoder *encoder)
->  {
-> -	const struct hsw_dpll_hw_state *hw_state = &dpll_hw_state->hsw;
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	const struct hsw_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state.hsw;
->  	int link_clock = 0;
->  
->  	switch (hw_state->spll & SPLL_FREQ_MASK) {
-> @@ -1979,20 +1977,21 @@ static int skl_get_dpll(struct intel_atomic_state *state,
->  	return 0;
->  }
->  
-> -static int skl_ddi_pll_get_freq(struct intel_display *display,
-> -				const struct intel_dpll *pll,
-> -				const struct intel_dpll_hw_state *dpll_hw_state)
-> +static int skl_ddi_pll_get_freq(struct intel_crtc_state *crtc_state,
-> +				struct intel_encoder *encoder)
->  {
-> -	const struct skl_dpll_hw_state *hw_state = &dpll_hw_state->skl;
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	struct intel_dpll *pll = crtc_state->intel_dpll;
-> +	const struct skl_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state.skl;
->  
->  	/*
->  	 * ctrl1 register is already shifted for each pll, just use 0 to get
->  	 * the internal shift for each field
->  	 */
->  	if (hw_state->ctrl1 & DPLL_CTRL1_HDMI_MODE(0))
-> -		return skl_ddi_wrpll_get_freq(display, pll, dpll_hw_state);
-> +		return skl_ddi_wrpll_get_freq(display, pll, &crtc_state->dpll_hw_state);
->  	else
-> -		return skl_ddi_lcpll_get_freq(display, pll, dpll_hw_state);
-> +		return skl_ddi_lcpll_get_freq(display, pll, &crtc_state->dpll_hw_state);
->  }
->  
->  static void skl_update_dpll_ref_clks(struct intel_display *display)
-> @@ -2378,11 +2377,11 @@ static int bxt_ddi_set_dpll_hw_state(struct intel_crtc_state *crtc_state,
->  	return 0;
->  }
->  
-> -static int bxt_ddi_pll_get_freq(struct intel_display *display,
-> -				const struct intel_dpll *pll,
-> -				const struct intel_dpll_hw_state *dpll_hw_state)
-> +static int bxt_ddi_pll_get_freq(struct intel_crtc_state *crtc_state,
-> +				struct intel_encoder *encoder)
->  {
-> -	const struct bxt_dpll_hw_state *hw_state = &dpll_hw_state->bxt;
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	const struct bxt_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state.bxt;
->  	struct dpll clock;
->  
->  	clock.m1 = 2;
-> @@ -2410,7 +2409,6 @@ bxt_ddi_dp_set_dpll_hw_state(struct intel_crtc_state *crtc_state)
->  static int
->  bxt_ddi_hdmi_set_dpll_hw_state(struct intel_crtc_state *crtc_state)
->  {
-> -	struct intel_display *display = to_intel_display(crtc_state);
->  	struct dpll clk_div = {};
->  	int ret;
->  
-> @@ -2420,8 +2418,7 @@ bxt_ddi_hdmi_set_dpll_hw_state(struct intel_crtc_state *crtc_state)
->  	if (ret)
->  		return ret;
->  
-> -	crtc_state->port_clock = bxt_ddi_pll_get_freq(display, NULL,
-> -						      &crtc_state->dpll_hw_state);
-> +	crtc_state->port_clock = bxt_ddi_pll_get_freq(crtc_state, NULL);
->  
->  	return 0;
->  }
-> @@ -2773,10 +2770,11 @@ static int icl_calc_tbt_pll(struct intel_crtc_state *crtc_state,
->  	return 0;
->  }
->  
-> -static int icl_ddi_tbt_pll_get_freq(struct intel_display *display,
-> -				    const struct intel_dpll *pll,
-> -				    const struct intel_dpll_hw_state *dpll_hw_state)
-> +static int icl_ddi_tbt_pll_get_freq(struct intel_crtc_state *crtc_state,
-> +				    struct intel_encoder *encoder)
->  {
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +
->  	/*
->  	 * The PLL outputs multiple frequencies at the same time, selection is
->  	 * made at DDI clock mux level.
-> @@ -2844,11 +2842,11 @@ icl_calc_wrpll(struct intel_crtc_state *crtc_state,
->  	return 0;
->  }
->  
-> -static int icl_ddi_combo_pll_get_freq(struct intel_display *display,
-> -				      const struct intel_dpll *pll,
-> -				      const struct intel_dpll_hw_state *dpll_hw_state)
-> +static int icl_ddi_combo_pll_get_freq(struct intel_crtc_state *crtc_state,
-> +				      struct intel_encoder *encoder)
->  {
-> -	const struct icl_dpll_hw_state *hw_state = &dpll_hw_state->icl;
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	const struct icl_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state.icl;
->  	int ref_clock = icl_wrpll_ref_clock(display);
->  	u32 dco_fraction;
->  	u32 p0, p1, p2, dco_freq;
-> @@ -3217,11 +3215,11 @@ static int icl_calc_mg_pll_state(struct intel_crtc_state *crtc_state,
->  	return 0;
->  }
->  
-> -static int icl_ddi_mg_pll_get_freq(struct intel_display *display,
-> -				   const struct intel_dpll *pll,
-> -				   const struct intel_dpll_hw_state *dpll_hw_state)
-> +static int icl_ddi_mg_pll_get_freq(struct intel_crtc_state *crtc_state,
-> +				   struct intel_encoder *encoder)
->  {
-> -	const struct icl_dpll_hw_state *hw_state = &dpll_hw_state->icl;
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	const struct icl_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state.icl;
->  	u32 m1, m2_int, m2_frac, div1, div2, ref_clock;
->  	u64 tmp;
->  
-> @@ -3354,8 +3352,7 @@ static int icl_compute_combo_phy_dpll(struct intel_atomic_state *state,
->  	/* this is mainly for the fastset check */
->  	icl_set_active_port_dpll(crtc_state, ICL_PORT_DPLL_DEFAULT);
->  
-> -	crtc_state->port_clock = icl_ddi_combo_pll_get_freq(display, NULL,
-> -							    &port_dpll->hw_state);
-> +	crtc_state->port_clock = icl_ddi_combo_pll_get_freq(crtc_state, NULL);
->  
->  	return 0;
->  }
-> @@ -3453,8 +3450,7 @@ static int icl_compute_tc_phy_dplls(struct intel_atomic_state *state,
->  	else
->  		icl_set_active_port_dpll(crtc_state, ICL_PORT_DPLL_MG_PHY);
->  
-> -	crtc_state->port_clock = icl_ddi_mg_pll_get_freq(display, NULL,
-> -							 &port_dpll->hw_state);
-> +	crtc_state->port_clock = icl_ddi_mg_pll_get_freq(crtc_state, NULL);
->  
->  	return 0;
->  }
-> @@ -4500,20 +4496,23 @@ void intel_update_active_dpll(struct intel_atomic_state *state,
 >  
 >  /**
->   * intel_dpll_get_freq - calculate the DPLL's output frequency
-> - * @display: intel_display device
-> - * @pll: DPLL for which to calculate the output frequency
-> - * @dpll_hw_state: DPLL state from which to calculate the output frequency
-> + * @crtc_state: crtc_state which contains the DPLL state from which we
-> + * calculate frequency
-> + * @encoder: Encoder for which the freq is calculated
+> - * intel_enable_dpll - enable a CRTC's global DPLL
+> + * intel_dpll_enable - enable a CRTC's global DPLL
+>   * @crtc_state: CRTC, and its state, which has a DPLL
 >   *
-> - * Return the output frequency corresponding to @pll's passed in @dpll_hw_state.
-> + * Return the output frequency corresponding to @pll's passed in
-> + * @crtc_state->dpll_hw_state.
+>   * Enable DPLL used by @crtc.
 >   */
-> -int intel_dpll_get_freq(struct intel_display *display,
-> -			const struct intel_dpll *pll,
-> -			const struct intel_dpll_hw_state *dpll_hw_state)
-> +int intel_dpll_get_freq(struct intel_crtc_state *crtc_state,
-> +			struct intel_encoder *encoder)
+> -void intel_enable_dpll(const struct intel_crtc_state *crtc_state)
+> +void intel_dpll_enable(const struct intel_crtc_state *crtc_state)
 >  {
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	struct intel_dpll *pll = crtc_state->intel_dpll;
-> +
->  	if (drm_WARN_ON(display->drm, !pll->info->funcs->get_freq))
->  		return 0;
->  
-> -	return pll->info->funcs->get_freq(display, pll, dpll_hw_state);
-> +	return pll->info->funcs->get_freq(crtc_state, encoder);
+>  	struct intel_display *display = to_intel_display(crtc_state);
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> @@ -303,12 +303,12 @@ void intel_enable_dpll(const struct intel_crtc_state *crtc_state)
 >  }
 >  
 >  /**
+> - * intel_disable_dpll - disable a CRTC's shared DPLL
+> + * intel_dpll_disable - disable a CRTC's shared DPLL
+>   * @crtc_state: CRTC, and its state, which has a shared DPLL
+>   *
+>   * Disable DPLL used by @crtc.
+>   */
+> -void intel_disable_dpll(const struct intel_crtc_state *crtc_state)
+> +void intel_dpll_disable(const struct intel_crtc_state *crtc_state)
+>  {
+>  	struct intel_display *display = to_intel_display(crtc_state);
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
 > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> index 99a058deaeda..49eb02d72f44 100644
+> index 49eb02d72f44..f497a9ec863d 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
 > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> @@ -412,9 +412,8 @@ void icl_set_active_port_dpll(struct intel_crtc_state *crtc_state,
->  void intel_update_active_dpll(struct intel_atomic_state *state,
->  			      struct intel_crtc *crtc,
->  			      struct intel_encoder *encoder);
-> -int intel_dpll_get_freq(struct intel_display *display,
-> -			const struct intel_dpll *pll,
-> -			const struct intel_dpll_hw_state *dpll_hw_state);
-> +int intel_dpll_get_freq(struct intel_crtc_state *crtc_state,
-> +			struct intel_encoder *encoder);
+> @@ -417,8 +417,8 @@ int intel_dpll_get_freq(struct intel_crtc_state *crtc_state,
 >  bool intel_dpll_get_hw_state(struct intel_display *display,
 >  			     struct intel_dpll *pll,
 >  			     struct intel_dpll_hw_state *dpll_hw_state);
+> -void intel_enable_dpll(const struct intel_crtc_state *crtc_state);
+> -void intel_disable_dpll(const struct intel_crtc_state *crtc_state);
+> +void intel_dpll_enable(const struct intel_crtc_state *crtc_state);
+> +void intel_dpll_disable(const struct intel_crtc_state *crtc_state);
+>  void intel_dpll_swap_state(struct intel_atomic_state *state);
+>  void intel_dpll_init(struct intel_display *display);
+>  void intel_dpll_update_ref_clks(struct intel_display *display);
+> diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c b/drivers/gpu/drm/i915/display/intel_pch_display.c
+> index b59b3c94f711..ca85596dfc9e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pch_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
+> @@ -394,11 +394,11 @@ void ilk_pch_enable(struct intel_atomic_state *state,
+>  	 * transcoder, and we actually should do this to not upset any PCH
+>  	 * transcoder that already use the clock when we share it.
+>  	 *
+> -	 * Note that enable_dpll tries to do the right thing, but
+> +	 * Note that dpll_enable tries to do the right thing, but
+>  	 * get_dpll unconditionally resets the pll - we need that
+>  	 * to have the right LVDS enable sequence.
+>  	 */
+> -	intel_enable_dpll(crtc_state);
+> +	intel_dpll_enable(crtc_state);
+>  
+>  	/* set transcoder timing, panel must allow it */
+>  	assert_pps_unlocked(display, pipe);
+> @@ -472,7 +472,7 @@ void ilk_pch_post_disable(struct intel_atomic_state *state,
+>  
+>  	ilk_fdi_pll_disable(crtc);
+>  
+> -	intel_disable_dpll(old_crtc_state);
+> +	intel_dpll_disable(old_crtc_state);
+>  }
+>  
+>  static void ilk_pch_clock_get(struct intel_crtc_state *crtc_state)
 
 -- 
 Jani Nikula, Intel
