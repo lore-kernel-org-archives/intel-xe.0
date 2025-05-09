@@ -4,56 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95F5EC3ABBC
-	for <intel-xe@archiver.kernel.org>; Fri,  9 May 2025 09:26:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00D50C3ABBC
+	for <intel-xe@archiver.kernel.org>; Fri,  9 May 2025 09:31:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CDAC10E9E9;
-	Fri,  9 May 2025 09:26:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HVmWmgPT";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B58F10E9E9;
- Fri,  9 May 2025 09:26:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746782769; x=1778318769;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=8po+3/axJQa+7Ljyae0O9eWBGw7GvfldU2O7Tj5Usqs=;
- b=HVmWmgPTH2pbY1uxjgQF3kBWrk428u1dZVEcg7arpc9v5Q6q7QCu/zC2
- gzqfqd0RFFEZQXmuRnWKSjDYW8EAe8HhhxOtdbhl5ninIICmCbzhO/FmV
- vng23bKQlng9bs5oW8lQ+9MlcASxcQD0skElcd0tQMGefNUilLt1cng1w
- Qj2cG4N9OKbRZaMPHixxAcDwc8OyTNA2te2Mfi+IQc0cbC4W2Nfl2Mz4I
- 5EpeO+tN0FoZOF9qpcC8ELlkxHjncE93Yj3sWbq6ZGhcQKhnXFipOtCGN
- wDhVvdmJF9ZZaRkrv3R3zAOMDK85vB+xagSVmPO+OI8EkPedy4EYI1R96 g==;
-X-CSE-ConnectionGUID: Zfx9I6oUQ9WxRHj2L078Pw==
-X-CSE-MsgGUID: eyVWtTzmSl2yjbpU6faILQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11427"; a="66009613"
-X-IronPort-AV: E=Sophos;i="6.15,274,1739865600"; d="scan'208";a="66009613"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2025 02:26:09 -0700
-X-CSE-ConnectionGUID: XybUCU3iR0WP3jQpM2QesA==
-X-CSE-MsgGUID: JoBpCSv2SRGQ5f6ZdYNvcA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,274,1739865600"; d="scan'208";a="141777810"
-Received: from gyu3-linux.itwn.intel.com (HELO gyu3-linux.itwn.corp.intel.com)
- ([10.225.64.210])
- by fmviesa004.fm.intel.com with ESMTP; 09 May 2025 02:26:07 -0700
-From: gareth.yu@intel.com
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Gareth Yu <gareth.yu@intel.com>, Suraj Kandpal <suraj.kandpal@intel.com>,
- Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH] drm/i915/display: Enforce pipeline flush with DSI HS transfer
-Date: Fri,  9 May 2025 17:25:39 +0800
-Message-Id: <20250509092539.763389-1-gareth.yu@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250509021327.649003-1-gareth.yu@intel.com>
-References: <20250509021327.649003-1-gareth.yu@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4E3310E9E9;
+	Fri,  9 May 2025 09:31:40 +0000 (UTC)
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75B1110E9E9;
+ Fri,  9 May 2025 09:31:40 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
+ =?utf-8?q?Send_DSI_DCS_commands_with_pipeline_flush_in_High_Speed_=28rev2?=
+ =?utf-8?q?=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: gareth.yu@intel.com
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 09 May 2025 09:31:40 -0000
+Message-ID: <174678310048.63083.370688864027166313@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <20250509021327.649003-1-gareth.yu@intel.com>
+In-Reply-To: <20250509021327.649003-1-gareth.yu@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,63 +37,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Gareth Yu <gareth.yu@intel.com>
+== Series Details ==
 
-With all of the boundary conditions when streaming the commands B2B in our
-validation (part of the reason we added the flush),  the Flush effectively
-serializes the transmission of each command enqueued within the command
-dispatcher to one per V. Blank line which simplifies the behavior of the
-High Speed Arbitration.
+Series: drm/i915/display: Send DSI DCS commands with pipeline flush in High Speed (rev2)
+URL   : https://patchwork.freedesktop.org/series/148781/
+State : success
 
-So, unless we absolutely have to burst these to the Sink, we should be
-using the Pipeline Flush bit to serialize the commands.
+== Summary ==
 
-BSPEC: 19742
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 9b56d987e5e3 drm-tip: 2025y-05m-09d-08h-55m-13s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/display: Enforce pipeline flush with DSI HS transfer
 
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14247
-
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Gareth Yu <gareth.yu@intel.com>
----
- drivers/gpu/drm/i915/display/icl_dsi.c      | 4 ++--
- drivers/gpu/drm/i915/display/icl_dsi_regs.h | 1 +
- 2 files changed, 3 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index 402b7b2e1829..f91f27067768 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -191,12 +191,12 @@ static int dsi_send_pkt_hdr(struct intel_dsi_host *host,
- 	else
- 		tmp &= ~PAYLOAD_PRESENT;
- 
--	tmp &= ~VBLANK_FENCE;
-+	tmp &= ~(VBLANK_FENCE | LP_DATA_TRANSFER | PIPELINE_FLUSH);
- 
- 	if (enable_lpdt)
- 		tmp |= LP_DATA_TRANSFER;
- 	else
--		tmp &= ~LP_DATA_TRANSFER;
-+		tmp |= PIPELINE_FLUSH;
- 
- 	tmp &= ~(PARAM_WC_MASK | VC_MASK | DT_MASK);
- 	tmp |= ((packet->header[0] & VC_MASK) << VC_SHIFT);
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi_regs.h b/drivers/gpu/drm/i915/display/icl_dsi_regs.h
-index d4845ac65acc..b601b7632339 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi_regs.h
-+++ b/drivers/gpu/drm/i915/display/icl_dsi_regs.h
-@@ -272,6 +272,7 @@
- #define  PAYLOAD_PRESENT		(1 << 31)
- #define  LP_DATA_TRANSFER		(1 << 30)
- #define  VBLANK_FENCE			(1 << 29)
-+#define  PIPELINE_FLUSH			(1 << 28)
- #define  PARAM_WC_MASK			(0xffff << 8)
- #define  PARAM_WC_LOWER_SHIFT		8
- #define  PARAM_WC_UPPER_SHIFT		16
--- 
-2.34.1
 
