@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D99E0C3ABCD
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28785C3ABCC
 	for <intel-xe@archiver.kernel.org>; Fri,  9 May 2025 15:34:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE4C110EA92;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 706FA10EA8B;
 	Fri,  9 May 2025 15:34:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="hPfhe62J";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="qy+pr17r";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3635C10EA7B;
- Fri,  9 May 2025 15:34:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB36D10EA70;
+ Fri,  9 May 2025 15:34:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,16 +22,16 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=rOc2WSBQG8oN7Cu7NdxGahLu7I/n06aduKAV9FHA3FU=; b=hPfhe62JgW8OIj1kQMMiwLBtr3
- vNUUdPyur/bhoHTSTrtIr+HyyH1vCyhVu8dZ1seLX6C9SQ9B3zanvpombEDX/TADhLM9LclpjIOqG
- my5TgMfKj4tOXyVKqMnOoOAESMskYZrR4QNK5f8/7eJ0XWBV5JSq/tiAdAkTPTIMgapQdY8L7e3zV
- 6IgqRuY/EC4kGcaNvRmRKFJHS8FezJlecn4TCjTiwgb5n0L2q40S5wAU7sGJlgfIEKSe7dPBjWkd0
- cB8uedmg4+sNq130YrE0LDWWqQDVSFbtEOe0TPpPz8cfq8pm+mswBCfoTKydtkJeuObSZOgisQBFG
- nh3SlsTw==;
+ bh=r8Pjg2msokWYcuhupUxz/k2tjiv/iKmS3Yjcj/950W0=; b=qy+pr17roTkKORBXq71WVY/uIa
+ /J5NbEt2JQlr5+7KnNRvTsRciVSLTV+hsj2g9IduxKtvjI1VkWvgQUz4kw4JrKA71uT3DV+z8L7u3
+ yKcoayoLIXSUewXs5ot+vi7rvUT35HgaEMYgw/xcocvy3UnzhDJLdyQMqI0No9ZFS7kIlUMFeI/5s
+ ATFrCAubycNhj1hhpzCZHvjjzDUZhB+VlXmxIK5YxI+LFSjXNmVnonWDS0pg+NJ9obBZU9HE8bFtq
+ K2nSYB5bVjjM0UjCZruZWWKhppwDm8qPK47G5sx5spHhE3hX4i10TONhOe5+mhE7wvm0iFUha/Dx8
+ teybWipg==;
 Received: from [81.79.92.254] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uDPfL-005oFC-97; Fri, 09 May 2025 17:34:12 +0200
+ id 1uDPfJ-005oEr-Mp; Fri, 09 May 2025 17:34:10 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: dri-devel@lists.freedesktop.org
 Cc: Sumit Semwal <sumit.semwal@linaro.org>,
@@ -43,10 +43,10 @@ Cc: Sumit Semwal <sumit.semwal@linaro.org>,
  intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
  kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [RFC v2 07/13] sync_file: Use dma-fence driver and timeline name
- helpers
-Date: Fri,  9 May 2025 16:33:46 +0100
-Message-ID: <20250509153352.7187-8-tvrtko.ursulin@igalia.com>
+Subject: [RFC v2 05/13] dma-fence: Add helpers for accessing driver and
+ timeline name
+Date: Fri,  9 May 2025 16:33:44 +0100
+Message-ID: <20250509153352.7187-6-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250509153352.7187-1-tvrtko.ursulin@igalia.com>
 References: <20250509153352.7187-1-tvrtko.ursulin@igalia.com>
@@ -66,40 +66,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Access the dma-fence internals via the previously added helpers.
+Add some helpers in order to enable preventing dma-fence users accessing
+the implementation details directly.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
- drivers/dma-buf/sync_file.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ include/linux/dma-fence.h | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/dma-buf/sync_file.c b/drivers/dma-buf/sync_file.c
-index d9b1c1b2a72b..212df4b849fe 100644
---- a/drivers/dma-buf/sync_file.c
-+++ b/drivers/dma-buf/sync_file.c
-@@ -137,8 +137,8 @@ char *sync_file_get_name(struct sync_file *sync_file, char *buf, int len)
- 		struct dma_fence *fence = sync_file->fence;
+diff --git a/include/linux/dma-fence.h b/include/linux/dma-fence.h
+index 5bafd0a5f1f1..c814a86087f8 100644
+--- a/include/linux/dma-fence.h
++++ b/include/linux/dma-fence.h
+@@ -387,6 +387,16 @@ bool dma_fence_remove_callback(struct dma_fence *fence,
+ 			       struct dma_fence_cb *cb);
+ void dma_fence_enable_sw_signaling(struct dma_fence *fence);
  
- 		snprintf(buf, len, "%s-%s%llu-%lld",
--			 fence->ops->get_driver_name(fence),
--			 fence->ops->get_timeline_name(fence),
-+			 dma_fence_driver_name(fence),
-+			 dma_fence_timeline_name(fence),
- 			 fence->context,
- 			 fence->seqno);
- 	}
-@@ -262,9 +262,9 @@ static long sync_file_ioctl_merge(struct sync_file *sync_file,
- static int sync_fill_fence_info(struct dma_fence *fence,
- 				 struct sync_fence_info *info)
- {
--	strscpy(info->obj_name, fence->ops->get_timeline_name(fence),
-+	strscpy(info->obj_name, dma_fence_timeline_name(fence),
- 		sizeof(info->obj_name));
--	strscpy(info->driver_name, fence->ops->get_driver_name(fence),
-+	strscpy(info->driver_name, dma_fence_driver_name(fence),
- 		sizeof(info->driver_name));
- 
- 	info->status = dma_fence_get_status(fence);
++static inline const char *dma_fence_driver_name(struct dma_fence *fence)
++{
++	return fence->ops->get_driver_name(fence);
++}
++
++static inline const char *dma_fence_timeline_name(struct dma_fence *fence)
++{
++	return fence->ops->get_timeline_name(fence);
++}
++
+ /**
+  * dma_fence_is_signaled_locked - Return an indication if the fence
+  *                                is signaled yet.
 -- 
 2.48.0
 
