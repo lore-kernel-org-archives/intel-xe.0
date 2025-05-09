@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA9DFC3ABBC
-	for <intel-xe@archiver.kernel.org>; Fri,  9 May 2025 16:21:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 756A9C3ABC3
+	for <intel-xe@archiver.kernel.org>; Fri,  9 May 2025 16:27:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EC2E10EAB7;
-	Fri,  9 May 2025 16:21:07 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="npDu+qte";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B16FB10EAB7
- for <intel-xe@lists.freedesktop.org>; Fri,  9 May 2025 16:21:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746807666; x=1778343666;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=dL7KD/TlJeCv74sI23DpTJADqUEeXDYITiCPLXNsLjY=;
- b=npDu+qtevgylzG1Rk+3h0Bmq8a1+Cy8UhMcXq5KsfHXTpV3QTCIjvsTb
- 59fBwn6v4FnGmOjDA4PIGU2JkHwjRiRjb6cwcFlSSCBsDLmgRQsZE8yz/
- RyjDpzc8zIITSb6LImwSXb4HqDY7Y3Xi8CGhEvRM/I3R4c8KhDwxmH9I6
- UJQ5ajGEd8jGPUeQjqxX/1ngHsDDcgOlnliJbGvkwvrL+x1K8CUK98M4G
- YbWvRuMapi/o6F2TKVQ9CzF5nySRfXDMBTXIqrmqx8tQRGAHTtT8AfueY
- Q+iy2GC4qcfXNswYhV80AhtJgMQdqC0o6d+dfQysbxJviawg932MVcrfa w==;
-X-CSE-ConnectionGUID: 1dzvRN9WRAuisOZV66wHEg==
-X-CSE-MsgGUID: Mlslke9oQZSU+oYabFmabg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11427"; a="48339794"
-X-IronPort-AV: E=Sophos;i="6.15,275,1739865600"; d="scan'208";a="48339794"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2025 09:21:06 -0700
-X-CSE-ConnectionGUID: zXuMQpltQAKA3+Ng8M/phg==
-X-CSE-MsgGUID: dUIDlxakSoyMHg85kq6Wrg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,275,1739865600"; d="scan'208";a="140724147"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2025 09:21:02 -0700
-Date: Fri, 9 May 2025 19:20:59 +0300
-From: Raag Jadav <raag.jadav@intel.com>
-To: "Rafael J. Wysocki" <rjw@rjwysocki.net>
-Cc: Linux PM <linux-pm@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Bjorn Helgaas <helgaas@kernel.org>, Linux PCI <linux-pci@vger.kernel.org>,
- x86 Maintainers <x86@kernel.org>, intel-xe@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v1 2/3] PM: sleep: Introduce pm_suspend_in_progress()
-Message-ID: <aB4ra4BsLu5Rv5ea@black.fi.intel.com>
-References: <5903743.DvuYhMxLoT@rjwysocki.net>
- <2020901.PYKUYFuaPT@rjwysocki.net>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F8D010EA9F;
+	Fri,  9 May 2025 16:27:34 +0000 (UTC)
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F251D10EAAC;
+ Fri,  9 May 2025 16:27:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2020901.PYKUYFuaPT@rjwysocki.net>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_Support_active_context_utiliza?=
+ =?utf-8?q?tion_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 09 May 2025 16:27:32 -0000
+Message-ID: <174680805298.64857.9005839582954973703@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <20250509161159.2173069-5-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <20250509161159.2173069-5-umesh.nerlige.ramappa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,19 +36,117 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, May 09, 2025 at 03:02:27PM +0200, Rafael J. Wysocki wrote:
-> From: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
-> 
-> Introduce pm_suspend_in_progress() to be used for checking if a system-
-> wide suspend or resume transition is in progress, instead of comparing
-> pm_suspend_target_state directly to PM_SUSPEND_ON, and use it where
-> applicable.
-> 
-> No intentional functional impact.
-> 
-> Signed-off-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+== Series Details ==
 
-Reviewed-by: Raag Jadav <raag.jadav@intel.com>
+Series: Support active context utilization (rev4)
+URL   : https://patchwork.freedesktop.org/series/148302/
+State : success
+
+== Summary ==
+
+lib/modules/6.15.0-rc5-xe+/kernel/arch/x86/kvm/
+lib/modules/6.15.0-rc5-xe+/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.15.0-rc5-xe+/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.15.0-rc5-xe+/kernel/arch/x86/kvm/kvm-amd.ko
+lib/modules/6.15.0-rc5-xe+/kernel/virt/
+lib/modules/6.15.0-rc5-xe+/kernel/virt/lib/
+lib/modules/6.15.0-rc5-xe+/kernel/virt/lib/irqbypass.ko
+lib/modules/6.15.0-rc5-xe+/kernel/kernel/
+lib/modules/6.15.0-rc5-xe+/kernel/kernel/kheaders.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/ecrdsa_generic.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/xcbc.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/serpent_generic.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/aria_generic.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/crypto_simd.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/adiantum.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/tcrypt.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/crypto_engine.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/zstd.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/asymmetric_keys/
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/asymmetric_keys/pkcs7_test_key.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/asymmetric_keys/pkcs8_key_parser.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/des_generic.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/xctr.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/authenc.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/sm4_generic.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/camellia_generic.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/sm3.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/pcrypt.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/aegis128.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/af_alg.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/algif_aead.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/cmac.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/sm3_generic.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/aes_ti.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/chacha_generic.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/poly1305_generic.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/nhpoly1305.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/crc32_generic.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/essiv.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/ccm.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/wp512.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/streebog_generic.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/authencesn.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/echainiv.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/lrw.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/cryptd.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/crypto_user.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/algif_hash.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/polyval-generic.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/hctr2.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/842.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/pcbc.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/ansi_cprng.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/cast6_generic.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/twofish_common.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/twofish_generic.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/lz4hc.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/blowfish_generic.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/md4.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/chacha20poly1305.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/curve25519-generic.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/lz4.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/rmd160.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/algif_skcipher.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/cast5_generic.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/fcrypt.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/ecdsa_generic.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/sm4.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/cast_common.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/blowfish_common.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/michael_mic.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/async_tx/
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.15.0-rc5-xe+/kernel/crypto/algif_rng.ko
+lib/modules/6.15.0-rc5-xe+/kernel/block/
+lib/modules/6.15.0-rc5-xe+/kernel/block/bfq.ko
+lib/modules/6.15.0-rc5-xe+/kernel/block/kyber-iosched.ko
+lib/modules/6.15.0-rc5-xe+/build
+lib/modules/6.15.0-rc5-xe+/modules.alias.bin
+lib/modules/6.15.0-rc5-xe+/modules.builtin
+lib/modules/6.15.0-rc5-xe+/modules.softdep
+lib/modules/6.15.0-rc5-xe+/modules.alias
+lib/modules/6.15.0-rc5-xe+/modules.order
+lib/modules/6.15.0-rc5-xe+/modules.symbols
+lib/modules/6.15.0-rc5-xe+/modules.dep.bin
++ mv kernel-debug.tar.gz ..
++ cd ..
++ rm -rf archive-debug
++ [[ no == \y\e\s ]]
++ sync
+[+] Finished building and packaging 'debug'!
++ echo '[+] Finished building and packaging '\''debug'\''!'
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
