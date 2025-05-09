@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCA7FC3ABD4
-	for <intel-xe@archiver.kernel.org>; Fri,  9 May 2025 15:34:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B20CBC3ABCF
+	for <intel-xe@archiver.kernel.org>; Fri,  9 May 2025 15:34:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 674DE10EA95;
-	Fri,  9 May 2025 15:34:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3997510EA9F;
+	Fri,  9 May 2025 15:34:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="VD4CLquh";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Wairy2x7";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA3A910EA89;
- Fri,  9 May 2025 15:34:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D79610EA80;
+ Fri,  9 May 2025 15:34:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,16 +22,16 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=QIVSG+DcJjfDxYSma2hUhKEztJ2hqENQXXN7wRL+rgE=; b=VD4CLquhVUatXV7nn41rnOQNwK
- yzcwi2UxdqgOLIyRWMJA7Q+Ksa/qAhUWBnaPhHXLeMaXdItz19on9khlQRnaZGrGw32Yweg6TeCws
- WYh8abNbR1kYcHT0+tszIcIR6OOQIBTgIHC3KCjZUrv5p+lEcozooqAq0U9mo4dFDGwy2lqcTVMgO
- 2JxIO3hZNdjx50LwKt4eSlieMFnF36F0MNAAuNtErslg4DzAfmVnxHbixLLjNUi/+qn/1IlrCQHly
- W/YGcgptnAr6n1CoXK7DvJy4/RE94I16Rv9GuIfbyFJKLixBwtWaFQybVppDm2OH9Y9CM2D1JN5zX
- od0KqRvQ==;
+ bh=QAQu03T+0Cw7dpCbcuwxezen/s/XSrGtmte1ESndrNA=; b=Wairy2x7RxUSlfvD3/umfLlYdk
+ e2v+2Ceb9mcbFDlBwx/REf97PJ7pzXH731SMXpP+Jiem5n8EWxm2dMz9dB7TxYJwF1N1FBxE5V3Z6
+ MsG6VFkxXodHj/bGMZjgqNLHcYH6vlVOmfeMlUNrS4QIznY4R5EV34lBjUL/Vs+i/tucrZcKA+HTc
+ huidDrJU5Nl0HwC8Q8X3OnkHszR5z2L9GM5NjznUl+LpG4iObnLRO9Gc79tpFYFegHb/5LdhVlIGN
+ wBlpPbAWrh/d+Y+ImxaKbr8oK3mepQQ+/hqXyrAQ2eMw2tQ9tPjcHR5MUxSdI5HeY7fYv16DF0x5+
+ 1VwNrvYw==;
 Received: from [81.79.92.254] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uDPfM-005oFY-SM; Fri, 09 May 2025 17:34:13 +0200
+ id 1uDPfO-005oFo-Dx; Fri, 09 May 2025 17:34:15 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: dri-devel@lists.freedesktop.org
 Cc: Sumit Semwal <sumit.semwal@linaro.org>,
@@ -43,10 +43,9 @@ Cc: Sumit Semwal <sumit.semwal@linaro.org>,
  intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
  kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [RFC v2 09/13] drm/i915: Use dma-fence driver and timeline name
- helpers
-Date: Fri,  9 May 2025 16:33:48 +0100
-Message-ID: <20250509153352.7187-10-tvrtko.ursulin@igalia.com>
+Subject: [RFC v2 11/13] sync_file: Protect access to driver and timeline name
+Date: Fri,  9 May 2025 16:33:50 +0100
+Message-ID: <20250509153352.7187-12-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250509153352.7187-1-tvrtko.ursulin@igalia.com>
 References: <20250509153352.7187-1-tvrtko.ursulin@igalia.com>
@@ -66,57 +65,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Access the dma-fence internals via the previously added helpers.
+Protect the access to driver and timeline name which otherwise could be
+freed as dma-fence exported is signalling fences.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt_requests.c | 4 ++--
- drivers/gpu/drm/i915/i915_request.c         | 2 +-
- drivers/gpu/drm/i915/i915_sw_fence.c        | 4 ++--
- 3 files changed, 5 insertions(+), 5 deletions(-)
+ drivers/dma-buf/sync_file.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_requests.c b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-index d1a382dfaa1d..ae3557ed6c1e 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-@@ -252,8 +252,8 @@ void intel_gt_watchdog_work(struct work_struct *work)
- 			struct dma_fence *f = &rq->fence;
+diff --git a/drivers/dma-buf/sync_file.c b/drivers/dma-buf/sync_file.c
+index 212df4b849fe..ad87116baa24 100644
+--- a/drivers/dma-buf/sync_file.c
++++ b/drivers/dma-buf/sync_file.c
+@@ -136,11 +136,13 @@ char *sync_file_get_name(struct sync_file *sync_file, char *buf, int len)
+ 	} else {
+ 		struct dma_fence *fence = sync_file->fence;
  
- 			pr_notice("Fence expiration time out i915-%s:%s:%llx!\n",
--				  f->ops->get_driver_name(f),
--				  f->ops->get_timeline_name(f),
-+				  dma_fence_driver_name(f),
-+				  dma_fence_timeline_name(f),
- 				  f->seqno);
- 			i915_request_cancel(rq, -EINTR);
- 		}
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index c3d27eadc0a7..4874c4f1e4ab 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -2184,7 +2184,7 @@ void i915_request_show(struct drm_printer *m,
- 		       const char *prefix,
- 		       int indent)
++		dma_fence_access_begin();
+ 		snprintf(buf, len, "%s-%s%llu-%lld",
+ 			 dma_fence_driver_name(fence),
+ 			 dma_fence_timeline_name(fence),
+ 			 fence->context,
+ 			 fence->seqno);
++		dma_fence_access_end();
+ 	}
+ 
+ 	return buf;
+@@ -262,6 +264,8 @@ static long sync_file_ioctl_merge(struct sync_file *sync_file,
+ static int sync_fill_fence_info(struct dma_fence *fence,
+ 				 struct sync_fence_info *info)
  {
--	const char *name = rq->fence.ops->get_timeline_name((struct dma_fence *)&rq->fence);
-+	const char *name = dma_fence_timeline_name((struct dma_fence *)&rq->fence);
- 	char buf[80] = "";
- 	int x = 0;
++	dma_fence_access_begin();
++
+ 	strscpy(info->obj_name, dma_fence_timeline_name(fence),
+ 		sizeof(info->obj_name));
+ 	strscpy(info->driver_name, dma_fence_driver_name(fence),
+@@ -273,6 +277,8 @@ static int sync_fill_fence_info(struct dma_fence *fence,
+ 			ktime_to_ns(dma_fence_timestamp(fence)) :
+ 			ktime_set(0, 0);
  
-diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
-index 1d4cc91c0e40..e51ca7e50a4e 100644
---- a/drivers/gpu/drm/i915/i915_sw_fence.c
-+++ b/drivers/gpu/drm/i915/i915_sw_fence.c
-@@ -435,8 +435,8 @@ static void timer_i915_sw_fence_wake(struct timer_list *t)
- 		return;
- 
- 	pr_notice("Asynchronous wait on fence %s:%s:%llx timed out (hint:%ps)\n",
--		  cb->dma->ops->get_driver_name(cb->dma),
--		  cb->dma->ops->get_timeline_name(cb->dma),
-+		  dma_fence_driver_name(cb->dma),
-+		  dma_fence_timeline_name(cb->dma),
- 		  cb->dma->seqno,
- 		  i915_sw_fence_debug_hint(fence));
++	dma_fence_access_end();
++
+ 	return info->status;
+ }
  
 -- 
 2.48.0
