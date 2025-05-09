@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28785C3ABCC
-	for <intel-xe@archiver.kernel.org>; Fri,  9 May 2025 15:34:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60CA8C3ABCF
+	for <intel-xe@archiver.kernel.org>; Fri,  9 May 2025 15:34:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 706FA10EA8B;
-	Fri,  9 May 2025 15:34:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 292E710EA8D;
+	Fri,  9 May 2025 15:34:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="qy+pr17r";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="gsz/VDaw";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB36D10EA70;
- Fri,  9 May 2025 15:34:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BDAA10EA86;
+ Fri,  9 May 2025 15:34:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,16 +22,16 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=r8Pjg2msokWYcuhupUxz/k2tjiv/iKmS3Yjcj/950W0=; b=qy+pr17roTkKORBXq71WVY/uIa
- /J5NbEt2JQlr5+7KnNRvTsRciVSLTV+hsj2g9IduxKtvjI1VkWvgQUz4kw4JrKA71uT3DV+z8L7u3
- yKcoayoLIXSUewXs5ot+vi7rvUT35HgaEMYgw/xcocvy3UnzhDJLdyQMqI0No9ZFS7kIlUMFeI/5s
- ATFrCAubycNhj1hhpzCZHvjjzDUZhB+VlXmxIK5YxI+LFSjXNmVnonWDS0pg+NJ9obBZU9HE8bFtq
- K2nSYB5bVjjM0UjCZruZWWKhppwDm8qPK47G5sx5spHhE3hX4i10TONhOe5+mhE7wvm0iFUha/Dx8
- teybWipg==;
+ bh=ObiI1Tsci1Wqsl/cJJndA3Qz3YuyNsUysn45CqaBFc0=; b=gsz/VDawIcGFhh9+4gvqZ2RTSC
+ YybIagPa24ZKbNDSgRsietRRz7tn16pHpNx2EfKuK8upx//zn1ER0VTsmUPbsKyrJXYWOUI6orn0Q
+ 2Z5ySw0w6bAVVcUUcMWNSTOeqrZ9aTGrTVa8hceaspg4+tx05F7fARchcqCUk8OcXnejqIsO7IQDp
+ hPgTtu6JzfBTJf51EejPXiWF25ZmrTjCxH2y9cG7WUhsHXL6GPSvzXBbLdPKmX/HsoEifMUNyJloj
+ unIoLHb7zi27dMQIfRElvKUm0fk5Ac70AC4Hxzx0mwljZJFpNz5TtPhWxXs/pxkSgHZ1LExvro/wz
+ 13jeqohQ==;
 Received: from [81.79.92.254] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uDPfJ-005oEr-Mp; Fri, 09 May 2025 17:34:10 +0200
+ id 1uDPfM-005oFL-2z; Fri, 09 May 2025 17:34:12 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: dri-devel@lists.freedesktop.org
 Cc: Sumit Semwal <sumit.semwal@linaro.org>,
@@ -43,10 +43,10 @@ Cc: Sumit Semwal <sumit.semwal@linaro.org>,
  intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
  kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [RFC v2 05/13] dma-fence: Add helpers for accessing driver and
- timeline name
-Date: Fri,  9 May 2025 16:33:44 +0100
-Message-ID: <20250509153352.7187-6-tvrtko.ursulin@igalia.com>
+Subject: [RFC v2 08/13] drm/amdgpu: Use dma-fence driver and timeline name
+ helpers
+Date: Fri,  9 May 2025 16:33:47 +0100
+Message-ID: <20250509153352.7187-9-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250509153352.7187-1-tvrtko.ursulin@igalia.com>
 References: <20250509153352.7187-1-tvrtko.ursulin@igalia.com>
@@ -66,35 +66,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add some helpers in order to enable preventing dma-fence users accessing
-the implementation details directly.
+Access the dma-fence internals via the previously added helpers.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
- include/linux/dma-fence.h | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/include/linux/dma-fence.h b/include/linux/dma-fence.h
-index 5bafd0a5f1f1..c814a86087f8 100644
---- a/include/linux/dma-fence.h
-+++ b/include/linux/dma-fence.h
-@@ -387,6 +387,16 @@ bool dma_fence_remove_callback(struct dma_fence *fence,
- 			       struct dma_fence_cb *cb);
- void dma_fence_enable_sw_signaling(struct dma_fence *fence);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
+index 11dd2e0f7979..8e5bf179a6c8 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
+@@ -33,7 +33,7 @@
+ #define TRACE_INCLUDE_FILE amdgpu_trace
  
-+static inline const char *dma_fence_driver_name(struct dma_fence *fence)
-+{
-+	return fence->ops->get_driver_name(fence);
-+}
-+
-+static inline const char *dma_fence_timeline_name(struct dma_fence *fence)
-+{
-+	return fence->ops->get_timeline_name(fence);
-+}
-+
- /**
-  * dma_fence_is_signaled_locked - Return an indication if the fence
-  *                                is signaled yet.
+ #define AMDGPU_JOB_GET_TIMELINE_NAME(job) \
+-	 job->base.s_fence->finished.ops->get_timeline_name(&job->base.s_fence->finished)
++	 dma_fence_timeline_name(&job->base.s_fence->finished)
+ 
+ TRACE_EVENT(amdgpu_device_rreg,
+ 	    TP_PROTO(unsigned did, uint32_t reg, uint32_t value),
 -- 
 2.48.0
 
