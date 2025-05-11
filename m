@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AD5EC3ABC3
-	for <intel-xe@archiver.kernel.org>; Sat, 10 May 2025 07:49:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5297FC3ABC3
+	for <intel-xe@archiver.kernel.org>; Sun, 11 May 2025 22:48:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDC3A10E035;
-	Sat, 10 May 2025 07:49:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0C0910E0EF;
+	Sun, 11 May 2025 22:48:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f1zGDqiE";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="SNXSAAyp";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8A5C10E035
- for <intel-xe@lists.freedesktop.org>; Sat, 10 May 2025 07:49:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746863340; x=1778399340;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=CgOioozzgpokl+1iPgvGrrO0DMaGjfWa9b1pVN6PbV4=;
- b=f1zGDqiE18zuIlpzOZ1UEPLc+1BMDwgegApADkpEpkVVGL01MkNC8VcV
- Pa9HdyEC/5/ABiJXlvOzWWlzd7b1ovgJn9zHsvGWPRuUZAEwXvXQGXcy0
- reZIceETO7bRBgNe+bPQP5UcRcSAYy3r+cJY6hjNGX0Tv2jQyD2ZxWo4m
- 4ODCnuZmFxCQnzigTw58gJt6YYE+6IpWJU5uoENGkENaupSv6hxnKUheY
- MrKcFmub60elr3AvR5A1KUJomy5vUkVj3OpiBRxmJwwMCdOOnpo/ZrELx
- /ii471uCBK5L50iJ3EXsT6PT5xQZTYNVpLHFl7vSZ+r55HSpLaA2JXKgr A==;
-X-CSE-ConnectionGUID: EZVCUe1wTNGHYdTv9jmqvw==
-X-CSE-MsgGUID: nn8TgH++QciSLMFUNl0gcA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11427"; a="36324204"
-X-IronPort-AV: E=Sophos;i="6.15,276,1739865600"; d="scan'208";a="36324204"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2025 00:48:51 -0700
-X-CSE-ConnectionGUID: iC/UrQdeRuy9HaUTbd7bNA==
-X-CSE-MsgGUID: 8nDPq7OyRu6YZwseKGbS1A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,276,1739865600"; d="scan'208";a="137351893"
-Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
- by orviesa007.jf.intel.com with ESMTP; 10 May 2025 00:48:50 -0700
-Received: from kbuild by 1992f890471c with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1uDewx-000Csn-2D;
- Sat, 10 May 2025 07:48:47 +0000
-Date: Sat, 10 May 2025 15:48:16 +0800
-From: kernel test robot <lkp@intel.com>
-To: "Thomas =?utf-8?Q?Hellstr=C3=B6m"?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- 243bf99e2fe75edf8df1711c1377b6fc020b806c
-Message-ID: <202505101506.nzgNPl1X-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DEB0D10E0ED;
+ Sun, 11 May 2025 22:48:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=fYpjyOd2Yg0wDHzHvbeC5gHS5mcr9oma4AeYk2fvvk4=; b=SNXSAAypcRox5VcXFEfNh8Vt3u
+ 3BnSc4fI441fIniVMtp7T64NYRxvoIVTL9IcRY74H6uoRDJDEHvGHxxlxdHVXOkCyt/M9aKzLaG0j
+ ErV+Uxf03vJFKblKt4FPCHu9MYHBbyFn7KTskk2fDKOz91atkhtH+5BfykKxlBQvDrdjW8a8sxieP
+ wx/+ix3R0ofStJUgrh9AJHc1e2caTqUJDfDlTo+txa68RrJIiMABxA1Ar/X4V86DnIGR2PMhbyZvH
+ sbhNKUPez9y4l/1sPQZuXdY/3Z9Nazsb81+I/EZ7T2kiaOPtByGypMQ5v2WGcowMYNinbY4GGl5gY
+ Lnf1ZVaw==;
+Received: from [191.204.192.64] (helo=localhost.localdomain)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1uEFNf-006nqn-Sa; Mon, 12 May 2025 00:48:00 +0200
+From: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
+To: "Alex Deucher" <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ siqueira@igalia.com, airlied@gmail.com, simona@ffwll.ch,
+ "Raag Jadav" <raag.jadav@intel.com>, rodrigo.vivi@intel.com,
+ jani.nikula@linux.intel.com, Xaver Hugl <xaver.hugl@gmail.com>,
+ "Pierre-Loup A . Griffais" <pgriffais@valvesoftware.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
+Subject: [PATCH v2 1/3] drm: Create an app info option for wedge events
+Date: Sun, 11 May 2025 19:47:43 -0300
+Message-ID: <20250511224745.834446-2-andrealmeid@igalia.com>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250511224745.834446-1-andrealmeid@igalia.com>
+References: <20250511224745.834446-1-andrealmeid@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,150 +66,161 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: 243bf99e2fe75edf8df1711c1377b6fc020b806c  drm/xe: Fix the gem shrinker name
+When a device get wedged, it might be caused by a guilty application.
+For userspace, knowing which app was the cause can be useful for some
+situations, like for implementing a policy, logs or for giving a chance
+for the compositor to let the user know what app caused the problem.
+This is an optional argument, when `PID=-1` there's no information about
+the app caused the problem, or if any app was involved during the hang.
 
-elapsed time: 1337m
+Sometimes just the PID isn't enough giving that the app might be already
+dead by the time userspace will try to check what was this PID's name,
+so to make the life easier also notify what's the app's name in the user
+event.
 
-configs tested: 131
-configs skipped: 3
+Signed-off-by: André Almeida <andrealmeid@igalia.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c    |  2 +-
+ drivers/gpu/drm/drm_drv.c                  | 16 +++++++++++++---
+ drivers/gpu/drm/i915/gt/intel_reset.c      |  3 ++-
+ drivers/gpu/drm/xe/xe_device.c             |  3 ++-
+ include/drm/drm_device.h                   |  8 ++++++++
+ include/drm/drm_drv.h                      |  3 ++-
+ 7 files changed, 29 insertions(+), 8 deletions(-)
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 7f354cd532dc..c8a51418d0e7 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -6216,7 +6216,7 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
+ 	atomic_set(&adev->reset_domain->reset_res, r);
+ 
+ 	if (!r)
+-		drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE);
++		drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, NULL);
+ 
+ 	return r;
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+index acb21fc8b3ce..a47b2eb301e5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+@@ -166,7 +166,7 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
+ 			if (amdgpu_ring_sched_ready(ring))
+ 				drm_sched_start(&ring->sched, 0);
+ 			dev_err(adev->dev, "Ring %s reset succeeded\n", ring->sched.name);
+-			drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE);
++			drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, NULL);
+ 			goto exit;
+ 		}
+ 		dev_err(adev->dev, "Ring %s reset failure\n", ring->sched.name);
+diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+index 3dc7acd56b1d..1816ef4251e7 100644
+--- a/drivers/gpu/drm/drm_drv.c
++++ b/drivers/gpu/drm/drm_drv.c
+@@ -542,6 +542,7 @@ static const char *drm_get_wedge_recovery(unsigned int opt)
+  * drm_dev_wedged_event - generate a device wedged uevent
+  * @dev: DRM device
+  * @method: method(s) to be used for recovery
++ * @info: optional information about the guilty app
+  *
+  * This generates a device wedged uevent for the DRM device specified by @dev.
+  * Recovery @method\(s) of choice will be sent in the uevent environment as
+@@ -554,13 +555,14 @@ static const char *drm_get_wedge_recovery(unsigned int opt)
+  *
+  * Returns: 0 on success, negative error code otherwise.
+  */
+-int drm_dev_wedged_event(struct drm_device *dev, unsigned long method)
++int drm_dev_wedged_event(struct drm_device *dev, unsigned long method,
++			 struct drm_wedge_app_info *info)
+ {
+ 	const char *recovery = NULL;
+ 	unsigned int len, opt;
+ 	/* Event string length up to 28+ characters with available methods */
+-	char event_string[32];
+-	char *envp[] = { event_string, NULL };
++	char event_string[32], pid_string[15], comm_string[TASK_COMM_LEN];
++	char *envp[] = { event_string, pid_string, comm_string, NULL };
+ 
+ 	len = scnprintf(event_string, sizeof(event_string), "%s", "WEDGED=");
+ 
+@@ -582,6 +584,14 @@ int drm_dev_wedged_event(struct drm_device *dev, unsigned long method)
+ 	drm_info(dev, "device wedged, %s\n", method == DRM_WEDGE_RECOVERY_NONE ?
+ 		 "but recovered through reset" : "needs recovery");
+ 
++	if (info) {
++		snprintf(pid_string, sizeof(pid_string), "PID=%u", info->pid);
++		snprintf(comm_string, sizeof(comm_string), "APP=%s", info->comm);
++	} else {
++		snprintf(pid_string, sizeof(pid_string), "%s", "PID=-1");
++		snprintf(comm_string, sizeof(comm_string), "%s", "APP=none");
++	}
++
+ 	return kobject_uevent_env(&dev->primary->kdev->kobj, KOBJ_CHANGE, envp);
+ }
+ EXPORT_SYMBOL(drm_dev_wedged_event);
+diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+index dbdcfe130ad4..ba1d8fdc3c7b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_reset.c
++++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+@@ -1448,7 +1448,8 @@ static void intel_gt_reset_global(struct intel_gt *gt,
+ 		kobject_uevent_env(kobj, KOBJ_CHANGE, reset_done_event);
+ 	else
+ 		drm_dev_wedged_event(&gt->i915->drm,
+-				     DRM_WEDGE_RECOVERY_REBIND | DRM_WEDGE_RECOVERY_BUS_RESET);
++				     DRM_WEDGE_RECOVERY_REBIND | DRM_WEDGE_RECOVERY_BUS_RESET,
++				     NULL);
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index c02c4c4e9412..f329613e061f 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -1168,7 +1168,8 @@ void xe_device_declare_wedged(struct xe_device *xe)
+ 
+ 		/* Notify userspace of wedged device */
+ 		drm_dev_wedged_event(&xe->drm,
+-				     DRM_WEDGE_RECOVERY_REBIND | DRM_WEDGE_RECOVERY_BUS_RESET);
++				     DRM_WEDGE_RECOVERY_REBIND | DRM_WEDGE_RECOVERY_BUS_RESET,
++				     NULL);
+ 	}
+ 
+ 	for_each_gt(gt, xe, id)
+diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
+index e2f894f1b90a..b87401d5079e 100644
+--- a/include/drm/drm_device.h
++++ b/include/drm/drm_device.h
+@@ -30,6 +30,14 @@ struct pci_controller;
+ #define DRM_WEDGE_RECOVERY_REBIND	BIT(1)	/* unbind + bind driver */
+ #define DRM_WEDGE_RECOVERY_BUS_RESET	BIT(2)	/* unbind + reset bus device + bind */
+ 
++/**
++ * struct drm_wedge_app_info - information about the guilty app of a wedge dev
++ */
++struct drm_wedge_app_info {
++	pid_t pid;
++	char *comm;
++};
++
+ /**
+  * enum switch_power_state - power state of drm device
+  */
+diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
+index a43d707b5f36..8fc6412a6345 100644
+--- a/include/drm/drm_drv.h
++++ b/include/drm/drm_drv.h
+@@ -482,7 +482,8 @@ void drm_put_dev(struct drm_device *dev);
+ bool drm_dev_enter(struct drm_device *dev, int *idx);
+ void drm_dev_exit(int idx);
+ void drm_dev_unplug(struct drm_device *dev);
+-int drm_dev_wedged_event(struct drm_device *dev, unsigned long method);
++int drm_dev_wedged_event(struct drm_device *dev, unsigned long method,
++			 struct drm_wedge_app_info *info);
+ 
+ /**
+  * drm_dev_is_unplugged - is a DRM device unplugged
+-- 
+2.49.0
 
-tested configs:
-alpha                             allnoconfig    gcc-14.2.0
-alpha                            allyesconfig    gcc-14.2.0
-arc                              allmodconfig    gcc-14.2.0
-arc                               allnoconfig    gcc-14.2.0
-arc                              allyesconfig    gcc-14.2.0
-arc                        nsim_700_defconfig    gcc-14.2.0
-arc                   randconfig-001-20250509    gcc-13.3.0
-arc                   randconfig-002-20250509    gcc-13.3.0
-arm                              allmodconfig    gcc-14.2.0
-arm                               allnoconfig    clang-21
-arm                              allyesconfig    gcc-14.2.0
-arm                       aspeed_g5_defconfig    gcc-14.2.0
-arm                         bcm2835_defconfig    clang-21
-arm                       imx_v4_v5_defconfig    clang-21
-arm                          moxart_defconfig    gcc-14.2.0
-arm                             mxs_defconfig    clang-21
-arm                   randconfig-001-20250509    gcc-7.5.0
-arm                   randconfig-002-20250509    gcc-6.5.0
-arm                   randconfig-003-20250509    gcc-10.5.0
-arm                   randconfig-004-20250509    clang-21
-arm64                            allmodconfig    clang-19
-arm64                             allnoconfig    gcc-14.2.0
-arm64                 randconfig-001-20250509    gcc-7.5.0
-arm64                 randconfig-002-20250509    gcc-7.5.0
-arm64                 randconfig-003-20250509    clang-21
-arm64                 randconfig-004-20250509    gcc-5.5.0
-csky                              allnoconfig    gcc-14.2.0
-csky                  randconfig-001-20250509    gcc-14.2.0
-csky                  randconfig-002-20250509    gcc-13.3.0
-hexagon                          allmodconfig    clang-17
-hexagon                           allnoconfig    clang-21
-hexagon                          allyesconfig    clang-21
-hexagon               randconfig-001-20250509    clang-20
-hexagon               randconfig-002-20250509    clang-21
-i386                             allmodconfig    gcc-12
-i386                              allnoconfig    gcc-12
-i386                             allyesconfig    gcc-12
-i386        buildonly-randconfig-001-20250509    gcc-11
-i386        buildonly-randconfig-002-20250509    gcc-12
-i386        buildonly-randconfig-003-20250509    clang-20
-i386        buildonly-randconfig-004-20250509    clang-20
-i386        buildonly-randconfig-005-20250509    gcc-12
-i386        buildonly-randconfig-006-20250509    gcc-11
-i386                                defconfig    clang-20
-loongarch                        allmodconfig    gcc-14.2.0
-loongarch                         allnoconfig    gcc-14.2.0
-loongarch             randconfig-001-20250509    gcc-13.3.0
-loongarch             randconfig-002-20250509    gcc-14.2.0
-m68k                             allmodconfig    gcc-14.2.0
-m68k                              allnoconfig    gcc-14.2.0
-m68k                             allyesconfig    gcc-14.2.0
-m68k                        m5272c3_defconfig    gcc-14.2.0
-microblaze                       allmodconfig    gcc-14.2.0
-microblaze                        allnoconfig    gcc-14.2.0
-microblaze                       allyesconfig    gcc-14.2.0
-mips                              allnoconfig    gcc-14.2.0
-mips                          eyeq6_defconfig    clang-21
-mips                           ip22_defconfig    gcc-14.2.0
-mips                        omega2p_defconfig    clang-21
-nios2                         10m50_defconfig    gcc-14.2.0
-nios2                             allnoconfig    gcc-14.2.0
-nios2                 randconfig-001-20250509    gcc-13.3.0
-nios2                 randconfig-002-20250509    gcc-13.3.0
-openrisc                          allnoconfig    gcc-14.2.0
-openrisc                         allyesconfig    gcc-14.2.0
-openrisc                            defconfig    gcc-14.2.0
-parisc                           allmodconfig    gcc-14.2.0
-parisc                            allnoconfig    gcc-14.2.0
-parisc                           allyesconfig    gcc-14.2.0
-parisc                              defconfig    gcc-14.2.0
-parisc                randconfig-001-20250509    gcc-6.5.0
-parisc                randconfig-002-20250509    gcc-14.2.0
-powerpc                          allmodconfig    gcc-14.2.0
-powerpc                           allnoconfig    gcc-14.2.0
-powerpc                          allyesconfig    clang-21
-powerpc                       eiger_defconfig    clang-21
-powerpc               randconfig-001-20250509    clang-16
-powerpc               randconfig-002-20250509    gcc-5.5.0
-powerpc               randconfig-003-20250509    gcc-7.5.0
-powerpc                  storcenter_defconfig    gcc-14.2.0
-powerpc                     tqm8541_defconfig    clang-21
-powerpc64             randconfig-001-20250509    gcc-7.5.0
-powerpc64             randconfig-002-20250509    clang-21
-powerpc64             randconfig-003-20250509    gcc-10.5.0
-riscv                            allmodconfig    clang-21
-riscv                             allnoconfig    gcc-14.2.0
-riscv                            allyesconfig    clang-16
-riscv                               defconfig    clang-21
-riscv                 randconfig-001-20250509    clang-21
-riscv                 randconfig-002-20250509    clang-21
-s390                             allmodconfig    clang-18
-s390                              allnoconfig    clang-21
-s390                             allyesconfig    gcc-14.2.0
-s390                                defconfig    clang-21
-s390                  randconfig-001-20250509    clang-21
-s390                  randconfig-002-20250509    clang-17
-sh                               allmodconfig    gcc-14.2.0
-sh                                allnoconfig    gcc-14.2.0
-sh                               allyesconfig    gcc-14.2.0
-sh                                  defconfig    gcc-14.2.0
-sh                    randconfig-001-20250509    gcc-9.3.0
-sh                    randconfig-002-20250509    gcc-5.5.0
-sh                             sh03_defconfig    gcc-14.2.0
-sparc                            allmodconfig    gcc-14.2.0
-sparc                             allnoconfig    gcc-14.2.0
-sparc                 randconfig-001-20250509    gcc-6.5.0
-sparc                 randconfig-002-20250509    gcc-6.5.0
-sparc64                             defconfig    gcc-14.2.0
-sparc64               randconfig-001-20250509    gcc-10.5.0
-sparc64               randconfig-002-20250509    gcc-6.5.0
-um                               allmodconfig    clang-19
-um                                allnoconfig    clang-21
-um                               allyesconfig    gcc-12
-um                                  defconfig    clang-21
-um                             i386_defconfig    gcc-12
-um                    randconfig-001-20250509    clang-21
-um                    randconfig-002-20250509    gcc-12
-um                           x86_64_defconfig    clang-21
-x86_64                            allnoconfig    clang-20
-x86_64                           allyesconfig    clang-20
-x86_64      buildonly-randconfig-001-20250509    gcc-11
-x86_64      buildonly-randconfig-002-20250509    gcc-11
-x86_64      buildonly-randconfig-003-20250509    clang-20
-x86_64      buildonly-randconfig-004-20250509    clang-20
-x86_64      buildonly-randconfig-005-20250509    gcc-12
-x86_64      buildonly-randconfig-006-20250509    gcc-12
-x86_64                              defconfig    gcc-11
-x86_64                          rhel-9.4-rust    clang-18
-xtensa                            allnoconfig    gcc-14.2.0
-xtensa                randconfig-001-20250509    gcc-12.4.0
-xtensa                randconfig-002-20250509    gcc-14.2.0
-
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
