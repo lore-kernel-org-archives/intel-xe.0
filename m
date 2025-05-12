@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8FF6C3ABCD
-	for <intel-xe@archiver.kernel.org>; Mon, 12 May 2025 11:59:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E76FCC3ABC3
+	for <intel-xe@archiver.kernel.org>; Mon, 12 May 2025 12:08:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 953A710E18F;
-	Mon, 12 May 2025 11:59:12 +0000 (UTC)
-Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EF5C10E18F;
- Mon, 12 May 2025 11:59:11 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C97A10E187;
+	Mon, 12 May 2025 12:08:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Diva/wNw";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0EEB10E187
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 May 2025 12:08:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1747051734; x=1778587734;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Ka9Q7bh7Wm5DwGmSg5oWB047yjQgQLqzov6vCSMUdhY=;
+ b=Diva/wNwUwShdUkZq6J06K3sQsSxgloaWGO9Mn25I8+DT6BP4sow3Uwf
+ 5/KXqcBQQLxum6cWLIah790oIoSRrT0fOMnagu1zAQNlGr1w/Ljty9ogr
+ ejAXrbd1k5vkUc49148aHbsDmoatqaqFICJ0YXzYIJPXBTiW7Bw+Rc1Pa
+ 9Qrd4kOM+4YxGR4XLcMYsiAjy5zQChVQrWBoPpjQ1Fn3pQeB9+4EZCJS6
+ peiEB4Kq1EEt9pjEP5I0zBo5D7oDDG6jEwsghlzmHmEsQ4fhW4eJM+ZKw
+ lQyAUK60l13i710kkIAx4IIz1nevfPb8Pn8s9eXn/ULb9SshStt+25fCm g==;
+X-CSE-ConnectionGUID: MlzmrnIEQDGPe3WtPDcViQ==
+X-CSE-MsgGUID: EFbyOlgeS3qadNqvjIvPkw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="49009790"
+X-IronPort-AV: E=Sophos;i="6.15,282,1739865600"; d="scan'208";a="49009790"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2025 05:08:53 -0700
+X-CSE-ConnectionGUID: YDd8ZVCeQnuO1nbQA0mcLA==
+X-CSE-MsgGUID: 9GNR01GvTe2v5kGaGdZTPQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,282,1739865600"; d="scan'208";a="137759007"
+Received: from unknown (HELO nitin-Super-Server.iind.intel.com)
+ ([10.190.238.72])
+ by fmviesa008.fm.intel.com with ESMTP; 12 May 2025 05:08:51 -0700
+From: Nitin Gote <nitin.r.gote@intel.com>
+To: matthew.d.roper@intel.com
+Cc: gustavo.sousa@intel.com, intel-xe@lists.freedesktop.org,
+ joonas.lahtinen@linux.intel.com, himal.prasad.ghimiray@intel.com,
+ tejas.upadhyay@intel.com, nitin.r.gote@intel.com
+Subject: [PATCH] drm/xe/xe3: Disable null query for anyhit shader
+Date: Mon, 12 May 2025 18:02:54 +0530
+Message-Id: <20250512123254.3332629-1-nitin.r.gote@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/vf=3A_Post-migrat?=
- =?utf-8?q?ion_recovery_of_GGTT_nodes_and_CTB?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tomasz Lis" <tomasz.lis@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 12 May 2025 11:59:11 -0000
-Message-ID: <174705115105.68960.11726318057708901825@c664b1dc75d1>
-X-Patchwork-Hint: ignore
-References: <20250512114018.361843-1-tomasz.lis@intel.com>
-In-Reply-To: <20250512114018.361843-1-tomasz.lis@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +63,49 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Set DIS_NULL_QUERY bit of RT_CTRL register to disable
+null query for anyhit shader for Xe3 IP.
 
-Series: drm/xe/vf: Post-migration recovery of GGTT nodes and CTB
-URL   : https://patchwork.freedesktop.org/series/148875/
-State : success
+Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
+---
+Hi Matt and Gustavo,
 
-== Summary ==
+On PTL, Default value of DIS_NULL_QUERY bit of RT_CTRL is '0' only.
+Last time, I have incorrectly read a value.
+So, this change is required as per request.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 821d4254ecd4bf2182c3871c6612202470a6340f
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
+Parallely, I will request to update bspec properly with default
+value and also proper entry for tuning.
+ 
+Changes in v2:
+  - Use xe3 IP and not ptl in commit title 
+    as this is  not platform specific.(Gustavo Sousa)
+  - Update a commit details properly (Matt)
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+ drivers/gpu/drm/xe/xe_tuning.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
+diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
+index 49ddbda7cdef..6f2f3428b12e 100644
+--- a/drivers/gpu/drm/xe/xe_tuning.c
++++ b/drivers/gpu/drm/xe/xe_tuning.c
+@@ -98,6 +98,11 @@ static const struct xe_rtp_entry_sr engine_tunings[] = {
+ 		       ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(SAMPLER_MODE, INDIRECT_STATE_BASE_ADDR_OVERRIDE))
+ 	},
++	{ XE_RTP_NAME("Tuning: Disable NULL query for Anyhit Shader"),
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3001),
++		       FUNC(xe_rtp_match_first_render_or_compute)),
++	  XE_RTP_ACTIONS(SET(RT_CTRL, DIS_NULL_QUERY))
++	},
+ };
+ 
+ static const struct xe_rtp_entry_sr lrc_tunings[] = {
+-- 
+2.25.1
 
