@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDEEFC3ABBC
-	for <intel-xe@archiver.kernel.org>; Mon, 12 May 2025 08:50:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A8B7C3ABBC
+	for <intel-xe@archiver.kernel.org>; Mon, 12 May 2025 09:05:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A14EE10E339;
-	Mon, 12 May 2025 08:50:17 +0000 (UTC)
-Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 540EE10E337;
- Mon, 12 May 2025 08:50:16 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6250553913499362168=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 558AE10E337;
+	Mon, 12 May 2025 09:05:35 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="khM/4NUN";
+	dkim-atps=neutral
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8157A10E01F;
+ Mon, 12 May 2025 09:05:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=0mTqn4uxOGOFVgmrrtw5QBIjumcsx4s7cKzF4psSG84=; b=khM/4NUNu6chJAWUOqfXhUBXkp
+ wVljFe/6YYHOOOF9sVGWlcAN03zaMjkdH8I1wSrxuysB9fngDKMDUfg3B8F12Es7aNya1WRYb0PAk
+ UqumuW2RbV6+bWOUeVyetFWUYjgRB61DvY4YRpf0KkyZzuSZ2VVAVkbq9WxDaoKfQgJgL1izmQ7Lj
+ QYCMi8FRr7SXLOnu1EE97MWiCnHVzZicz0UENnCUwixSAlQzAAkyimCwOx8AaBMPOn8biv4YOLOg/
+ tl2IMaWRMQb8t01cCAqfvT0VN16s0UJ9MLjPAMGUG18biedrNCjtHp7SIRaVz8ZDNvSi6PpYrD+ul
+ NlOmm+wg==;
+Received: from [81.79.92.254] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1uEP17-006zJx-4F; Mon, 12 May 2025 11:05:27 +0200
+Message-ID: <3e884da6-62c7-4d77-b271-48d4c0ffdfbe@igalia.com>
+Date: Mon, 12 May 2025 10:05:26 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Reduce_DPT_table_?=
- =?utf-8?q?alignment_as_in_i915?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 12 May 2025 08:50:16 -0000
-Message-ID: <174703981630.68358.5817272327566301535@c664b1dc75d1>
-X-Patchwork-Hint: ignore
-References: <20250512080156.57512-1-tvrtko.ursulin@igalia.com>
-In-Reply-To: <20250512080156.57512-1-tvrtko.ursulin@igalia.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC v2 06/13] dma-fence: Use driver and timeline name helpers
+ internally
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org
+Cc: Sumit Semwal <sumit.semwal@linaro.org>,
+ Gustavo Padovan <gustavo@padovan.org>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
+ kernel-dev@igalia.com
+References: <20250509153352.7187-1-tvrtko.ursulin@igalia.com>
+ <20250509153352.7187-7-tvrtko.ursulin@igalia.com>
+ <f0e371e8-5a66-4594-9fc3-167e710017c0@amd.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <f0e371e8-5a66-4594-9fc3-167e710017c0@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +67,74 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6250553913499362168==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 12/05/2025 09:22, Christian König wrote:
+> On 5/9/25 17:33, Tvrtko Ursulin wrote:
+>> Make the implementation use the previously added helper for accessing the
+>> driver and timeline name. This will enable more coverage later when
+>> asserts will be added into them.
+>>
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> 
+> I would squash that together with the previous patch. Since both patches are for the same component it doesn't make much sense to separate them.
+> 
+> Anyway Reviewed-by: Christian König <christian.koenig@amd.com>
 
-Series: drm/xe: Reduce DPT table alignment as in i915
-URL   : https://patchwork.freedesktop.org/series/148868/
-State : success
+Squashed locally and I kept your r-b.
 
-== Summary ==
+Regards,
 
-CI Bug Log - changes from xe-3060-b0db97d4270c697ade930cfefdb7aaef12cd80c9_BAT -> xe-pw-148868v1_BAT
-====================================================
+Tvrtko
 
-Summary
--------
+>> ---
+>>   drivers/dma-buf/dma-fence.c      | 9 +++++----
+>>   include/trace/events/dma_fence.h | 4 ++--
+>>   2 files changed, 7 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
+>> index 33661658f684..dc2456f68685 100644
+>> --- a/drivers/dma-buf/dma-fence.c
+>> +++ b/drivers/dma-buf/dma-fence.c
+>> @@ -538,8 +538,8 @@ void dma_fence_release(struct kref *kref)
+>>   	if (WARN(!list_empty(&fence->cb_list) &&
+>>   		 !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags),
+>>   		 "Fence %s:%s:%llx:%llx released with pending signals!\n",
+>> -		 fence->ops->get_driver_name(fence),
+>> -		 fence->ops->get_timeline_name(fence),
+>> +		 dma_fence_driver_name(fence),
+>> +		 dma_fence_timeline_name(fence),
+>>   		 fence->context, fence->seqno)) {
+>>   		unsigned long flags;
+>>   
+>> @@ -983,8 +983,9 @@ EXPORT_SYMBOL(dma_fence_set_deadline);
+>>   void dma_fence_describe(struct dma_fence *fence, struct seq_file *seq)
+>>   {
+>>   	seq_printf(seq, "%s %s seq %llu %ssignalled\n",
+>> -		   fence->ops->get_driver_name(fence),
+>> -		   fence->ops->get_timeline_name(fence), fence->seqno,
+>> +		   dma_fence_driver_name(fence),
+>> +		   dma_fence_timeline_name(fence),
+>> +		   fence->seqno,
+>>   		   dma_fence_is_signaled(fence) ? "" : "un");
+>>   }
+>>   EXPORT_SYMBOL(dma_fence_describe);
+>> diff --git a/include/trace/events/dma_fence.h b/include/trace/events/dma_fence.h
+>> index a4de3df8500b..84c83074ee81 100644
+>> --- a/include/trace/events/dma_fence.h
+>> +++ b/include/trace/events/dma_fence.h
+>> @@ -16,8 +16,8 @@ DECLARE_EVENT_CLASS(dma_fence,
+>>   	TP_ARGS(fence),
+>>   
+>>   	TP_STRUCT__entry(
+>> -		__string(driver, fence->ops->get_driver_name(fence))
+>> -		__string(timeline, fence->ops->get_timeline_name(fence))
+>> +		__string(driver, dma_fence_driver_name(fence))
+>> +		__string(timeline, dma_fence_timeline_name(fence))
+>>   		__field(unsigned int, context)
+>>   		__field(unsigned int, seqno)
+>>   	),
+> 
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8359 -> IGT_8361
-  * Linux: xe-3060-b0db97d4270c697ade930cfefdb7aaef12cd80c9 -> xe-pw-148868v1
-
-  IGT_8359: 807f0cbcc771d1d0bb0d27a78231a5f92dc02126 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8361: 8361
-  xe-3060-b0db97d4270c697ade930cfefdb7aaef12cd80c9: b0db97d4270c697ade930cfefdb7aaef12cd80c9
-  xe-pw-148868v1: 148868v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148868v1/index.html
-
---===============6250553913499362168==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Reduce DPT table alignment as in i915</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148868/">https://patchwork.freedesktop.org/series/148868/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148868v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148868v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3060-b0db97d4270c697ade930cfefdb7aaef12cd80c9_BAT -&gt; xe-pw-148868v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8359 -&gt; IGT_8361</li>
-<li>Linux: xe-3060-b0db97d4270c697ade930cfefdb7aaef12cd80c9 -&gt; xe-pw-148868v1</li>
-</ul>
-<p>IGT_8359: 807f0cbcc771d1d0bb0d27a78231a5f92dc02126 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8361: 8361<br />
-  xe-3060-b0db97d4270c697ade930cfefdb7aaef12cd80c9: b0db97d4270c697ade930cfefdb7aaef12cd80c9<br />
-  xe-pw-148868v1: 148868v1</p>
-
-</body>
-</html>
-
---===============6250553913499362168==--
