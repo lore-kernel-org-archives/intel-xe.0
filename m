@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D814AC3ABC3
-	for <intel-xe@archiver.kernel.org>; Mon, 12 May 2025 10:58:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63670C3ABC3
+	for <intel-xe@archiver.kernel.org>; Mon, 12 May 2025 11:23:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2A8410E16B;
-	Mon, 12 May 2025 10:58:00 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QOsWZ/fn";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A14B610E16B;
- Mon, 12 May 2025 10:57:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747047480; x=1778583480;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=dHha0IiE1Bh1Y7kmPmJ4ye6JFB/BUMt6MEaB5pcQun4=;
- b=QOsWZ/fnMkMRLYoglXXkxJ03URXG+khluggixrpKK+E1FwpupHh8s2n0
- svCvPuBRULJVubrnUD7Xt3P1Hu72qIRVSUIYH/jSwqvw2bDfSRAq2myz1
- ZITgTXzRxPrM+dLf+bvHyvhwL6//FtmVvxmQwEUja0I25n2QNIpdSV4eB
- BHownO/LakMbS8z43xduaaEP9TDnfkZcauvyvqBblLn1rxkJL656UCzjj
- X0Z/FaN5wnjnhR18gFmgvr+RrTGRwG+mjpwCyZsnw9r656300lIVDRjeu
- Zsd2WKLqtjRY8XJHvQGMlK438vxeaddK9BxHXBAH6doordwTjx0gBACZc g==;
-X-CSE-ConnectionGUID: vSHSn0rAS5StV3S4Fh9t6g==
-X-CSE-MsgGUID: rxT9gjPWSZexpdPOcoM4sg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11430"; a="59470283"
-X-IronPort-AV: E=Sophos;i="6.15,282,1739865600"; d="scan'208";a="59470283"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2025 03:57:56 -0700
-X-CSE-ConnectionGUID: Z53TcUaLSTi0PwwiV22ppw==
-X-CSE-MsgGUID: qIIbCLFcSpWeAUJOL3oCJA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,282,1739865600"; d="scan'208";a="142444298"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO stinkbox)
- ([10.245.245.195])
- by orviesa005.jf.intel.com with SMTP; 12 May 2025 03:57:54 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 12 May 2025 13:57:53 +0300
-Date: Mon, 12 May 2025 13:57:53 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v3 10/13] drm/i915/dmc: Add interface to control start of
- PKG C-state exit
-Message-ID: <aCHUMS6tBdKU0VAA@intel.com>
-References: <20250414100508.1208774-1-jouni.hogander@intel.com>
- <20250414100508.1208774-11-jouni.hogander@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BBE910E07E;
+	Mon, 12 May 2025 11:23:40 +0000 (UTC)
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A04810E07E;
+ Mon, 12 May 2025 11:23:38 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0929042279005781351=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250414100508.1208774-11-jouni.hogander@intel.com>
-X-Patchwork-Hint: comment
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/i915/dmc=3A_PIPEDMC_stu?=
+ =?utf-8?q?ff?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 12 May 2025 11:23:38 -0000
+Message-ID: <174704901829.68960.153377606903110984@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <20250512103358.15724-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20250512103358.15724-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,90 +36,163 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Apr 14, 2025 at 01:05:05PM +0300, Jouni Högander wrote:
-> Add interface to control if package C exit starts at the start of the
-> undelayed vblank. This is needed to implement workaround for underrun on
-> idle PSR HW issue (Wa_16025596647).
-> 
-> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dmc.c | 31 ++++++++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_dmc.h |  2 ++
->  2 files changed, 33 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-> index c65544e48c42..bd50c98c0ee4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-> @@ -534,6 +534,37 @@ void intel_dmc_block_pkgc(struct intel_display *display, enum pipe pipe,
->  		     PIPEDMC_BLOCK_PKGC_SW_BLOCK_PKGC_ALWAYS : 0);
->  }
->  
-> +/**
-> + * intel_dmc_start_pkgc_exit_at_start_of_undelayed_vblank() - start of PKG
-> + * C-state exit
-> + * @display: display instance
-> + * @pipe: pipe which register use to block
-> + * @enable: enable/disable
-> + *
-> + * This interface is target for Wa_16025596647 usage. I.e. start the package C
-> + * exit at the start of the undelayed vblank
-> + */
-> +void intel_dmc_start_pkgc_exit_at_start_of_undelayed_vblank(struct intel_display *display,
-> +							    enum pipe pipe, bool enable)
-> +{
-> +	u32 val;
-> +
-> +	if (enable)
-> +		val = DMC_EVT_CTL_ENABLE | DMC_EVT_CTL_RECURRING |
-> +			REG_FIELD_PREP(DMC_EVT_CTL_TYPE_MASK,
-> +				       DMC_EVT_CTL_TYPE_EDGE_0_1) |
-> +			REG_FIELD_PREP(DMC_EVT_CTL_EVENT_ID_MASK,
-> +				       DMC_EVT_CTL_EVENT_ID_VBLANK_A);
-> +	else
-> +		val = REG_FIELD_PREP(DMC_EVT_CTL_EVENT_ID_MASK,
-> +				     DMC_EVT_CTL_EVENT_ID_FALSE) |
-> +			REG_FIELD_PREP(DMC_EVT_CTL_TYPE_MASK,
-> +				       DMC_EVT_CTL_TYPE_EDGE_0_1);
-> +
-> +	intel_de_write(display, MTL_PIPEDMC_EVT_CTL_4(pipe),
-> +		       val);
-> +}
+--===============0929042279005781351==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This thing doesn't seem to be fully thought through:
+== Series Details ==
 
-- Enabling PIPEDMC events exposes us to the DSB vs. DMC register
-  corruption issues once again. Someone would need to come up with some
-  kind of scheme to avoid DMC and DSB executing in parallel. Otherwise
-  I don't think we can safely enable this
-- The w/a seems to be only for cases where the pkgc latency exceeds the
-  delayed vblank length, but that is never allowed by the
-  skl_is_vblank_too_short() stuff, so looks like this should never be
-  needed currently
+Series: drm/i915/dmc: PIPEDMC stuff
+URL   : https://patchwork.freedesktop.org/series/148873/
+State : failure
 
-> +
->  static bool is_dmc_evt_ctl_reg(struct intel_display *display,
->  			       enum intel_dmc_id dmc_id, i915_reg_t reg)
->  {
-> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h b/drivers/gpu/drm/i915/display/intel_dmc.h
-> index 236312fb791c..bd1c459b0075 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dmc.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dmc.h
-> @@ -20,6 +20,8 @@ void intel_dmc_enable_pipe(struct intel_display *display, enum pipe pipe);
->  void intel_dmc_disable_pipe(struct intel_display *display, enum pipe pipe);
->  void intel_dmc_block_pkgc(struct intel_display *display, enum pipe pipe,
->  			  bool block);
-> +void intel_dmc_start_pkgc_exit_at_start_of_undelayed_vblank(struct intel_display *display,
-> +							    enum pipe pipe, bool enable);
->  void intel_dmc_fini(struct intel_display *display);
->  void intel_dmc_suspend(struct intel_display *display);
->  void intel_dmc_resume(struct intel_display *display);
-> -- 
-> 2.43.0
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+CI Bug Log - changes from xe-3060-b0db97d4270c697ade930cfefdb7aaef12cd80c9_BAT -> xe-pw-148873v1_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-148873v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-148873v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (10 -> 9)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-148873v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_sriov_flr@flr-vf1-clear:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3060-b0db97d4270c697ade930cfefdb7aaef12cd80c9/bat-adlp-7/igt@xe_sriov_flr@flr-vf1-clear.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148873v1/bat-adlp-7/igt@xe_sriov_flr@flr-vf1-clear.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-148873v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_intel_bb@render@render-linear-256:
+    - bat-adlp-vf:        [PASS][3] -> [ABORT][4] ([Intel XE#3970]) +1 other test abort
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3060-b0db97d4270c697ade930cfefdb7aaef12cd80c9/bat-adlp-vf/igt@xe_intel_bb@render@render-linear-256.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148873v1/bat-adlp-vf/igt@xe_intel_bb@render@render-linear-256.html
+
+  
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8359 -> IGT_8361
+  * Linux: xe-3060-b0db97d4270c697ade930cfefdb7aaef12cd80c9 -> xe-pw-148873v1
+
+  IGT_8359: 807f0cbcc771d1d0bb0d27a78231a5f92dc02126 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8361: 8361
+  xe-3060-b0db97d4270c697ade930cfefdb7aaef12cd80c9: b0db97d4270c697ade930cfefdb7aaef12cd80c9
+  xe-pw-148873v1: 148873v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148873v1/index.html
+
+--===============0929042279005781351==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dmc: PIPEDMC stuff</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148873/">https://patchwork.freedesktop.org/series/148873/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148873v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148873v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3060-b0db97d4270c697ade930cfefdb7aaef12cd80c9_BAT -&gt; xe-pw-148873v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-148873v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-148873v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (10 -&gt; 9)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-148873v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_sriov_flr@flr-vf1-clear:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3060-b0db97d4270c697ade930cfefdb7aaef12cd80c9/bat-adlp-7/igt@xe_sriov_flr@flr-vf1-clear.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148873v1/bat-adlp-7/igt@xe_sriov_flr@flr-vf1-clear.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-148873v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_intel_bb@render@render-linear-256:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3060-b0db97d4270c697ade930cfefdb7aaef12cd80c9/bat-adlp-vf/igt@xe_intel_bb@render@render-linear-256.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148873v1/bat-adlp-vf/igt@xe_intel_bb@render@render-linear-256.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) +1 other test abort</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8359 -&gt; IGT_8361</li>
+<li>Linux: xe-3060-b0db97d4270c697ade930cfefdb7aaef12cd80c9 -&gt; xe-pw-148873v1</li>
+</ul>
+<p>IGT_8359: 807f0cbcc771d1d0bb0d27a78231a5f92dc02126 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8361: 8361<br />
+  xe-3060-b0db97d4270c697ade930cfefdb7aaef12cd80c9: b0db97d4270c697ade930cfefdb7aaef12cd80c9<br />
+  xe-pw-148873v1: 148873v1</p>
+
+</body>
+</html>
+
+--===============0929042279005781351==--
