@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D61B5C3ABC3
-	for <intel-xe@archiver.kernel.org>; Mon, 12 May 2025 13:53:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9ABDCC3ABCD
+	for <intel-xe@archiver.kernel.org>; Mon, 12 May 2025 13:53:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74DBF10E19E;
-	Mon, 12 May 2025 13:53:36 +0000 (UTC)
-Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D449710E19C;
- Mon, 12 May 2025 13:53:34 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 574CF10E40F;
+	Mon, 12 May 2025 13:53:39 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QWAV7NaX";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5721D10E40F
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 May 2025 13:53:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1747058019; x=1778594019;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=qJ2tmMlkVTVtaLzc2sAPR271bFI6lVxGt9qHU1KuzmM=;
+ b=QWAV7NaXdu7oeCxxStbHv+Lr+LB5DmrHh909aHEU4jwqWNidFbUubFi/
+ Y1x+HAiqrW3DnL9vpTz2LaaC0caUoA1LvGN+hVmWtUK7RR19V5V6Ye8xu
+ nHSAC6Ay5waIH2G2FTuCl29VuLPEUyF1+Q/ZCveni6hMUY3eL7mzQe8XT
+ m9JsUT7oqKQFJF8eMu1O3GsN6naOOnh7nkj3T+AhrHMZIO0ZzEJjXKcip
+ 7ZP9kwIrCyh4rG6w3WkYFz9ob9kYyRcg4ye+GV9Y3M4VUGw4w7NTTuLbS
+ 6kM262Qb69cE+FsLvrOmj6O3cm8+fYt0StCZTjDOyhbyIq702JGkOcBgQ w==;
+X-CSE-ConnectionGUID: uVGkW9OkQ86Mp5dQ4vzdTw==
+X-CSE-MsgGUID: 5W3GvbU4QjCivwA0GLihqA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="48933089"
+X-IronPort-AV: E=Sophos;i="6.15,282,1739865600"; d="scan'208";a="48933089"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2025 06:53:35 -0700
+X-CSE-ConnectionGUID: lN2K+bNmRHOxP75GHYExpg==
+X-CSE-MsgGUID: rgldgBBWTj+pSoy3CDf2qQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,282,1739865600"; d="scan'208";a="142320421"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2025 06:53:36 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: thomas.hellstrom@linux.intel.com,
+	himal.prasad.ghimiray@intel.com
+Subject: [PATCH v8 1/5] drm/gpusvm: Introduce devmem_only flag for allocation
+Date: Mon, 12 May 2025 06:54:55 -0700
+Message-Id: <20250512135500.1405019-2-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250512135500.1405019-1-matthew.brost@intel.com>
+References: <20250512135500.1405019-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_on_linux-next_=28next-202?=
- =?utf-8?q?50507=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jason Gunthorpe" <jgg@nvidia.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 12 May 2025 13:53:34 -0000
-Message-ID: <174705801486.69672.10168803699720305724@c664b1dc75d1>
-X-Patchwork-Hint: ignore
-References: <SJ1PR11MB61292CE72D7BE06B8810021CB997A@SJ1PR11MB6129.namprd11.prod.outlook.com>
-In-Reply-To: <SJ1PR11MB61292CE72D7BE06B8810021CB997A@SJ1PR11MB6129.namprd11.prod.outlook.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,62 +64,67 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 
-Series: on linux-next (next-20250507)
-URL   : https://patchwork.freedesktop.org/series/148879/
-State : warning
+This commit adds a new flag, devmem_only, to the drm_gpusvm structure. The
+purpose of this flag is to ensure that the get_pages function allocates
+memory exclusively from the device's memory. If the allocation from
+device memory fails, the function will return an -EFAULT error.
 
-== Summary ==
+Required for shared CPU and GPU atomics on certain devices.
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-202708c00696422fd217223bb679a353a5936e23
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 1cc80ce7cd62cf3bb59072b8a326242b90511167
-Author: Jason Gunthorpe <jgg@ziepe.ca>
-Date:   Mon May 12 09:21:02 2025 -0300
+v3:
+ - s/vram_only/devmem_only/
 
-    on linux-next (next-20250507)
-    
-    On Mon, May 12, 2025 at 06:00:39AM +0000, Borah, Chaitanya Kumar wrote:
-    
-    > `````````````````````````````````````````````````````````````````````````````````````````````````````````
-    > commit 13f43d7cf3e0570004a0d960bc1be23db827c2ff
-    > Author: Jason Gunthorpe mailto:jgg@nvidia.com
-    > Date:   Tue Apr 8 13:53:56 2025 -0300
-    >
-    >     iommu/pages: Formalize the freelist API
-    > `````````````````````````````````````````````````````````````````````````````````````````````````````````
-    >
-    > We could not revert the patch because of merge conflicts but resetting to the parent of the commit seems to fix the issue.
-    >
-    > Could you please check why the patch causes this regression and provide a fix if necessary?
-    
-    Could this be the solution?
-    
-    Jason
-+ /mt/dim checkpatch 3db1bb52113808f8bc72a7049e2d36e76acc882c drm-intel
-1cc80ce7cd62 on linux-next (next-20250507)
--:11: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#11: 
-> `````````````````````````````````````````````````````````````````````````````````````````````````````````
+Fixes: 99624bdff867 ("drm/gpusvm: Add support for GPU Shared Virtual Memory")
+Cc: stable@vger.kernel.org
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/drm_gpusvm.c | 5 +++++
+ include/drm/drm_gpusvm.h     | 2 ++
+ 2 files changed, 7 insertions(+)
 
--:12: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id '13f43d7cf3e0570004a0d960bc1be23db827c2ff', maybe rebased or not pulled?
-#12: 
-> commit 13f43d7cf3e0570004a0d960bc1be23db827c2ff
-
--:39: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
-
-total: 1 errors, 2 warnings, 0 checks, 8 lines checked
-
+diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
+index f3ac2c78e3b2..d06ef1aac24c 100644
+--- a/drivers/gpu/drm/drm_gpusvm.c
++++ b/drivers/gpu/drm/drm_gpusvm.c
+@@ -1450,6 +1450,11 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
+ 				goto err_unmap;
+ 			}
+ 
++			if (ctx->devmem_only) {
++				err = -EFAULT;
++				goto err_unmap;
++			}
++
+ 			addr = dma_map_page(gpusvm->drm->dev,
+ 					    page, 0,
+ 					    PAGE_SIZE << order,
+diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
+index df120b4d1f83..9fd25fc880a4 100644
+--- a/include/drm/drm_gpusvm.h
++++ b/include/drm/drm_gpusvm.h
+@@ -286,6 +286,7 @@ struct drm_gpusvm {
+  * @in_notifier: entering from a MMU notifier
+  * @read_only: operating on read-only memory
+  * @devmem_possible: possible to use device memory
++ * @devmem_only: use only device memory
+  *
+  * Context that is DRM GPUSVM is operating in (i.e. user arguments).
+  */
+@@ -294,6 +295,7 @@ struct drm_gpusvm_ctx {
+ 	unsigned int in_notifier :1;
+ 	unsigned int read_only :1;
+ 	unsigned int devmem_possible :1;
++	unsigned int devmem_only :1;
+ };
+ 
+ int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
+-- 
+2.34.1
 
