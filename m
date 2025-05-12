@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B27D9C3ABC3
-	for <intel-xe@archiver.kernel.org>; Mon, 12 May 2025 21:58:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB65CC3ABCB
+	for <intel-xe@archiver.kernel.org>; Mon, 12 May 2025 21:59:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BC7510E048;
-	Mon, 12 May 2025 21:58:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9512010E072;
+	Mon, 12 May 2025 21:59:02 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C358610E048;
- Mon, 12 May 2025 21:58:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A3CE10E072;
+ Mon, 12 May 2025 21:59:02 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Track_FAST=5FREQ_H2G?=
- =?utf-8?q?s_to_report_where_errors_came_from?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Track_FAST=5FREQ_H2Gs_to_?=
+ =?utf-8?q?report_where_errors_came_from?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: john.c.harrison@intel.com
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 12 May 2025 21:58:49 -0000
-Message-ID: <174708712979.71133.11657762753770176633@c664b1dc75d1>
+Date: Mon, 12 May 2025 21:59:02 -0000
+Message-ID: <174708714216.71634.8930717492779382807@c664b1dc75d1>
 X-Patchwork-Hint: ignore
 References: <20250512215324.1457009-1-John.C.Harrison@Intel.com>
 In-Reply-To: <20250512215324.1457009-1-John.C.Harrison@Intel.com>
@@ -44,16 +44,71 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Track FAST_REQ H2Gs to report where errors came from
 URL   : https://patchwork.freedesktop.org/series/148912/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: f28b1630b0e2 drm-tip: 2025y-05m-12d-20h-49m-26s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/guc: Remove double blank line
-Applying: drm/xe/guc: Add missing H2G error code definitions
-Applying: drm/xe/guc: Rename CONFIG_XE_LARGE_GUC_BUFFER
-Applying: drm/xe/guc: Track FAST_REQ H2Gs to report where errors came from
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b87b1014e79a05064fda3d23695417b7de9f5c9d
+Author: John Harrison <John.C.Harrison@Intel.com>
+Date:   Mon May 12 14:53:24 2025 -0700
+
+    drm/xe/guc: Track FAST_REQ H2Gs to report where errors came from
+    
+    Most H2G messages are FAST_REQ which means no synchronous response is
+    expected. The messages are sent as fire-and-forget with no tracking.
+    However, errors can still be returned when something goes unexpectedly
+    wrong. That leads to confusion due to not being able to match up the
+    error response to the originating H2G.
+    
+    So add support for tracking the FAST_REQ H2Gs and matching up an error
+    response to its originator. This is only enabled in XE_DEBUG builds
+    given that such errors should never happen in a working system and
+    there is an overhead for the tracking.
+    
+    Further, if XE_DEBUG_GUC is enabled then even more memory and time is
+    used to record the call stack of each H2G and report that with the
+    error. That makes it much easier to work out where a specific H2G came
+    from if there are multiple code paths that can send it.
+    
+    v2: Some re-wording of comments and prints, more consistent use of #if
+    vs stub functions - review feedback from Daniele & Michal).
+    v3: Split config change to separate patch, improve a debug print
+    (review feedback from Michal).
+    v4: Bunch of minor tweaks (review feedback from Michal).
+    
+    Original-i915-code: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+    Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+    Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
++ /mt/dim checkpatch f28b1630b0e26e108cf5e2d9379bfed92dc4113f drm-intel
+0ff07816dba9 drm/xe/guc: Remove double blank line
+00c02f0177d8 drm/xe/guc: Add missing H2G error code definitions
+f40937880781 drm/xe/guc: Rename CONFIG_XE_LARGE_GUC_BUFFER
+-:23: WARNING:CONFIG_DESCRIPTION: please write a help paragraph that fully describes the config symbol with at least 4 lines
+#23: FILE: drivers/gpu/drm/xe/Kconfig.debug:89:
++config DRM_XE_DEBUG_GUC
++        bool "Enable extra GuC related debug options"
++        depends on DRM_XE_DEBUG
+         default n
+         help
+           Choose this option when debugging guc issues.
++          The GuC log buffer is increased to the maximum allowed, which should
++          The GuC log buffer is increased to the maximum allowed, which should
++          be large enough for complex issues.
+ 
+           Recommended for driver developers only.
+ 
+
+total: 0 errors, 1 warnings, 0 checks, 25 lines checked
+b87b1014e79a drm/xe/guc: Track FAST_REQ H2Gs to report where errors came from
 
 
