@@ -4,27 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54FBEC3ABBC
-	for <intel-xe@archiver.kernel.org>; Mon, 12 May 2025 07:37:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B97CC3ABC3
+	for <intel-xe@archiver.kernel.org>; Mon, 12 May 2025 08:02:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CB4C10E138;
-	Mon, 12 May 2025 07:37:06 +0000 (UTC)
-Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD0BC10E138;
- Mon, 12 May 2025 07:37:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8767374874052060629=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1206410E2FC;
+	Mon, 12 May 2025 08:02:00 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="M5nLi2AM";
+	dkim-atps=neutral
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B08C10E2FC
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 May 2025 08:01:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:To:From:Sender:Reply-To:Cc:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=y62ZmP4kfFAF4BOBOj+WQjgGDb3EePE++10NHRYxTY8=; b=M5nLi2AMTyVkwcLz7JgXxOd61u
+ 6H87Z8Qq5yHyrwoXBNPwEw+m9IDggJ46vJudE/y9LTo3bw78HCMVtGspAXBq4QBQ4iBoTHQkHR69m
+ 6Zh8X33DYIyYizVV9olIsD2UIR8klLZzoyQPEHuuxUYns6qZqUOztvjaCgxoPP3dRf4BqikrUDjl1
+ JmLY14cYKOT96kiJixpdMiU29DHn61c/n8Fa+Dvhn6sOjjNUh4ovP+7jIGL4pJOmkgbVYooMGvtg9
+ p6IK3r3WqwJJVopme66eCegr2TvRsVrxyPqgy4D/kB3bSUGR3MTone3C0R4VvhuG8aNllJwBfsJsl
+ blryUxBQ==;
+Received: from [81.79.92.254] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1uEO1e-006xfe-I8
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 May 2025 10:01:56 +0200
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [CI] drm/xe: Reduce DPT table alignment as in i915
+Date: Mon, 12 May 2025 09:01:55 +0100
+Message-ID: <20250512080156.57512-1-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.48.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/xe2hpg=3A_Add_Wa=5F2?=
- =?utf-8?q?2021007897_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Aradhya Bhatia" <aradhya.bhatia@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 12 May 2025 07:37:04 -0000
-Message-ID: <174703542489.67645.9899695827627170154@c664b1dc75d1>
-X-Patchwork-Hint: ignore
-References: <20250512065004.2576-1-aradhya.bhatia@intel.com>
-In-Reply-To: <20250512065004.2576-1-aradhya.bhatia@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +53,34 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8767374874052060629==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+There is some magic going on with DPT alignment values which are
+multiplied by 512, and then for specifically pinning the DPT table
+scaled back down.
 
-== Series Details ==
+Make xe do it in the same way as i915.
 
-Series: drm/xe/xe2hpg: Add Wa_22021007897 (rev3)
-URL   : https://patchwork.freedesktop.org/series/148672/
-State : success
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index d918ae1c8061..ce6595be2442 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -327,7 +327,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+ 
+ 	vma->bo = bo;
+ 	if (intel_fb_uses_dpt(&fb->base))
+-		ret = __xe_pin_fb_vma_dpt(fb, view, vma, alignment);
++		ret = __xe_pin_fb_vma_dpt(fb, view, vma, alignment / 512);
+ 	else
+ 		ret = __xe_pin_fb_vma_ggtt(fb, view, vma,  alignment);
+ 	if (ret)
+-- 
+2.48.0
 
-CI Bug Log - changes from xe-3060-b0db97d4270c697ade930cfefdb7aaef12cd80c9_BAT -> xe-pw-148672v3_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8359 -> IGT_8361
-  * Linux: xe-3060-b0db97d4270c697ade930cfefdb7aaef12cd80c9 -> xe-pw-148672v3
-
-  IGT_8359: 807f0cbcc771d1d0bb0d27a78231a5f92dc02126 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8361: 8361
-  xe-3060-b0db97d4270c697ade930cfefdb7aaef12cd80c9: b0db97d4270c697ade930cfefdb7aaef12cd80c9
-  xe-pw-148672v3: 148672v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148672v3/index.html
-
---===============8767374874052060629==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/xe2hpg: Add Wa_22021007897 (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148672/">https://patchwork.freedesktop.org/series/148672/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148672v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148672v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3060-b0db97d4270c697ade930cfefdb7aaef12cd80c9_BAT -&gt; xe-pw-148672v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8359 -&gt; IGT_8361</li>
-<li>Linux: xe-3060-b0db97d4270c697ade930cfefdb7aaef12cd80c9 -&gt; xe-pw-148672v3</li>
-</ul>
-<p>IGT_8359: 807f0cbcc771d1d0bb0d27a78231a5f92dc02126 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8361: 8361<br />
-  xe-3060-b0db97d4270c697ade930cfefdb7aaef12cd80c9: b0db97d4270c697ade930cfefdb7aaef12cd80c9<br />
-  xe-pw-148672v3: 148672v3</p>
-
-</body>
-</html>
-
---===============8767374874052060629==--
