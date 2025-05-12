@@ -4,55 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 389E6C3ABCC
-	for <intel-xe@archiver.kernel.org>; Mon, 12 May 2025 16:22:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41223C3ABCB
+	for <intel-xe@archiver.kernel.org>; Mon, 12 May 2025 16:22:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0957B10E452;
-	Mon, 12 May 2025 16:22:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0600D10E456;
+	Mon, 12 May 2025 16:22:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F5WXFdIx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ue1j+dDZ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A114510E43B
- for <intel-xe@lists.freedesktop.org>; Mon, 12 May 2025 16:22:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D3C010E453
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 May 2025 16:22:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747066938; x=1778602938;
+ t=1747066941; x=1778602941;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=31SUYSjAre9YyLoszXy4uNoKRPqB95ZMcryjSVmBdcQ=;
- b=F5WXFdIxQ7IRbxhapMEBwQvv8wJyyej0pyLRmHW7nAyZjrhg9WLnSmD8
- EMN4QsDcORB38Os3f6psFuOC7RtucNBi2mb7xjfpUKn6OqYI69kB/c+RO
- RklWFym9NNKsP+bEvU7HSXNZ4RSdJzRiGtylGVIHKyNFA0k8pm4xvnQtT
- F+qcUKzFb0BbPVb8Z8Rz44ZE4CHJILDxivVpwuADKMJNbMSMUEOTtoPff
- MwW4mmQ1Zjp1Uv54jD9Tl9ffZ82Nd64PcoGVzp0OilWTGjNAS2AMiCJD4
- GdN+bM2U7nb9x/g8wU0/iVy8HA26SQxAeeu9muhCm4LpIcaNE0o7nxRkQ Q==;
-X-CSE-ConnectionGUID: NlgIE7HcREOPn1pf+W+ySg==
-X-CSE-MsgGUID: KGueupdORU26suVJ4dF+0Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="59508071"
-X-IronPort-AV: E=Sophos;i="6.15,282,1739865600"; d="scan'208";a="59508071"
+ bh=0dqOp3Pgln+ypz6hC9RiZnuoVBVIKng2l+q1FMgTu6o=;
+ b=Ue1j+dDZh9refcVjfb6DmjVyYrFdQAwWDmBywcTKhblMoep9CKhVjloC
+ T03glo11Ez6mkRJHbNgnHkSwKWUVzMfIvTrg6+RLP4aDdS1EdUUm3geXC
+ VOQoIk1YwEO9GBNg6aMl58DqAvM60Cj982tt5nwU3TwLGaqFyoqDYYPSe
+ tyZr5sqk+28ANgN+kzuJCWsm0K5zcnkmv7Bp47UBSmm8DXOcPDJN9s5+h
+ r1lS2ZV6AG52TH461zh0T3HLBpSaEuGR3DV1SivWbJOOpEErPE9U1+IBe
+ 9SRnZqE1DMAsS476DgdS3VXuDUFCJK9NVNYV/TWI9/T8LkfcY7E6g+xX+ w==;
+X-CSE-ConnectionGUID: KLq5Zfq/RhqirSxWG/7kZw==
+X-CSE-MsgGUID: Rit/fTG4QOiM+76jZx6Ekg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="59508075"
+X-IronPort-AV: E=Sophos;i="6.15,282,1739865600"; d="scan'208";a="59508075"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2025 09:22:18 -0700
-X-CSE-ConnectionGUID: fOQwS9tvSlOiJAWCB0axmA==
-X-CSE-MsgGUID: d+2ahvD8SC2Qcw2V47ebHw==
+ 12 May 2025 09:22:20 -0700
+X-CSE-ConnectionGUID: QhRkqykhRN2FBJzftA6VOg==
+X-CSE-MsgGUID: dUFFQuhiSeu10AyOxFyc2w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,282,1739865600"; d="scan'208";a="142532610"
+X-IronPort-AV: E=Sophos;i="6.15,282,1739865600"; d="scan'208";a="142532642"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by orviesa005.jf.intel.com with ESMTP; 12 May 2025 09:22:16 -0700
+ by orviesa005.jf.intel.com with ESMTP; 12 May 2025 09:22:18 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- stable@vger.kernel.org
-Subject: [PATCH v8 01/20] drm/gpusvm: Introduce devmem_only flag for allocation
-Date: Mon, 12 May 2025 22:17:21 +0530
-Message-Id: <20250512164740.466852-2-himal.prasad.ghimiray@intel.com>
+ stable@vger.kernel.org,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v8 02/20] drm/xe: Strict migration policy for atomic SVM faults
+Date: Mon, 12 May 2025 22:17:22 +0530
+Message-Id: <20250512164740.466852-3-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250512164740.466852-1-himal.prasad.ghimiray@intel.com>
 References: <20250512164740.466852-1-himal.prasad.ghimiray@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,62 +69,434 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This commit adds a new flag, devmem_only, to the drm_gpusvm structure. The
-purpose of this flag is to ensure that the get_pages function allocates
-memory exclusively from the device's memory. If the allocation from
-device memory fails, the function will return an -EFAULT error.
+From: Matthew Brost <matthew.brost@intel.com>
 
-Required for shared CPU and GPU atomics on certain devices.
+Mixing GPU and CPU atomics does not work unless a strict migration
+policy of GPU atomics must be device memory. Enforce a policy of must be
+in VRAM with a retry loop of 3 attempts, if retry loop fails abort
+fault.
 
+Removing always_migrate_to_vram modparam as we now have real migration
+policy.
+
+v2:
+ - Only retry migration on atomics
+ - Drop alway migrate modparam
 v3:
- - s/vram_only/devmem_only/
+ - Only set vram_only on DGFX (Himal)
+ - Bail on get_pages failure if vram_only and retry count exceeded (Himal)
+ - s/vram_only/devmem_only
+ - Update xe_svm_range_is_valid to accept devmem_only argument
+v4:
+ - Fix logic bug get_pages failure
+v5:
+ - Fix commit message (Himal)
+ - Mention removing always_migrate_to_vram in commit message (Lucas)
+ - Fix xe_svm_range_is_valid to check for devmem pages
+ - Bail on devmem_only && !migrate_devmem (Thomas)
+v6:
+ - Add READ_ONCE barriers for opportunistic checks (Thomas)
+ - Pair READ_ONCE with WRITE_ONCE (Thomas)
+v7:
+ - Adjust comments (Thomas)
 
-Fixes: 99624bdff867 ("drm/gpusvm: Add support for GPU Shared Virtual Memory")
+Fixes: 2f118c949160 ("drm/xe: Add SVM VRAM migration")
 Cc: stable@vger.kernel.org
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Acked-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>`
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/drm_gpusvm.c | 5 +++++
- include/drm/drm_gpusvm.h     | 2 ++
- 2 files changed, 7 insertions(+)
+ drivers/gpu/drm/drm_gpusvm.c   |  23 +++++--
+ drivers/gpu/drm/xe/xe_module.c |   3 -
+ drivers/gpu/drm/xe/xe_module.h |   1 -
+ drivers/gpu/drm/xe/xe_pt.c     |  14 ++++-
+ drivers/gpu/drm/xe/xe_svm.c    | 111 +++++++++++++++++++++++++--------
+ drivers/gpu/drm/xe/xe_svm.h    |   5 --
+ include/drm/drm_gpusvm.h       |  40 +++++++-----
+ 7 files changed, 140 insertions(+), 57 deletions(-)
 
 diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
-index de424e670995..a58d03e6cac2 100644
+index a58d03e6cac2..41f6616bcf76 100644
 --- a/drivers/gpu/drm/drm_gpusvm.c
 +++ b/drivers/gpu/drm/drm_gpusvm.c
-@@ -1454,6 +1454,11 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
- 				goto err_unmap;
- 			}
+@@ -1118,6 +1118,10 @@ static void __drm_gpusvm_range_unmap_pages(struct drm_gpusvm *gpusvm,
+ 	lockdep_assert_held(&gpusvm->notifier_lock);
  
-+			if (ctx->devmem_only) {
-+				err = -EFAULT;
-+				goto err_unmap;
-+			}
+ 	if (range->flags.has_dma_mapping) {
++		struct drm_gpusvm_range_flags flags = {
++			.__flags = range->flags.__flags,
++		};
 +
- 			addr = dma_map_page(gpusvm->drm->dev,
- 					    page, 0,
- 					    PAGE_SIZE << order,
-diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
-index df120b4d1f83..9fd25fc880a4 100644
---- a/include/drm/drm_gpusvm.h
-+++ b/include/drm/drm_gpusvm.h
-@@ -286,6 +286,7 @@ struct drm_gpusvm {
-  * @in_notifier: entering from a MMU notifier
-  * @read_only: operating on read-only memory
-  * @devmem_possible: possible to use device memory
-+ * @devmem_only: use only device memory
-  *
-  * Context that is DRM GPUSVM is operating in (i.e. user arguments).
-  */
-@@ -294,6 +295,7 @@ struct drm_gpusvm_ctx {
- 	unsigned int in_notifier :1;
- 	unsigned int read_only :1;
- 	unsigned int devmem_possible :1;
-+	unsigned int devmem_only :1;
+ 		for (i = 0, j = 0; i < npages; j++) {
+ 			struct drm_pagemap_device_addr *addr = &range->dma_addr[j];
+ 
+@@ -1131,8 +1135,12 @@ static void __drm_gpusvm_range_unmap_pages(struct drm_gpusvm *gpusvm,
+ 							    dev, *addr);
+ 			i += 1 << addr->order;
+ 		}
+-		range->flags.has_devmem_pages = false;
+-		range->flags.has_dma_mapping = false;
++
++		/* WRITE_ONCE pairs with READ_ONCE for opportunistic checks */
++		flags.has_devmem_pages = false;
++		flags.has_dma_mapping = false;
++		WRITE_ONCE(range->flags.__flags, flags.__flags);
++
+ 		range->dpagemap = NULL;
+ 	}
+ }
+@@ -1334,6 +1342,7 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
+ 	int err = 0;
+ 	struct dev_pagemap *pagemap;
+ 	struct drm_pagemap *dpagemap;
++	struct drm_gpusvm_range_flags flags;
+ 
+ retry:
+ 	hmm_range.notifier_seq = mmu_interval_read_begin(notifier);
+@@ -1378,7 +1387,8 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
+ 	 */
+ 	drm_gpusvm_notifier_lock(gpusvm);
+ 
+-	if (range->flags.unmapped) {
++	flags.__flags = range->flags.__flags;
++	if (flags.unmapped) {
+ 		drm_gpusvm_notifier_unlock(gpusvm);
+ 		err = -EFAULT;
+ 		goto err_free;
+@@ -1474,14 +1484,17 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
+ 		}
+ 		i += 1 << order;
+ 		num_dma_mapped = i;
+-		range->flags.has_dma_mapping = true;
++		flags.has_dma_mapping = true;
+ 	}
+ 
+ 	if (zdd) {
+-		range->flags.has_devmem_pages = true;
++		flags.has_devmem_pages = true;
+ 		range->dpagemap = dpagemap;
+ 	}
+ 
++	/* WRITE_ONCE pairs with READ_ONCE for opportunistic checks */
++	WRITE_ONCE(range->flags.__flags, flags.__flags);
++
+ 	drm_gpusvm_notifier_unlock(gpusvm);
+ 	kvfree(pfns);
+ set_seqno:
+diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
+index 64bf46646544..e4742e27e2cd 100644
+--- a/drivers/gpu/drm/xe/xe_module.c
++++ b/drivers/gpu/drm/xe/xe_module.c
+@@ -30,9 +30,6 @@ struct xe_modparam xe_modparam = {
+ module_param_named(svm_notifier_size, xe_modparam.svm_notifier_size, uint, 0600);
+ MODULE_PARM_DESC(svm_notifier_size, "Set the svm notifier size(in MiB), must be power of 2");
+ 
+-module_param_named(always_migrate_to_vram, xe_modparam.always_migrate_to_vram, bool, 0444);
+-MODULE_PARM_DESC(always_migrate_to_vram, "Always migrate to VRAM on GPU fault");
+-
+ module_param_named_unsafe(force_execlist, xe_modparam.force_execlist, bool, 0444);
+ MODULE_PARM_DESC(force_execlist, "Force Execlist submission");
+ 
+diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
+index 84339e509c80..5a3bfea8b7b4 100644
+--- a/drivers/gpu/drm/xe/xe_module.h
++++ b/drivers/gpu/drm/xe/xe_module.h
+@@ -12,7 +12,6 @@
+ struct xe_modparam {
+ 	bool force_execlist;
+ 	bool probe_display;
+-	bool always_migrate_to_vram;
+ 	u32 force_vram_bar_size;
+ 	int guc_log_level;
+ 	char *guc_firmware_path;
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index b42cf5d1b20c..b04756a97cdc 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -2270,11 +2270,19 @@ static void op_commit(struct xe_vm *vm,
+ 	}
+ 	case DRM_GPUVA_OP_DRIVER:
+ 	{
++		/* WRITE_ONCE pairs with READ_ONCE in xe_svm.c */
++
+ 		if (op->subop == XE_VMA_SUBOP_MAP_RANGE) {
+-			op->map_range.range->tile_present |= BIT(tile->id);
+-			op->map_range.range->tile_invalidated &= ~BIT(tile->id);
++			WRITE_ONCE(op->map_range.range->tile_present,
++				   op->map_range.range->tile_present |
++				   BIT(tile->id));
++			WRITE_ONCE(op->map_range.range->tile_invalidated,
++				   op->map_range.range->tile_invalidated &
++				   ~BIT(tile->id));
+ 		} else if (op->subop == XE_VMA_SUBOP_UNMAP_RANGE) {
+-			op->unmap_range.range->tile_present &= ~BIT(tile->id);
++			WRITE_ONCE(op->unmap_range.range->tile_present,
++				   op->unmap_range.range->tile_present &
++				   ~BIT(tile->id));
+ 		}
+ 		break;
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index d25f02c8d7fc..d8e15259a8df 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -16,8 +16,17 @@
+ 
+ static bool xe_svm_range_in_vram(struct xe_svm_range *range)
+ {
+-	/* Not reliable without notifier lock */
+-	return range->base.flags.has_devmem_pages;
++	/*
++	 * Advisory only check whether the range is currently backed by VRAM
++	 * memory.
++	 */
++
++	struct drm_gpusvm_range_flags flags = {
++		/* Pairs with WRITE_ONCE in drm_gpusvm.c */
++		.__flags = READ_ONCE(range->base.flags.__flags),
++	};
++
++	return flags.has_devmem_pages;
+ }
+ 
+ static bool xe_svm_range_has_vram_binding(struct xe_svm_range *range)
+@@ -650,9 +659,16 @@ void xe_svm_fini(struct xe_vm *vm)
+ }
+ 
+ static bool xe_svm_range_is_valid(struct xe_svm_range *range,
+-				  struct xe_tile *tile)
++				  struct xe_tile *tile,
++				  bool devmem_only)
+ {
+-	return (range->tile_present & ~range->tile_invalidated) & BIT(tile->id);
++	/*
++	 * Advisory only check whether the range currently has a valid mapping,
++	 * READ_ONCE pairs with WRITE_ONCE in xe_pt.c
++	 */
++	return ((READ_ONCE(range->tile_present) &
++		 ~READ_ONCE(range->tile_invalidated)) & BIT(tile->id)) &&
++		(!devmem_only || xe_svm_range_in_vram(range));
+ }
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR)
+@@ -726,6 +742,36 @@ static int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
+ }
+ #endif
+ 
++static bool supports_4K_migration(struct xe_device *xe)
++{
++	if (xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
++		return false;
++
++	return true;
++}
++
++static bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range,
++					       struct xe_vma *vma)
++{
++	struct xe_vm *vm = range_to_vm(&range->base);
++	u64 range_size = xe_svm_range_size(range);
++
++	if (!range->base.flags.migrate_devmem)
++		return false;
++
++	if (xe_svm_range_in_vram(range)) {
++		drm_dbg(&vm->xe->drm, "Range is already in VRAM\n");
++		return false;
++	}
++
++	if (range_size <= SZ_64K && !supports_4K_migration(vm->xe)) {
++		drm_dbg(&vm->xe->drm, "Platform doesn't support SZ_4K range migration\n");
++		return false;
++	}
++
++	return true;
++}
++
+ /**
+  * xe_svm_handle_pagefault() - SVM handle page fault
+  * @vm: The VM.
+@@ -749,12 +795,15 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR),
+ 		.check_pages_threshold = IS_DGFX(vm->xe) &&
+ 			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR) ? SZ_64K : 0,
++		.devmem_only = atomic && IS_DGFX(vm->xe) &&
++			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR),
+ 	};
+ 	struct xe_svm_range *range;
+ 	struct drm_gpusvm_range *r;
+ 	struct drm_exec exec;
+ 	struct dma_fence *fence;
+ 	struct xe_tile *tile = gt_to_tile(gt);
++	int migrate_try_count = ctx.devmem_only ? 3 : 1;
+ 	ktime_t end = 0;
+ 	int err;
+ 
+@@ -775,24 +824,30 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 	if (IS_ERR(r))
+ 		return PTR_ERR(r);
+ 
++	if (ctx.devmem_only && !r->flags.migrate_devmem)
++		return -EACCES;
++
+ 	range = to_xe_range(r);
+-	if (xe_svm_range_is_valid(range, tile))
++	if (xe_svm_range_is_valid(range, tile, ctx.devmem_only))
+ 		return 0;
+ 
+ 	range_debug(range, "PAGE FAULT");
+ 
+-	/* XXX: Add migration policy, for now migrate range once */
+-	if (!range->skip_migrate && range->base.flags.migrate_devmem &&
+-	    xe_svm_range_size(range) >= SZ_64K) {
+-		range->skip_migrate = true;
+-
++	if (--migrate_try_count >= 0 &&
++	    xe_svm_range_needs_migrate_to_vram(range, vma)) {
+ 		err = xe_svm_alloc_vram(vm, tile, range, &ctx);
+ 		if (err) {
+-			drm_dbg(&vm->xe->drm,
+-				"VRAM allocation failed, falling back to "
+-				"retrying fault, asid=%u, errno=%pe\n",
+-				vm->usm.asid, ERR_PTR(err));
+-			goto retry;
++			if (migrate_try_count || !ctx.devmem_only) {
++				drm_dbg(&vm->xe->drm,
++					"VRAM allocation failed, falling back to retrying fault, asid=%u, errno=%pe\n",
++					vm->usm.asid, ERR_PTR(err));
++				goto retry;
++			} else {
++				drm_err(&vm->xe->drm,
++					"VRAM allocation failed, retry count exceeded, asid=%u, errno=%pe\n",
++					vm->usm.asid, ERR_PTR(err));
++				return err;
++			}
+ 		}
+ 	}
+ 
+@@ -800,15 +855,22 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 	err = drm_gpusvm_range_get_pages(&vm->svm.gpusvm, r, &ctx);
+ 	/* Corner where CPU mappings have changed */
+ 	if (err == -EOPNOTSUPP || err == -EFAULT || err == -EPERM) {
+-		if (err == -EOPNOTSUPP) {
+-			range_debug(range, "PAGE FAULT - EVICT PAGES");
+-			drm_gpusvm_range_evict(&vm->svm.gpusvm, &range->base);
++		if (migrate_try_count > 0 || !ctx.devmem_only) {
++			if (err == -EOPNOTSUPP) {
++				range_debug(range, "PAGE FAULT - EVICT PAGES");
++				drm_gpusvm_range_evict(&vm->svm.gpusvm,
++						       &range->base);
++			}
++			drm_dbg(&vm->xe->drm,
++				"Get pages failed, falling back to retrying, asid=%u, gpusvm=%p, errno=%pe\n",
++				vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
++			range_debug(range, "PAGE FAULT - RETRY PAGES");
++			goto retry;
++		} else {
++			drm_err(&vm->xe->drm,
++				"Get pages failed, retry count exceeded, asid=%u, gpusvm=%p, errno=%pe\n",
++				vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
+ 		}
+-		drm_dbg(&vm->xe->drm,
+-			"Get pages failed, falling back to retrying, asid=%u, gpusvm=%p, errno=%pe\n",
+-			vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
+-		range_debug(range, "PAGE FAULT - RETRY PAGES");
+-		goto retry;
+ 	}
+ 	if (err) {
+ 		range_debug(range, "PAGE FAULT - FAIL PAGE COLLECT");
+@@ -842,9 +904,6 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 	}
+ 	drm_exec_fini(&exec);
+ 
+-	if (xe_modparam.always_migrate_to_vram)
+-		range->skip_migrate = false;
+-
+ 	dma_fence_wait(fence, false);
+ 	dma_fence_put(fence);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+index 2881af1e60b2..30fc78b85b30 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -39,11 +39,6 @@ struct xe_svm_range {
+ 	 * range. Protected by GPU SVM notifier lock.
+ 	 */
+ 	u8 tile_invalidated;
+-	/**
+-	 * @skip_migrate: Skip migration to VRAM, protected by GPU fault handler
+-	 * locking.
+-	 */
+-	u8 skip_migrate	:1;
  };
  
- int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
+ /**
+diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
+index 9fd25fc880a4..653d48dbe1c1 100644
+--- a/include/drm/drm_gpusvm.h
++++ b/include/drm/drm_gpusvm.h
+@@ -185,6 +185,31 @@ struct drm_gpusvm_notifier {
+ 	} flags;
+ };
+ 
++/**
++ * struct drm_gpusvm_range_flags - Structure representing a GPU SVM range flags
++ *
++ * @migrate_devmem: Flag indicating whether the range can be migrated to device memory
++ * @unmapped: Flag indicating if the range has been unmapped
++ * @partial_unmap: Flag indicating if the range has been partially unmapped
++ * @has_devmem_pages: Flag indicating if the range has devmem pages
++ * @has_dma_mapping: Flag indicating if the range has a DMA mapping
++ * @__flags: Flags for range in u16 form (used for READ_ONCE)
++ */
++struct drm_gpusvm_range_flags {
++	union {
++		struct {
++			/* All flags below must be set upon creation */
++			u16 migrate_devmem : 1;
++			/* All flags below must be set / cleared under notifier lock */
++			u16 unmapped : 1;
++			u16 partial_unmap : 1;
++			u16 has_devmem_pages : 1;
++			u16 has_dma_mapping : 1;
++		};
++		u16 __flags;
++	};
++};
++
+ /**
+  * struct drm_gpusvm_range - Structure representing a GPU SVM range
+  *
+@@ -198,11 +223,6 @@ struct drm_gpusvm_notifier {
+  * @dpagemap: The struct drm_pagemap of the device pages we're dma-mapping.
+  *            Note this is assuming only one drm_pagemap per range is allowed.
+  * @flags: Flags for range
+- * @flags.migrate_devmem: Flag indicating whether the range can be migrated to device memory
+- * @flags.unmapped: Flag indicating if the range has been unmapped
+- * @flags.partial_unmap: Flag indicating if the range has been partially unmapped
+- * @flags.has_devmem_pages: Flag indicating if the range has devmem pages
+- * @flags.has_dma_mapping: Flag indicating if the range has a DMA mapping
+  *
+  * This structure represents a GPU SVM range used for tracking memory ranges
+  * mapped in a DRM device.
+@@ -216,15 +236,7 @@ struct drm_gpusvm_range {
+ 	unsigned long notifier_seq;
+ 	struct drm_pagemap_device_addr *dma_addr;
+ 	struct drm_pagemap *dpagemap;
+-	struct {
+-		/* All flags below must be set upon creation */
+-		u16 migrate_devmem : 1;
+-		/* All flags below must be set / cleared under notifier lock */
+-		u16 unmapped : 1;
+-		u16 partial_unmap : 1;
+-		u16 has_devmem_pages : 1;
+-		u16 has_dma_mapping : 1;
+-	} flags;
++	struct drm_gpusvm_range_flags flags;
+ };
+ 
+ /**
 -- 
 2.34.1
 
