@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6575FC3ABC9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83A54C3ABD7
 	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 22:50:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5ECB510E5FA;
-	Tue, 13 May 2025 22:50:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5701710E21B;
+	Tue, 13 May 2025 22:49:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nJoeKgvE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bZvbFShe";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79CE710E5FA
- for <intel-xe@lists.freedesktop.org>; Tue, 13 May 2025 22:49:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E74A610E21B
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 May 2025 22:49:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747176599; x=1778712599;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=RMY3ne6Wjxld4o7YEnZoMyLr3kK9kuexsfrIsa07qk8=;
- b=nJoeKgvEZCXdEQbRwCB5nfxV4lOvKJE9ruwqVJ+Iky3SSj971EtBG7mx
- VjsU6k9pngD3cFFNLzul1Au52s3fKg4IO1MlHO6qcou73kD/ITsvecPvO
- rhCeJfw8+G/ortH7knbX84VhTOBBpRHhg/G6I9531qkVtCqpoLPy6qz34
- 48J5BmSOd6fdVXibaxHHjVUui8QzV4/fIxS0Nynxz5dn5Qp3iU4foOzKS
- iTu9KPr5MhanDUzIlNhVFT8OgpvEHVVmc+jbZglqfY3831EaGq9cnynbt
- 4qhWi9QQficksnyo/Y9cb5gE0KP0uj2rXwhejmh5LuFrhh4FMu6Z5Qqqu w==;
-X-CSE-ConnectionGUID: hgYrhnrRR5iakM9zLYPxFA==
-X-CSE-MsgGUID: icszN/MRTWaHdOoaSIX1tQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11432"; a="52860509"
-X-IronPort-AV: E=Sophos;i="6.15,286,1739865600"; d="scan'208";a="52860509"
+ t=1747176595; x=1778712595;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=XV9ryBP67iOxsCuXhBzi4srfWyGMe2MblGPblDvtjMs=;
+ b=bZvbFShexc0zuD2M7KvqHfusZO5EOhMxKMVv4tkN/oPMN5NmSsswlXxN
+ ruaALE/AWp+bci3/wVzOU99ca8dMWAxybsZcUxxDVphPWg1Q6JZgHDO9O
+ rQqv5p6JXNMgM0+Sq7JD+JB+KFJcJNH3I85PXrI4DnFG8KEpoTj8iUD1n
+ mep3oCC53b4Vu32v6JUf4yIf/losa7LhLiJ0vclf127FkolRN/lME1XQB
+ AuMT1zA6Df4A3yrevtazLxGsk8VYQNesuEtA9bL6l2lnveqMzMv6tgz1S
+ xzS6kPkF3Uiha4TC67t2fIiyWYDseRj0wQ4+Di4dUA6DKGqM4jBv4GGci Q==;
+X-CSE-ConnectionGUID: OS9RUGbRQDuf3vfUkmUDEg==
+X-CSE-MsgGUID: NmbaWueHQYWyP7aBnBfdfg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11432"; a="52860504"
+X-IronPort-AV: E=Sophos;i="6.15,286,1739865600"; d="scan'208";a="52860504"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2025 15:49:59 -0700
-X-CSE-ConnectionGUID: dwm2f5ODQUS0N5dhVTjfpw==
-X-CSE-MsgGUID: yoNG8X9wTN2OvGWoOI5pcg==
+ 13 May 2025 15:49:55 -0700
+X-CSE-ConnectionGUID: 8FcbriGsQJ+x+MU1IcIuxA==
+X-CSE-MsgGUID: uaIejyeQQs6OYnNvhTJggQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,286,1739865600"; d="scan'208";a="142789351"
+X-IronPort-AV: E=Sophos;i="6.15,286,1739865600"; d="scan'208";a="142789330"
 Received: from gkczarna.igk.intel.com ([10.211.131.163])
- by orviesa004.jf.intel.com with ESMTP; 13 May 2025 15:49:57 -0700
+ by orviesa004.jf.intel.com with ESMTP; 13 May 2025 15:49:54 -0700
 From: Tomasz Lis <tomasz.lis@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
@@ -47,12 +47,10 @@ Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
  =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v1 2/7] drm/xe/vf: Finish RESFIX by reset if CTB not enabled
-Date: Wed, 14 May 2025 00:49:47 +0200
-Message-Id: <20250513224952.701343-3-tomasz.lis@intel.com>
+Subject: [PATCH v1 0/7] drm/xe/vf: Post-migration recovery of queues and jobs
+Date: Wed, 14 May 2025 00:49:45 +0200
+Message-Id: <20250513224952.701343-1-tomasz.lis@intel.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250513224952.701343-1-tomasz.lis@intel.com>
-References: <20250513224952.701343-1-tomasz.lis@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -69,86 +67,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The RESFIX state should be achievable only when CTB communication is
-enabled. If CTB was disabled and we still got it, then either we're
-dealing with unclean initial state, or the driver is not currently
-functional. In these cases, exit the RESFIX state by reset.
+To support VF Migration, it is necessary to do fixups to any
+non-virtualized resources. These fixups need to be applied within
+VM, on the KMD working with VF.
 
-Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 10 ++++++++++
- drivers/gpu/drm/xe/xe_sriov_vf.c    | 18 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_sriov_vf.h    |  1 +
- 3 files changed, 29 insertions(+)
+This series adds two fixup functions to the recovery worker:
+* for fixing xe_lrc structs within queues
+* for fixing xe_job structs and the commands they emit
+It also provides some performance and stability fixes - blocking
+submissions and resets while the fixups are being applied.
+In case of sub-allocator, it removes the cached GGTT addresses
+instead of implementing fixups for them.
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 4ff7ae1a5f16..b9af112ca771 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -23,6 +23,7 @@
- #include "xe_gt_sriov_vf.h"
- #include "xe_gt_sriov_vf_types.h"
- #include "xe_guc.h"
-+#include "xe_guc_ct.h"
- #include "xe_guc_hxg_helpers.h"
- #include "xe_guc_relay.h"
- #include "xe_mmio.h"
-@@ -932,6 +933,15 @@ void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt)
- 
- 	xe_gt_assert(gt, IS_SRIOV_VF(xe));
- 
-+	if (!xe_guc_ct_enabled(&gt->uc.guc.ct)) {
-+		/*
-+		 * If at driver init, ignore migration which happened
-+		 * before the driver was loaded.
-+		 */
-+		xe_sriov_vf_post_migration_reset_guc_state(xe);
-+		return;
-+	}
-+
- 	set_bit(gt->info.id, &xe->sriov.vf.migration.gt_flags);
- 	/*
- 	 * We need to be certain that if all flags were set, at least one
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-index 2674fa948fda..940b81036321 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-@@ -134,6 +134,24 @@ void xe_sriov_vf_init_early(struct xe_device *xe)
- 	INIT_WORK(&xe->sriov.vf.migration.worker, migration_worker_func);
- }
- 
-+/**
-+ * xe_sriov_vf_post_migration_reset_guc_state - Reset VF state in all GuCs.
-+ * @xe: the &xe_device struct instance
-+ *
-+ * This function sends VF state reset to GuC, as a way of exiting RESFIX
-+ * state if a proper post-migration recovery procedure has failed.
-+ */
-+void xe_sriov_vf_post_migration_reset_guc_state(struct xe_device *xe)
-+{
-+	struct xe_gt *gt;
-+	unsigned int id;
-+
-+	for_each_gt(gt, xe, id)
-+		xe_gt_reset_async(gt);
-+
-+	drm_notice(&xe->drm, "VF migration recovery reset scheduled\n");
-+}
-+
- /**
-  * vf_post_migration_requery_guc - Re-query GuC for current VF provisioning.
-  * @xe: the &xe_device struct instance
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.h b/drivers/gpu/drm/xe/xe_sriov_vf.h
-index 7b8622cff2b7..ba846af34a13 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf.h
-@@ -10,5 +10,6 @@ struct xe_device;
- 
- void xe_sriov_vf_init_early(struct xe_device *xe);
- void xe_sriov_vf_start_migration_recovery(struct xe_device *xe);
-+void xe_sriov_vf_post_migration_reset_guc_state(struct xe_device *xe);
- 
- #endif
+
+Tomasz Lis (7):
+  drm/xe/sa: Avoid caching GGTT address within the manager
+  drm/xe/vf: Finish RESFIX by reset if CTB not enabled
+  drm/xe/vf: Pause submissions during RESFIX fixups
+  drm/xe: Block reset while recovering from VF migration
+  drm/xe/vf: Rebase HWSP of all contexts after migration
+  drm/xe/vf: Rebase MEMIRQ structures for all contexts after migration
+  drm/xe/vf: Post migration, repopulate ring area for pending request
+
+ drivers/gpu/drm/xe/xe_gpu_scheduler.c |  13 +++
+ drivers/gpu/drm/xe/xe_gpu_scheduler.h |   1 +
+ drivers/gpu/drm/xe/xe_gt_debugfs.c    |   3 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c   |  10 ++
+ drivers/gpu/drm/xe/xe_guc_buf.c       |   2 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c    |  81 ++++++++++++++-
+ drivers/gpu/drm/xe/xe_guc_submit.h    |   6 ++
+ drivers/gpu/drm/xe/xe_lrc.c           |  59 +++++++++++
+ drivers/gpu/drm/xe/xe_lrc.h           |   3 +
+ drivers/gpu/drm/xe/xe_sa.c            |   1 -
+ drivers/gpu/drm/xe/xe_sa.h            |   8 +-
+ drivers/gpu/drm/xe/xe_sa_types.h      |   1 -
+ drivers/gpu/drm/xe/xe_sriov_vf.c      | 137 +++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_sriov_vf.h      |   1 +
+ 14 files changed, 317 insertions(+), 9 deletions(-)
+
 -- 
 2.25.1
 
