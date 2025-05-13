@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59C19C3ABCC
-	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 12:17:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33A86C3ABD7
+	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 12:23:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 228E210E59A;
-	Tue, 13 May 2025 12:17:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2C8B10E593;
+	Tue, 13 May 2025 12:23:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PdF+JcXn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SgwJx/0c";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0083B10E59D;
- Tue, 13 May 2025 12:17:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9A4810E58A;
+ Tue, 13 May 2025 12:23:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747138668; x=1778674668;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=lpGu6E/ljelUbPAwbYBpDXewK5N5KNX3AOKv1UWURPI=;
- b=PdF+JcXn00p74exNyrWojk4b22xuBmqHkbKgFEZq7wANgC9Sn+GgJIL1
- MPcVQWu7RZ8C1JBlW5qWDZpTvmKGFgH8/zYBQRadGOZ8b4Y3T5LjVhiye
- QJ0D2eUzZ5mMh2JUusPa68DiObC+FZAB/+tE3k0AFeQVNs+XiUhF9LOor
- NqBTNwmCbE1anOCVxxtwZ8toY+FopTgQ/+xrFAdVWBOas9CLX8D3n90Fl
- 7+QOx9/RSGFGCFcGDuBcxxW21eTXQ0BKZo1Zp5wLh9cmB74AI4JxiCU/b
- Xo9pX5MyqxwFCt1uEshFSgGebffDWgMJwnM1fuxRz4EovhDFI2f+xsYrE g==;
-X-CSE-ConnectionGUID: GWuVorQ2RgGeCqwln0sPxA==
-X-CSE-MsgGUID: q71VIaHKRDS+RySdDu35+A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="71490391"
-X-IronPort-AV: E=Sophos;i="6.15,285,1739865600"; d="scan'208";a="71490391"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2025 05:17:47 -0700
-X-CSE-ConnectionGUID: yiDfSf3eQwiWJKHDnzAkrg==
-X-CSE-MsgGUID: RjV7vhnfRn+vBr9ALHLJAA==
+ t=1747138998; x=1778674998;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=htlM28/u2CtNijctzK5wS8oMkr6YvXcYrRHfAkimwUQ=;
+ b=SgwJx/0cpaDfrg3E0KcKZWmUQXlrBwbmBH3hc1TILkgwLfPQet9MS++u
+ 8hbhKK/alHFocl2X22gv0lAJ/CFXoISdeChaudpFAB2Hfx2hlu2HIA75y
+ t/PxQpEcCzM7KSyaE2xJ1wRHut/gAyHzU85YXagj8AR7x+1pg9pqYoMJr
+ 1F2a6/FIl4qXMbsCvnnx6ufH0jPPPEHPuiC9lvGE+WvJ7fg/8Tb8QVNg9
+ 3gJr/zRnNMdL6hiWHJr+PxGhE4+dZPTO2h3s7uwswqaaqLVLNqRVDwFEU
+ 2wkdgPy14cQluvYxlj5V4gz+GL6QD3HCSNNmsSUICflG3jGjKMbbnZRiQ w==;
+X-CSE-ConnectionGUID: ftqiw/pTTQC8qiv+bnhP8w==
+X-CSE-MsgGUID: csk6utHhRd6MGE39312z5g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="60380242"
+X-IronPort-AV: E=Sophos;i="6.15,285,1739865600"; d="scan'208";a="60380242"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2025 05:23:17 -0700
+X-CSE-ConnectionGUID: bJZCFss/QRq0sv2EnnXg+g==
+X-CSE-MsgGUID: FV/5W0wsSzmLf4YoDErA8g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,285,1739865600"; d="scan'208";a="141741027"
+X-IronPort-AV: E=Sophos;i="6.15,285,1739865600"; d="scan'208";a="142630453"
 Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.175])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2025 05:17:46 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 8/8] drm/i915/sbi: clean up SBI register macro definitions and
- usage
-Date: Tue, 13 May 2025 15:17:07 +0300
-Message-Id: <1fd86c3aa51f25c13f2e991e9bd20b196beb6362.1747138550.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1747138550.git.jani.nikula@intel.com>
-References: <cover.1747138550.git.jani.nikula@intel.com>
-MIME-Version: 1.0
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2025 05:23:16 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>
+Subject: Re: [PATCH v1 1/1] drm/i915/display: Add no_psr_reason to PSR debugfs
+In-Reply-To: <20250513113526.2758433-2-michal.grzelak@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+References: <20250513113526.2758433-1-michal.grzelak@intel.com>
+ <20250513113526.2758433-2-michal.grzelak@intel.com>
+Date: Tue, 13 May 2025 15:23:13 +0300
+Message-ID: <87jz6kitse.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,204 +70,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use REG_BIT() and friends for defining the register macros. Switch GVT
-to use the same macros, and drop its own copies.
+On Tue, 13 May 2025, Micha=C5=82 Grzelak <michal.grzelak@intel.com> wrote:
+> There is no reason in debugfs why PSR has been disabled. Add
+> no_psr_reason field into struct intel_psr. Write the reason,
+> e.g. PSR setup timing not met, into proper PSR debugfs file.
+>
+> Signed-off-by: Micha=C5=82 Grzelak <michal.grzelak@intel.com>
+> ---
+>  .../gpu/drm/i915/display/intel_display_types.h    |  2 ++
+>  drivers/gpu/drm/i915/display/intel_psr.c          | 15 ++++++++-------
+>  2 files changed, 10 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index 7415564d058a..7d598357a702 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1653,6 +1653,8 @@ struct intel_psr {
+>  	bool link_ok;
+>=20=20
+>  	u8 active_non_psr_pipes;
+> +
+> +	const char *no_psr_reason;
+>  };
+>=20=20
+>  struct intel_dp {
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i=
+915/display/intel_psr.c
+> index ccd66bbc72f7..f0fdff236fef 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -1577,6 +1577,7 @@ static bool _psr_compute_config(struct intel_dp *in=
+tel_dp,
+>  	if (entry_setup_frames >=3D 0) {
+>  		intel_dp->psr.entry_setup_frames =3D entry_setup_frames;
+>  	} else {
+> +		intel_dp->psr.no_psr_reason =3D "PSR setup timing not met";
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_sbi.c      | 10 ++--
- drivers/gpu/drm/i915/display/intel_sbi_regs.h | 50 ++++++++++++-------
- drivers/gpu/drm/i915/gvt/display.h            | 13 -----
- drivers/gpu/drm/i915/gvt/handlers.c           | 29 ++++++-----
- 4 files changed, 51 insertions(+), 51 deletions(-)
+What about other reasons?
 
-diff --git a/drivers/gpu/drm/i915/display/intel_sbi.c b/drivers/gpu/drm/i915/display/intel_sbi.c
-index c53d6058a717..59d64cbf68cd 100644
---- a/drivers/gpu/drm/i915/display/intel_sbi.c
-+++ b/drivers/gpu/drm/i915/display/intel_sbi.c
-@@ -20,12 +20,12 @@ static int intel_sbi_rw(struct intel_display *display, u16 reg,
- 
- 	lockdep_assert_held(&display->sbi.lock);
- 
--	if (intel_de_wait_fw(display, SBI_CTL_STAT, SBI_BUSY, 0, 100, NULL)) {
-+	if (intel_de_wait_fw(display, SBI_CTL_STAT, SBI_STATUS_MASK, SBI_STATUS_READY, 100, NULL)) {
- 		drm_err(display->drm, "timeout waiting for SBI to become ready\n");
- 		return -EBUSY;
- 	}
- 
--	intel_de_write_fw(display, SBI_ADDR, (u32)reg << 16);
-+	intel_de_write_fw(display, SBI_ADDR, SBI_ADDR_VALUE(reg));
- 	intel_de_write_fw(display, SBI_DATA, is_read ? 0 : *val);
- 
- 	if (destination == SBI_ICLK)
-@@ -33,10 +33,10 @@ static int intel_sbi_rw(struct intel_display *display, u16 reg,
- 	else
- 		cmd = SBI_CTL_DEST_MPHY | SBI_CTL_OP_IORD;
- 	if (!is_read)
--		cmd |= BIT(8);
--	intel_de_write_fw(display, SBI_CTL_STAT, cmd | SBI_BUSY);
-+		cmd |= SBI_CTL_OP_WR;
-+	intel_de_write_fw(display, SBI_CTL_STAT, cmd | SBI_STATUS_BUSY);
- 
--	if (intel_de_wait_fw(display, SBI_CTL_STAT, SBI_BUSY, 0, 100, &cmd)) {
-+	if (intel_de_wait_fw(display, SBI_CTL_STAT, SBI_STATUS_MASK, SBI_STATUS_READY, 100, &cmd)) {
- 		drm_err(display->drm, "timeout waiting for SBI to complete read\n");
- 		return -ETIMEDOUT;
- 	}
-diff --git a/drivers/gpu/drm/i915/display/intel_sbi_regs.h b/drivers/gpu/drm/i915/display/intel_sbi_regs.h
-index 38963f8619a3..6fd37574b805 100644
---- a/drivers/gpu/drm/i915/display/intel_sbi_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_sbi_regs.h
-@@ -11,22 +11,32 @@
-  * contains the register offset; and SBI_DATA, which contains the payload.
-  */
- #define SBI_ADDR			_MMIO(0xC6000)
-+#define   SBI_ADDR_MASK			REG_GENMASK(31, 16)
-+#define   SBI_ADDR_VALUE(addr)		REG_FIELD_PREP(SBI_ADDR_MASK, (addr))
-+
- #define SBI_DATA			_MMIO(0xC6004)
-+
- #define SBI_CTL_STAT			_MMIO(0xC6008)
--#define  SBI_CTL_DEST_ICLK		(0x0 << 16)
--#define  SBI_CTL_DEST_MPHY		(0x1 << 16)
--#define  SBI_CTL_OP_IORD		(0x2 << 8)
--#define  SBI_CTL_OP_IOWR		(0x3 << 8)
--#define  SBI_CTL_OP_CRRD		(0x6 << 8)
--#define  SBI_CTL_OP_CRWR		(0x7 << 8)
--#define  SBI_RESPONSE_FAIL		(0x1 << 1)
--#define  SBI_RESPONSE_SUCCESS		(0x0 << 1)
--#define  SBI_BUSY			(0x1 << 0)
--#define  SBI_READY			(0x0 << 0)
-+#define   SBI_CTL_DEST_MASK		REG_GENMASK(16, 16)
-+#define   SBI_CTL_DEST_ICLK		REG_FIELD_PREP(SBI_CTL_DEST_MASK, 0)
-+#define   SBI_CTL_DEST_MPHY		REG_FIELD_PREP(SBI_CTL_DEST_MASK, 1)
-+#define   SBI_CTL_OP_MASK		REG_GENMASK(15, 8)
-+#define   SBI_CTL_OP_IORD		REG_FIELD_PREP(SBI_CTL_OP_MASK, 2)
-+#define   SBI_CTL_OP_IOWR		REG_FIELD_PREP(SBI_CTL_OP_MASK, 3)
-+#define   SBI_CTL_OP_CRRD		REG_FIELD_PREP(SBI_CTL_OP_MASK, 6)
-+#define   SBI_CTL_OP_CRWR		REG_FIELD_PREP(SBI_CTL_OP_MASK, 7)
-+#define   SBI_CTL_OP_WR			REG_BIT(8)
-+#define   SBI_RESPONSE_MASK		REG_GENMASK(2, 1)
-+#define   SBI_RESPONSE_FAIL		REG_FIELD_PREP(SBI_RESPONSE_MASK, 1)
-+#define   SBI_RESPONSE_SUCCESS		REG_FIELD_PREP(SBI_RESPONSE_MASK, 0)
-+#define   SBI_STATUS_MASK		REG_GENMASK(0, 0)
-+#define   SBI_STATUS_BUSY		REG_FIELD_PREP(SBI_STATUS_MASK, 1)
-+#define   SBI_STATUS_READY		REG_FIELD_PREP(SBI_STATUS_MASK, 0)
- 
- /* SBI offsets */
--#define  SBI_SSCDIVINTPHASE			0x0200
--#define  SBI_SSCDIVINTPHASE6			0x0600
-+#define SBI_SSCDIVINTPHASE			0x0200
-+
-+#define SBI_SSCDIVINTPHASE6			0x0600
- #define   SBI_SSCDIVINTPHASE_DIVSEL_SHIFT	1
- #define   SBI_SSCDIVINTPHASE_DIVSEL_MASK	(0x7f << 1)
- #define   SBI_SSCDIVINTPHASE_DIVSEL(x)		((x) << 1)
-@@ -35,17 +45,21 @@
- #define   SBI_SSCDIVINTPHASE_INCVAL(x)		((x) << 8)
- #define   SBI_SSCDIVINTPHASE_DIR(x)		((x) << 15)
- #define   SBI_SSCDIVINTPHASE_PROPAGATE		(1 << 0)
--#define  SBI_SSCDITHPHASE			0x0204
--#define  SBI_SSCCTL				0x020c
--#define  SBI_SSCCTL6				0x060C
-+
-+#define SBI_SSCDITHPHASE			0x0204
-+#define SBI_SSCCTL				0x020c
-+#define SBI_SSCCTL6				0x060C
- #define   SBI_SSCCTL_PATHALT			(1 << 3)
- #define   SBI_SSCCTL_DISABLE			(1 << 0)
--#define  SBI_SSCAUXDIV6				0x0610
-+
-+#define SBI_SSCAUXDIV6				0x0610
- #define   SBI_SSCAUXDIV_FINALDIV2SEL_SHIFT	4
- #define   SBI_SSCAUXDIV_FINALDIV2SEL_MASK	(1 << 4)
- #define   SBI_SSCAUXDIV_FINALDIV2SEL(x)		((x) << 4)
--#define  SBI_DBUFF0				0x2a00
--#define  SBI_GEN0				0x1f00
-+
-+#define SBI_DBUFF0				0x2a00
-+
-+#define SBI_GEN0				0x1f00
- #define   SBI_GEN0_CFG_BUFFENABLE_DISABLE	(1 << 0)
- 
- #endif /* __INTEL_SBI_REGS_H__ */
-diff --git a/drivers/gpu/drm/i915/gvt/display.h b/drivers/gpu/drm/i915/gvt/display.h
-index 8090bc53c7e1..bc7f05f9a271 100644
---- a/drivers/gpu/drm/i915/gvt/display.h
-+++ b/drivers/gpu/drm/i915/gvt/display.h
-@@ -63,19 +63,6 @@ struct intel_vgpu;
- 
- #define AUX_BURST_SIZE          20
- 
--#define SBI_RESPONSE_MASK               0x3
--#define SBI_RESPONSE_SHIFT              0x1
--#define SBI_STAT_MASK                   0x1
--#define SBI_STAT_SHIFT                  0x0
--#define SBI_OPCODE_SHIFT                8
--#define SBI_OPCODE_MASK			(0xff << SBI_OPCODE_SHIFT)
--#define SBI_CMD_IORD                    2
--#define SBI_CMD_IOWR                    3
--#define SBI_CMD_CRRD                    6
--#define SBI_CMD_CRWR                    7
--#define SBI_ADDR_OFFSET_SHIFT           16
--#define SBI_ADDR_OFFSET_MASK            (0xffff << SBI_ADDR_OFFSET_SHIFT)
--
- struct intel_vgpu_sbi_register {
- 	unsigned int offset;
- 	u32 value;
-diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
-index 7ee0e3657321..4f6e099871d7 100644
---- a/drivers/gpu/drm/i915/gvt/handlers.c
-+++ b/drivers/gpu/drm/i915/gvt/handlers.c
-@@ -1413,12 +1413,12 @@ static void write_virtual_sbi_register(struct intel_vgpu *vgpu,
- static int sbi_data_mmio_read(struct intel_vgpu *vgpu, unsigned int offset,
- 		void *p_data, unsigned int bytes)
- {
--	if (((vgpu_vreg_t(vgpu, SBI_CTL_STAT) & SBI_OPCODE_MASK) >>
--				SBI_OPCODE_SHIFT) == SBI_CMD_CRRD) {
--		unsigned int sbi_offset = (vgpu_vreg_t(vgpu, SBI_ADDR) &
--				SBI_ADDR_OFFSET_MASK) >> SBI_ADDR_OFFSET_SHIFT;
--		vgpu_vreg(vgpu, offset) = read_virtual_sbi_register(vgpu,
--				sbi_offset);
-+	if ((vgpu_vreg_t(vgpu, SBI_CTL_STAT) & SBI_CTL_OP_MASK) == SBI_CTL_OP_CRRD) {
-+		unsigned int sbi_offset;
-+
-+		sbi_offset = REG_FIELD_GET(SBI_ADDR_MASK, vgpu_vreg_t(vgpu, SBI_ADDR));
-+
-+		vgpu_vreg(vgpu, offset) = read_virtual_sbi_register(vgpu, sbi_offset);
- 	}
- 	read_vreg(vgpu, offset, p_data, bytes);
- 	return 0;
-@@ -1432,21 +1432,20 @@ static int sbi_ctl_mmio_write(struct intel_vgpu *vgpu, unsigned int offset,
- 	write_vreg(vgpu, offset, p_data, bytes);
- 	data = vgpu_vreg(vgpu, offset);
- 
--	data &= ~(SBI_STAT_MASK << SBI_STAT_SHIFT);
--	data |= SBI_READY;
-+	data &= ~SBI_STATUS_MASK;
-+	data |= SBI_STATUS_READY;
- 
--	data &= ~(SBI_RESPONSE_MASK << SBI_RESPONSE_SHIFT);
-+	data &= ~SBI_RESPONSE_MASK;
- 	data |= SBI_RESPONSE_SUCCESS;
- 
- 	vgpu_vreg(vgpu, offset) = data;
- 
--	if (((vgpu_vreg_t(vgpu, SBI_CTL_STAT) & SBI_OPCODE_MASK) >>
--				SBI_OPCODE_SHIFT) == SBI_CMD_CRWR) {
--		unsigned int sbi_offset = (vgpu_vreg_t(vgpu, SBI_ADDR) &
--				SBI_ADDR_OFFSET_MASK) >> SBI_ADDR_OFFSET_SHIFT;
-+	if ((vgpu_vreg_t(vgpu, SBI_CTL_STAT) & SBI_CTL_OP_MASK) == SBI_CTL_OP_CRWR) {
-+		unsigned int sbi_offset;
-+
-+		sbi_offset = REG_FIELD_GET(SBI_ADDR_MASK, vgpu_vreg_t(vgpu, SBI_ADDR));
- 
--		write_virtual_sbi_register(vgpu, sbi_offset,
--					   vgpu_vreg_t(vgpu, SBI_DATA));
-+		write_virtual_sbi_register(vgpu, sbi_offset, vgpu_vreg_t(vgpu, SBI_DATA));
- 	}
- 	return 0;
- }
--- 
-2.39.5
+Where is intel_dp->psr.no_psr_reason cleared? Now this remains set until
+the end of time...
 
+>  		drm_dbg_kms(display->drm,
+>  			    "PSR condition failed: PSR setup timing not met\n");
+>  		return false;
+> @@ -3918,12 +3919,7 @@ static void intel_psr_print_mode(struct intel_dp *=
+intel_dp,
+>  				 struct seq_file *m)
+>  {
+>  	struct intel_psr *psr =3D &intel_dp->psr;
+> -	const char *status, *mode, *region_et;
+> -
+> -	if (psr->enabled)
+> -		status =3D " enabled";
+> -	else
+> -		status =3D "disabled";
+> +	const char *mode, *region_et;
+>=20=20
+>  	if (psr->panel_replay_enabled && psr->sel_update_enabled)
+>  		mode =3D "Panel Replay Selective Update";
+> @@ -3941,7 +3937,12 @@ static void intel_psr_print_mode(struct intel_dp *=
+intel_dp,
+>  	else
+>  		region_et =3D "";
+>=20=20
+> -	seq_printf(m, "PSR mode: %s%s%s\n", mode, status, region_et);
+> +	if (psr->enabled) {
+> +		seq_puts(m, "PSR enabled\n");
+> +		seq_printf(m, "PSR mode: %s%s\n", mode, region_et);
+> +	} else {
+> +		seq_printf(m, "PSR disabled: %s\n", psr->no_psr_reason);
+
+Since psr->no_psr_reason isn't set for all reasons, this may be NULL. It
+won't oops, but it'll likely look like "PSR disabled: (null)".
+
+BR,
+Jani.
+
+> +	}
+>  }
+>=20=20
+>  static int intel_psr_status(struct seq_file *m, struct intel_dp *intel_d=
+p)
+
+--=20
+Jani Nikula, Intel
