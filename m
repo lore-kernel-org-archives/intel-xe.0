@@ -4,57 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEC16C3ABC9
-	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 07:15:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A12B5C3ABC3
+	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 07:45:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2090110E4D3;
-	Tue, 13 May 2025 07:15:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A9FB10E155;
+	Tue, 13 May 2025 07:45:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AaoRzsdf";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="mi8ofs/0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D56510E331;
- Tue, 13 May 2025 07:15:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747120555; x=1778656555;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Tz0RMDmapjJl7jzGnUXCXtly+56hUWNeYGWKM25RqjY=;
- b=AaoRzsdfwyUVPnYo+lfS74Hxly19bPaahGO1VBZH+kyNDHisl/JRjGzO
- VpUpOsTmxayFXbyG+g9f6Oi2swUUGy/jdWZlrou2hlQeS4KtW687w5Mu/
- THFk6ro91QXmbeT09MqIVN8fiSeWj7o3i8XfVrGsJygKoUoMI1yhF3Z2+
- S5y7YdpBCxKQIZS+/3PFdd4akGXpYCye4IElTmKGnk2vF5VDjpsUvcD8m
- eSjQU7wuph4CIk4f/bJ5aBCWK7KPEo2ssQ7KMxbmBhk9NRizY4QY6S/ZB
- gKlC5mEFi8IuOxHsdYfkvLBmKO/uFIPwZZHs60ry86ZksdGq61arfljh8 Q==;
-X-CSE-ConnectionGUID: ymgmu0faSemhgjuq9QufGA==
-X-CSE-MsgGUID: 7uidE97MTE63BUtxCrkt0Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="48204760"
-X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="48204760"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2025 00:15:54 -0700
-X-CSE-ConnectionGUID: 9HWIDhA/QtmY+391IB1iUA==
-X-CSE-MsgGUID: vfvwY+oWQ3iN7eQgspGj7w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="138551601"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.175])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2025 00:15:53 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, ville.syrjala@intel.com
-Subject: Re: [PATCH v5 04/17] drm/i915/display: Add VRR DC balance registers
-In-Reply-To: <20250513051700.507389-5-mitulkumar.ajitkumar.golani@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250513051700.507389-1-mitulkumar.ajitkumar.golani@intel.com>
- <20250513051700.507389-5-mitulkumar.ajitkumar.golani@intel.com>
-Date: Tue, 13 May 2025 10:15:49 +0300
-Message-ID: <87zffhhtga.fsf@intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1CE410E2DD;
+ Tue, 13 May 2025 07:45:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=YqG3F1nwnJqHSQab4xMnAquojdAEH0nS8rKHczAwQco=; b=mi8ofs/0oA6a/2IDKfOGeIgfOE
+ AXNEOp05GsCNpnbznaQCu4MncCLqTAqa+kWYl4S4DzOzdMTMoq7BzEQEu414gK/oooD0sF7DcDEeN
+ ZZ22O7p06wbd10Bl1NZ6Cc0uiWmYs2P91eCLewUUc9KWiQlYykPUvyhAhEzbnWqNiO5DhyKzJwWJQ
+ fxTYRBdbtTajDtATx5fbH2WpNoZvmQTxsmZjPzq8A4IJolbt6CUFVu3P7DF1czLJNIA38Ax3ZgWlW
+ ztMjP5O9BDJ8EmD7dmZzoSy0BMORojlB7V+OvnKni92BeJjlBzvzWxKPNmSOqF8595tNOA6tkzTfd
+ ql7oBy4g==;
+Received: from [81.79.92.254] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1uEkF1-007Tuo-1p; Tue, 13 May 2025 09:45:25 +0200
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: dri-devel@lists.freedesktop.org
+Cc: Rob Clark <robdclark@gmail.com>, Sumit Semwal <sumit.semwal@linaro.org>,
+ Gustavo Padovan <gustavo@padovan.org>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
+ kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Subject: [RFC v3 02/10] dma-fence: Use a flag for 64-bit seqnos
+Date: Tue, 13 May 2025 08:45:05 +0100
+Message-ID: <20250513074513.81727-3-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.48.0
+In-Reply-To: <20250513074513.81727-1-tvrtko.ursulin@igalia.com>
+References: <20250513074513.81727-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,95 +66,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 13 May 2025, Mitul Golani <mitulkumar.ajitkumar.golani@intel.com> wrote:
-> Add VRR register offsets and bits to access DC Balance configuration.
->
-> --v2:
-> - Separate register definitions. (Ankit)
-> - Remove usage of dev_priv. (Jani, Nikula)
->
-> --v3:
-> - Convert register address offset, from capital to small. (Ankit)
-> - Move mask bits near to register offsets. (Ankit)
->
-> Co-authored-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_vrr_regs.h | 48 +++++++++++++++++++
->  1 file changed, 48 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr_regs.h b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
-> index 6ed0e0dc97e7..204d5b35bc4b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
-> @@ -9,6 +9,53 @@
->  #include "intel_display_reg_defs.h"
->  
->  /* VRR registers */
-> +#define _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_A		0x604d4
-> +#define _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_B		0x614d4
-> +#define _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_C		0x624d4
-> +#define _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_D		0x634d4
-> +#define TRANS_VRR_DCB_ADJ_FLIPLINE_CFG(display, \
-> +				       trans)	_MMIO_TRANS2(display, trans, \
-> +							     _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_A)
+With the goal of reducing the need for drivers to touch (and dereference)
+fence->ops, we move the 64-bit seqnos flag from struct dma_fence_ops to
+the fence->flags.
 
-None of these need _MMIO_TRANS2() AFAICT. Always use _MMIO_TRANS() when
-possible.
+Drivers which were setting this flag are changed to use new
+dma_fence_init64() instead of dma_fence_init().
 
-BR,
-Jani.
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Reviewed-by: Christian König <christian.koenig@amd.com>
+---
+ drivers/dma-buf/dma-fence-chain.c                |  5 ++---
+ drivers/dma-buf/dma-fence.c                      |  9 +++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c |  5 ++---
+ include/linux/dma-fence.h                        | 14 +++++---------
+ 4 files changed, 18 insertions(+), 15 deletions(-)
 
-> +#define  VRR_DCB_ADJ_FLIPLINE_CNT_MASK			REG_GENMASK(31, 24)
-> +#define  VRR_DCB_ADJ_FLIPLINE_MASK			REG_GENMASK(19, 0)
-> +
-> +#define _TRANS_VRR_DCB_ADJ_VMAX_CFG_A			0x604d8
-> +#define _TRANS_VRR_DCB_ADJ_VMAX_CFG_B			0x614d8
-> +#define _TRANS_VRR_DCB_ADJ_VMAX_CFG_C			0x624d8
-> +#define _TRANS_VRR_DCB_ADJ_VMAX_CFG_D			0x634d8
-> +#define TRANS_VRR_DCB_ADJ_VMAX_CFG(display, trans)	_MMIO_TRANS2(display, \
-> +								     trans, \
-> +								     _TRANS_VRR_DCB_ADJ_VMAX_CFG_A)
-> +#define  VRR_DCB_ADJ_VMAX_CNT_MASK			REG_GENMASK(31, 24)
-> +#define  VRR_DCB_ADJ_VMAX_MASK				REG_GENMASK(19, 0)
-> +
-> +#define _TRANS_VRR_FLIPLINE_DCB_A			0x60418
-> +#define _TRANS_VRR_FLIPLINE_DCB_B			0x61418
-> +#define _TRANS_VRR_FLIPLINE_DCB_C			0x62418
-> +#define _TRANS_VRR_FLIPLINE_DCB_D			0x63418
-> +#define TRANS_VRR_FLIPLINE_DCB(display, trans)		_MMIO_TRANS2(display, \
-> +								     trans, \
-> +								     _TRANS_VRR_FLIPLINE_DCB_A)
-> +#define VRR_FLIPLINE_DCB_MASK				REG_GENMASK(19, 0)
-> +
-> +#define _TRANS_VRR_VMAX_DCB_A				0x60414
-> +#define _TRANS_VRR_VMAX_DCB_B				0x61414
-> +#define _TRANS_VRR_VMAX_DCB_C				0x62414
-> +#define _TRANS_VRR_VMAX_DCB_D				0x63414
-> +#define TRANS_VRR_VMAX_DCB(display, trans)		_MMIO_TRANS2(display, \
-> +								     trans, \
-> +								     _TRANS_VRR_VMAX_DCB_A)
-> +#define  VRR_VMAX_DCB_MASK				REG_GENMASK(19, 0)
-> +
-> +#define _TRANS_ADAPTIVE_SYNC_DCB_CTL_A			0x604c0
-> +#define _TRANS_ADAPTIVE_SYNC_DCB_CTL_B			0x614c0
-> +#define _TRANS_ADAPTIVE_SYNC_DCB_CTL_C			0x624c0
-> +#define _TRANS_ADAPTIVE_SYNC_DCB_CTL_D			0x634c0
-> +#define TRANS_ADAPTIVE_SYNC_DCB_CTL(display, trans)	_MMIO_TRANS2(display, \
-> +								     trans, \
-> +								     _TRANS_ADAPTIVE_SYNC_DCB_CTL_A)
-> +#define ADAPTIVE_SYNC_COUNTER_EN			REG_BIT(31)
-> +
->  #define _TRANS_VRR_CTL_A			0x60420
->  #define _TRANS_VRR_CTL_B			0x61420
->  #define _TRANS_VRR_CTL_C			0x62420
-> @@ -20,6 +67,7 @@
->  #define  VRR_CTL_PIPELINE_FULL_MASK		REG_GENMASK(10, 3)
->  #define  VRR_CTL_PIPELINE_FULL(x)		REG_FIELD_PREP(VRR_CTL_PIPELINE_FULL_MASK, (x))
->  #define  VRR_CTL_PIPELINE_FULL_OVERRIDE		REG_BIT(0)
-> +#define  VRR_CTL_DCB_ADJ_ENABLE			REG_BIT(28)
->  #define  XELPD_VRR_CTL_VRR_GUARDBAND_MASK	REG_GENMASK(15, 0)
->  #define  XELPD_VRR_CTL_VRR_GUARDBAND(x)		REG_FIELD_PREP(XELPD_VRR_CTL_VRR_GUARDBAND_MASK, (x))
-
+diff --git a/drivers/dma-buf/dma-fence-chain.c b/drivers/dma-buf/dma-fence-chain.c
+index 90424f23fd73..a8a90acf4f34 100644
+--- a/drivers/dma-buf/dma-fence-chain.c
++++ b/drivers/dma-buf/dma-fence-chain.c
+@@ -218,7 +218,6 @@ static void dma_fence_chain_set_deadline(struct dma_fence *fence,
+ }
+ 
+ const struct dma_fence_ops dma_fence_chain_ops = {
+-	.use_64bit_seqno = true,
+ 	.get_driver_name = dma_fence_chain_get_driver_name,
+ 	.get_timeline_name = dma_fence_chain_get_timeline_name,
+ 	.enable_signaling = dma_fence_chain_enable_signaling,
+@@ -262,8 +261,8 @@ void dma_fence_chain_init(struct dma_fence_chain *chain,
+ 			seqno = max(prev->seqno, seqno);
+ 	}
+ 
+-	dma_fence_init(&chain->base, &dma_fence_chain_ops,
+-		       &chain->lock, context, seqno);
++	dma_fence_init64(&chain->base, &dma_fence_chain_ops, &chain->lock,
++			 context, seqno);
+ 
+ 	/*
+ 	 * Chaining dma_fence_chain container together is only allowed through
+diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
+index f0cdd3e99d36..33661658f684 100644
+--- a/drivers/dma-buf/dma-fence.c
++++ b/drivers/dma-buf/dma-fence.c
+@@ -1023,3 +1023,12 @@ dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
+ 	trace_dma_fence_init(fence);
+ }
+ EXPORT_SYMBOL(dma_fence_init);
++
++void
++dma_fence_init64(struct dma_fence *fence, const struct dma_fence_ops *ops,
++		 spinlock_t *lock, u64 context, u64 seqno)
++{
++	dma_fence_init(fence, ops, lock, context, seqno);
++	__set_bit(DMA_FENCE_FLAG_SEQNO64_BIT, &fence->flags);
++}
++EXPORT_SYMBOL(dma_fence_init64);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
+index 51cddfa3f1e8..5d26797356a3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
+@@ -71,7 +71,6 @@ static void amdgpu_tlb_fence_work(struct work_struct *work)
+ }
+ 
+ static const struct dma_fence_ops amdgpu_tlb_fence_ops = {
+-	.use_64bit_seqno = true,
+ 	.get_driver_name = amdgpu_tlb_fence_get_driver_name,
+ 	.get_timeline_name = amdgpu_tlb_fence_get_timeline_name
+ };
+@@ -101,8 +100,8 @@ void amdgpu_vm_tlb_fence_create(struct amdgpu_device *adev, struct amdgpu_vm *vm
+ 	INIT_WORK(&f->work, amdgpu_tlb_fence_work);
+ 	spin_lock_init(&f->lock);
+ 
+-	dma_fence_init(&f->base, &amdgpu_tlb_fence_ops, &f->lock,
+-		       vm->tlb_fence_context, atomic64_read(&vm->tlb_seq));
++	dma_fence_init64(&f->base, &amdgpu_tlb_fence_ops, &f->lock,
++			 vm->tlb_fence_context, atomic64_read(&vm->tlb_seq));
+ 
+ 	/* TODO: We probably need a separate wq here */
+ 	dma_fence_get(&f->base);
+diff --git a/include/linux/dma-fence.h b/include/linux/dma-fence.h
+index 48b5202c531d..a34a0dcdc446 100644
+--- a/include/linux/dma-fence.h
++++ b/include/linux/dma-fence.h
+@@ -97,6 +97,7 @@ struct dma_fence {
+ };
+ 
+ enum dma_fence_flag_bits {
++	DMA_FENCE_FLAG_SEQNO64_BIT,
+ 	DMA_FENCE_FLAG_SIGNALED_BIT,
+ 	DMA_FENCE_FLAG_TIMESTAMP_BIT,
+ 	DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT,
+@@ -124,14 +125,6 @@ struct dma_fence_cb {
+  *
+  */
+ struct dma_fence_ops {
+-	/**
+-	 * @use_64bit_seqno:
+-	 *
+-	 * True if this dma_fence implementation uses 64bit seqno, false
+-	 * otherwise.
+-	 */
+-	bool use_64bit_seqno;
+-
+ 	/**
+ 	 * @get_driver_name:
+ 	 *
+@@ -262,6 +255,9 @@ struct dma_fence_ops {
+ void dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
+ 		    spinlock_t *lock, u64 context, u64 seqno);
+ 
++void dma_fence_init64(struct dma_fence *fence, const struct dma_fence_ops *ops,
++		      spinlock_t *lock, u64 context, u64 seqno);
++
+ void dma_fence_release(struct kref *kref);
+ void dma_fence_free(struct dma_fence *fence);
+ void dma_fence_describe(struct dma_fence *fence, struct seq_file *seq);
+@@ -454,7 +450,7 @@ static inline bool __dma_fence_is_later(struct dma_fence *fence, u64 f1, u64 f2)
+ 	 * 32bit sequence numbers. Use a 64bit compare when the driver says to
+ 	 * do so.
+ 	 */
+-	if (fence->ops->use_64bit_seqno)
++	if (test_bit(DMA_FENCE_FLAG_SEQNO64_BIT, &fence->flags))
+ 		return f1 > f2;
+ 
+ 	return (int)(lower_32_bits(f1) - lower_32_bits(f2)) > 0;
 -- 
-Jani Nikula, Intel
+2.48.0
+
