@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 963ABC3ABCC
-	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 03:37:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04CF1C3ABD9
+	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 03:37:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D9CA10E4DF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB96D10E4E1;
 	Tue, 13 May 2025 03:37:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CJr2sHn/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GCHlYNO1";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4A1A10E4DE
- for <intel-xe@lists.freedesktop.org>; Tue, 13 May 2025 03:37:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4186610E4DF
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 May 2025 03:37:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747107442; x=1778643442;
+ t=1747107443; x=1778643443;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dZwO/qHfVSIC2kLvcoOdhZKQFY7/qWWhFoTVsycMWcE=;
- b=CJr2sHn/UScw88mgNVoEtpdCeXBG5Il2mgPJgm6pizqfAObJs0KvIJUJ
- muOpIOv0dpNkBUrhr1ulMaRbje037GXxOjKLHQeaMUF2QPZFAk6zWkbab
- gwsdLHmdsH4j0T/IMaFf5VecnC0kuZxrfXSG080grAPMAhhSQNaH8TA/n
- MW/qnUJZNpQpAS0jY3PlrP0TQ/E8f7fv8ZGfZOVxpQk/SdYHp2sN80Mj6
- c2bMIleXbHAh+qIFP4ezV1Uvmn+fAsZ4IE5ISqIU+GU0vqWsAqABmXnqQ
- dlNT5IuC7GGQtbCJz3rKtPt7fERtqmss8O8sCzSOSr6kYKWeng3uWiDT8 w==;
-X-CSE-ConnectionGUID: Mj34KwndQnC0DCQi4i1+tQ==
-X-CSE-MsgGUID: 7eTm/9wKSVODrzTxUfLxGQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="48858852"
-X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="48858852"
+ bh=Klx4ojp5zVCvRobU+IsLXjFP14h7/jmRgWcUPC/ck70=;
+ b=GCHlYNO1q9S1C2WLUCvyqAqME3xXMrf6JWqByD5zspgF1ByJ7ZqJTWg6
+ R2SCorbws4HlY/XzzML6DVhnKWWcmfdRqi0dwEgvcXUVA1xF4FemyPOzA
+ Xzbbkesh4wlt/jc4ak3bZF52wzTquFEVamgwHhjY0EQNsVfrUfI7h8SRB
+ ArMsBabnJZ7W9e4Po+7ynHbLgK90V7yxseo1WTOwbPfX6z/dkgiIgoXLl
+ FRR0PBP1cGacN1CleIPu/gbmkiKC+f5aGxpUgbKFHIxURxH7hE2gQKGw4
+ xf+b2isGBe9XeDUWvNi849Bs/KpctBmbzX0fX0DEWi2Da7h4Ax3eC3rm6 A==;
+X-CSE-ConnectionGUID: sLqnWwaEReyW8dn02blBcA==
+X-CSE-MsgGUID: n4WOeT8lT2moeooVBsaM8w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="48858856"
+X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="48858856"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2025 20:37:22 -0700
-X-CSE-ConnectionGUID: UQEV1ih/TM6dMkyWXUyTeg==
-X-CSE-MsgGUID: uniSKcCSRTOHE/MTgXOpzA==
+ 12 May 2025 20:37:23 -0700
+X-CSE-ConnectionGUID: yBBEz/tZRrqGdRAIIH/IwQ==
+X-CSE-MsgGUID: 9P+aVLakTCmH9/n+QEBk1Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="142690295"
+X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="142690309"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by orviesa005.jf.intel.com with ESMTP; 12 May 2025 20:37:21 -0700
+ by orviesa005.jf.intel.com with ESMTP; 12 May 2025 20:37:22 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
  Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v8 12/15] drm/gpusvm: Introduce drm_gpusvm_find_vma_start()
- function
-Date: Tue, 13 May 2025 09:32:25 +0530
-Message-Id: <20250513040228.470682-13-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v8 13/15] drm/xe/svm: Add xe_svm_find_vma_start() helper
+Date: Tue, 13 May 2025 09:32:26 +0530
+Message-Id: <20250513040228.470682-14-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250513040228.470682-1-himal.prasad.ghimiray@intel.com>
 References: <20250513040228.470682-1-himal.prasad.ghimiray@intel.com>
@@ -68,85 +67,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The drm_gpusvm_find_vma_start() function is used to determine the starting
-address of a CPU VMA within a specified user range. If the range does not
-contain any VMA, the function returns ULONG_MAX.
-
-v2
-- Rename function as drm_gpusvm_find_vma_start() (Matthew Brost)
-- mmget/mmput
-
-v3
-- s/mmget/mmget_not_zero/
+Add helper xe_svm_find_vma_start() function to determine start of cpu
+vma in input range.
 
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/drm_gpusvm.c | 34 ++++++++++++++++++++++++++++++++++
- include/drm/drm_gpusvm.h     |  5 +++++
- 2 files changed, 39 insertions(+)
+ drivers/gpu/drm/xe/xe_svm.c | 22 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_svm.h |  8 ++++++++
+ 2 files changed, 30 insertions(+)
 
-diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
-index 4b2f32889f00..7bb9eb71c9aa 100644
---- a/drivers/gpu/drm/drm_gpusvm.c
-+++ b/drivers/gpu/drm/drm_gpusvm.c
-@@ -980,6 +980,40 @@ static void drm_gpusvm_driver_lock_held(struct drm_gpusvm *gpusvm)
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 248f615a343e..4432685936ed 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -692,6 +692,28 @@ bool xe_svm_range_validate(struct xe_vm *vm,
+ 	return ret;
  }
- #endif
  
 +/**
-+ * drm_gpusvm_find_vma_start() - Find start address for first VMA in range
-+ * @gpusvm: Pointer to the GPU SVM structure
-+ * @start: The inclusive start user address.
-+ * @end: The exclusive end user address.
++ * xe_svm_find_vma_start - Find start of CPU VMA
++ * @vm: xe_vm pointer
++ * @start: start address
++ * @end: end address
++ * @vma: Pointer to struct xe_vma
 + *
-+ * Returns: The start address of first VMA within the provided range,
-+ * ULONG_MAX otherwise. Assumes start_addr < end_addr.
++ *
++ * This function searches for a cpu vma, within the specified
++ * range [start, end] in the given VM. It adjusts the range based on the
++ * xe_vma start and end addresses. If no cpu VMA is found, it returns ULONG_MAX.
++ *
++ * Return: The starting address of the VMA within the range,
++ * or ULONG_MAX if no VMA is found
 + */
-+unsigned long
-+drm_gpusvm_find_vma_start(struct drm_gpusvm *gpusvm,
-+			  unsigned long start,
-+			  unsigned long end)
++u64 xe_svm_find_vma_start(struct xe_vm *vm, u64 start, u64 end, struct xe_vma *vma)
 +{
-+	struct mm_struct *mm = gpusvm->mm;
-+	struct vm_area_struct *vma;
-+	unsigned long addr = ULONG_MAX;
-+
-+	if (!mmget_not_zero(mm))
-+		return addr;
-+
-+	mmap_read_lock(mm);
-+
-+	vma = find_vma_intersection(mm, start, end);
-+	if (vma)
-+		addr =  vma->vm_start;
-+
-+	mmap_read_unlock(mm);
-+	mmput(mm);
-+
-+	return addr;
++	return drm_gpusvm_find_vma_start(&vm->svm.gpusvm,
++					 max(start, xe_vma_start(vma)),
++					 min(end, xe_vma_end(vma)));
 +}
-+EXPORT_SYMBOL_GPL(drm_gpusvm_find_vma_start);
++
+ #if IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR)
+ static struct xe_vram_region *tile_to_vr(struct xe_tile *tile)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+index 42be9e5d0444..19ce4f2754a7 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -89,6 +89,8 @@ bool xe_svm_range_validate(struct xe_vm *vm,
+ 			   struct xe_svm_range *range,
+ 			   u8 tile_mask, bool devmem_preferred);
+ 
++u64 xe_svm_find_vma_start(struct xe_vm *vm, u64 addr, u64 end,  struct xe_vma *vma);
 +
  /**
-  * drm_gpusvm_range_find_or_insert() - Find or insert GPU SVM range
-  * @gpusvm: Pointer to the GPU SVM structure
-diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
-index eaf704d3d05e..6a5156476bf4 100644
---- a/include/drm/drm_gpusvm.h
-+++ b/include/drm/drm_gpusvm.h
-@@ -327,6 +327,11 @@ void drm_gpusvm_fini(struct drm_gpusvm *gpusvm);
+  * xe_svm_range_has_dma_mapping() - SVM range has DMA mapping
+  * @range: SVM range
+@@ -297,6 +299,12 @@ bool xe_svm_range_validate(struct xe_vm *vm,
+ 	return false;
+ }
  
- void drm_gpusvm_free(struct drm_gpusvm *gpusvm);
- 
-+unsigned long
-+drm_gpusvm_find_vma_start(struct drm_gpusvm *gpusvm,
-+			  unsigned long start,
-+			  unsigned long end);
++static inline
++u64 xe_svm_find_vma_start(struct xe_vm *vm, u64 addr, u64 end, struct xe_vma *vma)
++{
++	return ULONG_MAX;
++}
 +
- struct drm_gpusvm_range *
- drm_gpusvm_range_find_or_insert(struct drm_gpusvm *gpusvm,
- 				unsigned long fault_addr,
+ #define xe_svm_assert_in_notifier(...) do {} while (0)
+ #define xe_svm_range_has_dma_mapping(...) false
+ 
 -- 
 2.34.1
 
