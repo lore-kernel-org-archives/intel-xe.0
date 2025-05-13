@@ -4,53 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 623EBC3ABD9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65801C3ABDC
 	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 05:18:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 900CC10E50C;
-	Tue, 13 May 2025 05:18:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 319A210E513;
+	Tue, 13 May 2025 05:18:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jpA8hLg5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G0YZOSdF";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE03810E504;
- Tue, 13 May 2025 05:18:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09AD710E50F;
+ Tue, 13 May 2025 05:18:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747113531; x=1778649531;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=kidnEk5hz4rBTWJ+xXEIOUXCTDQR6VF2V5oJXNQwIys=;
- b=jpA8hLg5L5Lf8DgQpkhejM3uQvAwYiqgmdZGMvrcd8o7iPWGbTQkCsiA
- I/8d4xqgrWQu8NWYDs+RsJ3wKTk1nhJP+kZkFHNn6x2UA5W3M6l55cVY6
- 1Nr5G7HJcmgKSrkQwpHgkiwNr0V6+QSlqTKs2n6pG1QkcRZPWNZ6DZyuB
- bNVzmpwbYKCfN6gReKgRLhM0p6d6sUyg85sCoOapv3XSiHtO2ro5cU1Dh
- iE09zLf6HclFq8uv8b0ulfQx/Ht1gH1DJ9/DhRsbmumzQaaXdPGABNV0G
- +18SOIPw6EgkBFkXnCEIsIWWAUY7CXqfEflx29yDv1HH+gaKWCuMYs2Gh g==;
-X-CSE-ConnectionGUID: 3f6QCySxRB+fDEWC2FLRDw==
-X-CSE-MsgGUID: 2E7qdpaxSjK3SI88NRdM9w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="51597756"
-X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="51597756"
+ t=1747113534; x=1778649534;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=fQ0ErX8lMxIiHa60yNkDVHLIb9efkVuUPGoJGbYEw5o=;
+ b=G0YZOSdF/9+Jf3cdsLFm8rn5mF5cIQj1qembo38fiEqHz1M42vwnehmv
+ utSxdLyglkgisbTiXk4wYwRskyQN0aQeMmqD3ZbmDnk49rCuRvfCPKEz5
+ F5VdwdmwzbP8WGEiQ1obor5gsHMelU+md+Pc5unqu4RY2mDuVHsNcVzwN
+ 6ytEpIO8luVgGXwN/fGvy4NkYu9azcCrH7+ThlDgZ3Nx+9lHFvV93IW+d
+ xqk3E+QrXXlLhWuRNX5AUhOwkgfVshZklPmLTpRbc52hvYHiiRuemQyXq
+ BxYw/4T40b+MxCVGXrr8uFWu5hWnfbvaxSw7D2OlN4QBehZJurEUXREek w==;
+X-CSE-ConnectionGUID: EcjiHqgkSR6jgVXIvxVUXA==
+X-CSE-MsgGUID: HDnWN5w2Sn2JAU5jvcdvtQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="51597782"
+X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="51597782"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2025 22:18:50 -0700
-X-CSE-ConnectionGUID: NXzhr+NMQvmE5ZHeSNA3bg==
-X-CSE-MsgGUID: 8tmUmeMKRFiL0WzwDfpdbg==
+ 12 May 2025 22:18:54 -0700
+X-CSE-ConnectionGUID: qvgRUJblS7ygzuWoM8RfgA==
+X-CSE-MsgGUID: zI6XU8YzRquXFotHaUingw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="137506045"
+X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="137506100"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa006.jf.intel.com with ESMTP; 12 May 2025 22:18:49 -0700
+ by orviesa006.jf.intel.com with ESMTP; 12 May 2025 22:18:52 -0700
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com,
 	ville.syrjala@intel.com
-Subject: [PATCH v5 00/17] Enable/Disable DC balance along with VRR DSB
-Date: Tue, 13 May 2025 10:46:43 +0530
-Message-ID: <20250513051700.507389-1-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH v5 02/17] drm/i915/display: Add source param for dc balance
+Date: Tue, 13 May 2025 10:46:45 +0530
+Message-ID: <20250513051700.507389-3-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250513051700.507389-1-mitulkumar.ajitkumar.golani@intel.com>
+References: <20250513051700.507389-1-mitulkumar.ajitkumar.golani@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,44 +67,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Control DC Balance Adjustment bit to accomodate changes along
-with VRR DSB implementation.
+Add source param for dc balance enablement further.
 
-Mitul Golani (9):
-  drm/i915/display: Add source param for dc balance
-  drm/i915/display: Add VRR DC balance registers
-  drm/i915/vrr: Add DC Balance params to crtc_state
-  drm/i915/vrr: Add state dump for DC Balance params
-  drm/i915/vrr: Add compute config for DC Balance params
-  drm/i915/vrr: Write DC balance params to hw registers
-  drm/i915/vrr: Add function to check if DC Balance Possible
-  drm/i915/display: Add function to configure PIPEDMC_EVT_CTL
-  drm/i915/vrr: Enable DC Balance bit
+--v2:
+- Arrange in alphabetic order. (Ankit)
+- Update name. (Ankit)
 
-Ville Syrjälä (8):
-  drm/i915/vrr: Refactor vmin/vmax stuff
-  drm/i915/display: Add pipe dmc registers and bits for DC Balance
-  drm/i915/vrr: Add functions to read out vmin/vmax stuff
-  drm/i915: Extract vrr_vblank_start()
-  drm/i915/vrr: Implement vblank evasion with DC balancing
-  drm/i915/dsb: Add pipedmc dc balance enable/disable
-  drm/i915/vrr: Restructure VRR enablement bit
-  drm/i915/vrr: Pause DC Balancing for DSB commits
+Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_device.h | 1 +
+ 1 file changed, 1 insertion(+)
 
- .../drm/i915/display/intel_crtc_state_dump.c  |   8 +
- drivers/gpu/drm/i915/display/intel_display.c  |  25 ++
- .../drm/i915/display/intel_display_device.h   |   1 +
- .../drm/i915/display/intel_display_types.h    |   7 +
- drivers/gpu/drm/i915/display/intel_dmc.c      |  38 +++
- drivers/gpu/drm/i915/display/intel_dmc.h      |   7 +
- drivers/gpu/drm/i915/display/intel_dmc_regs.h |  52 ++++
- drivers/gpu/drm/i915/display/intel_dsb.c      |  31 ++-
- drivers/gpu/drm/i915/display/intel_vblank.c   |  33 ++-
- drivers/gpu/drm/i915/display/intel_vrr.c      | 234 +++++++++++++++---
- drivers/gpu/drm/i915/display/intel_vrr.h      |   5 +
- drivers/gpu/drm/i915/display/intel_vrr_regs.h |  48 ++++
- 12 files changed, 451 insertions(+), 38 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index fe14a92ae8c6..71a6199f5475 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -194,6 +194,7 @@ struct intel_display_platforms {
+ 					  ((__display)->platform.dgfx && DISPLAY_VER(__display) == 14)) && \
+ 					 HAS_DSC(__display))
+ #define HAS_VRR(__display)		(DISPLAY_VER(__display) >= 11)
++#define HAS_VRR_DC_BALANCE(__display)	(DISPLAY_VER(__display) >= 30)
+ #define INTEL_NUM_PIPES(__display)	(hweight8(DISPLAY_RUNTIME_INFO(__display)->pipe_mask))
+ #define OVERLAY_NEEDS_PHYSICAL(__display)	(DISPLAY_INFO(__display)->overlay_needs_physical)
+ #define SUPPORTS_TV(__display)		(DISPLAY_INFO(__display)->supports_tv)
 -- 
 2.48.1
 
