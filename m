@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95114C3ABC3
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0532C3ABC9
 	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 22:50:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CACE10E5FE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAFF010E5FF;
 	Tue, 13 May 2025 22:50:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b0yRGSi3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gXk3y9HX";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48B6610E5FE
- for <intel-xe@lists.freedesktop.org>; Tue, 13 May 2025 22:50:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B9A310E5FE
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 May 2025 22:50:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747176604; x=1778712604;
+ t=1747176607; x=1778712607;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MhH9zUzjDlo4CXkle5lcJFOnUv8PHcNLuW88vj62n5A=;
- b=b0yRGSi3KBuIQglooL+XnM9jV63gDmr+oj/ZvXCrF2J5mrJf7eX3Rx/0
- 1Jr/TtG/02TxzZ3v8jnmc9YzXCvOIG3xS6TWkEN/VWZkgkHnON9pJcWJM
- yv0DAQ29UdO2HvDmGRJ1HiXxOBvxWKyOEGVUal0qLrSawS0UndAlrr+/l
- TNMe0B4MFWyUrY575+KogTyYA+lxEgNoBg7JqliWaxkcEQMmnRYsC6b/0
- qGkEiQlJFfCj/xuj1CFtveHa8s/ym7uREri2rzo8B8sXH84072zK+hrzg
- G0HQrBf4+Kh9HtJo2Rszk5K3WLcvDGeTxOjRZ0y/n7ZzD1MXz1oXraAuA A==;
-X-CSE-ConnectionGUID: h16piD9SQ/iAHzxLz9dX3A==
-X-CSE-MsgGUID: lYdF6QuYRcqTfKunIX6Gsg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11432"; a="52860518"
-X-IronPort-AV: E=Sophos;i="6.15,286,1739865600"; d="scan'208";a="52860518"
+ bh=BqkgSnf1Zw6ANavpJJt3DIVFPscczLT/5f5sWHH1leg=;
+ b=gXk3y9HXG/aGDTYlKeg1Vvm4L8WGbE+bY4B1UFom2AluKYmqdOq64OR+
+ 5NRhh1GVqE5yEhjVRIXErU+F9VGoELcdyjgOwE22HrXfsZKBiftuFiXTD
+ dokE0CWfSktWCeoBG4tvXpYM0wAdHj9dlw4JMXx+BSan2fqcaHzPsTk2g
+ VdaJxtRCtzEcoF7h8oCkiVR+mgREQGUJWGm7m0w3aCOC/moUGIow9Oljm
+ l6kjJcaw4YyOFjFZ160Og7qjnjZR5mmTE19WNbRa0iYKnmKbcUpi9Ttm9
+ 8IbMQrTBkRb0rXMr9WxHTvXLq4F8ldkJwmUK9dr36r4VfMfTgxU+Rum9P g==;
+X-CSE-ConnectionGUID: ZhotfLVkSx6AaT8WJY5EbQ==
+X-CSE-MsgGUID: UTRYxVBHQ8eHQYi9wDX3pQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11432"; a="52860521"
+X-IronPort-AV: E=Sophos;i="6.15,286,1739865600"; d="scan'208";a="52860521"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2025 15:50:04 -0700
-X-CSE-ConnectionGUID: OzsGwEkCRhWAz+vhOt8esg==
-X-CSE-MsgGUID: HzKm806UTrWKzEmMcIOnvQ==
+ 13 May 2025 15:50:06 -0700
+X-CSE-ConnectionGUID: 07pPYNiGScScvDLGSBfFng==
+X-CSE-MsgGUID: hFm2D3zzRxyTCMW3FeYjWQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,286,1739865600"; d="scan'208";a="142789421"
+X-IronPort-AV: E=Sophos;i="6.15,286,1739865600"; d="scan'208";a="142789437"
 Received: from gkczarna.igk.intel.com ([10.211.131.163])
- by orviesa004.jf.intel.com with ESMTP; 13 May 2025 15:50:03 -0700
+ by orviesa004.jf.intel.com with ESMTP; 13 May 2025 15:50:05 -0700
 From: Tomasz Lis <tomasz.lis@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
@@ -47,9 +47,10 @@ Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
  =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v1 5/7] drm/xe/vf: Rebase HWSP of all contexts after migration
-Date: Wed, 14 May 2025 00:49:50 +0200
-Message-Id: <20250513224952.701343-6-tomasz.lis@intel.com>
+Subject: [PATCH v1 6/7] drm/xe/vf: Rebase MEMIRQ structures for all contexts
+ after migration
+Date: Wed, 14 May 2025 00:49:51 +0200
+Message-Id: <20250513224952.701343-7-tomasz.lis@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20250513224952.701343-1-tomasz.lis@intel.com>
 References: <20250513224952.701343-1-tomasz.lis@intel.com>
@@ -69,129 +70,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-All contexts require an update due to GGTT range shift, as that
-affects their HWSP.
+All contexts require an update of state data, as the data includes
+GGTT references to memirq-related buffers.
 
-The HW status page of a context contains GGTT references, which
-need to be shifted to a new range (or re-computed using the
-previously updated vma nodes). The references include ring start
-address and indirect state address.
+Default contexts need these references updated as well, because they
+are not refreshed when a new context is created from them.
 
 Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c      | 18 ++++++++++++++++
- drivers/gpu/drm/xe/xe_lrc.h      |  1 +
- drivers/gpu/drm/xe/xe_sriov_vf.c | 35 ++++++++++++++++++++++++++++++--
- 3 files changed, 52 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_lrc.c      | 41 ++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_lrc.h      |  2 ++
+ drivers/gpu/drm/xe/xe_sriov_vf.c | 17 +++++++++++--
+ 3 files changed, 58 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 61a2e87990a9..43e1c18e1769 100644
+index 43e1c18e1769..5a7f0077ef31 100644
 --- a/drivers/gpu/drm/xe/xe_lrc.c
 +++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1184,6 +1184,24 @@ void xe_lrc_destroy(struct kref *ref)
- 	kfree(lrc);
+@@ -898,6 +898,47 @@ static void *empty_lrc_data(struct xe_hw_engine *hwe)
+ 	return data;
  }
  
 +/**
-+ * xe_lrc_update_hwctx_regs_with_address - Re-compute GGTT references within given LRC.
-+ * @lrc: the &xe_lrc struct instance
++ * xe_default_lrc_update_memirq_regs_with_address - Re-compute GGTT references in default LRC
++ *   of given engine.
++ * @hwe: the &xe_hw_engine struct instance
 + */
-+void xe_lrc_update_hwctx_regs_with_address(struct xe_lrc *lrc)
++void xe_default_lrc_update_memirq_regs_with_address(struct xe_hw_engine *hwe)
 +{
-+	struct xe_gt *gt = lrc->fence_ctx.gt;
++	struct xe_gt *gt = hwe->gt;
++	u32 *regs;
 +
-+	if (xe_gt_has_indirect_ring_state(gt)) {
-+		xe_lrc_write_ctx_reg(lrc, CTX_INDIRECT_RING_STATE,
-+				     __xe_lrc_indirect_ring_ggtt_addr(lrc));
++	if (!gt->default_lrc[hwe->class])
++		return;
 +
-+		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_START,
-+					      __xe_lrc_ring_ggtt_addr(lrc));
-+	} else
-+		xe_lrc_write_ctx_reg(lrc, CTX_RING_START, __xe_lrc_ring_ggtt_addr(lrc));
++	regs = gt->default_lrc[hwe->class] + LRC_PPHWSP_SIZE;
++	set_memory_based_intr(regs, hwe);
 +}
 +
- void xe_lrc_set_ring_tail(struct xe_lrc *lrc, u32 tail)
++/**
++ * xe_lrc_update_memirq_regs_with_address - Re-compute GGTT references in mem interrupt data
++ *   for given LRC.
++ * @hwe: the &xe_hw_engine struct instance
++ * @lrc: the &xe_lrc struct instance
++ */
++void xe_lrc_update_memirq_regs_with_address(struct xe_hw_engine *hwe, struct xe_lrc *lrc)
++{
++	struct xe_gt *gt = hwe->gt;
++	struct iosys_map map;
++	size_t regs_len;
++	u32 *regs;
++
++	map = __xe_lrc_regs_map(lrc);
++	regs_len = lrc_reg_size(gt_to_xe(gt));
++	regs = kzalloc(regs_len, GFP_ATOMIC);
++	if (!regs)
++		return;
++	xe_map_memcpy_from(gt_to_xe(gt), regs, &map, 0, regs_len);
++	set_memory_based_intr(regs, hwe);
++	xe_map_memcpy_to(gt_to_xe(gt), &map, 0, regs, regs_len);
++	kfree(regs);
++}
++
+ static void xe_lrc_set_ppgtt(struct xe_lrc *lrc, struct xe_vm *vm)
  {
- 	if (xe_lrc_has_indirect_ring_state(lrc))
+ 	u64 desc = xe_vm_pdp4_descriptor(vm, gt_to_tile(lrc->gt));
 diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index eb6e8de8c939..e7a99cfd0abe 100644
+index e7a99cfd0abe..3f0ae3affafe 100644
 --- a/drivers/gpu/drm/xe/xe_lrc.h
 +++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -88,6 +88,7 @@ bool xe_lrc_ring_is_idle(struct xe_lrc *lrc);
- u32 xe_lrc_indirect_ring_ggtt_addr(struct xe_lrc *lrc);
+@@ -89,6 +89,8 @@ u32 xe_lrc_indirect_ring_ggtt_addr(struct xe_lrc *lrc);
  u32 xe_lrc_ggtt_addr(struct xe_lrc *lrc);
  u32 *xe_lrc_regs(struct xe_lrc *lrc);
-+void xe_lrc_update_hwctx_regs_with_address(struct xe_lrc *lrc);
+ void xe_lrc_update_hwctx_regs_with_address(struct xe_lrc *lrc);
++void xe_default_lrc_update_memirq_regs_with_address(struct xe_hw_engine *hwe);
++void xe_lrc_update_memirq_regs_with_address(struct xe_hw_engine *hwe, struct xe_lrc *lrc);
  
  u32 xe_lrc_read_ctx_reg(struct xe_lrc *lrc, int reg_nr);
  void xe_lrc_write_ctx_reg(struct xe_lrc *lrc, int reg_nr, u32 val);
 diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-index ab91ac68ef5f..016faa29cddd 100644
+index 016faa29cddd..c08c44dbd383 100644
 --- a/drivers/gpu/drm/xe/xe_sriov_vf.c
 +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-@@ -7,12 +7,14 @@
- 
- #include "xe_assert.h"
- #include "xe_device.h"
-+#include "xe_exec_queue_types.h"
- #include "xe_gt.h"
- #include "xe_gt_sriov_printk.h"
- #include "xe_gt_sriov_vf.h"
- #include "xe_guc_ct.h"
- #include "xe_guc_submit.h"
- #include "xe_irq.h"
-+#include "xe_lrc.h"
- #include "xe_pm.h"
- #include "xe_sriov.h"
- #include "xe_sriov_printk.h"
-@@ -223,6 +225,34 @@ static int vf_post_migration_requery_guc(struct xe_device *xe)
+@@ -225,12 +225,23 @@ static int vf_post_migration_requery_guc(struct xe_device *xe)
  	return ret;
  }
  
-+static void xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *eq)
++static void xe_gt_default_lrcs_hwsp_rebase(struct xe_gt *gt)
 +{
-+	int i;
++	struct xe_hw_engine *hwe;
++	enum xe_hw_engine_id id;
 +
-+	for (i = 0; i < eq->width; ++i)
-+		xe_lrc_update_hwctx_regs_with_address(eq->lrc[i]);
++	for_each_hw_engine(hwe, gt, id)
++		xe_default_lrc_update_memirq_regs_with_address(hwe);
 +}
 +
-+static void xe_guc_contexts_hwsp_rebase(struct xe_guc *guc)
-+{
-+	struct xe_exec_queue *eq;
-+	unsigned long index;
-+
-+	mutex_lock(&guc->submission_state.lock);
-+	xa_for_each(&guc->submission_state.exec_queue_lookup, index, eq)
-+		xe_exec_queue_contexts_hwsp_rebase(eq);
-+	mutex_unlock(&guc->submission_state.lock);
-+}
-+
-+static void vf_post_migration_fixup_contexts(struct xe_device *xe)
-+{
-+	struct xe_gt *gt;
-+	unsigned int id;
-+
-+	for_each_gt(gt, xe, id)
-+		xe_guc_contexts_hwsp_rebase(&gt->uc.guc);
-+}
-+
- static void vf_post_migration_fixup_ctb(struct xe_device *xe)
+ static void xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *eq)
  {
- 	struct xe_gt *gt;
-@@ -303,9 +333,10 @@ static void vf_post_migration_recovery(struct xe_device *xe)
- 		goto fail;
+ 	int i;
  
- 	need_fixups = vf_post_migration_fixup_ggtt_nodes(xe);
--	/* FIXME: add the recovery steps */
--	if (need_fixups)
-+	if (need_fixups) {
-+		vf_post_migration_fixup_contexts(xe);
- 		vf_post_migration_fixup_ctb(xe);
+-	for (i = 0; i < eq->width; ++i)
++	for (i = 0; i < eq->width; ++i) {
++		xe_lrc_update_memirq_regs_with_address(eq->hwe, eq->lrc[i]);
+ 		xe_lrc_update_hwctx_regs_with_address(eq->lrc[i]);
 +	}
+ }
  
- 	vf_post_migration_kickstart(xe);
- 	vf_post_migration_notify_resfix_done(xe);
+ static void xe_guc_contexts_hwsp_rebase(struct xe_guc *guc)
+@@ -249,8 +260,10 @@ static void vf_post_migration_fixup_contexts(struct xe_device *xe)
+ 	struct xe_gt *gt;
+ 	unsigned int id;
+ 
+-	for_each_gt(gt, xe, id)
++	for_each_gt(gt, xe, id) {
++		xe_gt_default_lrcs_hwsp_rebase(gt);
+ 		xe_guc_contexts_hwsp_rebase(&gt->uc.guc);
++	}
+ }
+ 
+ static void vf_post_migration_fixup_ctb(struct xe_device *xe)
 -- 
 2.25.1
 
