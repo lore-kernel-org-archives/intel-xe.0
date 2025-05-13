@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FA20C3ABC3
-	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 09:59:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86884C3ABC3
+	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 10:03:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 047BF10E17D;
-	Tue, 13 May 2025 09:59:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37EF310E1F9;
+	Tue, 13 May 2025 10:03:54 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BADB10E17D;
- Tue, 13 May 2025 09:59:28 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8742394116146633178=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A70A10E1F9;
+ Tue, 13 May 2025 10:03:53 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/ptl=3A_Use_everywh?=
- =?utf-8?q?ere_the_correct_DDI_port_clock_select_mask?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/i915=3A_refactor?=
+ =?utf-8?q?_VLV_IOSF_SB_for_display_usage_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 13 May 2025 09:59:28 -0000
-Message-ID: <174713036856.74292.8760187318226777482@c664b1dc75d1>
+Date: Tue, 13 May 2025 10:03:53 -0000
+Message-ID: <174713063336.74293.6324878362219096204@c664b1dc75d1>
 X-Patchwork-Hint: ignore
-References: <20250512142600.824347-1-imre.deak@intel.com>
-In-Reply-To: <20250512142600.824347-1-imre.deak@intel.com>
+References: <cover.1747061743.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1747061743.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,43 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8742394116146633178==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/ptl: Use everywhere the correct DDI port clock select mask
-URL   : https://patchwork.freedesktop.org/series/148893/
-State : success
+Series: drm/i915: refactor VLV IOSF SB for display usage (rev3)
+URL   : https://patchwork.freedesktop.org/series/148265/
+State : failure
 
 == Summary ==
 
-CI Bug Log - changes from xe-3075-7958e22a62e9dd7cb706d0a271ccbe3f82275f17_BAT -> xe-pw-148893v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3075-7958e22a62e9dd7cb706d0a271ccbe3f82275f17 -> xe-pw-148893v1
-
-  IGT_8362: 8362
-  xe-3075-7958e22a62e9dd7cb706d0a271ccbe3f82275f17: 7958e22a62e9dd7cb706d0a271ccbe3f82275f17
-  xe-pw-148893v1: 148893v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148893v1/index.html
-
---===============8742394116146633178==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: c9de1544553b drm-tip: 2025y-05m-13d-08h-26m-34s UTC integration manifest
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/i915/Makefile:45
+error: drivers/gpu/drm/i915/Makefile: patch does not apply
+error: patch failed: drivers/gpu/drm/i915/display/intel_display_power_map.c:10
+error: drivers/gpu/drm/i915/display/intel_display_power_map.c: patch does not apply
+error: patch failed: drivers/gpu/drm/i915/display/intel_display_power_well.c:30
+error: drivers/gpu/drm/i915/display/intel_display_power_well.c: patch does not apply
+error: patch failed: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c:22
+error: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c: patch does not apply
+error: patch failed: drivers/gpu/drm/i915/gt/intel_rps.c:23
+error: drivers/gpu/drm/i915/gt/intel_rps.c: patch does not apply
+error: patch failed: drivers/gpu/drm/i915/i915_driver.c:108
+error: drivers/gpu/drm/i915/i915_driver.c: patch does not apply
+error: patch failed: drivers/gpu/drm/i915/intel_clock_gating.c:37
+error: drivers/gpu/drm/i915/intel_clock_gating.c: patch does not apply
+error: patch failed: drivers/gpu/drm/i915/soc/intel_dram.c:10
+error: drivers/gpu/drm/i915/soc/intel_dram.c: patch does not apply
+error: drivers/gpu/drm/i915/vlv_sideband.c: does not exist in index
+error: drivers/gpu/drm/i915/vlv_sideband.h: does not exist in index
+error: drivers/gpu/drm/i915/vlv_sideband_reg.h: does not exist in index
+error: drivers/gpu/drm/xe/compat-i915-headers/vlv_sideband.h: does not exist in index
+error: drivers/gpu/drm/xe/compat-i915-headers/vlv_sideband_reg.h: does not exist in index
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Applying: drm/i915: rename vlv_sideband*.[ch] to vlv_iosf_sb*.[ch]
+Patch failed at 0001 drm/i915: rename vlv_sideband*.[ch] to vlv_iosf_sb*.[ch]
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/ptl: Use everywhere the correct DDI port clock select mask</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148893/">https://patchwork.freedesktop.org/series/148893/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148893v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148893v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3075-7958e22a62e9dd7cb706d0a271ccbe3f82275f17_BAT -&gt; xe-pw-148893v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3075-7958e22a62e9dd7cb706d0a271ccbe3f82275f17 -&gt; xe-pw-148893v1</li>
-</ul>
-<p>IGT_8362: 8362<br />
-  xe-3075-7958e22a62e9dd7cb706d0a271ccbe3f82275f17: 7958e22a62e9dd7cb706d0a271ccbe3f82275f17<br />
-  xe-pw-148893v1: 148893v1</p>
-
-</body>
-</html>
-
---===============8742394116146633178==--
