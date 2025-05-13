@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FDC8C3ABC3
-	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 14:27:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEF77C3ABCC
+	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 14:35:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBED210E5BF;
-	Tue, 13 May 2025 14:27:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kysQR7qJ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BF4E10E5C9
- for <intel-xe@lists.freedesktop.org>; Tue, 13 May 2025 14:27:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747146440; x=1778682440;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=t82OLuoab/gpzzzAgrtNblwayZWCJZFsYhwdvCFNkO4=;
- b=kysQR7qJPNl4iWYHJb9yMrbCAikaaey6ObYD9P/fhSuu4htLLN78iUyR
- YDlgZoK1225kVnSs1zqwYE2Q83Mb9E88XfHD5yxNH5P2Fa05YgDu3TyEw
- EK56R3Ix9t4eEMITJrV0xY14RDFXSC2ZjUfgHYhSSY1MmYAPbYzwuEbqy
- zCY5q6X2xAyGyFSkQeWNgpJ4tAdT0gQTXDgjsk44RT07q3CTQNa+XhF7H
- 1l1A/tm2MQTqd2I3sjqrNhcCjFkY3ynycBLa9lcVM6sWHdCWVdLiDBNzO
- L6WLgmIBhtgKRulaPb5jZSCW5kwqKQiKFrhNG2ApB83Q+r0xFgz1NZ2Vp A==;
-X-CSE-ConnectionGUID: YBLl6l1rRASef3qbfSf7Mw==
-X-CSE-MsgGUID: hxRgh/EFSWqTzBc55XRMwA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="48869997"
-X-IronPort-AV: E=Sophos;i="6.15,285,1739865600"; d="scan'208";a="48869997"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2025 07:27:20 -0700
-X-CSE-ConnectionGUID: RPAPNdMtRtiqH8bOlN6mWw==
-X-CSE-MsgGUID: Iz2bVesSTeu9w5dDqelWzA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,285,1739865600"; d="scan'208";a="138232170"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2025 07:27:19 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: [PATCH] drm/xe/guc_submit: Simplify and fix diff calculation
-Date: Tue, 13 May 2025 07:25:49 -0700
-Message-ID: <20250513-time-wrap-v1-1-fba9a69a65c8@intel.com>
-X-Mailer: git-send-email 2.49.0
-MIME-Version: 1.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 592ED10E5D2;
+	Tue, 13 May 2025 14:35:57 +0000 (UTC)
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4082D10E5E2;
+ Tue, 13 May 2025 14:35:56 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
-X-Change-ID: 20250513-time-wrap-07aa075a29db
-X-Mailer: b4 0.15-dev-f7671
-Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_Don=27t_allocate_managed_BO_fo?=
+ =?utf-8?q?r_each_policy_change?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 13 May 2025 14:35:56 -0000
+Message-ID: <174714695625.75305.8097584550738730363@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <20250512220018.172-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20250512220018.172-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,37 +36,117 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With a u32 type, there's no need to check which one is greater: the
-current is always the latest and if it's less than the previous, it's
-because it wrapped: just do the unsigned calculation that will lead to
-the same result, or better the correct one. It fixes an off-by-one in
-the wrapped calculation, however that doesn't really matter for the
-timeout calculation.
+== Series Details ==
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_submit.c | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+Series: Don't allocate managed BO for each policy change
+URL   : https://patchwork.freedesktop.org/series/148913/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index fb125f940de8f..80f748baad3f3 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -976,10 +976,7 @@ static bool check_timeout(struct xe_exec_queue *q, struct xe_sched_job *job)
- 	 */
- 	xe_gt_assert(gt, timeout_ms < 100 * MSEC_PER_SEC);
- 
--	if (ctx_timestamp < ctx_job_timestamp)
--		diff = ctx_timestamp + U32_MAX - ctx_job_timestamp;
--	else
--		diff = ctx_timestamp - ctx_job_timestamp;
-+	diff = ctx_timestamp - ctx_job_timestamp;
- 
- 	/*
- 	 * Ensure timeout is within 5% to account for an GuC scheduling latency
+== Summary ==
 
+INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/bridge/netfilter/ebt_mark.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/bridge/netfilter/ebt_dnat.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/bridge/netfilter/ebt_stp.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/bridge/netfilter/ebt_vlan.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/bridge/netfilter/ebt_arpreply.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/bridge/netfilter/ebt_mark.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/bridge/netfilter/ebt_dnat.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/bridge/netfilter/ebt_redirect.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/bridge/netfilter/ebt_snat.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/bridge/netfilter/ebt_log.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/bridge/netfilter/ebt_nflog.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/bridge/netfilter/ebt_redirect.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/bridge/netfilter/ebt_snat.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/bridge/netfilter/ebt_log.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/bridge/netfilter/ebt_nflog.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/bridge/bridge.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/bridge/br_netfilter.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/sunrpc/sunrpc.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/sunrpc/auth_gss/auth_rpcgss.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/sunrpc/auth_gss/rpcsec_gss_krb5.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/bridge/br_netfilter.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/kcm/kcm.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/l2tp/l2tp_core.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/l2tp/l2tp_ip.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/sunrpc/auth_gss/auth_rpcgss.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/sunrpc/auth_gss/rpcsec_gss_krb5.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/l2tp/l2tp_netlink.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/bridge/bridge.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/l2tp/l2tp_eth.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/kcm/kcm.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/l2tp/l2tp_core.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/l2tp/l2tp_ip.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/l2tp/l2tp_debugfs.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/sunrpc/sunrpc.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/l2tp/l2tp_netlink.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/l2tp/l2tp_eth.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/l2tp/l2tp_ip6.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/dccp/dccp.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/dccp/dccp_ipv4.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/l2tp/l2tp_debugfs.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/l2tp/l2tp_ip6.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/dccp/dccp_ipv4.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/dccp/dccp.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/dccp/dccp_ipv6.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/dccp/dccp_diag.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/sctp/sctp.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/sctp/sctp_diag.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/dccp/dccp_ipv6.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/dccp/dccp_diag.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/rds/rds.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/sctp/sctp_diag.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/rds/rds_tcp.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/9p/9pnet.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/9p/9pnet_fd.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/9p/9pnet_xen.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/sctp/sctp.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/9p/9pnet_virtio.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/rds/rds.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/rds/rds_tcp.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/9p/9pnet.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/9p/9pnet_fd.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/9p/9pnet_xen.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/psample/psample.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/9p/9pnet_virtio.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/vmw_vsock/vsock.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/vmw_vsock/vsock_diag.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/vmw_vsock/vmw_vsock_vmci_transport.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/psample/psample.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/vmw_vsock/vsock.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/vmw_vsock/vsock_diag.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/vmw_vsock/vmw_vsock_vmci_transport.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/vmw_vsock/vmw_vsock_virtio_transport.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/vmw_vsock/vmw_vsock_virtio_transport_common.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/vmw_vsock/hv_sock.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/vmw_vsock/vsock_loopback.ko
+  INSTALL debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/virt/lib/irqbypass.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/vmw_vsock/vmw_vsock_virtio_transport.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/vmw_vsock/vmw_vsock_virtio_transport_common.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/vmw_vsock/hv_sock.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/net/vmw_vsock/vsock_loopback.ko
+  STRIP   debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+/kernel/virt/lib/irqbypass.ko
+  DEPMOD  debian/linux-image-6.15.0-rc6-xe+/lib/modules/6.15.0-rc6-xe+
+dpkg-deb: building package 'linux-headers-6.15.0-rc6-xe+' in '../linux-headers-6.15.0-rc6-xe+_6.15.0~rc6-g7715319cba0c-2_amd64.deb'.
+dpkg-deb: building package 'linux-image-6.15.0-rc6-xe+' in '../linux-image-6.15.0-rc6-xe+_6.15.0~rc6-g7715319cba0c-2_amd64.deb'.
+dpkg-deb: building package 'linux-image-6.15.0-rc6-xe+-dbg' in '../linux-image-6.15.0-rc6-xe+-dbg_6.15.0~rc6-g7715319cba0c-2_amd64.deb'.
+ dpkg-genbuildinfo --build=binary -O../linux-upstream_6.15.0~rc6-g7715319cba0c-2_amd64.buildinfo
+ dpkg-genchanges --build=binary -O../linux-upstream_6.15.0~rc6-g7715319cba0c-2_amd64.changes
+dpkg-genchanges: info: binary-only upload (no source code included)
+ dpkg-source --after-build .
+dpkg-buildpackage: info: binary-only upload (no source included)
+make[1]: Leaving directory '/kernel/build64-debug'
++ mkdir -p kernel-debug/ kernel-debug/deb
++ mv kernel-debug.tar.gz kernel-debug/
++ mv linux-headers-6.15.0-rc6-xe+_6.15.0~rc6-g7715319cba0c-2_amd64.deb linux-image-6.15.0-rc6-xe+_6.15.0~rc6-g7715319cba0c-2_amd64.deb linux-image-6.15.0-rc6-xe+-dbg_6.15.0~rc6-g7715319cba0c-2_amd64.deb linux-libc-dev_6.15.0~rc6-g7715319cba0c-2_amd64.deb kernel-debug/deb/
++ sync
+[+] Finished building and packaging 'debug'!
++ echo '[+] Finished building and packaging '\''debug'\''!'
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
