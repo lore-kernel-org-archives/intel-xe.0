@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1AD1C3ABC3
-	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 09:31:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30EF8C3ABD7
+	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 09:34:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A567910E52E;
-	Tue, 13 May 2025 09:31:06 +0000 (UTC)
-Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF89F10E52E;
- Tue, 13 May 2025 09:31:04 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EE4610E4DC;
+	Tue, 13 May 2025 09:34:29 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A8lYNJaL";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B547910E4DC;
+ Tue, 13 May 2025 09:34:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1747128867; x=1778664867;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=KEChjx3+GAChoGqB3zheFTHKBVEdUZIkFtoIg5RMDJs=;
+ b=A8lYNJaLW9FkJ1s4CEQsHlL4SOKfkif4AY8FzUxKTXSCekEdNq2ZF+DJ
+ Jf2CcoSzn6sAtiohJEuzqWjCb0JIeoM7sPCg9sr3RPKMJdqIoMkx4YYh6
+ hDi93GUok8qA7/9i07atuaQTWOIg7JlwGStT0q71J7J1cf/iBLG5u3zwq
+ rF5nAGGiKIe+sVptLTLUdzxmNnrv8FDeqSW9Rok+6JMVEYf/5diO8J0Ys
+ iqIrYu1ZMrOCVMKtVMADyIOoRtmC1IxXlzaZcV3MK7ATHCkcMM5y29a8e
+ pnQY/1ciRuCOb262GxqLbX3SCBzaj3GV+Cf+v0q3iDZzHKGJA4H9OxP6Y g==;
+X-CSE-ConnectionGUID: 4EX19KrrR8CjhniwmrcIsg==
+X-CSE-MsgGUID: P6SaUTf3SwaxET948O0++g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="48957004"
+X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="48957004"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2025 02:34:26 -0700
+X-CSE-ConnectionGUID: jJ4ln9nNRIi2YUdLOdy6+Q==
+X-CSE-MsgGUID: nYpFynYtSg+t2cUuqZdL5Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="142769102"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO stinkbox)
+ ([10.245.244.221])
+ by orviesa005.jf.intel.com with SMTP; 13 May 2025 02:34:23 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 13 May 2025 12:34:22 +0300
+Date: Tue, 13 May 2025 12:34:22 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 0/5] drm/i915/display: various small cleanups
+Message-ID: <aCMSHuv8KMcy6Lrj@intel.com>
+References: <cover.1747128495.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/i915/ptl=3A_Use_ever?=
- =?utf-8?q?ywhere_the_correct_DDI_port_clock_select_mask?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 13 May 2025 09:31:04 -0000
-Message-ID: <174712866496.74057.9483010010395878985@c664b1dc75d1>
-X-Patchwork-Hint: ignore
-References: <20250512142600.824347-1-imre.deak@intel.com>
-In-Reply-To: <20250512142600.824347-1-imre.deak@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <cover.1747128495.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +67,38 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, May 13, 2025 at 12:28:40PM +0300, Jani Nikula wrote:
+> A bunch of small cleanups.
+> 
+> Jani Nikula (5):
+>   drm/i915/pps: drop dependency on intel_display_conversion.h
+>   drm/i915/rps: pass struct intel_display to DISPLAY_VER()
+>   drm/i915/display: drop unused declarations from intel_display.h
+>   drm/i915/gem: drop intel_display.h include
+>   drm/i915/display: drop unnecessary includes on i915 core headers
 
-Series: drm/i915/ptl: Use everywhere the correct DDI port clock select mask
-URL   : https://patchwork.freedesktop.org/series/148893/
-State : success
+Series is
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-== Summary ==
+> 
+>  .../gpu/drm/i915/display/intel_atomic_plane.c    |  1 -
+>  drivers/gpu/drm/i915/display/intel_crt.c         |  1 -
+>  drivers/gpu/drm/i915/display/intel_display.c     |  1 -
+>  drivers/gpu/drm/i915/display/intel_display.h     | 16 ----------------
+>  .../gpu/drm/i915/display/intel_display_debugfs.c |  1 -
+>  drivers/gpu/drm/i915/display/intel_display_rps.c |  3 ++-
+>  drivers/gpu/drm/i915/display/intel_dp.c          |  1 -
+>  drivers/gpu/drm/i915/display/intel_dsb.c         |  1 -
+>  drivers/gpu/drm/i915/display/intel_pps_regs.h    | 15 +++++++--------
+>  drivers/gpu/drm/i915/gem/i915_gem_domain.c       |  1 -
+>  10 files changed, 9 insertions(+), 32 deletions(-)
+> 
+> -- 
+> 2.39.5
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast c9de1544553b1d6112ccc32977b6d56881cedcea
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+-- 
+Ville Syrjälä
+Intel
