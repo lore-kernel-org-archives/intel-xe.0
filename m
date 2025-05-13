@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C504AC3ABC3
-	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 03:37:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C355C3ABC3
+	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 03:37:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B59A10E4D8;
-	Tue, 13 May 2025 03:37:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B46110E4D9;
+	Tue, 13 May 2025 03:37:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XkoveMlv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dGAYEkBj";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED31110E4D8
- for <intel-xe@lists.freedesktop.org>; Tue, 13 May 2025 03:37:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9083210E4D9
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 May 2025 03:37:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747107429; x=1778643429;
+ t=1747107433; x=1778643433;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=lmfMkDIyY64cdYpg2IG75jn8jvrLnVnoMZSGI96zZh8=;
- b=XkoveMlvkAX58x9UpzPHLVcC0+K8dRzloCP58CJUHYYn0YaFfHc5ZOJQ
- r3Xt24CxLiT/vhhoNG7fAxfMdnFcCRzDu3a771tHDR1ArR7zwpdKcIOP4
- 3mdFtbYdcX9WDS8ckzkKGM6w9hg62e5TTo7ZL8HScsRikb5bKokhUtgPD
- galnEucaiks7eg/gRgWuYkzBrYO3PJOOMkMpezqI2yP598VXAieppmfP3
- Jos/3dV8i6/tA/4UpCWVJKgC7x1HD8qJgrj/fkE8AVzX+FA8xgiFcurPD
- AnyW/qQUMUPg4JhqbHLi7L8kYiqXlI0oldGXh1xZ5lRqd75RFxLL3Cg7g A==;
-X-CSE-ConnectionGUID: XJ7qam3IRiqQgg9deXELsQ==
-X-CSE-MsgGUID: YSICpDc/RA2PonoGwBAA5A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="48858806"
-X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="48858806"
+ bh=VTan0mQs3PZ7t048OoeGdpjefP5J0EaBF16CwLzrFMI=;
+ b=dGAYEkBj+J5qrp1L/b1rvEA4yawVsprmTfvCUOiaZjAdslvqWfsttD5Y
+ lPfeubiBsribgrzvKVLZ0FfKen3kss74ziUOCeV0FXaFIdlU+z07itLfS
+ SclwHkXGwZGCSgyTaNAFE8QRoSH8RXRHJJw4cuwEoKKLFJL++IBB6Wkqr
+ HcUJjGbzUddrgjQLcykPI/5Ff921QmJSVGrKDN9l3Bu/uzZVU8eaWbrCv
+ B2NNCo9W4Sy7rF9fp41Cw8Sg8waJAw6/cDG0Vm9rxrYtA9GhdnMdMTM4u
+ ZA56D0vwGPoJ/ykiF+5Fqa1ktEPX809mE5NuE5sRXzWh7b/kXwZBlGcNh Q==;
+X-CSE-ConnectionGUID: ZbLQJklcR0SeQOr2o1SSpg==
+X-CSE-MsgGUID: gFKPVLNkTiyHe94lyOQs/w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="48858813"
+X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="48858813"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2025 20:37:09 -0700
-X-CSE-ConnectionGUID: RKxa8U2zRyy+N2ZfGnd+Iw==
-X-CSE-MsgGUID: 7M7DtCNRScm/L4dYtJ2t4g==
+ 12 May 2025 20:37:12 -0700
+X-CSE-ConnectionGUID: EUciiHM/ToWHFvxD/2M4bg==
+X-CSE-MsgGUID: RSZbcUqdSuixrYJDPKHjdw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="142690185"
+X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="142690209"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by orviesa005.jf.intel.com with ESMTP; 12 May 2025 20:37:08 -0700
+ by orviesa005.jf.intel.com with ESMTP; 12 May 2025 20:37:11 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
  Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v8 04/15] drm/xe/svm: Make to_xe_range a public function
-Date: Tue, 13 May 2025 09:32:17 +0530
-Message-Id: <20250513040228.470682-5-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v8 06/15] drm/xe/vm: Update xe_vma_ops_incr_pt_update_ops to
+ take an increment value
+Date: Tue, 13 May 2025 09:32:19 +0530
+Message-Id: <20250513040228.470682-7-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250513040228.470682-1-himal.prasad.ghimiray@intel.com>
 References: <20250513040228.470682-1-himal.prasad.ghimiray@intel.com>
@@ -67,77 +68,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The to_xe_range function will be used in other files. Therefore, make it
-public and add kernel-doc documentation
+Prefetch for SVM ranges can have more than one operation to increment,
+hence modify the function to accept an increment value as input.
 
+v2:
+  - Call xe_vma_ops_incr_pt_update_ops only once for REMAP (Matthew Brost)
+  - Add check for 0 ops
+
+v3:
+  - s/u8/int for inc_val and num_remap_ops (Matthew Brost)
+
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm.c |  5 -----
- drivers/gpu/drm/xe/xe_svm.h | 20 ++++++++++++++++++++
- 2 files changed, 20 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c | 28 +++++++++++++++++-----------
+ 1 file changed, 17 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 875376bddc88..77740730e821 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -103,11 +103,6 @@ static void xe_svm_range_free(struct drm_gpusvm_range *range)
- 	kfree(range);
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 79323c78130f..f4382386b34c 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -806,13 +806,16 @@ static void xe_vma_ops_fini(struct xe_vma_ops *vops)
+ 		kfree(vops->pt_update_ops[i].ops);
  }
  
--static struct xe_svm_range *to_xe_range(struct drm_gpusvm_range *r)
--{
--	return container_of(r, struct xe_svm_range, base);
--}
--
- static void
- xe_svm_garbage_collector_add_range(struct xe_vm *vm, struct xe_svm_range *range,
- 				   const struct mmu_notifier_range *mmu_range)
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index 36e245ec6422..e9257f0b3ffc 100644
---- a/drivers/gpu/drm/xe/xe_svm.h
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -85,6 +85,20 @@ static inline bool xe_svm_range_has_dma_mapping(struct xe_svm_range *range)
- 	return range->base.flags.has_dma_mapping;
- }
+-static void xe_vma_ops_incr_pt_update_ops(struct xe_vma_ops *vops, u8 tile_mask)
++static void xe_vma_ops_incr_pt_update_ops(struct xe_vma_ops *vops, u8 tile_mask, int inc_val)
+ {
+ 	int i;
  
-+/**
-+ * to_xe_range - Convert a drm_gpusvm_range pointer to a xe_svm_range
-+ * @r: Pointer to the drm_gpusvm_range structure
-+ *
-+ * This function takes a pointer to a drm_gpusvm_range structure and
-+ * converts it to a pointer to the containing xe_svm_range structure.
-+ *
-+ * Return: Pointer to the xe_svm_range structure
-+ */
-+static inline struct xe_svm_range *to_xe_range(struct drm_gpusvm_range *r)
-+{
-+	return container_of(r, struct xe_svm_range, base);
-+}
++	if (!inc_val)
++		return;
 +
- #define xe_svm_assert_in_notifier(vm__) \
- 	lockdep_assert_held_write(&(vm__)->svm.gpusvm.notifier_lock)
- 
-@@ -101,6 +115,7 @@ void xe_svm_flush(struct xe_vm *vm);
- 
- struct drm_pagemap_device_addr;
- struct drm_gpusvm_ctx;
-+struct drm_gpusvm_range;
- struct xe_bo;
- struct xe_gt;
- struct xe_vm;
-@@ -179,6 +194,11 @@ int xe_svm_alloc_vram(struct xe_vm *vm, struct xe_tile *tile,
- 	return -EOPNOTSUPP;
+ 	for (i = 0; i < XE_MAX_TILES_PER_DEVICE; ++i)
+ 		if (BIT(i) & tile_mask)
+-			++vops->pt_update_ops[i].num_ops;
++			vops->pt_update_ops[i].num_ops += inc_val;
  }
  
-+static inline struct xe_svm_range *to_xe_range(struct drm_gpusvm_range *r)
-+{
-+	return NULL;
-+}
-+
- #define xe_svm_assert_in_notifier(...) do {} while (0)
- #define xe_svm_range_has_dma_mapping(...) false
+ static void xe_vm_populate_rebind(struct xe_vma_op *op, struct xe_vma *vma,
+@@ -842,7 +845,7 @@ static int xe_vm_ops_add_rebind(struct xe_vma_ops *vops, struct xe_vma *vma,
  
+ 	xe_vm_populate_rebind(op, vma, tile_mask);
+ 	list_add_tail(&op->link, &vops->list);
+-	xe_vma_ops_incr_pt_update_ops(vops, tile_mask);
++	xe_vma_ops_incr_pt_update_ops(vops, tile_mask, 1);
+ 
+ 	return 0;
+ }
+@@ -977,7 +980,7 @@ xe_vm_ops_add_range_rebind(struct xe_vma_ops *vops,
+ 
+ 	xe_vm_populate_range_rebind(op, vma, range, tile_mask);
+ 	list_add_tail(&op->link, &vops->list);
+-	xe_vma_ops_incr_pt_update_ops(vops, tile_mask);
++	xe_vma_ops_incr_pt_update_ops(vops, tile_mask, 1);
+ 
+ 	return 0;
+ }
+@@ -1062,7 +1065,7 @@ xe_vm_ops_add_range_unbind(struct xe_vma_ops *vops,
+ 
+ 	xe_vm_populate_range_unbind(op, range);
+ 	list_add_tail(&op->link, &vops->list);
+-	xe_vma_ops_incr_pt_update_ops(vops, range->tile_present);
++	xe_vma_ops_incr_pt_update_ops(vops, range->tile_present, 1);
+ 
+ 	return 0;
+ }
+@@ -2493,7 +2496,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 			     !op->map.is_cpu_addr_mirror) ||
+ 			    op->map.invalidate_on_bind)
+ 				xe_vma_ops_incr_pt_update_ops(vops,
+-							      op->tile_mask);
++							      op->tile_mask, 1);
+ 			break;
+ 		}
+ 		case DRM_GPUVA_OP_REMAP:
+@@ -2502,6 +2505,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 				gpuva_to_vma(op->base.remap.unmap->va);
+ 			bool skip = xe_vma_is_cpu_addr_mirror(old);
+ 			u64 start = xe_vma_start(old), end = xe_vma_end(old);
++			int num_remap_ops = 0;
+ 
+ 			if (op->base.remap.prev)
+ 				start = op->base.remap.prev->va.addr +
+@@ -2554,7 +2558,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 					       (ULL)op->remap.start,
+ 					       (ULL)op->remap.range);
+ 				} else {
+-					xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
++					num_remap_ops++;
+ 				}
+ 			}
+ 
+@@ -2583,11 +2587,13 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 					       (ULL)op->remap.start,
+ 					       (ULL)op->remap.range);
+ 				} else {
+-					xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
++					num_remap_ops++;
+ 				}
+ 			}
+ 			if (!skip)
+-				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
++				num_remap_ops++;
++
++			xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask, num_remap_ops);
+ 			break;
+ 		}
+ 		case DRM_GPUVA_OP_UNMAP:
+@@ -2599,7 +2605,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 				return -EBUSY;
+ 
+ 			if (!xe_vma_is_cpu_addr_mirror(vma))
+-				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
++				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask, 1);
+ 			break;
+ 		case DRM_GPUVA_OP_PREFETCH:
+ 			vma = gpuva_to_vma(op->base.prefetch.va);
+@@ -2611,7 +2617,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 			}
+ 
+ 			if (!xe_vma_is_cpu_addr_mirror(vma))
+-				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
++				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask, 1);
+ 			break;
+ 		default:
+ 			drm_warn(&vm->xe->drm, "NOT POSSIBLE");
 -- 
 2.34.1
 
