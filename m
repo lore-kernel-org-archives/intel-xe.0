@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 192B5C3ABC3
-	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 03:37:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B44AC3ABC3
+	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 03:37:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D44FE10E4DC;
-	Tue, 13 May 2025 03:37:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A142610E4E0;
+	Tue, 13 May 2025 03:37:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PeR2I77P";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A+7eSaGM";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F35D710E4DE
- for <intel-xe@lists.freedesktop.org>; Tue, 13 May 2025 03:37:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C20E10E4DE
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 May 2025 03:37:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747107439; x=1778643439;
+ t=1747107441; x=1778643441;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=7VVQqBOlZpoO0F1P0ZXFgUU4SNiRdfd0wtNRjFqVEnc=;
- b=PeR2I77PyjpehPDi98uwIIntSTsI7289K4HBphoRchBjl+9UUBqSV3eW
- wkEX5lGDItWcVSNdgBNEyUSX7XwYA8qSy8+dSf49VZEOL1p1wIZbClUPo
- qHRTBiS5qDwVoIy3xyqCHvbdJLBAYr5x94jWm08BQ2C2NehMnKnXgLRDI
- B/REwidcpAdnkdMCAx/YlpejDY8pJBzpJ9a3pee3K0uYx6RHsgS+DaZOw
- FM8BOMRvR/7asubfLTih8dzh2+YxN/Wshm7cvXU/jYl2iat7lEe4v7vwL
- O/OMDoCYgNdIjHxCgCt66CPx/kCLXTaMYwkpPfUhMF4DnplGCwY60U4IG g==;
-X-CSE-ConnectionGUID: wJ/RbXPETCmuMmzE9akS6g==
-X-CSE-MsgGUID: vyFlmInnQVay5AQqVhQRdA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="48858848"
-X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="48858848"
+ bh=bJX6xRoyWBbPCdejSZNHXLuRg3avawQWMpBn2QHqE7M=;
+ b=A+7eSaGMCYTtGvpHXDEyUO0TVCwSh5y8l33PqQLdPADRkFSG7m+WAoU+
+ /WiDWU1XxmC6M3H7R+Q+6pesZWvT6ert4b4235iFr5FXbra4QU0B9CuNr
+ Z5moRLAM/rqoAaUptdFd5d+z3Ewn53LaOThpvBjStspzelfP1HiS1qodH
+ 9B02CQaX9epj9jXU0C4rN1ay6yE+1hfIp4IEFQ/RyZ6UOu08MCSY9RqiD
+ p4i4Wbdi8ID6mP6KNenQK5ZxeaplYE53r2a7nq7NhejmSqmiahlOWusRV
+ ynbw46izihXq3zbtSOLkhDgk8GJkMFhIXMMemQSgHGTkXkp5LyuaE9Zi/ g==;
+X-CSE-ConnectionGUID: IHpfGaA5T/uZjCsw60AQJQ==
+X-CSE-MsgGUID: 8owMWx1ZQ9CDHLKzefxUjg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="48858851"
+X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="48858851"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2025 20:37:19 -0700
-X-CSE-ConnectionGUID: M4kSicfXRgeRMHulE9EDZg==
-X-CSE-MsgGUID: pz4/oBYTS4CfzxGz3tawVQ==
+ 12 May 2025 20:37:20 -0700
+X-CSE-ConnectionGUID: 5XtFTQ/LR1CkUPqSdpHfFQ==
+X-CSE-MsgGUID: 9cFsVCXdRcWFJLQdcJHGQA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="142690269"
+X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="142690284"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by orviesa005.jf.intel.com with ESMTP; 12 May 2025 20:37:18 -0700
+ by orviesa005.jf.intel.com with ESMTP; 12 May 2025 20:37:19 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
  Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v8 10/15] drm/xe/svm: Make
- xe_svm_range_needs_migrate_to_vram() public
-Date: Tue, 13 May 2025 09:32:23 +0530
-Message-Id: <20250513040228.470682-11-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v8 11/15] drm/xe/svm: Add xe_svm_range_validate() and
+ xe_svm_range_migrate_to_smem()
+Date: Tue, 13 May 2025 09:32:24 +0530
+Message-Id: <20250513040228.470682-12-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250513040228.470682-1-himal.prasad.ghimiray@intel.com>
 References: <20250513040228.470682-1-himal.prasad.ghimiray@intel.com>
@@ -68,94 +68,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_svm_range_needs_migrate_to_vram() determines whether range needs
-migration to vram or not, modify it to accept region preference parameter
-too, so we can use it in prefetch too.
+The xe_svm_range_validate() function checks if a range is
+valid and located in the desired memory region.
+
+xe_svm_range_migrate_to_smem() checks if range have pages in devmem and
+migrate them to smem.
 
 v2
-- add assert instead of warn (Matthew Brost)
+- Fix function stub in xe_svm.h
+- Fix doc
 
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+v3 (Matthew Brost)
+- Remove extra new line
+- s/range->base.flags.has_devmem_pages/xe_svm_range_in_vram
+
+v4 (Matthew Brost)
+- s/xe_svm_range_in_vram/range->base.flags.has_devmem_pages
+- Move eviction logic to separate function
+
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm.c | 26 ++++++++++++++++++--------
- drivers/gpu/drm/xe/xe_svm.h | 10 ++++++++++
- 2 files changed, 28 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_svm.c | 41 +++++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_svm.h | 19 +++++++++++++++++
+ 2 files changed, 60 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 6e593733d473..c6505350c8ff 100644
+index c6505350c8ff..248f615a343e 100644
 --- a/drivers/gpu/drm/xe/xe_svm.c
 +++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -733,22 +733,32 @@ static bool supports_4K_migration(struct xe_device *xe)
- 	return true;
+@@ -651,6 +651,47 @@ static bool xe_svm_range_is_valid(struct xe_svm_range *range,
+ 		(!devmem_only || xe_svm_range_in_vram(range));
  }
  
--static bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range,
--					       struct xe_vma *vma)
-+/**
-+ * xe_svm_range_needs_migrate_to_vram() - SVM range needs migrate to VRAM or not
-+ * @range: SVM range for which migration needs to be decided
-+ * @vma: vma which has range
-+ * @preferred_region_is_vram: preferred region for range is vram
++/** xe_svm_range_migrate_to_smem() - Move range pages from VRAM to SMEM
++ * @vm: xe_vm pointer
++ * @range: Pointer to the SVM range structure
 + *
-+ * Return: True for range needing migration and migration is supported else false
++ * The xe_svm_range_migrate_to_smem() checks range has pages in VRAM
++ * and migrates them to SMEM
 + */
-+bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vma *vma,
-+					bool preferred_region_is_vram)
- {
- 	struct xe_vm *vm = range_to_vm(&range->base);
- 	u64 range_size = xe_svm_range_size(range);
- 
--	if (!range->base.flags.migrate_devmem)
-+	if (!range->base.flags.migrate_devmem || !preferred_region_is_vram)
- 		return false;
- 
--	if (xe_svm_range_in_vram(range)) {
--		drm_dbg(&vm->xe->drm, "Range is already in VRAM\n");
-+	xe_assert(vm->xe, IS_DGFX(vm->xe));
++void xe_svm_range_migrate_to_smem(struct xe_vm *vm, struct xe_svm_range *range)
++{
++	if (xe_svm_range_in_vram(range))
++		drm_gpusvm_range_evict(&vm->svm.gpusvm, &range->base);
++}
 +
-+	if (preferred_region_is_vram && xe_svm_range_in_vram(range)) {
-+		drm_info(&vm->xe->drm, "Range is already in VRAM\n");
- 		return false;
- 	}
- 
--	if (range_size <= SZ_64K && !supports_4K_migration(vm->xe)) {
--		drm_dbg(&vm->xe->drm, "Platform doesn't support SZ_4K range migration\n");
-+	if (preferred_region_is_vram && range_size <= SZ_64K && !supports_4K_migration(vm->xe)) {
-+		drm_warn(&vm->xe->drm, "Platform doesn't support SZ_4K range migration\n");
- 		return false;
- 	}
- 
-@@ -817,7 +827,7 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 	range_debug(range, "PAGE FAULT");
- 
- 	if (--migrate_try_count >= 0 &&
--	    xe_svm_range_needs_migrate_to_vram(range, vma)) {
-+	    xe_svm_range_needs_migrate_to_vram(range, vma, IS_DGFX(vm->xe))) {
- 		err = xe_svm_alloc_vram(vm, tile, range, &ctx);
- 		ctx.timeslice_ms <<= 1;	/* Double timeslice if we have to retry */
- 		if (err) {
++/**
++ * xe_svm_range_validate() - Check if the SVM range is valid
++ * @vm: xe_vm pointer
++ * @range: Pointer to the SVM range structure
++ * @tile_mask: Mask representing the tiles to be checked
++ * @devmem_preferred : if true range needs to be in devmem
++ *
++ * The xe_svm_range_validate() function checks if a range is
++ * valid and located in the desired memory region.
++ *
++ * Return: true if the range is valid, false otherwise
++ */
++bool xe_svm_range_validate(struct xe_vm *vm,
++			   struct xe_svm_range *range,
++			   u8 tile_mask, bool devmem_preferred)
++{
++	bool ret;
++
++	xe_svm_notifier_lock(vm);
++
++	ret = (range->tile_present & ~range->tile_invalidated & tile_mask) == tile_mask &&
++	       (devmem_preferred == range->base.flags.has_devmem_pages);
++
++	xe_svm_notifier_unlock(vm);
++
++	return ret;
++}
++
+ #if IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR)
+ static struct xe_vram_region *tile_to_vr(struct xe_tile *tile)
+ {
 diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index e304d147d309..0ee845e35b3e 100644
+index 0ee845e35b3e..42be9e5d0444 100644
 --- a/drivers/gpu/drm/xe/xe_svm.h
 +++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -80,6 +80,9 @@ struct xe_svm_range *xe_svm_range_find_or_insert(struct xe_vm *vm, u64 addr,
- int xe_svm_range_get_pages(struct xe_vm *vm, struct xe_svm_range *range,
- 			   struct drm_gpusvm_ctx *ctx);
+@@ -83,6 +83,12 @@ int xe_svm_range_get_pages(struct xe_vm *vm, struct xe_svm_range *range,
+ bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vma *vma,
+ 					bool preferred_region_is_vram);
  
-+bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vma *vma,
-+					bool preferred_region_is_vram);
++void xe_svm_range_migrate_to_smem(struct xe_vm *vm, struct xe_svm_range *range);
++
++bool xe_svm_range_validate(struct xe_vm *vm,
++			   struct xe_svm_range *range,
++			   u8 tile_mask, bool devmem_preferred);
 +
  /**
   * xe_svm_range_has_dma_mapping() - SVM range has DMA mapping
   * @range: SVM range
-@@ -268,6 +271,13 @@ static inline unsigned long xe_svm_range_size(struct xe_svm_range *range)
- 	return 0;
+@@ -278,6 +284,19 @@ bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vm
+ 	return false;
  }
  
 +static inline
-+bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vma *vma,
-+					u32 region)
++void xe_svm_range_migrate_to_smem(struct xe_vm *vm, struct xe_svm_range *range)
++{
++}
++
++static inline
++bool xe_svm_range_validate(struct xe_vm *vm,
++			   struct xe_svm_range *range,
++			   u8 tile_mask, bool devmem_preferred)
 +{
 +	return false;
 +}
