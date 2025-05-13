@@ -4,34 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED790C3ABC3
-	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 09:48:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FA20C3ABC3
+	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 09:59:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4F6E10E1F9;
-	Tue, 13 May 2025 09:48:09 +0000 (UTC)
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6708410E1F9;
- Tue, 13 May 2025 09:48:08 +0000 (UTC)
-Received: from 91-155-254-65.elisa-laajakaista.fi ([91.155.254.65]
- helo=[192.168.100.137])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1uEmEy-00000007MU9-32Jo; Tue, 13 May 2025 12:48:02 +0300
-Message-ID: <904dc733fc6fe6916b75a1a145cbc754413e53be.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 13 May 2025 12:47:59 +0300
-In-Reply-To: <20250512103358.15724-2-ville.syrjala@linux.intel.com>
-References: <20250512103358.15724-1-ville.syrjala@linux.intel.com>
- <20250512103358.15724-2-ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 047BF10E17D;
+	Tue, 13 May 2025 09:59:30 +0000 (UTC)
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BADB10E17D;
+ Tue, 13 May 2025 09:59:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8742394116146633178=="
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/7] drm/i915: Drop PIPEDMC faults from the fault mask
- on LNL+
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/ptl=3A_Use_everywh?=
+ =?utf-8?q?ere_the_correct_DDI_port_clock_select_mask?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 13 May 2025 09:59:28 -0000
+Message-ID: <174713036856.74292.8760187318226777482@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <20250512142600.824347-1-imre.deak@intel.com>
+In-Reply-To: <20250512142600.824347-1-imre.deak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,69 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 2025-05-12 at 13:33 +0300, Ville Syrjala wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->=20
-> On LNL+ PIPEDMC faults are reported via PIPEDMC interrupts
-> instead of the direct DE_PIPE_* reporting used on earlier
-> platforms. Drop the relevant bits from the fault mask.
->=20
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_irq.c | 10 +++++++++-
->  drivers/gpu/drm/i915/i915_reg.h                  |  4 ++--
->  2 files changed, 11 insertions(+), 3 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/g=
-pu/drm/i915/display/intel_display_irq.c
-> index 3e73832e5e81..a7130b14aace 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> @@ -1016,7 +1016,15 @@ static u32 gen8_de_port_aux_mask(struct intel_disp=
-lay *display)
-> =20
->  static u32 gen8_de_pipe_fault_mask(struct intel_display *display)
->  {
-> -	if (DISPLAY_VER(display) >=3D 14)
-> +	if (DISPLAY_VER(display) >=3D 20)
-> +		return MTL_PLANE_ATS_FAULT |
-> +			GEN9_PIPE_CURSOR_FAULT |
-> +			GEN11_PIPE_PLANE5_FAULT |
-> +			GEN9_PIPE_PLANE4_FAULT |
-> +			GEN9_PIPE_PLANE3_FAULT |
-> +			GEN9_PIPE_PLANE2_FAULT |
-> +			GEN9_PIPE_PLANE1_FAULT;
-> +	else if (DISPLAY_VER(display) >=3D 14)
->  		return MTL_PIPEDMC_ATS_FAULT |
->  			MTL_PLANE_ATS_FAULT |
->  			GEN12_PIPEDMC_FAULT |
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
-reg.h
-> index 2e4190da3e0d..2d0e04eae763 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -2126,8 +2126,8 @@
->  #define  GEN8_PIPE_CDCLK_CRC_ERROR	REG_BIT(29)
->  #define  GEN8_PIPE_CDCLK_CRC_DONE	REG_BIT(28)
->  #define  GEN12_PIPEDMC_INTERRUPT	REG_BIT(26) /* tgl+ */
-> -#define  GEN12_PIPEDMC_FAULT		REG_BIT(25) /* tgl+ */
-> -#define  MTL_PIPEDMC_ATS_FAULT		REG_BIT(24) /* mtl+ */
-> +#define  GEN12_PIPEDMC_FAULT		REG_BIT(25) /* tgl-mtl */
-> +#define  MTL_PIPEDMC_ATS_FAULT		REG_BIT(24) /* mtl */
->  #define  GEN11_PIPE_PLANE7_FAULT	REG_BIT(22) /* icl/tgl */
->  #define  GEN11_PIPE_PLANE6_FAULT	REG_BIT(21) /* icl/tgl */
->  #define  GEN11_PIPE_PLANE5_FAULT	REG_BIT(20) /* icl+ */
+--===============8742394116146633178==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Out of curiosity, what happens without this patch? Is there going to be
-possible garbage in those bits? If so, isn't that an actual bug in the
-current LNL implementation and unrelated to your flip queue preparation
-work?
+== Series Details ==
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+Series: drm/i915/ptl: Use everywhere the correct DDI port clock select mask
+URL   : https://patchwork.freedesktop.org/series/148893/
+State : success
 
---
-Cheers,
-Luca.
+== Summary ==
+
+CI Bug Log - changes from xe-3075-7958e22a62e9dd7cb706d0a271ccbe3f82275f17_BAT -> xe-pw-148893v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (10 -> 9)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3075-7958e22a62e9dd7cb706d0a271ccbe3f82275f17 -> xe-pw-148893v1
+
+  IGT_8362: 8362
+  xe-3075-7958e22a62e9dd7cb706d0a271ccbe3f82275f17: 7958e22a62e9dd7cb706d0a271ccbe3f82275f17
+  xe-pw-148893v1: 148893v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148893v1/index.html
+
+--===============8742394116146633178==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/ptl: Use everywhere the correct DDI port clock select mask</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148893/">https://patchwork.freedesktop.org/series/148893/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148893v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148893v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3075-7958e22a62e9dd7cb706d0a271ccbe3f82275f17_BAT -&gt; xe-pw-148893v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (10 -&gt; 9)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3075-7958e22a62e9dd7cb706d0a271ccbe3f82275f17 -&gt; xe-pw-148893v1</li>
+</ul>
+<p>IGT_8362: 8362<br />
+  xe-3075-7958e22a62e9dd7cb706d0a271ccbe3f82275f17: 7958e22a62e9dd7cb706d0a271ccbe3f82275f17<br />
+  xe-pw-148893v1: 148893v1</p>
+
+</body>
+</html>
+
+--===============8742394116146633178==--
