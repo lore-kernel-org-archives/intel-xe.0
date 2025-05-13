@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C355C3ABC3
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8C7BC3ABCB
 	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 03:37:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B46110E4D9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C0A510E4DB;
 	Tue, 13 May 2025 03:37:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dGAYEkBj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HEYRs7Lf";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9083210E4D9
- for <intel-xe@lists.freedesktop.org>; Tue, 13 May 2025 03:37:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B08310E4D9
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 May 2025 03:37:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747107433; x=1778643433;
+ t=1747107434; x=1778643434;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VTan0mQs3PZ7t048OoeGdpjefP5J0EaBF16CwLzrFMI=;
- b=dGAYEkBj+J5qrp1L/b1rvEA4yawVsprmTfvCUOiaZjAdslvqWfsttD5Y
- lPfeubiBsribgrzvKVLZ0FfKen3kss74ziUOCeV0FXaFIdlU+z07itLfS
- SclwHkXGwZGCSgyTaNAFE8QRoSH8RXRHJJw4cuwEoKKLFJL++IBB6Wkqr
- HcUJjGbzUddrgjQLcykPI/5Ff921QmJSVGrKDN9l3Bu/uzZVU8eaWbrCv
- B2NNCo9W4Sy7rF9fp41Cw8Sg8waJAw6/cDG0Vm9rxrYtA9GhdnMdMTM4u
- ZA56D0vwGPoJ/ykiF+5Fqa1ktEPX809mE5NuE5sRXzWh7b/kXwZBlGcNh Q==;
-X-CSE-ConnectionGUID: ZbLQJklcR0SeQOr2o1SSpg==
-X-CSE-MsgGUID: gFKPVLNkTiyHe94lyOQs/w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="48858813"
-X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="48858813"
+ bh=UDUoLKd6mLzlexaS8CYuSM9PDLWZihIoTWsS3VHmeXU=;
+ b=HEYRs7LfpdVScJ0J+7YyhT9Qr1Jnt15Hq8LDP6JxZpsjR228lCBpmLld
+ 9fse8tebLoz46NlWX33Ra5JN03JWldyf6GENi065/tA9kl0ts/M9jnZ41
+ y3TEudmpraB944bNS3EnajlMFN+aRdlNDQ2qZw57Zbn5AfWffwWlt0m8M
+ MDfTpAuVztZmkvmCPx+Mh7V3Fj4s4D8jKPwNhqIMGpvUiHLxOQCB5uAHi
+ vuzy/WMh5zJrruywaMbfQYpfOrMopqkHqKoHzzlJuw0WPe8Qt01S/wATm
+ M3BmDLGEFs6DU99tOVb+UwV2yZkebjB2gw2lUJ2rakNNuxGp/8HkCdL3c g==;
+X-CSE-ConnectionGUID: 8pfEBqUeTQq02IyibSOUrw==
+X-CSE-MsgGUID: AFbPsKqnSBurKBuAQhIKEw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="48858821"
+X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="48858821"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2025 20:37:12 -0700
-X-CSE-ConnectionGUID: EUciiHM/ToWHFvxD/2M4bg==
-X-CSE-MsgGUID: RSZbcUqdSuixrYJDPKHjdw==
+ 12 May 2025 20:37:13 -0700
+X-CSE-ConnectionGUID: rl+R5I7fT3SSsO4biQd6Nw==
+X-CSE-MsgGUID: MMreAKk9R8iKX5FRIzoMcQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="142690209"
+X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="142690220"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by orviesa005.jf.intel.com with ESMTP; 12 May 2025 20:37:11 -0700
+ by orviesa005.jf.intel.com with ESMTP; 12 May 2025 20:37:13 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
  Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v8 06/15] drm/xe/vm: Update xe_vma_ops_incr_pt_update_ops to
- take an increment value
-Date: Tue, 13 May 2025 09:32:19 +0530
-Message-Id: <20250513040228.470682-7-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v8 07/15] drm/xe/vm: Add an identifier in xe_vma_ops for svm
+ prefetch
+Date: Tue, 13 May 2025 09:32:20 +0530
+Message-Id: <20250513040228.470682-8-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250513040228.470682-1-himal.prasad.ghimiray@intel.com>
 References: <20250513040228.470682-1-himal.prasad.ghimiray@intel.com>
@@ -68,133 +68,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Prefetch for SVM ranges can have more than one operation to increment,
-hence modify the function to accept an increment value as input.
+Add a flag in xe_vma_ops to determine whether it has svm prefetch ops or
+not.
 
 v2:
-  - Call xe_vma_ops_incr_pt_update_ops only once for REMAP (Matthew Brost)
-  - Add check for 0 ops
+ - s/false/0 (Matthew Brost)
 
 v3:
-  - s/u8/int for inc_val and num_remap_ops (Matthew Brost)
+ - s/XE_VMA_OPS_HAS_SVM_PREFETCH/XE_VMA_OPS_FLAG_HAS_SVM_PREFETCH
 
 Suggested-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 28 +++++++++++++++++-----------
- 1 file changed, 17 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c       | 1 +
+ drivers/gpu/drm/xe/xe_vm_types.h | 3 +++
+ 2 files changed, 4 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 79323c78130f..f4382386b34c 100644
+index f4382386b34c..21564ecf8765 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -806,13 +806,16 @@ static void xe_vma_ops_fini(struct xe_vma_ops *vops)
- 		kfree(vops->pt_update_ops[i].ops);
+@@ -3240,6 +3240,7 @@ static void xe_vma_ops_init(struct xe_vma_ops *vops, struct xe_vm *vm,
+ 	vops->q = q;
+ 	vops->syncs = syncs;
+ 	vops->num_syncs = num_syncs;
++	vops->flags = 0;
  }
  
--static void xe_vma_ops_incr_pt_update_ops(struct xe_vma_ops *vops, u8 tile_mask)
-+static void xe_vma_ops_incr_pt_update_ops(struct xe_vma_ops *vops, u8 tile_mask, int inc_val)
- {
- 	int i;
- 
-+	if (!inc_val)
-+		return;
-+
- 	for (i = 0; i < XE_MAX_TILES_PER_DEVICE; ++i)
- 		if (BIT(i) & tile_mask)
--			++vops->pt_update_ops[i].num_ops;
-+			vops->pt_update_ops[i].num_ops += inc_val;
- }
- 
- static void xe_vm_populate_rebind(struct xe_vma_op *op, struct xe_vma *vma,
-@@ -842,7 +845,7 @@ static int xe_vm_ops_add_rebind(struct xe_vma_ops *vops, struct xe_vma *vma,
- 
- 	xe_vm_populate_rebind(op, vma, tile_mask);
- 	list_add_tail(&op->link, &vops->list);
--	xe_vma_ops_incr_pt_update_ops(vops, tile_mask);
-+	xe_vma_ops_incr_pt_update_ops(vops, tile_mask, 1);
- 
- 	return 0;
- }
-@@ -977,7 +980,7 @@ xe_vm_ops_add_range_rebind(struct xe_vma_ops *vops,
- 
- 	xe_vm_populate_range_rebind(op, vma, range, tile_mask);
- 	list_add_tail(&op->link, &vops->list);
--	xe_vma_ops_incr_pt_update_ops(vops, tile_mask);
-+	xe_vma_ops_incr_pt_update_ops(vops, tile_mask, 1);
- 
- 	return 0;
- }
-@@ -1062,7 +1065,7 @@ xe_vm_ops_add_range_unbind(struct xe_vma_ops *vops,
- 
- 	xe_vm_populate_range_unbind(op, range);
- 	list_add_tail(&op->link, &vops->list);
--	xe_vma_ops_incr_pt_update_ops(vops, range->tile_present);
-+	xe_vma_ops_incr_pt_update_ops(vops, range->tile_present, 1);
- 
- 	return 0;
- }
-@@ -2493,7 +2496,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 			     !op->map.is_cpu_addr_mirror) ||
- 			    op->map.invalidate_on_bind)
- 				xe_vma_ops_incr_pt_update_ops(vops,
--							      op->tile_mask);
-+							      op->tile_mask, 1);
- 			break;
- 		}
- 		case DRM_GPUVA_OP_REMAP:
-@@ -2502,6 +2505,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 				gpuva_to_vma(op->base.remap.unmap->va);
- 			bool skip = xe_vma_is_cpu_addr_mirror(old);
- 			u64 start = xe_vma_start(old), end = xe_vma_end(old);
-+			int num_remap_ops = 0;
- 
- 			if (op->base.remap.prev)
- 				start = op->base.remap.prev->va.addr +
-@@ -2554,7 +2558,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 					       (ULL)op->remap.start,
- 					       (ULL)op->remap.range);
- 				} else {
--					xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
-+					num_remap_ops++;
- 				}
- 			}
- 
-@@ -2583,11 +2587,13 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 					       (ULL)op->remap.start,
- 					       (ULL)op->remap.range);
- 				} else {
--					xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
-+					num_remap_ops++;
- 				}
- 			}
- 			if (!skip)
--				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
-+				num_remap_ops++;
-+
-+			xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask, num_remap_ops);
- 			break;
- 		}
- 		case DRM_GPUVA_OP_UNMAP:
-@@ -2599,7 +2605,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 				return -EBUSY;
- 
- 			if (!xe_vma_is_cpu_addr_mirror(vma))
--				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
-+				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask, 1);
- 			break;
- 		case DRM_GPUVA_OP_PREFETCH:
- 			vma = gpuva_to_vma(op->base.prefetch.va);
-@@ -2611,7 +2617,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 			}
- 
- 			if (!xe_vma_is_cpu_addr_mirror(vma))
--				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
-+				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask, 1);
- 			break;
- 		default:
- 			drm_warn(&vm->xe->drm, "NOT POSSIBLE");
+ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 0afd0296a57e..bfc145baad49 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -445,6 +445,9 @@ struct xe_vma_ops {
+ 	u32 num_syncs;
+ 	/** @pt_update_ops: page table update operations */
+ 	struct xe_vm_pgtable_update_ops pt_update_ops[XE_MAX_TILES_PER_DEVICE];
++	/** @flag: signify the properties within xe_vma_ops*/
++#define XE_VMA_OPS_FLAG_HAS_SVM_PREFETCH BIT(0)
++	u32 flags;
+ #ifdef TEST_VM_OPS_ERROR
+ 	/** @inject_error: inject error to test error handling */
+ 	bool inject_error;
 -- 
 2.34.1
 
