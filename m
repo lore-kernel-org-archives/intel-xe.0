@@ -4,72 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA9A6C3ABCC
-	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 14:15:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E44C6C3ABC3
+	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 14:17:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEB4C10E209;
-	Tue, 13 May 2025 14:15:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E0A210E5B1;
+	Tue, 13 May 2025 14:17:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="CM412imN";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PjgZNt+N";
 	dkim-atps=neutral
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com
- [209.85.210.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DDA9310E209
- for <intel-xe@lists.freedesktop.org>; Tue, 13 May 2025 14:15:06 +0000 (UTC)
-Received: by mail-pf1-f172.google.com with SMTP id
- d2e1a72fcca58-74068f95d9fso5324856b3a.0
- for <intel-xe@lists.freedesktop.org>; Tue, 13 May 2025 07:15:06 -0700 (PDT)
+Received: from mail-il1-f179.google.com (mail-il1-f179.google.com
+ [209.85.166.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCCF810E1F6;
+ Tue, 13 May 2025 14:17:06 +0000 (UTC)
+Received: by mail-il1-f179.google.com with SMTP id
+ e9e14a558f8ab-3d9189e9a06so23610245ab.2; 
+ Tue, 13 May 2025 07:17:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1747145706; x=1747750506; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1747145826; x=1747750626; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=PP/S/xNpELFTyMNi1hMNkKNeY2nwKUi1hbd1+b+oX6Q=;
- b=CM412imN6QUdnGnjOVNDchiXXk2ZJsxaE2bjJvCTp1VgpP9PsmK6NAXwTx0ZGakph3
- 2qTqPZ3jaZTWwfvpu2Kun0BoPOcP556Z0dv/eAWGstLx+aUK/DRV3CYmHJh9hT98JEuE
- EUig9LcdO87I6D5Gwp1wO8wiGt/aMG5PBC4Qyfk8PuMoDddX/nENQlaVlWONikC77RE3
- O8fxUXt1pZUnOio4Oe7Fi/zkJ5I7hSqnHAeidK0fP+MuWCFOmLhx777qINGoeHnVyCsh
- QALYyMhZwrC+RO2iaH3G6VfdFMtfQCEDcIg/mVWqPsDyzh5irhtH9MjVhN0zW9CbybcE
- hBvA==
+ bh=V7JvgoF1myyPp51kXMFO7KeBiBPtIqWZF4DhsDiCmkU=;
+ b=PjgZNt+N1VfW8wUM+1XbLit2sSXQEgrPt4BaAoM35xnVK+nayazMQ0T7Ys9/y9oNL1
+ Ta638qUoDsMPQ/m7ICe282xSCUyJzs4jbap/VkN7jceUFfaRJGy95tOHNQt0Pll+HUuM
+ I3ASZu/6yQPYK1gjitxPYbfvY133dlli9A5Lc+abE5L4jpP/lHDTZY0QmvDDODzgMCaG
+ /PfGlxmLvFu1BGaPMl/ml9CEOEjpkPL1TIrIu5KPw2b7ZE3W/r1f/LdaaavmUD4zCl1e
+ q3pqN+Zv+GzuX5ZDAfLR+0udWV9nXJs9yna+0dLENGmGnvStsE3YrAVmbiudhxxfLeBD
+ eYzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1747145706; x=1747750506;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1747145826; x=1747750626;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=PP/S/xNpELFTyMNi1hMNkKNeY2nwKUi1hbd1+b+oX6Q=;
- b=Zc4m0IVdGNNHrM+nnyAYdmhpN2gqCc+ys+lNL34qh9CMFEM0rD0i/X+gWYvl9SAVBB
- kgprPZjk2MWrbTWB8ae+DXoal1tr++X5tQTDkXTn+kmwE5aqYAsuGUizO/uXhT1y5MmP
- Ky7aiVMPN6oCrwuLhLQ5Om+TGLMUFWBQvr+pYkM1imsLB/gZW7FSqjFZqTxy/631KhdY
- a4Hk4INalKjLLcB538SXDCCxxDePYR51E7+pgFnFFSiYAkZLzexfjcd1Kq89ZZAdONs2
- hxJcq9jFnGPiWhTBnCzAuwr+Vg9DY+ZVHbg+0ZyBqVwK3+17Zd70djrSQCesD5/LOlQH
- kwPQ==
-X-Gm-Message-State: AOJu0YyFcLC1IEFPtQijlxoDw1HOhQVanwe/KLnB4WyFRLrS6JNVJPjA
- W+jFmH7mKlHYnkLiV8EfmRMUAZZeRXxtYsIl13VZEgfOKvQ3FDTR6wVlUOZg
-X-Gm-Gg: ASbGncuj3apFKMn0nE2WWrCtYhAArLRG6s3F9AKjsXf998rMHcemzsr4w5jkRtAC0If
- bnZ+O3nAVDohz8mIGcglxR8+q9HdaleMFWJc4ZYOZR/PeSJ8T4Q4lFmB1rZrZflfl5h/p/Hbg/O
- vrAr9MYtjXYc3JGNZSCTiIMcCCeyHS03EYakNxWLuJP1JEtAgC5LEjQAlhcZT6pWy4SAVhb4FrU
- e5S1joC8APLxGv+A62ugDhpIyXobeVh03EdeqXGdGTrTec80SLXtE29ETOEqPl3MGeoglag4agT
- 9163O+DYRmYu6yEhQDVv/Z+HguEzxnUOtMKJ3kC5xpVEjQbEJhORkZWH
-X-Google-Smtp-Source: AGHT+IEQa1sdQR/Whj5uHFjgPJvqsJ+1aLnfHlAH+5j3DgZp3hjk9iLMl8hyvwm1DOC26dpBl8CdMg==
-X-Received: by 2002:a05:6a00:3e28:b0:736:51ab:7aed with SMTP id
- d2e1a72fcca58-7423c040e1fmr22413771b3a.16.1747145705964; 
- Tue, 13 May 2025 07:15:05 -0700 (PDT)
-Received: from localhost ([192.55.55.42]) by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-74237a8efa2sm7791247b3a.165.2025.05.13.07.15.05
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 13 May 2025 07:15:05 -0700 (PDT)
-From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>
-Subject: [PATCH 2/2] drm/xe/display: Unify display page table mapping
-Date: Tue, 13 May 2025 17:14:45 +0300
-Message-ID: <20250513141445.79158-2-juhapekka.heikkila@gmail.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250513141445.79158-1-juhapekka.heikkila@gmail.com>
-References: <20250513141445.79158-1-juhapekka.heikkila@gmail.com>
+ bh=V7JvgoF1myyPp51kXMFO7KeBiBPtIqWZF4DhsDiCmkU=;
+ b=rJs52xJFyGi5Xymf2U/NhRX6/GmefyKpF/PbWgsZBNVDGb+hZEMTpZTmR87EcwpLzq
+ XFRQq5REBRZVTswRia1yE8+kSar9BixgH35PTVGDHhihHn0wdG/5qECt86DfMgOT+zaH
+ ObvLt2p8/TdrIuPjqbIRTuTUUOJ/T+v+UiA2URPJnw/fYCeP30kva3CgezW3UL47/aoI
+ lOYjtxOHkNfwpnZYaETubjrHvHndzblMQj4yMQbEfBouwEPoU/droaDYmp08QTxlHDDh
+ ZAscI8CVQQtsnja+oc0/Qxe1OGqhD5sSJOAXRswj41r7PPxuHPyzkh7vS+B2KRDyerqY
+ w9Fw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVa540366YDfHmbMafyJs+LLDuWeek1tGF3ZXZzVKVCLtavygsP8qKyrP1FR+yBcwEfhfPiKjX7jipm@lists.freedesktop.org,
+ AJvYcCWNInJlmAz8ZXo2KYbpEd8krWi0fAYNj61PJ+nYGmHAI9/r4T8yj7ulc5iFjwT0Vq/RwixtZBn9TSM=@lists.freedesktop.org,
+ AJvYcCX8e3XSZGabpeC+npwVnc1nJ//c4Vus1pZrcktM5l8pPWOHPxSJCFoPg3T7E4YX9N1b/yrCe6nI@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxItqcEXjadxMDtlbxgmjeKqAuhYgn5D2o3lphFDT59duLtvPX1
+ ATVp8oV9WZ8C2xCkcAsFVtMOH9F/IZuNsw4XKN+A4KAzZ/Z0pCGFR45zViPriI221xmKTDIIywH
+ BNEhdQtrL/4sVn9Ppsgqxt6zzbnQ=
+X-Gm-Gg: ASbGnctnVJgWqTOPLsETAz6dq7Kjyphr38CSeeBW1Ns+QLnqPYTzGe1Vu3zedlOyjMV
+ E6Cz71spr0lGruXC3HWpTm+GLyd8OUMmE1HkVep/wqeIgY1puY1gvHUqePJd3tmTfyF3WnYUO9I
+ xwWZSsQ6bblElbXKOmWo+2hy4WerI0pYtX9AtRrh5r0zbV5lkvbkcK/d178carzIk=
+X-Google-Smtp-Source: AGHT+IGiTGnKZsysreFCsBlhWepL/hQV58J2zh5LT1gGazMVzNwO9kv9W4HW2fzPjKZ0XABsGEeKFoY6ux7cVV7hQFM=
+X-Received: by 2002:a05:6e02:2292:b0:3d6:cd54:ba53 with SMTP id
+ e9e14a558f8ab-3da7e21658cmr209314645ab.22.1747145825748; Tue, 13 May 2025
+ 07:17:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250509153352.7187-1-tvrtko.ursulin@igalia.com>
+ <20250509153352.7187-11-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250509153352.7187-11-tvrtko.ursulin@igalia.com>
+From: Rob Clark <robdclark@gmail.com>
+Date: Tue, 13 May 2025 07:16:53 -0700
+X-Gm-Features: AX0GCFuH1j40yQO1HsIKDsTCJ5uHO4NcgonBSju0wMc3XxKpk3t9K9r-1vi2EhU
+Message-ID: <CAF6AEGuOC4NnSTQexvD5tk8VLfOR_gGq-cqs3gnJcS1qNtMjQg@mail.gmail.com>
+Subject: Re: [RFC v2 10/13] dma-fence: Add safe access helpers and document
+ the rules
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Cc: dri-devel@lists.freedesktop.org, Sumit Semwal <sumit.semwal@linaro.org>, 
+ Gustavo Padovan <gustavo@padovan.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, amd-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org, 
+ kernel-dev@igalia.com, Rob Clark <robdclark@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,195 +93,250 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Unify writing of remapped and straight DPTs. Take out writing of
-rotated DPT since Xe doesn't support any platform that does
-90 degree rotated framebuffers.
+On Fri, May 9, 2025 at 8:34=E2=80=AFAM Tvrtko Ursulin <tvrtko.ursulin@igali=
+a.com> wrote:
+>
+> Dma-fence objects currently suffer from a potential use after free proble=
+m
+> where fences exported to userspace and other drivers can outlive the
+> exporting driver, or the associated data structures.
+>
+> The discussion on how to address this concluded that adding reference
+> counting to all the involved objects is not desirable, since it would nee=
+d
+> to be very wide reaching and could cause unloadable drivers if another
+> entity would be holding onto a signaled fence reference potentially
+> indefinitely.
+>
+> This patch enables the safe access by introducing and documenting a
+> contract between fence exporters and users. It documents a set of
+> contraints and adds helpers which a) drivers with potential to suffer fro=
+m
+> the use after free must use and b) users of the dma-fence API must use as
+> well.
+>
+> Premise of the design has multiple sides:
+>
+> 1. Drivers (fence exporters) MUST ensure a RCU grace period between
+> signalling a fence and freeing the driver private data associated with it=
+.
+>
+> The grace period does not have to follow the signalling immediately but
+> HAS to happen before data is freed.
+>
+> 2. Users of the dma-fence API marked with such requirement MUST contain
+> the complete access to the data within a single code block guarded by the
+> new dma_fence_access_begin() and dma_fence_access_end() helpers.
+>
+> The combination of the two ensures that whoever sees the
+> DMA_FENCE_FLAG_SIGNALED_BIT not set is guaranteed to have access to a
+> valid fence->lock and valid data potentially accessed by the fence->ops
+> virtual functions, until the call to dma_fence_access_end().
+>
+> 3. Module unload (fence->ops) disappearing is for now explicitly not
+> handled. That would required a more complex protection, possibly needing
+> SRCU instead of RCU to handle callers such as dma_fence_wait_timeout(),
+> where race between dma_fence_enable_sw_signaling, signalling, and
+> dereference of fence->ops->wait() would need a sleeping SRCU context.
+>
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> ---
+>  drivers/dma-buf/dma-fence.c | 69 +++++++++++++++++++++++++++++++++++++
+>  include/linux/dma-fence.h   | 32 ++++++++++++-----
+>  2 files changed, 93 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
+> index dc2456f68685..cfe1d7b79c22 100644
+> --- a/drivers/dma-buf/dma-fence.c
+> +++ b/drivers/dma-buf/dma-fence.c
+> @@ -533,6 +533,7 @@ void dma_fence_release(struct kref *kref)
+>         struct dma_fence *fence =3D
+>                 container_of(kref, struct dma_fence, refcount);
+>
+> +       dma_fence_access_begin();
+>         trace_dma_fence_destroy(fence);
+>
+>         if (WARN(!list_empty(&fence->cb_list) &&
+> @@ -560,6 +561,8 @@ void dma_fence_release(struct kref *kref)
+>                 fence->ops->release(fence);
+>         else
+>                 dma_fence_free(fence);
+> +
+> +       dma_fence_access_end();
+>  }
+>  EXPORT_SYMBOL(dma_fence_release);
+>
+> @@ -982,11 +985,13 @@ EXPORT_SYMBOL(dma_fence_set_deadline);
+>   */
+>  void dma_fence_describe(struct dma_fence *fence, struct seq_file *seq)
+>  {
+> +       dma_fence_access_begin();
+>         seq_printf(seq, "%s %s seq %llu %ssignalled\n",
+>                    dma_fence_driver_name(fence),
+>                    dma_fence_timeline_name(fence),
+>                    fence->seqno,
+>                    dma_fence_is_signaled(fence) ? "" : "un");
+> +       dma_fence_access_end();
+>  }
+>  EXPORT_SYMBOL(dma_fence_describe);
+>
+> @@ -1033,3 +1038,67 @@ dma_fence_init64(struct dma_fence *fence, const st=
+ruct dma_fence_ops *ops,
+>         __set_bit(DMA_FENCE_FLAG_SEQNO64_BIT, &fence->flags);
+>  }
+>  EXPORT_SYMBOL(dma_fence_init64);
+> +
+> +/**
+> + * dma_fence_driver_name - Access the driver name
+> + * @fence: the fence to query
+> + *
+> + * Returns a driver name backing the dma-fence implementation.
+> + *
+> + * IMPORTANT CONSIDERATION:
+> + * Dma-fence contract stipulates that access to driver provided data (da=
+ta not
+> + * directly embedded into the object itself), such as the &dma_fence.loc=
+k and
+> + * memory potentially accessed by the &dma_fence.ops functions, is forbi=
+dden
+> + * after the fence has been signalled. Drivers are allowed to free that =
+data,
+> + * and some do.
+> + *
+> + * To allow safe access drivers are mandated to guarantee a RCU grace pe=
+riod
+> + * between signalling the fence and freeing said data.
+> + *
+> + * As such access to the driver name is only valid inside a RCU locked s=
+ection.
+> + * The pointer MUST be both queried and USED ONLY WITHIN a SINGLE block =
+guarded
+> + * by the &dma_fence_access_being and &dma_fence_access_end pair.
+> + */
+> +const char *dma_fence_driver_name(struct dma_fence *fence)
+> +{
+> +       RCU_LOCKDEP_WARN(!rcu_read_lock_held(),
+> +                        "rcu_read_lock() required for safe access to ret=
+urned string");
+> +
+> +       if (!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags))
+> +               return fence->ops->get_driver_name(fence);
+> +       else
+> +               return "detached-driver";
+> +}
+> +EXPORT_SYMBOL(dma_fence_driver_name);
+> +
+> +/**
+> + * dma_fence_timeline_name - Access the timeline name
+> + * @fence: the fence to query
+> + *
+> + * Returns a timeline name provided by the dma-fence implementation.
+> + *
+> + * IMPORTANT CONSIDERATION:
+> + * Dma-fence contract stipulates that access to driver provided data (da=
+ta not
+> + * directly embedded into the object itself), such as the &dma_fence.loc=
+k and
+> + * memory potentially accessed by the &dma_fence.ops functions, is forbi=
+dden
+> + * after the fence has been signalled. Drivers are allowed to free that =
+data,
+> + * and some do.
+> + *
+> + * To allow safe access drivers are mandated to guarantee a RCU grace pe=
+riod
+> + * between signalling the fence and freeing said data.
+> + *
+> + * As such access to the driver name is only valid inside a RCU locked s=
+ection.
+> + * The pointer MUST be both queried and USED ONLY WITHIN a SINGLE block =
+guarded
+> + * by the &dma_fence_access_being and &dma_fence_access_end pair.
+> + */
+> +const char *dma_fence_timeline_name(struct dma_fence *fence)
+> +{
+> +       RCU_LOCKDEP_WARN(!rcu_read_lock_held(),
+> +                        "rcu_read_lock() required for safe access to ret=
+urned string");
+> +
+> +       if (!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags))
+> +               return fence->ops->get_driver_name(fence);
+> +       else
+> +               return "signaled-timeline";
 
-Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
----
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 141 +++++++++----------------
- 1 file changed, 48 insertions(+), 93 deletions(-)
+This means that trace_dma_fence_signaled() will get the wrong
+timeline/driver name, which probably screws up perfetto and maybe
+other tools.
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 540e5f31e655..68c9916b4a95 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -16,66 +16,44 @@
- #include "xe_ggtt.h"
- #include "xe_pm.h"
- 
--static void
--write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_ofs,
--		  u32 width, u32 height, u32 src_stride, u32 dst_stride)
-+static void encode_and_write_pte(struct xe_bo *bo, struct iosys_map *map,
-+				 u32 *ofs, u32 src_idx, struct xe_device *xe)
- {
--	struct xe_device *xe = xe_bo_device(bo);
- 	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
--	u32 column, row;
--
--	/* TODO: Maybe rewrite so we can traverse the bo addresses sequentially,
--	 * by writing dpt/ggtt in a different order?
--	 */
--
--	for (column = 0; column < width; column++) {
--		u32 src_idx = src_stride * (height - 1) + column + bo_ofs;
--
--		for (row = 0; row < height; row++) {
--			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
--							      xe->pat.idx[XE_CACHE_NONE]);
--
--			iosys_map_wr(map, *dpt_ofs, u64, pte);
--			*dpt_ofs += 8;
--			src_idx -= src_stride;
--		}
--
--		/* The DE ignores the PTEs for the padding tiles */
--		*dpt_ofs += (dst_stride - height) * 8;
--	}
--
--	/* Align to next page */
--	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
-+	u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
-+					      xe->pat.idx[XE_CACHE_NONE]);
-+	iosys_map_wr(map, *ofs, u64, pte);
-+	*ofs += 8;
- }
- 
--static void
--write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
--		   u32 bo_ofs, u32 width, u32 height, u32 src_stride,
--		   u32 dst_stride)
-+static void write_dpt(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
-+		      const struct intel_remapped_plane_info *plane,
-+		      enum i915_gtt_view_type type)
- {
- 	struct xe_device *xe = xe_bo_device(bo);
--	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
--	u64 (*pte_encode_bo)(struct xe_bo *bo, u64 bo_offset, u16 pat_index)
--		= ggtt->pt_ops->pte_encode_bo;
--	u32 column, row;
--
--	for (row = 0; row < height; row++) {
--		u32 src_idx = src_stride * row + bo_ofs;
--
--		for (column = 0; column < width; column++) {
--			iosys_map_wr(map, *dpt_ofs, u64,
--				     pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
--				     xe->pat.idx[XE_CACHE_NONE]));
--
--			*dpt_ofs += 8;
--			src_idx++;
-+	const u32 dpt_even = (plane->dst_stride - plane->width) * 8;
-+	const u32 dest_width = plane->width;
-+	const u32 dest_height = plane->height;
-+	u32 src_idx;
-+
-+	for (u32 row = 0; row < dest_height; ++row) {
-+		for (u32 column = 0; column < dest_width; ++column) {
-+			switch (type) {
-+			case I915_GTT_VIEW_NORMAL:
-+				src_idx = plane->offset + column;
-+				break;
-+			case I915_GTT_VIEW_REMAPPED:
-+				src_idx = plane->offset +
-+					row * plane->src_stride + column;
-+				break;
-+			default:
-+				WARN(1, "Unsupported GTT view type: %d", type);
-+				return;
-+			}
-+			encode_and_write_pte(bo, map, dpt_ofs, src_idx, xe);
- 		}
--
--		/* The DE ignores the PTEs for the padding tiles */
--		*dpt_ofs += (dst_stride - width) * 8;
-+		*dpt_ofs += dpt_even;
- 	}
--
--	/* Align to next page */
- 	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
- }
- 
-@@ -127,59 +105,36 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- {
- 	struct xe_device *xe = to_xe_device(fb->base.dev);
- 	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
--	struct xe_ggtt *ggtt = tile0->mem.ggtt;
- 	struct drm_gem_object *obj = intel_fb_bo(&fb->base);
- 	struct xe_bo *bo = gem_to_xe_bo(obj), *dpt;
- 	u32 dpt_size, size = bo->ttm.base.size;
-+	const struct intel_remapped_plane_info *plane;
-+	u32 i, plane_count, dpt_ofs = 0;
-+	struct intel_remapped_plane_info normal_plane;
- 
--	if (view->type == I915_GTT_VIEW_NORMAL)
-+	if (view->type == I915_GTT_VIEW_NORMAL) {
- 		dpt_size = ALIGN(size / XE_PAGE_SIZE * 8, XE_PAGE_SIZE);
--	else if (view->type == I915_GTT_VIEW_REMAPPED)
--		dpt_size = ALIGN(intel_remapped_info_size(&fb->remapped_view.gtt.remapped) * 8,
--				 XE_PAGE_SIZE);
--	else
--		/* display uses 4K tiles instead of bytes here, convert to entries.. */
--		dpt_size = ALIGN(intel_rotation_info_size(&view->rotated) * 8,
-+		normal_plane.offset = 0;
-+		normal_plane.width = size / XE_PAGE_SIZE;
-+		normal_plane.height = 1;
-+		normal_plane.src_stride = size / XE_PAGE_SIZE;
-+		normal_plane.dst_stride = size / XE_PAGE_SIZE;
-+		plane = &normal_plane;
-+		plane_count = 1;
-+	} else {
-+		dpt_size = ALIGN(intel_remapped_info_size(&view->remapped) * 8,
- 				 XE_PAGE_SIZE);
-+		plane = view->remapped.plane;
-+		plane_count = ARRAY_SIZE(view->remapped.plane);
-+	}
- 
- 	dpt = xe_alloc_dpt_bo(xe, tile0, dpt_size, alignment);
- 
- 	if (IS_ERR(dpt))
- 		return PTR_ERR(dpt);
- 
--	if (view->type == I915_GTT_VIEW_NORMAL) {
--		u32 x;
--
--		for (x = 0; x < size / XE_PAGE_SIZE; x++) {
--			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, x * XE_PAGE_SIZE,
--							      xe->pat.idx[XE_CACHE_NONE]);
--
--			iosys_map_wr(&dpt->vmap, x * 8, u64, pte);
--		}
--	} else if (view->type == I915_GTT_VIEW_REMAPPED) {
--		const struct intel_remapped_info *remap_info = &view->remapped;
--		u32 i, dpt_ofs = 0;
--
--		for (i = 0; i < ARRAY_SIZE(remap_info->plane); i++)
--			write_dpt_remapped(bo, &dpt->vmap, &dpt_ofs,
--					   remap_info->plane[i].offset,
--					   remap_info->plane[i].width,
--					   remap_info->plane[i].height,
--					   remap_info->plane[i].src_stride,
--					   remap_info->plane[i].dst_stride);
--
--	} else {
--		const struct intel_rotation_info *rot_info = &view->rotated;
--		u32 i, dpt_ofs = 0;
--
--		for (i = 0; i < ARRAY_SIZE(rot_info->plane); i++)
--			write_dpt_rotated(bo, &dpt->vmap, &dpt_ofs,
--					  rot_info->plane[i].offset,
--					  rot_info->plane[i].width,
--					  rot_info->plane[i].height,
--					  rot_info->plane[i].src_stride,
--					  rot_info->plane[i].dst_stride);
--	}
-+	for (i = 0; i < plane_count; i++)
-+		write_dpt(bo, &dpt->vmap, &dpt_ofs, &plane[i], view->type);
- 
- 	vma->dpt = dpt;
- 	vma->node = dpt->ggtt_node[tile0->id];
--- 
-2.45.2
+Maybe it would work well enough just to move the
+trace_dma_fence_signaled() call ahead of the test_and_set_bit()?  Idk
+if some things will start getting confused if they see that trace
+multiple times.
 
+Maybe a better solution would be to add a new bit for this purpose,
+which is set after the tracepoint in
+dma_fence_signal_timestamp_locked().
+
+(trace_dma_fence_destroy() will I guess be messed up regardless.. it
+doesn't look like perfetto cares about this tracepoint, so maybe that
+is ok.  It doesn't seem so useful.)
+
+BR,
+-R
+
+
+> +}
+> +EXPORT_SYMBOL(dma_fence_timeline_name);
+> diff --git a/include/linux/dma-fence.h b/include/linux/dma-fence.h
+> index c814a86087f8..c8a9915eb360 100644
+> --- a/include/linux/dma-fence.h
+> +++ b/include/linux/dma-fence.h
+> @@ -387,15 +387,31 @@ bool dma_fence_remove_callback(struct dma_fence *fe=
+nce,
+>                                struct dma_fence_cb *cb);
+>  void dma_fence_enable_sw_signaling(struct dma_fence *fence);
+>
+> -static inline const char *dma_fence_driver_name(struct dma_fence *fence)
+> -{
+> -       return fence->ops->get_driver_name(fence);
+> -}
+> +/**
+> + * DOC: Safe external access to driver provided object members
+> + *
+> + * All data not stored directly in the dma-fence object, such as the
+> + * &dma_fence.lock and memory potentially accessed by functions in the
+> + * &dma_fence.ops table, MUST NOT be accessed after the fence has been s=
+ignalled
+> + * because after that point drivers are allowed to free it.
+> + *
+> + * All code accessing that data via the dma-fence API (or directly, whic=
+h is
+> + * discouraged), MUST make sure to contain the complete access within a
+> + * &dma_fence_access_begin and &dma_fence_access_end pair.
+> + *
+> + * Some dma-fence API handles this automatically, while other, as for ex=
+ample
+> + * &dma_fence_driver_name and &dma_fence_timeline_name, leave that
+> + * responsibility to the caller.
+> + *
+> + * To enable this scheme to work drivers MUST ensure a RCU grace period =
+elapses
+> + * between signalling the fence and freeing the said data.
+> + *
+> + */
+> +#define dma_fence_access_begin rcu_read_lock
+> +#define dma_fence_access_end   rcu_read_unlock
+>
+> -static inline const char *dma_fence_timeline_name(struct dma_fence *fenc=
+e)
+> -{
+> -       return fence->ops->get_timeline_name(fence);
+> -}
+> +const char *dma_fence_driver_name(struct dma_fence *fence);
+> +const char *dma_fence_timeline_name(struct dma_fence *fence);
+>
+>  /**
+>   * dma_fence_is_signaled_locked - Return an indication if the fence
+> --
+> 2.48.0
+>
