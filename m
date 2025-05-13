@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 534BFC3ABC3
-	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 11:04:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D85AC3ABCC
+	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 11:09:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0779710E1F0;
-	Tue, 13 May 2025 11:04:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21E5C10E1F0;
+	Tue, 13 May 2025 11:09:15 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38C2910E1F0;
- Tue, 13 May 2025 11:04:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF19610E1F0;
+ Tue, 13 May 2025 11:09:13 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_Replace_xe=5Fhmm_wit?=
- =?utf-8?q?h_gpusvm_=28rev4=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Suppress_some_dumps_?=
+ =?utf-8?q?during_fault_injection_tests?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 13 May 2025 11:04:44 -0000
-Message-ID: <174713428422.74755.8030699636336875345@c664b1dc75d1>
+Date: Tue, 13 May 2025 11:09:13 -0000
+Message-ID: <174713455384.74754.2311506349319163333@c664b1dc75d1>
 X-Patchwork-Hint: ignore
-References: <20250512150637.61462-10-matthew.auld@intel.com>
-In-Reply-To: <20250512150637.61462-10-matthew.auld@intel.com>
+References: <20250512161947.128-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20250512161947.128-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,23 +42,16 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Replace xe_hmm with gpusvm (rev4)
-URL   : https://patchwork.freedesktop.org/series/146553/
-State : failure
+Series: Suppress some dumps during fault injection tests
+URL   : https://patchwork.freedesktop.org/series/148900/
+State : success
 
 == Summary ==
 
 === Applying kernel patches on branch 'drm-tip' with base: ===
 Base commit: c9de1544553b drm-tip: 2025y-05m-13d-08h-26m-34s UTC integration manifest
 === git am output follows ===
-error: patch failed: drivers/gpu/drm/drm_gpusvm.c:1362
-error: drivers/gpu/drm/drm_gpusvm.c: patch does not apply
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Applying: drm/gpusvm: fix hmm_pfn_to_map_order() usage
-Applying: drm/gpusvm: use more selective dma dir in get_pages()
-Patch failed at 0002 drm/gpusvm: use more selective dma dir in get_pages()
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Applying: drm/xe: Introduce flag to indicate possible fault injection
+Applying: drm/xe/guc: Suppress Dead CTB Dump during fault injection tests
 
 
