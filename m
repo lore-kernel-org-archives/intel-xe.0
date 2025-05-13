@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD466C3ABD7
-	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 13:42:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD129C3ABCC
+	for <intel-xe@archiver.kernel.org>; Tue, 13 May 2025 13:51:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 638EC10E5A3;
-	Tue, 13 May 2025 13:42:35 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KOJu7APC";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9ADC810E5A2;
- Tue, 13 May 2025 13:42:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747143753; x=1778679753;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=o3qz32BfP0ubeTOYSkBfZr8Lkr8V7ilQxUnERQSgLdE=;
- b=KOJu7APC3TqWk6r+mmPv8yTQgdvuTec2ExXVtKfBZ6ChTWWlyUPfrOIr
- zjRIhAxrMFDWLIIHQJJiJQFRIpqrrIVfho9sBrNKqaAelzG/0hd5mMfiY
- Nvj1yJtdp9fF/LfSxza4tufQxbkiLRgjbIh79WFtfAe7RoYmf0z/my2V7
- J3X11OpO7yszEUOIQjrR4KU7FJhD+GttZqcnux+hIPiiiRJDcVH2ocL+4
- 0QVui9RNwZjZznoKto98EoeLDKADbPHIpg5dVJ+SWJZqoEZ7baAoKwYqj
- 56n5Iw6tnXwVTi6TFFi3Kp80hCOBYGNjFn0pAotkTEApxZcsTgp4UEFRM A==;
-X-CSE-ConnectionGUID: f61anPGuQWqZvstrhPWuUw==
-X-CSE-MsgGUID: 4Rl0FTC7QsSl6ZBhWzLOuw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="49138405"
-X-IronPort-AV: E=Sophos;i="6.15,285,1739865600"; d="scan'208";a="49138405"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2025 06:42:33 -0700
-X-CSE-ConnectionGUID: ctnFUzg6SBmqM0Zbw6Cf3A==
-X-CSE-MsgGUID: IgJWx28WRCGJyi3HnjRN9w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,285,1739865600"; d="scan'208";a="142832824"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO stinkbox)
- ([10.245.244.221])
- by orviesa005.jf.intel.com with SMTP; 13 May 2025 06:42:30 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 13 May 2025 16:42:29 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	Luca Coelho <luciano.coelho@intel.com>
-Subject: [PATCH v2 2/7] drm/i915: Hook up PIPEDMC interrupts
-Date: Tue, 13 May 2025 16:42:29 +0300
-Message-ID: <20250513134229.19017-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250512103358.15724-3-ville.syrjala@linux.intel.com>
-References: <20250512103358.15724-3-ville.syrjala@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 844F610E5AB;
+	Tue, 13 May 2025 13:51:29 +0000 (UTC)
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79A0310E5AA;
+ Tue, 13 May 2025 13:51:28 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm=3A_Create_an_app?=
+ =?utf-8?q?_info_option_for_wedge_events_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 13 May 2025 13:51:28 -0000
+Message-ID: <174714428849.75033.16364926004607413997@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <20250512203437.989894-1-andrealmeid@igalia.com>
+In-Reply-To: <20250512203437.989894-1-andrealmeid@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,239 +36,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-Hook up PIPEDMC interrupts. We'll need these for:
-- flip queue signalling
-- GTT/ATS faults on LNL+
-- random errors
+Series: drm: Create an app info option for wedge events (rev3)
+URL   : https://patchwork.freedesktop.org/series/145636/
+State : success
 
-On LNL+ we get a new level of interrupts registers PIPEDMC_INTERRUPT*.
-On earlier platforms we only have the INT_VECTOR field in the
-PIPEDMC_STATUS registers, whose values are defined by the firmware.
+== Summary ==
 
-For now we'll enable the interrupts on LNL+ only. For earlier platforms
-it's not clear that there is any use for these interrupts, and some
-ADL machines have exhibited spurious DE_PIPE interrupts with the
-PIPEDMC interrupts unmasked/enabled. We can revisit enabling these
-for earlier platforms in the future.
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 39fec6496914 drm-tip: 2025y-05m-13d-12h-52m-12s UTC integration manifest
+=== git am output follows ===
+Applying: drm: Create an app info option for wedge events
+Applying: drm/doc: Add a section about "App information" for the wedge API
+Applying: drm/amdgpu: Make use of drm_wedge_app_info
 
-Similar to DSB interrupt registers, the unused bits in
-PIPEDMC_INTERRUPT* seem to act like randomg r/w bits (instead
-of being hardwired to 0 like one would expect), and so we'll try
-to avoid setting them so that we don't mistake them for real
-interrupts.
-
-v2: Only enable/unmask for LNL+
-    Keep the flip queue interrupt masked off for now since
-    we don't have a use for it yet
-
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com> #v1
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- .../drm/i915/display/intel_display_device.h   |  1 +
- .../gpu/drm/i915/display/intel_display_irq.c  |  8 ++++
- drivers/gpu/drm/i915/display/intel_dmc.c      | 45 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dmc.h      |  2 +
- drivers/gpu/drm/i915/display/intel_dmc_regs.h | 22 +++++++++
- drivers/gpu/drm/i915/i915_reg.h               |  2 +
- 6 files changed, 80 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 87c666792c0d..d4611d17e498 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -181,6 +181,7 @@ struct intel_display_platforms {
- #define HAS_MBUS_JOINING(__display)	((__display)->platform.alderlake_p || DISPLAY_VER(__display) >= 14)
- #define HAS_MSO(__display)		(DISPLAY_VER(__display) >= 12)
- #define HAS_OVERLAY(__display)		(DISPLAY_INFO(__display)->has_overlay)
-+#define HAS_PIPEDMC(__display)		(DISPLAY_VER(__display) >= 12)
- #define HAS_PSR(__display)		(DISPLAY_INFO(__display)->has_psr)
- #define HAS_PSR_HW_TRACKING(__display)	(DISPLAY_INFO(__display)->has_psr_hw_tracking)
- #define HAS_PSR2_SEL_FETCH(__display)	(DISPLAY_VER(__display) >= 12)
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index a7130b14aace..c24841f57aac 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -17,6 +17,7 @@
- #include "intel_display_rps.h"
- #include "intel_display_trace.h"
- #include "intel_display_types.h"
-+#include "intel_dmc.h"
- #include "intel_dmc_wl.h"
- #include "intel_dp_aux.h"
- #include "intel_dsb.h"
-@@ -1449,6 +1450,9 @@ void gen8_de_irq_handler(struct intel_display *display, u32 master_ctl)
- 				intel_dsb_irq_handler(display, pipe, INTEL_DSB_2);
- 		}
- 
-+		if (HAS_PIPEDMC(display) && iir & GEN12_PIPEDMC_INTERRUPT)
-+			intel_pipedmc_irq_handler(display, pipe);
-+
- 		if (iir & GEN8_PIPE_CDCLK_CRC_DONE)
- 			hsw_pipe_crc_irq_handler(display, pipe);
- 
-@@ -2266,6 +2270,10 @@ void gen8_de_irq_postinstall(struct intel_display *display)
- 			GEN12_DSB_INT(INTEL_DSB_1) |
- 			GEN12_DSB_INT(INTEL_DSB_2);
- 
-+	/* TODO figure PIPEDMC interrupts for pre-LNL */
-+	if (DISPLAY_VER(display) >= 20)
-+		de_pipe_masked |= GEN12_PIPEDMC_INTERRUPT;
-+
- 	de_pipe_enables = de_pipe_masked |
- 		GEN8_PIPE_VBLANK | GEN8_PIPE_FIFO_UNDERRUN |
- 		gen8_de_pipe_flip_done_mask(display);
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index b58189d24e7e..acefaebc255a 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -27,9 +27,11 @@
- 
- #include "i915_drv.h"
- #include "i915_reg.h"
-+#include "intel_crtc.h"
- #include "intel_de.h"
- #include "intel_display_rpm.h"
- #include "intel_display_power_well.h"
-+#include "intel_display_types.h"
- #include "intel_dmc.h"
- #include "intel_dmc_regs.h"
- #include "intel_step.h"
-@@ -490,6 +492,13 @@ static void pipedmc_clock_gating_wa(struct intel_display *display, bool enable)
- 		adlp_pipedmc_clock_gating_wa(display, enable);
- }
- 
-+static u32 pipedmc_interrupt_mask(struct intel_display *display)
-+{
-+	return PIPEDMC_ERROR |
-+		PIPEDMC_GTT_FAULT |
-+		PIPEDMC_ATS_FAULT;
-+}
-+
- void intel_dmc_enable_pipe(struct intel_display *display, enum pipe pipe)
- {
- 	enum intel_dmc_id dmc_id = PIPE_TO_DMC_ID(pipe);
-@@ -497,6 +506,11 @@ void intel_dmc_enable_pipe(struct intel_display *display, enum pipe pipe)
- 	if (!is_valid_dmc_id(dmc_id) || !has_dmc_id_fw(display, dmc_id))
- 		return;
- 
-+	if (DISPLAY_VER(display) >= 20) {
-+		intel_de_write(display, PIPEDMC_INTERRUPT(pipe), pipedmc_interrupt_mask(display));
-+		intel_de_write(display, PIPEDMC_INTERRUPT_MASK(pipe), ~pipedmc_interrupt_mask(display));
-+	}
-+
- 	if (DISPLAY_VER(display) >= 14)
- 		intel_de_rmw(display, MTL_PIPEDMC_CONTROL, 0, PIPEDMC_ENABLE_MTL(pipe));
- 	else
-@@ -514,6 +528,11 @@ void intel_dmc_disable_pipe(struct intel_display *display, enum pipe pipe)
- 		intel_de_rmw(display, MTL_PIPEDMC_CONTROL, PIPEDMC_ENABLE_MTL(pipe), 0);
- 	else
- 		intel_de_rmw(display, PIPEDMC_CONTROL(pipe), PIPEDMC_ENABLE, 0);
-+
-+	if (DISPLAY_VER(display) >= 20) {
-+		intel_de_write(display, PIPEDMC_INTERRUPT_MASK(pipe), ~0);
-+		intel_de_write(display, PIPEDMC_INTERRUPT(pipe), pipedmc_interrupt_mask(display));
-+	}
- }
- 
- /**
-@@ -1403,3 +1422,29 @@ void intel_dmc_debugfs_register(struct intel_display *display)
- 	debugfs_create_file("i915_dmc_info", 0444, minor->debugfs_root,
- 			    display, &intel_dmc_debugfs_status_fops);
- }
-+
-+void intel_pipedmc_irq_handler(struct intel_display *display, enum pipe pipe)
-+{
-+	struct intel_crtc *crtc = intel_crtc_for_pipe(display, pipe);
-+	u32 tmp;
-+
-+	if (DISPLAY_VER(display) >= 20) {
-+		tmp = intel_de_read(display, PIPEDMC_INTERRUPT(pipe));
-+		intel_de_write(display, PIPEDMC_INTERRUPT(pipe), tmp);
-+
-+		if (tmp & PIPEDMC_ATS_FAULT)
-+			drm_err_ratelimited(display->drm, "[CRTC:%d:%s] PIPEDMC ATS fault\n",
-+					    crtc->base.base.id, crtc->base.name);
-+		if (tmp & PIPEDMC_GTT_FAULT)
-+			drm_err_ratelimited(display->drm, "[CRTC:%d:%s] PIPEDMC GTT fault\n",
-+					    crtc->base.base.id, crtc->base.name);
-+		if (tmp & PIPEDMC_ERROR)
-+			drm_err(display->drm, "[CRTC:%d:%s]] PIPEDMC error\n",
-+				crtc->base.base.id, crtc->base.name);
-+	}
-+
-+	tmp = intel_de_read(display, PIPEDMC_STATUS(pipe)) & PIPEDMC_INT_VECTOR_MASK;
-+	if (tmp)
-+		drm_err(display->drm, "[CRTC:%d:%s]] PIPEDMC interrupt vector 0x%x\n",
-+			crtc->base.base.id, crtc->base.name, tmp);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h b/drivers/gpu/drm/i915/display/intel_dmc.h
-index bd1c459b0075..a98e8deff13a 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.h
-@@ -34,4 +34,6 @@ void intel_dmc_update_dc6_allowed_count(struct intel_display *display, bool star
- 
- void assert_dmc_loaded(struct intel_display *display);
- 
-+void intel_pipedmc_irq_handler(struct intel_display *display, enum pipe pipe);
-+
- #endif /* __INTEL_DMC_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-index e16ea3f16ed8..e8ac0e1be764 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-@@ -27,6 +27,28 @@
- 						   _MTL_PIPEDMC_EVT_CTL_4_A, \
- 						   _MTL_PIPEDMC_EVT_CTL_4_B)
- 
-+#define _PIPEDMC_STATUS_A		0x5f06c
-+#define _PIPEDMC_STATUS_B		0x5f46c
-+#define PIPEDMC_STATUS(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_STATUS_A, _PIPEDMC_STATUS_B)
-+#define   PIPEDMC_SSP			REG_GENMASK(31, 16)
-+#define   PIPEDMC_INT_VECTOR_MASK	REG_GENMASK(15, 8)
-+/* PIPEDMC_INT_VECTOR values defined by firmware */
-+#define   PIPEDMC_INT_VECTOR_SCANLINE_COMP_ERROR	REG_FIELD_PREP(PIPEDMC_INT_VECTOR_MASK, 0x1)
-+#define   PIPEDMC_INT_VECTOR_DC6V_FLIPQ_OVERLAP_ERROR	REG_FIELD_PREP(PIPEDMC_INT_VECTOR_MASK, 0x2)
-+#define   PIPEDMC_INT_VECTOR_FLIPQ_PROG_DONE		REG_FIELD_PREP(PIPEDMC_INT_VECTOR_MASK, 0xff) /* Wa_16018781658:lnl[a0] */
-+#define   PIPEDMC_EVT_PENDING		REG_GENMASK(7, 0)
-+
-+#define _PIPEDMC_INTERRUPT_A		0x5f190 /* lnl+ */
-+#define _PIPEDMC_INTERRUPT_B		0x5f590 /* lnl+ */
-+#define PIPEDMC_INTERRUPT(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_INTERRUPT_A, _PIPEDMC_INTERRUPT_B)
-+#define _PIPEDMC_INTERRUPT_MASK_A	0x5f194 /* lnl+ */
-+#define _PIPEDMC_INTERRUPT_MASK_B	0x5f594 /* lnl+ */
-+#define PIPEDMC_INTERRUPT_MASK(pipe)	_MMIO_PIPE((pipe), _PIPEDMC_INTERRUPT_MASK_A, _PIPEDMC_INTERRUPT_MASK_B)
-+#define   PIPEDMC_FLIPQ_PROG_DONE	REG_BIT(3)
-+#define   PIPEDMC_ERROR			REG_BIT(2)
-+#define   PIPEDMC_GTT_FAULT		REG_BIT(1)
-+#define   PIPEDMC_ATS_FAULT		REG_BIT(0)
-+
- #define PIPEDMC_BLOCK_PKGC_SW_A	0x5f1d0
- #define PIPEDMC_BLOCK_PKGC_SW_B	0x5F5d0
- #define PIPEDMC_BLOCK_PKGC_SW(pipe)				_MMIO_PIPE(pipe, \
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 2d0e04eae763..8822c639a4f4 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -2128,12 +2128,14 @@
- #define  GEN12_PIPEDMC_INTERRUPT	REG_BIT(26) /* tgl+ */
- #define  GEN12_PIPEDMC_FAULT		REG_BIT(25) /* tgl-mtl */
- #define  MTL_PIPEDMC_ATS_FAULT		REG_BIT(24) /* mtl */
-+#define  GEN12_PIPEDMC_FLIPQ_DONE	REG_BIT(24) /* tgl-adl */
- #define  GEN11_PIPE_PLANE7_FAULT	REG_BIT(22) /* icl/tgl */
- #define  GEN11_PIPE_PLANE6_FAULT	REG_BIT(21) /* icl/tgl */
- #define  GEN11_PIPE_PLANE5_FAULT	REG_BIT(20) /* icl+ */
- #define  GEN12_PIPE_VBLANK_UNMOD	REG_BIT(19) /* tgl+ */
- #define  MTL_PLANE_ATS_FAULT		REG_BIT(18) /* mtl+ */
- #define  GEN11_PIPE_PLANE7_FLIP_DONE	REG_BIT(18) /* icl/tgl */
-+#define  MTL_PIPEDMC_FLIPQ_DONE		REG_BIT(17) /* mtl */
- #define  GEN11_PIPE_PLANE6_FLIP_DONE	REG_BIT(17) /* icl/tgl */
- #define  GEN11_PIPE_PLANE5_FLIP_DONE	REG_BIT(16) /* icl+ */
- #define  GEN12_DSB_2_INT		REG_BIT(15) /* tgl+ */
--- 
-2.49.0
 
