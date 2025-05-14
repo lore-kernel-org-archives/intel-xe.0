@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E767FC3ABD8
-	for <intel-xe@archiver.kernel.org>; Wed, 14 May 2025 17:18:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58EEAC3ABD8
+	for <intel-xe@archiver.kernel.org>; Wed, 14 May 2025 17:19:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC27F10E64A;
-	Wed, 14 May 2025 17:18:34 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ww5y5JSh";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 116EE10E642
- for <intel-xe@lists.freedesktop.org>; Wed, 14 May 2025 17:18:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747243113; x=1778779113;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=p6QxZn4WLmISYePlSCvlsc4u6O2sFpnOUUpy4ILYpuE=;
- b=Ww5y5JShX0F2VSPYbyr52jkut4wju611I7KeXvKQt554/Y9qIrIL145r
- v1zkkx91yOI+B0RS2Y70rRhL11PhbB0vcfAbkpskTsqQ6+I+m+8IKL4xq
- 7qu5EGWgMYyaSUJIfpomltsivWNFv0fy84adLdZDtNqOJcS0CIjUAuv/R
- 1Axe9c9n2tok+vKB31ooSkeNhMKpHaGV+/rR9xVDvQ3vP6VRHHZXO6ypZ
- /0t6tldVN8G9Q78ixs3biyHYlFkTd6w2fVu74RIGfwCIJi/19Hcb5ZZpq
- Xwt6xBtQ9K3ejtddW+gzLmrhXqtUJsZ7IoyQOx+0HkWStwS8r4WMl5jiF Q==;
-X-CSE-ConnectionGUID: UNcKqKz8RWuqofo964kECQ==
-X-CSE-MsgGUID: nh+DYPPWRA2zOCZrp3TvvQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11433"; a="52963469"
-X-IronPort-AV: E=Sophos;i="6.15,288,1739865600"; d="scan'208";a="52963469"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2025 10:18:32 -0700
-X-CSE-ConnectionGUID: YKQ+Y42rQ8O4kOfgZ3rBog==
-X-CSE-MsgGUID: wZ/cCXfBTRC8SCQqdjOqWw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,288,1739865600"; d="scan'208";a="161391208"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.180])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2025 10:18:30 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Poosa, Karthik" <karthik.poosa@intel.com>, Soham Purkait
- <soham.purkait@intel.com>, intel-xe@lists.freedesktop.org,
- anshuman.gupta@intel.com, badal.nilawar@intel.com
-Cc: lucas.demarchi@intel.com, ashutosh.dixit@intel.com, riana.tauro@intel.com
-Subject: Re: [PATCH 1/4] Utility function and macro for telemetry reading
-In-Reply-To: <98bdd2b6-f69e-4ff0-93c8-d57099a3060e@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250514080721.265515-1-soham.purkait@intel.com>
- <20250514080721.265515-2-soham.purkait@intel.com>
- <8734d7iltz.fsf@intel.com>
- <98bdd2b6-f69e-4ff0-93c8-d57099a3060e@intel.com>
-Date: Wed, 14 May 2025 20:18:27 +0300
-Message-ID: <87ldqzglgc.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2090D10E642;
+	Wed, 14 May 2025 17:19:40 +0000 (UTC)
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCD2C10E2CA;
+ Wed, 14 May 2025 17:19:38 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2293213773899105929=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm=3A_Create_an_app_info_o?=
+ =?utf-8?q?ption_for_wedge_events_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 14 May 2025 17:19:38 -0000
+Message-ID: <174724317889.79350.17280122483129760626@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <20250512203437.989894-1-andrealmeid@igalia.com>
+In-Reply-To: <20250512203437.989894-1-andrealmeid@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,91 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 14 May 2025, "Poosa, Karthik" <karthik.poosa@intel.com> wrote:
-> On 14-05-2025 14:57, Jani Nikula wrote:
->> On Wed, 14 May 2025, Soham Purkait <soham.purkait@intel.com> wrote:
->>> The changes in this patch is taken from
->>> https://patchwork.freedesktop.org/series/148926/
->>> Thay are  added only for compilation and does not
->>> require review.
->>> ---
->>>   drivers/gpu/drm/xe/regs/xe_pmt.h | 5 +++++
->>>   drivers/gpu/drm/xe/xe_vsec.c     | 2 +-
->>>   drivers/gpu/drm/xe/xe_vsec.h     | 5 +++++
->>>   3 files changed, 11 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/regs/xe_pmt.h b/drivers/gpu/drm/xe/regs/xe_pmt.h
->>> index f45abcd96ba8..b1d4504e4adc 100644
->>> --- a/drivers/gpu/drm/xe/regs/xe_pmt.h
->>> +++ b/drivers/gpu/drm/xe/regs/xe_pmt.h
->>> @@ -10,6 +10,11 @@
->>>   #define BMG_PMT_BASE_OFFSET		0xDB000
->>>   #define BMG_DISCOVERY_OFFSET		(SOC_BASE + BMG_PMT_BASE_OFFSET)
->>>   
->>> +#define PUNIT_TELEMETRY_GUID		XE_REG(BMG_DISCOVERY_OFFSET + 0x4)
->>> +#define BMG_ENERGY_STATUS_PMT_OFFSET	(0x30)
->>> +#define ENERGY_PKG			REG_GENMASK64(31, 0)
->>> +#define ENERGY_CARD			REG_GENMASK64(63, 32)
->>> +
->>>   #define BMG_TELEMETRY_BASE_OFFSET	0xE0000
->>>   #define BMG_TELEMETRY_OFFSET		(SOC_BASE + BMG_TELEMETRY_BASE_OFFSET)
->>>   
->>> diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
->>> index b378848d3b7b..a46e9580b1f4 100644
->>> --- a/drivers/gpu/drm/xe/xe_vsec.c
->>> +++ b/drivers/gpu/drm/xe/xe_vsec.c
->>> @@ -149,7 +149,7 @@ static int xe_guid_decode(u32 guid, int *index, u32 *offset)
->>>   	return 0;
->>>   }
->>>   
->>> -static int xe_pmt_telem_read(struct pci_dev *pdev, u32 guid, u64 *data, loff_t user_offset,
->>> +int xe_pmt_telem_read(struct pci_dev *pdev, u32 guid, u64 *data, loff_t user_offset,
->>>   			     u32 count)
->>>   {
->>>   	struct xe_device *xe = pdev_to_xe_device(pdev);
->>> diff --git a/drivers/gpu/drm/xe/xe_vsec.h b/drivers/gpu/drm/xe/xe_vsec.h
->>> index 5777c53faec2..6184b875e4b1 100644
->>> --- a/drivers/gpu/drm/xe/xe_vsec.h
->>> +++ b/drivers/gpu/drm/xe/xe_vsec.h
->>> @@ -4,8 +4,13 @@
->>>   #ifndef _XE_VSEC_H_
->>>   #define _XE_VSEC_H_
->>>   
->>> +#include "linux/types.h"
->>> +#include "linux/pci.h"
->>> +
->> Please address the reviews [1].
->>
->> BR,
->> Jani.
->
-> These are addressed here Jani,
->
-> https://patchwork.freedesktop.org/patch/653146/?series=148926&rev=2
+--===============2293213773899105929==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Please sort this out between you and Soham. This is clearly conflicting
-stuff, sent *after* the above.
+== Series Details ==
 
-BR,
-Jani.
+Series: drm: Create an app info option for wedge events (rev4)
+URL   : https://patchwork.freedesktop.org/series/145636/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-3088-dd6a856541dd90fa4ef755783898fcfbea3b9961_BAT -> xe-pw-145636v4_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (10 -> 9)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-145636v4_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_exec_basic@twice-bindexecqueue-rebind:
+    - bat-adlp-vf:        [PASS][1] -> [ABORT][2] ([Intel XE#3970])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3088-dd6a856541dd90fa4ef755783898fcfbea3b9961/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145636v4/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
+
+  
+  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
 
 
->>
->>
->> [1] https://lore.kernel.org/r/87ikmcvfzd.fsf@intel.com
->>
->>
->>
->>>   struct xe_device;
->>>   
->>>   void xe_vsec_init(struct xe_device *xe);
->>> +int xe_pmt_telem_read(struct pci_dev *pdev, u32 guid, u64 *data, loff_t user_offset,
->>> +		      u32 count);
->>>   
->>>   #endif
+Build changes
+-------------
 
--- 
-Jani Nikula, Intel
+  * Linux: xe-3088-dd6a856541dd90fa4ef755783898fcfbea3b9961 -> xe-pw-145636v4
+
+  IGT_8364: 8364
+  xe-3088-dd6a856541dd90fa4ef755783898fcfbea3b9961: dd6a856541dd90fa4ef755783898fcfbea3b9961
+  xe-pw-145636v4: 145636v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145636v4/index.html
+
+--===============2293213773899105929==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm: Create an app info option for wedge events (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145636/">https://patchwork.freedesktop.org/series/145636/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145636v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145636v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3088-dd6a856541dd90fa4ef755783898fcfbea3b9961_BAT -&gt; xe-pw-145636v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (10 -&gt; 9)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-145636v4_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_exec_basic@twice-bindexecqueue-rebind:<ul>
+<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3088-dd6a856541dd90fa4ef755783898fcfbea3b9961/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145636v4/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3088-dd6a856541dd90fa4ef755783898fcfbea3b9961 -&gt; xe-pw-145636v4</li>
+</ul>
+<p>IGT_8364: 8364<br />
+  xe-3088-dd6a856541dd90fa4ef755783898fcfbea3b9961: dd6a856541dd90fa4ef755783898fcfbea3b9961<br />
+  xe-pw-145636v4: 145636v4</p>
+
+</body>
+</html>
+
+--===============2293213773899105929==--
