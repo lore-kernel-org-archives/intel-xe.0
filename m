@@ -4,57 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E1FFC3ABD8
-	for <intel-xe@archiver.kernel.org>; Wed, 14 May 2025 20:39:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF7A7C3ABD8
+	for <intel-xe@archiver.kernel.org>; Wed, 14 May 2025 20:43:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4447E10E723;
-	Wed, 14 May 2025 20:39:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACD4C10E746;
+	Wed, 14 May 2025 20:43:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LQdDDpjQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SDWPSVjd";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B07A410E723
- for <intel-xe@lists.freedesktop.org>; Wed, 14 May 2025 20:39:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D236810E741
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 May 2025 20:43:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747255161; x=1778791161;
+ t=1747255435; x=1778791435;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=zHdq10fyCZuRp5C3v7yEGcby030sSMhVRbzpNAJGphE=;
- b=LQdDDpjQI/9E5djjfWvrszVobLLuNddxOs2XMN2XxWAVHDb2yPmPTsBh
- 8P/bE2rBkbSoEX7uJQBluhFl9zC43rdDO3bFqyvBjlJfbNmWRqe6KFAvK
- psMVbLY5iIDxKSleI6o1GOABLQlMRK9nq2SE5eQiJvBrKAzHx5NlfXuLf
- +D3PoH8zyA/c0aJWKOTuuUoO8kFxdo4u6AWdZ9YMJ29yaO5N9cJP/SdzU
- t1KxCo7pQG9UJBUpoNQriCtymdwSdQwdjNxNhp/vXbGfA50dWSmyxRXva
- KFaQv88gk18/1zjKGaIWog0ad3CtoxFeJ7+t3pqyPpG7oq3NoDdawNSuA g==;
-X-CSE-ConnectionGUID: Xq5tpAXJRdOaJd3pQj9IBA==
-X-CSE-MsgGUID: qkLtnEidRMaSGrIebWeCtA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11433"; a="49246778"
-X-IronPort-AV: E=Sophos;i="6.15,289,1739865600"; d="scan'208";a="49246778"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2025 13:39:21 -0700
-X-CSE-ConnectionGUID: ueqoBtLkR3uthOlOL6Ffww==
-X-CSE-MsgGUID: uNDIOEXURPifyPVK1NjAPQ==
+ bh=vAEEGMYkLYRfH+XNOh7JEBQTNp189RPQtqf9dN8pV5s=;
+ b=SDWPSVjd2nbItbliGO+xTbg9Y+q20/jBebrAHDlnHnuWBycbQ1AfaczB
+ GJCsVqIt4ruuiphC90m9XKHVUhMRUf+veRpz0eOtu8gCeVmyoX5OLBmMY
+ LKs4V+KPNJXiwvikeF4C/AN0CuLHpVVqX5OHhEAhhvubA37NryJBq4VOg
+ YGTsmqUlen6jDl9G2pduOibWfWlSWtt6WxrFuY8FPi7IBlkEc5BLaJPEU
+ ErJwb/cfq1TytEJ2BNorow4il+OPNZrLOdVjMMDuyQ44DuvJBJhN7m1m2
+ duotCPPg48xELeYrAsZPlNSWonqQhCpJkZbHSoILluaUuuc5Rxh+LaniE w==;
+X-CSE-ConnectionGUID: 5yrzmiILTJeqO+uGmeKOsQ==
+X-CSE-MsgGUID: 2KV53J/aSemxJojhfD4/EQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11433"; a="49038996"
+X-IronPort-AV: E=Sophos;i="6.15,289,1739865600"; d="scan'208";a="49038996"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 May 2025 13:43:55 -0700
+X-CSE-ConnectionGUID: /L4RlU0FRPezkcLHOBYGGA==
+X-CSE-MsgGUID: 24LPPI+aQeK7MzBmu+kX1Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,289,1739865600"; d="scan'208";a="138027372"
+X-IronPort-AV: E=Sophos;i="6.15,289,1739865600"; d="scan'208";a="138663492"
 Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa010.jf.intel.com with ESMTP; 14 May 2025 13:39:19 -0700
+ by fmviesa010.fm.intel.com with ESMTP; 14 May 2025 13:43:53 -0700
 Received: from [10.246.5.201] (mwajdecz-MOBL.ger.corp.intel.com [10.246.5.201])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id C717B3497B;
- Wed, 14 May 2025 21:39:17 +0100 (IST)
-Message-ID: <6e884905-8ce5-4a7a-8527-3b1b412e48e8@intel.com>
-Date: Wed, 14 May 2025 22:39:17 +0200
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 953B93497C;
+ Wed, 14 May 2025 21:43:52 +0100 (IST)
+Message-ID: <58c9849a-5e23-49e4-b9a6-92bbcd42991a@intel.com>
+Date: Wed, 14 May 2025 22:43:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/4] drm/xe/pf: Allow wedged_mode=2 only in debug config
+Subject: Re: [PATCH v5 2/4] drm/xe: Don't update wedged mode in case of an
+ error
 To: Lukasz Laguna <lukasz.laguna@intel.com>, intel-xe@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, matthew.brost@intel.com
 References: <20250514101124.12437-1-lukasz.laguna@intel.com>
- <20250514101124.12437-5-lukasz.laguna@intel.com>
+ <20250514101124.12437-3-lukasz.laguna@intel.com>
 Content-Language: en-US
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20250514101124.12437-5-lukasz.laguna@intel.com>
+In-Reply-To: <20250514101124.12437-3-lukasz.laguna@intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -74,38 +75,104 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 On 14.05.2025 12:11, Lukasz Laguna wrote:
-> The GuC reset policy is global, so changing it on PF can impact running
-
-it's not only about the change itself, but more that in UPON_ANY_HANG
-mode the GuC reset policy would impact all VFs, even those that didn't
-cause a hang
-
-> VFs. To avoid unintended side effects, setting wedged_mode=2 on the PF
-                                                            ^^
-please use full mode name, not just number
-
-> is restricted to debug builds only.
+> Update driver's internal wedged.mode state only in case of a success to
+> avoid inconsistent state.
 > 
+> Fixes: 6b8ef44cc0a9 ("drm/xe: Introduce the wedged_mode debugfs")
 > Signed-off-by: Lukasz Laguna <lukasz.laguna@intel.com>
-
-otherwise LGTM
-
 > ---
->  drivers/gpu/drm/xe/xe_device.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/xe/xe_debugfs.c | 8 ++++----
+>  drivers/gpu/drm/xe/xe_guc_ads.c | 7 ++++---
+>  drivers/gpu/drm/xe/xe_guc_ads.h | 3 ++-
+>  3 files changed, 10 insertions(+), 8 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index 7dfc39dd4c9c..f23d8236bddc 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -1189,7 +1189,8 @@ int xe_device_validate_wedged_mode(struct xe_device *xe, unsigned int mode)
->  	if (mode > XE_WEDGED_MODE_UPON_ANY_HANG) {
->  		drm_dbg(&xe->drm, "wedged_mode: invalid value (%u)\n", mode);
->  		return -EINVAL;
-> -	} else if (mode == XE_WEDGED_MODE_UPON_ANY_HANG && IS_SRIOV_VF(xe)) {
-> +	} else if (mode == XE_WEDGED_MODE_UPON_ANY_HANG && (IS_SRIOV_VF(xe) ||
-> +		   (IS_SRIOV_PF(xe) && !IS_ENABLED(CONFIG_DRM_XE_DEBUG)))) {
->  		drm_dbg(&xe->drm, "wedged_mode: unsupported mode (%u) for %s\n", mode,
->  			xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
->  		return -EPERM;
+> diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+> index 5dd0ad3f9bae..72515fc638b1 100644
+> --- a/drivers/gpu/drm/xe/xe_debugfs.c
+> +++ b/drivers/gpu/drm/xe/xe_debugfs.c
+> @@ -170,19 +170,19 @@ static ssize_t wedged_mode_set(struct file *f, const char __user *ubuf,
+>  	if (xe->wedged.mode == wedged_mode)
+>  		return size;
+>  
+> -	xe->wedged.mode = wedged_mode;
+> -
+>  	xe_pm_runtime_get(xe);
+>  	for_each_gt(gt, xe, id) {
+> -		ret = xe_guc_ads_scheduler_policy_toggle_reset(&gt->uc.guc.ads);
+> +		ret = xe_guc_ads_scheduler_policy_toggle_reset(&gt->uc.guc.ads, wedged_mode);
+
+btw, do we really need to update the GuC policy when changing modes:
+
+	from NEVER to UPON_CRITICAL
+	from UPON_CRITICAL to NEVER
+
+the reset policy needs to be toggled only when changing mode:
+
+	from NEVER to UPON_ANY_HANG
+	from UPON_CRITICAL to UPON_ANY_HANG
+	from UPON_ANY_HANG to NEVER
+	from UPON_ANY_HANG to UPON_CRITICAL
+
+>  		if (ret) {
+> -			xe_gt_err(gt, "Failed to update GuC ADS scheduler policy. GuC may still cause engine reset even with wedged_mode=2\n");
+> +			xe_gt_err(gt, "Failed to update GuC ADS scheduler policy\n");
+>  			xe_pm_runtime_put(xe);
+>  			return -EIO;
+>  		}
+>  	}
+>  	xe_pm_runtime_put(xe);
+>  
+> +	xe->wedged.mode = wedged_mode;
+> +
+>  	return size;
+>  }
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+> index 413711bd3f58..99aec2e8378b 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ads.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+> @@ -997,12 +997,13 @@ static int guc_ads_action_update_policies(struct xe_guc_ads *ads, u32 policy_off
+>  /**
+>   * xe_guc_ads_scheduler_policy_toggle_reset - Toggle reset policy
+>   * @ads: Additional data structures object
+> + * @mode: The wedged mode
+>   *
+> - * This function update the GuC's engine reset policy based on wedged.mode.
+> + * This function update the GuC's engine reset policy based on wedged mode.
+>   *
+>   * Return: 0 on success, and negative error code otherwise.
+>   */
+> -int xe_guc_ads_scheduler_policy_toggle_reset(struct xe_guc_ads *ads)
+> +int xe_guc_ads_scheduler_policy_toggle_reset(struct xe_guc_ads *ads, enum xe_wedged_mode mode)
+>  {
+>  	struct xe_device *xe = ads_to_xe(ads);
+>  	struct xe_gt *gt = ads_to_gt(ads);
+> @@ -1018,7 +1019,7 @@ int xe_guc_ads_scheduler_policy_toggle_reset(struct xe_guc_ads *ads)
+>  	policies->dpc_promote_time = ads_blob_read(ads, policies.dpc_promote_time);
+>  	policies->max_num_work_items = ads_blob_read(ads, policies.max_num_work_items);
+>  	policies->is_valid = 1;
+> -	if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG)
+> +	if (mode == XE_WEDGED_MODE_UPON_ANY_HANG)
+>  		policies->global_flags |= GLOBAL_POLICY_DISABLE_ENGINE_RESET;
+>  	else
+>  		policies->global_flags &= ~GLOBAL_POLICY_DISABLE_ENGINE_RESET;
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ads.h b/drivers/gpu/drm/xe/xe_guc_ads.h
+> index 2e6674c760ff..641d9c8375fc 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ads.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_ads.h
+> @@ -7,12 +7,13 @@
+>  #define _XE_GUC_ADS_H_
+>  
+>  struct xe_guc_ads;
+> +enum xe_wedged_mode;
+>  
+>  int xe_guc_ads_init(struct xe_guc_ads *ads);
+>  int xe_guc_ads_init_post_hwconfig(struct xe_guc_ads *ads);
+>  void xe_guc_ads_populate(struct xe_guc_ads *ads);
+>  void xe_guc_ads_populate_minimal(struct xe_guc_ads *ads);
+>  void xe_guc_ads_populate_post_load(struct xe_guc_ads *ads);
+> -int xe_guc_ads_scheduler_policy_toggle_reset(struct xe_guc_ads *ads);
+> +int xe_guc_ads_scheduler_policy_toggle_reset(struct xe_guc_ads *ads, enum xe_wedged_mode mode);
+>  
+>  #endif
 
