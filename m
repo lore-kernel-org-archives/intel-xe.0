@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62CF0C3ABCC
-	for <intel-xe@archiver.kernel.org>; Wed, 14 May 2025 15:24:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41537C3ABD8
+	for <intel-xe@archiver.kernel.org>; Wed, 14 May 2025 15:26:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0721E10E669;
-	Wed, 14 May 2025 15:24:51 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wusn1WAa";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C06510E670
- for <intel-xe@lists.freedesktop.org>; Wed, 14 May 2025 15:24:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747236288; x=1778772288;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=sAVwxiUHyCySCQN0fWXiDUop9GOm/rUWMpBSoMI8+zQ=;
- b=Wusn1WAa4lljuNFBAt7d02j+FuHwXlYUSw5rxpgGoRdjYcpew0RAkHC+
- 0g/UuqpMt6/m7NXMg23M5VEF3wyaeza6iMFyM7QffMTwKUzRP77aLdv3N
- 1ETPEqAbkk/+PIqb+ujyV9KNQG7E90a4p3UY1lT426LLt5c6Z9AIVqCfK
- SBzx8PjIJB4MJ32dawwnLf6XRuEvnj64I1IQvQ2HfldEJYzgcelvJLjxE
- 2WVrs+zXKzWApdryhpJOb3IHIeY860INvwx9nku67XdNpBzSnZNyk30v7
- 57Mj4ZM4pO890YiDiENWlEALJSGvyoQtVlirBS506OMBIIJnF1nSt86mt A==;
-X-CSE-ConnectionGUID: EOPq9N1pQe2r9rOq4cKBIg==
-X-CSE-MsgGUID: 6nF+fm5LTbqAcPOYhEb9Nw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11433"; a="60149643"
-X-IronPort-AV: E=Sophos;i="6.15,288,1739865600"; d="scan'208";a="60149643"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2025 08:24:48 -0700
-X-CSE-ConnectionGUID: 1qjkFXIyTSOLBPdPv2OxZw==
-X-CSE-MsgGUID: Zu94Yn8CTUy00v9Ich4EbQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,288,1739865600"; d="scan'208";a="137949208"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO mwauld-desk.intel.com)
- ([10.245.245.203])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2025 08:24:47 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
-	stable@vger.kernel.org
-Subject: [PATCH 1/2] drm/xe/vm: move rebind_work init earlier
-Date: Wed, 14 May 2025 16:24:25 +0100
-Message-ID: <20250514152424.149591-3-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.49.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08BB810E669;
+	Wed, 14 May 2025 15:26:36 +0000 (UTC)
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C66F10E2D4;
+ Wed, 14 May 2025 15:26:35 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5630438172338025829=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=5Fsubmit=3A_Simp?=
+ =?utf-8?q?lify_and_fix_diff_calculation?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 14 May 2025 15:26:35 -0000
+Message-ID: <174723639562.78050.2298313000349447714@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <20250513-time-wrap-v1-1-fba9a69a65c8@intel.com>
+In-Reply-To: <20250513-time-wrap-v1-1-fba9a69a65c8@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,53 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In xe_vm_close_and_put() we need to be able to call
-flush_work(rebind_work), however during vm creation we can call this on
-the error path, before having actually set up the worker, leading to a
-splat from flush_work().
+--===============5630438172338025829==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-It looks like we can simply move the worker init step earlier to fix
-this.
+== Series Details ==
 
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: <stable@vger.kernel.org> # v6.8+
----
- drivers/gpu/drm/xe/xe_vm.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Series: drm/xe/guc_submit: Simplify and fix diff calculation
+URL   : https://patchwork.freedesktop.org/series/148966/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 5a978da411b0..168756fb140b 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1704,8 +1704,10 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- 	 * scheduler drops all the references of it, hence protecting the VM
- 	 * for this case is necessary.
- 	 */
--	if (flags & XE_VM_FLAG_LR_MODE)
-+	if (flags & XE_VM_FLAG_LR_MODE) {
-+		INIT_WORK(&vm->preempt.rebind_work, preempt_rebind_work_func);
- 		xe_pm_runtime_get_noresume(xe);
-+	}
- 
- 	vm_resv_obj = drm_gpuvm_resv_object_alloc(&xe->drm);
- 	if (!vm_resv_obj) {
-@@ -1750,10 +1752,8 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- 		vm->batch_invalidate_tlb = true;
- 	}
- 
--	if (vm->flags & XE_VM_FLAG_LR_MODE) {
--		INIT_WORK(&vm->preempt.rebind_work, preempt_rebind_work_func);
-+	if (vm->flags & XE_VM_FLAG_LR_MODE)
- 		vm->batch_invalidate_tlb = false;
--	}
- 
- 	/* Fill pt_root after allocating scratch tables */
- 	for_each_tile(tile, xe, id) {
--- 
-2.49.0
+== Summary ==
 
+CI Bug Log - changes from xe-3087-2e72fd09b4fb0823282977f0717159e47328a533_BAT -> xe-pw-148966v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (10 -> 9)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3087-2e72fd09b4fb0823282977f0717159e47328a533 -> xe-pw-148966v1
+
+  IGT_8364: 8364
+  xe-3087-2e72fd09b4fb0823282977f0717159e47328a533: 2e72fd09b4fb0823282977f0717159e47328a533
+  xe-pw-148966v1: 148966v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148966v1/index.html
+
+--===============5630438172338025829==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/guc_submit: Simplify and fix diff calculation</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148966/">https://patchwork.freedesktop.org/series/148966/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148966v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148966v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3087-2e72fd09b4fb0823282977f0717159e47328a533_BAT -&gt; xe-pw-148966v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (10 -&gt; 9)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3087-2e72fd09b4fb0823282977f0717159e47328a533 -&gt; xe-pw-148966v1</li>
+</ul>
+<p>IGT_8364: 8364<br />
+  xe-3087-2e72fd09b4fb0823282977f0717159e47328a533: 2e72fd09b4fb0823282977f0717159e47328a533<br />
+  xe-pw-148966v1: 148966v1</p>
+
+</body>
+</html>
+
+--===============5630438172338025829==--
