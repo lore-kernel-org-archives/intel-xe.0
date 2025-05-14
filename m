@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6BB6C3ABD8
-	for <intel-xe@archiver.kernel.org>; Wed, 14 May 2025 14:32:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B49CC3ABCC
+	for <intel-xe@archiver.kernel.org>; Wed, 14 May 2025 14:32:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91BB310E26F;
-	Wed, 14 May 2025 14:32:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C24A410E659;
+	Wed, 14 May 2025 14:32:36 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3B7710E26F;
- Wed, 14 May 2025 14:32:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F7D610E287;
+ Wed, 14 May 2025 14:32:35 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/guc=5Fsubmit?=
- =?utf-8?q?=3A_Simplify_and_fix_diff_calculation?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/guc=5Fsubmit=3A_Si?=
+ =?utf-8?q?mplify_and_fix_diff_calculation?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 14 May 2025 14:32:26 -0000
-Message-ID: <174723314698.78050.15586614334757568540@c664b1dc75d1>
+Date: Wed, 14 May 2025 14:32:35 -0000
+Message-ID: <174723315545.77995.3612969195551757316@c664b1dc75d1>
 X-Patchwork-Hint: ignore
 References: <20250513-time-wrap-v1-1-fba9a69a65c8@intel.com>
 In-Reply-To: <20250513-time-wrap-v1-1-fba9a69a65c8@intel.com>
@@ -48,9 +48,31 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: dd6a856541dd drm-tip: 2025y-05m-14d-14h-02m-45s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/guc_submit: Simplify and fix diff calculation
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d20baccd37795386208c0f6d0ba2f7c7eee62257
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Tue May 13 07:25:49 2025 -0700
+
+    drm/xe/guc_submit: Simplify and fix diff calculation
+    
+    With a u32 type, there's no need to check which one is greater: the
+    current is always the latest and if it's less than the previous, it's
+    because it wrapped: just do the unsigned calculation that will lead to
+    the same result, or better the correct one. It fixes an off-by-one in
+    the wrapped calculation, however that doesn't really matter for the
+    timeout calculation.
+    
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+    Reviewed-by: Raag Jadav <raag.jadav@intel.com>
++ /mt/dim checkpatch dd6a856541dd90fa4ef755783898fcfbea3b9961 drm-intel
+d20baccd3779 drm/xe/guc_submit: Simplify and fix diff calculation
 
 
