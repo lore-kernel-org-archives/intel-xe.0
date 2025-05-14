@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7104C3ABD9
-	for <intel-xe@archiver.kernel.org>; Wed, 14 May 2025 14:55:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05A20C3ABD8
+	for <intel-xe@archiver.kernel.org>; Wed, 14 May 2025 14:56:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6890210E26F;
-	Wed, 14 May 2025 14:55:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB7A189153;
+	Wed, 14 May 2025 14:56:16 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EDBE10E02E;
- Wed, 14 May 2025 14:55:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A600E89153;
+ Wed, 14 May 2025 14:56:15 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/guc=5Fsubmit=3A_Simplif?=
- =?utf-8?q?y_and_fix_diff_calculation?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/guc=5Fsubmit=3A_S?=
+ =?utf-8?q?implify_and_fix_diff_calculation?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 14 May 2025 14:55:51 -0000
-Message-ID: <174723455156.79337.7046949608275952829@c664b1dc75d1>
+Date: Wed, 14 May 2025 14:56:14 -0000
+Message-ID: <174723457481.79327.11618045364854638547@c664b1dc75d1>
 X-Patchwork-Hint: ignore
 References: <20250513-time-wrap-v1-1-fba9a69a65c8@intel.com>
 In-Reply-To: <20250513-time-wrap-v1-1-fba9a69a65c8@intel.com>
@@ -45,5 +45,28 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 Series: drm/xe/guc_submit: Simplify and fix diff calculation
 URL   : https://patchwork.freedesktop.org/series/148966/
 State : success
+
+== Summary ==
+
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast dd6a856541dd90fa4ef755783898fcfbea3b9961
+Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
+Fast mode used, each commit won't be checked separately.
+Okay!
+
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
