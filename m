@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 061B9C3ABD8
-	for <intel-xe@archiver.kernel.org>; Wed, 14 May 2025 18:02:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 443A9C3ABD8
+	for <intel-xe@archiver.kernel.org>; Wed, 14 May 2025 18:05:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B270C10E11F;
-	Wed, 14 May 2025 18:02:26 +0000 (UTC)
-Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6F7B10E11F;
- Wed, 14 May 2025 18:02:25 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8404603646308147791=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02F4A10E0C2;
+	Wed, 14 May 2025 18:05:07 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jpVzG6uz";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0EA010E0C2
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 May 2025 18:05:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1747245907; x=1778781907;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=J0zpF8t4KPwyhF8d93DulPhXEu32sKfzZ984dqMhrmU=;
+ b=jpVzG6uzXkyFQx2raKoinNezzqWbg/19s1wMcej3nGOoI0JGHDjEu+EV
+ f7W5d7CahlE6bOW0i0JsSANPGZWmJLjc+3gogp2HdQ2dmGWjBSSydrsHy
+ sLLULfvdE64CnsqpEoVgW0XM/ylPUx9nmgikoxHYCHXr940NwLnw3iF7U
+ b5Xl/udGMwlSUYU7UHpgMHCsLvOsggPsO+HIJHUY+JErRvAGrqbGpbmab
+ klqdzlr9NZTzKEsxl8kHhcER3zPSGzco2bcrfaajbM0libEPvPFtekEYz
+ KiQMxkccYJ5Dq2e1iVIJoNf1A08LXx7+C5xpLg9pQho67DlJYM2MJOTaC w==;
+X-CSE-ConnectionGUID: Pv2ecywPR62dbKFJjkC8iw==
+X-CSE-MsgGUID: asnLRUiZSX2ZOExVco8zWg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11433"; a="49298438"
+X-IronPort-AV: E=Sophos;i="6.15,289,1739865600"; d="scan'208";a="49298438"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 May 2025 11:05:05 -0700
+X-CSE-ConnectionGUID: SbbySR00Q56D4d1qKgc5nA==
+X-CSE-MsgGUID: 4OeOPJA/QiC5tANd4a5XIg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,289,1739865600"; d="scan'208";a="169192544"
+Received: from unknown (HELO sinjan-Super-Server.iind.intel.com)
+ ([10.190.239.39])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 May 2025 11:05:02 -0700
+From: Karthik Poosa <karthik.poosa@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
+ jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
+ Karthik Poosa <karthik.poosa@intel.com>
+Subject: [PATCH v8 0/5] drm/xe/hwmon: Add mailbox power limits, PL2,
+ read energy from PMT 
+Date: Wed, 14 May 2025 23:34:50 +0530
+Message-Id: <20250514180455.1622625-1-karthik.poosa@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Enable/Disable_DC_balance_a?=
- =?utf-8?q?long_with_VRR_DSB_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 14 May 2025 18:02:25 -0000
-Message-ID: <174724574569.80817.12145810188221431489@c664b1dc75d1>
-X-Patchwork-Hint: ignore
-References: <20250513051700.507389-1-mitulkumar.ajitkumar.golani@intel.com>
-In-Reply-To: <20250513051700.507389-1-mitulkumar.ajitkumar.golani@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +65,67 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8404603646308147791==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Add support manage power limits through pcode mailboxes.
+Enable PL2 support through powerX_cap.
+Expose PL2 interval through powerX_cap_interval.
+Read energy status from PMT instead of MMIO.
+Move power2_crit to power1_crit.
 
-== Series Details ==
+v2:
+ - Addressed review comments from Badal.
+ - Clamp the power limits maximum to BIOS default value due to
+   HSD:16027383332.
 
-Series: Enable/Disable DC balance along with VRR DSB (rev6)
-URL   : https://patchwork.freedesktop.org/series/148025/
-State : success
+v3:
+ - Clamp power limit write also to BIOS default for platforms
+   with mailbox support.
+ - Enable power label if any of PL1 or PL2 is enabled.
+ - Address review comments in v2.
 
-== Summary ==
+v4:
+ - Remove unncessary debug prints.
+ - Rebase.
 
-CI Bug Log - changes from xe-3088-dd6a856541dd90fa4ef755783898fcfbea3b9961_BAT -> xe-pw-148025v6_BAT
-====================================================
+v5:
+ - Resolve unused variable compiler warning.
+ - Add a return value check.
 
-Summary
--------
+v6:
+ - Address kernel-doc build error.
+ - Rebase.
 
-  **SUCCESS**
+Patch series history:
 
-  No regressions found.
+https://patchwork.freedesktop.org/series/148148/ - RFC
+https://patchwork.freedesktop.org/series/148506/
+https://patchwork.freedesktop.org/series/148811/
+https://patchwork.freedesktop.org/series/148819/
+https://patchwork.freedesktop.org/series/148926/
 
-  
+Karthik Poosa (5):
+  drm/xe/hwmon: Add support to manage power limits though mailbox
+  drm/xe/hwmon: Move card reactive critical power under channel card
+  drm/xe/hwmon: Add support to manage PL2 though mailbox
+  drm/xe/hwmon: Expose powerX_cap_interval
+  drm/xe/hwmon: Read energy status from PMT
 
-Participating hosts (10 -> 9)
-------------------------------
+ .../ABI/testing/sysfs-driver-intel-xe-hwmon   |  68 ++-
+ drivers/gpu/drm/xe/regs/xe_mchbar_regs.h      |  10 +-
+ drivers/gpu/drm/xe/regs/xe_pcode_regs.h       |   6 -
+ drivers/gpu/drm/xe/regs/xe_pmt.h              |   5 +
+ drivers/gpu/drm/xe/xe_device_types.h          |   4 +
+ drivers/gpu/drm/xe/xe_hwmon.c                 | 483 ++++++++++++++----
+ drivers/gpu/drm/xe/xe_pci.c                   |   5 +
+ drivers/gpu/drm/xe/xe_pcode.c                 |  11 +
+ drivers/gpu/drm/xe/xe_pcode.h                 |   3 +
+ drivers/gpu/drm/xe/xe_pcode_api.h             |   7 +
+ drivers/gpu/drm/xe/xe_vsec.c                  |   4 +-
+ drivers/gpu/drm/xe/xe_vsec.h                  |   4 +
+ 12 files changed, 474 insertions(+), 136 deletions(-)
 
-  Missing    (1): bat-adlp-vm 
+-- 
+2.25.1
 
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3088-dd6a856541dd90fa4ef755783898fcfbea3b9961 -> xe-pw-148025v6
-
-  IGT_8364: 8364
-  xe-3088-dd6a856541dd90fa4ef755783898fcfbea3b9961: dd6a856541dd90fa4ef755783898fcfbea3b9961
-  xe-pw-148025v6: 148025v6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148025v6/index.html
-
---===============8404603646308147791==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Enable/Disable DC balance along with VRR DSB (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148025/">https://patchwork.freedesktop.org/series/148025/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148025v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148025v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3088-dd6a856541dd90fa4ef755783898fcfbea3b9961_BAT -&gt; xe-pw-148025v6_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3088-dd6a856541dd90fa4ef755783898fcfbea3b9961 -&gt; xe-pw-148025v6</li>
-</ul>
-<p>IGT_8364: 8364<br />
-  xe-3088-dd6a856541dd90fa4ef755783898fcfbea3b9961: dd6a856541dd90fa4ef755783898fcfbea3b9961<br />
-  xe-pw-148025v6: 148025v6</p>
-
-</body>
-</html>
-
---===============8404603646308147791==--
