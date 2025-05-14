@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CAB4C3ABD8
-	for <intel-xe@archiver.kernel.org>; Wed, 14 May 2025 16:27:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C28AAC3ABDD
+	for <intel-xe@archiver.kernel.org>; Wed, 14 May 2025 16:27:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C727510E68A;
-	Wed, 14 May 2025 16:27:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8940510E68A;
+	Wed, 14 May 2025 16:27:36 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA3A110E686;
- Wed, 14 May 2025 16:27:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E811010E686;
+ Wed, 14 May 2025 16:27:34 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm=3A_Create_an_app?=
- =?utf-8?q?_info_option_for_wedge_events_=28rev4=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm=3A_Create_an_app_info?=
+ =?utf-8?q?_option_for_wedge_events_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 14 May 2025 16:27:20 -0000
-Message-ID: <174724004075.79350.11706356896140583438@c664b1dc75d1>
+Date: Wed, 14 May 2025 16:27:34 -0000
+Message-ID: <174724005494.79350.825536043124835189@c664b1dc75d1>
 X-Patchwork-Hint: ignore
 References: <20250512203437.989894-1-andrealmeid@igalia.com>
 In-Reply-To: <20250512203437.989894-1-andrealmeid@igalia.com>
@@ -44,15 +44,38 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm: Create an app info option for wedge events (rev4)
 URL   : https://patchwork.freedesktop.org/series/145636/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: dd6a856541dd drm-tip: 2025y-05m-14d-14h-02m-45s UTC integration manifest
-=== git am output follows ===
-Applying: drm: Create an app info option for wedge events
-Applying: drm/doc: Add a section about "App information" for the wedge API
-Applying: drm/amdgpu: Make use of drm_wedge_app_info
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit dc6bef544e3516a151e64be3ae5cd3cf910e1e03
+Author: André Almeida <andrealmeid@igalia.com>
+Date:   Mon May 12 17:34:37 2025 -0300
+
+    drm/amdgpu: Make use of drm_wedge_app_info
+    
+    To notify userspace about which app (if any) made the device get in a
+    wedge state, make use of drm_wedge_app_info parameter, filling it with
+    the app PID and name.
+    
+    Signed-off-by: André Almeida <andrealmeid@igalia.com>
++ /mt/dim checkpatch dd6a856541dd90fa4ef755783898fcfbea3b9961 drm-intel
+300eb17b1aaa drm: Create an app info option for wedge events
+-:76: WARNING:STATIC_CONST_CHAR_ARRAY: char * array declaration might be better as static const
+#76: FILE: drivers/gpu/drm/drm_drv.c:565:
++	char *envp[] = { event_string, NULL, NULL, NULL };
+
+total: 0 errors, 1 warnings, 0 checks, 94 lines checked
+8c390a7515f6 drm/doc: Add a section about "App information" for the wedge API
+dc6bef544e35 drm/amdgpu: Make use of drm_wedge_app_info
 
 
