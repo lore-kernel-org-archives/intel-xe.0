@@ -4,27 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58EEAC3ABD8
-	for <intel-xe@archiver.kernel.org>; Wed, 14 May 2025 17:19:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8656AC3ABDD
+	for <intel-xe@archiver.kernel.org>; Wed, 14 May 2025 17:23:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2090D10E642;
-	Wed, 14 May 2025 17:19:40 +0000 (UTC)
-Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCD2C10E2CA;
- Wed, 14 May 2025 17:19:38 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2293213773899105929=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4779610E2CA;
+	Wed, 14 May 2025 17:23:43 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V/yJRd9p";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A837610E6C9
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 May 2025 17:23:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1747243421; x=1778779421;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=H4GtS2dUKT+SpMSVabEusz0SLc6gvMGNZAr+1tuUhqg=;
+ b=V/yJRd9pBjVZ5vkw2B3FvEVH+FlKSYooJ5dWDmmzz6ZwFd/7vS+km6a+
+ KLP02rj+SkPqOJbG2AVdsBFIMcxfDUjIcRX+/oISKYOjyrezPLXdrzUKi
+ iX5C7WEBJ1lG9IV03hcurs2OyYRIhiqJOoGVHFVvqt7e0LnDwIl653mkE
+ TMTa+6RbzlYnKUfCRUMBgUKn1WSL8fEWJNP/Gnhw3LF+aq/cAK9K+9s/9
+ cSYdD2EfvxXZC2ccLrJ4Ca0hQdwszkdewTW6MzMTCezk2sP7eTxs0mwDV
+ WiLewnsbqmJZxiypD83vmi6948SigHFJ9zaLgWASnzqyeVgH8dRLZLIOd A==;
+X-CSE-ConnectionGUID: aEuukagiSQ+LRPSVJnOBcA==
+X-CSE-MsgGUID: q0pHqeUJQciqSVWbPxsUdA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11433"; a="59790319"
+X-IronPort-AV: E=Sophos;i="6.15,288,1739865600"; d="scan'208";a="59790319"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 May 2025 10:23:41 -0700
+X-CSE-ConnectionGUID: 8f1pEkvUSB2hrJwesbVjVQ==
+X-CSE-MsgGUID: V8G9opUcQY2KmJcNcGw3yg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,288,1739865600"; d="scan'208";a="137986822"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmviesa006.fm.intel.com with ESMTP; 14 May 2025 10:23:39 -0700
+Received: from [10.246.5.201] (mwajdecz-MOBL.ger.corp.intel.com [10.246.5.201])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id E7F2E34914;
+ Wed, 14 May 2025 18:23:37 +0100 (IST)
+Message-ID: <779be9db-0359-4af2-b4f3-9cf90836162f@intel.com>
+Date: Wed, 14 May 2025 19:23:36 +0200
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm=3A_Create_an_app_info_o?=
- =?utf-8?q?ption_for_wedge_events_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 14 May 2025 17:19:38 -0000
-Message-ID: <174724317889.79350.17280122483129760626@c664b1dc75d1>
-X-Patchwork-Hint: ignore
-References: <20250512203437.989894-1-andrealmeid@igalia.com>
-In-Reply-To: <20250512203437.989894-1-andrealmeid@igalia.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 2/7] drm/xe/vf: Finish RESFIX by reset if CTB not
+ enabled
+To: Tomasz Lis <tomasz.lis@intel.com>, intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
+ =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+References: <20250513224952.701343-1-tomasz.lis@intel.com>
+ <20250513224952.701343-3-tomasz.lis@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20250513224952.701343-3-tomasz.lis@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +72,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2293213773899105929==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm: Create an app info option for wedge events (rev4)
-URL   : https://patchwork.freedesktop.org/series/145636/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-3088-dd6a856541dd90fa4ef755783898fcfbea3b9961_BAT -> xe-pw-145636v4_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-145636v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_exec_basic@twice-bindexecqueue-rebind:
-    - bat-adlp-vf:        [PASS][1] -> [ABORT][2] ([Intel XE#3970])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3088-dd6a856541dd90fa4ef755783898fcfbea3b9961/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145636v4/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html
-
-  
-  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
 
 
-Build changes
--------------
+On 14.05.2025 00:49, Tomasz Lis wrote:
+> The RESFIX state should be achievable only when CTB communication is
+> enabled. If CTB was disabled and we still got it, then either we're
+> dealing with unclean initial state, or the driver is not currently
+> functional. In these cases, exit the RESFIX state by reset.
+> 
+> Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 10 ++++++++++
+>  drivers/gpu/drm/xe/xe_sriov_vf.c    | 18 ++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_sriov_vf.h    |  1 +
+>  3 files changed, 29 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> index 4ff7ae1a5f16..b9af112ca771 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> @@ -23,6 +23,7 @@
+>  #include "xe_gt_sriov_vf.h"
+>  #include "xe_gt_sriov_vf_types.h"
+>  #include "xe_guc.h"
+> +#include "xe_guc_ct.h"
+>  #include "xe_guc_hxg_helpers.h"
+>  #include "xe_guc_relay.h"
+>  #include "xe_mmio.h"
+> @@ -932,6 +933,15 @@ void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt)
+>  
+>  	xe_gt_assert(gt, IS_SRIOV_VF(xe));
+>  
+> +	if (!xe_guc_ct_enabled(&gt->uc.guc.ct)) {
+> +		/*
+> +		 * If at driver init, ignore migration which happened
+> +		 * before the driver was loaded.
+> +		 */
+> +		xe_sriov_vf_post_migration_reset_guc_state(xe);
 
-  * Linux: xe-3088-dd6a856541dd90fa4ef755783898fcfbea3b9961 -> xe-pw-145636v4
+this triggers async-reset on all GTs, not only on this one where CTB is
+off but on other GTs that might have CTB enabled and running - is it
+safe to reset them too?
 
-  IGT_8364: 8364
-  xe-3088-dd6a856541dd90fa4ef755783898fcfbea3b9961: dd6a856541dd90fa4ef755783898fcfbea3b9961
-  xe-pw-145636v4: 145636v4
+and if CTB is off, can't we just wait with "recovery" once we actually
+start the CTB later on?
 
-== Logs ==
+> +		return;
+> +	}
+> +
+>  	set_bit(gt->info.id, &xe->sriov.vf.migration.gt_flags);
+>  	/*
+>  	 * We need to be certain that if all flags were set, at least one
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
+> index 2674fa948fda..940b81036321 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov_vf.c
+> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
+> @@ -134,6 +134,24 @@ void xe_sriov_vf_init_early(struct xe_device *xe)
+>  	INIT_WORK(&xe->sriov.vf.migration.worker, migration_worker_func);
+>  }
+>  
+> +/**
+> + * xe_sriov_vf_post_migration_reset_guc_state - Reset VF state in all GuCs.
+> + * @xe: the &xe_device struct instance
+> + *
+> + * This function sends VF state reset to GuC, as a way of exiting RESFIX
+> + * state if a proper post-migration recovery procedure has failed.
+> + */
+> +void xe_sriov_vf_post_migration_reset_guc_state(struct xe_device *xe)
+> +{
+> +	struct xe_gt *gt;
+> +	unsigned int id;
+> +
+> +	for_each_gt(gt, xe, id)
+> +		xe_gt_reset_async(gt);
+> +
+> +	drm_notice(&xe->drm, "VF migration recovery reset scheduled\n");
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145636v4/index.html
+note that there likely will be already
 
---===============2293213773899105929==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+GT0: trying reset from xe_sriov_vf_post_migration_reset_guc_state
+GT0: reset queued
+GT1: trying reset from xe_sriov_vf_post_migration_reset_guc_state
+GT1: reset queued
 
+> +}
+> +
+>  /**
+>   * vf_post_migration_requery_guc - Re-query GuC for current VF provisioning.
+>   * @xe: the &xe_device struct instance
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.h b/drivers/gpu/drm/xe/xe_sriov_vf.h
+> index 7b8622cff2b7..ba846af34a13 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov_vf.h
+> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.h
+> @@ -10,5 +10,6 @@ struct xe_device;
+>  
+>  void xe_sriov_vf_init_early(struct xe_device *xe);
+>  void xe_sriov_vf_start_migration_recovery(struct xe_device *xe);
+> +void xe_sriov_vf_post_migration_reset_guc_state(struct xe_device *xe);
+>  
+>  #endif
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: Create an app info option for wedge events (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145636/">https://patchwork.freedesktop.org/series/145636/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145636v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145636v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3088-dd6a856541dd90fa4ef755783898fcfbea3b9961_BAT -&gt; xe-pw-145636v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 9)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-145636v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_exec_basic@twice-bindexecqueue-rebind:<ul>
-<li>bat-adlp-vf:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3088-dd6a856541dd90fa4ef755783898fcfbea3b9961/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145636v4/bat-adlp-vf/igt@xe_exec_basic@twice-bindexecqueue-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3088-dd6a856541dd90fa4ef755783898fcfbea3b9961 -&gt; xe-pw-145636v4</li>
-</ul>
-<p>IGT_8364: 8364<br />
-  xe-3088-dd6a856541dd90fa4ef755783898fcfbea3b9961: dd6a856541dd90fa4ef755783898fcfbea3b9961<br />
-  xe-pw-145636v4: 145636v4</p>
-
-</body>
-</html>
-
---===============2293213773899105929==--
