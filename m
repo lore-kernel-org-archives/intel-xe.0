@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D689C3ABD9
-	for <intel-xe@archiver.kernel.org>; Wed, 14 May 2025 11:16:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04C29C3ABD9
+	for <intel-xe@archiver.kernel.org>; Wed, 14 May 2025 11:17:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BEF610E612;
-	Wed, 14 May 2025 11:16:46 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X170/mqW";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3ECF410E612;
- Wed, 14 May 2025 11:16:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747221405; x=1778757405;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=TN0qIaic7BjJqxYUGgL3OMocEO5vrTNUIdOSXlWgn+o=;
- b=X170/mqWlcG/Ln4z5FdmVQkAAdok3p7x0rBpT4Fj3XYi38y9VHVnxS7E
- 3C3iWdaJ6siKQg0cfQuYXRCRtZbWD/jkIlgizCJFziZMnRn32ib1waLuy
- 1jNiSVu0tZE9uwwcK21T+tOSmusQdn+l9Csg6wVE+XVDYK0QxLMQK5ZYs
- M8mN9mhQ3TG386QhrQqPwfpAqBY9564aWFJtj6IG8WiHUQpWiUsxkXfiz
- WK0gqcsrG5nFD6T1xIvOI1HnMB3lBkM8F1WB3Gb4h0pH3rbVVZf1/EPSy
- YpHOF57FMTCoXN2Eca3pUfU1NFlPGxRngd/uP5uwmfusJGn4E6QHjIMEc Q==;
-X-CSE-ConnectionGUID: ca5nfrZAQKiQeF8f0uOnLA==
-X-CSE-MsgGUID: vn7XsdNeS+ixah5VnjXPWQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11432"; a="59744634"
-X-IronPort-AV: E=Sophos;i="6.15,288,1739865600"; d="scan'208";a="59744634"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2025 04:16:45 -0700
-X-CSE-ConnectionGUID: bye5iZOXSwGHxJ98h3bQFQ==
-X-CSE-MsgGUID: lyNQVT9OS6iKToI46I3YJw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,288,1739865600"; d="scan'208";a="137891356"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.180])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2025 04:16:40 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, uma.shankar@intel.com,
- chaitanya.kumar.borah@intel.com, animesh.manna@intel.com
-Subject: Re: [PATCH 01/11] drm/i915/dsb: Extract intel_dsb_ins_align()
-In-Reply-To: <20250407142359.1398410-2-chaitanya.kumar.borah@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250407142359.1398410-1-chaitanya.kumar.borah@intel.com>
- <20250407142359.1398410-2-chaitanya.kumar.borah@intel.com>
-Date: Wed, 14 May 2025 14:16:38 +0300
-Message-ID: <87o6vvh27d.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF02910E613;
+	Wed, 14 May 2025 11:17:06 +0000 (UTC)
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 456B210E614;
+ Wed, 14 May 2025 11:17:06 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7886353589911271827=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/sbi=3A_move_under_?=
+ =?utf-8?q?display=2C_cleanup?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 14 May 2025 11:17:06 -0000
+Message-ID: <174722142628.78050.3289041129981495490@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <cover.1747138550.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1747138550.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,67 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 07 Apr 2025, Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com=
-> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Extract the code that alings the next instruction to the next
-> QW boundary into a small helper. I'll have some more uses for
-> this later.
->
-> Also explain why we don't have to zero out the extra DW.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+--===============7886353589911271827==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Chaitanya, your Signed-off-by is *required* in addition.
+== Series Details ==
 
-See https://developercertificate.org/.
+Series: drm/i915/sbi: move under display, cleanup
+URL   : https://patchwork.freedesktop.org/series/148960/
+State : success
 
-BR,
-Jani.
+== Summary ==
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dsb.c | 16 ++++++++++++++--
->  1 file changed, 14 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i=
-915/display/intel_dsb.c
-> index 0ddcdedf5453..c166e02b8af0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-> @@ -228,13 +228,25 @@ static bool is_dsb_busy(struct intel_display *displ=
-ay, enum pipe pipe,
->  	return intel_de_read_fw(display, DSB_CTRL(pipe, dsb_id)) & DSB_STATUS_B=
-USY;
->  }
->=20=20
-> +static void intel_dsb_ins_align(struct intel_dsb *dsb)
-> +{
-> +	/*
-> +	 * Every instruction should be 8 byte aligned.
-> +	 *
-> +	 * The only way to get unaligned free_pos is via
-> +	 * intel_dsb_reg_write_indexed() which already
-> +	 * makes sure the next dword is zeroed, so no need
-> +	 * to clear it here.
-> +	 */
-> +	dsb->free_pos =3D ALIGN(dsb->free_pos, 2);
-> +}
-> +
->  static void intel_dsb_emit(struct intel_dsb *dsb, u32 ldw, u32 udw)
->  {
->  	if (!assert_dsb_has_room(dsb))
->  		return;
->=20=20
-> -	/* Every instruction should be 8 byte aligned. */
-> -	dsb->free_pos =3D ALIGN(dsb->free_pos, 2);
-> +	intel_dsb_ins_align(dsb);
->=20=20
->  	dsb->ins_start_offset =3D dsb->free_pos;
->  	dsb->ins[0] =3D ldw;
+CI Bug Log - changes from xe-3085-84da78f30dc4c78f6c328ed142db458457035da0_BAT -> xe-pw-148960v1_BAT
+====================================================
 
---=20
-Jani Nikula, Intel
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-148960v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries:
+    - bat-lnl-2:          [PASS][1] -> [ABORT][2] ([Intel XE#4624])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3085-84da78f30dc4c78f6c328ed142db458457035da0/bat-lnl-2/igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148960v1/bat-lnl-2/igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries.html
+
+  
+  [Intel XE#4624]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4624
+
+
+Build changes
+-------------
+
+  * Linux: xe-3085-84da78f30dc4c78f6c328ed142db458457035da0 -> xe-pw-148960v1
+
+  IGT_8363: 58f45de87b977a0134e8deae8d2103c7a8ccd3fc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3085-84da78f30dc4c78f6c328ed142db458457035da0: 84da78f30dc4c78f6c328ed142db458457035da0
+  xe-pw-148960v1: 148960v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148960v1/index.html
+
+--===============7886353589911271827==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/sbi: move under display, cleanup</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148960/">https://patchwork.freedesktop.org/series/148960/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148960v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148960v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3085-84da78f30dc4c78f6c328ed142db458457035da0_BAT -&gt; xe-pw-148960v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-148960v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries:<ul>
+<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3085-84da78f30dc4c78f6c328ed142db458457035da0/bat-lnl-2/igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148960v1/bat-lnl-2/igt@intel_sysfs_debugfs@xe-sysfs-read-all-entries.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4624">Intel XE#4624</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3085-84da78f30dc4c78f6c328ed142db458457035da0 -&gt; xe-pw-148960v1</li>
+</ul>
+<p>IGT_8363: 58f45de87b977a0134e8deae8d2103c7a8ccd3fc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3085-84da78f30dc4c78f6c328ed142db458457035da0: 84da78f30dc4c78f6c328ed142db458457035da0<br />
+  xe-pw-148960v1: 148960v1</p>
+
+</body>
+</html>
+
+--===============7886353589911271827==--
