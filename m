@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C3A6C2D0CD
-	for <intel-xe@archiver.kernel.org>; Thu, 15 May 2025 07:05:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6280C54754
+	for <intel-xe@archiver.kernel.org>; Thu, 15 May 2025 07:18:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3C2B10E76F;
-	Thu, 15 May 2025 07:05:37 +0000 (UTC)
-Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 209BC10E76C;
- Thu, 15 May 2025 07:05:36 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id A64DD10E06C;
+	Thu, 15 May 2025 07:18:29 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="APtKUtYg";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AE7910E06C;
+ Thu, 15 May 2025 07:18:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1747293509; x=1778829509;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=nx2Z2fz7XOKdND3H//usvs6zowRQPmkBf4ksgFya8YI=;
+ b=APtKUtYg9agMhLbTf+y+bGaE1fVYkER+5hxDpZUwq89GYbsSQzpr4+u0
+ 276IJOHNqAyoqGr6cY4EZICrPcFpsW2AYIp+AmUen2RAjexptcqRZn8Af
+ iHv3MtIqWh+aOq8At0Zg3vKIwpaiCujvC2I0p4hHXUXtYxmjjcVlLhbjG
+ LtgvaAtSqMDxQDjwKdu05DYZCai7Ud0GNwcJc79hRBgQykfUoZ7bGPK6h
+ pFIYLxQ6c8O3jqUeO5A0YNU+muRkwcuPwQ0NLSfz63n75M1bodv57whoj
+ xJwmzRkl9/BTQK6ZuHAkE10cJvtkp+84ZkOzG4GajqAP/Fw/OQWRXAZWs g==;
+X-CSE-ConnectionGUID: EXSzO6AqR8SwBgHLSKOwVQ==
+X-CSE-MsgGUID: ZWD1bDVWTW+3s5QcQoPFqQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11433"; a="48901318"
+X-IronPort-AV: E=Sophos;i="6.15,290,1739865600"; d="scan'208";a="48901318"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2025 00:18:28 -0700
+X-CSE-ConnectionGUID: E5DRW1OBT3apPFaSbqaomw==
+X-CSE-MsgGUID: /QbwG4K6S9u38qeUjG68GA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,290,1739865600"; d="scan'208";a="142290285"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by fmviesa003.fm.intel.com with ESMTP; 15 May 2025 00:18:25 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, jani.nikula@intel.com,
+ mika.kahola@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH 00/14] DPLL framework redesign 
+Date: Thu, 15 May 2025 12:47:47 +0530
+Message-Id: <20250515071801.2221120-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_Add_quirk_for_panels_tha?=
- =?utf-8?q?t_support_HBR3_without_TPS4_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 15 May 2025 07:05:36 -0000
-Message-ID: <174729273612.82996.1061812268702076710@c664b1dc75d1>
-X-Patchwork-Hint: ignore
-References: <20250514084356.1558407-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20250514084356.1558407-1-ankit.k.nautiyal@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +62,71 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Since MTL we moved away from using our existing DPLL framework this
+was done since the existing API didn't really work for us.
+This Redesing is a first part of two part series which will
+redesign the current framework so that it can be used for
+PLL/PHY enablement going forward.
+Here we move away from the shared_dpll naming and also
+change arguments for some functions which are needed for PLL
+which have individual PHY keeping in mind that we don't break
+any of the legacy stuff. When this gets approved and merged a
+second series hooking up the SNPS PHY PLL API to this framework
+will be posted. This is done to reduce the rework in case the
+current design floated ends up getting changed during the review
+process.
+We also rename some functions in intel_dpll_mgr to start with
+intel_dpll_* in an effort to make sure all exported functions
+have the filename at the start.
 
-Series: Add quirk for panels that support HBR3 without TPS4 (rev2)
-URL   : https://patchwork.freedesktop.org/series/149004/
-State : success
+--v4
+-Rebase
 
-== Summary ==
+--v5
+-Break series and send the controvertial patch next patch series
+of this redesign
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 3d6670fab64cb00b5e6ed80d2517147db533faf1
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Suraj Kandpal (14):
+  drm/i915/dpll: Rename intel_dpll
+  drm/i915/dpll: Rename intel_dpll_funcs
+  drm/i915/dpll: Rename intel_shared_dpll_state
+  drm/i915/dpll: Rename macro for_each_shared_dpll
+  drm/i915/dpll: Rename intel_shared_dpll_funcs
+  drm/i915/dpll: Rename intel_shared_dpll
+  drm/i915/dpll: Move away from using shared dpll
+  drm/i915/dpll: Rename crtc_get_shared_dpll
+  drm/i915/dpll: Rename intel_[enable/disable]_dpll
+  drm/i915/dpll: Rename intel_unreference_dpll_crtc
+  drm/i915/dpll: Rename intel_reference_dpll_crtc
+  drm/i915/dpll: Rename intel_<release/reserve>_dpll
+  drm/i915/dpll: Rename intel_compute_dpll
+  drm/i915/dpll: Rename intel_update_active_dpll
 
+ drivers/gpu/drm/i915/display/icl_dsi.c        |   2 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  68 +--
+ drivers/gpu/drm/i915/display/intel_ddi.h      |   6 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |  22 +-
+ .../gpu/drm/i915/display/intel_display_core.h |  12 +-
+ .../drm/i915/display/intel_display_debugfs.c  |   4 +-
+ .../drm/i915/display/intel_display_driver.c   |   2 +-
+ .../drm/i915/display/intel_display_types.h    |   8 +-
+ drivers/gpu/drm/i915/display/intel_dpll.c     |  60 +-
+ drivers/gpu/drm/i915/display/intel_dpll.h     |   4 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 537 +++++++++---------
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  80 +--
+ drivers/gpu/drm/i915/display/intel_fdi.c      |   2 +-
+ drivers/gpu/drm/i915/display/intel_lvds.c     |   2 +-
+ .../drm/i915/display/intel_modeset_setup.c    |  10 +-
+ .../drm/i915/display/intel_modeset_verify.c   |   4 +-
+ .../gpu/drm/i915/display/intel_pch_display.c  |  20 +-
+ .../gpu/drm/i915/display/intel_pch_refclk.c   |   4 +-
+ 18 files changed, 423 insertions(+), 424 deletions(-)
+
+-- 
+2.34.1
 
