@@ -4,154 +4,173 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50FC9C3DA6D
-	for <intel-xe@archiver.kernel.org>; Thu, 15 May 2025 13:15:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4487CC2D0CD
+	for <intel-xe@archiver.kernel.org>; Thu, 15 May 2025 13:16:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9879E10E87D;
-	Thu, 15 May 2025 13:15:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 109FA10E880;
+	Thu, 15 May 2025 13:16:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="vKLlDk4F";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cbcfvI1c";
 	dkim-atps=neutral
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com
- (mail-bn1nam02on2077.outbound.protection.outlook.com [40.107.212.77])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D632110E87D;
- Thu, 15 May 2025 13:15:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AD4F10E880
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 May 2025 13:16:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1747314992; x=1778850992;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=e/chbAD82WDRuqYiCW6aumRhFo3iJEHvrUcp/c6bz/E=;
+ b=cbcfvI1cweBWmy+3tz6snvy6Ru76NWYziRIk0l6mXHOJ2RSnwx6W5FQ3
+ 1vWp33xS08d+73/ebV87jc5j8y8WGS/5G+T4zOdTh71hmItUX74ys+xfD
+ PBsJZ1fwcNI1cgd3Nw4PO0MdGzzx4W4O5ev/heUnePXurtvhW7y6fS8ps
+ ZCkMw/Ov64LcTp/c5b1B+EkXFPSYEbh3KkKZMaBrxaomzpIxSOsv1zaek
+ 6bWxYIXBHif4v6awMTbsKhU80LTBz2SautZ0pCNSGmqbEUVefsSDEpt3R
+ AweEKMwjBjXa4SjaE7hVgyc4mqJ8Kc/Qkxk8npJA6XjFbGd6mZnul65Or w==;
+X-CSE-ConnectionGUID: e8uu3DfUTfKcn3nUz+VEQw==
+X-CSE-MsgGUID: k3GocOROR1ed1w0Jlj4Rag==
+X-IronPort-AV: E=McAfee;i="6700,10204,11434"; a="74652415"
+X-IronPort-AV: E=Sophos;i="6.15,291,1739865600"; d="scan'208";a="74652415"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2025 06:16:32 -0700
+X-CSE-ConnectionGUID: QF8+t7IjSa2wt0jyfpN/qg==
+X-CSE-MsgGUID: XFZSRHUXRmSwpJoqfi7tiA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,291,1739865600"; d="scan'208";a="138421932"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2025 06:16:31 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14; Thu, 15 May 2025 06:16:31 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14 via Frontend Transport; Thu, 15 May 2025 06:16:31 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.170)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Thu, 15 May 2025 06:16:28 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cctNnlEXulkc26k+GZ9l1HzTGTFfZ3xNuoIiB46see8MQWcJX7RlgY629HqyXNIHdugc4gsu7p8ycTsGGXK7ZjA6O0pn6G6LzC2+KTQHnhxcCxTpypJKNmwDLhv7M1RBy/vPJ52h1mnNgq6CmCk004bhty+28zOtrQMKDT0IJlJm6cNoAZxAd5qzhr2oEyrGBdIv6gMo+8jXxVKEeJ2tSIwjeez7YvtKmgghFlQMNRLM970/4h/xYWlc8ZCASXh+/HC3t4Wly7SERpNRvYwbCYklwIgRH6PUuGI+dHDItJ8KPb/Jf6MmxWSr7vG2OAQFT6Hhz1RaT2rxy8JkDRg5yQ==
+ b=hd76P3r77OjZ16Vvax+jeTtoD16v1l/UfznSUa+lKMqH4BsQRayoGt9CmZygWKDJrCvVYsodjsuyWPJFNBerHZt2zCdGdiXrVNv9pccPjUhM0mgN7ym8Jwu6pxs/uFeDQGdBPy5jfwemAoG08sVq3wryhcMTAPqPO2rqhrVLa8FLZiN7HMHtMsf7mC4Tc0nzxNtQf+vmE4UD4Y5JDfICHkU3iumxmrG/Z/CZ0hDYpFIAxPP0ygIvppjzKPy3PgbkCHGDoPzgEQBLP7Tdszt3mSV65K5Yf2NMwwBi9nGRg5IM+T0piL22pF2dBsRfbubad61riL7NtDvnk2b1BQAH4A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=C1Ao8lHC7Gt0DQDKNQ7agw60LaANBTmobeC+9VNpY1M=;
- b=NQDtrpilTkNmzoYlIL2pAuesIEEj6sa2QMHOHW/SqLVZ/YmCjXPSimiNyaATPL6g1934BcsrVbeZMHslsmlfJZ2BzhPPWFvqGh7n3RaEtF9f0WpSFK7N27SYleTumJ1Yd9pKAuyTSqgBjpzreosljGL5vQMNQqPvYnHXobw9gl12svdAvxK0pqnznKvS+XYUqIUQRv3CTdnxTGb4kI4U6iFaMi6pFWnMBLuW074MLT1EqH+564VN00IwG6DTZa7J2PBdirZfiApYgJ4RqHhtPa7ULQlpsSiGVuIMP4sPyWfrOu1UsApadjdSV+nHX3Drr3WqSbzKf6HlT05RUCc9Ag==
+ bh=3Qazt3i273tIov0eN2oftaFm3OWI0f7Epr/dlbZ2gWI=;
+ b=rij8ofJ8tKD/ReORBdc5VUacXRr7BBrDBH98HPnfDdN+2YRZxCj77a6T9NBDBIUbx416IZMFXVB5nyThydmCdYilHDQpZBR+gmY39R/HIN9+6AJBmYpROuSq2k2uEWOal9RIDl9GgFuKc5ERJhwFKjVqFG7I0q6GYXxUtVKmBHCiGQzbtwu60wJsHoLa4NMQSj0urTLveoBc/cW8zl52Rpg9e1BmwvrmzR82RMGCkA1h0PBUWeHsGUElvmm2b9TGkixIPAjcOkxlR1L07HMpOaPKK0qTPR9B5DN5WmPBId2i1P9QcAs9XPnBBXLXr0cV6Z+zLa4KFUPQ4yZUvHLNqg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=C1Ao8lHC7Gt0DQDKNQ7agw60LaANBTmobeC+9VNpY1M=;
- b=vKLlDk4FxkLw7Ww/2q+IE/Z2qlpy4hcWVK6Srr9sT1Z1kPAJZ5R4lKdWYBmo1pG+SN1fzb+nsUhkrm6sZ6lh+/pkT9lLyUfDeRyfj6bNPxfrvIm0nEtc88WyI4UvMdegbvgbXor2jU2GewyE8jk6ZnXcGVa0Q9/3hxz7PLJ7/3Y=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by SJ0PR12MB7084.namprd12.prod.outlook.com (2603:10b6:a03:4ae::20)
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from SJ1PR11MB6204.namprd11.prod.outlook.com (2603:10b6:a03:459::19)
+ by LV3PR11MB8556.namprd11.prod.outlook.com (2603:10b6:408:1b4::16)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.29; Thu, 15 May
- 2025 13:15:22 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%7]) with mapi id 15.20.8722.027; Thu, 15 May 2025
- 13:15:22 +0000
-Message-ID: <c93c05be-b2c8-42a2-84d1-32b90743eb82@amd.com>
-Date: Thu, 15 May 2025 15:15:07 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/9] dma-fence: Use a flag for 64-bit seqnos
-To: dri-devel@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
-Cc: amd-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org, kernel-dev@igalia.com,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-References: <20250515095004.28318-1-tvrtko.ursulin@igalia.com>
- <20250515095004.28318-3-tvrtko.ursulin@igalia.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.30; Thu, 15 May
+ 2025 13:16:25 +0000
+Received: from SJ1PR11MB6204.namprd11.prod.outlook.com
+ ([fe80::fd8d:bca9:3486:7762]) by SJ1PR11MB6204.namprd11.prod.outlook.com
+ ([fe80::fd8d:bca9:3486:7762%5]) with mapi id 15.20.8722.027; Thu, 15 May 2025
+ 13:16:25 +0000
+From: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
+To: "Bhatia, Aradhya" <aradhya.bhatia@intel.com>, "Roper, Matthew D"
+ <matthew.d.roper@intel.com>
+CC: Intel XE List <intel-xe@lists.freedesktop.org>, "Ghimiray, Himal Prasad"
+ <himal.prasad.ghimiray@intel.com>
+Subject: RE: [PATCH] drm/xe/guc: Make creation of SLPC debugfs files
+ conditional
+Thread-Topic: [PATCH] drm/xe/guc: Make creation of SLPC debugfs files
+ conditional
+Thread-Index: AQHbxX6qbAfs9IXwEEK1GTN8jxJVVbPTq7LA
+Date: Thu, 15 May 2025 13:16:25 +0000
+Message-ID: <SJ1PR11MB6204CD374CDB31981218C7308190A@SJ1PR11MB6204.namprd11.prod.outlook.com>
+References: <20250515094913.2437-1-aradhya.bhatia@intel.com>
+In-Reply-To: <20250515094913.2437-1-aradhya.bhatia@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20250515095004.28318-3-tvrtko.ursulin@igalia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BLAP220CA0017.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:208:32c::22) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ1PR11MB6204:EE_|LV3PR11MB8556:EE_
+x-ms-office365-filtering-correlation-id: 2c305b86-7bd8-4dfd-b02b-08dd93b2b1dd
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|10070799003|38070700018; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?bhIkdDxOieoPXNQjg6p70WM7KI43MOBk5VN/o4e0MSVyLml3OIpXgUDPQa/E?=
+ =?us-ascii?Q?fYyex65E3AzBMtAOpRUWHU4ti8Mz76vbTlX8HhR+samtBOzMkZ/OZWk3njH3?=
+ =?us-ascii?Q?Q9gWEyU6O6VljGtu6dofmnnvrOLy3NdhHtOR75H1Z0PZLdSyufWH4RdVMlDZ?=
+ =?us-ascii?Q?IsekkE0iovS9smsjj5KsT1WD5cGx6lTPQhiAYVjeokwP46krG0A1OBriaWqH?=
+ =?us-ascii?Q?VeKbrJOS9v4plDS+gKwQPEf0yYR3JbD6dmPSbqKiaxCF6u1rhzVkAvALFEEU?=
+ =?us-ascii?Q?G1uvEsYpC8r17AkzAIpGXmJSowk+8MuJhDWTHDMoODzTeTyFA8zk+GJ+I0Iv?=
+ =?us-ascii?Q?8x/1IjTfMfmWzXxWHByRHGMXATvkn9pHGn/Am12BlrB5S8gIr4N7e01X38dG?=
+ =?us-ascii?Q?qwAgE53WFMCxbJl4MsHQbwb/I/tRMjvd8j6hcmGemgX3c23+bHUcuW5kJtzg?=
+ =?us-ascii?Q?UFcRuFm5MgCAIUn42rGXcGEQN7GIBgMF4eDLG4G/T3DQazi77A0RmAx/FE2G?=
+ =?us-ascii?Q?d/HFmUFABXPcnElYGI2sH5K2KivBKACcEyF3MUol1CraXSTlwP2vjnt7lO2b?=
+ =?us-ascii?Q?J/EKl3ngPHq1smnXJLyjgv3q/5qQmJ9j4tA74TMatdUjrT+C5m/8Gh0eFxT4?=
+ =?us-ascii?Q?gWV5DC/wnpAu+ticL8Ouemx8EwHNr3wy7EDYTji1X1P76d0RddKabsJBwE+A?=
+ =?us-ascii?Q?t19f4fCAcQTdpC6flZMnjKwtkXHacmn6fkZ4XurJXfUVu+DpV6E1SqlvSqUJ?=
+ =?us-ascii?Q?GL9QgXkjf1c5956oDf4LzMSuopSVoSyYLxtM8zj74irOxgqFJbT4usoWL1PI?=
+ =?us-ascii?Q?ZWEPDaWLVq+x2iijiDV+mdCfsIedvxUyqwk1e09ZO3ObbxuLIp7nJ1rK5b0R?=
+ =?us-ascii?Q?UoLmutpASJaBiCStD5wnXPw/zEQlXjYvwPn1N0nWQBDdeai3lJ9CfkEAaoMv?=
+ =?us-ascii?Q?xRw5qw9DmNEP0nXBtAKmYZD2KEr4pjmRuyyNnDHOizgz/RexAvJ13p3ElL0h?=
+ =?us-ascii?Q?BrQjEl0nElMpYeuRW3XVfhoypiRO5ZfZ7aAuM7lD/BbloF5kh4MUzKvQdNLc?=
+ =?us-ascii?Q?Hc7WzfLeyScldvy+O8Lu8GBz+TiaQyeyVY7Ja3U2c95Ck49YsObJU6Hhx8wM?=
+ =?us-ascii?Q?JyOBPZYywvxjmj3dbxoqpb0KU8cDEPi3oKYNQ5Tj9JOcM11n8+5S1vWEtRXB?=
+ =?us-ascii?Q?dxe+mYS9n0dg0hDBraZOe2s+zzeuwhvwfWretjBgAnzTcnWn/qV/KUEV1WBx?=
+ =?us-ascii?Q?tuk/G3fthpcY1HTN4eR0sRBAzQiZY5GzGghD5WcPQv+ShBTlTQvNfdJhfia2?=
+ =?us-ascii?Q?XqiOKLefQ/7ljKQ8WYpxPQHlIxvWUNmJhN44ekOaygLjRlErckcBBhRonAGn?=
+ =?us-ascii?Q?Ue/BXyTDDuGFbCv3EWda6SqP3hpGM67dUuUTfcVWyfN/YLq4oDTzt9V1bYpd?=
+ =?us-ascii?Q?FMJN3+wIoPLFTbF5qUhUw4AZLWzPMiqWrP8jY9nqWMDoGyLNJjeYnWVx+wuw?=
+ =?us-ascii?Q?KA3qzgjji03rjwQ=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ1PR11MB6204.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(10070799003)(38070700018); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?hOqiGO3a3BRX8eSSnmHXen/KgAiwCN+4K38yFWvG0nTbsdF50vJ+t92FBOdd?=
+ =?us-ascii?Q?PmQa6p//2tMqmdswudHUT5U+XnLimNUDB65gjyANwmLA91tKW+5FKMTsTZVT?=
+ =?us-ascii?Q?YKuBlCxU+vDg1rjAR/wRbOHI9wpAAlQP2ypOVMzFrOCPym9nkR7VtudU9edW?=
+ =?us-ascii?Q?RvRzDBojbVmLF7VNBizRrdbNpKp9zlzSdfkZEvtf+hLgzqKrCvPCUYoobOO9?=
+ =?us-ascii?Q?StuXRlfC74y0HN6UGOLf0jHzVzczSyx6FcLGsBjkoWuI+T5La+USWWu9eLXQ?=
+ =?us-ascii?Q?K6K7ff/WiTRTMQTDz9HMd4THq4f+mOiTnBbSDzpo8C6TAYwHJ/fTy23hhORY?=
+ =?us-ascii?Q?ZDhwtawF/YXldDlENsDosdfeRlx5Sy0TVhmqQ/Wd7XniPEc0/rptHNfgpXWn?=
+ =?us-ascii?Q?Pp0n0TuZIXQ4kw9SqpL8QtH+eOFLV6L8fSRSs19ooDreZxsTmZPNkFOBtM1i?=
+ =?us-ascii?Q?/oIKI+5GV6W9M+ITj4yZL/0iDOX0OdtD5QrqeGtwdq2p+GjFz5CVSfyengfZ?=
+ =?us-ascii?Q?JNAMvzZykZfMvFifSjRPl29RboNsZpf5257HxbO3Hu/hYIwTJymcKAD5Z3WP?=
+ =?us-ascii?Q?NCZ80/LIIB9IANB/iMWt/f2b6xA6QQPReZEeouIr0+UDVmG4Vvv1G5nX8NyV?=
+ =?us-ascii?Q?T7fe7gTPCGzBfVwjFTbUtwHcfGO/WMHVzJ1Yhcd+uz43lhM59eIYErvxfEOo?=
+ =?us-ascii?Q?rTfuB3yAgCxHF7ISYyFSlfpSEtRXlCXze7WLRLGf4pD4O/8fDrF12AqaWWB4?=
+ =?us-ascii?Q?rW0QFiR1HogOme1XT4TCZkM4Tdmxy9MQ4t+X0x2cMhzs0uwCUXAsQOtfuFW+?=
+ =?us-ascii?Q?p1gz6ES7CqAJ8vfy3dr1fOFG55ELPaj1JMO0uMqUIlhwBwfhNe1mewfUTFok?=
+ =?us-ascii?Q?k3EXjYsFRyEjlorOEjwMMRQh5vemJiGRVg/YuckTqsAjDv/nBH/ONcVHpMes?=
+ =?us-ascii?Q?ofdTBmoFjt48sig21JvzXb5IUVWHz2PXxfd/u5ZeV3Kb73b6e3aRqcQf8fKJ?=
+ =?us-ascii?Q?qb6lrEy4FDv826b6EFZiaLfdRsQeaK2HBeEtPpliUbrw/NBLRCdNU0TnMRIE?=
+ =?us-ascii?Q?luEYSR/jmWfHB5POnfXar8viywldqxUBKD8tJ0aMU9+1RcMTmrCqfZSofCgc?=
+ =?us-ascii?Q?oInrv5jhVp3Qc5lieZysAxSVRfDkzdEPtjcNwexmtoT3GNnD0qWwQS+Rq6Rb?=
+ =?us-ascii?Q?0smKinfm+Wy2g6GPHpcNgcuS2MJ4TKwLf3Mv7UPUbK8Ww9AGy2XuUe4LnlLC?=
+ =?us-ascii?Q?BJms0Ozgq4EcjMl0bXpx4NcVbzeP7fzLRFz+8NDFl8ERlDztRaSThMVLMubA?=
+ =?us-ascii?Q?iCpJi8gg/jD1xPyoy8b/zMIeD62YAFppedLPfj2jSsHKGKky8GA+IGg3fAnS?=
+ =?us-ascii?Q?LGAuntITitsnh/Xt9jq+J1XIHdkDvG+soM6mk10CgCiBJrBFS2IoOe1mH+35?=
+ =?us-ascii?Q?S9NbpEwFLHmDF4U9/ISTwjBdSgqvh4abq+zqSDzM2nTq+vw4Vm0NpPPwQWnT?=
+ =?us-ascii?Q?0EX6RSx1kpU6cW3HYAdzXyNb9uLw1Z7pt/SScefVkn4ZUelaK5o99oUu2Ezx?=
+ =?us-ascii?Q?3aP+OPdul+eL0nhnBi/v5BUDIOIFheD71I4snxdFmqrLaf2bsNEX5mNDpXwi?=
+ =?us-ascii?Q?tn5MqSVvGVWA3rEsjXN12Nh72bYx78u0SpqyRLdtvPbl?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SJ0PR12MB7084:EE_
-X-MS-Office365-Filtering-Correlation-Id: eeb1cd6b-9b69-4cb1-aba3-08dd93b28c00
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|7416014|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?QVZMN29pcUc5dnp2OHBQRWR6aHpEV0twREVWYjY4eUg0OENtUGVabVA0dWpP?=
- =?utf-8?B?dGhqYjBxeDIyNzQ1V0FUd2FUUTVhUlRDOFVPaWZmV3VJZlUwYkZxQi9QZDZt?=
- =?utf-8?B?V2FEekY0cDZxcDZlNXdJaDVMWitxRkNVSzVoUHI2RjhXeDE5MHFWckM2em9q?=
- =?utf-8?B?VEs2S0UrT3VoZXlsNWRlQmpvaWJVZmFkQXl1bEpyTkMrc2dMSFBxZVBLSVVj?=
- =?utf-8?B?blptU21ENm9ueitzeXNZTjlnWGVEekk0MHd3KzZJQW83eExRNG5JRTJLdlRX?=
- =?utf-8?B?TmRURE91cVlJTkY4TWNWdUhZSmZLallPWEw1WjgzWXJudjZlT2FpOWZkV2dX?=
- =?utf-8?B?Sk1PV0pEdWg0cjZPUEVpWE5vMkhYQUJzSXp1RGlLdzYzaytrM2x6M0FGMU1w?=
- =?utf-8?B?N01QMVJKc0JKclg3eGFBY1VvWERJMkRSNnM1RW52N25lOGZZUlNrVDZHbkEy?=
- =?utf-8?B?R25YRnNxeDIxTFhjK3diTUdoWUVhOFlTOGlRS1hlOGY1Q1BRY3B4blNIYnEr?=
- =?utf-8?B?SmEvUUZ5Nm9PdnFuMFJ4bG1CSUpMRkVpQTRweUVHOTcyQnIzNGlQQzFQQllK?=
- =?utf-8?B?NmlMbG8rSnRRSkZCL1VYUnE1Unc5bUpyV2JHdmZ1dGhtUTVlTGJhckFIZmZa?=
- =?utf-8?B?cysrNDhFVTg3cE1IcldlZVRGQ1M0UkU2cHkyb1NuOXdhOCt4Z1JFaTc2UEEv?=
- =?utf-8?B?UlprMUwxU2dqNy90bDVuUzJzYUZxdWRIaUJBN2VybWd1NXFNODhsSFF2V2kw?=
- =?utf-8?B?QjlUcW1VZVZLQWdVM3lCV082aHJvR0FCeSthSlYyOGZrbWVYWnVqVGxmN3hE?=
- =?utf-8?B?QXdtTG1Ja0s0MmVoQmVmdFR2dU5CSDZLdnRRZjdaR2NCK1FsdlJDdWx3dlZR?=
- =?utf-8?B?aTg0a3Fjd3Q3L2Q1NlZvbk9TVVl5d05QcVlESG53Ly85R1RrRHlJM3JNbmhS?=
- =?utf-8?B?ZnhTaDJyNVR2VlFsd3YvU2F6MERxbmp4SjNUOUptNHU3cEpmWlNtSmZLWExK?=
- =?utf-8?B?aDRlRmpmSU1VNzNLZitnRlJVNzdFMmMxWEFHMy8yc1phRjdXNm9kcnlXYllt?=
- =?utf-8?B?ZktTSU82bk5KUTZjbUxEalY1eTRHRlhJQmdSUlFBZzlIZ29IZXNKVnBxRnZq?=
- =?utf-8?B?YXRmK0ZtTnU3OUJUd3NYSlhBR3R6YVoveEk0WXZWUG5YUHhQaFFLYUphMlJS?=
- =?utf-8?B?MnBaYkNDamY5UVJoS1F3V0VGQ3dueklTVVB5N1E2RW52dkF0Y1NNTjc4ZUgw?=
- =?utf-8?B?RjBTeWRXSFg2Y2dOV3JDN0lNdHl3UENyTVVlMFRPMEE3Wm10MWFWWmc5LzM2?=
- =?utf-8?B?LzJoTlB1QUV0M09ZVUJSck9tK1ROZFErMHZNZzZTM1NHdUdDSUF6V3VxcnB1?=
- =?utf-8?B?azlKanVNMThJamtLOVNHRVpmeGVWOW9RTXhnQ1YwMURIYkFiSGRPU0M5ZFZB?=
- =?utf-8?B?VFpydHBrK0xMRXJRd05KS0JiTWxnNXl5M3lkZGttc1JFT21YaFJIb1JYS3Bk?=
- =?utf-8?B?YkhCUkZ0Wm1zS0F3WFVRZTd5WmtoenZ1bjVvTFZCSjBDaG9GVkdBRk5YaVA3?=
- =?utf-8?B?NUg0UjlUeEVqWldEeFljWUljL0VwL1dMZWs3emVUczZydW1sOEl4NUJySllx?=
- =?utf-8?B?dm1Wd1JxT2RDOWI2RHNFb0lBQ2VzdWJpR1A4NFpnNUk3N3NxNVN2d01rS0Fi?=
- =?utf-8?B?VURDcE9HR0d6MW5KSHhNMjZWR1U2cXB3b3dLR1ljWXVXU0tLcHhBY1Y4QVRa?=
- =?utf-8?B?TkIwTHVFVmQrNFU0Y29jRG9Jb0s1T0ZTKzRCNWYvWnZqb2g5OTlGZG8vZ1RQ?=
- =?utf-8?B?QllaM3p6M1VUU2lMWHlGc3lTU2VlT1cwTE4ycnMzdFRwRGFzQ3dzS2xCR0lC?=
- =?utf-8?B?bk9sVmJwNm1BenVXazRHdlBuYXFYTUxDck5rNXJzUkxYQTRaZkY5dnAzWi9t?=
- =?utf-8?Q?jWY/sexDzjU=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(7416014)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bmFQRGdLbU5ZNVJsaG1Ba3ZqeHVmMUdJOVEyZUIwenQ0ZjFjb3JHNEJuaHJ3?=
- =?utf-8?B?azRxeGduekFua2pDaVduQnkrOHY5d1BOUnNFampYRnJKYm1PZ2VRYnZjTklz?=
- =?utf-8?B?TVE4UlpHaU1td3g1SjNwWEZYa253cGxkTzNvbFZDZWhWWGJ4RFdRdkNUbHhS?=
- =?utf-8?B?cHpHV0IwTm56OHQ3NklrcWlMYWdySG9DYUZEOVRibml2WmpaeTVsMHJtVkNr?=
- =?utf-8?B?Y0UydkEvWVl6RmJzYjBEVGVwWHBWTUNiZU1BdjdEYXY3amNDQU8wcVByYmVC?=
- =?utf-8?B?bEpxN2xlYU9EMHVNOE9wVlgvQU8wVzJIc0kzMitwa3pQUjI3RnZWVkhUZWRU?=
- =?utf-8?B?c0lvMi9zMW9pUW1nOXBpQVg3by9FeUg3NXhOQ0k5RGhSSXhmSllNTlpBUjlP?=
- =?utf-8?B?NVBHbUZ5d2c5R0FONWNrb0NtSklHcmpRdEhMeTRyU09JNjN5SkJ0ZVRUOEp6?=
- =?utf-8?B?RnZ5d2dTaklJSDB1cDJ1MnU1NUNXbC9Zcm8yM0J2aFN6TmFpRXhSdkYyNFF1?=
- =?utf-8?B?OElITzlWclZjQTQ4TUdQb0hoYjNOZDJrS1pma2syU0M4a052VUxXVDJUcXls?=
- =?utf-8?B?MHkvTmxjVnZ2S2RlUlN6OHF6QjhoczN6anpVeGdkMlh0Y3ZxaVRKbGEwclU4?=
- =?utf-8?B?ZE01QlBXNXVqekV5UzFNdU5SQkZidGY5MUFEUHlJbVBScE9pMnR5TFM3SVVm?=
- =?utf-8?B?MEJjaEdTNnUxM2pvT3N6VXRLZmxWS3A0SkxEWWxmUlp6dktJZzFiQ1VLbi9z?=
- =?utf-8?B?TUFxc1A4OGdQNFBRc2xNMHBpWnRZRThXTTZxMmR6cE83OFZ0ZXJuWWRQR3My?=
- =?utf-8?B?STFUaGZyMzlsUkRSMjAvWXczdEJDbXQrT2Z0L1JpQkJvbzBFbnZSQyt3ZHJY?=
- =?utf-8?B?c0ZiMVA5Sk5YY3I5Y3VhY2ZBME5aSWFYZUhscm5lbHZqckQ2ZllrNTVZVGow?=
- =?utf-8?B?bE5ibHVhaHRJeWh2MlRGckp2MkozbmxyRGx2cjYvZ2w3a283ZlhaKy9ocndi?=
- =?utf-8?B?dzFrWW5JUjJ5QlVFQWZUd1YzdDNrZ1V1S2h6UkgzOXhIN2txbThvb2c1czRx?=
- =?utf-8?B?RVZxclFtUE8vNjNyWlVuZVUwNUQ4cE1zK0tmZHFjL2dmb2FYOFdmTE5yMHVh?=
- =?utf-8?B?WUlad0VkTllzd0txUFVCNjYxYUpMa2NYdWs2Y2dCWGdxVTlXK1o0NHV6Tk9j?=
- =?utf-8?B?Qis5QkhuOFZUUG1ya0dXNGFNUFRNRUgzdFNNM2R2R0lSTEU0Ty92Z2FVa013?=
- =?utf-8?B?TElPSTVmMWxGVUs1anlDMCt5TG03ZnpUZCtZMXhjN0lkQTVLQlczbUI2S3pl?=
- =?utf-8?B?eEVuWVJUM1E0ZlVMVjlTTVpOUXFaMWtEakZpalFZS0pGSVVNRFIyemExNkdV?=
- =?utf-8?B?U1gzaC9KYm1ZdVR2Qm5IREZqdVhBVXZicitzNVBpWDh4YllWWnY4bjI5QnU3?=
- =?utf-8?B?VlNWeFhmUkpWVEVObUdOeFhtcjVqVjRETG82OHJ1aVVIaEdYZmcweTY2a3d3?=
- =?utf-8?B?TVBxRmRKbUFiVEtDQXA2bWduekJCZXFpb2FIdDJmT1plK3NNMnEyMk55MTNo?=
- =?utf-8?B?bmhSTHF4YjB2WXdZS3dYTW05TUoxaSt2d3BGd3pta3pnQlU3cW5rbU1qR0Fs?=
- =?utf-8?B?Y1N4Q3QrQk5hMVM3UUZBbjJhOE1OT0MySHZBSnNrODc4OGlDS0VYMVNKK3dK?=
- =?utf-8?B?TlZvYURFeXNCeXJtV2FPNi8xOGRSRU9aeFRRYXV5cWV3Q05QNi9kUnM2Wkg0?=
- =?utf-8?B?SldlM01NMkdSQ2JFL0tkR1RWT3NnUlV2VDJ2VDJOWDFPSUpZSi9KQks3MHVw?=
- =?utf-8?B?K0U2WnBDQ2hXR0RHMDcrdkIzdEtHTnhsOFFIY1V2b3JIVkJFcEhTTkFCTVU0?=
- =?utf-8?B?RFBZMGVuN0FyallHUnNjTUFxNFRyclJadWdWUmx2RmtUdkl6ZldnVXp6YkZu?=
- =?utf-8?B?YWFQTm1paUljeFBYbWxaRUR1UTlnWUlkQlZaYjQ4MjFoek4rRWRWNjVHQmE5?=
- =?utf-8?B?c2tKOW5nUnBLUmV1NG5lLzRzZG9zSkFIcVd6WHFMeG5uNU1neU1KQ3ZheXFj?=
- =?utf-8?B?OGV4dGVvYnJXTVdkQVhHaXZ6T2pRckdlWGxJaVRQMUtpWWJRSUN6dGtrcXI2?=
- =?utf-8?Q?S3op7mm3HJoRdZnWab1j27RZc?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: eeb1cd6b-9b69-4cb1-aba3-08dd93b28c00
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2025 13:15:22.0868 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wMwUb9m6uYIgnEd3n8sTbnFkBQyzpfxGCAE1jRCeS6LeaTkytQ1RzpE7PfYPIa7t
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB7084
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6204.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2c305b86-7bd8-4dfd-b02b-08dd93b2b1dd
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 May 2025 13:16:25.3943 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: WOftqF5OpmXYQQRYrBI59w1dVnxbxWW6kbZYY/G1rnwLWctG9TAkzgS2Ov41gXqulK+lCYOz0ZxYuJ1gvrGFlu3Ae4UR0djwx/Hm2va4tSs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR11MB8556
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -166,265 +185,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey drm-misc maintainers,
 
-can you guys please backmerge drm-next into drm-misc-next?
 
-I want to push this patch here but it depends on changes which are partially in drm-next and partially in drm-misc-next.
-
-Thanks in advance,
-Christian.
-
-On 5/15/25 11:49, Tvrtko Ursulin wrote:
-> With the goal of reducing the need for drivers to touch (and dereference)
-> fence->ops, we move the 64-bit seqnos flag from struct dma_fence_ops to
-> the fence->flags.
-> 
-> Drivers which were setting this flag are changed to use new
-> dma_fence_init64() instead of dma_fence_init().
-> 
-> v2:
->  * Streamlined init and added kerneldoc.
->  * Rebase for amdgpu userq which landed since.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> Reviewed-by: Christian König <christian.koenig@amd.com> # v1
+> -----Original Message-----
+> From: Bhatia, Aradhya <aradhya.bhatia@intel.com>
+> Sent: 15 May 2025 15:19
+> To: Roper, Matthew D <matthew.d.roper@intel.com>
+> Cc: Intel XE List <intel-xe@lists.freedesktop.org>; Upadhyay, Tejas
+> <tejas.upadhyay@intel.com>; Ghimiray, Himal Prasad
+> <himal.prasad.ghimiray@intel.com>; Bhatia, Aradhya
+> <aradhya.bhatia@intel.com>
+> Subject: [PATCH] drm/xe/guc: Make creation of SLPC debugfs files conditio=
+nal
+>=20
+> Platforms that do not support SLPC are exempted from the GuC PC support.
+> The GuC PC does not get initialized, and neither do its BOs get created.
+>=20
+> This causes a problem because the GuC PC debugfs file is still being crea=
+ted.
+> Whenever the file is attempted to read, it causes a NULL pointer derefere=
+nce
+> on the supposed BO of the GuC PC.
+>=20
+> So, make the creation of SLPC debugfs files conditional to when SLPC feat=
+ures
+> are supported.
+>=20
+> Suggested-by: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Aradhya Bhatia <aradhya.bhatia@intel.com>
 > ---
->  drivers/dma-buf/dma-fence-chain.c             |  5 +-
->  drivers/dma-buf/dma-fence.c                   | 69 ++++++++++++++-----
->  .../drm/amd/amdgpu/amdgpu_eviction_fence.c    |  7 +-
->  .../gpu/drm/amd/amdgpu/amdgpu_userq_fence.c   |  5 +-
->  .../gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c  |  5 +-
->  include/linux/dma-fence.h                     | 14 ++--
->  6 files changed, 64 insertions(+), 41 deletions(-)
-> 
-> diff --git a/drivers/dma-buf/dma-fence-chain.c b/drivers/dma-buf/dma-fence-chain.c
-> index 90424f23fd73..a8a90acf4f34 100644
-> --- a/drivers/dma-buf/dma-fence-chain.c
-> +++ b/drivers/dma-buf/dma-fence-chain.c
-> @@ -218,7 +218,6 @@ static void dma_fence_chain_set_deadline(struct dma_fence *fence,
->  }
->  
->  const struct dma_fence_ops dma_fence_chain_ops = {
-> -	.use_64bit_seqno = true,
->  	.get_driver_name = dma_fence_chain_get_driver_name,
->  	.get_timeline_name = dma_fence_chain_get_timeline_name,
->  	.enable_signaling = dma_fence_chain_enable_signaling,
-> @@ -262,8 +261,8 @@ void dma_fence_chain_init(struct dma_fence_chain *chain,
->  			seqno = max(prev->seqno, seqno);
->  	}
->  
-> -	dma_fence_init(&chain->base, &dma_fence_chain_ops,
-> -		       &chain->lock, context, seqno);
-> +	dma_fence_init64(&chain->base, &dma_fence_chain_ops, &chain->lock,
-> +			 context, seqno);
->  
->  	/*
->  	 * Chaining dma_fence_chain container together is only allowed through
-> diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
-> index f0cdd3e99d36..705b59787731 100644
-> --- a/drivers/dma-buf/dma-fence.c
-> +++ b/drivers/dma-buf/dma-fence.c
-> @@ -989,24 +989,9 @@ void dma_fence_describe(struct dma_fence *fence, struct seq_file *seq)
->  }
->  EXPORT_SYMBOL(dma_fence_describe);
->  
-> -/**
-> - * dma_fence_init - Initialize a custom fence.
-> - * @fence: the fence to initialize
-> - * @ops: the dma_fence_ops for operations on this fence
-> - * @lock: the irqsafe spinlock to use for locking this fence
-> - * @context: the execution context this fence is run on
-> - * @seqno: a linear increasing sequence number for this context
-> - *
-> - * Initializes an allocated fence, the caller doesn't have to keep its
-> - * refcount after committing with this fence, but it will need to hold a
-> - * refcount again if &dma_fence_ops.enable_signaling gets called.
-> - *
-> - * context and seqno are used for easy comparison between fences, allowing
-> - * to check which fence is later by simply using dma_fence_later().
-> - */
-> -void
-> -dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
-> -	       spinlock_t *lock, u64 context, u64 seqno)
-> +static void
-> +__dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
-> +	         spinlock_t *lock, u64 context, u64 seqno, unsigned long flags)
->  {
->  	BUG_ON(!lock);
->  	BUG_ON(!ops || !ops->get_driver_name || !ops->get_timeline_name);
-> @@ -1017,9 +1002,55 @@ dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
->  	fence->lock = lock;
->  	fence->context = context;
->  	fence->seqno = seqno;
-> -	fence->flags = 0UL;
-> +	fence->flags = flags;
->  	fence->error = 0;
->  
->  	trace_dma_fence_init(fence);
->  }
+>  drivers/gpu/drm/xe/xe_guc_debugfs.c | 17 ++++++++++++++---
+>  1 file changed, 14 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_guc_debugfs.c
+> b/drivers/gpu/drm/xe/xe_guc_debugfs.c
+> index f33013f8a0f3..0b102ab46c4d 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_debugfs.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_debugfs.c
+> @@ -113,23 +113,34 @@ static const struct drm_info_list
+> vf_safe_debugfs_list[] =3D {
+>  	{ "guc_ctb", .show =3D guc_debugfs_show, .data =3D guc_ctb },  };
+>=20
+> +/* For GuC debugfs files that require the SLPC support */ static const
+> +struct drm_info_list slpc_debugfs_list[] =3D {
+> +	{ "guc_pc", .show =3D guc_debugfs_show, .data =3D guc_pc }, };
 > +
-> +/**
-> + * dma_fence_init - Initialize a custom fence.
-> + * @fence: the fence to initialize
-> + * @ops: the dma_fence_ops for operations on this fence
-> + * @lock: the irqsafe spinlock to use for locking this fence
-> + * @context: the execution context this fence is run on
-> + * @seqno: a linear increasing sequence number for this context
-> + *
-> + * Initializes an allocated fence, the caller doesn't have to keep its
-> + * refcount after committing with this fence, but it will need to hold a
-> + * refcount again if &dma_fence_ops.enable_signaling gets called.
-> + *
-> + * context and seqno are used for easy comparison between fences, allowing
-> + * to check which fence is later by simply using dma_fence_later().
-> + */
-> +void
-> +dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
-> +	       spinlock_t *lock, u64 context, u64 seqno)
-> +{
-> +	__dma_fence_init(fence, ops, lock, context, seqno, 0UL);
-> +}
->  EXPORT_SYMBOL(dma_fence_init);
-> +
-> +/**
-> + * dma_fence_init64 - Initialize a custom fence with 64-bit seqno support.
-> + * @fence: the fence to initialize
-> + * @ops: the dma_fence_ops for operations on this fence
-> + * @lock: the irqsafe spinlock to use for locking this fence
-> + * @context: the execution context this fence is run on
-> + * @seqno: a linear increasing sequence number for this context
-> + *
-> + * Initializes an allocated fence, the caller doesn't have to keep its
-> + * refcount after committing with this fence, but it will need to hold a
-> + * refcount again if &dma_fence_ops.enable_signaling gets called.
-> + *
-> + * Context and seqno are used for easy comparison between fences, allowing
-> + * to check which fence is later by simply using dma_fence_later().
-> + */
-> +void
-> +dma_fence_init64(struct dma_fence *fence, const struct dma_fence_ops *ops,
-> +		 spinlock_t *lock, u64 context, u64 seqno)
-> +{
-> +	__dma_fence_init(fence, ops, lock, context, seqno,
-> +			 BIT(DMA_FENCE_FLAG_SEQNO64_BIT));
-> +}
-> +EXPORT_SYMBOL(dma_fence_init64);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
-> index 1a7469543db5..79713421bffe 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
-> @@ -134,7 +134,6 @@ static bool amdgpu_eviction_fence_enable_signaling(struct dma_fence *f)
->  }
->  
->  static const struct dma_fence_ops amdgpu_eviction_fence_ops = {
-> -	.use_64bit_seqno = true,
->  	.get_driver_name = amdgpu_eviction_fence_get_driver_name,
->  	.get_timeline_name = amdgpu_eviction_fence_get_timeline_name,
->  	.enable_signaling = amdgpu_eviction_fence_enable_signaling,
-> @@ -160,9 +159,9 @@ amdgpu_eviction_fence_create(struct amdgpu_eviction_fence_mgr *evf_mgr)
->  	ev_fence->evf_mgr = evf_mgr;
->  	get_task_comm(ev_fence->timeline_name, current);
->  	spin_lock_init(&ev_fence->lock);
-> -	dma_fence_init(&ev_fence->base, &amdgpu_eviction_fence_ops,
-> -		       &ev_fence->lock, evf_mgr->ev_fence_ctx,
-> -		       atomic_inc_return(&evf_mgr->ev_fence_seq));
-> +	dma_fence_init64(&ev_fence->base, &amdgpu_eviction_fence_ops,
-> +			 &ev_fence->lock, evf_mgr->ev_fence_ctx,
-> +			 atomic_inc_return(&evf_mgr->ev_fence_seq));
->  	return ev_fence;
->  }
->  
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-> index 029cb24c28b3..5e92d00a591f 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-> @@ -239,8 +239,8 @@ static int amdgpu_userq_fence_create(struct amdgpu_usermode_queue *userq,
->  	fence = &userq_fence->base;
->  	userq_fence->fence_drv = fence_drv;
->  
-> -	dma_fence_init(fence, &amdgpu_userq_fence_ops, &userq_fence->lock,
-> -		       fence_drv->context, seq);
-> +	dma_fence_init64(fence, &amdgpu_userq_fence_ops, &userq_fence->lock,
-> +			 fence_drv->context, seq);
->  
->  	amdgpu_userq_fence_driver_get(fence_drv);
->  	dma_fence_get(fence);
-> @@ -334,7 +334,6 @@ static void amdgpu_userq_fence_release(struct dma_fence *f)
->  }
->  
->  static const struct dma_fence_ops amdgpu_userq_fence_ops = {
-> -	.use_64bit_seqno = true,
->  	.get_driver_name = amdgpu_userq_fence_get_driver_name,
->  	.get_timeline_name = amdgpu_userq_fence_get_timeline_name,
->  	.signaled = amdgpu_userq_fence_signaled,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
-> index 51cddfa3f1e8..5d26797356a3 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
-> @@ -71,7 +71,6 @@ static void amdgpu_tlb_fence_work(struct work_struct *work)
->  }
->  
->  static const struct dma_fence_ops amdgpu_tlb_fence_ops = {
-> -	.use_64bit_seqno = true,
->  	.get_driver_name = amdgpu_tlb_fence_get_driver_name,
->  	.get_timeline_name = amdgpu_tlb_fence_get_timeline_name
+>  /* everything else should be added here */  static const struct drm_info=
+_list
+> pf_only_debugfs_list[] =3D {
+>  	{ "guc_log", .show =3D guc_debugfs_show, .data =3D guc_log },
+>  	{ "guc_log_dmesg", .show =3D guc_debugfs_show, .data =3D
+> guc_log_dmesg },
+> -	{ "guc_pc", .show =3D guc_debugfs_show, .data =3D guc_pc },
+
+You need fixes tag here it seems. With that,
+Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+
+Tejas
 >  };
-> @@ -101,8 +100,8 @@ void amdgpu_vm_tlb_fence_create(struct amdgpu_device *adev, struct amdgpu_vm *vm
->  	INIT_WORK(&f->work, amdgpu_tlb_fence_work);
->  	spin_lock_init(&f->lock);
->  
-> -	dma_fence_init(&f->base, &amdgpu_tlb_fence_ops, &f->lock,
-> -		       vm->tlb_fence_context, atomic64_read(&vm->tlb_seq));
-> +	dma_fence_init64(&f->base, &amdgpu_tlb_fence_ops, &f->lock,
-> +			 vm->tlb_fence_context, atomic64_read(&vm->tlb_seq));
->  
->  	/* TODO: We probably need a separate wq here */
->  	dma_fence_get(&f->base);
-> diff --git a/include/linux/dma-fence.h b/include/linux/dma-fence.h
-> index 48b5202c531d..a34a0dcdc446 100644
-> --- a/include/linux/dma-fence.h
-> +++ b/include/linux/dma-fence.h
-> @@ -97,6 +97,7 @@ struct dma_fence {
->  };
->  
->  enum dma_fence_flag_bits {
-> +	DMA_FENCE_FLAG_SEQNO64_BIT,
->  	DMA_FENCE_FLAG_SIGNALED_BIT,
->  	DMA_FENCE_FLAG_TIMESTAMP_BIT,
->  	DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT,
-> @@ -124,14 +125,6 @@ struct dma_fence_cb {
->   *
->   */
->  struct dma_fence_ops {
-> -	/**
-> -	 * @use_64bit_seqno:
-> -	 *
-> -	 * True if this dma_fence implementation uses 64bit seqno, false
-> -	 * otherwise.
-> -	 */
-> -	bool use_64bit_seqno;
-> -
->  	/**
->  	 * @get_driver_name:
->  	 *
-> @@ -262,6 +255,9 @@ struct dma_fence_ops {
->  void dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
->  		    spinlock_t *lock, u64 context, u64 seqno);
->  
-> +void dma_fence_init64(struct dma_fence *fence, const struct dma_fence_ops *ops,
-> +		      spinlock_t *lock, u64 context, u64 seqno);
+>=20
+>  void xe_guc_debugfs_register(struct xe_guc *guc, struct dentry *parent) =
+ {
+> -	struct drm_minor *minor =3D guc_to_xe(guc)->drm.primary;
+> +	struct xe_device *xe =3D  guc_to_xe(guc);
+> +	struct drm_minor *minor =3D xe->drm.primary;
+>=20
+>  	drm_debugfs_create_files(vf_safe_debugfs_list,
+>  				 ARRAY_SIZE(vf_safe_debugfs_list),
+>  				 parent, minor);
+>=20
+> -	if (!IS_SRIOV_VF(guc_to_xe(guc)))
+> +	if (!IS_SRIOV_VF(xe)) {
+>  		drm_debugfs_create_files(pf_only_debugfs_list,
+>  					 ARRAY_SIZE(pf_only_debugfs_list),
+>  					 parent, minor);
 > +
->  void dma_fence_release(struct kref *kref);
->  void dma_fence_free(struct dma_fence *fence);
->  void dma_fence_describe(struct dma_fence *fence, struct seq_file *seq);
-> @@ -454,7 +450,7 @@ static inline bool __dma_fence_is_later(struct dma_fence *fence, u64 f1, u64 f2)
->  	 * 32bit sequence numbers. Use a 64bit compare when the driver says to
->  	 * do so.
->  	 */
-> -	if (fence->ops->use_64bit_seqno)
-> +	if (test_bit(DMA_FENCE_FLAG_SEQNO64_BIT, &fence->flags))
->  		return f1 > f2;
->  
->  	return (int)(lower_32_bits(f1) - lower_32_bits(f2)) > 0;
+> +		if (!xe->info.skip_guc_pc)
+> +			drm_debugfs_create_files(slpc_debugfs_list,
+> +
+> ARRAY_SIZE(slpc_debugfs_list),
+> +						 parent, minor);
+> +	}
+>  }
+>=20
+> base-commit: 3d6670fab64cb00b5e6ed80d2517147db533faf1
+> --
+> 2.43.0
 
