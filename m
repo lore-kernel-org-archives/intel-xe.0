@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFFF1C3DA4A
-	for <intel-xe@archiver.kernel.org>; Thu, 15 May 2025 22:18:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AEDEC3DA6D
+	for <intel-xe@archiver.kernel.org>; Thu, 15 May 2025 22:18:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7391E10E975;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F176510E978;
 	Thu, 15 May 2025 22:18:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HIdkdMYl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j42qVFhN";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53F0A10E977
- for <intel-xe@lists.freedesktop.org>; Thu, 15 May 2025 22:18:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CF5510E976
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 May 2025 22:18:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1747347516; x=1778883516;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Vm86v5WI7mnJcnHdrohdFXFOuYGNP/+NeTOVr+dNKiQ=;
- b=HIdkdMYlfe18hu5+a0VTNQE+MOILU34YGKWjrVIyiDGU3i50dmChyX7g
- loOEb6LGKhSUshIKqt3icyDYzGZlfaL5RBWcDy7e/D3h2rEDa+S7SoWLW
- CFOCO+mFJrIPVkDxidULdAQKEO9/+wGTDC0vCB69ClMpSHGtf675QJOcu
- j/w9sXBmtMI4Paae1w5GjI7GkLbHqqDlyIJCf6l1d1wrcRHECTNQmgtv7
- SHudBKol9kQpwL6a/Fg0Jt6Iz7GCGQ3qKTImdtkrRsEE4EhquAjKJGR4Y
- tWYyZDe+p/OHHy10uK7EMXEvPNmUIId2Q2FQh8iABbDsOJl+D/MHdhaao w==;
-X-CSE-ConnectionGUID: UGchotwJQwi7R/xlKgM4Yg==
-X-CSE-MsgGUID: AAj8kpb4TXCSEoGVmk588Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11434"; a="49237273"
-X-IronPort-AV: E=Sophos;i="6.15,292,1739865600"; d="scan'208";a="49237273"
+ bh=Io9OpDzo0JqLqM7B5YRh+pKwW7IoRWsB25UE0kddIqE=;
+ b=j42qVFhNNDcFkTtVXAP5hfZCgb36mUN7cc30YGr7oEHs2dSDaCTsCZd+
+ 2aKzq7qQLUSwAHI3Pb3/F25hOY49xG17XfSp7zvDMQffYhhZgdwDfq9jj
+ bKZO4EIndN6FcR71TbcD7uCgjokZ8eRr9UqCzvmPoYTZLHMgTiWKFNBKb
+ 9uXSLiLtX8hV+WZEzgl/smxoE5/KQKqzUN5bSIxt9scks+/4hcxc0ewSK
+ CYJKkVcV4avPXt4GSyOrPWEbuhVuZMIxAZkixIoYv9z9v8ET1KZvWr8y6
+ /dlV2UkJIYOCbCW6Ne7t1Fcsz5Y7sSVCZsD7aOaKs7DqzowyyJszbtn6W g==;
+X-CSE-ConnectionGUID: oirTNWbTTSCqPQNKXgq6KQ==
+X-CSE-MsgGUID: vX+pGZzhR5CN1xp+HUW0YQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11434"; a="49237271"
+X-IronPort-AV: E=Sophos;i="6.15,292,1739865600"; d="scan'208";a="49237271"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2025 15:18:36 -0700
-X-CSE-ConnectionGUID: C/LkPaUdS02HwapRHV8Cvg==
-X-CSE-MsgGUID: GI+TFTeLSA2JjLo7dZgkkw==
+ 15 May 2025 15:18:34 -0700
+X-CSE-ConnectionGUID: en4VHVk2QuCtya9u6Xc8nw==
+X-CSE-MsgGUID: prP4893MQzCRqP7REKBTKg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,292,1739865600"; d="scan'208";a="138242864"
+X-IronPort-AV: E=Sophos;i="6.15,292,1739865600"; d="scan'208";a="138242848"
 Received: from gkczarna.igk.intel.com ([10.211.131.163])
- by orviesa009.jf.intel.com with ESMTP; 15 May 2025 15:18:34 -0700
+ by orviesa009.jf.intel.com with ESMTP; 15 May 2025 15:18:32 -0700
 From: Tomasz Lis <tomasz.lis@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
@@ -47,9 +47,9 @@ Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
  =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v2 3/7] drm/xe/vf: Pause submissions during RESFIX fixups
-Date: Fri, 16 May 2025 00:18:23 +0200
-Message-Id: <20250515221827.1493032-4-tomasz.lis@intel.com>
+Subject: [PATCH v2 2/7] drm/xe/vf: Finish RESFIX by reset if CTB not enabled
+Date: Fri, 16 May 2025 00:18:22 +0200
+Message-Id: <20250515221827.1493032-3-tomasz.lis@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20250515221827.1493032-1-tomasz.lis@intel.com>
 References: <20250515221827.1493032-1-tomasz.lis@intel.com>
@@ -69,202 +69,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-While applying post-migration fixups to VF, GuC will not respond
-to any commands. This means submissions have no way of finishing.
-
-To avoid acquiring additional resources and then stalling
-on hardware access, pause the submission work. This will
-decrease the chance of depleting resources, and speed up
-the recovery.
-
-v2: Commented xe_irq_resume() call
+The RESFIX state should be achievable only when CTB communication is
+enabled. If CTB was disabled and we still got it, then either we're
+dealing with unclean initial state, or the driver is not currently
+functional. In these cases, exit the RESFIX state by reset.
 
 Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gpu_scheduler.c | 13 +++++++++
- drivers/gpu/drm/xe/xe_gpu_scheduler.h |  1 +
- drivers/gpu/drm/xe/xe_guc_submit.c    | 35 ++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_submit.h    |  2 ++
- drivers/gpu/drm/xe/xe_sriov_vf.c      | 42 +++++++++++++++++++++++++++
- 5 files changed, 93 insertions(+)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 10 ++++++++++
+ drivers/gpu/drm/xe/xe_sriov_vf.c    | 16 ++++++++++++++++
+ drivers/gpu/drm/xe/xe_sriov_vf.h    |  1 +
+ 3 files changed, 27 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.c b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-index 869b43a4151d..455ccaf17314 100644
---- a/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-+++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-@@ -101,6 +101,19 @@ void xe_sched_submission_stop(struct xe_gpu_scheduler *sched)
- 	cancel_work_sync(&sched->work_process_msg);
- }
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index 4ff7ae1a5f16..b9af112ca771 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -23,6 +23,7 @@
+ #include "xe_gt_sriov_vf.h"
+ #include "xe_gt_sriov_vf_types.h"
+ #include "xe_guc.h"
++#include "xe_guc_ct.h"
+ #include "xe_guc_hxg_helpers.h"
+ #include "xe_guc_relay.h"
+ #include "xe_mmio.h"
+@@ -932,6 +933,15 @@ void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt)
  
-+/**
-+ * xe_sched_submission_stop_async - Stop further runs of submission tasks on a scheduler.
-+ * @sched: the &xe_gpu_scheduler struct instance
-+ *
-+ * This call disables further runs of scheduling work queue. It does not wait
-+ * for any in-progress runs to finish, only makes sure no further runs happen
-+ * afterwards.
-+ */
-+void xe_sched_submission_stop_async(struct xe_gpu_scheduler *sched)
-+{
-+	drm_sched_wqueue_stop(&sched->base);
-+}
-+
- void xe_sched_submission_resume_tdr(struct xe_gpu_scheduler *sched)
- {
- 	drm_sched_resume_timeout(&sched->base, sched->base.timeout);
-diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-index c250ea773491..d78b4e8203f9 100644
---- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-+++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-@@ -21,6 +21,7 @@ void xe_sched_fini(struct xe_gpu_scheduler *sched);
+ 	xe_gt_assert(gt, IS_SRIOV_VF(xe));
  
- void xe_sched_submission_start(struct xe_gpu_scheduler *sched);
- void xe_sched_submission_stop(struct xe_gpu_scheduler *sched);
-+void xe_sched_submission_stop_async(struct xe_gpu_scheduler *sched);
- 
- void xe_sched_submission_resume_tdr(struct xe_gpu_scheduler *sched);
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 80f748baad3f..6f280333de13 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1811,6 +1811,19 @@ void xe_guc_submit_stop(struct xe_guc *guc)
- 
- }
- 
-+/**
-+ * xe_guc_submit_pause - Stop further runs of submission tasks on given GuC.
-+ * @guc: the &xe_guc struct instance whose scheduler is to be disabled
-+ */
-+void xe_guc_submit_pause(struct xe_guc *guc)
-+{
-+	struct xe_exec_queue *q;
-+	unsigned long index;
++	if (!xe_guc_ct_enabled(&gt->uc.guc.ct)) {
++		/*
++		 * If at driver init, ignore migration which happened
++		 * before the driver was loaded.
++		 */
++		xe_sriov_vf_post_migration_reset_guc_state(xe);
++		return;
++	}
 +
-+	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
-+		xe_sched_submission_stop_async(&q->guc->sched);
-+}
-+
- static void guc_exec_queue_start(struct xe_exec_queue *q)
- {
- 	struct xe_gpu_scheduler *sched = &q->guc->sched;
-@@ -1851,6 +1864,28 @@ int xe_guc_submit_start(struct xe_guc *guc)
- 	return 0;
- }
- 
-+static void guc_exec_queue_unpause(struct xe_exec_queue *q)
-+{
-+	struct xe_gpu_scheduler *sched = &q->guc->sched;
-+
-+	xe_sched_submission_start(sched);
-+}
-+
-+/**
-+ * xe_guc_submit_unpause - Allow further runs of submission tasks on given GuC.
-+ * @guc: the &xe_guc struct instance whose scheduler is to be enabled
-+ */
-+void xe_guc_submit_unpause(struct xe_guc *guc)
-+{
-+	struct xe_exec_queue *q;
-+	unsigned long index;
-+
-+	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
-+		guc_exec_queue_unpause(q);
-+
-+	wake_up_all(&guc->ct.wq);
-+}
-+
- static struct xe_exec_queue *
- g2h_exec_queue_lookup(struct xe_guc *guc, u32 guc_id)
- {
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
-index 9b71a986c6ca..f1cf271492ae 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.h
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.h
-@@ -18,6 +18,8 @@ int xe_guc_submit_reset_prepare(struct xe_guc *guc);
- void xe_guc_submit_reset_wait(struct xe_guc *guc);
- void xe_guc_submit_stop(struct xe_guc *guc);
- int xe_guc_submit_start(struct xe_guc *guc);
-+void xe_guc_submit_pause(struct xe_guc *guc);
-+void xe_guc_submit_unpause(struct xe_guc *guc);
- void xe_guc_submit_wedge(struct xe_guc *guc);
- 
- int xe_guc_read_stopped(struct xe_guc *guc);
+ 	set_bit(gt->info.id, &xe->sriov.vf.migration.gt_flags);
+ 	/*
+ 	 * We need to be certain that if all flags were set, at least one
 diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-index 099a395fbf59..f0d6abedd126 100644
+index 2674fa948fda..099a395fbf59 100644
 --- a/drivers/gpu/drm/xe/xe_sriov_vf.c
 +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-@@ -11,6 +11,8 @@
- #include "xe_gt_sriov_printk.h"
- #include "xe_gt_sriov_vf.h"
- #include "xe_guc_ct.h"
-+#include "xe_guc_submit.h"
-+#include "xe_irq.h"
- #include "xe_pm.h"
- #include "xe_sriov.h"
- #include "xe_sriov_printk.h"
-@@ -134,6 +136,44 @@ void xe_sriov_vf_init_early(struct xe_device *xe)
+@@ -134,6 +134,22 @@ void xe_sriov_vf_init_early(struct xe_device *xe)
  	INIT_WORK(&xe->sriov.vf.migration.worker, migration_worker_func);
  }
  
 +/**
-+ * vf_post_migration_shutdown - Stop the driver activities after VF migration.
++ * xe_sriov_vf_post_migration_reset_guc_state - Reset VF state in all GuCs.
 + * @xe: the &xe_device struct instance
 + *
-+ * After this VM is migrated and assigned to a new VF, it is running on a new
-+ * hardware, and therefore many hardware-dependent states and related structures
-+ * require fixups. Without fixups, the hardware cannot do any work, and therefore
-+ * all GPU pipelines are stalled.
-+ * Stop some of kernel acivities to make the fixup process faster.
++ * This function sends VF state reset to GuC, as a way of exiting RESFIX
++ * state if a proper post-migration recovery procedure has failed.
 + */
-+static void vf_post_migration_shutdown(struct xe_device *xe)
++void xe_sriov_vf_post_migration_reset_guc_state(struct xe_device *xe)
 +{
 +	struct xe_gt *gt;
 +	unsigned int id;
 +
 +	for_each_gt(gt, xe, id)
-+		xe_guc_submit_pause(&gt->uc.guc);
-+}
-+
-+/**
-+ * vf_post_migration_kickstart - Re-start the driver activities under new hardware.
-+ * @xe: the &xe_device struct instance
-+ *
-+ * After we have finished with all post-migration fixups, restart the driver
-+ * activities to continue feeding the GPU with workloads.
-+ */
-+static void vf_post_migration_kickstart(struct xe_device *xe)
-+{
-+	struct xe_gt *gt;
-+	unsigned int id;
-+
-+	/* make sure interrupts on the new HW are properly set */
-+	xe_irq_resume(xe);
-+
-+	for_each_gt(gt, xe, id)
-+		xe_guc_submit_unpause(&gt->uc.guc);
++		xe_gt_reset_async(gt);
 +}
 +
  /**
-  * xe_sriov_vf_post_migration_reset_guc_state - Reset VF state in all GuCs.
+  * vf_post_migration_requery_guc - Re-query GuC for current VF provisioning.
   * @xe: the &xe_device struct instance
-@@ -247,6 +287,7 @@ static void vf_post_migration_recovery(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.h b/drivers/gpu/drm/xe/xe_sriov_vf.h
+index 7b8622cff2b7..ba846af34a13 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf.h
++++ b/drivers/gpu/drm/xe/xe_sriov_vf.h
+@@ -10,5 +10,6 @@ struct xe_device;
  
- 	drm_dbg(&xe->drm, "migration recovery in progress\n");
- 	xe_pm_runtime_get(xe);
-+	vf_post_migration_shutdown(xe);
- 	err = vf_post_migration_requery_guc(xe);
- 	if (vf_post_migration_imminent(xe))
- 		goto defer;
-@@ -258,6 +299,7 @@ static void vf_post_migration_recovery(struct xe_device *xe)
- 	if (need_fixups)
- 		vf_post_migration_fixup_ctb(xe);
+ void xe_sriov_vf_init_early(struct xe_device *xe);
+ void xe_sriov_vf_start_migration_recovery(struct xe_device *xe);
++void xe_sriov_vf_post_migration_reset_guc_state(struct xe_device *xe);
  
-+	vf_post_migration_kickstart(xe);
- 	vf_post_migration_notify_resfix_done(xe);
- 	xe_pm_runtime_put(xe);
- 	drm_notice(&xe->drm, "migration recovery ended\n");
+ #endif
 -- 
 2.25.1
 
