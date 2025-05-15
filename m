@@ -4,78 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E211C3DA4A
-	for <intel-xe@archiver.kernel.org>; Thu, 15 May 2025 12:13:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01D43C2D0CD
+	for <intel-xe@archiver.kernel.org>; Thu, 15 May 2025 12:16:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A074A10E24D;
-	Thu, 15 May 2025 12:13:44 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q/nEksP4";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70F0A10E04E;
- Thu, 15 May 2025 12:13:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747311223; x=1778847223;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=SMzCIxMMZEO9396KBs8rN2h+xUSN4fGX3RDCLaGg6m4=;
- b=Q/nEksP4GSkatiz0YkufmgnbDu+IrqVsQG+NqE3NZuWkIYMcmCRxrWj2
- mlfAmHXXD+DqZyGtek/b2BqwnHpUBx7wdLuDDEFjTL7wqgUkDSNtk3C5t
- d+aVDpSKSsBHOZjnfQpxO3Jstfjf+sMXDnEdkIgUKEPFsLiQikL4peIll
- DU+ri6RqxW+OCnMEbZiaYLgE7pUbtwr8faaqjBJb06xqVjdD/LMt+iUcs
- A98Tf0uU49y6YrFCD+jsv8MSrHzFpF0tF2gwRYnPuUDhmnFt5yJ9/uPCB
- CL9mtzh74xY/C3bz+hO0kfWu+rPxg7SzLLRkBpom1tAub3azGdJ5NfgKc w==;
-X-CSE-ConnectionGUID: GQM75VUgTVaZf6nmLlXjRw==
-X-CSE-MsgGUID: lY3Kgi/JRfi4iv9kmEZmqA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11434"; a="48360745"
-X-IronPort-AV: E=Sophos;i="6.15,291,1739865600"; d="scan'208";a="48360745"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2025 05:13:42 -0700
-X-CSE-ConnectionGUID: W8qAHBCoTcuDraKKNLsqjA==
-X-CSE-MsgGUID: k/GCdjmUSmOyXOBwmWmUKA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,291,1739865600"; d="scan'208";a="169290312"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2025 05:13:37 -0700
-Date: Thu, 15 May 2025 15:13:33 +0300
-From: Raag Jadav <raag.jadav@intel.com>
-To: "Usyskin, Alexander" <alexander.usyskin@intel.com>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- "De Marchi, Lucas" <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- "Poosa, Karthik" <karthik.poosa@intel.com>,
- "Abliyev, Reuven" <reuven.abliyev@intel.com>,
- "Weil, Oren jer" <oren.jer.weil@intel.com>,
- "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Tomas Winkler <tomasw@gmail.com>
-Subject: Re: [PATCH v9 02/12] mtd: add driver for intel graphics non-volatile
- memory device
-Message-ID: <aCXabQt_nhiTa1pF@black.fi.intel.com>
-References: <20250424132536.3043825-1-alexander.usyskin@intel.com>
- <20250424132536.3043825-3-alexander.usyskin@intel.com>
- <aBCcdPbIxthARrMj@black.fi.intel.com>
- <CY5PR11MB636656BB76C04BD77F0ADB25ED90A@CY5PR11MB6366.namprd11.prod.outlook.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA58E10E85C;
+	Thu, 15 May 2025 12:16:04 +0000 (UTC)
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B10E110E251;
+ Thu, 15 May 2025 12:16:02 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CY5PR11MB636656BB76C04BD77F0ADB25ED90A@CY5PR11MB6366.namprd11.prod.outlook.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/vf=3A_Fail_mi?=
+ =?utf-8?q?gration_recovery_if_fixups_needed_but_platform_not_supported_=28r?=
+ =?utf-8?q?ev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tomasz Lis" <tomasz.lis@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 15 May 2025 12:16:02 -0000
+Message-ID: <174731136272.84197.13758523057650373991@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <20250515111229.815047-1-tomasz.lis@intel.com>
+In-Reply-To: <20250515111229.815047-1-tomasz.lis@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,55 +37,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, May 15, 2025 at 03:41:08PM +0530, Usyskin, Alexander wrote:
-> > On Thu, Apr 24, 2025 at 04:25:26PM +0300, Alexander Usyskin wrote:
-> > > Add auxiliary driver for intel discrete graphics
-> > > non-volatile memory device.
+== Series Details ==
 
-...
+Series: drm/xe/vf: Fail migration recovery if fixups needed but platform not supported (rev4)
+URL   : https://patchwork.freedesktop.org/series/148914/
+State : success
 
-> > > +	for (n = 0, i = 0; i < INTEL_DG_NVM_REGIONS; i++) {
-> > > +		if (!invm->regions[i].name)
-> > > +			continue;
-> > > +
-> > > +		name = kasprintf(GFP_KERNEL, "%s.%s",
-> > > +				 dev_name(&aux_dev->dev), invm-
-> > >regions[i].name);
-> > > +		if (!name)
-> > > +			continue;
-> > > +		nvm->regions[n].name = name;
-> > > +		nvm->regions[n].id = i;
-> > > +		n++;
-> > > +	}
-> > > +	nvm->nregions = n; /* in case where kasprintf fail */
-> > 
-> > Considering kasprintf failure, should we move forward if n == 0?
-> Not sure if adding exit path here adds something positive to driver
-> other than complexity.
+== Summary ==
 
-With an error path already in place it shouldn't be too complex, but upto you.
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: fbf1cb830ae7 drm-tip: 2025y-05m-15d-10h-33m-27s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/vf: Fail migration recovery if fixups needed but platform not supported
 
-...
 
-> > > +static void intel_dg_mtd_remove(struct auxiliary_device *aux_dev)
-> > > +{
-> > > +	struct intel_dg_nvm *nvm = dev_get_drvdata(&aux_dev->dev);
-> > > +
-> > > +	if (!nvm)
-> > > +		return;
-> > 
-> > Are we expecting this?
-> > 
-> > > +	dev_set_drvdata(&aux_dev->dev, NULL);
-> > 
-> > Do we need this?
-> Is there guaranty by auxiliary device that after release nothing is called?
-
-Any reports/link to read about such issues? My understanding is that driver
-->remove() callbacks are bus lock held and there won't be an active instance
-to be called after unbind.
-
-Raag
