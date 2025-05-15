@@ -4,55 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91202C3ABC9
-	for <intel-xe@archiver.kernel.org>; Thu, 15 May 2025 09:49:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6C13C2D0CD
+	for <intel-xe@archiver.kernel.org>; Thu, 15 May 2025 09:50:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5843210E028;
-	Thu, 15 May 2025 09:49:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 912C210E0D9;
+	Thu, 15 May 2025 09:50:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZvRNM0fH";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="P/GNF0N2";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41B2B10E028
- for <intel-xe@lists.freedesktop.org>; Thu, 15 May 2025 09:49:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747302571; x=1778838571;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=CahS2Uwj4L0AVmWGWL9ASzrIhmvGjen+laujnXWXCZc=;
- b=ZvRNM0fHm4UyJAYQoiuS9erolkYmYG335rlLoyq1zlM1wq0S6JbJU3W6
- Of+7SxjnXrrGuUrZUSzGww3CeQrUSt9EIb0j926d8fvnoCO//lkrhkKqn
- fCEClSAL5/w9djM9otzWQc2RN6sw77L0tcHSGyNJWxYg/XHXu5ysdaG8+
- kswaHRfGvKNIgyCIobSCqtwhuu44hhTjEs0kjQ8dQ9LO03t2+PbXeWarl
- E+I7M7ESlAfDu+dRqi8TT1RnbS3DsvpU/gjb1z1r2I182o/Zg2s/A7uV/
- fUKMpfHelGDvnRu9aCxHOEGAWjMfU6kxBh/0ny1xG/+gXZzjgvJUiM/SC Q==;
-X-CSE-ConnectionGUID: n4XdKiYjT0W0KWnIsyWOzg==
-X-CSE-MsgGUID: dsTi6no6SDSK6np0NrKdFA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11433"; a="49389459"
-X-IronPort-AV: E=Sophos;i="6.15,290,1739865600"; d="scan'208";a="49389459"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2025 02:49:27 -0700
-X-CSE-ConnectionGUID: +flfs8S6TsaIxQLV+KlWCQ==
-X-CSE-MsgGUID: +uH0vLMESqOGu0vG3r88nA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,290,1739865600"; d="scan'208";a="138819104"
-Received: from dut2000adls.iind.intel.com (HELO DUT2000ADLS..)
- ([10.223.34.100])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2025 02:49:24 -0700
-From: Aradhya Bhatia <aradhya.bhatia@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: Intel XE List <intel-xe@lists.freedesktop.org>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Aradhya Bhatia <aradhya.bhatia@intel.com>
-Subject: [PATCH] drm/xe/guc: Make creation of SLPC debugfs files conditional
-Date: Thu, 15 May 2025 09:49:12 +0000
-Message-ID: <20250515094913.2437-1-aradhya.bhatia@intel.com>
-X-Mailer: git-send-email 2.45.2
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF20110E0D9;
+ Thu, 15 May 2025 09:50:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=fGQOFPJrTYGfJTQLPFRUvbXaQjq4Gsq2Hi+BhulxzEk=; b=P/GNF0N2SxUb8A9r+w08FsISvh
+ A0v+7zeGZLMDl0zMHvWJV26YqdZ0AzC+K1sOim68aRx4JamHNgnZiKb1SQQHEEtcbRQf/u94Gio2I
+ o187Xi8W17stXXCPs8u0kAN4ACGGEpairArhMwKpofGE3JVXraW3HrEab7Rg6KAbEW7aSHf4xWwwR
+ lQ9TRBjLPJvW7BTIuKg34FNCCAKz0ssPyhhjYSwVXnRi7UopUKfM6NGqymwMxRxu85dGkcq+XIbqt
+ gdVf+MGhgoq+tRXZ7LF9VIkkzMqMkkvCLy4N7C+NDFT1K76VMPdt1G9hdctU3XZp8L57yhx5fN7Z0
+ DqHFikbw==;
+Received: from [81.79.92.254] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1uFV8O-008ZQb-2m; Thu, 15 May 2025 11:50:06 +0200
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: dri-devel@lists.freedesktop.org
+Cc: Rob Clark <robdclark@gmail.com>, Sumit Semwal <sumit.semwal@linaro.org>,
+ Gustavo Padovan <gustavo@padovan.org>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
+ kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Subject: [PATCH v4 0/9] Some (drm_sched_|dma_)fence lifetime issues
+Date: Thu, 15 May 2025 10:49:55 +0100
+Message-ID: <20250515095004.28318-1-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.48.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,66 +64,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Platforms that do not support SLPC are exempted from the GuC PC support.
-The GuC PC does not get initialized, and neither do its BOs get created.
+Hi all,
 
-This causes a problem because the GuC PC debugfs file is still being
-created. Whenever the file is attempted to read, it causes a NULL
-pointer dereference on the supposed BO of the GuC PC.
+tl;dr;
+Xe and probably some other drivers can tear down the internal state referenced
+by an exported sync_file fence which then causes a null pointer derefences on
+accessing said fence.
 
-So, make the creation of SLPC debugfs files conditional to when SLPC
-features are supported.
+IGT that exploits the problem:
+https://patchwork.freedesktop.org/patch/642709/?series=146211&rev=2
 
-Suggested-by: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Aradhya Bhatia <aradhya.bhatia@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_debugfs.c | 17 ++++++++++++++---
- 1 file changed, 14 insertions(+), 3 deletions(-)
+It seems there is a consensus this is a known problem with the dma-fence design,
+where internal state shouldn't really be accessed after the fence has been
+signaled. However currently the code is mostly unaware of that hence the use-
+after-free potential.
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_debugfs.c b/drivers/gpu/drm/xe/xe_guc_debugfs.c
-index f33013f8a0f3..0b102ab46c4d 100644
---- a/drivers/gpu/drm/xe/xe_guc_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_guc_debugfs.c
-@@ -113,23 +113,34 @@ static const struct drm_info_list vf_safe_debugfs_list[] = {
- 	{ "guc_ctb", .show = guc_debugfs_show, .data = guc_ctb },
- };
- 
-+/* For GuC debugfs files that require the SLPC support */
-+static const struct drm_info_list slpc_debugfs_list[] = {
-+	{ "guc_pc", .show = guc_debugfs_show, .data = guc_pc },
-+};
-+
- /* everything else should be added here */
- static const struct drm_info_list pf_only_debugfs_list[] = {
- 	{ "guc_log", .show = guc_debugfs_show, .data = guc_log },
- 	{ "guc_log_dmesg", .show = guc_debugfs_show, .data = guc_log_dmesg },
--	{ "guc_pc", .show = guc_debugfs_show, .data = guc_pc },
- };
- 
- void xe_guc_debugfs_register(struct xe_guc *guc, struct dentry *parent)
- {
--	struct drm_minor *minor = guc_to_xe(guc)->drm.primary;
-+	struct xe_device *xe =  guc_to_xe(guc);
-+	struct drm_minor *minor = xe->drm.primary;
- 
- 	drm_debugfs_create_files(vf_safe_debugfs_list,
- 				 ARRAY_SIZE(vf_safe_debugfs_list),
- 				 parent, minor);
- 
--	if (!IS_SRIOV_VF(guc_to_xe(guc)))
-+	if (!IS_SRIOV_VF(xe)) {
- 		drm_debugfs_create_files(pf_only_debugfs_list,
- 					 ARRAY_SIZE(pf_only_debugfs_list),
- 					 parent, minor);
-+
-+		if (!xe->info.skip_guc_pc)
-+			drm_debugfs_create_files(slpc_debugfs_list,
-+						 ARRAY_SIZE(slpc_debugfs_list),
-+						 parent, minor);
-+	}
- }
+To fix it, between the option of adding more reference counting and trying to
+"revoke" the fence, suggestion is to focus on the later.
 
-base-commit: 3d6670fab64cb00b5e6ed80d2517147db533faf1
+Reference to the recent discussion:
+https://lore.kernel.org/dri-devel/20250418164246.72426-1-tvrtko.ursulin@igalia.com/
+
+This series therefore attempts to implement a solution along those lines.
+
+Most of the description what and how can be found in:
+ "dma-fence: Add safe access helpers and document the rules"
+
+Other than that, the series starts with some cleanups, with the general goal of
+hiding more of the dma-fence implementation details behind explicit API. This
+means adding helpers for access to driver and timeline name, and also moving as
+much as it is easily possible of driver allocated state into the fence object
+itself. Because dma-fence is already reference counted, any state we can embed
+automatically becomes safe.
+
+Having said that, the series only addreses the runtime use-after-free scenarios,
+such as the above explained situation with the xe driver. For now the module
+unload problem is deliberately left for later. (Although again, some of the
+early patches do make it safer, and will make future improvements easier due
+fewer accesses to fence->ops.)
+
+Final patch in the series is the one which makes xe compliant with the rules
+and API proposed earlier in the series. It does so by ensuring there is at least
+one RCU grace period between fences being signaled and driver allocated memory
+accessible from xe fences getting freed. Which couples with the earlier (from
+the series) refactors which added dma_fence_access_begin/end() protection to
+the relevant call sites.
+
+If this approach is acceptable the next steps will be to see if any other
+drivers will need similar changes. And also to discuss whether we want to go a
+step futher and later move to SRCU, so code would be protected against module
+unload as well.
+
+v2:
+ * Dropped module unload handling.
+ * Proposing real API instead of hacks.
+
+v3:
+ * Dropped the dma_fence_is_array|chain ops to flags conversion.
+ * Dropped the i915 cleanup patch which is now independent.
+ * Squashed dma-fence helpers with internal usage patches.
+ * Restored missing hunk in "dma-fence: Use a flag for 64-bit seqnos".
+ * Removed the AMDGPU_JOB_GET_TIMELINE_NAME macro.
+ * Applied some r-b tags.
+
+v4:
+ * Tidied 64-bit seqno flags patch and fixed for amdgpu user queues which landed
+   since.
+ * Adjusted some dma-fence tracepoints to avoid asserts.
+ * Protected tracepoints in dma_fence_wait_timeout() with the safe access
+   annotations.
+ * Dropped driver/timeline helper usage from amdgpu_trace.h.
+ * Dropped signaled fence protection from i915 timeline name vfunc.
+
+Tvrtko Ursulin (9):
+  dma-fence: Change signature of __dma_fence_is_later
+  dma-fence: Use a flag for 64-bit seqnos
+  dma-fence: Add helpers for accessing driver and timeline name
+  sync_file: Use dma-fence driver and timeline name helpers
+  drm/i915: Use dma-fence driver and timeline name helpers
+  dma-fence: Add safe access helpers and document the rules
+  sync_file: Protect access to driver and timeline name
+  drm/i915: Protect access to driver and timeline name
+  drm/xe: Make dma-fences compliant with the safe access rules
+
+ drivers/dma-buf/dma-fence-chain.c             |   7 +-
+ drivers/dma-buf/dma-fence.c                   | 159 +++++++++++++++---
+ drivers/dma-buf/sw_sync.c                     |   2 +-
+ drivers/dma-buf/sync_file.c                   |  14 +-
+ .../drm/amd/amdgpu/amdgpu_eviction_fence.c    |   7 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_userq_fence.c   |   5 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c  |   5 +-
+ drivers/gpu/drm/i915/gt/intel_gt_requests.c   |   6 +-
+ drivers/gpu/drm/i915/i915_request.c           |  17 +-
+ drivers/gpu/drm/i915/i915_sw_fence.c          |   6 +-
+ drivers/gpu/drm/xe/xe_guc_exec_queue_types.h  |   2 +
+ drivers/gpu/drm/xe/xe_guc_submit.c            |   7 +-
+ drivers/gpu/drm/xe/xe_hw_fence.c              |   5 +-
+ drivers/gpu/drm/xe/xe_sched_job.c             |  14 +-
+ include/linux/dma-fence.h                     |  47 ++++--
+ include/trace/events/dma_fence.h              |  38 ++++-
+ 16 files changed, 254 insertions(+), 87 deletions(-)
+
 -- 
-2.43.0
+2.48.0
 
