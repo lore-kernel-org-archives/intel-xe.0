@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA04AC3ABC9
-	for <intel-xe@archiver.kernel.org>; Fri, 16 May 2025 17:31:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8DDEC3ABC9
+	for <intel-xe@archiver.kernel.org>; Fri, 16 May 2025 17:46:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49E6E10EB4D;
-	Fri, 16 May 2025 17:31:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nsMzqrKB";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CBD810EB4D
- for <intel-xe@lists.freedesktop.org>; Fri, 16 May 2025 17:31:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747416662; x=1778952662;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=rzMPrlP+mhGFbYhQIRUQN73u7z/ctWd+pCnAlQoWXyg=;
- b=nsMzqrKBjXxEgQhUN09a213THO98RzOxDDJcEh+oO+XSHqMC8DEFYFY7
- TpDU3VrfFdzejDaWi9cKjAPnyDaaa2wMeNCX7/tBdA7Pkx8oAstTHI/Be
- NAHJX5sr5UisPyYW8VHf1LAF2ct8WmQJJgDTQcUREqLOj0dd8EBYk0it0
- Gavf6W2z7QthL2MJW1YmrxY7WSwPaBiISLW+7JZnrr6I4Bb8i1oH29btK
- P1vXDJ/OJ4BDS+2efgGc46kPMEYzNtCLkwFyhlRIW88Uq87eI05qb4Du4
- Gm+wEErBzewBu485uxoJ8VUpNHLIK0fM94HJC8ZdzMS/LBFCsZi+QCIPG A==;
-X-CSE-ConnectionGUID: UYtW6bRFTt+fGQ3mOLcF+g==
-X-CSE-MsgGUID: sKpOAvaaTLOp9kuEIkDslQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11435"; a="53214069"
-X-IronPort-AV: E=Sophos;i="6.15,294,1739865600"; d="scan'208";a="53214069"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2025 10:31:00 -0700
-X-CSE-ConnectionGUID: hJ7iOXmrTW+Ct0VLL7yxiQ==
-X-CSE-MsgGUID: HmBUwPshR16aM8csCtRy2A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,294,1739865600"; d="scan'208";a="139240764"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa010.fm.intel.com with ESMTP; 16 May 2025 10:30:57 -0700
-Received: from [10.245.84.121] (unknown [10.245.84.121])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 265B334934;
- Fri, 16 May 2025 18:30:56 +0100 (IST)
-Message-ID: <67aa9b71-53d2-49cc-8c23-c2b496e7c08d@intel.com>
-Date: Fri, 16 May 2025 19:30:55 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C1AF10EB54;
+	Fri, 16 May 2025 17:46:39 +0000 (UTC)
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FC2310EB54;
+ Fri, 16 May 2025 17:46:38 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1384139966435146768=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/7] drm/xe/vf: Pause submissions during RESFIX fixups
-To: Tomasz Lis <tomasz.lis@intel.com>, intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
- =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-References: <20250515221827.1493032-1-tomasz.lis@intel.com>
- <20250515221827.1493032-4-tomasz.lis@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20250515221827.1493032-4-tomasz.lis@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Crashlog_Type1_Version2_sup?=
+ =?utf-8?q?port?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 16 May 2025 17:46:38 -0000
+Message-ID: <174741759844.89658.16434440081190179878@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <20250516144619.210413-1-michael.j.ruhl@intel.com>
+In-Reply-To: <20250516144619.210413-1-michael.j.ruhl@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,221 +36,214 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============1384139966435146768==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: Crashlog Type1 Version2 support
+URL   : https://patchwork.freedesktop.org/series/149120/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-3102-d92ef94d0cf251e79cb570b101645c457ebf764c_BAT -> xe-pw-149120v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-149120v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_evict@evict-beng-small:
+    - bat-lnl-2:          NOTRUN -> [SKIP][1] ([Intel XE#688]) +9 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149120v1/bat-lnl-2/igt@xe_evict@evict-beng-small.html
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:
+    - bat-lnl-2:          NOTRUN -> [SKIP][2] ([Intel XE#2229]) +2 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149120v1/bat-lnl-2/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
+
+  * igt@xe_mmap@vram:
+    - bat-lnl-2:          NOTRUN -> [SKIP][3] ([Intel XE#1416])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149120v1/bat-lnl-2/igt@xe_mmap@vram.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-lnl-2:          NOTRUN -> [SKIP][4] ([Intel XE#1420] / [Intel XE#2838])
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149120v1/bat-lnl-2/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelp:
+    - bat-lnl-2:          NOTRUN -> [SKIP][5] ([Intel XE#977])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149120v1/bat-lnl-2/igt@xe_pat@pat-index-xelp.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-lnl-2:          NOTRUN -> [SKIP][6] ([Intel XE#2236] / [Intel XE#979])
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149120v1/bat-lnl-2/igt@xe_pat@pat-index-xelpg.html
+
+  * igt@xe_sriov_flr@flr-vf1-clear:
+    - bat-lnl-2:          NOTRUN -> [SKIP][7] ([Intel XE#3342])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149120v1/bat-lnl-2/igt@xe_sriov_flr@flr-vf1-clear.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_decode-instance-0-tile-1-system-memory:
+    - bat-lnl-2:          [INCOMPLETE][8] ([Intel XE#4966]) -> [PASS][9] +1 other test pass
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3102-d92ef94d0cf251e79cb570b101645c457ebf764c/bat-lnl-2/igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_decode-instance-0-tile-1-system-memory.html
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149120v1/bat-lnl-2/igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_decode-instance-0-tile-1-system-memory.html
+
+  
+  [Intel XE#1416]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1416
+  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
+  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
+  [Intel XE#3342]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342
+  [Intel XE#4966]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4966
+  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
+  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
 
 
-On 16.05.2025 00:18, Tomasz Lis wrote:
-> While applying post-migration fixups to VF, GuC will not respond
-> to any commands. This means submissions have no way of finishing.
-> 
-> To avoid acquiring additional resources and then stalling
-> on hardware access, pause the submission work. This will
-> decrease the chance of depleting resources, and speed up
-> the recovery.
-> 
-> v2: Commented xe_irq_resume() call
-> 
-> Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_gpu_scheduler.c | 13 +++++++++
->  drivers/gpu/drm/xe/xe_gpu_scheduler.h |  1 +
->  drivers/gpu/drm/xe/xe_guc_submit.c    | 35 ++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_guc_submit.h    |  2 ++
->  drivers/gpu/drm/xe/xe_sriov_vf.c      | 42 +++++++++++++++++++++++++++
->  5 files changed, 93 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.c b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-> index 869b43a4151d..455ccaf17314 100644
-> --- a/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-> +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-> @@ -101,6 +101,19 @@ void xe_sched_submission_stop(struct xe_gpu_scheduler *sched)
->  	cancel_work_sync(&sched->work_process_msg);
->  }
->  
-> +/**
-> + * xe_sched_submission_stop_async - Stop further runs of submission tasks on a scheduler.
-> + * @sched: the &xe_gpu_scheduler struct instance
-> + *
-> + * This call disables further runs of scheduling work queue. It does not wait
-> + * for any in-progress runs to finish, only makes sure no further runs happen
-> + * afterwards.
-> + */
-> +void xe_sched_submission_stop_async(struct xe_gpu_scheduler *sched)
-> +{
-> +	drm_sched_wqueue_stop(&sched->base);
-> +}
-> +
->  void xe_sched_submission_resume_tdr(struct xe_gpu_scheduler *sched)
->  {
->  	drm_sched_resume_timeout(&sched->base, sched->base.timeout);
-> diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-> index c250ea773491..d78b4e8203f9 100644
-> --- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-> +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-> @@ -21,6 +21,7 @@ void xe_sched_fini(struct xe_gpu_scheduler *sched);
->  
->  void xe_sched_submission_start(struct xe_gpu_scheduler *sched);
->  void xe_sched_submission_stop(struct xe_gpu_scheduler *sched);
-> +void xe_sched_submission_stop_async(struct xe_gpu_scheduler *sched);
->  
->  void xe_sched_submission_resume_tdr(struct xe_gpu_scheduler *sched);
->  
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index 80f748baad3f..6f280333de13 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -1811,6 +1811,19 @@ void xe_guc_submit_stop(struct xe_guc *guc)
->  
->  }
->  
-> +/**
-> + * xe_guc_submit_pause - Stop further runs of submission tasks on given GuC.
-> + * @guc: the &xe_guc struct instance whose scheduler is to be disabled
-> + */
-> +void xe_guc_submit_pause(struct xe_guc *guc)
-> +{
-> +	struct xe_exec_queue *q;
-> +	unsigned long index;
-> +
-> +	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
-> +		xe_sched_submission_stop_async(&q->guc->sched);
-> +}
-> +
->  static void guc_exec_queue_start(struct xe_exec_queue *q)
->  {
->  	struct xe_gpu_scheduler *sched = &q->guc->sched;
-> @@ -1851,6 +1864,28 @@ int xe_guc_submit_start(struct xe_guc *guc)
->  	return 0;
->  }
->  
-> +static void guc_exec_queue_unpause(struct xe_exec_queue *q)
-> +{
-> +	struct xe_gpu_scheduler *sched = &q->guc->sched;
-> +
-> +	xe_sched_submission_start(sched);
-> +}
-> +
-> +/**
-> + * xe_guc_submit_unpause - Allow further runs of submission tasks on given GuC.
-> + * @guc: the &xe_guc struct instance whose scheduler is to be enabled
-> + */
-> +void xe_guc_submit_unpause(struct xe_guc *guc)
-> +{
-> +	struct xe_exec_queue *q;
-> +	unsigned long index;
-> +
-> +	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
-> +		guc_exec_queue_unpause(q);
-> +
-> +	wake_up_all(&guc->ct.wq);
-> +}
-> +
->  static struct xe_exec_queue *
->  g2h_exec_queue_lookup(struct xe_guc *guc, u32 guc_id)
->  {
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
-> index 9b71a986c6ca..f1cf271492ae 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.h
-> @@ -18,6 +18,8 @@ int xe_guc_submit_reset_prepare(struct xe_guc *guc);
->  void xe_guc_submit_reset_wait(struct xe_guc *guc);
->  void xe_guc_submit_stop(struct xe_guc *guc);
->  int xe_guc_submit_start(struct xe_guc *guc);
-> +void xe_guc_submit_pause(struct xe_guc *guc);
-> +void xe_guc_submit_unpause(struct xe_guc *guc);
->  void xe_guc_submit_wedge(struct xe_guc *guc);
->  
->  int xe_guc_read_stopped(struct xe_guc *guc);
-> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-> index 099a395fbf59..f0d6abedd126 100644
-> --- a/drivers/gpu/drm/xe/xe_sriov_vf.c
-> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-> @@ -11,6 +11,8 @@
->  #include "xe_gt_sriov_printk.h"
->  #include "xe_gt_sriov_vf.h"
->  #include "xe_guc_ct.h"
-> +#include "xe_guc_submit.h"
-> +#include "xe_irq.h"
->  #include "xe_pm.h"
->  #include "xe_sriov.h"
->  #include "xe_sriov_printk.h"
-> @@ -134,6 +136,44 @@ void xe_sriov_vf_init_early(struct xe_device *xe)
->  	INIT_WORK(&xe->sriov.vf.migration.worker, migration_worker_func);
->  }
->  
-> +/**
-> + * vf_post_migration_shutdown - Stop the driver activities after VF migration.
-> + * @xe: the &xe_device struct instance
-> + *
-> + * After this VM is migrated and assigned to a new VF, it is running on a new
-> + * hardware, and therefore many hardware-dependent states and related structures
-> + * require fixups. Without fixups, the hardware cannot do any work, and therefore
-> + * all GPU pipelines are stalled.
-> + * Stop some of kernel acivities to make the fixup process faster.
+Build changes
+-------------
 
-typo acivities
+  * IGT: IGT_8365 -> IGT_8366
+  * Linux: xe-3102-d92ef94d0cf251e79cb570b101645c457ebf764c -> xe-pw-149120v1
 
-> + */
-> +static void vf_post_migration_shutdown(struct xe_device *xe)
-> +{
-> +	struct xe_gt *gt;
-> +	unsigned int id;
-> +
-> +	for_each_gt(gt, xe, id)
-> +		xe_guc_submit_pause(&gt->uc.guc);
-> +}
-> +
-> +/**
-> + * vf_post_migration_kickstart - Re-start the driver activities under new hardware.
-> + * @xe: the &xe_device struct instance
-> + *
-> + * After we have finished with all post-migration fixups, restart the driver
-> + * activities to continue feeding the GPU with workloads.
-> + */
-> +static void vf_post_migration_kickstart(struct xe_device *xe)
-> +{
-> +	struct xe_gt *gt;
-> +	unsigned int id;
-> +
-> +	/* make sure interrupts on the new HW are properly set */
-> +	xe_irq_resume(xe);
+  IGT_8365: 8365
+  IGT_8366: 8366
+  xe-3102-d92ef94d0cf251e79cb570b101645c457ebf764c: d92ef94d0cf251e79cb570b101645c457ebf764c
+  xe-pw-149120v1: 149120v1
 
-hmm, it still looks unbalanced when compared to shutdown
-don't we need xe_irq_suspend() there?
+== Logs ==
 
-also IIRC the whole recovery starts due to a MIGRATED IRQ event, so
-interrupts had to be already working, no?
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149120v1/index.html
 
-> +
-> +	for_each_gt(gt, xe, id)
-> +		xe_guc_submit_unpause(&gt->uc.guc);
-> +}
-> +
->  /**
->   * xe_sriov_vf_post_migration_reset_guc_state - Reset VF state in all GuCs.
->   * @xe: the &xe_device struct instance
-> @@ -247,6 +287,7 @@ static void vf_post_migration_recovery(struct xe_device *xe)
->  
->  	drm_dbg(&xe->drm, "migration recovery in progress\n");
->  	xe_pm_runtime_get(xe);
-> +	vf_post_migration_shutdown(xe);
->  	err = vf_post_migration_requery_guc(xe);
->  	if (vf_post_migration_imminent(xe))
->  		goto defer;
-> @@ -258,6 +299,7 @@ static void vf_post_migration_recovery(struct xe_device *xe)
->  	if (need_fixups)
->  		vf_post_migration_fixup_ctb(xe);
->  
-> +	vf_post_migration_kickstart(xe);
+--===============1384139966435146768==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-since above call will, as you said in comment above, start "feeding the
-GPU with workloads", shouldn't we do this step _after_ confirming RESFIX
-below and thus truly unblocking the VF submission on the GuC side?
 
->  	vf_post_migration_notify_resfix_done(xe);
->  	xe_pm_runtime_put(xe);
->  	drm_notice(&xe->drm, "migration recovery ended\n");
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Crashlog Type1 Version2 support</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149120/">https://patchwork.freedesktop.org/series/149120/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149120v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149120v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3102-d92ef94d0cf251e79cb570b101645c457ebf764c_BAT -&gt; xe-pw-149120v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-149120v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_evict@evict-beng-small:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149120v1/bat-lnl-2/igt@xe_evict@evict-beng-small.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +9 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149120v1/bat-lnl-2/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_mmap@vram:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149120v1/bat-lnl-2/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1416">Intel XE#1416</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149120v1/bat-lnl-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149120v1/bat-lnl-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149120v1/bat-lnl-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_sriov_flr@flr-vf1-clear:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149120v1/bat-lnl-2/igt@xe_sriov_flr@flr-vf1-clear.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342">Intel XE#3342</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_decode-instance-0-tile-1-system-memory:<ul>
+<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3102-d92ef94d0cf251e79cb570b101645c457ebf764c/bat-lnl-2/igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_decode-instance-0-tile-1-system-memory.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4966">Intel XE#4966</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149120v1/bat-lnl-2/igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_decode-instance-0-tile-1-system-memory.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8365 -&gt; IGT_8366</li>
+<li>Linux: xe-3102-d92ef94d0cf251e79cb570b101645c457ebf764c -&gt; xe-pw-149120v1</li>
+</ul>
+<p>IGT_8365: 8365<br />
+  IGT_8366: 8366<br />
+  xe-3102-d92ef94d0cf251e79cb570b101645c457ebf764c: d92ef94d0cf251e79cb570b101645c457ebf764c<br />
+  xe-pw-149120v1: 149120v1</p>
+
+</body>
+</html>
+
+--===============1384139966435146768==--
