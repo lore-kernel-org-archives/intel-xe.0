@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F560C3ABC9
-	for <intel-xe@archiver.kernel.org>; Fri, 16 May 2025 14:03:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6067CC3ABD8
+	for <intel-xe@archiver.kernel.org>; Fri, 16 May 2025 14:03:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02D5210EAC5;
-	Fri, 16 May 2025 14:03:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23BEF10EAC6;
+	Fri, 16 May 2025 14:03:49 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3BC910EAC5;
- Fri, 16 May 2025 14:03:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE7FD10EAC6;
+ Fri, 16 May 2025 14:03:47 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Default_au?=
- =?utf-8?q?to=5Flink=5Fdowngrade_status_to_false_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Default_auto=5F?=
+ =?utf-8?q?link=5Fdowngrade_status_to_false_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Aradhya Bhatia" <aradhya.bhatia@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 16 May 2025 14:03:35 -0000
-Message-ID: <174740421585.88034.9100981003263967985@c664b1dc75d1>
+Date: Fri, 16 May 2025 14:03:47 -0000
+Message-ID: <174740422770.88034.897862095668370810@c664b1dc75d1>
 X-Patchwork-Hint: ignore
 References: <20250516124355.4872-1-aradhya.bhatia@intel.com>
 In-Reply-To: <20250516124355.4872-1-aradhya.bhatia@intel.com>
@@ -48,9 +48,32 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 6d2dd85ba4eb drm-tip: 2025y-05m-16d-11h-14m-14s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Default auto_link_downgrade status to false
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit dbb92ec25237c3f673c0cbaa46a4456f22efa117
+Author: Aradhya Bhatia <aradhya.bhatia@intel.com>
+Date:   Fri May 16 12:43:55 2025 +0000
+
+    drm/xe: Default auto_link_downgrade status to false
+    
+    xe_pcode_read() can return back successfully without updating the
+    variable 'val'. This can cause an arbitrary value to show up in the
+    sysfs file.
+    
+    Allow the auto_link_downgrade_status to default to 0 to avoid any
+    arbitrary value from coming up.
+    
+    Fixes: 0e414bf7ad01 ("drm/xe: Expose PCIe link downgrade attributes")
+    Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+    Signed-off-by: Aradhya Bhatia <aradhya.bhatia@intel.com>
++ /mt/dim checkpatch 6d2dd85ba4eb3df89dc816c03b5bf81a470865b2 drm-intel
+dbb92ec25237 drm/xe: Default auto_link_downgrade status to false
 
 
