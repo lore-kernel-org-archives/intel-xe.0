@@ -4,66 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87AD5C3ABDD
-	for <intel-xe@archiver.kernel.org>; Fri, 16 May 2025 07:03:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53AC3C3ABDD
+	for <intel-xe@archiver.kernel.org>; Fri, 16 May 2025 07:19:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39DC210E868;
-	Fri, 16 May 2025 07:03:30 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aC8j9Jwp";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF34210E868;
- Fri, 16 May 2025 07:03:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747379010; x=1778915010;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=yhtrPlJ9qmNyVnIMkIRuxU21wfsbr+ewaXgbpucVwKI=;
- b=aC8j9JwpvDXHGdczQYOhi8gsjWw3+lx2duVDZeRZ79yD7emdbHz7aSBa
- QfkrfQCCW9ZSPQ+kNl3swrO8EBLelm1dP9wQoaRO6KfYI4liMrkPdpEOy
- sx322J6EUXdhtsxKTC4eQXXQVu+rtAosoXh2gKzyXavLFyp0X/sfsiwns
- +Z6wkiBHcAaeYm7A/MhKnM5T+t8EfqifgQBfsZkV7Oj5iGkEThF7jIDia
- C+PdwANMWsAA9SY3jt1RjVGGzjGUCF48y3K3RboMmozrQ/Wm1dLaC1KF3
- NLG1+nMr+i2jg50jaCZBivN0ol32cjb+qgYWfUBOmblFRKkM16b/qjSXO g==;
-X-CSE-ConnectionGUID: DBtY1VIjSAqMddztoUwhpw==
-X-CSE-MsgGUID: h+tDxLQ/R+iWNWYeVCzTCA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11434"; a="49477435"
-X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="49477435"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2025 00:03:27 -0700
-X-CSE-ConnectionGUID: vXCqJWCVTqKRwiW6nA2nnQ==
-X-CSE-MsgGUID: ZVjwAZNZQ0OfN1RXidy/aw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="143724385"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2025 00:03:23 -0700
-Date: Fri, 16 May 2025 10:03:19 +0300
-From: Raag Jadav <raag.jadav@intel.com>
-To: =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@igalia.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- siqueira@igalia.com, airlied@gmail.com, simona@ffwll.ch,
- rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
- Xaver Hugl <xaver.hugl@gmail.com>,
- "Pierre-Loup A . Griffais" <pgriffais@valvesoftware.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH v3 2/3] drm/doc: Add a section about "App information"
- for the wedge API
-Message-ID: <aCbjN9lqP4ZWV_lY@black.fi.intel.com>
-References: <20250512203437.989894-1-andrealmeid@igalia.com>
- <20250512203437.989894-3-andrealmeid@igalia.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95BB910E030;
+	Fri, 16 May 2025 07:19:24 +0000 (UTC)
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D156B10E030;
+ Fri, 16 May 2025 07:19:23 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8631740712958082076=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250512203437.989894-3-andrealmeid@igalia.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/psr=3A_Do_not_read?=
+ =?utf-8?q?_PSR2=5FSU=5FSTATUS_on_AlderLake_and_onwards_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 16 May 2025 07:19:23 -0000
+Message-ID: <174737996384.86767.7663948108095873002@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <20250516063019.2126702-1-jouni.hogander@intel.com>
+In-Reply-To: <20250516063019.2126702-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,63 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, May 12, 2025 at 05:34:36PM -0300, André Almeida wrote:
-> Add a section about "App information" for the wedge API.
-> 
-> Signed-off-by: André Almeida <andrealmeid@igalia.com>
-> ---
-> v3:
->  - Change "app that caused ..." to "app involved ..."
->  - Clarify that devcoredump have more information about what happened
->  - Update that PID and APP will be empty if there's no app info
-> ---
->  Documentation/gpu/drm-uapi.rst | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
-> 
-> diff --git a/Documentation/gpu/drm-uapi.rst b/Documentation/gpu/drm-uapi.rst
-> index 69f72e71a96e..3300a928d8ef 100644
-> --- a/Documentation/gpu/drm-uapi.rst
-> +++ b/Documentation/gpu/drm-uapi.rst
-> @@ -446,6 +446,23 @@ telemetry information (devcoredump, syslog). This is useful because the first
->  hang is usually the most critical one which can result in consequential hangs or
->  complete wedging.
->  
-> +App information
-> +---------------
-> +
-> +The information about which application (if any) was involved in the device
-> +wedging is useful for userspace if they want to notify the user about what
-> +happened (e.g. the compositor display a message to the user "The <app name>
-> +caused a graphical error and the system recovered") or to implement policies
-> +(e.g. the daemon may "ban" an app that keeps resetting the device). If the app
-> +information is available, the uevent will display as ``PID=<pid>`` and
-> +``APP=<task name>``. Otherwise, ``PID`` and ``APP`` will not appear in the event
+--===============8631740712958082076==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Personally I'd use Linux specific naming for consistency.
+== Series Details ==
 
-s/APP/TASK
+Series: drm/i915/psr: Do not read PSR2_SU_STATUS on AlderLake and onwards (rev2)
+URL   : https://patchwork.freedesktop.org/series/147814/
+State : success
 
-But in any case,
+== Summary ==
 
-Reviewed-by: Raag Jadav <raag.jadav@intel.com>
+CI Bug Log - changes from xe-3098-bf8c2c7bea6b5a38b6a3c24fdfc72b1ab5c03c28_BAT -> xe-pw-147814v2_BAT
+====================================================
 
-> +string.
-> +
-> +The reliability of this information is driver and hardware specific, and should
-> +be taken with a caution regarding it's precision. To have a big picture of what
-> +happened,
+Summary
+-------
 
-Nit: what *really* happened
+  **SUCCESS**
 
-> the devcoredump file provides should have much more detailed
-> +information about the device state and about the event.
-> +
->  Consumer prerequisites
->  ----------------------
->  
-> -- 
-> 2.49.0
-> 
+  No regressions found.
+
+  
+
+Participating hosts (10 -> 9)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3098-bf8c2c7bea6b5a38b6a3c24fdfc72b1ab5c03c28 -> xe-pw-147814v2
+
+  IGT_8365: 8365
+  xe-3098-bf8c2c7bea6b5a38b6a3c24fdfc72b1ab5c03c28: bf8c2c7bea6b5a38b6a3c24fdfc72b1ab5c03c28
+  xe-pw-147814v2: 147814v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147814v2/index.html
+
+--===============8631740712958082076==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/psr: Do not read PSR2_SU_STATUS on AlderLake and onwards (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147814/">https://patchwork.freedesktop.org/series/147814/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147814v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-147814v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3098-bf8c2c7bea6b5a38b6a3c24fdfc72b1ab5c03c28_BAT -&gt; xe-pw-147814v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (10 -&gt; 9)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3098-bf8c2c7bea6b5a38b6a3c24fdfc72b1ab5c03c28 -&gt; xe-pw-147814v2</li>
+</ul>
+<p>IGT_8365: 8365<br />
+  xe-3098-bf8c2c7bea6b5a38b6a3c24fdfc72b1ab5c03c28: bf8c2c7bea6b5a38b6a3c24fdfc72b1ab5c03c28<br />
+  xe-pw-147814v2: 147814v2</p>
+
+</body>
+</html>
+
+--===============8631740712958082076==--
