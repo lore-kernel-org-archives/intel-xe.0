@@ -4,26 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D50A6C3ABC9
-	for <intel-xe@archiver.kernel.org>; Fri, 16 May 2025 12:17:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 360BEC3ABD8
+	for <intel-xe@archiver.kernel.org>; Fri, 16 May 2025 12:17:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94DB310EA88;
-	Fri, 16 May 2025 12:17:13 +0000 (UTC)
-Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9971910EA87;
- Fri, 16 May 2025 12:17:11 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8205412450596430330=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id F317F10EA87;
+	Fri, 16 May 2025 12:17:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e5v141fS";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DED110EA88;
+ Fri, 16 May 2025 12:17:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1747397832; x=1778933832;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=SBGfKQOKXSezZCxstpHnCLS2LCoipPuR1NvtOhowLdE=;
+ b=e5v141fSmB3Jg1oV5EywnDBUwEAgOOB9w6k5o1w2TID77F/ItsK1uhnq
+ 2gzNNs736HeVuwtuCHucJFlBpV8VnwyFeh4llbcDWTKAna/YWfSNPn9AE
+ l17VTVZi58nLLL7KCTlbeoVm6sn87elhL3E8FbK/I1POCOsHfO2i6TUCx
+ MeGBaOSAiqsKQnvn9F2AtEC3oO6ewZE1KHNmkoucSLcNNOjkcqNKJmhtw
+ Hfk/trqP7GHxkdlF3v6IhvfHp6HXhasWZiZRofB7pSj7xq54e7SZ1mQSH
+ uYWuifn6P/2pl6vnNfut+jFuU/1T+KoblM7Fp0++VVVUadw0TufEqWIPs A==;
+X-CSE-ConnectionGUID: NrOC6/5gQD2TzZrKz8hJBA==
+X-CSE-MsgGUID: 76OMsUITQlSwGbqaD8LLzA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11434"; a="74766520"
+X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="74766520"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2025 05:17:12 -0700
+X-CSE-ConnectionGUID: zRftZlVHRQqjFEiJ6zwEdQ==
+X-CSE-MsgGUID: Mld+jSUPQg2R2YXFGuCTuA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="143568554"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.133])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2025 05:17:10 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com, Haoxiang Li <haoxiang_li2024@163.com>,
+ stable@vger.kernel.org
+Subject: [PATCH 1/7] drm/i915/display: Add check for alloc_ordered_workqueue()
+ and alloc_workqueue()
+Date: Fri, 16 May 2025 15:16:54 +0300
+Message-Id: <20d3d096c6a4907636f8a1389b3b4dd753ca356e.1747397638.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
+In-Reply-To: <cover.1747397638.git.jani.nikula@intel.com>
+References: <cover.1747397638.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_CCS_save_restore_for_IGPU?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 16 May 2025 12:17:11 -0000
-Message-ID: <174739783161.88034.17928503326720095912@c664b1dc75d1>
-X-Patchwork-Hint: ignore
-References: <20250516114832.19046-1-satyanarayana.k.v.p@intel.com>
-In-Reply-To: <20250516114832.19046-1-satyanarayana.k.v.p@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,106 +68,91 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8205412450596430330==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Haoxiang Li <haoxiang_li2024@163.com>
 
-== Series Details ==
+Add check for the return value of alloc_ordered_workqueue()
+and alloc_workqueue(). Furthermore, if some allocations fail,
+cleanup works are added to avoid potential memory leak problem.
 
-Series: CCS save restore for IGPU
-URL   : https://patchwork.freedesktop.org/series/149108/
-State : success
+Fixes: 40053823baad ("drm/i915/display: move modeset probe/remove functions to intel_display_driver.c")
+Cc: stable@vger.kernel.org
+Signed-off-by: Haoxiang Li <haoxiang_li2024@163.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ .../drm/i915/display/intel_display_driver.c   | 30 +++++++++++++++----
+ 1 file changed, 25 insertions(+), 5 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index 5c74ab5fd1aa..411fe7b918a7 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -244,31 +244,45 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
+ 	intel_dmc_init(display);
+ 
+ 	display->wq.modeset = alloc_ordered_workqueue("i915_modeset", 0);
++	if (!display->wq.modeset) {
++		ret = -ENOMEM;
++		goto cleanup_vga_client_pw_domain_dmc;
++	}
++
+ 	display->wq.flip = alloc_workqueue("i915_flip", WQ_HIGHPRI |
+ 						WQ_UNBOUND, WQ_UNBOUND_MAX_ACTIVE);
++	if (!display->wq.flip) {
++		ret = -ENOMEM;
++		goto cleanup_wq_modeset;
++	}
++
+ 	display->wq.cleanup = alloc_workqueue("i915_cleanup", WQ_HIGHPRI, 0);
++	if (!display->wq.cleanup) {
++		ret = -ENOMEM;
++		goto cleanup_wq_flip;
++	}
+ 
+ 	intel_mode_config_init(display);
+ 
+ 	ret = intel_cdclk_init(display);
+ 	if (ret)
+-		goto cleanup_vga_client_pw_domain_dmc;
++		goto cleanup_wq_cleanup;
+ 
+ 	ret = intel_color_init(display);
+ 	if (ret)
+-		goto cleanup_vga_client_pw_domain_dmc;
++		goto cleanup_wq_cleanup;
+ 
+ 	ret = intel_dbuf_init(display);
+ 	if (ret)
+-		goto cleanup_vga_client_pw_domain_dmc;
++		goto cleanup_wq_cleanup;
+ 
+ 	ret = intel_bw_init(display);
+ 	if (ret)
+-		goto cleanup_vga_client_pw_domain_dmc;
++		goto cleanup_wq_cleanup;
+ 
+ 	ret = intel_pmdemand_init(display);
+ 	if (ret)
+-		goto cleanup_vga_client_pw_domain_dmc;
++		goto cleanup_wq_cleanup;
+ 
+ 	intel_init_quirks(display);
+ 
+@@ -276,6 +290,12 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
+ 
+ 	return 0;
+ 
++cleanup_wq_cleanup:
++	destroy_workqueue(display->wq.cleanup);
++cleanup_wq_flip:
++	destroy_workqueue(display->wq.flip);
++cleanup_wq_modeset:
++	destroy_workqueue(display->wq.modeset);
+ cleanup_vga_client_pw_domain_dmc:
+ 	intel_dmc_fini(display);
+ 	intel_power_domains_driver_remove(display);
+-- 
+2.39.5
 
-CI Bug Log - changes from xe-3099-3e12fd2f2885242aa951ffc05c3c7bbb63e20d8e_BAT -> xe-pw-149108v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3099-3e12fd2f2885242aa951ffc05c3c7bbb63e20d8e -> xe-pw-149108v1
-
-  IGT_8365: 8365
-  xe-3099-3e12fd2f2885242aa951ffc05c3c7bbb63e20d8e: 3e12fd2f2885242aa951ffc05c3c7bbb63e20d8e
-  xe-pw-149108v1: 149108v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149108v1/index.html
-
---===============8205412450596430330==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>CCS save restore for IGPU</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149108/">https://patchwork.freedesktop.org/series/149108/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149108v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149108v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3099-3e12fd2f2885242aa951ffc05c3c7bbb63e20d8e_BAT -&gt; xe-pw-149108v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3099-3e12fd2f2885242aa951ffc05c3c7bbb63e20d8e -&gt; xe-pw-149108v1</li>
-</ul>
-<p>IGT_8365: 8365<br />
-  xe-3099-3e12fd2f2885242aa951ffc05c3c7bbb63e20d8e: 3e12fd2f2885242aa951ffc05c3c7bbb63e20d8e<br />
-  xe-pw-149108v1: 149108v1</p>
-
-</body>
-</html>
-
---===============8205412450596430330==--
