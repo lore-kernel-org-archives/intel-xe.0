@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E85C4C3ABD8
-	for <intel-xe@archiver.kernel.org>; Fri, 16 May 2025 10:08:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45DDFC3ABD8
+	for <intel-xe@archiver.kernel.org>; Fri, 16 May 2025 10:13:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF05110E9F9;
-	Fri, 16 May 2025 10:08:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2D8310EA2B;
+	Fri, 16 May 2025 10:13:09 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD0FF10E9F9;
- Fri, 16 May 2025 10:08:23 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3303878274523546418=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FAF810EA2B;
+ Fri, 16 May 2025 10:13:08 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Default_auto=5Fli?=
- =?utf-8?q?nk=5Fdowngrade_status_to_false?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/display=3A_dr?=
+ =?utf-8?q?op_duplicate_display-=3Efb=5Ftracking=2Elock_init?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Aradhya Bhatia" <aradhya.bhatia@intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 16 May 2025 10:08:23 -0000
-Message-ID: <174739010382.86766.18292054667349597342@c664b1dc75d1>
+Date: Fri, 16 May 2025 10:13:08 -0000
+Message-ID: <174739038831.86766.17271197517493604962@c664b1dc75d1>
 X-Patchwork-Hint: ignore
-References: <20250516092325.5959-1-aradhya.bhatia@intel.com>
-In-Reply-To: <20250516092325.5959-1-aradhya.bhatia@intel.com>
+References: <20250516095514.398320-1-jani.nikula@intel.com>
+In-Reply-To: <20250516095514.398320-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,17 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3303878274523546418==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Default auto_link_downgrade status to false
-URL   : https://patchwork.freedesktop.org/series/149101/
+Series: drm/xe/display: drop duplicate display->fb_tracking.lock init
+URL   : https://patchwork.freedesktop.org/series/149105/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-3098-bf8c2c7bea6b5a38b6a3c24fdfc72b1ab5c03c28_BAT -> xe-pw-149101v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 8)
-------------------------------
-
-  Missing    (2): bat-adlp-vf bat-adlp-vm 
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 3e12fd2f2885 drm-tip: 2025y-05m-16d-08h-33m-52s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/display: drop duplicate display->fb_tracking.lock init
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3098-bf8c2c7bea6b5a38b6a3c24fdfc72b1ab5c03c28 -> xe-pw-149101v1
-
-  IGT_8365: 8365
-  xe-3098-bf8c2c7bea6b5a38b6a3c24fdfc72b1ab5c03c28: bf8c2c7bea6b5a38b6a3c24fdfc72b1ab5c03c28
-  xe-pw-149101v1: 149101v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149101v1/index.html
-
---===============3303878274523546418==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Default auto_link_downgrade status to false</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149101/">https://patchwork.freedesktop.org/series/149101/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149101v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149101v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3098-bf8c2c7bea6b5a38b6a3c24fdfc72b1ab5c03c28_BAT -&gt; xe-pw-149101v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 8)</h2>
-<p>Missing    (2): bat-adlp-vf bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3098-bf8c2c7bea6b5a38b6a3c24fdfc72b1ab5c03c28 -&gt; xe-pw-149101v1</li>
-</ul>
-<p>IGT_8365: 8365<br />
-  xe-3098-bf8c2c7bea6b5a38b6a3c24fdfc72b1ab5c03c28: bf8c2c7bea6b5a38b6a3c24fdfc72b1ab5c03c28<br />
-  xe-pw-149101v1: 149101v1</p>
-
-</body>
-</html>
-
---===============3303878274523546418==--
