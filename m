@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45DDFC3ABD8
-	for <intel-xe@archiver.kernel.org>; Fri, 16 May 2025 10:13:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D6DAC3ABC9
+	for <intel-xe@archiver.kernel.org>; Fri, 16 May 2025 10:13:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2D8310EA2B;
-	Fri, 16 May 2025 10:13:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6F5A10EA2C;
+	Fri, 16 May 2025 10:13:20 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FAF810EA2B;
- Fri, 16 May 2025 10:13:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E7E010EA2C;
+ Fri, 16 May 2025 10:13:19 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/display=3A_dr?=
- =?utf-8?q?op_duplicate_display-=3Efb=5Ftracking=2Elock_init?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/display=3A_drop_du?=
+ =?utf-8?q?plicate_display-=3Efb=5Ftracking=2Elock_init?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 16 May 2025 10:13:08 -0000
-Message-ID: <174739038831.86766.17271197517493604962@c664b1dc75d1>
+Date: Fri, 16 May 2025 10:13:19 -0000
+Message-ID: <174739039950.87068.15809216714471929598@c664b1dc75d1>
 X-Patchwork-Hint: ignore
 References: <20250516095514.398320-1-jani.nikula@intel.com>
 In-Reply-To: <20250516095514.398320-1-jani.nikula@intel.com>
@@ -48,9 +48,27 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 3e12fd2f2885 drm-tip: 2025y-05m-16d-08h-33m-52s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/display: drop duplicate display->fb_tracking.lock init
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 3e0bbe671bd36245a54c50d4d30934aca1c7b163
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Fri May 16 12:55:14 2025 +0300
+
+    drm/xe/display: drop duplicate display->fb_tracking.lock init
+    
+    The spinlock is initialized in intel_display_driver_early_probe(). Drop
+    the extra init.
+    
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+    Reviewed-by: Matthew Auld <matthew.auld@intel.com>
++ /mt/dim checkpatch 3e12fd2f2885242aa951ffc05c3c7bbb63e20d8e drm-intel
+3e0bbe671bd3 drm/xe/display: drop duplicate display->fb_tracking.lock init
 
 
