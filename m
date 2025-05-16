@@ -4,61 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC2BFC3ABD8
-	for <intel-xe@archiver.kernel.org>; Fri, 16 May 2025 08:53:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2812C54755
+	for <intel-xe@archiver.kernel.org>; Fri, 16 May 2025 09:23:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BD0D10E9F4;
-	Fri, 16 May 2025 08:53:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64ED410EA0A;
+	Fri, 16 May 2025 09:23:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="POU6NLU+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B2NnKqf6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 236CB10E050;
- Fri, 16 May 2025 08:53:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7ED5410EA0A
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 May 2025 09:23:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747385613; x=1778921613;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=KL9ZtRnXbrdcGOl3WvPHJ6aj37du5XLO0lBZbwRCsM0=;
- b=POU6NLU+74OwFfdbsEstzNoAIifnoQGYdBbNqedTbdEmAJBhqlCpWMIz
- 8qPhueo7gclA1PmCbJ88S55Htjjj+S5wDBLN/TgktlaGt1Rl4gHnG40y0
- Y2oB+itwKpXxE4RYJ5MYMtLnCXgcxs35qSBuQr2Jq42g2y7uy1NidptVD
- w/W7WtuZUGaZCtSdV3CqStxSTHGCYwCRlDgLtIWye9Y+M+zZYjzl+M2yh
- CRGkyQ0biYQ9Zv/A2FWvmlOLKVYnK6RkxZ5FiB9iHaBtZmPaA2SmAn+ZG
- WYT6RsbNwadwleLekCgpALpJLdW5sEvkfpXw3Shn9q+4dlZ9EXY3s9GY8 g==;
-X-CSE-ConnectionGUID: tLPChA8YTwSN8fo9m1z+ag==
-X-CSE-MsgGUID: HeO5zawFTu6qilfIrlEfmw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11434"; a="36967686"
-X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="36967686"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2025 01:53:32 -0700
-X-CSE-ConnectionGUID: /ipcHQ89TpWmf4IQ3ZL5LA==
-X-CSE-MsgGUID: QepjbHrAQN6/Vq9FAvMOFA==
+ t=1747387412; x=1778923412;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6cvJVZ3Xd6pEJ+bm41VMb6/7jHVd0N9B7sae+l0gdCQ=;
+ b=B2NnKqf6/sCH2aCRa2yHs4+Rh/Ja7z0wlUGhqXtxXJHuxfUzpRKUhVjw
+ W3wjBvJ0nRt2guAGa37XGZqKacu4jGQSjisKZQo1viu/cPeSN6/M9ckGX
+ DO3v65i2K1lAMtniyOpkd2KKrApx8pzro7G8Evvnayru6DWGFoYkdZz0q
+ aEjgzwc1+LPO8pF4UwTq37ntIw0oG6P/FiChWbpIJcUCOGmMWM0KImCK4
+ 6ekir8fW3UWd8/3AopyievAVZtANH8j4k9W0UcD5AQiVWA6fgUSMXO1p1
+ rof3RSkZFKQK4Uhh1RccCvn40v4cE4drPVnQ5FS/ZMA6DwifBfn6dszfd Q==;
+X-CSE-ConnectionGUID: E/bC9BGoRfyN3DtAtx0IWA==
+X-CSE-MsgGUID: 2mJ5Fn+bRHaV1UBwyo5yFw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11434"; a="60741855"
+X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="60741855"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2025 02:23:30 -0700
+X-CSE-ConnectionGUID: 49BzxvOIR+2eOo3khqJJWg==
+X-CSE-MsgGUID: Pp87Us1QTnCKSdCaYppvfQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="138522038"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO [10.245.245.131])
- ([10.245.245.131])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2025 01:53:31 -0700
-Message-ID: <ce7159c2d2dc6f425be48085a93aabf0cbe9f20c.camel@linux.intel.com>
-Subject: Re: [Linaro-mm-sig] Re: Sharing dma-bufs using a driver-private
- interconnect
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Cc: Simona Vetter <simona.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, DMA BUFFER SHARING FRAMEWORK	
- <linaro-mm-sig@lists.linaro.org>
-Date: Fri, 16 May 2025 10:53:27 +0200
-In-Reply-To: <0a890d19-27a1-4525-83e6-cfc082dfab37@amd.com>
-References: <703610a4db0324db05ece8e83fff864717c2e6c2.camel@linux.intel.com>
- <0a890d19-27a1-4525-83e6-cfc082dfab37@amd.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="175772198"
+Received: from unknown (HELO DUT2104BMGFRD..) ([10.190.232.102])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2025 02:23:29 -0700
+From: Aradhya Bhatia <aradhya.bhatia@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Cc: Intel XE List <intel-xe@lists.freedesktop.org>,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>,
+ Aradhya Bhatia <aradhya.bhatia@intel.com>
+Subject: [PATCH] drm/xe: Default auto_link_downgrade status to false
+Date: Fri, 16 May 2025 09:23:25 +0000
+Message-ID: <20250516092325.5959-1-aradhya.bhatia@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,60 +66,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2025-05-16 at 10:44 +0200, Christian K=C3=B6nig wrote:
-> Hi Thomas,
->=20
-> On 5/16/25 10:33, Thomas Hellstr=C3=B6m wrote:
-> > Hi!
-> >=20
-> > I previously discussed this with Simona on IRC but would like to
-> > get
-> > some feedback also from a wider audience:
-> >=20
-> > We're planning to share dma-bufs using a fast interconnect in a way
-> > similar to pcie-p2p:
-> >=20
-> > The rough plan is to identify dma-bufs capable of sharing this way
-> > by
-> > looking at the address of either the dma-buf ops and / or the
-> > importer_ops to conclude it's a device using the same driver (or
-> > possibly child driver) and then take special action when the dma-
-> > addresses are obtained. Nothing visible outside of the xe driver or
-> > its
-> > child driver.
->=20
-> As far as I can see that should work and we have recommended doing
-> exactly that to multiple people in the past.
-> =C2=A0
-> > Are there any absolute "DON'T"s or recommendations to keep in mind
-> > WRT
-> > to this approach?
->=20
-> My only requirement is that you write up some documentation
-> (preferable either in drivers/dma-buf/dma-buf.c or
-> Documentation/driver-api/dma-buf.rst) how drivers should do this,
-> what the implications with the rest of the DMA-buf interface is
-> etc... etc...
->=20
-> The goal is to nail down how to do driver private interfaces without
-> breaking interoperability with drivers who don't participate in that.
+xe_pcode_read() can return back successfully without updating the
+variable 'val'. This can cause an arbitrary value to show up in the
+sysfs file. This concern was flagged by the coverity static analysis
+tool.
 
-Ok, Will ensure that we adhere to this.
+ALlow the auto_link_downgrade_status to default to 0 to avoid any such
+complication.
 
-Thanks,
-Thomas
+Fixes: 0e414bf7ad01 ("drm/xe: Expose PCIe link downgrade attributes")
+Signed-off-by: Aradhya Bhatia <aradhya.bhatia@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device_sysfs.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
+index 9628e9a0a0af..2e657692e5b5 100644
+--- a/drivers/gpu/drm/xe/xe_device_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+@@ -124,7 +124,8 @@ auto_link_downgrade_status_show(struct device *dev, struct device_attribute *att
+ {
+ 	struct pci_dev *pdev = to_pci_dev(dev);
+ 	struct xe_device *xe = pdev_to_xe_device(pdev);
+-	u32 val;
++	/* default the auto_link_downgrade status to 0 */
++	u32 val = 0;
+ 	int ret;
+ 
+ 	xe_pm_runtime_get(xe);
 
->=20
-> Regards,
-> Christian.
->=20
-> >=20
-> > Thanks,
-> > Thomas
-> >=20
-> )
-> _______________________________________________
-> Linaro-mm-sig mailing list -- linaro-mm-sig@lists.linaro.org
-> To unsubscribe send an email to linaro-mm-sig-leave@lists.linaro.org
+base-commit: bf8c2c7bea6b5a38b6a3c24fdfc72b1ab5c03c28
+-- 
+2.43.0
 
