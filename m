@@ -4,68 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61EF9C3ABDD
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 931F0C54795
 	for <intel-xe@archiver.kernel.org>; Mon, 19 May 2025 13:00:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E7E410E3AB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5187610E3B3;
 	Mon, 19 May 2025 13:00:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="IS4SOX9Y";
+	dkim=permerror (0-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="sjZmGPmQ";
 	dkim-atps=neutral
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA1BC10E082;
- Mon, 12 May 2025 14:09:32 +0000 (UTC)
-Received: from smtp2.mailbox.org (smtp2.mailbox.org
- [IPv6:2001:67c:2050:b231:465::2])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4Zx1gr6W2Wz9t2s;
- Mon, 12 May 2025 16:09:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1747058969; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=sGjALh9eKEZFx0N6cbie0vkm+fZRwhnmy1kasYIhjDI=;
- b=IS4SOX9YvKxf3uXn2X1ZsGOM+1O5TQ6cHc6abSj0zXdmPUz1VBrR0aU+mnRevCnpXM0Xqe
- gTFTHEH/6IEjK39CvZZishOP+Mthn5eUQpjgeo77EdJ4CTj4NEMkQMV+lsA1mL4cLXfWi7
- KzJQ/SrJ2/uGWNEeeOp6kLOcN4LbRtHBKKpSDDGFSjfdoM56zKSRdp9sRv7a2WsCrDLExC
- DcTpT8w1cXAvP+mPfmyUh9OAURAMBK9NzMRfZ6GrfM3/dxXw6gBi/BLXCqxHd/f+TLfTDn
- Vs29GTeY3DdygJKd0ZSfPdo2SGm54S+yg8llkTpMInw+iOb9/IaMTYZv5OBW4Q==
-Message-ID: <50debbe5a4856a744b8ac89048405be89f936a6a.camel@mailbox.org>
-Subject: Re: [PATCH 1/8] drm/sched: Allow drivers to skip the reset and keep
- on running
-From: Philipp Stanner <phasta@mailbox.org>
-To: =?ISO-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>, phasta@kernel.org, 
- Matthew Brost <matthew.brost@intel.com>
-Cc: Danilo Krummrich <dakr@kernel.org>, Christian =?ISO-8859-1?Q?K=F6nig?=
- <ckoenig.leichtzumerken@gmail.com>, Tvrtko Ursulin
- <tvrtko.ursulin@igalia.com>,  Simona Vetter <simona@ffwll.ch>, Melissa Wen
- <mwen@igalia.com>, Lucas Stach <l.stach@pengutronix.de>,  Russell King
- <linux+etnaviv@armlinux.org.uk>, Christian Gmeiner
- <christian.gmeiner@gmail.com>, Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,  Boris Brezillon
- <boris.brezillon@collabora.com>, Rob Herring <robh@kernel.org>, Steven
- Price <steven.price@arm.com>,  kernel-dev@igalia.com,
- dri-devel@lists.freedesktop.org,  etnaviv@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Date: Mon, 12 May 2025 16:09:21 +0200
-In-Reply-To: <22fdf8aa-437a-4d28-886a-fe10e957edfa@igalia.com>
-References: <20250503-sched-skip-reset-v1-0-ed0d6701a3fe@igalia.com>
- <20250503-sched-skip-reset-v1-1-ed0d6701a3fe@igalia.com>
- <aBl2xaVBlYYyBt2o@lstrano-desk.jf.intel.com>
- <aBodbVPeVtAWK6OX@lstrano-desk.jf.intel.com>
- <c0ce8bc07bf5547af5084cfcb2c7572d786fdc0e.camel@mailbox.org>
- <22fdf8aa-437a-4d28-886a-fe10e957edfa@igalia.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-4321.protonmail.ch (mail-4321.protonmail.ch [185.70.43.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DF5D89ABE
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 May 2025 10:42:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+ s=protonmail3; t=1747392150; x=1747651350;
+ bh=5S5LCJKk0So/T0veEYnMbllxlYVebk+O5gwQW07D7hc=;
+ h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+ Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector:
+ List-Unsubscribe:List-Unsubscribe-Post;
+ b=sjZmGPmQO2BeCpJF94hzv0d67SMY1MYH/IZ0yOjwTy09QXaNbth7Lfw1+P0JOfIYJ
+ RPc57CIk+uuWMs1ZaMAFjOmYI74MGd49m+5ErywHCtzgLrKHnx9EulkUaANqGJUYBd
+ vyrfk2wMtNE9A+NflZ6hKKIE22uAabcAb7ztTBLaU/gAIn8TXSPpvDmHx8fZRcYe1v
+ u824yQRfjmnOSYXVrM/YJRdPLTGu/jbeeV8mXk42qQieg59PWueVEUECA+Zpc9xlIN
+ L2RWTNe5hq6fnOIO+Vj7EuWk2OplsKgGYK2x00wuO5D9wAug6G+J03AZT/1eFmFSw4
+ SMf63wKPw6U1A==
+Date: Fri, 16 May 2025 10:42:25 +0000
+To: intel-xe@lists.freedesktop.org
+From: Harry Austen <hpausten@protonmail.com>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Harry Austen <hpausten@protonmail.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?utf-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH v4] drm/xe: Allow building as kernel built-in
+Message-ID: <20250516104210.17969-1-hpausten@protonmail.com>
+Feedback-ID: 53116287:user:proton
+X-Pm-Message-ID: 09e2a1a12e00f3a2b0e22c797cd769bce3479781
 MIME-Version: 1.0
-X-MBO-RS-ID: 47d697da19a3a933f0f
-X-MBO-RS-META: nnzga1m3wrejtbp351cpd68ns5cf7ngj
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Mon, 19 May 2025 13:00:27 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -78,168 +54,54 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 2025-05-12 at 11:04 -0300, Ma=C3=ADra Canal wrote:
-> Hi Philipp,
->=20
-> On 12/05/25 08:13, Philipp Stanner wrote:
-> > On Tue, 2025-05-06 at 07:32 -0700, Matthew Brost wrote:
-> > > On Mon, May 05, 2025 at 07:41:09PM -0700, Matthew Brost wrote:
-> > > > On Sat, May 03, 2025 at 05:59:52PM -0300, Ma=C3=ADra Canal wrote:
-> > > > > When the DRM scheduler times out, it's possible that the GPU
-> > > > > isn't hung;
-> > > > > instead, a job may still be running, and there may be no
-> > > > > valid
-> > > > > reason to
-> > > > > reset the hardware. This can occur in two situations:
-> > > > >=20
-> > > > > =C2=A0=C2=A0 1. The GPU exposes some mechanism that ensures the G=
-PU is
-> > > > > still
-> > > > > making
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 progress. By checking this mechani=
-sm, we can safely
-> > > > > skip the
-> > > > > reset,
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 rearm the timeout, and allow the j=
-ob to continue
-> > > > > running
-> > > > > until
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 completion. This is the case for v=
-3d and Etnaviv.
-> > > > > =C2=A0=C2=A0 2. TDR has fired before the IRQ that signals the fen=
-ce.
-> > > > > Consequently,
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 the job actually finishes, but it =
-triggers a timeout
-> > > > > before
-> > > > > signaling
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 the completion fence.
-> > > > >=20
-> > > >=20
-> > > > We have both of these cases in Xe too. We implement the
-> > > > requeuing
-> > > > in Xe
-> > > > via driver side function - xe_sched_add_pending_job but this
-> > > > looks
-> > > > better and will make use of this.
-> > > >=20
-> > > > > These two scenarios are problematic because we remove the job
-> > > > > from the
-> > > > > `sched->pending_list` before calling `sched->ops-
-> > > > > > timedout_job()`. This
-> > > > > means that when the job finally signals completion (e.g. in
-> > > > > the
-> > > > > IRQ
-> > > > > handler), the scheduler won't call `sched->ops->free_job()`.
-> > > > > As a
-> > > > > result,
-> > > > > the job and its resources won't be freed, leading to a memory
-> > > > > leak.
-> > > > >=20
-> > > > > To resolve this issue, we create a new `drm_gpu_sched_stat`
-> > > > > that
-> > > > > allows a
-> > > > > driver to skip the reset. This new status will indicate that
-> > > > > the
-> > > > > job
-> > > > > should be reinserted into the pending list, and the driver
-> > > > > will
-> > > > > still
-> > > > > signal its completion.
-> > > > >=20
-> > > > > Signed-off-by: Ma=C3=ADra Canal <mcanal@igalia.com>
-> > > >=20
-> > > > Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-> > > >=20
-> > >=20
-> > > Wait - nevermind I think one issue is below.
-> > >=20
-> > > > > ---
-> > > > > =C2=A0=C2=A0drivers/gpu/drm/scheduler/sched_main.c | 14 +++++++++=
-+++++
-> > > > > =C2=A0=C2=A0include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 ++
-> > > > > =C2=A0=C2=A02 files changed, 16 insertions(+)
-> > > > >=20
-> > > > > diff --git a/drivers/gpu/drm/scheduler/sched_main.c
-> > > > > b/drivers/gpu/drm/scheduler/sched_main.c
-> > > > > index
-> > > > > 829579c41c6b5d8b2abce5ad373c7017469b7680..68ca827d77e32187a03
-> > > > > 4309
-> > > > > f881135dbc639a9b4 100644
-> > > > > --- a/drivers/gpu/drm/scheduler/sched_main.c
-> > > > > +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> > > > > @@ -568,6 +568,17 @@ static void
-> > > > > drm_sched_job_timedout(struct
-> > > > > work_struct *work)
-> > > > > =C2=A0=C2=A0			job->sched->ops->free_job(job);
-> > > > > =C2=A0=C2=A0			sched->free_guilty =3D false;
-> > > > > =C2=A0=C2=A0		}
-> > > > > +
-> > > > > +		/*
-> > > > > +		 * If the driver indicated that the GPU is
-> > > > > still
-> > > > > running and wants to skip
-> > > > > +		 * the reset, reinsert the job back into the
-> > > > > pending list and realarm the
-> > > > > +		 * timeout.
-> > > > > +		 */
-> > > > > +		if (status =3D=3D DRM_GPU_SCHED_STAT_RUNNING) {
-> > > > > +			spin_lock(&sched->job_list_lock);
-> > > > > +			list_add(&job->list, &sched-
-> > > > > > pending_list);
-> > > > > +			spin_unlock(&sched->job_list_lock);
-> > > > > +		}
-> > >=20
-> > > I think you need to requeue free_job wq here. It is possible the
-> > > free_job wq ran, didn't find a job, goes to sleep, then we add a
-> > > signaled job here which will never get freed.
-> >=20
-> > I wonder if that could be solved by holding job_list_lock a bit
-> > longer.
-> > free_job_work will try to check the list for the next signaled job,
-> > but
-> > will wait for the lock.
-> >=20
-> > If that works, we could completely rely on the standard mechanism
-> > without requeuing, which would be neat.
->=20
-> I believe it works. However, the tradeoff would be holding the lock
-> for
-> the entire reset of the GPU (in the cases the GPU actually hanged),
-> which looks like a lot of time.
->=20
-> Do you think it's reasonable to do so?
+Fix Kconfig symbol dependency on KUNIT, which isn't actually required
+for XE to be built-in. However, if KUNIT is enabled, it must be built-in
+too.
 
-The scheduler only has three distinct work items, run_job, free_job and
-timeout.
+Also, allow DRM_XE_DISPLAY to be built-in. But only as long as DRM_I915
+isn't, since that results in duplicate symbol errors.
 
-timeout runs only serially, so that's not relevant; and run_job() and
-free_job() should be halted in the timeout handler through
-drm_sched_stop() anyways.
+Fixes: 08987a8b6820 ("drm/xe: Fix build with KUNIT=3Dm")
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Signed-off-by: Harry Austen <hpausten@protonmail.com>
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+---
+v4: Add Jani Nikula's Acked-by tag
+v3: Simplify KUNIT dependency, as suggested by Jani Nikula
+v2: Ensure DRM_XE_DISPLAY and DRM_I915 can't both be built-in
 
-Moreover, timeouts should be rare events.
+ drivers/gpu/drm/xe/Kconfig | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-So I'd say yes, the clarity of the code trumps here.
+diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+index 9bce047901b22..214f40264fa12 100644
+--- a/drivers/gpu/drm/xe/Kconfig
++++ b/drivers/gpu/drm/xe/Kconfig
+@@ -1,7 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ config DRM_XE
+ =09tristate "Intel Xe Graphics"
+-=09depends on DRM && PCI && MMU && (m || (y && KUNIT=3Dy))
++=09depends on DRM && PCI && MMU
++=09depends on KUNIT || KUNIT=3Dn
+ =09select INTERVAL_TREE
+ =09# we need shmfs for the swappable backing store, and in particular
+ =09# the shmem_readpage() which depends upon tmpfs
+@@ -51,7 +52,7 @@ config DRM_XE
+=20
+ config DRM_XE_DISPLAY
+ =09bool "Enable display support"
+-=09depends on DRM_XE && DRM_XE=3Dm && HAS_IOPORT
++=09depends on DRM_XE && (DRM_XE=3Dm || DRM_I915!=3Dy) && HAS_IOPORT
+ =09select FB_IOMEM_HELPERS if DRM_FBDEV_EMULATION
+ =09select I2C
+ =09select I2C_ALGOBIT
+--=20
+2.49.0
 
-Cheers,
-P.
-
-
->=20
-> Best Regards,
-> - Ma=C3=ADra
->=20
-> >=20
-> > P.
-> >=20
-> > >=20
-> > > Matt
-> > >=20
->=20
->=20
 
