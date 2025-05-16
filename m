@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB3D2C3ABC9
-	for <intel-xe@archiver.kernel.org>; Fri, 16 May 2025 19:38:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E2D5C3ABD8
+	for <intel-xe@archiver.kernel.org>; Fri, 16 May 2025 19:43:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A41210EB7D;
-	Fri, 16 May 2025 19:38:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E5F910EB81;
+	Fri, 16 May 2025 19:43:39 +0000 (UTC)
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F48610EB7B;
- Fri, 16 May 2025 19:38:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8506542488060825412=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 196FA10EB81;
+ Fri, 16 May 2025 19:43:38 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dp=5Fmst=3A_Work_a?=
- =?utf-8?q?round_Thunderbolt_sink_disconnect_after_SINK=5FCOUNT=5FESI_read?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/oa=3A_Expose_?=
+ =?utf-8?q?media_OA_units?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 16 May 2025 19:38:49 -0000
-Message-ID: <174742432905.89827.11691904243572671869@c664b1dc75d1>
+Date: Fri, 16 May 2025 19:43:38 -0000
+Message-ID: <174742461809.89827.11045828167480727902@c664b1dc75d1>
 X-Patchwork-Hint: ignore
-References: <20250516170946.1313722-1-imre.deak@intel.com>
-In-Reply-To: <20250516170946.1313722-1-imre.deak@intel.com>
+References: <20250516180913.2072293-1-ashutosh.dixit@intel.com>
+In-Reply-To: <20250516180913.2072293-1-ashutosh.dixit@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,17 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8506542488060825412==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/dp_mst: Work around Thunderbolt sink disconnect after SINK_COUNT_ESI read
-URL   : https://patchwork.freedesktop.org/series/149130/
+Series: drm/xe/oa: Expose media OA units
+URL   : https://patchwork.freedesktop.org/series/149133/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-3103-9c0f4c692985eaa0b88ed12a16ec197e83707501_BAT -> xe-pw-149130v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 9c0f4c692985 drm-tip: 2025y-05m-16d-17h-41m-20s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/oa: Expose media OA units
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3103-9c0f4c692985eaa0b88ed12a16ec197e83707501 -> xe-pw-149130v1
-
-  IGT_8366: 8366
-  xe-3103-9c0f4c692985eaa0b88ed12a16ec197e83707501: 9c0f4c692985eaa0b88ed12a16ec197e83707501
-  xe-pw-149130v1: 149130v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149130v1/index.html
-
---===============8506542488060825412==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp_mst: Work around Thunderbolt sink disconnect after SINK_COUNT_ESI read</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149130/">https://patchwork.freedesktop.org/series/149130/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149130v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149130v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3103-9c0f4c692985eaa0b88ed12a16ec197e83707501_BAT -&gt; xe-pw-149130v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3103-9c0f4c692985eaa0b88ed12a16ec197e83707501 -&gt; xe-pw-149130v1</li>
-</ul>
-<p>IGT_8366: 8366<br />
-  xe-3103-9c0f4c692985eaa0b88ed12a16ec197e83707501: 9c0f4c692985eaa0b88ed12a16ec197e83707501<br />
-  xe-pw-149130v1: 149130v1</p>
-
-</body>
-</html>
-
---===============8506542488060825412==--
