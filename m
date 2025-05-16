@@ -4,56 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89A84C3ABC9
-	for <intel-xe@archiver.kernel.org>; Fri, 16 May 2025 12:17:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D50A6C3ABC9
+	for <intel-xe@archiver.kernel.org>; Fri, 16 May 2025 12:17:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EF9510EA7F;
-	Fri, 16 May 2025 12:17:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FTj1woml";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3975410EA7F;
- Fri, 16 May 2025 12:17:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747397829; x=1778933829;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ANNwwWLmk0XDPk3iWi4O3gurymF4eBeqngVa8sIsMTM=;
- b=FTj1woml8LIpCK0ifvIsZ81Cx5lKhEWOWcsnwkMLD3IwyxqWvxtjHu0N
- 59znz5qCqjztASNN6DX+Abf3wws91q66lf1jroyiSGot5pR+uMoBhkq74
- 8P3pXyOj490JtCsE21ZlZjMP0cq5jIX7iz5+bv5W3XF6bA2SzWvCPIVo8
- SaekAfB57xs0ywFQ3y43mzPim2ryd3rmi1n+BsMtUqSs8RBvVUxHcgUFC
- cq/+Jtxnmlg4Fn0Dg1KkHoEbRrQj17vby1bd20hkUK3f6whTwmlakXs04
- lVSDZCDFC6/fj3BZjnQXGTyYcNRVTlKweYWkuZaKuyYsqmWqNGO0Vufdd Q==;
-X-CSE-ConnectionGUID: PXZko87eR2yas5FR83ekYA==
-X-CSE-MsgGUID: 4I2ksB+iSI+wJHtX+dCQ/w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11434"; a="74766515"
-X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="74766515"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2025 05:17:08 -0700
-X-CSE-ConnectionGUID: CPSNKAHNS669RFQNG7FFtw==
-X-CSE-MsgGUID: 1LT/YQKTTValvoMeBSXhIg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="143568549"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.133])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2025 05:17:06 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 0/7] drm/i915 & drm/xe: prep work towards opaque struct
- intel_display
-Date: Fri, 16 May 2025 15:16:53 +0300
-Message-Id: <cover.1747397638.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94DB310EA88;
+	Fri, 16 May 2025 12:17:13 +0000 (UTC)
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9971910EA87;
+ Fri, 16 May 2025 12:17:11 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8205412450596430330=="
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_CCS_save_restore_for_IGPU?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 16 May 2025 12:17:11 -0000
+Message-ID: <174739783161.88034.17928503326720095912@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <20250516114832.19046-1-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20250516114832.19046-1-satyanarayana.k.v.p@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,41 +35,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is more prep work towards making struct intel_display and thus
-i915->display and xe->display pointers opaque in the i915 and xe driver
-cores.
+--===============8205412450596430330==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I've included and rebased a couple of fixes from Haoxiang Li that had
-unfortunately fallen between the cracks, and would conflict even more
-after this.
+== Series Details ==
 
-BR,
-Jani.
+Series: CCS save restore for IGPU
+URL   : https://patchwork.freedesktop.org/series/149108/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-3099-3e12fd2f2885242aa951ffc05c3c7bbb63e20d8e_BAT -> xe-pw-149108v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
 
 
-Haoxiang Li (2):
-  drm/i915/display: Add check for alloc_ordered_workqueue() and
-    alloc_workqueue()
-  drm/xe/display: Add check for alloc_ordered_workqueue()
+Changes
+-------
 
-Jani Nikula (5):
-  drm/xe/display: drop duplicate display->fb_tracking.lock init
-  drm/i915/display: move hotplug.dp_wq init from xe and i915 to display
-  drm/xe/display: move xe->display initialization to xe_display_probe()
-  drm/xe/display: add notes about how early a few functions can be
-    called
-  drm/xe/display: use xe->display to decide whether to do anything
+  No changes found
 
- .../drm/i915/display/intel_display_driver.c   | 39 +++++++-
- drivers/gpu/drm/i915/i915_driver.c            | 13 +--
- drivers/gpu/drm/xe/display/xe_display.c       | 91 ++++++++-----------
- drivers/gpu/drm/xe/display/xe_display.h       |  4 -
- drivers/gpu/drm/xe/xe_device.c                |  4 -
- 5 files changed, 73 insertions(+), 78 deletions(-)
 
--- 
-2.39.5
+Build changes
+-------------
 
+  * Linux: xe-3099-3e12fd2f2885242aa951ffc05c3c7bbb63e20d8e -> xe-pw-149108v1
+
+  IGT_8365: 8365
+  xe-3099-3e12fd2f2885242aa951ffc05c3c7bbb63e20d8e: 3e12fd2f2885242aa951ffc05c3c7bbb63e20d8e
+  xe-pw-149108v1: 149108v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149108v1/index.html
+
+--===============8205412450596430330==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>CCS save restore for IGPU</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149108/">https://patchwork.freedesktop.org/series/149108/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149108v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149108v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3099-3e12fd2f2885242aa951ffc05c3c7bbb63e20d8e_BAT -&gt; xe-pw-149108v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3099-3e12fd2f2885242aa951ffc05c3c7bbb63e20d8e -&gt; xe-pw-149108v1</li>
+</ul>
+<p>IGT_8365: 8365<br />
+  xe-3099-3e12fd2f2885242aa951ffc05c3c7bbb63e20d8e: 3e12fd2f2885242aa951ffc05c3c7bbb63e20d8e<br />
+  xe-pw-149108v1: 149108v1</p>
+
+</body>
+</html>
+
+--===============8205412450596430330==--
