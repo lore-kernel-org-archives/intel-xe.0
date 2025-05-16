@@ -4,49 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95A73C3ABD8
-	for <intel-xe@archiver.kernel.org>; Fri, 16 May 2025 11:32:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A43B9C3ABC9
+	for <intel-xe@archiver.kernel.org>; Fri, 16 May 2025 11:32:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4218A10E075;
-	Fri, 16 May 2025 11:32:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69CE410EA52;
+	Fri, 16 May 2025 11:32:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AHdxEXyX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nTfqtRBx";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 614AF10E075
- for <intel-xe@lists.freedesktop.org>; Fri, 16 May 2025 11:32:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 749E310EA52
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 May 2025 11:32:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747395137; x=1778931137;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=DI90Wz+apqXo1fwDAtWyjzhkmuPhF3HvX3zc0MqAM+Y=;
- b=AHdxEXyXu20MUIPF5hd3NwN36q9n5eXjbu3ZjC37FyqjfMMwJu0K0thM
- xr7mc3Xi6a6el7AJazNjKWBZwejlK/+KQdEVBndf8Rds9zR9W06J4gZ+n
- EQhmkHIiAe0HgkKURP2XVXNFtOT5d9uANPkzdP4VCBddZcC8GgM/eke76
- NYRR6uOUeQ9XHzOzU4qvb1Id+Y8v5+pgyC2rCuohp4WBi6T/wnFdHUaG2
- urxXFjSWlGZ1SiYT4jKho5Au/E1np1lMzDJZMfvdaJdvDxW7kH0joDb6w
- Y+T+TUC/Mvj8KDudCyWnYOjDxNtLCIIv5ZubL0g60gl/6+mpmBBKfcul2 Q==;
-X-CSE-ConnectionGUID: SXHtEgn0SAuq5FQAtodHmQ==
-X-CSE-MsgGUID: 2TfSGd0cSKeciYFIEKuOOg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11434"; a="60002046"
-X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="60002046"
+ t=1747395139; x=1778931139;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=eVK/t2R5ZdLDZgAQUOKTPqQ9dGwYSO5eyImNsPuFsY8=;
+ b=nTfqtRBx7Hq82s/BeMhHcUlIwCX2LUeup6kuOsUC8DCuqFIZ0ThoKoD2
+ a2KAEZPv6bR87XmKFuKr+4424S9hjkyHv5uAeiMucqBIOG8RSzt382Voq
+ St+TJkqfW/nI+27TTA9ui2gGcfUvW4kxU4dueO6vY5zaU+DxGTOhTOObg
+ Y2UqTAKNTeL8nolV/gKqQwPLugRPOluO8KDK5AoyfUE0ghKV4zPUkZm0s
+ lOKGjOBQrs5dSE/xDFCQ3gFqr6xJNa6jzu/6pHs8E+HguD1kjtfLazH8i
+ t+MHGFsXsyp2/BHgReKjsKpqXam4eihHhN1KQzghQwBKsbzyue3exIu+Z A==;
+X-CSE-ConnectionGUID: RsLKPSdKRe+CboZGCmIpSg==
+X-CSE-MsgGUID: qh5rsP75SiWPp3xmtjV9rg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11434"; a="60002052"
+X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="60002052"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2025 04:32:16 -0700
-X-CSE-ConnectionGUID: T9jjKet+TYKKOD+pWLpfrQ==
-X-CSE-MsgGUID: zp4ReFFZTLm2sowGLCPgvA==
+ 16 May 2025 04:32:19 -0700
+X-CSE-ConnectionGUID: gtLZKCY/TQinfxyE4chl3g==
+X-CSE-MsgGUID: Fh611JEoTgOjjo2wifagoA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="139152240"
+X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="139152247"
 Received: from labhost1.iind.intel.com ([10.190.230.69])
- by fmviesa010.fm.intel.com with ESMTP; 16 May 2025 04:32:16 -0700
+ by fmviesa010.fm.intel.com with ESMTP; 16 May 2025 04:32:17 -0700
 From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Subject: [ONLY FOR INTERNAL REVIEW 0/3] CCS save restore for IGPU
-Date: Fri, 16 May 2025 17:18:29 +0530
-Message-ID: <20250516114832.19046-1-satyanarayana.k.v.p@intel.com>
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ Tomasz Lis <tomasz.lis@intel.com>, Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
+Subject: [ONLY FOR INTERNAL REVIEW 1/3] drm/xe/vf: Create contexts for CCS
+ read write
+Date: Fri, 16 May 2025 17:18:30 +0530
+Message-ID: <20250516114832.19046-2-satyanarayana.k.v.p@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250516114832.19046-1-satyanarayana.k.v.p@intel.com>
+References: <20250516114832.19046-1-satyanarayana.k.v.p@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -64,49 +71,347 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Prior IGPU design had compression supported in GPU VA domain. For
-Virtualization, this makes compression Meta data save/restore for VF as not
-necessary (i.e. Compression Meta data space is automatically save/restore with
-normal guest/VM memory).
+Create two LRCs to handle CCS meta data read / write from CCS pool in the
+VM. Read context is used to hold GPU instructions to be executed at save
+time and write context is used to hold GPU instructions to be executed at
+the restore time.
 
-With latest Xe2 architecture, compression is supported by Flat, physical domain.
-Meta data/compression control surface (Aka CCS) and association is in physical
-domain and data is located in BIOS/firmware-reserved CCS pool. In
-virtualization/SRIOV when VF save/restore now have to account for save/restore
-VF associated CCS. Without this feature any restore of compressed resource in
-IGPU VF domain will have corruption as Meta data will not be restore correctly
-as a part of VF save/restore flow. Making it must have/functional feature if we
-are supporting compression and Save/restore of VF on IGPU platform.
+Allocate batch buffer pool using suballocator for both read and write
+contexts.
 
-This is the first in series which adds support for CCS save/restore for IGPU.
+Migration framework is reused to create LRCAs for read and write.
 
-Satyanarayana K V P (3):
-  drm/xe/vf: Create contexts for CCS read write
-  drm/xe/vf: Attach and detach CCS copy commands with BO.
-  drm/xe/vf: Register CCS read/write contexts with Guc
-
+Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+---
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Michał Winiarski <michal.winiarski@intel.com>
+Cc: Tomasz Lis <tomasz.lis@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+---
  drivers/gpu/drm/xe/Makefile          |   3 +-
- drivers/gpu/drm/xe/xe_bb.c           |  33 +++
- drivers/gpu/drm/xe/xe_bb.h           |   1 +
- drivers/gpu/drm/xe/xe_bo.c           |  13 ++
- drivers/gpu/drm/xe/xe_bo_types.h     |   3 +
  drivers/gpu/drm/xe/xe_device.c       |   2 +
- drivers/gpu/drm/xe/xe_device_types.h |  15 ++
- drivers/gpu/drm/xe/xe_gt_debugfs.c   |  17 +-
- drivers/gpu/drm/xe/xe_guc_fwif.h     |   5 +
- drivers/gpu/drm/xe/xe_guc_submit.c   |  37 ++-
- drivers/gpu/drm/xe/xe_guc_submit.h   |   1 +
- drivers/gpu/drm/xe/xe_migrate.c      | 192 +++++++++++++---
- drivers/gpu/drm/xe/xe_migrate.h      |  44 +++-
- drivers/gpu/drm/xe/xe_pm.c           |   3 +
- drivers/gpu/drm/xe/xe_sriov.c        |  17 ++
+ drivers/gpu/drm/xe/xe_device_types.h |  15 +++
+ drivers/gpu/drm/xe/xe_gt_debugfs.c   |  17 ++-
+ drivers/gpu/drm/xe/xe_sriov.c        |  17 +++
  drivers/gpu/drm/xe/xe_sriov.h        |   1 +
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.c | 327 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.h |  16 ++
- 18 files changed, 692 insertions(+), 38 deletions(-)
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.c | 156 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.h |  13 +++
+ 8 files changed, 221 insertions(+), 3 deletions(-)
  create mode 100644 drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
  create mode 100644 drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
 
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index e4bf484d4121..ad2fb025463a 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -139,7 +139,8 @@ xe-y += \
+ 	xe_guc_relay.o \
+ 	xe_memirq.o \
+ 	xe_sriov.o \
+-	xe_sriov_vf.o
++	xe_sriov_vf.o \
++	xe_sriov_vf_ccs.o
+ 
+ xe-$(CONFIG_PCI_IOV) += \
+ 	xe_gt_sriov_pf.o \
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index d4b6e623aa48..c8cb25dbd0ac 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -929,6 +929,8 @@ int xe_device_probe(struct xe_device *xe)
+ 
+ 	xe_vsec_init(xe);
+ 
++	err = xe_sriov_late_init(xe);
++
+ 	return devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
+ 
+ err_unregister_display:
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 50b2bfa682ac..4f0b74bd0824 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -234,9 +234,24 @@ struct xe_tile {
+ 			/** @sriov.pf.lmtt: Local Memory Translation Table. */
+ 			struct xe_lmtt lmtt;
+ 		} pf;
++#define XE_CCS_READ_CTX	0
++#define XE_CCS_WRITE_CTX	1
++#define XE_CCS_RW_MAX_CTXS	(XE_CCS_WRITE_CTX + 1)
+ 		struct {
+ 			/** @sriov.vf.ggtt_balloon: GGTT regions excluded from use. */
+ 			struct xe_ggtt_node *ggtt_balloon[2];
++
++			struct xe_ccs_rw_ctx {
++				/** @migrate: Migration helper for save/restore of CCS data */
++				struct xe_migrate *migrate;
++
++				struct {
++					/** @ccs_rw_bb_pool: Pool from which batchbuffers
++					 * are allocated.
++					 */
++					struct xe_sa_manager *ccs_rw_bb_pool;
++				} mem;
++			} ccs_rw_ctx[XE_CCS_RW_MAX_CTXS];
+ 		} vf;
+ 	} sriov;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+index 119a55bb7580..1ff54bdcfc3d 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+@@ -143,10 +143,23 @@ static int force_reset_sync(struct xe_gt *gt, struct drm_printer *p)
+ static int sa_info(struct xe_gt *gt, struct drm_printer *p)
+ {
+ 	struct xe_tile *tile = gt_to_tile(gt);
++	struct xe_device *xe = gt_to_xe(gt);
++	struct xe_sa_manager *bb_pool;
+ 
+ 	xe_pm_runtime_get(gt_to_xe(gt));
+-	drm_suballoc_dump_debug_info(&tile->mem.kernel_bb_pool->base, p,
+-				     tile->mem.kernel_bb_pool->gpu_addr);
++
++	drm_printf(p, "kernel_bb_pool info\n");
++	drm_printf(p, "-------------------------\n");
++	bb_pool = tile->mem.kernel_bb_pool;
++	drm_suballoc_dump_debug_info(&bb_pool->base, p, bb_pool->gpu_addr);
++
++	if (IS_SRIOV_VF(xe)) {
++		drm_printf(p, "\nccs_rw_bb_pool info\n");
++		drm_printf(p, "-------------------------\n");
++		bb_pool = tile->sriov.vf.ccs_rw_ctx[0].mem.ccs_rw_bb_pool;
++		drm_suballoc_dump_debug_info(&bb_pool->base, p, bb_pool->gpu_addr);
++	}
++
+ 	xe_pm_runtime_put(gt_to_xe(gt));
+ 
+ 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
+index a0eab44c0e76..fa6286e123f0 100644
+--- a/drivers/gpu/drm/xe/xe_sriov.c
++++ b/drivers/gpu/drm/xe/xe_sriov.c
+@@ -15,6 +15,7 @@
+ #include "xe_sriov.h"
+ #include "xe_sriov_pf.h"
+ #include "xe_sriov_vf.h"
++#include "xe_sriov_vf_ccs.h"
+ 
+ /**
+  * xe_sriov_mode_to_string - Convert enum value to string.
+@@ -157,3 +158,19 @@ const char *xe_sriov_function_name(unsigned int n, char *buf, size_t size)
+ 		strscpy(buf, "PF", size);
+ 	return buf;
+ }
++
++/**
++ * xe_sriov_late_init() - SR-IOV late initialization functions.
++ * @xe: the &xe_device to initialize
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_sriov_late_init(struct xe_device *xe)
++{
++	int err = 0;
++
++	if (IS_SRIOV_VF(xe))
++		err = xe_sriov_vf_ccs_rw_init(xe);
++
++	return err;
++}
+diff --git a/drivers/gpu/drm/xe/xe_sriov.h b/drivers/gpu/drm/xe/xe_sriov.h
+index 688fbabf08f1..0e0c1abf2d14 100644
+--- a/drivers/gpu/drm/xe/xe_sriov.h
++++ b/drivers/gpu/drm/xe/xe_sriov.h
+@@ -18,6 +18,7 @@ const char *xe_sriov_function_name(unsigned int n, char *buf, size_t len);
+ void xe_sriov_probe_early(struct xe_device *xe);
+ void xe_sriov_print_info(struct xe_device *xe, struct drm_printer *p);
+ int xe_sriov_init(struct xe_device *xe);
++int xe_sriov_late_init(struct xe_device *xe);
+ 
+ static inline enum xe_sriov_mode xe_device_sriov_mode(const struct xe_device *xe)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+new file mode 100644
+index 000000000000..a8a21336dc12
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+@@ -0,0 +1,156 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#include "instructions/xe_mi_commands.h"
++#include "xe_bo.h"
++#include "xe_device.h"
++#include "xe_migrate.h"
++#include "xe_sa.h"
++#include "xe_sriov_printk.h"
++#include "xe_sriov_vf_ccs.h"
++
++/**
++ * DOC: VF save/restore of compression Meta Data.
++ *
++ * VF KMD register two special context/LRCA.
++ *
++ * Save Context/LRCA: contain necessary cmds+page table to trigger Meta data /
++ * compression control surface (Aka CCS) save in regular System memory in VM.
++ *
++ * Restore Context/LRCA: contain necessary cmds+page table to trigger Meta data /
++ * compression control surface (Aka CCS) Restore from regular System memory in
++ * VM to corresponding CCS pool.
++ *
++ * Below diagram explain steps needed for VF save/Restore of compression Meta
++ * Data::
++ *
++ * CCS Save    CCS Restore          VF KMD                          Guc       BCS
++ *  LRCA        LRCA
++ *   |           |                     |                              |         |
++ *   |           |                     |                              |         |
++ *   |     Create Save LRCA            |                              |         |
++ *  [ ]<----------------------------- [ ]                             |         |
++ *   |           |                     |                              |         |
++ *   |           |                     |                              |         |
++ *   |           |                     |   Register LRCA with Guc     |         |
++ *   |           |                    [ ]--------------------------->[ ]        |
++ *   |           |                     |                              |         |
++ *   |           |                     |                              |         |
++ *   |           | Create restore LRCA |                              |         |
++ *   |          [ ]<------------------[ ]                             |         |
++ *   |           |                     |                              |         |
++ *   |           |                     |                              |         |
++ *   |           |                    [ ]-----------------------      |         |
++ *   |           |                    [ ]  Allocate main memory |     |         |
++ *   |           |                    [ ]  Allocate CCS memory  |     |         |
++ *   |           |                    [ ]<----------------------      |         |
++ *   |           |                     |                              |         |
++ *   |           |                     |                              |         |
++ *   | Update Main memory&CCS pages    |                              |         |
++ *   |   PPGTT + BB cmds to save       |                              |         |
++ *  [ ]<------------------------------[ ]                             |         |
++ *   |           |                     |                              |         |
++ *   |           |                     |                              |         |
++ *   |           | Update Main memory  |                              |         |
++ *   |           | & CCS pages PPGTT + |                              |         |
++ *   |           | BB cms to restore   |                              |         |
++ *   |          [ ]<------------------[ ]                             |         |
++ *   |           |                     |                              |         |
++ *   |           |                     |                              |         |
++ *   |           |                   VF Pause                         |         |
++ *   |           |                     |                              |Schedule |
++ *   |           |                     |                              |CCS Save |
++ *   |           |                     |                              | LRCA    |
++ *   |           |                     |                             [ ]------>[ ]
++ *   |           |                     |                              |         |
++ *   |           |                     |                              |         |
++ *   |           |                   VF Restore                       |         |
++ *   |           |                     |                              |         |
++ *   |           |                     |                              |         |
++ *   |           |                    [ ]--------------               |         |
++ *   |           |                    [ ] Fix up GGTT  |              |         |
++ *   |           |                    [ ]<-------------               |         |
++ *   |           |                     |                              |         |
++ *   |           |                     |                              |         |
++ *   |           |                     |                              |Schedule |
++ *   |           |                     |                              |CCS      |
++ *   |           |                     |                              |Restore  |
++ *   |           |                     |                              |LRCA     |
++ *   |           |                     |                             [ ]------>[ ]
++ *   |           |                     |                              |         |
++ *   |           |                     |                              |         |
++ *
++ */
++
++#define for_each_ccs_rw_ctx(id__) \
++       for ((id__) = 0; (id__) < XE_CCS_RW_MAX_CTXS; (id__)++)
++
++#define MAX_CCS_RW_BB_POOL_SIZE	(SZ_4K * XE_PAGE_SIZE)
++
++static int alloc_bb_pool(struct xe_tile *tile, struct xe_ccs_rw_ctx *ctx)
++{
++	struct xe_device *xe = tile_to_xe(tile);
++	struct xe_sa_manager *sa_manager;
++	int offset, err;
++
++	sa_manager = xe_sa_bo_manager_init(tile, MAX_CCS_RW_BB_POOL_SIZE, SZ_16);
++
++	if (IS_ERR(sa_manager)) {
++		xe_sriov_err(xe, "Suballocator init failed\n");
++		err = PTR_ERR(sa_manager);
++		return err;
++	}
++
++	offset = 0;
++	xe_map_memset(xe, &sa_manager->bo->vmap, offset, MI_NOOP,
++		      MAX_CCS_RW_BB_POOL_SIZE);
++
++	offset = MAX_CCS_RW_BB_POOL_SIZE - sizeof(u32);
++	xe_map_wr(xe, &sa_manager->bo->vmap, offset, u32, MI_BATCH_BUFFER_END);
++
++	ctx->mem.ccs_rw_bb_pool = sa_manager;
++
++	return 0;
++}
++
++/**
++ * xe_sriov_vf_ccs_save_restore_init - Setup LRCA for save & restore.
++ * @xe: the &xe_device to start recovery on
++ *
++ * This function shall be called only by VF.
++ *
++ * Return: 0 on success. Negative error code on failure.
++ */
++int xe_sriov_vf_ccs_rw_init(struct xe_device *xe)
++{
++	struct xe_migrate *migrate;
++	struct xe_ccs_rw_ctx *ctx;
++	struct xe_tile *tile;
++	int tile_id, ctx_id;
++	int err = 0;
++
++	if (!IS_SRIOV_VF(xe) || IS_DGFX(xe))
++		return 0;
++
++	for_each_tile(tile, xe, tile_id) {
++		for_each_ccs_rw_ctx(ctx_id) {
++			ctx = &tile->sriov.vf.ccs_rw_ctx[ctx_id];
++			migrate = xe_migrate_init(tile);
++			if (IS_ERR(migrate)) {
++				err = PTR_ERR(migrate);
++				goto err_ret;
++			}
++			ctx->migrate = migrate;
++
++			err = alloc_bb_pool(tile, ctx);
++			if (err)
++				goto err_ret;
++		}
++	}
++	return 0;
++
++err_ret:
++	return err;
++}
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
+new file mode 100644
+index 000000000000..c371aabb4d21
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
+@@ -0,0 +1,13 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#ifndef _XE_SRIOV_VF_CCS_H_
++#define _XE_SRIOV_VF_CCS_H_
++
++struct xe_device;
++
++int xe_sriov_vf_ccs_rw_init(struct xe_device *xe);
++
++#endif
 -- 
 2.43.0
 
