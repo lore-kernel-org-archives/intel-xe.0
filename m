@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 984D5C3ABD8
-	for <intel-xe@archiver.kernel.org>; Fri, 16 May 2025 14:46:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE25EC3ABD8
+	for <intel-xe@archiver.kernel.org>; Fri, 16 May 2025 14:46:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 534E110EAF1;
-	Fri, 16 May 2025 14:46:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A932D10EAF2;
+	Fri, 16 May 2025 14:46:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="De2v8vIF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mC4vvRfL";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2448910EAF1
- for <intel-xe@lists.freedesktop.org>; Fri, 16 May 2025 14:46:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E521110EAF2
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 May 2025 14:46:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747406797; x=1778942797;
+ t=1747406799; x=1778942799;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=s0WlObXVIEYe5Wjx3NIeWOhWX6kPWvzN73vC1ry1/mQ=;
- b=De2v8vIFVPAxLkLtZsIf0CoyhsByIGywSG81+enHDC7+R2B5MJ51Hct7
- 4jZdAAglEv5/kLcoH1fnSfZqqb9FqWza1uFIisoPm2xuEscJAnD4skQVG
- 7aa9+fn7VEFtOWSm+yKojYn2w0ClK2qo0Xe+HJdzuKeSphpr8kPDvGvEZ
- nATlBJOonZsJT1aGAyTNtyfQVTyxJxH/bGmjcwiUyAcxWlGPKu5aJ4omy
- yIFDbxH1BZJzPQIgB23aQ0nxf7P86QjIBgJn3s3HaQFffzx9lX0+XMyb9
- jbWYvYidsv1kCwc7lXf3PyMeZVskTj0bR0kexQiPOocbKVbN4VAfNS0dl Q==;
-X-CSE-ConnectionGUID: wgVvT8a8SwuWuLFE9aVN6Q==
-X-CSE-MsgGUID: Jfxp2aXGSsSMlaHATonn7Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11435"; a="49307579"
-X-IronPort-AV: E=Sophos;i="6.15,294,1739865600"; d="scan'208";a="49307579"
+ bh=4OyCE/yW93SKxOFwsDjXt21eHuPZdYk00VF4Qs6Mf90=;
+ b=mC4vvRfLz3FrcoIYHXOKEIQmA4HaFM8bt/Wcai+DnLfU+F4HS93UkTz6
+ hU2lodZIxE+qPzKCGJtuZwliiCHFdmxJfhZ8Kh5yOC3u+xSa8dMsxcGE9
+ RYI7jiBbxM6SZkaWe401D6UJGEt5ZuUwBOVy9MWjbWvISKjzh4pYLQXkq
+ O0Rqwq5noUQ1fs1i0FmF7jk5m4RT+HFjDLmG7No6zshjpVSCrSz00z5e6
+ 1yeuYScl+E6zUru9GO5spwviXAGaJN5gTNtzkLtOSsyjKRfW+l8WofCSt
+ +gGYjICPZygraVvXr9qTz1+1Lb1iT6Zoxdui7PZqCVxLDiT9hsIgl4K0r Q==;
+X-CSE-ConnectionGUID: tlLuFgWhSi6onqAR8zxpbw==
+X-CSE-MsgGUID: njIH9FsJTkqEW92Q+6Sjfw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11435"; a="49307584"
+X-IronPort-AV: E=Sophos;i="6.15,294,1739865600"; d="scan'208";a="49307584"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2025 07:46:37 -0700
-X-CSE-ConnectionGUID: zCmNLaLkRWm20PwboV0cog==
-X-CSE-MsgGUID: L0lK/XndQOe1fzRLoL0Ktg==
+ 16 May 2025 07:46:39 -0700
+X-CSE-ConnectionGUID: 6rAnSuiAT4qUWfAdT9SYnw==
+X-CSE-MsgGUID: DrktJPkTSg2EBoLnPzMyiw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,294,1739865600"; d="scan'208";a="169755541"
+X-IronPort-AV: E=Sophos;i="6.15,294,1739865600"; d="scan'208";a="169755544"
 Received: from mjruhl-desk.amr.corp.intel.com (HELO mjruhl-desk.intel.com)
  ([10.124.223.225])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2025 07:46:36 -0700
+ 16 May 2025 07:46:38 -0700
 From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 To: linux-platform-driver-x86@linux-kbuild-tools.org,
  intel-xe@lists.freedesktop.org, david.e.box@intel.com,
  rodrigo.vivi@intel.com
 Cc: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-Subject: [PATCH 1/4] platform/x86/intel/pmt: crashlog binary file endpoint
-Date: Fri, 16 May 2025 10:46:16 -0400
-Message-ID: <20250516144619.210413-2-michael.j.ruhl@intel.com>
+Subject: [PATCH 2/4] platform/x86/intel/pmt: update to bit access
+Date: Fri, 16 May 2025 10:46:17 -0400
+Message-ID: <20250516144619.210413-3-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250516144619.210413-1-michael.j.ruhl@intel.com>
 References: <20250516144619.210413-1-michael.j.ruhl@intel.com>
@@ -69,142 +69,210 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The export API added a requirement for end point data to be
-used by the intel_pmt_read() function to access mmio data.
+The current usage of BIT offsets limits adding new
+functionality to the crashlog register access.
 
-Without the ep, the call causes a NULL pointer exception.
+Update the bit mask #defines to use a bit defined
+structure.
 
-BUG: kernel NULL pointer dereference, address: 0000000000000000
-PGD 0 P4D 0
-Oops: Oops: 0000 [#1] SMP NOPTI
-CPU: 12 UID: 0 PID: 5721 Comm: cat Tainted: G           OE       6.15.0-rc4+ #3 PREEMPT(voluntary)
-Tainted: [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
-Hardware name: ASUS System Product Name/PRIME Z790-P WIFI, BIOS 1641 02/21/2024
-RIP: 0010:intel_pmt_read+0x3b/0x70 [pmt_class]
-Code:
-RSP: 0018:ffffb19981ebba18 EFLAGS: 00010246
-RAX: ffffffffc0ef8e08 RBX: 0000000000000800 RCX: 0000000000000800
-RDX: ffff99aee03af450 RSI: ffff99ae86552000 RDI: 0000000000000000
-RBP: ffffb19981ebba58 R08: 0000000000000000 R09: 0000000000000800
-R10: 000000000e2f8200 R11: 0000000000000000 R12: 0000000000000000
-R13: ffff99aee03af450 R14: ffff99ae8a4bbc00 R15: ffff99ae86a35a40
-FS:  00007f097dd88740(0000) GS:ffff99b62fbe8000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 0000000000000000 CR3: 0000000198860005 CR4: 0000000000f72ef0
-PKRU: 55555554
-Call Trace:
- <TASK>
- ? sysfs_kf_bin_read+0xc0/0xe0
- kernfs_fop_read_iter+0xac/0x1a0
- vfs_read+0x26d/0x350
- ksys_read+0x6b/0xe0
- __x64_sys_read+0x1d/0x30
- x64_sys_call+0x1bc8/0x1d70
- do_syscall_64+0x6d/0x110
- ? __mod_memcg_lruvec_state+0xe7/0x240
- ? __lruvec_stat_mod_folio+0x8f/0xe0
- ? set_ptes.isra.0+0x3b/0x80
- ? do_anonymous_page+0x101/0x9c0
- ? ___pte_offset_map+0x20/0x180
- ? __handle_mm_fault+0xba3/0x1010
- ? __count_memcg_events+0xca/0x190
- ? count_memcg_events.constprop.0+0x1e/0x40
- ? handle_mm_fault+0x1a8/0x2b0
- ? do_user_addr_fault+0x2f6/0x7b0
- ? irqentry_exit_to_user_mode+0x33/0x170
- ? irqentry_exit+0x3f/0x50
- ? exc_page_fault+0x94/0x1b0
- entry_SYSCALL_64_after_hwframe+0x76/0x7e
-RIP: 0033:0x7f097db25701
-
-Add the endpoint information to the crashlog driver to avoid
-the NULL pointer exception.
-
-Two minor white space issues are addressed as well.
-
-Fixes: 416eeb2e1fc7 ("platform/x86/intel/pmt: telemetry: Export API to read telemetry")
 Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- drivers/platform/x86/intel/pmt/crashlog.c | 38 ++++++++++++++++++++---
- 1 file changed, 34 insertions(+), 4 deletions(-)
+ drivers/platform/x86/intel/pmt/crashlog.c | 116 +++++++++++++++-------
+ 1 file changed, 79 insertions(+), 37 deletions(-)
 
 diff --git a/drivers/platform/x86/intel/pmt/crashlog.c b/drivers/platform/x86/intel/pmt/crashlog.c
-index 6a9eb3c4b313..952bfe341f53 100644
+index 952bfe341f53..dba7e7c1585d 100644
 --- a/drivers/platform/x86/intel/pmt/crashlog.c
 +++ b/drivers/platform/x86/intel/pmt/crashlog.c
-@@ -143,7 +143,7 @@ enable_show(struct device *dev, struct device_attribute *attr, char *buf)
+@@ -22,29 +22,12 @@
+ /* Crashlog discovery header types */
+ #define CRASH_TYPE_OOBMSM	1
  
- static ssize_t
- enable_store(struct device *dev, struct device_attribute *attr,
--	    const char *buf, size_t count)
-+	     const char *buf, size_t count)
- {
- 	struct crashlog_entry *entry;
- 	bool enabled;
-@@ -177,7 +177,7 @@ trigger_show(struct device *dev, struct device_attribute *attr, char *buf)
+-/* Control Flags */
+-#define CRASHLOG_FLAG_DISABLE		BIT(28)
+-
+-/*
+- * Bits 29 and 30 control the state of bit 31.
+- *
+- * Bit 29 will clear bit 31, if set, allowing a new crashlog to be captured.
+- * Bit 30 will immediately trigger a crashlog to be generated, setting bit 31.
+- * Bit 31 is the read-only status with a 1 indicating log is complete.
+- */
+-#define CRASHLOG_FLAG_TRIGGER_CLEAR	BIT(29)
+-#define CRASHLOG_FLAG_TRIGGER_EXECUTE	BIT(30)
+-#define CRASHLOG_FLAG_TRIGGER_COMPLETE	BIT(31)
+-#define CRASHLOG_FLAG_TRIGGER_MASK	GENMASK(31, 28)
+-
+ /* Crashlog Discovery Header */
+ #define CONTROL_OFFSET		0x0
+ #define GUID_OFFSET		0x4
+ #define BASE_OFFSET		0x8
+ #define SIZE_OFFSET		0xC
+ #define GET_ACCESS(v)		((v) & GENMASK(3, 0))
+-#define GET_TYPE(v)		(((v) & GENMASK(7, 4)) >> 4)
+-#define GET_VERSION(v)		(((v) & GENMASK(19, 16)) >> 16)
+ /* size is in bytes */
+ #define GET_SIZE(v)		((v) * sizeof(u32))
  
- static ssize_t
- trigger_store(struct device *dev, struct device_attribute *attr,
--	    const char *buf, size_t count)
-+	      const char *buf, size_t count)
- {
- 	struct crashlog_entry *entry;
- 	bool trigger;
-@@ -222,6 +222,31 @@ static const struct attribute_group pmt_crashlog_group = {
- 	.attrs	= pmt_crashlog_attrs,
+@@ -54,6 +37,39 @@ struct crashlog_entry {
+ 	struct mutex			control_mutex;
  };
  
-+static int pmt_crashlog_add_endpoint(struct intel_vsec_device *ivdev,
-+				     struct intel_pmt_entry *entry)
-+{
-+	struct telem_endpoint *ep;
++struct type1_ver0_base {
++	u32 access_type:	4;  /* ro     0:3  */
++	u32 crash_type:		4;  /* ro     4:7  */
++	u32 count:		8;  /* ro     8:15 */
++	u32 version:		4;  /* ro    16:19 */
++	u32 rsvd:		8;  /* ro    20:27 */
++	u32 disable:		1;  /* rw    28:28 */
++	/*
++	 * Bits 29 and 30 control the state of bit 31.
++	 *
++	 * Bit 29 will clear bit 31, if set, allowing a new crashlog to be captured.
++	 * Bit 30 will immediately trigger a crashlog to be generated, setting bit 31.
++	 * Bit 31 is the read-only status with a 1 indicating log is complete.
++	 */
++	u32 clear:		1;  /* rw    29:29 */
++	u32 manual:		1;  /* rw/1s 30:30 */
++	u32 complete:		1;  /* ro/v  31:31 */
++};
 +
-+	/* Endpoint lifetimes are managed by kref, not devres */
-+	entry->ep = kzalloc(sizeof(*entry->ep), GFP_KERNEL);
-+	if (!entry->ep)
-+		return -ENOMEM;
++struct crashlog_status {
++	union {
++		struct type1_ver0_base stat;
++		u32 status;
++	};
++};
 +
-+	ep = entry->ep;
-+	ep->pcidev = ivdev->pcidev;
-+	ep->header.access_type = entry->header.access_type;
-+	ep->header.guid = entry->header.guid;
-+	ep->header.base_offset = entry->header.base_offset;
-+	ep->header.size = entry->header.size;
-+	ep->base = entry->base;
-+	ep->present = true;
-+	ep->cb = ivdev->priv_data;
++struct crashlog_control {
++	union {
++		struct type1_ver0_base ctrl;
++		u32 control;
++	};
++};
 +
-+	kref_init(&ep->kref);
-+
-+	return 0;
-+}
-+
- static int pmt_crashlog_header_decode(struct intel_pmt_entry *entry,
- 				      struct device *dev)
+ struct pmt_crashlog_priv {
+ 	int			num_entries;
+ 	struct crashlog_entry	entry[];
+@@ -64,27 +80,34 @@ struct pmt_crashlog_priv {
+  */
+ static bool pmt_crashlog_complete(struct intel_pmt_entry *entry)
  {
-@@ -252,6 +277,7 @@ static struct intel_pmt_namespace pmt_crashlog_ns = {
- 	.xa = &crashlog_array,
- 	.attr_grp = &pmt_crashlog_group,
- 	.pmt_header_decode = pmt_crashlog_header_decode,
-+	.pmt_add_endpoint = pmt_crashlog_add_endpoint,
- };
+-	u32 control = readl(entry->disc_table + CONTROL_OFFSET);
++	struct crashlog_status status = {
++		.status = readl(entry->disc_table + CONTROL_OFFSET),
++	};
  
- /*
-@@ -262,8 +288,12 @@ static void pmt_crashlog_remove(struct auxiliary_device *auxdev)
- 	struct pmt_crashlog_priv *priv = auxiliary_get_drvdata(auxdev);
- 	int i;
- 
--	for (i = 0; i < priv->num_entries; i++)
--		intel_pmt_dev_destroy(&priv->entry[i].entry, &pmt_crashlog_ns);
-+	for (i = 0; i < priv->num_entries; i++) {
-+		struct intel_pmt_entry *entry = &priv->entry[i].entry;
+ 	/* return current value of the crashlog complete flag */
+-	return !!(control & CRASHLOG_FLAG_TRIGGER_COMPLETE);
++	return status.stat.complete;
 +
-+		kfree(entry->ep);
-+		intel_pmt_dev_destroy(entry, &pmt_crashlog_ns);
-+	}
  }
  
- static int pmt_crashlog_probe(struct auxiliary_device *auxdev,
+ static bool pmt_crashlog_disabled(struct intel_pmt_entry *entry)
+ {
+-	u32 control = readl(entry->disc_table + CONTROL_OFFSET);
++	struct crashlog_status status = {
++		.status = readl(entry->disc_table + CONTROL_OFFSET),
++	};
+ 
+ 	/* return current value of the crashlog disabled flag */
+-	return !!(control & CRASHLOG_FLAG_DISABLE);
++	return status.stat.disable;
+ }
+ 
+ static bool pmt_crashlog_supported(struct intel_pmt_entry *entry)
+ {
+-	u32 discovery_header = readl(entry->disc_table + CONTROL_OFFSET);
++	struct crashlog_control discovery_header = {
++		.control = readl(entry->disc_table + CONTROL_OFFSET),
++	};
+ 	u32 crash_type, version;
+ 
+-	crash_type = GET_TYPE(discovery_header);
+-	version = GET_VERSION(discovery_header);
++	crash_type = discovery_header.ctrl.crash_type;
++	version = discovery_header.ctrl.version;
+ 
+ 	/*
+ 	 * Currently we only recognize OOBMSM version 0 devices.
+@@ -96,37 +119,53 @@ static bool pmt_crashlog_supported(struct intel_pmt_entry *entry)
+ static void pmt_crashlog_set_disable(struct intel_pmt_entry *entry,
+ 				     bool disable)
+ {
+-	u32 control = readl(entry->disc_table + CONTROL_OFFSET);
++	struct crashlog_control control = {
++		.control = readl(entry->disc_table + CONTROL_OFFSET),
++	};
+ 
+ 	/* clear trigger bits so we are only modifying disable flag */
+-	control &= ~CRASHLOG_FLAG_TRIGGER_MASK;
++	control.ctrl.clear = 0;
++	control.ctrl.manual = 0;
++	control.ctrl.complete = 0;
+ 
+ 	if (disable)
+-		control |= CRASHLOG_FLAG_DISABLE;
++		control.ctrl.disable = 1;
+ 	else
+-		control &= ~CRASHLOG_FLAG_DISABLE;
++		control.ctrl.disable = 0;
+ 
+-	writel(control, entry->disc_table + CONTROL_OFFSET);
++	writel(control.control, entry->disc_table + CONTROL_OFFSET);
+ }
+ 
+ static void pmt_crashlog_set_clear(struct intel_pmt_entry *entry)
+ {
+-	u32 control = readl(entry->disc_table + CONTROL_OFFSET);
++	struct crashlog_control control = {
++		.control = readl(entry->disc_table + CONTROL_OFFSET),
++	};
+ 
+-	control &= ~CRASHLOG_FLAG_TRIGGER_MASK;
+-	control |= CRASHLOG_FLAG_TRIGGER_CLEAR;
++	/* clear trigger bits so we are only modifying disable flag */
++	control.ctrl.disable = 0;
++	control.ctrl.manual = 0;
++	control.ctrl.complete = 0;
+ 
+-	writel(control, entry->disc_table + CONTROL_OFFSET);
++	control.ctrl.clear = 1;
++
++	writel(control.control, entry->disc_table + CONTROL_OFFSET);
+ }
+ 
+ static void pmt_crashlog_set_execute(struct intel_pmt_entry *entry)
+ {
+-	u32 control = readl(entry->disc_table + CONTROL_OFFSET);
++	struct crashlog_control control = {
++		.control = readl(entry->disc_table + CONTROL_OFFSET),
++	};
++
++	/* clear trigger bits so we are only modifying disable flag */
++	control.ctrl.disable = 0;
++	control.ctrl.clear = 0;
++	control.ctrl.complete = 0;
+ 
+-	control &= ~CRASHLOG_FLAG_TRIGGER_MASK;
+-	control |= CRASHLOG_FLAG_TRIGGER_EXECUTE;
++	control.ctrl.manual = 1;
+ 
+-	writel(control, entry->disc_table + CONTROL_OFFSET);
++	writel(control.control, entry->disc_table + CONTROL_OFFSET);
+ }
+ 
+ /*
+@@ -304,6 +343,9 @@ static int pmt_crashlog_probe(struct auxiliary_device *auxdev,
+ 	size_t size;
+ 	int i, ret;
+ 
++	BUILD_BUG_ON(sizeof(struct crashlog_control) != sizeof(u32));
++	BUILD_BUG_ON(sizeof(struct crashlog_status) != sizeof(u32));
++
+ 	size = struct_size(priv, entry, intel_vsec_dev->num_resources);
+ 	priv = devm_kzalloc(&auxdev->dev, size, GFP_KERNEL);
+ 	if (!priv)
 -- 
 2.49.0
 
