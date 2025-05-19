@@ -4,55 +4,184 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57CD1C2D0CD
-	for <intel-xe@archiver.kernel.org>; Mon, 19 May 2025 23:33:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94357C2D0CD
+	for <intel-xe@archiver.kernel.org>; Mon, 19 May 2025 23:45:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A30910E328;
-	Mon, 19 May 2025 23:33:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53EFC10E02A;
+	Mon, 19 May 2025 23:45:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C9XDp4AS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NLLEaKKS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0DD110E297
- for <intel-xe@lists.freedesktop.org>; Mon, 19 May 2025 23:32:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8108610E02A
+ for <intel-xe@lists.freedesktop.org>; Mon, 19 May 2025 23:45:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747697575; x=1779233575;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=gwj93ggFSayqcguEfmljX7+iSSrYgh3QqQxFb+GnFjk=;
- b=C9XDp4ASSiMZWAveSlg6uslDfAJECUVNxyuBb5Ye2fzIgJdfkCKoM63d
- 73Bki4cvGwJ0SczQYTNtrBe2lZl9ZL7DVzQWx2HQaUvJ3iRP2LZ3r6Ict
- yH8a6GQvOKDhW4PczcQpJQhj/UTP6Ss0x8gAl0wv3LcMYAej0QvaxsXXS
- ZSKtG8pC9zby6NFw38XWRrz31rbGQSlDctlY5EfiZ7S6YIaneJxlR6vPI
- O4TIEMAYGcjlh8ctxMLHEhRGoS5AWYYecipHkNWsxns+r4HM8ll93VsB4
- b6tsxJiCDOmCjAFvQG/dacddGmCTPVV6yAit7OM4HqbxRSsBfTOmFMEzB w==;
-X-CSE-ConnectionGUID: xM0vwnY2TjKJhiR+mi6gFA==
-X-CSE-MsgGUID: HNhXH8CfSBC40th739f2UQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11438"; a="52244898"
-X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="52244898"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2025 16:32:54 -0700
-X-CSE-ConnectionGUID: cjcGZyFyQaiDkHLQGefuuw==
-X-CSE-MsgGUID: QHTqBCTuQ+K1g0654dPeOw==
+ t=1747698327; x=1779234327;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=PDo+bgrr2X56je+vhU/MxpZD+KOCVsaA0wwUxpkto3Q=;
+ b=NLLEaKKSQth7z8xzKaE8TSofgS9DG4E/9O40zh/W5hyAn5BG4EntIEdw
+ 3HnD0y9asz52SAlXmyEmm6b0KfUzf/Ik1QI8X8cguVCxr6sv+aBgReVrM
+ VpVtm+pK/Y77AcykQQR8cplDMbaPunx2BYws/oCTwlRq81W/ffpC6DSny
+ 1MYtK+Na/1L+GkRYz3wiBR3sB80COSBfAuTHYbKZBsJnJWWzTE+2uvZRh
+ Gj2gu4LJFLyedRxP7orolWSeZmhAMgH6hnZrXZtNf8DMA17hWhbwQh6n7
+ qZkEP4suRtP+ktWIUCgb3M24Sc+YZ+SJjJYNSigZj2hStjqNsCignxFkn g==;
+X-CSE-ConnectionGUID: AQ/4LnQaQoSzFBK9OxnYkw==
+X-CSE-MsgGUID: qZgRV7HCRsaxI8Zhb3yd3w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11438"; a="49679707"
+X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="49679707"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2025 16:45:26 -0700
+X-CSE-ConnectionGUID: 42WzS18nSKie/MXHdoQBzw==
+X-CSE-MsgGUID: 0tIIp0DNRnmleqAieNyq0g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="139419036"
-Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2025 16:32:47 -0700
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>
-Subject: [PATCH 3/3] drm/xe/pxp: Decouple queue addition from PXP start
-Date: Mon, 19 May 2025 16:32:32 -0700
-Message-ID: <20250519233228.3754667-8-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250519233228.3754667-5-daniele.ceraolospurio@intel.com>
-References: <20250519233228.3754667-5-daniele.ceraolospurio@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="143516938"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2025 16:45:26 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Mon, 19 May 2025 16:45:25 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25 via Frontend Transport; Mon, 19 May 2025 16:45:25 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.45) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Mon, 19 May 2025 16:45:24 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=b6vXgO0Xhdin1xfnHu3f6SxD98OgRSLOSMgHzPeaq6DkBYb5zouS4z9WFTVWPBwyFPQqe+EjS1njDb972KjpQNSsniF+lCefqSugZTh4KcLiPDga8D0uIA3985mjsvXHwzoQOPRyQUa/sIO9fvHhinJW8qgNkKdrHZQXanAt4GnM55fdvv8cFSSL8HkjgVv0S4xt2t4tqWyfjIULkpd+Zau7LIeIplNtncSlp6VONRoAJ7vTMLYVqQl0WpUKNtkATthgeT6V18CAFa9VpU18GPrrW3MFsJe3areB+P1AiaeY9fw5Tyxvqke+O76U7EziQJEm46M0aEAYJRRd9iHTRQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gaVnUDNhOj/YfunJ5Re+4wX94x4PrjbZXK5K3ORJcE0=;
+ b=ZUWJQaIRmVbzh4YvA7IQiYKVaedTnn+UpCugbQQqIppgPpq0AIeOWfi1wPmITtGQ9kc87O+GJ+wkdghnkYUdHJ/HKSwcGtsoqiBrZ9MAMdHkCQ8ew18T3qsKYunMaBXPSn2qYo34eg3WD+kVyDOUcHnRp4ffKwPnefzW0CoI3OQEmeY9tr3uHa1Pd/4m9NTczLcgxGYv8AZqN4gDRE5yPRXo4cNIyRcYoWgmg/+K7nNM0dkau/qIb9FdxeaPnhGdHBmZV8PJSCDE897n9w3gNd6mEMGhCQXp3WLRhECQ7IjyLvKrG3Cxlc6gW0KMd0MqfvUyj2i88lFigWKQdD81Bg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CH3PR11MB8441.namprd11.prod.outlook.com (2603:10b6:610:1bc::12)
+ by SA1PR11MB6688.namprd11.prod.outlook.com (2603:10b6:806:25b::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.32; Mon, 19 May
+ 2025 23:44:41 +0000
+Received: from CH3PR11MB8441.namprd11.prod.outlook.com
+ ([fe80::bc66:f083:da56:8550]) by CH3PR11MB8441.namprd11.prod.outlook.com
+ ([fe80::bc66:f083:da56:8550%7]) with mapi id 15.20.8746.030; Mon, 19 May 2025
+ 23:44:40 +0000
+Message-ID: <eefda6f4-e81c-43a6-bebc-7d4fe0c3132a@intel.com>
+Date: Mon, 19 May 2025 16:44:38 -0700
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: Allow to trigger GT resets using debugfs writes
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+CC: Lucas De Marchi <lucas.demarchi@intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>
+References: <20250519200914.216-1-michal.wajdeczko@intel.com>
+Content-Language: en-US
+From: John Harrison <john.c.harrison@intel.com>
+In-Reply-To: <20250519200914.216-1-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MW4PR04CA0301.namprd04.prod.outlook.com
+ (2603:10b6:303:82::6) To CH3PR11MB8441.namprd11.prod.outlook.com
+ (2603:10b6:610:1bc::12)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH3PR11MB8441:EE_|SA1PR11MB6688:EE_
+X-MS-Office365-Filtering-Correlation-Id: 233c4841-5476-4b64-bbcb-08dd972f1fa6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?TlZlSnJUZUJCbUdCRWF6VklnTytBcEJPTDRTdDRUditPcVdOZjEvUlZOZmdZ?=
+ =?utf-8?B?b3QzTURrZ09HSVJRSWZndXZldGlKRUYvYzVEbUpobWtNRnhhb2szelJUeEhO?=
+ =?utf-8?B?ckpELy9oRmFXQnozYmZHYnA1VkUvNjJrUm9GSWdrNkpIdWZyd0FZR3NBMExk?=
+ =?utf-8?B?WmlHaERhN28wMWZyU1h5b2Q2Y1RTUUU4Q3BBbS9lMkgwM3ZVSDZQenpVMmI4?=
+ =?utf-8?B?eXlWOXdOQjUzVVo1ZFhUZ3g2QjJBTmZ4TkxXd3lEcVpCTW1DbUNEQW1Ia2RO?=
+ =?utf-8?B?bVRLM3RjRFVwclZscGhUanB5UjRXblc2dExzOWs1QjloNVZtRDZxSVJlZHdq?=
+ =?utf-8?B?SmhnelhwWjh2RGdvTGZtQUhtVUNhQkxGc3l0RHk3YjJ0UkJBdGZNME4zeGhu?=
+ =?utf-8?B?ZHJDSmltYldZbmw0YnR3S3BsdmhUYWs1VUJEbmQrODFtTTZzS0FueGFSdnZV?=
+ =?utf-8?B?U3pkTklwamFqdUdML0c3ZFVnU291L0FqYldNNWdCdVU0cHNmc2pSWTRKZElt?=
+ =?utf-8?B?TnNXaWlJaUFUQWpjdlJqR0xkR3RxYXIvUStTV2trZUxHQjRLV0ljZzFYaE12?=
+ =?utf-8?B?dUtDTUNkeFc2ZUlhbUI4Z0dlNG9oNFlYR1E0L1BSeVMrODZUeFkvbXpiejNR?=
+ =?utf-8?B?NVl4bWp5d01CeFRzYTdtU3kySktndHNya24vSWQxY0FPMTVLTjR6M2NGUE1s?=
+ =?utf-8?B?eWxUQm4vNmUzeVhVQlRtaUg5cGVFRFJmTXFCVFJmRCtxZjc2SUoxV1dFdG1y?=
+ =?utf-8?B?U2JFYjFtWWhmV3RRVkN1U2dCSTVCanhNNWg0dGhHWktLN2RWWFpEM2NiZ3NJ?=
+ =?utf-8?B?MGpjMEFQejRuNFhVMTZWOG9YSU1JSEo3NFFLem1uRU1NeHo2eTYzUEJlVzJF?=
+ =?utf-8?B?L2dqRUV5SDRmbE1pdzl4b3k1eTRsdlBNRjdYOG1IRStMelEybWpKVjkyclhD?=
+ =?utf-8?B?WjJZN1dEZkg0V1ZndVhPK0c3UDN2SDErcmNZU0VEemtqNWVLMFRmaUxkYWhp?=
+ =?utf-8?B?VHc2VHRGSDlGenlDKzRWRXFMWkYvRDFOMUQxK0toOGZJdFkxODVQcnNDbm5z?=
+ =?utf-8?B?LzZaNXhCdHhmNlo3b3hyVExJQTBMR0NVazN3YlM1ME5WTklXZzlMdkgzT0tR?=
+ =?utf-8?B?VThveW9YY1VaMS8vc3d3Y2d0elBDQmVqVmlJMGZhUUNldWRRcWo3Sjg1Y2lZ?=
+ =?utf-8?B?UEJKQ3pwVUJ3NDA0RGNkVGZTaE5yeW9uMzVKQmxvcjdnMG9STWxGaHJzbDlY?=
+ =?utf-8?B?bkFscFp0WUJQQXl6L3lSaFhaNUY1Z0VlWkFacDlmSHlzKzQwNzZvWWlYYVdW?=
+ =?utf-8?B?SHFQdE9LQkdJSTlVeVNscStSR2RtWFQ3NE1BWHVnSEdTWElyS245cXpDYlFC?=
+ =?utf-8?B?M0JtcENkMURBUTkrUHZQQ1lBVjgwNkVFZlF5Y2hBOVVIclcrd1JyRnJiRkZM?=
+ =?utf-8?B?b3MvT2VlVFA5UjJYWnk1NFMraUdJdFJyOFVzSWlGNTBYVFZxRGVYaE8vUnBC?=
+ =?utf-8?B?WS9qRFRKRFM4TUdCUVF3ZGxKMnBLV2ZYN2h5dXo3TnpKTStxTXpWdnVHWE93?=
+ =?utf-8?B?ZGxQRGN4ZVNySUpkOTJCNzA2NVVpTXZBN2hkTTJtL29sRlY2QWRRQytMazVZ?=
+ =?utf-8?B?cUJuYkVXWnBqV2hHSHB2REUybUpHWkY0TWdtSWRQYSt4U0NEN2E4cU9GOVhS?=
+ =?utf-8?B?amo5M0x6dDdpRGdXc2dYQVhOOHM1dzVnVWowb2lEbEUvcWtjbEkwbWNBK0NB?=
+ =?utf-8?B?OVd5Q3VwekZvVUlVNGNBRkxGdDdBWE1YSU8vMlpRcXcyNHdtZGFPY29ZdDU2?=
+ =?utf-8?B?VVNEQ1hiamczS2ZkUm5tTGJWWGRTZVNsS1R1WTlTMlNsQ0VFbXJLU2lieEsx?=
+ =?utf-8?B?VENVTFhTSnFpaDFCZWVuMGlYL29VUldpWkpmZEV5MXlicStHbW9vUldiWktr?=
+ =?utf-8?Q?2apqtHGxcm4=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH3PR11MB8441.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a09kamp1dHQxc2FpR2VjQitETjNTWjA2bmJ6QnFnWkdJNzlhNUlsbzFxdFd6?=
+ =?utf-8?B?WjNUOHZWVUtuSzhxREFMbWk1RnhDRGNpZkoyZW5ZZUlaVElvTkVtZi9lWith?=
+ =?utf-8?B?cEM1bE1KYVRzVmllQy9sNkpFU0JkWXBvQ3paZHBxQjhXVDNldFV6S0NBbXNo?=
+ =?utf-8?B?RnJ5N0lJYS9VMHkyc2JoVm1oT3Jmek5ZeDRpVVJPNm82QUlXWm8rRnoyMzJt?=
+ =?utf-8?B?QjcxZjdMVHd4TEZkak0zLy9KQkdFSEdSaGhWK0ErZEExSXZNaDdCY2Y0eXNt?=
+ =?utf-8?B?MVA1MEZYRVoyNzNmRlBaSW5OMXBlSTY4WjFqaU9DUWttV1B2alR3b0lxRFVL?=
+ =?utf-8?B?NjBIQ3ErSzRLSXJTYk4reFU0SkF0LzF0c3BNaTRmeGFoeS9FNFpJU3FQZG5x?=
+ =?utf-8?B?ODYydHM1NHArNTRhYnZ4bG1leDhhcWFXYWoreGlqSU1FRHZmWEd2UmxQNUdD?=
+ =?utf-8?B?NXJwNU1rUnVNWGN2NDVnQ3BvWERvazhBTWljQjRRTFlwUzUxRlJYK3B6UElp?=
+ =?utf-8?B?YXVWcUp0RjVmUlJnR1M3Q2ZYRFpXTTBUNm5QYWFnRXlkZlNzTE55WDhncVFo?=
+ =?utf-8?B?ZHVrY0xJYXF5RkJ2eDVhaWw4U0hPYW9TcnRpZlpISzFYQ2FKbUhoT1haNEZY?=
+ =?utf-8?B?c1VHeUJnUXY0N2pJMlA3ejhjUEJmWUZsdFpJSEkrVFNqY1JicDdjc1FhMEV0?=
+ =?utf-8?B?RGVOWTNnbGFSZUI2RFBkdWMxZncxYkxZeXRVVGRCQ3RhU0djVWNTZU9aUHhY?=
+ =?utf-8?B?UFdBTU5CSmVZYkt2aEZYZVhvVFgzOHVJdHkxOHRKUFRrSnFkMCtmQTI3cTlH?=
+ =?utf-8?B?QnJGdE1Pa1hFSWg0US9lVjd4TFJWQzhSOCsxN1hYOHRnM2tiRWpaM21qZm9Y?=
+ =?utf-8?B?V05wNlhVbUtLMEQybW1SUGRybnc0RU5DRzY1TWZQZzEwUXkrcFMrS0JsT0R4?=
+ =?utf-8?B?Z3gvdjlDMXYrZExTR1NtanAyVVhRSjZ4V0FhRm5PZndISkZEWmIvK0lkWThi?=
+ =?utf-8?B?bDZXaXV0bXFMOC8rYzgzbXR0UmFhcFhvRHJLV0R1ZlFrcU1rNHBjY1NiQjJL?=
+ =?utf-8?B?ZW5rVXNWYnBxVWpwUURLZTBQbTgxbndiN1Y4aWl6L0pGL0p4dEdQemlxMmJq?=
+ =?utf-8?B?UUx2Ym11MFd0Sk42T2tCQ1NCNHhMTWszZXQ5Ylg0MEczRERVZHFwVzhJMm1X?=
+ =?utf-8?B?N0g5S01xc0ZKVGc2K3NKc2NYWmF2cmVhZ29mQXZFUElaYWpxb3Z1dWRaTVNP?=
+ =?utf-8?B?NDdvQWdReWVoMm1vMkN4VjFJSnVEd3cxQlpjRXluM3NPWU1WRUFWT3hDaG02?=
+ =?utf-8?B?ZTJHU2RVR0prcWJodkhTUFNGMHBQOGgvTUhqQmZrZDZ4dWdGdGpNWjZURTIy?=
+ =?utf-8?B?RHpCL1pFVjhJQ0hPc1BUS2VtWkZlNDlkdTZJcnpMcHA4S2wwbnQ1R2lYNTVQ?=
+ =?utf-8?B?LzBiMi9yemdpWitObjFLKzZNQkErZXdFQXRIMTNwRVNJOGNPVjdhcGFIckdP?=
+ =?utf-8?B?S1hXVEEyYnZUdEh4QXBhQ0YvaFVIZFNpdHl6Q3Q5ZGprVExSN1o4WmM4bXM5?=
+ =?utf-8?B?aHgzTy82cGE4QmpJaUJvWkRDdkRNRmtOcStFYmY1ZU05dkErd1lJZ1ZhTlNq?=
+ =?utf-8?B?L1F5V2JaYWQyNVRxZlduWm1PbUhwL2N2ZGhweVMxVUtucjEvc2MxdzRFczVo?=
+ =?utf-8?B?bFBUQk5aa0d6TW13dEw5aUpVWUpXRVFpWWlFK0M1ZDMrMURnR1lJYWNhSFNw?=
+ =?utf-8?B?MVR0VGhnNjFoSlhRRjRSeVdLUS9BYUFNaTFWU045ZFYwUmxUMzVxK0pHZ2dk?=
+ =?utf-8?B?cDZqVkphK2phYTRIV1NDblZsWkdxTFF6TC9KcEE4eVRzQ0lTR1RobzdnWktw?=
+ =?utf-8?B?aUtLZE8xZWVpcXNDRlRPbHdCN0pXWElJVjNTZUF2Tmsrdm9mR2dzM3JoaWpK?=
+ =?utf-8?B?Vyt6d0NhWEwyS3ZkZnBta0o5UGZEZEN4THBoc0Vzak1KVnVlTFhmQW5udUxs?=
+ =?utf-8?B?YUc3Q1p0eDBrTnE0MFNRa09mVXpqeUR4ZFQ1R0g0Q0VRTzNaa0RGb2VwTXBu?=
+ =?utf-8?B?WVR1aGVxY0VYQitzMUt0WS9kYzRRYjhuKzZLTk92TCttb2JYMXk2dEJ0dWh3?=
+ =?utf-8?B?eUdhSmROUnU4WkV2Zzh0akVyYllCTHRSNks2SWkyUEUyNUdtYmU3NVhDUzBJ?=
+ =?utf-8?B?N3c9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 233c4841-5476-4b64-bbcb-08dd972f1fa6
+X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB8441.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 May 2025 23:44:40.8692 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: AMgDmj86hoVpDsEefVM8PA3TYvmlLgKiUUe5ll3pjyXuHQBamyk5B6q/ITMaQQy9jQxX+WTXtY7QcTuzHGEqW6sEP1MP820sX3jgXoVCRZI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6688
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,258 +196,165 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Starting PXP and adding a queue to the PXP queue list are separate
-actions. Given that a queue can only be added to the list if PXP is
-active, the 2 actions were bundled together to avoid having to
-re-lock and re-check the status to perform the queue addition after
-having done so during the PXP start. However, we don't save a lot of
-complexity by doing so and we lose in clarity of code, so overall it's
-cleaner to just keep the 2 actions separate.
+On 5/19/2025 1:09 PM, Michal Wajdeczko wrote:
+> Today we allow to trigger GT resest by reading dedicated debugfs
+> files "force_reset" and "force_reset_sync" that we are exposing
+> using drm_info_list[] and drm_debugfs_create_files().
+>
+> To avoid triggering potentially disruptive actions during otherwise
+> "safe" read operations, expose those two attributes using debugfs
+> function where we can specify file permissions and provide custom
+> "write" handler to trigger the GT resets also from there.
+Would you like to extend this to the GuC log dump-via-dmesg trigger 
+entry as well? Dumping that during the IGT read debugfs test also causes 
+issues due to the huge amount of output it produces.
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
----
- drivers/gpu/drm/xe/xe_pxp.c | 143 ++++++++++++++++++++++--------------
- 1 file changed, 87 insertions(+), 56 deletions(-)
+>
+> This step would allow us to drop triggering GT resets during read
+> operations, which we leave just to give users more time to switch.
+I'm not following this sentence. Give users more time to switch what?
 
-diff --git a/drivers/gpu/drm/xe/xe_pxp.c b/drivers/gpu/drm/xe/xe_pxp.c
-index b5bc15f436fa..32ee38e11811 100644
---- a/drivers/gpu/drm/xe/xe_pxp.c
-+++ b/drivers/gpu/drm/xe/xe_pxp.c
-@@ -504,36 +504,41 @@ int xe_pxp_exec_queue_set_type(struct xe_pxp *pxp, struct xe_exec_queue *q, u8 t
- 	return 0;
- }
- 
--static void __exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q)
-+static int __exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q)
- {
--	spin_lock_irq(&pxp->queues.lock);
--	list_add_tail(&q->pxp.link, &pxp->queues.list);
--	spin_unlock_irq(&pxp->queues.lock);
-+	int ret = 0;
-+
-+	/*
-+	 * A queue can be added to the list only if the PXP is in active status,
-+	 * otherwise the termination might not handle it correctly.
-+	 */
-+	mutex_lock(&pxp->mutex);
-+
-+	if (pxp->status == XE_PXP_ACTIVE) {
-+		spin_lock_irq(&pxp->queues.lock);
-+		list_add_tail(&q->pxp.link, &pxp->queues.list);
-+		spin_unlock_irq(&pxp->queues.lock);
-+	} else if (pxp->status == XE_PXP_ERROR || pxp->status == XE_PXP_SUSPENDED) {
-+		ret = -EIO;
-+	} else {
-+		ret = -EBUSY; /* try again later */
-+	}
-+
-+	mutex_unlock(&pxp->mutex);
-+
-+	return ret;
- }
- 
--/**
-- * xe_pxp_exec_queue_add - add a queue to the PXP list
-- * @pxp: the xe->pxp pointer (it will be NULL if PXP is disabled)
-- * @q: the queue to add to the list
-- *
-- * If PXP is enabled and the prerequisites are done, start the PXP ARB
-- * session (if not already running) and add the queue to the PXP list. Note
-- * that the queue must have previously been marked as using PXP with
-- * xe_pxp_exec_queue_set_type.
-- *
-- * Returns 0 if the PXP ARB session is running and the queue is in the list,
-- * -ENODEV if PXP is disabled, -EBUSY if the PXP prerequisites are not done,
-- * other errno value if something goes wrong during the session start.
-- */
--int xe_pxp_exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q)
-+static int pxp_start(struct xe_pxp *pxp, u8 type)
- {
- 	int ret = 0;
-+	bool restart = false;
- 
- 	if (!xe_pxp_is_enabled(pxp))
- 		return -ENODEV;
- 
- 	/* we only support HWDRM sessions right now */
--	xe_assert(pxp->xe, q->pxp.type == DRM_XE_PXP_TYPE_HWDRM);
-+	xe_assert(pxp->xe, type == DRM_XE_PXP_TYPE_HWDRM);
- 
- 	/*
- 	 * Runtime suspend kills PXP, so we take a reference to prevent it from
-@@ -543,30 +548,24 @@ int xe_pxp_exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q)
- 
- 	/* get_readiness_status() returns 0 for in-progress and 1 for done */
- 	ret = xe_pxp_get_readiness_status(pxp);
--	if (ret <= 0) {
--		if (!ret)
--			ret = -EBUSY;
--		goto out;
--	}
-+	if (ret <= 0)
-+		return ret ?: -EBUSY;
-+
- 	ret = 0;
- 
- wait_for_idle:
- 	/*
- 	 * if there is an action in progress, wait for it. We need to wait
- 	 * outside the lock because the completion is done from within the lock.
--	 * Note that the two action should never be pending at the same time.
-+	 * Note that the two actions should never be pending at the same time.
- 	 */
- 	if (!wait_for_completion_timeout(&pxp->termination,
--					 msecs_to_jiffies(PXP_TERMINATION_TIMEOUT_MS))) {
--		ret = -ETIMEDOUT;
--		goto out;
--	}
-+					 msecs_to_jiffies(PXP_TERMINATION_TIMEOUT_MS)))
-+		return -ETIMEDOUT;
- 
- 	if (!wait_for_completion_timeout(&pxp->activation,
--					 msecs_to_jiffies(PXP_ACTIVATION_TIMEOUT_MS))) {
--		ret = -ETIMEDOUT;
--		goto out;
--	}
-+					 msecs_to_jiffies(PXP_ACTIVATION_TIMEOUT_MS)))
-+		return -ETIMEDOUT;
- 
- 	mutex_lock(&pxp->mutex);
- 
-@@ -574,11 +573,9 @@ int xe_pxp_exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q)
- 	switch (pxp->status) {
- 	case XE_PXP_ERROR:
- 		ret = -EIO;
--		break;
-+		goto out_unlock;
- 	case XE_PXP_ACTIVE:
--		__exec_queue_add(pxp, q);
--		mutex_unlock(&pxp->mutex);
--		goto out;
-+		goto out_unlock;
- 	case XE_PXP_READY_TO_START:
- 		pxp->status = XE_PXP_START_IN_PROGRESS;
- 		reinit_completion(&pxp->activation);
-@@ -586,8 +583,8 @@ int xe_pxp_exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q)
- 	case XE_PXP_START_IN_PROGRESS:
- 		/* If a start is in progress then the completion must not be done */
- 		XE_WARN_ON(completion_done(&pxp->activation));
--		mutex_unlock(&pxp->mutex);
--		goto wait_for_idle;
-+		restart = true;
-+		goto out_unlock;
- 	case XE_PXP_NEEDS_TERMINATION:
- 		mark_termination_in_progress(pxp);
- 		break;
-@@ -595,29 +592,25 @@ int xe_pxp_exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q)
- 	case XE_PXP_NEEDS_ADDITIONAL_TERMINATION:
- 		/* If a termination is in progress then the completion must not be done */
- 		XE_WARN_ON(completion_done(&pxp->termination));
--		mutex_unlock(&pxp->mutex);
--		goto wait_for_idle;
-+		restart = true;
-+		goto out_unlock;
- 	case XE_PXP_SUSPENDED:
- 	default:
- 		drm_err(&pxp->xe->drm, "unexpected state during PXP start: %u\n", pxp->status);
- 		ret = -EIO;
--		break;
-+		goto out_unlock;
- 	}
- 
- 	mutex_unlock(&pxp->mutex);
- 
--	if (ret)
--		goto out;
--
- 	if (!completion_done(&pxp->termination)) {
- 		ret = pxp_terminate_hw(pxp);
- 		if (ret) {
- 			drm_err(&pxp->xe->drm, "PXP termination failed before start\n");
- 			mutex_lock(&pxp->mutex);
- 			pxp->status = XE_PXP_ERROR;
--			mutex_unlock(&pxp->mutex);
- 
--			goto out;
-+			goto out_unlock;
- 		}
- 
- 		goto wait_for_idle;
-@@ -639,27 +632,65 @@ int xe_pxp_exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q)
- 	if (pxp->status != XE_PXP_START_IN_PROGRESS) {
- 		drm_err(&pxp->xe->drm, "unexpected state after PXP start: %u\n", pxp->status);
- 		pxp->status = XE_PXP_NEEDS_TERMINATION;
--		mutex_unlock(&pxp->mutex);
--		goto wait_for_idle;
-+		restart = true;
-+		goto out_unlock;
- 	}
- 
- 	/* If everything went ok, update the status and add the queue to the list */
--	if (!ret) {
-+	if (!ret)
- 		pxp->status = XE_PXP_ACTIVE;
--		__exec_queue_add(pxp, q);
--	} else {
-+	else
- 		pxp->status = XE_PXP_ERROR;
--	}
- 
-+out_unlock:
- 	mutex_unlock(&pxp->mutex);
- 
--out:
-+	if (restart)
-+		goto wait_for_idle;
-+
-+	return ret;
-+}
-+
-+/**
-+ * xe_pxp_exec_queue_add - add a queue to the PXP list
-+ * @pxp: the xe->pxp pointer (it will be NULL if PXP is disabled)
-+ * @q: the queue to add to the list
-+ *
-+ * If PXP is enabled and the prerequisites are done, start the PXP default
-+ * session (if not already running) and add the queue to the PXP list.
-+ *
-+ * Returns 0 if the PXP session is running and the queue is in the list,
-+ * -ENODEV if PXP is disabled, -EBUSY if the PXP prerequisites are not done,
-+ * other errno value if something goes wrong during the session start.
-+ */
-+int xe_pxp_exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q)
-+{
-+	int ret;
-+
-+	if (!xe_pxp_is_enabled(pxp))
-+		return -ENODEV;
-+
-+	/*
-+	 * Runtime suspend kills PXP, so we take a reference to prevent it from
-+	 * happening while we have active queues that use PXP
-+	 */
-+	xe_pm_runtime_get(pxp->xe);
-+
-+start:
-+	ret = pxp_start(pxp, q->pxp.type);
-+
- 	/*
- 	 * in the successful case the PM ref is released from
- 	 * xe_pxp_exec_queue_remove
- 	 */
--	if (ret)
-+	if (ret) {
- 		xe_pm_runtime_put(pxp->xe);
-+		return ret;
-+	}
-+
-+	ret = __exec_queue_add(pxp, q);
-+	if (ret == -EBUSY)
-+		goto start;
- 
- 	return ret;
- }
--- 
-2.43.0
+Also, would it be more accurate to call the patch set something like 
+'require a write to trigger GT resets via debugfs'. Saying 'allow' 
+implies you are just extending the existing interface rather than 
+removing the trigger-via-read ability.
+
+John.
+
+>
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_gt_debugfs.c | 96 +++++++++++++++++++++++-------
+>   1 file changed, 76 insertions(+), 20 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+> index 119a55bb7580..848618acdca8 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+> @@ -122,24 +122,6 @@ static int powergate_info(struct xe_gt *gt, struct drm_printer *p)
+>   	return ret;
+>   }
+>   
+> -static int force_reset(struct xe_gt *gt, struct drm_printer *p)
+> -{
+> -	xe_pm_runtime_get(gt_to_xe(gt));
+> -	xe_gt_reset_async(gt);
+> -	xe_pm_runtime_put(gt_to_xe(gt));
+> -
+> -	return 0;
+> -}
+> -
+> -static int force_reset_sync(struct xe_gt *gt, struct drm_printer *p)
+> -{
+> -	xe_pm_runtime_get(gt_to_xe(gt));
+> -	xe_gt_reset(gt);
+> -	xe_pm_runtime_put(gt_to_xe(gt));
+> -
+> -	return 0;
+> -}
+> -
+>   static int sa_info(struct xe_gt *gt, struct drm_printer *p)
+>   {
+>   	struct xe_tile *tile = gt_to_tile(gt);
+> @@ -306,8 +288,6 @@ static int hwconfig(struct xe_gt *gt, struct drm_printer *p)
+>    * - without access to the PF specific data
+>    */
+>   static const struct drm_info_list vf_safe_debugfs_list[] = {
+> -	{"force_reset", .show = xe_gt_debugfs_simple_show, .data = force_reset},
+> -	{"force_reset_sync", .show = xe_gt_debugfs_simple_show, .data = force_reset_sync},
+>   	{"sa_info", .show = xe_gt_debugfs_simple_show, .data = sa_info},
+>   	{"topology", .show = xe_gt_debugfs_simple_show, .data = topology},
+>   	{"ggtt", .show = xe_gt_debugfs_simple_show, .data = ggtt},
+> @@ -332,6 +312,78 @@ static const struct drm_info_list pf_only_debugfs_list[] = {
+>   	{"steering", .show = xe_gt_debugfs_simple_show, .data = steering},
+>   };
+>   
+> +static ssize_t write_to_gt_call(const char __user *userbuf, size_t count, loff_t *ppos,
+> +				void (*call)(struct xe_gt *), struct xe_gt *gt)
+> +{
+> +	bool yes;
+> +	int ret;
+> +
+> +	if (*ppos)
+> +		return -EINVAL;
+> +	ret = kstrtobool_from_user(userbuf, count, &yes);
+> +	if (ret < 0)
+> +		return ret;
+> +	if (yes)
+> +		call(gt);
+> +	return count;
+> +}
+> +
+> +static void force_reset(struct xe_gt *gt)
+> +{
+> +	struct xe_device *xe = gt_to_xe(gt);
+> +
+> +	xe_pm_runtime_get(xe);
+> +	xe_gt_reset_async(gt);
+> +	xe_pm_runtime_put(xe);
+> +}
+> +
+> +static ssize_t force_reset_write(struct file *file,
+> +				 const char __user *userbuf,
+> +				 size_t count, loff_t *ppos)
+> +{
+> +	struct seq_file *s = file->private_data;
+> +	struct xe_gt *gt = s->private;
+> +
+> +	return write_to_gt_call(userbuf, count, ppos, force_reset, gt);
+> +}
+> +
+> +static int force_reset_show(struct seq_file *s, void *unused)
+> +{
+> +	struct xe_gt *gt = s->private;
+> +
+> +	force_reset(gt); /* to be deprecated! */
+> +	return 0;
+> +}
+> +DEFINE_SHOW_STORE_ATTRIBUTE(force_reset);
+> +
+> +static void force_reset_sync(struct xe_gt *gt)
+> +{
+> +	struct xe_device *xe = gt_to_xe(gt);
+> +
+> +	xe_pm_runtime_get(xe);
+> +	xe_gt_reset(gt);
+> +	xe_pm_runtime_put(xe);
+> +}
+> +
+> +static ssize_t force_reset_sync_write(struct file *file,
+> +				      const char __user *userbuf,
+> +				      size_t count, loff_t *ppos)
+> +{
+> +	struct seq_file *s = file->private_data;
+> +	struct xe_gt *gt = s->private;
+> +
+> +	return write_to_gt_call(userbuf, count, ppos, force_reset_sync, gt);
+> +}
+> +
+> +static int force_reset_sync_show(struct seq_file *s, void *unused)
+> +{
+> +	struct xe_gt *gt = s->private;
+> +
+> +	force_reset_sync(gt); /* to be deprecated! */
+> +	return 0;
+> +}
+> +DEFINE_SHOW_STORE_ATTRIBUTE(force_reset_sync);
+> +
+>   void xe_gt_debugfs_register(struct xe_gt *gt)
+>   {
+>   	struct xe_device *xe = gt_to_xe(gt);
+> @@ -355,6 +407,10 @@ void xe_gt_debugfs_register(struct xe_gt *gt)
+>   	 */
+>   	root->d_inode->i_private = gt;
+>   
+> +	/* VF safe */
+> +	debugfs_create_file("force_reset", 0600, root, gt, &force_reset_fops);
+> +	debugfs_create_file("force_reset_sync", 0600, root, gt, &force_reset_sync_fops);
+> +
+>   	drm_debugfs_create_files(vf_safe_debugfs_list,
+>   				 ARRAY_SIZE(vf_safe_debugfs_list),
+>   				 root, minor);
 
