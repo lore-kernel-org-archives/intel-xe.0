@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3A88C3ABDD
-	for <intel-xe@archiver.kernel.org>; Mon, 19 May 2025 17:30:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8FFBC3ABDD
+	for <intel-xe@archiver.kernel.org>; Mon, 19 May 2025 17:54:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B766B10E3A1;
-	Mon, 19 May 2025 17:30:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0954610E4D5;
+	Mon, 19 May 2025 17:54:19 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99B4110E3A1;
- Mon, 19 May 2025 17:30:57 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D52AD10E457;
+ Mon, 19 May 2025 17:54:17 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4278321665285611676=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/flipq=3A_Rough_?=
- =?utf-8?q?flip_queue_implementation_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/flipq=3A_Rough_fli?=
+ =?utf-8?q?p_queue_implementation_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 19 May 2025 17:30:57 -0000
-Message-ID: <174767585762.1118.4885246181192284248@1538d3639d33>
+Date: Mon, 19 May 2025 17:54:17 -0000
+Message-ID: <174767725786.1200.7837092019588790302@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250516113408.11689-1-ville.syrjala@linux.intel.com>
 In-Reply-To: <20250516113408.11689-1-ville.syrjala@linux.intel.com>
@@ -40,33 +40,102 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============4278321665285611676==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: drm/i915/flipq: Rough flip queue implementation (rev3)
 URL   : https://patchwork.freedesktop.org/series/149109/
-State : warning
+State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 9ef3b3ca5fada31ee49be0882e69fd516f29e070
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-+drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c:106:17: warning: cast truncates bits from constant value (e8d4a51000 becomes d4a51000)
+CI Bug Log - changes from xe-3109-0225cf416edcc20d3559530295550235cd406e3c_BAT -> xe-pw-149109v3_BAT
+====================================================
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3109-0225cf416edcc20d3559530295550235cd406e3c -> xe-pw-149109v3
+
+  IGT_8367: 8367
+  xe-3109-0225cf416edcc20d3559530295550235cd406e3c: 0225cf416edcc20d3559530295550235cd406e3c
+  xe-pw-149109v3: 149109v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149109v3/index.html
+
+--===============4278321665285611676==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/flipq: Rough flip queue implementation (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149109/">https://patchwork.freedesktop.org/series/149109/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149109v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149109v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3109-0225cf416edcc20d3559530295550235cd406e3c_BAT -&gt; xe-pw-149109v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3109-0225cf416edcc20d3559530295550235cd406e3c -&gt; xe-pw-149109v3</li>
+</ul>
+<p>IGT_8367: 8367<br />
+  xe-3109-0225cf416edcc20d3559530295550235cd406e3c: 0225cf416edcc20d3559530295550235cd406e3c<br />
+  xe-pw-149109v3: 149109v3</p>
+
+</body>
+</html>
+
+--===============4278321665285611676==--
