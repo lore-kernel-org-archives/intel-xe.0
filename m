@@ -4,54 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B37EC54795
-	for <intel-xe@archiver.kernel.org>; Mon, 19 May 2025 12:32:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 371FDC2D0CD
+	for <intel-xe@archiver.kernel.org>; Mon, 19 May 2025 12:36:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5CAC10E3B3;
-	Mon, 19 May 2025 12:32:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC87E10E087;
+	Mon, 19 May 2025 12:36:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PJFNsQry";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qi1fUFKl";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24CD810E221;
- Mon, 19 May 2025 12:32:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E313C10E087
+ for <intel-xe@lists.freedesktop.org>; Mon, 19 May 2025 12:36:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747657928; x=1779193928;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=RTmL2lgb+GpIGA4IbuFJ2pI2ngUXcbX2Vr34DDmZSTM=;
- b=PJFNsQrywbdL4AseVPOOS2D4VqdRr7k5Tm9GpbmmVAcGXAFJ4SxvZ1KF
- SKFxtu4uweWp/HbRoOObBdg+dHQYoq/ALzY81opAXeEKYS22RHnwKj7tP
- uw1uC+WLABLGbg+RtBFERUwf97kIFD04B5rsJcH1W6ktHM5mU+/mtJjlE
- o510LFGUaaz3t4cNF3MekJ5zAM0XfWPvWpc1sF4E6mM3ysKr1w2HpzX5A
- J+cO4EYe8uZvHVaoVv4t+ddCs83TBcRw4alfRwPYS3OksXVCb50DSa5i+
- TfzH4J8BJNZBPrOdPK9pHfO+KwJLT4yE3JbD9f2gttN8xruSZuhzOEied w==;
-X-CSE-ConnectionGUID: JVGnyboAT4mesxIY+KTL/w==
-X-CSE-MsgGUID: p+3pWqGOS9eQs1oLcyC/IA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11438"; a="49710014"
-X-IronPort-AV: E=Sophos;i="6.15,300,1739865600"; d="scan'208";a="49710014"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2025 05:32:08 -0700
-X-CSE-ConnectionGUID: kf9FoSLLRw+tzva8IsAGaw==
-X-CSE-MsgGUID: hMj+zOHVSFaex+6o23tJaw==
+ t=1747658201; x=1779194201;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=C0NM1iz0MkA7cKDSyoO4r9eo4uWR8sSZm3oKSbAy2dc=;
+ b=Qi1fUFKlLmNZRI1kZ3InF4wyKJXe1DxJ+h2ooRkRclrBNTnKxTH69S8/
+ ORSr7EvVwblnbonpsON1UXOn/wRGWbpS09jqkzdMCVWrUEV336q5bwFul
+ slhm8115ZusADZlZalgSo2VHfi0M84IOQqcUwBmE4ZZCPQsgY7vtdiTAA
+ w2mHmkSE2VY6+bXMZ+wtI/lWTBCKM2ew5w8PnEk7QdsnvfuH97dmhbsKK
+ JMgrnPLlTqkXCJ/wmMsjcksnNw++8cB95+zsAo4W7N/Jw7l/iFzKOm3g4
+ 5E4ogxAjl/OouMwPUKcNO44qZVExu84dTlRQgiR+V7dFKELju9RdqVSS9 Q==;
+X-CSE-ConnectionGUID: LBZbcR/6RxChpL73GuIdGQ==
+X-CSE-MsgGUID: LnTGa+W/Q9CxhnLd8IGv3g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11438"; a="52188104"
+X-IronPort-AV: E=Sophos;i="6.15,300,1739865600"; d="scan'208";a="52188104"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2025 05:36:40 -0700
+X-CSE-ConnectionGUID: GVzd8AanRY+RpIWJAG3pqQ==
+X-CSE-MsgGUID: 1tI+QNy2TXKynzmBjqcMjQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,300,1739865600"; d="scan'208";a="144358192"
-Received: from nemesa.iind.intel.com ([10.190.239.22])
- by orviesa004.jf.intel.com with ESMTP; 19 May 2025 05:32:06 -0700
-From: Nemesa Garg <nemesa.garg@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: Nemesa Garg <nemesa.garg@intel.com>,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 09/10] drm/i915/display: Enable/disable casf
-Date: Mon, 19 May 2025 17:56:43 +0530
-Message-Id: <20250519122644.3685679-10-nemesa.garg@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250519122644.3685679-1-nemesa.garg@intel.com>
-References: <20250519122644.3685679-1-nemesa.garg@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,300,1739865600"; d="scan'208";a="139870548"
+Received: from labhost1.iind.intel.com ([10.190.230.69])
+ by orviesa007.jf.intel.com with ESMTP; 19 May 2025 05:36:39 -0700
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Subject: [RFC 0/3] CCS save restore for IGPU
+Date: Mon, 19 May 2025 18:22:54 +0530
+Message-ID: <20250519125257.10070-1-satyanarayana.k.v.p@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,127 +64,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To enable or disable the sharpness check the
-casf_enable flag. While enabling the sharpness
-write the programmable coefficients, sharpness
-register bits and also enable the scaler.
-Load the filter lut value which needs to be done
-one time while enabling the sharpness.
+Prior IGPU design had compression supported in GPU VA domain. For
+Virtualization, this makes compression Meta data save/restore for VF as not
+necessary (i.e. Compression Meta data space is automatically save/restore with
+normal guest/VM memory).
 
-v2: Introduce casf_enable here[Ankit]
-v3: Use is_disabling in casf_disabling[Ankit]
-v4: Swap old_state and new_state param[Ankit]
-v5: In disable fn move win_sz after sharpness_ctl.
+With latest Xe2 architecture, compression is supported by Flat, physical domain.
+Meta data/compression control surface (Aka CCS) and association is in physical
+domain and data is located in BIOS/firmware-reserved CCS pool. In
+virtualization/SRIOV when VF save/restore now have to account for save/restore
+VF associated CCS. Without this feature any restore of compressed resource in
+IGPU VF domain will have corruption as Meta data will not be restore correctly
+as a part of VF save/restore flow. Making it must have/functional feature if we
+are supporting compression and Save/restore of VF on IGPU platform.
 
-Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_casf.c    | 30 ++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_casf.h    |  2 ++
- drivers/gpu/drm/i915/display/intel_display.c | 26 +++++++++++++++++
- 3 files changed, 58 insertions(+)
+This is the first in series which adds support for CCS save/restore for IGPU.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_casf.c b/drivers/gpu/drm/i915/display/intel_casf.c
-index 0e52fd83b772..7f6407d6034e 100644
---- a/drivers/gpu/drm/i915/display/intel_casf.c
-+++ b/drivers/gpu/drm/i915/display/intel_casf.c
-@@ -258,3 +258,33 @@ void intel_casf_scaler_compute_config(struct intel_crtc_state *crtc_state)
- 					      filter_coeff[i]);
- 	}
- }
-+
-+void intel_casf_enable(struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	u32 sharpness_ctl;
-+
-+	intel_filter_lut_load(crtc, crtc_state);
-+
-+	intel_casf_write_coeff(crtc_state);
-+
-+	sharpness_ctl = FILTER_EN | FILTER_STRENGTH(crtc_state->hw.casf_params.strength);
-+
-+	sharpness_ctl |= crtc_state->hw.casf_params.win_size;
-+
-+	intel_de_write(display, SHARPNESS_CTL(crtc->pipe), sharpness_ctl);
-+
-+	skl_scaler_setup_casf(crtc_state);
-+}
-+
-+void intel_casf_disable(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+
-+	intel_de_write(display, SKL_PS_CTRL(crtc->pipe, 1), 0);
-+	intel_de_write(display, SKL_PS_WIN_POS(crtc->pipe, 1), 0);
-+	intel_de_write(display, SHARPNESS_CTL(crtc->pipe), 0);
-+	intel_de_write(display, SKL_PS_WIN_SZ(crtc->pipe, 1), 0);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_casf.h b/drivers/gpu/drm/i915/display/intel_casf.h
-index 026a2b8348df..301a9fbd930f 100644
---- a/drivers/gpu/drm/i915/display/intel_casf.h
-+++ b/drivers/gpu/drm/i915/display/intel_casf.h
-@@ -18,5 +18,7 @@ void intel_filter_lut_load(struct intel_crtc *crtc,
- 			   const struct intel_crtc_state *crtc_state);
- void intel_casf_scaler_compute_config(struct intel_crtc_state *crtc_state);
- bool intel_casf_needs_scaler(const struct intel_crtc_state *crtc_state);
-+void intel_casf_enable(struct intel_crtc_state *crtc_state);
-+void intel_casf_disable(const struct intel_crtc_state *crtc_state);
- 
- #endif /* __INTEL_CASF_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 1b2e848a1705..e76265e874bc 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1038,6 +1038,24 @@ static bool audio_disabling(const struct intel_crtc_state *old_crtc_state,
- 		 memcmp(old_crtc_state->eld, new_crtc_state->eld, MAX_ELD_BYTES) != 0);
- }
- 
-+static bool intel_casf_enabling(const struct intel_crtc_state *new_crtc_state,
-+				const struct intel_crtc_state *old_crtc_state)
-+{
-+	if (!new_crtc_state->hw.active)
-+		return false;
-+
-+	return is_enabling(hw.casf_params.casf_enable, old_crtc_state, new_crtc_state);
-+}
-+
-+static bool intel_casf_disabling(const struct intel_crtc_state *old_crtc_state,
-+				 const struct intel_crtc_state *new_crtc_state)
-+{
-+	if (!new_crtc_state->hw.active)
-+		return false;
-+
-+	return is_disabling(hw.casf_params.casf_enable, old_crtc_state, new_crtc_state);
-+}
-+
- #undef is_disabling
- #undef is_enabling
- 
-@@ -1188,6 +1206,9 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
- 	if (audio_disabling(old_crtc_state, new_crtc_state))
- 		intel_encoders_audio_disable(state, crtc);
- 
-+	if (intel_casf_disabling(old_crtc_state, new_crtc_state))
-+		intel_casf_disable(new_crtc_state);
-+
- 	intel_drrs_deactivate(old_crtc_state);
- 
- 	if (hsw_ips_pre_update(state, crtc))
-@@ -6726,6 +6747,11 @@ static void intel_pre_update_crtc(struct intel_atomic_state *state,
- 			intel_vrr_set_transcoder_timings(new_crtc_state);
- 	}
- 
-+	if (intel_casf_enabling(new_crtc_state, old_crtc_state))
-+		intel_casf_enable(new_crtc_state);
-+	else if (new_crtc_state->hw.casf_params.strength != old_crtc_state->hw.casf_params.strength)
-+		intel_casf_update_strength(new_crtc_state);
-+
- 	intel_fbc_update(state, crtc);
- 
- 	drm_WARN_ON(display->drm, !intel_display_power_is_enabled(display, POWER_DOMAIN_DC_OFF));
+Satyanarayana K V P (3):
+  drm/xe/vf: Create contexts for CCS read write
+  drm/xe/vf: Attach and detach CCS copy commands with BO.
+  drm/xe/vf: Register CCS read/write contexts with Guc
+
+ drivers/gpu/drm/xe/Makefile                |   3 +-
+ drivers/gpu/drm/xe/xe_bb.c                 |  33 +++
+ drivers/gpu/drm/xe/xe_bb.h                 |   1 +
+ drivers/gpu/drm/xe/xe_bo.c                 |  14 +
+ drivers/gpu/drm/xe/xe_bo_types.h           |   3 +
+ drivers/gpu/drm/xe/xe_device.c             |   4 +
+ drivers/gpu/drm/xe/xe_device_types.h       |   4 +
+ drivers/gpu/drm/xe/xe_gt_debugfs.c         |  35 +++
+ drivers/gpu/drm/xe/xe_guc_fwif.h           |   5 +
+ drivers/gpu/drm/xe/xe_guc_submit.c         |  37 ++-
+ drivers/gpu/drm/xe/xe_guc_submit.h         |   1 +
+ drivers/gpu/drm/xe/xe_migrate.c            | 192 ++++++++++---
+ drivers/gpu/drm/xe/xe_migrate.h            |  44 ++-
+ drivers/gpu/drm/xe/xe_pm.c                 |   3 +
+ drivers/gpu/drm/xe/xe_sriov.c              |  20 ++
+ drivers/gpu/drm/xe/xe_sriov.h              |   1 +
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.c       | 320 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.h       |  17 ++
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h |  26 ++
+ 19 files changed, 727 insertions(+), 36 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+ create mode 100644 drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h
+
 -- 
-2.25.1
+2.43.0
 
