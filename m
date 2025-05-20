@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0731EC3DA6D
-	for <intel-xe@archiver.kernel.org>; Tue, 20 May 2025 18:10:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18417C3ABDD
+	for <intel-xe@archiver.kernel.org>; Tue, 20 May 2025 18:38:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C04BE10E553;
-	Tue, 20 May 2025 18:10:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="boPQVaEx";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A593810E00F;
- Tue, 20 May 2025 18:10:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747764637; x=1779300637;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=aKDn3vLoSnjVSVa1sA31kz+IllVs/d1XPuCkY1Baebk=;
- b=boPQVaExL6gBs9TGWmDcryEd3jvYr2NtqEi7EW019IFMZST/wSKWm64H
- t2Afp6q7m/LS/I0LNiqjQZuOGZmLkbWhrCcO1j5Lrx4n0P83uxXJrkrdk
- seYrmLQgW9Iq4HpMbtABJ4Ry/4nOGprH2OFH4WqkX09EGoEdMDrEHMlei
- HTY/ldq2xarJGprz8gvu5p0q4ovsKpbBSkel65OXubyL9tr3nX24Sr1zL
- 7bsQJtSvZgGqvzMKwLyhXMQn4Lo5mw6KCGghWNJ/adjlki03jXipC43XI
- SKuknr22qw6QLicUA18x4FRBOohd/yFMLlppbJyavVeUkJo1Yc+rOt3wR w==;
-X-CSE-ConnectionGUID: DDj8VtJ/QumY+Q692joMLw==
-X-CSE-MsgGUID: MooPs0MIRNGdNJChlUlCCQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11439"; a="52341213"
-X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="52341213"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2025 11:10:37 -0700
-X-CSE-ConnectionGUID: DyzUohwXT561HAIJmKG+8A==
-X-CSE-MsgGUID: yQrgOVUQRg2VXUKHDdSn2Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="139648761"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.245.168])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2025 11:10:34 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: Haoxiang Li <haoxiang_li2024@163.com>, stable@vger.kernel.org
-Subject: Re: [PATCH 1/7] drm/i915/display: Add check for
- alloc_ordered_workqueue() and alloc_workqueue()
-In-Reply-To: <8c1002cd-e5bf-4d1b-880c-5e7ac7d08f70@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1747397638.git.jani.nikula@intel.com>
- <20d3d096c6a4907636f8a1389b3b4dd753ca356e.1747397638.git.jani.nikula@intel.com>
- <8c1002cd-e5bf-4d1b-880c-5e7ac7d08f70@intel.com>
-Date: Tue, 20 May 2025 21:10:32 +0300
-Message-ID: <87ecwjtap3.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D94110E1A8;
+	Tue, 20 May 2025 18:38:24 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF62910E1A8;
+ Tue, 20 May 2025 18:38:22 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0303497534694273213=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Panel_Replay_+_Adaptive_syn?=
+ =?utf-8?q?c_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 20 May 2025 18:38:22 -0000
+Message-ID: <174776630271.6209.16814603907284597256@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250520165326.1631330-1-jouni.hogander@intel.com>
+In-Reply-To: <20250520165326.1631330-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,29 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 16 May 2025, Matthew Auld <matthew.auld@intel.com> wrote:
-> On 16/05/2025 13:16, Jani Nikula wrote:
->> From: Haoxiang Li <haoxiang_li2024@163.com>
->> 
->> Add check for the return value of alloc_ordered_workqueue()
->> and alloc_workqueue(). Furthermore, if some allocations fail,
->> cleanup works are added to avoid potential memory leak problem.
->> 
->> Fixes: 40053823baad ("drm/i915/display: move modeset probe/remove functions to intel_display_driver.c")
->> Cc: stable@vger.kernel.org
->> Signed-off-by: Haoxiang Li <haoxiang_li2024@163.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+--===============0303497534694273213==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thanks for the review, pushed the lot to drm-intel-next.
+== Series Details ==
 
-BR,
-Jani.
+Series: Panel Replay + Adaptive sync (rev2)
+URL   : https://patchwork.freedesktop.org/series/148540/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-3115-45c2c8c74ab88c8fb741ea8349b051f5aec87320_BAT -> xe-pw-148540v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
 
 
--- 
-Jani Nikula, Intel
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8370 -> IGT_8371
+  * Linux: xe-3115-45c2c8c74ab88c8fb741ea8349b051f5aec87320 -> xe-pw-148540v2
+
+  IGT_8370: 8370
+  IGT_8371: 8371
+  xe-3115-45c2c8c74ab88c8fb741ea8349b051f5aec87320: 45c2c8c74ab88c8fb741ea8349b051f5aec87320
+  xe-pw-148540v2: 148540v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148540v2/index.html
+
+--===============0303497534694273213==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Panel Replay + Adaptive sync (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148540/">https://patchwork.freedesktop.org/series/148540/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148540v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148540v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3115-45c2c8c74ab88c8fb741ea8349b051f5aec87320_BAT -&gt; xe-pw-148540v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8370 -&gt; IGT_8371</li>
+<li>Linux: xe-3115-45c2c8c74ab88c8fb741ea8349b051f5aec87320 -&gt; xe-pw-148540v2</li>
+</ul>
+<p>IGT_8370: 8370<br />
+  IGT_8371: 8371<br />
+  xe-3115-45c2c8c74ab88c8fb741ea8349b051f5aec87320: 45c2c8c74ab88c8fb741ea8349b051f5aec87320<br />
+  xe-pw-148540v2: 148540v2</p>
+
+</body>
+</html>
+
+--===============0303497534694273213==--
