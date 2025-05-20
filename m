@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D8F8C3ABDD
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74F69C54756
 	for <intel-xe@archiver.kernel.org>; Tue, 20 May 2025 08:14:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB4BE10E573;
-	Tue, 20 May 2025 08:14:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CB7510E576;
+	Tue, 20 May 2025 08:14:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YtXZ+i4P";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NfAJxHxZ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB92510E573;
- Tue, 20 May 2025 08:14:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 709D210E56F;
+ Tue, 20 May 2025 08:14:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747728852; x=1779264852;
+ t=1747728859; x=1779264859;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=0or/mnyE1S8khLdFkIQP0XpIOzLnVZizOMHiNVXv2BM=;
- b=YtXZ+i4PVSv9eeVsjm1g+/1i1v6q/A+jCOVjcvV3dyG/cJQPwidyhYnG
- z3GAVKB1Xd0ANsMgZc+k7u2UlLXkij9NjWbeG43lzOAt8EQHBbX1/B3Wz
- RauVjzpoZ+KPqSLPGOgm+4rStlSLngqrxmiwjTmzj7ij4BVN6rd/0r5L3
- A/2tFR2Xy+2htm8sdRt5r1z2NrMhSY0JDTO52F0g3IfiNEczWrBhwpviw
- EgDvzf9rI5zcvRPh2RaTwn8Wg+FbHUuodF3RrsLnW9qsF4S8WuZJRHczh
- o9M5zRBU7e58cvZkGH6YYe88kpu/ozYCUVDNAQFCdkTv8lA+F7RpRcHxG g==;
-X-CSE-ConnectionGUID: vWzOh5bjSMOH4iujZqNK1Q==
-X-CSE-MsgGUID: HuVbPtjrR+iEhkf7P2sbvA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11438"; a="48764842"
-X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="48764842"
+ bh=odPACrIfbAqc7KnrousO6iw7fwaTumz+R6DY11PNSm8=;
+ b=NfAJxHxZ6EXWds1xnqZkEtFRToJ8C+U4yhy/RTIKIOK5ducetpSX/s1r
+ ie6UuWG6rDs5C6fmvo9mW/ii3dvec4J/zP9JQfMHcaO1af2zjJWc2OdU0
+ /r/kOMzLwoW2qqo1wJulakOf0nDG4c/uG7Ym4oqUMkOUf2UiglZaeAgS7
+ aOx4AcXjIDH/HccCRr6DFXS4WzDPzAbQfWoTDwgu3uFrkKYkAnG2yHcKr
+ j7Fs1qHwiLa1E+lDofTwFTOGZ/WOOyk4dkj40PSkR3GhTGlOf9QrB5tCJ
+ lMmW6KJPa5yVE/+jj4BT+Gi0HGL0TVw+lmJ9n/5huqZo5Zx/2zP3A78OU w==;
+X-CSE-ConnectionGUID: YDocyVbETLSbkkYnrr9t7g==
+X-CSE-MsgGUID: +zRwQ4cMQLmgIN8Gf1XYzw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11438"; a="48764857"
+X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="48764857"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2025 01:14:12 -0700
-X-CSE-ConnectionGUID: c01B/WAoQXC/vijI8eIPRw==
-X-CSE-MsgGUID: zmnlPEnESKqRvuL/ubkS6w==
+ 20 May 2025 01:14:19 -0700
+X-CSE-ConnectionGUID: xfU7OyDjQViXyMuqKfD/EQ==
+X-CSE-MsgGUID: sP3wfRjTSBSNaRezVOjQvA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="144476018"
+X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="144476043"
 Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by fmviesa005.fm.intel.com with ESMTP; 20 May 2025 01:14:10 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 20 May 2025 01:14:16 -0700
 From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, uma.shankar@intel.com,
  animesh.manna@intel.com, chaitanya.kumar.borah@intel.com
-Subject: [v7 06/11] drm/i915/dsb: Add support for GOSUB interrupt
-Date: Tue, 20 May 2025 13:25:32 +0530
-Message-Id: <20250520075537.4074010-7-chaitanya.kumar.borah@intel.com>
+Subject: [v7 09/11] drm/i915: Program DB LUT registers before vblank
+Date: Tue, 20 May 2025 13:25:35 +0530
+Message-Id: <20250520075537.4074010-10-chaitanya.kumar.borah@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20250520075537.4074010-1-chaitanya.kumar.borah@intel.com>
 References: <20250520075537.4074010-1-chaitanya.kumar.borah@intel.com>
@@ -67,69 +67,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-DSB raises an interrupt when there is a nested GOSUB command or
-illegal Head/Tail. Add support to log such errors in the DSB
-interrupt handler.
+Double Buffered LUT registers can be programmed in the active region.
+This patch implements the MMIO path for it. Program the registers after
+evading vblank. The HW latches on to the registers after delayed vblank.
+It takes around 1024 cdclk cycles(~one scanline) for this.
 
-v2: Enable support only in platforms that support this (Ville)
+Following assumptions have been made while making this change
+
+ - Current vblank evasion time is sufficient for programming
+   the LUT registers.
+ - Current guardband calculation would be sufficient for the HW
+   to latch on to the new values
+
+v2: move loading LUTs to commit_pipe_post_planes() since a vblank
+    evasion failure for this is probably less drastic than
+    for plane programming. (Ville)
 
 Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dsb.c      | 9 +++++++++
- drivers/gpu/drm/i915/display/intel_dsb_regs.h | 2 ++
- 2 files changed, 11 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 8e54fb5b1eaa..5331103a4bfe 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -639,6 +639,9 @@ static u32 dsb_error_int_status(struct intel_display *display)
- 	if (DISPLAY_VER(display) >= 14)
- 		errors |= DSB_ATS_FAULT_INT_STATUS;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index da3bce48f558..a290a3cf6a53 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -6638,6 +6638,7 @@ static void commit_pipe_post_planes(struct intel_atomic_state *state,
+ 	struct intel_display *display = to_intel_display(state);
+ 	const struct intel_crtc_state *new_crtc_state =
+ 		intel_atomic_get_new_crtc_state(state, crtc);
++	bool modeset = intel_crtc_needs_modeset(new_crtc_state);
  
-+	if (DISPLAY_VER(display) >= 30)
-+		errors |= DSB_GOSUB_INT_STATUS;
+ 	drm_WARN_ON(display->drm, new_crtc_state->use_dsb);
+ 
+@@ -6646,10 +6647,15 @@ static void commit_pipe_post_planes(struct intel_atomic_state *state,
+ 	 * get a catastrophic underrun even if the two operations
+ 	 * end up happening in two different frames.
+ 	 */
+-	if (DISPLAY_VER(display) >= 9 &&
+-	    !intel_crtc_needs_modeset(new_crtc_state))
++	if (DISPLAY_VER(display) >= 9 && !modeset)
+ 		skl_detach_scalers(NULL, new_crtc_state);
+ 
++	if (!modeset &&
++	    intel_crtc_needs_color_update(new_crtc_state) &&
++	    !intel_color_uses_dsb(new_crtc_state) &&
++	    HAS_DOUBLE_BUFFERED_LUT(display))
++		intel_color_load_luts(new_crtc_state);
 +
- 	return errors;
+ 	if (intel_crtc_vrr_enabling(state, crtc))
+ 		intel_vrr_enable(new_crtc_state);
  }
- 
-@@ -653,6 +656,9 @@ static u32 dsb_error_int_en(struct intel_display *display)
- 	if (DISPLAY_VER(display) >= 14)
- 		errors |= DSB_ATS_FAULT_INT_EN;
- 
-+	if (DISPLAY_VER(display) >= 30)
-+		errors |= DSB_GOSUB_INT_EN;
-+
- 	return errors;
- }
- 
-@@ -991,4 +997,7 @@ void intel_dsb_irq_handler(struct intel_display *display,
- 	if (errors & DSB_POLL_ERR_INT_STATUS)
- 		drm_err(display->drm, "[CRTC:%d:%s] DSB %d poll error\n",
- 			crtc->base.base.id, crtc->base.name, dsb_id);
-+	if (errors & DSB_GOSUB_INT_STATUS)
-+		drm_err(display->drm, "[CRTC:%d:%s] DSB %d GOSUB programming error\n",
-+			crtc->base.base.id, crtc->base.name, dsb_id);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb_regs.h b/drivers/gpu/drm/i915/display/intel_dsb_regs.h
-index cb6e0e5624a6..230104f36145 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_dsb_regs.h
-@@ -51,11 +51,13 @@
- #define   DSB_RESET_SM_STATE_MASK	REG_GENMASK(5, 4)
- #define   DSB_RUN_SM_STATE_MASK		REG_GENMASK(2, 0)
- #define DSB_INTERRUPT(pipe, id)		_MMIO(DSBSL_INSTANCE(pipe, id) + 0x28)
-+#define   DSB_GOSUB_INT_EN		REG_BIT(21) /* ptl+ */
- #define   DSB_ATS_FAULT_INT_EN		REG_BIT(20) /* mtl+ */
- #define   DSB_GTT_FAULT_INT_EN		REG_BIT(19)
- #define   DSB_RSPTIMEOUT_INT_EN		REG_BIT(18)
- #define   DSB_POLL_ERR_INT_EN		REG_BIT(17)
- #define   DSB_PROG_INT_EN		REG_BIT(16)
-+#define   DSB_GOSUB_INT_STATUS		REG_BIT(5) /* ptl+ */
- #define   DSB_ATS_FAULT_INT_STATUS	REG_BIT(4) /* mtl+ */
- #define   DSB_GTT_FAULT_INT_STATUS	REG_BIT(3)
- #define   DSB_RSPTIMEOUT_INT_STATUS	REG_BIT(2)
 -- 
 2.25.1
 
