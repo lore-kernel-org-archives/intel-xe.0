@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FE4EC3ABDD
-	for <intel-xe@archiver.kernel.org>; Tue, 20 May 2025 07:36:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 795A7C3ABDD
+	for <intel-xe@archiver.kernel.org>; Tue, 20 May 2025 07:36:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32D1810E179;
-	Tue, 20 May 2025 07:36:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E79F10E179;
+	Tue, 20 May 2025 07:36:48 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 718E010E179;
- Tue, 20 May 2025 07:36:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E46410E1A5;
+ Tue, 20 May 2025 07:36:47 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/dp=3A_Allow?=
- =?utf-8?q?_HBR3_without_TPS4_support_for_eDP_panels?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/i915/dp=3A_Allow_HBR3?=
+ =?utf-8?q?_without_TPS4_support_for_eDP_panels?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 20 May 2025 07:36:35 -0000
-Message-ID: <174772659545.3114.8318867568513143956@1538d3639d33>
+Date: Tue, 20 May 2025 07:36:47 -0000
+Message-ID: <174772660751.2960.536419323734914442@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250520072023.1661211-1-ankit.k.nautiyal@intel.com>
 In-Reply-To: <20250520072023.1661211-1-ankit.k.nautiyal@intel.com>
@@ -48,9 +48,43 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 956a742459cf drm-tip: 2025y-05m-19d-20h-30m-07s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/dp: Allow HBR3 without TPS4 support for eDP panels
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ff75046afd246856d933642b4e3021c1f351dc58
+Author: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Date:   Tue May 20 12:50:23 2025 +0530
+
+    drm/i915/dp: Allow HBR3 without TPS4 support for eDP panels
+    
+    Commit 584cf613c24a ("drm/i915/dp: Reject HBR3 when sink doesn't support
+    TPS4") introduced a blanket rejection of HBR3 link rate when the sink does
+    not support TPS4. While this was intended to address instability observed
+    on certain eDP panels [1], the TPS4 requirement is only mandated for DPRX
+    and not for eDPRX.
+    
+    This change inadvertently causes blank screens on some eDP panels that do
+    not advertise TPS4 support, and require HBR3 to operate at their fixed
+    native resolution.
+    
+    To restore functionality for such panels do not reject HBR3 when sink
+    doesn't support TPS4. Instead reject HBR3 for specific panel that are
+    not able to handle HBR3 [1].
+    
+    [1] https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5969
+    
+    Fixes: 584cf613c24a ("drm/i915/dp: Reject HBR3 when sink doesn't support TPS4")
+    Cc: stable@vger.kernel.org
+    Cc: Jani Nikula <jani.nikula@linux.intel.com>
+    Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+    Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
++ /mt/dim checkpatch 956a742459cff150a14f1d2f44b6294e646f208a drm-intel
+ff75046afd24 drm/i915/dp: Allow HBR3 without TPS4 support for eDP panels
 
 
