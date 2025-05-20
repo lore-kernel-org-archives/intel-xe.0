@@ -4,53 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB13FC54E71
-	for <intel-xe@archiver.kernel.org>; Tue, 20 May 2025 16:33:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BE32C3ABDD
+	for <intel-xe@archiver.kernel.org>; Tue, 20 May 2025 16:53:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EDA310E626;
-	Tue, 20 May 2025 16:33:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9899B10E592;
+	Tue, 20 May 2025 16:53:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="jnRibK+o";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FXIGFIWl";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A744210E626;
- Tue, 20 May 2025 16:33:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=2n0ULhZnCu8C1LAodYKH8luvq5s03x0GpqQhjbAmhMQ=; b=jnRibK+ozj05E1whLwd1XH+6x8
- QcWjxGNcXIYTn4QkTCwLxQJpmeDns+adJ7VOeYzev6fW78y/mqBjs3d12uksw9HXoA8WBJfMxeJMi
- Cf7GYJWHfTzdWm/bUSlySXrGVk7TfcFvHWGt33TGQOGXr8NOldEx/51nnxELojyRypmT4hiYccfjz
- HBvHGFrEGEqbfAOJEUwoY5HsOMGs5Y5X5oCBBeTJJwkqKLda7wC/jQaEFuH264uJkuJIv0E53rfqN
- Cw+eadxtgqkXEltGRxR7JdMzDl7DcGMoOkRkxLO4OwGHPljFWdUCFr9ynwG0oAL7Nun14m2NhxBh7
- 12N7GREQ==;
-Received: from [191.204.192.64] (helo=localhost.localdomain)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uHPu1-00AnEg-AK; Tue, 20 May 2025 18:33:17 +0200
-From: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
-To: "Alex Deucher" <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- siqueira@igalia.com, airlied@gmail.com, simona@ffwll.ch,
- "Raag Jadav" <raag.jadav@intel.com>, rodrigo.vivi@intel.com,
- jani.nikula@linux.intel.com, Xaver Hugl <xaver.hugl@gmail.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
-Subject: [PATCH v5 3/3] drm/amdgpu: Make use of drm_wedge_task_info
-Date: Tue, 20 May 2025 13:32:43 -0300
-Message-ID: <20250520163243.328746-4-andrealmeid@igalia.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250520163243.328746-1-andrealmeid@igalia.com>
-References: <20250520163243.328746-1-andrealmeid@igalia.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E63510E592;
+ Tue, 20 May 2025 16:53:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1747760024; x=1779296024;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=1S2ydYisaMnbAqaa9+txhCPmkV3M81a/SPrZHwsxdag=;
+ b=FXIGFIWlcm6aTFcSDaYsCAK9783zXVqPqWqTvHfZQuVXPdV/pqk7Ok6S
+ GemwjcIekuhyuWT8Bxo/bU/4vlf6+ys7G/9FJRLszIey9r3U866YpcF6y
+ /ECXkHZL+RpCk28Zg8sxKCVVbo8cnRENKmVNctCpNPf/UPzWsSlIboO/X
+ Z6LIqg0yNVGuO9ViRo6S3rpGCfJL7v8GiC5I1w2VgTphqRslTkavWZOl9
+ kiLs2C0TREBuFwYcmVbmyWHDEPoyGSLU4bftzGEnDOHNFR1ab7nKrJ05F
+ H82BWDlTDEBwQmqz/RJzReltqHULSkraF3lEHVVYvKe2W9M2bOSFLdoFS g==;
+X-CSE-ConnectionGUID: earIWq/0T5iEdocpaX7kXQ==
+X-CSE-MsgGUID: ZKikSgaHTeCcEj/RlGXW3g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11439"; a="37322158"
+X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="37322158"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2025 09:53:44 -0700
+X-CSE-ConnectionGUID: mFY5Okg4Ta+zX1ViV6Wjzg==
+X-CSE-MsgGUID: pczP8xlKSAianjPYNHrAQA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="163038108"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO jhogande-mobl1..)
+ ([10.245.245.130])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2025 09:53:42 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH v2 01/12] drm/panelreplay: Panel Replay capability DPCD
+ register definitions
+Date: Tue, 20 May 2025 19:53:15 +0300
+Message-ID: <20250520165326.1631330-2-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250520165326.1631330-1-jouni.hogander@intel.com>
+References: <20250520165326.1631330-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,77 +71,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To notify userspace about which task (if any) made the device get in a
-wedge state, make use of drm_wedge_task_info parameter, filling it with
-the task PID and name.
+Add new definition for size of Panel Replay DPCD capability registers
+area. Rename existing definitions to group capability registers together.
 
-Signed-off-by: André Almeida <andrealmeid@igalia.com>
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 19 +++++++++++++++++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.c    |  6 +++++-
- 2 files changed, 22 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c |  8 ++++----
+ include/drm/display/drm_dp.h             | 12 +++++++-----
+ 2 files changed, 11 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index d27091d5929c..c29c924aa506 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -6362,8 +6362,23 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index cd833b63ea6b..0cfdeff268f9 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -516,7 +516,7 @@ static u8 intel_dp_get_su_capability(struct intel_dp *intel_dp)
  
- 	atomic_set(&adev->reset_domain->reset_res, r);
- 
--	if (!r)
--		drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, NULL);
-+	if (!r) {
-+		struct drm_wedge_task_info aux, *info = NULL;
-+
-+		if (job) {
-+			struct amdgpu_task_info *ti;
-+
-+			ti = amdgpu_vm_get_task_info_pasid(adev, job->pasid);
-+			if (ti) {
-+				aux.pid = ti->pid;
-+				aux.comm = ti->process_name;
-+				info = &aux;
-+				amdgpu_vm_put_task_info(ti);
-+			}
-+		}
-+
-+		drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, info);
-+	}
- 
- 	return r;
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-index a47b2eb301e5..5cb17e62df57 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-@@ -89,6 +89,7 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
+ 	if (intel_dp->psr.sink_panel_replay_su_support)
+ 		drm_dp_dpcd_readb(&intel_dp->aux,
+-				  DP_PANEL_PANEL_REPLAY_CAPABILITY,
++				  DP_PANEL_REPLAY_CAP_CAPABILITY,
+ 				  &su_capability);
+ 	else
+ 		su_capability = intel_dp->psr_dpcd[1];
+@@ -528,7 +528,7 @@ static unsigned int
+ intel_dp_get_su_x_granularity_offset(struct intel_dp *intel_dp)
  {
- 	struct amdgpu_ring *ring = to_amdgpu_ring(s_job->sched);
- 	struct amdgpu_job *job = to_amdgpu_job(s_job);
-+	struct drm_wedge_task_info aux, *info = NULL;
- 	struct amdgpu_task_info *ti;
- 	struct amdgpu_device *adev = ring->adev;
- 	int idx;
-@@ -127,6 +128,9 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
- 		dev_err(adev->dev,
- 			"Process information: process %s pid %d thread %s pid %d\n",
- 			ti->process_name, ti->tgid, ti->task_name, ti->pid);
-+		aux.pid = ti->pid;
-+		aux.comm = ti->process_name;
-+		info = &aux;
- 		amdgpu_vm_put_task_info(ti);
- 	}
+ 	return intel_dp->psr.sink_panel_replay_su_support ?
+-		DP_PANEL_PANEL_REPLAY_X_GRANULARITY :
++		DP_PANEL_REPLAY_CAP_X_GRANULARITY :
+ 		DP_PSR2_SU_X_GRANULARITY;
+ }
  
-@@ -166,7 +170,7 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
- 			if (amdgpu_ring_sched_ready(ring))
- 				drm_sched_start(&ring->sched, 0);
- 			dev_err(adev->dev, "Ring %s reset succeeded\n", ring->sched.name);
--			drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, NULL);
-+			drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, info);
- 			goto exit;
- 		}
- 		dev_err(adev->dev, "Ring %s reset failure\n", ring->sched.name);
+@@ -536,7 +536,7 @@ static unsigned int
+ intel_dp_get_su_y_granularity_offset(struct intel_dp *intel_dp)
+ {
+ 	return intel_dp->psr.sink_panel_replay_su_support ?
+-		DP_PANEL_PANEL_REPLAY_Y_GRANULARITY :
++		DP_PANEL_REPLAY_CAP_Y_GRANULARITY :
+ 		DP_PSR2_SU_Y_GRANULARITY;
+ }
+ 
+@@ -676,7 +676,7 @@ void intel_psr_init_dpcd(struct intel_dp *intel_dp)
+ {
+ 	drm_dp_dpcd_read(&intel_dp->aux, DP_PSR_SUPPORT, intel_dp->psr_dpcd,
+ 			 sizeof(intel_dp->psr_dpcd));
+-	drm_dp_dpcd_readb(&intel_dp->aux, DP_PANEL_REPLAY_CAP,
++	drm_dp_dpcd_readb(&intel_dp->aux, DP_PANEL_REPLAY_CAP_SUPPORT,
+ 			  &intel_dp->pr_dpcd);
+ 
+ 	if (intel_dp->pr_dpcd & DP_PANEL_REPLAY_SUPPORT)
+diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
+index 3001c0b6e7bb..3371e2edd9e9 100644
+--- a/include/drm/display/drm_dp.h
++++ b/include/drm/display/drm_dp.h
+@@ -547,16 +547,18 @@
+ /* DFP Capability Extension */
+ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT	0x0a3	/* 2.0 */
+ 
+-#define DP_PANEL_REPLAY_CAP				0x0b0  /* DP 2.0 */
++#define DP_PANEL_REPLAY_CAP_SUPPORT			0x0b0  /* DP 2.0 */
+ # define DP_PANEL_REPLAY_SUPPORT			(1 << 0)
+ # define DP_PANEL_REPLAY_SU_SUPPORT			(1 << 1)
+ # define DP_PANEL_REPLAY_EARLY_TRANSPORT_SUPPORT	(1 << 2) /* eDP 1.5 */
+ 
+-#define DP_PANEL_PANEL_REPLAY_CAPABILITY		0xb1
+-# define DP_PANEL_PANEL_REPLAY_SU_GRANULARITY_REQUIRED	(1 << 5)
++#define DP_PANEL_REPLAY_CAP_SIZE	7
+ 
+-#define DP_PANEL_PANEL_REPLAY_X_GRANULARITY		0xb2
+-#define DP_PANEL_PANEL_REPLAY_Y_GRANULARITY		0xb4
++#define DP_PANEL_REPLAY_CAP_CAPABILITY			0xb1
++# define DP_PANEL_REPLAY_SU_GRANULARITY_REQUIRED	(1 << 5)
++
++#define DP_PANEL_REPLAY_CAP_X_GRANULARITY		0xb2
++#define DP_PANEL_REPLAY_CAP_Y_GRANULARITY		0xb4
+ 
+ /* Link Configuration */
+ #define	DP_LINK_BW_SET		            0x100
 -- 
-2.49.0
+2.43.0
 
