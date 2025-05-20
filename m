@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF8B7C3ABDD
-	for <intel-xe@archiver.kernel.org>; Tue, 20 May 2025 17:53:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09B28C3DA6D
+	for <intel-xe@archiver.kernel.org>; Tue, 20 May 2025 17:54:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9A2F10E597;
-	Tue, 20 May 2025 17:53:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C223F10E5A3;
+	Tue, 20 May 2025 17:54:05 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2921E10E597;
- Tue, 20 May 2025 17:53:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9998D10E5A3;
+ Tue, 20 May 2025 17:54:04 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Panel_Replay_+_Adapt?=
- =?utf-8?q?ive_sync_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Panel_Replay_+_Adaptive_s?=
+ =?utf-8?q?ync_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Hogander, Jouni" <jouni.hogander@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 20 May 2025 17:53:46 -0000
-Message-ID: <174776362616.6224.10936218993483524560@1538d3639d33>
+Date: Tue, 20 May 2025 17:54:04 -0000
+Message-ID: <174776364462.6209.7807823582767864830@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250520165326.1631330-1-jouni.hogander@intel.com>
 In-Reply-To: <20250520165326.1631330-1-jouni.hogander@intel.com>
@@ -44,24 +44,91 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Panel Replay + Adaptive sync (rev2)
 URL   : https://patchwork.freedesktop.org/series/148540/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 45c2c8c74ab8 drm-tip: 2025y-05m-20d-14h-44m-48s UTC integration manifest
-=== git am output follows ===
-Applying: drm/panelreplay: Panel Replay capability DPCD register definitions
-Applying: drm/dp: Add Panel Replay capability bits from DP2.1 specification
-Applying: drm/i915/psr: Read all Panel Replay capability registers from DPCD
-Applying: drm/i915/alpm: Add PR_ALPM_CTL register definitions
-Applying: drm/i915/alpm: Write PR_ALPM_CTL register
-Applying: drm/i915/psr: Add interface to check if AUXLess ALPM is needed by PSR
-Applying: drm/i915/alpm: Add new interface to check if AUXLess ALPM is used
-Applying: drm/i915/alpm: Move port alpm configuration
-Applying: drm/i915/display: Add PHY_CMN1_CONTROL register definitions
-Applying: drm/i915/display: Add function to configure LFPS sending
-Applying: drm/i915/psr: Fix using wrong mask in REG_FIELD_PREP
-Applying: drm/i915/psr: Do not disable Panel Replay in case VRR is enabled
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 0bc74b258b19a6a69fb547986b3c39c175d8283e
+Author: Jouni Högander <jouni.hogander@intel.com>
+Date:   Tue May 20 19:53:26 2025 +0300
+
+    drm/i915/psr: Do not disable Panel Replay in case VRR is enabled
+    
+    This patch is allowing Panel Replay with VRR. All VRR modes are supposed to
+    work with Panel Replay.
+    
+    Bspec: 68920, 68925
+    Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+    Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
++ /mt/dim checkpatch 45c2c8c74ab88c8fb741ea8349b051f5aec87320 drm-intel
+7fc53d5c5664 drm/panelreplay: Panel Replay capability DPCD register definitions
+8a79bec5bf2f drm/dp: Add Panel Replay capability bits from DP2.1 specification
+95c2f3181248 drm/i915/psr: Read all Panel Replay capability registers from DPCD
+33be5348a8f3 drm/i915/alpm: Add PR_ALPM_CTL register definitions
+-:29: WARNING:LONG_LINE: line length of 126 exceeds 100 columns
+#29: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:275:
++#define  PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_T1_OR_T2	REG_FIELD_PREP(PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_MASK, 0)
+
+-:30: WARNING:LONG_LINE: line length of 126 exceeds 100 columns
+#30: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:276:
++#define  PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_T1		REG_FIELD_PREP(PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_MASK, 1)
+
+-:31: WARNING:LONG_LINE: line length of 126 exceeds 100 columns
+#31: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:277:
++#define  PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_T2		REG_FIELD_PREP(PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_MASK, 2)
+
+total: 0 errors, 3 warnings, 0 checks, 16 lines checked
+e13c25b20ba9 drm/i915/alpm: Write PR_ALPM_CTL register
+-:32: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#32: FILE: drivers/gpu/drm/i915/display/intel_alpm.c:357:
++			if (!(intel_dp->pr_dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_CAPABILITY)] &
+
+-:33: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#33: FILE: drivers/gpu/drm/i915/display/intel_alpm.c:358:
++						DP_PANEL_REPLAY_ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR))
+
+total: 0 errors, 2 warnings, 0 checks, 20 lines checked
+4706ff4f991a drm/i915/psr: Add interface to check if AUXLess ALPM is needed by PSR
+d731f5b21309 drm/i915/alpm: Add new interface to check if AUXLess ALPM is used
+64a5d7658aa8 drm/i915/alpm: Move port alpm configuration
+-:73: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#73: FILE: drivers/gpu/drm/i915/display/intel_alpm.c:407:
++			PORT_ALPM_CTL_SILENCE_PERIOD(
+
+-:76: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#76: FILE: drivers/gpu/drm/i915/display/intel_alpm.c:410:
++			PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION(
+
+-:78: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#78: FILE: drivers/gpu/drm/i915/display/intel_alpm.c:412:
++			PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION(
+
+-:80: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#80: FILE: drivers/gpu/drm/i915/display/intel_alpm.c:414:
++			PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION(
+
+total: 0 errors, 0 warnings, 4 checks, 93 lines checked
+bab3b62bc164 drm/i915/display: Add PHY_CMN1_CONTROL register definitions
+df874fe95f2f drm/i915/display: Add function to configure LFPS sending
+97a6fe3a7753 drm/i915/psr: Fix using wrong mask in REG_FIELD_PREP
+-:25: WARNING:LONG_LINE: line length of 139 exceeds 100 columns
+#25: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:338:
++#define  PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION_MASK, val)
+
+-:28: WARNING:LONG_LINE: line length of 138 exceeds 100 columns
+#28: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:340:
++#define  PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION_MASK, val)
+
+total: 0 errors, 2 warnings, 0 checks, 10 lines checked
+0bc74b258b19 drm/i915/psr: Do not disable Panel Replay in case VRR is enabled
 
 
