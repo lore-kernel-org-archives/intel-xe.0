@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC35CC3DA6D
-	for <intel-xe@archiver.kernel.org>; Tue, 20 May 2025 18:58:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C790EC3DA6D
+	for <intel-xe@archiver.kernel.org>; Tue, 20 May 2025 19:26:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EAF010E5B9;
-	Tue, 20 May 2025 18:58:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86AE910E5DD;
+	Tue, 20 May 2025 19:26:28 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72D0910E5B9;
- Tue, 20 May 2025 18:58:46 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E71D10E5A5;
+ Tue, 20 May 2025 19:26:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4911970651165664624=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/bo=3A_add_GPU_mem?=
- =?utf-8?q?ory_trace_points?=
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_drm/i915/dp=3A_Fix_the_ena?=
+ =?utf-8?q?bling/disabling_of_audio_SDP_splitting?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Juston Li" <justonli@chromium.org>
+To: "Imre Deak" <imre.deak@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 20 May 2025 18:58:46 -0000
-Message-ID: <174776752646.6209.4286782204098668881@1538d3639d33>
+Date: Tue, 20 May 2025 19:26:28 -0000
+Message-ID: <174776918811.6209.9735471104801205846@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250520171650.771258-1-justonli@chromium.org>
-In-Reply-To: <20250520171650.771258-1-justonli@chromium.org>
+References: <20250520142219.1688401-1-imre.deak@intel.com>
+In-Reply-To: <20250520142219.1688401-1-imre.deak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,33 +40,57 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============4911970651165664624==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: drm/xe/bo: add GPU memory trace points
-URL   : https://patchwork.freedesktop.org/series/149272/
-State : success
+Series: drm/i915/dp: Fix the enabling/disabling of audio SDP splitting
+URL   : https://patchwork.freedesktop.org/series/149254/
+State : failure
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 45abc70af791052c25beeb400aece4dab51020cd
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
+ERROR: The runconfig 'xe-3114-943adcb1bc226246125ec1d18a387b4295e73703_FULL' does not exist in the database
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149254v1/index.html
+
+--===============4911970651165664624==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dp: Fix the enabling/disabling of audio SDP splitting</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149254/">https://patchwork.freedesktop.org/series/149254/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149254v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149254v1/index.html</a></td></tr>
+
+</table>
+
+
+    <p>ERROR: The runconfig 'xe-3114-943adcb1bc226246125ec1d18a387b4295e73703_FULL' does not exist in the database</p>
+
+</body>
+</html>
+
+--===============4911970651165664624==--
