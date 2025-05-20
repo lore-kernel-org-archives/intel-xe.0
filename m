@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C790EC3DA6D
-	for <intel-xe@archiver.kernel.org>; Tue, 20 May 2025 19:26:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6EABC3DA6D
+	for <intel-xe@archiver.kernel.org>; Tue, 20 May 2025 19:31:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86AE910E5DD;
-	Tue, 20 May 2025 19:26:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9339E10E5C6;
+	Tue, 20 May 2025 19:31:08 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E71D10E5A5;
- Tue, 20 May 2025 19:26:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D8D210E0C1;
+ Tue, 20 May 2025 19:31:07 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============4911970651165664624=="
+ boundary="===============1791351809360156254=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_drm/i915/dp=3A_Fix_the_ena?=
- =?utf-8?q?bling/disabling_of_audio_SDP_splitting?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/bo=3A_add_GPU_memory?=
+ =?utf-8?q?_trace_points?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
+To: "Juston Li" <justonli@chromium.org>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 20 May 2025 19:26:28 -0000
-Message-ID: <174776918811.6209.9735471104801205846@1538d3639d33>
+Date: Tue, 20 May 2025 19:31:07 -0000
+Message-ID: <174776946723.6209.17808653643030467033@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250520142219.1688401-1-imre.deak@intel.com>
-In-Reply-To: <20250520142219.1688401-1-imre.deak@intel.com>
+References: <20250520171650.771258-1-justonli@chromium.org>
+In-Reply-To: <20250520171650.771258-1-justonli@chromium.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,26 +40,59 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4911970651165664624==
+--===============1791351809360156254==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/i915/dp: Fix the enabling/disabling of audio SDP splitting
-URL   : https://patchwork.freedesktop.org/series/149254/
-State : failure
+Series: drm/xe/bo: add GPU memory trace points
+URL   : https://patchwork.freedesktop.org/series/149272/
+State : success
 
 == Summary ==
 
-ERROR: The runconfig 'xe-3114-943adcb1bc226246125ec1d18a387b4295e73703_FULL' does not exist in the database
+CI Bug Log - changes from xe-3115-45c2c8c74ab88c8fb741ea8349b051f5aec87320_BAT -> xe-pw-149272v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 8)
+------------------------------
+
+  Missing    (1): bat-adlp-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8370 -> IGT_8371
+  * Linux: xe-3115-45c2c8c74ab88c8fb741ea8349b051f5aec87320 -> xe-pw-149272v1
+
+  IGT_8370: 8370
+  IGT_8371: 8371
+  xe-3115-45c2c8c74ab88c8fb741ea8349b051f5aec87320: 45c2c8c74ab88c8fb741ea8349b051f5aec87320
+  xe-pw-149272v1: 149272v1
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149254v1/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149272v1/index.html
 
---===============4911970651165664624==
+--===============1791351809360156254==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -79,18 +112,34 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp: Fix the enabling/disabling of audio SDP splitting</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149254/">https://patchwork.freedesktop.org/series/149254/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
+<tr><td><b>Series:</b></td><td>drm/xe/bo: add GPU memory trace points</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149272/">https://patchwork.freedesktop.org/series/149272/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149254v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149254v1/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149272v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149272v1/index.html</a></td></tr>
 
 </table>
 
 
-    <p>ERROR: The runconfig 'xe-3114-943adcb1bc226246125ec1d18a387b4295e73703_FULL' does not exist in the database</p>
+    <h1>CI Bug Log - changes from xe-3115-45c2c8c74ab88c8fb741ea8349b051f5aec87320_BAT -&gt; xe-pw-149272v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8370 -&gt; IGT_8371</li>
+<li>Linux: xe-3115-45c2c8c74ab88c8fb741ea8349b051f5aec87320 -&gt; xe-pw-149272v1</li>
+</ul>
+<p>IGT_8370: 8370<br />
+  IGT_8371: 8371<br />
+  xe-3115-45c2c8c74ab88c8fb741ea8349b051f5aec87320: 45c2c8c74ab88c8fb741ea8349b051f5aec87320<br />
+  xe-pw-149272v1: 149272v1</p>
 
 </body>
 </html>
 
---===============4911970651165664624==--
+--===============1791351809360156254==--
