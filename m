@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 622DCC3DA6D
-	for <intel-xe@archiver.kernel.org>; Tue, 20 May 2025 17:06:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A155C3ABDD
+	for <intel-xe@archiver.kernel.org>; Tue, 20 May 2025 17:06:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F19C10E264;
-	Tue, 20 May 2025 17:06:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96BA210E264;
+	Tue, 20 May 2025 17:06:35 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E12B10E264;
- Tue, 20 May 2025 17:06:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 114A010E264;
+ Tue, 20 May 2025 17:06:35 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Add_configfs_to?=
- =?utf-8?q?_load_with_fewer_engines?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe=3A_Add_configfs_to_load?=
+ =?utf-8?q?_with_fewer_engines?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 20 May 2025 17:06:00 -0000
-Message-ID: <174776076050.6209.10054502777885286194@1538d3639d33>
+Date: Tue, 20 May 2025 17:06:35 -0000
+Message-ID: <174776079504.6224.4360868318913509191@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250520-engine-mask-v1-1-ce6daf16d23b@intel.com>
 In-Reply-To: <20250520-engine-mask-v1-1-ce6daf16d23b@intel.com>
@@ -44,31 +44,44 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Add configfs to load with fewer engines
 URL   : https://patchwork.freedesktop.org/series/149259/
-State : success
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-202708c00696422fd217223bb679a353a5936e23
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit bf7c9a79579f27bed5ad46329fbe4b5938a9eb37
-Author: Lucas De Marchi <lucas.demarchi@intel.com>
-Date:   Tue May 20 08:04:28 2025 -0700
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:In file included from ../drivers/gpu/drm/xe/xe_hw_engine.c:20:
+../drivers/gpu/drm/xe/xe_configfs.h:23:5: warning: no previous prototype for ‘xe_configfs_get_engine_allowed’ [-Wmissing-prototypes]
+   23 | u64 xe_configfs_get_engine_allowed(struct pci_dev *pdev) { return U64_MAX; }
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_module.c:14:
+../drivers/gpu/drm/xe/xe_configfs.h:23:5: warning: no previous prototype for ‘xe_configfs_get_engine_allowed’ [-Wmissing-prototypes]
+   23 | u64 xe_configfs_get_engine_allowed(struct pci_dev *pdev) { return U64_MAX; }
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_survivability_mode.c:13:
+../drivers/gpu/drm/xe/xe_configfs.h:23:5: warning: no previous prototype for ‘xe_configfs_get_engine_allowed’ [-Wmissing-prototypes]
+   23 | u64 xe_configfs_get_engine_allowed(struct pci_dev *pdev) { return U64_MAX; }
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ld: drivers/gpu/drm/xe/xe_module.o: in function `xe_configfs_get_engine_allowed':
+xe_module.c:(.text+0x40): multiple definition of `xe_configfs_get_engine_allowed'; drivers/gpu/drm/xe/xe_hw_engine.o:xe_hw_engine.c:(.text+0x3f0): first defined here
+ld: drivers/gpu/drm/xe/xe_survivability_mode.o: in function `xe_configfs_get_engine_allowed':
+xe_survivability_mode.c:(.text+0x2b0): multiple definition of `xe_configfs_get_engine_allowed'; drivers/gpu/drm/xe/xe_hw_engine.o:xe_hw_engine.c:(.text+0x3f0): first defined here
+make[3]: *** [../scripts/Makefile.vmlinux_o:72: vmlinux.o] Error 1
+make[2]: *** [/kernel/Makefile:1217: vmlinux_o] Error 2
+make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
-    drm/xe: Add configfs to load with fewer engines
-    
-    Sometimes it's useful to load the driver with a smaller set of engines
-    to allow more targeted debugging, particularly on early enabling. Add a
-    file in configfs that allows enable only a set of engines.
-    
-    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-+ /mt/dim checkpatch 45c2c8c74ab88c8fb741ea8349b051f5aec87320 drm-intel
-bf7c9a79579f drm/xe: Add configfs to load with fewer engines
+[17:06:01] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[17:06:05] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
