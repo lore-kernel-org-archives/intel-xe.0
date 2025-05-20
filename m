@@ -4,72 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 689F4C3DA6D
-	for <intel-xe@archiver.kernel.org>; Tue, 20 May 2025 17:31:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCA5CC3DA6D
+	for <intel-xe@archiver.kernel.org>; Tue, 20 May 2025 17:49:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 296ED10E593;
-	Tue, 20 May 2025 17:31:26 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nR15hpZc";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D137810E593;
- Tue, 20 May 2025 17:31:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747762285; x=1779298285;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=aKyld7h5OwA2Tp0yE8iRRpriwlPf1t10b9g3LHZckzk=;
- b=nR15hpZcSLQGv/WxwjL8KnYDrbEoUZo4nBp3D6VCOgofrb9l6dn0oUOM
- 4FFu5Ql9WFLXxnelNaty1TbeY76R/2lMEg6WrjXJXhD5U+PiGUKsNXSgx
- WThdIiZEYQYb2TeB8rxOjjuS4sM6nL++YWBXXMbT2EugSLDaaev8E1moW
- DWBYOeP4DlfGORuSJsaKWVqtbgXRygx4b92Bs27aqa4QS4Y5d4Hf1HYUa
- mAV3W2Ahla/ScPq2BmKVn0q7XGw0w2CohdgXmXtdH0N5W/J8g6My8fdeb
- TP0sEIBZKFatIie3yObNLS0h5LSN+egSPyqjAOukfLK7DRaECIr/m0tik w==;
-X-CSE-ConnectionGUID: +fNoh/JWTg28JOBmyp5gjw==
-X-CSE-MsgGUID: YORJR6jxTh6v0nGHb+tPUw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11439"; a="49583721"
-X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="49583721"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2025 10:31:25 -0700
-X-CSE-ConnectionGUID: N2HUp1NUTKeNrYa5H8G9PA==
-X-CSE-MsgGUID: cUQ/AInPT/yQWzIWv/8eew==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="143754323"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2025 10:31:19 -0700
-Date: Tue, 20 May 2025 20:31:16 +0300
-From: Raag Jadav <raag.jadav@intel.com>
-To: Alexander Usyskin <alexander.usyskin@intel.com>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Karthik Poosa <karthik.poosa@intel.com>,
- Reuven Abliyev <reuven.abliyev@intel.com>,
- Oren Weil <oren.jer.weil@intel.com>, linux-mtd@lists.infradead.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Tomas Winkler <tomasw@gmail.com>, Vitaly Lubart <lubvital@gmail.com>
-Subject: Re: [PATCH v10 03/10] mtd: intel-dg: implement access functions
-Message-ID: <aCy8ZJq4eDMDQukx@black.fi.intel.com>
-References: <20250515133345.2805031-1-alexander.usyskin@intel.com>
- <20250515133345.2805031-4-alexander.usyskin@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93D3910E61C;
+	Tue, 20 May 2025 17:49:00 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A27A910E5EF;
+ Tue, 20 May 2025 17:48:58 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7601814080184334680=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250515133345.2805031-4-alexander.usyskin@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm=3A_Create_a_tas_info_op?=
+ =?utf-8?q?tion_for_wedge_events?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 20 May 2025 17:48:58 -0000
+Message-ID: <174776333865.6209.13486182696293405709@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250520163243.328746-1-andrealmeid@igalia.com>
+In-Reply-To: <20250520163243.328746-1-andrealmeid@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,56 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, May 15, 2025 at 04:33:38PM +0300, Alexander Usyskin wrote:
-> Implement read(), erase() and write() functions.
+--===============7601814080184334680==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-...
+== Series Details ==
 
-> +__maybe_unused
-> +static unsigned int idg_nvm_get_region(const struct intel_dg_nvm *nvm, loff_t from)
-> +{
-> +	unsigned int i;
-> +
-> +	for (i = 0; i < nvm->nregions; i++) {
-> +		if ((nvm->regions[i].offset + nvm->regions[i].size - 1) > from &&
+Series: drm: Create a tas info option for wedge events
+URL   : https://patchwork.freedesktop.org/series/149264/
+State : success
 
-Since it's already off by one, I'm wondering if this should be >= ?
+== Summary ==
 
-> +		    nvm->regions[i].offset <= from &&
-> +		    nvm->regions[i].size != 0)
-> +			break;
-> +	}
-> +
-> +	return i;
-> +}
+CI Bug Log - changes from xe-3115-45c2c8c74ab88c8fb741ea8349b051f5aec87320_BAT -> xe-pw-149264v1_BAT
+====================================================
 
-...
+Summary
+-------
 
-> +__maybe_unused
-> +static ssize_t
-> +idg_erase(struct intel_dg_nvm *nvm, u8 region, loff_t from, u64 len, u64 *fail_addr)
-> +{
-> +	u64 i;
-> +	const u32 block = 0x10;
-> +	void __iomem *base = nvm->base;
+  **SUCCESS**
 
-Reverse xmas order (along with all other places).
+  No regressions found.
 
-> +	for (i = 0; i < len; i += SZ_4K) {
-> +		iowrite32(from + i, base + NVM_ADDRESS_REG);
-> +		iowrite32(region << 24 | block, base + NVM_ERASE_REG);
-> +		/* Since the writes are via sguint
+  
 
-sguint?
+Participating hosts (9 -> 8)
+------------------------------
 
-> +		 * we cannot do back to back erases.
-> +		 */
-> +		msleep(50);
-> +	}
-> +	return len;
-> +}
+  Missing    (1): bat-adlp-vm 
 
-Raag
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8370 -> IGT_8371
+  * Linux: xe-3115-45c2c8c74ab88c8fb741ea8349b051f5aec87320 -> xe-pw-149264v1
+
+  IGT_8370: 8370
+  IGT_8371: 8371
+  xe-3115-45c2c8c74ab88c8fb741ea8349b051f5aec87320: 45c2c8c74ab88c8fb741ea8349b051f5aec87320
+  xe-pw-149264v1: 149264v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149264v1/index.html
+
+--===============7601814080184334680==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm: Create a tas info option for wedge events</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149264/">https://patchwork.freedesktop.org/series/149264/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149264v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149264v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3115-45c2c8c74ab88c8fb741ea8349b051f5aec87320_BAT -&gt; xe-pw-149264v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 8)</h2>
+<p>Missing    (1): bat-adlp-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8370 -&gt; IGT_8371</li>
+<li>Linux: xe-3115-45c2c8c74ab88c8fb741ea8349b051f5aec87320 -&gt; xe-pw-149264v1</li>
+</ul>
+<p>IGT_8370: 8370<br />
+  IGT_8371: 8371<br />
+  xe-3115-45c2c8c74ab88c8fb741ea8349b051f5aec87320: 45c2c8c74ab88c8fb741ea8349b051f5aec87320<br />
+  xe-pw-149264v1: 149264v1</p>
+
+</body>
+</html>
+
+--===============7601814080184334680==--
