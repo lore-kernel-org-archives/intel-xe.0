@@ -4,52 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 722F1C3DA6D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79C23C54E90
 	for <intel-xe@archiver.kernel.org>; Tue, 20 May 2025 16:53:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 990A610E5B8;
-	Tue, 20 May 2025 16:53:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6B7E10E5E0;
+	Tue, 20 May 2025 16:53:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h8G5hz88";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cW9x5hqW";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3567E10E085;
- Tue, 20 May 2025 16:53:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2764610E5DB;
+ Tue, 20 May 2025 16:53:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747760023; x=1779296023;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=0YHiEm+Lu718zLVBOyGfqS/sj/qaDdil73gVp2bj9Ic=;
- b=h8G5hz88ZTu57zw7RbNTCfK7GNRJ4y0ZBmefBCTaxIVGAsL2eS/tth5V
- 8544iKCMu0vT4YnhuLbvBKRcPhAmwVOO0gACH3oTIGaal1Jvff/KwGnKS
- yEqaeaoC3tKo6gEkvWqL39W8KGlL/O7Cc7BmVXjXOCL5q6LicGgCUtY9s
- ZMwf+k0ijlGA93MIhD8QABmlovWE2JFz/ESfhYVLXjGZsOnKv3WvbYTA7
- A5aXV4Ipi0Zq2E+Utv3+hxdhNZiSKLgH5dq4JBuoaowoYzmiVI1hWSrIa
- QTO4/7b5DFtBuUNylV9R0RmU4/ZRuOhoP+PWgJQhHjODUOH+fMVIB8a1M Q==;
-X-CSE-ConnectionGUID: QeqGZURIQ4C5MsdFbHeyqQ==
-X-CSE-MsgGUID: 7CzD0kqNTd+//zZkNYo0RQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11439"; a="37322148"
-X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="37322148"
+ t=1747760026; x=1779296026;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=iNgbNn1RIsNn5cN2bMGJZYTe7IT2J4mx1VNd/fvis7k=;
+ b=cW9x5hqWT/VY6K/w+K4EV857LUgh0L73aUGxaehGhZ3Fs0+t+0YpVF+Z
+ sr2ZlIMc3WLnFAjv8fF4n9zG7QXfiHryIadQ35zQ/cO/lhWOsAdubPlbL
+ Uzqo/fl/yWQg7PKm2ynjcF4+XEtpD/KnmVRCIXvsWLOveHpHZkKKIOzNm
+ aSnRaxZpiTn5aQW7M049MbcnhubE487qTN/ZNtSnxVJFipAC78IanCrvr
+ EyUC6RmOhRI3MObdBhVCU7JXBwpa9Lda0IxfcDLcShysJnHN2M9jAj2E4
+ oFbdPSukjr+X52iFFqHCnepP4rbhE5m6QCM8jVkRHEhPpRrctvlih6UyF w==;
+X-CSE-ConnectionGUID: GzwPgSBpSkSOK3X3lq90AA==
+X-CSE-MsgGUID: ytSsHbvXTxWC9qxwGENDrQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11439"; a="37322169"
+X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="37322169"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2025 09:53:42 -0700
-X-CSE-ConnectionGUID: YmtzLOKVSmm9lhr580J9dQ==
-X-CSE-MsgGUID: KxC+KyG+TjuIDF/MIEGFaw==
+ 20 May 2025 09:53:45 -0700
+X-CSE-ConnectionGUID: fu3Iv5/DQbiYY4ByTj62zw==
+X-CSE-MsgGUID: +XWV+lHsSomXNPGM23gr6g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="163038098"
+X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="163038123"
 Received: from dhhellew-desk2.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.245.130])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2025 09:53:40 -0700
+ 20 May 2025 09:53:44 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v2 00/12] Panel Replay + Adaptive sync
-Date: Tue, 20 May 2025 19:53:14 +0300
-Message-ID: <20250520165326.1631330-1-jouni.hogander@intel.com>
+Subject: [PATCH v2 02/12] drm/dp: Add Panel Replay capability bits from DP2.1
+ specification
+Date: Tue, 20 May 2025 19:53:16 +0300
+Message-ID: <20250520165326.1631330-3-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250520165326.1631330-1-jouni.hogander@intel.com>
+References: <20250520165326.1631330-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -68,57 +71,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patch set is adding missing configuration to have Panel Replay
-and Adaptive Sync enabled simultaneously. Also some issues identified
-while debugging are fixed:
+Add PANEL REPLAY CAPABILITY register (0xb1) bits.
 
-1. Source PORT ALPM configuration has to made during modeset.
-2. PHY_CMN1_CONTROL is not written according to HAS document
-3. Wrong register field definitions for PORT_ALPM_LFPS_CTL.
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ include/drm/display/drm_dp.h | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
-Patches are tested on LunarLake and PantheLake using our reference panel supporting
-Adaptive Sync and Panel Replay.
-
-EMP_AS_SDP_TL is currently missing completely from drm-tip. There is a patch for that which is needed if testing these patches:
-
-https://patchwork.freedesktop.org/series/148421/
-
-Otherwise "PSR idle timeout" errors are seen while testing.
-
-v2:
-  - rework Panel Replay DPCD register definitions
-  - do not use hardcoded indices while accessing intel_dp->pr_dpcd
-  - ensure ALPM registers are not written on platform where they do
-    not exist
-  - remove kerneldoc comments
-
-Jouni Högander (12):
-  drm/panelreplay: Panel Replay capability DPCD register definitions
-  drm/dp: Add Panel Replay capability bits from DP2.1 specification
-  drm/i915/psr: Read all Panel Replay capability registers from DPCD
-  drm/i915/alpm: Add PR_ALPM_CTL register definitions
-  drm/i915/alpm: Write PR_ALPM_CTL register
-  drm/i915/psr: Add interface to check if AUXLess ALPM is needed by PSR
-  drm/i915/alpm: Add new interface to check if AUXLess ALPM is used
-  drm/i915/alpm: Move port alpm configuration
-  drm/i915/display: Add PHY_CMN1_CONTROL register definitions
-  drm/i915/display: Add function to configure LFPS sending
-  drm/i915/psr: Fix using wrong mask in REG_FIELD_PREP
-  drm/i915/psr: Do not disable Panel Replay in case VRR is enabled
-
- drivers/gpu/drm/i915/display/intel_alpm.c     | 72 +++++++++++++------
- drivers/gpu/drm/i915/display/intel_alpm.h     |  4 ++
- drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 32 +++++++++
- drivers/gpu/drm/i915/display/intel_cx0_phy.h  |  2 +
- .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  3 +
- drivers/gpu/drm/i915/display/intel_ddi.c      | 12 ++++
- .../drm/i915/display/intel_display_types.h    |  4 +-
- drivers/gpu/drm/i915/display/intel_psr.c      | 44 +++++++-----
- drivers/gpu/drm/i915/display/intel_psr.h      |  2 +
- drivers/gpu/drm/i915/display/intel_psr_regs.h | 14 +++-
- include/drm/display/drm_dp.h                  | 18 +++--
- 11 files changed, 163 insertions(+), 44 deletions(-)
-
+diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
+index 3371e2edd9e9..91ee4c0ef0cd 100644
+--- a/include/drm/display/drm_dp.h
++++ b/include/drm/display/drm_dp.h
+@@ -554,8 +554,14 @@
+ 
+ #define DP_PANEL_REPLAY_CAP_SIZE	7
+ 
+-#define DP_PANEL_REPLAY_CAP_CAPABILITY			0xb1
+-# define DP_PANEL_REPLAY_SU_GRANULARITY_REQUIRED	(1 << 5)
++#define DP_PANEL_REPLAY_CAP_CAPABILITY					0xb1
++# define DP_PANEL_REPLAY_DSC_DECODE_CAPABILITY_IN_PR_SHIFT			1 /* DP 2.1 */
++# define DP_PANEL_REPLAY_DSC_DECODE_CAPABILITY_IN_PR_MASK			(3 << 1)
++# define DP_PANEL_REPLAY_ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR			(1 << 3)
++# define DP_PANEL_REPLAY_DSC_CRC_OF_MULTIPLE_SUS_SUPPORTED			(1 << 4)
++# define DP_PANEL_REPLAY_SU_GRANULARITY_REQUIRED				(1 << 5)
++# define DP_PANEL_REPLAY_SU_Y_GRANULARITY_EXTENDED_CAPABILITY_SUPPORTED		(1 << 6)
++# define DP_PANEL_REPLAY_LINK_OFF_SUPPORTED_IN_PR_AFTER_ADAPTIVE_SYNC_SDP	(1 << 7)
+ 
+ #define DP_PANEL_REPLAY_CAP_X_GRANULARITY		0xb2
+ #define DP_PANEL_REPLAY_CAP_Y_GRANULARITY		0xb4
 -- 
 2.43.0
 
