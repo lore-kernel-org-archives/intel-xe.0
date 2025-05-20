@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCA5CC3DA6D
-	for <intel-xe@archiver.kernel.org>; Tue, 20 May 2025 17:49:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF8B7C3ABDD
+	for <intel-xe@archiver.kernel.org>; Tue, 20 May 2025 17:53:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93D3910E61C;
-	Tue, 20 May 2025 17:49:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9A2F10E597;
+	Tue, 20 May 2025 17:53:47 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A27A910E5EF;
- Tue, 20 May 2025 17:48:58 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7601814080184334680=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2921E10E597;
+ Tue, 20 May 2025 17:53:46 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm=3A_Create_a_tas_info_op?=
- =?utf-8?q?tion_for_wedge_events?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Panel_Replay_+_Adapt?=
+ =?utf-8?q?ive_sync_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 20 May 2025 17:48:58 -0000
-Message-ID: <174776333865.6209.13486182696293405709@1538d3639d33>
+Date: Tue, 20 May 2025 17:53:46 -0000
+Message-ID: <174776362616.6224.10936218993483524560@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250520163243.328746-1-andrealmeid@igalia.com>
-In-Reply-To: <20250520163243.328746-1-andrealmeid@igalia.com>
+References: <20250520165326.1631330-1-jouni.hogander@intel.com>
+In-Reply-To: <20250520165326.1631330-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,106 +40,28 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7601814080184334680==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm: Create a tas info option for wedge events
-URL   : https://patchwork.freedesktop.org/series/149264/
+Series: Panel Replay + Adaptive sync (rev2)
+URL   : https://patchwork.freedesktop.org/series/148540/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-3115-45c2c8c74ab88c8fb741ea8349b051f5aec87320_BAT -> xe-pw-149264v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 45c2c8c74ab8 drm-tip: 2025y-05m-20d-14h-44m-48s UTC integration manifest
+=== git am output follows ===
+Applying: drm/panelreplay: Panel Replay capability DPCD register definitions
+Applying: drm/dp: Add Panel Replay capability bits from DP2.1 specification
+Applying: drm/i915/psr: Read all Panel Replay capability registers from DPCD
+Applying: drm/i915/alpm: Add PR_ALPM_CTL register definitions
+Applying: drm/i915/alpm: Write PR_ALPM_CTL register
+Applying: drm/i915/psr: Add interface to check if AUXLess ALPM is needed by PSR
+Applying: drm/i915/alpm: Add new interface to check if AUXLess ALPM is used
+Applying: drm/i915/alpm: Move port alpm configuration
+Applying: drm/i915/display: Add PHY_CMN1_CONTROL register definitions
+Applying: drm/i915/display: Add function to configure LFPS sending
+Applying: drm/i915/psr: Fix using wrong mask in REG_FIELD_PREP
+Applying: drm/i915/psr: Do not disable Panel Replay in case VRR is enabled
 
 
-Build changes
--------------
-
-  * IGT: IGT_8370 -> IGT_8371
-  * Linux: xe-3115-45c2c8c74ab88c8fb741ea8349b051f5aec87320 -> xe-pw-149264v1
-
-  IGT_8370: 8370
-  IGT_8371: 8371
-  xe-3115-45c2c8c74ab88c8fb741ea8349b051f5aec87320: 45c2c8c74ab88c8fb741ea8349b051f5aec87320
-  xe-pw-149264v1: 149264v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149264v1/index.html
-
---===============7601814080184334680==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: Create a tas info option for wedge events</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149264/">https://patchwork.freedesktop.org/series/149264/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149264v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149264v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3115-45c2c8c74ab88c8fb741ea8349b051f5aec87320_BAT -&gt; xe-pw-149264v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8370 -&gt; IGT_8371</li>
-<li>Linux: xe-3115-45c2c8c74ab88c8fb741ea8349b051f5aec87320 -&gt; xe-pw-149264v1</li>
-</ul>
-<p>IGT_8370: 8370<br />
-  IGT_8371: 8371<br />
-  xe-3115-45c2c8c74ab88c8fb741ea8349b051f5aec87320: 45c2c8c74ab88c8fb741ea8349b051f5aec87320<br />
-  xe-pw-149264v1: 149264v1</p>
-
-</body>
-</html>
-
---===============7601814080184334680==--
