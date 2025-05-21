@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4706AC54ED1
-	for <intel-xe@archiver.kernel.org>; Wed, 21 May 2025 18:17:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19758C54E71
+	for <intel-xe@archiver.kernel.org>; Wed, 21 May 2025 18:17:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB38C10E794;
-	Wed, 21 May 2025 18:17:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37FD310E80A;
+	Wed, 21 May 2025 18:17:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Cj0+sm9f";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S9rypxtu";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5F2F10E76C;
- Wed, 21 May 2025 18:16:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9756B10E7BC;
+ Wed, 21 May 2025 18:17:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747851415; x=1779387415;
+ t=1747851428; x=1779387428;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=iOzsr0uH607Klr5Y1Nv0NV+YgYjAn5hd+ze7SOtoSfw=;
- b=Cj0+sm9fsjQqDlrg4RLeJF7GH76jL/lg/iAiW0ujB+Nt4CFaQTCxSfQX
- 1ojGKGBe7NKJhoo/J/RDOABwAsWlMygLccWEPL5Uc/8c+uJM5j9O2z0a9
- r+EAkVEbJtNDO1A3T40PH7q/f4flP1CUBArYolZa3ILeJovxbyGoaMsTc
- geKibcQnkPdj2oKTvUXhQwTT3U237nMxX/r+aN5saC0ZB/KwHObO0IVAC
- bvgASm2daKEsJFVm/OZyNxQLrtMZHTq87gJaJiCqHohaTRPrv5AAiIvb5
- MzoetDcaSZAFTqYR3xPImfB+IQ61gefrZFRIY1WM8mI8pVORBO7XXL6kv Q==;
-X-CSE-ConnectionGUID: FGnAVPddTNeOypyOqUd56A==
-X-CSE-MsgGUID: aq4G8eTISG2KaWhstrhcFQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11440"; a="75244711"
-X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; d="scan'208";a="75244711"
+ bh=BxVrjIPdtme8X+GMTumYX+drF4Sg1ugZXha+mEg0G3Y=;
+ b=S9rypxtuAJnCwt1QwjJe6eYhuMv3c3uCcIJRjTb8Ka1dKeytRuW9YMHx
+ 1ZHVkry3y7yMlukjMXNyKYVN4OeAedPKSMQBR4vsAm1hIxtmu3pL7gwAo
+ lPDwCpTFa6gWfEKy/zHHCiPqPOrw6X56OYNYLE/76HxV2yQ1CO/9EqNK0
+ 7bEnAzG0Wsj/9YAHFP5H0854MT3J47NRvZylS+ALRvf4EURubZ9sn29VL
+ QCWEEmBaKHs8cQHeB/ak8Q6Pjxa0K8MROA9VVpoSlhonq2J/JhXAp9uok
+ 9tnne9aNLh3/sNVcZ89DycPfjy4ZX2iNvYr6kD2qRCX8lrNyH1YLkRaj9 w==;
+X-CSE-ConnectionGUID: X9XsL68PQISDa/etrcWqJA==
+X-CSE-MsgGUID: MLPgZ1bERduQKuaFcYC8Jw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11440"; a="75244756"
+X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; d="scan'208";a="75244756"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2025 11:16:55 -0700
-X-CSE-ConnectionGUID: 82H/Z2q5TNidXN4UQ/65ZA==
-X-CSE-MsgGUID: nAKb4QgoSu60mSVC6IJvFg==
+ 21 May 2025 11:17:08 -0700
+X-CSE-ConnectionGUID: MhIuL25mRcevcPvP+7zi7A==
+X-CSE-MsgGUID: GyYfPyLfSBOn1sGXI9THOw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; d="scan'208";a="145322277"
+X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; d="scan'208";a="145322293"
 Received: from oandoniu-mobl3.ger.corp.intel.com (HELO stinkbox)
  ([10.245.244.255])
- by orviesa005.jf.intel.com with SMTP; 21 May 2025 11:16:52 -0700
+ by orviesa005.jf.intel.com with SMTP; 21 May 2025 11:17:05 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 21 May 2025 21:16:51 +0300
+ Wed, 21 May 2025 21:17:04 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 02/13] drm/i915/dsb: Use intel_dsb_ins_align() in
- intel_dsb_align_tail()
-Date: Wed, 21 May 2025 21:16:34 +0300
-Message-ID: <20250521181645.32737-3-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 06/13] drm/i915/dsb: Introduce intel_dsb_exec_time_us()
+Date: Wed, 21 May 2025 21:16:38 +0300
+Message-ID: <20250521181645.32737-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250521181645.32737-1-ville.syrjala@linux.intel.com>
 References: <20250521181645.32737-1-ville.syrjala@linux.intel.com>
@@ -72,33 +71,74 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-If the free_post is not QW aligned we don't have to memset the
-extra DW needed to make it so, as the only way that can happen
-is via intel_dsb_reg_write_indexed() which already makes sure
-the next DW is zeroed.
-
-Not a big deal, but this is more consistent how all the other
-stuff operates that puts instructions into the DSB buffer, and
-we'll get a few more of those soon.
+Pull the magic 20 usec DSB execution deadline into
+intel_dsb_arm_exec_time_us(), and also add its counterapart
+for the non-arming register write section. For the non-arming
+part we'll just throw in a random 80 usec for now so the total
+is 100usec. The total exec time will be needed by the upcoming
+flip queue code.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dsb.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dsb.c | 26 ++++++++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_dsb.h |  1 +
+ 2 files changed, 25 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index d6641cfe8061..b5c8972dfad2 100644
+index 82cb58cf9c6a..1b663065a1cd 100644
 --- a/drivers/gpu/drm/i915/display/intel_dsb.c
 +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -504,6 +504,8 @@ static void intel_dsb_align_tail(struct intel_dsb *dsb)
- {
- 	u32 aligned_tail, tail;
+@@ -593,14 +593,36 @@ static u32 dsb_error_int_en(struct intel_display *display)
+ 	return errors;
+ }
  
-+	intel_dsb_ins_align(dsb);
++/*
++ * FIXME calibrate these sensibly, ideally compute based on
++ * the number of regisetrs to be written. But that requires
++ * measuring the actual DSB execution speed on each platform
++ * (and the speed also depends on CDCLK and memory clock)...
++ */
++static int intel_dsb_noarm_exec_time_us(void)
++{
++	return 80;
++}
 +
- 	tail = dsb->free_pos * 4;
- 	aligned_tail = ALIGN(tail, CACHELINE_BYTES);
++static int intel_dsb_arm_exec_time_us(void)
++{
++	return 20;
++}
++
++int intel_dsb_exec_time_us(void)
++{
++	return intel_dsb_noarm_exec_time_us() +
++		intel_dsb_arm_exec_time_us();
++}
++
+ void intel_dsb_vblank_evade(struct intel_atomic_state *state,
+ 			    struct intel_dsb *dsb)
+ {
+ 	struct intel_crtc *crtc = dsb->crtc;
+ 	const struct intel_crtc_state *crtc_state =
+ 		intel_pre_commit_crtc_state(state, crtc);
+-	/* FIXME calibrate sensibly */
+-	int latency = intel_usecs_to_scanlines(&crtc_state->hw.adjusted_mode, 20);
++	int latency = intel_usecs_to_scanlines(&crtc_state->hw.adjusted_mode,
++					       intel_dsb_arm_exec_time_us());
+ 	int start, end;
  
+ 	/*
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i915/display/intel_dsb.h
+index 6a90ffe1f6ff..91703ef974f6 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.h
++++ b/drivers/gpu/drm/i915/display/intel_dsb.h
+@@ -34,6 +34,7 @@ struct intel_dsb *intel_dsb_prepare(struct intel_atomic_state *state,
+ 				    unsigned int max_cmds);
+ void intel_dsb_finish(struct intel_dsb *dsb);
+ void intel_dsb_cleanup(struct intel_dsb *dsb);
++int intel_dsb_exec_time_us(void);
+ void intel_dsb_reg_write(struct intel_dsb *dsb,
+ 			 i915_reg_t reg, u32 val);
+ void intel_dsb_reg_write_indexed(struct intel_dsb *dsb,
 -- 
 2.49.0
 
