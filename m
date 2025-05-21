@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3DF0C54E71
-	for <intel-xe@archiver.kernel.org>; Wed, 21 May 2025 15:46:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C612FC54E71
+	for <intel-xe@archiver.kernel.org>; Wed, 21 May 2025 15:51:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CF1610EABC;
-	Wed, 21 May 2025 15:46:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 801D210EAD1;
+	Wed, 21 May 2025 15:51:45 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E14F10EA8C;
- Wed, 21 May 2025 15:46:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2A3610E7F9;
+ Wed, 21 May 2025 15:51:44 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe=3A_Improve_wedged_mode_?=
- =?utf-8?q?handling_=28rev6=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_CCS_save_restore_for?=
+ =?utf-8?q?_IGPU_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lukasz Laguna" <lukasz.laguna@intel.com>
+To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 21 May 2025 15:46:46 -0000
-Message-ID: <174784240625.10286.146386684804277056@1538d3639d33>
+Date: Wed, 21 May 2025 15:51:44 -0000
+Message-ID: <174784270486.10286.14027072867556953664@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250521122511.5760-1-lukasz.laguna@intel.com>
-In-Reply-To: <20250521122511.5760-1-lukasz.laguna@intel.com>
+References: <20250521141141.17572-1-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20250521141141.17572-1-satyanarayana.k.v.p@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,41 +42,17 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe: Improve wedged mode handling (rev6)
-URL   : https://patchwork.freedesktop.org/series/148214/
-State : failure
+Series: CCS save restore for IGPU (rev4)
+URL   : https://patchwork.freedesktop.org/series/149108/
+State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../drivers/gpu/drm/drm_bridge.c:1406:6: error: redefinition of ‘devm_drm_put_bridge’
- 1406 | void devm_drm_put_bridge(struct device *dev, struct drm_bridge *bridge)
-      |      ^~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_bridge.c:31:
-../include/drm/drm_bridge.h:1314:20: note: previous definition of ‘devm_drm_put_bridge’ with type ‘void(struct device *, struct drm_bridge *)’
- 1314 | static inline void devm_drm_put_bridge(struct device *dev, struct drm_bridge *bridge) {}
-      |                    ^~~~~~~~~~~~~~~~~~~
-make[6]: *** [../scripts/Makefile.build:203: drivers/gpu/drm/drm_bridge.o] Error 1
-make[6]: *** Waiting for unfinished jobs....
-make[5]: *** [../scripts/Makefile.build:461: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:461: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:461: drivers] Error 2
-make[2]: *** [/kernel/Makefile:2003: .] Error 2
-make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
-
-[15:46:17] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[15:46:21] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 2d8dc23f1e6c drm-tip: 2025y-05m-21d-13h-29m-52s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/vf: Create contexts for CCS read write
+Applying: drm/xe/vf: Attach and detach CCS copy commands with BO
+Applying: drm/xe/vf: Register CCS read/write contexts with Guc
 
 
