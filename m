@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DA73C54E65
-	for <intel-xe@archiver.kernel.org>; Wed, 21 May 2025 21:39:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD301C54E90
+	for <intel-xe@archiver.kernel.org>; Wed, 21 May 2025 21:40:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D59CA10E089;
-	Wed, 21 May 2025 21:39:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8141010E089;
+	Wed, 21 May 2025 21:40:25 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CF0010E089;
- Wed, 21 May 2025 21:39:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6A0D10E038;
+ Wed, 21 May 2025 21:40:24 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/gsc=3A_Switch_SW_p?=
- =?utf-8?q?roxy_allocation_to_uncached?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe/gsc=3A_Switch_SW_proxy_?=
+ =?utf-8?q?allocation_to_uncached?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 21 May 2025 21:39:55 -0000
-Message-ID: <174786359518.11643.10839589781304579480@1538d3639d33>
+Date: Wed, 21 May 2025 21:40:24 -0000
+Message-ID: <174786362487.11256.8602486034394959284@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250521213448.3829840-1-daniele.ceraolospurio@intel.com>
 In-Reply-To: <20250521213448.3829840-1-daniele.ceraolospurio@intel.com>
@@ -44,40 +44,39 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/gsc: Switch SW proxy allocation to uncached
 URL   : https://patchwork.freedesktop.org/series/149355/
-State : success
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-202708c00696422fd217223bb679a353a5936e23
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 3db7c8b865c7c3946f00cbede98985b09315f174
-Author: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Date:   Wed May 21 14:34:48 2025 -0700
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../drivers/gpu/drm/drm_bridge.c:1406:6: error: redefinition of ‘devm_drm_put_bridge’
+ 1406 | void devm_drm_put_bridge(struct device *dev, struct drm_bridge *bridge)
+      |      ^~~~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/drm_bridge.c:31:
+../include/drm/drm_bridge.h:1314:20: note: previous definition of ‘devm_drm_put_bridge’ with type ‘void(struct device *, struct drm_bridge *)’
+ 1314 | static inline void devm_drm_put_bridge(struct device *dev, struct drm_bridge *bridge) {}
+      |                    ^~~~~~~~~~~~~~~~~~~
+make[6]: *** [../scripts/Makefile.build:203: drivers/gpu/drm/drm_bridge.o] Error 1
+make[6]: *** Waiting for unfinished jobs....
+make[5]: *** [../scripts/Makefile.build:461: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:461: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:461: drivers] Error 2
+make[2]: *** [/kernel/Makefile:2003: .] Error 2
+make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
-    drm/xe/gsc: Switch SW proxy allocation to uncached
-    
-    We're recently started to see a number of issues that seem to be caused
-    by memory coherency between the driver and the GSC FW when processing SW
-    proxy (xe#5002, xe#5047, xe#5071). These are sporadic and seem to only
-    happen on one particular CI machine, so I wan't able to repro locally
-    and fully root-cause the problem.
-    Given the memory coherency suspicion, as a first attempt to fix the
-    issue switch the allocation of the SW proxy object to uncached and
-    see if it is enough. Note that there is no performance concern in not
-    having this cached as the proxy flow is not heavily used outside of
-    driver init.
-    
-    Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-    Cc: Alan Previn Teres Alexis <alan.previn.teres.alexis@intel.com>
-    Cc: John Harrison <John.C.Harrison@Intel.com>
-+ /mt/dim checkpatch 1cdbbaf657b0574686c1c15035b370d3fcad7fca drm-intel
-3db7c8b865c7 drm/xe/gsc: Switch SW proxy allocation to uncached
+[21:39:55] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[21:40:00] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
