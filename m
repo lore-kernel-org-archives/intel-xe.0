@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B230C54E65
-	for <intel-xe@archiver.kernel.org>; Wed, 21 May 2025 22:48:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B67E8C54E90
+	for <intel-xe@archiver.kernel.org>; Wed, 21 May 2025 22:48:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04AA410E089;
-	Wed, 21 May 2025 22:48:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6881F10E031;
+	Wed, 21 May 2025 22:48:53 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B227810E060;
- Wed, 21 May 2025 22:48:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27E6010E74A;
+ Wed, 21 May 2025 22:48:52 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/bo=3A_add_GPU?=
- =?utf-8?q?_memory_trace_points_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/bo=3A_add_GPU_memo?=
+ =?utf-8?q?ry_trace_points_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Juston Li" <justonli@chromium.org>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 21 May 2025 22:48:41 -0000
-Message-ID: <174786772172.11760.6630125037467972396@1538d3639d33>
+Date: Wed, 21 May 2025 22:48:52 -0000
+Message-ID: <174786773216.11643.7941372400673753356@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250521224239.856298-1-justonli@chromium.org>
 In-Reply-To: <20250521224239.856298-1-justonli@chromium.org>
@@ -48,9 +48,35 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 1cdbbaf657b0 drm-tip: 2025y-05m-21d-20h-48m-46s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/bo: add GPU memory trace points
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 524a3f8db2dba46b53fef8e21ef4acc7cd88c927
+Author: Juston Li <justonli@chromium.org>
+Date:   Wed May 21 22:42:35 2025 +0000
+
+    drm/xe/bo: add GPU memory trace points
+    
+    Add tracepoints behind CONFIG_DRM_XE_GPU_MEM_TRACEPOINTS for tracking
+    global and per-process GPU memory usage.
+    
+    These are required by VSR on Android 12+ for reporting GPU driver memory
+    allocations.
+    
+    v2:
+     - Use u64 as preferred by checkpatch (Tvrtko)
+     - Fix errors in comments/Kconfig description (Tvrtko)
+     - drop redundant "CONFIG_" in Kconfig
+    
+    Signed-off-by: Juston Li <justonli@chromium.org>
+    Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
++ /mt/dim checkpatch 1cdbbaf657b0574686c1c15035b370d3fcad7fca drm-intel
+524a3f8db2db drm/xe/bo: add GPU memory trace points
 
 
