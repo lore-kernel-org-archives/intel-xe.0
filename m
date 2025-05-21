@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B67E8C54E90
-	for <intel-xe@archiver.kernel.org>; Wed, 21 May 2025 22:48:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBAD8C54E90
+	for <intel-xe@archiver.kernel.org>; Wed, 21 May 2025 22:49:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6881F10E031;
-	Wed, 21 May 2025 22:48:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D62110E031;
+	Wed, 21 May 2025 22:49:23 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27E6010E74A;
- Wed, 21 May 2025 22:48:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A65910E060;
+ Wed, 21 May 2025 22:49:22 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/bo=3A_add_GPU_memo?=
- =?utf-8?q?ry_trace_points_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe/bo=3A_add_GPU_memory_tr?=
+ =?utf-8?q?ace_points_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Juston Li" <justonli@chromium.org>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 21 May 2025 22:48:52 -0000
-Message-ID: <174786773216.11643.7941372400673753356@1538d3639d33>
+Date: Wed, 21 May 2025 22:49:22 -0000
+Message-ID: <174786776223.11760.15759944143023293682@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250521224239.856298-1-justonli@chromium.org>
 In-Reply-To: <20250521224239.856298-1-justonli@chromium.org>
@@ -44,39 +44,39 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/bo: add GPU memory trace points (rev2)
 URL   : https://patchwork.freedesktop.org/series/149272/
-State : success
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-202708c00696422fd217223bb679a353a5936e23
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 524a3f8db2dba46b53fef8e21ef4acc7cd88c927
-Author: Juston Li <justonli@chromium.org>
-Date:   Wed May 21 22:42:35 2025 +0000
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../drivers/gpu/drm/drm_bridge.c:1406:6: error: redefinition of ‘devm_drm_put_bridge’
+ 1406 | void devm_drm_put_bridge(struct device *dev, struct drm_bridge *bridge)
+      |      ^~~~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/drm_bridge.c:31:
+../include/drm/drm_bridge.h:1314:20: note: previous definition of ‘devm_drm_put_bridge’ with type ‘void(struct device *, struct drm_bridge *)’
+ 1314 | static inline void devm_drm_put_bridge(struct device *dev, struct drm_bridge *bridge) {}
+      |                    ^~~~~~~~~~~~~~~~~~~
+make[6]: *** [../scripts/Makefile.build:203: drivers/gpu/drm/drm_bridge.o] Error 1
+make[6]: *** Waiting for unfinished jobs....
+make[5]: *** [../scripts/Makefile.build:461: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:461: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:461: drivers] Error 2
+make[2]: *** [/kernel/Makefile:2003: .] Error 2
+make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
-    drm/xe/bo: add GPU memory trace points
-    
-    Add tracepoints behind CONFIG_DRM_XE_GPU_MEM_TRACEPOINTS for tracking
-    global and per-process GPU memory usage.
-    
-    These are required by VSR on Android 12+ for reporting GPU driver memory
-    allocations.
-    
-    v2:
-     - Use u64 as preferred by checkpatch (Tvrtko)
-     - Fix errors in comments/Kconfig description (Tvrtko)
-     - drop redundant "CONFIG_" in Kconfig
-    
-    Signed-off-by: Juston Li <justonli@chromium.org>
-    Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-+ /mt/dim checkpatch 1cdbbaf657b0574686c1c15035b370d3fcad7fca drm-intel
-524a3f8db2db drm/xe/bo: add GPU memory trace points
+[22:48:53] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[22:48:57] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
