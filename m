@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 586FAC54E92
-	for <intel-xe@archiver.kernel.org>; Wed, 21 May 2025 09:33:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 798E3C54E65
+	for <intel-xe@archiver.kernel.org>; Wed, 21 May 2025 09:33:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0872610E6F6;
-	Wed, 21 May 2025 09:33:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20FA410E707;
+	Wed, 21 May 2025 09:33:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DeuVD/kZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="igXXQWd/";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AD8D10E70D;
- Wed, 21 May 2025 09:33:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4ADA10E703;
+ Wed, 21 May 2025 09:33:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747820000; x=1779356000;
+ t=1747819999; x=1779355999;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=EZRif6mjYfANn52EIufxwTVisYUEBZvz+aehc8ZQHIg=;
- b=DeuVD/kZLRXH8vRy3Ddy9zCI++Jd1E/mXXA+crjVJQRaRdswAI5w02Zn
- N3pg1fSNS3hEZWcdrABOtuWc1yNXJ7S/neQMgAw8xL3d3mTH0xRwU3+KV
- Jt8fgm34iAFrG47xCyqAex+gS0WqI0f6B6/n3ajS+rYJYsuBr4ZxRNqlp
- n5lrKs6ELwE5050JrsJ8+F+j22OJB8ji0ZDxJ+iDVopaJBwYZKUzGgg4n
- zuGFoRhWBS7LGSVIRCiKCvvClV5FiAi8vbwGPMgaOOLN54ki7c5UUU8FL
- ILJjIvG0PxKOv48KiLhjuzwjR9OKQWHfXy8dmYxW1XvlSgpLWGCNxFkbu w==;
-X-CSE-ConnectionGUID: UJR+aS7VSt29k+2XxzerKA==
-X-CSE-MsgGUID: lsuB5YD/SYifG6KQVI8G1Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11439"; a="49714394"
-X-IronPort-AV: E=Sophos;i="6.15,303,1739865600"; d="scan'208";a="49714394"
+ bh=AkNh430BsfaaHDTVZ3mOU9oL4/qDLKn/ZP5FKFaNGeg=;
+ b=igXXQWd/8S5c0KNlcrzAx2NhLYWF/8zYdDnIL6/7/QV1bwJSb/G/70QI
+ AOEcOm5QqPr6pgcNTZP6lr0sDSWAze5xVEl9wotdDI1wk7us0zkNe9jhZ
+ o5PuDbgm1rGF4Y43xbYQ0Zy23/wzr/3xQo1ZdCCYp5wndYlgPt9cbZ+ya
+ xS9GaD71LhmHwBpx3GypQVfGYbukSI+/jo4ZA0jdBN0wfIecOU6DX88r0
+ hmhEL/rk3VCQiHcEJggfb1Fm4GZtZEs6xjL7nEn7LfhX95pWTnajBJU4P
+ OVRumT8vaK3Bdsa70sjvlQDiRz44qNJKx6WMVHjW6NOMZgOD7GDjePOl8 w==;
+X-CSE-ConnectionGUID: Sikb8smXRaOwvofteq1GMw==
+X-CSE-MsgGUID: DS9KgzK5RQO8dV0WBmvjhA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11439"; a="49714385"
+X-IronPort-AV: E=Sophos;i="6.15,303,1739865600"; d="scan'208";a="49714385"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2025 02:33:20 -0700
-X-CSE-ConnectionGUID: b+9I4wXFTzSJbhqTyGZLxg==
-X-CSE-MsgGUID: 2OvNl1EPSYClrNUbmYxQ3g==
+ 21 May 2025 02:33:18 -0700
+X-CSE-ConnectionGUID: zxS96YA9SsCJwbgVQg193Q==
+X-CSE-MsgGUID: cj4Vmm62STWevV4cetux6Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,303,1739865600"; d="scan'208";a="140407177"
+X-IronPort-AV: E=Sophos;i="6.15,303,1739865600"; d="scan'208";a="140407163"
 Received: from abityuts-desk.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.244.119])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2025 02:33:18 -0700
+ 21 May 2025 02:33:16 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH v3 12/12] drm/i915/psr: Do not disable Panel Replay in case
- VRR is enabled
-Date: Wed, 21 May 2025 12:32:40 +0300
-Message-ID: <20250521093240.2284835-13-jouni.hogander@intel.com>
+Subject: [PATCH v3 11/12] drm/i915/psr: Fix using wrong mask in REG_FIELD_PREP
+Date: Wed, 21 May 2025 12:32:39 +0300
+Message-ID: <20250521093240.2284835-12-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250521093240.2284835-1-jouni.hogander@intel.com>
 References: <20250521093240.2284835-1-jouni.hogander@intel.com>
@@ -72,46 +71,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Allow Panel Replay with VRR. All VRR modes are supposed to work with
-Panel Replay.
+Wrong mask is used in PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION and
+PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION.
 
-Bspec: 68920, 68925
+Fixes: 295099580f04 ("drm/i915/psr: Add missing ALPM AUX-Less register definitions")
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr_regs.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 38535e0d2496..db7111374293 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1579,6 +1579,12 @@ static bool _psr_compute_config(struct intel_dp *intel_dp,
- 	if (!CAN_PSR(intel_dp))
- 		return false;
+diff --git a/drivers/gpu/drm/i915/display/intel_psr_regs.h b/drivers/gpu/drm/i915/display/intel_psr_regs.h
+index aad3ac5f502e..8afbf5a38335 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_psr_regs.h
+@@ -335,8 +335,8 @@
+ #define  PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION_MASK	REG_GENMASK(20, 16)
+ #define  PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION_MASK, val)
+ #define  PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION_MASK	REG_GENMASK(12, 8)
+-#define  PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION_MASK, val)
++#define  PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION_MASK, val)
+ #define  PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION_MASK	REG_GENMASK(4, 0)
+-#define  PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION_MASK, val)
++#define  PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION_MASK, val)
  
-+	/*
-+	 * Currently PSR doesn't work reliably with VRR enabled.
-+	 */
-+	if (crtc_state->vrr.enable)
-+		return false;
-+
- 	entry_setup_frames = intel_psr_entry_setup_frames(intel_dp, adjusted_mode);
- 
- 	if (entry_setup_frames >= 0) {
-@@ -1696,12 +1702,6 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
- 		return;
- 	}
- 
--	/*
--	 * Currently PSR/PR doesn't work reliably with VRR enabled.
--	 */
--	if (crtc_state->vrr.enable)
--		return;
--
- 	crtc_state->has_panel_replay = _panel_replay_compute_config(intel_dp,
- 								    crtc_state,
- 								    conn_state);
+ #endif /* __INTEL_PSR_REGS_H__ */
 -- 
 2.43.0
 
