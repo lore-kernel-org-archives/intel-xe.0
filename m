@@ -4,34 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC494C2D0CD
-	for <intel-xe@archiver.kernel.org>; Wed, 21 May 2025 15:33:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12FD0C54ED1
+	for <intel-xe@archiver.kernel.org>; Wed, 21 May 2025 15:33:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5C6010E806;
-	Wed, 21 May 2025 15:33:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFFCC10E85C;
+	Wed, 21 May 2025 15:33:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="lb2CmwKn";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="D58eIVlJ";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3971E10E6FC;
- Wed, 21 May 2025 15:33:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 230F310E806;
+ Wed, 21 May 2025 15:33:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=abrAL0/TmomWhVV9asJAZc8JhxAb/961Ch2hqbhx6As=; b=lb2CmwKnx2eS2jnhcYoUWprObj
- /urVEMzdjsaeYE0J4u7cpE/vcd6kZ4Gn0axKBkUJn78LqVGrtu46HKlZmWqWBsnfBpmW3SnvVlTgH
- 8wJDyHAKWOBupWN4AZwOkG6P1+I6sGtgUHRJ8bSCN1jDUyNVHO4C0nl5p+QBAAdJMVVnZny1xbf2e
- vRba0UBRRLOedcYmlJFyXsZZrTycmQ882Wtk45Epbxfs13H9H3mqc2kUuQiiA4ndVk1wxsmhggqi+
- 2gz3IrvEaL5H8yg/9Ku5Ths4DBhxycoMCHgeI1kMvUrOigndmcjcrhQD3vfsWdCjT5Y0bbzo/8rR3
- qJSfs0fQ==;
+ bh=g1AFS96Z9JPDmTxa4c4KuWoTuO5ZT6F1LDqypU8z0N8=; b=D58eIVlJLtKEre4gO9w4o1BnOM
+ puPirwarCrRabjdCYb2MwRxyYkCjvWlqMHIriMuofK4/tWrcutajtHJUQQvEM8f6ckR7f5Vj2E7Ca
+ Q58XfoXqoAknzBhBbGZkIrCWqzULUP4xhOtGfNntKXC82MoDcl60BC9Bh9GYVjdGzNGDluXvH0IRY
+ dMFQaipjAtwQS/SSsDVS7Az+Aubk1arl28i5kAuLKjiOHWVGhv7bYDAjBgOjPByds7wpROdBlxuaf
+ DKy4hlB0g0H96XjngVQHUm039SXA8fbUyXb5nrfCf7VDoutDcYWSZODFdE1YLZzlu32dTmBoPxSRO
+ 5hotiuIQ==;
 Received: from [191.204.192.64] (helo=localhost.localdomain)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uHlRi-00BGxd-E8; Wed, 21 May 2025 17:33:30 +0200
+ id 1uHlRq-00BGxd-AU; Wed, 21 May 2025 17:33:38 +0200
 From: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
 To: "Alex Deucher" <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
@@ -43,10 +43,13 @@ Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
-Subject: [PATCH v6 0/3] drm: Create a task info option for wedge events
-Date: Wed, 21 May 2025 12:33:20 -0300
-Message-ID: <20250521153323.935974-1-andrealmeid@igalia.com>
+Subject: [PATCH v6 2/3] drm/doc: Add a section about "Task information" for
+ the wedge API
+Date: Wed, 21 May 2025 12:33:22 -0300
+Message-ID: <20250521153323.935974-3-andrealmeid@igalia.com>
 X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250521153323.935974-1-andrealmeid@igalia.com>
+References: <20250521153323.935974-1-andrealmeid@igalia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -64,61 +67,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patchset implements a request made by Xaver Hugl about wedge events:
+Add a section about "Task information" for the wedge API.
 
-"I'd really like to have the PID of the client that triggered the GPU
-reset, so that we can kill it if multiple resets are triggered in a
-row (or switch to software rendering if it's KWin itself) and show a
-user-friendly notification about why their app(s) crashed, but that
-can be added later."
-
->From https://lore.kernel.org/dri-devel/CAFZQkGwJ4qgHV8WTp2=svJ_VXhb-+Y8_VNtKB=jLsk6DqMYp9w@mail.gmail.com/
-
-For testing, I've used amdgpu's debug_mask options debug_disable_soft_recovery
-and debug_disable_gpu_ring_reset to test both wedge event paths in the driver.
-To trigger a ring timeout, I've used this app:
-https://gitlab.freedesktop.org/andrealmeid/gpu-timeout
-
-Thanks!
-
-Changelog:
-
-v6:
- - Check if PID >= 0 for displaying the task info
- - s/app/task in a comment
-
+Reviewed-by: Krzysztof Karas <krzysztof.karas@intel.com>
+Reviewed-by: Raag Jadav <raag.jadav@intel.com>
+Signed-off-by: André Almeida <andrealmeid@igalia.com>
+---
 v5:
- - Change from app to task also in structs, commit message and docs
- - Add a check for NULL or empty task name string
-
+ - Change app to task in the text as well
 v4:
- - Change from APP to TASK
- - Add defines for event_string and pid_string length
-
+ - Change APP to TASK
 v3:
- - Make comm_string and pid_string empty when there's no app info
  - Change "app that caused ..." to "app involved ..."
  - Clarify that devcoredump have more information about what happened
+ - Update that PID and APP will be empty if there's no app info
+---
+ Documentation/gpu/drm-uapi.rst | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
-v2:
-  - Rebased on top of drm/drm-next
-  - Added new patch for documentation
-
-André Almeida (3):
-  drm: Create a task info option for wedge events
-  drm/doc: Add a section about "Task information" for the wedge API
-  drm/amdgpu: Make use of drm_wedge_task_info
-
- Documentation/gpu/drm-uapi.rst             | 17 +++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 19 +++++++++++++++++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.c    |  6 +++++-
- drivers/gpu/drm/drm_drv.c                  | 19 +++++++++++++++----
- drivers/gpu/drm/i915/gt/intel_reset.c      |  3 ++-
- drivers/gpu/drm/xe/xe_device.c             |  3 ++-
- include/drm/drm_device.h                   |  8 ++++++++
- include/drm/drm_drv.h                      |  3 ++-
- 8 files changed, 68 insertions(+), 10 deletions(-)
-
+diff --git a/Documentation/gpu/drm-uapi.rst b/Documentation/gpu/drm-uapi.rst
+index 69f72e71a96e..24aa9f320ebc 100644
+--- a/Documentation/gpu/drm-uapi.rst
++++ b/Documentation/gpu/drm-uapi.rst
+@@ -446,6 +446,23 @@ telemetry information (devcoredump, syslog). This is useful because the first
+ hang is usually the most critical one which can result in consequential hangs or
+ complete wedging.
+ 
++Task information
++---------------
++
++The information about which application (if any) was involved in the device
++wedging is useful for userspace if they want to notify the user about what
++happened (e.g. the compositor display a message to the user "The <task name>
++caused a graphical error and the system recovered") or to implement policies
++(e.g. the daemon may "ban" an task that keeps resetting the device). If the task
++information is available, the uevent will display as ``PID=<pid>`` and
++``TASK=<task name>``. Otherwise, ``PID`` and ``TASK`` will not appear in the
++event string.
++
++The reliability of this information is driver and hardware specific, and should
++be taken with a caution regarding it's precision. To have a big picture of what
++really happened, the devcoredump file provides should have much more detailed
++information about the device state and about the event.
++
+ Consumer prerequisites
+ ----------------------
+ 
 -- 
 2.49.0
 
