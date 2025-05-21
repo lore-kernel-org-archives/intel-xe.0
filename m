@@ -4,27 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1E4BC54E90
-	for <intel-xe@archiver.kernel.org>; Wed, 21 May 2025 19:55:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FE89C54E90
+	for <intel-xe@archiver.kernel.org>; Wed, 21 May 2025 20:26:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D1CA10E727;
-	Wed, 21 May 2025 19:55:35 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1149310E727;
- Wed, 21 May 2025 19:55:33 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE54F10E724;
+	Wed, 21 May 2025 20:26:36 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B8ll0sz1";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30CC710E71C;
+ Wed, 21 May 2025 20:26:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1747859195; x=1779395195;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=aLtQzNGu5/O0fU0Cv03GWH9zFR3LL3UOULcLPG921iI=;
+ b=B8ll0sz15ZI3mvmH1qqLzz3/IhozoSgdr1c0bg2GpamWRNsoIXcaCVTK
+ Gk0K+2ajlzJz7xv5abYkFjOrvw+K2rdT0nSXzPaS7v42JBjl2k5waI7T0
+ btri9NJ92lAVE7DWy/2h5RK1ByqVZzJ0AYaW4l45plnsFJZ/tdEhZ2JGC
+ nn45i69uCwgcSOMOxEh5aV62jKpkoApt2cy8XadbxXnqH0Ho4622x+iw9
+ 9KMkMFQhoHXjDPxSU0h2knYBrHW3I6BWqHcXn4fS0AQnPBRp1IuTzqxQj
+ uHf9TNyfehz/NnuhjOXh064OUuZ5qa/q2SXAGzH+NPuoqf5k1t3CZWqtz A==;
+X-CSE-ConnectionGUID: drXq0x/RSFK6PH+PxopASw==
+X-CSE-MsgGUID: hbDkEoDXQqiiZgjvKcxi/w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11440"; a="49762884"
+X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; d="scan'208";a="49762884"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2025 13:26:35 -0700
+X-CSE-ConnectionGUID: qZCX3NfvRmW5MjpehmDrkQ==
+X-CSE-MsgGUID: D1ORkfQ1S9OCFvbKBj7yjw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; d="scan'208";a="140088834"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2025 13:26:29 -0700
+Date: Wed, 21 May 2025 23:26:24 +0300
+From: Raag Jadav <raag.jadav@intel.com>
+To: Alexander Usyskin <alexander.usyskin@intel.com>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Karthik Poosa <karthik.poosa@intel.com>,
+ Reuven Abliyev <reuven.abliyev@intel.com>,
+ Oren Weil <oren.jer.weil@intel.com>, linux-mtd@lists.infradead.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Tomas Winkler <tomasw@gmail.com>, Vitaly Lubart <lubvital@gmail.com>
+Subject: Re: [PATCH v10 03/10] mtd: intel-dg: implement access functions
+Message-ID: <aC428Ak5j_x6Cr2o@black.fi.intel.com>
+References: <20250515133345.2805031-1-alexander.usyskin@intel.com>
+ <20250515133345.2805031-4-alexander.usyskin@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe=3A_don=27t_store_the_xe?=
- =?utf-8?q?_device_pointer_inside_xe=5Fttm=5Ftt?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dave Airlie" <airlied@gmail.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 21 May 2025 19:55:33 -0000
-Message-ID: <174785733304.11256.1178449426552911613@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250521194831.314835-1-airlied@gmail.com>
-In-Reply-To: <20250521194831.314835-1-airlied@gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250515133345.2805031-4-alexander.usyskin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,47 +81,76 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, May 15, 2025 at 04:33:38PM +0300, Alexander Usyskin wrote:
+> Implement read(), erase() and write() functions.
 
-Series: drm/xe: don't store the xe device pointer inside xe_ttm_tt
-URL   : https://patchwork.freedesktop.org/series/149347/
-State : failure
+...
 
-== Summary ==
+> +__maybe_unused
+> +static ssize_t idg_write(struct intel_dg_nvm *nvm, u8 region,
+> +			 loff_t to, size_t len, const unsigned char *buf)
+> +{
+> +	size_t i;
+> +	size_t len8;
+> +	size_t len4;
+> +	size_t to4;
+> +	size_t to_shift;
+> +	size_t len_s = len;
+> +	ssize_t ret;
+> +
+> +	idg_nvm_set_region_id(nvm, region);
+> +
+> +	to4 = ALIGN_DOWN(to, sizeof(u32));
+> +	to_shift = min(sizeof(u32) - ((size_t)to - to4), len);
+> +	if (to - to4) {
+> +		ret = idg_nvm_rewrite_partial(nvm, to4, to - to4, to_shift, (uint32_t *)&buf[0]);
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../drivers/gpu/drm/drm_bridge.c:1406:6: error: redefinition of ‘devm_drm_put_bridge’
- 1406 | void devm_drm_put_bridge(struct device *dev, struct drm_bridge *bridge)
-      |      ^~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_bridge.c:31:
-../include/drm/drm_bridge.h:1314:20: note: previous definition of ‘devm_drm_put_bridge’ with type ‘void(struct device *, struct drm_bridge *)’
- 1314 | static inline void devm_drm_put_bridge(struct device *dev, struct drm_bridge *bridge) {}
-      |                    ^~~~~~~~~~~~~~~~~~~
-make[6]: *** [../scripts/Makefile.build:203: drivers/gpu/drm/drm_bridge.o] Error 1
-make[6]: *** Waiting for unfinished jobs....
-make[5]: *** [../scripts/Makefile.build:461: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:461: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:461: drivers] Error 2
-make[2]: *** [/kernel/Makefile:2003: .] Error 2
-make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
+Forgot to add, you're using both uint32_t and u32.
+Perhaps make it consistent?
 
-[19:55:04] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[19:55:08] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		buf += to_shift;
+> +		to += to_shift;
+> +		len_s -= to_shift;
+> +	}
+> +
+> +	len8 = ALIGN_DOWN(len_s, sizeof(u64));
+> +	for (i = 0; i < len8; i += sizeof(u64)) {
+> +		u64 data;
+> +
+> +		memcpy(&data, &buf[i], sizeof(u64));
+> +		idg_nvm_write64(nvm, to + i, data);
+> +		if (idg_nvm_error(nvm))
+> +			return -EIO;
+> +	}
+> +
+> +	len4 = len_s - len8;
+> +	if (len4 >= sizeof(u32)) {
+> +		u32 data;
+> +
+> +		memcpy(&data, &buf[i], sizeof(u32));
+> +		idg_nvm_write32(nvm, to + i, data);
+> +		if (idg_nvm_error(nvm))
+> +			return -EIO;
+> +		i += sizeof(u32);
+> +		len4 -= sizeof(u32);
+> +	}
+> +
+> +	if (len4 > 0) {
+> +		ret = idg_nvm_rewrite_partial(nvm, to + i, 0, len4, (uint32_t *)&buf[i]);
 
+Ditto (and also in all other places if any).
 
+> +		if (ret < 0)
+> +			return ret;
+> +	}
+> +
+> +	return len;
+> +}
+
+Raag
