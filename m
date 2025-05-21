@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53228C2D0CD
-	for <intel-xe@archiver.kernel.org>; Wed, 21 May 2025 18:18:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 227FDC2D0CD
+	for <intel-xe@archiver.kernel.org>; Wed, 21 May 2025 18:18:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23CDF10E85B;
-	Wed, 21 May 2025 18:18:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9938C10E896;
+	Wed, 21 May 2025 18:18:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h+I9AORe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N5Wc7ZvC";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6692E10E876;
- Wed, 21 May 2025 18:17:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D13F10E7C7;
+ Wed, 21 May 2025 18:17:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747851441; x=1779387441;
+ t=1747851447; x=1779387447;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xDX9cRK7/lVXVPQkUc+QXXSyuddryy8yb/ELgAlD6kI=;
- b=h+I9AORex7T4Ww6kphaYROppjwZ3kTg1a0rnjszzeDobJ0wis/+iFVDH
- /EDpaZOV+SRoZDqB+mH2DVeUMaEyaZ3CyYX9tY7DeKC0I7BUXLGrD2RVP
- pmwgtDLvQFOCMZyRvU6Bb5znN51skr6V9+Tx70sg/7VrKBKYoLRo9IYKW
- Esvkk5BlJCFw+CEsOllqFcUOi4bvOXau5zlkWE/Q4s0rnAdvSdT0rtwyD
- YimkVYsbSD27T2dJHh1MtTx7BYrrN7f5UC0nmgpbf6dFRgwZ6e971OHwy
- bxd8dyvcrWlDDwuSWLeGivtK0Jhv3Tku0cEx47iIdJUiZqzx1gVEIjEl7 g==;
-X-CSE-ConnectionGUID: O9yN5ECuT5ayeipVcJhStw==
-X-CSE-MsgGUID: ZgFMxgDuSDW2PnIMLVitXg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11440"; a="75244772"
-X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; d="scan'208";a="75244772"
+ bh=68KZy8DFwGld48b1nFk2seeXQjDu+yS086ooQ6s/xes=;
+ b=N5Wc7ZvCgCzelZDdhmofL5y6aYhOVBJmRoJuhh0lwS03AA6vsMx86LMA
+ OBhugY/go/kpTFLBG5D9nvCBLTwH1BKgofi/L2KjoH13V0SO0zJrElpv7
+ ogWDOXg4vrDhoUVVMiFbWYCejFde35+D6y30pMVYb5Ifd8NYaqSRmCoDL
+ HHNU31wgj9aXhOmh7Xyv8qjo17QVtiTVE8N6WU/vJL90zqjsElO4TTyMg
+ RUnw1G4GxEz4KphvSAc1jONaG/XpCJOw/2tqchTetIghyuSv+jotXIZRN
+ z7iG2hQOfcZ3M8gORzzLQ42XW/ofwrAmPkCjnGVKKswWKV8jPSCslWcei A==;
+X-CSE-ConnectionGUID: Hmd9EmvvQRG45czJ65/l8Q==
+X-CSE-MsgGUID: LHb6UMFcQSGUOMmNemg94Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11440"; a="75244779"
+X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; d="scan'208";a="75244779"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2025 11:17:20 -0700
-X-CSE-ConnectionGUID: h26l/xrHTBKi/0jzylJfZw==
-X-CSE-MsgGUID: aqsHyJDmShOjagjkgPXv1A==
+ 21 May 2025 11:17:26 -0700
+X-CSE-ConnectionGUID: sCeZ95yAR0u/jTW8FOLLow==
+X-CSE-MsgGUID: PtrVAA2YTOeK681Kg5vjTg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; d="scan'208";a="145322298"
+X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; d="scan'208";a="145322301"
 Received: from oandoniu-mobl3.ger.corp.intel.com (HELO stinkbox)
  ([10.245.244.255])
- by orviesa005.jf.intel.com with SMTP; 21 May 2025 11:17:18 -0700
+ by orviesa005.jf.intel.com with SMTP; 21 May 2025 11:17:24 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 21 May 2025 21:17:17 +0300
+ Wed, 21 May 2025 21:17:23 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 10/13] drm/i915/flipq: Implement Wa_18034343758
-Date: Wed, 21 May 2025 21:16:42 +0300
-Message-ID: <20250521181645.32737-11-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 12/13] drm/i915/flipq: Add intel_flipq_dump()
+Date: Wed, 21 May 2025 21:16:44 +0300
+Message-ID: <20250521181645.32737-13-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250521181645.32737-1-ville.syrjala@linux.intel.com>
 References: <20250521181645.32737-1-ville.syrjala@linux.intel.com>
@@ -71,97 +71,81 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Implement the driver side of Wa_18034343758, which is supposed to
-prevent the DSB and DMC from accessing registers in parallel, and
-thus potentially corrupting the registers due to a hardware issue
-(which should be fixed in PTL-B0).
-
-The w/a sequence goes as follows:
-DMC starts the DSB
- |                 \
-DMC halts itself    | DSB waits a while for DMC to have time to halt
- .                  | DSB executes normally
- .		    | DSB unhalts the DMC at the very end
- .             	   /
-DMC resumes execution
-
-v2: PTL-B0+ firmware no longer has the w/a since the hw got fixed
+Add a function for dumping the entries of a specific flip queue.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c |  8 +++++++
- drivers/gpu/drm/i915/display/intel_flipq.c   | 24 ++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_flipq.h   |  2 ++
- 3 files changed, 34 insertions(+)
+ drivers/gpu/drm/i915/display/intel_flipq.c | 46 ++++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_flipq.h |  2 +
+ 2 files changed, 48 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index f2a0bc5323c9..7704de9437fe 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7231,6 +7231,10 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
- 	}
- 
- 	if (new_crtc_state->use_flipq || new_crtc_state->use_dsb) {
-+		/* Wa_18034343758 */
-+		if (new_crtc_state->use_flipq)
-+			intel_flipq_wait_dmc_halt(new_crtc_state->dsb_commit, crtc);
-+
- 		if (intel_crtc_needs_color_update(new_crtc_state))
- 			intel_color_commit_noarm(new_crtc_state->dsb_commit,
- 						 new_crtc_state);
-@@ -7261,6 +7265,10 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
- 		if (DISPLAY_VER(display) >= 9)
- 			skl_detach_scalers(new_crtc_state->dsb_commit,
- 					   new_crtc_state);
-+
-+		/* Wa_18034343758 */
-+		if (new_crtc_state->use_flipq)
-+			intel_flipq_unhalt_dmc(new_crtc_state->dsb_commit, crtc);
- 	}
- 
- 	if (new_crtc_state->dsb_color_vblank)
 diff --git a/drivers/gpu/drm/i915/display/intel_flipq.c b/drivers/gpu/drm/i915/display/intel_flipq.c
-index 4bde16b3624a..4d9145b39f16 100644
+index 00667cf64924..e3ef0b989be4 100644
 --- a/drivers/gpu/drm/i915/display/intel_flipq.c
 +++ b/drivers/gpu/drm/i915/display/intel_flipq.c
-@@ -372,3 +372,27 @@ void intel_flipq_add(struct intel_crtc *crtc,
- 
- 	intel_flipq_sw_dmc_wake(crtc);
+@@ -163,6 +163,52 @@ static void intel_flipq_sw_dmc_wake(struct intel_crtc *crtc)
+ 	intel_de_write(display, PIPEDMC_FPQ_CTL1(crtc->pipe), PIPEDMC_SW_DMC_WAKE);
  }
-+
-+/* Wa_18034343758 */
-+static bool need_dmc_halt_wa(struct intel_display *display)
-+{
-+	return DISPLAY_VER(display) == 20 ||
-+		(display->platform.pantherlake &&
-+		 IS_DISPLAY_STEP(display, STEP_A0, STEP_B0));
-+}
-+
-+void intel_flipq_wait_dmc_halt(struct intel_dsb *dsb, struct intel_crtc *crtc)
+ 
++void intel_flipq_dump(struct intel_crtc *crtc,
++		      enum intel_flipq_id flipq_id)
 +{
 +	struct intel_display *display = to_intel_display(crtc);
++	struct intel_flipq *flipq = &crtc->flipq[flipq_id];
++	u32 tmp;
 +
-+	if (need_dmc_halt_wa(display))
-+		intel_dsb_wait_usec(dsb, 2);
++	drm_dbg_kms(display->drm,
++		    "[CRTC:%d:%s] FQ %d @ 0x%x: ",
++		    crtc->base.base.id, crtc->base.name, flipq_id,
++		    flipq->start_mmioaddr);
++	for (int i = 0 ; i < intel_flipq_size_dw(flipq_id); i++) {
++		printk(KERN_CONT " 0x%08x",
++		       intel_de_read(display, PIPEDMC_FQ_RAM(flipq->start_mmioaddr, i)));
++		if (i % intel_flipq_elem_size_dw(flipq_id) == intel_flipq_elem_size_dw(flipq_id) - 1)
++			printk(KERN_CONT "\n");
++	}
++
++	drm_dbg_kms(display->drm,
++		    "[CRTC:%d:%s] FQ %d: chp=0x%x, hp=0x%x\n",
++		    crtc->base.base.id, crtc->base.name, flipq_id,
++		    intel_de_read(display, PIPEDMC_FPQ_CHP(crtc->pipe, flipq_id)),
++		    intel_de_read(display, PIPEDMC_FPQ_HP(crtc->pipe, flipq_id)));
++
++	drm_dbg_kms(display->drm,
++		    "[CRTC:%d:%s] FQ %d: current head %d\n",
++		    crtc->base.base.id, crtc->base.name, flipq_id,
++		    intel_flipq_current_head(crtc, flipq_id));
++
++	drm_dbg_kms(display->drm,
++		    "[CRTC:%d:%s] flip queue timestamp: 0x%x\n",
++		    crtc->base.base.id, crtc->base.name,
++		    intel_de_read(display, PIPEDMC_FPQ_TS(crtc->pipe)));
++
++	tmp = intel_de_read(display, PIPEDMC_FPQ_ATOMIC_TP(crtc->pipe));
++
++	drm_dbg_kms(display->drm,
++		    "[CRTC:%d:%s] flip queue atomic tails: P3 %d, P2 %d, P1 %d, G %d, F %d\n",
++		    crtc->base.base.id, crtc->base.name,
++		    REG_FIELD_GET(PIPEDMC_FPQ_PLANEQ_3_TP_MASK, tmp),
++		    REG_FIELD_GET(PIPEDMC_FPQ_PLANEQ_2_TP_MASK, tmp),
++		    REG_FIELD_GET(PIPEDMC_FPQ_PLANEQ_1_TP_MASK, tmp),
++		    REG_FIELD_GET(PIPEDMC_FPQ_GENERALQ_TP_MASK, tmp),
++		    REG_FIELD_GET(PIPEDMC_FPQ_FASTQ_TP_MASK, tmp));
 +}
 +
-+void intel_flipq_unhalt_dmc(struct intel_dsb *dsb, struct intel_crtc *crtc)
-+{
-+	struct intel_display *display = to_intel_display(crtc);
-+
-+	if (need_dmc_halt_wa(display))
-+		intel_dsb_reg_write(dsb, PIPEDMC_CTL(crtc->pipe), 0);
-+}
+ static int cdclk_factor(struct intel_display *display)
+ {
+ 	if (DISPLAY_VER(display) >= 30)
 diff --git a/drivers/gpu/drm/i915/display/intel_flipq.h b/drivers/gpu/drm/i915/display/intel_flipq.h
-index 64d3c2a5bb7b..3a5e825884c3 100644
+index 3a5e825884c3..ec8ade72ea47 100644
 --- a/drivers/gpu/drm/i915/display/intel_flipq.h
 +++ b/drivers/gpu/drm/i915/display/intel_flipq.h
-@@ -28,5 +28,7 @@ void intel_flipq_add(struct intel_crtc *crtc,
- 		     unsigned int pts,
- 		     enum intel_dsb_id dsb_id,
+@@ -30,5 +30,7 @@ void intel_flipq_add(struct intel_crtc *crtc,
  		     struct intel_dsb *dsb);
-+void intel_flipq_wait_dmc_halt(struct intel_dsb *dsb, struct intel_crtc *crtc);
-+void intel_flipq_unhalt_dmc(struct intel_dsb *dsb, struct intel_crtc *crtc);
+ void intel_flipq_wait_dmc_halt(struct intel_dsb *dsb, struct intel_crtc *crtc);
+ void intel_flipq_unhalt_dmc(struct intel_dsb *dsb, struct intel_crtc *crtc);
++void intel_flipq_dump(struct intel_crtc *crtc,
++		      enum intel_flipq_id flip_queue_id);
  
  #endif /* __INTEL_FLIPQ_H__ */
 -- 
