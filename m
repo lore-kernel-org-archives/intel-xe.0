@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97F4FC54ED1
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53228C2D0CD
 	for <intel-xe@archiver.kernel.org>; Wed, 21 May 2025 18:18:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E1E410E79F;
-	Wed, 21 May 2025 18:18:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23CDF10E85B;
+	Wed, 21 May 2025 18:18:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VG6WZHnS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h+I9AORe";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D95A910E83A;
- Wed, 21 May 2025 18:17:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6692E10E876;
+ Wed, 21 May 2025 18:17:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747851451; x=1779387451;
+ t=1747851441; x=1779387441;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1lhuQOfZl4wHQrIbeO24gs0U7lwwKmZh0Hlx349cCvw=;
- b=VG6WZHnSYGgjAEUvDbnWogmy+umahBCS0PM9IS8xM3IWvtksA+Rqw8s2
- xD2d48e0h2uxT0MZWoBexIAS9tkPtAfyLNRNwm67g28Q6Qu66fsHxx933
- et2/nN+S3f4++R+1uOL0rUBU1foeJzj3rG8KLuIpBMfnKKTJbpBn210pv
- 2OiL/2WJuP5BJJhANV553OxBl68dR7s45lqGOVxaPIVcuXClBIZutJCVc
- 7JRb68kr79Gum/mNx2eWfuxVKI9yEltuEDt3OViLM4lfwovUWSMvQ/P59
- x58Ie8dBKK95L+2toTZtCEsKYlCNzmEYLLewW1Gsk4MtCGk7zSogP/xuJ g==;
-X-CSE-ConnectionGUID: t4xaVfHbQ9qC8lYOTf4clg==
-X-CSE-MsgGUID: GMTr9+vgSj+nlV4vFp0AkA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11440"; a="75244785"
-X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; d="scan'208";a="75244785"
+ bh=xDX9cRK7/lVXVPQkUc+QXXSyuddryy8yb/ELgAlD6kI=;
+ b=h+I9AORex7T4Ww6kphaYROppjwZ3kTg1a0rnjszzeDobJ0wis/+iFVDH
+ /EDpaZOV+SRoZDqB+mH2DVeUMaEyaZ3CyYX9tY7DeKC0I7BUXLGrD2RVP
+ pmwgtDLvQFOCMZyRvU6Bb5znN51skr6V9+Tx70sg/7VrKBKYoLRo9IYKW
+ Esvkk5BlJCFw+CEsOllqFcUOi4bvOXau5zlkWE/Q4s0rnAdvSdT0rtwyD
+ YimkVYsbSD27T2dJHh1MtTx7BYrrN7f5UC0nmgpbf6dFRgwZ6e971OHwy
+ bxd8dyvcrWlDDwuSWLeGivtK0Jhv3Tku0cEx47iIdJUiZqzx1gVEIjEl7 g==;
+X-CSE-ConnectionGUID: O9yN5ECuT5ayeipVcJhStw==
+X-CSE-MsgGUID: ZgFMxgDuSDW2PnIMLVitXg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11440"; a="75244772"
+X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; d="scan'208";a="75244772"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2025 11:17:30 -0700
-X-CSE-ConnectionGUID: WvquNGCQSnavpNSsvKwuGg==
-X-CSE-MsgGUID: lewZXq6rTSK7u/3V00Wr9Q==
+ 21 May 2025 11:17:20 -0700
+X-CSE-ConnectionGUID: h26l/xrHTBKi/0jzylJfZw==
+X-CSE-MsgGUID: aqsHyJDmShOjagjkgPXv1A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; d="scan'208";a="145322302"
+X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; d="scan'208";a="145322298"
 Received: from oandoniu-mobl3.ger.corp.intel.com (HELO stinkbox)
  ([10.245.244.255])
- by orviesa005.jf.intel.com with SMTP; 21 May 2025 11:17:27 -0700
+ by orviesa005.jf.intel.com with SMTP; 21 May 2025 11:17:18 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 21 May 2025 21:17:26 +0300
+ Wed, 21 May 2025 21:17:17 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 13/13] drm/i915/flipq: Enable flipq by default for testing
-Date: Wed, 21 May 2025 21:16:45 +0300
-Message-ID: <20250521181645.32737-14-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 10/13] drm/i915/flipq: Implement Wa_18034343758
+Date: Wed, 21 May 2025 21:16:42 +0300
+Message-ID: <20250521181645.32737-11-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250521181645.32737-1-ville.syrjala@linux.intel.com>
 References: <20250521181645.32737-1-ville.syrjala@linux.intel.com>
@@ -71,40 +71,99 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Flip on the enable_flipq modparam to see if CI blows up.
+Implement the driver side of Wa_18034343758, which is supposed to
+prevent the DSB and DMC from accessing registers in parallel, and
+thus potentially corrupting the registers due to a hardware issue
+(which should be fixed in PTL-B0).
+
+The w/a sequence goes as follows:
+DMC starts the DSB
+ |                 \
+DMC halts itself    | DSB waits a while for DMC to have time to halt
+ .                  | DSB executes normally
+ .		    | DSB unhalts the DMC at the very end
+ .             	   /
+DMC resumes execution
+
+v2: PTL-B0+ firmware no longer has the w/a since the hw got fixed
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_params.c | 2 +-
- drivers/gpu/drm/i915/display/intel_display_params.h | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c |  8 +++++++
+ drivers/gpu/drm/i915/display/intel_flipq.c   | 24 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_flipq.h   |  2 ++
+ 3 files changed, 34 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/drivers/gpu/drm/i915/display/intel_display_params.c
-index 75316247ee8a..2883663e06ff 100644
---- a/drivers/gpu/drm/i915/display/intel_display_params.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_params.c
-@@ -63,7 +63,7 @@ intel_display_param_named_unsafe(enable_dsb, bool, 0400,
- 	"Enable display state buffer (DSB) (default: true)");
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index f2a0bc5323c9..7704de9437fe 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7231,6 +7231,10 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+ 	}
  
- intel_display_param_named_unsafe(enable_flipq, bool, 0400,
--	"Enable DMC flip queue (default: false)");
-+	"Enable DMC flip queue (default: true)");
+ 	if (new_crtc_state->use_flipq || new_crtc_state->use_dsb) {
++		/* Wa_18034343758 */
++		if (new_crtc_state->use_flipq)
++			intel_flipq_wait_dmc_halt(new_crtc_state->dsb_commit, crtc);
++
+ 		if (intel_crtc_needs_color_update(new_crtc_state))
+ 			intel_color_commit_noarm(new_crtc_state->dsb_commit,
+ 						 new_crtc_state);
+@@ -7261,6 +7265,10 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+ 		if (DISPLAY_VER(display) >= 9)
+ 			skl_detach_scalers(new_crtc_state->dsb_commit,
+ 					   new_crtc_state);
++
++		/* Wa_18034343758 */
++		if (new_crtc_state->use_flipq)
++			intel_flipq_unhalt_dmc(new_crtc_state->dsb_commit, crtc);
+ 	}
  
- intel_display_param_named_unsafe(enable_sagv, bool, 0400,
- 	"Enable system agent voltage/frequency scaling (SAGV) (default: true)");
-diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/drivers/gpu/drm/i915/display/intel_display_params.h
-index 784e6bae8615..600bff5cddda 100644
---- a/drivers/gpu/drm/i915/display/intel_display_params.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_params.h
-@@ -31,7 +31,7 @@ struct drm_printer;
- 	param(int, enable_dc, -1, 0400) \
- 	param(bool, enable_dpt, true, 0400) \
- 	param(bool, enable_dsb, true, 0600) \
--	param(bool, enable_flipq, false, 0600) \
-+	param(bool, enable_flipq, true, 0600) \
- 	param(bool, enable_sagv, true, 0600) \
- 	param(int, disable_power_well, -1, 0400) \
- 	param(bool, enable_ips, true, 0600) \
+ 	if (new_crtc_state->dsb_color_vblank)
+diff --git a/drivers/gpu/drm/i915/display/intel_flipq.c b/drivers/gpu/drm/i915/display/intel_flipq.c
+index 4bde16b3624a..4d9145b39f16 100644
+--- a/drivers/gpu/drm/i915/display/intel_flipq.c
++++ b/drivers/gpu/drm/i915/display/intel_flipq.c
+@@ -372,3 +372,27 @@ void intel_flipq_add(struct intel_crtc *crtc,
+ 
+ 	intel_flipq_sw_dmc_wake(crtc);
+ }
++
++/* Wa_18034343758 */
++static bool need_dmc_halt_wa(struct intel_display *display)
++{
++	return DISPLAY_VER(display) == 20 ||
++		(display->platform.pantherlake &&
++		 IS_DISPLAY_STEP(display, STEP_A0, STEP_B0));
++}
++
++void intel_flipq_wait_dmc_halt(struct intel_dsb *dsb, struct intel_crtc *crtc)
++{
++	struct intel_display *display = to_intel_display(crtc);
++
++	if (need_dmc_halt_wa(display))
++		intel_dsb_wait_usec(dsb, 2);
++}
++
++void intel_flipq_unhalt_dmc(struct intel_dsb *dsb, struct intel_crtc *crtc)
++{
++	struct intel_display *display = to_intel_display(crtc);
++
++	if (need_dmc_halt_wa(display))
++		intel_dsb_reg_write(dsb, PIPEDMC_CTL(crtc->pipe), 0);
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_flipq.h b/drivers/gpu/drm/i915/display/intel_flipq.h
+index 64d3c2a5bb7b..3a5e825884c3 100644
+--- a/drivers/gpu/drm/i915/display/intel_flipq.h
++++ b/drivers/gpu/drm/i915/display/intel_flipq.h
+@@ -28,5 +28,7 @@ void intel_flipq_add(struct intel_crtc *crtc,
+ 		     unsigned int pts,
+ 		     enum intel_dsb_id dsb_id,
+ 		     struct intel_dsb *dsb);
++void intel_flipq_wait_dmc_halt(struct intel_dsb *dsb, struct intel_crtc *crtc);
++void intel_flipq_unhalt_dmc(struct intel_dsb *dsb, struct intel_crtc *crtc);
+ 
+ #endif /* __INTEL_FLIPQ_H__ */
 -- 
 2.49.0
 
