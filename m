@@ -4,62 +4,182 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D2FAC2D0CD
-	for <intel-xe@archiver.kernel.org>; Wed, 21 May 2025 17:43:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 193B4C2D0CD
+	for <intel-xe@archiver.kernel.org>; Wed, 21 May 2025 18:12:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF8F510E741;
-	Wed, 21 May 2025 17:43:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D730410E729;
+	Wed, 21 May 2025 18:12:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="knNteiCl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JvCDKNBQ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05A1510E72C;
- Wed, 21 May 2025 17:43:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31A1310E729
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 May 2025 18:12:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747849426; x=1779385426;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=WUWDaThu4V/TCRS3x0YGmjdCIWoipYk3guX/zl4EGxk=;
- b=knNteiClGNuBzmthBe0HQ/S6dsNviFlFBbwW92rPxKdktsPiWDlWHeNJ
- VJ9Kx0RO39ZXAKKFgEwjnaG4mYqOcy4c1hGdsZCl0TrLTsjQZNAWEcOq/
- 2+meQlv8jvkdj5BwgdCAbKm9qzEo/S2ezKwh4CmDoXymAClOlEQgXAIqq
- VK6UbApG5UXgGK/GYsikkUVjtGJ0WW0l2Uwc/jWfVe8TJ/5CNoHhyqen6
- tNmYNDIWUG+QLRvVB4G58azUnDz4tXoX7q4BJwimI7E0y8Qc0kHEV2qVD
- 6+OnXkKwxJ8H9GT47PBIxpirEBFxaepOpXcBbcQhiOay0BpFnYWjiWmod w==;
-X-CSE-ConnectionGUID: nQbp8DgKRO+npAc4XW85xw==
-X-CSE-MsgGUID: cPE+QrjuQTqnL+nJ/4EaqQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11440"; a="49982787"
-X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; d="scan'208";a="49982787"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2025 10:43:43 -0700
-X-CSE-ConnectionGUID: RHwG/1BjTFaO6XAMF+1FJw==
-X-CSE-MsgGUID: r0uO9fvPQe6KRgpFWYRELQ==
+ t=1747851147; x=1779387147;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=J0H2vYlsZXubdYaCSyERig/ue/9chr28wsd5RBvhPkg=;
+ b=JvCDKNBQTmPGsiEaJkMe0qjBMjBLAWzponV9ArWAl+4WxHGaa+Lv0ebg
+ rXIrFDDu23v0k+8SmtEQJwMFDTkO+SdtrmyxdvDr8GDdryXz+UDzrp4bo
+ QWSEJCnzUXG8WSMVhbgjeX7wUR9cydSU+ZPZNAdZgMqge2XvQZPgmpAQd
+ kKsRzlVaKaaYYyuqcGQeDi50R5Lz/N5fWGptrG/QEev+l4ldMQNvUKsfD
+ Qo9TcdQYniYiurmQkqZBzXq/FBsW+RUjNn5Uvp37wzFEBtdOm883tQMq1
+ 7d+cdh1iDt09I1ATslP7NQoqHIgGDlL2vL/sk16Lo8sF8gj7mIe2DZFoc Q==;
+X-CSE-ConnectionGUID: kAwUeCPVQQ++auG19h6pdQ==
+X-CSE-MsgGUID: +UvCVkz5QVeDGtoQxfuO2g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11440"; a="60895066"
+X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; d="scan'208";a="60895066"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2025 11:12:25 -0700
+X-CSE-ConnectionGUID: 7Vy+Fd+uSIStYyQbet0vMw==
+X-CSE-MsgGUID: 3yb2UZHUTeuEP7qZNO7D2A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; d="scan'208";a="145312209"
-Received: from oandoniu-mobl3.ger.corp.intel.com (HELO stinkbox)
- ([10.245.244.255])
- by orviesa005.jf.intel.com with SMTP; 21 May 2025 10:43:41 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 21 May 2025 20:43:40 +0300
-Date: Wed, 21 May 2025 20:43:40 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Shankar, Uma" <uma.shankar@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 06/12] drm/i915/dmc: Define flip queue related PIPEDMC
- registers
-Message-ID: <aC4QzGuf16FmMyM6@intel.com>
-References: <20250516113408.11689-1-ville.syrjala@linux.intel.com>
- <20250516113408.11689-7-ville.syrjala@linux.intel.com>
- <DM4PR11MB636093C0D6A9D736281E3E17F49DA@DM4PR11MB6360.namprd11.prod.outlook.com>
+X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; d="scan'208";a="145163507"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2025 11:12:24 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Wed, 21 May 2025 11:12:24 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25 via Frontend Transport; Wed, 21 May 2025 11:12:24 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.172)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.55; Wed, 21 May 2025 11:12:24 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=zEApHb7RbxIgPmlJad5VMjLjn8BDS5MP5SF5iRBfDJdlE8Ynyp3O7xPs7JdIjWdfMxTebGBuR7ltaTResrCgYpEyFHiHbrbk2JQQP9Dck76gQokwRzA6MGnULj4zVluLAYbnuLns6I91szx7cJgHEDeMt+15kOBrXjbRIFjUp8nNLd5hITDSFV5IvS4cpNKlSLRkote45/lZKsS8mnMktF//SG+pnbrxqEa1n/ZrnD13ktG04WJW+8VT/K4WGQ2uu35iiQraChAcLzZh/4gMEnFEWcKd9mxo6rSPmmEWUMv+zurM8NVsmProza9Dfa/20wcVd2HwJ9Y02VPmL553ZA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=YDfdiI8QdMLjoWsobtNLgt74o3hnvyOvr2nKENFARKg=;
+ b=aB+vMDREnpcVz/DtIrNZGN/VfrdOo2oUZbgZgOX+2W/p9ZBhth3t/2lUdxKNASdXLJ/me/nEGd1TkM7CldfEzsYIgjQDtZ6ssEgYBpXRR8+GynOZFilibd1Ua5EjHAEb6s8JMdaM6OlvrWVdBrB/VIvJ0Ljqu475WD05AaTwYBbdStAZRosMRcufirUEhonNAYWlPlecBnH6INjrrwx6XdfRUO3oXooHwyDL6AHDdqx629dIecTixR/MaZv4CmSXIqh5cAQYDy/o+NBqnEmXmALDwwbGrVLLDnGDbT3gGFvYwQz/GgNZR7vfcMBTvf8GA5U3NBm/2/PC5Eb4k2W0Vg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB7757.namprd11.prod.outlook.com (2603:10b6:8:103::22)
+ by DM4PR11MB6165.namprd11.prod.outlook.com (2603:10b6:8:ae::8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8746.30; Wed, 21 May 2025 18:12:22 +0000
+Received: from DM4PR11MB7757.namprd11.prod.outlook.com
+ ([fe80::60c9:10e5:60f0:13a1]) by DM4PR11MB7757.namprd11.prod.outlook.com
+ ([fe80::60c9:10e5:60f0:13a1%5]) with mapi id 15.20.8746.030; Wed, 21 May 2025
+ 18:12:22 +0000
+Message-ID: <04ea69b6-3dbc-4f50-8f9d-d80ac5856556@intel.com>
+Date: Wed, 21 May 2025 11:12:20 -0700
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] drm/xe: Add missing documentation of rpa_freq
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, <intel-xe@lists.freedesktop.org>
+CC: Lucas De Marchi <lucas.demarchi@intel.com>
+References: <20250521165146.39616-3-rodrigo.vivi@intel.com>
+ <20250521165146.39616-4-rodrigo.vivi@intel.com>
+Content-Language: en-US
+From: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
+In-Reply-To: <20250521165146.39616-4-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SJ0PR13CA0042.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c2::17) To DM4PR11MB7757.namprd11.prod.outlook.com
+ (2603:10b6:8:103::22)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <DM4PR11MB636093C0D6A9D736281E3E17F49DA@DM4PR11MB6360.namprd11.prod.outlook.com>
-X-Patchwork-Hint: comment
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB7757:EE_|DM4PR11MB6165:EE_
+X-MS-Office365-Filtering-Correlation-Id: 222816c8-d0da-43ce-d878-08dd9893082a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?a0tGSnpFRzRCY1A3OC9EMUdyaWRLVWYrM2hWcStCL0tiZSt5T2RZYlljQzdP?=
+ =?utf-8?B?UmFqRDJBSk9jOWw0dTlKZzNZbFFXMXp3OHB3QjVpKzQwamp2aU1KWk9yRDlS?=
+ =?utf-8?B?M2dmOFRuOW1WODdINmpxZmZ3MGgvT0xzNHRoY2M1LzFuTjhhU1V5Nit0YmU1?=
+ =?utf-8?B?cHJMUjJlR21PSmxITzVmLy92Vk1sTEVNUDN6UVRydDZKMTNxSTNrZWxPdUox?=
+ =?utf-8?B?YWp6MXNuQmZIY1liYlhDQkpBZkRqYzJIWmtEVXkzcDJNVGhLUWxKNlN6NEwv?=
+ =?utf-8?B?WkM3aGgvRTVsNXlJbGgzQlAwa25YNFY1UW5FVm5YZVp1UUFQR1JybnFIQ0ll?=
+ =?utf-8?B?TzlOOWpkenNUTXRPQVFBenlSb2JpTmZqdGlvQUhSRW9XSy9OSGxzZFhZMnZV?=
+ =?utf-8?B?dGdzMDBYck1zYVE0dTQ0TXk0TjlnMHBkU3BUVzBpMVg3Vnc4S0NMOG5tZHJa?=
+ =?utf-8?B?b1dHajlHTE9rZkpTV1paZ3RmbkxNY2x4ZnVFcUJJQVAyaHRBR3oxVmRZTGEr?=
+ =?utf-8?B?T3VWWXlzVWhVMmdrOU9nZ2JPNGxuUGRXZUdSc3hBM3JsM1hnaEtYbVFaZktC?=
+ =?utf-8?B?YWNiMzB6dEgwdFVkazdWS1NFK3NGYnRyRjNPS0JjemJJQmtKcDZqandZeGwy?=
+ =?utf-8?B?bUJSQnZJSFpINmdoYzdETjh5RmcwcVZ5QWNDR1BBZnZtMmJPRXFzVGl1dGpY?=
+ =?utf-8?B?MzNJb2JwR1ZtRU5QQmxTOVZPOEw3cm9LamZCQTl2N3dUNVR3Qk5CY0VIZ1lF?=
+ =?utf-8?B?aHV4MjNaVUhZdFEyYko3MTNsQ2l4SVR0Qm5LNXVVWmN4SFh5NzRERm1WNjJr?=
+ =?utf-8?B?U1NSd2I1Y3V6bUg3VUJWdzBReTUrVThFWTJOd3Q4bVhKNmxZeFEvRGFRZE91?=
+ =?utf-8?B?eFRkRjB6UlA1QkJRZTNmM05mSW0zejhLWldnNytibnVtUENKeGc5VEJtUWZP?=
+ =?utf-8?B?M1ErWHU2WEVlNlNYaGo5ZXVLcUU0K3pObGZBdjJCdVhFQ1RZVXl5SXNNOWF0?=
+ =?utf-8?B?eGpCempPOGRsMG50MnU5MnVoeEJzSEJjTndQUDd2S1M5ZmFvMzBGK3lieXJm?=
+ =?utf-8?B?L3RROEExbjVlSFRTU2RXUHRudWdaWTlpNzlKZmh1SEl2aWkxeUdPazZ1c1Bz?=
+ =?utf-8?B?QzVNbWtoRVRrZFoyRkNZTlR5VkZFTkpsNWJ0MmZNTDNyU1dadDFscktwd2NP?=
+ =?utf-8?B?SkNPRWVmTUxERXNDU2hTVy9aajhNUkhnTmJtVlhGaDMwcXdNb3FrcHo1MEM5?=
+ =?utf-8?B?b3Y1UkcrK2svUGhXWkI0RTVER2dtOXVSU2NDSDVET0trM3I3TStsYmdtNEhK?=
+ =?utf-8?B?SmIyZDMzQWRNV21hSzNVYlMrMXhMYzBzQnBmV2g4UkFsTXBIY1k4Ty92L0NQ?=
+ =?utf-8?B?dWVoUk9yalJ4M3RJUnhWMzAyc3VUaDhwbzlOaDcxSVVHbWluekxkNnZVOFo2?=
+ =?utf-8?B?VEg0RU4ybUEyelZ6Ump5VjE1ekcwdFprM2x4cWhUZlFBN0VjdlFCYzBtU2dK?=
+ =?utf-8?B?aURVRzBlTHhKQW44eE80cjBsdmpES3gyTDFlNzNGQXQ5RWppZlliY0pxSGd2?=
+ =?utf-8?B?S2R5MFk2TGNJOEVsM256bENBeU1ocURPSHR0SHN5WUhQekdCb2NzV2xVT0Vj?=
+ =?utf-8?B?ZENjaHA3ZkRrQjZ2OGxLVnhSODFwLyt2a0Q4dWd5WGF2NlNFak9VRDZ5bUJv?=
+ =?utf-8?B?azJBc1lDTm4xVjI0ampqUTJKVVZXNXowaGRaK2hnTWZCdDQ1b1V5ajdodUVO?=
+ =?utf-8?B?a1RGSlpENmhXRnZ5WWJob1RtV0Z1R0hLWko4d01RNUZOTlI3ZGJLb1o3UjhI?=
+ =?utf-8?B?emdwZ1docllsQk1Qc2x3eFNtQWxZcTNwNGdJWG9wc2xTZGdlSmUyWUppN3Yx?=
+ =?utf-8?B?SGZzVjBlaDltanNCOStHZXp0T2FHNnkyMkZXYURnbVFHT2NGTzdpQjhmM0Fk?=
+ =?utf-8?Q?PVlltosqtj0=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB7757.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NlFNV2c4N3lKUFdpT0llSkxGOEdmY1J6UUFZZWVWVWNvWFBKT2J2bmdOYnN3?=
+ =?utf-8?B?TGttMUV2Ris4Ti9ZUURxSGtLenRUVjNiV3VXNHJ6TmhTOEswQlhWVVE5VVpF?=
+ =?utf-8?B?bXZxeGpDWS9tNG5TcldTZVcyaE92OGdQNkFZSzlmdFNWQXhvaC9QZG5WZkhr?=
+ =?utf-8?B?UVptUDQ1WGJmQmdHdHgxUGpGMWpxcUwxeUsyb0pSWXB5QWVhMDlJV1dDK1M5?=
+ =?utf-8?B?dy9BdDdvWmRyVC9rM0VBQlJVMzE3N0tka3hHVTJZam1SMHZkU2xSbGRmQlpj?=
+ =?utf-8?B?UmxMUTgwYlJBdFBENm9CSzZQVjVDMERFVVdXbFl4NUplRUluVHFKQXJOZk4x?=
+ =?utf-8?B?RjMycERtZGRZayt5UWlaTHVBOVFKWVFsSGllV09uNW9acm5ycU9aWlZvdnZv?=
+ =?utf-8?B?OWlQSU51aWUrajd6SVkvUTFoQTNaa1ZKUitWMEtySFVibjl2ZVpRSEdsY0tB?=
+ =?utf-8?B?MHNwT3o0bDRJRUdrNzJERlh4L3lWbDdlenkzOVEvalg2NWZzRDEvVjdJeEdB?=
+ =?utf-8?B?U2JTQUtIbDl2Z1N2RHhsSHY5eUZmVktQNU1QaXp5c09xWENnanlTN212R1pK?=
+ =?utf-8?B?dEdRYVk3cFptK3BEMFpGR2VJMW1OZWxTYmhlbGQ0OEpmZUdUTDlhM0RERzdX?=
+ =?utf-8?B?dEFTMzNwYXhuMTJLNFd5Zjl2QkhQdS8rUEhBcjdtWlExbmE0NVZrZUFSTkZ2?=
+ =?utf-8?B?VmlFQTRSeFZYR3dzdDk0enlmRnJqMThJN01uTmoxMHNrYjRRNDhvZmdkNXU0?=
+ =?utf-8?B?YmVud1dwTnhzVWF6NHRhaGp2Q3RiR01HOGxSSnFmZ2lseGk5NWZLUWo0ckY3?=
+ =?utf-8?B?clNHb0dDb1NtcFdiZzE4Y3UyNmFlY1B2VlFhZHF6U2RqcUlvcWhCY3F5N2lV?=
+ =?utf-8?B?c3NDYWJ1TmlGM2tFM2ovQzU0YldnUVJJS3hCZmJEUW9EL3hQeWtUVi9XMUVz?=
+ =?utf-8?B?T1BNWVN3RTBXSEtFakQxbzRhUEEwbUhqZzN1ZzlsS0V6WUVvWVdxbkxEMFlo?=
+ =?utf-8?B?Q1BuZGUralJEOG8xRGpLNGlZVTZUSjZsR05XblY0dlBRQ29zdDFMV0ZMS3ZG?=
+ =?utf-8?B?VTFKMlJZVmJ4cHBHTm8vWUpxZ2VhRWN2Ui9HTEFLaGRyRGhaeWxVSHYrK0Y3?=
+ =?utf-8?B?UnNKN1lBMVVZcHlIUEZXNkRvWmQ2cURObENlNFc5VDdheUQrVzFOTi9qSEhC?=
+ =?utf-8?B?bzF4RnNvSlBnS09EOU5WSG1DdU5WRHY1d0ZKUjAvU3JuSGZubDlENVIzZVla?=
+ =?utf-8?B?Q0J5ZUIrYkxPdGVRWkNnbXBiakI1MXpqdHFraVpKZ2xhcXNsRUhVYVgyWEVR?=
+ =?utf-8?B?Y2JHQTdxOVlmUzN5eUgwVjZjVjdzL0RIMVF3alVvaHg0NG4rNVR0VEl6SDNz?=
+ =?utf-8?B?dk0rb2hNeWFQRnhqQUZVSkFYcDZTYk9UZmRMak1LM3JTQXRHS3JmR1BKK0JZ?=
+ =?utf-8?B?bmZqV0FUWmlvcVBJekYrQ251RkVqL1BSQzJJWjlqQXdJQnRmSGkzd2Qza1Rx?=
+ =?utf-8?B?ODl0VzU5WlYvNGhlOFprRnl6RXg5Nk5XaC9vV2l2dEhhL1Axa0IwRFVnQ2ky?=
+ =?utf-8?B?U2FVanhqVEpRK01LdFh3aWM0eVNzMDM2Zjc3Q0xqWFpUTmNoOWxnWW1EOEFK?=
+ =?utf-8?B?dkNaYzNvNEN6cnREbkk0VjNxNFk0OEtrS3RmQTlObmVvdGxFOERRZU5WbU10?=
+ =?utf-8?B?SlMyVDRnZjVQdlg2c1VKdDkraDUreURvSGhNUXllMDVWL0o5UTN6RXk3dlBB?=
+ =?utf-8?B?TGJLNzNMS1NEaG13TjBXUWh5Tm0xNm5wcjNFN0NWdEpGNVZZMGt5QUNJTG5y?=
+ =?utf-8?B?OEtEdkNlM3I3b0ZQb0FVY1VJZlg4eXB2aXdRdmFSbWNMcHhwQnR5RU5pRnE4?=
+ =?utf-8?B?dFQyTkhkWlVnMkRtN2hDQytXbURHdklrNmdZVWNaeWZYVHZUM3lBNjJ6QVA0?=
+ =?utf-8?B?Z3h3aElpNXRJeHJYeGlLVk10TElmVTErU3h2b21xZXl4TEtZRk80eEVUbnBB?=
+ =?utf-8?B?aHUxWEdocmNyVjlWMDNZdHhNVWtiMVJvRnNPQVVlNjJGVEtYazJJRTF4bENs?=
+ =?utf-8?B?bEh6SE9rN3BGRUVlWHUrRFdTTnQ2RnkzT2wzVjF4Vm9oQ0VSZEtCc3BlTzBm?=
+ =?utf-8?B?TStNc0RrK0J2Wkg1dGFkUS8yRzhKbzNxYmdLb2YrdTdHR1ZNdEpqci93OExR?=
+ =?utf-8?B?eWc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 222816c8-d0da-43ce-d878-08dd9893082a
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7757.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 May 2025 18:12:22.4066 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: w91aaIKkTUvFxWNpF8l/2DpzRXBgzX1un0GwZnqSeFJL8IV+NMdHhqfHO3FkL+AkVv1r2I9RflHNxJUVj9jKkBGtHPNT5splu6NkamSBv9w=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6165
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,322 +194,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sun, May 18, 2025 at 07:41:06PM +0000, Shankar, Uma wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Ville Syrjala
-> > Sent: Friday, May 16, 2025 5:04 PM
-> > To: intel-gfx@lists.freedesktop.org
-> > Cc: intel-xe@lists.freedesktop.org
-> > Subject: [PATCH 06/12] drm/i915/dmc: Define flip queue related PIPEDMC
-> > registers
-> > 
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > 
-> > Add the register definitions for a bunch of flip queue related PIPEDMC registers.
-> > 
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dmc_regs.h | 172 +++++++++++++++++-
-> >  1 file changed, 171 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-> > b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-> > index d8e715677454..613160a1f9f2 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-> > @@ -6,7 +6,7 @@
-> >  #ifndef __INTEL_DMC_REGS_H__
-> >  #define __INTEL_DMC_REGS_H__
-> > 
-> > -#include "i915_reg_defs.h"
-> > +#include "intel_display_reg_defs.h"
-> > 
-> >  enum dmc_event_id {
-> >  	DMC_EVENT_TRUE = 0x0,
-> > @@ -287,6 +287,17 @@ enum pipedmc_event_id {
-> >  #define MTL_PIPEDMC_CONTROL		_MMIO(0x45250)
-> >  #define  PIPEDMC_ENABLE_MTL(pipe)	REG_BIT(((pipe) - PIPE_A) * 4)
-> > 
-> > +#define _PIPEDMC_LOAD_HTP_A		0x5f000
-> > +#define _PIPEDMC_LOAD_HTP_B		0x5f400
-> > +#define PIPEDMC_LOAD_HTP(pipe)		_MMIO_PIPE((pipe),
-> > _PIPEDMC_LOAD_HTP_A, _PIPEDMC_LOAD_HTP_B)
-> > +
-> > +#define _PIPEDMC_CTL_A		0x5f064
-> > +#define _PIPEDMC_CTL_B		0x5f464
-> > +#define PIPEDMC_CTL(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_CTL_A,
-> > _PIPEDMC_CTL_B)
-> > +#define   PIPEDMC_HALT			REG_BIT(31)
-> > +#define   PIPEDMC_STEP			REG_BIT(27)
-> > +#define   PIPEDMC_CLOCKGATE		REG_BIT(23)
-> > +
-> >  #define _PIPEDMC_STATUS_A		0x5f06c
-> >  #define _PIPEDMC_STATUS_B		0x5f46c
-> >  #define PIPEDMC_STATUS(pipe)		_MMIO_PIPE((pipe),
-> > _PIPEDMC_STATUS_A, _PIPEDMC_STATUS_B)
-> > @@ -298,6 +309,139 @@ enum pipedmc_event_id {
-> >  #define   PIPEDMC_INT_VECTOR_FLIPQ_PROG_DONE
-> > 	REG_FIELD_PREP(PIPEDMC_INT_VECTOR_MASK, 0xff) /*
-> > Wa_16018781658:lnl[a0] */
-> >  #define   PIPEDMC_EVT_PENDING		REG_GENMASK(7, 0)
-> > 
-> > +#define _PIPEDMC_FQ_CTRL_A		0x5f078
-> > +#define _PIPEDMC_FQ_CTRL_B		0x5f478
-> > +#define PIPEDMC_FQ_CTRL(pipe)		_MMIO_PIPE((pipe),
-> > _PIPEDMC_FQ_CTRL_A, _PIPEDMC_FQ_CTRL_B)
-> > +#define   PIPEDMC_FQ_CTRL_ENABLE	REG_BIT(31)
-> > +#define   PIPEDMC_FQ_CTRL_BUSY		REG_BIT(30)
-> > +#define   PIPEDMC_FQ_CTRL_ASYNC		REG_BIT(29)
-> > +#define   PIPEDMC_FQ_CTRL_PREEMPT	REG_BIT(0)
-> > +
-> > +#define _PIPEDMC_FQ_STATUS_A		0x5f098
-> > +#define _PIPEDMC_FQ_STATUS_B		0x5f498
-> > +#define PIPEDMC_FQ_STATUS(pipe)		_MMIO_PIPE((pipe),
-> > _PIPEDMC_FQ_STATUS_A, _PIPEDMC_FQ_STATUS_B)
-> > +#define   PIPEDMC_FQ_STATUS_BUSY		REG_BIT(31)
-> > +#define   PIPEDMC_FQ_STATUS_W2_LIVE_STATUS	REG_BIT(1)
-> > +#define   PIPEDMC_FQ_STATUS_W1_LIVE_STATUS	REG_BIT(0)
-> > +
-> > +#define _PIPEDMC_FPQ_ATOMIC_TP_A	0x5f0a0
-> > +#define _PIPEDMC_FPQ_ATOMIC_TP_B	0x5f4a0
-> > +#define PIPEDMC_FPQ_ATOMIC_TP(pipe)	_MMIO_PIPE((pipe),
-> > _PIPEDMC_FPQ_ATOMIC_TP_A, _PIPEDMC_FPQ_ATOMIC_TP_B)
-> > +#define   PIPEDMC_FPQ_PLANEQ_3_TP_MASK	REG_GENMASK(31, 26)
-> > +#define   PIPEDMC_FPQ_PLANEQ_3_TP(tail)
-> > 	REG_FIELD_PREP(PIPEDMC_FPQ_PLANEQ_3_TP_MASK, (tail))
-> > +#define   PIPEDMC_FPQ_PLANEQ_2_TP_MASK	REG_GENMASK(24, 19)
-> > +#define   PIPEDMC_FPQ_PLANEQ_2_TP(tail)
-> > 	REG_FIELD_PREP(PIPEDMC_FPQ_PLANEQ_2_TP_MASK, (tail))
-> > +#define   PIPEDMC_FPQ_PLANEQ_1_TP_MASK	REG_GENMASK(17, 12)
-> > +#define   PIPEDMC_FPQ_PLANEQ_1_TP(tail)
-> > 	REG_FIELD_PREP(PIPEDMC_FPQ_PLANEQ_1_TP_MASK, (tail))
-> > +#define   PIPEDMC_FPQ_FASTQ_TP_MASK	REG_GENMASK(10, 6)
-> > +#define   PIPEDMC_FPQ_FASTQ_TP(tail)
-> > 	REG_FIELD_PREP(PIPEDMC_FPQ_FASTQ_TP_MASK, (tail))
-> > +#define   PIPEDMC_FPQ_GENERALQ_TP_MASK	REG_GENMASK(4, 0)
-> > +#define   PIPEDMC_FPQ_GENERALQ_TP(tail)
-> > 	REG_FIELD_PREP(PIPEDMC_FPQ_GENERALQ_TP_MASK, (tail))
-> > +
-> > +#define _PIPEDMC_FPQ_LINES_TO_W1_A	0x5f0a4
-> > +#define _PIPEDMC_FPQ_LINES_TO_W1_B	0x5f4a4
-> > +#define PIPEDMC_FPQ_LINES_TO_W1		_MMIO_PIPE((pipe),
-> > _PIPEDMC_FPQ_LINES_TO_W1_A, _PIPEDMC_FPQ_LINES_TO_W1_B)
-> > +
-> > +#define _PIPEDMC_FPQ_LINES_TO_W2_A	0x5f0a8
-> > +#define _PIPEDMC_FPQ_LINES_TO_W2_B	0x5f4a8
-> > +#define PIPEDMC_FPQ_LINES_TO_W2		_MMIO_PIPE((pipe),
-> > _PIPEDMC_FPQ_LINES_TO_W2_A, _PIPEDMC_FPQ_LINES_TO_W2_B)
-> > +
-> > +#define _PIPEDMC_SCANLINECMP_A		0x5f11c
-> > +#define _PIPEDMC_SCANLINECMP_B		0x5f51c
-> > +#define PIPEDMC_SCANLINECMP(pipe)	_MMIO_PIPE((pipe),
-> > _PIPEDMC_SCANLINECMP_A, _PIPEDMC_SCANLINECMP_B)
-> > +#define   PIPEDMC_SCANLINECMP_EN	REG_BIT(31)
-> > +#define   PIPEDMC_SCANLINE_NUMBER	REG_GENMASK(27, 0)
-> 
-> The scanline number seems to be 0:20 for LNL/PTL, can you please re-check once. It's extended
-> to 27 for later platforms.
 
-The later stuff seems uncertain, so I'll drop these to 21 bits
-for now.
+On 5/21/2025 9:51 AM, Rodrigo Vivi wrote:
+> While at it, already adjust the rpe_freq frequency, to highlight
+> that both are calculated by PCODE at runtime.
+>
+> Fixes: c6aac2fa77a3 ("drm/xe: Introduce the RPa information")
+> Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_gt_freq.c | 3 +++
+>   1 file changed, 3 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_gt_freq.c b/drivers/gpu/drm/xe/xe_gt_freq.c
+> index 3293d89f1386..60d9354e7dbf 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_freq.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_freq.c
+> @@ -36,7 +36,10 @@
+>    * - act_freq: The actual resolved frequency decided by PCODE.
+>    * - cur_freq: The current one requested by GuC PC to the PCODE.
+>    * - rpn_freq: The Render Performance (RP) N level, which is the minimal one.
+> + * - rpa_freq: The Render Performance (RP) A level, which is the achiveable one.
+> + *   Calculated by PCODE at runtime based on multiple running conditions
+>    * - rpe_freq: The Render Performance (RP) E level, which is the efficient one.
+> + *   Calculated by PCODE at runtime based on multiple running conditions
 
-> 
-> > +#define _PIPEDMC_SCANLINECMPLOWER_A	0x5f120
-> > +#define _PIPEDMC_SCANLINECMPLOWER_B	0x5f520
-> > +#define PIPEDMC_SCANLINECMPLOWER(pipe)	_MMIO_PIPE((pipe),
-> > _PIPEDMC_SCANLINECMPLOWER_A, _PIPEDMC_SCANLINECMPLOWER_B)
-> > +#define   PIPEDMC_SCANLINEINRANGECMP_EN		REG_BIT(31)
-> > +#define   PIPEDMC_SCANLINEOUTRANGECMP_EN	REG_BIT(30)
-> > +#define   PIPEDMC_SCANLINE_LOWER_MASK		REG_GENMASK(27, 0)
-> 
-> This as well.
-> 
-> > +#define   PIPEDMC_SCANLINE_LOWER(scanline)
-> > 	REG_FIELD_PREP(PIPEDMC_SCANLINE_LOWER_MASK, (scanline))
-> > +
-> > +#define _PIPEDMC_SCANLINECMPUPPER_A	0x5f124
-> > +#define _PIPEDMC_SCANLINECMPUPPER_B	0x5f524
-> > +#define PIPEDMC_SCANLINECMPUPPER(pipe)	_MMIO_PIPE((pipe),
-> > _PIPEDMC_SCANLINECMPUPPER_A, _PIPEDMC_SCANLINECMPUPPER_B)
-> > +#define   PIPEDMC_SCANLINE_UPPER_MASK	REG_GENMASK(27, 0)
-> 
-> Same as above.
-> 
-> > +#define   PIPEDMC_SCANLINE_UPPER(scanline)
-> > 	REG_FIELD_PREP(PIPEDMC_SCANLINE_UPPER_MASK, (scanline))
-> > +
-> > +#define _MMIO_PIPEDMC_FPQ(pipe, fq_id, \
-> > +			  reg_fpq1_a, reg_fpq2_a, reg_fpq3_a, reg_fpq4_a, \
-> > +			  reg_fpq1_b, reg_fpq2_b, reg_fpq3_b, reg_fpq4_b) \
-> > +	_MMIO(_PICK_EVEN_2RANGES((fq_id), INTEL_FLIPQ_PLANE_3, \
-> > +				 _PIPE((pipe), (reg_fpq1_a), (reg_fpq1_b)), \
-> > +				 _PIPE((pipe), (reg_fpq2_a), (reg_fpq2_b)), \
-> > +				 _PIPE((pipe), (reg_fpq3_a), (reg_fpq3_b)), \
-> > +				 _PIPE((pipe), (reg_fpq4_a), (reg_fpq4_b))))
-> > +
-> > +#define _PIPEDMC_FPQ1_HP_A		0x5f128
-> > +#define _PIPEDMC_FPQ2_HP_A		0x5f138
-> > +#define _PIPEDMC_FPQ3_HP_A		0x5f168
-> > +#define _PIPEDMC_FPQ4_HP_A		0x5f174
-> > +#define _PIPEDMC_FPQ5_HP_A		0x5f180
-> > +#define _PIPEDMC_FPQ1_HP_B		0x5f528
-> > +#define _PIPEDMC_FPQ2_HP_B		0x5f538
-> > +#define _PIPEDMC_FPQ3_HP_B		0x5f568
-> > +#define _PIPEDMC_FPQ4_HP_B		0x5f574
-> > +#define _PIPEDMC_FPQ5_HP_B		0x5f580
-> 
-> This entry 5 is not used, is it intentional ?
+Nit: Do we need full stop at the end of these sentences?
 
-We don't need it for the macro since it's (fortunately)
-at a suitable offset from the previous entry. It's also
-for the "fast queue" which isn't used, so technically could
-just nuke it. But since the firmware still has all the code
-for it I figured I might as well document them all.
+Reviewed-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 
-> 
-> > +#define PIPEDMC_FPQ_HP(pipe, fq_id)	_MMIO_PIPEDMC_FPQ((pipe), (fq_id), \
-> > +
-> > _PIPEDMC_FPQ1_HP_A, _PIPEDMC_FPQ2_HP_A, \
-> > +
-> > _PIPEDMC_FPQ3_HP_A, _PIPEDMC_FPQ4_HP_A, \
-> > +
-> > _PIPEDMC_FPQ1_HP_B, _PIPEDMC_FPQ2_HP_B, \
-> > +
-> > _PIPEDMC_FPQ3_HP_B, _PIPEDMC_FPQ4_HP_B)
-> > +
-> > +#define _PIPEDMC_FPQ1_TP_A		0x5f12c
-> > +#define _PIPEDMC_FPQ2_TP_A		0x5f13c
-> > +#define _PIPEDMC_FPQ3_TP_A		0x5f16c
-> > +#define _PIPEDMC_FPQ4_TP_A		0x5f178
-> > +#define _PIPEDMC_FPQ5_TP_A		0x5f184
-> > +#define _PIPEDMC_FPQ1_TP_B		0x5f52c
-> > +#define _PIPEDMC_FPQ2_TP_B		0x5f53c
-> > +#define _PIPEDMC_FPQ3_TP_B		0x5f56c
-> > +#define _PIPEDMC_FPQ4_TP_B		0x5f578
-> > +#define _PIPEDMC_FPQ5_TP_B		0x5f584
-> > +#define PIPEDMC_FPQ_TP(pipe, fq_id)	_MMIO_PIPEDMC_FPQ((pipe), (fq_id), \
-> > +
-> > _PIPEDMC_FPQ1_TP_A, _PIPEDMC_FPQ2_TP_A, \
-> > +
-> > _PIPEDMC_FPQ3_TP_A, _PIPEDMC_FPQ4_TP_A, \
-> > +
-> > _PIPEDMC_FPQ1_TP_B, _PIPEDMC_FPQ2_TP_B, \
-> > +
-> > _PIPEDMC_FPQ3_TP_B, _PIPEDMC_FPQ4_TP_B)
-> > +
-> > +#define _PIPEDMC_FPQ1_CHP_A		0x5f130
-> > +#define _PIPEDMC_FPQ2_CHP_A		0x5f140
-> > +#define _PIPEDMC_FPQ3_CHP_A		0x5f170
-> > +#define _PIPEDMC_FPQ4_CHP_A		0x5f17c
-> > +#define _PIPEDMC_FPQ5_CHP_A		0x5f188
-> > +#define _PIPEDMC_FPQ1_CHP_B		0x5f530
-> > +#define _PIPEDMC_FPQ2_CHP_B		0x5f540
-> > +#define _PIPEDMC_FPQ3_CHP_B		0x5f570
-> > +#define _PIPEDMC_FPQ4_CHP_B		0x5f57c
-> > +#define _PIPEDMC_FPQ5_CHP_B		0x5f588
-> > +#define PIPEDMC_FPQ_CHP(pipe, fq_id)	_MMIO_PIPEDMC_FPQ((pipe), (fq_id), \
-> > +
-> > _PIPEDMC_FPQ1_CHP_A, _PIPEDMC_FPQ2_CHP_A, \
-> > +
-> > _PIPEDMC_FPQ3_CHP_A, _PIPEDMC_FPQ4_CHP_A, \
-> > +
-> > _PIPEDMC_FPQ1_CHP_B, _PIPEDMC_FPQ2_CHP_B, \
-> > +
-> > _PIPEDMC_FPQ3_CHP_B, _PIPEDMC_FPQ4_CHP_B)
-> > +
-> > +#define _PIPEDMC_FPQ_TS_A		0x5f134
-> > +#define _PIPEDMC_FPQ_TS_B		0x5f534
-> > +#define PIPEDMC_FPQ_TS(pipe)		_MMIO_PIPE((pipe),
-> > _PIPEDMC_FPQ_TS_A, _PIPEDMC_FPQ_TS_B)
-> > +
-> > +#define _PIPEDMC_SCANLINE_RO_A		0x5f144
-> > +#define _PIPEDMC_SCANLINE_RO_B		0x5f544
-> > +#define PIPEDMC_SCANLINE_RO(pipe)	_MMIO_PIPE((pipe),
-> > _PIPEDMC_SCANLINE_RO_A, _PIPEDMC_SCANLINE_RO_B)
-> > +
-> > +#define _PIPEDMC_FPQ_CTL1_A		0x5f160
-> > +#define _PIPEDMC_FPQ_CTL1_B		0x5f560
-> > +#define PIPEDMC_FPQ_CTL1(pipe)		_MMIO_PIPE((pipe),
-> > _PIPEDMC_FPQ_CTL1_A, _PIPEDMC_FPQ_CTL1_B)
-> > +#define   PIPEDMC_SW_DMC_WAKE		REG_BIT(0)
-> > +
-> > +#define _PIPEDMC_FPQ_CTL2_A		0x5f164
-> > +#define _PIPEDMC_FPQ_CTL2_B		0x5f564
-> > +#define PIPEDMC_FPQ_CTL2(pipe)		_MMIO_PIPE((pipe),
-> > _PIPEDMC_FPQ_CTL2_A, _PIPEDMC_FPQ_CTL2_B)
-> > +#define   PIPEDMC_DMC_INT_AT_DELAYED_VBLANK	REG_BIT(1)
-> > +#define   PIPEDMC_W1_DMC_WAKE			REG_BIT(0)
-> > +
-> >  #define _PIPEDMC_INTERRUPT_A		0x5f190 /* lnl+ */
-> >  #define _PIPEDMC_INTERRUPT_B		0x5f590 /* lnl+ */
-> >  #define PIPEDMC_INTERRUPT(pipe)		_MMIO_PIPE((pipe),
-> > _PIPEDMC_INTERRUPT_A, _PIPEDMC_INTERRUPT_B)
-> > @@ -394,4 +538,30 @@ enum pipedmc_event_id {
-> >  #define  DMC_WAKELOCK_CTL_REQ	 REG_BIT(31)
-> >  #define  DMC_WAKELOCK_CTL_ACK	 REG_BIT(15)
-> > 
-> > +#define DMC_FQ_W2_PTS_CFG_SEL	_MMIO(0x8f240)
-> > +#define   PIPE_D_DMC_W2_PTS_CONFIG_SELECT_MASK
-> > 	REG_GENMASK(25, 24)
-> 
-> This is extended to 3 bit 24:26, please check once.
-
-Doesn't really matter for now as we don't have that many pipes,
-but might as well use the wider masks I guess.
-
-> 
-> > +#define   PIPE_D_DMC_W2_PTS_CONFIG_SELECT(pipe)
-> > 	REG_FIELD_PREP(PIPE_D_DMC_W2_PTS_CONFIG_SELECT_MASK,
-> > (pipe))
-> > +#define   PIPE_C_DMC_W2_PTS_CONFIG_SELECT_MASK
-> > 	REG_GENMASK(17, 16)
-> 
-> This as well, 16:18
-> 
-> > +#define   PIPE_C_DMC_W2_PTS_CONFIG_SELECT(pipe)
-> > 	REG_FIELD_PREP(PIPE_C_DMC_W2_PTS_CONFIG_SELECT_MASK,
-> > (pipe))
-> > +#define   PIPE_B_DMC_W2_PTS_CONFIG_SELECT_MASK
-> > 	REG_GENMASK(9, 8)
-> 
-> This is 8:10
-> 
-> > +#define   PIPE_B_DMC_W2_PTS_CONFIG_SELECT(pipe)
-> > 	REG_FIELD_PREP(PIPE_B_DMC_W2_PTS_CONFIG_SELECT_MASK,
-> > (pipe))
-> > +#define   PIPE_A_DMC_W2_PTS_CONFIG_SELECT_MASK
-> > 	REG_GENMASK(1, 0)
-> 
-> This is 0:2.
-> 
-> > +#define   PIPE_A_DMC_W2_PTS_CONFIG_SELECT(pipe)
-> > 	REG_FIELD_PREP(PIPE_A_DMC_W2_PTS_CONFIG_SELECT_MASK,
-> > (pipe))
-> > +
-> > +/* planel/general flip queue entries */
-> > +#define PIPEDMC_FQ_RAM(start_mmioaddr, i)	_MMIO((start_mmioaddr) + (i)
-> > * 4)
-> > +/* DW0 pts */
-> > +/* DW1 head */
-> > +/* DW2 size/etc. */
-> > +#define FQ_INTERRUPT		REG_BIT(31)
-> > +#define FQ_DSB_ID_MASK		REG_GENMASK(30, 29)
-> > +#define FQ_DSB_ID(dsb_id)	REG_FIELD_PREP(FQ_DSB_ID_MASK, (dsb_id))
-> > +#define FQ_EXECUTED		REG_BIT(28)
-> > +#define FQ_DSB_SIZE_MASK	REG_GENMASK(15, 0)
-> > +#define FQ_DSB_SIZE(size)	REG_FIELD_PREP(FQ_DSB_SIZE_MASK, (size))
-> > +/* DW3 reserved (plane queues) */
-> > +/* DW3 second DSB head (general queue) */
-> > +/* DW4 second DSB size/etc. (general queue) */
-> > +/* DW5 reserved (general queue) */
-> > +
-> >  #endif /* __INTEL_DMC_REGS_H__ */
-> > --
-> > 2.49.0
-> 
-
--- 
-Ville Syrjälä
-Intel
+>    * - rp0_freq: The Render Performance (RP) 0 level, which is the maximum one.
+>    *
+>    * device/tile#/gt#/freq0/<item>_freq *read-write* files:
