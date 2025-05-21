@@ -4,166 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12A2BC54EDA
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E824C54E71
 	for <intel-xe@archiver.kernel.org>; Wed, 21 May 2025 13:58:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5A8410E071;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2BC510E14D;
 	Wed, 21 May 2025 13:58:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n5h0AtmX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BX+na+gG";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D88A910F063;
- Wed, 21 May 2025 13:31:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A7EC10F6C7
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 May 2025 13:55:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747834319; x=1779370319;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=utl7vFmidvzZ7W3gElmIIGnssWcpHuk3FRu7P98mlMs=;
- b=n5h0AtmXn203tVmTx/+KBWL83WKsViKdPiw8OMaNObUdb3hcfLsSq0J3
- EXZ35PpIFrUIya3/3FgxtPFFRXlYCvMfMC+VC4w5gptk2FU76VnriPdxB
- wqyNJGVfJgQCcmJzH3X4wxz6fjsARR+azTnW5v0ZigP2ocC/w7MEUzuWu
- vq/Dbl00pihEUbTcJAbTNF9xFmuCPVeG2Ca7Tq4KN9XodgfK5/NOpeTaC
- YUeF1UX5qbZXKOFnMw1Owlub62D++69kjqr+PKH67pVAXjSqftSGTKyEo
- EMs1UWBIKwmWNt2XVCdDpEBbdgCPj1VpojqcMLb2iIn00Wnid+3IxT2Ce A==;
-X-CSE-ConnectionGUID: 5ULz4QaNT9u9UxVjFZaXbA==
-X-CSE-MsgGUID: sfeBIq69T4uUJ6VrOoa0gQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11440"; a="52439335"
-X-IronPort-AV: E=Sophos;i="6.15,303,1739865600"; d="scan'208";a="52439335"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2025 06:31:41 -0700
-X-CSE-ConnectionGUID: +3N+1W3wQseMNra5erO5+g==
-X-CSE-MsgGUID: PGKjTWHSTACXUvEyvfpRSg==
+ t=1747835739; x=1779371739;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=ze3ixadrPs7qbzdneApqc84fbnkws9odr7CsNwRCiq0=;
+ b=BX+na+gGRnzq9HhX76CqJ4kxOxfyMFQFBWeCgntK6/xZXOLIj2STwt/t
+ ltFh+VJ26RV2jKzmn4lzxVeK58qz7Xi4eq03N91Hq9NJGu20Z6TlveuPS
+ tJbSNEmbyUGBWPqcIQ2BKulzSuoMeBOrrNhA98laKwzUvhQpIhwM+GNVq
+ oe7WXV8Mh+Owbs91vKXYMAo/voUXu1W2/c8lXkLmbPcKP8gSTdeppRxdj
+ Wq7XGAVkQnkO+z5PiAOaZiP+WaMDy+ClNx9uiaemV9+mqD9lQgMAz5QMd
+ QrMyp3yrIUigMBbFNQaoSulkEihwiXikis5T2n1kP7H7DQ7GAITvrxfxO g==;
+X-CSE-ConnectionGUID: nXqldN7CRmmjRX8q+vvPVw==
+X-CSE-MsgGUID: G7fGXpQaR3O+FjFM9hgUQw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11440"; a="49075047"
+X-IronPort-AV: E=Sophos;i="6.15,303,1739865600"; d="scan'208";a="49075047"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2025 06:55:29 -0700
+X-CSE-ConnectionGUID: 41Z4eicoSdyCKPc/jG4O4Q==
+X-CSE-MsgGUID: AEc8XnhWQ1ak44AcLdi0rA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,303,1739865600"; d="scan'208";a="144955504"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2025 06:31:41 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Wed, 21 May 2025 06:31:40 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Wed, 21 May 2025 06:31:40 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.168)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.55; Wed, 21 May 2025 06:31:40 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ceOLjCNFK5SUqr9WOFILMZ9jIjYd3Jv6NALwbP2GFjOdTXPG2oFZwgeH+VgzqHvToUjhMud5I8lI6BqpNlYc7NceyPpmJ+5H3joZzKy2Qb3TzlhP3MtdZG6PQ0lgVvIctsT2WctOzCEP4I4xLZGJpy7Po7piieVkqhJymj62FEkRqJOsAdKaYMwtfPOHugSDhzhqsVccgw29bsRmKZfxLX2RCDDtfxyNe0mpWSTnMvEMjJAUSeYQ3Hmj5U/QVJs57RGQwCqBgc1a25VEC4xzaXrbNOxPw2OQhsPz/zMnIEtNLC2E8QRVnVdRPFX+lx7RjflnbqnkW2m0bbQO3SKAvA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+403Yg+Epox+PH5E/ryNPwRpIV/nKxJoQNpYBZXGMsk=;
- b=BsXEwHW+QXUXCq2fTFn7WNU0jY0EqBOGykRDDb2a2SdvFRb0WDAZV1pFTdMUqXnxzX6hLyS/bOcUUgjTWNRFLwg6pC59n9fie+SAov04/CnilFkcRL1wf4fSliTXRse9p0canMfSX7MXvESVYH5Qj1csT+zStVoGzRqVP2A7/U3z7XUaMK2Dlb12VRHYI2vQZszqZHphHb0vMNg13KnlQEu7YjVgvAeAxs3wNdAGT/ximyPh/Rnq6KPEaLz251u9ZgzSD2o5RjQwq6Z0ewqHisU4nBXL9C5pzf1Aky6bu2yp3/6vnMswQU/l0yYnq0balXXWjHizOVy2bvRN429IIQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
- by DM6PR11MB4676.namprd11.prod.outlook.com (2603:10b6:5:2a7::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8746.30; Wed, 21 May
- 2025 13:31:37 +0000
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563%6]) with mapi id 15.20.8746.030; Wed, 21 May 2025
- 13:31:37 +0000
-Date: Wed, 21 May 2025 09:31:31 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <lucas.demarchi@intel.com>
-Subject: Re: [PATCH 1/3] drm/i915/display: allocate struct intel_display
- dynamically
-Message-ID: <aC3Vs2JyYtr7Crlw@intel.com>
-References: <cover.1747822630.git.jani.nikula@intel.com>
- <8828decba861006fdb10171c5e83c6d898ce0a52.1747822630.git.jani.nikula@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <8828decba861006fdb10171c5e83c6d898ce0a52.1747822630.git.jani.nikula@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0255.namprd03.prod.outlook.com
- (2603:10b6:a03:3a0::20) To CYYPR11MB8430.namprd11.prod.outlook.com
- (2603:10b6:930:c6::19)
+X-IronPort-AV: E=Sophos;i="6.15,303,1739865600"; d="scan'208";a="177235260"
+Received: from labhost1.iind.intel.com ([10.190.230.69])
+ by orviesa001.jf.intel.com with ESMTP; 21 May 2025 06:55:27 -0700
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ Tomasz Lis <tomasz.lis@intel.com>, Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
+Subject: [PATCH v4 2/3] drm/xe/vf: Attach and detach CCS copy commands with BO
+Date: Wed, 21 May 2025 19:41:40 +0530
+Message-ID: <20250521141141.17572-3-satyanarayana.k.v.p@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250521141141.17572-1-satyanarayana.k.v.p@intel.com>
+References: <20250521141141.17572-1-satyanarayana.k.v.p@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|DM6PR11MB4676:EE_
-X-MS-Office365-Filtering-Correlation-Id: 590a963f-8a71-406f-311e-08dd986bcf9c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?hs/ScXtWgf5DENZGt7S93U/gMJ5Dm1edtLKwLB5gtiRtxOK2Iih0vegmVab3?=
- =?us-ascii?Q?sI19UMYOd9j9MP4djmHpEaWSW1pYL5e/S1BuFSrtiJPKo1F7I911cH2O/t4j?=
- =?us-ascii?Q?LCYvS+EvUWneGAQ/HY3vN9f2qU3jU4inQ9wZhhh7xyDe59czVleaEG2mtlGH?=
- =?us-ascii?Q?SqpuMFRIxNb7o+AQBGq96wqgwonjm90NuyunACcEmjW2G922tpQx2a0QclmI?=
- =?us-ascii?Q?A6gjWsjLYB3mnupMBcBo/LVuOs+Xsp5B5RMrMInWwzkgOnAf64T0dZ0YofxC?=
- =?us-ascii?Q?GlkEqv/p60DD4cHuvD3UVmnKT0VmDkfowtlLGxKCF30d4W5g4RyN86u04vXF?=
- =?us-ascii?Q?9R6OrBN7//nnqBKNxu9g0Dh7cQZDbr5P0MJD6ztSxhd1zEX4m6cwFnH0EwD7?=
- =?us-ascii?Q?oi/JsHYNYTPUuNx3sdk87hiGoBoogfbehAz6290OZwlKd0/h4jnCky1N43Lm?=
- =?us-ascii?Q?EGYt1zksD9bxQpG7fknBORnGYGls8XyYh1LOwqv1dFYAA7nwz19oSwUh/UoO?=
- =?us-ascii?Q?qDTnWB+lDD+qytdTkCs7KdSGrJ7WJ57zJMtV6+IY2WItOClvVf5jLMD089IH?=
- =?us-ascii?Q?L3PpTCfPiu+ojxuCemZbNUhKbH37jBfNmBy1amfww7CzaxGHLl6HqT53EFBf?=
- =?us-ascii?Q?1QbasxbpXxwHbY8yY0jMS3e+iQp1Nki/9DETqXGm4zsEKFtdhm036N80jkOK?=
- =?us-ascii?Q?bREOclVkb7Ix1l/h9HwTUYUSOi1fLApv8W4StBab6f6RxzxOr7T70f19Ttp2?=
- =?us-ascii?Q?9RXrd415skU1jujIelLCeN88ris2mDyo1/lUTFjgyyWjbeslsm0QxweNcU2z?=
- =?us-ascii?Q?tHgPCJpgEE3lqpvtf3x64l151OoyQV/AaTpPjMx2qUH2Z1L9+b6jGpfbKcWd?=
- =?us-ascii?Q?ZV4E3azhf4YQHbqoZPP2yMd8gcdd+4UbyKu61UgPVLke8p4RQgdF9/O0UjiK?=
- =?us-ascii?Q?mikSakZcovXOu19lbRZ711e8weOZ5dnzqoA2lUB5Oi2xHwxxB91C7m83i+wW?=
- =?us-ascii?Q?mDZko3Jus+Gd56E1/kBNn6dOcw5W0nQ+8igX+89BhgeeN8aLzE1XoERus8/l?=
- =?us-ascii?Q?EfbKaqOKhKYTJLfGtB6UBDALpjXHInoVnfewcDKgRpy28Cg79Zhjkt32WSXL?=
- =?us-ascii?Q?1SdOmNkJ0c6X2bzSmVdmQ7YbmpADQWvVpWZ0aM3iAL1vF8GpqITY9d7qrOUx?=
- =?us-ascii?Q?NNGlXHRsUB5J5V5MuV2y1PO8yUxg9LPrVSHExC5ph+jojT0p40jAniibSdmY?=
- =?us-ascii?Q?RpScNS7fzxyxdUwU+LYaaS8BkyaMMajmCSLpemxYHw2qQbO6Y+pUT4a8I1+t?=
- =?us-ascii?Q?4mbdAo0eoVy4UCLmvaUUe7DnTM6E9Q96hSJUXAyZ1z8PL2/cvZr9Sr4Heb6s?=
- =?us-ascii?Q?i70RW84czxND/P2xaIwkBPiwtlJSXE5YeYqmju5EwEO2pagXQeD1bEOs0l5V?=
- =?us-ascii?Q?6A+9OQaZcQM=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?YUDvcOjjWbObUZhWF5dYYAndmsYfkeHWbo8PPoCAL5bQkcT9XUuv3aT9bElQ?=
- =?us-ascii?Q?p4AG7huXNQ9A4iqICFLctqKMOOWYNm6PGnNHCXG5ebAIz59rSfZQgPPZwUKB?=
- =?us-ascii?Q?hBiDlc1Cfcal1qGErKWCuvOcoOuIFbj2Rx3J9krFR0684KdbodGhD7xeOpA/?=
- =?us-ascii?Q?zLXlaxRfUZPBqqb5ZH/VMLRctyldmsXae64lqr0wU+VTAW2CI9QCMOQjggf9?=
- =?us-ascii?Q?RRX9hnoxxURjovY2omp7bUZXtCE6Iyh0D9Z0XbOBDfpTSt5dmA6DZx/tolQt?=
- =?us-ascii?Q?JHxnfoR2Y+ho+r2QeGiaFyDH+Z4I9avScDOHGvjm2j8onqSqFAoxh56EFHy7?=
- =?us-ascii?Q?OOQfbX9xT7zWRfMQ7KnhzO2CchUd//9vdXuTDNYOXBpmcTsW4I9ED66sdpM7?=
- =?us-ascii?Q?08h1TbmKEi4QVi67A1tGD7+LKsaKacsmrGwSXt285OrOwpbq0slYkQSZFoH9?=
- =?us-ascii?Q?i2yie2KygRYtw7tt2wu5/5Z+7RS2VyvVdk+04UlcpkYgttYLnXFPt8crO/rA?=
- =?us-ascii?Q?xt2ymij34YVXC3qLGdowk1MS0PXD25HRD4Tyybtup5ZzwbO8afe5ok/hv0jT?=
- =?us-ascii?Q?YiIfst0lFnGjTOedXMvpxxJyngLWfKiRNn13BVZN0mRZxJZqlIFmIX9sqylo?=
- =?us-ascii?Q?roWvfnZEvzqRdNHEEkXYMmNlt9aKJ4I61c+pa4oJGV6ce1Ujt4fY6q5Opb94?=
- =?us-ascii?Q?2pUa4Jj+57S0BQg/kswus007PcOKVFfsT5KyRB1ELiAGpbLIKCRrFv6Pg1KH?=
- =?us-ascii?Q?Ry5bDB8ATsF6A3+kJt/LdKY8VjtcZXfweXd7L1xDdaEwqwg91NIdaN59OnVi?=
- =?us-ascii?Q?iFzX+Gext8++IAX/+rt4r0rSYbWltATBnHzM7i44PwEpb07FPUhXWe/8RnJY?=
- =?us-ascii?Q?XlqcS8K8+ymbOFcdFLk8DaVzimuFmF8UDcOqBh/AMtH8KtSJlUV+c7Gd8JyV?=
- =?us-ascii?Q?ovvlrso/i1Kp46J/Q3BxBaF/ycIMwwoLClcDgNEn+Kum96v0Hu7OWG3XVHsp?=
- =?us-ascii?Q?rDKVMVFH4RSYy9dcdbAlByapvP9G3bYvjCK+2aKd/degzA3C3Ae25jMmjrvT?=
- =?us-ascii?Q?EiUg4e/qNNTNwqOGAXVUt59Vo0IbwlqabvCUSxbnvxAN6b8URO9V2D174NBY?=
- =?us-ascii?Q?09fInviQgALm75aPJbTJG8dK2igGaKcHV6BXcnvxIuF63q/FUgZJ2A7V0hwv?=
- =?us-ascii?Q?l414cYTCMSxFFvAw6kp2kDT0rxicYMfIcXjP5neCyos8ef5QYXRx1ZUFE1QQ?=
- =?us-ascii?Q?e8QO5qvRVZ6osc3hReaL79S9p6Lz/4ixuDeYxqkgaJDetbGYeDt3nA9KDk5V?=
- =?us-ascii?Q?c1iBVusFfOE11D9fDNXNFt/2Wp1GPrTB5QHMvsTK9H18sAEep4EUJ0n697k9?=
- =?us-ascii?Q?RRtJuWfut1CIaKz1kkdaUy0rTklxCrSOTdrS2wzT2ewFleODNsF3Wn9d3WJ/?=
- =?us-ascii?Q?urAlw1oDFtnnpzjYAxcw9oTKxe7F3FstnkGR1/lLvRyWzieQ++lL7ahj0Jz0?=
- =?us-ascii?Q?NI45CcBDwCwZfS7sYYkGCatwz43Q3Vq37Ytt4NLOLeslETCFOLgCwygRiWmt?=
- =?us-ascii?Q?e4nlDgpnAUXeEobWi5IoJICS4E20qC1asywH6D2YrUtl79maeQ17B7DlfT3I?=
- =?us-ascii?Q?dQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 590a963f-8a71-406f-311e-08dd986bcf9c
-X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 May 2025 13:31:37.1910 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TcNmuyv/Z1N6tYXclxdgrrMMy1uftA/CeAR2GFgT6kqhxsEx3cjlZ1vHci7nx7Rvewe+eBCpmUTYAIzMSHjR7Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4676
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -178,207 +70,464 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, May 21, 2025 at 01:21:46PM +0300, Jani Nikula wrote:
-> Allocate struct intel_display dynamically in
-> intel_display_device_probe() and free in intel_display_device_remove().
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Attach CCS read/write copy commands to BO for old and new mem types as
+NULL -> tt or system -> tt.
+Detach the CCS read/write copy commands from BO while deleting ttm bo
+from xe_ttm_bo_delete_mem_notify().
 
-\o/
+Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+---
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Michał Winiarski <michal.winiarski@intel.com>
+Cc: Tomasz Lis <tomasz.lis@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+V3 -> V4:
+- Fixed issues reported by patchworks.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display_device.c | 10 +++++++++-
->  drivers/gpu/drm/i915/i915_driver.c                  | 13 +++++++------
->  drivers/gpu/drm/i915/i915_drv.h                     |  1 -
->  drivers/gpu/drm/i915/selftests/mock_gem_device.c    | 11 ++++++++---
->  drivers/gpu/drm/xe/display/xe_display.c             | 11 +++++++----
->  drivers/gpu/drm/xe/xe_device_types.h                |  1 -
->  6 files changed, 31 insertions(+), 16 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-> index 90d714598664..1d8c2036d967 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_device.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-> @@ -1621,13 +1621,17 @@ static void display_platforms_or(struct intel_display_platforms *dst,
->  
->  struct intel_display *intel_display_device_probe(struct pci_dev *pdev)
->  {
-> -	struct intel_display *display = to_intel_display(pdev);
-> +	struct intel_display *display;
->  	const struct intel_display_device_info *info;
->  	struct intel_display_ip_ver ip_ver = {};
->  	const struct platform_desc *desc;
->  	const struct subplatform_desc *subdesc;
->  	enum intel_step step;
->  
-> +	display = kzalloc(sizeof(*display), GFP_KERNEL);
-> +	if (!display)
-> +		return ERR_PTR(-ENOMEM);
-> +
->  	/* Add drm device backpointer as early as possible. */
->  	display->drm = pci_get_drvdata(pdev);
->  
-> @@ -1708,7 +1712,11 @@ struct intel_display *intel_display_device_probe(struct pci_dev *pdev)
->  
->  void intel_display_device_remove(struct intel_display *display)
->  {
-> +	if (!display)
-> +		return;
-> +
->  	intel_display_params_free(&display->params);
-> +	kfree(display);
->  }
->  
->  static void __intel_display_device_info_runtime_init(struct intel_display *display)
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index 950b7ad8d675..d33b0eb83a4f 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -293,6 +293,8 @@ static void i915_driver_late_release(struct drm_i915_private *dev_priv)
->  	intel_sbi_fini(dev_priv);
->  
->  	i915_params_free(&dev_priv->params);
-> +
-> +	intel_display_device_remove(display);
->  }
->  
->  /**
-> @@ -735,6 +737,7 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
->  	const struct intel_device_info *match_info =
->  		(struct intel_device_info *)ent->driver_data;
->  	struct drm_i915_private *i915;
-> +	struct intel_display *display;
->  
->  	i915 = devm_drm_dev_alloc(&pdev->dev, &i915_drm_driver,
->  				  struct drm_i915_private, drm);
-> @@ -749,10 +752,11 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
->  	/* Set up device info and initial runtime info. */
->  	intel_device_info_driver_create(i915, pdev->device, match_info);
->  
-> -	/* TODO: Allocate display dynamically. */
-> -	i915->display = &i915->__display;
-> +	display = intel_display_device_probe(pdev);
-> +	if (IS_ERR(display))
-> +		return ERR_CAST(display);
->  
-> -	intel_display_device_probe(pdev);
-> +	i915->display = display;
->  
->  	return i915;
->  }
-> @@ -911,7 +915,6 @@ void i915_driver_remove(struct drm_i915_private *i915)
->  static void i915_driver_release(struct drm_device *dev)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(dev);
-> -	struct intel_display *display = dev_priv->display;
->  	struct intel_runtime_pm *rpm = &dev_priv->runtime_pm;
->  	intel_wakeref_t wakeref;
->  
-> @@ -934,8 +937,6 @@ static void i915_driver_release(struct drm_device *dev)
->  	intel_runtime_pm_driver_release(rpm);
->  
->  	i915_driver_late_release(dev_priv);
-> -
-> -	intel_display_device_remove(display);
->  }
->  
->  static int i915_driver_open(struct drm_device *dev, struct drm_file *file)
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 0841988c4a67..fd0274ec9c2c 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -178,7 +178,6 @@ struct drm_i915_private {
->  	struct drm_device drm;
->  
->  	struct intel_display *display;
-> -	struct intel_display __display; /* Transitional. Do not use directly. */
->  
->  	/* FIXME: Device release actions should all be moved to drmm_ */
->  	bool do_release;
-> diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> index 0ea12c68cedb..dab2b71a2a8f 100644
-> --- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> +++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> @@ -141,6 +141,7 @@ struct drm_i915_private *mock_gem_device(void)
->  	static struct dev_iommu fake_iommu = { .priv = (void *)-1 };
->  #endif
->  	struct drm_i915_private *i915;
-> +	struct intel_display *display;
->  	struct pci_dev *pdev;
->  	int ret;
->  
-> @@ -180,10 +181,11 @@ struct drm_i915_private *mock_gem_device(void)
->  	/* Set up device info and initial runtime info. */
->  	intel_device_info_driver_create(i915, pdev->device, &mock_info);
->  
-> -	/* TODO: Allocate display dynamically. */
-> -	i915->display = &i915->__display;
-> +	display = intel_display_device_probe(pdev);
-> +	if (IS_ERR(display))
-> +		goto err_device;
->  
-> -	intel_display_device_probe(pdev);
-> +	i915->display = display;
->  
->  	dev_pm_domain_set(&pdev->dev, &pm_domain);
->  	pm_runtime_enable(&pdev->dev);
-> @@ -260,6 +262,7 @@ struct drm_i915_private *mock_gem_device(void)
->  	intel_gt_driver_late_release_all(i915);
->  	intel_memory_regions_driver_release(i915);
->  	drm_mode_config_cleanup(&i915->drm);
-> +err_device:
->  	mock_destroy_device(i915);
->  
->  	return NULL;
-> @@ -269,6 +272,8 @@ void mock_destroy_device(struct drm_i915_private *i915)
->  {
->  	struct device *dev = i915->drm.dev;
->  
-> +	intel_display_device_remove(i915->display);
-> +
->  	devres_release_group(dev, NULL);
->  	put_device(dev);
->  }
-> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-> index 1e59b6dd2c3b..e3e5d41db29d 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display.c
-> +++ b/drivers/gpu/drm/xe/display/xe_display.c
-> @@ -529,14 +529,17 @@ int xe_display_probe(struct xe_device *xe)
->  	if (!xe->info.probe_display)
->  		goto no_display;
->  
-> -	/* TODO: Allocate display dynamically. */
-> -	xe->display = &xe->__display;
-> -
->  	display = intel_display_device_probe(pdev);
-> +	if (IS_ERR(display))
-> +		return PTR_ERR(display);
->  
->  	err = drmm_add_action_or_reset(&xe->drm, display_device_remove, display);
-> -	if (err)
-> +	if (err) {
-> +		intel_display_device_remove(display);
->  		return err;
-> +	}
-> +
-> +	xe->display = display;
->  
->  	if (has_display(xe))
->  		return 0;
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index 902b2e30b3b9..7659222703d2 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -593,7 +593,6 @@ struct xe_device {
->  	 * migrating to the right sub-structs
->  	 */
->  	struct intel_display *display;
-> -	struct intel_display __display; /* Transitional. Do not use directly. */
->  
->  	struct dram_info {
->  		bool wm_lv_0_adjust_needed;
-> -- 
-> 2.39.5
-> 
+V2 -> V3:
+- Attach and detach functions check for IS_VF_CCS_READY().
+
+V1 -> V2:
+- Fixed review comments.
+---
+ drivers/gpu/drm/xe/xe_bb.c           |  33 ++++++
+ drivers/gpu/drm/xe/xe_bb.h           |   1 +
+ drivers/gpu/drm/xe/xe_bo.c           |  21 ++++
+ drivers/gpu/drm/xe/xe_bo_types.h     |   3 +
+ drivers/gpu/drm/xe/xe_migrate.c      | 159 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_migrate.h      |   8 ++
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.c |  74 +++++++++++++
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.h |   3 +
+ 8 files changed, 302 insertions(+)
+
+diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
+index 9570672fce33..bb10151c68a3 100644
+--- a/drivers/gpu/drm/xe/xe_bb.c
++++ b/drivers/gpu/drm/xe/xe_bb.c
+@@ -60,6 +60,39 @@ struct xe_bb *xe_bb_new(struct xe_gt *gt, u32 dwords, bool usm)
+ 	return ERR_PTR(err);
+ }
+ 
++struct xe_bb *xe_bb_ccs_new(struct xe_gt *gt, u32 dwords, bool ctx_id)
++{
++	struct xe_bb *bb = kmalloc(sizeof(*bb), GFP_KERNEL);
++	struct xe_tile *tile = gt_to_tile(gt);
++	struct xe_sa_manager *bb_pool;
++	int err;
++
++	if (!bb)
++		return ERR_PTR(-ENOMEM);
++
++	/*
++	 * We need to allocate space for the requested number of dwords,
++	 * one additional MI_BATCH_BUFFER_END dword, and additional buffer
++	 * space to accommodate the platform-specific hardware prefetch
++	 * requirements.
++	 */
++	bb_pool = tile->sriov.vf.ccs[ctx_id].mem.ccs_bb_pool;
++	bb->bo = xe_sa_bo_new(bb_pool, 4 * (dwords + 1) + bb_prefetch(gt));
++
++	if (IS_ERR(bb->bo)) {
++		err = PTR_ERR(bb->bo);
++		goto err;
++	}
++
++	bb->cs = xe_sa_bo_cpu_addr(bb->bo);
++	bb->len = 0;
++
++	return bb;
++err:
++	kfree(bb);
++	return ERR_PTR(err);
++}
++
+ static struct xe_sched_job *
+ __xe_bb_create_job(struct xe_exec_queue *q, struct xe_bb *bb, u64 *addr)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_bb.h b/drivers/gpu/drm/xe/xe_bb.h
+index fafacd73dcc3..55d5c458d42a 100644
+--- a/drivers/gpu/drm/xe/xe_bb.h
++++ b/drivers/gpu/drm/xe/xe_bb.h
+@@ -15,6 +15,7 @@ struct xe_exec_queue;
+ struct xe_sched_job;
+ 
+ struct xe_bb *xe_bb_new(struct xe_gt *gt, u32 size, bool usm);
++struct xe_bb *xe_bb_ccs_new(struct xe_gt *gt, u32 dwords, bool ctx);
+ struct xe_sched_job *xe_bb_create_job(struct xe_exec_queue *q,
+ 				      struct xe_bb *bb);
+ struct xe_sched_job *xe_bb_create_migration_job(struct xe_exec_queue *q,
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index d99d91fe8aa9..a26c97850a43 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -31,6 +31,7 @@
+ #include "xe_pxp.h"
+ #include "xe_res_cursor.h"
+ #include "xe_shrinker.h"
++#include "xe_sriov_vf_ccs.h"
+ #include "xe_trace_bo.h"
+ #include "xe_ttm_stolen_mgr.h"
+ #include "xe_vm.h"
+@@ -933,6 +934,12 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 
+ 		fence = xe_migrate_clear(migrate, bo, new_mem, flags);
+ 	} else {
++		if (IS_SRIOV_VF(xe) &&
++		    old_mem_type == XE_PL_TT &&
++		    new_mem->mem_type == XE_PL_SYSTEM &&
++		    bo->bb_ccs[0])
++			xe_sriov_vf_ccs_detach_bo(bo);
++
+ 		fence = xe_migrate_copy(migrate, bo, bo, old_mem, new_mem,
+ 					handle_system_ccs);
+ 	}
+@@ -964,6 +971,12 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 	xe_pm_runtime_put(xe);
+ 
+ out:
++	if (IS_SRIOV_VF(xe) &&
++	    ((move_lacks_source && new_mem->mem_type == XE_PL_TT) ||
++	     (old_mem_type == XE_PL_SYSTEM && new_mem->mem_type == XE_PL_TT)) &&
++	    handle_system_ccs)
++		ret = xe_sriov_vf_ccs_attach_bo(bo);
++
+ 	if ((!ttm_bo->resource || ttm_bo->resource->mem_type == XE_PL_SYSTEM) &&
+ 	    ttm_bo->ttm) {
+ 		long timeout = dma_resv_wait_timeout(ttm_bo->base.resv,
+@@ -973,6 +986,9 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 		if (timeout < 0)
+ 			ret = timeout;
+ 
++		if (IS_SRIOV_VF(xe) && bo->bb_ccs[0])
++			xe_sriov_vf_ccs_detach_bo(bo);
++
+ 		xe_tt_unmap_sg(ttm_bo->ttm);
+ 	}
+ 
+@@ -1478,9 +1494,14 @@ static void xe_ttm_bo_release_notify(struct ttm_buffer_object *ttm_bo)
+ 
+ static void xe_ttm_bo_delete_mem_notify(struct ttm_buffer_object *ttm_bo)
+ {
++	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
++
+ 	if (!xe_bo_is_xe_bo(ttm_bo))
+ 		return;
+ 
++	if (bo->bb_ccs[0])
++		xe_sriov_vf_ccs_detach_bo(bo);
++
+ 	/*
+ 	 * Object is idle and about to be destroyed. Release the
+ 	 * dma-buf attachment.
+diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+index eb5e83c5f233..481b8e0d8ab1 100644
+--- a/drivers/gpu/drm/xe/xe_bo_types.h
++++ b/drivers/gpu/drm/xe/xe_bo_types.h
+@@ -78,6 +78,9 @@ struct xe_bo {
+ 	/** @ccs_cleared */
+ 	bool ccs_cleared;
+ 
++	/** @bb_ccs_rw: BB instructions of CCS read/write. Valid only for VF */
++	struct xe_bb *bb_ccs[XE_SRIOV_VF_CCS_RW_MAX_CTXS];
++
+ 	/**
+ 	 * @cpu_caching: CPU caching mode. Currently only used for userspace
+ 	 * objects. Exceptions are system memory on DGFX, which is always
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 8f8e9fdfb2a8..43de220b3109 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -940,6 +940,165 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 	return fence;
+ }
+ 
++/**
++ * xe_migrate_ccs_rw_copy() - Copy content of TTM resources.
++ * @m: The migration context.
++ * @src_bo: The buffer object @src is currently bound to.
++ * @dst_bo: If copying between resources created for the same bo, set this to
++ * the same value as @src_bo. If copying between buffer objects, set it to
++ * the buffer object @dst is currently bound to.
++ * @src: The source TTM resource.
++ * @dst: The dst TTM resource.
++ * @copy_only_ccs: If true copy only CCS metadata
++ * @read_write : Creates BB commands for CCS read/write.
++ *
++ * Creates batch buffer instructions to copy CCS metadata from CCS pool to
++ * memory and vice versa.
++ *
++ * This function should only be called for IGPU.
++ *
++ * Return: 0 if successful, negative error code on failure.
++ */
++int xe_migrate_ccs_rw_copy(struct xe_migrate *m,
++			   struct xe_bo *src_bo,
++			   struct xe_bo *dst_bo,
++			   struct ttm_resource *src,
++			   struct ttm_resource *dst,
++			   bool copy_only_ccs,
++			   bool read_write)
++
++{
++	struct xe_gt *gt = m->tile->primary_gt;
++	struct xe_device *xe = gt_to_xe(gt);
++	u64 size = src_bo->size;
++	struct xe_res_cursor src_it, dst_it, ccs_it;
++	u64 src_L0_ofs, dst_L0_ofs;
++	u32 src_L0_pt, dst_L0_pt;
++	u64 src_L0, dst_L0;
++	int err;
++	bool src_is_pltt = read_write == XE_SRIOV_VF_CCS_READ_CTX;
++	bool dst_is_pltt = read_write == XE_SRIOV_VF_CCS_WRITE_CTX;
++	bool src_is_vram = mem_type_is_vram(src->mem_type);
++	bool dst_is_vram = mem_type_is_vram(dst->mem_type);
++	bool type_device = src_bo->ttm.type == ttm_bo_type_device;
++	bool needs_ccs_emit = type_device && xe_migrate_needs_ccs_emit(xe);
++	bool copy_ccs = xe_device_has_flat_ccs(xe) &&
++		xe_bo_needs_ccs_pages(src_bo) && xe_bo_needs_ccs_pages(dst_bo);
++	bool copy_system_ccs = copy_ccs && (!src_is_vram || !dst_is_vram);
++	bool use_comp_pat = type_device && xe_device_has_flat_ccs(xe) &&
++		GRAPHICS_VER(xe) >= 20 && src_is_vram && !dst_is_vram;
++
++	/* Copying CCS between two different BOs is not supported yet. */
++	if (XE_WARN_ON(copy_ccs && src_bo != dst_bo))
++		return -EINVAL;
++
++	if (src_bo != dst_bo && XE_WARN_ON(src_bo->size != dst_bo->size))
++		return -EINVAL;
++
++	if (!src_is_vram)
++		xe_res_first_sg(xe_bo_sg(src_bo), 0, size, &src_it);
++	else
++		xe_res_first(src, 0, size, &src_it);
++	if (!dst_is_vram)
++		xe_res_first_sg(xe_bo_sg(dst_bo), 0, size, &dst_it);
++	else
++		xe_res_first(dst, 0, size, &dst_it);
++
++	if (copy_system_ccs)
++		xe_res_first_sg(xe_bo_sg(src_bo), xe_bo_ccs_pages_start(src_bo),
++				PAGE_ALIGN(xe_device_ccs_bytes(xe, size)),
++				&ccs_it);
++
++	while (size) {
++		u32 batch_size = 8; /* arb_clear() + MI_BATCH_BUFFER_END + Flush + NOP */
++		struct xe_bb *bb;
++		u32 flush_flags = 0;
++		u64 ccs_ofs, ccs_size;
++		u32 ccs_pt;
++		u32 pte_flags;
++
++		u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
++
++		src_L0 = xe_migrate_res_sizes(m, &src_it);
++		dst_L0 = xe_migrate_res_sizes(m, &dst_it);
++
++		src_L0 = min(src_L0, dst_L0);
++
++		pte_flags = src_is_vram ? PTE_UPDATE_FLAG_IS_VRAM : 0;
++		pte_flags |= use_comp_pat ? PTE_UPDATE_FLAG_IS_COMP_PTE : 0;
++		batch_size += pte_update_size(m, pte_flags, src, &src_it, &src_L0,
++					      &src_L0_ofs, &src_L0_pt, 0, 0,
++					      avail_pts);
++
++		pte_flags = dst_is_vram ? PTE_UPDATE_FLAG_IS_VRAM : 0;
++		batch_size += pte_update_size(m, pte_flags, dst, &dst_it, &src_L0,
++					      &dst_L0_ofs, &dst_L0_pt, 0,
++					      avail_pts, avail_pts);
++
++		if (copy_system_ccs) {
++			xe_assert(xe, type_device);
++			ccs_size = xe_device_ccs_bytes(xe, src_L0);
++			batch_size += pte_update_size(m, 0, NULL, &ccs_it, &ccs_size,
++						      &ccs_ofs, &ccs_pt, 0,
++						      2 * avail_pts,
++						      avail_pts);
++			xe_assert(xe, IS_ALIGNED(ccs_it.start, PAGE_SIZE));
++		}
++
++		/* Add copy commands size here */
++		batch_size += ((copy_only_ccs) ? 0 : EMIT_COPY_DW) +
++			((needs_ccs_emit ? EMIT_COPY_CCS_DW : 0));
++
++		bb = xe_bb_ccs_new(gt, batch_size, read_write);
++		if (IS_ERR(bb)) {
++			err = PTR_ERR(bb);
++			goto err_ret;
++		}
++
++		if (src_is_vram && xe_migrate_allow_identity(src_L0, &src_it))
++			xe_res_next(&src_it, src_L0);
++		else
++			emit_pte(m, bb, src_L0_pt, src_is_vram, copy_system_ccs,
++				 &src_it, src_L0, src);
++
++		if (dst_is_vram && xe_migrate_allow_identity(src_L0, &dst_it))
++			xe_res_next(&dst_it, src_L0);
++		else
++			emit_pte(m, bb, dst_L0_pt, dst_is_vram, copy_system_ccs,
++				 &dst_it, src_L0, dst);
++
++		if (copy_system_ccs)
++			emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
++
++		bb->cs[bb->len++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW |
++					MI_FLUSH_IMM_DW;
++		bb->cs[bb->len++] = MI_NOOP;
++		bb->cs[bb->len++] = MI_NOOP;
++
++		if (!copy_only_ccs)
++			emit_copy(gt, bb, src_L0_ofs, dst_L0_ofs, src_L0, XE_PAGE_SIZE);
++
++		if (needs_ccs_emit)
++			flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs,
++							  IS_DGFX(xe) ? src_is_vram : src_is_pltt,
++							  dst_L0_ofs,
++							  IS_DGFX(xe) ? dst_is_vram : dst_is_pltt,
++							  src_L0, ccs_ofs, copy_ccs);
++		bb->cs[bb->len++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW |
++					MI_FLUSH_IMM_DW | flush_flags;
++		bb->cs[bb->len++] = MI_NOOP;
++		bb->cs[bb->len++] = MI_NOOP;
++
++		size -= src_L0;
++
++		src_bo->bb_ccs[read_write] = bb;
++	}
++	return 0;
++
++err_ret:
++	return err;
++}
++
+ static void emit_clear_link_copy(struct xe_gt *gt, struct xe_bb *bb, u64 src_ofs,
+ 				 u32 size, u32 pitch)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+index fb9839c1bae0..2a2f6c4690fb 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.h
++++ b/drivers/gpu/drm/xe/xe_migrate.h
+@@ -112,6 +112,14 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 				  struct ttm_resource *dst,
+ 				  bool copy_only_ccs);
+ 
++int xe_migrate_ccs_rw_copy(struct xe_migrate *m,
++			   struct xe_bo *src_bo,
++			   struct xe_bo *dst_bo,
++			   struct ttm_resource *src,
++			   struct ttm_resource *dst,
++			   bool copy_only_ccs,
++			   bool read_write);
++
+ int xe_migrate_access_memory(struct xe_migrate *m, struct xe_bo *bo,
+ 			     unsigned long offset, void *buf, int len,
+ 			     int write);
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+index 3ef801a1f117..0e8ff3d4b0c5 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+@@ -4,6 +4,7 @@
+  */
+ 
+ #include "instructions/xe_mi_commands.h"
++#include "xe_bb.h"
+ #include "xe_bo.h"
+ #include "xe_device.h"
+ #include "xe_migrate.h"
+@@ -157,3 +158,76 @@ int xe_sriov_vf_ccs_init(struct xe_device *xe)
+ err_ret:
+ 	return err;
+ }
++
++/**
++ * xe_sriov_vf_ccs_attach_bo - Insert CCS read write commands in the BO.
++ * @bo: the &buffer object to which batch buffer commands will be added.
++ *
++ * This function shall be called only by VF. It inserts the PTEs and copy
++ * command instructions in the BO by calling xe_migrate_ccs_rw_copy()
++ * function.
++ *
++ * Returns: 0 if successful, negative error code on failure.
++ */
++int xe_sriov_vf_ccs_attach_bo(struct xe_bo *bo)
++{
++	struct xe_device *xe = xe_bo_device(bo);
++	struct xe_migrate *migrate;
++	bool copy_only_ccs = 1;
++	struct xe_tile *tile;
++	int tile_id, ctx_id;
++	struct xe_bb *bb;
++	int err = 0;
++
++	if (!IS_VF_CCS_READY(xe))
++		return 0;
++
++	for_each_tile(tile, xe, tile_id) {
++		for_each_ccs_rw_ctx(ctx_id) {
++			bb = bo->bb_ccs[ctx_id];
++			if (bb)
++				xe_sriov_err(xe, "Probable memory leak\n");
++
++			migrate = tile->sriov.vf.ccs[ctx_id].migrate;
++			err = xe_migrate_ccs_rw_copy(migrate, bo, bo,
++						     bo->ttm.resource,
++						     bo->ttm.resource,
++						     copy_only_ccs, ctx_id);
++		}
++	}
++	return err;
++}
++
++/**
++ * xe_sriov_vf_ccs_detach_bo - Remove CCS read write commands from the BO.
++ * @bo: the &buffer object from which batch buffer commands will be removed.
++ *
++ * This function shall be called only by VF. It removes the PTEs and copy
++ * command instructions from the BO. Make sure to update the BB with MI_NOOP
++ * before freeing.
++ *
++ * Returns: 0 if successful, negative error code on failure.
++ */
++int xe_sriov_vf_ccs_detach_bo(struct xe_bo *bo)
++{
++	struct xe_device *xe = xe_bo_device(bo);
++	struct xe_tile *tile;
++	int tile_id, ctx_id;
++	struct xe_bb *bb;
++
++	if (!IS_VF_CCS_READY(xe))
++		return 0;
++
++	for_each_tile(tile, xe, tile_id) {
++		for_each_ccs_rw_ctx(ctx_id) {
++			bb = bo->bb_ccs[ctx_id];
++			if (!bb)
++				continue;
++
++			memset(bb->cs, MI_NOOP, bb->len * sizeof(u32));
++			xe_bb_free(bb, NULL);
++			bo->bb_ccs[ctx_id] = NULL;
++		}
++	}
++	return 0;
++}
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
+index 5df9ba028d14..5d5e4bd25904 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
++++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
+@@ -7,7 +7,10 @@
+ #define _XE_SRIOV_VF_CCS_H_
+ 
+ struct xe_device;
++struct xe_bo;
+ 
+ int xe_sriov_vf_ccs_init(struct xe_device *xe);
++int xe_sriov_vf_ccs_attach_bo(struct xe_bo *bo);
++int xe_sriov_vf_ccs_detach_bo(struct xe_bo *bo);
+ 
+ #endif
+-- 
+2.43.0
+
