@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9C82C2D0CD
-	for <intel-xe@archiver.kernel.org>; Wed, 21 May 2025 15:57:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAD19C2D0CD
+	for <intel-xe@archiver.kernel.org>; Wed, 21 May 2025 16:02:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D09D10FCDC;
-	Wed, 21 May 2025 15:57:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C439B10E944;
+	Wed, 21 May 2025 16:02:41 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE82C10FD57;
- Wed, 21 May 2025 15:57:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C596510E944;
+ Wed, 21 May 2025 16:02:40 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm=3A_Create_a_task_info_opti?=
- =?utf-8?q?on_for_wedge_events?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/i915/dp=3A_Fix_t?=
+ =?utf-8?q?he_enabling/disabling_of_audio_SDP_splitting_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
+To: "Imre Deak" <imre.deak@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 21 May 2025 15:57:58 -0000
-Message-ID: <174784307871.10279.12947359521381373028@1538d3639d33>
+Date: Wed, 21 May 2025 16:02:40 -0000
+Message-ID: <174784336080.10279.7641125089972943558@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250521153323.935974-1-andrealmeid@igalia.com>
-In-Reply-To: <20250521153323.935974-1-andrealmeid@igalia.com>
+References: <20250520142219.1688401-1-imre.deak@intel.com>
+In-Reply-To: <20250520142219.1688401-1-imre.deak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,41 +42,28 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm: Create a task info option for wedge events
-URL   : https://patchwork.freedesktop.org/series/149332/
+Series: drm/i915/dp: Fix the enabling/disabling of audio SDP splitting (rev3)
+URL   : https://patchwork.freedesktop.org/series/149254/
 State : failure
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-[15:57:29] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[15:57:33] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-ERROR:root:../drivers/gpu/drm/drm_bridge.c:1406:6: error: redefinition of ‘devm_drm_put_bridge’
- 1406 | void devm_drm_put_bridge(struct device *dev, struct drm_bridge *bridge)
-      |      ^~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_bridge.c:31:
-../include/drm/drm_bridge.h:1314:20: note: previous definition of ‘devm_drm_put_bridge’ with type ‘void(struct device *, struct drm_bridge *)’
- 1314 | static inline void devm_drm_put_bridge(struct device *dev, struct drm_bridge *bridge) {}
-      |                    ^~~~~~~~~~~~~~~~~~~
-make[6]: *** [../scripts/Makefile.build:203: drivers/gpu/drm/drm_bridge.o] Error 1
-make[6]: *** Waiting for unfinished jobs....
-make[5]: *** [../scripts/Makefile.build:461: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:461: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:461: drivers] Error 2
-make[2]: *** [/kernel/Makefile:2003: .] Error 2
-make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 2d8dc23f1e6c drm-tip: 2025y-05m-21d-13h-29m-52s UTC integration manifest
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/i915/display/intel_audio.c:397
+error: drivers/gpu/drm/i915/display/intel_audio.c: patch does not apply
+error: patch failed: drivers/gpu/drm/i915/display/intel_audio.h:31
+error: drivers/gpu/drm/i915/display/intel_audio.h: patch does not apply
+error: patch failed: drivers/gpu/drm/i915/display/intel_ddi.c:3507
+error: drivers/gpu/drm/i915/display/intel_ddi.c: patch does not apply
+error: patch failed: drivers/gpu/drm/i915/display/intel_dp_mst.c:1336
+error: drivers/gpu/drm/i915/display/intel_dp_mst.c: patch does not apply
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Applying: drm/i915/dp: Fix the enabling/disabling of audio SDP splitting
+Patch failed at 0001 drm/i915/dp: Fix the enabling/disabling of audio SDP splitting
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
