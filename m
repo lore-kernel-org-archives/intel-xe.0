@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF0C5C54756
-	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 06:57:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DED19C54E65
+	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 06:57:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63DC39AFED;
-	Thu, 22 May 2025 06:55:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93A139AF84;
+	Thu, 22 May 2025 06:56:17 +0000 (UTC)
 Received: from us-smtp-delivery-44.mimecast.com
  (us-smtp-delivery-44.mimecast.com [207.211.30.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1972D9AF89
- for <intel-xe@lists.freedesktop.org>; Thu, 22 May 2025 06:55:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A4CB9AF37
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 May 2025 06:55:33 +0000 (UTC)
 Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
  (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-359-8R7oO_3SPE29q725q_KPHw-1; Thu,
- 22 May 2025 02:55:38 -0400
-X-MC-Unique: 8R7oO_3SPE29q725q_KPHw-1
-X-Mimecast-MFC-AGG-ID: 8R7oO_3SPE29q725q_KPHw_1747896937
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-427-109jpGlfMfG5EAF3-tsQPw-1; Thu,
+ 22 May 2025 02:55:31 -0400
+X-MC-Unique: 109jpGlfMfG5EAF3-tsQPw-1
+X-Mimecast-MFC-AGG-ID: 109jpGlfMfG5EAF3-tsQPw_1747896930
 Received: from mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com
  (mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.40])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (No client certificate requested)
  by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id BED061800447; Thu, 22 May 2025 06:55:37 +0000 (UTC)
+ id 1CF80180036D; Thu, 22 May 2025 06:55:30 +0000 (UTC)
 Received: from dreadlord.redhat.com (unknown [10.64.136.70])
  by mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id E2DB81958014; Thu, 22 May 2025 06:55:35 +0000 (UTC)
+ id 13CB01958014; Thu, 22 May 2025 06:55:27 +0000 (UTC)
 From: Dave Airlie <airlied@gmail.com>
 To: dri-devel@lists.freedesktop.org,
 	tzimmermann@suse.de
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 5/9] drm/qxl: avoid accessing iosys_map internals.
-Date: Thu, 22 May 2025 16:52:14 +1000
-Message-ID: <20250522065519.318013-6-airlied@gmail.com>
+Subject: [PATCH 2/9] udmabuf: use new iosys_map accessors.
+Date: Thu, 22 May 2025 16:52:11 +1000
+Message-ID: <20250522065519.318013-3-airlied@gmail.com>
 In-Reply-To: <20250522065519.318013-1-airlied@gmail.com>
 References: <20250522065519.318013-1-airlied@gmail.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 3.0 on 10.30.177.40
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: YMC1lanhVmbLcWGJCq6gCQu1YNCd-oav7s2K_d9hoDo_1747896937
+X-Mimecast-MFC-PROC-ID: JG0vNEQ-7AVtX9CQ3WzXnoS4jj1KkjPu301JLbL_FQc_1747896930
 X-Mimecast-Originator: gmail.com
 Content-Transfer-Encoding: quoted-printable
 content-type: text/plain; charset=WINDOWS-1252; x-default=true
@@ -62,102 +62,28 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Dave Airlie <airlied@redhat.com>
 
-This uses the new accessors to avoid touching the iosys_map internals.
+This just avoids looking into the internals of the iosys_map.
 
 Signed-off-by: Dave Airlie <airlied@redhat.com>
 ---
- drivers/gpu/drm/qxl/qxl_display.c | 14 +++++++-------
- drivers/gpu/drm/qxl/qxl_draw.c    |  4 ++--
- drivers/gpu/drm/qxl/qxl_object.c  |  8 ++++----
- 3 files changed, 13 insertions(+), 13 deletions(-)
+ drivers/dma-buf/udmabuf.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/qxl/qxl_display.c b/drivers/gpu/drm/qxl/qxl_di=
-splay.c
-index 70aff64ced87..e833b0bbff47 100644
---- a/drivers/gpu/drm/qxl/qxl_display.c
-+++ b/drivers/gpu/drm/qxl/qxl_display.c
-@@ -602,16 +602,16 @@ static struct qxl_bo *qxl_create_cursor(struct qxl_de=
-vice *qdev,
- =09cursor.chunk.next_chunk =3D 0;
- =09cursor.chunk.prev_chunk =3D 0;
- =09cursor.chunk.data_size =3D size;
--=09if (cursor_map.is_iomem) {
--=09=09memcpy_toio(cursor_map.vaddr_iomem,
-+=09if (iosys_map_is_iomem(&cursor_map)) {
-+=09=09memcpy_toio(iosys_map_ioptr(&cursor_map),
- =09=09=09    &cursor, sizeof(cursor));
--=09=09memcpy_toio(cursor_map.vaddr_iomem + sizeof(cursor),
--=09=09=09    user_map.vaddr, size);
-+=09=09memcpy_toio(iosys_map_ioptr(&cursor_map) + sizeof(cursor),
-+=09=09=09    iosys_map_ptr(&user_map), size);
- =09} else {
--=09=09memcpy(cursor_map.vaddr,
-+=09=09memcpy(iosys_map_ptr(&cursor_map),
- =09=09       &cursor, sizeof(cursor));
--=09=09memcpy(cursor_map.vaddr + sizeof(cursor),
--=09=09       user_map.vaddr, size);
-+=09=09memcpy(iosys_map_ptr(&cursor_map) + sizeof(cursor),
-+=09=09       iosys_map_ptr(&user_map), size);
- =09}
+diff --git a/drivers/dma-buf/udmabuf.c b/drivers/dma-buf/udmabuf.c
+index 7eee3eb47a8e..101cc7853043 100644
+--- a/drivers/dma-buf/udmabuf.c
++++ b/drivers/dma-buf/udmabuf.c
+@@ -145,7 +145,7 @@ static void vunmap_udmabuf(struct dma_buf *buf, struct =
+iosys_map *map)
 =20
- =09qxl_bo_vunmap_and_unpin(user_bo);
-diff --git a/drivers/gpu/drm/qxl/qxl_draw.c b/drivers/gpu/drm/qxl/qxl_draw.=
-c
-index 3a3e127ce297..6000936bc8d0 100644
---- a/drivers/gpu/drm/qxl/qxl_draw.c
-+++ b/drivers/gpu/drm/qxl/qxl_draw.c
-@@ -52,7 +52,7 @@ static struct qxl_rect *drawable_set_clipping(struct qxl_=
-device *qdev,
- =09ret =3D qxl_bo_vmap_locked(clips_bo, &map);
- =09if (ret)
- =09=09return NULL;
--=09dev_clips =3D map.vaddr; /* TODO: Use mapping abstraction properly */
-+=09dev_clips =3D iosys_map_ptr(&map); /* TODO: Use mapping abstraction pro=
-perly */
+ =09dma_resv_assert_held(buf->resv);
 =20
- =09dev_clips->num_rects =3D num_clips;
- =09dev_clips->chunk.next_chunk =3D 0;
-@@ -206,7 +206,7 @@ void qxl_draw_dirty_fb(struct qxl_device *qdev,
- =09ret =3D qxl_bo_vmap_locked(bo, &surface_map);
- =09if (ret)
- =09=09goto out_release_backoff;
--=09surface_base =3D surface_map.vaddr; /* TODO: Use mapping abstraction pr=
-operly */
-+=09surface_base =3D iosys_map_ptr(&surface_map); /* TODO: Use mapping abst=
-raction properly */
+-=09vm_unmap_ram(map->vaddr, ubuf->pagecount);
++=09vm_unmap_ram(iosys_map_ptr(map), ubuf->pagecount);
+ }
 =20
- =09ret =3D qxl_image_init(qdev, release, dimage, surface_base,
- =09=09=09     left - dumb_shadow_offset,
-diff --git a/drivers/gpu/drm/qxl/qxl_object.c b/drivers/gpu/drm/qxl/qxl_obj=
-ect.c
-index 66635c55cf85..dcc1f6393885 100644
---- a/drivers/gpu/drm/qxl/qxl_object.c
-+++ b/drivers/gpu/drm/qxl/qxl_object.c
-@@ -172,10 +172,10 @@ int qxl_bo_vmap_locked(struct qxl_bo *bo, struct iosy=
-s_map *map)
- =09bo->map_count =3D 1;
-=20
- =09/* TODO: Remove kptr in favor of map everywhere. */
--=09if (bo->map.is_iomem)
--=09=09bo->kptr =3D (void *)bo->map.vaddr_iomem;
-+=09if (iosys_map_is_iomem(&bo->map))
-+=09=09bo->kptr =3D (void *)iosys_map_ioptr(&bo->map);
- =09else
--=09=09bo->kptr =3D bo->map.vaddr;
-+=09=09bo->kptr =3D iosys_map_ptr(&bo->map);
-=20
- out:
- =09*map =3D bo->map;
-@@ -230,7 +230,7 @@ void *qxl_bo_kmap_atomic_page(struct qxl_device *qdev,
- =09ret =3D qxl_bo_vmap_locked(bo, &bo_map);
- =09if (ret)
- =09=09return NULL;
--=09rptr =3D bo_map.vaddr; /* TODO: Use mapping abstraction properly */
-+=09rptr =3D iosys_map_ptr(&bo_map); /* TODO: Use mapping abstraction prope=
-rly */
-=20
- =09rptr +=3D page_offset * PAGE_SIZE;
- =09return rptr;
+ static struct sg_table *get_sg_table(struct device *dev, struct dma_buf *b=
+uf,
 --=20
 2.49.0
 
