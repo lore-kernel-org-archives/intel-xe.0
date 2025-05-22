@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E60AEC54E65
-	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 06:57:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4788DC54E65
+	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 06:57:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85A1B9A18C;
-	Thu, 22 May 2025 06:56:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36F44965E3;
+	Thu, 22 May 2025 06:56:39 +0000 (UTC)
 Received: from us-smtp-delivery-44.mimecast.com
  (us-smtp-delivery-44.mimecast.com [207.211.30.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AD459AF58
- for <intel-xe@lists.freedesktop.org>; Thu, 22 May 2025 06:55:35 +0000 (UTC)
-Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91EC19AFC8
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 May 2025 06:55:50 +0000 (UTC)
+Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-647-j-ZVubgWMCqL8tOq-4EzIg-1; Thu,
- 22 May 2025 02:55:33 -0400
-X-MC-Unique: j-ZVubgWMCqL8tOq-4EzIg-1
-X-Mimecast-MFC-AGG-ID: j-ZVubgWMCqL8tOq-4EzIg_1747896932
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-635-e2VX1uTNPMuK6JOgmgZMaQ-1; Thu,
+ 22 May 2025 02:55:46 -0400
+X-MC-Unique: e2VX1uTNPMuK6JOgmgZMaQ-1
+X-Mimecast-MFC-AGG-ID: e2VX1uTNPMuK6JOgmgZMaQ_1747896945
 Received: from mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com
  (mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.40])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (No client certificate requested)
- by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id A8BBA1955D83; Thu, 22 May 2025 06:55:32 +0000 (UTC)
+ by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 8D620180034E; Thu, 22 May 2025 06:55:45 +0000 (UTC)
 Received: from dreadlord.redhat.com (unknown [10.64.136.70])
  by mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id C7AB71958014; Thu, 22 May 2025 06:55:30 +0000 (UTC)
+ id B03041958014; Thu, 22 May 2025 06:55:43 +0000 (UTC)
 From: Dave Airlie <airlied@gmail.com>
 To: dri-devel@lists.freedesktop.org,
 	tzimmermann@suse.de
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 3/9] firmware/tegra: avoid accessing iosys_map internals.
-Date: Thu, 22 May 2025 16:52:12 +1000
-Message-ID: <20250522065519.318013-4-airlied@gmail.com>
+Subject: [PATCH 8/9] iosys: hide internal details of implementation.
+Date: Thu, 22 May 2025 16:52:17 +1000
+Message-ID: <20250522065519.318013-9-airlied@gmail.com>
 In-Reply-To: <20250522065519.318013-1-airlied@gmail.com>
 References: <20250522065519.318013-1-airlied@gmail.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 3.0 on 10.30.177.40
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: o94y2EWf-FsXESXOH3_04OaTEp2Gko_cOlIS0wAQSOM_1747896932
+X-Mimecast-MFC-PROC-ID: LpInQh_xNMqyE95EDg-DZHzL1MqEmSzTPkGLaPgVDNI_1747896945
 X-Mimecast-Originator: gmail.com
 Content-Transfer-Encoding: quoted-printable
 content-type: text/plain; charset=WINDOWS-1252; x-default=true
@@ -62,45 +62,146 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Dave Airlie <airlied@redhat.com>
 
-Use the new accessor interfaces to avoid directly accessing the
-internals.
+Now hide the current implementation details, to catch any new
+users entering the tree and trying to trick us up.
 
 Signed-off-by: Dave Airlie <airlied@redhat.com>
 ---
- drivers/firmware/tegra/ivc.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ include/linux/iosys-map.h | 48 +++++++++++++++++++--------------------
+ 1 file changed, 24 insertions(+), 24 deletions(-)
 
-diff --git a/drivers/firmware/tegra/ivc.c b/drivers/firmware/tegra/ivc.c
-index 8c9aff9804c0..eb59acb08065 100644
---- a/drivers/firmware/tegra/ivc.c
-+++ b/drivers/firmware/tegra/ivc.c
-@@ -629,18 +629,18 @@ static inline void iosys_map_copy(struct iosys_map *d=
-st, const struct iosys_map
+diff --git a/include/linux/iosys-map.h b/include/linux/iosys-map.h
+index 5ce5df1db60a..a6c2cc9ca756 100644
+--- a/include/linux/iosys-map.h
++++ b/include/linux/iosys-map.h
+@@ -108,25 +108,25 @@
+  */
+ struct iosys_map {
+ =09union {
+-=09=09void __iomem *vaddr_iomem;
+-=09=09void *vaddr;
++=09=09void __iomem *_vaddr_iomem;
++=09=09void *_vaddr;
+ =09};
+-=09bool is_iomem;
++=09bool _is_iomem;
+ };
 =20
- static inline unsigned long iosys_map_get_address(const struct iosys_map *=
-map)
+ static inline bool iosys_map_is_iomem(const struct iosys_map *map)
  {
--=09if (map->is_iomem)
--=09=09return (unsigned long)map->vaddr_iomem;
-+=09if (iosys_map_is_iomem(map)
-+=09=09return (unsigned long)iosys_map_ioptr(map);
-=20
--=09return (unsigned long)map->vaddr;
-+=09return (unsigned long)iosys_map_ptr(map);
+-=09return map->is_iomem;
++=09return map->_is_iomem;
  }
 =20
- static inline void *iosys_map_get_vaddr(const struct iosys_map *map)
+ static inline void __iomem *iosys_map_ioptr(const struct iosys_map *map)
  {
--=09if (WARN_ON(map->is_iomem))
-+=09if (WARN_ON(iosys_map_is_iomem(map)))
- =09=09return NULL;
-=20
--=09return map->vaddr;
-+=09return iosys_map_ptr(map);
+-=09return map->vaddr_iomem;
++=09return map->_vaddr_iomem;
  }
 =20
- int tegra_ivc_init(struct tegra_ivc *ivc, struct device *peer, const struc=
-t iosys_map *rx,
+ static inline void *iosys_map_ptr(const struct iosys_map *map)
+ {
+-       return map->vaddr;
++       return map->_vaddr;
+ }
+=20
+ /**
+@@ -135,8 +135,8 @@ static inline void *iosys_map_ptr(const struct iosys_ma=
+p *map)
+  */
+ #define IOSYS_MAP_INIT_VADDR(vaddr_)=09\
+ =09{=09=09=09=09\
+-=09=09.vaddr =3D (vaddr_),=09\
+-=09=09.is_iomem =3D false,=09\
++=09=09._vaddr =3D (vaddr_),=09\
++=09=09._is_iomem =3D false,=09\
+ =09}
+=20
+ /**
+@@ -145,8 +145,8 @@ static inline void *iosys_map_ptr(const struct iosys_ma=
+p *map)
+  */
+ #define IOSYS_MAP_INIT_VADDR_IOMEM(vaddr_iomem_)=09\
+ =09{=09=09=09=09=09=09\
+-=09=09.vaddr_iomem =3D (vaddr_iomem_),=09=09\
+-=09=09.is_iomem =3D true,=09=09=09\
++=09=09._vaddr_iomem =3D (vaddr_iomem_),=09=09\
++=09=09._is_iomem =3D true,=09=09=09\
+ =09}
+=20
+ /**
+@@ -197,8 +197,8 @@ static inline void *iosys_map_ptr(const struct iosys_ma=
+p *map)
+  */
+ static inline void iosys_map_set_vaddr(struct iosys_map *map, void *vaddr)
+ {
+-=09map->vaddr =3D vaddr;
+-=09map->is_iomem =3D false;
++=09map->_vaddr =3D vaddr;
++=09map->_is_iomem =3D false;
+ }
+=20
+ /**
+@@ -211,8 +211,8 @@ static inline void iosys_map_set_vaddr(struct iosys_map=
+ *map, void *vaddr)
+ static inline void iosys_map_set_vaddr_iomem(struct iosys_map *map,
+ =09=09=09=09=09     void __iomem *vaddr_iomem)
+ {
+-=09map->vaddr_iomem =3D vaddr_iomem;
+-=09map->is_iomem =3D true;
++=09map->_vaddr_iomem =3D vaddr_iomem;
++=09map->_is_iomem =3D true;
+ }
+=20
+ /**
+@@ -229,12 +229,12 @@ static inline void iosys_map_set_vaddr_iomem(struct i=
+osys_map *map,
+ static inline bool iosys_map_is_equal(const struct iosys_map *lhs,
+ =09=09=09=09      const struct iosys_map *rhs)
+ {
+-=09if (lhs->is_iomem !=3D rhs->is_iomem)
++=09if (lhs->_is_iomem !=3D rhs->_is_iomem)
+ =09=09return false;
+-=09else if (lhs->is_iomem)
+-=09=09return lhs->vaddr_iomem =3D=3D rhs->vaddr_iomem;
++=09else if (lhs->_is_iomem)
++=09=09return lhs->_vaddr_iomem =3D=3D rhs->_vaddr_iomem;
+ =09else
+-=09=09return lhs->vaddr =3D=3D rhs->vaddr;
++=09=09return lhs->_vaddr =3D=3D rhs->_vaddr;
+ }
+=20
+ /**
+@@ -279,11 +279,11 @@ static inline bool iosys_map_is_set(const struct iosy=
+s_map *map)
+  */
+ static inline void iosys_map_clear(struct iosys_map *map)
+ {
+-=09if (map->is_iomem) {
+-=09=09map->vaddr_iomem =3D NULL;
+-=09=09map->is_iomem =3D false;
++=09if (map->_is_iomem) {
++=09=09map->_vaddr_iomem =3D NULL;
++=09=09map->_is_iomem =3D false;
+ =09} else {
+-=09=09map->vaddr =3D NULL;
++=09=09map->_vaddr =3D NULL;
+ =09}
+ }
+=20
+@@ -338,9 +338,9 @@ static inline void iosys_map_memcpy_from(void *dst, con=
+st struct iosys_map *src,
+ static inline void iosys_map_incr(struct iosys_map *map, size_t incr)
+ {
+ =09if (iosys_map_is_iomem(map))
+-=09=09map->vaddr_iomem +=3D incr;
++=09=09map->_vaddr_iomem +=3D incr;
+ =09else
+-=09=09map->vaddr +=3D incr;
++=09=09map->_vaddr +=3D incr;
+ }
+=20
+ /**
 --=20
 2.49.0
 
