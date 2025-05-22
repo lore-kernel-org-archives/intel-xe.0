@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FED7C54756
-	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 08:28:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11DC2C54756
+	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 08:48:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2425589167;
-	Thu, 22 May 2025 08:28:29 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC15010EE0B;
- Thu, 22 May 2025 08:28:27 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe=3A_Add_helper_function_?=
- =?utf-8?q?to_inject_fault_into_ct=5Fdead=5Fcapture=28=29_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E76010E893;
+	Thu, 22 May 2025 08:48:40 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f+RsEX2C";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8F4010EAE4;
+ Thu, 22 May 2025 08:48:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1747903718; x=1779439718;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=gPbmcoAhu21skBOvOw2Q8GnxCXe8UDdrh6x3Op/NBhI=;
+ b=f+RsEX2CDPwRnOX7KF/Cz9+LRD3UB0DCx66Fj+iVwFDc9NO4Yu2ZW9Nc
+ zyN2fC7qKqUgW966gt3HTiNKnKy7d8Kt12rDZvhWMFdyPF3vbLn8FVlxE
+ 9Ne2HAE4RpMd6wS26Cz/N7a0ThFbu9lyyQukDMhjroVDlAeNHA9yGCAmD
+ E1qqMRs+/hXJS5s39OkfnUyEfbLO1zmPpzfhtgeDzHcfp/9QflaZg7Evv
+ 7wCQl0+YnzK1VtuDUWfOU9t7WwEuLGj38dCKKK6LTePd9uOIbiTiOTu60
+ Zgih9eOmlVvUQ3WiuYxGFp4Mf/MTAfgNFKQG3a93JevUJoOhP6wklk5Kt w==;
+X-CSE-ConnectionGUID: SzFdS7LBSB+Ra0yK5jCH1Q==
+X-CSE-MsgGUID: cWQBWHyASLehcVF63YoiAA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11440"; a="50072535"
+X-IronPort-AV: E=Sophos;i="6.15,305,1739865600"; d="scan'208";a="50072535"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2025 01:48:32 -0700
+X-CSE-ConnectionGUID: gPVfa59BQ1WoXfA7yzoADg==
+X-CSE-MsgGUID: l/7nDzPMQy+zhd1qUSquew==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,305,1739865600"; d="scan'208";a="140906517"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.112])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2025 01:48:30 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
+ tzimmermann@suse.de
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 22 May 2025 08:28:27 -0000
-Message-ID: <174790250779.12900.17005266809203785123@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250522080020.2787294-1-satyanarayana.k.v.p@intel.com>
-In-Reply-To: <20250522080020.2787294-1-satyanarayana.k.v.p@intel.com>
+Subject: Re: [PATCH 9/9] iosys_map: embed the is_iomem bit into the pointer.
+In-Reply-To: <20250522065519.318013-10-airlied@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250522065519.318013-1-airlied@gmail.com>
+ <20250522065519.318013-10-airlied@gmail.com>
+Date: Thu, 22 May 2025 11:48:28 +0300
+Message-ID: <8734cxt4ir.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,47 +66,138 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, 22 May 2025, Dave Airlie <airlied@gmail.com> wrote:
+> From: Dave Airlie <airlied@redhat.com>
+>
+> This reduces this struct from 16 to 8 bytes, and it gets embedded
+> into a lot of things.
 
-Series: drm/xe: Add helper function to inject fault into ct_dead_capture() (rev5)
-URL   : https://patchwork.freedesktop.org/series/148415/
-State : failure
+It's an abomination.
 
-== Summary ==
+And i915 has helpers for it. Because of course it does.
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../drivers/gpu/drm/drm_bridge.c:1406:6: error: redefinition of ‘devm_drm_put_bridge’
- 1406 | void devm_drm_put_bridge(struct device *dev, struct drm_bridge *bridge)
-      |      ^~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_bridge.c:31:
-../include/drm/drm_bridge.h:1314:20: note: previous definition of ‘devm_drm_put_bridge’ with type ‘void(struct device *, struct drm_bridge *)’
- 1314 | static inline void devm_drm_put_bridge(struct device *dev, struct drm_bridge *bridge) {}
-      |                    ^~~~~~~~~~~~~~~~~~~
-make[6]: *** [../scripts/Makefile.build:203: drivers/gpu/drm/drm_bridge.o] Error 1
-make[6]: *** Waiting for unfinished jobs....
-make[5]: *** [../scripts/Makefile.build:461: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:461: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:461: drivers] Error 2
-make[2]: *** [/kernel/Makefile:2003: .] Error 2
-make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
+i915_utils.h contains ptr_mask_bits(), ptr_unmask_bits(),
+ptr_pack_bits() and ptr_unpack_bits() to do this, uh, cleanly.
 
-[08:27:53] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[08:27:57] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Should we try to promote the helpers somewhere in include/linux and use
+them here?
 
 
+BR,
+Jani.
+
+
+>
+> Signed-off-by: Dave Airlie <airlied@redhat.com>
+> ---
+>  include/linux/iosys-map.h | 30 ++++++++----------------------
+>  1 file changed, 8 insertions(+), 22 deletions(-)
+>
+> diff --git a/include/linux/iosys-map.h b/include/linux/iosys-map.h
+> index a6c2cc9ca756..44479966ce24 100644
+> --- a/include/linux/iosys-map.h
+> +++ b/include/linux/iosys-map.h
+> @@ -99,29 +99,27 @@
+>   *	iosys_map_incr(&map, len); // go to first byte after the memcpy
+>   */
+>  
+> +#define _IOSYS_MAP_IS_IOMEM 1
+>  /**
+>   * struct iosys_map - Pointer to IO/system memory
+>   * @vaddr_iomem:	The buffer's address if in I/O memory
+>   * @vaddr:		The buffer's address if in system memory
+> - * @is_iomem:		True if the buffer is located in I/O memory, or false
+> - *			otherwise.
+>   */
+>  struct iosys_map {
+>  	union {
+>  		void __iomem *_vaddr_iomem;
+>  		void *_vaddr;
+>  	};
+> -	bool _is_iomem;
+>  };
+>  
+>  static inline bool iosys_map_is_iomem(const struct iosys_map *map)
+>  {
+> -	return map->_is_iomem;
+> +	return ((unsigned long)map->_vaddr) & _IOSYS_MAP_IS_IOMEM;
+>  }
+>  
+>  static inline void __iomem *iosys_map_ioptr(const struct iosys_map *map)
+>  {
+> -	return map->_vaddr_iomem;
+> +	return (void __iomem *)((unsigned long)map->_vaddr_iomem & ~_IOSYS_MAP_IS_IOMEM);
+>  }
+>  
+>  static inline void *iosys_map_ptr(const struct iosys_map *map)
+> @@ -136,7 +134,6 @@ static inline void *iosys_map_ptr(const struct iosys_map *map)
+>  #define IOSYS_MAP_INIT_VADDR(vaddr_)	\
+>  	{				\
+>  		._vaddr = (vaddr_),	\
+> -		._is_iomem = false,	\
+>  	}
+>  
+>  /**
+> @@ -145,8 +142,7 @@ static inline void *iosys_map_ptr(const struct iosys_map *map)
+>   */
+>  #define IOSYS_MAP_INIT_VADDR_IOMEM(vaddr_iomem_)	\
+>  	{						\
+> -		._vaddr_iomem = (vaddr_iomem_),		\
+> -		._is_iomem = true,			\
+> +		._vaddr_iomem = (void __iomem *)(((unsigned long)(vaddr_iomem_) | _IOSYS_MAP_IS_IOMEM)), \
+>  	}
+>  
+>  /**
+> @@ -198,7 +194,6 @@ static inline void *iosys_map_ptr(const struct iosys_map *map)
+>  static inline void iosys_map_set_vaddr(struct iosys_map *map, void *vaddr)
+>  {
+>  	map->_vaddr = vaddr;
+> -	map->_is_iomem = false;
+>  }
+>  
+>  /**
+> @@ -211,8 +206,7 @@ static inline void iosys_map_set_vaddr(struct iosys_map *map, void *vaddr)
+>  static inline void iosys_map_set_vaddr_iomem(struct iosys_map *map,
+>  					     void __iomem *vaddr_iomem)
+>  {
+> -	map->_vaddr_iomem = vaddr_iomem;
+> -	map->_is_iomem = true;
+> +	map->_vaddr_iomem = (void __iomem *)((unsigned long)vaddr_iomem | _IOSYS_MAP_IS_IOMEM);
+>  }
+>  
+>  /**
+> @@ -229,12 +223,9 @@ static inline void iosys_map_set_vaddr_iomem(struct iosys_map *map,
+>  static inline bool iosys_map_is_equal(const struct iosys_map *lhs,
+>  				      const struct iosys_map *rhs)
+>  {
+> -	if (lhs->_is_iomem != rhs->_is_iomem)
+> +	if (lhs->_vaddr != rhs->_vaddr)
+>  		return false;
+> -	else if (lhs->_is_iomem)
+> -		return lhs->_vaddr_iomem == rhs->_vaddr_iomem;
+> -	else
+> -		return lhs->_vaddr == rhs->_vaddr;
+> +	return true;
+>  }
+>  
+>  /**
+> @@ -279,12 +270,7 @@ static inline bool iosys_map_is_set(const struct iosys_map *map)
+>   */
+>  static inline void iosys_map_clear(struct iosys_map *map)
+>  {
+> -	if (map->_is_iomem) {
+> -		map->_vaddr_iomem = NULL;
+> -		map->_is_iomem = false;
+> -	} else {
+> -		map->_vaddr = NULL;
+> -	}
+> +	map->_vaddr = NULL;
+>  }
+>  
+>  /**
+
+-- 
+Jani Nikula, Intel
