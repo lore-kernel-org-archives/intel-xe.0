@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DAFBC54756
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A6ADC54ED0
 	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 05:45:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D37F9B9E6;
-	Thu, 22 May 2025 05:41:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C223F10EFD5;
+	Thu, 22 May 2025 05:45:25 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AA1D9B370;
- Thu, 22 May 2025 05:33:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0F3B10F6D8;
+ Thu, 22 May 2025 05:43:46 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============1550077417638340886=="
+ boundary="===============7679665896926201360=="
 MIME-Version: 1.0
 Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_drm/i915/dp=3A_Fix_the_ena?=
  =?utf-8?q?bling/disabling_of_audio_SDP_splitting_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Imre Deak" <imre.deak@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 22 May 2025 05:33:55 -0000
-Message-ID: <174789203522.12150.7362805342061740408@1538d3639d33>
+Date: Thu, 22 May 2025 05:43:46 -0000
+Message-ID: <174789262671.12150.17421094290789028369@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250520142219.1688401-1-imre.deak@intel.com>
 In-Reply-To: <20250520142219.1688401-1-imre.deak@intel.com>
@@ -40,7 +40,7 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1550077417638340886==
+--===============7679665896926201360==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1308,7 +1308,7 @@ Build changes
 
 For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149254v2/index.html
 
---===============1550077417638340886==
+--===============7679665896926201360==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
@@ -4005,4 +4005,4 @@ ca1180a9dd2b5560b<br />
 </body>
 </html>
 
---===============1550077417638340886==--
+--===============7679665896926201360==--
