@@ -4,164 +4,164 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B0C6C54E90
-	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 14:51:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE292C54E90
+	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 15:10:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1412A10E268;
-	Thu, 22 May 2025 14:51:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1071110E187;
+	Thu, 22 May 2025 15:10:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G78WibhE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RDpxWvX0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9920F10E268;
- Thu, 22 May 2025 14:51:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA11F10ED2A;
+ Thu, 22 May 2025 15:10:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747925469; x=1779461469;
+ t=1747926626; x=1779462626;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=2rRHMAZB0ZruvHyT0t7zjqQM/iI6uH9NFPs7kPc52Mg=;
- b=G78WibhEpcnFQGw4trbX98jejgFg5NAokusZ4sd4bEvy6i0zVfPQeEYl
- 4Vpbzny93wMWPBfyb0HOS6fqnCI2cClJgtE2clvpmp5NgtC6DIzrAIMuC
- U9PbPSpCrfOSJCiQg32KHgUfADlNN6JwXRdKw7dBkMfBKhsbfh7fbjuvu
- I3E88QlDnojjqKMccmHLtoUyvcxc0WvexR3xVpXeq9QnGXzL1Yj8xGLc6
- ob2hFkHv+twnRc7W6XKjeupwfKNJXM32JiJoFA7SPylefysGh4ME7PY/T
- y6CZX4kr9QeRxDk0X0NqOSXdjR1AOVfdi4lf11mJTybkrRtk1D8ca0iPM w==;
-X-CSE-ConnectionGUID: C1PtQ5dRS5mdYIm6AblSYA==
-X-CSE-MsgGUID: rDYVNAc8Qm6kdIhKBOR2AQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="49874807"
-X-IronPort-AV: E=Sophos;i="6.15,306,1739865600"; d="scan'208";a="49874807"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2025 07:51:05 -0700
-X-CSE-ConnectionGUID: MFtBVrr1TE6Mz1M/foOV9w==
-X-CSE-MsgGUID: nK6PylYmTzK6UWJXUJ6Y4w==
+ bh=GfgvBsNBk3nO8NneWgDWxWYGtj/5UgSyebNCYiTvNCA=;
+ b=RDpxWvX0JGBby5Odq7+RM/Ri84HOWdXWGYiaoybol6RXNvBhB+G1l50j
+ z4G8XXGMcL6ylnwVB+9UbQpNLO07YsNnP6YQNxhpIcpb8PDmupYdKn760
+ Uq/u+QltI/c3JXz2dSa0pBdbqbdCg625SJDhYhC/J4p82T0GMd12r1u+O
+ WJg+9hiUzjjyaSlogGokD8raT8Yb48UBCb/HQ38E7+XLBQ0BWVhbx52wl
+ LbH7xuVDaO73z/Kp6nt/X421FjyU73+6SDXh4ElLBwhA2R+nH2ReMiJBu
+ wx9A1R4ATJcFh+4SLAFaPwPB1uVO2qPHPRAfsTdSWbM3I18/fwazKZ+3d w==;
+X-CSE-ConnectionGUID: BIY1P1H4T8a6z9cS5XSfBQ==
+X-CSE-MsgGUID: C7uTMOTHSsW+ng9fgPDdkA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="72488318"
+X-IronPort-AV: E=Sophos;i="6.15,306,1739865600"; d="scan'208";a="72488318"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2025 08:10:16 -0700
+X-CSE-ConnectionGUID: zhgzDPZ7S+WmuxWs5tCndA==
+X-CSE-MsgGUID: YGaUD8LkQLKoYS/dgug0Sw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,306,1739865600"; d="scan'208";a="171514503"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2025 07:51:05 -0700
+X-IronPort-AV: E=Sophos;i="6.15,306,1739865600"; d="scan'208";a="140507956"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2025 08:10:10 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Thu, 22 May 2025 07:51:04 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ 15.2.1544.25; Thu, 22 May 2025 08:10:10 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Thu, 22 May 2025 07:51:04 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.47) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.2.1544.25 via Frontend Transport; Thu, 22 May 2025 08:10:10 -0700
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.40) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.55; Thu, 22 May 2025 07:51:04 -0700
+ 15.1.2507.55; Thu, 22 May 2025 08:10:09 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jGn2om1hmk5jQS+YGluzxjW0skjvKz3hHDVxgFk8pJVlMpQH3L0xFhgZgGHq/s5936wdELVcLCmAbJj0tKRbcgYpEjIWa/KAkSdMOUqeLekxRIWIKJ26lGbNdCLFGTnMr8yuE92qnGRxmWtAlyMQC3QhfvRtRNRjzzfhc6T26NVC4UrcHU22NC7KHeldzYUty6kn3GIuYjnmVbfCNG6rF5ZAdPlTYMVxe3z8C+yK5XvRAx5RHWdb2U94Og4EzjfhtLH5TRHrgUodWDUCtWGXRIiyWU8pFTHK8TyvzqsqwnKg4We4ds4VXxUADgQIf8zVGzr9IAySxyXGnjoVb4lwXA==
+ b=e4QXt0/yX77Gb4YbwI3bmu30y6r9UNG4uczhqE0+eBywLDMcIu1TDmr6CjfCm7Dyf7GQzLNx3AGfNM9oIjx+ihupjzZXC/9uMGR+CC68wEhAJBRbgz9ARPbW35o6WnhR4MLCBrCfhGiL0zHV9dSpUwJdMH77t3I1T47peHC5HQf3rYqZx6F1yG5sGtm8P74f4BWrYK0oDU1HbE8YvuMrAHR8yqeV3Mmg9r12eQpQZiVMJTkFOSP3lSuyH/69gpU4i83N2mEp/lRhvdmoCGFtEtXliRHh/uPtDxQLXD6LmmLgkfm/TMebO0oK+5weYxe1t7DZOzeySjzi14guyY+r7Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wCqUzttvi/TCBTnqGxVT47t9a3v/qCE7ZNF9yZ0obIg=;
- b=n6BfIn0mSlTGlx+mNYD6iJbCUk8zzJRA3L0uvc3gfALxjNwvDwRQ2Cf1Af01z51pPOGokqp9Mavzh9c+3vDMAfKsCe7rC0IFl1H50/oGs/La+nq2JmGwL4OILoN823haLwHL4JmL66tjlIhSSNTtw/ceiKdTN1CwpJyILQuCjcvmueOUk9RuNddvkqNSgHH0NjsFWopLn4+hsGbFnIyQvx6/2bmLSY/VxFn6JQL+VirZnTrTy04y4BHj35STi+UJqWgwHFFad4gquFz/Iu8ZSrwedF2GXBpUo8qz84T1VpvsV65MqSx6x9n5HSHcRJoS3UnlC+eU35VDb3423fcKeA==
+ bh=9YVJQa8yVEHCcW16/u/FlpD/45B432D6muEJUsTSDFo=;
+ b=NTXWfOeGwhE4CtBQp1tlP806EtepsIDZiF+6bsdmJdoAVXyFh7gCwi2lkPmWd+Vqbx0NcTBGN1jtiFiyXVf2T/FdcNmNmke3LKJXL4gJ/D45C9Z9GR5CezGspz+z+o7CxHv5s/kFaY+lvhW2HDTv3GEb8rUoBsBaIIHjvPGBInslH0WX99YNdcWYk1CVVZx/2BjzfHhAOqyW4fOZ/+oTxgL9q1opFJBwifInVxI9buE0DPIwWklP8FAV+E11Mr/iE5USoEVXsRqOF023Vv9NokLIXi0I6j9PjPc3dj9wmbo8AgYJA+1JS4G/6MI1TxV++fBevN3iKjSCtzbAz0rUng==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by DS0PR11MB6447.namprd11.prod.outlook.com (2603:10b6:8:c4::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.21; Thu, 22 May
- 2025 14:51:02 +0000
+ by PH8PR11MB6729.namprd11.prod.outlook.com (2603:10b6:510:1c5::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8746.36; Thu, 22 May
+ 2025 15:10:01 +0000
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.8746.029; Thu, 22 May 2025
- 14:51:02 +0000
-Date: Thu, 22 May 2025 09:50:59 -0500
+ 15:10:01 +0000
+Date: Thu, 22 May 2025 10:09:58 -0500
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Juston Li <justonli@chromium.org>
-CC: <intel-xe@lists.freedesktop.org>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Yiwei Zhang <zzyiwei@google.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, <dri-devel@lists.freedesktop.org>
-Subject: Re: [PATCH v2] drm/xe/bo: add GPU memory trace points
-Message-ID: <vvtskvjaqcorex5xpeyyyuvljgikpdyo2vbncgmsdlutpnfaeb@u5gtlafthvh2>
-References: <20250521224239.856298-1-justonli@chromium.org>
+To: Dave Airlie <airlied@gmail.com>
+CC: <dri-devel@lists.freedesktop.org>, <tzimmermann@suse.de>,
+ <intel-xe@lists.freedesktop.org>, <Michal.Wajdeczko@intel.com>
+Subject: Re: [PATCH 9/9] iosys_map: embed the is_iomem bit into the pointer.
+Message-ID: <wz6cduq6kh2n2pwxm3q75vjmrsht4rvnbjnch5t66kj773t2rj@kfk2bj7pewwm>
+References: <20250522065519.318013-1-airlied@gmail.com>
+ <20250522065519.318013-10-airlied@gmail.com>
 Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20250521224239.856298-1-justonli@chromium.org>
-X-ClientProxiedBy: BY5PR04CA0027.namprd04.prod.outlook.com
- (2603:10b6:a03:1d0::37) To CY5PR11MB6139.namprd11.prod.outlook.com
+In-Reply-To: <20250522065519.318013-10-airlied@gmail.com>
+X-ClientProxiedBy: SJ0PR03CA0294.namprd03.prod.outlook.com
+ (2603:10b6:a03:39e::29) To CY5PR11MB6139.namprd11.prod.outlook.com
  (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DS0PR11MB6447:EE_
-X-MS-Office365-Filtering-Correlation-Id: e28c42f7-3ebb-4921-d272-08dd99401268
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|PH8PR11MB6729:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0e4f0b08-2ffe-4013-9ad0-08dd9942b918
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7053199007;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?bsrhIqp8/f8FQDJEy+JSZaOQtYC1itsNik3ussX56HIkyTfJb9agGCV8fpJV?=
- =?us-ascii?Q?yOJk6FmCLTnN1FmvhqQ6/sc9DejNldIBwFl87PY6UZ5hqm/q7A44g44SKAL2?=
- =?us-ascii?Q?qU6aEwdlduwwX0jf6WjBjHNIrFmUx9v7JUdMNE148wJDeaivsTR0SYRO/Lb+?=
- =?us-ascii?Q?HiHTa4paqiA6B4uvZmcGYJwigWMYcf/BK8otdlKgE70n0zalGEHIYrG39ig8?=
- =?us-ascii?Q?t2U5nUdnmz2m2HL0JS6nXlOsZwS38pYx3vyV3jWM5f6cbvR9+ZImQerXXhLa?=
- =?us-ascii?Q?UsPZvqw1Ro2ZKqfAMQK9SmpWTEbtm2yqIF17T1QcqoYVeyjyfXjPfA6GMKsu?=
- =?us-ascii?Q?/RuCIznM1I2ixyC1P2h19sblQy5rk3MQ8eH6HfUuhm8Hh4Pq1Vjute3fyrVC?=
- =?us-ascii?Q?J8PD1Q/ofxn3gcRLE/BOnlwQAqr1j5hr/veJzCy++zNIpjRzFwT/jpLf7YsD?=
- =?us-ascii?Q?qT9UN6O2dyyxNKqoOFn9puW3C5SEQ/clxNJKX6dGB2R2phJNzW2tEJ/kfnCR?=
- =?us-ascii?Q?KZINVw8QphZyrdJfunE0tU9dFwz0lIMifAB863KunxR8qFX9xnCja6A+s+i2?=
- =?us-ascii?Q?XFR5iqmW0gbcbF1hyx4UK4Ssw73RdMxS3fLfAY043PQoWzJwNjcbsQc7a6HQ?=
- =?us-ascii?Q?lCtfHm0x8EBcb/VgVTK9Ipa0YkDogc+7Esi/J2zpj9QZ5vucFIkwm6RvnqDQ?=
- =?us-ascii?Q?d9ZuXRt7qlQdO49mSPADpDxKWNumUkfqcQB6yUaVUGBeo24TgGzDJC4jpKFT?=
- =?us-ascii?Q?rPKiyLEiODsmiKuq5pj0RZBAWe3U+VsVGf0Ornfz79h5LoBmsc8WDvMbCcQI?=
- =?us-ascii?Q?DBGnujCgxpIXwOs6UjQyQu8A3Vf81ZoT4MSvM/CXhGixzs8Phoq6tKd3AxAl?=
- =?us-ascii?Q?564lGy+O7ksN5qp+BOy3mcDCLGICYX4E6UdJPQQaTYitj695KfuEhPUQZKQ9?=
- =?us-ascii?Q?pQbsuNwqnXWYhbwTXbeCK7igW8wFkuN9NuPfUmK4TVzeh4vgYo3ixy+M1Ii5?=
- =?us-ascii?Q?/RnLj+QzOTTJBU3hyFdJ36cyvM4BQtjDovRMu4vOj49Xa2YBumDsRk/i/rUS?=
- =?us-ascii?Q?x2J5Bb5uMvodMByj2GXphnWQPYF64D/PCiabDG6UVC7y8XGPLrcoZraY/3uN?=
- =?us-ascii?Q?tjFuvT/lzT/hTYSvEAkhrxuk8i8n9zXCh3eZuP2O0uDD31K72r8h5WRazt0k?=
- =?us-ascii?Q?4+AYjNWGhafdR9wzIQ82Ikq9eDL2Sw4yoePZ9rdEdt8XihTKJz1lg6TVI7Rd?=
- =?us-ascii?Q?oZPjnIEDHhRZsWVdlWiL+uJFRXb0Se5JFzb5R7/uwgustdng6tfRerfHYmPn?=
- =?us-ascii?Q?da4LAJaJw6jpet8DxFEYmiwx2VQv3uVX2bg8OZrdGAfDfqkkRhHaNtIOjs+D?=
- =?us-ascii?Q?7f0yvdX2XHDslz6EDaRQd3GsLR/ww03+IGUBn3kpTHnKd8UdAsVcERHgsTul?=
- =?us-ascii?Q?T466rpeoMEE=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?mmZMzSXoyFSjtE8tfVB8riLvvgTGXWBuILS05GT9rKteB7nRKOxVCmSBr8GZ?=
+ =?us-ascii?Q?ILAfqAyVPctOxGWw60w/BdbE12x0A/T80zEuBKtFlT6F6QHGn42H5VsAQDUu?=
+ =?us-ascii?Q?zbhfS6ZC0G1LV2ATcHyyb8oXGZ6k0+tlfijd0tTQs8LyyOycpteAgxx8hL28?=
+ =?us-ascii?Q?NRnl65QQ3/FqN36umiplIKcPWbttlc9X3t0l2UThWfgIr9rNkwX+u9cDB+8G?=
+ =?us-ascii?Q?Wa3QD3k1Qanou+PgxhGLDr/c94ZNGQln/if7oob0z79m5NTnHwVeMocDkFau?=
+ =?us-ascii?Q?VwoZzwfpOP6UP6YBaHumJJMJyvuhY1uxez1/WT1OhDCSjMVE9XrHDF1XZOBY?=
+ =?us-ascii?Q?7jNIia/uwdTjDKLKcw0U4MnzTQj2khtBp53UQnGs9xKKu9Tc+qVytSqVfp7t?=
+ =?us-ascii?Q?c35YJvcdDO4+KrboTvh8OS6bi3Htqero+iOiAFp/wdFinTv3WSryx2T2XfKq?=
+ =?us-ascii?Q?PVDVW5Mgiip/XpmtreqOTSr5LkdEhDfHH1xYJ6j117bOMFJ9rmdYSsWZFsQv?=
+ =?us-ascii?Q?6WyZFBzMSGiNmE1l0i6+3gUdL/86+qa1njfYCWX8kk2vnkPI+aECAr3O4bay?=
+ =?us-ascii?Q?BnyMZV1OdbSG8SSflk6LE7ORvgpmEUrOkOlsuvM0A0I8jveQQWUsnpV/7oQ+?=
+ =?us-ascii?Q?qGNt1vNqWHcqxfBGqlThgig8p+0j/HsIE/D1qHSwkRMdPpMQcBFqeCOZ6MbT?=
+ =?us-ascii?Q?FHBQPVAlQDCwMzZLXAA0aE69qzh+d3DAO3Lv8VsRTrzPHumpvppQdmA6/GXn?=
+ =?us-ascii?Q?LWbDeKe4VN6cGtRs3SDEWuI6SJ7exZRBl05+uHEcIcNE0LIbFncCqzWm1BzW?=
+ =?us-ascii?Q?X+5Nf7OHpGAwoVpgYQWoqF/0BE92Fp2pLT3X3IeKnwFw3s0HwOK/J6he3Q7H?=
+ =?us-ascii?Q?9lvmsLHaREiDQMzx07nK+QPBn9d0KBzo0v2u8ZNSfIsruRvaKlP6UsNlND5+?=
+ =?us-ascii?Q?THapJK/8UFGi8ap0v7luqel9SwLcLL5PciCl+DVyGSE47kADVjGC7R0iqCIj?=
+ =?us-ascii?Q?59qvQSgTNgZ9miGWhJLOLMJXKpm4j/bsA68n9nm9d1lGuLWZvDM0Bsr8WGdQ?=
+ =?us-ascii?Q?+ZSB/So5oj/NsBLVWwB3U3yHWgMrNZN9yb0C/966w21kaaIspEiPca/H8XLe?=
+ =?us-ascii?Q?rKwAPDNhatKcsOamekdQDLDMAdKuPBIXa/2uvJKPXtI+0q34qX67R3+J8ob5?=
+ =?us-ascii?Q?Ec/tVVgzBWq28iNGuM6Tl/9W049mGW7deTXETfr6xD+6mtT91aCVP9z2czFE?=
+ =?us-ascii?Q?KUs1IbKK4Mx/eOC2hiDbeFjRBiu00+phPkUoE81fGBBTw23cgCY9fOJ9OLoU?=
+ =?us-ascii?Q?4hbisxvds5Uh/3ICwEn4L1dHYpu7sZoGAOWgw27Grz9z3slf4eFShj97D58W?=
+ =?us-ascii?Q?TwbR8r8VzYbxcnCa5bCU9y2uGFO1XfvrYo7oUH8Kgj/XRo+N0o9CmG4vDCLz?=
+ =?us-ascii?Q?iHPIJf3j7gs=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(7053199007); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?MXH/Lq2PUA2fLMitMSqI4YJB/kN33NJstW4Yz4X3EoJdYpnMN6gHbttTjKHo?=
- =?us-ascii?Q?aQ4ZfL21Y38UhmCQnmTSGjkZC0iUfdfa6KS78oVwSZMDBpbZTWbDS+PsmyMv?=
- =?us-ascii?Q?c53U11QSPxYphSQDKE0OCKH4qZTbh9yRIDXRi8bfE6vHfqdA5zxcfLuaYkm/?=
- =?us-ascii?Q?sOyNwjRPhOEA0E9wN4jtahjezU9zyfb8wfJ5/awvNB8f6PR35jYkODYA6wXI?=
- =?us-ascii?Q?JkgRpE8veU4wP4ITqFG910+zflnlq5qc3gX2caxkXSdvHdOX2C9qnonMO6fj?=
- =?us-ascii?Q?Hxc6f4nBUR4I9P/b9gABEdNW2geFSD377w35XO095uoN964WgRgL1G8Wj5Vw?=
- =?us-ascii?Q?9+xvsiPY7EhoFLRvm+inRd46McS+UjT9H056WpSw4ytbtZmxKVg8PnUyrB/4?=
- =?us-ascii?Q?k74nJmg+OEk3T45UAzIoQHKN3sVf0pvvr4S3Pbo+aZuyZbYh1BcHxtzzkD5i?=
- =?us-ascii?Q?vNBdYgUUDKhtpMSU7zCPoXXtCoM+J92LBN6n7ZoD89wYM5YV6IDRXS81EN/q?=
- =?us-ascii?Q?sXqoJleh/N6jrUB3/hS1f0FS43RxKNT5iBtYLF5/YKYhZ+IvcfrUy8HQVaPS?=
- =?us-ascii?Q?xOwaiiqnQgmSXLvxl3WWUEwPvz1qmgs6wTaHz9l8AHKzDubpXDYP6gjOL/XH?=
- =?us-ascii?Q?aGaGSmcoYB4l4JUBA9+rCNd45bz0hGlwFjfJQNRD6OAkf+j7bSpf1jCeaLJ1?=
- =?us-ascii?Q?8tzXHzxR9b/teap0QSMSM1ksiBB0z7G0kdd3pOxK6zRRbPXSq9vSNkz8GtBO?=
- =?us-ascii?Q?UVvIjSOK7C1FlfofFd5jRFofoY2wHzoAic2TgKJQg6y/DWCkwxb4V/Z+jB/I?=
- =?us-ascii?Q?ITeydlpU1o6S4DkgPOguz9ubxTc0Bm9Ofq3cyfUXy25fqUaZgU09xRgzCiOl?=
- =?us-ascii?Q?J9XbEiypPm77+tnCj6g1kkA9KhQRjIRUD7GD3ElT/PM+wWOh6vYw1SXN9J1D?=
- =?us-ascii?Q?vVcpp2EaTQDExeUf02eyXw1Eotxwyr8gagkWShOEiiNbwb45an2DpR3wQ+RC?=
- =?us-ascii?Q?lBsbB/qkxMoabetJvrVOv1pvCgoF5+J2z0WMFrk/uPJis+vVj+kGRZ0swQbn?=
- =?us-ascii?Q?R/zU1WOpNW+95gudFfi35pN6DSJsb7YadKcvuPGZEyoLzR2p8MrTHA5ROc7N?=
- =?us-ascii?Q?la9JO4SH7oKC+Lyiiqcm2OCg1ev2Jjf3HIqQGwaakillFXGimcPgrE1cTwr8?=
- =?us-ascii?Q?dl5X5fc2jaRrNMKGXFMNHRU85QEPaarQjpAeShuZaU1Bxj2AvHZDSpvZ3lIb?=
- =?us-ascii?Q?XD2x2jEepfRt6gRXvuof2XN9uvtfQamxFcWEFsAUFPkqKDD885ulLFuKa2NP?=
- =?us-ascii?Q?qPmTYbgyzfsrnnH6/SKEyGn9+M2BoeqFupvHK3jwphGN/TZI5xz+wJrBMciD?=
- =?us-ascii?Q?mNSI/mEFfZHTd+Nb3q1PPd8jqETwxdnAZuMVZoGVk0alu6hUFN5nJiUa1s8B?=
- =?us-ascii?Q?zcAObDcx++OjZZgl2T0Fx5/TzCBMP7bWOTj71MZ8dHUd9enQW8iP89b8qWW0?=
- =?us-ascii?Q?m7hm5dMETMexoK4mvOKNuBK9RJ8oW0DMaoJg9Ko43W4IRi+FKhKsRY56nNqn?=
- =?us-ascii?Q?yrebceXlzXAPMHUoMKBRejyeqeKFppTyqbALrlbBAOQzBrFMDpr3PAdqTcMV?=
- =?us-ascii?Q?pw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: e28c42f7-3ebb-4921-d272-08dd99401268
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?u/XFDk4+7+/f9/Sc8/qGebpZP6zK6rZqSLIB+HL7WBcfgAxrsBm8DP7b2C2r?=
+ =?us-ascii?Q?80UcQil3qPs6OIdhInAGQCFbw8c/3L4D2dnpfsvtiVgdCvoVLSOJbn/XTuUI?=
+ =?us-ascii?Q?lXqVDFpgAQ8ND97vg0kERr9JvNG4hLYgrlK5ppTKYNY4eYroszbbYhPoHeDP?=
+ =?us-ascii?Q?/07KTXBvZERVwdq4VvSA1mkeKH9nrWAvcwD/OIhDvCO88QYe6q8MDuNI9GhO?=
+ =?us-ascii?Q?Mxgq7IMsXPF/xcd6zwwfKV1of0ItxZVs6yvFKLQI9SsEhAbisaXB4tfi+y9b?=
+ =?us-ascii?Q?GAIUIIX9WX6mJXOOE6j4l3xVZmXxRLg2a/2y2z1Wg4cWrFcU0KRnzyz2TmIj?=
+ =?us-ascii?Q?7Ly6+c9ueGUePSv1ewZjkyYwtN0YzNTnjY3+booGKSgB85+rCp6f44z817s5?=
+ =?us-ascii?Q?RZpdxU+baejU+G2s9VabyfmPy1lKr5R8IXfkPQRhyF+hPk0gnLKgjlpuiwfi?=
+ =?us-ascii?Q?jM95kDBsLTKetcqRLdkKtBy82XFfJGwVF9n1ZGsdQWtPh2aXpOd38HvEsJbF?=
+ =?us-ascii?Q?7mg5mJRWd5dVSB3CWEWcQcW4kTyAeANwTJ8/PX4/E8cKy6APRC5rkqiklM08?=
+ =?us-ascii?Q?BhVrDb5oi3DSm8SPpDoC29C9Dx7nH+KBB8T2hAdBQMqPxkocIXqtGnCAR51Q?=
+ =?us-ascii?Q?o5AlY4oW5aw0bPJxY4QFgakYgfP2hggZSA9XwLE03fJVnardXYdq53NODpXL?=
+ =?us-ascii?Q?HD6g55bwzfz4HRKaj3XiodsWn/Z81m+MU0x4AJc0ey+1tba7zOZZKYvRnKQa?=
+ =?us-ascii?Q?pdmUGKLw6wJ/a4fdDGpKxc4Wt3b3CUJSAJdIcQ7Ohyjb6/1AFXuqGl1eW2QH?=
+ =?us-ascii?Q?I10Z0z6zpQOPkXXzld+E8u0nCPZaIkQ5HEpWvoBZZNtcGLX9gDWcE/wfwT33?=
+ =?us-ascii?Q?ZqlN7xwf2e1j2232sNHAVmzplnii/uTU73If6SIGMoyykiJFYI/4GN21MlLB?=
+ =?us-ascii?Q?WC/41tUsTy4IUQg75Mw+CEEdtfv0wn3hQX8iJsdIySHZ674qf0JfPACx+AMF?=
+ =?us-ascii?Q?0TkWzS6jAUIVoZH9Jny2zq+LdRvDx78PAmPqm0qyRDdiYSHqk2qL4x4fVJp9?=
+ =?us-ascii?Q?9OMA7ThYWtY8OETS38KLqVMwiLJxTULThZtgHKX4sjCo/U3EhfZ25wjZVD1f?=
+ =?us-ascii?Q?uGdlTWMAzT57zAH8d/kfUygO8AI3o2M+8N7eKy0eoSLL6BVckHMLLqtjhcUV?=
+ =?us-ascii?Q?9X0eKSHb5C6hiCSKc0bMsf8KFuyTcXy8HDuLsRizmoEJRGR1Up5tkFnnTzZc?=
+ =?us-ascii?Q?drVnJaVtCOobX2QnVITRHaaWeagMu3p40m16YS8YjyG2OeD+HDN4dJrin4Yu?=
+ =?us-ascii?Q?QLplRoQ+zf2l+xCoUiCW8HvXsd7Daq4oZlKVbBITnF/PJLD0nJa9CoTGG/4w?=
+ =?us-ascii?Q?L+CiRKRypGLVFfXoGq70yExN7MKzZY1kGGEn4t3G31dtjziQicrSCx/eb5Gl?=
+ =?us-ascii?Q?cNARKPCJSYSrTNU7FrYfwywuU7MxgNRxAu9rgkFiv1noun/9SlL/E4t4FIjh?=
+ =?us-ascii?Q?mELmCij4JMr0UXDwJG2Yv7JZhqX9uPTP4Y6OL3jxTP8D4puNOA0cbXQmYxU+?=
+ =?us-ascii?Q?yjdOEB9V/++ulx6QOXZJYPkY+MrywEqOtfu+A+nMWnkXjNOJxs2RiwPD2i0j?=
+ =?us-ascii?Q?Xg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0e4f0b08-2ffe-4013-9ad0-08dd9942b918
 X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 May 2025 14:51:02.4859 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 May 2025 15:10:01.0549 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +roEy2X3gK6kUEcdAgVq583HSdpvwv5IXxW01AgPHWfCfmeLyPoOmchkcAa3o4Rr1NDl6Vq78k1FMjFn6U1T1jZFtNsz2RamktSFr//VeDI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB6447
+X-MS-Exchange-CrossTenant-UserPrincipalName: YzE3e/K+mhHgreVMrlBTUDwAMSwSw383hx4h4ZLjW0HJth9hcajYO1pTO7VXC+CRDjZN+dNg+vaWXma/6WGOWzp7UMWWnLG7QSjWjGy8PTg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6729
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -177,202 +177,135 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-+ dri-devel
+On Thu, May 22, 2025 at 04:52:18PM +1000, Dave Airlie wrote:
+>From: Dave Airlie <airlied@redhat.com>
+>
+>This reduces this struct from 16 to 8 bytes, and it gets embedded
+>into a lot of things.
+>
+>Signed-off-by: Dave Airlie <airlied@redhat.com>
 
-On Wed, May 21, 2025 at 10:42:35PM +0000, Juston Li wrote:
->Add tracepoints behind CONFIG_DRM_XE_GPU_MEM_TRACEPOINTS for tracking
->global and per-process GPU memory usage.
->
->These are required by VSR on Android 12+ for reporting GPU driver memory
->allocations.
->
->v2:
-> - Use u64 as preferred by checkpatch (Tvrtko)
-> - Fix errors in comments/Kconfig description (Tvrtko)
-> - drop redundant "CONFIG_" in Kconfig
->
->Signed-off-by: Juston Li <justonli@chromium.org>
->Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->---
-> drivers/gpu/drm/xe/Kconfig.debug     | 12 +++++++
-> drivers/gpu/drm/xe/xe_bo.c           | 47 ++++++++++++++++++++++++++++
-> drivers/gpu/drm/xe/xe_device_types.h | 16 ++++++++++
-> 3 files changed, 75 insertions(+)
->
->diff --git a/drivers/gpu/drm/xe/Kconfig.debug b/drivers/gpu/drm/xe/Kconfig.debug
->index 01735c6ece8ba..2371eeda0afd5 100644
->--- a/drivers/gpu/drm/xe/Kconfig.debug
->+++ b/drivers/gpu/drm/xe/Kconfig.debug
->@@ -111,3 +111,15 @@ config DRM_XE_USERPTR_INVAL_INJECT
->
-> 	 Recommended for driver developers only.
-> 	 If in doubt, say "N".
->+
->+config DRM_XE_GPU_MEM_TRACEPOINTS
+Replied too early on cover. Chatting with Michal Wajdeczko today, this
+may break things as we then can't byte-address anymore. It seems
+particularly dangerous when using the iosys_map_wr/iosys_map_rd as
+there's nothing preventing an unaligned address and we increment the map
+with the sizeof() of a struct that could be __packed. Example: in
+xe_guc_ads.c we use it to write packed structs like guc_gt_system_info.
+In this particular case it doesn't give unaligned address, but we should
+probably then protect iosys_map from doing the wrong thing.
 
-is there any particular reason to make this user-configurable per driver?
-Why aren't we making CONFIG_TRACE_GPU_MEM configurable (if needed, but
-could just depend on CONFIG_TRACEPOINTS) and then drivers just use it.
-
->+	bool "Enable Xe GPU memory usage tracepoints"
->+	default n
->+	select TRACE_GPU_MEM
->+	help
->+	  Choose this option to enable tracepoints for tracking
->+	  global and per-process GPU memory usage.
->+	  Intended for performance profiling and required for
->+	  Android.
->+
->+	  If in doubt, say "N".
->diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
->index d99d91fe8aa98..49ee20d54ede6 100644
->--- a/drivers/gpu/drm/xe/xe_bo.c
->+++ b/drivers/gpu/drm/xe/xe_bo.c
->@@ -19,6 +19,8 @@
->
-> #include <kunit/static_stub.h>
->
->+#include <trace/events/gpu_mem.h>
->+
-> #include "xe_device.h"
-> #include "xe_dma_buf.h"
-> #include "xe_drm_client.h"
->@@ -420,6 +422,35 @@ static void xe_ttm_tt_account_subtract(struct ttm_tt *tt)
-> 		xe_shrinker_mod_pages(xe_tt->xe->mem.shrinker, -(long)tt->num_pages, 0);
-> }
->
->+#if IS_ENABLED(CONFIG_DRM_XE_GPU_MEM_TRACEPOINTS)
->+static void update_global_total_pages(struct ttm_device *ttm_dev, long num_pages)
->+{
->+	struct xe_device *xe = ttm_to_xe_device(ttm_dev);
->+	u64 global_total_pages =
->+		atomic64_add_return(num_pages, &xe->global_total_pages);
->+
->+	trace_gpu_mem_total(0, 0, global_total_pages << PAGE_SHIFT);
->+}
->+
->+static void update_process_mem(struct drm_file *file, ssize_t size)
->+{
->+	struct xe_file *xef = to_xe_file(file);
->+	u64 process_mem = atomic64_add_return(size, &xef->process_mem);
->+
->+	rcu_read_lock(); /* Locks file->pid! */
->+	trace_gpu_mem_total(0, pid_nr(rcu_dereference(file->pid)), process_mem);
->+	rcu_read_unlock();
->+}
->+#else
->+static inline void update_global_total_pages(struct ttm_device *ttm_dev, long num_pages)
->+{
->+}
->+
->+static inline void update_process_mem(struct drm_file *file, ssize_t size)
->+{
->+}
->+#endif
->+
-> static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
-> 				       u32 page_flags)
-> {
->@@ -528,6 +559,7 @@ static int xe_ttm_tt_populate(struct ttm_device *ttm_dev, struct ttm_tt *tt,
->
-> 	xe_tt->purgeable = false;
-> 	xe_ttm_tt_account_add(tt);
->+	update_global_total_pages(ttm_dev, tt->num_pages);
->
-> 	return 0;
-> }
->@@ -542,6 +574,7 @@ static void xe_ttm_tt_unpopulate(struct ttm_device *ttm_dev, struct ttm_tt *tt)
->
-> 	ttm_pool_free(&ttm_dev->pool, tt);
-> 	xe_ttm_tt_account_subtract(tt);
->+	update_global_total_pages(ttm_dev, -(long)tt->num_pages);
-> }
->
-> static void xe_ttm_tt_destroy(struct ttm_device *ttm_dev, struct ttm_tt *tt)
->@@ -1648,6 +1681,15 @@ static void xe_gem_object_free(struct drm_gem_object *obj)
-> 	ttm_bo_put(container_of(obj, struct ttm_buffer_object, base));
-> }
->
->+#if IS_ENABLED(CONFIG_DRM_XE_GPU_MEM_TRACEPOINTS)
->+static int xe_gem_object_open(struct drm_gem_object *obj,
->+			      struct drm_file *file_priv)
->+{
->+	update_process_mem(file_priv, obj->size);
->+	return 0;
->+}
->+#endif
->+
-> static void xe_gem_object_close(struct drm_gem_object *obj,
-> 				struct drm_file *file_priv)
-> {
->@@ -1660,6 +1702,8 @@ static void xe_gem_object_close(struct drm_gem_object *obj,
-> 		ttm_bo_set_bulk_move(&bo->ttm, NULL);
-> 		xe_bo_unlock(bo);
-> 	}
->+
->+	update_process_mem(file_priv, -obj->size);
-> }
->
-> static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
->@@ -1757,6 +1801,9 @@ static const struct vm_operations_struct xe_gem_vm_ops = {
->
-> static const struct drm_gem_object_funcs xe_gem_object_funcs = {
-> 	.free = xe_gem_object_free,
->+#if IS_ENABLED(CONFIG_DRM_XE_GPU_MEM_TRACEPOINTS)
-
-in future we may have other reasons for this, then we will need to
-refactor these ifdefs. So, maybe just assign this without ifdef, which
-allows to remove the ifdef around xe_gem_object_open. The impl of the
-update_* functions could also be in the form
-
-static void update_...()
-{
-#if IS_ENABLED(CONFIG_...)
-#endif
-}
+So, if we are keeping this patch, we should probably protect
+initially-unaligned addresses and the iosys_map_incr() call?
 
 thanks
 Lucas De Marchi
 
->+	.open = xe_gem_object_open,
->+#endif
-> 	.close = xe_gem_object_close,
-> 	.mmap = drm_gem_ttm_mmap,
-> 	.export = xe_gem_prime_export,
->diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
->index f81be293b260e..dd9d411e66dac 100644
->--- a/drivers/gpu/drm/xe/xe_device_types.h
->+++ b/drivers/gpu/drm/xe/xe_device_types.h
->@@ -639,6 +639,14 @@ struct xe_device {
-> 		unsigned int fsb_freq, mem_freq, is_ddr3;
+>---
+> include/linux/iosys-map.h | 30 ++++++++----------------------
+> 1 file changed, 8 insertions(+), 22 deletions(-)
+>
+>diff --git a/include/linux/iosys-map.h b/include/linux/iosys-map.h
+>index a6c2cc9ca756..44479966ce24 100644
+>--- a/include/linux/iosys-map.h
+>+++ b/include/linux/iosys-map.h
+>@@ -99,29 +99,27 @@
+>  *	iosys_map_incr(&map, len); // go to first byte after the memcpy
+>  */
+>
+>+#define _IOSYS_MAP_IS_IOMEM 1
+> /**
+>  * struct iosys_map - Pointer to IO/system memory
+>  * @vaddr_iomem:	The buffer's address if in I/O memory
+>  * @vaddr:		The buffer's address if in system memory
+>- * @is_iomem:		True if the buffer is located in I/O memory, or false
+>- *			otherwise.
+>  */
+> struct iosys_map {
+> 	union {
+> 		void __iomem *_vaddr_iomem;
+> 		void *_vaddr;
 > 	};
-> #endif
->+
->+#if IS_ENABLED(CONFIG_DRM_XE_GPU_MEM_TRACEPOINTS)
->+	/**
->+	 * @global_total_pages: global GPU page usage tracked for gpu_mem
->+	 * tracepoints
->+	 */
->+	atomic64_t global_total_pages;
->+#endif
+>-	bool _is_iomem;
 > };
+>
+> static inline bool iosys_map_is_iomem(const struct iosys_map *map)
+> {
+>-	return map->_is_iomem;
+>+	return ((unsigned long)map->_vaddr) & _IOSYS_MAP_IS_IOMEM;
+> }
+>
+> static inline void __iomem *iosys_map_ioptr(const struct iosys_map *map)
+> {
+>-	return map->_vaddr_iomem;
+>+	return (void __iomem *)((unsigned long)map->_vaddr_iomem & ~_IOSYS_MAP_IS_IOMEM);
+> }
+>
+> static inline void *iosys_map_ptr(const struct iosys_map *map)
+>@@ -136,7 +134,6 @@ static inline void *iosys_map_ptr(const struct iosys_map *map)
+> #define IOSYS_MAP_INIT_VADDR(vaddr_)	\
+> 	{				\
+> 		._vaddr = (vaddr_),	\
+>-		._is_iomem = false,	\
+> 	}
 >
 > /**
->@@ -700,6 +708,14 @@ struct xe_file {
+>@@ -145,8 +142,7 @@ static inline void *iosys_map_ptr(const struct iosys_map *map)
+>  */
+> #define IOSYS_MAP_INIT_VADDR_IOMEM(vaddr_iomem_)	\
+> 	{						\
+>-		._vaddr_iomem = (vaddr_iomem_),		\
+>-		._is_iomem = true,			\
+>+		._vaddr_iomem = (void __iomem *)(((unsigned long)(vaddr_iomem_) | _IOSYS_MAP_IS_IOMEM)), \
+> 	}
 >
-> 	/** @refcount: ref count of this xe file */
-> 	struct kref refcount;
->+
->+#if IS_ENABLED(CONFIG_DRM_XE_GPU_MEM_TRACEPOINTS)
->+	/**
->+	 * @process_mem: per-process GPU memory usage tracked for gpu_mem
->+	 * tracepoints
->+	 */
->+	atomic64_t process_mem;
->+#endif
-> };
+> /**
+>@@ -198,7 +194,6 @@ static inline void *iosys_map_ptr(const struct iosys_map *map)
+> static inline void iosys_map_set_vaddr(struct iosys_map *map, void *vaddr)
+> {
+> 	map->_vaddr = vaddr;
+>-	map->_is_iomem = false;
+> }
 >
-> #endif
+> /**
+>@@ -211,8 +206,7 @@ static inline void iosys_map_set_vaddr(struct iosys_map *map, void *vaddr)
+> static inline void iosys_map_set_vaddr_iomem(struct iosys_map *map,
+> 					     void __iomem *vaddr_iomem)
+> {
+>-	map->_vaddr_iomem = vaddr_iomem;
+>-	map->_is_iomem = true;
+>+	map->_vaddr_iomem = (void __iomem *)((unsigned long)vaddr_iomem | _IOSYS_MAP_IS_IOMEM);
+> }
+>
+> /**
+>@@ -229,12 +223,9 @@ static inline void iosys_map_set_vaddr_iomem(struct iosys_map *map,
+> static inline bool iosys_map_is_equal(const struct iosys_map *lhs,
+> 				      const struct iosys_map *rhs)
+> {
+>-	if (lhs->_is_iomem != rhs->_is_iomem)
+>+	if (lhs->_vaddr != rhs->_vaddr)
+> 		return false;
+>-	else if (lhs->_is_iomem)
+>-		return lhs->_vaddr_iomem == rhs->_vaddr_iomem;
+>-	else
+>-		return lhs->_vaddr == rhs->_vaddr;
+>+	return true;
+> }
+>
+> /**
+>@@ -279,12 +270,7 @@ static inline bool iosys_map_is_set(const struct iosys_map *map)
+>  */
+> static inline void iosys_map_clear(struct iosys_map *map)
+> {
+>-	if (map->_is_iomem) {
+>-		map->_vaddr_iomem = NULL;
+>-		map->_is_iomem = false;
+>-	} else {
+>-		map->_vaddr = NULL;
+>-	}
+>+	map->_vaddr = NULL;
+> }
+>
+> /**
 >-- 
->2.49.0.1143.g0be31eac6b-goog
+>2.49.0
 >
