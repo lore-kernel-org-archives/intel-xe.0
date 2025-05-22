@@ -4,166 +4,163 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBA56C54ED0
-	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 13:35:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 031CCC54E90
+	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 13:39:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 345E510ED28;
-	Thu, 22 May 2025 13:35:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EF8B10EDBE;
+	Thu, 22 May 2025 13:39:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="azt+xpH+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TEXCYB1Y";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52E8810EDE2;
- Thu, 22 May 2025 13:35:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 975F110EDBE;
+ Thu, 22 May 2025 13:39:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747920902; x=1779456902;
+ t=1747921174; x=1779457174;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=eO6FtNEr7VeK8kbtcgd+2b1jqH29fEU0rJFAn2yVjB0=;
- b=azt+xpH+/Runt9vZMmY8zf6V46yxjbYsBALUYxnfgANhTVlFiFVXyu/2
- weEaRC7aZ3CMPzzatkBTAnYG9zKZLjWC1uRdqw/uM3GqYrRXakF15IRQJ
- zkapAyjtlQVRN8TOqxgiGszi1GGWtGQUZQ45vnTZNHb3LdlTt0jb3uUNb
- FKqbuVGVu459BxKRm5wKHeH8/H/XU8M10I3TO8bt0xcDFROXtxUtuFvzt
- +spnQWJDMDwEdmCzRRXQ4geQHNqiAIlgtp7Z+cyA02l7PWdIN09n/CF8Y
- 1sO/iRllgPlBLIXVJ4Qro6AIOeMu6FNbrMC0Uu/xNwfi4CAV8wz883w35 Q==;
-X-CSE-ConnectionGUID: Zus5dGluQcKaXh//SY4mWA==
-X-CSE-MsgGUID: d5oggGyISrKPyvBkFJUXOg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="53610058"
-X-IronPort-AV: E=Sophos;i="6.15,306,1739865600"; d="scan'208";a="53610058"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2025 06:34:43 -0700
-X-CSE-ConnectionGUID: nnutytN+T5aruoOXWWX5zw==
-X-CSE-MsgGUID: bng20pt+S+2s3HX/iO/tGQ==
+ bh=ufZEx4F4RTdsWscuGP1Rss4gpImpuBMFLaM+l4OVkTk=;
+ b=TEXCYB1Ywcxiha1EDMgdjrjwgmLxYbh7VTv2VkFIowyeyFRAhhK7ez5/
+ e9liU3BCe+TcgRVNv/lHFgG0UZ1ClK4+Zl/t44mRUtO975adFoDoVNIWI
+ xs2invpjmpnCtsYjIXcqhTRP1QGFDr92VLJUHoDrLVORsu9ABS3BVIrWN
+ fGh+HHyo2rH1gdKOjc4iyy54YsSVjHgH76s0IIjS5iDvIGUryOnYWNtox
+ wYf3YAcYj9f7bgm231nr1EVbmosEbhUzVRkY4K2t93BvtdHwbtUpP1iZr
+ QAwQBjIbxrcW+Gl6unfYl0h/3fknaZ4lyg5WHsc9pRwLj08MSM+NTyozf w==;
+X-CSE-ConnectionGUID: OUel4WvxR8S7p9kA6g1vfw==
+X-CSE-MsgGUID: yJ5xCTEpQU2Z8miolDHz1A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="49824684"
+X-IronPort-AV: E=Sophos;i="6.15,306,1739865600"; d="scan'208";a="49824684"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2025 06:39:32 -0700
+X-CSE-ConnectionGUID: tcBprjgtSXiAv9MRbRmY+A==
+X-CSE-MsgGUID: L4dGyo7dS9GqzLfIbYfJ4Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,306,1739865600"; d="scan'208";a="140475425"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2025 06:34:36 -0700
+X-IronPort-AV: E=Sophos;i="6.15,306,1739865600"; d="scan'208";a="140465176"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2025 06:39:33 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Thu, 22 May 2025 06:34:35 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ 15.2.1544.25; Thu, 22 May 2025 06:39:32 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Thu, 22 May 2025 06:34:35 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.40) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.2.1544.25 via Frontend Transport; Thu, 22 May 2025 06:39:32 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.47) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.55; Thu, 22 May 2025 06:34:34 -0700
+ 15.1.2507.55; Thu, 22 May 2025 06:39:31 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=R2vrrgBUNOWlGSrR8yiLEW3iMnG2PDjfVbHlbGF3vuCeXv+ONFfrJC6X3o1KyMi3CoeMr3QrIHPsVEZLffYPrIT49aKEThmdVXgRC/Zuqp7JvnaCRjmR/qW9RykvHX71y3JYTS1EpYyvonG8gdL2gnkgQtjbHdRSJY/4AQr+wC/EUXTWP8z88aygQv01M8FydE/dOjqXcNTTmCvARBzgOp3/5YMSc8qTBhX366OyqDkiK77yet2mJTAhVz1O0a1P6+IhKADxZ9Q7UlOYPHI95v/kgXWWd8CAMtxy0r+XlPT5lKJm+Nvr7656fx86VKhoZ0nIGBuU2HAnjmT3b+qxDg==
+ b=gZI4egMED14iwJF9yHRkDv0rTwYcwPMi35mTQkTJKNQuRdq8UfzhqoXBOq1pTq1SByYW6vEnLK3zqmU6E30pQ5A+gJ9AO+Wl1zIGmh0hH/UdS5j6ByzeZDBvbEZq1yW+f1mGLSkiG9i7TQPdv88Pz5UzQXvEvi07eYXdgrgaaWymdAC6U4NBZjifbBLCx4HP1YzPEgjMwpPQ7XXuLNI4nmS3g2iHIs/pH2f1IU2j82VLt2sKGHPx3p84d9R7iFg5bPw8DhuKENVgGK2TzTsZf3cE1+nL0CdQmDWmGh0IiTtUQX3NyiiCVnwqCS4L85vgUHUE1ViT1lJBvQOR3wO1OA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DmXOKwvKbZO3izTwVcRVucdPMAoHmbo6ukcaKmOqZXk=;
- b=ai769TTOuVcK9vJ16y7b2esp2mEKVC59BTabS3pyMRwELU9p/RVTIrS4BDEsim2ggolztpLlz2TxZXhz91Gyj5Zmu5X0qhUuw4TBePX71vBtnohauZiJ/U7C65sosXoGoXX0Xs0ZieoI92yvCCm835hP6f95aTG+pG+Lk8ztYmWUmGu+zjNqzu1q0+yJYVu/PCCH4kHiNMrip+9QkbypPWbVeie2/qNZcVwT3EiDR0feNkuGVgnLIpbarEls6sS6xmdiHKSOdhH9F9IKvgkRPP111K3PIfIZdX7MNoXeUNqbdCP8svV/ihXPCUVNR42KbMgAuWfdSCTzQU8krrtH2g==
+ bh=nAtxuGsxZTf+1hOrS0WMHW/GcY8lXRYJpUEt58zaFE4=;
+ b=AFCl3KAN4mz06V6gqFk4OB2Xnq/Eh6u+5ZH0wm7OUSog5U8nfEkum7eRO19+HVCJLkufNJklinOhJRa3dqaf2bngM+cIG4GawNhx8dMsPrntsfk/kPzYN6x2EqpD+HKfIvi+NjdSl4WFl/8o1BkWI2c6hikaSrLSS6sxa4RS7WLdJji6y6keFYFjeChxy1us7+vHkBshxlCXq5156WmytzkRhQTqvOZSzH2OilAt6rmldu+2p31kZvTgp3WDXwUbFaMOMlEjKe7MxBRMgyyh8lBtlsOKA+xhthx4qMBxZ8FB+wUaRy57zgbObN7Nbiosf0p9DSDLHzMWoTEptfmcUQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by BL1PR11MB5271.namprd11.prod.outlook.com (2603:10b6:208:31a::21)
+ by PH7PR11MB6721.namprd11.prod.outlook.com (2603:10b6:510:1ad::22)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.21; Thu, 22 May
- 2025 13:34:24 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.20; Thu, 22 May
+ 2025 13:39:29 +0000
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.8746.029; Thu, 22 May 2025
- 13:34:24 +0000
-Date: Thu, 22 May 2025 08:34:22 -0500
+ 13:39:29 +0000
+Date: Thu, 22 May 2025 08:39:26 -0500
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-CC: Dave Airlie <airlied@gmail.com>, <dri-devel@lists.freedesktop.org>,
+To: Dave Airlie <airlied@gmail.com>
+CC: <dri-devel@lists.freedesktop.org>, <tzimmermann@suse.de>,
  <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 1/9] iosys-map: add new accessor interfaces and use them
- internally.
-Message-ID: <f54h5mhkkcexf57vpyrzscjdetztqt3itg47fmlazsbo47zrcr@swwclbb7dkg7>
+Subject: Re: [PATCH 5/9] drm/qxl: avoid accessing iosys_map internals.
+Message-ID: <5odmlq4j6poqg6p2b5t5kdtax2qbieqq4j7bufolq5daexxchl@425tg3vwmm5i>
 References: <20250522065519.318013-1-airlied@gmail.com>
- <20250522065519.318013-2-airlied@gmail.com>
- <2cc885d5-adcf-46d1-abca-c50431ca8316@suse.de>
+ <20250522065519.318013-6-airlied@gmail.com>
 Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <2cc885d5-adcf-46d1-abca-c50431ca8316@suse.de>
-X-ClientProxiedBy: BY1P220CA0019.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:5c3::15) To CY5PR11MB6139.namprd11.prod.outlook.com
+In-Reply-To: <20250522065519.318013-6-airlied@gmail.com>
+X-ClientProxiedBy: BY1P220CA0015.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:5c3::10) To CY5PR11MB6139.namprd11.prod.outlook.com
  (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|BL1PR11MB5271:EE_
-X-MS-Office365-Filtering-Correlation-Id: e98c3af3-830a-4a47-cb77-08dd99355ddc
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|PH7PR11MB6721:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8d404d1a-0628-40f8-46b3-08dd99361372
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?fydLf1KxhJYghCp5E67cMaI20j1V+gb1rYZJ5tZDLhu//F3fkdXfFUyB+1cx?=
- =?us-ascii?Q?CdueuIRY7iKONgQpsUrb6Z1W6QxhGWNzZhoL8b4U/SLRrooaRZYwW6iWzybP?=
- =?us-ascii?Q?BNuO2XDoc5Y1snNLSC3vIBlCw9D9xRHaMbizteyPpN/IZegIQgJrjyAUhC03?=
- =?us-ascii?Q?h0pdIQv96EsrX+zyWD0V8zmygHIeEoUGnWBhHCadUDBHH7zHGXT87fwd/lq8?=
- =?us-ascii?Q?akGgKUONqIbwbJw1FWsixX0Bx+M9IIwevpnOnz0/HQ8eyGqjD0IRId0QtvO7?=
- =?us-ascii?Q?FpJGxMRzpZlGSd98B00fWqIcpRxc2kozxPCUcCdQAuQwDFN67QUgTjAsIGRw?=
- =?us-ascii?Q?bNSMAhKuYko6yqRq7tXwfdZHisVA7Gr58LTmjbMpfwt8hvP3T2dK4HSKmTiY?=
- =?us-ascii?Q?6n7CSkULjTc6yXGJHj7dQf2sRmlRxzgqVwsrtF7CUk7kvwbGSzGQMRUIUfvc?=
- =?us-ascii?Q?rmpxN4nmqhMGqLKhvciOvN+xyplyWyvqLV/b3RsE0IQgzlF0KAxPTn2hSKNk?=
- =?us-ascii?Q?zboiWURy0jTVDM6p2m9qnHpI1Y3KcQEezxxrXgEqRxUuPSs0v4fz+BeMAM9g?=
- =?us-ascii?Q?4jsEg3hksH2k13E5wBOqpN5v2p1aSaX7a7plwpdn+Kg2KxsMZX1ZccPmiWVa?=
- =?us-ascii?Q?C6d0fLArC33ng4qEml6ivTZ3xpCCzjE0IGDlyGebQJm15ZFqhFsw3hioaeTi?=
- =?us-ascii?Q?yZ5X9ODdbFsR0HkT5DizfspW51e/Fcv/enORh+HXfUO3UgHITztHuHcQnCyt?=
- =?us-ascii?Q?LRHx5m4/tEkzj5SviuG14FM2boF9dBokx4eD/4q3/obn6W4F3E/R2lIBIMOq?=
- =?us-ascii?Q?/bxoHFgyc8E19pY/bZ3ZbMLBOdKed++wtQ2VtsZI9g5wU0daIlx9/5JjzxVY?=
- =?us-ascii?Q?xW4ycUbaKrWqzgTOAqGWIKyp7PzaZQ8JUOtRmGJyNKhyehQ21ZUiXKe+aTIw?=
- =?us-ascii?Q?r6tnL7hDO0oi10uJ7RrcC00SMVmQaU0IHCj7tvNcNW8x7PlCs5Wg57Gubdnu?=
- =?us-ascii?Q?tUrWf25DB34eCcufKGJxNAWs10OQjTHom2TE0yYmOPZDnjrCnOCfNWerSYxc?=
- =?us-ascii?Q?YKuUGoVbUbUrVX1CG1dO5vHEMU8GX/wIxLltGaimY4SYJd6CmaBEXUQ3XQGL?=
- =?us-ascii?Q?1C7fg+FIBF93W2bW5ceaLk4CipOapXBDPUvTDXj461lmzBeERmW1qceHbYD+?=
- =?us-ascii?Q?mqinl2a7832ihZBuGTnbZ/IrTpfK/ISqxTfDlPQY6fH2lPta7XaFSgIZpFBx?=
- =?us-ascii?Q?KKq2/6kiOYHD8HVR5Ky09GgtiG6FPEBlmN3yecIL2vMcNQZtOtYFwSObENid?=
- =?us-ascii?Q?37q9U7Wz5kiSJTIU0jYe8AN3zuFEfKnKo29zGu+HI4J4XXdIfkF8ZrxzUlwd?=
- =?us-ascii?Q?GwKgKsjxcE0l4jnS06YfwJz6AXg6M+sKMxEjh8k4M7txFoghPpySGssmd2tO?=
- =?us-ascii?Q?lv+yFmDxPn0=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?rsv5dWXRDdQ/FqYuhynL+tD8Y8mrq6NrWU3Ie8VlTlj4sD5tGM+35vjsijxv?=
+ =?us-ascii?Q?SoervYuPgD3ZQotrig6eUvRVTnKnH/W/Dm1UwdAsodn57LBwxZP+ZGtIlA/U?=
+ =?us-ascii?Q?GT2yZbWasYIo4DYk+neT8q8NxAqpwqgXyXZHZXqYNi/tIxdA6ZIQUB05Bp5K?=
+ =?us-ascii?Q?t9xkW0C9v/OrYKztBWpA9YHMiKbWjlA9nwO9HTCqNcBufzNoc2lEf+doWwTg?=
+ =?us-ascii?Q?8yVL+EqEqDgAFpvd6Tn0zQP6HyJTDWxgSSDqc9y9QYX/mu4XmrKDu3O5mePk?=
+ =?us-ascii?Q?VCeMMJnvfpXXvZVN3LgGuP9PHH5TxcvojAL624H44SiN/otf4TnuoFwZ6jw1?=
+ =?us-ascii?Q?8xjLTAm8rdCrOANCV6ToNZctuNdOi9sPBYX0nklN3NnhdBm++27PGeDFRrxB?=
+ =?us-ascii?Q?FAPQzffw3oPl03Peauxv2hZHLDvu6VR6u8VxdRMiwWGy0RIebBHAv1tsCjg1?=
+ =?us-ascii?Q?qQ5W25LSB6fO2fN49KDP44LsQyunCcRrrMHT/qL9FRrEGBut6g+Jlv0Co0ED?=
+ =?us-ascii?Q?80kW0i2/COlC1lRcyYVwmN2CcWqfccokNqjDUltzw5c/Pv1Zqv13ClzkTHx1?=
+ =?us-ascii?Q?3aGojA/KnzfiRBSKN15jJmjVrV8uQa+Ir1k1iGUJGaM2vdv9/SJxJAnntiXd?=
+ =?us-ascii?Q?QKgK560nwqD8NRjOw0tRVHIEg9YoRvWPCiGa7EI1Fg1Lgl3YC+K//SnmNadK?=
+ =?us-ascii?Q?c0VOC6GZiXQ5spnpYSVrDpapD5nrFqRyW0B7NdKTTYm6/cRx87DY12/z1Fdg?=
+ =?us-ascii?Q?y0QDewlzm1N6X2Bjrvm29gcXxtvi9gKMT6qn+yalU1utqf4Ajdd0/u4Wt+so?=
+ =?us-ascii?Q?aBoJAjtCbbHlwffo2vSIlirY/eZZH6WVxOXtHTCf6otpXyiJKTAhwn5xjXs7?=
+ =?us-ascii?Q?jt3RCesb7FWRhgOpGHne3xlW/KKro2HBqKC3xFmgHAgD4R0gZFS+YLgf4zD/?=
+ =?us-ascii?Q?ux9pBYCXhPrYFHmkLnZrSUs34GCRnbtF9XX9Dc4KjAgOIg/DQzjWmieI4e+Y?=
+ =?us-ascii?Q?4rnGFkq0H0yJ1o7dunjfy2WKWZsTTJDuiuBXmzbOfKaTvh4Fsu/RKj1yqBJ8?=
+ =?us-ascii?Q?urUvLjoSgiXEqxbeRhI/IsLMOENlglTYtlHxW2S+VOjRUXnUh/YKSotzOoiA?=
+ =?us-ascii?Q?5xitu0Vu+AnGVsFk4PFXRlq3I+oWFEYI/aNQM1IQAqrKXoyFSZz34mxWlbcd?=
+ =?us-ascii?Q?aDqdWK7FoUHKKWEAbCnXHb1SVeAUMZNGWtjPH0iquQcA9V4m9WUow7zqfxSn?=
+ =?us-ascii?Q?M4ouDJEzvtdtGpRwpBPkYQzGvs8Tu3NL+eZvqlTseGcIWSafKRtYJ4LWoncq?=
+ =?us-ascii?Q?z7VcuMLzWFuTm2DcrI3YOTD+sQsXcCY5QpAgABmJrYGThaDpE79Tx2Slu/Xq?=
+ =?us-ascii?Q?liDiLZN+y7yU9tTsVHmRJLHSV061znb+NCIn5WHoUsPaVnalKQ=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?rmc2FQxHKhuswcyXKypk1enY6XwaMBuxvAd+vuKSr7Djm3oU34yAubvnif12?=
- =?us-ascii?Q?K2niczMK1Iv022PW/Te55V1sPM1AmC2r6cVXey1DaoBBZzj0DtJVvkKXBWCT?=
- =?us-ascii?Q?lxKczC3TTPz2PVxhFYmg1zMPI07P4VLJ7ox7Rgy2YT0vuKdSBaQ7js1kUOU5?=
- =?us-ascii?Q?CEppbCadI4ctBCRh5oDwUqO63wmnBdANLWVS5/ooRfp0zY26mVvdk42GbxJ9?=
- =?us-ascii?Q?v2qakB8TuAySF4YH4LIxQsVsztP+pP34y7++gH5+OnJIGJXqGoO13lX0BSoq?=
- =?us-ascii?Q?cffFO7e51aCIk5iRmokD7kH9p9FuX0Y/mzhjbtNCnLJue+74waC+aggaA5/J?=
- =?us-ascii?Q?q1BauxipvOsszzjho8Vev19FObQa5huFXJ0lrgtcKdscqoBbKI1RhuXDcqUA?=
- =?us-ascii?Q?Ehl2Lr+98XONI2YV21F9p1VS/136MO54jBxBBoOTy1TiNaJ87HCAzTJw2Ayx?=
- =?us-ascii?Q?bpVmCqu1Li7Wy1MMZuZQTsHhwUnmyPpD7gatXMJqlJYsGVe2eu0d/goouO+Y?=
- =?us-ascii?Q?9d+YsQqR+aLXg7lviUbiSd6SkEHCKOgyPaCop7OR9g1UW+aLFMbzWbN0Bo1O?=
- =?us-ascii?Q?qoudMLWZ73bgKpgV6lyX/p1mMnlYYGt0kv62kLknH2CuDoHoVRvjkbbahXoY?=
- =?us-ascii?Q?yYpmQZ+1VUHzSvWEyiI9eVReYT4fTyPX9wRJ4U0uOojXTU/VloAR/DvPfK2x?=
- =?us-ascii?Q?Ha+SCnbgIzxx/8Yt2iaxWLi6Yx0Pgd07M9oSOPBUf9FwbNzIhbGbySpEsRzH?=
- =?us-ascii?Q?9Dp5v8QWCJvlfAeFDgzMUhZ/vbgIerr1kXpTcVUtYwnxWf7cW6hRD7DbR0LR?=
- =?us-ascii?Q?SkLkwlVN7Oor6H6q4WNmRq7xcrJMzNNdQ8desYJohFN2w8yQLArI3MatYSVx?=
- =?us-ascii?Q?AEuPTosEReXGJnXr8gd+QCgCXpRRvnch4ormt0lEv4/XAsFfnGmXmXN6473R?=
- =?us-ascii?Q?Fhs1okKgq6XttzuHR5jUX13DMwVRICU2my84+EaD8WYi+GzhLvdmROsOF+VV?=
- =?us-ascii?Q?PBujDFYbrFeVgm5LEHKfeFil5QTKQ2S6Y018OrR96KrNh8Nm196CP3vaZusb?=
- =?us-ascii?Q?S0OZGgsZ3Du7QSdDXJ8zFmLlMa44Ec2ZZ8MI7uS7poE5wWAXxJaXz37s12oZ?=
- =?us-ascii?Q?a6aNY0tqoM1AAYX1GD6XaoADfkQmpQrUOoZO6iCGiKy/9GjENjCDatTQpdbd?=
- =?us-ascii?Q?EKvkZaO96Esjf8wCs+D5uL59zuKZjKfP13fzr0GMw/W6LTCYUrNbuB7n75YM?=
- =?us-ascii?Q?iUb21dzdsBGZs2XYKbwKmPGCQgLMJIYn7hzDVW3sHFTwwOvM+ZlIJJg5f1ZK?=
- =?us-ascii?Q?qUd7QArDTh3QpS23vbpOjJwqmX1gKVx/Knwl4mJot+FWUnbIUgaj01ulP0rk?=
- =?us-ascii?Q?Q2ILHHtB8R2URqvKpjQ188ixKmfJzAkPO8tBV7uApWmIt+rCxgOTa4mXcOik?=
- =?us-ascii?Q?B22JCqjrZuhvFXBHtb1w+H2t8Xdg7ku2Q21C3wQoDbPva5UmngI7N0HhKbFh?=
- =?us-ascii?Q?UKizQP38kxMhs4Mnyf08Sk2wRYTSH/XFBPSU1wB6OUAGKGwk/zLTwZNyQZFU?=
- =?us-ascii?Q?NpA/7G0yjLi8qUAKPEgiBELyETyye+EPXkh/worS6fJMu0xgPDpNjlQ11SgZ?=
- =?us-ascii?Q?LA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: e98c3af3-830a-4a47-cb77-08dd99355ddc
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?EHnDDn7OTsGc4GcdcxRQr/Zfy9xlLEqnzSIheps68CRzJ9HGPUgY5llkXK/I?=
+ =?us-ascii?Q?lR9L9W86tqFaG9RzsmoEaqqTrB9DmfCichpW+ECxIXHEGu7RNyeJs9pnyJRH?=
+ =?us-ascii?Q?ubJ5u5mfKvJqA8UKjYevUAq6Coa58NE+VbDf/kp5PflxICXJrJFx8hDFCxfW?=
+ =?us-ascii?Q?t4hmj8HdZLmHwl3B4oefGTjT1DdLPWdfN0Ah8ITg+PiyG9l0pmtr8z6GOY5N?=
+ =?us-ascii?Q?GNOA9fbSfvLM3/hyEvihYtcFLxnIHhsOBPdwXvlsX8R5sLoCbfQsqjnKHW2v?=
+ =?us-ascii?Q?9rIfGi5YNaMiufEz8ZBTxNvrrebpsbs0zjf3aeXwIpgUuuVPLJvXeFbtEd7g?=
+ =?us-ascii?Q?9ESMmzMBgOPcvusFgYXcYPIc2ZYA8Okh/di+f3ttgupr+LDVgJl0dUmHRAVi?=
+ =?us-ascii?Q?q6xyQOdplq9x1aWIk3rwziGbYK10MN0DjHzfJebMM/XtNTDExxhjknUv9Pkz?=
+ =?us-ascii?Q?MHkfTy5DfV8IrhMxvf1oEiSDG2nHBb9Ws+eJfKxHnF3eUzJlgiBOJfDMTWXQ?=
+ =?us-ascii?Q?+fhBRQGUSjc4bMNlpGc7aSdg0LcrITR7jtF66r4ALEXqVee50GQxpFuG0RjM?=
+ =?us-ascii?Q?lc0alDTig9fRY1XRKlj8KLTdzakjEPRIsmju1yDC+IELQrrIOu7PGJ50+SSE?=
+ =?us-ascii?Q?SDgJ1H74kAXt+uFqjlzsJuTYb3kpOlbeDOhBmSjiSEiL7udH2aObfemqL5xs?=
+ =?us-ascii?Q?vWW6FshnzK2F5h5mCw6ofRSj8JxjqCK5FZYw/91ns3i2X+tU4Oas2Rq97CCm?=
+ =?us-ascii?Q?JCq27gmjYRQYivCzXhnlqllJdsABENGaP5RJ5g+to8kagZbcK4hZ32owsHGJ?=
+ =?us-ascii?Q?mslOolqu4MOGcrA8oHb0gwLgD0r99BjxY32Vuh2i98wf38ULuMsh2mgOWWTN?=
+ =?us-ascii?Q?1At+QJH92OgXd706DisaIVfwtRvjh/wh1WXz87mg/+cDLOWauUMg095cr3pA?=
+ =?us-ascii?Q?Ud5GA0sOJKalNOMOpJhBh05BuMKX5s9wORdi+5p2ukbaIgUV3rl+kjwA2HtG?=
+ =?us-ascii?Q?mSgV/INopoqr2RTWbBqldFOwXhjqNUzpXYOYf+utcyCT0jpPVxhOlIVSof8N?=
+ =?us-ascii?Q?DyGlBOxbXmkOdmmx8NAbjzFUCvk8DGu0fA51qgkG1h5R1+vkfRR7a7HshyAN?=
+ =?us-ascii?Q?eN5gazCe2vc+/IBMDgx8JLQD85YewEhYZe3qd7/bF85vDzCDZxbCGOgcxCHz?=
+ =?us-ascii?Q?A4HVKSFjFj6JJ5uIVBz/gzJzkLmvxxulrHdWYmQ0g1sG1wpyUpYlrymr6eJP?=
+ =?us-ascii?Q?HjwnvCI5+maDlY9TfX/9vND1KKZMYap5jb4RxvRdeOCIfJ7mKSGsDwNHuvZ/?=
+ =?us-ascii?Q?8s3jV1YpaZztuU2Qf8B2XQxfv9IEvY2Lhkkj7Xueb378uUqiOqQnJ7MHDZkJ?=
+ =?us-ascii?Q?cNFhPvNeiH03ugjB7rg2aOuLMIPfhnpJFXoBD94ICqtAi3M+R0NeBaebfGco?=
+ =?us-ascii?Q?GKevv2OTrsxmFNXScTVv+RZO31y110mKblTyGj5QBw4KbMYl1YSdVPi+YA7p?=
+ =?us-ascii?Q?PUo6SCkf5rRYGJk1ffvgZBbehwji0d2EzrgbVEuInWjawXu1iHQHlWlDTD9f?=
+ =?us-ascii?Q?gRk7o59Izmy/ptKLvChH3Jf1pQl8U/PMHnJJgigLX4nXvYn7f5ZnR0xttEBw?=
+ =?us-ascii?Q?nw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8d404d1a-0628-40f8-46b3-08dd99361372
 X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 May 2025 13:34:24.5452 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 May 2025 13:39:29.1591 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Nqzb0L3ijvN/OTOCJfvwnj4G/Fr84xBmknvTrAoiSNq+OhowSDsoRuKRS6tJUAKi0jTqU/9bEIOlIfW9nFvN2Rg1NxUBGirjKP5nYJyzXHI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5271
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1eZAbzcv+FsJ3w3VmU0TcHB4ssVlXYV68w3Qoz0qujOjmNcwAdXixc/fwp3a8J71kFKq2JsLa8PP1NnM89laNPM6wrdj3SHrjviT7qfrXIs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6721
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -179,163 +176,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, May 22, 2025 at 01:58:54PM +0200, Thomas Zimmermann wrote:
+On Thu, May 22, 2025 at 04:52:14PM +1000, Dave Airlie wrote:
+>From: Dave Airlie <airlied@redhat.com>
 >
+>This uses the new accessors to avoid touching the iosys_map internals.
 >
->Am 22.05.25 um 08:52 schrieb Dave Airlie:
->>From: Dave Airlie <airlied@redhat.com>
->>
->>This adds accessors inlines to the iosys-map. The intent is to
->>roll the iomem flag into the lower bits of the vaddr eventually.
->>
->>First just add accessors to move all current in-tree users over to.
->>
->>Signed-off-by: Dave Airlie <airlied@redhat.com>
->>---
->>  include/linux/iosys-map.h | 53 +++++++++++++++++++++++++--------------
->>  1 file changed, 34 insertions(+), 19 deletions(-)
->>
->>diff --git a/include/linux/iosys-map.h b/include/linux/iosys-map.h
->>index 4696abfd311c..5ce5df1db60a 100644
->>--- a/include/linux/iosys-map.h
->>+++ b/include/linux/iosys-map.h
->>@@ -114,6 +114,21 @@ struct iosys_map {
->>  	bool is_iomem;
->>  };
->>+static inline bool iosys_map_is_iomem(const struct iosys_map *map)
->>+{
->>+	return map->is_iomem;
->>+}
->>+
->>+static inline void __iomem *iosys_map_ioptr(const struct iosys_map *map)
->>+{
->>+	return map->vaddr_iomem;
->>+}
->>+
->>+static inline void *iosys_map_ptr(const struct iosys_map *map)
->>+{
->>+       return map->vaddr;
->>+}
->>+
+>Signed-off-by: Dave Airlie <airlied@redhat.com>
+>---
+> drivers/gpu/drm/qxl/qxl_display.c | 14 +++++++-------
+> drivers/gpu/drm/qxl/qxl_draw.c    |  4 ++--
+> drivers/gpu/drm/qxl/qxl_object.c  |  8 ++++----
+> 3 files changed, 13 insertions(+), 13 deletions(-)
 >
->These helpers need documentation.
+>diff --git a/drivers/gpu/drm/qxl/qxl_display.c b/drivers/gpu/drm/qxl/qxl_display.c
+>index 70aff64ced87..e833b0bbff47 100644
+>--- a/drivers/gpu/drm/qxl/qxl_display.c
+>+++ b/drivers/gpu/drm/qxl/qxl_display.c
+>@@ -602,16 +602,16 @@ static struct qxl_bo *qxl_create_cursor(struct qxl_device *qdev,
+> 	cursor.chunk.next_chunk = 0;
+> 	cursor.chunk.prev_chunk = 0;
+> 	cursor.chunk.data_size = size;
+>-	if (cursor_map.is_iomem) {
+>-		memcpy_toio(cursor_map.vaddr_iomem,
+>+	if (iosys_map_is_iomem(&cursor_map)) {
+>+		memcpy_toio(iosys_map_ioptr(&cursor_map),
+> 			    &cursor, sizeof(cursor));
+>-		memcpy_toio(cursor_map.vaddr_iomem + sizeof(cursor),
+>-			    user_map.vaddr, size);
+>+		memcpy_toio(iosys_map_ioptr(&cursor_map) + sizeof(cursor),
+>+			    iosys_map_ptr(&user_map), size);
+> 	} else {
+>-		memcpy(cursor_map.vaddr,
+>+		memcpy(iosys_map_ptr(&cursor_map),
+> 		       &cursor, sizeof(cursor));
+>-		memcpy(cursor_map.vaddr + sizeof(cursor),
+>-		       user_map.vaddr, size);
+>+		memcpy(iosys_map_ptr(&cursor_map) + sizeof(cursor),
+>+		       iosys_map_ptr(&user_map), size);
 
-agreed
+these would better use iosys_map_memcpy_*, but could be a follow up to
+this (automated?)  conversion.
 
+> 	}
 >
->We should encourage users to the other helpers for interacting with 
->iosys-map structures instead of decoding them manually. OTOH there are 
->cases where decoding them by hand is clearly better. I'd suggest to 
->prefix the new helpers with __ so mark them an internal/special.
+> 	qxl_bo_vunmap_and_unpin(user_bo);
+>diff --git a/drivers/gpu/drm/qxl/qxl_draw.c b/drivers/gpu/drm/qxl/qxl_draw.c
+>index 3a3e127ce297..6000936bc8d0 100644
+>--- a/drivers/gpu/drm/qxl/qxl_draw.c
+>+++ b/drivers/gpu/drm/qxl/qxl_draw.c
+>@@ -52,7 +52,7 @@ static struct qxl_rect *drawable_set_clipping(struct qxl_device *qdev,
+> 	ret = qxl_bo_vmap_locked(clips_bo, &map);
+> 	if (ret)
+> 		return NULL;
+>-	dev_clips = map.vaddr; /* TODO: Use mapping abstraction properly */
+>+	dev_clips = iosys_map_ptr(&map); /* TODO: Use mapping abstraction properly */
+>
+> 	dev_clips->num_rects = num_clips;
+> 	dev_clips->chunk.next_chunk = 0;
+>@@ -206,7 +206,7 @@ void qxl_draw_dirty_fb(struct qxl_device *qdev,
+> 	ret = qxl_bo_vmap_locked(bo, &surface_map);
+> 	if (ret)
+> 		goto out_release_backoff;
+>-	surface_base = surface_map.vaddr; /* TODO: Use mapping abstraction properly */
+>+	surface_base = iosys_map_ptr(&surface_map); /* TODO: Use mapping abstraction properly */
+>
+> 	ret = qxl_image_init(qdev, release, dimage, surface_base,
+> 			     left - dumb_shadow_offset,
+>diff --git a/drivers/gpu/drm/qxl/qxl_object.c b/drivers/gpu/drm/qxl/qxl_object.c
+>index 66635c55cf85..dcc1f6393885 100644
+>--- a/drivers/gpu/drm/qxl/qxl_object.c
+>+++ b/drivers/gpu/drm/qxl/qxl_object.c
+>@@ -172,10 +172,10 @@ int qxl_bo_vmap_locked(struct qxl_bo *bo, struct iosys_map *map)
+> 	bo->map_count = 1;
+>
+> 	/* TODO: Remove kptr in favor of map everywhere. */
+>-	if (bo->map.is_iomem)
+>-		bo->kptr = (void *)bo->map.vaddr_iomem;
+>+	if (iosys_map_is_iomem(&bo->map))
+>+		bo->kptr = (void *)iosys_map_ioptr(&bo->map);
 
- From the other patches there are quite a few cases that would be using
-"internal"  API. From those there are just a few cases in which we'd
-have a direct translation to existing API... so I wouldn't make this
-internal when they are clearly needed externally.
+this looks wrong as we then lose the __iomem. Or is this dead code and
+it's never iomem?  Anyway, pre-existent issue unrelated to this patch.
 
 Lucas De Marchi
 
+> 	else
+>-		bo->kptr = bo->map.vaddr;
+>+		bo->kptr = iosys_map_ptr(&bo->map);
 >
->Best regards
->Thomas
+> out:
+> 	*map = bo->map;
+>@@ -230,7 +230,7 @@ void *qxl_bo_kmap_atomic_page(struct qxl_device *qdev,
+> 	ret = qxl_bo_vmap_locked(bo, &bo_map);
+> 	if (ret)
+> 		return NULL;
+>-	rptr = bo_map.vaddr; /* TODO: Use mapping abstraction properly */
+>+	rptr = iosys_map_ptr(&bo_map); /* TODO: Use mapping abstraction properly */
 >
->>  /**
->>   * IOSYS_MAP_INIT_VADDR - Initializes struct iosys_map to an address in system memory
->>   * @vaddr_:	A system-memory address
->>@@ -234,9 +249,9 @@ static inline bool iosys_map_is_equal(const struct iosys_map *lhs,
->>   */
->>  static inline bool iosys_map_is_null(const struct iosys_map *map)
->>  {
->>-	if (map->is_iomem)
->>-		return !map->vaddr_iomem;
->>-	return !map->vaddr;
->>+	if (iosys_map_is_iomem(map))
->>+		return !iosys_map_ioptr(map);
->>+	return !iosys_map_ptr(map);
->>  }
->>  /**
->>@@ -286,10 +301,10 @@ static inline void iosys_map_clear(struct iosys_map *map)
->>  static inline void iosys_map_memcpy_to(struct iosys_map *dst, size_t dst_offset,
->>  				       const void *src, size_t len)
->>  {
->>-	if (dst->is_iomem)
->>-		memcpy_toio(dst->vaddr_iomem + dst_offset, src, len);
->>+	if (iosys_map_is_iomem(dst))
->>+		memcpy_toio(iosys_map_ioptr(dst) + dst_offset, src, len);
->>  	else
->>-		memcpy(dst->vaddr + dst_offset, src, len);
->>+		memcpy(iosys_map_ptr(dst) + dst_offset, src, len);
->>  }
->>  /**
->>@@ -306,10 +321,10 @@ static inline void iosys_map_memcpy_to(struct iosys_map *dst, size_t dst_offset,
->>  static inline void iosys_map_memcpy_from(void *dst, const struct iosys_map *src,
->>  					 size_t src_offset, size_t len)
->>  {
->>-	if (src->is_iomem)
->>-		memcpy_fromio(dst, src->vaddr_iomem + src_offset, len);
->>+	if (iosys_map_is_iomem(src))
->>+		memcpy_fromio(dst, iosys_map_ioptr(src) + src_offset, len);
->>  	else
->>-		memcpy(dst, src->vaddr + src_offset, len);
->>+		memcpy(dst, iosys_map_ptr(src) + src_offset, len);
->>  }
->>  /**
->>@@ -322,7 +337,7 @@ static inline void iosys_map_memcpy_from(void *dst, const struct iosys_map *src,
->>   */
->>  static inline void iosys_map_incr(struct iosys_map *map, size_t incr)
->>  {
->>-	if (map->is_iomem)
->>+	if (iosys_map_is_iomem(map))
->>  		map->vaddr_iomem += incr;
->>  	else
->>  		map->vaddr += incr;
->>@@ -341,10 +356,10 @@ static inline void iosys_map_incr(struct iosys_map *map, size_t incr)
->>  static inline void iosys_map_memset(struct iosys_map *dst, size_t offset,
->>  				    int value, size_t len)
->>  {
->>-	if (dst->is_iomem)
->>-		memset_io(dst->vaddr_iomem + offset, value, len);
->>+	if (iosys_map_is_iomem(dst))
->>+		memset_io(iosys_map_ioptr(dst) + offset, value, len);
->>  	else
->>-		memset(dst->vaddr + offset, value, len);
->>+		memset(iosys_map_ptr(dst) + offset, value, len);
->>  }
->>  #ifdef CONFIG_64BIT
->>@@ -393,10 +408,10 @@ static inline void iosys_map_memset(struct iosys_map *dst, size_t offset,
->>   */
->>  #define iosys_map_rd(map__, offset__, type__) ({					\
->>  	type__ val_;									\
->>-	if ((map__)->is_iomem) {							\
->>-		__iosys_map_rd_io(val_, (map__)->vaddr_iomem + (offset__), type__);	\
->>+	if (iosys_map_is_iomem(map__)) {						\
->>+		__iosys_map_rd_io(val_, iosys_map_ioptr(map__) + (offset__), type__);	\
->>  	} else {									\
->>-		__iosys_map_rd_sys(val_, (map__)->vaddr + (offset__), type__);		\
->>+		__iosys_map_rd_sys(val_, iosys_map_ptr(map__) + (offset__), type__);	\
->>  	}										\
->>  	val_;										\
->>  })
->>@@ -415,10 +430,10 @@ static inline void iosys_map_memset(struct iosys_map *dst, size_t offset,
->>   */
->>  #define iosys_map_wr(map__, offset__, type__, val__) ({					\
->>  	type__ val_ = (val__);								\
->>-	if ((map__)->is_iomem) {							\
->>-		__iosys_map_wr_io(val_, (map__)->vaddr_iomem + (offset__), type__);	\
->>+	if (iosys_map_is_iomem(map__)) {						\
->>+		__iosys_map_wr_io(val_, iosys_map_ioptr(map__) + (offset__), type__);	\
->>  	} else {									\
->>-		__iosys_map_wr_sys(val_, (map__)->vaddr + (offset__), type__);		\
->>+		__iosys_map_wr_sys(val_, iosys_map_ptr(map__) + (offset__), type__);	\
->>  	}										\
->>  })
->
+> 	rptr += page_offset * PAGE_SIZE;
+> 	return rptr;
 >-- 
->--
->Thomas Zimmermann
->Graphics Driver Developer
->SUSE Software Solutions Germany GmbH
->Frankenstrasse 146, 90461 Nuernberg, Germany
->GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
->HRB 36809 (AG Nuernberg)
+>2.49.0
 >
