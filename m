@@ -4,82 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AB5EC54E65
-	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 12:05:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DC02C54E90
+	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 12:10:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FEC910EA0A;
-	Thu, 22 May 2025 12:05:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19E4D10EB3A;
+	Thu, 22 May 2025 12:10:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="jO8SPTal";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="EHSiWKXw";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="jO8SPTal";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="EHSiWKXw";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="gXO2NQde";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="lotYrtLV";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="gXO2NQde";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="lotYrtLV";
 	dkim-atps=neutral
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E72D10EA2D
- for <intel-xe@lists.freedesktop.org>; Thu, 22 May 2025 12:05:10 +0000 (UTC)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9826810EB29
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 May 2025 12:10:26 +0000 (UTC)
 Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id B72701F46E;
- Thu, 22 May 2025 12:05:00 +0000 (UTC)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 6B6EA21A0F;
+ Thu, 22 May 2025 12:10:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1747915500; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1747915824; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=jB4ROLoYahmMoJ9M6g8d5ieFRG77/2ad3N4BfNFkFJE=;
- b=jO8SPTalWOPimjSA3gTLrZNV55D/JCrpyoARlnG4UszWyEHO6ef06/ckQbf8gda2VdXnfw
- nn90oj2d9Yuz6AQzoMQde1mIBo3gy9tCeD1/sBg/JR9uj+zqSd3WW7jHIGzJtnx0BuL691
- BNvkcTjOPGPRSiFedUVmh9zzNACOe2Q=
+ bh=yI+puFaPnCBQg08J1D62RrSSlTu43LkV+1ZDrMTQpQE=;
+ b=gXO2NQdeBUwU5WxHCMMCX7w0CDZtmkAZ8EQGQWfbsubxOax5zMEyE2PwuZZ+3O7YziEe0x
+ lLSVN07992Yl47mjaTWm0WJ0SFzxkByQUJ+fxfonsTKywmZd2lBMrmINYWfFeGZQbVPoS9
+ b15h0TagDaJeehjgNJEVCm7+/3HojSE=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1747915500;
+ s=susede2_ed25519; t=1747915824;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=jB4ROLoYahmMoJ9M6g8d5ieFRG77/2ad3N4BfNFkFJE=;
- b=EHSiWKXwYRCRXFxt2W4MdA0XgztY8C1q33F5FtWS7AcmnFGkgftdVZPJvtI1t9s0Mf9VEZ
- xRANL/8h7yZCmKDw==
-Authentication-Results: smtp-out2.suse.de;
+ bh=yI+puFaPnCBQg08J1D62RrSSlTu43LkV+1ZDrMTQpQE=;
+ b=lotYrtLVGHbE2tbiYPlsUPunD+9/qCUbCFQi9QipeCr4s6zYu7Pvx0vn4gAPdPzoahGHW5
+ +Jz5s/T+y/GkdoBw==
+Authentication-Results: smtp-out1.suse.de;
 	none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1747915500; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1747915824; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=jB4ROLoYahmMoJ9M6g8d5ieFRG77/2ad3N4BfNFkFJE=;
- b=jO8SPTalWOPimjSA3gTLrZNV55D/JCrpyoARlnG4UszWyEHO6ef06/ckQbf8gda2VdXnfw
- nn90oj2d9Yuz6AQzoMQde1mIBo3gy9tCeD1/sBg/JR9uj+zqSd3WW7jHIGzJtnx0BuL691
- BNvkcTjOPGPRSiFedUVmh9zzNACOe2Q=
+ bh=yI+puFaPnCBQg08J1D62RrSSlTu43LkV+1ZDrMTQpQE=;
+ b=gXO2NQdeBUwU5WxHCMMCX7w0CDZtmkAZ8EQGQWfbsubxOax5zMEyE2PwuZZ+3O7YziEe0x
+ lLSVN07992Yl47mjaTWm0WJ0SFzxkByQUJ+fxfonsTKywmZd2lBMrmINYWfFeGZQbVPoS9
+ b15h0TagDaJeehjgNJEVCm7+/3HojSE=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1747915500;
+ s=susede2_ed25519; t=1747915824;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=jB4ROLoYahmMoJ9M6g8d5ieFRG77/2ad3N4BfNFkFJE=;
- b=EHSiWKXwYRCRXFxt2W4MdA0XgztY8C1q33F5FtWS7AcmnFGkgftdVZPJvtI1t9s0Mf9VEZ
- xRANL/8h7yZCmKDw==
+ bh=yI+puFaPnCBQg08J1D62RrSSlTu43LkV+1ZDrMTQpQE=;
+ b=lotYrtLVGHbE2tbiYPlsUPunD+9/qCUbCFQi9QipeCr4s6zYu7Pvx0vn4gAPdPzoahGHW5
+ +Jz5s/T+y/GkdoBw==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 96481137B8;
- Thu, 22 May 2025 12:05:00 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 55780137B8;
+ Thu, 22 May 2025 12:10:24 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id c9PeI+wSL2jGZwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 22 May 2025 12:05:00 +0000
-Message-ID: <73d63285-f9c8-4306-b269-901faa2031ee@suse.de>
-Date: Thu, 22 May 2025 14:05:00 +0200
+ by imap1.dmz-prg2.suse.org with ESMTPSA id +zTFEzAUL2gkaQAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 22 May 2025 12:10:24 +0000
+Message-ID: <76bf7f7a-01df-4941-baf0-0e527c71c881@suse.de>
+Date: Thu, 22 May 2025 14:10:23 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 8/9] iosys: hide internal details of implementation.
+Subject: Re: [PATCH 9/9] iosys_map: embed the is_iomem bit into the pointer.
 To: Dave Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
 References: <20250522065519.318013-1-airlied@gmail.com>
- <20250522065519.318013-9-airlied@gmail.com>
+ <20250522065519.318013-10-airlied@gmail.com>
 Content-Language: en-US
 From: Thomas Zimmermann <tzimmermann@suse.de>
 Autocrypt: addr=tzimmermann@suse.de; keydata=
@@ -106,20 +106,21 @@ Autocrypt: addr=tzimmermann@suse.de; keydata=
  SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
  Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
  4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <20250522065519.318013-9-airlied@gmail.com>
+In-Reply-To: <20250522065519.318013-10-airlied@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-1.30 / 50.00]; NEURAL_HAM_LONG(-1.00)[-1.000];
+X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
  NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- FREEMAIL_ENVRCPT(0.00)[gmail.com];
  FREEMAIL_TO(0.00)[gmail.com,lists.freedesktop.org];
- RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[]; TO_DN_SOME(0.00)[];
- MIME_TRACE(0.00)[0:+]; RCPT_COUNT_THREE(0.00)[3];
- MID_RHS_MATCH_FROM(0.00)[]; FUZZY_BLOCKED(0.00)[rspamd.com];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ MIME_TRACE(0.00)[0:+]; ARC_NA(0.00)[];
+ FUZZY_BLOCKED(0.00)[rspamd.com]; TO_MATCH_ENVRCPT_ALL(0.00)[];
  DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- RCVD_TLS_ALL(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- RCVD_COUNT_TWO(0.00)[2];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com]; RCPT_COUNT_THREE(0.00)[3];
+ TO_DN_SOME(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
+ FROM_HAS_DN(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ MID_RHS_MATCH_FROM(0.00)[];
  DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,imap1.dmz-prg2.suse.org:helo]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -140,147 +141,129 @@ Hi
 Am 22.05.25 um 08:52 schrieb Dave Airlie:
 > From: Dave Airlie <airlied@redhat.com>
 >
-> Now hide the current implementation details, to catch any new
-> users entering the tree and trying to trick us up.
->
+> This reduces this struct from 16 to 8 bytes, and it gets embedded
+> into a lot of things.
+
+IIRC this has been discussed before. Makes sense to me.
+
 > Signed-off-by: Dave Airlie <airlied@redhat.com>
 > ---
->   include/linux/iosys-map.h | 48 +++++++++++++++++++--------------------
->   1 file changed, 24 insertions(+), 24 deletions(-)
+>   include/linux/iosys-map.h | 30 ++++++++----------------------
+>   1 file changed, 8 insertions(+), 22 deletions(-)
 >
 > diff --git a/include/linux/iosys-map.h b/include/linux/iosys-map.h
-> index 5ce5df1db60a..a6c2cc9ca756 100644
+> index a6c2cc9ca756..44479966ce24 100644
 > --- a/include/linux/iosys-map.h
 > +++ b/include/linux/iosys-map.h
-> @@ -108,25 +108,25 @@
+> @@ -99,29 +99,27 @@
+>    *	iosys_map_incr(&map, len); // go to first byte after the memcpy
 >    */
->   struct iosys_map {
+>   
+> +#define _IOSYS_MAP_IS_IOMEM 1
 
-Instead of renaming, can we simply add a /* private: */ comment like in 
-[1]? This could be done in patch 1.
+Two underscores would be preferable to me. And please use the BIT() 
+macro to define this constant.
 
 Best regards
 Thomas
 
-
-[1] 
-https://elixir.bootlin.com/linux/v6.14.7/source/include/drm/drm_mm.h#L164
-
+>   /**
+>    * struct iosys_map - Pointer to IO/system memory
+>    * @vaddr_iomem:	The buffer's address if in I/O memory
+>    * @vaddr:		The buffer's address if in system memory
+> - * @is_iomem:		True if the buffer is located in I/O memory, or false
+> - *			otherwise.
+>    */
+>   struct iosys_map {
 >   	union {
-> -		void __iomem *vaddr_iomem;
-> -		void *vaddr;
-> +		void __iomem *_vaddr_iomem;
-> +		void *_vaddr;
+>   		void __iomem *_vaddr_iomem;
+>   		void *_vaddr;
 >   	};
-> -	bool is_iomem;
-> +	bool _is_iomem;
+> -	bool _is_iomem;
 >   };
 >   
 >   static inline bool iosys_map_is_iomem(const struct iosys_map *map)
 >   {
-> -	return map->is_iomem;
-> +	return map->_is_iomem;
+> -	return map->_is_iomem;
+> +	return ((unsigned long)map->_vaddr) & _IOSYS_MAP_IS_IOMEM;
 >   }
 >   
 >   static inline void __iomem *iosys_map_ioptr(const struct iosys_map *map)
 >   {
-> -	return map->vaddr_iomem;
-> +	return map->_vaddr_iomem;
+> -	return map->_vaddr_iomem;
+> +	return (void __iomem *)((unsigned long)map->_vaddr_iomem & ~_IOSYS_MAP_IS_IOMEM);
+
+Macros for encoding and decoding the pointer+bit would be preferred. 
+Jani seems to have helpers for that.
+
+Best regards
+Thomas
+
 >   }
 >   
 >   static inline void *iosys_map_ptr(const struct iosys_map *map)
->   {
-> -       return map->vaddr;
-> +       return map->_vaddr;
->   }
->   
->   /**
-> @@ -135,8 +135,8 @@ static inline void *iosys_map_ptr(const struct iosys_map *map)
->    */
+> @@ -136,7 +134,6 @@ static inline void *iosys_map_ptr(const struct iosys_map *map)
 >   #define IOSYS_MAP_INIT_VADDR(vaddr_)	\
 >   	{				\
-> -		.vaddr = (vaddr_),	\
-> -		.is_iomem = false,	\
-> +		._vaddr = (vaddr_),	\
-> +		._is_iomem = false,	\
+>   		._vaddr = (vaddr_),	\
+> -		._is_iomem = false,	\
 >   	}
 >   
 >   /**
-> @@ -145,8 +145,8 @@ static inline void *iosys_map_ptr(const struct iosys_map *map)
+> @@ -145,8 +142,7 @@ static inline void *iosys_map_ptr(const struct iosys_map *map)
 >    */
 >   #define IOSYS_MAP_INIT_VADDR_IOMEM(vaddr_iomem_)	\
 >   	{						\
-> -		.vaddr_iomem = (vaddr_iomem_),		\
-> -		.is_iomem = true,			\
-> +		._vaddr_iomem = (vaddr_iomem_),		\
-> +		._is_iomem = true,			\
+> -		._vaddr_iomem = (vaddr_iomem_),		\
+> -		._is_iomem = true,			\
+> +		._vaddr_iomem = (void __iomem *)(((unsigned long)(vaddr_iomem_) | _IOSYS_MAP_IS_IOMEM)), \
 >   	}
 >   
 >   /**
-> @@ -197,8 +197,8 @@ static inline void *iosys_map_ptr(const struct iosys_map *map)
->    */
+> @@ -198,7 +194,6 @@ static inline void *iosys_map_ptr(const struct iosys_map *map)
 >   static inline void iosys_map_set_vaddr(struct iosys_map *map, void *vaddr)
 >   {
-> -	map->vaddr = vaddr;
-> -	map->is_iomem = false;
-> +	map->_vaddr = vaddr;
-> +	map->_is_iomem = false;
+>   	map->_vaddr = vaddr;
+> -	map->_is_iomem = false;
 >   }
 >   
 >   /**
-> @@ -211,8 +211,8 @@ static inline void iosys_map_set_vaddr(struct iosys_map *map, void *vaddr)
+> @@ -211,8 +206,7 @@ static inline void iosys_map_set_vaddr(struct iosys_map *map, void *vaddr)
 >   static inline void iosys_map_set_vaddr_iomem(struct iosys_map *map,
 >   					     void __iomem *vaddr_iomem)
 >   {
-> -	map->vaddr_iomem = vaddr_iomem;
-> -	map->is_iomem = true;
-> +	map->_vaddr_iomem = vaddr_iomem;
-> +	map->_is_iomem = true;
+> -	map->_vaddr_iomem = vaddr_iomem;
+> -	map->_is_iomem = true;
+> +	map->_vaddr_iomem = (void __iomem *)((unsigned long)vaddr_iomem | _IOSYS_MAP_IS_IOMEM);
 >   }
 >   
 >   /**
-> @@ -229,12 +229,12 @@ static inline void iosys_map_set_vaddr_iomem(struct iosys_map *map,
+> @@ -229,12 +223,9 @@ static inline void iosys_map_set_vaddr_iomem(struct iosys_map *map,
 >   static inline bool iosys_map_is_equal(const struct iosys_map *lhs,
 >   				      const struct iosys_map *rhs)
 >   {
-> -	if (lhs->is_iomem != rhs->is_iomem)
-> +	if (lhs->_is_iomem != rhs->_is_iomem)
+> -	if (lhs->_is_iomem != rhs->_is_iomem)
+> +	if (lhs->_vaddr != rhs->_vaddr)
 >   		return false;
-> -	else if (lhs->is_iomem)
-> -		return lhs->vaddr_iomem == rhs->vaddr_iomem;
-> +	else if (lhs->_is_iomem)
-> +		return lhs->_vaddr_iomem == rhs->_vaddr_iomem;
->   	else
-> -		return lhs->vaddr == rhs->vaddr;
-> +		return lhs->_vaddr == rhs->_vaddr;
+> -	else if (lhs->_is_iomem)
+> -		return lhs->_vaddr_iomem == rhs->_vaddr_iomem;
+> -	else
+> -		return lhs->_vaddr == rhs->_vaddr;
+> +	return true;
 >   }
 >   
 >   /**
-> @@ -279,11 +279,11 @@ static inline bool iosys_map_is_set(const struct iosys_map *map)
+> @@ -279,12 +270,7 @@ static inline bool iosys_map_is_set(const struct iosys_map *map)
 >    */
 >   static inline void iosys_map_clear(struct iosys_map *map)
 >   {
-> -	if (map->is_iomem) {
-> -		map->vaddr_iomem = NULL;
-> -		map->is_iomem = false;
-> +	if (map->_is_iomem) {
-> +		map->_vaddr_iomem = NULL;
-> +		map->_is_iomem = false;
->   	} else {
-> -		map->vaddr = NULL;
-> +		map->_vaddr = NULL;
->   	}
->   }
->   
-> @@ -338,9 +338,9 @@ static inline void iosys_map_memcpy_from(void *dst, const struct iosys_map *src,
->   static inline void iosys_map_incr(struct iosys_map *map, size_t incr)
->   {
->   	if (iosys_map_is_iomem(map))
-> -		map->vaddr_iomem += incr;
-> +		map->_vaddr_iomem += incr;
->   	else
-> -		map->vaddr += incr;
-> +		map->_vaddr += incr;
+> -	if (map->_is_iomem) {
+> -		map->_vaddr_iomem = NULL;
+> -		map->_is_iomem = false;
+> -	} else {
+> -		map->_vaddr = NULL;
+> -	}
+> +	map->_vaddr = NULL;
 >   }
 >   
 >   /**
