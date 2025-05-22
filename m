@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78BE3C54756
-	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 06:57:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C11FC54E65
+	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 06:58:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2ED19B0A6;
-	Thu, 22 May 2025 06:57:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A35EC89E59;
+	Thu, 22 May 2025 06:56:31 +0000 (UTC)
 Received: from us-smtp-delivery-44.mimecast.com
- (us-smtp-delivery-44.mimecast.com [205.139.111.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B0D912B541
- for <intel-xe@lists.freedesktop.org>; Thu, 22 May 2025 06:55:55 +0000 (UTC)
+ (us-smtp-delivery-44.mimecast.com [207.211.30.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCBD19AFAF
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 May 2025 06:55:45 +0000 (UTC)
 Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
  (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-116-lJ1ZJiI8PmGye1zVo6DHww-1; Thu,
- 22 May 2025 02:55:49 -0400
-X-MC-Unique: lJ1ZJiI8PmGye1zVo6DHww-1
-X-Mimecast-MFC-AGG-ID: lJ1ZJiI8PmGye1zVo6DHww_1747896948
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-215-vf-P_vhMPyia1LyQ7mZCtA-1; Thu,
+ 22 May 2025 02:55:41 -0400
+X-MC-Unique: vf-P_vhMPyia1LyQ7mZCtA-1
+X-Mimecast-MFC-AGG-ID: vf-P_vhMPyia1LyQ7mZCtA_1747896940
 Received: from mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com
  (mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.40])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (No client certificate requested)
  by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 1AFAC180056F; Thu, 22 May 2025 06:55:48 +0000 (UTC)
+ id 4A794180036F; Thu, 22 May 2025 06:55:40 +0000 (UTC)
 Received: from dreadlord.redhat.com (unknown [10.64.136.70])
  by mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 439C21958014; Thu, 22 May 2025 06:55:45 +0000 (UTC)
+ id 74C331958014; Thu, 22 May 2025 06:55:38 +0000 (UTC)
 From: Dave Airlie <airlied@gmail.com>
 To: dri-devel@lists.freedesktop.org,
 	tzimmermann@suse.de
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 9/9] iosys_map: embed the is_iomem bit into the pointer.
-Date: Thu, 22 May 2025 16:52:18 +1000
-Message-ID: <20250522065519.318013-10-airlied@gmail.com>
+Subject: [PATCH 6/9] drm/ttm: avoid accessing iosys_map internals.
+Date: Thu, 22 May 2025 16:52:15 +1000
+Message-ID: <20250522065519.318013-7-airlied@gmail.com>
 In-Reply-To: <20250522065519.318013-1-airlied@gmail.com>
 References: <20250522065519.318013-1-airlied@gmail.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 3.0 on 10.30.177.40
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: LFQHakEh1QoPUbAOcteClx6kkhqI7y1iSS4BzSHKrm4_1747896948
+X-Mimecast-MFC-PROC-ID: 2kIDGnSQdxOVbfaTwLwBtYnapxj6TA2BhXiGcsSyN3M_1747896940
 X-Mimecast-Originator: gmail.com
 Content-Transfer-Encoding: quoted-printable
 content-type: text/plain; charset=WINDOWS-1252; x-default=true
@@ -62,125 +62,93 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Dave Airlie <airlied@redhat.com>
 
-This reduces this struct from 16 to 8 bytes, and it gets embedded
-into a lot of things.
+This uses the new accessors to use iosys_map.
 
 Signed-off-by: Dave Airlie <airlied@redhat.com>
 ---
- include/linux/iosys-map.h | 30 ++++++++----------------------
- 1 file changed, 8 insertions(+), 22 deletions(-)
+ drivers/gpu/drm/ttm/ttm_bo_util.c  | 12 ++++++------
+ drivers/gpu/drm/ttm/ttm_resource.c |  8 ++++----
+ drivers/gpu/drm/ttm/ttm_tt.c       |  2 +-
+ 3 files changed, 11 insertions(+), 11 deletions(-)
 
-diff --git a/include/linux/iosys-map.h b/include/linux/iosys-map.h
-index a6c2cc9ca756..44479966ce24 100644
---- a/include/linux/iosys-map.h
-+++ b/include/linux/iosys-map.h
-@@ -99,29 +99,27 @@
-  *=09iosys_map_incr(&map, len); // go to first byte after the memcpy
-  */
+diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo=
+_util.c
+index 15cab9bda17f..ba7075fa9876 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo_util.c
++++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+@@ -99,10 +99,10 @@ void ttm_move_memcpy(bool clear,
+ =09if (clear) {
+ =09=09for (i =3D 0; i < num_pages; ++i) {
+ =09=09=09dst_ops->map_local(dst_iter, &dst_map, i);
+-=09=09=09if (dst_map.is_iomem)
+-=09=09=09=09memset_io(dst_map.vaddr_iomem, 0, PAGE_SIZE);
++=09=09=09if (iosys_map_is_iomem(&dst_map))
++=09=09=09=09memset_io(iosys_map_ioptr(&dst_map), 0, PAGE_SIZE);
+ =09=09=09else
+-=09=09=09=09memset(dst_map.vaddr, 0, PAGE_SIZE);
++=09=09=09=09memset(iosys_map_ptr(&dst_map), 0, PAGE_SIZE);
+ =09=09=09if (dst_ops->unmap_local)
+ =09=09=09=09dst_ops->unmap_local(dst_iter, &dst_map);
+ =09=09}
+@@ -544,10 +544,10 @@ void ttm_bo_vunmap(struct ttm_buffer_object *bo, stru=
+ct iosys_map *map)
+ =09if (iosys_map_is_null(map))
+ =09=09return;
 =20
-+#define _IOSYS_MAP_IS_IOMEM 1
- /**
-  * struct iosys_map - Pointer to IO/system memory
-  * @vaddr_iomem:=09The buffer's address if in I/O memory
-  * @vaddr:=09=09The buffer's address if in system memory
-- * @is_iomem:=09=09True if the buffer is located in I/O memory, or false
-- *=09=09=09otherwise.
-  */
- struct iosys_map {
- =09union {
- =09=09void __iomem *_vaddr_iomem;
- =09=09void *_vaddr;
- =09};
--=09bool _is_iomem;
- };
+-=09if (!map->is_iomem)
+-=09=09vunmap(map->vaddr);
++=09if (!iosys_map_is_iomem(map))
++=09=09vunmap(iosys_map_ptr(map));
+ =09else if (!mem->bus.addr)
+-=09=09iounmap(map->vaddr_iomem);
++=09=09iounmap(iosys_map_ioptr(map));
+ =09iosys_map_clear(map);
 =20
- static inline bool iosys_map_is_iomem(const struct iosys_map *map)
+ =09ttm_mem_io_free(bo->bdev, bo->resource);
+diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_r=
+esource.c
+index 769b0ca9be47..0e7b4c6c16f8 100644
+--- a/drivers/gpu/drm/ttm/ttm_resource.c
++++ b/drivers/gpu/drm/ttm/ttm_resource.c
+@@ -742,7 +742,7 @@ static void ttm_kmap_iter_iomap_map_local(struct ttm_km=
+ap_iter *iter,
+ static void ttm_kmap_iter_iomap_unmap_local(struct ttm_kmap_iter *iter,
+ =09=09=09=09=09    struct iosys_map *map)
  {
--=09return map->_is_iomem;
-+=09return ((unsigned long)map->_vaddr) & _IOSYS_MAP_IS_IOMEM;
+-=09io_mapping_unmap_local(map->vaddr_iomem);
++=09io_mapping_unmap_local(iosys_map_ioptr(map));
  }
 =20
- static inline void __iomem *iosys_map_ioptr(const struct iosys_map *map)
+ static const struct ttm_kmap_iter_ops ttm_kmap_iter_io_ops =3D {
+@@ -886,10 +886,10 @@ ttm_kmap_iter_linear_io_fini(struct ttm_kmap_iter_lin=
+ear_io *iter_io,
+ =09=09=09     struct ttm_resource *mem)
  {
--=09return map->_vaddr_iomem;
-+=09return (void __iomem *)((unsigned long)map->_vaddr_iomem & ~_IOSYS_MAP_=
-IS_IOMEM);
- }
-=20
- static inline void *iosys_map_ptr(const struct iosys_map *map)
-@@ -136,7 +134,6 @@ static inline void *iosys_map_ptr(const struct iosys_ma=
-p *map)
- #define IOSYS_MAP_INIT_VADDR(vaddr_)=09\
- =09{=09=09=09=09\
- =09=09._vaddr =3D (vaddr_),=09\
--=09=09._is_iomem =3D false,=09\
+ =09if (iter_io->needs_unmap && iosys_map_is_set(&iter_io->dmap)) {
+-=09=09if (iter_io->dmap.is_iomem)
+-=09=09=09iounmap(iter_io->dmap.vaddr_iomem);
++=09=09if (iosys_map_is_iomem(&iter_io->dmap))
++=09=09=09iounmap(iosys_map_ioptr(&iter_io->dmap));
+ =09=09else
+-=09=09=09memunmap(iter_io->dmap.vaddr);
++=09=09=09memunmap(iosys_map_ptr(&iter_io->dmap));
  =09}
 =20
- /**
-@@ -145,8 +142,7 @@ static inline void *iosys_map_ptr(const struct iosys_ma=
-p *map)
-  */
- #define IOSYS_MAP_INIT_VADDR_IOMEM(vaddr_iomem_)=09\
- =09{=09=09=09=09=09=09\
--=09=09._vaddr_iomem =3D (vaddr_iomem_),=09=09\
--=09=09._is_iomem =3D true,=09=09=09\
-+=09=09._vaddr_iomem =3D (void __iomem *)(((unsigned long)(vaddr_iomem_) | =
-_IOSYS_MAP_IS_IOMEM)), \
- =09}
-=20
- /**
-@@ -198,7 +194,6 @@ static inline void *iosys_map_ptr(const struct iosys_ma=
-p *map)
- static inline void iosys_map_set_vaddr(struct iosys_map *map, void *vaddr)
+ =09ttm_mem_io_free(bdev, mem);
+diff --git a/drivers/gpu/drm/ttm/ttm_tt.c b/drivers/gpu/drm/ttm/ttm_tt.c
+index df0aa6c4b8b8..ff9856e41b43 100644
+--- a/drivers/gpu/drm/ttm/ttm_tt.c
++++ b/drivers/gpu/drm/ttm/ttm_tt.c
+@@ -495,7 +495,7 @@ static void ttm_kmap_iter_tt_map_local(struct ttm_kmap_=
+iter *iter,
+ static void ttm_kmap_iter_tt_unmap_local(struct ttm_kmap_iter *iter,
+ =09=09=09=09=09 struct iosys_map *map)
  {
- =09map->_vaddr =3D vaddr;
--=09map->_is_iomem =3D false;
+-=09kunmap_local(map->vaddr);
++=09kunmap_local(iosys_map_ptr(map));
  }
 =20
- /**
-@@ -211,8 +206,7 @@ static inline void iosys_map_set_vaddr(struct iosys_map=
- *map, void *vaddr)
- static inline void iosys_map_set_vaddr_iomem(struct iosys_map *map,
- =09=09=09=09=09     void __iomem *vaddr_iomem)
- {
--=09map->_vaddr_iomem =3D vaddr_iomem;
--=09map->_is_iomem =3D true;
-+=09map->_vaddr_iomem =3D (void __iomem *)((unsigned long)vaddr_iomem | _IO=
-SYS_MAP_IS_IOMEM);
- }
-=20
- /**
-@@ -229,12 +223,9 @@ static inline void iosys_map_set_vaddr_iomem(struct io=
-sys_map *map,
- static inline bool iosys_map_is_equal(const struct iosys_map *lhs,
- =09=09=09=09      const struct iosys_map *rhs)
- {
--=09if (lhs->_is_iomem !=3D rhs->_is_iomem)
-+=09if (lhs->_vaddr !=3D rhs->_vaddr)
- =09=09return false;
--=09else if (lhs->_is_iomem)
--=09=09return lhs->_vaddr_iomem =3D=3D rhs->_vaddr_iomem;
--=09else
--=09=09return lhs->_vaddr =3D=3D rhs->_vaddr;
-+=09return true;
- }
-=20
- /**
-@@ -279,12 +270,7 @@ static inline bool iosys_map_is_set(const struct iosys=
-_map *map)
-  */
- static inline void iosys_map_clear(struct iosys_map *map)
- {
--=09if (map->_is_iomem) {
--=09=09map->_vaddr_iomem =3D NULL;
--=09=09map->_is_iomem =3D false;
--=09} else {
--=09=09map->_vaddr =3D NULL;
--=09}
-+=09map->_vaddr =3D NULL;
- }
-=20
- /**
+ static const struct ttm_kmap_iter_ops ttm_kmap_iter_tt_ops =3D {
 --=20
 2.49.0
 
