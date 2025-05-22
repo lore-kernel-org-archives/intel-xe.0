@@ -4,58 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04443C54E65
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C20BC54E90
 	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 20:46:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B058810E19D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD61E10E19F;
 	Thu, 22 May 2025 20:46:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VzUAOk5s";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a574NGBH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B379810E19D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D23A410E19F
  for <intel-xe@lists.freedesktop.org>; Thu, 22 May 2025 20:46:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1747946780; x=1779482780;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=BC5r2z01/m37e6XjBmboFu9usGpqpkXy7AkOZGD/zbs=;
- b=VzUAOk5s5uQRBF1BbUc4T4kdRiujr5HJZOVwEgHjEmQ90f915CS0OSi0
- lP+Y769WDXNZ3l8D09sHuRjNnJlbmGqcuu6fFqDLTewJSUWBZECov7fz6
- oyrTT2bX5C4J1IJv3WQfT7jaQcu7+oxu+6hwvSawBgqGi8xts3JZ87UdE
- onfcPsJzNZzYRc1PjgTC4f+w/fq2MfEFyktbI8IwNWU/vor8FhVBBEsIV
- GI2D3GGWLxszcU/cBkzUh1odxGRrxfrMWfNbOZKGTRjvVAgtP6NDQ9T1b
- 3ES9ay2APooZvuqNbXw3jWSNlxyUJpM+AnEiRgHygADtbk/03zdk+dAwt A==;
-X-CSE-ConnectionGUID: WwLuP7PzQwaG8GnD3d8Wbg==
-X-CSE-MsgGUID: At3d85xDRtqIlTKf284oeQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="50048350"
-X-IronPort-AV: E=Sophos;i="6.15,306,1739865600"; d="scan'208";a="50048350"
+ bh=XOmZ4TGCt73dwn1bPNuE+rjrLHZ7jleaUoJjLx8bUpE=;
+ b=a574NGBHxm1kkE0plkIW266EHjv1XEqSMAme3dFTl/NJrs33yR2VyEsV
+ C9aSeJE6e2ak0o3BPZflvomhCLzF5WTTy9jAHdESgrQymMX68wXbro252
+ XbZ+5+pQ00jkV70hP8rkZsx9+OYXquVgupBgt5tPqW6cPGdO0O+rNbuc3
+ BVE5wCd7wjQgGR3MdJERahkCafY/GENrPTbcZMLV2WQIsF7YgFYzyHQl3
+ 3Lf6TZYpb/OiTItpVj+1192E953odQrHL1/rD72pQrSddqMp/91BtIelI
+ RhzaDm5Wib0QutrCfhxvT/JGVjAZDBhmKyYvPKTTA2oowno5mHKATNlMj Q==;
+X-CSE-ConnectionGUID: VOMYA1/aSuuNnEo+n2K7LQ==
+X-CSE-MsgGUID: 2c8X3RihTdanr+ntvXUV+A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="50048354"
+X-IronPort-AV: E=Sophos;i="6.15,306,1739865600"; d="scan'208";a="50048354"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  22 May 2025 13:46:19 -0700
-X-CSE-ConnectionGUID: 6chicqjDQRa1q/5xCFjKrg==
-X-CSE-MsgGUID: DpktphEjSmuhcqc0yl+KSw==
+X-CSE-ConnectionGUID: O44R6wR6RB+fTJnBV4eS1w==
+X-CSE-MsgGUID: X4G7SNlbSS+9KOGXkNS0lw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,306,1739865600"; d="scan'208";a="141189008"
+X-IronPort-AV: E=Sophos;i="6.15,306,1739865600"; d="scan'208";a="141189043"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2025 13:46:16 -0700
+ 22 May 2025 13:46:17 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v2 2/3] drm/xe/pxp: Clarify PXP queue creation behavior if PXP
- is not ready
-Date: Thu, 22 May 2025 13:46:05 -0700
-Message-ID: <20250522204602.3921904-7-daniele.ceraolospurio@intel.com>
+ John Harrison <John.C.Harrison@Intel.com>
+Subject: [PATCH v2 3/3] drm/xe/pxp: Decouple queue addition from PXP start
+Date: Thu, 22 May 2025 13:46:06 -0700
+Message-ID: <20250522204602.3921904-8-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250522204602.3921904-5-daniele.ceraolospurio@intel.com>
 References: <20250522204602.3921904-5-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,73 +67,259 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The expected flow of operations when using PXP is to query the PXP
-status and wait for it to transition to "ready" before attempting to
-create an exec_queue. This flow is followed by the Mesa driver, but
-there is no guarantee that an incorrectly coded (or malicious) app
-will not attempt to create the queue first without querying the status.
-Therefore, we need to clarify what the expected behavior of the queue
-creation ioctl is in this scenario.
+Starting PXP and adding a queue to the PXP queue list are separate
+actions. Given that a queue can only be added to the list if PXP is
+active, the 2 actions were bundled together to avoid having to
+re-lock and re-check the status to perform the queue addition after
+having done so during the PXP start. However, we don't save a lot of
+complexity by doing so and we lose in clarity of code, so overall it's
+cleaner to just keep the 2 actions separate.
 
-Currently, the ioctl always fails with an -EBUSY code no matter the
-error, but for consistency it is better to distinguish between "failed
-to init" (-EIO) and "not ready" (-EBUSY), the same way the query ioctl
-does. Note that, while this is a change in the return code of an ioctl,
-the behavior of the ioctl in this particular corner case was not clearly
-spec'd, so no one should have been relying on it (and we know that Mesa,
-which is the only known userspace for this, didn't).
-
-v2: Minor rework of the doc (Rodrigo)
-
-Fixes: 72d479601d67 ("drm/xe/pxp/uapi: Add userspace and LRC support for PXP-using queues")
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: John Harrison <John.C.Harrison@Intel.com>
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
 Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pxp.c | 8 ++++++--
- include/uapi/drm/xe_drm.h   | 5 +++++
- 2 files changed, 11 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_pxp.c | 143 ++++++++++++++++++++++--------------
+ 1 file changed, 87 insertions(+), 56 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_pxp.c b/drivers/gpu/drm/xe/xe_pxp.c
-index 454ea7dc08ac..b5bc15f436fa 100644
+index b5bc15f436fa..32ee38e11811 100644
 --- a/drivers/gpu/drm/xe/xe_pxp.c
 +++ b/drivers/gpu/drm/xe/xe_pxp.c
-@@ -541,10 +541,14 @@ int xe_pxp_exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q)
- 	 */
- 	xe_pm_runtime_get(pxp->xe);
+@@ -504,36 +504,41 @@ int xe_pxp_exec_queue_set_type(struct xe_pxp *pxp, struct xe_exec_queue *q, u8 t
+ 	return 0;
+ }
  
--	if (!pxp_prerequisites_done(pxp)) {
--		ret = -EBUSY;
-+	/* get_readiness_status() returns 0 for in-progress and 1 for done */
-+	ret = xe_pxp_get_readiness_status(pxp);
-+	if (ret <= 0) {
-+		if (!ret)
-+			ret = -EBUSY;
- 		goto out;
- 	}
-+	ret = 0;
+-static void __exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q)
++static int __exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q)
+ {
+-	spin_lock_irq(&pxp->queues.lock);
+-	list_add_tail(&q->pxp.link, &pxp->queues.list);
+-	spin_unlock_irq(&pxp->queues.lock);
++	int ret = 0;
++
++	/*
++	 * A queue can be added to the list only if the PXP is in active status,
++	 * otherwise the termination might not handle it correctly.
++	 */
++	mutex_lock(&pxp->mutex);
++
++	if (pxp->status == XE_PXP_ACTIVE) {
++		spin_lock_irq(&pxp->queues.lock);
++		list_add_tail(&q->pxp.link, &pxp->queues.list);
++		spin_unlock_irq(&pxp->queues.lock);
++	} else if (pxp->status == XE_PXP_ERROR || pxp->status == XE_PXP_SUSPENDED) {
++		ret = -EIO;
++	} else {
++		ret = -EBUSY; /* try again later */
++	}
++
++	mutex_unlock(&pxp->mutex);
++
++	return ret;
+ }
+ 
+-/**
+- * xe_pxp_exec_queue_add - add a queue to the PXP list
+- * @pxp: the xe->pxp pointer (it will be NULL if PXP is disabled)
+- * @q: the queue to add to the list
+- *
+- * If PXP is enabled and the prerequisites are done, start the PXP ARB
+- * session (if not already running) and add the queue to the PXP list. Note
+- * that the queue must have previously been marked as using PXP with
+- * xe_pxp_exec_queue_set_type.
+- *
+- * Returns 0 if the PXP ARB session is running and the queue is in the list,
+- * -ENODEV if PXP is disabled, -EBUSY if the PXP prerequisites are not done,
+- * other errno value if something goes wrong during the session start.
+- */
+-int xe_pxp_exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q)
++static int pxp_start(struct xe_pxp *pxp, u8 type)
+ {
+ 	int ret = 0;
++	bool restart = false;
+ 
+ 	if (!xe_pxp_is_enabled(pxp))
+ 		return -ENODEV;
+ 
+ 	/* we only support HWDRM sessions right now */
+-	xe_assert(pxp->xe, q->pxp.type == DRM_XE_PXP_TYPE_HWDRM);
++	xe_assert(pxp->xe, type == DRM_XE_PXP_TYPE_HWDRM);
+ 
+ 	/*
+ 	 * Runtime suspend kills PXP, so we take a reference to prevent it from
+@@ -543,30 +548,24 @@ int xe_pxp_exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q)
+ 
+ 	/* get_readiness_status() returns 0 for in-progress and 1 for done */
+ 	ret = xe_pxp_get_readiness_status(pxp);
+-	if (ret <= 0) {
+-		if (!ret)
+-			ret = -EBUSY;
+-		goto out;
+-	}
++	if (ret <= 0)
++		return ret ?: -EBUSY;
++
+ 	ret = 0;
  
  wait_for_idle:
  	/*
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 9c08738c3b91..6a702ba7817c 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -1210,6 +1210,11 @@ struct drm_xe_vm_bind {
-  *    there is no need to explicitly set that. When a queue of type
-  *    %DRM_XE_PXP_TYPE_HWDRM is created, the PXP default HWDRM session
-  *    (%XE_PXP_HWDRM_DEFAULT_SESSION) will be started, if isn't already running.
-+ *    The user is expected to query the PXP status via the query ioctl (see
-+ *    %DRM_XE_DEVICE_QUERY_PXP_STATUS) and to wait for PXP to be ready before
-+ *    attempting to create a queue with this property. When a queue is created
-+ *    before PXP is ready, the ioctl will return -EBUSY if init is still in
-+ *    progress or -EIO if init failed.
-  *    Given that going into a power-saving state kills PXP HWDRM sessions,
-  *    runtime PM will be blocked while queues of this type are alive.
-  *    All PXP queues will be killed if a PXP invalidation event occurs.
+ 	 * if there is an action in progress, wait for it. We need to wait
+ 	 * outside the lock because the completion is done from within the lock.
+-	 * Note that the two action should never be pending at the same time.
++	 * Note that the two actions should never be pending at the same time.
+ 	 */
+ 	if (!wait_for_completion_timeout(&pxp->termination,
+-					 msecs_to_jiffies(PXP_TERMINATION_TIMEOUT_MS))) {
+-		ret = -ETIMEDOUT;
+-		goto out;
+-	}
++					 msecs_to_jiffies(PXP_TERMINATION_TIMEOUT_MS)))
++		return -ETIMEDOUT;
+ 
+ 	if (!wait_for_completion_timeout(&pxp->activation,
+-					 msecs_to_jiffies(PXP_ACTIVATION_TIMEOUT_MS))) {
+-		ret = -ETIMEDOUT;
+-		goto out;
+-	}
++					 msecs_to_jiffies(PXP_ACTIVATION_TIMEOUT_MS)))
++		return -ETIMEDOUT;
+ 
+ 	mutex_lock(&pxp->mutex);
+ 
+@@ -574,11 +573,9 @@ int xe_pxp_exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q)
+ 	switch (pxp->status) {
+ 	case XE_PXP_ERROR:
+ 		ret = -EIO;
+-		break;
++		goto out_unlock;
+ 	case XE_PXP_ACTIVE:
+-		__exec_queue_add(pxp, q);
+-		mutex_unlock(&pxp->mutex);
+-		goto out;
++		goto out_unlock;
+ 	case XE_PXP_READY_TO_START:
+ 		pxp->status = XE_PXP_START_IN_PROGRESS;
+ 		reinit_completion(&pxp->activation);
+@@ -586,8 +583,8 @@ int xe_pxp_exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q)
+ 	case XE_PXP_START_IN_PROGRESS:
+ 		/* If a start is in progress then the completion must not be done */
+ 		XE_WARN_ON(completion_done(&pxp->activation));
+-		mutex_unlock(&pxp->mutex);
+-		goto wait_for_idle;
++		restart = true;
++		goto out_unlock;
+ 	case XE_PXP_NEEDS_TERMINATION:
+ 		mark_termination_in_progress(pxp);
+ 		break;
+@@ -595,29 +592,25 @@ int xe_pxp_exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q)
+ 	case XE_PXP_NEEDS_ADDITIONAL_TERMINATION:
+ 		/* If a termination is in progress then the completion must not be done */
+ 		XE_WARN_ON(completion_done(&pxp->termination));
+-		mutex_unlock(&pxp->mutex);
+-		goto wait_for_idle;
++		restart = true;
++		goto out_unlock;
+ 	case XE_PXP_SUSPENDED:
+ 	default:
+ 		drm_err(&pxp->xe->drm, "unexpected state during PXP start: %u\n", pxp->status);
+ 		ret = -EIO;
+-		break;
++		goto out_unlock;
+ 	}
+ 
+ 	mutex_unlock(&pxp->mutex);
+ 
+-	if (ret)
+-		goto out;
+-
+ 	if (!completion_done(&pxp->termination)) {
+ 		ret = pxp_terminate_hw(pxp);
+ 		if (ret) {
+ 			drm_err(&pxp->xe->drm, "PXP termination failed before start\n");
+ 			mutex_lock(&pxp->mutex);
+ 			pxp->status = XE_PXP_ERROR;
+-			mutex_unlock(&pxp->mutex);
+ 
+-			goto out;
++			goto out_unlock;
+ 		}
+ 
+ 		goto wait_for_idle;
+@@ -639,27 +632,65 @@ int xe_pxp_exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q)
+ 	if (pxp->status != XE_PXP_START_IN_PROGRESS) {
+ 		drm_err(&pxp->xe->drm, "unexpected state after PXP start: %u\n", pxp->status);
+ 		pxp->status = XE_PXP_NEEDS_TERMINATION;
+-		mutex_unlock(&pxp->mutex);
+-		goto wait_for_idle;
++		restart = true;
++		goto out_unlock;
+ 	}
+ 
+ 	/* If everything went ok, update the status and add the queue to the list */
+-	if (!ret) {
++	if (!ret)
+ 		pxp->status = XE_PXP_ACTIVE;
+-		__exec_queue_add(pxp, q);
+-	} else {
++	else
+ 		pxp->status = XE_PXP_ERROR;
+-	}
+ 
++out_unlock:
+ 	mutex_unlock(&pxp->mutex);
+ 
+-out:
++	if (restart)
++		goto wait_for_idle;
++
++	return ret;
++}
++
++/**
++ * xe_pxp_exec_queue_add - add a queue to the PXP list
++ * @pxp: the xe->pxp pointer (it will be NULL if PXP is disabled)
++ * @q: the queue to add to the list
++ *
++ * If PXP is enabled and the prerequisites are done, start the PXP default
++ * session (if not already running) and add the queue to the PXP list.
++ *
++ * Returns 0 if the PXP session is running and the queue is in the list,
++ * -ENODEV if PXP is disabled, -EBUSY if the PXP prerequisites are not done,
++ * other errno value if something goes wrong during the session start.
++ */
++int xe_pxp_exec_queue_add(struct xe_pxp *pxp, struct xe_exec_queue *q)
++{
++	int ret;
++
++	if (!xe_pxp_is_enabled(pxp))
++		return -ENODEV;
++
++	/*
++	 * Runtime suspend kills PXP, so we take a reference to prevent it from
++	 * happening while we have active queues that use PXP
++	 */
++	xe_pm_runtime_get(pxp->xe);
++
++start:
++	ret = pxp_start(pxp, q->pxp.type);
++
+ 	/*
+ 	 * in the successful case the PM ref is released from
+ 	 * xe_pxp_exec_queue_remove
+ 	 */
+-	if (ret)
++	if (ret) {
+ 		xe_pm_runtime_put(pxp->xe);
++		return ret;
++	}
++
++	ret = __exec_queue_add(pxp, q);
++	if (ret == -EBUSY)
++		goto start;
+ 
+ 	return ret;
+ }
 -- 
 2.43.0
 
