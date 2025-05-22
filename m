@@ -4,52 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03753C54E65
-	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 18:11:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC1A0C54E90
+	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 18:23:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A37B10E106;
-	Thu, 22 May 2025 18:11:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEDC810E7C3;
+	Thu, 22 May 2025 18:23:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mDzxnjZV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mR0GcOin";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49E5510E7C3
- for <intel-xe@lists.freedesktop.org>; Thu, 22 May 2025 18:11:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 170E410E9EC;
+ Thu, 22 May 2025 18:23:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747937510; x=1779473510;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=GLobcLMMsvlObfQxroQmZIVz4kP9hpMGRowqP0o1TRM=;
- b=mDzxnjZVnBr5BQCrYTNezi+KUtPd5xGK1vlxqr1KWRMFpTXyj19SvrZI
- 1DqiaNEo9PKW48d9/18Ntf/N6/xWdm0/Las2286CY+RmewzaBEHJv5vZT
- o6RlgdN316DTbEaJ/nL7H97ceEY4cqrkxYk5cwAr3Q5EOcrwlGvT7tl3S
- BCldnov6XgfiB5P9RKUeIlzDQIGt3BOdXsfd6+D5jI75brVqwYjVPRmQh
- roHL7KDTqrNBh62JeG3PE7f0g/E8mhIMi4Jvu38ZJmesCQdfQKyr6/U5I
- GFbxYykpTxX/p4dujGXM26Kz9SmSuw8yNEazlEhCR4pss+cPbqyhv0hwi A==;
-X-CSE-ConnectionGUID: gPVvSAN8Tzui6zWG4i9WOA==
-X-CSE-MsgGUID: p7XA5mDQTGGxgkuI1HuGDA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="50127002"
-X-IronPort-AV: E=Sophos;i="6.15,306,1739865600"; d="scan'208";a="50127002"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2025 11:11:50 -0700
-X-CSE-ConnectionGUID: ZwgmtGG8T2qZG7IfIt5Glg==
-X-CSE-MsgGUID: mzEUdRnUTQ2JFSHz3zhD5Q==
+ t=1747938198; x=1779474198;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=IPz6iHro3xzs3U8WhYMAIESZje4l1V6nQ/pXxbjhE/Y=;
+ b=mR0GcOinnZHkCEBs6nyufF7iFiNC038p+FV1sLRf8cfsBjwLkHuKEtgQ
+ yPju1bluY2kEFrDE8MMFFUPvj3iyErZwoPCJSEN6JUCEN+3mKvpoj/wKh
+ YV0Dm3lDf2ihwJNoM/oowW2rYe+QrglPI7+OXxD4gBOs54xAVd9zjNyw9
+ Wxt6+Wdcd9A2SpJfdBHG2ioLvtN25n/NjEetoqu6ef84PkSbg4QKtSAr1
+ jYRP/U0XVwdRt80KLPJX5buIYo5T6Cx7dzfsRpsffZ8gTLvVvfhWoTzY6
+ dv+PQsb13G8dkbxH/G6gNNxae/qh/ZrRebJ9U4rBMq+XRYb3sz5/w4mA3 Q==;
+X-CSE-ConnectionGUID: HcQnUXUSRkyqkQtgZI1piA==
+X-CSE-MsgGUID: NhmjQ8kLSeGGC+cqybV/jw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="72510105"
+X-IronPort-AV: E=Sophos;i="6.15,306,1739865600"; d="scan'208";a="72510105"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2025 11:23:17 -0700
+X-CSE-ConnectionGUID: 7fYqMXkFRhyO9qBsjd8dIA==
+X-CSE-MsgGUID: qgZNGhYgT9ukTIZ8jCM+Xg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,306,1739865600"; d="scan'208";a="141134903"
-Received: from nvishwa1-desk1.sc.intel.com ([172.25.29.28])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2025 11:11:50 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: stuart.summers@intel.com
-Subject: [PATCH] drm/xe: Have LRC hold VM reference
-Date: Thu, 22 May 2025 11:09:07 -0700
-Message-ID: <20250522180906.2181573-2-niranjana.vishwanathapura@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.15,306,1739865600"; d="scan'208";a="141247235"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+ by fmviesa010.fm.intel.com with ESMTP; 22 May 2025 11:23:14 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1uIAZU-000PbE-0a;
+ Thu, 22 May 2025 18:23:12 +0000
+Date: Fri, 23 May 2025 02:22:44 +0800
+From: kernel test robot <lkp@intel.com>
+To: Nemesa Garg <nemesa.garg@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ Nemesa Garg <nemesa.garg@intel.com>,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: Re: [PATCH 03/10] drm/i915/display: Add strength and winsize register
+Message-ID: <202505230242.YWyBlwSE-lkp@intel.com>
+References: <20250519122644.3685679-4-nemesa.garg@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250519122644.3685679-4-nemesa.garg@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,48 +71,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-LRC's BO uses VM's dma_resv object. Have LRC hold
-VM reference.
+Hi Nemesa,
 
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Reviewed-by: Stuart Summers <stuart.summers@intel.com>
----
- drivers/gpu/drm/xe/xe_lrc.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+kernel test robot noticed the following build errors:
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 61a2e87990a9..efdf4ef35b35 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -908,12 +908,17 @@ static void xe_lrc_set_ppgtt(struct xe_lrc *lrc, struct xe_vm *vm)
- 
- static void xe_lrc_finish(struct xe_lrc *lrc)
- {
-+	struct xe_vm *vm = lrc->bo->vm;
-+
- 	xe_hw_fence_ctx_finish(&lrc->fence_ctx);
- 	xe_bo_lock(lrc->bo, false);
- 	xe_bo_unpin(lrc->bo);
- 	xe_bo_unlock(lrc->bo);
- 	xe_bo_put(lrc->bo);
- 	xe_bo_unpin_map_no_vm(lrc->bb_per_ctx_bo);
-+
-+	if (vm)
-+		xe_vm_put(vm);
- }
- 
- /*
-@@ -1013,6 +1018,10 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 	if (IS_ERR(lrc->bo))
- 		return PTR_ERR(lrc->bo);
- 
-+	/* The lrc->bo uses VM's dma_resv object, take VM reference */
-+	if (vm)
-+		xe_vm_get(vm);
-+
- 	lrc->bb_per_ctx_bo = xe_bo_create_pin_map(xe, tile, NULL, SZ_4K,
- 						  ttm_bo_type_kernel,
- 						  bo_flags);
+[auto build test ERROR on drm-intel/for-linux-next]
+[also build test ERROR on next-20250522]
+[cannot apply to linus/master drm-intel/for-linux-next-fixes drm-tip/drm-tip v6.15-rc7]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Nemesa-Garg/drm-i915-display-Introduce-sharpness-strength-property/20250519-203316
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+patch link:    https://lore.kernel.org/r/20250519122644.3685679-4-nemesa.garg%40intel.com
+patch subject: [PATCH 03/10] drm/i915/display: Add strength and winsize register
+config: i386-randconfig-004-20250522 (https://download.01.org/0day-ci/archive/20250523/202505230242.YWyBlwSE-lkp@intel.com/config)
+compiler: clang version 20.1.2 (https://github.com/llvm/llvm-project 58df0ef89dd64126512e4ee27b4ac3fd8ddf6247)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250523/202505230242.YWyBlwSE-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202505230242.YWyBlwSE-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/gpu/drm/i915/display/intel_casf.c:52:19: error: result of comparison of constant 2073600 with expression of type 'u16' (aka 'unsigned short') is always true [-Werror,-Wtautological-constant-out-of-range-compare]
+      52 |         if (total_pixels <= MAX_PIXELS_FOR_3_TAP_FILTER)
+         |             ~~~~~~~~~~~~ ^  ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/display/intel_casf.c:54:24: error: result of comparison of constant 8294400 with expression of type 'u16' (aka 'unsigned short') is always true [-Werror,-Wtautological-constant-out-of-range-compare]
+      54 |         else if (total_pixels <= MAX_PIXELS_FOR_5_TAP_FILTER)
+         |                  ~~~~~~~~~~~~ ^  ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   2 errors generated.
+
+
+vim +52 drivers/gpu/drm/i915/display/intel_casf.c
+
+    46	
+    47	static void intel_casf_compute_win_size(struct intel_crtc_state *crtc_state)
+    48	{
+    49		const struct drm_display_mode *mode = &crtc_state->hw.adjusted_mode;
+    50		u16 total_pixels = mode->hdisplay * mode->vdisplay;
+    51	
+  > 52		if (total_pixels <= MAX_PIXELS_FOR_3_TAP_FILTER)
+    53			crtc_state->hw.casf_params.win_size = SHARPNESS_FILTER_SIZE_3X3;
+    54		else if (total_pixels <= MAX_PIXELS_FOR_5_TAP_FILTER)
+    55			crtc_state->hw.casf_params.win_size = SHARPNESS_FILTER_SIZE_5X5;
+    56		else
+    57			crtc_state->hw.casf_params.win_size = SHARPNESS_FILTER_SIZE_7X7;
+    58	}
+    59	
+
 -- 
-2.43.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
