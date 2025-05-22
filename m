@@ -4,45 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DED19C54E65
-	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 06:57:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05D4EC54E65
+	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 06:57:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93A139AF84;
-	Thu, 22 May 2025 06:56:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70BB112B307;
+	Thu, 22 May 2025 06:56:00 +0000 (UTC)
 Received: from us-smtp-delivery-44.mimecast.com
  (us-smtp-delivery-44.mimecast.com [207.211.30.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A4CB9AF37
- for <intel-xe@lists.freedesktop.org>; Thu, 22 May 2025 06:55:33 +0000 (UTC)
-Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BFEF9878F
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 May 2025 06:55:29 +0000 (UTC)
+Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-427-109jpGlfMfG5EAF3-tsQPw-1; Thu,
- 22 May 2025 02:55:31 -0400
-X-MC-Unique: 109jpGlfMfG5EAF3-tsQPw-1
-X-Mimecast-MFC-AGG-ID: 109jpGlfMfG5EAF3-tsQPw_1747896930
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-67-WEFbiKxtMiGfDILdaQdERw-1; Thu,
+ 22 May 2025 02:55:25 -0400
+X-MC-Unique: WEFbiKxtMiGfDILdaQdERw-1
+X-Mimecast-MFC-AGG-ID: WEFbiKxtMiGfDILdaQdERw_1747896924
 Received: from mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com
  (mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.40])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (No client certificate requested)
- by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 1CF80180036D; Thu, 22 May 2025 06:55:30 +0000 (UTC)
+ by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id C1085195608E; Thu, 22 May 2025 06:55:24 +0000 (UTC)
 Received: from dreadlord.redhat.com (unknown [10.64.136.70])
  by mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 13CB01958014; Thu, 22 May 2025 06:55:27 +0000 (UTC)
+ id D30D31958015; Thu, 22 May 2025 06:55:22 +0000 (UTC)
 From: Dave Airlie <airlied@gmail.com>
 To: dri-devel@lists.freedesktop.org,
 	tzimmermann@suse.de
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 2/9] udmabuf: use new iosys_map accessors.
-Date: Thu, 22 May 2025 16:52:11 +1000
-Message-ID: <20250522065519.318013-3-airlied@gmail.com>
-In-Reply-To: <20250522065519.318013-1-airlied@gmail.com>
-References: <20250522065519.318013-1-airlied@gmail.com>
+Subject: iosys-map: refactor to reduce struct size
+Date: Thu, 22 May 2025 16:52:09 +1000
+Message-ID: <20250522065519.318013-1-airlied@gmail.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 3.0 on 10.30.177.40
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: JG0vNEQ-7AVtX9CQ3WzXnoS4jj1KkjPu301JLbL_FQc_1747896930
+X-Mimecast-MFC-PROC-ID: 7Sqai3EHfTG4OBmHuao7XjuMFlpw10Cntwu4UfHR4YU_1747896924
 X-Mimecast-Originator: gmail.com
 Content-Transfer-Encoding: quoted-printable
 content-type: text/plain; charset=WINDOWS-1252; x-default=true
@@ -60,30 +58,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Dave Airlie <airlied@redhat.com>
+Hey iosys_map users :)
 
-This just avoids looking into the internals of the iosys_map.
+I fell down a bit of a refactor hole today, it was just random and
+sometimes you just have to let these things run their course.
 
-Signed-off-by: Dave Airlie <airlied@redhat.com>
----
- drivers/dma-buf/udmabuf.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I noticed iosys_map has a 7-byte hole in a 16-byte structure, and
+it gets embedded into a bunch of other structs and it offended my
+sensibilities.
 
-diff --git a/drivers/dma-buf/udmabuf.c b/drivers/dma-buf/udmabuf.c
-index 7eee3eb47a8e..101cc7853043 100644
---- a/drivers/dma-buf/udmabuf.c
-+++ b/drivers/dma-buf/udmabuf.c
-@@ -145,7 +145,7 @@ static void vunmap_udmabuf(struct dma_buf *buf, struct =
-iosys_map *map)
-=20
- =09dma_resv_assert_held(buf->resv);
-=20
--=09vm_unmap_ram(map->vaddr, ubuf->pagecount);
-+=09vm_unmap_ram(iosys_map_ptr(map), ubuf->pagecount);
- }
-=20
- static struct sg_table *get_sg_table(struct device *dev, struct dma_buf *b=
-uf,
---=20
-2.49.0
+This series makes iosys_map be 8-bytes, using the bottom bit of
+the void * to store the is_iomem.
+
+Patch 1: adds new accessors to start hiding internals
+Patches 2-7: refactor all users in-tree to use new internals
+(hopefully got them all)
+Patch8: moves the internals around to catch anything not in-tree.
+Patch9: reimplements iosys_map as 8-bytes by hiding the is_iomem
+inside the pointer.
+
+Dave.
 
