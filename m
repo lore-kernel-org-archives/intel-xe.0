@@ -4,163 +4,164 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 031CCC54E90
-	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 13:39:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73352C54E90
+	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 13:57:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4EF8B10EDBE;
-	Thu, 22 May 2025 13:39:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6137310EE9C;
+	Thu, 22 May 2025 13:57:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TEXCYB1Y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KF9aQOui";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 975F110EDBE;
- Thu, 22 May 2025 13:39:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4C2910EE98;
+ Thu, 22 May 2025 13:57:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747921174; x=1779457174;
+ t=1747922266; x=1779458266;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=ufZEx4F4RTdsWscuGP1Rss4gpImpuBMFLaM+l4OVkTk=;
- b=TEXCYB1Ywcxiha1EDMgdjrjwgmLxYbh7VTv2VkFIowyeyFRAhhK7ez5/
- e9liU3BCe+TcgRVNv/lHFgG0UZ1ClK4+Zl/t44mRUtO975adFoDoVNIWI
- xs2invpjmpnCtsYjIXcqhTRP1QGFDr92VLJUHoDrLVORsu9ABS3BVIrWN
- fGh+HHyo2rH1gdKOjc4iyy54YsSVjHgH76s0IIjS5iDvIGUryOnYWNtox
- wYf3YAcYj9f7bgm231nr1EVbmosEbhUzVRkY4K2t93BvtdHwbtUpP1iZr
- QAwQBjIbxrcW+Gl6unfYl0h/3fknaZ4lyg5WHsc9pRwLj08MSM+NTyozf w==;
-X-CSE-ConnectionGUID: OUel4WvxR8S7p9kA6g1vfw==
-X-CSE-MsgGUID: yJ5xCTEpQU2Z8miolDHz1A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="49824684"
-X-IronPort-AV: E=Sophos;i="6.15,306,1739865600"; d="scan'208";a="49824684"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2025 06:39:32 -0700
-X-CSE-ConnectionGUID: tcBprjgtSXiAv9MRbRmY+A==
-X-CSE-MsgGUID: L4dGyo7dS9GqzLfIbYfJ4Q==
+ bh=DQC6JXhNTdQQFxk/UscT3RPiCbMKgkI2+Uiu1aHstMw=;
+ b=KF9aQOuiIo4CGOeiB/K4GEjMmd2ZTs9/X/c2Pm7HYmBGUiwpaYYpjHiQ
+ ALjgIPZzWciSeOuHvjNuaasBYh2QfLZuyCtaPLjRUYiCzFdgHrxiFVkme
+ rKS7xcuFmz7VJ3P/vQepWQJtjFT3bEHJwexT83F7igWC7sIVT4hwlefOB
+ Bza/XlV4lbd4kgdtLloIa3868WHI2RJua1BssWDBx+WlUrA66bLtcJ6Ua
+ 6NbpRoz9FCdUYiOBjJ9rjBE4JRuhTHsibDbYzOPK5ZrLnbjmx+XbUloY0
+ 0wHugPppE1IQIhYiQIkD8srS7nL5w/AYlpP69DiMZFzxW8bW0bAlBFJVh Q==;
+X-CSE-ConnectionGUID: uMTituSnQSuV2DW0Mitg/g==
+X-CSE-MsgGUID: qOY2UrdXShWh9T/ZCIHgwA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="61297278"
+X-IronPort-AV: E=Sophos;i="6.15,306,1739865600"; d="scan'208";a="61297278"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2025 06:57:44 -0700
+X-CSE-ConnectionGUID: 2+NGSKHdTqq2sE/ZlM57pg==
+X-CSE-MsgGUID: NNTnAGq8RoGeY92f62Q3hg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,306,1739865600"; d="scan'208";a="140465176"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2025 06:39:33 -0700
+X-IronPort-AV: E=Sophos;i="6.15,306,1739865600"; d="scan'208";a="171604334"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2025 06:57:43 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Thu, 22 May 2025 06:39:32 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ 15.2.1544.25; Thu, 22 May 2025 06:57:43 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Thu, 22 May 2025 06:39:32 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.47) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.2.1544.25 via Frontend Transport; Thu, 22 May 2025 06:57:43 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.171)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.55; Thu, 22 May 2025 06:39:31 -0700
+ 15.1.2507.55; Thu, 22 May 2025 06:57:40 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gZI4egMED14iwJF9yHRkDv0rTwYcwPMi35mTQkTJKNQuRdq8UfzhqoXBOq1pTq1SByYW6vEnLK3zqmU6E30pQ5A+gJ9AO+Wl1zIGmh0hH/UdS5j6ByzeZDBvbEZq1yW+f1mGLSkiG9i7TQPdv88Pz5UzQXvEvi07eYXdgrgaaWymdAC6U4NBZjifbBLCx4HP1YzPEgjMwpPQ7XXuLNI4nmS3g2iHIs/pH2f1IU2j82VLt2sKGHPx3p84d9R7iFg5bPw8DhuKENVgGK2TzTsZf3cE1+nL0CdQmDWmGh0IiTtUQX3NyiiCVnwqCS4L85vgUHUE1ViT1lJBvQOR3wO1OA==
+ b=iUoYeC61Vbh4686Hj3RpF0OHcKeAhMk4scDUawA4EtNIiNT9Dsz4hI0CRJn6LLbS2elu7UTINzIVVOZgecpD5D4ZJhhk0rri5lxm151dBfVve2/2piiYP4utXmkLn255RO4grvy81aSqvkXyaRuPdHTX3F0tObU8uEcFnLwiXfLlMUxvAQXowaIaMJadKVvqY54nsHJY5WBLeSDnhw/y0sMChw6+blUUY6CY2fj3oCFeJtCeXoFOQPa/Hc/KVgh87e+089oUECvdy4EKmx7HIBJCo0AOZXUKXGtdIrNJE0yK/9BYesF/VAn/5uoRzI8u+DEWjAS8viHQ60UbZOpljg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nAtxuGsxZTf+1hOrS0WMHW/GcY8lXRYJpUEt58zaFE4=;
- b=AFCl3KAN4mz06V6gqFk4OB2Xnq/Eh6u+5ZH0wm7OUSog5U8nfEkum7eRO19+HVCJLkufNJklinOhJRa3dqaf2bngM+cIG4GawNhx8dMsPrntsfk/kPzYN6x2EqpD+HKfIvi+NjdSl4WFl/8o1BkWI2c6hikaSrLSS6sxa4RS7WLdJji6y6keFYFjeChxy1us7+vHkBshxlCXq5156WmytzkRhQTqvOZSzH2OilAt6rmldu+2p31kZvTgp3WDXwUbFaMOMlEjKe7MxBRMgyyh8lBtlsOKA+xhthx4qMBxZ8FB+wUaRy57zgbObN7Nbiosf0p9DSDLHzMWoTEptfmcUQ==
+ bh=QlCFOh8Hxf+6eUtep83DIxpZIuG8YgfJ88bzm+BpTno=;
+ b=axbIyO8db/9DnCdCkLxlGkcVl8dZUtU029DMUMZRgWc6vvsxf80e7qSgHi4+DjnG4u+n/kuOPg3tTE4dCMTvXn4rLDZBNd7sWi7PF3faSsBhfc9s0ex8+bDkwBK2238T71rOr2jJmc35QMrGkoBuqEpqv0vNxehkCxX69UvIRtF87RL4nwb+gXxj3CuhBg1cue1gA1LWODD3zLoSEHBRi9zb4dAfXHVUl/WVr8J5tJNhWAcw6k7/Y8KG43GBbnDA9vU257/EBivECuAYXl27l+wocwjhXwVgAVz20cmo6v4uKV+9yvsEr/AL+ylkEaql47zP2v9wa/X2T6030R/66Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by PH7PR11MB6721.namprd11.prod.outlook.com (2603:10b6:510:1ad::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.20; Thu, 22 May
- 2025 13:39:29 +0000
+ by DS0PR11MB7557.namprd11.prod.outlook.com (2603:10b6:8:14d::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8746.30; Thu, 22 May
+ 2025 13:56:57 +0000
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.8746.029; Thu, 22 May 2025
- 13:39:29 +0000
-Date: Thu, 22 May 2025 08:39:26 -0500
+ 13:56:57 +0000
+Date: Thu, 22 May 2025 08:56:54 -0500
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: Dave Airlie <airlied@gmail.com>
 CC: <dri-devel@lists.freedesktop.org>, <tzimmermann@suse.de>,
  <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 5/9] drm/qxl: avoid accessing iosys_map internals.
-Message-ID: <5odmlq4j6poqg6p2b5t5kdtax2qbieqq4j7bufolq5daexxchl@425tg3vwmm5i>
+Subject: Re: [PATCH 4/9] drm/xe: avoid accessing internals of iosys_map
+Message-ID: <4trephgwx74ub7kjcf6djuq3hp63pp37vm3vuxlwe6cgd27dg5@mgf7legadygj>
 References: <20250522065519.318013-1-airlied@gmail.com>
- <20250522065519.318013-6-airlied@gmail.com>
+ <20250522065519.318013-5-airlied@gmail.com>
 Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20250522065519.318013-6-airlied@gmail.com>
-X-ClientProxiedBy: BY1P220CA0015.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:5c3::10) To CY5PR11MB6139.namprd11.prod.outlook.com
+In-Reply-To: <20250522065519.318013-5-airlied@gmail.com>
+X-ClientProxiedBy: BY5PR04CA0019.namprd04.prod.outlook.com
+ (2603:10b6:a03:1d0::29) To CY5PR11MB6139.namprd11.prod.outlook.com
  (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|PH7PR11MB6721:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8d404d1a-0628-40f8-46b3-08dd99361372
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DS0PR11MB7557:EE_
+X-MS-Office365-Filtering-Correlation-Id: a799ba59-6d5a-40a5-aaa2-08dd9938840b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?rsv5dWXRDdQ/FqYuhynL+tD8Y8mrq6NrWU3Ie8VlTlj4sD5tGM+35vjsijxv?=
- =?us-ascii?Q?SoervYuPgD3ZQotrig6eUvRVTnKnH/W/Dm1UwdAsodn57LBwxZP+ZGtIlA/U?=
- =?us-ascii?Q?GT2yZbWasYIo4DYk+neT8q8NxAqpwqgXyXZHZXqYNi/tIxdA6ZIQUB05Bp5K?=
- =?us-ascii?Q?t9xkW0C9v/OrYKztBWpA9YHMiKbWjlA9nwO9HTCqNcBufzNoc2lEf+doWwTg?=
- =?us-ascii?Q?8yVL+EqEqDgAFpvd6Tn0zQP6HyJTDWxgSSDqc9y9QYX/mu4XmrKDu3O5mePk?=
- =?us-ascii?Q?VCeMMJnvfpXXvZVN3LgGuP9PHH5TxcvojAL624H44SiN/otf4TnuoFwZ6jw1?=
- =?us-ascii?Q?8xjLTAm8rdCrOANCV6ToNZctuNdOi9sPBYX0nklN3NnhdBm++27PGeDFRrxB?=
- =?us-ascii?Q?FAPQzffw3oPl03Peauxv2hZHLDvu6VR6u8VxdRMiwWGy0RIebBHAv1tsCjg1?=
- =?us-ascii?Q?qQ5W25LSB6fO2fN49KDP44LsQyunCcRrrMHT/qL9FRrEGBut6g+Jlv0Co0ED?=
- =?us-ascii?Q?80kW0i2/COlC1lRcyYVwmN2CcWqfccokNqjDUltzw5c/Pv1Zqv13ClzkTHx1?=
- =?us-ascii?Q?3aGojA/KnzfiRBSKN15jJmjVrV8uQa+Ir1k1iGUJGaM2vdv9/SJxJAnntiXd?=
- =?us-ascii?Q?QKgK560nwqD8NRjOw0tRVHIEg9YoRvWPCiGa7EI1Fg1Lgl3YC+K//SnmNadK?=
- =?us-ascii?Q?c0VOC6GZiXQ5spnpYSVrDpapD5nrFqRyW0B7NdKTTYm6/cRx87DY12/z1Fdg?=
- =?us-ascii?Q?y0QDewlzm1N6X2Bjrvm29gcXxtvi9gKMT6qn+yalU1utqf4Ajdd0/u4Wt+so?=
- =?us-ascii?Q?aBoJAjtCbbHlwffo2vSIlirY/eZZH6WVxOXtHTCf6otpXyiJKTAhwn5xjXs7?=
- =?us-ascii?Q?jt3RCesb7FWRhgOpGHne3xlW/KKro2HBqKC3xFmgHAgD4R0gZFS+YLgf4zD/?=
- =?us-ascii?Q?ux9pBYCXhPrYFHmkLnZrSUs34GCRnbtF9XX9Dc4KjAgOIg/DQzjWmieI4e+Y?=
- =?us-ascii?Q?4rnGFkq0H0yJ1o7dunjfy2WKWZsTTJDuiuBXmzbOfKaTvh4Fsu/RKj1yqBJ8?=
- =?us-ascii?Q?urUvLjoSgiXEqxbeRhI/IsLMOENlglTYtlHxW2S+VOjRUXnUh/YKSotzOoiA?=
- =?us-ascii?Q?5xitu0Vu+AnGVsFk4PFXRlq3I+oWFEYI/aNQM1IQAqrKXoyFSZz34mxWlbcd?=
- =?us-ascii?Q?aDqdWK7FoUHKKWEAbCnXHb1SVeAUMZNGWtjPH0iquQcA9V4m9WUow7zqfxSn?=
- =?us-ascii?Q?M4ouDJEzvtdtGpRwpBPkYQzGvs8Tu3NL+eZvqlTseGcIWSafKRtYJ4LWoncq?=
- =?us-ascii?Q?z7VcuMLzWFuTm2DcrI3YOTD+sQsXcCY5QpAgABmJrYGThaDpE79Tx2Slu/Xq?=
- =?us-ascii?Q?liDiLZN+y7yU9tTsVHmRJLHSV061znb+NCIn5WHoUsPaVnalKQ=3D=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?igFHr4oEzV8OF+SPxFQ+RvqTHNB00P2GQ0pEmACTC2P9GTykVbU/Fv3Q/z31?=
+ =?us-ascii?Q?qPHZA2ZaTFqGmTK4XR7bamOL2HhKkMsF3+l86p0CvuoimWI4NHRl7iE15BHl?=
+ =?us-ascii?Q?hoG757EWRyRcqSn9s0CtCzRObFZrTa+rudsGRgHdJqvCcHd2Zx95CRa/98K/?=
+ =?us-ascii?Q?Df7117MRiH7GTRHRDI6alu2IwG/W0ylXkPxZqh3BZp4aaJ4H1dwO2w7/kL1r?=
+ =?us-ascii?Q?dBZ/JLSubV9o0y+Av06e45CTrtpHYK/gf4lBHVxijxJKlKUjDKrd+TcqBTr9?=
+ =?us-ascii?Q?vGfQrgtamwDg5Imqqnt/7fKV3+QyFbhBiLk+ybmjmPHJrk81HxaUTKQwydxR?=
+ =?us-ascii?Q?iEdNMTA2kzDxwTmAX215hirDr5bVROHHfRJAyoechi/fL6irFDb5j5x8aN2I?=
+ =?us-ascii?Q?ltVQNRsOij1LqIOMeSL5Osu0LL1ml5qeccEpyqW4qfUgNL8pvVXFsvPwFNpo?=
+ =?us-ascii?Q?jBkLBC7WkV9E/DjstifLKAGbGjKu/ZB/7OeIlr+K9f4++QkruO10gCty7upv?=
+ =?us-ascii?Q?BLoi5DQLU7wQtPFHt/YubzUkrwEh0Z9M4Qh40zwkCe+B9SEzLkkH/UeVVgX8?=
+ =?us-ascii?Q?qbAa9nsJbDcd6KwOFHQVNhd2Yd2GFAVTh8E3KIaNw25NNxd/PqD5fUYg3X5l?=
+ =?us-ascii?Q?khXdLIT9wVj6FvCjHvyGmAQErv/UKMsz4jEQ0m8oEaslfHx8kRvQmb/ltVh+?=
+ =?us-ascii?Q?Rki1DnRtBL+jxYYcXfFG00IqWpSB33rWrkRnbmNteZqIoZ6YGNDw3Cm2jpxM?=
+ =?us-ascii?Q?IfZaWeWOsL6qV1EdsHAEqZShtCGJ8fVTbl4y091iJlhURsLtLUQ0IolA7fr9?=
+ =?us-ascii?Q?oaGs7gESYi0nJvyQjZ/pZm589ELPubZ5Ee76fr6bJI6cZqAZxytEN2XLOFJ2?=
+ =?us-ascii?Q?y89xffv+g3Z8CX6UG4qn0yjrXIhYjzqRr8EmFVpBn4bMrhkAnQ9IARUzTRcz?=
+ =?us-ascii?Q?+Y5BbrD8bV7uOKlBE2c3kd1HCKfABk8sb6TJCdFQOekN8QkGZoyZAalxG8JH?=
+ =?us-ascii?Q?5OVXhUue8Gf2VSk2DSceZOSOzcKkUlFL8YkLvN3iWYxzo6twYOU5SWzrMU6I?=
+ =?us-ascii?Q?edjKo8C2b5GhAjSK2GhnOJBt79r3IlwRgQswst9Iz8AkN1n2sgmEuDWqiaKP?=
+ =?us-ascii?Q?1AAfSuEHkEtNVkH/dz7uDk98nUaWzIxyPNXS4ZhM0l6XTQ4ZV72CjQALuXP2?=
+ =?us-ascii?Q?ICjri4BQxyErg3sF5mCxDf4JWEpCov6hsDKH85pEc8XLC7RI1JwaRR5+HKx2?=
+ =?us-ascii?Q?BQNNFsPOy3NU6/KCBsnqhcIDXhpo+cPiHLeHH9+pacHujcVMWDUoxTIqRK9n?=
+ =?us-ascii?Q?4A+Mx66scDXBllnTVp2uHgJ8JdC89SICripoCOh81fsLa+kBTL9ya1zQTsu8?=
+ =?us-ascii?Q?iMAMRWmoVvJplZQVJ7xJi3o3QAHee13fPub5m/lTYcLOwlEqxZQUrtcU9Z+V?=
+ =?us-ascii?Q?gupkeHfatU0=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?EHnDDn7OTsGc4GcdcxRQr/Zfy9xlLEqnzSIheps68CRzJ9HGPUgY5llkXK/I?=
- =?us-ascii?Q?lR9L9W86tqFaG9RzsmoEaqqTrB9DmfCichpW+ECxIXHEGu7RNyeJs9pnyJRH?=
- =?us-ascii?Q?ubJ5u5mfKvJqA8UKjYevUAq6Coa58NE+VbDf/kp5PflxICXJrJFx8hDFCxfW?=
- =?us-ascii?Q?t4hmj8HdZLmHwl3B4oefGTjT1DdLPWdfN0Ah8ITg+PiyG9l0pmtr8z6GOY5N?=
- =?us-ascii?Q?GNOA9fbSfvLM3/hyEvihYtcFLxnIHhsOBPdwXvlsX8R5sLoCbfQsqjnKHW2v?=
- =?us-ascii?Q?9rIfGi5YNaMiufEz8ZBTxNvrrebpsbs0zjf3aeXwIpgUuuVPLJvXeFbtEd7g?=
- =?us-ascii?Q?9ESMmzMBgOPcvusFgYXcYPIc2ZYA8Okh/di+f3ttgupr+LDVgJl0dUmHRAVi?=
- =?us-ascii?Q?q6xyQOdplq9x1aWIk3rwziGbYK10MN0DjHzfJebMM/XtNTDExxhjknUv9Pkz?=
- =?us-ascii?Q?MHkfTy5DfV8IrhMxvf1oEiSDG2nHBb9Ws+eJfKxHnF3eUzJlgiBOJfDMTWXQ?=
- =?us-ascii?Q?+fhBRQGUSjc4bMNlpGc7aSdg0LcrITR7jtF66r4ALEXqVee50GQxpFuG0RjM?=
- =?us-ascii?Q?lc0alDTig9fRY1XRKlj8KLTdzakjEPRIsmju1yDC+IELQrrIOu7PGJ50+SSE?=
- =?us-ascii?Q?SDgJ1H74kAXt+uFqjlzsJuTYb3kpOlbeDOhBmSjiSEiL7udH2aObfemqL5xs?=
- =?us-ascii?Q?vWW6FshnzK2F5h5mCw6ofRSj8JxjqCK5FZYw/91ns3i2X+tU4Oas2Rq97CCm?=
- =?us-ascii?Q?JCq27gmjYRQYivCzXhnlqllJdsABENGaP5RJ5g+to8kagZbcK4hZ32owsHGJ?=
- =?us-ascii?Q?mslOolqu4MOGcrA8oHb0gwLgD0r99BjxY32Vuh2i98wf38ULuMsh2mgOWWTN?=
- =?us-ascii?Q?1At+QJH92OgXd706DisaIVfwtRvjh/wh1WXz87mg/+cDLOWauUMg095cr3pA?=
- =?us-ascii?Q?Ud5GA0sOJKalNOMOpJhBh05BuMKX5s9wORdi+5p2ukbaIgUV3rl+kjwA2HtG?=
- =?us-ascii?Q?mSgV/INopoqr2RTWbBqldFOwXhjqNUzpXYOYf+utcyCT0jpPVxhOlIVSof8N?=
- =?us-ascii?Q?DyGlBOxbXmkOdmmx8NAbjzFUCvk8DGu0fA51qgkG1h5R1+vkfRR7a7HshyAN?=
- =?us-ascii?Q?eN5gazCe2vc+/IBMDgx8JLQD85YewEhYZe3qd7/bF85vDzCDZxbCGOgcxCHz?=
- =?us-ascii?Q?A4HVKSFjFj6JJ5uIVBz/gzJzkLmvxxulrHdWYmQ0g1sG1wpyUpYlrymr6eJP?=
- =?us-ascii?Q?HjwnvCI5+maDlY9TfX/9vND1KKZMYap5jb4RxvRdeOCIfJ7mKSGsDwNHuvZ/?=
- =?us-ascii?Q?8s3jV1YpaZztuU2Qf8B2XQxfv9IEvY2Lhkkj7Xueb378uUqiOqQnJ7MHDZkJ?=
- =?us-ascii?Q?cNFhPvNeiH03ugjB7rg2aOuLMIPfhnpJFXoBD94ICqtAi3M+R0NeBaebfGco?=
- =?us-ascii?Q?GKevv2OTrsxmFNXScTVv+RZO31y110mKblTyGj5QBw4KbMYl1YSdVPi+YA7p?=
- =?us-ascii?Q?PUo6SCkf5rRYGJk1ffvgZBbehwji0d2EzrgbVEuInWjawXu1iHQHlWlDTD9f?=
- =?us-ascii?Q?gRk7o59Izmy/ptKLvChH3Jf1pQl8U/PMHnJJgigLX4nXvYn7f5ZnR0xttEBw?=
- =?us-ascii?Q?nw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8d404d1a-0628-40f8-46b3-08dd99361372
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?q29vN2+XBssS5JeLGtR1KYfh2Ivq/0Y3jqPAafRX6wEwskj4MWS728qmfvtI?=
+ =?us-ascii?Q?n94f7BrJiJPlu+SWBK6nl5JXlYUbJNjYTUena3u36MbJOCiOY0QQOovoqOgd?=
+ =?us-ascii?Q?egcqeZim8PiDRZShppL/4cQXBZs5r+alwKum/QFIaQy7qWet2PGdByw7M6WY?=
+ =?us-ascii?Q?QRldBPBQ4okIfAwyjZ6mTWU1rNduKZp4FhuTcLPiE8C0IrZZYR79xxU7kprv?=
+ =?us-ascii?Q?xhfbGhXbpDASrFTH4oi77JsjJAGPGFJu1iDDq8RcdSMBpAGkqRhWSYJU2+Ss?=
+ =?us-ascii?Q?N73j05kZBGMejSsU+3WZpjIp/7b9ogDy0Rq7982blqmG5y6iZT/mwTRshrwW?=
+ =?us-ascii?Q?EgYya7VE8ZH3eiI+m5Hfz61pXTfTvMEoENUBaQnINAEmj3Dll/Y/V05zHJPP?=
+ =?us-ascii?Q?fER78gRu6st40A0ssssOQ4l/dDtl0kuMVJ0hUsQm9n/dFoKuQHu0GBrbLJUN?=
+ =?us-ascii?Q?cPF4o+DDN4dj5yaDrOPwRnCXtYajq+C1Ud7QE68grENPTWL8HjFXlwS4UJjo?=
+ =?us-ascii?Q?G2GsHoXMad+4qFmppEsxrWvmvkCOz9PiY9Mhc/hiNpk5CRJZstxVwM7oNyDY?=
+ =?us-ascii?Q?gc3Rdgy/7VWYW7zg2lhgniSNyu2D/NxuAcJxT6/uEB1ljNocqaVe2UOAmVew?=
+ =?us-ascii?Q?/Em2NhjzKuWZ3cYVnMJww1CuJ4RPtyc6K7IPyU7oFi3lfC4M8w+o1iGbQhYh?=
+ =?us-ascii?Q?AzG3tRsfdDJnMztjD4Wa+CsImta4yrethq25b2Fr2hFuqox7m0jF8yTJh+vj?=
+ =?us-ascii?Q?MPWv5y7cTmGZXoa4dCrXCQXZN+hnRRWHEwErJKOUuL4H2NjcXEd3v0WAb5AA?=
+ =?us-ascii?Q?wAEKJKqwkzg7CiyKAmDj2kTBKrBnU6VJgB0didMfO1FA7DNEbkTDPh0AzVcN?=
+ =?us-ascii?Q?eWEsXIN+i1/plVWnWJTYngqXNgg/XYay2pUwkav56xnZFwF5jutQTrs/Kkwp?=
+ =?us-ascii?Q?ZTtOInGFQqzNo27XTrtQBPUlhz7Nd5hH1dxbZY477cZj4LO/Rqf/Au8iY99I?=
+ =?us-ascii?Q?CPWpbZvBCjNKj8YbCgYRrOcLRl7wW0Q9oU7LFNNEHI+rJy3iAIvaVWrypqXt?=
+ =?us-ascii?Q?c6q93B6M8l6grJfKMxV7jhIXuitAxqWtb7a5U6TE31VTK9hGR2Tm1NcSNNzw?=
+ =?us-ascii?Q?rQYWBTh4DFMtj56L5lqxmpjo88+owYC2D2IvlG841htO9+ANnr7fXzlJNB9F?=
+ =?us-ascii?Q?DZAzBtVEYlDza2aq9K7mUb9W99reESOJTWYnbRIPXdqjSjLVMMkRfP0496nV?=
+ =?us-ascii?Q?CouxnCs/k7V4PqnM3FFErDwXr7kk1BKglwW/8UbdU/h3bX2TiDYninNlZ5Ho?=
+ =?us-ascii?Q?JmDIAfwyYKe4Y2bYsqZJp4iM1CsDQyT65ReF9Ym6oiub5zUgtwHPCwFBg7C5?=
+ =?us-ascii?Q?BPWNSp6UYlpCiD3SfuvZco2SD9Qoqqy11HahLs0ChXVOYuNlqoa/P3nHXQaG?=
+ =?us-ascii?Q?YTOmLj9PpeaPebghPupf/94jAAWx/Khtu7qFo1KJFQqWyDkuo+Z/OQeoV9Gx?=
+ =?us-ascii?Q?c6S7FW7JADoLAHrNMljB/n6hxJlF2/9V+dLBTbPPmcJM8OptPJDHZjPfgziJ?=
+ =?us-ascii?Q?HG1b0QkI/O1suTNin2xfxUTscfBqlx1L06wFOrXPf9Sgxxrs6dk66G+QH+NC?=
+ =?us-ascii?Q?CQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: a799ba59-6d5a-40a5-aaa2-08dd9938840b
 X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 May 2025 13:39:29.1591 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 May 2025 13:56:57.1535 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1eZAbzcv+FsJ3w3VmU0TcHB4ssVlXYV68w3Qoz0qujOjmNcwAdXixc/fwp3a8J71kFKq2JsLa8PP1NnM89laNPM6wrdj3SHrjviT7qfrXIs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6721
+X-MS-Exchange-CrossTenant-UserPrincipalName: ttarCONlU9fULJn2sdGHOhVn4yzBCzLJVpIEYY1nKhGZHbihx3fq/5TX+WEcUSAdYp5nQUAiowzpClLOdjV1VSS8P9WtjSzGugiej9JcvIU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7557
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -176,105 +177,256 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, May 22, 2025 at 04:52:14PM +1000, Dave Airlie wrote:
+On Thu, May 22, 2025 at 04:52:13PM +1000, Dave Airlie wrote:
 >From: Dave Airlie <airlied@redhat.com>
 >
->This uses the new accessors to avoid touching the iosys_map internals.
+>This uses the new accessors to avoid touch iosys_map internals.
 >
 >Signed-off-by: Dave Airlie <airlied@redhat.com>
 >---
-> drivers/gpu/drm/qxl/qxl_display.c | 14 +++++++-------
-> drivers/gpu/drm/qxl/qxl_draw.c    |  4 ++--
-> drivers/gpu/drm/qxl/qxl_object.c  |  8 ++++----
-> 3 files changed, 13 insertions(+), 13 deletions(-)
+> drivers/gpu/drm/xe/display/intel_fbdev_fb.c |  2 +-
+> drivers/gpu/drm/xe/xe_bo.c                  |  8 ++++----
+> drivers/gpu/drm/xe/xe_eu_stall.c            |  2 +-
+> drivers/gpu/drm/xe/xe_guc_pc.c              |  2 +-
+> drivers/gpu/drm/xe/xe_map.h                 | 12 ++++++------
+> drivers/gpu/drm/xe/xe_memirq.c              | 16 ++++++++--------
+> drivers/gpu/drm/xe/xe_oa.c                  |  4 ++--
+> drivers/gpu/drm/xe/xe_pt.c                  |  4 ++--
+> drivers/gpu/drm/xe/xe_sa.c                  |  8 ++++----
+> 9 files changed, 29 insertions(+), 29 deletions(-)
 >
->diff --git a/drivers/gpu/drm/qxl/qxl_display.c b/drivers/gpu/drm/qxl/qxl_display.c
->index 70aff64ced87..e833b0bbff47 100644
->--- a/drivers/gpu/drm/qxl/qxl_display.c
->+++ b/drivers/gpu/drm/qxl/qxl_display.c
->@@ -602,16 +602,16 @@ static struct qxl_bo *qxl_create_cursor(struct qxl_device *qdev,
-> 	cursor.chunk.next_chunk = 0;
-> 	cursor.chunk.prev_chunk = 0;
-> 	cursor.chunk.data_size = size;
->-	if (cursor_map.is_iomem) {
->-		memcpy_toio(cursor_map.vaddr_iomem,
->+	if (iosys_map_is_iomem(&cursor_map)) {
->+		memcpy_toio(iosys_map_ioptr(&cursor_map),
-> 			    &cursor, sizeof(cursor));
->-		memcpy_toio(cursor_map.vaddr_iomem + sizeof(cursor),
->-			    user_map.vaddr, size);
->+		memcpy_toio(iosys_map_ioptr(&cursor_map) + sizeof(cursor),
->+			    iosys_map_ptr(&user_map), size);
-> 	} else {
->-		memcpy(cursor_map.vaddr,
->+		memcpy(iosys_map_ptr(&cursor_map),
-> 		       &cursor, sizeof(cursor));
->-		memcpy(cursor_map.vaddr + sizeof(cursor),
->-		       user_map.vaddr, size);
->+		memcpy(iosys_map_ptr(&cursor_map) + sizeof(cursor),
->+		       iosys_map_ptr(&user_map), size);
-
-these would better use iosys_map_memcpy_*, but could be a follow up to
-this (automated?)  conversion.
-
+>diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+>index e8191562d122..ad2681c90efb 100644
+>--- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+>+++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+>@@ -101,7 +101,7 @@ int intel_fbdev_fb_fill_info(struct intel_display *display, struct fb_info *info
+> 	}
+> 	XE_WARN_ON(iosys_map_is_null(&obj->vmap));
+>
+>-	info->screen_base = obj->vmap.vaddr_iomem;
+>+	info->screen_base = iosys_map_ioptr(&obj->vmap);
+> 	info->screen_size = obj->ttm.base.size;
+>
+> 	return 0;
+>diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+>index d99d91fe8aa9..c83a54708495 100644
+>--- a/drivers/gpu/drm/xe/xe_bo.c
+>+++ b/drivers/gpu/drm/xe/xe_bo.c
+>@@ -1249,7 +1249,7 @@ int xe_bo_evict_pinned(struct xe_bo *bo)
+> 			unmap = true;
+> 		}
+>
+>-		xe_map_memcpy_from(xe, backup->vmap.vaddr, &bo->vmap, 0,
+>+		xe_map_memcpy_from(xe, iosys_map_ptr(&backup->vmap), &bo->vmap, 0,
+> 				   bo->size);
 > 	}
 >
-> 	qxl_bo_vunmap_and_unpin(user_bo);
->diff --git a/drivers/gpu/drm/qxl/qxl_draw.c b/drivers/gpu/drm/qxl/qxl_draw.c
->index 3a3e127ce297..6000936bc8d0 100644
->--- a/drivers/gpu/drm/qxl/qxl_draw.c
->+++ b/drivers/gpu/drm/qxl/qxl_draw.c
->@@ -52,7 +52,7 @@ static struct qxl_rect *drawable_set_clipping(struct qxl_device *qdev,
-> 	ret = qxl_bo_vmap_locked(clips_bo, &map);
-> 	if (ret)
-> 		return NULL;
->-	dev_clips = map.vaddr; /* TODO: Use mapping abstraction properly */
->+	dev_clips = iosys_map_ptr(&map); /* TODO: Use mapping abstraction properly */
+>@@ -1342,7 +1342,7 @@ int xe_bo_restore_pinned(struct xe_bo *bo)
+> 			unmap = true;
+> 		}
 >
-> 	dev_clips->num_rects = num_clips;
-> 	dev_clips->chunk.next_chunk = 0;
->@@ -206,7 +206,7 @@ void qxl_draw_dirty_fb(struct qxl_device *qdev,
-> 	ret = qxl_bo_vmap_locked(bo, &surface_map);
-> 	if (ret)
-> 		goto out_release_backoff;
->-	surface_base = surface_map.vaddr; /* TODO: Use mapping abstraction properly */
->+	surface_base = iosys_map_ptr(&surface_map); /* TODO: Use mapping abstraction properly */
+>-		xe_map_memcpy_to(xe, &bo->vmap, 0, backup->vmap.vaddr,
+>+		xe_map_memcpy_to(xe, &bo->vmap, 0, iosys_map_ptr(&backup->vmap),
+> 				 bo->size);
+> 	}
 >
-> 	ret = qxl_image_init(qdev, release, dimage, surface_base,
-> 			     left - dumb_shadow_offset,
->diff --git a/drivers/gpu/drm/qxl/qxl_object.c b/drivers/gpu/drm/qxl/qxl_object.c
->index 66635c55cf85..dcc1f6393885 100644
->--- a/drivers/gpu/drm/qxl/qxl_object.c
->+++ b/drivers/gpu/drm/qxl/qxl_object.c
->@@ -172,10 +172,10 @@ int qxl_bo_vmap_locked(struct qxl_bo *bo, struct iosys_map *map)
-> 	bo->map_count = 1;
+>@@ -2226,9 +2226,9 @@ int xe_managed_bo_reinit_in_vram(struct xe_device *xe, struct xe_tile *tile, str
+> 				      XE_BO_FLAG_PINNED_NORESTORE);
 >
-> 	/* TODO: Remove kptr in favor of map everywhere. */
->-	if (bo->map.is_iomem)
->-		bo->kptr = (void *)bo->map.vaddr_iomem;
->+	if (iosys_map_is_iomem(&bo->map))
->+		bo->kptr = (void *)iosys_map_ioptr(&bo->map);
+> 	xe_assert(xe, IS_DGFX(xe));
+>-	xe_assert(xe, !(*src)->vmap.is_iomem);
+>+	xe_assert(xe, !iosys_map_is_iomem(&(*src)->vmap));
+>
+>-	bo = xe_managed_bo_create_from_data(xe, tile, (*src)->vmap.vaddr,
+>+	bo = xe_managed_bo_create_from_data(xe, tile, iosys_map_ptr(&(*src)->vmap),
+> 					    (*src)->size, dst_flags);
+> 	if (IS_ERR(bo))
+> 		return PTR_ERR(bo);
+>diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
+>index 96732613b4b7..d8f900efac95 100644
+>--- a/drivers/gpu/drm/xe/xe_eu_stall.c
+>+++ b/drivers/gpu/drm/xe/xe_eu_stall.c
+>@@ -741,7 +741,7 @@ static int xe_eu_stall_stream_init(struct xe_eu_stall_data_stream *stream,
+> 	for_each_dss_steering(xecore, gt, group, instance) {
+> 		xecore_buf = &stream->xecore_buf[xecore];
+> 		vaddr_offset = xecore * stream->per_xecore_buf_size;
+>-		xecore_buf->vaddr = stream->bo->vmap.vaddr + vaddr_offset;
+>+		xecore_buf->vaddr = iosys_map_ptr(&stream->bo->vmap) + vaddr_offset;
+> 	}
+> 	return 0;
+> }
+>diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+>index 18c623992035..c7ad56774c99 100644
+>--- a/drivers/gpu/drm/xe/xe_guc_pc.c
+>+++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+>@@ -1068,7 +1068,7 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
+> 		goto out;
+> 	}
+>
+>-	memset(pc->bo->vmap.vaddr, 0, size);
+>+	memset(iosys_map_ptr(&pc->bo->vmap), 0, size);
 
-this looks wrong as we then lose the __iomem. Or is this dead code and
-it's never iomem?  Anyway, pre-existent issue unrelated to this patch.
+this is wrong, we need to move it to iosys_map_memset().
+
+
+> 	slpc_shared_data_write(pc, header.size, size);
+>
+> 	earlier = ktime_get();
+>diff --git a/drivers/gpu/drm/xe/xe_map.h b/drivers/gpu/drm/xe/xe_map.h
+>index f62e0c8b67ab..37842c02c7f9 100644
+>--- a/drivers/gpu/drm/xe/xe_map.h
+>+++ b/drivers/gpu/drm/xe/xe_map.h
+>@@ -49,10 +49,10 @@ static inline u32 xe_map_read32(struct xe_device *xe, struct iosys_map *map)
+> {
+> 	xe_device_assert_mem_access(xe);
+>
+>-	if (map->is_iomem)
+>-		return readl(map->vaddr_iomem);
+>+	if (iosys_map_is_iomem(map))
+>+		return readl(iosys_map_ioptr(map));
+> 	else
+>-		return READ_ONCE(*(u32 *)map->vaddr);
+>+		return READ_ONCE(*(u32 *)iosys_map_ptr(map));
+
+we added this because of the mem_access. But I have no idea why exactly
+this is hand rolling the read.
+
+It seems we'd benefit from also having fixed-types (at least u32) in
+iosys_map so drivers don't seem tempted to do this.
 
 Lucas De Marchi
 
+> }
+>
+> static inline void xe_map_write32(struct xe_device *xe, struct iosys_map *map,
+>@@ -60,10 +60,10 @@ static inline void xe_map_write32(struct xe_device *xe, struct iosys_map *map,
+> {
+> 	xe_device_assert_mem_access(xe);
+>
+>-	if (map->is_iomem)
+>-		writel(val, map->vaddr_iomem);
+>+	if (iosys_map_is_iomem(map))
+>+		writel(val, iosys_map_ioptr(map));
 > 	else
->-		bo->kptr = bo->map.vaddr;
->+		bo->kptr = iosys_map_ptr(&bo->map);
+>-		*(u32 *)map->vaddr = val;
+>+		*(u32 *)iosys_map_ptr(map) = val;
+> }
 >
-> out:
-> 	*map = bo->map;
->@@ -230,7 +230,7 @@ void *qxl_bo_kmap_atomic_page(struct qxl_device *qdev,
-> 	ret = qxl_bo_vmap_locked(bo, &bo_map);
-> 	if (ret)
-> 		return NULL;
->-	rptr = bo_map.vaddr; /* TODO: Use mapping abstraction properly */
->+	rptr = iosys_map_ptr(&bo_map); /* TODO: Use mapping abstraction properly */
+> #define xe_map_rd(xe__, map__, offset__, type__) ({			\
+>diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
+>index 49c45ec3e83c..458955c75e04 100644
+>--- a/drivers/gpu/drm/xe/xe_memirq.c
+>+++ b/drivers/gpu/drm/xe/xe_memirq.c
+>@@ -198,9 +198,9 @@ static int memirq_alloc_pages(struct xe_memirq *memirq)
+> 	memirq->status = IOSYS_MAP_INIT_OFFSET(&bo->vmap, XE_MEMIRQ_STATUS_OFFSET(0));
+> 	memirq->mask = IOSYS_MAP_INIT_OFFSET(&bo->vmap, XE_MEMIRQ_ENABLE_OFFSET);
 >
-> 	rptr += page_offset * PAGE_SIZE;
-> 	return rptr;
+>-	memirq_assert(memirq, !memirq->source.is_iomem);
+>-	memirq_assert(memirq, !memirq->status.is_iomem);
+>-	memirq_assert(memirq, !memirq->mask.is_iomem);
+>+	memirq_assert(memirq, !iosys_map_is_iomem(&memirq->source));
+>+	memirq_assert(memirq, !iosys_map_is_iomem(&memirq->status));
+>+	memirq_assert(memirq, !iosys_map_is_iomem(&memirq->mask));
+>
+> 	memirq_debug(memirq, "page offsets: bo %#x bo_size %zu source %#x status %#x\n",
+> 		     xe_bo_ggtt_addr(bo), bo_size, XE_MEMIRQ_SOURCE_OFFSET(0),
+>@@ -418,7 +418,7 @@ static bool memirq_received(struct xe_memirq *memirq, struct iosys_map *vector,
+> static void memirq_dispatch_engine(struct xe_memirq *memirq, struct iosys_map *status,
+> 				   struct xe_hw_engine *hwe)
+> {
+>-	memirq_debug(memirq, "STATUS %s %*ph\n", hwe->name, 16, status->vaddr);
+>+	memirq_debug(memirq, "STATUS %s %*ph\n", hwe->name, 16, iosys_map_ptr(status));
+>
+> 	if (memirq_received(memirq, status, ilog2(GT_RENDER_USER_INTERRUPT), hwe->name))
+> 		xe_hw_engine_handle_irq(hwe, GT_RENDER_USER_INTERRUPT);
+>@@ -429,7 +429,7 @@ static void memirq_dispatch_guc(struct xe_memirq *memirq, struct iosys_map *stat
+> {
+> 	const char *name = guc_name(guc);
+>
+>-	memirq_debug(memirq, "STATUS %s %*ph\n", name, 16, status->vaddr);
+>+	memirq_debug(memirq, "STATUS %s %*ph\n", name, 16, iosys_map_ptr(status));
+>
+> 	if (memirq_received(memirq, status, ilog2(GUC_INTR_GUC2HOST), name))
+> 		xe_guc_irq_handler(guc, GUC_INTR_GUC2HOST);
+>@@ -479,9 +479,9 @@ void xe_memirq_handler(struct xe_memirq *memirq)
+> 	if (!memirq->bo)
+> 		return;
+>
+>-	memirq_assert(memirq, !memirq->source.is_iomem);
+>-	memirq_debug(memirq, "SOURCE %*ph\n", 32, memirq->source.vaddr);
+>-	memirq_debug(memirq, "SOURCE %*ph\n", 32, memirq->source.vaddr + 32);
+>+	memirq_assert(memirq, !iosys_map_is_iomem(&memirq->source));
+>+	memirq_debug(memirq, "SOURCE %*ph\n", 32, iosys_map_ptr(&memirq->source));
+>+	memirq_debug(memirq, "SOURCE %*ph\n", 32, iosys_map_ptr(&memirq->source) + 32);
+>
+> 	for_each_gt(gt, xe, gtid) {
+> 		if (gt->tile != tile)
+>diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+>index fb842fa0552e..99424d790d84 100644
+>--- a/drivers/gpu/drm/xe/xe_oa.c
+>+++ b/drivers/gpu/drm/xe/xe_oa.c
+>@@ -880,8 +880,8 @@ static int xe_oa_alloc_oa_buffer(struct xe_oa_stream *stream, size_t size)
+>
+> 	stream->oa_buffer.bo = bo;
+> 	/* mmap implementation requires OA buffer to be in system memory */
+>-	xe_assert(stream->oa->xe, bo->vmap.is_iomem == 0);
+>-	stream->oa_buffer.vaddr = bo->vmap.vaddr;
+>+	xe_assert(stream->oa->xe, iosys_map_is_iomem(&bo->vmap) == 0);
+>+	stream->oa_buffer.vaddr = iosys_map_ptr(&bo->vmap);
+> 	return 0;
+> }
+>
+>diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+>index b42cf5d1b20c..af0992aea6b4 100644
+>--- a/drivers/gpu/drm/xe/xe_pt.c
+>+++ b/drivers/gpu/drm/xe/xe_pt.c
+>@@ -1723,12 +1723,12 @@ xe_migrate_clear_pgtable_callback(struct xe_migrate_pt_update *pt_update,
+> 	u64 empty = __xe_pt_empty_pte(tile, vm, update->pt->level);
+> 	int i;
+>
+>-	if (map && map->is_iomem)
+>+	if (map && iosys_map_is_iomem(map))
+> 		for (i = 0; i < num_qwords; ++i)
+> 			xe_map_wr(tile_to_xe(tile), map, (qword_ofs + i) *
+> 				  sizeof(u64), u64, empty);
+> 	else if (map)
+>-		memset64(map->vaddr + qword_ofs * sizeof(u64), empty,
+>+		memset64(iosys_map_ptr(map) + qword_ofs * sizeof(u64), empty,
+> 			 num_qwords);
+> 	else
+> 		memset64(ptr, empty, num_qwords);
+>diff --git a/drivers/gpu/drm/xe/xe_sa.c b/drivers/gpu/drm/xe/xe_sa.c
+>index 1d43e183ca21..4ac335c68242 100644
+>--- a/drivers/gpu/drm/xe/xe_sa.c
+>+++ b/drivers/gpu/drm/xe/xe_sa.c
+>@@ -68,15 +68,15 @@ struct xe_sa_manager *__xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u3
+> 		return ERR_CAST(bo);
+> 	}
+> 	sa_manager->bo = bo;
+>-	sa_manager->is_iomem = bo->vmap.is_iomem;
+>+	sa_manager->is_iomem = iosys_map_is_iomem(&bo->vmap);
+> 	sa_manager->gpu_addr = xe_bo_ggtt_addr(bo);
+>
+>-	if (bo->vmap.is_iomem) {
+>+	if (iosys_map_is_iomem(&bo->vmap)) {
+> 		sa_manager->cpu_ptr = kvzalloc(managed_size, GFP_KERNEL);
+> 		if (!sa_manager->cpu_ptr)
+> 			return ERR_PTR(-ENOMEM);
+> 	} else {
+>-		sa_manager->cpu_ptr = bo->vmap.vaddr;
+>+		sa_manager->cpu_ptr = iosys_map_ptr(&bo->vmap);
+> 		memset(sa_manager->cpu_ptr, 0, bo->ttm.base.size);
+> 	}
+>
+>@@ -116,7 +116,7 @@ void xe_sa_bo_flush_write(struct drm_suballoc *sa_bo)
+> 	struct xe_sa_manager *sa_manager = to_xe_sa_manager(sa_bo->manager);
+> 	struct xe_device *xe = tile_to_xe(sa_manager->bo->tile);
+>
+>-	if (!sa_manager->bo->vmap.is_iomem)
+>+	if (!iosys_map_is_iomem(&sa_manager->bo->vmap))
+> 		return;
+>
+> 	xe_map_memcpy_to(xe, &sa_manager->bo->vmap, drm_suballoc_soffset(sa_bo),
 >-- 
 >2.49.0
 >
