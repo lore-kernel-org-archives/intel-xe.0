@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E34DC54E65
-	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 08:16:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E562C54E65
+	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 08:17:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E8CB10EB64;
-	Thu, 22 May 2025 08:16:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6319310EA57;
+	Thu, 22 May 2025 08:17:06 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FEA910EA5F;
- Thu, 22 May 2025 08:16:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 754EE10EC81;
+ Thu, 22 May 2025 08:17:01 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/hwmon=3A_Add_?=
- =?utf-8?q?mailbox_power_limits=2C_PL2=2C_read_energy_from_PMT_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/hwmon=3A_Add_mailb?=
+ =?utf-8?q?ox_power_limits=2C_PL2=2C_read_energy_from_PMT_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Karthik Poosa" <karthik.poosa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 22 May 2025 08:16:45 -0000
-Message-ID: <174790180506.12880.16613708111611536515@1538d3639d33>
+Date: Thu, 22 May 2025 08:17:01 -0000
+Message-ID: <174790182147.12880.12182938591937021706@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250514180455.1622625-1-karthik.poosa@intel.com>
 In-Reply-To: <20250514180455.1622625-1-karthik.poosa@intel.com>
@@ -48,13 +48,47 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 09130f929f7c drm-tip: 2025y-05m-22d-06h-26m-11s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/hwmon: Add support to manage power limits though mailbox
-Applying: drm/xe/hwmon: Move card reactive critical power under channel card
-Applying: drm/xe/hwmon: Add support to manage PL2 though mailbox
-Applying: drm/xe/hwmon: Expose powerX_cap_interval
-Applying: drm/xe/hwmon: Read energy status from PMT
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 8489023c73dcaadbbd86e5d4807dc603978f1958
+Author: Karthik Poosa <karthik.poosa@intel.com>
+Date:   Wed May 14 23:34:55 2025 +0530
+
+    drm/xe/hwmon: Read energy status from PMT
+    
+    Read card and package energy status using pmt apis instead
+    of xe_mmio for supported platforms.
+    Enable Battlemage to read energy from PMT.
+    
+    v2:
+     - Remove unused has_pmt_energy field. (Badal)
+     - Use GENMASK to extract energy data. (Badal)
+    
+    v3:
+     - Move PMT energy register offset and GENMASK to xe_pmt.h
+     - Address review comments. (Jani)
+    
+    v4:
+     - Remove unnecessary debug print. (Badal)
+    
+    v5:
+     - Resolve an unused variable warning.
+     - Add a return value check.
+    
+    Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+    Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
++ /mt/dim checkpatch 09130f929f7c79440cc8890bcce976843f439f01 drm-intel
+85a73d55e7ce drm/xe/hwmon: Add support to manage power limits though mailbox
+f8094b92caf5 drm/xe/hwmon: Move card reactive critical power under channel card
+74421e66cd95 drm/xe/hwmon: Add support to manage PL2 though mailbox
+4e3a28fcab9f drm/xe/hwmon: Expose powerX_cap_interval
+8489023c73dc drm/xe/hwmon: Read energy status from PMT
 
 
