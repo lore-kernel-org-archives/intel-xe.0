@@ -4,48 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C11FC54E65
-	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 06:58:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60DDCC54E65
+	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 06:59:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A35EC89E59;
-	Thu, 22 May 2025 06:56:31 +0000 (UTC)
-Received: from us-smtp-delivery-44.mimecast.com
- (us-smtp-delivery-44.mimecast.com [207.211.30.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCBD19AFAF
- for <intel-xe@lists.freedesktop.org>; Thu, 22 May 2025 06:55:45 +0000 (UTC)
-Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-215-vf-P_vhMPyia1LyQ7mZCtA-1; Thu,
- 22 May 2025 02:55:41 -0400
-X-MC-Unique: vf-P_vhMPyia1LyQ7mZCtA-1
-X-Mimecast-MFC-AGG-ID: vf-P_vhMPyia1LyQ7mZCtA_1747896940
-Received: from mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.40])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 4A794180036F; Thu, 22 May 2025 06:55:40 +0000 (UTC)
-Received: from dreadlord.redhat.com (unknown [10.64.136.70])
- by mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 74C331958014; Thu, 22 May 2025 06:55:38 +0000 (UTC)
-From: Dave Airlie <airlied@gmail.com>
-To: dri-devel@lists.freedesktop.org,
-	tzimmermann@suse.de
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 6/9] drm/ttm: avoid accessing iosys_map internals.
-Date: Thu, 22 May 2025 16:52:15 +1000
-Message-ID: <20250522065519.318013-7-airlied@gmail.com>
-In-Reply-To: <20250522065519.318013-1-airlied@gmail.com>
-References: <20250522065519.318013-1-airlied@gmail.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7539610E715;
+	Thu, 22 May 2025 06:59:22 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ko2ZRKEw";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D3E310E715;
+ Thu, 22 May 2025 06:59:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1747897161; x=1779433161;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=EaJTGfLSy5tBF5KqdT9Pas9+R9VheerSann76xC34oY=;
+ b=ko2ZRKEwhS10NhK+G0BaOCDh7l+d+FBX6LEirnv4G1R32B5hCMYMQP75
+ FkXG2OFCJykZXox4t+AtGpceQjIfqpVv2sYQ7MHUYmZTx0aVm2BnJ8Ksi
+ tZfHiJc99GBL2XZs2BB/C2UCDmOsTdc6YEQQ+1AoaVMBAM+/JiGV7i3wl
+ gskJR70eNYHEQpRVwlW2ZMO2nIoHH6GhLDAtebu8SR7HbecD1zhw1Tov2
+ pgTcjvtE80KGJ+eCskPVORrtzFyRfRVUFoGaJqPOO1k7TIJWLGOOx3+xA
+ o4YBPzhlfkw4hEUWEBerd8GSsMfqW1+duVErbZDES8pFcPmdQ14szobkl g==;
+X-CSE-ConnectionGUID: xCfnZ5tTTqGhxMMtEIH13A==
+X-CSE-MsgGUID: +FEkhHXVRwuOrgxlxLp/UQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11440"; a="60954643"
+X-IronPort-AV: E=Sophos;i="6.15,305,1739865600"; d="scan'208";a="60954643"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2025 23:59:20 -0700
+X-CSE-ConnectionGUID: HTA9Y1E6S26QqTNPiK+HUw==
+X-CSE-MsgGUID: 5MhUpty7RZirO0QwejX6qA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,305,1739865600"; d="scan'208";a="140975294"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.66])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2025 23:59:16 -0700
+Date: Thu, 22 May 2025 09:59:13 +0300
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-next-fixes
+Message-ID: <aC7LQUtxXKgOVTVt@jlahtine-mobl>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.40
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: 2kIDGnSQdxOVbfaTwLwBtYnapxj6TA2BhXiGcsSyN3M_1747896940
-X-Mimecast-Originator: gmail.com
-Content-Transfer-Encoding: quoted-printable
-content-type: text/plain; charset=WINDOWS-1252; x-default=true
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,95 +75,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Dave Airlie <airlied@redhat.com>
+Hi Dave & Sima,
 
-This uses the new accessors to use iosys_map.
+Here goes another drm-intel-next-fixes PR towards 6.16-rc1.
 
-Signed-off-by: Dave Airlie <airlied@redhat.com>
----
- drivers/gpu/drm/ttm/ttm_bo_util.c  | 12 ++++++------
- drivers/gpu/drm/ttm/ttm_resource.c |  8 ++++----
- drivers/gpu/drm/ttm/ttm_tt.c       |  2 +-
- 3 files changed, 11 insertions(+), 11 deletions(-)
+Thunderbolt disconnect fix for MTL/ARL/LNL, DDI port clock fix for PTL+ and WQ
+allocation error check for display init code.
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo=
-_util.c
-index 15cab9bda17f..ba7075fa9876 100644
---- a/drivers/gpu/drm/ttm/ttm_bo_util.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
-@@ -99,10 +99,10 @@ void ttm_move_memcpy(bool clear,
- =09if (clear) {
- =09=09for (i =3D 0; i < num_pages; ++i) {
- =09=09=09dst_ops->map_local(dst_iter, &dst_map, i);
--=09=09=09if (dst_map.is_iomem)
--=09=09=09=09memset_io(dst_map.vaddr_iomem, 0, PAGE_SIZE);
-+=09=09=09if (iosys_map_is_iomem(&dst_map))
-+=09=09=09=09memset_io(iosys_map_ioptr(&dst_map), 0, PAGE_SIZE);
- =09=09=09else
--=09=09=09=09memset(dst_map.vaddr, 0, PAGE_SIZE);
-+=09=09=09=09memset(iosys_map_ptr(&dst_map), 0, PAGE_SIZE);
- =09=09=09if (dst_ops->unmap_local)
- =09=09=09=09dst_ops->unmap_local(dst_iter, &dst_map);
- =09=09}
-@@ -544,10 +544,10 @@ void ttm_bo_vunmap(struct ttm_buffer_object *bo, stru=
-ct iosys_map *map)
- =09if (iosys_map_is_null(map))
- =09=09return;
-=20
--=09if (!map->is_iomem)
--=09=09vunmap(map->vaddr);
-+=09if (!iosys_map_is_iomem(map))
-+=09=09vunmap(iosys_map_ptr(map));
- =09else if (!mem->bus.addr)
--=09=09iounmap(map->vaddr_iomem);
-+=09=09iounmap(iosys_map_ioptr(map));
- =09iosys_map_clear(map);
-=20
- =09ttm_mem_io_free(bo->bdev, bo->resource);
-diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_r=
-esource.c
-index 769b0ca9be47..0e7b4c6c16f8 100644
---- a/drivers/gpu/drm/ttm/ttm_resource.c
-+++ b/drivers/gpu/drm/ttm/ttm_resource.c
-@@ -742,7 +742,7 @@ static void ttm_kmap_iter_iomap_map_local(struct ttm_km=
-ap_iter *iter,
- static void ttm_kmap_iter_iomap_unmap_local(struct ttm_kmap_iter *iter,
- =09=09=09=09=09    struct iosys_map *map)
- {
--=09io_mapping_unmap_local(map->vaddr_iomem);
-+=09io_mapping_unmap_local(iosys_map_ioptr(map));
- }
-=20
- static const struct ttm_kmap_iter_ops ttm_kmap_iter_io_ops =3D {
-@@ -886,10 +886,10 @@ ttm_kmap_iter_linear_io_fini(struct ttm_kmap_iter_lin=
-ear_io *iter_io,
- =09=09=09     struct ttm_resource *mem)
- {
- =09if (iter_io->needs_unmap && iosys_map_is_set(&iter_io->dmap)) {
--=09=09if (iter_io->dmap.is_iomem)
--=09=09=09iounmap(iter_io->dmap.vaddr_iomem);
-+=09=09if (iosys_map_is_iomem(&iter_io->dmap))
-+=09=09=09iounmap(iosys_map_ioptr(&iter_io->dmap));
- =09=09else
--=09=09=09memunmap(iter_io->dmap.vaddr);
-+=09=09=09memunmap(iosys_map_ptr(&iter_io->dmap));
- =09}
-=20
- =09ttm_mem_io_free(bdev, mem);
-diff --git a/drivers/gpu/drm/ttm/ttm_tt.c b/drivers/gpu/drm/ttm/ttm_tt.c
-index df0aa6c4b8b8..ff9856e41b43 100644
---- a/drivers/gpu/drm/ttm/ttm_tt.c
-+++ b/drivers/gpu/drm/ttm/ttm_tt.c
-@@ -495,7 +495,7 @@ static void ttm_kmap_iter_tt_map_local(struct ttm_kmap_=
-iter *iter,
- static void ttm_kmap_iter_tt_unmap_local(struct ttm_kmap_iter *iter,
- =09=09=09=09=09 struct iosys_map *map)
- {
--=09kunmap_local(map->vaddr);
-+=09kunmap_local(iosys_map_ptr(map));
- }
-=20
- static const struct ttm_kmap_iter_ops ttm_kmap_iter_tt_ops =3D {
---=20
-2.49.0
+Regards, Joonas
 
+PS. CI results were for one patch more, which I reverted during review
+of the automation picked patches, but results should still be valid.
+
+***
+
+drm-intel-next-fixes-2025-05-22:
+
+- Fix for Thunderbolt sink disconnect on MTL/ARL/LNL
+- Fix for DDI port clock select mask on PTL+
+- Add error checks for alloc_ordered_workqueue() and alloc_workqueue() in display
+
+The following changes since commit c4f8ac095fc91084108ec21117eb9c1fff64725d:
+
+  Merge tag 'nova-next-v6.16-2025-05-20' of https://gitlab.freedesktop.org/drm/nova into drm-next (2025-05-21 05:49:31 +1000)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-fixes-2025-05-22
+
+for you to fetch changes up to f4c7baa0699b69edb6887a992283b389761e0e81:
+
+  drm/i915/display: Add check for alloc_ordered_workqueue() and alloc_workqueue() (2025-05-22 09:25:57 +0300)
+
+----------------------------------------------------------------
+- Fix for Thunderbolt sink disconnect on MTL/ARL/LNL
+- Fix for DDI port clock select mask on PTL+
+- Add error checks for alloc_ordered_workqueue() and alloc_workqueue() in display
+
+----------------------------------------------------------------
+Haoxiang Li (1):
+      drm/i915/display: Add check for alloc_ordered_workqueue() and alloc_workqueue()
+
+Imre Deak (2):
+      drm/i915/ptl: Use everywhere the correct DDI port clock select mask
+      drm/i915/dp_mst: Work around Thunderbolt sink disconnect after SINK_COUNT_ESI read
+
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c       | 27 ++++++++-----------
+ drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h  | 15 ++++++++---
+ .../gpu/drm/i915/display/intel_display_driver.c    | 30 ++++++++++++++++++----
+ drivers/gpu/drm/i915/display/intel_dp.c            | 17 ++++++++++++
+ 4 files changed, 63 insertions(+), 26 deletions(-)
