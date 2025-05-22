@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E562C54E65
-	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 08:17:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62660C54756
+	for <intel-xe@archiver.kernel.org>; Thu, 22 May 2025 08:17:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6319310EA57;
-	Thu, 22 May 2025 08:17:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A11FC8953E;
+	Thu, 22 May 2025 08:17:34 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 754EE10EC81;
- Thu, 22 May 2025 08:17:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5117610EBA2;
+ Thu, 22 May 2025 08:17:32 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/hwmon=3A_Add_mailb?=
- =?utf-8?q?ox_power_limits=2C_PL2=2C_read_energy_from_PMT_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe/hwmon=3A_Add_mailbox_po?=
+ =?utf-8?q?wer_limits=2C_PL2=2C_read_energy_from_PMT_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Karthik Poosa" <karthik.poosa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 22 May 2025 08:17:01 -0000
-Message-ID: <174790182147.12880.12182938591937021706@1538d3639d33>
+Date: Thu, 22 May 2025 08:17:32 -0000
+Message-ID: <174790185232.12900.4241498585774008676@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250514180455.1622625-1-karthik.poosa@intel.com>
 In-Reply-To: <20250514180455.1622625-1-karthik.poosa@intel.com>
@@ -44,51 +44,39 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/hwmon: Add mailbox power limits, PL2, read energy from PMT (rev2)
 URL   : https://patchwork.freedesktop.org/series/149026/
-State : success
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-202708c00696422fd217223bb679a353a5936e23
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 8489023c73dcaadbbd86e5d4807dc603978f1958
-Author: Karthik Poosa <karthik.poosa@intel.com>
-Date:   Wed May 14 23:34:55 2025 +0530
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../drivers/gpu/drm/drm_bridge.c:1406:6: error: redefinition of ‘devm_drm_put_bridge’
+ 1406 | void devm_drm_put_bridge(struct device *dev, struct drm_bridge *bridge)
+      |      ^~~~~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/drm_bridge.c:31:
+../include/drm/drm_bridge.h:1314:20: note: previous definition of ‘devm_drm_put_bridge’ with type ‘void(struct device *, struct drm_bridge *)’
+ 1314 | static inline void devm_drm_put_bridge(struct device *dev, struct drm_bridge *bridge) {}
+      |                    ^~~~~~~~~~~~~~~~~~~
+make[6]: *** [../scripts/Makefile.build:203: drivers/gpu/drm/drm_bridge.o] Error 1
+make[6]: *** Waiting for unfinished jobs....
+make[5]: *** [../scripts/Makefile.build:461: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:461: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:461: drivers] Error 2
+make[2]: *** [/kernel/Makefile:2003: .] Error 2
+make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
-    drm/xe/hwmon: Read energy status from PMT
-    
-    Read card and package energy status using pmt apis instead
-    of xe_mmio for supported platforms.
-    Enable Battlemage to read energy from PMT.
-    
-    v2:
-     - Remove unused has_pmt_energy field. (Badal)
-     - Use GENMASK to extract energy data. (Badal)
-    
-    v3:
-     - Move PMT energy register offset and GENMASK to xe_pmt.h
-     - Address review comments. (Jani)
-    
-    v4:
-     - Remove unnecessary debug print. (Badal)
-    
-    v5:
-     - Resolve an unused variable warning.
-     - Add a return value check.
-    
-    Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
-    Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
-+ /mt/dim checkpatch 09130f929f7c79440cc8890bcce976843f439f01 drm-intel
-85a73d55e7ce drm/xe/hwmon: Add support to manage power limits though mailbox
-f8094b92caf5 drm/xe/hwmon: Move card reactive critical power under channel card
-74421e66cd95 drm/xe/hwmon: Add support to manage PL2 though mailbox
-4e3a28fcab9f drm/xe/hwmon: Expose powerX_cap_interval
-8489023c73dc drm/xe/hwmon: Read energy status from PMT
+[08:17:02] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[08:17:06] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
