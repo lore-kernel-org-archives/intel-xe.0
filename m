@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2A44C54F47
-	for <intel-xe@archiver.kernel.org>; Fri, 23 May 2025 19:00:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5CB8C54ED0
+	for <intel-xe@archiver.kernel.org>; Fri, 23 May 2025 19:00:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 957FB10E851;
-	Fri, 23 May 2025 19:00:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AA1F10E16F;
+	Fri, 23 May 2025 18:59:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CCIfNa/Q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RQgq4aLy";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9501C10E851
- for <intel-xe@lists.freedesktop.org>; Fri, 23 May 2025 18:59:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 345B810E0A4
+ for <intel-xe@lists.freedesktop.org>; Fri, 23 May 2025 18:59:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748026799; x=1779562799;
+ t=1748026796; x=1779562796;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=XZYMSdRM/CeVnis/V3tbQbWjyaGZsUwIMsXLqecNb9Q=;
- b=CCIfNa/QLmeyX6tmy/OCUUgwNHQPcd6bNARBrak+LLC+mqeneym0NF6D
- ibEB/PKjkUDZiZZfoDpPEkh1ZqSG7X+1dgFiYaUBINVCYZP14+FuWgXBS
- qngxabbYPbgXFwwgBa+Ndg+XBndIUbgKZHSfrbcTsQW7Vs0H3VLeyHMm2
- ug4iwNje/6Me//GiV3MGR2YXNr1ukfqrvNW3hpSfHkvvdZDnMDrU/nMLN
- fUO3uNgWJ2Cs3oK/2ARnXks7axInCBnHBoMUBSYNGl9jaCIctBp4Lo4e+
- kscKey5OqOYn0nZObX0o+x9xJWg2KnpGZpvCDkAFa0kHPv7fGRxEPCqE1 A==;
-X-CSE-ConnectionGUID: 9ehu4O8aQ7ikkkHt4KG1rg==
-X-CSE-MsgGUID: lq9co25eSmeQWVIPHG0SdA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="61498470"
-X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; d="scan'208";a="61498470"
+ bh=QQLgSrDm1RsgDz5vL/NtHO9UusnR/CSWpW8ZzGV0fM8=;
+ b=RQgq4aLyoMFAnib4ydcAgig1hf7u0j4igIfllfiq9DkFzpiR0hQ4YbZh
+ U3ajjLDbrdKczqC5ursBNTNG+NjebBrxZo/qlZ8fd31Kf4W3b8v8K/5RH
+ U8UbPJjPRru1g1OKK5kPlpavYCkA0HFDevUmEduMZgiygZmbpSUe1PLmB
+ ly9ZuEU9Uh5d1E73znjlK7CRCFBP6ng5EziddpGI4dGvcchI5PC+MJooL
+ MIjIoAAms9oGLLIZ6AWv3nX/MOTcNYXoq8XKBGfsRc8YKOXCrZAR3MZhD
+ dEusxDmZvKGItvc07AhFJBsxGUr5DWIpogISjuZB3bQucKizhikoIL4SL g==;
+X-CSE-ConnectionGUID: RBDH04zoTQqBJsWpLTftTA==
+X-CSE-MsgGUID: 2sl3f9xsS86CXwqftDgYzw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="61498446"
+X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; d="scan'208";a="61498446"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2025 11:59:59 -0700
-X-CSE-ConnectionGUID: UviwiJiBQH6hdYJ00UcQKA==
-X-CSE-MsgGUID: QV17UTgbRRaIffwc524iIA==
+ 23 May 2025 11:59:55 -0700
+X-CSE-ConnectionGUID: IuCQ7L9rTXqxj/2syEb9Vg==
+X-CSE-MsgGUID: mkH7DkNtRiqSxpqY56sQoA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; d="scan'208";a="141758894"
+X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; d="scan'208";a="141758870"
 Received: from unknown (HELO bnilawar-desk2.iind.intel.com) ([10.190.239.41])
  by fmviesa010-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 May 2025 11:59:55 -0700
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 May 2025 11:59:51 -0700
 From: Badal Nilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org, linux-acpi@vger.kernel.org,
  linux-pci@vger.kernel.org
@@ -48,9 +48,10 @@ Cc: anshuman.gupta@intel.com, rafael@kernel.org, lenb@kernel.org,
  bhelgaas@google.com, ilpo.jarvinen@linux.intel.com,
  lucas.demarchi@intel.com, rodrigo.vivi@intel.com, varun.gupta@intel.com,
  ville.syrjala@linux.intel.com, uma.shankar@intel.com
-Subject: [PATCH v3 03/11] PCI/ACPI: Add PERST# Assertion Delay _DSM method
-Date: Sat, 24 May 2025 00:31:47 +0530
-Message-Id: <20250523190155.2623462-4-badal.nilawar@intel.com>
+Subject: [PATCH v3 02/11] PCI/ACPI: Per root port allow one Aux power limit
+ request
+Date: Sat, 24 May 2025 00:31:46 +0530
+Message-Id: <20250523190155.2623462-3-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250523190155.2623462-1-badal.nilawar@intel.com>
 References: <20250523190155.2623462-1-badal.nilawar@intel.com>
@@ -70,119 +71,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Anshuman Gupta <anshuman.gupta@intel.com>
+For given root port allow one Aux power limit request.
 
-Implement _DSM Method 0Bh as per PCI firmware specs
-section 4.6.11 Rev 3.3.
-
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+Cc: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+Cc: Anshuman Gupta <anshuman.gupta@intel.com>
 Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
 ---
- drivers/pci/pci-acpi.c   | 57 ++++++++++++++++++++++++++++++++++++++++
- include/linux/pci-acpi.h |  8 +++++-
- 2 files changed, 64 insertions(+), 1 deletion(-)
+ drivers/acpi/scan.c     |  1 +
+ drivers/pci/pci-acpi.c  | 25 ++++++++++++++++++++++++-
+ include/acpi/acpi_bus.h |  2 ++
+ 3 files changed, 27 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/acpi/scan.c b/drivers/acpi/scan.c
+index fb1fe9f3b1a3..9ae7be9db01a 100644
+--- a/drivers/acpi/scan.c
++++ b/drivers/acpi/scan.c
+@@ -745,6 +745,7 @@ int acpi_device_add(struct acpi_device *device)
+ 	INIT_LIST_HEAD(&device->physical_node_list);
+ 	INIT_LIST_HEAD(&device->del_list);
+ 	mutex_init(&device->physical_node_lock);
++	mutex_init(&device->power.aux_pwr_lock);
+ 
+ 	mutex_lock(&acpi_device_lock);
+ 
 diff --git a/drivers/pci/pci-acpi.c b/drivers/pci/pci-acpi.c
-index 53ba67678c3d..678c48f72010 100644
+index 76b19525535f..53ba67678c3d 100644
 --- a/drivers/pci/pci-acpi.c
 +++ b/drivers/pci/pci-acpi.c
-@@ -1531,6 +1531,63 @@ int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power,
- }
- EXPORT_SYMBOL_GPL(pci_acpi_request_d3cold_aux_power);
+@@ -1451,6 +1451,7 @@ int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power,
+ 	union acpi_object *out_obj;
+ 	acpi_handle handle;
+ 	int result, ret = -EINVAL;
++	struct acpi_device *adev;
  
-+/**
-+ * pci_acpi_add_perst_assertion_delay - Request PERST# delay via ACPI DSM
-+ * @dev: PCI device instance
-+ * @delay_us: Requested delay_us
-+ *
-+ * This function sends a request to the host BIOS via ACPI _DSM to grant the
-+ * required PERST# delay for the specified PCI device. It evaluates the _DSM
-+ * to request the PERST# delay and handles the response accordingly.
-+ *
-+ * Return: returns 0 on success and errno on failure.
-+ */
-+int pci_acpi_add_perst_assertion_delay(struct pci_dev *dev, u32 delay_us)
-+{
-+	union acpi_object in_obj = {
-+		.integer.type = ACPI_TYPE_INTEGER,
-+		.integer.value = delay_us,
-+	};
-+
-+	union acpi_object *out_obj;
-+	acpi_handle handle;
-+	int result, ret = -EINVAL;
-+
-+	if (!dev)
+ 	if (!dev)
+ 		return -EINVAL;
+@@ -1464,11 +1465,27 @@ int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power,
+ 		return -ENODEV;
+ 	}
+ 
++	adev = ACPI_COMPANION(&dev->dev);
++	if (!adev)
 +		return -EINVAL;
 +
-+	handle = ACPI_HANDLE(&dev->dev);
-+	if (!handle)
-+		return -EINVAL;
++	mutex_lock(&adev->power.aux_pwr_lock);
 +
-+	if (!acpi_check_dsm(handle, &pci_acpi_dsm_guid, 4, 1 << DSM_PCI_PERST_ASSERTION_DELAY)) {
-+		pci_dbg(dev, "ACPI _DSM 0%Xh not supported\n", DSM_PCI_PERST_ASSERTION_DELAY);
-+		return -ENODEV;
++	/* Check if aux power already granted */
++	if (adev->power.aux_power_limit) {
++		pci_info(dev, "D3cold Aux Power request already granted: %u mW\n",
++			 adev->power.aux_power_limit);
++		mutex_unlock(&adev->power.aux_pwr_lock);
++		return -EPERM;
 +	}
 +
-+	out_obj = acpi_evaluate_dsm_typed(handle, &pci_acpi_dsm_guid, 4,
-+					  DSM_PCI_PERST_ASSERTION_DELAY,
-+					  &in_obj, ACPI_TYPE_INTEGER);
-+	if (!out_obj)
-+		return -EINVAL;
-+
-+	result = out_obj->integer.value;
-+
-+	if (result == delay_us) {
-+		pci_info(dev, "PERST# Assertion Delay set to %u microseconds\n", delay_us);
-+		ret = 0;
-+	} else if (result == 0) {
-+		pci_warn(dev, "PERST# Assertion Delay request failed, no previous valid request\n");
-+	} else {
-+		pci_warn(dev, "PERST# Assertion Delay request failed, Previous valid delay: %u microseconds\n",
-+			 result);
+ 	out_obj = acpi_evaluate_dsm_typed(handle, &pci_acpi_dsm_guid, 4,
+ 					  DSM_PCI_D3COLD_AUX_POWER_LIMIT,
+ 					  &in_obj, ACPI_TYPE_INTEGER);
+-	if (!out_obj)
++	if (!out_obj) {
++		mutex_unlock(&adev->power.aux_pwr_lock);
+ 		return -EINVAL;
 +	}
-+
-+	ACPI_FREE(out_obj);
-+	return ret;
-+}
-+EXPORT_SYMBOL_GPL(pci_acpi_add_perst_assertion_delay);
-+
- static void pci_acpi_set_external_facing(struct pci_dev *dev)
- {
- 	u8 val;
-diff --git a/include/linux/pci-acpi.h b/include/linux/pci-acpi.h
-index 1705d03bfe26..889e469206e2 100644
---- a/include/linux/pci-acpi.h
-+++ b/include/linux/pci-acpi.h
-@@ -122,6 +122,7 @@ extern const guid_t pci_acpi_dsm_guid;
- #define DSM_PCI_POWER_ON_RESET_DELAY		0x08
- #define DSM_PCI_DEVICE_READINESS_DURATIONS	0x09
- #define DSM_PCI_D3COLD_AUX_POWER_LIMIT		0x0A
-+#define DSM_PCI_PERST_ASSERTION_DELAY		0x0B
  
- #ifdef CONFIG_PCIE_EDR
- void pci_acpi_add_edr_notifier(struct pci_dev *pdev);
-@@ -135,7 +136,7 @@ int pci_acpi_set_companion_lookup_hook(struct acpi_device *(*func)(struct pci_de
- void pci_acpi_clear_companion_lookup_hook(void);
- int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power,
- 				      u32 *retry_interval);
--
-+int pci_acpi_add_perst_assertion_delay(struct pci_dev *dev, u32 delay_us);
- #else	/* CONFIG_ACPI */
- static inline void acpi_pci_add_bus(struct pci_bus *bus) { }
- static inline void acpi_pci_remove_bus(struct pci_bus *bus) { }
-@@ -144,6 +145,11 @@ static int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_
- {
- 	return -EOPNOTSUPP;
+ 	result = out_obj->integer.value;
+ 	if (retry_interval)
+@@ -1478,14 +1495,17 @@ int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power,
+ 	case 0x0:
+ 		pci_dbg(dev, "D3cold Aux Power %u mW request denied\n",
+ 			requested_power);
++		adev->power.aux_power_limit = 0;
+ 		break;
+ 	case 0x1:
+ 		pci_info(dev, "D3cold Aux Power request granted: %u mW\n",
+ 			 requested_power);
++		adev->power.aux_power_limit = requested_power;
+ 		ret = 0;
+ 		break;
+ 	case 0x2:
+ 		pci_info(dev, "D3cold Aux Power: Main power won't be removed\n");
++		adev->power.aux_power_limit = 0;
+ 		ret = -EBUSY;
+ 		break;
+ 	default:
+@@ -1500,9 +1520,12 @@ int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power,
+ 			pci_err(dev, "D3cold Aux Power: Reserved or unsupported response: 0x%x\n",
+ 				result);
+ 		}
++		adev->power.aux_power_limit = 0;
+ 		break;
+ 	}
+ 
++	mutex_unlock(&adev->power.aux_pwr_lock);
++
+ 	ACPI_FREE(out_obj);
+ 	return ret;
  }
-+
-+static int pci_acpi_add_perst_assertion_delay(struct pci_dev *dev, u32 delay_us)
-+{
-+	return -EOPNOTSUPP;
-+}
- #endif	/* CONFIG_ACPI */
+diff --git a/include/acpi/acpi_bus.h b/include/acpi/acpi_bus.h
+index aad1a95e6863..c4ce3d84be00 100644
+--- a/include/acpi/acpi_bus.h
++++ b/include/acpi/acpi_bus.h
+@@ -294,6 +294,8 @@ struct acpi_device_power {
+ 	struct acpi_device_power_flags flags;
+ 	struct acpi_device_power_state states[ACPI_D_STATE_COUNT];	/* Power states (D0-D3Cold) */
+ 	u8 state_for_enumeration; /* Deepest power state for enumeration */
++	u32 aux_power_limit;		/* aux power limit granted by bios */
++	struct mutex aux_pwr_lock;	/* prevent concurrent aux power limit requests */
+ };
  
- #endif	/* _PCI_ACPI_H_ */
+ struct acpi_dep_data {
 -- 
 2.34.1
 
