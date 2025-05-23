@@ -4,27 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63BB7C54EDA
-	for <intel-xe@archiver.kernel.org>; Fri, 23 May 2025 08:07:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B2B5C54EDA
+	for <intel-xe@archiver.kernel.org>; Fri, 23 May 2025 08:26:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F33D110E7A7;
-	Fri, 23 May 2025 08:07:04 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F3A910E7A7;
- Fri, 23 May 2025 08:07:03 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B0E510E7A7;
+	Fri, 23 May 2025 08:26:48 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j0IUxaeE";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD02010E7A7;
+ Fri, 23 May 2025 08:26:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1747988806; x=1779524806;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=gyv3nX/mpA+ZRLA3zwQVcOhXLlpnw/Y2zjt3lFT6NAI=;
+ b=j0IUxaeE2NTNl3uqOJhlYTtqaYDq6AUhr3qCFxVQXK78U/VTke3emIof
+ /E0GNwsxwFz8MqIvuXUqTgUSMySug7tNNmEwkUVatHjH6j1cLhL/WYvVQ
+ 8Zv63F03kqMdLQFqQNLYWGcbz44i69ZnQKqmRDTuo1jSanFHStE0w6OEU
+ u+LZVujOXImdixP8/ypOrmroGSyVV713p5AVIBbGRVweLJvkl5MJtiyDY
+ dKdD0rhd0gVKoNk30eWjMVpMw0OG+YZjsblSfYXMFnzPVBOSdvaV5B762
+ Xt77SHvT7sOn+PUaElNQ/1SVeFdD50XfoxPtjuw2owLNXvWYUx+sej6Lv g==;
+X-CSE-ConnectionGUID: DtgtQCNxQxW7S/h0qU1iIA==
+X-CSE-MsgGUID: s9rzbys3QeqAvBKUHnYA2Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="72567505"
+X-IronPort-AV: E=Sophos;i="6.15,308,1739865600"; d="scan'208";a="72567505"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2025 01:26:12 -0700
+X-CSE-ConnectionGUID: 8SvSEpBqTja7Hm2fQvOr4A==
+X-CSE-MsgGUID: oZSwtSARQIypXAnLXNpCAA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,308,1739865600"; d="scan'208";a="145879479"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO fedora)
+ ([10.245.244.88])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2025 01:26:08 -0700
+Date: Fri, 23 May 2025 10:25:46 +0200
+From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-xe-next-fixes
+Message-ID: <aDAxCgfm7HJbrchD@fedora>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/vf=3A_Allow_to_in?=
- =?utf-8?q?ject_VF_provisioning_errors_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 23 May 2025 08:07:03 -0000
-Message-ID: <174798762364.16577.17560159065146256305@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250523073638.24842-1-satyanarayana.k.v.p@intel.com>
-In-Reply-To: <20250523073638.24842-1-satyanarayana.k.v.p@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +72,42 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Dave, Simona
 
-Series: drm/xe/vf: Allow to inject VF provisioning errors (rev2)
-URL   : https://patchwork.freedesktop.org/series/147731/
-State : success
+This week's drm-xe-next-fixes PR. Two small fixes.
 
-== Summary ==
+Thanks
+Thomas
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 1bb9b646d6ead84cf3f16c724f7bca2cad161839
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
+drm-xe-next-fixes-2025-05-23:
+Driver Changes:
+- Fix a SLPC debugfs NULL pointer dereference (Aradhya)
+- Fix an arbitrary value sysfs read return (Aradhya)
+The following changes since commit 1faeeb315fdbd005bbc1bc74214e39087971dda9:
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+  Merge tag 'amd-drm-next-6.16-2025-05-09' of https://gitlab.freedesktop.org/agd5f/linux into drm-next (2025-05-12 07:14:34 +1000)
 
+are available in the Git repository at:
 
+  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-fixes-2025-05-23
+
+for you to fetch changes up to 879ede53958f7bab79a88888f77e0ca91f0f77da:
+
+  drm/xe: Default auto_link_downgrade status to false (2025-05-23 09:41:06 +0200)
+
+----------------------------------------------------------------
+Driver Changes:
+- Fix a SLPC debugfs NULL pointer dereference (Aradhya)
+- Fix an arbitrary value sysfs read return (Aradhya)
+
+----------------------------------------------------------------
+Aradhya Bhatia (2):
+      drm/xe/guc: Make creation of SLPC debugfs files conditional
+      drm/xe: Default auto_link_downgrade status to false
+
+ drivers/gpu/drm/xe/xe_device_sysfs.c |  3 ++-
+ drivers/gpu/drm/xe/xe_guc_debugfs.c  | 17 ++++++++++++++---
+ 2 files changed, 16 insertions(+), 4 deletions(-)
