@@ -4,57 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0D2CC54E65
-	for <intel-xe@archiver.kernel.org>; Fri, 23 May 2025 00:32:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 167E8C54ED0
+	for <intel-xe@archiver.kernel.org>; Fri, 23 May 2025 03:02:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51FBC10E1AC;
-	Fri, 23 May 2025 00:32:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 869CE10E1AD;
+	Fri, 23 May 2025 03:02:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kaSnDrd3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Iu4Fy2bW";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB3B110E09D;
- Fri, 23 May 2025 00:32:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50E6C10E07E;
+ Fri, 23 May 2025 03:02:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747960366; x=1779496366;
+ t=1747969330; x=1779505330;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=jQbcYJ+zMiPNOIPY/YlYbM8f7IYHvmfy/OgcAcFmKa8=;
- b=kaSnDrd36ijJ9PBSEdfIYYwaxa12dIFtlVdjDk9wCIQaJPZEuDvBfpVm
- P91G/gWXyy9dK0wEC3MfAejKJ/8qbOJLB0IMxg1pT3mc2uNyKG/xO8egf
- jwSaTnkjadl3xwKCPfMTXhbDX0cWs46lbvygahv8m6orUKch/W6Zev620
- dVkPB7J1Rhip97AnhK1iuHfFJITjy1wsmjsEdvfve1eqP2EySK/IcrdHo
- uD4oYKrWRq9ETUfgT4X/1JvGErdAkERrDE57Il/azz6onA/rxmhwuU59k
- XqGTvyaOryx7ao7WAbC3F5cwIv0pX+TZbYeVC+AKu3ty4VkVGf2KnijrK w==;
-X-CSE-ConnectionGUID: yZp0iMUpRtqMQaX1W+q/hw==
-X-CSE-MsgGUID: h4jSwJqpRP6tKXkLmT98yw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="60260461"
-X-IronPort-AV: E=Sophos;i="6.15,307,1739865600"; d="scan'208";a="60260461"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2025 17:32:45 -0700
-X-CSE-ConnectionGUID: /3cTJGd6Q3SxShjmneC+uA==
-X-CSE-MsgGUID: MeVmatLYRgmZEZoM4tQOIg==
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=wplwYI7GgC9kB2y7v0LF84mYlsoFz02XT65yeJzSsCI=;
+ b=Iu4Fy2bWt56EJQ4FTNA3JCNn85/v0DCAkFVAMEddrFSmwxr1AZPAhI8D
+ F2ygFmJyhoFP/yhsPrzPE1mNa0VNF7JKyTkBsBNKRym2qrY1+qm2eNZtK
+ IExNmaduVKY8ltNNdixrmDbq/lWeUhI+4TY8Z2uuSNOpVQ9xLqKEAgKx+
+ U+BT2KqvrKkxGIleQ7YT3biHDCqHRJf5yDDv0rKCXUCn8FQ2x5wgQLGwW
+ 1p3xQOGEYNOkrO2fYsB9RpV0ND3KhsF4ps+466TD+Tayi83KLyr+gwJmT
+ JpnggpkI4wmPlddCojMA8g1nobRYsbfavTaievM3UBCwEANrovMEsuGCP w==;
+X-CSE-ConnectionGUID: t4T1ZNHJQVW4CJOzl75DLg==
+X-CSE-MsgGUID: L7R92BOzQBi5FxAz5yVEZw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="53811567"
+X-IronPort-AV: E=Sophos;i="6.15,307,1739865600"; d="scan'208";a="53811567"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2025 19:45:43 -0700
+X-CSE-ConnectionGUID: lPJiDiioS8qyMY/cX+2KUw==
+X-CSE-MsgGUID: rh8X+AASQBiFD9N6/1cKWQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,307,1739865600"; d="scan'208";a="177977783"
-Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
- by orviesa001.jf.intel.com with ESMTP; 22 May 2025 17:32:44 -0700
-Received: from kbuild by 1992f890471c with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1uIGL3-000Poe-2Y;
- Fri, 23 May 2025 00:32:41 +0000
-Date: Fri, 23 May 2025 08:32:11 +0800
-From: kernel test robot <lkp@intel.com>
-To: Dave Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
- tzimmermann@suse.de
-Cc: oe-kbuild-all@lists.linux.dev, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 3/9] firmware/tegra: avoid accessing iosys_map internals.
-Message-ID: <202505230806.C7HIxQ4g-lkp@intel.com>
-References: <20250522065519.318013-4-airlied@gmail.com>
+X-IronPort-AV: E=Sophos;i="6.15,307,1739865600"; d="scan'208";a="171873796"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2025 19:45:39 -0700
+Date: Fri, 23 May 2025 05:45:36 +0300
+From: Raag Jadav <raag.jadav@intel.com>
+To: =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@igalia.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ siqueira@igalia.com, airlied@gmail.com, simona@ffwll.ch,
+ rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
+ Xaver Hugl <xaver.hugl@gmail.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH v6 1/3] drm: Create a task info option for wedge events
+Message-ID: <aC_hUHyLhaY40aSl@black.fi.intel.com>
+References: <20250521153323.935974-1-andrealmeid@igalia.com>
+ <20250521153323.935974-2-andrealmeid@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20250522065519.318013-4-airlied@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250521153323.935974-2-andrealmeid@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,57 +76,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave,
+On Wed, May 21, 2025 at 12:33:21PM -0300, André Almeida wrote:
+> When a device get wedged, it might be caused by a guilty application.
+> For userspace, knowing which task was the cause can be useful for some
 
-kernel test robot noticed the following build errors:
+s/cause/involved
 
-[auto build test ERROR on drm/drm-next]
-[also build test ERROR on drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip v6.15-rc7 next-20250522]
-[cannot apply to drm-xe/drm-xe-next drm-exynos/exynos-drm-next linus/master]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> situations, like for implementing a policy, logs or for giving a chance
+> for the compositor to let the user know what task caused the problem.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Dave-Airlie/udmabuf-use-new-iosys_map-accessors/20250522-155237
-base:   git://anongit.freedesktop.org/drm/drm drm-next
-patch link:    https://lore.kernel.org/r/20250522065519.318013-4-airlied%40gmail.com
-patch subject: [PATCH 3/9] firmware/tegra: avoid accessing iosys_map internals.
-config: arm-randconfig-002-20250523 (https://download.01.org/0day-ci/archive/20250523/202505230806.C7HIxQ4g-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 8.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250523/202505230806.C7HIxQ4g-lkp@intel.com/reproduce)
+Ditto
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202505230806.C7HIxQ4g-lkp@intel.com/
+> This is an optional argument, when the task info is not available, the
+> PID and TASK string won't appear in the event string.
+> 
+> Sometimes just the PID isn't enough giving that the task might be already
+> dead by the time userspace will try to check what was this PID's name,
+> so to make the life easier also notify what's the task's name in the user
+> event.
 
-All error/warnings (new ones prefixed by >>):
+...
 
-   drivers/firmware/tegra/ivc.c: In function 'iosys_map_get_address':
->> drivers/firmware/tegra/ivc.c:632:29: error: expected ')' before 'return'
-     if (iosys_map_is_iomem(map)
-        ~                       ^
-                                )
-      return (unsigned long)iosys_map_ioptr(map);
-      ~~~~~~                     
->> drivers/firmware/tegra/ivc.c:636:1: error: expected expression before '}' token
-    }
-    ^
->> drivers/firmware/tegra/ivc.c:636:1: warning: no return statement in function returning non-void [-Wreturn-type]
+> -int drm_dev_wedged_event(struct drm_device *dev, unsigned long method)
+> +int drm_dev_wedged_event(struct drm_device *dev, unsigned long method,
+> +			 struct drm_wedge_task_info *info)
+>  {
+>  	const char *recovery = NULL;
+>  	unsigned int len, opt;
+> -	/* Event string length up to 28+ characters with available methods */
+> -	char event_string[32];
+> -	char *envp[] = { event_string, NULL };
+> +	char event_string[WEDGE_STR_LEN], pid_string[PID_LEN] = "", comm_string[TASK_COMM_LEN] = "";
 
+Most likely there's no need to initialize these.
 
-vim +632 drivers/firmware/tegra/ivc.c
+With above changes,
 
-   629	
-   630	static inline unsigned long iosys_map_get_address(const struct iosys_map *map)
-   631	{
- > 632		if (iosys_map_is_iomem(map)
-   633			return (unsigned long)iosys_map_ioptr(map);
-   634	
-   635		return (unsigned long)iosys_map_ptr(map);
- > 636	}
-   637	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Reviewed-by: Raag Jadav <raag.jadav@intel.com>
