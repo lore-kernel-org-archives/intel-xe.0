@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 128B7C54F32
-	for <intel-xe@archiver.kernel.org>; Fri, 23 May 2025 19:00:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2A44C54F47
+	for <intel-xe@archiver.kernel.org>; Fri, 23 May 2025 19:00:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C49F610E861;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 957FB10E851;
 	Fri, 23 May 2025 19:00:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q1vnwEEg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CCIfNa/Q";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3582910E851
- for <intel-xe@lists.freedesktop.org>; Fri, 23 May 2025 19:00:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9501C10E851
+ for <intel-xe@lists.freedesktop.org>; Fri, 23 May 2025 18:59:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748026803; x=1779562803;
+ t=1748026799; x=1779562799;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gq3lu6Vr77h2vZYMvDJ1FcMwb1J2hvDXLwwcG8LAHk0=;
- b=Q1vnwEEgLC6fO/XeC4XilPRqrlBB16ZGkEPQJU8pRXyyOcMjFxTk1doJ
- +UdEYGNU5PgP3U49jQse/DQoJ079Jdv7m6JTCIJqpYLstooOBscZpM2M+
- e8GOXTPYtF1buswxDOP8rigUdnAXs4VdL34vqGSHeTLwCv2feyyfu6T8/
- BEZ7+sISYQlH4vm/jWObh+WDra2e2gTi0iUW0kmVvwK9ZkNe48PrQ3kpE
- cLorzE94hNgUOL5T0kYUyNQHUdnmq1i3JbGbk9LNsKT2xzFHuTYWqoagR
- 5XStfVpuovLjFalKq0VAbRPkWSB98mW4gcB/f4XOPUfFFZviNtyINFSxs g==;
-X-CSE-ConnectionGUID: zObVKQ65ST292VchSfrh7Q==
-X-CSE-MsgGUID: +OUSfQnNTCC7scOZaMfGfw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="61498490"
-X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; d="scan'208";a="61498490"
+ bh=XZYMSdRM/CeVnis/V3tbQbWjyaGZsUwIMsXLqecNb9Q=;
+ b=CCIfNa/QLmeyX6tmy/OCUUgwNHQPcd6bNARBrak+LLC+mqeneym0NF6D
+ ibEB/PKjkUDZiZZfoDpPEkh1ZqSG7X+1dgFiYaUBINVCYZP14+FuWgXBS
+ qngxabbYPbgXFwwgBa+Ndg+XBndIUbgKZHSfrbcTsQW7Vs0H3VLeyHMm2
+ ug4iwNje/6Me//GiV3MGR2YXNr1ukfqrvNW3hpSfHkvvdZDnMDrU/nMLN
+ fUO3uNgWJ2Cs3oK/2ARnXks7axInCBnHBoMUBSYNGl9jaCIctBp4Lo4e+
+ kscKey5OqOYn0nZObX0o+x9xJWg2KnpGZpvCDkAFa0kHPv7fGRxEPCqE1 A==;
+X-CSE-ConnectionGUID: 9ehu4O8aQ7ikkkHt4KG1rg==
+X-CSE-MsgGUID: lq9co25eSmeQWVIPHG0SdA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="61498470"
+X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; d="scan'208";a="61498470"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2025 12:00:02 -0700
-X-CSE-ConnectionGUID: bR1amnG0SJmEsGaEqrUXDQ==
-X-CSE-MsgGUID: EPH+s7rDTZ+xUB0gqEus1w==
+ 23 May 2025 11:59:59 -0700
+X-CSE-ConnectionGUID: UviwiJiBQH6hdYJ00UcQKA==
+X-CSE-MsgGUID: QV17UTgbRRaIffwc524iIA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; d="scan'208";a="141758922"
+X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; d="scan'208";a="141758894"
 Received: from unknown (HELO bnilawar-desk2.iind.intel.com) ([10.190.239.41])
  by fmviesa010-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 May 2025 11:59:59 -0700
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 May 2025 11:59:55 -0700
 From: Badal Nilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org, linux-acpi@vger.kernel.org,
  linux-pci@vger.kernel.org
@@ -48,9 +48,9 @@ Cc: anshuman.gupta@intel.com, rafael@kernel.org, lenb@kernel.org,
  bhelgaas@google.com, ilpo.jarvinen@linux.intel.com,
  lucas.demarchi@intel.com, rodrigo.vivi@intel.com, varun.gupta@intel.com,
  ville.syrjala@linux.intel.com, uma.shankar@intel.com
-Subject: [PATCH v3 04/11] drm/xe/vrsr: Introduce flag has_vrsr
-Date: Sat, 24 May 2025 00:31:48 +0530
-Message-Id: <20250523190155.2623462-5-badal.nilawar@intel.com>
+Subject: [PATCH v3 03/11] PCI/ACPI: Add PERST# Assertion Delay _DSM method
+Date: Sat, 24 May 2025 00:31:47 +0530
+Message-Id: <20250523190155.2623462-4-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250523190155.2623462-1-badal.nilawar@intel.com>
 References: <20250523190155.2623462-1-badal.nilawar@intel.com>
@@ -70,56 +70,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce flag has_vrsr to determine if platform supports VRSR feature
+From: Anshuman Gupta <anshuman.gupta@intel.com>
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Implement _DSM Method 0Bh as per PCI firmware specs
+section 4.6.11 Rev 3.3.
+
+Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
 Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h | 2 ++
- drivers/gpu/drm/xe/xe_pci.c          | 3 +++
- 2 files changed, 5 insertions(+)
+ drivers/pci/pci-acpi.c   | 57 ++++++++++++++++++++++++++++++++++++++++
+ include/linux/pci-acpi.h |  8 +++++-
+ 2 files changed, 64 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index f81be293b260..e2749ed2a61f 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -334,6 +334,8 @@ struct xe_device {
- 		u8 has_sriov:1;
- 		/** @info.has_usm: Device has unified shared memory support */
- 		u8 has_usm:1;
-+		/** @info.has_vrsr: Has capability to enter into VRAM self refresh */
-+		u8 has_vrsr:1;
- 		/** @info.has_64bit_timestamp: Device supports 64-bit timestamps */
- 		u8 has_64bit_timestamp:1;
- 		/** @info.is_dgfx: is discrete device */
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 024175cfe61e..46a99d6ef1a5 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -68,6 +68,7 @@ struct xe_device_desc {
- 	u8 has_llc:1;
- 	u8 has_pxp:1;
- 	u8 has_sriov:1;
-+	u8 has_vrsr:1;
- 	u8 needs_scratch:1;
- 	u8 skip_guc_pc:1;
- 	u8 skip_mtcfg:1;
-@@ -342,6 +343,7 @@ static const struct xe_device_desc bmg_desc = {
- 	.dma_mask_size = 46,
- 	.has_display = true,
- 	.has_fan_control = true,
-+	.has_vrsr = true,
- 	.has_heci_cscfi = 1,
- 	.needs_scratch = true,
- };
-@@ -589,6 +591,7 @@ static int xe_info_init_early(struct xe_device *xe,
- 	xe->info.has_llc = desc->has_llc;
- 	xe->info.has_pxp = desc->has_pxp;
- 	xe->info.has_sriov = desc->has_sriov;
-+	xe->info.has_vrsr = desc->has_vrsr;
- 	xe->info.skip_guc_pc = desc->skip_guc_pc;
- 	xe->info.skip_mtcfg = desc->skip_mtcfg;
- 	xe->info.skip_pcode = desc->skip_pcode;
+diff --git a/drivers/pci/pci-acpi.c b/drivers/pci/pci-acpi.c
+index 53ba67678c3d..678c48f72010 100644
+--- a/drivers/pci/pci-acpi.c
++++ b/drivers/pci/pci-acpi.c
+@@ -1531,6 +1531,63 @@ int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power,
+ }
+ EXPORT_SYMBOL_GPL(pci_acpi_request_d3cold_aux_power);
+ 
++/**
++ * pci_acpi_add_perst_assertion_delay - Request PERST# delay via ACPI DSM
++ * @dev: PCI device instance
++ * @delay_us: Requested delay_us
++ *
++ * This function sends a request to the host BIOS via ACPI _DSM to grant the
++ * required PERST# delay for the specified PCI device. It evaluates the _DSM
++ * to request the PERST# delay and handles the response accordingly.
++ *
++ * Return: returns 0 on success and errno on failure.
++ */
++int pci_acpi_add_perst_assertion_delay(struct pci_dev *dev, u32 delay_us)
++{
++	union acpi_object in_obj = {
++		.integer.type = ACPI_TYPE_INTEGER,
++		.integer.value = delay_us,
++	};
++
++	union acpi_object *out_obj;
++	acpi_handle handle;
++	int result, ret = -EINVAL;
++
++	if (!dev)
++		return -EINVAL;
++
++	handle = ACPI_HANDLE(&dev->dev);
++	if (!handle)
++		return -EINVAL;
++
++	if (!acpi_check_dsm(handle, &pci_acpi_dsm_guid, 4, 1 << DSM_PCI_PERST_ASSERTION_DELAY)) {
++		pci_dbg(dev, "ACPI _DSM 0%Xh not supported\n", DSM_PCI_PERST_ASSERTION_DELAY);
++		return -ENODEV;
++	}
++
++	out_obj = acpi_evaluate_dsm_typed(handle, &pci_acpi_dsm_guid, 4,
++					  DSM_PCI_PERST_ASSERTION_DELAY,
++					  &in_obj, ACPI_TYPE_INTEGER);
++	if (!out_obj)
++		return -EINVAL;
++
++	result = out_obj->integer.value;
++
++	if (result == delay_us) {
++		pci_info(dev, "PERST# Assertion Delay set to %u microseconds\n", delay_us);
++		ret = 0;
++	} else if (result == 0) {
++		pci_warn(dev, "PERST# Assertion Delay request failed, no previous valid request\n");
++	} else {
++		pci_warn(dev, "PERST# Assertion Delay request failed, Previous valid delay: %u microseconds\n",
++			 result);
++	}
++
++	ACPI_FREE(out_obj);
++	return ret;
++}
++EXPORT_SYMBOL_GPL(pci_acpi_add_perst_assertion_delay);
++
+ static void pci_acpi_set_external_facing(struct pci_dev *dev)
+ {
+ 	u8 val;
+diff --git a/include/linux/pci-acpi.h b/include/linux/pci-acpi.h
+index 1705d03bfe26..889e469206e2 100644
+--- a/include/linux/pci-acpi.h
++++ b/include/linux/pci-acpi.h
+@@ -122,6 +122,7 @@ extern const guid_t pci_acpi_dsm_guid;
+ #define DSM_PCI_POWER_ON_RESET_DELAY		0x08
+ #define DSM_PCI_DEVICE_READINESS_DURATIONS	0x09
+ #define DSM_PCI_D3COLD_AUX_POWER_LIMIT		0x0A
++#define DSM_PCI_PERST_ASSERTION_DELAY		0x0B
+ 
+ #ifdef CONFIG_PCIE_EDR
+ void pci_acpi_add_edr_notifier(struct pci_dev *pdev);
+@@ -135,7 +136,7 @@ int pci_acpi_set_companion_lookup_hook(struct acpi_device *(*func)(struct pci_de
+ void pci_acpi_clear_companion_lookup_hook(void);
+ int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power,
+ 				      u32 *retry_interval);
+-
++int pci_acpi_add_perst_assertion_delay(struct pci_dev *dev, u32 delay_us);
+ #else	/* CONFIG_ACPI */
+ static inline void acpi_pci_add_bus(struct pci_bus *bus) { }
+ static inline void acpi_pci_remove_bus(struct pci_bus *bus) { }
+@@ -144,6 +145,11 @@ static int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_
+ {
+ 	return -EOPNOTSUPP;
+ }
++
++static int pci_acpi_add_perst_assertion_delay(struct pci_dev *dev, u32 delay_us)
++{
++	return -EOPNOTSUPP;
++}
+ #endif	/* CONFIG_ACPI */
+ 
+ #endif	/* _PCI_ACPI_H_ */
 -- 
 2.34.1
 
