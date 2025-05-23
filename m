@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 948E5C54ED0
-	for <intel-xe@archiver.kernel.org>; Fri, 23 May 2025 18:55:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 723FBC54ED1
+	for <intel-xe@archiver.kernel.org>; Fri, 23 May 2025 18:55:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B7C710E845;
-	Fri, 23 May 2025 18:55:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B7CB10E852;
+	Fri, 23 May 2025 18:55:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TsXlSa4N";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T0HFlnRg";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F28D10E0AE
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7FB010E0AE
  for <intel-xe@lists.freedesktop.org>; Fri, 23 May 2025 18:54:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1748026499; x=1779562499;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=++c8VS34EuunhKqTD12a6pf4O6UjIIbvtrlyVyboTqI=;
- b=TsXlSa4N5a377n/qQtq0uLS4soEC2SmcKkNV7zWa+YuQw5KUyT35NrES
- BL7R9YQRsdO5gTCC/oKg8pRaTEv6A79Sqbiuhdiot4qHwE2AIxzQQPtLI
- LIw6tH54/Qw98AxZgQO8sIwHCB7LQRrn1SJK4DzG6JsdK1SjCjXsPBC0S
- 7FrEZKv5BwdDIrf5f5cD381GN7CCVtBJNNjtVwfAWUS3fkMv1QWultHGf
- Epqq9NnufgDz2N/Nq82DhsikrBcjsxavXE7kmfBM+CjPcyzs1quiKN2Es
- Rt5FwBJ2oSx2Sry7cl0LspmkBiJnvAPeH0239bRqVjus8/Zw01E4eRAOB A==;
-X-CSE-ConnectionGUID: U1/oiOgyQUqg0ub3X8/LDg==
-X-CSE-MsgGUID: mnv5h+uqSqC2FoSUsBz9pg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="50145865"
-X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; d="scan'208";a="50145865"
+ bh=aVpNZ5OqEdR/fpO4hpZsZWR7lRvIYh68OmYBY0oRHFw=;
+ b=T0HFlnRgLqgR8E+tLQC4j5ieDLWSzlHApct3CZ7pCIVDgLWKkQvP2QX1
+ DD8KcnOdm1BCkCSifcY6KeaOU16TQkDnrzcHW47D1E47siKFrR73zafG2
+ 7j6p4P2IfA8xZGhx3G+I80MHGWwS4EbFj6+x5fkm4MwFaRFJ6rbizGuet
+ Xqh1wq720eVwya88mUxnTwd/ER61jJ8pyHP7YBehF5ztg0qxocS30wxhN
+ J0/bCN85SS6Y5Ka9RDwxx2Gb2S3+nc799hZbc3N8IzUNiehcVRJpDccsw
+ 4OEBjf1M0P9XVuxFJzfV0AWU86P+jY07do2NFTJiAaXRPGeSJEOBQ0s0I w==;
+X-CSE-ConnectionGUID: p3tlYORdS8qmanzaKoG/iw==
+X-CSE-MsgGUID: t1HfN4b6Sye+fZrS3fhrhQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="50145876"
+X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; d="scan'208";a="50145876"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2025 11:54:54 -0700
-X-CSE-ConnectionGUID: 2hg0zbECTWeKtoacgo/wxQ==
-X-CSE-MsgGUID: FQW3r0obQQi/GZUion257w==
+ 23 May 2025 11:54:55 -0700
+X-CSE-ConnectionGUID: YDoIvL+MQiq8IQlSMot8Rg==
+X-CSE-MsgGUID: yVftEvg3QbqgTk/7XiBcoQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; d="scan'208";a="164491721"
+X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; d="scan'208";a="164491733"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2025 11:54:53 -0700
+ 23 May 2025 11:54:54 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
@@ -49,9 +49,9 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Riana Tauro <riana.tauro@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
  Tvrtko Ursulin <tursulin@ursulin.net>
-Subject: [PATCH 1/5] FOR-CI: Add-configfs-to-load-with-fewer-engines
-Date: Fri, 23 May 2025 11:54:35 -0700
-Message-ID: <20250523-wa-bb-cmds-v1-1-40b337f71bcd@intel.com>
+Subject: [PATCH 5/5] drm/xe/configfs: Add interface to wa_bb commands
+Date: Fri, 23 May 2025 11:54:39 -0700
+Message-ID: <20250523-wa-bb-cmds-v1-5-40b337f71bcd@intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250523-wa-bb-cmds-v1-0-40b337f71bcd@intel.com>
 References: <20250523-wa-bb-cmds-v1-0-40b337f71bcd@intel.com>
@@ -73,293 +73,247 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Squashed patch series: 20250523-engine-mask-v3-0-11817dc6eb63@intel.com
+During validation it's useful to ensure additional commands are executed
+on every context switch. Add the interface to configfs to allow commands
+to be inserted in the WA batch buffer.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_configfs.c  | 148 ++++++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_configfs.h  |  10 +--
- drivers/gpu/drm/xe/xe_hw_engine.c |  20 ++++++
- 3 files changed, 174 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_configfs.c | 178 +++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 172 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index cb9f175c89a1c..b27bbe203eb46 100644
+index d73fe5a6666cb..c1604160ec67c 100644
 --- a/drivers/gpu/drm/xe/xe_configfs.c
 +++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -3,14 +3,19 @@
-  * Copyright © 2025 Intel Corporation
+@@ -4,6 +4,7 @@
   */
  
-+#include <linux/bitops.h>
+ #include <linux/bitops.h>
++#include <linux/ctype.h>
  #include <linux/configfs.h>
-+#include <linux/find.h>
+ #include <linux/find.h>
  #include <linux/init.h>
- #include <linux/module.h>
- #include <linux/pci.h>
-+#include <linux/string.h>
+@@ -78,12 +79,20 @@
+  *	rmdir /sys/kernel/config/xe/0000:03:00.0/
+  */
  
- #include "xe_configfs.h"
- #include "xe_module.h"
- 
-+#include "xe_hw_engine_types.h"
++/* Similar to struct xe_bb, but not tied to HW (yet) */
++struct wa_bb {
++	u32 *cs;
++	u32 len; /* in dwords */
++};
 +
- /**
-  * DOC: Xe Configfs
-  *
-@@ -48,6 +53,23 @@
-  *	# echo 1 > /sys/kernel/config/xe/0000:03:00.0/survivability_mode
-  *	# echo 0000:03:00.0 > /sys/bus/pci/drivers/xe/bind  (Enters survivability mode if supported)
-  *
-+ * Allowed engine:
-+ * ---------------
-+ *
-+ * Allow only a set of engine(s) to be available - this is the equivalent of
-+ * fusing engines off in software. Examples:
-+ *
-+ * Allow only one render and one copy engines, nothing else::
-+ *
-+ *	# echo 'rcs0,bcs0' > /sys/kernel/config/xe/0000:03:00.0/engine_allowed
-+ *
-+ * Allow only compute engines and first copy engine::
-+ *
-+ *	# echo 'ccs*,bcs0' > /sys/kernel/config/xe/0000:03:00.0/engine_allowed
-+ *
-+ * The requested configuration may not be supported by the platform and driver
-+ * may fail to probe - intended for debugging purposes.
-+ *
-  * Remove devices
-  * ==============
-  *
-@@ -60,11 +82,26 @@ struct xe_config_device {
+ struct xe_config_device {
  	struct config_group group;
  
  	bool survivability_mode;
-+	u64 engine_allowed;
+ 	u64 engine_allowed;
  
++	struct wa_bb wa_bb[XE_ENGINE_CLASS_MAX];
++
  	/* protects attributes */
  	struct mutex lock;
  };
+@@ -91,15 +100,16 @@ struct xe_config_device {
+ struct engine_info {
+ 	const char *cls;
+ 	u64 mask;
++	enum xe_engine_class engine_class;
+ };
  
-+struct engine_info {
-+	const char *cls;
-+	u64 mask;
-+};
-+
-+static const struct engine_info engine_info[] = {
-+	{ .cls = "rcs", .mask = XE_HW_ENGINE_RCS_MASK },
-+	{ .cls = "bcs", .mask = XE_HW_ENGINE_BCS_MASK },
-+	{ .cls = "vcs", .mask = XE_HW_ENGINE_VCS_MASK },
-+	{ .cls = "vecs", .mask = XE_HW_ENGINE_VECS_MASK },
-+	{ .cls = "ccs", .mask = XE_HW_ENGINE_CCS_MASK },
-+	{ .cls = "gsccs", .mask = XE_HW_ENGINE_GSCCS_MASK },
-+};
-+
+ static const struct engine_info engine_info[] = {
+-	{ .cls = "rcs", .mask = XE_HW_ENGINE_RCS_MASK },
+-	{ .cls = "bcs", .mask = XE_HW_ENGINE_BCS_MASK },
+-	{ .cls = "vcs", .mask = XE_HW_ENGINE_VCS_MASK },
+-	{ .cls = "vecs", .mask = XE_HW_ENGINE_VECS_MASK },
+-	{ .cls = "ccs", .mask = XE_HW_ENGINE_CCS_MASK },
+-	{ .cls = "gsccs", .mask = XE_HW_ENGINE_GSCCS_MASK },
++	{ .cls = "rcs", .mask = XE_HW_ENGINE_RCS_MASK, XE_ENGINE_CLASS_RENDER },
++	{ .cls = "bcs", .mask = XE_HW_ENGINE_BCS_MASK, XE_ENGINE_CLASS_COPY },
++	{ .cls = "vcs", .mask = XE_HW_ENGINE_VCS_MASK, XE_ENGINE_CLASS_VIDEO_DECODE },
++	{ .cls = "vecs", .mask = XE_HW_ENGINE_VECS_MASK, XE_ENGINE_CLASS_VIDEO_ENHANCE },
++	{ .cls = "ccs", .mask = XE_HW_ENGINE_CCS_MASK, XE_ENGINE_CLASS_COMPUTE },
++	{ .cls = "gsccs", .mask = XE_HW_ENGINE_GSCCS_MASK, XE_ENGINE_CLASS_OTHER },
+ };
+ 
  static struct xe_config_device *to_xe_config_device(struct config_item *item)
- {
- 	return container_of(to_config_group(item), struct xe_config_device, group);
-@@ -94,10 +131,95 @@ static ssize_t survivability_mode_store(struct config_item *item, const char *pa
+@@ -214,12 +224,166 @@ static ssize_t engine_allowed_store(struct config_item *item, const char *page,
  	return len;
  }
  
-+static ssize_t engine_allowed_show(struct config_item *item, char *page)
++static ssize_t wa_bb_show(struct config_item *item, char *page)
 +{
 +	struct xe_config_device *dev = to_xe_config_device(item);
++	ssize_t len;
 +	char *p = page;
 +
++	guard(mutex)(&dev->lock);
++
 +	for (size_t i = 0; i < ARRAY_SIZE(engine_info); i++) {
-+		u64 mask = engine_info[i].mask;
++		enum xe_engine_class ec = engine_info[i].engine_class;
 +
-+		if ((dev->engine_allowed & mask) == mask) {
-+			p += sprintf(p, "%s*\n", engine_info[i].cls);
-+		} else if (mask & dev->engine_allowed) {
-+			u16 bit0 = __ffs64(mask), bit;
++		if (!dev->wa_bb[ec].len)
++			continue;
 +
-+			mask &= dev->engine_allowed;
++		len = sprintf(p, "%s:", engine_info[i].cls);
++		p += len;
 +
-+			for_each_set_bit(bit, (const unsigned long *)&mask, 64)
-+				p += sprintf(p, "%s%u\n", engine_info[i].cls,
-+					     bit - bit0);
++		for (size_t j = 0; j < dev->wa_bb[ec].len; j++) {
++			len = sprintf(p, " %08x", dev->wa_bb[ec].cs[j]);
++			p += len;
 +		}
++
++		*p++ = '\n';
 +	}
 +
 +	return p - page;
 +}
 +
-+static bool lookup_engine_mask(const char *name, size_t namelen, u64 *mask)
++static bool lookup_engine_class(const char *name, size_t namelen,
++				enum xe_engine_class *engine_class)
 +{
-+	for (size_t i = 0; i < ARRAY_SIZE(engine_info); i++) {
++	size_t i;
++
++	for (i = 0; i < ARRAY_SIZE(engine_info); i++) {
 +		size_t clslen = strlen(engine_info[i].cls);
-+		size_t numlen = namelen - clslen;
-+		char instancestr[4];
-+		u8 instance;
-+		u16 bit;
 +
-+		if (namelen <= clslen || strncmp(name, engine_info[i].cls, clslen))
-+			continue;
-+
-+		if (name[clslen] == '*' && numlen == 1) {
-+			*mask = engine_info[i].mask;
++		if (clslen == namelen &&
++		    !memcmp(engine_info[i].cls, name, namelen)) {
++			*engine_class = engine_info[i].engine_class;
 +			return true;
 +		}
-+
-+		if (numlen > sizeof(instancestr) - 1)
-+			return false;
-+
-+		memcpy(instancestr, name + clslen, numlen);
-+		instancestr[numlen] = '\0';
-+
-+		if (kstrtou8(instancestr, 10, &instance))
-+			return false;
-+
-+		bit = __ffs64(engine_info[i].mask) + instance;
-+		if (bit > fls64(engine_info[i].mask))
-+			return false;
-+
-+		*mask = BIT_ULL(bit);
-+		return true;
 +	}
 +
 +	return false;
 +}
 +
-+static ssize_t engine_allowed_store(struct config_item *item, const char *page,
-+				    size_t len)
++/*
++ * Parse lines with the format
++ *
++ *	<engine-class> <u32> <u32...>
++ *
++ * and optionally save them in @wa_bb[i].cs is non-NULL.
++ *
++ * Return the number of dwords parsed.
++ */
++static ssize_t parse_wa_bb_lines(const char *lines, size_t len,
++				 struct wa_bb wa_bb[static XE_ENGINE_CLASS_MAX])
 +{
-+	struct xe_config_device *dev = to_xe_config_device(item);
-+	size_t namelen, p;
-+	u64 mask, val = 0;
++	const char *p;
++	ssize_t ret = 0;
 +
-+	for (p = 0; p < len; p += namelen + 1) {
-+		namelen = strcspn(page + p, ",\n");
-+		if (!lookup_engine_mask(page + p, namelen, &mask))
++	for (p = lines; p - lines < len;) {
++		enum xe_engine_class ec;
++		size_t namelen;
++		u32 val;
++
++		while (isspace(*p))
++			p++;
++
++		if (*p == '\n') {
++			p++;
++			continue;
++		}
++
++		if (!*p)
++			break;
++
++		namelen = strcspn(p, " \t\n");
++		if (!p[namelen] || p[namelen] == '\n' ||
++		    !lookup_engine_class(p, namelen, &ec))
 +			return -EINVAL;
 +
-+		val |= mask;
++		for (p += namelen; p - lines < len && *p != '\n';) {
++			u8 numlen = 0;
++			u32 wa_bb_len;
++			char numstr[9];
++
++			while (isspace(*p))
++				p++;
++
++			while (isxdigit(*p)) {
++				if (numlen == sizeof(numstr) - 1)
++					return -EINVAL;
++				numstr[numlen++] = *p;
++				p++;
++			}
++
++			numstr[numlen] = '\0';
++			if (kstrtou32(numstr, 16, &val))
++				return -EINVAL;
++
++			wa_bb_len = wa_bb[ec].len;
++			if (wa_bb[ec].cs)
++				wa_bb[ec].cs[wa_bb_len] = val;
++
++			wa_bb[ec].len++;
++			ret++;
++		}
 +	}
 +
-+	mutex_lock(&dev->lock);
-+	dev->engine_allowed = val;
-+	mutex_unlock(&dev->lock);
++	return ret;
++}
++
++static ssize_t wa_bb_store(struct config_item *item, const char *page,
++			   size_t len)
++{
++	struct xe_config_device *dev = to_xe_config_device(item);
++	struct wa_bb wa_bb[XE_ENGINE_CLASS_MAX] = { };
++	ssize_t count, class;
++	u32 *tmp;
++
++	/* 1. Count dwords - wa_bb[i].cs is NULL for all classes */
++	count = parse_wa_bb_lines(page, len, wa_bb);
++	if (count < 0)
++		return count;
++
++	guard(mutex)(&dev->lock);
++
++	/*
++	 * 2. Allocate a u32 array and set the pointers to the right positions
++	 * according to the length of each class' wa_bb
++	 */
++	tmp = krealloc(dev->wa_bb[0].cs, count * sizeof(u32), GFP_KERNEL);
++	if (!tmp)
++		return -ENOMEM;
++
++	for (class = 0, count = 0; class < XE_ENGINE_CLASS_MAX; ++class) {
++		wa_bb[class].cs = tmp + count;
++		count += wa_bb[class].len;
++		wa_bb[class].len = 0;
++	}
++
++	/* 3. Parse wa_bb lines again, this time saving the values */
++	count = parse_wa_bb_lines(page, len, wa_bb);
++	if (count < 0)
++		return count;
++
++	memcpy(dev->wa_bb, wa_bb, sizeof(wa_bb));
 +
 +	return len;
 +}
 +
  CONFIGFS_ATTR(, survivability_mode);
-+CONFIGFS_ATTR(, engine_allowed);
+ CONFIGFS_ATTR(, engine_allowed);
++CONFIGFS_ATTR(, wa_bb);
  
  static struct configfs_attribute *xe_config_device_attrs[] = {
  	&attr_survivability_mode,
-+	&attr_engine_allowed,
+ 	&attr_engine_allowed,
++	&attr_wa_bb,
  	NULL,
  };
  
-@@ -139,6 +261,9 @@ static struct config_group *xe_config_make_device_group(struct config_group *gro
- 	if (!dev)
- 		return ERR_PTR(-ENOMEM);
+@@ -228,6 +392,8 @@ static void xe_config_device_release(struct config_item *item)
+ 	struct xe_config_device *dev = to_xe_config_device(item);
  
-+	/* Default values */
-+	dev->engine_allowed = U64_MAX;
+ 	mutex_destroy(&dev->lock);
 +
- 	config_group_init_type_name(&dev->group, name, &xe_config_device_type);
- 
- 	mutex_init(&dev->lock);
-@@ -226,6 +351,29 @@ void xe_configfs_clear_survivability_mode(struct pci_dev *pdev)
- 	config_item_put(&dev->group.cg_item);
++	kfree(dev->wa_bb[0].cs);
+ 	kfree(dev);
  }
  
-+/**
-+ * xe_configfs_get_engine_allowed - get engine allowed mask from configfs
-+ * @pdev: pci device
-+ *
-+ * Find the configfs group that belongs to the pci device and return
-+ * the mask of engines allowed to be used.
-+ *
-+ * Return: engine mask with allowed engines
-+ */
-+u64 xe_configfs_get_engine_allowed(struct pci_dev *pdev)
-+{
-+	struct xe_config_device *dev = configfs_find_group(pdev);
-+	u64 engine_allowed;
-+
-+	if (!dev)
-+		return U64_MAX;
-+
-+	engine_allowed = dev->engine_allowed;
-+	config_item_put(&dev->group.cg_item);
-+
-+	return engine_allowed;
-+}
-+
- int __init xe_configfs_init(void)
- {
- 	struct config_group *root = &xe_configfs.su_group;
-diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
-index d7d041ec26117..050da4689d653 100644
---- a/drivers/gpu/drm/xe/xe_configfs.h
-+++ b/drivers/gpu/drm/xe/xe_configfs.h
-@@ -14,11 +14,13 @@ int xe_configfs_init(void);
- void xe_configfs_exit(void);
- bool xe_configfs_get_survivability_mode(struct pci_dev *pdev);
- void xe_configfs_clear_survivability_mode(struct pci_dev *pdev);
-+u64 xe_configfs_get_engine_allowed(struct pci_dev *pdev);
- #else
--static inline int xe_configfs_init(void) { return 0; };
--static inline void xe_configfs_exit(void) {};
--static inline bool xe_configfs_get_survivability_mode(struct pci_dev *pdev) { return false; };
--static inline void xe_configfs_clear_survivability_mode(struct pci_dev *pdev) {};
-+static inline int xe_configfs_init(void) { return 0; }
-+static inline void xe_configfs_exit(void) { }
-+static inline bool xe_configfs_get_survivability_mode(struct pci_dev *pdev) { return false; }
-+static inline void xe_configfs_clear_survivability_mode(struct pci_dev *pdev) { }
-+static inline u64 xe_configfs_get_engine_allowed(struct pci_dev *pdev) { return U64_MAX; }
- #endif
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 93241fd0a4ba3..8e7f580db86d8 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -17,6 +17,7 @@
- #include "regs/xe_irq_regs.h"
- #include "xe_assert.h"
- #include "xe_bo.h"
-+#include "xe_configfs.h"
- #include "xe_device.h"
- #include "xe_execlist.h"
- #include "xe_force_wake.h"
-@@ -810,6 +811,24 @@ static void check_gsc_availability(struct xe_gt *gt)
- 	}
- }
- 
-+static void check_sw_disable(struct xe_gt *gt)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+	u64 sw_allowed = xe_configfs_get_engine_allowed(to_pci_dev(xe->drm.dev));
-+	enum xe_hw_engine_id id;
-+
-+	for (id = 0; id < XE_NUM_HW_ENGINES; ++id) {
-+		if (!(gt->info.engine_mask & BIT(id)))
-+			continue;
-+
-+		if (!(sw_allowed & BIT(id))) {
-+			gt->info.engine_mask &= ~BIT(id);
-+			drm_info(&xe->drm, "%s disabled via configfs\n",
-+				 engine_infos[id].name);
-+		}
-+	}
-+}
-+
- int xe_hw_engines_init_early(struct xe_gt *gt)
- {
- 	int i;
-@@ -818,6 +837,7 @@ int xe_hw_engines_init_early(struct xe_gt *gt)
- 	read_copy_fuses(gt);
- 	read_compute_fuses(gt);
- 	check_gsc_availability(gt);
-+	check_sw_disable(gt);
- 
- 	BUILD_BUG_ON(XE_HW_ENGINE_PREEMPT_TIMEOUT < XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN);
- 	BUILD_BUG_ON(XE_HW_ENGINE_PREEMPT_TIMEOUT > XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX);
 
 -- 
 2.49.0
