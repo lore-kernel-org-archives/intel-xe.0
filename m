@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D143BC54ED0
-	for <intel-xe@archiver.kernel.org>; Fri, 23 May 2025 11:06:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DC57C54F30
+	for <intel-xe@archiver.kernel.org>; Fri, 23 May 2025 11:06:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5ACFD10E273;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FE3210E28F;
 	Fri, 23 May 2025 11:06:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="anSRbrRW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L0ymT/3n";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A0E310E28F;
- Fri, 23 May 2025 11:06:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AD1810E299;
+ Fri, 23 May 2025 11:06:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1747998382; x=1779534382;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=K4m4rONtUqaHqafOiO+FHWiyrgN85sVFyiYRkCpK/wE=;
- b=anSRbrRWlRQsGlJiJ2L2wdB4cFyPhm4fvTEh9mmtwJ1Pe/IImfjzy/pn
- l2SzAfM0+ravSPeoyYKam9Rt3+TltN1aBe28krLfWJnS5aALOstbTJiBv
- Cb2i30tTPO23oMlrmNrfltxwvyEuGg3bv7Bumn2P9rtMZGUJSlAxv8IYg
- mfBeIfFVLgXIjWEW9Bzuw+AIPRoKFjOOldT4EO2jkPogLRYI/Ae/OCLjb
- 1tc0EymNdr8/NsjR0Kw4veh7+x/QnRQA31xjRNPWorUl6ASSV0CSdek3m
- 85Uby6rXPdZ8ylj4oM3oVws0H1SKDRtCSuICHrZSE/nx1zynOurR4Gshb g==;
-X-CSE-ConnectionGUID: iwr3EeURRxuZHVzo0mfgVA==
-X-CSE-MsgGUID: rN0GJzGYSYuZmvsizQqVBQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="67463916"
-X-IronPort-AV: E=Sophos;i="6.15,308,1739865600"; d="scan'208";a="67463916"
+ bh=PqGpipnmHS8UNfAOBcHUxUI6TSRwpToIXu1Dsm0zlpI=;
+ b=L0ymT/3nYpB8BqPdIFU8Qum2qlU/kaozUSTGSP4VAdP8yV1RxkqMLspY
+ lIRl7D10WcsQAbMSvyLOQugeYRHISmCmedaPYrZ3hDeZzGToOwoMARqGB
+ BB3T/83AZn44PmzdCZlwajpt85p2LXyHTt7v+yYNhDe3CMxEHX5P++Mhf
+ QU/knK28tw5vnhy2fihSu2pEPEbg9ttrMiCQdtQOMSP5cHbEZhAt5umLg
+ HIxubRr5I1W1MednbDR6/iwmlR5m6SeYGDP2IZ1KdtDeF5ogm/R3W9qHv
+ Ie+zKeuC0xL9gBAn81X4gdR5e78iyPFCoGKXm8S3heEptr5jaGukjx7NC Q==;
+X-CSE-ConnectionGUID: Kkj+hC+qSDiAspSPO4oGFg==
+X-CSE-MsgGUID: FLB1UAFnQwa/VVnb9k1S3Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="67463924"
+X-IronPort-AV: E=Sophos;i="6.15,308,1739865600"; d="scan'208";a="67463924"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2025 04:06:15 -0700
-X-CSE-ConnectionGUID: SWXa0jIhRDudWRzwTlz9UQ==
-X-CSE-MsgGUID: /vMdyIyYQwyINyc3giZTIQ==
+ 23 May 2025 04:06:19 -0700
+X-CSE-ConnectionGUID: VpImVGIHSe+t3FDqJ0rYAg==
+X-CSE-MsgGUID: 3C7c01L9R+2SkCH5f1WraQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,308,1739865600"; d="scan'208";a="164341794"
+X-IronPort-AV: E=Sophos;i="6.15,308,1739865600"; d="scan'208";a="164341810"
 Received: from ettammin-mobl2.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.244.108])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2025 04:06:14 -0700
+ 23 May 2025 04:06:18 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v3 1/4] drm/i915/psr: Do not trigger Frame Change events from
- frontbuffer flush
-Date: Fri, 23 May 2025 14:05:52 +0300
-Message-ID: <20250523110555.3494901-2-jouni.hogander@intel.com>
+Subject: [PATCH v3 3/4] drm/i915/psr: Add TRANS_PUSH register bit definition
+ for PSR
+Date: Fri, 23 May 2025 14:05:54 +0300
+Message-ID: <20250523110555.3494901-4-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250523110555.3494901-1-jouni.hogander@intel.com>
 References: <20250523110555.3494901-1-jouni.hogander@intel.com>
@@ -71,62 +71,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We want to get rid of triggering "Frame Change" events from
-frontbuffer flush calls. We are about to move using TRANS_PUSH
-register for this on LunarLake and onwards. Touching TRANS_PUSH
-register from fronbuffer flush would be problematic as it's written by
-DSB as well.
-
-Fix this by using intel_psr_exit when flush or invalidate is done on
-LunarLake and onwards. This is not possible on AlderLake and
-MeteorLake due to HW bug in PSR2 disable.
+Add TRANS_PUSH register bit LNL_TRANS_PUSH_PSR_PR_EN definition for PSR
+usage.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 14 +++++++++-----
- 1 file changed, 9 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vrr_regs.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index cd833b63ea6b..3d637d92ca89 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -3250,7 +3250,9 @@ static void intel_psr_configure_full_frame_update(struct intel_dp *intel_dp)
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr_regs.h b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
+index 09cdd50d6187..2b8c70471b68 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
+@@ -100,6 +100,7 @@
+ #define TRANS_PUSH(dev_priv, trans)		_MMIO_TRANS2(dev_priv, trans, _TRANS_PUSH_A)
+ #define  TRANS_PUSH_EN				REG_BIT(31)
+ #define  TRANS_PUSH_SEND			REG_BIT(30)
++#define  LNL_TRANS_PUSH_PSR_PR_EN		REG_BIT(16)
  
- static void _psr_invalidate_handle(struct intel_dp *intel_dp)
- {
--	if (intel_dp->psr.psr2_sel_fetch_enabled) {
-+	struct intel_display *display = to_intel_display(intel_dp);
-+
-+	if (DISPLAY_VER(display) < 20 && intel_dp->psr.psr2_sel_fetch_enabled) {
- 		if (!intel_dp->psr.psr2_sel_fetch_cff_enabled) {
- 			intel_dp->psr.psr2_sel_fetch_cff_enabled = true;
- 			intel_psr_configure_full_frame_update(intel_dp);
-@@ -3338,7 +3340,7 @@ static void _psr_flush_handle(struct intel_dp *intel_dp)
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 
--	if (intel_dp->psr.psr2_sel_fetch_enabled) {
-+	if (DISPLAY_VER(display) < 20 && intel_dp->psr.psr2_sel_fetch_enabled) {
- 		if (intel_dp->psr.psr2_sel_fetch_cff_enabled) {
- 			/* can we turn CFF off? */
- 			if (intel_dp->psr.busy_frontbuffer_bits == 0)
-@@ -3355,11 +3357,13 @@ static void _psr_flush_handle(struct intel_dp *intel_dp)
- 		 * existing SU configuration
- 		 */
- 		intel_psr_configure_full_frame_update(intel_dp);
--	}
- 
--	intel_psr_force_update(intel_dp);
-+		intel_psr_force_update(intel_dp);
-+	} else {
-+		intel_psr_exit(intel_dp);
-+	}
- 
--	if (!intel_dp->psr.psr2_sel_fetch_enabled && !intel_dp->psr.active &&
-+	if ((!intel_dp->psr.psr2_sel_fetch_enabled || DISPLAY_VER(display) >= 20) &&
- 	    !intel_dp->psr.busy_frontbuffer_bits)
- 		queue_work(dev_priv->unordered_wq, &intel_dp->psr.work);
- }
+ #define _TRANS_VRR_VSYNC_A			0x60078
+ #define TRANS_VRR_VSYNC(dev_priv, trans)	_MMIO_TRANS2(dev_priv, trans, _TRANS_VRR_VSYNC_A)
 -- 
 2.43.0
 
