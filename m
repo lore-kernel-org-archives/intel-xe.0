@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 986D1C54E65
-	for <intel-xe@archiver.kernel.org>; Fri, 23 May 2025 00:05:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0D2CC54E65
+	for <intel-xe@archiver.kernel.org>; Fri, 23 May 2025 00:32:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39ADE10E7B7;
-	Fri, 23 May 2025 00:05:00 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A559A10E799;
- Fri, 23 May 2025 00:04:58 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2772444490153111145=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51FBC10E1AC;
+	Fri, 23 May 2025 00:32:52 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kaSnDrd3";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB3B110E09D;
+ Fri, 23 May 2025 00:32:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1747960366; x=1779496366;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=jQbcYJ+zMiPNOIPY/YlYbM8f7IYHvmfy/OgcAcFmKa8=;
+ b=kaSnDrd36ijJ9PBSEdfIYYwaxa12dIFtlVdjDk9wCIQaJPZEuDvBfpVm
+ P91G/gWXyy9dK0wEC3MfAejKJ/8qbOJLB0IMxg1pT3mc2uNyKG/xO8egf
+ jwSaTnkjadl3xwKCPfMTXhbDX0cWs46lbvygahv8m6orUKch/W6Zev620
+ dVkPB7J1Rhip97AnhK1iuHfFJITjy1wsmjsEdvfve1eqP2EySK/IcrdHo
+ uD4oYKrWRq9ETUfgT4X/1JvGErdAkERrDE57Il/azz6onA/rxmhwuU59k
+ XqGTvyaOryx7ao7WAbC3F5cwIv0pX+TZbYeVC+AKu3ty4VkVGf2KnijrK w==;
+X-CSE-ConnectionGUID: yZp0iMUpRtqMQaX1W+q/hw==
+X-CSE-MsgGUID: h4jSwJqpRP6tKXkLmT98yw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="60260461"
+X-IronPort-AV: E=Sophos;i="6.15,307,1739865600"; d="scan'208";a="60260461"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2025 17:32:45 -0700
+X-CSE-ConnectionGUID: /3cTJGd6Q3SxShjmneC+uA==
+X-CSE-MsgGUID: MeVmatLYRgmZEZoM4tQOIg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,307,1739865600"; d="scan'208";a="177977783"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+ by orviesa001.jf.intel.com with ESMTP; 22 May 2025 17:32:44 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1uIGL3-000Poe-2Y;
+ Fri, 23 May 2025 00:32:41 +0000
+Date: Fri, 23 May 2025 08:32:11 +0800
+From: kernel test robot <lkp@intel.com>
+To: Dave Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
+ tzimmermann@suse.de
+Cc: oe-kbuild-all@lists.linux.dev, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 3/9] firmware/tegra: avoid accessing iosys_map internals.
+Message-ID: <202505230806.C7HIxQ4g-lkp@intel.com>
+References: <20250522065519.318013-4-airlied@gmail.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Small_fixes_and_c?=
- =?utf-8?q?leanups_for_PXP_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 23 May 2025 00:04:58 -0000
-Message-ID: <174795869843.16275.1941419461119595598@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250522225401.3953243-5-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20250522225401.3953243-5-daniele.ceraolospurio@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250522065519.318013-4-airlied@gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +66,60 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2772444490153111145==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Dave,
 
-== Series Details ==
+kernel test robot noticed the following build errors:
 
-Series: drm/xe: Small fixes and cleanups for PXP (rev3)
-URL   : https://patchwork.freedesktop.org/series/149211/
-State : success
+[auto build test ERROR on drm/drm-next]
+[also build test ERROR on drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip v6.15-rc7 next-20250522]
+[cannot apply to drm-xe/drm-xe-next drm-exynos/exynos-drm-next linus/master]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-== Summary ==
+url:    https://github.com/intel-lab-lkp/linux/commits/Dave-Airlie/udmabuf-use-new-iosys_map-accessors/20250522-155237
+base:   git://anongit.freedesktop.org/drm/drm drm-next
+patch link:    https://lore.kernel.org/r/20250522065519.318013-4-airlied%40gmail.com
+patch subject: [PATCH 3/9] firmware/tegra: avoid accessing iosys_map internals.
+config: arm-randconfig-002-20250523 (https://download.01.org/0day-ci/archive/20250523/202505230806.C7HIxQ4g-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 8.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250523/202505230806.C7HIxQ4g-lkp@intel.com/reproduce)
 
-CI Bug Log - changes from xe-3129-08cbef6f5828542709e4eb2c6c74835f272a5733_BAT -> xe-pw-149211v3_BAT
-====================================================
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202505230806.C7HIxQ4g-lkp@intel.com/
 
-Summary
--------
+All error/warnings (new ones prefixed by >>):
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 7)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8375 -> IGT_8376
-  * Linux: xe-3129-08cbef6f5828542709e4eb2c6c74835f272a5733 -> xe-pw-149211v3
-
-  IGT_8375: 8375
-  IGT_8376: ec202132760d1c4dd968fbafbac962b08ff7289f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3129-08cbef6f5828542709e4eb2c6c74835f272a5733: 08cbef6f5828542709e4eb2c6c74835f272a5733
-  xe-pw-149211v3: 149211v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149211v3/index.html
-
---===============2772444490153111145==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+   drivers/firmware/tegra/ivc.c: In function 'iosys_map_get_address':
+>> drivers/firmware/tegra/ivc.c:632:29: error: expected ')' before 'return'
+     if (iosys_map_is_iomem(map)
+        ~                       ^
+                                )
+      return (unsigned long)iosys_map_ioptr(map);
+      ~~~~~~                     
+>> drivers/firmware/tegra/ivc.c:636:1: error: expected expression before '}' token
+    }
+    ^
+>> drivers/firmware/tegra/ivc.c:636:1: warning: no return statement in function returning non-void [-Wreturn-type]
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+vim +632 drivers/firmware/tegra/ivc.c
 
+   629	
+   630	static inline unsigned long iosys_map_get_address(const struct iosys_map *map)
+   631	{
+ > 632		if (iosys_map_is_iomem(map)
+   633			return (unsigned long)iosys_map_ioptr(map);
+   634	
+   635		return (unsigned long)iosys_map_ptr(map);
+ > 636	}
+   637	
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Small fixes and cleanups for PXP (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149211/">https://patchwork.freedesktop.org/series/149211/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149211v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149211v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3129-08cbef6f5828542709e4eb2c6c74835f272a5733_BAT -&gt; xe-pw-149211v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 7)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8375 -&gt; IGT_8376</li>
-<li>Linux: xe-3129-08cbef6f5828542709e4eb2c6c74835f272a5733 -&gt; xe-pw-149211v3</li>
-</ul>
-<p>IGT_8375: 8375<br />
-  IGT_8376: ec202132760d1c4dd968fbafbac962b08ff7289f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3129-08cbef6f5828542709e4eb2c6c74835f272a5733: 08cbef6f5828542709e4eb2c6c74835f272a5733<br />
-  xe-pw-149211v3: 149211v3</p>
-
-</body>
-</html>
-
---===============2772444490153111145==--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
