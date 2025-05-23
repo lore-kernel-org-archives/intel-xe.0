@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5CB8C54ED0
-	for <intel-xe@archiver.kernel.org>; Fri, 23 May 2025 19:00:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E57C2C54ED0
+	for <intel-xe@archiver.kernel.org>; Fri, 23 May 2025 19:00:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AA1F10E16F;
-	Fri, 23 May 2025 18:59:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F56610E88D;
+	Fri, 23 May 2025 19:00:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RQgq4aLy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nvBI26qd";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 345B810E0A4
- for <intel-xe@lists.freedesktop.org>; Fri, 23 May 2025 18:59:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7A1B10E853
+ for <intel-xe@lists.freedesktop.org>; Fri, 23 May 2025 19:00:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748026796; x=1779562796;
+ t=1748026806; x=1779562806;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QQLgSrDm1RsgDz5vL/NtHO9UusnR/CSWpW8ZzGV0fM8=;
- b=RQgq4aLyoMFAnib4ydcAgig1hf7u0j4igIfllfiq9DkFzpiR0hQ4YbZh
- U3ajjLDbrdKczqC5ursBNTNG+NjebBrxZo/qlZ8fd31Kf4W3b8v8K/5RH
- U8UbPJjPRru1g1OKK5kPlpavYCkA0HFDevUmEduMZgiygZmbpSUe1PLmB
- ly9ZuEU9Uh5d1E73znjlK7CRCFBP6ng5EziddpGI4dGvcchI5PC+MJooL
- MIjIoAAms9oGLLIZ6AWv3nX/MOTcNYXoq8XKBGfsRc8YKOXCrZAR3MZhD
- dEusxDmZvKGItvc07AhFJBsxGUr5DWIpogISjuZB3bQucKizhikoIL4SL g==;
-X-CSE-ConnectionGUID: RBDH04zoTQqBJsWpLTftTA==
-X-CSE-MsgGUID: 2sl3f9xsS86CXwqftDgYzw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="61498446"
-X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; d="scan'208";a="61498446"
+ bh=lxHKZKVOenroNxh0FcZyRwd8gvSEvY446e/mnHo3N/0=;
+ b=nvBI26qd212iy5r7NFcLhSsZdZaAsaxGcZg9F+cDSTGfTY/bvphcqOQo
+ lSPABDBepwji2z9w2lcYFij1BKeFEZXpegr8q1SUV8PnzlFMUYGaLZVWL
+ 3hLt8yFDE20aDLC3IchT8uzRi/cHqAqXsq3DX5PvqZoT6rdVVPZS6qPBX
+ f0keT18fbIz/xluad+R76FZG1uZsoMRByzHFOieyY0UxkTAXHDuMTM3fg
+ //J0baR1rFDH4zWxFFCWBTteIewOqEwgVW1GoVZ2y05texNFDvQDpxMMx
+ pEtADyQexqS90MQF7+2iyjcEUjJLYE3UF/3IKabxTY3taiHUn/1GP8yO4 g==;
+X-CSE-ConnectionGUID: tTocSNi7QaWhJEkoBsvyHg==
+X-CSE-MsgGUID: xAAIoiafQ7ysVlzElk8Zgg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="61498514"
+X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; d="scan'208";a="61498514"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2025 11:59:55 -0700
-X-CSE-ConnectionGUID: IuCQ7L9rTXqxj/2syEb9Vg==
-X-CSE-MsgGUID: mkH7DkNtRiqSxpqY56sQoA==
+ 23 May 2025 12:00:06 -0700
+X-CSE-ConnectionGUID: 5HK9La26SDSnlPEdLHQYYg==
+X-CSE-MsgGUID: WkCLMfuwQ5u1YVLMrwAFEA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; d="scan'208";a="141758870"
+X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; d="scan'208";a="141758939"
 Received: from unknown (HELO bnilawar-desk2.iind.intel.com) ([10.190.239.41])
  by fmviesa010-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 May 2025 11:59:51 -0700
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 May 2025 12:00:02 -0700
 From: Badal Nilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org, linux-acpi@vger.kernel.org,
  linux-pci@vger.kernel.org
@@ -48,10 +48,9 @@ Cc: anshuman.gupta@intel.com, rafael@kernel.org, lenb@kernel.org,
  bhelgaas@google.com, ilpo.jarvinen@linux.intel.com,
  lucas.demarchi@intel.com, rodrigo.vivi@intel.com, varun.gupta@intel.com,
  ville.syrjala@linux.intel.com, uma.shankar@intel.com
-Subject: [PATCH v3 02/11] PCI/ACPI: Per root port allow one Aux power limit
- request
-Date: Sat, 24 May 2025 00:31:46 +0530
-Message-Id: <20250523190155.2623462-3-badal.nilawar@intel.com>
+Subject: [PATCH v3 05/11] drm/xe/vrsr: Detect VRSR Capability
+Date: Sat, 24 May 2025 00:31:49 +0530
+Message-Id: <20250523190155.2623462-6-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250523190155.2623462-1-badal.nilawar@intel.com>
 References: <20250523190155.2623462-1-badal.nilawar@intel.com>
@@ -71,114 +70,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For given root port allow one Aux power limit request.
+From: Anshuman Gupta <anshuman.gupta@intel.com>
 
-Cc: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
-Cc: Anshuman Gupta <anshuman.gupta@intel.com>
-Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+Detect VRAM Self Refresh(vrsr) Capability.
+
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
 ---
- drivers/acpi/scan.c     |  1 +
- drivers/pci/pci-acpi.c  | 25 ++++++++++++++++++++++++-
- include/acpi/acpi_bus.h |  2 ++
- 3 files changed, 27 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/regs/xe_regs.h    |  3 +++
+ drivers/gpu/drm/xe/xe_device_types.h |  4 ++++
+ drivers/gpu/drm/xe/xe_pm.c           | 26 ++++++++++++++++++++++++++
+ 3 files changed, 33 insertions(+)
 
-diff --git a/drivers/acpi/scan.c b/drivers/acpi/scan.c
-index fb1fe9f3b1a3..9ae7be9db01a 100644
---- a/drivers/acpi/scan.c
-+++ b/drivers/acpi/scan.c
-@@ -745,6 +745,7 @@ int acpi_device_add(struct acpi_device *device)
- 	INIT_LIST_HEAD(&device->physical_node_list);
- 	INIT_LIST_HEAD(&device->del_list);
- 	mutex_init(&device->physical_node_lock);
-+	mutex_init(&device->power.aux_pwr_lock);
+diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
+index 3abb17d2ca33..4db486fb310a 100644
+--- a/drivers/gpu/drm/xe/regs/xe_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_regs.h
+@@ -53,6 +53,9 @@
+ #define MTL_MPE_FREQUENCY			XE_REG(0x13802c)
+ #define   MTL_RPE_MASK				REG_GENMASK(8, 0)
  
- 	mutex_lock(&acpi_device_lock);
- 
-diff --git a/drivers/pci/pci-acpi.c b/drivers/pci/pci-acpi.c
-index 76b19525535f..53ba67678c3d 100644
---- a/drivers/pci/pci-acpi.c
-+++ b/drivers/pci/pci-acpi.c
-@@ -1451,6 +1451,7 @@ int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power,
- 	union acpi_object *out_obj;
- 	acpi_handle handle;
- 	int result, ret = -EINVAL;
-+	struct acpi_device *adev;
- 
- 	if (!dev)
- 		return -EINVAL;
-@@ -1464,11 +1465,27 @@ int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power,
- 		return -ENODEV;
- 	}
- 
-+	adev = ACPI_COMPANION(&dev->dev);
-+	if (!adev)
-+		return -EINVAL;
++#define VRAM_SR_CAPABILITY                         XE_REG(0x138144)
++#define   VRAM_SR_SUPPORTED                        REG_BIT(0)
 +
-+	mutex_lock(&adev->power.aux_pwr_lock);
-+
-+	/* Check if aux power already granted */
-+	if (adev->power.aux_power_limit) {
-+		pci_info(dev, "D3cold Aux Power request already granted: %u mW\n",
-+			 adev->power.aux_power_limit);
-+		mutex_unlock(&adev->power.aux_pwr_lock);
-+		return -EPERM;
-+	}
-+
- 	out_obj = acpi_evaluate_dsm_typed(handle, &pci_acpi_dsm_guid, 4,
- 					  DSM_PCI_D3COLD_AUX_POWER_LIMIT,
- 					  &in_obj, ACPI_TYPE_INTEGER);
--	if (!out_obj)
-+	if (!out_obj) {
-+		mutex_unlock(&adev->power.aux_pwr_lock);
- 		return -EINVAL;
-+	}
+ #define VF_CAP_REG				XE_REG(0x1901f8, XE_REG_OPTION_VF)
+ #define   VF_CAP				REG_BIT(0)
  
- 	result = out_obj->integer.value;
- 	if (retry_interval)
-@@ -1478,14 +1495,17 @@ int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power,
- 	case 0x0:
- 		pci_dbg(dev, "D3cold Aux Power %u mW request denied\n",
- 			requested_power);
-+		adev->power.aux_power_limit = 0;
- 		break;
- 	case 0x1:
- 		pci_info(dev, "D3cold Aux Power request granted: %u mW\n",
- 			 requested_power);
-+		adev->power.aux_power_limit = requested_power;
- 		ret = 0;
- 		break;
- 	case 0x2:
- 		pci_info(dev, "D3cold Aux Power: Main power won't be removed\n");
-+		adev->power.aux_power_limit = 0;
- 		ret = -EBUSY;
- 		break;
- 	default:
-@@ -1500,9 +1520,12 @@ int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 requested_power,
- 			pci_err(dev, "D3cold Aux Power: Reserved or unsupported response: 0x%x\n",
- 				result);
- 		}
-+		adev->power.aux_power_limit = 0;
- 		break;
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index e2749ed2a61f..3a15b3a252fd 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -512,6 +512,9 @@ struct xe_device {
+ 		/** @d3cold.allowed: Indicates if d3cold is a valid device state */
+ 		bool allowed;
  
-+	mutex_unlock(&adev->power.aux_pwr_lock);
++		/** @d3cold.vrsr_capable: Indicates if d3cold VRAM Self Refresh is supported */
++		bool vrsr_capable;
 +
- 	ACPI_FREE(out_obj);
- 	return ret;
+ 		/**
+ 		 * @d3cold.vram_threshold:
+ 		 *
+@@ -522,6 +525,7 @@ struct xe_device {
+ 		 * Default threshold value is 300mb.
+ 		 */
+ 		u32 vram_threshold;
++
+ 		/** @d3cold.lock: protect vram_threshold */
+ 		struct mutex lock;
+ 	} d3cold;
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index 693866def183..c9395e62d21d 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -13,13 +13,16 @@
+ #include <drm/ttm/ttm_placement.h>
+ 
+ #include "display/xe_display.h"
++#include "regs/xe_regs.h"
+ #include "xe_bo.h"
+ #include "xe_bo_evict.h"
+ #include "xe_device.h"
++#include "xe_force_wake.h"
+ #include "xe_ggtt.h"
+ #include "xe_gt.h"
+ #include "xe_guc.h"
+ #include "xe_irq.h"
++#include "xe_mmio.h"
+ #include "xe_pcode.h"
+ #include "xe_pxp.h"
+ #include "xe_trace.h"
+@@ -235,6 +238,28 @@ static bool xe_pm_pci_d3cold_capable(struct xe_device *xe)
+ 	return true;
  }
-diff --git a/include/acpi/acpi_bus.h b/include/acpi/acpi_bus.h
-index aad1a95e6863..c4ce3d84be00 100644
---- a/include/acpi/acpi_bus.h
-+++ b/include/acpi/acpi_bus.h
-@@ -294,6 +294,8 @@ struct acpi_device_power {
- 	struct acpi_device_power_flags flags;
- 	struct acpi_device_power_state states[ACPI_D_STATE_COUNT];	/* Power states (D0-D3Cold) */
- 	u8 state_for_enumeration; /* Deepest power state for enumeration */
-+	u32 aux_power_limit;		/* aux power limit granted by bios */
-+	struct mutex aux_pwr_lock;	/* prevent concurrent aux power limit requests */
- };
  
- struct acpi_dep_data {
++static bool xe_pm_vrsr_capable(struct xe_device *xe)
++{
++	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
++	unsigned int fw_ref;
++	struct xe_gt *gt;
++	u32 val;
++
++	gt = xe_root_mmio_gt(xe);
++
++	if (!xe->info.probe_display)
++		return false;
++
++	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++	if (!fw_ref)
++		return false;
++
++	val = xe_mmio_read32(mmio, VRAM_SR_CAPABILITY);
++	xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++
++	return val & VRAM_SR_SUPPORTED;
++}
++
+ static void xe_pm_runtime_init(struct xe_device *xe)
+ {
+ 	struct device *dev = xe->drm.dev;
+@@ -349,6 +374,7 @@ int xe_pm_init(struct xe_device *xe)
+ 		err = xe_pm_set_vram_threshold(xe, vram_threshold);
+ 		if (err)
+ 			goto err_unregister;
++		xe->d3cold.vrsr_capable = xe_pm_vrsr_capable(xe);
+ 	}
+ 
+ 	xe_pm_runtime_init(xe);
 -- 
 2.34.1
 
