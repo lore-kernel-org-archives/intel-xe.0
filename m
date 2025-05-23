@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77152C54ED0
-	for <intel-xe@archiver.kernel.org>; Fri, 23 May 2025 18:55:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F604C54ED1
+	for <intel-xe@archiver.kernel.org>; Fri, 23 May 2025 18:55:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BBA810E0C6;
-	Fri, 23 May 2025 18:55:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46A0010E16F;
+	Fri, 23 May 2025 18:55:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S6zmJFOM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dkpvq6Il";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9B4D10E0C6
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A542E10E0A4
  for <intel-xe@lists.freedesktop.org>; Fri, 23 May 2025 18:54:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1748026499; x=1779562499;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=W+dNLkpKSUX6UmWloGjWHjUsiBIgxJkUc28GDxoItSg=;
- b=S6zmJFOMXnShRuLNMVBbQguB9COFBQDHtvDPc/X36MLKalUS6EtlYkRq
- yl0PnOPDB1dV4BkFGDKdODs2atvIC1Ot7TaScB9rcye3A+mt0Hz2pTXc1
- iXiVbpUD2VG1YBEx/wCzYPdMeUzh/2yzyXkNUh5YhC+HvagSSRLQX4Pjs
- RBtT7d5O0a5UFrKJD0ctPzZtIYYPWyOyTbAJ0ivUjOdnDalKVGMldSiE0
- hWzLc4K7bCmWR1UV9yFukWY+aDNHx3zI7HQH7zfXzSegjlF2Q3Q1bpxzW
- +WGqSCnkru6M0Ng/z8eZnAAio/4cj+3PXIQSkPhyzg6UgCN7gGcrRp7jH w==;
-X-CSE-ConnectionGUID: 57xL9QmVTFWeosJ3xmLlug==
-X-CSE-MsgGUID: ol1a82YyS4Kausi3lIrJHw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="50145871"
-X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; d="scan'208";a="50145871"
+ bh=oR/itFmpAJ3q/o25IEEmOTGRf1cWiLWcXv+am3IAw7s=;
+ b=dkpvq6IlXnl43NUdyL+C49mVxudk+kGkkN4NQ9AtaIqoAv94nkU5fN+y
+ zOi7q1pVWUM2ikU1JsqwCKNMhcOG3Oe+Vjc/SFua9TbStlvLkJ10fArV0
+ dBu/qFqhDo0THR42ICPU1TUTCNKf0zyHarccHKeBQqFZGGfG09BKDeURQ
+ GKHyAAwMkB++UU6rNk1mIVzXz6b3J2vukIyKcQpGsqgVNQMi3xgeIG/2B
+ jlfqvng4V7qrGrXBaM7WTupPoV8ThGjA7Oher8VBLLZxS/54v6zpj1u61
+ kX9+LPBtJszKBH8fJwwftByOlte9stNmBifTc6ExvvWa9gD2xFO8blVLr g==;
+X-CSE-ConnectionGUID: 7EwI9i8gRXuoEx3alvl56w==
+X-CSE-MsgGUID: n699pFhURh2cWhaAUMGvhQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="50145868"
+X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; d="scan'208";a="50145868"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 May 2025 11:54:54 -0700
-X-CSE-ConnectionGUID: aUur6gLIQNyzHPvtU/bdPA==
-X-CSE-MsgGUID: K6bpnvhrRQq0FbKF1zVonw==
+X-CSE-ConnectionGUID: TP9MRXzQTAS6T/Zr7uyS7g==
+X-CSE-MsgGUID: 4o6EXJXiRnmm/FWQZjqocA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; d="scan'208";a="164491727"
+X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; d="scan'208";a="164491724"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 May 2025 11:54:53 -0700
@@ -49,9 +49,9 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Riana Tauro <riana.tauro@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
  Tvrtko Ursulin <tursulin@ursulin.net>
-Subject: [PATCH 3/5] drm/xe/lrc: Sanity check bb space
-Date: Fri, 23 May 2025 11:54:37 -0700
-Message-ID: <20250523-wa-bb-cmds-v1-3-40b337f71bcd@intel.com>
+Subject: [PATCH 2/5] drm/xe/lrc: Extract post context restore function
+Date: Fri, 23 May 2025 11:54:36 -0700
+Message-ID: <20250523-wa-bb-cmds-v1-2-40b337f71bcd@intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250523-wa-bb-cmds-v1-0-40b337f71bcd@intel.com>
 References: <20250523-wa-bb-cmds-v1-0-40b337f71bcd@intel.com>
@@ -73,27 +73,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-4K ought to be enough for anybody, but let's add an assert that we don't
-go over it.
+The post context restore is a mechanism in HW that may be used for
+things other than the utilization setup. Create a new function called
+setup_post_context_restore_bb() that wraps any function writing useful
+commands in the buffer.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/xe/xe_lrc.c | 25 +++++++++++++++++--------
+ 1 file changed, 17 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 4562049a23fb1..b489da4ed7ceb 100644
+index 61a2e87990a9d..4562049a23fb1 100644
 --- a/drivers/gpu/drm/xe/xe_lrc.c
 +++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -979,6 +979,8 @@ static void setup_wa_bb(struct xe_lrc *lrc)
- 	cmd += wa_bb_write_utilization_state(lrc, cmd);
+@@ -917,9 +917,10 @@ static void xe_lrc_finish(struct xe_lrc *lrc)
+ }
+ 
+ /*
+- * xe_lrc_setup_utilization() - Setup wa bb to assist in calculating active
+- * context run ticks.
++ * wa_bb_write_utilization_state() - Write commands to wa bb to assist
++ * in calculating active context run ticks.
+  * @lrc: Pointer to the lrc.
++ * @cmd0: Pointer to the batch buffer location.
+  *
+  * Context Timestamp (CTX_TIMESTAMP) in the LRC accumulates the run ticks of the
+  * context, but only gets updated when the context switches out. In order to
+@@ -944,11 +945,9 @@ static void xe_lrc_finish(struct xe_lrc *lrc)
+  * store it in the PPHSWP.
+  */
+ #define CONTEXT_ACTIVE 1ULL
+-static void xe_lrc_setup_utilization(struct xe_lrc *lrc)
++static size_t wa_bb_write_utilization_state(struct xe_lrc *lrc, u32 *cmd0)
+ {
+-	u32 *cmd;
+-
+-	cmd = lrc->bb_per_ctx_bo->vmap.vaddr;
++	u32 *cmd = cmd0;
+ 
+ 	*cmd++ = MI_STORE_REGISTER_MEM | MI_SRM_USE_GGTT | MI_SRM_ADD_CS_OFFSET;
+ 	*cmd++ = ENGINE_ID(0).addr;
+@@ -967,11 +966,21 @@ static void xe_lrc_setup_utilization(struct xe_lrc *lrc)
+ 		*cmd++ = upper_32_bits(CONTEXT_ACTIVE);
+ 	}
+ 
++	return cmd - cmd0;
++}
++
++static void setup_wa_bb(struct xe_lrc *lrc)
++{
++	u32 *cmd, *cmd0;
++
++	cmd0 = lrc->bb_per_ctx_bo->vmap.vaddr;
++	cmd = cmd0;
++
++	cmd += wa_bb_write_utilization_state(lrc, cmd);
  	*cmd++ = MI_BATCH_BUFFER_END;
  
-+	xe_gt_assert(lrc->gt, cmd - cmd0 < lrc->bb_per_ctx_bo->size);
-+
  	xe_lrc_write_ctx_reg(lrc, CTX_BB_PER_CTX_PTR,
  			     xe_bo_ggtt_addr(lrc->bb_per_ctx_bo) | 1);
+-
  }
+ 
+ #define PVC_CTX_ASID		(0x2e + 1)
+@@ -1128,7 +1137,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+ 	map = __xe_lrc_start_seqno_map(lrc);
+ 	xe_map_write32(lrc_to_xe(lrc), &map, lrc->fence_ctx.next_seqno - 1);
+ 
+-	xe_lrc_setup_utilization(lrc);
++	setup_wa_bb(lrc);
+ 
+ 	return 0;
+ 
 
 -- 
 2.49.0
