@@ -4,61 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34D63C54FC6
-	for <intel-xe@archiver.kernel.org>; Sat, 24 May 2025 13:34:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99C20C54FC6
+	for <intel-xe@archiver.kernel.org>; Sat, 24 May 2025 14:30:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CC7810E07B;
-	Sat, 24 May 2025 13:34:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FB5C10E091;
+	Sat, 24 May 2025 14:30:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="kBTLLont";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gu/mFCfr";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A4EA10E043;
- Sat, 24 May 2025 13:34:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=6XGC/vbTWuPr5wzWFaQ41n5nWcPDQ8q/9BamqbngT8k=; b=kBTLLontKYTptUlp4Tc5at2kBH
- xDRVB4+wgO3iyowZC4PuCNlH3i+mheqZCxt+/5a/BAaLb2HLSFTHkGYfw7cpWAPHfm3bHRBUFkZkP
- FJDXwYgPYNcHtXC9XAVnG6b+oiXkc+7EsBJS7/7E/swIoqwdvdgCtC1MUO5A7krF/ymbSQL3MtHSr
- qv/faHG3/ocYpl96bs3lIK8ketgbiVgFKWvSB8FI3cpiSiP/TrPBFaTMS6wGDnCTnke2zhVwLRbH1
- 9axhPHv8GJzVkvYDKMcxf74OzzL3QwHO8dqOt5WuCGwE7cshnGFOiT78Bg+hYZwWp/9pT3a78P8uo
- 6gS0tSKQ==;
-Received: from [189.7.87.163] (helo=[192.168.0.7])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1uIp0e-00CZSH-Pa; Sat, 24 May 2025 15:33:57 +0200
-Message-ID: <791df72e-ff87-42e3-a4fc-527aa693a155@igalia.com>
-Date: Sat, 24 May 2025 10:33:48 -0300
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20C5B10E091
+ for <intel-xe@lists.freedesktop.org>; Sat, 24 May 2025 14:30:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1748097000; x=1779633000;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+v+JFX/pel2jS3hATeJwwhv5dW/Zq65Rgu8SBgVzeVU=;
+ b=gu/mFCfr/pD9tpr9uG5/jI8RlJhxtaMW+3n7uPUUMzWDbes3RLXhISmf
+ Y1M+SdTw8cNGtfM99BxReKP7hdK1BRFv6eTuEhE2E38eCH2eX7l++xsKE
+ lI/58AEr1dTPa2/vn2Ysv+djiqeveGchkBUxmWcrfjBUNis2kcnkvV1ZF
+ znEsV0XE8iXMXBV+gu3OoiIEDkd+Q1zaiOO32PbNrFgwESHU8F8cp1h7I
+ 51a/zg5NoEhC+KzuqAi8rlr1p49OaAX8lmQro0MvyVZtaUSckPaq4U2Bn
+ viBP3gb9Qi2f2SE5ysPnS+W/c2licyD1HhvJ3MioxDebuvl7gx3e8E6Ci Q==;
+X-CSE-ConnectionGUID: 2udDQuqHRrSijTgvudurDA==
+X-CSE-MsgGUID: cLfyZ2/kSeKoLNx5Je28TA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11443"; a="50281766"
+X-IronPort-AV: E=Sophos;i="6.15,311,1739865600"; d="scan'208";a="50281766"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2025 07:29:56 -0700
+X-CSE-ConnectionGUID: ctHN/XipTgeMfDttOsh7MA==
+X-CSE-MsgGUID: eKvlwFjnRduiJeV7gIYflQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,311,1739865600"; d="scan'208";a="142584789"
+Received: from labhost1.iind.intel.com ([10.190.230.69])
+ by fmviesa009.fm.intel.com with ESMTP; 24 May 2025 07:29:54 -0700
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH v6] drm/xe: Add helper function to inject fault into
+ ct_dead_capture()
+Date: Sat, 24 May 2025 20:16:13 +0530
+Message-ID: <20250524144613.11970-1-satyanarayana.k.v.p@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/8] drm/sched: Allow drivers to skip the reset and keep
- on running
-To: phasta@kernel.org, Matthew Brost <matthew.brost@intel.com>,
- Danilo Krummrich <dakr@kernel.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Simona Vetter <simona@ffwll.ch>,
- Melissa Wen <mwen@igalia.com>, Lucas Stach <l.stach@pengutronix.de>,
- Russell King <linux+etnaviv@armlinux.org.uk>,
- Christian Gmeiner <christian.gmeiner@gmail.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>
-Cc: kernel-dev@igalia.com, dri-devel@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-References: <20250503-sched-skip-reset-v1-0-ed0d6701a3fe@igalia.com>
- <20250503-sched-skip-reset-v1-1-ed0d6701a3fe@igalia.com>
- <4242fd242c7e16d0ecdf11c5d0ad795efda727a5.camel@mailbox.org>
-Content-Language: en-US
-From: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
-In-Reply-To: <4242fd242c7e16d0ecdf11c5d0ad795efda727a5.camel@mailbox.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,130 +67,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Philipp,
+When injecting fault to xe_guc_ct_send_recv() & xe_guc_mmio_send_recv()
+functions, the CI test systems are going out of space and crashing. To
+avoid this issue, a new helper function is created and when fault is
+injected into this xe_inject_fault() helper function, ct dead capture
+is avoided which suppresses ct dumps in the log.
 
-Sorry, I was OoO for a couple of weeks.
+Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Suggested-by: John Harrison <John.C.Harrison@Intel.com>
+---
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
 
-On 13/05/25 04:26, Philipp Stanner wrote:
-> On Sat, 2025-05-03 at 17:59 -0300, Maíra Canal wrote:
->> When the DRM scheduler times out, it's possible that the GPU isn't
->> hung;
->> instead, a job may still be running, and there may be no valid reason
->> to
->> reset the hardware. This can occur in two situations:
->>
->>    1. The GPU exposes some mechanism that ensures the GPU is still
->> making
->>       progress. By checking this mechanism, we can safely skip the
->> reset,
->>       rearm the timeout, and allow the job to continue running until
->>       completion. This is the case for v3d and Etnaviv.
->>    2. TDR has fired before the IRQ that signals the fence.
->> Consequently,
->>       the job actually finishes, but it triggers a timeout before
->> signaling
->>       the completion fence.
->>
->> These two scenarios are problematic because we remove the job from
->> the
->> `sched->pending_list` before calling `sched->ops->timedout_job()`.
->> This
->> means that when the job finally signals completion (e.g. in the IRQ
->> handler), the scheduler won't call `sched->ops->free_job()`. As a
->> result,
->> the job and its resources won't be freed, leading to a memory leak.
-> 
-> We have discussed this and discovered another, related issue. See
-> below.
-> 
->>
->> To resolve this issue, we create a new `drm_gpu_sched_stat` that
->> allows a
->> driver to skip the reset. This new status will indicate that the job
->> should be reinserted into the pending list, and the driver will still
->> signal its completion.
->>
->> Signed-off-by: Maíra Canal <mcanal@igalia.com>
->> ---
->>   drivers/gpu/drm/scheduler/sched_main.c | 14 ++++++++++++++
->>   include/drm/gpu_scheduler.h            |  2 ++
->>   2 files changed, 16 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/scheduler/sched_main.c
->> b/drivers/gpu/drm/scheduler/sched_main.c
->> index
->> 829579c41c6b5d8b2abce5ad373c7017469b7680..68ca827d77e32187a034309f881
->> 135dbc639a9b4 100644
->> --- a/drivers/gpu/drm/scheduler/sched_main.c
->> +++ b/drivers/gpu/drm/scheduler/sched_main.c
->> @@ -568,6 +568,17 @@ static void drm_sched_job_timedout(struct
->> work_struct *work)
-> 
-> So, the fundamental design problem we have is that the scheduler
-> assumes that when a timeout occurs, the GPU is completely hung. Your
-> patch addresses another aspect of that very problem.
-> 
-> But if the GPU is not hung, it can signal the hardware fence at any
-> moment. So that's racy.
+V5 -> V6:
+- Fixed review comments.
+- Updated helper function description.
 
-Unfortunately, this already happens, which would be the second point of
-the list in the commit message.
+V4 -> V5:
+- Fixed review comments.
 
-> 
-> It could, theoretically, lead to backend_ops.timedout_job() being
-> called with a signaled job, i.e., a job that is not really timed out.
-> 
-> Would you say this is *the same* issue you're describing, or a separate
-> one? It seems to me that it's a separate one.
+V3 -> V4:
+- Updated the name of helper function and moved to xe_device.h file.
 
-It isn't the issue that I'm describing in the sense that the scheduler
-itself won't do anything to address this issue. However, several drivers
-already handle with this situation internally by checking the result of
-`dma_fence_is_signaled()` and bailing out of the timeout if the job is
-signaled. We would provide a proper status code for those drivers and
-avoid memory leaks.
+V2 -> V3:
+- Added inline function to avoid compilation error in the absence of
+CONFIG_FUNCTION_ERROR_INJECTION.
 
-> 
-> Anyways. What I propose is that we wait until your series here has been
-> merged. Once that's done, we should document that drivers should expect
-> that backend_ops.timedout_job() can get called with a job that has not
-> actually timed out, and tell the scheduler about it through
-> DRM_GPU_SCHED_STAT_NOT_HANGING. Then the scheduler reverts the
-> timeout's actions, as you propose here.
-> 
-> 
->>   			job->sched->ops->free_job(job);
->>   			sched->free_guilty = false;
->>   		}
->> +
->> +		/*
->> +		 * If the driver indicated that the GPU is still
->> running and wants to skip
->> +		 * the reset, reinsert the job back into the pending
->> list and realarm the
->> +		 * timeout.
->> +		 */
->> +		if (status == DRM_GPU_SCHED_STAT_RUNNING) {
->> +			spin_lock(&sched->job_list_lock);
->> +			list_add(&job->list, &sched->pending_list);
->> +			spin_unlock(&sched->job_list_lock);
->> +		}
-> 
-> btw, if you go for Matt's requeue work item approach, it'll be better
-> to write a helper function with a clear name for all that.
-> 
-> drm_sched_job_reinsert_on_false_timout() maybe.
+V1 -> V2:
+- Fixed review comments.
+---
+ drivers/gpu/drm/xe/xe_device.h | 17 +++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_ct.c |  6 ++++++
+ 2 files changed, 23 insertions(+)
 
-Thanks for the review, I'll send v2 soon.
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index 0bc3bc8e6803..9dd31facc9d8 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -195,6 +195,23 @@ void xe_device_declare_wedged(struct xe_device *xe);
+ struct xe_file *xe_file_get(struct xe_file *xef);
+ void xe_file_put(struct xe_file *xef);
+ 
++#ifdef CONFIG_FUNCTION_ERROR_INJECTION
++/*
++ * This is a helper function which assists the driver in identifying if a fault
++ * injection test is currently active, allowing it to reduce unnecessary debug
++ * output. Typically, the function returns zero, but the fault injection
++ * framework can alter this to return an error. Since faults are injected
++ * through this function, it's important to ensure the compiler doesn't optimize
++ * it into an inline function. To avoid such optimization, the 'noinline'
++ * attribute is applied.
++ */
++
++static noinline int xe_is_injection_active(void) { return 0; }
++ALLOW_ERROR_INJECTION(xe_is_injection_active, ERRNO);
++#else
++static inline int xe_is_injection_active(void) { return 0; }
++#endif
++
+ /*
+  * Occasionally it is seen that the G2H worker starts running after a delay of more than
+  * a second even after being queued and activated by the Linux workqueue subsystem. This
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 822f4c33f730..89f992feba31 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -2040,6 +2040,12 @@ static void ct_dead_capture(struct xe_guc_ct *ct, struct guc_ctb *ctb, u32 reaso
+ 
+ 	if (ctb)
+ 		ctb->info.broken = true;
++	/*
++	 * Huge dump is getting generated when injecting error for guc CT/MMIO
++	 * functions. So, let us suppress the dump when fault is injected.
++	 */
++	if (xe_is_injection_active())
++		return;
+ 
+ 	/* Ignore further errors after the first dump until a reset */
+ 	if (ct->dead.reported)
+-- 
+2.43.0
 
-Best Regards,
-- Maíra
-
-> 
-> 
-> P.
-> 
-> 
->>   	} else {
->>   		spin_unlock(&sched->job_list_lock);
->>   	}
