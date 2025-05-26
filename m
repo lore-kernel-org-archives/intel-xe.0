@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C602C5AD49
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9712DC54FB3
 	for <intel-xe@archiver.kernel.org>; Mon, 26 May 2025 12:05:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22B7A10E344;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FCF910E345;
 	Mon, 26 May 2025 12:05:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KCR7AHEP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QnBXDQBV";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 799F910E300
- for <intel-xe@lists.freedesktop.org>; Mon, 26 May 2025 12:05:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A73F10E327
+ for <intel-xe@lists.freedesktop.org>; Mon, 26 May 2025 12:05:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748261136; x=1779797136;
+ t=1748261138; x=1779797138;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=OzmkxcF/NRVjyzhVDgpI2/tealFm4pIY0gzRrDQNU1I=;
- b=KCR7AHEPOdEOENry2Gv7Wy7pMKQqhulnfzqDvpRYbMs7RIXRiNIzw32V
- lYcJ4JFjDGTzoNkN5mY6rALj/HUvpFA0SPJqqRhNGFgsS9OlbU0jpP/8O
- GIPVQsp+PZqbt4rS2P+k3R9mq4f12U7xulG7om+bDRulM3B3V/bMt2Jg4
- oOhHdbOnG91o8WtUQHHGwgxqawyiTSlFnc/ab94Vt6LiGvPbGS32kV3PI
- MWhpQUCqKMEDVAXTneagjwWkA7JYzGeuNFXD4p9LOW5fLt1sJg7+iNxlC
- H5a3biuk1/nvEnQ6frGeyZYGaW4yzzDXXV+JbtLqf1UF84YPzxIaBU/ne w==;
-X-CSE-ConnectionGUID: UCLxUxDLT4yRVds1ZrymOg==
-X-CSE-MsgGUID: UnyUCt45Rn+DWUDlsP7YLQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11445"; a="60492286"
-X-IronPort-AV: E=Sophos;i="6.15,315,1739865600"; d="scan'208";a="60492286"
+ bh=0eJ5s4f3vaycL5FphWjwXIa3y8oHBRPenuVbx+3dc38=;
+ b=QnBXDQBVxxHnBjt6I+oFD/OPhnivA0Kh0Yi+dPL9U1JjSGW9zmJrGu/f
+ QusItGBUm+4fY4PhNxe/omYTLepocr/p0pRrsPUnUC2B4jyAqDzf5JFEE
+ I5cTWrhfO7JZyhFzKx1KH58VaaOtxr8QZdMkD6c6sf04rttY25X7POWnJ
+ JdtFvUvxQFAUbLbLPheCo2T8jWrsu0JkWoSEp7uBpmnw1udzbQ2VPJ2zh
+ rcUzI1pfISEWhjHhE1Y8fGVOOmEzQyGF4Z7cZUqHQzEvfX6jBWjHgx/X+
+ kaCclel9fZj0bmpMLFwBZMTMSiRzwwVqgcMj0Zn/G2scq1fgPhfDbym/U g==;
+X-CSE-ConnectionGUID: 0a+V56QxQ2uM9icsmcm7Tg==
+X-CSE-MsgGUID: n/T0ISIPSD2VJ6g4QGhL9Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11445"; a="60492288"
+X-IronPort-AV: E=Sophos;i="6.15,315,1739865600"; d="scan'208";a="60492288"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2025 05:05:36 -0700
-X-CSE-ConnectionGUID: TQvHO8sxSrWKPKENbmTZjg==
-X-CSE-MsgGUID: VnYQnhVuQk2oaFsE96BeEw==
+ 26 May 2025 05:05:37 -0700
+X-CSE-ConnectionGUID: fmD3kpIMR5CyCcLMYG26cA==
+X-CSE-MsgGUID: 2vFS55EiT/eCDVfUy3GuLQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,315,1739865600"; d="scan'208";a="147576022"
+X-IronPort-AV: E=Sophos;i="6.15,315,1739865600"; d="scan'208";a="147576031"
 Received: from johunt-mobl9.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.245.138])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2025 05:05:35 -0700
+ 26 May 2025 05:05:36 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH v4 03/12] drm/i915/psr: Read all Panel Replay capability
- registers from DPCD
-Date: Mon, 26 May 2025 15:05:03 +0300
-Message-ID: <20250526120512.1702815-4-jouni.hogander@intel.com>
+Subject: [PATCH v4 04/12] drm/i915/alpm: Add PR_ALPM_CTL register definitions
+Date: Mon, 26 May 2025 15:05:04 +0300
+Message-ID: <20250526120512.1702815-5-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250526120512.1702815-1-jouni.hogander@intel.com>
 References: <20250526120512.1702815-1-jouni.hogander@intel.com>
@@ -71,95 +70,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There are several Panel Replay capability register in DPCD. Read them
-all for later use.
+Add PR_ALPM_CTL register definition and bits for it.
 
-v2:
-  - avoid using hardcoded indices
-  - read all Panel Replay capability registers
-
+Bspec: 71014
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- .../drm/i915/display/intel_display_types.h    |  4 +++-
- drivers/gpu/drm/i915/display/intel_psr.c      | 20 ++++++++++++-------
- 2 files changed, 16 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr_regs.h | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index fc1eda590da8..ed4d743fc7c5 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1669,7 +1669,9 @@ struct intel_dp {
- 	bool use_max_params;
- 	u8 dpcd[DP_RECEIVER_CAP_SIZE];
- 	u8 psr_dpcd[EDP_PSR_RECEIVER_CAP_SIZE];
--	u8 pr_dpcd;
-+	u8 pr_dpcd[DP_PANEL_REPLAY_CAP_SIZE];
-+#define INTEL_PR_DPCD_INDEX(pr_dpcd_register)	((pr_dpcd_register) - DP_PANEL_REPLAY_CAP_SUPPORT)
+diff --git a/drivers/gpu/drm/i915/display/intel_psr_regs.h b/drivers/gpu/drm/i915/display/intel_psr_regs.h
+index 795e6b9cc575..aad3ac5f502e 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_psr_regs.h
+@@ -266,6 +266,16 @@
+ #define _PIPE_SRCSZ_ERLY_TPT_B	0x71074
+ #define PIPE_SRCSZ_ERLY_TPT(pipe)	_MMIO_PIPE((pipe), _PIPE_SRCSZ_ERLY_TPT_A, _PIPE_SRCSZ_ERLY_TPT_B)
+ 
++#define _PR_ALPM_CTL_A	0x60948
++#define PR_ALPM_CTL(dev_priv, tran)	_MMIO_TRANS2(dev_priv, tran, _PR_ALPM_CTL_A)
++#define  PR_ALPM_CTL_ALLOW_LINK_OFF_BETWEEN_AS_SDP_AND_SU	BIT(6)
++#define  PR_ALPM_CTL_RFB_UPDATE_CONTROL				BIT(5)
++#define  PR_ALPM_CTL_AS_SDP_TRANSMISSION_IN_ACTIVE_DISABLE	BIT(4)
++#define  PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_MASK		REG_GENMASK(1, 0)
++#define  PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_T1_OR_T2	REG_FIELD_PREP(PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_MASK, 0)
++#define  PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_T1		REG_FIELD_PREP(PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_MASK, 1)
++#define  PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_T2		REG_FIELD_PREP(PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_MASK, 2)
 +
- 	u8 downstream_ports[DP_MAX_DOWNSTREAM_PORTS];
- 	u8 edp_dpcd[EDP_DISPLAY_CTL_CAP_SIZE];
- 	u8 lttpr_common_caps[DP_LTTPR_COMMON_CAP_SIZE];
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 0cfdeff268f9..1072549649cd 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -608,7 +608,8 @@ static void _panel_replay_init_dpcd(struct intel_dp *intel_dp)
- 			return;
- 		}
- 
--		if (!(intel_dp->pr_dpcd & DP_PANEL_REPLAY_EARLY_TRANSPORT_SUPPORT)) {
-+		if (!(intel_dp->pr_dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_SUPPORT)] &
-+		      DP_PANEL_REPLAY_EARLY_TRANSPORT_SUPPORT)) {
- 			drm_dbg_kms(display->drm,
- 				    "Panel doesn't support early transport, eDP Panel Replay not possible\n");
- 			return;
-@@ -617,7 +618,8 @@ static void _panel_replay_init_dpcd(struct intel_dp *intel_dp)
- 
- 	intel_dp->psr.sink_panel_replay_support = true;
- 
--	if (intel_dp->pr_dpcd & DP_PANEL_REPLAY_SU_SUPPORT)
-+	if (intel_dp->pr_dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_SUPPORT)] &
-+	    DP_PANEL_REPLAY_SU_SUPPORT)
- 		intel_dp->psr.sink_panel_replay_su_support = true;
- 
- 	drm_dbg_kms(display->drm,
-@@ -676,10 +678,12 @@ void intel_psr_init_dpcd(struct intel_dp *intel_dp)
- {
- 	drm_dp_dpcd_read(&intel_dp->aux, DP_PSR_SUPPORT, intel_dp->psr_dpcd,
- 			 sizeof(intel_dp->psr_dpcd));
--	drm_dp_dpcd_readb(&intel_dp->aux, DP_PANEL_REPLAY_CAP_SUPPORT,
--			  &intel_dp->pr_dpcd);
- 
--	if (intel_dp->pr_dpcd & DP_PANEL_REPLAY_SUPPORT)
-+	drm_dp_dpcd_read(&intel_dp->aux, DP_PANEL_REPLAY_CAP_SUPPORT,
-+			 &intel_dp->pr_dpcd, sizeof(intel_dp->pr_dpcd));
-+
-+	if (intel_dp->pr_dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_SUPPORT)] &
-+	    DP_PANEL_REPLAY_SUPPORT)
- 		_panel_replay_init_dpcd(intel_dp);
- 
- 	if (intel_dp->psr_dpcd[0])
-@@ -736,7 +740,8 @@ static bool psr2_su_region_et_valid(struct intel_dp *intel_dp, bool panel_replay
- 		return false;
- 
- 	return panel_replay ?
--		intel_dp->pr_dpcd & DP_PANEL_REPLAY_EARLY_TRANSPORT_SUPPORT :
-+		intel_dp->pr_dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_SUPPORT)] &
-+		DP_PANEL_REPLAY_EARLY_TRANSPORT_SUPPORT :
- 		intel_dp->psr_dpcd[0] == DP_PSR2_WITH_Y_COORD_ET_SUPPORTED &&
- 		psr2_su_region_et_global_enabled(intel_dp);
- }
-@@ -3916,7 +3921,8 @@ static void intel_psr_sink_capability(struct intel_dp *intel_dp,
- 	seq_printf(m, ", Panel Replay = %s", str_yes_no(psr->sink_panel_replay_support));
- 	seq_printf(m, ", Panel Replay Selective Update = %s",
- 		   str_yes_no(psr->sink_panel_replay_su_support));
--	if (intel_dp->pr_dpcd & DP_PANEL_REPLAY_EARLY_TRANSPORT_SUPPORT)
-+	if (intel_dp->pr_dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_SUPPORT)] &
-+	    DP_PANEL_REPLAY_EARLY_TRANSPORT_SUPPORT)
- 		seq_printf(m, " (Early Transport)");
- 	seq_printf(m, "\n");
- }
+ #define _ALPM_CTL_A	0x60950
+ #define ALPM_CTL(dev_priv, tran)	_MMIO_TRANS2(dev_priv, tran, _ALPM_CTL_A)
+ #define  ALPM_CTL_ALPM_ENABLE				REG_BIT(31)
 -- 
 2.43.0
 
