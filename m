@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8415C54FB3
-	for <intel-xe@archiver.kernel.org>; Mon, 26 May 2025 23:45:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC9CDC5B543
+	for <intel-xe@archiver.kernel.org>; Mon, 26 May 2025 23:50:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92DB010E3B8;
-	Mon, 26 May 2025 23:45:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73E6610E3E8;
+	Mon, 26 May 2025 23:50:11 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A95D110E3B8;
- Mon, 26 May 2025 23:45:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8E2410E0B8;
+ Mon, 26 May 2025 23:50:09 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915/sbi=3A_move_under_dis?=
- =?utf-8?q?play=2C_cleanup?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/hwmon=3A_Add_?=
+ =?utf-8?q?mailbox_power_limits=2C_PL2=2C_read_energy_from_PMT_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
+To: "Poosa, Karthik" <karthik.poosa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 26 May 2025 23:45:07 -0000
-Message-ID: <174830310768.21444.6060155994791544700@1538d3639d33>
+Date: Mon, 26 May 2025 23:50:09 -0000
+Message-ID: <174830340994.21264.12291259788971438013@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <cover.1747138550.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1747138550.git.jani.nikula@intel.com>
+References: <20250513044728.630455-1-karthik.poosa@intel.com>
+In-Reply-To: <20250513044728.630455-1-karthik.poosa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,8 +42,19 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/sbi: move under display, cleanup
-URL   : https://patchwork.freedesktop.org/series/148960/
+Series: drm/xe/hwmon: Add mailbox power limits, PL2, read energy from PMT (rev2)
+URL   : https://patchwork.freedesktop.org/series/148926/
 State : success
+
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 3e019cc3eaff drm-tip: 2025y-05m-26d-14h-49m-23s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/hwmon: Add support to manage power limits though mailbox
+Applying: drm/xe/hwmon: Move card reactive critical power under channel card
+Applying: drm/xe/hwmon: Add support to manage PL2 though mailbox
+Applying: drm/xe/hwmon: Expose powerX_cap_interval
+Applying: drm/xe/hwmon: Read energy status from PMT
 
 
