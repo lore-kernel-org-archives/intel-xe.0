@@ -4,188 +4,186 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5B94C54FB3
-	for <intel-xe@archiver.kernel.org>; Mon, 26 May 2025 08:33:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE5FBC54FB3
+	for <intel-xe@archiver.kernel.org>; Mon, 26 May 2025 09:31:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E968310E2C8;
-	Mon, 26 May 2025 08:33:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69F8A10E2CA;
+	Mon, 26 May 2025 09:31:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nx3nhj73";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h+40w/dG";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76D0410E2BD;
- Mon, 26 May 2025 08:33:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 143D110E2CA
+ for <intel-xe@lists.freedesktop.org>; Mon, 26 May 2025 09:31:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748248406; x=1779784406;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=89jH1o5EKwtjtCH02nMhQxBniukEV3Ugbu6GhhSBigI=;
- b=nx3nhj73velEkHKl9qiZ/i98ilHhtXAAnHHhWtMVIysogtfUWSSkaBAt
- PRAyu4mo2cstnlr4CuWDblkGcxipIZm4t7jJz8EcGqmiBtKSDS0JFtapd
- K9RfNvC+GmERuGijA59dS9pjGbMpUo6SdI4dDZv0Ltwf6Bsh8D2iweO2a
- 5UVc6K6jcByzqP/pJWmXp9RSJiFsIVEDsPMY6ohCQuHRa3E0JCb8FQGSC
- egVCFSVd04a1BDqp9HTIE/DH+CYvD9xBvQxXaShnyvAlBNje23zDlB25C
- 8rdFnbMs+ObFW7DXuO7sQhkXZsuVAsd7mnEVgtkispknRT8x7mLeypUmc Q==;
-X-CSE-ConnectionGUID: O4Kd2vmGSBeXkwSJ9MGdOA==
-X-CSE-MsgGUID: mEAal4ClR82CPRAc4ORziw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11444"; a="61269228"
-X-IronPort-AV: E=Sophos;i="6.15,315,1739865600"; d="scan'208";a="61269228"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2025 01:33:26 -0700
-X-CSE-ConnectionGUID: TI26DRqcSk6//eXSeJ5tJg==
-X-CSE-MsgGUID: d1q4kF/QTzSBsWfCZHDIcw==
+ t=1748251895; x=1779787895;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:mime-version;
+ bh=wmDag2JC89cHd7oGHydv0Yd5XkNFTG3+H4oZ/MHNV/I=;
+ b=h+40w/dGIDZl1IzxbJgijZJ31N8XYqjTzB+TGuyZvFX9EFCiPjAGT2wH
+ tvnBHELY+0ah7aM2HwSOpLqgU7CHFZAmS76BmabmJlbz0pMAeOINbS9eH
+ UmdoMgzdBybXO78zq8h2DV2E3gHI30P8A5taYY5TKVJ94abHJHrE8MLCv
+ 6icerLetFFmR5bgdnbXXfvp/8jmyodPMSDEtFYtIdQeuqtRrFG38PgryN
+ DxzN75Y1AqYxcqadzE/qRUOZ1NkMli2fhLH0KJ24KB9OF51dHQXte2pq7
+ KeKGX+QrjXiGYMQjGPS7TMLR/Dlt/tYLlQcw4+qv32+gcptAn4SuIa59w w==;
+X-CSE-ConnectionGUID: URwzS38QRlqPVMHi2Dli+w==
+X-CSE-MsgGUID: lwBDll4GRCiTq87yWFxe5g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11444"; a="61576595"
+X-IronPort-AV: E=Sophos;i="6.15,315,1739865600"; d="scan'208,217";a="61576595"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2025 02:31:34 -0700
+X-CSE-ConnectionGUID: oze3IFx/Tf29H9NC+W5l3A==
+X-CSE-MsgGUID: 3jepUYCwThimRzNUUYf1GQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,315,1739865600"; d="scan'208";a="142182610"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2025 01:33:26 -0700
+X-IronPort-AV: E=Sophos;i="6.15,315,1739865600"; 
+ d="scan'208,217";a="143245197"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2025 02:31:34 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Mon, 26 May 2025 01:33:25 -0700
+ 15.2.1544.25; Mon, 26 May 2025 02:31:34 -0700
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Mon, 26 May 2025 01:33:25 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (40.107.236.46)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.2.1544.25 via Frontend Transport; Mon, 26 May 2025 02:31:34 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (40.107.94.50) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.55; Mon, 26 May 2025 01:33:24 -0700
+ 15.1.2507.55; Mon, 26 May 2025 02:31:33 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=X/4uxLp55baqMj6uuKiPr6uuBobMo9XvsRwy3aPiN326c8c29MFui/EfmpBl/IACGcPHMH49zZdxmBZLbXOI0sKHI49jq1p0RdXmXbWUdPkhZoxofDrNFsMejK47FjCA4D3pShF6kX4HC3DHOHE057xADlBSS4gDeGBt5Ir8XHfBX0oilUyChBCT07C/wafa6ek2T7MPRD7/R9zYSm9Urmxt3ZUjhn2ZnicCIOlAbCSUJ7qtKN0OYHidW8/03djX+z89HOsOn1rrXz77iLXGMpl2VJpgVAXT6rRX68KE1ctC7YBE0y0ldBDsQ2jiQzvkK96JPJgIu28yl1IL+5s60w==
+ b=XnKKhpxhvQAfekP7wDZ1ITcvcWc0zWwZcV/GQluCQGnj+TcGNUGI9dCgRod3iR111uYxoacywBSSCmdP0TxbCAqUGHFfY4/wGy13ALT9eo6syAykzG/ZgqujovHvurUWg6u3tiFv1QNBVxwZZr4bbY9zNWS4Jkt+41aJQ3HlKsTJ0sN30V6J/yAWwIqokqHl2wBNqqHEfIpffsBVcu5x9CJ71WaVkf+Nt6eccDikmzbp3H5KSOf7X3o/pP4KSJlUnnSbJyAMxb0gnqQq8YehH8s+NNHVlFmcE8YjKrLHwZmDpZVM7d6IHSV8YtlKFQ/FHyarTddJKfDQyLNXyNOMog==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=89jH1o5EKwtjtCH02nMhQxBniukEV3Ugbu6GhhSBigI=;
- b=ZX7mCxuoMYrCgnzl5qUXCZrKDzYnetLkWnWvO9WOuby/O8ALa7yeoNJBWvdqLxEKXdFw3ixQhTnID3IQs/hg9+WBeTv2kzPmcVukMuHsvJBzAXDkXajdJKSGCEqBY7OT/dnmWyx5POtl801nssQfD27/Kn2Z7twXccxUdzt4QLOJP2rsSIDcHmz0QVoPiGszhCYwGAhNhi6mpej2DNxp6TQREO/hmzVZBOOjW3nYEJxZpMvHozCYaIHaEJTaVQyOh2IsAc086pwdmEVnnJNdjGyIK1F0L5m8rz/Klh2Xff+UEwjNRnKgYPgUEV5GPpgVdFvIMx4Q46yYrL6klS7WAQ==
+ bh=bKrMP5zfpJd6BB3tC5x5n9Mb1bgQwqEDuBYQIweJvlM=;
+ b=ZiL61rIeQJIxjTryt1BNJP7jexAxcyPXakLWaOYJtreJPApGgAZV5GPjrbmcc2o0bVj+Qn3SPS2j112rXRKS1FnbsMei0xOaJZG1YjIrRElIZHgqrZv3IXZ/FFMoTqRtEMBL8igUpnySIp2/vGFgT3wQWw9obpDK4+lpE7Q7Jzl1J0RdEFWDRCVMbA4zaO+7FtFM2MZHWVBCBVrDpT4b9xWmjO1CclWF48oZ5PfKfKu45pFbSNw93Z9vFa7whEjSGdpSqEyZ5vDiaqnBPQrSZ6NJfmt00xvmENS0NxSWPgfAtCEbEWg4pHAsGfF6W36TENraM0oSGHIvjCI7GDDtbQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB8049.namprd11.prod.outlook.com (2603:10b6:8:116::6) by
- MN0PR11MB6035.namprd11.prod.outlook.com (2603:10b6:208:376::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.21; Mon, 26 May
- 2025 08:33:03 +0000
-Received: from DS0PR11MB8049.namprd11.prod.outlook.com
- ([fe80::d84a:3532:5337:1f7c]) by DS0PR11MB8049.namprd11.prod.outlook.com
- ([fe80::d84a:3532:5337:1f7c%6]) with mapi id 15.20.8769.021; Mon, 26 May 2025
- 08:33:03 +0000
-From: "Manna, Animesh" <animesh.manna@intel.com>
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>, "Shankar, 
- Uma" <uma.shankar@intel.com>
-Subject: RE: [v8 00/11] drm/xe/display: Program double buffered LUT registers
-Thread-Topic: [v8 00/11] drm/xe/display: Program double buffered LUT registers
-Thread-Index: AQHby61jfZlKY972rE2VquNWZnT52rPkmd6g
-Date: Mon, 26 May 2025 08:33:03 +0000
-Message-ID: <DS0PR11MB80492A2B572E6AD051E11143F965A@DS0PR11MB8049.namprd11.prod.outlook.com>
-References: <20250523062041.166468-1-chaitanya.kumar.borah@intel.com>
-In-Reply-To: <20250523062041.166468-1-chaitanya.kumar.borah@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB8049:EE_|MN0PR11MB6035:EE_
-x-ms-office365-filtering-correlation-id: d8195dcc-20f9-4462-c19a-08dd9c2feea9
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|10070799003|366016|38070700018|7053199007; 
-x-microsoft-antispam-message-info: =?utf-8?B?U3RISTJ5d3J3WXp4aGh0bjZtZzNZVlFxMEJqdDBmNStCdWhvR1Z3VTVrN1pE?=
- =?utf-8?B?d1pVci8vUU1iZHg2S2NrUzBKZHlnb1pBRGp4QVRsT08wU3pmWENJaDFUZVBw?=
- =?utf-8?B?STczNzlRdUNONUQxNjAwU0k0YkVDMldzbEI1RkllbERFZzJkY0V6b0NSK3Vz?=
- =?utf-8?B?ZnZnVzNMWUliTi9oUUsrMmY2eWg1bXBXQ3c3QzdUZU1DSllVd0JtR2J4MTFR?=
- =?utf-8?B?ZGhRWUtSa3Z0Q0FMQkRNUXlaMGpCaUd3d2pUMHBMZHZaYjVOSDMwd1NZMUJ5?=
- =?utf-8?B?Z3htcE1oSmFiK3R1dXB6MDlZREUwallPRGI3MThzV0F2WldiaUpoVHNIbEQz?=
- =?utf-8?B?OE9tblZvbWVjTHdYMGsxMCtTd1crMXJsVnUwYTFlb0dZNE10dUppWWZucGxI?=
- =?utf-8?B?Y1k5blF5WmhaU3h2aHV2OEJVUEpQdlFSbEs3SEpodWF4dHNyTHJUZkNZRmZM?=
- =?utf-8?B?RlZrN3JWcCtKcFNNcU1RVFMyNGNYb1ZzbHZmRWZYelIwQm5yU0owVUZzNm5D?=
- =?utf-8?B?L0VUR1hkbHpyUkZPVytIV3VoRmxtVzVRZU01TTdDMEVTUkpaa1pldFBJOXY4?=
- =?utf-8?B?dWFTTTcwTGpZaWxraWlEV1RDdmVzODc5T2FjV1dhZXZML0Vwb3Uya0h1TG5X?=
- =?utf-8?B?U2xrQmxPU3RnNzJYaUZ4RVZ3VDlQbzJIUEh5cnlPK1NRQ1Vocmo3SW5mWWFi?=
- =?utf-8?B?U0Y2b1c2dTljbDVuM1RxQmxOZy92NnFrQ1NYTWhsNkNER0NVYjA3NWhpcm1p?=
- =?utf-8?B?OWE1OGNUOHNqa2ZMd3NGUDJ2NVAyTlFIMSt2WENhZVhjMGpZb2VHQm5kT1Zk?=
- =?utf-8?B?NjlMN1FVeGFHNDhSYjFlNEZsWG5UUndtOWFPVFRIV1hpVU4yKzh2Y200YVFl?=
- =?utf-8?B?VEpsQzliWWMzODZtN0M0bmJYL2FtL2pLQy9zeWVIYXNNcDdUUjVYMzRSQXRi?=
- =?utf-8?B?WnN3SkhTZHI4MVIxZlVsdE1MTlZEZjRzQUhhN1BuS0RCSHovWDV2clpSdXVK?=
- =?utf-8?B?bGpEcmZvVml4SjhnaXB0K2Q1VXQyUk5zcDdOc2pDbnh4Rk9ZVmwzL0xLb0JS?=
- =?utf-8?B?VDZ5cG5LQWpTTlFnbWFORVpTVXhSdWtZa3dFdlJkQ0pDem5IRjBPZlNUTWQy?=
- =?utf-8?B?RHdSL2wxaDFkSk1VWjcyWG1XMnl2d0ttRFZGVkVlMUdsd2ZDbWNZMDdUQ2Zo?=
- =?utf-8?B?S0ZKbEw0SE92VDI0d1JxU1d4TUpkV3BPVDF3UzRFOUdCV1NxbUM3QzZ1YmRD?=
- =?utf-8?B?ZmcxTWpSazJiWmFHQzN2VVlucXNqeDQ4Z2RZdTJXa3U4N0tEYW1OZ3M4QlVD?=
- =?utf-8?B?aU5ZUjN0Ri83N1NLSHpJVzFSWWF0cklxcVpQMTdhSzVYb0lTRFVacXJNM013?=
- =?utf-8?B?bG1IdVRZWFY0WkM3S056ZjZmRlFFMnBianpHOWZjbEs0alNXVmdWeWNqQnpn?=
- =?utf-8?B?ZXhibXdyNHd4L05Yd0lCZk5JalZuWE9oaiswK25zc1k3S1EwRmFSTTRKUXFX?=
- =?utf-8?B?cWJEeEpLdDBVcHoxclFMZXJrdk1VaGVlQVhrTWltWnJaT3Qvakg5c2VpWk9l?=
- =?utf-8?B?Y0tyYktaZW9JVUkwSVJXYUFFcEduT0k2MC9wM3dpN0lndDhiOTduTmExcXRr?=
- =?utf-8?B?cTIzSTc2c0pPcFhqSExpdkVqS1dzQjQ5ZU84TFdyd3htLzNnL2VGUWt4clBm?=
- =?utf-8?B?WlMzcXYrOWR3ZzF3NTN5aFgvdEJVelhyRzVETXNmSERhNGpYa05uQnR4R0lZ?=
- =?utf-8?B?eDQ5V0xKVDc3bnBtRTZKU1NoSmQ4bWlPRDRTK3lsUGdsbFRqVy9EUHYvZFZL?=
- =?utf-8?B?OWNuc1k1QldYQSttVkRMaXlqdlhtblU4Z2VCTlVQVXZyT2NjekxPVUxMbDNM?=
- =?utf-8?B?Tm5RbGpsVTFkS1V4aXlPUmpuZnR6cGwzUTJ1WjF6N09tQTZVY1o3enA1cXR2?=
- =?utf-8?B?SkFRTk1IWTJqc3F0ZlVZNjc0OHpyYVU4VTJZS090Vk9kNXBTQ1VPTDkwMzVK?=
- =?utf-8?Q?vqXFhxbi/xjnIQ37MmLxgSMhM1PeLQ=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8049.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(10070799003)(366016)(38070700018)(7053199007);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SjlTbGNnbjdobFUrajR1cSszaDZqVTY3Mmt1dlhiNEJYR0cyWFErNXBZTFpB?=
- =?utf-8?B?K0tXUUZ5QzNhZlpZN0NXNnpxK0lBR2o3VWRnY0NGbENDaHlxQU94TTF5WjQy?=
- =?utf-8?B?ZU9UVTQ0S0QzWXNRbENuMGZhL2pXYTNRbFQ1RU1Zb2JTZkNoaG9wd1Q5RDYr?=
- =?utf-8?B?TE4xNHA0bmhMT1BsbW5rRzJaeEp0QnpNMVB6cnZWbU8rZzVuMlJPVDlhbnI3?=
- =?utf-8?B?ZVlyWUtNYzFGNHVZd3RGbkh4b21CSXhJRVJaZXdIWXpDZFVHWlBJM3BTbGVC?=
- =?utf-8?B?WVdWeFFlRzJOOUFYWlRPN0dGSUczTlFDdVUzbHVDSC9KczhlRUVIamJJcUJs?=
- =?utf-8?B?TzJwY3JNWER2dGZncUZNQy9HRVRDWXUrK2VGZ042ekc2bmQxaG9IMTdBcGw5?=
- =?utf-8?B?ZjRCRWFDbkZDWkFMRDJ5TENFQTZQaXppcFZJK3V3dzdBRkZoNlhvamZkUlF6?=
- =?utf-8?B?TFdVcDhsNU5FclIvK2RMekxZVDBweGp2SExwMTl0aitibjdDQTlJcEFQOHJ3?=
- =?utf-8?B?OUthWWJLMVJPTEdMOGtvbmMwYStmNUt3TE9nOUYrN0thZTBOMG5wY2ZGUU5z?=
- =?utf-8?B?VDdLMmJ6SnUrMDdwdHA0N2RmWEs5Z0hzRGFKQm9JR2FnUzFtc2l1UlAzTzVz?=
- =?utf-8?B?SHIzM3lPT2h0SVliUCs2bUt2NEVrR21KUGc4M3hhYmlWM21KSFNSS2t2YWFi?=
- =?utf-8?B?Mmg4REsrQXoxUDNyVk1KQ2owTUkvZ3JYQ1lqTzY1eUN5Y1VYZTcvblhIUjYw?=
- =?utf-8?B?U3YrSUhlblU3ZG9VNlVIYnR2azB4Vld2ZndPcjRHcm01NWpHWlVMSSsxWjQ5?=
- =?utf-8?B?RUpWTG9SMkY5dFFxUWltcHcwWWk4YnlPTjNvdjFOT0ROR0JRSGxacjdVcDJF?=
- =?utf-8?B?bHY2K2prYlJSbXBmaEdSMlQ5U3Z5ak5EbWozVnpSMS9nQU5Hc0t6aWEwVGNl?=
- =?utf-8?B?K2FDL0p5cjB5b3VvdkdBTEhBRE1hdGt6TWpUdUFkQkUwc0Z3eW1yT0lmV2oz?=
- =?utf-8?B?VnZvbHVQNGJQWW5uV1ZqcHEwd09lN2RrTlRmK3R1dEFsdWtDMjhrUytVWFVO?=
- =?utf-8?B?QVBLa1ZaZEo3Slo0Q2RZYTNQYWFVRklGUWVWTFdMTktpS2o2cWd6dlFlMW5B?=
- =?utf-8?B?bXdHS1FvMm1veDJRNE54WWIzNVR5TmdyclVkWkN1MmRUbG5RMmsvL0xmMFdx?=
- =?utf-8?B?dmJjMCszRlVFVkpub2pxR2FjQ2swdmRQZkg5Q2xRekhRa1FyWGpGcnM1NGIx?=
- =?utf-8?B?c3RkL1Z6VGtHbTFhREdEbnhrZGE4bDdnaXZESWRhSmQ4TVU3VG5NdHZHY2J3?=
- =?utf-8?B?ZTM1azJBVlZGN0ZQNVZHYWhVZDhWcElDSnJsdCs0M0ZTT2pTQ05KRXE3UE56?=
- =?utf-8?B?MUdCVkVhTEs1WXQ0cU1rbnl5TGFqeW9YMHhNTHpBRjdrbVZ3Rmh0L2kwam85?=
- =?utf-8?B?d2ZhSjI5OHpZSCtHRVI2VCtVMGxFcVp1QlYxbEdjTVlIYWIvNGtlajVnRjBO?=
- =?utf-8?B?WE1FeG85UklBdVJ6UmcyN3RxTVRKUGRReGo0cDlzeGIxL094Sk8yYitxcGNk?=
- =?utf-8?B?VjRERU15aGF4N0w0eERMdjFJTm1kMUhDSzRHbjQ2cXFQQS9RTmY3cEJNR1BH?=
- =?utf-8?B?dGR6aU4yc2hWZHVWVU91VjVOdDhnMDRMbmJNSFBlRDhoa0ozd3RGcXkvemRC?=
- =?utf-8?B?Yll1Z25ZT0VCR2dKaE5CT25RaTBGbDRNRHh2N3djNWZGb0RHeXlTdEJ5RXp3?=
- =?utf-8?B?UTQxL3R6cFpOOUg0Y1JXS1p3b3p4a0tTM2hNK0dHMGM5TTlLcmsxUk0yMEVu?=
- =?utf-8?B?alBYREVxNjRqUkZhRFJuWTRFU0VueDhGYUFYMFhscUhLMCsxakJPZWNFcm84?=
- =?utf-8?B?SmMwNE9WNSt1czMzMWRuT2pEZFhicVovTi93Skp4eTd4d2UwZHVKcDVnbURp?=
- =?utf-8?B?NFpBdHducER1Sk9hamlVMkNWQnhNK2I3cjNqbFhCRk5RdEhNS1N1SEI0ZC9M?=
- =?utf-8?B?bjhWUk5FZHpKNDVhSGFpL3Z1eWZqT01DNncxM25RcjhxRzNZLy9yRGE4NE15?=
- =?utf-8?B?cDE2cDZXaXI4NkptblNNeG50a0FVWFk5VXFMa2l4Zmt0YVdPSDcvWTB3L01M?=
- =?utf-8?B?Q2F4Ums3VXl6VGt0U1FObDZXMmtKUFRQVGtqNEwwU3pJcXFlaEZQODFFUWE3?=
- =?utf-8?B?UEE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from DM8PR11MB5703.namprd11.prod.outlook.com (2603:10b6:8:22::5) by
+ CYXPR11MB8754.namprd11.prod.outlook.com (2603:10b6:930:dc::13) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8769.25; Mon, 26 May 2025 09:31:13 +0000
+Received: from DM8PR11MB5703.namprd11.prod.outlook.com
+ ([fe80::f734:e507:3083:e454]) by DM8PR11MB5703.namprd11.prod.outlook.com
+ ([fe80::f734:e507:3083:e454%5]) with mapi id 15.20.8769.025; Mon, 26 May 2025
+ 09:31:13 +0000
+Content-Type: multipart/alternative;
+ boundary="------------QkkIe7mkikZCNAYKcsbSJHqe"
+Message-ID: <7419aec3-da5a-400d-8277-c4457d4f6015@intel.com>
+Date: Mon, 26 May 2025 15:01:07 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 3/5] drm/xe/hwmon: Add support to manage PL2 though
+ mailbox
+Content-Language: en-GB
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
+ <badal.nilawar@intel.com>
+References: <20250523150014.2101869-1-karthik.poosa@intel.com>
+ <20250523150014.2101869-4-karthik.poosa@intel.com>
+ <aDCtfnqRqs27adSg@intel.com>
+From: "Poosa, Karthik" <karthik.poosa@intel.com>
+In-Reply-To: <aDCtfnqRqs27adSg@intel.com>
+X-ClientProxiedBy: MA0PR01CA0084.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:ae::18) To DM8PR11MB5703.namprd11.prod.outlook.com
+ (2603:10b6:8:22::5)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM8PR11MB5703:EE_|CYXPR11MB8754:EE_
+X-MS-Office365-Filtering-Correlation-Id: c4130810-bd22-4db8-b2be-08dd9c380e9b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|8096899003;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?SStkcnVGRWxpUEw2VUJSV3hGcDB3bFpJNmFwMER1bm9DYytlYXRCejlSRHNy?=
+ =?utf-8?B?d082aHZ0OFdmTGZYdEVuaVJGU0d1OWVRYWFzTDM4ZmNyMytINmJVRXkyOHJ2?=
+ =?utf-8?B?WWRPMVdYMi93TVVKWWRWWHFCUWlrZ3RpWnc3ZXZJV0xZL3k5bEtSWjBnNGJ5?=
+ =?utf-8?B?MmkxbE9lM0wzZVRWdkIrZVhINnFNQnhTWTE3dktvU1NYYWFKbE9RNDhzWjNz?=
+ =?utf-8?B?UlRYeGVMbnZudWNVbVkzblVWOUFiY1pieGpHVGtJVytENHNablhUZzBYK011?=
+ =?utf-8?B?YXAwWFUrWmFCTDdRUENBbEtKT1VKZGVlUzJISUpHYXRyTk5EVUF1eGJtaXYv?=
+ =?utf-8?B?OEExZW5kc1BkSWlOTmhlbytCaXE3Q2RlbGNnU3M0RlBuMUhSQjdHSkJRb05y?=
+ =?utf-8?B?TGRWWHZ2QllvT05OdjVnN3lYT1BmSzdESUZsZW1kN3dxaVVJNnc2NnFWZzgz?=
+ =?utf-8?B?TW9QL2ZwOWp1UTB4TXhnV0xMcHlXdlljd2NnbUZQNlpxdUxNNm1Gc3o5Mndv?=
+ =?utf-8?B?b1c0MHJMYWJTRG5KY1hVUUhWMEVKMktjTHY3U3B3MHM1MFJnZDB6dUhiWnVk?=
+ =?utf-8?B?NVNLSi9WbE5RS2VEamhBclFlRjBISFZOM3RLc045cmJIQVRIMGNOMW92UHBj?=
+ =?utf-8?B?dzI2b2o5clJLTHFqemhvRzBnTE9ScE9DM0pWbENTUUR4TWt6RTNEbTR0YUxi?=
+ =?utf-8?B?cVBpMCtqQTUvdlFzVjBjL3pvQlpyZy9ueTcyWHMxd3M2dVdqZXp4OTRkVU4r?=
+ =?utf-8?B?bWYvWWQrZHN5NnhESVE5cXFlZ25GQS9PcmNJSkFHdnV1RW01SUpob0l2eW42?=
+ =?utf-8?B?bTFIVlFvOUtVQmd6bDAvQlVqQ2NLOEhIWWpwTzlPTGZTa0VJQll5Mmp5emEv?=
+ =?utf-8?B?WmVpT0k5M0VVR2tyR0w5aGdqTzc1cUMvOVFMTHYxN0pnKzlxK3VsdndvVTNk?=
+ =?utf-8?B?N3I2Rjk1dU5PMGMrQW04U2xDVnJ4SFJsSHp5TzdYU1U0SVdsNTRLQzVsdGkw?=
+ =?utf-8?B?b1IxRG4vSUFHejZVQllReGxDK2IwOXpQOGFOYnhCdGk4WUJwaE9CaVdwZkNr?=
+ =?utf-8?B?RzFOUCt2MUNHaElYbzNnMStGVy9McW5mTGh5dFdsWmdqeUpnalRUenIwU0Vh?=
+ =?utf-8?B?S1ppa2VxT1F6Q1BiWm1GSjkzWHlSRXpmaWtiSzBYQ2RwMmQ5NDA1ckYrWHQ2?=
+ =?utf-8?B?QlpEbW91VlhybGNiZTdyOGdrL2VLdzgySStqbTRpeHdJeUJUbWpYNk9nSmt3?=
+ =?utf-8?B?N2dWN201NTBQOHVzdlJPVVh3UG1WRXl6STY2Q1FObmYrQzJIdnZhTnJPa1Fu?=
+ =?utf-8?B?RVhIdmlhNU5zaXV1ODJGTWxXbVNBaVlHR0pxZm93WjNIUWxLeXBaVno3SzUv?=
+ =?utf-8?B?VWMzN3Bua0g3SlkwaTFUeko0WEJHZ1RwaDJVbHZScTRNcE80alNWTG9kUjR4?=
+ =?utf-8?B?ZTdqUjN4R3FKWGtuR0ZwNU01bEtBeGJ1WVVVY1AvVDFXcDh5c3ZCcXBDN1hM?=
+ =?utf-8?B?Y0pTeXloZ0VJRHRrUVR1dEdycXFhM0pvN2N4L1d1cXBUMFpXbEdlUlJOL3dC?=
+ =?utf-8?B?alNPK0ZQVGRPdU1VSEdjTHRNTEhPWjdxN1UxWXlueTlpNzBjV1JhVFdVdHcw?=
+ =?utf-8?B?L0wrUG93QjhnYmRGejZrV0FudDA2ZkwwbzUyeUlVcnUvUXZYYzhRUm9OUjZy?=
+ =?utf-8?B?d2lMWnVOd2ZDY0ZBMER4b2Q5R1llQVJNOGk2T0VXUDNxOWY2cDJSZFB3TEpl?=
+ =?utf-8?B?azJwd1F4aGdhamdERStqYUhQTE1nbzVlR0wrZDZzRlliaDY5MUhEQVphZ1lS?=
+ =?utf-8?B?K1VHZCt2TkdsS0JsS0t0K0ZSZ1pVMzVvUVRrSlBiZ3pwaHBXUVgwdktNdGM5?=
+ =?utf-8?B?MzYzY1Q1dnlTTjZ3amVzcUVHa3ZxNm9ldlZCV01MeGlYV2o2aDBSK2NqZ3BM?=
+ =?utf-8?Q?hdYAo6Hthx0=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM8PR11MB5703.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(8096899003); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TXkvYmI4ZHRmcTAzcEFLaDFUOTNwTjROZnRMY3RVa3JTdHFuakRlRHcyMEdR?=
+ =?utf-8?B?VlBRcXY3Rk1qOHBDTXprNHBFaHdiMTBUYzhybGxmQ2ZPTmllbEtEaiszTDRJ?=
+ =?utf-8?B?M1gxeExaQVZERDAzMUZYZ05MdG1QMlIwUlZMeGJaSmEwNUhubEk4UnltbEZL?=
+ =?utf-8?B?STUydG8vYU1sZ2xwOVdvS0FhUTFIdUpsU1pnUnFmbUw5bnpvQXR5UjhEQ1FG?=
+ =?utf-8?B?bURocjg5eHJXVHlGNFFIVnN4R25HSzFPdWRROEUxU2w0OHdFbzJpNmd2cXZY?=
+ =?utf-8?B?RjM5aVBQWTMvZ3RWa3JMV2N5di9RU2FUMW05dWRwK0ZpRDBsbit3RUNhQm83?=
+ =?utf-8?B?UmRWUVhteEZxZXBaVjRNZUw3aE1ONHgwZkJJRkZBTEhmckJmZEdFcHdncDly?=
+ =?utf-8?B?bUJRS2Y1RHhreTI5SUtrclZLVU51SlJ6a1hWV2pORnFpSXR3L1JzTmJmSlJL?=
+ =?utf-8?B?cVR2V3lPdW9rK3huQjRGQ1plTFd1V2pXL3dGMUZXZUlHL1NvbHlFNVFaSklm?=
+ =?utf-8?B?azJ2Wm1sd3FFMEVVMVhXc0JySE53RjFHbmwwL0d5bzdYUTl5RFMxQWFGZWpp?=
+ =?utf-8?B?ZEhSdlcyMmJoeFZLK2RuZk5PL3FRd2djUHE0dkJOT1gwZlpYbXJvbzBtM2Np?=
+ =?utf-8?B?bWVXekpXK0xxL1RsNWhVUmgwamc4eUkrWStVdnliRTAxSi9Cd2toRy80OVJD?=
+ =?utf-8?B?TXF0VjlhZDdUWnpNaEk2dFAyYjliUUVadnFHNnYzaFhhT3JYYjBWQ2RxWHgr?=
+ =?utf-8?B?TzdXZ2dnWkMwZFRDdEcyNkxIQU9QS1FOYW84aGF3VTM0MENlV1dneGVLcllw?=
+ =?utf-8?B?TnJWRmw5eU5tbE1JTUdYcFVyakpzMlFXUmIraVdsRFJkbXp5Z3lxbFU3YzJB?=
+ =?utf-8?B?WXdnd3VyUWRjaVpuQjdhcytNdjQxcG9CdnpieWQrYUhPc2dicFBLTlo0cGFj?=
+ =?utf-8?B?REU2UVNZbmJTYnJuUUc1S1lrc3MwdjIxRFQ2S1lONFIxdVk4TVYySzFWTHN2?=
+ =?utf-8?B?eXRLa1BOVkkwNk9UaUZNbWJGeHkvR3gvVXNQY0o2aUpuc3ZoZy91dGQ5bSs4?=
+ =?utf-8?B?QUlMenFsaTZ6WjF1UEFWTmZ3SjhSZER5SmFBd3RDOEVJYkhJU1kvV2FVdEFX?=
+ =?utf-8?B?azRvM201cmhKUk44MDRtUlNvSUFpYlZXUDFOamVHZXFjSE9nVlIzZnRwSmdI?=
+ =?utf-8?B?TzFZek5NbVU1Z3RGZWNGeGhGZDgxendyUGFjU25oK3ZmZmlSM0ZlVVJTWlg1?=
+ =?utf-8?B?WTRUcUU5eEFSK3AyWXlEamV1S2VtaURqc1NiVk5DVXNpUWo3OWFaZTNtSzVX?=
+ =?utf-8?B?QW0wWDFhQkVleEIrMFdSejNROWx5YUFDZWhDUnRzUkRmSEhYTTNpLzVpOHV5?=
+ =?utf-8?B?alBpL0lKZXJQM1g3enJwNG40MkFlQUczaDdvRzdNR3NEdWFUWjJZMTdETXQ2?=
+ =?utf-8?B?VEVtYVdDMS91cnhUeGhDdmdxY0lOWi9qYlVxOUVrOTlZMEJhT21ON1ZjMmxk?=
+ =?utf-8?B?Nnp5bEI4NGNOQnhBUmNDc0RBZytSYXNuVWxuZEZMbHJ3M3JySldzblhmSElH?=
+ =?utf-8?B?L2VlNUhVVmY5SWJ2RjMvaVptWTFUQzBWQkxma0M2YXgxQ05Wd25IRGJtYVBx?=
+ =?utf-8?B?aEpYMExhUVFtZkR4MU1wVTd4RHVpanlkdERPam9reUxjZmxMdGc4dE1Ddkdt?=
+ =?utf-8?B?SXVnTmRnQm9wRzJQZng4ODlRbTg0emNGU2F6T1ZNMmZQUFlwakROaktuUTNG?=
+ =?utf-8?B?RUVZYjVDNlNYemxGSDFMN0hiL0R2akRVRXBpQjBaTm9QQWpReTliRm9BWllt?=
+ =?utf-8?B?MlIzc2x4aG5KT0Z5dXdSMTRtWExzVzczc3ZaSXo1U0FHYWtDc1JKVlVWSnRt?=
+ =?utf-8?B?a21yaE1FVm1PcUJiVXRxTlB4THpqZFljdnNBZFI1QWVWWnh2UzMva1NFZnEy?=
+ =?utf-8?B?ajluMFZhTmx4OFNRalRwb1ZwVDE4SXVnbTUwYThTMkE5WlJpOVJtYWtwNHIw?=
+ =?utf-8?B?eFVGL1U5b0FBMlhKWk8vd25ka2I0Y2pVSWs0N05ONmVKTDZ2elJTQ1FZcWly?=
+ =?utf-8?B?eC9SVE1HdE05UnBhN0hFR21vRFkvY3U1bGpMY3ZXeksvcjZsWE44eVlrUWtq?=
+ =?utf-8?B?YVhhTUlSbTIvdXQ2VkJwWitycm40TUlKSVhCbExydFRtc1FOYUNFeG5vN3Ja?=
+ =?utf-8?B?dkE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c4130810-bd22-4db8-b2be-08dd9c380e9b
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5703.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8049.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d8195dcc-20f9-4462-c19a-08dd9c2feea9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 May 2025 08:33:03.7649 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: kjs3Nf4TKrIMON3tkMv7yhqbL0p3/+PP816cH6v8wzQ3VhHj1VKIgZ6Ui4WDiKjgYFqYFKZd6E3vrZ/Q96DrQA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6035
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 May 2025 09:31:13.7159 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: RbLeJc5xZ/7nVB2lav1lupKapHgO865oF8tIy9QlK240j2tgHudmH8UAzqlvP76N0rZrANG2w2tbShGrccnGtA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR11MB8754
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -201,42 +199,807 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQm9yYWgsIENoYWl0YW55
-YSBLdW1hciA8Y2hhaXRhbnlhLmt1bWFyLmJvcmFoQGludGVsLmNvbT4NCj4gU2VudDogRnJpZGF5
-LCBNYXkgMjMsIDIwMjUgMTE6NTEgQU0NCj4gVG86IGludGVsLXhlQGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZzsgaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBDYzogdmlsbGUuc3lyamFs
-YUBsaW51eC5pbnRlbC5jb207IFNoYW5rYXIsIFVtYSA8dW1hLnNoYW5rYXJAaW50ZWwuY29tPjsN
-Cj4gTWFubmEsIEFuaW1lc2ggPGFuaW1lc2gubWFubmFAaW50ZWwuY29tPjsgQm9yYWgsIENoYWl0
-YW55YSBLdW1hcg0KPiA8Y2hhaXRhbnlhLmt1bWFyLmJvcmFoQGludGVsLmNvbT4NCj4gU3ViamVj
-dDogW3Y4IDAwLzExXSBkcm0veGUvZGlzcGxheTogUHJvZ3JhbSBkb3VibGUgYnVmZmVyZWQgTFVU
-IHJlZ2lzdGVycw0KPiANCj4gRnJvbSBQVEwsIExVVCByZWdpc3RlcnMgYXJlIG1hZGUgZG91Ymxl
-IGJ1ZmZlcmVkLiBUaGlzIGhlbHBzIHVzIHRvIHByb2dyYW0NCj4gdGhlbSBpbiB0aGUgYWN0aXZl
-IHJlZ2lvbiB3aXRob3V0IGFueSBjb25jZXJuIG9mIHRlYXJpbmcuDQo+IFRoaXMgcGFydGljdWxh
-cnkgaGVscHMgaW4gY2FzZSBvZiBkaXNwbGF5cyB3aXRoIGhpZ2ggcmVmcmVzaCByYXRlcyB3aGVy
-ZSB2YmxhbmsNCj4gcGVyaW9kcyBhcmUgc2hvcnRlci4gQWRkIE1NSU8gYW5kIERTQiBwYXRoIHRv
-IHByb2dyYW0gdGhlbS4NCj4gDQo+IENoYWl0YW55YSBLdW1hciBCb3JhaCAoNyk6DQo+ICAgZHJt
-L2k5MTUvZHNiOiBhZGQgaW50ZWxfZHNiX2dvc3ViX2ZpbmlzaCgpDQo+ICAgZHJtL2k5MTUvZHNi
-OiBBZGQgc3VwcG9ydCBmb3IgR09TVUIgaW50ZXJydXB0DQo+ICAgZHJtL2k5MTU6IHMvZHNiX2Nv
-bG9yX3ZibGFuay9kc2JfY29sb3INCj4gICBkcm0vaTkxNS9kaXNwbGF5OiB1c2UgR09TVUIgdG8g
-cHJvZ3JhbSBkb3VibGUgYnVmZmVyZWQgTFVUIHJlZ2lzdGVycw0KPiAgIGRybS9pOTE1OiBQcm9n
-cmFtIERCIExVVCByZWdpc3RlcnMgYmVmb3JlIHZibGFuaw0KPiAgIGRybS9pOTE1L2NvbG9yOiBE
-byBub3QgcHJlLWxvYWQgTFVUcyB3aXRoIERCIHJlZ2lzdGVycw0KPiAgIGRybS9pOTE1OiBEaXNh
-YmxlIHVwZGF0aW5nIG9mIExVVCB2YWx1ZXMgZHVyaW5nIHZibGFuaw0KPiANCj4gVmlsbGUgU3ly
-asOkbMOkICg0KToNCj4gICBkcm0vaTkxNS9kc2I6IEV4dHJhY3QgaW50ZWxfZHNiX2luc19hbGln
-bigpDQo+ICAgZHJtL2k5MTUvZHNiOiBFeHRyYWN0IGFzc2VydF9kc2JfdGFpbF9pc19hbGlnbmVk
-KCkNCj4gICBkcm0vaTkxNS9kc2I6IEV4dHJhY3QgaW50ZWxfZHNiX3toZWFkLHRhaWx9KCkNCj4g
-ICBkcm0vaTkxNS9kc2I6IEltcGxlbWVudCBpbnRlbF9kc2JfZ29zdWIoKQ0KDQpUaGFua3MgZm9y
-IHRoZSBwYXRjaGVzLCBwdXNoZWQgdG8gZGluIG5vdy4NCg0KUmVnYXJkcywNCkFuaW1lc2gNCg0K
-PiANCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYXRvbWljLmMgICB8ICAg
-NCArLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jb2xvci5jICAgIHwg
-IDczICsrKysrKy0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jb2xv
-ci5oICAgIHwgICAyICsNCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY3J0
-Yy5jICAgICB8ICAgNSArLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-aXNwbGF5LmMgIHwgIDQwICsrKy0tDQo+ICAuLi4vZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNw
-bGF5X2RldmljZS5oICAgfCAgIDEgKw0KPiAgLi4uL2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlz
-cGxheV90eXBlcy5oICAgIHwgICAyICstDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2RzYi5jICAgICAgfCAxNDYgKysrKysrKysrKysrKysrKy0tDQo+ICBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RzYi5oICAgICAgfCAgIDMgKw0KPiAgZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kc2JfcmVncy5oIHwgICAyICsNCj4gIDEwIGZpbGVz
-IGNoYW5nZWQsIDIyMyBpbnNlcnRpb25zKCspLCA1NSBkZWxldGlvbnMoLSkNCj4gDQo+IC0tDQo+
-IDIuMjUuMQ0KDQo=
+--------------QkkIe7mkikZCNAYKcsbSJHqe
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+
+
+On 23-05-2025 22:46, Rodrigo Vivi wrote:
+> On Fri, May 23, 2025 at 08:30:12PM +0530, Karthik Poosa wrote:
+>> Add support to manage power limit PL2 (burst limit) through
+>> pcode mailbox commands.
+>>
+>> v2:
+>>   - Update power1_cap definition in hwmon documentation. (Badal)
+>>   - Clamp PL2 power limit to BIOS default value.
+>>
+>> v3:
+>>   - Activate the power label when either the PL1 or PL2 power
+>>     limit is enabled.
+>>
+>> v4:
+>>   - Update description of pl2_on_boot variable to fix kernel-doc
+>>     error.
+>>
+>> v5:
+>>   - Remove unnecessary drm_warn.
+> Please let's not merge this series and calm down here and stop trying
+> to rush things in.
+>
+> If drm_warn is not necessary, please have it in separate commits explaining why.
+>
+> Think about the use case. When the user are reading 0 because the read failed,
+> don't we want a splat?
+> Why it would only appear when debug is enabled?
+> In this case is zero a meaningful value?
+>
+> Well, I'm not telling that one way or another is right here, but
+> I'm seeing that this series is trying hard to bypass CI and rush
+> things in. We need to calm down here please.
+>
+> Think about the cases were the reads are failing. Is it really
+> only when it is enabled? Then shouldn't we check for the enabling
+> before attempt to read? no clean way to inform the user of errors?
+
+The below log appears when the power limit is disabled, indicating the 
+IFWI/BIOS power limit configuration.
+
+It is not due to a read failure.
+
+if (!(reg_val & PWR_LIM_EN)) {
+	*value = PL_DISABLE;
+	drm_warn(&hwmon->xe->drm, "%s disabled for channel %d\n",  PWR_ATTR_TO_STR(attr), channel);
+
+Sysfs entries are created if MMIO register available on the platform.
+
+We could avoid creating the sysfs entry if power limits are disabled in 
+the register.
+
+>>   - Rectify powerX_label permission to read-only on platforms
+>>     without mailbox power limits support.
+>>   - Expose powerX_cap entries only on platforms with mailbox
+>>     support.
+>>
+>> Signed-off-by: Karthik Poosa<karthik.poosa@intel.com>
+>> Reviewed-by: Badal Nilawar<badal.nilawar@intel.com>
+>> ---
+>>   .../ABI/testing/sysfs-driver-intel-xe-hwmon   | 30 ++++++
+>>   drivers/gpu/drm/xe/xe_hwmon.c                 | 97 +++++++++++++------
+>>   2 files changed, 96 insertions(+), 31 deletions(-)
+>>
+>> diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+>> index 5a91dcccd3ac..dffd6443664a 100644
+>> --- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+>> +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+>> @@ -148,3 +148,33 @@ Contact:	intel-xe@lists.freedesktop.org
+>>   Description:	RO. Fan 3 speed in RPM.
+>>   
+>>   		Only supported for particular Intel Xe graphics platforms.
+>> +
+>> +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/power1_cap
+>> +Date:		May 2025
+>> +KernelVersion:	6.15
+>> +Contact:	intel-xe@lists.freedesktop.org
+>> +Description:	RW. Card burst (PL2) power limit in microwatts.
+>> +
+>> +		The power controller will throttle the operating frequency
+>> +		if the power averaged over a window (typically milli seconds)
+>> +		exceeds this limit. A read value of 0 means that the PL2
+>> +		power limit is disabled, writing 0 disables the	limit.
+>> +		PL2 is greater than PL1 and its time window is lesser
+>> +		compared to PL1.
+>> +
+>> +		Only supported for particular Intel Xe graphics platforms.
+>> +
+>> +What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/power2_cap
+>> +Date:		May 2025
+>> +KernelVersion:	6.15
+>> +Contact:	intel-xe@lists.freedesktop.org
+>> +Description:	RW. Package burst (PL2) power limit in microwatts.
+>> +
+>> +		The power controller will throttle the operating frequency
+>> +		if the power averaged over a window (typically milli seconds)
+>> +		exceeds this limit. A read value of 0 means that the PL2
+>> +		power limit is disabled, writing 0 disables the	limit.
+>> +		PL2 is greater than PL1 and its time window is lesser
+>> +		compared to PL1.
+>> +
+>> +		Only supported for particular Intel Xe graphics platforms.
+>> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+>> index 7cfb233ac9a2..caf6a43ac92b 100644
+>> --- a/drivers/gpu/drm/xe/xe_hwmon.c
+>> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+>> @@ -51,6 +51,14 @@ enum xe_fan_channel {
+>>   	FAN_MAX,
+>>   };
+>>   
+>> +/* Attribute index for powerX_xxx_interval sysfs entries */
+>> +enum sensor_attr_power {
+>> +	SENSOR_INDEX_PSYS_PL1,
+>> +	SENSOR_INDEX_PKG_PL1,
+>> +	SENSOR_INDEX_PSYS_PL2,
+>> +	SENSOR_INDEX_PKG_PL2,
+>> +};
+>> +
+>>   /*
+>>    * For platforms that support mailbox commands for power limits, REG_PKG_POWER_SKU_UNIT is
+>>    * not supported and below are SKU units to be used.
+>> @@ -72,8 +80,9 @@ enum xe_fan_channel {
+>>    * PL*_HWMON_ATTR - mapping of hardware power limits to corresponding hwmon power attribute.
+>>    */
+>>   #define PL1_HWMON_ATTR	hwmon_power_max
+>> +#define PL2_HWMON_ATTR	hwmon_power_cap
+>>   
+>> -#define PWR_ATTR_TO_STR(attr)	(((attr) == hwmon_power_max) ? "PL1" : "Invalid")
+>> +#define PWR_ATTR_TO_STR(attr)	(((attr) == hwmon_power_max) ? "PL1" : "PL2")
+>>   
+>>   /*
+>>    * Timeout for power limit write mailbox command.
+>> @@ -124,6 +133,9 @@ struct xe_hwmon {
+>>   	bool boot_power_limit_read;
+>>   	/** @pl1_on_boot: power limit PL1 on boot */
+>>   	u32 pl1_on_boot[CHANNEL_MAX];
+>> +	/** @pl2_on_boot: power limit PL2 on boot */
+>> +	u32 pl2_on_boot[CHANNEL_MAX];
+>> +
+>>   };
+>>   
+>>   static int xe_hwmon_pcode_read_power_limit(const struct xe_hwmon *hwmon, u32 attr, int channel,
+>> @@ -151,8 +163,10 @@ static int xe_hwmon_pcode_read_power_limit(const struct xe_hwmon *hwmon, u32 att
+>>   	/* return the value only if limit is enabled */
+>>   	if (attr == PL1_HWMON_ATTR)
+>>   		*uval = (val0 & PWR_LIM_EN) ? val0 : 0;
+>> +	else if (attr == PL2_HWMON_ATTR)
+>> +		*uval = (val1 & PWR_LIM_EN) ? val1 : 0;
+>>   	else if (attr == hwmon_power_label)
+>> -		*uval = (val0 & PWR_LIM_EN) ? 1 : 0;
+>> +		*uval = (val0 & PWR_LIM_EN) ? 1 : (val1 & PWR_LIM_EN) ? 1 : 0;
+>>   	else
+>>   		*uval = 0;
+>>   
+>> @@ -180,6 +194,8 @@ static int xe_hwmon_pcode_write_power_limit(const struct xe_hwmon *hwmon, u32 at
+>>   
+>>   	if (attr == PL1_HWMON_ATTR)
+>>   		val0 = uval;
+>> +	else if (attr == PL2_HWMON_ATTR)
+>> +		val1 = uval;
+>>   	else
+>>   		return -EIO;
+>>   
+>> @@ -273,7 +289,7 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg
+>>    */
+>>   static void xe_hwmon_power_max_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *value)
+>>   {
+>> -	u64 reg_val, min, max;
+>> +	u64 reg_val = 0, min, max;
+>>   	struct xe_device *xe = hwmon->xe;
+>>   	struct xe_reg rapl_limit, pkg_power_sku;
+>>   	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
+>> @@ -301,8 +317,8 @@ static void xe_hwmon_power_max_read(struct xe_hwmon *hwmon, u32 attr, int channe
+>>   	/* Check if PL limits are disabled. */
+>>   	if (!(reg_val & PWR_LIM_EN)) {
+>>   		*value = PL_DISABLE;
+>> -		drm_warn(&hwmon->xe->drm, "%s disabled for channel %d !, val 0x%016llx\n",
+>> -			 PWR_ATTR_TO_STR(attr), channel, reg_val);
+>> +		drm_dbg(&hwmon->xe->drm, "%s disabled for channel %d\n",  PWR_ATTR_TO_STR(attr),
+>> +			channel);
+>>   		goto unlock;
+>>   	}
+>>   
+>> @@ -327,7 +343,7 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, u32 attr, int channe
+>>   {
+>>   	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
+>>   	int ret = 0;
+>> -	u32 reg_val;
+>> +	u32 reg_val, max;
+>>   	struct xe_reg rapl_limit;
+>>   
+>>   	mutex_lock(&hwmon->hwmon_lock);
+>> @@ -355,20 +371,24 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, u32 attr, int channe
+>>   
+>>   	/* Computation in 64-bits to avoid overflow. Round to nearest. */
+>>   	reg_val = DIV_ROUND_CLOSEST_ULL((u64)value << hwmon->scl_shift_power, SF_POWER);
+>> -	reg_val = PWR_LIM_EN | REG_FIELD_PREP(PWR_LIM_VAL, reg_val);
+>>   
+>>   	/*
+>>   	 * Clamp power limit to card-firmware default as maximum, as an additional protection to
+>>   	 * pcode clamp.
+>>   	 */
+>>   	if (hwmon->xe->info.has_mbx_power_limits) {
+>> -		if (reg_val > REG_FIELD_GET(PWR_LIM_VAL, hwmon->pl1_on_boot[channel])) {
+>> -			reg_val = REG_FIELD_GET(PWR_LIM_VAL, hwmon->pl1_on_boot[channel]);
+>> +		max = (attr == PL1_HWMON_ATTR) ?
+>> +		       hwmon->pl1_on_boot[channel] : hwmon->pl2_on_boot[channel];
+>> +		max = REG_FIELD_PREP(PWR_LIM_VAL, max);
+>> +		if (reg_val > max) {
+>> +			reg_val = max;
+>>   			drm_dbg(&hwmon->xe->drm, "Clamping power limit to firmware default 0x%x\n",
+>>   				reg_val);
+>>   		}
+>>   	}
+>>   
+>> +	reg_val = PWR_LIM_EN | REG_FIELD_PREP(PWR_LIM_VAL, reg_val);
+>> +
+>>   	if (hwmon->xe->info.has_mbx_power_limits)
+>>   		ret = xe_hwmon_pcode_write_power_limit(hwmon, attr, channel, reg_val);
+>>   	else
+>> @@ -452,8 +472,9 @@ xe_hwmon_power_max_interval_show(struct device *dev, struct device_attribute *at
+>>   	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
+>>   	u32 x, y, x_w = 2; /* 2 bits */
+>>   	u64 r, tau4, out;
+>> -	int channel = to_sensor_dev_attr(attr)->index;
+>> +	int channel = (to_sensor_dev_attr(attr)->index % 2) ? CHANNEL_PKG : CHANNEL_CARD;
+>>   	u32 power_attr = PL1_HWMON_ATTR;
+>> +
+>>   	int ret = 0;
+>>   
+>>   	xe_pm_runtime_get(hwmon->xe);
+>> @@ -506,9 +527,9 @@ xe_hwmon_power_max_interval_store(struct device *dev, struct device_attribute *a
+>>   	u32 x, y, rxy, x_w = 2; /* 2 bits */
+>>   	u64 tau4, r, max_win;
+>>   	unsigned long val;
+>> -	int ret;
+>> -	int channel = to_sensor_dev_attr(attr)->index;
+>> +	int channel = (to_sensor_dev_attr(attr)->index % 2) ? CHANNEL_PKG : CHANNEL_CARD;
+>>   	u32 power_attr = PL1_HWMON_ATTR;
+>> +	int ret;
+>>   
+>>   	ret = kstrtoul(buf, 0, &val);
+>>   	if (ret)
+>> @@ -535,10 +556,8 @@ xe_hwmon_power_max_interval_store(struct device *dev, struct device_attribute *a
+>>   	tau4 = (u64)((1 << x_w) | x) << y;
+>>   	max_win = mul_u64_u32_shr(tau4, SF_TIME, hwmon->scl_shift_time + x_w);
+>>   
+>> -	if (val > max_win) {
+>> -		drm_warn(&hwmon->xe->drm, "power_interval invalid val 0x%lx\n", val);
+>> +	if (val > max_win)
+>>   		return -EINVAL;
+>> -	}
+>>   
+>>   	/* val in hw units */
+>>   	val = DIV_ROUND_CLOSEST_ULL((u64)val << hwmon->scl_shift_time, SF_TIME) + 1;
+>> @@ -582,11 +601,11 @@ xe_hwmon_power_max_interval_store(struct device *dev, struct device_attribute *a
+>>   /* PSYS PL1 */
+>>   static SENSOR_DEVICE_ATTR(power1_max_interval, 0664,
+>>   			  xe_hwmon_power_max_interval_show,
+>> -			  xe_hwmon_power_max_interval_store, CHANNEL_CARD);
+>> -
+>> +			  xe_hwmon_power_max_interval_store, SENSOR_INDEX_PSYS_PL1);
+>> +/* PKG PL1 */
+>>   static SENSOR_DEVICE_ATTR(power2_max_interval, 0664,
+>>   			  xe_hwmon_power_max_interval_show,
+>> -			  xe_hwmon_power_max_interval_store, CHANNEL_PKG);
+>> +			  xe_hwmon_power_max_interval_store, SENSOR_INDEX_PKG_PL1);
+>>   
+>>   static struct attribute *hwmon_attributes[] = {
+>>   	&sensor_dev_attr_power1_max_interval.dev_attr.attr,
+>> @@ -600,7 +619,7 @@ static umode_t xe_hwmon_attributes_visible(struct kobject *kobj,
+>>   	struct device *dev = kobj_to_dev(kobj);
+>>   	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
+>>   	int ret = 0;
+>> -	int channel = index ? CHANNEL_PKG : CHANNEL_CARD;
+>> +	int channel = (index % 2) ? CHANNEL_PKG : CHANNEL_CARD;
+>>   	u32 power_attr = PL1_HWMON_ATTR;
+>>   	u32 uval;
+>>   
+>> @@ -609,7 +628,7 @@ static umode_t xe_hwmon_attributes_visible(struct kobject *kobj,
+>>   	if (hwmon->xe->info.has_mbx_power_limits) {
+>>   		xe_hwmon_pcode_read_power_limit(hwmon, power_attr, channel, &uval);
+>>   		ret = (uval & PWR_LIM_EN) ? attr->mode : 0;
+>> -	} else {
+>> +	} else if (power_attr != PL2_HWMON_ATTR) {
+>>   		ret = xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT,
+>>   						       channel)) ? attr->mode : 0;
+>>   	}
+>> @@ -632,8 +651,9 @@ static const struct attribute_group *hwmon_groups[] = {
+>>   static const struct hwmon_channel_info * const hwmon_info[] = {
+>>   	HWMON_CHANNEL_INFO(temp, HWMON_T_LABEL, HWMON_T_INPUT | HWMON_T_LABEL,
+>>   			   HWMON_T_INPUT | HWMON_T_LABEL),
+>> -	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL | HWMON_P_CRIT,
+>> -			   HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL),
+>> +	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL | HWMON_P_CRIT |
+>> +			   HWMON_P_CAP,
+>> +			   HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL | HWMON_P_CAP),
+>>   	HWMON_CHANNEL_INFO(curr, HWMON_C_LABEL, HWMON_C_CRIT | HWMON_C_LABEL),
+>>   	HWMON_CHANNEL_INFO(in, HWMON_I_INPUT | HWMON_I_LABEL, HWMON_I_INPUT | HWMON_I_LABEL),
+>>   	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT | HWMON_E_LABEL, HWMON_E_INPUT | HWMON_E_LABEL),
+>> @@ -754,17 +774,22 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
+>>   static umode_t
+>>   xe_hwmon_power_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+>>   {
+>> -	u32 uval;
+>> +	u32 uval = 0;
+>> +	struct xe_reg rapl_limit;
+>> +	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
+>>   
+>>   	switch (attr) {
+>>   	case hwmon_power_max:
+>> +	case hwmon_power_cap:
+>> +	case hwmon_power_label:
+>>   		if (hwmon->xe->info.has_mbx_power_limits) {
+>>   			xe_hwmon_pcode_read_power_limit(hwmon, attr, channel, &uval);
+>> -			return (uval) ? 0664 : 0;
+>> -		} else {
+>> -			return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT,
+>> -				       channel)) ? 0664 : 0;
+>> +		} else if (attr != PL2_HWMON_ATTR) {
+>> +			rapl_limit = xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, channel);
+>> +			if (xe_reg_is_valid(rapl_limit))
+>> +				uval = xe_mmio_read32(mmio, rapl_limit);
+>>   		}
+>> +		return (uval) ? (attr == hwmon_power_label) ? 0444 : 0664 : 0;
+>>   	case hwmon_power_rated_max:
+>>   		if (hwmon->xe->info.has_mbx_power_limits)
+>>   			return 0;
+>> @@ -772,11 +797,9 @@ xe_hwmon_power_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+>>   			return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU,
+>>   					       channel)) ? 0444 : 0;
+>>   	case hwmon_power_crit:
+>> -	case hwmon_power_label:
+>>   		if (channel == CHANNEL_CARD) {
+>>   			xe_hwmon_pcode_read_i1(hwmon, &uval);
+>> -			return (uval & POWER_SETUP_I1_WATTS) ? (attr == hwmon_power_label) ?
+>> -				0444 : 0644 : 0;
+>> +			return (uval & POWER_SETUP_I1_WATTS) ? 0644 : 0;
+>>   		}
+>>   		break;
+>>   	default:
+>> @@ -790,6 +813,7 @@ xe_hwmon_power_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
+>>   {
+>>   	switch (attr) {
+>>   	case hwmon_power_max:
+>> +	case hwmon_power_cap:
+>>   		xe_hwmon_power_max_read(hwmon, attr, channel, val);
+>>   		return 0;
+>>   	case hwmon_power_rated_max:
+>> @@ -806,6 +830,7 @@ static int
+>>   xe_hwmon_power_write(struct xe_hwmon *hwmon, u32 attr, int channel, long val)
+>>   {
+>>   	switch (attr) {
+>> +	case hwmon_power_cap:
+>>   	case hwmon_power_max:
+>>   		return xe_hwmon_power_max_write(hwmon, attr, channel, val);
+>>   	case hwmon_power_crit:
+>> @@ -1132,7 +1157,11 @@ xe_hwmon_get_preregistration_info(struct xe_hwmon *hwmon)
+>>   		if (xe_hwmon_pcode_read_power_limit(hwmon, PL1_HWMON_ATTR, CHANNEL_CARD,
+>>   						    &hwmon->pl1_on_boot[CHANNEL_CARD]) |
+>>   		    xe_hwmon_pcode_read_power_limit(hwmon, PL1_HWMON_ATTR, CHANNEL_PKG,
+>> -						    &hwmon->pl1_on_boot[CHANNEL_PKG])) {
+>> +						    &hwmon->pl1_on_boot[CHANNEL_PKG]) |
+>> +		    xe_hwmon_pcode_read_power_limit(hwmon, PL2_HWMON_ATTR, CHANNEL_CARD,
+>> +						    &hwmon->pl2_on_boot[CHANNEL_CARD]) |
+>> +		    xe_hwmon_pcode_read_power_limit(hwmon, PL1_HWMON_ATTR, CHANNEL_PKG,
+>> +						    &hwmon->pl2_on_boot[CHANNEL_PKG])) {
+>>   			drm_warn(&hwmon->xe->drm,
+>>   				 "Failed to read power limits, check card firmware !\n");
+>>   		} else {
+>> @@ -1144,6 +1173,12 @@ xe_hwmon_get_preregistration_info(struct xe_hwmon *hwmon)
+>>   			xe_hwmon_pcode_write_power_limit(hwmon, PL1_HWMON_ATTR,
+>>   							 CHANNEL_PKG,
+>>   							 hwmon->pl1_on_boot[CHANNEL_PKG]);
+>> +			xe_hwmon_pcode_write_power_limit(hwmon, PL2_HWMON_ATTR,
+>> +							 CHANNEL_CARD,
+>> +							 hwmon->pl2_on_boot[CHANNEL_CARD]);
+>> +			xe_hwmon_pcode_write_power_limit(hwmon, PL2_HWMON_ATTR,
+>> +							 CHANNEL_PKG,
+>> +							 hwmon->pl2_on_boot[CHANNEL_PKG]);
+>>   			hwmon->scl_shift_power = PWR_UNIT;
+>>   			hwmon->scl_shift_energy = ENERGY_UNIT;
+>>   			hwmon->scl_shift_time = TIME_UNIT;
+>> -- 
+>> 2.25.1
+>>
+--------------QkkIe7mkikZCNAYKcsbSJHqe
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 23-05-2025 22:46, Rodrigo Vivi
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:aDCtfnqRqs27adSg@intel.com">
+      <pre wrap="" class="moz-quote-pre">On Fri, May 23, 2025 at 08:30:12PM +0530, Karthik Poosa wrote:
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">Add support to manage power limit PL2 (burst limit) through
+pcode mailbox commands.
+
+v2:
+ - Update power1_cap definition in hwmon documentation. (Badal)
+ - Clamp PL2 power limit to BIOS default value.
+
+v3:
+ - Activate the power label when either the PL1 or PL2 power
+   limit is enabled.
+
+v4:
+ - Update description of pl2_on_boot variable to fix kernel-doc
+   error.
+
+v5:
+ - Remove unnecessary drm_warn.
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+Please let's not merge this series and calm down here and stop trying
+to rush things in.
+
+If drm_warn is not necessary, please have it in separate commits explaining why.
+
+Think about the use case. When the user are reading 0 because the read failed,
+don't we want a splat?
+Why it would only appear when debug is enabled?
+In this case is zero a meaningful value?
+
+Well, I'm not telling that one way or another is right here, but
+I'm seeing that this series is trying hard to bypass CI and rush
+things in. We need to calm down here please.
+
+Think about the cases were the reads are failing. Is it really
+only when it is enabled? Then shouldn't we check for the enabling
+before attempt to read? no clean way to inform the user of errors?
+</pre>
+    </blockquote>
+    <p><span style="color: rgb(66, 66, 66); font-family: &quot;Segoe Sans&quot;, &quot;Segoe UI&quot;, &quot;Segoe UI Web (West European)&quot;, -apple-system, BlinkMacSystemFont, Roboto, &quot;Helvetica Neue&quot;, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(250, 250, 250); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">The
+        below log appears when the power limit is disabled, indicating
+        the IFWI/BIOS power limit configuration.</span></p>
+    <p><span style="color: rgb(66, 66, 66); font-family: &quot;Segoe Sans&quot;, &quot;Segoe UI&quot;, &quot;Segoe UI Web (West European)&quot;, -apple-system, BlinkMacSystemFont, Roboto, &quot;Helvetica Neue&quot;, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(250, 250, 250); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">It
+        is not due to a read failure.</span></p>
+    <pre wrap="" class="moz-quote-pre">if (!(reg_val &amp; PWR_LIM_EN)) {
+	*value = PL_DISABLE;
+	drm_warn(&amp;hwmon-&gt;xe-&gt;drm, &quot;%s disabled for channel %d\n&quot;,  PWR_ATTR_TO_STR(attr), channel);</pre>
+    <p><span style="color: rgb(66, 66, 66); font-family: &quot;Segoe Sans&quot;, &quot;Segoe UI&quot;, &quot;Segoe UI Web (West European)&quot;, -apple-system, BlinkMacSystemFont, Roboto, &quot;Helvetica Neue&quot;, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(250, 250, 250); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;"></span></p>
+    <p><span style="color: rgb(66, 66, 66); font-family: &quot;Segoe Sans&quot;, &quot;Segoe UI&quot;, &quot;Segoe UI Web (West European)&quot;, -apple-system, BlinkMacSystemFont, Roboto, &quot;Helvetica Neue&quot;, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(250, 250, 250); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">Sysfs
+        entries are created if MMIO register available on the platform.</span></p>
+    <p>We could avoid creating the sysfs entry if power limits are
+      disabled in the register.</p>
+    <blockquote type="cite" cite="mid:aDCtfnqRqs27adSg@intel.com">
+      <pre wrap="" class="moz-quote-pre">
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre"> - Rectify powerX_label permission to read-only on platforms
+   without mailbox power limits support.
+ - Expose powerX_cap entries only on platforms with mailbox
+   support.
+
+Signed-off-by: Karthik Poosa <a class="moz-txt-link-rfc2396E" href="mailto:karthik.poosa@intel.com">&lt;karthik.poosa@intel.com&gt;</a>
+Reviewed-by: Badal Nilawar <a class="moz-txt-link-rfc2396E" href="mailto:badal.nilawar@intel.com">&lt;badal.nilawar@intel.com&gt;</a>
+---
+ .../ABI/testing/sysfs-driver-intel-xe-hwmon   | 30 ++++++
+ drivers/gpu/drm/xe/xe_hwmon.c                 | 97 +++++++++++++------
+ 2 files changed, 96 insertions(+), 31 deletions(-)
+
+diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+index 5a91dcccd3ac..dffd6443664a 100644
+--- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
++++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+@@ -148,3 +148,33 @@ Contact:	<a class="moz-txt-link-abbreviated" href="mailto:intel-xe@lists.freedesktop.org">intel-xe@lists.freedesktop.org</a>
+ Description:	RO. Fan 3 speed in RPM.
+ 
+ 		Only supported for particular Intel Xe graphics platforms.
++
++What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon&lt;i&gt;/power1_cap
++Date:		May 2025
++KernelVersion:	6.15
++Contact:	<a class="moz-txt-link-abbreviated" href="mailto:intel-xe@lists.freedesktop.org">intel-xe@lists.freedesktop.org</a>
++Description:	RW. Card burst (PL2) power limit in microwatts.
++
++		The power controller will throttle the operating frequency
++		if the power averaged over a window (typically milli seconds)
++		exceeds this limit. A read value of 0 means that the PL2
++		power limit is disabled, writing 0 disables the	limit.
++		PL2 is greater than PL1 and its time window is lesser
++		compared to PL1.
++
++		Only supported for particular Intel Xe graphics platforms.
++
++What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon&lt;i&gt;/power2_cap
++Date:		May 2025
++KernelVersion:	6.15
++Contact:	<a class="moz-txt-link-abbreviated" href="mailto:intel-xe@lists.freedesktop.org">intel-xe@lists.freedesktop.org</a>
++Description:	RW. Package burst (PL2) power limit in microwatts.
++
++		The power controller will throttle the operating frequency
++		if the power averaged over a window (typically milli seconds)
++		exceeds this limit. A read value of 0 means that the PL2
++		power limit is disabled, writing 0 disables the	limit.
++		PL2 is greater than PL1 and its time window is lesser
++		compared to PL1.
++
++		Only supported for particular Intel Xe graphics platforms.
+diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+index 7cfb233ac9a2..caf6a43ac92b 100644
+--- a/drivers/gpu/drm/xe/xe_hwmon.c
++++ b/drivers/gpu/drm/xe/xe_hwmon.c
+@@ -51,6 +51,14 @@ enum xe_fan_channel {
+ 	FAN_MAX,
+ };
+ 
++/* Attribute index for powerX_xxx_interval sysfs entries */
++enum sensor_attr_power {
++	SENSOR_INDEX_PSYS_PL1,
++	SENSOR_INDEX_PKG_PL1,
++	SENSOR_INDEX_PSYS_PL2,
++	SENSOR_INDEX_PKG_PL2,
++};
++
+ /*
+  * For platforms that support mailbox commands for power limits, REG_PKG_POWER_SKU_UNIT is
+  * not supported and below are SKU units to be used.
+@@ -72,8 +80,9 @@ enum xe_fan_channel {
+  * PL*_HWMON_ATTR - mapping of hardware power limits to corresponding hwmon power attribute.
+  */
+ #define PL1_HWMON_ATTR	hwmon_power_max
++#define PL2_HWMON_ATTR	hwmon_power_cap
+ 
+-#define PWR_ATTR_TO_STR(attr)	(((attr) == hwmon_power_max) ? &quot;PL1&quot; : &quot;Invalid&quot;)
++#define PWR_ATTR_TO_STR(attr)	(((attr) == hwmon_power_max) ? &quot;PL1&quot; : &quot;PL2&quot;)
+ 
+ /*
+  * Timeout for power limit write mailbox command.
+@@ -124,6 +133,9 @@ struct xe_hwmon {
+ 	bool boot_power_limit_read;
+ 	/** @pl1_on_boot: power limit PL1 on boot */
+ 	u32 pl1_on_boot[CHANNEL_MAX];
++	/** @pl2_on_boot: power limit PL2 on boot */
++	u32 pl2_on_boot[CHANNEL_MAX];
++
+ };
+ 
+ static int xe_hwmon_pcode_read_power_limit(const struct xe_hwmon *hwmon, u32 attr, int channel,
+@@ -151,8 +163,10 @@ static int xe_hwmon_pcode_read_power_limit(const struct xe_hwmon *hwmon, u32 att
+ 	/* return the value only if limit is enabled */
+ 	if (attr == PL1_HWMON_ATTR)
+ 		*uval = (val0 &amp; PWR_LIM_EN) ? val0 : 0;
++	else if (attr == PL2_HWMON_ATTR)
++		*uval = (val1 &amp; PWR_LIM_EN) ? val1 : 0;
+ 	else if (attr == hwmon_power_label)
+-		*uval = (val0 &amp; PWR_LIM_EN) ? 1 : 0;
++		*uval = (val0 &amp; PWR_LIM_EN) ? 1 : (val1 &amp; PWR_LIM_EN) ? 1 : 0;
+ 	else
+ 		*uval = 0;
+ 
+@@ -180,6 +194,8 @@ static int xe_hwmon_pcode_write_power_limit(const struct xe_hwmon *hwmon, u32 at
+ 
+ 	if (attr == PL1_HWMON_ATTR)
+ 		val0 = uval;
++	else if (attr == PL2_HWMON_ATTR)
++		val1 = uval;
+ 	else
+ 		return -EIO;
+ 
+@@ -273,7 +289,7 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg
+  */
+ static void xe_hwmon_power_max_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *value)
+ {
+-	u64 reg_val, min, max;
++	u64 reg_val = 0, min, max;
+ 	struct xe_device *xe = hwmon-&gt;xe;
+ 	struct xe_reg rapl_limit, pkg_power_sku;
+ 	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
+@@ -301,8 +317,8 @@ static void xe_hwmon_power_max_read(struct xe_hwmon *hwmon, u32 attr, int channe
+ 	/* Check if PL limits are disabled. */
+ 	if (!(reg_val &amp; PWR_LIM_EN)) {
+ 		*value = PL_DISABLE;
+-		drm_warn(&amp;hwmon-&gt;xe-&gt;drm, &quot;%s disabled for channel %d !, val 0x%016llx\n&quot;,
+-			 PWR_ATTR_TO_STR(attr), channel, reg_val);
++		drm_dbg(&amp;hwmon-&gt;xe-&gt;drm, &quot;%s disabled for channel %d\n&quot;,  PWR_ATTR_TO_STR(attr),
++			channel);
+ 		goto unlock;
+ 	}
+ 
+@@ -327,7 +343,7 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, u32 attr, int channe
+ {
+ 	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon-&gt;xe);
+ 	int ret = 0;
+-	u32 reg_val;
++	u32 reg_val, max;
+ 	struct xe_reg rapl_limit;
+ 
+ 	mutex_lock(&amp;hwmon-&gt;hwmon_lock);
+@@ -355,20 +371,24 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, u32 attr, int channe
+ 
+ 	/* Computation in 64-bits to avoid overflow. Round to nearest. */
+ 	reg_val = DIV_ROUND_CLOSEST_ULL((u64)value &lt;&lt; hwmon-&gt;scl_shift_power, SF_POWER);
+-	reg_val = PWR_LIM_EN | REG_FIELD_PREP(PWR_LIM_VAL, reg_val);
+ 
+ 	/*
+ 	 * Clamp power limit to card-firmware default as maximum, as an additional protection to
+ 	 * pcode clamp.
+ 	 */
+ 	if (hwmon-&gt;xe-&gt;info.has_mbx_power_limits) {
+-		if (reg_val &gt; REG_FIELD_GET(PWR_LIM_VAL, hwmon-&gt;pl1_on_boot[channel])) {
+-			reg_val = REG_FIELD_GET(PWR_LIM_VAL, hwmon-&gt;pl1_on_boot[channel]);
++		max = (attr == PL1_HWMON_ATTR) ?
++		       hwmon-&gt;pl1_on_boot[channel] : hwmon-&gt;pl2_on_boot[channel];
++		max = REG_FIELD_PREP(PWR_LIM_VAL, max);
++		if (reg_val &gt; max) {
++			reg_val = max;
+ 			drm_dbg(&amp;hwmon-&gt;xe-&gt;drm, &quot;Clamping power limit to firmware default 0x%x\n&quot;,
+ 				reg_val);
+ 		}
+ 	}
+ 
++	reg_val = PWR_LIM_EN | REG_FIELD_PREP(PWR_LIM_VAL, reg_val);
++
+ 	if (hwmon-&gt;xe-&gt;info.has_mbx_power_limits)
+ 		ret = xe_hwmon_pcode_write_power_limit(hwmon, attr, channel, reg_val);
+ 	else
+@@ -452,8 +472,9 @@ xe_hwmon_power_max_interval_show(struct device *dev, struct device_attribute *at
+ 	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon-&gt;xe);
+ 	u32 x, y, x_w = 2; /* 2 bits */
+ 	u64 r, tau4, out;
+-	int channel = to_sensor_dev_attr(attr)-&gt;index;
++	int channel = (to_sensor_dev_attr(attr)-&gt;index % 2) ? CHANNEL_PKG : CHANNEL_CARD;
+ 	u32 power_attr = PL1_HWMON_ATTR;
++
+ 	int ret = 0;
+ 
+ 	xe_pm_runtime_get(hwmon-&gt;xe);
+@@ -506,9 +527,9 @@ xe_hwmon_power_max_interval_store(struct device *dev, struct device_attribute *a
+ 	u32 x, y, rxy, x_w = 2; /* 2 bits */
+ 	u64 tau4, r, max_win;
+ 	unsigned long val;
+-	int ret;
+-	int channel = to_sensor_dev_attr(attr)-&gt;index;
++	int channel = (to_sensor_dev_attr(attr)-&gt;index % 2) ? CHANNEL_PKG : CHANNEL_CARD;
+ 	u32 power_attr = PL1_HWMON_ATTR;
++	int ret;
+ 
+ 	ret = kstrtoul(buf, 0, &amp;val);
+ 	if (ret)
+@@ -535,10 +556,8 @@ xe_hwmon_power_max_interval_store(struct device *dev, struct device_attribute *a
+ 	tau4 = (u64)((1 &lt;&lt; x_w) | x) &lt;&lt; y;
+ 	max_win = mul_u64_u32_shr(tau4, SF_TIME, hwmon-&gt;scl_shift_time + x_w);
+ 
+-	if (val &gt; max_win) {
+-		drm_warn(&amp;hwmon-&gt;xe-&gt;drm, &quot;power_interval invalid val 0x%lx\n&quot;, val);
++	if (val &gt; max_win)
+ 		return -EINVAL;
+-	}
+ 
+ 	/* val in hw units */
+ 	val = DIV_ROUND_CLOSEST_ULL((u64)val &lt;&lt; hwmon-&gt;scl_shift_time, SF_TIME) + 1;
+@@ -582,11 +601,11 @@ xe_hwmon_power_max_interval_store(struct device *dev, struct device_attribute *a
+ /* PSYS PL1 */
+ static SENSOR_DEVICE_ATTR(power1_max_interval, 0664,
+ 			  xe_hwmon_power_max_interval_show,
+-			  xe_hwmon_power_max_interval_store, CHANNEL_CARD);
+-
++			  xe_hwmon_power_max_interval_store, SENSOR_INDEX_PSYS_PL1);
++/* PKG PL1 */
+ static SENSOR_DEVICE_ATTR(power2_max_interval, 0664,
+ 			  xe_hwmon_power_max_interval_show,
+-			  xe_hwmon_power_max_interval_store, CHANNEL_PKG);
++			  xe_hwmon_power_max_interval_store, SENSOR_INDEX_PKG_PL1);
+ 
+ static struct attribute *hwmon_attributes[] = {
+ 	&amp;sensor_dev_attr_power1_max_interval.dev_attr.attr,
+@@ -600,7 +619,7 @@ static umode_t xe_hwmon_attributes_visible(struct kobject *kobj,
+ 	struct device *dev = kobj_to_dev(kobj);
+ 	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
+ 	int ret = 0;
+-	int channel = index ? CHANNEL_PKG : CHANNEL_CARD;
++	int channel = (index % 2) ? CHANNEL_PKG : CHANNEL_CARD;
+ 	u32 power_attr = PL1_HWMON_ATTR;
+ 	u32 uval;
+ 
+@@ -609,7 +628,7 @@ static umode_t xe_hwmon_attributes_visible(struct kobject *kobj,
+ 	if (hwmon-&gt;xe-&gt;info.has_mbx_power_limits) {
+ 		xe_hwmon_pcode_read_power_limit(hwmon, power_attr, channel, &amp;uval);
+ 		ret = (uval &amp; PWR_LIM_EN) ? attr-&gt;mode : 0;
+-	} else {
++	} else if (power_attr != PL2_HWMON_ATTR) {
+ 		ret = xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT,
+ 						       channel)) ? attr-&gt;mode : 0;
+ 	}
+@@ -632,8 +651,9 @@ static const struct attribute_group *hwmon_groups[] = {
+ static const struct hwmon_channel_info * const hwmon_info[] = {
+ 	HWMON_CHANNEL_INFO(temp, HWMON_T_LABEL, HWMON_T_INPUT | HWMON_T_LABEL,
+ 			   HWMON_T_INPUT | HWMON_T_LABEL),
+-	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL | HWMON_P_CRIT,
+-			   HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL),
++	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL | HWMON_P_CRIT |
++			   HWMON_P_CAP,
++			   HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL | HWMON_P_CAP),
+ 	HWMON_CHANNEL_INFO(curr, HWMON_C_LABEL, HWMON_C_CRIT | HWMON_C_LABEL),
+ 	HWMON_CHANNEL_INFO(in, HWMON_I_INPUT | HWMON_I_LABEL, HWMON_I_INPUT | HWMON_I_LABEL),
+ 	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT | HWMON_E_LABEL, HWMON_E_INPUT | HWMON_E_LABEL),
+@@ -754,17 +774,22 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
+ static umode_t
+ xe_hwmon_power_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+ {
+-	u32 uval;
++	u32 uval = 0;
++	struct xe_reg rapl_limit;
++	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon-&gt;xe);
+ 
+ 	switch (attr) {
+ 	case hwmon_power_max:
++	case hwmon_power_cap:
++	case hwmon_power_label:
+ 		if (hwmon-&gt;xe-&gt;info.has_mbx_power_limits) {
+ 			xe_hwmon_pcode_read_power_limit(hwmon, attr, channel, &amp;uval);
+-			return (uval) ? 0664 : 0;
+-		} else {
+-			return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT,
+-				       channel)) ? 0664 : 0;
++		} else if (attr != PL2_HWMON_ATTR) {
++			rapl_limit = xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, channel);
++			if (xe_reg_is_valid(rapl_limit))
++				uval = xe_mmio_read32(mmio, rapl_limit);
+ 		}
++		return (uval) ? (attr == hwmon_power_label) ? 0444 : 0664 : 0;
+ 	case hwmon_power_rated_max:
+ 		if (hwmon-&gt;xe-&gt;info.has_mbx_power_limits)
+ 			return 0;
+@@ -772,11 +797,9 @@ xe_hwmon_power_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+ 			return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU,
+ 					       channel)) ? 0444 : 0;
+ 	case hwmon_power_crit:
+-	case hwmon_power_label:
+ 		if (channel == CHANNEL_CARD) {
+ 			xe_hwmon_pcode_read_i1(hwmon, &amp;uval);
+-			return (uval &amp; POWER_SETUP_I1_WATTS) ? (attr == hwmon_power_label) ?
+-				0444 : 0644 : 0;
++			return (uval &amp; POWER_SETUP_I1_WATTS) ? 0644 : 0;
+ 		}
+ 		break;
+ 	default:
+@@ -790,6 +813,7 @@ xe_hwmon_power_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
+ {
+ 	switch (attr) {
+ 	case hwmon_power_max:
++	case hwmon_power_cap:
+ 		xe_hwmon_power_max_read(hwmon, attr, channel, val);
+ 		return 0;
+ 	case hwmon_power_rated_max:
+@@ -806,6 +830,7 @@ static int
+ xe_hwmon_power_write(struct xe_hwmon *hwmon, u32 attr, int channel, long val)
+ {
+ 	switch (attr) {
++	case hwmon_power_cap:
+ 	case hwmon_power_max:
+ 		return xe_hwmon_power_max_write(hwmon, attr, channel, val);
+ 	case hwmon_power_crit:
+@@ -1132,7 +1157,11 @@ xe_hwmon_get_preregistration_info(struct xe_hwmon *hwmon)
+ 		if (xe_hwmon_pcode_read_power_limit(hwmon, PL1_HWMON_ATTR, CHANNEL_CARD,
+ 						    &amp;hwmon-&gt;pl1_on_boot[CHANNEL_CARD]) |
+ 		    xe_hwmon_pcode_read_power_limit(hwmon, PL1_HWMON_ATTR, CHANNEL_PKG,
+-						    &amp;hwmon-&gt;pl1_on_boot[CHANNEL_PKG])) {
++						    &amp;hwmon-&gt;pl1_on_boot[CHANNEL_PKG]) |
++		    xe_hwmon_pcode_read_power_limit(hwmon, PL2_HWMON_ATTR, CHANNEL_CARD,
++						    &amp;hwmon-&gt;pl2_on_boot[CHANNEL_CARD]) |
++		    xe_hwmon_pcode_read_power_limit(hwmon, PL1_HWMON_ATTR, CHANNEL_PKG,
++						    &amp;hwmon-&gt;pl2_on_boot[CHANNEL_PKG])) {
+ 			drm_warn(&amp;hwmon-&gt;xe-&gt;drm,
+ 				 &quot;Failed to read power limits, check card firmware !\n&quot;);
+ 		} else {
+@@ -1144,6 +1173,12 @@ xe_hwmon_get_preregistration_info(struct xe_hwmon *hwmon)
+ 			xe_hwmon_pcode_write_power_limit(hwmon, PL1_HWMON_ATTR,
+ 							 CHANNEL_PKG,
+ 							 hwmon-&gt;pl1_on_boot[CHANNEL_PKG]);
++			xe_hwmon_pcode_write_power_limit(hwmon, PL2_HWMON_ATTR,
++							 CHANNEL_CARD,
++							 hwmon-&gt;pl2_on_boot[CHANNEL_CARD]);
++			xe_hwmon_pcode_write_power_limit(hwmon, PL2_HWMON_ATTR,
++							 CHANNEL_PKG,
++							 hwmon-&gt;pl2_on_boot[CHANNEL_PKG]);
+ 			hwmon-&gt;scl_shift_power = PWR_UNIT;
+ 			hwmon-&gt;scl_shift_energy = ENERGY_UNIT;
+ 			hwmon-&gt;scl_shift_time = TIME_UNIT;
+-- 
+2.25.1
+
+</pre>
+      </blockquote>
+    </blockquote>
+  </body>
+</html>
+
+--------------QkkIe7mkikZCNAYKcsbSJHqe--
