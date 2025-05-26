@@ -4,168 +4,132 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27D28C54ED0
-	for <intel-xe@archiver.kernel.org>; Sun, 25 May 2025 03:30:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B8ECC54FB3
+	for <intel-xe@archiver.kernel.org>; Mon, 26 May 2025 06:39:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0088310E03A;
-	Sun, 25 May 2025 03:30:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33F0610E054;
+	Mon, 26 May 2025 06:39:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fnr6TziO";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="iYn7PfTh";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="qNNvTsJM";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="iYn7PfTh";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="qNNvTsJM";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 720B010E03A
- for <intel-xe@lists.freedesktop.org>; Sun, 25 May 2025 03:30:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748143835; x=1779679835;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=twYvTAUL3NkY5Y7HQTvJFRNX+7t0I3+dJUJ9nEoIoMk=;
- b=Fnr6TziO8CVF8cXlqMUih7dYz2lheGbNAl4qEJaiBOiNwwp/8vgAWE4H
- 5Uh8YTwusYDmx/rwY6yVKMX8cyXKnucVTtediXdUqxQtN97em75JE4kEd
- mVlIPDPlFFRORS0gdpfDtbmh/dTayawlXo67UztjRPHqSX4tlTLSW0zBu
- FFn6xjIucAY4jpUAdHJeMuVW3LyKYI4pvvpfpUiWgZJHTNq/DOGXgH7gq
- XzjBCLTBsMch3hYW5w82X+9SQLK0r7thncZXkBTlvlwzDOiRVGHGb5tSK
- DuwzesiMkAY8FhKh/JB7PsqnCOJG3cIqDpfXXPCbpeOV/LrVKCYRYrUjx g==;
-X-CSE-ConnectionGUID: y3oPMdTfRam1txJIzW1EKg==
-X-CSE-MsgGUID: M3RQaIRZRC2LUKskcMrkYw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11443"; a="52775601"
-X-IronPort-AV: E=Sophos;i="6.15,312,1739865600"; d="scan'208";a="52775601"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2025 20:30:34 -0700
-X-CSE-ConnectionGUID: ZUYh7TCIROadCYcdnwdXGA==
-X-CSE-MsgGUID: 13flJgngSQiSP7SUMaS0yg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,312,1739865600"; d="scan'208";a="146989899"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2025 20:30:35 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Sat, 24 May 2025 20:30:34 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Sat, 24 May 2025 20:30:34 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (40.107.223.41)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.55; Sat, 24 May 2025 20:30:34 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yy6cJ9IHrZcI0DYP3JT4OjMq6ol80ehjABN1xjONmhVz2K++y38r1cvEdgaMFE1qKo5L2dFeE1cDRAAuH5FWh4UA9Ccq64W3/88cbFzM6wg68nfchwl19FLRy0Vh5FyjVza1ERsNES+UsTBpZRPYejEd6LgLJ9bkruOV6OLeMaSiac4ToXow/XY0+ymqyxuKbM7aHu5Ngj5h3VzcFlAtzriArT+6wgsbyCEGdws7UJSe5v2IpBEGNdArjLpnMFin4Uj5Xb4E0PrFRuKlaC2D9YtZA2XDgWYdATmpclRxUIdwKhJjHny4ZVd/jauz5jPnIHm14I7Y0pI9D3pL+B/cPw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4UJlknOy5VL5J7W2pnY55Ca/nkg2owUTAkuNsFBkbnw=;
- b=osZNKMxdGlptpjEqsbUy71vPvmluVsUdebvokgf9cD6gAojpFpQScbEyKnd1wZnCoeybtJPCl28JbKUUbgQYdfHO/a203voXLwMN7uJqgOMvK5aPstiXwORTFtspHkRH9SywuHyKjqZ6BnryyKX/aTD9coG8/DjjqDCas+efhfkNRoYJ0pMyi2g/yTLmDN/Uh1DCIn8UJ9Jt+fxtiSmrGXlvMoWuhqBX3Vr0XX2TNNZCymkcpe0bPTKY/DIllAPWK4pAHPaGKPjfh4zIpCSH04dyurpKqTtYurfRIImvFdQZj3z6kPMiSoNvzbhvcpdrwLFSrZjZkEDUdMV+HV2ztA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by CH3PR11MB8659.namprd11.prod.outlook.com (2603:10b6:610:1cf::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.21; Sun, 25 May
- 2025 03:30:32 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%5]) with mapi id 15.20.8769.022; Sun, 25 May 2025
- 03:30:32 +0000
-Date: Sat, 24 May 2025 22:30:29 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Stuart Summers
- <stuart.summers@intel.com>, Matt Roper <matthew.d.roper@intel.com>, "Riana
- Tauro" <riana.tauro@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- "Tvrtko Ursulin" <tursulin@ursulin.net>
-Subject: Re: [PATCH 2/5] drm/xe/lrc: Extract post context restore function
-Message-ID: <apyca5tnlidgtkk2dgeyxxkw6n3vdhxnoewy36vntvrenheuec@obtgblltrfyf>
-References: <20250523-wa-bb-cmds-v1-0-40b337f71bcd@intel.com>
- <20250523-wa-bb-cmds-v1-2-40b337f71bcd@intel.com>
- <aDDNOq2ygKL6a5es@unerlige-desk.amr.corp.intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <aDDNOq2ygKL6a5es@unerlige-desk.amr.corp.intel.com>
-X-ClientProxiedBy: SJ0PR13CA0211.namprd13.prod.outlook.com
- (2603:10b6:a03:2c1::6) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96C4B10E054
+ for <intel-xe@lists.freedesktop.org>; Mon, 26 May 2025 06:39:24 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 526B71F82E;
+ Mon, 26 May 2025 06:39:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1748241562; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=hU2PAhEcY2QpgN4r39hzQDD8fU6tCvoHcZg6XcqSi+0=;
+ b=iYn7PfThrLZyIItRGK518hlYu3K0NdUMPWbPQWq9BjY2SyxoGpLht83pEmSYfWD/pBRGL1
+ C9x2lJ01Y0Xf4gIaMw1S/+wRUoSm0J1FO4iEaRfyNJHzBR4bOCfccxYUdjDZIEVt20F9ip
+ Fk694fAoyXIbnqoRoJFkNghzFoANp3Y=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1748241562;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=hU2PAhEcY2QpgN4r39hzQDD8fU6tCvoHcZg6XcqSi+0=;
+ b=qNNvTsJMbnxs/vQwaUgPVFQhyza5aoY8KIHV+ykv3xfBZ63iZ4voEL4mrF+Yd0nQC/hG32
+ rVFMR78uIjSGrRBw==
+Authentication-Results: smtp-out2.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=iYn7PfTh;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=qNNvTsJM
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1748241562; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=hU2PAhEcY2QpgN4r39hzQDD8fU6tCvoHcZg6XcqSi+0=;
+ b=iYn7PfThrLZyIItRGK518hlYu3K0NdUMPWbPQWq9BjY2SyxoGpLht83pEmSYfWD/pBRGL1
+ C9x2lJ01Y0Xf4gIaMw1S/+wRUoSm0J1FO4iEaRfyNJHzBR4bOCfccxYUdjDZIEVt20F9ip
+ Fk694fAoyXIbnqoRoJFkNghzFoANp3Y=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1748241562;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=hU2PAhEcY2QpgN4r39hzQDD8fU6tCvoHcZg6XcqSi+0=;
+ b=qNNvTsJMbnxs/vQwaUgPVFQhyza5aoY8KIHV+ykv3xfBZ63iZ4voEL4mrF+Yd0nQC/hG32
+ rVFMR78uIjSGrRBw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 2698C13964;
+ Mon, 26 May 2025 06:39:22 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id SXq0B5oMNGjpJQAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Mon, 26 May 2025 06:39:22 +0000
+Message-ID: <b867c60d-c6ad-4847-a2f6-4652bad89b25@suse.de>
+Date: Mon, 26 May 2025 08:39:21 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|CH3PR11MB8659:EE_
-X-MS-Office365-Filtering-Correlation-Id: 26ddc05e-acd3-4767-18c5-08dd9b3c80e6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016|27256017;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Jv4sZKEIJXUi4uDe/SvpI8OwpprmxzO2dBOYYh0ue75gakIUVU0cO9giqNL/?=
- =?us-ascii?Q?JsPXihxdqUXYCINeAWpmmKodugVowe7dMgw3Kxq/+KxTScVgaXa6+NvIUhCC?=
- =?us-ascii?Q?fWjk/KqOTb4Ljx1Dytil1JUkXeGoKnoqdHSYwQENPy5u1tqtcFdRBMTeIFjZ?=
- =?us-ascii?Q?ru2wS79UvRkzV+PdCE9JoAyr0WCBaHS3IDh8HCHTF1ZhgyCS5LtA8QwH9p/K?=
- =?us-ascii?Q?0Py2CCadHtDhJ5QpWVVZleSgL3bsEENwvkP/9g2H8buPvBh5oI9QVFoGmXuo?=
- =?us-ascii?Q?MCJruju9lxGRTj6dhmnweZ+Sht2ecoqZpWz3sJHHaGZ1D4gxLxKn13Hyr+D1?=
- =?us-ascii?Q?hBpJgvm+rHlvCJzo/9wKLhiawalPcp0ANgN+tAd3Bd7StNoIzeFjU73+uDlt?=
- =?us-ascii?Q?UsxjM6CtZyiQRpLKbCUomeJAJBPHMIJ2aL3xWhGQHedvMOKK28ZJ/oupwnX2?=
- =?us-ascii?Q?vCpTbC6tMnXlabLmNOJxozaY6DQaON6WfzhAKBDqkfXlnWMOUdurE1hfqupb?=
- =?us-ascii?Q?zh2JMchdiRF7ccpKCRvlFk9fuOo5m1XG8YnFp9XwyCF+f7SNOdFgKtViHf1C?=
- =?us-ascii?Q?p5w1R9575BsuUKYPEjYP5XmbEU68+GWRCDvjTmuy4+wowP9aTX5hiWD/kwH1?=
- =?us-ascii?Q?OldGMC7eDTa5wQmfLOjSzZ2rsJ7p0LLrFFX+JjwkaLhlxSN5lziUv4luOwgl?=
- =?us-ascii?Q?TZAwV1XWLzqXohvNXvHxQjM2bTvVJh0SmA87SvDoVdWrDgpsOAbbWpP8mS9+?=
- =?us-ascii?Q?hCAzrSMgMciH2ypWNkfiwqnAltZhgtyoUR8IGzbZNFhqKHt0s4ZVfaeastZ0?=
- =?us-ascii?Q?LtAht5pa/AI++s2w1LEXtjfoxePNK7//Q5xjlOzWyk7b6RBl7inHiBgSki/r?=
- =?us-ascii?Q?f4tUOsKmuNHsetBf9+3QEGgxsiRLxH5CNznJal1W5ZdNEYhwYOvOE3vuMJa6?=
- =?us-ascii?Q?dxQjfiGYx98bCPiq3rZqeanNOKHBTWu0jD/6wpPf2S9RcBcxbAwHi247Mu8Q?=
- =?us-ascii?Q?bwxaqI+EqqRDVAU+VyiTjG094XTI0MhDq8DzEXMr+NeEt31+7k5vKo8uS4ny?=
- =?us-ascii?Q?+SPrnzR44tixbjJIM+UoLP6goEKtyz8NjUvwy14EVID5OUEB7qAtCQBEdYUo?=
- =?us-ascii?Q?RwTAbD0NomJu8FDr/3Kw4I3Bzr/xQbId2SGjREFVMcZZmFU2zDVv9TCa99yq?=
- =?us-ascii?Q?86oFEgi/9brdeVN2S220e7fThAkh9n+W7wAAR4NCy6TUOnEiBHyKMRTpxM7c?=
- =?us-ascii?Q?C+nRxH4UZeO2oJEI9YFjqS3B99cZSDhbi6kxRla+rTQQgKLjCPVTdoJVCmFe?=
- =?us-ascii?Q?dv0cSsP92EShC9/PGV51oNnByhECzM6odpQ2DKOi+QOpC6X0ZBNI2M+No8Y9?=
- =?us-ascii?Q?trkz1Rx6Km151zXz1eN3YPKOufXmWBJG5QsVzw6mbYiHWBxT/qwT21+edwOp?=
- =?us-ascii?Q?8u3uaamLq296gMomaZdOFM90NUw76ilpT8okAbbkanpKVM0GSRC5Pw=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(27256017); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?uVVSyGbTl4xFfyVwPfpX7fxWGb5pIb4O0winBdxyZgMOTWvkKH3rg5uLEC3x?=
- =?us-ascii?Q?IKWU5VR1JXTQDil8kvXILWiu8Gj5pSdol3RmSXtRX6di1k0bTaRSsvCIEKEb?=
- =?us-ascii?Q?BpjY6fi7CHyfDmqun6YuGeghFqmSvCiEUYK4vQB2ce0qBEey065ji8egZEYN?=
- =?us-ascii?Q?K3CWbwi+h2ooebgsQQf8Dp79JddI/MuCd94XgtnSiIpPWwPKmt2e8hROfSLL?=
- =?us-ascii?Q?6tF7DzsjMMCqAQsDAp1GR+Ob+0HObh7sP8+x1tM/RGej/azCTDl0r7lXbV23?=
- =?us-ascii?Q?mxIO3emFXmD+QN2TU6l2hRq/CSfjNpN0xoUDJvcmtz9y23H6kCcS5lTCDPqz?=
- =?us-ascii?Q?KX7lz4rqbrhTrcgrBNmjygAPPWdZ/RiEta/td+ZkRgwT2jm3BdhKoZD35BIM?=
- =?us-ascii?Q?CwO3Szlpruo7b/6BfmEUHDZVZlR+9TSaTJOgZpXi4ow9clPLWza0zulRzSnp?=
- =?us-ascii?Q?8YRXV/LrLcd5V8JsJXmyOBPyI7eVmtcXXQK1QobgpWBcUStsSgqkHxtERDB4?=
- =?us-ascii?Q?+XzHp358/fuo1ANfLNvSvHXKcOH9CrIyJ9+CiHvjTfdEzmcIecJ+M3tWJaRL?=
- =?us-ascii?Q?3MFLX5i6P8XbisNYQF6WVhRf4NoJDwCQ5KIizbFQhdEUBT/WeojkoowevDI/?=
- =?us-ascii?Q?NEugFBQ2nvWqkLbBL0eD+D81CuJ2X+kyoDQ5yIiX3jEJ95/7YRqLJGjozEdZ?=
- =?us-ascii?Q?+QFv9CrKNP0wwkuINtwd171/80pabtOdWlL/pYa7DW+Ytsvx6VjGxV3KKE9h?=
- =?us-ascii?Q?GPdAsudDwOFZVuMZzVrXsR/LxVTGSuPPyu2JNOq70p2n2FNNnAp5q8LI6/A1?=
- =?us-ascii?Q?v1dERhu/6X66w3PSzB/qTLKhnP33tkNzt63lYZY7ibtN4faTHv2VshhoHd4W?=
- =?us-ascii?Q?F60PEtwkYO9IMcXpjwQSVS15+TxlCwiEyJLHnb/bvIdpu2HtIwm6kP+3hZxu?=
- =?us-ascii?Q?NpEnHb4PtrSd+zNoU8WSOUEmvobPPDg2GxAnI7rnxOspGKr3gRgu+E8uECFd?=
- =?us-ascii?Q?9eMxNNIHGPvVoAvQzxndlevY437BB1twPjb+fT83iGhO+IaS2lCiRvv50+C6?=
- =?us-ascii?Q?vjj4HZcCU7cAR1OUExYTzZM4ZfXVSkoPowFBTp9BeIvDpMCAuqhgDgpf+Tdl?=
- =?us-ascii?Q?2gv6mGjtzkzQbZGHtdRXGVH/NE0yn/UjSuRdi7uXWI6qz0tORwVB+fhFr+vl?=
- =?us-ascii?Q?jUrNhAtkHQdHzHmoADRf2TpGeDiFeeku1kVpM86hqvojVFJOXTGJVH8DrYpB?=
- =?us-ascii?Q?ht/BAmJKKO1lMY4NaNl1WlJrU5q1jc7Ln3ywBHXIo8JxTqWDvqXbNb5928C+?=
- =?us-ascii?Q?cnPd3kYen7ahjgC+In8qIHQTWQFpQ4C1b0JKG5GX7VQvyb9i35ptMoFVaaAi?=
- =?us-ascii?Q?+sdWfMXSiCIYQcmgUuMHgE5jg/9l5GsrLL+gaY06zyH+MaCYUqf89QOVu5Ex?=
- =?us-ascii?Q?3zJ+71T3Je07AKuY9bboqL6M1NV5uK7uOwbxvYCXvkN3PGjBxx7sUOXgJll6?=
- =?us-ascii?Q?SLUIldln40mek7ULJAk1mFJnTWnOin+EhoC/a3VEd9Dqs3x25VrnTWuLxC8H?=
- =?us-ascii?Q?YPGpBBy47lvwBb35SfTMTuvZ8icEcXe2MEt8wzXYWuA+82NAzjcOeeGv/qLJ?=
- =?us-ascii?Q?9w=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 26ddc05e-acd3-4767-18c5-08dd9b3c80e6
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2025 03:30:32.0825 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: F4cC4ELD/nJAUcAC+YNm62YRWVHV9v/xAtbMU8XSFa5JfzBRtr4Cb3+5TefagxmGiYUsNgvlpMnpDzUnPYbItYn5gWiDrkqHXihm+qAvc7A=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8659
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 9/9] iosys_map: embed the is_iomem bit into the pointer.
+To: Lucas De Marchi <lucas.demarchi@intel.com>, Dave Airlie <airlied@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Michal.Wajdeczko@intel.com
+References: <20250522065519.318013-1-airlied@gmail.com>
+ <20250522065519.318013-10-airlied@gmail.com>
+ <wz6cduq6kh2n2pwxm3q75vjmrsht4rvnbjnch5t66kj773t2rj@kfk2bj7pewwm>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <wz6cduq6kh2n2pwxm3q75vjmrsht4rvnbjnch5t66kj773t2rj@kfk2bj7pewwm>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Action: no action
+X-Rspamd-Queue-Id: 526B71F82E
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Spamd-Result: default: False [-1.51 / 50.00]; NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[]; FREEMAIL_TO(0.00)[intel.com,gmail.com];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
+ MID_RHS_MATCH_FROM(0.00)[]; TO_DN_SOME(0.00)[];
+ MIME_TRACE(0.00)[0:+]; FUZZY_BLOCKED(0.00)[rspamd.com];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ RCPT_COUNT_FIVE(0.00)[5]; RCVD_TLS_ALL(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo];
+ RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ DKIM_TRACE(0.00)[suse.de:+]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -180,21 +144,170 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, May 23, 2025 at 12:32:10PM -0700, Umesh Nerlige Ramappa wrote:
->>+static void setup_wa_bb(struct xe_lrc *lrc)
->>+{
->>+	u32 *cmd, *cmd0;
->>+
->>+	cmd0 = lrc->bb_per_ctx_bo->vmap.vaddr;
->>+	cmd = cmd0;
->>+
->>+	cmd += wa_bb_write_utilization_state(lrc, cmd);
->>	*cmd++ = MI_BATCH_BUFFER_END;
+Hi
+
+Am 22.05.25 um 17:09 schrieb Lucas De Marchi:
+> On Thu, May 22, 2025 at 04:52:18PM +1000, Dave Airlie wrote:
+>> From: Dave Airlie <airlied@redhat.com>
+>>
+>> This reduces this struct from 16 to 8 bytes, and it gets embedded
+>> into a lot of things.
+>>
+>> Signed-off-by: Dave Airlie <airlied@redhat.com>
 >
->Why not just assert right here for cmd - cmd0 instead of putting it 
->into the next patch?
+> Replied too early on cover. Chatting with Michal Wajdeczko today, this
+> may break things as we then can't byte-address anymore. It seems
+> particularly dangerous when using the iosys_map_wr/iosys_map_rd as
+> there's nothing preventing an unaligned address and we increment the map
+> with the sizeof() of a struct that could be __packed. Example: in
+> xe_guc_ads.c we use it to write packed structs like guc_gt_system_info.
+> In this particular case it doesn't give unaligned address, but we should
+> probably then protect iosys_map from doing the wrong thing.
+>
+> So, if we are keeping this patch, we should probably protect
+> initially-unaligned addresses and the iosys_map_incr() call?
 
-this is purely a code move with no addition/subtraction. However, given
-the simplicity of next I can squash it in the next rev.
+That sounds like a blocker to me. And there's another thing to keep in 
+mind. We have use cases where we need to know the caching of the memory 
+area. I never got to fully implement this, but it would be stored in the 
+iosys-map struct as well. We'd need 2 additional bits to represent UC, 
+WC and WT caching. If we don't have at least 3-bit alignment, shrinking 
+iosys-map might not be feasible anyway.
 
-Lucas De Marchi
+Best regards
+Thomas
+
+>
+> thanks
+> Lucas De Marchi
+>
+>> ---
+>> include/linux/iosys-map.h | 30 ++++++++----------------------
+>> 1 file changed, 8 insertions(+), 22 deletions(-)
+>>
+>> diff --git a/include/linux/iosys-map.h b/include/linux/iosys-map.h
+>> index a6c2cc9ca756..44479966ce24 100644
+>> --- a/include/linux/iosys-map.h
+>> +++ b/include/linux/iosys-map.h
+>> @@ -99,29 +99,27 @@
+>>  *    iosys_map_incr(&map, len); // go to first byte after the memcpy
+>>  */
+>>
+>> +#define _IOSYS_MAP_IS_IOMEM 1
+>> /**
+>>  * struct iosys_map - Pointer to IO/system memory
+>>  * @vaddr_iomem:    The buffer's address if in I/O memory
+>>  * @vaddr:        The buffer's address if in system memory
+>> - * @is_iomem:        True if the buffer is located in I/O memory, or 
+>> false
+>> - *            otherwise.
+>>  */
+>> struct iosys_map {
+>>     union {
+>>         void __iomem *_vaddr_iomem;
+>>         void *_vaddr;
+>>     };
+>> -    bool _is_iomem;
+>> };
+>>
+>> static inline bool iosys_map_is_iomem(const struct iosys_map *map)
+>> {
+>> -    return map->_is_iomem;
+>> +    return ((unsigned long)map->_vaddr) & _IOSYS_MAP_IS_IOMEM;
+>> }
+>>
+>> static inline void __iomem *iosys_map_ioptr(const struct iosys_map *map)
+>> {
+>> -    return map->_vaddr_iomem;
+>> +    return (void __iomem *)((unsigned long)map->_vaddr_iomem & 
+>> ~_IOSYS_MAP_IS_IOMEM);
+>> }
+>>
+>> static inline void *iosys_map_ptr(const struct iosys_map *map)
+>> @@ -136,7 +134,6 @@ static inline void *iosys_map_ptr(const struct 
+>> iosys_map *map)
+>> #define IOSYS_MAP_INIT_VADDR(vaddr_)    \
+>>     {                \
+>>         ._vaddr = (vaddr_),    \
+>> -        ._is_iomem = false,    \
+>>     }
+>>
+>> /**
+>> @@ -145,8 +142,7 @@ static inline void *iosys_map_ptr(const struct 
+>> iosys_map *map)
+>>  */
+>> #define IOSYS_MAP_INIT_VADDR_IOMEM(vaddr_iomem_)    \
+>>     {                        \
+>> -        ._vaddr_iomem = (vaddr_iomem_),        \
+>> -        ._is_iomem = true,            \
+>> +        ._vaddr_iomem = (void __iomem *)(((unsigned 
+>> long)(vaddr_iomem_) | _IOSYS_MAP_IS_IOMEM)), \
+>>     }
+>>
+>> /**
+>> @@ -198,7 +194,6 @@ static inline void *iosys_map_ptr(const struct 
+>> iosys_map *map)
+>> static inline void iosys_map_set_vaddr(struct iosys_map *map, void 
+>> *vaddr)
+>> {
+>>     map->_vaddr = vaddr;
+>> -    map->_is_iomem = false;
+>> }
+>>
+>> /**
+>> @@ -211,8 +206,7 @@ static inline void iosys_map_set_vaddr(struct 
+>> iosys_map *map, void *vaddr)
+>> static inline void iosys_map_set_vaddr_iomem(struct iosys_map *map,
+>>                          void __iomem *vaddr_iomem)
+>> {
+>> -    map->_vaddr_iomem = vaddr_iomem;
+>> -    map->_is_iomem = true;
+>> +    map->_vaddr_iomem = (void __iomem *)((unsigned long)vaddr_iomem 
+>> | _IOSYS_MAP_IS_IOMEM);
+>> }
+>>
+>> /**
+>> @@ -229,12 +223,9 @@ static inline void 
+>> iosys_map_set_vaddr_iomem(struct iosys_map *map,
+>> static inline bool iosys_map_is_equal(const struct iosys_map *lhs,
+>>                       const struct iosys_map *rhs)
+>> {
+>> -    if (lhs->_is_iomem != rhs->_is_iomem)
+>> +    if (lhs->_vaddr != rhs->_vaddr)
+>>         return false;
+>> -    else if (lhs->_is_iomem)
+>> -        return lhs->_vaddr_iomem == rhs->_vaddr_iomem;
+>> -    else
+>> -        return lhs->_vaddr == rhs->_vaddr;
+>> +    return true;
+>> }
+>>
+>> /**
+>> @@ -279,12 +270,7 @@ static inline bool iosys_map_is_set(const struct 
+>> iosys_map *map)
+>>  */
+>> static inline void iosys_map_clear(struct iosys_map *map)
+>> {
+>> -    if (map->_is_iomem) {
+>> -        map->_vaddr_iomem = NULL;
+>> -        map->_is_iomem = false;
+>> -    } else {
+>> -        map->_vaddr = NULL;
+>> -    }
+>> +    map->_vaddr = NULL;
+>> }
+>>
+>> /**
+>> -- 
+>> 2.49.0
+>>
+
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
+
