@@ -4,69 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBD9CC5AD49
-	for <intel-xe@archiver.kernel.org>; Mon, 26 May 2025 15:06:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45839C54FB3
+	for <intel-xe@archiver.kernel.org>; Mon, 26 May 2025 15:29:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AC5010E39E;
-	Mon, 26 May 2025 15:06:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F327E10E3C0;
+	Mon, 26 May 2025 15:29:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="K01z/23h";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DCLODf6G";
 	dkim-atps=neutral
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
- [209.85.128.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1557C10E389
- for <intel-xe@lists.freedesktop.org>; Mon, 26 May 2025 15:06:46 +0000 (UTC)
-Received: by mail-wm1-f43.google.com with SMTP id
- 5b1f17b1804b1-441d1ed82faso18184195e9.0
- for <intel-xe@lists.freedesktop.org>; Mon, 26 May 2025 08:06:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1748272005; x=1748876805; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=AsxP/yrbCPSbZ83V0+fVOhQsYXVYOwthunL0kF0vIsw=;
- b=K01z/23hJSu66V/yO+ePf873jyGV7St/fjtE6fkxBOEickyREkeGiSuRAsBYT0sM0s
- 8Uh9Chx8x1/ieZ/h5n9gcWsuaFKYhdYBFopzdvYaQTJ7ovICiwQHCCVj3WiOpA8vzB6D
- OtLdCOTGG6zQ/0SxkIElgxvB7veKu78N/YIMyeHf4VZfhHH/vpUPjJuiSUdazvpsNfyW
- r0YqAg9wLbl8FXXpDpbFgCxXQse1bM8wS2qW4HUXdez8LyYlfiMHm64D6esG64LVphKt
- l3Y1GLrUUQ6RXzl3D8YZtRmzJFNIN8Z6jMOt7t88+j5LcBV6AZp4g5RnC8XoalQsnWOs
- j5oQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1748272005; x=1748876805;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=AsxP/yrbCPSbZ83V0+fVOhQsYXVYOwthunL0kF0vIsw=;
- b=Oxivl0Dtj4DZ5nHrtdDKkkKb/5fypz2EIPkynA4rr9uYUeAkYDpBDfSvRiP0SbwulO
- Y80jgjy+zCZ74ErQ0WaFDah5YgPwNHTv94TuI7BcbeOxlr9PccwIupLR0qJGP4NVVOfu
- DP84VeGCQOgSDZOTerGSaNKTm7C37aJB8wSA75Jc66nWmRBQbd0kl3mn12XVzYNoWMvL
- opdGHnmDmEZj7BbsWQZjY+jVbWBAZPmZrpryqjR1cZ9BcnwnBkYgA0L3GASP7K/mTWcC
- xMjYRgZsuYsm646VfXfRxJxtiERzokG6Vq8zdMqm72PiZ/YxdKJZInZFjcXAsrL6PZTQ
- QITg==
-X-Gm-Message-State: AOJu0Yw/MSTPJyaExzsrCG4ZtV2jB7rb6yUrbI65u9/oAnxrq1y3pD0R
- 5wprbn7SWYPpVN+gTNmEypkAKEeDwFsHnUNK2yqECPIkocSot+VYn32idwe3JhFu2xU=
-X-Gm-Gg: ASbGncvWOa9DWQBqUPfWMFi72WgQOZnYl00A1FLSGGjBuBwOiOd5/DUYp2oRcbvW67x
- r1K2BDmNGv5D3o696d/lbMKBQBnf9Q/dwxRqdVsuwtwopvhUw3AouCVgW98wKTbh+FrVs6xSh7c
- DmOQ7mLWgyDGpZkea7DK3S5hUFjIRp0MA8w7ps/BKDeTH6zF0fcBOC47gY1ByNQmSe0rhuATDjc
- +6lSJsetqUlgccYSXMRXKm6QaMq2KcQ9TUuAfIGphb8G2jScXAG6AJk6raa4jo04veni5wjBiNB
- HUSVbZ+vz3K56eUj3mkZNqAmUFDvbekM2Hg7sT78TLSgpbKE6pKhNC4H
-X-Google-Smtp-Source: AGHT+IEmpGGfCTizmw750bW2UHXz8nV74n5esSCo0a+sMC/xgp1YN+TIDC/fQbCXlSt4LUEblX/RAQ==
-X-Received: by 2002:a05:600c:a08b:b0:43c:fe15:41dd with SMTP id
- 5b1f17b1804b1-44c932023e7mr83381235e9.6.1748272004714; 
- Mon, 26 May 2025 08:06:44 -0700 (PDT)
-Received: from localhost ([196.207.164.177])
- by smtp.gmail.com with UTF8SMTPSA id
- ffacd0b85a97d-3a4d1ed8740sm5658629f8f.83.2025.05.26.08.06.43
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 26 May 2025 08:06:44 -0700 (PDT)
-Date: Mon, 26 May 2025 18:06:38 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Jason Gunthorpe <jgg@ziepe.ca>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: [bug report] drm/xe/svm: Implement prefetch support for SVM ranges
-Message-ID: <aDSDfusiM8QGQwFS@stanley.mountain>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B078B10E3C0
+ for <intel-xe@lists.freedesktop.org>; Mon, 26 May 2025 15:29:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1748273359; x=1779809359;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ALvmJMFQUMv8NS1Yuu4/cQ9SZHCHBq5VrafbjpCPdCo=;
+ b=DCLODf6GObvRRVdOVYhmbVlR3oOGLQmyaFP8gY6y4Cw0AuBO41eIeRR8
+ qyLckG2HwE2nAsUnQgS1tnuu6QSfp+zZN9sEqsNV+vCDWigjf1uiWp4Xa
+ 8y1XfNwC0rvMEOq6kHbSx4GGsbWs9xBcqA8AL0td3VMegzN0o0Ho5TyKo
+ S7SEYU+rhs+tISy9GdqsVISOI8h3GCEhcnCwlBFp1zv7CgSvZPAWfnrWt
+ z/ZkLSon01XwL1yfELWEsRkC1N+1pdyNFlVhPnI5noGJGrjktfqfFHnh5
+ f7ZxtrL/T+9BuyBakycHT0rVbCyKABjd05U38sBRkTDVdyaRvkQt+YCOY A==;
+X-CSE-ConnectionGUID: gn0B8UGoQdyyCYah63oG7Q==
+X-CSE-MsgGUID: KzvFygswTeGdMPvR52ppWA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11445"; a="72784470"
+X-IronPort-AV: E=Sophos;i="6.15,316,1739865600"; d="scan'208";a="72784470"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2025 08:29:18 -0700
+X-CSE-ConnectionGUID: curKd/GgQIqCfSKSh6BRdQ==
+X-CSE-MsgGUID: 4AZYLaSgQsStyXlhujTEVA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,316,1739865600"; d="scan'208";a="147286223"
+Received: from tjmaciei-mobl5.ger.corp.intel.com (HELO fedora..)
+ ([10.245.245.175])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2025 08:29:16 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oak Zeng <oak.zeng@intel.com>
+Subject: [PATCH] drm/xe: Rework eviction rejection of bound external bos
+Date: Mon, 26 May 2025 17:29:02 +0200
+Message-ID: <20250526152902.13214-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,41 +67,217 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hello Himal Prasad Ghimiray,
+For preempt_fence mode VM's we're rejecting eviction of
+shared bos during VM_BIND. However, since we do this in the
+move() callback, we're getting an eviction failure warning from
+TTM. The TTM callback intended for these things is
+eviction_valuable().
 
-Commit 09ba0a8f06cd ("drm/xe/svm: Implement prefetch support for SVM
-ranges") from May 13, 2025 (linux-next), leads to the following
-Smatch static checker warning:
+However, the latter doesn't pass in the struct ttm_operation_ctx
+needed to determine whether the caller needs this.
 
-	drivers/gpu/drm/xe/xe_vm.c:2922 prefetch_ranges()
-	warn: passing positive error code 's32min-(-96),(-94)-(-15),(-13)-(-12),(-10)-(-2),1' to 'ERR_PTR'
+Instead, attach the needed information to the vm under the
+vm->resv, until we've been able to update TTM to provide the
+needed information. And add sufficient lockdep checks to prevent
+misuse and races.
 
-drivers/gpu/drm/xe/xe_vm.c
-    2917 
-    2918                 err = xe_svm_range_get_pages(vm, svm_range, &ctx);
-    2919                 if (err) {
-    2920                         if (err == -EOPNOTSUPP || err == -EFAULT || err == -EPERM)
-    2921                                 err = -ENODATA;
---> 2922                         drm_dbg(&vm->xe->drm, "Get pages failed, asid=%u, gpusvm=%p, errno=%pe\n",
-    2923                                 vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Fixes: 0af944f0e308 ("drm/xe: Reject BO eviction if BO is bound to current VM")
+Cc: Oak Zeng <oak.zeng@intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c       | 46 +++++++++++++---------
+ drivers/gpu/drm/xe/xe_vm.h       | 65 ++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vm_types.h |  8 ++++
+ 3 files changed, 101 insertions(+), 18 deletions(-)
 
-The comments on walk_page_range() say it can return > 0 on success but
-the comments on hmm_range_fault() say it can never return > 0.  Smatch
-does a naive reading of the code and thinks that it can return > 0.
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index d99d91fe8aa9..3c48a8c5f439 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -841,21 +841,6 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 		goto out;
+ 	}
+ 
+-	/* Reject BO eviction if BO is bound to current VM. */
+-	if (evict && ctx->resv) {
+-		struct drm_gpuvm_bo *vm_bo;
+-
+-		drm_gem_for_each_gpuvm_bo(vm_bo, &bo->ttm.base) {
+-			struct xe_vm *vm = gpuvm_to_vm(vm_bo->vm);
+-
+-			if (xe_vm_resv(vm) == ctx->resv &&
+-			    xe_vm_in_preempt_fence_mode(vm)) {
+-				ret = -EBUSY;
+-				goto out;
+-			}
+-		}
+-	}
+-
+ 	/*
+ 	 * Failed multi-hop where the old_mem is still marked as
+ 	 * TTM_PL_FLAG_TEMPORARY, should just be a dummy move.
+@@ -1013,6 +998,25 @@ static long xe_bo_shrink_purge(struct ttm_operation_ctx *ctx,
+ 	return lret;
+ }
+ 
++static bool
++xe_bo_eviction_valuable(struct ttm_buffer_object *bo, const struct ttm_place *place)
++{
++	struct drm_gpuvm_bo *vm_bo;
++
++	if (!ttm_bo_eviction_valuable(bo, place))
++		return false;
++
++	if (!xe_bo_is_xe_bo(bo))
++		return true;
++
++	drm_gem_for_each_gpuvm_bo(vm_bo, &bo->base) {
++		if (xe_vm_is_validating(gpuvm_to_vm(vm_bo->vm)))
++			return false;
++	}
++
++	return true;
++}
++
+ /**
+  * xe_bo_shrink() - Try to shrink an xe bo.
+  * @ctx: The struct ttm_operation_ctx used for shrinking.
+@@ -1047,7 +1051,7 @@ long xe_bo_shrink(struct ttm_operation_ctx *ctx, struct ttm_buffer_object *bo,
+ 	    (flags.purge && !xe_tt->purgeable))
+ 		return -EBUSY;
+ 
+-	if (!ttm_bo_eviction_valuable(bo, &place))
++	if (!xe_bo_eviction_valuable(bo, &place))
+ 		return -EBUSY;
+ 
+ 	if (!xe_bo_is_xe_bo(bo) || !xe_bo_get_unless_zero(xe_bo))
+@@ -1588,7 +1592,7 @@ const struct ttm_device_funcs xe_ttm_funcs = {
+ 	.io_mem_pfn = xe_ttm_io_mem_pfn,
+ 	.access_memory = xe_ttm_access_memory,
+ 	.release_notify = xe_ttm_bo_release_notify,
+-	.eviction_valuable = ttm_bo_eviction_valuable,
++	.eviction_valuable = xe_bo_eviction_valuable,
+ 	.delete_mem_notify = xe_ttm_bo_delete_mem_notify,
+ 	.swap_notify = xe_ttm_bo_swap_notify,
+ };
+@@ -2431,6 +2435,8 @@ int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict)
+ 		.no_wait_gpu = false,
+ 		.gfp_retry_mayfail = true,
+ 	};
++	struct pin_cookie cookie;
++	int ret;
+ 
+ 	if (vm) {
+ 		lockdep_assert_held(&vm->lock);
+@@ -2440,8 +2446,12 @@ int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict)
+ 		ctx.resv = xe_vm_resv(vm);
+ 	}
+ 
++	cookie = xe_vm_set_validating(vm, allow_res_evict);
+ 	trace_xe_bo_validate(bo);
+-	return ttm_bo_validate(&bo->ttm, &bo->placement, &ctx);
++	ret = ttm_bo_validate(&bo->ttm, &bo->placement, &ctx);
++	xe_vm_clear_validating(vm, allow_res_evict, cookie);
++
++	return ret;
+ }
+ 
+ bool xe_bo_is_xe_bo(struct ttm_buffer_object *bo)
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 99e164852f63..d9491b6c0f65 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -303,6 +303,71 @@ void xe_vm_snapshot_capture_delayed(struct xe_vm_snapshot *snap);
+ void xe_vm_snapshot_print(struct xe_vm_snapshot *snap, struct drm_printer *p);
+ void xe_vm_snapshot_free(struct xe_vm_snapshot *snap);
+ 
++/**
++ * xe_vm_set_validating() - Register this task as currently making bos resident
++ * @vm: Pointer to the vm or NULL.
++ *
++ * Register this task as currently making bos resident for the vm. Intended
++ * to avoid eviction by the same task of shared bos bound to the vm.
++ * Call with the vm's resv lock held.
++ *
++ * Return: A pin cookie that should be used for xe_vm_clear_validating().
++ */
++static inline struct pin_cookie xe_vm_set_validating(struct xe_vm *vm,
++						     bool allow_res_evict)
++{
++	struct pin_cookie cookie = {};
++
++	if (vm && !allow_res_evict) {
++		xe_vm_assert_held(vm);
++		cookie = lockdep_pin_lock(&xe_vm_resv(vm)->lock.base);
++		/* Pairs with READ_ONCE in xe_vm_is_validating() */
++		WRITE_ONCE(vm->validating, current);
++	}
++
++	return cookie;
++}
++
++/**
++ * xe_vm_clear_validating() - Unregister this task as currently making bos resident
++ * @vm: Pointer to the vm or NULL
++ * @cookie: Cookie obtained from xe_vm_set_validating().
++ *
++ * Register this task as currently making bos resident for the vm. Intended
++ * to avoid eviction by the same task of shared bos bound to the vm.
++ * Call with the vm's resv lock held.
++ */
++static inline void xe_vm_clear_validating(struct xe_vm *vm, bool allow_res_evict,
++					  struct pin_cookie cookie)
++{
++	if (vm && !allow_res_evict) {
++		lockdep_unpin_lock(&xe_vm_resv(vm)->lock.base, cookie);
++		/* Pairs with READ_ONCE in xe_vm_is_validating() */
++		WRITE_ONCE(vm->validating, current);
++	}
++}
++
++/**
++ * xe_vm_is_validating() - Whether bos bound to the vm are currently being made resident
++ * by the current task.
++ * @vm: Pointer to the vm.
++ *
++ * If this function returns %true, we should be in a vm resv locked region, since
++ * the current process is the same task that called xe_vm_set_validating().
++ * The function asserts that that's indeed the case.
++ *
++ * Return: %true if the task is currently making bos resident, %false otherwise.
++ */
++static inline bool xe_vm_is_validating(struct xe_vm *vm)
++{
++	/* Pairs with WRITE_ONCE in xe_vm_is_validating() */
++	if (READ_ONCE(vm->validating) == current) {
++		xe_vm_assert_held(vm);
++		return true;
++	}
++	return false;
++}
++
+ #if IS_ENABLED(CONFIG_DRM_XE_USERPTR_INVAL_INJECT)
+ void xe_vma_userptr_force_invalidate(struct xe_userptr_vma *uvma);
+ #else
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index bfc145baad49..0e1318a15c9e 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -310,6 +310,14 @@ struct xe_vm {
+ 	 * protected by the vm resv.
+ 	 */
+ 	u64 tlb_flush_seqno;
++	/**
++	 * @validating: The task that is currently making bos resident for this vm.
++	 * Protected by the VM's resv for writing. Opportunistic reading can be done
++	 * using READ_ONCE. Note: This is a workaround for the
++	 * TTM eviction_valuable() callback not being passed a struct
++	 * ttm_operation_context(). Future work might want to address this.
++	 */
++	struct task_struct *validating;
+ 	/** @batch_invalidate_tlb: Always invalidate TLB before batch start */
+ 	bool batch_invalidate_tlb;
+ 	/** @xef: XE file handle for tracking this VM's drm client */
+-- 
+2.49.0
 
-Presumably the comments are correct but the code is too tricky for me.
-
-I can easily silence this in Smatch by adding deleting the positive
-returns from hmm_range_fault() from the cross function DB.  Can someone
-confirm that's the correct thing to do?
-
-    2924                         return err;
-    2925                 }
-    2926                 xe_svm_range_debug(svm_range, "PREFETCH - RANGE GET PAGES DONE");
-    2927         }
-    2928 
-    2929         return err;
-    2930 }
-
-regards,
-dan carpenter
