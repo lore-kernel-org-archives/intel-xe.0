@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F750C5B543
-	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 00:02:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE56AC54FB3
+	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 00:07:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45CA610E374;
-	Tue, 27 May 2025 00:02:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7135710E3AE;
+	Tue, 27 May 2025 00:07:11 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7912310E374;
- Tue, 27 May 2025 00:02:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 398DF10E390;
+ Tue, 27 May 2025 00:07:10 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/hwmon=3A_Add_mailbox_po?=
- =?utf-8?q?wer_limits=2C_PL2=2C_read_energy_from_PMT_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_Prefetch_Support_for?=
+ =?utf-8?q?_svm_ranges_=28rev9=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Poosa, Karthik" <karthik.poosa@intel.com>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 27 May 2025 00:02:02 -0000
-Message-ID: <174830412249.21444.6955650462175495987@1538d3639d33>
+Date: Tue, 27 May 2025 00:07:10 -0000
+Message-ID: <174830443022.21264.5225927670567395966@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250513044728.630455-1-karthik.poosa@intel.com>
-In-Reply-To: <20250513044728.630455-1-karthik.poosa@intel.com>
+References: <20250513040228.470682-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20250513040228.470682-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,8 +42,22 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe/hwmon: Add mailbox power limits, PL2, read energy from PMT (rev2)
-URL   : https://patchwork.freedesktop.org/series/148926/
-State : success
+Series: Prefetch Support for svm ranges (rev9)
+URL   : https://patchwork.freedesktop.org/series/146079/
+State : failure
+
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 3e019cc3eaff drm-tip: 2025y-05m-26d-14h-49m-23s UTC integration manifest
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/xe/xe_vm_types.h:374
+error: drivers/gpu/drm/xe/xe_vm_types.h: patch does not apply
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Applying: drm/xe: Introduce xe_vma_op_prefetch_range struct for prefetch of ranges
+Patch failed at 0001 drm/xe: Introduce xe_vma_op_prefetch_range struct for prefetch of ranges
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
