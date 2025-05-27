@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0C4EC54FB3
-	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 00:24:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F31FC54FB3
+	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 00:29:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B80310E0B8;
-	Tue, 27 May 2025 00:24:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED2E610E434;
+	Tue, 27 May 2025 00:29:11 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26B9E10E3E4;
- Tue, 27 May 2025 00:24:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CABD110E443;
+ Tue, 27 May 2025 00:29:10 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_series_starting_with_=5B1/2=5D?=
- =?utf-8?q?_drm/xe/display=3A_Move_dpt_allocation_to_helper?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/xe/guc=5Fsubmit?=
+ =?utf-8?q?=3A_Simplify_and_fix_diff_calculation?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 27 May 2025 00:24:06 -0000
-Message-ID: <174830544615.22163.1931262634559487568@1538d3639d33>
+Date: Tue, 27 May 2025 00:29:10 -0000
+Message-ID: <174830575082.22163.2020015340965269078@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250513141445.79158-1-juhapekka.heikkila@gmail.com>
-In-Reply-To: <20250513141445.79158-1-juhapekka.heikkila@gmail.com>
+References: <20250513-time-wrap-v1-1-fba9a69a65c8@intel.com>
+In-Reply-To: <20250513-time-wrap-v1-1-fba9a69a65c8@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,8 +42,22 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [1/2] drm/xe/display: Move dpt allocation to helper
-URL   : https://patchwork.freedesktop.org/series/148965/
-State : success
+Series: drm/xe/guc_submit: Simplify and fix diff calculation
+URL   : https://patchwork.freedesktop.org/series/148966/
+State : failure
+
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 3e019cc3eaff drm-tip: 2025y-05m-26d-14h-49m-23s UTC integration manifest
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/xe/xe_guc_submit.c:976
+error: drivers/gpu/drm/xe/xe_guc_submit.c: patch does not apply
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Applying: drm/xe/guc_submit: Simplify and fix diff calculation
+Patch failed at 0001 drm/xe/guc_submit: Simplify and fix diff calculation
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
