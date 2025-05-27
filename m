@@ -4,55 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7E61C54ED1
-	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 10:20:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F36EC5B542
+	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 10:59:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3F4410E423;
-	Tue, 27 May 2025 10:20:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BCE610E44D;
+	Tue, 27 May 2025 10:59:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IE+b2YNs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jeiPt1PB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C333610E11B
- for <intel-xe@lists.freedesktop.org>; Tue, 27 May 2025 10:20:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45BCC10E425;
+ Tue, 27 May 2025 10:59:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748341234; x=1779877234;
+ t=1748343561; x=1779879561;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=kz5fWs4XNlXkGX14gqh177e1aAYETh3Uh4mrCFxW9LE=;
- b=IE+b2YNsjLlZSJByprYmrubXsc2OFYOHyTfAdtqwNliWpPG87xnBbsL+
- zND1sklNGqim8u8IdjOHWOy2Q2sYERpJfrWugekv2e7i/kcK3gSz4ahdU
- qcvynXbHkfp2T4cuBM0yWpN5H4iC/FqMuo0ib6Xx0gGbXZUorwmlfzuVw
- FvDV4/KPjN01qk0FMW/5MWDQ3HdDbz5j9p7pIXbkdTRPsh0tmIIGpPJXE
- niADlGGFcImp5qC1/gBmKFBpuD+w6cK6O9hIK/dc0m6ZBEjN5nmDW1DxQ
- UU4WqWBq4KUsNVAdIWagjN2cTIYN10XbI20TjBwTkvQ6sa9vJPrCmbOU7 g==;
-X-CSE-ConnectionGUID: aahiLezeSMKNpJNT374G3Q==
-X-CSE-MsgGUID: +nsa/owdRkuaq9TN5smcqw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11445"; a="60574603"
-X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="60574603"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2025 03:20:34 -0700
-X-CSE-ConnectionGUID: DbfVbd/mRaKjrR3hSJ2Y2A==
-X-CSE-MsgGUID: s+wuvpbmSVS96iTXjXXikA==
+ bh=ZC9DyoaPyeromQbodizUo9+tE9lK5+tbPeD7mEWlocY=;
+ b=jeiPt1PBVwOMKWs/dM1YDkoCSHeF29N1KO/Ki8X1qmf7ddm1odgJrVoJ
+ 3a85jWr1GNfb03sudjhPpgEpT87Z2jiy9TpFk10cDPYu7AYwVUcyfsAXx
+ UsHl8ab7S46EdWq3hnvRbugd7Z/K/nqEa2HWASf5MeG8amHmn7nwKZIXU
+ GDdszz5g1CJ/+giTCufu7WmdBYtCbDRj9s+4ztjCP+5sP9+YL0U6dARfQ
+ eDba3XU1R2kij2MzTrLv1W+sxgmvuEyxlp0DsSOP4j5jV6uXjyKGcBHVt
+ jlA8ic/XBonLf0tDaNVuBvc3b4pxWqW8p4ZHFZCT/o30RApIbEaoZk2Rg A==;
+X-CSE-ConnectionGUID: WeiE95suR/GJODOmKxd40Q==
+X-CSE-MsgGUID: 5vO+ixkpS6+XcFByuLjcKg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11445"; a="72859848"
+X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="72859848"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 May 2025 03:59:20 -0700
+X-CSE-ConnectionGUID: xkatmWhwQy6/v2MruSvH8w==
+X-CSE-MsgGUID: ZWFtaaEJTYWC7hQ69jKvbA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="146630310"
-Received: from dneilan-mobl1.ger.corp.intel.com (HELO mwauld-desk.intel.com)
- ([10.245.244.160])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2025 03:20:32 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- William Tseng <william.tseng@intel.com>, stable@vger.kernel.org
-Subject: [PATCH v2] drm/xe/sched: stop re-submitting signalled jobs
-Date: Tue, 27 May 2025 11:20:00 +0100
-Message-ID: <20250527101959.192437-2-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.49.0
+X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="142768836"
+Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.119])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 May 2025 03:59:18 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [RESEND 0/8] drm/i915/sbi: move under display, cleanup
+Date: Tue, 27 May 2025 13:59:06 +0300
+Message-Id: <cover.1748343520.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,78 +67,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Customer is reporting a really subtle issue where we get random DMAR
-faults, hangs and other nasties for kernel migration jobs when stressing
-stuff like s2idle/s3/s4. The explosions seems to happen somewhere
-after resuming the system with splats looking something like:
+Rebase and resend of [1].
 
-PM: suspend exit
-rfkill: input handler disabled
-xe 0000:00:02.0: [drm] GT0: Engine reset: engine_class=bcs, logical_mask: 0x2, guc_id=0
-xe 0000:00:02.0: [drm] GT0: Timedout job: seqno=24496, lrc_seqno=24496, guc_id=0, flags=0x13 in no process [-1]
-xe 0000:00:02.0: [drm] GT0: Kernel-submitted job timed out
+[1] https://lore.kernel.org/r/cover.1747138550.git.jani.nikula@intel.com
 
-The likely cause appears to be a race between suspend cancelling the
-worker that processes the free_job()'s, such that we still have pending
-jobs to be freed after the cancel. Following from this, on resume the
-pending_list will now contain at least one already complete job, but it
-looks like we call drm_sched_resubmit_jobs(), which will then call
-run_job() on everything still on the pending_list. But if the job was
-already complete, then all the resources tied to the job, like the bb
-itself, any memory that is being accessed, the iommu mappings etc. might
-be long gone since those are usually tied to the fence signalling.
+Jani Nikula (8):
+  drm/i915/sbi: move intel_sbi.[ch] under display/
+  drm/i915/sbi: convert intel_sbi.[ch] to struct intel_display
+  drm/i915/sbi: move sbi_lock under struct intel_display
+  drm/i915/de: rename timeout parameters timeout_ms to highlight unit
+  drm/i915: add out_value to intel_wait_for_register_fw() and
+    intel_de_wait_fw()
+  drm/i915/sbi: convert to intel_de_*()
+  drm/i915/sbi: split out intel_sbi_regs.h
+  drm/i915/sbi: clean up SBI register macro definitions and usage
 
-This scenario can be seen in ftrace when running a slightly modified
-xe_pm (kernel was only modified to inject artificial latency into
-free_job to make the race easier to hit):
+ drivers/gpu/drm/i915/Makefile                 |   2 +-
+ drivers/gpu/drm/i915/display/intel_de.h       |  20 +--
+ .../gpu/drm/i915/display/intel_display_core.h |   5 +
+ drivers/gpu/drm/i915/display/intel_dpio_phy.c |   2 +-
+ drivers/gpu/drm/i915/display/intel_gmbus.c    |   2 +-
+ .../gpu/drm/i915/display/intel_pch_refclk.c   | 149 +++++++++---------
+ drivers/gpu/drm/i915/display/intel_sbi.c      |  90 +++++++++++
+ drivers/gpu/drm/i915/display/intel_sbi.h      |  27 ++++
+ drivers/gpu/drm/i915/display/intel_sbi_regs.h |  65 ++++++++
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      |   2 +-
+ drivers/gpu/drm/i915/gvt/display.h            |  13 --
+ drivers/gpu/drm/i915/gvt/handlers.c           |  30 ++--
+ drivers/gpu/drm/i915/i915_driver.c            |   6 +-
+ drivers/gpu/drm/i915/i915_drv.h               |   3 -
+ drivers/gpu/drm/i915/i915_reg.h               |  41 -----
+ drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |   1 +
+ drivers/gpu/drm/i915/intel_sbi.c              |  94 -----------
+ drivers/gpu/drm/i915/intel_sbi.h              |  27 ----
+ drivers/gpu/drm/i915/intel_uncore.c           |   6 +-
+ drivers/gpu/drm/i915/intel_uncore.h           |   5 +-
+ .../drm/xe/compat-i915-headers/intel_uncore.h |   5 +-
+ 21 files changed, 301 insertions(+), 294 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_sbi.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_sbi.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_sbi_regs.h
+ delete mode 100644 drivers/gpu/drm/i915/intel_sbi.c
+ delete mode 100644 drivers/gpu/drm/i915/intel_sbi.h
 
-xe_sched_job_run: dev=0000:00:02.0, fence=0xffff888276cc8540, seqno=0, lrc_seqno=0, gt=0, guc_id=0, batch_addr=0x000000146910 ...
-xe_exec_queue_stop:   dev=0000:00:02.0, 3:0x2, gt=0, width=1, guc_id=0, guc_state=0x0, flags=0x13
-xe_exec_queue_stop:   dev=0000:00:02.0, 3:0x2, gt=0, width=1, guc_id=1, guc_state=0x0, flags=0x4
-xe_exec_queue_stop:   dev=0000:00:02.0, 4:0x1, gt=1, width=1, guc_id=0, guc_state=0x0, flags=0x3
-xe_exec_queue_stop:   dev=0000:00:02.0, 1:0x1, gt=1, width=1, guc_id=1, guc_state=0x0, flags=0x3
-xe_exec_queue_stop:   dev=0000:00:02.0, 4:0x1, gt=1, width=1, guc_id=2, guc_state=0x0, flags=0x3
-xe_exec_queue_resubmit: dev=0000:00:02.0, 3:0x2, gt=0, width=1, guc_id=0, guc_state=0x0, flags=0x13
-xe_sched_job_run: dev=0000:00:02.0, fence=0xffff888276cc8540, seqno=0, lrc_seqno=0, gt=0, guc_id=0, batch_addr=0x000000146910 ...
-.....
-xe_exec_queue_memory_cat_error: dev=0000:00:02.0, 3:0x2, gt=0, width=1, guc_id=0, guc_state=0x3, flags=0x13
-
-So the job_run() is clearly triggered twice for the same job, even
-though the first must have already signalled to completion during
-suspend. We can also see a CAT error after the re-submit.
-
-To prevent this try to call xe_sched_stop() to forcefully remove
-anything on the pending_list that has already signalled, before we
-re-submit.
-
-v2:
-  - Make sure to re-arm the fence callbacks with sched_start().
-
-Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4856
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: William Tseng <william.tseng@intel.com>
-Cc: <stable@vger.kernel.org> # v6.8+
----
- drivers/gpu/drm/xe/xe_gpu_scheduler.h | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-index c250ea773491..0c8fe0461df9 100644
---- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-+++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-@@ -51,7 +51,9 @@ static inline void xe_sched_tdr_queue_imm(struct xe_gpu_scheduler *sched)
- 
- static inline void xe_sched_resubmit_jobs(struct xe_gpu_scheduler *sched)
- {
-+	drm_sched_stop(&sched->base, NULL); /* remove completed jobs */
- 	drm_sched_resubmit_jobs(&sched->base);
-+	drm_sched_start(&sched->base, 0); /* re-add fence callback for pending jobs */
- }
- 
- static inline bool
 -- 
-2.49.0
+2.39.5
 
