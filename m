@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2892EC54F30
-	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 12:09:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A37FC54ED1
+	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 12:14:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D02EB10E481;
-	Tue, 27 May 2025 12:09:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1448810E4BC;
+	Tue, 27 May 2025 12:14:01 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C18010E4BF;
- Tue, 27 May 2025 12:09:02 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6105494481202491637=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F91410E4B1;
+ Tue, 27 May 2025 12:13:59 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/1?=
- =?utf-8?q?=2CCI=5D_=3A_drm/xe/=3A_Madvise_SQUASH_for_CI?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Cleaning_up_code_rel?=
+ =?utf-8?q?ated_to_VRAM_regions_and_its_initialization_-_part_2?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+To: =?utf-8?q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 27 May 2025 12:09:02 -0000
-Message-ID: <174834774263.24007.1002039300242228639@1538d3639d33>
+Date: Tue, 27 May 2025 12:13:59 -0000
+Message-ID: <174834803951.24233.7540541433897190977@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250526143952.1011208-1-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20250526143952.1011208-1-himal.prasad.ghimiray@intel.com>
+References: <20250526145647.1958756-1-piotr.piorkowski@intel.com>
+In-Reply-To: <20250526145647.1958756-1-piotr.piorkowski@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,18 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6105494481202491637==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: series starting with [1/1,CI] : drm/xe/: Madvise SQUASH for CI
-URL   : https://patchwork.freedesktop.org/series/149502/
+Series: Cleaning up code related to VRAM regions and its initialization - part 2
+URL   : https://patchwork.freedesktop.org/series/149503/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-3142-c2f7a2f0c69d6d1cf13b9d7f89d7f7660a709968_BAT -> xe-pw-149502v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (9 -> 8)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 994b4d24e552 drm-tip: 2025y-05m-27d-10h-54m-47s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Use dynamic allocation for tile and device VRAM region structures
+Applying: drm/xe: Unify the initialization of VRAM regions
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3142-c2f7a2f0c69d6d1cf13b9d7f89d7f7660a709968 -> xe-pw-149502v1
-
-  IGT_8380: 8380
-  xe-3142-c2f7a2f0c69d6d1cf13b9d7f89d7f7660a709968: c2f7a2f0c69d6d1cf13b9d7f89d7f7660a709968
-  xe-pw-149502v1: 149502v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149502v1/index.html
-
---===============6105494481202491637==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/1,CI] : drm/xe/: Madvise SQUASH for CI</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149502/">https://patchwork.freedesktop.org/series/149502/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149502v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149502v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3142-c2f7a2f0c69d6d1cf13b9d7f89d7f7660a709968_BAT -&gt; xe-pw-149502v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (9 -&gt; 8)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3142-c2f7a2f0c69d6d1cf13b9d7f89d7f7660a709968 -&gt; xe-pw-149502v1</li>
-</ul>
-<p>IGT_8380: 8380<br />
-  xe-3142-c2f7a2f0c69d6d1cf13b9d7f89d7f7660a709968: c2f7a2f0c69d6d1cf13b9d7f89d7f7660a709968<br />
-  xe-pw-149502v1: 149502v1</p>
-
-</body>
-</html>
-
---===============6105494481202491637==--
