@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80AA5C54FB3
-	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 00:34:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31558C5AE59
+	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 00:39:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D54D10E3B4;
-	Tue, 27 May 2025 00:34:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C453110E385;
+	Tue, 27 May 2025 00:39:11 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67AFC10E3B4;
- Tue, 27 May 2025 00:34:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9783C10E385;
+ Tue, 27 May 2025 00:39:10 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/xe=3A_use_xe=5Fm?=
- =?utf-8?q?mio=5Fread32=28=29_to_read_mtcfg_register_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_Enable/Disable_DC_ba?=
+ =?utf-8?q?lance_along_with_VRR_DSB_=28rev6=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 27 May 2025 00:34:11 -0000
-Message-ID: <174830605141.22164.13937738907826857714@1538d3639d33>
+Date: Tue, 27 May 2025 00:39:10 -0000
+Message-ID: <174830635061.22164.5264255649120039850@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250513035515.3458300-1-shuicheng.lin@intel.com>
-In-Reply-To: <20250513035515.3458300-1-shuicheng.lin@intel.com>
+References: <20250513051700.507389-1-mitulkumar.ajitkumar.golani@intel.com>
+In-Reply-To: <20250513051700.507389-1-mitulkumar.ajitkumar.golani@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,8 +42,8 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe: use xe_mmio_read32() to read mtcfg register (rev2)
-URL   : https://patchwork.freedesktop.org/series/148924/
+Series: Enable/Disable DC balance along with VRR DSB (rev6)
+URL   : https://patchwork.freedesktop.org/series/148025/
 State : failure
 
 == Summary ==
@@ -51,11 +51,13 @@ State : failure
 === Applying kernel patches on branch 'drm-tip' with base: ===
 Base commit: 3e019cc3eaff drm-tip: 2025y-05m-26d-14h-49m-23s UTC integration manifest
 === git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/xe_mmio.c:75
-error: drivers/gpu/drm/xe/xe_mmio.c: patch does not apply
+error: patch failed: drivers/gpu/drm/i915/display/intel_dmc_regs.h:75
+error: drivers/gpu/drm/i915/display/intel_dmc_regs.h: patch does not apply
 hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Applying: drm/xe: Use xe_mmio_read32() to read mtcfg register
-Patch failed at 0001 drm/xe: Use xe_mmio_read32() to read mtcfg register
+Applying: drm/i915/vrr: Refactor vmin/vmax stuff
+Applying: drm/i915/display: Add source param for dc balance
+Applying: drm/i915/display: Add pipe dmc registers and bits for DC Balance
+Patch failed at 0003 drm/i915/display: Add pipe dmc registers and bits for DC Balance
 When you have resolved this problem, run "git am --continue".
 If you prefer to skip this patch, run "git am --skip" instead.
 To restore the original branch and stop patching, run "git am --abort".
