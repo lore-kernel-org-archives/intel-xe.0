@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89C74C5B552
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE9FCC5B553
 	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 16:15:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F98D10E542;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54D0610E527;
 	Tue, 27 May 2025 16:15:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Aas29yTs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FQ1dHnQB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A91EC10E527
- for <intel-xe@lists.freedesktop.org>; Tue, 27 May 2025 16:15:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF91910E169
+ for <intel-xe@lists.freedesktop.org>; Tue, 27 May 2025 16:15:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748362520; x=1779898520;
+ t=1748362519; x=1779898519;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nV6iq6KCCdSIpDCRnfLK5POmgbSzNJLhgwYLU5k61bw=;
- b=Aas29yTsPgwUXq9b832dUNX82zhxPaLCu5tKAXCcwRyPe0SIvLH1EH7w
- kqc0rYJ6Ov/WUYjj/J9vA2ecm+fAtGC70+jrkswaS8hMn7HcbpZiGWtrM
- 1VAlOQW0ae+5dYm4/NoP5HAJ5WRistiOQyPGMGtXSWzcoFrA0W/wTkXhS
- 4mmUdRI6YSg8r3K/xL0zwXWviDpHh1kVp4Z+j2sUsmGGA0RNARh01XurH
- jJRGtSsL3aorXHjDygCpnVRlW8TKZzrucSPbkcXlL2FHKNtC9+e2HJc9k
- RfvjOvAC+KrrH3Z3iNAg9WxemSFMazv3B4U9sMxjS5wSt2b9g5lVj/jE2 w==;
-X-CSE-ConnectionGUID: L42wTlqESESXSwvkWzga0A==
-X-CSE-MsgGUID: USL3ebnnS6as73U72Yi+pw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11446"; a="49471898"
-X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="49471898"
+ bh=ArBTotZg8LGZmy2VnznQmzRvGLRqOa5pkX9e+6EplhU=;
+ b=FQ1dHnQB7d+qOSbWub2eP39mnwFOI/BPzlD7F9s1ipaUAhMK9H4UFNLt
+ KVO8iLhZJ4M1j8EbVI5u/KO/5/m3pfBRE7xRTgd7e21vW5fLuCbGbrOAf
+ rXHD1v0USl1w+mdAlikyXnhrDRHeAP8mNcYOVdimVIVIcupKMv27gPzQl
+ OKYOZZQHVTQBIC/vgRQ9fYzsorDsitm7oxx2ImnslVG5jvfYU1HtKIIEq
+ K4QGnX+uqdEJcJA5pg99h1IhCVcaqAh6awDbvT4UKWP0P/xwZY+voVx/X
+ cRUGMinkBvoK0wxk6Cp0ZVcdiT8xCAH6OU8la6BKH1xocJSCxoRBTyqtb A==;
+X-CSE-ConnectionGUID: EAkAV1gnSwO8/hpPXSb40A==
+X-CSE-MsgGUID: 7DhrO19iSUeLU0NbUiGIjw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11446"; a="49471867"
+X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="49471867"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2025 09:14:40 -0700
-X-CSE-ConnectionGUID: w1c19R63S9G11KqHGUYRuQ==
-X-CSE-MsgGUID: ZsSanr5oRzW41FkOmT28sw==
+ 27 May 2025 09:14:32 -0700
+X-CSE-ConnectionGUID: sleS33cWTHqTNWAWbXWd/g==
+X-CSE-MsgGUID: okiI/5CJSDecXxWB0ATW7Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="147646122"
+X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="147646033"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by orviesa003.jf.intel.com with ESMTP; 27 May 2025 09:14:38 -0700
+ by orviesa003.jf.intel.com with ESMTP; 27 May 2025 09:14:30 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v3 12/19] drm/xe/svm : Add svm ranges migration policy on
- atomic access
-Date: Tue, 27 May 2025 22:09:56 +0530
-Message-Id: <20250527164003.1068118-13-himal.prasad.ghimiray@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v3 07/19] drm/xe/vm: Add a helper
+ xe_vm_range_tilemask_tlb_invalidation()
+Date: Tue, 27 May 2025 22:09:51 +0530
+Message-Id: <20250527164003.1068118-8-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250527164003.1068118-1-himal.prasad.ghimiray@intel.com>
 References: <20250527164003.1068118-1-himal.prasad.ghimiray@intel.com>
@@ -67,173 +68,227 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If the platform does not support atomic access on system memory, and the
-ranges are in system memory, but the user requires atomic accesses on
-the VMA, then migrate the ranges to VRAM. Apply this policy for prefetch
-operations as well.
+Introduce xe_vm_range_tilemask_tlb_invalidation(), which issues a TLB
+invalidation for a specified address range across GTs indicated by a
+tilemask.
 
-v2
-- Drop unnecessary vm_dbg
-
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pt.c         |  9 +++++--
- drivers/gpu/drm/xe/xe_svm.c        |  4 +++-
- drivers/gpu/drm/xe/xe_vm.c         | 38 ++++++++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_vm.h         |  2 ++
- drivers/gpu/drm/xe/xe_vm_madvise.c | 10 +++++++-
- 5 files changed, 57 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_svm.c |  43 +--------------
+ drivers/gpu/drm/xe/xe_vm.c  | 103 ++++++++++++++++++++++++------------
+ drivers/gpu/drm/xe/xe_vm.h  |   3 ++
+ 3 files changed, 75 insertions(+), 74 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 39bc1964089e..ad17ded0ecaa 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -645,13 +645,18 @@ static bool xe_atomic_for_vram(struct xe_vm *vm)
- 	return true;
- }
- 
--static bool xe_atomic_for_system(struct xe_vm *vm, struct xe_bo *bo)
-+static bool xe_atomic_for_system(struct xe_vm *vm,
-+				 struct xe_bo *bo,
-+				 struct xe_vma *vma)
- {
- 	struct xe_device *xe = vm->xe;
- 
- 	if (!xe->info.has_device_atomics_on_smem)
- 		return false;
- 
-+	if (vma->attr.atomic_access == DRM_XE_VMA_ATOMIC_DEVICE)
-+		return true;
-+
- 	/*
- 	 * If a SMEM+LMEM allocation is backed by SMEM, a device
- 	 * atomics will cause a gpu page fault and which then
-@@ -745,7 +750,7 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
- 
- 	if (vma->gpuva.flags & XE_VMA_ATOMIC_PTE_BIT) {
- 		xe_walk.default_vram_pte = xe_atomic_for_vram(vm) ? XE_USM_PPGTT_PTE_AE : 0;
--		xe_walk.default_system_pte = xe_atomic_for_system(vm, bo) ?
-+		xe_walk.default_system_pte = xe_atomic_for_system(vm, bo, vma) ?
- 			XE_USM_PPGTT_PTE_AE : 0;
- 	}
- 
 diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 5691bb9dbf26..743bb1f7d39c 100644
+index 871ac81bb04a..59e73187114d 100644
 --- a/drivers/gpu/drm/xe/xe_svm.c
 +++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -771,6 +771,8 @@ bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vm
- 	struct xe_vm *vm = range_to_vm(&range->base);
- 	u64 range_size = xe_svm_range_size(range);
+@@ -167,14 +167,9 @@ static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
+ {
+ 	struct xe_vm *vm = gpusvm_to_vm(gpusvm);
+ 	struct xe_device *xe = vm->xe;
+-	struct xe_tile *tile;
+ 	struct drm_gpusvm_range *r, *first;
+-	struct xe_gt_tlb_invalidation_fence
+-		fence[XE_MAX_TILES_PER_DEVICE * XE_MAX_GT_PER_TILE];
+ 	u64 adj_start = mmu_range->start, adj_end = mmu_range->end;
+ 	u8 tile_mask = 0;
+-	u8 id;
+-	u32 fence_id = 0;
+ 	long err;
  
-+	preferred_region_is_vram |=  xe_vma_need_vram_migrate_for_atomic(vm->xe, vma);
-+
- 	if (!range->base.flags.migrate_devmem || !preferred_region_is_vram)
- 		return false;
+ 	xe_svm_assert_in_notifier(vm);
+@@ -220,42 +215,8 @@ static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
  
-@@ -812,7 +814,7 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR),
- 		.check_pages_threshold = IS_DGFX(vm->xe) &&
- 			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR) ? SZ_64K : 0,
--		.devmem_only = atomic && IS_DGFX(vm->xe) &&
-+		.devmem_only = atomic && xe_vma_need_vram_migrate_for_atomic(vm->xe, vma) &&
- 			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR),
- 		.timeslice_ms = atomic && IS_DGFX(vm->xe) &&
- 			IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR) ?
+ 	xe_device_wmb(xe);
+ 
+-	for_each_tile(tile, xe, id) {
+-		if (tile_mask & BIT(id)) {
+-			int err;
+-
+-			xe_gt_tlb_invalidation_fence_init(tile->primary_gt,
+-							  &fence[fence_id], true);
+-
+-			err = xe_gt_tlb_invalidation_range(tile->primary_gt,
+-							   &fence[fence_id],
+-							   adj_start,
+-							   adj_end,
+-							   vm->usm.asid);
+-			if (WARN_ON_ONCE(err < 0))
+-				goto wait;
+-			++fence_id;
+-
+-			if (!tile->media_gt)
+-				continue;
+-
+-			xe_gt_tlb_invalidation_fence_init(tile->media_gt,
+-							  &fence[fence_id], true);
+-
+-			err = xe_gt_tlb_invalidation_range(tile->media_gt,
+-							   &fence[fence_id],
+-							   adj_start,
+-							   adj_end,
+-							   vm->usm.asid);
+-			if (WARN_ON_ONCE(err < 0))
+-				goto wait;
+-			++fence_id;
+-		}
+-	}
+-
+-wait:
+-	for (id = 0; id < fence_id; ++id)
+-		xe_gt_tlb_invalidation_fence_wait(&fence[id]);
++	err = xe_vm_range_tilemask_tlb_invalidation(vm, adj_start, adj_end, tile_mask);
++	XE_WARN_ON(err);
+ 
+ range_notifier_event_end:
+ 	r = first;
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 8208409485f6..e5fc2c2be8b2 100644
+index de6ecff237a6..d60b711e97e9 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2930,13 +2930,22 @@ static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op *op)
- 	ctx.read_only = xe_vma_read_only(vma);
- 	ctx.devmem_possible = devmem_possible;
- 	ctx.check_pages_threshold = devmem_possible ? SZ_64K : 0;
-+	ctx.devmem_only = xe_vma_need_vram_migrate_for_atomic(vm->xe, vma) &&
-+			  IS_ENABLED(CONFIG_DRM_XE_DEVMEM_MIRROR);
- 
- 	/* TODO: Threading the migration */
- 	xa_for_each(&op->prefetch_range.range, i, svm_range) {
--		if (!region)
-+		bool needs_vram = xe_svm_range_needs_migrate_to_vram(svm_range, vma, region);
-+
-+		if (!needs_vram) {
- 			xe_svm_range_migrate_to_smem(vm, svm_range);
-+		} else if (needs_vram) {
-+			/* If  migration is mandated by atomic attributes
-+			 * in vma and prefetch region is smem force prefetch
-+			 * in vram of root tile.
-+			 */
-+			region = region ? region : 1;
- 
--		if (xe_svm_range_needs_migrate_to_vram(svm_range, vma, region)) {
- 			tile = &vm->xe->tiles[region_to_mem_type[region] - XE_PL_VRAM0];
- 			err = xe_svm_alloc_vram(vm, tile, svm_range, &ctx);
- 			if (err) {
-@@ -4178,6 +4187,31 @@ void xe_vm_snapshot_free(struct xe_vm_snapshot *snap)
- 	kvfree(snap);
+@@ -3851,6 +3851,68 @@ void xe_vm_unlock(struct xe_vm *vm)
+ 	dma_resv_unlock(xe_vm_resv(vm));
  }
  
 +/**
-+ * xe_vma_need_vram_migrate_for_atomic - Check if VMA needs VRAM migration for atomic operations
-+ * @xe: Pointer to the XE device structure
-+ * @vma: Pointer to the virtual memory area (VMA) structure
++ * xe_vm_range_tilemask_tlb_invalidation - Issue a TLB invalidation on this tilemask for an
++ * address range
++ * @vm: The VM
++ * @start: start address
++ * @end: end address
++ * @tile_mask: mask for which gt's issue tlb invalidation
 + *
-+ * This function determines whether the given VMA needs to be migrated to
-+ * VRAM in order to do atomic GPU operation.
++ * Issue a range based TLB invalidation for gt's in tilemask
 + *
-+ * Return: true if migration to VRAM is required, false otherwise.
++ * Returns 0 for success, negative error code otherwise.
 + */
-+bool xe_vma_need_vram_migrate_for_atomic(struct xe_device *xe, struct xe_vma *vma)
++int xe_vm_range_tilemask_tlb_invalidation(struct xe_vm *vm, u64 start,
++					  u64 end, u8 tile_mask)
 +{
-+	/* Note: The checks implemented here are platform-specific. For instance,
-+	 * on a device supporting CXL atomics, these would ideally work universally
-+	 * without additional handling.
-+	 */
-+	if (!IS_DGFX(xe) || vma->attr.atomic_access == DRM_XE_VMA_ATOMIC_UNDEFINED ||
-+	    vma->attr.atomic_access == DRM_XE_VMA_ATOMIC_CPU ||
-+	    (xe->info.has_device_atomics_on_smem &&
-+	     vma->attr.atomic_access == DRM_XE_VMA_ATOMIC_DEVICE))
-+		return false;
++	struct xe_gt_tlb_invalidation_fence fence[XE_MAX_TILES_PER_DEVICE * XE_MAX_GT_PER_TILE];
++	struct xe_tile *tile;
++	u32 fence_id = 0;
++	u8 id;
++	int err;
 +
-+	return true;
++	if (!tile_mask)
++		return 0;
++
++	for_each_tile(tile, vm->xe, id) {
++		if (tile_mask & BIT(id)) {
++			xe_gt_tlb_invalidation_fence_init(tile->primary_gt,
++							  &fence[fence_id], true);
++
++			err = xe_gt_tlb_invalidation_range(tile->primary_gt,
++							   &fence[fence_id],
++							   start,
++							   end,
++							   vm->usm.asid);
++			if (WARN_ON_ONCE(err < 0))
++				goto wait;
++			++fence_id;
++
++			if (!tile->media_gt)
++				continue;
++
++			xe_gt_tlb_invalidation_fence_init(tile->media_gt,
++							  &fence[fence_id], true);
++
++			err = xe_gt_tlb_invalidation_range(tile->media_gt,
++							   &fence[fence_id],
++							   start,
++							   end,
++							   vm->usm.asid);
++			if (WARN_ON_ONCE(err < 0))
++				goto wait;
++			++fence_id;
++		}
++	}
++
++wait:
++	for (id = 0; id < fence_id; ++id)
++		xe_gt_tlb_invalidation_fence_wait(&fence[id]);
++
++	return err;
 +}
 +
  /**
-  * xe_vm_alloc_madvise_vma - Allocate VMA's with madvise ops
-  * @vm: Pointer to the xe_vm structure
+  * xe_vm_invalidate_vma - invalidate GPU mappings for VMA without a lock
+  * @vma: VMA to invalidate
+@@ -3865,11 +3927,9 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
+ {
+ 	struct xe_device *xe = xe_vma_vm(vma)->xe;
+ 	struct xe_tile *tile;
+-	struct xe_gt_tlb_invalidation_fence
+-		fence[XE_MAX_TILES_PER_DEVICE * XE_MAX_GT_PER_TILE];
+-	u8 id;
+-	u32 fence_id = 0;
++	u8 tile_mask = 0;
+ 	int ret = 0;
++	u8 id;
+ 
+ 	xe_assert(xe, !xe_vma_is_null(vma));
+ 	xe_assert(xe, !xe_vma_is_cpu_addr_mirror(vma));
+@@ -3893,37 +3953,14 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
+ 		}
+ 	}
+ 
+-	for_each_tile(tile, xe, id) {
+-		if (xe_pt_zap_ptes(tile, vma)) {
+-			xe_device_wmb(xe);
+-			xe_gt_tlb_invalidation_fence_init(tile->primary_gt,
+-							  &fence[fence_id],
+-							  true);
+-
+-			ret = xe_gt_tlb_invalidation_vma(tile->primary_gt,
+-							 &fence[fence_id], vma);
+-			if (ret)
+-				goto wait;
+-			++fence_id;
++	for_each_tile(tile, xe, id)
++		if (xe_pt_zap_ptes(tile, vma))
++			tile_mask |= BIT(id);
+ 
+-			if (!tile->media_gt)
+-				continue;
++	xe_device_wmb(xe);
+ 
+-			xe_gt_tlb_invalidation_fence_init(tile->media_gt,
+-							  &fence[fence_id],
+-							  true);
+-
+-			ret = xe_gt_tlb_invalidation_vma(tile->media_gt,
+-							 &fence[fence_id], vma);
+-			if (ret)
+-				goto wait;
+-			++fence_id;
+-		}
+-	}
+-
+-wait:
+-	for (id = 0; id < fence_id; ++id)
+-		xe_gt_tlb_invalidation_fence_wait(&fence[id]);
++	ret = xe_vm_range_tilemask_tlb_invalidation(xe_vma_vm(vma), xe_vma_start(vma),
++						    xe_vma_end(vma), tile_mask);
+ 
+ 	vma->tile_invalidated = vma->tile_mask;
+ 
 diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index 8151b1b01a13..edd6ffd7c3ac 100644
+index 99e164852f63..1ef98113fa5b 100644
 --- a/drivers/gpu/drm/xe/xe_vm.h
 +++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -171,6 +171,8 @@ static inline bool xe_vma_is_userptr(struct xe_vma *vma)
+@@ -228,6 +228,9 @@ struct dma_fence *xe_vm_range_rebind(struct xe_vm *vm,
+ struct dma_fence *xe_vm_range_unbind(struct xe_vm *vm,
+ 				     struct xe_svm_range *range);
  
- struct xe_vma *xe_vm_find_vma_by_addr(struct xe_vm *vm, u64 page_addr);
- 
-+bool xe_vma_need_vram_migrate_for_atomic(struct xe_device *xe, struct xe_vma *vma);
++int xe_vm_range_tilemask_tlb_invalidation(struct xe_vm *vm, u64 start,
++					  u64 end, u8 tile_mask);
 +
- int xe_vm_alloc_madvise_vma(struct xe_vm *vm, uint64_t addr, uint64_t size);
+ int xe_vm_invalidate_vma(struct xe_vma *vma);
  
- /**
-diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
-index f7edefe5f6cf..084719660401 100644
---- a/drivers/gpu/drm/xe/xe_vm_madvise.c
-+++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-@@ -69,7 +69,15 @@ static int madvise_atomic(struct xe_device *xe, struct xe_vm *vm,
- 			  struct xe_vma **vmas, int num_vmas,
- 			  struct drm_xe_madvise_ops ops)
- {
--	/* Implementation pending */
-+	int i;
-+
-+	xe_assert(vm->xe, ops.type == DRM_XE_VMA_ATTR_ATOMIC);
-+	xe_assert(vm->xe, ops.atomic.val > DRM_XE_VMA_ATOMIC_UNDEFINED &&
-+		  ops.atomic.val <= DRM_XE_VMA_ATOMIC_CPU);
-+
-+	for (i = 0; i < num_vmas; i++)
-+		vmas[i]->attr.atomic_access = ops.atomic.val;
-+	/*TODO: handle bo backed vmas */
- 	return 0;
- }
- 
+ int xe_vm_validate_protected(struct xe_vm *vm);
 -- 
 2.34.1
 
