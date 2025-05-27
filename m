@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E530CC54F30
-	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 03:51:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09FB1C54F30
+	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 03:51:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 979BB10E0B8;
-	Tue, 27 May 2025 03:51:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B72C910E083;
+	Tue, 27 May 2025 03:51:55 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDF6410E083;
- Tue, 27 May 2025 03:51:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A198F10E083;
+ Tue, 27 May 2025 03:51:54 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/bo=3A_optimis?=
- =?utf-8?q?e_CCS_case_for_WB_pages?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/bo=3A_optimise_CCS?=
+ =?utf-8?q?_case_for_WB_pages?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 27 May 2025 03:51:44 -0000
-Message-ID: <174831790496.22623.11914444824832838070@1538d3639d33>
+Date: Tue, 27 May 2025 03:51:54 -0000
+Message-ID: <174831791465.22623.9380320139423011379@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250516153810.223530-2-matthew.auld@intel.com>
 In-Reply-To: <20250516153810.223530-2-matthew.auld@intel.com>
@@ -48,9 +48,47 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 3e019cc3eaff drm-tip: 2025y-05m-26d-14h-49m-23s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/bo: optimise CCS case for WB pages
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 6b85ee070bd85d2c06295dbbdd41625cb4992ee1
+Author: Matthew Auld <matthew.auld@intel.com>
+Date:   Fri May 16 16:38:11 2025 +0100
+
+    drm/xe/bo: optimise CCS case for WB pages
+    
+    Dealing with CCS state is significant on LNL+, where we end up clearing
+    the compression state on every page alloc using the blitter for user
+    buffers, including also saving and restoring it when moving between
+    domains, plus we need to alloc extra pages to hold the raw CCS state for
+    the save step.
+    
+    However all compression PAT modes, on platforms like LNL, also require
+    coh_none, meaning that only WC memory can use compression in the first
+    place. With this we can be sneaky and completely ignore CCS for WB
+    buffers, which is likely the common case anyway. This would then skip
+    all blitter moves/clears between sys <-> tt and then also means we can
+    drop the extra CCS pages.
+    
+    This should be safe since there is no way to interact with the
+    compression state (potentially uncleared) without using a PAT enabled
+    index (which is rejected at bind), including if trying to be malicious
+    and copy the raw CCS state from userpace, which should give back all
+    zeroes if the src surface (indirect) is lacking compressed PAT index.
+    
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
+    Reviewed-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
++ /mt/dim checkpatch 3e019cc3eaffcb7022b9de66871eabdefd6e06ff drm-intel
+6b85ee070bd8 drm/xe/bo: optimise CCS case for WB pages
 
 
