@@ -4,26 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01BB3C5B542
-	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 21:40:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15F6EC5B542
+	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 21:45:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE01B10E110;
-	Tue, 27 May 2025 21:40:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A27A310E543;
+	Tue, 27 May 2025 21:45:38 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABCFD10E52F;
- Tue, 27 May 2025 21:40:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBFC410E548;
+ Tue, 27 May 2025 21:45:37 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBuild=3A_failure_for_MADVISE_FOR_XE?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Fix_out-of?=
+ =?utf-8?q?-bounds_field_write_in_MI=5FSTORE=5FDATA=5FIMM_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+To: "Jia Yao" <jia.yao@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 27 May 2025 21:40:37 -0000
-Message-ID: <174838203769.25908.7796869800086290419@1538d3639d33>
+Date: Tue, 27 May 2025 21:45:37 -0000
+Message-ID: <174838233776.25908.15743944267874138635@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250527164003.1068118-1-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20250527164003.1068118-1-himal.prasad.ghimiray@intel.com>
+References: <20250523150418.168362-1-jia.yao@intel.com>
+In-Reply-To: <20250523150418.168362-1-jia.yao@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,8 +42,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: MADVISE FOR XE
-URL   : https://patchwork.freedesktop.org/series/149550/
-State : failure
+Series: drm/xe: Fix out-of-bounds field write in MI_STORE_DATA_IMM (rev2)
+URL   : https://patchwork.freedesktop.org/series/149435/
+State : success
+
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 07b6736f75df drm-tip: 2025y-05m-27d-20h-13m-12s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Fix out-of-bounds field write in MI_STORE_DATA_IMM
 
 
