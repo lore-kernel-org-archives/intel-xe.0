@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4711C5AE59
-	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 01:56:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66BC0C54FB3
+	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 02:02:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9091510E398;
-	Tue, 27 May 2025 01:56:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20AD610E156;
+	Tue, 27 May 2025 02:02:03 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BFD310E398;
- Tue, 27 May 2025 01:56:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B3D510E042;
+ Tue, 27 May 2025 02:02:02 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_DPLL_framework_redes?=
- =?utf-8?q?ign?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_Some_=28drm=5Fsched?=
+ =?utf-8?q?=5F=7Cdma=5F=29fence_lifetime_issues_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 27 May 2025 01:56:57 -0000
-Message-ID: <174831101710.22164.18117409798157556308@1538d3639d33>
+Date: Tue, 27 May 2025 02:02:02 -0000
+Message-ID: <174831132256.22164.12360992110533776216@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250515071801.2221120-1-suraj.kandpal@intel.com>
-In-Reply-To: <20250515071801.2221120-1-suraj.kandpal@intel.com>
+References: <20250515095004.28318-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250515095004.28318-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,8 +42,8 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: DPLL framework redesign
-URL   : https://patchwork.freedesktop.org/series/149051/
+Series: Some (drm_sched_|dma_)fence lifetime issues (rev3)
+URL   : https://patchwork.freedesktop.org/series/148825/
 State : failure
 
 == Summary ==
@@ -51,11 +51,19 @@ State : failure
 === Applying kernel patches on branch 'drm-tip' with base: ===
 Base commit: 3e019cc3eaff drm-tip: 2025y-05m-26d-14h-49m-23s UTC integration manifest
 === git am output follows ===
-error: patch failed: drivers/gpu/drm/i915/display/intel_display_core.h:122
-error: drivers/gpu/drm/i915/display/intel_display_core.h: patch does not apply
+error: patch failed: drivers/dma-buf/dma-fence-chain.c:252
+error: drivers/dma-buf/dma-fence-chain.c: patch does not apply
+error: patch failed: drivers/dma-buf/sw_sync.c:170
+error: drivers/dma-buf/sw_sync.c: patch does not apply
+error: patch failed: drivers/gpu/drm/xe/xe_hw_fence.c:165
+error: drivers/gpu/drm/xe/xe_hw_fence.c: patch does not apply
+error: patch failed: drivers/gpu/drm/xe/xe_sched_job.c:216
+error: drivers/gpu/drm/xe/xe_sched_job.c: patch does not apply
+error: patch failed: include/linux/dma-fence.h:441
+error: include/linux/dma-fence.h: patch does not apply
 hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Applying: drm/i915/dpll: Rename intel_dpll
-Patch failed at 0001 drm/i915/dpll: Rename intel_dpll
+Applying: dma-fence: Change signature of __dma_fence_is_later
+Patch failed at 0001 dma-fence: Change signature of __dma_fence_is_later
 When you have resolved this problem, run "git am --continue".
 If you prefer to skip this patch, run "git am --skip" instead.
 To restore the original branch and stop patching, run "git am --abort".
