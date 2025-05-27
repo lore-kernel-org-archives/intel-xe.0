@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15258C5B558
-	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 16:15:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 390D5C61CE5
+	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 16:15:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82E9310E549;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C921110E54F;
 	Tue, 27 May 2025 16:15:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i2bOmCFm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ar0Qe4he";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9E5710E505
- for <intel-xe@lists.freedesktop.org>; Tue, 27 May 2025 16:15:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57AE110E169
+ for <intel-xe@lists.freedesktop.org>; Tue, 27 May 2025 16:15:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748362520; x=1779898520;
+ t=1748362518; x=1779898518;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ywcyPyRg/24IKkaBKk98YhjU89TMhB41La4oujSZpiU=;
- b=i2bOmCFm0NLqEqnVxeZJike/n/m55/kKntho4/GU9nVIX9h1Y2Y6hEWl
- gGjHFYeMiBW/LEg2DXGr7qNFqlvGauajdz4UhN9qHxBnDMRmLANbQU6xy
- Jb3itlOR6Ro+3n+ZxmmmL/eq/C2Zxz0Tg28HKAqKIzAuG/MV0K6O+IioR
- +wLZLxGMpoVmmBsjq1491Vlp64i7XpB079KV4nS4Wvl5GuBmKARs3+Hge
- yffsJeZpcHbK0Xk0TEbZAww3omIxiA9mr5OX2I/LaJIuPkjI/O5HiCaDn
- a1zrp7zaT5JwTCEXc5qIr/K6S/MXy3gwtBEFlm2iuvVw+qkzc0wsSFMGs g==;
-X-CSE-ConnectionGUID: rs2oN4ryRaiFE0Vhl8YQ9w==
-X-CSE-MsgGUID: Uzmg4fmiROSZRDh4SfGidg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11446"; a="49471908"
-X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="49471908"
+ bh=Dth5dGcrrcioNK1iNWbtGd9Q5e25bq0TGZgD+mEsSyE=;
+ b=ar0Qe4heiro9RrvZVTvfHpEkWCiUWoUC1YBKhRhlNF5SNuZJLR1KJBVT
+ VaKScBPW04HvxgdE9JJKqll2vTz+LNhhgRKUYVRWQoL4O0259VAuR5DuT
+ cAiwcuRQ75f7L0/YErlUw/GeNzwEXgdrricBaekqus5l0kxY7zPWtzyVR
+ 3ZtpDSe2Vfu/yPsX6fKkrUn/bj2T6KwIcJ/QbTY+JV2cac98B1FWUDx3J
+ j8CgaRWzkggvIpEJYP7LMi0QFhzdLsP8EZNSqGewgKIWWuOzITPc99ypd
+ DsQFRWPFJpIi4fjHnZNHinSqQhkpTbwospyb0p8WFZ15BcaJBP6yd1W4/ Q==;
+X-CSE-ConnectionGUID: nLsSGpjRRzea8aYHZBNd6Q==
+X-CSE-MsgGUID: Ig9BwMbqSiyDn+CJ/k95Zg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11446"; a="49471860"
+X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="49471860"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2025 09:14:43 -0700
-X-CSE-ConnectionGUID: /3hxKI/zQWmbG5JrHsHbXQ==
-X-CSE-MsgGUID: aMVpqfgiTcmRwN2kIsi5tA==
+ 27 May 2025 09:14:26 -0700
+X-CSE-ConnectionGUID: 111SMaMKQf6TaYEGVTQ/Jw==
+X-CSE-MsgGUID: l2DPvT07TtKWmbTdjsN5eA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="147646166"
+X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="147645949"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by orviesa003.jf.intel.com with ESMTP; 27 May 2025 09:14:42 -0700
+ by orviesa003.jf.intel.com with ESMTP; 27 May 2025 09:14:24 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v3 15/19] drm/xe/uapi: Add flag for consulting madvise hints
- on svm prefetch
-Date: Tue, 27 May 2025 22:09:59 +0530
-Message-Id: <20250527164003.1068118-16-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v3 03/19] drm/xe/vm: Add attributes struct as member of vma
+Date: Tue, 27 May 2025 22:09:47 +0530
+Message-Id: <20250527164003.1068118-4-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250527164003.1068118-1-himal.prasad.ghimiray@intel.com>
 References: <20250527164003.1068118-1-himal.prasad.ghimiray@intel.com>
@@ -67,32 +66,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce flag DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC to ensure prefetching
-in madvise-advised memory regions
-
-v2 (Matthew Brost)
-- Add kernel-doc
+The attribute of xe_vma will determine the migration policy and the
+encoding of the page table entries (PTEs) for that vma.
+This attribute helps manage how memory pages are moved and how their
+addresses are translated. It will be used by madvise to set the
+behavior of the vma.
 
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- include/uapi/drm/xe_drm.h | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/xe/xe_vm_types.h | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index e0d75226a724..03adfdc20dde 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -1111,6 +1111,10 @@ struct drm_xe_vm_bind_op {
- 	/** @flags: Bind flags */
- 	__u32 flags;
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index bfc145baad49..5d4bbe547d0d 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -77,6 +77,19 @@ struct xe_userptr {
+ #endif
+ };
  
-+	/** DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC as prefetch_mem_region_instance
-+	 * ensures prefetching in madvise-advised memory region.
++/**
++ * struct xe_vma_mem_attr - memory attributes associated with vma
++ */
++struct xe_vma_mem_attr {
++	/** @preferred_loc: perferred memory_location*/
++	struct {
++		u32 migration_policy; /* represents migration policies */
++		u32 devmem_fd; /* devmem_fd used for determining pagemap_fd requested by user */
++	} preferred_loc;
++	/** @atomic_access: The atomic access type for the vma */
++	u32 atomic_access;
++};
++
+ struct xe_vma {
+ 	/** @gpuva: Base GPUVA object */
+ 	struct drm_gpuva gpuva;
+@@ -128,6 +141,13 @@ struct xe_vma {
+ 	 * Needs to be signalled before UNMAP can be processed.
+ 	 */
+ 	struct xe_user_fence *ufence;
++
++	/**
++	 * @attr: The attributes of vma which determines the migration policy
++	 * and encoding of the PTEs for this vma.
 +	 */
-+#define DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC	-1
- 	/**
- 	 * @prefetch_mem_region_instance: Memory region to prefetch VMA to.
- 	 * It is a region instance, not a mask.
++	struct xe_vma_mem_attr attr;
++
+ };
+ 
+ /**
 -- 
 2.34.1
 
