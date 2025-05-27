@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2C4CC5B542
-	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 21:11:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C192C54ED1
+	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 21:16:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA4F789C86;
-	Tue, 27 May 2025 21:11:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B49B10E52F;
+	Tue, 27 May 2025 21:16:00 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C3E010E070;
- Tue, 27 May 2025 21:11:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E39910E133;
+ Tue, 27 May 2025 21:15:59 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBuild=3A_failure_for_drm/i915=3A_drop_intel=5Fdpio?=
- =?utf-8?q?=5Fphy=2Eh_include_from_VLV_IOSF_SB?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_PCI=3A_VF_resizable_?=
+ =?utf-8?q?BAR_=28rev8=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
+To: =?utf-8?q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 27 May 2025 21:11:00 -0000
-Message-ID: <174838026050.25908.17842319662708906660@1538d3639d33>
+Date: Tue, 27 May 2025 21:15:59 -0000
+Message-ID: <174838055938.25908.13090384279336907155@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250527114854.3687469-1-jani.nikula@intel.com>
-In-Reply-To: <20250527114854.3687469-1-jani.nikula@intel.com>
+References: <20250527120637.665506-1-michal.winiarski@intel.com>
+In-Reply-To: <20250527120637.665506-1-michal.winiarski@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,8 +42,20 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915: drop intel_dpio_phy.h include from VLV IOSF SB
-URL   : https://patchwork.freedesktop.org/series/149536/
-State : failure
+Series: PCI: VF resizable BAR (rev8)
+URL   : https://patchwork.freedesktop.org/series/138887/
+State : success
+
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 07b6736f75df drm-tip: 2025y-05m-27d-20h-13m-12s UTC integration manifest
+=== git am output follows ===
+Applying: PCI/IOV: Restore VF resizable BAR state after reset
+Applying: PCI: Add a helper to convert between VF BAR number and IOV resource
+Applying: PCI: Allow IOV resources to be resized in pci_resize_resource()
+Applying: PCI/IOV: Check that VF BAR fits within the reservation
+Applying: PCI: Allow drivers to control VF BAR size
+Applying: drm/xe/pf: Set VF LMEM BAR size
 
 
