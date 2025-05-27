@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 727E2C5AE59
-	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 01:11:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F07CC5AE59
+	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 01:16:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE8E610E083;
-	Tue, 27 May 2025 01:11:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A55410E374;
+	Tue, 27 May 2025 01:16:20 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C61E710E3B7;
- Tue, 27 May 2025 01:11:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF5CF10E042;
+ Tue, 27 May 2025 01:16:18 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_AuxCCS_handling_and_render_com?=
- =?utf-8?q?pression_modifiers_=28rev6=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
+ =?utf-8?q?_=5B1/2=5D_drm/xe/vm=3A_move_rebind=5Fwork_init_earlier?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+To: "Matthew Auld" <matthew.auld@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 27 May 2025 01:11:03 -0000
-Message-ID: <174830826380.22164.15755615219919567400@1538d3639d33>
+Date: Tue, 27 May 2025 01:16:18 -0000
+Message-ID: <174830857884.22163.11477634947149666200@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250514133904.12131-1-tvrtko.ursulin@igalia.com>
-In-Reply-To: <20250514133904.12131-1-tvrtko.ursulin@igalia.com>
+References: <20250514152424.149591-3-matthew.auld@intel.com>
+In-Reply-To: <20250514152424.149591-3-matthew.auld@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,8 +42,16 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: AuxCCS handling and render compression modifiers (rev6)
-URL   : https://patchwork.freedesktop.org/series/144186/
+Series: series starting with [1/2] drm/xe/vm: move rebind_work init earlier
+URL   : https://patchwork.freedesktop.org/series/149016/
 State : success
+
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 3e019cc3eaff drm-tip: 2025y-05m-26d-14h-49m-23s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/vm: move rebind_work init earlier
+Applying: drm/xe/vm: move xe_svm_init() earlier
 
 
