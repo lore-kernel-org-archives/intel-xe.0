@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 073CBC54FB3
-	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 01:28:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55491C5AE59
+	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 01:33:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4C6D10E42C;
-	Tue, 27 May 2025 01:28:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2B4E10E439;
+	Tue, 27 May 2025 01:33:12 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B7C310E424;
- Tue, 27 May 2025 01:28:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD69110E439;
+ Tue, 27 May 2025 01:33:11 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_series_starting_with_=5B1/2=5D?=
- =?utf-8?q?_drm/xe/vm=3A_move_rebind=5Fwork_init_earlier?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/i915/dmc=3A_PIPE?=
+ =?utf-8?q?DMC_stuff_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 27 May 2025 01:28:02 -0000
-Message-ID: <174830928204.22164.7646300567272642043@1538d3639d33>
+Date: Tue, 27 May 2025 01:33:11 -0000
+Message-ID: <174830959176.22164.10627015196956497366@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250514152424.149591-3-matthew.auld@intel.com>
-In-Reply-To: <20250514152424.149591-3-matthew.auld@intel.com>
+References: <20250512103358.15724-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20250512103358.15724-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,8 +42,24 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [1/2] drm/xe/vm: move rebind_work init earlier
-URL   : https://patchwork.freedesktop.org/series/149016/
-State : success
+Series: drm/i915/dmc: PIPEDMC stuff (rev3)
+URL   : https://patchwork.freedesktop.org/series/148873/
+State : failure
+
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 3e019cc3eaff drm-tip: 2025y-05m-26d-14h-49m-23s UTC integration manifest
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/i915/display/intel_display_irq.c:1016
+error: drivers/gpu/drm/i915/display/intel_display_irq.c: patch does not apply
+error: patch failed: drivers/gpu/drm/i915/i915_reg.h:2126
+error: drivers/gpu/drm/i915/i915_reg.h: patch does not apply
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Applying: drm/i915: Drop PIPEDMC faults from the fault mask on LNL+
+Patch failed at 0001 drm/i915: Drop PIPEDMC faults from the fault mask on LNL+
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
