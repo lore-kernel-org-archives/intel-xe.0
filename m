@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB75CC54F30
-	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 03:34:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1075EC54F30
+	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 03:35:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CEEB10E031;
-	Tue, 27 May 2025 03:34:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BED1310E031;
+	Tue, 27 May 2025 03:35:02 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E2D510E031;
- Tue, 27 May 2025 03:34:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 471D610E0B8;
+ Tue, 27 May 2025 03:35:01 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Crashlog_Type1_Versi?=
- =?utf-8?q?on2_support?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Crashlog_Type1_Version2_s?=
+ =?utf-8?q?upport?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 27 May 2025 03:34:49 -0000
-Message-ID: <174831688944.22480.18335748962355980002@1538d3639d33>
+Date: Tue, 27 May 2025 03:35:01 -0000
+Message-ID: <174831690127.22480.1340858420893371123@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250516144619.210413-1-michael.j.ruhl@intel.com>
 In-Reply-To: <20250516144619.210413-1-michael.j.ruhl@intel.com>
@@ -44,16 +44,133 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Crashlog Type1 Version2 support
 URL   : https://patchwork.freedesktop.org/series/149120/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 3e019cc3eaff drm-tip: 2025y-05m-26d-14h-49m-23s UTC integration manifest
-=== git am output follows ===
-Applying: platform/x86/intel/pmt: crashlog binary file endpoint
-Applying: platform/x86/intel/pmt: update to bit access
-Applying: platform/x86/intel/pmt: decouple sysfs and namespace
-Applying: platform/x86/intel/pmt: support BMG crashlog
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ee163b2243e1204d8d91cec679e4ab124ca4a7e8
+Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
+Date:   Fri May 16 10:46:19 2025 -0400
+
+    platform/x86/intel/pmt: support BMG crashlog
+    
+    The Battlemage GPU has the type 1 version 2 crashlog
+    feature.
+    
+    Update the crashlog driver to support this crashlog
+    version.
+    
+    Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
++ /mt/dim checkpatch 3e019cc3eaffcb7022b9de66871eabdefd6e06ff drm-intel
+2b3c41926cee platform/x86/intel/pmt: crashlog binary file endpoint
+984d965a4e51 platform/x86/intel/pmt: update to bit access
+44080d2ee187 platform/x86/intel/pmt: decouple sysfs and namespace
+ee163b2243e1 platform/x86/intel/pmt: support BMG crashlog
+-:396: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#396: FILE: drivers/platform/x86/intel/pmt/crashlog.c:441:
++       struct intel_pmt_entry *entry = dev_get_drvdata(dev);$
+
+-:397: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#397: FILE: drivers/platform/x86/intel/pmt/crashlog.c:442:
++       u32 sts_off = get_status_offset(&entry->header);$
+
+-:398: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#398: FILE: drivers/platform/x86/intel/pmt/crashlog.c:443:
++       u32 ctl_off = get_control_offset(&entry->header);$
+
+-:399: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#399: FILE: drivers/platform/x86/intel/pmt/crashlog.c:444:
++       struct crashlog_status status = {$
+
+-:400: ERROR:CODE_INDENT: code indent should use tabs where possible
+#400: FILE: drivers/platform/x86/intel/pmt/crashlog.c:445:
++               .status = readl(entry->disc_table + sts_off),$
+
+-:400: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#400: FILE: drivers/platform/x86/intel/pmt/crashlog.c:445:
++               .status = readl(entry->disc_table + sts_off),$
+
+-:401: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#401: FILE: drivers/platform/x86/intel/pmt/crashlog.c:446:
++       };$
+
+-:402: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#402: FILE: drivers/platform/x86/intel/pmt/crashlog.c:447:
++       struct crashlog_control control = {$
+
+-:403: ERROR:CODE_INDENT: code indent should use tabs where possible
+#403: FILE: drivers/platform/x86/intel/pmt/crashlog.c:448:
++               .control = readl(entry->disc_table + ctl_off),$
+
+-:403: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#403: FILE: drivers/platform/x86/intel/pmt/crashlog.c:448:
++               .control = readl(entry->disc_table + ctl_off),$
+
+-:404: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#404: FILE: drivers/platform/x86/intel/pmt/crashlog.c:449:
++       };$
+
+-:405: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#405: FILE: drivers/platform/x86/intel/pmt/crashlog.c:450:
++       int len = 0;$
+
+-:407: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#407: FILE: drivers/platform/x86/intel/pmt/crashlog.c:452:
++       len += sysfs_emit_at(buf, len, "clear_support: %d\n", status.stat2.clear_support);$
+
+-:408: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#408: FILE: drivers/platform/x86/intel/pmt/crashlog.c:453:
++       len += sysfs_emit_at(buf, len, "rearmed: %d\n", status.stat2.rearmed);$
+
+-:409: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#409: FILE: drivers/platform/x86/intel/pmt/crashlog.c:454:
++       len += sysfs_emit_at(buf, len, "error: %d\n", status.stat2.error);$
+
+-:410: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#410: FILE: drivers/platform/x86/intel/pmt/crashlog.c:455:
++       len += sysfs_emit_at(buf, len, "consumed: %d\n", status.stat2.consumed);$
+
+-:411: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#411: FILE: drivers/platform/x86/intel/pmt/crashlog.c:456:
++       len += sysfs_emit_at(buf, len, "disable: %d\n", status.stat2.disable);$
+
+-:412: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#412: FILE: drivers/platform/x86/intel/pmt/crashlog.c:457:
++       len += sysfs_emit_at(buf, len, "cleared: %d\n", status.stat2.cleared);$
+
+-:413: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#413: FILE: drivers/platform/x86/intel/pmt/crashlog.c:458:
++       len += sysfs_emit_at(buf, len, "in_progress: %d\n", status.stat2.in_progress);$
+
+-:414: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#414: FILE: drivers/platform/x86/intel/pmt/crashlog.c:459:
++       len += sysfs_emit_at(buf, len, "complete: %d\n", status.stat2.complete);$
+
+-:415: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#415: FILE: drivers/platform/x86/intel/pmt/crashlog.c:460:
++       len += sysfs_emit_at(buf, len, "sts_off: 0x%02x  ctl_off: 0x%02x\n", sts_off, ctl_off);$
+
+-:416: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#416: FILE: drivers/platform/x86/intel/pmt/crashlog.c:461:
++       len += sysfs_emit_at(buf, len, "status:  0x%08x\n", status.status);$
+
+-:417: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#417: FILE: drivers/platform/x86/intel/pmt/crashlog.c:462:
++       len += sysfs_emit_at(buf, len, "control: 0x%08x\n", control.control);$
+
+-:419: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#419: FILE: drivers/platform/x86/intel/pmt/crashlog.c:464:
++       return len;$
+
+total: 2 errors, 22 warnings, 0 checks, 464 lines checked
 
 
