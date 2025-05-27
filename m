@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BCC2C61CE8
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADA08C61DB2
 	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 16:15:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42FB810E526;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6113F10E550;
 	Tue, 27 May 2025 16:15:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CcXzU8wW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QYklKQCb";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10C8710E181
- for <intel-xe@lists.freedesktop.org>; Tue, 27 May 2025 16:15:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 450D910E527
+ for <intel-xe@lists.freedesktop.org>; Tue, 27 May 2025 16:15:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748362519; x=1779898519;
+ t=1748362520; x=1779898520;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Xs/DiprNaZ1zdflgOXXlqPefTcgrMzTTrNZpFyYjkAA=;
- b=CcXzU8wWu8Dpp/FKSho4nYat8WwgaIzaK5refymnmjvs//UZheLeJWop
- gw+FtNQPPZ4vT3iEkWknq//89WAMN/Gzl2iVtfHSUA8OCLFUbeUAGMeCC
- KVkw9oVCHiu0TNRdvNvNxlGAc6uzraioVWGIEpaNbJtV2azmOuNzVcd1D
- 73R/FFPr5ymDSIif7IAzdGUMHd2hsYSUHBwOw6aacMx5Iy5GtDaZ/qmVO
- SZeSvpoAv0OtqxkIP4y0JrCnqgkw8aRZOivGlcVdi52LnXve1Hh1rn4mq
- 7OmXvtqZU4hhNZc15BAFK0j1juf/RCvMwxystgBxWIfFiPuqspbAUtV+u Q==;
-X-CSE-ConnectionGUID: ciky9E8VTvuQE47wkCZh0g==
-X-CSE-MsgGUID: MMLQ6RZDQVCpzyQv5Bqq7g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11446"; a="49471871"
-X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="49471871"
+ bh=vDzMBvUxUzMOgZr0DyRi3wAvwM3rpxXkkXbsjRBTRU4=;
+ b=QYklKQCbpF2I1EyQCcMgiFguhNZdoNvCYPDQlN+AjhwKdNrmW5wHrr/k
+ 2sbEIxacKGJeGsYzKFAuzJa/A5/OCe+Cy+NH1cKoFsVha8mllpCua5AJx
+ TObfhgjCjca7R3ghzuowqszXWFVKHpLgfI+Dz/IWODETpvSxGG5o8Z+X/
+ aUJgiuVNXL3IodnpnjIo99xlz+t/SKgXHtJUXxFlNZOvpw+NspRMGmcMR
+ 7xdtJ9VF08rB7McFsE+t3CZ0YfgdtvEIJ/XHBeS4U93VQrPrURjx51QAT
+ jimFgKtYbStz0uGOtyxmOpJc/3m8wjiPhEtQr1Obbx/HFCBDbD67vq8Ej A==;
+X-CSE-ConnectionGUID: XH532oU6QlavsJ/vStOgxQ==
+X-CSE-MsgGUID: A+3LYJWATK+fg4ok/SaH4Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11446"; a="49471937"
+X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="49471937"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2025 09:14:34 -0700
-X-CSE-ConnectionGUID: 8yUXxpsxQm2psmNC//78BA==
-X-CSE-MsgGUID: YZuG4V6QTcudvRl2c3UH3w==
+ 27 May 2025 09:14:49 -0700
+X-CSE-ConnectionGUID: 1g4JmENJRMKH1AkIsOp3CQ==
+X-CSE-MsgGUID: 7f5sUoW7R2K4PcIR1c38sw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="147646070"
+X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="147646237"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by orviesa003.jf.intel.com with ESMTP; 27 May 2025 09:14:33 -0700
+ by orviesa003.jf.intel.com with ESMTP; 27 May 2025 09:14:48 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v3 09/19] drm/xe/svm: Split system allocator vma incase of
- madvise call
-Date: Tue, 27 May 2025 22:09:53 +0530
-Message-Id: <20250527164003.1068118-10-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v3 19/19] drm/xe/bo: Update atomic_access attribute on madvise
+Date: Tue, 27 May 2025 22:10:03 +0530
+Message-Id: <20250527164003.1068118-20-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250527164003.1068118-1-himal.prasad.ghimiray@intel.com>
 References: <20250527164003.1068118-1-himal.prasad.ghimiray@intel.com>
@@ -67,136 +66,152 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If the start or end of input address range lies within system allocator
-vma split the vma to create new vma's as per input range.
+Update the bo_atomic_access based on user-provided input and determine
+the migration to smem during a CPU fault
 
 v2 (Matthew Brost)
-- Add lockdep_assert_write for vm->lock
-- Remove unnecessary page aligned checks
-- Add kerrnel-doc and comments
-- Remove unnecessary unwind_ops and return
+- Avoid cpu unmapping if bo is already in smem
+- check atomics on smem too for ioctl
+- Add comments
+
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 95 ++++++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vm.h |  2 +
- 2 files changed, 97 insertions(+)
+ drivers/gpu/drm/xe/xe_bo.c         | 21 ++++++++++++--
+ drivers/gpu/drm/xe/xe_vm.c         | 11 ++++++--
+ drivers/gpu/drm/xe/xe_vm_madvise.c | 45 ++++++++++++++++++++++++++++--
+ 3 files changed, 69 insertions(+), 8 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index d99d91fe8aa9..9072e8ae3f3e 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1662,6 +1662,12 @@ static void xe_gem_object_close(struct drm_gem_object *obj,
+ 	}
+ }
+ 
++static bool should_migrate_to_smem(struct xe_bo *bo)
++{
++	return bo->attr.atomic_access == DRM_XE_VMA_ATOMIC_GLOBAL ||
++	       bo->attr.atomic_access == DRM_XE_VMA_ATOMIC_CPU;
++}
++
+ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
+ {
+ 	struct ttm_buffer_object *tbo = vmf->vma->vm_private_data;
+@@ -1670,7 +1676,7 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
+ 	struct xe_bo *bo = ttm_to_xe_bo(tbo);
+ 	bool needs_rpm = bo->flags & XE_BO_FLAG_VRAM_MASK;
+ 	vm_fault_t ret;
+-	int idx;
++	int idx, r = 0;
+ 
+ 	if (needs_rpm)
+ 		xe_pm_runtime_get(xe);
+@@ -1682,8 +1688,17 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
+ 	if (drm_dev_enter(ddev, &idx)) {
+ 		trace_xe_bo_cpu_fault(bo);
+ 
+-		ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma->vm_page_prot,
+-					       TTM_BO_VM_NUM_PREFAULT);
++		if (should_migrate_to_smem(bo)) {
++			r = xe_bo_migrate(bo, XE_PL_TT);
++			if (r == -EBUSY || r == -ERESTARTSYS || r == -EINTR)
++				ret = VM_FAULT_NOPAGE;
++			else if (r)
++				ret = VM_FAULT_SIGBUS;
++		}
++		if (!ret)
++			ret = ttm_bo_vm_fault_reserved(vmf,
++						       vmf->vma->vm_page_prot,
++						       TTM_BO_VM_NUM_PREFAULT);
+ 		drm_dev_exit(idx);
+ 	} else {
+ 		ret = ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index d60b711e97e9..c220bf904ee0 100644
+index 9611d7ca2bed..1bdf85c12374 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -4161,3 +4161,98 @@ void xe_vm_snapshot_free(struct xe_vm_snapshot *snap)
+@@ -3116,9 +3116,16 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
+ 		err = vma_lock_and_validate(exec,
+ 					    gpuva_to_vma(op->base.prefetch.va),
+ 					    false);
+-		if (!err && !xe_vma_has_no_bo(vma))
+-			err = xe_bo_migrate(xe_vma_bo(vma),
++		if (!err && !xe_vma_has_no_bo(vma)) {
++			struct xe_bo *bo = xe_vma_bo(vma);
++
++			if (region == 0 && !vm->xe->info.has_device_atomics_on_smem &&
++			    bo->attr.atomic_access == DRM_XE_VMA_ATOMIC_DEVICE)
++				region = 1;
++
++			err = xe_bo_migrate(bo,
+ 					    region_to_mem_type[region]);
++		}
+ 		break;
  	}
- 	kvfree(snap);
+ 	default:
+diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
+index 0f0b94cb43f2..e048eb48826c 100644
+--- a/drivers/gpu/drm/xe/xe_vm_madvise.c
++++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
+@@ -82,15 +82,54 @@ static int madvise_atomic(struct xe_device *xe, struct xe_vm *vm,
+ 			  struct xe_vma **vmas, int num_vmas,
+ 			  struct drm_xe_madvise_ops ops)
+ {
+-	int i;
++	struct xe_bo *bo;
++	int err, i;
+ 
+ 	xe_assert(vm->xe, ops.type == DRM_XE_VMA_ATTR_ATOMIC);
+ 	xe_assert(vm->xe, ops.atomic.val > DRM_XE_VMA_ATOMIC_UNDEFINED &&
+ 		  ops.atomic.val <= DRM_XE_VMA_ATOMIC_CPU);
+ 
+-	for (i = 0; i < num_vmas; i++)
++	for (i = 0; i < num_vmas; i++) {
+ 		vmas[i]->attr.atomic_access = ops.atomic.val;
+-	/*TODO: handle bo backed vmas */
++
++		bo = xe_vma_bo(vmas[i]);
++		if (!bo)
++			continue;
++
++		if (XE_IOCTL_DBG(xe, ops.atomic.val == DRM_XE_VMA_ATOMIC_CPU &&
++				 !(bo->flags & XE_BO_FLAG_SYSTEM)))
++			return -EINVAL;
++
++		/* NOTE: The following atomic checks are platform-specific. For example,
++		 * if a device supports CXL atomics, these may not be necessary or
++		 * may behave differently.
++		 */
++		if (XE_IOCTL_DBG(xe, ops.atomic.val == DRM_XE_VMA_ATOMIC_DEVICE &&
++				 !(bo->flags & XE_BO_FLAG_VRAM0) &&
++				 !(bo->flags & XE_BO_FLAG_VRAM1) &&
++				 !(bo->flags & XE_BO_FLAG_SYSTEM &&
++				   xe->info.has_device_atomics_on_smem)))
++			return -EINVAL;
++
++		if (XE_IOCTL_DBG(xe, ops.atomic.val == DRM_XE_VMA_ATOMIC_GLOBAL &&
++				 (!(bo->flags & XE_BO_FLAG_SYSTEM) ||
++				  (!(bo->flags & XE_BO_FLAG_VRAM0) &&
++				   !(bo->flags & XE_BO_FLAG_VRAM1)))))
++			return -EINVAL;
++
++		err = xe_bo_lock(bo, true);
++		if (err)
++			return err;
++		bo->attr.atomic_access = ops.atomic.val;
++
++		/* Invalidate cpu page table, so bo can migrate to smem in next access */
++		if (xe_bo_is_vram(bo) &&
++		    (bo->attr.atomic_access == DRM_XE_VMA_ATOMIC_CPU ||
++		     bo->attr.atomic_access == DRM_XE_VMA_ATOMIC_GLOBAL))
++			ttm_bo_unmap_virtual(&bo->ttm);
++
++		xe_bo_unlock(bo);
++	}
+ 	return 0;
  }
-+
-+/**
-+ * xe_vm_alloc_madvise_vma - Allocate VMA's with madvise ops
-+ * @vm: Pointer to the xe_vm structure
-+ * @start: Starting input address
-+ * @range: Size of the input range
-+ *
-+ * This function splits existing vma to create new vma for user provided input range
-+ *
-+ *  Return: 0 if success
-+ */
-+int xe_vm_alloc_madvise_vma(struct xe_vm *vm, uint64_t start, uint64_t range)
-+{
-+	struct xe_vma_ops vops;
-+	struct drm_gpuva_ops *ops = NULL;
-+	struct drm_gpuva_op *__op;
-+	bool is_cpu_addr_mirror = false;
-+	int err;
-+
-+	vm_dbg(&vm->xe->drm, "MADVISE IN: addr=0x%016llx, size=0x%016llx", start, range);
-+
-+	lockdep_assert_held_write(&vm->lock);
-+
-+	vm_dbg(&vm->xe->drm, "MADVISE_OPS_CREATE: addr=0x%016llx, size=0x%016llx", start, range);
-+	ops = drm_gpuvm_sm_map_ops_create(&vm->gpuvm, start, range,
-+					  DRM_GPUVM_SKIP_GEM_OBJ_VA_SPLIT_MADVISE,
-+					  NULL, start);
-+	if (IS_ERR(ops))
-+		return PTR_ERR(ops);
-+
-+	if (list_empty(&ops->list)) {
-+		err = 0;
-+		goto free_ops;
-+	}
-+
-+	drm_gpuva_for_each_op(__op, ops) {
-+		struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
-+
-+		if (__op->op == DRM_GPUVA_OP_REMAP) {
-+			if (xe_vma_is_cpu_addr_mirror(gpuva_to_vma(op->base.remap.unmap->va)))
-+				is_cpu_addr_mirror = true;
-+			else
-+				is_cpu_addr_mirror = false;
-+		}
-+
-+		if (__op->op == DRM_GPUVA_OP_MAP)
-+			/* In case of madvise ops DRM_GPUVA_OP_REMAP is always by
-+			 * DRM_GPUVA_OP_REMAP, so ensure we assign op->map.is_cpu_addr_mirror true
-+			 * if REMAP is for xe_vma_is_cpu_addr_mirror vma
-+			 */
-+			op->map.is_cpu_addr_mirror = is_cpu_addr_mirror;
-+
-+		print_op(vm->xe, __op);
-+	}
-+
-+	xe_vma_ops_init(&vops, vm, NULL, NULL, 0);
-+	err = vm_bind_ioctl_ops_parse(vm, ops, &vops);
-+	if (err)
-+		goto unwind_ops;
-+
-+	xe_vm_lock(vm, false);
-+
-+	drm_gpuva_for_each_op(__op, ops) {
-+		struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
-+		struct xe_vma *vma;
-+		struct xe_vma_mem_attr temp_attr;
-+
-+		if (__op->op == DRM_GPUVA_OP_UNMAP) {
-+			/* There should be no unmap */
-+			XE_WARN_ON("UNEXPECTED UNMAP");
-+			xe_vma_destroy(gpuva_to_vma(op->base.unmap.va), NULL);
-+		} else if (__op->op == DRM_GPUVA_OP_REMAP) {
-+			vma = gpuva_to_vma(op->base.remap.unmap->va);
-+			/* Store attributes for REMAP UNMAPPED VMA, so they can be assigned
-+			 * to newly MAPPED vma.
-+			 */
-+			cp_vma_mem_attr(&temp_attr, &vma->attr);
-+			xe_vma_destroy(gpuva_to_vma(op->base.remap.unmap->va), NULL);
-+		} else if (__op->op == DRM_GPUVA_OP_MAP) {
-+			vma = op->map.vma;
-+			cp_vma_mem_attr(&vma->attr, &temp_attr);
-+		}
-+	}
-+
-+	xe_vm_unlock(vm);
-+	drm_gpuva_ops_free(&vm->gpuvm, ops);
-+	return 0;
-+
-+unwind_ops:
-+	vm_bind_ioctl_ops_unwind(vm, &ops, 1);
-+free_ops:
-+	if (ops)
-+		drm_gpuva_ops_free(&vm->gpuvm, ops);
-+	return err;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index 1ef98113fa5b..8151b1b01a13 100644
---- a/drivers/gpu/drm/xe/xe_vm.h
-+++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -171,6 +171,8 @@ static inline bool xe_vma_is_userptr(struct xe_vma *vma)
  
- struct xe_vma *xe_vm_find_vma_by_addr(struct xe_vm *vm, u64 page_addr);
- 
-+int xe_vm_alloc_madvise_vma(struct xe_vm *vm, uint64_t addr, uint64_t size);
-+
- /**
-  * to_userptr_vma() - Return a pointer to an embedding userptr vma
-  * @vma: Pointer to the embedded struct xe_vma
 -- 
 2.34.1
 
