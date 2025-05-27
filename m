@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66A78C54F30
-	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 14:08:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1AAEC54ED1
+	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 14:08:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 134AF10E3E3;
-	Tue, 27 May 2025 14:08:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5370610E3E3;
+	Tue, 27 May 2025 14:08:32 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D8D110E3E3;
- Tue, 27 May 2025 14:08:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BD1F10E48E;
+ Tue, 27 May 2025 14:08:31 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Rework_evi?=
- =?utf-8?q?ction_rejection_of_bound_external_bos_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Rework_eviction?=
+ =?utf-8?q?_rejection_of_bound_external_bos_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 27 May 2025 14:08:16 -0000
-Message-ID: <174835489611.24007.5377301468963945667@1538d3639d33>
+Date: Tue, 27 May 2025 14:08:31 -0000
+Message-ID: <174835491150.24007.8853299761744587108@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250526161632.20694-1-thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20250526161632.20694-1-thomas.hellstrom@linux.intel.com>
@@ -48,9 +48,42 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: b85200adaeff drm-tip: 2025y-05m-27d-14h-00m-18s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Rework eviction rejection of bound external bos
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 87e3702e5c244ec6d9aa0d412ddb113bcdb505b6
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Mon May 26 18:16:32 2025 +0200
+
+    drm/xe: Rework eviction rejection of bound external bos
+    
+    For preempt_fence mode VM's we're rejecting eviction of
+    shared bos during VM_BIND. However, since we do this in the
+    move() callback, we're getting an eviction failure warning from
+    TTM. The TTM callback intended for these things is
+    eviction_valuable().
+    
+    However, the latter doesn't pass in the struct ttm_operation_ctx
+    needed to determine whether the caller needs this.
+    
+    Instead, attach the needed information to the vm under the
+    vm->resv, until we've been able to update TTM to provide the
+    needed information. And add sufficient lockdep checks to prevent
+    misuse and races.
+    
+    v2:
+    - Fix a copy-paste error in xe_vm_clear_validating()
+    
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Fixes: 0af944f0e308 ("drm/xe: Reject BO eviction if BO is bound to current VM")
+    Cc: Oak Zeng <oak.zeng@intel.com>
++ /mt/dim checkpatch b85200adaeff8739c0358088e20a8cbdb4bda851 drm-intel
+87e3702e5c24 drm/xe: Rework eviction rejection of bound external bos
 
 
