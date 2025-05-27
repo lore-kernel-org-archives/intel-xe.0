@@ -4,27 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E4E9C54F30
-	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 05:39:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C452C54ED1
+	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 05:44:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFBD310E0A0;
-	Tue, 27 May 2025 05:39:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 474DD10E086;
+	Tue, 27 May 2025 05:44:22 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D63510E086;
- Tue, 27 May 2025 05:39:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 496B510E086;
+ Tue, 27 May 2025 05:44:21 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm=3A_Create_an_app_info_opti?=
- =?utf-8?q?on_for_wedge_events_=28rev5=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/xe/vf=3A_Fail_mi?=
+ =?utf-8?q?gration_recovery_if_fixups_needed_but_platform_not_supported_=28r?=
+ =?utf-8?q?ev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
+To: "Tomasz Lis" <tomasz.lis@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 27 May 2025 05:39:14 -0000
-Message-ID: <174832435463.22785.2227273164345301048@1538d3639d33>
+Date: Tue, 27 May 2025 05:44:21 -0000
+Message-ID: <174832466129.22871.6023578163226509@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250519220333.101355-1-andrealmeid@igalia.com>
-In-Reply-To: <20250519220333.101355-1-andrealmeid@igalia.com>
+References: <20250519230035.3143966-1-tomasz.lis@intel.com>
+In-Reply-To: <20250519230035.3143966-1-tomasz.lis@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,8 +43,22 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm: Create an app info option for wedge events (rev5)
-URL   : https://patchwork.freedesktop.org/series/145636/
-State : success
+Series: drm/xe/vf: Fail migration recovery if fixups needed but platform not supported (rev5)
+URL   : https://patchwork.freedesktop.org/series/148914/
+State : failure
+
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 3e019cc3eaff drm-tip: 2025y-05m-26d-14h-49m-23s UTC integration manifest
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/xe/xe_sriov_vf.c:123
+error: drivers/gpu/drm/xe/xe_sriov_vf.c: patch does not apply
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Applying: drm/xe/vf: Fail migration recovery if fixups needed but platform not supported
+Patch failed at 0001 drm/xe/vf: Fail migration recovery if fixups needed but platform not supported
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
