@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D20BC54FB3
-	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 02:29:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77631C54FB3
+	for <intel-xe@archiver.kernel.org>; Tue, 27 May 2025 02:29:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FEE610E0ED;
-	Tue, 27 May 2025 02:29:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3033C10E0ED;
+	Tue, 27 May 2025 02:29:55 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 277D710E37F;
- Tue, 27 May 2025 02:29:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 049E110E112;
+ Tue, 27 May 2025 02:29:53 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_More_missing_XeLP_wo?=
- =?utf-8?q?rkarounds?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_More_missing_XeLP_workaro?=
+ =?utf-8?q?unds?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 27 May 2025 02:29:32 -0000
-Message-ID: <174831297295.22472.15231633299243196935@1538d3639d33>
+Date: Tue, 27 May 2025 02:29:53 -0000
+Message-ID: <174831299394.22472.14641585998564990342@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250516074412.46863-1-tvrtko.ursulin@igalia.com>
 In-Reply-To: <20250516074412.46863-1-tvrtko.ursulin@igalia.com>
@@ -44,15 +44,41 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: More missing XeLP workarounds
 URL   : https://patchwork.freedesktop.org/series/149097/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 3e019cc3eaff drm-tip: 2025y-05m-26d-14h-49m-23s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Clarify LRC size when allocating
-Applying: drm/xe/xelp: Implement HSDES#16010904313 workarounds
-Applying: drm/xe/xelp: Add Wa_18022495364
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c4d90204888ad6d21728e73f205a1732d646336c
+Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Date:   Fri May 16 08:44:12 2025 +0100
+
+    drm/xe/xelp: Add Wa_18022495364
+    
+    Add Wa_18022495364 as a context indirect workaround.
+    
+    Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
++ /mt/dim checkpatch 3e019cc3eaffcb7022b9de66871eabdefd6e06ff drm-intel
+bc266395a6d6 drm/xe: Clarify LRC size when allocating
+2b0ac515877c drm/xe/xelp: Implement HSDES#16010904313 workarounds
+-:127: CHECK:SPACING: spaces preferred around that '+' (ctx:VxW)
+#127: FILE: drivers/gpu/drm/xe/xe_lrc.c:1021:
++	*cmd++ = __xe_lrc_regs_ggtt_addr(lrc)+ CTX_CMD_BUF_CCTL * sizeof(u32);
+ 	                                     ^
+
+-:175: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#175: FILE: drivers/gpu/drm/xe/xe_lrc.c:1069:
++	start = cmd = map.vaddr;
+
+total: 0 errors, 0 warnings, 2 checks, 190 lines checked
+c4d90204888a drm/xe/xelp: Add Wa_18022495364
 
 
