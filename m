@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77721C5AD49
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A257BC5B543
 	for <intel-xe@archiver.kernel.org>; Wed, 28 May 2025 21:54:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09F3F10E6D1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E98F10E6D6;
 	Wed, 28 May 2025 21:54:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gsVyr6Ud";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YmGUAvdO";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D586510E0C6
- for <intel-xe@lists.freedesktop.org>; Wed, 28 May 2025 21:54:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86B0E10E6D1
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 May 2025 21:54:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1748469258; x=1780005258;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=BBSS5WTdh3J4Ypb3lYMxWjfuicf7oPehnexiF6pszo0=;
- b=gsVyr6UdbpcRgsMS5K93dNC88WYeT/BRKnofKK0TphNxbQJGcPE+XR4V
- kl/auNccfKhvXp8Ldt7qKmg2jBx6tzIguWINCMOSUC124PqzNo2MN3+r5
- kOLihi0a5STBxdW74RGyS1rfhtB5GKgghbDzIIHByTS8af9zjyKEtWwyf
- vOyM6UIq8ccBvYoUNO6GLrb7jXBUgSDkZ5XGpH7WuvUg8vZ2FWG0w+QDo
- 4Uz3f1alfgzs5trQ+aqjC6J1uSdnrGa25VBtCkjBfOFI1dXPSyFN2Zwq0
- tOaygIoJqcG+lSP/qEivR2pOrXA1VAvhd1jCkwEenS+kUw1PqxW7pYG+T A==;
-X-CSE-ConnectionGUID: 6jAKhBOjS3Kvj2tdLfXnSw==
-X-CSE-MsgGUID: PouB+MXmSHGVVfH/NDULQA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11447"; a="73044755"
-X-IronPort-AV: E=Sophos;i="6.15,322,1739865600"; d="scan'208";a="73044755"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=6DnIwLdLmfh/FQc0zHTUICnRvuYJ3LUOTB6sbo6UTmc=;
+ b=YmGUAvdOZVIjD482IVNy7lcICkiVdbLWKsM1u7FwQ8sWEBz+xcfL4hEE
+ hjy6OiYx1wVsliOEtYGpFCc2hSbj3zC9ji0qWf9XLPy9OsPRo6uSLR1wO
+ bl7BSigfYIold5HDyZ4gcB9JgekeJngGnOemAApJA8xwnsCi0KqDBhWlQ
+ GWBbsRvgby+g4mLG9m9wQ9IZEf73tEYhdh9aXr5c7BngPi8BD7xdbBrxC
+ C1Y7w89hxG31wQOY1pUPO1JC3r+kPlQS1uEszT0ARxyVbt53usrGV1zZ/
+ eu/wVzSr1zqTUaWu34YBaC5eslMv7aWIzsPM7Answ9SfxFXV4cgm5V8uy w==;
+X-CSE-ConnectionGUID: /6cMPK9mQ4Grv8iafrkw2Q==
+X-CSE-MsgGUID: 64tK54XESQyagmB2AHjS2A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11447"; a="73044762"
+X-IronPort-AV: E=Sophos;i="6.15,322,1739865600"; d="scan'208";a="73044762"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2025 14:54:17 -0700
-X-CSE-ConnectionGUID: ya8FUUdYTjiEGcVbadDtIw==
-X-CSE-MsgGUID: cuuuOFBQS0GD9jUsux9tVA==
+ 28 May 2025 14:54:18 -0700
+X-CSE-ConnectionGUID: YATJxJLqRnqYqO9p4Axwag==
+X-CSE-MsgGUID: +3sYpItyQd+FXFgbJpPv4A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,322,1739865600"; d="scan'208";a="143201059"
+X-IronPort-AV: E=Sophos;i="6.15,322,1739865600"; d="scan'208";a="143201086"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2025 14:54:17 -0700
+ 28 May 2025 14:54:18 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
@@ -48,13 +48,14 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>,
  Stuart Summers <stuart.summers@intel.com>,
  Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v4 0/5] drm/xe: Add configfs to load with fewer engines
-Date: Wed, 28 May 2025 14:54:03 -0700
-Message-ID: <20250528-engine-mask-v4-0-f4636d2a890a@intel.com>
+Subject: [PATCH v4 5/5] drm/xe/configfs: Add internal API to documentation
+Date: Wed, 28 May 2025 14:54:08 -0700
+Message-ID: <20250528-engine-mask-v4-5-f4636d2a890a@intel.com>
 X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250528-engine-mask-v4-0-f4636d2a890a@intel.com>
+References: <20250528-engine-mask-v4-0-f4636d2a890a@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-Change-ID: 20250520-engine-mask-f6f5962afa42
 X-Mailer: b4 0.15-dev-d9694
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -71,55 +72,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Add the internal configfs API like is done with other parts of the
+driver. Also ensure the correct number of '=' chars are used for the
+header.
+
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
-Changes in v4:
-- Add patch to convert fused off log messages to gt-based and convert
-  the new "sw disabled" as well (Matt Roper)
-- Add patch to make the internal API visible in the documentation
-- Fix upper bound checks: since it's using fls64(), it's invalid when
-  it's greater or equal (Matt Roper)
-- Greatly simplify the engine pattern parsing by just dup'ing the
-  entire pattern rather than the instance part (Jani)
-- Improve documentation about the meaning of engine instances and its
-  relation with multi-tile platforms (Matt Roper)
-- Link to v3: https://lore.kernel.org/r/20250523-engine-mask-v3-0-11817dc6eb63@intel.com
+ Documentation/gpu/xe/xe_configfs.rst | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
-Changes in v3:
-- Add patch with coding style changes to header
-- Split patches: the use of the mask hw_engine initialization is one and the
-  configfs handling is another
-- Move the lookup table outside of the function looking up the mask:
-  this will also be used in other patches in future
-- Change the _show() method to pretty-print engine names: it's not the
-  same format as passed in, but covers the "what was exactly parsed"
-  while at the same time not require one to lookup the indexes in the
-  source code (Stuart)
-- Avoid the term "fuse off" (Matt Roper)
-- Handle gcscs (Matt Roper)
-- Improve and fold conditions for checking if the engine instance is out
-  of bounds (Matt Roper)
-- Link to v2: https://lore.kernel.org/r/20250520-engine-mask-v2-1-46e76f935b35@intel.com
+diff --git a/Documentation/gpu/xe/xe_configfs.rst b/Documentation/gpu/xe/xe_configfs.rst
+index 9b9d941eb20ed..7f8ec39dc6dd5 100644
+--- a/Documentation/gpu/xe/xe_configfs.rst
++++ b/Documentation/gpu/xe/xe_configfs.rst
+@@ -2,9 +2,15 @@
+ 
+ .. _xe_configfs:
+ 
+-============
++===========
+ Xe Configfs
+-============
++===========
+ 
+ .. kernel-doc:: drivers/gpu/drm/xe/xe_configfs.c
+    :doc: Xe Configfs
++
++Internal API
++============
++
++.. kernel-doc:: drivers/gpu/drm/xe/xe_configfs.c
++   :internal:
 
-Changes in v2:
-- Fix build with CONFIG_CONFIGFS_FS=n
-- Link to v1: https://lore.kernel.org/r/20250520-engine-mask-v1-1-ce6daf16d23b@intel.com
----
-Lucas De Marchi (5):
-      drm/xe/configfs: Drop trailing semicolons
-      drm/xe: Convert "fused off" messages to be gt-based
-      drm/xe: Allow to disable engines
-      drm/xe/configfs: Add attribute to disable engines
-      drm/xe/configfs: Add internal API to documentation
-
- Documentation/gpu/xe/xe_configfs.rst |  10 ++-
- drivers/gpu/drm/xe/xe_configfs.c     | 160 +++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_configfs.h     |  10 ++-
- drivers/gpu/drm/xe/xe_hw_engine.c    |  37 +++++---
- 4 files changed, 200 insertions(+), 17 deletions(-)
-
-base-commit: f9b3e6ff6ee2fc39545dde4b195c5c4452939f9f
-change-id: 20250520-engine-mask-f6f5962afa42
-
-Lucas De Marchi
+-- 
+2.49.0
 
