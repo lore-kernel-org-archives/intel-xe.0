@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 522E3C3ABB2
-	for <intel-xe@archiver.kernel.org>; Wed, 28 May 2025 21:07:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEF8FC3ABB2
+	for <intel-xe@archiver.kernel.org>; Wed, 28 May 2025 21:42:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEFD810E642;
-	Wed, 28 May 2025 21:07:49 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF99610E642;
- Wed, 28 May 2025 21:07:48 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6309534514882483774=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id F06EC10E1F6;
+	Wed, 28 May 2025 21:42:35 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UJs1yvac";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0729B10E1F6;
+ Wed, 28 May 2025 21:42:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1748468553; x=1780004553;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=8ERCkpntKtSipzKUzUnr20lqYWXO9v1zgISAS2+tY3s=;
+ b=UJs1yvacwv6cITz/Mt9KrKhmBnWlJWjLldiMQ6s3GtCu+Z0dfB0ds0ue
+ 5eHRv487hvnFffw681onRnO9x7LsVYzAvYysXJEVqBPVOQzfgo33ariP8
+ 2ApPp/x3ch0Hzu2gEvCu0YWG9odEeE5X7Qo4eQJ5kAOYxb17cUY7euc9p
+ iKKlfoW4OEcaC44CSOPW13N1Mb9eQa5+yVfXaMgAk06HZJEmpNJMeANMc
+ Mn2hwDk7sTvuRKskvdRAXW2sXdbiSEchS8PhvoiJxYBhvV9fhD9VycPhk
+ Y8Fmrse9W4uPUmA05ZCZLCLd79h+mGLtinJvE7OybcEq72O6ZxRZN1ukH A==;
+X-CSE-ConnectionGUID: X1MFAvcKT5+2gtbj5p2cNg==
+X-CSE-MsgGUID: sMAt/Z+MToyZI/gNTNZ+8Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11447"; a="67930727"
+X-IronPort-AV: E=Sophos;i="6.15,322,1739865600"; d="scan'208";a="67930727"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2025 14:42:32 -0700
+X-CSE-ConnectionGUID: UR5zHsRXQM25A+8hcnvaOw==
+X-CSE-MsgGUID: KdPwpf06TiGbu/gW69Vnow==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,322,1739865600"; d="scan'208";a="148657203"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2025 14:42:32 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, dri-devel@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ Philipp Stanner <phasta@kernel.org>
+Subject: [PATCH] drm/xe: Fix NPD when saving default context
+Date: Wed, 28 May 2025 14:42:22 -0700
+Message-ID: <20250528-fix-sched-v1-1-c042ef23ff8b@intel.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EFull=3A_success_for_drm/xe/guc=3A_Resend_poten?=
- =?utf-8?q?tially_lost_H2G_MMIO_request_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 28 May 2025 21:07:48 -0000
-Message-ID: <174846646884.29927.6907150359105638875@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250528090021.329-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20250528090021.329-1-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset="utf-8"
+X-Change-ID: 20250528-fix-sched-52730be6a163
+X-Mailer: b4 0.15-dev-d9694
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +68,49 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6309534514882483774==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+xef is only valid if it's a job from userspace.  For in-kernel jobs it
+causes a NPD like below:
 
-== Series Details ==
+        <4> [] RIP: 0010:xe_sched_job_create+0xbd/0x390 [xe]
+	...
+        <4> [] Call Trace:
+        <4> []  <TASK>
+        <4> []  __xe_bb_create_job+0xa2/0x240 [xe]
+        <4> []  ? find_held_lock+0x31/0x90
+        <4> []  ? xa_find_after+0x12c/0x250
+        <4> []  xe_bb_create_job+0x6e/0x380 [xe]
+        <4> []  ? xa_find_after+0x136/0x250
+        <4> []  ? __drm_dev_dbg+0x7d/0xb0
+        <4> []  xe_gt_record_default_lrcs+0x542/0xb00 [xe]
 
-Series: drm/xe/guc: Resend potentially lost H2G MMIO request (rev2)
-URL   : https://patchwork.freedesktop.org/series/149575/
-State : success
+Since drm_file starts with 1 for the unique id, just use 0 for the
+in-kernel jobs.
 
-== Summary ==
+Fixes: 2956554823ce ("drm/sched: Store the drm client_id in drm_sched_fence")
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
+Cc: Philipp Stanner <phasta@kernel.org>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_sched_job.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-CI Bug Log - changes from xe-3152-9c6f1615c9a1f0d3ec6c8d3af535bf7773d68ecf_FULL -> xe-pw-149575v2_FULL
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3152-9c6f1615c9a1f0d3ec6c8d3af535bf7773d68ecf -> xe-pw-149575v2
-
-  IGT_8381: 8381
-  xe-3152-9c6f1615c9a1f0d3ec6c8d3af535bf7773d68ecf: 9c6f1615c9a1f0d3ec6c8d3af535bf7773d68ecf
-  xe-pw-149575v2: 149575v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149575v2/index.html
-
---===============6309534514882483774==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
+index 5921293b25db3..d21bf8f269640 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job.c
++++ b/drivers/gpu/drm/xe/xe_sched_job.c
+@@ -114,7 +114,7 @@ struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
+ 	xe_exec_queue_get(job->q);
+ 
+ 	err = drm_sched_job_init(&job->drm, q->entity, 1, NULL,
+-				 q->xef->drm->client_id);
++				 q->xef ? q->xef->drm->client_id : 0);
+ 	if (err)
+ 		goto err_free;
+ 
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
 
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Resend potentially lost H2G MMIO request (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149575/">https://patchwork.freedesktop.org/series/149575/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149575v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149575v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3152-9c6f1615c9a1f0d3ec6c8d3af535bf7773d68ecf_FULL -&gt; xe-pw-149575v2_FULL</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3152-9c6f1615c9a1f0d3ec6c8d3af535bf7773d68ecf -&gt; xe-pw-149575v2</li>
-</ul>
-<p>IGT_8381: 8381<br />
-  xe-3152-9c6f1615c9a1f0d3ec6c8d3af535bf7773d68ecf: 9c6f1615c9a1f0d3ec6c8d3af535bf7773d68ecf<br />
-  xe-pw-149575v2: 149575v2</p>
-
-</body>
-</html>
-
---===============6309534514882483774==--
