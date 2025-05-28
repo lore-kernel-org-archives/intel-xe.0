@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1FC7C5AD49
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6B44C5B553
 	for <intel-xe@archiver.kernel.org>; Wed, 28 May 2025 23:42:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB55D10E6D6;
-	Wed, 28 May 2025 23:42:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0795710E6D7;
+	Wed, 28 May 2025 23:42:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XF+avZwp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k7PDItDI";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9C1610E0F9
- for <intel-xe@lists.freedesktop.org>; Wed, 28 May 2025 23:42:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89BC810E6D1
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 May 2025 23:42:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748475763; x=1780011763;
+ t=1748475762; x=1780011762;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zNev2mh2CKJ5wbCA4xVfTPf1Zr5MJDcuVOR7PZirYfE=;
- b=XF+avZwpurLjHaegT8kptQJdySifJ1na2HF6WoUH9xZBLWIqONWnrNDN
- Vcho9VLZZg4ZUGWDUrj8NlmyN0WDmYmTm1pszELsModPExKoRsWuzX5lY
- vnOwzxG3AwHJKBtBgCypMXSIaTrUpjsHjJi16gRx/FgiD80CAAE1y4uNX
- LC7kw2KCdjajXQdLPZag41j91F5TODhqIK/vUbwGaPhbVI/B3LLv13Rw+
- GsX4amkESu3b/Gfx1x7zl3H5C/OEAfCwfUvJMggHd5xJk5A1FEp3vPSBM
- v/eFUwBPmsUamAsLgqH7zyFiR9k6guljcKbj2NjMne1OdMHC9gJbsL6NT w==;
-X-CSE-ConnectionGUID: OBDJL73WT9mzP7dYLKP+Kg==
-X-CSE-MsgGUID: YfzKCSk9QJOtsEYfPUqjfA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11447"; a="50674860"
-X-IronPort-AV: E=Sophos;i="6.15,322,1739865600"; d="scan'208";a="50674860"
+ bh=0wpkofn/9wCvxnkEwicPzH4pSFjvUUPIqFSvMWrvme8=;
+ b=k7PDItDIUshRKctUISftpmFpFOyrCUODI1smn04Y2lNl+nF2KLKYGZ5l
+ 2nA2c9LsPq2P2SY5mnqrBEw18Q7t09i9RXWQZyDIY2LMU8rkhCmBoXneg
+ 5TeJYzTRGzjbB4dS6uH9J9M4kQuO5x8ypHUMm98yj4eI57g57kLf4L837
+ Psbv+MpuQJj4otVjMmq+3ZiYxc9an4IZyKG+Rx2OHXQn5xa9wmPcch7Qt
+ huV6TEScC4UYeSzlV5BCyRLb+Bcd2tYBFtkte6pd9qFkTSDM8bnIXtqfv
+ JZqq0Lzfie+QbyWB4br06fDv2GEtTpSqotfc1Rsu2bTiY2X4r1VI/sBS6 w==;
+X-CSE-ConnectionGUID: IzNXXPYnQgmwyIa6dkpLVw==
+X-CSE-MsgGUID: h5zbXUR+S9qFGSdOAuDOdA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11447"; a="50674859"
+X-IronPort-AV: E=Sophos;i="6.15,322,1739865600"; d="scan'208";a="50674859"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2025 16:42:43 -0700
-X-CSE-ConnectionGUID: /j3Mu7jkQRaNfK7ljuQmQA==
-X-CSE-MsgGUID: NeE27llVRViZfzkLcHlJfA==
+ 28 May 2025 16:42:42 -0700
+X-CSE-ConnectionGUID: u+h1Xh0RSvCDrVeidKJIMw==
+X-CSE-MsgGUID: o139pm8eQhGHvxZfUNCzhA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,322,1739865600"; d="scan'208";a="148245531"
+X-IronPort-AV: E=Sophos;i="6.15,322,1739865600"; d="scan'208";a="148245526"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2025 16:42:43 -0700
+ 28 May 2025 16:42:42 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v2 2/4] drm/xe/vf: Boostrap all GTs immediately after MMIO init
-Date: Wed, 28 May 2025 16:42:32 -0700
-Message-ID: <20250528234229.4185039-8-daniele.ceraolospurio@intel.com>
+Subject: [PATCH v2 1/4] drm/xe/uc: Prepare uc_fw_version for storing the VF
+ ABI version
+Date: Wed, 28 May 2025 16:42:31 -0700
+Message-ID: <20250528234229.4185039-7-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250528234229.4185039-6-daniele.ceraolospurio@intel.com>
 References: <20250528234229.4185039-6-daniele.ceraolospurio@intel.com>
@@ -67,63 +68,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently we perform the bootstrap for the primary GT early on during
-device init, while the media GT bootstrap happens when we try and fetch
-the hwconfig table. For consistency, move the bootstrap of the media GT
-happen at the same time as the primary GT, so that all the subsequent
-code can rely on both GTs being in the same state.
+The VF ABI version has a branch field, so to store it inside the
+uc_fw_version we need to add a new branch variable to the latter.
+Existing code needs to be updated to handle the fact that we have the
+new field.
+
+v2: split out to its own patch (Michal)
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 11 ++++++-----
- drivers/gpu/drm/xe/xe_guc.c    |  4 ----
- 2 files changed, 6 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_engine_activity.c | 2 +-
+ drivers/gpu/drm/xe/xe_uc_fw_types.h         | 2 ++
+ 2 files changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 660b0c5126dc..7e87344943cd 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -798,18 +798,19 @@ int xe_device_probe(struct xe_device *xe)
- 		 * be performed.
- 		 */
- 		xe_gt_mmio_init(gt);
--	}
- 
--	for_each_tile(tile, xe, id) {
- 		if (IS_SRIOV_VF(xe)) {
--			xe_guc_comm_init_early(&tile->primary_gt->uc.guc);
--			err = xe_gt_sriov_vf_bootstrap(tile->primary_gt);
-+			xe_guc_comm_init_early(&gt->uc.guc);
-+			err = xe_gt_sriov_vf_bootstrap(gt);
- 			if (err)
- 				return err;
--			err = xe_gt_sriov_vf_query_config(tile->primary_gt);
-+			err = xe_gt_sriov_vf_query_config(gt);
- 			if (err)
- 				return err;
- 		}
-+	}
-+
-+	for_each_tile(tile, xe, id) {
- 		err = xe_ggtt_init_early(tile->mem.ggtt);
- 		if (err)
- 			return err;
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 350434a8b953..065550964e68 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -1102,10 +1102,6 @@ static int vf_guc_min_load_for_hwconfig(struct xe_guc *guc)
+diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity.c b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
+index 0fb48f8f05d8..92e1f9f41b8c 100644
+--- a/drivers/gpu/drm/xe/xe_guc_engine_activity.c
++++ b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
+@@ -124,7 +124,7 @@ static void free_engine_activity_buffers(struct engine_activity_buffer *buffer)
+ static bool is_engine_activity_supported(struct xe_guc *guc)
+ {
+ 	struct xe_uc_fw_version *version = &guc->fw.versions.found[XE_UC_FW_VER_COMPATIBILITY];
+-	struct xe_uc_fw_version required = { 1, 14, 1 };
++	struct xe_uc_fw_version required = { .major = 1, .minor = 14, .patch = 1 };
  	struct xe_gt *gt = guc_to_gt(guc);
- 	int ret;
  
--	ret = xe_gt_sriov_vf_bootstrap(gt);
--	if (ret)
--		return ret;
--
- 	ret = xe_gt_sriov_vf_query_config(gt);
- 	if (ret)
- 		return ret;
+ 	if (IS_SRIOV_VF(gt_to_xe(gt))) {
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw_types.h b/drivers/gpu/drm/xe/xe_uc_fw_types.h
+index ad3b35a0e6eb..914026015019 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw_types.h
++++ b/drivers/gpu/drm/xe/xe_uc_fw_types.h
+@@ -65,6 +65,8 @@ enum xe_uc_fw_type {
+  * struct xe_uc_fw_version - Version for XE micro controller firmware
+  */
+ struct xe_uc_fw_version {
++	/** @branch: branch version of the FW (not always available) */
++	u16 branch;
+ 	/** @major: major version of the FW */
+ 	u16 major;
+ 	/** @minor: minor version of the FW */
 -- 
 2.43.0
 
