@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 297A8C3ABB2
-	for <intel-xe@archiver.kernel.org>; Wed, 28 May 2025 15:47:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD48AC5AD49
+	for <intel-xe@archiver.kernel.org>; Wed, 28 May 2025 15:49:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D054210E63C;
-	Wed, 28 May 2025 15:47:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9504810E63C;
+	Wed, 28 May 2025 15:49:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MchoaVWA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Dq/jYx5r";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7EFE10E62E
- for <intel-xe@lists.freedesktop.org>; Wed, 28 May 2025 15:47:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 487CB10E62E
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 May 2025 15:49:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748447241; x=1779983241;
+ t=1748447352; x=1779983352;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=j424SKDLnkUMSjULDvT3cIrxS+WE1pFYtQGrXT5jn/Y=;
- b=MchoaVWA4AmxSwe3YgJ8+UClXVmK8HGMTVSa3lkph4NmsmYjN7fLhhoS
- Hj3No+lLOP+gMVontJWYqjyRlhV7rvhkzgUh+WczRMpaM5YMlS1lJDM6U
- mYDQffIH4HgO9BJe27FsmIzZ1pVbfW1wSAL28Ev8XDw77Pcdd9kNgdyXe
- Q8sDRWG9Il+1xWkrcnJkcSukjI0kvwy5+KExlJv3VgeNqDrvzzfOmycnC
- Vpott1icR2LNrNnxSgcpldnYIVWDHOvX8ChZq/OY8pjckzURICb7qg1gG
- hBClsEy6Uu4A0JYHQTXWzTlO8mrxEl0XaWR+Avp4tG/LjFS9W+IyxH+W1 g==;
-X-CSE-ConnectionGUID: 2upboGUvREKGxCtSnnzT4Q==
-X-CSE-MsgGUID: IDf8X3jtTzmWFIa2nulyyw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11447"; a="50407485"
-X-IronPort-AV: E=Sophos;i="6.15,321,1739865600"; d="scan'208";a="50407485"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2025 08:47:21 -0700
-X-CSE-ConnectionGUID: 8TfnYb+tSn21oSdSG5s1+w==
-X-CSE-MsgGUID: uyKjIjJHSyCxrcKEQLNeKg==
+ bh=3v3UWEXZViv5Nrg0GTFYbCNY94r3CZVrxMsbnqlCUJU=;
+ b=Dq/jYx5rS2Li2bSx0GKkbtP3hC2Z72vhdBjXwoSylyY53vdejl6IZtU5
+ gQ2xAJz0WZyhMPV4nj8JINjy6+B7vgc5mVd4iSh4aI2IJcvDYZfjj+NxQ
+ y5qSOoTIcibjrS70d64ARSL8Xs1xReszr4xO9fIWYX7E8hvBsxDDTggtP
+ y+d0zHyfTvD7PpXItQBH8fAGeK0uGlIqMAi8eMBMbBYpnLsAbdzY/MV2r
+ YDTXNt97jPR4w3drpP+U/lEgaJcuXXUhT2/y+w1hzzlUi7lmWtzEreKAX
+ k0qrx+/A7GkyvWpem037/3qAF2hJ4SsMybmyJo81KL7cqtsJt+1ejHp5H Q==;
+X-CSE-ConnectionGUID: 9bjgEPiWTdK3Fp7QJmfNpA==
+X-CSE-MsgGUID: O1Hcdv13QuCgLOVb8EwD/w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11447"; a="50366098"
+X-IronPort-AV: E=Sophos;i="6.15,321,1739865600"; d="scan'208";a="50366098"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2025 08:49:12 -0700
+X-CSE-ConnectionGUID: SCc+FNyaRmyhwPmreYGNMA==
+X-CSE-MsgGUID: 8gaZ1ojtTTq5ioE4yPpWoQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,321,1739865600"; d="scan'208";a="148580885"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2025 08:47:22 -0700
+X-IronPort-AV: E=Sophos;i="6.15,321,1739865600"; d="scan'208";a="143611292"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2025 08:49:10 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Wed, 28 May 2025 08:47:20 -0700
+ 15.2.1544.25; Wed, 28 May 2025 08:49:10 -0700
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Wed, 28 May 2025 08:47:20 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (40.107.236.42)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.2.1544.25 via Frontend Transport; Wed, 28 May 2025 08:49:10 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (40.107.93.85) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.55; Wed, 28 May 2025 08:47:20 -0700
+ 15.1.2507.55; Wed, 28 May 2025 08:49:08 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=m/3xG10s+bigBAiyLiaD8I5YnfIGWw0iYSDAT7djFLbtYb5jUZCrCh/XQ+XRt9U2m3qbpURsaznkuH66ISjwaQ+TQONApGUpKmu/QLuqUyGgmQCrLTss1rzil1+Z5CcM4nKhyLWkN9v/x52z3PxetIVsQ/3/BeK735XbaCvY/e2WCY5y3JlXIeEqaCFMEDnN0AsA1svKfjSeTOOk2HwdJjOdLpQTZ/5YHpRXdEFP+8quC9oUZEXUadjuY2cBEhU/YyS6g9xNvi+mYTZh2DEC3X0FwjnqKjB97Kr1eyBML4com0X+40ppY+h3DaV1VpXCSPyMU3OYTwPGrHQnmCrnmw==
+ b=anhHZjzZWnUdNqKWfE1kxN3D6+XIDwO0AztO5qpCKp69AkVEBQefwNVxU7Ok5ytmtanr7C5HqQRUQqHMgJ0+VUpPH3stgohEXRnVVntK3hXEMucUgMqMEIcNoxOryYlWCWfU/CB5hps8h3NEwzNCaBYiC0Fp7r7DXipTpyXElp/BWR6N/+sUBTOu12AZ4LavmQSYpOyDX5tBvsb0FAmC3mV3GsTM4PJKtPTS1cvs/v6Vl6SQC5mQfoSOnoEtNNUl7M7Ja728lRBd5Q+kEpbpT9JH5TktjHXp0F9389M/Jwt5XbOfBAiqMa0DiSpWLRtIoHMVmb7Gpr1qY0SyJvZBeg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qevzqsUNYn14/Gj+KTpOiRiY09sRpDzAY3Oec3bWOGs=;
- b=tXEupuL+JdZo6Xta5ZcgFFkdLvKOc88GpE66xDXUTHJ3BojUtKJmiI/9S4o3lCZrzm6abTWFQ/eHm+8iIzOo/7BDVku4eOklA/iwBJMZWWN5bXTgnYnhdJGbTdU5cJYH680KLTvJM7Bt5eE0hXquIk8EanOaMvCi3V7e1aYSSADqGRGcRXgyUwHMggweX4kXrOQBwRZ3FMQy9DOQt+UGfKXrJknIUK22i2PN5w7iV2UbWBKf4Py+rws6fijDO2mpxf/37PgN/ktFs2twgN5wEkhYNSxcllPe32tZ9aHWUl3/zZ52LgzaVebBZ5zF0Bw5sw8ZswJafHfVWbRSVn3jwg==
+ bh=b7gQ318eEbA+RcUInKK9J0sIwOc7fpW0FHTvWhXlIbY=;
+ b=sQy10k6n4LKiHLBr5Vtpan+pMzk7l/EYhbfXTO51iPDIRt5BLez0A/3oNYRrjoEFZmmDy8zxWmxOg4scu6QIn1XcbTRwYcxfYlTtnQ4T/xYEK7lhtsDrRSskWbAfvAlFMYkYUTYX1SO/ns58YA8mLfJDW4MA4xitbI5vzRRr1CJissGBUXBKiwTkka0hPpU5ijEKMSzeTSA8S4ypdDgquyGvAVsrBK4nYpBZsJZRwLC1nybrPAyViDK0EsbURaE4T9+JvqPQAfOSPv0GxCKFrKC1a7Ol8Dz37p6uPiuWrKhoW+5aFtP2KHqNB3Q6Rrd2fmuzXU9AypG71Uwt/4ofNg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,103 +69,101 @@ Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
  by SA1PR11MB7085.namprd11.prod.outlook.com (2603:10b6:806:2ba::9)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.31; Wed, 28 May
- 2025 15:47:18 +0000
+ 2025 15:49:05 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332%5]) with mapi id 15.20.8769.021; Wed, 28 May 2025
- 15:47:18 +0000
-Date: Wed, 28 May 2025 08:48:49 -0700
+ 15:49:05 +0000
+Date: Wed, 28 May 2025 08:50:37 -0700
 From: Matthew Brost <matthew.brost@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>
-CC: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, Thomas
- =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, "Tseng,
- William" <william.tseng@intel.com>, "stable@vger.kernel.org"
- <stable@vger.kernel.org>
-Subject: Re: [PATCH v3] drm/xe/sched: stop re-submitting signalled jobs
-Message-ID: <aDcwYSHft86dfxq9@lstrano-desk.jf.intel.com>
-References: <20250528113328.289392-2-matthew.auld@intel.com>
- <SJ1PR11MB6204E84396E9C554AE7E80328167A@SJ1PR11MB6204.namprd11.prod.outlook.com>
- <aabaf5db-92aa-4ec9-b0a8-6eb9694fa7c7@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Oak Zheng <oak.zheng@intel.com>
+Subject: Re: [PATCH v2] drm/xe: Rework eviction rejection of bound external bos
+Message-ID: <aDcwzQGkPl61xeuV@lstrano-desk.jf.intel.com>
+References: <20250526161632.20694-1-thomas.hellstrom@linux.intel.com>
+ <aDYLEuObNlqzG9qg@lstrano-desk.jf.intel.com>
+ <e5483b1596456e71ed4d878a53327ab106ec7f02.camel@linux.intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <aabaf5db-92aa-4ec9-b0a8-6eb9694fa7c7@intel.com>
-X-ClientProxiedBy: MW4PR03CA0259.namprd03.prod.outlook.com
- (2603:10b6:303:b4::24) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <e5483b1596456e71ed4d878a53327ab106ec7f02.camel@linux.intel.com>
+X-ClientProxiedBy: MW4P223CA0008.NAMP223.PROD.OUTLOOK.COM
+ (2603:10b6:303:80::13) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA1PR11MB7085:EE_
-X-MS-Office365-Filtering-Correlation-Id: 03553ba6-5085-4719-caad-08dd9dfeece4
+X-MS-Office365-Filtering-Correlation-Id: a47df577-985e-478e-8d80-08dd9dff2d2a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7053199007;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?JaPtyeaLUzAyhZ4h3C30mZOn4LQNx8uMhXAt/r394/765UbVl3Tx8wMtBV?=
- =?iso-8859-1?Q?PZp9oJxBsF4un/VzDMGYvZvBWzUH1nelST1p0RwHqxOgdXCo3ZT4CR9j6s?=
- =?iso-8859-1?Q?DLZoH5kku/rjDtqL3GbxlE8rCF+fBOXsz+14L8v15rbWs2vwk1m2djh8yF?=
- =?iso-8859-1?Q?0bW1bwPYgcucRjEzLaTxDbNTKn5yw7Eq3TVGA3uJ9l1wQDDhAnM1Lovdx6?=
- =?iso-8859-1?Q?eyz0vKvUVu1hG65RIxBDwQgsBLjoWP2hXb6MgID+HWRGbI+ao43xl6hy2T?=
- =?iso-8859-1?Q?T5SWT+YDaRG9oW+oDAnbKFF20Btv0SXEHo4VT6Y4tZpRX8N5T+kvxYTXWw?=
- =?iso-8859-1?Q?07DJQ8IMjiFLgNnXljv036ygnaBo9AngFYq2vN+5DW6NfFLBTYt/D08G7W?=
- =?iso-8859-1?Q?wkEEsxA/6M3AIfLxnhmYKDPQoiGbRGbAvIzedJfNCyI1x0Q+qFyiRof6AM?=
- =?iso-8859-1?Q?GMr37Maz+bRE7Yow3XuLV9hhwY2SOr3C+U6V+/JLat2OlatitBVuujY5mE?=
- =?iso-8859-1?Q?GoJhKKZanZ6zlZvHhFyNmrWM8Gs8RL79PYFN6XTaZkDFHYw7GYNlmu3R92?=
- =?iso-8859-1?Q?1gFsHnNMr2nAV4p9krB0RxfHc7v5tpp0gFr4faJMOmyleIN/HL66QSRXrm?=
- =?iso-8859-1?Q?9O94NYbFC7zGT7hQ11MM9nz0uKiBT7o0GPZnG0U4utq9G4CRhe9LujTRXU?=
- =?iso-8859-1?Q?KnBFfR3NhMRdXlWwPLGirMGH/WHf3ExU1/fZ1rpAZNi64GHAWnDAiH7ede?=
- =?iso-8859-1?Q?6EPllzhRguq4WzWNO/482x6EXvD2HhRZuICHD5m8Hs86xNvTd12dD5gdE0?=
- =?iso-8859-1?Q?9fniHtkeDx5bDP4OtU2gk1FRu1Sz5wtgzpX+x3371KR9VsYAjoXHczCMqK?=
- =?iso-8859-1?Q?8dO7kdr2o6Y5I/p3kQxZV8SFli4/Kp6Sb0giftfELz9TGVWiET5mQrSVQU?=
- =?iso-8859-1?Q?sJ5fPQLYHnEoeqq5hmlj53TKJsRw5CnAyZeHJag+ZGhLuX9WRewij9uWL+?=
- =?iso-8859-1?Q?TmUvS/RapG7Zf79yInVC2B4yXrP7R5qYhmpOp4bVPTyQin9WtCMsJ/BR5X?=
- =?iso-8859-1?Q?0vHSTrjLu4RxMdgagse6zN7Ui15maHGYBiI3NQZVnJ3Tnjiug4/td7TU41?=
- =?iso-8859-1?Q?/YG5HPdpHQg/IepCf2/udnxfG9KfhSqotaOmqB10kR/Z/F+0kuZ9v45Su6?=
- =?iso-8859-1?Q?LHudMSwlbGRYUeBSGIC6Rq0xu5IPWzqkmrs/UoLnXWQax0Li7cRPsLA4kp?=
- =?iso-8859-1?Q?rncKl1s5DGqGXEpzUVRHw7xDbIh2EvhV4YiWCtTqDHmHVHAjtipaGZUM7d?=
- =?iso-8859-1?Q?b55VXSGoDIp4bqS6WKdbprLBrsyeU+1Uv3Vh19/PCWhGDadYKTASM+0+b+?=
- =?iso-8859-1?Q?hKpDIflQjKd7QYEhmps1iguu4tfLK5vfM/+iKYh+WL0hKwwfJB1BU=3D?=
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?CChdJLK7L7e3MHJ7aIzygW16IF9cJaTK/nKu04yTnK1nGCcWhNSwk7w2Lb?=
+ =?iso-8859-1?Q?qIVdbt6jvBjbRxqafk0yCmms3mhlYqxmEvnu07j+s0RQcfW+Xrd8WMjLYV?=
+ =?iso-8859-1?Q?xiCwAyBnnYKUnpCOucVbmdUbvPnG2GyOuxloflXYTAUhkp60zgmJzTfLix?=
+ =?iso-8859-1?Q?McUdCfR1IiAedaPtrsa6XGgsoD6bCaBq/pizMjTKx538HplgjbibaGa7zX?=
+ =?iso-8859-1?Q?vvHoaldh7OeQtjqkFEEmgQQcsu/3qqNcpGST2B0VtWuxeRWfR3H+DLAD8O?=
+ =?iso-8859-1?Q?qvZeV7lfKk6qOrYGxoSKACKtgYaVRU+gK/hVGqwNRwEXZdLNamk+azysdb?=
+ =?iso-8859-1?Q?ybTDm7dnKuLr3vhEVOV8lEAuLGWnF5ShjOCMMSKHnZbD5fbXuwOkUiJxZ+?=
+ =?iso-8859-1?Q?GgULH8yWwAwFLWZ3m420wxBEnZZ+MXdO4apbIWhEWA4Hg29bq/zyVLKWKM?=
+ =?iso-8859-1?Q?KW+t+t14Jhoxb+JGlAm4N207AZam+ryzZIv4QiGA0YtbMPPV03AVTHSFLC?=
+ =?iso-8859-1?Q?fkv+dn3nMWPTtXm70Vi7loqMfjQrX7VDyuzQPogZ6s8g6vDwUF6AlDFl0q?=
+ =?iso-8859-1?Q?nbBPZG5RaBIv3uoUyK/rugGXi14d/aH+6B46cc8pJ6JrGYMinQ3+RCW6b0?=
+ =?iso-8859-1?Q?5AWiZOGiSF3cGFWS5lPL28VtkE6ZSAfG07Fk855QdLEe0BNUofKkbQxr77?=
+ =?iso-8859-1?Q?q8GIdfwnM9ZaNSBccvyWeJ1UMpt9PVMB6Q1aPhYxCUyLWUijFMggZe4fkb?=
+ =?iso-8859-1?Q?WbaTklRg6wXBDfSJZRp10gfp2EwfPXsB7YGJjak+rTMD41Mm/e71TfO4Rd?=
+ =?iso-8859-1?Q?YRxX6R6J6OwCmHpNT0G9HCGdKAaF/PRI2O2id5Zz2ek9w7qlyNmjV7lAP8?=
+ =?iso-8859-1?Q?S/USYUSqtZA4NTXljTn9ekLG9EHCih1UT9x2kEiFYksAqAfuCBFVmK2M40?=
+ =?iso-8859-1?Q?uAnh1kG0qUxKW6Aw3GnJUtJBB0RnjyHFX5wtQV33W5uVVDaG0zV2Sz+q84?=
+ =?iso-8859-1?Q?n9G2rAwtPXpIpMixc81gWY5WJYCiYmNBnQWpjC6z59uFSQnpkNA97mkBBR?=
+ =?iso-8859-1?Q?1L8xbUjncdD57KzOnbDe4S1wz+vDo2zRjKhcuKlnPOhwvNcmD5Mjr3ZOD1?=
+ =?iso-8859-1?Q?k2cr9n5aAbsXSWa3Ri838gK0u1zlgwWjiodBwB95ktrOlgkh33HXg8ZIcy?=
+ =?iso-8859-1?Q?tGUIJQwL3PRHsavWFj0LrrYfYO2GEyNOShrojSXU+2ctF35Iurn4BW93N1?=
+ =?iso-8859-1?Q?bf8G6guN0Tbs+1TFY4TXtsd8fsN5qRY0oD8u83AyUlust+VF6QsCJsU08b?=
+ =?iso-8859-1?Q?mf2fHmmGgREwbvEn0XWuQdqXiQh++2ApzWstdU5wtw8BXh0+LYo0in4qII?=
+ =?iso-8859-1?Q?1zkbsj1yT5vI9i2QxTtx0aVI31KfIELyk1R3+n/ZAnK+StxuQnnbg12cIy?=
+ =?iso-8859-1?Q?aJHWj8YESReJQvVPfMtFwDURevYcJXAhJofwedcXImU5ePFpWjj2cfmg7b?=
+ =?iso-8859-1?Q?c=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(1800799024)(376014)(7053199007); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?9HwY43R3S3gheG51Zu8HQodgZ3ntyPO+GImrLXauUKejp8HF2SBHXZ4ysP?=
- =?iso-8859-1?Q?dG+Pzg65GKQYgTLYv/8RjRrZ5MsasII4KFC3rW6yY8UsCubmdWCPCsUTdi?=
- =?iso-8859-1?Q?WlgIN0EF0IU+Qu0ju/rfq7PDOl3Q0RsigAwUD/z7ZVUCFO63bnYSoLYbsw?=
- =?iso-8859-1?Q?WSYEa6rwvfeQe4Bu/4lvJSD3f4ZRGsFjhCJ77KiqIQOrn5L2nubJ+zHUMG?=
- =?iso-8859-1?Q?/dpMd0p2fsrTL7/PMPOowfVmvbSr52b1RzCjz09l00wX5fjx8RmK30FCs8?=
- =?iso-8859-1?Q?OxIpv4B4VJp53W+ZnyF6gJFWvE4widNv8uNQQBj2mqyGblbiw9p/OYKswE?=
- =?iso-8859-1?Q?Bcp/WDynpGI3hyW5Ch3E4hSt6HlyA+BPPtUBTv3OPMjq4OdkFIBkCdpRiQ?=
- =?iso-8859-1?Q?GcIijm4KAS5Dd1bjBe4Iq1MLJa0ggZCDmq1nWBGz+92Tt5EI6NIa8NlZsV?=
- =?iso-8859-1?Q?iJK/+Yg9JY4qEC1Tz15uMfe+30STIMnznzEUxNchWdMtJF2rzVxdVWlX9e?=
- =?iso-8859-1?Q?w5h/3TTH3/b/jw20OL6WfZl3Nl6pUTtb9KnJ+DhIwJMZNlwhDuk9Tr5UiU?=
- =?iso-8859-1?Q?SChewafQByEzZLJeCxYaAQwRGlAu/MajUt2HlqElkiLCfWLJAMekwAYhqZ?=
- =?iso-8859-1?Q?hoKheQJurFn65DFzMP8nSqIMp2WWh2SNnLzRqZ1AzBDCDkz8A0ooR/+mpO?=
- =?iso-8859-1?Q?g0XrbDqQYz8xjT3gwJ3WbQfUlnrWTxYfEl9PEwWZlpb1RqDjXpjW34yGFE?=
- =?iso-8859-1?Q?zz2rVoXjQ/km2KXG2bRPLHVL5e3HMK5P9T5SvT1G2+2MIRWbrpdSb3fX4g?=
- =?iso-8859-1?Q?OOxHSU63svcSIlAPmOvrsOEArWNLahC0T2x4WhqEXOg8WSNydPZzMDn6T/?=
- =?iso-8859-1?Q?L2xCbXOAUceXN0MGh74Sb76sDw6O51oXJOQUFglK0EiyAdCVnB4+adA2YP?=
- =?iso-8859-1?Q?xPldsz2YBa0SBS+1HpAVj/v+FjmCQmcw8kX2TpFCASgUsNhs/cRdFi3USP?=
- =?iso-8859-1?Q?lwTSu4hNqi0onjHyr1it4etj1BM/M6a5V8d1W6VLPQFHEfzZR1T+Hsn9UU?=
- =?iso-8859-1?Q?7ciHlLAM74MP1kKXQfdnyqjEga+eOUcecytY/DIVDfTFXtrMkeYdBWMGk+?=
- =?iso-8859-1?Q?2plf1qYQjYM9OAt7quRe9xrJ21+n2fvNeCqmBRswkiHnZoAQ8wDbzhxxCb?=
- =?iso-8859-1?Q?iQVXEtkjvQbyU0KR48o8EzuYeBXyiwZ7wDJO7atxynfT/C5N2paSXz5u4W?=
- =?iso-8859-1?Q?wp9S+NExncQD4qaiDhe5O4EHwUrmEc+tVkC9E6eMkCb3Wi5v4+pNqKHdr/?=
- =?iso-8859-1?Q?wkS75jsnP8SuV3uRHmfQTGFFkdQ1gcgeXDKaDrPQK1t5bHrfQApGNNEeVN?=
- =?iso-8859-1?Q?OnvxiJuNSrUQ41PSs8Fmrs74G7OrEGn2ZfuT7tESIGuqY49cHgKMwtUW4E?=
- =?iso-8859-1?Q?8ifiT3IutshtAbzIXz+VcV5taAzv8mvad0xdtKIpPVrtDVI2g9LYFJXKJZ?=
- =?iso-8859-1?Q?QvVZ8gMvFpAvBtqf9X86VvL9MOQ2Udc74hAd7dV8+ze8ApxeeXqPbuKe4r?=
- =?iso-8859-1?Q?leCEpysbQMd7h94Il9Zeh/1q2Fak/NeFQodFB9y7MeVWc2I2VmIpHmiHx5?=
- =?iso-8859-1?Q?bEXUl8yi7vOvXNUeaTt6GFeJHjfvcR3pMC2VTvy9c/mtdlQ2v4dd566w?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?e/plDkPlc8TQAcvMI+FV9x/oZtfGC+FHKZsXwhsMoKJWlBN3mrPybpTRLk?=
+ =?iso-8859-1?Q?w9aQxaLPzI7sneN95kZbOKV1SvRdW992TO5kp2dYAMedfu+PcNgSrT0MVe?=
+ =?iso-8859-1?Q?3nif78+cN/YBDkS3yR/Cn+Y+JEboJWDLO3SsnrtSEH3IJ5+q9QEKfl8Coc?=
+ =?iso-8859-1?Q?zBsi55v1VGZNMihrLMCUVLhscoMeZ+IpWfOL0nyWkC8ZUJKrUSWPij6EML?=
+ =?iso-8859-1?Q?bw8Wu9soqCnYlOOgfdtPCD6Fl+pt01t3Pzxgqfp4V0nTZBah6ZGsUf9kla?=
+ =?iso-8859-1?Q?dibAaR6hg2SbBqZwC5TfZ1zxPsJ12cR6gyc9tYwfRiHDSRqeFVDEvbM1Ad?=
+ =?iso-8859-1?Q?33O8VvTXqShK8sX9gmysXu1USohUHfVwIXy94Oy9O9TehOAsPyYqRQuyCT?=
+ =?iso-8859-1?Q?xw1lZnSZrPfwITiO43BuLOEgOd1yBvvbGOg3BKExh+JPr2a1/Fy2vXQc5s?=
+ =?iso-8859-1?Q?MhcK9N1Nk2Uwz2JUy/FwHreKGISFZzuW/ZFjqnKQa2JEG6FTiJwrGSSbDi?=
+ =?iso-8859-1?Q?Rh5AqsVS3yTrh0GJnO0qv5K6WDuvmBBAp0Q6igFLYb9UNriiW/uuMGV7m0?=
+ =?iso-8859-1?Q?E2Cp6a971cUQn8jHGqsEisBRszWRXuN6BketoBfytfHVJSvg3piXHQr1FL?=
+ =?iso-8859-1?Q?7VPjxo+zpHwdgjMEzIZ/jSFyMQBsWQGzf3DDiTDLrc+/dEasqsWLbvsX+/?=
+ =?iso-8859-1?Q?XrHZ9ZgnpbTY4glDSipTUwCvUfZBtyn2hT+WzdkNHEVO73M/UIVDy3aeqA?=
+ =?iso-8859-1?Q?FKiNx1TZX9hSdgc/ER0PKKwuSdUuteL64fSPng8q3pFuRjwqTRMEkzOOUG?=
+ =?iso-8859-1?Q?Ru+6pNhLcQB4PC0CkKttToWihGojvJpONwCPzw/CMLgiNh61HPOV11xHTu?=
+ =?iso-8859-1?Q?PYE1q8W/TXCqqLNELp65k3QTmM4/IGrC4zPmNnpt6VsLRNhTUNL86rItxe?=
+ =?iso-8859-1?Q?S2s164M1yGHotvpSYwVnHXCupINsL0Vw/9zE4gdlMSoDeN6sOav0dZoKKc?=
+ =?iso-8859-1?Q?gmm0+RqLZa69NlEO5r8wDPSVYhgC6iJ7BqbMRvqmT+Mvl80cC/oqrW6o/C?=
+ =?iso-8859-1?Q?52SH2chVg+WYqsRyDC9F6N3SIBDJw5qOD7t5ZWgHI9BmkPyhR3JeJcFY59?=
+ =?iso-8859-1?Q?U//xmCnNaBvs2XbimFPNpCQHbrBU6qNLTJYBDHmreXCrnTRsbww+YkNm69?=
+ =?iso-8859-1?Q?BtTsPgCFHU6DMWr5U0aT4wsErZpcSg9vxPnOexNcODU12fo1SyKCO1XkB7?=
+ =?iso-8859-1?Q?wN72AcP7DxZpvIFwGiR4gNgw+m8pYwDnmjahwrwEjJRGBIG1AAyEaAPv0n?=
+ =?iso-8859-1?Q?yrq57ZF9/U3+bfn8pkyPMkzV+P4rLyjooVt3PQ2zd0xp3xgU92DDJ1phU7?=
+ =?iso-8859-1?Q?kVsz3pC9XM4bgq0jbovi6LfBEAPGEj8idHTzc1IvlwKx+ThAti9l9X6SWI?=
+ =?iso-8859-1?Q?oSGBTOfb/oVD1XAWk7r9qzH+vd23e1fTQgm+SvbCC5EvYLrGjpF4+ex0d4?=
+ =?iso-8859-1?Q?Qo9RRu1zdfffngLsw9gNYRQHrEclCTIP/ZSr/IMPZbH7GWnpEdrPQdAAvc?=
+ =?iso-8859-1?Q?P7Idmh81uf1aQpwdHifCXFKmYXBuSGh7PIl0Iq/3UFRfb7Y7GI5IKgq7yv?=
+ =?iso-8859-1?Q?xF9/FIt+BgW94tOn9K2pQbRlOI6rN3KHhcPv5wWLsoSh8MIE+7O3bXOA?=
  =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 03553ba6-5085-4719-caad-08dd9dfeece4
+X-MS-Exchange-CrossTenant-Network-Message-Id: a47df577-985e-478e-8d80-08dd9dff2d2a
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2025 15:47:17.9991 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2025 15:49:05.7876 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aEgRX7iSL0NTL5AtPfhsk4s1v5azMQVZMiLPWOh++RJ7fZRzxkb11LjEVXrwdl1dKNjg05aVSpPZaxyHDd9ERQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: zWR/BMrdy7wwHJTxt36hsx4v1Beh/o8mmymUBaMWjfbYo69hitatWRVRwCZ9uYRaNBswt/+gdoKJxBL8Wa9Yrg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB7085
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -182,133 +180,293 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, May 28, 2025 at 03:29:17PM +0100, Matthew Auld wrote:
-> On 28/05/2025 14:06, Upadhyay, Tejas wrote:
-> > 
-> > 
-> > > -----Original Message-----
-> > > From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of
-> > > Matthew Auld
-> > > Sent: 28 May 2025 17:03
-> > > To: intel-xe@lists.freedesktop.org
-> > > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>; Brost, Matthew
-> > > <matthew.brost@intel.com>; Tseng, William <william.tseng@intel.com>;
-> > > stable@vger.kernel.org
-> > > Subject: [PATCH v3] drm/xe/sched: stop re-submitting signalled jobs
+On Wed, May 28, 2025 at 09:37:40AM +0200, Thomas Hellström wrote:
+> On Tue, 2025-05-27 at 11:57 -0700, Matthew Brost wrote:
+> > On Mon, May 26, 2025 at 06:16:32PM +0200, Thomas Hellström wrote:
+> > > For preempt_fence mode VM's we're rejecting eviction of
+> > > shared bos during VM_BIND. However, since we do this in the
+> > > move() callback, we're getting an eviction failure warning from
+> > > TTM. The TTM callback intended for these things is
+> > > eviction_valuable().
 > > > 
-> > > Customer is reporting a really subtle issue where we get random DMAR faults,
-> > > hangs and other nasties for kernel migration jobs when stressing stuff like
-> > > s2idle/s3/s4. The explosions seems to happen somewhere after resuming the
-> > > system with splats looking something like:
+> > > However, the latter doesn't pass in the struct ttm_operation_ctx
+> > > needed to determine whether the caller needs this.
 > > > 
-> > > PM: suspend exit
-> > > rfkill: input handler disabled
-> > > xe 0000:00:02.0: [drm] GT0: Engine reset: engine_class=bcs, logical_mask:
-> > > 0x2, guc_id=0 xe 0000:00:02.0: [drm] GT0: Timedout job: seqno=24496,
-> > > lrc_seqno=24496, guc_id=0, flags=0x13 in no process [-1] xe 0000:00:02.0:
-> > > [drm] GT0: Kernel-submitted job timed out
-> > > 
-> > > The likely cause appears to be a race between suspend cancelling the worker
-> > > that processes the free_job()'s, such that we still have pending jobs to be
-> > > freed after the cancel. Following from this, on resume the pending_list will
-> > > now contain at least one already complete job, but it looks like we call
-> > > drm_sched_resubmit_jobs(), which will then call
-> > > run_job() on everything still on the pending_list. But if the job was already
-> > > complete, then all the resources tied to the job, like the bb itself, any memory
-> > > that is being accessed, the iommu mappings etc. might be long gone since
-> > > those are usually tied to the fence signalling.
-> > > 
-> > > This scenario can be seen in ftrace when running a slightly modified xe_pm
-> > > (kernel was only modified to inject artificial latency into free_job to make the
-> > > race easier to hit):
-> > > 
-> > > xe_sched_job_run: dev=0000:00:02.0, fence=0xffff888276cc8540, seqno=0,
-> > > lrc_seqno=0, gt=0, guc_id=0, batch_addr=0x000000146910 ...
-> > > xe_exec_queue_stop:   dev=0000:00:02.0, 3:0x2, gt=0, width=1, guc_id=0,
-> > > guc_state=0x0, flags=0x13
-> > > xe_exec_queue_stop:   dev=0000:00:02.0, 3:0x2, gt=0, width=1, guc_id=1,
-> > > guc_state=0x0, flags=0x4
-> > > xe_exec_queue_stop:   dev=0000:00:02.0, 4:0x1, gt=1, width=1, guc_id=0,
-> > > guc_state=0x0, flags=0x3
-> > > xe_exec_queue_stop:   dev=0000:00:02.0, 1:0x1, gt=1, width=1, guc_id=1,
-> > > guc_state=0x0, flags=0x3
-> > > xe_exec_queue_stop:   dev=0000:00:02.0, 4:0x1, gt=1, width=1, guc_id=2,
-> > > guc_state=0x0, flags=0x3
-> > > xe_exec_queue_resubmit: dev=0000:00:02.0, 3:0x2, gt=0, width=1, guc_id=0,
-> > > guc_state=0x0, flags=0x13
-> > > xe_sched_job_run: dev=0000:00:02.0, fence=0xffff888276cc8540, seqno=0,
-> > > lrc_seqno=0, gt=0, guc_id=0, batch_addr=0x000000146910 ...
-> > > .....
-> > > xe_exec_queue_memory_cat_error: dev=0000:00:02.0, 3:0x2, gt=0, width=1,
-> > > guc_id=0, guc_state=0x3, flags=0x13
-> > > 
-> > > So the job_run() is clearly triggered twice for the same job, even though the
-> > > first must have already signalled to completion during suspend. We can also
-> > > see a CAT error after the re-submit.
-> > > 
-> > > To prevent this try to call xe_sched_stop() to forcefully remove anything on
-> > > the pending_list that has already signalled, before we re-submit.
+> > > Instead, attach the needed information to the vm under the
+> > > vm->resv, until we've been able to update TTM to provide the
+> > > needed information. And add sufficient lockdep checks to prevent
+> > > misuse and races.
 > > > 
 > > > v2:
-> > >    - Make sure to re-arm the fence callbacks with sched_start().
-> > > v3 (Matt B):
-> > >    - Stop using drm_sched_resubmit_jobs(), which appears to be deprecated
-> > >      and just open-code a simple loop such that we skip calling run_job()
-> > >      and anything already signalled.
+> > > - Fix a copy-paste error in xe_vm_clear_validating()
 > > > 
-> > > Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4856
-> > > Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-> > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> > > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > > Cc: Matthew Brost <matthew.brost@intel.com>
-> > > Cc: William Tseng <william.tseng@intel.com>
-> > > Cc: <stable@vger.kernel.org> # v6.8+
+> > > Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> > > Fixes: 0af944f0e308 ("drm/xe: Reject BO eviction if BO is bound to
+> > > current VM")
+> > > Cc: Oak Zeng <oak.zeng@intel.com>
 > > > ---
-> > >   drivers/gpu/drm/xe/xe_gpu_scheduler.h | 10 +++++++++-
-> > >   1 file changed, 9 insertions(+), 1 deletion(-)
+> > >  drivers/gpu/drm/xe/xe_bo.c       | 46 +++++++++++++---------
+> > >  drivers/gpu/drm/xe/xe_vm.h       | 65
+> > > ++++++++++++++++++++++++++++++++
+> > >  drivers/gpu/drm/xe/xe_vm_types.h |  8 ++++
+> > >  3 files changed, 101 insertions(+), 18 deletions(-)
 > > > 
-> > > diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-> > > b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-> > > index c250ea773491..308061f0cf37 100644
-> > > --- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-> > > +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-> > > @@ -51,7 +51,15 @@ static inline void xe_sched_tdr_queue_imm(struct
-> > > xe_gpu_scheduler *sched)
-> > > 
-> > >   static inline void xe_sched_resubmit_jobs(struct xe_gpu_scheduler *sched)  {
-> > > -	drm_sched_resubmit_jobs(&sched->base);
-> > > +	struct drm_sched_job *s_job;
+> > > diff --git a/drivers/gpu/drm/xe/xe_bo.c
+> > > b/drivers/gpu/drm/xe/xe_bo.c
+> > > index d99d91fe8aa9..3c48a8c5f439 100644
+> > > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > > @@ -841,21 +841,6 @@ static int xe_bo_move(struct ttm_buffer_object
+> > > *ttm_bo, bool evict,
+> > >  		goto out;
+> > >  	}
+> > >  
+> > > -	/* Reject BO eviction if BO is bound to current VM. */
+> > > -	if (evict && ctx->resv) {
+> > > -		struct drm_gpuvm_bo *vm_bo;
+> > > -
+> > > -		drm_gem_for_each_gpuvm_bo(vm_bo, &bo->ttm.base) {
+> > > -			struct xe_vm *vm = gpuvm_to_vm(vm_bo->vm);
+> > > -
+> > > -			if (xe_vm_resv(vm) == ctx->resv &&
+> > > -			    xe_vm_in_preempt_fence_mode(vm)) {
+> > > -				ret = -EBUSY;
+> > > -				goto out;
+> > > -			}
+> > > -		}
+> > > -	}
+> > > -
+> > >  	/*
+> > >  	 * Failed multi-hop where the old_mem is still marked as
+> > >  	 * TTM_PL_FLAG_TEMPORARY, should just be a dummy move.
+> > > @@ -1013,6 +998,25 @@ static long xe_bo_shrink_purge(struct
+> > > ttm_operation_ctx *ctx,
+> > >  	return lret;
+> > >  }
+> > >  
+> > > +static bool
+> > > +xe_bo_eviction_valuable(struct ttm_buffer_object *bo, const struct
+> > > ttm_place *place)
+> > > +{
+> > > +	struct drm_gpuvm_bo *vm_bo;
 > > > +
-> > > +	list_for_each_entry(s_job, &sched->base.pending_list, list) {
-> > > +		struct drm_sched_fence *s_fence = s_job->s_fence;
-> > > +		struct dma_fence *hw_fence = s_fence->parent;
+> > > +	if (!ttm_bo_eviction_valuable(bo, place))
+> > > +		return false;
 > > > +
-> > > +		if (hw_fence && !dma_fence_is_signaled(hw_fence))
-> > > +			sched->base.ops->run_job(s_job);
+> > > +	if (!xe_bo_is_xe_bo(bo))
+> > > +		return true;
+> > > +
+> > > +	drm_gem_for_each_gpuvm_bo(vm_bo, &bo->base) {
+> > > +		if (xe_vm_is_validating(gpuvm_to_vm(vm_bo->vm)))
+> > > +			return false;
 > > > +	}
+> > > +
+> > > +	return true;
+> > > +}
+> > > +
+> > >  /**
+> > >   * xe_bo_shrink() - Try to shrink an xe bo.
+> > >   * @ctx: The struct ttm_operation_ctx used for shrinking.
+> > > @@ -1047,7 +1051,7 @@ long xe_bo_shrink(struct ttm_operation_ctx
+> > > *ctx, struct ttm_buffer_object *bo,
+> > >  	    (flags.purge && !xe_tt->purgeable))
+> > >  		return -EBUSY;
+> > >  
+> > > -	if (!ttm_bo_eviction_valuable(bo, &place))
+> > > +	if (!xe_bo_eviction_valuable(bo, &place))
+> > >  		return -EBUSY;
+> > >  
+> > >  	if (!xe_bo_is_xe_bo(bo) || !xe_bo_get_unless_zero(xe_bo))
+> > > @@ -1588,7 +1592,7 @@ const struct ttm_device_funcs xe_ttm_funcs =
+> > > {
+> > >  	.io_mem_pfn = xe_ttm_io_mem_pfn,
+> > >  	.access_memory = xe_ttm_access_memory,
+> > >  	.release_notify = xe_ttm_bo_release_notify,
+> > > -	.eviction_valuable = ttm_bo_eviction_valuable,
+> > > +	.eviction_valuable = xe_bo_eviction_valuable,
+> > >  	.delete_mem_notify = xe_ttm_bo_delete_mem_notify,
+> > >  	.swap_notify = xe_ttm_bo_swap_notify,
+> > >  };
+> > > @@ -2431,6 +2435,8 @@ int xe_bo_validate(struct xe_bo *bo, struct
+> > > xe_vm *vm, bool allow_res_evict)
+> > >  		.no_wait_gpu = false,
+> > >  		.gfp_retry_mayfail = true,
+> > >  	};
+> > > +	struct pin_cookie cookie;
+> > > +	int ret;
+> > >  
+> > >  	if (vm) {
+> > >  		lockdep_assert_held(&vm->lock);
+> > > @@ -2440,8 +2446,12 @@ int xe_bo_validate(struct xe_bo *bo, struct
+> > > xe_vm *vm, bool allow_res_evict)
+> > >  		ctx.resv = xe_vm_resv(vm);
+> > >  	}
+> > >  
+> > > +	cookie = xe_vm_set_validating(vm, allow_res_evict);
+> > >  	trace_xe_bo_validate(bo);
+> > > -	return ttm_bo_validate(&bo->ttm, &bo->placement, &ctx);
+> > > +	ret = ttm_bo_validate(&bo->ttm, &bo->placement, &ctx);
+> > > +	xe_vm_clear_validating(vm, allow_res_evict, cookie);
+> > > +
+> > > +	return ret;
+> > >  }
+> > >  
+> > >  bool xe_bo_is_xe_bo(struct ttm_buffer_object *bo)
+> > > diff --git a/drivers/gpu/drm/xe/xe_vm.h
+> > > b/drivers/gpu/drm/xe/xe_vm.h
+> > > index 99e164852f63..fe05c4f7f425 100644
+> > > --- a/drivers/gpu/drm/xe/xe_vm.h
+> > > +++ b/drivers/gpu/drm/xe/xe_vm.h
+> > > @@ -303,6 +303,71 @@ void xe_vm_snapshot_capture_delayed(struct
+> > > xe_vm_snapshot *snap);
+> > >  void xe_vm_snapshot_print(struct xe_vm_snapshot *snap, struct
+> > > drm_printer *p);
+> > >  void xe_vm_snapshot_free(struct xe_vm_snapshot *snap);
+> > >  
+> > > +/**
+> > > + * xe_vm_set_validating() - Register this task as currently making
+> > > bos resident
+> > > + * @vm: Pointer to the vm or NULL.
+> > > + *
+> > > + * Register this task as currently making bos resident for the vm.
+> > > Intended
+> > > + * to avoid eviction by the same task of shared bos bound to the
+> > > vm.
+> > > + * Call with the vm's resv lock held.
+> > > + *
+> > > + * Return: A pin cookie that should be used for
+> > > xe_vm_clear_validating().
+> > > + */
+> > > +static inline struct pin_cookie xe_vm_set_validating(struct xe_vm
+> > > *vm,
+> > > +						     bool
+> > > allow_res_evict)
+> > > +{
+> > > +	struct pin_cookie cookie = {};
+> > > +
+> > > +	if (vm && !allow_res_evict) {
+> > > +		xe_vm_assert_held(vm);
+> > > +		cookie = lockdep_pin_lock(&xe_vm_resv(vm)-
+> > > >lock.base);
 > > 
-> > While this change looks correct, what about those hanging contexts which is indicated to waiters by dma_fence_set_error(&s_fence->finished, -ECANCELED);!
+> > I'm little unclear on why the cookie is needed / what
+> > lockdep_pin_lock
+> > does. I looked implementation for lockdep_pin_lock and it completely
+> > undocumented - could you explain?
 > 
-> I think a hanging context will usually be banned, so we shouldn't reach this
-> point AFAICT. Can you share some more info on what your concern is here? I
-> don't think we would normally want to call run_job() again on jobs from a
-> hanging context. It looks like our run_job() will bail if the hw fence is
-> marked with an error.
+> lockdep_pin_lock() warns if someone somewhere deeper in the call chain
+> for some reason unlocks the specific lock while the lock is pinned.
 > 
 
-Also I the hw_fence will be signaled if in an eror state - see
-xe_hw_fence_signaled. I believe we could remove that check from run_job
-now but can do that in a follow up.
+Thanks. I was able to figure this out after a bit more digging too.
 
-Anyways, this patch LGTM:
+> In this case that would mean that vm->validating would be set without
+> the vm->resv was held.
+> 
+> Mostly paranoia.
+
+Paranoia is good IMO.
+
+With that:
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
+> 
+> /Thomas
+> 
 > > 
-> > Tejas
-> > >   }
-> > > 
-> > >   static inline bool
-> > > --
+> > Everything else makes sense and LGTM.
+> > 
+> > Matt
+> > 
+> > > +		/* Pairs with READ_ONCE in xe_vm_is_validating()
+> > > */
+> > > +		WRITE_ONCE(vm->validating, current);
+> > > +	}
+> > > +
+> > > +	return cookie;
+> > > +}
+> > > +
+> > > +/**
+> > > + * xe_vm_clear_validating() - Unregister this task as currently
+> > > making bos resident
+> > > + * @vm: Pointer to the vm or NULL
+> > > + * @cookie: Cookie obtained from xe_vm_set_validating().
+> > > + *
+> > > + * Register this task as currently making bos resident for the vm.
+> > > Intended
+> > > + * to avoid eviction by the same task of shared bos bound to the
+> > > vm.
+> > > + * Call with the vm's resv lock held.
+> > > + */
+> > > +static inline void xe_vm_clear_validating(struct xe_vm *vm, bool
+> > > allow_res_evict,
+> > > +					  struct pin_cookie
+> > > cookie)
+> > > +{
+> > > +	if (vm && !allow_res_evict) {
+> > > +		lockdep_unpin_lock(&xe_vm_resv(vm)->lock.base,
+> > > cookie);
+> > > +		/* Pairs with READ_ONCE in xe_vm_is_validating()
+> > > */
+> > > +		WRITE_ONCE(vm->validating, NULL);
+> > > +	}
+> > > +}
+> > > +
+> > > +/**
+> > > + * xe_vm_is_validating() - Whether bos bound to the vm are
+> > > currently being made resident
+> > > + * by the current task.
+> > > + * @vm: Pointer to the vm.
+> > > + *
+> > > + * If this function returns %true, we should be in a vm resv
+> > > locked region, since
+> > > + * the current process is the same task that called
+> > > xe_vm_set_validating().
+> > > + * The function asserts that that's indeed the case.
+> > > + *
+> > > + * Return: %true if the task is currently making bos resident,
+> > > %false otherwise.
+> > > + */
+> > > +static inline bool xe_vm_is_validating(struct xe_vm *vm)
+> > > +{
+> > > +	/* Pairs with WRITE_ONCE in xe_vm_is_validating() */
+> > > +	if (READ_ONCE(vm->validating) == current) {
+> > > +		xe_vm_assert_held(vm);
+> > > +		return true;
+> > > +	}
+> > > +	return false;
+> > > +}
+> > > +
+> > >  #if IS_ENABLED(CONFIG_DRM_XE_USERPTR_INVAL_INJECT)
+> > >  void xe_vma_userptr_force_invalidate(struct xe_userptr_vma *uvma);
+> > >  #else
+> > > diff --git a/drivers/gpu/drm/xe/xe_vm_types.h
+> > > b/drivers/gpu/drm/xe/xe_vm_types.h
+> > > index bfc145baad49..0e1318a15c9e 100644
+> > > --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> > > +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> > > @@ -310,6 +310,14 @@ struct xe_vm {
+> > >  	 * protected by the vm resv.
+> > >  	 */
+> > >  	u64 tlb_flush_seqno;
+> > > +	/**
+> > > +	 * @validating: The task that is currently making bos
+> > > resident for this vm.
+> > > +	 * Protected by the VM's resv for writing. Opportunistic
+> > > reading can be done
+> > > +	 * using READ_ONCE. Note: This is a workaround for the
+> > > +	 * TTM eviction_valuable() callback not being passed a
+> > > struct
+> > > +	 * ttm_operation_context(). Future work might want to
+> > > address this.
+> > > +	 */
+> > > +	struct task_struct *validating;
+> > >  	/** @batch_invalidate_tlb: Always invalidate TLB before
+> > > batch start */
+> > >  	bool batch_invalidate_tlb;
+> > >  	/** @xef: XE file handle for tracking this VM's drm client
+> > > */
+> > > -- 
 > > > 2.49.0
-> > 
+> > > 
 > 
