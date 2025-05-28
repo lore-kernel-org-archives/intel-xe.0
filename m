@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03E2EC3ABB2
-	for <intel-xe@archiver.kernel.org>; Wed, 28 May 2025 23:18:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4D78C5B543
+	for <intel-xe@archiver.kernel.org>; Wed, 28 May 2025 23:42:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0A0210E6D1;
-	Wed, 28 May 2025 23:18:41 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4A6510E6D1;
- Wed, 28 May 2025 23:18:40 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1043329838263227995=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF04710E0F9;
+	Wed, 28 May 2025 23:42:43 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FWL+gzNG";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7321A10E0F9
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 May 2025 23:42:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1748475762; x=1780011762;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=2tp+fQLZUbkCzsyuK4IH10vRfUxbM4VvBoS+YyK43Ec=;
+ b=FWL+gzNGGOLq3Z+JHrxJl81Uh/YIRxjGyvtTH+8LpQ+MlIosSGaw/36f
+ rAVD1TyS1qGjdhWjD/8EF3La6uRM/v2YbJqCcvNDUoww1lLEzFKxj0ZeG
+ 1iGFA5nDUuiEQHumufLPJOIm9M6LDae6z+Vl6+UPPrqPL4/ted8Ufl8Xz
+ 55dfQxVRbqLsrEwJgS/ysl/9YdwwOmoNcmMy5EV9UAN2eCFK6NHoX6YFr
+ vOAWHyTDmDFcHZnu8RBxoRJXQv1tqR4+wx+e8bL6DielK/MziKjya4vJV
+ AgPl3+sYlaewonzSqcUKW663EF4CXVetEW67yTS7fvc5gxlV7syjhi1PH w==;
+X-CSE-ConnectionGUID: RajhdSBoTku7ANznwyKB5w==
+X-CSE-MsgGUID: MNWG3vR4QUWGl0EVxp/qoA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11447"; a="50674858"
+X-IronPort-AV: E=Sophos;i="6.15,322,1739865600"; d="scan'208";a="50674858"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2025 16:42:41 -0700
+X-CSE-ConnectionGUID: 1cgMNUzjT4yv0Bldl+TtIg==
+X-CSE-MsgGUID: 2VoUv7OCS0+3m1HvZG+1cg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,322,1739865600"; d="scan'208";a="148245515"
+Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2025 16:42:41 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Lukasz Laguna <lukasz.laguna@intel.com>
+Subject: [PATCH v2 0/4] Fixes for VF GuC version
+Date: Wed, 28 May 2025 16:42:30 -0700
+Message-ID: <20250528234229.4185039-6-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_configfs_to_l?=
- =?utf-8?q?oad_with_fewer_engines_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 28 May 2025 23:18:40 -0000
-Message-ID: <174847432079.29927.16024194377543530098@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250528-engine-mask-v4-0-f4636d2a890a@intel.com>
-In-Reply-To: <20250528-engine-mask-v4-0-f4636d2a890a@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +63,39 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1043329838263227995==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The VF currently stores the negotiated GuC compatibility version in a
+private VF struct, so all the runtime checks using the common struct in
+guc->fw are not working as expected. We can fix this by copying the value
+over.
 
-== Series Details ==
+This also fixes the guc_info debugfs, printing the correct values for
+the wanted and found versions.
 
-Series: drm/xe: Add configfs to load with fewer engines (rev4)
-URL   : https://patchwork.freedesktop.org/series/149259/
-State : success
+v2: split out prep change to its own patch, bootstrap media GT early,
+remove already merged debugfs MMIO fix
 
-== Summary ==
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Lukasz Laguna <lukasz.laguna@intel.com>
 
-CI Bug Log - changes from xe-3155-76d59d6988dc9194cbd7d3c551c11f47f56f4020_BAT -> xe-pw-149259v4_BAT
-====================================================
+Daniele Ceraolo Spurio (4):
+  drm/xe/uc: Prepare uc_fw_version for storing the VF ABI version
+  drm/xe/vf: Boostrap all GTs immediately after MMIO init
+  drm/xe/vf: Use uc_fw_version to store the negotiated GuC ABI
+  drm/xe/vf: Store the GuC FW info in guc->fw
 
-Summary
--------
+ drivers/gpu/drm/xe/xe_device.c              |  11 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c         | 165 ++++++++++++--------
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.h         |   4 +
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h   |  19 +--
+ drivers/gpu/drm/xe/xe_guc.c                 |   4 -
+ drivers/gpu/drm/xe/xe_guc_engine_activity.c |   2 +-
+ drivers/gpu/drm/xe/xe_uc_fw.c               |  37 ++++-
+ drivers/gpu/drm/xe/xe_uc_fw_types.h         |   2 +
+ 8 files changed, 150 insertions(+), 94 deletions(-)
 
-  **SUCCESS**
+-- 
+2.43.0
 
-  No regressions found.
-
-  
-
-Participating hosts (8 -> 8)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3155-76d59d6988dc9194cbd7d3c551c11f47f56f4020 -> xe-pw-149259v4
-
-  IGT_8382: 8382
-  xe-3155-76d59d6988dc9194cbd7d3c551c11f47f56f4020: 76d59d6988dc9194cbd7d3c551c11f47f56f4020
-  xe-pw-149259v4: 149259v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149259v4/index.html
-
---===============1043329838263227995==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Add configfs to load with fewer engines (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149259/">https://patchwork.freedesktop.org/series/149259/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149259v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149259v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3155-76d59d6988dc9194cbd7d3c551c11f47f56f4020_BAT -&gt; xe-pw-149259v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3155-76d59d6988dc9194cbd7d3c551c11f47f56f4020 -&gt; xe-pw-149259v4</li>
-</ul>
-<p>IGT_8382: 8382<br />
-  xe-3155-76d59d6988dc9194cbd7d3c551c11f47f56f4020: 76d59d6988dc9194cbd7d3c551c11f47f56f4020<br />
-  xe-pw-149259v4: 149259v4</p>
-
-</body>
-</html>
-
---===============1043329838263227995==--
