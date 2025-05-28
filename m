@@ -4,62 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BF21C5AD49
-	for <intel-xe@archiver.kernel.org>; Thu, 29 May 2025 12:32:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 840A4C54FB3
+	for <intel-xe@archiver.kernel.org>; Thu, 29 May 2025 12:46:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 020BF10E12B;
-	Thu, 29 May 2025 12:32:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA22F10E14F;
+	Thu, 29 May 2025 12:46:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EsN0S0Ls";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="TJnJr1yD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C681810E12B;
- Thu, 29 May 2025 12:32:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748521932; x=1780057932;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=yLbj4WLa1FW95pJKsDSKPi1C8D/v76hLHpk/PFj3PhU=;
- b=EsN0S0LscgKJPqezHD7wsvSaj4KQWysLDrWo+hraIqcg+SMcSyevK6xY
- Iae/Z3UQKhxxbmFaqHfg1mSeWA/IPdJ1V35lWmwq8zUxNrv2DzVgFm8U0
- ghRqfGJWRwHQN6i82JtffXCU59zMxRlXaiyYr9fODOWHtvvhm3OrtjPfu
- zXJxBQsTZwbnirifkaKv6cBJ0OrAKSXAuhIf/7C393UMlA1nl+QxLfqc8
- 68PSwsuKoPojgyXF2ez333gRkm8u+VsOwoVnWq3Q78KXs5fbsmA0Rh1mM
- 1fhffqLrQGiBCByua2Q8kjtaQlm3tMaz4g+w3Mcy5fHaU+HDxr5V+HaJW Q==;
-X-CSE-ConnectionGUID: 5Nbtv/OcSyy5qUr1jZJHgA==
-X-CSE-MsgGUID: kpS52WXfRCmDQrZm/EhgiQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11448"; a="75970801"
-X-IronPort-AV: E=Sophos;i="6.16,192,1744095600"; d="scan'208";a="75970801"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2025 05:32:10 -0700
-X-CSE-ConnectionGUID: OhMizr/4ReivJa5oyEuELQ==
-X-CSE-MsgGUID: 4neKUg6ATbSEn1JT1J/KbA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,192,1744095600"; d="scan'208";a="143526205"
-Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
- by fmviesa007.fm.intel.com with ESMTP; 29 May 2025 05:32:09 -0700
-Received: from kbuild by 1992f890471c with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1uKcQY-000Wfw-1V;
- Thu, 29 May 2025 12:32:06 +0000
-Date: Thu, 29 May 2025 20:31:29 +0800
-From: kernel test robot <lkp@intel.com>
-To: Simona Vetter <simona.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-Cc: oe-kbuild-all@lists.linux.dev, intel-xe@lists.freedesktop.org,
- Simona Vetter <simona.vetter@ffwll.ch>,
- =?iso-8859-1?Q?Adri=E1n?= Larumbe <adrian.larumbe@collabora.com>,
- Boris Brezillon <bbrezillon@kernel.org>,
- Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>
-Subject: Re: [PATCH 3/8] drm/panthor: Fix UAF in
- panthor_gem_create_with_handle() debugfs code
-Message-ID: <202505292016.42gSDa4w-lkp@intel.com>
-References: <20250528091307.1894940-4-simona.vetter@ffwll.ch>
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE4EF10E696;
+ Wed, 28 May 2025 14:18:50 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::102])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4b6s792zx3z9swD;
+ Wed, 28 May 2025 16:18:45 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1748441925; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=zJx6vFfwz0MYTEHthiU61dRG76ot+J1AonqUVhsuUz0=;
+ b=TJnJr1yDLKr7T7cAmicStZcRlA8JXH9j13Oh8esWSeeepjouJBcnEQdg5nD8+CN6fFcVRD
+ nyrSXhLPlMvsOWb5dmXyV57DQWLs4lCg8h21dj0UV1gLhSQ+PqoHzrs0MktM3kcTQOv3Tz
+ VBqJRrdR/oGhIs7WY3mzAjxbRQUhpSTKVqH+6d5h7HpRjGCQIeCsy3PugkdN2ZlS2D8x5G
+ Ft+kRUI2xzuE9c13mTzMYRXoC4wd517ZaJxnNNCcHX1K9j00VDmjGPj748+hdBLFjt/1kN
+ JiF1Ken79t+9APOBjhHOqbJPNBQOCon9xR24tXyu9T4k9QG4wIkinlKw8bWbog==
+Message-ID: <f46f73db6594c7cd40149e35da9f188baa5961a2.camel@mailbox.org>
+Subject: Re: [PATCH v11 00/10] Improve gpu_scheduler trace events + UAPI
+From: Philipp Stanner <phasta@mailbox.org>
+To: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
+Cc: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
+ =?ISO-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>, Thomas
+ =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, Abhinav
+ Kumar <quic_abhinavk@quicinc.com>,  Alex Deucher
+ <alexander.deucher@amd.com>, Boris Brezillon
+ <boris.brezillon@collabora.com>, Danilo Krummrich <dakr@kernel.org>, David
+ Airlie <airlied@gmail.com>, Dmitry Baryshkov <lumag@kernel.org>, Felix
+ Kuehling <Felix.Kuehling@amd.com>, Frank Binns <frank.binns@imgtec.com>,
+ Jonathan Corbet <corbet@lwn.net>, Liviu Dudau <liviu.dudau@arm.com>, Lizhi
+ Hou <lizhi.hou@amd.com>, Lucas De Marchi <lucas.demarchi@intel.com>, Lucas
+ Stach <l.stach@pengutronix.de>, Lyude Paul <lyude@redhat.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>,  Matt Coster
+ <matt.coster@imgtec.com>, Matthew Brost <matthew.brost@intel.com>, Maxime
+ Ripard <mripard@kernel.org>, Melissa Wen <mwen@igalia.com>, Min Ma
+ <min.ma@amd.com>,  Oded Gabbay <ogabbay@kernel.org>, Philipp Stanner
+ <phasta@kernel.org>, Qiang Yu <yuq825@gmail.com>, Rob Clark
+ <robdclark@gmail.com>, Rob Herring <robh@kernel.org>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>, Steven Price
+ <steven.price@arm.com>, Sumit Semwal <sumit.semwal@linaro.org>, Thomas
+ Zimmermann <tzimmermann@suse.de>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org,  etnaviv@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org,  intel-xe@lists.freedesktop.org,
+ lima@lists.freedesktop.org,  linaro-mm-sig@lists.linaro.org,
+ linux-arm-msm@vger.kernel.org,  linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org,  linux-media@vger.kernel.org,
+ nouveau@lists.freedesktop.org
+Date: Wed, 28 May 2025 16:18:30 +0200
+In-Reply-To: <20250526125505.2360-1-pierre-eric.pelloux-prayer@amd.com>
+References: <20250526125505.2360-1-pierre-eric.pelloux-prayer@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250528091307.1894940-4-simona.vetter@ffwll.ch>
+X-MBO-RS-ID: 71bbfe2918ed815d7c0
+X-MBO-RS-META: 1d87cwrtfwt5qgx3mzet88gb4nq4xi15
+X-Mailman-Approved-At: Thu, 29 May 2025 12:46:50 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,73 +85,147 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Simona,
+On Mon, 2025-05-26 at 14:54 +0200, Pierre-Eric Pelloux-Prayer wrote:
+> Hi,
+>=20
+> The initial goal of this series was to improve the drm and amdgpu
+> trace events to be able to expose more of the inner workings of
+> the scheduler and drivers to developers via tools.
+>=20
+> Then, the series evolved to become focused only on gpu_scheduler.
+> The changes around vblank events will be part of a different
+> series, as well as the amdgpu ones.
+>=20
+> Moreover Sima suggested to make some trace events stable uAPI,
+> so tools can rely on them long term.
+>=20
+> The first patches extend and cleanup the gpu scheduler events,
+> then add a documentation entry in drm-uapi.rst.
+>=20
+> The last 2 patches are new in v8. One is based on a suggestion
+> from Tvrtko and gets rid of drm_sched_job::id. The other is a
+> cleanup of amdgpu trace events to use the fence=3D%llu:%llu format.
+>=20
+> The drm_sched_job patches don't affect gpuvis which has code to parse
+> the gpu_scheduler events but these events are not enabled.
+>=20
+> Changes since v10:
+> * fixed 2 errors reported by kernel test robot
+> * rebased on drm-misc-next
+>=20
+> Changes since v9:
+> * fixed documentation link syntax
+> * fixed typos in commit messages
+> * spelled out that these events cannot be used before
+> =C2=A0 drm_sched_job_arm has been called
+>=20
+> Changes since v8:
+> * swapped patches 8 & 9
+> * rebased on drm-next
+>=20
+> Changes since v7:
+> * uint64_t -> u64
+> * reworked dependencies tracing (Tvrtko)
+> * use common name prefix for all events (Tvrtko)
+> * dropped drm_sched_job::id (Tvrtko)
+>=20
+> Useful links:
+> - userspace tool using the updated events:
+> https://gitlab.freedesktop.org/tomstdenis/umr/-/merge_requests/37
+> - v8:
+> https://lists.freedesktop.org/archives/dri-devel/2025-March/496781.html
+>=20
+> Pierre-Eric Pelloux-Prayer (10):
+> =C2=A0 drm/debugfs: Output client_id in in drm_clients_info
+> =C2=A0 drm/sched: Store the drm client_id in drm_sched_fence
+> =C2=A0 drm/sched: Add device name to the drm_sched_process_job event
+> =C2=A0 drm/sched: Cleanup gpu_scheduler trace events
+> =C2=A0 drm/sched: Trace dependencies for GPU jobs
+> =C2=A0 drm/sched: Add the drm_client_id to the drm_sched_run/exec_job
+> events
+> =C2=A0 drm/sched: Cleanup event names
+> =C2=A0 drm: Get rid of drm_sched_job.id
+> =C2=A0 drm/doc: Document some tracepoints as uAPI
+> =C2=A0 drm/amdgpu: update trace format to match gpu_scheduler_trace
 
-kernel test robot noticed the following build errors:
 
-[auto build test ERROR on next-20250527]
-[also build test ERROR on linus/master]
-[cannot apply to v6.15 v6.15-rc7 v6.15-rc6 v6.15]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Simona-Vetter/drm-gem-Fix-race-in-drm_gem_handle_create_tail/20250528-171524
-base:   next-20250527
-patch link:    https://lore.kernel.org/r/20250528091307.1894940-4-simona.vetter%40ffwll.ch
-patch subject: [PATCH 3/8] drm/panthor: Fix UAF in panthor_gem_create_with_handle() debugfs code
-config: sparc-randconfig-r132-20250529 (https://download.01.org/0day-ci/archive/20250529/202505292016.42gSDa4w-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 8.5.0
-reproduce: (https://download.01.org/0day-ci/archive/20250529/202505292016.42gSDa4w-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202505292016.42gSDa4w-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/gpu/drm/panthor/panthor_gem.c: In function 'panthor_gem_create_object':
->> drivers/gpu/drm/panthor/panthor_gem.c:249:21: error: 'struct panthor_gem_object' has no member named 'debugfs'
-     INIT_LIST_HEAD(&obj->debugfs.node);
-                        ^~
+Applied to drm-misc-next
 
 
-vim +249 drivers/gpu/drm/panthor/panthor_gem.c
+Thanks
+P.
 
-   225	
-   226	/**
-   227	 * panthor_gem_create_object - Implementation of driver->gem_create_object.
-   228	 * @ddev: DRM device
-   229	 * @size: Size in bytes of the memory the object will reference
-   230	 *
-   231	 * This lets the GEM helpers allocate object structs for us, and keep
-   232	 * our BO stats correct.
-   233	 */
-   234	struct drm_gem_object *panthor_gem_create_object(struct drm_device *ddev, size_t size)
-   235	{
-   236		struct panthor_device *ptdev = container_of(ddev, struct panthor_device, base);
-   237		struct panthor_gem_object *obj;
-   238	
-   239		obj = kzalloc(sizeof(*obj), GFP_KERNEL);
-   240		if (!obj)
-   241			return ERR_PTR(-ENOMEM);
-   242	
-   243		obj->base.base.funcs = &panthor_gem_funcs;
-   244		obj->base.map_wc = !ptdev->coherent;
-   245		mutex_init(&obj->gpuva_list_lock);
-   246		drm_gem_gpuva_set_lock(&obj->base.base, &obj->gpuva_list_lock);
-   247		mutex_init(&obj->label.lock);
-   248	
- > 249		INIT_LIST_HEAD(&obj->debugfs.node);
-   250	
-   251		return &obj->base.base;
-   252	}
-   253	
+>=20
+> =C2=A0Documentation/gpu/drm-uapi.rst=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 19 ++++
+> =C2=A0drivers/accel/amdxdna/aie2_ctx.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
+> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c=C2=A0=C2=A0=C2=A0 |=C2=
+=A0=C2=A0 2 +-
+> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
+> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_job.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 8 +-
+> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_job.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 3 +-
+> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h=C2=A0=C2=A0=C2=A0=C2=A0 |=
+=C2=A0 32 ++----
+> =C2=A0drivers/gpu/drm/drm_debugfs.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 10 +-
+> =C2=A0drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c=C2=A0 |=C2=A0=C2=A0 2 =
++-
+> =C2=A0drivers/gpu/drm/imagination/pvr_job.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
+> =C2=A0drivers/gpu/drm/imagination/pvr_queue.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 5 +-
+> =C2=A0drivers/gpu/drm/imagination/pvr_queue.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 2 +-
+> =C2=A0drivers/gpu/drm/lima/lima_gem.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
+> =C2=A0drivers/gpu/drm/lima/lima_sched.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 6 +-
+> =C2=A0drivers/gpu/drm/lima/lima_sched.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
+> =C2=A0drivers/gpu/drm/lima/lima_trace.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 6 +-
+> =C2=A0drivers/gpu/drm/msm/msm_gem_submit.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 8 +-
+> =C2=A0drivers/gpu/drm/nouveau/nouveau_sched.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 3 +-
+> =C2=A0drivers/gpu/drm/panfrost/panfrost_drv.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 2 +-
+> =C2=A0drivers/gpu/drm/panthor/panthor_drv.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
+> =C2=A0drivers/gpu/drm/panthor/panthor_mmu.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
+> =C2=A0drivers/gpu/drm/panthor/panthor_sched.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 5 +-
+> =C2=A0drivers/gpu/drm/panthor/panthor_sched.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 3 +-
+> =C2=A0.../gpu/drm/scheduler/gpu_scheduler_trace.h=C2=A0=C2=A0 | 103 +++++=
+++++++++---
+> --
+> =C2=A0drivers/gpu/drm/scheduler/sched_entity.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 |=C2=A0 16 ++-
+> =C2=A0drivers/gpu/drm/scheduler/sched_fence.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 4 +-
+> =C2=A0drivers/gpu/drm/scheduler/sched_internal.h=C2=A0=C2=A0=C2=A0 |=C2=
+=A0=C2=A0 2 +-
+> =C2=A0drivers/gpu/drm/scheduler/sched_main.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0 12 +-
+> =C2=A0.../gpu/drm/scheduler/tests/mock_scheduler.c=C2=A0 |=C2=A0=C2=A0 3 =
++-
+> =C2=A0drivers/gpu/drm/v3d/v3d_submit.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
+> =C2=A0drivers/gpu/drm/xe/xe_sched_job.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
+> =C2=A0include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
+=A0 13 ++-
+> =C2=A032 files changed, 191 insertions(+), 101 deletions(-)
+>=20
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
