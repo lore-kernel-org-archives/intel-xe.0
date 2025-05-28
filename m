@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C43C1C5AD49
-	for <intel-xe@archiver.kernel.org>; Wed, 28 May 2025 11:47:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26920C3ABB2
+	for <intel-xe@archiver.kernel.org>; Wed, 28 May 2025 12:28:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C8BD10E5A7;
-	Wed, 28 May 2025 11:47:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0A4910E1BA;
+	Wed, 28 May 2025 12:28:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JKGAeIit";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K/cQzrwG";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F83310E57E;
- Wed, 28 May 2025 11:47:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B74D710E1BA
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 May 2025 12:28:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748432850; x=1779968850;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=5Oie+BucTWeiUmVXPCzcVJtoBQpmQeJdlF0gYn7P7F8=;
- b=JKGAeIitY713FAvCt+NpiWCTcixxFjOc7VinZCZ0CnqzRyvWbe0xWKTA
- Jpl8tG/XogUV68fXdGYlac6aZIJW6Bzl/q3Mj37GIuQWqk94dQf6xWOnR
- HOgRFykFqd0wAB9sNJKl3hyXk2bvczgxoZTiNcQdA3fhMzVMTw4AXJPgl
- /tUQUj+MKw0egmCzFbxmGmzlqCj/v4nLUuw9TFhO3ES9j0qZVZ1oLBD9H
- Gn17PKqFTXaDhG4Xx3AtVj4QN24cJq5OPBNshVHJxwIjdRLP96LBV0DsP
- lp4XLJdRXsBtf/caFJXQSFWiuvn7kKQHkGWQpvZe+OoaH3gPvY62hfmT3 w==;
-X-CSE-ConnectionGUID: MmGsZ9quQRCV863aC3fDUg==
-X-CSE-MsgGUID: IHKJZnqYRnyhSogn0klvyQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11447"; a="50450906"
-X-IronPort-AV: E=Sophos;i="6.15,321,1739865600"; d="scan'208";a="50450906"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2025 04:47:28 -0700
-X-CSE-ConnectionGUID: ja/bmrLcSWaijHMSwK3ocw==
-X-CSE-MsgGUID: XM3WFfw7TIaRfFbDDVU5vA==
+ t=1748435299; x=1779971299;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=8QA0fitwlDXQOP2RJZYfV25y1x1TgAreFWKv9nw07c0=;
+ b=K/cQzrwGB0oRqTqBQnv1GElJgEtrJFQQkNi77hSKF7GKAbKZLLkoDQSh
+ 7lHX1e/MTv+qBnGjGYu55EP5+ov9LAJgPGCyr60MGY2XGOhWYFnQRIkxY
+ Kqr1dHFzQGgEeOtlFYOh1SlDVAOrDP8al9I9Jvtdm9lnp05aP3/E4m3HD
+ uLOit7V76y337mqqbeCAGRAg65OUHcqWKZvnX2bU46io7pxU2wYqwQXV/
+ xw/Y032AMYrbUXK++HuWP0JL7Z5NaYgkvKT0L9PHC1KRvNj/kCrv1OoyW
+ xbknuAwn9sU01IJt4rwecS3EkCvdNQOpY/DQ36RcrIi+gatiw9uys//A1 Q==;
+X-CSE-ConnectionGUID: nvqDVAprTUGf0EWGJEdj9w==
+X-CSE-MsgGUID: xMYTXVCeScObJ5BYtauT8g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11447"; a="61858595"
+X-IronPort-AV: E=Sophos;i="6.15,321,1739865600"; d="scan'208";a="61858595"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2025 05:28:14 -0700
+X-CSE-ConnectionGUID: XyfJnFSZRGeqNkguDRAJyg==
+X-CSE-MsgGUID: TAfuzm3/TeaGzOyFfzAp+Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,321,1739865600"; d="scan'208";a="148505026"
-Received: from abityuts-desk.ger.corp.intel.com (HELO stinkbox)
- ([10.245.245.32])
- by orviesa005.jf.intel.com with SMTP; 28 May 2025 04:47:26 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 28 May 2025 14:47:25 +0300
-Date: Wed, 28 May 2025 14:47:25 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/vrr: Set vrr.vmin to min Vtotal to re-enable
- LRR for PTL
-Message-ID: <aDb3zdphjZ15amZR@intel.com>
-References: <20250509031107.958280-1-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,321,1739865600"; d="scan'208";a="143868232"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orviesa007.jf.intel.com with ESMTP; 28 May 2025 05:28:13 -0700
+Received: from [10.245.84.121] (unknown [10.245.84.121])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 4575333E9C
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 May 2025 13:28:12 +0100 (IST)
+Message-ID: <5a39f73f-275b-40a6-94e1-6f6c350b37a0@intel.com>
+Date: Wed, 28 May 2025 14:28:11 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250509031107.958280-1-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
+User-Agent: Mozilla Thunderbird
+Subject: =?UTF-8?B?UmU6IOKclyBYZS5DSS5GdWxsOiBmYWlsdXJlIGZvciBkcm0veGU6IEFs?=
+ =?UTF-8?Q?low_to_trigger_GT_resets_using_debugfs_writes?=
+To: intel-xe@lists.freedesktop.org
+References: <20250519200914.216-1-michal.wajdeczko@intel.com>
+ <174771738794.2495.6778288047189038196@1538d3639d33>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <174771738794.2495.6778288047189038196@1538d3639d33>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,167 +71,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, May 09, 2025 at 08:41:07AM +0530, Ankit Nautiyal wrote:
-> Currently in intel_vrr_compute_config, we set vrr.vmin to crtc_vtotal for
-> all cases to avoid having vrr.vmin changed when we switch from
-> fixed refresh rate timings to variable refresh rate timings. This works for
-> all cases, except for LRR case where user can change the clock so as to
-> seamlessly switch to a lower refresh rate only for a VRR supporting panel.
+
+
+On 20.05.2025 07:03, Patchwork wrote:
+> == Series Details ==
 > 
-> In LRR case the crtc_vtotal changes for the mode, and due to which vrr.vmin
-> changes and therefore the guardband also changes. Since we cannot change
-> the guardband on the fly when VRR Timing Generator is on, this gets
-> rejected.
+> Series: drm/xe: Allow to trigger GT resets using debugfs writes
+> URL   : https://patchwork.freedesktop.org/series/149204/
+> State : failure
 > 
-> To overcome this, for panels that support VRR, instead of setting the
-> vrr.vmin to crtc_vtotal, we set that to the lowest Vtotal (for highest
-> Refresh rate supported by the panel). For non-vrr panels, the vrr.vmin
-> stays the same i.e. crtc_vtotal.
+> == Summary ==
+> 
+> CI Bug Log - changes from xe-3111-4fa9083ef235badec8ee0bf4f1d8d2594b1c6539_FULL -> xe-pw-149204v1_FULL
+> ====================================================
+> 
+> Summary
+> -------
+> 
+>   **FAILURE**
+> 
+>   Serious unknown changes coming with xe-pw-149204v1_FULL absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in xe-pw-149204v1_FULL, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+> 
+>   
+> 
+> Participating hosts (4 -> 4)
+> ------------------------------
+> 
+>   No changes in participating hosts
+> 
+> Possible new issues
+> -------------------
+> 
+>   Here are the unknown changes that may have been introduced in xe-pw-149204v1_FULL:
+> 
+> ### IGT changes ###
+> 
+> #### Possible regressions ####
 
-The guardband must match the actual vblank length or else we'll end
-up completely changing where the double buffered registers get
-latched/vblank interrupts are generated. And nothing is prepared
-for that.
+unrelated
 
 > 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_vrr.c | 64 ++++++++++++++++--------
->  1 file changed, 42 insertions(+), 22 deletions(-)
+>   * igt@kms_lease@lease-revoke:
+>     - shard-adlp:         [PASS][1] -> [ABORT][2] +1 other test abort
+>    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3111-4fa9083ef235badec8ee0bf4f1d8d2594b1c6539/shard-adlp-9/igt@kms_lease@lease-revoke.html
+>    [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149204v1/shard-adlp-6/igt@kms_lease@lease-revoke.html
+
+<3> [647.894837] xe 0000:00:02.0: [drm] *ERROR* AUX B/DDI B/PHY B: did
+not complete or timeout within 10ms (status 0xad40023f)
+<3> [647.904866] xe 0000:00:02.0: [drm] *ERROR* AUX B/DDI B/PHY B: did
+not complete or timeout within 10ms (status 0xad40023f
+
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index c6565baf815a..f0949a598f53 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -278,6 +278,9 @@ int intel_vrr_fixed_rr_vmin(const struct intel_crtc_state *crtc_state)
->  {
->  	struct intel_display *display = to_intel_display(crtc_state);
->  
-> +	if (crtc_state->vrr.in_range)
-> +		return crtc_state->vrr.vmin;
-> +
->  	return intel_vrr_fixed_rr_vtotal(crtc_state) -
->  		intel_vrr_flipline_offset(display);
->  }
-> @@ -308,26 +311,37 @@ static
->  void intel_vrr_compute_fixed_rr_timings(struct intel_crtc_state *crtc_state)
->  {
->  	/*
-> -	 * For fixed rr,  vmin = vmax = flipline.
-> -	 * vmin is already set to crtc_vtotal set vmax and flipline the same.
-> +	 * For fixed rr vmax = flipline.
-> +	 * set vmax and flipline same as vtotal.
->  	 */
->  	crtc_state->vrr.vmax = crtc_state->hw.adjusted_mode.crtc_vtotal;
->  	crtc_state->vrr.flipline = crtc_state->hw.adjusted_mode.crtc_vtotal;
->  }
->  
->  static
-> -int intel_vrr_compute_vmin(struct intel_crtc_state *crtc_state)
-> +int intel_vrr_compute_fixed_vmin(struct intel_crtc_state *crtc_state)
->  {
->  	/*
-> -	 * To make fixed rr and vrr work seamless the guardband/pipeline full
-> -	 * should be set such that it satisfies both the fixed and variable
-> -	 * timings.
-> -	 * For this set the vmin as crtc_vtotal. With this we never need to
-> -	 * change anything to do with the guardband.
-> +	 * For non VRR supporting panels/config, set the vmin to crtc_vtotal.
-> +	 * This will help the case where VRR TG is used even for non-vrr panels/config.
->  	 */
->  	return crtc_state->hw.adjusted_mode.crtc_vtotal;
->  }
->  
-> +static
-> +int intel_vrr_compute_vmin(struct intel_connector *connector,
-> +			   const struct drm_display_mode *adjusted_mode)
-> +{
-> +	const struct drm_display_info *info = &connector->base.display_info;
-> +	int vmin;
-> +
-> +	vmin = adjusted_mode->crtc_clock * 1000 /
-> +		(adjusted_mode->crtc_htotal * info->monitor_range.max_vfreq);
-> +	vmin = min_t(int, vmin, adjusted_mode->crtc_vtotal);
-> +
-> +	return vmin;
-> +}
-> +
->  static
->  int intel_vrr_compute_vmax(struct intel_connector *connector,
->  			   const struct drm_display_mode *adjusted_mode)
-> @@ -374,13 +388,13 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
->  	if (crtc_state->joiner_pipes)
->  		crtc_state->vrr.in_range = false;
->  
-> -	vmin = intel_vrr_compute_vmin(crtc_state);
-> -
->  	if (crtc_state->vrr.in_range) {
->  		if (HAS_LRR(display))
->  			crtc_state->update_lrr = true;
->  		vmax = intel_vrr_compute_vmax(connector, adjusted_mode);
-> +		vmin = intel_vrr_compute_vmin(connector, adjusted_mode);
->  	} else {
-> +		vmin = intel_vrr_compute_fixed_vmin(crtc_state);
->  		vmax = vmin;
->  	}
->  
-> @@ -671,8 +685,7 @@ void intel_vrr_transcoder_disable(const struct intel_crtc_state *crtc_state)
->  bool intel_vrr_is_fixed_rr(const struct intel_crtc_state *crtc_state)
->  {
->  	return crtc_state->vrr.flipline &&
-> -	       crtc_state->vrr.flipline == crtc_state->vrr.vmax &&
-> -	       crtc_state->vrr.flipline == intel_vrr_vmin_flipline(crtc_state);
-> +	       crtc_state->vrr.flipline == crtc_state->vrr.vmax;
->  }
->  
->  void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
-> @@ -713,16 +726,6 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
->  		crtc_state->vrr.vmin = intel_de_read(display,
->  						     TRANS_VRR_VMIN(display, cpu_transcoder)) + 1;
->  
-> -		/*
-> -		 * For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
-> -		 * bits are not filled. Since for these platforms TRAN_VMIN is always
-> -		 * filled with crtc_vtotal, use TRAN_VRR_VMIN to get the vtotal for
-> -		 * adjusted_mode.
-> -		 */
-> -		if (intel_vrr_always_use_vrr_tg(display))
-> -			crtc_state->hw.adjusted_mode.crtc_vtotal =
-> -				intel_vrr_vmin_vtotal(crtc_state);
-> -
->  		if (HAS_AS_SDP(display)) {
->  			trans_vrr_vsync =
->  				intel_de_read(display,
-> @@ -732,6 +735,23 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
->  			crtc_state->vrr.vsync_end =
->  				REG_FIELD_GET(VRR_VSYNC_END_MASK, trans_vrr_vsync);
->  		}
-> +		/*
-> +		 * For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
-> +		 * bits are not filled. For fixed timings the vmax vtotal can be used to
-> +		 * fill the VTOTAL. For variable timings, we need to compute the vtotal.
-> +		 */
-> +		if (intel_vrr_always_use_vrr_tg(display)) {
-> +			u32 crtc_vtotal;
-> +
-> +			if (intel_vrr_is_fixed_rr(crtc_state))
-> +				crtc_vtotal = intel_vrr_vmax_vtotal(crtc_state);
-> +			else
-> +				crtc_vtotal = intel_vrr_vmin_vtotal(crtc_state) +
-> +					      crtc_state->vrr.guardband +
-> +					      crtc_state->vrr.vsync_start +
-> +					      crtc_state->vrr.vsync_end + 1;
+>   * igt@kms_plane_multiple@2x-tiling-x@pipe-a-dp-2-pipe-b-hdmi-a-3:
+>     - shard-bmg:          NOTRUN -> [FAIL][3] +1 other test fail
+>    [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149204v1/shard-bmg-6/igt@kms_plane_multiple@2x-tiling-x@pipe-a-dp-2-pipe-b-hdmi-a-3.html
 
-This looks like nonsense to me. No idea what you're trying to do here.
+(kms_plane_multiple:3725) igt_pipe_crc-CRITICAL: Test assertion failure
+function igt_assert_crc_equal, file ../lib/igt_pipe_crc.c:112:
+(kms_plane_multiple:3725) igt_pipe_crc-CRITICAL: Failed assertion:
+!mismatch || igt_skip_crc_compare
 
-> +			crtc_state->hw.adjusted_mode.crtc_vtotal = crtc_vtotal;
-> +		}
->  	}
->  
->  	vrr_enable = trans_vrr_ctl & VRR_CTL_VRR_ENABLE;
-> -- 
-> 2.45.2
-
--- 
-Ville Syrjälä
-Intel
+> 
+>   
+> #### Warnings ####
+> 
+>   * igt@kms_plane_multiple@2x-tiling-x:
+>     - shard-bmg:          [SKIP][4] ([Intel XE#4596]) -> [DMESG-FAIL][5]
+>    [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3111-4fa9083ef235badec8ee0bf4f1d8d2594b1c6539/shard-bmg-4/igt@kms_plane_multiple@2x-tiling-x.html
+>    [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149204v1/shard-bmg-6/igt@kms_plane_multiple@2x-tiling-x.html
+> 
+>   
