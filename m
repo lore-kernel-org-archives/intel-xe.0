@@ -4,105 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05D4DC5AD49
-	for <intel-xe@archiver.kernel.org>; Wed, 28 May 2025 11:28:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23085C5AD49
+	for <intel-xe@archiver.kernel.org>; Wed, 28 May 2025 11:34:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B085310E16C;
-	Wed, 28 May 2025 11:28:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C82EF10E5EE;
+	Wed, 28 May 2025 11:34:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=arndb.de header.i=@arndb.de header.b="WIu8D6o6";
-	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="GMi2exFG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mk3TdBsl";
 	dkim-atps=neutral
-Received: from fout-b1-smtp.messagingengine.com
- (fout-b1-smtp.messagingengine.com [202.12.124.144])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94D4410E16C;
- Wed, 28 May 2025 11:28:36 +0000 (UTC)
-Received: from phl-compute-05.internal (phl-compute-05.phl.internal
- [10.202.2.45])
- by mailfout.stl.internal (Postfix) with ESMTP id 8369A11400D3;
- Wed, 28 May 2025 07:28:35 -0400 (EDT)
-Received: from phl-imap-02 ([10.202.2.81])
- by phl-compute-05.internal (MEProxy); Wed, 28 May 2025 07:28:35 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
- :cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm3; t=1748431715;
- x=1748518115; bh=UK4SDTFoZN8a248ZSOnhk+uW54YPVwbFm6eiIbQcacc=; b=
- WIu8D6o6E9C7LLNcCKy//BdY3/1fetFwaeQ4MG2CCr+hh51Hlhf4oC6a5rcY3uqF
- xqDhC+9n5IfDU0z/k6zq0WNADft/V8SgOvANqzgWwnOyC3aiCWny1UTpAAR8lRzw
- RbqEWlpvb70W2xAuh5oVtxiBGc7AVC9WJGFvOGl6HsTwCtAPYOhS5/UxZ4NCJBll
- 60xIZosN55MnqV7RPAXdxFAQ1FVfoILiHkYejTcqZDMH5pYjOsJUBfhKJFnvQd42
- S4zZ1tgWSqdSOGgrVHPS7/G6ZirqUfWpsne4uAic84rXj3U+NIU8h3/mXT/Ul7X5
- q1ACdT52xtrmT2UUvj1+xg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1748431715; x=
- 1748518115; bh=UK4SDTFoZN8a248ZSOnhk+uW54YPVwbFm6eiIbQcacc=; b=G
- Mi2exFGhNKU2xnRprEiLAnbC/kJGsehU0ZuRLGt7bypFhK6m4AFnstJR6RkP6M2D
- 1s0lIsHY/M0RSkCOoMy/C7w8QHMdAqe2HTEAlSn5ec2RRfruiSG72pmO8waARVvF
- SN03jeQNP4IlPv2nuWDJ2W93gaUxsEdLt9jZtRrS5EEEeagWrYmyip9YKcNMoxxr
- LvrMXAq+WVtmNTLaCAnUk1ifCWJ8VTQWdVn30R3s7V1JNPVRT1682xhMiwo3DtnP
- fFglGzUmXOQj+n9q6VDaVMjBWoGze1yNV/IAvIqkSF8PNs7ltiSOgt7GvnJuuxO0
- 40qWRHPNTSKdEJ0ou4rqw==
-X-ME-Sender: <xms:YvM2aGzmxBxh29eLSqbNbKqwcQMJkDa5QsNDOzHd__4xnygw1ukM3w>
- <xme:YvM2aCRAYYKfE2x0wo7Tksxog6No-HA_1gQcKV8dii6r4QJWQsQGpjhQH2e1sLgSs
- QWcBnepbT4jwGxfczs>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddtgddvfedugeculddtuddrgeefvddrtd
- dtmdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggft
- fghnshhusghstghrihgsvgdpuffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftd
- dtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefoggffhffvvefk
- jghfufgtgfesthejredtredttdenucfhrhhomhepfdetrhhnugcuuegvrhhgmhgrnhhnfd
- cuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrhhnpefhtdfhvddtfeeh
- udekteeggffghfejgeegteefgffgvedugeduveelvdekhfdvieenucevlhhushhtvghruf
- hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnugesrghrnhgusgdruggv
- pdhnsggprhgtphhtthhopedujedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepsh
- himhhonhgrsehffhiflhhlrdgthhdprhgtphhtthhopegrihhrlhhivggusehgmhgrihhl
- rdgtohhmpdhrtghpthhtohephhhimhgrlhdrphhrrghsrggurdhghhhimhhirhgrhiesih
- hnthgvlhdrtghomhdprhgtphhtthhopehimhhrvgdruggvrghksehinhhtvghlrdgtohhm
- pdhrtghpthhtoheplhhutggrshdruggvmhgrrhgthhhisehinhhtvghlrdgtohhmpdhrtg
- hpthhtohepmhgrthhthhgvfidrsghrohhsthesihhnthgvlhdrtghomhdprhgtphhtthho
- pehmihgthhgrvghlrdhjrdhruhhhlhesihhnthgvlhdrtghomhdprhgtphhtthhopehroh
- gurhhighhordhvihhvihesihhnthgvlhdrtghomhdprhgtphhtthhopegrrhhnugeskhgv
- rhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:YvM2aIX_mDM44nwxcZ0hqH8Q1u48GBwR3x2YH85HjW5-rRmL4iJBtQ>
- <xmx:YvM2aMi1NZfexU8rZOrzfBsFR_6g_WFOA9C1ONJxa6vMz2uHAwjsoA>
- <xmx:YvM2aIDa0-O9_cx4ERpI8VxBPYh_HAj_IKsUAfARcG8540buYKOYdw>
- <xmx:YvM2aNKkaUYvLDfano_-zCaUQ6_OgEa15Utmb80fseaYV_VU6mOsmw>
- <xmx:Y_M2aGTAxX8xHCl048q7DmVW1-GFO_UVhj-T6s12Np-nuITOoVi0uXc0>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
- id DD8E7700060; Wed, 28 May 2025 07:28:34 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 891D010E5EE
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 May 2025 11:34:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1748432075; x=1779968075;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=XTsYmHa8O+M54w6Bbck79J9D2BCwlsauPmBnmMsiWOo=;
+ b=Mk3TdBslSwvrIrijCnVvpXHlMe8Br7ubbjM+K22CjmnDr03SuqA1Nx/4
+ y/X98uia3OiMeQYPBnfhvQEsV2pboggbkVd2c4Fgk79y5eEhEBUYfLW/z
+ rQX2XGRI7xr9riD5+Tx1AR/ZCKSNHaCc1vJsM17+yMQNMms7OQE8mwsuu
+ QtJGovTJuFXNX3QWsHfADWZ7uCpyYyzgMHKc1SUXmiaR2MC5zbzeKYBtS
+ IE4+MKawAexWd/yqOKAjbWW60vyKZ3y5QhBeazd+kVrm9MHbAnZwypY2M
+ TIJCLcqn6PMKqC1RfFgi9DmDEqRnv48/fKg/8T9sPWrqKE8VjMZjFE6FV g==;
+X-CSE-ConnectionGUID: rcXnPHG7TfKwgA0br2KTUw==
+X-CSE-MsgGUID: KRyNxlzSS2u764WJhlFSbA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11447"; a="61510332"
+X-IronPort-AV: E=Sophos;i="6.15,321,1739865600"; d="scan'208";a="61510332"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2025 04:34:32 -0700
+X-CSE-ConnectionGUID: UFUR5oA5TJCaBlUo5Z5FXw==
+X-CSE-MsgGUID: F8YCgTWlT1u8pDYyIFSARw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,321,1739865600"; d="scan'208";a="144190591"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO mwauld-desk.intel.com)
+ ([10.245.245.144])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2025 04:34:31 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ William Tseng <william.tseng@intel.com>, stable@vger.kernel.org
+Subject: [PATCH v3] drm/xe/sched: stop re-submitting signalled jobs
+Date: Wed, 28 May 2025 12:33:29 +0100
+Message-ID: <20250528113328.289392-2-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-X-ThreadId: Tea118988e335f97b
-Date: Wed, 28 May 2025 13:27:33 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>,
- "Christopher Snowhill" <chris@kode54.net>
-Cc: "Lucas De Marchi" <lucas.demarchi@intel.com>,
- "Arnd Bergmann" <arnd@kernel.org>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Rodrigo Vivi" <rodrigo.vivi@intel.com>, "Dave Airlie" <airlied@gmail.com>,
- "Simona Vetter" <simona@ffwll.ch>, "Matthew Brost" <matthew.brost@intel.com>, 
- "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>,
- "Imre Deak" <imre.deak@intel.com>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- "Michael J. Ruhl" <michael.j.ruhl@intel.com>, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel <dri-devel-bounces@lists.freedesktop.org>
-Message-Id: <dd8f913d-1d6a-435b-b9b6-30a3d950e4a8@app.fastmail.com>
-In-Reply-To: <aDbl5CIGulMng3de@smile.fi.intel.com>
-References: <20250523121106.2231003-1-arnd@kernel.org>
- <j7yodlrk7wh3ylvb2z622ndlzm4guhahmakdb6l5d6qtv5sabo@w4bfiehtmaab>
- <aDbYs7QZRfr2i80A@smile.fi.intel.com>
- <704fd2b9-04da-4ec8-b854-22bc3ce9058e@app.fastmail.com>
- <DA7PSM1WUKBI.3JA6THJTRF5B7@kode54.net> <aDbl5CIGulMng3de@smile.fi.intel.com>
-Subject: Re: [PATCH] drm/xe/vsec: fix CONFIG_INTEL_VSEC dependency
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,24 +68,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, May 28, 2025, at 12:31, Andy Shevchenko wrote:
-> On Wed, May 28, 2025 at 03:17:03AM -0700, Christopher Snowhill wrote:
->> On Wed May 28, 2025 at 3:03 AM PDT, Arnd Bergmann wrote:
->> > On Wed, May 28, 2025, at 11:34, Andy Shevchenko wrote:
->> >> On Tue, May 27, 2025 at 03:55:46PM -0500, Lucas De Marchi wrote:
->> > I think ACPI_VIDEO is at the center here, and changing all the
->> > 'select ACPI_VIDEO if ACPI' instances to
->> > 'depends on ACPI_VIDEO || !ACPI_VIDEO' would solve a lot of
->> 
->> Maybe you meant 'depends on ACPI_VIDEO || !ACPI' ?
->
-> I believe not. The depends on FOO || FOO=n is idiomatic in Kconfig.
+Customer is reporting a really subtle issue where we get random DMAR
+faults, hangs and other nasties for kernel migration jobs when stressing
+stuff like s2idle/s3/s4. The explosions seems to happen somewhere
+after resuming the system with splats looking something like:
 
-It depends on what we want here. 'ACPI_VIDEO || !ACPI' would
-be the direct equivalent of the existing 'select ACPI_VIDEO if ACPI',
-while 'ACPI_VIDEO || !ACPI_VIDEO' would allow building with
-ACPI=y and ACPI_VIDEO=n, which is not possible today. I'd probably
-start with the version that Christopher suggested to have a lower
-regression risk.
+PM: suspend exit
+rfkill: input handler disabled
+xe 0000:00:02.0: [drm] GT0: Engine reset: engine_class=bcs, logical_mask: 0x2, guc_id=0
+xe 0000:00:02.0: [drm] GT0: Timedout job: seqno=24496, lrc_seqno=24496, guc_id=0, flags=0x13 in no process [-1]
+xe 0000:00:02.0: [drm] GT0: Kernel-submitted job timed out
 
-     Arnd
+The likely cause appears to be a race between suspend cancelling the
+worker that processes the free_job()'s, such that we still have pending
+jobs to be freed after the cancel. Following from this, on resume the
+pending_list will now contain at least one already complete job, but it
+looks like we call drm_sched_resubmit_jobs(), which will then call
+run_job() on everything still on the pending_list. But if the job was
+already complete, then all the resources tied to the job, like the bb
+itself, any memory that is being accessed, the iommu mappings etc. might
+be long gone since those are usually tied to the fence signalling.
+
+This scenario can be seen in ftrace when running a slightly modified
+xe_pm (kernel was only modified to inject artificial latency into
+free_job to make the race easier to hit):
+
+xe_sched_job_run: dev=0000:00:02.0, fence=0xffff888276cc8540, seqno=0, lrc_seqno=0, gt=0, guc_id=0, batch_addr=0x000000146910 ...
+xe_exec_queue_stop:   dev=0000:00:02.0, 3:0x2, gt=0, width=1, guc_id=0, guc_state=0x0, flags=0x13
+xe_exec_queue_stop:   dev=0000:00:02.0, 3:0x2, gt=0, width=1, guc_id=1, guc_state=0x0, flags=0x4
+xe_exec_queue_stop:   dev=0000:00:02.0, 4:0x1, gt=1, width=1, guc_id=0, guc_state=0x0, flags=0x3
+xe_exec_queue_stop:   dev=0000:00:02.0, 1:0x1, gt=1, width=1, guc_id=1, guc_state=0x0, flags=0x3
+xe_exec_queue_stop:   dev=0000:00:02.0, 4:0x1, gt=1, width=1, guc_id=2, guc_state=0x0, flags=0x3
+xe_exec_queue_resubmit: dev=0000:00:02.0, 3:0x2, gt=0, width=1, guc_id=0, guc_state=0x0, flags=0x13
+xe_sched_job_run: dev=0000:00:02.0, fence=0xffff888276cc8540, seqno=0, lrc_seqno=0, gt=0, guc_id=0, batch_addr=0x000000146910 ...
+.....
+xe_exec_queue_memory_cat_error: dev=0000:00:02.0, 3:0x2, gt=0, width=1, guc_id=0, guc_state=0x3, flags=0x13
+
+So the job_run() is clearly triggered twice for the same job, even
+though the first must have already signalled to completion during
+suspend. We can also see a CAT error after the re-submit.
+
+To prevent this try to call xe_sched_stop() to forcefully remove
+anything on the pending_list that has already signalled, before we
+re-submit.
+
+v2:
+  - Make sure to re-arm the fence callbacks with sched_start().
+v3 (Matt B):
+  - Stop using drm_sched_resubmit_jobs(), which appears to be deprecated
+    and just open-code a simple loop such that we skip calling run_job()
+    and anything already signalled.
+
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4856
+Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: William Tseng <william.tseng@intel.com>
+Cc: <stable@vger.kernel.org> # v6.8+
+---
+ drivers/gpu/drm/xe/xe_gpu_scheduler.h | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+index c250ea773491..308061f0cf37 100644
+--- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
++++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+@@ -51,7 +51,15 @@ static inline void xe_sched_tdr_queue_imm(struct xe_gpu_scheduler *sched)
+ 
+ static inline void xe_sched_resubmit_jobs(struct xe_gpu_scheduler *sched)
+ {
+-	drm_sched_resubmit_jobs(&sched->base);
++	struct drm_sched_job *s_job;
++
++	list_for_each_entry(s_job, &sched->base.pending_list, list) {
++		struct drm_sched_fence *s_fence = s_job->s_fence;
++		struct dma_fence *hw_fence = s_fence->parent;
++
++		if (hw_fence && !dma_fence_is_signaled(hw_fence))
++			sched->base.ops->run_job(s_job);
++	}
+ }
+ 
+ static inline bool
+-- 
+2.49.0
+
