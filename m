@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA2B6C3ABB2
-	for <intel-xe@archiver.kernel.org>; Wed, 28 May 2025 17:36:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 594E7C3ABB2
+	for <intel-xe@archiver.kernel.org>; Wed, 28 May 2025 18:04:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C81689125;
-	Wed, 28 May 2025 17:36:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 080DE10E66B;
+	Wed, 28 May 2025 18:04:54 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D0D989125;
- Wed, 28 May 2025 17:36:22 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 582DA10E66B;
+ Wed, 28 May 2025 18:04:53 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8124760463365793848=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe=3A_Rework_evictio?=
- =?utf-8?q?n_rejection_of_bound_external_bos_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Rework_eviction_r?=
+ =?utf-8?q?ejection_of_bound_external_bos_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 28 May 2025 17:36:22 -0000
-Message-ID: <174845378204.29549.13686210861085149546@1538d3639d33>
+Date: Wed, 28 May 2025 18:04:53 -0000
+Message-ID: <174845549334.29574.11507070813351222435@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250528164105.234718-1-thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20250528164105.234718-1-thomas.hellstrom@linux.intel.com>
@@ -40,6 +40,11 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============8124760463365793848==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: drm/xe: Rework eviction rejection of bound external bos (rev3)
@@ -48,25 +53,89 @@ State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast bce15b90200d1d7d4b5ff1a6cac0b43d8bf45319
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-Okay!
+CI Bug Log - changes from xe-3152-9c6f1615c9a1f0d3ec6c8d3af535bf7773d68ecf_BAT -> xe-pw-149505v3_BAT
+====================================================
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (8 -> 8)
+------------------------------
+
+  No changes in participating hosts
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3152-9c6f1615c9a1f0d3ec6c8d3af535bf7773d68ecf -> xe-pw-149505v3
+
+  IGT_8381: 8381
+  xe-3152-9c6f1615c9a1f0d3ec6c8d3af535bf7773d68ecf: 9c6f1615c9a1f0d3ec6c8d3af535bf7773d68ecf
+  xe-pw-149505v3: 149505v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149505v3/index.html
+
+--===============8124760463365793848==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Rework eviction rejection of bound external bos (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149505/">https://patchwork.freedesktop.org/series/149505/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149505v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149505v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3152-9c6f1615c9a1f0d3ec6c8d3af535bf7773d68ecf_BAT -&gt; xe-pw-149505v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (8 -&gt; 8)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3152-9c6f1615c9a1f0d3ec6c8d3af535bf7773d68ecf -&gt; xe-pw-149505v3</li>
+</ul>
+<p>IGT_8381: 8381<br />
+  xe-3152-9c6f1615c9a1f0d3ec6c8d3af535bf7773d68ecf: 9c6f1615c9a1f0d3ec6c8d3af535bf7773d68ecf<br />
+  xe-pw-149505v3: 149505v3</p>
+
+</body>
+</html>
+
+--===============8124760463365793848==--
