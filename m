@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAD2BC5AE59
-	for <intel-xe@archiver.kernel.org>; Wed, 28 May 2025 06:45:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D37BEC3ABB2
+	for <intel-xe@archiver.kernel.org>; Wed, 28 May 2025 06:46:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 893B989130;
-	Wed, 28 May 2025 06:45:46 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D17E89838;
- Wed, 28 May 2025 06:45:45 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A6E810E1BB;
+	Wed, 28 May 2025 06:46:27 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RIjSkUr8";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 970B310E1BB;
+ Wed, 28 May 2025 06:46:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1748414783; x=1779950783;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=HxGW1Hc90m8Vw6yc/2Wred5RXvir8nVjO5v/GR1JKhs=;
+ b=RIjSkUr8xD8cv159HdVNJ+3FpZy3b89bH+RiFrDfGXGRwENAcjDlAo5k
+ ood7GqwARBhq+hVWTQabLIRlJpc/bhuCNy27CHozUVZ/dPCItHOldZ9rw
+ aEv6wSAjUbH4xYkcM/A8/55H8LB9b2VoY+54D0iVnZS0JYxYRv3k+OZDv
+ 4fS4WJca81aLIOBUZ+KElYnP3uzjqh1MGliFfd0uo0C2BGOGARaFJe4mB
+ 86hb5FBPqwzvr9RODDLXAnYWX7ao9A2bIovK+Wz3JGwtEQKYe+o7bSlMX
+ AENmrwSUUKTsd29muZKa7vPzO0ctfnkL4azgL1me70dd+8rXQXMs275yz g==;
+X-CSE-ConnectionGUID: wDmxT4aaSwORfbZ8sBY4Fg==
+X-CSE-MsgGUID: 2pwAx5ooTG2Ak0Cb9n1HVQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11446"; a="61480928"
+X-IronPort-AV: E=Sophos;i="6.15,320,1739865600"; d="scan'208";a="61480928"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 May 2025 23:46:22 -0700
+X-CSE-ConnectionGUID: gEAuVNMzSLOxqmDkjIaxUw==
+X-CSE-MsgGUID: epfsI4t2RfSLlfulCfreEA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,320,1739865600"; d="scan'208";a="143177531"
+Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 May 2025 23:46:21 -0700
+From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com
+Subject: [PATCH] drm/i915/display: Fix u32 overflow in SNPS PHY HDMI PLL setup
+Date: Wed, 28 May 2025 12:15:56 +0530
+Message-ID: <20250528064557.4172149-1-dibin.moolakadan.subrahmanian@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Panel_Replay_+_Adaptive_s?=
- =?utf-8?q?ync_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 28 May 2025 06:45:45 -0000
-Message-ID: <174841474557.26762.5140716535283160991@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250526120512.1702815-1-jouni.hogander@intel.com>
-In-Reply-To: <20250526120512.1702815-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,104 +62,80 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+When configuring the HDMI PLL, calculations use DIV_ROUND_UP_ULL and
+DIV_ROUND_DOWN_ULL macros, which internally rely on do_div. However, do_div
+expects a 32-bit (u32) divisor, and at higher data rates, the divisor can
+exceed this limit. This leads to incorrect division results and
+ultimately misconfigured PLL values.
+This fix replaces do_div calls with  div64_base64 calls where diviser
+can exceed u32 limit.
 
-Series: Panel Replay + Adaptive sync (rev2)
-URL   : https://patchwork.freedesktop.org/series/149487/
-State : warning
+Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Fixes: 5947642004bf ("drm/i915/display: Add support for SNPS PHY HDMI PLL algorithm for DG2")
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+---
+ .../gpu/drm/i915/display/intel_snps_hdmi_pll.c   | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-== Summary ==
-
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-202708c00696422fd217223bb679a353a5936e23
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit fdbca80253f164ba07f9e8abbafdb84a662d32b2
-Author: Jouni Högander <jouni.hogander@intel.com>
-Date:   Mon May 26 15:05:12 2025 +0300
-
-    drm/i915/psr: Do not disable Panel Replay in case VRR is enabled
-    
-    Allow Panel Replay with VRR. All VRR modes are supposed to work with
-    Panel Replay.
-    
-    Bspec: 68920, 68925
-    Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-    Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-+ /mt/dim checkpatch 07b6736f75df3e60d5e20eda53ecb97f6d9a66c0 drm-intel
-adef6097fd50 drm/panelreplay: Panel Replay capability DPCD register definitions
-3edd3808fc4b drm/dp: Add Panel Replay capability bits from DP2.1 specification
--:33: WARNING:LONG_LINE: line length of 136 exceeds 100 columns
-#33: FILE: include/drm/display/drm_dp.h:559:
-+# define DP_PANEL_REPLAY_DSC_DECODE_CAPABILITY_IN_PR_MASK			(3 << DP_PANEL_REPLAY_DSC_DECODE_CAPABILITY_IN_PR_SHIFT)
-
-total: 0 errors, 1 warnings, 0 checks, 20 lines checked
-8b8b68af32c7 drm/i915/psr: Read all Panel Replay capability registers from DPCD
-5a25e887fbbe drm/i915/alpm: Add PR_ALPM_CTL register definitions
--:29: WARNING:LONG_LINE: line length of 126 exceeds 100 columns
-#29: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:275:
-+#define  PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_T1_OR_T2	REG_FIELD_PREP(PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_MASK, 0)
-
--:30: WARNING:LONG_LINE: line length of 126 exceeds 100 columns
-#30: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:276:
-+#define  PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_T1		REG_FIELD_PREP(PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_MASK, 1)
-
--:31: WARNING:LONG_LINE: line length of 126 exceeds 100 columns
-#31: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:277:
-+#define  PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_T2		REG_FIELD_PREP(PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_MASK, 2)
-
-total: 0 errors, 3 warnings, 0 checks, 16 lines checked
-f4f0847eec10 drm/i915/alpm: Write PR_ALPM_CTL register
--:32: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#32: FILE: drivers/gpu/drm/i915/display/intel_alpm.c:357:
-+			if (!(intel_dp->pr_dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_CAPABILITY)] &
-
--:33: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
-#33: FILE: drivers/gpu/drm/i915/display/intel_alpm.c:358:
-+						DP_PANEL_REPLAY_ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR))
-
-total: 0 errors, 2 warnings, 0 checks, 20 lines checked
-a8ec7ac870a1 drm/i915/psr: Add interface to check if AUXLess ALPM is needed by PSR
-7bfc546ef08e drm/i915/alpm: Add new interface to check if AUXLess ALPM is used
-b5a3d02bf8bf drm/i915/alpm: Move port alpm configuration
--:74: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#74: FILE: drivers/gpu/drm/i915/display/intel_alpm.c:407:
-+			PORT_ALPM_CTL_SILENCE_PERIOD(
-
--:77: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#77: FILE: drivers/gpu/drm/i915/display/intel_alpm.c:410:
-+			PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION(
-
--:79: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#79: FILE: drivers/gpu/drm/i915/display/intel_alpm.c:412:
-+			PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION(
-
--:81: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#81: FILE: drivers/gpu/drm/i915/display/intel_alpm.c:414:
-+			PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION(
-
-total: 0 errors, 0 warnings, 4 checks, 93 lines checked
-e3bcc0e99c5a drm/i915/display: Add PHY_CMN1_CONTROL register definitions
-4d3a69875f3f drm/i915/display: Add function to configure LFPS sending
-4e496ac38820 drm/i915/psr: Fix using wrong mask in REG_FIELD_PREP
--:25: WARNING:LONG_LINE: line length of 139 exceeds 100 columns
-#25: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:338:
-+#define  PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION_MASK, val)
-
--:28: WARNING:LONG_LINE: line length of 138 exceeds 100 columns
-#28: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:340:
-+#define  PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION_MASK, val)
-
-total: 0 errors, 2 warnings, 0 checks, 10 lines checked
-fdbca80253f1 drm/i915/psr: Do not disable Panel Replay in case VRR is enabled
-
+diff --git a/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c b/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c
+index c6321dafef4f..74bb3bedf30f 100644
+--- a/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c
++++ b/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c
+@@ -41,12 +41,12 @@ static s64 interp(s64 x, s64 x1, s64 x2, s64 y1, s64 y2)
+ {
+ 	s64 dydx;
+ 
+-	dydx = DIV_ROUND_UP_ULL((y2 - y1) * 100000, (x2 - x1));
++	dydx = DIV64_U64_ROUND_UP((y2 - y1) * 100000, (x2 - x1));
+ 
+-	return (y1 + DIV_ROUND_UP_ULL(dydx * (x - x1), 100000));
++	return (y1 + DIV64_U64_ROUND_UP(dydx * (x - x1), 100000));
+ }
+ 
+-static void get_ana_cp_int_prop(u32 vco_clk,
++static void get_ana_cp_int_prop(u64 vco_clk,
+ 				u32 refclk_postscalar,
+ 				int mpll_ana_v2i,
+ 				int c, int a,
+@@ -115,16 +115,16 @@ static void get_ana_cp_int_prop(u32 vco_clk,
+ 								      CURVE0_MULTIPLIER));
+ 
+ 	scaled_interpolated_sqrt =
+-			int_sqrt(DIV_ROUND_UP_ULL(interpolated_product, vco_div_refclk_float) *
++			int_sqrt(DIV64_U64_ROUND_UP(interpolated_product, vco_div_refclk_float) *
+ 			DIV_ROUND_DOWN_ULL(1000000000000ULL, 55));
+ 
+ 	/* Scale vco_div_refclk for ana_cp_int */
+ 	scaled_vco_div_refclk2 = DIV_ROUND_UP_ULL(vco_div_refclk_float, 1000000);
+-	adjusted_vco_clk2 = 1460281 * DIV_ROUND_UP_ULL(scaled_interpolated_sqrt *
++	adjusted_vco_clk2 = 1460281 * DIV64_U64_ROUND_UP(scaled_interpolated_sqrt *
+ 						       scaled_vco_div_refclk2,
+ 						       curve_1_interpolated);
+ 
+-	*ana_cp_prop = DIV_ROUND_UP_ULL(adjusted_vco_clk2, curve_2_scaled2);
++	*ana_cp_prop = DIV64_U64_ROUND_UP(adjusted_vco_clk2, curve_2_scaled2);
+ 	*ana_cp_prop = max(1, min(*ana_cp_prop, 127));
+ }
+ 
+@@ -165,10 +165,10 @@ static void compute_hdmi_tmds_pll(u64 pixel_clock, u32 refclk,
+ 	/* Select appropriate v2i point */
+ 	if (datarate <= INTEL_SNPS_PHY_HDMI_9999MHZ) {
+ 		mpll_ana_v2i = 2;
+-		tx_clk_div = ilog2(DIV_ROUND_DOWN_ULL(INTEL_SNPS_PHY_HDMI_9999MHZ, datarate));
++		tx_clk_div = ilog2(div64_u64(INTEL_SNPS_PHY_HDMI_9999MHZ, datarate));
+ 	} else {
+ 		mpll_ana_v2i = 3;
+-		tx_clk_div = ilog2(DIV_ROUND_DOWN_ULL(INTEL_SNPS_PHY_HDMI_16GHZ, datarate));
++		tx_clk_div = ilog2(div64_u64(INTEL_SNPS_PHY_HDMI_16GHZ, datarate));
+ 	}
+ 	vco_clk = (datarate << tx_clk_div) >> 1;
+ 
+-- 
+2.43.0
 
