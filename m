@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC319C5AE59
-	for <intel-xe@archiver.kernel.org>; Wed, 28 May 2025 06:12:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CBCBC5AE59
+	for <intel-xe@archiver.kernel.org>; Wed, 28 May 2025 06:15:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8A2310E0C7;
-	Wed, 28 May 2025 06:12:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DED410E15A;
+	Wed, 28 May 2025 06:15:33 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4469210E29F;
- Wed, 28 May 2025 06:12:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE17710E15A;
+ Wed, 28 May 2025 06:15:31 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBuild=3A_failure_for_drm/i915=3A_drop_intel=5Fdpio?=
- =?utf-8?q?=5Fphy=2Eh_include_from_VLV_IOSF_SB?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/i915=3A_drop_int?=
+ =?utf-8?q?el=5Fdpio=5Fphy=2Eh_include_from_VLV_IOSF_SB?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 28 May 2025 06:12:27 -0000
-Message-ID: <174841274727.26762.8589375176655721558@1538d3639d33>
+Date: Wed, 28 May 2025 06:15:31 -0000
+Message-ID: <174841293196.26762.8826513211771748978@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250527114854.3687469-1-jani.nikula@intel.com>
 In-Reply-To: <20250527114854.3687469-1-jani.nikula@intel.com>
@@ -45,5 +45,12 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 Series: drm/i915: drop intel_dpio_phy.h include from VLV IOSF SB
 URL   : https://patchwork.freedesktop.org/series/149536/
 State : failure
+
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 07b6736f75df drm-tip: 2025y-05m-27d-20h-13m-12s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915: drop intel_dpio_phy.h include from VLV IOSF SB
 
 
