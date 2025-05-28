@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2257DC5AE59
-	for <intel-xe@archiver.kernel.org>; Wed, 28 May 2025 07:26:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4678C3ABB2
+	for <intel-xe@archiver.kernel.org>; Wed, 28 May 2025 07:30:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D283410E58D;
-	Wed, 28 May 2025 07:26:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E36610E0C7;
+	Wed, 28 May 2025 07:30:18 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E51310E58D;
- Wed, 28 May 2025 07:26:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E88610E0C7;
+ Wed, 28 May 2025 07:30:17 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EKUnit=3A_success_for_series_starting_with_=5B1/1=5D?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBuild=3A_failure_for_series_starting_with_=5B1/1=5D?=
  =?utf-8?q?_drm/xe/svm=3A_For_atomic_operations=2C_continue_with_page_fault_?=
  =?utf-8?q?handling?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 28 May 2025 07:26:28 -0000
-Message-ID: <174841718824.26775.15670327691866266288@1538d3639d33>
+Date: Wed, 28 May 2025 07:30:17 -0000
+Message-ID: <174841741744.26954.11170671100420571960@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250527163340.1067968-1-himal.prasad.ghimiray@intel.com>
 In-Reply-To: <20250527163340.1067968-1-himal.prasad.ghimiray@intel.com>
@@ -45,1167 +45,3507 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: series starting with [1/1] drm/xe/svm: For atomic operations, continue with page fault handling
 URL   : https://patchwork.freedesktop.org/series/149549/
-State : success
+State : failure
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-[07:25:20] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[07:25:24] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-[07:25:51] Starting KUnit Kernel (1/1)...
-[07:25:51] ============================================================
-Running tests with:
-$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
-[07:25:51] ================== guc_buf (11 subtests) ===================
-[07:25:51] [PASSED] test_smallest
-[07:25:51] [PASSED] test_largest
-[07:25:51] [PASSED] test_granular
-[07:25:51] [PASSED] test_unique
-[07:25:51] [PASSED] test_overlap
-[07:25:51] [PASSED] test_reusable
-[07:25:51] [PASSED] test_too_big
-[07:25:51] [PASSED] test_flush
-[07:25:51] [PASSED] test_lookup
-[07:25:51] [PASSED] test_data
-[07:25:51] [PASSED] test_class
-[07:25:51] ===================== [PASSED] guc_buf =====================
-[07:25:51] =================== guc_dbm (7 subtests) ===================
-[07:25:51] [PASSED] test_empty
-[07:25:51] [PASSED] test_default
-[07:25:51] ======================== test_size  ========================
-[07:25:51] [PASSED] 4
-[07:25:51] [PASSED] 8
-[07:25:51] [PASSED] 32
-[07:25:51] [PASSED] 256
-[07:25:51] ==================== [PASSED] test_size ====================
-[07:25:51] ======================= test_reuse  ========================
-[07:25:51] [PASSED] 4
-[07:25:51] [PASSED] 8
-[07:25:51] [PASSED] 32
-[07:25:51] [PASSED] 256
-[07:25:51] =================== [PASSED] test_reuse ====================
-[07:25:51] =================== test_range_overlap  ====================
-[07:25:51] [PASSED] 4
-[07:25:51] [PASSED] 8
-[07:25:51] [PASSED] 32
-[07:25:51] [PASSED] 256
-[07:25:51] =============== [PASSED] test_range_overlap ================
-[07:25:51] =================== test_range_compact  ====================
-[07:25:51] [PASSED] 4
-[07:25:51] [PASSED] 8
-[07:25:51] [PASSED] 32
-[07:25:51] [PASSED] 256
-[07:25:51] =============== [PASSED] test_range_compact ================
-[07:25:51] ==================== test_range_spare  =====================
-[07:25:51] [PASSED] 4
-[07:25:51] [PASSED] 8
-[07:25:51] [PASSED] 32
-[07:25:51] [PASSED] 256
-[07:25:51] ================ [PASSED] test_range_spare =================
-[07:25:51] ===================== [PASSED] guc_dbm =====================
-[07:25:51] =================== guc_idm (6 subtests) ===================
-[07:25:51] [PASSED] bad_init
-[07:25:51] [PASSED] no_init
-[07:25:51] [PASSED] init_fini
-[07:25:51] [PASSED] check_used
-[07:25:51] [PASSED] check_quota
-[07:25:51] [PASSED] check_all
-[07:25:51] ===================== [PASSED] guc_idm =====================
-[07:25:51] ================== no_relay (3 subtests) ===================
-[07:25:51] [PASSED] xe_drops_guc2pf_if_not_ready
-[07:25:51] [PASSED] xe_drops_guc2vf_if_not_ready
-[07:25:51] [PASSED] xe_rejects_send_if_not_ready
-[07:25:51] ==================== [PASSED] no_relay =====================
-[07:25:51] ================== pf_relay (14 subtests) ==================
-[07:25:51] [PASSED] pf_rejects_guc2pf_too_short
-[07:25:51] [PASSED] pf_rejects_guc2pf_too_long
-[07:25:51] [PASSED] pf_rejects_guc2pf_no_payload
-[07:25:51] [PASSED] pf_fails_no_payload
-[07:25:51] [PASSED] pf_fails_bad_origin
-[07:25:51] [PASSED] pf_fails_bad_type
-[07:25:51] [PASSED] pf_txn_reports_error
-[07:25:51] [PASSED] pf_txn_sends_pf2guc
-[07:25:51] [PASSED] pf_sends_pf2guc
-[07:25:51] [SKIPPED] pf_loopback_nop
-[07:25:51] [SKIPPED] pf_loopback_echo
-[07:25:51] [SKIPPED] pf_loopback_fail
-[07:25:51] [SKIPPED] pf_loopback_busy
-[07:25:51] [SKIPPED] pf_loopback_retry
-[07:25:51] ==================== [PASSED] pf_relay =====================
-[07:25:51] ================== vf_relay (3 subtests) ===================
-[07:25:51] [PASSED] vf_rejects_guc2vf_too_short
-[07:25:51] [PASSED] vf_rejects_guc2vf_too_long
-[07:25:51] [PASSED] vf_rejects_guc2vf_no_payload
-[07:25:51] ==================== [PASSED] vf_relay =====================
-[07:25:51] ================= pf_service (11 subtests) =================
-[07:25:51] [PASSED] pf_negotiate_any
-[07:25:51] [PASSED] pf_negotiate_base_match
-[07:25:51] [PASSED] pf_negotiate_base_newer
-[07:25:51] [PASSED] pf_negotiate_base_next
-[07:25:51] [SKIPPED] pf_negotiate_base_older
-[07:25:51] [PASSED] pf_negotiate_base_prev
-[07:25:51] [PASSED] pf_negotiate_latest_match
-[07:25:51] [PASSED] pf_negotiate_latest_newer
-[07:25:51] [PASSED] pf_negotiate_latest_next
-[07:25:51] [SKIPPED] pf_negotiate_latest_older
-[07:25:51] [SKIPPED] pf_negotiate_latest_prev
-[07:25:51] =================== [PASSED] pf_service ====================
-[07:25:51] ===================== lmtt (1 subtest) =====================
-[07:25:51] ======================== test_ops  =========================
-[07:25:51] [PASSED] 2-level
-[07:25:51] [PASSED] multi-level
-[07:25:51] ==================== [PASSED] test_ops =====================
-[07:25:51] ====================== [PASSED] lmtt =======================
-[07:25:51] =================== xe_mocs (2 subtests) ===================
-[07:25:51] ================ xe_live_mocs_kernel_kunit  ================
-[07:25:51] =========== [SKIPPED] xe_live_mocs_kernel_kunit ============
-[07:25:51] ================ xe_live_mocs_reset_kunit  =================
-[07:25:51] ============ [SKIPPED] xe_live_mocs_reset_kunit ============
-[07:25:51] ==================== [SKIPPED] xe_mocs =====================
-[07:25:51] ================= xe_migrate (2 subtests) ==================
-[07:25:51] ================= xe_migrate_sanity_kunit  =================
-[07:25:51] ============ [SKIPPED] xe_migrate_sanity_kunit =============
-[07:25:51] ================== xe_validate_ccs_kunit  ==================
-[07:25:51] ============= [SKIPPED] xe_validate_ccs_kunit ==============
-[07:25:51] =================== [SKIPPED] xe_migrate ===================
-[07:25:51] ================== xe_dma_buf (1 subtest) ==================
-[07:25:51] ==================== xe_dma_buf_kunit  =====================
-[07:25:51] ================ [SKIPPED] xe_dma_buf_kunit ================
-[07:25:51] =================== [SKIPPED] xe_dma_buf ===================
-[07:25:51] ================= xe_bo_shrink (1 subtest) =================
-[07:25:51] =================== xe_bo_shrink_kunit  ====================
-[07:25:51] =============== [SKIPPED] xe_bo_shrink_kunit ===============
-[07:25:51] ================== [SKIPPED] xe_bo_shrink ==================
-[07:25:51] ==================== xe_bo (2 subtests) ====================
-[07:25:51] ================== xe_ccs_migrate_kunit  ===================
-[07:25:51] ============== [SKIPPED] xe_ccs_migrate_kunit ==============
-[07:25:51] ==================== xe_bo_evict_kunit  ====================
-[07:25:51] =============== [SKIPPED] xe_bo_evict_kunit ================
-[07:25:51] ===================== [SKIPPED] xe_bo ======================
-[07:25:51] ==================== args (11 subtests) ====================
-[07:25:51] [PASSED] count_args_test
-[07:25:51] [PASSED] call_args_example
-[07:25:51] [PASSED] call_args_test
-[07:25:51] [PASSED] drop_first_arg_example
-[07:25:51] [PASSED] drop_first_arg_test
-[07:25:51] [PASSED] first_arg_example
-[07:25:51] [PASSED] first_arg_test
-[07:25:51] [PASSED] last_arg_example
-[07:25:51] [PASSED] last_arg_test
-[07:25:51] [PASSED] pick_arg_example
-[07:25:51] [PASSED] sep_comma_example
-[07:25:51] ====================== [PASSED] args =======================
-[07:25:51] =================== xe_pci (2 subtests) ====================
-[07:25:51] [PASSED] xe_gmdid_graphics_ip
-[07:25:51] [PASSED] xe_gmdid_media_ip
-[07:25:51] ===================== [PASSED] xe_pci ======================
-[07:25:51] =================== xe_rtp (2 subtests) ====================
-[07:25:51] =============== xe_rtp_process_to_sr_tests  ================
-[07:25:51] [PASSED] coalesce-same-reg
-[07:25:51] [PASSED] no-match-no-add
-[07:25:51] [PASSED] match-or
-[07:25:51] [PASSED] match-or-xfail
-[07:25:51] [PASSED] no-match-no-add-multiple-rules
-[07:25:51] [PASSED] two-regs-two-entries
-[07:25:51] [PASSED] clr-one-set-other
-[07:25:51] [PASSED] set-field
-[07:25:51] [PASSED] conflict-duplicate
-[07:25:51] [PASSED] conflict-not-disjoint
-stty: 'standard input': Inappropriate ioctl for device
-[07:25:51] [PASSED] conflict-reg-type
-[07:25:51] =========== [PASSED] xe_rtp_process_to_sr_tests ============
-[07:25:51] ================== xe_rtp_process_tests  ===================
-[07:25:51] [PASSED] active1
-[07:25:51] [PASSED] active2
-[07:25:51] [PASSED] active-inactive
-[07:25:51] [PASSED] inactive-active
-[07:25:51] [PASSED] inactive-1st_or_active-inactive
-[07:25:51] [PASSED] inactive-2nd_or_active-inactive
-[07:25:51] [PASSED] inactive-last_or_active-inactive
-[07:25:51] [PASSED] inactive-no_or_active-inactive
-[07:25:51] ============== [PASSED] xe_rtp_process_tests ===============
-[07:25:51] ===================== [PASSED] xe_rtp ======================
-[07:25:51] ==================== xe_wa (1 subtest) =====================
-[07:25:51] ======================== xe_wa_gt  =========================
-[07:25:51] [PASSED] TIGERLAKE (B0)
-[07:25:51] [PASSED] DG1 (A0)
-[07:25:51] [PASSED] DG1 (B0)
-[07:25:51] [PASSED] ALDERLAKE_S (A0)
-[07:25:51] [PASSED] ALDERLAKE_S (B0)
-[07:25:51] [PASSED] ALDERLAKE_S (C0)
-[07:25:51] [PASSED] ALDERLAKE_S (D0)
-[07:25:51] [PASSED] ALDERLAKE_P (A0)
-[07:25:51] [PASSED] ALDERLAKE_P (B0)
-[07:25:51] [PASSED] ALDERLAKE_P (C0)
-[07:25:51] [PASSED] ALDERLAKE_S_RPLS (D0)
-[07:25:51] [PASSED] ALDERLAKE_P_RPLU (E0)
-[07:25:51] [PASSED] DG2_G10 (C0)
-[07:25:51] [PASSED] DG2_G11 (B1)
-[07:25:51] [PASSED] DG2_G12 (A1)
-[07:25:51] [PASSED] METEORLAKE (g:A0, m:A0)
-[07:25:51] [PASSED] METEORLAKE (g:A0, m:A0)
-[07:25:51] [PASSED] METEORLAKE (g:A0, m:A0)
-[07:25:51] [PASSED] LUNARLAKE (g:A0, m:A0)
-[07:25:51] [PASSED] LUNARLAKE (g:B0, m:A0)
-[07:25:51] [PASSED] BATTLEMAGE (g:A0, m:A1)
-[07:25:51] ==================== [PASSED] xe_wa_gt =====================
-[07:25:51] ====================== [PASSED] xe_wa ======================
-[07:25:51] ============================================================
-[07:25:51] Testing complete. Ran 133 tests: passed: 117, skipped: 16
-[07:25:51] Elapsed time: 30.993s total, 4.146s configuring, 26.530s building, 0.291s running
-
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/tests/.kunitconfig
-[07:25:51] Configuring KUnit Kernel ...
-Regenerating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[07:25:53] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-[07:26:14] Starting KUnit Kernel (1/1)...
-[07:26:14] ============================================================
-Running tests with:
-$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
-[07:26:14] == drm_test_atomic_get_connector_for_encoder (1 subtest) ===
-[07:26:14] [PASSED] drm_test_drm_atomic_get_connector_for_encoder
-[07:26:14] ==== [PASSED] drm_test_atomic_get_connector_for_encoder ====
-[07:26:14] =========== drm_validate_clone_mode (2 subtests) ===========
-[07:26:14] ============== drm_test_check_in_clone_mode  ===============
-[07:26:14] [PASSED] in_clone_mode
-[07:26:14] [PASSED] not_in_clone_mode
-[07:26:14] ========== [PASSED] drm_test_check_in_clone_mode ===========
-[07:26:14] =============== drm_test_check_valid_clones  ===============
-[07:26:14] [PASSED] not_in_clone_mode
-[07:26:14] [PASSED] valid_clone
-[07:26:14] [PASSED] invalid_clone
-[07:26:14] =========== [PASSED] drm_test_check_valid_clones ===========
-[07:26:14] ============= [PASSED] drm_validate_clone_mode =============
-[07:26:14] ============= drm_validate_modeset (1 subtest) =============
-[07:26:14] [PASSED] drm_test_check_connector_changed_modeset
-[07:26:14] ============== [PASSED] drm_validate_modeset ===============
-[07:26:14] ====== drm_test_bridge_get_current_state (2 subtests) ======
-[07:26:14] [PASSED] drm_test_drm_bridge_get_current_state_atomic
-[07:26:14] [PASSED] drm_test_drm_bridge_get_current_state_legacy
-[07:26:14] ======== [PASSED] drm_test_bridge_get_current_state ========
-[07:26:14] ====== drm_test_bridge_helper_reset_crtc (3 subtests) ======
-[07:26:14] [PASSED] drm_test_drm_bridge_helper_reset_crtc_atomic
-[07:26:14] [PASSED] drm_test_drm_bridge_helper_reset_crtc_atomic_disabled
-[07:26:14] [PASSED] drm_test_drm_bridge_helper_reset_crtc_legacy
-[07:26:14] ======== [PASSED] drm_test_bridge_helper_reset_crtc ========
-[07:26:14] ================== drm_buddy (7 subtests) ==================
-[07:26:14] [PASSED] drm_test_buddy_alloc_limit
-[07:26:14] [PASSED] drm_test_buddy_alloc_optimistic
-[07:26:14] [PASSED] drm_test_buddy_alloc_pessimistic
-[07:26:14] [PASSED] drm_test_buddy_alloc_pathological
-[07:26:14] [PASSED] drm_test_buddy_alloc_contiguous
-[07:26:14] [PASSED] drm_test_buddy_alloc_clear
-[07:26:14] [PASSED] drm_test_buddy_alloc_range_bias
-[07:26:14] ==================== [PASSED] drm_buddy ====================
-[07:26:14] ============= drm_cmdline_parser (40 subtests) =============
-[07:26:14] [PASSED] drm_test_cmdline_force_d_only
-[07:26:14] [PASSED] drm_test_cmdline_force_D_only_dvi
-[07:26:14] [PASSED] drm_test_cmdline_force_D_only_hdmi
-[07:26:14] [PASSED] drm_test_cmdline_force_D_only_not_digital
-[07:26:14] [PASSED] drm_test_cmdline_force_e_only
-[07:26:14] [PASSED] drm_test_cmdline_res
-[07:26:14] [PASSED] drm_test_cmdline_res_vesa
-[07:26:14] [PASSED] drm_test_cmdline_res_vesa_rblank
-[07:26:14] [PASSED] drm_test_cmdline_res_rblank
-[07:26:14] [PASSED] drm_test_cmdline_res_bpp
-[07:26:14] [PASSED] drm_test_cmdline_res_refresh
-[07:26:14] [PASSED] drm_test_cmdline_res_bpp_refresh
-[07:26:14] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced
-[07:26:14] [PASSED] drm_test_cmdline_res_bpp_refresh_margins
-[07:26:14] [PASSED] drm_test_cmdline_res_bpp_refresh_force_off
-[07:26:14] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on
-[07:26:14] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_analog
-[07:26:14] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_digital
-[07:26:14] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced_margins_force_on
-[07:26:14] [PASSED] drm_test_cmdline_res_margins_force_on
-[07:26:14] [PASSED] drm_test_cmdline_res_vesa_margins
-[07:26:14] [PASSED] drm_test_cmdline_name
-[07:26:14] [PASSED] drm_test_cmdline_name_bpp
-[07:26:14] [PASSED] drm_test_cmdline_name_option
-[07:26:14] [PASSED] drm_test_cmdline_name_bpp_option
-[07:26:14] [PASSED] drm_test_cmdline_rotate_0
-[07:26:14] [PASSED] drm_test_cmdline_rotate_90
-[07:26:14] [PASSED] drm_test_cmdline_rotate_180
-[07:26:14] [PASSED] drm_test_cmdline_rotate_270
-[07:26:14] [PASSED] drm_test_cmdline_hmirror
-[07:26:14] [PASSED] drm_test_cmdline_vmirror
-[07:26:14] [PASSED] drm_test_cmdline_margin_options
-[07:26:14] [PASSED] drm_test_cmdline_multiple_options
-[07:26:14] [PASSED] drm_test_cmdline_bpp_extra_and_option
-[07:26:14] [PASSED] drm_test_cmdline_extra_and_option
-[07:26:14] [PASSED] drm_test_cmdline_freestanding_options
-[07:26:14] [PASSED] drm_test_cmdline_freestanding_force_e_and_options
-[07:26:14] [PASSED] drm_test_cmdline_panel_orientation
-[07:26:14] ================ drm_test_cmdline_invalid  =================
-[07:26:14] [PASSED] margin_only
-[07:26:14] [PASSED] interlace_only
-[07:26:14] [PASSED] res_missing_x
-[07:26:14] [PASSED] res_missing_y
-[07:26:14] [PASSED] res_bad_y
-[07:26:14] [PASSED] res_missing_y_bpp
-[07:26:14] [PASSED] res_bad_bpp
-[07:26:14] [PASSED] res_bad_refresh
-[07:26:14] [PASSED] res_bpp_refresh_force_on_off
-[07:26:14] [PASSED] res_invalid_mode
-[07:26:14] [PASSED] res_bpp_wrong_place_mode
-[07:26:14] [PASSED] name_bpp_refresh
-[07:26:14] [PASSED] name_refresh
-[07:26:14] [PASSED] name_refresh_wrong_mode
-[07:26:14] [PASSED] name_refresh_invalid_mode
-[07:26:14] [PASSED] rotate_multiple
-[07:26:14] [PASSED] rotate_invalid_val
-[07:26:14] [PASSED] rotate_truncated
-[07:26:14] [PASSED] invalid_option
-[07:26:14] [PASSED] invalid_tv_option
-[07:26:14] [PASSED] truncated_tv_option
-[07:26:14] ============ [PASSED] drm_test_cmdline_invalid =============
-[07:26:14] =============== drm_test_cmdline_tv_options  ===============
-[07:26:14] [PASSED] NTSC
-[07:26:14] [PASSED] NTSC_443
-[07:26:14] [PASSED] NTSC_J
-[07:26:14] [PASSED] PAL
-[07:26:14] [PASSED] PAL_M
-[07:26:14] [PASSED] PAL_N
-[07:26:14] [PASSED] SECAM
-[07:26:14] [PASSED] MONO_525
-[07:26:14] [PASSED] MONO_625
-[07:26:14] =========== [PASSED] drm_test_cmdline_tv_options ===========
-[07:26:14] =============== [PASSED] drm_cmdline_parser ================
-[07:26:14] ========== drmm_connector_hdmi_init (20 subtests) ==========
-[07:26:14] [PASSED] drm_test_connector_hdmi_init_valid
-[07:26:14] [PASSED] drm_test_connector_hdmi_init_bpc_8
-[07:26:14] [PASSED] drm_test_connector_hdmi_init_bpc_10
-[07:26:14] [PASSED] drm_test_connector_hdmi_init_bpc_12
-[07:26:14] [PASSED] drm_test_connector_hdmi_init_bpc_invalid
-[07:26:14] [PASSED] drm_test_connector_hdmi_init_bpc_null
-[07:26:14] [PASSED] drm_test_connector_hdmi_init_formats_empty
-[07:26:14] [PASSED] drm_test_connector_hdmi_init_formats_no_rgb
-[07:26:14] === drm_test_connector_hdmi_init_formats_yuv420_allowed  ===
-[07:26:14] [PASSED] supported_formats=0x9 yuv420_allowed=1
-[07:26:14] [PASSED] supported_formats=0x9 yuv420_allowed=0
-[07:26:14] [PASSED] supported_formats=0x3 yuv420_allowed=1
-[07:26:14] [PASSED] supported_formats=0x3 yuv420_allowed=0
-[07:26:14] === [PASSED] drm_test_connector_hdmi_init_formats_yuv420_allowed ===
-[07:26:14] [PASSED] drm_test_connector_hdmi_init_null_ddc
-[07:26:14] [PASSED] drm_test_connector_hdmi_init_null_product
-[07:26:14] [PASSED] drm_test_connector_hdmi_init_null_vendor
-[07:26:14] [PASSED] drm_test_connector_hdmi_init_product_length_exact
-[07:26:14] [PASSED] drm_test_connector_hdmi_init_product_length_too_long
-[07:26:14] [PASSED] drm_test_connector_hdmi_init_product_valid
-[07:26:14] [PASSED] drm_test_connector_hdmi_init_vendor_length_exact
-[07:26:14] [PASSED] drm_test_connector_hdmi_init_vendor_length_too_long
-[07:26:14] [PASSED] drm_test_connector_hdmi_init_vendor_valid
-[07:26:14] ========= drm_test_connector_hdmi_init_type_valid  =========
-[07:26:14] [PASSED] HDMI-A
-[07:26:14] [PASSED] HDMI-B
-[07:26:14] ===== [PASSED] drm_test_connector_hdmi_init_type_valid =====
-[07:26:14] ======== drm_test_connector_hdmi_init_type_invalid  ========
-[07:26:14] [PASSED] Unknown
-[07:26:14] [PASSED] VGA
-[07:26:14] [PASSED] DVI-I
-[07:26:14] [PASSED] DVI-D
-[07:26:14] [PASSED] DVI-A
-[07:26:14] [PASSED] Composite
-[07:26:14] [PASSED] SVIDEO
-[07:26:14] [PASSED] LVDS
-[07:26:14] [PASSED] Component
-[07:26:14] [PASSED] DIN
-[07:26:14] [PASSED] DP
-[07:26:14] [PASSED] TV
-[07:26:14] [PASSED] eDP
-[07:26:14] [PASSED] Virtual
-[07:26:14] [PASSED] DSI
-[07:26:14] [PASSED] DPI
-[07:26:14] [PASSED] Writeback
-[07:26:14] [PASSED] SPI
-[07:26:14] [PASSED] USB
-[07:26:14] ==== [PASSED] drm_test_connector_hdmi_init_type_invalid ====
-[07:26:14] ============ [PASSED] drmm_connector_hdmi_init =============
-[07:26:14] ============= drmm_connector_init (3 subtests) =============
-[07:26:14] [PASSED] drm_test_drmm_connector_init
-[07:26:14] [PASSED] drm_test_drmm_connector_init_null_ddc
-[07:26:14] ========= drm_test_drmm_connector_init_type_valid  =========
-[07:26:14] [PASSED] Unknown
-[07:26:14] [PASSED] VGA
-[07:26:14] [PASSED] DVI-I
-[07:26:14] [PASSED] DVI-D
-[07:26:14] [PASSED] DVI-A
-[07:26:14] [PASSED] Composite
-[07:26:14] [PASSED] SVIDEO
-[07:26:14] [PASSED] LVDS
-[07:26:14] [PASSED] Component
-[07:26:14] [PASSED] DIN
-[07:26:14] [PASSED] DP
-[07:26:14] [PASSED] HDMI-A
-[07:26:14] [PASSED] HDMI-B
-[07:26:14] [PASSED] TV
-[07:26:14] [PASSED] eDP
-[07:26:14] [PASSED] Virtual
-[07:26:14] [PASSED] DSI
-[07:26:14] [PASSED] DPI
-[07:26:14] [PASSED] Writeback
-[07:26:14] [PASSED] SPI
-[07:26:14] [PASSED] USB
-[07:26:14] ===== [PASSED] drm_test_drmm_connector_init_type_valid =====
-[07:26:14] =============== [PASSED] drmm_connector_init ===============
-[07:26:14] ========= drm_connector_dynamic_init (6 subtests) ==========
-[07:26:14] [PASSED] drm_test_drm_connector_dynamic_init
-[07:26:14] [PASSED] drm_test_drm_connector_dynamic_init_null_ddc
-[07:26:14] [PASSED] drm_test_drm_connector_dynamic_init_not_added
-[07:26:14] [PASSED] drm_test_drm_connector_dynamic_init_properties
-[07:26:14] ===== drm_test_drm_connector_dynamic_init_type_valid  ======
-[07:26:14] [PASSED] Unknown
-[07:26:14] [PASSED] VGA
-[07:26:14] [PASSED] DVI-I
-[07:26:14] [PASSED] DVI-D
-[07:26:14] [PASSED] DVI-A
-[07:26:14] [PASSED] Composite
-[07:26:14] [PASSED] SVIDEO
-[07:26:14] [PASSED] LVDS
-[07:26:14] [PASSED] Component
-[07:26:14] [PASSED] DIN
-[07:26:14] [PASSED] DP
-[07:26:14] [PASSED] HDMI-A
-[07:26:14] [PASSED] HDMI-B
-[07:26:14] [PASSED] TV
-[07:26:14] [PASSED] eDP
-[07:26:14] [PASSED] Virtual
-[07:26:14] [PASSED] DSI
-[07:26:14] [PASSED] DPI
-[07:26:14] [PASSED] Writeback
-[07:26:14] [PASSED] SPI
-[07:26:14] [PASSED] USB
-[07:26:14] = [PASSED] drm_test_drm_connector_dynamic_init_type_valid ==
-[07:26:14] ======== drm_test_drm_connector_dynamic_init_name  =========
-[07:26:14] [PASSED] Unknown
-[07:26:14] [PASSED] VGA
-[07:26:14] [PASSED] DVI-I
-[07:26:14] [PASSED] DVI-D
-[07:26:14] [PASSED] DVI-A
-[07:26:14] [PASSED] Composite
-[07:26:14] [PASSED] SVIDEO
-[07:26:14] [PASSED] LVDS
-[07:26:14] [PASSED] Component
-[07:26:14] [PASSED] DIN
-[07:26:14] [PASSED] DP
-[07:26:14] [PASSED] HDMI-A
-[07:26:14] [PASSED] HDMI-B
-[07:26:14] [PASSED] TV
-[07:26:14] [PASSED] eDP
-[07:26:14] [PASSED] Virtual
-[07:26:14] [PASSED] DSI
-[07:26:14] [PASSED] DPI
-[07:26:14] [PASSED] Writeback
-[07:26:14] [PASSED] SPI
-[07:26:14] [PASSED] USB
-[07:26:14] ==== [PASSED] drm_test_drm_connector_dynamic_init_name =====
-[07:26:14] =========== [PASSED] drm_connector_dynamic_init ============
-[07:26:14] ==== drm_connector_dynamic_register_early (4 subtests) =====
-[07:26:14] [PASSED] drm_test_drm_connector_dynamic_register_early_on_list
-[07:26:14] [PASSED] drm_test_drm_connector_dynamic_register_early_defer
-[07:26:14] [PASSED] drm_test_drm_connector_dynamic_register_early_no_init
-[07:26:14] [PASSED] drm_test_drm_connector_dynamic_register_early_no_mode_object
-[07:26:14] ====== [PASSED] drm_connector_dynamic_register_early =======
-[07:26:14] ======= drm_connector_dynamic_register (7 subtests) ========
-[07:26:14] [PASSED] drm_test_drm_connector_dynamic_register_on_list
-[07:26:14] [PASSED] drm_test_drm_connector_dynamic_register_no_defer
-[07:26:14] [PASSED] drm_test_drm_connector_dynamic_register_no_init
-[07:26:14] [PASSED] drm_test_drm_connector_dynamic_register_mode_object
-[07:26:14] [PASSED] drm_test_drm_connector_dynamic_register_sysfs
-[07:26:14] [PASSED] drm_test_drm_connector_dynamic_register_sysfs_name
-[07:26:14] [PASSED] drm_test_drm_connector_dynamic_register_debugfs
-[07:26:14] ========= [PASSED] drm_connector_dynamic_register ==========
-[07:26:14] = drm_connector_attach_broadcast_rgb_property (2 subtests) =
-[07:26:14] [PASSED] drm_test_drm_connector_attach_broadcast_rgb_property
-[07:26:14] [PASSED] drm_test_drm_connector_attach_broadcast_rgb_property_hdmi_connector
-[07:26:14] === [PASSED] drm_connector_attach_broadcast_rgb_property ===
-[07:26:14] ========== drm_get_tv_mode_from_name (2 subtests) ==========
-[07:26:14] ========== drm_test_get_tv_mode_from_name_valid  ===========
-[07:26:14] [PASSED] NTSC
-[07:26:14] [PASSED] NTSC-443
-[07:26:14] [PASSED] NTSC-J
-[07:26:14] [PASSED] PAL
-[07:26:14] [PASSED] PAL-M
-[07:26:14] [PASSED] PAL-N
-[07:26:14] [PASSED] SECAM
-[07:26:14] [PASSED] Mono
-[07:26:14] ====== [PASSED] drm_test_get_tv_mode_from_name_valid =======
-[07:26:14] [PASSED] drm_test_get_tv_mode_from_name_truncated
-[07:26:14] ============ [PASSED] drm_get_tv_mode_from_name ============
-[07:26:14] = drm_test_connector_hdmi_compute_mode_clock (12 subtests) =
-[07:26:14] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb
-[07:26:14] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_10bpc
-[07:26:14] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_10bpc_vic_1
-[07:26:14] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_12bpc
-[07:26:14] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_12bpc_vic_1
-[07:26:14] [PASSED] drm_test_drm_hdmi_compute_mode_clock_rgb_double
-[07:26:14] = drm_test_connector_hdmi_compute_mode_clock_yuv420_valid  =
-[07:26:14] [PASSED] VIC 96
-[07:26:14] [PASSED] VIC 97
-[07:26:14] [PASSED] VIC 101
-[07:26:14] [PASSED] VIC 102
-[07:26:14] [PASSED] VIC 106
-[07:26:14] [PASSED] VIC 107
-[07:26:14] === [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv420_valid ===
-[07:26:14] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv420_10_bpc
-[07:26:14] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv420_12_bpc
-[07:26:14] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv422_8_bpc
-[07:26:14] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv422_10_bpc
-[07:26:14] [PASSED] drm_test_connector_hdmi_compute_mode_clock_yuv422_12_bpc
-[07:26:14] === [PASSED] drm_test_connector_hdmi_compute_mode_clock ====
-[07:26:14] == drm_hdmi_connector_get_broadcast_rgb_name (2 subtests) ==
-[07:26:14] === drm_test_drm_hdmi_connector_get_broadcast_rgb_name  ====
-[07:26:14] [PASSED] Automatic
-[07:26:14] [PASSED] Full
-[07:26:14] [PASSED] Limited 16:235
-[07:26:14] === [PASSED] drm_test_drm_hdmi_connector_get_broadcast_rgb_name ===
-[07:26:14] [PASSED] drm_test_drm_hdmi_connector_get_broadcast_rgb_name_invalid
-[07:26:14] ==== [PASSED] drm_hdmi_connector_get_broadcast_rgb_name ====
-[07:26:14] == drm_hdmi_connector_get_output_format_name (2 subtests) ==
-[07:26:14] === drm_test_drm_hdmi_connector_get_output_format_name  ====
-[07:26:14] [PASSED] RGB
-[07:26:14] [PASSED] YUV 4:2:0
-[07:26:14] [PASSED] YUV 4:2:2
-[07:26:14] [PASSED] YUV 4:4:4
-[07:26:14] === [PASSED] drm_test_drm_hdmi_connector_get_output_format_name ===
-[07:26:14] [PASSED] drm_test_drm_hdmi_connector_get_output_format_name_invalid
-[07:26:14] ==== [PASSED] drm_hdmi_connector_get_output_format_name ====
-[07:26:14] ============= drm_damage_helper (21 subtests) ==============
-[07:26:14] [PASSED] drm_test_damage_iter_no_damage
-[07:26:14] [PASSED] drm_test_damage_iter_no_damage_fractional_src
-[07:26:14] [PASSED] drm_test_damage_iter_no_damage_src_moved
-[07:26:14] [PASSED] drm_test_damage_iter_no_damage_fractional_src_moved
-[07:26:14] [PASSED] drm_test_damage_iter_no_damage_not_visible
-[07:26:14] [PASSED] drm_test_damage_iter_no_damage_no_crtc
-[07:26:14] [PASSED] drm_test_damage_iter_no_damage_no_fb
-[07:26:14] [PASSED] drm_test_damage_iter_simple_damage
-[07:26:14] [PASSED] drm_test_damage_iter_single_damage
-[07:26:14] [PASSED] drm_test_damage_iter_single_damage_intersect_src
-[07:26:14] [PASSED] drm_test_damage_iter_single_damage_outside_src
-[07:26:14] [PASSED] drm_test_damage_iter_single_damage_fractional_src
-[07:26:14] [PASSED] drm_test_damage_iter_single_damage_intersect_fractional_src
-[07:26:14] [PASSED] drm_test_damage_iter_single_damage_outside_fractional_src
-[07:26:14] [PASSED] drm_test_damage_iter_single_damage_src_moved
-[07:26:14] [PASSED] drm_test_damage_iter_single_damage_fractional_src_moved
-[07:26:14] [PASSED] drm_test_damage_iter_damage
-[07:26:14] [PASSED] drm_test_damage_iter_damage_one_intersect
-[07:26:14] [PASSED] drm_test_damage_iter_damage_one_outside
-[07:26:14] [PASSED] drm_test_damage_iter_damage_src_moved
-[07:26:14] [PASSED] drm_test_damage_iter_damage_not_visible
-[07:26:14] ================ [PASSED] drm_damage_helper ================
-[07:26:14] ============== drm_dp_mst_helper (3 subtests) ==============
-[07:26:14] ============== drm_test_dp_mst_calc_pbn_mode  ==============
-[07:26:14] [PASSED] Clock 154000 BPP 30 DSC disabled
-[07:26:14] [PASSED] Clock 234000 BPP 30 DSC disabled
-[07:26:14] [PASSED] Clock 297000 BPP 24 DSC disabled
-[07:26:14] [PASSED] Clock 332880 BPP 24 DSC enabled
-[07:26:14] [PASSED] Clock 324540 BPP 24 DSC enabled
-[07:26:14] ========== [PASSED] drm_test_dp_mst_calc_pbn_mode ==========
-[07:26:14] ============== drm_test_dp_mst_calc_pbn_div  ===============
-[07:26:14] [PASSED] Link rate 2000000 lane count 4
-[07:26:14] [PASSED] Link rate 2000000 lane count 2
-[07:26:14] [PASSED] Link rate 2000000 lane count 1
-[07:26:14] [PASSED] Link rate 1350000 lane count 4
-[07:26:14] [PASSED] Link rate 1350000 lane count 2
-[07:26:14] [PASSED] Link rate 1350000 lane count 1
-[07:26:14] [PASSED] Link rate 1000000 lane count 4
-[07:26:14] [PASSED] Link rate 1000000 lane count 2
-[07:26:14] [PASSED] Link rate 1000000 lane count 1
-[07:26:14] [PASSED] Link rate 810000 lane count 4
-[07:26:14] [PASSED] Link rate 810000 lane count 2
-[07:26:14] [PASSED] Link rate 810000 lane count 1
-[07:26:14] [PASSED] Link rate 540000 lane count 4
-[07:26:14] [PASSED] Link rate 540000 lane count 2
-[07:26:14] [PASSED] Link rate 540000 lane count 1
-[07:26:14] [PASSED] Link rate 270000 lane count 4
-[07:26:14] [PASSED] Link rate 270000 lane count 2
-[07:26:14] [PASSED] Link rate 270000 lane count 1
-[07:26:14] [PASSED] Link rate 162000 lane count 4
-[07:26:14] [PASSED] Link rate 162000 lane count 2
-[07:26:14] [PASSED] Link rate 162000 lane count 1
-[07:26:14] ========== [PASSED] drm_test_dp_mst_calc_pbn_div ===========
-[07:26:14] ========= drm_test_dp_mst_sideband_msg_req_decode  =========
-[07:26:14] [PASSED] DP_ENUM_PATH_RESOURCES with port number
-[07:26:14] [PASSED] DP_POWER_UP_PHY with port number
-[07:26:14] [PASSED] DP_POWER_DOWN_PHY with port number
-[07:26:14] [PASSED] DP_ALLOCATE_PAYLOAD with SDP stream sinks
-[07:26:14] [PASSED] DP_ALLOCATE_PAYLOAD with port number
-[07:26:14] [PASSED] DP_ALLOCATE_PAYLOAD with VCPI
-[07:26:14] [PASSED] DP_ALLOCATE_PAYLOAD with PBN
-[07:26:14] [PASSED] DP_QUERY_PAYLOAD with port number
-[07:26:14] [PASSED] DP_QUERY_PAYLOAD with VCPI
-[07:26:14] [PASSED] DP_REMOTE_DPCD_READ with port number
-[07:26:14] [PASSED] DP_REMOTE_DPCD_READ with DPCD address
-[07:26:14] [PASSED] DP_REMOTE_DPCD_READ with max number of bytes
-[07:26:14] [PASSED] DP_REMOTE_DPCD_WRITE with port number
-[07:26:14] [PASSED] DP_REMOTE_DPCD_WRITE with DPCD address
-[07:26:14] [PASSED] DP_REMOTE_DPCD_WRITE with data array
-[07:26:14] [PASSED] DP_REMOTE_I2C_READ with port number
-[07:26:14] [PASSED] DP_REMOTE_I2C_READ with I2C device ID
-[07:26:14] [PASSED] DP_REMOTE_I2C_READ with transactions array
-[07:26:14] [PASSED] DP_REMOTE_I2C_WRITE with port number
-[07:26:14] [PASSED] DP_REMOTE_I2C_WRITE with I2C device ID
-[07:26:14] [PASSED] DP_REMOTE_I2C_WRITE with data array
-[07:26:14] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream ID
-[07:26:14] [PASSED] DP_QUERY_STREAM_ENC_STATUS with client ID
-[07:26:14] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream event
-[07:26:14] [PASSED] DP_QUERY_STREAM_ENC_STATUS with valid stream event
-[07:26:14] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream behavior
-[07:26:14] [PASSED] DP_QUERY_STREAM_ENC_STATUS with a valid stream behavior
-[07:26:14] ===== [PASSED] drm_test_dp_mst_sideband_msg_req_decode =====
-[07:26:14] ================ [PASSED] drm_dp_mst_helper ================
-[07:26:14] ================== drm_exec (7 subtests) ===================
-[07:26:14] [PASSED] sanitycheck
-[07:26:14] [PASSED] test_lock
-[07:26:14] [PASSED] test_lock_unlock
-[07:26:14] [PASSED] test_duplicates
-[07:26:14] [PASSED] test_prepare
-[07:26:14] [PASSED] test_prepare_array
-[07:26:14] [PASSED] test_multiple_loops
-[07:26:14] ==================== [PASSED] drm_exec =====================
-[07:26:14] =========== drm_format_helper_test (18 subtests) ===========
-[07:26:14] ============== drm_test_fb_xrgb8888_to_gray8  ==============
-[07:26:14] [PASSED] single_pixel_source_buffer
-[07:26:14] [PASSED] single_pixel_clip_rectangle
-[07:26:14] [PASSED] well_known_colors
-[07:26:14] [PASSED] destination_pitch
-[07:26:14] ========== [PASSED] drm_test_fb_xrgb8888_to_gray8 ==========
-[07:26:14] ============= drm_test_fb_xrgb8888_to_rgb332  ==============
-[07:26:14] [PASSED] single_pixel_source_buffer
-[07:26:14] [PASSED] single_pixel_clip_rectangle
-[07:26:14] [PASSED] well_known_colors
-[07:26:14] [PASSED] destination_pitch
-[07:26:14] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb332 ==========
-[07:26:14] ============= drm_test_fb_xrgb8888_to_rgb565  ==============
-[07:26:14] [PASSED] single_pixel_source_buffer
-[07:26:14] [PASSED] single_pixel_clip_rectangle
-[07:26:14] [PASSED] well_known_colors
-[07:26:14] [PASSED] destination_pitch
-[07:26:14] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb565 ==========
-[07:26:14] ============ drm_test_fb_xrgb8888_to_xrgb1555  =============
-[07:26:14] [PASSED] single_pixel_source_buffer
-[07:26:14] [PASSED] single_pixel_clip_rectangle
-[07:26:14] [PASSED] well_known_colors
-[07:26:14] [PASSED] destination_pitch
-[07:26:14] ======== [PASSED] drm_test_fb_xrgb8888_to_xrgb1555 =========
-[07:26:14] ============ drm_test_fb_xrgb8888_to_argb1555  =============
-[07:26:14] [PASSED] single_pixel_source_buffer
-[07:26:14] [PASSED] single_pixel_clip_rectangle
-[07:26:14] [PASSED] well_known_colors
-[07:26:14] [PASSED] destination_pitch
-[07:26:14] ======== [PASSED] drm_test_fb_xrgb8888_to_argb1555 =========
-[07:26:14] ============ drm_test_fb_xrgb8888_to_rgba5551  =============
-[07:26:14] [PASSED] single_pixel_source_buffer
-[07:26:14] [PASSED] single_pixel_clip_rectangle
-[07:26:14] [PASSED] well_known_colors
-[07:26:14] [PASSED] destination_pitch
-[07:26:14] ======== [PASSED] drm_test_fb_xrgb8888_to_rgba5551 =========
-[07:26:14] ============= drm_test_fb_xrgb8888_to_rgb888  ==============
-[07:26:14] [PASSED] single_pixel_source_buffer
-[07:26:14] [PASSED] single_pixel_clip_rectangle
-[07:26:14] [PASSED] well_known_colors
-[07:26:14] [PASSED] destination_pitch
-[07:26:14] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb888 ==========
-[07:26:14] ============= drm_test_fb_xrgb8888_to_bgr888  ==============
-[07:26:14] [PASSED] single_pixel_source_buffer
-[07:26:14] [PASSED] single_pixel_clip_rectangle
-[07:26:14] [PASSED] well_known_colors
-[07:26:14] [PASSED] destination_pitch
-[07:26:14] ========= [PASSED] drm_test_fb_xrgb8888_to_bgr888 ==========
-[07:26:14] ============ drm_test_fb_xrgb8888_to_argb8888  =============
-[07:26:14] [PASSED] single_pixel_source_buffer
-[07:26:14] [PASSED] single_pixel_clip_rectangle
-[07:26:14] [PASSED] well_known_colors
-[07:26:14] [PASSED] destination_pitch
-[07:26:14] ======== [PASSED] drm_test_fb_xrgb8888_to_argb8888 =========
-[07:26:14] =========== drm_test_fb_xrgb8888_to_xrgb2101010  ===========
-[07:26:14] [PASSED] single_pixel_source_buffer
-[07:26:14] [PASSED] single_pixel_clip_rectangle
-[07:26:14] [PASSED] well_known_colors
-[07:26:14] [PASSED] destination_pitch
-[07:26:14] ======= [PASSED] drm_test_fb_xrgb8888_to_xrgb2101010 =======
-[07:26:14] =========== drm_test_fb_xrgb8888_to_argb2101010  ===========
-[07:26:14] [PASSED] single_pixel_source_buffer
-[07:26:14] [PASSED] single_pixel_clip_rectangle
-[07:26:14] [PASSED] well_known_colors
-[07:26:14] [PASSED] destination_pitch
-[07:26:14] ======= [PASSED] drm_test_fb_xrgb8888_to_argb2101010 =======
-[07:26:14] ============== drm_test_fb_xrgb8888_to_mono  ===============
-[07:26:14] [PASSED] single_pixel_source_buffer
-[07:26:14] [PASSED] single_pixel_clip_rectangle
-[07:26:14] [PASSED] well_known_colors
-[07:26:14] [PASSED] destination_pitch
-[07:26:14] ========== [PASSED] drm_test_fb_xrgb8888_to_mono ===========
-[07:26:14] ==================== drm_test_fb_swab  =====================
-[07:26:14] [PASSED] single_pixel_source_buffer
-[07:26:14] [PASSED] single_pixel_clip_rectangle
-[07:26:14] [PASSED] well_known_colors
-[07:26:14] [PASSED] destination_pitch
-[07:26:14] ================ [PASSED] drm_test_fb_swab =================
-[07:26:14] ============ drm_test_fb_xrgb8888_to_xbgr8888  =============
-[07:26:14] [PASSED] single_pixel_source_buffer
-[07:26:14] [PASSED] single_pixel_clip_rectangle
-[07:26:14] [PASSED] well_known_colors
-[07:26:14] [PASSED] destination_pitch
-[07:26:14] ======== [PASSED] drm_test_fb_xrgb8888_to_xbgr8888 =========
-[07:26:14] ============ drm_test_fb_xrgb8888_to_abgr8888  =============
-[07:26:14] [PASSED] single_pixel_source_buffer
-[07:26:14] [PASSED] single_pixel_clip_rectangle
-[07:26:14] [PASSED] well_known_colors
-[07:26:14] [PASSED] destination_pitch
-[07:26:14] ======== [PASSED] drm_test_fb_xrgb8888_to_abgr8888 =========
-[07:26:14] ================= drm_test_fb_clip_offset  =================
-[07:26:14] [PASSED] pass through
-[07:26:14] [PASSED] horizontal offset
-[07:26:14] [PASSED] vertical offset
-[07:26:14] [PASSED] horizontal and vertical offset
-[07:26:14] [PASSED] horizontal offset (custom pitch)
-[07:26:14] [PASSED] vertical offset (custom pitch)
-[07:26:14] [PASSED] horizontal and vertical offset (custom pitch)
-[07:26:14] ============= [PASSED] drm_test_fb_clip_offset =============
-[07:26:14] ============== drm_test_fb_build_fourcc_list  ==============
-[07:26:14] [PASSED] no native formats
-[07:26:14] [PASSED] XRGB8888 as native format
-[07:26:14] [PASSED] remove duplicates
-[07:26:14] [PASSED] convert alpha formats
-[07:26:14] [PASSED] random formats
-[07:26:14] ========== [PASSED] drm_test_fb_build_fourcc_list ==========
-[07:26:14] =================== drm_test_fb_memcpy  ====================
-[07:26:14] [PASSED] single_pixel_source_buffer: XR24 little-endian (0x34325258)
-[07:26:14] [PASSED] single_pixel_source_buffer: XRA8 little-endian (0x38415258)
-[07:26:14] [PASSED] single_pixel_source_buffer: YU24 little-endian (0x34325559)
-[07:26:14] [PASSED] single_pixel_clip_rectangle: XB24 little-endian (0x34324258)
-[07:26:14] [PASSED] single_pixel_clip_rectangle: XRA8 little-endian (0x38415258)
-[07:26:14] [PASSED] single_pixel_clip_rectangle: YU24 little-endian (0x34325559)
-[07:26:14] [PASSED] well_known_colors: XB24 little-endian (0x34324258)
-[07:26:14] [PASSED] well_known_colors: XRA8 little-endian (0x38415258)
-[07:26:14] [PASSED] well_known_colors: YU24 little-endian (0x34325559)
-[07:26:14] [PASSED] destination_pitch: XB24 little-endian (0x34324258)
-[07:26:14] [PASSED] destination_pitch: XRA8 little-endian (0x38415258)
-[07:26:14] [PASSED] destination_pitch: YU24 little-endian (0x34325559)
-[07:26:14] =============== [PASSED] drm_test_fb_memcpy ================
-[07:26:14] ============= [PASSED] drm_format_helper_test ==============
-[07:26:14] ================= drm_format (18 subtests) =================
-[07:26:14] [PASSED] drm_test_format_block_width_invalid
-[07:26:14] [PASSED] drm_test_format_block_width_one_plane
-[07:26:14] [PASSED] drm_test_format_block_width_two_plane
-[07:26:14] [PASSED] drm_test_format_block_width_three_plane
-[07:26:14] [PASSED] drm_test_format_block_width_tiled
-[07:26:14] [PASSED] drm_test_format_block_height_invalid
-[07:26:14] [PASSED] drm_test_format_block_height_one_plane
-[07:26:14] [PASSED] drm_test_format_block_height_two_plane
-[07:26:14] [PASSED] drm_test_format_block_height_three_plane
-[07:26:14] [PASSED] drm_test_format_block_height_tiled
-[07:26:14] [PASSED] drm_test_format_min_pitch_invalid
-[07:26:14] [PASSED] drm_test_format_min_pitch_one_plane_8bpp
-[07:26:14] [PASSED] drm_test_format_min_pitch_one_plane_16bpp
-[07:26:14] [PASSED] drm_test_format_min_pitch_one_plane_24bpp
-[07:26:14] [PASSED] drm_test_format_min_pitch_one_plane_32bpp
-[07:26:14] [PASSED] drm_test_format_min_pitch_two_plane
-[07:26:14] [PASSED] drm_test_format_min_pitch_three_plane_8bpp
-[07:26:14] [PASSED] drm_test_format_min_pitch_tiled
-[07:26:14] =================== [PASSED] drm_format ====================
-[07:26:14] ============== drm_framebuffer (10 subtests) ===============
-[07:26:14] ========== drm_test_framebuffer_check_src_coords  ==========
-[07:26:14] [PASSED] Success: source fits into fb
-[07:26:14] [PASSED] Fail: overflowing fb with x-axis coordinate
-[07:26:14] [PASSED] Fail: overflowing fb with y-axis coordinate
-[07:26:14] [PASSED] Fail: overflowing fb with source width
-[07:26:14] [PASSED] Fail: overflowing fb with source height
-[07:26:14] ====== [PASSED] drm_test_framebuffer_check_src_coords ======
-[07:26:14] [PASSED] drm_test_framebuffer_cleanup
-[07:26:14] =============== drm_test_framebuffer_create  ===============
-[07:26:14] [PASSED] ABGR8888 normal sizes
-[07:26:14] [PASSED] ABGR8888 max sizes
-[07:26:14] [PASSED] ABGR8888 pitch greater than min required
-[07:26:14] [PASSED] ABGR8888 pitch less than min required
-[07:26:14] [PASSED] ABGR8888 Invalid width
-[07:26:14] [PASSED] ABGR8888 Invalid buffer handle
-[07:26:14] [PASSED] No pixel format
-[07:26:14] [PASSED] ABGR8888 Width 0
-[07:26:14] [PASSED] ABGR8888 Height 0
-[07:26:14] [PASSED] ABGR8888 Out of bound height * pitch combination
-[07:26:14] [PASSED] ABGR8888 Large buffer offset
-[07:26:14] [PASSED] ABGR8888 Buffer offset for inexistent plane
-[07:26:14] [PASSED] ABGR8888 Invalid flag
-[07:26:14] [PASSED] ABGR8888 Set DRM_MODE_FB_MODIFIERS without modifiers
-[07:26:14] [PASSED] ABGR8888 Valid buffer modifier
-[07:26:14] [PASSED] ABGR8888 Invalid buffer modifier(DRM_FORMAT_MOD_SAMSUNG_64_32_TILE)
-[07:26:14] [PASSED] ABGR8888 Extra pitches without DRM_MODE_FB_MODIFIERS
-[07:26:14] [PASSED] ABGR8888 Extra pitches with DRM_MODE_FB_MODIFIERS
-[07:26:14] [PASSED] NV12 Normal sizes
-[07:26:14] [PASSED] NV12 Max sizes
-[07:26:14] [PASSED] NV12 Invalid pitch
-[07:26:14] [PASSED] NV12 Invalid modifier/missing DRM_MODE_FB_MODIFIERS flag
-[07:26:14] [PASSED] NV12 different  modifier per-plane
-[07:26:14] [PASSED] NV12 with DRM_FORMAT_MOD_SAMSUNG_64_32_TILE
-[07:26:14] [PASSED] NV12 Valid modifiers without DRM_MODE_FB_MODIFIERS
-[07:26:14] [PASSED] NV12 Modifier for inexistent plane
-[07:26:14] [PASSED] NV12 Handle for inexistent plane
-[07:26:14] [PASSED] NV12 Handle for inexistent plane without DRM_MODE_FB_MODIFIERS
-[07:26:14] [PASSED] YVU420 DRM_MODE_FB_MODIFIERS set without modifier
-[07:26:14] [PASSED] YVU420 Normal sizes
-[07:26:14] [PASSED] YVU420 Max sizes
-[07:26:14] [PASSED] YVU420 Invalid pitch
-[07:26:14] [PASSED] YVU420 Different pitches
-[07:26:14] [PASSED] YVU420 Different buffer offsets/pitches
-[07:26:14] [PASSED] YVU420 Modifier set just for plane 0, without DRM_MODE_FB_MODIFIERS
-[07:26:14] [PASSED] YVU420 Modifier set just for planes 0, 1, without DRM_MODE_FB_MODIFIERS
-[07:26:14] [PASSED] YVU420 Modifier set just for plane 0, 1, with DRM_MODE_FB_MODIFIERS
-[07:26:14] [PASSED] YVU420 Valid modifier
-[07:26:14] [PASSED] YVU420 Different modifiers per plane
-[07:26:14] [PASSED] YVU420 Modifier for inexistent plane
-[07:26:14] [PASSED] YUV420_10BIT Invalid modifier(DRM_FORMAT_MOD_LINEAR)
-[07:26:14] [PASSED] X0L2 Normal sizes
-[07:26:14] [PASSED] X0L2 Max sizes
-[07:26:14] [PASSED] X0L2 Invalid pitch
-[07:26:14] [PASSED] X0L2 Pitch greater than minimum required
-[07:26:14] [PASSED] X0L2 Handle for inexistent plane
-[07:26:14] [PASSED] X0L2 Offset for inexistent plane, without DRM_MODE_FB_MODIFIERS set
-[07:26:14] [PASSED] X0L2 Modifier without DRM_MODE_FB_MODIFIERS set
-[07:26:14] [PASSED] X0L2 Valid modifier
-[07:26:14] [PASSED] X0L2 Modifier for inexistent plane
-[07:26:14] =========== [PASSED] drm_test_framebuffer_create ===========
-[07:26:14] [PASSED] drm_test_framebuffer_free
-[07:26:14] [PASSED] drm_test_framebuffer_init
-[07:26:14] [PASSED] drm_test_framebuffer_init_bad_format
-[07:26:14] [PASSED] drm_test_framebuffer_init_dev_mismatch
-[07:26:14] [PASSED] drm_test_framebuffer_lookup
-[07:26:14] [PASSED] drm_test_framebuffer_lookup_inexistent
-[07:26:14] [PASSED] drm_test_framebuffer_modifiers_not_supported
-[07:26:14] ================= [PASSED] drm_framebuffer =================
-[07:26:14] ================ drm_gem_shmem (8 subtests) ================
-[07:26:14] [PASSED] drm_gem_shmem_test_obj_create
-[07:26:14] [PASSED] drm_gem_shmem_test_obj_create_private
-[07:26:14] [PASSED] drm_gem_shmem_test_pin_pages
-[07:26:14] [PASSED] drm_gem_shmem_test_vmap
-[07:26:14] [PASSED] drm_gem_shmem_test_get_pages_sgt
-[07:26:14] [PASSED] drm_gem_shmem_test_get_sg_table
-[07:26:14] [PASSED] drm_gem_shmem_test_madvise
-[07:26:14] [PASSED] drm_gem_shmem_test_purge
-[07:26:14] ================== [PASSED] drm_gem_shmem ==================
-[07:26:14] === drm_atomic_helper_connector_hdmi_check (23 subtests) ===
-[07:26:14] [PASSED] drm_test_check_broadcast_rgb_auto_cea_mode
-[07:26:14] [PASSED] drm_test_check_broadcast_rgb_auto_cea_mode_vic_1
-[07:26:14] [PASSED] drm_test_check_broadcast_rgb_full_cea_mode
-[07:26:14] [PASSED] drm_test_check_broadcast_rgb_full_cea_mode_vic_1
-[07:26:14] [PASSED] drm_test_check_broadcast_rgb_limited_cea_mode
-[07:26:14] [PASSED] drm_test_check_broadcast_rgb_limited_cea_mode_vic_1
-[07:26:14] [PASSED] drm_test_check_broadcast_rgb_crtc_mode_changed
-[07:26:14] [PASSED] drm_test_check_broadcast_rgb_crtc_mode_not_changed
-[07:26:14] [PASSED] drm_test_check_disable_connector
-[07:26:14] [PASSED] drm_test_check_hdmi_funcs_reject_rate
-[07:26:14] [PASSED] drm_test_check_max_tmds_rate_bpc_fallback
-[07:26:14] [PASSED] drm_test_check_max_tmds_rate_format_fallback
-[07:26:14] [PASSED] drm_test_check_output_bpc_crtc_mode_changed
-[07:26:14] [PASSED] drm_test_check_output_bpc_crtc_mode_not_changed
-[07:26:14] [PASSED] drm_test_check_output_bpc_dvi
-[07:26:14] [PASSED] drm_test_check_output_bpc_format_vic_1
-[07:26:14] [PASSED] drm_test_check_output_bpc_format_display_8bpc_only
-[07:26:14] [PASSED] drm_test_check_output_bpc_format_display_rgb_only
-[07:26:14] [PASSED] drm_test_check_output_bpc_format_driver_8bpc_only
-[07:26:14] [PASSED] drm_test_check_output_bpc_format_driver_rgb_only
-[07:26:14] [PASSED] drm_test_check_tmds_char_rate_rgb_8bpc
-[07:26:14] [PASSED] drm_test_check_tmds_char_rate_rgb_10bpc
-[07:26:14] [PASSED] drm_test_check_tmds_char_rate_rgb_12bpc
-[07:26:14] ===== [PASSED] drm_atomic_helper_connector_hdmi_check ======
-[07:26:14] === drm_atomic_helper_connector_hdmi_reset (6 subtests) ====
-[07:26:14] [PASSED] drm_test_check_broadcast_rgb_value
-[07:26:14] [PASSED] drm_test_check_bpc_8_value
-[07:26:14] [PASSED] drm_test_check_bpc_10_value
-[07:26:14] [PASSED] drm_test_check_bpc_12_value
-[07:26:14] [PASSED] drm_test_check_format_value
-[07:26:14] [PASSED] drm_test_check_tmds_char_value
-[07:26:14] ===== [PASSED] drm_atomic_helper_connector_hdmi_reset ======
-[07:26:14] = drm_atomic_helper_connector_hdmi_mode_valid (4 subtests) =
-[07:26:14] [PASSED] drm_test_check_mode_valid
-[07:26:14] [PASSED] drm_test_check_mode_valid_reject
-[07:26:14] [PASSED] drm_test_check_mode_valid_reject_rate
-[07:26:14] [PASSED] drm_test_check_mode_valid_reject_max_clock
-[07:26:14] === [PASSED] drm_atomic_helper_connector_hdmi_mode_valid ===
-[07:26:14] ================= drm_managed (2 subtests) =================
-[07:26:14] [PASSED] drm_test_managed_release_action
-[07:26:14] [PASSED] drm_test_managed_run_action
-[07:26:14] =================== [PASSED] drm_managed ===================
-[07:26:14] =================== drm_mm (6 subtests) ====================
-[07:26:14] [PASSED] drm_test_mm_init
-[07:26:14] [PASSED] drm_test_mm_debug
-[07:26:14] [PASSED] drm_test_mm_align32
-[07:26:14] [PASSED] drm_test_mm_align64
-[07:26:14] [PASSED] drm_test_mm_lowest
-[07:26:14] [PASSED] drm_test_mm_highest
-[07:26:14] ===================== [PASSED] drm_mm ======================
-[07:26:14] ============= drm_modes_analog_tv (5 subtests) =============
-[07:26:14] [PASSED] drm_test_modes_analog_tv_mono_576i
-[07:26:14] [PASSED] drm_test_modes_analog_tv_ntsc_480i
-[07:26:14] [PASSED] drm_test_modes_analog_tv_ntsc_480i_inlined
-[07:26:14] [PASSED] drm_test_modes_analog_tv_pal_576i
-[07:26:14] [PASSED] drm_test_modes_analog_tv_pal_576i_inlined
-[07:26:14] =============== [PASSED] drm_modes_analog_tv ===============
-[07:26:14] ============== drm_plane_helper (2 subtests) ===============
-[07:26:14] =============== drm_test_check_plane_state  ================
-[07:26:14] [PASSED] clipping_simple
-[07:26:14] [PASSED] clipping_rotate_reflect
-[07:26:14] [PASSED] positioning_simple
-[07:26:14] [PASSED] upscaling
-[07:26:14] [PASSED] downscaling
-[07:26:14] [PASSED] rounding1
-[07:26:14] [PASSED] rounding2
-[07:26:14] [PASSED] rounding3
-[07:26:14] [PASSED] rounding4
-[07:26:14] =========== [PASSED] drm_test_check_plane_state ============
-[07:26:14] =========== drm_test_check_invalid_plane_state  ============
-[07:26:14] [PASSED] positioning_invalid
-[07:26:14] [PASSED] upscaling_invalid
-[07:26:14] [PASSED] downscaling_invalid
-[07:26:14] ======= [PASSED] drm_test_check_invalid_plane_state ========
-[07:26:14] ================ [PASSED] drm_plane_helper =================
-[07:26:14] ====== drm_connector_helper_tv_get_modes (1 subtest) =======
-[07:26:14] ====== drm_test_connector_helper_tv_get_modes_check  =======
-[07:26:14] [PASSED] None
-[07:26:14] [PASSED] PAL
-[07:26:14] [PASSED] NTSC
-[07:26:14] [PASSED] Both, NTSC Default
-[07:26:14] [PASSED] Both, PAL Default
-[07:26:14] [PASSED] Both, NTSC Default, with PAL on command-line
-[07:26:14] [PASSED] Both, PAL Default, with NTSC on command-line
-[07:26:14] == [PASSED] drm_test_connector_helper_tv_get_modes_check ===
-[07:26:14] ======== [PASSED] drm_connector_helper_tv_get_modes ========
-[07:26:14] ================== drm_rect (9 subtests) ===================
-[07:26:14] [PASSED] drm_test_rect_clip_scaled_div_by_zero
-[07:26:14] [PASSED] drm_test_rect_clip_scaled_not_clipped
-[07:26:14] [PASSED] drm_test_rect_clip_scaled_clipped
-[07:26:14] [PASSED] drm_test_rect_clip_scaled_signed_vs_unsigned
-[07:26:14] ================= drm_test_rect_intersect  =================
-[07:26:14] [PASSED] top-left x bottom-right: 2x2+1+1 x 2x2+0+0
-[07:26:14] [PASSED] top-right x bottom-left: 2x2+0+0 x 2x2+1-1
-[07:26:14] [PASSED] bottom-left x top-right: 2x2+1-1 x 2x2+0+0
-[07:26:14] [PASSED] bottom-right x top-left: 2x2+0+0 x 2x2+1+1
-[07:26:14] [PASSED] right x left: 2x1+0+0 x 3x1+1+0
-[07:26:14] [PASSED] left x right: 3x1+1+0 x 2x1+0+0
-[07:26:14] [PASSED] up x bottom: 1x2+0+0 x 1x3+0-1
-[07:26:14] [PASSED] bottom x up: 1x3+0-1 x 1x2+0+0
-[07:26:14] [PASSED] touching corner: 1x1+0+0 x 2x2+1+1
-[07:26:14] [PASSED] touching side: 1x1+0+0 x 1x1+1+0
-[07:26:14] [PASSED] equal rects: 2x2+0+0 x 2x2+0+0
-[07:26:14] [PASSED] inside another: 2x2+0+0 x 1x1+1+1
-[07:26:14] [PASSED] far away: 1x1+0+0 x 1x1+3+6
-[07:26:14] [PASSED] points intersecting: 0x0+5+10 x 0x0+5+10
-[07:26:14] [PASSED] points not intersecting: 0x0+0+0 x 0x0+5+10
-[07:26:14] ============= [PASSED] drm_test_rect_intersect =============
-[07:26:14] ================ drm_test_rect_calc_hscale  ================
-[07:26:14] [PASSED] normal use
-[07:26:14] [PASSED] out of max range
-[07:26:14] [PASSED] out of min range
-[07:26:14] [PASSED] zero dst
-[07:26:14] [PASSED] negative src
-[07:26:14] [PASSED] negative dst
-[07:26:14] ============ [PASSED] drm_test_rect_calc_hscale ============
-[07:26:14] ================ drm_test_rect_calc_vscale  ================
-[07:26:14] [PASSED] normal use
-[07:26:14] [PASSED] out of max range
-[07:26:14] [PASSED] out of min range
-[07:26:14] [PASSED] zero dst
-[07:26:14] [PASSED] negative src
-[07:26:14] [PASSED] negative dst
-[07:26:14] ============ [PASSED] drm_test_rect_calc_vscale ============
-[07:26:14] ================== drm_test_rect_rotate  ===================
-[07:26:14] [PASSED] reflect-x
-[07:26:14] [PASSED] reflect-y
-[07:26:14] [PASSED] rotate-0
-[07:26:14] [PASSED] rotate-90
-[07:26:14] [PASSED] rotate-180
-[07:26:14] [PASSED] rotate-270
-[07:26:14] ============== [PASSED] drm_test_rect_rotate ===============
-[07:26:14] ================ drm_test_rect_rotate_inv  =================
-[07:26:14] [PASSED] reflect-x
-[07:26:14] [PASSED] reflect-y
-[07:26:14] [PASSED] rotate-0
-[07:26:14] [PASSED] rotate-90
-[07:26:14] [PASSED] rotate-180
-[07:26:14] [PASSED] rotate-270
-[07:26:14] ============ [PASSED] drm_test_rect_rotate_inv =============
-stty: 'standard input': Inappropriate ioctl for device
-[07:26:14] ==================== [PASSED] drm_rect =====================
-[07:26:14] ============================================================
-[07:26:14] Testing complete. Ran 608 tests: passed: 608
-[07:26:14] Elapsed time: 23.010s total, 1.698s configuring, 21.145s building, 0.134s running
-
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/ttm/tests/.kunitconfig
-[07:26:15] Configuring KUnit Kernel ...
-Regenerating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[07:26:16] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-[07:26:24] Starting KUnit Kernel (1/1)...
-[07:26:24] ============================================================
-Running tests with:
-$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
-[07:26:24] ================= ttm_device (5 subtests) ==================
-[07:26:24] [PASSED] ttm_device_init_basic
-[07:26:24] [PASSED] ttm_device_init_multiple
-[07:26:24] [PASSED] ttm_device_fini_basic
-[07:26:24] [PASSED] ttm_device_init_no_vma_man
-[07:26:24] ================== ttm_device_init_pools  ==================
-[07:26:24] [PASSED] No DMA allocations, no DMA32 required
-[07:26:24] [PASSED] DMA allocations, DMA32 required
-[07:26:24] [PASSED] No DMA allocations, DMA32 required
-[07:26:24] [PASSED] DMA allocations, no DMA32 required
-[07:26:24] ============== [PASSED] ttm_device_init_pools ==============
-[07:26:24] =================== [PASSED] ttm_device ====================
-[07:26:24] ================== ttm_pool (8 subtests) ===================
-[07:26:24] ================== ttm_pool_alloc_basic  ===================
-[07:26:24] [PASSED] One page
-[07:26:24] [PASSED] More than one page
-[07:26:24] [PASSED] Above the allocation limit
-[07:26:24] [PASSED] One page, with coherent DMA mappings enabled
-[07:26:24] [PASSED] Above the allocation limit, with coherent DMA mappings enabled
-[07:26:24] ============== [PASSED] ttm_pool_alloc_basic ===============
-[07:26:24] ============== ttm_pool_alloc_basic_dma_addr  ==============
-[07:26:24] [PASSED] One page
-[07:26:24] [PASSED] More than one page
-[07:26:24] [PASSED] Above the allocation limit
-[07:26:24] [PASSED] One page, with coherent DMA mappings enabled
-[07:26:24] [PASSED] Above the allocation limit, with coherent DMA mappings enabled
-[07:26:24] ========== [PASSED] ttm_pool_alloc_basic_dma_addr ==========
-[07:26:24] [PASSED] ttm_pool_alloc_order_caching_match
-[07:26:24] [PASSED] ttm_pool_alloc_caching_mismatch
-[07:26:24] [PASSED] ttm_pool_alloc_order_mismatch
-[07:26:24] [PASSED] ttm_pool_free_dma_alloc
-[07:26:24] [PASSED] ttm_pool_free_no_dma_alloc
-[07:26:24] [PASSED] ttm_pool_fini_basic
-[07:26:24] ==================== [PASSED] ttm_pool =====================
-[07:26:24] ================ ttm_resource (8 subtests) =================
-[07:26:24] ================= ttm_resource_init_basic  =================
-[07:26:24] [PASSED] Init resource in TTM_PL_SYSTEM
-[07:26:24] [PASSED] Init resource in TTM_PL_VRAM
-[07:26:24] [PASSED] Init resource in a private placement
-[07:26:24] [PASSED] Init resource in TTM_PL_SYSTEM, set placement flags
-[07:26:24] ============= [PASSED] ttm_resource_init_basic =============
-[07:26:24] [PASSED] ttm_resource_init_pinned
-[07:26:24] [PASSED] ttm_resource_fini_basic
-[07:26:24] [PASSED] ttm_resource_manager_init_basic
-[07:26:24] [PASSED] ttm_resource_manager_usage_basic
-[07:26:24] [PASSED] ttm_resource_manager_set_used_basic
-[07:26:24] [PASSED] ttm_sys_man_alloc_basic
-[07:26:24] [PASSED] ttm_sys_man_free_basic
-[07:26:24] ================== [PASSED] ttm_resource ===================
-[07:26:24] =================== ttm_tt (15 subtests) ===================
-[07:26:24] ==================== ttm_tt_init_basic  ====================
-[07:26:24] [PASSED] Page-aligned size
-[07:26:24] [PASSED] Extra pages requested
-[07:26:24] ================ [PASSED] ttm_tt_init_basic ================
-[07:26:24] [PASSED] ttm_tt_init_misaligned
-[07:26:24] [PASSED] ttm_tt_fini_basic
-[07:26:24] [PASSED] ttm_tt_fini_sg
-[07:26:24] [PASSED] ttm_tt_fini_shmem
-[07:26:24] [PASSED] ttm_tt_create_basic
-[07:26:24] [PASSED] ttm_tt_create_invalid_bo_type
-[07:26:24] [PASSED] ttm_tt_create_ttm_exists
-[07:26:24] [PASSED] ttm_tt_create_failed
-[07:26:24] [PASSED] ttm_tt_destroy_basic
-[07:26:24] [PASSED] ttm_tt_populate_null_ttm
-[07:26:24] [PASSED] ttm_tt_populate_populated_ttm
-[07:26:24] [PASSED] ttm_tt_unpopulate_basic
-[07:26:24] [PASSED] ttm_tt_unpopulate_empty_ttm
-[07:26:24] [PASSED] ttm_tt_swapin_basic
-[07:26:24] ===================== [PASSED] ttm_tt ======================
-[07:26:24] =================== ttm_bo (14 subtests) ===================
-[07:26:24] =========== ttm_bo_reserve_optimistic_no_ticket  ===========
-[07:26:24] [PASSED] Cannot be interrupted and sleeps
-[07:26:24] [PASSED] Cannot be interrupted, locks straight away
-[07:26:24] [PASSED] Can be interrupted, sleeps
-[07:26:24] ======= [PASSED] ttm_bo_reserve_optimistic_no_ticket =======
-[07:26:24] [PASSED] ttm_bo_reserve_locked_no_sleep
-[07:26:24] [PASSED] ttm_bo_reserve_no_wait_ticket
-[07:26:24] [PASSED] ttm_bo_reserve_double_resv
-[07:26:24] [PASSED] ttm_bo_reserve_interrupted
-[07:26:24] [PASSED] ttm_bo_reserve_deadlock
-[07:26:24] [PASSED] ttm_bo_unreserve_basic
-[07:26:24] [PASSED] ttm_bo_unreserve_pinned
-[07:26:24] [PASSED] ttm_bo_unreserve_bulk
-[07:26:24] [PASSED] ttm_bo_put_basic
-[07:26:24] [PASSED] ttm_bo_put_shared_resv
-[07:26:24] [PASSED] ttm_bo_pin_basic
-[07:26:24] [PASSED] ttm_bo_pin_unpin_resource
-[07:26:24] [PASSED] ttm_bo_multiple_pin_one_unpin
-[07:26:24] ===================== [PASSED] ttm_bo ======================
-[07:26:24] ============== ttm_bo_validate (22 subtests) ===============
-[07:26:24] ============== ttm_bo_init_reserved_sys_man  ===============
-[07:26:24] [PASSED] Buffer object for userspace
-[07:26:24] [PASSED] Kernel buffer object
-[07:26:24] [PASSED] Shared buffer object
-[07:26:24] ========== [PASSED] ttm_bo_init_reserved_sys_man ===========
-[07:26:24] ============== ttm_bo_init_reserved_mock_man  ==============
-[07:26:24] [PASSED] Buffer object for userspace
-[07:26:24] [PASSED] Kernel buffer object
-[07:26:24] [PASSED] Shared buffer object
-[07:26:24] ========== [PASSED] ttm_bo_init_reserved_mock_man ==========
-[07:26:24] [PASSED] ttm_bo_init_reserved_resv
-[07:26:24] ================== ttm_bo_validate_basic  ==================
-[07:26:24] [PASSED] Buffer object for userspace
-[07:26:24] [PASSED] Kernel buffer object
-[07:26:24] [PASSED] Shared buffer object
-[07:26:24] ============== [PASSED] ttm_bo_validate_basic ==============
-[07:26:24] [PASSED] ttm_bo_validate_invalid_placement
-[07:26:24] ============= ttm_bo_validate_same_placement  ==============
-[07:26:24] [PASSED] System manager
-[07:26:24] [PASSED] VRAM manager
-[07:26:24] ========= [PASSED] ttm_bo_validate_same_placement ==========
-[07:26:24] [PASSED] ttm_bo_validate_failed_alloc
-[07:26:24] [PASSED] ttm_bo_validate_pinned
-[07:26:24] [PASSED] ttm_bo_validate_busy_placement
-[07:26:24] ================ ttm_bo_validate_multihop  =================
-[07:26:24] [PASSED] Buffer object for userspace
-[07:26:24] [PASSED] Kernel buffer object
-[07:26:24] [PASSED] Shared buffer object
-[07:26:24] ============ [PASSED] ttm_bo_validate_multihop =============
-[07:26:24] ========== ttm_bo_validate_no_placement_signaled  ==========
-[07:26:24] [PASSED] Buffer object in system domain, no page vector
-[07:26:24] [PASSED] Buffer object in system domain with an existing page vector
-[07:26:24] ====== [PASSED] ttm_bo_validate_no_placement_signaled ======
-[07:26:24] ======== ttm_bo_validate_no_placement_not_signaled  ========
-[07:26:24] [PASSED] Buffer object for userspace
-[07:26:24] [PASSED] Kernel buffer object
-[07:26:24] [PASSED] Shared buffer object
-[07:26:24] ==== [PASSED] ttm_bo_validate_no_placement_not_signaled ====
-[07:26:24] [PASSED] ttm_bo_validate_move_fence_signaled
-[07:26:24] ========= ttm_bo_validate_move_fence_not_signaled  =========
-[07:26:24] [PASSED] Waits for GPU
-[07:26:24] [PASSED] Tries to lock straight away
-[07:26:24] ===== [PASSED] ttm_bo_validate_move_fence_not_signaled =====
-[07:26:24] [PASSED] ttm_bo_validate_swapout
-[07:26:24] [PASSED] ttm_bo_validate_happy_evict
-[07:26:24] [PASSED] ttm_bo_validate_all_pinned_evict
-[07:26:24] [PASSED] ttm_bo_validate_allowed_only_evict
-[07:26:24] [PASSED] ttm_bo_validate_deleted_evict
-[07:26:24] [PASSED] ttm_bo_validate_busy_domain_evict
-[07:26:24] [PASSED] ttm_bo_validate_evict_gutting
-[07:26:24] [PASSED] ttm_bo_validate_recrusive_evict
-stty: 'standard input': Inappropriate ioctl for device
-[07:26:24] ================= [PASSED] ttm_bo_validate =================
-[07:26:24] ============================================================
-[07:26:24] Testing complete. Ran 102 tests: passed: 102
-[07:26:25] Elapsed time: 9.998s total, 1.609s configuring, 7.722s building, 0.559s running
-
+CC      fs/isofs/compress.o
+  CC [M]  drivers/clk/clk-twl6040.o
+  CC      drivers/tty/vt/vc_screen.o
+  CC      block/blk-crypto-profile.o
+  CC      kernel/time/posix-clock.o
+  CC [M]  drivers/xen/xen-pciback/conf_space_header.o
+  CC      net/ipv6/icmp.o
+  CC [M]  net/sched/em_u32.o
+  CC      arch/x86/kernel/x86_init.o
+  CC      mm/rmap.o
+  CC [M]  arch/x86/kvm/vmx/vmx_onhyperv.o
+  CC      net/ipv6/mcast.o
+  CC      mm/vmalloc.o
+  CC [M]  sound/soc/intel/common/soc-acpi-intel-tgl-match.o
+  CC      net/core/timestamping.o
+  CC [M]  sound/soc/intel/atom/sst-mfld-platform-compress.o
+  CC [M]  drivers/gpio/gpio-tangier.o
+  CC [M]  net/llc/af_llc.o
+  CC      net/ipv4/tcp_minisocks.o
+  CC      kernel/trace/rv/reactor_printk.o
+  CC      drivers/acpi/acpica/nsxfobj.o
+  CC      drivers/regulator/irq_helpers.o
+  CC      fs/ext4/page-io.o
+  CC      kernel/debug/kdb/kdb_debugger.o
+  CC [M]  net/bridge/netfilter/ebt_limit.o
+  CC [M]  sound/soc/intel/common/soc-acpi-intel-ehl-match.o
+  CC [M]  drivers/xen/xenfs/super.o
+  CC [M]  drivers/dma/dw-edma/dw-hdma-v0-debugfs.o
+  CC [M]  drivers/xen/xenfs/xenstored.o
+  CC [M]  drivers/dma/ioat/sysfs.o
+  CC      lib/zstd/common/debug.o
+  CC      fs/fat/namei_msdos.o
+  CC [M]  drivers/clk/clk-twl.o
+  CC      lib/zstd/common/entropy_common.o
+  CC      arch/x86/kernel/i8259.o
+  CC [M]  drivers/xen/xenfs/xensyms.o
+  CC [M]  crypto/echainiv.o
+  CC      net/core/ptp_classifier.o
+  CC      drivers/tty/vt/selection.o
+  CC      drivers/xen/cpu_hotplug.o
+  AR      fs/isofs/built-in.a
+  CC [M]  drivers/clk/clk-wm831x.o
+  CC [M]  drivers/xen/xen-pciback/conf_space_capability.o
+  CC      kernel/trace/rv/reactor_panic.o
+  CC      lib/zstd/common/error_private.o
+  CC      drivers/acpi/acpica/psargs.o
+  CC [M]  sound/soc/intel/atom/sst-atom-controls.o
+  CC      lib/zstd/common/fse_decompress.o
+  CC [M]  net/sched/em_meta.o
+  CC [M]  arch/x86/kvm/svm/svm.o
+  CC      arch/x86/kernel/irqinit.o
+  CC [M]  drivers/dma/dw-edma/dw-edma-pcie.o
+  CC      kernel/bpf/core.o
+  CC      drivers/xen/grant-table.o
+  UPD     arch/x86/kvm/kvm-asm-offsets.h
+  CC      drivers/acpi/acpica/psloop.o
+  CC      block/blk-crypto-sysfs.o
+  CC      kernel/events/core.o
+  CC [M]  drivers/gpio/gpio-tpic2810.o
+  CC      net/ipv6/reassembly.o
+  CC      drivers/pci/vgaarb.o
+  CC      kernel/time/itimer.o
+  CC [M]  sound/soc/intel/common/soc-acpi-intel-jsl-match.o
+  CC [M]  net/bridge/netfilter/ebt_mark_m.o
+  LD [M]  drivers/dma/ioat/ioatdma.o
+  CC [M]  crypto/ecdsa.o
+  CC      kernel/events/ring_buffer.o
+  CC      kernel/debug/gdbstub.o
+  CC      drivers/pci/doe.o
+  LD [M]  drivers/xen/xenfs/xenfs.o
+  LD [M]  net/tls/tls.o
+  CC [M]  sound/soc/intel/common/soc-acpi-intel-adl-match.o
+  CC [M]  net/sunrpc/auth_gss/gss_krb5_seal.o
+  CC [M]  arch/x86/kvm/svm/pmu.o
+  CC      kernel/debug/kdb/kdb_keyboard.o
+  CC [M]  sound/soc/intel/common/soc-acpi-intel-rpl-match.o
+  CC [M]  net/llc/llc_station.o
+  CC      drivers/regulator/event.o
+  AR      drivers/clk/built-in.a
+  AR      kernel/trace/rv/built-in.a
+  CC      block/blk-crypto-fallback.o
+  CC      kernel/trace/ftrace.o
+  CC [M]  drivers/xen/xen-pciback/conf_space_quirks.o
+  CC [M]  sound/soc/intel/common/soc-acpi-intel-mtl-match.o
+  CC      lib/zstd/common/zstd_common.o
+  AR      fs/fat/built-in.a
+  CC      drivers/xen/features.o
+  CC      kernel/bpf/syscall.o
+  CC [M]  net/netfilter/nfnetlink_cttimeout.o
+  CC      drivers/acpi/acpica/psobject.o
+  AR      lib/zstd/built-in.a
+  CC      net/core/netprio_cgroup.o
+  TEST    lib/test_fortify/read_overflow-memchr.log
+  CC      drivers/tty/vt/keyboard.o
+  ASN.1   crypto/ecdsasignature.asn1.[ch]
+  CC [M]  net/sunrpc/clnt.o
+  CC [M]  crypto/ecdsa-p1363.o
+  CC [M]  net/netfilter/nfnetlink_cthelper.o
+  CC      arch/x86/kernel/jump_label.o
+  CC      fs/ext4/readpage.o
+  CC      kernel/time/clockevents.o
+  LD [M]  drivers/dma/dw-edma/dw-edma.o
+  CC      drivers/dma/virt-dma.o
+  TEST    lib/test_fortify/read_overflow-memchr_inv.log
+  CC [M]  drivers/gpio/gpio-tps65086.o
+  CC [M]  net/bridge/netfilter/ebt_pkttype.o
+  LD [M]  sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.o
+  CC      drivers/dma/acpi-dma.o
+  CC      drivers/acpi/acpica/psopcode.o
+  CC      lib/argv_split.o
+  CC [M]  sound/sound_core.o
+  CC [M]  drivers/gpio/gpio-tps65912.o
+  CC [M]  drivers/pci/pci-stub.o
+  CC [M]  net/sched/em_text.o
+  CC [M]  drivers/xen/xen-pciback/vpci.o
+  CC [M]  drivers/regulator/fixed.o
+  CC [M]  drivers/pci/pci-pf-stub.o
+  CC      net/core/netclassid_cgroup.o
+  TEST    lib/test_fortify/read_overflow-memcmp.log
+  CC [M]  net/l2tp/l2tp_ip.o
+  CC [M]  net/sunrpc/auth_gss/gss_krb5_unseal.o
+  CC      mm/vma.o
+  CC [M]  arch/x86/kvm/svm/nested.o
+  CC      net/ipv4/tcp_cong.o
+  CC [M]  net/dccp/ccid.o
+  CC      block/holder.o
+  CC [M]  net/llc/llc_proc.o
+  CC      kernel/debug/kdb/gen-kdb_cmds.o
+  CC [M]  crypto/ecdsasignature.asn1.o
+  AR      kernel/debug/kdb/built-in.a
+  CC [M]  sound/soc/intel/common/soc-acpi-intel-arl-match.o
+  AR      kernel/debug/built-in.a
+  CC      drivers/acpi/acpica/psopinfo.o
+  CC [M]  net/dccp/feat.o
+  CC [M]  crypto/crypto_user.o
+  CC [M]  net/llc/sysctl_net_llc.o
+  CC      arch/x86/kernel/irq_work.o
+  CC      mm/process_vm_access.o
+  CC      kernel/time/tick-common.o
+  CC [M]  arch/x86/kvm/svm/avic.o
+  CC      net/ipv4/tcp_metrics.o
+  TEST    lib/test_fortify/read_overflow-memscan.log
+  LD [M]  net/llc/llc.o
+  CC [M]  arch/x86/kvm/svm/sev.o
+  CC      kernel/events/callchain.o
+  CC      fs/ext4/resize.o
+  CC      kernel/fork.o
+  CC [M]  drivers/gpio/gpio-tps68470.o
+  CC [M]  drivers/pci/xen-pcifront.o
+  CC [M]  drivers/gpio/gpio-tqmx86.o
+  CC [M]  net/dccp/input.o
+  CC      fs/ext4/super.o
+  CC      drivers/acpi/acpica/psparse.o
+  CC [M]  sound/ac97_bus.o
+  TEST    lib/test_fortify/read_overflow2-memcmp.log
+  CC      drivers/char/hw_random/core.o
+  CC [M]  drivers/regulator/virtual.o
+  CC [M]  net/bridge/netfilter/ebt_stp.o
+  CC      fs/ext4/symlink.o
+  CC [M]  drivers/xen/xen-pciback/passthrough.o
+  CC [M]  net/netfilter/nf_conntrack_amanda.o
+  CC [M]  net/sched/em_ipt.o
+  CC [M]  drivers/char/hw_random/timeriomem-rng.o
+  CC [M]  drivers/dma/altera-msgdma.o
+  CC      net/ipv4/tcp_fastopen.o
+  TEST    lib/test_fortify/read_overflow2-memcpy.log
+  CC [M]  net/sunrpc/auth_gss/gss_krb5_wrap.o
+  CC      kernel/bpf/verifier.o
+  CC      arch/x86/kernel/probe_roms.o
+  CC [M]  sound/soc/intel/common/soc-acpi-intel-lnl-match.o
+  CC      drivers/acpi/acpica/psscope.o
+  CC [M]  block/kyber-iosched.o
+  CC [M]  net/sunrpc/auth_gss/gss_krb5_crypto.o
+  LD [M]  net/llc/llc2.o
+  CC      kernel/bpf/inode.o
+  CC      drivers/tty/vt/vt.o
+  CC      kernel/bpf/helpers.o
+  CC [M]  drivers/gpio/gpio-twl4030.o
+  CC [M]  crypto/cmac.o
+  CC      kernel/bpf/tnum.o
+  TEST    lib/test_fortify/read_overflow2-memmove.log
+  CC      fs/ext4/sysfs.o
+  CC [M]  drivers/regulator/userspace-consumer.o
+  CC [M]  net/bridge/br_input.o
+  CC      net/ipv6/tcp_ipv6.o
+  CC      drivers/acpi/acpica/pstree.o
+  CC      net/ipv6/ping.o
+  CC      net/core/lwtunnel.o
+  CC [M]  net/sctp/sm_statetable.o
+  LD [M]  drivers/xen/xen-pciback/xen-pciback.o
+  CC      drivers/xen/balloon.o
+  AR      drivers/pci/built-in.a
+  CC [M]  drivers/gpio/gpio-twl6040.o
+  CC [M]  net/netfilter/nf_conntrack_ftp.o
+  CC      kernel/time/tick-broadcast.o
+  TEST    lib/test_fortify/read_overflow2_field-memcpy.log
+  CC [M]  net/bridge/netfilter/ebt_vlan.o
+  CC      mm/mseal.o
+  CC [M]  net/sunrpc/xprt.o
+  CC [M]  net/sunrpc/auth_gss/gss_krb5_keys.o
+  CC [M]  drivers/dma/idma64.o
+  CC [M]  drivers/char/hw_random/intel-rng.o
+  TEST    lib/test_fortify/read_overflow2_field-memmove.log
+  CC [M]  net/rds/af_rds.o
+  CC      drivers/acpi/acpica/psutils.o
+  CC [M]  net/l2tp/l2tp_netlink.o
+  CC [M]  crypto/xcbc.o
+  CC      kernel/events/hw_breakpoint.o
+  CC      kernel/exec_domain.o
+  CC [M]  net/bridge/netfilter/ebt_arpreply.o
+  CC [M]  net/bridge/netfilter/ebt_mark.o
+  CC [M]  sound/soc/intel/common/soc-acpi-intel-ptl-match.o
+  CC [M]  net/bridge/netfilter/ebt_dnat.o
+  TEST    lib/test_fortify/write_overflow-memcpy.log
+  CC [M]  drivers/regulator/88pg86x.o
+  CC      arch/x86/kernel/sys_ia32.o
+  CC      kernel/events/uprobes.o
+  AR      net/sched/built-in.a
+  TEST    lib/test_fortify/write_overflow-memmove.log
+  TEST    lib/test_fortify/write_overflow-memset.log
+  CC      net/ipv4/tcp_rate.o
+  CC [M]  drivers/gpio/gpio-viperboard.o
+  CC      drivers/acpi/acpica/pswalk.o
+  CC [M]  drivers/char/hw_random/amd-rng.o
+  CC      kernel/bpf/log.o
+  CC      kernel/bpf/token.o
+  CC [M]  net/dccp/minisocks.o
+  CC [M]  crypto/md4.o
+  CC [M]  net/sctp/sm_statefuns.o
+  CC [M]  block/bfq-iosched.o
+  CC [M]  drivers/char/hw_random/ba431-rng.o
+  CC      kernel/time/tick-broadcast-hrtimer.o
+  CC      mm/page_alloc.o
+  TEST    lib/test_fortify/write_overflow-strcpy-lit.log
+  CC [M]  net/l2tp/l2tp_eth.o
+  CC [M]  drivers/dma/plx_dma.o
+  TEST    lib/test_fortify/write_overflow-strcpy.log
+  CC      drivers/acpi/acpica/psxface.o
+  CC [M]  drivers/regulator/88pm800-regulator.o
+  CC [M]  net/rds/bind.o
+  CC      drivers/tty/hvc/hvc_console.o
+  CC      drivers/iommu/amd/iommu.o
+  CC      net/core/lwt_bpf.o
+  CC      kernel/bpf/bpf_iter.o
+  CC      drivers/xen/manage.o
+  CC [M]  sound/soc/intel/common/soc-acpi-intel-hda-match.o
+  CC [M]  drivers/gpio/gpio-virtuser.o
+  TEST    lib/test_fortify/write_overflow-strncpy-src.log
+  CC      drivers/iommu/intel/dmar.o
+  CC      drivers/iommu/intel/iommu.o
+  CC [M]  net/bridge/br_ioctl.o
+  CC      arch/x86/kernel/signal_32.o
+  CC      drivers/tty/hvc/hvc_irq.o
+  CC      kernel/time/tick-oneshot.o
+  CC      kernel/trace/ring_buffer.o
+  CC [M]  crypto/rmd160.o
+  CC [M]  drivers/char/hw_random/via-rng.o
+  CC [M]  net/bridge/netfilter/ebt_redirect.o
+  CC      drivers/tty/hvc/hvc_xen.o
+  CC      drivers/acpi/acpica/rsaddr.o
+  CC      drivers/iommu/amd/init.o
+  CC      drivers/tty/serial/8250/8250_core.o
+  CC [M]  arch/x86/kvm/svm/hyperv.o
+  TEST    lib/test_fortify/write_overflow-strncpy.log
+  CC      drivers/tty/serial/8250/8250_platform.o
+  CC [M]  drivers/char/hw_random/virtio-rng.o
+  LD [M]  net/sunrpc/auth_gss/auth_rpcgss.o
+  LD [M]  net/sunrpc/auth_gss/rpcsec_gss_krb5.o
+  CC [M]  drivers/regulator/88pm8607.o
+  CC      kernel/panic.o
+  AR      drivers/dma/built-in.a
+  CC [M]  sound/soc/intel/common/soc-acpi-intel-sdw-mockup-match.o
+  CC [M]  sound/soc/intel/common/soc-acpi-intel-ssp-common.o
+  CC [M]  net/netfilter/nf_conntrack_h323_main.o
+  CC      drivers/acpi/acpica/rscalc.o
+  TEST    lib/test_fortify/write_overflow-strscpy.log
+  COPY    drivers/tty/vt/defkeymap.c
+  CC [M]  net/9p/mod.o
+  CC [M]  drivers/char/hw_random/xiphera-trng.o
+  CC      kernel/time/tick-sched.o
+  CC      mm/shuffle.o
+  CC      fs/exportfs/expfs.o
+  CC      fs/nls/nls_base.o
+  CC [M]  net/l2tp/l2tp_debugfs.o
+  CC      drivers/tty/vt/consolemap.o
+  CC      arch/x86/kernel/sys_x86_64.o
+  TEST    lib/test_fortify/write_overflow_field-memcpy.log
+  CC      net/ipv6/exthdrs.o
+  CC [M]  drivers/gpio/gpio-virtio.o
+  CC      fs/unicode/utf8-norm.o
+  CC [M]  crypto/sm3.o
+  CC      fs/ntfs3/attrib.o
+  CC      drivers/tty/serial/8250/8250_pnp.o
+  CC      net/ipv4/tcp_recovery.o
+  CC      drivers/acpi/acpica/rscreate.o
+  CC [M]  arch/x86/kvm/svm/svm_onhyperv.o
+  AR      drivers/tty/hvc/built-in.a
+  CC      fs/unicode/utf8-core.o
+  CC [M]  net/netfilter/nf_conntrack_h323_asn1.o
+  CC      drivers/xen/time.o
+  CC [M]  net/sctp/sm_sideeffect.o
+  CC [M]  net/bridge/netfilter/ebt_snat.o
+  CC [M]  drivers/regulator/aat2870-regulator.o
+  AR      drivers/char/hw_random/built-in.a
+  CC      drivers/char/agp/backend.o
+  CC [M]  net/rds/cong.o
+  CC [M]  net/dccp/options.o
+  CC      net/core/dst_cache.o
+  TEST    lib/test_fortify/write_overflow_field-memmove.log
+  CC      drivers/tty/serial/8250/8250_rsa.o
+  CC [M]  drivers/regulator/act8865-regulator.o
+  CC      kernel/bpf/map_iter.o
+  CC      drivers/iommu/intel/pasid.o
+  CC      net/ipv6/datagram.o
+  CC [M]  net/9p/client.o
+  CC [M]  sound/soc/intel/common/soc-acpi-intel-sdca-quirks.o
+  TEST    lib/test_fortify/write_overflow_field-memset.log
+  CC [M]  net/sunrpc/socklib.o
+  CC      drivers/iommu/intel/nested.o
+  CC      net/ipv6/ip6_flowlabel.o
+  AR      fs/exportfs/built-in.a
+  CC      fs/nls/nls_cp437.o
+  COPY    fs/unicode/utf8data.c
+  CC [M]  net/sunrpc/xprtsock.o
+  CC      arch/x86/kernel/espfix_64.o
+  CC      kernel/time/timer_migration.o
+  LD [M]  sound/soc/intel/common/snd-soc-acpi-intel-match.o
+  CC      drivers/iommu/intel/cache.o
+  CC [M]  drivers/tty/serial/jsm/jsm_driver.o
+  CC [M]  drivers/gpio/gpio-vx855.o
+  CC [M]  net/l2tp/l2tp_ip6.o
+  CC      drivers/acpi/acpica/rsdumpinfo.o
+  CC      drivers/xen/mem-reservation.o
+  CAT     lib/test_fortify/test_fortify.log
+  CC      lib/bug.o
+  LD [M]  arch/x86/kvm/kvm.o
+  CC      drivers/tty/serial/8250/8250_port.o
+  CC      kernel/time/vsyscall.o
+  AS [M]  arch/x86/kvm/vmx/vmenter.o
+  CC      fs/unicode/utf8data.o
+  CC [M]  net/bridge/netfilter/ebt_log.o
+  AS [M]  arch/x86/kvm/svm/vmenter.o
+  HOSTCC  drivers/tty/vt/conmakehash
+  CC [M]  drivers/regulator/ad5398.o
+  LD [M]  arch/x86/kvm/kvm-intel.o
+  LD [M]  arch/x86/kvm/kvm-amd.o
+  CC      drivers/iommu/intel/prq.o
+  CC [M]  fs/nls/nls_cp737.o
+  CC      net/ipv4/tcp_ulp.o
+  CC      fs/ntfs3/attrlist.o
+  CC      drivers/acpi/acpica/rsinfo.o
+  CC      drivers/tty/vt/defkeymap.o
+  CC      drivers/tty/serial/8250/8250_dma.o
+  CC      net/core/gro_cells.o
+  CC [M]  drivers/regulator/arizona-ldo1.o
+  CC      drivers/char/agp/generic.o
+  CC [M]  drivers/gpio/gpio-wcove.o
+  CC [M]  crypto/sm3_generic.o
+  CC [M]  drivers/char/tpm/st33zp24/st33zp24.o
+  CC [M]  drivers/tty/serial/jsm/jsm_neo.o
+  AR      kernel/events/built-in.a
+  CONMK   drivers/tty/vt/consolemap_deftbl.c
+  CC      drivers/tty/vt/consolemap_deftbl.o
+  LD [M]  sound/soundcore.o
+  LD [M]  sound/soc/intel/common/snd-soc-acpi-intel-sdca-quirks.o
+  CC      arch/x86/kernel/ksysfs.o
+  CC      net/core/failover.o
+  CC      drivers/tty/serial/8250/8250_dwlib.o
+  CC [M]  net/psample/psample.o
+  CC [M]  net/sctp/protocol.o
+  CC      lib/buildid.o
+  AR      drivers/tty/vt/built-in.a
+  CC      kernel/trace/trace.o
+  CC [M]  net/vmw_vsock/af_vsock.o
+  CC [M]  sound/soc/sdca/sdca_functions.o
+  CC      drivers/acpi/acpica/rsio.o
+  CC [M]  fs/nls/nls_cp775.o
+  CC [M]  block/bfq-wf2q.o
+  CC      net/ipv6/inet6_connection_sock.o
+  CC      drivers/iommu/amd/quirks.o
+  CC      fs/ext4/xattr.o
+  CC      mm/page_frag_cache.o
+  CC [M]  net/rds/connection.o
+  CC      drivers/xen/pci.o
+  CC      fs/ntfs3/bitfunc.o
+  AR      fs/unicode/built-in.a
+  CC      drivers/tty/serial/8250/8250_fintek.o
+  CC      drivers/acpi/acpica/rsirq.o
+  CC [M]  drivers/gpio/gpio-winbond.o
+  CC      drivers/xen/dbgp.o
+  CC [M]  net/netfilter/nf_conntrack_irc.o
+  CC [M]  net/bridge/netfilter/ebt_nflog.o
+  CC [M]  drivers/regulator/arizona-micsupp.o
+  CC [M]  net/bridge/br_stp.o
+  CC [M]  crypto/streebog_generic.o
+  CC      arch/x86/kernel/bootflag.o
+  CC      drivers/acpi/acpica/rslist.o
+  CC      fs/udf/balloc.o
+  CC [M]  net/dccp/output.o
+  CC      drivers/iommu/intel/trace.o
+  CC      lib/clz_tab.o
+  CC [M]  fs/nls/nls_cp850.o
+  CC      drivers/char/agp/isoch.o
+  CC      lib/cmdline.o
+  CC      drivers/tty/serial/8250/8250_pcilib.o
+  CC [M]  net/netfilter/nf_conntrack_broadcast.o
+  CC      kernel/time/timekeeping_debug.o
+  CC [M]  drivers/tty/serial/jsm/jsm_tty.o
+  CC [M]  sound/soc/sdca/sdca_device.o
+  CC      drivers/iommu/amd/io_pgtable.o
+  CC      net/core/skmsg.o
+  CC [M]  drivers/char/tpm/st33zp24/i2c.o
+  CC      drivers/iommu/amd/io_pgtable_v2.o
+  CC      drivers/acpi/acpica/rsmemory.o
+  CC [M]  drivers/regulator/as3711-regulator.o
+  CC      lib/cpumask.o
+  CC      fs/ntfs3/bitmap.o
+  CC [M]  drivers/gpio/gpio-wm831x.o
+  CC      arch/x86/kernel/e820.o
+  CC      fs/ext4/xattr_hurd.o
+  CC [M]  drivers/gpio/gpio-wm8350.o
+  CC      drivers/xen/acpi.o
+  CC [M]  crypto/wp512.o
+  CC [M]  sound/soc/sdca/sdca_regmap.o
+  CC [M]  block/bfq-cgroup.o
+  CC [M]  net/9p/error.o
+  CC [M]  fs/nls/nls_cp852.o
+  CC      net/ipv4/tcp_offload.o
+  CC      drivers/acpi/acpica/rsmisc.o
+  CC [M]  drivers/tty/serial/jsm/jsm_cls.o
+  CC      drivers/char/agp/amd64-agp.o
+  CC [M]  drivers/gpio/gpio-wm8994.o
+  CC      net/ipv4/tcp_plb.o
+  CC [M]  net/sunrpc/sched.o
+  CC      kernel/time/namespace.o
+  CC      drivers/char/agp/intel-agp.o
+  CC      fs/udf/dir.o
+  CC [M]  net/sctp/endpointola.o
+  CC      mm/init-mm.o
+  CC [M]  fs/nls/nls_cp855.o
+  CC [M]  net/rds/info.o
+  CC [M]  net/rds/message.o
+  CC [M]  drivers/regulator/atc260x-regulator.o
+  CC [M]  net/rds/recv.o
+  CC [M]  drivers/char/tpm/st33zp24/spi.o
+  CC      drivers/iommu/intel/svm.o
+  CC [M]  net/rds/send.o
+  AR      drivers/iommu/arm/arm-smmu/built-in.a
+  CC      drivers/iommu/iommufd/iova_bitmap.o
+  CC [M]  net/rds/stats.o
+  CC      drivers/iommu/amd/ppr.o
+  AR      drivers/iommu/arm/arm-smmu-v3/built-in.a
+  CC      fs/ext4/xattr_trusted.o
+  CC      drivers/tty/serial/8250/8250_early.o
+  AR      drivers/iommu/arm/built-in.a
+  CC      drivers/iommu/amd/pasid.o
+  CC      drivers/acpi/acpica/rsserial.o
+  CC      lib/ctype.o
+  CC [M]  net/netfilter/nf_conntrack_netbios_ns.o
+  AR      drivers/gpu/host1x/built-in.a
+  CC      net/ipv6/udp_offload.o
+  CC [M]  crypto/pcbc.o
+  CC [M]  net/netfilter/nf_conntrack_snmp.o
+  CC      lib/dec_and_lock.o
+  CC [M]  net/dccp/proto.o
+  CC [M]  drivers/gpio/gpio-ws16c48.o
+  AR      drivers/gpu/drm/tests/built-in.a
+  CC [M]  drivers/gpu/drm/tests/drm_kunit_helpers.o
+  CC [M]  net/9p/protocol.o
+  AR      drivers/gpu/drm/arm/built-in.a
+  CC      lib/decompress.o
+  CC [M]  fs/nls/nls_cp857.o
+  LD [M]  sound/soc/sdca/snd-soc-sdca.o
+  LD [M]  block/bfq.o
+  CC      mm/memblock.o
+  AR      block/built-in.a
+  CC [M]  net/sctp/associola.o
+  LD [M]  drivers/tty/serial/jsm/jsm.o
+  CC [M]  net/vmw_vsock/af_vsock_tap.o
+  CC      fs/udf/file.o
+  CC      net/ipv4/datagram.o
+  CC      net/core/sock_map.o
+  CC      drivers/acpi/acpica/rsutils.o
+  AR      kernel/time/built-in.a
+  CC [M]  net/sctp/transport.o
+  CC      drivers/tty/serial/8250/8250_dw.o
+  CC      fs/ntfs3/dir.o
+  CC      drivers/char/agp/intel-gtt.o
+  CC      drivers/xen/xen-acpi-pad.o
+  CC      drivers/tty/serial/serial_core.o
+  CC [M]  net/bridge/br_stp_bpdu.o
+  CC      lib/decompress_bunzip2.o
+  CC [M]  sound/soc/soc-acpi.o
+  CC [M]  drivers/regulator/aw37503-regulator.o
+  CC      drivers/iommu/iommufd/driver.o
+  AR      fs/hostfs/built-in.a
+  CC [M]  net/bridge/br_stp_if.o
+  LD [M]  drivers/char/tpm/st33zp24/tpm_st33zp24.o
+  CC      fs/ext4/xattr_user.o
+  LD [M]  drivers/char/tpm/st33zp24/tpm_st33zp24_i2c.o
+  LD [M]  drivers/char/tpm/st33zp24/tpm_st33zp24_spi.o
+  CC [M]  crypto/lrw.o
+  CC      drivers/char/tpm/tpm-chip.o
+  CC      kernel/bpf/task_iter.o
+  AR      drivers/iommu/amd/built-in.a
+  CC      drivers/char/tpm/tpm-dev-common.o
+  CC      drivers/acpi/acpica/rsxface.o
+  CC [M]  drivers/gpio/gpio-xra1403.o
+  CC [M]  drivers/regulator/axp20x-regulator.o
+  CC [M]  fs/nls/nls_cp860.o
+  CC      drivers/iommu/intel/irq_remapping.o
+  CC      arch/x86/kernel/pci-dma.o
+  CC      kernel/bpf/prog_iter.o
+  CC [M]  crypto/xctr.o
+  CC [M]  drivers/char/mwave/mwavedd.o
+  CC      fs/udf/ialloc.o
+  CC      net/ipv6/seg6.o
+  CC      drivers/xen/pcpu.o
+  CC      lib/decompress_inflate.o
+  CC      drivers/tty/serial/8250/8250_mid.o
+  CC [M]  net/netfilter/nf_conntrack_pptp.o
+  CC      net/ipv6/fib6_notifier.o
+  CC      fs/ext4/fast_commit.o
+  CC      fs/ntfs3/fsntfs.o
+  CC [M]  drivers/gpu/drm/tests/drm_atomic_test.o
+  CC      lib/decompress_unlz4.o
+  CC [M]  fs/nls/nls_cp861.o
+  CC      fs/udf/inode.o
+  CC      drivers/xen/biomerge.o
+  CC      drivers/iommu/intel/perfmon.o
+  CC      drivers/acpi/acpica/tbdata.o
+  CC [M]  crypto/hctr2.o
+  CC [M]  net/9p/trans_common.o
+  CC [M]  sound/soc/soc-core.o
+  CC [M]  net/rds/sysctl.o
+  CC [M]  drivers/regulator/bcm590xx-regulator.o
+  CC [M]  crypto/adiantum.o
+  CC      drivers/xen/xen-balloon.o
+  CC [M]  drivers/iommu/iommufd/device.o
+  CC      drivers/connector/cn_queue.o
+  CC      fs/ntfs3/frecord.o
+  CC [M]  drivers/iommu/iommufd/eventq.o
+  CC [M]  net/sctp/chunk.o
+  CC      drivers/char/agp/via-agp.o
+  CC [M]  drivers/char/mwave/smapi.o
+  CC      lib/decompress_unlzma.o
+  CC [M]  net/vmw_vsock/vsock_addr.o
+  CC [M]  net/bridge/br_stp_timer.o
+  CC [M]  drivers/iommu/iommufd/hw_pagetable.o
+  CC [M]  drivers/iommu/iommufd/io_pagetable.o
+  CC [M]  net/bridge/br_netlink.o
+  CC      drivers/char/tpm/tpm-dev.o
+  AR      drivers/gpio/built-in.a
+  CC      drivers/xen/sys-hypervisor.o
+  CC [M]  net/bridge/br_netlink_tunnel.o
+  CC [M]  sound/soc/soc-dapm.o
+  CC [M]  fs/nls/nls_cp862.o
+  CC [M]  drivers/char/mwave/tp3780i.o
+  CC      arch/x86/kernel/quirks.o
+  CC      net/ipv4/raw.o
+  CC [M]  drivers/gpu/drm/tests/drm_atomic_state_test.o
+  CC      drivers/tty/serial/8250/8250_pci.o
+  CC      mm/memory_hotplug.o
+  CC      net/core/bpf_sk_storage.o
+  CC [M]  net/sunrpc/auth.o
+  CC      fs/ntfs3/file.o
+  CC [M]  drivers/iommu/iommufd/ioas.o
+  CC      fs/ext4/orphan.o
+  CC      net/ipv6/rpl.o
+  CC      drivers/acpi/acpica/tbfadt.o
+  CC [M]  crypto/nhpoly1305.o
+  CC [M]  drivers/regulator/bd9571mwv-regulator.o
+  CC      fs/ntfs3/fslog.o
+  CC [M]  drivers/char/agp/sis-agp.o
+  CC [M]  fs/nls/nls_cp863.o
+  CC [M]  net/9p/trans_fd.o
+  CC      kernel/trace/trace_output.o
+  CC      drivers/char/tpm/tpm-interface.o
+  CC [M]  net/dccp/timer.o
+  CC      lib/decompress_unlzo.o
+  CC      net/ipv6/ioam6.o
+  AR      drivers/iommu/intel/built-in.a
+  CC      net/ipv6/sysctl_net_ipv6.o
+  CC [M]  fs/nls/nls_cp864.o
+  CC [M]  net/dccp/qpolicy.o
+  CC      drivers/xen/platform-pci.o
+  CC [M]  net/rds/threads.o
+  CC      drivers/connector/connector.o
+  CC [M]  drivers/char/mwave/3780i.o
+  CC      drivers/tty/serial/serial_base_bus.o
+  CC [M]  drivers/gpu/drm/tests/drm_bridge_test.o
+  CC      drivers/acpi/acpica/tbfind.o
+  CC [M]  fs/nls/nls_cp865.o
+  CC [M]  fs/nls/nls_cp866.o
+  CC [M]  net/sctp/sm_make_chunk.o
+  CC      drivers/char/tpm/tpm1-cmd.o
+  CC [M]  drivers/regulator/da903x-regulator.o
+  CC      fs/udf/lowlevel.o
+  CC      drivers/char/tpm/tpm2-cmd.o
+  CC      fs/udf/namei.o
+  CC [M]  net/vmw_vsock/vsock_bpf.o
+  CC [M]  sound/soc/soc-jack.o
+  AR      drivers/char/agp/built-in.a
+  CC      lib/decompress_unxz.o
+  CC [M]  net/dccp/ccids/ccid2.o
+  CC [M]  net/netfilter/nf_conntrack_sane.o
+  CC      arch/x86/kernel/kdebugfs.o
+  CC      fs/ntfs3/inode.o
+  CC [M]  net/sctp/ulpevent.o
+  CC      fs/ext4/acl.o
+  CC      lib/decompress_unzstd.o
+  CC [M]  drivers/iommu/iommufd/main.o
+  CC      fs/debugfs/inode.o
+  CC      drivers/acpi/acpica/tbinstal.o
+  LD [M]  drivers/char/mwave/mwave.o
+  CC [M]  crypto/ccm.o
+  CC      net/core/devmem.o
+  CC      fs/debugfs/file.o
+  CC      drivers/xen/swiotlb-xen.o
+  CC      drivers/base/power/sysfs.o
+  CC [M]  fs/nls/nls_cp869.o
+  CC [M]  drivers/block/xen-blkback/blkback.o
+  CC      kernel/bpf/link_iter.o
+  CC [M]  net/bridge/br_arp_nd_proxy.o
+  CC [M]  drivers/gpu/drm/tests/drm_buddy_test.o
+  CC      drivers/tty/serial/8250/8250_rt288x.o
+  CC      drivers/base/power/generic_ops.o
+  CC [M]  drivers/block/xen-blkback/xenbus.o
+  CC [M]  net/9p/trans_xen.o
+  CC      drivers/base/power/common.o
+  CC [M]  drivers/regulator/da9052-regulator.o
+  CC      drivers/acpi/acpica/tbprint.o
+  CC [M]  drivers/gpu/drm/tests/drm_cmdline_parser_test.o
+  CC      lib/dump_stack.o
+  CC [M]  drivers/regulator/da9055-regulator.o
+  CC      net/ipv4/udp.o
+  CC      mm/slub.o
+  CC [M]  fs/nls/nls_cp874.o
+  CC      fs/ext4/xattr_security.o
+  CC [M]  sound/soc/soc-utils.o
+  CC      fs/udf/partition.o
+  CC      arch/x86/kernel/alternative.o
+  CC      drivers/connector/cn_proc.o
+  CC      net/ipv4/udplite.o
+  CC      drivers/acpi/acpica/tbutils.o
+  CC [M]  sound/soc/soc-dai.o
+  CC [M]  net/netfilter/nf_conntrack_sip.o
+  CC [M]  crypto/chacha20poly1305.o
+  CC [M]  net/vmw_vsock/diag.o
+  CC      drivers/acpi/glue.o
+  CC      drivers/char/tpm/tpmrm-dev.o
+  CC      drivers/xen/mcelog.o
+  CC      net/ipv6/ip6mr.o
+  CC [M]  net/rds/transport.o
+  CC      kernel/bpf/hashtab.o
+  CC      kernel/trace/trace_seq.o
+  CC      drivers/base/power/qos.o
+  CC [M]  drivers/iommu/iommufd/pages.o
+  CC      drivers/char/tpm/tpm2-space.o
+  CC [M]  net/core/pktgen.o
+  CC      net/ipv6/xfrm6_policy.o
+  CC      net/ipv4/udp_offload.o
+  CC [M]  net/dccp/ackvec.o
+  AR      drivers/iommu/riscv/built-in.a
+  CC [M]  net/sctp/inqueue.o
+  CC      mm/madvise.o
+  CC [M]  fs/nls/nls_cp932.o
+  CC      drivers/char/tpm/tpm-sysfs.o
+  CC      drivers/base/firmware_loader/builtin/main.o
+  CC [M]  drivers/regulator/da9062-regulator.o
+  CC [M]  drivers/tty/serial/8250/8250_exar.o
+  CC      drivers/base/firmware_loader/fallback_table.o
+  CC      drivers/acpi/acpica/tbxface.o
+  CC [M]  net/9p/trans_virtio.o
+  CC      mm/page_io.o
+  CC      drivers/base/firmware_loader/main.o
+  CC      mm/swap_state.o
+  CC      fs/ext4/verity.o
+  CC      fs/udf/super.o
+  CC      fs/tracefs/inode.o
+  CC [M]  net/bridge/br_sysfs_if.o
+  CC      lib/earlycpio.o
+  CC      fs/ntfs3/index.o
+  AR      fs/debugfs/built-in.a
+  CC      drivers/base/regmap/regmap.o
+  AR      drivers/base/test/built-in.a
+  CC      fs/ntfs3/lznt.o
+  CC      net/ipv6/xfrm6_state.o
+  CC [M]  net/bridge/br_sysfs_br.o
+  CC      lib/extable.o
+  LD [M]  drivers/block/xen-blkback/xen-blkback.o
+  CC      drivers/xen/xen-acpi-processor.o
+  CC [M]  crypto/aegis128-core.o
+  CC [M]  drivers/block/drbd/drbd_buildtag.o
+  AR      drivers/connector/built-in.a
+  AR      drivers/base/firmware_loader/builtin/built-in.a
+  CC [M]  sound/soc/soc-component.o
+  CC [M]  drivers/block/mtip32xx/mtip32xx.o
+  CC [M]  fs/nls/nls_euc-jp.o
+  CC      kernel/trace/trace_stat.o
+  CC [M]  net/vmw_vsock/vmci_transport.o
+  CC      drivers/base/regmap/regcache.o
+  CC      drivers/char/tpm/eventlog/common.o
+  CC [M]  drivers/regulator/da9210-regulator.o
+  CC      drivers/acpi/acpica/tbxfload.o
+  CC      drivers/base/regmap/regcache-rbtree.o
+  CC      drivers/xen/efi.o
+  CC [M]  drivers/tty/serial/8250/8250_lpss.o
+  CC      fs/ext4/crypto.o
+  CC [M]  net/sctp/outqueue.o
+  CC      net/ipv4/arp.o
+  CC [M]  drivers/block/drbd/drbd_bitmap.o
+  CC      lib/flex_proportions.o
+  CC      fs/tracefs/event_inode.o
+  CC [M]  drivers/gpu/drm/tests/drm_connector_test.o
+  CC      drivers/xen/xlate_mmu.o
+  CC [M]  fs/nls/nls_cp936.o
+  CC      mm/swapfile.o
+  CC      net/ipv6/xfrm6_input.o
+  CC [M]  drivers/iommu/iommufd/vfio_compat.o
+  CC      net/ipv4/icmp.o
+  LD [M]  net/9p/9pnet.o
+  LD [M]  net/9p/9pnet_fd.o
+  LD [M]  net/9p/9pnet_xen.o
+  LD [M]  net/9p/9pnet_virtio.o
+  CC      arch/x86/kernel/i8253.o
+  CC [M]  net/rds/loop.o
+  CC [M]  crypto/pcrypt.o
+  CC      drivers/base/power/runtime.o
+  CC [M]  net/rds/page.o
+  CC      kernel/bpf/arraymap.o
+  CC [M]  drivers/block/zram/zcomp.o
+  CC      net/ipv4/devinet.o
+  CC      drivers/base/component.o
+  CC      kernel/trace/trace_printk.o
+  CC      drivers/char/tpm/eventlog/tpm1.o
+  CC      lib/idr.o
+  CC [M]  drivers/regulator/da9211-regulator.o
+  CC      drivers/acpi/acpica/tbxfroot.o
+  CC      kernel/trace/pid_list.o
+  CC      kernel/cpu.o
+  CC      fs/udf/truncate.o
+  CC [M]  crypto/cryptd.o
+  CC [M]  drivers/tty/serial/8250/8250_men_mcb.o
+  CC      drivers/base/firmware_loader/fallback.o
+  AR      fs/ext4/built-in.a
+  CC      arch/x86/kernel/hw_breakpoint.o
+  CC [M]  net/dccp/sysctl.o
+  CC      drivers/acpi/scan.o
+  CC [M]  net/sunrpc/auth_null.o
+  CC [M]  drivers/block/zram/zram_drv.o
+  CC [M]  net/bridge/br_nf_core.o
+  CC [M]  net/sunrpc/auth_tls.o
+  CC [M]  drivers/gpu/drm/tests/drm_damage_helper_test.o
+  CC [M]  fs/nls/nls_cp949.o
+  CC      fs/ntfs3/namei.o
+  CC [M]  drivers/tty/serial/8250/8250_pci1xxxx.o
+  CC      drivers/acpi/acpica/utaddress.o
+  CC [M]  net/vmw_vsock/vmci_transport_notify.o
+  CC [M]  sound/soc/soc-pcm.o
+  CC [M]  net/netfilter/nf_conntrack_tftp.o
+  CC      fs/ntfs3/record.o
+  AR      fs/tracefs/built-in.a
+  CC      drivers/acpi/mipi-disco-img.o
+  CC      net/ipv4/af_inet.o
+  CC [M]  drivers/regulator/fan53555.o
+  CC      drivers/xen/unpopulated-alloc.o
+  CC      lib/iomem_copy.o
+  CC      drivers/char/tpm/eventlog/tpm2.o
+  CC      drivers/acpi/acpica/utalloc.o
+  CC [M]  drivers/iommu/iommufd/viommu.o
+  CC      kernel/bpf/percpu_freelist.o
+  CC      fs/udf/symlink.o
+  CC      drivers/acpi/resource.o
+  CC      arch/x86/kernel/tsc.o
+  CC      drivers/xen/grant-dma-ops.o
+  CC      drivers/base/firmware_loader/fallback_platform.o
+  CC [M]  net/sctp/ulpqueue.o
+  CC [M]  net/bridge/br_multicast.o
+  CC      lib/irq_regs.o
+  CC [M]  fs/nls/nls_cp950.o
+  AR      net/core/built-in.a
+  CC      kernel/exit.o
+  CC      kernel/softirq.o
+  CC [M]  drivers/gpu/drm/tests/drm_dp_mst_helper_test.o
+  CC      kernel/trace/tracing_map.o
+  CC      drivers/base/firmware_loader/sysfs.o
+  CC      drivers/base/power/wakeirq.o
+  CC [M]  net/rds/rdma.o
+  CC      kernel/bpf/bpf_lru_list.o
+  CC [M]  drivers/tty/serial/8250/8250_pericom.o
+  CC      drivers/acpi/acpica/utascii.o
+  CC [M]  net/sunrpc/auth_unix.o
+  CC      net/devres.o
+  CC [M]  drivers/block/drbd/drbd_proc.o
+  CC      fs/ntfs3/run.o
+  CC      kernel/resource.o
+  CC [M]  net/dccp/ipv4.o
+  CC [M]  net/sctp/tsnmap.o
+  CC      lib/is_single_threaded.o
+  CC [M]  crypto/des_generic.o
+  CC [M]  net/vmw_vsock/vmci_transport_notify_qstate.o
+  CC      fs/btrfs/super.o
+  CC [M]  crypto/fcrypt.o
+  AR      drivers/iommu/iommufd/built-in.a
+  LD [M]  drivers/iommu/iommufd/iommufd.o
+  CC      drivers/iommu/iommu.o
+  CC      fs/udf/directory.o
+  CC [M]  drivers/block/zram/backend_lzorle.o
+  CC      drivers/char/tpm/tpm-buf.o
+  CC [M]  drivers/regulator/gpio-regulator.o
+  CC      net/ipv6/xfrm6_output.o
+  AR      drivers/misc/eeprom/built-in.a
+  CC [M]  drivers/misc/eeprom/at24.o
+  CC      drivers/acpi/acpica/utbuffer.o
+  CC [M]  fs/nls/nls_cp1250.o
+  CC      kernel/bpf/lpm_trie.o
+  AR      drivers/nfc/built-in.a
+  CC      drivers/mfd/88pm860x-core.o
+  AR      drivers/misc/cb710/built-in.a
+  CC [M]  drivers/misc/cb710/core.o
+  CC      drivers/mfd/88pm860x-i2c.o
+  CC      lib/klist.o
+  CC [M]  drivers/xen/evtchn.o
+  CC [M]  drivers/block/zram/backend_lzo.o
+  CC      drivers/base/regmap/regcache-flat.o
+  CC      drivers/mfd/wm8400-core.o
+  AR      drivers/tty/serial/8250/built-in.a
+  CC      drivers/tty/serial/serial_ctrl.o
+  CC      drivers/nvdimm/core.o
+  CC [M]  drivers/gpu/drm/tests/drm_exec_test.o
+  CC      drivers/dax/hmem/device.o
+  CC      drivers/base/firmware_loader/sysfs_upload.o
+  CC      drivers/acpi/acpica/utcksum.o
+  CC [M]  net/netfilter/nf_log_syslog.o
+  CC [M]  crypto/blowfish_generic.o
+  CC      drivers/tty/serial/serial_port.o
+  CC [M]  fs/nls/nls_cp1251.o
+  CC      fs/pstore/inode.o
+  CC      drivers/base/power/main.o
+  CC [M]  net/sunrpc/svc.o
+  CC      fs/ntfs3/super.o
+  LD [M]  drivers/block/zram/zram.o
+  CC      kernel/trace/trace_sched_switch.o
+  CC [M]  drivers/regulator/isl6271a-regulator.o
+  CC      fs/ntfs3/upcase.o
+  CC      arch/x86/kernel/tsc_msr.o
+  CC      drivers/base/power/wakeup.o
+  CC [M]  net/vmw_vsock/virtio_transport.o
+  CC      fs/udf/misc.o
+  CC      lib/kobject.o
+  CC [M]  drivers/misc/eeprom/at25.o
+  CC [M]  net/sctp/bind_addr.o
+  CC      drivers/base/regmap/regcache-maple.o
+  CC      drivers/acpi/acpica/utcopy.o
+  CC [M]  drivers/block/drbd/drbd_worker.o
+  CC [M]  drivers/misc/cb710/sgbuf2.o
+  CC      mm/zswap.o
+  CC      lib/kobject_uevent.o
+  CC      fs/udf/udftime.o
+  CC [M]  net/rds/tcp.o
+  CC      drivers/char/tpm/tpm2-sessions.o
+  AR      drivers/misc/lis3lv02d/built-in.a
+  CC [M]  drivers/misc/lis3lv02d/lis3lv02d.o
+  CC      net/ipv6/xfrm6_protocol.o
+  CC [M]  drivers/gpu/drm/tests/drm_format_helper_test.o
+  CC [M]  fs/nls/nls_ascii.o
+  CC [M]  drivers/xen/gntdev.o
+  CC [M]  crypto/blowfish_common.o
+  CC [M]  sound/soc/soc-devres.o
+  CC      kernel/bpf/map_in_map.o
+  CC      arch/x86/kernel/io_delay.o
+  CC      kernel/sysctl.o
+  CC      drivers/nvdimm/bus.o
+  CC [M]  drivers/misc/lis3lv02d/lis3lv02d_i2c.o
+  CC [M]  drivers/dax/hmem/hmem.o
+  CC      drivers/tty/serdev/core.o
+  CC [M]  drivers/regulator/isl9305.o
+  CC      drivers/gpu/vga/vga_switcheroo.o
+  AR      drivers/base/firmware_loader/built-in.a
+  CC      arch/x86/kernel/rtc.o
+  CC      drivers/acpi/acpica/utexcep.o
+  CC      drivers/dax/super.o
+  CC      fs/pstore/platform.o
+  CC      drivers/mfd/wm831x-core.o
+  AR      drivers/tty/ipwireless/built-in.a
+  CC      drivers/tty/serdev/serdev-ttyport.o
+  CC      drivers/tty/serial/earlycon.o
+  CC      fs/udf/unicode.o
+  CC      drivers/base/regmap/regmap-debugfs.o
+  CC      fs/ntfs3/xattr.o
+  CC [M]  drivers/misc/eeprom/max6875.o
+  CC      drivers/mfd/wm831x-irq.o
+  CC [M]  fs/nls/nls_iso8859-1.o
+  CC      kernel/trace/trace_functions.o
+  CC      net/ipv4/igmp.o
+  CC      mm/dmapool.o
+  CC [M]  net/vmw_vsock/virtio_transport_common.o
+  CC      drivers/acpi/acpica/utdebug.o
+  CC [M]  net/netfilter/nf_nat_core.o
+  CC      drivers/base/power/wakeup_stats.o
+  CC [M]  net/dccp/ipv6.o
+  AR      drivers/dax/hmem/built-in.a
+  LD [M]  drivers/dax/hmem/dax_hmem.o
+  CC [M]  net/netfilter/nf_nat_proto.o
+  CC [M]  net/sctp/socket.o
+  CC      drivers/char/tpm/tpm_ppi.o
+  CC      kernel/bpf/bloom_filter.o
+  CC [M]  sound/soc/soc-ops.o
+  LD [M]  drivers/misc/cb710/cb710.o
+  CC [M]  net/vmw_vsock/hyperv_transport.o
+  CC [M]  drivers/regulator/lm363x-regulator.o
+  CC      drivers/iommu/iommu-traces.o
+  CC      drivers/mfd/wm831x-otp.o
+  CC [M]  crypto/twofish_generic.o
+  CC      drivers/mfd/wm831x-auxadc.o
+  CC [M]  drivers/xen/gntdev-dmabuf.o
+  CC [M]  drivers/block/null_blk/main.o
+  CC [M]  fs/nls/nls_iso8859-2.o
+  CC      drivers/tty/serial/max310x.o
+  CC [M]  net/rds/tcp_connect.o
+  CC [M]  drivers/block/drbd/drbd_receiver.o
+  AR      fs/udf/built-in.a
+  CC      drivers/iommu/iommu-sysfs.o
+  CC      drivers/base/regmap/regmap-i2c.o
+  CC      arch/x86/kernel/resource.o
+  CC [M]  drivers/misc/eeprom/eeprom_93cx6.o
+  CC      drivers/base/core.o
+  CC [M]  drivers/gpu/drm/tests/drm_format_test.o
+  AR      drivers/tty/serdev/built-in.a
+  CC      drivers/dma-buf/dma-buf.o
+  CC      drivers/dma-buf/heaps/system_heap.o
+  CC [M]  fs/nls/nls_iso8859-3.o
+  CC [M]  net/vmw_vsock/vsock_loopback.o
+  CC [M]  fs/nls/nls_iso8859-4.o
+  CC      fs/pstore/pmsg.o
+  CC      lib/logic_pio.o
+  CC      drivers/acpi/acpica/utdecode.o
+  CC      fs/ntfs3/lib/decompress_common.o
+  CC      drivers/base/power/trace.o
+  AS      arch/x86/kernel/irqflags.o
+  CC      kernel/trace/trace_preemptirq.o
+  CC      drivers/char/tpm/eventlog/acpi.o
+  CC [M]  crypto/twofish_common.o
+  CC      drivers/dax/bus.o
+  CC [M]  drivers/regulator/lp3971.o
+  CC      net/ipv6/netfilter.o
+  CC      kernel/bpf/local_storage.o
+  CC      fs/ntfs3/lib/lzx_decompress.o
+  AR      drivers/gpu/vga/built-in.a
+  CC      lib/maple_tree.o
+  CC      lib/memcat_p.o
+  CC      mm/hugetlb.o
+  CC      drivers/nvdimm/dimm_devs.o
+  CC [M]  drivers/misc/eeprom/eeprom_93xx46.o
+  CC      drivers/iommu/dma-iommu.o
+  CC      drivers/acpi/acpica/utdelete.o
+  CC [M]  fs/nls/nls_iso8859-5.o
+  CC      arch/x86/kernel/static_call.o
+  CC [M]  fs/pstore/ram.o
+  CC      drivers/mfd/wm831x-i2c.o
+  CC [M]  drivers/xen/gntalloc.o
+  CC [M]  net/sunrpc/svcsock.o
+  CC [M]  drivers/char/xillybus/xillybus_class.o
+  CC [M]  fs/nls/nls_iso8859-6.o
+  CC      kernel/trace/trace_sched_wakeup.o
+  AR      drivers/dma-buf/heaps/built-in.a
+  CC      drivers/tty/serial/sccnxp.o
+  CC [M]  sound/soc/soc-link.o
+  CC      drivers/char/tpm/eventlog/efi.o
+  CC      arch/x86/kernel/process.o
+  CC [M]  net/bridge/br_mdb.o
+  CC [M]  drivers/gpu/drm/tests/drm_framebuffer_test.o
+  LD [M]  net/vmw_vsock/vsock.o
+  LD [M]  net/vmw_vsock/vsock_diag.o
+  CC      drivers/block/loop.o
+  CC [M]  drivers/xen/privcmd.o
+  CC [M]  net/netfilter/nf_nat_helper.o
+  CC [M]  net/rds/tcp_listen.o
+  CC      fs/ntfs3/lib/xpress_decompress.o
+  CC      fs/btrfs/ctree.o
+  CC [M]  drivers/xen/privcmd-buf.o
+  CC      drivers/acpi/acpica/uterror.o
+  CC [M]  drivers/regulator/lp3972.o
+  CC      drivers/acpi/acpica/uteval.o
+  CC      drivers/base/regmap/regmap-spi.o
+  CC      drivers/base/power/clock_ops.o
+  CC [M]  net/dccp/diag.o
+  CC [M]  fs/nls/nls_iso8859-7.o
+  CC [M]  net/rds/tcp_recv.o
+  CC [M]  drivers/misc/eeprom/idt_89hpesx.o
+  CC [M]  drivers/block/null_blk/trace.o
+  CC      drivers/mfd/wm831x-spi.o
+  CC [M]  fs/pstore/ram_core.o
+  AR      fs/ntfs3/built-in.a
+  CC [M]  drivers/dax/device.o
+  CC [M]  net/netfilter/nf_nat_redirect.o
+  LD [M]  net/vmw_vsock/vmw_vsock_vmci_transport.o
+  CC      drivers/dma-buf/dma-fence.o
+  LD [M]  net/vmw_vsock/vmw_vsock_virtio_transport.o
+  CC      drivers/acpi/acpica/utglobal.o
+  LD [M]  net/vmw_vsock/vmw_vsock_virtio_transport_common.o
+  LD [M]  net/vmw_vsock/hv_sock.o
+  CC      drivers/char/tpm/tpm_tis_core.o
+  CC      kernel/bpf/queue_stack_maps.o
+  CC [M]  drivers/xen/xen-scsiback.o
+  CC [M]  drivers/misc/eeprom/ee1004.o
+  CC [M]  drivers/char/xillybus/xillybus_core.o
+  CC      kernel/bpf/ringbuf.o
+  CC [M]  drivers/char/xillybus/xillybus_pcie.o
+  CC [M]  drivers/gpu/drm/tests/drm_gem_shmem_test.o
+  CC [M]  net/rds/tcp_send.o
+  CC [M]  net/rds/tcp_stats.o
+  CC      lib/min_heap.o
+  CC [M]  fs/nls/nls_cp1255.o
+  CC      drivers/tty/serial/serial_mctrl_gpio.o
+  CC      kernel/trace/trace_hwlat.o
+  CC [M]  sound/soc/soc-card.o
+  CC [M]  drivers/regulator/lp872x.o
+  CC      drivers/nvdimm/nd_perf.o
+  CC [M]  drivers/block/null_blk/zoned.o
+  CC      drivers/base/bus.o
+  CC      drivers/mfd/wm8350-core.o
+  AR      drivers/base/power/built-in.a
+  CC      lib/nmi_backtrace.o
+  CC      drivers/acpi/acpica/uthex.o
+  CC      drivers/base/regmap/regmap-mmio.o
+  CC [M]  drivers/char/xillybus/xillyusb.o
+  CC [M]  drivers/dax/kmem.o
+  CC [M]  net/netfilter/nf_nat_masquerade.o
+  CC [M]  crypto/serpent_generic.o
+  CC      mm/hugetlb_vmemmap.o
+  CC [M]  fs/pstore/zone.o
+  CC      mm/mempolicy.o
+  CC [M]  drivers/block/drbd/drbd_req.o
+  CC [M]  fs/nls/nls_iso8859-9.o
+  CC      net/ipv6/fib6_rules.o
+  LD [M]  net/dccp/dccp.o
+  LD [M]  net/dccp/dccp_ipv4.o
+  LD [M]  net/dccp/dccp_ipv6.o
+  LD [M]  net/dccp/dccp_diag.o
+  CC [M]  net/bridge/br_multicast_eht.o
+  AR      drivers/misc/cardreader/built-in.a
+  CC [M]  drivers/misc/cardreader/alcor_pci.o
+  CC      drivers/base/regmap/regmap-irq.o
+  CC      net/ipv4/fib_frontend.o
+  CC [M]  drivers/gpu/drm/tests/drm_hdmi_state_helper_test.o
+  CC      kernel/trace/trace_osnoise.o
+  CC      drivers/iommu/io-pgtable.o
+  CC      drivers/char/tpm/tpm_tis.o
+  CC      drivers/acpi/acpica/utids.o
+  CC      kernel/bpf/bpf_local_storage.o
+  CC      drivers/iommu/iova.o
+  CC      arch/x86/kernel/ptrace.o
+  CC      net/socket.o
+  CC [M]  sound/soc/soc-compress.o
+  CC [M]  drivers/regulator/lp8788-buck.o
+  CC      mm/sparse.o
+  CC [M]  drivers/base/regmap/regmap-slimbus.o
+  LD [M]  net/rds/rds.o
+  CC      drivers/tty/serial/kgdboc.o
+  LD [M]  net/rds/rds_tcp.o
+  CC [M]  net/sctp/primitive.o
+  CC [M]  drivers/gpu/drm/tests/drm_managed_test.o
+  CC [M]  net/bridge/br_vlan.o
+  CC [M]  fs/nls/nls_iso8859-13.o
+  CC [M]  drivers/xen/pvcalls-front.o
+  CC [M]  drivers/dax/pmem.o
+  CC      drivers/base/dd.o
+  CC [M]  drivers/base/regmap/regmap-spmi.o
+  LD [M]  drivers/block/null_blk/null_blk.o
+  CC      drivers/acpi/acpica/utinit.o
+  CC [M]  drivers/base/regmap/regmap-w1.o
+  CC      drivers/dma-buf/dma-fence-array.o
+  CC      drivers/mfd/wm8350-regmap.o
+  CC [M]  net/netfilter/nf_nat_ovs.o
+  CC      drivers/nvdimm/dimm.o
+  CC      kernel/capability.o
+  CC      lib/objpool.o
+  CC      drivers/char/tpm/tpm_crb.o
+  CC      net/compat.o
+  CC [M]  fs/nls/nls_iso8859-14.o
+  CC      net/ipv4/fib_semantics.o
+  CC [M]  drivers/regulator/lp8788-ldo.o
+  CC [M]  net/sunrpc/svcauth.o
+  CC [M]  drivers/misc/cardreader/rtsx_pcr.o
+  CC      arch/x86/kernel/tls.o
+  CC      drivers/acpi/acpica/utlock.o
+  CC [M]  net/sctp/output.o
+  CC [M]  drivers/regulator/lp8755.o
+  CC [M]  drivers/tty/serial/altera_jtaguart.o
+  CC [M]  drivers/xen/xen-front-pgdir-shbuf.o
+  CC [M]  fs/pstore/blk.o
+  CC      fs/btrfs/extent-tree.o
+  CC      lib/plist.o
+  CC [M]  drivers/dax/cxl.o
+  CC      arch/x86/kernel/step.o
+  CC [M]  crypto/sm4.o
+  CC      drivers/block/nbd.o
+  CC      drivers/base/syscore.o
+  CC      drivers/iommu/irq_remapping.o
+  CC      drivers/acpi/acpi_processor.o
+  CC [M]  sound/soc/soc-generic-dmaengine-pcm.o
+  CC      drivers/mfd/wm8350-gpio.o
+  CC      drivers/acpi/acpica/utmath.o
+  CC [M]  fs/nls/nls_iso8859-15.o
+  CC      drivers/block/virtio_blk.o
+  CC      drivers/dma-buf/dma-fence-chain.o
+  CC      kernel/bpf/bpf_task_storage.o
+  CC      drivers/nvdimm/region_devs.o
+  CC      drivers/gpu/drm/clients/drm_client_setup.o
+  CC [M]  drivers/base/regmap/regmap-i3c.o
+  CC [M]  drivers/misc/cardreader/rts5209.o
+  AR      drivers/gpu/drm/display/built-in.a
+  CC [M]  drivers/gpu/drm/display/drm_display_helper_mod.o
+  CC [M]  drivers/gpu/drm/tests/drm_mm_test.o
+  CC      net/ipv6/proc.o
+  CC [M]  drivers/char/tpm/tpm_tis_spi_main.o
+  CC      drivers/base/driver.o
+  CC [M]  drivers/gpu/drm/display/drm_bridge_connector.o
+  CC [M]  fs/nls/nls_koi8-r.o
+  CC [M]  fs/nls/nls_koi8-u.o
+  CC      drivers/acpi/acpica/utmisc.o
+  LD [M]  drivers/dax/device_dax.o
+  LD [M]  drivers/dax/dax_pmem.o
+  LD [M]  drivers/dax/dax_cxl.o
+  CC [M]  drivers/tty/serial/altera_uart.o
+  AR      drivers/dax/built-in.a
+  CC      drivers/dma-buf/dma-fence-unwrap.o
+  CC      arch/x86/kernel/tboot.o
+  CC      lib/radix-tree.o
+  CC [M]  drivers/block/drbd/drbd_actlog.o
+  CC [M]  drivers/regulator/ltc3589.o
+  CC [M]  drivers/block/drbd/drbd_main.o
+  CC      kernel/bpf/bpf_inode_storage.o
+  CC      kernel/trace/trace_nop.o
+  CC [M]  crypto/sm4_generic.o
+  CC [M]  drivers/block/drbd/drbd_strings.o
+  CC      drivers/dma-buf/dma-resv.o
+  CC [M]  sound/soc/soc-ac97.o
+  CC [M]  crypto/aes_ti.o
+  CC      drivers/acpi/acpica/utmutex.o
+  LD [M]  fs/pstore/ramoops.o
+  CC      drivers/acpi/processor_core.o
+  LD [M]  fs/pstore/pstore_zone.o
+  LD [M]  fs/pstore/pstore_blk.o
+  AR      fs/pstore/built-in.a
+  CC [M]  drivers/gpu/drm/tests/drm_modes_test.o
+  CC [M]  net/sctp/input.o
+  CC      kernel/bpf/disasm.o
+  CC      kernel/bpf/mprog.o
+  CC [M]  fs/nls/nls_koi8-ru.o
+  CC      drivers/cxl/core/suspend.o
+  CC [M]  net/netfilter/nf_nat_amanda.o
+  CC      drivers/iommu/hyperv-iommu.o
+  CC      net/ipv4/fib_trie.o
+  CC      fs/efivarfs/inode.o
+  CC      drivers/gpu/drm/clients/drm_fbdev_client.o
+  CC [M]  drivers/char/tpm/tpm_tis_spi_cr50.o
+  LD [M]  drivers/xen/xen-evtchn.o
+  CC      net/sysctl_net.o
+  LD [M]  drivers/xen/xen-gntdev.o
+  LD [M]  drivers/xen/xen-gntalloc.o
+  LD [M]  drivers/xen/xen-privcmd.o
+  AR      drivers/xen/built-in.a
+  CC      mm/sparse-vmemmap.o
+  CC      drivers/mfd/wm8350-irq.o
+  CC [M]  fs/netfs/buffered_read.o
+  CC      drivers/tty/tty_io.o
+  CC [M]  drivers/tty/serial/arc_uart.o
+  CC      drivers/block/xen-blkfront.o
+  AR      drivers/macintosh/built-in.a
+  CC [M]  fs/nfs/filelayout/filelayout.o
+  CC [M]  fs/nfs/blocklayout/blocklayout.o
+  CC      drivers/acpi/acpica/utnonansi.o
+  CC [M]  drivers/regulator/ltc3676.o
+  CC [M]  fs/nfs/flexfilelayout/flexfilelayout.o
+  CC [M]  drivers/base/regmap/regmap-spi-avmm.o
+  CC [M]  drivers/regulator/max14577-regulator.o
+  CC [M]  fs/nfs/filelayout/filelayoutdev.o
+  CC [M]  drivers/misc/cardreader/rts5229.o
+  CC      net/ipv4/fib_notifier.o
+  CC [M]  crypto/camellia_generic.o
+  CC      arch/x86/kernel/i8237.o
+  CC      net/ipv6/syncookies.o
+  CC [M]  fs/nls/nls_utf8.o
+  CC      kernel/trace/trace_stack.o
+  CC [M]  drivers/gpu/drm/display/drm_dp_dual_mode_helper.o
+  CC [M]  net/sunrpc/svcauth_unix.o
+  CC      fs/efivarfs/file.o
+  CC      drivers/dma-buf/dma-heap.o
+  CC [M]  drivers/gpu/drm/tests/drm_plane_helper_test.o
+  CC      net/ipv4/inet_fragment.o
+  CC      drivers/iommu/virtio-iommu.o
+  CC      drivers/acpi/acpica/utobject.o
+  CC [M]  drivers/char/tpm/tpm_tis_i2c_cr50.o
+  CC      lib/ratelimit.o
+  CC [M]  net/bridge/br_vlan_tunnel.o
+  CC      arch/x86/kernel/stacktrace.o
+  CC      kernel/bpf/trampoline.o
+  CC      drivers/mfd/wm8350-i2c.o
+  AR      drivers/gpu/drm/clients/built-in.a
+  CC [M]  drivers/tty/serial/fsl_linflexuart.o
+  CC      fs/efivarfs/super.o
+  CC      kernel/trace/trace_mmiotrace.o
+  CC      drivers/nvdimm/region.o
+  CC      fs/efivarfs/vars.o
+  CC [M]  fs/nls/mac-celtic.o
+  LD [M]  sound/soc/snd-soc-acpi.o
+  LD [M]  sound/soc/snd-soc-core.o
+  CC [M]  drivers/char/tpm/tpm_tis_i2c.o
+  CC      mm/mmu_notifier.o
+  CC [M]  drivers/misc/cardreader/rtl8411.o
+  CC [M]  net/netfilter/nf_nat_ftp.o
+  CC [M]  drivers/cxl/core/port.o
+  CC [M]  net/sctp/debug.o
+  CC      drivers/dma-buf/sync_file.o
+  CC [M]  drivers/regulator/max1586.o
+  CC [M]  crypto/cast_common.o
+  CC [M]  net/sunrpc/addr.o
+  CC      drivers/acpi/acpica/utosi.o
+  CC      arch/x86/kernel/reboot.o
+  CC      lib/rbtree.o
+  CC      drivers/acpi/acpica/utownerid.o
+  CC      drivers/dma-buf/sw_sync.o
+  CC      drivers/iommu/iommu-sva.o
+  CC [M]  drivers/gpu/drm/tests/drm_probe_helper_test.o
+  CC [M]  drivers/tty/serial/fsl_lpuart.o
+  CC [M]  drivers/regulator/max77503-regulator.o
+  CC [M]  fs/nls/mac-centeuro.o
+  AR      drivers/scsi/device_handler/built-in.a
+  CC [M]  drivers/scsi/device_handler/scsi_dh_rdac.o
+  AR      drivers/base/regmap/built-in.a
+  CC      drivers/mfd/tps65910.o
+  CC      drivers/base/class.o
+  AR      drivers/scsi/megaraid/built-in.a
+  CC [M]  drivers/scsi/megaraid/megaraid_mm.o
+  CC [M]  drivers/scsi/device_handler/scsi_dh_hp_sw.o
+  CC      arch/x86/kernel/early-quirks.o
+  CC [M]  fs/nfs/blocklayout/dev.o
+  CC [M]  fs/netfs/buffered_write.o
+  CC [M]  drivers/scsi/megaraid/megaraid_mbox.o
+  CC [M]  drivers/block/floppy.o
+  CC      drivers/nvdimm/namespace_devs.o
+  CC [M]  drivers/misc/cardreader/rts5227.o
+  CC      kernel/trace/trace_functions_graph.o
+  CC [M]  drivers/char/tpm/tpm_i2c_atmel.o
+  CC      drivers/acpi/acpica/utpredef.o
+  AR      fs/efivarfs/built-in.a
+  CC [M]  drivers/char/tpm/tpm_i2c_infineon.o
+  CC      drivers/dma-buf/sync_debug.o
+  CC [M]  drivers/scsi/device_handler/scsi_dh_emc.o
+  CC      net/ipv4/ping.o
+  CC [M]  drivers/gpu/drm/display/drm_dp_helper.o
+  CC      lib/seq_buf.o
+  CC      mm/ksm.o
+  LD [M]  fs/nfs/filelayout/nfs_layout_nfsv41_files.o
+  CC      lib/siphash.o
+  CC      fs/btrfs/print-tree.o
+  CC [M]  crypto/cast5_generic.o
+  CC [M]  net/netfilter/nf_nat_irc.o
+  CC [M]  fs/nls/mac-croatian.o
+  CC [M]  net/sctp/stream.o
+  CC [M]  crypto/cast6_generic.o
+  CC [M]  crypto/aria_generic.o
+  CC [M]  drivers/gpu/drm/tests/drm_rect_test.o
+  CC      kernel/bpf/btf.o
+  CC      drivers/acpi/acpica/utresdecode.o
+  CC [M]  drivers/scsi/device_handler/scsi_dh_alua.o
+  CC      net/ipv6/calipso.o
+  CC [M]  net/bridge/br_vlan_options.o
+  CC [M]  drivers/regulator/max77541-regulator.o
+  CC      drivers/acpi/processor_pdc.o
+  CC      net/ipv4/ip_tunnel_core.o
+  CC      drivers/acpi/acpica/utresrc.o
+  CC      drivers/dma-buf/udmabuf.o
+  CC      drivers/base/platform.o
+  CC      drivers/mfd/tps65912-core.o
+  CC [M]  drivers/misc/cardreader/rts5249.o
+  CC [M]  fs/nfs/flexfilelayout/flexfilelayoutdev.o
+  CC      drivers/iommu/io-pgfault.o
+  CC      drivers/acpi/acpica/utstate.o
+  CC      drivers/acpi/acpica/utstring.o
+  CC      drivers/acpi/ec.o
+  AR      drivers/misc/pvpanic/built-in.a
+  CC [M]  drivers/misc/pvpanic/pvpanic.o
+  CC [M]  fs/nls/mac-cyrillic.o
+  CC      drivers/nvme/common/auth.o
+  CC [M]  drivers/char/tpm/tpm_i2c_nuvoton.o
+  CC [M]  drivers/misc/pvpanic/pvpanic-mmio.o
+  CC      drivers/char/mem.o
+  CC      drivers/char/random.o
+  CC [M]  net/sunrpc/rpcb_clnt.o
+  CC      lib/string.o
+  CC      fs/btrfs/root-tree.o
+  CC [M]  drivers/cxl/core/pmem.o
+  CC      fs/btrfs/dir-item.o
+  CC [M]  crypto/chacha_generic.o
+  CC [M]  drivers/regulator/max8649.o
+  CC      fs/btrfs/file-item.o
+  CC [M]  drivers/cxl/core/regs.o
+  CC      kernel/trace/blktrace.o
+  CC      drivers/acpi/acpica/utstrsuppt.o
+  CC [M]  drivers/misc/pvpanic/pvpanic-pci.o
+  CC      arch/x86/kernel/smp.o
+  CC      drivers/nvdimm/label.o
+  CC      arch/x86/kernel/smpboot.o
+  CC [M]  fs/nfs/blocklayout/extent_tree.o
+  CC [M]  drivers/tty/serial/lantiq.o
+  CC      drivers/nvdimm/badrange.o
+  CC [M]  net/netfilter/nf_nat_sip.o
+  CC [M]  drivers/scsi/megaraid/megaraid_sas_base.o
+  CC      lib/timerqueue.o
+  CC [M]  fs/nls/mac-gaelic.o
+  CC [M]  fs/netfs/direct_read.o
+  CC [M]  drivers/misc/cardreader/rts5260.o
+  AR      drivers/gpu/drm/renesas/rcar-du/built-in.a
+  AR      drivers/gpu/drm/renesas/rz-du/built-in.a
+  CC [M]  drivers/block/drbd/drbd_nl.o
+  AR      drivers/gpu/drm/renesas/built-in.a
+  CC [M]  drivers/dma-buf/selftest.o
+  CC      lib/union_find.o
+  CC      drivers/mfd/tps65912-i2c.o
+  CC      drivers/mfd/tps65912-spi.o
+  CC [M]  net/sunrpc/timer.o
+  CC [M]  drivers/gpu/drm/display/drm_dp_mst_topology.o
+  CC      drivers/acpi/acpica/utstrtoul64.o
+  CC [M]  net/sctp/auth.o
+  CC [M]  crypto/poly1305_generic.o
+  CC [M]  drivers/char/tpm/tpm_nsc.o
+  CC [M]  net/bridge/br_mst.o
+  CC      lib/vsprintf.o
+  CC [M]  drivers/dma-buf/st-dma-fence.o
+  AR      drivers/iommu/built-in.a
+  CC      drivers/mfd/twl-core.o
+  CC [M]  drivers/block/drbd/drbd_interval.o
+  CC [M]  drivers/regulator/max8660.o
+  CC [M]  fs/nls/mac-greek.o
+  CC [M]  net/sunrpc/xdr.o
+  CC [M]  drivers/block/brd.o
+  CC [M]  drivers/tty/serial/max3100.o
+  LD [M]  fs/nfs/flexfilelayout/nfs_layout_flexfiles.o
+  CC      net/ipv6/seg6_iptunnel.o
+  CC [M]  net/bridge/br_switchdev.o
+  CC      drivers/acpi/acpica/utxface.o
+  AR      drivers/gpu/drm/omapdrm/built-in.a
+  CC      net/ipv6/seg6_local.o
+  CC      drivers/nvme/common/keyring.o
+  CC      drivers/base/cpu.o
+  CC [M]  fs/netfs/direct_write.o
+  CC [M]  drivers/misc/cardreader/rts5261.o
+  AR      drivers/gpu/drm/tilcdc/built-in.a
+  CC [M]  fs/netfs/iterator.o
+  CC [M]  drivers/scsi/libsas/sas_init.o
+  CC [M]  fs/netfs/locking.o
+  CC [M]  crypto/michael_mic.o
+  CC [M]  net/sunrpc/sunrpc_syms.o
+  AR      drivers/gpu/drm/imx/built-in.a
+  CC [M]  fs/netfs/main.o
+  CC [M]  fs/netfs/misc.o
+  CC [M]  net/bridge/br_mrp_switchdev.o
+  CC      kernel/trace/fgraph.o
+  CC [M]  drivers/char/tpm/tpm_atmel.o
+  CC [M]  fs/nls/mac-iceland.o
+  CC [M]  drivers/cxl/core/memdev.o
+  CC [M]  drivers/cxl/core/mbox.o
+  CC      fs/btrfs/inode-item.o
+  CC [M]  fs/nfs/blocklayout/rpc_pipefs.o
+  CC [M]  drivers/dma-buf/st-dma-fence-chain.o
+  CC [M]  fs/netfs/objects.o
+  CC [M]  net/netfilter/nf_nat_tftp.o
+  CC      drivers/nvdimm/claim.o
+  CC [M]  drivers/dma-buf/st-dma-fence-unwrap.o
+  CC      net/ipv4/gre_offload.o
+  CC      drivers/acpi/acpica/utxfinit.o
+  CC [M]  drivers/regulator/max8893.o
+  CC      drivers/nvme/host/core.o
+  CC [M]  crypto/crc32_generic.o
+  CC [M]  drivers/scsi/megaraid/megaraid_sas_fusion.o
+  CC      arch/x86/kernel/tsc_sync.o
+  CC [M]  drivers/tty/serial/men_z135_uart.o
+  CC      drivers/base/firmware.o
+  CC [M]  net/sctp/offload.o
+  CC [M]  drivers/misc/cardreader/rts5228.o
+  CC [M]  fs/nls/mac-inuit.o
+  AR      drivers/nvme/common/built-in.a
+  CC      drivers/acpi/dock.o
+  CC [M]  drivers/char/tpm/tpm_infineon.o
+  CC      drivers/acpi/acpica/utxferror.o
+  CC [M]  drivers/cxl/port.o
+  CC      arch/x86/kernel/setup_percpu.o
+  CC      mm/page_poison.o
+  CC [M]  drivers/tty/serial/rp2.o
+  CC      drivers/mfd/twl4030-irq.o
+  CC      drivers/acpi/acpica/utxfmutex.o
+  AR      drivers/nvme/target/built-in.a
+  CC [M]  drivers/block/ublk_drv.o
+  CC [M]  drivers/nvme/target/core.o
+  CC [M]  drivers/tty/serial/sc16is7xx.o
+  CC [M]  crypto/authenc.o
+  CC [M]  drivers/misc/cardreader/rts5264.o
+  CC [M]  drivers/dma-buf/st-dma-resv.o
+  CC [M]  drivers/scsi/libsas/sas_phy.o
+  CC [M]  drivers/regulator/max8907-regulator.o
+  CC      drivers/base/init.o
+  CC [M]  drivers/scsi/libsas/sas_port.o
+  CC [M]  fs/nls/mac-romanian.o
+  CC      drivers/base/map.o
+  CC [M]  drivers/tty/serial/sc16is7xx_spi.o
+  CC [M]  net/netfilter/nf_synproxy_core.o
+  CC [M]  net/bridge/br_mrp.o
+  CC [M]  drivers/scsi/megaraid/megaraid_sas_fp.o
+  CC      fs/btrfs/disk-io.o
+  CC      kernel/trace/trace_events.o
+  LD [M]  fs/nfs/blocklayout/blocklayoutdriver.o
+  CC      net/ipv4/metrics.o
+  CC [M]  fs/nfs/client.o
+  CC      drivers/acpi/acpica/dbcmds.o
+  CC [M]  fs/nfs/dir.o
+  CC      mm/memtest.o
+  CC [M]  drivers/scsi/megaraid/megaraid_sas_debugfs.o
+  CC [M]  drivers/nvme/target/configfs.o
+  AR      drivers/gpu/drm/panel/built-in.a
+  CC [M]  drivers/gpu/drm/panel/panel-auo-a030jtn01.o
+  AR      drivers/dma-buf/built-in.a
+  CC [M]  drivers/ata/pata_parport/pata_parport.o
+  LD [M]  drivers/dma-buf/dmabuf_selftests.o
+  AR      drivers/gpu/drm/bridge/analogix/built-in.a
+  AR      drivers/gpu/drm/bridge/cadence/built-in.a
+  CC [M]  drivers/gpu/drm/bridge/analogix/analogix-anx78xx.o
+  CC      drivers/ata/libata-core.o
+  CC      drivers/mfd/twl6030-irq.o
+  CC      drivers/nvdimm/btt_devs.o
+  CC [M]  fs/nls/mac-roman.o
+  CC [M]  net/sctp/stream_sched.o
+  CC [M]  drivers/char/tpm/xen-tpmfront.o
+  CC      net/ipv6/seg6_hmac.o
+  CC      arch/x86/kernel/mpparse.o
+  CC      lib/win_minmax.o
+  CC [M]  drivers/cxl/core/pci.o
+  CC      drivers/base/devres.o
+  CC      net/ipv6/ioam6_iptunnel.o
+  CC      net/ipv6/addrconf_core.o
+  CC      drivers/mfd/twl4030-audio.o
+  CC [M]  drivers/regulator/max8925-regulator.o
+  CC [M]  crypto/authencesn.o
+  CC      drivers/ata/libata-scsi.o
+  CC [M]  drivers/misc/cardreader/rtsx_usb.o
+  CC      net/ipv6/exthdrs_core.o
+  CC      drivers/acpi/acpica/dbconvert.o
+  CC [M]  drivers/scsi/libsas/sas_event.o
+  AR      drivers/gpu/drm/hisilicon/built-in.a
+  CC      kernel/ptrace.o
+  CC [M]  fs/netfs/read_collect.o
+  CC      mm/migrate.o
+  CC [M]  fs/nls/mac-turkish.o
+  CC [M]  fs/netfs/read_pgpriv2.o
+  CC [M]  net/bridge/br_mrp_netlink.o
+  CC [M]  drivers/gpu/drm/panel/panel-ilitek-ili9341.o
+  CC [M]  net/sunrpc/cache.o
+  CC      drivers/mfd/twl6040.o
+  CC      drivers/acpi/acpica/dbdisply.o
+  CC [M]  drivers/block/drbd/drbd_state.o
+  CC [M]  drivers/char/tpm/tpm_vtpm_proxy.o
+  LD [M]  drivers/scsi/megaraid/megaraid_sas.o
+  AR      drivers/misc/keba/built-in.a
+  CC [M]  drivers/misc/keba/cp500.o
+  CC [M]  drivers/gpu/drm/display/drm_dp_tunnel.o
+  CC [M]  drivers/regulator/max8952.o
+  CC [M]  drivers/tty/serial/sc16is7xx_i2c.o
+  CC [M]  drivers/gpu/drm/bridge/analogix/analogix_dp_core.o
+  CC      arch/x86/kernel/ftrace.o
+  CC      drivers/tty/n_tty.o
+  CC      drivers/acpi/pci_root.o
+  CC      lib/xarray.o
+  CC      drivers/nvme/host/ioctl.o
+  CC [M]  fs/nls/nls_ucs2_utils.o
+  CC [M]  fs/lockd/clntlock.o
+  CC [M]  net/sctp/stream_sched_prio.o
+  CC [M]  crypto/lz4.o
+  CC [M]  net/sctp/stream_sched_rr.o
+  CC [M]  drivers/ata/pata_parport/aten.o
+  CC      drivers/nvdimm/pfn_devs.o
+  CC [M]  fs/smb/common/cifs_arc4.o
+  CC      drivers/acpi/acpica/dbexec.o
+  CC [M]  crypto/lz4hc.o
+  CC      drivers/base/attribute_container.o
+  CC      net/ipv4/netlink.o
+  LD [M]  drivers/misc/cardreader/rtsx_pci.o
+  CC      drivers/base/transport_class.o
+  AR      drivers/gpu/drm/mxsfb/built-in.a
+  CC      drivers/base/topology.o
+  CC      kernel/bpf/memalloc.o
+  CC [M]  drivers/cxl/core/hdm.o
+  CC [M]  drivers/nvme/target/admin-cmd.o
+  CC [M]  drivers/scsi/libsas/sas_discover.o
+  CC [M]  drivers/gpu/drm/panel/panel-orisetech-ota5601a.o
+  CC [M]  drivers/tty/serial/sprd_serial.o
+../drivers/gpu/drm/bridge/analogix/analogix_dp_core.c: In function ‘analogix_dp_probe’:
+../drivers/gpu/drm/bridge/analogix/analogix_dp_core.c:1589:17: error: label ‘err_disable_clk’ used but not defined
+ 1589 |                 goto err_disable_clk;
+      |                 ^~~~
+  LD [M]  drivers/char/tpm/tpm_tis_spi.o
+  CC [M]  drivers/regulator/max8997-regulator.o
+  AR      drivers/char/tpm/built-in.a
+make[8]: *** [../scripts/Makefile.build:203: drivers/gpu/drm/bridge/analogix/analogix_dp_core.o] Error 1
+make[7]: *** [../scripts/Makefile.build:461: drivers/gpu/drm/bridge/analogix] Error 2
+make[6]: *** [../scripts/Makefile.build:461: drivers/gpu/drm/bridge] Error 2
+make[6]: *** Waiting for unfinished jobs....
+  CC      drivers/mfd/mfd-core.o
+  CC      drivers/char/ttyprintk.o
+  CC [M]  drivers/tty/serial/uartlite.o
+  CC [M]  drivers/nvme/target/fabrics-cmd.o
+  CC [M]  drivers/misc/ibmasm/module.o
+  CC [M]  fs/nfs/file.o
+  CC [M]  net/bridge/br_cfm.o
+  CC [M]  net/netfilter/nf_conncount.o
+  CC [M]  fs/smb/common/cifs_md4.o
+  AS      arch/x86/kernel/ftrace_64.o
+  CC [M]  drivers/misc/ibmasm/ibmasmfs.o
+  CC [M]  crypto/842.o
+  CC      drivers/acpi/acpica/dbhistry.o
+  CC [M]  drivers/ata/pata_parport/bpck.o
+  CC      drivers/acpi/pci_link.o
+  CC [M]  fs/netfs/read_retry.o
+  CC      fs/btrfs/transaction.o
+  CC [M]  drivers/misc/ibmasm/event.o
+  AR      fs/nls/built-in.a
+  CC [M]  drivers/block/drbd/drbd_nla.o
+  CC [M]  crypto/ansi_cprng.o
+  CC      net/ipv6/ip6_checksum.o
+  CC [M]  drivers/misc/ibmasm/command.o
+  CC [M]  net/sctp/stream_sched_fc.o
+  CC      arch/x86/kernel/trace_clock.o
+  CC [M]  drivers/block/drbd/drbd_debugfs.o
+  CC      drivers/char/misc.o
+  CC [M]  drivers/cxl/core/pmu.o
+  CC [M]  crypto/tcrypt.o
+  CC      drivers/nvme/host/sysfs.o
+  CC      drivers/base/container.o
+  CC      kernel/trace/trace_export.o
+  CC      drivers/spi/spi.o
+  CC      drivers/acpi/acpica/dbinput.o
+  CC [M]  drivers/gpu/drm/panel/panel-raspberrypi-touchscreen.o
+  CC [M]  drivers/misc/sgi-xp/xp_main.o
+  CC      arch/x86/kernel/trace.o
+  CC [M]  drivers/misc/sgi-gru/grufile.o
+  AR      drivers/tty/serial/built-in.a
+  CC [M]  net/bridge/br_cfm_netlink.o
+  CC [M]  drivers/misc/c2port/core.o
+  CC      drivers/tty/tty_ioctl.o
+  CC [M]  drivers/misc/altera-stapl/altera-jtag.o
+  CC [M]  drivers/scsi/libsas/sas_expander.o
+  CC      kernel/bpf/rqspinlock.o
+  CC [M]  drivers/nvme/target/discovery.o
+  CC      lib/lockref.o
+  CC [M]  drivers/regulator/max8998.o
+  CC      drivers/nvdimm/dax_devs.o
+  CC [M]  fs/lockd/clntproc.o
+  CC [M]  fs/romfs/storage.o
+  CC [M]  drivers/regulator/max20086-regulator.o
+  CC [M]  drivers/misc/ibmasm/remote.o
+  CC      drivers/tty/tty_ldisc.o
+  CC [M]  fs/smb/client/trace.o
+  CC      drivers/acpi/acpica/dbmethod.o
+  CC      drivers/mfd/ezx-pcap.o
+  CC [M]  drivers/misc/c2port/c2port-duramar2150.o
+  CC      net/ipv4/nexthop.o
+  CC      mm/memory-tiers.o
+  CC      drivers/nvdimm/security.o
+  CC [M]  drivers/gpu/drm/display/drm_dsc_helper.o
+  CC      drivers/base/property.o
+  CC [M]  fs/netfs/read_single.o
+  CC      fs/btrfs/inode.o
+  CC [M]  crypto/polyval-generic.o
+  CC      lib/bcd.o
+  CC      arch/x86/kernel/rethook.o
+  CC      kernel/trace/trace_syscalls.o
+  CC [M]  drivers/misc/altera-stapl/altera-comp.o
+  CC [M]  drivers/gpu/drm/panel/panel-widechips-ws2401.o
+  CC      drivers/char/virtio_console.o
+  CC [M]  drivers/ata/pata_parport/comm.o
+  CC [M]  fs/autofs/init.o
+  CC      lib/sort.o
+  CC [M]  net/sctp/stream_interleave.o
+  CC [M]  drivers/misc/altera-stapl/altera.o
+  CC [M]  drivers/misc/sgi-gru/grumain.o
+  CC      drivers/acpi/acpica/dbnames.o
+  CC [M]  drivers/misc/sgi-xp/xp_uv.o
+  CC [M]  drivers/cxl/core/cdat.o
+  CC [M]  net/sunrpc/rpc_pipe.o
+  CC [M]  fs/romfs/super.o
+  CC [M]  drivers/nvme/target/io-cmd-file.o
+  CC [M]  crypto/af_alg.o
+  CC [M]  drivers/misc/ibmasm/heartbeat.o
+  CC      drivers/acpi/pci_irq.o
+  CC [M]  fs/smb/client/cifsfs.o
+  CC [M]  drivers/regulator/max20411-regulator.o
+  CC      lib/parser.o
+  CC [M]  net/netfilter/nf_dup_netdev.o
+  CC      drivers/mfd/da903x.o
+  CC [M]  net/bridge/br_netfilter_hooks.o
+  CC [M]  crypto/algif_hash.o
+  CC      arch/x86/kernel/vmcore_info_64.o
+  CC      net/ipv6/ip6_icmp.o
+  LD [M]  drivers/block/drbd/drbd.o
+  AR      drivers/block/built-in.a
+  CC [M]  fs/autofs/inode.o
+  CC [M]  drivers/nvme/target/io-cmd-bdev.o
+  CC      drivers/acpi/acpica/dbobject.o
+  CC      drivers/ata/libata-eh.o
+  CC      drivers/spi/spi-mem.o
+  CC      drivers/nvme/host/pr.o
+  CC      kernel/bpf/arena.o
+  CC [M]  drivers/gpu/drm/display/drm_hdcp_helper.o
+  CC      drivers/nvdimm/e820.o
+  CC      net/ipv6/output_core.o
+  CC      drivers/tty/tty_buffer.o
+  CC [M]  drivers/misc/sgi-xp/xpc_main.o
+  CC [M]  drivers/misc/ibmasm/r_heartbeat.o
+  CC [M]  fs/nfs/getroot.o
+  CC      drivers/base/cacheinfo.o
+  CC [M]  drivers/ata/pata_parport/dstr.o
+  CC      kernel/trace/trace_event_perf.o
+  CC [M]  fs/autofs/root.o
+  CC [M]  drivers/misc/ibmasm/dot_command.o
+  CC      lib/debug_locks.o
+  CC      drivers/mfd/da9052-irq.o
+  LD [M]  fs/romfs/romfs.o
+  CC      arch/x86/kernel/machine_kexec_64.o
+  CC [M]  drivers/scsi/libsas/sas_scsi_host.o
+  CC [M]  fs/netfs/rolling_buffer.o
+  CC [M]  drivers/regulator/max77693-regulator.o
+  CC      drivers/acpi/acpica/dbstats.o
+  CC [M]  drivers/misc/sgi-gru/grufault.o
+  CC      kernel/trace/trace_events_filter.o
+  CC [M]  fs/netfs/write_collect.o
+  CC      drivers/char/hpet.o
+  CC [M]  fs/netfs/write_issue.o
+  CC      mm/migrate_device.o
+  CC [M]  fs/lockd/clntxdr.o
+  CC [M]  drivers/nvme/target/pr.o
+  CC      lib/random32.o
+  CC [M]  drivers/nvdimm/pmem.o
+  CC [M]  fs/netfs/write_retry.o
+  CC [M]  fs/netfs/stats.o
+  CC [M]  fs/lockd/host.o
+  CC [M]  net/sctp/proc.o
+  CC [M]  fs/lockd/svc.o
+  CC      drivers/nvme/host/trace.o
+  CC      drivers/acpi/acpica/dbutils.o
+  CC [M]  drivers/misc/ibmasm/lowlevel.o
+  CC [M]  drivers/cxl/core/ras.o
+  CC      drivers/base/swnode.o
+  CC      kernel/bpf/range_tree.o
+  CC      drivers/tty/tty_port.o
+  CC [M]  fs/autofs/symlink.o
+  CC      kernel/trace/trace_events_trigger.o
+  CC [M]  drivers/regulator/max77826-regulator.o
+  CC [M]  fs/nfs/inode.o
+  CC [M]  drivers/misc/altera-stapl/altera-lpt.o
+  CC [M]  drivers/misc/sgi-xp/xpc_channel.o
+  CC [M]  drivers/gpu/drm/display/drm_hdmi_audio_helper.o
+  CC [M]  drivers/ata/pata_parport/kbic.o
+  CC [M]  net/netfilter/nf_tables_core.o
+  CC      drivers/acpi/acpica/dbxface.o
+  AS      arch/x86/kernel/relocate_kernel_64.o
+  CC [M]  fs/lockd/svclock.o
+  CC      lib/bust_spinlocks.o
+  CC      drivers/mfd/da9052-core.o
+  CC [M]  drivers/char/uv_mmtimer.o
+  LD [M]  drivers/misc/altera-stapl/altera-stapl.o
+  CC      arch/x86/kernel/kexec-bzimage64.o
+  CC [M]  drivers/misc/ibmasm/uart.o
+  CC      drivers/ata/libata-transport.o
+  AR      drivers/net/phy/mediatek/built-in.a
+  CC      drivers/ata/libata-trace.o
+  AR      drivers/net/phy/qcom/built-in.a
+  CC [M]  net/sunrpc/sysfs.o
+  CC [M]  drivers/net/phy/qcom/qcom-phy-lib.o
+  CC [M]  drivers/misc/sgi-gru/grutlbpurge.o
+  CC [M]  crypto/algif_skcipher.o
+  CC      drivers/ata/libata-sata.o
+  CC      net/ipv6/protocol.o
+  CC [M]  drivers/cxl/core/acpi.o
+  CC [M]  drivers/misc/mei/hdcp/mei_hdcp.o
+  CC [M]  drivers/nvdimm/btt.o
+  CC [M]  net/bridge/br_netfilter_ipv6.o
+  CC      fs/btrfs/file.o
+  CC      drivers/spi/spi-offload.o
+  CC      drivers/base/faux.o
+  CC [M]  fs/autofs/waitq.o
+  CC [M]  drivers/nvme/target/passthru.o
+  CC [M]  drivers/regulator/max77857-regulator.o
+  CC      kernel/user.o
+  CC [M]  drivers/scsi/libsas/sas_task.o
+  CC [M]  net/sctp/sysctl.o
+  CC      lib/kasprintf.o
+  CC [M]  drivers/misc/sgi-xp/xpc_partition.o
+  LD [M]  drivers/misc/ibmasm/ibmasm.o
+  CC      drivers/acpi/acpica/rsdump.o
+  CC      kernel/bpf/dispatcher.o
+  CC      kernel/trace/trace_eprobe.o
+  CC [M]  fs/lockd/svcshare.o
+  CC [M]  drivers/ata/pata_parport/epat.o
+  CC [M]  drivers/char/lp.o
+  CC [M]  fs/smb/client/cifs_debug.o
+  CC      drivers/nvme/host/multipath.o
+  CC [M]  fs/netfs/fscache_cache.o
+  CC      drivers/tty/tty_mutex.o
+  CC      mm/huge_memory.o
+  CC [M]  drivers/misc/sgi-gru/gruprocfs.o
+  CC [M]  drivers/cxl/core/trace.o
+  CC [M]  drivers/misc/sgi-xp/xpc_uv.o
+  CC [M]  fs/smb/client/connect.o
+  CC      arch/x86/kernel/crash_dump_64.o
+  CC      net/ipv4/udp_tunnel_stub.o
+  CC      drivers/mfd/da9052-spi.o
+  CC [M]  drivers/gpu/drm/display/drm_hdmi_cec_helper.o
+  CC [M]  drivers/char/applicom.o
+  AR      drivers/acpi/acpica/built-in.a
+  CC      drivers/tty/tty_ldsem.o
+  CC      drivers/acpi/acpi_apd.o
+  CC [M]  crypto/algif_rng.o
+  CC      kernel/signal.o
+  CC      lib/bitmap.o
+  CC [M]  fs/fuse/dev.o
+  CC [M]  drivers/misc/mei/pxp/mei_pxp.o
+  CC      arch/x86/kernel/crash.o
+  CC [M]  net/sunrpc/svc_xprt.o
+  CC [M]  drivers/char/nvram.o
+  CC      drivers/base/auxiliary.o
+  CC [M]  drivers/regulator/mc13783-regulator.o
+  CC [M]  fs/autofs/expire.o
+  CC [M]  drivers/scsi/libsas/sas_ata.o
+  CC [M]  drivers/scsi/libsas/sas_host_smp.o
+  CC [M]  net/netfilter/nf_tables_api.o
+  CC [M]  drivers/nvme/target/zns.o
+  CC      kernel/sys.o
+  CC [M]  drivers/spi/spi-mux.o
+  CC [M]  fs/smb/client/dir.o
+  CC [M]  drivers/spi/spidev.o
+  CC      kernel/bpf/devmap.o
+  LD [M]  net/bridge/bridge.o
+  CC [M]  fs/lockd/svcproc.o
+  LD [M]  net/bridge/br_netfilter.o
+  CC [M]  fs/smb/client/file.o
+  CC      drivers/mfd/da9052-i2c.o
+  CC [M]  net/sctp/ipv6.o
+  CC [M]  drivers/misc/sgi-gru/grukservices.o
+  CC      drivers/tty/tty_baudrate.o
+  CC [M]  drivers/net/phy/qcom/at803x.o
+  CC [M]  fs/lockd/svcsubs.o
+  CC      net/ipv6/ip6_offload.o
+  CC      drivers/acpi/acpi_platform.o
+  CC [M]  drivers/ata/pata_parport/epia.o
+  CC [M]  fs/overlayfs/super.o
+  COPY    drivers/scsi/aic7xxx/aic7xxx_seq.h
+  CC [M]  fs/fuse/dir.o
+  COPY    drivers/scsi/aic7xxx/aic7xxx_reg.h
+  COPY    drivers/scsi/aic7xxx/aic7xxx_reg_print.c
+  CC [M]  drivers/scsi/aic7xxx/aic7xxx_osm.o
+  CC      kernel/trace/trace_events_inject.o
+  CC [M]  drivers/misc/mei/gsc_proxy/mei_gsc_proxy.o
+  CC      arch/x86/kernel/module.o
+  CC [M]  fs/smb/client/inode.o
+  CC [M]  drivers/regulator/mc13892-regulator.o
+  CC [M]  drivers/misc/sgi-xp/xpnet.o
+  CC [M]  drivers/gpu/drm/display/drm_hdmi_cec_notifier_helper.o
+  CC [M]  crypto/algif_aead.o
+  CC [M]  drivers/nvdimm/virtio_pmem.o
+  CC [M]  fs/fuse/file.o
+  CC [M]  fs/netfs/fscache_cookie.o
+  CC [M]  drivers/nvme/target/fabrics-cmd-auth.o
+  CC [M]  fs/nfs/super.o
+  CC [M]  fs/autofs/dev-ioctl.o
+  CC      drivers/base/devtmpfs.o
+  CC [M]  drivers/spi/spi-loopback-test.o
+  CC      drivers/mfd/lp8788.o
+  CC      lib/scatterlist.o
+  CC [M]  drivers/char/ppdev.o
+  CC      fs/btrfs/defrag.o
+  CC      drivers/nvme/host/zns.o
+  CC      drivers/tty/tty_jobctrl.o
+  CC      net/ipv4/sysctl_net_ipv4.o
+  CC [M]  drivers/misc/mei/init.o
+  CC [M]  drivers/misc/mei/hbm.o
+  CC      arch/x86/kernel/kgdb.o
+  CC      drivers/nvme/host/fault_inject.o
+  CC [M]  drivers/ata/pata_parport/frpw.o
+  CC [M]  drivers/net/phy/qcom/qca83xx.o
+  CC      kernel/trace/trace_events_synth.o
+  CC [M]  drivers/regulator/mc13xxx-regulator-core.o
+  CC      arch/x86/kernel/early_printk.o
+  CC      drivers/acpi/acpi_pnp.o
+  LD [M]  drivers/scsi/libsas/libsas.o
+  CC [M]  drivers/cxl/core/region.o
+  CC      fs/btrfs/extent_map.o
+  CC      kernel/bpf/cpumap.o
+  CC [M]  drivers/nvdimm/nd_virtio.o
+  CC [M]  fs/overlayfs/namei.o
+  LD [M]  drivers/misc/sgi-xp/xp.o
+  LD [M]  drivers/misc/sgi-xp/xpc.o
+  CC      drivers/mfd/lp8788-irq.o
+  CC [M]  drivers/nvme/target/auth.o
+  LD [M]  fs/autofs/autofs4.o
+  CC [M]  fs/fuse/inode.o
+  CC [M]  drivers/gpu/drm/display/drm_hdmi_helper.o
+  CC [M]  crypto/zstd.o
+  CC [M]  drivers/misc/sgi-gru/gruhandles.o
+  CC [M]  drivers/scsi/aic7xxx/aic7xxx_proc.o
+  CC      drivers/base/isa.o
+  CC      net/ipv6/tcpv6_offload.o
+  CC [M]  drivers/char/tlclk.o
+  CC      mm/khugepaged.o
+  CC [M]  net/sctp/diag.o
+  CC [M]  drivers/gpu/drm/display/drm_scdc_helper.o
+  CC [M]  crypto/essiv.o
+  CC [M]  fs/lockd/mon.o
+  CC      kernel/umh.o
+  CC [M]  net/netfilter/nft_chain_filter.o
+  CC [M]  net/sunrpc/xprtmultipath.o
+  CC      drivers/mfd/da9055-core.o
+  CC [M]  drivers/net/phy/qcom/qca808x.o
+  CC      arch/x86/kernel/hpet.o
+  CC      drivers/tty/n_null.o
+  CC [M]  drivers/spi/spi-altera-platform.o
+  CC      mm/page_counter.o
+  CC [M]  drivers/scsi/isci/init.o
+  CC      drivers/acpi/power.o
+  CC [M]  drivers/misc/sgi-gru/grukdump.o
+  CC [M]  drivers/ata/pata_parport/friq.o
+  CC [M]  drivers/nvme/target/trace.o
+  CC      lib/list_sort.o
+  LD [M]  net/sctp/sctp.o
+  CC [M]  drivers/scsi/aic7xxx/aic7xxx_osm_pci.o
+  CC [M]  fs/netfs/fscache_io.o
+  CC      drivers/nvme/host/hwmon.o
+  CC [M]  drivers/scsi/mpt3sas/mpt3sas_base.o
+  CC [M]  drivers/regulator/mp8859.o
+  CC [M]  drivers/misc/mei/interrupt.o
+  CC      net/ipv4/proc.o
+  CC [M]  drivers/spi/spi-altera-core.o
+  CC [M]  fs/overlayfs/util.o
+  CC      lib/uuid.o
+  CC [M]  fs/9p/vfs_super.o
+  CC [M]  drivers/char/hangcheck-timer.o
+  CC      fs/btrfs/sysfs.o
+  CC [M]  crypto/curve25519-generic.o
+  CC      drivers/tty/pty.o
+  CC      drivers/base/node.o
+  CC [M]  fs/9p/vfs_inode.o
+  CC [M]  fs/lockd/trace.o
+  LD [M]  drivers/nvdimm/nd_pmem.o
+  LD [M]  drivers/nvdimm/nd_btt.o
+  AR      drivers/nvdimm/built-in.a
+  CC [M]  fs/lockd/xdr.o
+  CC      lib/iov_iter.o
+  CC      mm/memcontrol.o
+  CC      kernel/bpf/offload.o
+  CC      net/ipv6/exthdrs_offload.o
+  CC [M]  fs/lockd/netlink.o
+  CC [M]  drivers/net/phy/aquantia/aquantia_main.o
+  LD [M]  net/sctp/sctp_diag.o
+  CC      drivers/net/phy/mdio-boardinfo.o
+  CC [M]  drivers/net/phy/realtek/realtek_main.o
+  CC [M]  fs/nfs/io.o
+  CC [M]  fs/nfs/direct.o
+  CC      drivers/mfd/da9055-i2c.o
+  CC [M]  drivers/gpu/drm/display/drm_hdmi_state_helper.o
+  CC [M]  fs/cachefiles/cache.o
+  CC [M]  fs/nfs/pagelist.o
+  CC [M]  fs/smb/client/link.o
+  CC      drivers/acpi/event.o
+  LD [M]  drivers/misc/sgi-gru/gru.o
+  CC [M]  drivers/scsi/mpt3sas/mpt3sas_config.o
+  CC [M]  drivers/nvme/target/loop.o
+  AR      drivers/char/built-in.a
+  CC [M]  fs/nfs/read.o
+  COPY    drivers/scsi/aic7xxx/aic79xx_seq.h
+  COPY    drivers/scsi/aic7xxx/aic79xx_reg.h
+  COPY    drivers/scsi/aic7xxx/aic79xx_reg_print.c
+  CC [M]  drivers/scsi/aic7xxx/aic79xx_osm.o
+  CC [M]  drivers/regulator/mt6311-regulator.o
+  CC      drivers/nvme/host/auth.o
+  CC [M]  drivers/scsi/isci/phy.o
+  CC      drivers/mfd/da9063-core.o
+  CC [M]  net/sunrpc/debugfs.o
+  CC [M]  fs/nfs/symlink.o
+  CC      kernel/trace/trace_events_hist.o
+  ASN.1   crypto/ecrdsa_params.asn1.[ch]
+  ASN.1   crypto/ecrdsa_pub_key.asn1.[ch]
+  CC [M]  crypto/ecrdsa_params.asn1.o
+  CC [M]  fs/fuse/control.o
+  CC [M]  drivers/scsi/aic7xxx/aic79xx_proc.o
+  CC [M]  crypto/ecrdsa_pub_key.asn1.o
+  CC [M]  drivers/regulator/mt6315-regulator.o
+  CC [M]  crypto/simd.o
+  CC      arch/x86/kernel/amd_nb.o
+  CC [M]  drivers/ata/pata_parport/fit2.o
+  CC [M]  drivers/misc/mei/client.o
+  CC      drivers/tty/tty_audit.o
+  CC [M]  drivers/spi/spi-axi-spi-engine.o
+  CC      fs/btrfs/accessors.o
+  CC [M]  fs/netfs/fscache_main.o
+  CC [M]  drivers/nvme/target/fc.o
+  CC [M]  fs/overlayfs/inode.o
+  CC [M]  fs/9p/vfs_inode_dotl.o
+  CC      net/ipv4/fib_rules.o
+  CC      net/ipv6/inet6_hashtables.o
+  CC [M]  drivers/cxl/core/mce.o
+  CC [M]  drivers/ata/pata_parport/fit3.o
+  CC      drivers/mfd/da9063-irq.o
+  CC [M]  fs/lockd/clnt4xdr.o
+  CC [M]  drivers/scsi/isci/request.o
+  CC      kernel/trace/trace_events_user.o
+  CC [M]  drivers/net/phy/aquantia/aquantia_firmware.o
+  CC [M]  fs/cachefiles/daemon.o
+  CC      drivers/base/memory.o
+  LD [M]  drivers/net/phy/realtek/realtek.o
+  CC [M]  fs/cachefiles/interface.o
+  CC [M]  fs/fuse/xattr.o
+  CC      drivers/scsi/scsi.o
+  CC [M]  drivers/regulator/mt6323-regulator.o
+  CC [M]  drivers/gpu/drm/display/drm_dp_aux_dev.o
+  AR      drivers/message/fusion/built-in.a
+  CC [M]  drivers/message/fusion/mptbase.o
+  CC      drivers/nvme/host/pci.o
+  CC      drivers/tty/sysrq.o
+  CC [M]  drivers/ata/pata_parport/on20.o
+  CC      drivers/mfd/da9063-i2c.o
+  CC [M]  net/sunrpc/backchannel_rqst.o
+  CC [M]  fs/fuse/acl.o
+  CC [M]  fs/overlayfs/file.o
+  CC [M]  fs/cachefiles/io.o
+  CC [M]  drivers/message/fusion/mptscsih.o
+  CC [M]  drivers/scsi/isci/remote_device.o
+  CC      drivers/acpi/evged.o
+  CC [M]  fs/smb/client/misc.o
+  AR      drivers/cxl/core/built-in.a
+  LD [M]  drivers/cxl/core/cxl_core.o
+  CC [M]  drivers/cxl/acpi.o
+  CC [M]  drivers/scsi/aic7xxx/aic79xx_osm_pci.o
+  CC [M]  drivers/spi/spi-bitbang.o
+  CC      arch/x86/kernel/amd_node.o
+  CC [M]  crypto/ecdsa-x962.o
+  CC [M]  fs/9p/vfs_addr.o
+  CC [M]  drivers/scsi/isci/port.o
+  CC [M]  fs/9p/vfs_file.o
+  CC      fs/btrfs/xattr.o
+  CC      kernel/bpf/net_namespace.o
+  CC [M]  fs/overlayfs/dir.o
+  LD [M]  crypto/aegis128.o
+  CC [M]  drivers/scsi/isci/host.o
+  CC [M]  drivers/net/phy/aquantia/aquantia_leds.o
+  CC [M]  fs/lockd/xdr4.o
+  CC [M]  drivers/regulator/mt6331-regulator.o
+  CC      drivers/base/module.o
+  CC      drivers/mfd/max14577.o
+  CC [M]  fs/fuse/readdir.o
+  CC [M]  drivers/gpu/drm/display/drm_dp_cec.o
+  CC      drivers/acpi/sysfs.o
+  CC [M]  drivers/tty/n_hdlc.o
+  CC [M]  crypto/ecrdsa.o
+  AR      drivers/net/pse-pd/built-in.a
+  CC [M]  drivers/spi/spi-butterfly.o
+  CC      drivers/acpi/property.o
+  CC [M]  net/sunrpc/stats.o
+  CC [M]  drivers/scsi/aic7xxx/aic7xxx_core.o
+  CC [M]  drivers/ata/pata_parport/on26.o
+  CC      arch/x86/kernel/kvm.o
+  CC [M]  drivers/scsi/aic7xxx/aic7xxx_93cx6.o
+  CC [M]  fs/nfs/unlink.o
+  CC [M]  drivers/misc/mei/main.o
+  CC      lib/clz_ctz.o
+  CC [M]  net/sunrpc/sysctl.o
+  CC [M]  drivers/cxl/pmem.o
+  CC [M]  drivers/scsi/mpt3sas/mpt3sas_scsih.o
+  CC [M]  fs/netfs/fscache_volume.o
+  CC [M]  fs/cachefiles/key.o
+  CC [M]  fs/9p/vfs_dir.o
+  CC      net/ipv4/ipmr.o
+  CC      lib/bsearch.o
+  CC      drivers/base/auxiliary_sysfs.o
+  AR      drivers/firewire/built-in.a
+  CC [M]  drivers/cxl/security.o
+  CC [M]  drivers/firewire/nosy.o
+  CC [M]  drivers/scsi/mpt3sas/mpt3sas_transport.o
+  CC      drivers/cdrom/cdrom.o
+  CC [M]  drivers/nvme/target/tcp.o
+  CC [M]  drivers/regulator/mt6332-regulator.o
+  CC      net/ipv6/mcast_snoop.o
+  CC [M]  drivers/net/phy/aquantia/aquantia_hwmon.o
+  AR      drivers/auxdisplay/built-in.a
+  CC [M]  drivers/auxdisplay/cfag12864b.o
+  LD [M]  crypto/crypto_simd.o
+  CC      crypto/rsapubkey.asn1.o
+  CC [M]  fs/fuse/ioctl.o
+  CC      crypto/rsaprivkey.asn1.o
+  CC [M]  drivers/auxdisplay/cfag12864bfb.o
+  CC      fs/btrfs/ordered-data.o
+  LD [M]  drivers/nvme/target/nvmet.o
+  CC [M]  drivers/tty/n_gsm.o
+  CC      drivers/scsi/hosts.o
+  CC      kernel/bpf/tcx.o
+  LD [M]  crypto/ecdsa_generic.o
+  CC [M]  fs/cachefiles/main.o
+  CC [M]  drivers/spi/spi-cadence.o
+  LD [M]  crypto/ecrdsa_generic.o
+  AR      crypto/built-in.a
+  CC [M]  fs/lockd/svc4proc.o
+  CC [M]  fs/vboxsf/dir.o
+  CC [M]  fs/overlayfs/readdir.o
+  LD [M]  drivers/nvme/target/nvme-loop.o
+  CC      fs/open.o
+  CC      net/ipv6/tcp_ao.o
+  CC [M]  drivers/nvme/host/fabrics.o
+  CC [M]  fs/smb/client/netmisc.o
+  CC      drivers/mfd/max77693.o
+  CC [M]  drivers/scsi/isci/task.o
+  CC      drivers/acpi/debugfs.o
+  CC [M]  fs/lockd/procfs.o
+  CC [M]  fs/9p/vfs_dentry.o
+  CC [M]  fs/fuse/iomode.o
+  CC [M]  drivers/cxl/mem.o
+  LD [M]  drivers/gpu/drm/display/drm_display_helper.o
+  CC      kernel/trace/bpf_trace.o
+make[5]: *** [../scripts/Makefile.build:461: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:461: drivers/gpu] Error 2
+make[4]: *** Waiting for unfinished jobs....
+  CC [M]  drivers/auxdisplay/charlcd.o
+  CC [M]  drivers/regulator/mt6357-regulator.o
+  CC      drivers/base/hypervisor.o
+  LD [M]  drivers/nvme/target/nvmet-fc.o
+  CC [M]  drivers/scsi/mpt3sas/mpt3sas_ctl.o
+  CC      lib/find_bit.o
+  LD [M]  drivers/net/phy/aquantia/aquantia.o
+  CC      drivers/net/phy/stubs.o
+  CC [M]  drivers/misc/mei/dma-ring.o
+  CC      drivers/ata/libata-sff.o
+  CC      fs/read_write.o
+  CC [M]  fs/nfs/write.o
+  CC [M]  drivers/spi/spi-ch341.o
+  CC [M]  net/netfilter/nf_tables_trace.o
+  CC [M]  fs/netfs/fscache_proc.o
+  CC [M]  fs/vboxsf/file.o
+  CC [M]  drivers/ata/pata_parport/ktti.o
+  CC      drivers/mfd/max77843.o
+  CC      mm/vmpressure.o
+  CC      lib/llist.o
+  CC [M]  drivers/message/fusion/mptspi.o
+  CC [M]  fs/9p/v9fs.o
+  CC      drivers/scsi/scsi_ioctl.o
+  CC      kernel/bpf/stackmap.o
+  CC [M]  net/netfilter/nft_immediate.o
+  CC      drivers/scsi/scsicam.o
+  CC [M]  drivers/cxl/pci.o
+  LD [M]  fs/lockd/lockd.o
+  CC [M]  drivers/message/fusion/mptfc.o
+  CC [M]  drivers/regulator/mt6358-regulator.o
+  CC [M]  drivers/scsi/isci/probe_roms.o
+  CC [M]  fs/fuse/dax.o
+  CC      drivers/acpi/acpi_lpat.o
+  CC [M]  fs/smb/client/smbencrypt.o
+  CC [M]  fs/overlayfs/copy_up.o
+  CC      lib/lwq.o
+  CC      drivers/net/phy/mdio_devres.o
+  CC      arch/x86/kernel/kvmclock.o
+  CC [M]  drivers/misc/vmw_vmci/vmci_context.o
+  CC [M]  drivers/misc/vmw_vmci/vmci_datagram.o
+  CC [M]  net/ipv6/ah6.o
+  CC [M]  drivers/misc/mei/bus.o
+  LD [M]  net/sunrpc/sunrpc.o
+  CC      fs/btrfs/extent_io.o
+  CC      drivers/base/soc.o
+  CC [M]  fs/cachefiles/namei.o
+  CC [M]  drivers/spi/spi-cs42l43.o
+  CC [M]  drivers/auxdisplay/hd44780_common.o
+  CC [M]  drivers/misc/vmw_vmci/vmci_doorbell.o
+  CC [M]  fs/netfs/fscache_stats.o
+  LD [M]  drivers/nvme/target/nvmet-tcp.o
+  CC      drivers/acpi/acpi_fpdt.o
+  CC [M]  fs/vboxsf/utils.o
+  CC      lib/memweight.o
+  CC [M]  drivers/ata/pata_parport/bpck6.o
+  CC [M]  drivers/scsi/aic7xxx/aic7xxx_pci.o
+  CC      drivers/mfd/max8925-core.o
+  CC      arch/x86/kernel/paravirt.o
+  CC      mm/swap_cgroup.o
+  CC [M]  fs/9p/fid.o
+  AR      drivers/cdrom/built-in.a
+  CC      lib/kfifo.o
+  CC [M]  drivers/nvme/host/fc.o
+  CC [M]  fs/nfs/namespace.o
+  CC [M]  drivers/regulator/mt6359-regulator.o
+  CC [M]  drivers/misc/mei/bus-fixup.o
+  CC [M]  drivers/scsi/isci/remote_node_context.o
+  CC [M]  drivers/tty/moxa.o
+  CC      drivers/net/mdio/acpi_mdio.o
+  CC      fs/file_table.o
+  LD [M]  drivers/cxl/cxl_port.o
+  CC [M]  drivers/regulator/mt6360-regulator.o
+  LD [M]  drivers/cxl/cxl_acpi.o
+  LD [M]  drivers/cxl/cxl_pmem.o
+  CC [M]  drivers/misc/mei/debugfs.o
+  LD [M]  drivers/cxl/cxl_mem.o
+  LD [M]  drivers/cxl/cxl_pci.o
+  AR      drivers/cxl/built-in.a
+  CC [M]  drivers/scsi/isci/remote_node_table.o
+  CC      drivers/acpi/acpi_lpit.o
+  AR      drivers/net/pcs/built-in.a
+  CC      drivers/net/mdio/fwnode_mdio.o
+  CC      kernel/bpf/cgroup_iter.o
+  AR      drivers/net/ethernet/broadcom/built-in.a
+  CC [M]  drivers/net/ethernet/broadcom/b44.o
+  CC [M]  drivers/spi/spi-dln2.o
+  CC [M]  net/netfilter/nft_cmp.o
+  CC      drivers/base/pinctrl.o
+  CC [M]  fs/smb/client/transport.o
+  CC [M]  drivers/misc/mei/mei-trace.o
+  CC [M]  drivers/auxdisplay/hd44780.o
+  CC [M]  drivers/net/ethernet/intel/libeth/rx.o
+  CC [M]  fs/overlayfs/export.o
+  CC [M]  drivers/net/ethernet/meta/fbnic/fbnic_csr.o
+  CC [M]  drivers/message/fusion/mptsas.o
+  CC [M]  fs/vboxsf/vboxsf_wrappers.o
+  CC      drivers/net/phy/phy.o
+  CC      mm/hugetlb_cgroup.o
+  CC [M]  fs/9p/xattr.o
+  CC      drivers/mfd/max8925-i2c.o
+  CC [M]  fs/overlayfs/params.o
+  CC [M]  drivers/scsi/mpt3sas/mpt3sas_trigger_diag.o
+  CC [M]  drivers/misc/vmw_vmci/vmci_driver.o
+  CC [M]  fs/cachefiles/security.o
+  CC [M]  net/ipv6/esp6.o
+  LD [M]  fs/netfs/netfs.o
+  CC      kernel/bpf/bpf_cgrp_storage.o
+  CC [M]  fs/fuse/passthrough.o
+  CC      kernel/bpf/cgroup.o
+  CC      net/ipv4/ipmr_base.o
+  AR      drivers/net/ethernet/realtek/built-in.a
+  CC [M]  drivers/net/ethernet/realtek/8139cp.o
+  CC      kernel/workqueue.o
+  CC [M]  fs/nfs/mount_clnt.o
+  CC [M]  drivers/scsi/aic7xxx/aic7xxx_reg_print.o
+  CC [M]  drivers/regulator/mt6370-regulator.o
+  CC [M]  drivers/scsi/isci/unsolicited_frame_control.o
+  CC      drivers/base/devcoredump.o
+  CC [M]  drivers/net/ethernet/realtek/8139too.o
+  CC [M]  fs/9p/cache.o
+  CC      drivers/ata/libata-pmp.o
+  CC [M]  drivers/auxdisplay/ht16k33.o
+  CC      lib/percpu-refcount.o
+  CC      arch/x86/kernel/paravirt-spinlocks.o
+  CC [M]  drivers/spi/spi-dw-core.o
+  CC [M]  fs/fuse/sysctl.o
+  CC [M]  drivers/tty/mxser.o
+  CC [M]  fs/vboxsf/super.o
+  CC      drivers/scsi/scsi_error.o
+  CC [M]  drivers/net/ethernet/meta/fbnic/fbnic_debugfs.o
+  CC      drivers/acpi/acpi_watchdog.o
+  CC      arch/x86/kernel/pvclock.o
+  CC [M]  drivers/scsi/mpt3sas/mpt3sas_warpdrive.o
+  CC [M]  net/netfilter/nft_range.o
+  AR      drivers/net/mctp/built-in.a
+  CC [M]  drivers/net/mctp/mctp-serial.o
+  CC [M]  drivers/net/mctp/mctp-i3c.o
+  CC [M]  fs/cachefiles/volume.o
+  CC      kernel/trace/trace_kprobe.o
+  CC [M]  drivers/message/fusion/mptctl.o
+  CC      drivers/net/phy/phy-c45.o
+  CC [M]  drivers/scsi/aic7xxx/aic79xx_core.o
+  CC [M]  drivers/misc/vmw_vmci/vmci_event.o
+  CC [M]  drivers/scsi/mpt3sas/mpt3sas_debugfs.o
+  CC [M]  drivers/net/mdio/mdio-bcm-unimac.o
+  CC [M]  fs/9p/acl.o
+  CC [M]  drivers/regulator/mt6397-regulator.o
+  CC      mm/memory-failure.o
+  CC [M]  fs/fuse/dev_uring.o
+  CC [M]  drivers/scsi/isci/port_config.o
+  CC [M]  fs/overlayfs/xattrs.o
+  CC      drivers/ata/libata-acpi.o
+  CC      drivers/mfd/max8997.o
+  CC [M]  fs/cachefiles/xattr.o
+  CC [M]  drivers/net/bonding/bond_main.o
+  CC [M]  drivers/misc/mei/pci-me.o
+  CC [M]  fs/nfs/nfstrace.o
+  CC      fs/btrfs/volumes.o
+  CC      drivers/base/platform-msi.o
+  LD [M]  drivers/net/ethernet/intel/libeth/libeth.o
+  CC [M]  drivers/net/ethernet/intel/libie/rx.o
+  CC [M]  drivers/net/ethernet/broadcom/tg3.o
+  CC [M]  drivers/auxdisplay/img-ascii-lcd.o
+  LD [M]  fs/vboxsf/vboxsf.o
+  CC      fs/btrfs/async-thread.o
+  CC      kernel/bpf/reuseport_array.o
+  CC      lib/rhashtable.o
+  CC [M]  drivers/net/ethernet/meta/fbnic/fbnic_devlink.o
+  CC [M]  fs/smb/client/cached_dir.o
+  LD [M]  drivers/scsi/mpt3sas/mpt3sas.o
+  CC      drivers/acpi/prmt.o
+  CC [M]  drivers/tty/nozomi.o
+  CC      fs/btrfs/ioctl.o
+  CC      mm/kmemleak.o
+  CC [M]  net/netfilter/nft_bitwise.o
+  LD [M]  fs/overlayfs/overlay.o
+  CC [M]  drivers/net/ethernet/realtek/r8169_main.o
+  CC      arch/x86/kernel/pmem.o
+  CC      drivers/base/physical_location.o
+  LD [M]  fs/9p/9p.o
+  CC      kernel/bpf/bpf_struct_ops.o
+  CC [M]  drivers/regulator/qcom-labibb-regulator.o
+  CC [M]  fs/nfs/export.o
+  CC [M]  drivers/regulator/qcom_spmi-regulator.o
+  CC [M]  drivers/nvme/host/tcp.o
+  CC [M]  drivers/misc/vmw_vmci/vmci_guest.o
+  CC [M]  drivers/spi/spi-dw-dma.o
+  CC      drivers/scsi/scsi_lib.o
+  CC [M]  drivers/net/mdio/mdio-bitbang.o
+  CC      net/ipv4/syncookies.o
+  CC [M]  drivers/misc/mei/hw-me.o
+  LD [M]  drivers/scsi/isci/isci.o
+  AR      drivers/net/ethernet/meta/built-in.a
+  CC [M]  drivers/net/ipvlan/ipvlan_core.o
+  CC      kernel/bpf/cpumask.o
+  CC [M]  drivers/auxdisplay/ks0108.o
+  CC [M]  drivers/tty/ttynull.o
+  CC [M]  drivers/net/ipvlan/ipvlan_main.o
+  CC [M]  fs/fuse/cuse.o
+  CC [M]  fs/cachefiles/error_inject.o
+  CC      mm/page_isolation.o
+  CC      arch/x86/kernel/jailhouse.o
+  CC [M]  net/ipv6/esp6_offload.o
+  AR      drivers/message/built-in.a
+  CC      arch/x86/kernel/pcspeaker.o
+  CC      drivers/base/trace.o
+  CC      drivers/mfd/max8997-irq.o
+  CC      mm/zpool.o
+  CC      drivers/ata/libata-zpodd.o
+  CC      arch/x86/kernel/check.o
+  CC [M]  drivers/net/ethernet/meta/fbnic/fbnic_ethtool.o
+  CC [M]  drivers/auxdisplay/lcd2s.o
+  LD [M]  drivers/nvme/host/nvme-fabrics.o
+  CC      mm/zsmalloc.o
+  CC      arch/x86/kernel/uprobes.o
+  CC      drivers/net/phy/phy-core.o
+  LD [M]  drivers/net/ethernet/intel/libie/libie.o
+  CC [M]  drivers/net/ethernet/intel/e1000/e1000_main.o
+  CC [M]  fs/smb/client/cifs_unicode.o
+  CC [M]  drivers/regulator/qcom_usb_vbus-regulator.o
+  CC      lib/base64.o
+  CC      fs/super.o
+  CC [M]  fs/fuse/virtio_fs.o
+  CC      drivers/mfd/max8998.o
+  LD [M]  fs/cachefiles/cachefiles.o
+  CC [M]  drivers/net/ethernet/intel/e1000/e1000_hw.o
+  CC [M]  drivers/tty/rpmsg_tty.o
+  CC      kernel/trace/error_report-traces.o
+  CC      drivers/ata/libata-pata-timings.o
+  CC      drivers/acpi/acpi_pcc.o
+  CC [M]  drivers/net/ipvlan/ipvlan_l3s.o
+  CC      kernel/bpf/bpf_lsm.o
+  CC [M]  drivers/misc/vmw_vmci/vmci_handle_array.o
+  CC [M]  drivers/spi/spi-dw-mmio.o
+  CC      arch/x86/kernel/perf_regs.o
+  CC [M]  drivers/misc/vmw_vmci/vmci_host.o
+  CC      lib/once.o
+  AR      drivers/base/built-in.a
+  CC      net/ipv4/netfilter.o
+  CC [M]  drivers/net/mdio/mdio-cavium.o
+  CC      kernel/bpf/crypto.o
+  CC      kernel/bpf/relo_core.o
+  CC      arch/x86/kernel/tracepoint.o
+  CC [M]  net/netfilter/nft_byteorder.o
+  CC      kernel/bpf/btf_iter.o
+  CC [M]  drivers/net/ethernet/meta/fbnic/fbnic_fw.o
+  CC [M]  drivers/auxdisplay/line-display.o
+  CC [M]  drivers/scsi/aic7xxx/aic79xx_pci.o
+  CC [M]  drivers/regulator/palmas-regulator.o
+  CC [M]  drivers/scsi/aic7xxx/aic79xx_reg_print.o
+  CC [M]  net/ipv6/ipcomp6.o
+  CC [M]  drivers/misc/mei/gsc-me.o
+  CC      drivers/ata/ahci.o
+  CC      drivers/acpi/acpi_ffh.o
+  AR      drivers/tty/built-in.a
+  CC      drivers/scsi/constants.o
+  CC      arch/x86/kernel/itmt.o
+  CC      drivers/mfd/max8998-irq.o
+  CC [M]  fs/smb/client/nterr.o
+  CC      drivers/scsi/scsi_lib_dma.o
+  CC [M]  drivers/spi/spi-dw-pci.o
+  CC      fs/btrfs/locking.o
+  CC      drivers/scsi/scsi_scan.o
+  CC [M]  drivers/misc/vmw_vmci/vmci_queue_pair.o
+  CC [M]  drivers/net/mdio/mdio-gpio.o
+  CC [M]  drivers/auxdisplay/max6959.o
+  CC      lib/refcount.o
+  CC [M]  fs/nfs/sysfs.o
+  CC [M]  drivers/auxdisplay/panel.o
+  CC      drivers/ata/libahci.o
+  CC [M]  drivers/net/ipvlan/ipvtap.o
+  CC      drivers/acpi/acpi_adxl.o
+  LD [M]  drivers/nvme/host/nvme-fc.o
+  CC      drivers/net/phy/phy_device.o
+  LD [M]  drivers/nvme/host/nvme-tcp.o
+  AR      drivers/nvme/host/built-in.a
+  AR      drivers/nvme/built-in.a
+  CC [M]  drivers/auxdisplay/seg-led-gpio.o
+  CC      kernel/trace/power-traces.o
+  CC      kernel/pid.o
+  CC [M]  drivers/misc/mei/pci-txe.o
+  CC      kernel/bpf/btf_relocate.o
+  CC [M]  drivers/misc/genwqe/card_base.o
+  CC [M]  drivers/misc/mei/hw-txe.o
+  LD [M]  drivers/scsi/aic7xxx/aic7xxx.o
+  CC [M]  net/netfilter/nft_payload.o
+  LD [M]  drivers/scsi/aic7xxx/aic79xx.o
+  LD [M]  fs/fuse/fuse.o
+  CC      drivers/acpi/ac.o
+  LD [M]  fs/fuse/virtiofs.o
+  CC [M]  fs/smb/client/cifsencrypt.o
+  CC      mm/early_ioremap.o
+  CC [M]  drivers/net/team/team_core.o
+  CC [M]  drivers/net/ethernet/realtek/r8169_firmware.o
+  CC [M]  drivers/net/team/team_nl.o
+  CC [M]  drivers/misc/genwqe/card_dev.o
+  CC      lib/rcuref.o
+  CC      drivers/mfd/adp5520.o
+  CC [M]  drivers/regulator/pca9450-regulator.o
+  CC      arch/x86/kernel/umip.o
+  CC [M]  drivers/net/ethernet/meta/fbnic/fbnic_hw_stats.o
+  CC [M]  drivers/net/ethernet/intel/e1000/e1000_ethtool.o
+  CC [M]  drivers/spi/spi-gpio.o
+  CC      kernel/task_work.o
+  CC [M]  net/ipv6/xfrm6_tunnel.o
+  CC      arch/x86/kernel/unwind_frame.o
+  GEN     drivers/scsi/scsi_devinfo_tbl.c
+  CC      drivers/mfd/tps6586x.o
+  CC [M]  drivers/net/vmxnet3/vmxnet3_drv.o
+  CC      drivers/mfd/tps65090.o
+  CC      drivers/net/phy/linkmode.o
+  CC [M]  drivers/net/ethernet/intel/e1000/e1000_param.o
+  CC [M]  fs/smb/client/readdir.o
+  CC [M]  drivers/net/mdio/mdio-mscc-miim.o
+  CC      lib/usercopy.o
+  CC      net/ipv4/tcp_cubic.o
+  CC      kernel/trace/rpm-traces.o
+  CC      fs/char_dev.o
+  CC [M]  fs/nfs/fs_context.o
+  CC [M]  drivers/net/vmxnet3/vmxnet3_ethtool.o
+  CC      fs/btrfs/orphan.o
+  CC [M]  drivers/net/ethernet/realtek/r8169_phy_config.o
+  CC [M]  drivers/net/bonding/bond_3ad.o
+  CC      drivers/scsi/scsi_devinfo.o
+  CC      drivers/scsi/scsi_netlink.o
+  CC      mm/numa.o
+  CC      drivers/acpi/button.o
+  CC [M]  drivers/misc/mei/vsc-tp.o
+  CC [M]  fs/smb/client/ioctl.o
+  CC      net/ipv4/tcp_sigpool.o
+  CC [M]  drivers/regulator/pv88060-regulator.o
+  CC [M]  fs/smb/client/sess.o
+  LD [M]  drivers/net/ipvlan/ipvlan.o
+  CC [M]  drivers/net/ethernet/meta/fbnic/fbnic_hwmon.o
+  CC      kernel/bpf/kmem_cache_iter.o
+  CC      mm/numa_memblks.o
+  CC      net/ipv4/tcp_bpf.o
+  CC [M]  drivers/net/ethernet/realtek/r8169_leds.o
+  CC [M]  drivers/misc/genwqe/card_ddcb.o
+  CC      lib/errseq.o
+  CC [M]  drivers/spi/spi-intel.o
+  CC [M]  fs/smb/client/export.o
+  CC [M]  drivers/misc/genwqe/card_sysfs.o
+  CC [M]  net/netfilter/nft_lookup.o
+  CC      lib/bucket_locks.o
+  CC      arch/x86/kernel/callthunks.o
+  CC [M]  drivers/net/bonding/bond_alb.o
+  CC      fs/btrfs/export.o
+  CC [M]  drivers/net/ethernet/intel/e1000e/82571.o
+  CC [M]  drivers/net/vmxnet3/vmxnet3_xdp.o
+  CC [M]  drivers/misc/vmw_vmci/vmci_resource.o
+  CC      kernel/trace/trace_kdb.o
+  CC [M]  drivers/net/ethernet/intel/e1000e/ich8lan.o
+  CC [M]  drivers/regulator/pv88080-regulator.o
+  CC      drivers/mfd/aat2870-core.o
+  CC [M]  drivers/misc/vmw_vmci/vmci_route.o
+  AR      kernel/bpf/built-in.a
+  CC [M]  drivers/net/ethernet/meta/fbnic/fbnic_irq.o
+  CC [M]  drivers/net/ethernet/intel/e1000e/80003es2lan.o
+  CC [M]  drivers/net/ethernet/intel/e1000e/mac.o
+  CC      drivers/acpi/fan_core.o
+  CC [M]  drivers/spi/spi-intel-pci.o
+  CC      drivers/ata/ahci_platform.o
+  LD [M]  drivers/net/ethernet/intel/e1000/e1000.o
+  CC [M]  drivers/net/mdio/mdio-mvusb.o
+  CC [M]  drivers/spi/spi-intel-platform.o
+  CC [M]  drivers/net/mdio/mdio-thunder.o
+  CC [M]  net/ipv6/tunnel6.o
+  CC      drivers/net/phy/phy_link_topology.o
+  CC      net/ipv4/udp_bpf.o
+  CC      drivers/ata/libahci_platform.o
+  CC [M]  drivers/misc/mei/vsc-fw-loader.o
+  CC [M]  drivers/net/ethernet/intel/igb/igb_main.o
+  CC      lib/generic-radix-tree.o
+  LD [M]  drivers/net/ethernet/realtek/r8169.o
+  LD [M]  drivers/misc/vmw_vmci/vmw_vmci.o
+  CC [M]  drivers/misc/genwqe/card_debugfs.o
+  CC [M]  drivers/net/team/team_mode_broadcast.o
+  CC [M]  drivers/net/ethernet/intel/igb/igb_ethtool.o
+  CC      mm/balloon_compaction.o
+  CC [M]  drivers/misc/echo/echo.o
+  CC [M]  drivers/misc/bcm-vk/bcm_vk_dev.o
+  CC [M]  drivers/misc/uacce/uacce.o
+  CC      arch/x86/kernel/cet.o
+  CC [M]  drivers/misc/mchp_pci1xxxx/mchp_pci1xxxx_gp.o
+  CC      net/ipv4/cipso_ipv4.o
+  CC      drivers/scsi/scsi_sysctl.o
+  CC      drivers/scsi/scsi_proc.o
+  CC      drivers/misc/sram.o
+  CC      fs/btrfs/tree-log.o
+  CC [M]  fs/nfs/sysctl.o
+  CC      fs/btrfs/free-space-cache.o
+  CC      kernel/trace/trace_dynevent.o
+  CC [M]  drivers/misc/ad525x_dpot.o
+  CC      drivers/ata/ata_piix.o
+  CC      drivers/acpi/fan_attr.o
+  CC [M]  drivers/regulator/pv88090-regulator.o
+  CC      drivers/scsi/scsi_debugfs.o
+  CC [M]  drivers/spi/spi-lantiq-ssc.o
+  CC      drivers/mfd/intel-lpss.o
+  CC      lib/bitmap-str.o
+  CC      drivers/scsi/scsi_trace.o
+  CC [M]  drivers/net/bonding/bond_sysfs.o
+  CC      lib/string_helpers.o
+  CC [M]  drivers/net/ethernet/meta/fbnic/fbnic_mac.o
+  CC [M]  drivers/misc/genwqe/card_utils.o
+  CC [M]  drivers/net/bonding/bond_sysfs_slave.o
+  AR      drivers/net/mdio/built-in.a
+  CC      drivers/ata/pata_sis.o
+  CC      net/ipv4/xfrm4_policy.o
+  CC [M]  drivers/regulator/pwm-regulator.o
+  CC [M]  net/netfilter/nft_dynset.o
+  CC [M]  drivers/misc/mchp_pci1xxxx/mchp_pci1xxxx_gpio.o
+  CC [M]  fs/nfs/fscache.o
+  CC      arch/x86/kernel/shstk.o
+  CC      drivers/ata/ata_generic.o
+  CC [M]  drivers/net/team/team_mode_roundrobin.o
+  CC [M]  drivers/misc/mei/platform-vsc.o
+  CC [M]  fs/smb/client/unc.o
+  CC [M]  net/ipv6/mip6.o
+  CC [M]  drivers/net/ethernet/meta/fbnic/fbnic_netdev.o
+  LD [M]  drivers/net/vmxnet3/vmxnet3.o
+  CC      drivers/acpi/fan_hwmon.o
+  CC [M]  drivers/net/xen-netback/netback.o
+  CC [M]  drivers/net/usb/catc.o
+  CC      kernel/trace/trace_probe.o
+  CC [M]  drivers/net/xen-netback/xenbus.o
+  CC [M]  drivers/misc/ad525x_dpot-i2c.o
+  CC      mm/secretmem.o
+  CC [M]  drivers/misc/bcm-vk/bcm_vk_msg.o
+  CC      net/ipv4/xfrm4_state.o
+  CC [M]  drivers/spi/spi-ljca.o
+  CC [M]  net/netfilter/nft_meta.o
+  CC [M]  drivers/net/ethernet/intel/igc/igc_main.o
+  CC      drivers/net/phy/phy_package.o
+  CC      kernel/extable.o
+  CC      drivers/scsi/scsi_logging.o
+  CC      net/ipv4/xfrm4_input.o
+  CC [M]  drivers/net/ethernet/intel/igbvf/vf.o
+  CC [M]  drivers/regulator/tps51632-regulator.o
+  CC      drivers/mfd/intel-lpss-pci.o
+  CC      kernel/params.o
+  LD [M]  drivers/misc/mei/mei.o
+  CC [M]  drivers/misc/mchp_pci1xxxx/mchp_pci1xxxx_otpe2p.o
+  LD [M]  drivers/misc/mei/mei-me.o
+  LD [M]  drivers/misc/mei/mei-gsc.o
+  LD [M]  drivers/misc/mei/mei-txe.o
+  LD [M]  drivers/misc/mei/mei-vsc-hw.o
+  LD [M]  drivers/misc/mei/mei-vsc.o
+  CC [M]  drivers/net/ethernet/intel/igbvf/mbx.o
+  CC      kernel/kthread.o
+  CC      drivers/acpi/pci_slot.o
+  CC      arch/x86/kernel/audit_64.o
+  CC [M]  drivers/net/ethernet/intel/e1000e/manage.o
+  CC      fs/btrfs/zlib.o
+  CC [M]  fs/smb/client/winucase.o
+  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_main.o
+  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_common.o
+  LD [M]  drivers/misc/genwqe/genwqe_card.o
+  CC      drivers/acpi/processor_driver.o
+  CC      fs/stat.o
+  CC [M]  drivers/net/team/team_mode_random.o
+  CC [M]  drivers/regulator/pcap-regulator.o
+  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_ethtool.o
+  CC [M]  drivers/net/bonding/bond_debugfs.o
+  CC [M]  drivers/net/ethernet/intel/igc/igc_mac.o
+  CC      drivers/scsi/scsi_pm.o
+  CC [M]  drivers/net/ethernet/meta/fbnic/fbnic_pci.o
+  CC      lib/hexdump.o
+  CC [M]  drivers/spi/spi-lm70llp.o
+  CC      mm/userfaultfd.o
+  CC [M]  net/ipv6/ip6_vti.o
+  CC [M]  fs/smb/client/smb2ops.o
+  CC [M]  drivers/ata/acard-ahci.o
+  CC [M]  drivers/net/ethernet/intel/igb/e1000_82575.o
+  CC      lib/kstrtox.o
+  CC [M]  net/ipv6/sit.o
+  CC      drivers/mfd/intel-lpss-acpi.o
+  CC [M]  drivers/net/usb/kaweth.o
+  CC [M]  drivers/net/usb/pegasus.o
+  CC [M]  drivers/net/xen-netback/interface.o
+  CC [M]  net/ipv6/ip6_tunnel.o
+  CC      arch/x86/kernel/amd_gart_64.o
+  CC      mm/page_idle.o
+  CC [M]  drivers/misc/bcm-vk/bcm_vk_sg.o
+  CC [M]  drivers/misc/ad525x_dpot-spi.o
+  CC      drivers/mfd/palmas.o
+  CC [M]  drivers/net/ethernet/meta/fbnic/fbnic_phylink.o
+  CC [M]  drivers/net/ethernet/intel/igbvf/ethtool.o
+  CC      drivers/acpi/processor_thermal.o
+  CC [M]  drivers/net/ethernet/intel/igc/igc_i225.o
+  CC [M]  net/netfilter/nft_rt.o
+  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_82599.o
+  CC      net/ipv4/xfrm4_output.o
+  CC [M]  drivers/regulator/raa215300.o
+  CC      kernel/trace/trace_uprobe.o
+  CC [M]  drivers/net/team/team_mode_activebackup.o
+  CC [M]  drivers/spi/spi-microchip-core.o
+  CC      drivers/net/phy/phy_caps.o
+  CC [M]  drivers/net/ethernet/intel/e1000e/nvm.o
+  CC [M]  drivers/net/bonding/bond_netlink.o
+  CC [M]  fs/nfs/nfs2super.o
+  CC      drivers/scsi/scsi_dh.o
+  CC      lib/debug_info.o
+  CC      kernel/trace/trace_boot.o
+  CC      net/ipv4/xfrm4_protocol.o
+  CC [M]  net/ipv6/ip6_gre.o
+  CC [M]  drivers/ata/sata_inic162x.o
+  CC [M]  drivers/net/ethernet/intel/ixgbevf/vf.o
+  CC [M]  drivers/net/team/team_mode_loadbalance.o
+  CC [M]  drivers/net/ethernet/intel/i40e/i40e_main.o
+  CC [M]  drivers/regulator/rc5t583-regulator.o
+  CC [M]  drivers/misc/bcm-vk/bcm_vk_tty.o
+  CC [M]  drivers/spi/spi-microchip-core-qspi.o
+  CC      drivers/acpi/processor_idle.o
+  AR      drivers/net/ethernet/intel/built-in.a
+  CC      fs/btrfs/lzo.o
+  CC      drivers/scsi/scsi_bsg.o
+  CC      arch/x86/kernel/aperture_64.o
+  CC      drivers/scsi/scsi_common.o
+  CC      fs/btrfs/zstd.o
+  CC [M]  drivers/net/ethernet/meta/fbnic/fbnic_rpc.o
+  CC [M]  drivers/ata/sata_sil24.o
+  CC      fs/btrfs/compression.o
+  CC [M]  drivers/net/ethernet/intel/igbvf/netdev.o
+  CC [M]  drivers/net/xen-netback/hash.o
+  CC      fs/btrfs/delayed-ref.o
+  CC [M]  drivers/net/xen-netback/rx.o
+  CC      fs/btrfs/relocation.o
+  CC [M]  net/netfilter/nft_exthdr.o
+  CC [M]  drivers/net/usb/rtl8150.o
+  CC [M]  drivers/regulator/rt4801-regulator.o
+  CC      mm/usercopy.o
+  CC      drivers/mfd/rc5t583.o
+  CC [M]  fs/smb/client/smb2maperror.o
+  CC [M]  drivers/ata/sata_dwc_460ex.o
+  CC      kernel/sys_ni.o
+  CC [M]  fs/nfs/proc.o
+  CC      fs/btrfs/delayed-inode.o
+  CC [M]  drivers/net/ethernet/intel/ixgbevf/mbx.o
+  LD [M]  drivers/misc/bcm-vk/bcm_vk.o
+  CC [M]  drivers/misc/dummy-irq.o
+  CC [M]  drivers/net/ethernet/intel/e1000e/phy.o
+  CC [M]  drivers/spi/spi-mxic.o
+  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_82598.o
+  CC      mm/memremap.o
+  CC [M]  drivers/net/ethernet/intel/e100.o
+  CC      kernel/nsproxy.o
+  CC [M]  drivers/net/usb/r8152.o
+  CC      lib/iomap.o
+  CC [M]  drivers/net/bonding/bond_options.o
+  CC      drivers/acpi/processor_throttling.o
+  CC      drivers/net/phy/mdio_bus.o
+  CC      arch/x86/kernel/mmconf-fam10h_64.o
+  CC      drivers/scsi/virtio_scsi.o
+  CC [M]  net/ipv6/fou6.o
+  CC      net/ipv4/tcp_ao.o
+  LD [M]  drivers/net/team/team.o
+  CC [M]  drivers/net/ethernet/intel/igb/e1000_mac.o
+  CC      drivers/net/phy/mdio_device.o
+  CC      kernel/trace/fprobe.o
+  CC [M]  drivers/net/ethernet/intel/igb/e1000_nvm.o
+  CC [M]  net/netfilter/nft_last.o
+  CC      fs/btrfs/scrub.o
+  CC [M]  drivers/regulator/rt4803.o
+  CC      drivers/mfd/rc5t583-irq.o
+  CC [M]  drivers/misc/ics932s401.o
+  CC [M]  fs/nfs/nfs2xdr.o
+  CC      fs/exec.o
+  CC [M]  drivers/net/ethernet/intel/igc/igc_base.o
+  LD [M]  drivers/net/xen-netback/xen-netback.o
+  CC      drivers/acpi/processor_perflib.o
+  CC [M]  fs/smb/client/smb2transport.o
+  CC [M]  drivers/spi/spi-oc-tiny.o
+  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_phy.o
+  CC      arch/x86/kernel/vsmp_64.o
+  CC [M]  drivers/ata/ahci_dwc.o
+  CC [M]  drivers/net/ethernet/intel/ixgbevf/ethtool.o
+  CC [M]  drivers/ata/pdc_adma.o
+  CC [M]  drivers/spi/spi-pci1xxxx.o
+  CC [M]  drivers/net/ethernet/meta/fbnic/fbnic_time.o
+  CC      drivers/mfd/syscon.o
+  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_sriov.o
+  CC [M]  drivers/ata/sata_qstor.o
+  CC [M]  net/ipv6/ip6_udp_tunnel.o
+  CC [M]  drivers/net/ethernet/meta/fbnic/fbnic_tlv.o
+  CC      fs/pipe.o
+  CC [M]  drivers/net/hyperv/netvsc_drv.o
+  CC [M]  drivers/net/hyperv/netvsc.o
+  CC [M]  drivers/regulator/rt4831-regulator.o
+  CC [M]  drivers/spi/spi-pxa2xx.o
+  CC [M]  drivers/net/thunderbolt/main.o
+  CC      drivers/scsi/sd.o
+  CC      lib/iomap_copy.o
+  CC [M]  drivers/net/ethernet/intel/e1000e/param.o
+  CC [M]  drivers/net/ethernet/intel/ixgbevf/ixgbevf_main.o
+  CC [M]  drivers/misc/tifm_core.o
+  CC [M]  net/netfilter/nft_counter.o
+  LD [M]  drivers/net/ethernet/intel/igbvf/igbvf.o
+  CC      mm/hmm.o
+  CC [M]  fs/smb/client/smb2misc.o
+  CC      kernel/trace/rethook.o
+  CC [M]  arch/x86/kernel/msr.o
+  CC [M]  drivers/net/bonding/bond_procfs.o
+  CC [M]  drivers/net/ethernet/meta/fbnic/fbnic_txrx.o
+  CC [M]  drivers/net/usb/lan78xx.o
+  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_mbx.o
+  CC      lib/devres.o
+  CC      kernel/trace/trace_fprobe.o
+  CC [M]  fs/smb/client/smb2pdu.o
+  CC [M]  drivers/net/ethernet/intel/igb/e1000_phy.o
+  CC      drivers/mfd/as3711.o
+  CC [M]  drivers/net/ethernet/intel/i40e/i40e_ethtool.o
+  CC [M]  drivers/net/ethernet/intel/igc/igc_nvm.o
+  CC [M]  fs/smb/client/smb2inode.o
+  CC [M]  drivers/net/ethernet/intel/i40e/i40e_adminq.o
+  CC [M]  drivers/ata/sata_sx4.o
+  CC [M]  drivers/net/ethernet/intel/igc/igc_phy.o
+  CC [M]  fs/nfs/nfs3super.o
+  CC [M]  drivers/regulator/rt5033-regulator.o
+  CC [M]  drivers/net/ethernet/intel/ixgbevf/ipsec.o
+  CC      drivers/acpi/container.o
+  CC [M]  drivers/regulator/rt5120-regulator.o
+  CC [M]  arch/x86/kernel/cpuid.o
+  CC      fs/namei.o
+  CC      drivers/net/phy/swphy.o
+  CC [M]  drivers/ata/sata_mv.o
+  CC      drivers/acpi/thermal_lib.o
+  CC      mm/memfd.o
+  CC [M]  drivers/net/ethernet/intel/e1000e/ethtool.o
+  CC      lib/check_signature.o
+  CC [M]  drivers/net/ethernet/intel/igc/igc_diag.o
+  CC [M]  net/netfilter/nft_objref.o
+  CC [M]  drivers/misc/tifm_7xx1.o
+  CC      drivers/mfd/intel_soc_pmic_crc.o
+  CC      drivers/net/phy/phy_led_triggers.o
+  CC      net/ipv4/bpf_tcp_ca.o
+  CC      fs/btrfs/backref.o
+  CC      drivers/net/loopback.o
+  CC [M]  drivers/ata/sata_nv.o
+  LD [M]  drivers/net/bonding/bonding.o
+  AR      arch/x86/kernel/built-in.a
+  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_x540.o
+  CC [M]  drivers/spi/spi-pxa2xx-dma.o
+  CC [M]  net/netfilter/nft_inner.o
+  AR      arch/x86/built-in.a
+  CC [M]  drivers/misc/phantom.o
+  CC      fs/btrfs/ulist.o
+  CC      lib/interval_tree.o
+  CC [M]  drivers/net/ethernet/intel/igc/igc_ethtool.o
+  CC [M]  drivers/spi/spi-pxa2xx-platform.o
+  CC      lib/assoc_array.o
+  CC      drivers/acpi/thermal.o
+  CC [M]  drivers/regulator/rt5190a-regulator.o
+  AR      net/ipv6/built-in.a
+  CC [M]  drivers/net/ethernet/intel/igb/e1000_mbx.o
+  CC [M]  drivers/misc/bh1770glc.o
+  CC      drivers/net/phy/mii_timestamper.o
+  CC [M]  drivers/net/thunderbolt/trace.o
+  CC [M]  fs/nfs/nfs3client.o
+  CC [M]  net/ipv4/ip_tunnel.o
+  CC [M]  drivers/spi/spi-pxa2xx-pci.o
+  CC      fs/fcntl.o
+  CC [M]  drivers/net/hyperv/rndis_filter.o
+  AR      kernel/trace/built-in.a
+  CC      kernel/notifier.o
+  CC      drivers/mfd/intel_soc_pmic_chtwc.o
+  CC      mm/ptdump.o
+  CC      drivers/acpi/nhlt.o
+  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_x550.o
+  CC [M]  drivers/mfd/88pm800.o
+  CC      drivers/net/phy/fixed_phy.o
+  CC [M]  fs/smb/client/smb2file.o
+  CC [M]  fs/nfs/nfs3proc.o
+  CC [M]  drivers/net/phy/phylink.o
+  CC      fs/btrfs/qgroup.o
+  CC [M]  net/ipv4/ipip.o
+  CC      kernel/ksysfs.o
+  CC [M]  drivers/ata/sata_promise.o
+  CC      mm/page_reporting.o
+  CC      fs/ioctl.o
+  CC      drivers/scsi/sd_dif.o
+  CC      lib/list_debug.o
+  CC [M]  drivers/net/ethernet/intel/e1000e/netdev.o
+  CC [M]  drivers/regulator/rt5739.o
+  CC [M]  drivers/spi/spi-sc18is602.o
+  CC [M]  drivers/net/ethernet/intel/igb/e1000_i210.o
+  CC [M]  drivers/net/ethernet/intel/igb/igb_ptp.o
+  LD [M]  drivers/net/ethernet/meta/fbnic/fbnic.o
+  CC      drivers/acpi/acpi_memhotplug.o
+  CC [M]  net/netfilter/nft_chain_route.o
+  LD [M]  drivers/net/thunderbolt/thunderbolt_net.o
+  CC      mm/bootmem_info.o
+  CC [M]  drivers/misc/apds990x.o
+  CC [M]  net/netfilter/nf_tables_offload.o
+  CC [M]  drivers/spi/spi-sifive.o
+  CC      fs/btrfs/send.o
+  CC [M]  drivers/net/hyperv/netvsc_trace.o
+  CC [M]  drivers/net/usb/asix_devices.o
+  CC [M]  drivers/net/ethernet/intel/e1000e/ptp.o
+  LD [M]  drivers/net/ethernet/intel/ixgbevf/ixgbevf.o
+  CC [M]  drivers/net/hyperv/netvsc_bpf.o
+  CC [M]  drivers/net/usb/asix_common.o
+  CC      fs/btrfs/dev-replace.o
+  CC [M]  drivers/mfd/88pm80x.o
+  CC      lib/debugobjects.o
+  CC [M]  drivers/spi/spi-tle62x0.o
+  CC      fs/readdir.o
+  CC      lib/bitrev.o
+  CC      drivers/scsi/sd_zbc.o
+  CC [M]  drivers/spi/spi-xcomm.o
+  CC [M]  drivers/net/ethernet/intel/igc/igc_ptp.o
+  CC [M]  drivers/ata/sata_sil.o
+  CC      fs/btrfs/raid56.o
+  CC [M]  drivers/regulator/rt5759-regulator.o
+  CC [M]  drivers/misc/enclosure.o
+  CC [M]  drivers/regulator/rt6160-regulator.o
+  CC      drivers/acpi/ioapic.o
+  CC [M]  drivers/regulator/rt6190-regulator.o
+  CC [M]  net/netfilter/nft_set_hash.o
+  CC      fs/btrfs/uuid-tree.o
+  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_lib.o
+  CC [M]  drivers/net/usb/ax88172a.o
+  CC [M]  drivers/spi/spi-xilinx.o
+  CC      kernel/cred.o
+  CC      fs/btrfs/props.o
+  CC [M]  drivers/regulator/rt6245-regulator.o
+  CC [M]  net/netfilter/nft_set_bitmap.o
+  CC [M]  fs/nfs/nfs3xdr.o
+  CC [M]  drivers/net/phy/ax88796b.o
+  CC      mm/execmem.o
+  CC [M]  drivers/mfd/88pm805.o
+  CC      lib/linear_ranges.o
+  CC [M]  drivers/net/ethernet/intel/igc/igc_dump.o
+  CC [M]  drivers/regulator/rtmv20-regulator.o
+  CC      mm/shmem_quota.o
+  CC [M]  drivers/spi/spi-zynqmp-gqspi.o
+  CC [M]  fs/smb/client/cifsacl.o
+  CC [M]  drivers/net/usb/ax88179_178a.o
+  CC [M]  fs/smb/client/fs_context.o
+  CC      mm/pt_reclaim.o
+  CC [M]  drivers/net/ethernet/intel/i40e/i40e_common.o
+  LD [M]  drivers/net/hyperv/hv_netvsc.o
+  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_ptp.o
+  CC      drivers/acpi/battery.o
+  CC [M]  drivers/net/phy/bcm7xxx.o
+  CC [M]  drivers/net/ethernet/intel/igb/igb_hwmon.o
+  CC      fs/select.o
+  CC      drivers/scsi/sr.o
+  CC [M]  drivers/net/ethernet/intel/igc/igc_tsn.o
+  CC      fs/btrfs/free-space-tree.o
+  CC      drivers/acpi/hed.o
+  CC [M]  drivers/ata/sata_sis.o
+  CC [M]  net/ipv4/fou_core.o
+  CC [M]  fs/smb/client/dns_resolve.o
+  CC      drivers/scsi/sr_ioctl.o
+  CC [M]  drivers/ata/sata_svw.o
+  CC      drivers/scsi/sr_vendor.o
+  CC [M]  drivers/misc/smpro-errmon.o
+  CC [M]  drivers/regulator/rtq2134-regulator.o
+  CC [M]  drivers/mfd/sm501.o
+  CC      kernel/reboot.o
+  CC [M]  drivers/net/ethernet/intel/igc/igc_xdp.o
+  CC      lib/packing.o
+  CC [M]  drivers/net/ethernet/intel/igc/igc_leds.o
+  CC      drivers/net/netconsole.o
+  CC [M]  drivers/ata/sata_uli.o
+  CC      lib/crc-ccitt.o
+  CC [M]  mm/hwpoison-inject.o
+  CC [M]  drivers/net/ethernet/intel/i40e/i40e_hmc.o
+  CC [M]  drivers/net/usb/cdc_ether.o
+  CC [M]  drivers/regulator/rtq6752-regulator.o
+  ASN.1   fs/smb/client/cifs_spnego_negtokeninit.asn1.[ch]
+  CC      lib/crc16.o
+  CC [M]  drivers/net/ethernet/intel/igb/igb_xsk.o
+  CC      lib/crc-t10dif.o
+  CC      fs/dcache.o
+  CC [M]  net/ipv4/fou_nl.o
+  CC [M]  drivers/spi/spi-amd.o
+  CC [M]  net/netfilter/nft_set_rbtree.o
+  CC      fs/inode.o
+  CC      fs/attr.o
+  CC [M]  net/ipv4/fou_bpf.o
+  CC      drivers/acpi/bgrt.o
+  CC [M]  net/netfilter/nft_set_pipapo.o
+  CC      drivers/net/netkit.o
+  CC [M]  drivers/net/phy/bcm87xx.o
+  CC [M]  drivers/misc/smpro-misc.o
+  CC      fs/bad_inode.o
+  CC      drivers/scsi/sg.o
+  CC [M]  drivers/net/usb/cdc_eem.o
+  CC [M]  fs/nfs/nfs3acl.o
+  CC      lib/crc-itu-t.o
+  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_xsk.o
+  CC [M]  drivers/regulator/rtq2208-regulator.o
+  CC [M]  net/ipv4/gre_demux.o
+  CC [M]  drivers/mfd/bcm590xx.o
+  CC      kernel/async.o
+  CC [M]  drivers/mfd/bd9571mwv.o
+  CC [M]  drivers/ata/sata_via.o
+  CC [M]  drivers/scsi/raid_class.o
+  AR      mm/built-in.a
+  CC      drivers/acpi/cppc_acpi.o
+  CC [M]  drivers/spi/spi-slave-time.o
+  CC [M]  drivers/scsi/scsi_transport_spi.o
+  HOSTCC  lib/gen_crc32table
+  CC [M]  net/ipv4/ip_gre.o
+  CC [M]  drivers/mfd/cros_ec_dev.o
+  LD [M]  drivers/net/ethernet/intel/igc/igc.o
+  CC [M]  drivers/mfd/cs42l43.o
+  CC [M]  drivers/net/ethernet/intel/i40e/i40e_lan_hmc.o
+  CC [M]  fs/smb/client/namespace.o
+  CC      kernel/range.o
+  CC [M]  drivers/scsi/scsi_transport_fc.o
+  CC      drivers/net/tun.o
+  CC [M]  drivers/scsi/scsi_transport_iscsi.o
+  CC      kernel/smpboot.o
+  CC [M]  drivers/misc/hpilo.o
+  CC [M]  drivers/regulator/sky81452-regulator.o
+  CC [M]  net/netfilter/nft_set_pipapo_avx2.o
+  CC [M]  drivers/spi/spi-slave-system-control.o
+  CC [M]  drivers/net/phy/bcm-phy-lib.o
+  HOSTCC  lib/gen_crc64table
+  CC [M]  drivers/scsi/scsi_transport_sas.o
+  CC      fs/file.o
+  CC [M]  fs/smb/client/reparse.o
+  CC [M]  drivers/net/usb/dm9601.o
+  CC      fs/filesystems.o
+  CC      kernel/ucount.o
+  LD [M]  drivers/net/ethernet/intel/igb/igb.o
+  CC [M]  fs/smb/client/xattr.o
+  CC      lib/xxhash.o
+  CC      fs/namespace.o
+  CC [M]  drivers/net/ethernet/intel/i40e/i40e_nvm.o
+  CC      drivers/net/virtio_net.o
+  CC [M]  drivers/net/phy/bcm-phy-ptp.o
+  CC [M]  fs/smb/client/cifs_spnego.o
+  CC [M]  drivers/net/ethernet/intel/i40e/i40e_debugfs.o
+  CC [M]  net/netfilter/nft_ct_fast.o
+  CC      lib/genalloc.o
+  CC [M]  drivers/net/usb/sr9700.o
+  CC      fs/seq_file.o
+  CC [M]  drivers/ata/sata_vsc.o
+  CC [M]  fs/smb/client/dfs_cache.o
+  CC      fs/btrfs/tree-checker.o
+  CC [M]  fs/nfs/nfs4proc.o
+  CC [M]  drivers/scsi/scsi_transport_srp.o
+  LD [M]  drivers/net/ethernet/intel/e1000e/e1000e.o
+  CC [M]  drivers/net/ethernet/intel/i40e/i40e_diag.o
+  CC      fs/btrfs/space-info.o
+  CC [M]  drivers/regulator/slg51000-regulator.o
+  CC [M]  drivers/scsi/iscsi_boot_sysfs.o
+  CC [M]  drivers/net/ethernet/intel/i40e/i40e_txrx.o
+  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_e610.o
+  CC [M]  drivers/net/usb/sr9800.o
+  CC [M]  drivers/misc/apds9802als.o
+  CC [M]  drivers/misc/isl29003.o
+  CC      lib/textsearch.o
+  CC      kernel/regset.o
+  CC [M]  drivers/net/ethernet/intel/i40e/i40e_ptp.o
+  CC [M]  drivers/regulator/sy7636a-regulator.o
+  LD [M]  drivers/spi/spi-dw.o
+  LD [M]  drivers/spi/spi-pxa2xx-core.o
+  AR      drivers/spi/built-in.a
+  CC [M]  drivers/net/ethernet/intel/i40e/i40e_ddp.o
+  CC [M]  drivers/mfd/cs42l43-i2c.o
+  CC [M]  drivers/mfd/lp873x.o
+  CC      drivers/acpi/spcr.o
+  CC [M]  drivers/net/ethernet/intel/i40e/i40e_client.o
+  CC [M]  drivers/ata/pata_ali.o
+  CC [M]  drivers/misc/isl29020.o
+  CC [M]  drivers/mfd/tqmx86.o
+  CC [M]  drivers/misc/tsl2550.o
+  CC [M]  drivers/misc/ds1682.o
+  CC      lib/percpu_counter.o
+  CC [M]  net/ipv4/udp_tunnel_core.o
+  CC      lib/iommu-helper.o
+  CC [M]  net/ipv4/udp_tunnel_nic.o
+  CC      kernel/ksyms_common.o
+  CC [M]  drivers/scsi/megaraid.o
+  CC      fs/btrfs/block-rsv.o
+  CC      fs/xattr.o
+  CC      drivers/acpi/acpi_dbg.o
+  CC      drivers/net/xen-netfront.o
+  CC [M]  net/netfilter/nft_compat.o
+  CC [M]  drivers/regulator/tps6105x-regulator.o
+  CC [M]  drivers/net/ethernet/intel/i40e/i40e_virtchnl_pf.o
+  CC [M]  fs/nfs/nfs4xdr.o
+  CC [M]  drivers/net/ethernet/intel/i40e/i40e_xsk.o
+  CC [M]  fs/nfs/nfs4state.o
+  CC [M]  drivers/mfd/arizona-core.o
+  CC [M]  drivers/net/usb/smsc75xx.o
+  CC [M]  fs/nfs/nfs4renewd.o
+  CC      lib/fault-inject.o
+  CC      fs/libfs.o
+  CC [M]  drivers/ata/pata_amd.o
+  CC [M]  drivers/net/ethernet/intel/i40e/i40e_devlink.o
+  CC [M]  net/ipv4/ip_vti.o
+  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_dcb.o
+  CC [M]  fs/smb/client/dfs.o
+  CC [M]  drivers/net/usb/smsc95xx.o
+  CC      fs/btrfs/delalloc-space.o
+  CC [M]  drivers/net/phy/broadcom.o
+  CC [M]  drivers/mfd/arizona-irq.o
+  CC [M]  drivers/net/phy/dp83640.o
+  CC [M]  drivers/scsi/vmw_pvscsi.o
+  CC      fs/fs-writeback.o
+  CC [M]  fs/nfs/nfs4super.o
+  CC [M]  drivers/misc/hmc6352.o
+  CC [M]  drivers/ata/pata_artop.o
+  CC      kernel/groups.o
+  CC      drivers/net/net_failover.o
+  CC [M]  drivers/regulator/tps62360-regulator.o
+  CC [M]  drivers/mfd/wm5102-tables.o
+  CC      drivers/acpi/viot.o
+  CC [M]  drivers/regulator/tps65023-regulator.o
+  CC [M]  drivers/misc/vmw_balloon.o
+  CC [M]  drivers/mfd/wm5110-tables.o
+  CC [M]  net/ipv4/ah4.o
+  CC [M]  net/ipv4/esp4.o
+  CC      kernel/vhost_task.o
+  CC      kernel/kcmp.o
+  CC      lib/error-inject.o
+  CC [M]  net/ipv4/esp4_offload.o
+  CC [M]  drivers/mfd/wm8997-tables.o
+  CC      fs/btrfs/block-group.o
+  CC [M]  drivers/ata/pata_atiixp.o
+  CC [M]  net/netfilter/nft_connlimit.o
+  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_dcb_82598.o
+  CC      fs/pnode.o
+  CC [M]  drivers/acpi/acpi_ipmi.o
+  CC [M]  drivers/net/ethernet/intel/i40e/i40e_dcb.o
+  CC      fs/splice.o
+  CC [M]  drivers/regulator/tps6507x-regulator.o
+  CC      lib/syscall.o
+  CC [M]  drivers/net/usb/gl620a.o
+  CC [M]  net/ipv4/ipcomp.o
+  CC [M]  drivers/regulator/tps65086-regulator.o
+  CC [M]  fs/smb/client/netlink.o
+  CC      kernel/freezer.o
+  CC [M]  drivers/ata/pata_atp867x.o
+  CC [M]  fs/nfs/nfs4file.o
+  CC [M]  drivers/regulator/tps65090-regulator.o
+  CC [M]  net/ipv4/xfrm4_tunnel.o
+  CC [M]  drivers/misc/lattice-ecp3-config.o
+  CC      lib/dynamic_debug.o
+  CC [M]  drivers/net/phy/lxt.o
+  CC [M]  net/ipv4/tunnel4.o
+  CC [M]  drivers/regulator/tps6524x-regulator.o
+  CC [M]  drivers/net/dummy.o
+  CC [M]  drivers/net/ifb.o
+  CC [M]  net/netfilter/nft_numgen.o
+  CC [M]  drivers/net/macsec.o
+  CC [M]  drivers/net/amt.o
+  CC [M]  net/netfilter/nft_ct.o
+  CC [M]  drivers/net/macvlan.o
+  CC [M]  drivers/scsi/xen-scsifront.o
+  CC [M]  fs/smb/client/cifs_swn.o
+  CC [M]  fs/smb/client/fscache.o
+  CC [M]  drivers/mfd/wm8998-tables.o
+  CC [M]  drivers/net/usb/net1080.o
+  CC [M]  drivers/net/macvtap.o
+  CC [M]  drivers/mfd/cs47l24-tables.o
+  CC      fs/btrfs/discard.o
+  CC [M]  net/netfilter/nft_flow_offload.o
+  CC [M]  drivers/mfd/arizona-i2c.o
+  CC [M]  drivers/scsi/storvsc_drv.o
+  CC [M]  drivers/misc/dw-xdata-pcie.o
+  CC [M]  drivers/net/phy/microchip.o
+  CC      fs/sync.o
+  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_dcb_82599.o
+  CC [M]  drivers/scsi/ses.o
+  CC [M]  drivers/ata/pata_cmd64x.o
+  CC [M]  drivers/misc/xilinx_sdfec.o
+  CC [M]  drivers/acpi/acpi_video.o
+  CC      kernel/profile.o
+  CC [M]  fs/nfs/delegation.o
+  CC [M]  drivers/net/mii.o
+  CC      kernel/stacktrace.o
+  CC [M]  net/ipv4/inet_diag.o
+  CC      fs/btrfs/reflink.o
+  CC [M]  drivers/regulator/tps6586x-regulator.o
+  CC [M]  drivers/net/phy/smsc.o
+  CC [M]  drivers/net/ethernet/intel/i40e/i40e_dcb_nl.o
+  CC      fs/utimes.o
+  CC [M]  drivers/scsi/scsi_debug.o
+  CC [M]  net/netfilter/nft_limit.o
+  CC [M]  drivers/mfd/arizona-spi.o
+  CC [M]  fs/nfs/nfs4idmap.o
+  CC      fs/btrfs/subpage.o
+  CC [M]  net/netfilter/nft_nat.o
+  CC [M]  net/ipv4/tcp_diag.o
+  CC [M]  fs/smb/client/smb1ops.o
+  CC [M]  drivers/net/usb/plusb.o
+  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_dcb_nl.o
+  CC [M]  net/netfilter/nft_queue.o
+  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_sysfs.o
+  CC [M]  drivers/misc/tps6594-esm.o
+  CC      lib/errname.o
+  CC      fs/d_path.o
+  CC [M]  drivers/ata/pata_cypress.o
+  CC [M]  fs/nfs/callback.o
+  CC      fs/stack.o
+  CC [M]  drivers/net/mdio.o
+  CC      lib/nlattr.o
+  CC [M]  drivers/regulator/tps65910-regulator.o
+  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_debugfs.o
+  CC [M]  net/ipv4/udp_diag.o
+  CC      kernel/dma.o
+  CC [M]  drivers/misc/tps6594-pfsm.o
+  CC [M]  drivers/ata/pata_efar.o
+  CC      lib/cpu_rmap.o
+  CC [M]  drivers/net/tap.o
+  CC [M]  drivers/acpi/video_detect.o
+  CC [M]  drivers/mfd/wcd934x.o
+  CC [M]  drivers/ata/pata_hpt366.o
+  CC      lib/closure.o
+  CC [M]  drivers/misc/nsm.o
+  CC [M]  fs/nfs/callback_xdr.o
+  CC [M]  drivers/net/usb/rndis_host.o
+  CC      fs/btrfs/tree-mod-log.o
+  CC [M]  drivers/net/veth.o
+  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_ipsec.o
+  CC      kernel/smp.o
+  CC [M]  drivers/ata/pata_hpt37x.o
+  CC [M]  fs/smb/client/cifssmb.o
+  CC [M]  drivers/regulator/tps65912-regulator.o
+  CC [M]  net/ipv4/raw_diag.o
+  CC [M]  fs/nfs/callback_proc.o
+  CC [M]  drivers/net/bareudp.o
+  CC [M]  fs/nfs/nfs4namespace.o
+  LD [M]  drivers/net/ethernet/intel/i40e/i40e.o
+  CC [M]  fs/nfs/nfs4getroot.o
+  CC [M]  drivers/net/usb/cdc_subset.o
+  CC [M]  net/netfilter/nft_quota.o
+  CC      fs/fs_struct.o
+  CC [M]  fs/nfs/nfs4client.o
+  CC      fs/btrfs/extent-io-tree.o
+  CC [M]  drivers/net/usb/zaurus.o
+  CC      fs/btrfs/fs.o
+  CC [M]  drivers/net/nlmon.o
+  AR      drivers/net/phy/built-in.a
+  CC      kernel/uid16.o
+  CC [M]  fs/nfs/nfs4session.o
+  CC [M]  drivers/ata/pata_hpt3x2n.o
+  CC [M]  drivers/mfd/wm8994-core.o
+  CC      kernel/module_signature.o
+  CC      lib/dynamic_queue_limits.o
+  CC [M]  fs/smb/client/cifs_spnego_negtokeninit.asn1.o
+  CC      kernel/kallsyms.o
+  CC      lib/glob.o
+  CC      kernel/acct.o
+  CC      kernel/vmcore_info.o
+  CC      fs/statfs.o
+  AR      drivers/misc/built-in.a
+  CC [M]  drivers/acpi/acpi_tad.o
+  CC [M]  drivers/acpi/platform_profile.o
+  CC [M]  drivers/regulator/tps65132-regulator.o
+  CC      fs/fs_pin.o
+  CC      lib/digsig.o
+  CC [M]  drivers/acpi/sbshc.o
+  CC      fs/btrfs/messages.o
+  CC      fs/nsfs.o
+  CC [M]  net/netfilter/nft_reject.o
+  CC      fs/fs_types.o
+  CC      fs/fs_context.o
+  CC [M]  drivers/mfd/wm8994-irq.o
+  CC      fs/fs_parser.o
+  CC [M]  drivers/net/usb/mcs7830.o
+  CC [M]  drivers/ata/pata_hpt3x3.o
+  CC [M]  drivers/regulator/tps68470-regulator.o
+  CC [M]  drivers/ata/pata_it8213.o
+  CC      lib/strncpy_from_user.o
+  CC [M]  fs/smb/client/asn1.o
+  CC      lib/strnlen_user.o
+  CC [M]  drivers/mfd/wm8994-regmap.o
+  CC      lib/net_utils.o
+  CC [M]  drivers/net/pfcp.o
+  LD [M]  net/ipv4/fou.o
+  LD [M]  net/ipv4/gre.o
+  LD [M]  net/ipv4/udp_tunnel.o
+  CC [M]  drivers/acpi/sbs.o
+  AR      net/ipv4/built-in.a
+  CC [M]  drivers/regulator/twl-regulator.o
+  CC [M]  net/netfilter/nft_reject_inet.o
+  CC [M]  drivers/regulator/twl6030-regulator.o
+  CC      lib/sg_pool.o
+  CC [M]  net/netfilter/nft_reject_netdev.o
+  CC [M]  drivers/net/usb/usbnet.o
+  CC [M]  drivers/regulator/wm831x-dcdc.o
+  CC [M]  drivers/acpi/ec_sys.o
+  CC      kernel/elfcorehdr.o
+  LD [M]  drivers/net/ethernet/intel/ixgbe/ixgbe.o
+  AR      drivers/net/ethernet/built-in.a
+  CC      fs/btrfs/bio.o
+  CC      fs/fsopen.o
+  CC [M]  drivers/regulator/wm831x-isink.o
+  CC [M]  drivers/acpi/pfr_update.o
+  CC [M]  drivers/mfd/madera-core.o
+  CC [M]  drivers/acpi/pfr_telemetry.o
+  CC      fs/init.o
+  CC [M]  drivers/acpi/acpi_pad.o
+  CC      lib/memregion.o
+  CC [M]  net/netfilter/nft_tunnel.o
+  CC      lib/irq_poll.o
+  CC [M]  drivers/regulator/wm831x-ldo.o
+  CC [M]  fs/nfs/dns_resolve.o
+  CC [M]  net/netfilter/nft_log.o
+  CC      lib/stackdepot.o
+  CC [M]  drivers/regulator/wm8350-regulator.o
+  CC [M]  drivers/ata/pata_it821x.o
+  CC      kernel/crash_reserve.o
+  CC      fs/btrfs/lru_cache.o
+  CC [M]  drivers/regulator/wm8400-regulator.o
+  CC [M]  drivers/mfd/cs47l15-tables.o
+  CC [M]  drivers/ata/pata_jmicron.o
+  LD [M]  drivers/scsi/hv_storvsc.o
+  CC      lib/ref_tracker.o
+  CC [M]  drivers/net/vrf.o
+  CC [M]  drivers/ata/pata_marvell.o
+  CC [M]  drivers/net/usb/int51x1.o
+  CC [M]  drivers/net/vsockmon.o
+  CC [M]  drivers/acpi/acpi_extlog.o
+  CC [M]  net/netfilter/nft_masq.o
+  CC [M]  drivers/mfd/cs47l35-tables.o
+  CC      kernel/kexec_core.o
+  CC [M]  drivers/net/ntb_netdev.o
+  CC [M]  drivers/regulator/wm8994-regulator.o
+  CC      fs/kernel_read_file.o
+  CC [M]  net/netfilter/nft_redir.o
+  CC      fs/mnt_idmapping.o
+  CC [M]  drivers/net/usb/kalmia.o
+  CC [M]  drivers/acpi/acpi_configfs.o
+  CC      kernel/crash_core.o
+  CC      fs/btrfs/raid-stripe-tree.o
+  CC      drivers/scsi/scsi_sysfs.o
+  CC      kernel/kexec.o
+  CC [M]  drivers/mfd/cs47l85-tables.o
+  CC [M]  net/netfilter/nft_hash.o
+  CC [M]  fs/nfs/nfs4trace.o
+  CC [M]  drivers/mfd/cs47l90-tables.o
+  CC      fs/remap_range.o
+  CC      kernel/kexec_file.o
+  CC [M]  drivers/ata/pata_netcell.o
+  CC [M]  fs/nfs/nfs4sysctl.o
+  CC      lib/bootconfig.o
+  CC [M]  fs/nfs/pnfs.o
+  CC [M]  net/netfilter/nft_fib.o
+  CC      lib/asn1_decoder.o
+  CC [M]  drivers/net/usb/ipheth.o
+  CC [M]  drivers/ata/pata_ninja32.o
+  CC      lib/asn1_encoder.o
+  CC [M]  net/netfilter/nft_fib_inet.o
+  CC [M]  drivers/net/usb/sierra_net.o
+  CC      kernel/compat.o
+  CC [M]  drivers/mfd/cs47l92-tables.o
+  CC [M]  drivers/ata/pata_ns87415.o
+  CC [M]  net/netfilter/nft_fib_netdev.o
+  CC [M]  drivers/mfd/madera-i2c.o
+  CC      fs/pidfs.o
+  CC      fs/buffer.o
+  CC [M]  drivers/mfd/madera-spi.o
+  CC      kernel/utsname.o
+  CC      fs/btrfs/fiemap.o
+  CC [M]  drivers/ata/pata_oldpiix.o
+  CC [M]  fs/nfs/pnfs_dev.o
+  GEN     lib/oid_registry_data.c
+  CC [M]  fs/nfs/pnfs_nfs.o
+  CC [M]  drivers/net/usb/cx82310_eth.o
+  CC [M]  fs/nfs/nfs42proc.o
+  CC      lib/ucs2_string.o
+  LD [M]  drivers/acpi/video.o
+  AR      drivers/acpi/built-in.a
+  CC      kernel/user_namespace.o
+  CC      fs/btrfs/direct-io.o
+  CC [M]  drivers/net/usb/cdc_ncm.o
+  CC [M]  net/netfilter/nft_socket.o
+  CC [M]  fs/nfs/nfs42xattr.o
+  CC [M]  drivers/ata/pata_optidma.o
+  LD [M]  fs/smb/client/cifs.o
+  LD [M]  fs/nfs/nfs.o
+  CC      fs/btrfs/acl.o
+  CC      lib/ubsan.o
+  CC      lib/sbitmap.o
+  CC      fs/btrfs/zoned.o
+  CC [M]  drivers/mfd/cs40l50-core.o
+  CC      kernel/pid_namespace.o
+  CC [M]  drivers/net/usb/huawei_cdc_ncm.o
+  UPD     kernel/config_data
+  CC [M]  drivers/ata/pata_pdc2027x.o
+  LD [M]  fs/nfs/nfsv2.o
+  CC [M]  drivers/net/usb/lg-vl600.o
+  CC [M]  drivers/net/usb/qmi_wwan.o
+  CC [M]  drivers/mfd/cs40l50-i2c.o
+  CC [M]  drivers/net/usb/cdc_mbim.o
+  CC      fs/mpage.o
+  CC      lib/group_cpus.o
+  CC [M]  net/netfilter/nft_osf.o
+  CC [M]  drivers/net/usb/ch9200.o
+  CC      fs/proc_namespace.o
+  CC      fs/btrfs/verity.o
+  CC      fs/direct-io.o
+  CC [M]  drivers/mfd/cs40l50-spi.o
+  CC [M]  net/netfilter/nft_tproxy.o
+  CC      fs/eventpoll.o
+  AR      drivers/regulator/built-in.a
+  CC      lib/fw_table.o
+  CC [M]  net/netfilter/nft_xfrm.o
+  CC [M]  drivers/ata/pata_pdc202xx_old.o
+  LD [M]  fs/nfs/nfsv3.o
+  CC [M]  drivers/net/usb/aqc111.o
+  CC [M]  net/netfilter/nft_synproxy.o
+  CC      kernel/stop_machine.o
+  AR      drivers/scsi/built-in.a
+  CC      fs/anon_inodes.o
+  CC [M]  lib/crc7.o
+  CC [M]  drivers/mfd/tps6105x.o
+  CC      kernel/audit.o
+  CC [M]  drivers/net/usb/r8153_ecm.o
+  CC [M]  net/netfilter/nft_chain_nat.o
+  CC [M]  drivers/mfd/tps65010.o
+  CC      kernel/auditfilter.o
+  CC [M]  net/netfilter/nft_dup_netdev.o
+  CC [M]  lib/crc8.o
+  CC      fs/signalfd.o
+  CC [M]  drivers/ata/pata_radisys.o
+  CC [M]  net/netfilter/nft_fwd_netdev.o
+  CC [M]  lib/bch.o
+  CC      fs/timerfd.o
+  CC [M]  lib/ts_kmp.o
+  CC [M]  lib/ts_bm.o
+  CC [M]  lib/ts_fsm.o
+  CC [M]  drivers/mfd/tps6507x.o
+  CC [M]  lib/notifier-error-inject.o
+  CC      kernel/auditsc.o
+  CC      fs/eventfd.o
+  CC [M]  net/netfilter/nf_flow_table_core.o
+  CC [M]  lib/pm-notifier-error-inject.o
+  CC [M]  lib/memory-notifier-error-inject.o
+  CC      kernel/audit_watch.o
+  CC [M]  lib/lru_cache.o
+  CC      kernel/audit_fsnotify.o
+  CC [M]  drivers/mfd/tps65086.o
+  CC      fs/userfaultfd.o
+  CC      kernel/audit_tree.o
+  CC [M]  drivers/ata/pata_rdc.o
+  CC      fs/aio.o
+  CC [M]  drivers/ata/pata_sch.o
+  CC [M]  net/netfilter/nf_flow_table_ip.o
+  CC [M]  drivers/ata/pata_serverworks.o
+  CC      kernel/kprobes.o
+  CC [M]  net/netfilter/nf_flow_table_offload.o
+  CC      fs/dax.o
+  CC [M]  net/netfilter/nf_flow_table_xdp.o
+  CC [M]  drivers/ata/pata_sil680.o
+  CC      fs/locks.o
+  CC      kernel/fail_function.o
+  CC [M]  drivers/mfd/tps6594-core.o
+  CC [M]  drivers/mfd/tps6594-i2c.o
+  CC [M]  drivers/mfd/tps6594-spi.o
+  CC [M]  net/netfilter/nf_flow_table_inet.o
+  CC      fs/binfmt_script.o
+  CC [M]  drivers/mfd/mc13xxx-core.o
+  CC [M]  net/netfilter/x_tables.o
+  AR      drivers/net/built-in.a
+  CC [M]  drivers/mfd/mc13xxx-spi.o
+  CC      kernel/hung_task.o
+  CC [M]  drivers/ata/pata_piccolo.o
+  CC [M]  drivers/mfd/mc13xxx-i2c.o
+  CC      kernel/watchdog.o
+  CC      fs/binfmt_elf.o
+  CC [M]  drivers/ata/pata_triflex.o
+  LD [M]  drivers/net/usb/asix.o
+  CC [M]  net/netfilter/xt_tcpudp.o
+  CC [M]  drivers/ata/pata_via.o
+  AR      fs/btrfs/built-in.a
+  CC [M]  drivers/ata/pata_sl82c105.o
+  CC [M]  drivers/mfd/ocelot-core.o
+  CC [M]  drivers/ata/pata_cmd640.o
+  CC      fs/compat_binfmt_elf.o
+  CC      fs/backing-file.o
+  CC [M]  drivers/ata/pata_mpiix.o
+  CC [M]  net/netfilter/xt_mark.o
+  CC      fs/mbcache.o
+  CC      kernel/watchdog_perf.o
+  CC [M]  net/netfilter/xt_connmark.o
+  CC [M]  drivers/ata/pata_ns87410.o
+  CC [M]  drivers/mfd/ocelot-spi.o
+  CC [M]  net/netfilter/xt_nat.o
+  CC [M]  drivers/ata/pata_opti.o
+  CC      fs/posix_acl.o
+  CC      kernel/seccomp.o
+  AR      lib/lib.a
+  GEN     lib/crc32table.h
+  CC [M]  net/netfilter/xt_AUDIT.o
+  CC [M]  drivers/mfd/axp20x.o
+  CC [M]  net/netfilter/xt_CHECKSUM.o
+  GEN     lib/crc64table.h
+  CC      lib/oid_registry.o
+  CC      fs/coredump.o
+  CC [M]  drivers/ata/pata_rz1000.o
+  CC      kernel/relay.o
+  CC [M]  drivers/ata/pata_acpi.o
+  CC [M]  net/netfilter/xt_CLASSIFY.o
+  CC      fs/drop_caches.o
+  CC      lib/crc32.o
+  CC      kernel/utsname_sysctl.o
+  CC [M]  drivers/mfd/axp20x-i2c.o
+  CC [M]  drivers/ata/pata_legacy.o
+  CC      lib/crc64.o
+  CC [M]  drivers/mfd/lp3943.o
+  CC [M]  net/netfilter/xt_CONNSECMARK.o
+  CC [M]  drivers/mfd/ti-lmu.o
+  CC      fs/sysctls.o
+  CC      kernel/delayacct.o
+  CC [M]  net/netfilter/xt_CT.o
+  CC [M]  drivers/mfd/da9062-core.o
+  CC [M]  drivers/mfd/da9150-core.o
+  CC      kernel/taskstats.o
+  CC [M]  net/netfilter/xt_DSCP.o
+  CC [M]  drivers/mfd/max77541.o
+  CC [M]  net/netfilter/xt_HL.o
+  CC [M]  drivers/mfd/max8907.o
+  CC [M]  net/netfilter/xt_HMARK.o
+  CC      kernel/tsacct.o
+  CC [M]  net/netfilter/xt_LED.o
+  CC [M]  net/netfilter/xt_LOG.o
+  CC      kernel/tracepoint.o
+  CC      kernel/latencytop.o
+  CC [M]  net/netfilter/xt_NETMAP.o
+  CC [M]  drivers/mfd/mp2629.o
+  CC      fs/fhandle.o
+  CC [M]  drivers/mfd/mt6360-core.o
+  CC      fs/bpf_fs_kfuncs.o
+  CC [M]  net/netfilter/xt_NFLOG.o
+  CC [M]  drivers/mfd/mt6370.o
+  CC      kernel/irq_work.o
+  CC [M]  net/netfilter/xt_NFQUEUE.o
+  CC [M]  drivers/mfd/mt6397-core.o
+  CC [M]  drivers/mfd/mt6397-irq.o
+  CC [M]  drivers/mfd/mt6358-irq.o
+  CC [M]  fs/binfmt_misc.o
+  CC [M]  drivers/mfd/kempld-core.o
+  CC      kernel/static_call.o
+  AR      lib/built-in.a
+  CC [M]  drivers/mfd/intel_quark_i2c_gpio.o
+  CC      kernel/static_call_inline.o
+  CC [M]  drivers/mfd/lpc_sch.o
+  CC      kernel/user-return-notifier.o
+  CC [M]  net/netfilter/xt_RATEEST.o
+  CC      kernel/padata.o
+  CC [M]  drivers/mfd/lpc_ich.o
+  CC [M]  drivers/mfd/rdc321x-southbridge.o
+  CC [M]  net/netfilter/xt_REDIRECT.o
+  CC      kernel/jump_label.o
+  CC      kernel/context_tracking.o
+  CC [M]  net/netfilter/xt_MASQUERADE.o
+  CC      kernel/iomem.o
+  CC      kernel/rseq.o
+  CC [M]  net/netfilter/xt_SECMARK.o
+  CC      kernel/watch_queue.o
+  CC [M]  drivers/mfd/janz-cmodio.o
+  CC [M]  net/netfilter/xt_TPROXY.o
+  AR      drivers/ata/built-in.a
+  CHK     kernel/kheaders_data.tar.xz
+  GZIP    kernel/config_data.gz
+  CC [M]  drivers/mfd/vx855.o
+  CC [M]  net/netfilter/xt_TCPMSS.o
+  CC [M]  net/netfilter/xt_TCPOPTSTRIP.o
+  CC [M]  net/netfilter/xt_TEE.o
+  CC [M]  drivers/mfd/wl1273-core.o
+  CC [M]  net/netfilter/xt_TRACE.o
+  CC      kernel/configs.o
+  GEN     kernel/kheaders_data.tar.xz
+  CC [M]  net/netfilter/xt_IDLETIMER.o
+  CC [M]  net/netfilter/xt_addrtype.o
+  CC [M]  drivers/mfd/si476x-cmd.o
+  CC [M]  drivers/mfd/si476x-prop.o
+  CC [M]  drivers/mfd/si476x-i2c.o
+  CC [M]  drivers/mfd/intel_pmc_bxt.o
+  CC [M]  drivers/mfd/viperboard.o
+  CC [M]  net/netfilter/xt_bpf.o
+  CC [M]  net/netfilter/xt_cluster.o
+  CC [M]  drivers/mfd/lm3533-core.o
+  CC [M]  drivers/mfd/lm3533-ctrlbank.o
+  CC [M]  net/netfilter/xt_comment.o
+  CC [M]  drivers/mfd/retu-mfd.o
+  CC [M]  net/netfilter/xt_connbytes.o
+  CC [M]  drivers/mfd/iqs62x.o
+  CC [M]  net/netfilter/xt_connlabel.o
+  CC [M]  drivers/mfd/menf21bmc.o
+  CC [M]  net/netfilter/xt_connlimit.o
+  CC [M]  drivers/mfd/dln2.o
+  CC [M]  net/netfilter/xt_conntrack.o
+  CC [M]  drivers/mfd/rt4831.o
+  CC [M]  drivers/mfd/rt5033.o
+  AR      fs/built-in.a
+  CC [M]  drivers/mfd/rt5120.o
+  CC [M]  net/netfilter/xt_cpu.o
+  CC [M]  drivers/mfd/sky81452.o
+  CC [M]  net/netfilter/xt_dccp.o
+  CC [M]  net/netfilter/xt_devgroup.o
+  CC [M]  net/netfilter/xt_dscp.o
+  CC [M]  drivers/mfd/intel_soc_pmic_bxtwc.o
+  CC [M]  drivers/mfd/intel_soc_pmic_chtdc_ti.o
+  LD [M]  fs/nfs/nfsv4.o
+  CC [M]  net/netfilter/xt_ecn.o
+  CC [M]  drivers/mfd/intel_soc_pmic_mrfld.o
+  CC [M]  drivers/mfd/rave-sp.o
+  CC [M]  net/netfilter/xt_esp.o
+  CC [M]  drivers/mfd/simple-mfd-i2c.o
+  CC [M]  net/netfilter/xt_hashlimit.o
+  CC [M]  drivers/mfd/smpro-core.o
+  CC [M]  drivers/mfd/intel-m10-bmc-core.o
+  CC [M]  drivers/mfd/intel-m10-bmc-spi.o
+  CC [M]  net/netfilter/xt_helper.o
+  CC [M]  drivers/mfd/atc260x-core.o
+  CC [M]  drivers/mfd/atc260x-i2c.o
+  CC [M]  net/netfilter/xt_hl.o
+  CC [M]  net/netfilter/xt_ipcomp.o
+  CC [M]  net/netfilter/xt_iprange.o
+  CC [M]  net/netfilter/xt_l2tp.o
+  CC [M]  net/netfilter/xt_length.o
+  CC [M]  net/netfilter/xt_limit.o
+  CC [M]  net/netfilter/xt_mac.o
+  CC [M]  net/netfilter/xt_multiport.o
+  CC [M]  net/netfilter/xt_nfacct.o
+  CC [M]  net/netfilter/xt_osf.o
+  CC [M]  net/netfilter/xt_owner.o
+  CC [M]  net/netfilter/xt_cgroup.o
+  CC [M]  net/netfilter/xt_physdev.o
+  CC [M]  net/netfilter/xt_pkttype.o
+  CC [M]  net/netfilter/xt_policy.o
+  CC [M]  net/netfilter/xt_quota.o
+  CC [M]  net/netfilter/xt_rateest.o
+  CC [M]  net/netfilter/xt_realm.o
+  CC [M]  net/netfilter/xt_recent.o
+  CC [M]  net/netfilter/xt_sctp.o
+  CC [M]  net/netfilter/xt_socket.o
+  CC [M]  net/netfilter/xt_state.o
+  CC [M]  net/netfilter/xt_statistic.o
+  AR      kernel/built-in.a
+  CC [M]  net/netfilter/xt_string.o
+  CC [M]  net/netfilter/xt_tcpmss.o
+  CC [M]  net/netfilter/xt_time.o
+  CC [M]  net/netfilter/xt_u32.o
+  LD [M]  drivers/mfd/arizona.o
+  LD [M]  drivers/mfd/wm8994.o
+  LD [M]  drivers/mfd/madera.o
+  LD [M]  drivers/mfd/ocelot-soc.o
+  LD [M]  drivers/mfd/mt6397.o
+  AR      drivers/mfd/built-in.a
+  LD [M]  drivers/mfd/si476x-core.o
+  LD [M]  net/netfilter/nf_conntrack.o
+  LD [M]  net/netfilter/nf_nat.o
+  LD [M]  net/netfilter/nf_conntrack_h323.o
+  LD [M]  net/netfilter/nf_tables.o
+  LD [M]  net/netfilter/nf_flow_table.o
+  AR      net/netfilter/built-in.a
+make[3]: *** [../scripts/Makefile.build:461: drivers] Error 2
+make[3]: *** Waiting for unfinished jobs....
+  AR      net/built-in.a
+  CC [M]  kernel/kheaders.o
+make[2]: *** [/kernel/Makefile:2003: .] Error 2
+make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
+make[1]: Leaving directory '/kernel/build64-debug'
+make: *** [Makefile:248: __sub-make] Error 2
 + cleanup
 ++ stat -c %u:%g /kernel
 + chown -R 1003:1003 /kernel
