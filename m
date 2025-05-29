@@ -4,28 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6348BC54FB3
-	for <intel-xe@archiver.kernel.org>; Thu, 29 May 2025 11:00:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD31BC54FB3
+	for <intel-xe@archiver.kernel.org>; Thu, 29 May 2025 11:14:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6BD110E148;
-	Thu, 29 May 2025 11:00:10 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 960AD10E148
- for <intel-xe@lists.freedesktop.org>; Thu, 29 May 2025 11:00:07 +0000 (UTC)
-Message-ID: <6fe72c2d-06da-41c5-b190-818f393d0dae@lankhorst.se>
-Date: Thu, 29 May 2025 12:59:58 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4987010E1B7;
+	Thu, 29 May 2025 11:14:49 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m6d4Jq0M";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D27210E1B7
+ for <intel-xe@lists.freedesktop.org>; Thu, 29 May 2025 11:14:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1748517286; x=1780053286;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=m9cw6xNYlfVUW5fGzoPuQKjTw1qi9nFw9HPmQqmdH0U=;
+ b=m6d4Jq0Myg5QrH7kpytdB547zzYkShYm7fW5qehIWWWXAfPHXPapIG98
+ 1yBI7csA8PN3Nz5VObxgRjed8bBg5TuBbE/OkfQrx0i6C6PCXytHKGKMu
+ WZ7hFzbQnXiki2f2JKhExrbiqoSJdVRzH1+P+VeHxrxSSIkvUiAeCwLMe
+ JF45vISbUxf2/CJDO76+vlwNcEMya2mkGG1ULdOXP4Ga+gK/NTXdrUA3V
+ pmRXzQ7CEnr7a8OmzENnwYgLWEH6aCUO2ruv16LSOuxG+Cic4meX5UxpI
+ cIRYhOP2TJmII+NrIkagxnA+aBbIoDUV8oGk5d0O+fv8vPtI8KwATzOZh Q==;
+X-CSE-ConnectionGUID: psQO0WUWSLqhzCeMNi6tnA==
+X-CSE-MsgGUID: nVk6RGwUQCmb6m/OHUdXgQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11447"; a="68123088"
+X-IronPort-AV: E=Sophos;i="6.15,192,1739865600"; d="scan'208";a="68123088"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2025 04:14:45 -0700
+X-CSE-ConnectionGUID: vDOsLtxwTs6/Pbg/56o+Rw==
+X-CSE-MsgGUID: q4Kiwg8dTcyc+AInkJMsyQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,192,1739865600"; d="scan'208";a="143510364"
+Received: from unknown (HELO bnilawar-desk2.iind.intel.com) ([10.190.239.41])
+ by fmviesa007-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 May 2025 04:14:42 -0700
+From: Badal Nilawar <badal.nilawar@intel.com>
+To: intel-xe@lists.freedesktop.org, linux-acpi@vger.kernel.org,
+ linux-pci@vger.kernel.org
+Cc: anshuman.gupta@intel.com, rafael@kernel.org, lenb@kernel.org,
+ bhelgaas@google.com, ilpo.jarvinen@linux.intel.com,
+ lucas.demarchi@intel.com, rodrigo.vivi@intel.com, varun.gupta@intel.com,
+ ville.syrjala@linux.intel.com, uma.shankar@intel.com
+Subject: [PATCH v4 00/11] VRAM Self Refresh 
+Date: Thu, 29 May 2025 16:46:43 +0530
+Message-Id: <20250529111654.3140766-1-badal.nilawar@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/xe: Create LRC BO without VM
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: stuart.summers@intel.com, matthew.brost@intel.com
-References: <20250529052031.2429120-2-niranjana.vishwanathapura@intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <maarten@lankhorst.se>
-In-Reply-To: <20250529052031.2429120-2-niranjana.vishwanathapura@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,130 +68,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Excellent.
+Changes in v4:
+  - Resolved build warnings
 
-I like this version because it removes a lot of extra complications in handling LRC bo.
+Changes in v3:
+ PCIe ACPI Patches:
+  - dropped the notifier block code and added patch to allow only one Aux
+    power limit request per root port (Rafael J. Wysocki)
+  - Addressed Review comments (Rafael J. Wysocki, Bjorn Helgaas)
 
-Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+ Xe Pacthes:
+  - Addressed Review comments (Bjorn Helgaas)
 
-On 2025-05-29 07:20, Niranjana Vishwanathapura wrote:
-> Specifying VM during lrc->bo creation requires VM's reference
-> to be held for the lifetime of lrc->bo as it will use VM's dma
-> reservation object. Using VM's dma reservation object for
-> lrc->bo doesn't provide any advantage. Hence do not pass VM
-> while creating lrc->bo.
->
-> v2: Use xe_bo_unpin_map_no_vm (Matthew Brost)
->
-> Fixes: 264eecdba211 ("drm/xe: Decouple xe_exec_queue and xe_lrc")
-> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_exec_queue.c |  9 ---------
->  drivers/gpu/drm/xe/xe_lrc.c        | 23 ++++-------------------
->  2 files changed, 4 insertions(+), 28 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-> index ce78cee5dec6..32c6923df7c3 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-> @@ -132,12 +132,6 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q)
->  			flags |= XE_LRC_CREATE_RUNALONE;
->  	}
->  
-> -	if (vm) {
-> -		err = xe_vm_lock(vm, true);
-> -		if (err)
-> -			return err;
-> -	}
-> -
->  	for (i = 0; i < q->width; ++i) {
->  		q->lrc[i] = xe_lrc_create(q->hwe, q->vm, SZ_16K, q->msix_vec, flags);
->  		if (IS_ERR(q->lrc[i])) {
-> @@ -146,9 +140,6 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q)
->  		}
->  	}
->  
-> -	if (vm)
-> -		xe_vm_unlock(vm);
-> -
->  	err = q->ops->init(q);
->  	if (err)
->  		goto err_lrc;
-> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-> index 61a2e87990a9..63d74e27f54c 100644
-> --- a/drivers/gpu/drm/xe/xe_lrc.c
-> +++ b/drivers/gpu/drm/xe/xe_lrc.c
-> @@ -909,10 +909,7 @@ static void xe_lrc_set_ppgtt(struct xe_lrc *lrc, struct xe_vm *vm)
->  static void xe_lrc_finish(struct xe_lrc *lrc)
->  {
->  	xe_hw_fence_ctx_finish(&lrc->fence_ctx);
-> -	xe_bo_lock(lrc->bo, false);
-> -	xe_bo_unpin(lrc->bo);
-> -	xe_bo_unlock(lrc->bo);
-> -	xe_bo_put(lrc->bo);
-> +	xe_bo_unpin_map_no_vm(lrc->bo);
->  	xe_bo_unpin_map_no_vm(lrc->bb_per_ctx_bo);
->  }
->  
-> @@ -1007,7 +1004,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
->  	 * FIXME: Perma-pinning LRC as we don't yet support moving GGTT address
->  	 * via VM bind calls.
->  	 */
-> -	lrc->bo = xe_bo_create_pin_map(xe, tile, vm, lrc_size,
-> +	lrc->bo = xe_bo_create_pin_map(xe, tile, NULL, lrc_size,
->  				       ttm_bo_type_kernel,
->  				       bo_flags);
->  	if (IS_ERR(lrc->bo))
-> @@ -1795,9 +1792,6 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
->  	if (!snapshot)
->  		return NULL;
->  
-> -	if (lrc->bo->vm)
-> -		xe_vm_get(lrc->bo->vm);
-> -
->  	snapshot->context_desc = xe_lrc_ggtt_addr(lrc);
->  	snapshot->ring_addr = __xe_lrc_ring_ggtt_addr(lrc);
->  	snapshot->indirect_context_desc = xe_lrc_indirect_ring_ggtt_addr(lrc);
-> @@ -1819,14 +1813,12 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
->  void xe_lrc_snapshot_capture_delayed(struct xe_lrc_snapshot *snapshot)
->  {
->  	struct xe_bo *bo;
-> -	struct xe_vm *vm;
->  	struct iosys_map src;
->  
->  	if (!snapshot)
->  		return;
->  
->  	bo = snapshot->lrc_bo;
-> -	vm = bo->vm;
->  	snapshot->lrc_bo = NULL;
->  
->  	snapshot->lrc_snapshot = kvmalloc(snapshot->lrc_size, GFP_KERNEL);
-> @@ -1846,8 +1838,6 @@ void xe_lrc_snapshot_capture_delayed(struct xe_lrc_snapshot *snapshot)
->  	xe_bo_unlock(bo);
->  put_bo:
->  	xe_bo_put(bo);
-> -	if (vm)
-> -		xe_vm_put(vm);
->  }
->  
->  void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer *p)
-> @@ -1900,14 +1890,9 @@ void xe_lrc_snapshot_free(struct xe_lrc_snapshot *snapshot)
->  		return;
->  
->  	kvfree(snapshot->lrc_snapshot);
-> -	if (snapshot->lrc_bo) {
-> -		struct xe_vm *vm;
-> -
-> -		vm = snapshot->lrc_bo->vm;
-> +	if (snapshot->lrc_bo)
->  		xe_bo_put(snapshot->lrc_bo);
-> -		if (vm)
-> -			xe_vm_put(vm);
-> -	}
-> +
->  	kfree(snapshot);
->  }
->  
+
+Anshuman Gupta (6):
+  PCI/ACPI: Add D3cold Aux Power Limit_DSM method
+  PCI/ACPI: Add PERST# Assertion Delay _DSM method
+  drm/xe/vrsr: Detect VRSR Capability
+  drm/xe/vrsr: Refactor d3cold.allowed to a enum
+  drm/xe/pm: D3Cold target state
+  drm/xe/vrsr: Enable VRSR
+
+Badal Nilawar (5):
+  PCI/ACPI: Per root port allow one Aux power limit request
+  drm/xe/vrsr: Introduce flag has_vrsr
+  drm/xe/vrsr: Initialize VRSR feature
+  drm/xe/vrsr: Enable VRSR on default VGA boot device
+  drm/xe/vrsr: Introduce a debugfs node named vrsr_capable
+
+ drivers/acpi/scan.c                     |   1 +
+ drivers/gpu/drm/xe/display/xe_display.c |  28 +++-
+ drivers/gpu/drm/xe/display/xe_display.h |   2 +
+ drivers/gpu/drm/xe/regs/xe_regs.h       |   3 +
+ drivers/gpu/drm/xe/xe_debugfs.c         |  20 +++
+ drivers/gpu/drm/xe/xe_device_types.h    |  12 +-
+ drivers/gpu/drm/xe/xe_pci.c             |  13 +-
+ drivers/gpu/drm/xe/xe_pcode_api.h       |   7 +
+ drivers/gpu/drm/xe/xe_pm.c              | 206 +++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_pm.h              |   9 +-
+ drivers/pci/pci-acpi.c                  | 167 +++++++++++++++++++
+ include/acpi/acpi_bus.h                 |   2 +
+ include/linux/pci-acpi.h                |  16 +-
+ 13 files changed, 456 insertions(+), 30 deletions(-)
+
+-- 
+2.34.1
 
