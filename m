@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2D38C54FB3
-	for <intel-xe@archiver.kernel.org>; Thu, 29 May 2025 12:53:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07F3CC5AD49
+	for <intel-xe@archiver.kernel.org>; Thu, 29 May 2025 12:53:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89F0B10E741;
-	Thu, 29 May 2025 12:53:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B982910E1FB;
+	Thu, 29 May 2025 12:53:47 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F33C10E103;
- Thu, 29 May 2025 12:53:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42B8C10E1FB;
+ Thu, 29 May 2025 12:53:47 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/bmg=3A_Update?=
- =?utf-8?q?_PCI_Id=27s_and_Workarounds?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/bmg=3A_Update_PCI_?=
+ =?utf-8?q?Id=27s_and_Workarounds?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Dnyaneshwar Bhadane" <dnyaneshwar.bhadane@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 29 May 2025 12:53:40 -0000
-Message-ID: <174852322057.31838.4337004991720654390@1538d3639d33>
+Date: Thu, 29 May 2025 12:53:47 -0000
+Message-ID: <174852322726.31242.2059519116098476597@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250529120534.531237-1-dnyaneshwar.bhadane@intel.com>
 In-Reply-To: <20250529120534.531237-1-dnyaneshwar.bhadane@intel.com>
@@ -48,11 +48,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: bf0749a9930e drm-tip: 2025y-05m-29d-05h-28m-18s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/xe2_hpg: Add set of workarounds
-Applying: drm/xe/xe2_hpg: Add PCI IDs for xe2_hpg
-Applying: drm/xe/xe2_hpg: Define additional Xe2_HPG GMD_ID
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+202708c00696422fd217223bb679a353a5936e23
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 29baf5330b0dcd101a150786d56e0643254349ab
+Author: Shekhar Chauhan <shekhar.chauhan@intel.com>
+Date:   Thu May 29 17:35:34 2025 +0530
+
+    drm/xe/xe2_hpg: Define additional Xe2_HPG GMD_ID
+    
+    Add another GMD_ID for Xe2_HPG
+    
+    Signed-off-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
+    Signed-off-by: James Ausmus <james.ausmus@intel.com>
+    Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
++ /mt/dim checkpatch bf0749a9930efe943554c3f73454d03c43779d15 drm-intel
+e8f277b5a1f8 drm/xe/xe2_hpg: Add set of workarounds
+2fa61cd44ad9 drm/xe/xe2_hpg: Add PCI IDs for xe2_hpg
+29baf5330b0d drm/xe/xe2_hpg: Define additional Xe2_HPG GMD_ID
 
 
