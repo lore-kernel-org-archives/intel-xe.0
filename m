@@ -4,26 +4,190 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43746C5AE59
-	for <intel-xe@archiver.kernel.org>; Thu, 29 May 2025 06:21:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C5FDC54FB3
+	for <intel-xe@archiver.kernel.org>; Thu, 29 May 2025 07:11:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAB6B10E037;
-	Thu, 29 May 2025 06:21:23 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78E5F10E037;
- Thu, 29 May 2025 06:21:22 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6495064832802195538=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA26410E30C;
+	Thu, 29 May 2025 07:11:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LGGnWXHR";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88EFC10E30C
+ for <intel-xe@lists.freedesktop.org>; Thu, 29 May 2025 07:11:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1748502703; x=1780038703;
+ h=message-id:date:subject:from:to:cc:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=VfpvQ6emcpDO7ILl18A/qmzbfs6+f39GyaSh1UqTE+M=;
+ b=LGGnWXHRJ0hEWiMvbys0rfYppfV2UtfwA5uDKPmI+hu53hnP2hBDKZu0
+ js2oq7DeUz8hJ/nKhn7I4sQwc1mPfjXEIs/mRlS9EYeewuN7uUVSt/xfi
+ UMlRCTs1iMyO3j5NC3sbJtFuncUChAZEw9EQ1ez6AXrZWg4otx5YGeRP0
+ ATpiiQoTGgsR6kxQv6bl6i4hOr7Ur+En6V1wA78jwNiQtf0zOhTxaedmY
+ P0khaSwq3dXqQ/Odx/9DTZAWdf1KXZoaPx3rjnMzKZqyA/Uh2T2mjdMjo
+ ei+W0WSx51Uc68FlNdsRXQh8eMthb3+szO2jppFZzi+31LwJEUPEgZuLz A==;
+X-CSE-ConnectionGUID: sRYlp9yySUya5awFKTAlZw==
+X-CSE-MsgGUID: ocmFuPXbQBq7u/Pst/e8lw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11447"; a="50476645"
+X-IronPort-AV: E=Sophos;i="6.15,323,1739865600"; d="scan'208";a="50476645"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2025 00:11:20 -0700
+X-CSE-ConnectionGUID: wrPkyp2wTge6R3IphScr9w==
+X-CSE-MsgGUID: BmwXDZjrTM6QlugztMWipA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,323,1739865600"; d="scan'208";a="180676539"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2025 00:11:21 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Thu, 29 May 2025 00:11:19 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25 via Frontend Transport; Thu, 29 May 2025 00:11:19 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (40.107.93.50) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.55; Thu, 29 May 2025 00:11:19 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=mGdupfpn9LnDNmwt2o/cxMCnGrBTTpxdxj7cliTLq3hkrZ1r5dvIuqjcbcXKxbrUWhSRZ6plJMs/QkkUxWjJuC0dzhGK4TzIqnHfe/WpPjAU9oXc+3Pd8ZYk3jw4xitqJ7kACLsRIuiMLe7kGzj9/WEE/WGSYfPEuo8FTlPdEkwEk3bk6wMpkwnKscclqvjWEaVa/Vba+/4hTjaLq3Mpxj85OVh3H2Jw29Id24aksfQW5yp6eG8kiU3nnl13+w7VNlJ5yjVQJF6g0NNNtCtNagPoayt8CFlxLsu1nrsSABcTmSc0PukrXJ/sTPtw80gd5QA4zuwiaHCQLo8AmJAAhQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kM11LU6AmK23ZixCXOIYb/Nfn30nvRAZoVUpUcZ1df8=;
+ b=tTvKAkaMSX9Fm9nN7D5MK3SmCyfl/glaJL4chP5L/xuJ/O1a25Xh4i01CHUFgY6clepZZnbkGpEHKVb/EzIBOQBpDV6w2BHh676GJ9mbZaGXTymRaG0Knd6MeY7res+g/T7FcaSwRsb1gLKY8b78WLy/e34dn5Ui1OtVZGUf7uNgWBTdfZ8izLPcTDpwE4WnZ20NGh8SteDQQwB4rMDuZncG8yV/DuDF9dJ9Bwy6/XfFQEw3bDq21C1Rp1rxoBS7/LaiVgXPlgGoZZtf32FG7UXGN/A5vfOdWsLuMzkCgKJw4FasjAIEGSPHRXFe5d+VggM3HOxk0KYBt8eXVN2Q0A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com (2603:10b6:408:103::8)
+ by SJ2PR11MB7574.namprd11.prod.outlook.com (2603:10b6:a03:4ca::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.24; Thu, 29 May
+ 2025 07:11:17 +0000
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::13bd:eb49:2046:32a9]) by BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::13bd:eb49:2046:32a9%5]) with mapi id 15.20.8769.025; Thu, 29 May 2025
+ 07:11:17 +0000
+Message-ID: <d73fdbbf-699d-48cf-948f-f8cf678ce165@intel.com>
+Date: Thu, 29 May 2025 12:41:07 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 01/11] PCI/ACPI: Add D3cold Aux Power Limit_DSM method
+From: "Nilawar, Badal" <badal.nilawar@intel.com>
+To: Sathyanarayanan Kuppuswamy <sathyanarayanan.kuppuswamy@linux.intel.com>,
+ <intel-xe@lists.freedesktop.org>, <linux-acpi@vger.kernel.org>,
+ <linux-pci@vger.kernel.org>
+CC: <anshuman.gupta@intel.com>, <rafael@kernel.org>, <lenb@kernel.org>,
+ <bhelgaas@google.com>, <ilpo.jarvinen@linux.intel.com>,
+ <lucas.demarchi@intel.com>, <rodrigo.vivi@intel.com>,
+ <varun.gupta@intel.com>, <ville.syrjala@linux.intel.com>,
+ <uma.shankar@intel.com>
+References: <20250523190155.2623462-1-badal.nilawar@intel.com>
+ <20250523190155.2623462-2-badal.nilawar@intel.com>
+ <e9b74268-7b5b-432f-9a4b-9566b0a62ca0@linux.intel.com>
+ <b5a54c14-a6b2-4a91-9618-c03cc4e775ed@intel.com>
+Content-Language: en-US
+In-Reply-To: <b5a54c14-a6b2-4a91-9618-c03cc4e775ed@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA0PR01CA0014.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:80::21) To BN9PR11MB5530.namprd11.prod.outlook.com
+ (2603:10b6:408:103::8)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EFull=3A_success_for_Fixes_for_VF_GuC_version?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 29 May 2025 06:21:22 -0000
-Message-ID: <174849968248.31085.7880454408675619750@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250528234229.4185039-6-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20250528234229.4185039-6-daniele.ceraolospurio@intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN9PR11MB5530:EE_|SJ2PR11MB7574:EE_
+X-MS-Office365-Filtering-Correlation-Id: 14e47083-d8a8-4fa1-52de-08dd9e800112
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?OHBDbjY0cE9SbmtVNWdLdkNtYk5FcEJtV25NV1Vsazh1QmxwSDl4NGJMRnpM?=
+ =?utf-8?B?RTM5WGg4enNFQ1FvZ1pmRlY2bWFwNFhkRzFSeStBUE5FYzZmVndreFdQcmVh?=
+ =?utf-8?B?bVArZWJWSTZPVURJcGozeVBab3dSL2JTZjhKeGFxdzVtMmVYZllsUy9wdEtS?=
+ =?utf-8?B?TVNkVGJyQ0padzFrbVBTYWl6bkliWFNYRUg3TUpZSE1hVXg0Z1NQTmxja0ZG?=
+ =?utf-8?B?Q2xqNXY4b3h3MHFHVGJqK2hyZUhDbEJITWJmK1Q1Y1BtNWgwdURGaU44OHJ6?=
+ =?utf-8?B?N04xcVVkSzlYRGM5bnhLUTVUZnVyWlIrWlNQOW5WK1k2TXhOQURYUTVOU2JM?=
+ =?utf-8?B?eVdWSjRKcXl5bFZoR3hZUFUzaXpmREZxb3gzWDJqdDZFQ0hiQmpnSnQ0Y1Rw?=
+ =?utf-8?B?M2g1N0VxcXpOanNtSS9rU0NzOG4xaFU2L20yY0xEbGZFTEt5OEd1N0lmUW8x?=
+ =?utf-8?B?VFdGSElUenRSSnk5SHhHT2J3VzlxVGJYMzE4RCt0Vlc3TGZyYXRBUTBvTTlE?=
+ =?utf-8?B?YVE4eDJReWNXRUhQb3poL3ZTVUR0K1BvRTNuTUZPc0RrU1VEZ2dBYlVaVm5w?=
+ =?utf-8?B?OEhySmFYcHd2d0NIQklmS3RRSFYvOWdzSUtEVlBlc1ZIZmNDVVozcElMR1k5?=
+ =?utf-8?B?VDRCK2RBNGgzSnpBNU9UdHdYS1lhNS9WMUoxZHFiZndEaEowU3BZQ3c2YU16?=
+ =?utf-8?B?MFpJUWl0OXd3bVRTekh5VEl4b3R6R203NmxyR1VWaFFkb2o5YzVaT0lYZm83?=
+ =?utf-8?B?K2o2S3ZPWUNTdHQ5YWgvSmsvZW5nZ0lKU3YxcndEUG91ZE5MWll1T2MzOEV3?=
+ =?utf-8?B?OUVac1hsVGZHRWgxMmpmbmo0c2NFMC9RdDhOVE1Mc2ljTTZNcldUc2xUUDlG?=
+ =?utf-8?B?emIyekQ3RHU1RjUyQThzV3UrdCt1UlpJNG9Iamp4elFzRG5Fam1XbmdBUFNX?=
+ =?utf-8?B?QnVqQ2RPY2tkVm5kWk92YnZkN2QzQUxJTFRkbG5MTkJHVVZjOXJINFlGMlB2?=
+ =?utf-8?B?VFpsdzZURWc1NHB5ZG5SZEwwRmlOcXNPSExsek5FZ3dZWmhHZWdaWG9tdm41?=
+ =?utf-8?B?QmhuWk1GKy9iY0YwRTJoMGU1OG03WlA0djBzZS9ycjRESUI5azFXc1BOZEFS?=
+ =?utf-8?B?RUdZaW1uR0FVQ3BmTXRXd2pTR0JLdmlHQmNJNm5PZkNGNHNyMi9XVkMyUFow?=
+ =?utf-8?B?ZjFiVDBabm41b1JtMGZVYS81ZXhWMzhjTFByVHZML1VTbzhGNVducFk4bFlH?=
+ =?utf-8?B?QU9GVzNQNDZqYkhGSW51OU5YZ1p6VXhVeGpZZmpSdEd6VUdpYkVxekE5V3l3?=
+ =?utf-8?B?USttdnFYWlRWNG1ndURibTZjbEpOUWdra1hyTmFDcDRBRkYxWW5FNEhJN2tv?=
+ =?utf-8?B?U2I3ZFdmUm83VUNoSktucWQ1WnVLWWJ6RWlnODVlWWdyai9zMzVsbWVubzVS?=
+ =?utf-8?B?TkhOaXh1QnJYVlh1eWhsdkN4bVA3VkM2SE51MXE1NVdlYjlFOWcyZGJnK2J3?=
+ =?utf-8?B?YzJIUnByNXlpa1ZsNEFTUWx0SWVhYTlpamphRldXZ1NDWnI5cS9kQm5ZbXRB?=
+ =?utf-8?B?S1NKVnMydWlvb05lQmxwWEc0V2llY1NOVzJ5OXZ2MmhiUlA3V2tUQUxIYmNh?=
+ =?utf-8?B?YWs1ODBXeWlqbDBranFkeFYvYWVnbXFUZGVMSUdzVXkvaytXRGlqUnBETXFE?=
+ =?utf-8?B?Z1JMbjdhUzFZOEc1cjhadWlYUVpXbGoyd2IyY1VwTVFkVlFDeTViQWo2Z1c2?=
+ =?utf-8?B?V2VZNkpHeFdvd1dmUSt1SmFobjlKM3U0Sk9KYlNVMEYwMEh1U1V3c3BmRDBQ?=
+ =?utf-8?B?M25ZNjdNZlV3dWVkdkFSOEtrSEtuYnZJTGdtVXZyc254NHBncTgvbjlyS29I?=
+ =?utf-8?B?QnFRZTF5ZlFyeW40OERDaVNyTDhtL2NFMkovRkVPV0dYcUpXeGltdmNrSnNZ?=
+ =?utf-8?Q?eX3y894XvwY=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR11MB5530.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q0RVa2JTSkpPQzZWOU1wUC9VWVdqYk00TFpOS2pmMllSMU9SbFBDeWFTdjVq?=
+ =?utf-8?B?Vi82UE5uV2ZDVG44Y0t5VWVIZHl3dkplNnZpVE1TdUUvNEpVdmlUUXhmQ1Zt?=
+ =?utf-8?B?QWtoV1V1MHQvNzUzNTVac3NHRnZrS0dnK0tUQy9BSDA4WlhZclpDbThMSFF5?=
+ =?utf-8?B?RHZHei9Kak9aNlFiWDFhUmdCT0JyV29UV2xqSFo4dE9HMG52blFNZHR4L0kw?=
+ =?utf-8?B?R25pNmUxSnFKYS8wNFV2R2kvUm1EcURySHdJMWxhVmIvNzhNL0FPTzN5alVY?=
+ =?utf-8?B?SFNTUnlNZmU0Y3MrSHVFczBWdEpRa1pvQVIzbXhObUJDaGtVNlQ1ZzFOYy9h?=
+ =?utf-8?B?aisxY2JaYmZlcHQrelJFSWt3SkxJRFZpemZBODkzVTJ6OC9lYjRzTGd3Qkor?=
+ =?utf-8?B?Qk1CRTJHVEdKTERiRmNpd1NRVWlMdW1oc2ZiaEl5bGxlVWdhWllrRUh1MDF1?=
+ =?utf-8?B?bjNTQzZTbms5L2syVW9Iei9OdytoZ3pPRHFEUXFyZjNOditEbmlNNU94V0sw?=
+ =?utf-8?B?MU1EaHpXSFl2S3BuTVp0d2hWUWdOdkxsR2Y4ZnRlNitiNUVNclYrTThKMmlh?=
+ =?utf-8?B?emxFOWFtZ3pWendhcUhNNFN6U2hhM3UrSmxBaTA2QUk5dGFicGhRdWQrK0dV?=
+ =?utf-8?B?TWNibHJOWXVLUVptQkJyZ2RyVmtZS0FvWis0bHE2SnorY0hBdERiSFlZek12?=
+ =?utf-8?B?Z1NvNVI3NnBPU2owS2FEbVdjMHFHdEVSU1d0cTRmeW90aG1iMUY0UU50bENE?=
+ =?utf-8?B?Yk8xbE9yU0UxblR1Y09WWENZemNGT0VKUUh1OGhyY2lHMzR6V3pRTEhLZVBl?=
+ =?utf-8?B?dlo4R1FWTW8zQ1kxQlNGaWdYemU0N0pWYnRlZmU0UTZOcXpWeFdxU29YYmVo?=
+ =?utf-8?B?dXFiK1MxakxIV25LcGlxcFFBOGZ1K0hRSDloR2NQT21BQ1JZcWdsYjFpVWgy?=
+ =?utf-8?B?ZzJPQS9UNW5CNXZRSWMxWWZHRTBPSHRURnZJWkZWUWl6bk91aHQ1OGhtUyts?=
+ =?utf-8?B?ei9IQXNNaU5CTWhJMlUxL0tUSjA3TXBzQXdZUnBZT3lpUURlS3Z3RWVER0N1?=
+ =?utf-8?B?N2NkRFFVbmxCR0crOWMrdEY4Q254eGpaTjFrdlUyVFRNenpxaDc4SUQ5RXVH?=
+ =?utf-8?B?ek4xdWZtSk9xbzRYQ3k0UE9OVGN5SVVrUWV4WXZqeGc1M0lNOW1vK29BSFdx?=
+ =?utf-8?B?bVEzU3dlOUFyYndHZVJTU1lZWWhEcUp1a0xZbE9ZTndYYlRyZC9YMmxINVRm?=
+ =?utf-8?B?ZEdLL204OXAvNXJhRCtDZXpnanBRSGdHMzlPZ1NCS1JROEkwUzJscU4rTUx0?=
+ =?utf-8?B?Zm52eUJqeEl3NnREajN1ZlZManhsLy8vTEhnUHVtQTM3czJncVJZeUN0akNW?=
+ =?utf-8?B?NWN3UEJSWXF3bVhTb2tyUDNRL21QUG04ek9DVUQyMlhLeUo0b1oxRWNHNWRP?=
+ =?utf-8?B?cmZjd1dCT1BxK3kwTFZvUUt4N3pEQkNZTWNuTlIwYmtvc2MxUVVyVHpKYk5n?=
+ =?utf-8?B?Ty9zNzJtakkwM1ZPdGFGKzdYOGQydU4wdzlFamdsRVNheXlYUC9yNUlKbjRC?=
+ =?utf-8?B?YnFlTFNIdFdqNW1EeHdYVGNHaWMwbmhWQVBkck50ZitMaVhERjFRMEE1b1Iw?=
+ =?utf-8?B?bjJ6VXJQU1VOeVR4d2ZwN2ZVMW1yNnRqejg5aXY4TGcyc09lTUtpUjNHNS9n?=
+ =?utf-8?B?bEtIZ0EyNFFiN1ZtWmxGUmJRYUFmZ3ZmNHNNelFranliTG8xSGpnRDRNZ2Vj?=
+ =?utf-8?B?QkxyM1gzcEQwZGZ4L3Z4MFNQbUt2Z0VkRXRVOWRPcWYydkFLeFI1UW4yTWhM?=
+ =?utf-8?B?SWpIWWdEM1VyUngrSDZNMmdRQ3FpR0N2ZU5Nd0RVeXc2YlpwcHFLZDJ6c2ox?=
+ =?utf-8?B?NFlzY1hmZzJKVDR1bGhIOFBoOER5REdlbmlPam1LSlJwRE9uMWJReFpHelRQ?=
+ =?utf-8?B?VmJnZHBRck9Jd2hHM0s5QzNQUjBJSU9HTEpQVkdpNnl4L21NbzdxN1c1WS9k?=
+ =?utf-8?B?VjhYU1FiVXVsVkdEL1BJT2hIWUczdUF4R2d6OTJObm5iS0dyTkxwdmlDb2F1?=
+ =?utf-8?B?TEl3SlBkN2U0WGY3VG1WTGRrR28wQjBrdnVTa2xESW82L2xGeTVXVVF0MU02?=
+ =?utf-8?Q?EKhf3tgDiuqtqx9/Va195bKSv?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 14e47083-d8a8-4fa1-52de-08dd9e800112
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5530.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 May 2025 07:11:17.0897 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: D/3NIHorqg7vKDfQdBuGsnS4ZwLGeWM9nzv0jCJCEckL6/2ltEqZd5PTiXHZSJ8NOMHVERwsR0w1eywosrgo1Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7574
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,106 +199,207 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6495064832802195538==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 29-05-2025 11:48, Nilawar, Badal wrote:
+>
+> On 24-05-2025 11:30, Sathyanarayanan Kuppuswamy wrote:
+>>
+>> On 5/23/25 12:01 PM, Badal Nilawar wrote:
+>>> From: Anshuman Gupta<anshuman.gupta@intel.com>
+>>>
+>>> Implement _DSM method 0Ah according to PCI firmware specifications,
+>>> section 4.6.10 Rev 3.3., to request auxilary power needed for the
+>>> device when in D3Cold.
+>>>
+>>> Note that this implementation assumes only a single device below the
+>>> Downstream Port will request for Aux Power Limit under a given
+>>> Root Port because it does not track and aggregate requests
+>>> from all child devices below the Downstream Port as required
+>>> by Section 4.6.10 Rev 3.3.
+>>
+>> Add some info about why you are not adding this support?
+> Scope is limited to enable the use case of VRAM-SR on BMG GPU. I will 
+> mention this in cover letter.
+>>
+>>> One possible mitigation would be only allowing only first PCIe
+>>> Non-Bridge Endpoint Function 0 driver to call_DSM method 0Ah.
+>>>
+>>> V2(Bjorn/Rafael):
+>>>    - Call acpi_dsm_check() to find method 0Ah supported
+>>>    - Return retry interval to caller
+>>>
+>>> Signed-off-by: Varun Gupta<varun.gupta@intel.com>
+>>> Signed-off-by: Badal Nilawar<badal.nilawar@intel.com>
+>>> Signed-off-by: Anshuman Gupta<anshuman.gupta@intel.com>
+>>> ---
+>>>   drivers/pci/pci-acpi.c   | 87 
+>>> ++++++++++++++++++++++++++++++++++++++++
+>>>   include/linux/pci-acpi.h |  8 ++++
+>>>   2 files changed, 95 insertions(+)
+>>>
+>>> diff --git a/drivers/pci/pci-acpi.c b/drivers/pci/pci-acpi.c
+>>> index af370628e583..76b19525535f 100644
+>>> --- a/drivers/pci/pci-acpi.c
+>>> +++ b/drivers/pci/pci-acpi.c
+>>> @@ -1421,6 +1421,93 @@ static void pci_acpi_optimize_delay(struct 
+>>> pci_dev *pdev,
+>>>       ACPI_FREE(obj);
+>>>   }
+>>>   +/**
+>>> + * pci_acpi_request_d3cold_aux_power - Request aux power while 
+>>> device is in D3Cold
+>>> + * @dev: PCI device instance
+>>> + * @requested_power: Requested auxiliary power in milliwatts
+>>> + * @retry_interval: Retry interval returned by platform to retry 
+>>> auxiliary
+>>> + *                  power request
+>>> + *
+>>> + * This function sends a request to the host BIOS via root port 
+>>> ACPI _DSM Function 0Ah
+>>> + * for the auxiliary power needed by the PCI device when it is in 
+>>> D3Cold.
+>>> + * It checks and evaluates the _DSM (Device Specific Method) to 
+>>> request the auxiliary
+>>> + * power and handles the response accordingly.
+>>> + *
+>>> + * This function shall be only called by 1st non-bridge Endpoint 
+>>> driver
+>>> + * on Function 0. For a Multi-Function Device, the driver for 
+>>> Function 0 is
+>>> + * required to report an aggregate power requirement covering all
+>>> + * functions contained within the device.
+>>> + *
+>>> + * Return: Returns 0 on success and errno on failure.
+>>> + */
+>>> +int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 
+>>> requested_power,
+>>> +                      u32 *retry_interval)
+>>> +{
+>>> +    union acpi_object in_obj = {
+>>> +        .integer.type = ACPI_TYPE_INTEGER,
+>>> +        .integer.value = requested_power,
+>>> +    };
+>>> +
+>>> +    union acpi_object *out_obj;
+>>> +    acpi_handle handle;
+>>> +    int result, ret = -EINVAL;
+>>> +
+>>> +    if (!dev)
+>>> +        return -EINVAL;
+>>
+>> Is retry_interval param optional? If not may be a check here for non 
+>> NULL condition is needed.
+> Yes its optional, its up to caller weather to retry or not.
 
-Series: Fixes for VF GuC version
-URL   : https://patchwork.freedesktop.org/series/149613/
-State : success
+I will make this param mandatory and add NULL check here. Then its up to 
+caller to decide whether to retry.
 
-== Summary ==
+Thanks,
+Badal
 
-CI Bug Log - changes from xe-3156-2f74377e0846598397723197386e6d9d65b7711e_FULL -> xe-pw-149613v1_FULL
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3156-2f74377e0846598397723197386e6d9d65b7711e -> xe-pw-149613v1
-
-  IGT_8382: 8382
-  xe-3156-2f74377e0846598397723197386e6d9d65b7711e: 2f74377e0846598397723197386e6d9d65b7711e
-  xe-pw-149613v1: 149613v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149613v1/index.html
-
---===============6495064832802195538==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fixes for VF GuC version</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149613/">https://patchwork.freedesktop.org/series/149613/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149613v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149613v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3156-2f74377e0846598397723197386e6d9d65b7711e_FULL -&gt; xe-pw-149613v1_FULL</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3156-2f74377e0846598397723197386e6d9d65b7711e -&gt; xe-pw-149613v1</li>
-</ul>
-<p>IGT_8382: 8382<br />
-  xe-3156-2f74377e0846598397723197386e6d9d65b7711e: 2f74377e0846598397723197386e6d9d65b7711e<br />
-  xe-pw-149613v1: 149613v1</p>
-
-</body>
-</html>
-
---===============6495064832802195538==--
+>>
+>>> +
+>>> +    handle = ACPI_HANDLE(&dev->dev);
+>>> +    if (!handle)
+>>> +        return -EINVAL;
+>>> +
+>>> +    if (!acpi_check_dsm(handle, &pci_acpi_dsm_guid, 4, 1 << 
+>>> DSM_PCI_D3COLD_AUX_POWER_LIMIT)) {
+>>> +        pci_dbg(dev, "ACPI _DSM 0%Xh not supported\n", 
+>>> DSM_PCI_D3COLD_AUX_POWER_LIMIT);
+>>> +        return -ENODEV;
+>>> +    }
+>>> +
+>>> +    out_obj = acpi_evaluate_dsm_typed(handle, &pci_acpi_dsm_guid, 4,
+>>> +                      DSM_PCI_D3COLD_AUX_POWER_LIMIT,
+>>> +                      &in_obj, ACPI_TYPE_INTEGER);
+>>> +    if (!out_obj)
+>>> +        return -EINVAL;
+>>> +
+>>> +    result = out_obj->integer.value;
+>>> +    if (retry_interval)
+>>> +        *retry_interval = 0;
+>>> +
+>>> +    switch (result) {
+>>> +    case 0x0:
+>>> +        pci_dbg(dev, "D3cold Aux Power %u mW request denied\n",
+>>> +            requested_power);
+>>
+>> is this not a error?
+>
+> No its not error. BIOS Firmware can deny the aux power request.
+>
+> Regards,
+> Badal
+>
+>>
+>>> +        break;
+>>> +    case 0x1:
+>>> +        pci_info(dev, "D3cold Aux Power request granted: %u mW\n",
+>>> +             requested_power);
+>>> +        ret = 0;
+>>> +        break;
+>>> +    case 0x2:
+>>> +        pci_info(dev, "D3cold Aux Power: Main power won't be 
+>>> removed\n");
+>>> +        ret = -EBUSY;
+>>> +        break;
+>>> +    default:
+>>> +        if (result >= 0x11 && result <= 0x1F) {
+>>> +            if (retry_interval) {
+>>> +                *retry_interval = result & 0xF;
+>>> +                pci_warn(dev, "D3cold Aux Power request needs retry 
+>>> interval: %u seconds\n",
+>>> +                     *retry_interval);
+>>> +                ret = -EAGAIN;
+>>> +            }
+>>> +        } else {
+>>> +            pci_err(dev, "D3cold Aux Power: Reserved or unsupported 
+>>> response: 0x%x\n",
+>>> +                result);
+>>> +        }
+>>> +        break;
+>>> +    }
+>>> +
+>>> +    ACPI_FREE(out_obj);
+>>> +    return ret;
+>>> +}
+>>> +EXPORT_SYMBOL_GPL(pci_acpi_request_d3cold_aux_power);
+>>> +
+>>>   static void pci_acpi_set_external_facing(struct pci_dev *dev)
+>>>   {
+>>>       u8 val;
+>>> diff --git a/include/linux/pci-acpi.h b/include/linux/pci-acpi.h
+>>> index 078225b514d4..1705d03bfe26 100644
+>>> --- a/include/linux/pci-acpi.h
+>>> +++ b/include/linux/pci-acpi.h
+>>> @@ -121,6 +121,7 @@ extern const guid_t pci_acpi_dsm_guid;
+>>>   #define DSM_PCI_DEVICE_NAME            0x07
+>>>   #define DSM_PCI_POWER_ON_RESET_DELAY        0x08
+>>>   #define DSM_PCI_DEVICE_READINESS_DURATIONS    0x09
+>>> +#define DSM_PCI_D3COLD_AUX_POWER_LIMIT        0x0A
+>>>     #ifdef CONFIG_PCIE_EDR
+>>>   void pci_acpi_add_edr_notifier(struct pci_dev *pdev);
+>>> @@ -132,10 +133,17 @@ static inline void 
+>>> pci_acpi_remove_edr_notifier(struct pci_dev *pdev) { }
+>>>     int pci_acpi_set_companion_lookup_hook(struct acpi_device 
+>>> *(*func)(struct pci_dev *));
+>>>   void pci_acpi_clear_companion_lookup_hook(void);
+>>> +int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, u32 
+>>> requested_power,
+>>> +                      u32 *retry_interval);
+>>>     #else    /* CONFIG_ACPI */
+>>>   static inline void acpi_pci_add_bus(struct pci_bus *bus) { }
+>>>   static inline void acpi_pci_remove_bus(struct pci_bus *bus) { }
+>>> +static int pci_acpi_request_d3cold_aux_power(struct pci_dev *dev, 
+>>> u32 requested_power,
+>>> +                         u32 *retry_interval)
+>>> +{
+>>> +    return -EOPNOTSUPP;
+>>> +}
+>>>   #endif    /* CONFIG_ACPI */
+>>>     #endif    /* _PCI_ACPI_H_ */
+>>
