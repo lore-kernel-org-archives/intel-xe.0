@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E387C5AD49
-	for <intel-xe@archiver.kernel.org>; Thu, 29 May 2025 11:15:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E581C54FB3
+	for <intel-xe@archiver.kernel.org>; Thu, 29 May 2025 11:15:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D532C10E730;
-	Thu, 29 May 2025 11:15:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E4A710E749;
+	Thu, 29 May 2025 11:15:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yqkbj+5a";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W02c2k0L";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3650F10E205
- for <intel-xe@lists.freedesktop.org>; Thu, 29 May 2025 11:15:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEEBD10E72F
+ for <intel-xe@lists.freedesktop.org>; Thu, 29 May 2025 11:15:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748517300; x=1780053300;
+ t=1748517304; x=1780053304;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gq3lu6Vr77h2vZYMvDJ1FcMwb1J2hvDXLwwcG8LAHk0=;
- b=Yqkbj+5alZo851WrfrV12zMPtInMHAngS5Z3o2sqPS9vmMvu2HmtsrgK
- iMjFiQ1WjVLOak6omzHQMGzRsyTeUguzn996d8m7b7HCwKYndhQ0ByTzh
- /XrWaxTQhE0DJGf/xvSbLgaA2CEu1UiFrPrxL6c5mbcfJOUpDCzlPMzIH
- nMRtln2ELHye6Qhu/W5O2P0LJhu9ZITyAJJ6B6ztj6FvBkZo09ftlu3RN
- k6EPFgtSSmyPkDVa/tnJ24w0OCEuH32P/roo5xIhWR2HSWNsbWA+Burb3
- 92EAP3sEeKhvrLD1/DzTai0GRv2KODyL7R4+7lzEWqVP9SgpgkL/0cfBI A==;
-X-CSE-ConnectionGUID: JXyrTPeBS5WKwSycUjT3og==
-X-CSE-MsgGUID: 9dIVsVq1SsSQSolz9IinHg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11447"; a="68123130"
-X-IronPort-AV: E=Sophos;i="6.15,192,1739865600"; d="scan'208";a="68123130"
+ bh=lxHKZKVOenroNxh0FcZyRwd8gvSEvY446e/mnHo3N/0=;
+ b=W02c2k0LL7VCZlbacrNMX4r99KUOUPnc6VNue2uZrolV5Ft4c3hM5P81
+ KFKmPt93RLaC+vVwWKgjGhyrOP2iO2CcB4MlpTwdP4Vn7BAyGpraRK70h
+ DaQFlaMCyiYfoSDSJWktezG9r5jr9gtyshjX57oKkiTJOEhdozJNYGFo/
+ DB20CgSQIDRolc3PzGBBHe44aV5D1vhg0Ih68YPKcn7PDMoSp5yvbwuIZ
+ yFo6MJzyiDCO4eYc80pPjN4zaxYdxVBOTufiYBBeZNGP2GyyoElsTQ1YB
+ lzY8ciZMCJifoWbyYAePFK025f9S99mTQbLB2sTD9U3LGj7Sk596tIX35 w==;
+X-CSE-ConnectionGUID: EiAiT/N3Q5iiF5Aswwq6jw==
+X-CSE-MsgGUID: kEp/+GSAQ968JOYDX3sD1w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11447"; a="68123142"
+X-IronPort-AV: E=Sophos;i="6.15,192,1739865600"; d="scan'208";a="68123142"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2025 04:15:00 -0700
-X-CSE-ConnectionGUID: B3uuDiPEQrqnzIqbpbvBxw==
-X-CSE-MsgGUID: q5TfuQo5TnOLOnCls+WpVw==
+ 29 May 2025 04:15:03 -0700
+X-CSE-ConnectionGUID: YRErPp/vSEmm1GnbEp/dmw==
+X-CSE-MsgGUID: DUd5Nw4wTnyGuamw08ljgA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,192,1739865600"; d="scan'208";a="143510415"
+X-IronPort-AV: E=Sophos;i="6.15,192,1739865600"; d="scan'208";a="143510464"
 Received: from unknown (HELO bnilawar-desk2.iind.intel.com) ([10.190.239.41])
  by fmviesa007-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 May 2025 04:14:56 -0700
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 May 2025 04:15:00 -0700
 From: Badal Nilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org, linux-acpi@vger.kernel.org,
  linux-pci@vger.kernel.org
@@ -48,9 +48,9 @@ Cc: anshuman.gupta@intel.com, rafael@kernel.org, lenb@kernel.org,
  bhelgaas@google.com, ilpo.jarvinen@linux.intel.com,
  lucas.demarchi@intel.com, rodrigo.vivi@intel.com, varun.gupta@intel.com,
  ville.syrjala@linux.intel.com, uma.shankar@intel.com
-Subject: [PATCH v4 04/11] drm/xe/vrsr: Introduce flag has_vrsr
-Date: Thu, 29 May 2025 16:46:47 +0530
-Message-Id: <20250529111654.3140766-5-badal.nilawar@intel.com>
+Subject: [PATCH v4 05/11] drm/xe/vrsr: Detect VRSR Capability
+Date: Thu, 29 May 2025 16:46:48 +0530
+Message-Id: <20250529111654.3140766-6-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250529111654.3140766-1-badal.nilawar@intel.com>
 References: <20250529111654.3140766-1-badal.nilawar@intel.com>
@@ -70,56 +70,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce flag has_vrsr to determine if platform supports VRSR feature
+From: Anshuman Gupta <anshuman.gupta@intel.com>
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+Detect VRAM Self Refresh(vrsr) Capability.
+
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h | 2 ++
- drivers/gpu/drm/xe/xe_pci.c          | 3 +++
- 2 files changed, 5 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_regs.h    |  3 +++
+ drivers/gpu/drm/xe/xe_device_types.h |  4 ++++
+ drivers/gpu/drm/xe/xe_pm.c           | 26 ++++++++++++++++++++++++++
+ 3 files changed, 33 insertions(+)
 
+diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
+index 3abb17d2ca33..4db486fb310a 100644
+--- a/drivers/gpu/drm/xe/regs/xe_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_regs.h
+@@ -53,6 +53,9 @@
+ #define MTL_MPE_FREQUENCY			XE_REG(0x13802c)
+ #define   MTL_RPE_MASK				REG_GENMASK(8, 0)
+ 
++#define VRAM_SR_CAPABILITY                         XE_REG(0x138144)
++#define   VRAM_SR_SUPPORTED                        REG_BIT(0)
++
+ #define VF_CAP_REG				XE_REG(0x1901f8, XE_REG_OPTION_VF)
+ #define   VF_CAP				REG_BIT(0)
+ 
 diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index f81be293b260..e2749ed2a61f 100644
+index e2749ed2a61f..3a15b3a252fd 100644
 --- a/drivers/gpu/drm/xe/xe_device_types.h
 +++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -334,6 +334,8 @@ struct xe_device {
- 		u8 has_sriov:1;
- 		/** @info.has_usm: Device has unified shared memory support */
- 		u8 has_usm:1;
-+		/** @info.has_vrsr: Has capability to enter into VRAM self refresh */
-+		u8 has_vrsr:1;
- 		/** @info.has_64bit_timestamp: Device supports 64-bit timestamps */
- 		u8 has_64bit_timestamp:1;
- 		/** @info.is_dgfx: is discrete device */
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 024175cfe61e..46a99d6ef1a5 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -68,6 +68,7 @@ struct xe_device_desc {
- 	u8 has_llc:1;
- 	u8 has_pxp:1;
- 	u8 has_sriov:1;
-+	u8 has_vrsr:1;
- 	u8 needs_scratch:1;
- 	u8 skip_guc_pc:1;
- 	u8 skip_mtcfg:1;
-@@ -342,6 +343,7 @@ static const struct xe_device_desc bmg_desc = {
- 	.dma_mask_size = 46,
- 	.has_display = true,
- 	.has_fan_control = true,
-+	.has_vrsr = true,
- 	.has_heci_cscfi = 1,
- 	.needs_scratch = true,
- };
-@@ -589,6 +591,7 @@ static int xe_info_init_early(struct xe_device *xe,
- 	xe->info.has_llc = desc->has_llc;
- 	xe->info.has_pxp = desc->has_pxp;
- 	xe->info.has_sriov = desc->has_sriov;
-+	xe->info.has_vrsr = desc->has_vrsr;
- 	xe->info.skip_guc_pc = desc->skip_guc_pc;
- 	xe->info.skip_mtcfg = desc->skip_mtcfg;
- 	xe->info.skip_pcode = desc->skip_pcode;
+@@ -512,6 +512,9 @@ struct xe_device {
+ 		/** @d3cold.allowed: Indicates if d3cold is a valid device state */
+ 		bool allowed;
+ 
++		/** @d3cold.vrsr_capable: Indicates if d3cold VRAM Self Refresh is supported */
++		bool vrsr_capable;
++
+ 		/**
+ 		 * @d3cold.vram_threshold:
+ 		 *
+@@ -522,6 +525,7 @@ struct xe_device {
+ 		 * Default threshold value is 300mb.
+ 		 */
+ 		u32 vram_threshold;
++
+ 		/** @d3cold.lock: protect vram_threshold */
+ 		struct mutex lock;
+ 	} d3cold;
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index 693866def183..c9395e62d21d 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -13,13 +13,16 @@
+ #include <drm/ttm/ttm_placement.h>
+ 
+ #include "display/xe_display.h"
++#include "regs/xe_regs.h"
+ #include "xe_bo.h"
+ #include "xe_bo_evict.h"
+ #include "xe_device.h"
++#include "xe_force_wake.h"
+ #include "xe_ggtt.h"
+ #include "xe_gt.h"
+ #include "xe_guc.h"
+ #include "xe_irq.h"
++#include "xe_mmio.h"
+ #include "xe_pcode.h"
+ #include "xe_pxp.h"
+ #include "xe_trace.h"
+@@ -235,6 +238,28 @@ static bool xe_pm_pci_d3cold_capable(struct xe_device *xe)
+ 	return true;
+ }
+ 
++static bool xe_pm_vrsr_capable(struct xe_device *xe)
++{
++	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
++	unsigned int fw_ref;
++	struct xe_gt *gt;
++	u32 val;
++
++	gt = xe_root_mmio_gt(xe);
++
++	if (!xe->info.probe_display)
++		return false;
++
++	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++	if (!fw_ref)
++		return false;
++
++	val = xe_mmio_read32(mmio, VRAM_SR_CAPABILITY);
++	xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++
++	return val & VRAM_SR_SUPPORTED;
++}
++
+ static void xe_pm_runtime_init(struct xe_device *xe)
+ {
+ 	struct device *dev = xe->drm.dev;
+@@ -349,6 +374,7 @@ int xe_pm_init(struct xe_device *xe)
+ 		err = xe_pm_set_vram_threshold(xe, vram_threshold);
+ 		if (err)
+ 			goto err_unregister;
++		xe->d3cold.vrsr_capable = xe_pm_vrsr_capable(xe);
+ 	}
+ 
+ 	xe_pm_runtime_init(xe);
 -- 
 2.34.1
 
